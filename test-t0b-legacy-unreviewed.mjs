@@ -15,11 +15,12 @@
  *      permet de la faire basculer sans réécrire les fiches (section 6).
  */
 import { readFileSync } from "node:fs";
+import YAML from "yaml";
 import { createHash } from "node:crypto";
 import { loadKB } from "./packages/knowledge/src/index.ts";
 import {
   PlacementPolicy, PlacementPolicyAuthored, LegacyUnreviewedPlacementPolicyAuthored,
-  LegacyPlacementPolicyAuthored, projectPlacementPolicy,
+  projectPlacementPolicy,
 } from "./packages/knowledge/src/objects.ts";
 import { evaluate } from "./packages/engine/src/evaluate.ts";
 import { explain } from "./packages/engine/src/explain.ts";
@@ -251,46 +252,90 @@ console.log("=== 6. Agrégation Destinations : le signal survit, avec compagnie 
     JSON.stringify({ hold: ist2?.hold_status, sig: ist2?.confirmation_signals }));
 }
 
-console.log("=== 7. NEUTRALITÉ : la base réelle est inchangée, et aucun interrupteur n'existe ===");
+console.log("=== 7. T0-B2 : la migration est FAITE, et la forme héritée est inconstructible ===");
 {
-  /* 7.1 — aucune politique réelle n'émet la cause. */
-  let porteuses = 0, canaux = 0;
+  /* 7.1 — la cause est désormais PORTÉE par la base réelle, à l'effectif exact du registre
+     approuvé : 83 politiques non revérifiées (73 du manifeste + 10 anciens POLICY_STALE), et
+     elles seules. En T0-B1 ce compte valait 0 : la bascule est ce lot, et rien d'autre. */
+  let porteuses = 0, canaux = 0, nonPubliee = 0;
   for (const a of kb.airlines.values()) {
     for (const ch of ["cabin", "hold", "cargo"]) {
       const p = a.premium?.policy?.[ch];
       if (!p) continue;
       canaux++;
       if (p.status_cause === "legacy_unreviewed") porteuses++;
+      if (p.status_cause === "policy_unpublished") nonPubliee++;
     }
   }
-  check(`aucune des ${canaux} politiques réelles n'émet legacy_unreviewed`, porteuses === 0, `${porteuses} porteuse(s)`);
+  check(`les ${canaux} politiques réelles sont au complet`, canaux === 302, String(canaux));
+  check("83 politiques émettent legacy_unreviewed (73 manifeste + 10 stale)", porteuses === 83, String(porteuses));
+  check("1 seule émet policy_unpublished (Thai Cargo)", nonPubliee === 1, String(nonPubliee));
 
-  /* 7.2 — les 74 `conditional: true` projettent EXACTEMENT comme avant : `allowed` décide seul,
-     `conditional` reste ignoré. C'est la preuve qu'aucun chemin caché ne les fait basculer. */
+  /* 7.2 — l'artefact ne porte plus AUCUNE forme d'auteur héritée. C'est la contrepartie
+     matérielle de la suppression du schéma : si un `allowed` ou un `conditional` réapparaissait
+     dans objects.json, la validation le refuserait — ce contrôle le voit avant même le moteur. */
   const objets = JSON.parse(readFileSync("packages/knowledge/raw/objects.json", "utf8"));
-  let recenses = 0, devies = 0;
+  let herites = 0, decidees = 0;
   for (const a of objets.airlines) {
     const pol = a.premium?.policy ?? {};
     for (const ch of ["cabin", "hold", "cargo"]) {
-      if (pol[ch]?.conditional !== true) continue;
-      recenses++;
-      const attendu = pol[ch].allowed === true ? "allowed" : "denied";
-      const obtenu = kb.airlines.get(a.id)?.premium?.policy?.[ch]?.status;
-      if (obtenu !== attendu) { devies++; if (devies <= 3) console.log(`  DÉVIATION ${a.id}#${ch}: ${obtenu} ≠ ${attendu}`); }
+      if (!pol[ch]) continue;
+      decidees++;
+      if ("allowed" in pol[ch] || "conditional" in pol[ch]) herites++;
     }
   }
-  check("les 74 politiques héritées sont recensées", recenses === 74, String(recenses));
-  check("…et projetées comme en T0-A : `conditional` toujours IGNORÉ, zéro bascule", devies === 0, `${devies} déviation(s)`);
+  check("302 politiques d'auteur dans l'artefact", decidees === 302, String(decidees));
+  check("ZÉRO forme héritée `{allowed}` / `conditional` subsistante", herites === 0, `${herites} résiduelle(s)`);
 
-  /* 7.3 — la bascule exige de RÉÉCRIRE la donnée, pas de retourner un drapeau : une politique
-     héritée reste `allowed` quoi qu'on lui ajoute ; seule la branche `review_state` confirme. */
+  /* 7.3 — la forme héritée n'est plus seulement absente : elle est INCONSTRUCTIBLE. Tant que la
+     branche existait, un artefact régénéré par un outil ancien aurait été validé sans bruit, puis
+     projeté en ignorant `conditional`. L'union ne la connaît plus. */
   const heritee = { allowed: true, conditional: true, source: SRC };
-  check("legacy { allowed:true, conditional:true } → allowed (inchangé)",
-    projectPlacementPolicy(LegacyPlacementPolicyAuthored.parse(heritee)).status === "allowed");
-  check("legacy { allowed:false, conditional:true } → denied (inchangé)",
-    projectPlacementPolicy(LegacyPlacementPolicyAuthored.parse({ ...heritee, allowed: false })).status === "denied");
+  check("legacy { allowed:true, conditional:true } → REFUSÉ (schéma supprimé en T0-B2)",
+    !PlacementPolicyAuthored.safeParse(heritee).success);
+  check("legacy { allowed:false } seul → REFUSÉ",
+    !PlacementPolicyAuthored.safeParse({ allowed: false, source: SRC }).success);
   check("legacy + `review_state` dans le même objet → REFUSÉ (pas d'objet hybride)",
     !PlacementPolicyAuthored.safeParse({ ...heritee, review_state: "legacy_unreviewed" }).success);
+  check("`availability` + `review_state` → REFUSÉ (union exclusive, inchangé)",
+    !PlacementPolicyAuthored.safeParse({ availability: "offered", review_state: "legacy_unreviewed", source: SRC }).success);
+}
+
+console.log("=== 7 bis. La décision AUDITÉE arrive avec sa PREUVE (Thai Cargo) ===");
+{
+  /* Une décision auditée migrée sans sa provenance n'est pas migrée, elle est recopiée : la
+     fiche disait `availability: undocumented` et la politique canonique recevait la page
+     d'accueil de la compagnie, une date antérieure et une confiance moindre (contre-revue du
+     15/08/2026). On compare donc les TROIS représentations à la source approuvée du manifeste :
+     ce que la fiche écrit, ce que l'artefact porte, ce que le runtime sert. */
+  const manifeste = JSON.parse(readFileSync("test-baselines/t0b-migration-matrice.json", "utf8"));
+  const approuvee = manifeste.rows.find(
+    (r) => r.identity.airline_id === "airline_thai_airways" && r.identity.placement === "cargo",
+  ).decision.source;
+
+  const fiche = YAML.parse(readFileSync("content/airlines/thai_airways.yml", "utf8"));
+  const yamlSource = fiche.policies?.cargo?.source;
+  check("la FICHE porte une source auditée sur thai/cargo", !!yamlSource);
+
+  const CHAMPS = ["url", "source_type", "verified_date", "review_due", "confidence", "reviewer", "quote", "quote_language", "locator"];
+  const ecarts = (src) => CHAMPS.filter((c) => JSON.stringify(src?.[c]) !== JSON.stringify(approuvee[c]));
+  check("fiche ≡ source APPROUVÉE du manifeste, champ par champ", ecarts(yamlSource).length === 0,
+    `écarts : ${ecarts(yamlSource).join(", ")}`);
+
+  const artefact = JSON.parse(readFileSync("packages/knowledge/raw/objects.json", "utf8"))
+    .airlines.find((a) => a.id === "airline_thai_airways").premium.policy.cargo.source;
+  check("objects.json ≡ source APPROUVÉE, champ par champ", ecarts(artefact).length === 0,
+    `écarts : ${ecarts(artefact).join(", ")}`);
+
+  const runtime = kb.airlines.get("airline_thai_airways")?.premium?.policy?.cargo;
+  check("le RUNTIME sert l'URL, la date, l'échéance et la confiance approuvées",
+    runtime?.source?.url === approuvee.url && runtime?.source?.verified_date === approuvee.verified_date
+    && runtime?.source?.review_due === approuvee.review_due && runtime?.source?.confidence === approuvee.confidence,
+    JSON.stringify(runtime?.source));
+  /* La preuve accompagne la décision, elle ne la remplace pas : le statut reste celui du registre. */
+  check("et la décision reste `confirmation_required` / `policy_unpublished`",
+    runtime?.status === "confirmation_required" && runtime?.status_cause === "policy_unpublished",
+    `${runtime?.status} / ${runtime?.status_cause}`);
 }
 
 console.log("=== 8. Baseline FIGÉE : le point de comparaison de T0-B2 est scellé ===");
@@ -305,13 +350,22 @@ console.log("=== 8. Baseline FIGÉE : le point de comparaison de T0-B2 est scell
     createHash("sha256").update(octets).digest("hex") === EMPREINTE,
     createHash("sha256").update(octets).digest("hex"));
   check("72 scénarios, comme la matrice T0-A", Object.keys(JSON.parse(octets.toString("utf8"))).length === 72);
-  /* Ce contrôle-ci est VOLONTAIREMENT temporaire : en T0-B1 la baseline T0-A n'a pas bougé d'un
-     octet, donc les deux fichiers sont identiques. En T0-B2, la baseline T0-A changera
-     légitimement — ce contrôle échouera alors, ET C'EST SON RÔLE : il force à constater le
-     changement et à adapter le harnais T0-A explicitement, au lieu de remplacer sa référence en
-     silence. Le contrôle d'empreinte ci-dessus, lui, doit survivre à T0-B2 sans être touché. */
-  check("T0-B1 : identique au bit près à la baseline T0-A (aucune mutation métier dans ce lot)",
-    readFileSync("test-baselines/t0a-finder-baseline.json").equals(octets));
+  /* Le contrôle temporaire de T0-B1 a joué son rôle : il exigeait que la baseline T0-A soit
+     identique à la figée « tant qu'aucune mutation métier n'a eu lieu », et prévenait qu'il
+     échouerait en T0-B2 pour forcer un constat explicite plutôt qu'un remplacement silencieux.
+     Le constat est fait ici, et il est retourné : la baseline vivante a MAINTENANT bougé, elle
+     vaut exactement la baseline figée APRÈS T0-B2, et la figée AVANT — dont l'empreinte est
+     revérifiée juste au-dessus — n'a pas bougé d'un octet. Les deux bornes du diff approuvé sont
+     donc scellées, et leur écart est verrouillé carte par carte dans `t0b2-approved-diff.json`
+     (harnais `test-t0a-baseline.mjs`). */
+  const vivante = readFileSync("test-baselines/t0a-finder-baseline.json");
+  check("T0-B2 : la baseline vivante a bougé — elle DIFFÈRE de la figée AVANT",
+    !vivante.equals(octets));
+  check("T0-B2 : la baseline vivante est identique à la figée APRÈS",
+    vivante.equals(readFileSync("test-baselines/t0b2-finder-baseline-apres.json")));
+  check("empreinte de la baseline figée APRÈS = 5dad5396527c…",
+    createHash("sha256").update(readFileSync("test-baselines/t0b2-finder-baseline-apres.json")).digest("hex")
+      === "5dad5396527c94bcb1a0fc2bb2c79b94052c26ca32d92fb47cfecd43a205d2e7");
 }
 
 console.log(`\n${pass} OK, ${fail} FAIL`);

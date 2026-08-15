@@ -52,8 +52,16 @@ ladder:
       es: Cabina
       pt: "Cabine"
     sub: ≤ 8 kg
+policies:
+  cabin:
+    availability: offered
+  hold:
+    availability: not_offered
+  cargo:
+    availability: not_offered
 channels:
-  - icon: 🐾
+  - placement: cabin
+    icon: 🐾
     name:
       en: Cabin
       fr: Cabine
@@ -75,7 +83,8 @@ channels:
       fr: "40–130 € selon la zone (voir la grille tarifaire)"
       es: "40–130 € según la zona (ver la lista de tarifas)"
       pt: "40–130 € dependendo da zona (ver a lista de tarifas)"
-  - icon: 🧳
+  - placement: hold
+    icon: 🧳
     name:
       en: Hold
       fr: Soute
@@ -97,7 +106,8 @@ channels:
       fr: Non publié
       es: No publicado
       pt: "Não publicado"
-  - icon: ✈️
+  - placement: cargo
+    icon: ✈️
     name:
       en: Cargo
       fr: Fret

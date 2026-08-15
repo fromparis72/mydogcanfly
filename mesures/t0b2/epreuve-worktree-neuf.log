@@ -1,0 +1,130 @@
+dépôt      : <WORKTREE-NEUF>
+SHA        : 0e463e8e120bb795d00d69ce05c33704c973e574
+node       : v22.22.2  (.nvmrc : 22.22.2)
+travail    : <DOSSIER-DE-TRAVAIL>
+
+=== 1. REGISTRE ET BIJECTIONS (état AVANT) ===
+totaux : {
+  fiches: 103,
+  canaux_visibles: 296,
+  canaux_reconnus_par_catOf: 292,
+  canaux_non_reconnus: 4,
+  couples_yaml_uniques: 292,
+  politiques_objects_json: 302,
+  lignes_manifeste: 74,
+  warn_total: 86,
+  warn_reconnus: 82,
+  warn_non_reconnus: 4,
+  conditional_dans_objects_json: 74
+}
+
+=== BIJECTION ===
+OK     doublons_placement : 0
+OK     manifeste_sans_conditional : 0
+OK     conditional_sans_manifeste : 0
+OK     manifeste_empreintes_divergentes : 0
+OK     manifeste_locators_divergents : 0
+OK     derive_cls_vers_allowed : 0
+OK     yaml_sans_politique : 0
+DETTE  politique_sans_canal_yaml : 10 (dette historique scellée)
+
+Aucune anomalie : seule la dette historique scellée subsiste, à l'identique.
+
+=== 2. TÉMOIN — l'instrument est-il valide ? ===
+OK     témoin · génération — code 0, « 7 OK, 0 FAIL »
+OK     témoin · contrôle complet — code 0, « 10 OK, 0 FAIL »
+témoin attendu : bc10c594831b662933dcba7835dfe78872ebfb4dd5a884e2faaaf6256045b7bb
+témoin obtenu  : bc10c594831b662933dcba7835dfe78872ebfb4dd5a884e2faaaf6256045b7bb
+OK     l'instrument reproduit la baseline figée bit à bit
+
+=== 3. CANDIDAT (218 mécaniques + 83 legacy_unreviewed + 1 undocumented) ===
+total migré        : 302
+mécaniques (218)   : 218 (offered 143 / not_offered 75)
+legacy_unreviewed  : 83 (manifeste 73 + stale 10)
+undocumented (1)   : 1
+conditional vus    : 74 | POLICY_STALE vus : 10
+candidat v2 écrit.
+
+=== 4. IDEMPOTENCE (deux régénérations effectives) ===
+OK     candidat · génération 1 — code 1, « 6 OK, 1 FAIL », échec unique = bijection historique (1530 écarts)
+OK     candidat · génération 2 — code 1, « 6 OK, 1 FAIL », échec unique = bijection historique (1530 écarts)
+candidat attendu : 5dad5396527c94bcb1a0fc2bb2c79b94052c26ca32d92fb47cfecd43a205d2e7
+candidat obtenu  : 5dad5396527c94bcb1a0fc2bb2c79b94052c26ca32d92fb47cfecd43a205d2e7
+OK     idempotent bit à bit, à l'empreinte attendue
+
+=== 4 bis. CONTRÔLE COMPLET SUR LE CANDIDAT (échec unique attendu) ===
+OK     candidat · contrôle complet — code 1, « 9 OK, 1 FAIL », échec unique = bijection historique (1530 écarts)
+
+=== 5. DIFF DU CONTRAT PUBLIC ===
+scénarios touchés  : 44 / 72
+compagnies touchées: 46
+natures d'écart    : {
+  classement: 28,
+  statuts: 452,
+  decisions: 452,
+  booleens: 452,
+  confirm: 452,
+  label: 72,
+  fee: 56,
+  'tete:compatible': 24,
+  'tete:score': 22
+}
+
+=== 6. TRAÇABILITÉ DES BASCULES ===
+bascules observées            : 464 sur 48 couples
+transitions                   : { 'allowed → confirmation_required': 464 }
+OK     bascules hors registre : 0
+OK     transitions ≠ allowed→confirmation : 0
+OK     causes/policy_ref inattendues : 0
+couples migrés NON exercés par les scénarios : 36 / 84 → couverts directement par couverture-projection.mjs
+
+=== 7. COUVERTURE DIRECTE (normalisation / projection) ===
+politiques projetées      : 302 (attendu 302)
+conformes au registre     : 302
+échecs                    : 0
+répartition par statut    : { allowed: 143, confirmation_required: 84, denied: 75 }
+répartition par cause     : { legacy_unreviewed: 83, policy_unpublished: 1 }
+couples migrés couverts   : 84 (84 attendus : 73 manifeste + 10 stale + 1 thai)
+
+COUVERTURE DIRECTE COMPLÈTE : 302/302 politiques, dont les 84 migrées, prouvées à la projection.
+
+=== 8. FAISABILITÉ DE L'OPTION C ===
+fiches                         : 103
+canaux visibles                : 296 (catOf 292 + rattachement explicite 4)
+canaux sans placement          : 0 []
+doublons de placement          : 0 []
+canaux sans politique cible    : 0 []
+politiques déclarées (bloc)    : 302 (attendu 302)
+politiques SANS canal visible  : 6 (attendu 6)
+     airline_asiana.cargo
+     airline_condor.cargo
+     airline_eva_air.cargo
+     airline_norwegian.cargo
+     airline_qantas.hold
+     airline_virgin_australia.hold
+dette inattendue               : 0 []
+dette scellée disparue         : 0 []
+rattachements non consommés × 1: 0 []
+
+=== INVARIANTS DE L'OPTION C ===
+OK     chaque canal visible référence une politique
+OK     aucun placement dupliqué dans une fiche
+OK     302 politiques déclarées
+OK     296 canaux visibles porteront un placement
+OK     les 6 politiques sans canal sont EXACTEMENT celles scellées
+OK     les 4 rattachements scellés sont consommés une fois chacun
+
+OPTION C FAISABLE en l'état : aucun changement éditorial requis.
+
+=== 9. IDENTITÉ AVEC LES ANNEXES PUBLIÉES ===
+OK       registre-avant-bijections.json  9b7037f0fcef7e4c8ab7fba8c24d18c392891934c7651dc4c286988fe3407321
+OK       registre-migration-302.json  e339c7c8a3865f5146062aaaa15f9e6afafcd3da0c989c55464f355fb992bb65
+OK       diff-avant-apres.json  c77348de5f1bef64674be4e4bf62a9cfa146479239a97366996cef821277999d
+OK       verification-bascules.json  3bde0b4245a075d4046bd8364217045fb345a61a3e8ed7a8a579124d4337cf2e
+OK       faisabilite-option-c.json  07712690560420773e639201bd311c10ea08306460b5fe76bdcffad856365fe2
+OK       baseline-candidate-prevision.json  5dad5396527c94bcb1a0fc2bb2c79b94052c26ca32d92fb47cfecd43a205d2e7
+
+=== 10. INTÉGRITÉ DU DÉPÔT ===
+OK     le dépôt est strictement dans son état initial
+
+=== REPRODUCTION RÉUSSIE — artefacts dans <DOSSIER-DE-TRAVAIL> ===

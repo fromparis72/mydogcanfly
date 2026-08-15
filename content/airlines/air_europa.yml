@@ -72,8 +72,16 @@ ladder:
       fr: R.-U. / espèces
       es: R.U. / especies
       pt: "Reino Unido / espécie"
+policies:
+  cabin:
+    availability: offered
+  hold:
+    availability: offered
+  cargo:
+    review_state: legacy_unreviewed
 channels:
-  - icon: 🐾
+  - placement: cabin
+    icon: 🐾
     name:
       en: Cabin
       fr: Cabine
@@ -95,7 +103,8 @@ channels:
       fr: 35–175 €
       es: 35–175 €
       pt: "35–175 €"
-  - icon: 🧳
+  - placement: hold
+    icon: 🧳
     name:
       en: Hold
       fr: Soute
@@ -117,7 +126,8 @@ channels:
       fr: 90–350 €
       es: 90–350 €
       pt: "90–350 €"
-  - icon: ✈️
+  - placement: cargo
+    icon: ✈️
     name:
       en: Air Europa Cargo
       fr: Air Europa Cargo

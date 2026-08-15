@@ -72,8 +72,30 @@ ladder:
       fr: races interdites
       es: razas vetadas
       pt: "raças proibidas"
+policies:
+  cabin:
+    availability: not_offered
+  hold:
+    availability: offered
+  cargo:
+    availability: undocumented
+    # Décision AUDITÉE — recopiée verbatim de la ligne approuvée du manifeste de migration
+    # (test-baselines/t0b-migration-matrice.json, airline_thai_airways/cargo). La page officielle
+    # ne publie aucune condition générale d'acceptation cargo des chiens : elle renvoie au
+    # département Cargo. La preuve accompagne la décision, sinon la décision est recopiée, pas migrée.
+    source:
+      url: "https://www.thaiairways.com/en-au/content/special-assistance/travel-with-pets/pets-as-checked-baggage-avih/"
+      source_type: official_website
+      verified_date: "2026-08-13"
+      review_due: "2026-11-11"
+      confidence: 4
+      reviewer: "Claude+Codex (lecture intégrale 13/08/2026)"
+      quote: "(For cargo acceptance, please contact directly to Cargo Department)"
+      quote_language: en
+      locator: "section « Embargo Of Snub-nosed And Other Dog Breeds »"
 channels:
-  - icon: 🐾
+  - placement: cabin
+    icon: 🐾
     name:
       en: Cabin
       fr: Cabine
@@ -95,7 +117,8 @@ channels:
       fr: —
       es: —
       pt: "—"
-  - icon: 🧳
+  - placement: hold
+    icon: 🧳
     name:
       en: Hold
       fr: Soute
@@ -117,7 +140,8 @@ channels:
       fr: 320–540 $
       es: 320–540 $
       pt: "$320–540"
-  - icon: ✈️
+  - placement: cargo
+    icon: ✈️
     name:
       en: THAI Cargo
       fr: THAI Cargo

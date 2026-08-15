@@ -58,8 +58,17 @@ ladder:
       es: Carga
       pt: "Carga"
     sub: ≤ 65 kg
+policies:
+  cabin:
+    availability: offered
+  hold:
+    review_state: legacy_unreviewed
+    # dette éditoriale scellée (T0-B2) : aucun canal visible ne décrit ce placement
+  cargo:
+    review_state: legacy_unreviewed
 channels:
-  - icon: 🐾
+  - placement: cabin
+    icon: 🐾
     name:
       en: Cabin
       fr: Cabine
@@ -81,7 +90,8 @@ channels:
       fr: 149 A$
       es: 149 A$
       pt: "149 A$"
-  - icon: ✈️
+  - placement: cargo
+    icon: ✈️
     name:
       en: Virgin Australia Cargo
       fr: Virgin Australia Cargo

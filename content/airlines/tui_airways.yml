@@ -72,8 +72,16 @@ ladder:
       fr: via ECS Group
       es: mediante ECS Group
       pt: "via ECS Group"
+policies:
+  cabin:
+    availability: not_offered
+  hold:
+    availability: not_offered
+  cargo:
+    review_state: legacy_unreviewed
 channels:
-  - icon: 🐾
+  - placement: cabin
+    icon: 🐾
     name:
       en: Cabin
       fr: Cabine
@@ -95,7 +103,8 @@ channels:
       fr: —
       es: —
       pt: "—"
-  - icon: 🧳
+  - placement: hold
+    icon: 🧳
     name:
       en: Hold as baggage
       fr: Soute en bagage
@@ -117,7 +126,8 @@ channels:
       fr: —
       es: —
       pt: "—"
-  - icon: ✈️
+  - placement: cargo
+    icon: ✈️
     name:
       en: Hold as cargo
       fr: Soute en fret

@@ -70,8 +70,16 @@ ladder:
       fr: brachy / LHR
       es: braquicéfalos / LHR
       pt: "focinho achatado / LHR"
+policies:
+  cabin:
+    availability: offered
+  hold:
+    availability: offered
+  cargo:
+    availability: offered
 channels:
-  - icon: 🐾
+  - placement: cabin
+    icon: 🐾
     name:
       en: Cabin
       fr: Cabine
@@ -93,7 +101,8 @@ channels:
       fr: 50–118 $ CAD
       es: 50–118 $ CAD
       pt: "50–118 $ CAD"
-  - icon: 🧳
+  - placement: hold
+    icon: 🧳
     name:
       en: Hold
       fr: Soute
@@ -115,7 +124,8 @@ channels:
       fr: 50–118 $ CAD
       es: 50–118 $ CAD
       pt: "50–118 $ CAD"
-  - icon: ✈️
+  - placement: cargo
+    icon: ✈️
     name:
       en: WestJet Cargo
       fr: WestJet Cargo

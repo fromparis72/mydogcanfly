@@ -62,8 +62,16 @@ ladder:
       es: SkyCargo
       pt: "SkyCargo"
     sub: 17 h +
+policies:
+  cabin:
+    availability: not_offered
+  hold:
+    availability: offered
+  cargo:
+    review_state: legacy_unreviewed
 channels:
-  - icon: 🐾
+  - placement: cabin
+    icon: 🐾
     name:
       en: Cabin
       fr: Cabine
@@ -85,7 +93,8 @@ channels:
       fr: —
       es: —
       pt: "—"
-  - icon: 🧳
+  - placement: hold
+    icon: 🧳
     name:
       en: Hold
       fr: Soute
@@ -107,7 +116,8 @@ channels:
       fr: 500–800 $
       es: 500–800 $
       pt: "US$ 500–800"
-  - icon: ✈️
+  - placement: cargo
+    icon: ✈️
     name:
       en: SkyCargo
       fr: SkyCargo

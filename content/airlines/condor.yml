@@ -58,8 +58,17 @@ ladder:
       fr: direct seul
       es: solo directo
       pt: "somente voo direto"
+policies:
+  cabin:
+    availability: offered
+  hold:
+    availability: offered
+  cargo:
+    review_state: legacy_unreviewed
+    # dette éditoriale scellée (T0-B2) : aucun canal visible ne décrit ce placement
 channels:
-  - icon: 🐾
+  - placement: cabin
+    icon: 🐾
     name:
       en: Cabin
       fr: Cabine
@@ -81,7 +90,8 @@ channels:
       fr: 59,99–99,99 €
       es: 59,99–99,99 €
       pt: "59,99–99,99 €"
-  - icon: 🧳
+  - placement: hold
+    icon: 🧳
     name:
       en: Hold
       fr: Soute

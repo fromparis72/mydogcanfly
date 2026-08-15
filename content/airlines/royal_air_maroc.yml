@@ -68,8 +68,16 @@ ladder:
       es: Carga
       pt: "Carga"
     sub: "> 70 kg"
+policies:
+  cabin:
+    availability: offered
+  hold:
+    availability: offered
+  cargo:
+    review_state: legacy_unreviewed
 channels:
-  - icon: 🐾
+  - placement: cabin
+    icon: 🐾
     name:
       en: Cabin
       fr: Cabine
@@ -91,7 +99,8 @@ channels:
       fr: 70–120 €
       es: 70–120 €
       pt: "€70–120"
-  - icon: 🧳
+  - placement: hold
+    icon: 🧳
     name:
       en: Hold
       fr: Soute
@@ -113,7 +122,8 @@ channels:
       fr: 60–520 €
       es: 60–520 €
       pt: "€60–520"
-  - icon: ✈️
+  - placement: cargo
+    icon: ✈️
     name:
       en: RAM Cargo
       fr: RAM Cargo

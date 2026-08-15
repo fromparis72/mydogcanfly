@@ -78,8 +78,16 @@ ladder:
       fr: excédent bagage ou fret
       es: exceso de equipaje o carga
       pt: "excesso de bagagem ou carga"
+policies:
+  cabin:
+    availability: offered
+  hold:
+    availability: offered
+  cargo:
+    review_state: legacy_unreviewed
 channels:
-  - icon: 🐾
+  - placement: cabin
+    icon: 🐾
     name:
       en: Cabin
       fr: Cabine
@@ -101,7 +109,8 @@ channels:
       fr: "32 € domestique / 50 € intra-Europe / 70 € hors Europe"
       es: "32 € nacional / 50 € dentro de Europa / 70 € fuera de Europa"
       pt: "32 € doméstico / 50 € dentro da Europa / 70 € fora da Europa"
-  - icon: 🧳
+  - placement: hold
+    icon: 🧳
     name:
       en: Hold
       fr: Soute
@@ -123,7 +132,8 @@ channels:
       fr: "40–56 € domestique / 100–200 € intra-Europe / 150–300 € hors Europe, selon la taille de caisse"
       es: "40–56 € nacional / 100–200 € dentro de Europa / 150–300 € fuera de Europa, según el tamaño de la jaula"
       pt: "40–56 € doméstico / 100–200 € dentro da Europa / 150–300 € fora da Europa, conforme o tamanho da caixa"
-  - icon: ✈️
+  - placement: cargo
+    icon: ✈️
     name:
       en: Cargo
       fr: Fret

@@ -72,8 +72,16 @@ ladder:
       fr: "> 32 kg / R.-U."
       es: "> 32 kg / R. Unido"
       pt: "> 32 kg / Reino Unido"
+policies:
+  cabin:
+    availability: offered
+  hold:
+    availability: offered
+  cargo:
+    review_state: legacy_unreviewed
 channels:
-  - icon: 🐾
+  - placement: cabin
+    icon: 🐾
     name:
       en: Cabin
       fr: Cabine
@@ -95,7 +103,8 @@ channels:
       fr: 300–650 $
       es: 300–650 $
       pt: "US$ 300–650"
-  - icon: 🧳
+  - placement: hold
+    icon: 🧳
     name:
       en: Hold
       fr: Soute
@@ -117,7 +126,8 @@ channels:
       fr: 100–550 $
       es: 100–550 $
       pt: "US$ 100–550"
-  - icon: ✈️
+  - placement: cargo
+    icon: ✈️
     name:
       en: Live Animals cargo
       fr: Fret Live Animals

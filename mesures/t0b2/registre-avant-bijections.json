@@ -1,0 +1,3678 @@
+{
+ "perimetre": "T0-B2 — registre et bijections, état AVANT (lecture seule)",
+ "totaux": {
+  "fiches": 103,
+  "canaux_visibles": 296,
+  "canaux_reconnus_par_catOf": 292,
+  "canaux_non_reconnus": 4,
+  "couples_yaml_uniques": 292,
+  "politiques_objects_json": 302,
+  "lignes_manifeste": 74,
+  "warn_total": 86,
+  "warn_reconnus": 82,
+  "warn_non_reconnus": 4,
+  "conditional_dans_objects_json": 74
+ },
+ "bijection": {
+  "doublons_placement": [],
+  "manifeste_sans_conditional": [],
+  "conditional_sans_manifeste": [],
+  "manifeste_empreintes_divergentes": [],
+  "manifeste_locators_divergents": [],
+  "derive_cls_vers_allowed": [],
+  "yaml_sans_politique": [],
+  "politique_sans_canal_yaml": [
+   "airline_asiana.cargo",
+   "airline_condor.cargo",
+   "airline_eva_air.cargo",
+   "airline_french_bee.cargo",
+   "airline_korean_air.cargo",
+   "airline_malaysia_airlines.cargo",
+   "airline_norwegian.cargo",
+   "airline_qantas.cargo",
+   "airline_qantas.hold",
+   "airline_virgin_australia.hold"
+  ]
+ },
+ "canaux_non_reconnus": [
+  {
+   "airline_id": "airline_french_bee",
+   "file": "content/airlines/french_bee.yml",
+   "locator": "channels[2]",
+   "name_en": "Freight",
+   "cls": "warn",
+   "statusLabel_en": "Via freight",
+   "placement_derive": null
+  },
+  {
+   "airline_id": "airline_korean_air",
+   "file": "content/airlines/korean_air.yml",
+   "locator": "channels[2]",
+   "name_en": "Specialized-LIVE",
+   "cls": "warn",
+   "statusLabel_en": "Via agent",
+   "placement_derive": null
+  },
+  {
+   "airline_id": "airline_malaysia_airlines",
+   "file": "content/airlines/malaysia_airlines.yml",
+   "locator": "channels[2]",
+   "name_en": "MASkargo Animal Hotel",
+   "cls": "warn",
+   "statusLabel_en": "Via cargo",
+   "placement_derive": null
+  },
+  {
+   "airline_id": "airline_qantas",
+   "file": "content/airlines/qantas.yml",
+   "locator": "channels[1]",
+   "name_en": "Qantas Freight",
+   "cls": "warn",
+   "statusLabel_en": "Via freight",
+   "placement_derive": null
+  }
+ ],
+ "registre": [
+  {
+   "airline_id": "airline_aegean",
+   "placement": "cabin",
+   "file": "content/airlines/aegean.yml",
+   "locator": "channels[0]",
+   "name_en": "Cabin",
+   "cls": "ok",
+   "avant": {
+    "allowed": true
+   },
+   "manifeste": null
+  },
+  {
+   "airline_id": "airline_aegean",
+   "placement": "hold",
+   "file": "content/airlines/aegean.yml",
+   "locator": "channels[1]",
+   "name_en": "Hold",
+   "cls": "ok",
+   "avant": {
+    "allowed": true
+   },
+   "manifeste": null
+  },
+  {
+   "airline_id": "airline_aegean",
+   "placement": "cargo",
+   "file": "content/airlines/aegean.yml",
+   "locator": "channels[2]",
+   "name_en": "Aegean Cargo",
+   "cls": "warn",
+   "avant": {
+    "allowed": true,
+    "conditional": true
+   },
+   "manifeste": "legacy_unreviewed"
+  },
+  {
+   "airline_id": "airline_aer_lingus",
+   "placement": "cabin",
+   "file": "content/airlines/aer_lingus.yml",
+   "locator": "channels[0]",
+   "name_en": "Cabin",
+   "cls": "no",
+   "avant": {
+    "allowed": false
+   },
+   "manifeste": null
+  },
+  {
+   "airline_id": "airline_aer_lingus",
+   "placement": "hold",
+   "file": "content/airlines/aer_lingus.yml",
+   "locator": "channels[1]",
+   "name_en": "Hold",
+   "cls": "no",
+   "avant": {
+    "allowed": false
+   },
+   "manifeste": null
+  },
+  {
+   "airline_id": "airline_aer_lingus",
+   "placement": "cargo",
+   "file": "content/airlines/aer_lingus.yml",
+   "locator": "channels[2]",
+   "name_en": "IAG Cargo",
+   "cls": "warn",
+   "avant": {
+    "allowed": true,
+    "conditional": true
+   },
+   "manifeste": "legacy_unreviewed"
+  },
+  {
+   "airline_id": "airline_aerolineas_argentinas",
+   "placement": "cabin",
+   "file": "content/airlines/aerolineas_argentinas.yml",
+   "locator": "channels[0]",
+   "name_en": "Cabin",
+   "cls": "ok",
+   "avant": {
+    "allowed": true
+   },
+   "manifeste": null
+  },
+  {
+   "airline_id": "airline_aerolineas_argentinas",
+   "placement": "hold",
+   "file": "content/airlines/aerolineas_argentinas.yml",
+   "locator": "channels[1]",
+   "name_en": "Hold",
+   "cls": "ok",
+   "avant": {
+    "allowed": true
+   },
+   "manifeste": null
+  },
+  {
+   "airline_id": "airline_aerolineas_argentinas",
+   "placement": "cargo",
+   "file": "content/airlines/aerolineas_argentinas.yml",
+   "locator": "channels[2]",
+   "name_en": "Cargo",
+   "cls": "warn",
+   "avant": {
+    "allowed": true,
+    "conditional": true
+   },
+   "manifeste": "legacy_unreviewed"
+  },
+  {
+   "airline_id": "airline_aeromexico",
+   "placement": "cabin",
+   "file": "content/airlines/aeromexico.yml",
+   "locator": "channels[0]",
+   "name_en": "Cabin",
+   "cls": "ok",
+   "avant": {
+    "allowed": true
+   },
+   "manifeste": null
+  },
+  {
+   "airline_id": "airline_aeromexico",
+   "placement": "hold",
+   "file": "content/airlines/aeromexico.yml",
+   "locator": "channels[1]",
+   "name_en": "Hold",
+   "cls": "ok",
+   "avant": {
+    "allowed": true
+   },
+   "manifeste": null
+  },
+  {
+   "airline_id": "airline_aeromexico",
+   "placement": "cargo",
+   "file": "content/airlines/aeromexico.yml",
+   "locator": "channels[2]",
+   "name_en": "Aeromexico Cargo",
+   "cls": "warn",
+   "avant": {
+    "allowed": true,
+    "conditional": true
+   },
+   "manifeste": "legacy_unreviewed"
+  },
+  {
+   "airline_id": "airline_air_algerie",
+   "placement": "cabin",
+   "file": "content/airlines/air_algerie.yml",
+   "locator": "channels[0]",
+   "name_en": "Cabin",
+   "cls": "ok",
+   "avant": {
+    "allowed": true
+   },
+   "manifeste": null
+  },
+  {
+   "airline_id": "airline_air_algerie",
+   "placement": "hold",
+   "file": "content/airlines/air_algerie.yml",
+   "locator": "channels[1]",
+   "name_en": "Hold",
+   "cls": "ok",
+   "avant": {
+    "allowed": true
+   },
+   "manifeste": null
+  },
+  {
+   "airline_id": "airline_air_algerie",
+   "placement": "cargo",
+   "file": "content/airlines/air_algerie.yml",
+   "locator": "channels[2]",
+   "name_en": "Cargo",
+   "cls": "warn",
+   "avant": {
+    "allowed": true,
+    "conditional": true
+   },
+   "manifeste": "legacy_unreviewed"
+  },
+  {
+   "airline_id": "airline_air_astana",
+   "placement": "cabin",
+   "file": "content/airlines/air_astana.yml",
+   "locator": "channels[0]",
+   "name_en": "Cabin",
+   "cls": "ok",
+   "avant": {
+    "allowed": true
+   },
+   "manifeste": null
+  },
+  {
+   "airline_id": "airline_air_astana",
+   "placement": "hold",
+   "file": "content/airlines/air_astana.yml",
+   "locator": "channels[1]",
+   "name_en": "Hold",
+   "cls": "ok",
+   "avant": {
+    "allowed": true
+   },
+   "manifeste": null
+  },
+  {
+   "airline_id": "airline_air_astana",
+   "placement": "cargo",
+   "file": "content/airlines/air_astana.yml",
+   "locator": "channels[2]",
+   "name_en": "Cargo",
+   "cls": "warn",
+   "avant": {
+    "allowed": true,
+    "conditional": true
+   },
+   "manifeste": "legacy_unreviewed"
+  },
+  {
+   "airline_id": "airline_air_austral",
+   "placement": "cabin",
+   "file": "content/airlines/air_austral.yml",
+   "locator": "channels[0]",
+   "name_en": "Cabin",
+   "cls": "ok",
+   "avant": {
+    "allowed": true
+   },
+   "manifeste": null
+  },
+  {
+   "airline_id": "airline_air_austral",
+   "placement": "hold",
+   "file": "content/airlines/air_austral.yml",
+   "locator": "channels[1]",
+   "name_en": "Hold",
+   "cls": "ok",
+   "avant": {
+    "allowed": true
+   },
+   "manifeste": null
+  },
+  {
+   "airline_id": "airline_air_austral",
+   "placement": "cargo",
+   "file": "content/airlines/air_austral.yml",
+   "locator": "channels[2]",
+   "name_en": "Cargo",
+   "cls": "warn",
+   "avant": {
+    "allowed": true,
+    "conditional": true
+   },
+   "manifeste": "legacy_unreviewed"
+  },
+  {
+   "airline_id": "airline_air_canada",
+   "placement": "cabin",
+   "file": "content/airlines/air_canada.yml",
+   "locator": "channels[0]",
+   "name_en": "Cabin",
+   "cls": "ok",
+   "avant": {
+    "allowed": true
+   },
+   "manifeste": null
+  },
+  {
+   "airline_id": "airline_air_canada",
+   "placement": "hold",
+   "file": "content/airlines/air_canada.yml",
+   "locator": "channels[1]",
+   "name_en": "Hold",
+   "cls": "ok",
+   "avant": {
+    "allowed": true
+   },
+   "manifeste": null
+  },
+  {
+   "airline_id": "airline_air_canada",
+   "placement": "cargo",
+   "file": "content/airlines/air_canada.yml",
+   "locator": "channels[2]",
+   "name_en": "AC Animals cargo",
+   "cls": "warn",
+   "avant": {
+    "allowed": true,
+    "conditional": true
+   },
+   "manifeste": null
+  },
+  {
+   "airline_id": "airline_air_caraibes",
+   "placement": "cabin",
+   "file": "content/airlines/air_caraibes.yml",
+   "locator": "channels[0]",
+   "name_en": "Cabin",
+   "cls": "ok",
+   "avant": {
+    "allowed": true
+   },
+   "manifeste": null
+  },
+  {
+   "airline_id": "airline_air_caraibes",
+   "placement": "hold",
+   "file": "content/airlines/air_caraibes.yml",
+   "locator": "channels[1]",
+   "name_en": "Hold",
+   "cls": "ok",
+   "avant": {
+    "allowed": true
+   },
+   "manifeste": null
+  },
+  {
+   "airline_id": "airline_air_caraibes",
+   "placement": "cargo",
+   "file": "content/airlines/air_caraibes.yml",
+   "locator": "channels[2]",
+   "name_en": "FRET",
+   "cls": "warn",
+   "avant": {
+    "allowed": true,
+    "conditional": true
+   },
+   "manifeste": "legacy_unreviewed"
+  },
+  {
+   "airline_id": "airline_air_china",
+   "placement": "cabin",
+   "file": "content/airlines/air_china.yml",
+   "locator": "channels[0]",
+   "name_en": "Cabin",
+   "cls": "no",
+   "avant": {
+    "allowed": false
+   },
+   "manifeste": null
+  },
+  {
+   "airline_id": "airline_air_china",
+   "placement": "hold",
+   "file": "content/airlines/air_china.yml",
+   "locator": "channels[1]",
+   "name_en": "Hold",
+   "cls": "ok",
+   "avant": {
+    "allowed": true
+   },
+   "manifeste": null
+  },
+  {
+   "airline_id": "airline_air_china",
+   "placement": "cargo",
+   "file": "content/airlines/air_china.yml",
+   "locator": "channels[2]",
+   "name_en": "Air China Cargo",
+   "cls": "warn",
+   "avant": {
+    "allowed": true,
+    "conditional": true
+   },
+   "manifeste": "legacy_unreviewed"
+  },
+  {
+   "airline_id": "airline_air_europa",
+   "placement": "cabin",
+   "file": "content/airlines/air_europa.yml",
+   "locator": "channels[0]",
+   "name_en": "Cabin",
+   "cls": "ok",
+   "avant": {
+    "allowed": true
+   },
+   "manifeste": null
+  },
+  {
+   "airline_id": "airline_air_europa",
+   "placement": "hold",
+   "file": "content/airlines/air_europa.yml",
+   "locator": "channels[1]",
+   "name_en": "Hold",
+   "cls": "ok",
+   "avant": {
+    "allowed": true
+   },
+   "manifeste": null
+  },
+  {
+   "airline_id": "airline_air_europa",
+   "placement": "cargo",
+   "file": "content/airlines/air_europa.yml",
+   "locator": "channels[2]",
+   "name_en": "Air Europa Cargo",
+   "cls": "warn",
+   "avant": {
+    "allowed": true,
+    "conditional": true
+   },
+   "manifeste": "legacy_unreviewed"
+  },
+  {
+   "airline_id": "airline_air_france",
+   "placement": "cabin",
+   "file": "content/airlines/air_france.yml",
+   "locator": "channels[0]",
+   "name_en": "Cabin",
+   "cls": "ok",
+   "avant": {
+    "allowed": true
+   },
+   "manifeste": null
+  },
+  {
+   "airline_id": "airline_air_france",
+   "placement": "hold",
+   "file": "content/airlines/air_france.yml",
+   "locator": "channels[1]",
+   "name_en": "Hold",
+   "cls": "ok",
+   "avant": {
+    "allowed": true
+   },
+   "manifeste": null
+  },
+  {
+   "airline_id": "airline_air_france",
+   "placement": "cargo",
+   "file": "content/airlines/air_france.yml",
+   "locator": "channels[2]",
+   "name_en": "Cargo",
+   "cls": "warn",
+   "avant": {
+    "allowed": true,
+    "conditional": true
+   },
+   "manifeste": null
+  },
+  {
+   "airline_id": "airline_air_india",
+   "placement": "cabin",
+   "file": "content/airlines/air_india.yml",
+   "locator": "channels[0]",
+   "name_en": "Cabin",
+   "cls": "ok",
+   "avant": {
+    "allowed": true
+   },
+   "manifeste": null
+  },
+  {
+   "airline_id": "airline_air_india",
+   "placement": "hold",
+   "file": "content/airlines/air_india.yml",
+   "locator": "channels[1]",
+   "name_en": "Hold",
+   "cls": "ok",
+   "avant": {
+    "allowed": true
+   },
+   "manifeste": null
+  },
+  {
+   "airline_id": "airline_air_india",
+   "placement": "cargo",
+   "file": "content/airlines/air_india.yml",
+   "locator": "channels[2]",
+   "name_en": "Air India Cargo",
+   "cls": "warn",
+   "avant": {
+    "allowed": true,
+    "conditional": true
+   },
+   "manifeste": "legacy_unreviewed"
+  },
+  {
+   "airline_id": "airline_air_mauritius",
+   "placement": "cabin",
+   "file": "content/airlines/air_mauritius.yml",
+   "locator": "channels[0]",
+   "name_en": "Cabin",
+   "cls": "no",
+   "avant": {
+    "allowed": false
+   },
+   "manifeste": null
+  },
+  {
+   "airline_id": "airline_air_mauritius",
+   "placement": "hold",
+   "file": "content/airlines/air_mauritius.yml",
+   "locator": "channels[1]",
+   "name_en": "Hold",
+   "cls": "ok",
+   "avant": {
+    "allowed": true
+   },
+   "manifeste": null
+  },
+  {
+   "airline_id": "airline_air_mauritius",
+   "placement": "cargo",
+   "file": "content/airlines/air_mauritius.yml",
+   "locator": "channels[2]",
+   "name_en": "Air Mauritius Cargo",
+   "cls": "warn",
+   "avant": {
+    "allowed": true,
+    "conditional": true
+   },
+   "manifeste": "legacy_unreviewed"
+  },
+  {
+   "airline_id": "airline_air_new_zealand",
+   "placement": "cabin",
+   "file": "content/airlines/air_new_zealand.yml",
+   "locator": "channels[0]",
+   "name_en": "Cabin",
+   "cls": "no",
+   "avant": {
+    "allowed": false
+   },
+   "manifeste": null
+  },
+  {
+   "airline_id": "airline_air_new_zealand",
+   "placement": "hold",
+   "file": "content/airlines/air_new_zealand.yml",
+   "locator": "channels[1]",
+   "name_en": "Hold",
+   "cls": "ok",
+   "avant": {
+    "allowed": true
+   },
+   "manifeste": null
+  },
+  {
+   "airline_id": "airline_air_new_zealand",
+   "placement": "cargo",
+   "file": "content/airlines/air_new_zealand.yml",
+   "locator": "channels[2]",
+   "name_en": "Cargo Pet Services",
+   "cls": "warn",
+   "avant": {
+    "allowed": true,
+    "conditional": true
+   },
+   "manifeste": "legacy_unreviewed"
+  },
+  {
+   "airline_id": "airline_air_serbia",
+   "placement": "cabin",
+   "file": "content/airlines/air_serbia.yml",
+   "locator": "channels[0]",
+   "name_en": "Cabin",
+   "cls": "ok",
+   "avant": {
+    "allowed": true
+   },
+   "manifeste": null
+  },
+  {
+   "airline_id": "airline_air_serbia",
+   "placement": "hold",
+   "file": "content/airlines/air_serbia.yml",
+   "locator": "channels[1]",
+   "name_en": "Hold",
+   "cls": "no",
+   "avant": {
+    "allowed": false
+   },
+   "manifeste": null
+  },
+  {
+   "airline_id": "airline_air_serbia",
+   "placement": "cargo",
+   "file": "content/airlines/air_serbia.yml",
+   "locator": "channels[2]",
+   "name_en": "Cargo",
+   "cls": "no",
+   "avant": {
+    "allowed": false
+   },
+   "manifeste": null
+  },
+  {
+   "airline_id": "airline_air_tahiti_nui",
+   "placement": "cabin",
+   "file": "content/airlines/air_tahiti_nui.yml",
+   "locator": "channels[0]",
+   "name_en": "Cabin",
+   "cls": "ok",
+   "avant": {
+    "allowed": true
+   },
+   "manifeste": null
+  },
+  {
+   "airline_id": "airline_air_tahiti_nui",
+   "placement": "cargo",
+   "file": "content/airlines/air_tahiti_nui.yml",
+   "locator": "channels[1]",
+   "name_en": "Air Tahiti Nui Cargo",
+   "cls": "warn",
+   "avant": {
+    "allowed": true,
+    "conditional": true
+   },
+   "manifeste": "legacy_unreviewed"
+  },
+  {
+   "airline_id": "airline_air_transat",
+   "placement": "cabin",
+   "file": "content/airlines/air_transat.yml",
+   "locator": "channels[0]",
+   "name_en": "Cabin",
+   "cls": "ok",
+   "avant": {
+    "allowed": true
+   },
+   "manifeste": null
+  },
+  {
+   "airline_id": "airline_air_transat",
+   "placement": "hold",
+   "file": "content/airlines/air_transat.yml",
+   "locator": "channels[1]",
+   "name_en": "Hold",
+   "cls": "ok",
+   "avant": {
+    "allowed": true
+   },
+   "manifeste": null
+  },
+  {
+   "airline_id": "airline_air_transat",
+   "placement": "cargo",
+   "file": "content/airlines/air_transat.yml",
+   "locator": "channels[2]",
+   "name_en": "Air Transat Cargo",
+   "cls": "warn",
+   "avant": {
+    "allowed": true,
+    "conditional": true
+   },
+   "manifeste": "legacy_unreviewed"
+  },
+  {
+   "airline_id": "airline_airbaltic",
+   "placement": "cabin",
+   "file": "content/airlines/airbaltic.yml",
+   "locator": "channels[0]",
+   "name_en": "Cabin",
+   "cls": "ok",
+   "avant": {
+    "allowed": true
+   },
+   "manifeste": null
+  },
+  {
+   "airline_id": "airline_airbaltic",
+   "placement": "hold",
+   "file": "content/airlines/airbaltic.yml",
+   "locator": "channels[1]",
+   "name_en": "Hold",
+   "cls": "ok",
+   "avant": {
+    "allowed": true
+   },
+   "manifeste": null
+  },
+  {
+   "airline_id": "airline_airbaltic",
+   "placement": "cargo",
+   "file": "content/airlines/airbaltic.yml",
+   "locator": "channels[2]",
+   "name_en": "Cargo",
+   "cls": "warn",
+   "avant": {
+    "allowed": true,
+    "conditional": true
+   },
+   "manifeste": "legacy_unreviewed"
+  },
+  {
+   "airline_id": "airline_aircalin",
+   "placement": "cabin",
+   "file": "content/airlines/aircalin.yml",
+   "locator": "channels[0]",
+   "name_en": "Cabin",
+   "cls": "no",
+   "avant": {
+    "allowed": false
+   },
+   "manifeste": null
+  },
+  {
+   "airline_id": "airline_aircalin",
+   "placement": "hold",
+   "file": "content/airlines/aircalin.yml",
+   "locator": "channels[1]",
+   "name_en": "Hold",
+   "cls": "no",
+   "avant": {
+    "allowed": false
+   },
+   "manifeste": null
+  },
+  {
+   "airline_id": "airline_aircalin",
+   "placement": "cargo",
+   "file": "content/airlines/aircalin.yml",
+   "locator": "channels[2]",
+   "name_en": "Cargo (airfreight)",
+   "cls": "warn",
+   "avant": {
+    "allowed": true,
+    "conditional": true
+   },
+   "manifeste": "legacy_unreviewed"
+  },
+  {
+   "airline_id": "airline_alaska",
+   "placement": "cabin",
+   "file": "content/airlines/alaska.yml",
+   "locator": "channels[0]",
+   "name_en": "Cabin",
+   "cls": "ok",
+   "avant": {
+    "allowed": true
+   },
+   "manifeste": null
+  },
+  {
+   "airline_id": "airline_alaska",
+   "placement": "hold",
+   "file": "content/airlines/alaska.yml",
+   "locator": "channels[1]",
+   "name_en": "Hold",
+   "cls": "ok",
+   "avant": {
+    "allowed": true
+   },
+   "manifeste": null
+  },
+  {
+   "airline_id": "airline_alaska",
+   "placement": "cargo",
+   "file": "content/airlines/alaska.yml",
+   "locator": "channels[2]",
+   "name_en": "Pet Connect cargo",
+   "cls": "warn",
+   "avant": {
+    "allowed": true,
+    "conditional": true
+   },
+   "manifeste": "legacy_unreviewed"
+  },
+  {
+   "airline_id": "airline_american",
+   "placement": "cabin",
+   "file": "content/airlines/american.yml",
+   "locator": "channels[0]",
+   "name_en": "Cabin",
+   "cls": "ok",
+   "avant": {
+    "allowed": true
+   },
+   "manifeste": null
+  },
+  {
+   "airline_id": "airline_american",
+   "placement": "hold",
+   "file": "content/airlines/american.yml",
+   "locator": "channels[1]",
+   "name_en": "Hold",
+   "cls": "no",
+   "avant": {
+    "allowed": false
+   },
+   "manifeste": null
+  },
+  {
+   "airline_id": "airline_american",
+   "placement": "cargo",
+   "file": "content/airlines/american.yml",
+   "locator": "channels[2]",
+   "name_en": "PetEmbark cargo",
+   "cls": "ok",
+   "avant": {
+    "allowed": true
+   },
+   "manifeste": null
+  },
+  {
+   "airline_id": "airline_ana",
+   "placement": "cabin",
+   "file": "content/airlines/ana.yml",
+   "locator": "channels[0]",
+   "name_en": "Cabin",
+   "cls": "no",
+   "avant": {
+    "allowed": false
+   },
+   "manifeste": null
+  },
+  {
+   "airline_id": "airline_ana",
+   "placement": "hold",
+   "file": "content/airlines/ana.yml",
+   "locator": "channels[1]",
+   "name_en": "Hold",
+   "cls": "ok",
+   "avant": {
+    "allowed": true
+   },
+   "manifeste": null
+  },
+  {
+   "airline_id": "airline_ana",
+   "placement": "cargo",
+   "file": "content/airlines/ana.yml",
+   "locator": "channels[2]",
+   "name_en": "ANA Cargo",
+   "cls": "warn",
+   "avant": {
+    "allowed": true,
+    "conditional": true
+   },
+   "manifeste": "legacy_unreviewed"
+  },
+  {
+   "airline_id": "airline_asiana",
+   "placement": "cabin",
+   "file": "content/airlines/asiana.yml",
+   "locator": "channels[0]",
+   "name_en": "Cabin",
+   "cls": "ok",
+   "avant": {
+    "allowed": true
+   },
+   "manifeste": null
+  },
+  {
+   "airline_id": "airline_asiana",
+   "placement": "hold",
+   "file": "content/airlines/asiana.yml",
+   "locator": "channels[1]",
+   "name_en": "Hold",
+   "cls": "ok",
+   "avant": {
+    "allowed": true
+   },
+   "manifeste": null
+  },
+  {
+   "airline_id": "airline_austrian",
+   "placement": "cabin",
+   "file": "content/airlines/austrian.yml",
+   "locator": "channels[0]",
+   "name_en": "Cabin",
+   "cls": "ok",
+   "avant": {
+    "allowed": true
+   },
+   "manifeste": null
+  },
+  {
+   "airline_id": "airline_austrian",
+   "placement": "hold",
+   "file": "content/airlines/austrian.yml",
+   "locator": "channels[1]",
+   "name_en": "Hold",
+   "cls": "ok",
+   "avant": {
+    "allowed": true
+   },
+   "manifeste": null
+  },
+  {
+   "airline_id": "airline_austrian",
+   "placement": "cargo",
+   "file": "content/airlines/austrian.yml",
+   "locator": "channels[2]",
+   "name_en": "Lufthansa Cargo",
+   "cls": "warn",
+   "avant": {
+    "allowed": true,
+    "conditional": true
+   },
+   "manifeste": "legacy_unreviewed"
+  },
+  {
+   "airline_id": "airline_avianca",
+   "placement": "cabin",
+   "file": "content/airlines/avianca.yml",
+   "locator": "channels[0]",
+   "name_en": "Cabin",
+   "cls": "ok",
+   "avant": {
+    "allowed": true
+   },
+   "manifeste": null
+  },
+  {
+   "airline_id": "airline_avianca",
+   "placement": "hold",
+   "file": "content/airlines/avianca.yml",
+   "locator": "channels[1]",
+   "name_en": "Hold",
+   "cls": "ok",
+   "avant": {
+    "allowed": true
+   },
+   "manifeste": null
+  },
+  {
+   "airline_id": "airline_avianca",
+   "placement": "cargo",
+   "file": "content/airlines/avianca.yml",
+   "locator": "channels[2]",
+   "name_en": "Avianca Cargo",
+   "cls": "warn",
+   "avant": {
+    "allowed": true,
+    "conditional": true
+   },
+   "manifeste": "legacy_unreviewed"
+  },
+  {
+   "airline_id": "airline_bangkok_airways",
+   "placement": "cabin",
+   "file": "content/airlines/bangkok_airways.yml",
+   "locator": "channels[0]",
+   "name_en": "Cabin",
+   "cls": "no",
+   "avant": {
+    "allowed": false
+   },
+   "manifeste": null
+  },
+  {
+   "airline_id": "airline_bangkok_airways",
+   "placement": "hold",
+   "file": "content/airlines/bangkok_airways.yml",
+   "locator": "channels[1]",
+   "name_en": "Hold",
+   "cls": "ok",
+   "avant": {
+    "allowed": true
+   },
+   "manifeste": null
+  },
+  {
+   "airline_id": "airline_bangkok_airways",
+   "placement": "cargo",
+   "file": "content/airlines/bangkok_airways.yml",
+   "locator": "channels[2]",
+   "name_en": "Cargo",
+   "cls": "warn",
+   "avant": {
+    "allowed": true,
+    "conditional": true
+   },
+   "manifeste": "legacy_unreviewed"
+  },
+  {
+   "airline_id": "airline_batik_air_indonesia",
+   "placement": "cabin",
+   "file": "content/airlines/batik_air_indonesia.yml",
+   "locator": "channels[0]",
+   "name_en": "Cabin",
+   "cls": "no",
+   "avant": {
+    "allowed": false
+   },
+   "manifeste": null
+  },
+  {
+   "airline_id": "airline_batik_air_indonesia",
+   "placement": "hold",
+   "file": "content/airlines/batik_air_indonesia.yml",
+   "locator": "channels[1]",
+   "name_en": "Hold",
+   "cls": "no",
+   "avant": {
+    "allowed": false
+   },
+   "manifeste": null
+  },
+  {
+   "airline_id": "airline_batik_air_indonesia",
+   "placement": "cargo",
+   "file": "content/airlines/batik_air_indonesia.yml",
+   "locator": "channels[2]",
+   "name_en": "Cargo",
+   "cls": "no",
+   "avant": {
+    "allowed": false
+   },
+   "manifeste": null
+  },
+  {
+   "airline_id": "airline_batik_air_malaysia",
+   "placement": "cabin",
+   "file": "content/airlines/batik_air_malaysia.yml",
+   "locator": "channels[0]",
+   "name_en": "Cabin",
+   "cls": "no",
+   "avant": {
+    "allowed": false
+   },
+   "manifeste": null
+  },
+  {
+   "airline_id": "airline_batik_air_malaysia",
+   "placement": "hold",
+   "file": "content/airlines/batik_air_malaysia.yml",
+   "locator": "channels[1]",
+   "name_en": "Hold",
+   "cls": "no",
+   "avant": {
+    "allowed": false
+   },
+   "manifeste": null
+  },
+  {
+   "airline_id": "airline_batik_air_malaysia",
+   "placement": "cargo",
+   "file": "content/airlines/batik_air_malaysia.yml",
+   "locator": "channels[2]",
+   "name_en": "Cargo",
+   "cls": "no",
+   "avant": {
+    "allowed": false
+   },
+   "manifeste": null
+  },
+  {
+   "airline_id": "airline_british_airways",
+   "placement": "cabin",
+   "file": "content/airlines/british_airways.yml",
+   "locator": "channels[0]",
+   "name_en": "Cabin",
+   "cls": "no",
+   "avant": {
+    "allowed": false
+   },
+   "manifeste": null
+  },
+  {
+   "airline_id": "airline_british_airways",
+   "placement": "hold",
+   "file": "content/airlines/british_airways.yml",
+   "locator": "channels[1]",
+   "name_en": "Hold",
+   "cls": "no",
+   "avant": {
+    "allowed": false
+   },
+   "manifeste": null
+  },
+  {
+   "airline_id": "airline_british_airways",
+   "placement": "cargo",
+   "file": "content/airlines/british_airways.yml",
+   "locator": "channels[2]",
+   "name_en": "IAG Cargo",
+   "cls": "warn",
+   "avant": {
+    "allowed": true,
+    "conditional": true
+   },
+   "manifeste": null
+  },
+  {
+   "airline_id": "airline_brussels",
+   "placement": "cabin",
+   "file": "content/airlines/brussels.yml",
+   "locator": "channels[0]",
+   "name_en": "Cabin",
+   "cls": "ok",
+   "avant": {
+    "allowed": true
+   },
+   "manifeste": null
+  },
+  {
+   "airline_id": "airline_brussels",
+   "placement": "hold",
+   "file": "content/airlines/brussels.yml",
+   "locator": "channels[1]",
+   "name_en": "Hold",
+   "cls": "ok",
+   "avant": {
+    "allowed": true
+   },
+   "manifeste": null
+  },
+  {
+   "airline_id": "airline_brussels",
+   "placement": "cargo",
+   "file": "content/airlines/brussels.yml",
+   "locator": "channels[2]",
+   "name_en": "Cargo",
+   "cls": "warn",
+   "avant": {
+    "allowed": true,
+    "conditional": true
+   },
+   "manifeste": "legacy_unreviewed"
+  },
+  {
+   "airline_id": "airline_cathay_pacific",
+   "placement": "cabin",
+   "file": "content/airlines/cathay_pacific.yml",
+   "locator": "channels[0]",
+   "name_en": "Cabin",
+   "cls": "no",
+   "avant": {
+    "allowed": false
+   },
+   "manifeste": null
+  },
+  {
+   "airline_id": "airline_cathay_pacific",
+   "placement": "hold",
+   "file": "content/airlines/cathay_pacific.yml",
+   "locator": "channels[1]",
+   "name_en": "Hold",
+   "cls": "no",
+   "avant": {
+    "allowed": false
+   },
+   "manifeste": null
+  },
+  {
+   "airline_id": "airline_cathay_pacific",
+   "placement": "cargo",
+   "file": "content/airlines/cathay_pacific.yml",
+   "locator": "channels[2]",
+   "name_en": "Cathay Cargo",
+   "cls": "warn",
+   "avant": {
+    "allowed": true,
+    "conditional": true
+   },
+   "manifeste": "legacy_unreviewed"
+  },
+  {
+   "airline_id": "airline_china_airlines",
+   "placement": "cabin",
+   "file": "content/airlines/china_airlines.yml",
+   "locator": "channels[0]",
+   "name_en": "Cabin",
+   "cls": "no",
+   "avant": {
+    "allowed": false
+   },
+   "manifeste": null
+  },
+  {
+   "airline_id": "airline_china_airlines",
+   "placement": "hold",
+   "file": "content/airlines/china_airlines.yml",
+   "locator": "channels[1]",
+   "name_en": "Hold",
+   "cls": "ok",
+   "avant": {
+    "allowed": true
+   },
+   "manifeste": null
+  },
+  {
+   "airline_id": "airline_china_airlines",
+   "placement": "cargo",
+   "file": "content/airlines/china_airlines.yml",
+   "locator": "channels[2]",
+   "name_en": "Live Animals cargo",
+   "cls": "warn",
+   "avant": {
+    "allowed": true,
+    "conditional": true
+   },
+   "manifeste": "legacy_unreviewed"
+  },
+  {
+   "airline_id": "airline_china_eastern",
+   "placement": "cabin",
+   "file": "content/airlines/china_eastern.yml",
+   "locator": "channels[0]",
+   "name_en": "Cabin",
+   "cls": "no",
+   "avant": {
+    "allowed": false
+   },
+   "manifeste": null
+  },
+  {
+   "airline_id": "airline_china_eastern",
+   "placement": "hold",
+   "file": "content/airlines/china_eastern.yml",
+   "locator": "channels[1]",
+   "name_en": "Hold",
+   "cls": "ok",
+   "avant": {
+    "allowed": true
+   },
+   "manifeste": null
+  },
+  {
+   "airline_id": "airline_china_eastern",
+   "placement": "cargo",
+   "file": "content/airlines/china_eastern.yml",
+   "locator": "channels[2]",
+   "name_en": "Cargo",
+   "cls": "warn",
+   "avant": {
+    "allowed": true,
+    "conditional": true
+   },
+   "manifeste": "legacy_unreviewed"
+  },
+  {
+   "airline_id": "airline_china_southern",
+   "placement": "cabin",
+   "file": "content/airlines/china_southern.yml",
+   "locator": "channels[0]",
+   "name_en": "Cabin",
+   "cls": "no",
+   "avant": {
+    "allowed": false
+   },
+   "manifeste": null
+  },
+  {
+   "airline_id": "airline_china_southern",
+   "placement": "hold",
+   "file": "content/airlines/china_southern.yml",
+   "locator": "channels[1]",
+   "name_en": "Hold",
+   "cls": "ok",
+   "avant": {
+    "allowed": true
+   },
+   "manifeste": null
+  },
+  {
+   "airline_id": "airline_china_southern",
+   "placement": "cargo",
+   "file": "content/airlines/china_southern.yml",
+   "locator": "channels[2]",
+   "name_en": "Cargo",
+   "cls": "warn",
+   "avant": {
+    "allowed": true,
+    "conditional": true
+   },
+   "manifeste": "legacy_unreviewed"
+  },
+  {
+   "airline_id": "airline_condor",
+   "placement": "cabin",
+   "file": "content/airlines/condor.yml",
+   "locator": "channels[0]",
+   "name_en": "Cabin",
+   "cls": "ok",
+   "avant": {
+    "allowed": true
+   },
+   "manifeste": null
+  },
+  {
+   "airline_id": "airline_condor",
+   "placement": "hold",
+   "file": "content/airlines/condor.yml",
+   "locator": "channels[1]",
+   "name_en": "Hold",
+   "cls": "ok",
+   "avant": {
+    "allowed": true
+   },
+   "manifeste": null
+  },
+  {
+   "airline_id": "airline_copa",
+   "placement": "cabin",
+   "file": "content/airlines/copa.yml",
+   "locator": "channels[0]",
+   "name_en": "Cabin",
+   "cls": "ok",
+   "avant": {
+    "allowed": true
+   },
+   "manifeste": null
+  },
+  {
+   "airline_id": "airline_copa",
+   "placement": "hold",
+   "file": "content/airlines/copa.yml",
+   "locator": "channels[1]",
+   "name_en": "Hold",
+   "cls": "no",
+   "avant": {
+    "allowed": false
+   },
+   "manifeste": null
+  },
+  {
+   "airline_id": "airline_copa",
+   "placement": "cargo",
+   "file": "content/airlines/copa.yml",
+   "locator": "channels[2]",
+   "name_en": "Copa Pets cargo",
+   "cls": "warn",
+   "avant": {
+    "allowed": true,
+    "conditional": true
+   },
+   "manifeste": "legacy_unreviewed"
+  },
+  {
+   "airline_id": "airline_corsair",
+   "placement": "cabin",
+   "file": "content/airlines/corsair.yml",
+   "locator": "channels[0]",
+   "name_en": "Cabin",
+   "cls": "ok",
+   "avant": {
+    "allowed": true
+   },
+   "manifeste": null
+  },
+  {
+   "airline_id": "airline_corsair",
+   "placement": "hold",
+   "file": "content/airlines/corsair.yml",
+   "locator": "channels[1]",
+   "name_en": "Hold",
+   "cls": "ok",
+   "avant": {
+    "allowed": true
+   },
+   "manifeste": null
+  },
+  {
+   "airline_id": "airline_corsair",
+   "placement": "cargo",
+   "file": "content/airlines/corsair.yml",
+   "locator": "channels[2]",
+   "name_en": "Cargo",
+   "cls": "warn",
+   "avant": {
+    "allowed": true,
+    "conditional": true
+   },
+   "manifeste": "legacy_unreviewed"
+  },
+  {
+   "airline_id": "airline_croatia_airlines",
+   "placement": "cabin",
+   "file": "content/airlines/croatia_airlines.yml",
+   "locator": "channels[0]",
+   "name_en": "Cabin",
+   "cls": "ok",
+   "avant": {
+    "allowed": true
+   },
+   "manifeste": null
+  },
+  {
+   "airline_id": "airline_croatia_airlines",
+   "placement": "hold",
+   "file": "content/airlines/croatia_airlines.yml",
+   "locator": "channels[1]",
+   "name_en": "Hold",
+   "cls": "ok",
+   "avant": {
+    "allowed": true
+   },
+   "manifeste": null
+  },
+  {
+   "airline_id": "airline_croatia_airlines",
+   "placement": "cargo",
+   "file": "content/airlines/croatia_airlines.yml",
+   "locator": "channels[2]",
+   "name_en": "Cargo",
+   "cls": "warn",
+   "avant": {
+    "allowed": true,
+    "conditional": true
+   },
+   "manifeste": "legacy_unreviewed"
+  },
+  {
+   "airline_id": "airline_delta",
+   "placement": "cabin",
+   "file": "content/airlines/delta.yml",
+   "locator": "channels[0]",
+   "name_en": "Cabin",
+   "cls": "ok",
+   "avant": {
+    "allowed": true
+   },
+   "manifeste": null
+  },
+  {
+   "airline_id": "airline_delta",
+   "placement": "hold",
+   "file": "content/airlines/delta.yml",
+   "locator": "channels[1]",
+   "name_en": "Hold",
+   "cls": "no",
+   "avant": {
+    "allowed": false
+   },
+   "manifeste": null
+  },
+  {
+   "airline_id": "airline_delta",
+   "placement": "cargo",
+   "file": "content/airlines/delta.yml",
+   "locator": "channels[2]",
+   "name_en": "Delta Cargo",
+   "cls": "no",
+   "avant": {
+    "allowed": false
+   },
+   "manifeste": null
+  },
+  {
+   "airline_id": "airline_easyjet",
+   "placement": "cabin",
+   "file": "content/airlines/easyjet.yml",
+   "locator": "channels[0]",
+   "name_en": "Cabin",
+   "cls": "no",
+   "avant": {
+    "allowed": false
+   },
+   "manifeste": null
+  },
+  {
+   "airline_id": "airline_easyjet",
+   "placement": "hold",
+   "file": "content/airlines/easyjet.yml",
+   "locator": "channels[1]",
+   "name_en": "Hold",
+   "cls": "no",
+   "avant": {
+    "allowed": false
+   },
+   "manifeste": null
+  },
+  {
+   "airline_id": "airline_easyjet",
+   "placement": "cargo",
+   "file": "content/airlines/easyjet.yml",
+   "locator": "channels[2]",
+   "name_en": "Cargo",
+   "cls": "no",
+   "avant": {
+    "allowed": false
+   },
+   "manifeste": null
+  },
+  {
+   "airline_id": "airline_edelweiss",
+   "placement": "cabin",
+   "file": "content/airlines/edelweiss.yml",
+   "locator": "channels[0]",
+   "name_en": "Cabin",
+   "cls": "ok",
+   "avant": {
+    "allowed": true
+   },
+   "manifeste": null
+  },
+  {
+   "airline_id": "airline_edelweiss",
+   "placement": "hold",
+   "file": "content/airlines/edelweiss.yml",
+   "locator": "channels[1]",
+   "name_en": "Hold",
+   "cls": "ok",
+   "avant": {
+    "allowed": true
+   },
+   "manifeste": null
+  },
+  {
+   "airline_id": "airline_edelweiss",
+   "placement": "cargo",
+   "file": "content/airlines/edelweiss.yml",
+   "locator": "channels[2]",
+   "name_en": "Cargo",
+   "cls": "warn",
+   "avant": {
+    "allowed": true,
+    "conditional": true
+   },
+   "manifeste": "legacy_unreviewed"
+  },
+  {
+   "airline_id": "airline_egyptair",
+   "placement": "cabin",
+   "file": "content/airlines/egyptair.yml",
+   "locator": "channels[0]",
+   "name_en": "Cabin",
+   "cls": "ok",
+   "avant": {
+    "allowed": true
+   },
+   "manifeste": null
+  },
+  {
+   "airline_id": "airline_egyptair",
+   "placement": "hold",
+   "file": "content/airlines/egyptair.yml",
+   "locator": "channels[1]",
+   "name_en": "Hold",
+   "cls": "ok",
+   "avant": {
+    "allowed": true
+   },
+   "manifeste": null
+  },
+  {
+   "airline_id": "airline_egyptair",
+   "placement": "cargo",
+   "file": "content/airlines/egyptair.yml",
+   "locator": "channels[2]",
+   "name_en": "EgyptAir Cargo",
+   "cls": "warn",
+   "avant": {
+    "allowed": true,
+    "conditional": true
+   },
+   "manifeste": "legacy_unreviewed"
+  },
+  {
+   "airline_id": "airline_el_al",
+   "placement": "cabin",
+   "file": "content/airlines/el_al.yml",
+   "locator": "channels[0]",
+   "name_en": "Cabin",
+   "cls": "ok",
+   "avant": {
+    "allowed": true
+   },
+   "manifeste": null
+  },
+  {
+   "airline_id": "airline_el_al",
+   "placement": "hold",
+   "file": "content/airlines/el_al.yml",
+   "locator": "channels[1]",
+   "name_en": "Hold",
+   "cls": "ok",
+   "avant": {
+    "allowed": true
+   },
+   "manifeste": null
+  },
+  {
+   "airline_id": "airline_el_al",
+   "placement": "cargo",
+   "file": "content/airlines/el_al.yml",
+   "locator": "channels[2]",
+   "name_en": "EL AL Cargo",
+   "cls": "warn",
+   "avant": {
+    "allowed": true,
+    "conditional": true
+   },
+   "manifeste": "legacy_unreviewed"
+  },
+  {
+   "airline_id": "airline_emirates",
+   "placement": "cabin",
+   "file": "content/airlines/emirates.yml",
+   "locator": "channels[0]",
+   "name_en": "Cabin",
+   "cls": "no",
+   "avant": {
+    "allowed": false
+   },
+   "manifeste": null
+  },
+  {
+   "airline_id": "airline_emirates",
+   "placement": "hold",
+   "file": "content/airlines/emirates.yml",
+   "locator": "channels[1]",
+   "name_en": "Hold",
+   "cls": "ok",
+   "avant": {
+    "allowed": true
+   },
+   "manifeste": null
+  },
+  {
+   "airline_id": "airline_emirates",
+   "placement": "cargo",
+   "file": "content/airlines/emirates.yml",
+   "locator": "channels[2]",
+   "name_en": "SkyCargo",
+   "cls": "warn",
+   "avant": {
+    "allowed": true,
+    "conditional": true
+   },
+   "manifeste": "legacy_unreviewed"
+  },
+  {
+   "airline_id": "airline_ethiopian",
+   "placement": "cabin",
+   "file": "content/airlines/ethiopian.yml",
+   "locator": "channels[0]",
+   "name_en": "Cabin",
+   "cls": "ok",
+   "avant": {
+    "allowed": true
+   },
+   "manifeste": null
+  },
+  {
+   "airline_id": "airline_ethiopian",
+   "placement": "hold",
+   "file": "content/airlines/ethiopian.yml",
+   "locator": "channels[1]",
+   "name_en": "Hold",
+   "cls": "ok",
+   "avant": {
+    "allowed": true
+   },
+   "manifeste": null
+  },
+  {
+   "airline_id": "airline_ethiopian",
+   "placement": "cargo",
+   "file": "content/airlines/ethiopian.yml",
+   "locator": "channels[2]",
+   "name_en": "Ethiopian Cargo",
+   "cls": "warn",
+   "avant": {
+    "allowed": true,
+    "conditional": true
+   },
+   "manifeste": "legacy_unreviewed"
+  },
+  {
+   "airline_id": "airline_etihad",
+   "placement": "cabin",
+   "file": "content/airlines/etihad.yml",
+   "locator": "channels[0]",
+   "name_en": "Cabin",
+   "cls": "ok",
+   "avant": {
+    "allowed": true
+   },
+   "manifeste": null
+  },
+  {
+   "airline_id": "airline_etihad",
+   "placement": "hold",
+   "file": "content/airlines/etihad.yml",
+   "locator": "channels[1]",
+   "name_en": "Hold",
+   "cls": "no",
+   "avant": {
+    "allowed": false
+   },
+   "manifeste": null
+  },
+  {
+   "airline_id": "airline_etihad",
+   "placement": "cargo",
+   "file": "content/airlines/etihad.yml",
+   "locator": "channels[2]",
+   "name_en": "Etihad Cargo",
+   "cls": "warn",
+   "avant": {
+    "allowed": true,
+    "conditional": true
+   },
+   "manifeste": "legacy_unreviewed"
+  },
+  {
+   "airline_id": "airline_eurowings",
+   "placement": "cabin",
+   "file": "content/airlines/eurowings.yml",
+   "locator": "channels[0]",
+   "name_en": "Cabin",
+   "cls": "ok",
+   "avant": {
+    "allowed": true
+   },
+   "manifeste": null
+  },
+  {
+   "airline_id": "airline_eurowings",
+   "placement": "hold",
+   "file": "content/airlines/eurowings.yml",
+   "locator": "channels[1]",
+   "name_en": "Hold",
+   "cls": "no",
+   "avant": {
+    "allowed": false
+   },
+   "manifeste": null
+  },
+  {
+   "airline_id": "airline_eurowings",
+   "placement": "cargo",
+   "file": "content/airlines/eurowings.yml",
+   "locator": "channels[2]",
+   "name_en": "Cargo",
+   "cls": "no",
+   "avant": {
+    "allowed": false
+   },
+   "manifeste": null
+  },
+  {
+   "airline_id": "airline_eva_air",
+   "placement": "cabin",
+   "file": "content/airlines/eva_air.yml",
+   "locator": "channels[0]",
+   "name_en": "Cabin",
+   "cls": "no",
+   "avant": {
+    "allowed": false
+   },
+   "manifeste": null
+  },
+  {
+   "airline_id": "airline_eva_air",
+   "placement": "hold",
+   "file": "content/airlines/eva_air.yml",
+   "locator": "channels[1]",
+   "name_en": "Hold",
+   "cls": "ok",
+   "avant": {
+    "allowed": true
+   },
+   "manifeste": null
+  },
+  {
+   "airline_id": "airline_finnair",
+   "placement": "cabin",
+   "file": "content/airlines/finnair.yml",
+   "locator": "channels[0]",
+   "name_en": "Cabin",
+   "cls": "ok",
+   "avant": {
+    "allowed": true
+   },
+   "manifeste": null
+  },
+  {
+   "airline_id": "airline_finnair",
+   "placement": "hold",
+   "file": "content/airlines/finnair.yml",
+   "locator": "channels[1]",
+   "name_en": "Hold",
+   "cls": "ok",
+   "avant": {
+    "allowed": true
+   },
+   "manifeste": null
+  },
+  {
+   "airline_id": "airline_finnair",
+   "placement": "cargo",
+   "file": "content/airlines/finnair.yml",
+   "locator": "channels[2]",
+   "name_en": "Finnair Cargo",
+   "cls": "warn",
+   "avant": {
+    "allowed": true,
+    "conditional": true
+   },
+   "manifeste": "legacy_unreviewed"
+  },
+  {
+   "airline_id": "airline_french_bee",
+   "placement": "cabin",
+   "file": "content/airlines/french_bee.yml",
+   "locator": "channels[0]",
+   "name_en": "Cabin",
+   "cls": "ok",
+   "avant": {
+    "allowed": true
+   },
+   "manifeste": null
+  },
+  {
+   "airline_id": "airline_french_bee",
+   "placement": "hold",
+   "file": "content/airlines/french_bee.yml",
+   "locator": "channels[1]",
+   "name_en": "Hold",
+   "cls": "ok",
+   "avant": {
+    "allowed": true
+   },
+   "manifeste": null
+  },
+  {
+   "airline_id": "airline_garuda_indonesia",
+   "placement": "cabin",
+   "file": "content/airlines/garuda_indonesia.yml",
+   "locator": "channels[0]",
+   "name_en": "Cabin",
+   "cls": "no",
+   "avant": {
+    "allowed": false
+   },
+   "manifeste": null
+  },
+  {
+   "airline_id": "airline_garuda_indonesia",
+   "placement": "hold",
+   "file": "content/airlines/garuda_indonesia.yml",
+   "locator": "channels[1]",
+   "name_en": "Hold",
+   "cls": "warn",
+   "avant": {
+    "allowed": true,
+    "conditional": true
+   },
+   "manifeste": "legacy_unreviewed"
+  },
+  {
+   "airline_id": "airline_garuda_indonesia",
+   "placement": "cargo",
+   "file": "content/airlines/garuda_indonesia.yml",
+   "locator": "channels[2]",
+   "name_en": "Garuda Cargo",
+   "cls": "warn",
+   "avant": {
+    "allowed": true,
+    "conditional": true
+   },
+   "manifeste": "legacy_unreviewed"
+  },
+  {
+   "airline_id": "airline_gulf_air",
+   "placement": "cabin",
+   "file": "content/airlines/gulf_air.yml",
+   "locator": "channels[0]",
+   "name_en": "Cabin",
+   "cls": "no",
+   "avant": {
+    "allowed": false
+   },
+   "manifeste": null
+  },
+  {
+   "airline_id": "airline_gulf_air",
+   "placement": "hold",
+   "file": "content/airlines/gulf_air.yml",
+   "locator": "channels[1]",
+   "name_en": "Hold",
+   "cls": "no",
+   "avant": {
+    "allowed": false
+   },
+   "manifeste": null
+  },
+  {
+   "airline_id": "airline_gulf_air",
+   "placement": "cargo",
+   "file": "content/airlines/gulf_air.yml",
+   "locator": "channels[2]",
+   "name_en": "Cargo",
+   "cls": "warn",
+   "avant": {
+    "allowed": true,
+    "conditional": true
+   },
+   "manifeste": "legacy_unreviewed"
+  },
+  {
+   "airline_id": "airline_iberia",
+   "placement": "cabin",
+   "file": "content/airlines/iberia.yml",
+   "locator": "channels[0]",
+   "name_en": "Cabin",
+   "cls": "ok",
+   "avant": {
+    "allowed": true
+   },
+   "manifeste": null
+  },
+  {
+   "airline_id": "airline_iberia",
+   "placement": "hold",
+   "file": "content/airlines/iberia.yml",
+   "locator": "channels[1]",
+   "name_en": "Hold",
+   "cls": "ok",
+   "avant": {
+    "allowed": true
+   },
+   "manifeste": null
+  },
+  {
+   "airline_id": "airline_iberia",
+   "placement": "cargo",
+   "file": "content/airlines/iberia.yml",
+   "locator": "channels[2]",
+   "name_en": "IAG Cargo",
+   "cls": "warn",
+   "avant": {
+    "allowed": true,
+    "conditional": true
+   },
+   "manifeste": null
+  },
+  {
+   "airline_id": "airline_iberia_express",
+   "placement": "cabin",
+   "file": "content/airlines/iberia_express.yml",
+   "locator": "channels[0]",
+   "name_en": "Cabin",
+   "cls": "ok",
+   "avant": {
+    "allowed": true
+   },
+   "manifeste": null
+  },
+  {
+   "airline_id": "airline_iberia_express",
+   "placement": "hold",
+   "file": "content/airlines/iberia_express.yml",
+   "locator": "channels[1]",
+   "name_en": "Hold",
+   "cls": "ok",
+   "avant": {
+    "allowed": true
+   },
+   "manifeste": null
+  },
+  {
+   "airline_id": "airline_iberia_express",
+   "placement": "cargo",
+   "file": "content/airlines/iberia_express.yml",
+   "locator": "channels[2]",
+   "name_en": "IAG Cargo",
+   "cls": "warn",
+   "avant": {
+    "allowed": true,
+    "conditional": true
+   },
+   "manifeste": "legacy_unreviewed"
+  },
+  {
+   "airline_id": "airline_icelandair",
+   "placement": "cabin",
+   "file": "content/airlines/icelandair.yml",
+   "locator": "channels[0]",
+   "name_en": "Cabin",
+   "cls": "no",
+   "avant": {
+    "allowed": false
+   },
+   "manifeste": null
+  },
+  {
+   "airline_id": "airline_icelandair",
+   "placement": "hold",
+   "file": "content/airlines/icelandair.yml",
+   "locator": "channels[1]",
+   "name_en": "Hold",
+   "cls": "no",
+   "avant": {
+    "allowed": false
+   },
+   "manifeste": null
+  },
+  {
+   "airline_id": "airline_icelandair",
+   "placement": "cargo",
+   "file": "content/airlines/icelandair.yml",
+   "locator": "channels[2]",
+   "name_en": "Cargo",
+   "cls": "no",
+   "avant": {
+    "allowed": false
+   },
+   "manifeste": null
+  },
+  {
+   "airline_id": "airline_indigo",
+   "placement": "cabin",
+   "file": "content/airlines/indigo.yml",
+   "locator": "channels[0]",
+   "name_en": "Cabin",
+   "cls": "no",
+   "avant": {
+    "allowed": false
+   },
+   "manifeste": null
+  },
+  {
+   "airline_id": "airline_indigo",
+   "placement": "hold",
+   "file": "content/airlines/indigo.yml",
+   "locator": "channels[1]",
+   "name_en": "Hold",
+   "cls": "no",
+   "avant": {
+    "allowed": false
+   },
+   "manifeste": null
+  },
+  {
+   "airline_id": "airline_indigo",
+   "placement": "cargo",
+   "file": "content/airlines/indigo.yml",
+   "locator": "channels[2]",
+   "name_en": "Cargo",
+   "cls": "no",
+   "avant": {
+    "allowed": false
+   },
+   "manifeste": null
+  },
+  {
+   "airline_id": "airline_ita_airways",
+   "placement": "cabin",
+   "file": "content/airlines/ita_airways.yml",
+   "locator": "channels[0]",
+   "name_en": "Cabin",
+   "cls": "ok",
+   "avant": {
+    "allowed": true
+   },
+   "manifeste": null
+  },
+  {
+   "airline_id": "airline_ita_airways",
+   "placement": "hold",
+   "file": "content/airlines/ita_airways.yml",
+   "locator": "channels[1]",
+   "name_en": "Hold",
+   "cls": "ok",
+   "avant": {
+    "allowed": true
+   },
+   "manifeste": null
+  },
+  {
+   "airline_id": "airline_ita_airways",
+   "placement": "cargo",
+   "file": "content/airlines/ita_airways.yml",
+   "locator": "channels[2]",
+   "name_en": "Cargo",
+   "cls": "no",
+   "avant": {
+    "allowed": false
+   },
+   "manifeste": null
+  },
+  {
+   "airline_id": "airline_jal",
+   "placement": "cabin",
+   "file": "content/airlines/jal.yml",
+   "locator": "channels[0]",
+   "name_en": "Cabin",
+   "cls": "no",
+   "avant": {
+    "allowed": false
+   },
+   "manifeste": null
+  },
+  {
+   "airline_id": "airline_jal",
+   "placement": "hold",
+   "file": "content/airlines/jal.yml",
+   "locator": "channels[1]",
+   "name_en": "Hold",
+   "cls": "ok",
+   "avant": {
+    "allowed": true
+   },
+   "manifeste": null
+  },
+  {
+   "airline_id": "airline_jal",
+   "placement": "cargo",
+   "file": "content/airlines/jal.yml",
+   "locator": "channels[2]",
+   "name_en": "JAL Cargo",
+   "cls": "warn",
+   "avant": {
+    "allowed": true,
+    "conditional": true
+   },
+   "manifeste": "legacy_unreviewed"
+  },
+  {
+   "airline_id": "airline_jetblue",
+   "placement": "cabin",
+   "file": "content/airlines/jetblue.yml",
+   "locator": "channels[0]",
+   "name_en": "Cabin",
+   "cls": "ok",
+   "avant": {
+    "allowed": true
+   },
+   "manifeste": null
+  },
+  {
+   "airline_id": "airline_jetblue",
+   "placement": "hold",
+   "file": "content/airlines/jetblue.yml",
+   "locator": "channels[1]",
+   "name_en": "Hold",
+   "cls": "no",
+   "avant": {
+    "allowed": false
+   },
+   "manifeste": null
+  },
+  {
+   "airline_id": "airline_jetblue",
+   "placement": "cargo",
+   "file": "content/airlines/jetblue.yml",
+   "locator": "channels[2]",
+   "name_en": "Cargo",
+   "cls": "no",
+   "avant": {
+    "allowed": false
+   },
+   "manifeste": null
+  },
+  {
+   "airline_id": "airline_kenya_airways",
+   "placement": "cabin",
+   "file": "content/airlines/kenya_airways.yml",
+   "locator": "channels[0]",
+   "name_en": "Cabin",
+   "cls": "no",
+   "avant": {
+    "allowed": false
+   },
+   "manifeste": null
+  },
+  {
+   "airline_id": "airline_kenya_airways",
+   "placement": "hold",
+   "file": "content/airlines/kenya_airways.yml",
+   "locator": "channels[1]",
+   "name_en": "Hold",
+   "cls": "no",
+   "avant": {
+    "allowed": false
+   },
+   "manifeste": null
+  },
+  {
+   "airline_id": "airline_kenya_airways",
+   "placement": "cargo",
+   "file": "content/airlines/kenya_airways.yml",
+   "locator": "channels[2]",
+   "name_en": "Cargo",
+   "cls": "warn",
+   "avant": {
+    "allowed": true,
+    "conditional": true
+   },
+   "manifeste": "legacy_unreviewed"
+  },
+  {
+   "airline_id": "airline_klm",
+   "placement": "cabin",
+   "file": "content/airlines/klm.yml",
+   "locator": "channels[0]",
+   "name_en": "Cabin",
+   "cls": "ok",
+   "avant": {
+    "allowed": true
+   },
+   "manifeste": null
+  },
+  {
+   "airline_id": "airline_klm",
+   "placement": "hold",
+   "file": "content/airlines/klm.yml",
+   "locator": "channels[1]",
+   "name_en": "Hold",
+   "cls": "ok",
+   "avant": {
+    "allowed": true
+   },
+   "manifeste": null
+  },
+  {
+   "airline_id": "airline_klm",
+   "placement": "cargo",
+   "file": "content/airlines/klm.yml",
+   "locator": "channels[2]",
+   "name_en": "Cargo",
+   "cls": "warn",
+   "avant": {
+    "allowed": true,
+    "conditional": true
+   },
+   "manifeste": null
+  },
+  {
+   "airline_id": "airline_km_malta",
+   "placement": "cabin",
+   "file": "content/airlines/km_malta.yml",
+   "locator": "channels[0]",
+   "name_en": "Cabin (PETC)",
+   "cls": "ok",
+   "avant": {
+    "allowed": true
+   },
+   "manifeste": null
+  },
+  {
+   "airline_id": "airline_km_malta",
+   "placement": "hold",
+   "file": "content/airlines/km_malta.yml",
+   "locator": "channels[1]",
+   "name_en": "Checked baggage (AVIH)",
+   "cls": "ok",
+   "avant": {
+    "allowed": true
+   },
+   "manifeste": null
+  },
+  {
+   "airline_id": "airline_km_malta",
+   "placement": "cargo",
+   "file": "content/airlines/km_malta.yml",
+   "locator": "channels[2]",
+   "name_en": "Cargo",
+   "cls": "warn",
+   "avant": {
+    "allowed": true,
+    "conditional": true
+   },
+   "manifeste": "legacy_unreviewed"
+  },
+  {
+   "airline_id": "airline_korean_air",
+   "placement": "cabin",
+   "file": "content/airlines/korean_air.yml",
+   "locator": "channels[0]",
+   "name_en": "Cabin",
+   "cls": "ok",
+   "avant": {
+    "allowed": true
+   },
+   "manifeste": null
+  },
+  {
+   "airline_id": "airline_korean_air",
+   "placement": "hold",
+   "file": "content/airlines/korean_air.yml",
+   "locator": "channels[1]",
+   "name_en": "Hold",
+   "cls": "ok",
+   "avant": {
+    "allowed": true
+   },
+   "manifeste": null
+  },
+  {
+   "airline_id": "airline_la_compagnie",
+   "placement": "cabin",
+   "file": "content/airlines/la_compagnie.yml",
+   "locator": "channels[0]",
+   "name_en": "Cabin",
+   "cls": "ok",
+   "avant": {
+    "allowed": true
+   },
+   "manifeste": null
+  },
+  {
+   "airline_id": "airline_la_compagnie",
+   "placement": "hold",
+   "file": "content/airlines/la_compagnie.yml",
+   "locator": "channels[1]",
+   "name_en": "Hold",
+   "cls": "no",
+   "avant": {
+    "allowed": false
+   },
+   "manifeste": null
+  },
+  {
+   "airline_id": "airline_latam",
+   "placement": "cabin",
+   "file": "content/airlines/latam.yml",
+   "locator": "channels[0]",
+   "name_en": "Cabin",
+   "cls": "ok",
+   "avant": {
+    "allowed": true
+   },
+   "manifeste": null
+  },
+  {
+   "airline_id": "airline_latam",
+   "placement": "hold",
+   "file": "content/airlines/latam.yml",
+   "locator": "channels[1]",
+   "name_en": "Hold",
+   "cls": "ok",
+   "avant": {
+    "allowed": true
+   },
+   "manifeste": null
+  },
+  {
+   "airline_id": "airline_latam",
+   "placement": "cargo",
+   "file": "content/airlines/latam.yml",
+   "locator": "channels[2]",
+   "name_en": "LATAM Cargo",
+   "cls": "warn",
+   "avant": {
+    "allowed": true,
+    "conditional": true
+   },
+   "manifeste": "legacy_unreviewed"
+  },
+  {
+   "airline_id": "airline_lot",
+   "placement": "cabin",
+   "file": "content/airlines/lot.yml",
+   "locator": "channels[0]",
+   "name_en": "Cabin",
+   "cls": "ok",
+   "avant": {
+    "allowed": true
+   },
+   "manifeste": null
+  },
+  {
+   "airline_id": "airline_lot",
+   "placement": "hold",
+   "file": "content/airlines/lot.yml",
+   "locator": "channels[1]",
+   "name_en": "Hold",
+   "cls": "ok",
+   "avant": {
+    "allowed": true
+   },
+   "manifeste": null
+  },
+  {
+   "airline_id": "airline_lot",
+   "placement": "cargo",
+   "file": "content/airlines/lot.yml",
+   "locator": "channels[2]",
+   "name_en": "LOT Cargo",
+   "cls": "warn",
+   "avant": {
+    "allowed": true,
+    "conditional": true
+   },
+   "manifeste": "legacy_unreviewed"
+  },
+  {
+   "airline_id": "airline_lufthansa",
+   "placement": "cabin",
+   "file": "content/airlines/lufthansa.yml",
+   "locator": "channels[0]",
+   "name_en": "Cabin",
+   "cls": "ok",
+   "avant": {
+    "allowed": true
+   },
+   "manifeste": null
+  },
+  {
+   "airline_id": "airline_lufthansa",
+   "placement": "hold",
+   "file": "content/airlines/lufthansa.yml",
+   "locator": "channels[1]",
+   "name_en": "Hold",
+   "cls": "ok",
+   "avant": {
+    "allowed": true
+   },
+   "manifeste": null
+  },
+  {
+   "airline_id": "airline_lufthansa",
+   "placement": "cargo",
+   "file": "content/airlines/lufthansa.yml",
+   "locator": "channels[2]",
+   "name_en": "Lufthansa Cargo",
+   "cls": "warn",
+   "avant": {
+    "allowed": true,
+    "conditional": true
+   },
+   "manifeste": null
+  },
+  {
+   "airline_id": "airline_luxair",
+   "placement": "cabin",
+   "file": "content/airlines/luxair.yml",
+   "locator": "channels[0]",
+   "name_en": "Cabin",
+   "cls": "ok",
+   "avant": {
+    "allowed": true
+   },
+   "manifeste": null
+  },
+  {
+   "airline_id": "airline_luxair",
+   "placement": "hold",
+   "file": "content/airlines/luxair.yml",
+   "locator": "channels[1]",
+   "name_en": "Hold",
+   "cls": "ok",
+   "avant": {
+    "allowed": true
+   },
+   "manifeste": null
+  },
+  {
+   "airline_id": "airline_luxair",
+   "placement": "cargo",
+   "file": "content/airlines/luxair.yml",
+   "locator": "channels[2]",
+   "name_en": "Cargo",
+   "cls": "warn",
+   "avant": {
+    "allowed": true,
+    "conditional": true
+   },
+   "manifeste": "legacy_unreviewed"
+  },
+  {
+   "airline_id": "airline_malaysia_airlines",
+   "placement": "cabin",
+   "file": "content/airlines/malaysia_airlines.yml",
+   "locator": "channels[0]",
+   "name_en": "Cabin",
+   "cls": "no",
+   "avant": {
+    "allowed": false
+   },
+   "manifeste": null
+  },
+  {
+   "airline_id": "airline_malaysia_airlines",
+   "placement": "hold",
+   "file": "content/airlines/malaysia_airlines.yml",
+   "locator": "channels[1]",
+   "name_en": "Hold",
+   "cls": "ok",
+   "avant": {
+    "allowed": true
+   },
+   "manifeste": null
+  },
+  {
+   "airline_id": "airline_neos",
+   "placement": "cabin",
+   "file": "content/airlines/neos.yml",
+   "locator": "channels[0]",
+   "name_en": "Cabin",
+   "cls": "ok",
+   "avant": {
+    "allowed": true
+   },
+   "manifeste": null
+  },
+  {
+   "airline_id": "airline_neos",
+   "placement": "hold",
+   "file": "content/airlines/neos.yml",
+   "locator": "channels[1]",
+   "name_en": "Hold",
+   "cls": "ok",
+   "avant": {
+    "allowed": true
+   },
+   "manifeste": null
+  },
+  {
+   "airline_id": "airline_neos",
+   "placement": "cargo",
+   "file": "content/airlines/neos.yml",
+   "locator": "channels[2]",
+   "name_en": "Cargo",
+   "cls": "warn",
+   "avant": {
+    "allowed": true,
+    "conditional": true
+   },
+   "manifeste": "legacy_unreviewed"
+  },
+  {
+   "airline_id": "airline_norwegian",
+   "placement": "cabin",
+   "file": "content/airlines/norwegian.yml",
+   "locator": "channels[0]",
+   "name_en": "Cabin",
+   "cls": "ok",
+   "avant": {
+    "allowed": true
+   },
+   "manifeste": null
+  },
+  {
+   "airline_id": "airline_norwegian",
+   "placement": "hold",
+   "file": "content/airlines/norwegian.yml",
+   "locator": "channels[1]",
+   "name_en": "Hold",
+   "cls": "ok",
+   "avant": {
+    "allowed": true
+   },
+   "manifeste": null
+  },
+  {
+   "airline_id": "airline_pegasus",
+   "placement": "cabin",
+   "file": "content/airlines/pegasus.yml",
+   "locator": "channels[0]",
+   "name_en": "Cabin",
+   "cls": "ok",
+   "avant": {
+    "allowed": true
+   },
+   "manifeste": null
+  },
+  {
+   "airline_id": "airline_pegasus",
+   "placement": "hold",
+   "file": "content/airlines/pegasus.yml",
+   "locator": "channels[1]",
+   "name_en": "Hold",
+   "cls": "warn",
+   "avant": {
+    "allowed": true,
+    "conditional": true
+   },
+   "manifeste": "legacy_unreviewed"
+  },
+  {
+   "airline_id": "airline_pegasus",
+   "placement": "cargo",
+   "file": "content/airlines/pegasus.yml",
+   "locator": "channels[2]",
+   "name_en": "Cargo",
+   "cls": "no",
+   "avant": {
+    "allowed": false
+   },
+   "manifeste": null
+  },
+  {
+   "airline_id": "airline_philippine",
+   "placement": "cabin",
+   "file": "content/airlines/philippine.yml",
+   "locator": "channels[0]",
+   "name_en": "Cabin",
+   "cls": "ok",
+   "avant": {
+    "allowed": true
+   },
+   "manifeste": null
+  },
+  {
+   "airline_id": "airline_philippine",
+   "placement": "hold",
+   "file": "content/airlines/philippine.yml",
+   "locator": "channels[1]",
+   "name_en": "Hold",
+   "cls": "ok",
+   "avant": {
+    "allowed": true
+   },
+   "manifeste": null
+  },
+  {
+   "airline_id": "airline_philippine",
+   "placement": "cargo",
+   "file": "content/airlines/philippine.yml",
+   "locator": "channels[2]",
+   "name_en": "PAL Cargo",
+   "cls": "warn",
+   "avant": {
+    "allowed": true,
+    "conditional": true
+   },
+   "manifeste": "legacy_unreviewed"
+  },
+  {
+   "airline_id": "airline_qantas",
+   "placement": "cabin",
+   "file": "content/airlines/qantas.yml",
+   "locator": "channels[0]",
+   "name_en": "Cabin",
+   "cls": "no",
+   "avant": {
+    "allowed": false
+   },
+   "manifeste": null
+  },
+  {
+   "airline_id": "airline_qatar_airways",
+   "placement": "cabin",
+   "file": "content/airlines/qatar_airways.yml",
+   "locator": "channels[0]",
+   "name_en": "Cabin",
+   "cls": "no",
+   "avant": {
+    "allowed": false
+   },
+   "manifeste": null
+  },
+  {
+   "airline_id": "airline_qatar_airways",
+   "placement": "hold",
+   "file": "content/airlines/qatar_airways.yml",
+   "locator": "channels[1]",
+   "name_en": "Hold",
+   "cls": "ok",
+   "avant": {
+    "allowed": true
+   },
+   "manifeste": null
+  },
+  {
+   "airline_id": "airline_qatar_airways",
+   "placement": "cargo",
+   "file": "content/airlines/qatar_airways.yml",
+   "locator": "channels[2]",
+   "name_en": "QR Cargo Live",
+   "cls": "warn",
+   "avant": {
+    "allowed": true,
+    "conditional": true
+   },
+   "manifeste": "legacy_unreviewed"
+  },
+  {
+   "airline_id": "airline_royal_air_maroc",
+   "placement": "cabin",
+   "file": "content/airlines/royal_air_maroc.yml",
+   "locator": "channels[0]",
+   "name_en": "Cabin",
+   "cls": "ok",
+   "avant": {
+    "allowed": true
+   },
+   "manifeste": null
+  },
+  {
+   "airline_id": "airline_royal_air_maroc",
+   "placement": "hold",
+   "file": "content/airlines/royal_air_maroc.yml",
+   "locator": "channels[1]",
+   "name_en": "Hold",
+   "cls": "ok",
+   "avant": {
+    "allowed": true
+   },
+   "manifeste": null
+  },
+  {
+   "airline_id": "airline_royal_air_maroc",
+   "placement": "cargo",
+   "file": "content/airlines/royal_air_maroc.yml",
+   "locator": "channels[2]",
+   "name_en": "RAM Cargo",
+   "cls": "warn",
+   "avant": {
+    "allowed": true,
+    "conditional": true
+   },
+   "manifeste": "legacy_unreviewed"
+  },
+  {
+   "airline_id": "airline_royal_jordanian",
+   "placement": "cabin",
+   "file": "content/airlines/royal_jordanian.yml",
+   "locator": "channels[0]",
+   "name_en": "Cabin",
+   "cls": "warn",
+   "avant": {
+    "allowed": true,
+    "conditional": true
+   },
+   "manifeste": "legacy_unreviewed"
+  },
+  {
+   "airline_id": "airline_royal_jordanian",
+   "placement": "hold",
+   "file": "content/airlines/royal_jordanian.yml",
+   "locator": "channels[1]",
+   "name_en": "Hold",
+   "cls": "ok",
+   "avant": {
+    "allowed": true
+   },
+   "manifeste": null
+  },
+  {
+   "airline_id": "airline_royal_jordanian",
+   "placement": "cargo",
+   "file": "content/airlines/royal_jordanian.yml",
+   "locator": "channels[2]",
+   "name_en": "Cargo",
+   "cls": "warn",
+   "avant": {
+    "allowed": true,
+    "conditional": true
+   },
+   "manifeste": "legacy_unreviewed"
+  },
+  {
+   "airline_id": "airline_ryanair",
+   "placement": "cabin",
+   "file": "content/airlines/ryanair.yml",
+   "locator": "channels[0]",
+   "name_en": "Cabin",
+   "cls": "no",
+   "avant": {
+    "allowed": false
+   },
+   "manifeste": null
+  },
+  {
+   "airline_id": "airline_ryanair",
+   "placement": "hold",
+   "file": "content/airlines/ryanair.yml",
+   "locator": "channels[1]",
+   "name_en": "Hold",
+   "cls": "no",
+   "avant": {
+    "allowed": false
+   },
+   "manifeste": null
+  },
+  {
+   "airline_id": "airline_ryanair",
+   "placement": "cargo",
+   "file": "content/airlines/ryanair.yml",
+   "locator": "channels[2]",
+   "name_en": "Cargo",
+   "cls": "no",
+   "avant": {
+    "allowed": false
+   },
+   "manifeste": null
+  },
+  {
+   "airline_id": "airline_sas",
+   "placement": "cabin",
+   "file": "content/airlines/sas.yml",
+   "locator": "channels[0]",
+   "name_en": "Cabin",
+   "cls": "ok",
+   "avant": {
+    "allowed": true
+   },
+   "manifeste": null
+  },
+  {
+   "airline_id": "airline_sas",
+   "placement": "hold",
+   "file": "content/airlines/sas.yml",
+   "locator": "channels[1]",
+   "name_en": "Hold",
+   "cls": "ok",
+   "avant": {
+    "allowed": true
+   },
+   "manifeste": null
+  },
+  {
+   "airline_id": "airline_sas",
+   "placement": "cargo",
+   "file": "content/airlines/sas.yml",
+   "locator": "channels[2]",
+   "name_en": "SAS Cargo",
+   "cls": "warn",
+   "avant": {
+    "allowed": true,
+    "conditional": true
+   },
+   "manifeste": "legacy_unreviewed"
+  },
+  {
+   "airline_id": "airline_saudia",
+   "placement": "cabin",
+   "file": "content/airlines/saudia.yml",
+   "locator": "channels[0]",
+   "name_en": "Cabin",
+   "cls": "warn",
+   "avant": {
+    "allowed": true,
+    "conditional": true
+   },
+   "manifeste": "legacy_unreviewed"
+  },
+  {
+   "airline_id": "airline_saudia",
+   "placement": "hold",
+   "file": "content/airlines/saudia.yml",
+   "locator": "channels[1]",
+   "name_en": "Hold",
+   "cls": "ok",
+   "avant": {
+    "allowed": true
+   },
+   "manifeste": null
+  },
+  {
+   "airline_id": "airline_saudia",
+   "placement": "cargo",
+   "file": "content/airlines/saudia.yml",
+   "locator": "channels[2]",
+   "name_en": "Saudia Cargo",
+   "cls": "warn",
+   "avant": {
+    "allowed": true,
+    "conditional": true
+   },
+   "manifeste": "legacy_unreviewed"
+  },
+  {
+   "airline_id": "airline_singapore_airlines",
+   "placement": "cabin",
+   "file": "content/airlines/singapore_airlines.yml",
+   "locator": "channels[0]",
+   "name_en": "Cabin",
+   "cls": "no",
+   "avant": {
+    "allowed": false
+   },
+   "manifeste": null
+  },
+  {
+   "airline_id": "airline_singapore_airlines",
+   "placement": "hold",
+   "file": "content/airlines/singapore_airlines.yml",
+   "locator": "channels[1]",
+   "name_en": "Hold",
+   "cls": "ok",
+   "avant": {
+    "allowed": true
+   },
+   "manifeste": null
+  },
+  {
+   "airline_id": "airline_singapore_airlines",
+   "placement": "cargo",
+   "file": "content/airlines/singapore_airlines.yml",
+   "locator": "channels[2]",
+   "name_en": "Cargo",
+   "cls": "warn",
+   "avant": {
+    "allowed": true,
+    "conditional": true
+   },
+   "manifeste": "legacy_unreviewed"
+  },
+  {
+   "airline_id": "airline_sky_express",
+   "placement": "cabin",
+   "file": "content/airlines/sky_express.yml",
+   "locator": "channels[0]",
+   "name_en": "Cabin",
+   "cls": "ok",
+   "avant": {
+    "allowed": true
+   },
+   "manifeste": null
+  },
+  {
+   "airline_id": "airline_sky_express",
+   "placement": "hold",
+   "file": "content/airlines/sky_express.yml",
+   "locator": "channels[1]",
+   "name_en": "Hold",
+   "cls": "warn",
+   "avant": {
+    "allowed": true,
+    "conditional": true
+   },
+   "manifeste": "legacy_unreviewed"
+  },
+  {
+   "airline_id": "airline_sky_express",
+   "placement": "cargo",
+   "file": "content/airlines/sky_express.yml",
+   "locator": "channels[2]",
+   "name_en": "Cargo",
+   "cls": "warn",
+   "avant": {
+    "allowed": true,
+    "conditional": true
+   },
+   "manifeste": "legacy_unreviewed"
+  },
+  {
+   "airline_id": "airline_smartwings",
+   "placement": "cabin",
+   "file": "content/airlines/smartwings.yml",
+   "locator": "channels[0]",
+   "name_en": "Cabin",
+   "cls": "ok",
+   "avant": {
+    "allowed": true
+   },
+   "manifeste": null
+  },
+  {
+   "airline_id": "airline_smartwings",
+   "placement": "hold",
+   "file": "content/airlines/smartwings.yml",
+   "locator": "channels[1]",
+   "name_en": "Hold",
+   "cls": "ok",
+   "avant": {
+    "allowed": true
+   },
+   "manifeste": null
+  },
+  {
+   "airline_id": "airline_south_african_airways",
+   "placement": "cabin",
+   "file": "content/airlines/south_african_airways.yml",
+   "locator": "channels[0]",
+   "name_en": "Cabin",
+   "cls": "no",
+   "avant": {
+    "allowed": false
+   },
+   "manifeste": null
+  },
+  {
+   "airline_id": "airline_south_african_airways",
+   "placement": "hold",
+   "file": "content/airlines/south_african_airways.yml",
+   "locator": "channels[1]",
+   "name_en": "Hold",
+   "cls": "warn",
+   "avant": {
+    "allowed": true,
+    "conditional": true
+   },
+   "manifeste": "legacy_unreviewed"
+  },
+  {
+   "airline_id": "airline_south_african_airways",
+   "placement": "cargo",
+   "file": "content/airlines/south_african_airways.yml",
+   "locator": "channels[2]",
+   "name_en": "Cargo",
+   "cls": "warn",
+   "avant": {
+    "allowed": true,
+    "conditional": true
+   },
+   "manifeste": "legacy_unreviewed"
+  },
+  {
+   "airline_id": "airline_sunexpress",
+   "placement": "cabin",
+   "file": "content/airlines/sunexpress.yml",
+   "locator": "channels[0]",
+   "name_en": "Cabin",
+   "cls": "ok",
+   "avant": {
+    "allowed": true
+   },
+   "manifeste": null
+  },
+  {
+   "airline_id": "airline_sunexpress",
+   "placement": "hold",
+   "file": "content/airlines/sunexpress.yml",
+   "locator": "channels[1]",
+   "name_en": "Hold",
+   "cls": "warn",
+   "avant": {
+    "allowed": true,
+    "conditional": true
+   },
+   "manifeste": "legacy_unreviewed"
+  },
+  {
+   "airline_id": "airline_sunexpress",
+   "placement": "cargo",
+   "file": "content/airlines/sunexpress.yml",
+   "locator": "channels[2]",
+   "name_en": "Cargo",
+   "cls": "warn",
+   "avant": {
+    "allowed": true,
+    "conditional": true
+   },
+   "manifeste": "legacy_unreviewed"
+  },
+  {
+   "airline_id": "airline_swiss",
+   "placement": "cabin",
+   "file": "content/airlines/swiss.yml",
+   "locator": "channels[0]",
+   "name_en": "Cabin",
+   "cls": "ok",
+   "avant": {
+    "allowed": true
+   },
+   "manifeste": null
+  },
+  {
+   "airline_id": "airline_swiss",
+   "placement": "hold",
+   "file": "content/airlines/swiss.yml",
+   "locator": "channels[1]",
+   "name_en": "Hold",
+   "cls": "ok",
+   "avant": {
+    "allowed": true
+   },
+   "manifeste": null
+  },
+  {
+   "airline_id": "airline_swiss",
+   "placement": "cargo",
+   "file": "content/airlines/swiss.yml",
+   "locator": "channels[2]",
+   "name_en": "Swiss WorldCargo",
+   "cls": "warn",
+   "avant": {
+    "allowed": true,
+    "conditional": true
+   },
+   "manifeste": "legacy_unreviewed"
+  },
+  {
+   "airline_id": "airline_tap",
+   "placement": "cabin",
+   "file": "content/airlines/tap.yml",
+   "locator": "channels[0]",
+   "name_en": "Cabin",
+   "cls": "ok",
+   "avant": {
+    "allowed": true
+   },
+   "manifeste": null
+  },
+  {
+   "airline_id": "airline_tap",
+   "placement": "hold",
+   "file": "content/airlines/tap.yml",
+   "locator": "channels[1]",
+   "name_en": "Hold",
+   "cls": "ok",
+   "avant": {
+    "allowed": true
+   },
+   "manifeste": null
+  },
+  {
+   "airline_id": "airline_tap",
+   "placement": "cargo",
+   "file": "content/airlines/tap.yml",
+   "locator": "channels[2]",
+   "name_en": "TAP Air Cargo",
+   "cls": "warn",
+   "avant": {
+    "allowed": true,
+    "conditional": true
+   },
+   "manifeste": "legacy_unreviewed"
+  },
+  {
+   "airline_id": "airline_tarom",
+   "placement": "cabin",
+   "file": "content/airlines/tarom.yml",
+   "locator": "channels[0]",
+   "name_en": "Cabin",
+   "cls": "ok",
+   "avant": {
+    "allowed": true
+   },
+   "manifeste": null
+  },
+  {
+   "airline_id": "airline_tarom",
+   "placement": "hold",
+   "file": "content/airlines/tarom.yml",
+   "locator": "channels[1]",
+   "name_en": "Hold",
+   "cls": "warn",
+   "avant": {
+    "allowed": true,
+    "conditional": true
+   },
+   "manifeste": "legacy_unreviewed"
+  },
+  {
+   "airline_id": "airline_tarom",
+   "placement": "cargo",
+   "file": "content/airlines/tarom.yml",
+   "locator": "channels[2]",
+   "name_en": "Cargo",
+   "cls": "warn",
+   "avant": {
+    "allowed": true,
+    "conditional": true
+   },
+   "manifeste": "legacy_unreviewed"
+  },
+  {
+   "airline_id": "airline_thai_airways",
+   "placement": "cabin",
+   "file": "content/airlines/thai_airways.yml",
+   "locator": "channels[0]",
+   "name_en": "Cabin",
+   "cls": "no",
+   "avant": {
+    "allowed": false
+   },
+   "manifeste": null
+  },
+  {
+   "airline_id": "airline_thai_airways",
+   "placement": "hold",
+   "file": "content/airlines/thai_airways.yml",
+   "locator": "channels[1]",
+   "name_en": "Hold",
+   "cls": "ok",
+   "avant": {
+    "allowed": true
+   },
+   "manifeste": null
+  },
+  {
+   "airline_id": "airline_thai_airways",
+   "placement": "cargo",
+   "file": "content/airlines/thai_airways.yml",
+   "locator": "channels[2]",
+   "name_en": "THAI Cargo",
+   "cls": "warn",
+   "avant": {
+    "allowed": true,
+    "conditional": true
+   },
+   "manifeste": "reviewed"
+  },
+  {
+   "airline_id": "airline_transavia",
+   "placement": "cabin",
+   "file": "content/airlines/transavia.yml",
+   "locator": "channels[0]",
+   "name_en": "Cabin",
+   "cls": "ok",
+   "avant": {
+    "allowed": true
+   },
+   "manifeste": null
+  },
+  {
+   "airline_id": "airline_transavia",
+   "placement": "hold",
+   "file": "content/airlines/transavia.yml",
+   "locator": "channels[1]",
+   "name_en": "Hold",
+   "cls": "ok",
+   "avant": {
+    "allowed": true
+   },
+   "manifeste": null
+  },
+  {
+   "airline_id": "airline_tui_airways",
+   "placement": "cabin",
+   "file": "content/airlines/tui_airways.yml",
+   "locator": "channels[0]",
+   "name_en": "Cabin",
+   "cls": "no",
+   "avant": {
+    "allowed": false
+   },
+   "manifeste": null
+  },
+  {
+   "airline_id": "airline_tui_airways",
+   "placement": "hold",
+   "file": "content/airlines/tui_airways.yml",
+   "locator": "channels[1]",
+   "name_en": "Hold as baggage",
+   "cls": "no",
+   "avant": {
+    "allowed": false
+   },
+   "manifeste": null
+  },
+  {
+   "airline_id": "airline_tui_airways",
+   "placement": "cargo",
+   "file": "content/airlines/tui_airways.yml",
+   "locator": "channels[2]",
+   "name_en": "Hold as cargo",
+   "cls": "warn",
+   "avant": {
+    "allowed": true,
+    "conditional": true
+   },
+   "manifeste": "legacy_unreviewed"
+  },
+  {
+   "airline_id": "airline_tunisair",
+   "placement": "cabin",
+   "file": "content/airlines/tunisair.yml",
+   "locator": "channels[0]",
+   "name_en": "Cabin",
+   "cls": "ok",
+   "avant": {
+    "allowed": true
+   },
+   "manifeste": null
+  },
+  {
+   "airline_id": "airline_tunisair",
+   "placement": "hold",
+   "file": "content/airlines/tunisair.yml",
+   "locator": "channels[1]",
+   "name_en": "Hold",
+   "cls": "ok",
+   "avant": {
+    "allowed": true
+   },
+   "manifeste": null
+  },
+  {
+   "airline_id": "airline_tunisair",
+   "placement": "cargo",
+   "file": "content/airlines/tunisair.yml",
+   "locator": "channels[2]",
+   "name_en": "Tunisair Cargo",
+   "cls": "warn",
+   "avant": {
+    "allowed": true,
+    "conditional": true
+   },
+   "manifeste": "legacy_unreviewed"
+  },
+  {
+   "airline_id": "airline_turkish",
+   "placement": "cabin",
+   "file": "content/airlines/turkish.yml",
+   "locator": "channels[0]",
+   "name_en": "Cabin",
+   "cls": "ok",
+   "avant": {
+    "allowed": true
+   },
+   "manifeste": null
+  },
+  {
+   "airline_id": "airline_turkish",
+   "placement": "hold",
+   "file": "content/airlines/turkish.yml",
+   "locator": "channels[1]",
+   "name_en": "Hold",
+   "cls": "ok",
+   "avant": {
+    "allowed": true
+   },
+   "manifeste": null
+  },
+  {
+   "airline_id": "airline_turkish",
+   "placement": "cargo",
+   "file": "content/airlines/turkish.yml",
+   "locator": "channels[2]",
+   "name_en": "Turkish Cargo",
+   "cls": "warn",
+   "avant": {
+    "allowed": true,
+    "conditional": true
+   },
+   "manifeste": null
+  },
+  {
+   "airline_id": "airline_united",
+   "placement": "cabin",
+   "file": "content/airlines/united.yml",
+   "locator": "channels[0]",
+   "name_en": "Cabin",
+   "cls": "ok",
+   "avant": {
+    "allowed": true
+   },
+   "manifeste": null
+  },
+  {
+   "airline_id": "airline_united",
+   "placement": "hold",
+   "file": "content/airlines/united.yml",
+   "locator": "channels[1]",
+   "name_en": "Hold",
+   "cls": "no",
+   "avant": {
+    "allowed": false
+   },
+   "manifeste": null
+  },
+  {
+   "airline_id": "airline_united",
+   "placement": "cargo",
+   "file": "content/airlines/united.yml",
+   "locator": "channels[2]",
+   "name_en": "PetSafe cargo",
+   "cls": "no",
+   "avant": {
+    "allowed": false
+   },
+   "manifeste": null
+  },
+  {
+   "airline_id": "airline_vietnam_airlines",
+   "placement": "cabin",
+   "file": "content/airlines/vietnam_airlines.yml",
+   "locator": "channels[0]",
+   "name_en": "Cabin",
+   "cls": "ok",
+   "avant": {
+    "allowed": true
+   },
+   "manifeste": null
+  },
+  {
+   "airline_id": "airline_vietnam_airlines",
+   "placement": "hold",
+   "file": "content/airlines/vietnam_airlines.yml",
+   "locator": "channels[1]",
+   "name_en": "Hold",
+   "cls": "ok",
+   "avant": {
+    "allowed": true
+   },
+   "manifeste": null
+  },
+  {
+   "airline_id": "airline_vietnam_airlines",
+   "placement": "cargo",
+   "file": "content/airlines/vietnam_airlines.yml",
+   "locator": "channels[2]",
+   "name_en": "Live Animals cargo",
+   "cls": "warn",
+   "avant": {
+    "allowed": true,
+    "conditional": true
+   },
+   "manifeste": "legacy_unreviewed"
+  },
+  {
+   "airline_id": "airline_virgin_atlantic",
+   "placement": "cabin",
+   "file": "content/airlines/virgin_atlantic.yml",
+   "locator": "channels[0]",
+   "name_en": "Cabin",
+   "cls": "no",
+   "avant": {
+    "allowed": false
+   },
+   "manifeste": null
+  },
+  {
+   "airline_id": "airline_virgin_atlantic",
+   "placement": "hold",
+   "file": "content/airlines/virgin_atlantic.yml",
+   "locator": "channels[1]",
+   "name_en": "Hold",
+   "cls": "no",
+   "avant": {
+    "allowed": false
+   },
+   "manifeste": null
+  },
+  {
+   "airline_id": "airline_virgin_atlantic",
+   "placement": "cargo",
+   "file": "content/airlines/virgin_atlantic.yml",
+   "locator": "channels[2]",
+   "name_en": "Virgin Atlantic Cargo",
+   "cls": "warn",
+   "avant": {
+    "allowed": true,
+    "conditional": true
+   },
+   "manifeste": "legacy_unreviewed"
+  },
+  {
+   "airline_id": "airline_virgin_australia",
+   "placement": "cabin",
+   "file": "content/airlines/virgin_australia.yml",
+   "locator": "channels[0]",
+   "name_en": "Cabin",
+   "cls": "ok",
+   "avant": {
+    "allowed": true
+   },
+   "manifeste": null
+  },
+  {
+   "airline_id": "airline_virgin_australia",
+   "placement": "cargo",
+   "file": "content/airlines/virgin_australia.yml",
+   "locator": "channels[1]",
+   "name_en": "Virgin Australia Cargo",
+   "cls": "warn",
+   "avant": {
+    "allowed": true,
+    "conditional": true
+   },
+   "manifeste": "legacy_unreviewed"
+  },
+  {
+   "airline_id": "airline_volotea",
+   "placement": "cabin",
+   "file": "content/airlines/volotea.yml",
+   "locator": "channels[0]",
+   "name_en": "Cabin",
+   "cls": "ok",
+   "avant": {
+    "allowed": true
+   },
+   "manifeste": null
+  },
+  {
+   "airline_id": "airline_volotea",
+   "placement": "hold",
+   "file": "content/airlines/volotea.yml",
+   "locator": "channels[1]",
+   "name_en": "Hold",
+   "cls": "no",
+   "avant": {
+    "allowed": false
+   },
+   "manifeste": null
+  },
+  {
+   "airline_id": "airline_volotea",
+   "placement": "cargo",
+   "file": "content/airlines/volotea.yml",
+   "locator": "channels[2]",
+   "name_en": "Cargo",
+   "cls": "no",
+   "avant": {
+    "allowed": false
+   },
+   "manifeste": null
+  },
+  {
+   "airline_id": "airline_vueling",
+   "placement": "cabin",
+   "file": "content/airlines/vueling.yml",
+   "locator": "channels[0]",
+   "name_en": "Cabin",
+   "cls": "ok",
+   "avant": {
+    "allowed": true
+   },
+   "manifeste": null
+  },
+  {
+   "airline_id": "airline_vueling",
+   "placement": "hold",
+   "file": "content/airlines/vueling.yml",
+   "locator": "channels[1]",
+   "name_en": "Hold",
+   "cls": "no",
+   "avant": {
+    "allowed": false
+   },
+   "manifeste": null
+  },
+  {
+   "airline_id": "airline_vueling",
+   "placement": "cargo",
+   "file": "content/airlines/vueling.yml",
+   "locator": "channels[2]",
+   "name_en": "Cargo",
+   "cls": "no",
+   "avant": {
+    "allowed": false
+   },
+   "manifeste": null
+  },
+  {
+   "airline_id": "airline_westjet",
+   "placement": "cabin",
+   "file": "content/airlines/westjet.yml",
+   "locator": "channels[0]",
+   "name_en": "Cabin",
+   "cls": "ok",
+   "avant": {
+    "allowed": true
+   },
+   "manifeste": null
+  },
+  {
+   "airline_id": "airline_westjet",
+   "placement": "hold",
+   "file": "content/airlines/westjet.yml",
+   "locator": "channels[1]",
+   "name_en": "Hold",
+   "cls": "ok",
+   "avant": {
+    "allowed": true
+   },
+   "manifeste": null
+  },
+  {
+   "airline_id": "airline_westjet",
+   "placement": "cargo",
+   "file": "content/airlines/westjet.yml",
+   "locator": "channels[2]",
+   "name_en": "WestJet Cargo",
+   "cls": "warn",
+   "avant": {
+    "allowed": true,
+    "conditional": true
+   },
+   "manifeste": null
+  },
+  {
+   "airline_id": "airline_wizz_air",
+   "placement": "cabin",
+   "file": "content/airlines/wizz_air.yml",
+   "locator": "channels[0]",
+   "name_en": "Cabin",
+   "cls": "no",
+   "avant": {
+    "allowed": false
+   },
+   "manifeste": null
+  },
+  {
+   "airline_id": "airline_wizz_air",
+   "placement": "hold",
+   "file": "content/airlines/wizz_air.yml",
+   "locator": "channels[1]",
+   "name_en": "Hold",
+   "cls": "no",
+   "avant": {
+    "allowed": false
+   },
+   "manifeste": null
+  },
+  {
+   "airline_id": "airline_wizz_air",
+   "placement": "cargo",
+   "file": "content/airlines/wizz_air.yml",
+   "locator": "channels[2]",
+   "name_en": "Cargo",
+   "cls": "no",
+   "avant": {
+    "allowed": false
+   },
+   "manifeste": null
+  }
+ ],
+ "dette_attendue": {
+  "politique_sans_canal_yaml": [
+   "airline_asiana.cargo",
+   "airline_condor.cargo",
+   "airline_eva_air.cargo",
+   "airline_french_bee.cargo",
+   "airline_korean_air.cargo",
+   "airline_malaysia_airlines.cargo",
+   "airline_norwegian.cargo",
+   "airline_qantas.cargo",
+   "airline_qantas.hold",
+   "airline_virgin_australia.hold"
+  ]
+ },
+ "anomalies": []
+}

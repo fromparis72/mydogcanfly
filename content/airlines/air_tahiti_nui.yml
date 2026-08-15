@@ -58,8 +58,14 @@ ladder:
       fr: soute via cargo
       es: bodega vía carga
       pt: "porão via carga"
+policies:
+  cabin:
+    availability: offered
+  cargo:
+    review_state: legacy_unreviewed
 channels:
-  - icon: 🐾
+  - placement: cabin
+    icon: 🐾
     name:
       en: Cabin
       fr: Cabine
@@ -81,7 +87,8 @@ channels:
       fr: 150 € / 150 $
       es: 150 € / 150 $
       pt: "€150 / $150"
-  - icon: ✈️
+  - placement: cargo
+    icon: ✈️
     name:
       en: Air Tahiti Nui Cargo
       fr: Air Tahiti Nui Cargo

@@ -72,8 +72,16 @@ ladder:
       fr: autres espèces
       es: otras especies
       pt: "outras espécies"
+policies:
+  cabin:
+    availability: offered
+  hold:
+    availability: offered
+  cargo:
+    review_state: legacy_unreviewed
 channels:
-  - icon: 🐾
+  - placement: cabin
+    icon: 🐾
     name:
       en: Cabin
       fr: Cabine
@@ -95,7 +103,8 @@ channels:
       fr: 40–170 €
       es: 40–170 €
       pt: "€40–170"
-  - icon: 🧳
+  - placement: hold
+    icon: 🧳
     name:
       en: Hold
       fr: Soute
@@ -117,7 +126,8 @@ channels:
       fr: 78–320 €
       es: 78–320 €
       pt: "€78–320"
-  - icon: ✈️
+  - placement: cargo
+    icon: ✈️
     name:
       en: TAP Air Cargo
       fr: TAP Air Cargo

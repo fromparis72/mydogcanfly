@@ -72,8 +72,16 @@ ladder:
       fr: R.-U. · Irl. · Afr. du S. · Austr. · É.A.U.
       es: R.U. · Irl. · Sudáfrica · Austr. · EAU
       pt: "R.U. · Irl. · Áfr. do Sul · Austr. · EAU"
+policies:
+  cabin:
+    availability: offered
+  hold:
+    availability: offered
+  cargo:
+    review_state: legacy_unreviewed
 channels:
-  - icon: 🐾
+  - placement: cabin
+    icon: 🐾
     name:
       en: Cabin
       fr: Cabine
@@ -95,7 +103,8 @@ channels:
       fr: Non publié
       es: No publicado
       pt: "Não publicado"
-  - icon: 🧳
+  - placement: hold
+    icon: 🧳
     name:
       en: Hold
       fr: Soute
@@ -117,7 +126,8 @@ channels:
       fr: Non publié
       es: No publicado
       pt: "Não publicado"
-  - icon: ✈️
+  - placement: cargo
+    icon: ✈️
     name:
       en: Cargo
       fr: Fret

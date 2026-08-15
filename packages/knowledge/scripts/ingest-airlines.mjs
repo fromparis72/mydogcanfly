@@ -2,8 +2,13 @@
 // that the UI consumes. Validates every fiche against a Zod schema so a typo or a
 // missing EN/FR field fails the build instead of shipping.
 //
-//   node packages/knowledge/scripts/ingest-airlines.mjs            (régénère et écrit)
-//   node packages/knowledge/scripts/ingest-airlines.mjs --check     (vérifie, n'écrit rien)
+//   npm run ingest          (régénère et écrit)
+//   npm run ingest:check    (vérifie, n'écrit rien)
+//
+// Ces deux commandes passent par `tsx`, et c'est OBLIGATOIRE : ce script importe le contrat de
+// provenance auditée `T0bAuditSource` depuis TypeScript, plutôt que d'en recopier un second.
+// `node packages/knowledge/scripts/ingest-airlines.mjs` échoue donc — hors npm, utilisez
+// `npx tsx packages/knowledge/scripts/ingest-airlines.mjs [--check]`.
 //
 // Source:  content/airlines/<slug>.yml   (one bilingual fiche per airline)
 // Output:  packages/ui/src/data/airlines.generated.json   (Record<airline_id, Fiche>)
@@ -19,11 +24,14 @@
 // jamais : la CI peut donc l'exécuter sur un arbre propre sans le salir, et échoue si un écart
 // existe. Le message nomme les compagnies concernées — un diff de 100 000 lignes ne dit rien.
 import { readdirSync, readFileSync, writeFileSync } from "node:fs";
-import { createHash } from "node:crypto";
 import { join, dirname } from "node:path";
 import { fileURLToPath } from "node:url";
 import YAML from "yaml";
 import { z } from "zod";
+/* LE contrat de provenance auditée, réutilisé tel quel (jamais recopié) : citation verbatim,
+   langue BCP-47, URL http(s) hors domaines maison, type de source factuel, cadence de 90 jours
+   dérivée et locator obligatoire. C'est ce qui impose d'exécuter ce script sous `tsx`. */
+import { T0bAuditSource } from "../src/t0b-migration.ts";
 
 const HERE = dirname(fileURLToPath(import.meta.url));
 const ROOT = join(HERE, "..", "..", "..");
@@ -39,8 +47,9 @@ const OBJECTS = join(ROOT, "packages", "knowledge", "raw", "objects.json");
 const ARGS = process.argv.slice(2);
 if (ARGS.length > 1 || (ARGS.length === 1 && ARGS[0] !== "--check")) {
   console.error(`✖ argument non reconnu : ${ARGS.join(" ")}`);
-  console.error("  usage : ingest-airlines.mjs            (régénère et écrit)");
-  console.error("          ingest-airlines.mjs --check    (vérifie, n'écrit rien)");
+  console.error("  usage : npm run ingest          (régénère et écrit)");
+  console.error("          npm run ingest:check    (vérifie, n'écrit rien)");
+  console.error("  hors npm : npx tsx packages/knowledge/scripts/ingest-airlines.mjs [--check]");
   process.exit(2);
 }
 const CHECK = ARGS[0] === "--check";
@@ -77,7 +86,58 @@ const LT = z.object({
 const CLS = z.enum(["ok", "no", "warn", "neutral"]);
 const Chip = z.object({ icon: z.string(), label: LT, cls: CLS.optional() });
 const Pill = z.object({ cls: CLS, label: LT });
-const Channel = z.object({ icon: z.string(), name: LT, cls: CLS, statusLabel: LT, detail: LT, fee: LT });
+/** Les trois placements, dans leur ordre canonique. La clé du bloc `policies:` EST le placement. */
+const PLACEMENTS = ["cabin", "hold", "cargo"];
+const Placement = z.enum(PLACEMENTS);
+
+/**
+ * Décision d'un placement (T0-B2) — union stricte à discriminant obligatoire, exactement comme
+ * le schéma d'auteur du moteur. Un objet qui porterait les deux clés, aucune, ou une valeur
+ * inventée n'appartient à aucune branche : il est REFUSÉ à l'ingestion, pas corrigé en silence.
+ *
+ * `.strict()` sur chaque branche est ce qui rend l'objet hybride inconstructible ; sans lui, Zod
+ * effacerait la clé surnuméraire et la fiche passerait en ayant dit deux choses.
+ */
+/**
+ * Provenance AUDITÉE, portée par la fiche elle-même — sous LE contrat approuvé, `T0bAuditSource`.
+ *
+ * Une décision auditée sans sa preuve n'est pas migrée, elle est recopiée : le manifeste porte
+ * pour Thai Cargo l'URL exacte, la date du 13/08/2026, la confiance 4, la citation verbatim et
+ * l'emplacement dans la page — mais la fiche ne disait que `availability: undocumented`, et la
+ * politique canonique recevait la page d'accueil de la compagnie (contre-revue du 15/08/2026).
+ *
+ * La première correction définissait ici un schéma PARALLÈLE. C'était l'erreur que le dépôt
+ * documente déjà à propos de la provenance — « deux modèles dans le même dépôt, c'est la garantie
+ * qu'ils divergeront » — et elle avait un coût immédiat : six garanties contournées (auto-citation
+ * interdite, citation d'au moins dix caractères, étiquette BCP-47, URL http(s), types de source
+ * factuels, cadence de 90 jours exactement). Une source `https://mydogcanfly.com/fake`, citation
+ * « x », langue « not a language », `review_due` en 2030, passait de bout en bout.
+ *
+ * On réutilise donc le contrat existant, tel quel. C'est aussi pourquoi l'ingestion s'exécute
+ * sous `tsx` : le contrat vit en TypeScript, et le recopier en JavaScript recréerait exactement
+ * le doublon qu'on vient de supprimer.
+ */
+const DecisionPlacement = z.union([
+  z.object({
+    availability: z.enum(["offered", "not_offered", "case_by_case", "undocumented"]),
+    source: T0bAuditSource.optional(),
+  }).strict(),
+  z.object({ review_state: z.literal("legacy_unreviewed") }).strict(),
+]);
+
+/**
+ * `placement` RELIE le canal visible à sa politique — il ne la décide pas. `name`, `cls`,
+ * `statusLabel`, `detail` et `fee` redeviennent ce qu'ils n'auraient jamais dû cesser d'être :
+ * de l'éditorial. C'est la fin de `catOf(name.en)`, qui devinait le canal depuis son libellé
+ * anglais, et de la traduction `cls` → `allowed`/`conditional`.
+ */
+/* `.strict()` : un canal porte maintenant le LIEN vers sa décision. Sans lui, Zod effacerait en
+   silence toute clé surnuméraire — la famille de défauts que ce dépôt documente depuis
+   `brachy_allowed`, `season.month`, `conditional` et `derived_from_fiche`. Sur un objet devenu
+   décisionnel par son `placement`, ce silence n'est plus acceptable. */
+const Channel = z.object({
+  placement: Placement, icon: z.string(), name: LT, cls: CLS, statusLabel: LT, detail: LT, fee: LT,
+}).strict();
 const LadderSeg = z.object({ flex: z.number(), color: z.string(), label: LT, sub: z.union([z.string(), LT]) });
 const Restriction = z.object({ icon: z.string(), title: LT, pills: z.array(Pill), note: LT });
 const InfoRow = z.object({ icon: z.string(), label: LT, value: LT });
@@ -94,6 +154,23 @@ const Fiche = z.object({
   verdict: Pill,
   verdictNote: LT,
   ladder: z.array(LadderSeg).min(1),
+  /**
+   * LA source de vérité décisionnelle (T0-B2). Bloc UNIQUE et non éditorial : une décision par
+   * placement, la clé portant le placement. Au moins une politique — une fiche qui ne décide de
+   * rien n'a rien à dire au moteur.
+   *
+   * Pourquoi ici et non dans `channels[]` : six politiques n'ont AUCUN canal visible (dette
+   * éditoriale scellée en T0-B2). Les loger dans les canaux aurait exigé d'inventer six blocs
+   * affichés — un changement éditorial déguisé en migration. Et deux emplacements décisionnels
+   * (296 dans `channels`, 6 ailleurs) auraient divergé tôt ou tard.
+   */
+  policies: z.object({
+    cabin: DecisionPlacement.optional(),
+    hold: DecisionPlacement.optional(),
+    cargo: DecisionPlacement.optional(),
+  }).strict().refine((p) => PLACEMENTS.some((m) => p[m] !== undefined), {
+    message: "bloc policies vide : une fiche doit décider d'au moins un placement",
+  }),
   channels: z.array(Channel).min(1),
   fareGrid: z.object({ headCabin: LT, headHold: LT, rows: z.array(FareRow).min(1), note: LT }).optional(),
   fareList: z.object({ rows: z.array(FareItem).min(1), note: LT }).optional(),
@@ -116,7 +193,55 @@ const Fiche = z.object({
   book: z.object({ host: z.string().min(1), url: z.string().url() }),
   sources: LT,
   verified_date: z.string().regex(/^\d{4}-\d{2}-\d{2}$/, "verified_date must be YYYY-MM-DD"),
-}).strict();
+}).strict().superRefine((fiche, ctx) => {
+  /* ---- Les trois liens que la structure doit garantir (T0-B2, contre-épreuves du cadrage) ----
+   *
+   * Sans eux, `policies:` et `channels:` pourraient dériver l'un de l'autre en silence : un canal
+   * rattaché à un placement dont aucune politique ne parle, deux canaux revendiquant le même
+   * placement, ou une politique orpheline apparue au fil de l'eau. */
+  const vus = new Map();
+  fiche.channels.forEach((c, i) => {
+    if (vus.has(c.placement)) {
+      ctx.addIssue({
+        code: z.ZodIssueCode.custom, path: ["channels", i, "placement"],
+        message: `placement ${c.placement} déjà porté par channels[${vus.get(c.placement)}] — un placement, un canal visible`,
+      });
+    } else vus.set(c.placement, i);
+    if (fiche.policies[c.placement] === undefined) {
+      ctx.addIssue({
+        code: z.ZodIssueCode.custom, path: ["channels", i, "placement"],
+        message: `channels[${i}] pointe le placement ${c.placement}, dont policies: ne décide pas`,
+      });
+    }
+  });
+  /* Une politique SANS canal visible n'est pas interdite — six existent, scellées — mais elle
+     doit figurer dans la dette, sinon une politique invisible pourrait naître sans revue. */
+  for (const m of PLACEMENTS) {
+    if (fiche.policies[m] === undefined || vus.has(m)) continue;
+    if (!POLITIQUES_SANS_CANAL_VISIBLE.includes(`${fiche.id}.${m}`)) {
+      ctx.addIssue({
+        code: z.ZodIssueCode.custom, path: ["policies", m],
+        message: `politique ${m} sans canal visible et hors de la dette scellée (${POLITIQUES_SANS_CANAL_VISIBLE.length} entrées)`,
+      });
+    }
+  }
+});
+
+/**
+ * Dette ÉDITORIALE scellée (T0-B2) — les six placements décidés par une fiche qu'aucun canal
+ * visible ne décrit. Elle remplace les dix `POLICY_STALE` du lot M1 : ceux-ci étaient une dette
+ * DÉCISIONNELLE (une politique que l'ingestion ne savait plus rattacher à sa fiche, donc que
+ * personne ne régénérait), et l'option C la referme — les 302 décisions viennent désormais des
+ * fiches. Ce qui subsiste est d'une autre nature, et bien plus faible : ces six placements
+ * décident, ils ne sont simplement pas racontés au lecteur.
+ *
+ * Scellée par IDENTITÉ, jamais par cardinal : à effectif constant, une dette résorbée et une
+ * dette neuve doivent échouer, pas s'annuler.
+ */
+const POLITIQUES_SANS_CANAL_VISIBLE = [
+  "airline_asiana.cargo", "airline_condor.cargo", "airline_eva_air.cargo",
+  "airline_norwegian.cargo", "airline_qantas.hold", "airline_virgin_australia.hold",
+];
 
 // ---- Ingest ---------------------------------------------------------------
 const files = readdirSync(SRC)
@@ -169,35 +294,55 @@ console.log(
 // inject the derived policy into raw/objects.json. Existing hand-authored policy (richer, with cabin
 // dimensions) is preserved — the derivation only fills gaps. A missing signal stays "unknown" (omitted),
 // never a fabricated refusal.
-const catOf = (name) => { const n = (name || "").toLowerCase(); if (/cargo|fret/.test(n)) return "cargo"; if (/hold|soute|checked/.test(n)) return "hold"; if (/cabin|cabine/.test(n)) return "cabin"; return null; };
 const kgOf = (s) => { const m = (s || "").match(/(?:≤|<=|up to|jusqu'?à)?\s*(\d{1,3})\s*kg/i); return m ? parseInt(m[1], 10) : null; };
 
+/**
+ * T0-B2 — LA décision vient du bloc `policies:`, et de lui seul.
+ *
+ * Ce que cette fonction ne fait plus, et qui était le vrai sujet du lot :
+ *  - `catOf(name.en)` a disparu. Deviner le canal depuis son libellé anglais laissait quatre
+ *    canaux non reconnus (« Freight », « Specialized-LIVE », « MASkargo Animal Hotel »,
+ *    « Qantas Freight ») dont la politique survivait sans lien vivant avec sa fiche. Un simple
+ *    renommage éditorial suffisait à détacher un canal de sa décision, sans le moindre signal.
+ *  - la traduction `cls` → `allowed`/`conditional` a disparu. Une classe VISUELLE ne décide plus
+ *    d'un verdict : `warn` valait `allowed:true` + `conditional:true`, et `conditional` était
+ *    ensuite effacé par Zod — 74 politiques portaient donc une nuance que personne ne lisait.
+ *
+ * Ce qu'elle continue de faire : dériver les ENRICHISSEMENTS que la fiche modélise (poids maximal
+ * en cabine, refus brachycéphale en soute). Ce sont des faits, pas des décisions ; ils traversent
+ * la projection sans rien arbitrer.
+ */
 function derivePolicy(fiche) {
-  const p = { cabin: {}, hold: {}, cargo: {} };
-  for (const c of (fiche.channels || [])) {
-    const cat = catOf(c.name?.en); if (!cat) continue;
-    if (c.cls === "no") p[cat].allowed = false;
-    else if (c.cls === "ok" || c.cls === "warn") p[cat].allowed = true;   // warn = conditional/on-request
-    if (c.cls === "warn") p[cat].conditional = true;
+  const p = {};
+  for (const mode of PLACEMENTS) {
+    const decision = fiche.policies[mode];
+    if (decision === undefined) continue;      // la fiche ne décide pas ce placement → il n'existe pas
+    /* `availability` XOR `review_state`, garanti par le schéma. `source` est extraite à part :
+       c'est une PREUVE, pas un discriminant — elle est réinjectée à l'écriture de la politique. */
+    const { source: sourceAuditee, ...discriminant } = decision;
+    p[mode] = { ...discriminant };
+    if (sourceAuditee) Object.defineProperty(p[mode], "__source_auditee", { value: sourceAuditee, enumerable: false });
   }
-  for (const r of (fiche.fareList?.rows || [])) {
-    const cat = catOf(r.label?.en); if (cat !== "cabin") continue;         // only cabin weight is an unambiguous max
-    const kg = kgOf(r.label?.en) ?? kgOf(r.value?.en); if (kg && p.cabin.max_weight_kg == null) p.cabin.max_weight_kg = kg;
+  /* Poids maximal en cabine : le seul maximum non ambigu que la fiche exprime. Le rattachement
+     passe désormais par le placement du canal, plus par le libellé de la ligne tarifaire. */
+  if (p.cabin) {
+    for (const r of (fiche.fareList?.rows || [])) {
+      if (!/cabin|cabine/i.test(r.label?.en || "")) continue;
+      const kg = kgOf(r.label?.en) ?? kgOf(r.value?.en);
+      if (kg && p.cabin.max_weight_kg == null) p.cabin.max_weight_kg = kg;
+    }
   }
+  /* Refus brachycéphale en soute. Inchangé, y compris son angle mort connu : si la fiche ne
+     décide pas la soute, le fait n'a nulle part où aller — il est consigné dans `__dropped`,
+     que `--check` nomme (POLICY_GAP). */
+  const dropped = [];
   for (const r of (fiche.restrictions || [])) {
     if (!/flat-faced|brachy|snub|nose|nez|museau/i.test(r.title?.en || "")) continue;
     for (const pill of (r.pills || [])) {
-      if (pill.cls === "no" && /hold|soute|cargo/i.test(pill.label?.en || "")) p.hold.brachy_allowed = false;
+      if (pill.cls !== "no" || !/hold|soute|cargo/i.test(pill.label?.en || "")) continue;
+      if (p.hold) p.hold.brachy_allowed = false;
+      else dropped.push(["hold", "brachy_allowed", false]);
     }
-  }
-  // Drop empty modes (no signal at all → unknown). Un mode supprimé peut malgré tout porter des
-  // faits — c'est le cas d'un refus brachycéphale attaché à une soute que la fiche ne décrit pas.
-  // Ils sont consignés avant suppression pour que `--check` puisse les nommer.
-  const dropped = [];
-  for (const k of ["cabin", "hold", "cargo"]) {
-    if (p[k].allowed !== undefined) continue;
-    for (const [field, value] of Object.entries(p[k])) dropped.push([k, field, value]);
-    delete p[k];
   }
   Object.defineProperty(p, "__dropped", { value: dropped, enumerable: false });
   return p;
@@ -215,56 +360,83 @@ let patched = 0, filledModes = 0;
  * rougir la CI sur un champ sans effet, et masquerait les trois qui décident vraiment. Le rendre
  * effectif est un sujet de M3, pas de M1.
  */
-const COMPARED_FIELDS = ["allowed", "max_weight_kg", "brachy_allowed"];
+const COMPARED_FIELDS = ["max_weight_kg", "brachy_allowed"];
+
+/** Les deux discriminants d'auteur, et l'ancien booléen tant qu'il subsiste dans l'artefact. */
+const DISCRIMINANTS = ["availability", "review_state"];
+const estDecidee = (pol) => pol !== undefined && (DISCRIMINANTS.some((d) => d in pol) || pol.allowed !== undefined);
 const handAuthoredConflicts = [];   // POLICY_DRIFT — les deux côtés parlent et se contredisent
 const policyGaps = [];              // POLICY_GAP   — la fiche affirme, le moteur ne reçoit rien
-const policyStale = [];             // POLICY_STALE — canal marqué dérivé que la fiche ne produit plus
+const provenanceCuratee = [];       // PROVENANCE_CURATED — provenance plus précise que la dérivée
+const politiquesRetirees = [];      // POLICY_REMOVED — la fiche ne décide plus ce placement
 
 /**
- * POLICY_STALE connus (lot M1-v3, 12/08/2026) — L'ENSEMBLE EXACT, comme pour les GAP.
+ * Ensemble APPROUVÉ des identités de politiques, versionné à part et comparé à ce que les FICHES
+ * décident — jamais à `objects.json`.
  *
- * Défaut relevé par Codex dans la garantie principale de `--check` : le script repart de
- * `objects.json`, écrase ce qu'il sait encore dériver, mais **ne retire ni ne signale** un canal
- * marqué `derived_from_fiche` que la fiche ne produit plus. Il comparait donc l'artefact à
- * lui-même. Contre-épreuve de Codex : renommer « Aegean Cargo » en libellé non reconnu, relancer
- * l'ingestion, puis `--check` → sortie 0 alors que `airline_aegean.cargo` survit dans l'artefact.
+ * La première version comparait l'artefact d'avant à celui d'après. Elle voyait bien une
+ * suppression, mais une seule fois : après régénération, `objects.json` ne contenait plus la
+ * politique, `--check` ne voyait donc plus rien, et la preuve disparaissait avec l'artefact
+ * (contre-revue du 15/08/2026). Une liste d'exceptions ne pouvait pas non plus tenir : une clé
+ * qui y figure devient, au contrôle suivant, une « suppression attendue disparue ».
  *
- * Mesure : **269** canaux portent `derived_from_fiche`, la dérivation courante n'en reproduit que
- * **259**. Les 10 restants sont des survivances : leur canal a disparu de la fiche (ou son libellé
- * n'est plus reconnu, cf. §4.1 de la doc) et la politique dérivée d'alors est restée.
- *
- * Ils ne sont PAS supprimés ici : retirer un canal d'une politique change un verdict, c'est de la
- * donnée métier. Ils sont figés en dette, et toute variation de l'ensemble échoue.
+ * La référence est donc EXTÉRIEURE aux artefacts et durable. Apparition, disparition, ou
+ * substitution à cardinal constant : les trois échouent tant que ce fichier n'a pas été modifié
+ * explicitement — ce qui passe par une revue, pas par un commit.
  */
-const KNOWN_POLICY_STALE = {
-  "airline_asiana.cargo":            "927bef315543c80f",
-  "airline_condor.cargo":            "21deb5a48932c426",
-  "airline_eva_air.cargo":           "5109d9d4f2b544f7",
-  "airline_french_bee.cargo":        "3f98ea1a87e8511c",
-  "airline_korean_air.cargo":        "2e7926507bd7368f",
-  "airline_malaysia_airlines.cargo": "0887662bf0ff0ebd",
-  "airline_norwegian.cargo":         "db7ac03546cd3d0e",
-  "airline_qantas.cargo":            "18d2f77b78e69afa",
-  "airline_qantas.hold":             "d1af29ce1e0eb683",
-  "airline_virgin_australia.hold":   "49c97acf6c340078",
-};
+const IDENTITES_APPROUVEES = JSON.parse(
+  readFileSync(join(ROOT, "test-baselines", "t0b2-policy-identities.json"), "utf8"),
+).identities;
 
 /**
- * Empreinte CANONIQUE d'une politique de canal : clés triées récursivement, puis SHA-256 tronqué.
- * Le tri rend l'empreinte insensible à l'ordre de sérialisation — sans lui, une simple
- * réécriture d'`objects.json` par un outil tiers ferait rougir la CI sans qu'aucune valeur
- * n'ait changé.
+ * PROVENANCE_CURATED — provenances plus précises que ce que la dérivation sait produire, sur des
+ * politiques par ailleurs dérivées. L'ENSEMBLE EXACT, comme les GAP.
+ *
+ * D'où elles viennent : ce sont les dix anciens `POLICY_STALE`. Leur canal n'étant plus rattaché
+ * à sa fiche, l'ingestion ne les réécrivait plus — et quelqu'un a, entre-temps, précisé leur
+ * source (URL de fret dédiée, confiance 4) sans que le drapeau `derived_from_fiche` cesse
+ * d'affirmer le contraire. T0-B2 les rend de nouveau dérivables : sans ce garde-fou, la
+ * régénération remplacerait `https://asianacargo.com/contents/lifeAnimalsAviGuide.do` par
+ * `https://flyasiana.com` et abaisserait la confiance de 4 à 3 — une PERTE de provenance, que le
+ * cadrage interdit au même titre qu'une perte de poids ou de conditions.
+ *
+ * La provenance stockée est donc PRÉSERVÉE, et l'écart est NOMMÉ : jamais un silence. Le contrôle
+ * porte sur l'ensemble des clés, jamais sur le cardinal — à effectif constant, une provenance
+ * réalignée et une autre divergente doivent échouer, pas s'annuler.
+ *
+ * Ce n'est pas une dette éternelle : réconcilier ces dix provenances (ou remonter l'URL de fret
+ * dans la fiche) les fera disparaître de cette liste, ce qui est le geste attendu — hors T0-B2,
+ * dont le périmètre exclut tout audit de source.
  */
-function policyFingerprint(value) {
-  const canon = (v) => {
-    if (Array.isArray(v)) return v.map(canon);
-    if (v && typeof v === "object") {
-      return Object.fromEntries(Object.keys(v).sort().map((k) => [k, canon(v[k])]));
-    }
-    return v;
-  };
-  return createHash("sha256").update(JSON.stringify(canon(value))).digest("hex").slice(0, 16);
-}
+const KNOWN_PROVENANCE_CURATED = [
+  "airline_asiana.cargo",
+  "airline_condor.cargo",
+  "airline_eva_air.cargo",
+  "airline_french_bee.cargo",
+  "airline_korean_air.cargo",
+  "airline_malaysia_airlines.cargo",
+  "airline_norwegian.cargo",
+  "airline_qantas.cargo",
+  "airline_qantas.hold",
+  "airline_virgin_australia.hold",
+];
+/**
+ * T0-B2 — les dix `POLICY_STALE` du lot M1 n'existent plus, et leur CAUSE est refermée.
+ *
+ * Ils naissaient d'un mécanisme : la dérivation devinait le canal depuis `name.en`, et une
+ * politique dont le libellé n'était plus reconnu — ou dont le canal avait disparu de la fiche —
+ * survivait dans l'artefact sans que personne ne la régénère. La fiche ne pouvait plus la
+ * corriger ; seule une édition manuelle d'`objects.json` l'aurait pu.
+ *
+ * Le bloc `policies:` supprime le mécanisme : les 302 décisions viennent des fiches, par leur
+ * PLACEMENT, jamais par un libellé. Une politique non reproductible depuis sa fiche est devenue
+ * inconstructible — le schéma refuse une politique orpheline, et refuse un canal qui pointerait
+ * un placement dont `policies:` ne parle pas.
+ *
+ * Ce qui subsiste est d'une autre nature, bien plus faible, et scellé ailleurs
+ * (`POLITIQUES_SANS_CANAL_VISIBLE`) : six placements décident sans qu'aucun canal visible ne les
+ * raconte au lecteur. C'est une dette ÉDITORIALE, pas décisionnelle.
+ */
 
 /** POLICY_GAP connus et acceptés à ce jour (lot M1, 12/08/2026) — L'ENSEMBLE EXACT, pas le compte.
  *
@@ -325,20 +497,32 @@ for (const a of (objects.airlines || [])) {
       policyGaps.push({ id: a.id, mode, field, fiche: value, curated: undefined, cause: "canal absent de la fiche" });
     }
   }
-  // POLICY_STALE : un canal marqué « dérivé » que la dérivation courante ne produit plus.
-  // L'ingestion ne le réécrit pas (rien à écrire) et ne le supprime pas — il survit en silence.
-  if (CHECK) {
-    for (const mode of ["cabin", "hold", "cargo"]) {
-      if (derived[mode] === undefined && pol[mode]?.derived_from_fiche === true) {
-        policyStale.push({ id: a.id, mode, fingerprint: policyFingerprint(pol[mode]) });
-      }
+  /* La fiche est AUTORITAIRE, y compris par la suppression (contre-revue du 15/08/2026).
+   *
+   * Le lot précédent se contentait de `continue` sur un placement que la fiche ne décide plus :
+   * la politique d'alors SURVIVAIT dans `objects.json`, et `--check` sortait 0 puisqu'il compare
+   * l'artefact à une régénération qui la préservait elle aussi. Retirer un canal d'une fiche
+   * laissait donc un fantôme — exactement la classe de défaut que T0-B2 devait fermer, et la
+   * cause même des dix anciens POLICY_STALE.
+   *
+   * Une politique retirée change un verdict : la suppression est RELEVÉE ici pour le rapport, et
+   * c'est la comparaison à `IDENTITES_APPROUVEES` — extérieure aux artefacts — qui la fait
+   * échouer, de façon durable. */
+  for (const mode of PLACEMENTS) {
+    if (derived[mode] === undefined && pol[mode] !== undefined) {
+      politiquesRetirees.push({ id: a.id, mode });
+      delete pol[mode];
+      touched = true;
+      continue;
     }
-  }
-  for (const mode of ["cabin", "hold", "cargo"]) {
     const d = derived[mode]; if (!d) continue;
     const cur = pol[mode];
+    /* La DÉCISION vient toujours de la fiche, y compris ici (T0-B2). C'est le seul champ que la
+       préservation ne couvre plus : une politique enrichie reste plus riche que la dérivation,
+       mais elle ne peut plus contredire sa fiche sur le verdict — il n'y a qu'une source. */
+    const decision = DISCRIMINANTS.reduce((o, k) => (k in d ? { ...o, [k]: d[k] } : o), {});
     // Preserve richer hand-authored policy (has a real source, not derived). Overwrite/refresh derived ones.
-    if (cur && cur.allowed !== undefined && cur.source && !cur.derived_from_fiche) {
+    if (cur && estDecidee(cur) && cur.source && !cur.derived_from_fiche) {
       // Cette préservation est voulue — une politique écrite à la main est plus riche que la
       // dérivation (dimensions de sac, conditions). Mais elle crée un angle mort : le jour où
       // la fiche est corrigée, la politique reste à sa valeur d'origine, en silence. Ici on ne
@@ -360,14 +544,43 @@ for (const a of (objects.airlines || [])) {
         (cur[field] === undefined ? policyGaps : handAuthoredConflicts)
           .push({ id: a.id, mode, field, fiche, curated: cur[field], cause: "politique enrichie préservée" });
       }
+      /* Seule la décision est réécrite ; tout le reste de la politique enrichie est préservé
+         DANS SON ORDRE, et l'ancien booléen d'auteur est retiré s'il traîne encore. */
+      const { allowed: _a, conditional: _c, availability: _av, review_state: _rs, ...enrichissements } = cur;
+      /* Une source AUDITÉE écrite dans la fiche l'emporte, ici aussi. La première correction
+         plaçait cette priorité UNIQUEMENT dans la branche dérivée : sur une politique enrichie,
+         l'audit était accepté par le schéma puis silencieusement ignoré, et l'ancienne provenance
+         survivait — ingestion et `--check` en 0 (contre-revue du 15/08/2026). Une preuve citée ne
+         peut pas être moins forte qu'une provenance écrite à la main sans citation. */
+      if (d.__source_auditee) enrichissements.source = d.__source_auditee;
+      const remplacee = { ...decision, ...enrichissements };
+      if (JSON.stringify(remplacee) !== JSON.stringify(cur)) { pol[mode] = remplacee; touched = true; }
       continue;
     }
+    /* Provenance : la dérivée, SAUF pour les clés EXACTEMENT listées dans l'allowlist.
+     *
+     * La première version préservait toute provenance stockée qui différait de la dérivée. Elle
+     * empêchait bien la perte des dix provenances curatoriales — mais elle gelait aussi toutes
+     * les autres : corriger la `verified_date` d'une fiche ne se propageait plus, et `--check`
+     * signalait ensuite de NOUVEAUX PROVENANCE_CURATED (contre-revue du 15/08/2026). Le remède
+     * était devenu la maladie : une provenance figée en silence, précisément ce que ce lot ferme.
+     *
+     * L'exception est donc nominative. Partout ailleurs la provenance SUIT la fiche. */
+    const cle = `${a.id}.${mode}`;
+    const provenanceExistante = cur?.source;
+    const divergente = provenanceExistante && JSON.stringify(provenanceExistante) !== JSON.stringify(source);
+    const provenanceDivergente = divergente && KNOWN_PROVENANCE_CURATED.includes(cle);
+    if (provenanceDivergente) provenanceCuratee.push({ id: a.id, mode, stockee: cur.source.url, derivee: source.url });
+    /* Priorité de provenance, du plus fort au plus faible :
+       1. la source AUDITÉE écrite dans la fiche (une preuve citée l'emporte sur une dérivation) ;
+       2. la provenance curatoriale préservée, pour les seules clés de l'allowlist ;
+       3. la provenance dérivée de la fiche. */
+    const auditee = d.__source_auditee;
     pol[mode] = {
-      allowed: d.allowed,
+      ...decision,
       ...(d.max_weight_kg != null ? { max_weight_kg: d.max_weight_kg } : {}),
       ...(d.brachy_allowed === false ? { brachy_allowed: false } : {}),
-      ...(d.conditional ? { conditional: true } : {}),
-      source,
+      source: auditee ? auditee : provenanceDivergente ? provenanceExistante : source,
       derived_from_fiche: true,
     };
     touched = true; filledModes++;
@@ -463,56 +676,82 @@ if (CHECK) {
     console.error("  corrigée et une autre cassée doivent échouer, pas s'annuler.");
   }
 
-  // POLICY_STALE : ensemble figé ET contenu figé. La clé seule ne suffit pas — Codex l'a montré
-  // en passant `airline_french_bee.cargo.allowed` de false à true : la clé reste, l'ensemble est
-  // identique, et un verdict change sans alerte. On compare donc aussi l'empreinte canonique de
-  // la politique complète, sous chaque clé connue.
-  const staleFoundMap = new Map(policyStale.map((s) => [`${s.id}.${s.mode}`, s.fingerprint]));
-  const staleFound = [...staleFoundMap.keys()].sort();
-  const staleExpected = Object.keys(KNOWN_POLICY_STALE).sort();
-  const staleNew = staleFound.filter((k) => !staleExpected.includes(k));
-  const staleGone = staleExpected.filter((k) => !staleFound.includes(k));
-  const staleDrift = staleFound
-    .filter((k) => staleExpected.includes(k))
-    .filter((k) => staleFoundMap.get(k) !== KNOWN_POLICY_STALE[k])
-    .map((k) => ({ key: k, expected: KNOWN_POLICY_STALE[k], found: staleFoundMap.get(k) }));
-
-  if (staleNew.length || staleGone.length) {
+  /* IDENTITÉS : ce que les FICHES décident, comparé à l'ensemble approuvé et versionné. Ce
+     contrôle ne dépend d'aucun artefact, il survit donc à la régénération — c'est ce qui manquait
+     à la version précédente. Il couvre les trois mouvements d'un seul geste : apparition,
+     disparition, et substitution à cardinal constant. */
+  const identitesFiches = [];
+  for (const [id, f] of Object.entries(sorted)) {
+    for (const m of PLACEMENTS) if (f.policies[m] !== undefined) identitesFiches.push(`${id}.${m}`);
+  }
+  identitesFiches.sort();
+  const approuvees = [...IDENTITES_APPROUVEES].sort();
+  const apparues = identitesFiches.filter((k) => !approuvees.includes(k));
+  const disparues = approuvees.filter((k) => !identitesFiches.includes(k));
+  if (apparues.length || disparues.length) {
     failed = true;
-    console.error("\n✖ l'ensemble des POLICY_STALE a changé.");
-    if (staleNew.length) {
-      console.error(`\n  ${staleNew.length} NOUVEAU(X) — un canal marqué « dérivé » n'est plus produit par sa fiche :`);
-      for (const k of staleNew) console.error(`    + ${k}   empreinte ${staleFoundMap.get(k)}`);
-      console.error("    Le canal a disparu de la fiche, ou son libellé n'est plus reconnu par catOf().");
-      console.error("    Retirez le canal de la politique, ou rétablissez le libellé, ou figez la clé avec son empreinte.");
-    }
-    if (staleGone.length) {
-      console.error(`\n  ${staleGone.length} RÉSOLU(S) — retirez la clé de KNOWN_POLICY_STALE dans la MÊME PR :`);
-      for (const k of staleGone) console.error(`    - ${k}`);
-    }
-    console.error(`\n  attendus : ${staleExpected.length} · trouvés : ${staleFound.length}`);
+    console.error("\n✖ l'ensemble des IDENTITÉS de politiques a changé.");
+    for (const k of apparues) console.error(`    + ${k} — politique NOUVELLE : aucune ligne approuvée ne la prévoit`);
+    for (const k of disparues) console.error(`    - ${k} — politique DISPARUE des fiches ; elle sera retirée d'objects.json`);
+    console.error(`\n  approuvées : ${approuvees.length} · décidées par les fiches : ${identitesFiches.length}`);
+    console.error("  Retirer ou ajouter une politique change un verdict : arbitrez, puis mettez à jour");
+    console.error("  test-baselines/t0b2-policy-identities.json DANS LA MÊME PR, avec son diff approuvé.");
   }
 
-  if (staleDrift.length) {
-    failed = true;
-    console.error(`\n✖ le CONTENU d'une politique périmée a changé (${staleDrift.length}) :`);
-    for (const d of staleDrift) {
-      const [id, mode] = [d.key.slice(0, d.key.lastIndexOf(".")), d.key.slice(d.key.lastIndexOf(".") + 1)];
-      console.error(`  POLICY_STALE_DRIFT ${id}.${mode}`);
-      console.error(`    empreinte attendue = ${d.expected}`);
-      console.error(`    empreinte trouvée  = ${d.found}`);
-    }
-    console.error("\n  Une politique périmée n'est plus reproductible depuis sa fiche : personne ne la");
-    console.error("  régénère, donc rien ne la corrigerait. La modifier change un verdict en silence.");
-    console.error("  Si le changement est voulu, mettez à jour l'empreinte dans KNOWN_POLICY_STALE et");
-    console.error("  justifiez-le — la table est là pour rendre ce geste explicite, pas pour l'interdire.");
+  if (politiquesRetirees.length) {
+    console.warn(`\n⚠ ${politiquesRetirees.length} POLICY_REMOVED — politique(s) supprimée(s) d'objects.json (absentes des fiches) :`);
+    for (const r of politiquesRetirees) console.warn(`  POLICY_REMOVED ${r.id}.${r.mode}`);
   }
 
-  if (policyStale.length) {
-    console.warn(`\n⚠ ${policyStale.length} POLICY_STALE connus — canal marqué « dérivé » que la fiche ne produit plus :`);
-    for (const s of policyStale) console.warn(`  POLICY_STALE ${s.id}.${s.mode}   empreinte ${s.fingerprint}`);
-    console.warn("  La politique dérivée d'alors survit dans objects.json. Non bloquants tant que l'ensemble");
-    console.warn("  est celui attendu — leur retrait change un verdict, c'est de la donnée métier.");
+  /* Dette éditoriale des six placements sans canal visible : contrôlée DANS LES DEUX SENS, par
+     identité. Une dette qui apparaît doit être revue ; une dette qui disparaît doit devenir une
+     garantie, pas s'effacer en silence. */
+  const detteObservee = [];
+  for (const [id, f] of Object.entries(sorted)) {
+    const portes = new Set(f.channels.map((c) => c.placement));
+    for (const m of PLACEMENTS) if (f.policies[m] !== undefined && !portes.has(m)) detteObservee.push(`${id}.${m}`);
+  }
+  detteObservee.sort();
+  const detteAttendue = [...POLITIQUES_SANS_CANAL_VISIBLE].sort();
+  const detteNouvelle = detteObservee.filter((k) => !detteAttendue.includes(k));
+  const detteResorbee = detteAttendue.filter((k) => !detteObservee.includes(k));
+  if (detteNouvelle.length || detteResorbee.length) {
+    failed = true;
+    console.error("\n✖ l'ensemble des politiques SANS CANAL VISIBLE a changé.");
+    for (const k of detteNouvelle) console.error(`    + ${k} — un placement décide sans qu'aucun canal ne le raconte au lecteur`);
+    for (const k of detteResorbee) console.error(`    - ${k} — RÉSOLU : retirez la clé de POLITIQUES_SANS_CANAL_VISIBLE dans la MÊME PR`);
+    console.error(`\n  attendues : ${detteAttendue.length} · observées : ${detteObservee.length}`);
+  }
+
+  // PROVENANCE_CURATED : ensemble figé par identité, comme les GAP. Une provenance préservée est
+  // un écart assumé entre la fiche et l'artefact ; elle doit être nommée, sinon la préservation
+  // redevient exactement le silence que T0-B2 ferme.
+  const provFound = provenanceCuratee.map((p) => `${p.id}.${p.mode}`).sort();
+  const provExpected = [...KNOWN_PROVENANCE_CURATED].sort();
+  const provNouveaux = provFound.filter((k) => !provExpected.includes(k));
+  const provRefermes = provExpected.filter((k) => !provFound.includes(k));
+  if (provNouveaux.length || provRefermes.length) {
+    failed = true;
+    console.error("\n✖ l'ensemble des PROVENANCE_CURATED a changé.");
+    if (provNouveaux.length) {
+      console.error(`\n  ${provNouveaux.length} NOUVEAU(X) — une provenance stockée diverge de la dérivée :`);
+      for (const k of provNouveaux) {
+        const p = provenanceCuratee.find((x) => `${x.id}.${x.mode}` === k);
+        console.error(`    + ${k}\n        stockée = ${p.stockee}\n        dérivée = ${p.derivee}`);
+      }
+      console.error("    Réalignez la fiche, ou figez la clé si la provenance stockée est la bonne.");
+    }
+    if (provRefermes.length) {
+      console.error(`\n  ${provRefermes.length} RÉSOLU(S) — retirez la clé de KNOWN_PROVENANCE_CURATED dans la MÊME PR :`);
+      for (const k of provRefermes) console.error(`    - ${k}`);
+    }
+    console.error(`\n  attendus : ${provExpected.length} · trouvés : ${provFound.length}`);
+  }
+
+  if (provenanceCuratee.length) {
+    console.warn(`\n⚠ ${provenanceCuratee.length} PROVENANCE_CURATED — provenance stockée PRÉSERVÉE, plus précise que la dérivée :`);
+    for (const p of provenanceCuratee) console.warn(`  PROVENANCE_CURATED ${p.id}.${p.mode}\n    stockée = ${p.stockee}\n    dérivée = ${p.derivee}`);
+    console.warn("  Non bloquants tant que l'ensemble est celui attendu. Les écraser ferait PERDRE de la provenance.");
   }
 
   if (policyGaps.length) {

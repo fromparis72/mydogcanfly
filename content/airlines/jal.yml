@@ -68,8 +68,16 @@ ladder:
       es: Carga
       pt: "Carga"
     sub: "> 32 kg"
+policies:
+  cabin:
+    availability: not_offered
+  hold:
+    availability: offered
+  cargo:
+    review_state: legacy_unreviewed
 channels:
-  - icon: 🐾
+  - placement: cabin
+    icon: 🐾
     name:
       en: Cabin
       fr: Cabine
@@ -91,7 +99,8 @@ channels:
       fr: —
       es: —
       pt: "—"
-  - icon: 🧳
+  - placement: hold
+    icon: 🧳
     name:
       en: Hold
       fr: Soute
@@ -113,7 +122,8 @@ channels:
       fr: 5 500–7 700 ¥
       es: 5500–7700 ¥
       pt: "¥5.500–7.700"
-  - icon: ✈️
+  - placement: cargo
+    icon: ✈️
     name:
       en: JAL Cargo
       fr: JAL Cargo

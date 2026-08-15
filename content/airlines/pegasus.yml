@@ -60,8 +60,16 @@ ladder:
       es: Bodega — solo nacional/KKTC
       pt: "Porão — só doméstico/KKTC"
     sub: 8–15 kg / over 15 kg
+policies:
+  cabin:
+    availability: offered
+  hold:
+    review_state: legacy_unreviewed
+  cargo:
+    availability: not_offered
 channels:
-  - icon: 🐾
+  - placement: cabin
+    icon: 🐾
     name:
       en: Cabin
       fr: Cabine
@@ -83,7 +91,8 @@ channels:
       fr: "65 € international / 750 TRY domestique / 900 TRY Chypre du Nord"
       es: "65 € internacional / 750 TRY nacional / 900 TRY Chipre del Norte"
       pt: "65 € internacional / 750 TRY doméstico / 900 TRY Chipre do Norte"
-  - icon: 🧳
+  - placement: hold
+    icon: 🧳
     name:
       en: Hold
       fr: Soute
@@ -105,7 +114,8 @@ channels:
       fr: "850 TRY (8–15 kg) / 950 TRY (plus de 15 kg) domestique ; 1000/1100 TRY Chypre du Nord"
       es: "850 TRY (8–15 kg) / 950 TRY (más de 15 kg) nacional; 1000/1100 TRY Chipre del Norte"
       pt: "850 TRY (8–15 kg) / 950 TRY (acima de 15 kg) doméstico; 1000/1100 TRY Chipre do Norte"
-  - icon: ✈️
+  - placement: cargo
+    icon: ✈️
     name:
       en: Cargo
       fr: Fret

@@ -72,8 +72,16 @@ ladder:
       fr: via agent
       es: vía transitario
       pt: "via transportadora"
+policies:
+  cabin:
+    availability: offered
+  hold:
+    availability: offered
+  cargo:
+    availability: offered
 channels:
-  - icon: 🐾
+  - placement: cabin
+    icon: 🐾
     name:
       en: Cabin
       fr: Cabine
@@ -95,7 +103,8 @@ channels:
       fr: Selon la route
       es: Según la ruta
       pt: "Conforme a rota"
-  - icon: 🧳
+  - placement: hold
+    icon: 🧳
     name:
       en: Hold
       fr: Soute
@@ -117,7 +126,8 @@ channels:
       fr: Selon la route
       es: Según la ruta
       pt: "Conforme a rota"
-  - icon: ✈️
+  - placement: cargo
+    icon: ✈️
     name:
       en: Lufthansa Cargo
       fr: Lufthansa Cargo

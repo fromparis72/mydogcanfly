@@ -68,8 +68,16 @@ ladder:
       es: MASkargo
       pt: "MASkargo"
     sub: "> 32 kg"
+policies:
+  cabin:
+    availability: not_offered
+  hold:
+    availability: offered
+  cargo:
+    review_state: legacy_unreviewed
 channels:
-  - icon: 🐾
+  - placement: cabin
+    icon: 🐾
     name:
       en: Cabin
       fr: Cabine
@@ -91,7 +99,8 @@ channels:
       fr: —
       es: —
       pt: "—"
-  - icon: 🧳
+  - placement: hold
+    icon: 🧳
     name:
       en: Hold
       fr: Soute
@@ -113,7 +122,8 @@ channels:
       fr: Tarif bagage excédentaire
       es: Tarifa de exceso de equipaje
       pt: "Tarifa de excesso de bagagem"
-  - icon: ✈️
+  - placement: cargo
+    icon: ✈️
     name:
       en: MASkargo Animal Hotel
       fr: MASkargo Animal Hotel

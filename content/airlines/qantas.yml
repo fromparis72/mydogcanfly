@@ -64,8 +64,17 @@ ladder:
       fr: tous animaux
       es: todas las mascotas
       pt: "todos os animais"
+policies:
+  cabin:
+    availability: not_offered
+  hold:
+    review_state: legacy_unreviewed
+    # dette éditoriale scellée (T0-B2) : aucun canal visible ne décrit ce placement
+  cargo:
+    review_state: legacy_unreviewed
 channels:
-  - icon: 🐾
+  - placement: cabin
+    icon: 🐾
     name:
       en: Cabin
       fr: Cabine
@@ -87,7 +96,8 @@ channels:
       fr: —
       es: —
       pt: "—"
-  - icon: ✈️
+  - placement: cargo
+    icon: ✈️
     name:
       en: Qantas Freight
       fr: Qantas Freight

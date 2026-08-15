@@ -81,8 +81,16 @@ ladder:
       fr: tout l'international
       es: todo lo internacional
       pt: "todo o internacional"
+policies:
+  cabin:
+    availability: not_offered
+  hold:
+    review_state: legacy_unreviewed
+  cargo:
+    review_state: legacy_unreviewed
 channels:
-  - icon: 🐾
+  - placement: cabin
+    icon: 🐾
     name:
       en: Cabin
       fr: Cabine
@@ -104,7 +112,8 @@ channels:
       fr: —
       es: —
       pt: "—"
-  - icon: 🧳
+  - placement: hold
+    icon: 🧳
     name:
       en: Hold
       fr: Soute
@@ -126,7 +135,8 @@ channels:
       fr: 300 ZAR
       es: 300 ZAR
       pt: "300 ZAR"
-  - icon: ✈️
+  - placement: cargo
+    icon: ✈️
     name:
       en: Cargo
       fr: Fret

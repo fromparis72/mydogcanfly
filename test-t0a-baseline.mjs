@@ -131,12 +131,36 @@ if (WRITE) {
   check("aucun scénario fantôme dans la baseline", Object.keys(ref).length === nScen);
 }
 
-console.log("=== Preuve AVANT/APRÈS : les seules différences métier sont les nouveaux champs et les bascules approuvées ===");
+/**
+ * Preuve HISTORIQUE T0-A — désormais PERMANENTE, parce qu'elle porte sur deux baselines FIGÉES.
+ *
+ * Elle comparait l'état VIVANT à la baseline pré-T0-A. Cela fonctionnait tant qu'aucun lot ne
+ * touchait au métier ; T0-B2 en a fait basculer 464 cartes, et la preuve serait devenue rouge en
+ * permanence — donc, tôt ou tard, assouplie ou supprimée. Or ce qu'elle démontre n'a aucune
+ * raison de vieillir : entre pré-T0-A et post-T0-A, SEULES 24 cartes ont changé, à leurs valeurs
+ * exactes, dans les deux sens.
+ *
+ * Elle compare donc deux fichiers scellés : `t0a-finder-baseline-avant.json` (pré-T0-A) et
+ * `t0b-finder-baseline-avant.json` (post-T0-A, pré-T0-B2). Aucun lot futur ne peut plus la
+ * rougir, et aucun ne peut l'effacer : elle reste exécutée à chaque CI, avec la totalité de ses
+ * contrôles — y compris les trois faux verts corrigés en contre-revue (compagnie supprimée,
+ * libellé changé sans bascule, valeurs exactes des 24 cartes).
+ *
+ * Ce qu'elle a perdu, et il faut le dire : le témoin legacy VIVANT (`verifyFlip`) recalculait
+ * chaque bascule sur la base du jour. Sur données figées, il n'a plus de sens — il interrogerait
+ * une base qui a changé depuis. Sa démonstration a eu lieu, et son résultat EST le fichier
+ * approuvé, dont la bijection reste exigée dans les deux sens. Le témoin vivant continue, lui,
+ * de servir dans la preuve T0-B2 ci-dessous, sur les données de ce lot.
+ */
+console.log("=== Preuve HISTORIQUE T0-A (deux baselines FIGÉES — permanente) ===");
 {
   const AVANT = "test-baselines/t0a-finder-baseline-avant.json";
+  const APRES = "test-baselines/t0b-finder-baseline-avant.json";
   check("la baseline AVANT (générée sur la base pré-T0-A) est versionnée", existsSync(AVANT));
-  if (existsSync(AVANT)) {
+  check("la baseline APRÈS T0-A (figée avant T0-B2) est versionnée", existsSync(APRES));
+  if (existsSync(AVANT) && existsSync(APRES)) {
     const avant = JSON.parse(readFileSync(AVANT, "utf8"));
+    const snapshot = JSON.parse(readFileSync(APRES, "utf8"));
     const diffFile = JSON.parse(readFileSync("test-baselines/t0a-carries-pets-diff.json", "utf8"));
     /* Contre-revue v3 : l'appartenance aux 11 compagnies ne suffit pas — et le fichier de diff
        (sonde sur le réseau PROPRE de chaque compagnie) ne couvre pas les cartes en
@@ -152,25 +176,11 @@ console.log("=== Preuve AVANT/APRÈS : les seules différences métier sont les 
     const approved = JSON.parse(readFileSync("test-baselines/t0a-approved-diff.json", "utf8"));
     const approvedByKey = new Map(approved.entries.map((e) => [`${e.scenario}#${e.airline_id}`, e]));
     const seenFlips = new Set();
-    const kbProof = loadKB();
-    const verifyFlip = (airlineId, o, d, breed, date, placement) => {
-      const dec = evaluate(kbProof, {
-        origin: `airport_${o}`, destination: `airport_${d}`,
-        dog: { breed_id: breed, weight_kg: 8 }, travel_type: "pet",
-        placement, locale: "en", date,
-      }, { legacyCarriesWitness: true });
-      const card = dec.airlines.find((z) => z.airline_id === airlineId);
-      return !!card && card._legacy_carries_pets === false && card.offers_pet_transport === true;
-    };
     let bad = 0;
     const segs = (line) => line.split(" | ");
     for (const k of Object.keys(snapshot)) {
       const A = avant[k], B = snapshot[k];
       if (!A) { bad++; if (bad <= 3) console.log(`  MANQUANT avant: ${k}`); continue; }
-      const [routeKey, dogKey, mmdd, plKey] = k.split("|");
-      const [oCity, dCity] = routeKey.split("-");
-      const scnBreed = dogKey === "pug" ? "breed_pug" : "breed_golden_retriever";
-      const scnDate = nextDate(parseInt(mmdd.slice(0, 2), 10), 15);
       for (const fld of ["verdict", "score", "compatible", "domestic", "climate", "destination_country", "confidence", "conditions", "positives", "warnings", "risks", "alternatives", "sources"]) {
         if (JSON.stringify(A[fld]) !== JSON.stringify(B[fld])) { bad++; if (bad <= 5) console.log(`  DIFF ${k} ${fld}`); }
       }
@@ -197,8 +207,9 @@ console.log("=== Preuve AVANT/APRÈS : les seules différences métier sont les 
            `carries_pets` a réellement basculé, chez une compagnie approuvée — jamais un blanc-
            seing par compagnie. */
         if (petsChanged) {
-          const legit = flipAirlinesRef.has(sB[0]) && verifyFlip(sB[0], oCity, dCity, scnBreed, scnDate, plKey);
-          if (!legit) { bad++; if (bad <= 5) console.log(`  DIFF ${k} ${sB[0]} bascule pets NON démontrée par le témoin legacy sur ce scénario exact`); }
+          /* La compagnie doit appartenir aux 11 du diff exhaustif — l'appartenance ne suffit pas,
+             la valeur exacte de la carte est vérifiée juste après, dans les deux sens. */
+          if (!flipAirlinesRef.has(sB[0])) { bad++; if (bad <= 5) console.log(`  DIFF ${k} ${sB[0]} bascule pets hors des 11 compagnies du diff exhaustif`); }
           const app = approvedByKey.get(`${k}#${sB[0]}`);
           seenFlips.add(`${k}#${sB[0]}`);
           if (!app) { bad++; if (bad <= 5) console.log(`  DIFF ${k} ${sB[0]} bascule ABSENTE des 24 différences approuvées`); }
@@ -216,6 +227,154 @@ console.log("=== Preuve AVANT/APRÈS : les seules différences métier sont les 
     }
     check("aucune différence métier hors les 24 cartes approuvées, à leurs valeurs EXACTES (bijection)", bad === 0, `${bad} écart(s)`);
   }
+}
+
+/**
+ * Preuve T0-B2 — même dispositif, et permanente pour la même raison : deux baselines FIGÉES.
+ *
+ * `t0b-finder-baseline-avant.json` (pré-T0-B2) → `t0b2-finder-baseline-apres.json` (post-T0-B2).
+ * Chaque carte modifiée est verrouillée à sa valeur EXACTE dans `t0b2-approved-diff.json`, et
+ * RATTACHÉE au couple (compagnie, placement) du registre approuvé qui la justifie. Bijection
+ * exigée dans les deux sens.
+ *
+ * Le contrôle qui compte n'est pas le nombre : c'est qu'aucune carte ne bouge sans qu'un couple
+ * migré l'explique. Un lot futur qui ferait basculer un 85ᵉ couple ne pourrait pas se glisser
+ * dans les 452 cartes déjà approuvées.
+ */
+console.log("=== Preuve T0-B2 (deux baselines FIGÉES — permanente) ===");
+{
+  const AVANT = "test-baselines/t0b-finder-baseline-avant.json";
+  const APRES = "test-baselines/t0b2-finder-baseline-apres.json";
+  const APPROUVE = "test-baselines/t0b2-approved-diff.json";
+  check("la baseline APRÈS T0-B2 est versionnée", existsSync(APRES));
+  check("le diff T0-B2 approuvé est versionné", existsSync(APPROUVE));
+  if (existsSync(APRES) && existsSync(APPROUVE)) {
+    const avant = JSON.parse(readFileSync(AVANT, "utf8"));
+    const apres = JSON.parse(readFileSync(APRES, "utf8"));
+    const approuve = JSON.parse(readFileSync(APPROUVE, "utf8"));
+    const id = (l) => l.split(" | ")[0];
+    const cartesApprouvees = new Map(approuve.cartes.map((c) => [`${c.scenario}#${c.airline_id}`, c]));
+    const tetesApprouvees = new Map(approuve.champs_de_tete.map((t) => [`${t.scenario}#${t.champ}`, t]));
+    const classementsApprouves = new Map((approuve.classements ?? []).map((c) => [c.scenario, c]));
+    const vuesCartes = new Set(), vuesTetes = new Set(), vusClassements = new Set();
+    let bad = 0;
+    const echec = (msg) => { bad++; if (bad <= 5) console.log(`  ${msg}`); };
+
+    for (const k of Object.keys(avant)) {
+      const A = avant[k], B = apres[k];
+      if (!B) { echec(`MANQUANT après: ${k}`); continue; }
+      for (const champ of ["verdict", "score", "compatible", "domestic", "climate", "destination_country",
+        "confidence", "conditions", "positives", "warnings", "risks", "alternatives", "sources"]) {
+        if (JSON.stringify(A[champ]) === JSON.stringify(B[champ])) continue;
+        const app = tetesApprouvees.get(`${k}#${champ}`);
+        vuesTetes.add(`${k}#${champ}`);
+        if (!app) echec(`DIFF ${k} champ de tête ${champ} NON approuvé`);
+        else if (JSON.stringify(app.avant) !== JSON.stringify(A[champ]) || JSON.stringify(app.apres) !== JSON.stringify(B[champ])) {
+          echec(`DIFF ${k} champ ${champ} : valeur différente de l'approuvée`);
+        }
+      }
+      /* Le CLASSEMENT est un contenu public : comparer les cartes par `Map` ne le voit pas —
+         deux listes permutées ont les mêmes clés. Les séquences avant/après sont donc exigées
+         à l'identique, dans les deux sens (contre-revue du 15/08/2026). */
+      const ordreA = (A.airlines || []).map(id), ordreB = (B.airlines || []).map(id);
+      if (JSON.stringify(ordreA) !== JSON.stringify(ordreB)) {
+        vusClassements.add(k);
+        const app = classementsApprouves.get(k);
+        if (!app) echec(`DIFF ${k} classement modifié HORS du diff approuvé`);
+        else if (JSON.stringify(app.avant) !== JSON.stringify(ordreA) || JSON.stringify(app.apres) !== JSON.stringify(ordreB)) {
+          echec(`DIFF ${k} classement différent de la séquence EXACTE approuvée`);
+        }
+      }
+
+      const parId = new Map((A.airlines || []).map((l) => [id(l), l]));
+      const idsB = new Set((B.airlines || []).map(id));
+      for (const idA of parId.keys()) if (!idsB.has(idA)) echec(`DIFF ${k} compagnie ${idA} SUPPRIMÉE par T0-B2`);
+      for (const ligneB of B.airlines || []) {
+        const ligneA = parId.get(id(ligneB));
+        if (ligneA === undefined) { echec(`DIFF ${k} compagnie ${id(ligneB)} APPARUE`); continue; }
+        if (ligneA === ligneB) continue;
+        const cle = `${k}#${id(ligneB)}`;
+        vuesCartes.add(cle);
+        const app = cartesApprouvees.get(cle);
+        if (!app) { echec(`DIFF ${k} ${id(ligneB)} carte modifiée HORS du diff approuvé`); continue; }
+        if (app.avant !== ligneA || app.apres !== ligneB) echec(`DIFF ${k} ${id(ligneB)} carte différente de la valeur EXACTE approuvée`);
+      }
+    }
+    for (const cle of cartesApprouvees.keys()) if (!vuesCartes.has(cle)) echec(`DIFF carte approuvée NON observée: ${cle}`);
+    for (const cle of tetesApprouvees.keys()) if (!vuesTetes.has(cle)) echec(`DIFF champ de tête approuvé NON observé: ${cle}`);
+    for (const cle of classementsApprouves.keys()) if (!vusClassements.has(cle)) echec(`DIFF classement approuvé NON observé: ${cle}`);
+
+    check("bijection stricte avec le diff T0-B2 approuvé (452 cartes, 46 champs de tête)", bad === 0, `${bad} écart(s)`);
+    check("452 cartes, 46 champs de tête et 28 classements approuvés",
+      approuve.cartes.length === 452 && approuve.champs_de_tete.length === 46 && approuve.classements.length === 28,
+      `${approuve.cartes.length} cartes · ${approuve.champs_de_tete.length} champs · ${approuve.classements?.length} classements`);
+    /* Un classement figé n'est une garantie que s'il porte VRAIMENT une permutation : une
+       séquence identique des deux côtés passerait la bijection sans rien prouver. */
+    check("les 28 classements approuvés sont de vraies permutations",
+      approuve.classements.every((c) => JSON.stringify(c.avant) !== JSON.stringify(c.apres)
+        && c.avant.length > 0 && c.apres.length > 0));
+    check("46 compagnies touchées, 48 couples justifiants",
+      approuve.totaux.compagnies === 46 && approuve.totaux.couples_justifiants === 48,
+      JSON.stringify(approuve.totaux));
+    /* Chaque carte modifiée cite le couple migré qui l'explique : aucune bascule orpheline. */
+    check("chaque carte approuvée cite au moins un couple migré",
+      approuve.cartes.every((c) => c.couples.length > 0 && c.couples.every((x) => approuve.couples_justifiants.includes(x))));
+    /* La baseline VIVANTE et la baseline FIGÉE après T0-B2 doivent coïncider, sinon la figée
+       pourrit en silence pendant que la vivante suit les lots. */
+    check("la baseline vivante est identique à la baseline figée APRÈS T0-B2",
+      readFileSync("test-baselines/t0a-finder-baseline.json", "utf8") === readFileSync(APRES, "utf8"));
+  }
+}
+
+/**
+ * Couverture DIRECTE des 302 politiques, indépendante des routes.
+ *
+ * Les 72 scénarios n'exercent que 48 des 84 couples migrés — la matrice ne dessert que 9 routes.
+ * Les 36 autres seraient migrés sans qu'aucun test ne les regarde. Cette sonde les prend tous, au
+ * niveau normalisation/projection : ce que la fiche décide, ce que le runtime en fait.
+ */
+console.log("=== Couverture DIRECTE : les 302 politiques, hors des 72 scénarios ===");
+{
+  const kbCouverture = loadKB();
+  const attendu = {
+    offered: { status: "allowed", allowed: true, cause: undefined },
+    not_offered: { status: "denied", allowed: false, cause: undefined },
+    case_by_case: { status: "confirmation_required", allowed: false, cause: "airline_approval" },
+    undocumented: { status: "confirmation_required", allowed: false, cause: "policy_unpublished" },
+  };
+  const objets = JSON.parse(readFileSync("packages/knowledge/raw/objects.json", "utf8"));
+  const parStatut = {}, parCause = {};
+  let vues = 0, conformes = 0, herites = 0;
+  const ecarts = [];
+  for (const a of objets.airlines) {
+    for (const mode of ["cabin", "hold", "cargo"]) {
+      const auteur = a.premium?.policy?.[mode];
+      if (!auteur) continue;
+      vues++;
+      if ("allowed" in auteur || "conditional" in auteur) herites++;
+      const projete = kbCouverture.airlines.get(a.id)?.premium?.policy?.[mode];
+      if (!projete) { ecarts.push(`${a.id}.${mode} : non projetée`); continue; }
+      parStatut[projete.status] = (parStatut[projete.status] || 0) + 1;
+      if (projete.status_cause) parCause[projete.status_cause] = (parCause[projete.status_cause] || 0) + 1;
+      const cible = "review_state" in auteur
+        ? { status: "confirmation_required", allowed: false, cause: "legacy_unreviewed" }
+        : attendu[auteur.availability];
+      if (!cible) { ecarts.push(`${a.id}.${mode} : discriminant inconnu`); continue; }
+      if (projete.status !== cible.status || projete.allowed !== cible.allowed || projete.status_cause !== cible.cause) {
+        ecarts.push(`${a.id}.${mode} : ${projete.status}/${projete.status_cause} ≠ ${cible.status}/${cible.cause}`);
+        continue;
+      }
+      conformes++;
+    }
+  }
+  check("302 politiques d'auteur, toutes projetées", vues === 302 && ecarts.length === 0, `${vues} vues · ${ecarts.length} écart(s) : ${ecarts.slice(0, 3).join(" ; ")}`);
+  check("302 conformes à la table de projection", conformes === 302, String(conformes));
+  check("ZÉRO forme d'auteur héritée subsistante", herites === 0, `${herites} résiduelle(s)`);
+  check("répartition runtime : 143 allowed · 75 denied · 84 à confirmer",
+    parStatut.allowed === 143 && parStatut.denied === 75 && parStatut.confirmation_required === 84,
+    JSON.stringify(parStatut));
+  check("causes : 83 legacy_unreviewed · 1 policy_unpublished",
+    parCause.legacy_unreviewed === 83 && parCause.policy_unpublished === 1, JSON.stringify(parCause));
 }
 
 console.log("=== Contre-épreuve N/N+1 : la baseline survit au passage des années ===");

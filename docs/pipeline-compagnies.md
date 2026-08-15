@@ -12,7 +12,7 @@
 ```
 content/airlines/<slug>.yml          102 fiches, une par compagnie — LA SOURCE
         │
-        │   node packages/knowledge/scripts/ingest-airlines.mjs      (npm run ingest)
+        │   npm run ingest   (= npx tsx …/ingest-airlines.mjs — tsx requis)
         │   ├─ valide chaque fiche contre un schéma Zod `.strict()`
         │   ├─ écrit  packages/ui/src/data/airlines.generated.json   (102 entrées)
         │   └─ dérive une politique structurée et l'injecte dans

@@ -76,8 +76,16 @@ ladder:
       fr: chiens > 40 kg
       es: perros > 40 kg
       pt: "cachorros > 40 kg"
+policies:
+  cabin:
+    availability: offered
+  hold:
+    review_state: legacy_unreviewed
+  cargo:
+    review_state: legacy_unreviewed
 channels:
-  - icon: 🐾
+  - placement: cabin
+    icon: 🐾
     name:
       en: Cabin
       fr: Cabine
@@ -99,7 +107,8 @@ channels:
       fr: 40 € / 65 € / 120 € selon la zone
       es: 40 € / 65 € / 120 € según la zona
       pt: "40 € / 65 € / 120 € conforme a zona"
-  - icon: 🧳
+  - placement: hold
+    icon: 🧳
     name:
       en: Hold
       fr: Soute
@@ -121,7 +130,8 @@ channels:
       fr: 60 € / 110 € / 220 € selon la zone
       es: 60 € / 110 € / 220 € según la zona
       pt: "60 € / 110 € / 220 € conforme a zona"
-  - icon: ✈️
+  - placement: cargo
+    icon: ✈️
     name:
       en: Cargo
       fr: Fret

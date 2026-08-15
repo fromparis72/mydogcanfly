@@ -66,8 +66,16 @@ ladder:
       fr: "> 100 kg / stations"
       es: "> 100 kg / estaciones"
       pt: "> 100 kg / estações"
+policies:
+  cabin:
+    availability: offered
+  hold:
+    availability: offered
+  cargo:
+    review_state: legacy_unreviewed
 channels:
-  - icon: 🐾
+  - placement: cabin
+    icon: 🐾
     name:
       en: Cabin
       fr: Cabine
@@ -89,7 +97,8 @@ channels:
       fr: 100 $ / 50 NIS
       es: 100 $ / 50 NIS
       pt: "US$ 100 / 50 NIS"
-  - icon: 🧳
+  - placement: hold
+    icon: 🧳
     name:
       en: Hold
       fr: Soute
@@ -111,7 +120,8 @@ channels:
       fr: 200–400 $
       es: 200–400 $
       pt: "US$ 200–400"
-  - icon: ✈️
+  - placement: cargo
+    icon: ✈️
     name:
       en: EL AL Cargo
       fr: EL AL Cargo

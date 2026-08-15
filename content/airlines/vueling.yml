@@ -58,8 +58,16 @@ ladder:
       fr: non transporté
       es: no se transporta
       pt: "não transportado"
+policies:
+  cabin:
+    availability: offered
+  hold:
+    availability: not_offered
+  cargo:
+    availability: not_offered
 channels:
-  - icon: 🐾
+  - placement: cabin
+    icon: 🐾
     name:
       en: Cabin
       fr: Cabine
@@ -81,7 +89,8 @@ channels:
       fr: Formule Fly Light
       es: Tarifa Fly Light
       pt: "Tarifa Fly Light"
-  - icon: 🧳
+  - placement: hold
+    icon: 🧳
     name:
       en: Hold
       fr: Soute
@@ -103,7 +112,8 @@ channels:
       fr: —
       es: —
       pt: "—"
-  - icon: ✈️
+  - placement: cargo
+    icon: ✈️
     name:
       en: Cargo
       fr: Fret

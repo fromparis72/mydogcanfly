@@ -19886,7 +19886,7 @@
       "premium": {
         "policy": {
           "cabin": {
-            "allowed": true,
+            "availability": "offered",
             "source": {
               "url": "https://en.aegeanair.com/",
               "source_type": "official_website",
@@ -19899,7 +19899,7 @@
             "derived_from_fiche": true
           },
           "hold": {
-            "allowed": true,
+            "availability": "offered",
             "brachy_allowed": false,
             "source": {
               "url": "https://en.aegeanair.com/",
@@ -19913,8 +19913,7 @@
             "derived_from_fiche": true
           },
           "cargo": {
-            "allowed": true,
-            "conditional": true,
+            "review_state": "legacy_unreviewed",
             "source": {
               "url": "https://en.aegeanair.com/",
               "source_type": "official_website",
@@ -20138,7 +20137,7 @@
       "premium": {
         "policy": {
           "cabin": {
-            "allowed": false,
+            "availability": "not_offered",
             "source": {
               "url": "https://www.aerlingus.com",
               "source_type": "official_website",
@@ -20151,7 +20150,7 @@
             "derived_from_fiche": true
           },
           "hold": {
-            "allowed": false,
+            "availability": "not_offered",
             "source": {
               "url": "https://www.aerlingus.com",
               "source_type": "official_website",
@@ -20164,8 +20163,7 @@
             "derived_from_fiche": true
           },
           "cargo": {
-            "allowed": true,
-            "conditional": true,
+            "review_state": "legacy_unreviewed",
             "source": {
               "url": "https://www.aerlingus.com",
               "source_type": "official_website",
@@ -20251,7 +20249,7 @@
       "premium": {
         "policy": {
           "cabin": {
-            "allowed": true,
+            "availability": "offered",
             "source": {
               "url": "https://www.aerolineas.com.ar",
               "source_type": "official_website",
@@ -20264,7 +20262,7 @@
             "derived_from_fiche": true
           },
           "hold": {
-            "allowed": true,
+            "availability": "offered",
             "brachy_allowed": false,
             "source": {
               "url": "https://www.aerolineas.com.ar",
@@ -20278,8 +20276,7 @@
             "derived_from_fiche": true
           },
           "cargo": {
-            "allowed": true,
-            "conditional": true,
+            "review_state": "legacy_unreviewed",
             "source": {
               "url": "https://www.aerolineas.com.ar",
               "source_type": "official_website",
@@ -20500,7 +20497,7 @@
       "premium": {
         "policy": {
           "cabin": {
-            "allowed": true,
+            "availability": "offered",
             "max_weight_kg": 9,
             "source": {
               "url": "https://www.aeromexico.com",
@@ -20514,7 +20511,7 @@
             "derived_from_fiche": true
           },
           "hold": {
-            "allowed": true,
+            "availability": "offered",
             "brachy_allowed": false,
             "source": {
               "url": "https://www.aeromexico.com",
@@ -20528,8 +20525,7 @@
             "derived_from_fiche": true
           },
           "cargo": {
-            "allowed": true,
-            "conditional": true,
+            "review_state": "legacy_unreviewed",
             "source": {
               "url": "https://www.aeromexico.com",
               "source_type": "official_website",
@@ -20726,7 +20722,7 @@
       "premium": {
         "policy": {
           "cabin": {
-            "allowed": true,
+            "availability": "offered",
             "max_weight_kg": 6,
             "source": {
               "url": "https://www.airalgerie.dz",
@@ -20740,7 +20736,7 @@
             "derived_from_fiche": true
           },
           "hold": {
-            "allowed": true,
+            "availability": "offered",
             "source": {
               "url": "https://www.airalgerie.dz",
               "source_type": "official_website",
@@ -20753,8 +20749,7 @@
             "derived_from_fiche": true
           },
           "cargo": {
-            "allowed": true,
-            "conditional": true,
+            "review_state": "legacy_unreviewed",
             "source": {
               "url": "https://www.airalgerie.dz",
               "source_type": "official_website",
@@ -20836,7 +20831,7 @@
       "premium": {
         "policy": {
           "cabin": {
-            "allowed": true,
+            "availability": "offered",
             "source": {
               "url": "https://airastana.com",
               "source_type": "official_website",
@@ -20849,7 +20844,7 @@
             "derived_from_fiche": true
           },
           "hold": {
-            "allowed": true,
+            "availability": "offered",
             "brachy_allowed": false,
             "source": {
               "url": "https://airastana.com",
@@ -20863,8 +20858,7 @@
             "derived_from_fiche": true
           },
           "cargo": {
-            "allowed": true,
-            "conditional": true,
+            "review_state": "legacy_unreviewed",
             "source": {
               "url": "https://airastana.com",
               "source_type": "official_website",
@@ -20987,7 +20981,7 @@
       "premium": {
         "policy": {
           "cabin": {
-            "allowed": true,
+            "availability": "offered",
             "source": {
               "url": "https://www.air-austral.com",
               "source_type": "official_website",
@@ -21000,7 +20994,7 @@
             "derived_from_fiche": true
           },
           "hold": {
-            "allowed": true,
+            "availability": "offered",
             "source": {
               "url": "https://www.air-austral.com",
               "source_type": "official_website",
@@ -21013,8 +21007,7 @@
             "derived_from_fiche": true
           },
           "cargo": {
-            "allowed": true,
-            "conditional": true,
+            "review_state": "legacy_unreviewed",
             "source": {
               "url": "https://www.air-austral.com",
               "source_type": "official_website",
@@ -21140,7 +21133,7 @@
         },
         "policy": {
           "cabin": {
-            "allowed": true,
+            "availability": "offered",
             "carrier_dims_cm": {
               "l": 43,
               "w": 40,
@@ -21162,7 +21155,7 @@
             }
           },
           "hold": {
-            "allowed": true,
+            "availability": "offered",
             "fee": "CA/US $105–$126 (Canada/US); $270–$324 international",
             "conditions": {
               "en": "Hard-sided kennel; pet plus kennel max 45 kg; snub-nosed breeds barred; seasonal heat/cold embargoes; no pets 18 Dec–4 Jan.",
@@ -21179,7 +21172,7 @@
             }
           },
           "cargo": {
-            "allowed": true,
+            "availability": "offered",
             "conditions": {
               "en": "Via Air Canada Cargo (AC Animals) for pets travelling alone or kennels over 45 kg.",
               "fr": "Via Air Canada Cargo (AC Animals) pour les animaux voyageant seuls ou les caisses de plus de 45 kg."
@@ -21708,7 +21701,7 @@
       "premium": {
         "policy": {
           "cabin": {
-            "allowed": true,
+            "availability": "offered",
             "source": {
               "url": "https://www.aircaraibes.com",
               "source_type": "official_website",
@@ -21721,7 +21714,7 @@
             "derived_from_fiche": true
           },
           "hold": {
-            "allowed": true,
+            "availability": "offered",
             "brachy_allowed": false,
             "source": {
               "url": "https://www.aircaraibes.com",
@@ -21735,8 +21728,7 @@
             "derived_from_fiche": true
           },
           "cargo": {
-            "allowed": true,
-            "conditional": true,
+            "review_state": "legacy_unreviewed",
             "source": {
               "url": "https://www.aircaraibes.com",
               "source_type": "official_website",
@@ -21973,7 +21965,7 @@
       "premium": {
         "policy": {
           "cabin": {
-            "allowed": false,
+            "availability": "not_offered",
             "source": {
               "url": "https://www.airchina.com",
               "source_type": "official_website",
@@ -21986,7 +21978,7 @@
             "derived_from_fiche": true
           },
           "hold": {
-            "allowed": true,
+            "availability": "offered",
             "source": {
               "url": "https://www.airchina.com",
               "source_type": "official_website",
@@ -21999,8 +21991,7 @@
             "derived_from_fiche": true
           },
           "cargo": {
-            "allowed": true,
-            "conditional": true,
+            "review_state": "legacy_unreviewed",
             "source": {
               "url": "https://www.airchina.com",
               "source_type": "official_website",
@@ -22181,7 +22172,7 @@
       "premium": {
         "policy": {
           "cabin": {
-            "allowed": true,
+            "availability": "offered",
             "source": {
               "url": "https://www.aireuropa.com",
               "source_type": "official_website",
@@ -22194,7 +22185,7 @@
             "derived_from_fiche": true
           },
           "hold": {
-            "allowed": true,
+            "availability": "offered",
             "brachy_allowed": false,
             "source": {
               "url": "https://www.aireuropa.com",
@@ -22208,8 +22199,7 @@
             "derived_from_fiche": true
           },
           "cargo": {
-            "allowed": true,
-            "conditional": true,
+            "review_state": "legacy_unreviewed",
             "source": {
               "url": "https://www.aireuropa.com",
               "source_type": "official_website",
@@ -22345,7 +22335,7 @@
         },
         "policy": {
           "cabin": {
-            "allowed": true,
+            "availability": "offered",
             "max_weight_kg": 8,
             "carrier_dims_cm": {
               "l": 46,
@@ -22368,7 +22358,7 @@
             }
           },
           "hold": {
-            "allowed": true,
+            "availability": "offered",
             "fee": "€100 to €600",
             "conditions": {
               "en": "Pet plus IATA kennel from 8 to 75 kg; snub-nosed breeds not accepted in the hold; not available in intercontinental Business.",
@@ -22385,7 +22375,7 @@
             }
           },
           "cargo": {
-            "allowed": true,
+            "availability": "offered",
             "conditions": {
               "en": "Via an approved cargo transporter — the only option to the UK, Dubai and Abu Dhabi.",
               "fr": "Via un transporteur cargo agréé — seule option vers le Royaume-Uni, Dubaï et Abu Dhabi."
@@ -23000,7 +22990,7 @@
       "premium": {
         "policy": {
           "cabin": {
-            "allowed": true,
+            "availability": "offered",
             "source": {
               "url": "https://www.airindia.com",
               "source_type": "official_website",
@@ -23013,7 +23003,7 @@
             "derived_from_fiche": true
           },
           "hold": {
-            "allowed": true,
+            "availability": "offered",
             "brachy_allowed": false,
             "source": {
               "url": "https://www.airindia.com",
@@ -23027,8 +23017,7 @@
             "derived_from_fiche": true
           },
           "cargo": {
-            "allowed": true,
-            "conditional": true,
+            "review_state": "legacy_unreviewed",
             "source": {
               "url": "https://www.airindia.com",
               "source_type": "official_website",
@@ -23129,7 +23118,7 @@
       "premium": {
         "policy": {
           "cabin": {
-            "allowed": false,
+            "availability": "not_offered",
             "source": {
               "url": "https://www.airmauritius.com",
               "source_type": "official_website",
@@ -23142,7 +23131,7 @@
             "derived_from_fiche": true
           },
           "hold": {
-            "allowed": true,
+            "availability": "offered",
             "source": {
               "url": "https://www.airmauritius.com",
               "source_type": "official_website",
@@ -23155,8 +23144,7 @@
             "derived_from_fiche": true
           },
           "cargo": {
-            "allowed": true,
-            "conditional": true,
+            "review_state": "legacy_unreviewed",
             "source": {
               "url": "https://www.airmauritius.com",
               "source_type": "official_website",
@@ -23260,7 +23248,7 @@
       "premium": {
         "policy": {
           "cabin": {
-            "allowed": false,
+            "availability": "not_offered",
             "source": {
               "url": "https://www.airnewzealand.com",
               "source_type": "official_website",
@@ -23273,7 +23261,7 @@
             "derived_from_fiche": true
           },
           "hold": {
-            "allowed": true,
+            "availability": "offered",
             "source": {
               "url": "https://www.airnewzealand.com",
               "source_type": "official_website",
@@ -23286,8 +23274,7 @@
             "derived_from_fiche": true
           },
           "cargo": {
-            "allowed": true,
-            "conditional": true,
+            "review_state": "legacy_unreviewed",
             "source": {
               "url": "https://www.airnewzealand.com",
               "source_type": "official_website",
@@ -23432,7 +23419,7 @@
       "premium": {
         "policy": {
           "cabin": {
-            "allowed": true,
+            "availability": "offered",
             "source": {
               "url": "https://www.airserbia.com",
               "source_type": "official_website",
@@ -23445,7 +23432,7 @@
             "derived_from_fiche": true
           },
           "hold": {
-            "allowed": false,
+            "availability": "not_offered",
             "source": {
               "url": "https://www.airserbia.com",
               "source_type": "official_website",
@@ -23458,7 +23445,7 @@
             "derived_from_fiche": true
           },
           "cargo": {
-            "allowed": false,
+            "availability": "not_offered",
             "source": {
               "url": "https://www.airserbia.com",
               "source_type": "official_website",
@@ -23588,7 +23575,7 @@
       "premium": {
         "policy": {
           "cabin": {
-            "allowed": true,
+            "availability": "offered",
             "source": {
               "url": "https://www.airtahitinui.com",
               "source_type": "official_website",
@@ -23601,8 +23588,7 @@
             "derived_from_fiche": true
           },
           "cargo": {
-            "allowed": true,
-            "conditional": true,
+            "review_state": "legacy_unreviewed",
             "source": {
               "url": "https://www.airtahitinui.com",
               "source_type": "official_website",
@@ -23790,7 +23776,7 @@
       "premium": {
         "policy": {
           "cabin": {
-            "allowed": true,
+            "availability": "offered",
             "source": {
               "url": "https://www.airtransat.com",
               "source_type": "official_website",
@@ -23803,7 +23789,7 @@
             "derived_from_fiche": true
           },
           "hold": {
-            "allowed": true,
+            "availability": "offered",
             "source": {
               "url": "https://www.airtransat.com",
               "source_type": "official_website",
@@ -23816,8 +23802,7 @@
             "derived_from_fiche": true
           },
           "cargo": {
-            "allowed": true,
-            "conditional": true,
+            "review_state": "legacy_unreviewed",
             "source": {
               "url": "https://www.airtransat.com",
               "source_type": "official_website",
@@ -24019,7 +24004,7 @@
       "premium": {
         "policy": {
           "cabin": {
-            "allowed": true,
+            "availability": "offered",
             "source": {
               "url": "https://www.airbaltic.com",
               "source_type": "official_website",
@@ -24032,7 +24017,7 @@
             "derived_from_fiche": true
           },
           "hold": {
-            "allowed": true,
+            "availability": "offered",
             "source": {
               "url": "https://www.airbaltic.com",
               "source_type": "official_website",
@@ -24045,8 +24030,7 @@
             "derived_from_fiche": true
           },
           "cargo": {
-            "allowed": true,
-            "conditional": true,
+            "review_state": "legacy_unreviewed",
             "source": {
               "url": "https://www.airbaltic.com",
               "source_type": "official_website",
@@ -24159,7 +24143,7 @@
       "premium": {
         "policy": {
           "cabin": {
-            "allowed": false,
+            "availability": "not_offered",
             "source": {
               "url": "https://us.aircalin.com",
               "source_type": "official_website",
@@ -24172,7 +24156,7 @@
             "derived_from_fiche": true
           },
           "hold": {
-            "allowed": false,
+            "availability": "not_offered",
             "source": {
               "url": "https://us.aircalin.com",
               "source_type": "official_website",
@@ -24185,8 +24169,7 @@
             "derived_from_fiche": true
           },
           "cargo": {
-            "allowed": true,
-            "conditional": true,
+            "review_state": "legacy_unreviewed",
             "source": {
               "url": "https://us.aircalin.com",
               "source_type": "official_website",
@@ -24413,7 +24396,7 @@
       "premium": {
         "policy": {
           "cabin": {
-            "allowed": true,
+            "availability": "offered",
             "source": {
               "url": "https://www.alaskaair.com/",
               "source_type": "official_website",
@@ -24426,7 +24409,7 @@
             "derived_from_fiche": true
           },
           "hold": {
-            "allowed": true,
+            "availability": "offered",
             "brachy_allowed": false,
             "source": {
               "url": "https://www.alaskaair.com/",
@@ -24440,8 +24423,7 @@
             "derived_from_fiche": true
           },
           "cargo": {
-            "allowed": true,
-            "conditional": true,
+            "review_state": "legacy_unreviewed",
             "source": {
               "url": "https://www.alaskaair.com/",
               "source_type": "official_website",
@@ -24553,7 +24535,7 @@
         },
         "policy": {
           "cabin": {
-            "allowed": true,
+            "availability": "offered",
             "carrier_dims_cm": {
               "l": 46,
               "w": 28,
@@ -24575,7 +24557,7 @@
             }
           },
           "hold": {
-            "allowed": false,
+            "availability": "not_offered",
             "conditions": {
               "en": "Checked pets only for active-duty U.S. military/State Department; brachycephalic breeds barred; pet plus kennel max 45 kg.",
               "fr": "Soute réservée aux militaires d'active/diplomates américains ; races brachycéphales interdites ; animal et caisse 45 kg max."
@@ -24591,7 +24573,7 @@
             }
           },
           "cargo": {
-            "allowed": true,
+            "availability": "offered",
             "conditions": {
               "en": "Via American PetEmbark (AA Cargo) for pets that do not qualify as carry-on.",
               "fr": "Via American PetEmbark (AA Cargo) pour les animaux non admissibles en cabine."
@@ -25351,7 +25333,7 @@
       "premium": {
         "policy": {
           "cabin": {
-            "allowed": false,
+            "availability": "not_offered",
             "source": {
               "url": "https://www.ana.co.jp",
               "source_type": "official_website",
@@ -25364,7 +25346,7 @@
             "derived_from_fiche": true
           },
           "hold": {
-            "allowed": true,
+            "availability": "offered",
             "brachy_allowed": false,
             "source": {
               "url": "https://www.ana.co.jp",
@@ -25378,8 +25360,7 @@
             "derived_from_fiche": true
           },
           "cargo": {
-            "allowed": true,
-            "conditional": true,
+            "review_state": "legacy_unreviewed",
             "source": {
               "url": "https://www.ana.co.jp",
               "source_type": "official_website",
@@ -25451,7 +25432,7 @@
       "premium": {
         "policy": {
           "cabin": {
-            "allowed": true,
+            "availability": "offered",
             "source": {
               "url": "https://flyasiana.com",
               "source_type": "official_website",
@@ -25464,7 +25445,7 @@
             "derived_from_fiche": true
           },
           "hold": {
-            "allowed": true,
+            "availability": "offered",
             "brachy_allowed": false,
             "source": {
               "url": "https://flyasiana.com",
@@ -25478,7 +25459,7 @@
             "derived_from_fiche": true
           },
           "cargo": {
-            "allowed": true,
+            "review_state": "legacy_unreviewed",
             "source": {
               "url": "https://asianacargo.com/contents/lifeAnimalsAviGuide.do?lang=en",
               "source_type": "official_website",
@@ -25804,7 +25785,7 @@
       "premium": {
         "policy": {
           "cabin": {
-            "allowed": true,
+            "availability": "offered",
             "source": {
               "url": "https://www.austrian.com",
               "source_type": "official_website",
@@ -25817,7 +25798,7 @@
             "derived_from_fiche": true
           },
           "hold": {
-            "allowed": true,
+            "availability": "offered",
             "brachy_allowed": false,
             "source": {
               "url": "https://www.austrian.com",
@@ -25831,8 +25812,7 @@
             "derived_from_fiche": true
           },
           "cargo": {
-            "allowed": true,
-            "conditional": true,
+            "review_state": "legacy_unreviewed",
             "source": {
               "url": "https://www.austrian.com",
               "source_type": "official_website",
@@ -26005,7 +25985,7 @@
       "premium": {
         "policy": {
           "cabin": {
-            "allowed": true,
+            "availability": "offered",
             "source": {
               "url": "https://www.avianca.com",
               "source_type": "official_website",
@@ -26018,7 +25998,7 @@
             "derived_from_fiche": true
           },
           "hold": {
-            "allowed": true,
+            "availability": "offered",
             "brachy_allowed": false,
             "source": {
               "url": "https://www.avianca.com",
@@ -26032,8 +26012,7 @@
             "derived_from_fiche": true
           },
           "cargo": {
-            "allowed": true,
-            "conditional": true,
+            "review_state": "legacy_unreviewed",
             "source": {
               "url": "https://www.avianca.com",
               "source_type": "official_website",
@@ -26095,7 +26074,7 @@
       "premium": {
         "policy": {
           "cabin": {
-            "allowed": false,
+            "availability": "not_offered",
             "source": {
               "url": "https://www.bangkokair.com",
               "source_type": "official_website",
@@ -26108,7 +26087,7 @@
             "derived_from_fiche": true
           },
           "hold": {
-            "allowed": true,
+            "availability": "offered",
             "brachy_allowed": false,
             "source": {
               "url": "https://www.bangkokair.com",
@@ -26122,8 +26101,7 @@
             "derived_from_fiche": true
           },
           "cargo": {
-            "allowed": true,
-            "conditional": true,
+            "review_state": "legacy_unreviewed",
             "source": {
               "url": "https://www.bangkokair.com",
               "source_type": "official_website",
@@ -26197,7 +26175,7 @@
       "premium": {
         "policy": {
           "cabin": {
-            "allowed": false,
+            "availability": "not_offered",
             "source": {
               "url": "https://www.batikair.com",
               "source_type": "official_website",
@@ -26210,7 +26188,7 @@
             "derived_from_fiche": true
           },
           "hold": {
-            "allowed": false,
+            "availability": "not_offered",
             "source": {
               "url": "https://www.batikair.com",
               "source_type": "official_website",
@@ -26223,7 +26201,7 @@
             "derived_from_fiche": true
           },
           "cargo": {
-            "allowed": false,
+            "availability": "not_offered",
             "source": {
               "url": "https://www.batikair.com",
               "source_type": "official_website",
@@ -26332,7 +26310,7 @@
       "premium": {
         "policy": {
           "cabin": {
-            "allowed": false,
+            "availability": "not_offered",
             "source": {
               "url": "https://www.batikair.com.my",
               "source_type": "official_website",
@@ -26345,7 +26323,7 @@
             "derived_from_fiche": true
           },
           "hold": {
-            "allowed": false,
+            "availability": "not_offered",
             "source": {
               "url": "https://www.batikair.com.my",
               "source_type": "official_website",
@@ -26358,7 +26336,7 @@
             "derived_from_fiche": true
           },
           "cargo": {
-            "allowed": false,
+            "availability": "not_offered",
             "source": {
               "url": "https://www.batikair.com.my",
               "source_type": "official_website",
@@ -26521,7 +26499,7 @@
         },
         "policy": {
           "cabin": {
-            "allowed": false,
+            "availability": "not_offered",
             "conditions": {
               "en": "Pets are not accepted in the cabin on any route; only assistance dogs travel in the cabin, free of charge.",
               "fr": "Les animaux ne sont acceptés en cabine sur aucune route ; seuls les chiens d'assistance y voyagent, gratuitement."
@@ -26537,7 +26515,7 @@
             }
           },
           "hold": {
-            "allowed": false,
+            "availability": "not_offered",
             "conditions": {
               "en": "Pets travel in the hold but not as passenger checked baggage — arrangements are made via IAG Cargo (to the UK) or PetAir UK (exports).",
               "fr": "Les animaux voyagent en soute mais pas en bagage enregistré passager — via IAG Cargo (vers le Royaume-Uni) ou PetAir UK (export)."
@@ -26553,7 +26531,7 @@
             }
           },
           "cargo": {
-            "allowed": true,
+            "availability": "offered",
             "conditions": {
               "en": "Managed by IAG Cargo, BA's sister company, for pets travelling to the UK.",
               "fr": "Géré par IAG Cargo, société sœur de BA, pour les animaux à destination du Royaume-Uni."
@@ -27143,7 +27121,7 @@
       "premium": {
         "policy": {
           "cabin": {
-            "allowed": true,
+            "availability": "offered",
             "source": {
               "url": "https://www.brusselsairlines.com/",
               "source_type": "official_website",
@@ -27156,7 +27134,7 @@
             "derived_from_fiche": true
           },
           "hold": {
-            "allowed": true,
+            "availability": "offered",
             "brachy_allowed": false,
             "source": {
               "url": "https://www.brusselsairlines.com/",
@@ -27170,8 +27148,7 @@
             "derived_from_fiche": true
           },
           "cargo": {
-            "allowed": true,
-            "conditional": true,
+            "review_state": "legacy_unreviewed",
             "source": {
               "url": "https://www.brusselsairlines.com/",
               "source_type": "official_website",
@@ -27388,7 +27365,7 @@
       "premium": {
         "policy": {
           "cabin": {
-            "allowed": false,
+            "availability": "not_offered",
             "source": {
               "url": "https://www.cathaypacific.com/",
               "source_type": "official_website",
@@ -27401,7 +27378,7 @@
             "derived_from_fiche": true
           },
           "hold": {
-            "allowed": false,
+            "availability": "not_offered",
             "source": {
               "url": "https://www.cathaypacific.com/",
               "source_type": "official_website",
@@ -27414,8 +27391,7 @@
             "derived_from_fiche": true
           },
           "cargo": {
-            "allowed": true,
-            "conditional": true,
+            "review_state": "legacy_unreviewed",
             "source": {
               "url": "https://www.cathaypacific.com/",
               "source_type": "official_website",
@@ -27590,7 +27566,7 @@
       "premium": {
         "policy": {
           "cabin": {
-            "allowed": false,
+            "availability": "not_offered",
             "source": {
               "url": "https://www.china-airlines.com",
               "source_type": "official_website",
@@ -27603,7 +27579,7 @@
             "derived_from_fiche": true
           },
           "hold": {
-            "allowed": true,
+            "availability": "offered",
             "source": {
               "url": "https://www.china-airlines.com",
               "source_type": "official_website",
@@ -27616,8 +27592,7 @@
             "derived_from_fiche": true
           },
           "cargo": {
-            "allowed": true,
-            "conditional": true,
+            "review_state": "legacy_unreviewed",
             "source": {
               "url": "https://www.china-airlines.com",
               "source_type": "official_website",
@@ -27847,7 +27822,7 @@
       "premium": {
         "policy": {
           "cabin": {
-            "allowed": false,
+            "availability": "not_offered",
             "source": {
               "url": "https://www.ceair.com",
               "source_type": "official_website",
@@ -27860,7 +27835,7 @@
             "derived_from_fiche": true
           },
           "hold": {
-            "allowed": true,
+            "availability": "offered",
             "source": {
               "url": "https://www.ceair.com",
               "source_type": "official_website",
@@ -27873,8 +27848,7 @@
             "derived_from_fiche": true
           },
           "cargo": {
-            "allowed": true,
-            "conditional": true,
+            "review_state": "legacy_unreviewed",
             "source": {
               "url": "https://www.ceair.com",
               "source_type": "official_website",
@@ -28125,7 +28099,7 @@
       "premium": {
         "policy": {
           "cabin": {
-            "allowed": false,
+            "availability": "not_offered",
             "source": {
               "url": "https://www.csair.com",
               "source_type": "official_website",
@@ -28138,7 +28112,7 @@
             "derived_from_fiche": true
           },
           "hold": {
-            "allowed": true,
+            "availability": "offered",
             "source": {
               "url": "https://www.csair.com",
               "source_type": "official_website",
@@ -28151,8 +28125,7 @@
             "derived_from_fiche": true
           },
           "cargo": {
-            "allowed": true,
-            "conditional": true,
+            "review_state": "legacy_unreviewed",
             "source": {
               "url": "https://www.csair.com",
               "source_type": "official_website",
@@ -28341,7 +28314,7 @@
       "premium": {
         "policy": {
           "cabin": {
-            "allowed": true,
+            "availability": "offered",
             "source": {
               "url": "https://www.condor.com/",
               "source_type": "official_website",
@@ -28354,7 +28327,7 @@
             "derived_from_fiche": true
           },
           "hold": {
-            "allowed": true,
+            "availability": "offered",
             "source": {
               "url": "https://www.condor.com/",
               "source_type": "official_website",
@@ -28367,7 +28340,7 @@
             "derived_from_fiche": true
           },
           "cargo": {
-            "allowed": true,
+            "review_state": "legacy_unreviewed",
             "source": {
               "url": "https://www.condor.com/us/flight-preparation/baggage-and-animals/cargo-general-schedule.jsp",
               "source_type": "official_website",
@@ -28567,7 +28540,7 @@
       "premium": {
         "policy": {
           "cabin": {
-            "allowed": true,
+            "availability": "offered",
             "source": {
               "url": "https://www.copaair.com",
               "source_type": "official_website",
@@ -28580,7 +28553,7 @@
             "derived_from_fiche": true
           },
           "hold": {
-            "allowed": false,
+            "availability": "not_offered",
             "source": {
               "url": "https://www.copaair.com",
               "source_type": "official_website",
@@ -28593,8 +28566,7 @@
             "derived_from_fiche": true
           },
           "cargo": {
-            "allowed": true,
-            "conditional": true,
+            "review_state": "legacy_unreviewed",
             "source": {
               "url": "https://www.copaair.com",
               "source_type": "official_website",
@@ -28679,7 +28651,7 @@
       "premium": {
         "policy": {
           "cabin": {
-            "allowed": true,
+            "availability": "offered",
             "source": {
               "url": "https://www.corsair.fr",
               "source_type": "official_website",
@@ -28692,7 +28664,7 @@
             "derived_from_fiche": true
           },
           "hold": {
-            "allowed": true,
+            "availability": "offered",
             "brachy_allowed": false,
             "source": {
               "url": "https://www.corsair.fr",
@@ -28706,8 +28678,7 @@
             "derived_from_fiche": true
           },
           "cargo": {
-            "allowed": true,
-            "conditional": true,
+            "review_state": "legacy_unreviewed",
             "source": {
               "url": "https://www.corsair.fr",
               "source_type": "official_website",
@@ -28823,7 +28794,7 @@
       "premium": {
         "policy": {
           "cabin": {
-            "allowed": true,
+            "availability": "offered",
             "source": {
               "url": "https://www.croatiaairlines.com",
               "source_type": "official_website",
@@ -28836,7 +28807,7 @@
             "derived_from_fiche": true
           },
           "hold": {
-            "allowed": true,
+            "availability": "offered",
             "brachy_allowed": false,
             "source": {
               "url": "https://www.croatiaairlines.com",
@@ -28850,8 +28821,7 @@
             "derived_from_fiche": true
           },
           "cargo": {
-            "allowed": true,
-            "conditional": true,
+            "review_state": "legacy_unreviewed",
             "source": {
               "url": "https://www.croatiaairlines.com",
               "source_type": "official_website",
@@ -28991,7 +28961,7 @@
         },
         "policy": {
           "cabin": {
-            "allowed": true,
+            "availability": "offered",
             "fee": "$150 (US/Canada/PR/USVI) or $200 international, for tickets issued on/after 8 Apr 2025",
             "conditions": {
               "en": "Soft-sided kennel fully under the seat; at least 8 weeks old; booked by phone.",
@@ -29008,7 +28978,7 @@
             }
           },
           "hold": {
-            "allowed": false,
+            "availability": "not_offered",
             "conditions": {
               "en": "Checked pets accepted only for active-duty U.S. military and State Department Foreign Service personnel.",
               "fr": "Animaux en soute acceptés uniquement pour le personnel militaire d'active et diplomatique américain."
@@ -29024,7 +28994,7 @@
             }
           },
           "cargo": {
-            "allowed": false,
+            "availability": "not_offered",
             "conditions": {
               "en": "Pet cargo shipping is suspended for the general public — currently only active-duty U.S. military and State Department personnel on relocation orders.",
               "fr": "Le transport en fret est suspendu pour le grand public — réservé au personnel militaire d’active et diplomatique américain en mutation."
@@ -30154,7 +30124,7 @@
       "premium": {
         "policy": {
           "cabin": {
-            "allowed": false,
+            "availability": "not_offered",
             "source": {
               "url": "https://www.easyjet.com",
               "source_type": "official_website",
@@ -30167,7 +30137,7 @@
             "derived_from_fiche": true
           },
           "hold": {
-            "allowed": false,
+            "availability": "not_offered",
             "source": {
               "url": "https://www.easyjet.com",
               "source_type": "official_website",
@@ -30180,7 +30150,7 @@
             "derived_from_fiche": true
           },
           "cargo": {
-            "allowed": false,
+            "availability": "not_offered",
             "source": {
               "url": "https://www.easyjet.com",
               "source_type": "official_website",
@@ -30444,7 +30414,7 @@
       "premium": {
         "policy": {
           "cabin": {
-            "allowed": true,
+            "availability": "offered",
             "source": {
               "url": "https://www.flyedelweiss.com",
               "source_type": "official_website",
@@ -30457,7 +30427,7 @@
             "derived_from_fiche": true
           },
           "hold": {
-            "allowed": true,
+            "availability": "offered",
             "brachy_allowed": false,
             "source": {
               "url": "https://www.flyedelweiss.com",
@@ -30471,8 +30441,7 @@
             "derived_from_fiche": true
           },
           "cargo": {
-            "allowed": true,
-            "conditional": true,
+            "review_state": "legacy_unreviewed",
             "source": {
               "url": "https://www.flyedelweiss.com",
               "source_type": "official_website",
@@ -30747,7 +30716,7 @@
       "premium": {
         "policy": {
           "cabin": {
-            "allowed": true,
+            "availability": "offered",
             "max_weight_kg": 8,
             "source": {
               "url": "https://www.egyptair.com",
@@ -30761,7 +30730,7 @@
             "derived_from_fiche": true
           },
           "hold": {
-            "allowed": true,
+            "availability": "offered",
             "source": {
               "url": "https://www.egyptair.com",
               "source_type": "official_website",
@@ -30774,8 +30743,7 @@
             "derived_from_fiche": true
           },
           "cargo": {
-            "allowed": true,
-            "conditional": true,
+            "review_state": "legacy_unreviewed",
             "source": {
               "url": "https://www.egyptair.com",
               "source_type": "official_website",
@@ -30938,7 +30906,7 @@
       "premium": {
         "policy": {
           "cabin": {
-            "allowed": true,
+            "availability": "offered",
             "source": {
               "url": "https://www.elal.com",
               "source_type": "official_website",
@@ -30951,7 +30919,7 @@
             "derived_from_fiche": true
           },
           "hold": {
-            "allowed": true,
+            "availability": "offered",
             "source": {
               "url": "https://www.elal.com",
               "source_type": "official_website",
@@ -30964,8 +30932,7 @@
             "derived_from_fiche": true
           },
           "cargo": {
-            "allowed": true,
-            "conditional": true,
+            "review_state": "legacy_unreviewed",
             "source": {
               "url": "https://www.elal.com",
               "source_type": "official_website",
@@ -31346,7 +31313,7 @@
       "premium": {
         "policy": {
           "cabin": {
-            "allowed": false,
+            "availability": "not_offered",
             "source": {
               "url": "https://www.emirates.com/",
               "source_type": "official_website",
@@ -31359,7 +31326,7 @@
             "derived_from_fiche": true
           },
           "hold": {
-            "allowed": true,
+            "availability": "offered",
             "source": {
               "url": "https://www.emirates.com/",
               "source_type": "official_website",
@@ -31372,8 +31339,7 @@
             "derived_from_fiche": true
           },
           "cargo": {
-            "allowed": true,
-            "conditional": true,
+            "review_state": "legacy_unreviewed",
             "source": {
               "url": "https://www.emirates.com/",
               "source_type": "official_website",
@@ -31642,7 +31608,7 @@
       "premium": {
         "policy": {
           "cabin": {
-            "allowed": true,
+            "availability": "offered",
             "source": {
               "url": "https://www.ethiopianairlines.com",
               "source_type": "official_website",
@@ -31655,7 +31621,7 @@
             "derived_from_fiche": true
           },
           "hold": {
-            "allowed": true,
+            "availability": "offered",
             "source": {
               "url": "https://www.ethiopianairlines.com",
               "source_type": "official_website",
@@ -31668,8 +31634,7 @@
             "derived_from_fiche": true
           },
           "cargo": {
-            "allowed": true,
-            "conditional": true,
+            "review_state": "legacy_unreviewed",
             "source": {
               "url": "https://www.ethiopianairlines.com",
               "source_type": "official_website",
@@ -31939,7 +31904,7 @@
       "premium": {
         "policy": {
           "cabin": {
-            "allowed": true,
+            "availability": "offered",
             "max_weight_kg": 8,
             "source": {
               "url": "https://www.etihad.com/",
@@ -31953,7 +31918,7 @@
             "derived_from_fiche": true
           },
           "hold": {
-            "allowed": false,
+            "availability": "not_offered",
             "source": {
               "url": "https://www.etihad.com/",
               "source_type": "official_website",
@@ -31966,8 +31931,7 @@
             "derived_from_fiche": true
           },
           "cargo": {
-            "allowed": true,
-            "conditional": true,
+            "review_state": "legacy_unreviewed",
             "source": {
               "url": "https://www.etihad.com/",
               "source_type": "official_website",
@@ -32243,7 +32207,7 @@
       "premium": {
         "policy": {
           "cabin": {
-            "allowed": true,
+            "availability": "offered",
             "max_weight_kg": 8,
             "source": {
               "url": "https://www.eurowings.com",
@@ -32257,7 +32221,7 @@
             "derived_from_fiche": true
           },
           "hold": {
-            "allowed": false,
+            "availability": "not_offered",
             "source": {
               "url": "https://www.eurowings.com",
               "source_type": "official_website",
@@ -32270,7 +32234,7 @@
             "derived_from_fiche": true
           },
           "cargo": {
-            "allowed": false,
+            "availability": "not_offered",
             "source": {
               "url": "https://www.eurowings.com",
               "source_type": "official_website",
@@ -32557,7 +32521,7 @@
       "premium": {
         "policy": {
           "cabin": {
-            "allowed": false,
+            "availability": "not_offered",
             "source": {
               "url": "https://www.evaair.com",
               "source_type": "official_website",
@@ -32570,7 +32534,7 @@
             "derived_from_fiche": true
           },
           "hold": {
-            "allowed": true,
+            "availability": "offered",
             "source": {
               "url": "https://www.evaair.com",
               "source_type": "official_website",
@@ -32583,7 +32547,7 @@
             "derived_from_fiche": true
           },
           "cargo": {
-            "allowed": true,
+            "review_state": "legacy_unreviewed",
             "source": {
               "url": "https://www.brcargo.com/NEC_WEB/Product/Product/Index?type=AliveAnimal",
               "source_type": "official_website",
@@ -32832,7 +32796,7 @@
       "premium": {
         "policy": {
           "cabin": {
-            "allowed": true,
+            "availability": "offered",
             "source": {
               "url": "https://www.finnair.com",
               "source_type": "official_website",
@@ -32845,7 +32809,7 @@
             "derived_from_fiche": true
           },
           "hold": {
-            "allowed": true,
+            "availability": "offered",
             "source": {
               "url": "https://www.finnair.com",
               "source_type": "official_website",
@@ -32858,8 +32822,7 @@
             "derived_from_fiche": true
           },
           "cargo": {
-            "allowed": true,
-            "conditional": true,
+            "review_state": "legacy_unreviewed",
             "source": {
               "url": "https://www.finnair.com",
               "source_type": "official_website",
@@ -32953,7 +32916,7 @@
       "premium": {
         "policy": {
           "cabin": {
-            "allowed": true,
+            "availability": "offered",
             "max_weight_kg": 8,
             "source": {
               "url": "https://www.frenchbee.com",
@@ -32967,7 +32930,7 @@
             "derived_from_fiche": true
           },
           "hold": {
-            "allowed": true,
+            "availability": "offered",
             "brachy_allowed": false,
             "source": {
               "url": "https://www.frenchbee.com",
@@ -32981,7 +32944,7 @@
             "derived_from_fiche": true
           },
           "cargo": {
-            "allowed": false,
+            "review_state": "legacy_unreviewed",
             "source": {
               "url": "https://us.frenchbee.com/en/organize-my-trip/before-the-flight/animals",
               "source_type": "official_website",
@@ -33080,7 +33043,7 @@
       "premium": {
         "policy": {
           "cabin": {
-            "allowed": false,
+            "availability": "not_offered",
             "source": {
               "url": "https://www.garuda-indonesia.com",
               "source_type": "official_website",
@@ -33093,8 +33056,7 @@
             "derived_from_fiche": true
           },
           "hold": {
-            "allowed": true,
-            "conditional": true,
+            "review_state": "legacy_unreviewed",
             "source": {
               "url": "https://www.garuda-indonesia.com",
               "source_type": "official_website",
@@ -33107,8 +33069,7 @@
             "derived_from_fiche": true
           },
           "cargo": {
-            "allowed": true,
-            "conditional": true,
+            "review_state": "legacy_unreviewed",
             "source": {
               "url": "https://www.garuda-indonesia.com",
               "source_type": "official_website",
@@ -33191,7 +33152,7 @@
       "premium": {
         "policy": {
           "cabin": {
-            "allowed": false,
+            "availability": "not_offered",
             "source": {
               "url": "https://www.gulfair.com",
               "source_type": "official_website",
@@ -33204,7 +33165,7 @@
             "derived_from_fiche": true
           },
           "hold": {
-            "allowed": false,
+            "availability": "not_offered",
             "source": {
               "url": "https://www.gulfair.com",
               "source_type": "official_website",
@@ -33217,8 +33178,7 @@
             "derived_from_fiche": true
           },
           "cargo": {
-            "allowed": true,
-            "conditional": true,
+            "review_state": "legacy_unreviewed",
             "source": {
               "url": "https://www.gulfair.com",
               "source_type": "official_website",
@@ -33425,7 +33385,7 @@
         },
         "policy": {
           "cabin": {
-            "allowed": true,
+            "availability": "offered",
             "max_weight_kg": 8,
             "carrier_dims_cm": {
               "l": 45,
@@ -33448,7 +33408,7 @@
             }
           },
           "hold": {
-            "allowed": true,
+            "availability": "offered",
             "conditions": {
               "en": "Dogs and cats only, except snub-nosed and dangerous breeds; booked via Booking Offices and paid at the airport.",
               "fr": "Chiens et chats uniquement, hors races brachycéphales et dangereuses ; réservation en agence et paiement à l'aéroport."
@@ -33464,7 +33424,7 @@
             }
           },
           "cargo": {
-            "allowed": true,
+            "availability": "offered",
             "conditions": {
               "en": "Via the partner Woof Airlines when the pet can't travel in the cabin or the hold.",
               "fr": "Via le partenaire Woof Airlines lorsque l'animal ne peut voyager en cabine ni en soute."
@@ -33869,7 +33829,7 @@
       "premium": {
         "policy": {
           "cabin": {
-            "allowed": true,
+            "availability": "offered",
             "source": {
               "url": "https://www.iberiaexpress.com",
               "source_type": "official_website",
@@ -33882,7 +33842,7 @@
             "derived_from_fiche": true
           },
           "hold": {
-            "allowed": true,
+            "availability": "offered",
             "brachy_allowed": false,
             "source": {
               "url": "https://www.iberiaexpress.com",
@@ -33896,8 +33856,7 @@
             "derived_from_fiche": true
           },
           "cargo": {
-            "allowed": true,
-            "conditional": true,
+            "review_state": "legacy_unreviewed",
             "source": {
               "url": "https://www.iberiaexpress.com",
               "source_type": "official_website",
@@ -33956,7 +33915,7 @@
       "premium": {
         "policy": {
           "cabin": {
-            "allowed": false,
+            "availability": "not_offered",
             "source": {
               "url": "https://www.icelandair.com",
               "source_type": "official_website",
@@ -33969,7 +33928,7 @@
             "derived_from_fiche": true
           },
           "hold": {
-            "allowed": false,
+            "availability": "not_offered",
             "source": {
               "url": "https://www.icelandair.com",
               "source_type": "official_website",
@@ -33982,7 +33941,7 @@
             "derived_from_fiche": true
           },
           "cargo": {
-            "allowed": false,
+            "availability": "not_offered",
             "source": {
               "url": "https://www.icelandair.com",
               "source_type": "official_website",
@@ -34299,7 +34258,7 @@
       "premium": {
         "policy": {
           "cabin": {
-            "allowed": false,
+            "availability": "not_offered",
             "source": {
               "url": "https://www.goindigo.in",
               "source_type": "official_website",
@@ -34312,7 +34271,7 @@
             "derived_from_fiche": true
           },
           "hold": {
-            "allowed": false,
+            "availability": "not_offered",
             "source": {
               "url": "https://www.goindigo.in",
               "source_type": "official_website",
@@ -34325,7 +34284,7 @@
             "derived_from_fiche": true
           },
           "cargo": {
-            "allowed": false,
+            "availability": "not_offered",
             "source": {
               "url": "https://www.goindigo.in",
               "source_type": "official_website",
@@ -34532,7 +34491,7 @@
       "premium": {
         "policy": {
           "cabin": {
-            "allowed": true,
+            "availability": "offered",
             "source": {
               "url": "https://www.ita-airways.com",
               "source_type": "official_website",
@@ -34545,7 +34504,7 @@
             "derived_from_fiche": true
           },
           "hold": {
-            "allowed": true,
+            "availability": "offered",
             "brachy_allowed": false,
             "source": {
               "url": "https://www.ita-airways.com",
@@ -34559,7 +34518,7 @@
             "derived_from_fiche": true
           },
           "cargo": {
-            "allowed": false,
+            "availability": "not_offered",
             "source": {
               "url": "https://www.ita-airways.com",
               "source_type": "official_website",
@@ -34737,7 +34696,7 @@
       "premium": {
         "policy": {
           "cabin": {
-            "allowed": false,
+            "availability": "not_offered",
             "source": {
               "url": "https://www.jal.co.jp",
               "source_type": "official_website",
@@ -34750,7 +34709,7 @@
             "derived_from_fiche": true
           },
           "hold": {
-            "allowed": true,
+            "availability": "offered",
             "source": {
               "url": "https://www.jal.co.jp",
               "source_type": "official_website",
@@ -34763,8 +34722,7 @@
             "derived_from_fiche": true
           },
           "cargo": {
-            "allowed": true,
-            "conditional": true,
+            "review_state": "legacy_unreviewed",
             "source": {
               "url": "https://www.jal.co.jp",
               "source_type": "official_website",
@@ -34964,7 +34922,7 @@
       "premium": {
         "policy": {
           "cabin": {
-            "allowed": true,
+            "availability": "offered",
             "source": {
               "url": "https://www.jetblue.com",
               "source_type": "official_website",
@@ -34977,7 +34935,7 @@
             "derived_from_fiche": true
           },
           "hold": {
-            "allowed": false,
+            "availability": "not_offered",
             "source": {
               "url": "https://www.jetblue.com",
               "source_type": "official_website",
@@ -34990,7 +34948,7 @@
             "derived_from_fiche": true
           },
           "cargo": {
-            "allowed": false,
+            "availability": "not_offered",
             "source": {
               "url": "https://www.jetblue.com",
               "source_type": "official_website",
@@ -35071,7 +35029,7 @@
       "premium": {
         "policy": {
           "cabin": {
-            "allowed": false,
+            "availability": "not_offered",
             "source": {
               "url": "https://www.kenya-airways.com",
               "source_type": "official_website",
@@ -35084,7 +35042,7 @@
             "derived_from_fiche": true
           },
           "hold": {
-            "allowed": false,
+            "availability": "not_offered",
             "source": {
               "url": "https://www.kenya-airways.com",
               "source_type": "official_website",
@@ -35097,8 +35055,7 @@
             "derived_from_fiche": true
           },
           "cargo": {
-            "allowed": true,
-            "conditional": true,
+            "review_state": "legacy_unreviewed",
             "source": {
               "url": "https://www.kenya-airways.com",
               "source_type": "official_website",
@@ -35277,7 +35234,7 @@
         },
         "policy": {
           "cabin": {
-            "allowed": true,
+            "availability": "offered",
             "max_weight_kg": 8,
             "carrier_dims_cm": {
               "l": 46,
@@ -35300,7 +35257,7 @@
             }
           },
           "hold": {
-            "allowed": true,
+            "availability": "offered",
             "carrier_dims_cm": {
               "l": 122,
               "w": 81,
@@ -35322,7 +35279,7 @@
             }
           },
           "cargo": {
-            "allowed": true,
+            "availability": "offered",
             "conditions": {
               "en": "Via KLM Cargo for transfers over 3 h, snub-nosed pets, or countries that only allow pets as cargo.",
               "fr": "Via KLM Cargo pour les correspondances de plus de 3 h, les animaux brachycéphales, ou les pays n'admettant les animaux qu'en fret."
@@ -35748,7 +35705,7 @@
       "premium": {
         "policy": {
           "cabin": {
-            "allowed": true,
+            "availability": "offered",
             "max_weight_kg": 10,
             "source": {
               "url": "https://kmmaltairlines.com",
@@ -35762,7 +35719,7 @@
             "derived_from_fiche": true
           },
           "hold": {
-            "allowed": true,
+            "availability": "offered",
             "source": {
               "url": "https://kmmaltairlines.com",
               "source_type": "official_website",
@@ -35775,8 +35732,7 @@
             "derived_from_fiche": true
           },
           "cargo": {
-            "allowed": true,
-            "conditional": true,
+            "review_state": "legacy_unreviewed",
             "source": {
               "url": "https://kmmaltairlines.com",
               "source_type": "official_website",
@@ -36029,7 +35985,7 @@
       "premium": {
         "policy": {
           "cabin": {
-            "allowed": true,
+            "availability": "offered",
             "source": {
               "url": "https://www.koreanair.com",
               "source_type": "official_website",
@@ -36042,7 +35998,7 @@
             "derived_from_fiche": true
           },
           "hold": {
-            "allowed": true,
+            "availability": "offered",
             "brachy_allowed": false,
             "source": {
               "url": "https://www.koreanair.com",
@@ -36056,7 +36012,7 @@
             "derived_from_fiche": true
           },
           "cargo": {
-            "allowed": true,
+            "review_state": "legacy_unreviewed",
             "source": {
               "url": "https://cargo.koreanair.com/en/products/Specialized/Live",
               "source_type": "official_website",
@@ -36116,7 +36072,7 @@
       "premium": {
         "policy": {
           "cabin": {
-            "allowed": true,
+            "availability": "offered",
             "source": {
               "url": "https://www.lacompagnie.com",
               "source_type": "official_website",
@@ -36129,7 +36085,7 @@
             "derived_from_fiche": true
           },
           "hold": {
-            "allowed": false,
+            "availability": "not_offered",
             "source": {
               "url": "https://www.lacompagnie.com",
               "source_type": "official_website",
@@ -36347,7 +36303,7 @@
       "premium": {
         "policy": {
           "cabin": {
-            "allowed": true,
+            "availability": "offered",
             "source": {
               "url": "https://www.latamairlines.com",
               "source_type": "official_website",
@@ -36360,7 +36316,7 @@
             "derived_from_fiche": true
           },
           "hold": {
-            "allowed": true,
+            "availability": "offered",
             "brachy_allowed": false,
             "source": {
               "url": "https://www.latamairlines.com",
@@ -36374,8 +36330,7 @@
             "derived_from_fiche": true
           },
           "cargo": {
-            "allowed": true,
-            "conditional": true,
+            "review_state": "legacy_unreviewed",
             "source": {
               "url": "https://www.latamairlines.com",
               "source_type": "official_website",
@@ -36641,7 +36596,7 @@
       "premium": {
         "policy": {
           "cabin": {
-            "allowed": true,
+            "availability": "offered",
             "max_weight_kg": 8,
             "source": {
               "url": "https://www.lot.com/",
@@ -36655,7 +36610,7 @@
             "derived_from_fiche": true
           },
           "hold": {
-            "allowed": true,
+            "availability": "offered",
             "brachy_allowed": false,
             "source": {
               "url": "https://www.lot.com/",
@@ -36669,8 +36624,7 @@
             "derived_from_fiche": true
           },
           "cargo": {
-            "allowed": true,
-            "conditional": true,
+            "review_state": "legacy_unreviewed",
             "source": {
               "url": "https://www.lot.com/",
               "source_type": "official_website",
@@ -36804,7 +36758,7 @@
         },
         "policy": {
           "cabin": {
-            "allowed": true,
+            "availability": "offered",
             "max_weight_kg": 8,
             "conditions": {
               "en": "Small dogs and cats up to 8 kg including the container; up to 2 animals; minimum 12 weeks old (15 weeks to/from Germany).",
@@ -36821,7 +36775,7 @@
             }
           },
           "hold": {
-            "allowed": true,
+            "availability": "offered",
             "conditions": {
               "en": "Dogs and cats over 8 kg travel as excess baggage in an air-conditioned hold; register at least 72 h before departure; may be refused in extreme heat.",
               "fr": "Chiens et chats de plus de 8 kg voyagent en bagage supplémentaire en soute climatisée ; enregistrement au moins 72 h avant le départ ; refus possible en cas de forte chaleur."
@@ -36837,7 +36791,7 @@
             }
           },
           "cargo": {
-            "allowed": true,
+            "availability": "offered",
             "conditions": {
               "en": "Via Lufthansa Cargo when required by the destination or when the owner is not travelling with the pet.",
               "fr": "Via Lufthansa Cargo lorsque la destination l'exige ou que le propriétaire ne voyage pas avec l'animal."
@@ -37349,7 +37303,7 @@
       "premium": {
         "policy": {
           "cabin": {
-            "allowed": true,
+            "availability": "offered",
             "source": {
               "url": "https://www.luxair.lu",
               "source_type": "official_website",
@@ -37362,7 +37316,7 @@
             "derived_from_fiche": true
           },
           "hold": {
-            "allowed": true,
+            "availability": "offered",
             "brachy_allowed": false,
             "source": {
               "url": "https://www.luxair.lu",
@@ -37376,8 +37330,7 @@
             "derived_from_fiche": true
           },
           "cargo": {
-            "allowed": true,
-            "conditional": true,
+            "review_state": "legacy_unreviewed",
             "source": {
               "url": "https://www.luxair.lu",
               "source_type": "official_website",
@@ -37648,7 +37601,7 @@
       "premium": {
         "policy": {
           "cabin": {
-            "allowed": false,
+            "availability": "not_offered",
             "source": {
               "url": "https://www.malaysiaairlines.com",
               "source_type": "official_website",
@@ -37661,7 +37614,7 @@
             "derived_from_fiche": true
           },
           "hold": {
-            "allowed": true,
+            "availability": "offered",
             "source": {
               "url": "https://www.malaysiaairlines.com",
               "source_type": "official_website",
@@ -37674,7 +37627,7 @@
             "derived_from_fiche": true
           },
           "cargo": {
-            "allowed": true,
+            "review_state": "legacy_unreviewed",
             "source": {
               "url": "https://www.maskargo.com/en/products-and-services/products/mk-live.html",
               "source_type": "official_website",
@@ -37825,7 +37778,7 @@
       "premium": {
         "policy": {
           "cabin": {
-            "allowed": true,
+            "availability": "offered",
             "source": {
               "url": "https://www.neosair.com",
               "source_type": "official_website",
@@ -37838,7 +37791,7 @@
             "derived_from_fiche": true
           },
           "hold": {
-            "allowed": true,
+            "availability": "offered",
             "brachy_allowed": false,
             "source": {
               "url": "https://www.neosair.com",
@@ -37852,8 +37805,7 @@
             "derived_from_fiche": true
           },
           "cargo": {
-            "allowed": true,
-            "conditional": true,
+            "review_state": "legacy_unreviewed",
             "source": {
               "url": "https://www.neosair.com",
               "source_type": "official_website",
@@ -38143,7 +38095,7 @@
       "premium": {
         "policy": {
           "cabin": {
-            "allowed": true,
+            "availability": "offered",
             "max_weight_kg": 8,
             "source": {
               "url": "https://www.norwegian.com",
@@ -38157,7 +38109,7 @@
             "derived_from_fiche": true
           },
           "hold": {
-            "allowed": true,
+            "availability": "offered",
             "source": {
               "url": "https://www.norwegian.com",
               "source_type": "official_website",
@@ -38170,7 +38122,7 @@
             "derived_from_fiche": true
           },
           "cargo": {
-            "allowed": false,
+            "review_state": "legacy_unreviewed",
             "source": {
               "url": "https://cargo.norwegian.com/services/",
               "source_type": "official_website",
@@ -38508,7 +38460,7 @@
       "premium": {
         "policy": {
           "cabin": {
-            "allowed": true,
+            "availability": "offered",
             "source": {
               "url": "https://www.flypgs.com",
               "source_type": "official_website",
@@ -38521,8 +38473,7 @@
             "derived_from_fiche": true
           },
           "hold": {
-            "allowed": true,
-            "conditional": true,
+            "review_state": "legacy_unreviewed",
             "source": {
               "url": "https://www.flypgs.com",
               "source_type": "official_website",
@@ -38535,7 +38486,7 @@
             "derived_from_fiche": true
           },
           "cargo": {
-            "allowed": false,
+            "availability": "not_offered",
             "source": {
               "url": "https://www.flypgs.com",
               "source_type": "official_website",
@@ -38757,7 +38708,7 @@
       "premium": {
         "policy": {
           "cabin": {
-            "allowed": true,
+            "availability": "offered",
             "max_weight_kg": 10,
             "source": {
               "url": "https://www.philippineairlines.com/",
@@ -38771,7 +38722,7 @@
             "derived_from_fiche": true
           },
           "hold": {
-            "allowed": true,
+            "availability": "offered",
             "brachy_allowed": false,
             "source": {
               "url": "https://www.philippineairlines.com/",
@@ -38785,8 +38736,7 @@
             "derived_from_fiche": true
           },
           "cargo": {
-            "allowed": true,
-            "conditional": true,
+            "review_state": "legacy_unreviewed",
             "source": {
               "url": "https://www.philippineairlines.com/",
               "source_type": "official_website",
@@ -38945,7 +38895,7 @@
       "premium": {
         "policy": {
           "cabin": {
-            "allowed": false,
+            "availability": "not_offered",
             "source": {
               "url": "https://www.qantas.com/",
               "source_type": "official_website",
@@ -38958,7 +38908,7 @@
             "derived_from_fiche": true
           },
           "hold": {
-            "allowed": false,
+            "review_state": "legacy_unreviewed",
             "source": {
               "url": "https://www.qantas.com/en-au/travel-information/pets",
               "source_type": "official_website",
@@ -38977,7 +38927,7 @@
             "derived_from_fiche": true
           },
           "cargo": {
-            "allowed": true,
+            "review_state": "legacy_unreviewed",
             "source": {
               "url": "https://www.qantas.com/en-au/travel-information/pets",
               "source_type": "official_website",
@@ -39355,7 +39305,7 @@
       "premium": {
         "policy": {
           "cabin": {
-            "allowed": false,
+            "availability": "not_offered",
             "source": {
               "url": "https://www.qatarairways.com/",
               "source_type": "official_website",
@@ -39368,7 +39318,7 @@
             "derived_from_fiche": true
           },
           "hold": {
-            "allowed": true,
+            "availability": "offered",
             "brachy_allowed": false,
             "source": {
               "url": "https://www.qatarairways.com/",
@@ -39382,8 +39332,7 @@
             "derived_from_fiche": true
           },
           "cargo": {
-            "allowed": true,
-            "conditional": true,
+            "review_state": "legacy_unreviewed",
             "source": {
               "url": "https://www.qatarairways.com/",
               "source_type": "official_website",
@@ -39589,7 +39538,7 @@
       "premium": {
         "policy": {
           "cabin": {
-            "allowed": true,
+            "availability": "offered",
             "source": {
               "url": "https://www.royalairmaroc.com",
               "source_type": "official_website",
@@ -39602,7 +39551,7 @@
             "derived_from_fiche": true
           },
           "hold": {
-            "allowed": true,
+            "availability": "offered",
             "source": {
               "url": "https://www.royalairmaroc.com",
               "source_type": "official_website",
@@ -39615,8 +39564,7 @@
             "derived_from_fiche": true
           },
           "cargo": {
-            "allowed": true,
-            "conditional": true,
+            "review_state": "legacy_unreviewed",
             "source": {
               "url": "https://www.royalairmaroc.com",
               "source_type": "official_website",
@@ -39701,8 +39649,7 @@
       "premium": {
         "policy": {
           "cabin": {
-            "allowed": true,
-            "conditional": true,
+            "review_state": "legacy_unreviewed",
             "source": {
               "url": "https://www.rj.com",
               "source_type": "official_website",
@@ -39715,7 +39662,7 @@
             "derived_from_fiche": true
           },
           "hold": {
-            "allowed": true,
+            "availability": "offered",
             "source": {
               "url": "https://www.rj.com",
               "source_type": "official_website",
@@ -39728,8 +39675,7 @@
             "derived_from_fiche": true
           },
           "cargo": {
-            "allowed": true,
-            "conditional": true,
+            "review_state": "legacy_unreviewed",
             "source": {
               "url": "https://www.rj.com",
               "source_type": "official_website",
@@ -40573,7 +40519,7 @@
       "premium": {
         "policy": {
           "cabin": {
-            "allowed": false,
+            "availability": "not_offered",
             "source": {
               "url": "https://www.ryanair.com",
               "source_type": "official_website",
@@ -40586,7 +40532,7 @@
             "derived_from_fiche": true
           },
           "hold": {
-            "allowed": false,
+            "availability": "not_offered",
             "source": {
               "url": "https://www.ryanair.com",
               "source_type": "official_website",
@@ -40599,7 +40545,7 @@
             "derived_from_fiche": true
           },
           "cargo": {
-            "allowed": false,
+            "availability": "not_offered",
             "source": {
               "url": "https://www.ryanair.com",
               "source_type": "official_website",
@@ -41065,7 +41011,7 @@
       "premium": {
         "policy": {
           "cabin": {
-            "allowed": true,
+            "availability": "offered",
             "source": {
               "url": "https://www.flysas.com",
               "source_type": "official_website",
@@ -41078,7 +41024,7 @@
             "derived_from_fiche": true
           },
           "hold": {
-            "allowed": true,
+            "availability": "offered",
             "brachy_allowed": false,
             "source": {
               "url": "https://www.flysas.com",
@@ -41092,8 +41038,7 @@
             "derived_from_fiche": true
           },
           "cargo": {
-            "allowed": true,
-            "conditional": true,
+            "review_state": "legacy_unreviewed",
             "source": {
               "url": "https://www.flysas.com",
               "source_type": "official_website",
@@ -41394,9 +41339,8 @@
       "premium": {
         "policy": {
           "cabin": {
-            "allowed": true,
+            "review_state": "legacy_unreviewed",
             "max_weight_kg": 5,
-            "conditional": true,
             "source": {
               "url": "https://www.saudia.com",
               "source_type": "official_website",
@@ -41409,7 +41353,7 @@
             "derived_from_fiche": true
           },
           "hold": {
-            "allowed": true,
+            "availability": "offered",
             "source": {
               "url": "https://www.saudia.com",
               "source_type": "official_website",
@@ -41422,8 +41366,7 @@
             "derived_from_fiche": true
           },
           "cargo": {
-            "allowed": true,
-            "conditional": true,
+            "review_state": "legacy_unreviewed",
             "source": {
               "url": "https://www.saudia.com",
               "source_type": "official_website",
@@ -41662,7 +41605,7 @@
       "premium": {
         "policy": {
           "cabin": {
-            "allowed": false,
+            "availability": "not_offered",
             "source": {
               "url": "https://www.singaporeair.com/",
               "source_type": "official_website",
@@ -41675,7 +41618,7 @@
             "derived_from_fiche": true
           },
           "hold": {
-            "allowed": true,
+            "availability": "offered",
             "brachy_allowed": false,
             "source": {
               "url": "https://www.singaporeair.com/",
@@ -41689,8 +41632,7 @@
             "derived_from_fiche": true
           },
           "cargo": {
-            "allowed": true,
-            "conditional": true,
+            "review_state": "legacy_unreviewed",
             "source": {
               "url": "https://www.singaporeair.com/",
               "source_type": "official_website",
@@ -41796,7 +41738,7 @@
       "premium": {
         "policy": {
           "cabin": {
-            "allowed": true,
+            "availability": "offered",
             "source": {
               "url": "https://www.skyexpress.gr",
               "source_type": "official_website",
@@ -41809,8 +41751,7 @@
             "derived_from_fiche": true
           },
           "hold": {
-            "allowed": true,
-            "conditional": true,
+            "review_state": "legacy_unreviewed",
             "source": {
               "url": "https://www.skyexpress.gr",
               "source_type": "official_website",
@@ -41823,8 +41764,7 @@
             "derived_from_fiche": true
           },
           "cargo": {
-            "allowed": true,
-            "conditional": true,
+            "review_state": "legacy_unreviewed",
             "source": {
               "url": "https://www.skyexpress.gr",
               "source_type": "official_website",
@@ -42003,7 +41943,7 @@
       "premium": {
         "policy": {
           "cabin": {
-            "allowed": true,
+            "availability": "offered",
             "max_weight_kg": 8,
             "source": {
               "url": "https://www.smartwings.com/",
@@ -42017,7 +41957,7 @@
             "derived_from_fiche": true
           },
           "hold": {
-            "allowed": true,
+            "availability": "offered",
             "source": {
               "url": "https://www.smartwings.com/",
               "source_type": "official_website",
@@ -42092,7 +42032,7 @@
       "premium": {
         "policy": {
           "cabin": {
-            "allowed": false,
+            "availability": "not_offered",
             "source": {
               "url": "https://www.flysaa.com",
               "source_type": "official_website",
@@ -42105,8 +42045,7 @@
             "derived_from_fiche": true
           },
           "hold": {
-            "allowed": true,
-            "conditional": true,
+            "review_state": "legacy_unreviewed",
             "source": {
               "url": "https://www.flysaa.com",
               "source_type": "official_website",
@@ -42119,8 +42058,7 @@
             "derived_from_fiche": true
           },
           "cargo": {
-            "allowed": true,
-            "conditional": true,
+            "review_state": "legacy_unreviewed",
             "source": {
               "url": "https://www.flysaa.com",
               "source_type": "official_website",
@@ -42259,7 +42197,7 @@
       "premium": {
         "policy": {
           "cabin": {
-            "allowed": true,
+            "availability": "offered",
             "source": {
               "url": "https://www.sunexpress.com",
               "source_type": "official_website",
@@ -42272,8 +42210,7 @@
             "derived_from_fiche": true
           },
           "hold": {
-            "allowed": true,
-            "conditional": true,
+            "review_state": "legacy_unreviewed",
             "source": {
               "url": "https://www.sunexpress.com",
               "source_type": "official_website",
@@ -42286,8 +42223,7 @@
             "derived_from_fiche": true
           },
           "cargo": {
-            "allowed": true,
-            "conditional": true,
+            "review_state": "legacy_unreviewed",
             "source": {
               "url": "https://www.sunexpress.com",
               "source_type": "official_website",
@@ -42597,7 +42533,7 @@
       "premium": {
         "policy": {
           "cabin": {
-            "allowed": true,
+            "availability": "offered",
             "max_weight_kg": 8,
             "source": {
               "url": "https://www.swiss.com",
@@ -42611,7 +42547,7 @@
             "derived_from_fiche": true
           },
           "hold": {
-            "allowed": true,
+            "availability": "offered",
             "brachy_allowed": false,
             "source": {
               "url": "https://www.swiss.com",
@@ -42625,8 +42561,7 @@
             "derived_from_fiche": true
           },
           "cargo": {
-            "allowed": true,
-            "conditional": true,
+            "review_state": "legacy_unreviewed",
             "source": {
               "url": "https://www.swiss.com",
               "source_type": "official_website",
@@ -42882,7 +42817,7 @@
       "premium": {
         "policy": {
           "cabin": {
-            "allowed": true,
+            "availability": "offered",
             "source": {
               "url": "https://www.flytap.com/",
               "source_type": "official_website",
@@ -42895,7 +42830,7 @@
             "derived_from_fiche": true
           },
           "hold": {
-            "allowed": true,
+            "availability": "offered",
             "brachy_allowed": false,
             "source": {
               "url": "https://www.flytap.com/",
@@ -42909,8 +42844,7 @@
             "derived_from_fiche": true
           },
           "cargo": {
-            "allowed": true,
-            "conditional": true,
+            "review_state": "legacy_unreviewed",
             "source": {
               "url": "https://www.flytap.com/",
               "source_type": "official_website",
@@ -42980,7 +42914,7 @@
       "premium": {
         "policy": {
           "cabin": {
-            "allowed": true,
+            "availability": "offered",
             "source": {
               "url": "https://www.tarom.ro",
               "source_type": "official_website",
@@ -42993,9 +42927,8 @@
             "derived_from_fiche": true
           },
           "hold": {
-            "allowed": true,
+            "review_state": "legacy_unreviewed",
             "brachy_allowed": false,
-            "conditional": true,
             "source": {
               "url": "https://www.tarom.ro",
               "source_type": "official_website",
@@ -43008,8 +42941,7 @@
             "derived_from_fiche": true
           },
           "cargo": {
-            "allowed": true,
-            "conditional": true,
+            "review_state": "legacy_unreviewed",
             "source": {
               "url": "https://www.tarom.ro",
               "source_type": "official_website",
@@ -43227,7 +43159,7 @@
       "premium": {
         "policy": {
           "cabin": {
-            "allowed": false,
+            "availability": "not_offered",
             "source": {
               "url": "https://www.thaiairways.com",
               "source_type": "official_website",
@@ -43240,7 +43172,7 @@
             "derived_from_fiche": true
           },
           "hold": {
-            "allowed": true,
+            "availability": "offered",
             "brachy_allowed": false,
             "source": {
               "url": "https://www.thaiairways.com",
@@ -43254,16 +43186,18 @@
             "derived_from_fiche": true
           },
           "cargo": {
-            "allowed": true,
-            "conditional": true,
+            "availability": "undocumented",
             "source": {
-              "url": "https://www.thaiairways.com",
+              "url": "https://www.thaiairways.com/en-au/content/special-assistance/travel-with-pets/pets-as-checked-baggage-avih/",
               "source_type": "official_website",
-              "verified_date": "2026-07-11",
-              "review_due": "2026-10-09",
-              "confidence": 3,
-              "reviewer": "MyDogCanFly Data Team (derived from fiche)",
-              "history": []
+              "verified_date": "2026-08-13",
+              "review_due": "2026-11-11",
+              "confidence": 4,
+              "reviewer": "Claude+Codex (lecture intégrale 13/08/2026)",
+              "history": [],
+              "quote": "(For cargo acceptance, please contact directly to Cargo Department)",
+              "quote_language": "en",
+              "locator": "section « Embargo Of Snub-nosed And Other Dog Breeds »"
             },
             "derived_from_fiche": true
           }
@@ -43557,7 +43491,7 @@
       "premium": {
         "policy": {
           "cabin": {
-            "allowed": true,
+            "availability": "offered",
             "max_weight_kg": 8,
             "source": {
               "url": "https://www.transavia.com",
@@ -43571,7 +43505,7 @@
             "derived_from_fiche": true
           },
           "hold": {
-            "allowed": true,
+            "availability": "offered",
             "brachy_allowed": false,
             "source": {
               "url": "https://www.transavia.com",
@@ -43715,7 +43649,7 @@
       "premium": {
         "policy": {
           "cabin": {
-            "allowed": false,
+            "availability": "not_offered",
             "source": {
               "url": "https://www.tui.co.uk",
               "source_type": "official_website",
@@ -43728,7 +43662,7 @@
             "derived_from_fiche": true
           },
           "hold": {
-            "allowed": false,
+            "availability": "not_offered",
             "source": {
               "url": "https://www.tui.co.uk",
               "source_type": "official_website",
@@ -43741,8 +43675,7 @@
             "derived_from_fiche": true
           },
           "cargo": {
-            "allowed": true,
-            "conditional": true,
+            "review_state": "legacy_unreviewed",
             "source": {
               "url": "https://www.tui.co.uk",
               "source_type": "official_website",
@@ -43959,7 +43892,7 @@
       "premium": {
         "policy": {
           "cabin": {
-            "allowed": true,
+            "availability": "offered",
             "source": {
               "url": "https://www.tunisair.com",
               "source_type": "official_website",
@@ -43972,7 +43905,7 @@
             "derived_from_fiche": true
           },
           "hold": {
-            "allowed": true,
+            "availability": "offered",
             "source": {
               "url": "https://www.tunisair.com",
               "source_type": "official_website",
@@ -43985,8 +43918,7 @@
             "derived_from_fiche": true
           },
           "cargo": {
-            "allowed": true,
-            "conditional": true,
+            "review_state": "legacy_unreviewed",
             "source": {
               "url": "https://www.tunisair.com",
               "source_type": "official_website",
@@ -44137,7 +44069,7 @@
         },
         "policy": {
           "cabin": {
-            "allowed": true,
+            "availability": "offered",
             "max_weight_kg": 8,
             "carrier_dims_cm": {
               "l": 40,
@@ -44159,7 +44091,7 @@
             }
           },
           "hold": {
-            "allowed": true,
+            "availability": "offered",
             "carrier_dims_cm": {
               "l": 125,
               "w": 75,
@@ -44181,7 +44113,7 @@
             "max_weight_kg": 50
           },
           "cargo": {
-            "allowed": true,
+            "availability": "offered",
             "conditions": {
               "en": "Via Turkish Cargo for pets over the hold limits, restricted breeds, or other bird species.",
               "fr": "Via Turkish Cargo pour les animaux dépassant les limites de soute, les races restreintes ou d'autres espèces d'oiseaux."
@@ -44730,7 +44662,7 @@
         },
         "policy": {
           "cabin": {
-            "allowed": true,
+            "availability": "offered",
             "carrier_dims_cm": {
               "l": 45,
               "w": 27,
@@ -44752,7 +44684,7 @@
             }
           },
           "hold": {
-            "allowed": false,
+            "availability": "not_offered",
             "conditions": {
               "en": "Checked pets discontinued; hold/cargo only for certain active-duty military or State Department employees.",
               "fr": "Transport en soute supprimé ; soute/fret réservés à certains militaires d'active ou agents diplomatiques."
@@ -44768,7 +44700,7 @@
             }
           },
           "cargo": {
-            "allowed": false,
+            "availability": "not_offered",
             "conditions": {
               "en": "The general PetSafe cargo service is discontinued; cargo only for certain military/State Department travellers.",
               "fr": "Le service fret général PetSafe est supprimé ; fret réservé à certains voyageurs militaires/diplomatiques."
@@ -45559,7 +45491,7 @@
       "premium": {
         "policy": {
           "cabin": {
-            "allowed": true,
+            "availability": "offered",
             "source": {
               "url": "https://www.vietnamairlines.com",
               "source_type": "official_website",
@@ -45572,7 +45504,7 @@
             "derived_from_fiche": true
           },
           "hold": {
-            "allowed": true,
+            "availability": "offered",
             "source": {
               "url": "https://www.vietnamairlines.com",
               "source_type": "official_website",
@@ -45585,8 +45517,7 @@
             "derived_from_fiche": true
           },
           "cargo": {
-            "allowed": true,
-            "conditional": true,
+            "review_state": "legacy_unreviewed",
             "source": {
               "url": "https://www.vietnamairlines.com",
               "source_type": "official_website",
@@ -45705,7 +45636,7 @@
       "premium": {
         "policy": {
           "cabin": {
-            "allowed": false,
+            "availability": "not_offered",
             "source": {
               "url": "https://www.virginatlantic.com/",
               "source_type": "official_website",
@@ -45718,7 +45649,7 @@
             "derived_from_fiche": true
           },
           "hold": {
-            "allowed": false,
+            "availability": "not_offered",
             "source": {
               "url": "https://www.virginatlantic.com/",
               "source_type": "official_website",
@@ -45731,8 +45662,7 @@
             "derived_from_fiche": true
           },
           "cargo": {
-            "allowed": true,
-            "conditional": true,
+            "review_state": "legacy_unreviewed",
             "source": {
               "url": "https://www.virginatlantic.com/",
               "source_type": "official_website",
@@ -45825,7 +45755,7 @@
       "premium": {
         "policy": {
           "cabin": {
-            "allowed": true,
+            "availability": "offered",
             "max_weight_kg": 8,
             "source": {
               "url": "https://www.virginaustralia.com/",
@@ -45839,8 +45769,7 @@
             "derived_from_fiche": true
           },
           "cargo": {
-            "allowed": true,
-            "conditional": true,
+            "review_state": "legacy_unreviewed",
             "source": {
               "url": "https://www.virginaustralia.com/",
               "source_type": "official_website",
@@ -45853,7 +45782,7 @@
             "derived_from_fiche": true
           },
           "hold": {
-            "allowed": false,
+            "review_state": "legacy_unreviewed",
             "source": {
               "url": "https://www.virginaustralia.com/us/en/travel-info/flying-with-us/cargo/pet-transport/",
               "source_type": "official_website",
@@ -46012,7 +45941,7 @@
       "premium": {
         "policy": {
           "cabin": {
-            "allowed": true,
+            "availability": "offered",
             "max_weight_kg": 10,
             "source": {
               "url": "https://www.volotea.com",
@@ -46026,7 +45955,7 @@
             "derived_from_fiche": true
           },
           "hold": {
-            "allowed": false,
+            "availability": "not_offered",
             "source": {
               "url": "https://www.volotea.com",
               "source_type": "official_website",
@@ -46039,7 +45968,7 @@
             "derived_from_fiche": true
           },
           "cargo": {
-            "allowed": false,
+            "availability": "not_offered",
             "source": {
               "url": "https://www.volotea.com",
               "source_type": "official_website",
@@ -46318,7 +46247,7 @@
       "premium": {
         "policy": {
           "cabin": {
-            "allowed": true,
+            "availability": "offered",
             "max_weight_kg": 10,
             "source": {
               "url": "https://www.vueling.com",
@@ -46332,7 +46261,7 @@
             "derived_from_fiche": true
           },
           "hold": {
-            "allowed": false,
+            "availability": "not_offered",
             "source": {
               "url": "https://www.vueling.com",
               "source_type": "official_website",
@@ -46345,7 +46274,7 @@
             "derived_from_fiche": true
           },
           "cargo": {
-            "allowed": false,
+            "availability": "not_offered",
             "source": {
               "url": "https://www.vueling.com",
               "source_type": "official_website",
@@ -46454,7 +46383,7 @@
         },
         "policy": {
           "cabin": {
-            "allowed": true,
+            "availability": "offered",
             "carrier_dims_cm": {
               "l": 41,
               "w": 25.4,
@@ -46481,7 +46410,7 @@
             }
           },
           "hold": {
-            "allowed": true,
+            "availability": "offered",
             "conditions": {
               "en": "Dogs travel as checked baggage in the hold; combined pet + kennel up to 45 kg (100 lb); maximum crate 101 × 68 × 81 cm.",
               "fr": "Les chiens voyagent en bagage enregistré en soute ; animal + caisse jusqu'à 45 kg (100 lb) ; caisse maximale 101 × 68 × 81 cm."
@@ -46503,7 +46432,7 @@
             }
           },
           "cargo": {
-            "allowed": true,
+            "availability": "offered",
             "conditions": {
               "en": "Available via WestJet Cargo where checked-baggage carriage is not possible.",
               "fr": "Disponible via WestJet Cargo lorsque le transport en bagage enregistré n'est pas possible."
@@ -47025,7 +46954,7 @@
       "premium": {
         "policy": {
           "cabin": {
-            "allowed": false,
+            "availability": "not_offered",
             "source": {
               "url": "https://wizzair.com",
               "source_type": "official_website",
@@ -47038,7 +46967,7 @@
             "derived_from_fiche": true
           },
           "hold": {
-            "allowed": false,
+            "availability": "not_offered",
             "source": {
               "url": "https://wizzair.com",
               "source_type": "official_website",
@@ -47051,7 +46980,7 @@
             "derived_from_fiche": true
           },
           "cargo": {
-            "allowed": false,
+            "availability": "not_offered",
             "source": {
               "url": "https://wizzair.com",
               "source_type": "official_website",

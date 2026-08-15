@@ -69,8 +69,16 @@ ladder:
       es: Carga
       pt: "Carga"
     sub: "> 75 kg"
+policies:
+  cabin:
+    availability: offered
+  hold:
+    availability: offered
+  cargo:
+    review_state: legacy_unreviewed
 channels:
-  - icon: 🐾
+  - placement: cabin
+    icon: 🐾
     name:
       en: Cabin
       fr: Cabine
@@ -92,7 +100,8 @@ channels:
       fr: 125 € le trajet
       es: 125 € por trayecto
       pt: "125 € por trecho"
-  - icon: 🧳
+  - placement: hold
+    icon: 🧳
     name:
       en: Hold
       fr: Soute
@@ -114,7 +123,8 @@ channels:
       fr: 200 € le trajet
       es: 200 € por trayecto
       pt: "200 € por trecho"
-  - icon: ✈️
+  - placement: cargo
+    icon: ✈️
     name:
       en: Cargo
       fr: Fret

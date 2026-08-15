@@ -1,0 +1,1580 @@
+{
+ "option": "C — bloc `policies:` unique et non éditorial ; `placement` sur les canaux visibles (lien, jamais décision)",
+ "totaux": {
+  "fiches": 103,
+  "canaux": 296,
+  "par_catOf": 292,
+  "par_rattachement_explicite": 4,
+  "politiques": 302
+ },
+ "rattachement_explicite": {
+  "airline_french_bee|channels[2]": "cargo",
+  "airline_korean_air|channels[2]": "cargo",
+  "airline_malaysia_airlines|channels[2]": "cargo",
+  "airline_qantas|channels[1]": "cargo"
+ },
+ "politiques_sans_canal_visible_attendues": [
+  "airline_asiana.cargo",
+  "airline_condor.cargo",
+  "airline_eva_air.cargo",
+  "airline_norwegian.cargo",
+  "airline_qantas.hold",
+  "airline_virgin_australia.hold"
+ ],
+ "politiques_sans_canal_visible_observees": [
+  "airline_asiana.cargo",
+  "airline_condor.cargo",
+  "airline_eva_air.cargo",
+  "airline_norwegian.cargo",
+  "airline_qantas.hold",
+  "airline_virgin_australia.hold"
+ ],
+ "dette_inattendue": [],
+ "dette_scellee_disparue": [],
+ "rattachements_non_consommes": [],
+ "invariants": {
+  "chaque canal visible référence une politique": true,
+  "aucun placement dupliqué dans une fiche": true,
+  "302 politiques déclarées": true,
+  "296 canaux visibles porteront un placement": true,
+  "les 6 politiques sans canal sont EXACTEMENT celles scellées": true,
+  "les 4 rattachements scellés sont consommés une fois chacun": true
+ },
+ "fiches": [
+  {
+   "id": null,
+   "file": "content/airlines/_template.yml",
+   "canaux": [],
+   "politiques": [],
+   "politiques_sans_canal": []
+  },
+  {
+   "id": "airline_aegean",
+   "file": "content/airlines/aegean.yml",
+   "canaux": [
+    "cabin",
+    "hold",
+    "cargo"
+   ],
+   "politiques": [
+    "cabin",
+    "hold",
+    "cargo"
+   ],
+   "politiques_sans_canal": []
+  },
+  {
+   "id": "airline_aer_lingus",
+   "file": "content/airlines/aer_lingus.yml",
+   "canaux": [
+    "cabin",
+    "hold",
+    "cargo"
+   ],
+   "politiques": [
+    "cabin",
+    "hold",
+    "cargo"
+   ],
+   "politiques_sans_canal": []
+  },
+  {
+   "id": "airline_aerolineas_argentinas",
+   "file": "content/airlines/aerolineas_argentinas.yml",
+   "canaux": [
+    "cabin",
+    "hold",
+    "cargo"
+   ],
+   "politiques": [
+    "cabin",
+    "hold",
+    "cargo"
+   ],
+   "politiques_sans_canal": []
+  },
+  {
+   "id": "airline_aeromexico",
+   "file": "content/airlines/aeromexico.yml",
+   "canaux": [
+    "cabin",
+    "hold",
+    "cargo"
+   ],
+   "politiques": [
+    "cabin",
+    "hold",
+    "cargo"
+   ],
+   "politiques_sans_canal": []
+  },
+  {
+   "id": "airline_air_algerie",
+   "file": "content/airlines/air_algerie.yml",
+   "canaux": [
+    "cabin",
+    "hold",
+    "cargo"
+   ],
+   "politiques": [
+    "cabin",
+    "hold",
+    "cargo"
+   ],
+   "politiques_sans_canal": []
+  },
+  {
+   "id": "airline_air_astana",
+   "file": "content/airlines/air_astana.yml",
+   "canaux": [
+    "cabin",
+    "hold",
+    "cargo"
+   ],
+   "politiques": [
+    "cabin",
+    "hold",
+    "cargo"
+   ],
+   "politiques_sans_canal": []
+  },
+  {
+   "id": "airline_air_austral",
+   "file": "content/airlines/air_austral.yml",
+   "canaux": [
+    "cabin",
+    "hold",
+    "cargo"
+   ],
+   "politiques": [
+    "cabin",
+    "hold",
+    "cargo"
+   ],
+   "politiques_sans_canal": []
+  },
+  {
+   "id": "airline_air_canada",
+   "file": "content/airlines/air_canada.yml",
+   "canaux": [
+    "cabin",
+    "hold",
+    "cargo"
+   ],
+   "politiques": [
+    "cabin",
+    "hold",
+    "cargo"
+   ],
+   "politiques_sans_canal": []
+  },
+  {
+   "id": "airline_air_caraibes",
+   "file": "content/airlines/air_caraibes.yml",
+   "canaux": [
+    "cabin",
+    "hold",
+    "cargo"
+   ],
+   "politiques": [
+    "cabin",
+    "hold",
+    "cargo"
+   ],
+   "politiques_sans_canal": []
+  },
+  {
+   "id": "airline_air_china",
+   "file": "content/airlines/air_china.yml",
+   "canaux": [
+    "cabin",
+    "hold",
+    "cargo"
+   ],
+   "politiques": [
+    "cabin",
+    "hold",
+    "cargo"
+   ],
+   "politiques_sans_canal": []
+  },
+  {
+   "id": "airline_air_europa",
+   "file": "content/airlines/air_europa.yml",
+   "canaux": [
+    "cabin",
+    "hold",
+    "cargo"
+   ],
+   "politiques": [
+    "cabin",
+    "hold",
+    "cargo"
+   ],
+   "politiques_sans_canal": []
+  },
+  {
+   "id": "airline_air_france",
+   "file": "content/airlines/air_france.yml",
+   "canaux": [
+    "cabin",
+    "hold",
+    "cargo"
+   ],
+   "politiques": [
+    "cabin",
+    "hold",
+    "cargo"
+   ],
+   "politiques_sans_canal": []
+  },
+  {
+   "id": "airline_air_india",
+   "file": "content/airlines/air_india.yml",
+   "canaux": [
+    "cabin",
+    "hold",
+    "cargo"
+   ],
+   "politiques": [
+    "cabin",
+    "hold",
+    "cargo"
+   ],
+   "politiques_sans_canal": []
+  },
+  {
+   "id": "airline_air_mauritius",
+   "file": "content/airlines/air_mauritius.yml",
+   "canaux": [
+    "cabin",
+    "hold",
+    "cargo"
+   ],
+   "politiques": [
+    "cabin",
+    "hold",
+    "cargo"
+   ],
+   "politiques_sans_canal": []
+  },
+  {
+   "id": "airline_air_new_zealand",
+   "file": "content/airlines/air_new_zealand.yml",
+   "canaux": [
+    "cabin",
+    "hold",
+    "cargo"
+   ],
+   "politiques": [
+    "cabin",
+    "hold",
+    "cargo"
+   ],
+   "politiques_sans_canal": []
+  },
+  {
+   "id": "airline_air_serbia",
+   "file": "content/airlines/air_serbia.yml",
+   "canaux": [
+    "cabin",
+    "hold",
+    "cargo"
+   ],
+   "politiques": [
+    "cabin",
+    "hold",
+    "cargo"
+   ],
+   "politiques_sans_canal": []
+  },
+  {
+   "id": "airline_air_tahiti_nui",
+   "file": "content/airlines/air_tahiti_nui.yml",
+   "canaux": [
+    "cabin",
+    "cargo"
+   ],
+   "politiques": [
+    "cabin",
+    "cargo"
+   ],
+   "politiques_sans_canal": []
+  },
+  {
+   "id": "airline_air_transat",
+   "file": "content/airlines/air_transat.yml",
+   "canaux": [
+    "cabin",
+    "hold",
+    "cargo"
+   ],
+   "politiques": [
+    "cabin",
+    "hold",
+    "cargo"
+   ],
+   "politiques_sans_canal": []
+  },
+  {
+   "id": "airline_airbaltic",
+   "file": "content/airlines/airbaltic.yml",
+   "canaux": [
+    "cabin",
+    "hold",
+    "cargo"
+   ],
+   "politiques": [
+    "cabin",
+    "hold",
+    "cargo"
+   ],
+   "politiques_sans_canal": []
+  },
+  {
+   "id": "airline_aircalin",
+   "file": "content/airlines/aircalin.yml",
+   "canaux": [
+    "cabin",
+    "hold",
+    "cargo"
+   ],
+   "politiques": [
+    "cabin",
+    "hold",
+    "cargo"
+   ],
+   "politiques_sans_canal": []
+  },
+  {
+   "id": "airline_alaska",
+   "file": "content/airlines/alaska.yml",
+   "canaux": [
+    "cabin",
+    "hold",
+    "cargo"
+   ],
+   "politiques": [
+    "cabin",
+    "hold",
+    "cargo"
+   ],
+   "politiques_sans_canal": []
+  },
+  {
+   "id": "airline_american",
+   "file": "content/airlines/american.yml",
+   "canaux": [
+    "cabin",
+    "hold",
+    "cargo"
+   ],
+   "politiques": [
+    "cabin",
+    "hold",
+    "cargo"
+   ],
+   "politiques_sans_canal": []
+  },
+  {
+   "id": "airline_ana",
+   "file": "content/airlines/ana.yml",
+   "canaux": [
+    "cabin",
+    "hold",
+    "cargo"
+   ],
+   "politiques": [
+    "cabin",
+    "hold",
+    "cargo"
+   ],
+   "politiques_sans_canal": []
+  },
+  {
+   "id": "airline_asiana",
+   "file": "content/airlines/asiana.yml",
+   "canaux": [
+    "cabin",
+    "hold"
+   ],
+   "politiques": [
+    "cabin",
+    "hold",
+    "cargo"
+   ],
+   "politiques_sans_canal": [
+    "cargo"
+   ]
+  },
+  {
+   "id": "airline_austrian",
+   "file": "content/airlines/austrian.yml",
+   "canaux": [
+    "cabin",
+    "hold",
+    "cargo"
+   ],
+   "politiques": [
+    "cabin",
+    "hold",
+    "cargo"
+   ],
+   "politiques_sans_canal": []
+  },
+  {
+   "id": "airline_avianca",
+   "file": "content/airlines/avianca.yml",
+   "canaux": [
+    "cabin",
+    "hold",
+    "cargo"
+   ],
+   "politiques": [
+    "cabin",
+    "hold",
+    "cargo"
+   ],
+   "politiques_sans_canal": []
+  },
+  {
+   "id": "airline_bangkok_airways",
+   "file": "content/airlines/bangkok_airways.yml",
+   "canaux": [
+    "cabin",
+    "hold",
+    "cargo"
+   ],
+   "politiques": [
+    "cabin",
+    "hold",
+    "cargo"
+   ],
+   "politiques_sans_canal": []
+  },
+  {
+   "id": "airline_batik_air_indonesia",
+   "file": "content/airlines/batik_air_indonesia.yml",
+   "canaux": [
+    "cabin",
+    "hold",
+    "cargo"
+   ],
+   "politiques": [
+    "cabin",
+    "hold",
+    "cargo"
+   ],
+   "politiques_sans_canal": []
+  },
+  {
+   "id": "airline_batik_air_malaysia",
+   "file": "content/airlines/batik_air_malaysia.yml",
+   "canaux": [
+    "cabin",
+    "hold",
+    "cargo"
+   ],
+   "politiques": [
+    "cabin",
+    "hold",
+    "cargo"
+   ],
+   "politiques_sans_canal": []
+  },
+  {
+   "id": "airline_british_airways",
+   "file": "content/airlines/british_airways.yml",
+   "canaux": [
+    "cabin",
+    "hold",
+    "cargo"
+   ],
+   "politiques": [
+    "cabin",
+    "hold",
+    "cargo"
+   ],
+   "politiques_sans_canal": []
+  },
+  {
+   "id": "airline_brussels",
+   "file": "content/airlines/brussels.yml",
+   "canaux": [
+    "cabin",
+    "hold",
+    "cargo"
+   ],
+   "politiques": [
+    "cabin",
+    "hold",
+    "cargo"
+   ],
+   "politiques_sans_canal": []
+  },
+  {
+   "id": "airline_cathay_pacific",
+   "file": "content/airlines/cathay_pacific.yml",
+   "canaux": [
+    "cabin",
+    "hold",
+    "cargo"
+   ],
+   "politiques": [
+    "cabin",
+    "hold",
+    "cargo"
+   ],
+   "politiques_sans_canal": []
+  },
+  {
+   "id": "airline_china_airlines",
+   "file": "content/airlines/china_airlines.yml",
+   "canaux": [
+    "cabin",
+    "hold",
+    "cargo"
+   ],
+   "politiques": [
+    "cabin",
+    "hold",
+    "cargo"
+   ],
+   "politiques_sans_canal": []
+  },
+  {
+   "id": "airline_china_eastern",
+   "file": "content/airlines/china_eastern.yml",
+   "canaux": [
+    "cabin",
+    "hold",
+    "cargo"
+   ],
+   "politiques": [
+    "cabin",
+    "hold",
+    "cargo"
+   ],
+   "politiques_sans_canal": []
+  },
+  {
+   "id": "airline_china_southern",
+   "file": "content/airlines/china_southern.yml",
+   "canaux": [
+    "cabin",
+    "hold",
+    "cargo"
+   ],
+   "politiques": [
+    "cabin",
+    "hold",
+    "cargo"
+   ],
+   "politiques_sans_canal": []
+  },
+  {
+   "id": "airline_condor",
+   "file": "content/airlines/condor.yml",
+   "canaux": [
+    "cabin",
+    "hold"
+   ],
+   "politiques": [
+    "cabin",
+    "hold",
+    "cargo"
+   ],
+   "politiques_sans_canal": [
+    "cargo"
+   ]
+  },
+  {
+   "id": "airline_copa",
+   "file": "content/airlines/copa.yml",
+   "canaux": [
+    "cabin",
+    "hold",
+    "cargo"
+   ],
+   "politiques": [
+    "cabin",
+    "hold",
+    "cargo"
+   ],
+   "politiques_sans_canal": []
+  },
+  {
+   "id": "airline_corsair",
+   "file": "content/airlines/corsair.yml",
+   "canaux": [
+    "cabin",
+    "hold",
+    "cargo"
+   ],
+   "politiques": [
+    "cabin",
+    "hold",
+    "cargo"
+   ],
+   "politiques_sans_canal": []
+  },
+  {
+   "id": "airline_croatia_airlines",
+   "file": "content/airlines/croatia_airlines.yml",
+   "canaux": [
+    "cabin",
+    "hold",
+    "cargo"
+   ],
+   "politiques": [
+    "cabin",
+    "hold",
+    "cargo"
+   ],
+   "politiques_sans_canal": []
+  },
+  {
+   "id": "airline_delta",
+   "file": "content/airlines/delta.yml",
+   "canaux": [
+    "cabin",
+    "hold",
+    "cargo"
+   ],
+   "politiques": [
+    "cabin",
+    "hold",
+    "cargo"
+   ],
+   "politiques_sans_canal": []
+  },
+  {
+   "id": "airline_easyjet",
+   "file": "content/airlines/easyjet.yml",
+   "canaux": [
+    "cabin",
+    "hold",
+    "cargo"
+   ],
+   "politiques": [
+    "cabin",
+    "hold",
+    "cargo"
+   ],
+   "politiques_sans_canal": []
+  },
+  {
+   "id": "airline_edelweiss",
+   "file": "content/airlines/edelweiss.yml",
+   "canaux": [
+    "cabin",
+    "hold",
+    "cargo"
+   ],
+   "politiques": [
+    "cabin",
+    "hold",
+    "cargo"
+   ],
+   "politiques_sans_canal": []
+  },
+  {
+   "id": "airline_egyptair",
+   "file": "content/airlines/egyptair.yml",
+   "canaux": [
+    "cabin",
+    "hold",
+    "cargo"
+   ],
+   "politiques": [
+    "cabin",
+    "hold",
+    "cargo"
+   ],
+   "politiques_sans_canal": []
+  },
+  {
+   "id": "airline_el_al",
+   "file": "content/airlines/el_al.yml",
+   "canaux": [
+    "cabin",
+    "hold",
+    "cargo"
+   ],
+   "politiques": [
+    "cabin",
+    "hold",
+    "cargo"
+   ],
+   "politiques_sans_canal": []
+  },
+  {
+   "id": "airline_emirates",
+   "file": "content/airlines/emirates.yml",
+   "canaux": [
+    "cabin",
+    "hold",
+    "cargo"
+   ],
+   "politiques": [
+    "cabin",
+    "hold",
+    "cargo"
+   ],
+   "politiques_sans_canal": []
+  },
+  {
+   "id": "airline_ethiopian",
+   "file": "content/airlines/ethiopian.yml",
+   "canaux": [
+    "cabin",
+    "hold",
+    "cargo"
+   ],
+   "politiques": [
+    "cabin",
+    "hold",
+    "cargo"
+   ],
+   "politiques_sans_canal": []
+  },
+  {
+   "id": "airline_etihad",
+   "file": "content/airlines/etihad.yml",
+   "canaux": [
+    "cabin",
+    "hold",
+    "cargo"
+   ],
+   "politiques": [
+    "cabin",
+    "hold",
+    "cargo"
+   ],
+   "politiques_sans_canal": []
+  },
+  {
+   "id": "airline_eurowings",
+   "file": "content/airlines/eurowings.yml",
+   "canaux": [
+    "cabin",
+    "hold",
+    "cargo"
+   ],
+   "politiques": [
+    "cabin",
+    "hold",
+    "cargo"
+   ],
+   "politiques_sans_canal": []
+  },
+  {
+   "id": "airline_eva_air",
+   "file": "content/airlines/eva_air.yml",
+   "canaux": [
+    "cabin",
+    "hold"
+   ],
+   "politiques": [
+    "cabin",
+    "hold",
+    "cargo"
+   ],
+   "politiques_sans_canal": [
+    "cargo"
+   ]
+  },
+  {
+   "id": "airline_finnair",
+   "file": "content/airlines/finnair.yml",
+   "canaux": [
+    "cabin",
+    "hold",
+    "cargo"
+   ],
+   "politiques": [
+    "cabin",
+    "hold",
+    "cargo"
+   ],
+   "politiques_sans_canal": []
+  },
+  {
+   "id": "airline_french_bee",
+   "file": "content/airlines/french_bee.yml",
+   "canaux": [
+    "cabin",
+    "hold",
+    "cargo"
+   ],
+   "politiques": [
+    "cabin",
+    "hold",
+    "cargo"
+   ],
+   "politiques_sans_canal": []
+  },
+  {
+   "id": "airline_garuda_indonesia",
+   "file": "content/airlines/garuda_indonesia.yml",
+   "canaux": [
+    "cabin",
+    "hold",
+    "cargo"
+   ],
+   "politiques": [
+    "cabin",
+    "hold",
+    "cargo"
+   ],
+   "politiques_sans_canal": []
+  },
+  {
+   "id": "airline_gulf_air",
+   "file": "content/airlines/gulf_air.yml",
+   "canaux": [
+    "cabin",
+    "hold",
+    "cargo"
+   ],
+   "politiques": [
+    "cabin",
+    "hold",
+    "cargo"
+   ],
+   "politiques_sans_canal": []
+  },
+  {
+   "id": "airline_iberia",
+   "file": "content/airlines/iberia.yml",
+   "canaux": [
+    "cabin",
+    "hold",
+    "cargo"
+   ],
+   "politiques": [
+    "cabin",
+    "hold",
+    "cargo"
+   ],
+   "politiques_sans_canal": []
+  },
+  {
+   "id": "airline_iberia_express",
+   "file": "content/airlines/iberia_express.yml",
+   "canaux": [
+    "cabin",
+    "hold",
+    "cargo"
+   ],
+   "politiques": [
+    "cabin",
+    "hold",
+    "cargo"
+   ],
+   "politiques_sans_canal": []
+  },
+  {
+   "id": "airline_icelandair",
+   "file": "content/airlines/icelandair.yml",
+   "canaux": [
+    "cabin",
+    "hold",
+    "cargo"
+   ],
+   "politiques": [
+    "cabin",
+    "hold",
+    "cargo"
+   ],
+   "politiques_sans_canal": []
+  },
+  {
+   "id": "airline_indigo",
+   "file": "content/airlines/indigo.yml",
+   "canaux": [
+    "cabin",
+    "hold",
+    "cargo"
+   ],
+   "politiques": [
+    "cabin",
+    "hold",
+    "cargo"
+   ],
+   "politiques_sans_canal": []
+  },
+  {
+   "id": "airline_ita_airways",
+   "file": "content/airlines/ita_airways.yml",
+   "canaux": [
+    "cabin",
+    "hold",
+    "cargo"
+   ],
+   "politiques": [
+    "cabin",
+    "hold",
+    "cargo"
+   ],
+   "politiques_sans_canal": []
+  },
+  {
+   "id": "airline_jal",
+   "file": "content/airlines/jal.yml",
+   "canaux": [
+    "cabin",
+    "hold",
+    "cargo"
+   ],
+   "politiques": [
+    "cabin",
+    "hold",
+    "cargo"
+   ],
+   "politiques_sans_canal": []
+  },
+  {
+   "id": "airline_jetblue",
+   "file": "content/airlines/jetblue.yml",
+   "canaux": [
+    "cabin",
+    "hold",
+    "cargo"
+   ],
+   "politiques": [
+    "cabin",
+    "hold",
+    "cargo"
+   ],
+   "politiques_sans_canal": []
+  },
+  {
+   "id": "airline_kenya_airways",
+   "file": "content/airlines/kenya_airways.yml",
+   "canaux": [
+    "cabin",
+    "hold",
+    "cargo"
+   ],
+   "politiques": [
+    "cabin",
+    "hold",
+    "cargo"
+   ],
+   "politiques_sans_canal": []
+  },
+  {
+   "id": "airline_klm",
+   "file": "content/airlines/klm.yml",
+   "canaux": [
+    "cabin",
+    "hold",
+    "cargo"
+   ],
+   "politiques": [
+    "cabin",
+    "hold",
+    "cargo"
+   ],
+   "politiques_sans_canal": []
+  },
+  {
+   "id": "airline_km_malta",
+   "file": "content/airlines/km_malta.yml",
+   "canaux": [
+    "cabin",
+    "hold",
+    "cargo"
+   ],
+   "politiques": [
+    "cabin",
+    "hold",
+    "cargo"
+   ],
+   "politiques_sans_canal": []
+  },
+  {
+   "id": "airline_korean_air",
+   "file": "content/airlines/korean_air.yml",
+   "canaux": [
+    "cabin",
+    "hold",
+    "cargo"
+   ],
+   "politiques": [
+    "cabin",
+    "hold",
+    "cargo"
+   ],
+   "politiques_sans_canal": []
+  },
+  {
+   "id": "airline_la_compagnie",
+   "file": "content/airlines/la_compagnie.yml",
+   "canaux": [
+    "cabin",
+    "hold"
+   ],
+   "politiques": [
+    "cabin",
+    "hold"
+   ],
+   "politiques_sans_canal": []
+  },
+  {
+   "id": "airline_latam",
+   "file": "content/airlines/latam.yml",
+   "canaux": [
+    "cabin",
+    "hold",
+    "cargo"
+   ],
+   "politiques": [
+    "cabin",
+    "hold",
+    "cargo"
+   ],
+   "politiques_sans_canal": []
+  },
+  {
+   "id": "airline_lot",
+   "file": "content/airlines/lot.yml",
+   "canaux": [
+    "cabin",
+    "hold",
+    "cargo"
+   ],
+   "politiques": [
+    "cabin",
+    "hold",
+    "cargo"
+   ],
+   "politiques_sans_canal": []
+  },
+  {
+   "id": "airline_lufthansa",
+   "file": "content/airlines/lufthansa.yml",
+   "canaux": [
+    "cabin",
+    "hold",
+    "cargo"
+   ],
+   "politiques": [
+    "cabin",
+    "hold",
+    "cargo"
+   ],
+   "politiques_sans_canal": []
+  },
+  {
+   "id": "airline_luxair",
+   "file": "content/airlines/luxair.yml",
+   "canaux": [
+    "cabin",
+    "hold",
+    "cargo"
+   ],
+   "politiques": [
+    "cabin",
+    "hold",
+    "cargo"
+   ],
+   "politiques_sans_canal": []
+  },
+  {
+   "id": "airline_malaysia_airlines",
+   "file": "content/airlines/malaysia_airlines.yml",
+   "canaux": [
+    "cabin",
+    "hold",
+    "cargo"
+   ],
+   "politiques": [
+    "cabin",
+    "hold",
+    "cargo"
+   ],
+   "politiques_sans_canal": []
+  },
+  {
+   "id": "airline_neos",
+   "file": "content/airlines/neos.yml",
+   "canaux": [
+    "cabin",
+    "hold",
+    "cargo"
+   ],
+   "politiques": [
+    "cabin",
+    "hold",
+    "cargo"
+   ],
+   "politiques_sans_canal": []
+  },
+  {
+   "id": "airline_norwegian",
+   "file": "content/airlines/norwegian.yml",
+   "canaux": [
+    "cabin",
+    "hold"
+   ],
+   "politiques": [
+    "cabin",
+    "hold",
+    "cargo"
+   ],
+   "politiques_sans_canal": [
+    "cargo"
+   ]
+  },
+  {
+   "id": "airline_pegasus",
+   "file": "content/airlines/pegasus.yml",
+   "canaux": [
+    "cabin",
+    "hold",
+    "cargo"
+   ],
+   "politiques": [
+    "cabin",
+    "hold",
+    "cargo"
+   ],
+   "politiques_sans_canal": []
+  },
+  {
+   "id": "airline_philippine",
+   "file": "content/airlines/philippine.yml",
+   "canaux": [
+    "cabin",
+    "hold",
+    "cargo"
+   ],
+   "politiques": [
+    "cabin",
+    "hold",
+    "cargo"
+   ],
+   "politiques_sans_canal": []
+  },
+  {
+   "id": "airline_qantas",
+   "file": "content/airlines/qantas.yml",
+   "canaux": [
+    "cabin",
+    "cargo"
+   ],
+   "politiques": [
+    "cabin",
+    "hold",
+    "cargo"
+   ],
+   "politiques_sans_canal": [
+    "hold"
+   ]
+  },
+  {
+   "id": "airline_qatar_airways",
+   "file": "content/airlines/qatar_airways.yml",
+   "canaux": [
+    "cabin",
+    "hold",
+    "cargo"
+   ],
+   "politiques": [
+    "cabin",
+    "hold",
+    "cargo"
+   ],
+   "politiques_sans_canal": []
+  },
+  {
+   "id": "airline_royal_air_maroc",
+   "file": "content/airlines/royal_air_maroc.yml",
+   "canaux": [
+    "cabin",
+    "hold",
+    "cargo"
+   ],
+   "politiques": [
+    "cabin",
+    "hold",
+    "cargo"
+   ],
+   "politiques_sans_canal": []
+  },
+  {
+   "id": "airline_royal_jordanian",
+   "file": "content/airlines/royal_jordanian.yml",
+   "canaux": [
+    "cabin",
+    "hold",
+    "cargo"
+   ],
+   "politiques": [
+    "cabin",
+    "hold",
+    "cargo"
+   ],
+   "politiques_sans_canal": []
+  },
+  {
+   "id": "airline_ryanair",
+   "file": "content/airlines/ryanair.yml",
+   "canaux": [
+    "cabin",
+    "hold",
+    "cargo"
+   ],
+   "politiques": [
+    "cabin",
+    "hold",
+    "cargo"
+   ],
+   "politiques_sans_canal": []
+  },
+  {
+   "id": "airline_sas",
+   "file": "content/airlines/sas.yml",
+   "canaux": [
+    "cabin",
+    "hold",
+    "cargo"
+   ],
+   "politiques": [
+    "cabin",
+    "hold",
+    "cargo"
+   ],
+   "politiques_sans_canal": []
+  },
+  {
+   "id": "airline_saudia",
+   "file": "content/airlines/saudia.yml",
+   "canaux": [
+    "cabin",
+    "hold",
+    "cargo"
+   ],
+   "politiques": [
+    "cabin",
+    "hold",
+    "cargo"
+   ],
+   "politiques_sans_canal": []
+  },
+  {
+   "id": "airline_singapore_airlines",
+   "file": "content/airlines/singapore_airlines.yml",
+   "canaux": [
+    "cabin",
+    "hold",
+    "cargo"
+   ],
+   "politiques": [
+    "cabin",
+    "hold",
+    "cargo"
+   ],
+   "politiques_sans_canal": []
+  },
+  {
+   "id": "airline_sky_express",
+   "file": "content/airlines/sky_express.yml",
+   "canaux": [
+    "cabin",
+    "hold",
+    "cargo"
+   ],
+   "politiques": [
+    "cabin",
+    "hold",
+    "cargo"
+   ],
+   "politiques_sans_canal": []
+  },
+  {
+   "id": "airline_smartwings",
+   "file": "content/airlines/smartwings.yml",
+   "canaux": [
+    "cabin",
+    "hold"
+   ],
+   "politiques": [
+    "cabin",
+    "hold"
+   ],
+   "politiques_sans_canal": []
+  },
+  {
+   "id": "airline_south_african_airways",
+   "file": "content/airlines/south_african_airways.yml",
+   "canaux": [
+    "cabin",
+    "hold",
+    "cargo"
+   ],
+   "politiques": [
+    "cabin",
+    "hold",
+    "cargo"
+   ],
+   "politiques_sans_canal": []
+  },
+  {
+   "id": "airline_sunexpress",
+   "file": "content/airlines/sunexpress.yml",
+   "canaux": [
+    "cabin",
+    "hold",
+    "cargo"
+   ],
+   "politiques": [
+    "cabin",
+    "hold",
+    "cargo"
+   ],
+   "politiques_sans_canal": []
+  },
+  {
+   "id": "airline_swiss",
+   "file": "content/airlines/swiss.yml",
+   "canaux": [
+    "cabin",
+    "hold",
+    "cargo"
+   ],
+   "politiques": [
+    "cabin",
+    "hold",
+    "cargo"
+   ],
+   "politiques_sans_canal": []
+  },
+  {
+   "id": "airline_tap",
+   "file": "content/airlines/tap.yml",
+   "canaux": [
+    "cabin",
+    "hold",
+    "cargo"
+   ],
+   "politiques": [
+    "cabin",
+    "hold",
+    "cargo"
+   ],
+   "politiques_sans_canal": []
+  },
+  {
+   "id": "airline_tarom",
+   "file": "content/airlines/tarom.yml",
+   "canaux": [
+    "cabin",
+    "hold",
+    "cargo"
+   ],
+   "politiques": [
+    "cabin",
+    "hold",
+    "cargo"
+   ],
+   "politiques_sans_canal": []
+  },
+  {
+   "id": "airline_thai_airways",
+   "file": "content/airlines/thai_airways.yml",
+   "canaux": [
+    "cabin",
+    "hold",
+    "cargo"
+   ],
+   "politiques": [
+    "cabin",
+    "hold",
+    "cargo"
+   ],
+   "politiques_sans_canal": []
+  },
+  {
+   "id": "airline_transavia",
+   "file": "content/airlines/transavia.yml",
+   "canaux": [
+    "cabin",
+    "hold"
+   ],
+   "politiques": [
+    "cabin",
+    "hold"
+   ],
+   "politiques_sans_canal": []
+  },
+  {
+   "id": "airline_tui_airways",
+   "file": "content/airlines/tui_airways.yml",
+   "canaux": [
+    "cabin",
+    "hold",
+    "cargo"
+   ],
+   "politiques": [
+    "cabin",
+    "hold",
+    "cargo"
+   ],
+   "politiques_sans_canal": []
+  },
+  {
+   "id": "airline_tunisair",
+   "file": "content/airlines/tunisair.yml",
+   "canaux": [
+    "cabin",
+    "hold",
+    "cargo"
+   ],
+   "politiques": [
+    "cabin",
+    "hold",
+    "cargo"
+   ],
+   "politiques_sans_canal": []
+  },
+  {
+   "id": "airline_turkish",
+   "file": "content/airlines/turkish.yml",
+   "canaux": [
+    "cabin",
+    "hold",
+    "cargo"
+   ],
+   "politiques": [
+    "cabin",
+    "hold",
+    "cargo"
+   ],
+   "politiques_sans_canal": []
+  },
+  {
+   "id": "airline_united",
+   "file": "content/airlines/united.yml",
+   "canaux": [
+    "cabin",
+    "hold",
+    "cargo"
+   ],
+   "politiques": [
+    "cabin",
+    "hold",
+    "cargo"
+   ],
+   "politiques_sans_canal": []
+  },
+  {
+   "id": "airline_vietnam_airlines",
+   "file": "content/airlines/vietnam_airlines.yml",
+   "canaux": [
+    "cabin",
+    "hold",
+    "cargo"
+   ],
+   "politiques": [
+    "cabin",
+    "hold",
+    "cargo"
+   ],
+   "politiques_sans_canal": []
+  },
+  {
+   "id": "airline_virgin_atlantic",
+   "file": "content/airlines/virgin_atlantic.yml",
+   "canaux": [
+    "cabin",
+    "hold",
+    "cargo"
+   ],
+   "politiques": [
+    "cabin",
+    "hold",
+    "cargo"
+   ],
+   "politiques_sans_canal": []
+  },
+  {
+   "id": "airline_virgin_australia",
+   "file": "content/airlines/virgin_australia.yml",
+   "canaux": [
+    "cabin",
+    "cargo"
+   ],
+   "politiques": [
+    "cabin",
+    "hold",
+    "cargo"
+   ],
+   "politiques_sans_canal": [
+    "hold"
+   ]
+  },
+  {
+   "id": "airline_volotea",
+   "file": "content/airlines/volotea.yml",
+   "canaux": [
+    "cabin",
+    "hold",
+    "cargo"
+   ],
+   "politiques": [
+    "cabin",
+    "hold",
+    "cargo"
+   ],
+   "politiques_sans_canal": []
+  },
+  {
+   "id": "airline_vueling",
+   "file": "content/airlines/vueling.yml",
+   "canaux": [
+    "cabin",
+    "hold",
+    "cargo"
+   ],
+   "politiques": [
+    "cabin",
+    "hold",
+    "cargo"
+   ],
+   "politiques_sans_canal": []
+  },
+  {
+   "id": "airline_westjet",
+   "file": "content/airlines/westjet.yml",
+   "canaux": [
+    "cabin",
+    "hold",
+    "cargo"
+   ],
+   "politiques": [
+    "cabin",
+    "hold",
+    "cargo"
+   ],
+   "politiques_sans_canal": []
+  },
+  {
+   "id": "airline_wizz_air",
+   "file": "content/airlines/wizz_air.yml",
+   "canaux": [
+    "cabin",
+    "hold",
+    "cargo"
+   ],
+   "politiques": [
+    "cabin",
+    "hold",
+    "cargo"
+   ],
+   "politiques_sans_canal": []
+  }
+ ]
+}
