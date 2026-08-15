@@ -192,21 +192,29 @@ portée : sentinelles · 2 canaux contradictoires sur 2 fiche(s)
   FAIL es : le fret NON REVÉRIFIÉ d'Aegean n'affiche AUCUNE source
   FAIL pt : le fret NON REVÉRIFIÉ d'Aegean n'affiche AUCUNE source
 
-=== 4. Carte RENDUE du Finder : le lien de source est celui du canal ===
+=== 4. Carte RENDUE du Finder : les sources des canaux, et rien d'autre ===
+  OK   les 102 sources racines de la base sont connues du contrôle
   OK   le moteur sert bien une carte Thai sur CDG→BKK
-  FAIL le rapport ne contient AUCUNE auto-citation dans ses sources
-         https://mydogcanfly.com/air-india-dog-policy/ | https://mydogcanfly.com/austrian-airlines-dog-policy/
-  FAIL la décision fret porte la source AUDITÉE du canal
+  FAIL AUCUNE carte du rapport ne porte `source_url`, même officielle
+         airline_air_france | airline_thai_airways | airline_condor
+  FAIL aucune URL n'est dans les sources du rapport AU TITRE de racine
+         https://www.airfrance.com/information/optionsvols/animaux-en-avion | https://mydogcanfly.com/air-india-dog-policy/ | https://mydogcanfly.com/austrian-airlines-dog-policy/
+  FAIL la décision fret Thai porte la source AUDITÉE du canal
          null
-  OK   une carte est RENDUE dans le DOM
-  FAIL la carte rendue ne contient AUCUN lien MyDogCanFly
+  OK   le témoin airline_air_china est servi, sans aucun canal sourcé
+  OK   et sa racine EST une page d'accueil — le contrôle a donc quelque chose à attraper
+  OK   les deux cartes sont RENDUES dans le DOM
+  FAIL AUCUNE source racine non auditée n'apparaît dans les cartes rendues
          https://mydogcanfly.com/thai-airways-dog-policy/
-  FAIL la carte rendue ne mentionne nulle part mydogcanfly.com
+  FAIL tout lien de source affiché sur une carte EST une preuve auditée de canal
+         aucun lien affiché
+  FAIL aucune mention de mydogcanfly.com dans les cartes rendues
          https://mydogcanfly.com/thai-airways-dog-policy/
-  FAIL la carte rendue porte un lien vers l'URL auditée du fret
+  FAIL la carte Thai porte un lien vers l'URL auditée du fret
          https://mydogcanfly.com/thai-airways-dog-policy/ | /tools/fiche/#from=fr&to=ci&air=airline_thai_airways&w=8
   FAIL ce lien est VISIBLE et nommé par son canal
          absent
+  OK   la carte airline_air_china n'affiche AUCUN bloc de sources
 
 === 5. Les 2 canaux contradictoires × 4 langues : statut ET libellé ===
   OK   78 canaux contradictoires sur 71 fiches, relus des fiches et du contrat runtime
@@ -215,4 +223,4 @@ portée : sentinelles · 2 canaux contradictoires sur 2 fiche(s)
          vérifiés 0/8 — airlines/aegean/index.html#cargo : 0 bloc(s) | fr/airlines/aegean/index.html#cargo : 0 bloc(s) | es/airlines/aegean/index.html#cargo : 0 bloc(s)
   OK   la cible de cette portée n'est pas vide
 
-24 OK, 95 FAIL
+28 OK, 97 FAIL

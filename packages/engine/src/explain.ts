@@ -1,4 +1,4 @@
-import { t, isEstimatedTemperature, estAutoCitation } from "@mydogcanfly/knowledge";
+import { t, isEstimatedTemperature } from "@mydogcanfly/knowledge";
 import type { Decision, DecisionReport, ReportItem, AirlineResult, PlacementStatus } from "./contracts";
 import { hasActiveClimateCause, makePlacementDecision } from "./contracts";
 
@@ -244,23 +244,33 @@ export function explain(decision: Decision, locale = "en"): DecisionReport {
      * correcte des territoires. Tant qu'elle n'existe pas, ne PAS réintroduire le mot « nationale ». */
     const carrier_of_origin = !!a.country_id && a.country_id === decision.origin_country_id;
     const carrier_of_destination = !!a.country_id && a.country_id === decision.destination.country_id;
-    /* ---- LA SOURCE D'UNE COMPAGNIE N'EST PLUS UNE AUTO-CITATION (T0-B2-UI) -------------------
+    /* ---- LA SOURCE RACINE D'UNE COMPAGNIE N'EST PLUS UNE PREUVE (T0-B2-UI) -------------------
      *
-     * `a.source_url` est la source RACINE de la fiche. Sur 52 des 102 compagnies, c'est une page
-     * de MyDogCanFly (`source_type: "other"`), héritée de l'import de juin 2026 : le contre-test
-     * du 15/08/2026 a vu la carte de Thai Airways afficher « mydogcanfly.com » comme source de
-     * sa politique. Se citer soi-même ne prouve rien sur ce qu'une compagnie publie.
+     * `a.source_url` était la source RACINE de la fiche, affichée juste après le verdict de la
+     * carte et versée aux sources probantes du rapport. Elle ne documente aucun canal.
      *
-     * Elle disparaît donc de la carte ET de la liste de sources du rapport. Ce qui la remplace
-     * n'est pas un vide : les sources AUDITÉES des canaux, portées par les décisions, entrent
-     * dans la liste — la preuve rattachée au canal qu'elle documente, jamais à la fiche entière.
+     * La première version de ce lot n'en retirait que les auto-citations MyDogCanFly (52 sur
+     * 102). La contre-revue a montré que c'était insuffisant : sur les 50 restantes, 35 sont de
+     * simples pages d'accueil — `aerlingus.com`, `airchina.com` — qui ne prouvent pas davantage
+     * une politique de transport d'animaux qu'une page à nous. Le critère n'était pas le bon :
+     * ce qui disqualifie ces URL n'est pas leur DOMAINE, c'est qu'elles ne sont rattachées à
+     * AUCUN canal.
      *
-     * Le REMPLACEMENT des 52 sources racines est un autre lot : ici on cesse seulement de les
+     * Elle disparaît donc entièrement — du contrat, donc de toutes les surfaces. Ce qui la
+     * remplace n'est pas un vide : les sources AUDITÉES des canaux, portées par les décisions,
+     * entrent dans la liste — la preuve rattachée au canal qu'elle documente, jamais à la fiche
+     * entière. Une compagnie dont aucun canal n'a de source auditée n'en affiche aucune, et
+     * c'est la réponse juste : « une politique non revue reste sans source ».
+     *
+     * Elle n'est pas non plus réintroduite sous une autre étiquette. Annoncer « site officiel de
+     * la compagnie » supposerait de l'affirmer de 50 URL dont 15 sont des pages de politique
+     * animaux et non des sites : une nouvelle affirmation non vérifiée, c'est-à-dire exactement
+     * ce que ce lot ferme. Le site de la compagnie reste à un clic, sur la fiche compagnie.
+     *
+     * Le REMPLACEMENT des sources racines est un autre lot : ici on cesse seulement de les
      * présenter comme des preuves, sans toucher à une seule donnée. */
-    const source_url = estAutoCitation(a.source_url) ? undefined : a.source_url;
-    if (source_url) sources.set(source_url, { url: source_url });
     for (const d of placement_decisions) if (d.source) sources.set(d.source.url, { url: d.source.url });
-    return { airline_id: a.airline_id, name: a.airline_name, direct: a.direct, itinerary_confidence: a.itinerary_confidence, deny_reasons: (cabin || hold || cargo || to_confirm.length > 0) ? undefined : reasons, connect_airport_id: a.connect_airport_id, detour_km: a.detour_km, cabin, hold, cargo, cabin_status, hold_status, cargo_status, to_confirm: to_confirm.length ? to_confirm : undefined, placement_decisions, offers_pet_transport: a.offers_pet_transport, carries_pets: a.carries_pets, label, fee: fee_quote_only ? L("air.fee_cargo_quote") : feeShown, fee_quote_only, source_url, heat_embargo, heat_confirmation_required, carrier_of_origin, carrier_of_destination, origin_airport_id: a.origin_airport_id, destination_airport_id: a.destination_airport_id };
+    return { airline_id: a.airline_id, name: a.airline_name, direct: a.direct, itinerary_confidence: a.itinerary_confidence, deny_reasons: (cabin || hold || cargo || to_confirm.length > 0) ? undefined : reasons, connect_airport_id: a.connect_airport_id, detour_km: a.detour_km, cabin, hold, cargo, cabin_status, hold_status, cargo_status, to_confirm: to_confirm.length ? to_confirm : undefined, placement_decisions, offers_pet_transport: a.offers_pet_transport, carries_pets: a.carries_pets, label, fee: fee_quote_only ? L("air.fee_cargo_quote") : feeShown, fee_quote_only, heat_embargo, heat_confirmation_required, carrier_of_origin, carrier_of_destination, origin_airport_id: a.origin_airport_id, destination_airport_id: a.destination_airport_id };
   });
   /* Le placement demandé, AVANT le tri (contre-revue v4 : le classement l'ignorait — quatre
      « soute à confirmer » précédaient des soutes réellement autorisées sur une recherche soute). */

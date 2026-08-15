@@ -317,7 +317,13 @@ export interface AirlineDecision {
   deny_reasons?: string[];
   connect_airport_id?: string;     // for a connection, the airline hub the itinerary plausibly routes through
   detour_km?: number;              // extra distance vs the direct great-circle (0 for a direct) — ranks/trims connections
-  source_url?: string;
+  /* `source_url` — la source RACINE de la fiche — a été SUPPRIMÉE (T0-B2-UI, contre-revue du
+     15/08/2026). Elle ne documentait aucun canal : sur 102 compagnies, 52 pointaient une page de
+     MyDogCanFly et 35 des 50 restantes une simple page d'accueil (aerlingus.com, airchina.com…).
+     Ne filtrer que les auto-citations laissait donc 35 pages d'accueil présentées comme la preuve
+     d'une politique. La preuve descend maintenant AVEC la décision : `PlacementDecision.source`.
+     Ne pas la réintroduire « juste pour le lien » : l'absence du champ est ce qui garantit
+     qu'aucune surface ne peut la rendre. */
   fee?: string;               // published fee for the accepted placement, as-is (e.g. "€100 to €600")
   origin_airport_id?: string;      // the origin airport this airline actually uses, when it differs from the representative origin (city search)
   destination_airport_id?: string; // idem for the destination
@@ -412,7 +418,9 @@ export interface AirlineResult {
   fee?: string;         // published fee for the accepted placement, when known
   /** Fret sans tarif publié POUR LE FRET : `fee` porte alors « sur devis », pas un montant repris d'ailleurs. */
   fee_quote_only?: boolean;
-  source_url?: string;
+  /* `source_url` SUPPRIMÉE — voir `AirlineDecision`. Une carte ne porte plus de source de fiche,
+     même officielle : elle porte les sources de ses CANAUX (`placement_decisions[].source`), ou
+     aucune. Le site de la compagnie reste accessible d'un clic, depuis la fiche compagnie. */
   /** Embargo chaleur CONFIRMÉ — température fournie par le visiteur au-dessus du seuil. Une
    *  estimation ne produit JAMAIS ce drapeau (P0 climat) : elle produit le suivant. */
   heat_embargo?: boolean;

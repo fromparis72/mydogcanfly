@@ -37,7 +37,7 @@ import { createRequire } from "node:module";
 import { fileURLToPath } from "node:url";
 import YAML from "yaml";
 import { JSDOM, VirtualConsole } from "jsdom";
-import { loadKB, t as tt, formatDate } from "./packages/knowledge/src/index.ts";
+import { loadKB, preuveAuditee, t as tt, formatDate } from "./packages/knowledge/src/index.ts";
 import { evaluate } from "./packages/engine/src/evaluate.ts";
 import { explain } from "./packages/engine/src/explain.ts";
 import { SENTINELLES_COMPAGNIES, SENTINELLE_PAYS } from "./packages/knowledge/scripts/lib/sentinelles-entites.mjs";
@@ -261,11 +261,16 @@ console.log("\n=== 3. La preuve auditée du fret Thai : lien exact, texte visibl
   }
 }
 
-// ---- 4. La CARTE RENDUE du Finder : la preuve du canal, jamais une auto-citation --------------
-console.log("\n=== 4. Carte RENDUE du Finder : le lien de source est celui du canal ===");
+// ---- 4. La CARTE RENDUE du Finder : la preuve du canal, ou AUCUNE ----------------------------
+console.log("\n=== 4. Carte RENDUE du Finder : les sources des canaux, et rien d'autre ===");
 {
   /* Le défaut relevé au contre-test : la carte affichait `host(a.source_url)` — la source RACINE
-     de la compagnie, `https://mydogcanfly.com/thai-airways-dog-policy/`, type « other ».
+     de la compagnie. La première correction n'en retirait que les auto-citations MyDogCanFly ;
+     la contre-revue a montré que le critère était faux. Sur les 50 racines restantes, 35 sont de
+     simples pages d'accueil (`aerlingus.com`, `airchina.com`) : elles ne prouvent pas davantage
+     une politique. Ce qui les disqualifie n'est pas leur domaine, c'est qu'elles ne sont
+     rattachées à AUCUN canal. Le champ a donc disparu du contrat moteur.
+
      Ce contrôle interroge le DOM RÉELLEMENT PRODUIT : rapport calculé par le VRAI moteur, injecté
      dans le VRAI bundle client par un `fetch` mocké, cartes rendues, puis lecture des liens. Un
      contrôle sur le rapport du moteur ne dirait rien de ce que le visiteur voit. */
@@ -277,30 +282,78 @@ console.log("\n=== 4. Carte RENDUE du Finder : le lien de source est celui du ca
     dog: { breed_id: "breed_golden_retriever", weight_kg: 8 },
     travel_type: "pet", placement: "any", locale: "en", date: `${annee}-01-15`,
   }), "en");
-  const carte = (rapport.airlines ?? []).find((a) => a.airline_id === "airline_thai_airways");
-  check("le moteur sert bien une carte Thai sur CDG→BKK", !!carte);
-  check("le rapport ne contient AUCUNE auto-citation dans ses sources",
-    !(rapport.sources ?? []).some((s) => /mydogcanfly\.com/i.test(s.url)),
-    (rapport.sources ?? []).filter((s) => /mydogcanfly\.com/i.test(s.url)).map((s) => s.url).slice(0, 2).join(" | "));
-  const fret = (carte?.placement_decisions ?? []).find((d) => d.placement === "cargo");
-  check("la décision fret porte la source AUDITÉE du canal", fret?.source?.url === AUDIT.url,
+
+  /* TOUTES les sources racines de la base, auto-citations comprises : aucune ne doit apparaître,
+     ni dans le rapport, ni dans une carte. La liste est RELUE de la base, jamais recopiée. */
+  const racines = new Map();
+  for (const a of kb.airlines.values()) if (a.source?.url) racines.set(a.source.url, a.id);
+  check(`les ${racines.size} sources racines de la base sont connues du contrôle`, racines.size >= 100, String(racines.size));
+
+  check("le moteur sert bien une carte Thai sur CDG→BKK",
+    (rapport.airlines ?? []).some((a) => a.airline_id === "airline_thai_airways"));
+  /* Le champ n'existe plus dans le contrat : aucune carte ne peut le porter, même officielle. */
+  const avecChamp = (rapport.airlines ?? []).filter((a) => a.source_url !== undefined).map((a) => a.airline_id);
+  check("AUCUNE carte du rapport ne porte `source_url`, même officielle", avecChamp.length === 0,
+    avecChamp.slice(0, 3).join(" | "));
+  /* Nuance qui compte : 41 URL sont À LA FOIS la racine d'une fiche et la source d'un de ses
+     canaux — la page « animaux » de British Airways, par exemple. Elles ont le droit de rester,
+     mais parce qu'un CANAL les cite, jamais parce que la fiche les porte. La référence est donc
+     l'ensemble des preuves AUDITÉES, calculé par `preuveAuditee` — la fonction du moteur. */
+  const auditees = new Set();
+  for (const a of kb.airlines.values()) {
+    for (const p of Object.values(a.premium?.policy ?? {})) {
+      const preuve = preuveAuditee(p);
+      if (preuve?.url) auditees.add(preuve.url);
+    }
+  }
+  const racinesDansSources = (rapport.sources ?? []).map((s) => s.url).filter((u) => racines.has(u) && !auditees.has(u));
+  check("aucune URL n'est dans les sources du rapport AU TITRE de racine", racinesDansSources.length === 0,
+    racinesDansSources.slice(0, 3).join(" | "));
+  const fret = (rapport.airlines ?? []).find((a) => a.airline_id === "airline_thai_airways")
+    ?.placement_decisions?.find((d) => d.placement === "cargo");
+  check("la décision fret Thai porte la source AUDITÉE du canal", fret?.source?.url === AUDIT.url,
     JSON.stringify(fret?.source ?? null));
 
-  const dom = await rendreCartes("", { ...rapport, airlines: [carte] });
-  const cartes = [...dom.window.document.querySelectorAll(".acard")];
-  check("une carte est RENDUE dans le DOM", cartes.length === 1, `${cartes.length} carte(s)`);
-  const html = cartes[0]?.innerHTML ?? "";
-  const hrefs = [...(cartes[0]?.querySelectorAll("a[href]") ?? [])].map((a) => a.getAttribute("href"));
-  check("la carte rendue ne contient AUCUN lien MyDogCanFly",
-    !hrefs.some((h) => /mydogcanfly\.com/i.test(h || "")),
-    hrefs.filter((h) => /mydogcanfly\.com/i.test(h || "")).join(" | "));
-  check("la carte rendue ne mentionne nulle part mydogcanfly.com", !/mydogcanfly\.com/i.test(html),
-    (html.match(/https?:\/\/[^"']*mydogcanfly\.com[^"']*/) || ["(dans le texte)"])[0]);
-  check("la carte rendue porte un lien vers l'URL auditée du fret", hrefs.includes(AUDIT.url),
-    hrefs.join(" | ") || "aucun lien");
-  const lienSource = [...(cartes[0]?.querySelectorAll("a[href]") ?? [])].find((a) => a.getAttribute("href") === AUDIT.url);
+  /* DEUX cartes, choisies pour être opposées : Thai porte une source auditée sur son fret ;
+     Air China n'a AUCUN canal sourcé et une racine qui est une page d'accueil. Sans la seconde,
+     le contrôle « aucune racine affichée » passerait sur une carte qui n'en a jamais eu. */
+  const TEMOIN_SANS_SOURCE = "airline_air_china";
+  const cartes2 = ["airline_thai_airways", TEMOIN_SANS_SOURCE]
+    .map((id) => (rapport.airlines ?? []).find((a) => a.airline_id === id));
+  check(`le témoin ${TEMOIN_SANS_SOURCE} est servi, sans aucun canal sourcé`,
+    !!cartes2[1] && (cartes2[1].placement_decisions ?? []).every((d) => !d.source));
+  const racineTemoin = kb.airlines.get(TEMOIN_SANS_SOURCE)?.source?.url ?? "";
+  check(`et sa racine EST une page d'accueil — le contrôle a donc quelque chose à attraper`,
+    racineTemoin !== "" && new URL(racineTemoin).pathname.replace(/\/$/, "") === "",
+    racineTemoin || "racine absente");
+
+  const dom = await rendreCartes("", { ...rapport, airlines: cartes2.filter(Boolean) });
+  const rendues = [...dom.window.document.querySelectorAll(".acard")];
+  check("les deux cartes sont RENDUES dans le DOM", rendues.length === 2, `${rendues.length} carte(s)`);
+  const htmlTotal = rendues.map((c) => c.innerHTML).join("\n");
+  const dedans = [...racines.keys()].filter((u) => !auditees.has(u) && htmlTotal.includes(u));
+  check("AUCUNE source racine non auditée n'apparaît dans les cartes rendues", dedans.length === 0,
+    dedans.slice(0, 3).join(" | "));
+  /* La forme POSITIVE, qui ne dépend d'aucune liste noire : tout lien du bloc de sources d'une
+     carte DOIT être une preuve auditée de canal. Un lien inventé, emprunté ou par défaut échoue. */
+  const liensSources = rendues.flatMap((c) => [...c.querySelectorAll(".acard__psrc a[href]")].map((a) => a.getAttribute("href")));
+  const intrus = liensSources.filter((u) => !auditees.has(u));
+  check("tout lien de source affiché sur une carte EST une preuve auditée de canal",
+    liensSources.length > 0 && intrus.length === 0, intrus.slice(0, 3).join(" | ") || "aucun lien affiché");
+  check("aucune mention de mydogcanfly.com dans les cartes rendues", !/mydogcanfly\.com/i.test(htmlTotal),
+    (htmlTotal.match(/https?:\/\/[^"']*mydogcanfly\.com[^"']*/) || ["(dans le texte)"])[0]);
+
+  const [carteThai, carteTemoin] = rendues;
+  const hrefs = (c) => [...c.querySelectorAll("a[href]")].map((a) => a.getAttribute("href"));
+  check("la carte Thai porte un lien vers l'URL auditée du fret", hrefs(carteThai).includes(AUDIT.url),
+    hrefs(carteThai).join(" | ") || "aucun lien");
+  const lienSource = [...carteThai.querySelectorAll("a[href]")].find((a) => a.getAttribute("href") === AUDIT.url);
   check("ce lien est VISIBLE et nommé par son canal", (lienSource?.textContent || "").includes("thaiairways.com")
     && /cargo|fret|carga/i.test(lienSource?.textContent || ""), lienSource ? `« ${lienSource.textContent} »` : "absent");
+  /* Le témoin : aucun canal sourcé → AUCUN bloc de sources, pas un lien « par défaut ». */
+  check(`la carte ${TEMOIN_SANS_SOURCE} n'affiche AUCUN bloc de sources`,
+    carteTemoin.querySelector(".acard__psrc") === null,
+    carteTemoin.querySelector(".acard__psrc")?.innerHTML?.slice(0, 120) ?? "");
   dom.window.close();
 }
 

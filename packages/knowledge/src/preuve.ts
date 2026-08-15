@@ -28,6 +28,11 @@
  * deux versions, c'est se garantir qu'elles divergeront.
  */
 
+import type { PlacementPolicy, PlacementPolicyAuthored } from "./objects";
+
+/** La branche d'auteur « non revérifiée », extraite de l'union — jamais son littéral retapé. */
+type BrancheNonRevue = Extract<PlacementPolicyAuthored, { review_state: unknown }>;
+
 /** Le domaine du site. Les sous-domaines comptent ; « notmydogcanfly.com » ne compte pas. */
 const AUTO_CITATION = /(^|\.)mydogcanfly\.com$/i;
 
@@ -37,16 +42,23 @@ export function estAutoCitation(url: string | undefined | null): boolean {
   try { return AUTO_CITATION.test(new URL(String(url)).hostname); } catch { return false; }
 }
 
-/** Forme minimale commune aux deux modèles de politique — rien d'autre n'est lu ici. */
-export interface PolitiqueSourcable {
-  source?: { url?: string } | null;
-  /** Provenance fabriquée par l'ingestion — voir exclusion n° 2. */
-  source_derived?: boolean;
-  /** Forme d'auteur. */
-  review_state?: string;
-  /** Forme runtime. */
-  status_cause?: string;
-}
+/**
+ * Forme minimale commune aux deux modèles de politique — rien d'autre n'est lu ici.
+ *
+ * Les deux champs qui décident sont TIRÉS des schémas, jamais retapés : `Pick` échoue à la
+ * compilation si `source` ou `source_derived` change de nom dans `PlacementPolicy`, et
+ * `review_state` reprend le littéral de la branche non revérifiée. La contre-revue du 15/08/2026
+ * a montré ce que coûte une redéclaration à la main — un champ décrit sous un nom, lu sous un
+ * autre, et plus aucun type pour le dire.
+ */
+export type PolitiqueSourcable =
+  Partial<Pick<PlacementPolicy, "source" | "source_derived">>
+  & {
+    /** Forme d'AUTEUR : la branche non revérifiée porte ce discriminant. */
+    review_state?: BrancheNonRevue["review_state"];
+    /** Forme RUNTIME : présent sur la seule branche `confirmation_required`, d'où le `string`. */
+    status_cause?: string;
+  };
 
 /** `true` quand la politique dit « notre donnée n'a pas été revérifiée », quelle que soit sa forme. */
 export const estNonRevue = (p: PolitiqueSourcable | undefined | null): boolean =>

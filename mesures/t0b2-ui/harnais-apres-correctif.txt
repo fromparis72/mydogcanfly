@@ -1,3 +1,7 @@
+
+> test:entities
+> tsx test-entity-pages-harness.mjs
+
 portée : sentinelles · 2 canaux contradictoires sur 2 fiche(s)
          NON COUVERT ici : 76 canaux sur 69 fiches — lancer HARNAIS_PORTEE=complet sur un build complet des compagnies.
 
@@ -116,15 +120,21 @@ portée : sentinelles · 2 canaux contradictoires sur 2 fiche(s)
   OK   es : le fret NON REVÉRIFIÉ d'Aegean n'affiche AUCUNE source
   OK   pt : le fret NON REVÉRIFIÉ d'Aegean n'affiche AUCUNE source
 
-=== 4. Carte RENDUE du Finder : le lien de source est celui du canal ===
+=== 4. Carte RENDUE du Finder : les sources des canaux, et rien d'autre ===
+  OK   les 102 sources racines de la base sont connues du contrôle
   OK   le moteur sert bien une carte Thai sur CDG→BKK
-  OK   le rapport ne contient AUCUNE auto-citation dans ses sources
-  OK   la décision fret porte la source AUDITÉE du canal
-  OK   une carte est RENDUE dans le DOM
-  OK   la carte rendue ne contient AUCUN lien MyDogCanFly
-  OK   la carte rendue ne mentionne nulle part mydogcanfly.com
-  OK   la carte rendue porte un lien vers l'URL auditée du fret
+  OK   AUCUNE carte du rapport ne porte `source_url`, même officielle
+  OK   aucune URL n'est dans les sources du rapport AU TITRE de racine
+  OK   la décision fret Thai porte la source AUDITÉE du canal
+  OK   le témoin airline_air_china est servi, sans aucun canal sourcé
+  OK   et sa racine EST une page d'accueil — le contrôle a donc quelque chose à attraper
+  OK   les deux cartes sont RENDUES dans le DOM
+  OK   AUCUNE source racine non auditée n'apparaît dans les cartes rendues
+  OK   tout lien de source affiché sur une carte EST une preuve auditée de canal
+  OK   aucune mention de mydogcanfly.com dans les cartes rendues
+  OK   la carte Thai porte un lien vers l'URL auditée du fret
   OK   ce lien est VISIBLE et nommé par son canal
+  OK   la carte airline_air_china n'affiche AUCUN bloc de sources
 
 === 5. Les 2 canaux contradictoires × 4 langues : statut ET libellé ===
   OK   78 canaux contradictoires sur 71 fiches, relus des fiches et du contrat runtime
@@ -132,4 +142,4 @@ portée : sentinelles · 2 canaux contradictoires sur 2 fiche(s)
   OK   8 blocs vérifiés (statut technique ET libellé publié), aucune anomalie
   OK   la cible de cette portée n'est pas vide
 
-119 OK, 0 FAIL
+125 OK, 0 FAIL

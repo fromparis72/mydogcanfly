@@ -1,5 +1,5 @@
 {
- "perimetre": "T0-B2-UI — les auto-citations MyDogCanFly cessent de justifier une décision",
+ "perimetre": "T0-B2-UI — la source RACINE d'une compagnie cesse de justifier une décision",
  "avant": "test-baselines/t0b2-finder-baseline-apres.json",
  "apres": "test-baselines/t0b2ui-finder-baseline-apres.json",
  "champs_autorises": [
@@ -8,149 +8,300 @@
  "totaux": {
   "scenarios": 72,
   "scenarios_touches": 72,
-  "retirees_distinctes": 35,
+  "retirees_distinctes": 58,
+  "retirees_auto_citations": 35,
   "ajoutees_distinctes": 8
  },
- "auto_citations_retirees": [
+ "racines_retirees": [
+  {
+   "url": "https://flyasiana.com",
+   "scenarios": 16,
+   "auto_citation": false
+  },
   {
    "url": "https://mydogcanfly.com/aegean-airlines-dog-policy/",
-   "scenarios": 8
+   "scenarios": 8,
+   "auto_citation": true
   },
   {
    "url": "https://mydogcanfly.com/aeromexico-dog-policy/",
-   "scenarios": 16
+   "scenarios": 16,
+   "auto_citation": true
   },
   {
    "url": "https://mydogcanfly.com/air-algerie-dog-policy/",
-   "scenarios": 8
+   "scenarios": 8,
+   "auto_citation": true
   },
   {
    "url": "https://mydogcanfly.com/air-europa-dog-policy/",
-   "scenarios": 8
+   "scenarios": 8,
+   "auto_citation": true
   },
   {
    "url": "https://mydogcanfly.com/air-india-dog-policy/",
-   "scenarios": 16
+   "scenarios": 16,
+   "auto_citation": true
   },
   {
    "url": "https://mydogcanfly.com/ana-dog-policy/",
-   "scenarios": 8
+   "scenarios": 8,
+   "auto_citation": true
   },
   {
    "url": "https://mydogcanfly.com/austrian-airlines-dog-policy/",
-   "scenarios": 40
+   "scenarios": 40,
+   "auto_citation": true
   },
   {
    "url": "https://mydogcanfly.com/avianca-dog-policy/",
-   "scenarios": 8
+   "scenarios": 8,
+   "auto_citation": true
   },
   {
    "url": "https://mydogcanfly.com/brussels-airlines-dog-policy/",
-   "scenarios": 32
+   "scenarios": 32,
+   "auto_citation": true
   },
   {
    "url": "https://mydogcanfly.com/cathay-pacific-dog-policy/",
-   "scenarios": 16
+   "scenarios": 16,
+   "auto_citation": true
   },
   {
    "url": "https://mydogcanfly.com/china-airlines-dog-policy/",
-   "scenarios": 8
+   "scenarios": 8,
+   "auto_citation": true
   },
   {
    "url": "https://mydogcanfly.com/egyptair-dog-policy/",
-   "scenarios": 8
+   "scenarios": 8,
+   "auto_citation": true
   },
   {
    "url": "https://mydogcanfly.com/emirates-dog-policy/",
-   "scenarios": 32
+   "scenarios": 32,
+   "auto_citation": true
   },
   {
    "url": "https://mydogcanfly.com/ethiopian-airlines-dog-policy/",
-   "scenarios": 16
+   "scenarios": 16,
+   "auto_citation": true
   },
   {
    "url": "https://mydogcanfly.com/etihad-airways-dog-policy/",
-   "scenarios": 16
+   "scenarios": 16,
+   "auto_citation": true
   },
   {
    "url": "https://mydogcanfly.com/eurowings-dog-policy/",
-   "scenarios": 16
+   "scenarios": 16,
+   "auto_citation": true
   },
   {
    "url": "https://mydogcanfly.com/eva-air-dog-policy/",
-   "scenarios": 8
+   "scenarios": 8,
+   "auto_citation": true
   },
   {
    "url": "https://mydogcanfly.com/finnair-dog-policy/",
-   "scenarios": 56
+   "scenarios": 56,
+   "auto_citation": true
   },
   {
    "url": "https://mydogcanfly.com/ita-airways-dog-policy/",
-   "scenarios": 48
+   "scenarios": 48,
+   "auto_citation": true
   },
   {
    "url": "https://mydogcanfly.com/japan-airlines-dog-policy/",
-   "scenarios": 8
+   "scenarios": 8,
+   "auto_citation": true
   },
   {
    "url": "https://mydogcanfly.com/jetblue-dog-policy/",
-   "scenarios": 24
+   "scenarios": 24,
+   "auto_citation": true
   },
   {
    "url": "https://mydogcanfly.com/korean-air-dog-policy/",
-   "scenarios": 16
+   "scenarios": 16,
+   "auto_citation": true
   },
   {
    "url": "https://mydogcanfly.com/latam-dog-policy/",
-   "scenarios": 8
+   "scenarios": 8,
+   "auto_citation": true
   },
   {
    "url": "https://mydogcanfly.com/lot-polish-airlines-dog-policy/",
-   "scenarios": 48
+   "scenarios": 48,
+   "auto_citation": true
   },
   {
    "url": "https://mydogcanfly.com/qatar-airways-dog-policy/",
-   "scenarios": 24
+   "scenarios": 24,
+   "auto_citation": true
   },
   {
    "url": "https://mydogcanfly.com/royal-air-maroc-dog-policy/",
-   "scenarios": 32
+   "scenarios": 32,
+   "auto_citation": true
   },
   {
    "url": "https://mydogcanfly.com/sas-dog-policy/",
-   "scenarios": 40
+   "scenarios": 40,
+   "auto_citation": true
   },
   {
    "url": "https://mydogcanfly.com/saudia-dog-policy/",
-   "scenarios": 24
+   "scenarios": 24,
+   "auto_citation": true
   },
   {
    "url": "https://mydogcanfly.com/singapore-airlines-dog-policy/",
-   "scenarios": 16
+   "scenarios": 16,
+   "auto_citation": true
   },
   {
    "url": "https://mydogcanfly.com/swiss-air-dog-policy/",
-   "scenarios": 64
+   "scenarios": 64,
+   "auto_citation": true
   },
   {
    "url": "https://mydogcanfly.com/tap-air-portugal-dog-policy/",
-   "scenarios": 16
+   "scenarios": 16,
+   "auto_citation": true
   },
   {
    "url": "https://mydogcanfly.com/thai-airways-dog-policy/",
-   "scenarios": 16
+   "scenarios": 16,
+   "auto_citation": true
   },
   {
    "url": "https://mydogcanfly.com/vietnam-airlines-dog-policy/",
-   "scenarios": 16
+   "scenarios": 16,
+   "auto_citation": true
   },
   {
    "url": "https://mydogcanfly.com/vueling-dog-policy/",
-   "scenarios": 8
+   "scenarios": 8,
+   "auto_citation": true
   },
   {
    "url": "https://mydogcanfly.com/westjet-dog-policy/",
-   "scenarios": 24
+   "scenarios": 24,
+   "auto_citation": true
+  },
+  {
+   "url": "https://us.aircalin.com",
+   "scenarios": 8,
+   "auto_citation": false
+  },
+  {
+   "url": "https://www.aerlingus.com",
+   "scenarios": 40,
+   "auto_citation": false
+  },
+  {
+   "url": "https://www.airbaltic.com",
+   "scenarios": 8,
+   "auto_citation": false
+  },
+  {
+   "url": "https://www.airchina.com",
+   "scenarios": 16,
+   "auto_citation": false
+  },
+  {
+   "url": "https://www.airfrance.com/information/optionsvols/animaux-en-avion",
+   "scenarios": 72,
+   "auto_citation": false
+  },
+  {
+   "url": "https://www.airserbia.com",
+   "scenarios": 24,
+   "auto_citation": false
+  },
+  {
+   "url": "https://www.ceair.com",
+   "scenarios": 16,
+   "auto_citation": false
+  },
+  {
+   "url": "https://www.condor.com/us/flight-preparation/baggage-and-animals/travelling-with-pets.jsp",
+   "scenarios": 40,
+   "auto_citation": false
+  },
+  {
+   "url": "https://www.csair.com",
+   "scenarios": 16,
+   "auto_citation": false
+  },
+  {
+   "url": "https://www.elal.com",
+   "scenarios": 16,
+   "auto_citation": false
+  },
+  {
+   "url": "https://www.gulfair.com",
+   "scenarios": 24,
+   "auto_citation": false
+  },
+  {
+   "url": "https://www.iberia.com/us/travelling-with-pets/",
+   "scenarios": 48,
+   "auto_citation": false
+  },
+  {
+   "url": "https://www.icelandair.com",
+   "scenarios": 32,
+   "auto_citation": false
+  },
+  {
+   "url": "https://www.kenya-airways.com",
+   "scenarios": 8,
+   "auto_citation": false
+  },
+  {
+   "url": "https://www.klm.com/information/travel-classes-extra-options/pets",
+   "scenarios": 64,
+   "auto_citation": false
+  },
+  {
+   "url": "https://www.lufthansa.com/de/en/travelling-with-animals",
+   "scenarios": 72,
+   "auto_citation": false
+  },
+  {
+   "url": "https://www.malaysiaairlines.com",
+   "scenarios": 8,
+   "auto_citation": false
+  },
+  {
+   "url": "https://www.neosair.com",
+   "scenarios": 8,
+   "auto_citation": false
+  },
+  {
+   "url": "https://www.rj.com",
+   "scenarios": 16,
+   "auto_citation": false
+  },
+  {
+   "url": "https://www.smartwings.com/en/can-i-fly-with-my-pet",
+   "scenarios": 8,
+   "auto_citation": false
+  },
+  {
+   "url": "https://www.sunexpress.com",
+   "scenarios": 8,
+   "auto_citation": false
+  },
+  {
+   "url": "https://www.virginatlantic.com/gb/en/travel-information/travelling-with-pets",
+   "scenarios": 8,
+   "auto_citation": false
   }
  ],
  "sources_de_canal_ajoutees": [
@@ -190,6 +341,7 @@
  "par_scenario": {
   "cdg-bkk|golden|01-15|any": {
    "retirees": [
+    "https://flyasiana.com",
     "https://mydogcanfly.com/air-india-dog-policy/",
     "https://mydogcanfly.com/austrian-airlines-dog-policy/",
     "https://mydogcanfly.com/cathay-pacific-dog-policy/",
@@ -207,7 +359,21 @@
     "https://mydogcanfly.com/singapore-airlines-dog-policy/",
     "https://mydogcanfly.com/swiss-air-dog-policy/",
     "https://mydogcanfly.com/thai-airways-dog-policy/",
-    "https://mydogcanfly.com/vietnam-airlines-dog-policy/"
+    "https://mydogcanfly.com/vietnam-airlines-dog-policy/",
+    "https://us.aircalin.com",
+    "https://www.airchina.com",
+    "https://www.airfrance.com/information/optionsvols/animaux-en-avion",
+    "https://www.ceair.com",
+    "https://www.condor.com/us/flight-preparation/baggage-and-animals/travelling-with-pets.jsp",
+    "https://www.csair.com",
+    "https://www.elal.com",
+    "https://www.gulfair.com",
+    "https://www.iberia.com/us/travelling-with-pets/",
+    "https://www.kenya-airways.com",
+    "https://www.klm.com/information/travel-classes-extra-options/pets",
+    "https://www.lufthansa.com/de/en/travelling-with-animals",
+    "https://www.malaysiaairlines.com",
+    "https://www.rj.com"
    ],
    "ajoutees": [
     "https://www.iberia.com/us/faqs/pets-carriage/",
@@ -221,6 +387,7 @@
   },
   "cdg-bkk|golden|01-15|hold": {
    "retirees": [
+    "https://flyasiana.com",
     "https://mydogcanfly.com/air-india-dog-policy/",
     "https://mydogcanfly.com/austrian-airlines-dog-policy/",
     "https://mydogcanfly.com/cathay-pacific-dog-policy/",
@@ -238,7 +405,21 @@
     "https://mydogcanfly.com/singapore-airlines-dog-policy/",
     "https://mydogcanfly.com/swiss-air-dog-policy/",
     "https://mydogcanfly.com/thai-airways-dog-policy/",
-    "https://mydogcanfly.com/vietnam-airlines-dog-policy/"
+    "https://mydogcanfly.com/vietnam-airlines-dog-policy/",
+    "https://us.aircalin.com",
+    "https://www.airchina.com",
+    "https://www.airfrance.com/information/optionsvols/animaux-en-avion",
+    "https://www.ceair.com",
+    "https://www.condor.com/us/flight-preparation/baggage-and-animals/travelling-with-pets.jsp",
+    "https://www.csair.com",
+    "https://www.elal.com",
+    "https://www.gulfair.com",
+    "https://www.iberia.com/us/travelling-with-pets/",
+    "https://www.kenya-airways.com",
+    "https://www.klm.com/information/travel-classes-extra-options/pets",
+    "https://www.lufthansa.com/de/en/travelling-with-animals",
+    "https://www.malaysiaairlines.com",
+    "https://www.rj.com"
    ],
    "ajoutees": [
     "https://www.iberia.com/us/faqs/pets-carriage/",
@@ -252,6 +433,7 @@
   },
   "cdg-bkk|golden|07-15|any": {
    "retirees": [
+    "https://flyasiana.com",
     "https://mydogcanfly.com/air-india-dog-policy/",
     "https://mydogcanfly.com/austrian-airlines-dog-policy/",
     "https://mydogcanfly.com/cathay-pacific-dog-policy/",
@@ -269,7 +451,21 @@
     "https://mydogcanfly.com/singapore-airlines-dog-policy/",
     "https://mydogcanfly.com/swiss-air-dog-policy/",
     "https://mydogcanfly.com/thai-airways-dog-policy/",
-    "https://mydogcanfly.com/vietnam-airlines-dog-policy/"
+    "https://mydogcanfly.com/vietnam-airlines-dog-policy/",
+    "https://us.aircalin.com",
+    "https://www.airchina.com",
+    "https://www.airfrance.com/information/optionsvols/animaux-en-avion",
+    "https://www.ceair.com",
+    "https://www.condor.com/us/flight-preparation/baggage-and-animals/travelling-with-pets.jsp",
+    "https://www.csair.com",
+    "https://www.elal.com",
+    "https://www.gulfair.com",
+    "https://www.iberia.com/us/travelling-with-pets/",
+    "https://www.kenya-airways.com",
+    "https://www.klm.com/information/travel-classes-extra-options/pets",
+    "https://www.lufthansa.com/de/en/travelling-with-animals",
+    "https://www.malaysiaairlines.com",
+    "https://www.rj.com"
    ],
    "ajoutees": [
     "https://www.iberia.com/us/faqs/pets-carriage/",
@@ -283,6 +479,7 @@
   },
   "cdg-bkk|golden|07-15|hold": {
    "retirees": [
+    "https://flyasiana.com",
     "https://mydogcanfly.com/air-india-dog-policy/",
     "https://mydogcanfly.com/austrian-airlines-dog-policy/",
     "https://mydogcanfly.com/cathay-pacific-dog-policy/",
@@ -300,7 +497,21 @@
     "https://mydogcanfly.com/singapore-airlines-dog-policy/",
     "https://mydogcanfly.com/swiss-air-dog-policy/",
     "https://mydogcanfly.com/thai-airways-dog-policy/",
-    "https://mydogcanfly.com/vietnam-airlines-dog-policy/"
+    "https://mydogcanfly.com/vietnam-airlines-dog-policy/",
+    "https://us.aircalin.com",
+    "https://www.airchina.com",
+    "https://www.airfrance.com/information/optionsvols/animaux-en-avion",
+    "https://www.ceair.com",
+    "https://www.condor.com/us/flight-preparation/baggage-and-animals/travelling-with-pets.jsp",
+    "https://www.csair.com",
+    "https://www.elal.com",
+    "https://www.gulfair.com",
+    "https://www.iberia.com/us/travelling-with-pets/",
+    "https://www.kenya-airways.com",
+    "https://www.klm.com/information/travel-classes-extra-options/pets",
+    "https://www.lufthansa.com/de/en/travelling-with-animals",
+    "https://www.malaysiaairlines.com",
+    "https://www.rj.com"
    ],
    "ajoutees": [
     "https://www.iberia.com/us/faqs/pets-carriage/",
@@ -314,6 +525,7 @@
   },
   "cdg-bkk|pug|01-15|any": {
    "retirees": [
+    "https://flyasiana.com",
     "https://mydogcanfly.com/air-india-dog-policy/",
     "https://mydogcanfly.com/austrian-airlines-dog-policy/",
     "https://mydogcanfly.com/cathay-pacific-dog-policy/",
@@ -331,7 +543,21 @@
     "https://mydogcanfly.com/singapore-airlines-dog-policy/",
     "https://mydogcanfly.com/swiss-air-dog-policy/",
     "https://mydogcanfly.com/thai-airways-dog-policy/",
-    "https://mydogcanfly.com/vietnam-airlines-dog-policy/"
+    "https://mydogcanfly.com/vietnam-airlines-dog-policy/",
+    "https://us.aircalin.com",
+    "https://www.airchina.com",
+    "https://www.airfrance.com/information/optionsvols/animaux-en-avion",
+    "https://www.ceair.com",
+    "https://www.condor.com/us/flight-preparation/baggage-and-animals/travelling-with-pets.jsp",
+    "https://www.csair.com",
+    "https://www.elal.com",
+    "https://www.gulfair.com",
+    "https://www.iberia.com/us/travelling-with-pets/",
+    "https://www.kenya-airways.com",
+    "https://www.klm.com/information/travel-classes-extra-options/pets",
+    "https://www.lufthansa.com/de/en/travelling-with-animals",
+    "https://www.malaysiaairlines.com",
+    "https://www.rj.com"
    ],
    "ajoutees": [
     "https://www.iberia.com/us/faqs/pets-carriage/",
@@ -345,6 +571,7 @@
   },
   "cdg-bkk|pug|01-15|hold": {
    "retirees": [
+    "https://flyasiana.com",
     "https://mydogcanfly.com/air-india-dog-policy/",
     "https://mydogcanfly.com/austrian-airlines-dog-policy/",
     "https://mydogcanfly.com/cathay-pacific-dog-policy/",
@@ -362,7 +589,21 @@
     "https://mydogcanfly.com/singapore-airlines-dog-policy/",
     "https://mydogcanfly.com/swiss-air-dog-policy/",
     "https://mydogcanfly.com/thai-airways-dog-policy/",
-    "https://mydogcanfly.com/vietnam-airlines-dog-policy/"
+    "https://mydogcanfly.com/vietnam-airlines-dog-policy/",
+    "https://us.aircalin.com",
+    "https://www.airchina.com",
+    "https://www.airfrance.com/information/optionsvols/animaux-en-avion",
+    "https://www.ceair.com",
+    "https://www.condor.com/us/flight-preparation/baggage-and-animals/travelling-with-pets.jsp",
+    "https://www.csair.com",
+    "https://www.elal.com",
+    "https://www.gulfair.com",
+    "https://www.iberia.com/us/travelling-with-pets/",
+    "https://www.kenya-airways.com",
+    "https://www.klm.com/information/travel-classes-extra-options/pets",
+    "https://www.lufthansa.com/de/en/travelling-with-animals",
+    "https://www.malaysiaairlines.com",
+    "https://www.rj.com"
    ],
    "ajoutees": [
     "https://www.iberia.com/us/faqs/pets-carriage/",
@@ -376,6 +617,7 @@
   },
   "cdg-bkk|pug|07-15|any": {
    "retirees": [
+    "https://flyasiana.com",
     "https://mydogcanfly.com/air-india-dog-policy/",
     "https://mydogcanfly.com/austrian-airlines-dog-policy/",
     "https://mydogcanfly.com/cathay-pacific-dog-policy/",
@@ -393,7 +635,21 @@
     "https://mydogcanfly.com/singapore-airlines-dog-policy/",
     "https://mydogcanfly.com/swiss-air-dog-policy/",
     "https://mydogcanfly.com/thai-airways-dog-policy/",
-    "https://mydogcanfly.com/vietnam-airlines-dog-policy/"
+    "https://mydogcanfly.com/vietnam-airlines-dog-policy/",
+    "https://us.aircalin.com",
+    "https://www.airchina.com",
+    "https://www.airfrance.com/information/optionsvols/animaux-en-avion",
+    "https://www.ceair.com",
+    "https://www.condor.com/us/flight-preparation/baggage-and-animals/travelling-with-pets.jsp",
+    "https://www.csair.com",
+    "https://www.elal.com",
+    "https://www.gulfair.com",
+    "https://www.iberia.com/us/travelling-with-pets/",
+    "https://www.kenya-airways.com",
+    "https://www.klm.com/information/travel-classes-extra-options/pets",
+    "https://www.lufthansa.com/de/en/travelling-with-animals",
+    "https://www.malaysiaairlines.com",
+    "https://www.rj.com"
    ],
    "ajoutees": [
     "https://www.iberia.com/us/faqs/pets-carriage/",
@@ -407,6 +663,7 @@
   },
   "cdg-bkk|pug|07-15|hold": {
    "retirees": [
+    "https://flyasiana.com",
     "https://mydogcanfly.com/air-india-dog-policy/",
     "https://mydogcanfly.com/austrian-airlines-dog-policy/",
     "https://mydogcanfly.com/cathay-pacific-dog-policy/",
@@ -424,7 +681,21 @@
     "https://mydogcanfly.com/singapore-airlines-dog-policy/",
     "https://mydogcanfly.com/swiss-air-dog-policy/",
     "https://mydogcanfly.com/thai-airways-dog-policy/",
-    "https://mydogcanfly.com/vietnam-airlines-dog-policy/"
+    "https://mydogcanfly.com/vietnam-airlines-dog-policy/",
+    "https://us.aircalin.com",
+    "https://www.airchina.com",
+    "https://www.airfrance.com/information/optionsvols/animaux-en-avion",
+    "https://www.ceair.com",
+    "https://www.condor.com/us/flight-preparation/baggage-and-animals/travelling-with-pets.jsp",
+    "https://www.csair.com",
+    "https://www.elal.com",
+    "https://www.gulfair.com",
+    "https://www.iberia.com/us/travelling-with-pets/",
+    "https://www.kenya-airways.com",
+    "https://www.klm.com/information/travel-classes-extra-options/pets",
+    "https://www.lufthansa.com/de/en/travelling-with-animals",
+    "https://www.malaysiaairlines.com",
+    "https://www.rj.com"
    ],
    "ajoutees": [
     "https://www.iberia.com/us/faqs/pets-carriage/",
@@ -449,7 +720,17 @@
     "https://mydogcanfly.com/lot-polish-airlines-dog-policy/",
     "https://mydogcanfly.com/qatar-airways-dog-policy/",
     "https://mydogcanfly.com/saudia-dog-policy/",
-    "https://mydogcanfly.com/swiss-air-dog-policy/"
+    "https://mydogcanfly.com/swiss-air-dog-policy/",
+    "https://www.airbaltic.com",
+    "https://www.airfrance.com/information/optionsvols/animaux-en-avion",
+    "https://www.condor.com/us/flight-preparation/baggage-and-animals/travelling-with-pets.jsp",
+    "https://www.elal.com",
+    "https://www.gulfair.com",
+    "https://www.klm.com/information/travel-classes-extra-options/pets",
+    "https://www.lufthansa.com/de/en/travelling-with-animals",
+    "https://www.rj.com",
+    "https://www.smartwings.com/en/can-i-fly-with-my-pet",
+    "https://www.sunexpress.com"
    ],
    "ajoutees": [
     "https://www.klm.com/information/pets/reservation",
@@ -471,7 +752,17 @@
     "https://mydogcanfly.com/lot-polish-airlines-dog-policy/",
     "https://mydogcanfly.com/qatar-airways-dog-policy/",
     "https://mydogcanfly.com/saudia-dog-policy/",
-    "https://mydogcanfly.com/swiss-air-dog-policy/"
+    "https://mydogcanfly.com/swiss-air-dog-policy/",
+    "https://www.airbaltic.com",
+    "https://www.airfrance.com/information/optionsvols/animaux-en-avion",
+    "https://www.condor.com/us/flight-preparation/baggage-and-animals/travelling-with-pets.jsp",
+    "https://www.elal.com",
+    "https://www.gulfair.com",
+    "https://www.klm.com/information/travel-classes-extra-options/pets",
+    "https://www.lufthansa.com/de/en/travelling-with-animals",
+    "https://www.rj.com",
+    "https://www.smartwings.com/en/can-i-fly-with-my-pet",
+    "https://www.sunexpress.com"
    ],
    "ajoutees": [
     "https://www.klm.com/information/pets/reservation",
@@ -493,7 +784,17 @@
     "https://mydogcanfly.com/lot-polish-airlines-dog-policy/",
     "https://mydogcanfly.com/qatar-airways-dog-policy/",
     "https://mydogcanfly.com/saudia-dog-policy/",
-    "https://mydogcanfly.com/swiss-air-dog-policy/"
+    "https://mydogcanfly.com/swiss-air-dog-policy/",
+    "https://www.airbaltic.com",
+    "https://www.airfrance.com/information/optionsvols/animaux-en-avion",
+    "https://www.condor.com/us/flight-preparation/baggage-and-animals/travelling-with-pets.jsp",
+    "https://www.elal.com",
+    "https://www.gulfair.com",
+    "https://www.klm.com/information/travel-classes-extra-options/pets",
+    "https://www.lufthansa.com/de/en/travelling-with-animals",
+    "https://www.rj.com",
+    "https://www.smartwings.com/en/can-i-fly-with-my-pet",
+    "https://www.sunexpress.com"
    ],
    "ajoutees": [
     "https://www.klm.com/information/pets/reservation",
@@ -515,7 +816,17 @@
     "https://mydogcanfly.com/lot-polish-airlines-dog-policy/",
     "https://mydogcanfly.com/qatar-airways-dog-policy/",
     "https://mydogcanfly.com/saudia-dog-policy/",
-    "https://mydogcanfly.com/swiss-air-dog-policy/"
+    "https://mydogcanfly.com/swiss-air-dog-policy/",
+    "https://www.airbaltic.com",
+    "https://www.airfrance.com/information/optionsvols/animaux-en-avion",
+    "https://www.condor.com/us/flight-preparation/baggage-and-animals/travelling-with-pets.jsp",
+    "https://www.elal.com",
+    "https://www.gulfair.com",
+    "https://www.klm.com/information/travel-classes-extra-options/pets",
+    "https://www.lufthansa.com/de/en/travelling-with-animals",
+    "https://www.rj.com",
+    "https://www.smartwings.com/en/can-i-fly-with-my-pet",
+    "https://www.sunexpress.com"
    ],
    "ajoutees": [
     "https://www.klm.com/information/pets/reservation",
@@ -537,7 +848,17 @@
     "https://mydogcanfly.com/lot-polish-airlines-dog-policy/",
     "https://mydogcanfly.com/qatar-airways-dog-policy/",
     "https://mydogcanfly.com/saudia-dog-policy/",
-    "https://mydogcanfly.com/swiss-air-dog-policy/"
+    "https://mydogcanfly.com/swiss-air-dog-policy/",
+    "https://www.airbaltic.com",
+    "https://www.airfrance.com/information/optionsvols/animaux-en-avion",
+    "https://www.condor.com/us/flight-preparation/baggage-and-animals/travelling-with-pets.jsp",
+    "https://www.elal.com",
+    "https://www.gulfair.com",
+    "https://www.klm.com/information/travel-classes-extra-options/pets",
+    "https://www.lufthansa.com/de/en/travelling-with-animals",
+    "https://www.rj.com",
+    "https://www.smartwings.com/en/can-i-fly-with-my-pet",
+    "https://www.sunexpress.com"
    ],
    "ajoutees": [
     "https://www.klm.com/information/pets/reservation",
@@ -559,7 +880,17 @@
     "https://mydogcanfly.com/lot-polish-airlines-dog-policy/",
     "https://mydogcanfly.com/qatar-airways-dog-policy/",
     "https://mydogcanfly.com/saudia-dog-policy/",
-    "https://mydogcanfly.com/swiss-air-dog-policy/"
+    "https://mydogcanfly.com/swiss-air-dog-policy/",
+    "https://www.airbaltic.com",
+    "https://www.airfrance.com/information/optionsvols/animaux-en-avion",
+    "https://www.condor.com/us/flight-preparation/baggage-and-animals/travelling-with-pets.jsp",
+    "https://www.elal.com",
+    "https://www.gulfair.com",
+    "https://www.klm.com/information/travel-classes-extra-options/pets",
+    "https://www.lufthansa.com/de/en/travelling-with-animals",
+    "https://www.rj.com",
+    "https://www.smartwings.com/en/can-i-fly-with-my-pet",
+    "https://www.sunexpress.com"
    ],
    "ajoutees": [
     "https://www.klm.com/information/pets/reservation",
@@ -581,7 +912,17 @@
     "https://mydogcanfly.com/lot-polish-airlines-dog-policy/",
     "https://mydogcanfly.com/qatar-airways-dog-policy/",
     "https://mydogcanfly.com/saudia-dog-policy/",
-    "https://mydogcanfly.com/swiss-air-dog-policy/"
+    "https://mydogcanfly.com/swiss-air-dog-policy/",
+    "https://www.airbaltic.com",
+    "https://www.airfrance.com/information/optionsvols/animaux-en-avion",
+    "https://www.condor.com/us/flight-preparation/baggage-and-animals/travelling-with-pets.jsp",
+    "https://www.elal.com",
+    "https://www.gulfair.com",
+    "https://www.klm.com/information/travel-classes-extra-options/pets",
+    "https://www.lufthansa.com/de/en/travelling-with-animals",
+    "https://www.rj.com",
+    "https://www.smartwings.com/en/can-i-fly-with-my-pet",
+    "https://www.sunexpress.com"
    ],
    "ajoutees": [
     "https://www.klm.com/information/pets/reservation",
@@ -603,7 +944,17 @@
     "https://mydogcanfly.com/lot-polish-airlines-dog-policy/",
     "https://mydogcanfly.com/qatar-airways-dog-policy/",
     "https://mydogcanfly.com/saudia-dog-policy/",
-    "https://mydogcanfly.com/swiss-air-dog-policy/"
+    "https://mydogcanfly.com/swiss-air-dog-policy/",
+    "https://www.airbaltic.com",
+    "https://www.airfrance.com/information/optionsvols/animaux-en-avion",
+    "https://www.condor.com/us/flight-preparation/baggage-and-animals/travelling-with-pets.jsp",
+    "https://www.elal.com",
+    "https://www.gulfair.com",
+    "https://www.klm.com/information/travel-classes-extra-options/pets",
+    "https://www.lufthansa.com/de/en/travelling-with-animals",
+    "https://www.rj.com",
+    "https://www.smartwings.com/en/can-i-fly-with-my-pet",
+    "https://www.sunexpress.com"
    ],
    "ajoutees": [
     "https://www.klm.com/information/pets/reservation",
@@ -623,7 +974,15 @@
     "https://mydogcanfly.com/royal-air-maroc-dog-policy/",
     "https://mydogcanfly.com/sas-dog-policy/",
     "https://mydogcanfly.com/swiss-air-dog-policy/",
-    "https://mydogcanfly.com/westjet-dog-policy/"
+    "https://mydogcanfly.com/westjet-dog-policy/",
+    "https://www.aerlingus.com",
+    "https://www.airfrance.com/information/optionsvols/animaux-en-avion",
+    "https://www.airserbia.com",
+    "https://www.condor.com/us/flight-preparation/baggage-and-animals/travelling-with-pets.jsp",
+    "https://www.iberia.com/us/travelling-with-pets/",
+    "https://www.icelandair.com",
+    "https://www.klm.com/information/travel-classes-extra-options/pets",
+    "https://www.lufthansa.com/de/en/travelling-with-animals"
    ],
    "ajoutees": [
     "https://www.iberia.com/us/faqs/pets-carriage/",
@@ -645,7 +1004,15 @@
     "https://mydogcanfly.com/royal-air-maroc-dog-policy/",
     "https://mydogcanfly.com/sas-dog-policy/",
     "https://mydogcanfly.com/swiss-air-dog-policy/",
-    "https://mydogcanfly.com/westjet-dog-policy/"
+    "https://mydogcanfly.com/westjet-dog-policy/",
+    "https://www.aerlingus.com",
+    "https://www.airfrance.com/information/optionsvols/animaux-en-avion",
+    "https://www.airserbia.com",
+    "https://www.condor.com/us/flight-preparation/baggage-and-animals/travelling-with-pets.jsp",
+    "https://www.iberia.com/us/travelling-with-pets/",
+    "https://www.icelandair.com",
+    "https://www.klm.com/information/travel-classes-extra-options/pets",
+    "https://www.lufthansa.com/de/en/travelling-with-animals"
    ],
    "ajoutees": [
     "https://www.iberia.com/us/faqs/pets-carriage/",
@@ -667,7 +1034,15 @@
     "https://mydogcanfly.com/royal-air-maroc-dog-policy/",
     "https://mydogcanfly.com/sas-dog-policy/",
     "https://mydogcanfly.com/swiss-air-dog-policy/",
-    "https://mydogcanfly.com/westjet-dog-policy/"
+    "https://mydogcanfly.com/westjet-dog-policy/",
+    "https://www.aerlingus.com",
+    "https://www.airfrance.com/information/optionsvols/animaux-en-avion",
+    "https://www.airserbia.com",
+    "https://www.condor.com/us/flight-preparation/baggage-and-animals/travelling-with-pets.jsp",
+    "https://www.iberia.com/us/travelling-with-pets/",
+    "https://www.icelandair.com",
+    "https://www.klm.com/information/travel-classes-extra-options/pets",
+    "https://www.lufthansa.com/de/en/travelling-with-animals"
    ],
    "ajoutees": [
     "https://www.iberia.com/us/faqs/pets-carriage/",
@@ -689,7 +1064,15 @@
     "https://mydogcanfly.com/royal-air-maroc-dog-policy/",
     "https://mydogcanfly.com/sas-dog-policy/",
     "https://mydogcanfly.com/swiss-air-dog-policy/",
-    "https://mydogcanfly.com/westjet-dog-policy/"
+    "https://mydogcanfly.com/westjet-dog-policy/",
+    "https://www.aerlingus.com",
+    "https://www.airfrance.com/information/optionsvols/animaux-en-avion",
+    "https://www.airserbia.com",
+    "https://www.condor.com/us/flight-preparation/baggage-and-animals/travelling-with-pets.jsp",
+    "https://www.iberia.com/us/travelling-with-pets/",
+    "https://www.icelandair.com",
+    "https://www.klm.com/information/travel-classes-extra-options/pets",
+    "https://www.lufthansa.com/de/en/travelling-with-animals"
    ],
    "ajoutees": [
     "https://www.iberia.com/us/faqs/pets-carriage/",
@@ -711,7 +1094,15 @@
     "https://mydogcanfly.com/royal-air-maroc-dog-policy/",
     "https://mydogcanfly.com/sas-dog-policy/",
     "https://mydogcanfly.com/swiss-air-dog-policy/",
-    "https://mydogcanfly.com/westjet-dog-policy/"
+    "https://mydogcanfly.com/westjet-dog-policy/",
+    "https://www.aerlingus.com",
+    "https://www.airfrance.com/information/optionsvols/animaux-en-avion",
+    "https://www.airserbia.com",
+    "https://www.condor.com/us/flight-preparation/baggage-and-animals/travelling-with-pets.jsp",
+    "https://www.iberia.com/us/travelling-with-pets/",
+    "https://www.icelandair.com",
+    "https://www.klm.com/information/travel-classes-extra-options/pets",
+    "https://www.lufthansa.com/de/en/travelling-with-animals"
    ],
    "ajoutees": [
     "https://www.iberia.com/us/faqs/pets-carriage/",
@@ -733,7 +1124,15 @@
     "https://mydogcanfly.com/royal-air-maroc-dog-policy/",
     "https://mydogcanfly.com/sas-dog-policy/",
     "https://mydogcanfly.com/swiss-air-dog-policy/",
-    "https://mydogcanfly.com/westjet-dog-policy/"
+    "https://mydogcanfly.com/westjet-dog-policy/",
+    "https://www.aerlingus.com",
+    "https://www.airfrance.com/information/optionsvols/animaux-en-avion",
+    "https://www.airserbia.com",
+    "https://www.condor.com/us/flight-preparation/baggage-and-animals/travelling-with-pets.jsp",
+    "https://www.iberia.com/us/travelling-with-pets/",
+    "https://www.icelandair.com",
+    "https://www.klm.com/information/travel-classes-extra-options/pets",
+    "https://www.lufthansa.com/de/en/travelling-with-animals"
    ],
    "ajoutees": [
     "https://www.iberia.com/us/faqs/pets-carriage/",
@@ -755,7 +1154,15 @@
     "https://mydogcanfly.com/royal-air-maroc-dog-policy/",
     "https://mydogcanfly.com/sas-dog-policy/",
     "https://mydogcanfly.com/swiss-air-dog-policy/",
-    "https://mydogcanfly.com/westjet-dog-policy/"
+    "https://mydogcanfly.com/westjet-dog-policy/",
+    "https://www.aerlingus.com",
+    "https://www.airfrance.com/information/optionsvols/animaux-en-avion",
+    "https://www.airserbia.com",
+    "https://www.condor.com/us/flight-preparation/baggage-and-animals/travelling-with-pets.jsp",
+    "https://www.iberia.com/us/travelling-with-pets/",
+    "https://www.icelandair.com",
+    "https://www.klm.com/information/travel-classes-extra-options/pets",
+    "https://www.lufthansa.com/de/en/travelling-with-animals"
    ],
    "ajoutees": [
     "https://www.iberia.com/us/faqs/pets-carriage/",
@@ -777,7 +1184,15 @@
     "https://mydogcanfly.com/royal-air-maroc-dog-policy/",
     "https://mydogcanfly.com/sas-dog-policy/",
     "https://mydogcanfly.com/swiss-air-dog-policy/",
-    "https://mydogcanfly.com/westjet-dog-policy/"
+    "https://mydogcanfly.com/westjet-dog-policy/",
+    "https://www.aerlingus.com",
+    "https://www.airfrance.com/information/optionsvols/animaux-en-avion",
+    "https://www.airserbia.com",
+    "https://www.condor.com/us/flight-preparation/baggage-and-animals/travelling-with-pets.jsp",
+    "https://www.iberia.com/us/travelling-with-pets/",
+    "https://www.icelandair.com",
+    "https://www.klm.com/information/travel-classes-extra-options/pets",
+    "https://www.lufthansa.com/de/en/travelling-with-animals"
    ],
    "ajoutees": [
     "https://www.iberia.com/us/faqs/pets-carriage/",
@@ -794,7 +1209,11 @@
     "https://mydogcanfly.com/eurowings-dog-policy/",
     "https://mydogcanfly.com/ita-airways-dog-policy/",
     "https://mydogcanfly.com/swiss-air-dog-policy/",
-    "https://mydogcanfly.com/vueling-dog-policy/"
+    "https://mydogcanfly.com/vueling-dog-policy/",
+    "https://www.aerlingus.com",
+    "https://www.airfrance.com/information/optionsvols/animaux-en-avion",
+    "https://www.klm.com/information/travel-classes-extra-options/pets",
+    "https://www.lufthansa.com/de/en/travelling-with-animals"
    ],
    "ajoutees": [
     "https://www.klm.com/information/pets/reservation",
@@ -808,7 +1227,11 @@
     "https://mydogcanfly.com/eurowings-dog-policy/",
     "https://mydogcanfly.com/ita-airways-dog-policy/",
     "https://mydogcanfly.com/swiss-air-dog-policy/",
-    "https://mydogcanfly.com/vueling-dog-policy/"
+    "https://mydogcanfly.com/vueling-dog-policy/",
+    "https://www.aerlingus.com",
+    "https://www.airfrance.com/information/optionsvols/animaux-en-avion",
+    "https://www.klm.com/information/travel-classes-extra-options/pets",
+    "https://www.lufthansa.com/de/en/travelling-with-animals"
    ],
    "ajoutees": [
     "https://www.klm.com/information/pets/reservation",
@@ -822,7 +1245,11 @@
     "https://mydogcanfly.com/eurowings-dog-policy/",
     "https://mydogcanfly.com/ita-airways-dog-policy/",
     "https://mydogcanfly.com/swiss-air-dog-policy/",
-    "https://mydogcanfly.com/vueling-dog-policy/"
+    "https://mydogcanfly.com/vueling-dog-policy/",
+    "https://www.aerlingus.com",
+    "https://www.airfrance.com/information/optionsvols/animaux-en-avion",
+    "https://www.klm.com/information/travel-classes-extra-options/pets",
+    "https://www.lufthansa.com/de/en/travelling-with-animals"
    ],
    "ajoutees": [
     "https://www.klm.com/information/pets/reservation",
@@ -836,7 +1263,11 @@
     "https://mydogcanfly.com/eurowings-dog-policy/",
     "https://mydogcanfly.com/ita-airways-dog-policy/",
     "https://mydogcanfly.com/swiss-air-dog-policy/",
-    "https://mydogcanfly.com/vueling-dog-policy/"
+    "https://mydogcanfly.com/vueling-dog-policy/",
+    "https://www.aerlingus.com",
+    "https://www.airfrance.com/information/optionsvols/animaux-en-avion",
+    "https://www.klm.com/information/travel-classes-extra-options/pets",
+    "https://www.lufthansa.com/de/en/travelling-with-animals"
    ],
    "ajoutees": [
     "https://www.klm.com/information/pets/reservation",
@@ -850,7 +1281,11 @@
     "https://mydogcanfly.com/eurowings-dog-policy/",
     "https://mydogcanfly.com/ita-airways-dog-policy/",
     "https://mydogcanfly.com/swiss-air-dog-policy/",
-    "https://mydogcanfly.com/vueling-dog-policy/"
+    "https://mydogcanfly.com/vueling-dog-policy/",
+    "https://www.aerlingus.com",
+    "https://www.airfrance.com/information/optionsvols/animaux-en-avion",
+    "https://www.klm.com/information/travel-classes-extra-options/pets",
+    "https://www.lufthansa.com/de/en/travelling-with-animals"
    ],
    "ajoutees": [
     "https://www.klm.com/information/pets/reservation",
@@ -864,7 +1299,11 @@
     "https://mydogcanfly.com/eurowings-dog-policy/",
     "https://mydogcanfly.com/ita-airways-dog-policy/",
     "https://mydogcanfly.com/swiss-air-dog-policy/",
-    "https://mydogcanfly.com/vueling-dog-policy/"
+    "https://mydogcanfly.com/vueling-dog-policy/",
+    "https://www.aerlingus.com",
+    "https://www.airfrance.com/information/optionsvols/animaux-en-avion",
+    "https://www.klm.com/information/travel-classes-extra-options/pets",
+    "https://www.lufthansa.com/de/en/travelling-with-animals"
    ],
    "ajoutees": [
     "https://www.klm.com/information/pets/reservation",
@@ -878,7 +1317,11 @@
     "https://mydogcanfly.com/eurowings-dog-policy/",
     "https://mydogcanfly.com/ita-airways-dog-policy/",
     "https://mydogcanfly.com/swiss-air-dog-policy/",
-    "https://mydogcanfly.com/vueling-dog-policy/"
+    "https://mydogcanfly.com/vueling-dog-policy/",
+    "https://www.aerlingus.com",
+    "https://www.airfrance.com/information/optionsvols/animaux-en-avion",
+    "https://www.klm.com/information/travel-classes-extra-options/pets",
+    "https://www.lufthansa.com/de/en/travelling-with-animals"
    ],
    "ajoutees": [
     "https://www.klm.com/information/pets/reservation",
@@ -892,7 +1335,11 @@
     "https://mydogcanfly.com/eurowings-dog-policy/",
     "https://mydogcanfly.com/ita-airways-dog-policy/",
     "https://mydogcanfly.com/swiss-air-dog-policy/",
-    "https://mydogcanfly.com/vueling-dog-policy/"
+    "https://mydogcanfly.com/vueling-dog-policy/",
+    "https://www.aerlingus.com",
+    "https://www.airfrance.com/information/optionsvols/animaux-en-avion",
+    "https://www.klm.com/information/travel-classes-extra-options/pets",
+    "https://www.lufthansa.com/de/en/travelling-with-animals"
    ],
    "ajoutees": [
     "https://www.klm.com/information/pets/reservation",
@@ -902,6 +1349,7 @@
   },
   "fra-sin|golden|01-15|any": {
    "retirees": [
+    "https://flyasiana.com",
     "https://mydogcanfly.com/air-india-dog-policy/",
     "https://mydogcanfly.com/ana-dog-policy/",
     "https://mydogcanfly.com/cathay-pacific-dog-policy/",
@@ -917,7 +1365,14 @@
     "https://mydogcanfly.com/singapore-airlines-dog-policy/",
     "https://mydogcanfly.com/swiss-air-dog-policy/",
     "https://mydogcanfly.com/thai-airways-dog-policy/",
-    "https://mydogcanfly.com/vietnam-airlines-dog-policy/"
+    "https://mydogcanfly.com/vietnam-airlines-dog-policy/",
+    "https://www.airchina.com",
+    "https://www.airfrance.com/information/optionsvols/animaux-en-avion",
+    "https://www.ceair.com",
+    "https://www.csair.com",
+    "https://www.gulfair.com",
+    "https://www.klm.com/information/travel-classes-extra-options/pets",
+    "https://www.lufthansa.com/de/en/travelling-with-animals"
    ],
    "ajoutees": [
     "https://www.klm.com/information/pets/reservation",
@@ -929,6 +1384,7 @@
   },
   "fra-sin|golden|01-15|hold": {
    "retirees": [
+    "https://flyasiana.com",
     "https://mydogcanfly.com/air-india-dog-policy/",
     "https://mydogcanfly.com/ana-dog-policy/",
     "https://mydogcanfly.com/cathay-pacific-dog-policy/",
@@ -944,7 +1400,14 @@
     "https://mydogcanfly.com/singapore-airlines-dog-policy/",
     "https://mydogcanfly.com/swiss-air-dog-policy/",
     "https://mydogcanfly.com/thai-airways-dog-policy/",
-    "https://mydogcanfly.com/vietnam-airlines-dog-policy/"
+    "https://mydogcanfly.com/vietnam-airlines-dog-policy/",
+    "https://www.airchina.com",
+    "https://www.airfrance.com/information/optionsvols/animaux-en-avion",
+    "https://www.ceair.com",
+    "https://www.csair.com",
+    "https://www.gulfair.com",
+    "https://www.klm.com/information/travel-classes-extra-options/pets",
+    "https://www.lufthansa.com/de/en/travelling-with-animals"
    ],
    "ajoutees": [
     "https://www.klm.com/information/pets/reservation",
@@ -956,6 +1419,7 @@
   },
   "fra-sin|golden|07-15|any": {
    "retirees": [
+    "https://flyasiana.com",
     "https://mydogcanfly.com/air-india-dog-policy/",
     "https://mydogcanfly.com/ana-dog-policy/",
     "https://mydogcanfly.com/cathay-pacific-dog-policy/",
@@ -971,7 +1435,14 @@
     "https://mydogcanfly.com/singapore-airlines-dog-policy/",
     "https://mydogcanfly.com/swiss-air-dog-policy/",
     "https://mydogcanfly.com/thai-airways-dog-policy/",
-    "https://mydogcanfly.com/vietnam-airlines-dog-policy/"
+    "https://mydogcanfly.com/vietnam-airlines-dog-policy/",
+    "https://www.airchina.com",
+    "https://www.airfrance.com/information/optionsvols/animaux-en-avion",
+    "https://www.ceair.com",
+    "https://www.csair.com",
+    "https://www.gulfair.com",
+    "https://www.klm.com/information/travel-classes-extra-options/pets",
+    "https://www.lufthansa.com/de/en/travelling-with-animals"
    ],
    "ajoutees": [
     "https://www.klm.com/information/pets/reservation",
@@ -983,6 +1454,7 @@
   },
   "fra-sin|golden|07-15|hold": {
    "retirees": [
+    "https://flyasiana.com",
     "https://mydogcanfly.com/air-india-dog-policy/",
     "https://mydogcanfly.com/ana-dog-policy/",
     "https://mydogcanfly.com/cathay-pacific-dog-policy/",
@@ -998,7 +1470,14 @@
     "https://mydogcanfly.com/singapore-airlines-dog-policy/",
     "https://mydogcanfly.com/swiss-air-dog-policy/",
     "https://mydogcanfly.com/thai-airways-dog-policy/",
-    "https://mydogcanfly.com/vietnam-airlines-dog-policy/"
+    "https://mydogcanfly.com/vietnam-airlines-dog-policy/",
+    "https://www.airchina.com",
+    "https://www.airfrance.com/information/optionsvols/animaux-en-avion",
+    "https://www.ceair.com",
+    "https://www.csair.com",
+    "https://www.gulfair.com",
+    "https://www.klm.com/information/travel-classes-extra-options/pets",
+    "https://www.lufthansa.com/de/en/travelling-with-animals"
    ],
    "ajoutees": [
     "https://www.klm.com/information/pets/reservation",
@@ -1010,6 +1489,7 @@
   },
   "fra-sin|pug|01-15|any": {
    "retirees": [
+    "https://flyasiana.com",
     "https://mydogcanfly.com/air-india-dog-policy/",
     "https://mydogcanfly.com/ana-dog-policy/",
     "https://mydogcanfly.com/cathay-pacific-dog-policy/",
@@ -1025,7 +1505,14 @@
     "https://mydogcanfly.com/singapore-airlines-dog-policy/",
     "https://mydogcanfly.com/swiss-air-dog-policy/",
     "https://mydogcanfly.com/thai-airways-dog-policy/",
-    "https://mydogcanfly.com/vietnam-airlines-dog-policy/"
+    "https://mydogcanfly.com/vietnam-airlines-dog-policy/",
+    "https://www.airchina.com",
+    "https://www.airfrance.com/information/optionsvols/animaux-en-avion",
+    "https://www.ceair.com",
+    "https://www.csair.com",
+    "https://www.gulfair.com",
+    "https://www.klm.com/information/travel-classes-extra-options/pets",
+    "https://www.lufthansa.com/de/en/travelling-with-animals"
    ],
    "ajoutees": [
     "https://www.klm.com/information/pets/reservation",
@@ -1037,6 +1524,7 @@
   },
   "fra-sin|pug|01-15|hold": {
    "retirees": [
+    "https://flyasiana.com",
     "https://mydogcanfly.com/air-india-dog-policy/",
     "https://mydogcanfly.com/ana-dog-policy/",
     "https://mydogcanfly.com/cathay-pacific-dog-policy/",
@@ -1052,7 +1540,14 @@
     "https://mydogcanfly.com/singapore-airlines-dog-policy/",
     "https://mydogcanfly.com/swiss-air-dog-policy/",
     "https://mydogcanfly.com/thai-airways-dog-policy/",
-    "https://mydogcanfly.com/vietnam-airlines-dog-policy/"
+    "https://mydogcanfly.com/vietnam-airlines-dog-policy/",
+    "https://www.airchina.com",
+    "https://www.airfrance.com/information/optionsvols/animaux-en-avion",
+    "https://www.ceair.com",
+    "https://www.csair.com",
+    "https://www.gulfair.com",
+    "https://www.klm.com/information/travel-classes-extra-options/pets",
+    "https://www.lufthansa.com/de/en/travelling-with-animals"
    ],
    "ajoutees": [
     "https://www.klm.com/information/pets/reservation",
@@ -1064,6 +1559,7 @@
   },
   "fra-sin|pug|07-15|any": {
    "retirees": [
+    "https://flyasiana.com",
     "https://mydogcanfly.com/air-india-dog-policy/",
     "https://mydogcanfly.com/ana-dog-policy/",
     "https://mydogcanfly.com/cathay-pacific-dog-policy/",
@@ -1079,7 +1575,14 @@
     "https://mydogcanfly.com/singapore-airlines-dog-policy/",
     "https://mydogcanfly.com/swiss-air-dog-policy/",
     "https://mydogcanfly.com/thai-airways-dog-policy/",
-    "https://mydogcanfly.com/vietnam-airlines-dog-policy/"
+    "https://mydogcanfly.com/vietnam-airlines-dog-policy/",
+    "https://www.airchina.com",
+    "https://www.airfrance.com/information/optionsvols/animaux-en-avion",
+    "https://www.ceair.com",
+    "https://www.csair.com",
+    "https://www.gulfair.com",
+    "https://www.klm.com/information/travel-classes-extra-options/pets",
+    "https://www.lufthansa.com/de/en/travelling-with-animals"
    ],
    "ajoutees": [
     "https://www.klm.com/information/pets/reservation",
@@ -1091,6 +1594,7 @@
   },
   "fra-sin|pug|07-15|hold": {
    "retirees": [
+    "https://flyasiana.com",
     "https://mydogcanfly.com/air-india-dog-policy/",
     "https://mydogcanfly.com/ana-dog-policy/",
     "https://mydogcanfly.com/cathay-pacific-dog-policy/",
@@ -1106,7 +1610,14 @@
     "https://mydogcanfly.com/singapore-airlines-dog-policy/",
     "https://mydogcanfly.com/swiss-air-dog-policy/",
     "https://mydogcanfly.com/thai-airways-dog-policy/",
-    "https://mydogcanfly.com/vietnam-airlines-dog-policy/"
+    "https://mydogcanfly.com/vietnam-airlines-dog-policy/",
+    "https://www.airchina.com",
+    "https://www.airfrance.com/information/optionsvols/animaux-en-avion",
+    "https://www.ceair.com",
+    "https://www.csair.com",
+    "https://www.gulfair.com",
+    "https://www.klm.com/information/travel-classes-extra-options/pets",
+    "https://www.lufthansa.com/de/en/travelling-with-animals"
    ],
    "ajoutees": [
     "https://www.klm.com/information/pets/reservation",
@@ -1127,7 +1638,15 @@
     "https://mydogcanfly.com/royal-air-maroc-dog-policy/",
     "https://mydogcanfly.com/sas-dog-policy/",
     "https://mydogcanfly.com/swiss-air-dog-policy/",
-    "https://mydogcanfly.com/westjet-dog-policy/"
+    "https://mydogcanfly.com/westjet-dog-policy/",
+    "https://www.aerlingus.com",
+    "https://www.airfrance.com/information/optionsvols/animaux-en-avion",
+    "https://www.airserbia.com",
+    "https://www.condor.com/us/flight-preparation/baggage-and-animals/travelling-with-pets.jsp",
+    "https://www.iberia.com/us/travelling-with-pets/",
+    "https://www.icelandair.com",
+    "https://www.klm.com/information/travel-classes-extra-options/pets",
+    "https://www.lufthansa.com/de/en/travelling-with-animals"
    ],
    "ajoutees": [
     "https://www.iberia.com/us/faqs/pets-carriage/",
@@ -1149,7 +1668,15 @@
     "https://mydogcanfly.com/royal-air-maroc-dog-policy/",
     "https://mydogcanfly.com/sas-dog-policy/",
     "https://mydogcanfly.com/swiss-air-dog-policy/",
-    "https://mydogcanfly.com/westjet-dog-policy/"
+    "https://mydogcanfly.com/westjet-dog-policy/",
+    "https://www.aerlingus.com",
+    "https://www.airfrance.com/information/optionsvols/animaux-en-avion",
+    "https://www.airserbia.com",
+    "https://www.condor.com/us/flight-preparation/baggage-and-animals/travelling-with-pets.jsp",
+    "https://www.iberia.com/us/travelling-with-pets/",
+    "https://www.icelandair.com",
+    "https://www.klm.com/information/travel-classes-extra-options/pets",
+    "https://www.lufthansa.com/de/en/travelling-with-animals"
    ],
    "ajoutees": [
     "https://www.iberia.com/us/faqs/pets-carriage/",
@@ -1171,7 +1698,15 @@
     "https://mydogcanfly.com/royal-air-maroc-dog-policy/",
     "https://mydogcanfly.com/sas-dog-policy/",
     "https://mydogcanfly.com/swiss-air-dog-policy/",
-    "https://mydogcanfly.com/westjet-dog-policy/"
+    "https://mydogcanfly.com/westjet-dog-policy/",
+    "https://www.aerlingus.com",
+    "https://www.airfrance.com/information/optionsvols/animaux-en-avion",
+    "https://www.airserbia.com",
+    "https://www.condor.com/us/flight-preparation/baggage-and-animals/travelling-with-pets.jsp",
+    "https://www.iberia.com/us/travelling-with-pets/",
+    "https://www.icelandair.com",
+    "https://www.klm.com/information/travel-classes-extra-options/pets",
+    "https://www.lufthansa.com/de/en/travelling-with-animals"
    ],
    "ajoutees": [
     "https://www.iberia.com/us/faqs/pets-carriage/",
@@ -1193,7 +1728,15 @@
     "https://mydogcanfly.com/royal-air-maroc-dog-policy/",
     "https://mydogcanfly.com/sas-dog-policy/",
     "https://mydogcanfly.com/swiss-air-dog-policy/",
-    "https://mydogcanfly.com/westjet-dog-policy/"
+    "https://mydogcanfly.com/westjet-dog-policy/",
+    "https://www.aerlingus.com",
+    "https://www.airfrance.com/information/optionsvols/animaux-en-avion",
+    "https://www.airserbia.com",
+    "https://www.condor.com/us/flight-preparation/baggage-and-animals/travelling-with-pets.jsp",
+    "https://www.iberia.com/us/travelling-with-pets/",
+    "https://www.icelandair.com",
+    "https://www.klm.com/information/travel-classes-extra-options/pets",
+    "https://www.lufthansa.com/de/en/travelling-with-animals"
    ],
    "ajoutees": [
     "https://www.iberia.com/us/faqs/pets-carriage/",
@@ -1215,7 +1758,15 @@
     "https://mydogcanfly.com/royal-air-maroc-dog-policy/",
     "https://mydogcanfly.com/sas-dog-policy/",
     "https://mydogcanfly.com/swiss-air-dog-policy/",
-    "https://mydogcanfly.com/westjet-dog-policy/"
+    "https://mydogcanfly.com/westjet-dog-policy/",
+    "https://www.aerlingus.com",
+    "https://www.airfrance.com/information/optionsvols/animaux-en-avion",
+    "https://www.airserbia.com",
+    "https://www.condor.com/us/flight-preparation/baggage-and-animals/travelling-with-pets.jsp",
+    "https://www.iberia.com/us/travelling-with-pets/",
+    "https://www.icelandair.com",
+    "https://www.klm.com/information/travel-classes-extra-options/pets",
+    "https://www.lufthansa.com/de/en/travelling-with-animals"
    ],
    "ajoutees": [
     "https://www.iberia.com/us/faqs/pets-carriage/",
@@ -1237,7 +1788,15 @@
     "https://mydogcanfly.com/royal-air-maroc-dog-policy/",
     "https://mydogcanfly.com/sas-dog-policy/",
     "https://mydogcanfly.com/swiss-air-dog-policy/",
-    "https://mydogcanfly.com/westjet-dog-policy/"
+    "https://mydogcanfly.com/westjet-dog-policy/",
+    "https://www.aerlingus.com",
+    "https://www.airfrance.com/information/optionsvols/animaux-en-avion",
+    "https://www.airserbia.com",
+    "https://www.condor.com/us/flight-preparation/baggage-and-animals/travelling-with-pets.jsp",
+    "https://www.iberia.com/us/travelling-with-pets/",
+    "https://www.icelandair.com",
+    "https://www.klm.com/information/travel-classes-extra-options/pets",
+    "https://www.lufthansa.com/de/en/travelling-with-animals"
    ],
    "ajoutees": [
     "https://www.iberia.com/us/faqs/pets-carriage/",
@@ -1259,7 +1818,15 @@
     "https://mydogcanfly.com/royal-air-maroc-dog-policy/",
     "https://mydogcanfly.com/sas-dog-policy/",
     "https://mydogcanfly.com/swiss-air-dog-policy/",
-    "https://mydogcanfly.com/westjet-dog-policy/"
+    "https://mydogcanfly.com/westjet-dog-policy/",
+    "https://www.aerlingus.com",
+    "https://www.airfrance.com/information/optionsvols/animaux-en-avion",
+    "https://www.airserbia.com",
+    "https://www.condor.com/us/flight-preparation/baggage-and-animals/travelling-with-pets.jsp",
+    "https://www.iberia.com/us/travelling-with-pets/",
+    "https://www.icelandair.com",
+    "https://www.klm.com/information/travel-classes-extra-options/pets",
+    "https://www.lufthansa.com/de/en/travelling-with-animals"
    ],
    "ajoutees": [
     "https://www.iberia.com/us/faqs/pets-carriage/",
@@ -1281,7 +1848,15 @@
     "https://mydogcanfly.com/royal-air-maroc-dog-policy/",
     "https://mydogcanfly.com/sas-dog-policy/",
     "https://mydogcanfly.com/swiss-air-dog-policy/",
-    "https://mydogcanfly.com/westjet-dog-policy/"
+    "https://mydogcanfly.com/westjet-dog-policy/",
+    "https://www.aerlingus.com",
+    "https://www.airfrance.com/information/optionsvols/animaux-en-avion",
+    "https://www.airserbia.com",
+    "https://www.condor.com/us/flight-preparation/baggage-and-animals/travelling-with-pets.jsp",
+    "https://www.iberia.com/us/travelling-with-pets/",
+    "https://www.icelandair.com",
+    "https://www.klm.com/information/travel-classes-extra-options/pets",
+    "https://www.lufthansa.com/de/en/travelling-with-animals"
    ],
    "ajoutees": [
     "https://www.iberia.com/us/faqs/pets-carriage/",
@@ -1301,7 +1876,14 @@
     "https://mydogcanfly.com/royal-air-maroc-dog-policy/",
     "https://mydogcanfly.com/sas-dog-policy/",
     "https://mydogcanfly.com/swiss-air-dog-policy/",
-    "https://mydogcanfly.com/tap-air-portugal-dog-policy/"
+    "https://mydogcanfly.com/tap-air-portugal-dog-policy/",
+    "https://www.aerlingus.com",
+    "https://www.airfrance.com/information/optionsvols/animaux-en-avion",
+    "https://www.iberia.com/us/travelling-with-pets/",
+    "https://www.icelandair.com",
+    "https://www.klm.com/information/travel-classes-extra-options/pets",
+    "https://www.lufthansa.com/de/en/travelling-with-animals",
+    "https://www.virginatlantic.com/gb/en/travel-information/travelling-with-pets"
    ],
    "ajoutees": [
     "https://www.iberia.com/us/faqs/pets-carriage/",
@@ -1320,7 +1902,14 @@
     "https://mydogcanfly.com/royal-air-maroc-dog-policy/",
     "https://mydogcanfly.com/sas-dog-policy/",
     "https://mydogcanfly.com/swiss-air-dog-policy/",
-    "https://mydogcanfly.com/tap-air-portugal-dog-policy/"
+    "https://mydogcanfly.com/tap-air-portugal-dog-policy/",
+    "https://www.aerlingus.com",
+    "https://www.airfrance.com/information/optionsvols/animaux-en-avion",
+    "https://www.iberia.com/us/travelling-with-pets/",
+    "https://www.icelandair.com",
+    "https://www.klm.com/information/travel-classes-extra-options/pets",
+    "https://www.lufthansa.com/de/en/travelling-with-animals",
+    "https://www.virginatlantic.com/gb/en/travel-information/travelling-with-pets"
    ],
    "ajoutees": [
     "https://www.iberia.com/us/faqs/pets-carriage/",
@@ -1339,7 +1928,14 @@
     "https://mydogcanfly.com/royal-air-maroc-dog-policy/",
     "https://mydogcanfly.com/sas-dog-policy/",
     "https://mydogcanfly.com/swiss-air-dog-policy/",
-    "https://mydogcanfly.com/tap-air-portugal-dog-policy/"
+    "https://mydogcanfly.com/tap-air-portugal-dog-policy/",
+    "https://www.aerlingus.com",
+    "https://www.airfrance.com/information/optionsvols/animaux-en-avion",
+    "https://www.iberia.com/us/travelling-with-pets/",
+    "https://www.icelandair.com",
+    "https://www.klm.com/information/travel-classes-extra-options/pets",
+    "https://www.lufthansa.com/de/en/travelling-with-animals",
+    "https://www.virginatlantic.com/gb/en/travel-information/travelling-with-pets"
    ],
    "ajoutees": [
     "https://www.iberia.com/us/faqs/pets-carriage/",
@@ -1358,7 +1954,14 @@
     "https://mydogcanfly.com/royal-air-maroc-dog-policy/",
     "https://mydogcanfly.com/sas-dog-policy/",
     "https://mydogcanfly.com/swiss-air-dog-policy/",
-    "https://mydogcanfly.com/tap-air-portugal-dog-policy/"
+    "https://mydogcanfly.com/tap-air-portugal-dog-policy/",
+    "https://www.aerlingus.com",
+    "https://www.airfrance.com/information/optionsvols/animaux-en-avion",
+    "https://www.iberia.com/us/travelling-with-pets/",
+    "https://www.icelandair.com",
+    "https://www.klm.com/information/travel-classes-extra-options/pets",
+    "https://www.lufthansa.com/de/en/travelling-with-animals",
+    "https://www.virginatlantic.com/gb/en/travel-information/travelling-with-pets"
    ],
    "ajoutees": [
     "https://www.iberia.com/us/faqs/pets-carriage/",
@@ -1377,7 +1980,14 @@
     "https://mydogcanfly.com/royal-air-maroc-dog-policy/",
     "https://mydogcanfly.com/sas-dog-policy/",
     "https://mydogcanfly.com/swiss-air-dog-policy/",
-    "https://mydogcanfly.com/tap-air-portugal-dog-policy/"
+    "https://mydogcanfly.com/tap-air-portugal-dog-policy/",
+    "https://www.aerlingus.com",
+    "https://www.airfrance.com/information/optionsvols/animaux-en-avion",
+    "https://www.iberia.com/us/travelling-with-pets/",
+    "https://www.icelandair.com",
+    "https://www.klm.com/information/travel-classes-extra-options/pets",
+    "https://www.lufthansa.com/de/en/travelling-with-animals",
+    "https://www.virginatlantic.com/gb/en/travel-information/travelling-with-pets"
    ],
    "ajoutees": [
     "https://www.iberia.com/us/faqs/pets-carriage/",
@@ -1396,7 +2006,14 @@
     "https://mydogcanfly.com/royal-air-maroc-dog-policy/",
     "https://mydogcanfly.com/sas-dog-policy/",
     "https://mydogcanfly.com/swiss-air-dog-policy/",
-    "https://mydogcanfly.com/tap-air-portugal-dog-policy/"
+    "https://mydogcanfly.com/tap-air-portugal-dog-policy/",
+    "https://www.aerlingus.com",
+    "https://www.airfrance.com/information/optionsvols/animaux-en-avion",
+    "https://www.iberia.com/us/travelling-with-pets/",
+    "https://www.icelandair.com",
+    "https://www.klm.com/information/travel-classes-extra-options/pets",
+    "https://www.lufthansa.com/de/en/travelling-with-animals",
+    "https://www.virginatlantic.com/gb/en/travel-information/travelling-with-pets"
    ],
    "ajoutees": [
     "https://www.iberia.com/us/faqs/pets-carriage/",
@@ -1415,7 +2032,14 @@
     "https://mydogcanfly.com/royal-air-maroc-dog-policy/",
     "https://mydogcanfly.com/sas-dog-policy/",
     "https://mydogcanfly.com/swiss-air-dog-policy/",
-    "https://mydogcanfly.com/tap-air-portugal-dog-policy/"
+    "https://mydogcanfly.com/tap-air-portugal-dog-policy/",
+    "https://www.aerlingus.com",
+    "https://www.airfrance.com/information/optionsvols/animaux-en-avion",
+    "https://www.iberia.com/us/travelling-with-pets/",
+    "https://www.icelandair.com",
+    "https://www.klm.com/information/travel-classes-extra-options/pets",
+    "https://www.lufthansa.com/de/en/travelling-with-animals",
+    "https://www.virginatlantic.com/gb/en/travel-information/travelling-with-pets"
    ],
    "ajoutees": [
     "https://www.iberia.com/us/faqs/pets-carriage/",
@@ -1434,7 +2058,14 @@
     "https://mydogcanfly.com/royal-air-maroc-dog-policy/",
     "https://mydogcanfly.com/sas-dog-policy/",
     "https://mydogcanfly.com/swiss-air-dog-policy/",
-    "https://mydogcanfly.com/tap-air-portugal-dog-policy/"
+    "https://mydogcanfly.com/tap-air-portugal-dog-policy/",
+    "https://www.aerlingus.com",
+    "https://www.airfrance.com/information/optionsvols/animaux-en-avion",
+    "https://www.iberia.com/us/travelling-with-pets/",
+    "https://www.icelandair.com",
+    "https://www.klm.com/information/travel-classes-extra-options/pets",
+    "https://www.lufthansa.com/de/en/travelling-with-animals",
+    "https://www.virginatlantic.com/gb/en/travel-information/travelling-with-pets"
    ],
    "ajoutees": [
     "https://www.iberia.com/us/faqs/pets-carriage/",
@@ -1449,7 +2080,11 @@
     "https://mydogcanfly.com/aeromexico-dog-policy/",
     "https://mydogcanfly.com/avianca-dog-policy/",
     "https://mydogcanfly.com/latam-dog-policy/",
-    "https://mydogcanfly.com/westjet-dog-policy/"
+    "https://mydogcanfly.com/westjet-dog-policy/",
+    "https://www.airfrance.com/information/optionsvols/animaux-en-avion",
+    "https://www.iberia.com/us/travelling-with-pets/",
+    "https://www.klm.com/information/travel-classes-extra-options/pets",
+    "https://www.lufthansa.com/de/en/travelling-with-animals"
    ],
    "ajoutees": [
     "https://www.iberia.com/us/faqs/pets-carriage/",
@@ -1465,7 +2100,11 @@
     "https://mydogcanfly.com/aeromexico-dog-policy/",
     "https://mydogcanfly.com/avianca-dog-policy/",
     "https://mydogcanfly.com/latam-dog-policy/",
-    "https://mydogcanfly.com/westjet-dog-policy/"
+    "https://mydogcanfly.com/westjet-dog-policy/",
+    "https://www.airfrance.com/information/optionsvols/animaux-en-avion",
+    "https://www.iberia.com/us/travelling-with-pets/",
+    "https://www.klm.com/information/travel-classes-extra-options/pets",
+    "https://www.lufthansa.com/de/en/travelling-with-animals"
    ],
    "ajoutees": [
     "https://www.iberia.com/us/faqs/pets-carriage/",
@@ -1481,7 +2120,11 @@
     "https://mydogcanfly.com/aeromexico-dog-policy/",
     "https://mydogcanfly.com/avianca-dog-policy/",
     "https://mydogcanfly.com/latam-dog-policy/",
-    "https://mydogcanfly.com/westjet-dog-policy/"
+    "https://mydogcanfly.com/westjet-dog-policy/",
+    "https://www.airfrance.com/information/optionsvols/animaux-en-avion",
+    "https://www.iberia.com/us/travelling-with-pets/",
+    "https://www.klm.com/information/travel-classes-extra-options/pets",
+    "https://www.lufthansa.com/de/en/travelling-with-animals"
    ],
    "ajoutees": [
     "https://www.iberia.com/us/faqs/pets-carriage/",
@@ -1497,7 +2140,11 @@
     "https://mydogcanfly.com/aeromexico-dog-policy/",
     "https://mydogcanfly.com/avianca-dog-policy/",
     "https://mydogcanfly.com/latam-dog-policy/",
-    "https://mydogcanfly.com/westjet-dog-policy/"
+    "https://mydogcanfly.com/westjet-dog-policy/",
+    "https://www.airfrance.com/information/optionsvols/animaux-en-avion",
+    "https://www.iberia.com/us/travelling-with-pets/",
+    "https://www.klm.com/information/travel-classes-extra-options/pets",
+    "https://www.lufthansa.com/de/en/travelling-with-animals"
    ],
    "ajoutees": [
     "https://www.iberia.com/us/faqs/pets-carriage/",
@@ -1513,7 +2160,11 @@
     "https://mydogcanfly.com/aeromexico-dog-policy/",
     "https://mydogcanfly.com/avianca-dog-policy/",
     "https://mydogcanfly.com/latam-dog-policy/",
-    "https://mydogcanfly.com/westjet-dog-policy/"
+    "https://mydogcanfly.com/westjet-dog-policy/",
+    "https://www.airfrance.com/information/optionsvols/animaux-en-avion",
+    "https://www.iberia.com/us/travelling-with-pets/",
+    "https://www.klm.com/information/travel-classes-extra-options/pets",
+    "https://www.lufthansa.com/de/en/travelling-with-animals"
    ],
    "ajoutees": [
     "https://www.iberia.com/us/faqs/pets-carriage/",
@@ -1529,7 +2180,11 @@
     "https://mydogcanfly.com/aeromexico-dog-policy/",
     "https://mydogcanfly.com/avianca-dog-policy/",
     "https://mydogcanfly.com/latam-dog-policy/",
-    "https://mydogcanfly.com/westjet-dog-policy/"
+    "https://mydogcanfly.com/westjet-dog-policy/",
+    "https://www.airfrance.com/information/optionsvols/animaux-en-avion",
+    "https://www.iberia.com/us/travelling-with-pets/",
+    "https://www.klm.com/information/travel-classes-extra-options/pets",
+    "https://www.lufthansa.com/de/en/travelling-with-animals"
    ],
    "ajoutees": [
     "https://www.iberia.com/us/faqs/pets-carriage/",
@@ -1545,7 +2200,11 @@
     "https://mydogcanfly.com/aeromexico-dog-policy/",
     "https://mydogcanfly.com/avianca-dog-policy/",
     "https://mydogcanfly.com/latam-dog-policy/",
-    "https://mydogcanfly.com/westjet-dog-policy/"
+    "https://mydogcanfly.com/westjet-dog-policy/",
+    "https://www.airfrance.com/information/optionsvols/animaux-en-avion",
+    "https://www.iberia.com/us/travelling-with-pets/",
+    "https://www.klm.com/information/travel-classes-extra-options/pets",
+    "https://www.lufthansa.com/de/en/travelling-with-animals"
    ],
    "ajoutees": [
     "https://www.iberia.com/us/faqs/pets-carriage/",
@@ -1561,7 +2220,11 @@
     "https://mydogcanfly.com/aeromexico-dog-policy/",
     "https://mydogcanfly.com/avianca-dog-policy/",
     "https://mydogcanfly.com/latam-dog-policy/",
-    "https://mydogcanfly.com/westjet-dog-policy/"
+    "https://mydogcanfly.com/westjet-dog-policy/",
+    "https://www.airfrance.com/information/optionsvols/animaux-en-avion",
+    "https://www.iberia.com/us/travelling-with-pets/",
+    "https://www.klm.com/information/travel-classes-extra-options/pets",
+    "https://www.lufthansa.com/de/en/travelling-with-animals"
    ],
    "ajoutees": [
     "https://www.iberia.com/us/faqs/pets-carriage/",
@@ -1584,7 +2247,15 @@
     "https://mydogcanfly.com/royal-air-maroc-dog-policy/",
     "https://mydogcanfly.com/sas-dog-policy/",
     "https://mydogcanfly.com/swiss-air-dog-policy/",
-    "https://mydogcanfly.com/tap-air-portugal-dog-policy/"
+    "https://mydogcanfly.com/tap-air-portugal-dog-policy/",
+    "https://www.aerlingus.com",
+    "https://www.airfrance.com/information/optionsvols/animaux-en-avion",
+    "https://www.airserbia.com",
+    "https://www.condor.com/us/flight-preparation/baggage-and-animals/travelling-with-pets.jsp",
+    "https://www.iberia.com/us/travelling-with-pets/",
+    "https://www.icelandair.com",
+    "https://www.lufthansa.com/de/en/travelling-with-animals",
+    "https://www.neosair.com"
    ],
    "ajoutees": [
     "https://www.iberia.com/us/faqs/pets-carriage/",
@@ -1605,7 +2276,15 @@
     "https://mydogcanfly.com/royal-air-maroc-dog-policy/",
     "https://mydogcanfly.com/sas-dog-policy/",
     "https://mydogcanfly.com/swiss-air-dog-policy/",
-    "https://mydogcanfly.com/tap-air-portugal-dog-policy/"
+    "https://mydogcanfly.com/tap-air-portugal-dog-policy/",
+    "https://www.aerlingus.com",
+    "https://www.airfrance.com/information/optionsvols/animaux-en-avion",
+    "https://www.airserbia.com",
+    "https://www.condor.com/us/flight-preparation/baggage-and-animals/travelling-with-pets.jsp",
+    "https://www.iberia.com/us/travelling-with-pets/",
+    "https://www.icelandair.com",
+    "https://www.lufthansa.com/de/en/travelling-with-animals",
+    "https://www.neosair.com"
    ],
    "ajoutees": [
     "https://www.iberia.com/us/faqs/pets-carriage/",
@@ -1626,7 +2305,15 @@
     "https://mydogcanfly.com/royal-air-maroc-dog-policy/",
     "https://mydogcanfly.com/sas-dog-policy/",
     "https://mydogcanfly.com/swiss-air-dog-policy/",
-    "https://mydogcanfly.com/tap-air-portugal-dog-policy/"
+    "https://mydogcanfly.com/tap-air-portugal-dog-policy/",
+    "https://www.aerlingus.com",
+    "https://www.airfrance.com/information/optionsvols/animaux-en-avion",
+    "https://www.airserbia.com",
+    "https://www.condor.com/us/flight-preparation/baggage-and-animals/travelling-with-pets.jsp",
+    "https://www.iberia.com/us/travelling-with-pets/",
+    "https://www.icelandair.com",
+    "https://www.lufthansa.com/de/en/travelling-with-animals",
+    "https://www.neosair.com"
    ],
    "ajoutees": [
     "https://www.iberia.com/us/faqs/pets-carriage/",
@@ -1647,7 +2334,15 @@
     "https://mydogcanfly.com/royal-air-maroc-dog-policy/",
     "https://mydogcanfly.com/sas-dog-policy/",
     "https://mydogcanfly.com/swiss-air-dog-policy/",
-    "https://mydogcanfly.com/tap-air-portugal-dog-policy/"
+    "https://mydogcanfly.com/tap-air-portugal-dog-policy/",
+    "https://www.aerlingus.com",
+    "https://www.airfrance.com/information/optionsvols/animaux-en-avion",
+    "https://www.airserbia.com",
+    "https://www.condor.com/us/flight-preparation/baggage-and-animals/travelling-with-pets.jsp",
+    "https://www.iberia.com/us/travelling-with-pets/",
+    "https://www.icelandair.com",
+    "https://www.lufthansa.com/de/en/travelling-with-animals",
+    "https://www.neosair.com"
    ],
    "ajoutees": [
     "https://www.iberia.com/us/faqs/pets-carriage/",
@@ -1668,7 +2363,15 @@
     "https://mydogcanfly.com/royal-air-maroc-dog-policy/",
     "https://mydogcanfly.com/sas-dog-policy/",
     "https://mydogcanfly.com/swiss-air-dog-policy/",
-    "https://mydogcanfly.com/tap-air-portugal-dog-policy/"
+    "https://mydogcanfly.com/tap-air-portugal-dog-policy/",
+    "https://www.aerlingus.com",
+    "https://www.airfrance.com/information/optionsvols/animaux-en-avion",
+    "https://www.airserbia.com",
+    "https://www.condor.com/us/flight-preparation/baggage-and-animals/travelling-with-pets.jsp",
+    "https://www.iberia.com/us/travelling-with-pets/",
+    "https://www.icelandair.com",
+    "https://www.lufthansa.com/de/en/travelling-with-animals",
+    "https://www.neosair.com"
    ],
    "ajoutees": [
     "https://www.iberia.com/us/faqs/pets-carriage/",
@@ -1689,7 +2392,15 @@
     "https://mydogcanfly.com/royal-air-maroc-dog-policy/",
     "https://mydogcanfly.com/sas-dog-policy/",
     "https://mydogcanfly.com/swiss-air-dog-policy/",
-    "https://mydogcanfly.com/tap-air-portugal-dog-policy/"
+    "https://mydogcanfly.com/tap-air-portugal-dog-policy/",
+    "https://www.aerlingus.com",
+    "https://www.airfrance.com/information/optionsvols/animaux-en-avion",
+    "https://www.airserbia.com",
+    "https://www.condor.com/us/flight-preparation/baggage-and-animals/travelling-with-pets.jsp",
+    "https://www.iberia.com/us/travelling-with-pets/",
+    "https://www.icelandair.com",
+    "https://www.lufthansa.com/de/en/travelling-with-animals",
+    "https://www.neosair.com"
    ],
    "ajoutees": [
     "https://www.iberia.com/us/faqs/pets-carriage/",
@@ -1710,7 +2421,15 @@
     "https://mydogcanfly.com/royal-air-maroc-dog-policy/",
     "https://mydogcanfly.com/sas-dog-policy/",
     "https://mydogcanfly.com/swiss-air-dog-policy/",
-    "https://mydogcanfly.com/tap-air-portugal-dog-policy/"
+    "https://mydogcanfly.com/tap-air-portugal-dog-policy/",
+    "https://www.aerlingus.com",
+    "https://www.airfrance.com/information/optionsvols/animaux-en-avion",
+    "https://www.airserbia.com",
+    "https://www.condor.com/us/flight-preparation/baggage-and-animals/travelling-with-pets.jsp",
+    "https://www.iberia.com/us/travelling-with-pets/",
+    "https://www.icelandair.com",
+    "https://www.lufthansa.com/de/en/travelling-with-animals",
+    "https://www.neosair.com"
    ],
    "ajoutees": [
     "https://www.iberia.com/us/faqs/pets-carriage/",
@@ -1731,7 +2450,15 @@
     "https://mydogcanfly.com/royal-air-maroc-dog-policy/",
     "https://mydogcanfly.com/sas-dog-policy/",
     "https://mydogcanfly.com/swiss-air-dog-policy/",
-    "https://mydogcanfly.com/tap-air-portugal-dog-policy/"
+    "https://mydogcanfly.com/tap-air-portugal-dog-policy/",
+    "https://www.aerlingus.com",
+    "https://www.airfrance.com/information/optionsvols/animaux-en-avion",
+    "https://www.airserbia.com",
+    "https://www.condor.com/us/flight-preparation/baggage-and-animals/travelling-with-pets.jsp",
+    "https://www.iberia.com/us/travelling-with-pets/",
+    "https://www.icelandair.com",
+    "https://www.lufthansa.com/de/en/travelling-with-animals",
+    "https://www.neosair.com"
    ],
    "ajoutees": [
     "https://www.iberia.com/us/faqs/pets-carriage/",

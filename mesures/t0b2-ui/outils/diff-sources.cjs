@@ -14,6 +14,17 @@
  * CE QUE LE LOT A LE DROIT DE CHANGER : le champ `sources` du rapport, et lui seul. Toute autre
  * différence — verdict, score, statut, décision, libellé, classement — est un écart métier que ce
  * lot n'a pas le droit de produire : le générateur REFUSE d'écrire si elle existe.
+ *
+ * ET DANS `sources`, DEUX RÈGLES D'IDENTITÉ, relues dans `objects.json` :
+ *   · toute URL RETIRÉE doit être une source RACINE de compagnie — celles qui ne documentent
+ *     aucun canal. La première version de ce contrôle n'acceptait que le retrait des
+ *     auto-citations MyDogCanFly ; la contre-revue du 15/08/2026 a montré que le critère était
+ *     faux : sur les 50 racines restantes, 35 sont de simples pages d'accueil, qui ne prouvent
+ *     pas davantage une politique. Ce qui disqualifie une racine n'est pas son domaine, c'est
+ *     qu'elle n'est rattachée à aucun canal ;
+ *   · toute URL AJOUTÉE doit être la source d'une POLITIQUE DE CANAL existante. Sans quoi le
+ *     rapport citerait une page que rien n'atteste.
+ * Les deux ensembles sont comparés par IDENTITÉ, jamais par cardinal.
  */
 const fs = require("node:fs");
 const path = require("node:path");
@@ -49,23 +60,39 @@ for (const k of cles) {
   }
 }
 
-const estAuto = (u) => /(^|\.)mydogcanfly\.com$/i.test(new URL(u).hostname);
-const retireesNonAuto = [...retirees.keys()].filter((u) => !estAuto(u));
-const ajouteesAuto = [...ajoutees.keys()].filter((u) => estAuto(u));
+/* Les deux références d'identité, RELUES dans la base — jamais recopiées ici. */
+const objets = JSON.parse(fs.readFileSync(path.join(ROOT, "packages", "knowledge", "raw", "objects.json"), "utf8"));
+const racines = new Set(), sourcesDeCanal = new Set();
+for (const a of objets.airlines) {
+  if (a.source?.url) racines.add(a.source.url);
+  for (const ch of ["cabin", "hold", "cargo"]) {
+    const u = a.premium?.policy?.[ch]?.source?.url;
+    if (u) sourcesDeCanal.add(u);
+  }
+}
+const estAuto = (u) => { try { return /(^|\.)mydogcanfly\.com$/i.test(new URL(u).hostname); } catch { return false; } };
+const retireesHorsRacines = [...retirees.keys()].filter((u) => !racines.has(u));
+const ajouteesHorsCanaux = [...ajoutees.keys()].filter((u) => !sourcesDeCanal.has(u));
+const autoCitationsRetirees = [...retirees.keys()].filter(estAuto);
+const ajouteesAuto = [...ajoutees.keys()].filter(estAuto);
 
-console.log(`scénarios comparés            : ${cles.length}`);
-console.log(`scénarios dont sources bouge  : ${Object.keys(parScenario).length}`);
-console.log(`écarts HORS sources           : ${horsSources.length}${horsSources.length ? " — " + horsSources.slice(0, 5).join(", ") : ""}`);
-console.log(`URL retirées (distinctes)     : ${retirees.size}, dont non auto-citations : ${retireesNonAuto.length}`);
-console.log(`URL ajoutées (distinctes)     : ${ajoutees.size}, dont auto-citations : ${ajouteesAuto.length}`);
+console.log(`scénarios comparés             : ${cles.length}`);
+console.log(`scénarios dont sources bouge   : ${Object.keys(parScenario).length}`);
+console.log(`écarts HORS sources            : ${horsSources.length}${horsSources.length ? " — " + horsSources.slice(0, 5).join(", ") : ""}`);
+console.log(`URL retirées (distinctes)      : ${retirees.size}, dont ${autoCitationsRetirees.length} auto-citations`);
+console.log(`  … non reconnues comme racines: ${retireesHorsRacines.length}`);
+console.log(`URL ajoutées (distinctes)      : ${ajoutees.size}, dont auto-citations : ${ajouteesAuto.length}`);
+console.log(`  … non sources de canal       : ${ajouteesHorsCanaux.length}`);
 
-if (horsSources.length || retireesNonAuto.length || ajouteesAuto.length) {
-  console.error("\nÉCHEC : ce lot ne s'autorise QUE le retrait d'auto-citations et l'ajout de sources de canal.");
+if (horsSources.length || retireesHorsRacines.length || ajouteesHorsCanaux.length || ajouteesAuto.length) {
+  console.error("\nÉCHEC : ce lot ne s'autorise QUE le retrait de sources RACINES et l'ajout de sources de CANAL.");
+  for (const u of retireesHorsRacines.slice(0, 5)) console.error(`  retirée mais pas une racine : ${u}`);
+  for (const u of ajouteesHorsCanaux.slice(0, 5)) console.error(`  ajoutée mais pas une source de canal : ${u}`);
   process.exit(1);
 }
 
 const diff = {
-  perimetre: "T0-B2-UI — les auto-citations MyDogCanFly cessent de justifier une décision",
+  perimetre: "T0-B2-UI — la source RACINE d'une compagnie cesse de justifier une décision",
   avant: "test-baselines/t0b2-finder-baseline-apres.json",
   apres: "test-baselines/t0b2ui-finder-baseline-apres.json",
   champs_autorises: ["sources"],
@@ -73,9 +100,10 @@ const diff = {
     scenarios: cles.length,
     scenarios_touches: Object.keys(parScenario).length,
     retirees_distinctes: retirees.size,
+    retirees_auto_citations: autoCitationsRetirees.length,
     ajoutees_distinctes: ajoutees.size,
   },
-  auto_citations_retirees: [...retirees].sort().map(([url, scenarios]) => ({ url, scenarios })),
+  racines_retirees: [...retirees].sort().map(([url, scenarios]) => ({ url, scenarios, auto_citation: estAuto(url) })),
   sources_de_canal_ajoutees: [...ajoutees].sort().map(([url, scenarios]) => ({ url, scenarios })),
   par_scenario: Object.fromEntries(Object.keys(parScenario).sort().map((k) => [k, {
     retirees: [...parScenario[k].retirees].sort(),

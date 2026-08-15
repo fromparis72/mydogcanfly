@@ -526,18 +526,18 @@ const labels = {
                     const mark = st === "confirmation_required" ? " ?" : "";
                     return `<span class="ab ${cls}">${esc(cap)}${mark}</span>`;
                   }).join("")}</div>
-                  <div class="acard__label">${esc(a.label)}${a.source_url ? ` · <a href="${esc(a.source_url)}" rel="nofollow noopener" target="_blank">${esc(host(a.source_url))}</a>` : ""}</div>
+                  <div class="acard__label">${esc(a.label)}</div>
                   ${(() => {
-                    /* LES SOURCES DES CANAUX, pas celle de la fiche (contre-test du 15/08/2026).
+                    /* LES SOURCES DES CANAUX, et RIEN D'AUTRE (contre-test du 15/08/2026).
                      *
-                     * La ligne au-dessus affichait `a.source_url` — la source RACINE — et sur
-                     * 52 compagnies sur 102 c'était « mydogcanfly.com » : notre propre page
-                     * présentée comme la justification d'une politique. Le moteur ne l'émet plus
-                     * (`estAutoCitation`), et ce qui la remplace est la preuve du CANAL, portée
-                     * par sa décision et affichée avec le canal qu'elle documente.
+                     * La ligne de verdict affichait `a.source_url` — la source RACINE de la
+                     * fiche : « mydogcanfly.com » sur 52 compagnies, une simple page d'accueil
+                     * sur 35 autres. Aucune ne documente un canal. Le champ n'existe plus dans le
+                     * contrat moteur : cette surface ne peut donc plus le rendre, même par
+                     * inadvertance.
                      *
                      * Rien à afficher quand aucune politique n'a de source auditée : une
-                     * politique non revue reste sans source plutôt qu'avec une auto-source. */
+                     * politique non revue reste sans source plutôt qu'avec une source empruntée. */
                     const vus = new Map();
                     for (const d of (a.placement_decisions || [])) {
                       if (!d.source || !d.source.url) continue;
