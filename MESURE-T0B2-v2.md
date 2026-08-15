@@ -236,16 +236,16 @@ différent de celui qui a été mesuré et validé.
 
 Journal intégral (chemins locaux neutralisés) : `mesures/t0b2/epreuve-worktree-neuf.log`.
 
-Worktree détaché créé au commit `d509ca2`, arbre strictement propre, Node 22.22.2.
+Worktree détaché créé au commit `0e463e8` (v3-bis), arbre strictement propre, Node 22.22.2.
 `bash mesures/t0b2/outils/reproduire.sh` → **`EXIT=0`**, dix étapes réussies :
 
 | Étape | Résultat exigé | Obtenu |
 |---|---|---|
 | 1 · registre et bijections | aucune anomalie, dette scellée à l'identique | ✅ |
-| 2 · témoin (instrument) | `bc10c594…` régénéré | ✅ |
+| 2 · témoin (instrument) | génération `7 OK, 0 FAIL` code 0, contrôle `10 OK, 0 FAIL` code 0, `bc10c594…` régénéré | ✅ |
 | 3 · candidat | 218 / 83 / 1 = 302 | ✅ |
-| 4 · idempotence | deux régénérations effectives, `5dad5396…` | ✅ |
-| 4 bis · section historique | exactement 1530 écarts | ✅ |
+| 4 · idempotence | deux générations `6 OK, 1 FAIL` code 1, échec unique = bijection (1530), `5dad5396…` | ✅ |
+| 4 bis · contrôle complet candidat | `9 OK, 1 FAIL` code 1, échec unique = bijection (1530) | ✅ |
 | 5 · diff | 44 scénarios · 46 compagnies · 452 cartes | ✅ |
 | 6 · traçabilité | 464 bascules / 48 couples, 0 hors registre | ✅ |
 | 7 · couverture directe | 302/302, 143 · 75 · 84 | ✅ |
@@ -253,9 +253,8 @@ Worktree détaché créé au commit `d509ca2`, arbre strictement propre, Node 22
 | 9 · identité des annexes | 6 annexes régénérées = empreintes publiées | ✅ |
 | 10 · intégrité du dépôt | état final = état initial | ✅ |
 
-*Transparence : le tout premier lancement depuis ce worktree a rendu `EXIT=141` — un SIGPIPE
-provoqué par un `head` dans ma commande de capture, extérieur au runner. Le rejeu avec capture
-complète, ci-dessus, est le seul résultat qui fasse foi.*
+*Transparence : lors de l'épreuve v3, le tout premier lancement avait rendu `EXIT=141` — un
+SIGPIPE provoqué par un `head` dans ma commande de capture, extérieur au runner.*
 
 **Trois annexes ont changé d'empreinte** (formats durcis, contenu métier inchangé) :
 `registre-avant-bijections.json`, `diff-avant-apres.json`, `faisabilite-option-c.json`. Les trois

@@ -1,5 +1,5 @@
 dépôt      : <WORKTREE-NEUF>
-SHA        : d509ca2c5fd263b3e1f66ed06b99cc3ef9742b50
+SHA        : 0e463e8e120bb795d00d69ce05c33704c973e574
 node       : v22.22.2  (.nvmrc : 22.22.2)
 travail    : <DOSSIER-DE-TRAVAIL>
 
@@ -31,6 +31,8 @@ DETTE  politique_sans_canal_yaml : 10 (dette historique scellée)
 Aucune anomalie : seule la dette historique scellée subsiste, à l'identique.
 
 === 2. TÉMOIN — l'instrument est-il valide ? ===
+OK     témoin · génération — code 0, « 7 OK, 0 FAIL »
+OK     témoin · contrôle complet — code 0, « 10 OK, 0 FAIL »
 témoin attendu : bc10c594831b662933dcba7835dfe78872ebfb4dd5a884e2faaaf6256045b7bb
 témoin obtenu  : bc10c594831b662933dcba7835dfe78872ebfb4dd5a884e2faaaf6256045b7bb
 OK     l'instrument reproduit la baseline figée bit à bit
@@ -44,14 +46,14 @@ conditional vus    : 74 | POLICY_STALE vus : 10
 candidat v2 écrit.
 
 === 4. IDEMPOTENCE (deux régénérations effectives) ===
+OK     candidat · génération 1 — code 1, « 6 OK, 1 FAIL », échec unique = bijection historique (1530 écarts)
+OK     candidat · génération 2 — code 1, « 6 OK, 1 FAIL », échec unique = bijection historique (1530 écarts)
 candidat attendu : 5dad5396527c94bcb1a0fc2bb2c79b94052c26ca32d92fb47cfecd43a205d2e7
 candidat obtenu  : 5dad5396527c94bcb1a0fc2bb2c79b94052c26ca32d92fb47cfecd43a205d2e7
 OK     idempotent bit à bit, à l'empreinte attendue
 
-=== 4 bis. SECTION HISTORIQUE T0-A (échec attendu, total EXIGÉ) ===
-écarts attendus : 1530
-écarts obtenus  : 1530
-OK     total historique conforme à la mesure
+=== 4 bis. CONTRÔLE COMPLET SUR LE CANDIDAT (échec unique attendu) ===
+OK     candidat · contrôle complet — code 1, « 9 OK, 1 FAIL », échec unique = bijection historique (1530 écarts)
 
 === 5. DIFF DU CONTRAT PUBLIC ===
 scénarios touchés  : 44 / 72
