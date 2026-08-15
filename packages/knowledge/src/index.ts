@@ -1,6 +1,7 @@
 export * from "./common";
 export * from "./objects";
 export * from "./t0b-migration";
+export * from "./preuve";
 export * from "./rules";
 export * from "./breed-restrictions";
 export * from "./graph";

@@ -7,6 +7,17 @@
  * n'apportent rien aux contrôles exécutés sur une pull request : les harnais DOM lisent la page
  * d'accueil dans les 4 langues et `/tools/fiche`, toutes présentes ici.
  *
+ * … SAUF LES SENTINELLES (15/08/2026). « Rien à apporter » était faux, et le contre-test
+ * navigateur l'a montré : trois anomalies vivaient sur les pages d'entités, qu'AUCUN contrôle
+ * automatique ne regardait — puisque `BUILD_ONLY=__none__` n'en construisait aucune. Documenter
+ * le prérequis n'aurait rien refermé ; il fallait que la CI en CONSTRUISE.
+ *
+ * Quatre fiches compagnies couvrent les quatre formes de décision (offerte, non offerte, non
+ * documentée mais auditée, non revérifiée) et une page pays couvre `CountryOnward` — c'est le
+ * minimum qui rende `test-entity-pages-harness.mjs` exécutable, et il tient dans le budget de
+ * temps. Les deux familles sont construites EN UNE SEULE PASSE : `dist` est purgé à chaque
+ * build Astro, donc deux commandes successives se nettoieraient l'une l'autre.
+ *
  * CE QU'IL NE PROUVE PAS, et c'est délibéré : le « noindex sur la totalité des pages » et le
  * sitemap complet ne sont pas vérifiés ici. Ces garanties restent assurées par `build-preview.mjs`,
  * que `deploy:preview` exécute AVANT tout déploiement — c'est-à-dire au moment où elles comptent.
@@ -23,6 +34,7 @@ import { spawnSync } from "node:child_process";
 import { join } from "node:path";
 import { fileURLToPath } from "node:url";
 import { requireNode } from "./lib/require-node.mjs";
+import { BUILD_ONLY_SENTINELLES, BUILD_SLUGS_SENTINELLES } from "./lib/sentinelles-entites.mjs";
 
 requireNode("le build de CI");
 
@@ -31,7 +43,7 @@ const REPO_ROOT = join(fileURLToPath(import.meta.url), "..", "..", "..", "..");
 const log = (m) => process.stderr.write(`[build-ci] ${m}\n`);
 
 log(`PUBLIC_API_BASE=${SENTINEL_API_BASE} (sentinelle : aucune requête réseau attendue)`);
-log("PUBLIC_SITE_ENV=preview · BUILD_ONLY=__none__ (aucune famille d'entités)");
+log(`PUBLIC_SITE_ENV=preview · BUILD_ONLY=${BUILD_ONLY_SENTINELLES} · BUILD_SLUGS=${BUILD_SLUGS_SENTINELLES}`);
 
 const r = spawnSync("npm", ["-w", "@mydogcanfly/ui", "run", "build"], {
   cwd: REPO_ROOT,
@@ -39,7 +51,11 @@ const r = spawnSync("npm", ["-w", "@mydogcanfly/ui", "run", "build"], {
     ...process.env,
     PUBLIC_API_BASE: SENTINEL_API_BASE,
     PUBLIC_SITE_ENV: "preview",
-    BUILD_ONLY: "__none__",
+    /* Les deux familles d'entités, réduites à leurs sentinelles, dans la MÊME passe. Les autres
+       familles (races, aéroports, guides) restent hors du build réduit ; les pages qui ne sont
+       pas des entités (accueil, outils) ne passent pas par ce filtre et sont construites. */
+    BUILD_ONLY: BUILD_ONLY_SENTINELLES,
+    BUILD_SLUGS: BUILD_SLUGS_SENTINELLES,
   },
   stdio: ["ignore", 2, 2],
 });

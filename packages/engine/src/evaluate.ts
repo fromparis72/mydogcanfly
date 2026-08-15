@@ -1,5 +1,5 @@
 import type { NormalizedKB, Rule, Predicate, Condition, EvalContextShape, PlacementStatus, TemperatureProvenance } from "@mydogcanfly/knowledge";
-import { MONTH_UNKNOWN, isEstimatedTemperature } from "@mydogcanfly/knowledge";
+import { MONTH_UNKNOWN, isEstimatedTemperature, preuveAuditee } from "@mydogcanfly/knowledge";
 import type { FinderRequest, Decision, AirlineDecision, FiredRule, ConfirmationCause } from "./contracts";
 import { makePlacementDecision, makePlacementDecisionSet } from "./contracts";
 
@@ -116,6 +116,10 @@ type PolicyMode = {
   allowed?: boolean;
   fee?: string;
   source?: Rule["source"];
+  /* Provenance FABRIQUÉE à l'ingestion depuis notre propre fiche (269 des 302 politiques). Le
+     champ existait dans le runtime sans être déclaré ici : `preuveAuditee` en a besoin pour
+     refuser de présenter une source dérivée comme la justification d'une décision. */
+  derived_from_fiche?: boolean;
 };
 
 /* Fiche = socle systématique (décision utilisateur, 10/08/2026 — bug signalé sur La Compagnie EWR→ORY,
@@ -347,7 +351,11 @@ export function evaluate(kb: NormalizedKB, req: FinderRequest, opts?: { weatherP
         }
         status = causes.length > 0 ? "confirmation_required" : "allowed";
       }
-      return { decision: makePlacementDecision(p, status, causes), fires: allFires };
+      /* La preuve descend AVEC la décision : la source de CE canal, et seulement si elle en est
+         une (ni dérivée, ni auto-citation, ni posée sur une politique non revérifiée). La source
+         racine de la fiche ne descend jamais ici — c'est elle que le contre-test a vue s'afficher
+         comme justification d'une politique qu'elle ne documente pas. */
+      return { decision: makePlacementDecision(p, status, causes, preuveAuditee(pol)), fires: allFires };
     });
     /* Le triplet complet est validé — exactement {cabin, hold, cargo}, ni absence ni doublon. */
     const placementDecisions = makePlacementDecisionSet(perPlacement.map((x) => x.decision));

@@ -17,7 +17,7 @@
  *      relue DANS le script d'ingestion — jamais recopiée ici, sinon les deux divergeraient.
  *
  * La mesure de la surface rendue n'est PAS faite ici : multiplier 78 par 4 ne prouve rien sur ce
- * que les fichiers contiennent. C'est `test-entity-pages-harness.cjs` qui lit les 284 pages.
+ * que les fichiers contiennent. C'est `test-entity-pages-harness.mjs` qui lit les pages construites.
  */
 const fs = require("node:fs");
 const path = require("node:path");

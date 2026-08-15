@@ -1,5 +1,5 @@
 import { z } from "zod";
-import { Placement, TravelType, Locale, TravelDate, PlacementStatus, TemperatureProvenance } from "@mydogcanfly/knowledge";
+import { Placement, TravelType, Locale, TravelDate, PlacementStatus, TemperatureProvenance, estAutoCitation } from "@mydogcanfly/knowledge";
 export type { PlacementStatus, TemperatureProvenance };
 
 /* ---- T0-A : le statut porte sa cause (contre-revues des 13–14/08/2026) ----------------------
@@ -49,14 +49,37 @@ const sortDedupCauses = (causes: ConfirmationCause[]): ConfirmationCause[] => {
   return [...m.values()].sort((a, b) => causeKey(a).localeCompare(causeKey(b)));
 };
 
+/* ---- La PREUVE d'une décision de canal (T0-B2-UI) -------------------------------------------
+ *
+ * Le contre-test navigateur du 15/08/2026 a trouvé la carte du Finder affichant
+ * « mydogcanfly.com » comme source de la politique de Thai Airways : la source RACINE de la
+ * fiche, `source_type: "other"`, que 52 compagnies sur 102 portent encore. Une décision se
+ * justifie par la page de la COMPAGNIE, pas par la nôtre.
+ *
+ * La preuve descend donc AVEC la décision, canal par canal, plutôt qu'à la racine de la carte.
+ * L'auto-citation n'est pas filtrée à l'affichage mais refusée À LA CONSTRUCTION : une décision
+ * fondée sur notre propre page est INCONSTRUCTIBLE, comme l'est déjà une confirmation sans cause.
+ * `preuveAuditee` (knowledge) écarte en amont les sources dérivées et les politiques non
+ * revérifiées ; ce refus-ci est la dernière barrière, celle qu'aucun appelant ne contourne. */
+export const DecisionSource = z.object({
+  url: z.string().url(),
+  source_type: z.string().min(1),
+  verified_date: z.string().regex(/^\d{4}-\d{2}-\d{2}$/),
+  confidence: z.number().int().min(1).max(5),
+}).strict().refine((s) => !estAutoCitation(s.url), {
+  message: "auto-citation MyDogCanFly : une décision ne peut pas se fonder sur notre propre page",
+});
+export type DecisionSource = z.infer<typeof DecisionSource>;
+
 export const PlacementDecision = z.discriminatedUnion("status", [
-  z.object({ placement: Placement, status: z.literal("allowed"), allowed: z.literal(true) }).strict(),
-  z.object({ placement: Placement, status: z.literal("denied"), allowed: z.literal(false) }).strict(),
+  z.object({ placement: Placement, status: z.literal("allowed"), allowed: z.literal(true), source: DecisionSource.optional() }).strict(),
+  z.object({ placement: Placement, status: z.literal("denied"), allowed: z.literal(false), source: DecisionSource.optional() }).strict(),
   z.object({
     placement: Placement,
     status: z.literal("confirmation_required"),
     allowed: z.literal(false),
     confirmation_causes: z.array(ConfirmationCause).min(1),
+    source: DecisionSource.optional(),
   }).strict(),
 ]);
 export type PlacementDecision = z.infer<typeof PlacementDecision>;
@@ -77,13 +100,25 @@ export function makePlacementDecision(
   placement: z.infer<typeof Placement>,
   status: PlacementStatus,
   causes?: ConfirmationCause[],
+  /** La preuve du canal, DÉJÀ passée par `preuveAuditee` — jamais la source racine de la fiche. */
+  source?: unknown,
 ): PlacementDecision {
+  /* La preuve est facultative : la plupart des politiques n'en ont pas d'auditée, et une décision
+     sans source vaut mieux qu'une décision avec une source fabriquée. Quand elle existe, elle est
+     réduite aux quatre champs du contrat — le reste (citation, relecteur, historique) appartient
+     à la fiche, pas à la carte. */
+  const preuve = source ? DecisionSource.parse(reduireSource(source)) : undefined;
   return PlacementDecision.parse(
     status === "confirmation_required"
-      ? { placement, status, allowed: false, confirmation_causes: sortDedupCauses(causes ?? []) }
-      : { placement, status, allowed: status === "allowed" },
+      ? { placement, status, allowed: false, confirmation_causes: sortDedupCauses(causes ?? []), source: preuve }
+      : { placement, status, allowed: status === "allowed", source: preuve },
   );
 }
+/** Les quatre champs du contrat, extraits d'une source de fiche — `.strict()` refuse les autres. */
+const reduireSource = (s: unknown) => {
+  const o = s as Record<string, unknown>;
+  return { url: o.url, source_type: o.source_type, verified_date: o.verified_date, confidence: o.confidence };
+};
 
 /** Valide le triplet complet d'une compagnie (défense en profondeur : chaque décision a déjà
  *  été validée individuellement à sa construction). */

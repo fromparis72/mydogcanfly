@@ -576,11 +576,17 @@ for (const a of (objects.airlines || [])) {
        2. la provenance curatoriale préservée, pour les seules clés de l'allowlist ;
        3. la provenance dérivée de la fiche. */
     const auditee = d.__source_auditee;
+    /* `source_derived` qualifie la SOURCE, `derived_from_fiche` la POLITIQUE — deux choses que le
+       drapeau unique confondait. Le fret de Thai Airways est une politique dérivée (`true`) dont
+       la source est auditée (donc PAS `source_derived`) : sans cette séparation, la seule preuve
+       auditée du dépôt disparaissait des écrans qui trient les sources. */
+    const sourceRetenue = auditee ? auditee : provenanceDivergente ? provenanceExistante : source;
     pol[mode] = {
       ...decision,
       ...(d.max_weight_kg != null ? { max_weight_kg: d.max_weight_kg } : {}),
       ...(d.brachy_allowed === false ? { brachy_allowed: false } : {}),
-      source: auditee ? auditee : provenanceDivergente ? provenanceExistante : source,
+      source: sourceRetenue,
+      ...(sourceRetenue === source ? { source_derived: true } : {}),
       derived_from_fiche: true,
     };
     touched = true; filledModes++;

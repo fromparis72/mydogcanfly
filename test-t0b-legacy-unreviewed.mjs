@@ -361,11 +361,21 @@ console.log("=== 8. Baseline FIGÉE : le point de comparaison de T0-B2 est scell
   const vivante = readFileSync("test-baselines/t0a-finder-baseline.json");
   check("T0-B2 : la baseline vivante a bougé — elle DIFFÈRE de la figée AVANT",
     !vivante.equals(octets));
-  check("T0-B2 : la baseline vivante est identique à la figée APRÈS",
-    vivante.equals(readFileSync("test-baselines/t0b2-finder-baseline-apres.json")));
-  check("empreinte de la baseline figée APRÈS = 5dad5396527c…",
+  check("empreinte de la baseline figée APRÈS T0-B2 = 5dad5396527c…",
     createHash("sha256").update(readFileSync("test-baselines/t0b2-finder-baseline-apres.json")).digest("hex")
       === "5dad5396527c94bcb1a0fc2bb2c79b94052c26ca32d92fb47cfecd43a205d2e7");
+  /* T0-B2-UI : la baseline vivante ne vaut plus la figée de T0-B2 — le lot d'interface a retiré
+     les auto-citations de la liste `sources`. Ce n'était PAS une mutation métier : `test-t0a-
+     baseline.mjs` exige champ par champ que verdict, score, statuts, décisions, libellés et
+     classement soient rigoureusement identiques entre les deux figées, et verrouille l'écart
+     `sources` par identité d'URL dans `t0b2ui-approved-diff.json`.
+     La borne de T0-B2 reste scellée à son empreinte ci-dessus : elle ne bougera plus jamais, et
+     le point de comparaison vivant devient la figée de T0-B2-UI. */
+  check("T0-B2-UI : la baseline vivante est identique à la figée APRÈS T0-B2-UI",
+    vivante.equals(readFileSync("test-baselines/t0b2ui-finder-baseline-apres.json")));
+  check("T0-B2-UI : la figée APRÈS diffère de celle de T0-B2 (le lot a bien changé quelque chose)",
+    !readFileSync("test-baselines/t0b2ui-finder-baseline-apres.json")
+      .equals(readFileSync("test-baselines/t0b2-finder-baseline-apres.json")));
 }
 
 console.log(`\n${pass} OK, ${fail} FAIL`);
