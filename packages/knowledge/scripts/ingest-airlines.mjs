@@ -2,8 +2,13 @@
 // that the UI consumes. Validates every fiche against a Zod schema so a typo or a
 // missing EN/FR field fails the build instead of shipping.
 //
-//   node packages/knowledge/scripts/ingest-airlines.mjs            (régénère et écrit)
-//   node packages/knowledge/scripts/ingest-airlines.mjs --check     (vérifie, n'écrit rien)
+//   npm run ingest          (régénère et écrit)
+//   npm run ingest:check    (vérifie, n'écrit rien)
+//
+// Ces deux commandes passent par `tsx`, et c'est OBLIGATOIRE : ce script importe le contrat de
+// provenance auditée `T0bAuditSource` depuis TypeScript, plutôt que d'en recopier un second.
+// `node packages/knowledge/scripts/ingest-airlines.mjs` échoue donc — hors npm, utilisez
+// `npx tsx packages/knowledge/scripts/ingest-airlines.mjs [--check]`.
 //
 // Source:  content/airlines/<slug>.yml   (one bilingual fiche per airline)
 // Output:  packages/ui/src/data/airlines.generated.json   (Record<airline_id, Fiche>)
@@ -42,8 +47,9 @@ const OBJECTS = join(ROOT, "packages", "knowledge", "raw", "objects.json");
 const ARGS = process.argv.slice(2);
 if (ARGS.length > 1 || (ARGS.length === 1 && ARGS[0] !== "--check")) {
   console.error(`✖ argument non reconnu : ${ARGS.join(" ")}`);
-  console.error("  usage : ingest-airlines.mjs            (régénère et écrit)");
-  console.error("          ingest-airlines.mjs --check    (vérifie, n'écrit rien)");
+  console.error("  usage : npm run ingest          (régénère et écrit)");
+  console.error("          npm run ingest:check    (vérifie, n'écrit rien)");
+  console.error("  hors npm : npx tsx packages/knowledge/scripts/ingest-airlines.mjs [--check]");
   process.exit(2);
 }
 const CHECK = ARGS[0] === "--check";
