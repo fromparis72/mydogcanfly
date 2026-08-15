@@ -23,6 +23,10 @@ import { join, dirname } from "node:path";
 import { fileURLToPath } from "node:url";
 import YAML from "yaml";
 import { z } from "zod";
+/* LE contrat de provenance auditée, réutilisé tel quel (jamais recopié) : citation verbatim,
+   langue BCP-47, URL http(s) hors domaines maison, type de source factuel, cadence de 90 jours
+   dérivée et locator obligatoire. C'est ce qui impose d'exécuter ce script sous `tsx`. */
+import { T0bAuditSource } from "../src/t0b-migration.ts";
 
 const HERE = dirname(fileURLToPath(import.meta.url));
 const ROOT = join(HERE, "..", "..", "..");
@@ -89,34 +93,28 @@ const Placement = z.enum(PLACEMENTS);
  * effacerait la clé surnuméraire et la fiche passerait en ayant dit deux choses.
  */
 /**
- * Provenance AUDITÉE, portée par la fiche elle-même.
+ * Provenance AUDITÉE, portée par la fiche elle-même — sous LE contrat approuvé, `T0bAuditSource`.
  *
  * Une décision auditée sans sa preuve n'est pas migrée, elle est recopiée : le manifeste porte
  * pour Thai Cargo l'URL exacte, la date du 13/08/2026, la confiance 4, la citation verbatim et
  * l'emplacement dans la page — mais la fiche ne disait que `availability: undocumented`, et la
- * politique canonique recevait la page d'accueil de la compagnie, une date antérieure et une
- * confiance 3 (contre-revue du 15/08/2026). La décision arrivait, sa preuve non.
+ * politique canonique recevait la page d'accueil de la compagnie (contre-revue du 15/08/2026).
  *
- * Ce bloc facultatif porte donc la provenance approuvée dans la SOURCE canonique. Quand il est
- * présent, il l'emporte sur la provenance dérivée — c'est le seul cas où la fiche dit mieux que
- * la dérivation, et elle le dit explicitement.
+ * La première correction définissait ici un schéma PARALLÈLE. C'était l'erreur que le dépôt
+ * documente déjà à propos de la provenance — « deux modèles dans le même dépôt, c'est la garantie
+ * qu'ils divergeront » — et elle avait un coût immédiat : six garanties contournées (auto-citation
+ * interdite, citation d'au moins dix caractères, étiquette BCP-47, URL http(s), types de source
+ * factuels, cadence de 90 jours exactement). Une source `https://mydogcanfly.com/fake`, citation
+ * « x », langue « not a language », `review_due` en 2030, passait de bout en bout.
+ *
+ * On réutilise donc le contrat existant, tel quel. C'est aussi pourquoi l'ingestion s'exécute
+ * sous `tsx` : le contrat vit en TypeScript, et le recopier en JavaScript recréerait exactement
+ * le doublon qu'on vient de supprimer.
  */
-const SourceAuditee = z.object({
-  url: z.string().url(),
-  source_type: z.literal("official_website"),
-  verified_date: z.string().regex(/^\d{4}-\d{2}-\d{2}$/),
-  review_due: z.string().regex(/^\d{4}-\d{2}-\d{2}$/),
-  confidence: z.number().int().min(1).max(5),
-  reviewer: z.string().min(1),
-  quote: z.string().min(1),
-  quote_language: z.string().min(2),
-  locator: z.string().min(1),
-}).strict();
-
 const DecisionPlacement = z.union([
   z.object({
     availability: z.enum(["offered", "not_offered", "case_by_case", "undocumented"]),
-    source: SourceAuditee.optional(),
+    source: T0bAuditSource.optional(),
   }).strict(),
   z.object({ review_state: z.literal("legacy_unreviewed") }).strict(),
 ]);
@@ -366,9 +364,23 @@ const policyGaps = [];              // POLICY_GAP   — la fiche affirme, le mot
 const provenanceCuratee = [];       // PROVENANCE_CURATED — provenance plus précise que la dérivée
 const politiquesRetirees = [];      // POLICY_REMOVED — la fiche ne décide plus ce placement
 
-/** Suppressions ATTENDUES, scellées par identité. Vide : aucune n'est prévue par ce lot. Une
- *  politique qui disparaît change un verdict — cela passe par une revue, pas par un commit. */
-const POLITIQUES_RETIREES_ATTENDUES = [];
+/**
+ * Ensemble APPROUVÉ des identités de politiques, versionné à part et comparé à ce que les FICHES
+ * décident — jamais à `objects.json`.
+ *
+ * La première version comparait l'artefact d'avant à celui d'après. Elle voyait bien une
+ * suppression, mais une seule fois : après régénération, `objects.json` ne contenait plus la
+ * politique, `--check` ne voyait donc plus rien, et la preuve disparaissait avec l'artefact
+ * (contre-revue du 15/08/2026). Une liste d'exceptions ne pouvait pas non plus tenir : une clé
+ * qui y figure devient, au contrôle suivant, une « suppression attendue disparue ».
+ *
+ * La référence est donc EXTÉRIEURE aux artefacts et durable. Apparition, disparition, ou
+ * substitution à cardinal constant : les trois échouent tant que ce fichier n'a pas été modifié
+ * explicitement — ce qui passe par une revue, pas par un commit.
+ */
+const IDENTITES_APPROUVEES = JSON.parse(
+  readFileSync(join(ROOT, "test-baselines", "t0b2-policy-identities.json"), "utf8"),
+).identities;
 
 /**
  * PROVENANCE_CURATED — provenances plus précises que ce que la dérivation sait produire, sur des
@@ -487,9 +499,9 @@ for (const a of (objects.airlines || [])) {
    * laissait donc un fantôme — exactement la classe de défaut que T0-B2 devait fermer, et la
    * cause même des dix anciens POLICY_STALE.
    *
-   * Une politique retirée change un verdict : la suppression est donc RELEVÉE, et l'ensemble des
-   * suppressions attendues est scellé par identité (`POLITIQUES_RETIREES_ATTENDUES`, vide à ce
-   * jour). Une suppression non prévue fait échouer `--check` au lieu de passer en silence. */
+   * Une politique retirée change un verdict : la suppression est RELEVÉE ici pour le rapport, et
+   * c'est la comparaison à `IDENTITES_APPROUVEES` — extérieure aux artefacts — qui la fait
+   * échouer, de façon durable. */
   for (const mode of PLACEMENTS) {
     if (derived[mode] === undefined && pol[mode] !== undefined) {
       politiquesRetirees.push({ id: a.id, mode });
@@ -529,6 +541,12 @@ for (const a of (objects.airlines || [])) {
       /* Seule la décision est réécrite ; tout le reste de la politique enrichie est préservé
          DANS SON ORDRE, et l'ancien booléen d'auteur est retiré s'il traîne encore. */
       const { allowed: _a, conditional: _c, availability: _av, review_state: _rs, ...enrichissements } = cur;
+      /* Une source AUDITÉE écrite dans la fiche l'emporte, ici aussi. La première correction
+         plaçait cette priorité UNIQUEMENT dans la branche dérivée : sur une politique enrichie,
+         l'audit était accepté par le schéma puis silencieusement ignoré, et l'ancienne provenance
+         survivait — ingestion et `--check` en 0 (contre-revue du 15/08/2026). Une preuve citée ne
+         peut pas être moins forte qu'une provenance écrite à la main sans citation. */
+      if (d.__source_auditee) enrichissements.source = d.__source_auditee;
       const remplacee = { ...decision, ...enrichissements };
       if (JSON.stringify(remplacee) !== JSON.stringify(cur)) { pol[mode] = remplacee; touched = true; }
       continue;
@@ -556,7 +574,7 @@ for (const a of (objects.airlines || [])) {
       ...decision,
       ...(d.max_weight_kg != null ? { max_weight_kg: d.max_weight_kg } : {}),
       ...(d.brachy_allowed === false ? { brachy_allowed: false } : {}),
-      source: auditee ? { ...auditee, history: [] } : provenanceDivergente ? provenanceExistante : source,
+      source: auditee ? auditee : provenanceDivergente ? provenanceExistante : source,
       derived_from_fiche: true,
     };
     touched = true; filledModes++;
@@ -652,19 +670,31 @@ if (CHECK) {
     console.error("  corrigée et une autre cassée doivent échouer, pas s'annuler.");
   }
 
-  /* POLICY_REMOVED : une politique que la fiche ne décide plus est SUPPRIMÉE d'objects.json —
-     la fiche est autoritaire, y compris par le retrait. Mais un retrait change un verdict : il
-     est donc scellé par identité, et toute suppression non prévue échoue. */
-  const retFound = politiquesRetirees.map((r) => `${r.id}.${r.mode}`).sort();
-  const retExpected = [...POLITIQUES_RETIREES_ATTENDUES].sort();
-  const retNouvelles = retFound.filter((k) => !retExpected.includes(k));
-  const retDisparues = retExpected.filter((k) => !retFound.includes(k));
-  if (retNouvelles.length || retDisparues.length) {
+  /* IDENTITÉS : ce que les FICHES décident, comparé à l'ensemble approuvé et versionné. Ce
+     contrôle ne dépend d'aucun artefact, il survit donc à la régénération — c'est ce qui manquait
+     à la version précédente. Il couvre les trois mouvements d'un seul geste : apparition,
+     disparition, et substitution à cardinal constant. */
+  const identitesFiches = [];
+  for (const [id, f] of Object.entries(sorted)) {
+    for (const m of PLACEMENTS) if (f.policies[m] !== undefined) identitesFiches.push(`${id}.${m}`);
+  }
+  identitesFiches.sort();
+  const approuvees = [...IDENTITES_APPROUVEES].sort();
+  const apparues = identitesFiches.filter((k) => !approuvees.includes(k));
+  const disparues = approuvees.filter((k) => !identitesFiches.includes(k));
+  if (apparues.length || disparues.length) {
     failed = true;
-    console.error("\n✖ l'ensemble des POLICY_REMOVED a changé.");
-    for (const k of retNouvelles) console.error(`    + ${k} — la fiche ne décide plus ce placement ; la politique a été SUPPRIMÉE`);
-    for (const k of retDisparues) console.error(`    - ${k} — suppression attendue qui n'a pas eu lieu`);
-    console.error("    Retirer une politique change un verdict : arbitrez, puis figez la clé dans POLITIQUES_RETIREES_ATTENDUES.");
+    console.error("\n✖ l'ensemble des IDENTITÉS de politiques a changé.");
+    for (const k of apparues) console.error(`    + ${k} — politique NOUVELLE : aucune ligne approuvée ne la prévoit`);
+    for (const k of disparues) console.error(`    - ${k} — politique DISPARUE des fiches ; elle sera retirée d'objects.json`);
+    console.error(`\n  approuvées : ${approuvees.length} · décidées par les fiches : ${identitesFiches.length}`);
+    console.error("  Retirer ou ajouter une politique change un verdict : arbitrez, puis mettez à jour");
+    console.error("  test-baselines/t0b2-policy-identities.json DANS LA MÊME PR, avec son diff approuvé.");
+  }
+
+  if (politiquesRetirees.length) {
+    console.warn(`\n⚠ ${politiquesRetirees.length} POLICY_REMOVED — politique(s) supprimée(s) d'objects.json (absentes des fiches) :`);
+    for (const r of politiquesRetirees) console.warn(`  POLICY_REMOVED ${r.id}.${r.mode}`);
   }
 
   /* Dette éditoriale des six placements sans canal visible : contrôlée DANS LES DEUX SENS, par

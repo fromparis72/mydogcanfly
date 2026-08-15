@@ -1,8 +1,11 @@
-# LIVRAISON T0-B2 — patch métier complet (v2)
+# LIVRAISON T0-B2 — patch métier complet (v3)
 
-> **v2 (15/08/2026)** — trois P0, un P1 et un P2 relevés en contre-revue sont corrigés, et chacun
-> a sa contre-épreuve permanente. **La baseline publique est inchangée** (`5dad5396…`) : aucun
-> verdict ne bouge. Le seul changement de données est la provenance Thai Cargo (§14). Détail au §14.
+> **v3 (15/08/2026)** — les deux P0 restants sont fermés : la détection des changements
+> d'identité SURVIT à la régénération, et la provenance auditée passe par LE contrat approuvé,
+> qui l'emporte désormais aussi sur une politique enrichie. **La baseline publique reste
+> inchangée** (`5dad5396…`). Détail au §15.
+>
+> v2 — trois P0, un P1 et un P2 corrigés, chacun avec sa contre-épreuve permanente (§14).
 
 
 Date : 15/08/2026 · Base : `origin/main` @ `8fe97c0d…` · Node 22.22.2 · Branche `claude/passation-t0-b2-xgrvye`
@@ -158,14 +161,14 @@ couple du registre approuvé. Zéro compagnie apparue ou disparue.
 | `npm run ingest:check` | ✅ code 0, **rien écrit** |
 | `npm run typecheck` (knowledge · engine · workers) | ✅ |
 | `npm run smoke` | ✅ |
-| `npm run test:unit` — 12 suites | ✅ **0 FAIL**, code 0 |
+| `npm run test:unit` — 15 commandes | ✅ **0 FAIL**, code 0 |
 | `npm run build:ci` (97 pages) | ✅ |
 | `npm run test:built-ui` (fiche + Finder, 4 langues) | ✅ |
 | `check-bundle.mjs` (Worker épinglé) | ✅ |
 | `check-astro-debt.mjs` | ✅ dette stable à 175, aucune hausse |
 
-Détail `test:unit` : 50 · 31 · 170 · 18 · 42 · 13 · 36 · 70 · 9 · 58 · 23 · 6 · 94 · 55 assertions,
-plus « 74 lignes vérifiées, 0 écart(s) ».
+Détail `test:unit` (v3, relevé sur l'exécution réelle) : 50 · 50 · 170 · 18 · 42 · 13 · 36 · 70 ·
+9 · 58 · 24 · 6 · 94 · 60 assertions, plus « 74 lignes vérifiées, 0 écart(s) » — soit 15 commandes.
 
 ## 10. Le dispositif de mesure, après le patch
 
@@ -307,3 +310,86 @@ silence n'était plus acceptable. `Channel` est désormais strict.
 | `t0b-finder-baseline-avant.json` | `bc10c594…45b7bb` | **inchangée** |
 | `t0b2-approved-diff.json` | `2e420408…0eff1b` | + section `classements` (28) |
 | `packages/knowledge/raw/objects.json` | recalculée | provenance Thai Cargo uniquement |
+
+## 15. v3 — les deux P0 restants, fermés
+
+### P0-A · La garde de suppression disparaissait après régénération
+
+Le diagnostic est exact et la faute est de conception, pas de détail : ma garde comparait
+l'artefact d'avant à celui d'après. Elle voyait bien une suppression, **une seule fois** — après
+régénération, `objects.json` ne portait plus la politique, `--check` ne voyait plus rien, et la
+preuve disparaissait avec l'artefact. `POLITIQUES_RETIREES_ATTENDUES` ne pouvait pas non plus
+tenir : une clé qui y figure devient, au contrôle suivant, une « suppression attendue disparue ».
+
+**Correction** : la référence est désormais **extérieure aux artefacts et versionnée** —
+`test-baselines/t0b2-policy-identities.json`, les **302** identités que les fiches décident.
+L'ingestion et `--check` comparent ce que les **fiches** disent à cet ensemble, jamais
+`objects.json` à lui-même. Les trois mouvements échouent d'un seul geste : apparition,
+disparition, et **substitution à cardinal constant**.
+
+Contre-épreuve rejouée dans la **séquence exacte**, dans un seul bac à sable :
+
+```
+retrait YAML  →  ingestion normale : EXIT=0, politique supprimée
+              →  ingest:check       : EXIT=1
+                 ✖ l'ensemble des IDENTITÉS de politiques a changé.
+                     - airline_aegean.cargo — politique DISPARUE des fiches
+```
+
+### P0-B · Un second modèle de provenance auditée avait été recréé
+
+Constat juste, et c'est l'erreur que ce dépôt documente déjà à propos de la provenance : « deux
+modèles dans le même dépôt, c'est la garantie qu'ils divergeront ». Le coût était immédiat — mon
+`SourceAuditee` contournait **six** garanties. Ta contre-épreuve passait de bout en bout.
+
+**Correction** : l'ingestion importe et utilise **`T0bAuditSource`**, le contrat approuvé, sans
+copie. C'est ce qui impose d'exécuter le script sous `tsx` (`npm run ingest` / `ingest:check`) :
+le contrat vit en TypeScript, et le recopier en JavaScript recréerait le doublon qu'on supprime.
+
+Ta falsification est maintenant refusée **sur ses quatre motifs, nommés** :
+
+```
+policies.cargo.source.quote           — String must contain at least 10 character(s)
+policies.cargo.source.quote_language  — étiquette de langue BCP-47 attendue
+policies.cargo.source.url             — auto-citation : un domaine MyDogCanFly ne peut pas fonder un fait
+policies.cargo.source.review_due      — doit valoir exactement 2026-11-11 (cadence airline : 90 jours)
+```
+
+**Second volet — la source auditée était ignorée sur une politique enrichie.** Ma priorité ne
+figurait que dans la branche dérivée : sur `air_france.cabin`, l'audit était accepté par le schéma
+puis silencieusement écarté. Une preuve citée ne peut pas être plus faible qu'une provenance
+écrite à la main sans citation. Corrigé, et vérifié : l'URL et la citation auditées gagnent, et
+les enrichissements survivent (poids 8 kg, dimensions 46×28×24).
+
+**Comparaison explicite Thai YAML / artefact / runtime ↔ manifeste** (§7 bis du harnais T0-B1) :
+les trois représentations sont comparées **champ par champ** à la source approuvée, et la décision
+reste `confirmation_required` / `policy_unpublished` — la preuve accompagne la décision, elle ne
+la remplace pas.
+
+### Contre-épreuves permanentes ajoutées
+
+`test-ingest-check.mjs` passe de 39 à **50** contrôles :
+
+| Nouveau | Objet |
+|---|---|
+| (i) séquence complète | retrait YAML → ingestion → `--check` **dans le même bac à sable** |
+| (k) identités | apparition et substitution à cardinal constant |
+| (l) source auditée falsifiée | les quatre motifs de refus, un par un |
+| (m) source auditée valide | gagne sur une politique enrichie, enrichissements préservés |
+
+Le bac à sable embarque désormais les sources du paquet `knowledge` et l'ensemble d'identités,
+et exécute le script sous `tsx` — sans quoi il testerait un binaire différent de celui de la CI.
+
+### Résidus documentaires corrigés
+
+« 12 suites » → **15 commandes** ; la série d'assertions est relevée sur l'exécution réelle.
+
+### Empreintes après v3
+
+| Artefact | État |
+|---|---|
+| `t0a-finder-baseline.json` · `t0b2-finder-baseline-apres.json` | **`5dad5396…` inchangée** |
+| `t0b-finder-baseline-avant.json` | **`bc10c594…` inchangée** |
+| `t0b2-approved-diff.json` | inchangé depuis v2 |
+| `t0b2-policy-identities.json` | **nouveau** — 302 identités approuvées |
+| `packages/knowledge/raw/objects.json` | inchangé depuis v2 |

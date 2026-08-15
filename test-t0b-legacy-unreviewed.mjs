@@ -15,6 +15,7 @@
  *      permet de la faire basculer sans réécrire les fiches (section 6).
  */
 import { readFileSync } from "node:fs";
+import YAML from "yaml";
 import { createHash } from "node:crypto";
 import { loadKB } from "./packages/knowledge/src/index.ts";
 import {
@@ -298,6 +299,43 @@ console.log("=== 7. T0-B2 : la migration est FAITE, et la forme héritée est in
     !PlacementPolicyAuthored.safeParse({ ...heritee, review_state: "legacy_unreviewed" }).success);
   check("`availability` + `review_state` → REFUSÉ (union exclusive, inchangé)",
     !PlacementPolicyAuthored.safeParse({ availability: "offered", review_state: "legacy_unreviewed", source: SRC }).success);
+}
+
+console.log("=== 7 bis. La décision AUDITÉE arrive avec sa PREUVE (Thai Cargo) ===");
+{
+  /* Une décision auditée migrée sans sa provenance n'est pas migrée, elle est recopiée : la
+     fiche disait `availability: undocumented` et la politique canonique recevait la page
+     d'accueil de la compagnie, une date antérieure et une confiance moindre (contre-revue du
+     15/08/2026). On compare donc les TROIS représentations à la source approuvée du manifeste :
+     ce que la fiche écrit, ce que l'artefact porte, ce que le runtime sert. */
+  const manifeste = JSON.parse(readFileSync("test-baselines/t0b-migration-matrice.json", "utf8"));
+  const approuvee = manifeste.rows.find(
+    (r) => r.identity.airline_id === "airline_thai_airways" && r.identity.placement === "cargo",
+  ).decision.source;
+
+  const fiche = YAML.parse(readFileSync("content/airlines/thai_airways.yml", "utf8"));
+  const yamlSource = fiche.policies?.cargo?.source;
+  check("la FICHE porte une source auditée sur thai/cargo", !!yamlSource);
+
+  const CHAMPS = ["url", "source_type", "verified_date", "review_due", "confidence", "reviewer", "quote", "quote_language", "locator"];
+  const ecarts = (src) => CHAMPS.filter((c) => JSON.stringify(src?.[c]) !== JSON.stringify(approuvee[c]));
+  check("fiche ≡ source APPROUVÉE du manifeste, champ par champ", ecarts(yamlSource).length === 0,
+    `écarts : ${ecarts(yamlSource).join(", ")}`);
+
+  const artefact = JSON.parse(readFileSync("packages/knowledge/raw/objects.json", "utf8"))
+    .airlines.find((a) => a.id === "airline_thai_airways").premium.policy.cargo.source;
+  check("objects.json ≡ source APPROUVÉE, champ par champ", ecarts(artefact).length === 0,
+    `écarts : ${ecarts(artefact).join(", ")}`);
+
+  const runtime = kb.airlines.get("airline_thai_airways")?.premium?.policy?.cargo;
+  check("le RUNTIME sert l'URL, la date, l'échéance et la confiance approuvées",
+    runtime?.source?.url === approuvee.url && runtime?.source?.verified_date === approuvee.verified_date
+    && runtime?.source?.review_due === approuvee.review_due && runtime?.source?.confidence === approuvee.confidence,
+    JSON.stringify(runtime?.source));
+  /* La preuve accompagne la décision, elle ne la remplace pas : le statut reste celui du registre. */
+  check("et la décision reste `confirmation_required` / `policy_unpublished`",
+    runtime?.status === "confirmation_required" && runtime?.status_cause === "policy_unpublished",
+    `${runtime?.status} / ${runtime?.status_cause}`);
 }
 
 console.log("=== 8. Baseline FIGÉE : le point de comparaison de T0-B2 est scellé ===");

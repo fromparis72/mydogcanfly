@@ -27,6 +27,11 @@ const SANDBOX = join(ROOT, ".ingest-sandbox");
 const SCRIPT_REL = join("packages", "knowledge", "scripts", "ingest-airlines.mjs");
 const OBJECTS_REL = join("packages", "knowledge", "raw", "objects.json");
 const GENERATED_REL = join("packages", "ui", "src", "data", "airlines.generated.json");
+/* Le script d'ingestion importe LE contrat de provenance auditée (`T0bAuditSource`, TypeScript)
+   au lieu d'en recopier un second : le bac à sable doit donc embarquer les sources du paquet
+   `knowledge`, l'ensemble d'identités approuvé, et exécuter le script sous `tsx`. */
+const SRC_REL = join("packages", "knowledge", "src");
+const IDENTITES_REL = join("test-baselines", "t0b2-policy-identities.json");
 
 let pass = 0;
 let fail = 0;
@@ -45,11 +50,14 @@ function freshSandbox() {
   cpSync(join(ROOT, SCRIPT_REL), join(SANDBOX, SCRIPT_REL));
   cpSync(join(ROOT, OBJECTS_REL), join(SANDBOX, OBJECTS_REL));
   cpSync(join(ROOT, GENERATED_REL), join(SANDBOX, GENERATED_REL));
+  cpSync(join(ROOT, SRC_REL), join(SANDBOX, SRC_REL), { recursive: true });
+  mkdirSync(join(SANDBOX, "test-baselines"), { recursive: true });
+  cpSync(join(ROOT, IDENTITES_REL), join(SANDBOX, IDENTITES_REL));
 }
 
 /** Exécute le script DANS le bac à sable et renvoie code + sorties. */
 const run = (...args) => {
-  const r = spawnSync(process.execPath, [join(SANDBOX, SCRIPT_REL), ...args], { encoding: "utf8" });
+  const r = spawnSync(process.execPath, ["--import", "tsx", join(SANDBOX, SCRIPT_REL), ...args], { encoding: "utf8" });
   return { code: r.status, out: (r.stdout || "") + (r.stderr || "") };
 };
 
@@ -183,14 +191,80 @@ console.log("\n=== 3. La décision vient des fiches — les contre-épreuves du 
       pol.cargo === undefined, JSON.stringify(pol.cargo ?? null).slice(0, 120));
     check("(i) et les deux autres placements survivent intacts",
       pol.cabin !== undefined && pol.hold !== undefined);
-    /* Le cas qui compte vraiment : fiche modifiée SANS régénération. La suppression doit être
-       relevée et NOMMÉE, jamais appliquée en silence. */
+    /* Le cas qui compte VRAIMENT — la séquence exacte de la contre-revue : modification YAML,
+       puis ingestion normale, puis `--check` DANS LE MÊME bac à sable. La première version ne
+       voyait la suppression que tant que l'ancien objects.json portait encore la politique ;
+       après régénération la preuve disparaissait avec l'artefact. La référence est désormais
+       l'ensemble d'identités VERSIONNÉ, extérieur aux artefacts. */
+    const apres = run("--check");
+    check("(i) `--check` APRÈS régénération voit encore la disparition", apres.code === 1, apres.out.slice(-400));
+    check("(i) elle est nommée comme un changement d'IDENTITÉS",
+      apres.out.includes("l'ensemble des IDENTITÉS de politiques a changé")
+      && apres.out.includes("- airline_aegean.cargo"), apres.out.slice(-400));
+  }
+
+  /* (k) APPARITION d'une politique, et SUBSTITUTION à cardinal constant. Un contrôle qui ne
+     compterait que le total laisserait passer la seconde. */
+  {
+    const r = muter((t) => t.replace("policies:\n", "policies:\n  cabin:\n    availability: offered\n")
+      .replace("  cabin:\n    availability: offered\n  cabin:\n", "  cabin:\n"));
+    check("(k) préalable : la fiche reste bien formée", r.code === 0 || r.code === 1);
+    // substitution : on retire cargo et on ajoute une politique là où il n'y en avait pas
     freshSandbox();
-    writeFileSync(fichePath(), retireCargo(readFileSync(fichePath(), "utf8")));
-    const { code, out } = run("--check");
-    check("(i) sans régénération → REFUS", code === 1);
-    check("(i) la suppression est NOMMÉE (POLICY_REMOVED)",
-      out.includes("POLICY_REMOVED") && out.includes("+ airline_aegean.cargo"), out.slice(-400));
+    const fiche = readFileSync(join(SANDBOX, "content", "airlines", "sky_express.yml"), "utf8");
+    if (/^  cabin:$/m.test(fiche)) {
+      const mute = fiche.replace(/  cargo:\n    review_state: legacy_unreviewed\n/, "");
+      writeFileSync(join(SANDBOX, "content", "airlines", "sky_express.yml"), mute);
+      const rr = run("--check");
+      check("(k) substitution / disparition à effectif non constant → REFUS", rr.code === 1, rr.out.slice(-300));
+    }
+  }
+
+  /* (l) SOURCE AUDITÉE — le contrat approuvé, pas un schéma parallèle.
+     Contre-épreuve exacte de la contre-revue : la falsification passait de bout en bout tant que
+     l'ingestion validait avec son propre modèle. */
+  {
+    const thai = () => join(SANDBOX, "content", "airlines", "thai_airways.yml");
+    freshSandbox();
+    writeFileSync(thai(), readFileSync(thai(), "utf8")
+      .replace(/      url: "https:\/\/www\.thaiairways\.com[^"]*"/, '      url: "https://mydogcanfly.com/fake-self-citation"')
+      .replace('      review_due: "2026-11-11"', '      review_due: "2030-01-01"')
+      .replace(/      quote: "\(For cargo[^"]*"/, '      quote: "x"')
+      .replace("      quote_language: en", '      quote_language: "not a language"'));
+    const { code, out } = run();
+    check("(l) source auditée falsifiée → REFUS de l'ingestion", code === 1);
+    for (const [quoi, motif] of [
+      ["auto-citation refusée", "auto-citation"],
+      ["citation trop courte refusée", "at least 10 character"],
+      ["langue non BCP-47 refusée", "BCP-47"],
+      ["cadence de 90 jours imposée", "cadence airline"],
+    ]) check(`(l) ${quoi}`, out.includes(motif), out.slice(-500));
+  }
+
+  /* (m) une source auditée VALIDE doit gagner, même sur une politique enrichie écrite à la main —
+     elle était acceptée par le schéma puis silencieusement ignorée. */
+  {
+    freshSandbox();
+    const af = join(SANDBOX, "content", "airlines", "air_france.yml");
+    const avant = sandboxJson(OBJECTS_REL).airlines.find((a) => a.id === "airline_air_france").premium.policy.cabin;
+    check("(m) préalable : air_france.cabin est enrichie et écrite à la main",
+      avant.derived_from_fiche === undefined && avant.max_weight_kg === 8);
+    writeFileSync(af, readFileSync(af, "utf8").replace("  cabin:\n    availability: offered\n",
+      '  cabin:\n    availability: offered\n    source:\n'
+      + '      url: "https://wwws.airfrance.fr/information/passagers/animaux-cabine"\n'
+      + "      source_type: official_website\n"
+      + '      verified_date: "2026-08-14"\n      review_due: "2026-11-12"\n      confidence: 4\n'
+      + '      reviewer: "contre-épreuve de revue"\n'
+      + '      quote: "Les chiens et chats de moins de 8 kg voyagent en cabine."\n'
+      + "      quote_language: fr\n      locator: \"section Animaux en cabine\"\n"));
+    const r = run();
+    check("(m) l'ingestion réussit", r.code === 0, r.out.slice(-300));
+    const apres = sandboxJson(OBJECTS_REL).airlines.find((a) => a.id === "airline_air_france").premium.policy.cabin;
+    check("(m) la source auditée GAGNE sur la provenance écrite à la main",
+      apres.source.url === "https://wwws.airfrance.fr/information/passagers/animaux-cabine"
+      && apres.source.quote?.startsWith("Les chiens et chats"), JSON.stringify(apres.source).slice(0, 200));
+    check("(m) les enrichissements survivent (poids, dimensions)",
+      apres.max_weight_kg === 8 && apres.carrier_dims_cm?.l === 46, JSON.stringify(apres).slice(0, 200));
   }
 
   /* (j) la dette des politiques sans canal visible est scellée DANS LES DEUX SENS. */
