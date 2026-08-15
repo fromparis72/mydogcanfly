@@ -32,6 +32,8 @@ import type { PlacementPolicy, PlacementPolicyAuthored } from "./objects";
 
 /** La branche d'auteur « non revérifiée », extraite de l'union — jamais son littéral retapé. */
 type BrancheNonRevue = Extract<PlacementPolicyAuthored, { review_state: unknown }>;
+/** Idem côté runtime : la seule branche qui porte une cause. */
+type BrancheConfirmation = Extract<PlacementPolicy, { status: "confirmation_required" }>;
 
 /** Le domaine du site. Les sous-domaines comptent ; « notmydogcanfly.com » ne compte pas. */
 const AUTO_CITATION = /(^|\.)mydogcanfly\.com$/i;
@@ -56,8 +58,17 @@ export type PolitiqueSourcable =
   & {
     /** Forme d'AUTEUR : la branche non revérifiée porte ce discriminant. */
     review_state?: BrancheNonRevue["review_state"];
-    /** Forme RUNTIME : présent sur la seule branche `confirmation_required`, d'où le `string`. */
-    status_cause?: string;
+    /** Forme RUNTIME : le registre FERMÉ des causes, extrait de la branche `confirmation_required`.
+     *
+     *  Il était retapé en `string`, ce que le commentaire d'en-tête démentait déjà — « les champs
+     *  qui décident sont tirés des schémas ». Ce n'était pas cosmétique : `estNonRevue` teste
+     *  `status_cause === "legacy_unreviewed"`, et DIX politiques non revérifiées portent une
+     *  source officielle NON dérivée (Qantas soute et fret, Asiana, Condor, EVA Air, French Bee,
+     *  Korean Air, Malaysia, Norwegian, Virgin Australia). Sur un `string`, un renommage du
+     *  littéral dans le schéma passait à la compilation — et ces dix-là auraient été présentées
+     *  comme AUDITÉES. Sur le registre fermé, la comparaison elle-même devient une erreur de
+     *  type. La contre-épreuve d'exécution vit dans `test-t0b-legacy-unreviewed.mjs`. */
+    status_cause?: BrancheConfirmation["status_cause"];
   };
 
 /** `true` quand la politique dit « notre donnée n'a pas été revérifiée », quelle que soit sa forme. */

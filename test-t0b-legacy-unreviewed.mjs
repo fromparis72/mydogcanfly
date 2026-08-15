@@ -17,7 +17,7 @@
 import { readFileSync } from "node:fs";
 import YAML from "yaml";
 import { createHash } from "node:crypto";
-import { loadKB } from "./packages/knowledge/src/index.ts";
+import { loadKB, preuveAuditee, estAutoCitation } from "./packages/knowledge/src/index.ts";
 import {
   PlacementPolicy, PlacementPolicyAuthored, LegacyUnreviewedPlacementPolicyAuthored,
   projectPlacementPolicy,
@@ -336,6 +336,69 @@ console.log("=== 7 bis. La décision AUDITÉE arrive avec sa PREUVE (Thai Cargo)
   check("et la décision reste `confirmation_required` / `policy_unpublished`",
     runtime?.status === "confirmation_required" && runtime?.status_cause === "policy_unpublished",
     `${runtime?.status} / ${runtime?.status_cause}`);
+}
+
+console.log("=== 7 ter. Une politique NON REVUE reste sans preuve, même avec une source officielle ===");
+{
+  /* LE TÉMOIN QUI MANQUAIT (contre-revue du 15/08/2026).
+   *
+   * `preuveAuditee` écarte une politique non revérifiée AVANT de regarder sa source. Tant que la
+   * garde ne rencontre que des politiques sans source, elle passe au vert sans rien démontrer :
+   * `source_derived` suffirait à expliquer chaque `null`.
+   *
+   * Or DIX politiques `legacy_unreviewed` portent une source OFFICIELLE, précise, non dérivée —
+   * les anciens POLICY_STALE, dont la provenance a été affinée à la main (URL de fret dédiée,
+   * confiance 4). Ce sont exactement celles qu'un affaiblissement de la garde présenterait comme
+   * AUDITÉES : page officielle, date récente, confiance élevée, tout pour convaincre. La règle
+   * dit l'inverse — « une politique non revue reste sans source plutôt qu'avec une auto-source ».
+   *
+   * Le témoin est scellé PAR IDENTITÉ, jamais par cardinal : une politique qui sortirait de la
+   * liste et une autre qui y entrerait ne peuvent pas s'annuler. Et chaque ligne doit RÉUNIR les
+   * trois conditions — non revue, source présente, `source_derived` absent — sans quoi le
+   * contrôle passerait sur une politique qui n'a jamais rien eu à cacher. */
+  const NON_REVUES_A_SOURCE_OFFICIELLE = [
+    "airline_asiana.cargo", "airline_condor.cargo", "airline_eva_air.cargo",
+    "airline_french_bee.cargo", "airline_korean_air.cargo", "airline_malaysia_airlines.cargo",
+    "airline_norwegian.cargo", "airline_qantas.cargo", "airline_qantas.hold",
+    "airline_virgin_australia.hold",
+  ];
+  /* L'ensemble OBSERVÉ, recalculé sur la base — pas relu de la liste ci-dessus. */
+  const observees = [];
+  for (const a of kb.airlines.values()) {
+    for (const [canal, pol] of Object.entries(a.premium?.policy ?? {})) {
+      if (!pol) continue;
+      if (pol.status_cause === "legacy_unreviewed" && pol.source && !pol.source_derived) observees.push(`${a.id}.${canal}`);
+    }
+  }
+  const memeEnsemble = (x, y) => JSON.stringify([...x].sort()) === JSON.stringify([...y].sort());
+  check("l'ensemble des politiques non revues à source officielle NON dérivée est celui attendu",
+    memeEnsemble(observees, NON_REVUES_A_SOURCE_OFFICIELLE),
+    `observées ${observees.length} : ${[...observees].sort().join(", ")}`);
+
+  let sansPreuve = 0, defauts = [];
+  for (const cle of NON_REVUES_A_SOURCE_OFFICIELLE) {
+    const [id, canal] = cle.split(".");
+    const pol = kb.airlines.get(id)?.premium?.policy?.[canal];
+    /* Les trois conditions AVANT le verdict : sans elles, un `null` ne prouverait rien. */
+    if (!pol) { defauts.push(`${cle} : politique absente`); continue; }
+    if (pol.status_cause !== "legacy_unreviewed") { defauts.push(`${cle} : cause ${pol.status_cause}`); continue; }
+    if (!pol.source?.url) { defauts.push(`${cle} : aucune source`); continue; }
+    if (pol.source_derived) { defauts.push(`${cle} : source dérivée — le témoin ne mord pas`); continue; }
+    if (estAutoCitation(pol.source.url)) { defauts.push(`${cle} : auto-citation — le témoin ne mord pas`); continue; }
+    if (preuveAuditee(pol) !== null) { defauts.push(`${cle} : présentée comme AUDITÉE (${pol.source.url})`); continue; }
+    sansPreuve++;
+  }
+  check(`les ${NON_REVUES_A_SOURCE_OFFICIELLE.length} politiques non revues restent SANS preuve auditée`,
+    sansPreuve === NON_REVUES_A_SOURCE_OFFICIELLE.length && defauts.length === 0,
+    defauts.slice(0, 4).join(" | "));
+
+  /* Contre-épreuve du témoin lui-même : la MÊME source, sur une politique canonique, EST une
+     preuve. Sans cela, `preuveAuditee` pourrait retourner `null` pour une raison quelconque. */
+  const qantas = kb.airlines.get("airline_qantas")?.premium?.policy?.hold;
+  const memeSourceMaisCanonique = { ...qantas, status: "confirmation_required", status_cause: "policy_unpublished" };
+  check("la MÊME source, sur une politique canonique, EST bien une preuve auditée",
+    preuveAuditee(memeSourceMaisCanonique)?.url === qantas?.source?.url,
+    JSON.stringify(preuveAuditee(memeSourceMaisCanonique)));
 }
 
 console.log("=== 8. Baseline FIGÉE : le point de comparaison de T0-B2 est scellé ===");
