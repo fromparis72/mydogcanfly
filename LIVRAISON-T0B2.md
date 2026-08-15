@@ -1,4 +1,9 @@
-# LIVRAISON T0-B2 — patch métier complet
+# LIVRAISON T0-B2 — patch métier complet (v2)
+
+> **v2 (15/08/2026)** — trois P0, un P1 et un P2 relevés en contre-revue sont corrigés, et chacun
+> a sa contre-épreuve permanente. **La baseline publique est inchangée** (`5dad5396…`) : aucun
+> verdict ne bouge. Le seul changement de données est la provenance Thai Cargo (§14). Détail au §14.
+
 
 Date : 15/08/2026 · Base : `origin/main` @ `8fe97c0d…` · Node 22.22.2 · Branche `claude/passation-t0-b2-xgrvye`
 Mesure approuvée : `MESURE-T0B2-v2.md` (v3-bis) · Feu vert de contre-revue du 15/08/2026, 14:05
@@ -210,3 +215,95 @@ supplémentaire ».
 Contre-revue Codex de ce patch → PR protégée → CI verte → preview immuable → contre-test
 navigateur indépendant. **Aucun déploiement, aucun alias, aucune production** avant cette
 validation complète et le feu vert de Philippe.
+
+## 14. v2 — les cinq constats de contre-revue, fermés
+
+### P0-1 · Une suppression dans le YAML laissait une politique fantôme
+
+`continue` sur un placement que la fiche ne décide plus **préservait** la politique d'alors, et
+`--check` sortait 0 puisqu'il comparait l'artefact à une régénération qui la préservait aussi.
+Retirer un canal laissait donc un fantôme — la classe de défaut que T0-B2 devait fermer, et la
+cause même des dix anciens `POLICY_STALE`.
+
+**Correction** : la fiche est autoritaire **y compris par le retrait**. Une politique absente du
+YAML est supprimée d'`objects.json`. Comme un retrait change un verdict, il est **relevé et
+scellé par identité** (`POLICY_REMOVED`, ensemble attendu vide) : une suppression non prévue fait
+échouer `--check`.
+
+Contre-épreuve rejouée (§3-i des tests permanents), sur le scénario exact de la contre-revue :
+- retrait de `policies.cargo` + du canal cargo → ingestion en 0, politique **supprimée**, les deux
+  autres placements intacts ;
+- même retrait **sans** régénération → `--check` en **1**, `POLICY_REMOVED airline_aegean.cargo`
+  nommé.
+
+**La dette des 6 politiques sans canal visible est désormais contrôlée dans les deux sens** : une
+dette qui apparaît fait échouer l'ingestion, une dette résorbée doit être retirée de la liste
+scellée dans la même PR (§3-j).
+
+### P0-2 · La provenance dérivée ne pouvait plus être actualisée
+
+La préservation s'appliquait à **toute** provenance divergente, pas aux seules dix clés
+curatoriales. Corriger la `verified_date` d'une fiche ne se propageait donc plus, et `--check`
+signalait ensuite de nouveaux `PROVENANCE_CURATED`. Le remède était devenu la maladie : une
+provenance figée en silence, exactement ce que ce lot ferme.
+
+**Correction** : l'exception est **nominative**. Partout ailleurs la provenance suit la fiche.
+
+Contre-épreuve rejouée : Aegean `verified_date` 2026-08-08 → 2026-08-15 ; les trois politiques
+reprennent la nouvelle date, `review_due` est recalculée (2026-11-13), `--check` sort en **0**.
+
+### P0-3 · L'audit officiel Thai Cargo n'atteignait pas la donnée canonique
+
+La fiche ne portait que `availability: undocumented` : la décision auditée était migrée, **pas sa
+preuve**. La politique canonique recevait la page d'accueil, la date du 11/07 et une confiance 3,
+alors que le manifeste approuvé porte l'URL exacte, le 13/08, la confiance 4, la citation verbatim
+et l'emplacement dans la page.
+
+**Correction** : le schéma d'auteur accueille une `source` **auditée** facultative, et la fiche
+Thai porte désormais la provenance approuvée, recopiée verbatim du manifeste. Elle l'emporte sur
+la provenance dérivée — seul cas où la fiche dit mieux que la dérivation, et elle le dit
+explicitement.
+
+**Incidence sur la baseline publique : aucune.** Mesurée séparément comme exigé — la baseline
+reste `5dad5396…` au bit près. Le seul écart dans `objects.json` est cette provenance :
+
+```
+url         https://www.thaiairways.com  →  …/travel-with-pets/pets-as-checked-baggage-avih/
+verified    2026-07-11                   →  2026-08-13     review_due 2026-10-09 → 2026-11-11
+confidence  3                            →  4
+reviewer    MyDogCanFly Data Team        →  Claude+Codex (lecture intégrale 13/08/2026)
++ quote, quote_language, locator
+```
+
+### P1 · Les 28 changements de classement n'étaient pas figés
+
+Le générateur et le harnais appariaient les cartes par `Map` : ils contrôlaient leur contenu, pas
+leur **ordre**. Or le classement est un contenu public — c'est ce que le visiteur lit.
+
+**Correction** : les **28 permutations** sont figées comme séquences avant/après dans
+`t0b2-approved-diff.json`, et le harnais exige la bijection exacte dans les deux sens. Un contrôle
+supplémentaire vérifie que ces 28 entrées sont de **vraies** permutations — une séquence identique
+des deux côtés passerait la bijection sans rien prouver.
+
+### P2 · Le vérificateur YAML ne vérifiait pas l'état livré
+
+`ecrire-policies-yaml.mjs --verifier` produisait 102 anomalies sur le commit livré : il attend la
+syntaxe pré-migration. Il est **déclaré outil pré-migration à usage unique, ancré au SHA
+`bccd6b7`**, et **refuse désormais explicitement** (code 3) sur un dépôt migré, en indiquant où le
+rejouer et ce qui vérifie l'état courant en continu.
+
+### Trou supplémentaire trouvé en écrivant la contre-épreuve (j)
+
+`Channel` n'était pas `.strict()` : une clé surnuméraire sur un canal était **effacée en
+silence** — la famille de défauts que ce dépôt documente depuis `brachy_allowed`, `season.month`,
+`conditional` et `derived_from_fiche`. Sur un objet devenu décisionnel par son `placement`, ce
+silence n'était plus acceptable. `Channel` est désormais strict.
+
+### Empreintes après v2
+
+| Artefact | SHA-256 | Écart vs v1 |
+|---|---|---|
+| `t0a-finder-baseline.json` · `t0b2-finder-baseline-apres.json` | `5dad5396…a205d2e7` | **inchangée** |
+| `t0b-finder-baseline-avant.json` | `bc10c594…45b7bb` | **inchangée** |
+| `t0b2-approved-diff.json` | `2e420408…0eff1b` | + section `classements` (28) |
+| `packages/knowledge/raw/objects.json` | recalculée | provenance Thai Cargo uniquement |

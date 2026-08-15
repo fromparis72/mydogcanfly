@@ -29,7 +29,7 @@ const id = (ligne) => ligne.split(" | ")[0];
 const CHAMPS_TETE = ["verdict", "score", "compatible", "domestic", "climate", "destination_country",
   "confidence", "conditions", "positives", "warnings", "risks", "alternatives", "sources"];
 
-const cartes = [], tetes = [];
+const cartes = [], tetes = [], classements = [];
 const couplesJustifiants = new Set();
 
 for (const k of Object.keys(avant)) {
@@ -39,6 +39,14 @@ for (const k of Object.keys(avant)) {
   for (const champ of CHAMPS_TETE) {
     if (JSON.stringify(A[champ]) === JSON.stringify(B[champ])) continue;
     tetes.push({ scenario: k, champ, avant: A[champ], apres: B[champ] });
+  }
+
+  /* L'ORDRE des cartes est un contenu public : c'est le classement que le visiteur lit. Le
+     comparer par `Map` ne le voit pas — deux listes permutées ont les mêmes clés. Les 28
+     permutations sont donc figées comme SÉQUENCES avant/après (contre-revue du 15/08/2026). */
+  const ordreA = (A.airlines || []).map(id), ordreB = (B.airlines || []).map(id);
+  if (JSON.stringify(ordreA) !== JSON.stringify(ordreB)) {
+    classements.push({ scenario: k, avant: ordreA, apres: ordreB });
   }
 
   const parId = new Map((A.airlines || []).map((l) => [id(l), l]));
@@ -73,6 +81,7 @@ const rapport = {
     scenarios_touches: new Set([...cartes.map((c) => c.scenario), ...tetes.map((t) => t.scenario)]).size,
     cartes: cartes.length,
     champs_de_tete: tetes.length,
+    classements: classements.length,
     compagnies: new Set(cartes.map((c) => c.airline_id)).size,
     couples_justifiants: couplesJustifiants.size,
     couples_migres_total: migres.size,
@@ -80,6 +89,7 @@ const rapport = {
   couples_justifiants: [...couplesJustifiants].sort(),
   cartes,
   champs_de_tete: tetes,
+  classements,
 };
 writeFileSync(OUT, JSON.stringify(rapport, null, 1) + "\n");
 console.log("totaux :", rapport.totaux);

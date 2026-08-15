@@ -38134,7 +38134,18 @@
         "availability": "offered"
       },
       "cargo": {
-        "availability": "undocumented"
+        "availability": "undocumented",
+        "source": {
+          "url": "https://www.thaiairways.com/en-au/content/special-assistance/travel-with-pets/pets-as-checked-baggage-avih/",
+          "source_type": "official_website",
+          "verified_date": "2026-08-13",
+          "review_due": "2026-11-11",
+          "confidence": 4,
+          "reviewer": "Claude+Codex (lecture intégrale 13/08/2026)",
+          "quote": "(For cargo acceptance, please contact directly to Cargo Department)",
+          "quote_language": "en",
+          "locator": "section « Embargo Of Snub-nosed And Other Dog Breeds »"
+        }
       }
     },
     "channels": [

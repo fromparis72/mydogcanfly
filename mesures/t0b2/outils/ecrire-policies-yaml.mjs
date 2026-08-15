@@ -3,6 +3,21 @@
  *
  *   node mesures/t0b2/outils/ecrire-policies-yaml.mjs <racine> <registre-migration.json> [--verifier]
  *
+ * ⚠ OUTIL PRÉ-MIGRATION, À USAGE UNIQUE, ANCRÉ AU SHA `bccd6b7`.
+ *
+ * Il attend des fiches SANS bloc `policies:` et des canaux commençant par `- icon:`. Sur l'état
+ * livré il rapporte 102 anomalies — non parce que la migration serait fautive, mais parce qu'elle
+ * a eu lieu : la syntaxe qu'il reconnaît n'existe plus. Son `--verifier` prouve l'innocuité de
+ * l'écriture AVANT qu'elle ait lieu ; il ne vérifie pas l'état d'après, et n'a pas à le faire.
+ *
+ * Ce qui vérifie l'état LIVRÉ, en continu et à chaque CI :
+ *   - `ingest:check` — schéma strict, liens canal ↔ politique, dettes scellées par identité ;
+ *   - `test-ingest-check.mjs` §3 — les contre-épreuves du cadrage ;
+ *   - `test-t0a-baseline.mjs` — bijections des diffs approuvés et couverture des 302.
+ *
+ * Pour le rejouer, se placer au SHA d'avant le patch :
+ *   git worktree add /tmp/t0b2-avant bccd6b7 --detach
+ *
  * Deux ajouts, et rien d'autre :
  *
  *   1. un bloc `policies:` — UNIQUE, non éditorial — portant les 302 décisions, une par
@@ -32,6 +47,17 @@ if (!ROOT || !REGISTRE) {
   process.exit(2);
 }
 const SRC = join(ROOT, "content", "airlines");
+
+/* Refus IMMÉDIAT sur un dépôt déjà migré : sans cela l'outil rapporte 102 « anomalies » qui
+   parlent d'insertion alors que le sujet est la date du commit — un faux signal, exactement ce
+   qu'on refuse ailleurs. */
+if (readFileSync(join(SRC, "thai_airways.yml"), "utf8").includes("\npolicies:")) {
+  console.error("Cet outil est PRÉ-MIGRATION et à usage unique ; ce dépôt est déjà migré.");
+  console.error("  Rejouez-le au SHA d'avant le patch :");
+  console.error("    git worktree add /tmp/t0b2-avant bccd6b7 --detach");
+  console.error("  L'état COURANT est vérifié en continu par : npm run ingest:check && npm run test:unit");
+  process.exit(3);
+}
 
 /** Les 4 canaux dont le libellé n'était pas reconnu — rattachement scellé (cf. faisabilite-option-c). */
 const RATTACHEMENT_EXPLICITE = {

@@ -158,6 +158,61 @@ console.log("\n=== 3. La décision vient des fiches — les contre-épreuves du 
     check("(g) `allowed`/`conditional` réintroduits dans objects.json → REFUS", code === 1, out.slice(-300));
   }
 
+  /* (i) SUPPRESSION — la fiche est autoritaire, y compris par le retrait.
+   *
+   * Contre-épreuve de la contre-revue du 15/08/2026 : retirer `policies.cargo` et le canal cargo
+   * d'Air France laissait la politique cargo SURVIVRE dans objects.json, ingestion et `--check`
+   * en code 0. Le fantôme est la classe de défaut que T0-B2 devait fermer — et la cause même des
+   * dix anciens POLICY_STALE. */
+  {
+    const retireCargo = (t) => {
+      const sansPolitique = t.replace("  cargo:\n    review_state: legacy_unreviewed\n", "");
+      const lignes = sansPolitique.split("\n");
+      const sortie = []; let saute = false;
+      for (const l of lignes) {
+        if (/^ {2}- placement: cargo$/.test(l)) { saute = true; continue; }
+        if (saute && (/^ {2}- placement: /.test(l) || /^[A-Za-z_]/.test(l))) saute = false;
+        if (!saute) sortie.push(l);
+      }
+      return sortie.join("\n");
+    };
+    const r = muter(retireCargo);
+    check("(i) retirer un placement de la fiche : l'ingestion réussit", r.code === 0, r.out.slice(-300));
+    const pol = sandboxJson(OBJECTS_REL).airlines.find((a) => a.id === "airline_aegean").premium.policy;
+    check("(i) la politique cargo est SUPPRIMÉE d'objects.json — aucun fantôme",
+      pol.cargo === undefined, JSON.stringify(pol.cargo ?? null).slice(0, 120));
+    check("(i) et les deux autres placements survivent intacts",
+      pol.cabin !== undefined && pol.hold !== undefined);
+    /* Le cas qui compte vraiment : fiche modifiée SANS régénération. La suppression doit être
+       relevée et NOMMÉE, jamais appliquée en silence. */
+    freshSandbox();
+    writeFileSync(fichePath(), retireCargo(readFileSync(fichePath(), "utf8")));
+    const { code, out } = run("--check");
+    check("(i) sans régénération → REFUS", code === 1);
+    check("(i) la suppression est NOMMÉE (POLICY_REMOVED)",
+      out.includes("POLICY_REMOVED") && out.includes("+ airline_aegean.cargo"), out.slice(-400));
+  }
+
+  /* (j) la dette des politiques sans canal visible est scellée DANS LES DEUX SENS. */
+  {
+    const r = muter((t) => t.replace("  - placement: hold\n", "  - placement: hold\n    __retire: true\n"));
+    check("(j) préalable : une clé inconnue sur un canal est refusée", r.code === 1);
+    freshSandbox();
+    // retirer le CANAL hold sans retirer sa politique → dette éditoriale NOUVELLE
+    const lignes = readFileSync(fichePath(), "utf8").split("\n");
+    const sortie = []; let saute = false;
+    for (const l of lignes) {
+      if (/^ {2}- placement: hold$/.test(l)) { saute = true; continue; }
+      if (saute && (/^ {2}- placement: /.test(l) || /^[A-Za-z_]/.test(l))) saute = false;
+      if (!saute) sortie.push(l);
+    }
+    writeFileSync(fichePath(), sortie.join("\n"));
+    const r2 = run();
+    check("(j) politique sans canal visible hors dette scellée → REFUS", r2.code === 1, r2.out.slice(-300));
+    check("(j) le refus nomme la dette non scellée",
+      /dette scellée|sans canal visible/.test(r2.out), r2.out.slice(-300));
+  }
+
   // (h) la fiche modifiée SANS régénération → dérive nommée
   {
     const r0 = muter((t) => t.replace("  cargo:\n    review_state: legacy_unreviewed", "  cargo:\n    availability: offered"));

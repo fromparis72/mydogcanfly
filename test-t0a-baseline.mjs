@@ -255,7 +255,8 @@ console.log("=== Preuve T0-B2 (deux baselines FIGÉES — permanente) ===");
     const id = (l) => l.split(" | ")[0];
     const cartesApprouvees = new Map(approuve.cartes.map((c) => [`${c.scenario}#${c.airline_id}`, c]));
     const tetesApprouvees = new Map(approuve.champs_de_tete.map((t) => [`${t.scenario}#${t.champ}`, t]));
-    const vuesCartes = new Set(), vuesTetes = new Set();
+    const classementsApprouves = new Map((approuve.classements ?? []).map((c) => [c.scenario, c]));
+    const vuesCartes = new Set(), vuesTetes = new Set(), vusClassements = new Set();
     let bad = 0;
     const echec = (msg) => { bad++; if (bad <= 5) console.log(`  ${msg}`); };
 
@@ -272,6 +273,19 @@ console.log("=== Preuve T0-B2 (deux baselines FIGÉES — permanente) ===");
           echec(`DIFF ${k} champ ${champ} : valeur différente de l'approuvée`);
         }
       }
+      /* Le CLASSEMENT est un contenu public : comparer les cartes par `Map` ne le voit pas —
+         deux listes permutées ont les mêmes clés. Les séquences avant/après sont donc exigées
+         à l'identique, dans les deux sens (contre-revue du 15/08/2026). */
+      const ordreA = (A.airlines || []).map(id), ordreB = (B.airlines || []).map(id);
+      if (JSON.stringify(ordreA) !== JSON.stringify(ordreB)) {
+        vusClassements.add(k);
+        const app = classementsApprouves.get(k);
+        if (!app) echec(`DIFF ${k} classement modifié HORS du diff approuvé`);
+        else if (JSON.stringify(app.avant) !== JSON.stringify(ordreA) || JSON.stringify(app.apres) !== JSON.stringify(ordreB)) {
+          echec(`DIFF ${k} classement différent de la séquence EXACTE approuvée`);
+        }
+      }
+
       const parId = new Map((A.airlines || []).map((l) => [id(l), l]));
       const idsB = new Set((B.airlines || []).map(id));
       for (const idA of parId.keys()) if (!idsB.has(idA)) echec(`DIFF ${k} compagnie ${idA} SUPPRIMÉE par T0-B2`);
@@ -288,11 +302,17 @@ console.log("=== Preuve T0-B2 (deux baselines FIGÉES — permanente) ===");
     }
     for (const cle of cartesApprouvees.keys()) if (!vuesCartes.has(cle)) echec(`DIFF carte approuvée NON observée: ${cle}`);
     for (const cle of tetesApprouvees.keys()) if (!vuesTetes.has(cle)) echec(`DIFF champ de tête approuvé NON observé: ${cle}`);
+    for (const cle of classementsApprouves.keys()) if (!vusClassements.has(cle)) echec(`DIFF classement approuvé NON observé: ${cle}`);
 
     check("bijection stricte avec le diff T0-B2 approuvé (452 cartes, 46 champs de tête)", bad === 0, `${bad} écart(s)`);
-    check("452 cartes et 46 champs de tête approuvés",
-      approuve.cartes.length === 452 && approuve.champs_de_tete.length === 46,
-      `${approuve.cartes.length} cartes · ${approuve.champs_de_tete.length} champs`);
+    check("452 cartes, 46 champs de tête et 28 classements approuvés",
+      approuve.cartes.length === 452 && approuve.champs_de_tete.length === 46 && approuve.classements.length === 28,
+      `${approuve.cartes.length} cartes · ${approuve.champs_de_tete.length} champs · ${approuve.classements?.length} classements`);
+    /* Un classement figé n'est une garantie que s'il porte VRAIMENT une permutation : une
+       séquence identique des deux côtés passerait la bijection sans rien prouver. */
+    check("les 28 classements approuvés sont de vraies permutations",
+      approuve.classements.every((c) => JSON.stringify(c.avant) !== JSON.stringify(c.apres)
+        && c.avant.length > 0 && c.apres.length > 0));
     check("46 compagnies touchées, 48 couples justifiants",
       approuve.totaux.compagnies === 46 && approuve.totaux.couples_justifiants === 48,
       JSON.stringify(approuve.totaux));
