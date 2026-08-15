@@ -25,8 +25,55 @@ readonly EMPREINTE_TEMOIN="bc10c594831b662933dcba7835dfe78872ebfb4dd5a884e2faaaf
 readonly EMPREINTE_CANDIDAT="5dad5396527c94bcb1a0fc2bb2c79b94052c26ca32d92fb47cfecd43a205d2e7"
 readonly ECARTS_HISTORIQUES_ATTENDUS=1530
 
+# Synthèses et codes de sortie EXIGÉS du harnais figé `test-t0a-baseline.mjs`, mesurés sur ses
+# quatre variantes. `--write` GÉNÈRE (et saute les 3 contrôles de comparaison à la baseline) ;
+# sans `--write`, le harnais CONTRÔLE les 10. Les deux phases sont dissociées ci-dessous pour que
+# la génération ne serve jamais d'alibi au contrôle, ni l'inverse.
+readonly TEMOIN_GENERATION="7 OK, 0 FAIL";   readonly TEMOIN_GENERATION_CODE=0;   readonly TEMOIN_GENERATION_FAILS=0
+readonly TEMOIN_CONTROLE="10 OK, 0 FAIL";    readonly TEMOIN_CONTROLE_CODE=0;     readonly TEMOIN_CONTROLE_FAILS=0
+readonly CANDIDAT_GENERATION="6 OK, 1 FAIL"; readonly CANDIDAT_GENERATION_CODE=1; readonly CANDIDAT_GENERATION_FAILS=1
+readonly CANDIDAT_CONTROLE="9 OK, 1 FAIL";   readonly CANDIDAT_CONTROLE_CODE=1;   readonly CANDIDAT_CONTROLE_FAILS=1
+# L'unique échec toléré, et lui seul. Toute autre ligne FAIL arrête le runner.
+readonly FAIL_TOLERE="aucune différence métier hors les 24 cartes approuvées, à leurs valeurs EXACTES (bijection)"
+
 sha() { sha256sum "$1" | cut -d" " -f1; }
 echec() { echo "ECHEC  $*" >&2; exit 1; }
+
+# Exécute le harnais et EXIGE son code de sortie, sa synthèse et l'identité de ses échecs.
+#
+# Le code de sortie ne peut plus être avalé : un harnais qui écrit la bonne baseline puis signale
+# une panne SUPPLÉMENTAIRE doit arrêter la reproduction. La synthèse `N OK, M FAIL` est comparée
+# telle quelle — un contrôle en plus ou en moins la change — et lorsqu'un échec est attendu, c'est
+# son LIBELLÉ qui est vérifié, pas seulement son nombre.
+#
+#   harnais <libellé> <code attendu> <synthèse attendue> <échecs attendus> <journal> [args…]
+harnais() {
+  local libelle="$1" code_attendu="$2" synthese_attendue="$3" fails_attendus="$4" journal="$5"
+  shift 5
+  local code=0
+  ( cd "$SIM" && npx tsx test-t0a-baseline.mjs "$@" ) > "$journal" 2>&1 || code=$?
+
+  [ "$code" -eq "$code_attendu" ] \
+    || echec "$libelle : code de sortie $code (attendu $code_attendu) — voir $journal"
+
+  local synthese; synthese="$(grep -oE '^[0-9]+ OK, [0-9]+ FAIL$' "$journal" | tail -1 || true)"
+  [ -n "$synthese" ] || echec "$libelle : aucune synthèse produite — le harnais n'est pas allé au bout"
+  [ "$synthese" = "$synthese_attendue" ] \
+    || echec "$libelle : synthèse « $synthese » (attendue « $synthese_attendue »)"
+
+  local fails; fails="$(grep -cE '^[[:space:]]*FAIL ' "$journal" || true)"
+  [ "$fails" -eq "$fails_attendus" ] \
+    || echec "$libelle : $fails ligne(s) FAIL (attendu $fails_attendus)"
+
+  if [ "$fails_attendus" -eq 1 ]; then
+    grep -qF "FAIL $FAIL_TOLERE" "$journal" \
+      || echec "$libelle : l'échec observé n'est PAS la bijection historique — panne supplémentaire du harnais"
+    local ecarts; ecarts="$(grep -oE '[0-9]+ écart\(s\)' "$journal" | head -1 | grep -oE '^[0-9]+' || true)"
+    [ "${ecarts:-0}" -eq "$ECARTS_HISTORIQUES_ATTENDUS" ] \
+      || echec "$libelle : ${ecarts:-<aucun>} écart(s) historiques (attendu $ECARTS_HISTORIQUES_ATTENDUS)"
+  fi
+  echo "OK     $libelle — code $code, « $synthese »$([ "$fails_attendus" -eq 1 ] && echo ", échec unique = bijection historique ($ECARTS_HISTORIQUES_ATTENDUS écarts)" || true)"
+}
 
 echo "dépôt      : $ROOT"
 echo "SHA        : $(git -C "$ROOT" rev-parse HEAD)"
@@ -50,14 +97,15 @@ done
 ln -sfn "$ROOT/node_modules/.bin" "$SIM/node_modules/.bin"
 for p in engine knowledge ui workers; do ln -sfn "$SIM/packages/$p" "$SIM/node_modules/@mydogcanfly/$p"; done
 
-# `--write` régénère TOUJOURS depuis zéro : la sortie est supprimée d'abord, et son absence après
-# coup est une erreur. Sans cela, un plantage de `tsx` laisserait en place le fichier livré par
-# l'archive — or il est identique bit à bit à la baseline figée, donc le témoin comme
+# GÉNÉRATION : `--write` régénère TOUJOURS depuis zéro — la sortie est supprimée d'abord, et son
+# absence après coup est une erreur. Sans cela, un plantage laisserait en place le fichier livré
+# par l'archive — or il est identique bit à bit à la baseline figée, donc le témoin comme
 # l'idempotence « réussiraient » sans qu'une seule mesure ait été faite.
 regenerer_baseline() {
+  local libelle="$1" code="$2" synthese="$3" fails="$4" journal="$5"
   rm -f "$BASELINE_SIM"
-  ( cd "$SIM" && npx tsx test-t0a-baseline.mjs --write >/dev/null 2>&1 ) || true
-  [ -f "$BASELINE_SIM" ] || echec "la baseline n'a pas été régénérée ($1) — le harnais n'a rien produit"
+  harnais "$libelle" "$code" "$synthese" "$fails" "$journal" --write
+  [ -f "$BASELINE_SIM" ] || echec "$libelle : la baseline n'a pas été écrite"
 }
 
 # --- 1. Registre et bijections sur l'état AVANT (sortie non nulle si anomalie) -----------------
@@ -66,7 +114,10 @@ node "$OUTILS/registre.mjs" "$ROOT" "$TRAVAIL/registre-avant-bijections.json"
 
 # --- 2. Témoin : l'instrument reproduit-il la baseline figée ? ---------------------------------
 echo; echo "=== 2. TÉMOIN — l'instrument est-il valide ? ==="
-regenerer_baseline "témoin"
+regenerer_baseline "témoin · génération" "$TEMOIN_GENERATION_CODE" "$TEMOIN_GENERATION" \
+  "$TEMOIN_GENERATION_FAILS" "$TRAVAIL/harnais-temoin-generation.txt"
+harnais "témoin · contrôle complet" "$TEMOIN_CONTROLE_CODE" "$TEMOIN_CONTROLE" \
+  "$TEMOIN_CONTROLE_FAILS" "$TRAVAIL/harnais-temoin-controle.txt"
 TEMOIN="$(sha "$BASELINE_SIM")"
 echo "témoin attendu : $EMPREINTE_TEMOIN"
 echo "témoin obtenu  : $TEMOIN"
@@ -82,9 +133,11 @@ node "$OUTILS/candidat.mjs" "$SIM" "$TRAVAIL/registre-migration-302.json"
 
 # --- 4. Idempotence : deux régénérations COMPLÈTES, chacune repartie de zéro --------------------
 echo; echo "=== 4. IDEMPOTENCE (deux régénérations effectives) ==="
-regenerer_baseline "exécution 1"
+regenerer_baseline "candidat · génération 1" "$CANDIDAT_GENERATION_CODE" "$CANDIDAT_GENERATION" \
+  "$CANDIDAT_GENERATION_FAILS" "$TRAVAIL/harnais-candidat-generation-1.txt"
 cp "$BASELINE_SIM" "$TRAVAIL/baseline-candidate-prevision.json"
-regenerer_baseline "exécution 2"
+regenerer_baseline "candidat · génération 2" "$CANDIDAT_GENERATION_CODE" "$CANDIDAT_GENERATION" \
+  "$CANDIDAT_GENERATION_FAILS" "$TRAVAIL/harnais-candidat-generation-2.txt"
 cp "$BASELINE_SIM" "$TRAVAIL/candidat-run2.json"
 cmp "$TRAVAIL/baseline-candidate-prevision.json" "$TRAVAIL/candidat-run2.json" \
   || echec "non idempotent — deux exécutions divergent"
@@ -94,20 +147,15 @@ echo "candidat obtenu  : $CANDIDAT"
 [ "$CANDIDAT" = "$EMPREINTE_CANDIDAT" ] || echec "empreinte candidate inattendue"
 echo "OK     idempotent bit à bit, à l'empreinte attendue"
 
-# --- 4 bis. Section historique T0-A : le compte EXACT est exigé ---------------------------------
-# Échec ATTENDU du harnais : sur le candidat, cette section compare l'état VIVANT à la baseline
+# --- 4 bis. Contrôle complet sur le candidat : un seul échec, et c'est celui-là -----------------
+# Échec ATTENDU : sur le candidat, la section historique compare l'état VIVANT à la baseline
 # pré-T0-A. C'est le défaut de conception que le patch corrigera (preuve rendue à des baselines
-# FIGÉES + diff T0-B2 approuvé à part) — pas une preuve qu'on assouplit. Le nombre est donc EXIGÉ :
-# un autre total signifierait un impact métier différent de celui qui a été mesuré.
-echo; echo "=== 4 bis. SECTION HISTORIQUE T0-A (échec attendu, total EXIGÉ) ==="
-SORTIE_HIST="$TRAVAIL/section-historique-t0a.txt"
-( cd "$SIM" && npx tsx test-t0a-baseline.mjs > "$SORTIE_HIST" 2>&1 ) || true
-ECARTS="$(grep -oE "[0-9]+ écart\(s\)" "$SORTIE_HIST" | head -1 | grep -oE "^[0-9]+" || true)"
-echo "écarts attendus : $ECARTS_HISTORIQUES_ATTENDUS"
-echo "écarts obtenus  : ${ECARTS:-<aucun>}"
-[ -n "$ECARTS" ] || echec "la section historique n'a produit aucun compte d'écarts"
-[ "$ECARTS" -eq "$ECARTS_HISTORIQUES_ATTENDUS" ] || echec "total historique inattendu"
-echo "OK     total historique conforme à la mesure"
+# FIGÉES + diff T0-B2 approuvé à part) — pas une preuve qu'on assouplit. Il est donc encadré au
+# plus près : code de sortie, synthèse exacte, échec UNIQUE, libellé de cet échec, et total exact.
+# Une panne supplémentaire du harnais ne peut plus se cacher derrière l'échec attendu.
+echo; echo "=== 4 bis. CONTRÔLE COMPLET SUR LE CANDIDAT (échec unique attendu) ==="
+harnais "candidat · contrôle complet" "$CANDIDAT_CONTROLE_CODE" "$CANDIDAT_CONTROLE" \
+  "$CANDIDAT_CONTROLE_FAILS" "$TRAVAIL/harnais-candidat-controle.txt"
 
 # --- 5. Diff exhaustif du contrat public --------------------------------------------------------
 echo; echo "=== 5. DIFF DU CONTRAT PUBLIC ==="

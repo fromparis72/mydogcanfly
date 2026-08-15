@@ -1,10 +1,15 @@
-# MESURE T0-B2 — v3 : chiffres v2 validés, dispositif de reproduction durci
+# MESURE T0-B2 — v3-bis : chiffres v2 validés, dispositif de reproduction durci
+
+> **v3-bis (15/08/2026)** — le runner n'avale plus le code de sortie du harnais. Génération et
+> contrôle sont dissociés, et les quatre variantes sont assertionnées : code, synthèse exacte,
+> nombre d'échecs, **libellé** de l'échec unique, total de 1530. Détail et contre-épreuve au §12.
+
 
 > **v3 (15/08/2026)** — les chiffres métier de la v2 sont validés en contre-revue et **inchangés**.
 > Cette révision ne corrige que l'outillage, sur six faux verts relevés par Codex : runner non
 > portable, `registre.mjs` qui nommait un écart sans échouer, idempotence contournable, dettes
 > scellées par cardinal au lieu d'identité, chemins absolus dans une annexe, propreté du dépôt
-> affichée mais non gardée. Détail au §11.
+> affichée mais non gardée. Détail au §11 — puis un septième, corrigé au §12.
 
 
 Date : 15/08/2026 · Base : `origin/main` @ `8fe97c0d7a1695ca97fff19b0421aecc90f7b1c6` · Node 22.22.2
@@ -137,8 +142,8 @@ politique écrite à la main est préservée = 74.
 
 ## 8. Section historique T0-A : 1530 écarts mesurés, et le plan pour ne rien affaiblir
 
-**Écart avec le contre-calcul Codex** : je mesure **1530**, pas 1398. Mon compte est intégralement
-décomposable, et c'est exactement ce que la section compte :
+**Total : 1530 écarts**, confirmé en contre-revue (le contre-calcul initial de 1398 portait sur
+l'ancien périmètre de 74 couples). Le compte est intégralement décomposable :
 
 | Poste | Occurrences |
 |---|---|
@@ -148,8 +153,8 @@ décomposable, et c'est exactement ce que la section compte :
 | **Total** | **1530** |
 
 Non comptés par cette section, et c'est conforme à son code : `decisions` (seg#4, champ nouveau,
-exclu de la boucle) et `classement` (l'ordre n'est pas comparé). L'écart de 132 avec 1398 mérite
-une vérification croisée de Codex — il ne bloque rien, aucune de ces deux valeurs n'étant approuvée.
+exclu de la boucle) et `classement` (l'ordre n'est pas comparé). Ce total est désormais **exigé**
+par le runner (§12).
 
 **Plan retenu pour le patch** (aucune preuve supprimée ni assouplie) :
 1. La preuve historique T0-A cesse de comparer l'état VIVANT : elle compare deux baselines
@@ -256,3 +261,52 @@ complète, ci-dessus, est le seul résultat qui fasse foi.*
 `registre-avant-bijections.json`, `diff-avant-apres.json`, `faisabilite-option-c.json`. Les trois
 autres — dont `baseline-candidate-prevision.json` (`5dad5396…`) et `verification-bascules.json` —
 sont **bit à bit identiques** à la v2. `SHA256SUMS` couvre désormais annexes **et** outils.
+
+## 12. v3-bis — le septième faux vert : le code de sortie du harnais était avalé
+
+**Le défaut.** Les deux invocations de `test-t0a-baseline.mjs` étaient suivies de `|| true`. La
+présence du fichier et son empreinte ne prouvent rien sur la santé du harnais : celui-ci peut
+écrire la bonne baseline **puis** signaler une panne sans rapport. Contre-éprouvé par Codex avec
+une assertion fautive supplémentaire — le harnais annonçait `9 OK, 2 FAIL`, et le runner terminait
+sur `REPRODUCTION RÉUSSIE`, `RUNNER_EXIT=0`.
+
+**La correction : génération et contrôle dissociés.** La matrice du harnais figé a d'abord été
+mesurée sur ses quatre variantes, parce qu'aucune n'était documentée :
+
+| Variante | Rôle | Synthèse | Code |
+|---|---|---|---|
+| témoin `--write` | génère la baseline témoin | `7 OK, 0 FAIL` | 0 |
+| témoin sans `--write` | contrôle les 10 vérifications | `10 OK, 0 FAIL` | 0 |
+| candidat `--write` | génère la baseline candidate | `6 OK, 1 FAIL` | 1 |
+| candidat sans `--write` | contrôle les 10 vérifications | `9 OK, 1 FAIL` | 1 |
+
+`--write` saute les trois contrôles de comparaison à la baseline : les deux valeurs demandées en
+contre-revue (`10 OK, 0 FAIL` et `9 OK, 1 FAIL`) sont celles des runs de **contrôle**. Le runner
+exécute donc désormais les deux phases séparément, et une fonction unique `harnais()` **exige**,
+à chacune des cinq invocations :
+
+1. le **code de sortie** exact (0 pour le témoin, 1 pour le candidat) ;
+2. la **synthèse** exacte, comparée telle quelle — un contrôle en plus ou en moins la change ;
+3. le **nombre** de lignes `FAIL` ;
+4. lorsqu'un échec est attendu, son **libellé** — ce doit être la bijection historique, et rien
+   d'autre ;
+5. le total de **1530** écarts.
+
+**Contre-épreuve rejouée, dans les deux formes.** Une panne injectée sans toucher à la baseline :
+
+| Forme de la panne | Résultat |
+|---|---|
+| échec permanent (toutes phases) | arrêt dès `témoin · génération : code de sortie 1 (attendu 0)` |
+| échec **ne se manifestant que sur le candidat** — le cas de la contre-revue, témoin strictement vert | arrêt sur `candidat · génération 1 : synthèse « 6 OK, 2 FAIL » (attendue « 6 OK, 1 FAIL »)` |
+
+Dans les deux cas `RUNNER_EXIT=1`. La seconde forme est la plus proche du scénario relevé : le
+témoin passe (`7 OK, 0 FAIL` puis `10 OK, 0 FAIL`), et c'est la synthèse du candidat qui trahit
+la panne supplémentaire — l'échec attendu ne peut plus lui servir de couverture.
+
+**Journal du rejeu nominal** : `mesures/t0b2/epreuve-worktree-neuf.log`, et les cinq journaux du
+harnais sont produits dans le dossier de travail (`harnais-*.txt`) pour audit.
+
+*Note de méthode : ma première exécution de la contre-épreuve était invalide — la copie sabotée
+avait été créée par `git archive HEAD`, qui a livré l'ancien runner puisque le correctif n'était
+pas encore commité. Le résultat qui fait foi est celui obtenu après synchronisation du runner
+courant dans la copie.*
