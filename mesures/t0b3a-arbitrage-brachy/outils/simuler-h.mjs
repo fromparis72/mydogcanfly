@@ -1,5 +1,5 @@
 /**
- * T0-B3-a · SIMULATION de l'option H — v4-ter. Sans écrire une ligne de moteur.
+ * T0-B3-a · SIMULATION de l'option H — v5 — après le patch des contrats moteur.
  *
  *   node --import tsx mesures/t0b3a-arbitrage-brachy/outils/simuler-h.mjs
  *   node --import tsx …/simuler-h.mjs --contre-epreuve=causes|table|ids42|bascules|validateur|multi
@@ -677,11 +677,30 @@ const fixtureDominance = (() => {
 
 /* ---- Sonde de contrat ---------------------------------------------------------------------------- */
 const sondeContrat = (() => {
-  try {
-    makePlacementDecision("hold", "confirmation_required", [{ code: CAUSE_H, policy_ref: "airline_aegean#hold" }], undefined);
-    return { cause_acceptee: true };
-  } catch (e) { return { cause_acceptee: false, erreur: String(e).split("\n")[0].slice(0, 140) }; }
+  /* Ces deux causes n'existaient pas : la sonde vérifiait qu'elles étaient REFUSÉES. Elle vérifie
+     désormais qu'elles sont ACCEPTÉES — et que `causeKey` distingue bien deux exigences. */
+  const essai = (causes) => {
+    try { return { ok: true, d: makePlacementDecision("hold", "confirmation_required", causes, undefined) }; }
+    catch (e) { return { ok: false, erreur: String(e).split("\n")[0].slice(0, 140) }; }
+  };
+  const nonRevue = essai([{ code: CAUSE_NON_REVUE, policy_ref: "airline_aegean#hold" }]);
+  const deuxExigences = essai([
+    { code: CAUSE_EXIGENCE, policy_ref: "airline_aegean#hold", restriction_ref: "brest_a" },
+    { code: CAUSE_EXIGENCE, policy_ref: "airline_aegean#hold", restriction_ref: "brest_b" },
+  ]);
+  const sansRef = essai([{ code: CAUSE_EXIGENCE, policy_ref: "airline_aegean#hold" }]);
+  return {
+    breed_policy_unreviewed_acceptee: nonRevue.ok,
+    deux_exigences_conservees: deuxExigences.ok &&
+      (deuxExigences.d?.confirmation_causes?.length ?? 0) === 2,
+    breed_requirement_sans_restriction_ref_refusee: !sansRef.ok,
+  };
 })();
+exiger("le contrat accepte `breed_policy_unreviewed`", sondeContrat.breed_policy_unreviewed_acceptee);
+exiger("le contrat CONSERVE deux exigences distinctes sur le même canal",
+  sondeContrat.deux_exigences_conservees, JSON.stringify(sondeContrat));
+exiger("`breed_requirement` sans `restriction_ref` est REFUSÉ",
+  sondeContrat.breed_requirement_sans_restriction_ref_refusee);
 
 /* ---- LES EXIGENCES BLOQUANTES ------------------------------------------------------------------- */
 exiger("G1 · aucun chien non brachycéphale touché", goldenTouches === 0 && goldenPlacements === 0 && diffPublic.golden_affectes === 0,
@@ -771,6 +790,11 @@ exiger("deux exigences auditées produisent DEUX causes distinctes dans le rappo
   bout_en_bout.deux_exigences.causes === 2 &&
   bout_en_bout.deux_exigences.cles_distinctes_avec_la_cle_de_H === 2,
   JSON.stringify(bout_en_bout.deux_exigences));
+/* La clé du MOTEUR les distingue désormais aussi : c'était la lacune mesurée avant le patch
+   (2 causes → 1 clé), elle est fermée. */
+exiger("`causeKey()` du moteur distingue maintenant deux exigences",
+  bout_en_bout.deux_exigences.cles_distinctes_avec_causeKey_du_moteur === 2,
+  JSON.stringify(bout_en_bout.deux_exigences));
 exiger("un refus audité fait descendre LA SOURCE DE LA RESTRICTION jusqu'au rapport",
   bout_en_bout.refus_audite.source_url === "https://fx.example/deny",
   JSON.stringify(bout_en_bout.refus_audite));
@@ -839,24 +863,33 @@ exiger("deux exigences produisent DEUX preuves distinctes à la sortie publique"
 exiger("la perte de preuves du contrat actuel est mesurée, non nulle et publiée",
   cardinalitePreuves.perdues_par_le_contrat_actuel === 1, JSON.stringify(cardinalitePreuves));
 
-/* LE CONTRAT MOTEUR NE DÉCLARE PAS ENCORE LE CHAMP. On le MESURE plutôt que de laisser croire que
-   `safety_advisories` serait déjà contractuel : la simulation l'attache, l'interface pourrait
-   l'ignorer sans que rien n'échoue. C'est le travail de moteur à venir, pas un acquis. */
+/* ---- LE CONTRAT MOTEUR, MAINTENANT VÉRIFIÉ EN POSITIF ------------------------------------------
+   Tant que le patch n'existait pas, cette sonde exigeait les sept lacunes OUVERTES : c'était la
+   seule façon de ne pas laisser croire à un acquis. Elle serait devenue rouge à l'instant précis
+   où le moteur est réparé — défaut anticipé en contre-revue. Elle vérifie donc maintenant ce que
+   le contrat DOIT porter.
+
+   Une exception ASSUMÉE : `DecisionSource` ne porte toujours pas la citation, et ne doit pas la
+   porter. Ajouter la citation ici ET des preuves plurielles aurait créé deux chemins concurrents.
+   `DecisionSource` reste la projection courte de la politique générale du canal ;
+   `RestrictionEvidence` porte les faits de race, au pluriel et avec leur `SourcedQuote`. */
 const contratsMoteur = readFileSync("packages/engine/src/contracts.ts", "utf8");
-const lacunesDuContrat = {
-  DecisionReport_declare_safety_advisories: /safety_advisories/.test(contratsMoteur),
-  SafetyAdvisory_exporte_par_le_moteur: /export (const|interface|type) SafetyAdvisory\b/.test(contratsMoteur),
-  ConfirmationCause_connait_breed_requirement: /breed_requirement/.test(contratsMoteur),
-  causeKey_integre_restriction_ref: /restriction_ref/.test(contratsMoteur),
-  /* CIBLÉ SUR LE BLOC, pas sur le fichier : un `/quote/` global tombait sur `fee_quote_only` et
-     rendait « vrai » une lacune bien réelle. Un contrôle imprécis qui répond oui est pire que pas
-     de contrôle. */
-  DecisionSource_porte_la_citation:
-    /export const DecisionSource = z\.object\(\{[\s\S]*?\}\)/.exec(contratsMoteur)?.[0]?.includes("quote:") ?? false,
-  PlacementDecision_porte_plusieurs_preuves: /sources:\s*z\.array/.test(contratsMoteur),
+const blocDecisionSource = /export const DecisionSource = z\.object\(\{[\s\S]*?\}\)/.exec(contratsMoteur)?.[0] ?? "";
+const contratMoteur = {
+  DecisionReport_declare_safety_advisories: /safety_advisories: SafetyAdvisory\[\]/.test(contratsMoteur),
+  SafetyAdvisory_exporte_par_le_moteur: /export const SafetyAdvisory = z\./.test(contratsMoteur),
+  cle_de_deduplication_des_avis: /export const advisoryKey/.test(contratsMoteur),
+  ConfirmationCause_connait_breed_policy_unreviewed: /z\.literal\("breed_policy_unreviewed"\)/.test(contratsMoteur),
+  ConfirmationCause_connait_breed_requirement: /z\.literal\("breed_requirement"\)/.test(contratsMoteur),
+  causeKey_integre_restriction_ref: /breed_requirement" \? `\$\{c\.code\}\|\$\{c\.policy_ref\}\|\$\{c\.restriction_ref\}`/.test(contratsMoteur),
+  preuves_plurielles_RestrictionEvidence: /export const RestrictionEvidence = z\./.test(contratsMoteur) &&
+    /evidence: z\.array\(RestrictionEvidence\)/.test(contratsMoteur),
+  RestrictionEvidence_compose_SourcedQuote: /RestrictionEvidence = z\.object\(\{[\s\S]*?source: SourcedQuote/.test(contratsMoteur),
 };
-exiger("les lacunes du contrat moteur sont mesurées et TOUTES ouvertes (aucun acquis supposé)",
-  Object.values(lacunesDuContrat).every((v) => v === false), JSON.stringify(lacunesDuContrat));
+exiger("les sept contrats moteur exigés par l'arbitrage sont en place",
+  Object.values(contratMoteur).every((v) => v === true), JSON.stringify(contratMoteur));
+exiger("`DecisionSource` NE porte PAS la citation — un seul chemin de preuve, pas deux",
+  !blocDecisionSource.includes("quote:"), blocDecisionSource.slice(0, 120));
 
 /* L'AVIS `warn` N'A AUCUN EFFET — prouvé en rejouant la grille publique SANS lui et en exigeant
    l'égalité stricte des verdicts, des scores et des statuts. La v3 l'affirmait ; ici on le mesure. */
@@ -897,7 +930,7 @@ exiger("le référentiel est intact après simulation", intact);
 const violations = exigences.filter((e) => !e.tenue);
 
 const doc = {
-  lot: "T0-B3-a — simulation de l'option H (v4-ter)",
+  lot: "T0-B3-a — simulation de l'option H (v5, contrats moteur en place)",
   nature: "SIMULATION — aucun code moteur écrit, aucun fichier de packages/ modifié",
   sceau, referentiel_intact: intact,
   contre_epreuve_active: CONTRE,
@@ -944,7 +977,7 @@ const doc = {
   },
   sonde_de_contrat: sondeContrat,
   cardinalite_des_preuves: cardinalitePreuves,
-  lacunes_du_contrat_moteur: lacunesDuContrat,
+  contrat_moteur_verifie: contratMoteur,
   avis_sur_un_rapport_precis: avisSurUnRapport,
   preuves: { attendues: preuvesAttendues, transportees_par_le_contrat_actuel: preuvesTransportees },
   diff_contre_le_statu_quo: { grille_publique: diffPublic, grille_brachycephale: brachy },
@@ -956,7 +989,7 @@ const doc = {
 if (!CONTRE) ecrireJson(`${DOSSIER}/option-h-simulee.json`, doc);
 else console.log(`  (contre-épreuve « ${CONTRE} » : l'artefact n'est PAS écrit)`);
 
-console.log(`simulation v4-ter écrite : ${DOSSIER}/option-h-simulee.json`);
+console.log(`simulation v5 écrite : ${DOSSIER}/option-h-simulee.json`);
 if (CONTRE) console.log(`  ⚠ CONTRE-ÉPREUVE ACTIVE : « ${CONTRE} »`);
 console.log(`\n  EXIGENCES : ${exigences.length - violations.length}/${exigences.length} tenues`);
 for (const v of violations) console.log(`    ✗ ${v.exigence}${v.detail ? ` — ${v.detail}` : ""}`);

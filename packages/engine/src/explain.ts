@@ -450,6 +450,11 @@ export function explain(decision: Decision, locale = "en"): DecisionReport {
 
   return {
     verdict, score, airlines, domestic: decision.domestic,
+    /* VIDE, et le champ est tout de même OBLIGATOIRE. Les avis naîtront des `BreedRestriction`
+       `warn` quand `evaluate` les consommera ; d'ici là un tableau vide dit « aucun avis », ce
+       qu'aucun champ absent ne saurait dire. Le rendre facultatif aurait laissé l'interface
+       l'ignorer sans que rien n'échoue — le défaut refusé en contre-revue. */
+    safety_advisories: [],
     destination_country: { iso2: decision.destination.country_id.replace(/^country_/, ""), name: decision.destination.country_name },
     climate,
     positives, compatible, conditions,
