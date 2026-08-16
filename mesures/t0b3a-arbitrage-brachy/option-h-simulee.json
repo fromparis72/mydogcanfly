@@ -1,5 +1,5 @@
 {
- "lot": "T0-B3-a — simulation de l'option H",
+ "lot": "T0-B3-a — simulation de l'option H (v2)",
  "nature": "SIMULATION — aucun code moteur écrit, aucun fichier de packages/ modifié",
  "sceau": {
   "measurement_base_sha": "e2cf302ccf045c539ca450f23964bb7bf20af84c",
@@ -7,25 +7,84 @@
   "raw_objects_sha256": "dca1706134b188fa569f7172fa2ccfcff8c81b131e554326cb5d1c47b65ffef0"
  },
  "referentiel_intact": true,
- "definition_de_H": {
-  "deny_global_iata": "retiré — l'information IATA reste un avertissement de sécurité",
-  "confirmation_propre_a_la_race": "cause structurée « breed_policy_unreviewed »",
-  "table_de_decision": [
-   "canal structurellement fermé → denied (H n'ouvre rien)",
-   "preuve auditée disant brachy_allowed = false → denied (interdiction prouvée)",
-   "preuve auditée disant brachy_allowed = true → statut inchangé (autorisation prouvée)",
-   "tout le reste → confirmation_required, cause « politique brachycéphale non auditée »"
-  ],
-  "chien_non_brachycephale": "aucune modification, par construction — vérifié par la garantie 1",
-  "les_41_regles": "conservées, chargées, ne refusent plus ; à résorber une par une par audit officiel"
+ "portee": "H s'applique aux 102 COMPAGNIES, pas aux 41 qui portaient une ancienne règle : celles-ci n'étaient qu'un sous-ensemble arbitraire de notre documentation.",
+ "corrections_de_la_v1": {
+  "p0_1_causes_effacees": {
+   "constat": "la v1 remplaçait la décision et supprimait 452 causes préexistantes sur la grille publique des carlins — 440 legacy_unreviewed, 8 policy_unpublished, 4 estimated_climate",
+   "consequence": "sa garantie climatique passait pour une mauvaise raison : les causes climatiques disparaissaient avant que le contrôle puisse les voir",
+   "correction": "fusion dédupliquée par `causeKey` (la fonction du moteur), ordre stable, et preuve d'inclusion de l'ensemble initial dans l'ensemble final"
+  },
+  "p0_2_auto_citations_dans_le_score": {
+   "constat": "la v1 gardait les 41 règles en « warn » : invisibles comme sources, mais leur confiance alimentait encore le score via `fired`",
+   "correction": "les 42 sortent du CALCUL. L'état brachycéphale est porté par la politique compagnie/canal ; l'avertissement IATA est conservé à part et n'entre ni dans `fired`, ni dans `sources`, ni dans la confiance"
+  }
  },
- "methode": "H ne change que la couche décision. On appelle donc `evaluate` sur une base où les 42 ne refusent plus mais restent chargées (leur confiance pèse toujours sur le score), on applique la table de décision de H aux placements d'un chien brachycéphale, puis on passe la décision au VRAI `explain`. Verdict, score, cartes et libellés sont calculés par le moteur réel.",
+ "avertissement_iata": {
+  "nature": "avertissement de sécurité, jamais une interdiction ni une preuve de politique",
+  "url": "https://www.iata.org/en/programs/cargo/live-animals/pets/",
+  "citation": "Transport of snub nose dogs, such as boxers, pugs, bulldogs and Pekinese, in hot season is not recommended.",
+  "ne_fait_pas": [
+   "il ne prouve la politique d'aucune compagnie",
+   "il ne note la fiabilité d'aucune fiche — il n'entre pas dans le calcul de confiance",
+   "il n'introduit ni période ni seuil de température : « hot season » n'en définit aucun"
+  ]
+ },
+ "table_de_decision": [
+  "1 · canal structurellement fermé → denied (H n'ouvre rien)",
+  "2 · preuve auditée disant brachy_allowed = false → denied",
+  "3 · preuve auditée disant brachy_allowed = true → statut inchangé",
+  "4 · politique brachycéphale non revérifiée → confirmation_required, cause fusionnée"
+ ],
+ "branches_exercees_par_les_donnees_reelles": {
+  "1": 1420,
+  "2": 0,
+  "3": 0,
+  "4": 2110
+ },
+ "fixtures_des_quatre_branches": [
+  {
+   "branche": 1,
+   "compagnie": "airline_fx_ferme",
+   "statut_base": "denied",
+   "statut_H": "denied",
+   "attendu": "denied",
+   "conforme": true,
+   "branche_empruntee": 1
+  },
+  {
+   "branche": 2,
+   "compagnie": "airline_fx_interdit",
+   "statut_base": "allowed",
+   "statut_H": "denied",
+   "attendu": "denied",
+   "conforme": true,
+   "branche_empruntee": 2
+  },
+  {
+   "branche": 3,
+   "compagnie": "airline_fx_autorise",
+   "statut_base": "allowed",
+   "statut_H": "allowed",
+   "attendu": "allowed",
+   "conforme": true,
+   "branche_empruntee": 3
+  },
+  {
+   "branche": 4,
+   "compagnie": "airline_fx_non_revu",
+   "statut_base": "allowed",
+   "statut_H": "confirmation_required",
+   "attendu": "confirmation_required",
+   "conforme": true,
+   "branche_empruntee": 4
+  }
+ ],
  "garanties": {
   "g1_aucun_chien_non_brachycephale_touche": {
    "compagnies": 0,
    "placements": 0,
-   "exemples": [],
-   "scenarios_publics": 0
+   "scenarios_publics": 0,
+   "exemples": []
   },
   "g2_aucun_canal_non_propose_rouvert": {
    "violations": 0,
@@ -33,17 +92,87 @@
   },
   "g3_aucune_confirmation_devenue_message_climatique": {
    "violations": 0,
+   "climat_observes": 56,
    "exemples": []
   },
   "g4_aucune_auto_citation_presentee_comme_preuve": {
    "violations": 0,
    "exemples": []
   },
-  "g5_toutes_les_confirmations_de_race_portent_la_cause_dediee": {
-   "conformes": 147,
-   "violations": 0,
+  "g5_causes_preexistantes_conservees": {
+   "avant": 452,
+   "apres": 1392,
+   "perdues": 0,
+   "exemples": [],
+   "lecture": "toute cause préexistante se retrouve dans l'ensemble final — inclusion stricte vérifiée"
+  },
+  "g6_dominance_respectee": {
+   "refus_avec_causes_restantes": 0,
+   "causes_eteintes_par_un_refus_dur": 0,
+   "lecture": "un refus dur éteint toutes les causes : c'est la règle du moteur, appliquée ici. Le compteur dit combien de fois elle a joué, pas combien de fois elle a été violée."
+  },
+  "g7_les_42_hors_du_calcul": {
+   "occurrences": 0,
    "exemples": []
+  },
+  "g7bis_dette_auto_citee_residuelle_hors_perimetre": {
+   "occurrences": 224,
+   "regles_distinctes": [
+    "rule_air_algerie_cabin_weight",
+    "rule_american_no_hold",
+    "rule_cathay_pacific_hold_weight",
+    "rule_delta_no_hold",
+    "rule_etihad_hold_deny",
+    "rule_eurowings_cabin_only",
+    "rule_jetblue_cabin_only",
+    "rule_korean_air_cabin_weight",
+    "rule_latam_cabin_weight",
+    "rule_united_no_hold",
+    "rule_vietnam_airlines_cabin_weight",
+    "rule_vueling_cabin_only"
+   ],
+   "exemples": [
+    "airline_cathay_pacific · rule_cathay_pacific_hold_weight",
+    "airline_etihad · rule_etihad_hold_deny",
+    "airline_korean_air · rule_korean_air_cabin_weight",
+    "airline_vietnam_airlines · rule_vietnam_airlines_cabin_weight"
+   ],
+   "lecture": "Ces règles ne relèvent PAS de H : ce sont les autres auto-citations mesurées en T0-B3 (cabin_weight, hold_weight, placement, import_rules). Elles restent dans le calcul de confiance après H, et leur résorption est le lot suivant. Les compter à part évite de lire la garantie de H comme une propreté générale qui n'est pas atteinte."
   }
+ },
+ "causes_finales_par_code": {
+  "policy_unpublished": 16,
+  "legacy_unreviewed": 896,
+  "estimated_climate": 56,
+  "breed_policy_unreviewed": 940
+ },
+ "sonde_de_coexistence": {
+  "combinaisons_observees": {
+   "breed_policy_unreviewed + legacy_unreviewed": 440,
+   "breed_policy_unreviewed + policy_unpublished": 8,
+   "breed_policy_unreviewed + estimated_climate": 4
+  },
+  "race_plus_climat": {
+   "breed_policy_unreviewed + estimated_climate": 4
+  },
+  "race_plus_politique_generale": {
+   "breed_policy_unreviewed + legacy_unreviewed": 440,
+   "breed_policy_unreviewed + policy_unpublished": 8
+  },
+  "exemples": [
+   "cdg-bkk|pug|01-15|any · airline_condor#cargo : breed_policy_unreviewed + legacy_unreviewed",
+   "cdg-bkk|pug|01-15|any · airline_austrian#cargo : breed_policy_unreviewed + legacy_unreviewed",
+   "cdg-bkk|pug|01-15|any · airline_air_india#cargo : breed_policy_unreviewed + legacy_unreviewed",
+   "cdg-bkk|pug|01-15|any · airline_swiss#cargo : breed_policy_unreviewed + legacy_unreviewed",
+   "cdg-bkk|pug|01-15|any · airline_finnair#cargo : breed_policy_unreviewed + legacy_unreviewed",
+   "cdg-bkk|pug|01-15|any · airline_etihad#cargo : breed_policy_unreviewed + legacy_unreviewed"
+  ],
+  "lecture": "la coexistence climat + race est OBSERVÉE : les deux causes cohabitent sur le même canal"
+ },
+ "sonde_de_contrat": {
+  "cause_acceptee": false,
+  "erreur": "[",
+  "lecture": "attendu : l'union est STRICTE. Toute implémentation de H doit d'abord y ajouter la cause, avec son libellé dans les quatre langues. La simulation construit ses objets à la main et CONTOURNE ce contrôle : elle ne prouve rien sur le contrat, cette sonde si."
  },
  "diff_contre_le_statu_quo": {
   "grille_publique": {
@@ -51,26 +180,18 @@
    "verdicts": 20,
    "cartes": 524,
    "placements": 940,
-   "score_seul": 0,
    "ecart_score": [
-    -1,
-    0
+    0,
+    2
    ],
    "echecs": 0,
-   "par_chien": {
-    "golden": 0,
-    "pug": 36
-   }
+   "golden_affectes": 0
   },
   "grille_brachycephale": {
    "compagnies": 81,
    "placements": 147,
    "par_statut_cible": {
     "confirmation_required": 147
-   },
-   "transitions": {
-    "hold denied → confirmation_required": 70,
-    "cargo denied → confirmation_required": 77
    },
    "exemples": [
     "airline_aegean allowed/denied/denied → allowed/confirmation_required/confirmation_required",
@@ -79,24 +200,5 @@
     "airline_aeromexico allowed/denied/denied → allowed/confirmation_required/confirmation_required"
    ]
   }
- },
- "sonde_de_contrat": {
-  "cause_acceptee_par_le_contrat": false,
-  "erreur": "[",
-  "lecture": "attendu : `ConfirmationCause` est une union STRICTE et ne connaît pas cette cause. Toute implémentation de H doit d'abord l'y ajouter, avec son libellé dans les quatre langues. La simulation contourne ce point de contrôle en construisant l'objet à la main ; elle ne prouve donc RIEN sur le contrat, et c'est cette sonde qui le dit."
- },
- "sonde_de_degradation": {
-  "cas": "chien brachycéphale ET de type réglementé — dogue canarien vers l'Australie",
-  "entree_refusee_par_le_pays": true,
-  "chemin_de_degradation_emprunte": true,
-  "rapport_produit": true,
-  "refuse_par_la_validation": false,
-  "lecture": "le rapport passe — mais NON parce que la cause serait valide : `explain` ÉTEINT les causes quand il dégrade une confirmation en refus, si bien que la validation ne la voit jamais. Le besoin de contrat est établi par `sonde_de_contrat`, pas par ce chemin."
- },
- "contrat_a_faire_evoluer": {
-  "cause_manquante": "breed_policy_unreviewed",
-  "placements_reecrits_par_la_simulation": 2147,
-  "rapports_refuses_par_la_validation": 0,
-  "lecture": "Le compteur porte sur les grilles ci-dessus ; la sonde de dégradation traite à part le seul chemin où le contrat est réellement mis à l'épreuve. La cause n'existe pas encore dans `ConfirmationCause`. Là où le moteur RECONSTRUIT une décision — dégradation par `entry_allowed` — sa validation la refuse. Le compteur ci-dessus chiffre exactement le travail de contrat que H demandera : ajouter la cause à l'union stricte, son libellé dans les quatre langues, et sa prise en compte partout où les causes sont rendues."
  }
 }
