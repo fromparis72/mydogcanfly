@@ -42,9 +42,11 @@ Trois mesures ont établi la vraie portée du défaut, et écarté la correction
 
 Ce qui ferme une fuite JSDOM, c'est la fin du processus. La section 5 lit donc les 284 pages par
 **lots courts en sous-processus** (`test-lib/verifier-blocs-entites.mjs`), chacun sous une limite de
-tas basse qui est le contrôle et non un confort. Pic mesuré : **322 Mo par lot**, processus
-principal sous 400 Mo. La lecture reste un vrai DOM — remplacer JSDOM par une expression régulière
-aurait supprimé la fuite en supprimant la fidélité.
+tas basse qui est le contrôle et non un confort. Pic mesuré : **317 à 330 Mo par lot selon la
+machine** — 322 Mo en local le 16/08/2026, 330 Mo en contre-revue, 317 Mo sur une troisième machine
+après fusion — pour un plafond de 512 Mo ; processus principal sous 400 Mo. L'écart entre les trois
+est de l'échantillonnage, pas une dérive. La lecture reste un vrai DOM — remplacer JSDOM par une
+expression régulière aurait supprimé la fuite en supprimant la fidélité.
 
 ## Les outils de mesure
 
@@ -61,6 +63,8 @@ comme la preuve d'une décision (fiche, `placement_decisions`, `rapport.sources`
 supprimant le champ du contrat moteur. Leur audit et leur remplacement sont un lot à part, qui ne
 doit pas bloquer la correction d'interface.
 
-Il ne traite pas non plus la **dette signalée en contre-revue** : certaines règles compagnie
-portent encore des sources auto-citées qui pèsent sur la confiance, donc sur le score, même sans
-apparaître dans `rapport.sources`. Ce point relève du chantier métier brachycéphale.
+Il ne traite pas non plus la **dette signalée en contre-revue** : 171 règles sur 449 portent encore
+une source auto-citée qui pèse sur la confiance, donc sur le score, même sans apparaître dans
+`rapport.sources`. Ce n'est pas le seul chantier brachycéphale — c'est un audit transversal, mesuré
+dans `mesures/t0b3-regles-autosourcees/`, qui montre au passage que les 41 règles de race en sont la
+part la moins décisive.
