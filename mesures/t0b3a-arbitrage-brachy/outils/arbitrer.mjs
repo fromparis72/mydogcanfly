@@ -132,10 +132,27 @@ const triplet = (rapport, id) => {
 const compact = (r) => ({ verdict: r.verdict, score: r.score,
   airlines: (r.airlines ?? []).map((a) => `${a.airline_id}|${a.cabin_status}/${a.hold_status}/${a.cargo_status}`) });
 
+/* ─── COMPAGNIE ≠ CANAL ≠ PLACEMENT ───────────────────────────────────────────────────────────
+   La v1 comptait « 1 » dès qu'un triplet cabine/soute/fret changeait, et appelait ce nombre des
+   « canaux ». C'était un décompte de COMPAGNIES : une compagnie dont la soute ET le fret bougent
+   comptait pour un. Relevé en contre-revue le 16/08/2026 — 81 compagnies pour 147 placements sur
+   l'option D. Les deux grandeurs sont désormais publiées côte à côte, jamais l'une pour l'autre. */
+const PLACEMENTS = ["cabin_status", "hold_status", "cargo_status"];
+const placementsDifferents = (a, b) => {
+  if (!a || !b) return a === b ? 0 : PLACEMENTS.length;
+  return PLACEMENTS.filter((p) => a[p] !== b[p]).length;
+};
+const parCompagnie = (r) => new Map((r.airlines ?? []).map((a) => [a.airline_id, a]));
+
 /* ---- 3 · Les options ------------------------------------------------------------------------- */
 const IDS_41 = brachyCompagnie.map((r) => r.id);
 const IDS_42 = [...IDS_41, GLOBALE];
 const sansRegles = (ids) => ({ ...rawKB, rules: rawKB.rules.filter((r) => !ids.includes(r.id)) });
+/** Les 42 conservées mais dotées d'une autre action. Elles restent dans `fired`, donc leur
+ *  confiance continue d'alimenter le score : ce n'est PAS un retrait, contrairement à ce que la v1
+ *  affirmait. L'écart est petit et réel — c'est pour cela qu'il se mesure. */
+const enAction = (action) => ({ ...rawKB,
+  rules: rawKB.rules.map((r) => IDS_42.includes(r.id) ? { ...r, effect: { ...r.effect, action } } : r) });
 
 /** Option G : retirer les 42 ET basculer la politique soute/fret des compagnies concernées sur
  *  `undocumented`, seul chemin DONNÉES vers « à confirmer ». Le prix est mesuré, pas supposé. */
@@ -162,24 +179,46 @@ const OPTIONS = [
     description: "les interdictions auto-citées disparaissent ; la règle globale IATA reste seule." },
   { cle: "D", intitule: "retirer les 42", kb: () => sansRegles(IDS_42),
     description: "plus aucune interdiction brachycéphale : le canal retombe sur la politique de la fiche." },
+  { cle: "F-warn", intitule: "passer les 42 de l'action « deny » à « warn »",
+    kb: () => enAction("warn"),
+    description: "les règles restent chargées et visibles dans `fired` ; leur confiance continue " +
+      "d'entrer dans le score, mais elles ne décident plus d'aucun statut." },
+  { cle: "F-require", intitule: "passer les 42 de l'action « deny » à « require »",
+    kb: () => enAction("require"),
+    description: "même mécanique que « warn » — mesurée séparément parce qu'affirmer sans mesurer " +
+      "que deux actions se comportent pareil serait précisément l'erreur de la v1." },
   { cle: "G", intitule: "retirer les 42 ET basculer la politique du canal en « non documentée »",
     kb: kbOptionG,
     description: "seul chemin DONNÉES vers « à confirmer » — mais il agit sur le CANAL, pas sur la race." },
 ];
 
 const refPublique = Object.fromEntries(publique.map((s) => [s.cle, compact(runFinder(kbRef, s.req))]));
+const refCartes = Object.fromEntries(publique.map((s) => [s.cle, parCompagnie(runFinder(kbRef, s.req))]));
+const refObjets = {
+  brachy: new Map(grilleBrachy.map((s) => [s.cle, parCompagnie(runFinder(kbRef, s.req)).get(s.airline_id)])),
+  temoin: new Map(grilleTemoin.map((s) => [s.cle, parCompagnie(runFinder(kbRef, s.req)).get(s.airline_id)])),
+};
 const refBrachy = Object.fromEntries(grilleBrachy.map((s) => [s.cle, triplet(runFinder(kbRef, s.req), s.airline_id)]));
 const refTemoin = Object.fromEntries(grilleTemoin.map((s) => [s.cle, triplet(runFinder(kbRef, s.req), s.airline_id)]));
 
 function mesurer(opt) {
   const kb = normalize(opt.kb());
-  let verdictsChanges = 0, statutsChanges = 0, scoreSeul = 0;
-  let scoreMin = 0, scoreMax = 0;
+  let verdictsChanges = 0, scenariosCarteChange = 0, scoreSeul = 0;
+  let cartesModifiees = 0, placementsModifies = 0, scoreMin = 0, scoreMax = 0;
   for (const s of publique) {
-    const ap = compact(runFinder(kb, s.req)), av = refPublique[s.cle];
+    const rap = runFinder(kb, s.req);
+    const ap = compact(rap), av = refPublique[s.cle];
+    /* Le grain fin se compte TOUJOURS, y compris quand le verdict change : sinon un scénario au
+       verdict bousculé masquerait les cartes qu'il déplace. */
+    const apCies = parCompagnie(rap), avCies = refCartes[s.cle];
+    for (const [id, avant] of avCies) {
+      const apres = apCies.get(id);
+      const n = placementsDifferents(avant, apres);
+      if (n > 0) { cartesModifiees++; placementsModifies += n; }
+    }
     if (JSON.stringify(ap) === JSON.stringify(av)) continue;
     if (ap.verdict !== av.verdict) verdictsChanges++;
-    else if (JSON.stringify(ap.airlines) !== JSON.stringify(av.airlines)) statutsChanges++;
+    else if (JSON.stringify(ap.airlines) !== JSON.stringify(av.airlines)) scenariosCarteChange++;
     else scoreSeul++;
     const d = ap.score - av.score;
     scoreMin = Math.min(scoreMin, d); scoreMax = Math.max(scoreMax, d);
@@ -188,10 +227,13 @@ function mesurer(opt) {
   const bascules = (grille, ref) => {
     const par = {};
     const exemples = [];
-    let avecRegle = 0, sansRegle = 0;
+    let avecRegle = 0, sansRegle = 0, placements = 0;
     for (const s of grille) {
-      const ap = triplet(runFinder(kb, s.req), s.airline_id), av = ref[s.cle];
+      const rap = runFinder(kb, s.req);
+      const ap = triplet(rap, s.airline_id), av = ref[s.cle];
       if (ap === av) continue;
+      placements += placementsDifferents(refObjets[ref === refBrachy ? "brachy" : "temoin"].get(s.cle),
+        parCompagnie(rap).get(s.airline_id));
       const k = `${av} → ${ap}`;
       par[k] = (par[k] ?? 0) + 1;
       /* La ventilation qui compte : une compagnie qui a sa propre règle n'est pas dans la même
@@ -199,24 +241,69 @@ function mesurer(opt) {
       avecRegleP.has(s.airline_id) ? avecRegle++ : sansRegle++;
       if (exemples.length < 4) exemples.push(`${s.airline_id} ${k}`);
     }
-    return { total: avecRegle + sansRegle, compagnies_avec_regle_propre: avecRegle,
-      compagnies_sans_regle_propre: sansRegle, par_bascule: par, exemples };
+    return { compagnies_touchees: avecRegle + sansRegle, placements_modifies: placements,
+      compagnies_avec_regle_propre: avecRegle, compagnies_sans_regle_propre: sansRegle,
+      par_bascule: par, exemples };
   };
   const brachy = bascules(grilleBrachy, refBrachy);
   const temoin = bascules(grilleTemoin, refTemoin);
   return {
     option: opt.cle, intitule: opt.intitule, description: opt.description,
-    grille_publique: { scenarios: publique.length, verdicts_changes: verdictsChanges,
-      statuts_changes: statutsChanges, score_seul: scoreSeul, ecart_score: [scoreMin, scoreMax] },
+    grille_publique: { scenarios: publique.length,
+      scenarios_dont_le_verdict_change: verdictsChanges,
+      scenarios_dont_une_carte_change_a_verdict_stable: scenariosCarteChange,
+      scenarios_dont_seul_le_score_change: scoreSeul,
+      cartes_compagnie_modifiees: cartesModifiees,
+      placements_modifies: placementsModifies,
+      ecart_score: [scoreMin, scoreMax] },
     grille_brachycephale: brachy,
     grille_temoin_non_brachycephale: temoin,
-    dommage_collateral: temoin.total > 0
-      ? `${temoin.total} canal/canaux déplacés pour un chien NON brachycéphale — cette option n'agit pas sur la race`
+    dommage_collateral: temoin.compagnies_touchees > 0
+      ? `${temoin.compagnies_touchees} compagnie(s) et ${temoin.placements_modifies} placement(s) ` +
+        `déplacés pour un chien NON brachycéphale — cette option n'agit pas sur la race`
       : "aucun : les chiens non brachycéphales ne sont pas touchés",
   };
 }
 
 const mesures = OPTIONS.map(mesurer);
+
+/** F n'est PAS D. Les règles en `warn`/`require` restent chargées : leur confiance entre encore
+ *  dans le score, et le score n'est pas cosmétique — c'est ce que le visiteur lit. La v1 écrivait
+ *  « identique à un retrait pur » sans l'avoir mesuré scénario par scénario ; ce comparateur rend
+ *  l'affirmation impossible à refaire à l'aveugle. */
+function comparerADeD() {
+  const kbD = normalize(sansRegles(IDS_42));
+  const refD = publique.map((s) => runFinder(kbD, s.req));
+  const out = {};
+  for (const action of ["warn", "require"]) {
+    const kb = normalize(enAction(action));
+    let scoreDifferent = 0, verdictDifferent = 0, statutDifferent = 0, ecartMin = 0, ecartMax = 0;
+    publique.forEach((s, i) => {
+      const a = runFinder(kb, s.req), d = refD[i];
+      if (a.verdict !== d.verdict) verdictDifferent++;
+      const ca = compact(a), cd = compact(d);
+      if (JSON.stringify(ca.airlines) !== JSON.stringify(cd.airlines)) statutDifferent++;
+      if (a.score !== d.score) {
+        scoreDifferent++;
+        const e = a.score - d.score;
+        ecartMin = Math.min(ecartMin, e); ecartMax = Math.max(ecartMax, e);
+      }
+    });
+    out[`F-${action} vs D`] = {
+      scenarios: publique.length,
+      scenarios_au_score_different: scoreDifferent,
+      scenarios_au_verdict_different: verdictDifferent,
+      scenarios_au_statut_different: statutDifferent,
+      ecart_de_score: [ecartMin, ecartMax],
+      lecture: scoreDifferent > 0
+        ? "F n'est PAS un retrait : les règles restent dans `fired` et leur confiance pèse encore sur le score."
+        : "aucun écart mesuré avec D sur cette grille.",
+    };
+  }
+  out["E — ne garder que les interdictions représentées comme auditées"] =
+    "se confond avec D, l'ensemble étant VIDE (0 sur 41) — voir la famille 3.";
+  return out;
+}
 
 /* ---- 4 · La limite du moteur, démontrée ------------------------------------------------------- */
 const kbWarn = normalize({ ...rawKB,
@@ -284,31 +371,57 @@ const doc = {
       effet_unique: [...new Set(brachyCompagnie.map((r) => `${r.effect.action} ${(r.effect.placement ?? []).join("+")}`))],
       liste: brachyCompagnie.map((r) => r.id),
     },
-    "3_officiellement_confirmees": {
+    "3_interdictions_representees_comme_auditees_dans_le_referentiel": {
       total: confirmees.length,
+      avertissement_de_lecture:
+        "« 0 » ne veut PAS dire qu'aucune compagnie ne publie réellement d'interdiction " +
+        "brachycéphale. Beaucoup en publient probablement. Cela veut dire que NOUS ne l'avons pas " +
+        "prouvé : le référentiel ne contient, à ce jour, aucune interdiction adossée à une preuve " +
+        "auditée. C'est un état de notre documentation, pas un fait sur le monde.",
       critere:
         "la politique du canal porte une preuve auditée (non auto-citée, non dérivée de la fiche, " +
         "non « non revérifiée ») QUI DIT `brachy_allowed = false`. Pas « la compagnie a une source " +
         "quelque part » : la source doit énoncer le fait que la règle affirme.",
       liste: confirmees,
       lecture: confirmees.length === 0
-        ? "AUCUNE des 41 interdictions compagnie n'est adossée à une source officielle énonçant " +
-          "l'interdiction. Sous le premier principe directeur, aucune ne subsiste telle quelle."
-        : `${confirmees.length} interdiction(s) survivraient au premier principe directeur.`,
+        ? "AUCUNE des 41 interdictions compagnie n'est REPRÉSENTÉE dans le référentiel comme " +
+          "adossée à une source auditée. Sous le premier principe directeur, aucune ne subsiste " +
+          "EN L'ÉTAT — ce qui appelle une revérification, pas un retrait automatique."
+        : `${confirmees.length} interdiction(s) sont représentées comme auditées.`,
     },
     "4_auto_sourcees_ou_non_verifiables": {
       total: nonVerifiables.length,
       liste: nonVerifiables,
     },
   },
+  source_iata: {
+    url_enregistree_dans_la_regle: globale.source.url,
+    etat_rapporte: "404 — page disparue",
+    url_officielle_vivante_rapportee: "https://www.iata.org/en/programs/cargo/live-animals/pets/",
+    citation_rapportee:
+      "le transport des chiens brachycéphales en saison chaude est « not recommended » — " +
+      "PAS interdit — et une caisse 10 % plus grande est demandée",
+    provenance_de_ce_releve:
+      "RAPPORTÉ PAR LA CONTRE-REVUE le 16/08/2026, et NON VÉRIFIÉ PAR MOI : l'accès réseau à " +
+      "iata.org est bloqué par le proxy d'egress de cet environnement (curl comme WebFetch). " +
+      "Dans un dossier dont l'objet est la provenance, présenter la lecture d'un autre comme la " +
+      "mienne serait le défaut même que ce chantier corrige. À confirmer avant toute décision.",
+    ecart_avec_notre_moteur:
+      "Si ce relevé se confirme, l'écart est double et il est de nature, pas de degré : " +
+      "(1) l'IATA RECOMMANDE de ne pas transporter en saison chaude, notre règle INTERDIT en " +
+      "toute saison ; (2) l'IATA vise la saison chaude, notre règle ne porte aucune condition de " +
+      "période ni de température. Nous avons donc transformé une recommandation conditionnelle en " +
+      "interdiction universelle et permanente.",
+    ce_que_cela_n_autorise_pas:
+      "Cela n'autorise PAS à inventer une période ni un seuil de température. Le référentiel ne " +
+      "modélise aucun seuil brachycéphale sourcé ; en fabriquer un à partir de « saison chaude » " +
+      "reviendrait à remplacer une affirmation non sourcée par une autre. La caisse « 10 % plus " +
+      "grande » est de même une exigence de MATÉRIEL, pas un critère d'acceptation : elle ne peut " +
+      "pas servir à justifier un refus.",
+  },
   limite_du_moteur: limiteMoteur,
   diff_previsionnel_par_option: mesures,
-  options_qui_se_confondent: {
-    "E — ne garder que les interdictions officiellement confirmées":
-      "identique à D : l'ensemble des interdictions confirmées est VIDE (0 sur 41).",
-    "F — passer les 42 en action « warn » ou « require »":
-      "identique à D : le moteur n'accorde d'effet sur un statut qu'à l'action « deny ».",
-  },
+  comparaison_des_variantes_a_D: comparerADeD(),
   ce_que_ce_dossier_ne_fait_pas: [
     "il n'applique aucune option et ne modifie aucun fichier de packages/",
     "il ne propose AUCUNE option saisonnière ou par température : le référentiel ne contient " +
@@ -323,18 +436,19 @@ ecrireJson(`${DOSSIER}/arbitrage-p0-brachy.json`, doc);
 console.log(`dossier écrit : ${DOSSIER}/arbitrage-p0-brachy.json`);
 console.log(`  famille 1 : la règle globale IATA`);
 console.log(`  famille 2 : ${brachyCompagnie.length} règles compagnie sur ${cibles.length} compagnies`);
-console.log(`  famille 3 : ${confirmees.length} officiellement confirmée(s)`);
+console.log(`  famille 3 : ${confirmees.length} représentée(s) comme auditée(s) dans le référentiel`);
 console.log(`  famille 4 : ${nonVerifiables.length} auto-sourcée(s) ou non vérifiable(s)`);
 console.log("");
 for (const m of mesures) {
   console.log(`  ${m.option} · ${m.intitule}`);
-  console.log(`      publique : ${m.grille_publique.verdicts_changes} verdict(s), ` +
-    `${m.grille_publique.statuts_changes} statut(s), ${m.grille_publique.score_seul} score seul, ` +
-    `écart score ${m.grille_publique.ecart_score[0]}…${m.grille_publique.ecart_score[1]}`);
-  console.log(`      brachy   : ${m.grille_brachycephale.total}/${grilleBrachy.length} canaux déplacés ` +
-    `(${m.grille_brachycephale.compagnies_avec_regle_propre} avec règle propre, ` +
-    `${m.grille_brachycephale.compagnies_sans_regle_propre} sans)  ·  témoin golden : ` +
-    `${m.grille_temoin_non_brachycephale.total}/${grilleTemoin.length}`);
+  const g = m.grille_publique;
+  console.log(`      publique : ${g.scenarios_dont_le_verdict_change} verdict(s) · ` +
+    `${g.cartes_compagnie_modifiees} carte(s) · ${g.placements_modifies} placement(s) · ` +
+    `score ${g.ecart_score[0]}…${g.ecart_score[1]}`);
+  const b = m.grille_brachycephale, t = m.grille_temoin_non_brachycephale;
+  console.log(`      brachy   : ${b.compagnies_touchees}/${grilleBrachy.length} compagnies, ` +
+    `${b.placements_modifies} placements (${b.compagnies_sans_regle_propre} sans règle propre)` +
+    `  ·  témoin golden : ${t.compagnies_touchees} compagnies, ${t.placements_modifies} placements`);
 }
 console.log(`\n  référentiel intact : ${intact ? "OUI" : "NON — DOSSIER INVALIDE"}`);
 if (!intact) process.exit(1);
