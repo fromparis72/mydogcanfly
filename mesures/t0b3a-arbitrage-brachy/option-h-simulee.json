@@ -1,5 +1,5 @@
 {
- "lot": "T0-B3-a — simulation de l'option H (v3)",
+ "lot": "T0-B3-a — simulation de l'option H (v4-bis)",
  "nature": "SIMULATION — aucun code moteur écrit, aucun fichier de packages/ modifié",
  "sceau": {
   "measurement_base_sha": "e2cf302ccf045c539ca450f23964bb7bf20af84c",
@@ -11,8 +11,9 @@
  "modele": {
   "contrat_consomme": "BreedRestriction (packages/knowledge/src/breed-restrictions.ts)",
   "pourquoi": "le contrat canonique existe déjà : action allow|deny|warn|require, cible de race, placements, conditions, et une SourcedQuote obligatoire — citation, langue, type factuel, refus des domaines MyDogCanFly. La v2 proposait un état concurrent dans PlacementPolicy et s'appuyait sur `preuveAuditee`, qui ne vérifie NI citation NI langue : ce n'était pas une preuve brachycéphale au sens du contrat.",
-  "entrees_dans_le_referentiel": 1,
-  "consequence": "le référentiel n'en contient aucune : sous H, les 102 compagnies tombent toutes sur « aucun fait audité applicable ». C'est un état de notre documentation, pas un choix de simulation.",
+  "entrees_dans_le_referentiel_aujourd_hui": 0,
+  "entrees_dans_le_referentiel_cible_de_H": 1,
+  "consequence": "AUJOURD'HUI le référentiel n'en contient aucune. La CIBLE de H en contient une seule — l'avertissement IATA, action `warn`, qui ne décide rien. Les 102 compagnies tombent donc toutes sur « aucun fait audité applicable » : c'est un état de notre documentation, pas un choix de simulation.",
   "table": [
    "1 · canal structurellement fermé → denied",
    "2 · BreedRestriction `deny` applicable → denied",
@@ -20,7 +21,7 @@
    "3 · BreedRestriction `allow` applicable → statut général inchangé",
    "4 · aucun fait audité applicable → confirmation_required (breed_policy_unreviewed)",
    "`warn` (IATA) → conseil séparé, AUCUN effet sur le statut ni sur le score",
-   "précédence : deny > require > allow — en cas de sources contradictoires, on ne publie pas l'ouverture"
+   "AUCUNE priorité de résolution : `allow` + `deny` (CONTRADICTION) et `deny` + `require` (UNREACHABLE) sont refusés au CHARGEMENT par validateBreedRestrictions. Seul `allow` + `require`, que le validateur autorise, est tranché ici — l'exigence l'emporte, puisqu'elle dit ce qu'il faut faire pour que l'autorisation vaille."
   ]
  },
  "exigences": [
@@ -115,6 +116,41 @@
    "detail": ""
   },
   {
+   "exigence": "deux exigences auditées produisent DEUX causes distinctes dans le rapport",
+   "tenue": true,
+   "detail": ""
+  },
+  {
+   "exigence": "un refus audité fait descendre LA SOURCE DE LA RESTRICTION jusqu'au rapport",
+   "tenue": true,
+   "detail": ""
+  },
+  {
+   "exigence": "`breed_policy_unreviewed` ne porte aucune preuve de race",
+   "tenue": true,
+   "detail": ""
+  },
+  {
+   "exigence": "un rapport précis porte EXACTEMENT un avis de sécurité",
+   "tenue": true,
+   "detail": ""
+  },
+  {
+   "exigence": "cet avis porte la référence, la portée, les trois placements, l'URL et la citation attendues",
+   "tenue": true,
+   "detail": ""
+  },
+  {
+   "exigence": "l'avis est rendu dans les QUATRE langues, avec quatre textes distincts",
+   "tenue": true,
+   "detail": ""
+  },
+  {
+   "exigence": "tous les avis émis passent leur contrat SafetyAdvisory",
+   "tenue": true,
+   "detail": ""
+  },
+  {
    "exigence": "l'avertissement IATA `warn` ne change NI verdict NI score NI statut",
    "tenue": true,
    "detail": ""
@@ -192,11 +228,11 @@
  },
  "branches_toutes_appels_confondus": {
   "0": 0,
-  "1": 2660,
-  "2": 1,
+  "1": 2809,
+  "2": 2,
   "3": 0,
-  "4": 3990,
-  "5": 0,
+  "4": 4309,
+  "5": 1,
   "9": 0
  },
  "fixtures": [
@@ -342,7 +378,7 @@
   "causes_restantes": 0,
   "conforme": true
  },
- "conseils_iata_emis": 3050,
+ "conseils_iata_emis": 3320,
  "causes_finales_par_code": {
   "policy_unpublished": 16,
   "legacy_unreviewed": 896,

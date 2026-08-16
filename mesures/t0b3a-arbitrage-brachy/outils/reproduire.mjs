@@ -102,12 +102,12 @@ dire(`1/4 référentiel conforme à la base ${MESURE_BASE_SHA.slice(0, 7)}`);
 /* Les CONTRE-ÉPREUVES d'abord : un simulateur dont l'échec ne coûte rien ne prouve rien. Chacune
    casse volontairement un invariant et DOIT sortir en 1. Si l'une d'elles passait au vert, tout ce
    que le dossier affiche par ailleurs perdrait sa valeur. */
-for (const c of ["causes", "table", "ids42", "bascules", "validateur"]) {
+for (const c of ["causes", "table", "ids42", "bascules", "validateur", "multi"]) {
   const r = spawnSync(process.execPath, ["--import", "tsx",
     `${DOSSIER}/outils/simuler-h.mjs`, `--contre-epreuve=${c}`], { encoding: "utf8" });
   if (r.status === 0) echouer(`la contre-épreuve « ${c} » est passée au VERT — le simulateur ne sait pas échouer`);
 }
-dire(`1bis/4 les 5 contre-épreuves échouent bien (code 1)`);
+dire(`1bis/4 les 6 contre-épreuves échouent bien (code 1)`);
 
 for (const o of OUTILS) {
   const args = [];
