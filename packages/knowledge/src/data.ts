@@ -1,5 +1,6 @@
 import objects from "../raw/objects.json";
 import rules from "../raw/rules.json";
+import breedRestrictions from "../raw/breed-restrictions.json";
 import guidesRaw from "../raw/guides.json";
 import { normalize, type NormalizedKB, type RawKB } from "./normalize";
 import { Guide, type Guide as TGuide } from "./guides";
@@ -8,7 +9,9 @@ import { Guide, type Guide as TGuide } from "./guides";
  * The authored knowledge base, bundled from `raw/`. Data lives in this package (never in the Worker).
  * Callers normalize once (Worker cold start, or at build time) and reuse.
  */
-export const rawKB = { ...(objects as Record<string, unknown>), rules } as unknown as RawKB;
+export const rawKB = {
+  ...(objects as Record<string, unknown>), rules, breed_restrictions: breedRestrictions,
+} as unknown as RawKB;
 
 /** Normalized, engine-ready knowledge base. */
 export function loadKB(): NormalizedKB {

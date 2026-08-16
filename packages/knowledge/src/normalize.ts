@@ -1,8 +1,10 @@
 import { Airline, Airport, Breed, Country, Partner } from "./objects";
 import { Rule } from "./rules";
+import { BreedRestriction, validateBreedRestrictions } from "./breed-restrictions";
 import { buildGraph, type Edge } from "./graph";
 import type { Airline as TAirline, Airport as TAirport, Breed as TBreed, Country as TCountry, Partner as TPartner } from "./objects";
 import type { Rule as TRule } from "./rules";
+import type { BreedRestriction as TBreedRestriction } from "./breed-restrictions";
 
 export interface RawKB {
   countries?: unknown[];
@@ -12,6 +14,7 @@ export interface RawKB {
   partners?: unknown[];
   equipment?: unknown[];
   rules?: unknown[];
+  breed_restrictions?: unknown[];
 }
 
 /** Engine-ready shape (ADR-0012). The Decision Engine only ever reads this. */
@@ -22,6 +25,9 @@ export interface NormalizedKB {
   breeds: Map<string, TBreed>;
   partners: Map<string, TPartner>;
   rules: TRule[];
+  /** Le registre CANONIQUE des faits de race — vide tant qu'aucun fait n'est audité, jamais absent :
+   *  un champ facultatif se lit « pas de restrictions » aussi bien que « registre oublié ». */
+  breedRestrictions: TBreedRestriction[];
   graph: Edge[];
 }
 
@@ -46,6 +52,23 @@ export function normalize(raw: RawKB): NormalizedKB {
   const partners = (raw.partners ?? []).map((x) => Partner.parse(x));
   const rules = (raw.rules ?? []).map((x) => Rule.parse(x));
 
+  /* Le registre de race passe DEUX contrôles, et l'ordre compte : le schéma d'abord (une entrée à
+     la fois), puis les invariants d'ENSEMBLE, que nul schéma ne peut exprimer — `allow` + `deny`
+     sur le même canal est une contradiction, `deny` + `require` une exigence inatteignable. On les
+     REFUSE au chargement plutôt que de les arbitrer à l'exécution : une priorité inventée règle en
+     silence ce que le contrat déclare irrésolu. */
+  const breedRestrictions = (raw.breed_restrictions ?? []).map((x) => BreedRestriction.parse(x));
+  const anomalies = validateBreedRestrictions(breedRestrictions, {
+    airlineIds: new Set(airlines.map((a) => a.id)),
+    breedIds: new Set(breeds.map((b) => b.id)),
+    countryIds: new Set(countries.map((c) => c.id)),
+    airportIds: new Set(airports.map((a) => a.id)),
+  });
+  if (anomalies.length) {
+    throw new Error("normalize: registre des restrictions de race invalide —\n"
+      + anomalies.map((i) => `  ${i.code} · ${i.message} [${i.ids.join(", ")}]`).join("\n"));
+  }
+
   return {
     countries: index(countries),
     airports: index(airports),
@@ -53,6 +76,7 @@ export function normalize(raw: RawKB): NormalizedKB {
     breeds: index(breeds),
     partners: index(partners),
     rules,
+    breedRestrictions,
     graph: buildGraph({ airlines, airports, rules }),
   };
 }

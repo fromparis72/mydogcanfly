@@ -14,6 +14,23 @@ Elle vérifie que les fichiers bruts correspondent à la base de mesure figée, 
 artefacts, vérifie `SHA256SUMS`, puis **exige un arbre Git propre** : régénérer ne doit rien
 changer.
 
+## ⚠ Dossier HISTORIQUE depuis le 17/08/2026 — le moteur a changé
+
+Ces chiffres ont été mesurés sur le moteur d'alors. Le câblage de l'option H l'a modifié, et la
+mesure ne se rejoue plus à l'identique : **le retrait des 42 règles brachycéphales ne rouvre plus
+une soute en `allowed`, il la place à « à confirmer »**. C'est exactement l'effet voulu par
+l'arbitrage T0-B3-a — mais cela veut dire que la ligne « `breed_ban` + `rule_global_brachy_hold` »
+du tableau ci-dessous décrit un comportement que le moteur n'a plus.
+
+`npm run mesure:t0b3` le détecte tout seul : il compare l'empreinte des sources du moteur à celle
+de la base de mesure, **ne régénère plus** les artefacts, et vérifie seulement qu'ils sont intacts.
+Recalculer aurait remplacé en silence une mesure validée par une autre, produite par un code
+différent — le sceau ne portait que le référentiel, pas le code qui le lit ; c'est cette lacune que
+l'incident a révélée.
+
+Pour mesurer le moteur actuel : déclarer une **nouvelle base** et un **nouveau dossier**. Ce
+dossier-ci reste ce qu'il est — la mesure sur laquelle l'arbitrage a été tranché.
+
 **Base de mesure : `ca254bf973bbab89f06073bdc36716f0cdb58660`**, en dur dans `lib-regles.mjs`. Elle
 n'est pas déduite de `HEAD` — la première version de ce dossier le faisait, et ses artefacts
 devenaient irreproductibles dès leur propre commit : régénérés, ils restaient métier-identiques mais

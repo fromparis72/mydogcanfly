@@ -4,6 +4,26 @@
 verdicts, cartes, placements, scores — avant toute modification. Aucun fichier de `packages/` n'est
 écrit ; l'empreinte SHA-256 des deux fichiers bruts est relue à la fin et comparée à celle du début.
 
+## ⚠ Dossier HISTORIQUE depuis le 17/08/2026 — l'arbitrage a été appliqué
+
+Le moteur applique désormais l'option H : dès que les 42 règles sont retirées, il place le canal à
+« à confirmer » avec une cause de race, au lieu de reprendre la politique générale. **Les options
+A à G de la table ci-dessous ne sont donc plus mesurables** — elles se confondraient toutes avec H.
+Vérifié : régénérer sur le moteur actuel donnait « D : 147 placements, tous vers *à confirmer* » au
+lieu de « 65 vers `allowed`, 82 vers *à confirmer* », et un écart de score de `0…+57` ramené à
+`0…+2`. Ce ne serait pas une mesure, ce serait une tautologie : chaque option contiendrait H.
+
+`npm run mesure:t0b3a` le détecte tout seul et **ne régénère plus** les artefacts ; il vérifie
+qu'ils sont intacts et le dit. Les six contre-épreuves ne sont plus rejouées : elles éprouvent un
+simulateur devenu historique.
+
+Ce qui n'a **pas** bougé, et ce qui compte : les chiffres de l'option H elle-même. Rejouée sur le
+moteur actuel, la simulation redonne exactement les mêmes — 147 placements brachycéphales tous vers
+« à confirmer », aucun golden retriever touché, score `0…+2` — alors qu'elle s'applique désormais
+par-dessus un moteur qui fait déjà H. Un seul compteur de diagnostic diffère (`dominance_jouee`,
+1 → 2), pour cette raison précise. Il n'est **pas** publié ici : `option-h-simulee.json` garde sa
+valeur historique, celle du moteur qui l'a produite.
+
 Base de mesure figée : **`e2cf302ccf045c539ca450f23964bb7bf20af84c`** — SHA complet, jamais abrégé :
 un préfixe court est ambigu par construction.
 

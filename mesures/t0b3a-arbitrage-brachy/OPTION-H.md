@@ -1,6 +1,48 @@
-# Option H — conception, simulation et patch des contrats · v6
+# Option H — conception, simulation et patch du moteur · v7
 
-**Aucun comportement du moteur n'a encore changé** : le patch en cours écrit les **contrats de
+## Le patch moteur — étape 2 : le câblage
+
+`evaluate` consomme le registre canonique `BreedRestriction`, `explain` publie les avis. Le
+comportement est celui de la simulation, à trois écarts près, tous dans le sens de la rigueur et
+tous **neutres sur les chiffres validés** — le registre visé ne contient ni condition, ni fait
+décisif en cabine :
+
+| point | simulation | moteur |
+|---|---|---|
+| `when` (restriction conditionnelle) | signalée « non simulable » — le simulateur n'avait pas d'évaluateur | **évaluée**, avec l'évaluateur du moteur. S'en priver aurait inventé une limitation |
+| canaux des faits **décisifs** | cabine sautée en bloc | les **trois** canaux : une restriction qui déclare `cabin` doit agir en cabine, sinon le registre ment |
+| « aucun fait audité → à confirmer » | chiens brachycéphales, soute et fret | **inchangé** — c'est le périmètre exact où le site affirmait un refus qu'il ne peut pas prouver. L'étendre publierait une ignorance jamais affirmée |
+
+**Aujourd'hui, le câblage ne déplace RIEN.** Le registre versionné est vide et les 42 règles sont
+toujours en place : toute soute brachycéphale est refusée par les règles, donc la table n'ouvre
+rien. Vérifié sur 412 cartes réelles — 0 cause de race, 0 preuve, 0 avis — et par les huit harnais
+de `test:unit`, tous au vert sans qu'aucune baseline ne bouge. L'arbitrage se jouera au lot suivant,
+quand le référentiel changera ; pas ici, par surprise.
+
+### Le rôle d'une preuve — un état que l'étape 1-bis n'avait pas rencontré
+
+Le câblage a produit une décision **inconstructible** : une restriction `allow` sur un canal dont le
+statut de base est déjà « à confirmer » (politique non publiée) laisse le statut inchangé et ne crée
+aucune cause ; sa preuve apparaissait donc comme « une preuve sans cause correspondante ».
+
+Les deux échappatoires étaient mauvaises — perdre la preuve de l'autorisation (la même restriction
+citée quand la politique est ouverte, muette quand elle est à confirmer), ou relâcher l'accord et
+rouvrir le défaut fermé à l'étape 1-bis. `RestrictionEvidence` porte donc un **rôle**
+(`requirement` · `authorisation` · `refusal`) : l'accord exact ne porte que sur les preuves
+d'exigence, celles qui motivent une cause. Deux resserrements l'accompagnent — une preuve sans rôle
+est refusée, et « exigence auditée » + « politique de race non revérifiée » sur le **même** canal
+devient impossible, état contradictoire que le moteur ne peut de toute façon pas produire.
+
+### Ce que le câblage a révélé sur les dossiers de mesure
+
+Le sceau ne portait que le **référentiel**, jamais le **code qui le lit**. À référentiel identique,
+les deux dossiers ont changé de chiffres parce que le moteur avait changé. Ils sont désormais
+déclarés **historiques** : leur reproduction compare l'empreinte des sources du moteur et refuse de
+les régénérer. Voir les deux `README.md`.
+
+## Le patch moteur — étapes 1 et 1-bis : les contrats
+
+**À ces étapes, aucun comportement du moteur n'avait encore changé** : le patch en cours écrit les **contrats de
 sortie**, et rien d'autre. `evaluate` ne consomme toujours pas les `BreedRestriction`, aucun statut
 publié ne bouge, aucune règle n'est retirée. Les fichiers touchés dans `packages/` sont
 `engine/src/contracts.ts` et la transmission des preuves dans `engine/src/explain.ts` — la
@@ -21,11 +63,11 @@ relation aux causes** : quatre états incohérents se construisaient sans bronch
 | `breed_requirement` **sans aucune preuve** | accepté | **refusé** |
 | `breed_policy_unreviewed` **accompagné d'une preuve de race** | accepté | **refusé** |
 | **même preuve dupliquée** deux fois | accepté | **refusé** |
-| **preuve sans cause correspondante** | accepté | **refusé** |
+| **preuve sans cause correspondante** | accepté | **refusé** (précisé à l'étape 2 : les preuves d'EXIGENCE) |
 | `evidence: []` | ramené en silence à « aucune preuve » | **refusé** |
 
 La règle est une **égalité d'ensembles**, pas une inclusion : sur un canal « à confirmer », les
-`restriction_ref` des preuves sont **exactement** ceux des causes `breed_requirement`. Elle est
+`restriction_ref` des preuves d'exigence sont **exactement** ceux des causes `breed_requirement`. Elle est
 portée par le **schéma** (`superRefine` sur l'union), pas seulement par le constructeur : aucun
 appelant ne la contourne, pas même un littéral parsé directement.
 
