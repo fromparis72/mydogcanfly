@@ -679,28 +679,48 @@ const fixtureDominance = (() => {
 const sondeContrat = (() => {
   /* Ces deux causes n'existaient pas : la sonde vérifiait qu'elles étaient REFUSÉES. Elle vérifie
      désormais qu'elles sont ACCEPTÉES — et que `causeKey` distingue bien deux exigences. */
-  const essai = (causes) => {
-    try { return { ok: true, d: makePlacementDecision("hold", "confirmation_required", causes, undefined) }; }
+  const essai = (causes, preuves) => {
+    try { return { ok: true, d: makePlacementDecision("hold", "confirmation_required", causes, undefined, preuves) }; }
     catch (e) { return { ok: false, erreur: String(e).split("\n")[0].slice(0, 140) }; }
   };
+  const EXIG = (ref) => ({ code: CAUSE_EXIGENCE, policy_ref: "airline_aegean#hold", restriction_ref: ref });
+  /* Une preuve complète : le contrat exige la citation, sa langue et un type de source factuel. */
+  const PREUVE = (ref, url) => ({ restriction_ref: ref, source: { ...IATA_WARN.source, url } });
   const nonRevue = essai([{ code: CAUSE_NON_REVUE, policy_ref: "airline_aegean#hold" }]);
-  const deuxExigences = essai([
-    { code: CAUSE_EXIGENCE, policy_ref: "airline_aegean#hold", restriction_ref: "brest_a" },
-    { code: CAUSE_EXIGENCE, policy_ref: "airline_aegean#hold", restriction_ref: "brest_b" },
-  ]);
+  const deuxExigences = essai([EXIG("brest_a"), EXIG("brest_b")],
+    [PREUVE("brest_a", "https://aegean.example/a"), PREUVE("brest_b", "https://aegean.example/b")]);
   const sansRef = essai([{ code: CAUSE_EXIGENCE, policy_ref: "airline_aegean#hold" }]);
+  /* Étape 1-bis : les preuves sont devenues SOLIDAIRES de leurs causes. Ces trois essais mesurent
+     la relation elle-même, celle qui manquait au contrat du 552c41c. */
+  const exigenceSansPreuve = essai([EXIG("brest_a")]);
+  const preuveSansExigence = essai([{ code: CAUSE_NON_REVUE, policy_ref: "airline_aegean#hold" }],
+    [PREUVE("brest_a", "https://aegean.example/a")]);
+  const preuveDupliquee = essai([EXIG("brest_a")],
+    [PREUVE("brest_a", "https://aegean.example/a"), PREUVE("brest_a", "https://aegean.example/bis")]);
   return {
     breed_policy_unreviewed_acceptee: nonRevue.ok,
     deux_exigences_conservees: deuxExigences.ok &&
       (deuxExigences.d?.confirmation_causes?.length ?? 0) === 2,
+    deux_preuves_conservees: (deuxExigences.d?.evidence?.length ?? 0) === 2 &&
+      new Set((deuxExigences.d?.evidence ?? []).map((e) => e.restriction_ref)).size === 2,
     breed_requirement_sans_restriction_ref_refusee: !sansRef.ok,
+    exigence_sans_preuve_refusee: !exigenceSansPreuve.ok,
+    preuve_sans_exigence_refusee: !preuveSansExigence.ok,
+    preuve_dupliquee_refusee: !preuveDupliquee.ok,
   };
 })();
 exiger("le contrat accepte `breed_policy_unreviewed`", sondeContrat.breed_policy_unreviewed_acceptee);
 exiger("le contrat CONSERVE deux exigences distinctes sur le même canal",
   sondeContrat.deux_exigences_conservees, JSON.stringify(sondeContrat));
+exiger("le contrat CONSERVE les DEUX preuves qui les fondent",
+  sondeContrat.deux_preuves_conservees, JSON.stringify(sondeContrat));
 exiger("`breed_requirement` sans `restriction_ref` est REFUSÉ",
   sondeContrat.breed_requirement_sans_restriction_ref_refusee);
+/* La cardinalité mesurée plus bas ne vaut que si le contrat REFUSE les états incohérents : sans
+   ces trois refus, « deux causes, deux preuves » resterait une coïncidence de fabrication. */
+exiger("une exigence SANS preuve est refusée", sondeContrat.exigence_sans_preuve_refusee);
+exiger("une preuve SANS exigence correspondante est refusée", sondeContrat.preuve_sans_exigence_refusee);
+exiger("une preuve DUPLIQUÉE est refusée", sondeContrat.preuve_dupliquee_refusee);
 
 /* ---- LES EXIGENCES BLOQUANTES ------------------------------------------------------------------- */
 exiger("G1 · aucun chien non brachycéphale touché", goldenTouches === 0 && goldenPlacements === 0 && diffPublic.golden_affectes === 0,
@@ -882,8 +902,12 @@ const contratMoteur = {
   ConfirmationCause_connait_breed_policy_unreviewed: /z\.literal\("breed_policy_unreviewed"\)/.test(contratsMoteur),
   ConfirmationCause_connait_breed_requirement: /z\.literal\("breed_requirement"\)/.test(contratsMoteur),
   causeKey_integre_restriction_ref: /breed_requirement" \? `\$\{c\.code\}\|\$\{c\.policy_ref\}\|\$\{c\.restriction_ref\}`/.test(contratsMoteur),
+  /* Le pluriel est vérifié PAR LE COMPORTEMENT, pas par la forme du code : la première version
+     cherchait `evidence: z.array(RestrictionEvidence)` et serait devenue fausse à la simple
+     extraction du tableau dans une constante nommée — ce qui est arrivé à l'étape 1-bis. Une
+     sonde qui rougit sur un renommage ne mesure pas le contrat. */
   preuves_plurielles_RestrictionEvidence: /export const RestrictionEvidence = z\./.test(contratsMoteur) &&
-    /evidence: z\.array\(RestrictionEvidence\)/.test(contratsMoteur),
+    sondeContrat.deux_preuves_conservees,
   RestrictionEvidence_compose_SourcedQuote: /RestrictionEvidence = z\.object\(\{[\s\S]*?source: SourcedQuote/.test(contratsMoteur),
 };
 exiger("les sept contrats moteur exigés par l'arbitrage sont en place",

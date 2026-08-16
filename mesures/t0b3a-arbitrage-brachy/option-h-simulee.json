@@ -61,7 +61,27 @@
    "detail": ""
   },
   {
+   "exigence": "le contrat CONSERVE les DEUX preuves qui les fondent",
+   "tenue": true,
+   "detail": ""
+  },
+  {
    "exigence": "`breed_requirement` sans `restriction_ref` est REFUSÉ",
+   "tenue": true,
+   "detail": ""
+  },
+  {
+   "exigence": "une exigence SANS preuve est refusée",
+   "tenue": true,
+   "detail": ""
+  },
+  {
+   "exigence": "une preuve SANS exigence correspondante est refusée",
+   "tenue": true,
+   "detail": ""
+  },
+  {
+   "exigence": "une preuve DUPLIQUÉE est refusée",
    "tenue": true,
    "detail": ""
   },
@@ -453,7 +473,11 @@
  "sonde_de_contrat": {
   "breed_policy_unreviewed_acceptee": true,
   "deux_exigences_conservees": true,
-  "breed_requirement_sans_restriction_ref_refusee": true
+  "deux_preuves_conservees": true,
+  "breed_requirement_sans_restriction_ref_refusee": true,
+  "exigence_sans_preuve_refusee": true,
+  "preuve_sans_exigence_refusee": true,
+  "preuve_dupliquee_refusee": true
  },
  "cardinalite_des_preuves": {
   "causes": 2,

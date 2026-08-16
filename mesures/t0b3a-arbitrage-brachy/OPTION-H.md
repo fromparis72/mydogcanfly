@@ -1,10 +1,63 @@
-# Option H — conception, simulation et patch des contrats · v5
+# Option H — conception, simulation et patch des contrats · v6
 
-**Aucune ligne de moteur n'a été écrite.** Aucun fichier de `packages/` n'est modifié.
+**Aucun comportement du moteur n'a encore changé** : le patch en cours écrit les **contrats de
+sortie**, et rien d'autre. `evaluate` ne consomme toujours pas les `BreedRestriction`, aucun statut
+publié ne bouge, aucune règle n'est retirée. Les fichiers touchés dans `packages/` sont
+`engine/src/contracts.ts` et la transmission des preuves dans `engine/src/explain.ts` — la
+formulation « aucun fichier de `packages/` n'est modifié » des versions antérieures est devenue
+fausse dès l'étape 1 et est corrigée ici.
 
 ```
 node --import tsx mesures/t0b3a-arbitrage-brachy/outils/simuler-h.mjs
 ```
+
+## Le patch moteur — étape 1-bis : les preuves solidaires de leurs causes
+
+La contre-revue du 16/08/2026 a relevé, sur `552c41c`, que le contrat pluriel existait **sans
+relation aux causes** : quatre états incohérents se construisaient sans broncher.
+
+| état | avant 1-bis | après |
+|---|---|---|
+| `breed_requirement` **sans aucune preuve** | accepté | **refusé** |
+| `breed_policy_unreviewed` **accompagné d'une preuve de race** | accepté | **refusé** |
+| **même preuve dupliquée** deux fois | accepté | **refusé** |
+| **preuve sans cause correspondante** | accepté | **refusé** |
+| `evidence: []` | ramené en silence à « aucune preuve » | **refusé** |
+
+La règle est une **égalité d'ensembles**, pas une inclusion : sur un canal « à confirmer », les
+`restriction_ref` des preuves sont **exactement** ceux des causes `breed_requirement`. Elle est
+portée par le **schéma** (`superRefine` sur l'union), pas seulement par le constructeur : aucun
+appelant ne la contourne, pas même un littéral parsé directement.
+
+Les preuves sont **triées** et jamais dédupliquées — dédupliquer effacerait précisément le doublon
+que le contrat doit refuser.
+
+**`explain()` perdait les preuves.** Quand `entryAllowed` dégrade le statut public, il reconstruit la
+décision ; il transmettait `d.source` mais pas `d.evidence`. La preuve de race disparaissait donc en
+silence **exactement sur les trajets où le pays refuse l'entrée**. Elle est transmise, et trois cas
+la verrouillent : statut inchangé, statut dégradé, deux preuves dégradées.
+
+**Un harnais permanent, dans la CI.** Ces contrats n'étaient éprouvés que par `mesure:t0b3a`, que la
+CI n'exécute pas : une régression les aurait franchis sans qu'aucun test ne rougisse.
+`test-t0b3a-contrat-preuves.mjs` entre dans `test:unit` — **46 contrôles** : les deux causes et leur
+clé, `restriction_ref` obligatoire, l'accord dans ses six formes fautives, l'auto-citation et la
+citation absente refusées par `SourcedQuote`, la survie des preuves dans `explain`, et
+`safety_advisories` présent dans les **72 rapports** de la grille publique.
+
+Contre-épreuves du harnais, vérifiées à la main : neutraliser l'accord causes ↔ preuves le fait
+rougir 9 fois, retirer `d.evidence` d'`explain` 2 fois, autoriser le tableau vide 1 fois, retirer
+l'unicité des canaux d'un avis 1 fois.
+
+**Une sonde qui rougissait sur un renommage.** `preuves_plurielles_RestrictionEvidence` cherchait la
+chaîne `evidence: z.array(RestrictionEvidence)` dans le source ; extraire ce tableau dans une
+constante nommée l'a mise en défaut alors que le contrat était **renforcé**. Elle vérifie désormais
+le comportement — deux preuves entrent, deux preuves sortent.
+
+`SafetyAdvisory.placements` refuse les doublons (P1).
+
+**Contrôles** : `typecheck` propre, `test:unit` **46 OK** sur le nouveau harnais et 0 FAIL sur
+l'ensemble, **50 exigences** de simulation tenues, six contre-épreuves en code 1, les deux dossiers
+de mesure reproductibles et scellés.
 
 ## Le patch moteur — étape 1 : les contrats
 
@@ -36,14 +89,17 @@ recréé les modèles concurrents que ce chantier a passé quatre revues à supp
 de ne rien laisser croire tant que le patch n'existait pas. Elle serait devenue rouge à l'instant
 exact où le moteur est réparé. Elle vérifie désormais ce que le contrat **doit** porter, et la sonde
 `makePlacementDecision` exige que les deux causes soient **acceptées**, que deux exigences distinctes
-soient **conservées**, et qu'un `breed_requirement` sans `restriction_ref` soit **refusé**.
+soient **conservées** avec **leurs deux preuves**, qu'un `breed_requirement` sans `restriction_ref`
+soit **refusé** — et, depuis l'étape 1-bis, qu'une exigence sans preuve, une preuve sans exigence et
+une preuve dupliquée le soient aussi.
 
 `safety_advisories` est produit **vide** par `explain` : les avis naîtront quand `evaluate`
 consommera les `BreedRestriction`. Un tableau vide dit « aucun avis » — ce qu'un champ absent ne sait
 pas dire, et c'est pourquoi le champ est obligatoire.
 
-**Contrôles** : `typecheck` propre, `test:unit` 64 OK / 0 FAIL, **46 exigences** de simulation
-tenues, six contre-épreuves en code 1.
+**Contrôles à l'étape 1** : `typecheck` propre, `test:unit` 64 OK / 0 FAIL, 46 exigences de
+simulation tenues, six contre-épreuves en code 1. Ce qui manquait alors — la relation entre les
+causes et les preuves — est l'objet de l'étape 1-bis ci-dessus.
 
 ### Ce qui reste au patch
 
