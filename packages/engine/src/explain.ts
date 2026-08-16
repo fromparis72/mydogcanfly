@@ -222,7 +222,13 @@ export function explain(decision: Decision, locale = "en"): DecisionReport {
            une confirmation en refus, la source qui documente le canal reste la même — seules les
            causes s'éteignent. La perdre ici ferait disparaître la source officielle des cartes
            exactement sur les trajets où le pays refuse l'entrée. */
-        d.source);
+        d.source,
+        /* Les PREUVES DE RACE survivent au même titre (contre-revue du 16/08/2026) : les omettre
+           ici les faisait disparaître silencieusement dès qu'`entryAllowed` reconstruisait la
+           décision — le canal restait refusé, mais plus rien ne disait sur quelle page officielle.
+           Le contrat les tient : sur un canal redevenu `denied` elles sont facultatives, et sur
+           une confirmation conservée elles restent en accord avec ses causes. */
+        d.evidence);
     });
     // National-carrier ranking (no price/distance data): flag carrier of the departure country, then destination.
     /* ATTENTION AU NOM : ces deux champs signifient « compagnie IMMATRICULÉE dans le pays de

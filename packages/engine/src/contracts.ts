@@ -119,20 +119,65 @@ export const RestrictionEvidence = z.object({
 }).strict();
 export type RestrictionEvidence = z.infer<typeof RestrictionEvidence>;
 
-export const PlacementDecision = z.discriminatedUnion("status", [
+/** Un tableau de preuves : jamais vide quand il est présent — `evidence: []` dirait « des preuves,
+ *  aucune », ce qui n'a pas de sens et masquerait un chemin de code qui les a perdues. */
+const EvidenceArray = z.array(RestrictionEvidence).min(1);
+
+const PlacementDecisionShape = z.discriminatedUnion("status", [
   z.object({ placement: Placement, status: z.literal("allowed"), allowed: z.literal(true),
-    source: DecisionSource.optional(), evidence: z.array(RestrictionEvidence).optional() }).strict(),
+    source: DecisionSource.optional(), evidence: EvidenceArray.optional() }).strict(),
   z.object({ placement: Placement, status: z.literal("denied"), allowed: z.literal(false),
-    source: DecisionSource.optional(), evidence: z.array(RestrictionEvidence).optional() }).strict(),
+    source: DecisionSource.optional(), evidence: EvidenceArray.optional() }).strict(),
   z.object({
     placement: Placement,
     status: z.literal("confirmation_required"),
     allowed: z.literal(false),
     confirmation_causes: z.array(ConfirmationCause).min(1),
     source: DecisionSource.optional(),
-    evidence: z.array(RestrictionEvidence).optional(),
+    evidence: EvidenceArray.optional(),
   }).strict(),
 ]);
+
+/* ---- L'ACCORD ENTRE LES CAUSES ET LES PREUVES (contre-revue du 16/08/2026) -------------------
+ *
+ * Le contrat pluriel existait, mais rien ne le RELIAIT aux causes : une exigence sans preuve, une
+ * preuve sans exigence, la même preuve deux fois et une politique non revérifiée accompagnée d'une
+ * preuve de race passaient toutes les quatre. Un contrat qui décrit la forme sans décrire la
+ * relation laisse au moteur le soin de la tenir — c'est-à-dire à personne.
+ *
+ * La règle est une ÉGALITÉ D'ENSEMBLES, pas une inclusion : sur un canal `confirmation_required`,
+ * les `restriction_ref` des preuves sont exactement ceux des causes `breed_requirement`.
+ *   · une exigence sans sa preuve publierait « la compagnie exige ceci » sans dire d'où ça sort ;
+ *   · une preuve sans son exigence afficherait une citation officielle qui ne motive rien ;
+ *   · le cas autonome `breed_policy_unreviewed` n'a donc AUCUNE preuve de race — une absence de
+ *     fait n'en a pas, et lui en attacher une la présenterait comme documentée ;
+ *   · un doublon compterait deux fois la même page.
+ *
+ * `allowed` / `denied` ne portent pas de causes : leurs preuves restent facultatives (une
+ * interdiction de race documentée reste utile à afficher), mais toujours non vides et uniques.
+ */
+export const PlacementDecision = PlacementDecisionShape.superRefine((d, ctx) => {
+  const refs = (d.evidence ?? []).map((e) => e.restriction_ref);
+  const uniques = new Set(refs);
+  if (uniques.size !== refs.length) {
+    ctx.addIssue({ code: z.ZodIssueCode.custom, path: ["evidence"],
+      message: `preuve dupliquée sur ${d.placement} : ${refs.join(", ")}` });
+  }
+  if (d.status !== "confirmation_required") return;
+  const exigences = new Set(
+    d.confirmation_causes.flatMap((c) => (c.code === "breed_requirement" ? [c.restriction_ref] : [])),
+  );
+  const sansPreuve = [...exigences].filter((r) => !uniques.has(r));
+  const sansCause = [...uniques].filter((r) => !exigences.has(r));
+  if (sansPreuve.length) {
+    ctx.addIssue({ code: z.ZodIssueCode.custom, path: ["evidence"],
+      message: `exigence de race sans preuve sur ${d.placement} : ${sansPreuve.join(", ")}` });
+  }
+  if (sansCause.length) {
+    ctx.addIssue({ code: z.ZodIssueCode.custom, path: ["evidence"],
+      message: `preuve de race sans exigence correspondante sur ${d.placement} : ${sansCause.join(", ")}` });
+  }
+});
 export type PlacementDecision = z.infer<typeof PlacementDecision>;
 
 /** Le triplet complet d'une compagnie : exactement cabine, soute et fret — ni absence, ni doublon.
@@ -162,7 +207,12 @@ export function makePlacementDecision(
      réduite aux quatre champs du contrat — le reste (citation, relecteur, historique) appartient
      à la fiche, pas à la carte. */
   const preuve = source ? DecisionSource.parse(reduireSource(source)) : undefined;
-  const preuves = evidence?.length ? z.array(RestrictionEvidence).parse(evidence) : undefined;
+  /* `evidence === undefined` (aucune preuve) et `evidence === []` (« des preuves, aucune ») sont
+     deux choses différentes : la première est légitime, la seconde est refusée par le schéma.
+     La première version ramenait le tableau vide à `undefined` — un appelant qui aurait perdu ses
+     preuves en chemin aurait produit une décision valide et muette. Les preuves sont TRIÉES ici,
+     jamais dédupliquées : dédupliquer effacerait le doublon que le contrat doit refuser. */
+  const preuves = evidence && [...evidence].sort((a, b) => a.restriction_ref.localeCompare(b.restriction_ref));
   return PlacementDecision.parse(
     status === "confirmation_required"
       ? { placement, status, allowed: false, confirmation_causes: sortDedupCauses(causes ?? []),
@@ -509,7 +559,11 @@ export const SafetyAdvisory = z.object({
   restriction_ref: z.string().regex(/^brest_[a-z0-9_]+$/),
   /** « global » ou une compagnie — la portée de l'avis, jamais devinée. */
   scope: z.union([z.literal("global"), z.string().regex(/^airline_[a-z0-9_]+$/)]),
-  placements: z.array(Placement).min(1),
+  /** Non vide ET sans doublon : `["hold","hold"]` afficherait deux fois le même conseil sur le
+   *  même canal, et rendrait la longueur du tableau inutilisable comme mesure de portée. */
+  placements: z.array(Placement).min(1).refine((p) => new Set(p).size === p.length, {
+    message: "placements : doublon",
+  }),
   text: z.string().min(1),
   criticality: z.enum(["critical", "high", "medium", "low"]),
   source: SourcedQuote,
