@@ -197,11 +197,15 @@ console.log("=== 4. Les avis de sécurité ===");
     restriction_ref: "brest_iata_snub_nose_hot_season", scope: "global",
     placements: ["cabin", "hold", "cargo"],
     text: "L'IATA déconseille le transport des chiens au museau écrasé en saison chaude.",
-    criticality: "high",
     source: { ...QUOTE, url: "https://www.iata.org/en/programs/cargo/live-animals/pets/",
       quote: "Transport of snub nose dogs, such as boxers, pugs, bulldogs and Pekinese, in hot season is not recommended." },
   };
   check("un avis global complet passe", SafetyAdvisory.safeParse(AVIS).success);
+  /* Retirée à l'étape 2 : aucune `BreedRestriction` ne déclare de gravité et la page IATA n'offre
+     aucune échelle. La v1 publiait `"medium"` pour tout — une valeur constante présentée comme un
+     fait de la source. Un ordre d'affichage sera un contrat de PRÉSENTATION, pas un pseudo-fait. */
+  check("`criticality` n'existe plus dans le contrat — rien ne la fonde",
+    !SafetyAdvisory.safeParse({ ...AVIS, criticality: "high" }).success);
   check("portée compagnie acceptée", SafetyAdvisory.safeParse({ ...AVIS, scope: "airline_turkish" }).success);
   check("portée inventée (`iata`) → refusée", !SafetyAdvisory.safeParse({ ...AVIS, scope: "iata" }).success);
   check("canaux VIDES → refusés", !SafetyAdvisory.safeParse({ ...AVIS, placements: [] }).success);

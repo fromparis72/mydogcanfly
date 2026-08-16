@@ -19,6 +19,9 @@ export type { PlacementStatus, TemperatureProvenance };
  *  (une règle se référence par `rule_id`). */
 const POLICY_REF_RE = /^airline_[a-z0-9_]+#(cabin|hold|cargo)$/;
 
+/** Les trois statuts, en littéraux — pour indexer une table sans la désynchroniser du contrat. */
+type PlacementStatusLitteral = "allowed" | "denied" | "confirmation_required";
+
 export const ConfirmationCause = z.discriminatedUnion("code", [
   /** Embargo `summer_embargo` déclenché sur une température ESTIMÉE — la seule cause active en T0-A. */
   z.object({ code: z.literal("estimated_climate"), rule_id: z.string().min(1) }).strict(),
@@ -177,9 +180,35 @@ const PlacementDecisionShape = z.discriminatedUnion("status", [
  * Une preuve d'EXIGENCE y reste légitime : c'est l'état exact d'une confirmation dégradée en refus
  * par `entryAllowed`, où les causes s'éteignent et où la preuve, elle, doit survivre.
  */
+/**
+ * Quels RÔLES un statut peut porter.
+ *
+ *   · `allowed` — une autorisation, et rien d'autre : une preuve de refus sur un canal ouvert, ou
+ *     une exigence sur un canal sans condition, décriraient un état que le moteur ne peut pas
+ *     produire et que le visiteur ne pourrait pas lire ;
+ *   · `confirmation_required` — une autorisation ou une exigence ; jamais un refus, qui aurait
+ *     fermé le canal ;
+ *   · `denied` — LES TROIS. Une confirmation dégradée en refus par l'interdiction d'entrée du pays
+ *     garde ses preuves, exigences comprises : c'est le cas verrouillé par l'étape 1-bis, et le
+ *     refuser ici reperdrait exactement ce qu'elle a sauvé.
+ */
+const ROLES_ADMIS: Record<PlacementStatusLitteral, readonly string[]> = {
+  allowed: ["authorisation"],
+  confirmation_required: ["authorisation", "requirement"],
+  denied: ["authorisation", "requirement", "refusal"],
+};
+
 export const PlacementDecision = PlacementDecisionShape.superRefine((d, ctx) => {
   const refs = (d.evidence ?? []).map((e) => e.restriction_ref);
   const uniques = new Set(refs);
+  const admis = ROLES_ADMIS[d.status];
+  for (const e of d.evidence ?? []) {
+    if (!admis.includes(e.role)) {
+      ctx.addIssue({ code: z.ZodIssueCode.custom, path: ["evidence"],
+        message: `preuve de rôle « ${e.role} » sur un canal ${d.status} (${e.restriction_ref}) : `
+          + `rôles admis — ${admis.join(", ")}` });
+    }
+  }
   if (uniques.size !== refs.length) {
     ctx.addIssue({ code: z.ZodIssueCode.custom, path: ["evidence"],
       message: `preuve dupliquée sur ${d.placement} : ${refs.join(", ")}` });
@@ -597,7 +626,12 @@ export const SafetyAdvisory = z.object({
     message: "placements : doublon",
   }),
   text: z.string().min(1),
-  criticality: z.enum(["critical", "high", "medium", "low"]),
+  /* PAS DE `criticality`. La v1 en publiait une, toujours `"medium"` : aucune `BreedRestriction`
+     n'en porte, et la page IATA ne donne aucune échelle de gravité. Une valeur constante présentée
+     comme un fait de la source est une affirmation inventée, fût-elle neutre — exactement le
+     glissement que ce chantier corrige. Si l'interface a besoin d'un ordre d'affichage, ce sera un
+     contrat de PRÉSENTATION distinct, avec sa grille documentée, jamais un attribut prêté à la
+     source. */
   source: SourcedQuote,
 }).strict();
 export type SafetyAdvisory = z.infer<typeof SafetyAdvisory>;

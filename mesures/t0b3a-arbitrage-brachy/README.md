@@ -4,7 +4,7 @@
 verdicts, cartes, placements, scores — avant toute modification. Aucun fichier de `packages/` n'est
 écrit ; l'empreinte SHA-256 des deux fichiers bruts est relue à la fin et comparée à celle du début.
 
-## ⚠ Dossier HISTORIQUE depuis le 17/08/2026 — l'arbitrage a été appliqué
+## ⚠ Ces chiffres décrivent le moteur d'avant l'option H — et se rejouent sur lui
 
 Le moteur applique désormais l'option H : dès que les 42 règles sont retirées, il place le canal à
 « à confirmer » avec une cause de race, au lieu de reprendre la politique générale. **Les options
@@ -13,9 +13,11 @@ Vérifié : régénérer sur le moteur actuel donnait « D : 147 placements, tou
 lieu de « 65 vers `allowed`, 82 vers *à confirmer* », et un écart de score de `0…+57` ramené à
 `0…+2`. Ce ne serait pas une mesure, ce serait une tautologie : chaque option contiendrait H.
 
-`npm run mesure:t0b3a` le détecte tout seul et **ne régénère plus** les artefacts ; il vérifie
-qu'ils sont intacts et le dit. Les six contre-épreuves ne sont plus rejouées : elles éprouvent un
-simulateur devenu historique.
+**`npm run mesure:t0b3a` reste une reproduction.** Lorsque l'empreinte des sources du moteur diffère
+de celle de la mesure, les outils — et les **six contre-épreuves** — sont rejoués dans un worktree
+Git détaché au commit qui a produit ces artefacts (`a9a6556…`), puis les artefacts sont comparés
+**octet à octet** à ceux archivés ici. Ce qui n'est plus fait : recalculer sur le moteur actuel, ce
+qui remplacerait en silence les chiffres d'un arbitrage tranché par une tautologie.
 
 Ce qui n'a **pas** bougé, et ce qui compte : les chiffres de l'option H elle-même. Rejouée sur le
 moteur actuel, la simulation redonne exactement les mêmes — 147 placements brachycéphales tous vers

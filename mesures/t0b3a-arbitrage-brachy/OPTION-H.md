@@ -36,9 +36,30 @@ devient impossible, état contradictoire que le moteur ne peut de toute façon p
 ### Ce que le câblage a révélé sur les dossiers de mesure
 
 Le sceau ne portait que le **référentiel**, jamais le **code qui le lit**. À référentiel identique,
-les deux dossiers ont changé de chiffres parce que le moteur avait changé. Ils sont désormais
-déclarés **historiques** : leur reproduction compare l'empreinte des sources du moteur et refuse de
-les régénérer. Voir les deux `README.md`.
+les deux dossiers ont changé de chiffres parce que le moteur avait changé.
+
+Ils restent **reproductibles**, et ce mot garde son sens : quand l'empreinte des sources du moteur
+diffère de celle de la mesure, les outils sont rejoués dans un **worktree Git détaché** au commit
+qui a produit les artefacts (`a9a6556…`), contre-épreuves comprises, puis les artefacts régénérés
+sont comparés **octet à octet** à ceux archivés. Vérifier que des fichiers n'ont pas bougé ne serait
+qu'un contrôle d'intégrité — un fichier intact ne prouve pas qu'un calcul se rejoue.
+
+Ce qui est refusé : recalculer sur le moteur actuel. Dans T0-B3-a cela remplacerait les options d'un
+arbitrage tranché par une tautologie, chacune contenant désormais H.
+
+### Les six points de la contre-revue du 17/08/2026
+
+| # | défaut | correction |
+|---|---|---|
+| P0-1 | `breed_restrictions?` et `?? []` confondaient « registre vide » et « registre oublié » | champ **obligatoire**, absence refusée à l'exécution, trois contrôles au harnais |
+| P0-2 | `source` était remplacée par celle de la 1ʳᵉ restriction, et seule elle atteignait `report.sources` | `DecisionSource` **reste** la provenance du canal ; **toutes** les preuves entrent dans `report.sources`, et chaque restriction compte **une fois** dans la confiance |
+| P0-3 | le mode « historique » ne reproduisait plus rien | reproduction réelle en **worktree** au commit d'origine, comparaison octet à octet |
+| P1-4 | `breedDeny` n'était pas transmis à `denyReasonsOf` — refus sans motif ; et le test le masquait par un `\|\|` | motif transmis, test exigeant **exactement** `breed_restricted`, témoin de canal réellement `denied` |
+| P1-5 | les avis étaient collectés avant le filtre `_plausible` — six avis orphelins sur CDG→BKK | avis indexés par compagnie, réunis **après** le filtre ; invariant vérifié sur les 102 compagnies |
+| P1-6 | `role` admettait `allowed` + `refusal` | table **statut → rôles admis**, `denied` gardant les trois |
+
+`criticality` est **retirée** de `SafetyAdvisory`, comme recommandé : aucune source ne la fonde. Un
+ordre d'affichage sera un contrat de présentation distinct, jamais un attribut prêté à la source.
 
 ## Le patch moteur — étapes 1 et 1-bis : les contrats
 
