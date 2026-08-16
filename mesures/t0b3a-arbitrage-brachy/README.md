@@ -1,4 +1,4 @@
-# T0-B3-a — arbitrage de l'ensemble brachycéphale (42 règles) · v2
+# T0-B3-a — arbitrage de l'ensemble brachycéphale (42 règles) · v3
 
 **Ce dossier ne corrige rien et ne tranche rien.** Il mesure ce que chaque option déplacerait —
 verdicts, cartes, placements, scores — avant toute modification. Aucun fichier de `packages/` n'est
@@ -11,7 +11,16 @@ un préfixe court est ambigu par construction.
 npm run mesure:t0b3a
 ```
 
-## Ce qui a changé depuis la v1
+## Ce qui a changé depuis la v2
+
+| correction | v2 | v3 |
+|---|---|---|
+| **destination des placements** | « D les rouvre vers `allowed` » | **faux** : sur 147 placements, 65 vont vers `allowed` et **82 vers « à confirmer »**. Nouvelle colonne `placements_par_statut_cible` |
+| **« G, seul chemin vers à confirmer »** | affirmé | **faux** : D en produit déjà 82. G en produit davantage (122) et laisse **26 placements brachycéphales en `allowed`** |
+| **`limite_du_moteur`** | disait encore « identique à un retrait pur » | corrigé : **statuts identiques, scores différents sur 28 scénarios** |
+| **source IATA** | paraphrase française appelée « citation », non vérifiée | **citations exactes en anglais**, vérifiées indépendamment par la contre-revue le 16/08/2026 |
+
+## Ce qui avait changé depuis la v1
 
 | correction | v1 | v2 |
 |---|---|---|
@@ -21,15 +30,20 @@ npm run mesure:t0b3a
 | **source IATA** | non documentée | section dédiée : ancienne URL, état rapporté, nouvelle URL, citation, et **la provenance du relevé** |
 | **famille 3** | « 0 officiellement confirmée » | « **0 interdiction représentée comme auditée dans le référentiel** » — un état de notre documentation, pas un fait sur le monde |
 
-## Le résultat central : le moteur ne sait pas dire « brachycéphale : à confirmer »
+## Le résultat central, formulé correctement
 
-Le deuxième principe directeur — *« une politique non vérifiée devient à confirmer, jamais
-interdit »* — **n'est pas réalisable en données seules**.
+**Le moteur ne sait pas produire une confirmation DONT LA CAUSE EST LA RACE.**
+
+Ce n'est pas « le moteur ne sait pas dire à confirmer » — il le dit très bien. Après retrait des
+règles, il reprend la **politique générale du canal**, qui est tantôt `allowed`, tantôt
+`confirmation_required`. Ce qu'il ne sait pas faire, c'est attacher la confirmation au chien qui la
+motive.
 
 | geste | observé |
 |---|---|
-| passer les 42 de `deny` à `warn` ou `require` | **aucun statut ne bouge** : `evaluate()` ne retient que `action === "deny"` pour décider d'un statut |
-| basculer la politique du canal sur « non documentée » | le canal passe « à confirmer » — mais la politique n'a **aucune dimension race** : 38 compagnies et 40 placements basculent aussi pour un **golden retriever** |
+| passer les 42 de `deny` à `warn` ou `require` | **aucun statut ne bouge** — `evaluate()` ne retient que `action === "deny"`. Mais **ce n'est pas un retrait** : les règles restent dans `fired`, leur confiance pèse encore, et 28 scénarios sur 72 affichent un score différent de D |
+| retirer les 42 (option D) | 147 placements déplacés : **65 vers `allowed`**, **82 vers « à confirmer »** — le repli sur la politique existante, pas une réouverture uniforme |
+| basculer la politique du canal sur « non documentée » (option G) | 122 vers « à confirmer », mais **26 restent en `allowed`**, et la politique n'ayant **aucune dimension race**, 40 placements de **golden retriever** basculent aussi |
 
 Y parvenir demanderait une **évolution du moteur** : une classe de règle produisant
 `confirmation_required` sur le chien qu'elle vise. C'est un lot de code, à contre-revoir et mesurer
@@ -46,27 +60,35 @@ Y parvenir demanderait une **évolution du moteur** : une classe de règle produ
 Le score n'est pas cosmétique : c'est ce que le visiteur lit. La v1 écrivait « identique à un
 retrait pur » sans l'avoir mesuré scénario par scénario.
 
-## La source IATA — relevé de contre-revue, non vérifié par moi
+## La source IATA — vérifiée indépendamment
 
 | | |
 |---|---|
 | URL enregistrée dans la règle | `https://www.iata.org/en/youandiata/travelers/pets/` |
-| état rapporté | **404 — page disparue** |
-| URL officielle vivante rapportée | `https://www.iata.org/en/programs/cargo/live-animals/pets/` |
-| citation rapportée | le transport des chiens brachycéphales en saison chaude est **« not recommended »** — pas interdit — et une caisse **10 % plus grande** est demandée |
+| état de cette URL | **404 — page disparue** |
+| page officielle vivante | `https://www.iata.org/en/programs/cargo/live-animals/pets/` |
 
-**Provenance de ce relevé** : rapporté par la contre-revue le 16/08/2026, **non vérifié par moi**.
-L'accès réseau à `iata.org` est bloqué par le proxy d'egress de cet environnement, en `curl` comme
-en `WebFetch`. Dans un dossier dont l'objet est la provenance, présenter la lecture d'un autre comme
-la mienne serait le défaut même que ce chantier corrige.
+Citations **exactes**, en anglais, non paraphrasées :
 
-**L'écart, s'il se confirme, est de nature et non de degré** : l'IATA *recommande* de ne pas
-transporter **en saison chaude** ; notre règle *interdit* **en toute saison**. Nous avons transformé
-une recommandation conditionnelle en interdiction universelle et permanente.
+> « **in hot season is not recommended** » — sur le transport des chiens brachycéphales
+>
+> « **Snub-nosed breeds require 10% larger container** » — prescription **distincte**, portant sur la
+> taille de la caisse et non sur l'acceptation
 
-**Ce que cela n'autorise pas** : inventer une période ou un seuil de température. Remplacer une
-affirmation non sourcée par une autre ne serait pas un progrès. Et la caisse « 10 % plus grande » est
-une exigence de **matériel**, pas un critère d'acceptation — elle ne peut pas justifier un refus.
+**Vérification** : effectuée par la contre-revue le 16/08/2026 — 404 de l'ancienne URL,
+accessibilité de la page actuelle, et les deux formulations ci-dessus. **Pas par moi** : l'accès
+réseau à `iata.org` est bloqué par le proxy d'egress de cet environnement, en `curl` comme en
+`WebFetch` — essayé, pas supposé. La v2 présentait ici une reformulation française sous l'étiquette
+« citation » ; c'est exactement le glissement que ce chantier corrige.
+
+**L'écart est de nature, pas de degré** : l'IATA écrit « not recommended » et le conditionne à la
+saison chaude ; notre règle produit un `deny` en toute saison, sans aucune condition. Une
+recommandation conditionnelle est devenue une interdiction universelle et permanente.
+
+**Ce que cela n'autorise pas** : inventer une période ou un seuil. « Hot season » ne définit ni mois
+ni degré ; en déduire « avril à octobre » ou « au-dessus de 27 °C » remplacerait une affirmation non
+sourcée par une autre. Et la caisse « 10 % plus grande » est une exigence de **matériel**, pas un
+critère d'acceptation — elle ne peut pas justifier un refus.
 
 ## Les quatre familles
 
@@ -100,15 +122,18 @@ Grille publique : les 72 scénarios de la baseline T0-A. Grille brachycéphale :
 la première route directe de **chacune des 102 compagnies**. Grille témoin : un golden retriever,
 mêmes routes.
 
-| option | verdicts | cartes | placements | écart de score | brachy : compagnies / placements | dont sans règle propre | **témoin golden** |
-|---|---|---|---|---|---|---|---|
-| **A** statu quo | — | — | — | — | — | — | — |
-| **B** retirer la règle globale | 18 | 200 | 324 | 0 … +39 | 40 / **70** | 40 | 0 / 0 |
-| **C** retirer les 41 compagnie | 0 | 0 | 0 | 0 … +1 | 0 / **0** | 0 | 0 / 0 |
-| **D** retirer les 42 | 20 | 524 | 940 | 0 … +57 | 81 / **147** | 40 | 0 / 0 |
-| **F-warn** les 42 en `warn` | 20 | 524 | 940 | 0 … +56 | 81 / **147** | 40 | 0 / 0 |
-| **F-require** les 42 en `require` | 20 | 524 | 940 | 0 … +56 | 81 / **147** | 40 | 0 / 0 |
-| **G** retirer + politique « non documentée » | 20 | 844 | 1312 | **−23** … +39 | 81 / **148** | 40 | **38 / 40** |
+| option | verdicts | cartes | placements | score | brachy : compagnies / placements | **→ `allowed`** | **→ « à confirmer »** | témoin golden |
+|---|---|---|---|---|---|---|---|---|
+| **A** statu quo | — | — | — | — | — | — | — | — |
+| **B** retirer la règle globale | 18 | 200 | 324 | 0 … +39 | 40 / **70** | 26 | **44** | 0 / 0 |
+| **C** retirer les 41 compagnie | 0 | 0 | 0 | 0 … +1 | 0 / **0** | 0 | 0 | 0 / 0 |
+| **D** retirer les 42 | 20 | 524 | 940 | 0 … +57 | 81 / **147** | 65 | **82** | 0 / 0 |
+| **F-warn** les 42 en `warn` | 20 | 524 | 940 | 0 … +56 | 81 / **147** | 65 | **82** | 0 / 0 |
+| **F-require** les 42 en `require` | 20 | 524 | 940 | 0 … +56 | 81 / **147** | 65 | **82** | 0 / 0 |
+| **G** retirer + politique « non documentée » | 20 | 844 | 1312 | **−23** … +39 | 81 / **148** | **26** | 122 | **38 / 40** |
+
+Aucun placement ne va vers `denied` dans aucune option. Sous **G**, les 40 placements du golden
+retriever vont tous vers « à confirmer ».
 
 - **verdicts** : scénarios dont le verdict change. **cartes** : cartes compagnie modifiées, toutes
   occurrences confondues. **placements** : cabine/soute/fret modifiés individuellement.
@@ -122,10 +147,13 @@ mêmes routes.
   la soute sur la seule foi d'une page générale de l'IATA, aujourd'hui rapportée en 404.
 - **C** ne déplace **aucun** statut : les 41 sont intégralement doublées par la globale. Seul le
   score bouge, de +1 au plus.
-- **D** déplace 147 placements — mais vers **`allowed`**, pas « à confirmer ». Le site publierait une
-  acceptation que rien ne soutient : l'inverse exact du deuxième principe directeur.
-- **G** est la seule à produire « à confirmer », la seule à faire **baisser** un score (−23), et elle
-  coûte 40 placements à des chiens qui n'étaient pas en cause.
+- **D** déplace 147 placements, dont **82 vers « à confirmer »** et 65 vers `allowed`. Ce n'est donc
+  pas une réouverture uniforme : le moteur reprend la politique générale du canal, tantôt l'une
+  tantôt l'autre. Les 65 `allowed` restent le point de vigilance — le site y publierait une
+  acceptation que rien ne soutient.
+- **G** n'est **pas** le seul chemin vers « à confirmer » : D en produit déjà 82. Elle en produit
+  davantage (122), mais laisse tout de même **26 placements brachycéphales en `allowed`**, fait
+  **baisser** un score jusqu'à −23, et coûte 40 placements à des chiens qui n'étaient pas en cause.
 
 ## Aucune option saisonnière n'est proposée
 

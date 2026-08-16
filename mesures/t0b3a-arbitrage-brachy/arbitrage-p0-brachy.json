@@ -714,12 +714,27 @@
  },
  "source_iata": {
   "url_enregistree_dans_la_regle": "https://www.iata.org/en/youandiata/travelers/pets/",
-  "etat_rapporte": "404 — page disparue",
-  "url_officielle_vivante_rapportee": "https://www.iata.org/en/programs/cargo/live-animals/pets/",
-  "citation_rapportee": "le transport des chiens brachycéphales en saison chaude est « not recommended » — PAS interdit — et une caisse 10 % plus grande est demandée",
-  "provenance_de_ce_releve": "RAPPORTÉ PAR LA CONTRE-REVUE le 16/08/2026, et NON VÉRIFIÉ PAR MOI : l'accès réseau à iata.org est bloqué par le proxy d'egress de cet environnement (curl comme WebFetch). Dans un dossier dont l'objet est la provenance, présenter la lecture d'un autre comme la mienne serait le défaut même que ce chantier corrige. À confirmer avant toute décision.",
-  "ecart_avec_notre_moteur": "Si ce relevé se confirme, l'écart est double et il est de nature, pas de degré : (1) l'IATA RECOMMANDE de ne pas transporter en saison chaude, notre règle INTERDIT en toute saison ; (2) l'IATA vise la saison chaude, notre règle ne porte aucune condition de période ni de température. Nous avons donc transformé une recommandation conditionnelle en interdiction universelle et permanente.",
-  "ce_que_cela_n_autorise_pas": "Cela n'autorise PAS à inventer une période ni un seuil de température. Le référentiel ne modélise aucun seuil brachycéphale sourcé ; en fabriquer un à partir de « saison chaude » reviendrait à remplacer une affirmation non sourcée par une autre. La caisse « 10 % plus grande » est de même une exigence de MATÉRIEL, pas un critère d'acceptation : elle ne peut pas servir à justifier un refus."
+  "etat_de_cette_url": "404 — page disparue",
+  "url_officielle_vivante": "https://www.iata.org/en/programs/cargo/live-animals/pets/",
+  "citations_exactes": [
+   {
+    "texte": "in hot season is not recommended",
+    "porte_sur": "le transport des chiens brachycéphales"
+   },
+   {
+    "texte": "Snub-nosed breeds require 10% larger container",
+    "porte_sur": "la taille de la caisse — prescription DISTINCTE, sans lien avec l'acceptation"
+   }
+  ],
+  "verification": {
+   "par": "contre-revue (Codex)",
+   "date": "2026-08-16",
+   "portee": "404 de l'ancienne URL, accessibilité de la page actuelle, et les deux formulations ci-dessus",
+   "par_moi": false,
+   "pourquoi_pas_par_moi": "l'accès réseau à iata.org est bloqué par le proxy d'egress de cet environnement, en curl comme en WebFetch — essayé, pas supposé. Les citations ci-dessus sont reprises TELLES QUELLES du relevé de contre-revue, en anglais, sans paraphrase : la v2 présentait une reformulation française sous l'étiquette « citation », ce qui est exactement le glissement que ce chantier corrige."
+  },
+  "ecart_avec_notre_moteur": "L'écart est de nature, pas de degré. (1) L'IATA écrit « not recommended » et le conditionne à la saison chaude ; notre règle produit un `deny` en toute saison. (2) L'IATA ne définit ni mois ni degré ; notre règle ne porte aucune condition. Nous avons transformé une recommandation conditionnelle en interdiction universelle et permanente.",
+  "ce_que_cela_n_autorise_pas": "Inventer une période ou un seuil de température. « Hot season » ne définit ni l'un ni l'autre ; en déduire « avril à octobre » ou « au-dessus de 27 °C » remplacerait une affirmation non sourcée par une autre. La caisse « 10 % plus grande » est par ailleurs une exigence de MATÉRIEL, pas un critère d'acceptation : elle ne peut pas justifier un refus."
  },
  "limite_du_moteur": {
   "constat": "le moteur ne peut pas exprimer « brachycéphale : à confirmer »",
@@ -728,7 +743,8 @@
    "attendu_naif": "le canal passerait « à confirmer »",
    "observe": "allowed/allowed/confirmation_required",
    "reference": "allowed/denied/denied",
-   "explication": "evaluate() ne retient que `effect.action === \"deny\"` pour décider d'un statut ; une règle d'une autre action reste visible dans `fired` mais ne déplace rien. Le résultat est donc identique à un retrait pur."
+   "explication": "evaluate() ne retient que `effect.action === \"deny\"` pour décider d'un statut ; une règle d'une autre action reste visible dans `fired` mais ne déplace aucun STATUT.",
+   "nuance_indispensable": "« aucun statut ne bouge » ne veut PAS dire « identique à un retrait pur » — la v2 l'écrivait encore ici alors que sa propre comparaison disait le contraire. Les règles conservées restent dans `fired` et leur confiance alimente toujours le score : 28 scénarios sur 72 affichent un score différent de l'option D, de 1 à 2 points en moins. Voir `comparaison_des_variantes_a_D`."
   },
   "demonstration_2": {
    "geste": "basculer la politique du canal sur « undocumented » (option G)",
@@ -757,6 +773,8 @@
    "grille_brachycephale": {
     "compagnies_touchees": 0,
     "placements_modifies": 0,
+    "placements_par_statut_cible": {},
+    "transitions_de_placement": {},
     "compagnies_avec_regle_propre": 0,
     "compagnies_sans_regle_propre": 0,
     "par_bascule": {},
@@ -765,6 +783,8 @@
    "grille_temoin_non_brachycephale": {
     "compagnies_touchees": 0,
     "placements_modifies": 0,
+    "placements_par_statut_cible": {},
+    "transitions_de_placement": {},
     "compagnies_avec_regle_propre": 0,
     "compagnies_sans_regle_propre": 0,
     "par_bascule": {},
@@ -791,6 +811,16 @@
    "grille_brachycephale": {
     "compagnies_touchees": 40,
     "placements_modifies": 70,
+    "placements_par_statut_cible": {
+     "confirmation_required": 44,
+     "allowed": 26
+    },
+    "transitions_de_placement": {
+     "cargo denied → confirmation_required": 36,
+     "hold denied → allowed": 24,
+     "cargo denied → allowed": 2,
+     "hold denied → confirmation_required": 8
+    },
     "compagnies_avec_regle_propre": 0,
     "compagnies_sans_regle_propre": 40,
     "par_bascule": {
@@ -815,6 +845,8 @@
    "grille_temoin_non_brachycephale": {
     "compagnies_touchees": 0,
     "placements_modifies": 0,
+    "placements_par_statut_cible": {},
+    "transitions_de_placement": {},
     "compagnies_avec_regle_propre": 0,
     "compagnies_sans_regle_propre": 0,
     "par_bascule": {},
@@ -841,6 +873,8 @@
    "grille_brachycephale": {
     "compagnies_touchees": 0,
     "placements_modifies": 0,
+    "placements_par_statut_cible": {},
+    "transitions_de_placement": {},
     "compagnies_avec_regle_propre": 0,
     "compagnies_sans_regle_propre": 0,
     "par_bascule": {},
@@ -849,6 +883,8 @@
    "grille_temoin_non_brachycephale": {
     "compagnies_touchees": 0,
     "placements_modifies": 0,
+    "placements_par_statut_cible": {},
+    "transitions_de_placement": {},
     "compagnies_avec_regle_propre": 0,
     "compagnies_sans_regle_propre": 0,
     "par_bascule": {},
@@ -875,6 +911,16 @@
    "grille_brachycephale": {
     "compagnies_touchees": 81,
     "placements_modifies": 147,
+    "placements_par_statut_cible": {
+     "allowed": 65,
+     "confirmation_required": 82
+    },
+    "transitions_de_placement": {
+     "hold denied → allowed": 62,
+     "cargo denied → confirmation_required": 74,
+     "cargo denied → allowed": 3,
+     "hold denied → confirmation_required": 8
+    },
     "compagnies_avec_regle_propre": 41,
     "compagnies_sans_regle_propre": 40,
     "par_bascule": {
@@ -900,6 +946,8 @@
    "grille_temoin_non_brachycephale": {
     "compagnies_touchees": 0,
     "placements_modifies": 0,
+    "placements_par_statut_cible": {},
+    "transitions_de_placement": {},
     "compagnies_avec_regle_propre": 0,
     "compagnies_sans_regle_propre": 0,
     "par_bascule": {},
@@ -926,6 +974,16 @@
    "grille_brachycephale": {
     "compagnies_touchees": 81,
     "placements_modifies": 147,
+    "placements_par_statut_cible": {
+     "allowed": 65,
+     "confirmation_required": 82
+    },
+    "transitions_de_placement": {
+     "hold denied → allowed": 62,
+     "cargo denied → confirmation_required": 74,
+     "cargo denied → allowed": 3,
+     "hold denied → confirmation_required": 8
+    },
     "compagnies_avec_regle_propre": 41,
     "compagnies_sans_regle_propre": 40,
     "par_bascule": {
@@ -951,6 +1009,8 @@
    "grille_temoin_non_brachycephale": {
     "compagnies_touchees": 0,
     "placements_modifies": 0,
+    "placements_par_statut_cible": {},
+    "transitions_de_placement": {},
     "compagnies_avec_regle_propre": 0,
     "compagnies_sans_regle_propre": 0,
     "par_bascule": {},
@@ -977,6 +1037,16 @@
    "grille_brachycephale": {
     "compagnies_touchees": 81,
     "placements_modifies": 147,
+    "placements_par_statut_cible": {
+     "allowed": 65,
+     "confirmation_required": 82
+    },
+    "transitions_de_placement": {
+     "hold denied → allowed": 62,
+     "cargo denied → confirmation_required": 74,
+     "cargo denied → allowed": 3,
+     "hold denied → confirmation_required": 8
+    },
     "compagnies_avec_regle_propre": 41,
     "compagnies_sans_regle_propre": 40,
     "par_bascule": {
@@ -1002,6 +1072,8 @@
    "grille_temoin_non_brachycephale": {
     "compagnies_touchees": 0,
     "placements_modifies": 0,
+    "placements_par_statut_cible": {},
+    "transitions_de_placement": {},
     "compagnies_avec_regle_propre": 0,
     "compagnies_sans_regle_propre": 0,
     "par_bascule": {},
@@ -1012,7 +1084,7 @@
   {
    "option": "G",
    "intitule": "retirer les 42 ET basculer la politique du canal en « non documentée »",
-   "description": "seul chemin DONNÉES vers « à confirmer » — mais il agit sur le CANAL, pas sur la race.",
+   "description": "elle n'est PAS le seul chemin vers « à confirmer » — D en produit déjà 82 par repli sur les politiques existantes. Elle en produit davantage (122), en agissant sur le CANAL et non sur la race, et laisse malgré tout 26 placements brachycéphales en `allowed`.",
    "grille_publique": {
     "scenarios": 72,
     "scenarios_dont_le_verdict_change": 20,
@@ -1028,6 +1100,16 @@
    "grille_brachycephale": {
     "compagnies_touchees": 81,
     "placements_modifies": 148,
+    "placements_par_statut_cible": {
+     "confirmation_required": 122,
+     "allowed": 26
+    },
+    "transitions_de_placement": {
+     "hold denied → confirmation_required": 46,
+     "cargo denied → confirmation_required": 76,
+     "hold denied → allowed": 24,
+     "cargo denied → allowed": 2
+    },
     "compagnies_avec_regle_propre": 41,
     "compagnies_sans_regle_propre": 40,
     "par_bascule": {
@@ -1053,6 +1135,14 @@
    "grille_temoin_non_brachycephale": {
     "compagnies_touchees": 38,
     "placements_modifies": 40,
+    "placements_par_statut_cible": {
+     "confirmation_required": 40
+    },
+    "transitions_de_placement": {
+     "hold allowed → confirmation_required": 38,
+     "cargo denied → confirmation_required": 1,
+     "cargo allowed → confirmation_required": 1
+    },
     "compagnies_avec_regle_propre": 38,
     "compagnies_sans_regle_propre": 0,
     "par_bascule": {

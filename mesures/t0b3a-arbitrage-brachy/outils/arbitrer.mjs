@@ -142,6 +142,20 @@ const placementsDifferents = (a, b) => {
   if (!a || !b) return a === b ? 0 : PLACEMENTS.length;
   return PLACEMENTS.filter((p) => a[p] !== b[p]).length;
 };
+
+/* ─── UN PLACEMENT DÉPLACÉ VA QUELQUE PART, ET CE N'EST PAS TOUJOURS AU MÊME ENDROIT ───────────
+   La v2 comptait combien de placements bougeaient et concluait « D les rouvre vers allowed ».
+   L'artefact contenait déjà de quoi contredire cette phrase : sur les 147 placements que D déplace,
+   65 vont vers `allowed` et 82 vers `confirmation_required` — parce qu'après retrait, le moteur
+   reprend la POLITIQUE GÉNÉRALE du canal, qui est tantôt l'une tantôt l'autre. Relevé en
+   contre-revue le 16/08/2026. Compter sans dire vers quoi, c'est laisser l'interprétation
+   s'inventer une destination unique. */
+const destinationsDesPlacements = (a, b) => {
+  const out = [];
+  if (!a || !b) return out;
+  for (const p of PLACEMENTS) if (a[p] !== b[p]) out.push({ placement: p.replace("_status", ""), de: a[p], vers: b[p] });
+  return out;
+};
 const parCompagnie = (r) => new Map((r.airlines ?? []).map((a) => [a.airline_id, a]));
 
 /* ---- 3 · Les options ------------------------------------------------------------------------- */
@@ -189,7 +203,9 @@ const OPTIONS = [
       "que deux actions se comportent pareil serait précisément l'erreur de la v1." },
   { cle: "G", intitule: "retirer les 42 ET basculer la politique du canal en « non documentée »",
     kb: kbOptionG,
-    description: "seul chemin DONNÉES vers « à confirmer » — mais il agit sur le CANAL, pas sur la race." },
+    description: "elle n'est PAS le seul chemin vers « à confirmer » — D en produit déjà 82 par " +
+      "repli sur les politiques existantes. Elle en produit davantage (122), en agissant sur le " +
+      "CANAL et non sur la race, et laisse malgré tout 26 placements brachycéphales en `allowed`." },
 ];
 
 const refPublique = Object.fromEntries(publique.map((s) => [s.cle, compact(runFinder(kbRef, s.req))]));
@@ -228,12 +244,20 @@ function mesurer(opt) {
     const par = {};
     const exemples = [];
     let avecRegle = 0, sansRegle = 0, placements = 0;
+    const versStatut = {}, transitions = {};
     for (const s of grille) {
       const rap = runFinder(kb, s.req);
       const ap = triplet(rap, s.airline_id), av = ref[s.cle];
       if (ap === av) continue;
-      placements += placementsDifferents(refObjets[ref === refBrachy ? "brachy" : "temoin"].get(s.cle),
+      const deplaces = destinationsDesPlacements(
+        refObjets[ref === refBrachy ? "brachy" : "temoin"].get(s.cle),
         parCompagnie(rap).get(s.airline_id));
+      placements += deplaces.length;
+      for (const d of deplaces) {
+        versStatut[d.vers] = (versStatut[d.vers] ?? 0) + 1;
+        const t = `${d.placement} ${d.de} → ${d.vers}`;
+        transitions[t] = (transitions[t] ?? 0) + 1;
+      }
       const k = `${av} → ${ap}`;
       par[k] = (par[k] ?? 0) + 1;
       /* La ventilation qui compte : une compagnie qui a sa propre règle n'est pas dans la même
@@ -242,6 +266,7 @@ function mesurer(opt) {
       if (exemples.length < 4) exemples.push(`${s.airline_id} ${k}`);
     }
     return { compagnies_touchees: avecRegle + sansRegle, placements_modifies: placements,
+      placements_par_statut_cible: versStatut, transitions_de_placement: transitions,
       compagnies_avec_regle_propre: avecRegle, compagnies_sans_regle_propre: sansRegle,
       par_bascule: par, exemples };
   };
@@ -318,8 +343,13 @@ const limiteMoteur = {
     reference: temoinWarn ? refBrachy[temoinWarn.cle] : null,
     explication:
       "evaluate() ne retient que `effect.action === \"deny\"` pour décider d'un statut ; une règle " +
-      "d'une autre action reste visible dans `fired` mais ne déplace rien. Le résultat est donc " +
-      "identique à un retrait pur.",
+      "d'une autre action reste visible dans `fired` mais ne déplace aucun STATUT.",
+    nuance_indispensable:
+      "« aucun statut ne bouge » ne veut PAS dire « identique à un retrait pur » — la v2 l'écrivait " +
+      "encore ici alors que sa propre comparaison disait le contraire. Les règles conservées " +
+      "restent dans `fired` et leur confiance alimente toujours le score : 28 scénarios sur 72 " +
+      "affichent un score différent de l'option D, de 1 à 2 points en moins. Voir " +
+      "`comparaison_des_variantes_a_D`.",
   },
   demonstration_2: {
     geste: "basculer la politique du canal sur « undocumented » (option G)",
@@ -396,28 +426,36 @@ const doc = {
   },
   source_iata: {
     url_enregistree_dans_la_regle: globale.source.url,
-    etat_rapporte: "404 — page disparue",
-    url_officielle_vivante_rapportee: "https://www.iata.org/en/programs/cargo/live-animals/pets/",
-    citation_rapportee:
-      "le transport des chiens brachycéphales en saison chaude est « not recommended » — " +
-      "PAS interdit — et une caisse 10 % plus grande est demandée",
-    provenance_de_ce_releve:
-      "RAPPORTÉ PAR LA CONTRE-REVUE le 16/08/2026, et NON VÉRIFIÉ PAR MOI : l'accès réseau à " +
-      "iata.org est bloqué par le proxy d'egress de cet environnement (curl comme WebFetch). " +
-      "Dans un dossier dont l'objet est la provenance, présenter la lecture d'un autre comme la " +
-      "mienne serait le défaut même que ce chantier corrige. À confirmer avant toute décision.",
+    etat_de_cette_url: "404 — page disparue",
+    url_officielle_vivante: "https://www.iata.org/en/programs/cargo/live-animals/pets/",
+    citations_exactes: [
+      { texte: "in hot season is not recommended",
+        porte_sur: "le transport des chiens brachycéphales" },
+      { texte: "Snub-nosed breeds require 10% larger container",
+        porte_sur: "la taille de la caisse — prescription DISTINCTE, sans lien avec l'acceptation" },
+    ],
+    verification: {
+      par: "contre-revue (Codex)",
+      date: "2026-08-16",
+      portee: "404 de l'ancienne URL, accessibilité de la page actuelle, et les deux formulations ci-dessus",
+      par_moi: false,
+      pourquoi_pas_par_moi:
+        "l'accès réseau à iata.org est bloqué par le proxy d'egress de cet environnement, en curl " +
+        "comme en WebFetch — essayé, pas supposé. Les citations ci-dessus sont reprises TELLES " +
+        "QUELLES du relevé de contre-revue, en anglais, sans paraphrase : la v2 présentait une " +
+        "reformulation française sous l'étiquette « citation », ce qui est exactement le glissement " +
+        "que ce chantier corrige.",
+    },
     ecart_avec_notre_moteur:
-      "Si ce relevé se confirme, l'écart est double et il est de nature, pas de degré : " +
-      "(1) l'IATA RECOMMANDE de ne pas transporter en saison chaude, notre règle INTERDIT en " +
-      "toute saison ; (2) l'IATA vise la saison chaude, notre règle ne porte aucune condition de " +
-      "période ni de température. Nous avons donc transformé une recommandation conditionnelle en " +
-      "interdiction universelle et permanente.",
+      "L'écart est de nature, pas de degré. (1) L'IATA écrit « not recommended » et le conditionne " +
+      "à la saison chaude ; notre règle produit un `deny` en toute saison. (2) L'IATA ne définit " +
+      "ni mois ni degré ; notre règle ne porte aucune condition. Nous avons transformé une " +
+      "recommandation conditionnelle en interdiction universelle et permanente.",
     ce_que_cela_n_autorise_pas:
-      "Cela n'autorise PAS à inventer une période ni un seuil de température. Le référentiel ne " +
-      "modélise aucun seuil brachycéphale sourcé ; en fabriquer un à partir de « saison chaude » " +
-      "reviendrait à remplacer une affirmation non sourcée par une autre. La caisse « 10 % plus " +
-      "grande » est de même une exigence de MATÉRIEL, pas un critère d'acceptation : elle ne peut " +
-      "pas servir à justifier un refus.",
+      "Inventer une période ou un seuil de température. « Hot season » ne définit ni l'un ni " +
+      "l'autre ; en déduire « avril à octobre » ou « au-dessus de 27 °C » remplacerait une " +
+      "affirmation non sourcée par une autre. La caisse « 10 % plus grande » est par ailleurs une " +
+      "exigence de MATÉRIEL, pas un critère d'acceptation : elle ne peut pas justifier un refus.",
   },
   limite_du_moteur: limiteMoteur,
   diff_previsionnel_par_option: mesures,
