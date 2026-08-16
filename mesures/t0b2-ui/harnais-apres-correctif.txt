@@ -1,12 +1,11 @@
 
-> test:entities
-> tsx test-entity-pages-harness.mjs
+> test:entities:complet
+> HARNAIS_PORTEE=complet NODE_OPTIONS=--max-old-space-size=1024 tsx test-entity-pages-harness.mjs
 
-portée : sentinelles · 2 canaux contradictoires sur 2 fiche(s)
-         NON COUVERT ici : 76 canaux sur 69 fiches — lancer HARNAIS_PORTEE=complet sur un build complet des compagnies.
+portée : complet · 78 canaux contradictoires sur 71 fiche(s)
 
 === 0. Les pages d'entités sont-elles construites ? ===
-  OK   les 12 pages compagnies de la portée « sentinelles », quatre langues
+  OK   les 288 pages compagnies de la portée « complet », quatre langues
   OK   la page pays sentinelle, quatre langues (CountryOnward)
 
 === 1. Zéro erreur console, et les DEUX composants qui appellent mdcfQuery ===
@@ -136,10 +135,13 @@ portée : sentinelles · 2 canaux contradictoires sur 2 fiche(s)
   OK   ce lien est VISIBLE et nommé par son canal
   OK   la carte airline_air_china n'affiche AUCUN bloc de sources
 
-=== 5. Les 2 canaux contradictoires × 4 langues : statut ET libellé ===
+=== 5. Les 78 canaux contradictoires × 4 langues : statut ET libellé ===
   OK   78 canaux contradictoires sur 71 fiches, relus des fiches et du contrat runtime
-  OK   8 pages localisées RÉELLEMENT lues, aucune absente
-  OK   8 blocs vérifiés (statut technique ET libellé publié), aucune anomalie
+  OK   les 8 lots ont tous abouti sous 512 Mo de tas
+  OK   pic mémoire d'un lot : 326 Mo (plafond 512 Mo)
+  OK   284 pages localisées RÉELLEMENT lues, aucune absente
+  OK   312 blocs vérifiés (statut technique ET libellé publié), aucune anomalie
   OK   la cible de cette portée n'est pas vide
+  OK   le processus principal reste sous 400 Mo (252 Mo)
 
-125 OK, 0 FAIL
+128 OK, 0 FAIL

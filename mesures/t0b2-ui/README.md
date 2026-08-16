@@ -15,7 +15,7 @@ contrôle automatique ne regardait :
 | fichier | état du dépôt | résultat |
 |---|---|---|
 | `harnais-avant-correctif.txt` | `6c656ea` (avant correctif) | **28 OK, 97 FAIL** |
-| `harnais-apres-correctif.txt` | après correctif | **125 OK, 0 FAIL** |
+| `harnais-apres-correctif.txt` | après correctif, portée **complète** | **128 OK, 0 FAIL** |
 
 Le harnais est identique dans les deux passes — seul le code de l'application change. La passe
 rouge a été obtenue dans un `git worktree` sur `6c656ea`, où seuls le harnais et son outillage ont
@@ -25,6 +25,26 @@ rouge a été obtenue dans un `git worktree` sur `6c656ea`, où seuls le harnais
 Les trois anomalies apparaissent nommément dans la passe rouge : erreurs console sur les huit
 pages, `0 bloc(s)` porteur de `data-status`, et
 `https://mydogcanfly.com/thai-airways-dog-policy/` dans la carte rendue.
+
+## La fuite mémoire du harnais (CI du 16/08/2026, run 31 sur `main`)
+
+Le premier passage en portée **complète** — celui que les pull requests ne font jamais — est mort
+en `JavaScript heap out of memory`, après avoir validé toutes les autres sections. La cause n'était
+pas dans le site mais dans le harnais : un JSDOM par page, jamais fermé.
+
+Trois mesures ont établi la vraie portée du défaut, et écarté la correction insuffisante :
+
+| geste | résultat |
+|---|---|
+| fermer chaque fenêtre (`close()` dans un `finally`) | **insuffisant** — 2 145 Mo encore retenus sur 408 pages, après ramasse-miettes forcé |
+| sous `--max-old-space-size=512` puis `1024` | **mort** — la mémoire n'est pas reprise, la rétention est réelle |
+| réutiliser UNE fenêtre et reparser dedans | **pire** — 5 787 Mo |
+
+Ce qui ferme une fuite JSDOM, c'est la fin du processus. La section 5 lit donc les 284 pages par
+**lots courts en sous-processus** (`test-lib/verifier-blocs-entites.mjs`), chacun sous une limite de
+tas basse qui est le contrôle et non un confort. Pic mesuré : **322 Mo par lot**, processus
+principal sous 400 Mo. La lecture reste un vrai DOM — remplacer JSDOM par une expression régulière
+aurait supprimé la fuite en supprimant la fidélité.
 
 ## Les outils de mesure
 
