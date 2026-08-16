@@ -1,10 +1,56 @@
-# Option H — conception et simulation · v4-ter
+# Option H — conception, simulation et patch des contrats · v5
 
 **Aucune ligne de moteur n'a été écrite.** Aucun fichier de `packages/` n'est modifié.
 
 ```
 node --import tsx mesures/t0b3a-arbitrage-brachy/outils/simuler-h.mjs
 ```
+
+## Le patch moteur — étape 1 : les contrats
+
+Feu vert reçu. Cette étape crée les **contrats de sortie** ; le câblage de `evaluate` sur
+`BreedRestriction` suivra. Ce qui est en place dans `packages/engine/src/contracts.ts` :
+
+| contrat | état |
+|---|---|
+| `ConfirmationCause` connaît **`breed_policy_unreviewed`** (`policy_ref`) | ✅ |
+| `ConfirmationCause` connaît **`breed_requirement`** (`policy_ref` + `restriction_ref` **obligatoire**) | ✅ |
+| `causeKey()` intègre `restriction_ref` pour `breed_requirement` | ✅ |
+| **`RestrictionEvidence`** — preuves **plurielles**, composant `SourcedQuote` | ✅ |
+| `PlacementDecision.evidence` sur les trois branches | ✅ |
+| **`SafetyAdvisory`** exporté par le moteur, `text` déjà localisé | ✅ |
+| `advisoryKey()` — déduplication (restriction, portée) | ✅ |
+| `DecisionReport.safety_advisories` **obligatoire**, quitte à être vide | ✅ |
+
+**Sept lacunes, pas six.** J'avais oublié `breed_policy_unreviewed` dans ma liste : la sonde la
+détectait et la branche 4 l'exigeait, mais elle ne figurait pas dans le décompte. `ConfirmationCause`
+reçoit donc **deux** branches distinctes — « nous ne savons pas » et « la compagnie exige ceci ».
+
+**Un seul chemin de preuve, pas deux.** `DecisionSource` reste la projection **courte** de la
+politique générale du canal et **ne porte pas** la citation ; les faits de race passent par
+`RestrictionEvidence`, au pluriel et avec leur `SourcedQuote` complète. Une exigence vérifie
+explicitement que `DecisionSource` reste sans citation — corriger deux fois le même problème aurait
+recréé les modèles concurrents que ce chantier a passé quatre revues à supprimer.
+
+**La sonde est passée du négatif au positif.** Elle exigeait les lacunes **ouvertes** — seule façon
+de ne rien laisser croire tant que le patch n'existait pas. Elle serait devenue rouge à l'instant
+exact où le moteur est réparé. Elle vérifie désormais ce que le contrat **doit** porter, et la sonde
+`makePlacementDecision` exige que les deux causes soient **acceptées**, que deux exigences distinctes
+soient **conservées**, et qu'un `breed_requirement` sans `restriction_ref` soit **refusé**.
+
+`safety_advisories` est produit **vide** par `explain` : les avis naîtront quand `evaluate`
+consommera les `BreedRestriction`. Un tableau vide dit « aucun avis » — ce qu'un champ absent ne sait
+pas dire, et c'est pourquoi le champ est obligatoire.
+
+**Contrôles** : `typecheck` propre, `test:unit` 64 OK / 0 FAIL, **46 exigences** de simulation
+tenues, six contre-épreuves en code 1.
+
+### Ce qui reste au patch
+
+1. `evaluate` consomme `BreedRestriction` et produit les décisions de race ;
+2. `explain` émet les `safety_advisories` dédupliqués ;
+3. le rendu DOM dans les quatre langues, avec harnais bloquant ;
+4. l'entrée `brest_iata_snub_nose_hot_season` dans le référentiel, et le retrait des 42.
 
 ## Les corrections de la v4-ter
 
@@ -278,8 +324,13 @@ masquée par la même cause présente sur un autre trajet de la même compagnie.
 
 `warn` — la recommandation IATA — **n'agit jamais sur le statut ni sur le score** : c'est le cas
 fondateur du contrat, et en faire un refus est ce qui a produit la règle globale.
-Précédence : **`deny` > `require` > `allow`** — en cas de sources contradictoires, on ne publie pas
-l'ouverture.
+
+**Aucune précédence n'est appliquée entre `deny`, `require` et `allow`.** `allow` + `deny` est une
+CONTRADICTION et `deny` + `require` une situation UNREACHABLE : `validateBreedRestrictions()` les
+refuse au **chargement**. Le moteur n'a donc aucune priorité à appliquer — il n'a jamais à trancher
+une contradiction, puisqu'elle ne peut pas entrer. Seul `allow` + `require`, que le validateur
+autorise, est résolu : l'exigence l'emporte, puisqu'elle dit ce qu'il faut faire pour que
+l'autorisation vaille.
 
 Une restriction **conditionnelle** (`when`) demande un évaluateur de prédicat que cette simulation
 n'a pas : elle est **signalée et bloquante**, jamais ignorée en silence.

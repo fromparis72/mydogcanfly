@@ -1,5 +1,5 @@
 {
- "lot": "T0-B3-a — simulation de l'option H (v4-ter)",
+ "lot": "T0-B3-a — simulation de l'option H (v5, contrats moteur en place)",
  "nature": "SIMULATION — aucun code moteur écrit, aucun fichier de packages/ modifié",
  "sceau": {
   "measurement_base_sha": "e2cf302ccf045c539ca450f23964bb7bf20af84c",
@@ -47,6 +47,21 @@
   },
   {
    "exigence": "les 102 compagnies sont couvertes par la grille brachycéphale",
+   "tenue": true,
+   "detail": ""
+  },
+  {
+   "exigence": "le contrat accepte `breed_policy_unreviewed`",
+   "tenue": true,
+   "detail": ""
+  },
+  {
+   "exigence": "le contrat CONSERVE deux exigences distinctes sur le même canal",
+   "tenue": true,
+   "detail": ""
+  },
+  {
+   "exigence": "`breed_requirement` sans `restriction_ref` est REFUSÉ",
    "tenue": true,
    "detail": ""
   },
@@ -121,6 +136,11 @@
    "detail": ""
   },
   {
+   "exigence": "`causeKey()` du moteur distingue maintenant deux exigences",
+   "tenue": true,
+   "detail": ""
+  },
+  {
    "exigence": "un refus audité fait descendre LA SOURCE DE LA RESTRICTION jusqu'au rapport",
    "tenue": true,
    "detail": ""
@@ -161,7 +181,12 @@
    "detail": ""
   },
   {
-   "exigence": "les lacunes du contrat moteur sont mesurées et TOUTES ouvertes (aucun acquis supposé)",
+   "exigence": "les sept contrats moteur exigés par l'arbitrage sont en place",
+   "tenue": true,
+   "detail": ""
+  },
+  {
+   "exigence": "`DecisionSource` NE porte PAS la citation — un seul chemin de preuve, pas deux",
    "tenue": true,
    "detail": ""
   },
@@ -426,8 +451,9 @@
   "lecture": "les AUTRES auto-citations de T0-B3 (poids, placement, importation) — hors périmètre de H, résorption au lot suivant. Comptées à part pour ne pas lire la garantie 7 comme une propreté générale qui n'est pas atteinte."
  },
  "sonde_de_contrat": {
-  "cause_acceptee": false,
-  "erreur": "["
+  "breed_policy_unreviewed_acceptee": true,
+  "deux_exigences_conservees": true,
+  "breed_requirement_sans_restriction_ref_refusee": true
  },
  "cardinalite_des_preuves": {
   "causes": 2,
@@ -439,13 +465,15 @@
   "portees_par_PlacementDecision_source": 1,
   "perdues_par_le_contrat_actuel": 1
  },
- "lacunes_du_contrat_moteur": {
-  "DecisionReport_declare_safety_advisories": false,
-  "SafetyAdvisory_exporte_par_le_moteur": false,
-  "ConfirmationCause_connait_breed_requirement": false,
-  "causeKey_integre_restriction_ref": false,
-  "DecisionSource_porte_la_citation": false,
-  "PlacementDecision_porte_plusieurs_preuves": false
+ "contrat_moteur_verifie": {
+  "DecisionReport_declare_safety_advisories": true,
+  "SafetyAdvisory_exporte_par_le_moteur": true,
+  "cle_de_deduplication_des_avis": true,
+  "ConfirmationCause_connait_breed_policy_unreviewed": true,
+  "ConfirmationCause_connait_breed_requirement": true,
+  "causeKey_integre_restriction_ref": true,
+  "preuves_plurielles_RestrictionEvidence": true,
+  "RestrictionEvidence_compose_SourcedQuote": true
  },
  "avis_sur_un_rapport_precis": {
   "attendu": {
