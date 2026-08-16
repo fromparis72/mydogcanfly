@@ -1,0 +1,1373 @@
+{
+ "lot": "T0-B3 — mesure des règles auto-sourcées",
+ "nature": "PROPOSITION — aucune correction appliquée ; la décision revient à Philippe après contre-revue",
+ "sceau": {
+  "git_sha": "ca254bf973bbab89f06073bdc36716f0cdb58660",
+  "raw_rules_sha256": "a80118fac2cf4344f89521c1703c834c36d8d4d42b2dfb80dd858a4d95cec422",
+  "raw_objects_sha256": "dca1706134b188fa569f7172fa2ccfcff8c81b131e554326cb5d1c47b65ffef0",
+  "raw_non_modifie": true
+ },
+ "anomalies": [],
+ "strates": {
+  "dominantes": 79,
+  "redondantes": 61,
+  "inatteignables": 31
+ },
+ "lecture_des_strates": {
+  "dominantes": "le retrait change l'état de l'entité sur un témoin qui déclenche la règle : elle décide seule",
+  "redondantes": "le témoin la déclenche, mais le retrait ne change rien : une autre règle dit déjà la même chose",
+  "inatteignables": "aucun témoin constructible — les 31 pays concernés n'ont AUCUN aéroport au référentiel"
+ },
+ "garde_fou_mesure": {
+  "rappel": "les 41 règles de race sont redondantes UNE À UNE, mais pas avec la règle globale",
+  "preuve": {
+   "groupe": "breed_ban auto-citées + rule_global_brachy_hold",
+   "note": "ajoute la règle globale IATA, seul filet restant une fois les 41 retirées",
+   "regles_retirees": 42,
+   "scenarios_statut_change": 36,
+   "exemples_statut": [
+    "cdg-bkk|pug|01-15|any",
+    "cdg-bkk|pug|01-15|hold",
+    "cdg-bkk|pug|07-15|any",
+    "cdg-bkk|pug|07-15|hold",
+    "cdg-jfk|pug|01-15|any"
+   ],
+   "scenarios_score_seul": 0,
+   "exemples_score": [],
+   "soutes_brachy_rouvertes": 41,
+   "exemples_rouvertures": [
+    {
+     "cle": "airline_aegean|pug|hold",
+     "avant": "denied/denied",
+     "apres": "allowed/confirmation_required"
+    },
+    {
+     "cle": "airline_aeromexico|pug|hold",
+     "avant": "denied/denied",
+     "apres": "allowed/confirmation_required"
+    },
+    {
+     "cle": "airline_air_caraibes|pug|hold",
+     "avant": "denied/denied",
+     "apres": "allowed/confirmation_required"
+    },
+    {
+     "cle": "airline_air_europa|pug|hold",
+     "avant": "denied/denied",
+     "apres": "allowed/confirmation_required"
+    },
+    {
+     "cle": "airline_air_india|pug|hold",
+     "avant": "denied/denied",
+     "apres": "allowed/confirmation_required"
+    }
+   ]
+  },
+  "consequence": "toute intervention sur la famille brachycéphale doit vérifier que rule_global_brachy_hold reste en place : sans elle, 41 soutes se rouvrent pour un chien au museau écrasé."
+ },
+ "sous_lot_propose": {
+  "intitule": "T0-B3-a — revérifier les seuils de soute et les règles d'importation atteignables",
+  "familles": [
+   "hold_weight",
+   "import_rules"
+  ],
+  "regles": 47,
+  "entites_concernees": 47,
+  "pourquoi": "Ce sont les règles DOMINANTES au poids décisionnel le plus lourd : un seuil de soute faux refuse un chien qui pouvait voler, ou en accepte un qui ne le pouvait pas ; une règle d'importation fausse envoie un voyageur vers une frontière qui le refusera. Les 34 seuils de soute sont dominants à 34 sur 34 — aucun filet derrière eux. Les 13 règles d'importation retenues sont celles dont le pays est réellement atteignable ; les 31 autres visent des pays sans aucun aéroport au référentiel et ne peuvent affecter aucun visiteur.",
+  "liste": [
+   {
+    "id": "rule_aegean_hold_weight",
+    "categorie": "hold_weight",
+    "criticite": "medium",
+    "portee": {
+     "type": "airline",
+     "id": "airline_aegean",
+     "nom": "Aegean Airlines"
+    },
+    "effet": "deny placement=hold",
+    "conditions": "(placement eq hold ET dog.weight_kg gt 32)",
+    "seuil": 32,
+    "classe": "officielle_indisponible",
+    "source_actuelle": "https://mydogcanfly.com/aegean-airlines-dog-policy/",
+    "verifiee_le": "2026-06-30",
+    "scenarios_publics_affectes": 0,
+    "temoin": {
+     "origin": "airport_agp",
+     "destination": "airport_ath",
+     "placement": "hold",
+     "breed": "breed_afghan_hound",
+     "poids_kg": 33,
+     "date": "2027-01-15"
+    },
+    "effet_du_retrait": "denied/denied/confirmation_required → denied/allowed/confirmation_required"
+   },
+   {
+    "id": "rule_aeromexico_hold_weight",
+    "categorie": "hold_weight",
+    "criticite": "medium",
+    "portee": {
+     "type": "airline",
+     "id": "airline_aeromexico",
+     "nom": "Aeromexico"
+    },
+    "effet": "deny placement=hold",
+    "conditions": "(placement eq hold ET dog.weight_kg gt 45)",
+    "seuil": 45,
+    "classe": "officielle_indisponible",
+    "source_actuelle": "https://mydogcanfly.com/aeromexico-dog-policy/",
+    "verifiee_le": "2026-06-30",
+    "scenarios_publics_affectes": 0,
+    "temoin": {
+     "origin": "airport_ams",
+     "destination": "airport_mex",
+     "placement": "hold",
+     "breed": "breed_afghan_hound",
+     "poids_kg": 46,
+     "date": "2027-01-15"
+    },
+    "effet_du_retrait": "denied/denied/confirmation_required → denied/allowed/confirmation_required"
+   },
+   {
+    "id": "rule_air_algerie_hold_weight",
+    "categorie": "hold_weight",
+    "criticite": "medium",
+    "portee": {
+     "type": "airline",
+     "id": "airline_air_algerie",
+     "nom": "Air Algérie"
+    },
+    "effet": "deny placement=hold",
+    "conditions": "(placement eq hold ET dog.weight_kg gt 32)",
+    "seuil": 32,
+    "classe": "officielle_indisponible",
+    "source_actuelle": "https://mydogcanfly.com/air-algerie-dog-policy/",
+    "verifiee_le": "2026-06-30",
+    "scenarios_publics_affectes": 0,
+    "temoin": {
+     "origin": "airport_abj",
+     "destination": "airport_alg",
+     "placement": "hold",
+     "breed": "breed_afghan_hound",
+     "poids_kg": 33,
+     "date": "2027-01-15"
+    },
+    "effet_du_retrait": "denied/denied/confirmation_required → denied/allowed/confirmation_required"
+   },
+   {
+    "id": "rule_air_caraibes_hold_weight",
+    "categorie": "hold_weight",
+    "criticite": "medium",
+    "portee": {
+     "type": "airline",
+     "id": "airline_air_caraibes",
+     "nom": "Air Caraïbes"
+    },
+    "effet": "deny placement=hold",
+    "conditions": "(placement eq hold ET dog.weight_kg gt 75)",
+    "seuil": 75,
+    "classe": "officielle_indisponible",
+    "source_actuelle": "https://mydogcanfly.com/air-caraibes-dog-policy/",
+    "verifiee_le": "2026-06-30",
+    "scenarios_publics_affectes": 0,
+    "temoin": {
+     "origin": "airport_cay",
+     "destination": "airport_ory",
+     "placement": "hold",
+     "breed": "breed_afghan_hound",
+     "poids_kg": 76,
+     "date": "2027-01-15"
+    },
+    "effet_du_retrait": "denied/denied/confirmation_required → denied/allowed/confirmation_required"
+   },
+   {
+    "id": "rule_air_europa_hold_weight",
+    "categorie": "hold_weight",
+    "criticite": "medium",
+    "portee": {
+     "type": "airline",
+     "id": "airline_air_europa",
+     "nom": "Air Europa"
+    },
+    "effet": "deny placement=cargo+hold",
+    "conditions": "(placement in [hold, cargo] ET dog.weight_kg gt 50)",
+    "seuil": 50,
+    "classe": "non_revue",
+    "source_actuelle": "https://mydogcanfly.com/air-europa-dog-policy/",
+    "verifiee_le": "2026-06-30",
+    "scenarios_publics_affectes": 0,
+    "temoin": {
+     "origin": "airport_agp",
+     "destination": "airport_mad",
+     "placement": "hold",
+     "breed": "breed_afghan_hound",
+     "poids_kg": 51,
+     "date": "2027-01-15"
+    },
+    "effet_du_retrait": "denied/denied/denied → denied/allowed/confirmation_required"
+   },
+   {
+    "id": "rule_air_france_hold_weight",
+    "categorie": "hold_weight",
+    "criticite": "medium",
+    "portee": {
+     "type": "airline",
+     "id": "airline_air_france",
+     "nom": "Air France"
+    },
+    "effet": "deny placement=hold",
+    "conditions": "(placement eq hold ET dog.weight_kg gt 75)",
+    "seuil": 75,
+    "classe": "auto_citation_seule",
+    "source_actuelle": "https://mydogcanfly.com/air-france-dog-policy/",
+    "verifiee_le": "2026-06-30",
+    "scenarios_publics_affectes": 0,
+    "temoin": {
+     "origin": "airport_abj",
+     "destination": "airport_cdg",
+     "placement": "hold",
+     "breed": "breed_afghan_hound",
+     "poids_kg": 76,
+     "date": "2027-01-15"
+    },
+    "effet_du_retrait": "denied/denied/allowed → denied/allowed/allowed"
+   },
+   {
+    "id": "rule_air_india_hold_weight",
+    "categorie": "hold_weight",
+    "criticite": "medium",
+    "portee": {
+     "type": "airline",
+     "id": "airline_air_india",
+     "nom": "Air India"
+    },
+    "effet": "deny placement=hold",
+    "conditions": "(placement eq hold ET dog.weight_kg gt 32)",
+    "seuil": 32,
+    "classe": "officielle_indisponible",
+    "source_actuelle": "https://mydogcanfly.com/air-india-dog-policy/",
+    "verifiee_le": "2026-06-30",
+    "scenarios_publics_affectes": 0,
+    "temoin": {
+     "origin": "airport_ams",
+     "destination": "airport_del",
+     "placement": "hold",
+     "breed": "breed_afghan_hound",
+     "poids_kg": 33,
+     "date": "2027-01-15"
+    },
+    "effet_du_retrait": "denied/denied/confirmation_required → denied/allowed/confirmation_required"
+   },
+   {
+    "id": "rule_air_transat_hold_weight",
+    "categorie": "hold_weight",
+    "criticite": "medium",
+    "portee": {
+     "type": "airline",
+     "id": "airline_air_transat",
+     "nom": "Air Transat"
+    },
+    "effet": "deny placement=cargo+hold",
+    "conditions": "(placement in [hold, cargo] ET dog.weight_kg gt 45)",
+    "seuil": 45,
+    "classe": "non_revue",
+    "source_actuelle": "https://mydogcanfly.com/air-transat-dog-policy/",
+    "verifiee_le": "2026-06-30",
+    "scenarios_publics_affectes": 0,
+    "temoin": {
+     "origin": "airport_agp",
+     "destination": "airport_yul",
+     "placement": "hold",
+     "breed": "breed_afghan_hound",
+     "poids_kg": 46,
+     "date": "2027-01-15"
+    },
+    "effet_du_retrait": "denied/denied/denied → denied/allowed/confirmation_required"
+   },
+   {
+    "id": "rule_alaska_hold_weight",
+    "categorie": "hold_weight",
+    "criticite": "medium",
+    "portee": {
+     "type": "airline",
+     "id": "airline_alaska",
+     "nom": "Alaska Airlines"
+    },
+    "effet": "deny placement=cargo+hold",
+    "conditions": "(placement in [hold, cargo] ET dog.weight_kg gt 68)",
+    "seuil": 68,
+    "classe": "non_revue",
+    "source_actuelle": "https://mydogcanfly.com/alaska-dog-policy/",
+    "verifiee_le": "2026-06-30",
+    "scenarios_publics_affectes": 0,
+    "temoin": {
+     "origin": "airport_atl",
+     "destination": "airport_sea",
+     "placement": "hold",
+     "breed": "breed_afghan_hound",
+     "poids_kg": 69,
+     "date": "2027-01-15"
+    },
+    "effet_du_retrait": "denied/denied/denied → denied/allowed/confirmation_required"
+   },
+   {
+    "id": "rule_ana_hold_weight",
+    "categorie": "hold_weight",
+    "criticite": "medium",
+    "portee": {
+     "type": "airline",
+     "id": "airline_ana",
+     "nom": "ANA (All Nippon Airways)"
+    },
+    "effet": "deny placement=hold",
+    "conditions": "(placement eq hold ET dog.weight_kg gt 45)",
+    "seuil": 45,
+    "classe": "officielle_indisponible",
+    "source_actuelle": "https://mydogcanfly.com/ana-dog-policy/",
+    "verifiee_le": "2026-06-30",
+    "scenarios_publics_affectes": 0,
+    "temoin": {
+     "origin": "airport_arn",
+     "destination": "airport_hnd",
+     "placement": "hold",
+     "breed": "breed_afghan_hound",
+     "poids_kg": 46,
+     "date": "2027-01-15"
+    },
+    "effet_du_retrait": "denied/denied/confirmation_required → denied/allowed/confirmation_required"
+   },
+   {
+    "id": "rule_avianca_hold_weight",
+    "categorie": "hold_weight",
+    "criticite": "medium",
+    "portee": {
+     "type": "airline",
+     "id": "airline_avianca",
+     "nom": "Avianca"
+    },
+    "effet": "deny placement=hold",
+    "conditions": "(placement eq hold ET dog.weight_kg gt 70)",
+    "seuil": 70,
+    "classe": "officielle_indisponible",
+    "source_actuelle": "https://mydogcanfly.com/avianca-dog-policy/",
+    "verifiee_le": "2026-06-30",
+    "scenarios_publics_affectes": 0,
+    "temoin": {
+     "origin": "airport_asu",
+     "destination": "airport_bog",
+     "placement": "hold",
+     "breed": "breed_afghan_hound",
+     "poids_kg": 71,
+     "date": "2027-01-15"
+    },
+    "effet_du_retrait": "denied/denied/confirmation_required → denied/allowed/confirmation_required"
+   },
+   {
+    "id": "rule_brussels_hold_weight",
+    "categorie": "hold_weight",
+    "criticite": "medium",
+    "portee": {
+     "type": "airline",
+     "id": "airline_brussels",
+     "nom": "Brussels Airlines"
+    },
+    "effet": "deny placement=cargo+hold",
+    "conditions": "(placement in [hold, cargo] ET dog.weight_kg gt 20)",
+    "seuil": 20,
+    "classe": "non_revue",
+    "source_actuelle": "https://mydogcanfly.com/brussels-airlines-dog-policy/",
+    "verifiee_le": "2026-06-30",
+    "scenarios_publics_affectes": 0,
+    "temoin": {
+     "origin": "airport_abj",
+     "destination": "airport_bru",
+     "placement": "hold",
+     "breed": "breed_afghan_hound",
+     "poids_kg": 21,
+     "date": "2027-01-15"
+    },
+    "effet_du_retrait": "denied/denied/denied → denied/allowed/confirmation_required"
+   },
+   {
+    "id": "rule_china_airlines_hold_weight",
+    "categorie": "hold_weight",
+    "criticite": "medium",
+    "portee": {
+     "type": "airline",
+     "id": "airline_china_airlines",
+     "nom": "China Airlines"
+    },
+    "effet": "deny placement=hold",
+    "conditions": "(placement eq hold ET dog.weight_kg gt 45)",
+    "seuil": 45,
+    "classe": "officielle_indisponible",
+    "source_actuelle": "https://mydogcanfly.com/china-airlines-dog-policy/",
+    "verifiee_le": "2026-06-30",
+    "scenarios_publics_affectes": 0,
+    "temoin": {
+     "origin": "airport_akl",
+     "destination": "airport_bne",
+     "placement": "hold",
+     "breed": "breed_afghan_hound",
+     "poids_kg": 46,
+     "date": "2027-01-15"
+    },
+    "effet_du_retrait": "denied/denied/confirmation_required → denied/allowed/confirmation_required"
+   },
+   {
+    "id": "rule_corsair_hold_weight",
+    "categorie": "hold_weight",
+    "criticite": "medium",
+    "portee": {
+     "type": "airline",
+     "id": "airline_corsair",
+     "nom": "Corsair"
+    },
+    "effet": "deny placement=hold",
+    "conditions": "(placement eq hold ET dog.weight_kg gt 50)",
+    "seuil": 50,
+    "classe": "officielle_indisponible",
+    "source_actuelle": "https://mydogcanfly.com/corsair-dog-policy/",
+    "verifiee_le": "2026-06-30",
+    "scenarios_publics_affectes": 0,
+    "temoin": {
+     "origin": "airport_abj",
+     "destination": "airport_ory",
+     "placement": "hold",
+     "breed": "breed_afghan_hound",
+     "poids_kg": 51,
+     "date": "2027-01-15"
+    },
+    "effet_du_retrait": "denied/denied/confirmation_required → denied/allowed/confirmation_required"
+   },
+   {
+    "id": "rule_ethiopian_hold_weight",
+    "categorie": "hold_weight",
+    "criticite": "medium",
+    "portee": {
+     "type": "airline",
+     "id": "airline_ethiopian",
+     "nom": "Ethiopian Airlines"
+    },
+    "effet": "deny placement=hold",
+    "conditions": "(placement eq hold ET dog.weight_kg gt 45)",
+    "seuil": 45,
+    "classe": "officielle_indisponible",
+    "source_actuelle": "https://mydogcanfly.com/ethiopian-airlines-dog-policy/",
+    "verifiee_le": "2026-06-30",
+    "scenarios_publics_affectes": 0,
+    "temoin": {
+     "origin": "airport_abj",
+     "destination": "airport_add",
+     "placement": "hold",
+     "breed": "breed_afghan_hound",
+     "poids_kg": 46,
+     "date": "2027-01-15"
+    },
+    "effet_du_retrait": "denied/denied/confirmation_required → denied/allowed/confirmation_required"
+   },
+   {
+    "id": "rule_eva_air_hold_weight",
+    "categorie": "hold_weight",
+    "criticite": "medium",
+    "portee": {
+     "type": "airline",
+     "id": "airline_eva_air",
+     "nom": "EVA Air"
+    },
+    "effet": "deny placement=hold",
+    "conditions": "(placement eq hold ET dog.weight_kg gt 32)",
+    "seuil": 32,
+    "classe": "officielle_indisponible",
+    "source_actuelle": "https://mydogcanfly.com/eva-air-dog-policy/",
+    "verifiee_le": "2026-06-30",
+    "scenarios_publics_affectes": 0,
+    "temoin": {
+     "origin": "airport_ams",
+     "destination": "airport_bkk",
+     "placement": "hold",
+     "breed": "breed_afghan_hound",
+     "poids_kg": 33,
+     "date": "2027-01-15"
+    },
+    "effet_du_retrait": "denied/denied/confirmation_required → denied/allowed/confirmation_required"
+   },
+   {
+    "id": "rule_finnair_hold_weight",
+    "categorie": "hold_weight",
+    "criticite": "medium",
+    "portee": {
+     "type": "airline",
+     "id": "airline_finnair",
+     "nom": "Finnair"
+    },
+    "effet": "deny placement=hold",
+    "conditions": "(placement eq hold ET dog.weight_kg gt 75)",
+    "seuil": 75,
+    "classe": "officielle_indisponible",
+    "source_actuelle": "https://mydogcanfly.com/finnair-dog-policy/",
+    "verifiee_le": "2026-06-30",
+    "scenarios_publics_affectes": 0,
+    "temoin": {
+     "origin": "airport_agp",
+     "destination": "airport_hel",
+     "placement": "hold",
+     "breed": "breed_afghan_hound",
+     "poids_kg": 76,
+     "date": "2027-01-15"
+    },
+    "effet_du_retrait": "denied/denied/confirmation_required → denied/allowed/confirmation_required"
+   },
+   {
+    "id": "rule_french_bee_hold_weight",
+    "categorie": "hold_weight",
+    "criticite": "medium",
+    "portee": {
+     "type": "airline",
+     "id": "airline_french_bee",
+     "nom": "French Bee"
+    },
+    "effet": "deny placement=hold",
+    "conditions": "(placement eq hold ET dog.weight_kg gt 75)",
+    "seuil": 75,
+    "classe": "officielle_indisponible",
+    "source_actuelle": "https://mydogcanfly.com/french-bee-dog-policy/",
+    "verifiee_le": "2026-06-30",
+    "scenarios_publics_affectes": 0,
+    "temoin": {
+     "origin": "airport_ewr",
+     "destination": "airport_ory",
+     "placement": "hold",
+     "breed": "breed_afghan_hound",
+     "poids_kg": 76,
+     "date": "2027-01-15"
+    },
+    "effet_du_retrait": "denied/denied/confirmation_required → denied/allowed/confirmation_required"
+   },
+   {
+    "id": "rule_iberia_hold_weight",
+    "categorie": "hold_weight",
+    "criticite": "medium",
+    "portee": {
+     "type": "airline",
+     "id": "airline_iberia",
+     "nom": "Iberia"
+    },
+    "effet": "deny placement=hold",
+    "conditions": "(placement eq hold ET dog.weight_kg gt 45)",
+    "seuil": 45,
+    "classe": "auto_citation_seule",
+    "source_actuelle": "https://mydogcanfly.com/iberia-dog-policy/",
+    "verifiee_le": "2026-06-30",
+    "scenarios_publics_affectes": 0,
+    "temoin": {
+     "origin": "airport_agp",
+     "destination": "airport_mad",
+     "placement": "hold",
+     "breed": "breed_afghan_hound",
+     "poids_kg": 46,
+     "date": "2027-01-15"
+    },
+    "effet_du_retrait": "denied/denied/allowed → denied/allowed/allowed"
+   },
+   {
+    "id": "rule_ita_airways_hold_weight",
+    "categorie": "hold_weight",
+    "criticite": "medium",
+    "portee": {
+     "type": "airline",
+     "id": "airline_ita_airways",
+     "nom": "ITA Airways"
+    },
+    "effet": "deny placement=hold",
+    "conditions": "(placement eq hold ET dog.weight_kg gt 75)",
+    "seuil": 75,
+    "classe": "officielle_indisponible",
+    "source_actuelle": "https://mydogcanfly.com/ita-airways-dog-policy/",
+    "verifiee_le": "2026-06-30",
+    "scenarios_publics_affectes": 0,
+    "temoin": {
+     "origin": "airport_acc",
+     "destination": "airport_fco",
+     "placement": "hold",
+     "breed": "breed_afghan_hound",
+     "poids_kg": 76,
+     "date": "2027-01-15"
+    },
+    "effet_du_retrait": "denied/denied/denied → denied/allowed/denied"
+   },
+   {
+    "id": "rule_jal_hold_weight",
+    "categorie": "hold_weight",
+    "criticite": "medium",
+    "portee": {
+     "type": "airline",
+     "id": "airline_jal",
+     "nom": "Japan Airlines (JAL)"
+    },
+    "effet": "deny placement=hold",
+    "conditions": "(placement eq hold ET dog.weight_kg gt 32)",
+    "seuil": 32,
+    "classe": "officielle_indisponible",
+    "source_actuelle": "https://mydogcanfly.com/japan-airlines-dog-policy/",
+    "verifiee_le": "2026-06-30",
+    "scenarios_publics_affectes": 0,
+    "temoin": {
+     "origin": "airport_bkk",
+     "destination": "airport_hnd",
+     "placement": "hold",
+     "breed": "breed_afghan_hound",
+     "poids_kg": 33,
+     "date": "2027-01-15"
+    },
+    "effet_du_retrait": "denied/denied/confirmation_required → denied/allowed/confirmation_required"
+   },
+   {
+    "id": "rule_klm_hold_weight",
+    "categorie": "hold_weight",
+    "criticite": "medium",
+    "portee": {
+     "type": "airline",
+     "id": "airline_klm",
+     "nom": "KLM Royal Dutch Airlines"
+    },
+    "effet": "deny placement=hold",
+    "conditions": "(placement eq hold ET dog.weight_kg gt 75)",
+    "seuil": 75,
+    "classe": "auto_citation_seule",
+    "source_actuelle": "https://mydogcanfly.com/klm-dog-policy/",
+    "verifiee_le": "2026-06-30",
+    "scenarios_publics_affectes": 0,
+    "temoin": {
+     "origin": "airport_acc",
+     "destination": "airport_ams",
+     "placement": "hold",
+     "breed": "breed_afghan_hound",
+     "poids_kg": 76,
+     "date": "2027-01-15"
+    },
+    "effet_du_retrait": "denied/denied/allowed → denied/allowed/allowed"
+   },
+   {
+    "id": "rule_korean_air_hold_weight",
+    "categorie": "hold_weight",
+    "criticite": "medium",
+    "portee": {
+     "type": "airline",
+     "id": "airline_korean_air",
+     "nom": "Korean Air"
+    },
+    "effet": "deny placement=hold",
+    "conditions": "(placement eq hold ET dog.weight_kg gt 45)",
+    "seuil": 45,
+    "classe": "officielle_indisponible",
+    "source_actuelle": "https://mydogcanfly.com/korean-air-dog-policy/",
+    "verifiee_le": "2026-06-30",
+    "scenarios_publics_affectes": 0,
+    "temoin": {
+     "origin": "airport_akl",
+     "destination": "airport_icn",
+     "placement": "hold",
+     "breed": "breed_afghan_hound",
+     "poids_kg": 46,
+     "date": "2027-01-15"
+    },
+    "effet_du_retrait": "denied/denied/confirmation_required → denied/allowed/confirmation_required"
+   },
+   {
+    "id": "rule_latam_hold_weight",
+    "categorie": "hold_weight",
+    "criticite": "medium",
+    "portee": {
+     "type": "airline",
+     "id": "airline_latam",
+     "nom": "LATAM"
+    },
+    "effet": "deny placement=hold",
+    "conditions": "(placement eq hold ET dog.weight_kg gt 45)",
+    "seuil": 45,
+    "classe": "officielle_indisponible",
+    "source_actuelle": "https://mydogcanfly.com/latam-dog-policy/",
+    "verifiee_le": "2026-06-30",
+    "scenarios_publics_affectes": 0,
+    "temoin": {
+     "origin": "airport_aep",
+     "destination": "airport_gig",
+     "placement": "hold",
+     "breed": "breed_afghan_hound",
+     "poids_kg": 46,
+     "date": "2027-01-15"
+    },
+    "effet_du_retrait": "denied/denied/confirmation_required → denied/allowed/confirmation_required"
+   },
+   {
+    "id": "rule_norwegian_hold_weight",
+    "categorie": "hold_weight",
+    "criticite": "medium",
+    "portee": {
+     "type": "airline",
+     "id": "airline_norwegian",
+     "nom": "Norwegian"
+    },
+    "effet": "deny placement=hold",
+    "conditions": "(placement eq hold ET dog.weight_kg gt 14)",
+    "seuil": 14,
+    "classe": "officielle_indisponible",
+    "source_actuelle": "https://mydogcanfly.com/norwegian-dog-policy/",
+    "verifiee_le": "2026-06-30",
+    "scenarios_publics_affectes": 0,
+    "temoin": {
+     "origin": "airport_agp",
+     "destination": "airport_arn",
+     "placement": "hold",
+     "breed": "breed_afghan_hound",
+     "poids_kg": 15,
+     "date": "2027-01-15"
+    },
+    "effet_du_retrait": "denied/denied/confirmation_required → denied/allowed/confirmation_required"
+   },
+   {
+    "id": "rule_philippine_hold_weight",
+    "categorie": "hold_weight",
+    "criticite": "medium",
+    "portee": {
+     "type": "airline",
+     "id": "airline_philippine",
+     "nom": "Philippine Airlines"
+    },
+    "effet": "deny placement=hold",
+    "conditions": "(placement eq hold ET dog.weight_kg gt 32)",
+    "seuil": 32,
+    "classe": "officielle_indisponible",
+    "source_actuelle": "https://mydogcanfly.com/philippine-airlines-dog-policy/",
+    "verifiee_le": "2026-06-30",
+    "scenarios_publics_affectes": 0,
+    "temoin": {
+     "origin": "airport_bkk",
+     "destination": "airport_mnl",
+     "placement": "hold",
+     "breed": "breed_afghan_hound",
+     "poids_kg": 33,
+     "date": "2027-01-15"
+    },
+    "effet_du_retrait": "denied/denied/confirmation_required → denied/allowed/confirmation_required"
+   },
+   {
+    "id": "rule_qatar_airways_hold_weight",
+    "categorie": "hold_weight",
+    "criticite": "medium",
+    "portee": {
+     "type": "airline",
+     "id": "airline_qatar_airways",
+     "nom": "Qatar Airways"
+    },
+    "effet": "deny placement=hold",
+    "conditions": "(placement eq hold ET dog.weight_kg gt 75)",
+    "seuil": 75,
+    "classe": "officielle_indisponible",
+    "source_actuelle": "https://mydogcanfly.com/qatar-airways-dog-policy/",
+    "verifiee_le": "2026-06-30",
+    "scenarios_publics_affectes": 0,
+    "temoin": {
+     "origin": "airport_abj",
+     "destination": "airport_acc",
+     "placement": "hold",
+     "breed": "breed_afghan_hound",
+     "poids_kg": 76,
+     "date": "2027-01-15"
+    },
+    "effet_du_retrait": "denied/denied/confirmation_required → denied/allowed/confirmation_required"
+   },
+   {
+    "id": "rule_royal_air_maroc_hold_weight",
+    "categorie": "hold_weight",
+    "criticite": "medium",
+    "portee": {
+     "type": "airline",
+     "id": "airline_royal_air_maroc",
+     "nom": "Royal Air Maroc"
+    },
+    "effet": "deny placement=hold",
+    "conditions": "(placement eq hold ET dog.weight_kg gt 70)",
+    "seuil": 70,
+    "classe": "officielle_indisponible",
+    "source_actuelle": "https://mydogcanfly.com/royal-air-maroc-dog-policy/",
+    "verifiee_le": "2026-06-30",
+    "scenarios_publics_affectes": 0,
+    "temoin": {
+     "origin": "airport_abj",
+     "destination": "airport_cmn",
+     "placement": "hold",
+     "breed": "breed_afghan_hound",
+     "poids_kg": 71,
+     "date": "2027-01-15"
+    },
+    "effet_du_retrait": "denied/denied/confirmation_required → denied/allowed/confirmation_required"
+   },
+   {
+    "id": "rule_sas_hold_weight",
+    "categorie": "hold_weight",
+    "criticite": "medium",
+    "portee": {
+     "type": "airline",
+     "id": "airline_sas",
+     "nom": "SAS Scandinavian"
+    },
+    "effet": "deny placement=hold",
+    "conditions": "(placement eq hold ET dog.weight_kg gt 50)",
+    "seuil": 50,
+    "classe": "officielle_indisponible",
+    "source_actuelle": "https://mydogcanfly.com/sas-dog-policy/",
+    "verifiee_le": "2026-06-30",
+    "scenarios_publics_affectes": 0,
+    "temoin": {
+     "origin": "airport_agp",
+     "destination": "airport_arn",
+     "placement": "hold",
+     "breed": "breed_afghan_hound",
+     "poids_kg": 51,
+     "date": "2027-01-15"
+    },
+    "effet_du_retrait": "denied/denied/confirmation_required → denied/allowed/confirmation_required"
+   },
+   {
+    "id": "rule_singapore_airlines_hold_weight",
+    "categorie": "hold_weight",
+    "criticite": "medium",
+    "portee": {
+     "type": "airline",
+     "id": "airline_singapore_airlines",
+     "nom": "Singapore Airlines"
+    },
+    "effet": "deny placement=hold",
+    "conditions": "(placement eq hold ET dog.weight_kg gt 32)",
+    "seuil": 32,
+    "classe": "officielle_indisponible",
+    "source_actuelle": "https://mydogcanfly.com/singapore-airlines-dog-policy/",
+    "verifiee_le": "2026-06-30",
+    "scenarios_publics_affectes": 0,
+    "temoin": {
+     "origin": "airport_akl",
+     "destination": "airport_sin",
+     "placement": "hold",
+     "breed": "breed_afghan_hound",
+     "poids_kg": 33,
+     "date": "2027-01-15"
+    },
+    "effet_du_retrait": "denied/denied/confirmation_required → denied/allowed/confirmation_required"
+   },
+   {
+    "id": "rule_tap_hold_weight",
+    "categorie": "hold_weight",
+    "criticite": "medium",
+    "portee": {
+     "type": "airline",
+     "id": "airline_tap",
+     "nom": "TAP Air Portugal"
+    },
+    "effet": "deny placement=cargo+hold",
+    "conditions": "(placement in [hold, cargo] ET dog.weight_kg gt 45)",
+    "seuil": 45,
+    "classe": "non_revue",
+    "source_actuelle": "https://mydogcanfly.com/tap-air-portugal-dog-policy/",
+    "verifiee_le": "2026-06-30",
+    "scenarios_publics_affectes": 0,
+    "temoin": {
+     "origin": "airport_acc",
+     "destination": "airport_lis",
+     "placement": "hold",
+     "breed": "breed_afghan_hound",
+     "poids_kg": 46,
+     "date": "2027-01-15"
+    },
+    "effet_du_retrait": "denied/denied/denied → denied/allowed/confirmation_required"
+   },
+   {
+    "id": "rule_thai_airways_hold_weight",
+    "categorie": "hold_weight",
+    "criticite": "medium",
+    "portee": {
+     "type": "airline",
+     "id": "airline_thai_airways",
+     "nom": "Thai Airways"
+    },
+    "effet": "deny placement=hold",
+    "conditions": "(placement eq hold ET dog.weight_kg gt 32)",
+    "seuil": 32,
+    "classe": "auto_citation_seule",
+    "source_actuelle": "https://mydogcanfly.com/thai-airways-dog-policy/",
+    "verifiee_le": "2026-06-30",
+    "scenarios_publics_affectes": 0,
+    "temoin": {
+     "origin": "airport_ams",
+     "destination": "airport_bkk",
+     "placement": "hold",
+     "breed": "breed_afghan_hound",
+     "poids_kg": 33,
+     "date": "2027-01-15"
+    },
+    "effet_du_retrait": "denied/denied/confirmation_required → denied/allowed/confirmation_required"
+   },
+   {
+    "id": "rule_vietnam_airlines_hold_weight",
+    "categorie": "hold_weight",
+    "criticite": "medium",
+    "portee": {
+     "type": "airline",
+     "id": "airline_vietnam_airlines",
+     "nom": "Vietnam Airlines"
+    },
+    "effet": "deny placement=hold",
+    "conditions": "(placement eq hold ET dog.weight_kg gt 32)",
+    "seuil": 32,
+    "classe": "officielle_indisponible",
+    "source_actuelle": "https://mydogcanfly.com/vietnam-airlines-dog-policy/",
+    "verifiee_le": "2026-06-30",
+    "scenarios_publics_affectes": 0,
+    "temoin": {
+     "origin": "airport_bkk",
+     "destination": "airport_dad",
+     "placement": "hold",
+     "breed": "breed_afghan_hound",
+     "poids_kg": 33,
+     "date": "2027-01-15"
+    },
+    "effet_du_retrait": "denied/denied/confirmation_required → denied/allowed/confirmation_required"
+   },
+   {
+    "id": "rule_westjet_hold_weight",
+    "categorie": "hold_weight",
+    "criticite": "medium",
+    "portee": {
+     "type": "airline",
+     "id": "airline_westjet",
+     "nom": "WestJet"
+    },
+    "effet": "deny placement=cargo+hold",
+    "conditions": "(placement in [hold, cargo] ET dog.weight_kg gt 45)",
+    "seuil": 45,
+    "classe": "auto_citation_seule",
+    "source_actuelle": "https://mydogcanfly.com/westjet-dog-policy/",
+    "verifiee_le": "2026-06-30",
+    "scenarios_publics_affectes": 0,
+    "temoin": {
+     "origin": "airport_ams",
+     "destination": "airport_yhz",
+     "placement": "hold",
+     "breed": "breed_afghan_hound",
+     "poids_kg": 46,
+     "date": "2027-01-15"
+    },
+    "effet_du_retrait": "denied/denied/denied → denied/allowed/allowed"
+   },
+   {
+    "id": "rule_az_import",
+    "categorie": "import_rules",
+    "criticite": "high",
+    "portee": {
+     "type": "country",
+     "id": "country_az",
+     "nom": {
+      "en": "Azerbaijan",
+      "fr": "Azerbaïdjan",
+      "es": "Azerbaiyán",
+      "pt": "Azerbaijão"
+     }
+    },
+    "effet": "require",
+    "conditions": "(route.dest_country_id eq country_az)",
+    "seuil": null,
+    "classe": "officielle_indisponible",
+    "source_actuelle": "https://mydogcanfly.com/dog-travel-requirements-by-country/",
+    "verifiee_le": "2026-06-30",
+    "scenarios_publics_affectes": 0,
+    "temoin": {
+     "origin": "airport_ala",
+     "destination": "airport_gyd",
+     "placement": "any",
+     "breed": "breed_afghan_hound",
+     "poids_kg": 8,
+     "date": "2027-01-15"
+    },
+    "effet_du_retrait": "verdict conditional → compatible"
+   },
+   {
+    "id": "rule_bd_import",
+    "categorie": "import_rules",
+    "criticite": "high",
+    "portee": {
+     "type": "country",
+     "id": "country_bd",
+     "nom": {
+      "en": "Bangladesh",
+      "fr": "Bangladesh",
+      "es": "Bangladés",
+      "pt": "Bangladesh"
+     }
+    },
+    "effet": "require",
+    "conditions": "(route.dest_country_id eq country_bd)",
+    "seuil": null,
+    "classe": "officielle_indisponible",
+    "source_actuelle": "https://mydogcanfly.com/dog-travel-requirements-by-country/",
+    "verifiee_le": "2026-06-30",
+    "scenarios_publics_affectes": 0,
+    "temoin": {
+     "origin": "airport_can",
+     "destination": "airport_dac",
+     "placement": "any",
+     "breed": "breed_afghan_hound",
+     "poids_kg": 8,
+     "date": "2027-01-15"
+    },
+    "effet_du_retrait": "verdict conditional → compatible"
+   },
+   {
+    "id": "rule_bo_import",
+    "categorie": "import_rules",
+    "criticite": "high",
+    "portee": {
+     "type": "country",
+     "id": "country_bo",
+     "nom": {
+      "en": "Bolivia",
+      "fr": "Bolivie",
+      "es": "Bolivia",
+      "pt": "Bolívia"
+     }
+    },
+    "effet": "require",
+    "conditions": "(route.dest_country_id eq country_bo)",
+    "seuil": null,
+    "classe": "officielle_indisponible",
+    "source_actuelle": "https://mydogcanfly.com/dog-travel-requirements-by-country/",
+    "verifiee_le": "2026-06-30",
+    "scenarios_publics_affectes": 0,
+    "temoin": {
+     "origin": "airport_aep",
+     "destination": "airport_vvi",
+     "placement": "any",
+     "breed": "breed_afghan_hound",
+     "poids_kg": 8,
+     "date": "2027-01-15"
+    },
+    "effet_du_retrait": "verdict conditional → compatible"
+   },
+   {
+    "id": "rule_cv_import",
+    "categorie": "import_rules",
+    "criticite": "high",
+    "portee": {
+     "type": "country",
+     "id": "country_cv",
+     "nom": {
+      "en": "Cape Verde",
+      "fr": "Cap-Vert",
+      "es": "Cabo Verde",
+      "pt": "Cabo Verde"
+     }
+    },
+    "effet": "require",
+    "conditions": "(route.dest_country_id eq country_cv)",
+    "seuil": null,
+    "classe": "officielle_indisponible",
+    "source_actuelle": "https://mydogcanfly.com/dog-travel-requirements-by-country/",
+    "verifiee_le": "2026-06-30",
+    "scenarios_publics_affectes": 0,
+    "temoin": {
+     "origin": "airport_lgw",
+     "destination": "airport_sid",
+     "placement": "any",
+     "breed": "breed_afghan_hound",
+     "poids_kg": 8,
+     "date": "2027-01-15"
+    },
+    "effet_du_retrait": "verdict conditional → compatible"
+   },
+   {
+    "id": "rule_iq_import",
+    "categorie": "import_rules",
+    "criticite": "high",
+    "portee": {
+     "type": "country",
+     "id": "country_iq",
+     "nom": {
+      "en": "Iraq",
+      "fr": "Irak",
+      "es": "Irak",
+      "pt": "Iraque"
+     }
+    },
+    "effet": "require",
+    "conditions": "(route.dest_country_id eq country_iq)",
+    "seuil": null,
+    "classe": "officielle_indisponible",
+    "source_actuelle": "https://mydogcanfly.com/dog-travel-requirements-by-country/",
+    "verifiee_le": "2026-06-30",
+    "scenarios_publics_affectes": 0,
+    "temoin": {
+     "origin": "airport_bah",
+     "destination": "airport_bgw",
+     "placement": "any",
+     "breed": "breed_afghan_hound",
+     "poids_kg": 8,
+     "date": "2027-01-15"
+    },
+    "effet_du_retrait": "verdict conditional → compatible"
+   },
+   {
+    "id": "rule_kh_import",
+    "categorie": "import_rules",
+    "criticite": "high",
+    "portee": {
+     "type": "country",
+     "id": "country_kh",
+     "nom": {
+      "en": "Cambodia",
+      "fr": "Cambodge",
+      "es": "Camboya",
+      "pt": "Camboja"
+     }
+    },
+    "effet": "require",
+    "conditions": "(route.dest_country_id eq country_kh)",
+    "seuil": null,
+    "classe": "officielle_indisponible",
+    "source_actuelle": "https://mydogcanfly.com/dog-travel-requirements-by-country/",
+    "verifiee_le": "2026-06-30",
+    "scenarios_publics_affectes": 0,
+    "temoin": {
+     "origin": "airport_icn",
+     "destination": "airport_kti",
+     "placement": "any",
+     "breed": "breed_afghan_hound",
+     "poids_kg": 8,
+     "date": "2027-01-15"
+    },
+    "effet_du_retrait": "verdict conditional → compatible"
+   },
+   {
+    "id": "rule_kz_import",
+    "categorie": "import_rules",
+    "criticite": "high",
+    "portee": {
+     "type": "country",
+     "id": "country_kz",
+     "nom": {
+      "en": "Kazakhstan",
+      "fr": "Kazakhstan",
+      "es": "Kazajistán",
+      "pt": "Cazaquistão"
+     }
+    },
+    "effet": "require",
+    "conditions": "(route.dest_country_id eq country_kz)",
+    "seuil": null,
+    "classe": "officielle_indisponible",
+    "source_actuelle": "https://mydogcanfly.com/dog-travel-requirements-by-country/",
+    "verifiee_le": "2026-06-30",
+    "scenarios_publics_affectes": 0,
+    "temoin": {
+     "origin": "airport_ayt",
+     "destination": "airport_nqz",
+     "placement": "any",
+     "breed": "breed_afghan_hound",
+     "poids_kg": 8,
+     "date": "2027-01-15"
+    },
+    "effet_du_retrait": "verdict conditional → compatible"
+   },
+   {
+    "id": "rule_mz_import",
+    "categorie": "import_rules",
+    "criticite": "high",
+    "portee": {
+     "type": "country",
+     "id": "country_mz",
+     "nom": {
+      "en": "Mozambique",
+      "fr": "Mozambique",
+      "es": "Mozambique",
+      "pt": "Moçambique"
+     }
+    },
+    "effet": "require",
+    "conditions": "(route.dest_country_id eq country_mz)",
+    "seuil": null,
+    "classe": "officielle_indisponible",
+    "source_actuelle": "https://mydogcanfly.com/dog-travel-requirements-by-country/",
+    "verifiee_le": "2026-06-30",
+    "scenarios_publics_affectes": 0,
+    "temoin": {
+     "origin": "airport_add",
+     "destination": "airport_mpm",
+     "placement": "any",
+     "breed": "breed_afghan_hound",
+     "poids_kg": 8,
+     "date": "2027-01-15"
+    },
+    "effet_du_retrait": "verdict conditional → compatible"
+   },
+   {
+    "id": "rule_pk_import",
+    "categorie": "import_rules",
+    "criticite": "high",
+    "portee": {
+     "type": "country",
+     "id": "country_pk",
+     "nom": {
+      "en": "Pakistan",
+      "fr": "Pakistan",
+      "es": "Pakistán",
+      "pt": "Paquistão"
+     }
+    },
+    "effet": "require",
+    "conditions": "(route.dest_country_id eq country_pk)",
+    "seuil": null,
+    "classe": "officielle_indisponible",
+    "source_actuelle": "https://mydogcanfly.com/dog-travel-requirements-by-country/",
+    "verifiee_le": "2026-06-30",
+    "scenarios_publics_affectes": 0,
+    "temoin": {
+     "origin": "airport_dxb",
+     "destination": "airport_khi",
+     "placement": "any",
+     "breed": "breed_afghan_hound",
+     "poids_kg": 8,
+     "date": "2027-01-15"
+    },
+    "effet_du_retrait": "verdict conditional → compatible"
+   },
+   {
+    "id": "rule_py_import",
+    "categorie": "import_rules",
+    "criticite": "high",
+    "portee": {
+     "type": "country",
+     "id": "country_py",
+     "nom": {
+      "en": "Paraguay",
+      "fr": "Paraguay",
+      "es": "Paraguay",
+      "pt": "Paraguai"
+     }
+    },
+    "effet": "require",
+    "conditions": "(route.dest_country_id eq country_py)",
+    "seuil": null,
+    "classe": "officielle_indisponible",
+    "source_actuelle": "https://mydogcanfly.com/dog-travel-requirements-by-country/",
+    "verifiee_le": "2026-06-30",
+    "scenarios_publics_affectes": 0,
+    "temoin": {
+     "origin": "airport_aep",
+     "destination": "airport_asu",
+     "placement": "any",
+     "breed": "breed_afghan_hound",
+     "poids_kg": 8,
+     "date": "2027-01-15"
+    },
+    "effet_du_retrait": "verdict conditional → compatible"
+   },
+   {
+    "id": "rule_rw_import",
+    "categorie": "import_rules",
+    "criticite": "high",
+    "portee": {
+     "type": "country",
+     "id": "country_rw",
+     "nom": {
+      "en": "Rwanda",
+      "fr": "Rwanda",
+      "es": "Ruanda",
+      "pt": "Ruanda"
+     }
+    },
+    "effet": "require",
+    "conditions": "(route.dest_country_id eq country_rw)",
+    "seuil": null,
+    "classe": "officielle_indisponible",
+    "source_actuelle": "https://mydogcanfly.com/dog-travel-requirements-by-country/",
+    "verifiee_le": "2026-06-30",
+    "scenarios_publics_affectes": 0,
+    "temoin": {
+     "origin": "airport_bru",
+     "destination": "airport_kgl",
+     "placement": "any",
+     "breed": "breed_afghan_hound",
+     "poids_kg": 8,
+     "date": "2027-01-15"
+    },
+    "effet_du_retrait": "verdict conditional → compatible"
+   },
+   {
+    "id": "rule_tz_import",
+    "categorie": "import_rules",
+    "criticite": "high",
+    "portee": {
+     "type": "country",
+     "id": "country_tz",
+     "nom": {
+      "en": "Tanzania",
+      "fr": "Tanzanie",
+      "es": "Tanzania",
+      "pt": "Tanzânia"
+     }
+    },
+    "effet": "require",
+    "conditions": "(route.dest_country_id eq country_tz)",
+    "seuil": null,
+    "classe": "officielle_indisponible",
+    "source_actuelle": "https://mydogcanfly.com/dog-travel-requirements-by-country/",
+    "verifiee_le": "2026-06-30",
+    "scenarios_publics_affectes": 0,
+    "temoin": {
+     "origin": "airport_cai",
+     "destination": "airport_dar",
+     "placement": "any",
+     "breed": "breed_afghan_hound",
+     "poids_kg": 8,
+     "date": "2027-01-15"
+    },
+    "effet_du_retrait": "verdict conditional → compatible"
+   },
+   {
+    "id": "rule_ug_import",
+    "categorie": "import_rules",
+    "criticite": "high",
+    "portee": {
+     "type": "country",
+     "id": "country_ug",
+     "nom": {
+      "en": "Uganda",
+      "fr": "Ouganda",
+      "es": "Uganda",
+      "pt": "Uganda"
+     }
+    },
+    "effet": "require",
+    "conditions": "(route.dest_country_id eq country_ug)",
+    "seuil": null,
+    "classe": "officielle_indisponible",
+    "source_actuelle": "https://mydogcanfly.com/dog-travel-requirements-by-country/",
+    "verifiee_le": "2026-06-30",
+    "scenarios_publics_affectes": 0,
+    "temoin": {
+     "origin": "airport_bru",
+     "destination": "airport_ebb",
+     "placement": "any",
+     "breed": "breed_afghan_hound",
+     "poids_kg": 8,
+     "date": "2027-01-15"
+    },
+    "effet_du_retrait": "verdict conditional → compatible"
+   }
+  ]
+ },
+ "apres_ce_sous_lot": [
+  "cabin_weight — 31 dominantes sur 40, mais un refus de cabine se rattrape en soute",
+  "placement — 1 dominante sur 12 ; l'essentiel est déjà porté par la politique canonique",
+  "breed_ban — 41 redondantes ; à revérifier pour la confiance, sans urgence décisionnelle",
+  "les 31 règles d'importation inatteignables — à traiter le jour où ces pays reçoivent un aéroport"
+ ]
+}
