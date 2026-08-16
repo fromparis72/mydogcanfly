@@ -1,4 +1,4 @@
-# Option H — conception et simulation · v2
+# Option H — conception et simulation · v3
 
 **Aucune ligne de moteur n'a été écrite.** Aucun fichier de `packages/` n'est modifié.
 
@@ -6,7 +6,102 @@
 node --import tsx mesures/t0b3a-arbitrage-brachy/outils/simuler-h.mjs
 ```
 
-## Les deux P0 de la v1, et ce qui les corrige
+## Les quatre P0 de la v2, et ce qui les corrige
+
+### P0-A · Le simulateur n'échouait sur aucune garantie métier
+
+Il ne sortait en erreur que si le référentiel avait bougé. Des causes perdues, une fixture fausse,
+une auto-citation détectée auraient été **écrites dans le JSON**, puis le processus serait sorti en
+0. Un contrôle dont l'échec ne coûte rien n'est pas un contrôle.
+
+**v3** : les **19 exigences** passent par `exiger()`. Une seule violation ⇒ **code 1**. Et quatre
+contre-épreuves cassent volontairement un invariant, vérifiées à chaque reproduction :
+
+| contre-épreuve | exigence mise en défaut | code |
+|---|---|---|
+| `--contre-epreuve=causes` | G5 · aucune cause préexistante perdue | **1** |
+| `--contre-epreuve=table` | fixtures de la table H | **1** |
+| `--contre-epreuve=ids42` | les 42 identités sont exactement 42 | **1** |
+| `--contre-epreuve=bascules` | les bascules vont exclusivement vers « à confirmer » | **1** |
+
+`npm run mesure:t0b3a` les exécute **avant** de régénérer : si l'une passait au vert, tout le reste
+du dossier perdrait sa valeur.
+
+### P0-B · H contournait le contrat déjà construit
+
+`BreedRestriction` existe dans `packages/knowledge/src/breed-restrictions.ts` : action
+`allow | deny | warn | require`, cible de race, placements, conditions, et une **`SourcedQuote`
+obligatoire** — citation, langue BCP-47, type de source factuel, refus des domaines MyDogCanFly.
+Son propre commentaire nomme `rule_global_brachy_hold` comme le défaut fondateur.
+
+**Je ne l'avais pas cherché.** Je proposais d'ajouter un état concurrent dans `PlacementPolicy` —
+deux modèles pour un même fait. Pire : ma fixture « source auditée » n'avait ni citation ni langue,
+et `preuveAuditee` l'acceptait parce qu'elle vérifie **autre chose** (ni dérivée, ni auto-citée, ni
+non revue). Ce n'était pas une preuve brachycéphale au sens du contrat.
+
+**v3** : H consomme `BreedRestriction`, et rien d'autre. Chaque fixture est **validée par le
+contrat lui-même** — une source sans citation est désormais refusée à la construction.
+
+### P0-C · Les fixtures testaient une seconde implémentation
+
+Elles appelaient `brancheFx`, un clone de la table. Une inversion dans la vraie table H les aurait
+laissées vertes.
+
+**v3** : **une** fonction, `decisionH`, paramétrée par le référentiel. Simulation, fixtures et
+contre-épreuves l'appellent toutes — et **elle a immédiatement révélé un vrai défaut** : un golden
+retriever tombait en branche 4 et recevait une confirmation de race. Le filtre de périmètre vivait
+dans `appliquerH` ; il devait être dans la table, sinon la table est fausse dès qu'on l'appelle
+autrement.
+
+### P0-D · La conservation des causes n'était pas vérifiée par scénario
+
+La clé du journal était `airline#placement|cause` : une cause perdue sur un trajet pouvait être
+masquée par la même cause présente sur un autre trajet de la même compagnie.
+
+**v3** : l'inclusion est vérifiée **dans la transformation**, avec la clé complète du scénario.
+
+### Les P1
+
+- **dominance** : une fixture dédiée l'exerce — confirmation portant une cause, puis refus audité,
+  et la cause doit s'éteindre. La v2 l'annonçait « vérifiée » avec un compteur à zéro ;
+- **G2** : ta formulation littérale — « tout placement `denied` avant H reste `denied` » — est
+  **incompatible avec H** : les 147 placements *sont* refusés au statu quo, et les faire passer
+  « à confirmer » est exactement son objet. L'invariant juste porte sur le refus **structurel**,
+  celui que le moteur produit sans les 42. Il est doublé d'un second contrôle : tout refus levé
+  l'est **uniquement** parce que les 42 ont disparu ;
+- **`explain`** : l'erreur n'est plus avalée — `rapports_refuses === 0` est une exigence bloquante ;
+- **les 42 identités** sont verrouillées en nombre, en unicité et en nature.
+
+## La table de décision — sur `BreedRestriction`
+
+| branche | situation | statut |
+|---|---|---|
+| **9** | chien non ciblé (non brachycéphale) | **hors périmètre**, statut inchangé |
+| **1** | canal structurellement fermé | `denied` |
+| **2** | `deny` audité applicable | `denied` |
+| **5** | `require` audité applicable | `confirmation_required` (l'exigence est à satisfaire) |
+| **3** | `allow` audité applicable | statut général inchangé |
+| **4** | aucun fait audité applicable | `confirmation_required` (`breed_policy_unreviewed`) |
+
+`warn` — la recommandation IATA — **n'agit jamais sur le statut ni sur le score** : c'est le cas
+fondateur du contrat, et en faire un refus est ce qui a produit la règle globale.
+Précédence : **`deny` > `require` > `allow`** — en cas de sources contradictoires, on ne publie pas
+l'ouverture.
+
+Une restriction **conditionnelle** (`when`) demande un évaluateur de prédicat que cette simulation
+n'a pas : elle est **signalée et bloquante**, jamais ignorée en silence.
+
+**Le référentiel ne contient aujourd'hui aucune `BreedRestriction`.** Sous H, les 102 compagnies
+tombent donc toutes sur « aucun fait audité applicable ». C'est un état de notre documentation, pas
+un choix de simulation.
+
+### Les huit fixtures — toutes conformes
+
+branche 1 · branche 2 (`deny`) · branche 3 (`allow`) · branche 4 · branche 5 (`require`) ·
+`warn` IATA sans effet sur le statut · `deny` ciblant une autre race · chien non brachycéphale.
+Plus la fixture de **dominance**.
+
+## Les anciens P0 de la v1 — pour mémoire
 
 ### P0-1 · La v1 effaçait les causes existantes
 
@@ -32,8 +127,10 @@ Elle gardait les 41 règles en `warn` : invisibles comme sources, mais leur `con
 encore le score via `fired`. C'est exactement ce que T0-B3 a nommé — une auto-citation devenue preuve
 invisible.
 
-**v2** : les 42 sortent **du calcul**. L'état brachycéphale est porté par la **politique
-compagnie/canal**. L'avertissement IATA est conservé **à part** :
+**v2** : les 42 sortent **du calcul**. L'avertissement IATA est conservé **à part** :
+
+> La v2 portait alors l'état brachycéphale dans `PlacementPolicy`. **La v3 l'a abandonné** : c'était
+> un second modèle à côté de `BreedRestriction`, qui existait déjà. Voir P0-B.
 
 | | |
 |---|---|
@@ -73,7 +170,7 @@ interdiction ni autorisation brachycéphale auditée. Les déclarer « vérifié
 | **2 · aucun canal non proposé rouvert** | **0** violation |
 | **3 · aucune confirmation devenue message climatique** | **0** violation, sur **56 causes climatiques réellement observées** |
 | **4 · aucune auto-citation présentée comme preuve** | **0** violation (l'ancienne URL IATA en 404 est également surveillée) |
-| **5 · causes préexistantes conservées** | **452 → 1392, 0 perdue** — inclusion stricte vérifiée |
+| **5 · causes préexistantes conservées** | **0 perdue**, vérifié scénario par scénario dans la transformation |
 | **6 · dominance respectée** | un refus dur éteint toutes les causes : **0** cas où des causes survivent à un refus |
 | **7 · les 42 hors du calcul** | **0** occurrence dans `fired` |
 

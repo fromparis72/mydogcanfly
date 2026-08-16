@@ -99,6 +99,16 @@ dire(`1/4 référentiel conforme à la base ${MESURE_BASE_SHA.slice(0, 7)}`);
    absent du lockfile — c'est-à-dire exécuter un autre code que celui qu'on a verrouillé, en
    silence. Le risque avait déjà été écarté ailleurs dans le dépôt ; il était revenu ici. On lance
    donc le Node courant, avec le tsx installé localement. */
+/* Les CONTRE-ÉPREUVES d'abord : un simulateur dont l'échec ne coûte rien ne prouve rien. Chacune
+   casse volontairement un invariant et DOIT sortir en 1. Si l'une d'elles passait au vert, tout ce
+   que le dossier affiche par ailleurs perdrait sa valeur. */
+for (const c of ["causes", "table", "ids42", "bascules"]) {
+  const r = spawnSync(process.execPath, ["--import", "tsx",
+    `${DOSSIER}/outils/simuler-h.mjs`, `--contre-epreuve=${c}`], { encoding: "utf8" });
+  if (r.status === 0) echouer(`la contre-épreuve « ${c} » est passée au VERT — le simulateur ne sait pas échouer`);
+}
+dire(`1bis/4 les 4 contre-épreuves échouent bien (code 1)`);
+
 for (const o of OUTILS) {
   const args = [];
   const r = spawnSync(process.execPath, ["--import", "tsx", `${DOSSIER}/outils/${o}.mjs`, ...args],
