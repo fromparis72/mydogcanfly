@@ -1,5 +1,5 @@
 /**
- * T0-B3-a · SIMULATION de l'option H — v4-bis. Sans écrire une ligne de moteur.
+ * T0-B3-a · SIMULATION de l'option H — v4-ter. Sans écrire une ligne de moteur.
  *
  *   node --import tsx mesures/t0b3a-arbitrage-brachy/outils/simuler-h.mjs
  *   node --import tsx …/simuler-h.mjs --contre-epreuve=causes|table|ids42|bascules|validateur|multi
@@ -42,7 +42,7 @@ import { evaluate } from "../../../packages/engine/src/evaluate.ts";
 import { explain } from "../../../packages/engine/src/explain.ts";
 import { runFinder } from "../../../packages/engine/src/pipeline.ts";
 import { FinderRequest, makePlacementDecision, causeKey } from "../../../packages/engine/src/contracts.ts";
-import { BreedRestriction, validateBreedRestrictions } from "../../../packages/knowledge/src/breed-restrictions.ts";
+import { BreedRestriction, validateBreedRestrictions, SourcedQuote } from "../../../packages/knowledge/src/breed-restrictions.ts";
 import { z } from "zod";
 import { chargerReferentiel, estAutoCitee, ecrireJson } from "./lib-arbitrage.mjs";
 
@@ -274,7 +274,7 @@ const fusionner = (existantes, ajout) => {
 };
 
 const journal = { causes_perdues: [], dominance_jouee: 0, dominance_violee: [] };
-let preuvesSurnumeraires = 0;
+let preuvesAttendues = 0, preuvesTransportees = 0;
 const avisInvalides = [];
 
 /**
@@ -293,18 +293,19 @@ const SafetyAdvisory = z.strictObject({
   /** « global » ou une compagnie : la portée de l'avis, jamais devinée. */
   scope: z.union([z.literal("global"), z.string().regex(/^airline_[a-z0-9_]+$/)]),
   placements: z.array(z.enum(["cabin", "hold", "cargo"])).min(1),
-  detail: z.object({ en: z.string().min(1), fr: z.string().min(1),
-    es: z.string().min(1), pt: z.string().min(1) }).strict(),
-  source: z.strictObject({
-    url: z.string().url(),
-    quote: z.string().min(10),
-    quote_language: z.string().regex(/^[a-z]{2,3}(-[A-Za-z0-9]{2,8})*$/),
-  }),
+  /** DÉJÀ LOCALISÉ, comme `ReportItem.text`. La v4-bis publiait l'objet multilingue entier et
+     « vérifiait » le rendu en relisant `detail[locale]` dans ce même objet : le test ne prouvait
+     pas qu'un texte localisé était produit, il relisait son entrée. */
+  text: z.string().min(1),
+  criticality: z.enum(["critical", "high", "medium", "low"]),
+  /** LE CONTRAT CANONIQUE, pas une provenance appauvrie. La v4-bis redéfinissait localement
+     `url + quote + quote_language` : elle contournait `SourcedQuote`, qui garantit AUSSI le type de
+     source factuel, les dates, l'échéance de revue, la confiance, le relecteur, l'historique et le
+     refus des auto-citations. Recréer une preuve plus pauvre à côté d'un contrat existant est
+     exactement le défaut relevé en P0-B sur `BreedRestriction`. */
+  source: SourcedQuote,
 }).strict();
 
-/** LA CLÉ DE DÉDUPLICATION. Un avis GLOBAL vaut pour le rapport entier : l'émettre une fois par
- *  compagnie et par canal — 3 050 fois sur les grilles de la v4 — ne dit rien de ce que reçoit un
- *  visiteur. La clé est donc (restriction, portée) ; les placements sont fusionnés. */
 const cleAvis = (a) => `${a.restriction_ref}|${a.scope}`;
 
 /** Les avis de sécurité du scénario en cours. Ils sortent de la décision et sont RATTACHÉS au
@@ -312,8 +313,14 @@ const cleAvis = (a) => `${a.restriction_ref}|${a.scope}`;
  *  chemin que l'implémentation devra suivre — `BreedRestriction warn` → avis structuré → rapport
  *  public → rendu localisé. */
 let avisParCle = new Map();
+let langueDuScenario = "en";
+/** Les preuves de race, par (compagnie, canal) : une PAR restriction décisive. Le contrat actuel
+ *  n'en transporte qu'une — on le mesure au lieu de choisir en silence. */
+let preuvesDeRace = new Map();
 function appliquerH(decision, restrictions, cleScenario) {
   avisParCle = new Map();
+  preuvesDeRace = new Map();
+  langueDuScenario = decision.request.locale ?? "en";
   const chien = {
     breed_id: decision.request.dog.breed_id,
     brachycephalic: decision.request.dog.brachycephalic === true ||
@@ -330,8 +337,9 @@ function appliquerH(decision, restrictions, cleScenario) {
         if (deja) { if (!deja.placements.includes(d.placement)) deja.placements.push(d.placement); }
         else {
           avisParCle.set(cle, { restriction_ref: c.id, scope, placements: [d.placement],
-            detail: c.detail,
-            source: { url: c.source.url, quote: c.source.quote, quote_language: c.source.quote_language } });
+            /* Le texte est choisi ICI, dans la langue de la requête — pas laissé à l'appelant. */
+            text: c.detail?.[langueDuScenario] ?? c.detail?.en ?? "",
+            criticality: "medium", source: c.source });
         }
       }
       if (d.placement === "cabin") return d;
@@ -344,7 +352,19 @@ function appliquerH(decision, restrictions, cleScenario) {
       const causesAvant = d.status === "confirmation_required" ? (d.confirmation_causes ?? []) : [];
       const ref = `${cleScenario}|${a.airline_id}#${d.placement}`;
 
-      const preuve = r.decisive ? sourceDeDecision(r.decisive) : (d.source ?? null);
+      /* UNE PREUVE PAR RESTRICTION DÉCISIVE. `PlacementDecision.source` n'en porte qu'une : on
+         enregistre donc la liste complète à côté, et on COMPTE ce que le contrat actuel perd.
+         La v4-bis avait un compteur `preuvesSurnumeraires` mécaniquement nul — les branches `deny`
+         et `allow` sortaient avant lui, `require` en était exclue, et il n'était même pas publié. */
+      const preuvesRestriction = (r.decisives ?? []).map((x) => ({
+        restriction_ref: x.id, source: sourceDeDecision(x), quote: x.source.quote,
+        quote_language: x.source.quote_language }));
+      if (preuvesRestriction.length) {
+        preuvesDeRace.set(`${a.airline_id}#${d.placement}`, preuvesRestriction);
+        preuvesAttendues += preuvesRestriction.length;
+        preuvesTransportees += 1; // le contrat n'en porte qu'une
+      }
+      const preuve = preuvesRestriction.length ? preuvesRestriction[0].source : (d.source ?? null);
 
       if (r.statut === "denied") {
         /* DOMINANCE : un refus dur éteint toutes les causes. On COMPTE les cas où elle joue. */
@@ -366,13 +386,7 @@ function appliquerH(decision, restrictions, cleScenario) {
         : r.branche === 4
           ? [{ code: CAUSE_NON_REVUE, policy_ref: `${a.airline_id}#${d.placement}` }]
           : [];
-      /* PLUSIEURS PREUVES CONCORDANTES ne sont pas représentables : `PlacementDecision.source` ne
-         porte QU'UNE source. Deux `deny` concordants — la page générale et la page fret — perdent
-         donc l'une des deux. On COMPTE le cas plutôt que de choisir en silence ; c'est un besoin de
-         contrat (source au pluriel), pas une décision de simulation. */
-      if ((r.decisives?.length ?? 0) > 1 && r.branche !== 5) {
-        preuvesSurnumeraires += r.decisives.length - 1;
-      }
+
       let causesApres = fusionner(causesAvant, ajout);
       if (CONTRE === "causes") causesApres = ajout; // contre-épreuve : on écrase comme la v1
 
@@ -404,7 +418,7 @@ function rapportH(req, cle, restrictions = RESTRICTIONS_REELLES) {
     const rapport = explain(dec, req.locale);
     /* L'avis voyage À CÔTÉ du rapport, jamais dedans comme preuve — et il est VALIDÉ par son
        contrat avant d'y être attaché, sans quoi « contrat public » ne serait qu'un mot. */
-    rapport.avis_securite = [...avisParCle.values()]
+    rapport.safety_advisories = [...avisParCle.values()]
       .map((a) => ({ ...a, placements: [...a.placements].sort() }))
       .sort((x, y) => cleAvis(x).localeCompare(cleAvis(y)))
       .map((a) => {
@@ -412,6 +426,7 @@ function rapportH(req, cle, restrictions = RESTRICTIONS_REELLES) {
         if (!v.success) { avisInvalides.push(`${cleAvis(a)} — ${v.error.issues[0]?.message}`); return a; }
         return v.data;
       });
+    rapport.preuves_de_race = Object.fromEntries(preuvesDeRace);
     return rapport;
   } catch (e) {
     rapportsRefuses++;
@@ -705,7 +720,7 @@ function parcoursComplet(restrictions, placement = "hold") {
   const rapport = rapportH(req, `parcours|${placement}`, restrictions);
   const a = (rapport?.airlines ?? []).find((x) => x.airline_id === CIE_FX);
   const d = (a?.placement_decisions ?? []).find((x) => x.placement === placement) ?? null;
-  return { rapport, decision: d, avis: rapport?.avis_securite ?? [] };
+  return { rapport, decision: d, avis: rapport?.safety_advisories ?? [] };
 }
 
 const REQ_1 = { id: "brest_fx_req1", airline_id: CIE_FX, applies_to: { trait: "brachycephalic" },
@@ -777,15 +792,17 @@ const avisSurUnRapport = (() => {
     const req = FinderRequest.parse({ origin: "airport_cdg", destination: "airport_bkk",
       dog: { breed_id: "breed_pug", weight_kg: 8 }, placement: "any", date: `${_y}-01-15`, locale: loc });
     const r = rapportH(req, `avis|${loc}`);
-    const avis = r?.avis_securite ?? [];
-    parLangue[loc] = { nombre: avis.length, detail: avis[0]?.detail?.[loc] ?? null };
+    const avis = r?.safety_advisories ?? [];
+    /* On lit le `text` PRODUIT dans le rapport, pas `detail[locale]` de l'objet d'entrée : la
+       v4-bis relisait sa propre source et appelait cela « rendu quadrilingue ». */
+    parLangue[loc] = { nombre: avis.length, text: avis[0]?.text ?? null };
   }
   const req = FinderRequest.parse({ origin: "airport_cdg", destination: "airport_bkk",
     dog: { breed_id: "breed_pug", weight_kg: 8 }, placement: "any", date: `${_y}-01-15`, locale: "en" });
   const r = rapportH(req, "avis|reference");
-  const a0 = (r?.avis_securite ?? [])[0] ?? null;
-  return { attendu, obtenu: a0, nombre: (r?.avis_securite ?? []).length, par_langue: parLangue,
-    textes_distincts: new Set(Object.values(parLangue).map((x) => x.detail)).size };
+  const a0 = (r?.safety_advisories ?? [])[0] ?? null;
+  return { attendu, obtenu: a0, nombre: (r?.safety_advisories ?? []).length, par_langue: parLangue,
+    textes_distincts: new Set(Object.values(parLangue).map((x) => x.text)).size };
 })();
 
 exiger("un rapport précis porte EXACTEMENT un avis de sécurité", avisSurUnRapport.nombre === 1,
@@ -798,10 +815,48 @@ exiger("cet avis porte la référence, la portée, les trois placements, l'URL e
   avisSurUnRapport.obtenu?.source?.quote === avisSurUnRapport.attendu.quote,
   JSON.stringify(avisSurUnRapport.obtenu));
 exiger("l'avis est rendu dans les QUATRE langues, avec quatre textes distincts",
-  Object.values(avisSurUnRapport.par_langue).every((x) => x.nombre === 1 && x.detail) &&
+  Object.values(avisSurUnRapport.par_langue).every((x) => x.nombre === 1 && x.text) &&
   avisSurUnRapport.textes_distincts === 4, JSON.stringify(avisSurUnRapport.par_langue));
 exiger("tous les avis émis passent leur contrat SafetyAdvisory", avisInvalides.length === 0,
   avisInvalides.slice(0, 3).join(" | "));
+
+/* ---- CARDINALITÉ DES PREUVES, et la lacune du contrat, mesurées ------------------------------- */
+const cardinalitePreuves = (() => {
+  const multi = parcoursComplet(chargerRestrictions(CONTRE === "multi" ? [REQ_1] : [REQ_1, REQ_2]));
+  const cle = `${CIE_FX}#hold`;
+  const preuves = multi.rapport?.preuves_de_race?.[cle] ?? [];
+  const causes = (multi.decision?.confirmation_causes ?? []).filter((c) => c.code === CAUSE_EXIGENCE);
+  return {
+    causes: causes.length, preuves: preuves.length,
+    references_des_preuves: preuves.map((x) => x.restriction_ref).sort(),
+    portees_par_PlacementDecision_source: multi.decision?.source ? 1 : 0,
+    perdues_par_le_contrat_actuel: Math.max(0, preuves.length - (multi.decision?.source ? 1 : 0)),
+  };
+})();
+exiger("deux exigences produisent DEUX preuves distinctes à la sortie publique",
+  cardinalitePreuves.preuves === 2 && new Set(cardinalitePreuves.references_des_preuves).size === 2,
+  JSON.stringify(cardinalitePreuves));
+exiger("la perte de preuves du contrat actuel est mesurée, non nulle et publiée",
+  cardinalitePreuves.perdues_par_le_contrat_actuel === 1, JSON.stringify(cardinalitePreuves));
+
+/* LE CONTRAT MOTEUR NE DÉCLARE PAS ENCORE LE CHAMP. On le MESURE plutôt que de laisser croire que
+   `safety_advisories` serait déjà contractuel : la simulation l'attache, l'interface pourrait
+   l'ignorer sans que rien n'échoue. C'est le travail de moteur à venir, pas un acquis. */
+const contratsMoteur = readFileSync("packages/engine/src/contracts.ts", "utf8");
+const lacunesDuContrat = {
+  DecisionReport_declare_safety_advisories: /safety_advisories/.test(contratsMoteur),
+  SafetyAdvisory_exporte_par_le_moteur: /export (const|interface|type) SafetyAdvisory\b/.test(contratsMoteur),
+  ConfirmationCause_connait_breed_requirement: /breed_requirement/.test(contratsMoteur),
+  causeKey_integre_restriction_ref: /restriction_ref/.test(contratsMoteur),
+  /* CIBLÉ SUR LE BLOC, pas sur le fichier : un `/quote/` global tombait sur `fee_quote_only` et
+     rendait « vrai » une lacune bien réelle. Un contrôle imprécis qui répond oui est pire que pas
+     de contrôle. */
+  DecisionSource_porte_la_citation:
+    /export const DecisionSource = z\.object\(\{[\s\S]*?\}\)/.exec(contratsMoteur)?.[0]?.includes("quote:") ?? false,
+  PlacementDecision_porte_plusieurs_preuves: /sources:\s*z\.array/.test(contratsMoteur),
+};
+exiger("les lacunes du contrat moteur sont mesurées et TOUTES ouvertes (aucun acquis supposé)",
+  Object.values(lacunesDuContrat).every((v) => v === false), JSON.stringify(lacunesDuContrat));
 
 /* L'AVIS `warn` N'A AUCUN EFFET — prouvé en rejouant la grille publique SANS lui et en exigeant
    l'égalité stricte des verdicts, des scores et des statuts. La v3 l'affirmait ; ici on le mesure. */
@@ -842,7 +897,7 @@ exiger("le référentiel est intact après simulation", intact);
 const violations = exigences.filter((e) => !e.tenue);
 
 const doc = {
-  lot: "T0-B3-a — simulation de l'option H (v4-bis)",
+  lot: "T0-B3-a — simulation de l'option H (v4-ter)",
   nature: "SIMULATION — aucun code moteur écrit, aucun fichier de packages/ modifié",
   sceau, referentiel_intact: intact,
   contre_epreuve_active: CONTRE,
@@ -888,11 +943,20 @@ const doc = {
       "propreté générale qui n'est pas atteinte.",
   },
   sonde_de_contrat: sondeContrat,
+  cardinalite_des_preuves: cardinalitePreuves,
+  lacunes_du_contrat_moteur: lacunesDuContrat,
+  avis_sur_un_rapport_precis: avisSurUnRapport,
+  preuves: { attendues: preuvesAttendues, transportees_par_le_contrat_actuel: preuvesTransportees },
   diff_contre_le_statu_quo: { grille_publique: diffPublic, grille_brachycephale: brachy },
 };
-ecrireJson(`${DOSSIER}/option-h-simulee.json`, doc);
+/* UNE CONTRE-ÉPREUVE NE PUBLIE RIEN. Elle casse volontairement un invariant : si elle écrivait
+   l'artefact, elle laisserait derrière elle un dossier faux — et c'est ce qui vient d'arriver en
+   vérifiant la v4-ter à la main, l'artefact affichant les chiffres de `--contre-epreuve=multi`.
+   Le runner enchaîne contre-épreuves puis régénération, ce qui masquait le défaut. */
+if (!CONTRE) ecrireJson(`${DOSSIER}/option-h-simulee.json`, doc);
+else console.log(`  (contre-épreuve « ${CONTRE} » : l'artefact n'est PAS écrit)`);
 
-console.log(`simulation v4-bis écrite : ${DOSSIER}/option-h-simulee.json`);
+console.log(`simulation v4-ter écrite : ${DOSSIER}/option-h-simulee.json`);
 if (CONTRE) console.log(`  ⚠ CONTRE-ÉPREUVE ACTIVE : « ${CONTRE} »`);
 console.log(`\n  EXIGENCES : ${exigences.length - violations.length}/${exigences.length} tenues`);
 for (const v of violations) console.log(`    ✗ ${v.exigence}${v.detail ? ` — ${v.detail}` : ""}`);

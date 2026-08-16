@@ -1,10 +1,75 @@
-# Option H — conception et simulation · v4-bis
+# Option H — conception et simulation · v4-ter
 
 **Aucune ligne de moteur n'a été écrite.** Aucun fichier de `packages/` n'est modifié.
 
 ```
 node --import tsx mesures/t0b3a-arbitrage-brachy/outils/simuler-h.mjs
 ```
+
+## Les corrections de la v4-ter
+
+### P0-1 · Les preuves multiples étaient encore perdues — et le compteur était mort
+
+Deux `require` produisaient bien deux causes, mais **une seule preuve** descendait, celle de la
+première restriction. Et le compteur censé le détecter était **mécaniquement nul** : les branches
+`deny` et `allow` sortaient avant lui, `require` en était explicitement exclue, et il n'était même
+pas publié dans l'artefact.
+
+Désormais : **une preuve par restriction décisive**, enregistrée avec son `restriction_ref`, sa
+source, sa citation et sa langue. Et la perte du contrat actuel est **mesurée**, non supposée :
+
+| | |
+|---|---|
+| causes produites | **2** |
+| preuves produites | **2** — `brest_fx_req1`, `brest_fx_req2` |
+| portées par `PlacementDecision.source` | **1** |
+| **perdues par le contrat actuel** | **1** |
+
+La contre-épreuve `multi` exige deux exigences, deux causes **et deux preuves distinctes à la sortie
+publique**.
+
+### P0-2 · `SafetyAdvisory` était encore un modèle parallèle
+
+Le schéma local redéfinissait une provenance appauvrie — `url + quote + quote_language` — et
+contournait `SourcedQuote`, qui garantit **aussi** le type de source factuel, les dates, l'échéance
+de revue, la confiance, le relecteur, l'historique et le refus des auto-citations.
+
+C'était le défaut P0-B refait à l'identique, un niveau plus bas. `SafetyAdvisory` **compose**
+désormais `SourcedQuote`.
+
+### P0-3 · `safety_advisories` n'appartient pas encore au contrat moteur — et le dossier le dit
+
+La cible reste celle de la contre-revue : `SafetyAdvisory` exporté par le contrat moteur,
+`DecisionReport.safety_advisories` déclaré, texte déjà localisé, rendu DOM bloquant.
+
+**Mais ce sont des lignes de moteur, que le mandat interdit encore.** Plutôt que de laisser croire
+que le champ serait contractuel, le dossier **mesure les six lacunes** et exige qu'elles soient
+toutes ouvertes — aucun acquis supposé :
+
+| lacune | état mesuré |
+|---|---|
+| `DecisionReport` déclare `safety_advisories` | **non** |
+| `SafetyAdvisory` exporté par le moteur | **non** |
+| `ConfirmationCause` connaît `breed_requirement` | **non** |
+| `causeKey()` intègre `restriction_ref` | **non** |
+| `DecisionSource` porte la citation | **non** |
+| `PlacementDecision` porte plusieurs preuves | **non** |
+
+Le premier contrôle répondait « oui » à tort : un `/quote/` sur tout le fichier tombait sur
+`fee_quote_only`. Un contrôle imprécis qui répond oui est pire que pas de contrôle — il est
+maintenant ciblé sur le bloc `DecisionSource`.
+
+### P0 · Le test « quadrilingue » relisait son entrée
+
+Il lisait `detail[locale]` dans l'objet multilingue qu'il venait lui-même de fournir. Il lit
+désormais le **`text` produit dans le rapport**, choisi dans la langue de la requête : **4 textes
+distincts** sur 4 langues, sur un rapport précis portant **exactement 1** avis.
+
+### Hygiène · une contre-épreuve ne publie plus rien
+
+Découvert en vérifiant cette v4-ter à la main : lancer `--contre-epreuve=multi` **écrasait
+l'artefact** avec les chiffres du cas cassé. Le runner enchaînant contre-épreuves puis régénération,
+le défaut restait invisible. Une contre-épreuve n'écrit plus l'artefact.
 
 ## Les corrections de la v4-bis
 
@@ -23,9 +88,6 @@ simulation le mesure — 2 clés distinctes avec la clé de H, **1 seule** avec 
 de l'annoncer. Sixième contre-épreuve : `--contre-epreuve=multi` n'injecte qu'une exigence, et
 l'attente de deux causes **ne s'adapte pas** ; elle échoue en code 1.
 
-**Plusieurs preuves concordantes** pour plusieurs `deny` ou `allow` ne sont **pas représentables** :
-`PlacementDecision.source` ne porte qu'une source. Le cas est compté (`preuves_surnumeraires`) plutôt
-que tranché en silence — c'est un besoin de contrat, pas une décision de simulation.
 
 ### P0 · La preuve était contrôlée avant le parcours, donc jamais prouvée
 
@@ -51,11 +113,11 @@ l'y faire entrer — c'était le faux vert de la v4.
 Un champ librement attaché, qu'aucun contrat ne vérifiait et que l'interface pouvait ignorer sans
 que rien n'échoue. Désormais :
 
-- type strict **`SafetyAdvisory`** — `restriction_ref`, `scope`, `placements`, `detail` dans les
-  quatre langues, et une source portant **obligatoirement** citation et langue ;
+- type strict **`SafetyAdvisory`** — `restriction_ref`, `scope`, `placements`, `text` **déjà
+  localisé**, `criticality`, et une source qui est la **`SourcedQuote` canonique** ;
 - clé de déduplication `(restriction, portée)` : un avis global vaut pour le **rapport**, non par
-  compagnie et par canal. Les « 3 050 avis » de la v4 étaient un cumul d'exécutions internes, pas ce
-  que reçoit un visiteur ;
+  compagnie et par canal. Tout compteur cumulé d'appels internes est sans signification ici — la
+  seule mesure qui vaut est **un avis dédupliqué dans un rapport précis** ;
 - test sur un **rapport précis** : exactement **1** avis, référence, portée, placements, URL et
   citation exactes ;
 - rendu vérifié dans les **quatre langues**, quatre textes distincts ;
@@ -117,12 +179,12 @@ exactes**, et l'absence de source sur `breed_policy_unreviewed`.
 
 `RESTRICTIONS_REELLES` valait `[]` : l'avis n'existait qu'en fixture, et le parcours public en
 émettait **zéro**. La cible de H contient désormais l'entrée `brest_iata_snub_nose_hot_season` —
-`warn`, `hold`+`cargo`, URL vivante, phrase officielle complète, `detail` localisé dans les quatre
-langues.
+`warn`, **les trois placements**, URL vivante, phrase officielle complète, texte localisé dans les
+quatre langues.
 
 Le chemin est simulé de bout en bout : `BreedRestriction warn` → avis structuré → rattaché au
-rapport public (`avis_securite`), **jamais** dans les sources probantes. **3 050 avis émis** sur les
-grilles.
+rapport public (`safety_advisories`), **jamais** dans les sources probantes. La mesure qui compte :
+**exactement un avis dédupliqué** dans un rapport précis.
 
 Et l'absence d'effet n'est plus affirmée mais **mesurée** : la grille publique est rejouée sans
 l'avis, et l'égalité stricte des verdicts, scores et statuts est exigée — **0 écart**.
@@ -133,7 +195,7 @@ La recommandation reste formulée « en saison chaude », sans calendrier ni tem
 
 72 scénarios · 20 verdicts · 524 cartes · 940 placements · score exactement `[0, 2]` ·
 81 compagnies · 147 placements · 147 cibles `confirmation_required` et aucune autre ·
-56 causes climatiques. **38 exigences** au total, toutes bloquantes.
+56 causes climatiques. **41 exigences** au total, toutes bloquantes.
 
 ## Les quatre P0 de la v2, et ce qui les corrige
 
@@ -143,7 +205,7 @@ Il ne sortait en erreur que si le référentiel avait bougé. Des causes perdues
 une auto-citation détectée auraient été **écrites dans le JSON**, puis le processus serait sorti en
 0. Un contrôle dont l'échec ne coûte rien n'est pas un contrôle.
 
-**v3, étendue en v4 puis v4-bis** : les **38 exigences** passent par `exiger()`. Une seule violation ⇒ **code 1**. Et quatre
+**v3, étendue jusqu'en v4-ter** : les **41 exigences** passent par `exiger()`. Une seule violation ⇒ **code 1**. Et quatre
 contre-épreuves cassent volontairement un invariant, vérifiées à chaque reproduction :
 
 | contre-épreuve | exigence mise en défaut | code |

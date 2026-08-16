@@ -1,5 +1,5 @@
 {
- "lot": "T0-B3-a — simulation de l'option H (v4-bis)",
+ "lot": "T0-B3-a — simulation de l'option H (v4-ter)",
  "nature": "SIMULATION — aucun code moteur écrit, aucun fichier de packages/ modifié",
  "sceau": {
   "measurement_base_sha": "e2cf302ccf045c539ca450f23964bb7bf20af84c",
@@ -151,6 +151,21 @@
    "detail": ""
   },
   {
+   "exigence": "deux exigences produisent DEUX preuves distinctes à la sortie publique",
+   "tenue": true,
+   "detail": ""
+  },
+  {
+   "exigence": "la perte de preuves du contrat actuel est mesurée, non nulle et publiée",
+   "tenue": true,
+   "detail": ""
+  },
+  {
+   "exigence": "les lacunes du contrat moteur sont mesurées et TOUTES ouvertes (aucun acquis supposé)",
+   "tenue": true,
+   "detail": ""
+  },
+  {
    "exigence": "l'avertissement IATA `warn` ne change NI verdict NI score NI statut",
    "tenue": true,
    "detail": ""
@@ -228,11 +243,11 @@
  },
  "branches_toutes_appels_confondus": {
   "0": 0,
-  "1": 2809,
+  "1": 2832,
   "2": 2,
   "3": 0,
-  "4": 4309,
-  "5": 1,
+  "4": 4325,
+  "5": 2,
   "9": 0
  },
  "fixtures": [
@@ -413,6 +428,83 @@
  "sonde_de_contrat": {
   "cause_acceptee": false,
   "erreur": "["
+ },
+ "cardinalite_des_preuves": {
+  "causes": 2,
+  "preuves": 2,
+  "references_des_preuves": [
+   "brest_fx_req1",
+   "brest_fx_req2"
+  ],
+  "portees_par_PlacementDecision_source": 1,
+  "perdues_par_le_contrat_actuel": 1
+ },
+ "lacunes_du_contrat_moteur": {
+  "DecisionReport_declare_safety_advisories": false,
+  "SafetyAdvisory_exporte_par_le_moteur": false,
+  "ConfirmationCause_connait_breed_requirement": false,
+  "causeKey_integre_restriction_ref": false,
+  "DecisionSource_porte_la_citation": false,
+  "PlacementDecision_porte_plusieurs_preuves": false
+ },
+ "avis_sur_un_rapport_precis": {
+  "attendu": {
+   "restriction_ref": "brest_iata_snub_nose_hot_season",
+   "scope": "global",
+   "placements": [
+    "cabin",
+    "cargo",
+    "hold"
+   ],
+   "url": "https://www.iata.org/en/programs/cargo/live-animals/pets/",
+   "quote": "Transport of snub nose dogs, such as boxers, pugs, bulldogs and Pekinese, in hot season is not recommended."
+  },
+  "obtenu": {
+   "restriction_ref": "brest_iata_snub_nose_hot_season",
+   "scope": "global",
+   "placements": [
+    "cabin",
+    "cargo",
+    "hold"
+   ],
+   "text": "IATA advises against transporting snub-nosed dogs in hot season.",
+   "criticality": "medium",
+   "source": {
+    "url": "https://www.iata.org/en/programs/cargo/live-animals/pets/",
+    "source_type": "official_website",
+    "verified_date": "2026-08-16",
+    "review_due": "2027-02-12",
+    "confidence": 4,
+    "reviewer": "contre-revue Codex",
+    "history": [],
+    "quote": "Transport of snub nose dogs, such as boxers, pugs, bulldogs and Pekinese, in hot season is not recommended.",
+    "quote_language": "en"
+   }
+  },
+  "nombre": 1,
+  "par_langue": {
+   "en": {
+    "nombre": 1,
+    "text": "IATA advises against transporting snub-nosed dogs in hot season."
+   },
+   "fr": {
+    "nombre": 1,
+    "text": "L'IATA déconseille le transport des chiens au museau écrasé en saison chaude."
+   },
+   "es": {
+    "nombre": 1,
+    "text": "La IATA desaconseja transportar perros de hocico chato en temporada calurosa."
+   },
+   "pt": {
+    "nombre": 1,
+    "text": "A IATA desaconselha o transporte de cães de focinho achatado em época quente."
+   }
+  },
+  "textes_distincts": 4
+ },
+ "preuves": {
+  "attendues": 6,
+  "transportees_par_le_contrat_actuel": 4
  },
  "diff_contre_le_statu_quo": {
   "grille_publique": {
