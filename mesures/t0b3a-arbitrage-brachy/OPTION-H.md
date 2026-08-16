@@ -1,10 +1,76 @@
-# Option H — conception et simulation · v4
+# Option H — conception et simulation · v4-bis
 
 **Aucune ligne de moteur n'a été écrite.** Aucun fichier de `packages/` n'est modifié.
 
 ```
 node --import tsx mesures/t0b3a-arbitrage-brachy/outils/simuler-h.mjs
 ```
+
+## Les corrections de la v4-bis
+
+### P0 · Plusieurs exigences applicables étaient perdues
+
+`decisionH()` utilisait `find()` et ne gardait qu'une restriction décisive. Le contrat autorise
+pourtant plusieurs `require` sur un même canal — certificat vétérinaire **et** caisse renforcée.
+
+- une cause **par** `require` applicable, tri par identité pour un ordre total ;
+- `breed_requirement` porte `restriction_ref` **obligatoire** ;
+- la clé de déduplication de H intègre `restriction_ref`.
+
+**Et la clé du moteur ne suffit pas** : `causeKey()` ne connaît pas `breed_requirement` et retombe
+sur `code|policy_ref`. Deux exigences distinctes sur le même canal seraient **écrasées en une**. La
+simulation le mesure — 2 clés distinctes avec la clé de H, **1 seule** avec `causeKey()` — au lieu
+de l'annoncer. Sixième contre-épreuve : `--contre-epreuve=multi` n'injecte qu'une exigence, et
+l'attente de deux causes **ne s'adapte pas** ; elle échoue en code 1.
+
+**Plusieurs preuves concordantes** pour plusieurs `deny` ou `allow` ne sont **pas représentables** :
+`PlacementDecision.source` ne porte qu'une source. Le cas est compté (`preuves_surnumeraires`) plutôt
+que tranché en silence — c'est un besoin de contrat, pas une décision de simulation.
+
+### P0 · La preuve était contrôlée avant le parcours, donc jamais prouvée
+
+Les fixtures lisaient la citation dans `r.decisive.source`, l'objet d'**entrée**. Elles annonçaient
+« citation conforme » sans que cette citation atteigne jamais le rapport.
+
+Elles appellent désormais le parcours complet — `decisionH` → `appliquerH` → `explain` → **rapport
+public** — et contrôlent la source **là où le visiteur la verrait**. Trois cas structurellement
+distingués :
+
+| cas | preuve dans le rapport |
+|---|---|
+| `deny` / `allow` / `require` audité | la source **de la restriction**, pas celle du canal |
+| aucun fait audité | **aucune** preuve de race sur la cause |
+| politique générale du canal | inchangée, à sa place |
+
+**Constat de contrat, mesuré** : `DecisionSource` est `.strict()` et ne porte **ni citation ni
+langue**. La phrase officielle **ne peut pas** atteindre le rapport public par ce chemin. Il faudra
+l'y faire entrer — c'était le faux vert de la v4.
+
+### P0 · `avis_securite` est devenu un contrat
+
+Un champ librement attaché, qu'aucun contrat ne vérifiait et que l'interface pouvait ignorer sans
+que rien n'échoue. Désormais :
+
+- type strict **`SafetyAdvisory`** — `restriction_ref`, `scope`, `placements`, `detail` dans les
+  quatre langues, et une source portant **obligatoirement** citation et langue ;
+- clé de déduplication `(restriction, portée)` : un avis global vaut pour le **rapport**, non par
+  compagnie et par canal. Les « 3 050 avis » de la v4 étaient un cumul d'exécutions internes, pas ce
+  que reçoit un visiteur ;
+- test sur un **rapport précis** : exactement **1** avis, référence, portée, placements, URL et
+  citation exactes ;
+- rendu vérifié dans les **quatre langues**, quatre textes distincts ;
+- absence d'effet **mesurée** : grille rejouée sans l'avis, 0 écart de verdict, de score, de statut.
+
+**Deux corrections de fond sur la source IATA** :
+
+- **les trois placements**, pas `hold`+`cargo`. La page ne limite pas son conseil à la soute et au
+  fret — elle traite aussi de la cabine. Restreindre l'avis reconduisait le cadrage de l'**ancienne
+  règle**, pas ce que la source dit ;
+- **`official_website`**, pas `regulation` : c'est une page de conseils aux voyageurs, pas le texte
+  des Live Animals Regulations. La classer en règlement lui prêterait une force qu'elle n'a pas.
+
+Effet de bord attrapé au passage : mon raccourci « la cabine n'est jamais touchée » supprimait aussi
+la **collecte** de l'avis en cabine. Le statut et l'avis sont maintenant deux chemins distincts.
 
 ## Les corrections de la v4
 
@@ -67,7 +133,7 @@ La recommandation reste formulée « en saison chaude », sans calendrier ni tem
 
 72 scénarios · 20 verdicts · 524 cartes · 940 placements · score exactement `[0, 2]` ·
 81 compagnies · 147 placements · 147 cibles `confirmation_required` et aucune autre ·
-56 causes climatiques. **31 exigences** au total, toutes bloquantes.
+56 causes climatiques. **38 exigences** au total, toutes bloquantes.
 
 ## Les quatre P0 de la v2, et ce qui les corrige
 
@@ -77,7 +143,7 @@ Il ne sortait en erreur que si le référentiel avait bougé. Des causes perdues
 une auto-citation détectée auraient été **écrites dans le JSON**, puis le processus serait sorti en
 0. Un contrôle dont l'échec ne coûte rien n'est pas un contrôle.
 
-**v3, étendue en v4** : les **31 exigences** passent par `exiger()`. Une seule violation ⇒ **code 1**. Et quatre
+**v3, étendue en v4 puis v4-bis** : les **38 exigences** passent par `exiger()`. Une seule violation ⇒ **code 1**. Et quatre
 contre-épreuves cassent volontairement un invariant, vérifiées à chaque reproduction :
 
 | contre-épreuve | exigence mise en défaut | code |
@@ -87,6 +153,7 @@ contre-épreuves cassent volontairement un invariant, vérifiées à chaque repr
 | `--contre-epreuve=ids42` | les 42 identités sont exactement 42 | **1** |
 | `--contre-epreuve=bascules` | les bascules vont exclusivement vers « à confirmer » | **1** |
 | `--contre-epreuve=validateur` | `allow` + `deny` — le chargement devient impossible | **1** |
+| `--contre-epreuve=multi` | une seule exigence là où deux sont attendues | **1** |
 
 `npm run mesure:t0b3a` les exécute **avant** de régénérer : si l'une passait au vert, tout le reste
 du dossier perdrait sa valeur.
@@ -217,10 +284,6 @@ brachycéphale est générale.
 
 | branche | situation | statut | exercée par les données réelles | fixture |
 |---|---|---|---|---|
-| **1** | canal structurellement fermé | `denied` | **1 420** | ✅ conforme |
-| **2** | preuve auditée : `brachy_allowed = false` | `denied` | **0** | ✅ conforme |
-| **3** | preuve auditée : `brachy_allowed = true` | inchangé | **0** | ✅ conforme |
-| **4** | politique brachycéphale non revérifiée | `confirmation_required` + cause fusionnée | **2 110** | ✅ conforme |
 
 Les branches 2 et 3 ne sont exercées par **aucune donnée réelle** — le référentiel ne contient ni
 interdiction ni autorisation brachycéphale auditée. Les déclarer « vérifiées » sans fixtures aurait
