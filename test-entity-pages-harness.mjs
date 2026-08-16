@@ -174,13 +174,30 @@ for (const [langue, p] of LANGUES) {
      « France : trouver un vol » devient « Tu envisageais Air France ? », et le bouton de
      réservation, caché au rendu, apparaît avec l'URL de la compagnie. */
   const rel = path.join(p, "countries", SENTINELLE_PAYS.slug, "index.html");
-  const statique = new JSDOM(lire(rel)).window.document.getElementById("conav-title")?.textContent ?? "";
+  const domStatique = new JSDOM(lire(rel));
+  const statique = domStatique.window.document.getElementById("conav-title")?.textContent ?? "";
+  domStatique.window.close();
   const { dom, doc, erreurs } = await chargerCharge(rel, `https://mydogcanfly.com/${p}countries/${SENTINELLE_PAYS.slug}/#?via=airline_air_france`);
   check(`${langue} : zéro erreur console sur la page pays`, erreurs.length === 0,
     erreurs.map((e) => e.split("\n")[0]).join(" | ").slice(0, 180));
   const titre = doc.getElementById("conav-title")?.textContent ?? "";
-  check(`${langue} : CountryOnward — « via=airline_air_france » RÉÉCRIT le titre`,
-    titre !== "" && titre !== statique && /Air France/.test(titre), `statique « ${statique} » · après « ${titre} »`);
+  /* Le texte EXACT, langue par langue. Chercher « Air France » ne testait que la substitution du
+     nom : la faute d'accord « Tu envisagiez », relevée au contre-test navigateur du 16/08/2026,
+     passait au vert et pouvait revenir.
+
+     Les trois premières formes sont écrites en clair dans `CountryOnward` (`T(en, fr, es)`) ; la
+     portugaise vient de la table `ptInline`, superposée par `inlineT`. Les quatre sont figées ici
+     à leur texte EXACT — c'est le patron déjà retenu pour les badges d'itinéraire dans
+     `test-flightfinder-harness.cjs` : vérifier que deux libellés « diffèrent » laisserait passer
+     une clé manquante retombant sur l'anglais, ou deux langues inversées. */
+  const TITRE_VIA = {
+    en: "Considering Air France?",
+    fr: "Tu envisageais Air France ?",
+    es: "¿Estás considerando Air France?",
+    pt: "Pensando na Air France?",
+  };
+  check(`${langue} : CountryOnward — le titre devient EXACTEMENT « ${TITRE_VIA[langue]} »`,
+    titre === TITRE_VIA[langue] && titre !== statique, `statique « ${statique} » · après « ${titre} »`);
   const book = doc.getElementById("conav-book");
   check(`${langue} : CountryOnward — le bouton de réservation devient visible, avec son URL`,
     book !== null && book.hidden === false && /^https?:\/\//.test(book.getAttribute("href") || ""),
@@ -363,37 +380,83 @@ console.log(`\n=== 5. Les ${CIBLE.length} canaux contradictoires × 4 langues : 
   check("78 canaux contradictoires sur 71 fiches, relus des fiches et du contrat runtime",
     CONTRADICTOIRES.length === 78 && new Set(CONTRADICTOIRES.map((c) => c.slug)).size === 71,
     `${CONTRADICTOIRES.length} canaux · ${new Set(CONTRADICTOIRES.map((c) => c.slug)).size} fiches`);
-  let pagesLues = 0, blocsVerifies = 0;
-  const absentes = [], anomalies = [];
+
+  /* LA LECTURE SE FAIT PAR LOTS, DANS DES PROCESSUS COURTS (CI du 16/08/2026, run 31 sur main).
+   *
+   * Ouvrir 284 fenêtres JSDOM dans ce processus l'a tué en « heap out of memory » au premier
+   * passage complet en CI. Fermer chaque fenêtre est indispensable mais insuffisant : la mesure
+   * donne ~5 Mo retenus PAR PAGE après `close()` ET ramasse-miettes forcé, et V8 meurt plutôt que
+   * de les reprendre sous une limite basse. La fuite est dans JSDOM ; ce qui la ferme, c'est la
+   * fin du processus. Voir `test-lib/verifier-blocs-entites.mjs` pour les trois mesures.
+   *
+   * Chaque lot tourne donc sous une limite de tas BASSE : elle est le contrôle, pas un confort.
+   * Un lot qui grossirait au-delà de ce que sa taille justifie meurt, et son échec est lu ici. */
+  const TAILLE_LOT = 40;
+  const HEAP_LOT_MO = 512;
+  const taches = [];
   for (const slug of FICHES_CIBLE) {
     for (const [langue, p] of LANGUES) {
-      const rel = path.join(p, "airlines", slug, "index.html");
-      if (!existe(rel)) { absentes.push(rel); continue; }
-      pagesLues++;
-      const doc = new JSDOM(lire(rel)).window.document;
-      for (const c of CIBLE.filter((x) => x.slug === slug)) {
-        const blocs = doc.querySelectorAll(`[data-placement="${c.placement}"]`);
-        if (blocs.length !== 1) { anomalies.push(`${rel}#${c.placement} : ${blocs.length} bloc(s)`); continue; }
-        const statut = blocs[0].getAttribute("data-status");
-        if (statut !== c.statut) { anomalies.push(`${rel}#${c.placement} : data-status=${statut} ≠ ${c.statut}`); continue; }
-        const pastille = blocs[0].querySelector(".t .pill")?.textContent?.trim() ?? null;
-        if (pastille !== libelle(langue, c.statut)) {
-          anomalies.push(`${rel}#${c.placement} : pastille « ${pastille} » ≠ « ${libelle(langue, c.statut)} »`);
-          continue;
-        }
-        blocsVerifies++;
-      }
+      taches.push({
+        rel: path.join(p, "airlines", slug, "index.html"),
+        attendus: CIBLE.filter((x) => x.slug === slug)
+          .map((c) => ({ placement: c.placement, statut: c.statut, libelle: libelle(langue, c.statut) })),
+      });
     }
   }
+
+  const require_ = createRequire(import.meta.url);
+  const { spawnSync } = require_("node:child_process");
+  const os = require_("node:os");
+  const total = { pagesLues: 0, blocsVerifies: 0, absentes: [], anomalies: [], picMo: 0 };
+  const lotsMorts = [];
+  /* Un répertoire temporaire PROPRE à cette exécution. Un nom fixe (« mdcf-lot-0.json ») entrait
+     en collision entre deux exécutions simultanées — la CI et une session locale, deux portées
+     lancées côte à côte — et l'une lisait le lot de l'autre. `mkdtempSync` rend la collision
+     impossible plutôt qu'improbable. */
+  const dossier = fs.mkdtempSync(path.join(os.tmpdir(), "mdcf-lots-"));
+  try {
+  for (let i = 0; i < taches.length; i += TAILLE_LOT) {
+    const lot = taches.slice(i, i + TAILLE_LOT);
+    const fichier = path.join(dossier, `lot-${i}.json`);
+    fs.writeFileSync(fichier, JSON.stringify({ dist: DIST, taches: lot }));
+    const r = spawnSync(process.execPath, [`--max-old-space-size=${HEAP_LOT_MO}`,
+      path.join(ROOT, "test-lib", "verifier-blocs-entites.mjs"), fichier], { encoding: "utf8", maxBuffer: 32 * 1024 * 1024 });
+    if (r.status !== 0) {
+      lotsMorts.push(`lot ${i / TAILLE_LOT} (${lot.length} pages) : code ${r.status} — ${(r.stderr || "").split("\n").find((l) => /heap|Error/i.test(l)) ?? "sortie vide"}`);
+      continue;
+    }
+    const res = JSON.parse(r.stdout);
+    total.pagesLues += res.pagesLues;
+    total.blocsVerifies += res.blocsVerifies;
+    total.absentes.push(...res.absentes);
+    total.anomalies.push(...res.anomalies);
+    total.picMo = Math.max(total.picMo, res.picMo);
+  }
+  } finally {
+    /* Le ménage a lieu même si une assertion lève : un répertoire temporaire abandonné à chaque
+       exécution finit par peser, et surtout il masque la prochaine collision. */
+    fs.rmSync(dossier, { recursive: true, force: true });
+  }
+
+  /* Un lot mort ne doit JAMAIS se lire comme « moins de pages à vérifier » : c'est un échec. */
+  check(`les ${Math.ceil(taches.length / TAILLE_LOT)} lots ont tous abouti sous ${HEAP_LOT_MO} Mo de tas`,
+    lotsMorts.length === 0, lotsMorts.slice(0, 3).join(" | "));
+  check(`pic mémoire d'un lot : ${total.picMo} Mo (plafond ${HEAP_LOT_MO} Mo)`,
+    total.picMo > 0 && total.picMo < HEAP_LOT_MO, `${total.picMo} Mo`);
+
   const pagesAttendues = FICHES_CIBLE.length * 4, blocsAttendus = CIBLE.length * 4;
   check(`${pagesAttendues} pages localisées RÉELLEMENT lues, aucune absente`,
-    pagesLues === pagesAttendues && absentes.length === 0,
-    `lues ${pagesLues} · absentes ${absentes.length}${absentes[0] ? " — ex. " + absentes[0] : ""}`);
+    total.pagesLues === pagesAttendues && total.absentes.length === 0,
+    `lues ${total.pagesLues} · absentes ${total.absentes.length}${total.absentes[0] ? " — ex. " + total.absentes[0] : ""}`);
   check(`${blocsAttendus} blocs vérifiés (statut technique ET libellé publié), aucune anomalie`,
-    blocsVerifies === blocsAttendus && anomalies.length === 0,
-    `vérifiés ${blocsVerifies}/${blocsAttendus}${anomalies.length ? " — " + anomalies.slice(0, 3).join(" | ") : ""}`);
+    total.blocsVerifies === blocsAttendus && total.anomalies.length === 0,
+    `vérifiés ${total.blocsVerifies}/${blocsAttendus}${total.anomalies.length ? " — " + total.anomalies.slice(0, 3).join(" | ") : ""}`);
   /* Une cible vide passerait tous les contrôles ci-dessus sans rien prouver. */
   check("la cible de cette portée n'est pas vide", CIBLE.length > 0, String(CIBLE.length));
+  /* Et le PROCESSUS PRINCIPAL, lui, doit rester léger : c'est la preuve que la lecture des pages
+     ne laisse plus rien derrière elle ici. */
+  const picParent = Math.round(process.memoryUsage().heapUsed / 1048576);
+  check(`le processus principal reste sous 400 Mo (${picParent} Mo)`, picParent < 400, `${picParent} Mo`);
 }
 
 console.log(`\n${pass} OK, ${fail} FAIL`);
