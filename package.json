@@ -33,7 +33,8 @@
     "release": "node packages/knowledge/scripts/lib/require-node.mjs \"le déploiement de production (release)\" && npm run build:prod && npm run verify:index && npx wrangler pages deploy packages/ui/dist --project-name=mydogcanfly-v2-preview --branch=main --commit-dirty=true",
     "typecheck": "npm -w @mydogcanfly/knowledge run typecheck && npm -w @mydogcanfly/engine run typecheck && npm -w @mydogcanfly/workers run typecheck",
     "audit": "node packages/knowledge/scripts/audit-site.mjs",
-    "test:ingest": "node test-ingest-check.mjs"
+    "test:ingest": "node test-ingest-check.mjs",
+    "mesure:t0b3": "node mesures/t0b3-regles-autosourcees/outils/reproduire.mjs"
   },
   "devDependencies": {
     "@types/node": "^22.5.0",

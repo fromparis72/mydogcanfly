@@ -1,0 +1,4857 @@
+{
+ "lot": "T0-B3 — mesure des règles auto-sourcées",
+ "nature": "MESURE — aucune correction, aucune suppression, aucun retrait appliqué",
+ "sceau": {
+  "measurement_base_sha": "ca254bf973bbab89f06073bdc36716f0cdb58660",
+  "raw_rules_sha256": "a80118fac2cf4344f89521c1703c834c36d8d4d42b2dfb80dd858a4d95cec422",
+  "raw_objects_sha256": "dca1706134b188fa569f7172fa2ccfcff8c81b131e554326cb5d1c47b65ffef0"
+ },
+ "definition": "Confrontation INTERNE au référentiel. « officielle_confirmante » signifie : une politique de la même entité, sur le même fait, dont la source passe preuveAuditee (non auto-citée, non dérivée de la fiche, non marquée non revérifiée), dit la même chose. Aucune page web n'a été consultée : ce dossier ne remplace pas la revérification en ligne, il dit où elle manque.",
+ "totaux": {
+  "non_revue": 42,
+  "officielle_contradictoire": 0,
+  "officielle_confirmante": 3,
+  "auto_citation_seule": 10,
+  "officielle_indisponible": 116
+ },
+ "anomalies": [],
+ "classes": {
+  "non_revue": [
+   "rule_aegean_brachy_hold",
+   "rule_aeromexico_brachy_hold",
+   "rule_air_caraibes_brachy_hold",
+   "rule_air_europa_brachy_hold",
+   "rule_air_india_brachy_hold",
+   "rule_air_mauritius_brachy_hold",
+   "rule_air_tahiti_nui_brachy_hold",
+   "rule_air_transat_brachy_hold",
+   "rule_alaska_brachy_hold",
+   "rule_ana_brachy_hold",
+   "rule_austrian_brachy_hold",
+   "rule_avianca_brachy_hold",
+   "rule_brussels_brachy_hold",
+   "rule_china_airlines_brachy_hold",
+   "rule_copa_brachy_hold",
+   "rule_corsair_brachy_hold",
+   "rule_egyptair_brachy_hold",
+   "rule_emirates_brachy_hold",
+   "rule_ethiopian_brachy_hold",
+   "rule_etihad_brachy_hold",
+   "rule_eva_air_brachy_hold",
+   "rule_finnair_brachy_hold",
+   "rule_french_bee_brachy_hold",
+   "rule_iberia_express_brachy_hold",
+   "rule_jal_brachy_hold",
+   "rule_korean_air_brachy_hold",
+   "rule_latam_brachy_hold",
+   "rule_lot_brachy_hold",
+   "rule_norwegian_brachy_hold",
+   "rule_philippine_brachy_hold",
+   "rule_qatar_airways_brachy_hold",
+   "rule_royal_air_maroc_brachy_hold",
+   "rule_sas_brachy_hold",
+   "rule_singapore_airlines_brachy_hold",
+   "rule_swiss_brachy_hold",
+   "rule_tap_brachy_hold",
+   "rule_vietnam_airlines_brachy_hold",
+   "rule_air_europa_hold_weight",
+   "rule_air_transat_hold_weight",
+   "rule_alaska_hold_weight",
+   "rule_brussels_hold_weight",
+   "rule_tap_hold_weight"
+  ],
+  "officielle_contradictoire": [],
+  "officielle_confirmante": [
+   "rule_american_no_hold",
+   "rule_delta_no_hold",
+   "rule_united_no_hold"
+  ],
+  "auto_citation_seule": [
+   "rule_thai_airways_brachy_hold",
+   "rule_westjet_brachy_hold",
+   "rule_american_cabin_weight",
+   "rule_delta_cabin_weight",
+   "rule_united_cabin_weight",
+   "rule_air_france_hold_weight",
+   "rule_iberia_hold_weight",
+   "rule_klm_hold_weight",
+   "rule_thai_airways_hold_weight",
+   "rule_westjet_hold_weight"
+  ],
+  "officielle_indisponible": [
+   "rule_ita_airways_brachy_hold",
+   "rule_transavia_brachy_hold",
+   "rule_aegean_cabin_weight",
+   "rule_aeromexico_cabin_weight",
+   "rule_air_algerie_cabin_weight",
+   "rule_air_caraibes_cabin_weight",
+   "rule_air_europa_cabin_weight",
+   "rule_air_india_cabin_weight",
+   "rule_air_tahiti_nui_cabin_weight",
+   "rule_air_transat_cabin_weight",
+   "rule_alaska_cabin_weight",
+   "rule_austrian_cabin_weight",
+   "rule_avianca_cabin_weight",
+   "rule_brussels_cabin_weight",
+   "rule_copa_cabin_weight",
+   "rule_corsair_cabin_weight",
+   "rule_egyptair_cabin_weight",
+   "rule_ethiopian_cabin_weight",
+   "rule_etihad_cabin_weight",
+   "rule_eurowings_cabin_weight",
+   "rule_finnair_cabin_weight",
+   "rule_french_bee_cabin_weight",
+   "rule_iberia_express_cabin_weight",
+   "rule_ita_airways_cabin_weight",
+   "rule_jetblue_cabin_weight",
+   "rule_korean_air_cabin_weight",
+   "rule_latam_cabin_weight",
+   "rule_lot_cabin_weight",
+   "rule_norwegian_cabin_weight",
+   "rule_philippine_cabin_weight",
+   "rule_royal_air_maroc_cabin_weight",
+   "rule_sas_cabin_weight",
+   "rule_swiss_cabin_weight",
+   "rule_tap_cabin_weight",
+   "rule_transavia_cabin_weight",
+   "rule_tunisair_cabin_weight",
+   "rule_vietnam_airlines_cabin_weight",
+   "rule_volotea_cabin_weight",
+   "rule_vueling_cabin_weight",
+   "rule_aegean_hold_weight",
+   "rule_aeromexico_hold_weight",
+   "rule_air_algerie_hold_weight",
+   "rule_air_caraibes_hold_weight",
+   "rule_air_india_hold_weight",
+   "rule_ana_hold_weight",
+   "rule_avianca_hold_weight",
+   "rule_china_airlines_hold_weight",
+   "rule_corsair_hold_weight",
+   "rule_ethiopian_hold_weight",
+   "rule_eva_air_hold_weight",
+   "rule_finnair_hold_weight",
+   "rule_french_bee_hold_weight",
+   "rule_ita_airways_hold_weight",
+   "rule_jal_hold_weight",
+   "rule_korean_air_hold_weight",
+   "rule_latam_hold_weight",
+   "rule_norwegian_hold_weight",
+   "rule_philippine_hold_weight",
+   "rule_qatar_airways_hold_weight",
+   "rule_royal_air_maroc_hold_weight",
+   "rule_sas_hold_weight",
+   "rule_singapore_airlines_hold_weight",
+   "rule_vietnam_airlines_hold_weight",
+   "rule_am_import",
+   "rule_ao_import",
+   "rule_az_import",
+   "rule_ba_import",
+   "rule_bd_import",
+   "rule_bf_import",
+   "rule_bj_import",
+   "rule_bo_import",
+   "rule_by_import",
+   "rule_cd_import",
+   "rule_cg_import",
+   "rule_cm_import",
+   "rule_cv_import",
+   "rule_dj_import",
+   "rule_ga_import",
+   "rule_gm_import",
+   "rule_gn_import",
+   "rule_gt_import",
+   "rule_hn_import",
+   "rule_iq_import",
+   "rule_ir_import",
+   "rule_kh_import",
+   "rule_kz_import",
+   "rule_md_import",
+   "rule_mk_import",
+   "rule_ml_import",
+   "rule_mm_import",
+   "rule_mn_import",
+   "rule_mr_import",
+   "rule_mz_import",
+   "rule_ne_import",
+   "rule_ni_import",
+   "rule_pk_import",
+   "rule_py_import",
+   "rule_rw_import",
+   "rule_sl_import",
+   "rule_sv_import",
+   "rule_td_import",
+   "rule_tg_import",
+   "rule_tt_import",
+   "rule_tz_import",
+   "rule_ug_import",
+   "rule_ve_import",
+   "rule_xk_import",
+   "rule_air_tahiti_nui_hold_deny",
+   "rule_cathay_pacific_hold_weight",
+   "rule_copa_hold_deny",
+   "rule_etihad_hold_deny",
+   "rule_eurowings_cabin_only",
+   "rule_jetblue_cabin_only",
+   "rule_philippine_cabin_deny",
+   "rule_volotea_cabin_only",
+   "rule_vueling_cabin_only"
+  ]
+ },
+ "regles": [
+  {
+   "id": "rule_aegean_brachy_hold",
+   "categorie": "breed_ban",
+   "criticite": "critical",
+   "portee": {
+    "type": "airline",
+    "id": "airline_aegean",
+    "nom": "Aegean Airlines"
+   },
+   "classe": "non_revue",
+   "placements_concernes": [
+    "hold",
+    "cargo"
+   ],
+   "examens": [
+    {
+     "placement": "hold",
+     "politique_presente": true,
+     "non_revue": false,
+     "preuve_auditee": null,
+     "confrontation": {
+      "verdict": "sans_preuve",
+      "detail": "source non auditée"
+     }
+    },
+    {
+     "placement": "cargo",
+     "politique_presente": true,
+     "non_revue": true,
+     "preuve_auditee": null,
+     "confrontation": {
+      "verdict": "sans_preuve",
+      "detail": "source non auditée"
+     }
+    }
+   ]
+  },
+  {
+   "id": "rule_aeromexico_brachy_hold",
+   "categorie": "breed_ban",
+   "criticite": "critical",
+   "portee": {
+    "type": "airline",
+    "id": "airline_aeromexico",
+    "nom": "Aeromexico"
+   },
+   "classe": "non_revue",
+   "placements_concernes": [
+    "hold",
+    "cargo"
+   ],
+   "examens": [
+    {
+     "placement": "hold",
+     "politique_presente": true,
+     "non_revue": false,
+     "preuve_auditee": null,
+     "confrontation": {
+      "verdict": "sans_preuve",
+      "detail": "source non auditée"
+     }
+    },
+    {
+     "placement": "cargo",
+     "politique_presente": true,
+     "non_revue": true,
+     "preuve_auditee": null,
+     "confrontation": {
+      "verdict": "sans_preuve",
+      "detail": "source non auditée"
+     }
+    }
+   ]
+  },
+  {
+   "id": "rule_air_caraibes_brachy_hold",
+   "categorie": "breed_ban",
+   "criticite": "critical",
+   "portee": {
+    "type": "airline",
+    "id": "airline_air_caraibes",
+    "nom": "Air Caraïbes"
+   },
+   "classe": "non_revue",
+   "placements_concernes": [
+    "hold",
+    "cargo"
+   ],
+   "examens": [
+    {
+     "placement": "hold",
+     "politique_presente": true,
+     "non_revue": false,
+     "preuve_auditee": null,
+     "confrontation": {
+      "verdict": "sans_preuve",
+      "detail": "source non auditée"
+     }
+    },
+    {
+     "placement": "cargo",
+     "politique_presente": true,
+     "non_revue": true,
+     "preuve_auditee": null,
+     "confrontation": {
+      "verdict": "sans_preuve",
+      "detail": "source non auditée"
+     }
+    }
+   ]
+  },
+  {
+   "id": "rule_air_europa_brachy_hold",
+   "categorie": "breed_ban",
+   "criticite": "critical",
+   "portee": {
+    "type": "airline",
+    "id": "airline_air_europa",
+    "nom": "Air Europa"
+   },
+   "classe": "non_revue",
+   "placements_concernes": [
+    "hold",
+    "cargo"
+   ],
+   "examens": [
+    {
+     "placement": "hold",
+     "politique_presente": true,
+     "non_revue": false,
+     "preuve_auditee": null,
+     "confrontation": {
+      "verdict": "sans_preuve",
+      "detail": "source non auditée"
+     }
+    },
+    {
+     "placement": "cargo",
+     "politique_presente": true,
+     "non_revue": true,
+     "preuve_auditee": null,
+     "confrontation": {
+      "verdict": "sans_preuve",
+      "detail": "source non auditée"
+     }
+    }
+   ]
+  },
+  {
+   "id": "rule_air_india_brachy_hold",
+   "categorie": "breed_ban",
+   "criticite": "critical",
+   "portee": {
+    "type": "airline",
+    "id": "airline_air_india",
+    "nom": "Air India"
+   },
+   "classe": "non_revue",
+   "placements_concernes": [
+    "hold",
+    "cargo"
+   ],
+   "examens": [
+    {
+     "placement": "hold",
+     "politique_presente": true,
+     "non_revue": false,
+     "preuve_auditee": null,
+     "confrontation": {
+      "verdict": "sans_preuve",
+      "detail": "source non auditée"
+     }
+    },
+    {
+     "placement": "cargo",
+     "politique_presente": true,
+     "non_revue": true,
+     "preuve_auditee": null,
+     "confrontation": {
+      "verdict": "sans_preuve",
+      "detail": "source non auditée"
+     }
+    }
+   ]
+  },
+  {
+   "id": "rule_air_mauritius_brachy_hold",
+   "categorie": "breed_ban",
+   "criticite": "critical",
+   "portee": {
+    "type": "airline",
+    "id": "airline_air_mauritius",
+    "nom": "Air Mauritius"
+   },
+   "classe": "non_revue",
+   "placements_concernes": [
+    "hold",
+    "cargo"
+   ],
+   "examens": [
+    {
+     "placement": "hold",
+     "politique_presente": true,
+     "non_revue": false,
+     "preuve_auditee": null,
+     "confrontation": {
+      "verdict": "sans_preuve",
+      "detail": "source non auditée"
+     }
+    },
+    {
+     "placement": "cargo",
+     "politique_presente": true,
+     "non_revue": true,
+     "preuve_auditee": null,
+     "confrontation": {
+      "verdict": "sans_preuve",
+      "detail": "source non auditée"
+     }
+    }
+   ]
+  },
+  {
+   "id": "rule_air_tahiti_nui_brachy_hold",
+   "categorie": "breed_ban",
+   "criticite": "critical",
+   "portee": {
+    "type": "airline",
+    "id": "airline_air_tahiti_nui",
+    "nom": "Air Tahiti Nui"
+   },
+   "classe": "non_revue",
+   "placements_concernes": [
+    "hold",
+    "cargo"
+   ],
+   "examens": [
+    {
+     "placement": "hold",
+     "politique_presente": false,
+     "non_revue": false,
+     "preuve_auditee": null,
+     "confrontation": {
+      "verdict": "sans_preuve",
+      "detail": "politique absente"
+     }
+    },
+    {
+     "placement": "cargo",
+     "politique_presente": true,
+     "non_revue": true,
+     "preuve_auditee": null,
+     "confrontation": {
+      "verdict": "sans_preuve",
+      "detail": "source non auditée"
+     }
+    }
+   ]
+  },
+  {
+   "id": "rule_air_transat_brachy_hold",
+   "categorie": "breed_ban",
+   "criticite": "critical",
+   "portee": {
+    "type": "airline",
+    "id": "airline_air_transat",
+    "nom": "Air Transat"
+   },
+   "classe": "non_revue",
+   "placements_concernes": [
+    "hold",
+    "cargo"
+   ],
+   "examens": [
+    {
+     "placement": "hold",
+     "politique_presente": true,
+     "non_revue": false,
+     "preuve_auditee": null,
+     "confrontation": {
+      "verdict": "sans_preuve",
+      "detail": "source non auditée"
+     }
+    },
+    {
+     "placement": "cargo",
+     "politique_presente": true,
+     "non_revue": true,
+     "preuve_auditee": null,
+     "confrontation": {
+      "verdict": "sans_preuve",
+      "detail": "source non auditée"
+     }
+    }
+   ]
+  },
+  {
+   "id": "rule_alaska_brachy_hold",
+   "categorie": "breed_ban",
+   "criticite": "critical",
+   "portee": {
+    "type": "airline",
+    "id": "airline_alaska",
+    "nom": "Alaska Airlines"
+   },
+   "classe": "non_revue",
+   "placements_concernes": [
+    "hold",
+    "cargo"
+   ],
+   "examens": [
+    {
+     "placement": "hold",
+     "politique_presente": true,
+     "non_revue": false,
+     "preuve_auditee": null,
+     "confrontation": {
+      "verdict": "sans_preuve",
+      "detail": "source non auditée"
+     }
+    },
+    {
+     "placement": "cargo",
+     "politique_presente": true,
+     "non_revue": true,
+     "preuve_auditee": null,
+     "confrontation": {
+      "verdict": "sans_preuve",
+      "detail": "source non auditée"
+     }
+    }
+   ]
+  },
+  {
+   "id": "rule_ana_brachy_hold",
+   "categorie": "breed_ban",
+   "criticite": "critical",
+   "portee": {
+    "type": "airline",
+    "id": "airline_ana",
+    "nom": "ANA (All Nippon Airways)"
+   },
+   "classe": "non_revue",
+   "placements_concernes": [
+    "hold",
+    "cargo"
+   ],
+   "examens": [
+    {
+     "placement": "hold",
+     "politique_presente": true,
+     "non_revue": false,
+     "preuve_auditee": null,
+     "confrontation": {
+      "verdict": "sans_preuve",
+      "detail": "source non auditée"
+     }
+    },
+    {
+     "placement": "cargo",
+     "politique_presente": true,
+     "non_revue": true,
+     "preuve_auditee": null,
+     "confrontation": {
+      "verdict": "sans_preuve",
+      "detail": "source non auditée"
+     }
+    }
+   ]
+  },
+  {
+   "id": "rule_austrian_brachy_hold",
+   "categorie": "breed_ban",
+   "criticite": "critical",
+   "portee": {
+    "type": "airline",
+    "id": "airline_austrian",
+    "nom": "Austrian Airlines"
+   },
+   "classe": "non_revue",
+   "placements_concernes": [
+    "hold",
+    "cargo"
+   ],
+   "examens": [
+    {
+     "placement": "hold",
+     "politique_presente": true,
+     "non_revue": false,
+     "preuve_auditee": null,
+     "confrontation": {
+      "verdict": "sans_preuve",
+      "detail": "source non auditée"
+     }
+    },
+    {
+     "placement": "cargo",
+     "politique_presente": true,
+     "non_revue": true,
+     "preuve_auditee": null,
+     "confrontation": {
+      "verdict": "sans_preuve",
+      "detail": "source non auditée"
+     }
+    }
+   ]
+  },
+  {
+   "id": "rule_avianca_brachy_hold",
+   "categorie": "breed_ban",
+   "criticite": "critical",
+   "portee": {
+    "type": "airline",
+    "id": "airline_avianca",
+    "nom": "Avianca"
+   },
+   "classe": "non_revue",
+   "placements_concernes": [
+    "hold",
+    "cargo"
+   ],
+   "examens": [
+    {
+     "placement": "hold",
+     "politique_presente": true,
+     "non_revue": false,
+     "preuve_auditee": null,
+     "confrontation": {
+      "verdict": "sans_preuve",
+      "detail": "source non auditée"
+     }
+    },
+    {
+     "placement": "cargo",
+     "politique_presente": true,
+     "non_revue": true,
+     "preuve_auditee": null,
+     "confrontation": {
+      "verdict": "sans_preuve",
+      "detail": "source non auditée"
+     }
+    }
+   ]
+  },
+  {
+   "id": "rule_brussels_brachy_hold",
+   "categorie": "breed_ban",
+   "criticite": "critical",
+   "portee": {
+    "type": "airline",
+    "id": "airline_brussels",
+    "nom": "Brussels Airlines"
+   },
+   "classe": "non_revue",
+   "placements_concernes": [
+    "hold",
+    "cargo"
+   ],
+   "examens": [
+    {
+     "placement": "hold",
+     "politique_presente": true,
+     "non_revue": false,
+     "preuve_auditee": null,
+     "confrontation": {
+      "verdict": "sans_preuve",
+      "detail": "source non auditée"
+     }
+    },
+    {
+     "placement": "cargo",
+     "politique_presente": true,
+     "non_revue": true,
+     "preuve_auditee": null,
+     "confrontation": {
+      "verdict": "sans_preuve",
+      "detail": "source non auditée"
+     }
+    }
+   ]
+  },
+  {
+   "id": "rule_china_airlines_brachy_hold",
+   "categorie": "breed_ban",
+   "criticite": "critical",
+   "portee": {
+    "type": "airline",
+    "id": "airline_china_airlines",
+    "nom": "China Airlines"
+   },
+   "classe": "non_revue",
+   "placements_concernes": [
+    "hold",
+    "cargo"
+   ],
+   "examens": [
+    {
+     "placement": "hold",
+     "politique_presente": true,
+     "non_revue": false,
+     "preuve_auditee": null,
+     "confrontation": {
+      "verdict": "sans_preuve",
+      "detail": "source non auditée"
+     }
+    },
+    {
+     "placement": "cargo",
+     "politique_presente": true,
+     "non_revue": true,
+     "preuve_auditee": null,
+     "confrontation": {
+      "verdict": "sans_preuve",
+      "detail": "source non auditée"
+     }
+    }
+   ]
+  },
+  {
+   "id": "rule_copa_brachy_hold",
+   "categorie": "breed_ban",
+   "criticite": "critical",
+   "portee": {
+    "type": "airline",
+    "id": "airline_copa",
+    "nom": "Copa Airlines"
+   },
+   "classe": "non_revue",
+   "placements_concernes": [
+    "hold",
+    "cargo"
+   ],
+   "examens": [
+    {
+     "placement": "hold",
+     "politique_presente": true,
+     "non_revue": false,
+     "preuve_auditee": null,
+     "confrontation": {
+      "verdict": "sans_preuve",
+      "detail": "source non auditée"
+     }
+    },
+    {
+     "placement": "cargo",
+     "politique_presente": true,
+     "non_revue": true,
+     "preuve_auditee": null,
+     "confrontation": {
+      "verdict": "sans_preuve",
+      "detail": "source non auditée"
+     }
+    }
+   ]
+  },
+  {
+   "id": "rule_corsair_brachy_hold",
+   "categorie": "breed_ban",
+   "criticite": "critical",
+   "portee": {
+    "type": "airline",
+    "id": "airline_corsair",
+    "nom": "Corsair"
+   },
+   "classe": "non_revue",
+   "placements_concernes": [
+    "hold",
+    "cargo"
+   ],
+   "examens": [
+    {
+     "placement": "hold",
+     "politique_presente": true,
+     "non_revue": false,
+     "preuve_auditee": null,
+     "confrontation": {
+      "verdict": "sans_preuve",
+      "detail": "source non auditée"
+     }
+    },
+    {
+     "placement": "cargo",
+     "politique_presente": true,
+     "non_revue": true,
+     "preuve_auditee": null,
+     "confrontation": {
+      "verdict": "sans_preuve",
+      "detail": "source non auditée"
+     }
+    }
+   ]
+  },
+  {
+   "id": "rule_egyptair_brachy_hold",
+   "categorie": "breed_ban",
+   "criticite": "critical",
+   "portee": {
+    "type": "airline",
+    "id": "airline_egyptair",
+    "nom": "EgyptAir"
+   },
+   "classe": "non_revue",
+   "placements_concernes": [
+    "hold",
+    "cargo"
+   ],
+   "examens": [
+    {
+     "placement": "hold",
+     "politique_presente": true,
+     "non_revue": false,
+     "preuve_auditee": null,
+     "confrontation": {
+      "verdict": "sans_preuve",
+      "detail": "source non auditée"
+     }
+    },
+    {
+     "placement": "cargo",
+     "politique_presente": true,
+     "non_revue": true,
+     "preuve_auditee": null,
+     "confrontation": {
+      "verdict": "sans_preuve",
+      "detail": "source non auditée"
+     }
+    }
+   ]
+  },
+  {
+   "id": "rule_emirates_brachy_hold",
+   "categorie": "breed_ban",
+   "criticite": "critical",
+   "portee": {
+    "type": "airline",
+    "id": "airline_emirates",
+    "nom": "Emirates"
+   },
+   "classe": "non_revue",
+   "placements_concernes": [
+    "hold",
+    "cargo"
+   ],
+   "examens": [
+    {
+     "placement": "hold",
+     "politique_presente": true,
+     "non_revue": false,
+     "preuve_auditee": null,
+     "confrontation": {
+      "verdict": "sans_preuve",
+      "detail": "source non auditée"
+     }
+    },
+    {
+     "placement": "cargo",
+     "politique_presente": true,
+     "non_revue": true,
+     "preuve_auditee": null,
+     "confrontation": {
+      "verdict": "sans_preuve",
+      "detail": "source non auditée"
+     }
+    }
+   ]
+  },
+  {
+   "id": "rule_ethiopian_brachy_hold",
+   "categorie": "breed_ban",
+   "criticite": "critical",
+   "portee": {
+    "type": "airline",
+    "id": "airline_ethiopian",
+    "nom": "Ethiopian Airlines"
+   },
+   "classe": "non_revue",
+   "placements_concernes": [
+    "hold",
+    "cargo"
+   ],
+   "examens": [
+    {
+     "placement": "hold",
+     "politique_presente": true,
+     "non_revue": false,
+     "preuve_auditee": null,
+     "confrontation": {
+      "verdict": "sans_preuve",
+      "detail": "source non auditée"
+     }
+    },
+    {
+     "placement": "cargo",
+     "politique_presente": true,
+     "non_revue": true,
+     "preuve_auditee": null,
+     "confrontation": {
+      "verdict": "sans_preuve",
+      "detail": "source non auditée"
+     }
+    }
+   ]
+  },
+  {
+   "id": "rule_etihad_brachy_hold",
+   "categorie": "breed_ban",
+   "criticite": "critical",
+   "portee": {
+    "type": "airline",
+    "id": "airline_etihad",
+    "nom": "Etihad Airways"
+   },
+   "classe": "non_revue",
+   "placements_concernes": [
+    "hold",
+    "cargo"
+   ],
+   "examens": [
+    {
+     "placement": "hold",
+     "politique_presente": true,
+     "non_revue": false,
+     "preuve_auditee": null,
+     "confrontation": {
+      "verdict": "sans_preuve",
+      "detail": "source non auditée"
+     }
+    },
+    {
+     "placement": "cargo",
+     "politique_presente": true,
+     "non_revue": true,
+     "preuve_auditee": null,
+     "confrontation": {
+      "verdict": "sans_preuve",
+      "detail": "source non auditée"
+     }
+    }
+   ]
+  },
+  {
+   "id": "rule_eva_air_brachy_hold",
+   "categorie": "breed_ban",
+   "criticite": "critical",
+   "portee": {
+    "type": "airline",
+    "id": "airline_eva_air",
+    "nom": "EVA Air"
+   },
+   "classe": "non_revue",
+   "placements_concernes": [
+    "hold",
+    "cargo"
+   ],
+   "examens": [
+    {
+     "placement": "hold",
+     "politique_presente": true,
+     "non_revue": false,
+     "preuve_auditee": null,
+     "confrontation": {
+      "verdict": "sans_preuve",
+      "detail": "source non auditée"
+     }
+    },
+    {
+     "placement": "cargo",
+     "politique_presente": true,
+     "non_revue": true,
+     "preuve_auditee": null,
+     "confrontation": {
+      "verdict": "sans_preuve",
+      "detail": "source non auditée"
+     }
+    }
+   ]
+  },
+  {
+   "id": "rule_finnair_brachy_hold",
+   "categorie": "breed_ban",
+   "criticite": "critical",
+   "portee": {
+    "type": "airline",
+    "id": "airline_finnair",
+    "nom": "Finnair"
+   },
+   "classe": "non_revue",
+   "placements_concernes": [
+    "hold",
+    "cargo"
+   ],
+   "examens": [
+    {
+     "placement": "hold",
+     "politique_presente": true,
+     "non_revue": false,
+     "preuve_auditee": null,
+     "confrontation": {
+      "verdict": "sans_preuve",
+      "detail": "source non auditée"
+     }
+    },
+    {
+     "placement": "cargo",
+     "politique_presente": true,
+     "non_revue": true,
+     "preuve_auditee": null,
+     "confrontation": {
+      "verdict": "sans_preuve",
+      "detail": "source non auditée"
+     }
+    }
+   ]
+  },
+  {
+   "id": "rule_french_bee_brachy_hold",
+   "categorie": "breed_ban",
+   "criticite": "critical",
+   "portee": {
+    "type": "airline",
+    "id": "airline_french_bee",
+    "nom": "French Bee"
+   },
+   "classe": "non_revue",
+   "placements_concernes": [
+    "hold",
+    "cargo"
+   ],
+   "examens": [
+    {
+     "placement": "hold",
+     "politique_presente": true,
+     "non_revue": false,
+     "preuve_auditee": null,
+     "confrontation": {
+      "verdict": "sans_preuve",
+      "detail": "source non auditée"
+     }
+    },
+    {
+     "placement": "cargo",
+     "politique_presente": true,
+     "non_revue": true,
+     "preuve_auditee": null,
+     "confrontation": {
+      "verdict": "sans_preuve",
+      "detail": "source non auditée"
+     }
+    }
+   ]
+  },
+  {
+   "id": "rule_iberia_express_brachy_hold",
+   "categorie": "breed_ban",
+   "criticite": "critical",
+   "portee": {
+    "type": "airline",
+    "id": "airline_iberia_express",
+    "nom": "Iberia Express"
+   },
+   "classe": "non_revue",
+   "placements_concernes": [
+    "hold",
+    "cargo"
+   ],
+   "examens": [
+    {
+     "placement": "hold",
+     "politique_presente": true,
+     "non_revue": false,
+     "preuve_auditee": null,
+     "confrontation": {
+      "verdict": "sans_preuve",
+      "detail": "source non auditée"
+     }
+    },
+    {
+     "placement": "cargo",
+     "politique_presente": true,
+     "non_revue": true,
+     "preuve_auditee": null,
+     "confrontation": {
+      "verdict": "sans_preuve",
+      "detail": "source non auditée"
+     }
+    }
+   ]
+  },
+  {
+   "id": "rule_ita_airways_brachy_hold",
+   "categorie": "breed_ban",
+   "criticite": "critical",
+   "portee": {
+    "type": "airline",
+    "id": "airline_ita_airways",
+    "nom": "ITA Airways"
+   },
+   "classe": "officielle_indisponible",
+   "placements_concernes": [
+    "hold",
+    "cargo"
+   ],
+   "examens": [
+    {
+     "placement": "hold",
+     "politique_presente": true,
+     "non_revue": false,
+     "preuve_auditee": null,
+     "confrontation": {
+      "verdict": "sans_preuve",
+      "detail": "source non auditée"
+     }
+    },
+    {
+     "placement": "cargo",
+     "politique_presente": true,
+     "non_revue": false,
+     "preuve_auditee": null,
+     "confrontation": {
+      "verdict": "sans_preuve",
+      "detail": "source non auditée"
+     }
+    }
+   ]
+  },
+  {
+   "id": "rule_jal_brachy_hold",
+   "categorie": "breed_ban",
+   "criticite": "critical",
+   "portee": {
+    "type": "airline",
+    "id": "airline_jal",
+    "nom": "Japan Airlines (JAL)"
+   },
+   "classe": "non_revue",
+   "placements_concernes": [
+    "hold",
+    "cargo"
+   ],
+   "examens": [
+    {
+     "placement": "hold",
+     "politique_presente": true,
+     "non_revue": false,
+     "preuve_auditee": null,
+     "confrontation": {
+      "verdict": "sans_preuve",
+      "detail": "source non auditée"
+     }
+    },
+    {
+     "placement": "cargo",
+     "politique_presente": true,
+     "non_revue": true,
+     "preuve_auditee": null,
+     "confrontation": {
+      "verdict": "sans_preuve",
+      "detail": "source non auditée"
+     }
+    }
+   ]
+  },
+  {
+   "id": "rule_korean_air_brachy_hold",
+   "categorie": "breed_ban",
+   "criticite": "critical",
+   "portee": {
+    "type": "airline",
+    "id": "airline_korean_air",
+    "nom": "Korean Air"
+   },
+   "classe": "non_revue",
+   "placements_concernes": [
+    "hold",
+    "cargo"
+   ],
+   "examens": [
+    {
+     "placement": "hold",
+     "politique_presente": true,
+     "non_revue": false,
+     "preuve_auditee": null,
+     "confrontation": {
+      "verdict": "sans_preuve",
+      "detail": "source non auditée"
+     }
+    },
+    {
+     "placement": "cargo",
+     "politique_presente": true,
+     "non_revue": true,
+     "preuve_auditee": null,
+     "confrontation": {
+      "verdict": "sans_preuve",
+      "detail": "source non auditée"
+     }
+    }
+   ]
+  },
+  {
+   "id": "rule_latam_brachy_hold",
+   "categorie": "breed_ban",
+   "criticite": "critical",
+   "portee": {
+    "type": "airline",
+    "id": "airline_latam",
+    "nom": "LATAM"
+   },
+   "classe": "non_revue",
+   "placements_concernes": [
+    "hold",
+    "cargo"
+   ],
+   "examens": [
+    {
+     "placement": "hold",
+     "politique_presente": true,
+     "non_revue": false,
+     "preuve_auditee": null,
+     "confrontation": {
+      "verdict": "sans_preuve",
+      "detail": "source non auditée"
+     }
+    },
+    {
+     "placement": "cargo",
+     "politique_presente": true,
+     "non_revue": true,
+     "preuve_auditee": null,
+     "confrontation": {
+      "verdict": "sans_preuve",
+      "detail": "source non auditée"
+     }
+    }
+   ]
+  },
+  {
+   "id": "rule_lot_brachy_hold",
+   "categorie": "breed_ban",
+   "criticite": "critical",
+   "portee": {
+    "type": "airline",
+    "id": "airline_lot",
+    "nom": "LOT Polish Airlines"
+   },
+   "classe": "non_revue",
+   "placements_concernes": [
+    "hold",
+    "cargo"
+   ],
+   "examens": [
+    {
+     "placement": "hold",
+     "politique_presente": true,
+     "non_revue": false,
+     "preuve_auditee": null,
+     "confrontation": {
+      "verdict": "sans_preuve",
+      "detail": "source non auditée"
+     }
+    },
+    {
+     "placement": "cargo",
+     "politique_presente": true,
+     "non_revue": true,
+     "preuve_auditee": null,
+     "confrontation": {
+      "verdict": "sans_preuve",
+      "detail": "source non auditée"
+     }
+    }
+   ]
+  },
+  {
+   "id": "rule_norwegian_brachy_hold",
+   "categorie": "breed_ban",
+   "criticite": "critical",
+   "portee": {
+    "type": "airline",
+    "id": "airline_norwegian",
+    "nom": "Norwegian"
+   },
+   "classe": "non_revue",
+   "placements_concernes": [
+    "hold",
+    "cargo"
+   ],
+   "examens": [
+    {
+     "placement": "hold",
+     "politique_presente": true,
+     "non_revue": false,
+     "preuve_auditee": null,
+     "confrontation": {
+      "verdict": "sans_preuve",
+      "detail": "source non auditée"
+     }
+    },
+    {
+     "placement": "cargo",
+     "politique_presente": true,
+     "non_revue": true,
+     "preuve_auditee": null,
+     "confrontation": {
+      "verdict": "sans_preuve",
+      "detail": "source non auditée"
+     }
+    }
+   ]
+  },
+  {
+   "id": "rule_philippine_brachy_hold",
+   "categorie": "breed_ban",
+   "criticite": "critical",
+   "portee": {
+    "type": "airline",
+    "id": "airline_philippine",
+    "nom": "Philippine Airlines"
+   },
+   "classe": "non_revue",
+   "placements_concernes": [
+    "hold",
+    "cargo"
+   ],
+   "examens": [
+    {
+     "placement": "hold",
+     "politique_presente": true,
+     "non_revue": false,
+     "preuve_auditee": null,
+     "confrontation": {
+      "verdict": "sans_preuve",
+      "detail": "source non auditée"
+     }
+    },
+    {
+     "placement": "cargo",
+     "politique_presente": true,
+     "non_revue": true,
+     "preuve_auditee": null,
+     "confrontation": {
+      "verdict": "sans_preuve",
+      "detail": "source non auditée"
+     }
+    }
+   ]
+  },
+  {
+   "id": "rule_qatar_airways_brachy_hold",
+   "categorie": "breed_ban",
+   "criticite": "critical",
+   "portee": {
+    "type": "airline",
+    "id": "airline_qatar_airways",
+    "nom": "Qatar Airways"
+   },
+   "classe": "non_revue",
+   "placements_concernes": [
+    "hold",
+    "cargo"
+   ],
+   "examens": [
+    {
+     "placement": "hold",
+     "politique_presente": true,
+     "non_revue": false,
+     "preuve_auditee": null,
+     "confrontation": {
+      "verdict": "sans_preuve",
+      "detail": "source non auditée"
+     }
+    },
+    {
+     "placement": "cargo",
+     "politique_presente": true,
+     "non_revue": true,
+     "preuve_auditee": null,
+     "confrontation": {
+      "verdict": "sans_preuve",
+      "detail": "source non auditée"
+     }
+    }
+   ]
+  },
+  {
+   "id": "rule_royal_air_maroc_brachy_hold",
+   "categorie": "breed_ban",
+   "criticite": "critical",
+   "portee": {
+    "type": "airline",
+    "id": "airline_royal_air_maroc",
+    "nom": "Royal Air Maroc"
+   },
+   "classe": "non_revue",
+   "placements_concernes": [
+    "hold",
+    "cargo"
+   ],
+   "examens": [
+    {
+     "placement": "hold",
+     "politique_presente": true,
+     "non_revue": false,
+     "preuve_auditee": null,
+     "confrontation": {
+      "verdict": "sans_preuve",
+      "detail": "source non auditée"
+     }
+    },
+    {
+     "placement": "cargo",
+     "politique_presente": true,
+     "non_revue": true,
+     "preuve_auditee": null,
+     "confrontation": {
+      "verdict": "sans_preuve",
+      "detail": "source non auditée"
+     }
+    }
+   ]
+  },
+  {
+   "id": "rule_sas_brachy_hold",
+   "categorie": "breed_ban",
+   "criticite": "critical",
+   "portee": {
+    "type": "airline",
+    "id": "airline_sas",
+    "nom": "SAS Scandinavian"
+   },
+   "classe": "non_revue",
+   "placements_concernes": [
+    "hold",
+    "cargo"
+   ],
+   "examens": [
+    {
+     "placement": "hold",
+     "politique_presente": true,
+     "non_revue": false,
+     "preuve_auditee": null,
+     "confrontation": {
+      "verdict": "sans_preuve",
+      "detail": "source non auditée"
+     }
+    },
+    {
+     "placement": "cargo",
+     "politique_presente": true,
+     "non_revue": true,
+     "preuve_auditee": null,
+     "confrontation": {
+      "verdict": "sans_preuve",
+      "detail": "source non auditée"
+     }
+    }
+   ]
+  },
+  {
+   "id": "rule_singapore_airlines_brachy_hold",
+   "categorie": "breed_ban",
+   "criticite": "critical",
+   "portee": {
+    "type": "airline",
+    "id": "airline_singapore_airlines",
+    "nom": "Singapore Airlines"
+   },
+   "classe": "non_revue",
+   "placements_concernes": [
+    "hold",
+    "cargo"
+   ],
+   "examens": [
+    {
+     "placement": "hold",
+     "politique_presente": true,
+     "non_revue": false,
+     "preuve_auditee": null,
+     "confrontation": {
+      "verdict": "sans_preuve",
+      "detail": "source non auditée"
+     }
+    },
+    {
+     "placement": "cargo",
+     "politique_presente": true,
+     "non_revue": true,
+     "preuve_auditee": null,
+     "confrontation": {
+      "verdict": "sans_preuve",
+      "detail": "source non auditée"
+     }
+    }
+   ]
+  },
+  {
+   "id": "rule_swiss_brachy_hold",
+   "categorie": "breed_ban",
+   "criticite": "critical",
+   "portee": {
+    "type": "airline",
+    "id": "airline_swiss",
+    "nom": "SWISS"
+   },
+   "classe": "non_revue",
+   "placements_concernes": [
+    "hold",
+    "cargo"
+   ],
+   "examens": [
+    {
+     "placement": "hold",
+     "politique_presente": true,
+     "non_revue": false,
+     "preuve_auditee": null,
+     "confrontation": {
+      "verdict": "sans_preuve",
+      "detail": "source non auditée"
+     }
+    },
+    {
+     "placement": "cargo",
+     "politique_presente": true,
+     "non_revue": true,
+     "preuve_auditee": null,
+     "confrontation": {
+      "verdict": "sans_preuve",
+      "detail": "source non auditée"
+     }
+    }
+   ]
+  },
+  {
+   "id": "rule_tap_brachy_hold",
+   "categorie": "breed_ban",
+   "criticite": "critical",
+   "portee": {
+    "type": "airline",
+    "id": "airline_tap",
+    "nom": "TAP Air Portugal"
+   },
+   "classe": "non_revue",
+   "placements_concernes": [
+    "hold",
+    "cargo"
+   ],
+   "examens": [
+    {
+     "placement": "hold",
+     "politique_presente": true,
+     "non_revue": false,
+     "preuve_auditee": null,
+     "confrontation": {
+      "verdict": "sans_preuve",
+      "detail": "source non auditée"
+     }
+    },
+    {
+     "placement": "cargo",
+     "politique_presente": true,
+     "non_revue": true,
+     "preuve_auditee": null,
+     "confrontation": {
+      "verdict": "sans_preuve",
+      "detail": "source non auditée"
+     }
+    }
+   ]
+  },
+  {
+   "id": "rule_thai_airways_brachy_hold",
+   "categorie": "breed_ban",
+   "criticite": "critical",
+   "portee": {
+    "type": "airline",
+    "id": "airline_thai_airways",
+    "nom": "Thai Airways"
+   },
+   "classe": "auto_citation_seule",
+   "placements_concernes": [
+    "hold",
+    "cargo"
+   ],
+   "examens": [
+    {
+     "placement": "hold",
+     "politique_presente": true,
+     "non_revue": false,
+     "preuve_auditee": null,
+     "confrontation": {
+      "verdict": "sans_preuve",
+      "detail": "source non auditée"
+     }
+    },
+    {
+     "placement": "cargo",
+     "politique_presente": true,
+     "non_revue": false,
+     "preuve_auditee": "https://www.thaiairways.com/en-au/content/special-assistance/travel-with-pets/pets-as-checked-baggage-avih/",
+     "confrontation": {
+      "verdict": "muette",
+      "detail": "brachy_allowed absent"
+     }
+    }
+   ]
+  },
+  {
+   "id": "rule_transavia_brachy_hold",
+   "categorie": "breed_ban",
+   "criticite": "critical",
+   "portee": {
+    "type": "airline",
+    "id": "airline_transavia",
+    "nom": "Transavia"
+   },
+   "classe": "officielle_indisponible",
+   "placements_concernes": [
+    "hold",
+    "cargo"
+   ],
+   "examens": [
+    {
+     "placement": "hold",
+     "politique_presente": true,
+     "non_revue": false,
+     "preuve_auditee": null,
+     "confrontation": {
+      "verdict": "sans_preuve",
+      "detail": "source non auditée"
+     }
+    },
+    {
+     "placement": "cargo",
+     "politique_presente": false,
+     "non_revue": false,
+     "preuve_auditee": null,
+     "confrontation": {
+      "verdict": "sans_preuve",
+      "detail": "politique absente"
+     }
+    }
+   ]
+  },
+  {
+   "id": "rule_vietnam_airlines_brachy_hold",
+   "categorie": "breed_ban",
+   "criticite": "critical",
+   "portee": {
+    "type": "airline",
+    "id": "airline_vietnam_airlines",
+    "nom": "Vietnam Airlines"
+   },
+   "classe": "non_revue",
+   "placements_concernes": [
+    "hold",
+    "cargo"
+   ],
+   "examens": [
+    {
+     "placement": "hold",
+     "politique_presente": true,
+     "non_revue": false,
+     "preuve_auditee": null,
+     "confrontation": {
+      "verdict": "sans_preuve",
+      "detail": "source non auditée"
+     }
+    },
+    {
+     "placement": "cargo",
+     "politique_presente": true,
+     "non_revue": true,
+     "preuve_auditee": null,
+     "confrontation": {
+      "verdict": "sans_preuve",
+      "detail": "source non auditée"
+     }
+    }
+   ]
+  },
+  {
+   "id": "rule_westjet_brachy_hold",
+   "categorie": "breed_ban",
+   "criticite": "critical",
+   "portee": {
+    "type": "airline",
+    "id": "airline_westjet",
+    "nom": "WestJet"
+   },
+   "classe": "auto_citation_seule",
+   "placements_concernes": [
+    "hold",
+    "cargo"
+   ],
+   "examens": [
+    {
+     "placement": "hold",
+     "politique_presente": true,
+     "non_revue": false,
+     "preuve_auditee": "https://www.westjet.com/en-ca/pets",
+     "confrontation": {
+      "verdict": "muette",
+      "detail": "brachy_allowed absent"
+     }
+    },
+    {
+     "placement": "cargo",
+     "politique_presente": true,
+     "non_revue": false,
+     "preuve_auditee": "https://www.westjet.com/en-ca/pets",
+     "confrontation": {
+      "verdict": "muette",
+      "detail": "brachy_allowed absent"
+     }
+    }
+   ]
+  },
+  {
+   "id": "rule_aegean_cabin_weight",
+   "categorie": "cabin_weight",
+   "criticite": "high",
+   "portee": {
+    "type": "airline",
+    "id": "airline_aegean",
+    "nom": "Aegean Airlines"
+   },
+   "classe": "officielle_indisponible",
+   "placements_concernes": [
+    "cabin"
+   ],
+   "examens": [
+    {
+     "placement": "cabin",
+     "politique_presente": true,
+     "non_revue": false,
+     "preuve_auditee": null,
+     "confrontation": {
+      "verdict": "sans_preuve",
+      "detail": "source non auditée"
+     }
+    }
+   ]
+  },
+  {
+   "id": "rule_aeromexico_cabin_weight",
+   "categorie": "cabin_weight",
+   "criticite": "high",
+   "portee": {
+    "type": "airline",
+    "id": "airline_aeromexico",
+    "nom": "Aeromexico"
+   },
+   "classe": "officielle_indisponible",
+   "placements_concernes": [
+    "cabin"
+   ],
+   "examens": [
+    {
+     "placement": "cabin",
+     "politique_presente": true,
+     "non_revue": false,
+     "preuve_auditee": null,
+     "confrontation": {
+      "verdict": "sans_preuve",
+      "detail": "source non auditée"
+     }
+    }
+   ]
+  },
+  {
+   "id": "rule_air_algerie_cabin_weight",
+   "categorie": "cabin_weight",
+   "criticite": "high",
+   "portee": {
+    "type": "airline",
+    "id": "airline_air_algerie",
+    "nom": "Air Algérie"
+   },
+   "classe": "officielle_indisponible",
+   "placements_concernes": [
+    "cabin"
+   ],
+   "examens": [
+    {
+     "placement": "cabin",
+     "politique_presente": true,
+     "non_revue": false,
+     "preuve_auditee": null,
+     "confrontation": {
+      "verdict": "sans_preuve",
+      "detail": "source non auditée"
+     }
+    }
+   ]
+  },
+  {
+   "id": "rule_air_caraibes_cabin_weight",
+   "categorie": "cabin_weight",
+   "criticite": "high",
+   "portee": {
+    "type": "airline",
+    "id": "airline_air_caraibes",
+    "nom": "Air Caraïbes"
+   },
+   "classe": "officielle_indisponible",
+   "placements_concernes": [
+    "cabin"
+   ],
+   "examens": [
+    {
+     "placement": "cabin",
+     "politique_presente": true,
+     "non_revue": false,
+     "preuve_auditee": null,
+     "confrontation": {
+      "verdict": "sans_preuve",
+      "detail": "source non auditée"
+     }
+    }
+   ]
+  },
+  {
+   "id": "rule_air_europa_cabin_weight",
+   "categorie": "cabin_weight",
+   "criticite": "high",
+   "portee": {
+    "type": "airline",
+    "id": "airline_air_europa",
+    "nom": "Air Europa"
+   },
+   "classe": "officielle_indisponible",
+   "placements_concernes": [
+    "cabin"
+   ],
+   "examens": [
+    {
+     "placement": "cabin",
+     "politique_presente": true,
+     "non_revue": false,
+     "preuve_auditee": null,
+     "confrontation": {
+      "verdict": "sans_preuve",
+      "detail": "source non auditée"
+     }
+    }
+   ]
+  },
+  {
+   "id": "rule_air_india_cabin_weight",
+   "categorie": "cabin_weight",
+   "criticite": "high",
+   "portee": {
+    "type": "airline",
+    "id": "airline_air_india",
+    "nom": "Air India"
+   },
+   "classe": "officielle_indisponible",
+   "placements_concernes": [
+    "cabin"
+   ],
+   "examens": [
+    {
+     "placement": "cabin",
+     "politique_presente": true,
+     "non_revue": false,
+     "preuve_auditee": null,
+     "confrontation": {
+      "verdict": "sans_preuve",
+      "detail": "source non auditée"
+     }
+    }
+   ]
+  },
+  {
+   "id": "rule_air_tahiti_nui_cabin_weight",
+   "categorie": "cabin_weight",
+   "criticite": "high",
+   "portee": {
+    "type": "airline",
+    "id": "airline_air_tahiti_nui",
+    "nom": "Air Tahiti Nui"
+   },
+   "classe": "officielle_indisponible",
+   "placements_concernes": [
+    "cabin"
+   ],
+   "examens": [
+    {
+     "placement": "cabin",
+     "politique_presente": true,
+     "non_revue": false,
+     "preuve_auditee": null,
+     "confrontation": {
+      "verdict": "sans_preuve",
+      "detail": "source non auditée"
+     }
+    }
+   ]
+  },
+  {
+   "id": "rule_air_transat_cabin_weight",
+   "categorie": "cabin_weight",
+   "criticite": "high",
+   "portee": {
+    "type": "airline",
+    "id": "airline_air_transat",
+    "nom": "Air Transat"
+   },
+   "classe": "officielle_indisponible",
+   "placements_concernes": [
+    "cabin"
+   ],
+   "examens": [
+    {
+     "placement": "cabin",
+     "politique_presente": true,
+     "non_revue": false,
+     "preuve_auditee": null,
+     "confrontation": {
+      "verdict": "sans_preuve",
+      "detail": "source non auditée"
+     }
+    }
+   ]
+  },
+  {
+   "id": "rule_alaska_cabin_weight",
+   "categorie": "cabin_weight",
+   "criticite": "high",
+   "portee": {
+    "type": "airline",
+    "id": "airline_alaska",
+    "nom": "Alaska Airlines"
+   },
+   "classe": "officielle_indisponible",
+   "placements_concernes": [
+    "cabin"
+   ],
+   "examens": [
+    {
+     "placement": "cabin",
+     "politique_presente": true,
+     "non_revue": false,
+     "preuve_auditee": null,
+     "confrontation": {
+      "verdict": "sans_preuve",
+      "detail": "source non auditée"
+     }
+    }
+   ]
+  },
+  {
+   "id": "rule_american_cabin_weight",
+   "categorie": "cabin_weight",
+   "criticite": "high",
+   "portee": {
+    "type": "airline",
+    "id": "airline_american",
+    "nom": "American Airlines"
+   },
+   "classe": "auto_citation_seule",
+   "placements_concernes": [
+    "cabin"
+   ],
+   "examens": [
+    {
+     "placement": "cabin",
+     "politique_presente": true,
+     "non_revue": false,
+     "preuve_auditee": "https://www.aa.com/i18n/travel-info/special-assistance/pets.jsp",
+     "confrontation": {
+      "verdict": "muette",
+      "detail": "max_weight_kg absent de la politique"
+     }
+    }
+   ]
+  },
+  {
+   "id": "rule_austrian_cabin_weight",
+   "categorie": "cabin_weight",
+   "criticite": "high",
+   "portee": {
+    "type": "airline",
+    "id": "airline_austrian",
+    "nom": "Austrian Airlines"
+   },
+   "classe": "officielle_indisponible",
+   "placements_concernes": [
+    "cabin"
+   ],
+   "examens": [
+    {
+     "placement": "cabin",
+     "politique_presente": true,
+     "non_revue": false,
+     "preuve_auditee": null,
+     "confrontation": {
+      "verdict": "sans_preuve",
+      "detail": "source non auditée"
+     }
+    }
+   ]
+  },
+  {
+   "id": "rule_avianca_cabin_weight",
+   "categorie": "cabin_weight",
+   "criticite": "high",
+   "portee": {
+    "type": "airline",
+    "id": "airline_avianca",
+    "nom": "Avianca"
+   },
+   "classe": "officielle_indisponible",
+   "placements_concernes": [
+    "cabin"
+   ],
+   "examens": [
+    {
+     "placement": "cabin",
+     "politique_presente": true,
+     "non_revue": false,
+     "preuve_auditee": null,
+     "confrontation": {
+      "verdict": "sans_preuve",
+      "detail": "source non auditée"
+     }
+    }
+   ]
+  },
+  {
+   "id": "rule_brussels_cabin_weight",
+   "categorie": "cabin_weight",
+   "criticite": "high",
+   "portee": {
+    "type": "airline",
+    "id": "airline_brussels",
+    "nom": "Brussels Airlines"
+   },
+   "classe": "officielle_indisponible",
+   "placements_concernes": [
+    "cabin"
+   ],
+   "examens": [
+    {
+     "placement": "cabin",
+     "politique_presente": true,
+     "non_revue": false,
+     "preuve_auditee": null,
+     "confrontation": {
+      "verdict": "sans_preuve",
+      "detail": "source non auditée"
+     }
+    }
+   ]
+  },
+  {
+   "id": "rule_copa_cabin_weight",
+   "categorie": "cabin_weight",
+   "criticite": "high",
+   "portee": {
+    "type": "airline",
+    "id": "airline_copa",
+    "nom": "Copa Airlines"
+   },
+   "classe": "officielle_indisponible",
+   "placements_concernes": [
+    "cabin"
+   ],
+   "examens": [
+    {
+     "placement": "cabin",
+     "politique_presente": true,
+     "non_revue": false,
+     "preuve_auditee": null,
+     "confrontation": {
+      "verdict": "sans_preuve",
+      "detail": "source non auditée"
+     }
+    }
+   ]
+  },
+  {
+   "id": "rule_corsair_cabin_weight",
+   "categorie": "cabin_weight",
+   "criticite": "high",
+   "portee": {
+    "type": "airline",
+    "id": "airline_corsair",
+    "nom": "Corsair"
+   },
+   "classe": "officielle_indisponible",
+   "placements_concernes": [
+    "cabin"
+   ],
+   "examens": [
+    {
+     "placement": "cabin",
+     "politique_presente": true,
+     "non_revue": false,
+     "preuve_auditee": null,
+     "confrontation": {
+      "verdict": "sans_preuve",
+      "detail": "source non auditée"
+     }
+    }
+   ]
+  },
+  {
+   "id": "rule_delta_cabin_weight",
+   "categorie": "cabin_weight",
+   "criticite": "high",
+   "portee": {
+    "type": "airline",
+    "id": "airline_delta",
+    "nom": "Delta Air Lines"
+   },
+   "classe": "auto_citation_seule",
+   "placements_concernes": [
+    "cabin"
+   ],
+   "examens": [
+    {
+     "placement": "cabin",
+     "politique_presente": true,
+     "non_revue": false,
+     "preuve_auditee": "https://www.delta.com/us/en/pet-travel/overview",
+     "confrontation": {
+      "verdict": "muette",
+      "detail": "max_weight_kg absent de la politique"
+     }
+    }
+   ]
+  },
+  {
+   "id": "rule_egyptair_cabin_weight",
+   "categorie": "cabin_weight",
+   "criticite": "high",
+   "portee": {
+    "type": "airline",
+    "id": "airline_egyptair",
+    "nom": "EgyptAir"
+   },
+   "classe": "officielle_indisponible",
+   "placements_concernes": [
+    "cabin"
+   ],
+   "examens": [
+    {
+     "placement": "cabin",
+     "politique_presente": true,
+     "non_revue": false,
+     "preuve_auditee": null,
+     "confrontation": {
+      "verdict": "sans_preuve",
+      "detail": "source non auditée"
+     }
+    }
+   ]
+  },
+  {
+   "id": "rule_ethiopian_cabin_weight",
+   "categorie": "cabin_weight",
+   "criticite": "high",
+   "portee": {
+    "type": "airline",
+    "id": "airline_ethiopian",
+    "nom": "Ethiopian Airlines"
+   },
+   "classe": "officielle_indisponible",
+   "placements_concernes": [
+    "cabin"
+   ],
+   "examens": [
+    {
+     "placement": "cabin",
+     "politique_presente": true,
+     "non_revue": false,
+     "preuve_auditee": null,
+     "confrontation": {
+      "verdict": "sans_preuve",
+      "detail": "source non auditée"
+     }
+    }
+   ]
+  },
+  {
+   "id": "rule_etihad_cabin_weight",
+   "categorie": "cabin_weight",
+   "criticite": "high",
+   "portee": {
+    "type": "airline",
+    "id": "airline_etihad",
+    "nom": "Etihad Airways"
+   },
+   "classe": "officielle_indisponible",
+   "placements_concernes": [
+    "cabin"
+   ],
+   "examens": [
+    {
+     "placement": "cabin",
+     "politique_presente": true,
+     "non_revue": false,
+     "preuve_auditee": null,
+     "confrontation": {
+      "verdict": "sans_preuve",
+      "detail": "source non auditée"
+     }
+    }
+   ]
+  },
+  {
+   "id": "rule_eurowings_cabin_weight",
+   "categorie": "cabin_weight",
+   "criticite": "high",
+   "portee": {
+    "type": "airline",
+    "id": "airline_eurowings",
+    "nom": "Eurowings"
+   },
+   "classe": "officielle_indisponible",
+   "placements_concernes": [
+    "cabin"
+   ],
+   "examens": [
+    {
+     "placement": "cabin",
+     "politique_presente": true,
+     "non_revue": false,
+     "preuve_auditee": null,
+     "confrontation": {
+      "verdict": "sans_preuve",
+      "detail": "source non auditée"
+     }
+    }
+   ]
+  },
+  {
+   "id": "rule_finnair_cabin_weight",
+   "categorie": "cabin_weight",
+   "criticite": "high",
+   "portee": {
+    "type": "airline",
+    "id": "airline_finnair",
+    "nom": "Finnair"
+   },
+   "classe": "officielle_indisponible",
+   "placements_concernes": [
+    "cabin"
+   ],
+   "examens": [
+    {
+     "placement": "cabin",
+     "politique_presente": true,
+     "non_revue": false,
+     "preuve_auditee": null,
+     "confrontation": {
+      "verdict": "sans_preuve",
+      "detail": "source non auditée"
+     }
+    }
+   ]
+  },
+  {
+   "id": "rule_french_bee_cabin_weight",
+   "categorie": "cabin_weight",
+   "criticite": "high",
+   "portee": {
+    "type": "airline",
+    "id": "airline_french_bee",
+    "nom": "French Bee"
+   },
+   "classe": "officielle_indisponible",
+   "placements_concernes": [
+    "cabin"
+   ],
+   "examens": [
+    {
+     "placement": "cabin",
+     "politique_presente": true,
+     "non_revue": false,
+     "preuve_auditee": null,
+     "confrontation": {
+      "verdict": "sans_preuve",
+      "detail": "source non auditée"
+     }
+    }
+   ]
+  },
+  {
+   "id": "rule_iberia_express_cabin_weight",
+   "categorie": "cabin_weight",
+   "criticite": "high",
+   "portee": {
+    "type": "airline",
+    "id": "airline_iberia_express",
+    "nom": "Iberia Express"
+   },
+   "classe": "officielle_indisponible",
+   "placements_concernes": [
+    "cabin"
+   ],
+   "examens": [
+    {
+     "placement": "cabin",
+     "politique_presente": true,
+     "non_revue": false,
+     "preuve_auditee": null,
+     "confrontation": {
+      "verdict": "sans_preuve",
+      "detail": "source non auditée"
+     }
+    }
+   ]
+  },
+  {
+   "id": "rule_ita_airways_cabin_weight",
+   "categorie": "cabin_weight",
+   "criticite": "high",
+   "portee": {
+    "type": "airline",
+    "id": "airline_ita_airways",
+    "nom": "ITA Airways"
+   },
+   "classe": "officielle_indisponible",
+   "placements_concernes": [
+    "cabin"
+   ],
+   "examens": [
+    {
+     "placement": "cabin",
+     "politique_presente": true,
+     "non_revue": false,
+     "preuve_auditee": null,
+     "confrontation": {
+      "verdict": "sans_preuve",
+      "detail": "source non auditée"
+     }
+    }
+   ]
+  },
+  {
+   "id": "rule_jetblue_cabin_weight",
+   "categorie": "cabin_weight",
+   "criticite": "high",
+   "portee": {
+    "type": "airline",
+    "id": "airline_jetblue",
+    "nom": "JetBlue"
+   },
+   "classe": "officielle_indisponible",
+   "placements_concernes": [
+    "cabin"
+   ],
+   "examens": [
+    {
+     "placement": "cabin",
+     "politique_presente": true,
+     "non_revue": false,
+     "preuve_auditee": null,
+     "confrontation": {
+      "verdict": "sans_preuve",
+      "detail": "source non auditée"
+     }
+    }
+   ]
+  },
+  {
+   "id": "rule_korean_air_cabin_weight",
+   "categorie": "cabin_weight",
+   "criticite": "high",
+   "portee": {
+    "type": "airline",
+    "id": "airline_korean_air",
+    "nom": "Korean Air"
+   },
+   "classe": "officielle_indisponible",
+   "placements_concernes": [
+    "cabin"
+   ],
+   "examens": [
+    {
+     "placement": "cabin",
+     "politique_presente": true,
+     "non_revue": false,
+     "preuve_auditee": null,
+     "confrontation": {
+      "verdict": "sans_preuve",
+      "detail": "source non auditée"
+     }
+    }
+   ]
+  },
+  {
+   "id": "rule_latam_cabin_weight",
+   "categorie": "cabin_weight",
+   "criticite": "high",
+   "portee": {
+    "type": "airline",
+    "id": "airline_latam",
+    "nom": "LATAM"
+   },
+   "classe": "officielle_indisponible",
+   "placements_concernes": [
+    "cabin"
+   ],
+   "examens": [
+    {
+     "placement": "cabin",
+     "politique_presente": true,
+     "non_revue": false,
+     "preuve_auditee": null,
+     "confrontation": {
+      "verdict": "sans_preuve",
+      "detail": "source non auditée"
+     }
+    }
+   ]
+  },
+  {
+   "id": "rule_lot_cabin_weight",
+   "categorie": "cabin_weight",
+   "criticite": "high",
+   "portee": {
+    "type": "airline",
+    "id": "airline_lot",
+    "nom": "LOT Polish Airlines"
+   },
+   "classe": "officielle_indisponible",
+   "placements_concernes": [
+    "cabin"
+   ],
+   "examens": [
+    {
+     "placement": "cabin",
+     "politique_presente": true,
+     "non_revue": false,
+     "preuve_auditee": null,
+     "confrontation": {
+      "verdict": "sans_preuve",
+      "detail": "source non auditée"
+     }
+    }
+   ]
+  },
+  {
+   "id": "rule_norwegian_cabin_weight",
+   "categorie": "cabin_weight",
+   "criticite": "high",
+   "portee": {
+    "type": "airline",
+    "id": "airline_norwegian",
+    "nom": "Norwegian"
+   },
+   "classe": "officielle_indisponible",
+   "placements_concernes": [
+    "cabin"
+   ],
+   "examens": [
+    {
+     "placement": "cabin",
+     "politique_presente": true,
+     "non_revue": false,
+     "preuve_auditee": null,
+     "confrontation": {
+      "verdict": "sans_preuve",
+      "detail": "source non auditée"
+     }
+    }
+   ]
+  },
+  {
+   "id": "rule_philippine_cabin_weight",
+   "categorie": "cabin_weight",
+   "criticite": "high",
+   "portee": {
+    "type": "airline",
+    "id": "airline_philippine",
+    "nom": "Philippine Airlines"
+   },
+   "classe": "officielle_indisponible",
+   "placements_concernes": [
+    "cabin"
+   ],
+   "examens": [
+    {
+     "placement": "cabin",
+     "politique_presente": true,
+     "non_revue": false,
+     "preuve_auditee": null,
+     "confrontation": {
+      "verdict": "sans_preuve",
+      "detail": "source non auditée"
+     }
+    }
+   ]
+  },
+  {
+   "id": "rule_royal_air_maroc_cabin_weight",
+   "categorie": "cabin_weight",
+   "criticite": "high",
+   "portee": {
+    "type": "airline",
+    "id": "airline_royal_air_maroc",
+    "nom": "Royal Air Maroc"
+   },
+   "classe": "officielle_indisponible",
+   "placements_concernes": [
+    "cabin"
+   ],
+   "examens": [
+    {
+     "placement": "cabin",
+     "politique_presente": true,
+     "non_revue": false,
+     "preuve_auditee": null,
+     "confrontation": {
+      "verdict": "sans_preuve",
+      "detail": "source non auditée"
+     }
+    }
+   ]
+  },
+  {
+   "id": "rule_sas_cabin_weight",
+   "categorie": "cabin_weight",
+   "criticite": "high",
+   "portee": {
+    "type": "airline",
+    "id": "airline_sas",
+    "nom": "SAS Scandinavian"
+   },
+   "classe": "officielle_indisponible",
+   "placements_concernes": [
+    "cabin"
+   ],
+   "examens": [
+    {
+     "placement": "cabin",
+     "politique_presente": true,
+     "non_revue": false,
+     "preuve_auditee": null,
+     "confrontation": {
+      "verdict": "sans_preuve",
+      "detail": "source non auditée"
+     }
+    }
+   ]
+  },
+  {
+   "id": "rule_swiss_cabin_weight",
+   "categorie": "cabin_weight",
+   "criticite": "high",
+   "portee": {
+    "type": "airline",
+    "id": "airline_swiss",
+    "nom": "SWISS"
+   },
+   "classe": "officielle_indisponible",
+   "placements_concernes": [
+    "cabin"
+   ],
+   "examens": [
+    {
+     "placement": "cabin",
+     "politique_presente": true,
+     "non_revue": false,
+     "preuve_auditee": null,
+     "confrontation": {
+      "verdict": "sans_preuve",
+      "detail": "source non auditée"
+     }
+    }
+   ]
+  },
+  {
+   "id": "rule_tap_cabin_weight",
+   "categorie": "cabin_weight",
+   "criticite": "high",
+   "portee": {
+    "type": "airline",
+    "id": "airline_tap",
+    "nom": "TAP Air Portugal"
+   },
+   "classe": "officielle_indisponible",
+   "placements_concernes": [
+    "cabin"
+   ],
+   "examens": [
+    {
+     "placement": "cabin",
+     "politique_presente": true,
+     "non_revue": false,
+     "preuve_auditee": null,
+     "confrontation": {
+      "verdict": "sans_preuve",
+      "detail": "source non auditée"
+     }
+    }
+   ]
+  },
+  {
+   "id": "rule_transavia_cabin_weight",
+   "categorie": "cabin_weight",
+   "criticite": "high",
+   "portee": {
+    "type": "airline",
+    "id": "airline_transavia",
+    "nom": "Transavia"
+   },
+   "classe": "officielle_indisponible",
+   "placements_concernes": [
+    "cabin"
+   ],
+   "examens": [
+    {
+     "placement": "cabin",
+     "politique_presente": true,
+     "non_revue": false,
+     "preuve_auditee": null,
+     "confrontation": {
+      "verdict": "sans_preuve",
+      "detail": "source non auditée"
+     }
+    }
+   ]
+  },
+  {
+   "id": "rule_tunisair_cabin_weight",
+   "categorie": "cabin_weight",
+   "criticite": "high",
+   "portee": {
+    "type": "airline",
+    "id": "airline_tunisair",
+    "nom": "Tunisair"
+   },
+   "classe": "officielle_indisponible",
+   "placements_concernes": [
+    "cabin"
+   ],
+   "examens": [
+    {
+     "placement": "cabin",
+     "politique_presente": true,
+     "non_revue": false,
+     "preuve_auditee": null,
+     "confrontation": {
+      "verdict": "sans_preuve",
+      "detail": "source non auditée"
+     }
+    }
+   ]
+  },
+  {
+   "id": "rule_united_cabin_weight",
+   "categorie": "cabin_weight",
+   "criticite": "high",
+   "portee": {
+    "type": "airline",
+    "id": "airline_united",
+    "nom": "United Airlines"
+   },
+   "classe": "auto_citation_seule",
+   "placements_concernes": [
+    "cabin"
+   ],
+   "examens": [
+    {
+     "placement": "cabin",
+     "politique_presente": true,
+     "non_revue": false,
+     "preuve_auditee": "https://www.united.com/en/us/fly/travel/traveling-with-pets.html",
+     "confrontation": {
+      "verdict": "muette",
+      "detail": "max_weight_kg absent de la politique"
+     }
+    }
+   ]
+  },
+  {
+   "id": "rule_vietnam_airlines_cabin_weight",
+   "categorie": "cabin_weight",
+   "criticite": "high",
+   "portee": {
+    "type": "airline",
+    "id": "airline_vietnam_airlines",
+    "nom": "Vietnam Airlines"
+   },
+   "classe": "officielle_indisponible",
+   "placements_concernes": [
+    "cabin"
+   ],
+   "examens": [
+    {
+     "placement": "cabin",
+     "politique_presente": true,
+     "non_revue": false,
+     "preuve_auditee": null,
+     "confrontation": {
+      "verdict": "sans_preuve",
+      "detail": "source non auditée"
+     }
+    }
+   ]
+  },
+  {
+   "id": "rule_volotea_cabin_weight",
+   "categorie": "cabin_weight",
+   "criticite": "high",
+   "portee": {
+    "type": "airline",
+    "id": "airline_volotea",
+    "nom": "Volotea"
+   },
+   "classe": "officielle_indisponible",
+   "placements_concernes": [
+    "cabin"
+   ],
+   "examens": [
+    {
+     "placement": "cabin",
+     "politique_presente": true,
+     "non_revue": false,
+     "preuve_auditee": null,
+     "confrontation": {
+      "verdict": "sans_preuve",
+      "detail": "source non auditée"
+     }
+    }
+   ]
+  },
+  {
+   "id": "rule_vueling_cabin_weight",
+   "categorie": "cabin_weight",
+   "criticite": "high",
+   "portee": {
+    "type": "airline",
+    "id": "airline_vueling",
+    "nom": "Vueling"
+   },
+   "classe": "officielle_indisponible",
+   "placements_concernes": [
+    "cabin"
+   ],
+   "examens": [
+    {
+     "placement": "cabin",
+     "politique_presente": true,
+     "non_revue": false,
+     "preuve_auditee": null,
+     "confrontation": {
+      "verdict": "sans_preuve",
+      "detail": "source non auditée"
+     }
+    }
+   ]
+  },
+  {
+   "id": "rule_aegean_hold_weight",
+   "categorie": "hold_weight",
+   "criticite": "medium",
+   "portee": {
+    "type": "airline",
+    "id": "airline_aegean",
+    "nom": "Aegean Airlines"
+   },
+   "classe": "officielle_indisponible",
+   "placements_concernes": [
+    "hold"
+   ],
+   "examens": [
+    {
+     "placement": "hold",
+     "politique_presente": true,
+     "non_revue": false,
+     "preuve_auditee": null,
+     "confrontation": {
+      "verdict": "sans_preuve",
+      "detail": "source non auditée"
+     }
+    }
+   ]
+  },
+  {
+   "id": "rule_aeromexico_hold_weight",
+   "categorie": "hold_weight",
+   "criticite": "medium",
+   "portee": {
+    "type": "airline",
+    "id": "airline_aeromexico",
+    "nom": "Aeromexico"
+   },
+   "classe": "officielle_indisponible",
+   "placements_concernes": [
+    "hold"
+   ],
+   "examens": [
+    {
+     "placement": "hold",
+     "politique_presente": true,
+     "non_revue": false,
+     "preuve_auditee": null,
+     "confrontation": {
+      "verdict": "sans_preuve",
+      "detail": "source non auditée"
+     }
+    }
+   ]
+  },
+  {
+   "id": "rule_air_algerie_hold_weight",
+   "categorie": "hold_weight",
+   "criticite": "medium",
+   "portee": {
+    "type": "airline",
+    "id": "airline_air_algerie",
+    "nom": "Air Algérie"
+   },
+   "classe": "officielle_indisponible",
+   "placements_concernes": [
+    "hold"
+   ],
+   "examens": [
+    {
+     "placement": "hold",
+     "politique_presente": true,
+     "non_revue": false,
+     "preuve_auditee": null,
+     "confrontation": {
+      "verdict": "sans_preuve",
+      "detail": "source non auditée"
+     }
+    }
+   ]
+  },
+  {
+   "id": "rule_air_caraibes_hold_weight",
+   "categorie": "hold_weight",
+   "criticite": "medium",
+   "portee": {
+    "type": "airline",
+    "id": "airline_air_caraibes",
+    "nom": "Air Caraïbes"
+   },
+   "classe": "officielle_indisponible",
+   "placements_concernes": [
+    "hold"
+   ],
+   "examens": [
+    {
+     "placement": "hold",
+     "politique_presente": true,
+     "non_revue": false,
+     "preuve_auditee": null,
+     "confrontation": {
+      "verdict": "sans_preuve",
+      "detail": "source non auditée"
+     }
+    }
+   ]
+  },
+  {
+   "id": "rule_air_europa_hold_weight",
+   "categorie": "hold_weight",
+   "criticite": "medium",
+   "portee": {
+    "type": "airline",
+    "id": "airline_air_europa",
+    "nom": "Air Europa"
+   },
+   "classe": "non_revue",
+   "placements_concernes": [
+    "hold",
+    "cargo"
+   ],
+   "examens": [
+    {
+     "placement": "hold",
+     "politique_presente": true,
+     "non_revue": false,
+     "preuve_auditee": null,
+     "confrontation": {
+      "verdict": "sans_preuve",
+      "detail": "source non auditée"
+     }
+    },
+    {
+     "placement": "cargo",
+     "politique_presente": true,
+     "non_revue": true,
+     "preuve_auditee": null,
+     "confrontation": {
+      "verdict": "sans_preuve",
+      "detail": "source non auditée"
+     }
+    }
+   ]
+  },
+  {
+   "id": "rule_air_france_hold_weight",
+   "categorie": "hold_weight",
+   "criticite": "medium",
+   "portee": {
+    "type": "airline",
+    "id": "airline_air_france",
+    "nom": "Air France"
+   },
+   "classe": "auto_citation_seule",
+   "placements_concernes": [
+    "hold"
+   ],
+   "examens": [
+    {
+     "placement": "hold",
+     "politique_presente": true,
+     "non_revue": false,
+     "preuve_auditee": "https://wwws.airfrance.us/information/passagers/voyager-avec-son-animal-chien-chat",
+     "confrontation": {
+      "verdict": "muette",
+      "detail": "max_weight_kg absent de la politique"
+     }
+    }
+   ]
+  },
+  {
+   "id": "rule_air_india_hold_weight",
+   "categorie": "hold_weight",
+   "criticite": "medium",
+   "portee": {
+    "type": "airline",
+    "id": "airline_air_india",
+    "nom": "Air India"
+   },
+   "classe": "officielle_indisponible",
+   "placements_concernes": [
+    "hold"
+   ],
+   "examens": [
+    {
+     "placement": "hold",
+     "politique_presente": true,
+     "non_revue": false,
+     "preuve_auditee": null,
+     "confrontation": {
+      "verdict": "sans_preuve",
+      "detail": "source non auditée"
+     }
+    }
+   ]
+  },
+  {
+   "id": "rule_air_transat_hold_weight",
+   "categorie": "hold_weight",
+   "criticite": "medium",
+   "portee": {
+    "type": "airline",
+    "id": "airline_air_transat",
+    "nom": "Air Transat"
+   },
+   "classe": "non_revue",
+   "placements_concernes": [
+    "hold",
+    "cargo"
+   ],
+   "examens": [
+    {
+     "placement": "hold",
+     "politique_presente": true,
+     "non_revue": false,
+     "preuve_auditee": null,
+     "confrontation": {
+      "verdict": "sans_preuve",
+      "detail": "source non auditée"
+     }
+    },
+    {
+     "placement": "cargo",
+     "politique_presente": true,
+     "non_revue": true,
+     "preuve_auditee": null,
+     "confrontation": {
+      "verdict": "sans_preuve",
+      "detail": "source non auditée"
+     }
+    }
+   ]
+  },
+  {
+   "id": "rule_alaska_hold_weight",
+   "categorie": "hold_weight",
+   "criticite": "medium",
+   "portee": {
+    "type": "airline",
+    "id": "airline_alaska",
+    "nom": "Alaska Airlines"
+   },
+   "classe": "non_revue",
+   "placements_concernes": [
+    "hold",
+    "cargo"
+   ],
+   "examens": [
+    {
+     "placement": "hold",
+     "politique_presente": true,
+     "non_revue": false,
+     "preuve_auditee": null,
+     "confrontation": {
+      "verdict": "sans_preuve",
+      "detail": "source non auditée"
+     }
+    },
+    {
+     "placement": "cargo",
+     "politique_presente": true,
+     "non_revue": true,
+     "preuve_auditee": null,
+     "confrontation": {
+      "verdict": "sans_preuve",
+      "detail": "source non auditée"
+     }
+    }
+   ]
+  },
+  {
+   "id": "rule_ana_hold_weight",
+   "categorie": "hold_weight",
+   "criticite": "medium",
+   "portee": {
+    "type": "airline",
+    "id": "airline_ana",
+    "nom": "ANA (All Nippon Airways)"
+   },
+   "classe": "officielle_indisponible",
+   "placements_concernes": [
+    "hold"
+   ],
+   "examens": [
+    {
+     "placement": "hold",
+     "politique_presente": true,
+     "non_revue": false,
+     "preuve_auditee": null,
+     "confrontation": {
+      "verdict": "sans_preuve",
+      "detail": "source non auditée"
+     }
+    }
+   ]
+  },
+  {
+   "id": "rule_avianca_hold_weight",
+   "categorie": "hold_weight",
+   "criticite": "medium",
+   "portee": {
+    "type": "airline",
+    "id": "airline_avianca",
+    "nom": "Avianca"
+   },
+   "classe": "officielle_indisponible",
+   "placements_concernes": [
+    "hold"
+   ],
+   "examens": [
+    {
+     "placement": "hold",
+     "politique_presente": true,
+     "non_revue": false,
+     "preuve_auditee": null,
+     "confrontation": {
+      "verdict": "sans_preuve",
+      "detail": "source non auditée"
+     }
+    }
+   ]
+  },
+  {
+   "id": "rule_brussels_hold_weight",
+   "categorie": "hold_weight",
+   "criticite": "medium",
+   "portee": {
+    "type": "airline",
+    "id": "airline_brussels",
+    "nom": "Brussels Airlines"
+   },
+   "classe": "non_revue",
+   "placements_concernes": [
+    "hold",
+    "cargo"
+   ],
+   "examens": [
+    {
+     "placement": "hold",
+     "politique_presente": true,
+     "non_revue": false,
+     "preuve_auditee": null,
+     "confrontation": {
+      "verdict": "sans_preuve",
+      "detail": "source non auditée"
+     }
+    },
+    {
+     "placement": "cargo",
+     "politique_presente": true,
+     "non_revue": true,
+     "preuve_auditee": null,
+     "confrontation": {
+      "verdict": "sans_preuve",
+      "detail": "source non auditée"
+     }
+    }
+   ]
+  },
+  {
+   "id": "rule_china_airlines_hold_weight",
+   "categorie": "hold_weight",
+   "criticite": "medium",
+   "portee": {
+    "type": "airline",
+    "id": "airline_china_airlines",
+    "nom": "China Airlines"
+   },
+   "classe": "officielle_indisponible",
+   "placements_concernes": [
+    "hold"
+   ],
+   "examens": [
+    {
+     "placement": "hold",
+     "politique_presente": true,
+     "non_revue": false,
+     "preuve_auditee": null,
+     "confrontation": {
+      "verdict": "sans_preuve",
+      "detail": "source non auditée"
+     }
+    }
+   ]
+  },
+  {
+   "id": "rule_corsair_hold_weight",
+   "categorie": "hold_weight",
+   "criticite": "medium",
+   "portee": {
+    "type": "airline",
+    "id": "airline_corsair",
+    "nom": "Corsair"
+   },
+   "classe": "officielle_indisponible",
+   "placements_concernes": [
+    "hold"
+   ],
+   "examens": [
+    {
+     "placement": "hold",
+     "politique_presente": true,
+     "non_revue": false,
+     "preuve_auditee": null,
+     "confrontation": {
+      "verdict": "sans_preuve",
+      "detail": "source non auditée"
+     }
+    }
+   ]
+  },
+  {
+   "id": "rule_ethiopian_hold_weight",
+   "categorie": "hold_weight",
+   "criticite": "medium",
+   "portee": {
+    "type": "airline",
+    "id": "airline_ethiopian",
+    "nom": "Ethiopian Airlines"
+   },
+   "classe": "officielle_indisponible",
+   "placements_concernes": [
+    "hold"
+   ],
+   "examens": [
+    {
+     "placement": "hold",
+     "politique_presente": true,
+     "non_revue": false,
+     "preuve_auditee": null,
+     "confrontation": {
+      "verdict": "sans_preuve",
+      "detail": "source non auditée"
+     }
+    }
+   ]
+  },
+  {
+   "id": "rule_eva_air_hold_weight",
+   "categorie": "hold_weight",
+   "criticite": "medium",
+   "portee": {
+    "type": "airline",
+    "id": "airline_eva_air",
+    "nom": "EVA Air"
+   },
+   "classe": "officielle_indisponible",
+   "placements_concernes": [
+    "hold"
+   ],
+   "examens": [
+    {
+     "placement": "hold",
+     "politique_presente": true,
+     "non_revue": false,
+     "preuve_auditee": null,
+     "confrontation": {
+      "verdict": "sans_preuve",
+      "detail": "source non auditée"
+     }
+    }
+   ]
+  },
+  {
+   "id": "rule_finnair_hold_weight",
+   "categorie": "hold_weight",
+   "criticite": "medium",
+   "portee": {
+    "type": "airline",
+    "id": "airline_finnair",
+    "nom": "Finnair"
+   },
+   "classe": "officielle_indisponible",
+   "placements_concernes": [
+    "hold"
+   ],
+   "examens": [
+    {
+     "placement": "hold",
+     "politique_presente": true,
+     "non_revue": false,
+     "preuve_auditee": null,
+     "confrontation": {
+      "verdict": "sans_preuve",
+      "detail": "source non auditée"
+     }
+    }
+   ]
+  },
+  {
+   "id": "rule_french_bee_hold_weight",
+   "categorie": "hold_weight",
+   "criticite": "medium",
+   "portee": {
+    "type": "airline",
+    "id": "airline_french_bee",
+    "nom": "French Bee"
+   },
+   "classe": "officielle_indisponible",
+   "placements_concernes": [
+    "hold"
+   ],
+   "examens": [
+    {
+     "placement": "hold",
+     "politique_presente": true,
+     "non_revue": false,
+     "preuve_auditee": null,
+     "confrontation": {
+      "verdict": "sans_preuve",
+      "detail": "source non auditée"
+     }
+    }
+   ]
+  },
+  {
+   "id": "rule_iberia_hold_weight",
+   "categorie": "hold_weight",
+   "criticite": "medium",
+   "portee": {
+    "type": "airline",
+    "id": "airline_iberia",
+    "nom": "Iberia"
+   },
+   "classe": "auto_citation_seule",
+   "placements_concernes": [
+    "hold"
+   ],
+   "examens": [
+    {
+     "placement": "hold",
+     "politique_presente": true,
+     "non_revue": false,
+     "preuve_auditee": "https://www.iberia.com/us/faqs/pets-carriage/",
+     "confrontation": {
+      "verdict": "muette",
+      "detail": "max_weight_kg absent de la politique"
+     }
+    }
+   ]
+  },
+  {
+   "id": "rule_ita_airways_hold_weight",
+   "categorie": "hold_weight",
+   "criticite": "medium",
+   "portee": {
+    "type": "airline",
+    "id": "airline_ita_airways",
+    "nom": "ITA Airways"
+   },
+   "classe": "officielle_indisponible",
+   "placements_concernes": [
+    "hold"
+   ],
+   "examens": [
+    {
+     "placement": "hold",
+     "politique_presente": true,
+     "non_revue": false,
+     "preuve_auditee": null,
+     "confrontation": {
+      "verdict": "sans_preuve",
+      "detail": "source non auditée"
+     }
+    }
+   ]
+  },
+  {
+   "id": "rule_jal_hold_weight",
+   "categorie": "hold_weight",
+   "criticite": "medium",
+   "portee": {
+    "type": "airline",
+    "id": "airline_jal",
+    "nom": "Japan Airlines (JAL)"
+   },
+   "classe": "officielle_indisponible",
+   "placements_concernes": [
+    "hold"
+   ],
+   "examens": [
+    {
+     "placement": "hold",
+     "politique_presente": true,
+     "non_revue": false,
+     "preuve_auditee": null,
+     "confrontation": {
+      "verdict": "sans_preuve",
+      "detail": "source non auditée"
+     }
+    }
+   ]
+  },
+  {
+   "id": "rule_klm_hold_weight",
+   "categorie": "hold_weight",
+   "criticite": "medium",
+   "portee": {
+    "type": "airline",
+    "id": "airline_klm",
+    "nom": "KLM Royal Dutch Airlines"
+   },
+   "classe": "auto_citation_seule",
+   "placements_concernes": [
+    "hold"
+   ],
+   "examens": [
+    {
+     "placement": "hold",
+     "politique_presente": true,
+     "non_revue": false,
+     "preuve_auditee": "https://www.klm.com/information/pets/reservation",
+     "confrontation": {
+      "verdict": "muette",
+      "detail": "max_weight_kg absent de la politique"
+     }
+    }
+   ]
+  },
+  {
+   "id": "rule_korean_air_hold_weight",
+   "categorie": "hold_weight",
+   "criticite": "medium",
+   "portee": {
+    "type": "airline",
+    "id": "airline_korean_air",
+    "nom": "Korean Air"
+   },
+   "classe": "officielle_indisponible",
+   "placements_concernes": [
+    "hold"
+   ],
+   "examens": [
+    {
+     "placement": "hold",
+     "politique_presente": true,
+     "non_revue": false,
+     "preuve_auditee": null,
+     "confrontation": {
+      "verdict": "sans_preuve",
+      "detail": "source non auditée"
+     }
+    }
+   ]
+  },
+  {
+   "id": "rule_latam_hold_weight",
+   "categorie": "hold_weight",
+   "criticite": "medium",
+   "portee": {
+    "type": "airline",
+    "id": "airline_latam",
+    "nom": "LATAM"
+   },
+   "classe": "officielle_indisponible",
+   "placements_concernes": [
+    "hold"
+   ],
+   "examens": [
+    {
+     "placement": "hold",
+     "politique_presente": true,
+     "non_revue": false,
+     "preuve_auditee": null,
+     "confrontation": {
+      "verdict": "sans_preuve",
+      "detail": "source non auditée"
+     }
+    }
+   ]
+  },
+  {
+   "id": "rule_norwegian_hold_weight",
+   "categorie": "hold_weight",
+   "criticite": "medium",
+   "portee": {
+    "type": "airline",
+    "id": "airline_norwegian",
+    "nom": "Norwegian"
+   },
+   "classe": "officielle_indisponible",
+   "placements_concernes": [
+    "hold"
+   ],
+   "examens": [
+    {
+     "placement": "hold",
+     "politique_presente": true,
+     "non_revue": false,
+     "preuve_auditee": null,
+     "confrontation": {
+      "verdict": "sans_preuve",
+      "detail": "source non auditée"
+     }
+    }
+   ]
+  },
+  {
+   "id": "rule_philippine_hold_weight",
+   "categorie": "hold_weight",
+   "criticite": "medium",
+   "portee": {
+    "type": "airline",
+    "id": "airline_philippine",
+    "nom": "Philippine Airlines"
+   },
+   "classe": "officielle_indisponible",
+   "placements_concernes": [
+    "hold"
+   ],
+   "examens": [
+    {
+     "placement": "hold",
+     "politique_presente": true,
+     "non_revue": false,
+     "preuve_auditee": null,
+     "confrontation": {
+      "verdict": "sans_preuve",
+      "detail": "source non auditée"
+     }
+    }
+   ]
+  },
+  {
+   "id": "rule_qatar_airways_hold_weight",
+   "categorie": "hold_weight",
+   "criticite": "medium",
+   "portee": {
+    "type": "airline",
+    "id": "airline_qatar_airways",
+    "nom": "Qatar Airways"
+   },
+   "classe": "officielle_indisponible",
+   "placements_concernes": [
+    "hold"
+   ],
+   "examens": [
+    {
+     "placement": "hold",
+     "politique_presente": true,
+     "non_revue": false,
+     "preuve_auditee": null,
+     "confrontation": {
+      "verdict": "sans_preuve",
+      "detail": "source non auditée"
+     }
+    }
+   ]
+  },
+  {
+   "id": "rule_royal_air_maroc_hold_weight",
+   "categorie": "hold_weight",
+   "criticite": "medium",
+   "portee": {
+    "type": "airline",
+    "id": "airline_royal_air_maroc",
+    "nom": "Royal Air Maroc"
+   },
+   "classe": "officielle_indisponible",
+   "placements_concernes": [
+    "hold"
+   ],
+   "examens": [
+    {
+     "placement": "hold",
+     "politique_presente": true,
+     "non_revue": false,
+     "preuve_auditee": null,
+     "confrontation": {
+      "verdict": "sans_preuve",
+      "detail": "source non auditée"
+     }
+    }
+   ]
+  },
+  {
+   "id": "rule_sas_hold_weight",
+   "categorie": "hold_weight",
+   "criticite": "medium",
+   "portee": {
+    "type": "airline",
+    "id": "airline_sas",
+    "nom": "SAS Scandinavian"
+   },
+   "classe": "officielle_indisponible",
+   "placements_concernes": [
+    "hold"
+   ],
+   "examens": [
+    {
+     "placement": "hold",
+     "politique_presente": true,
+     "non_revue": false,
+     "preuve_auditee": null,
+     "confrontation": {
+      "verdict": "sans_preuve",
+      "detail": "source non auditée"
+     }
+    }
+   ]
+  },
+  {
+   "id": "rule_singapore_airlines_hold_weight",
+   "categorie": "hold_weight",
+   "criticite": "medium",
+   "portee": {
+    "type": "airline",
+    "id": "airline_singapore_airlines",
+    "nom": "Singapore Airlines"
+   },
+   "classe": "officielle_indisponible",
+   "placements_concernes": [
+    "hold"
+   ],
+   "examens": [
+    {
+     "placement": "hold",
+     "politique_presente": true,
+     "non_revue": false,
+     "preuve_auditee": null,
+     "confrontation": {
+      "verdict": "sans_preuve",
+      "detail": "source non auditée"
+     }
+    }
+   ]
+  },
+  {
+   "id": "rule_tap_hold_weight",
+   "categorie": "hold_weight",
+   "criticite": "medium",
+   "portee": {
+    "type": "airline",
+    "id": "airline_tap",
+    "nom": "TAP Air Portugal"
+   },
+   "classe": "non_revue",
+   "placements_concernes": [
+    "hold",
+    "cargo"
+   ],
+   "examens": [
+    {
+     "placement": "hold",
+     "politique_presente": true,
+     "non_revue": false,
+     "preuve_auditee": null,
+     "confrontation": {
+      "verdict": "sans_preuve",
+      "detail": "source non auditée"
+     }
+    },
+    {
+     "placement": "cargo",
+     "politique_presente": true,
+     "non_revue": true,
+     "preuve_auditee": null,
+     "confrontation": {
+      "verdict": "sans_preuve",
+      "detail": "source non auditée"
+     }
+    }
+   ]
+  },
+  {
+   "id": "rule_thai_airways_hold_weight",
+   "categorie": "hold_weight",
+   "criticite": "medium",
+   "portee": {
+    "type": "airline",
+    "id": "airline_thai_airways",
+    "nom": "Thai Airways"
+   },
+   "classe": "auto_citation_seule",
+   "placements_concernes": [
+    "hold"
+   ],
+   "examens": [
+    {
+     "placement": "hold",
+     "politique_presente": true,
+     "non_revue": false,
+     "preuve_auditee": null,
+     "confrontation": {
+      "verdict": "sans_preuve",
+      "detail": "source non auditée"
+     }
+    }
+   ]
+  },
+  {
+   "id": "rule_vietnam_airlines_hold_weight",
+   "categorie": "hold_weight",
+   "criticite": "medium",
+   "portee": {
+    "type": "airline",
+    "id": "airline_vietnam_airlines",
+    "nom": "Vietnam Airlines"
+   },
+   "classe": "officielle_indisponible",
+   "placements_concernes": [
+    "hold"
+   ],
+   "examens": [
+    {
+     "placement": "hold",
+     "politique_presente": true,
+     "non_revue": false,
+     "preuve_auditee": null,
+     "confrontation": {
+      "verdict": "sans_preuve",
+      "detail": "source non auditée"
+     }
+    }
+   ]
+  },
+  {
+   "id": "rule_westjet_hold_weight",
+   "categorie": "hold_weight",
+   "criticite": "medium",
+   "portee": {
+    "type": "airline",
+    "id": "airline_westjet",
+    "nom": "WestJet"
+   },
+   "classe": "auto_citation_seule",
+   "placements_concernes": [
+    "hold",
+    "cargo"
+   ],
+   "examens": [
+    {
+     "placement": "hold",
+     "politique_presente": true,
+     "non_revue": false,
+     "preuve_auditee": "https://www.westjet.com/en-ca/pets",
+     "confrontation": {
+      "verdict": "muette",
+      "detail": "max_weight_kg absent de la politique"
+     }
+    },
+    {
+     "placement": "cargo",
+     "politique_presente": true,
+     "non_revue": false,
+     "preuve_auditee": "https://www.westjet.com/en-ca/pets",
+     "confrontation": {
+      "verdict": "muette",
+      "detail": "max_weight_kg absent de la politique"
+     }
+    }
+   ]
+  },
+  {
+   "id": "rule_am_import",
+   "categorie": "import_rules",
+   "criticite": "high",
+   "portee": {
+    "type": "country",
+    "id": "country_am",
+    "nom": {
+     "en": "Armenia",
+     "fr": "Arménie",
+     "es": "Armenia",
+     "pt": "Armênia"
+    }
+   },
+   "classe": "officielle_indisponible",
+   "placements_concernes": [],
+   "examens": []
+  },
+  {
+   "id": "rule_ao_import",
+   "categorie": "import_rules",
+   "criticite": "high",
+   "portee": {
+    "type": "country",
+    "id": "country_ao",
+    "nom": {
+     "en": "Angola",
+     "fr": "Angola",
+     "es": "Angola",
+     "pt": "Angola"
+    }
+   },
+   "classe": "officielle_indisponible",
+   "placements_concernes": [],
+   "examens": []
+  },
+  {
+   "id": "rule_az_import",
+   "categorie": "import_rules",
+   "criticite": "high",
+   "portee": {
+    "type": "country",
+    "id": "country_az",
+    "nom": {
+     "en": "Azerbaijan",
+     "fr": "Azerbaïdjan",
+     "es": "Azerbaiyán",
+     "pt": "Azerbaijão"
+    }
+   },
+   "classe": "officielle_indisponible",
+   "placements_concernes": [],
+   "examens": []
+  },
+  {
+   "id": "rule_ba_import",
+   "categorie": "import_rules",
+   "criticite": "high",
+   "portee": {
+    "type": "country",
+    "id": "country_ba",
+    "nom": {
+     "en": "Bosnia and Herzegovina",
+     "fr": "Bosnie-Herzégovine",
+     "es": "Bosnia y Herzegovina",
+     "pt": "Bósnia e Herzegovina"
+    }
+   },
+   "classe": "officielle_indisponible",
+   "placements_concernes": [],
+   "examens": []
+  },
+  {
+   "id": "rule_bd_import",
+   "categorie": "import_rules",
+   "criticite": "high",
+   "portee": {
+    "type": "country",
+    "id": "country_bd",
+    "nom": {
+     "en": "Bangladesh",
+     "fr": "Bangladesh",
+     "es": "Bangladés",
+     "pt": "Bangladesh"
+    }
+   },
+   "classe": "officielle_indisponible",
+   "placements_concernes": [],
+   "examens": []
+  },
+  {
+   "id": "rule_bf_import",
+   "categorie": "import_rules",
+   "criticite": "high",
+   "portee": {
+    "type": "country",
+    "id": "country_bf",
+    "nom": {
+     "en": "Burkina Faso",
+     "fr": "Burkina Faso",
+     "es": "Burkina Faso",
+     "pt": "Burkina Faso"
+    }
+   },
+   "classe": "officielle_indisponible",
+   "placements_concernes": [],
+   "examens": []
+  },
+  {
+   "id": "rule_bj_import",
+   "categorie": "import_rules",
+   "criticite": "high",
+   "portee": {
+    "type": "country",
+    "id": "country_bj",
+    "nom": {
+     "en": "Benin",
+     "fr": "Bénin",
+     "es": "Benín",
+     "pt": "Benin"
+    }
+   },
+   "classe": "officielle_indisponible",
+   "placements_concernes": [],
+   "examens": []
+  },
+  {
+   "id": "rule_bo_import",
+   "categorie": "import_rules",
+   "criticite": "high",
+   "portee": {
+    "type": "country",
+    "id": "country_bo",
+    "nom": {
+     "en": "Bolivia",
+     "fr": "Bolivie",
+     "es": "Bolivia",
+     "pt": "Bolívia"
+    }
+   },
+   "classe": "officielle_indisponible",
+   "placements_concernes": [],
+   "examens": []
+  },
+  {
+   "id": "rule_by_import",
+   "categorie": "import_rules",
+   "criticite": "high",
+   "portee": {
+    "type": "country",
+    "id": "country_by",
+    "nom": {
+     "en": "Belarus",
+     "fr": "Biélorussie",
+     "es": "Bielorrusia",
+     "pt": "Belarus"
+    }
+   },
+   "classe": "officielle_indisponible",
+   "placements_concernes": [],
+   "examens": []
+  },
+  {
+   "id": "rule_cd_import",
+   "categorie": "import_rules",
+   "criticite": "high",
+   "portee": {
+    "type": "country",
+    "id": "country_cd",
+    "nom": {
+     "en": "DR Congo",
+     "fr": "RD Congo",
+     "es": "República Democrática del Congo",
+     "pt": "República Democrática do Congo"
+    }
+   },
+   "classe": "officielle_indisponible",
+   "placements_concernes": [],
+   "examens": []
+  },
+  {
+   "id": "rule_cg_import",
+   "categorie": "import_rules",
+   "criticite": "high",
+   "portee": {
+    "type": "country",
+    "id": "country_cg",
+    "nom": {
+     "en": "Republic of the Congo",
+     "fr": "Congo",
+     "es": "República del Congo",
+     "pt": "República do Congo"
+    }
+   },
+   "classe": "officielle_indisponible",
+   "placements_concernes": [],
+   "examens": []
+  },
+  {
+   "id": "rule_cm_import",
+   "categorie": "import_rules",
+   "criticite": "high",
+   "portee": {
+    "type": "country",
+    "id": "country_cm",
+    "nom": {
+     "en": "Cameroon",
+     "fr": "Cameroun",
+     "es": "Camerún",
+     "pt": "Camarões"
+    }
+   },
+   "classe": "officielle_indisponible",
+   "placements_concernes": [],
+   "examens": []
+  },
+  {
+   "id": "rule_cv_import",
+   "categorie": "import_rules",
+   "criticite": "high",
+   "portee": {
+    "type": "country",
+    "id": "country_cv",
+    "nom": {
+     "en": "Cape Verde",
+     "fr": "Cap-Vert",
+     "es": "Cabo Verde",
+     "pt": "Cabo Verde"
+    }
+   },
+   "classe": "officielle_indisponible",
+   "placements_concernes": [],
+   "examens": []
+  },
+  {
+   "id": "rule_dj_import",
+   "categorie": "import_rules",
+   "criticite": "high",
+   "portee": {
+    "type": "country",
+    "id": "country_dj",
+    "nom": {
+     "en": "Djibouti",
+     "fr": "Djibouti",
+     "es": "Yibuti",
+     "pt": "Djibuti"
+    }
+   },
+   "classe": "officielle_indisponible",
+   "placements_concernes": [],
+   "examens": []
+  },
+  {
+   "id": "rule_ga_import",
+   "categorie": "import_rules",
+   "criticite": "high",
+   "portee": {
+    "type": "country",
+    "id": "country_ga",
+    "nom": {
+     "en": "Gabon",
+     "fr": "Gabon",
+     "es": "Gabón",
+     "pt": "Gabão"
+    }
+   },
+   "classe": "officielle_indisponible",
+   "placements_concernes": [],
+   "examens": []
+  },
+  {
+   "id": "rule_gm_import",
+   "categorie": "import_rules",
+   "criticite": "high",
+   "portee": {
+    "type": "country",
+    "id": "country_gm",
+    "nom": {
+     "en": "Gambia",
+     "fr": "Gambie",
+     "es": "Gambia",
+     "pt": "Gâmbia"
+    }
+   },
+   "classe": "officielle_indisponible",
+   "placements_concernes": [],
+   "examens": []
+  },
+  {
+   "id": "rule_gn_import",
+   "categorie": "import_rules",
+   "criticite": "high",
+   "portee": {
+    "type": "country",
+    "id": "country_gn",
+    "nom": {
+     "en": "Guinea",
+     "fr": "Guinée",
+     "es": "Guinea (Guinée)",
+     "pt": "Guiné"
+    }
+   },
+   "classe": "officielle_indisponible",
+   "placements_concernes": [],
+   "examens": []
+  },
+  {
+   "id": "rule_gt_import",
+   "categorie": "import_rules",
+   "criticite": "high",
+   "portee": {
+    "type": "country",
+    "id": "country_gt",
+    "nom": {
+     "en": "Guatemala",
+     "fr": "Guatemala",
+     "es": "Guatemala",
+     "pt": "Guatemala"
+    }
+   },
+   "classe": "officielle_indisponible",
+   "placements_concernes": [],
+   "examens": []
+  },
+  {
+   "id": "rule_hn_import",
+   "categorie": "import_rules",
+   "criticite": "high",
+   "portee": {
+    "type": "country",
+    "id": "country_hn",
+    "nom": {
+     "en": "Honduras",
+     "fr": "Honduras",
+     "es": "Honduras",
+     "pt": "Honduras"
+    }
+   },
+   "classe": "officielle_indisponible",
+   "placements_concernes": [],
+   "examens": []
+  },
+  {
+   "id": "rule_iq_import",
+   "categorie": "import_rules",
+   "criticite": "high",
+   "portee": {
+    "type": "country",
+    "id": "country_iq",
+    "nom": {
+     "en": "Iraq",
+     "fr": "Irak",
+     "es": "Irak",
+     "pt": "Iraque"
+    }
+   },
+   "classe": "officielle_indisponible",
+   "placements_concernes": [],
+   "examens": []
+  },
+  {
+   "id": "rule_ir_import",
+   "categorie": "import_rules",
+   "criticite": "high",
+   "portee": {
+    "type": "country",
+    "id": "country_ir",
+    "nom": {
+     "en": "Iran",
+     "fr": "Iran",
+     "es": "Irán",
+     "pt": "Irã"
+    }
+   },
+   "classe": "officielle_indisponible",
+   "placements_concernes": [],
+   "examens": []
+  },
+  {
+   "id": "rule_kh_import",
+   "categorie": "import_rules",
+   "criticite": "high",
+   "portee": {
+    "type": "country",
+    "id": "country_kh",
+    "nom": {
+     "en": "Cambodia",
+     "fr": "Cambodge",
+     "es": "Camboya",
+     "pt": "Camboja"
+    }
+   },
+   "classe": "officielle_indisponible",
+   "placements_concernes": [],
+   "examens": []
+  },
+  {
+   "id": "rule_kz_import",
+   "categorie": "import_rules",
+   "criticite": "high",
+   "portee": {
+    "type": "country",
+    "id": "country_kz",
+    "nom": {
+     "en": "Kazakhstan",
+     "fr": "Kazakhstan",
+     "es": "Kazajistán",
+     "pt": "Cazaquistão"
+    }
+   },
+   "classe": "officielle_indisponible",
+   "placements_concernes": [],
+   "examens": []
+  },
+  {
+   "id": "rule_md_import",
+   "categorie": "import_rules",
+   "criticite": "high",
+   "portee": {
+    "type": "country",
+    "id": "country_md",
+    "nom": {
+     "en": "Moldova",
+     "fr": "Moldavie",
+     "es": "Moldavia",
+     "pt": "Moldávia"
+    }
+   },
+   "classe": "officielle_indisponible",
+   "placements_concernes": [],
+   "examens": []
+  },
+  {
+   "id": "rule_mk_import",
+   "categorie": "import_rules",
+   "criticite": "high",
+   "portee": {
+    "type": "country",
+    "id": "country_mk",
+    "nom": {
+     "en": "North Macedonia",
+     "fr": "Macédoine du Nord",
+     "es": "Macedonia del Norte",
+     "pt": "Macedônia do Norte"
+    }
+   },
+   "classe": "officielle_indisponible",
+   "placements_concernes": [],
+   "examens": []
+  },
+  {
+   "id": "rule_ml_import",
+   "categorie": "import_rules",
+   "criticite": "high",
+   "portee": {
+    "type": "country",
+    "id": "country_ml",
+    "nom": {
+     "en": "Mali",
+     "fr": "Mali",
+     "es": "Malí",
+     "pt": "Mali"
+    }
+   },
+   "classe": "officielle_indisponible",
+   "placements_concernes": [],
+   "examens": []
+  },
+  {
+   "id": "rule_mm_import",
+   "categorie": "import_rules",
+   "criticite": "high",
+   "portee": {
+    "type": "country",
+    "id": "country_mm",
+    "nom": {
+     "en": "Myanmar",
+     "fr": "Birmanie (Myanmar)",
+     "es": "Myanmar",
+     "pt": "Mianmar"
+    }
+   },
+   "classe": "officielle_indisponible",
+   "placements_concernes": [],
+   "examens": []
+  },
+  {
+   "id": "rule_mn_import",
+   "categorie": "import_rules",
+   "criticite": "high",
+   "portee": {
+    "type": "country",
+    "id": "country_mn",
+    "nom": {
+     "en": "Mongolia",
+     "fr": "Mongolie",
+     "es": "Mongolia",
+     "pt": "Mongólia"
+    }
+   },
+   "classe": "officielle_indisponible",
+   "placements_concernes": [],
+   "examens": []
+  },
+  {
+   "id": "rule_mr_import",
+   "categorie": "import_rules",
+   "criticite": "high",
+   "portee": {
+    "type": "country",
+    "id": "country_mr",
+    "nom": {
+     "en": "Mauritania",
+     "fr": "Mauritanie",
+     "es": "Mauritania",
+     "pt": "Mauritânia"
+    }
+   },
+   "classe": "officielle_indisponible",
+   "placements_concernes": [],
+   "examens": []
+  },
+  {
+   "id": "rule_mz_import",
+   "categorie": "import_rules",
+   "criticite": "high",
+   "portee": {
+    "type": "country",
+    "id": "country_mz",
+    "nom": {
+     "en": "Mozambique",
+     "fr": "Mozambique",
+     "es": "Mozambique",
+     "pt": "Moçambique"
+    }
+   },
+   "classe": "officielle_indisponible",
+   "placements_concernes": [],
+   "examens": []
+  },
+  {
+   "id": "rule_ne_import",
+   "categorie": "import_rules",
+   "criticite": "high",
+   "portee": {
+    "type": "country",
+    "id": "country_ne",
+    "nom": {
+     "en": "Niger",
+     "fr": "Niger",
+     "es": "Níger",
+     "pt": "Níger"
+    }
+   },
+   "classe": "officielle_indisponible",
+   "placements_concernes": [],
+   "examens": []
+  },
+  {
+   "id": "rule_ni_import",
+   "categorie": "import_rules",
+   "criticite": "high",
+   "portee": {
+    "type": "country",
+    "id": "country_ni",
+    "nom": {
+     "en": "Nicaragua",
+     "fr": "Nicaragua",
+     "es": "Nicaragua",
+     "pt": "Nicarágua"
+    }
+   },
+   "classe": "officielle_indisponible",
+   "placements_concernes": [],
+   "examens": []
+  },
+  {
+   "id": "rule_pk_import",
+   "categorie": "import_rules",
+   "criticite": "high",
+   "portee": {
+    "type": "country",
+    "id": "country_pk",
+    "nom": {
+     "en": "Pakistan",
+     "fr": "Pakistan",
+     "es": "Pakistán",
+     "pt": "Paquistão"
+    }
+   },
+   "classe": "officielle_indisponible",
+   "placements_concernes": [],
+   "examens": []
+  },
+  {
+   "id": "rule_py_import",
+   "categorie": "import_rules",
+   "criticite": "high",
+   "portee": {
+    "type": "country",
+    "id": "country_py",
+    "nom": {
+     "en": "Paraguay",
+     "fr": "Paraguay",
+     "es": "Paraguay",
+     "pt": "Paraguai"
+    }
+   },
+   "classe": "officielle_indisponible",
+   "placements_concernes": [],
+   "examens": []
+  },
+  {
+   "id": "rule_rw_import",
+   "categorie": "import_rules",
+   "criticite": "high",
+   "portee": {
+    "type": "country",
+    "id": "country_rw",
+    "nom": {
+     "en": "Rwanda",
+     "fr": "Rwanda",
+     "es": "Ruanda",
+     "pt": "Ruanda"
+    }
+   },
+   "classe": "officielle_indisponible",
+   "placements_concernes": [],
+   "examens": []
+  },
+  {
+   "id": "rule_sl_import",
+   "categorie": "import_rules",
+   "criticite": "high",
+   "portee": {
+    "type": "country",
+    "id": "country_sl",
+    "nom": {
+     "en": "Sierra Leone",
+     "fr": "Sierra Leone",
+     "es": "Sierra Leona",
+     "pt": "Serra Leoa"
+    }
+   },
+   "classe": "officielle_indisponible",
+   "placements_concernes": [],
+   "examens": []
+  },
+  {
+   "id": "rule_sv_import",
+   "categorie": "import_rules",
+   "criticite": "high",
+   "portee": {
+    "type": "country",
+    "id": "country_sv",
+    "nom": {
+     "en": "El Salvador",
+     "fr": "Salvador",
+     "es": "El Salvador",
+     "pt": "El Salvador"
+    }
+   },
+   "classe": "officielle_indisponible",
+   "placements_concernes": [],
+   "examens": []
+  },
+  {
+   "id": "rule_td_import",
+   "categorie": "import_rules",
+   "criticite": "high",
+   "portee": {
+    "type": "country",
+    "id": "country_td",
+    "nom": {
+     "en": "Chad",
+     "fr": "Tchad",
+     "es": "Chad",
+     "pt": "Chade"
+    }
+   },
+   "classe": "officielle_indisponible",
+   "placements_concernes": [],
+   "examens": []
+  },
+  {
+   "id": "rule_tg_import",
+   "categorie": "import_rules",
+   "criticite": "high",
+   "portee": {
+    "type": "country",
+    "id": "country_tg",
+    "nom": {
+     "en": "Togo",
+     "fr": "Togo",
+     "es": "Togo",
+     "pt": "Togo"
+    }
+   },
+   "classe": "officielle_indisponible",
+   "placements_concernes": [],
+   "examens": []
+  },
+  {
+   "id": "rule_tt_import",
+   "categorie": "import_rules",
+   "criticite": "high",
+   "portee": {
+    "type": "country",
+    "id": "country_tt",
+    "nom": {
+     "en": "Trinidad and Tobago",
+     "fr": "Trinité-et-Tobago",
+     "es": "Trinidad y Tobago",
+     "pt": "Trinidad e Tobago"
+    }
+   },
+   "classe": "officielle_indisponible",
+   "placements_concernes": [],
+   "examens": []
+  },
+  {
+   "id": "rule_tz_import",
+   "categorie": "import_rules",
+   "criticite": "high",
+   "portee": {
+    "type": "country",
+    "id": "country_tz",
+    "nom": {
+     "en": "Tanzania",
+     "fr": "Tanzanie",
+     "es": "Tanzania",
+     "pt": "Tanzânia"
+    }
+   },
+   "classe": "officielle_indisponible",
+   "placements_concernes": [],
+   "examens": []
+  },
+  {
+   "id": "rule_ug_import",
+   "categorie": "import_rules",
+   "criticite": "high",
+   "portee": {
+    "type": "country",
+    "id": "country_ug",
+    "nom": {
+     "en": "Uganda",
+     "fr": "Ouganda",
+     "es": "Uganda",
+     "pt": "Uganda"
+    }
+   },
+   "classe": "officielle_indisponible",
+   "placements_concernes": [],
+   "examens": []
+  },
+  {
+   "id": "rule_ve_import",
+   "categorie": "import_rules",
+   "criticite": "high",
+   "portee": {
+    "type": "country",
+    "id": "country_ve",
+    "nom": {
+     "en": "Venezuela",
+     "fr": "Venezuela",
+     "es": "Venezuela",
+     "pt": "Venezuela"
+    }
+   },
+   "classe": "officielle_indisponible",
+   "placements_concernes": [],
+   "examens": []
+  },
+  {
+   "id": "rule_xk_import",
+   "categorie": "import_rules",
+   "criticite": "high",
+   "portee": {
+    "type": "country",
+    "id": "country_xk",
+    "nom": {
+     "en": "Kosovo",
+     "fr": "Kosovo",
+     "es": "Kosovo",
+     "pt": "Kosovo"
+    }
+   },
+   "classe": "officielle_indisponible",
+   "placements_concernes": [],
+   "examens": []
+  },
+  {
+   "id": "rule_air_tahiti_nui_hold_deny",
+   "categorie": "placement",
+   "criticite": "high",
+   "portee": {
+    "type": "airline",
+    "id": "airline_air_tahiti_nui",
+    "nom": "Air Tahiti Nui"
+   },
+   "classe": "officielle_indisponible",
+   "placements_concernes": [
+    "hold"
+   ],
+   "examens": [
+    {
+     "placement": "hold",
+     "politique_presente": false,
+     "non_revue": false,
+     "preuve_auditee": null,
+     "confrontation": {
+      "verdict": "sans_preuve",
+      "detail": "politique absente"
+     }
+    }
+   ]
+  },
+  {
+   "id": "rule_american_no_hold",
+   "categorie": "placement",
+   "criticite": "high",
+   "portee": {
+    "type": "airline",
+    "id": "airline_american",
+    "nom": "American Airlines"
+   },
+   "classe": "officielle_confirmante",
+   "placements_concernes": [
+    "hold"
+   ],
+   "examens": [
+    {
+     "placement": "hold",
+     "politique_presente": true,
+     "non_revue": false,
+     "preuve_auditee": "https://www.aa.com/i18n/travel-info/special-assistance/pets.jsp",
+     "confrontation": {
+      "verdict": "confirme",
+      "detail": "status=denied"
+     }
+    }
+   ]
+  },
+  {
+   "id": "rule_cathay_pacific_hold_weight",
+   "categorie": "placement",
+   "criticite": "medium",
+   "portee": {
+    "type": "airline",
+    "id": "airline_cathay_pacific",
+    "nom": "Cathay Pacific"
+   },
+   "classe": "officielle_indisponible",
+   "placements_concernes": [
+    "hold"
+   ],
+   "examens": [
+    {
+     "placement": "hold",
+     "politique_presente": true,
+     "non_revue": false,
+     "preuve_auditee": null,
+     "confrontation": {
+      "verdict": "sans_preuve",
+      "detail": "source non auditée"
+     }
+    }
+   ]
+  },
+  {
+   "id": "rule_copa_hold_deny",
+   "categorie": "placement",
+   "criticite": "high",
+   "portee": {
+    "type": "airline",
+    "id": "airline_copa",
+    "nom": "Copa Airlines"
+   },
+   "classe": "officielle_indisponible",
+   "placements_concernes": [
+    "hold"
+   ],
+   "examens": [
+    {
+     "placement": "hold",
+     "politique_presente": true,
+     "non_revue": false,
+     "preuve_auditee": null,
+     "confrontation": {
+      "verdict": "sans_preuve",
+      "detail": "source non auditée"
+     }
+    }
+   ]
+  },
+  {
+   "id": "rule_delta_no_hold",
+   "categorie": "placement",
+   "criticite": "high",
+   "portee": {
+    "type": "airline",
+    "id": "airline_delta",
+    "nom": "Delta Air Lines"
+   },
+   "classe": "officielle_confirmante",
+   "placements_concernes": [
+    "hold"
+   ],
+   "examens": [
+    {
+     "placement": "hold",
+     "politique_presente": true,
+     "non_revue": false,
+     "preuve_auditee": "https://www.delta.com/us/en/pet-travel/overview",
+     "confrontation": {
+      "verdict": "confirme",
+      "detail": "status=denied"
+     }
+    }
+   ]
+  },
+  {
+   "id": "rule_etihad_hold_deny",
+   "categorie": "placement",
+   "criticite": "high",
+   "portee": {
+    "type": "airline",
+    "id": "airline_etihad",
+    "nom": "Etihad Airways"
+   },
+   "classe": "officielle_indisponible",
+   "placements_concernes": [
+    "hold"
+   ],
+   "examens": [
+    {
+     "placement": "hold",
+     "politique_presente": true,
+     "non_revue": false,
+     "preuve_auditee": null,
+     "confrontation": {
+      "verdict": "sans_preuve",
+      "detail": "source non auditée"
+     }
+    }
+   ]
+  },
+  {
+   "id": "rule_eurowings_cabin_only",
+   "categorie": "placement",
+   "criticite": "medium",
+   "portee": {
+    "type": "airline",
+    "id": "airline_eurowings",
+    "nom": "Eurowings"
+   },
+   "classe": "officielle_indisponible",
+   "placements_concernes": [
+    "hold",
+    "cargo"
+   ],
+   "examens": [
+    {
+     "placement": "hold",
+     "politique_presente": true,
+     "non_revue": false,
+     "preuve_auditee": null,
+     "confrontation": {
+      "verdict": "sans_preuve",
+      "detail": "source non auditée"
+     }
+    },
+    {
+     "placement": "cargo",
+     "politique_presente": true,
+     "non_revue": false,
+     "preuve_auditee": null,
+     "confrontation": {
+      "verdict": "sans_preuve",
+      "detail": "source non auditée"
+     }
+    }
+   ]
+  },
+  {
+   "id": "rule_jetblue_cabin_only",
+   "categorie": "placement",
+   "criticite": "medium",
+   "portee": {
+    "type": "airline",
+    "id": "airline_jetblue",
+    "nom": "JetBlue"
+   },
+   "classe": "officielle_indisponible",
+   "placements_concernes": [
+    "hold",
+    "cargo"
+   ],
+   "examens": [
+    {
+     "placement": "hold",
+     "politique_presente": true,
+     "non_revue": false,
+     "preuve_auditee": null,
+     "confrontation": {
+      "verdict": "sans_preuve",
+      "detail": "source non auditée"
+     }
+    },
+    {
+     "placement": "cargo",
+     "politique_presente": true,
+     "non_revue": false,
+     "preuve_auditee": null,
+     "confrontation": {
+      "verdict": "sans_preuve",
+      "detail": "source non auditée"
+     }
+    }
+   ]
+  },
+  {
+   "id": "rule_philippine_cabin_deny",
+   "categorie": "placement",
+   "criticite": "high",
+   "portee": {
+    "type": "airline",
+    "id": "airline_philippine",
+    "nom": "Philippine Airlines"
+   },
+   "classe": "officielle_indisponible",
+   "placements_concernes": [
+    "cabin"
+   ],
+   "examens": [
+    {
+     "placement": "cabin",
+     "politique_presente": true,
+     "non_revue": false,
+     "preuve_auditee": null,
+     "confrontation": {
+      "verdict": "sans_preuve",
+      "detail": "source non auditée"
+     }
+    }
+   ]
+  },
+  {
+   "id": "rule_united_no_hold",
+   "categorie": "placement",
+   "criticite": "high",
+   "portee": {
+    "type": "airline",
+    "id": "airline_united",
+    "nom": "United Airlines"
+   },
+   "classe": "officielle_confirmante",
+   "placements_concernes": [
+    "hold"
+   ],
+   "examens": [
+    {
+     "placement": "hold",
+     "politique_presente": true,
+     "non_revue": false,
+     "preuve_auditee": "https://www.united.com/en/us/fly/travel/traveling-with-pets.html",
+     "confrontation": {
+      "verdict": "confirme",
+      "detail": "status=denied"
+     }
+    }
+   ]
+  },
+  {
+   "id": "rule_volotea_cabin_only",
+   "categorie": "placement",
+   "criticite": "medium",
+   "portee": {
+    "type": "airline",
+    "id": "airline_volotea",
+    "nom": "Volotea"
+   },
+   "classe": "officielle_indisponible",
+   "placements_concernes": [
+    "hold",
+    "cargo"
+   ],
+   "examens": [
+    {
+     "placement": "hold",
+     "politique_presente": true,
+     "non_revue": false,
+     "preuve_auditee": null,
+     "confrontation": {
+      "verdict": "sans_preuve",
+      "detail": "source non auditée"
+     }
+    },
+    {
+     "placement": "cargo",
+     "politique_presente": true,
+     "non_revue": false,
+     "preuve_auditee": null,
+     "confrontation": {
+      "verdict": "sans_preuve",
+      "detail": "source non auditée"
+     }
+    }
+   ]
+  },
+  {
+   "id": "rule_vueling_cabin_only",
+   "categorie": "placement",
+   "criticite": "medium",
+   "portee": {
+    "type": "airline",
+    "id": "airline_vueling",
+    "nom": "Vueling"
+   },
+   "classe": "officielle_indisponible",
+   "placements_concernes": [
+    "hold",
+    "cargo"
+   ],
+   "examens": [
+    {
+     "placement": "hold",
+     "politique_presente": true,
+     "non_revue": false,
+     "preuve_auditee": null,
+     "confrontation": {
+      "verdict": "sans_preuve",
+      "detail": "source non auditée"
+     }
+    },
+    {
+     "placement": "cargo",
+     "politique_presente": true,
+     "non_revue": false,
+     "preuve_auditee": null,
+     "confrontation": {
+      "verdict": "sans_preuve",
+      "detail": "source non auditée"
+     }
+    }
+   ]
+  }
+ ]
+}

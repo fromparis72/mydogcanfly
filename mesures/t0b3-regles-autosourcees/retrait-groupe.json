@@ -1,0 +1,172 @@
+{
+ "lot": "T0-B3 — mesure des règles auto-sourcées",
+ "nature": "MESURE — retraits groupés SIMULÉS en mémoire, référentiel jamais écrit",
+ "sceau": {
+  "measurement_base_sha": "ca254bf973bbab89f06073bdc36716f0cdb58660",
+  "raw_rules_sha256": "a80118fac2cf4344f89521c1703c834c36d8d4d42b2dfb80dd858a4d95cec422",
+  "raw_objects_sha256": "dca1706134b188fa569f7172fa2ccfcff8c81b131e554326cb5d1c47b65ffef0"
+ },
+ "lecture": "« scenarios_statut_change » = un statut de canal ou le verdict a bougé (un fait publié change). « scenarios_score_seul » = seul le score bouge, tous les statuts identiques (la confiance remonte, aucune promesse nouvelle sur le transport). Les deux portent sur les 72 scénarios de la baseline T0-A. « soutes_brachy_rouvertes » porte sur une sonde dédiée : un carlin en soute sur la première route directe de chaque compagnie concernée, en ne comparant QUE la soute et le fret. Sans cette sonde, une réouverture massive resterait invisible : les 72 scénarios publics ne mettent aucun brachycéphale en soute sur ces routes.",
+ "sondes": {
+  "scenarios_publics": 72,
+  "sondes_brachy": 41
+ },
+ "mesures": [
+  {
+   "groupe": "auto-citées · breed_ban",
+   "note": "toute la famille auto-citée de cette catégorie",
+   "regles_retirees": 41,
+   "scenarios_statut_change": 0,
+   "exemples_statut": [],
+   "scenarios_score_seul": 12,
+   "exemples_score": [
+    "cdg-bkk|pug|01-15|hold",
+    "cdg-dxb|pug|01-15|any",
+    "cdg-dxb|pug|07-15|any",
+    "cdg-dxb|pug|07-15|hold",
+    "fra-sin|pug|01-15|any"
+   ],
+   "soutes_brachy_rouvertes": 0,
+   "exemples_rouvertures": []
+  },
+  {
+   "groupe": "auto-citées · cabin_weight",
+   "note": "toute la famille auto-citée de cette catégorie",
+   "regles_retirees": 40,
+   "scenarios_statut_change": 32,
+   "exemples_statut": [
+    "cdg-bkk|golden|01-15|any",
+    "cdg-bkk|golden|01-15|hold",
+    "cdg-bkk|golden|07-15|any",
+    "cdg-bkk|golden|07-15|hold",
+    "cdg-bkk|pug|01-15|any"
+   ],
+   "scenarios_score_seul": 0,
+   "exemples_score": [],
+   "soutes_brachy_rouvertes": 0,
+   "exemples_rouvertures": []
+  },
+  {
+   "groupe": "auto-citées · hold_weight",
+   "note": "toute la famille auto-citée de cette catégorie",
+   "regles_retirees": 34,
+   "scenarios_statut_change": 0,
+   "exemples_statut": [],
+   "scenarios_score_seul": 0,
+   "exemples_score": [],
+   "soutes_brachy_rouvertes": 0,
+   "exemples_rouvertures": []
+  },
+  {
+   "groupe": "auto-citées · import_rules",
+   "note": "toute la famille auto-citée de cette catégorie",
+   "regles_retirees": 44,
+   "scenarios_statut_change": 0,
+   "exemples_statut": [],
+   "scenarios_score_seul": 0,
+   "exemples_score": [],
+   "soutes_brachy_rouvertes": 0,
+   "exemples_rouvertures": []
+  },
+  {
+   "groupe": "auto-citées · placement",
+   "note": "toute la famille auto-citée de cette catégorie",
+   "regles_retirees": 12,
+   "scenarios_statut_change": 0,
+   "exemples_statut": [],
+   "scenarios_score_seul": 9,
+   "exemples_score": [
+    "cdg-dxb|golden|01-15|hold",
+    "lhr-mia|golden|01-15|any",
+    "lhr-mia|golden|07-15|any",
+    "cdg-lhr|pug|01-15|any",
+    "cdg-lhr|pug|01-15|hold"
+   ],
+   "soutes_brachy_rouvertes": 0,
+   "exemples_rouvertures": []
+  },
+  {
+   "groupe": "auto-citées · TOUTES",
+   "note": "les 171 d'un coup — la borne haute du risque",
+   "regles_retirees": 171,
+   "scenarios_statut_change": 32,
+   "exemples_statut": [
+    "cdg-bkk|golden|01-15|any",
+    "cdg-bkk|golden|01-15|hold",
+    "cdg-bkk|golden|07-15|any",
+    "cdg-bkk|golden|07-15|hold",
+    "cdg-bkk|pug|01-15|any"
+   ],
+   "scenarios_score_seul": 10,
+   "exemples_score": [
+    "lhr-mia|golden|01-15|any",
+    "lhr-mia|golden|07-15|any",
+    "lhr-mia|pug|01-15|hold",
+    "lhr-mia|pug|07-15|hold",
+    "cdg-lhr|pug|01-15|any"
+   ],
+   "soutes_brachy_rouvertes": 0,
+   "exemples_rouvertures": []
+  },
+  {
+   "groupe": "breed_ban auto-citées + rule_global_brachy_hold",
+   "note": "ajoute la règle globale IATA, seul filet restant une fois les 41 retirées",
+   "regles_retirees": 42,
+   "scenarios_statut_change": 36,
+   "exemples_statut": [
+    "cdg-bkk|pug|01-15|any",
+    "cdg-bkk|pug|01-15|hold",
+    "cdg-bkk|pug|07-15|any",
+    "cdg-bkk|pug|07-15|hold",
+    "cdg-jfk|pug|01-15|any"
+   ],
+   "scenarios_score_seul": 0,
+   "exemples_score": [],
+   "soutes_brachy_rouvertes": 41,
+   "exemples_rouvertures": [
+    {
+     "cle": "airline_aegean|pug|hold",
+     "avant": "denied/denied",
+     "apres": "allowed/confirmation_required"
+    },
+    {
+     "cle": "airline_aeromexico|pug|hold",
+     "avant": "denied/denied",
+     "apres": "allowed/confirmation_required"
+    },
+    {
+     "cle": "airline_air_caraibes|pug|hold",
+     "avant": "denied/denied",
+     "apres": "allowed/confirmation_required"
+    },
+    {
+     "cle": "airline_air_europa|pug|hold",
+     "avant": "denied/denied",
+     "apres": "allowed/confirmation_required"
+    },
+    {
+     "cle": "airline_air_india|pug|hold",
+     "avant": "denied/denied",
+     "apres": "allowed/confirmation_required"
+    }
+   ]
+  },
+  {
+   "groupe": "rule_global_brachy_hold SEULE",
+   "note": "règle non auto-citée (IATA) — mesurée pour situer la dépendance, hors périmètre du lot",
+   "regles_retirees": 1,
+   "scenarios_statut_change": 36,
+   "exemples_statut": [
+    "cdg-bkk|pug|01-15|any",
+    "cdg-bkk|pug|01-15|hold",
+    "cdg-bkk|pug|07-15|any",
+    "cdg-bkk|pug|07-15|hold",
+    "cdg-jfk|pug|01-15|any"
+   ],
+   "scenarios_score_seul": 0,
+   "exemples_score": [],
+   "soutes_brachy_rouvertes": 0,
+   "exemples_rouvertures": []
+  }
+ ]
+}
