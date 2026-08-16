@@ -181,8 +181,23 @@ for (const [langue, p] of LANGUES) {
   check(`${langue} : zéro erreur console sur la page pays`, erreurs.length === 0,
     erreurs.map((e) => e.split("\n")[0]).join(" | ").slice(0, 180));
   const titre = doc.getElementById("conav-title")?.textContent ?? "";
-  check(`${langue} : CountryOnward — « via=airline_air_france » RÉÉCRIT le titre`,
-    titre !== "" && titre !== statique && /Air France/.test(titre), `statique « ${statique} » · après « ${titre} »`);
+  /* Le texte EXACT, langue par langue. Chercher « Air France » ne testait que la substitution du
+     nom : la faute d'accord « Tu envisagiez », relevée au contre-test navigateur du 16/08/2026,
+     passait au vert et pouvait revenir.
+
+     Les trois premières formes sont écrites en clair dans `CountryOnward` (`T(en, fr, es)`) ; la
+     portugaise vient de la table `ptInline`, superposée par `inlineT`. Les quatre sont figées ici
+     à leur texte EXACT — c'est le patron déjà retenu pour les badges d'itinéraire dans
+     `test-flightfinder-harness.cjs` : vérifier que deux libellés « diffèrent » laisserait passer
+     une clé manquante retombant sur l'anglais, ou deux langues inversées. */
+  const TITRE_VIA = {
+    en: "Considering Air France?",
+    fr: "Tu envisageais Air France ?",
+    es: "¿Estás considerando Air France?",
+    pt: "Pensando na Air France?",
+  };
+  check(`${langue} : CountryOnward — le titre devient EXACTEMENT « ${TITRE_VIA[langue]} »`,
+    titre === TITRE_VIA[langue] && titre !== statique, `statique « ${statique} » · après « ${titre} »`);
   const book = doc.getElementById("conav-book");
   check(`${langue} : CountryOnward — le bouton de réservation devient visible, avec son URL`,
     book !== null && book.hidden === false && /^https?:\/\//.test(book.getAttribute("href") || ""),
@@ -394,13 +409,18 @@ console.log(`\n=== 5. Les ${CIBLE.length} canaux contradictoires × 4 langues : 
   const os = require_("node:os");
   const total = { pagesLues: 0, blocsVerifies: 0, absentes: [], anomalies: [], picMo: 0 };
   const lotsMorts = [];
+  /* Un répertoire temporaire PROPRE à cette exécution. Un nom fixe (« mdcf-lot-0.json ») entrait
+     en collision entre deux exécutions simultanées — la CI et une session locale, deux portées
+     lancées côte à côte — et l'une lisait le lot de l'autre. `mkdtempSync` rend la collision
+     impossible plutôt qu'improbable. */
+  const dossier = fs.mkdtempSync(path.join(os.tmpdir(), "mdcf-lots-"));
+  try {
   for (let i = 0; i < taches.length; i += TAILLE_LOT) {
     const lot = taches.slice(i, i + TAILLE_LOT);
-    const fichier = path.join(os.tmpdir(), `mdcf-lot-${i}.json`);
+    const fichier = path.join(dossier, `lot-${i}.json`);
     fs.writeFileSync(fichier, JSON.stringify({ dist: DIST, taches: lot }));
     const r = spawnSync(process.execPath, [`--max-old-space-size=${HEAP_LOT_MO}`,
       path.join(ROOT, "test-lib", "verifier-blocs-entites.mjs"), fichier], { encoding: "utf8", maxBuffer: 32 * 1024 * 1024 });
-    fs.unlinkSync(fichier);
     if (r.status !== 0) {
       lotsMorts.push(`lot ${i / TAILLE_LOT} (${lot.length} pages) : code ${r.status} — ${(r.stderr || "").split("\n").find((l) => /heap|Error/i.test(l)) ?? "sortie vide"}`);
       continue;
@@ -411,6 +431,11 @@ console.log(`\n=== 5. Les ${CIBLE.length} canaux contradictoires × 4 langues : 
     total.absentes.push(...res.absentes);
     total.anomalies.push(...res.anomalies);
     total.picMo = Math.max(total.picMo, res.picMo);
+  }
+  } finally {
+    /* Le ménage a lieu même si une assertion lève : un répertoire temporaire abandonné à chaque
+       exécution finit par peser, et surtout il masque la prochaine collision. */
+    fs.rmSync(dossier, { recursive: true, force: true });
   }
 
   /* Un lot mort ne doit JAMAIS se lire comme « moins de pages à vérifier » : c'est un échec. */
