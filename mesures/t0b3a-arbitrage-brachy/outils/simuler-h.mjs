@@ -42,12 +42,14 @@ import { evaluate } from "../../../packages/engine/src/evaluate.ts";
 import { explain } from "../../../packages/engine/src/explain.ts";
 import { runFinder } from "../../../packages/engine/src/pipeline.ts";
 import { FinderRequest, makePlacementDecision, causeKey } from "../../../packages/engine/src/contracts.ts";
-import { BreedRestriction } from "../../../packages/knowledge/src/breed-restrictions.ts";
+import { BreedRestriction, validateBreedRestrictions } from "../../../packages/knowledge/src/breed-restrictions.ts";
 import { chargerReferentiel, estAutoCitee, ecrireJson } from "./lib-arbitrage.mjs";
 
 const DOSSIER = "mesures/t0b3a-arbitrage-brachy";
 const GLOBALE = "rule_global_brachy_hold";
-const CAUSE_H = "breed_policy_unreviewed";
+const CAUSE_NON_REVUE = "breed_policy_unreviewed";
+const CAUSE_EXIGENCE = "breed_requirement";
+const CAUSE_H = "breed_policy_unreviewed"; // conservé pour les contrôles historiques
 const AUTO = /(^|\.)mydogcanfly\.com$/i;
 const URL_IATA_MORTE = "https://www.iata.org/en/youandiata/travelers/pets/";
 const CONTRE = (process.argv.find((a) => a.startsWith("--contre-epreuve=")) ?? "").split("=")[1] ?? null;
@@ -82,14 +84,76 @@ const kbH = normalize({ ...rawKB, rules: rawKB.rules.filter((r) => !IDS_42.inclu
    commodité de simulation : sous H, les 102 compagnies tombent donc toutes sur « aucun fait audité
    applicable ». Chaque entrée est validée par le contrat lui-même — une fixture qui n'aurait ni
    citation ni langue serait REFUSÉE ici, ce qui est exactement ce que la v2 laissait passer. */
+const KNOWN_IDS = {
+  airlineIds: new Set(rawKB.airlines.map((a) => a.id)),
+  breedIds: new Set((rawKB.breeds ?? []).map((b) => b.id)),
+  countryIds: new Set(rawKB.countries.map((c) => c.id)),
+  airportIds: new Set(rawKB.airports.map((a) => a.id)),
+};
+
+/**
+ * CHARGEMENT = schéma PUIS validation d'ENSEMBLE.
+ *
+ * La v3 n'appelait que `BreedRestriction.safeParse()`, entrée par entrée, et « résolvait » ensuite
+ * les conflits par une priorité inventée (`deny > require > allow`). C'était contourner la moitié
+ * du contrat : `validateBreedRestrictions()` refuse `allow` + `deny` (CONTRADICTION), rend
+ * `deny` + `require` inatteignable (UNREACHABLE), signale les conditions non disjointes et les
+ * identifiants inconnus — y compris entre une règle GLOBALE et une règle compagnie.
+ *
+ * Une contradiction ne se RÉSOUT pas : elle se refuse. La priorité est donc supprimée.
+ */
 function chargerRestrictions(liste) {
-  return liste.map((r, i) => {
+  const parsees = liste.map((r, i) => {
     const p = BreedRestriction.safeParse(r);
-    if (!p.success) throw new Error(`restriction #${i} refusée par le contrat : ${p.error.issues[0]?.message}`);
+    if (!p.success) throw new Error(`restriction #${i} refusée par le schéma : ${p.error.issues[0]?.message}`);
     return p.data;
   });
+  const anomalies = validateBreedRestrictions(parsees, KNOWN_IDS);
+  if (anomalies.length) {
+    throw new Error(`ensemble refusé par validateBreedRestrictions : ` +
+      anomalies.map((a) => `${a.code} — ${a.message}`).join(" | "));
+  }
+  return parsees;
 }
-const RESTRICTIONS_REELLES = chargerRestrictions([]); // le référentiel est vide, et on le dit
+
+/** L'avertissement IATA, sous sa FORME CIBLE : une `BreedRestriction` `warn`, avec l'URL vivante et
+ *  la phrase officielle complète. `warn` compose avec toute autre action — c'est le contrat qui le
+ *  dit — et n'agit ni sur le statut, ni sur le score, ni sur les sources probantes.
+ *  La v3 le laissait dans une fixture : le parcours public n'en émettait aucun, et « avertissement
+ *  conservé à part » n'était donc pas prouvé fonctionnellement. */
+const IATA_WARN = {
+  id: "brest_iata_snub_nose_hot_season",
+  applies_to: { trait: "brachycephalic" },
+  action: "warn",
+  placements: ["hold", "cargo"],
+  detail: {
+    en: "IATA advises against transporting snub-nosed dogs in the hold or cargo in hot season.",
+    fr: "L'IATA déconseille le transport des chiens au museau écrasé en soute ou en fret en saison chaude.",
+    es: "La IATA desaconseja transportar perros de hocico chato en bodega o carga en temporada calurosa.",
+    pt: "A IATA desaconselha o transporte de cães de focinho achatado no porão ou na carga em época quente.",
+  },
+  source: {
+    url: "https://www.iata.org/en/programs/cargo/live-animals/pets/",
+    source_type: "regulation", verified_date: "2026-08-16", review_due: "2027-02-12",
+    confidence: 4, reviewer: "contre-revue Codex", history: [],
+    quote: "Transport of snub nose dogs, such as boxers, pugs, bulldogs and Pekinese, in hot season is not recommended.",
+    quote_language: "en",
+  },
+};
+
+/* Le référentiel RÉEL ne contient aucune BreedRestriction. La cible de H en contient une seule :
+   l'avertissement IATA. C'est la différence entre l'état d'aujourd'hui et l'état proposé, et elle
+   doit être lisible plutôt que fondue dans un tableau vide. */
+const RESTRICTIONS_AUJOURD_HUI = chargerRestrictions([]);
+const RESTRICTIONS_REELLES = chargerRestrictions(CONTRE === "validateur"
+  ? [IATA_WARN,
+     { id: "brest_ct_allow", airline_id: "airline_aegean", applies_to: { trait: "brachycephalic" },
+       action: "allow", placements: ["hold"], source: { ...IATA_WARN.source, url: "https://aegean.example/pets",
+         source_type: "official_website", quote: "Snub-nosed breeds are accepted in the hold." } },
+     { id: "brest_ct_deny", airline_id: "airline_aegean", applies_to: { trait: "brachycephalic" },
+       action: "deny", placements: ["hold"], source: { ...IATA_WARN.source, url: "https://aegean.example/pets2",
+         source_type: "official_website", quote: "Snub-nosed breeds are not accepted in the hold." } }]
+  : [IATA_WARN]);
 
 /* ---- LA FONCTION H, UNIQUE ---------------------------------------------------------------------
    Paramétrée par le référentiel. Utilisée par la simulation, par les fixtures et par les
@@ -123,17 +187,27 @@ function decisionH({ restrictions, airline_id, placement, statutBase, chien }) {
   }
 
   /* `warn` n'agit JAMAIS sur le statut : c'est le cas fondateur du contrat — la recommandation
-     IATA déconseille sans interdire, et en faire un refus est ce qui a produit la règle globale. */
-  const conseils = applicables.filter((r) => r.action === "warn").map((r) => ({ id: r.id, detail: r.detail }));
+     IATA déconseille sans interdire, et en faire un refus est ce qui a produit la règle globale.
+     Le contrat prévoit explicitement que `warn` COMPOSE avec toute autre action. */
+  const conseils = applicables.filter((r) => r.action === "warn")
+    .map((r) => ({ id: r.id, detail: r.detail, source: r.source, placements: r.placements }));
 
-  /* Précédence : deny > require > allow. Un refus audité prime sur une autorisation auditée —
-     en cas de sources contradictoires, on ne publie pas l'ouverture. */
-  if (applicables.some((r) => r.action === "deny"))
-    return { branche: 2, statut: "denied", motif: "refus audité (BreedRestriction deny)", conseils };
-  if (applicables.some((r) => r.action === "require"))
-    return { branche: 5, statut: "confirmation_required", motif: "exigence auditée à satisfaire (BreedRestriction require)", conseils };
-  if (applicables.some((r) => r.action === "allow"))
-    return { branche: 3, statut: statutBase, motif: "autorisation auditée (BreedRestriction allow)", conseils };
+  /* PAS DE PRIORITÉ INVENTÉE. `allow` + `deny` est une CONTRADICTION et `deny` + `require` une
+     situation INATTEIGNABLE : `validateBreedRestrictions()` les refuse au chargement, si bien
+     qu'aucune résolution n'a à exister ici. La v3 les tranchait silencieusement en `deny` — elle
+     réparait à l'exécution ce que le contrat interdit à la construction.
+     Reste `allow` + `require`, que le validateur AUTORISE : l'exigence l'emporte, puisqu'elle
+     décrit ce qu'il faut faire pour que l'autorisation vaille. */
+  const decisive = applicables.find((r) => r.action === "deny")
+    ?? applicables.find((r) => r.action === "require")
+    ?? applicables.find((r) => r.action === "allow")
+    ?? null;
+  if (decisive?.action === "deny")
+    return { branche: 2, statut: "denied", motif: "refus audité", conseils, decisive };
+  if (decisive?.action === "require")
+    return { branche: 5, statut: "confirmation_required", motif: "exigence auditée à satisfaire", conseils, decisive };
+  if (decisive?.action === "allow")
+    return { branche: 3, statut: statutBase, motif: "autorisation auditée", conseils, decisive };
 
   /* 4 · Aucun fait audité applicable → notre incertitude, dite « à confirmer ». */
   if (CONTRE === "table") return { branche: 4, statut: "allowed", motif: "CONTRE-ÉPREUVE : table inversée", conseils };
@@ -141,6 +215,14 @@ function decisionH({ restrictions, airline_id, placement, statutBase, chien }) {
 }
 
 const branches = { 0: 0, 1: 0, 2: 0, 3: 0, 4: 0, 5: 0, 9: 0 };
+
+/** La preuve DESCEND avec la décision : quand une restriction tranche, c'est SA source qui
+ *  justifie le canal, pas la provenance générale préexistante. La v3 conservait `d.source` même
+ *  sur une branche décidée par une restriction — la carte aurait montré la mauvaise page. */
+const sourceDeDecision = (r) => ({
+  url: r.source.url, source_type: r.source.source_type,
+  verified_date: r.source.verified_date, confidence: r.source.confidence,
+});
 const conseilsIata = [];
 const nonSimulables = new Set();
 
@@ -152,7 +234,13 @@ const fusionner = (existantes, ajout) => {
 
 const journal = { causes_perdues: [], dominance_jouee: 0, dominance_violee: [] };
 
+/** Les avis de sécurité du scénario en cours. Ils sortent de la décision et sont RATTACHÉS au
+ *  rapport, sans jamais toucher au statut, au score, à `fired` ni aux sources probantes : c'est le
+ *  chemin que l'implémentation devra suivre — `BreedRestriction warn` → avis structuré → rapport
+ *  public → rendu localisé. */
+let avisDuScenario = [];
 function appliquerH(decision, restrictions, cleScenario) {
+  avisDuScenario = [];
   const chien = {
     breed_id: decision.request.dog.breed_id,
     brachycephalic: decision.request.dog.brachycephalic === true ||
@@ -165,21 +253,37 @@ function appliquerH(decision, restrictions, cleScenario) {
       const r = decisionH({ restrictions, airline_id: a.airline_id, placement: d.placement,
         statutBase: d.status, chien });
       branches[r.branche]++;
-      for (const c of r.conseils) conseilsIata.push(`${a.airline_id}#${d.placement}|${c.id}`);
+      for (const c of r.conseils) {
+        conseilsIata.push(`${a.airline_id}#${d.placement}|${c.id}`);
+        avisDuScenario.push({ restriction_ref: c.id, airline_id: a.airline_id, placement: d.placement,
+          detail: c.detail, source: { url: c.source.url, quote: c.source.quote, quote_language: c.source.quote_language } });
+      }
       for (const id of r.non_simulable ?? []) nonSimulables.add(id);
 
       const causesAvant = d.status === "confirmation_required" ? (d.confirmation_causes ?? []) : [];
       const ref = `${cleScenario}|${a.airline_id}#${d.placement}`;
 
+      const preuve = r.decisive ? sourceDeDecision(r.decisive) : (d.source ?? null);
+
       if (r.statut === "denied") {
         /* DOMINANCE : un refus dur éteint toutes les causes. On COMPTE les cas où elle joue. */
         if (causesAvant.length) journal.dominance_jouee++;
-        return { placement: d.placement, status: "denied", allowed: false, ...(d.source ? { source: d.source } : {}) };
+        return { placement: d.placement, status: "denied", allowed: false, ...(preuve ? { source: preuve } : {}) };
       }
-      if (r.statut === "allowed") return d;
+      if (r.statut === "allowed") {
+        return r.decisive ? { ...d, source: preuve } : d;
+      }
 
-      const ajout = r.branche === 4 || r.branche === 5
-        ? [{ code: CAUSE_H, policy_ref: `${a.airline_id}#${d.placement}` }] : [];
+      /* DEUX CAUSES DISTINCTES, et c'est le fond du sujet. La v3 émettait
+         `breed_policy_unreviewed` pour la branche 4 ET pour la branche 5 : c'était faux — une
+         exigence officielle auditée n'est PAS une politique non revérifiée. L'une dit « nous ne
+         savons pas », l'autre dit « la compagnie exige ceci ». Les confondre, c'est reproduire
+         exactement la perte d'interprétation que T0-B a réparée. */
+      const ajout = r.branche === 5
+        ? [{ code: CAUSE_EXIGENCE, policy_ref: `${a.airline_id}#${d.placement}`, restriction_ref: r.decisive.id }]
+        : r.branche === 4
+          ? [{ code: CAUSE_NON_REVUE, policy_ref: `${a.airline_id}#${d.placement}` }]
+          : [];
       let causesApres = fusionner(causesAvant, ajout);
       if (CONTRE === "causes") causesApres = ajout; // contre-épreuve : on écrase comme la v1
 
@@ -189,8 +293,12 @@ function appliquerH(decision, restrictions, cleScenario) {
       for (const c of causesAvant) {
         if (!apres.has(causeKey(c))) journal.causes_perdues.push(`${ref}|${causeKey(c)}`);
       }
+      /* `breed_policy_unreviewed` ne porte AUCUNE source : c'est une absence de fait, pas un fait.
+         Lui en attacher une présenterait la provenance du canal comme la preuve d'une politique
+         de race qu'elle ne documente pas. */
+      const src = r.branche === 4 ? (d.source ?? null) : preuve;
       return { placement: d.placement, status: "confirmation_required", allowed: false,
-        confirmation_causes: causesApres, ...(d.source ? { source: d.source } : {}) };
+        confirmation_causes: causesApres, ...(src ? { source: src } : {}) };
     });
     return { ...a, placements };
   });
@@ -204,7 +312,10 @@ let rapportsRefuses = 0;
 function rapportH(req, cle, restrictions = RESTRICTIONS_REELLES) {
   const dec = appliquerH(evaluate(kbH, req), restrictions, cle);
   try {
-    return explain(dec, req.locale);
+    const rapport = explain(dec, req.locale);
+    /* L'avis voyage À CÔTÉ du rapport, jamais dedans comme preuve. */
+    rapport.avis_securite = [...avisDuScenario];
+    return rapport;
   } catch (e) {
     rapportsRefuses++;
     journal.derniere_erreur_explain = String(e).split("\n")[0].slice(0, 200);
@@ -372,20 +483,25 @@ const FIXTURES = [
   { nom: "branche 1 · canal structurellement fermé", restrictions: [], statutBase: "denied",
     chien: CHIEN_BRACHY, attendu: { statut: "denied", branche: 1 } },
   { nom: "branche 2 · deny audité", statutBase: "allowed", chien: CHIEN_BRACHY,
-    restrictions: [{ id: "brest_fx_deny", airline_id: "airline_fx", applies_to: { trait: "brachycephalic" },
+    restrictions: [{ id: "brest_fx_deny", airline_id: "airline_aegean", applies_to: { trait: "brachycephalic" },
       action: "deny", placements: ["hold"], source: QUOTE("https://fx.example/pets", "Snub-nosed breeds are not accepted in the hold.") }],
-    attendu: { statut: "denied", branche: 2 } },
+    attendu: { statut: "denied", branche: 2, cause: null, restriction_ref: "brest_fx_deny",
+      source_url: "https://fx.example/pets", citation: "Snub-nosed breeds are not accepted in the hold." } },
   { nom: "branche 3 · allow audité", statutBase: "allowed", chien: CHIEN_BRACHY,
-    restrictions: [{ id: "brest_fx_allow", airline_id: "airline_fx", applies_to: { trait: "brachycephalic" },
+    restrictions: [{ id: "brest_fx_allow", airline_id: "airline_aegean", applies_to: { trait: "brachycephalic" },
       action: "allow", placements: ["hold"], source: QUOTE("https://fx.example/pets", "Snub-nosed breeds are accepted in the hold.") }],
-    attendu: { statut: "allowed", branche: 3 } },
+    attendu: { statut: "allowed", branche: 3, cause: null, restriction_ref: "brest_fx_allow",
+      source_url: "https://fx.example/pets", citation: "Snub-nosed breeds are accepted in the hold." } },
   { nom: "branche 4 · aucun fait audité applicable", restrictions: [], statutBase: "allowed",
-    chien: CHIEN_BRACHY, attendu: { statut: "confirmation_required", branche: 4 } },
+    chien: CHIEN_BRACHY, attendu: { statut: "confirmation_required", branche: 4,
+      cause: CAUSE_NON_REVUE, restriction_ref: null, source_url: null, citation: null } },
   { nom: "branche 5 · require audité → confirmation", statutBase: "allowed", chien: CHIEN_BRACHY,
-    restrictions: [{ id: "brest_fx_require", airline_id: "airline_fx", applies_to: { trait: "brachycephalic" },
+    restrictions: [{ id: "brest_fx_require", airline_id: "airline_aegean", applies_to: { trait: "brachycephalic" },
       action: "require", placements: ["hold"], detail: { en: "Vet fitness certificate required." },
       source: QUOTE("https://fx.example/pets", "A veterinary fitness certificate is required for snub-nosed breeds.") }],
-    attendu: { statut: "confirmation_required", branche: 5 } },
+    attendu: { statut: "confirmation_required", branche: 5, cause: CAUSE_EXIGENCE,
+      restriction_ref: "brest_fx_require", source_url: "https://fx.example/pets",
+      citation: "A veterinary fitness certificate is required for snub-nosed breeds." } },
   { nom: "warn IATA · aucun effet sur le statut", statutBase: "allowed", chien: CHIEN_BRACHY,
     restrictions: [{ id: "brest_iata_warn", applies_to: { trait: "brachycephalic" }, action: "warn",
       placements: ["hold", "cargo"], detail: { en: "Not recommended in hot season." },
@@ -393,11 +509,11 @@ const FIXTURES = [
         "Transport of snub nose dogs, such as boxers, pugs, bulldogs and Pekinese, in hot season is not recommended.") }],
     attendu: { statut: "confirmation_required", branche: 4 } },
   { nom: "deny audité ciblant une AUTRE race · ne touche pas le carlin", statutBase: "allowed", chien: CHIEN_BRACHY,
-    restrictions: [{ id: "brest_fx_autre", airline_id: "airline_fx", applies_to: { breed_ids: ["breed_chow_chow"] },
+    restrictions: [{ id: "brest_fx_autre", airline_id: "airline_aegean", applies_to: { breed_ids: ["breed_chow_chow"] },
       action: "deny", placements: ["hold"], source: QUOTE("https://fx.example/pets", "Chow chows are not accepted in the hold.") }],
     attendu: { statut: "confirmation_required", branche: 4 } },
   { nom: "chien NON brachycéphale · la table ne s'applique pas", statutBase: "allowed", chien: CHIEN_NON_BRACHY,
-    restrictions: [{ id: "brest_fx_deny2", airline_id: "airline_fx", applies_to: { trait: "brachycephalic" },
+    restrictions: [{ id: "brest_fx_deny2", airline_id: "airline_aegean", applies_to: { trait: "brachycephalic" },
       action: "deny", placements: ["hold"], source: QUOTE("https://fx.example/pets", "Snub-nosed breeds are not accepted in the hold.") }],
     attendu: { statut: "allowed", branche: 9 } },
 ];
@@ -406,27 +522,39 @@ const fixtures = FIXTURES.map((f) => {
   let restrictions;
   try { restrictions = chargerRestrictions(f.restrictions); }
   catch (e) { return { nom: f.nom, conforme: false, erreur: String(e).slice(0, 200) }; }
-  const r = decisionH({ restrictions, airline_id: "airline_fx", placement: "hold",
+  const r = decisionH({ restrictions, airline_id: "airline_aegean", placement: "hold",
     statutBase: f.statutBase, chien: f.chien });
-  return { nom: f.nom, statut: r.statut, branche: r.branche, attendu: f.attendu,
-    conseils: r.conseils.length,
-    conforme: r.statut === f.attendu.statut && r.branche === f.attendu.branche };
+  /* On contrôle la CAUSE, la RÉFÉRENCE et la SOURCE, pas seulement le statut et le numéro de
+     branche : la v3 aurait laissé passer une exigence auditée étiquetée « politique non
+     revérifiée », c'est-à-dire une décision juste avec une explication fausse. */
+  const cause = r.branche === 5 ? CAUSE_EXIGENCE : r.branche === 4 ? CAUSE_NON_REVUE : null;
+  const refDecisive = r.decisive?.id ?? null;
+  const srcDecisive = r.decisive ? sourceDeDecision(r.decisive).url : null;
+  const citation = r.decisive?.source?.quote ?? null;
+  const conformeCause = f.attendu.cause === undefined || cause === f.attendu.cause;
+  const conformeRef = f.attendu.restriction_ref === undefined || refDecisive === f.attendu.restriction_ref;
+  const conformeSrc = f.attendu.source_url === undefined || srcDecisive === f.attendu.source_url;
+  const conformeCitation = f.attendu.citation === undefined || citation === f.attendu.citation;
+  return { nom: f.nom, statut: r.statut, branche: r.branche, cause, restriction_ref: refDecisive,
+    source_url: srcDecisive, citation, attendu: f.attendu, conseils: r.conseils.length,
+    conforme: r.statut === f.attendu.statut && r.branche === f.attendu.branche &&
+      conformeCause && conformeRef && conformeSrc && conformeCitation };
 });
 
 /* FIXTURE DE DOMINANCE : une confirmation portant une cause, puis un refus audité — la cause doit
    s'éteindre. La v2 annonçait la dominance « vérifiée » avec un compteur à zéro : aucun cas ne
    l'exerçait. */
 const fixtureDominance = (() => {
-  const restrictions = chargerRestrictions([{ id: "brest_fx_dom", airline_id: "airline_fx",
+  const restrictions = chargerRestrictions([{ id: "brest_fx_dom", airline_id: "airline_aegean",
     applies_to: { trait: "brachycephalic" }, action: "deny", placements: ["hold"],
     source: QUOTE("https://fx.example/pets", "Snub-nosed breeds are not accepted in the hold.") }]);
   const decision = {
     request: FinderRequest.parse({ origin: "airport_cdg", destination: "airport_jfk",
       dog: { breed_id: "breed_pug", weight_kg: 8, brachycephalic: true }, placement: "hold",
       date: `${_y}-01-15`, locale: "en" }),
-    airlines: [{ airline_id: "airline_fx", placements: [
+    airlines: [{ airline_id: "airline_aegean", placements: [
       { placement: "hold", status: "confirmation_required", allowed: false,
-        confirmation_causes: [{ code: "legacy_unreviewed", policy_ref: "airline_fx#hold" }] },
+        confirmation_causes: [{ code: "legacy_unreviewed", policy_ref: "airline_aegean#hold" }] },
     ] }],
   };
   const apres = appliquerH(decision, restrictions, "fixture|dominance");
@@ -466,6 +594,38 @@ exiger("les 147 bascules vont EXCLUSIVEMENT vers confirmation_required",
   brachy.par_statut_cible.confirmation_required === brachy.placements &&
   Object.keys(brachy.par_statut_cible).length === 1,
   JSON.stringify(brachy.par_statut_cible));
+
+/* L'AVIS `warn` N'A AUCUN EFFET — prouvé en rejouant la grille publique SANS lui et en exigeant
+   l'égalité stricte des verdicts, des scores et des statuts. La v3 l'affirmait ; ici on le mesure. */
+const avisSansEffet = (() => {
+  let ecarts = 0;
+  for (const s2 of publique) {
+    const avec = rapportH(s2.req, `avec|${s2.cle}`, RESTRICTIONS_REELLES);
+    const sans = rapportH(s2.req, `sans|${s2.cle}`, RESTRICTIONS_AUJOURD_HUI);
+    if (!avec || !sans) { ecarts++; continue; }
+    if (JSON.stringify(compact(avec)) !== JSON.stringify(compact(sans))) ecarts++;
+  }
+  return ecarts;
+})();
+exiger("l'avertissement IATA `warn` ne change NI verdict NI score NI statut", avisSansEffet === 0, `${avisSansEffet}`);
+exiger("l'avertissement IATA est réellement émis dans le parcours public", conseilsIata.length > 0, `${conseilsIata.length}`);
+exiger("aucune URL d'avis n'apparaît comme source probante", autoCitations === 0);
+
+/* Les chiffres APPROUVÉS, verrouillés littéralement sur cette base scellée. Un contrôle qui dit
+   « toutes les bascules vont vers confirmation » sans dire COMBIEN laisserait passer une mesure
+   qui n'en verrait plus que trois. */
+exiger("72 scénarios publics", publique.length === 72, `${publique.length}`);
+exiger("20 verdicts modifiés", diffPublic.verdicts === 20, `${diffPublic.verdicts}`);
+exiger("524 cartes modifiées", diffPublic.cartes === 524, `${diffPublic.cartes}`);
+exiger("940 placements modifiés", diffPublic.placements === 940, `${diffPublic.placements}`);
+exiger("écart de score exactement [0, 2]",
+  diffPublic.ecart_score[0] === 0 && diffPublic.ecart_score[1] === 2, JSON.stringify(diffPublic.ecart_score));
+exiger("81 compagnies brachycéphales touchées", brachy.compagnies === 81, `${brachy.compagnies}`);
+exiger("147 placements brachycéphales déplacés", brachy.placements === 147, `${brachy.placements}`);
+exiger("147 cibles confirmation_required, et aucune autre",
+  brachy.par_statut_cible.confirmation_required === 147 && Object.keys(brachy.par_statut_cible).length === 1,
+  JSON.stringify(brachy.par_statut_cible));
+exiger("56 causes climatiques observées", climatObserves === 56, `${climatObserves}`);
 
 const intact = sha256Fichier("packages/knowledge/raw/rules.json") === sceau.raw_rules_sha256 &&
   sha256Fichier("packages/knowledge/raw/objects.json") === sceau.raw_objects_sha256;
