@@ -40,8 +40,8 @@ import { MESURE_BASE_SHA } from "./lib-arbitrage.mjs";
 
 const DOSSIER = "mesures/t0b3a-arbitrage-brachy";
 const ECRIRE = process.argv.includes("--ecrire");
-const OUTILS = ["arbitrer"];
-const ARTEFACTS = ["README.md", "arbitrage-p0-brachy.json"];
+const OUTILS = ["arbitrer", "simuler-h"];
+const ARTEFACTS = ["README.md", "OPTION-H.md", "arbitrage-p0-brachy.json", "option-h-simulee.json"];
 const SOURCES = OUTILS.map((o) => `outils/${o}.mjs`).concat("outils/lib-arbitrage.mjs", "outils/reproduire.mjs");
 
 const sha256 = (b) => createHash("sha256").update(b).digest("hex");
@@ -105,7 +105,7 @@ for (const o of OUTILS) {
     { encoding: "utf8" });
   if (r.status !== 0) echouer(`outil « ${o} » sorti en ${r.status}\n${(r.stderr || "").slice(-1500)}`);
 }
-dire(`2/4 artefact régénéré`);
+dire(`2/4 artefacts régénérés`);
 
 /* ---- 3. SHA256SUMS ------------------------------------------------------------------------------- */
 const lignes = [...ARTEFACTS, ...SOURCES].sort()

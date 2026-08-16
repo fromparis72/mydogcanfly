@@ -169,7 +169,10 @@ const enAction = (action) => ({ ...rawKB,
   rules: rawKB.rules.map((r) => IDS_42.includes(r.id) ? { ...r, effect: { ...r.effect, action } } : r) });
 
 /** Option G : retirer les 42 ET basculer la politique soute/fret des compagnies concernées sur
- *  `undocumented`, seul chemin DONNÉES vers « à confirmer ». Le prix est mesuré, pas supposé. */
+ *  `undocumented`. Ce n'est PAS « le seul chemin vers à confirmer » — la v2 l'écrivait ici, et
+ *  c'était faux : D en produit déjà 82 par simple repli sur les politiques existantes. G en produit
+ *  davantage (122), au prix d'un effet sur le CANAL et non sur la race, et elle laisse malgré tout
+ *  26 placements brachycéphales en `allowed`. */
 function kbOptionG() {
   const set = new Set(cibles);
   const airlines = rawKB.airlines.map((a) => {
@@ -429,15 +432,18 @@ const doc = {
     etat_de_cette_url: "404 — page disparue",
     url_officielle_vivante: "https://www.iata.org/en/programs/cargo/live-animals/pets/",
     citations_exactes: [
-      { texte: "in hot season is not recommended",
-        porte_sur: "le transport des chiens brachycéphales" },
+      { texte: "Transport of snub nose dogs, such as boxers, pugs, bulldogs and Pekinese, " +
+          "in hot season is not recommended.",
+        porte_sur: "le transport des chiens au museau écrasé — la phrase COMPLÈTE, pour que le " +
+          "sujet de la recommandation soit contenu dans la citation elle-même et non dans une " +
+          "glose autour d'elle" },
       { texte: "Snub-nosed breeds require 10% larger container",
         porte_sur: "la taille de la caisse — prescription DISTINCTE, sans lien avec l'acceptation" },
     ],
     verification: {
       par: "contre-revue (Codex)",
       date: "2026-08-16",
-      portee: "404 de l'ancienne URL, accessibilité de la page actuelle, et les deux formulations ci-dessus",
+      portee: "404 de l'ancienne URL, accessibilité de la page actuelle, et les deux phrases complètes ci-dessus",
       par_moi: false,
       pourquoi_pas_par_moi:
         "l'accès réseau à iata.org est bloqué par le proxy d'egress de cet environnement, en curl " +
