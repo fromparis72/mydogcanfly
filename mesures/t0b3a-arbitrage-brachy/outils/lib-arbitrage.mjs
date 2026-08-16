@@ -11,7 +11,10 @@ import { createHash } from "node:crypto";
 import { readFileSync, writeFileSync } from "node:fs";
 import { execFileSync } from "node:child_process";
 
-export const MESURE_BASE_SHA = "e2cf302";
+/* SHA COMPLET, jamais abrégé : une base courte est ambiguë par construction — deux commits peuvent
+   partager un préfixe, et rien dans le fichier ne dirait lequel a servi. Relevé en contre-revue le
+   16/08/2026, en même temps qu'un SHA de passation que j'avais annoncé sans l'avoir lu. */
+export const MESURE_BASE_SHA = "e2cf302ccf045c539ca450f23964bb7bf20af84c";
 const RAW = ["packages/knowledge/raw/rules.json", "packages/knowledge/raw/objects.json"];
 const sha256 = (b) => createHash("sha256").update(b).digest("hex");
 

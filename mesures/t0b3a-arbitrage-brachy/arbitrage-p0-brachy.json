@@ -2,7 +2,7 @@
  "lot": "T0-B3-a — arbitrage de l'ensemble brachycéphale (42 règles)",
  "nature": "MESURE et ARBITRAGE — aucune correction appliquée ; la décision revient à Philippe",
  "sceau": {
-  "measurement_base_sha": "e2cf302",
+  "measurement_base_sha": "e2cf302ccf045c539ca450f23964bb7bf20af84c",
   "raw_rules_sha256": "a80118fac2cf4344f89521c1703c834c36d8d4d42b2dfb80dd858a4d95cec422",
   "raw_objects_sha256": "dca1706134b188fa569f7172fa2ccfcff8c81b131e554326cb5d1c47b65ffef0"
  },
@@ -84,11 +84,12 @@
     "rule_westjet_brachy_hold"
    ]
   },
-  "3_officiellement_confirmees": {
+  "3_interdictions_representees_comme_auditees_dans_le_referentiel": {
    "total": 0,
+   "avertissement_de_lecture": "« 0 » ne veut PAS dire qu'aucune compagnie ne publie réellement d'interdiction brachycéphale. Beaucoup en publient probablement. Cela veut dire que NOUS ne l'avons pas prouvé : le référentiel ne contient, à ce jour, aucune interdiction adossée à une preuve auditée. C'est un état de notre documentation, pas un fait sur le monde.",
    "critere": "la politique du canal porte une preuve auditée (non auto-citée, non dérivée de la fiche, non « non revérifiée ») QUI DIT `brachy_allowed = false`. Pas « la compagnie a une source quelque part » : la source doit énoncer le fait que la règle affirme.",
    "liste": [],
-   "lecture": "AUCUNE des 41 interdictions compagnie n'est adossée à une source officielle énonçant l'interdiction. Sous le premier principe directeur, aucune ne subsiste telle quelle."
+   "lecture": "AUCUNE des 41 interdictions compagnie n'est REPRÉSENTÉE dans le référentiel comme adossée à une source auditée. Sous le premier principe directeur, aucune ne subsiste EN L'ÉTAT — ce qui appelle une revérification, pas un retrait automatique."
   },
   "4_auto_sourcees_ou_non_verifiables": {
    "total": 41,
@@ -711,6 +712,15 @@
    ]
   }
  },
+ "source_iata": {
+  "url_enregistree_dans_la_regle": "https://www.iata.org/en/youandiata/travelers/pets/",
+  "etat_rapporte": "404 — page disparue",
+  "url_officielle_vivante_rapportee": "https://www.iata.org/en/programs/cargo/live-animals/pets/",
+  "citation_rapportee": "le transport des chiens brachycéphales en saison chaude est « not recommended » — PAS interdit — et une caisse 10 % plus grande est demandée",
+  "provenance_de_ce_releve": "RAPPORTÉ PAR LA CONTRE-REVUE le 16/08/2026, et NON VÉRIFIÉ PAR MOI : l'accès réseau à iata.org est bloqué par le proxy d'egress de cet environnement (curl comme WebFetch). Dans un dossier dont l'objet est la provenance, présenter la lecture d'un autre comme la mienne serait le défaut même que ce chantier corrige. À confirmer avant toute décision.",
+  "ecart_avec_notre_moteur": "Si ce relevé se confirme, l'écart est double et il est de nature, pas de degré : (1) l'IATA RECOMMANDE de ne pas transporter en saison chaude, notre règle INTERDIT en toute saison ; (2) l'IATA vise la saison chaude, notre règle ne porte aucune condition de période ni de température. Nous avons donc transformé une recommandation conditionnelle en interdiction universelle et permanente.",
+  "ce_que_cela_n_autorise_pas": "Cela n'autorise PAS à inventer une période ni un seuil de température. Le référentiel ne modélise aucun seuil brachycéphale sourcé ; en fabriquer un à partir de « saison chaude » reviendrait à remplacer une affirmation non sourcée par une autre. La caisse « 10 % plus grande » est de même une exigence de MATÉRIEL, pas un critère d'acceptation : elle ne peut pas servir à justifier un refus."
+ },
  "limite_du_moteur": {
   "constat": "le moteur ne peut pas exprimer « brachycéphale : à confirmer »",
   "demonstration_1": {
@@ -734,23 +744,27 @@
    "description": "les 42 règles en place : interdiction permanente de soute et de fret pour tout chien brachycéphale, sur toutes les compagnies.",
    "grille_publique": {
     "scenarios": 72,
-    "verdicts_changes": 0,
-    "statuts_changes": 0,
-    "score_seul": 0,
+    "scenarios_dont_le_verdict_change": 0,
+    "scenarios_dont_une_carte_change_a_verdict_stable": 0,
+    "scenarios_dont_seul_le_score_change": 0,
+    "cartes_compagnie_modifiees": 0,
+    "placements_modifies": 0,
     "ecart_score": [
      0,
      0
     ]
    },
    "grille_brachycephale": {
-    "total": 0,
+    "compagnies_touchees": 0,
+    "placements_modifies": 0,
     "compagnies_avec_regle_propre": 0,
     "compagnies_sans_regle_propre": 0,
     "par_bascule": {},
     "exemples": []
    },
    "grille_temoin_non_brachycephale": {
-    "total": 0,
+    "compagnies_touchees": 0,
+    "placements_modifies": 0,
     "compagnies_avec_regle_propre": 0,
     "compagnies_sans_regle_propre": 0,
     "par_bascule": {},
@@ -764,16 +778,19 @@
    "description": "la recommandation générale cesse de produire une interdiction universelle ; les 41 règles compagnie restent.",
    "grille_publique": {
     "scenarios": 72,
-    "verdicts_changes": 18,
-    "statuts_changes": 18,
-    "score_seul": 0,
+    "scenarios_dont_le_verdict_change": 18,
+    "scenarios_dont_une_carte_change_a_verdict_stable": 18,
+    "scenarios_dont_seul_le_score_change": 0,
+    "cartes_compagnie_modifiees": 200,
+    "placements_modifies": 324,
     "ecart_score": [
      0,
      39
     ]
    },
    "grille_brachycephale": {
-    "total": 40,
+    "compagnies_touchees": 40,
+    "placements_modifies": 70,
     "compagnies_avec_regle_propre": 0,
     "compagnies_sans_regle_propre": 40,
     "par_bascule": {
@@ -796,7 +813,8 @@
     ]
    },
    "grille_temoin_non_brachycephale": {
-    "total": 0,
+    "compagnies_touchees": 0,
+    "placements_modifies": 0,
     "compagnies_avec_regle_propre": 0,
     "compagnies_sans_regle_propre": 0,
     "par_bascule": {},
@@ -810,23 +828,27 @@
    "description": "les interdictions auto-citées disparaissent ; la règle globale IATA reste seule.",
    "grille_publique": {
     "scenarios": 72,
-    "verdicts_changes": 0,
-    "statuts_changes": 0,
-    "score_seul": 12,
+    "scenarios_dont_le_verdict_change": 0,
+    "scenarios_dont_une_carte_change_a_verdict_stable": 0,
+    "scenarios_dont_seul_le_score_change": 12,
+    "cartes_compagnie_modifiees": 0,
+    "placements_modifies": 0,
     "ecart_score": [
      0,
      1
     ]
    },
    "grille_brachycephale": {
-    "total": 0,
+    "compagnies_touchees": 0,
+    "placements_modifies": 0,
     "compagnies_avec_regle_propre": 0,
     "compagnies_sans_regle_propre": 0,
     "par_bascule": {},
     "exemples": []
    },
    "grille_temoin_non_brachycephale": {
-    "total": 0,
+    "compagnies_touchees": 0,
+    "placements_modifies": 0,
     "compagnies_avec_regle_propre": 0,
     "compagnies_sans_regle_propre": 0,
     "par_bascule": {},
@@ -840,16 +862,19 @@
    "description": "plus aucune interdiction brachycéphale : le canal retombe sur la politique de la fiche.",
    "grille_publique": {
     "scenarios": 72,
-    "verdicts_changes": 20,
-    "statuts_changes": 16,
-    "score_seul": 0,
+    "scenarios_dont_le_verdict_change": 20,
+    "scenarios_dont_une_carte_change_a_verdict_stable": 16,
+    "scenarios_dont_seul_le_score_change": 0,
+    "cartes_compagnie_modifiees": 524,
+    "placements_modifies": 940,
     "ecart_score": [
      0,
      57
     ]
    },
    "grille_brachycephale": {
-    "total": 81,
+    "compagnies_touchees": 81,
+    "placements_modifies": 147,
     "compagnies_avec_regle_propre": 41,
     "compagnies_sans_regle_propre": 40,
     "par_bascule": {
@@ -873,7 +898,110 @@
     ]
    },
    "grille_temoin_non_brachycephale": {
-    "total": 0,
+    "compagnies_touchees": 0,
+    "placements_modifies": 0,
+    "compagnies_avec_regle_propre": 0,
+    "compagnies_sans_regle_propre": 0,
+    "par_bascule": {},
+    "exemples": []
+   },
+   "dommage_collateral": "aucun : les chiens non brachycéphales ne sont pas touchés"
+  },
+  {
+   "option": "F-warn",
+   "intitule": "passer les 42 de l'action « deny » à « warn »",
+   "description": "les règles restent chargées et visibles dans `fired` ; leur confiance continue d'entrer dans le score, mais elles ne décident plus d'aucun statut.",
+   "grille_publique": {
+    "scenarios": 72,
+    "scenarios_dont_le_verdict_change": 20,
+    "scenarios_dont_une_carte_change_a_verdict_stable": 16,
+    "scenarios_dont_seul_le_score_change": 0,
+    "cartes_compagnie_modifiees": 524,
+    "placements_modifies": 940,
+    "ecart_score": [
+     0,
+     56
+    ]
+   },
+   "grille_brachycephale": {
+    "compagnies_touchees": 81,
+    "placements_modifies": 147,
+    "compagnies_avec_regle_propre": 41,
+    "compagnies_sans_regle_propre": 40,
+    "par_bascule": {
+     "allowed/denied/denied → allowed/allowed/confirmation_required": 35,
+     "denied/denied/denied → denied/denied/confirmation_required": 7,
+     "denied/denied/denied → denied/allowed/confirmation_required": 21,
+     "allowed/denied/denied → allowed/denied/confirmation_required": 3,
+     "allowed/denied/denied → allowed/denied/allowed": 1,
+     "denied/denied/denied → denied/confirmation_required/confirmation_required": 4,
+     "allowed/denied/denied → allowed/allowed/allowed": 2,
+     "allowed/denied/denied → allowed/allowed/denied": 3,
+     "allowed/denied/denied → allowed/confirmation_required/denied": 1,
+     "confirmation_required/denied/denied → confirmation_required/allowed/confirmation_required": 1,
+     "allowed/denied/denied → allowed/confirmation_required/confirmation_required": 3
+    },
+    "exemples": [
+     "airline_aegean allowed/denied/denied → allowed/allowed/confirmation_required",
+     "airline_aer_lingus denied/denied/denied → denied/denied/confirmation_required",
+     "airline_aerolineas_argentinas allowed/denied/denied → allowed/allowed/confirmation_required",
+     "airline_aeromexico allowed/denied/denied → allowed/allowed/confirmation_required"
+    ]
+   },
+   "grille_temoin_non_brachycephale": {
+    "compagnies_touchees": 0,
+    "placements_modifies": 0,
+    "compagnies_avec_regle_propre": 0,
+    "compagnies_sans_regle_propre": 0,
+    "par_bascule": {},
+    "exemples": []
+   },
+   "dommage_collateral": "aucun : les chiens non brachycéphales ne sont pas touchés"
+  },
+  {
+   "option": "F-require",
+   "intitule": "passer les 42 de l'action « deny » à « require »",
+   "description": "même mécanique que « warn » — mesurée séparément parce qu'affirmer sans mesurer que deux actions se comportent pareil serait précisément l'erreur de la v1.",
+   "grille_publique": {
+    "scenarios": 72,
+    "scenarios_dont_le_verdict_change": 20,
+    "scenarios_dont_une_carte_change_a_verdict_stable": 16,
+    "scenarios_dont_seul_le_score_change": 0,
+    "cartes_compagnie_modifiees": 524,
+    "placements_modifies": 940,
+    "ecart_score": [
+     0,
+     56
+    ]
+   },
+   "grille_brachycephale": {
+    "compagnies_touchees": 81,
+    "placements_modifies": 147,
+    "compagnies_avec_regle_propre": 41,
+    "compagnies_sans_regle_propre": 40,
+    "par_bascule": {
+     "allowed/denied/denied → allowed/allowed/confirmation_required": 35,
+     "denied/denied/denied → denied/denied/confirmation_required": 7,
+     "denied/denied/denied → denied/allowed/confirmation_required": 21,
+     "allowed/denied/denied → allowed/denied/confirmation_required": 3,
+     "allowed/denied/denied → allowed/denied/allowed": 1,
+     "denied/denied/denied → denied/confirmation_required/confirmation_required": 4,
+     "allowed/denied/denied → allowed/allowed/allowed": 2,
+     "allowed/denied/denied → allowed/allowed/denied": 3,
+     "allowed/denied/denied → allowed/confirmation_required/denied": 1,
+     "confirmation_required/denied/denied → confirmation_required/allowed/confirmation_required": 1,
+     "allowed/denied/denied → allowed/confirmation_required/confirmation_required": 3
+    },
+    "exemples": [
+     "airline_aegean allowed/denied/denied → allowed/allowed/confirmation_required",
+     "airline_aer_lingus denied/denied/denied → denied/denied/confirmation_required",
+     "airline_aerolineas_argentinas allowed/denied/denied → allowed/allowed/confirmation_required",
+     "airline_aeromexico allowed/denied/denied → allowed/allowed/confirmation_required"
+    ]
+   },
+   "grille_temoin_non_brachycephale": {
+    "compagnies_touchees": 0,
+    "placements_modifies": 0,
     "compagnies_avec_regle_propre": 0,
     "compagnies_sans_regle_propre": 0,
     "par_bascule": {},
@@ -887,16 +1015,19 @@
    "description": "seul chemin DONNÉES vers « à confirmer » — mais il agit sur le CANAL, pas sur la race.",
    "grille_publique": {
     "scenarios": 72,
-    "verdicts_changes": 20,
-    "statuts_changes": 52,
-    "score_seul": 0,
+    "scenarios_dont_le_verdict_change": 20,
+    "scenarios_dont_une_carte_change_a_verdict_stable": 52,
+    "scenarios_dont_seul_le_score_change": 0,
+    "cartes_compagnie_modifiees": 844,
+    "placements_modifies": 1312,
     "ecart_score": [
      -23,
      39
     ]
    },
    "grille_brachycephale": {
-    "total": 81,
+    "compagnies_touchees": 81,
+    "placements_modifies": 148,
     "compagnies_avec_regle_propre": 41,
     "compagnies_sans_regle_propre": 40,
     "par_bascule": {
@@ -920,7 +1051,8 @@
     ]
    },
    "grille_temoin_non_brachycephale": {
-    "total": 38,
+    "compagnies_touchees": 38,
+    "placements_modifies": 40,
     "compagnies_avec_regle_propre": 38,
     "compagnies_sans_regle_propre": 0,
     "par_bascule": {
@@ -937,12 +1069,33 @@
      "airline_air_europa allowed/allowed/confirmation_required → allowed/confirmation_required/confirmation_required"
     ]
    },
-   "dommage_collateral": "38 canal/canaux déplacés pour un chien NON brachycéphale — cette option n'agit pas sur la race"
+   "dommage_collateral": "38 compagnie(s) et 40 placement(s) déplacés pour un chien NON brachycéphale — cette option n'agit pas sur la race"
   }
  ],
- "options_qui_se_confondent": {
-  "E — ne garder que les interdictions officiellement confirmées": "identique à D : l'ensemble des interdictions confirmées est VIDE (0 sur 41).",
-  "F — passer les 42 en action « warn » ou « require »": "identique à D : le moteur n'accorde d'effet sur un statut qu'à l'action « deny »."
+ "comparaison_des_variantes_a_D": {
+  "F-warn vs D": {
+   "scenarios": 72,
+   "scenarios_au_score_different": 28,
+   "scenarios_au_verdict_different": 0,
+   "scenarios_au_statut_different": 0,
+   "ecart_de_score": [
+    -2,
+    0
+   ],
+   "lecture": "F n'est PAS un retrait : les règles restent dans `fired` et leur confiance pèse encore sur le score."
+  },
+  "F-require vs D": {
+   "scenarios": 72,
+   "scenarios_au_score_different": 28,
+   "scenarios_au_verdict_different": 0,
+   "scenarios_au_statut_different": 0,
+   "ecart_de_score": [
+    -2,
+    0
+   ],
+   "lecture": "F n'est PAS un retrait : les règles restent dans `fired` et leur confiance pèse encore sur le score."
+  },
+  "E — ne garder que les interdictions représentées comme auditées": "se confond avec D, l'ensemble étant VIDE (0 sur 41) — voir la famille 3."
  },
  "ce_que_ce_dossier_ne_fait_pas": [
   "il n'applique aucune option et ne modifie aucun fichier de packages/",
