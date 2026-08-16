@@ -1,0 +1,953 @@
+{
+ "lot": "T0-B3-a — arbitrage de l'ensemble brachycéphale (42 règles)",
+ "nature": "MESURE et ARBITRAGE — aucune correction appliquée ; la décision revient à Philippe",
+ "sceau": {
+  "measurement_base_sha": "e2cf302",
+  "raw_rules_sha256": "a80118fac2cf4344f89521c1703c834c36d8d4d42b2dfb80dd858a4d95cec422",
+  "raw_objects_sha256": "dca1706134b188fa569f7172fa2ccfcff8c81b131e554326cb5d1c47b65ffef0"
+ },
+ "referentiel_intact": true,
+ "principes_directeurs": [
+  "une interdiction ne subsiste que si une source officielle actuelle l'énonce explicitement",
+  "une politique non vérifiée devient « à confirmer », jamais « interdit »",
+  "la recommandation générale de l'IATA ne doit plus produire une interdiction universelle",
+  "aucun seuil de température ou de saison ne doit être inventé",
+  "chaque option est mesurée sur les verdicts, les canaux et les scores avant modification"
+ ],
+ "familles": {
+  "1_regle_globale_iata": {
+   "id": "rule_global_brachy_hold",
+   "portee": "global",
+   "effet": {
+    "action": "deny",
+    "placement": [
+     "hold",
+     "cargo"
+    ]
+   },
+   "condition_de_saison": false,
+   "condition_de_temperature": false,
+   "source": "https://www.iata.org/en/youandiata/travelers/pets/",
+   "source_type": "other",
+   "auto_citee": false,
+   "criticite": "critical",
+   "rationale": "Snub-nosed (brachycephalic) breeds are, as a safety default, not accepted in the hold or cargo because of the elevated risk of breathing difficulty; most airlines embargo them and specialists advise against it.",
+   "lecture": "refus permanent de soute ET de fret pour tout chien brachycéphale, toutes compagnies, sans condition de saison ni de température. Le rationale dit lui-même « la plupart des compagnies les refusent et les spécialistes le déconseillent » : c'est un défaut de sécurité assumé, pas une interdiction documentée compagnie par compagnie."
+  },
+  "2_regles_propres_aux_compagnies": {
+   "total": 41,
+   "compagnies": 41,
+   "effet_unique": [
+    "deny hold+cargo"
+   ],
+   "liste": [
+    "rule_aegean_brachy_hold",
+    "rule_aeromexico_brachy_hold",
+    "rule_air_caraibes_brachy_hold",
+    "rule_air_europa_brachy_hold",
+    "rule_air_india_brachy_hold",
+    "rule_air_mauritius_brachy_hold",
+    "rule_air_tahiti_nui_brachy_hold",
+    "rule_air_transat_brachy_hold",
+    "rule_alaska_brachy_hold",
+    "rule_ana_brachy_hold",
+    "rule_austrian_brachy_hold",
+    "rule_avianca_brachy_hold",
+    "rule_brussels_brachy_hold",
+    "rule_china_airlines_brachy_hold",
+    "rule_copa_brachy_hold",
+    "rule_corsair_brachy_hold",
+    "rule_egyptair_brachy_hold",
+    "rule_emirates_brachy_hold",
+    "rule_ethiopian_brachy_hold",
+    "rule_etihad_brachy_hold",
+    "rule_eva_air_brachy_hold",
+    "rule_finnair_brachy_hold",
+    "rule_french_bee_brachy_hold",
+    "rule_iberia_express_brachy_hold",
+    "rule_ita_airways_brachy_hold",
+    "rule_jal_brachy_hold",
+    "rule_korean_air_brachy_hold",
+    "rule_latam_brachy_hold",
+    "rule_lot_brachy_hold",
+    "rule_norwegian_brachy_hold",
+    "rule_philippine_brachy_hold",
+    "rule_qatar_airways_brachy_hold",
+    "rule_royal_air_maroc_brachy_hold",
+    "rule_sas_brachy_hold",
+    "rule_singapore_airlines_brachy_hold",
+    "rule_swiss_brachy_hold",
+    "rule_tap_brachy_hold",
+    "rule_thai_airways_brachy_hold",
+    "rule_transavia_brachy_hold",
+    "rule_vietnam_airlines_brachy_hold",
+    "rule_westjet_brachy_hold"
+   ]
+  },
+  "3_officiellement_confirmees": {
+   "total": 0,
+   "critere": "la politique du canal porte une preuve auditée (non auto-citée, non dérivée de la fiche, non « non revérifiée ») QUI DIT `brachy_allowed = false`. Pas « la compagnie a une source quelque part » : la source doit énoncer le fait que la règle affirme.",
+   "liste": [],
+   "lecture": "AUCUNE des 41 interdictions compagnie n'est adossée à une source officielle énonçant l'interdiction. Sous le premier principe directeur, aucune ne subsiste telle quelle."
+  },
+  "4_auto_sourcees_ou_non_verifiables": {
+   "total": 41,
+   "liste": [
+    {
+     "id": "rule_aegean_brachy_hold",
+     "compagnie": "airline_aegean",
+     "effet": "deny hold+cargo",
+     "source": "https://mydogcanfly.com/aegean-airlines-dog-policy/",
+     "source_type": "other",
+     "verifiee_le": "2026-07-08",
+     "statut_canonique_soute": "allowed",
+     "statut_canonique_fret": "confirmation_required",
+     "brachy_allowed_declare": {
+      "hold": false,
+      "cargo": null
+     },
+     "preuve_auditee_soute": null
+    },
+    {
+     "id": "rule_aeromexico_brachy_hold",
+     "compagnie": "airline_aeromexico",
+     "effet": "deny hold+cargo",
+     "source": "https://mydogcanfly.com/aeromexico-dog-policy/",
+     "source_type": "other",
+     "verifiee_le": "2026-07-08",
+     "statut_canonique_soute": "allowed",
+     "statut_canonique_fret": "confirmation_required",
+     "brachy_allowed_declare": {
+      "hold": false,
+      "cargo": null
+     },
+     "preuve_auditee_soute": null
+    },
+    {
+     "id": "rule_air_caraibes_brachy_hold",
+     "compagnie": "airline_air_caraibes",
+     "effet": "deny hold+cargo",
+     "source": "https://mydogcanfly.com/air-caraibes-dog-policy/",
+     "source_type": "other",
+     "verifiee_le": "2026-07-08",
+     "statut_canonique_soute": "allowed",
+     "statut_canonique_fret": "confirmation_required",
+     "brachy_allowed_declare": {
+      "hold": false,
+      "cargo": null
+     },
+     "preuve_auditee_soute": null
+    },
+    {
+     "id": "rule_air_europa_brachy_hold",
+     "compagnie": "airline_air_europa",
+     "effet": "deny hold+cargo",
+     "source": "https://mydogcanfly.com/air-europa-dog-policy/",
+     "source_type": "other",
+     "verifiee_le": "2026-07-08",
+     "statut_canonique_soute": "allowed",
+     "statut_canonique_fret": "confirmation_required",
+     "brachy_allowed_declare": {
+      "hold": false,
+      "cargo": null
+     },
+     "preuve_auditee_soute": null
+    },
+    {
+     "id": "rule_air_india_brachy_hold",
+     "compagnie": "airline_air_india",
+     "effet": "deny hold+cargo",
+     "source": "https://mydogcanfly.com/air-india-dog-policy/",
+     "source_type": "other",
+     "verifiee_le": "2026-07-08",
+     "statut_canonique_soute": "allowed",
+     "statut_canonique_fret": "confirmation_required",
+     "brachy_allowed_declare": {
+      "hold": false,
+      "cargo": null
+     },
+     "preuve_auditee_soute": null
+    },
+    {
+     "id": "rule_air_mauritius_brachy_hold",
+     "compagnie": "airline_air_mauritius",
+     "effet": "deny hold+cargo",
+     "source": "https://mydogcanfly.com/air-mauritius-dog-policy/",
+     "source_type": "other",
+     "verifiee_le": "2026-07-08",
+     "statut_canonique_soute": "allowed",
+     "statut_canonique_fret": "confirmation_required",
+     "brachy_allowed_declare": {
+      "hold": null,
+      "cargo": null
+     },
+     "preuve_auditee_soute": null
+    },
+    {
+     "id": "rule_air_tahiti_nui_brachy_hold",
+     "compagnie": "airline_air_tahiti_nui",
+     "effet": "deny hold+cargo",
+     "source": "https://mydogcanfly.com/air-tahiti-nui-dog-policy/",
+     "source_type": "other",
+     "verifiee_le": "2026-07-08",
+     "statut_canonique_soute": "absent",
+     "statut_canonique_fret": "confirmation_required",
+     "brachy_allowed_declare": {
+      "hold": null,
+      "cargo": null
+     },
+     "preuve_auditee_soute": null
+    },
+    {
+     "id": "rule_air_transat_brachy_hold",
+     "compagnie": "airline_air_transat",
+     "effet": "deny hold+cargo",
+     "source": "https://mydogcanfly.com/air-transat-dog-policy/",
+     "source_type": "other",
+     "verifiee_le": "2026-07-08",
+     "statut_canonique_soute": "allowed",
+     "statut_canonique_fret": "confirmation_required",
+     "brachy_allowed_declare": {
+      "hold": null,
+      "cargo": null
+     },
+     "preuve_auditee_soute": null
+    },
+    {
+     "id": "rule_alaska_brachy_hold",
+     "compagnie": "airline_alaska",
+     "effet": "deny hold+cargo",
+     "source": "https://mydogcanfly.com/alaska-airlines-dog-policy/",
+     "source_type": "other",
+     "verifiee_le": "2026-07-08",
+     "statut_canonique_soute": "allowed",
+     "statut_canonique_fret": "confirmation_required",
+     "brachy_allowed_declare": {
+      "hold": false,
+      "cargo": null
+     },
+     "preuve_auditee_soute": null
+    },
+    {
+     "id": "rule_ana_brachy_hold",
+     "compagnie": "airline_ana",
+     "effet": "deny hold+cargo",
+     "source": "https://mydogcanfly.com/ana-dog-policy/",
+     "source_type": "other",
+     "verifiee_le": "2026-07-08",
+     "statut_canonique_soute": "allowed",
+     "statut_canonique_fret": "confirmation_required",
+     "brachy_allowed_declare": {
+      "hold": false,
+      "cargo": null
+     },
+     "preuve_auditee_soute": null
+    },
+    {
+     "id": "rule_austrian_brachy_hold",
+     "compagnie": "airline_austrian",
+     "effet": "deny hold+cargo",
+     "source": "https://mydogcanfly.com/austrian-airlines-dog-policy/",
+     "source_type": "other",
+     "verifiee_le": "2026-07-08",
+     "statut_canonique_soute": "allowed",
+     "statut_canonique_fret": "confirmation_required",
+     "brachy_allowed_declare": {
+      "hold": false,
+      "cargo": null
+     },
+     "preuve_auditee_soute": null
+    },
+    {
+     "id": "rule_avianca_brachy_hold",
+     "compagnie": "airline_avianca",
+     "effet": "deny hold+cargo",
+     "source": "https://mydogcanfly.com/avianca-dog-policy/",
+     "source_type": "other",
+     "verifiee_le": "2026-07-08",
+     "statut_canonique_soute": "allowed",
+     "statut_canonique_fret": "confirmation_required",
+     "brachy_allowed_declare": {
+      "hold": false,
+      "cargo": null
+     },
+     "preuve_auditee_soute": null
+    },
+    {
+     "id": "rule_brussels_brachy_hold",
+     "compagnie": "airline_brussels",
+     "effet": "deny hold+cargo",
+     "source": "https://mydogcanfly.com/brussels-airlines-dog-policy/",
+     "source_type": "other",
+     "verifiee_le": "2026-07-08",
+     "statut_canonique_soute": "allowed",
+     "statut_canonique_fret": "confirmation_required",
+     "brachy_allowed_declare": {
+      "hold": false,
+      "cargo": null
+     },
+     "preuve_auditee_soute": null
+    },
+    {
+     "id": "rule_china_airlines_brachy_hold",
+     "compagnie": "airline_china_airlines",
+     "effet": "deny hold+cargo",
+     "source": "https://mydogcanfly.com/china-airlines-dog-policy/",
+     "source_type": "other",
+     "verifiee_le": "2026-07-08",
+     "statut_canonique_soute": "allowed",
+     "statut_canonique_fret": "confirmation_required",
+     "brachy_allowed_declare": {
+      "hold": null,
+      "cargo": null
+     },
+     "preuve_auditee_soute": null
+    },
+    {
+     "id": "rule_copa_brachy_hold",
+     "compagnie": "airline_copa",
+     "effet": "deny hold+cargo",
+     "source": "https://mydogcanfly.com/copa-airlines-dog-policy/",
+     "source_type": "other",
+     "verifiee_le": "2026-07-08",
+     "statut_canonique_soute": "denied",
+     "statut_canonique_fret": "confirmation_required",
+     "brachy_allowed_declare": {
+      "hold": null,
+      "cargo": null
+     },
+     "preuve_auditee_soute": null
+    },
+    {
+     "id": "rule_corsair_brachy_hold",
+     "compagnie": "airline_corsair",
+     "effet": "deny hold+cargo",
+     "source": "https://mydogcanfly.com/corsair-dog-policy/",
+     "source_type": "other",
+     "verifiee_le": "2026-07-08",
+     "statut_canonique_soute": "allowed",
+     "statut_canonique_fret": "confirmation_required",
+     "brachy_allowed_declare": {
+      "hold": false,
+      "cargo": null
+     },
+     "preuve_auditee_soute": null
+    },
+    {
+     "id": "rule_egyptair_brachy_hold",
+     "compagnie": "airline_egyptair",
+     "effet": "deny hold+cargo",
+     "source": "https://mydogcanfly.com/egyptair-dog-policy/",
+     "source_type": "other",
+     "verifiee_le": "2026-07-08",
+     "statut_canonique_soute": "allowed",
+     "statut_canonique_fret": "confirmation_required",
+     "brachy_allowed_declare": {
+      "hold": null,
+      "cargo": null
+     },
+     "preuve_auditee_soute": null
+    },
+    {
+     "id": "rule_emirates_brachy_hold",
+     "compagnie": "airline_emirates",
+     "effet": "deny hold+cargo",
+     "source": "https://mydogcanfly.com/emirates-dog-policy/",
+     "source_type": "other",
+     "verifiee_le": "2026-07-08",
+     "statut_canonique_soute": "allowed",
+     "statut_canonique_fret": "confirmation_required",
+     "brachy_allowed_declare": {
+      "hold": null,
+      "cargo": null
+     },
+     "preuve_auditee_soute": null
+    },
+    {
+     "id": "rule_ethiopian_brachy_hold",
+     "compagnie": "airline_ethiopian",
+     "effet": "deny hold+cargo",
+     "source": "https://mydogcanfly.com/ethiopian-airlines-dog-policy/",
+     "source_type": "other",
+     "verifiee_le": "2026-07-08",
+     "statut_canonique_soute": "allowed",
+     "statut_canonique_fret": "confirmation_required",
+     "brachy_allowed_declare": {
+      "hold": null,
+      "cargo": null
+     },
+     "preuve_auditee_soute": null
+    },
+    {
+     "id": "rule_etihad_brachy_hold",
+     "compagnie": "airline_etihad",
+     "effet": "deny hold+cargo",
+     "source": "https://mydogcanfly.com/etihad-airways-dog-policy/",
+     "source_type": "other",
+     "verifiee_le": "2026-07-08",
+     "statut_canonique_soute": "denied",
+     "statut_canonique_fret": "confirmation_required",
+     "brachy_allowed_declare": {
+      "hold": null,
+      "cargo": null
+     },
+     "preuve_auditee_soute": null
+    },
+    {
+     "id": "rule_eva_air_brachy_hold",
+     "compagnie": "airline_eva_air",
+     "effet": "deny hold+cargo",
+     "source": "https://mydogcanfly.com/eva-air-dog-policy/",
+     "source_type": "other",
+     "verifiee_le": "2026-07-08",
+     "statut_canonique_soute": "allowed",
+     "statut_canonique_fret": "confirmation_required",
+     "brachy_allowed_declare": {
+      "hold": null,
+      "cargo": null
+     },
+     "preuve_auditee_soute": null
+    },
+    {
+     "id": "rule_finnair_brachy_hold",
+     "compagnie": "airline_finnair",
+     "effet": "deny hold+cargo",
+     "source": "https://mydogcanfly.com/finnair-dog-policy/",
+     "source_type": "other",
+     "verifiee_le": "2026-07-08",
+     "statut_canonique_soute": "allowed",
+     "statut_canonique_fret": "confirmation_required",
+     "brachy_allowed_declare": {
+      "hold": null,
+      "cargo": null
+     },
+     "preuve_auditee_soute": null
+    },
+    {
+     "id": "rule_french_bee_brachy_hold",
+     "compagnie": "airline_french_bee",
+     "effet": "deny hold+cargo",
+     "source": "https://mydogcanfly.com/french-bee-dog-policy/",
+     "source_type": "other",
+     "verifiee_le": "2026-07-08",
+     "statut_canonique_soute": "allowed",
+     "statut_canonique_fret": "confirmation_required",
+     "brachy_allowed_declare": {
+      "hold": false,
+      "cargo": null
+     },
+     "preuve_auditee_soute": null
+    },
+    {
+     "id": "rule_iberia_express_brachy_hold",
+     "compagnie": "airline_iberia_express",
+     "effet": "deny hold+cargo",
+     "source": "https://mydogcanfly.com/iberia-express-dog-policy/",
+     "source_type": "other",
+     "verifiee_le": "2026-07-08",
+     "statut_canonique_soute": "allowed",
+     "statut_canonique_fret": "confirmation_required",
+     "brachy_allowed_declare": {
+      "hold": false,
+      "cargo": null
+     },
+     "preuve_auditee_soute": null
+    },
+    {
+     "id": "rule_ita_airways_brachy_hold",
+     "compagnie": "airline_ita_airways",
+     "effet": "deny hold+cargo",
+     "source": "https://mydogcanfly.com/ita-airways-dog-policy/",
+     "source_type": "other",
+     "verifiee_le": "2026-07-08",
+     "statut_canonique_soute": "allowed",
+     "statut_canonique_fret": "denied",
+     "brachy_allowed_declare": {
+      "hold": false,
+      "cargo": null
+     },
+     "preuve_auditee_soute": null
+    },
+    {
+     "id": "rule_jal_brachy_hold",
+     "compagnie": "airline_jal",
+     "effet": "deny hold+cargo",
+     "source": "https://mydogcanfly.com/japan-airlines-dog-policy/",
+     "source_type": "other",
+     "verifiee_le": "2026-07-08",
+     "statut_canonique_soute": "allowed",
+     "statut_canonique_fret": "confirmation_required",
+     "brachy_allowed_declare": {
+      "hold": null,
+      "cargo": null
+     },
+     "preuve_auditee_soute": null
+    },
+    {
+     "id": "rule_korean_air_brachy_hold",
+     "compagnie": "airline_korean_air",
+     "effet": "deny hold+cargo",
+     "source": "https://mydogcanfly.com/korean-air-dog-policy/",
+     "source_type": "other",
+     "verifiee_le": "2026-07-08",
+     "statut_canonique_soute": "allowed",
+     "statut_canonique_fret": "confirmation_required",
+     "brachy_allowed_declare": {
+      "hold": false,
+      "cargo": null
+     },
+     "preuve_auditee_soute": null
+    },
+    {
+     "id": "rule_latam_brachy_hold",
+     "compagnie": "airline_latam",
+     "effet": "deny hold+cargo",
+     "source": "https://mydogcanfly.com/latam-dog-policy/",
+     "source_type": "other",
+     "verifiee_le": "2026-07-08",
+     "statut_canonique_soute": "allowed",
+     "statut_canonique_fret": "confirmation_required",
+     "brachy_allowed_declare": {
+      "hold": false,
+      "cargo": null
+     },
+     "preuve_auditee_soute": null
+    },
+    {
+     "id": "rule_lot_brachy_hold",
+     "compagnie": "airline_lot",
+     "effet": "deny hold+cargo",
+     "source": "https://mydogcanfly.com/lot-polish-airlines-dog-policy/",
+     "source_type": "other",
+     "verifiee_le": "2026-07-08",
+     "statut_canonique_soute": "allowed",
+     "statut_canonique_fret": "confirmation_required",
+     "brachy_allowed_declare": {
+      "hold": false,
+      "cargo": null
+     },
+     "preuve_auditee_soute": null
+    },
+    {
+     "id": "rule_norwegian_brachy_hold",
+     "compagnie": "airline_norwegian",
+     "effet": "deny hold+cargo",
+     "source": "https://mydogcanfly.com/norwegian-dog-policy/",
+     "source_type": "other",
+     "verifiee_le": "2026-07-08",
+     "statut_canonique_soute": "allowed",
+     "statut_canonique_fret": "confirmation_required",
+     "brachy_allowed_declare": {
+      "hold": null,
+      "cargo": null
+     },
+     "preuve_auditee_soute": null
+    },
+    {
+     "id": "rule_philippine_brachy_hold",
+     "compagnie": "airline_philippine",
+     "effet": "deny hold+cargo",
+     "source": "https://mydogcanfly.com/philippine-airlines-dog-policy/",
+     "source_type": "other",
+     "verifiee_le": "2026-07-08",
+     "statut_canonique_soute": "allowed",
+     "statut_canonique_fret": "confirmation_required",
+     "brachy_allowed_declare": {
+      "hold": false,
+      "cargo": null
+     },
+     "preuve_auditee_soute": null
+    },
+    {
+     "id": "rule_qatar_airways_brachy_hold",
+     "compagnie": "airline_qatar_airways",
+     "effet": "deny hold+cargo",
+     "source": "https://mydogcanfly.com/qatar-airways-dog-policy/",
+     "source_type": "other",
+     "verifiee_le": "2026-07-08",
+     "statut_canonique_soute": "allowed",
+     "statut_canonique_fret": "confirmation_required",
+     "brachy_allowed_declare": {
+      "hold": false,
+      "cargo": null
+     },
+     "preuve_auditee_soute": null
+    },
+    {
+     "id": "rule_royal_air_maroc_brachy_hold",
+     "compagnie": "airline_royal_air_maroc",
+     "effet": "deny hold+cargo",
+     "source": "https://mydogcanfly.com/royal-air-maroc-dog-policy/",
+     "source_type": "other",
+     "verifiee_le": "2026-07-08",
+     "statut_canonique_soute": "allowed",
+     "statut_canonique_fret": "confirmation_required",
+     "brachy_allowed_declare": {
+      "hold": null,
+      "cargo": null
+     },
+     "preuve_auditee_soute": null
+    },
+    {
+     "id": "rule_sas_brachy_hold",
+     "compagnie": "airline_sas",
+     "effet": "deny hold+cargo",
+     "source": "https://mydogcanfly.com/sas-dog-policy/",
+     "source_type": "other",
+     "verifiee_le": "2026-07-08",
+     "statut_canonique_soute": "allowed",
+     "statut_canonique_fret": "confirmation_required",
+     "brachy_allowed_declare": {
+      "hold": false,
+      "cargo": null
+     },
+     "preuve_auditee_soute": null
+    },
+    {
+     "id": "rule_singapore_airlines_brachy_hold",
+     "compagnie": "airline_singapore_airlines",
+     "effet": "deny hold+cargo",
+     "source": "https://mydogcanfly.com/singapore-airlines-dog-policy/",
+     "source_type": "other",
+     "verifiee_le": "2026-07-08",
+     "statut_canonique_soute": "allowed",
+     "statut_canonique_fret": "confirmation_required",
+     "brachy_allowed_declare": {
+      "hold": false,
+      "cargo": null
+     },
+     "preuve_auditee_soute": null
+    },
+    {
+     "id": "rule_swiss_brachy_hold",
+     "compagnie": "airline_swiss",
+     "effet": "deny hold+cargo",
+     "source": "https://mydogcanfly.com/swiss-air-dog-policy/",
+     "source_type": "other",
+     "verifiee_le": "2026-07-08",
+     "statut_canonique_soute": "allowed",
+     "statut_canonique_fret": "confirmation_required",
+     "brachy_allowed_declare": {
+      "hold": false,
+      "cargo": null
+     },
+     "preuve_auditee_soute": null
+    },
+    {
+     "id": "rule_tap_brachy_hold",
+     "compagnie": "airline_tap",
+     "effet": "deny hold+cargo",
+     "source": "https://mydogcanfly.com/tap-air-portugal-dog-policy/",
+     "source_type": "other",
+     "verifiee_le": "2026-07-08",
+     "statut_canonique_soute": "allowed",
+     "statut_canonique_fret": "confirmation_required",
+     "brachy_allowed_declare": {
+      "hold": false,
+      "cargo": null
+     },
+     "preuve_auditee_soute": null
+    },
+    {
+     "id": "rule_thai_airways_brachy_hold",
+     "compagnie": "airline_thai_airways",
+     "effet": "deny hold+cargo",
+     "source": "https://mydogcanfly.com/thai-airways-dog-policy/",
+     "source_type": "other",
+     "verifiee_le": "2026-07-08",
+     "statut_canonique_soute": "allowed",
+     "statut_canonique_fret": "confirmation_required",
+     "brachy_allowed_declare": {
+      "hold": false,
+      "cargo": null
+     },
+     "preuve_auditee_soute": null
+    },
+    {
+     "id": "rule_transavia_brachy_hold",
+     "compagnie": "airline_transavia",
+     "effet": "deny hold+cargo",
+     "source": "https://mydogcanfly.com/transavia-dog-policy/",
+     "source_type": "other",
+     "verifiee_le": "2026-07-08",
+     "statut_canonique_soute": "allowed",
+     "statut_canonique_fret": "absent",
+     "brachy_allowed_declare": {
+      "hold": false,
+      "cargo": null
+     },
+     "preuve_auditee_soute": null
+    },
+    {
+     "id": "rule_vietnam_airlines_brachy_hold",
+     "compagnie": "airline_vietnam_airlines",
+     "effet": "deny hold+cargo",
+     "source": "https://mydogcanfly.com/vietnam-airlines-dog-policy/",
+     "source_type": "other",
+     "verifiee_le": "2026-07-08",
+     "statut_canonique_soute": "allowed",
+     "statut_canonique_fret": "confirmation_required",
+     "brachy_allowed_declare": {
+      "hold": null,
+      "cargo": null
+     },
+     "preuve_auditee_soute": null
+    },
+    {
+     "id": "rule_westjet_brachy_hold",
+     "compagnie": "airline_westjet",
+     "effet": "deny hold+cargo",
+     "source": "https://mydogcanfly.com/westjet-dog-policy/",
+     "source_type": "other",
+     "verifiee_le": "2026-07-08",
+     "statut_canonique_soute": "allowed",
+     "statut_canonique_fret": "allowed",
+     "brachy_allowed_declare": {
+      "hold": null,
+      "cargo": null
+     },
+     "preuve_auditee_soute": "https://www.westjet.com/en-ca/pets"
+    }
+   ]
+  }
+ },
+ "limite_du_moteur": {
+  "constat": "le moteur ne peut pas exprimer « brachycéphale : à confirmer »",
+  "demonstration_1": {
+   "geste": "passer les 42 règles de l'action « deny » à « warn »",
+   "attendu_naif": "le canal passerait « à confirmer »",
+   "observe": "allowed/allowed/confirmation_required",
+   "reference": "allowed/denied/denied",
+   "explication": "evaluate() ne retient que `effect.action === \"deny\"` pour décider d'un statut ; une règle d'une autre action reste visible dans `fired` mais ne déplace rien. Le résultat est donc identique à un retrait pur."
+  },
+  "demonstration_2": {
+   "geste": "basculer la politique du canal sur « undocumented » (option G)",
+   "observe": "le canal passe bien « à confirmer »",
+   "prix": "la politique d'un canal n'a AUCUNE dimension race : le même « à confirmer » s'applique à un golden retriever, pour lequel rien n'a jamais été en doute. Le dommage est chiffré dans `grille_temoin_non_brachycephale` de l'option G."
+  },
+  "consequence": "Aucune option DONNÉES ne satisfait « non vérifié → à confirmer, jamais interdit » pour la seule race concernée. Y parvenir demanderait une évolution du moteur — une classe de règle produisant `confirmation_required` sur le chien qu'elle vise — donc un lot de code, contre-revu et mesuré à part. Ce dossier le nomme plutôt que de faire passer une option approchante pour la bonne."
+ },
+ "diff_previsionnel_par_option": [
+  {
+   "option": "A",
+   "intitule": "statu quo — référence",
+   "description": "les 42 règles en place : interdiction permanente de soute et de fret pour tout chien brachycéphale, sur toutes les compagnies.",
+   "grille_publique": {
+    "scenarios": 72,
+    "verdicts_changes": 0,
+    "statuts_changes": 0,
+    "score_seul": 0,
+    "ecart_score": [
+     0,
+     0
+    ]
+   },
+   "grille_brachycephale": {
+    "total": 0,
+    "compagnies_avec_regle_propre": 0,
+    "compagnies_sans_regle_propre": 0,
+    "par_bascule": {},
+    "exemples": []
+   },
+   "grille_temoin_non_brachycephale": {
+    "total": 0,
+    "compagnies_avec_regle_propre": 0,
+    "compagnies_sans_regle_propre": 0,
+    "par_bascule": {},
+    "exemples": []
+   },
+   "dommage_collateral": "aucun : les chiens non brachycéphales ne sont pas touchés"
+  },
+  {
+   "option": "B",
+   "intitule": "retirer la seule règle globale IATA",
+   "description": "la recommandation générale cesse de produire une interdiction universelle ; les 41 règles compagnie restent.",
+   "grille_publique": {
+    "scenarios": 72,
+    "verdicts_changes": 18,
+    "statuts_changes": 18,
+    "score_seul": 0,
+    "ecart_score": [
+     0,
+     39
+    ]
+   },
+   "grille_brachycephale": {
+    "total": 40,
+    "compagnies_avec_regle_propre": 0,
+    "compagnies_sans_regle_propre": 40,
+    "par_bascule": {
+     "denied/denied/denied → denied/denied/confirmation_required": 7,
+     "allowed/denied/denied → allowed/allowed/confirmation_required": 13,
+     "denied/denied/denied → denied/allowed/confirmation_required": 8,
+     "allowed/denied/denied → allowed/denied/allowed": 1,
+     "denied/denied/denied → denied/confirmation_required/confirmation_required": 4,
+     "allowed/denied/denied → allowed/allowed/allowed": 1,
+     "allowed/denied/denied → allowed/confirmation_required/denied": 1,
+     "confirmation_required/denied/denied → confirmation_required/allowed/confirmation_required": 1,
+     "allowed/denied/denied → allowed/confirmation_required/confirmation_required": 3,
+     "allowed/denied/denied → allowed/allowed/denied": 1
+    },
+    "exemples": [
+     "airline_aer_lingus denied/denied/denied → denied/denied/confirmation_required",
+     "airline_aerolineas_argentinas allowed/denied/denied → allowed/allowed/confirmation_required",
+     "airline_air_algerie denied/denied/denied → denied/allowed/confirmation_required",
+     "airline_air_astana allowed/denied/denied → allowed/allowed/confirmation_required"
+    ]
+   },
+   "grille_temoin_non_brachycephale": {
+    "total": 0,
+    "compagnies_avec_regle_propre": 0,
+    "compagnies_sans_regle_propre": 0,
+    "par_bascule": {},
+    "exemples": []
+   },
+   "dommage_collateral": "aucun : les chiens non brachycéphales ne sont pas touchés"
+  },
+  {
+   "option": "C",
+   "intitule": "retirer les 41 règles compagnie",
+   "description": "les interdictions auto-citées disparaissent ; la règle globale IATA reste seule.",
+   "grille_publique": {
+    "scenarios": 72,
+    "verdicts_changes": 0,
+    "statuts_changes": 0,
+    "score_seul": 12,
+    "ecart_score": [
+     0,
+     1
+    ]
+   },
+   "grille_brachycephale": {
+    "total": 0,
+    "compagnies_avec_regle_propre": 0,
+    "compagnies_sans_regle_propre": 0,
+    "par_bascule": {},
+    "exemples": []
+   },
+   "grille_temoin_non_brachycephale": {
+    "total": 0,
+    "compagnies_avec_regle_propre": 0,
+    "compagnies_sans_regle_propre": 0,
+    "par_bascule": {},
+    "exemples": []
+   },
+   "dommage_collateral": "aucun : les chiens non brachycéphales ne sont pas touchés"
+  },
+  {
+   "option": "D",
+   "intitule": "retirer les 42",
+   "description": "plus aucune interdiction brachycéphale : le canal retombe sur la politique de la fiche.",
+   "grille_publique": {
+    "scenarios": 72,
+    "verdicts_changes": 20,
+    "statuts_changes": 16,
+    "score_seul": 0,
+    "ecart_score": [
+     0,
+     57
+    ]
+   },
+   "grille_brachycephale": {
+    "total": 81,
+    "compagnies_avec_regle_propre": 41,
+    "compagnies_sans_regle_propre": 40,
+    "par_bascule": {
+     "allowed/denied/denied → allowed/allowed/confirmation_required": 35,
+     "denied/denied/denied → denied/denied/confirmation_required": 7,
+     "denied/denied/denied → denied/allowed/confirmation_required": 21,
+     "allowed/denied/denied → allowed/denied/confirmation_required": 3,
+     "allowed/denied/denied → allowed/denied/allowed": 1,
+     "denied/denied/denied → denied/confirmation_required/confirmation_required": 4,
+     "allowed/denied/denied → allowed/allowed/allowed": 2,
+     "allowed/denied/denied → allowed/allowed/denied": 3,
+     "allowed/denied/denied → allowed/confirmation_required/denied": 1,
+     "confirmation_required/denied/denied → confirmation_required/allowed/confirmation_required": 1,
+     "allowed/denied/denied → allowed/confirmation_required/confirmation_required": 3
+    },
+    "exemples": [
+     "airline_aegean allowed/denied/denied → allowed/allowed/confirmation_required",
+     "airline_aer_lingus denied/denied/denied → denied/denied/confirmation_required",
+     "airline_aerolineas_argentinas allowed/denied/denied → allowed/allowed/confirmation_required",
+     "airline_aeromexico allowed/denied/denied → allowed/allowed/confirmation_required"
+    ]
+   },
+   "grille_temoin_non_brachycephale": {
+    "total": 0,
+    "compagnies_avec_regle_propre": 0,
+    "compagnies_sans_regle_propre": 0,
+    "par_bascule": {},
+    "exemples": []
+   },
+   "dommage_collateral": "aucun : les chiens non brachycéphales ne sont pas touchés"
+  },
+  {
+   "option": "G",
+   "intitule": "retirer les 42 ET basculer la politique du canal en « non documentée »",
+   "description": "seul chemin DONNÉES vers « à confirmer » — mais il agit sur le CANAL, pas sur la race.",
+   "grille_publique": {
+    "scenarios": 72,
+    "verdicts_changes": 20,
+    "statuts_changes": 52,
+    "score_seul": 0,
+    "ecart_score": [
+     -23,
+     39
+    ]
+   },
+   "grille_brachycephale": {
+    "total": 81,
+    "compagnies_avec_regle_propre": 41,
+    "compagnies_sans_regle_propre": 40,
+    "par_bascule": {
+     "allowed/denied/denied → allowed/confirmation_required/confirmation_required": 27,
+     "denied/denied/denied → denied/denied/confirmation_required": 7,
+     "allowed/denied/denied → allowed/allowed/confirmation_required": 13,
+     "denied/denied/denied → denied/allowed/confirmation_required": 8,
+     "denied/denied/denied → denied/confirmation_required/confirmation_required": 17,
+     "allowed/denied/denied → allowed/denied/confirmation_required": 3,
+     "allowed/denied/denied → allowed/denied/allowed": 1,
+     "allowed/denied/denied → allowed/allowed/allowed": 1,
+     "allowed/denied/denied → allowed/confirmation_required/denied": 2,
+     "confirmation_required/denied/denied → confirmation_required/allowed/confirmation_required": 1,
+     "allowed/denied/denied → allowed/allowed/denied": 1
+    },
+    "exemples": [
+     "airline_aegean allowed/denied/denied → allowed/confirmation_required/confirmation_required",
+     "airline_aer_lingus denied/denied/denied → denied/denied/confirmation_required",
+     "airline_aerolineas_argentinas allowed/denied/denied → allowed/allowed/confirmation_required",
+     "airline_aeromexico allowed/denied/denied → allowed/confirmation_required/confirmation_required"
+    ]
+   },
+   "grille_temoin_non_brachycephale": {
+    "total": 38,
+    "compagnies_avec_regle_propre": 38,
+    "compagnies_sans_regle_propre": 0,
+    "par_bascule": {
+     "allowed/allowed/confirmation_required → allowed/confirmation_required/confirmation_required": 22,
+     "denied/allowed/confirmation_required → denied/confirmation_required/confirmation_required": 13,
+     "allowed/allowed/denied → allowed/confirmation_required/confirmation_required": 1,
+     "allowed/allowed/denied → allowed/confirmation_required/denied": 1,
+     "allowed/allowed/allowed → allowed/confirmation_required/confirmation_required": 1
+    },
+    "exemples": [
+     "airline_aegean allowed/allowed/confirmation_required → allowed/confirmation_required/confirmation_required",
+     "airline_aeromexico allowed/allowed/confirmation_required → allowed/confirmation_required/confirmation_required",
+     "airline_air_caraibes allowed/allowed/confirmation_required → allowed/confirmation_required/confirmation_required",
+     "airline_air_europa allowed/allowed/confirmation_required → allowed/confirmation_required/confirmation_required"
+    ]
+   },
+   "dommage_collateral": "38 canal/canaux déplacés pour un chien NON brachycéphale — cette option n'agit pas sur la race"
+  }
+ ],
+ "options_qui_se_confondent": {
+  "E — ne garder que les interdictions officiellement confirmées": "identique à D : l'ensemble des interdictions confirmées est VIDE (0 sur 41).",
+  "F — passer les 42 en action « warn » ou « require »": "identique à D : le moteur n'accorde d'effet sur un statut qu'à l'action « deny »."
+ },
+ "ce_que_ce_dossier_ne_fait_pas": [
+  "il n'applique aucune option et ne modifie aucun fichier de packages/",
+  "il ne propose AUCUNE option saisonnière ou par température : le référentiel ne contient aucun seuil brachycéphale sourcé, et en fabriquer un serait le défaut que ce chantier corrige",
+  "il ne rouvre pas les 47 candidates de T0-B3, qui restent hors décision",
+  "il ne juge pas la véracité médicale du risque brachycéphale : il mesure ce que le site AFFIRME, et avec quelle preuve"
+ ]
+}
