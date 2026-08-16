@@ -11,6 +11,7 @@ import { loadKB, t as tt, inlineT, inlineF, localizer, dateFormatter } from "@my
 import FaqBlock from "./FaqBlock.astro";
 import { airlineFaq, faqJsonLd } from "../lib/faq";
 import { airlineReach, brachyBreeds, brachyRestriction } from "../lib/cluster";
+import { politiqueDuCanal, cleLibelleStatut, classeStatut, causeDeConfirmation, preuveAuditee } from "../lib/decisionCanal";
 interface Props { id: string; locale?: string }
 const { id, locale = "en" } = Astro.props;
 const fr = locale === "fr";
@@ -29,6 +30,9 @@ const t = localizer(locale);
 const T = inlineT(locale);
 const fmtDate = dateFormatter(locale); // date visible à la langue de la page ; le JSON-LD garde l'ISO
 const F = inlineF(locale); // phrases à trous : la donnée entre par {0}, {1}…
+/* L'hôte d'une URL, pour un lien lisible. Une URL officielle brute de 140 caractères ne se lit
+   pas ; le lien complet reste dans `href`, où le harnais le compare à l'octet près. */
+const hote = (u: string) => { try { return new URL(u).hostname.replace(/^www\./, ""); } catch { return u; } };
 
 /* LES CHIFFRES QUI DÉCIDENT, EN GRAS DANS LA PHRASE.
  *
@@ -173,13 +177,45 @@ const jsonLd = faqItems.length ? [webpageLd, faqJsonLd(faqItems)] : [webpageLd];
       </div>
       <p class="muted mt6">{T("Weight includes the carrier or kennel.", "Poids incluant le sac de transport ou la caisse.", "El peso incluye el bolso de transporte o la jaula.")}</p>
       <div class="g mt14">
-        {d.channels.map((c) => (
-          <div class="mini">
-            <div class="t">{c.icon} {t(c.name)}<span class={`pill ${c.cls} ml`}>{t(c.statusLabel)}</span></div>
-            <div class="k" set:html={chiffresEnGras(t(c.detail))} />
-            <div class="amt">{t(c.fee)}</div>
-          </div>
-        ))}
+        {d.channels.map((c) => {
+          /* LA DÉCISION VIENT DE LA POLITIQUE CANONIQUE, PAS DE LA PASTILLE ÉDITORIALE.
+           *
+           * `c.cls` et `c.statusLabel` sont écrits à la main dans la fiche ; sur 78 canaux de
+           * 71 fiches ils contredisent la politique. Celle-ci est lue dans la base de
+           * connaissances — le MÊME objet runtime que celui dont le moteur tire les cartes du
+           * Finder — et `politiqueDuCanal` lève si elle manque : la page casse le build plutôt
+           * que de se rabattre sur l'éditorial. */
+          const decision = politiqueDuCanal(kbAir?.premium?.policy, c.placement, id);
+          const statut = decision.status;
+          const cause = causeDeConfirmation(decision);
+          const preuve = preuveAuditee(decision);
+          return (
+            <div class="mini" data-placement={c.placement} data-status={statut}>
+              <div class="t">{c.icon} {t(c.name)}<span class={`pill ${classeStatut(statut)} ml`}>{tt(locale, cleLibelleStatut(statut))}</span></div>
+              <div class="k" set:html={chiffresEnGras(t(c.detail))} />
+              <div class="amt">{t(c.fee)}</div>
+              {/* La CAUSE de l'incertitude, dite pour ce qu'elle est : la nôtre (donnée non
+                * revérifiée) ou celle de la compagnie (rien de publié, accord au cas par cas).
+                * Les confondre attribuerait à la compagnie un doute qui vient de nous. */}
+              {cause && <div class="why">{tt(locale, `premium.${cause === "legacy_unreviewed" ? "unreviewed" : cause}`)}</div>}
+              {/* LA PREUVE DU CANAL, dans le bloc du canal — jamais la source racine de la fiche,
+                * ni une auto-citation MyDogCanFly. Absente quand la politique n'a pas été
+                * auditée : une politique non revue reste sans source. */}
+              {preuve && (
+                <div class="proof">
+                  <div class="proof-h">🛡️ {tt(locale, "premium.channel_source")}</div>
+                  <a class="proof-lnk" href={preuve.url} rel="nofollow noopener" target="_blank">{hote(preuve.url)}</a>
+                  {preuve.quote && <blockquote class="proof-q" lang={preuve.quote_language}>« {preuve.quote} »</blockquote>}
+                  {preuve.locator && <div class="proof-loc">{preuve.locator}</div>}
+                  <div class="proof-m">
+                    <span>{tt(locale, "premium.verified_on").replace("{date}", fmtDate(preuve.verified_date))}</span>
+                    <span>{tt(locale, "premium.confidence").replace("{n}", String(preuve.confidence))}</span>
+                  </div>
+                </div>
+              )}
+            </div>
+          );
+        })}
       </div>
     </div>
 
@@ -399,6 +435,15 @@ const jsonLd = faqItems.length ? [webpageLd, faqJsonLd(faqItems)] : [webpageLd];
      remarque à peine. */
   .afp .k b { color: var(--mdcf-ink, #011d48); font-weight: 700; }
   .afp .amt { margin-top: 9px; font-weight: 800; }
+  /* La cause de l'incertitude, et la preuve du canal : lisibles sans être criardes — elles
+     accompagnent la décision, elles ne la remplacent pas. */
+  .afp .why { margin-top: 8px; font-size: 12.5px; line-height: 1.45; color: #9a5a12; }
+  .afp .proof { margin-top: 10px; padding-top: 9px; border-top: 1px dashed var(--mdcf-line, #e6ebf1); font-size: 12.5px; }
+  .afp .proof-h { font-weight: 700; color: var(--mdcf-ink, #1a2433); }
+  .afp .proof-lnk { display: inline-block; margin-top: 3px; font-weight: 600; color: var(--mdcf-accent-ink, #b4530a); word-break: break-word; }
+  .afp .proof-q { margin: 6px 0 0; padding-left: 9px; border-left: 2px solid var(--mdcf-line, #e6ebf1); color: var(--mdcf-muted, #5b6b7f); font-style: italic; line-height: 1.45; }
+  .afp .proof-loc { margin-top: 5px; color: var(--mdcf-muted, #5b6b7f); }
+  .afp .proof-m { display: flex; gap: 10px; flex-wrap: wrap; margin-top: 6px; font-weight: 600; color: var(--mdcf-muted, #5b6b7f); }
   .afp table.fare { width: 100%; border-collapse: collapse; font-size: 14.5px; }
   .afp table.fare th, .afp table.fare td { padding: 9px 10px; border-bottom: 1px solid var(--mdcf-line, #e6ebf1); text-align: left; }
   .afp table.fare th { font-size: 12.5px; font-weight: 700; color: var(--mdcf-muted, #5b6b7f); text-transform: uppercase; letter-spacing: .04em; }

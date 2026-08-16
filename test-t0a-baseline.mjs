@@ -21,7 +21,7 @@
  */
 import { readFileSync, writeFileSync, existsSync, mkdirSync } from "node:fs";
 import worker from "./packages/workers/src/index.ts";
-import { loadKB } from "./packages/knowledge/src/index.ts";
+import { loadKB, preuveAuditee } from "./packages/knowledge/src/index.ts";
 import { evaluate } from "./packages/engine/src/evaluate.ts";
 import { explain } from "./packages/engine/src/explain.ts";
 
@@ -319,9 +319,110 @@ console.log("=== Preuve T0-B2 (deux baselines FIGÉES — permanente) ===");
     /* Chaque carte modifiée cite le couple migré qui l'explique : aucune bascule orpheline. */
     check("chaque carte approuvée cite au moins un couple migré",
       approuve.cartes.every((c) => c.couples.length > 0 && c.couples.every((x) => approuve.couples_justifiants.includes(x))));
-    /* La baseline VIVANTE et la baseline FIGÉE après T0-B2 doivent coïncider, sinon la figée
+  }
+}
+
+/**
+ * Preuve T0-B2-UI — la source RACINE cesse de justifier une décision (deux baselines FIGÉES).
+ *
+ * Le contre-test navigateur du 15/08/2026 a vu la carte du Finder de Thai Airways présenter
+ * « mydogcanfly.com » comme la source de sa politique. La première version de ce lot n'a retiré
+ * que les auto-citations ; la contre-revue a montré que le critère était faux. Sur les 50 racines
+ * restantes, 35 sont de simples pages d'accueil — `aerlingus.com`, `airchina.com` — qui ne
+ * prouvent pas davantage une politique de transport d'animaux. Ce qui disqualifie une source
+ * racine n'est pas son DOMAINE, c'est qu'elle n'est rattachée à AUCUN canal.
+ *
+ * Ce que le lot change, et il n'a le droit de changer que cela : la liste `sources` du rapport
+ * perd les sources racines et gagne les sources AUDITÉES des canaux, désormais portées par les
+ * décisions elles-mêmes. Verdict, score, statuts, décisions, causes, libellés, tarifs, classement
+ * — strictement identiques, et c'est vérifié champ par champ ci-dessous, pas affirmé.
+ *
+ * DEUX PRÉCAUTIONS que la bijection seule n'apporterait pas, toutes deux par IDENTITÉ et relues
+ * dans la base :
+ *   · toute URL retirée doit ÊTRE une source racine de compagnie. Sans cela, un lot futur pourrait
+ *     retirer une source de canal officielle en se réclamant de ce diff ;
+ *   · toute URL ajoutée doit ÊTRE la source d'une politique de canal — sinon le rapport citerait
+ *     une page que rien n'atteste — et ne peut pas être une auto-citation.
+ */
+console.log("=== Preuve T0-B2-UI (deux baselines FIGÉES — permanente) ===");
+{
+  const AVANT = "test-baselines/t0b2-finder-baseline-apres.json";
+  const APRES = "test-baselines/t0b2ui-finder-baseline-apres.json";
+  const APPROUVE = "test-baselines/t0b2ui-approved-diff.json";
+  check("la baseline APRÈS T0-B2-UI est versionnée", existsSync(APRES));
+  check("le diff T0-B2-UI approuvé est versionné", existsSync(APPROUVE));
+  if (existsSync(APRES) && existsSync(APPROUVE)) {
+    const avant = JSON.parse(readFileSync(AVANT, "utf8"));
+    const apres = JSON.parse(readFileSync(APRES, "utf8"));
+    const approuve = JSON.parse(readFileSync(APPROUVE, "utf8"));
+    let bad = 0;
+    const echec = (msg) => { bad++; if (bad <= 5) console.log(`  ${msg}`); };
+    const vus = new Set();
+    /* Tout ce qui n'est PAS `sources` : identité exigée, y compris la séquence des cartes. */
+    const CHAMPS_FIGES = ["verdict", "score", "compatible", "domestic", "climate", "destination_country",
+      "confidence", "conditions", "positives", "warnings", "risks", "alternatives", "airlines"];
+    for (const k of Object.keys(avant)) {
+      const A = avant[k], B = apres[k];
+      if (!B) { echec(`MANQUANT après: ${k}`); continue; }
+      for (const champ of CHAMPS_FIGES) {
+        if (JSON.stringify(A[champ]) !== JSON.stringify(B[champ])) echec(`ÉCART MÉTIER ${k}.${champ} — interdit dans ce lot`);
+      }
+      if (JSON.stringify(A.sources) === JSON.stringify(B.sources)) continue;
+      vus.add(k);
+      const app = approuve.par_scenario[k];
+      if (!app) { echec(`DIFF ${k} sources modifiées HORS du diff approuvé`); continue; }
+      const out = A.sources.filter((u) => !B.sources.includes(u)).sort();
+      const inn = B.sources.filter((u) => !A.sources.includes(u)).sort();
+      if (JSON.stringify(out) !== JSON.stringify(app.retirees)) echec(`DIFF ${k} URL retirées ≠ liste approuvée`);
+      if (JSON.stringify(inn) !== JSON.stringify(app.ajoutees)) echec(`DIFF ${k} URL ajoutées ≠ liste approuvée`);
+    }
+    for (const k of Object.keys(approuve.par_scenario)) if (!vus.has(k)) echec(`DIFF scénario approuvé NON observé: ${k}`);
+    check("bijection stricte avec le diff T0-B2-UI approuvé, zéro écart métier", bad === 0, `${bad} écart(s)`);
+
+    const estAuto = (u) => { try { return /(^|\.)mydogcanfly\.com$/i.test(new URL(u).hostname); } catch { return false; } };
+    /* Les deux références d'identité, RELUES dans la base — jamais recopiées du diff. */
+    const kbPreuve = loadKB();
+    const racines = new Set(), sourcesDeCanal = new Set();
+    for (const a of kbPreuve.airlines.values()) {
+      if (a.source?.url) racines.add(a.source.url);
+      for (const p of Object.values(a.premium?.policy ?? {})) if (p?.source?.url) sourcesDeCanal.add(p.source.url);
+    }
+    const horsRacines = approuve.racines_retirees.filter((x) => !racines.has(x.url));
+    check(`les ${approuve.totaux.retirees_distinctes} URL retirées sont TOUTES des sources racines de compagnie`,
+      approuve.racines_retirees.length === approuve.totaux.retirees_distinctes && horsRacines.length === 0,
+      horsRacines.map((x) => x.url).slice(0, 3).join(" | "));
+    check(`dont ${approuve.totaux.retirees_auto_citations} auto-citations — le reste étant des pages officielles sans canal`,
+      approuve.racines_retirees.filter((x) => estAuto(x.url)).length === approuve.totaux.retirees_auto_citations
+      && approuve.racines_retirees.every((x) => x.auto_citation === estAuto(x.url)));
+    /* Les URL ajoutées ne sortent pas de nulle part : chacune est la source d'au moins une
+       politique de canal dans la base, et aucune n'est une auto-citation. */
+    const orphelines = approuve.sources_de_canal_ajoutees.filter((x) => !sourcesDeCanal.has(x.url));
+    check(`les ${approuve.totaux.ajoutees_distinctes} URL ajoutées sont des sources de CANAL existantes, sans auto-citation`,
+      approuve.sources_de_canal_ajoutees.length === approuve.totaux.ajoutees_distinctes
+      && orphelines.length === 0 && !approuve.sources_de_canal_ajoutees.some((x) => estAuto(x.url)),
+      orphelines.map((x) => x.url).slice(0, 3).join(" | "));
+    /* Et plus aucune URL ne subsiste dans la baseline APRÈS AU TITRE de racine.
+       Nuance qui compte : 41 URL sont À LA FOIS la racine d'une fiche et la source d'un de ses
+       canaux — la page « animaux » de British Airways, par exemple. Celles-là ont le droit de
+       rester, mais parce qu'un CANAL les cite, jamais parce que la fiche les porte. Le contrôle
+       exige donc qu'une URL racine encore présente soit AUSSI une preuve auditée de canal, au
+       sens exact de `preuveAuditee` — la même fonction que le moteur, pas une approximation. */
+    const auditees = new Set();
+    for (const a of kbPreuve.airlines.values()) {
+      for (const p of Object.values(a.premium?.policy ?? {})) {
+        const preuve = preuveAuditee(p);
+        if (preuve?.url) auditees.add(preuve.url);
+      }
+    }
+    const restantes = new Set();
+    for (const k of Object.keys(apres)) {
+      for (const u of apres[k].sources) if (estAuto(u) || (racines.has(u) && !auditees.has(u))) restantes.add(u);
+    }
+    check("aucune URL ne subsiste au titre de source RACINE (une preuve de canal peut, elle, rester)",
+      restantes.size === 0, [...restantes].slice(0, 3).join(" | "));
+    /* La baseline VIVANTE et la baseline FIGÉE la plus récente doivent coïncider, sinon la figée
        pourrit en silence pendant que la vivante suit les lots. */
-    check("la baseline vivante est identique à la baseline figée APRÈS T0-B2",
+    check("la baseline vivante est identique à la baseline figée APRÈS T0-B2-UI",
       readFileSync("test-baselines/t0a-finder-baseline.json", "utf8") === readFileSync(APRES, "utf8"));
   }
 }

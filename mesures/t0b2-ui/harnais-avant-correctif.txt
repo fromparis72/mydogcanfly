@@ -1,0 +1,226 @@
+portée : sentinelles · 2 canaux contradictoires sur 2 fiche(s)
+         NON COUVERT ici : 76 canaux sur 69 fiches — lancer HARNAIS_PORTEE=complet sur un build complet des compagnies.
+
+=== 0. Les pages d'entités sont-elles construites ? ===
+  OK   les 12 pages compagnies de la portée « sentinelles », quatre langues
+  OK   la page pays sentinelle, quatre langues (CountryOnward)
+
+=== 1. Zéro erreur console, et les DEUX composants qui appellent mdcfQuery ===
+  FAIL en : zéro erreur console sur la fiche compagnie
+         Uncaught [TypeError: window.mdcfQuery is not a function]
+  FAIL en : OnwardNav — « to=de » RÉÉCRIT le lien de destination
+         href=/countries/th/#?via=airline_thai_airways&breed=breed_pug
+  OK   en : OnwardNav — le lien Finder conserve la race
+  FAIL fr : zéro erreur console sur la fiche compagnie
+         Uncaught [TypeError: window.mdcfQuery is not a function]
+  FAIL fr : OnwardNav — « to=de » RÉÉCRIT le lien de destination
+         href=/fr/countries/th/#?via=airline_thai_airways&breed=breed_pug
+  OK   fr : OnwardNav — le lien Finder conserve la race
+  FAIL es : zéro erreur console sur la fiche compagnie
+         Uncaught [TypeError: window.mdcfQuery is not a function]
+  FAIL es : OnwardNav — « to=de » RÉÉCRIT le lien de destination
+         href=/es/countries/th/#?via=airline_thai_airways&breed=breed_pug
+  OK   es : OnwardNav — le lien Finder conserve la race
+  FAIL pt : zéro erreur console sur la fiche compagnie
+         Uncaught [TypeError: window.mdcfQuery is not a function]
+  FAIL pt : OnwardNav — « to=de » RÉÉCRIT le lien de destination
+         href=/pt/countries/th/#?via=airline_thai_airways&breed=breed_pug
+  OK   pt : OnwardNav — le lien Finder conserve la race
+  FAIL en : zéro erreur console sur la page pays
+         Uncaught [TypeError: window.mdcfQuery is not a function]
+  FAIL en : CountryOnward — « via=airline_air_france » RÉÉCRIT le titre
+         statique « Find a flight to France » · après « Find a flight to France »
+  FAIL en : CountryOnward — le bouton de réservation devient visible, avec son URL
+         hidden=true href=#
+  FAIL fr : zéro erreur console sur la page pays
+         Uncaught [TypeError: window.mdcfQuery is not a function]
+  FAIL fr : CountryOnward — « via=airline_air_france » RÉÉCRIT le titre
+         statique « France : trouver un vol » · après « France : trouver un vol »
+  FAIL fr : CountryOnward — le bouton de réservation devient visible, avec son URL
+         hidden=true href=#
+  FAIL es : zéro erreur console sur la page pays
+         Uncaught [TypeError: window.mdcfQuery is not a function]
+  FAIL es : CountryOnward — « via=airline_air_france » RÉÉCRIT le titre
+         statique « Encontrar un vuelo a Francia » · après « Encontrar un vuelo a Francia »
+  FAIL es : CountryOnward — le bouton de réservation devient visible, avec son URL
+         hidden=true href=#
+  FAIL pt : zéro erreur console sur la page pays
+         Uncaught [TypeError: window.mdcfQuery is not a function]
+  FAIL pt : CountryOnward — « via=airline_air_france » RÉÉCRIT le titre
+         statique « França: encontrar um voo » · après « França: encontrar um voo »
+  FAIL pt : CountryOnward — le bouton de réservation devient visible, avec son URL
+         hidden=true href=#
+
+=== 2. Les quatre formes de décision : attribut technique + libellé publié exact ===
+  OK   airline_thai_airways.cargo : la politique canonique vaut bien confirmation_required (auditée · undocumented)
+  FAIL   en : un seul bloc pour ce placement
+         0 bloc(s)
+  FAIL   en : data-status = confirmation_required
+         absent
+  FAIL   en : la pastille porte EXACTEMENT le libellé publié « Policy to confirm with the airline »
+         aucune pastille
+  FAIL   fr : un seul bloc pour ce placement
+         0 bloc(s)
+  FAIL   fr : data-status = confirmation_required
+         absent
+  FAIL   fr : la pastille porte EXACTEMENT le libellé publié « Politique à confirmer auprès de la compagnie »
+         aucune pastille
+  FAIL   es : un seul bloc pour ce placement
+         0 bloc(s)
+  FAIL   es : data-status = confirmation_required
+         absent
+  FAIL   es : la pastille porte EXACTEMENT le libellé publié « Política a confirmar con la aerolínea »
+         aucune pastille
+  FAIL   pt : un seul bloc pour ce placement
+         0 bloc(s)
+  FAIL   pt : data-status = confirmation_required
+         absent
+  FAIL   pt : la pastille porte EXACTEMENT le libellé publié « Política a confirmar com a companhia »
+         aucune pastille
+  OK   airline_aegean.cargo : la politique canonique vaut bien confirmation_required (non revérifiée · legacy_unreviewed)
+  FAIL   en : un seul bloc pour ce placement
+         0 bloc(s)
+  FAIL   en : data-status = confirmation_required
+         absent
+  FAIL   en : la pastille porte EXACTEMENT le libellé publié « Policy to confirm with the airline »
+         aucune pastille
+  FAIL   fr : un seul bloc pour ce placement
+         0 bloc(s)
+  FAIL   fr : data-status = confirmation_required
+         absent
+  FAIL   fr : la pastille porte EXACTEMENT le libellé publié « Politique à confirmer auprès de la compagnie »
+         aucune pastille
+  FAIL   es : un seul bloc pour ce placement
+         0 bloc(s)
+  FAIL   es : data-status = confirmation_required
+         absent
+  FAIL   es : la pastille porte EXACTEMENT le libellé publié « Política a confirmar con la aerolínea »
+         aucune pastille
+  FAIL   pt : un seul bloc pour ce placement
+         0 bloc(s)
+  FAIL   pt : data-status = confirmation_required
+         absent
+  FAIL   pt : la pastille porte EXACTEMENT le libellé publié « Política a confirmar com a companhia »
+         aucune pastille
+  OK   airline_air_france.cabin : la politique canonique vaut bien allowed (offerte · offered)
+  FAIL   en : un seul bloc pour ce placement
+         0 bloc(s)
+  FAIL   en : data-status = allowed
+         absent
+  FAIL   en : la pastille porte EXACTEMENT le libellé publié « Accepted »
+         aucune pastille
+  FAIL   fr : un seul bloc pour ce placement
+         0 bloc(s)
+  FAIL   fr : data-status = allowed
+         absent
+  FAIL   fr : la pastille porte EXACTEMENT le libellé publié « Accepté »
+         aucune pastille
+  FAIL   es : un seul bloc pour ce placement
+         0 bloc(s)
+  FAIL   es : data-status = allowed
+         absent
+  FAIL   es : la pastille porte EXACTEMENT le libellé publié « Aceptado »
+         aucune pastille
+  FAIL   pt : un seul bloc pour ce placement
+         0 bloc(s)
+  FAIL   pt : data-status = allowed
+         absent
+  FAIL   pt : la pastille porte EXACTEMENT le libellé publié « Aceito »
+         aucune pastille
+  OK   airline_thai_airways.cabin : la politique canonique vaut bien denied (non offerte · not_offered)
+  FAIL   en : un seul bloc pour ce placement
+         0 bloc(s)
+  FAIL   en : data-status = denied
+         absent
+  FAIL   en : la pastille porte EXACTEMENT le libellé publié « Not accepted »
+         aucune pastille
+  FAIL   fr : un seul bloc pour ce placement
+         0 bloc(s)
+  FAIL   fr : data-status = denied
+         absent
+  FAIL   fr : la pastille porte EXACTEMENT le libellé publié « Non accepté »
+         aucune pastille
+  FAIL   es : un seul bloc pour ce placement
+         0 bloc(s)
+  FAIL   es : data-status = denied
+         absent
+  FAIL   es : la pastille porte EXACTEMENT le libellé publié « No aceptado »
+         aucune pastille
+  FAIL   pt : un seul bloc pour ce placement
+         0 bloc(s)
+  FAIL   pt : data-status = denied
+         absent
+  FAIL   pt : la pastille porte EXACTEMENT le libellé publié « Não aceito »
+         aucune pastille
+
+=== 3. La preuve auditée du fret Thai : lien exact, texte visible, confiance nommée ===
+  OK   la date de vérification de la FICHE est distincte de celle du canal audité
+  FAIL en : le bloc fret porte un lien dont le href EST l'URL auditée
+         hrefs présents : aucun
+  FAIL en : la citation officielle est dans le TEXTE VISIBLE du bloc
+         attendu : (For cargo acceptance, please contact directly to …
+  FAIL en : la date du canal, telle que rendue (« 13 August 2026 »), est visible
+  FAIL en : la confiance est NOMMÉE (« premium.confidence »), pas juste chiffrée
+  OK   en : aucune auto-citation MyDogCanFly dans le bloc décisionnel
+  OK   en : la date de la fiche (« 11 July 2026 ») est visible et distincte
+  FAIL fr : le bloc fret porte un lien dont le href EST l'URL auditée
+         hrefs présents : aucun
+  FAIL fr : la citation officielle est dans le TEXTE VISIBLE du bloc
+         attendu : (For cargo acceptance, please contact directly to …
+  FAIL fr : la date du canal, telle que rendue (« 13 août 2026 »), est visible
+  FAIL fr : la confiance est NOMMÉE (« premium.confidence »), pas juste chiffrée
+  OK   fr : aucune auto-citation MyDogCanFly dans le bloc décisionnel
+  OK   fr : la date de la fiche (« 11 juillet 2026 ») est visible et distincte
+  FAIL es : le bloc fret porte un lien dont le href EST l'URL auditée
+         hrefs présents : aucun
+  FAIL es : la citation officielle est dans le TEXTE VISIBLE du bloc
+         attendu : (For cargo acceptance, please contact directly to …
+  FAIL es : la date du canal, telle que rendue (« 13 de agosto de 2026 »), est visible
+  FAIL es : la confiance est NOMMÉE (« premium.confidence »), pas juste chiffrée
+  OK   es : aucune auto-citation MyDogCanFly dans le bloc décisionnel
+  OK   es : la date de la fiche (« 11 de julio de 2026 ») est visible et distincte
+  FAIL pt : le bloc fret porte un lien dont le href EST l'URL auditée
+         hrefs présents : aucun
+  FAIL pt : la citation officielle est dans le TEXTE VISIBLE du bloc
+         attendu : (For cargo acceptance, please contact directly to …
+  FAIL pt : la date du canal, telle que rendue (« 13 de agosto de 2026 »), est visible
+  FAIL pt : la confiance est NOMMÉE (« premium.confidence »), pas juste chiffrée
+  OK   pt : aucune auto-citation MyDogCanFly dans le bloc décisionnel
+  OK   pt : la date de la fiche (« 11 de julho de 2026 ») est visible et distincte
+  FAIL en : le fret NON REVÉRIFIÉ d'Aegean n'affiche AUCUNE source
+  FAIL fr : le fret NON REVÉRIFIÉ d'Aegean n'affiche AUCUNE source
+  FAIL es : le fret NON REVÉRIFIÉ d'Aegean n'affiche AUCUNE source
+  FAIL pt : le fret NON REVÉRIFIÉ d'Aegean n'affiche AUCUNE source
+
+=== 4. Carte RENDUE du Finder : les sources des canaux, et rien d'autre ===
+  OK   les 102 sources racines de la base sont connues du contrôle
+  OK   le moteur sert bien une carte Thai sur CDG→BKK
+  FAIL AUCUNE carte du rapport ne porte `source_url`, même officielle
+         airline_air_france | airline_thai_airways | airline_condor
+  FAIL aucune URL n'est dans les sources du rapport AU TITRE de racine
+         https://www.airfrance.com/information/optionsvols/animaux-en-avion | https://mydogcanfly.com/air-india-dog-policy/ | https://mydogcanfly.com/austrian-airlines-dog-policy/
+  FAIL la décision fret Thai porte la source AUDITÉE du canal
+         null
+  OK   le témoin airline_air_china est servi, sans aucun canal sourcé
+  OK   et sa racine EST une page d'accueil — le contrôle a donc quelque chose à attraper
+  OK   les deux cartes sont RENDUES dans le DOM
+  FAIL AUCUNE source racine non auditée n'apparaît dans les cartes rendues
+         https://mydogcanfly.com/thai-airways-dog-policy/
+  FAIL tout lien de source affiché sur une carte EST une preuve auditée de canal
+         aucun lien affiché
+  FAIL aucune mention de mydogcanfly.com dans les cartes rendues
+         https://mydogcanfly.com/thai-airways-dog-policy/
+  FAIL la carte Thai porte un lien vers l'URL auditée du fret
+         https://mydogcanfly.com/thai-airways-dog-policy/ | /tools/fiche/#from=fr&to=ci&air=airline_thai_airways&w=8
+  FAIL ce lien est VISIBLE et nommé par son canal
+         absent
+  OK   la carte airline_air_china n'affiche AUCUN bloc de sources
+
+=== 5. Les 2 canaux contradictoires × 4 langues : statut ET libellé ===
+  OK   78 canaux contradictoires sur 71 fiches, relus des fiches et du contrat runtime
+  OK   8 pages localisées RÉELLEMENT lues, aucune absente
+  FAIL 8 blocs vérifiés (statut technique ET libellé publié), aucune anomalie
+         vérifiés 0/8 — airlines/aegean/index.html#cargo : 0 bloc(s) | fr/airlines/aegean/index.html#cargo : 0 bloc(s) | es/airlines/aegean/index.html#cargo : 0 bloc(s)
+  OK   la cible de cette portée n'est pas vide
+
+28 OK, 97 FAIL

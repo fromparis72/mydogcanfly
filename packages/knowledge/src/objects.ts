@@ -97,6 +97,29 @@ export type MediaRef = z.infer<typeof MediaRef>;
  * d'auteur a SON schéma, et ce qu'une projection abandonne est ÉNUMÉRÉ dans une fonction
  * nommée — plus jamais un effet silencieux du strip. */
 
+/** La provenance d'une POLITIQUE de canal — `Source` plus la citation qui la rend vérifiable.
+ *
+ *  Quatrième membre de la famille « champ effacé par Zod en mode strip », découvert le 15/08/2026 :
+ *  la fiche de Thai Airways porte, depuis T0-B2, la phrase officielle du fret, sa langue et sa
+ *  section (« Embargo Of Snub-nosed And Other Dog Breeds »). `Source` ne déclarait aucun des
+ *  trois : `objects.json` recevait l'URL et la date, et la CITATION disparaissait en silence entre
+ *  la fiche et le moteur. La seule preuve auditée du dépôt arrivait amputée de ce qui en fait une
+ *  preuve — une URL sans phrase demande de relire la page entière.
+ *
+ *  Les trois champs sont facultatifs : 258 provenances sont dérivées et n'ont rien à citer. Mais
+ *  une citation sans sa langue serait interprétable, donc l'une entraîne l'autre. */
+export const PolicySource = Source.extend({
+  /** La phrase officielle qui fonde la décision, reprise telle quelle. */
+  quote: z.string().min(10).optional(),
+  /** Étiquette BCP-47 — la citation est rendue dans SA langue, la traduire l'interpréterait. */
+  quote_language: z.string().regex(/^[a-z]{2,3}(-[A-Za-z0-9]{2,8})*$/, "étiquette de langue BCP-47 attendue").optional(),
+  /** Où la phrase a été lue : ancre, titre de section, numéro d'accordéon. */
+  locator: z.string().min(1).optional(),
+}).refine((s) => !s.quote || !!s.quote_language, {
+  message: "une citation doit dire sa langue", path: ["quote_language"],
+});
+export type PolicySource = z.infer<typeof PolicySource>;
+
 /** Bloc commun aux deux branches d'auteur ET au runtime : les champs enrichis existants
  *  (302 politiques de canal en portent — source, tarif, dimensions, conditions, poids,
  *  restriction brachycéphale). Ils traversent la projection SANS PERTE. */
@@ -114,7 +137,21 @@ const PlacementPolicyCommon = {
    *  25 compagnies qui refusent explicitement un carlin ou un bouledogue en soute étaient
    *  affichées « ✅ Accepté en soute » sur les fiches des races concernées. */
   brachy_allowed: z.boolean().optional(),
-  source: Source,
+  source: PolicySource,
+  /** LA PROVENANCE A-T-ELLE ÉTÉ FABRIQUÉE, ou lue sur une page officielle ?
+   *
+   *  `true` = l'ingestion l'a construite à partir de notre PROPRE fiche : l'URL est la page
+   *  d'accueil de la compagnie, la confiance vaut 3, le relecteur est « MyDogCanFly Data Team
+   *  (derived from fiche) ». Elle documente d'où vient la donnée ; elle n'atteste d'aucune
+   *  lecture d'un texte publié, et ne peut donc pas être affichée comme la PREUVE d'une décision.
+   *
+   *  Pourquoi un champ de plus alors que `derived_from_fiche` existe : ce dernier qualifie la
+   *  POLITIQUE, pas sa source. Le fret de Thai Airways le porte à `true` tout en citant l'URL
+   *  auditée le 13/08/2026 avec sa citation — la conflation est signalée depuis l'écriture de
+   *  l'ingestion (« sans que le drapeau `derived_from_fiche` cesse d'affirmer le contraire »).
+   *  S'en servir pour trier les preuves faisait disparaître de l'écran la seule source auditée
+   *  du dépôt : les deux notions sont donc séparées ici, une fois pour toutes. */
+  source_derived: z.boolean().optional(),
 } as const;
 
 /* T0-B2 — `LegacyPlacementPolicyAuthored` a été SUPPRIMÉE.
@@ -203,8 +240,8 @@ export type PlacementPolicy = z.infer<typeof PlacementPolicy>;
  *    disent exactement ce que le runtime reçoit ;
  *  - tous les champs communs traversent, `derived_from_fiche` compris. */
 export function projectPlacementPolicy(authored: PlacementPolicyAuthored): PlacementPolicy {
-  const { max_weight_kg, carrier_dims_cm, fee, conditions, brachy_allowed, source, derived_from_fiche } = authored;
-  const common = { max_weight_kg, carrier_dims_cm, fee, conditions, brachy_allowed, source, derived_from_fiche };
+  const { max_weight_kg, carrier_dims_cm, fee, conditions, brachy_allowed, source, source_derived, derived_from_fiche } = authored;
+  const common = { max_weight_kg, carrier_dims_cm, fee, conditions, brachy_allowed, source, source_derived, derived_from_fiche };
   /* Donnée non revérifiée : à confirmer, cause explicitement NÔTRE — jamais une incertitude
      attribuée à la compagnie. Placée en tête parce qu'elle est la seule branche dont le
      discriminant ne peut coexister avec un autre ; l'ordre ne change rien au résultat, il rend

@@ -98,6 +98,20 @@ jobs:
       - name: Harnais DOM (fiche + Finder, 4 langues)
         run: npm run test:built-ui
 
+      # Les pages d'ENTITÉS — le trou par lequel les trois anomalies du contre-test navigateur
+      # du 15/08/2026 sont passées : aucun harnais ne les lisait, et `build:ci` n'en construisait
+      # aucune. La portée suit le build : les sentinelles sur pull request (que `build:ci`
+      # construit désormais, compagnies ET pays en une seule passe), les 71 fiches × 4 langues
+      # sur main, où le build est complet. Aucune des deux ne passe « faute de matière » : chacune
+      # a une cible EXACTE calculée sur les données, et échoue si une page manque.
+      - name: Harnais DOM des pages d'entités (sentinelles — pull request)
+        if: github.event_name == 'pull_request'
+        run: npm run test:entities
+
+      - name: Harnais DOM des pages d'entités (78 canaux × 4 langues — main)
+        if: github.event_name == 'push'
+        run: npm run test:entities:complet
+
       - name: Bundle épinglé sur le Worker attendu
         run: node packages/knowledge/scripts/check-bundle.mjs --expect="https://00000000-mydogcanfly-api-preview.fromparis.workers.dev"
 

@@ -1,5 +1,5 @@
-import type { NormalizedKB, Rule, Predicate, Condition, EvalContextShape, PlacementStatus, TemperatureProvenance } from "@mydogcanfly/knowledge";
-import { MONTH_UNKNOWN, isEstimatedTemperature } from "@mydogcanfly/knowledge";
+import type { NormalizedKB, Rule, Predicate, Condition, EvalContextShape, PlacementPolicy, PlacementStatus, TemperatureProvenance } from "@mydogcanfly/knowledge";
+import { MONTH_UNKNOWN, isEstimatedTemperature, preuveAuditee } from "@mydogcanfly/knowledge";
 import type { FinderRequest, Decision, AirlineDecision, FiredRule, ConfirmationCause } from "./contracts";
 import { makePlacementDecision, makePlacementDecisionSet } from "./contracts";
 
@@ -110,13 +110,19 @@ function toFired(r: Rule, locale: string): FiredRule {
   };
 }
 
-type PolicyMode = {
-  status?: PlacementStatus;
-  status_cause?: "airline_approval" | "policy_unpublished" | "legacy_unreviewed";
-  allowed?: boolean;
-  fee?: string;
-  source?: Rule["source"];
-};
+/* `PolicyMode` A ÉTÉ SUPPRIMÉ (contre-revue du 15/08/2026).
+ *
+ * C'était une redéclaration à la main de la politique runtime — `{ status?, status_cause?,
+ * allowed?, fee?, source? }` — accompagnée d'un cast à la lecture. Elle a dérivé aussitôt qu'on
+ * y a touché : le champ ajouté pour `preuveAuditee` s'appelait `derived_from_fiche` alors que la
+ * donnée lue s'appelle `source_derived`. Le code fonctionnait — l'objet JavaScript porte bien la
+ * propriété à l'exécution — mais plus aucun type ne protégeait cette donnée. C'est le trou exact
+ * par lequel `brachy_allowed`, `season.month`, `conditional` et `derived_from_fiche` avaient
+ * disparu en silence ; le rouvrir ici aurait été le rouvrir au dernier endroit qui décide.
+ *
+ * Ce fichier lit désormais `PlacementPolicy` — l'union discriminée produite par
+ * `projectPlacementPolicy`, la seule définition. Un champ qui n'y figure pas ne se lit pas, et un
+ * champ qu'elle gagne arrive ici sans qu'on ait à y penser. */
 
 /* Fiche = socle systématique (décision utilisateur, 10/08/2026 — bug signalé sur La Compagnie EWR→ORY,
    32 kg : la fiche dit cabine oui/soute non/fret inconnu, le Finder répondait "soute uniquement"). Deux
@@ -142,8 +148,10 @@ type PolicyMode = {
    ingest-airlines.mjs à partir de la fiche elle-même — on n'invente aucune donnée nouvelle. Catégorie
    "placement" : denyReasonsOf() la traduit en "<mode>_unavailable", exactement le motif qu'aurait porté
    une vraie règle rules.json. */
-function policyFallbackDenyRule(airlineId: string, placement: (typeof PLACEMENTS)[number], mode: PolicyMode): Rule {
-  const source: Rule["source"] = mode.source ?? {
+function policyFallbackDenyRule(airlineId: string, placement: (typeof PLACEMENTS)[number], mode: PlacementPolicy | undefined): Rule {
+  /* `mode` peut être ABSENT : c'est précisément le cas « la fiche ne décide pas ce canal », que
+     cette règle de repli existe pour refuser. La provenance neutre ci-dessous le dit. */
+  const source: Rule["source"] = mode?.source ?? {
     url: "", source_type: "other", verified_date: "1970-01-01", review_due: "1970-01-01",
     confidence: 1, reviewer: "unknown", history: [],
   };
@@ -290,7 +298,7 @@ export function evaluate(kb: NormalizedKB, req: FinderRequest, opts?: { weatherP
     // Fiche-derived policy (see policyFallbackDenyRule above) — désormais le socle systématique pour
     // TOUTE compagnie, pas seulement celles sans règle rules.json propre (voir le commentaire détaillé
     // au-dessus de policyFallbackDenyRule).
-    const policy = (a as { premium?: { policy?: Record<string, PolicyMode> } }).premium?.policy;
+    const policy = a.premium?.policy;
     // Evaluate ALL placements (cabin/hold/cargo) so the comparison cards are complete;
     // the requested placement is applied later, when computing the headline verdict.
     const perPlacement = PLACEMENTS.map((p) => {
@@ -325,7 +333,7 @@ export function evaluate(kb: NormalizedKB, req: FinderRequest, opts?: { weatherP
         // absente (« inconnu ») sont traités pareil, refusés par défaut, quel que soit le nombre
         // de règles propres à la compagnie par ailleurs.
         status = "denied";
-        allFires = [...fires, policyFallbackDenyRule(a.id, p, pol ?? {})];
+        allFires = [...fires, policyFallbackDenyRule(a.id, p, pol)];
       } else if (climateDenies.length > 0 && !tempIsEstimated) {
         status = "denied";
       } else {
@@ -347,7 +355,11 @@ export function evaluate(kb: NormalizedKB, req: FinderRequest, opts?: { weatherP
         }
         status = causes.length > 0 ? "confirmation_required" : "allowed";
       }
-      return { decision: makePlacementDecision(p, status, causes), fires: allFires };
+      /* La preuve descend AVEC la décision : la source de CE canal, et seulement si elle en est
+         une (ni dérivée, ni auto-citation, ni posée sur une politique non revérifiée). La source
+         racine de la fiche ne descend jamais ici — c'est elle que le contre-test a vue s'afficher
+         comme justification d'une politique qu'elle ne documente pas. */
+      return { decision: makePlacementDecision(p, status, causes, preuveAuditee(pol)), fires: allFires };
     });
     /* Le triplet complet est validé — exactement {cabin, hold, cargo}, ni absence ni doublon. */
     const placementDecisions = makePlacementDecisionSet(perPlacement.map((x) => x.decision));
@@ -521,7 +533,6 @@ export function evaluate(kb: NormalizedKB, req: FinderRequest, opts?: { weatherP
       deny_reasons: denyReasonsOf(perPlacement.map((x) => ({ placement: x.decision.placement, fires: x.fires }))),
       connect_airport_id,
       detour_km,
-      source_url: (a as { source?: { url?: string } }).source?.url,
       fee,
       origin_airport_id,
       destination_airport_id,

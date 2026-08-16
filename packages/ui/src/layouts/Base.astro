@@ -184,11 +184,20 @@ const headLd = [orgLd, siteLd, ...jsonLd];
     <meta name="twitter:image" content={ogImage} />
 
     {headLd.map((ld) => <script type="application/ld+json" set:html={JSON.stringify(ld)} is:inline />)}
-  </head>
-  <body>
-    <Header locale={locale} switcherPath={switcherPath} />
-    <main><slot /></main>
-    <Footer locale={locale} />
+    {/* CE BLOC VIT DANS `<head>`, ET IL DOIT Y RESTER.
+      *
+      * Il définit `window.mdcfQuery`, `mdcfAncre`, `mdcfPut` et `mdcfCtx`. Un script `is:inline`
+      * s'exécute à sa position dans le document : tant qu'il était placé après `<slot />`, tout
+      * composant portant lui-même un script inline — `define:vars` en produit un — s'exécutait
+      * AVANT lui. `OnwardNav` appelle `mdcfQuery()` à la première ligne : sur les 2 728 pages
+      * d'entités, la console affichait « window.mdcfQuery is not a function » et la pré-saisie
+      * ne se faisait pas. Relevé au contre-test navigateur du 15/08/2026, ordre établi sur le
+      * HTML CONSTRUIT (et non sur le source) : [4] module différé, [6] OnwardNav inline, [8]
+      * cette définition.
+      *
+      * Dans `<head>`, l'ordre n'est plus une convention à respecter : aucun script du corps ne
+      * peut s'exécuter avant. Le bloc ne touche à aucun élément au moment de son exécution —
+      * tout son travail sur le DOM passe par `DOMContentLoaded` ou `load`. */}
     <script is:inline>
       /* PARAMÈTRES DE PRÉ-SAISIE : dans le DIÈSE, plus dans la requête.
        *
@@ -316,5 +325,10 @@ const headLd = [orgLd, siteLd, ...jsonLd];
         } catch (e) {}
       })();
     </script>
+  </head>
+  <body>
+    <Header locale={locale} switcherPath={switcherPath} />
+    <main><slot /></main>
+    <Footer locale={locale} />
   </body>
 </html>
