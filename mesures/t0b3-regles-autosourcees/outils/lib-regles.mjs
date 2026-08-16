@@ -57,6 +57,15 @@ function sha256AuCommit(sha, chemin) {
   return sha256(execFileSync("git", ["show", `${sha}:${chemin}`], { maxBuffer: 256 * 1024 * 1024 }));
 }
 
+/**
+ * LE COMMIT QUI A PRODUIT CES ARTEFACTS — moteur compris.
+ *
+ * `MESURE_BASE_SHA` scelle le RÉFÉRENTIEL ; celui-ci scelle le CODE. Quand le moteur de l'arbre de
+ * travail en diffère, la reproduction se joue dans un worktree détaché à ce commit : les chiffres
+ * se rejouent dans leur monde, au lieu d'être recalculés dans un autre et de remplacer les anciens.
+ */
+export const MESURE_MOTEUR_SHA = "a9a6556a6d386584af4849bbb23d1b1a841714e8";
+
 /* ---- L'EMPREINTE DU MOTEUR QUI A PRODUIT CES CHIFFRES -----------------------------------------
  *
  * Le sceau ne portait que le RÉFÉRENTIEL. Il était donc muet sur le CODE qui le lit — et le
@@ -89,7 +98,7 @@ const empreinteMoteur = (sha) => sha256(SOURCES_MOTEUR.map((c) => {
 
 /** Le moteur de l'arbre de travail est-il celui qui a produit les artefacts scellés ? */
 export function etatDuMoteur() {
-  const attendu = empreinteMoteur(MESURE_BASE_SHA);
+  const attendu = empreinteMoteur(MESURE_MOTEUR_SHA);
   const courant = empreinteMoteur();
   return { attendu, courant, conforme: attendu === courant };
 }

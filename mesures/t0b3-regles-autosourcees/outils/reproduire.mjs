@@ -34,9 +34,10 @@
  *              Ce mode SEUL tolère un arbre sale au départ : les outils viennent d'être modifiés.
  */
 import { execFileSync, spawnSync } from "node:child_process";
-import { readFileSync, writeFileSync, unlinkSync, existsSync } from "node:fs";
+import { readFileSync, writeFileSync, unlinkSync, existsSync, symlinkSync } from "node:fs";
+import { tmpdir } from "node:os";
 import { createHash } from "node:crypto";
-import { MESURE_BASE_SHA, etatDuMoteur } from "./lib-regles.mjs";
+import { MESURE_BASE_SHA, MESURE_MOTEUR_SHA, etatDuMoteur } from "./lib-regles.mjs";
 
 const DOSSIER = "mesures/t0b3-regles-autosourcees";
 const ECRIRE = process.argv.includes("--ecrire");
@@ -113,6 +114,50 @@ if (!moteur.conforme) {
 }
 
 
+
+/* ---- REPRODUCTION DANS UN WORKTREE HISTORIQUE ---------------------------------------------------
+ *
+ * Quand le moteur a changé, rejouer les outils SUR PLACE donnerait d'autres chiffres : ce ne serait
+ * pas une reproduction, ce serait une nouvelle mesure écrasant l'ancienne. Et se contenter de
+ * comparer les empreintes des fichiers archivés ne serait qu'un contrôle d'intégrité — un fichier
+ * intact ne prouve pas qu'un calcul se rejoue.
+ *
+ * On rejoue donc les outils DANS LEUR MONDE : un worktree Git détaché au commit qui a produit ces
+ * artefacts, moteur d'alors compris, puis comparaison octet à octet avec ce qui est archivé ici.
+ * `node_modules` y est lié — les dépendances sont verrouillées par le lockfile, pas par le commit.
+ *
+ * Seuls les JSON sont comparés : les `.md` sont écrits à la main et ont légitimement évolué depuis.
+ */
+function reproduireAuMoteurHistorique() {
+  const base = `${tmpdir()}/mdcf-mesure-t0b3-${process.pid}`;
+  const racine = execFileSync("git", ["rev-parse", "--show-toplevel"], { encoding: "utf8" }).trim();
+  execFileSync("git", ["worktree", "add", "--detach", "--quiet", base, MESURE_MOTEUR_SHA]);
+  try {
+    symlinkSync(`${racine}/node_modules`, `${base}/node_modules`);
+    for (const o of OUTILS) {
+      const r = spawnSync(process.execPath, ["--import", "tsx", `${DOSSIER}/outils/${o}.mjs`, ...(o === "simuler-retrait" ? ["--ecrire-baseline"] : [])],
+        { encoding: "utf8", cwd: base });
+      if (r.status !== 0) {
+        echouer(`reproduction historique : l'outil « ${o} » sort en ${r.status} au commit `
+          + `${MESURE_MOTEUR_SHA.slice(0, 7)}\n${(r.stderr || "").slice(-1500)}`);
+      }
+    }
+    const ecarts = ARTEFACTS.filter((f) => f.endsWith(".json")).flatMap((f) => {
+      const rejoue = `${base}/${DOSSIER}/${f}`;
+      if (!existsSync(rejoue)) return [`${f} : non produit par la reproduction`];
+      const a = sha256(readFileSync(rejoue)), b = sha256(readFileSync(`${DOSSIER}/${f}`));
+      return a === b ? [] : [`${f} : rejoué ${a.slice(0, 12)} ≠ archivé ${b.slice(0, 12)}`];
+    });
+    if (ecarts.length) {
+      echouer(`la reproduction au moteur historique ${MESURE_MOTEUR_SHA.slice(0, 7)} ne redonne pas `
+        + `les artefacts archivés :\n  ${ecarts.join("\n  ")}`);
+    }
+    return ARTEFACTS.filter((f) => f.endsWith(".json")).length;
+  } finally {
+    try { execFileSync("git", ["worktree", "remove", "--force", base]); } catch { /* nettoyage au mieux */ }
+  }
+}
+
 /* ---- 2. régénérer -------------------------------------------------------------------------------- */
 /* `process.execPath` et non `npx` : `npx` résout dans l'environnement et peut TÉLÉCHARGER un paquet
    absent du lockfile — c'est-à-dire exécuter un autre code que celui qu'on a verrouillé, en
@@ -127,8 +172,9 @@ if (moteur.conforme) {
   }
   dire(`2/4 les ${ARTEFACTS.length - 1} artefacts JSON régénérés`);
 } else {
-  dire(`2/4 DOSSIER HISTORIQUE — le moteur a changé depuis la mesure, les artefacts ne sont PAS `
-    + `régénérés (mesure : ${moteur.attendu.slice(0, 12)} · actuel : ${moteur.courant.slice(0, 12)})`);
+  const n = reproduireAuMoteurHistorique();
+  dire(`2/4 les ${n} artefacts REJOUÉS dans un worktree au moteur d'origine `
+    + `(${MESURE_MOTEUR_SHA.slice(0, 7)}) — identiques aux archivés, octet à octet`);
 }
 
 /* ---- 3. SHA256SUMS ------------------------------------------------------------------------------- */
@@ -160,4 +206,5 @@ dire(sale ? "4/4 arbre modifié (attendu avec --ecrire)"
   : moteur.conforme ? "4/4 arbre entier propre : régénérer ne change rien"
   : "4/4 arbre entier propre : aucun artefact n'a été touché");
 dire(moteur.conforme ? "dossier T0-B3 reproductible."
-  : "dossier T0-B3 HISTORIQUE et intact — mesuré sur un moteur antérieur, non régénérable ici.");
+  : `dossier T0-B3 reproductible AU MOTEUR DE SA MESURE (${MESURE_MOTEUR_SHA.slice(0, 7)}) — `
+    + "le moteur actuel a changé, ces chiffres décrivent l'état d'alors.");

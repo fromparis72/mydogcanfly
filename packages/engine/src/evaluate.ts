@@ -203,13 +203,17 @@ function applyBreedRestrictions(args: {
 
   const parAction = (a: BreedRestriction["action"]) => restrictions.filter((r) => r.action === a).sort(byRestrictionId);
   const denies = parAction("deny"), requires = parAction("require"), allows = parAction("allow");
-  /* La preuve DESCEND avec la décision : quand une restriction tranche, c'est SA page qui justifie
-     le canal, pas la provenance générale préexistante — laquelle ne documente pas la race. */
+  /* LES PREUVES PASSENT PAR `evidence`, ET PAR RIEN D'AUTRE.
+     La première version du câblage remplaçait aussi `source` par celle de la première restriction :
+     le pluriel du contrat redevenait singulier à la sortie publique, et `explain` ne versait que
+     cette source unique aux preuves du rapport — deux exigences documentées sur deux pages, une
+     seule citée. `DecisionSource` reste donc EXACTEMENT ce qu'elle a toujours été : la provenance
+     générale du canal. Les faits de race vivent au pluriel dans `evidence`. */
   const preuves = (rs: BreedRestriction[], role: RestrictionEvidence["role"]): RestrictionEvidence[] =>
     rs.map((r) => ({ restriction_ref: r.id, role, source: r.source }));
   if (denies.length) {
     /* Dominance : un refus éteint les causes de confirmation du canal, comme un refus dur de règle. */
-    return { status: "denied", causes: [], evidence: preuves(denies, "refusal"), source: denies[0].source, denied_by_breed: true };
+    return { status: "denied", causes: [], evidence: preuves(denies, "refusal"), source: baseSource, denied_by_breed: true };
   }
   if (requires.length) {
     return {
@@ -217,11 +221,11 @@ function applyBreedRestrictions(args: {
       causes: [...baseCauses, ...requires.map((r): ConfirmationCause => ({
         code: "breed_requirement", policy_ref: policyRef, restriction_ref: r.id,
       }))],
-      evidence: preuves(requires, "requirement"), source: requires[0].source, denied_by_breed: false,
+      evidence: preuves(requires, "requirement"), source: baseSource, denied_by_breed: false,
     };
   }
   if (allows.length) {
-    return { status: baseStatus, causes: baseCauses, evidence: preuves(allows, "authorisation"), source: allows[0].source, denied_by_breed: false };
+    return { status: baseStatus, causes: baseCauses, evidence: preuves(allows, "authorisation"), source: baseSource, denied_by_breed: false };
   }
   if (dog.brachycephalic && (PERIMETRE_INCERTITUDE_RACE as readonly string[]).includes(placement)) {
     /* Notre incertitude, dite comme telle. AUCUNE preuve ne l'accompagne — une absence de fait n'en
@@ -428,7 +432,11 @@ export function evaluate(kb: NormalizedKB, req: FinderRequest, opts?: { weatherP
      portée) et le choix de la langue appartiennent à `explain`, qui seul connaît la langue du
      rapport. */
   const dogForBreed: DogForBreed = { breed_id: req.dog.breed_id, brachycephalic: brachy };
-  const advisories: AdvisorySignal[] = [];
+  /* Les avis sont indexés PAR COMPAGNIE, et réunis seulement après le filtre des itinéraires
+     invraisemblables. Collectés à plat, ils survivaient à la compagnie qui les avait levés : sur
+     CDG→BKK, six compagnies retirées des résultats laissaient six avis orphelins dans le rapport —
+     un conseil de sécurité attribué à une compagnie que le visiteur ne voit nulle part. */
+  const advisoriesParCompagnie = new Map<string, AdvisorySignal[]>();
 
   // Global rules (e.g. the universal cabin size/weight backstop) apply to every airline.
   const globalRules = kb.rules.filter((r) => r.scope.type === "global");
@@ -505,8 +513,10 @@ export function evaluate(kb: NormalizedKB, req: FinderRequest, opts?: { weatherP
       for (const r of restrictions) {
         if (r.action !== "warn") continue;
         if (!r.detail) continue; // le contrat l'impose déjà sur `warn` ; ceci ne fait que le typer
-        advisories.push({ restriction_ref: r.id, scope: r.airline_id ?? "global",
+        const pour = advisoriesParCompagnie.get(a.id) ?? [];
+        pour.push({ restriction_ref: r.id, scope: r.airline_id ?? "global",
           placements: [p], detail: r.detail, source: r.source });
+        advisoriesParCompagnie.set(a.id, pour);
       }
       const race = applyBreedRestrictions({
         restrictions, policyRef: `${a.id}#${p}`, placement: p, dog: dogForBreed,
@@ -690,7 +700,11 @@ export function evaluate(kb: NormalizedKB, req: FinderRequest, opts?: { weatherP
       itinerary_confidence: direct
         ? (direct_documented ? "direct_documented" : "direct_assumed")
         : (connection_documented ? "connection_documented" : "connection_unverified"),
-      deny_reasons: denyReasonsOf(perPlacement.map((x) => ({ placement: x.decision.placement, fires: x.fires }))),
+      /* `breedDeny` VOYAGE JUSQU'ICI. La v1 du câblage l'avait ajouté à `denyReasonsOf` et oublié au
+         point d'appel : une soute fermée par un fait de race audité sortait avec `deny_reasons`
+         absent — un refus sans motif, exactement le défaut que ce champ existe pour empêcher. */
+      deny_reasons: denyReasonsOf(perPlacement.map((x) => ({
+        placement: x.decision.placement, fires: x.fires, breedDeny: x.breedDeny }))),
       connect_airport_id,
       detour_km,
       fee,
@@ -706,6 +720,10 @@ export function evaluate(kb: NormalizedKB, req: FinderRequest, opts?: { weatherP
   const airlineDecisions: AirlineDecision[] = airlineDecisionsRaw
     .filter((a) => a._plausible)
     .map(({ _plausible, ...rest }) => rest);
+  /* Un avis n'existe que porté par une compagnie RETENUE — y compris un avis global, qui n'a pas
+     à paraître sur un trajet où plus aucune compagnie ne le lève. */
+  const advisories: AdvisorySignal[] = airlineDecisions
+    .flatMap((a) => advisoriesParCompagnie.get(a.airline_id) ?? []);
 
   const entry_allowed = !countryRequirements.some((f) => f.action === "deny");
 

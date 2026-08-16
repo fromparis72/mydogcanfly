@@ -14,10 +14,9 @@ const CRIT_ORDER: Record<string, number> = { critical: 0, high: 1, medium: 2, lo
  * Le tri est TOTAL et STABLE : par clé pour les avis, alphabétique pour leurs canaux. Un rapport
  * ne doit pas changer d'ordre entre deux exécutions identiques.
  *
- * `criticality` : `BreedRestriction` ne porte AUCUNE gravité — la valeur `medium` ci-dessous est
- * donc un milieu neutre, pas un fait mesuré. C'est le seul champ de ce contrat qu'aucune source ne
- * fonde ; le signaler ici vaut mieux que de laisser croire à une échelle documentée. Point ouvert :
- * soit `BreedRestriction` la porte (et l'auteur la justifie), soit `SafetyAdvisory` s'en passe.
+ * Un avis ne porte PAS de gravité : aucune `BreedRestriction` n'en déclare, et la page IATA n'offre
+ * aucune échelle. La v1 publiait `"medium"` pour tout — une valeur constante présentée comme un
+ * fait de la source. Elle est retirée.
  */
 function assemblerAvis(signaux: AdvisorySignal[], locale: string): SafetyAdvisory[] {
   const parCle = new Map<string, { s: AdvisorySignal; placements: Set<string> }>();
@@ -37,7 +36,6 @@ function assemblerAvis(signaux: AdvisorySignal[], locale: string): SafetyAdvisor
       /* La langue est choisie ICI, jamais par `evaluate` : `explain` est le seul à connaître celle
          du rapport. Repli sur l'anglais, garanti non vide par le contrat `LocalizedText`. */
       text: s.detail[locale] ?? s.detail.en,
-      criticality: "medium",
       source: s.source,
     }))
     .sort((a, b) => advisoryKey(a).localeCompare(advisoryKey(b)));
@@ -140,6 +138,9 @@ export function explain(decision: Decision, locale = "en"): DecisionReport {
   const conditions: ReportItem[] = [];
   const sources = new Map<string, { url: string }>();
   const confidences: number[] = [];
+  /** Les restrictions de race déjà comptées dans la confiance — UNE par fait, pour tout le
+   *  rapport, quelle que soit sa portée. Voir le commentaire au point de collecte. */
+  const preuvesDeRaceVues = new Set<string>();
   const L = (key: string) => t(locale, key);
 
   // Country entry requirements → "before departure" conditions.
@@ -315,6 +316,30 @@ export function explain(decision: Decision, locale = "en"): DecisionReport {
      * Le REMPLACEMENT des sources racines est un autre lot : ici on cesse seulement de les
      * présenter comme des preuves, sans toucher à une seule donnée. */
     for (const d of placement_decisions) if (d.source) sources.set(d.source.url, { url: d.source.url });
+    /* ---- LES PREUVES DE RACE SONT DES PREUVES DU RAPPORT --------------------------------------
+     *
+     * Elles n'y arrivaient pas : seule `d.source` était versée, et le contrat public affirme que
+     * la confiance affichée dérive des sources citées. Deux exigences documentées sur deux pages
+     * n'en faisaient donc citer qu'une, et faire varier la confiance d'une preuve de 1 à 5 ne
+     * bougeait ni le ★ ni le score.
+     *
+     * DÉDUPLICATION PAR RESTRICTION, pour tout le rapport. Une entrée du registre est UN fait :
+     * une restriction globale s'applique aux 102 compagnies et à trois canaux, et compter sa
+     * confiance 306 fois écraserait toutes les autres sources — le ★ mesurerait alors la PORTÉE
+     * d'une restriction, pas la qualité des sources. Les règles `fired`, elles, restent comptées
+     * par compagnie : elles appartiennent à la compagnie, une restriction non.
+     *
+     * Les AVIS (`warn`) n'entrent ni ici ni dans la confiance : ils ne fondent aucune décision.
+     * C'est l'invariant du contrat — un avis informe, il ne prouve rien. */
+    for (const d of placement_decisions) {
+      for (const e of d.evidence ?? []) {
+        sources.set(e.source.url, { url: e.source.url });
+        if (!preuvesDeRaceVues.has(e.restriction_ref)) {
+          preuvesDeRaceVues.add(e.restriction_ref);
+          confidences.push(e.source.confidence);
+        }
+      }
+    }
     return { airline_id: a.airline_id, name: a.airline_name, direct: a.direct, itinerary_confidence: a.itinerary_confidence, deny_reasons: (cabin || hold || cargo || to_confirm.length > 0) ? undefined : reasons, connect_airport_id: a.connect_airport_id, detour_km: a.detour_km, cabin, hold, cargo, cabin_status, hold_status, cargo_status, to_confirm: to_confirm.length ? to_confirm : undefined, placement_decisions, offers_pet_transport: a.offers_pet_transport, carries_pets: a.carries_pets, label, fee: fee_quote_only ? L("air.fee_cargo_quote") : feeShown, fee_quote_only, heat_embargo, heat_confirmation_required, carrier_of_origin, carrier_of_destination, origin_airport_id: a.origin_airport_id, destination_airport_id: a.destination_airport_id };
   });
   /* Le placement demandé, AVANT le tri (contre-revue v4 : le classement l'ignorait — quatre

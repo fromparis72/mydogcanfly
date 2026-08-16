@@ -14,7 +14,11 @@ export interface RawKB {
   partners?: unknown[];
   equipment?: unknown[];
   rules?: unknown[];
-  breed_restrictions?: unknown[];
+  /** OBLIGATOIRE — et non `?`. « Registre vide » et « registre oublié » sont deux états
+   *  différents : le premier dit « aucun fait de race audité », le second dit qu'un appelant a
+   *  construit une KB sans le registre, et les confondre republierait en silence des décisions de
+   *  race sans leur référentiel. Le type l'impose, `normalize` le refuse à l'exécution. */
+  breed_restrictions: unknown[];
 }
 
 /** Engine-ready shape (ADR-0012). The Decision Engine only ever reads this. */
@@ -57,7 +61,12 @@ export function normalize(raw: RawKB): NormalizedKB {
      sur le même canal est une contradiction, `deny` + `require` une exigence inatteignable. On les
      REFUSE au chargement plutôt que de les arbitrer à l'exécution : une priorité inventée règle en
      silence ce que le contrat déclare irrésolu. */
-  const breedRestrictions = (raw.breed_restrictions ?? []).map((x) => BreedRestriction.parse(x));
+  if (!Array.isArray(raw.breed_restrictions)) {
+    throw new Error("normalize: `breed_restrictions` ABSENT — un registre vide s'écrit `[]`. "
+      + "Confondre « aucun fait de race audité » et « registre oublié » republierait des décisions "
+      + "de race sans leur référentiel.");
+  }
+  const breedRestrictions = raw.breed_restrictions.map((x) => BreedRestriction.parse(x));
   const anomalies = validateBreedRestrictions(breedRestrictions, {
     airlineIds: new Set(airlines.map((a) => a.id)),
     breedIds: new Set(breeds.map((b) => b.id)),
