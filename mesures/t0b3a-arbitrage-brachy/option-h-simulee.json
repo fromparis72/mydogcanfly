@@ -1,0 +1,102 @@
+{
+ "lot": "T0-B3-a — simulation de l'option H",
+ "nature": "SIMULATION — aucun code moteur écrit, aucun fichier de packages/ modifié",
+ "sceau": {
+  "measurement_base_sha": "e2cf302ccf045c539ca450f23964bb7bf20af84c",
+  "raw_rules_sha256": "a80118fac2cf4344f89521c1703c834c36d8d4d42b2dfb80dd858a4d95cec422",
+  "raw_objects_sha256": "dca1706134b188fa569f7172fa2ccfcff8c81b131e554326cb5d1c47b65ffef0"
+ },
+ "referentiel_intact": true,
+ "definition_de_H": {
+  "deny_global_iata": "retiré — l'information IATA reste un avertissement de sécurité",
+  "confirmation_propre_a_la_race": "cause structurée « breed_policy_unreviewed »",
+  "table_de_decision": [
+   "canal structurellement fermé → denied (H n'ouvre rien)",
+   "preuve auditée disant brachy_allowed = false → denied (interdiction prouvée)",
+   "preuve auditée disant brachy_allowed = true → statut inchangé (autorisation prouvée)",
+   "tout le reste → confirmation_required, cause « politique brachycéphale non auditée »"
+  ],
+  "chien_non_brachycephale": "aucune modification, par construction — vérifié par la garantie 1",
+  "les_41_regles": "conservées, chargées, ne refusent plus ; à résorber une par une par audit officiel"
+ },
+ "methode": "H ne change que la couche décision. On appelle donc `evaluate` sur une base où les 42 ne refusent plus mais restent chargées (leur confiance pèse toujours sur le score), on applique la table de décision de H aux placements d'un chien brachycéphale, puis on passe la décision au VRAI `explain`. Verdict, score, cartes et libellés sont calculés par le moteur réel.",
+ "garanties": {
+  "g1_aucun_chien_non_brachycephale_touche": {
+   "compagnies": 0,
+   "placements": 0,
+   "exemples": [],
+   "scenarios_publics": 0
+  },
+  "g2_aucun_canal_non_propose_rouvert": {
+   "violations": 0,
+   "exemples": []
+  },
+  "g3_aucune_confirmation_devenue_message_climatique": {
+   "violations": 0,
+   "exemples": []
+  },
+  "g4_aucune_auto_citation_presentee_comme_preuve": {
+   "violations": 0,
+   "exemples": []
+  },
+  "g5_toutes_les_confirmations_de_race_portent_la_cause_dediee": {
+   "conformes": 147,
+   "violations": 0,
+   "exemples": []
+  }
+ },
+ "diff_contre_le_statu_quo": {
+  "grille_publique": {
+   "scenarios": 72,
+   "verdicts": 20,
+   "cartes": 524,
+   "placements": 940,
+   "score_seul": 0,
+   "ecart_score": [
+    -1,
+    0
+   ],
+   "echecs": 0,
+   "par_chien": {
+    "golden": 0,
+    "pug": 36
+   }
+  },
+  "grille_brachycephale": {
+   "compagnies": 81,
+   "placements": 147,
+   "par_statut_cible": {
+    "confirmation_required": 147
+   },
+   "transitions": {
+    "hold denied → confirmation_required": 70,
+    "cargo denied → confirmation_required": 77
+   },
+   "exemples": [
+    "airline_aegean allowed/denied/denied → allowed/confirmation_required/confirmation_required",
+    "airline_aer_lingus denied/denied/denied → denied/denied/confirmation_required",
+    "airline_aerolineas_argentinas allowed/denied/denied → allowed/confirmation_required/confirmation_required",
+    "airline_aeromexico allowed/denied/denied → allowed/confirmation_required/confirmation_required"
+   ]
+  }
+ },
+ "sonde_de_contrat": {
+  "cause_acceptee_par_le_contrat": false,
+  "erreur": "[",
+  "lecture": "attendu : `ConfirmationCause` est une union STRICTE et ne connaît pas cette cause. Toute implémentation de H doit d'abord l'y ajouter, avec son libellé dans les quatre langues. La simulation contourne ce point de contrôle en construisant l'objet à la main ; elle ne prouve donc RIEN sur le contrat, et c'est cette sonde qui le dit."
+ },
+ "sonde_de_degradation": {
+  "cas": "chien brachycéphale ET de type réglementé — dogue canarien vers l'Australie",
+  "entree_refusee_par_le_pays": true,
+  "chemin_de_degradation_emprunte": true,
+  "rapport_produit": true,
+  "refuse_par_la_validation": false,
+  "lecture": "le rapport passe — mais NON parce que la cause serait valide : `explain` ÉTEINT les causes quand il dégrade une confirmation en refus, si bien que la validation ne la voit jamais. Le besoin de contrat est établi par `sonde_de_contrat`, pas par ce chemin."
+ },
+ "contrat_a_faire_evoluer": {
+  "cause_manquante": "breed_policy_unreviewed",
+  "placements_reecrits_par_la_simulation": 2147,
+  "rapports_refuses_par_la_validation": 0,
+  "lecture": "Le compteur porte sur les grilles ci-dessus ; la sonde de dégradation traite à part le seul chemin où le contrat est réellement mis à l'épreuve. La cause n'existe pas encore dans `ConfirmationCause`. Là où le moteur RECONSTRUIT une décision — dégradation par `entry_allowed` — sa validation la refuse. Le compteur ci-dessus chiffre exactement le travail de contrat que H demandera : ajouter la cause à l'union stricte, son libellé dans les quatre langues, et sa prise en compte partout où les causes sont rendues."
+ }
+}

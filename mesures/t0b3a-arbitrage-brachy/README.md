@@ -70,10 +70,14 @@ retrait pur » sans l'avoir mesuré scénario par scénario.
 
 Citations **exactes**, en anglais, non paraphrasées :
 
-> « **in hot season is not recommended** » — sur le transport des chiens brachycéphales
+> « **Transport of snub nose dogs, such as boxers, pugs, bulldogs and Pekinese, in hot season is not
+> recommended.** »
 >
-> « **Snub-nosed breeds require 10% larger container** » — prescription **distincte**, portant sur la
+> « **Snub-nosed breeds require 10% larger container.** » — prescription **distincte**, portant sur la
 > taille de la caisse et non sur l'acceptation
+
+La première est citée en entier : le sujet de la recommandation doit être dans la citation, pas dans
+une glose autour d'elle.
 
 **Vérification** : effectuée par la contre-revue le 16/08/2026 — 404 de l'ancienne URL,
 accessibilité de la page actuelle, et les deux formulations ci-dessus. **Pas par moi** : l'accès
