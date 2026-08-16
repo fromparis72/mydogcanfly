@@ -11,7 +11,7 @@
  "modele": {
   "contrat_consomme": "BreedRestriction (packages/knowledge/src/breed-restrictions.ts)",
   "pourquoi": "le contrat canonique existe déjà : action allow|deny|warn|require, cible de race, placements, conditions, et une SourcedQuote obligatoire — citation, langue, type factuel, refus des domaines MyDogCanFly. La v2 proposait un état concurrent dans PlacementPolicy et s'appuyait sur `preuveAuditee`, qui ne vérifie NI citation NI langue : ce n'était pas une preuve brachycéphale au sens du contrat.",
-  "entrees_dans_le_referentiel": 0,
+  "entrees_dans_le_referentiel": 1,
   "consequence": "le référentiel n'en contient aucune : sous H, les 102 compagnies tombent toutes sur « aucun fait audité applicable ». C'est un état de notre documentation, pas un choix de simulation.",
   "table": [
    "1 · canal structurellement fermé → denied",
@@ -115,6 +115,66 @@
    "detail": ""
   },
   {
+   "exigence": "l'avertissement IATA `warn` ne change NI verdict NI score NI statut",
+   "tenue": true,
+   "detail": ""
+  },
+  {
+   "exigence": "l'avertissement IATA est réellement émis dans le parcours public",
+   "tenue": true,
+   "detail": ""
+  },
+  {
+   "exigence": "aucune URL d'avis n'apparaît comme source probante",
+   "tenue": true,
+   "detail": ""
+  },
+  {
+   "exigence": "72 scénarios publics",
+   "tenue": true,
+   "detail": ""
+  },
+  {
+   "exigence": "20 verdicts modifiés",
+   "tenue": true,
+   "detail": ""
+  },
+  {
+   "exigence": "524 cartes modifiées",
+   "tenue": true,
+   "detail": ""
+  },
+  {
+   "exigence": "940 placements modifiés",
+   "tenue": true,
+   "detail": ""
+  },
+  {
+   "exigence": "écart de score exactement [0, 2]",
+   "tenue": true,
+   "detail": ""
+  },
+  {
+   "exigence": "81 compagnies brachycéphales touchées",
+   "tenue": true,
+   "detail": ""
+  },
+  {
+   "exigence": "147 placements brachycéphales déplacés",
+   "tenue": true,
+   "detail": ""
+  },
+  {
+   "exigence": "147 cibles confirmation_required, et aucune autre",
+   "tenue": true,
+   "detail": ""
+  },
+  {
+   "exigence": "56 causes climatiques observées",
+   "tenue": true,
+   "detail": ""
+  },
+  {
    "exigence": "le référentiel est intact après simulation",
    "tenue": true,
    "detail": ""
@@ -132,10 +192,10 @@
  },
  "branches_toutes_appels_confondus": {
   "0": 0,
-  "1": 1420,
+  "1": 2660,
   "2": 1,
   "3": 0,
-  "4": 2110,
+  "4": 3990,
   "5": 0,
   "9": 0
  },
@@ -144,6 +204,10 @@
    "nom": "branche 1 · canal structurellement fermé",
    "statut": "denied",
    "branche": 1,
+   "cause": null,
+   "restriction_ref": null,
+   "source_url": null,
+   "citation": null,
    "attendu": {
     "statut": "denied",
     "branche": 1
@@ -155,9 +219,17 @@
    "nom": "branche 2 · deny audité",
    "statut": "denied",
    "branche": 2,
+   "cause": null,
+   "restriction_ref": "brest_fx_deny",
+   "source_url": "https://fx.example/pets",
+   "citation": "Snub-nosed breeds are not accepted in the hold.",
    "attendu": {
     "statut": "denied",
-    "branche": 2
+    "branche": 2,
+    "cause": null,
+    "restriction_ref": "brest_fx_deny",
+    "source_url": "https://fx.example/pets",
+    "citation": "Snub-nosed breeds are not accepted in the hold."
    },
    "conseils": 0,
    "conforme": true
@@ -166,9 +238,17 @@
    "nom": "branche 3 · allow audité",
    "statut": "allowed",
    "branche": 3,
+   "cause": null,
+   "restriction_ref": "brest_fx_allow",
+   "source_url": "https://fx.example/pets",
+   "citation": "Snub-nosed breeds are accepted in the hold.",
    "attendu": {
     "statut": "allowed",
-    "branche": 3
+    "branche": 3,
+    "cause": null,
+    "restriction_ref": "brest_fx_allow",
+    "source_url": "https://fx.example/pets",
+    "citation": "Snub-nosed breeds are accepted in the hold."
    },
    "conseils": 0,
    "conforme": true
@@ -177,9 +257,17 @@
    "nom": "branche 4 · aucun fait audité applicable",
    "statut": "confirmation_required",
    "branche": 4,
+   "cause": "breed_policy_unreviewed",
+   "restriction_ref": null,
+   "source_url": null,
+   "citation": null,
    "attendu": {
     "statut": "confirmation_required",
-    "branche": 4
+    "branche": 4,
+    "cause": "breed_policy_unreviewed",
+    "restriction_ref": null,
+    "source_url": null,
+    "citation": null
    },
    "conseils": 0,
    "conforme": true
@@ -188,9 +276,17 @@
    "nom": "branche 5 · require audité → confirmation",
    "statut": "confirmation_required",
    "branche": 5,
+   "cause": "breed_requirement",
+   "restriction_ref": "brest_fx_require",
+   "source_url": "https://fx.example/pets",
+   "citation": "A veterinary fitness certificate is required for snub-nosed breeds.",
    "attendu": {
     "statut": "confirmation_required",
-    "branche": 5
+    "branche": 5,
+    "cause": "breed_requirement",
+    "restriction_ref": "brest_fx_require",
+    "source_url": "https://fx.example/pets",
+    "citation": "A veterinary fitness certificate is required for snub-nosed breeds."
    },
    "conseils": 0,
    "conforme": true
@@ -199,6 +295,10 @@
    "nom": "warn IATA · aucun effet sur le statut",
    "statut": "confirmation_required",
    "branche": 4,
+   "cause": "breed_policy_unreviewed",
+   "restriction_ref": null,
+   "source_url": null,
+   "citation": null,
    "attendu": {
     "statut": "confirmation_required",
     "branche": 4
@@ -210,6 +310,10 @@
    "nom": "deny audité ciblant une AUTRE race · ne touche pas le carlin",
    "statut": "confirmation_required",
    "branche": 4,
+   "cause": "breed_policy_unreviewed",
+   "restriction_ref": null,
+   "source_url": null,
+   "citation": null,
    "attendu": {
     "statut": "confirmation_required",
     "branche": 4
@@ -221,6 +325,10 @@
    "nom": "chien NON brachycéphale · la table ne s'applique pas",
    "statut": "allowed",
    "branche": 9,
+   "cause": null,
+   "restriction_ref": null,
+   "source_url": null,
+   "citation": null,
    "attendu": {
     "statut": "allowed",
     "branche": 9
@@ -234,7 +342,7 @@
   "causes_restantes": 0,
   "conforme": true
  },
- "conseils_iata_emis": 0,
+ "conseils_iata_emis": 3050,
  "causes_finales_par_code": {
   "policy_unpublished": 16,
   "legacy_unreviewed": 896,

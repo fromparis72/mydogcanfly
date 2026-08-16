@@ -1,10 +1,73 @@
-# Option H — conception et simulation · v3
+# Option H — conception et simulation · v4
 
 **Aucune ligne de moteur n'a été écrite.** Aucun fichier de `packages/` n'est modifié.
 
 ```
 node --import tsx mesures/t0b3a-arbitrage-brachy/outils/simuler-h.mjs
 ```
+
+## Les corrections de la v4
+
+### P0 · Le validateur d'ensemble était contourné
+
+`chargerRestrictions()` n'appelait que `BreedRestriction.safeParse()`, entrée par entrée, et
+« résolvait » ensuite les conflits par une priorité que j'avais inventée : `deny > require > allow`.
+C'était contourner la moitié du contrat. `validateBreedRestrictions()` refuse `allow` + `deny`
+(**CONTRADICTION**), rend `deny` + `require` **UNREACHABLE**, signale les conditions non disjointes
+et les identifiants inconnus — **y compris entre une règle globale et une règle compagnie**.
+
+**Une contradiction ne se résout pas : elle se refuse.** La priorité est supprimée. Le chargement
+appelle désormais schéma **puis** validation d'ensemble, avec les `KnownIds` du référentiel, et
+lève à la moindre anomalie.
+
+Cinquième contre-épreuve permanente : `--contre-epreuve=validateur` injecte `allow` + `deny` sur la
+même compagnie, la même race et le même canal. Le chargement devient **impossible** — `CONTRADICTION`,
+avant toute décision.
+
+Effet de bord immédiat et sain : mes fixtures visaient `airline_fx`, qui n'existe pas. Le validateur
+les a refusées (`UNKNOWN_AIRLINE`). Elles visent maintenant une compagnie réelle.
+
+### P0 · `require` produisait une cause fausse et perdait sa preuve
+
+Les branches 4 et 5 émettaient toutes deux `breed_policy_unreviewed`. C'est faux pour la branche 5 :
+une exigence officielle auditée n'est **pas** une politique non revérifiée. L'une dit « nous ne
+savons pas », l'autre « la compagnie exige ceci ».
+
+| branche | cause | référence | source |
+|---|---|---|---|
+| 4 · aucun fait audité | `breed_policy_unreviewed` | `policy_ref` seul | **aucune** — une absence de fait n'a pas de preuve |
+| 5 · `require` audité | **`breed_requirement`** | `policy_ref` + **`restriction_ref`** | celle de la restriction décisive |
+| 2 · `deny` audité | — (refus, causes éteintes) | — | celle de la restriction décisive |
+| 3 · `allow` audité | — | — | celle de la restriction décisive |
+
+La v3 conservait `d.source`, la provenance générale du canal, même sur une branche tranchée par une
+restriction : la carte aurait montré la mauvaise page. La preuve descend maintenant **avec** la
+décision.
+
+Les fixtures contrôlent désormais **statut, branche, cause, `restriction_ref`, URL et citation
+exactes**, et l'absence de source sur `breed_policy_unreviewed`.
+
+### P1 · L'avertissement IATA est maintenant dans le parcours réel
+
+`RESTRICTIONS_REELLES` valait `[]` : l'avis n'existait qu'en fixture, et le parcours public en
+émettait **zéro**. La cible de H contient désormais l'entrée `brest_iata_snub_nose_hot_season` —
+`warn`, `hold`+`cargo`, URL vivante, phrase officielle complète, `detail` localisé dans les quatre
+langues.
+
+Le chemin est simulé de bout en bout : `BreedRestriction warn` → avis structuré → rattaché au
+rapport public (`avis_securite`), **jamais** dans les sources probantes. **3 050 avis émis** sur les
+grilles.
+
+Et l'absence d'effet n'est plus affirmée mais **mesurée** : la grille publique est rejouée sans
+l'avis, et l'égalité stricte des verdicts, scores et statuts est exigée — **0 écart**.
+
+La recommandation reste formulée « en saison chaude », sans calendrier ni température inventés.
+
+### P1 · Les chiffres approuvés sont verrouillés littéralement
+
+72 scénarios · 20 verdicts · 524 cartes · 940 placements · score exactement `[0, 2]` ·
+81 compagnies · 147 placements · 147 cibles `confirmation_required` et aucune autre ·
+56 causes climatiques. **31 exigences** au total, toutes bloquantes.
 
 ## Les quatre P0 de la v2, et ce qui les corrige
 
@@ -14,7 +77,7 @@ Il ne sortait en erreur que si le référentiel avait bougé. Des causes perdues
 une auto-citation détectée auraient été **écrites dans le JSON**, puis le processus serait sorti en
 0. Un contrôle dont l'échec ne coûte rien n'est pas un contrôle.
 
-**v3** : les **19 exigences** passent par `exiger()`. Une seule violation ⇒ **code 1**. Et quatre
+**v3, étendue en v4** : les **31 exigences** passent par `exiger()`. Une seule violation ⇒ **code 1**. Et quatre
 contre-épreuves cassent volontairement un invariant, vérifiées à chaque reproduction :
 
 | contre-épreuve | exigence mise en défaut | code |
@@ -23,6 +86,7 @@ contre-épreuves cassent volontairement un invariant, vérifiées à chaque repr
 | `--contre-epreuve=table` | fixtures de la table H | **1** |
 | `--contre-epreuve=ids42` | les 42 identités sont exactement 42 | **1** |
 | `--contre-epreuve=bascules` | les bascules vont exclusivement vers « à confirmer » | **1** |
+| `--contre-epreuve=validateur` | `allow` + `deny` — le chargement devient impossible | **1** |
 
 `npm run mesure:t0b3a` les exécute **avant** de régénérer : si l'une passait au vert, tout le reste
 du dossier perdrait sa valeur.
@@ -127,10 +191,11 @@ Elle gardait les 41 règles en `warn` : invisibles comme sources, mais leur `con
 encore le score via `fired`. C'est exactement ce que T0-B3 a nommé — une auto-citation devenue preuve
 invisible.
 
-**v2** : les 42 sortent **du calcul**. L'avertissement IATA est conservé **à part** :
+**v2** : les 42 sortent **du calcul**. L'avertissement IATA est conservé **à part**.
 
-> La v2 portait alors l'état brachycéphale dans `PlacementPolicy`. **La v3 l'a abandonné** : c'était
-> un second modèle à côté de `BreedRestriction`, qui existait déjà. Voir P0-B.
+> La v2 portait alors l'état brachycéphale dans `PlacementPolicy`, et raisonnait sur
+> `brachy_allowed = false/true`. **Abandonné dès la v3** : c'était un second modèle à côté de
+> `BreedRestriction`, qui existait déjà. La cible est exclusivement `BreedRestriction`. Voir P0-B.
 
 | | |
 |---|---|
@@ -232,8 +297,9 @@ sonde dédiée, on aurait lu « 0 rapport refusé » comme « rien à faire au c
 2. son libellé dans les **quatre langues**, distinct de `legacy_unreviewed` : celui-ci dit que notre
    donnée de **canal** n'est pas revérifiée, H dit que notre politique **brachycéphale** ne l'est
    pas ;
-3. porter l'état brachycéphale dans `PlacementPolicy` — la simulation le **dérive** des mêmes
-   données pour ne pas préjuger d'une écriture du référentiel ;
+3. ajouter `breed_requirement` à la même union, avec `restriction_ref` — une exigence auditée n'est
+   pas une politique non revérifiée, et les confondre reproduirait la perte d'interprétation que
+   T0-B a réparée ;
 4. la classe de règle qui produit cette confirmation dans `evaluate` — aujourd'hui, seule l'action
    `deny` déplace un statut.
 
