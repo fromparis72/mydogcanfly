@@ -685,7 +685,7 @@ const sondeContrat = (() => {
   };
   const EXIG = (ref) => ({ code: CAUSE_EXIGENCE, policy_ref: "airline_aegean#hold", restriction_ref: ref });
   /* Une preuve complète : le contrat exige la citation, sa langue et un type de source factuel. */
-  const PREUVE = (ref, url) => ({ restriction_ref: ref, source: { ...IATA_WARN.source, url } });
+  const PREUVE = (ref, url, role = "requirement") => ({ restriction_ref: ref, role, source: { ...IATA_WARN.source, url } });
   const nonRevue = essai([{ code: CAUSE_NON_REVUE, policy_ref: "airline_aegean#hold" }]);
   const deuxExigences = essai([EXIG("brest_a"), EXIG("brest_b")],
     [PREUVE("brest_a", "https://aegean.example/a"), PREUVE("brest_b", "https://aegean.example/b")]);

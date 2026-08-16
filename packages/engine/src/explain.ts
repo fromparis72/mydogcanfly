@@ -1,8 +1,47 @@
 import { t, isEstimatedTemperature } from "@mydogcanfly/knowledge";
-import type { Decision, DecisionReport, ReportItem, AirlineResult, PlacementStatus } from "./contracts";
-import { hasActiveClimateCause, makePlacementDecision } from "./contracts";
+import type { Decision, DecisionReport, ReportItem, AirlineResult, PlacementStatus, AdvisorySignal, SafetyAdvisory } from "./contracts";
+import { hasActiveClimateCause, makePlacementDecision, advisoryKey, SafetyAdvisory as SafetyAdvisorySchema } from "./contracts";
 
 const CRIT_ORDER: Record<string, number> = { critical: 0, high: 1, medium: 2, low: 3 };
+
+/**
+ * LES AVIS DE SÉCURITÉ DU RAPPORT — dédupliqués, localisés, triés.
+ *
+ * `evaluate` lève un signal par (restriction, canal) ; un avis GLOBAL levé sur 102 compagnies et
+ * 3 canaux ferait 306 signaux pour UNE phrase à lire. La déduplication porte donc sur
+ * (restriction, portée) — `advisoryKey` — et les canaux des signaux fusionnés sont réunis.
+ *
+ * Le tri est TOTAL et STABLE : par clé pour les avis, alphabétique pour leurs canaux. Un rapport
+ * ne doit pas changer d'ordre entre deux exécutions identiques.
+ *
+ * `criticality` : `BreedRestriction` ne porte AUCUNE gravité — la valeur `medium` ci-dessous est
+ * donc un milieu neutre, pas un fait mesuré. C'est le seul champ de ce contrat qu'aucune source ne
+ * fonde ; le signaler ici vaut mieux que de laisser croire à une échelle documentée. Point ouvert :
+ * soit `BreedRestriction` la porte (et l'auteur la justifie), soit `SafetyAdvisory` s'en passe.
+ */
+function assemblerAvis(signaux: AdvisorySignal[], locale: string): SafetyAdvisory[] {
+  const parCle = new Map<string, { s: AdvisorySignal; placements: Set<string> }>();
+  for (const s of signaux) {
+    const cle = `${s.restriction_ref}|${s.scope}`;
+    const deja = parCle.get(cle);
+    if (deja) for (const p of s.placements) deja.placements.add(p);
+    else parCle.set(cle, { s, placements: new Set(s.placements) });
+  }
+  return [...parCle.values()]
+    .map(({ s, placements }) => SafetyAdvisorySchema.parse({
+      restriction_ref: s.restriction_ref,
+      scope: s.scope,
+      /* Ordre canonique des canaux, pas l'ordre de rencontre : `["cabin","hold","cargo"]` se lit
+         comme la fiche, et deux exécutions donnent la même liste. */
+      placements: (["cabin", "hold", "cargo"] as const).filter((p) => placements.has(p)),
+      /* La langue est choisie ICI, jamais par `evaluate` : `explain` est le seul à connaître celle
+         du rapport. Repli sur l'anglais, garanti non vide par le contrat `LocalizedText`. */
+      text: s.detail[locale] ?? s.detail.en,
+      criticality: "medium",
+      source: s.source,
+    }))
+    .sort((a, b) => advisoryKey(a).localeCompare(advisoryKey(b)));
+}
 /** Temperature above which seasonal heat embargoes suspend hold/cargo (matches the summer_embargo rules). */
 const HEAT_EMBARGO_THRESHOLD_C = 30;
 
@@ -456,11 +495,10 @@ export function explain(decision: Decision, locale = "en"): DecisionReport {
 
   return {
     verdict, score, airlines, domestic: decision.domestic,
-    /* VIDE, et le champ est tout de même OBLIGATOIRE. Les avis naîtront des `BreedRestriction`
-       `warn` quand `evaluate` les consommera ; d'ici là un tableau vide dit « aucun avis », ce
-       qu'aucun champ absent ne saurait dire. Le rendre facultatif aurait laissé l'interface
-       l'ignorer sans que rien n'échoue — le défaut refusé en contre-revue. */
-    safety_advisories: [],
+    /* OBLIGATOIRE, quitte à être vide : un tableau vide dit « aucun avis », ce qu'aucun champ
+       absent ne saurait dire. Le rendre facultatif aurait laissé l'interface l'ignorer sans que
+       rien n'échoue — le défaut refusé en contre-revue. */
+    safety_advisories: assemblerAvis(decision.breed_advisories, locale),
     destination_country: { iso2: decision.destination.country_id.replace(/^country_/, ""), name: decision.destination.country_name },
     climate,
     positives, compatible, conditions,

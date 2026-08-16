@@ -18,6 +18,43 @@ export const MESURE_BASE_SHA = "e2cf302ccf045c539ca450f23964bb7bf20af84c";
 const RAW = ["packages/knowledge/raw/rules.json", "packages/knowledge/raw/objects.json"];
 const sha256 = (b) => createHash("sha256").update(b).digest("hex");
 
+/* ---- L'EMPREINTE DU MOTEUR QUI A PRODUIT CES CHIFFRES -----------------------------------------
+ *
+ * Le sceau ne portait que le RÉFÉRENTIEL. Il était donc muet sur le CODE qui le lit — et le
+ * câblage de l'option H (17/08/2026) l'a démontré : à référentiel strictement identique, la sonde
+ * de retrait groupé est passée de « la soute se rouvre en `allowed` » à « la soute passe à
+ * “à confirmer” », et l'arbitrage voyait ses options B à G se confondre avec H. `SHA256SUMS` l'a
+ * bien signalé, mais rien n'en donnait la cause : on pouvait croire à une dérive du référentiel.
+ *
+ * Un dossier de mesure décrit un ÉTAT, moteur compris. Quand le moteur change, ces chiffres ne se
+ * régénèrent plus : ils deviennent historiques. Les recalculer les remplacerait en silence — et
+ * ici, cela aurait remplacé les options d'un arbitrage déjà tranché par une tautologie, chaque
+ * option contenant désormais H.
+ */
+const SOURCES_MOTEUR = [
+  "packages/engine/src/contracts.ts",
+  "packages/engine/src/evaluate.ts",
+  "packages/engine/src/explain.ts",
+  "packages/knowledge/src/normalize.ts",
+  "packages/knowledge/src/breed-restrictions.ts",
+  "packages/knowledge/raw/breed-restrictions.json",
+];
+/** `sha` absent = l'arbre de travail ; sinon le contenu AU COMMIT. Un fichier qui n'existait pas
+ *  à la base de mesure vaut « absent » — c'est un état, pas une erreur. */
+const empreinteMoteur = (sha) => sha256(SOURCES_MOTEUR.map((c) => {
+  let h;
+  try { h = sha ? sha256(execFileSync("git", ["show", `${sha}:${c}`], { maxBuffer: 256 * 1024 * 1024, stdio: ["ignore", "pipe", "ignore"] })) : sha256(readFileSync(c)); }
+  catch { h = "absent"; }
+  return `${c}:${h}`;
+}).join("\n"));
+
+/** Le moteur de l'arbre de travail est-il celui qui a produit les artefacts scellés ? */
+export function etatDuMoteur() {
+  const attendu = empreinteMoteur(MESURE_BASE_SHA);
+  const courant = empreinteMoteur();
+  return { attendu, courant, conforme: attendu === courant };
+}
+
 export function chargerReferentiel() {
   const lu = RAW.map((chemin) => {
     const brut = readFileSync(chemin);

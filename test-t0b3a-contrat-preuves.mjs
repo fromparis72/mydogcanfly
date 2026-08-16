@@ -2,7 +2,7 @@
 /**
  * Harnais T0-B3-a — le contrat de sortie de l'option H : causes de race et preuves.
  *
- *   npx tsx test-t0b3a-contrat-preuves.mjs
+ *   node --import tsx test-t0b3a-contrat-preuves.mjs
  *
  * POURQUOI CE FICHIER EXISTE. Les contrats de l'étape 1 (deux nouvelles causes, `RestrictionEvidence`
  * au pluriel, `SafetyAdvisory`, `safety_advisories` obligatoire) n'étaient éprouvés que par la
@@ -45,7 +45,9 @@ const QUOTE = {
 };
 const POLICY = "airline_turkish#hold";
 const REQ = (ref, policy_ref = POLICY) => ({ code: "breed_requirement", policy_ref, restriction_ref: ref });
-const EV = (ref, over = {}) => ({ restriction_ref: ref, source: { ...QUOTE, ...over } });
+/** Une preuve. Le RÔLE est explicite : seules les preuves d'exigence doivent s'accorder aux causes. */
+const EV = (ref, over = {}, role = "requirement") => ({ restriction_ref: ref, role, source: { ...QUOTE, ...over } });
+const EV_AUTORISATION = (ref, over = {}) => EV(ref, over, "authorisation");
 const UNREVIEWED = { code: "breed_policy_unreviewed", policy_ref: POLICY };
 
 console.log("=== 1. Les deux causes de race, leur clé, et `restriction_ref` obligatoire ===");
@@ -114,9 +116,34 @@ console.log("=== 2. L'accord causes ↔ preuves ===");
     d3.confirmation_causes.length === 1 && d3.evidence === undefined);
   check("`breed_policy_unreviewed` ACCOMPAGNÉE d'une preuve de race → refusée",
     throws(() => makePlacementDecision("hold", "confirmation_required", [UNREVIEWED], undefined, [EV("brest_vet_cert")])));
-  check("exigence + politique non revérifiée sur le même canal : les DEUX causes, UNE preuve → valide",
-    makePlacementDecision("hold", "confirmation_required", [REQ("brest_vet_cert"), UNREVIEWED],
-      undefined, [EV("brest_vet_cert")]).confirmation_causes.length === 2);
+  check("… quel que soit le RÔLE de cette preuve — une absence de fait n'en porte aucune",
+    throws(() => makePlacementDecision("hold", "confirmation_required", [UNREVIEWED], undefined,
+      [EV_AUTORISATION("brest_ct_ok")])));
+  /* RESSERRÉ à l'étape 2 : l'étape 1-bis acceptait « exigence auditée » ET « politique de race non
+     revérifiée » sur le MÊME canal. C'est contradictoire — la première dit « la compagnie exige
+     ceci », la seconde « nous ne savons pas ce que la compagnie fait de cette race » — et le moteur
+     ne peut pas le produire : les branches sont exclusives. Un état inconstructible qui reste
+     déclarable est une invitation à le construire un jour. */
+  check("exigence auditée + « politique de race non revérifiée » sur le même canal → REFUSÉES",
+    throws(() => makePlacementDecision("hold", "confirmation_required", [REQ("brest_vet_cert"), UNREVIEWED],
+      undefined, [EV("brest_vet_cert")])));
+
+  /* LE RÔLE — l'état découvert par le câblage de l'étape 2. */
+  const dAuth = makePlacementDecision("hold", "confirmation_required",
+    [{ code: "policy_unpublished", policy_ref: POLICY }], undefined, [EV_AUTORISATION("brest_ct_ok")]);
+  check("preuve d'AUTORISATION sur un canal « à confirmer » pour un autre motif → valide",
+    dAuth.evidence?.length === 1 && dAuth.evidence[0].role === "authorisation",
+    JSON.stringify(dAuth.evidence));
+  check("l'accord exact ne porte QUE sur les preuves d'exigence : autorisation + exigence cohabitent",
+    makePlacementDecision("hold", "confirmation_required", [REQ("brest_vet_cert")], undefined,
+      [EV("brest_vet_cert"), EV_AUTORISATION("brest_ct_ok")]).evidence?.length === 2);
+  check("une preuve d'EXIGENCE sans sa cause reste refusée, même accompagnée d'une autorisation",
+    throws(() => makePlacementDecision("hold", "confirmation_required", [REQ("brest_vet_cert")], undefined,
+      [EV("brest_vet_cert"), EV("brest_orphelin"), EV_AUTORISATION("brest_ct_ok")])));
+  check("le rôle est OBLIGATOIRE — une preuve sans rôle est refusée",
+    !RestrictionEvidence.safeParse({ restriction_ref: "brest_x", source: QUOTE }).success);
+  check("un rôle inventé est refusé",
+    !RestrictionEvidence.safeParse({ restriction_ref: "brest_x", role: "proof", source: QUOTE }).success);
 
   /* `allowed` / `denied` : pas de causes, donc des preuves facultatives — mais jamais vides ni doublées. */
   check("`denied` avec une preuve de race → valide (une interdiction documentée reste affichable)",
@@ -289,9 +316,10 @@ console.log("=== 6. `safety_advisories` — présent dans TOUS les rapports ==="
   check(`les ${total} rapports de la grille publique portent tous \`safety_advisories\``,
     total === 72 && absent === 0 && nonTableau === 0,
     `${total} rapports, ${absent} sans le champ, ${nonTableau} d'un autre type`);
-  /* Information, PAS une assertion : le champ est vide tant que le câblage n'a pas eu lieu, et
-     exiger « 0 » ici ferait rougir la CI exactement quand le moteur commencera à émettre des avis. */
-  console.log(`  info  avis émis aujourd'hui sur la grille : ${avis} (le câblage est l'étape suivante)`);
+  /* Information, PAS une assertion : le registre versionné est vide, donc la grille publique n'émet
+     aucun avis aujourd'hui. Exiger « 0 » ici ferait rougir la CI le jour où une entrée est ajoutée
+     au référentiel — le comportement du câblage est éprouvé par `test-t0b3a-moteur-race.mjs`. */
+  console.log(`  info  avis émis sur la grille avec le référentiel actuel : ${avis}`);
 }
 
 console.log(`\n${pass} OK, ${fail} FAIL`);

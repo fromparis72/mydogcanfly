@@ -36,7 +36,7 @@
 import { execFileSync, spawnSync } from "node:child_process";
 import { readFileSync, writeFileSync, unlinkSync, existsSync } from "node:fs";
 import { createHash } from "node:crypto";
-import { MESURE_BASE_SHA } from "./lib-arbitrage.mjs";
+import { MESURE_BASE_SHA, etatDuMoteur } from "./lib-arbitrage.mjs";
 
 const DOSSIER = "mesures/t0b3a-arbitrage-brachy";
 const ECRIRE = process.argv.includes("--ecrire");
@@ -94,6 +94,23 @@ for (const f of ["packages/knowledge/raw/rules.json", "packages/knowledge/raw/ob
 }
 dire(`1/4 référentiel conforme à la base ${MESURE_BASE_SHA.slice(0, 7)}`);
 
+/* ---- 1 ter. LE MOTEUR ---------------------------------------------------------------------------
+   Un dossier de mesure décrit un état, MOTEUR COMPRIS. Le câblage de l'option H l'a prouvé ici même :
+   à référentiel identique, les options B à G de l'arbitrage se sont confondues avec H, parce que le
+   moteur APPLIQUE désormais H dès que les 42 règles sont retirées. Régénérer aurait remplacé en
+   silence les chiffres d'un arbitrage déjà tranché par une tautologie. Ces artefacts deviennent donc
+   historiques : on vérifie qu'ils sont intacts, et on refuse de les recalculer. */
+const moteur = etatDuMoteur();
+if (!moteur.conforme) {
+  /* `--ecrire` reste permis, et ne peut PAS réécrire les chiffres : en mode historique la
+     régénération est court-circuitée plus bas, si bien qu'il ne rescelle que les outils. Sans quoi
+     corriger une virgule dans ce script rendrait le dossier impossible à remettre au vert. */
+  dire(`1ter/4 MOTEUR DIFFÉRENT de celui de la mesure `
+    + `(mesure : ${moteur.attendu.slice(0, 12)} · actuel : ${moteur.courant.slice(0, 12)})`);
+} else {
+  dire(`1ter/4 moteur identique à celui de la mesure (${moteur.courant.slice(0, 12)})`);
+}
+
 /* ---- 2. régénérer -------------------------------------------------------------------------------- */
 /* `process.execPath` et non `npx` : `npx` résout dans l'environnement et peut TÉLÉCHARGER un paquet
    absent du lockfile — c'est-à-dire exécuter un autre code que celui qu'on a verrouillé, en
@@ -102,20 +119,24 @@ dire(`1/4 référentiel conforme à la base ${MESURE_BASE_SHA.slice(0, 7)}`);
 /* Les CONTRE-ÉPREUVES d'abord : un simulateur dont l'échec ne coûte rien ne prouve rien. Chacune
    casse volontairement un invariant et DOIT sortir en 1. Si l'une d'elles passait au vert, tout ce
    que le dossier affiche par ailleurs perdrait sa valeur. */
-for (const c of ["causes", "table", "ids42", "bascules", "validateur", "multi"]) {
-  const r = spawnSync(process.execPath, ["--import", "tsx",
-    `${DOSSIER}/outils/simuler-h.mjs`, `--contre-epreuve=${c}`], { encoding: "utf8" });
-  if (r.status === 0) echouer(`la contre-épreuve « ${c} » est passée au VERT — le simulateur ne sait pas échouer`);
-}
-dire(`1bis/4 les 6 contre-épreuves échouent bien (code 1)`);
+if (moteur.conforme) {
+  for (const c of ["causes", "table", "ids42", "bascules", "validateur", "multi"]) {
+    const r = spawnSync(process.execPath, ["--import", "tsx",
+      `${DOSSIER}/outils/simuler-h.mjs`, `--contre-epreuve=${c}`], { encoding: "utf8" });
+    if (r.status === 0) echouer(`la contre-épreuve « ${c} » est passée au VERT — le simulateur ne sait pas échouer`);
+  }
+  dire(`1bis/4 les 6 contre-épreuves échouent bien (code 1)`);
 
-for (const o of OUTILS) {
-  const args = [];
-  const r = spawnSync(process.execPath, ["--import", "tsx", `${DOSSIER}/outils/${o}.mjs`, ...args],
-    { encoding: "utf8" });
-  if (r.status !== 0) echouer(`outil « ${o} » sorti en ${r.status}\n${(r.stderr || "").slice(-1500)}`);
+  for (const o of OUTILS) {
+    const r = spawnSync(process.execPath, ["--import", "tsx", `${DOSSIER}/outils/${o}.mjs`], { encoding: "utf8" });
+    if (r.status !== 0) echouer(`outil « ${o} » sorti en ${r.status}\n${(r.stderr || "").slice(-1500)}`);
+  }
+  dire(`2/4 artefacts régénérés`);
+} else {
+  dire(`1bis/4 contre-épreuves NON rejouées — elles éprouvent un simulateur devenu historique`);
+  dire(`2/4 DOSSIER HISTORIQUE — le moteur a changé depuis la mesure, les artefacts ne sont PAS `
+    + `régénérés (mesure : ${moteur.attendu.slice(0, 12)} · actuel : ${moteur.courant.slice(0, 12)})`);
 }
-dire(`2/4 artefacts régénérés`);
 
 /* ---- 3. SHA256SUMS ------------------------------------------------------------------------------- */
 const lignes = [...ARTEFACTS, ...SOURCES].sort()
@@ -142,5 +163,8 @@ const sale = arbreSale();
 if (sale && !ECRIRE) {
   echouer(`régénérer a MODIFIÉ l'arbre — le dossier n'est pas reproductible :\n${sale}`);
 }
-dire(sale ? "4/4 arbre modifié (attendu avec --ecrire)" : "4/4 arbre entier propre : régénérer ne change rien");
-dire("dossier T0-B3-a reproductible.");
+dire(sale ? "4/4 arbre modifié (attendu avec --ecrire)"
+  : moteur.conforme ? "4/4 arbre entier propre : régénérer ne change rien"
+  : "4/4 arbre entier propre : aucun artefact n'a été touché");
+dire(moteur.conforme ? "dossier T0-B3-a reproductible."
+  : "dossier T0-B3-a HISTORIQUE et intact — mesuré sur un moteur antérieur, non régénérable ici.");

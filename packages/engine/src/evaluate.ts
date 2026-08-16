@@ -1,6 +1,6 @@
-import type { NormalizedKB, Rule, Predicate, Condition, EvalContextShape, PlacementPolicy, PlacementStatus, TemperatureProvenance } from "@mydogcanfly/knowledge";
+import type { NormalizedKB, Rule, Predicate, Condition, EvalContextShape, PlacementPolicy, PlacementStatus, TemperatureProvenance, BreedRestriction } from "@mydogcanfly/knowledge";
 import { MONTH_UNKNOWN, isEstimatedTemperature, preuveAuditee } from "@mydogcanfly/knowledge";
-import type { FinderRequest, Decision, AirlineDecision, FiredRule, ConfirmationCause } from "./contracts";
+import type { FinderRequest, Decision, AirlineDecision, FiredRule, ConfirmationCause, RestrictionEvidence, AdvisorySignal } from "./contracts";
 import { makePlacementDecision, makePlacementDecisionSet } from "./contracts";
 
 type Ctx = Record<string, string | number | boolean>;
@@ -86,8 +86,15 @@ const REASON_BY_CATEGORY: Record<string, string> = {
 };
 /** Ordre d'affichage : d'abord ce qui tient au chien, ensuite ce que la compagnie ne propose pas. */
 const REASON_ORDER = ["breed_restricted", "weight_limit", "cabin_unavailable", "hold_unavailable", "cargo_unavailable"];
-function denyReasonsOf(perPlacement: { placement: string; fires: Rule[] }[]): string[] {
+function denyReasonsOf(perPlacement: { placement: string; fires: Rule[]; breedDeny?: boolean }[]): string[] {
   const found = new Set<string>();
+  for (const { breedDeny } of perPlacement) {
+    /* Un refus prononcé par une RESTRICTION DE RACE porte le même motif qu'un refus prononcé par
+       une règle `breed_ban` : le visiteur lit pourquoi son chien est refusé, pas quel objet du
+       référentiel l'a décidé. Sans cette ligne, une compagnie refusant la soute sur un fait de
+       race audité afficherait un refus sans motif. */
+    if (breedDeny) found.add("breed_restricted");
+  }
   for (const { placement, fires } of perPlacement) {
     for (const r of fires) {
       if (r.effect.action !== "deny") continue;
@@ -100,6 +107,132 @@ function denyReasonsOf(perPlacement: { placement: string; fires: Rule[] }[]): st
     }
   }
   return REASON_ORDER.filter((c) => found.has(c));
+}
+
+/* ---- LES FAITS DE RACE — option H (T0-B3-a, arbitrage du 16/08/2026) --------------------------
+ *
+ * Le moteur ne savait pas produire une confirmation DONT LA CAUSE EST LA RACE : après retrait
+ * d'une règle de race, il reprenait la politique générale du canal — tantôt `allowed`, tantôt
+ * `confirmation_required` — sans jamais rattacher l'incertitude au chien qui la motive. C'est ce
+ * que ce bloc répare, en consommant le registre canonique `BreedRestriction`.
+ *
+ * Deux principes, tenus par le code plutôt que par la discipline :
+ *
+ *   · `warn` N'AGIT SUR RIEN — ni statut, ni score, ni `fired`, ni preuve. Il ne produit qu'un
+ *     avis. C'est le cas fondateur : l'IATA écrit « not recommended … in hot season », et en avoir
+ *     fait un refus est ce qui a produit une interdiction universelle et permanente.
+ *   · AUCUNE PRIORITÉ N'EST INVENTÉE. `allow` + `deny` est une contradiction, `deny` + `require`
+ *     une exigence inatteignable : `validateBreedRestrictions()` les refuse AU CHARGEMENT, si bien
+ *     qu'aucune résolution n'a à exister ici. Reste `allow` + `require`, que le validateur
+ *     autorise : l'exigence l'emporte, puisqu'elle décrit ce qu'il faut satisfaire pour que
+ *     l'autorisation vaille.
+ */
+
+/** Le chien tel que les restrictions le voient : son identité de race et le trait effectif. */
+type DogForBreed = { breed_id?: string; brachycephalic: boolean };
+
+const breedTargetHits = (t: BreedRestriction["applies_to"], dog: DogForBreed): boolean =>
+  "trait" in t
+    ? t.trait === "brachycephalic" && dog.brachycephalic
+    : dog.breed_id !== undefined && t.breed_ids.includes(dog.breed_id);
+
+/**
+ * Les restrictions qui portent réellement sur (ce chien, cette compagnie, ce canal).
+ *
+ * `when` est ÉVALUÉ, avec l'évaluateur du moteur et le contexte du scénario. La simulation, elle,
+ * refusait de le faire et signalait les restrictions conditionnelles comme « non simulables » :
+ * elle n'avait pas d'évaluateur. Le moteur en a un — s'en priver inventerait une limitation, et
+ * une condition ignorée en silence est exactement le défaut que ce chantier corrige.
+ */
+function breedRestrictionsFor(
+  kb: NormalizedKB, airlineId: string, placement: (typeof PLACEMENTS)[number], dog: DogForBreed, ctx: Ctx,
+): BreedRestriction[] {
+  return kb.breedRestrictions.filter((r) =>
+    (r.airline_id === undefined || r.airline_id === airlineId) &&
+    (r.placements as string[]).includes(placement) &&
+    breedTargetHits(r.applies_to, dog) &&
+    (r.when === undefined || evalPredicate(r.when as Predicate, ctx)));
+}
+
+/** Ordre total et stable sur les restrictions : leur identité. `find()` en perdait toutes sauf une. */
+const byRestrictionId = (a: BreedRestriction, b: BreedRestriction) => a.id.localeCompare(b.id);
+
+/**
+ * LE PÉRIMÈTRE DE « NOUS NE SAVONS PAS ».
+ *
+ * Les branches décisives — `deny`, `require`, `allow` — s'appliquent aux TROIS canaux et à TOUT
+ * chien visé : c'est le contrat, et une restriction qui déclare `cabin` doit agir en cabine, sinon
+ * le registre ment.
+ *
+ * La branche « aucun fait audité → à confirmer » est bornée, elle, aux chiens BRACHYCÉPHALES en
+ * soute et en fret. Ce n'est pas une commodité : c'est exactement le périmètre où le site affirmait
+ * un refus qu'il ne peut pas prouver (les 42 règles de T0-B3-a). Étendre « nous ne savons pas » à
+ * toutes les races et à la cabine publierait une ignorance que nous n'avons jamais affirmée, sur
+ * des canaux où rien n'a été mesuré — ce serait une décision distincte, à mesurer avant, pas un
+ * effet de bord de ce câblage.
+ */
+const PERIMETRE_INCERTITUDE_RACE = ["hold", "cargo"] as const;
+
+type BreedOutcome = {
+  status: PlacementStatus;
+  causes: ConfirmationCause[];
+  evidence?: RestrictionEvidence[];
+  /** Transmise telle quelle à `makePlacementDecision`, qui la réduit aux quatre champs du contrat
+   *  — la projeter ici recréerait un second chemin de réduction à maintenir en parallèle. */
+  source?: unknown;
+  denied_by_breed: boolean;
+};
+
+/**
+ * La table de décision, appliquée APRÈS le statut de base du canal. Elle ne l'ouvre jamais :
+ * un canal structurellement fermé le reste, parce qu'un fait de race ne crée pas une soute.
+ */
+function applyBreedRestrictions(args: {
+  restrictions: BreedRestriction[];
+  policyRef: string;
+  placement: (typeof PLACEMENTS)[number];
+  dog: DogForBreed;
+  baseStatus: PlacementStatus;
+  baseCauses: ConfirmationCause[];
+  baseSource?: unknown;
+}): BreedOutcome {
+  const { restrictions, policyRef, placement, dog, baseStatus, baseCauses, baseSource } = args;
+  const inchange: BreedOutcome = { status: baseStatus, causes: baseCauses, source: baseSource, denied_by_breed: false };
+  /* Canal structurellement fermé : H n'ouvre rien. */
+  if (baseStatus === "denied") return inchange;
+
+  const parAction = (a: BreedRestriction["action"]) => restrictions.filter((r) => r.action === a).sort(byRestrictionId);
+  const denies = parAction("deny"), requires = parAction("require"), allows = parAction("allow");
+  /* La preuve DESCEND avec la décision : quand une restriction tranche, c'est SA page qui justifie
+     le canal, pas la provenance générale préexistante — laquelle ne documente pas la race. */
+  const preuves = (rs: BreedRestriction[], role: RestrictionEvidence["role"]): RestrictionEvidence[] =>
+    rs.map((r) => ({ restriction_ref: r.id, role, source: r.source }));
+  if (denies.length) {
+    /* Dominance : un refus éteint les causes de confirmation du canal, comme un refus dur de règle. */
+    return { status: "denied", causes: [], evidence: preuves(denies, "refusal"), source: denies[0].source, denied_by_breed: true };
+  }
+  if (requires.length) {
+    return {
+      status: "confirmation_required",
+      causes: [...baseCauses, ...requires.map((r): ConfirmationCause => ({
+        code: "breed_requirement", policy_ref: policyRef, restriction_ref: r.id,
+      }))],
+      evidence: preuves(requires, "requirement"), source: requires[0].source, denied_by_breed: false,
+    };
+  }
+  if (allows.length) {
+    return { status: baseStatus, causes: baseCauses, evidence: preuves(allows, "authorisation"), source: allows[0].source, denied_by_breed: false };
+  }
+  if (dog.brachycephalic && (PERIMETRE_INCERTITUDE_RACE as readonly string[]).includes(placement)) {
+    /* Notre incertitude, dite comme telle. AUCUNE preuve ne l'accompagne — une absence de fait n'en
+       a pas — et la source du canal reste celle de la politique, qui ne documente pas la race. */
+    return {
+      status: "confirmation_required",
+      causes: [...baseCauses, { code: "breed_policy_unreviewed", policy_ref: policyRef }],
+      source: baseSource, denied_by_breed: false,
+    };
+  }
+  return inchange;
 }
 
 function toFired(r: Rule, locale: string): FiredRule {
@@ -290,6 +423,13 @@ export function evaluate(kb: NormalizedKB, req: FinderRequest, opts?: { weatherP
       : a.serves_country_ids.includes(destCountry);
   });
 
+  /* Le chien tel que le registre de race le voit, et les avis levés au fil de l'évaluation.
+     Les avis sont COLLECTÉS ici, un par (restriction, canal) : la déduplication par (restriction,
+     portée) et le choix de la langue appartiennent à `explain`, qui seul connaît la langue du
+     rapport. */
+  const dogForBreed: DogForBreed = { breed_id: req.dog.breed_id, brachycephalic: brachy };
+  const advisories: AdvisorySignal[] = [];
+
   // Global rules (e.g. the universal cabin size/weight backstop) apply to every airline.
   const globalRules = kb.rules.filter((r) => r.scope.type === "global");
   const airlineDecisionsRaw = airlines.map((a): AirlineDecision & { _plausible: boolean } => {
@@ -355,11 +495,31 @@ export function evaluate(kb: NormalizedKB, req: FinderRequest, opts?: { weatherP
         }
         status = causes.length > 0 ? "confirmation_required" : "allowed";
       }
+      /* ---- LES FAITS DE RACE ---------------------------------------------------------------
+         Appliqués APRÈS le statut de base, et jamais dans l'autre sens : ils ne créent pas de
+         canal, ils qualifient celui qui existe. Les avis `warn` se collectent sur les TROIS
+         canaux, indépendamment de la table de statut — l'avis IATA porte aussi sur la cabine,
+         qu'aucune décision de race ne touche, et confondre les deux questions supprimait l'avis
+         en même temps que le statut (défaut relevé en simulation). */
+      const restrictions = breedRestrictionsFor(kb, a.id, p, dogForBreed, ctx);
+      for (const r of restrictions) {
+        if (r.action !== "warn") continue;
+        if (!r.detail) continue; // le contrat l'impose déjà sur `warn` ; ceci ne fait que le typer
+        advisories.push({ restriction_ref: r.id, scope: r.airline_id ?? "global",
+          placements: [p], detail: r.detail, source: r.source });
+      }
+      const race = applyBreedRestrictions({
+        restrictions, policyRef: `${a.id}#${p}`, placement: p, dog: dogForBreed,
+        baseStatus: status, baseCauses: causes, baseSource: preuveAuditee(pol),
+      });
       /* La preuve descend AVEC la décision : la source de CE canal, et seulement si elle en est
          une (ni dérivée, ni auto-citation, ni posée sur une politique non revérifiée). La source
          racine de la fiche ne descend jamais ici — c'est elle que le contre-test a vue s'afficher
          comme justification d'une politique qu'elle ne documente pas. */
-      return { decision: makePlacementDecision(p, status, causes, preuveAuditee(pol)), fires: allFires };
+      return {
+        decision: makePlacementDecision(p, race.status, race.causes, race.source, race.evidence),
+        fires: allFires, breedDeny: race.denied_by_breed,
+      };
     });
     /* Le triplet complet est validé — exactement {cabin, hold, cargo}, ni absence ni doublon. */
     const placementDecisions = makePlacementDecisionSet(perPlacement.map((x) => x.decision));
@@ -557,6 +717,7 @@ export function evaluate(kb: NormalizedKB, req: FinderRequest, opts?: { weatherP
     origin_country_id: originCountry,
     domestic: isDomestic,
     brachycephalic: brachy,
+    breed_advisories: advisories,
     climate,
   };
 }
