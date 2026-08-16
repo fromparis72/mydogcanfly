@@ -1,7 +1,7 @@
 /**
  * T0-B3 · outil 4 — le retrait GROUPÉ, par famille.
  *
- *   npx tsx mesures/t0b3-regles-autosourcees/outils/retrait-groupe.mjs
+ *   node --import tsx mesures/t0b3-regles-autosourcees/outils/retrait-groupe.mjs
  *   → mesures/t0b3-regles-autosourcees/retrait-groupe.json
  *
  * POURQUOI CET OUTIL EXISTE, alors que la contre-revue demandait une simulation ISOLÉE.

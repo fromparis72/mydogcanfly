@@ -1,7 +1,7 @@
 /**
  * T0-B3 · outil 5 — les STRATES mesurées, et ce qu'elles permettent de proposer.
  *
- *   npx tsx mesures/t0b3-regles-autosourcees/outils/sous-lot.mjs
+ *   node --import tsx mesures/t0b3-regles-autosourcees/outils/sous-lot.mjs
  *   → mesures/t0b3-regles-autosourcees/sous-lot-propose.json
  *
  * Cet outil ne mesure rien de neuf : il TRIE ce que les outils 1 à 4 ont établi, selon un critère

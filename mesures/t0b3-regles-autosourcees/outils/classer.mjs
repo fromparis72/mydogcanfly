@@ -1,7 +1,7 @@
 /**
  * T0-B3 · outil 2 — la CLASSIFICATION FERMÉE des 171 règles auto-citées.
  *
- *   npx tsx mesures/t0b3-regles-autosourcees/outils/classer.mjs
+ *   node --import tsx mesures/t0b3-regles-autosourcees/outils/classer.mjs
  *   → mesures/t0b3-regles-autosourcees/classification.json
  *
  * ─── CE QUE « SOURCE OFFICIELLE CONFIRMANTE » VEUT DIRE ICI ────────────────────────────────────

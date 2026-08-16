@@ -1,7 +1,7 @@
 /**
  * T0-B3 · outil 3 — la SIMULATION ISOLÉE du retrait de chaque règle auto-citée.
  *
- *   npx tsx mesures/t0b3-regles-autosourcees/outils/simuler-retrait.mjs
+ *   node --import tsx mesures/t0b3-regles-autosourcees/outils/simuler-retrait.mjs
  *   → mesures/t0b3-regles-autosourcees/impact-retrait.json
  *   → mesures/t0b3-regles-autosourcees/baseline-ca254bf.json   (--ecrire-baseline)
  *

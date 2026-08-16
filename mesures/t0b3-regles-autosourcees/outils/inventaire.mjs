@@ -1,7 +1,7 @@
 /**
  * T0-B3 · outil 1 — l'inventaire EXHAUSTIF et STABLE des règles auto-citées.
  *
- *   npx tsx mesures/t0b3-regles-autosourcees/outils/inventaire.mjs
+ *   node --import tsx mesures/t0b3-regles-autosourcees/outils/inventaire.mjs
  *   → mesures/t0b3-regles-autosourcees/inventaire-171.json
  *
  * Ce que l'outil établit, et rien d'autre :
