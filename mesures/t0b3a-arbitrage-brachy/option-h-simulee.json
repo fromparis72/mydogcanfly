@@ -1,5 +1,5 @@
 {
- "lot": "T0-B3-a — simulation de l'option H (v2)",
+ "lot": "T0-B3-a — simulation de l'option H (v3)",
  "nature": "SIMULATION — aucun code moteur écrit, aucun fichier de packages/ modifié",
  "sceau": {
   "measurement_base_sha": "e2cf302ccf045c539ca450f23964bb7bf20af84c",
@@ -7,172 +7,268 @@
   "raw_objects_sha256": "dca1706134b188fa569f7172fa2ccfcff8c81b131e554326cb5d1c47b65ffef0"
  },
  "referentiel_intact": true,
- "portee": "H s'applique aux 102 COMPAGNIES, pas aux 41 qui portaient une ancienne règle : celles-ci n'étaient qu'un sous-ensemble arbitraire de notre documentation.",
- "corrections_de_la_v1": {
-  "p0_1_causes_effacees": {
-   "constat": "la v1 remplaçait la décision et supprimait 452 causes préexistantes sur la grille publique des carlins — 440 legacy_unreviewed, 8 policy_unpublished, 4 estimated_climate",
-   "consequence": "sa garantie climatique passait pour une mauvaise raison : les causes climatiques disparaissaient avant que le contrôle puisse les voir",
-   "correction": "fusion dédupliquée par `causeKey` (la fonction du moteur), ordre stable, et preuve d'inclusion de l'ensemble initial dans l'ensemble final"
-  },
-  "p0_2_auto_citations_dans_le_score": {
-   "constat": "la v1 gardait les 41 règles en « warn » : invisibles comme sources, mais leur confiance alimentait encore le score via `fired`",
-   "correction": "les 42 sortent du CALCUL. L'état brachycéphale est porté par la politique compagnie/canal ; l'avertissement IATA est conservé à part et n'entre ni dans `fired`, ni dans `sources`, ni dans la confiance"
-  }
- },
- "avertissement_iata": {
-  "nature": "avertissement de sécurité, jamais une interdiction ni une preuve de politique",
-  "url": "https://www.iata.org/en/programs/cargo/live-animals/pets/",
-  "citation": "Transport of snub nose dogs, such as boxers, pugs, bulldogs and Pekinese, in hot season is not recommended.",
-  "ne_fait_pas": [
-   "il ne prouve la politique d'aucune compagnie",
-   "il ne note la fiabilité d'aucune fiche — il n'entre pas dans le calcul de confiance",
-   "il n'introduit ni période ni seuil de température : « hot season » n'en définit aucun"
+ "contre_epreuve_active": null,
+ "modele": {
+  "contrat_consomme": "BreedRestriction (packages/knowledge/src/breed-restrictions.ts)",
+  "pourquoi": "le contrat canonique existe déjà : action allow|deny|warn|require, cible de race, placements, conditions, et une SourcedQuote obligatoire — citation, langue, type factuel, refus des domaines MyDogCanFly. La v2 proposait un état concurrent dans PlacementPolicy et s'appuyait sur `preuveAuditee`, qui ne vérifie NI citation NI langue : ce n'était pas une preuve brachycéphale au sens du contrat.",
+  "entrees_dans_le_referentiel": 0,
+  "consequence": "le référentiel n'en contient aucune : sous H, les 102 compagnies tombent toutes sur « aucun fait audité applicable ». C'est un état de notre documentation, pas un choix de simulation.",
+  "table": [
+   "1 · canal structurellement fermé → denied",
+   "2 · BreedRestriction `deny` applicable → denied",
+   "5 · BreedRestriction `require` applicable → confirmation_required (l'exigence est à satisfaire)",
+   "3 · BreedRestriction `allow` applicable → statut général inchangé",
+   "4 · aucun fait audité applicable → confirmation_required (breed_policy_unreviewed)",
+   "`warn` (IATA) → conseil séparé, AUCUN effet sur le statut ni sur le score",
+   "précédence : deny > require > allow — en cas de sources contradictoires, on ne publie pas l'ouverture"
   ]
  },
- "table_de_decision": [
-  "1 · canal structurellement fermé → denied (H n'ouvre rien)",
-  "2 · preuve auditée disant brachy_allowed = false → denied",
-  "3 · preuve auditée disant brachy_allowed = true → statut inchangé",
-  "4 · politique brachycéphale non revérifiée → confirmation_required, cause fusionnée"
+ "exigences": [
+  {
+   "exigence": "les 42 identités sont exactement 42",
+   "tenue": true,
+   "detail": ""
+  },
+  {
+   "exigence": "les 42 identités sont uniques",
+   "tenue": true,
+   "detail": ""
+  },
+  {
+   "exigence": "les 41 règles compagnie sont bien de catégorie breed_ban et auto-citées",
+   "tenue": true,
+   "detail": ""
+  },
+  {
+   "exigence": "la règle globale IATA est présente et de portée globale",
+   "tenue": true,
+   "detail": ""
+  },
+  {
+   "exigence": "les 102 compagnies sont couvertes par la grille brachycéphale",
+   "tenue": true,
+   "detail": ""
+  },
+  {
+   "exigence": "G1 · aucun chien non brachycéphale touché",
+   "tenue": true,
+   "detail": ""
+  },
+  {
+   "exigence": "G2 · aucun refus STRUCTUREL (base sans les 42) n'est levé par H",
+   "tenue": true,
+   "detail": ""
+  },
+  {
+   "exigence": "G2bis · tout refus levé l'est UNIQUEMENT par le retrait des 42",
+   "tenue": true,
+   "detail": ""
+  },
+  {
+   "exigence": "G3 · aucune confirmation de race ne devient message climatique",
+   "tenue": true,
+   "detail": ""
+  },
+  {
+   "exigence": "G3bis · des causes climatiques sont RÉELLEMENT observées",
+   "tenue": true,
+   "detail": ""
+  },
+  {
+   "exigence": "G4 · aucune auto-citation ni URL IATA morte présentée comme preuve",
+   "tenue": true,
+   "detail": ""
+  },
+  {
+   "exigence": "G5 · aucune cause préexistante perdue, scénario par scénario",
+   "tenue": true,
+   "detail": ""
+  },
+  {
+   "exigence": "G6 · la dominance est exercée par une fixture et respectée",
+   "tenue": true,
+   "detail": ""
+  },
+  {
+   "exigence": "G7 · aucune des 42 n'entre dans le calcul",
+   "tenue": true,
+   "detail": ""
+  },
+  {
+   "exigence": "les fixtures de la table H sont toutes conformes",
+   "tenue": true,
+   "detail": ""
+  },
+  {
+   "exigence": "aucun rapport refusé par explain",
+   "tenue": true,
+   "detail": ""
+  },
+  {
+   "exigence": "aucune restriction conditionnelle laissée non simulée",
+   "tenue": true,
+   "detail": ""
+  },
+  {
+   "exigence": "les 147 bascules vont EXCLUSIVEMENT vers confirmation_required",
+   "tenue": true,
+   "detail": ""
+  },
+  {
+   "exigence": "le référentiel est intact après simulation",
+   "tenue": true,
+   "detail": ""
+  }
  ],
- "branches_exercees_par_les_donnees_reelles": {
+ "violations": [],
+ "branches_exercees_par_les_grilles": {
+  "0": 0,
   "1": 1420,
   "2": 0,
   "3": 0,
-  "4": 2110
+  "4": 2110,
+  "5": 0,
+  "9": 0
  },
- "fixtures_des_quatre_branches": [
+ "branches_toutes_appels_confondus": {
+  "0": 0,
+  "1": 1420,
+  "2": 1,
+  "3": 0,
+  "4": 2110,
+  "5": 0,
+  "9": 0
+ },
+ "fixtures": [
   {
+   "nom": "branche 1 · canal structurellement fermé",
+   "statut": "denied",
    "branche": 1,
-   "compagnie": "airline_fx_ferme",
-   "statut_base": "denied",
-   "statut_H": "denied",
-   "attendu": "denied",
-   "conforme": true,
-   "branche_empruntee": 1
+   "attendu": {
+    "statut": "denied",
+    "branche": 1
+   },
+   "conseils": 0,
+   "conforme": true
   },
   {
+   "nom": "branche 2 · deny audité",
+   "statut": "denied",
    "branche": 2,
-   "compagnie": "airline_fx_interdit",
-   "statut_base": "allowed",
-   "statut_H": "denied",
-   "attendu": "denied",
-   "conforme": true,
-   "branche_empruntee": 2
+   "attendu": {
+    "statut": "denied",
+    "branche": 2
+   },
+   "conseils": 0,
+   "conforme": true
   },
   {
+   "nom": "branche 3 · allow audité",
+   "statut": "allowed",
    "branche": 3,
-   "compagnie": "airline_fx_autorise",
-   "statut_base": "allowed",
-   "statut_H": "allowed",
-   "attendu": "allowed",
-   "conforme": true,
-   "branche_empruntee": 3
+   "attendu": {
+    "statut": "allowed",
+    "branche": 3
+   },
+   "conseils": 0,
+   "conforme": true
   },
   {
+   "nom": "branche 4 · aucun fait audité applicable",
+   "statut": "confirmation_required",
    "branche": 4,
-   "compagnie": "airline_fx_non_revu",
-   "statut_base": "allowed",
-   "statut_H": "confirmation_required",
-   "attendu": "confirmation_required",
-   "conforme": true,
-   "branche_empruntee": 4
+   "attendu": {
+    "statut": "confirmation_required",
+    "branche": 4
+   },
+   "conseils": 0,
+   "conforme": true
+  },
+  {
+   "nom": "branche 5 · require audité → confirmation",
+   "statut": "confirmation_required",
+   "branche": 5,
+   "attendu": {
+    "statut": "confirmation_required",
+    "branche": 5
+   },
+   "conseils": 0,
+   "conforme": true
+  },
+  {
+   "nom": "warn IATA · aucun effet sur le statut",
+   "statut": "confirmation_required",
+   "branche": 4,
+   "attendu": {
+    "statut": "confirmation_required",
+    "branche": 4
+   },
+   "conseils": 1,
+   "conforme": true
+  },
+  {
+   "nom": "deny audité ciblant une AUTRE race · ne touche pas le carlin",
+   "statut": "confirmation_required",
+   "branche": 4,
+   "attendu": {
+    "statut": "confirmation_required",
+    "branche": 4
+   },
+   "conseils": 0,
+   "conforme": true
+  },
+  {
+   "nom": "chien NON brachycéphale · la table ne s'applique pas",
+   "statut": "allowed",
+   "branche": 9,
+   "attendu": {
+    "statut": "allowed",
+    "branche": 9
+   },
+   "conseils": 0,
+   "conforme": true
   }
  ],
- "garanties": {
-  "g1_aucun_chien_non_brachycephale_touche": {
-   "compagnies": 0,
-   "placements": 0,
-   "scenarios_publics": 0,
-   "exemples": []
-  },
-  "g2_aucun_canal_non_propose_rouvert": {
-   "violations": 0,
-   "exemples": []
-  },
-  "g3_aucune_confirmation_devenue_message_climatique": {
-   "violations": 0,
-   "climat_observes": 56,
-   "exemples": []
-  },
-  "g4_aucune_auto_citation_presentee_comme_preuve": {
-   "violations": 0,
-   "exemples": []
-  },
-  "g5_causes_preexistantes_conservees": {
-   "avant": 452,
-   "apres": 1392,
-   "perdues": 0,
-   "exemples": [],
-   "lecture": "toute cause préexistante se retrouve dans l'ensemble final — inclusion stricte vérifiée"
-  },
-  "g6_dominance_respectee": {
-   "refus_avec_causes_restantes": 0,
-   "causes_eteintes_par_un_refus_dur": 0,
-   "lecture": "un refus dur éteint toutes les causes : c'est la règle du moteur, appliquée ici. Le compteur dit combien de fois elle a joué, pas combien de fois elle a été violée."
-  },
-  "g7_les_42_hors_du_calcul": {
-   "occurrences": 0,
-   "exemples": []
-  },
-  "g7bis_dette_auto_citee_residuelle_hors_perimetre": {
-   "occurrences": 224,
-   "regles_distinctes": [
-    "rule_air_algerie_cabin_weight",
-    "rule_american_no_hold",
-    "rule_cathay_pacific_hold_weight",
-    "rule_delta_no_hold",
-    "rule_etihad_hold_deny",
-    "rule_eurowings_cabin_only",
-    "rule_jetblue_cabin_only",
-    "rule_korean_air_cabin_weight",
-    "rule_latam_cabin_weight",
-    "rule_united_no_hold",
-    "rule_vietnam_airlines_cabin_weight",
-    "rule_vueling_cabin_only"
-   ],
-   "exemples": [
-    "airline_cathay_pacific · rule_cathay_pacific_hold_weight",
-    "airline_etihad · rule_etihad_hold_deny",
-    "airline_korean_air · rule_korean_air_cabin_weight",
-    "airline_vietnam_airlines · rule_vietnam_airlines_cabin_weight"
-   ],
-   "lecture": "Ces règles ne relèvent PAS de H : ce sont les autres auto-citations mesurées en T0-B3 (cabin_weight, hold_weight, placement, import_rules). Elles restent dans le calcul de confiance après H, et leur résorption est le lot suivant. Les compter à part évite de lire la garantie de H comme une propreté générale qui n'est pas atteinte."
-  }
+ "fixture_dominance": {
+  "statut": "denied",
+  "causes_restantes": 0,
+  "conforme": true
  },
+ "conseils_iata_emis": 0,
  "causes_finales_par_code": {
   "policy_unpublished": 16,
   "legacy_unreviewed": 896,
   "estimated_climate": 56,
   "breed_policy_unreviewed": 940
  },
- "sonde_de_coexistence": {
-  "combinaisons_observees": {
-   "breed_policy_unreviewed + legacy_unreviewed": 440,
-   "breed_policy_unreviewed + policy_unpublished": 8,
-   "breed_policy_unreviewed + estimated_climate": 4
-  },
-  "race_plus_climat": {
-   "breed_policy_unreviewed + estimated_climate": 4
-  },
-  "race_plus_politique_generale": {
-   "breed_policy_unreviewed + legacy_unreviewed": 440,
-   "breed_policy_unreviewed + policy_unpublished": 8
-  },
-  "exemples": [
-   "cdg-bkk|pug|01-15|any · airline_condor#cargo : breed_policy_unreviewed + legacy_unreviewed",
-   "cdg-bkk|pug|01-15|any · airline_austrian#cargo : breed_policy_unreviewed + legacy_unreviewed",
-   "cdg-bkk|pug|01-15|any · airline_air_india#cargo : breed_policy_unreviewed + legacy_unreviewed",
-   "cdg-bkk|pug|01-15|any · airline_swiss#cargo : breed_policy_unreviewed + legacy_unreviewed",
-   "cdg-bkk|pug|01-15|any · airline_finnair#cargo : breed_policy_unreviewed + legacy_unreviewed",
-   "cdg-bkk|pug|01-15|any · airline_etihad#cargo : breed_policy_unreviewed + legacy_unreviewed"
+ "coexistence_des_causes": {
+  "breed_policy_unreviewed + legacy_unreviewed": 440,
+  "breed_policy_unreviewed + policy_unpublished": 8,
+  "breed_policy_unreviewed + estimated_climate": 4
+ },
+ "causes_climatiques_observees": 56,
+ "dominance_jouee": 1,
+ "dette_auto_citee_residuelle_hors_perimetre": {
+  "occurrences": 224,
+  "regles_distinctes": [
+   "rule_air_algerie_cabin_weight",
+   "rule_american_no_hold",
+   "rule_cathay_pacific_hold_weight",
+   "rule_delta_no_hold",
+   "rule_etihad_hold_deny",
+   "rule_eurowings_cabin_only",
+   "rule_jetblue_cabin_only",
+   "rule_korean_air_cabin_weight",
+   "rule_latam_cabin_weight",
+   "rule_united_no_hold",
+   "rule_vietnam_airlines_cabin_weight",
+   "rule_vueling_cabin_only"
   ],
-  "lecture": "la coexistence climat + race est OBSERVÉE : les deux causes cohabitent sur le même canal"
+  "lecture": "les AUTRES auto-citations de T0-B3 (poids, placement, importation) — hors périmètre de H, résorption au lot suivant. Comptées à part pour ne pas lire la garantie 7 comme une propreté générale qui n'est pas atteinte."
  },
  "sonde_de_contrat": {
   "cause_acceptee": false,
-  "erreur": "[",
-  "lecture": "attendu : l'union est STRICTE. Toute implémentation de H doit d'abord y ajouter la cause, avec son libellé dans les quatre langues. La simulation construit ses objets à la main et CONTOURNE ce contrôle : elle ne prouve rien sur le contrat, cette sonde si."
+  "erreur": "["
  },
  "diff_contre_le_statu_quo": {
   "grille_publique": {
@@ -184,7 +280,6 @@
     0,
     2
    ],
-   "echecs": 0,
    "golden_affectes": 0
   },
   "grille_brachycephale": {
@@ -192,13 +287,7 @@
    "placements": 147,
    "par_statut_cible": {
     "confirmation_required": 147
-   },
-   "exemples": [
-    "airline_aegean allowed/denied/denied → allowed/confirmation_required/confirmation_required",
-    "airline_aer_lingus denied/denied/denied → denied/denied/confirmation_required",
-    "airline_aerolineas_argentinas allowed/denied/denied → allowed/confirmation_required/confirmation_required",
-    "airline_aeromexico allowed/denied/denied → allowed/confirmation_required/confirmation_required"
-   ]
+   }
   }
  }
 }
