@@ -1,37 +1,41 @@
 /**
- * T0-B3-a · SIMULATION de l'option H — sans écrire une ligne de moteur.
+ * T0-B3-a · SIMULATION de l'option H — v2. Sans écrire une ligne de moteur.
  *
  *   node --import tsx mesures/t0b3a-arbitrage-brachy/outils/simuler-h.mjs
  *   → mesures/t0b3a-arbitrage-brachy/option-h-simulee.json
  *
- * ─── H, TEL QUE L'ARBITRAGE LE DÉFINIT ─────────────────────────────────────────────────────────
+ * ─── LES DEUX P0 DE LA v1, ET CE QUI LES CORRIGE ──────────────────────────────────────────────
  *
- *   · le `deny` global IATA est retiré ; l'information IATA reste un AVERTISSEMENT de sécurité ;
- *   · une confirmation PROPRE À LA RACE apparaît, avec une cause structurée
- *     `breed_policy_unreviewed` ;
- *   · pour un brachycéphale : `denied` si le canal est structurellement fermé, sinon
- *     `confirmation_required` tant que la politique brachycéphale de la compagnie n'est pas auditée ;
- *   · un chien non brachycéphale n'est touché en RIEN ;
- *   · les 41 règles compagnie passent de refus à confirmation, à résorber une par une par audit.
+ * P0-1 · LA v1 EFFAÇAIT LES CAUSES EXISTANTES. Elle remplaçait une décision `confirmation_required`
+ *   par un objet neuf ne portant que `breed_policy_unreviewed`. Mesuré : 452 causes supprimées sur
+ *   la seule grille publique des carlins — 440 `legacy_unreviewed`, 8 `policy_unpublished`,
+ *   4 `estimated_climate`. Sa « garantie climatique » passait donc pour une mauvaise raison : les
+ *   quatre causes climatiques disparaissaient AVANT que le contrôle puisse les voir. Un test qui
+ *   supprime son propre objet ne prouve rien.
+ *   → v2 : les causes sont FUSIONNÉES, dédupliquées par `causeKey` (la fonction du moteur, pas une
+ *     réimplémentation) et triées. Le dossier prouve ensuite que l'ensemble initial est un
+ *     SOUS-ENSEMBLE EXACT de l'ensemble final, partout où le statut reste une confirmation.
  *
- * ─── COMMENT ON MESURE SANS IMPLÉMENTER ────────────────────────────────────────────────────────
+ * P0-2 · LA v1 LAISSAIT LES AUTO-CITATIONS NOTER LA COMPATIBILITÉ. Elle gardait les 41 règles en
+ *   « warn » : invisibles comme sources, mais leur `confidence` continuait d'alimenter le score via
+ *   `fired`. C'est exactement ce que T0-B3 a nommé — une auto-citation devenue preuve invisible.
+ *   → v2 : les 42 règles sortent du calcul. L'état « politique brachycéphale non revérifiée » est
+ *     porté par la POLITIQUE compagnie/canal, pas par une règle auto-citée. L'avertissement IATA est
+ *     conservé À PART, avec l'URL vivante et la formulation « not recommended » — il ne prouve la
+ *     politique d'aucune compagnie et ne note la fiabilité d'aucune fiche.
  *
- * Le pipeline est `explain(evaluate(kb, req))`. H ne change QUE la couche décision. On peut donc :
- *   1. appeler `evaluate` sur une base où les 42 règles ne refusent plus (action « warn ») — elles
- *      restent chargées, donc leur confiance continue d'alimenter le score, exactement comme H le
- *      prévoit pour l'avertissement IATA ;
- *   2. appliquer À LA MAIN la table de décision de H sur les placements, et seulement pour un chien
- *      brachycéphale ;
- *   3. passer la décision ainsi modifiée au VRAI `explain`.
+ * ─── PORTÉE ──────────────────────────────────────────────────────────────────────────────────
  *
- * Verdict, score, cartes et libellés sont donc calculés par le moteur d'explication réel, pas
- * estimés. Ce qui est modélisé à la main, c'est précisément ce que H changerait dans `evaluate` —
- * ni plus, ni moins. Aucun fichier de `packages/` n'est écrit.
+ * H s'applique aux 102 COMPAGNIES, pas aux 41 qui portaient une ancienne règle. Les 41 n'étaient
+ * qu'un sous-ensemble arbitraire de notre documentation ; l'incertitude sur la politique
+ * brachycéphale est générale.
  *
- * LIMITE ASSUMÉE : la cause `breed_policy_unreviewed` n'existe pas encore dans le contrat. Là où le
- * moteur reconstruit une décision (dégradation par `entry_allowed`), sa validation Zod la refuse.
- * Ces cas sont COMPTÉS et rapportés plutôt que contournés : ils chiffrent exactement le travail de
- * contrat que H demandera.
+ * ─── COMMENT ON MESURE SANS IMPLÉMENTER ──────────────────────────────────────────────────────
+ *
+ * Le pipeline est `explain(evaluate(kb, req))`. H ne change que la couche décision : on évalue sur
+ * une base SANS les 42, on applique la table de décision de H aux placements d'un chien
+ * brachycéphale, puis on passe la décision au VRAI `explain`. Verdict, score, cartes et libellés
+ * sont calculés par le moteur réel. Aucun fichier de `packages/` n'est écrit.
  */
 import { createHash } from "node:crypto";
 import { readFileSync } from "node:fs";
@@ -40,7 +44,7 @@ import { rawKB } from "../../../packages/knowledge/src/data.ts";
 import { evaluate } from "../../../packages/engine/src/evaluate.ts";
 import { explain } from "../../../packages/engine/src/explain.ts";
 import { runFinder } from "../../../packages/engine/src/pipeline.ts";
-import { FinderRequest, makePlacementDecision } from "../../../packages/engine/src/contracts.ts";
+import { FinderRequest, makePlacementDecision, causeKey } from "../../../packages/engine/src/contracts.ts";
 import { preuveAuditee } from "../../../packages/knowledge/src/preuve.ts";
 import { chargerReferentiel, estAutoCitee, ecrireJson } from "./lib-arbitrage.mjs";
 
@@ -48,6 +52,7 @@ const DOSSIER = "mesures/t0b3a-arbitrage-brachy";
 const GLOBALE = "rule_global_brachy_hold";
 const CAUSE_H = "breed_policy_unreviewed";
 const AUTO = /(^|\.)mydogcanfly\.com$/i;
+const URL_IATA_MORTE = "https://www.iata.org/en/youandiata/travelers/pets/";
 
 const { sceau, regles } = chargerReferentiel();
 const sha256Fichier = (p) => createHash("sha256").update(readFileSync(p)).digest("hex");
@@ -55,51 +60,86 @@ const sha256Fichier = (p) => createHash("sha256").update(readFileSync(p)).digest
 const brachyCompagnie = regles.filter((r) => r.category === "breed_ban" && estAutoCitee(r));
 const IDS_42 = [...brachyCompagnie.map((r) => r.id), GLOBALE];
 
-/* La base de H : les 42 restent CHARGÉES mais ne refusent plus. « warn » est ici un support de
-   simulation, pas la forme finale — H demande une action propre. Ce qui compte pour la mesure,
-   c'est que les règles restent dans `fired` : leur confiance pèse sur le score, et H veut
-   précisément conserver l'avertissement IATA. */
 const kbA = normalize(rawKB);
-const kbH = normalize({ ...rawKB,
-  rules: rawKB.rules.map((r) => IDS_42.includes(r.id) ? { ...r, effect: { ...r.effect, action: "warn" } } : r) });
+/* Les 42 sortent DU CALCUL, pas seulement de l'affichage : leur confiance ne doit plus noter
+   quoi que ce soit. C'est le sens du P0-2. */
+const kbH = normalize({ ...rawKB, rules: rawKB.rules.filter((r) => !IDS_42.includes(r.id)) });
+
+/** L'avertissement IATA, conservé À PART du calcul. Il n'est ni une règle, ni une source de
+ *  politique : il n'entre ni dans `fired`, ni dans `sources`, ni dans la confiance. */
+const AVERTISSEMENT_IATA = {
+  nature: "avertissement de sécurité, jamais une interdiction ni une preuve de politique",
+  url: "https://www.iata.org/en/programs/cargo/live-animals/pets/",
+  citation: "Transport of snub nose dogs, such as boxers, pugs, bulldogs and Pekinese, " +
+    "in hot season is not recommended.",
+  ne_fait_pas: [
+    "il ne prouve la politique d'aucune compagnie",
+    "il ne note la fiabilité d'aucune fiche — il n'entre pas dans le calcul de confiance",
+    "il n'introduit ni période ni seuil de température : « hot season » n'en définit aucun",
+  ],
+};
 
 const brachyParRace = new Map((rawKB.breeds ?? []).map((b) => [b.id, b.brachycephalic === true]));
 const estBrachy = (req) => req.dog.brachycephalic === true || brachyParRace.get(req.dog.breed_id) === true;
 
-/** LA TABLE DE DÉCISION DE H, écrite une fois, appliquée partout. */
-function statutH(airlineId, placement, statutBase) {
+/** L'état porté par la POLITIQUE compagnie/canal — pas par une règle auto-citée.
+ *  Dans l'implémentation, ce serait un champ de `PlacementPolicy`. Ici on le DÉRIVE des mêmes
+ *  données, pour que la simulation ne préjuge pas d'une écriture du référentiel. */
+function etatBrachyDuCanal(airlineId, placement) {
   const pol = kbA.airlines.get(airlineId)?.premium?.policy?.[placement] ?? null;
-  /* 1. Canal structurellement fermé : H n'ouvre rien. Une compagnie qui ne propose pas de soute
-        n'a pas une soute « à confirmer », elle n'en a pas. */
-  if (statutBase === "denied") return { statut: "denied", motif: "canal structurellement fermé" };
-  /* 2. Interdiction PROUVÉE : une preuve auditée qui dit `brachy_allowed = false` reste un refus. */
   const preuve = preuveAuditee(pol);
-  if (preuve && pol?.brachy_allowed === false) return { statut: "denied", motif: "interdiction auditée" };
-  /* 3. Autorisation PROUVÉE : on n'ajoute pas de doute là où une source auditée tranche. */
-  if (preuve && pol?.brachy_allowed === true) return { statut: statutBase, motif: "autorisation auditée" };
-  /* 4. Tout le reste : notre politique brachycéphale n'est pas auditée — c'est NOTRE incertitude,
-        et elle se dit « à confirmer », jamais « interdit ». */
-  return { statut: "confirmation_required", motif: "politique brachycéphale non auditée" };
+  if (preuve && pol?.brachy_allowed === false) return { etat: "interdit_audite", pol };
+  if (preuve && pol?.brachy_allowed === true) return { etat: "autorise_audite", pol };
+  return { etat: "non_revu", pol };
 }
 
-const compteurs = { causes_refusees_par_zod: 0, placements_reecrits: 0 };
+/** LA TABLE DE DÉCISION DE H — quatre branches, écrites une fois. */
+function brancheH(airlineId, placement, statutBase) {
+  if (statutBase === "denied") return { branche: 1, statut: "denied", motif: "canal structurellement fermé" };
+  const { etat } = etatBrachyDuCanal(airlineId, placement);
+  if (etat === "interdit_audite") return { branche: 2, statut: "denied", motif: "interdiction auditée" };
+  if (etat === "autorise_audite") return { branche: 3, statut: statutBase, motif: "autorisation auditée" };
+  return { branche: 4, statut: "confirmation_required", motif: "politique brachycéphale non revérifiée" };
+}
 
-/** Applique H à une décision, en place sur une copie. Ne touche RIEN si le chien n'est pas
- *  brachycéphale : c'est la garantie n° 1, obtenue par construction et vérifiée ensuite. */
-function appliquerH(decision) {
+const branchesExercees = { 1: 0, 2: 0, 3: 0, 4: 0 };
+
+/** Fusion dédupliquée et STABLE, avec la clé canonique du moteur. */
+const fusionner = (existantes, ajout) => {
+  const m = new Map();
+  for (const c of [...(existantes ?? []), ...ajout]) m.set(causeKey(c), c);
+  return [...m.values()].sort((a, b) => causeKey(a).localeCompare(causeKey(b)));
+};
+
+const journal = { avant: [], apres: [], sous_ensemble_viole: [], dominance_violee: [] };
+
+function appliquerH(decision, tracer = false) {
   if (!estBrachy(decision.request)) return decision;
   const airlines = decision.airlines.map((a) => {
     const placements = a.placements.map((d) => {
       if (d.placement === "cabin") return d; // les 42 règles n'ont jamais visé la cabine
-      const { statut, motif } = statutH(a.airline_id, d.placement, d.status);
-      if (statut === d.status && statut !== "confirmation_required") return d;
-      compteurs.placements_reecrits++;
-      if (statut === "denied") return { placement: d.placement, status: "denied", allowed: false, ...(d.source ? { source: d.source } : {}) };
-      if (statut === "allowed") return { placement: d.placement, status: "allowed", allowed: true, ...(d.source ? { source: d.source } : {}) };
+      const { branche, statut, motif } = brancheH(a.airline_id, d.placement, d.status);
+      branchesExercees[branche]++;
+      const causesAvant = d.status === "confirmation_required" ? (d.confirmation_causes ?? []) : [];
+      const ref = `${a.airline_id}#${d.placement}`;
+
+      /* DOMINANCE : un refus dur éteint toutes les causes — la règle du moteur, respectée ici. */
+      if (statut === "denied") {
+        if (tracer && causesAvant.length) journal.dominance_violee.push({ ref, eteintes: causesAvant.map(causeKey) });
+        return { placement: d.placement, status: "denied", allowed: false, ...(d.source ? { source: d.source } : {}) };
+      }
+      if (statut === "allowed") return d; // branche 3 sur un canal ouvert : rien à ajouter
+
+      const causesApres = branche === 4
+        ? fusionner(causesAvant, [{ code: CAUSE_H, policy_ref: ref }])
+        : fusionner(causesAvant, []);
+      if (tracer) {
+        journal.avant.push(...causesAvant.map((c) => `${ref}|${causeKey(c)}`));
+        journal.apres.push(...causesApres.map((c) => `${ref}|${causeKey(c)}`));
+      }
       return {
         placement: d.placement, status: "confirmation_required", allowed: false,
-        confirmation_causes: [{ code: CAUSE_H, policy_ref: `${a.airline_id}#${d.placement}`, motif }],
-        ...(d.source ? { source: d.source } : {}),
+        confirmation_causes: causesApres, ...(d.source ? { source: d.source } : {}),
       };
     });
     return { ...a, placements };
@@ -107,18 +147,18 @@ function appliquerH(decision) {
   return { ...decision, airlines };
 }
 
-function rapportH(req) {
-  const dec = appliquerH(evaluate(kbH, req));
+const compteurs = { rapports_refuses: 0 };
+function rapportH(req, tracer = false) {
+  const dec = appliquerH(evaluate(kbH, req), tracer);
   try {
     return explain(dec, req.locale);
-  } catch (e) {
-    /* Le contrat refuse la cause inconnue là où il reconstruit une décision. On le COMPTE. */
-    compteurs.causes_refusees_par_zod++;
+  } catch {
+    compteurs.rapports_refuses++;
     return null;
   }
 }
 
-/* ---- Les trois grilles, identiques à celles de l'arbitrage ------------------------------------ */
+/* ---- Les grilles ------------------------------------------------------------------------------- */
 const ROUTES = [
   ["airport_cdg", "airport_bkk"], ["airport_cdg", "airport_jfk"], ["airport_cdg", "airport_dxb"],
   ["airport_lhr", "airport_mia"], ["airport_fra", "airport_sin"], ["airport_mad", "airport_mex"],
@@ -152,36 +192,40 @@ const PL = ["cabin_status", "hold_status", "cargo_status"];
 const carte = (r, id) => (r?.airlines ?? []).find((x) => x.airline_id === id) ?? null;
 const trip = (a) => (a ? PL.map((p) => a[p]).join("/") : "absente");
 
-/* ---- Les cinq garanties exigées avant tout code ------------------------------------------------ */
-const garanties = {
-  g1_aucun_chien_non_brachycephale_touche: { compagnies: 0, placements: 0, exemples: [], scenarios_publics: 0 },
+/* ---- Garanties ---------------------------------------------------------------------------------- */
+const g = {
+  g1_aucun_chien_non_brachycephale_touche: { compagnies: 0, placements: 0, scenarios_publics: 0, exemples: [] },
   g2_aucun_canal_non_propose_rouvert: { violations: 0, exemples: [] },
-  g3_aucune_confirmation_devenue_message_climatique: { violations: 0, exemples: [] },
+  g3_aucune_confirmation_devenue_message_climatique: { violations: 0, climat_observes: 0, exemples: [] },
   g4_aucune_auto_citation_presentee_comme_preuve: { violations: 0, exemples: [] },
-  g5_toutes_les_confirmations_de_race_portent_la_cause_dediee: { conformes: 0, violations: 0, exemples: [] },
+  g5_causes_preexistantes_conservees: { avant: 0, apres: 0, perdues: 0, exemples: [] },
+  g6_dominance_respectee: { refus_avec_causes_restantes: 0 },
+  g7_les_42_hors_du_calcul: { occurrences: 0, exemples: [] },
+  g7bis_dette_auto_citee_residuelle_hors_perimetre: { occurrences: 0, regles_distinctes: [], exemples: [] },
 };
 
-/* G1 — le témoin golden, comparé au STATU QUO (A), pas à une variante intermédiaire. */
 for (const s of grilleTemoin) {
   const av = carte(runFinder(kbA, s.req), s.airline_id);
   const ap = carte(rapportH(s.req), s.airline_id);
   const n = PL.filter((p) => (av?.[p] ?? null) !== (ap?.[p] ?? null)).length;
-  if (n > 0) {
-    garanties.g1_aucun_chien_non_brachycephale_touche.compagnies++;
-    garanties.g1_aucun_chien_non_brachycephale_touche.placements += n;
-    if (garanties.g1_aucun_chien_non_brachycephale_touche.exemples.length < 4)
-      garanties.g1_aucun_chien_non_brachycephale_touche.exemples.push(`${s.airline_id} ${trip(av)} → ${trip(ap)}`);
+  if (n) {
+    g.g1_aucun_chien_non_brachycephale_touche.compagnies++;
+    g.g1_aucun_chien_non_brachycephale_touche.placements += n;
+    if (g.g1_aucun_chien_non_brachycephale_touche.exemples.length < 4)
+      g.g1_aucun_chien_non_brachycephale_touche.exemples.push(`${s.airline_id} ${trip(av)} → ${trip(ap)}`);
   }
 }
 
-/* ---- Le diff exhaustif contre A ---------------------------------------------------------------- */
 const compact = (r) => ({ verdict: r.verdict, score: r.score,
   airlines: (r.airlines ?? []).map((a) => `${a.airline_id}|${trip(a)}`) });
 
 const diffPublic = { scenarios: publique.length, verdicts: 0, cartes: 0, placements: 0,
-  score_seul: 0, ecart_score: [0, 0], echecs: 0, par_chien: { golden: 0, pug: 0 } };
+  ecart_score: [0, 0], echecs: 0, golden_affectes: 0 };
+const causesFinales = {};
+const coexistence = { par_combinaison: {}, exemples: [] };
+
 for (const s of publique) {
-  const rA = runFinder(kbA, s.req), rH = rapportH(s.req);
+  const rA = runFinder(kbA, s.req), rH = rapportH(s.req, s.chien === "pug");
   if (!rH) { diffPublic.echecs++; continue; }
   const cA = compact(rA), cH = compact(rH);
   const mA = new Map((rA.airlines ?? []).map((a) => [a.airline_id, a]));
@@ -194,41 +238,102 @@ for (const s of publique) {
   }
   diffPublic.cartes += cartes; diffPublic.placements += places;
   if (cA.verdict !== cH.verdict) diffPublic.verdicts++;
-  else if (cartes === 0 && cA.score !== cH.score) diffPublic.score_seul++;
   const e = cH.score - cA.score;
   diffPublic.ecart_score = [Math.min(diffPublic.ecart_score[0], e), Math.max(diffPublic.ecart_score[1], e)];
-  if (cartes > 0 || cA.score !== cH.score) diffPublic.par_chien[s.chien]++;
+  if (s.chien === "golden" && (cartes > 0 || cA.score !== cH.score)) diffPublic.golden_affectes++;
 
-  /* G3 — une confirmation de race ne doit JAMAIS allumer le message climatique. */
   for (const a of rH.airlines ?? []) {
-    if (a.heat_confirmation_required) {
-      const causesRace = (a.placement_decisions ?? []).some((d) =>
-        (d.confirmation_causes ?? []).some((c) => c.code === CAUSE_H));
-      const causesClimat = (a.placement_decisions ?? []).some((d) =>
-        (d.confirmation_causes ?? []).some((c) => c.code === "estimated_climate"));
-      if (causesRace && !causesClimat) {
-        garanties.g3_aucune_confirmation_devenue_message_climatique.violations++;
-        if (garanties.g3_aucune_confirmation_devenue_message_climatique.exemples.length < 4)
-          garanties.g3_aucune_confirmation_devenue_message_climatique.exemples.push(`${s.cle} · ${a.airline_id}`);
+    /* G3 — le message climatique ne doit jamais s'allumer sur une cause de RACE seule. Le contrôle
+       ne vaut que parce que les causes climatiques SURVIVENT désormais à la fusion : on compte
+       aussi combien on en a réellement observées, pour qu'un « 0 violation » sur 0 observation
+       saute aux yeux. */
+    for (const d of a.placement_decisions ?? []) {
+      const codes = (d.confirmation_causes ?? []).map((c) => c.code);
+      if (!codes.length) continue;
+      for (const c of codes) causesFinales[c] = (causesFinales[c] ?? 0) + 1;
+      if (codes.includes("estimated_climate")) g.g3_aucune_confirmation_devenue_message_climatique.climat_observes++;
+      if (codes.length > 1) {
+        const k = [...new Set(codes)].sort().join(" + ");
+        coexistence.par_combinaison[k] = (coexistence.par_combinaison[k] ?? 0) + 1;
+        if (coexistence.exemples.length < 6 && codes.includes(CAUSE_H))
+          coexistence.exemples.push(`${s.cle} · ${a.airline_id}#${d.placement} : ${k}`);
       }
     }
+    if (a.heat_confirmation_required) {
+      const race = (a.placement_decisions ?? []).some((d) => (d.confirmation_causes ?? []).some((c) => c.code === CAUSE_H));
+      const climat = (a.placement_decisions ?? []).some((d) => (d.confirmation_causes ?? []).some((c) => c.code === "estimated_climate"));
+      if (race && !climat) {
+        g.g3_aucune_confirmation_devenue_message_climatique.violations++;
+        if (g.g3_aucune_confirmation_devenue_message_climatique.exemples.length < 4)
+          g.g3_aucune_confirmation_devenue_message_climatique.exemples.push(`${s.cle} · ${a.airline_id}`);
+      }
+    }
+    /* G7 — aucune règle auto-citée ne doit plus entrer dans le calcul. `fired` est retiré du
+       rapport public : on l'observe donc sur la décision, plus bas. */
   }
-  /* G4 — aucune auto-citation présentée comme preuve, ni en carte ni en rapport. */
   const urls = [...(rH.sources ?? []).map((x) => x.url),
     ...(rH.airlines ?? []).flatMap((a) => (a.placement_decisions ?? []).map((d) => d.source?.url).filter(Boolean))];
   for (const u of urls) {
     let h = ""; try { h = new URL(u).hostname; } catch { /* ignore */ }
-    if (AUTO.test(h)) {
-      garanties.g4_aucune_auto_citation_presentee_comme_preuve.violations++;
-      if (garanties.g4_aucune_auto_citation_presentee_comme_preuve.exemples.length < 4)
-        garanties.g4_aucune_auto_citation_presentee_comme_preuve.exemples.push(`${s.cle} · ${u}`);
+    if (AUTO.test(h) || u === URL_IATA_MORTE) {
+      g.g4_aucune_auto_citation_presentee_comme_preuve.violations++;
+      if (g.g4_aucune_auto_citation_presentee_comme_preuve.exemples.length < 4)
+        g.g4_aucune_auto_citation_presentee_comme_preuve.exemples.push(`${s.cle} · ${u}`);
     }
   }
 }
-garanties.g1_aucun_chien_non_brachycephale_touche.scenarios_publics = diffPublic.par_chien.golden;
 
-/* ---- La grille brachycéphale : où vont les placements, et sous quelle cause -------------------- */
-const brachy = { compagnies: 0, placements: 0, par_statut_cible: {}, transitions: {}, exemples: [] };
+/* G5 — l'ensemble initial est-il un SOUS-ENSEMBLE EXACT de l'ensemble final ? */
+{
+  const apres = new Set(journal.apres);
+  const perdues = journal.avant.filter((x) => !apres.has(x));
+  g.g5_causes_preexistantes_conservees = {
+    avant: journal.avant.length, apres: journal.apres.length, perdues: perdues.length,
+    exemples: perdues.slice(0, 5),
+    lecture: perdues.length === 0
+      ? "toute cause préexistante se retrouve dans l'ensemble final — inclusion stricte vérifiée"
+      : "DES CAUSES ONT DISPARU — la fusion est fautive",
+  };
+  g.g6_dominance_respectee = {
+    refus_avec_causes_restantes: 0,
+    causes_eteintes_par_un_refus_dur: journal.dominance_violee.length,
+    lecture: "un refus dur éteint toutes les causes : c'est la règle du moteur, appliquée ici. " +
+      "Le compteur dit combien de fois elle a joué, pas combien de fois elle a été violée.",
+  };
+}
+
+/* G7 — les 42 règles ne doivent plus apparaître dans `fired` d'AUCUNE décision. */
+const reglesResiduelles = new Set();
+for (const s of publique) {
+  for (const a of evaluate(kbH, s.req).airlines) {
+    for (const f of a.fired ?? []) {
+      const hote = (() => { try { return new URL(f.source_url).hostname; } catch { return ""; } })();
+      if (IDS_42.includes(f.rule_id)) {
+        /* PÉRIMÈTRE DE H : aucune des 42 ne doit plus peser sur quoi que ce soit. */
+        g.g7_les_42_hors_du_calcul.occurrences++;
+        if (g.g7_les_42_hors_du_calcul.exemples.length < 4)
+          g.g7_les_42_hors_du_calcul.exemples.push(`${s.cle} · ${a.airline_id} · ${f.rule_id}`);
+      } else if (AUTO.test(hote)) {
+        /* HORS PÉRIMÈTRE : les 130 AUTRES règles auto-citées de T0-B3 (poids de cabine, de soute,
+           placement…) continuent d'alimenter la confiance. H ne les traite pas, et le taire ferait
+           lire « 0 auto-citation dans le calcul » comme un état atteint alors qu'il ne l'est pas. */
+        g.g7bis_dette_auto_citee_residuelle_hors_perimetre.occurrences++;
+        reglesResiduelles.add(f.rule_id);
+        if (g.g7bis_dette_auto_citee_residuelle_hors_perimetre.exemples.length < 4)
+          g.g7bis_dette_auto_citee_residuelle_hors_perimetre.exemples.push(`${a.airline_id} · ${f.rule_id}`);
+      }
+    }
+  }
+}
+g.g7bis_dette_auto_citee_residuelle_hors_perimetre.regles_distinctes = [...reglesResiduelles].sort();
+g.g7bis_dette_auto_citee_residuelle_hors_perimetre.lecture =
+  "Ces règles ne relèvent PAS de H : ce sont les autres auto-citations mesurées en T0-B3 " +
+  "(cabin_weight, hold_weight, placement, import_rules). Elles restent dans le calcul de confiance " +
+  "après H, et leur résorption est le lot suivant. Les compter à part évite de lire la garantie de " +
+  "H comme une propreté générale qui n'est pas atteinte.";
+
+/* ---- Grille brachycéphale ----------------------------------------------------------------------- */
+const brachy = { compagnies: 0, placements: 0, par_statut_cible: {}, exemples: [] };
 for (const s of grilleBrachy) {
   const rA = runFinder(kbA, s.req), rH = rapportH(s.req);
   if (!rH) continue;
@@ -239,161 +344,175 @@ for (const s of grilleBrachy) {
     for (const p of bouges) {
       const cible = ap?.[p] ?? "absente";
       brachy.par_statut_cible[cible] = (brachy.par_statut_cible[cible] ?? 0) + 1;
-      const t = `${p.replace("_status", "")} ${av?.[p]} → ${cible}`;
-      brachy.transitions[t] = (brachy.transitions[t] ?? 0) + 1;
     }
     if (brachy.exemples.length < 4) brachy.exemples.push(`${s.airline_id} ${trip(av)} → ${trip(ap)}`);
   }
-  /* G2 — un canal que la compagnie ne propose pas ne doit jamais finir ouvert. */
   for (const p of ["hold", "cargo"]) {
     const pol = kbA.airlines.get(s.airline_id)?.premium?.policy?.[p];
-    const statutFinal = ap?.[`${p}_status`];
+    const fin = ap?.[`${p}_status`];
     const proposé = pol?.status === "allowed" || pol?.status === "confirmation_required";
-    if (!proposé && statutFinal && statutFinal !== "denied") {
-      garanties.g2_aucun_canal_non_propose_rouvert.violations++;
-      if (garanties.g2_aucun_canal_non_propose_rouvert.exemples.length < 4)
-        garanties.g2_aucun_canal_non_propose_rouvert.exemples.push(
-          `${s.airline_id}#${p} politique=${pol?.status ?? "absente"} → ${statutFinal}`);
-    }
-  }
-  /* G5 — toute confirmation NOUVELLE porte bien la cause dédiée. */
-  for (const d of ap?.placement_decisions ?? []) {
-    if (d.status !== "confirmation_required" || d.placement === "cabin") continue;
-    const avantStatut = (rA.airlines ?? []).find((x) => x.airline_id === s.airline_id)
-      ?.placement_decisions?.find((x) => x.placement === d.placement)?.status;
-    if (avantStatut === "confirmation_required") continue; // confirmation préexistante, pas de H
-    const ok = (d.confirmation_causes ?? []).some((c) => c.code === CAUSE_H);
-    if (ok) garanties.g5_toutes_les_confirmations_de_race_portent_la_cause_dediee.conformes++;
-    else {
-      garanties.g5_toutes_les_confirmations_de_race_portent_la_cause_dediee.violations++;
-      if (garanties.g5_toutes_les_confirmations_de_race_portent_la_cause_dediee.exemples.length < 4)
-        garanties.g5_toutes_les_confirmations_de_race_portent_la_cause_dediee.exemples.push(
-          `${s.airline_id}#${d.placement} causes=${JSON.stringify(d.confirmation_causes ?? [])}`);
+    if (!proposé && fin && fin !== "denied") {
+      g.g2_aucun_canal_non_propose_rouvert.violations++;
+      if (g.g2_aucun_canal_non_propose_rouvert.exemples.length < 4)
+        g.g2_aucun_canal_non_propose_rouvert.exemples.push(`${s.airline_id}#${p} politique=${pol?.status ?? "absente"} → ${fin}`);
     }
   }
 }
 
-/* ---- SONDE DE CONTRAT : ce que ferait une VRAIE implémentation ---------------------------------
-   Ma simulation construit l'objet de décision LITTÉRALEMENT. Une implémentation réelle, elle,
-   passerait par `makePlacementDecision`, qui valide contre l'union stricte `ConfirmationCause`.
-   Ne pas poser cette question aurait laissé lire « 0 refus » comme « rien à faire au contrat » —
-   alors que ma simulation contourne simplement le point de contrôle. */
-const sondeContrat = (() => {
-  try {
-    makePlacementDecision("hold", "confirmation_required",
-      [{ code: CAUSE_H, policy_ref: "airline_aegean#hold" }], undefined);
-    return { cause_acceptee_par_le_contrat: true,
-      lecture: "INATTENDU : la cause passe déjà la validation — vérifier l'union ConfirmationCause" };
-  } catch (e) {
-    return { cause_acceptee_par_le_contrat: false,
-      erreur: String(e).split("\n")[0].slice(0, 160),
-      lecture: "attendu : `ConfirmationCause` est une union STRICTE et ne connaît pas cette cause. " +
-        "Toute implémentation de H doit d'abord l'y ajouter, avec son libellé dans les quatre " +
-        "langues. La simulation contourne ce point de contrôle en construisant l'objet à la main ; " +
-        "elle ne prouve donc RIEN sur le contrat, et c'est cette sonde qui le dit." };
-  }
+/* ---- FIXTURES : les quatre branches, dont deux qu'AUCUNE donnée réelle n'exerce ------------------
+   Le référentiel contient zéro interdiction et zéro autorisation brachycéphale auditées. Les
+   branches 2 et 3 de la table ne sont donc jamais empruntées par les grilles ci-dessus : les
+   déclarer « vérifiées » serait une illusion. On fabrique donc quatre compagnies de test, une par
+   branche, dans une base SYNTHÉTIQUE — jamais écrite sur le disque. */
+const SOURCE_AUDITEE = {
+  url: "https://exemple-compagnie-test.example/pets", source_type: "official_website",
+  verified_date: "2026-08-01", review_due: "2026-10-30", confidence: 4, reviewer: "fixture", history: [],
+};
+/* `PlacementPolicyCommon.source` est OBLIGATOIRE : une politique sans source ne se normalise pas.
+   La branche « non revue » a donc besoin d'une source qui NE passe PAS `preuveAuditee` — une
+   auto-citation fait exactement cela, et c'est aussi l'état réel de nos 41 compagnies. */
+const SOURCE_AUTO_CITEE = {
+  url: "https://mydogcanfly.com/fixture-dog-policy/", source_type: "other",
+  verified_date: "2026-08-01", review_due: "2026-10-30", confidence: 3, reviewer: "fixture", history: [],
+};
+const modele = rawKB.airlines.find((a) => a.premium?.policy?.hold);
+const fixtureAirline = (id, hold) => ({
+  ...modele, id, iata: id.slice(-2).toUpperCase(), name: id,
+  direct_routes: ["airport_cdg|airport_jfk"], served_airport_ids: ["airport_cdg", "airport_jfk"],
+  hub_airport_ids: ["airport_cdg"],
+  premium: { ...modele.premium, policy: {
+    cabin: { availability: "not_offered", source: SOURCE_AUTO_CITEE },
+    hold,
+    cargo: { availability: "not_offered", source: SOURCE_AUTO_CITEE } } },
+});
+const FIXTURES = [
+  { branche: 1, id: "airline_fx_ferme", hold: { availability: "not_offered", source: SOURCE_AUTO_CITEE }, attendu: "denied" },
+  { branche: 2, id: "airline_fx_interdit", hold: { availability: "offered", brachy_allowed: false, source: SOURCE_AUDITEE }, attendu: "denied" },
+  { branche: 3, id: "airline_fx_autorise", hold: { availability: "offered", brachy_allowed: true, source: SOURCE_AUDITEE }, attendu: "allowed" },
+  { branche: 4, id: "airline_fx_non_revu", hold: { availability: "offered", source: SOURCE_AUTO_CITEE }, attendu: "confirmation_required" },
+];
+const fixtures = (() => {
+  const airlines = [...rawKB.airlines, ...FIXTURES.map((f) => fixtureAirline(f.id, f.hold))];
+  const brut = { ...rawKB, airlines, rules: rawKB.rules.filter((r) => !IDS_42.includes(r.id)) };
+  let kbFx;
+  try { kbFx = normalize(brut); } catch (e) { return { erreur: String(e).slice(0, 200) }; }
+  const req = FinderRequest.parse({ origin: "airport_cdg", destination: "airport_jfk",
+    dog: { breed_id: "breed_pug", weight_kg: 8, brachycephalic: true }, placement: "hold",
+    date: `${_y}-01-15`, locale: "en" });
+  const polDe = (id, p) => kbFx.airlines.get(id)?.premium?.policy?.[p] ?? null;
+  const brancheFx = (id, statutBase) => {
+    if (statutBase === "denied") return { branche: 1, statut: "denied" };
+    const pol = polDe(id, "hold"), preuve = preuveAuditee(pol);
+    if (preuve && pol?.brachy_allowed === false) return { branche: 2, statut: "denied" };
+    if (preuve && pol?.brachy_allowed === true) return { branche: 3, statut: statutBase };
+    return { branche: 4, statut: "confirmation_required" };
+  };
+  const dec = evaluate(kbFx, req);
+  return FIXTURES.map((f) => {
+    const a = dec.airlines.find((x) => x.airline_id === f.id);
+    const base = a?.placements.find((p) => p.placement === "hold")?.status ?? "absente";
+    const r = a ? brancheFx(f.id, base) : { branche: null, statut: "absente" };
+    return { branche: f.branche, compagnie: f.id, statut_base: base, statut_H: r.statut,
+      attendu: f.attendu, conforme: r.statut === f.attendu, branche_empruntee: r.branche };
+  });
 })();
 
-/* ---- SONDE DE DÉGRADATION : le chemin où l'entrée est refusée -----------------------------------
-   « 0 rapport refusé » ne prouve rien si le chemin de dégradation n'a jamais été emprunté. Il ne
-   l'est que lorsque le PAYS refuse l'entrée : `explain` reconstruit alors chaque décision, et sa
-   validation rencontre la cause inconnue. Il faut donc un chien à la fois BRACHYCÉPHALE et de type
-   réglementé — le référentiel en contient exactement un couple : le dogue canarien vers l'Australie.
-   Sans cette sonde, la simulation aurait affiché « aucun problème de contrat » en n'ayant jamais
-   posé la question. */
-const sondeDegradation = (() => {
-  const req = FinderRequest.parse({ origin: "airport_jfk", destination: "airport_syd",
-    dog: { breed_id: "breed_presa_canario_dogo_canario", weight_kg: 8 },
-    placement: "hold", date: `${_y}-01-15`, locale: "en" });
-  const dec = evaluate(kbH, req);
-  const entree = dec.destination.entry_allowed;
-  const avantEchecs = compteurs.causes_refusees_par_zod;
-  const rapport = rapportH(req);
+/* ---- SONDE DE COEXISTENCE : climat + politique générale + politique brachycéphale --------------- */
+const sondeCoexistence = (() => {
+  /* On cherche, dans la grille publique des carlins, un placement portant À LA FOIS une cause
+     climatique, une cause de politique générale et la cause de race. S'il n'en existe aucun
+     naturellement, on le DIT plutôt que de conclure au succès. */
+  const trouves = Object.entries(coexistence.par_combinaison)
+    .filter(([k]) => k.includes(CAUSE_H) && k.includes("estimated_climate"));
+  const avecPolitique = Object.entries(coexistence.par_combinaison)
+    .filter(([k]) => k.includes(CAUSE_H) && (k.includes("legacy_unreviewed") || k.includes("policy_unpublished")));
   return {
-    cas: "chien brachycéphale ET de type réglementé — dogue canarien vers l'Australie",
-    entree_refusee_par_le_pays: entree === false,
-    chemin_de_degradation_emprunte: entree === false,
-    rapport_produit: rapport !== null,
-    refuse_par_la_validation: compteurs.causes_refusees_par_zod > avantEchecs,
-    lecture: entree !== false
-      ? "ATTENTION : ce cas n'a PAS refusé l'entrée — la sonde ne prouve rien, à revoir"
-      : rapport === null
-        ? "le contrat refuse la cause sur ce chemin"
-        : "le rapport passe — mais NON parce que la cause serait valide : `explain` ÉTEINT les " +
-          "causes quand il dégrade une confirmation en refus, si bien que la validation ne la voit " +
-          "jamais. Le besoin de contrat est établi par `sonde_de_contrat`, pas par ce chemin.",
+    combinaisons_observees: coexistence.par_combinaison,
+    race_plus_climat: trouves.length ? Object.fromEntries(trouves) : null,
+    race_plus_politique_generale: avecPolitique.length ? Object.fromEntries(avecPolitique) : null,
+    exemples: coexistence.exemples,
+    lecture: trouves.length
+      ? "la coexistence climat + race est OBSERVÉE : les deux causes cohabitent sur le même canal"
+      : "aucune coexistence climat + race sur cette grille — à ne PAS lire comme une garantie",
   };
+})();
+
+/* ---- Sonde de contrat ---------------------------------------------------------------------------- */
+const sondeContrat = (() => {
+  try {
+    makePlacementDecision("hold", "confirmation_required", [{ code: CAUSE_H, policy_ref: "airline_aegean#hold" }], undefined);
+    return { cause_acceptee: true, lecture: "INATTENDU — vérifier l'union ConfirmationCause" };
+  } catch (e) {
+    return { cause_acceptee: false, erreur: String(e).split("\n")[0].slice(0, 140),
+      lecture: "attendu : l'union est STRICTE. Toute implémentation de H doit d'abord y ajouter la " +
+        "cause, avec son libellé dans les quatre langues. La simulation construit ses objets à la " +
+        "main et CONTOURNE ce contrôle : elle ne prouve rien sur le contrat, cette sonde si." };
+  }
 })();
 
 const intact = sha256Fichier("packages/knowledge/raw/rules.json") === sceau.raw_rules_sha256 &&
   sha256Fichier("packages/knowledge/raw/objects.json") === sceau.raw_objects_sha256;
 
 const doc = {
-  lot: "T0-B3-a — simulation de l'option H",
+  lot: "T0-B3-a — simulation de l'option H (v2)",
   nature: "SIMULATION — aucun code moteur écrit, aucun fichier de packages/ modifié",
   sceau, referentiel_intact: intact,
-  definition_de_H: {
-    deny_global_iata: "retiré — l'information IATA reste un avertissement de sécurité",
-    confirmation_propre_a_la_race: `cause structurée « ${CAUSE_H} »`,
-    table_de_decision: [
-      "canal structurellement fermé → denied (H n'ouvre rien)",
-      "preuve auditée disant brachy_allowed = false → denied (interdiction prouvée)",
-      "preuve auditée disant brachy_allowed = true → statut inchangé (autorisation prouvée)",
-      "tout le reste → confirmation_required, cause « politique brachycéphale non auditée »",
-    ],
-    chien_non_brachycephale: "aucune modification, par construction — vérifié par la garantie 1",
-    les_41_regles: "conservées, chargées, ne refusent plus ; à résorber une par une par audit officiel",
+  portee: "H s'applique aux 102 COMPAGNIES, pas aux 41 qui portaient une ancienne règle : celles-ci " +
+    "n'étaient qu'un sous-ensemble arbitraire de notre documentation.",
+  corrections_de_la_v1: {
+    p0_1_causes_effacees: {
+      constat: "la v1 remplaçait la décision et supprimait 452 causes préexistantes sur la grille " +
+        "publique des carlins — 440 legacy_unreviewed, 8 policy_unpublished, 4 estimated_climate",
+      consequence: "sa garantie climatique passait pour une mauvaise raison : les causes " +
+        "climatiques disparaissaient avant que le contrôle puisse les voir",
+      correction: "fusion dédupliquée par `causeKey` (la fonction du moteur), ordre stable, et " +
+        "preuve d'inclusion de l'ensemble initial dans l'ensemble final",
+    },
+    p0_2_auto_citations_dans_le_score: {
+      constat: "la v1 gardait les 41 règles en « warn » : invisibles comme sources, mais leur " +
+        "confiance alimentait encore le score via `fired`",
+      correction: "les 42 sortent du CALCUL. L'état brachycéphale est porté par la politique " +
+        "compagnie/canal ; l'avertissement IATA est conservé à part et n'entre ni dans `fired`, " +
+        "ni dans `sources`, ni dans la confiance",
+    },
   },
-  methode:
-    "H ne change que la couche décision. On appelle donc `evaluate` sur une base où les 42 ne " +
-    "refusent plus mais restent chargées (leur confiance pèse toujours sur le score), on applique " +
-    "la table de décision de H aux placements d'un chien brachycéphale, puis on passe la décision " +
-    "au VRAI `explain`. Verdict, score, cartes et libellés sont calculés par le moteur réel.",
-  garanties,
-  diff_contre_le_statu_quo: {
-    grille_publique: diffPublic,
-    grille_brachycephale: brachy,
-  },
+  avertissement_iata: AVERTISSEMENT_IATA,
+  table_de_decision: [
+    "1 · canal structurellement fermé → denied (H n'ouvre rien)",
+    "2 · preuve auditée disant brachy_allowed = false → denied",
+    "3 · preuve auditée disant brachy_allowed = true → statut inchangé",
+    "4 · politique brachycéphale non revérifiée → confirmation_required, cause fusionnée",
+  ],
+  branches_exercees_par_les_donnees_reelles: branchesExercees,
+  fixtures_des_quatre_branches: fixtures,
+  garanties: g,
+  causes_finales_par_code: causesFinales,
+  sonde_de_coexistence: sondeCoexistence,
   sonde_de_contrat: sondeContrat,
-  sonde_de_degradation: sondeDegradation,
-  contrat_a_faire_evoluer: {
-    cause_manquante: CAUSE_H,
-    placements_reecrits_par_la_simulation: compteurs.placements_reecrits,
-    rapports_refuses_par_la_validation: compteurs.causes_refusees_par_zod,
-    lecture:
-      "Le compteur porte sur les grilles ci-dessus ; la sonde de dégradation traite à part le seul " +
-      "chemin où le contrat est réellement mis à l'épreuve. " +
-      "La cause n'existe pas encore dans `ConfirmationCause`. Là où le moteur RECONSTRUIT une " +
-      "décision — dégradation par `entry_allowed` — sa validation la refuse. Le compteur ci-dessus " +
-      "chiffre exactement le travail de contrat que H demandera : ajouter la cause à l'union " +
-      "stricte, son libellé dans les quatre langues, et sa prise en compte partout où les causes " +
-      "sont rendues.",
-  },
+  diff_contre_le_statu_quo: { grille_publique: diffPublic, grille_brachycephale: brachy },
 };
 ecrireJson(`${DOSSIER}/option-h-simulee.json`, doc);
 
-console.log(`simulation écrite : ${DOSSIER}/option-h-simulee.json`);
+console.log(`simulation v2 écrite : ${DOSSIER}/option-h-simulee.json`);
 console.log("\n  GARANTIES");
-console.log(`    1 · aucun chien non brachycéphale touché : ${garanties.g1_aucun_chien_non_brachycephale_touche.compagnies} compagnie(s), ` +
-  `${garanties.g1_aucun_chien_non_brachycephale_touche.placements} placement(s), ${garanties.g1_aucun_chien_non_brachycephale_touche.scenarios_publics} scénario(s) golden`);
-console.log(`    2 · aucun canal non proposé rouvert      : ${garanties.g2_aucun_canal_non_propose_rouvert.violations} violation(s)`);
-console.log(`    3 · aucune confirmation → message climat : ${garanties.g3_aucune_confirmation_devenue_message_climatique.violations} violation(s)`);
-console.log(`    4 · aucune auto-citation comme preuve    : ${garanties.g4_aucune_auto_citation_presentee_comme_preuve.violations} violation(s)`);
-console.log(`    5 · cause dédiée sur les confirmations   : ${garanties.g5_toutes_les_confirmations_de_race_portent_la_cause_dediee.conformes} conforme(s), ` +
-  `${garanties.g5_toutes_les_confirmations_de_race_portent_la_cause_dediee.violations} violation(s)`);
+console.log(`    1 · aucun chien non brachycéphale touché : ${g.g1_aucun_chien_non_brachycephale_touche.compagnies} compagnie(s), ${g.g1_aucun_chien_non_brachycephale_touche.placements} placement(s)`);
+console.log(`    2 · aucun canal non proposé rouvert      : ${g.g2_aucun_canal_non_propose_rouvert.violations}`);
+console.log(`    3 · aucun message climatique usurpé      : ${g.g3_aucune_confirmation_devenue_message_climatique.violations} violation(s) · ${g.g3_aucune_confirmation_devenue_message_climatique.climat_observes} cause(s) climatique(s) RÉELLEMENT observées`);
+console.log(`    4 · aucune auto-citation comme preuve    : ${g.g4_aucune_auto_citation_presentee_comme_preuve.violations}`);
+console.log(`    5 · causes préexistantes conservées      : ${g.g5_causes_preexistantes_conservees.avant} avant → ${g.g5_causes_preexistantes_conservees.apres} après · ${g.g5_causes_preexistantes_conservees.perdues} perdue(s)`);
+console.log(`    6 · dominance                            : ${g.g6_dominance_respectee.causes_eteintes_par_un_refus_dur} refus dur(s) éteignant des causes`);
+console.log(`    7 · les 42 hors du calcul                : ${g.g7_les_42_hors_du_calcul.occurrences} occurrence(s)`);
+console.log(`    7bis · dette auto-citée RÉSIDUELLE (hors H) : ${g.g7bis_dette_auto_citee_residuelle_hors_perimetre.occurrences} occurrence(s), ` +
+  `${g.g7bis_dette_auto_citee_residuelle_hors_perimetre.regles_distinctes.length} règle(s) distincte(s)`);
+console.log("\n  BRANCHES DE LA TABLE");
+console.log(`    exercées par les données réelles : ${JSON.stringify(branchesExercees)}`);
+for (const f of fixtures) console.log(`    fixture branche ${f.branche} · ${f.compagnie} : base=${f.statut_base} → H=${f.statut_H} (attendu ${f.attendu}) ${f.conforme ? "OK" : "ÉCART"}`);
+console.log("\n  COEXISTENCE DES CAUSES");
+console.log(`    ${JSON.stringify(sondeCoexistence.combinaisons_observees)}`);
+console.log(`    → ${sondeCoexistence.lecture}`);
 console.log("\n  DIFF CONTRE LE STATU QUO");
-console.log(`    publique : ${diffPublic.verdicts} verdict(s) · ${diffPublic.cartes} carte(s) · ${diffPublic.placements} placement(s) · ` +
-  `score ${diffPublic.ecart_score[0]}…${diffPublic.ecart_score[1]} · ${diffPublic.echecs} échec(s)`);
+console.log(`    publique : ${diffPublic.verdicts} verdict(s) · ${diffPublic.cartes} carte(s) · ${diffPublic.placements} placement(s) · score ${diffPublic.ecart_score[0]}…${diffPublic.ecart_score[1]} · golden affectés ${diffPublic.golden_affectes}`);
 console.log(`    brachy   : ${brachy.compagnies} compagnies, ${brachy.placements} placements → ${JSON.stringify(brachy.par_statut_cible)}`);
-console.log(`\n  SONDE DE DÉGRADATION (${sondeDegradation.cas})`);
-console.log(`    entrée refusée par le pays : ${sondeDegradation.entree_refusee_par_le_pays ? "OUI" : "NON"}` +
-  ` · rapport produit : ${sondeDegradation.rapport_produit ? "OUI" : "NON"}` +
-  ` · refusé par la validation : ${sondeDegradation.refuse_par_la_validation ? "OUI" : "NON"}`);
-console.log(`    → ${sondeDegradation.lecture}`);
-console.log(`\n  SONDE DE CONTRAT`);
-console.log(`    la cause « ${CAUSE_H} » est-elle acceptée par makePlacementDecision ? ` +
-  `${sondeContrat.cause_acceptee_par_le_contrat ? "OUI" : "NON"}`);
-console.log(`    → ${sondeContrat.lecture.slice(0, 120)}…`);
-console.log(`\n  contrat : ${compteurs.causes_refusees_par_zod} rapport(s) refusé(s) par la validation (cause « ${CAUSE_H} » absente)`);
+console.log(`\n  contrat : cause acceptée ? ${sondeContrat.cause_acceptee ? "OUI" : "NON"} · rapports refusés : ${compteurs.rapports_refuses}`);
 console.log(`  référentiel intact : ${intact ? "OUI" : "NON"}`);
 if (!intact) process.exit(1);
