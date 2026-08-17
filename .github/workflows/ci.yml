@@ -141,6 +141,23 @@ jobs:
       - name: Dette astro check (plafond)
         run: node packages/knowledge/scripts/check-astro-debt.mjs
 
+      # ── Les harnais savent-ils rougir ? ──────────────────────────────────────────────────
+      # Tout ce qui précède est un contrôle qui passe. Rien, jusqu'ici, ne vérifiait qu'il SAIT
+      # échouer. Le runner casse une à une les garanties du moteur, du référentiel et de
+      # l'interface, et exige que le bon harnais sorte en code 1 AVEC son diagnostic propre.
+      #
+      # Il était resté manuel depuis sa création — c'est-à-dire oubliable, exactement ce que son
+      # propre en-tête reproche aux contre-épreuves faites à la main. Une mutation dont le point
+      # d'ancrage a bougé devient MUETTE et le runner échoue : la dérive se voit ici, pas six
+      # semaines plus tard.
+      #
+      # EN DERNIER DE CE JOB, ET C'EST VOULU : `--dom` reconstruit `packages/ui/dist` à chaque
+      # mutation d'interface. Placé plus haut, il priverait les harnais qui le suivent des pages
+      # que le build vient de produire. Le job `site-complet` a son propre `dist`, dans son propre
+      # runner : les deux ne se marchent pas dessus. Un `dist` de CI n'est jamais déployé.
+      - name: Contre-épreuves (chaque garantie doit savoir échouer)
+        run: npm run contre-epreuves -- --dom
+
   # ────────────────────────────────────────────────────────────────────────────────────────
   # LE SITE ENTIER — même déclencheur, même commit, en parallèle du job rapide.
   #
@@ -164,15 +181,14 @@ jobs:
     timeout-minutes: 90
 
     steps:
-      # LES MÊMES ÉPINGLES QUE LE JOB RAPIDE, c'est-à-dire celles de `main`. Le lot suivant porte
-      # la migration Node 20 → 22 des actions, le manifeste et le contrôle qui les vérifie : il
-      # migrera les DEUX jobs ensemble, avec sa garde. Introduire ici des SHA que rien ne vérifie
-      # encore reviendrait à faire entrer une épingle non mesurée — précisément ce que ce contrôle,
-      # quand il arrivera, existe pour interdire.
-      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4.4.0
+      # LES MÊMES ÉPINGLES QUE LE JOB RAPIDE. Ce lot apporte la migration Node 20 → 22 des actions,
+      # le manifeste et `check-actions-node.mjs` qui les vérifie : les DEUX jobs migrent donc
+      # ensemble, avec leur garde. Les laisser en v4 ici ferait vivre côte à côte deux runtimes
+      # dans le même fichier, dont un déprécié — et le contrôle du job rapide le dirait.
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
 
       - name: Node 22 (depuis .nvmrc)
-        uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4.4.0
+        uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020 # v7.0.0
         with:
           node-version-file: .nvmrc
           cache: npm
