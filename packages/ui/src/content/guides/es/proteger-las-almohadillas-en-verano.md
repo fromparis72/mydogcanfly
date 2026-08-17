@@ -104,7 +104,7 @@ Los criterios que importan al elegirlas:
 | Riesgo de sobrecalentar la pata | Ninguno | Posible si es muy cerrada |
 | Ideal para | Mantenimiento, prevenir la sequedad | Senderismo, suelo abrasivo |
 
-La habituación suele ser la etapa olvidada: muchos perros caminan «como robots» las primeras veces. Trabaja en sesiones muy cortas en casa, recompensa y alarga poco a poco. Para elegir y ajustar este tipo de material a lo largo del año, nuestra guía sobre [los abrigos y las botitas para perro según el tiempo](/travel-hub/dog-coats-and-boots/) detalla las medidas y el aprendizaje. Como ejemplo habitual para el senderismo, las botitas **Ruffwear Grip Trex** están diseñadas para terreno técnico; como siempre, comprueba la talla en la guía oficial en lugar de deducirla de la constitución de tu perro.
+La habituación suele ser la etapa olvidada: muchos perros caminan «como robots» las primeras veces. Trabaja en sesiones muy cortas en casa, recompensa y alarga poco a poco. Para elegir y ajustar este tipo de material a lo largo del año, nuestra guía sobre [los abrigos y las botitas para perro según el tiempo](/es/travel-hub/abrigos-y-botitas-para-perro/) detalla las medidas y el aprendizaje. Como ejemplo habitual para el senderismo, las botitas **Ruffwear Grip Trex** están diseñadas para terreno técnico; como siempre, comprueba la talla en la guía oficial en lugar de deducirla de la constitución de tu perro.
 
 ## ¿Cómo cuidar las almohadillas a diario en verano?
 

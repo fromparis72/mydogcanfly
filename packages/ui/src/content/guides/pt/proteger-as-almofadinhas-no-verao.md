@@ -104,7 +104,7 @@ Os critérios que importam na escolha:
 | Risco de superaquecer a pata | Nenhum | Possível se for muito fechada |
 | Ideal para | Manutenção, prevenir o ressecamento | Trilha, chão abrasivo |
 
-A habituação costuma ser a etapa esquecida: muitos cães andam «como robôs» nas primeiras vezes. Trabalhe em sessões bem curtas em casa, recompense e aumente aos poucos. Para escolher e ajustar esse tipo de material ao longo do ano, o nosso guia sobre [os casacos e as botinhas para cachorro conforme o tempo](/travel-hub/dog-coats-and-boots/) detalha as medidas e o aprendizado. Como exemplo comum para trilha, as botinhas **Ruffwear Grip Trex** foram feitas para terreno técnico; como sempre, confira o tamanho no guia oficial em vez de deduzi-lo do porte do seu cachorro.
+A habituação costuma ser a etapa esquecida: muitos cães andam «como robôs» nas primeiras vezes. Trabalhe em sessões bem curtas em casa, recompense e aumente aos poucos. Para escolher e ajustar esse tipo de material ao longo do ano, o nosso guia sobre [os casacos e as botinhas para cachorro conforme o tempo](/pt/travel-hub/casacos-e-botinhas-para-cachorro/) detalha as medidas e o aprendizado. Como exemplo comum para trilha, as botinhas **Ruffwear Grip Trex** foram feitas para terreno técnico; como sempre, confira o tamanho no guia oficial em vez de deduzi-lo do porte do seu cachorro.
 
 ## Como cuidar das almofadinhas no dia a dia no verão?
 
