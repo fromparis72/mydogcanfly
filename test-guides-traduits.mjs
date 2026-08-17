@@ -60,7 +60,7 @@ const lire = (locale) => {
       key: champ("key"), title: champ("title"), description: champ("description"),
       summary: champ("summary"), date: champ("date"), lastmod: champ("lastmod"),
       author: champ("author"), coverImage: champ("image"),
-      aSourceUrl: /^sourceUrl:\s*"/m.test(fm),
+      aSourceUrl: /^sourceUrl:\s*"/m.test(fm), sourceUrl: champ("sourceUrl"),
       enbref: liste("enbref"), faq: liste("faq"),
       categories: (/^categories:\s*\[([^\]]*)\]/m.exec(fm) || [])[1] ?? "",
     };
@@ -71,10 +71,17 @@ const tous = LANGUES.flatMap((l) => parLangue[l]);
 exiger("aucun fichier de guide n'a un front matter illisible",
   tous.every((g) => !g.casse), tous.filter((g) => g.casse).map((g) => `${g.locale}/${g.fichier}`).join(", "));
 
-/* Jamais vert faute de matière : les deux langues d'origine doivent être là, entières. */
-exiger("les 62 guides anglais et les 62 français sont présents",
-  parLangue.en.length === 62 && parLangue.fr.length === 62,
-  `en=${parLangue.en.length} fr=${parLangue.fr.length}`);
+/* Jamais vert faute de matière : le corpus IMPORTÉ doit être là, entier.
+ *
+ * « en = 62 » ne peut plus être le critère : des articles naissent désormais ici, en anglais, sans
+ * venir de l'ancien site. Le compte figé porte donc sur ce qui a été importé — reconnaissable à son
+ * `sourceUrl` — et non sur le total. Sans quoi ajouter un article masquerait la disparition d'un
+ * guide importé, et le contrôle deviendrait un faux vert. */
+const IMPORTES = Object.fromEntries(SOURCES.map((l) => [l, parLangue[l].filter((g) => g.aSourceUrl)]));
+exiger("les 62 guides importés de l'ancien site sont là, en anglais comme en français",
+  IMPORTES.en.length === 62 && IMPORTES.fr.length === 62,
+  `importés : en=${IMPORTES.en.length} fr=${IMPORTES.fr.length}`
+  + ` · total : en=${parLangue.en.length} fr=${parLangue.fr.length}`);
 
 const parCle = new Map();
 for (const g of tous) {
@@ -103,11 +110,21 @@ for (const l of LANGUES) {
 /* Le schéma ne voit pas le chemin du fichier ; ce contrôle, si. Les guides importés gardent leur
    adresse d'origine — sans quoi `gen-redirects.mjs` perdrait une 301. Ceux qui naissent ici n'en
    ont pas, et ne doivent pas s'en inventer une. */
-for (const l of SOURCES) {
-  const sans = parLangue[l].filter((g) => !g.aSourceUrl);
-  exiger(`les guides ${l} portent tous leur \`sourceUrl\` d'origine`,
-    sans.length === 0, sans.map((g) => g.fichier).join(", "));
-}
+/* EN ANGLAIS, un `sourceUrl` n'est plus seulement PRÉSENT : il doit désigner un article hérité qui
+ * existe vraiment sous content/posts/. C'est plus fort que l'ancienne règle, qui se contentait du
+ * champ : une adresse d'origine inventée, ou devenue fausse après un renommage, échoue désormais.
+ *
+ * EN FRANÇAIS, CE CONTRÔLE EST IMPOSSIBLE, et je ne le simule pas : content/posts/ ne contient que
+ * l'anglais (149 fichiers), le corpus hérité français n'est pas dans ce dépôt. On s'en tient donc à
+ * la présence du champ. Un contrôle qu'on ne peut pas faire doit être dit, pas maquillé en vert. */
+const faux = parLangue.en
+  .filter((g) => g.aSourceUrl)
+  .filter((g) => !existsSync(join("content/posts", `${(g.sourceUrl ?? "").replace(/^\/|\/$/g, "")}.md`)))
+  .map((g) => `${g.fichier} → « ${g.sourceUrl} » : aucun article hérité de ce nom`);
+exiger("chaque `sourceUrl` anglais désigne un article hérité réel", faux.length === 0, faux.join(", "));
+exiger("les guides français importés portent tous leur `sourceUrl` (leur origine n'est pas dans ce dépôt)",
+  IMPORTES.fr.length === parLangue.fr.length,
+  parLangue.fr.filter((g) => !g.aSourceUrl).map((g) => g.fichier).join(", "));
 for (const l of TRADUITES) {
   const avec = parLangue[l].filter((g) => g.aSourceUrl);
   exiger(`aucun guide ${l} ne s'invente un \`sourceUrl\` : ils naissent ici`,
