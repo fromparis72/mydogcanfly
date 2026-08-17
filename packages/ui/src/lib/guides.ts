@@ -2,16 +2,19 @@ import { getCollection, type CollectionEntry } from "astro:content";
 
 export type Guide = CollectionEntry<"guides">;
 
-/* Les guides n'existent qu'en français et en anglais.
+/* Les quatre langues du site sont désormais ouvertes aux guides — mais OUVERTES n'est pas
+ * PEUPLÉES, et toute la prudence tient dans cette distinction.
  *
- * C'est le premier contenu du site qui n'est pas disponible dans les quatre langues, et c'est
- * précisément le piège à ne pas répéter : le portugais a longtemps été annoncé en `hreflang`
- * et au sitemap alors que ses pages n'existaient pas. Ici, la disponibilité est constatée
- * fichier par fichier — `languesDe()` — et jamais supposée. Ajouter l'espagnol un jour
- * consistera à déposer des fichiers dans `content/guides/es/`, rien d'autre : aucune liste à
- * tenir à jour, aucun code à modifier.
+ * Le portugais a longtemps été annoncé en `hreflang` et au sitemap alors que ses pages
+ * n'existaient pas. Rien ici ne répète cette faute : `GUIDE_LOCALES` n'annonce rien, elle
+ * autorise. Ce qui est ANNONCÉ vient de `languesDe()`, qui constate la disponibilité fichier
+ * par fichier. Un guide traduit en espagnol mais pas en portugais aura donc trois alternates,
+ * pas quatre, sans qu'aucune liste soit à tenir à jour.
+ *
+ * Conséquence directe : la traduction peut avancer guide par guide, et chaque état
+ * intermédiaire est correct — jamais une adresse promise qui n'existe pas.
  */
-export const GUIDE_LOCALES = ["en", "fr"] as const;
+export const GUIDE_LOCALES = ["en", "fr", "es", "pt"] as const;
 export type GuideLocale = (typeof GUIDE_LOCALES)[number];
 
 /** `fr/camping-avec-chien` → { locale: "fr", slug: "camping-avec-chien" } */

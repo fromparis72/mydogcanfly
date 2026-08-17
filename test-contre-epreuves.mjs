@@ -214,6 +214,31 @@ const MUTATIONS = [
     harnais: "packages/knowledge/scripts/check-actions-node.mjs",
     attendu: "qui n'est pas supporté",
   },
+  // ---- LES GUIDES TRADUITS ----
+  {
+    nom: "un paragraphe est resté dans la langue source",
+    fichier: "packages/ui/src/content/guides/es/viajar-en-avion-con-perro.md",
+    cherche: "El avión abre la puerta a viajes lejanos con tu perro, pero es también el medio de transporte más regulado.",
+    remplace: "Flying opens the door to far-away trips with your dog, but it's also the most heavily regulated way to travel.",
+    harnais: "test-guides-traduits.mjs",
+    attendu: "aucune phrase n'est restée en anglais",
+  },
+  {
+    nom: "un guide né ici s'invente une adresse d'origine",
+    fichier: "packages/ui/src/content/guides/es/viajar-en-avion-con-perro.md",
+    cherche: `key: "flying-with-a-dog"`,
+    remplace: `key: "flying-with-a-dog"\nsourceUrl: "/viajar-en-avion-con-perro/"`,
+    harnais: "test-guides-traduits.mjs",
+    attendu: "ne s'invente un `sourceUrl`",
+  },
+  {
+    nom: "un lien renvoie à l'anglais alors que la traduction existe",
+    fichier: "packages/ui/src/content/guides/es/avion-con-perro-cabina-bodega-carga.md",
+    cherche: "](/es/travel-hub/viajar-en-avion-con-perro/)",
+    remplace: "](/travel-hub/flying-with-a-dog/)",
+    harnais: "test-guides-traduits.mjs",
+    attendu: "aucun lien ne sort de la langue du lecteur",
+  },
   // ---- L'INTERFACE (chaque mutation exige un build, d'où `--dom`) ----
   {
     dom: true,
