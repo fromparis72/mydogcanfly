@@ -78,8 +78,15 @@ console.log("=== 1. Le registre : OBLIGATOIRE, chargé et validé ===");
   const kb = loadKB();
   check("`breedRestrictions` existe toujours, même vide — jamais absent",
     Array.isArray(kb.breedRestrictions));
-  check("le registre versionné est vide aujourd'hui (l'entrée IATA est un lot distinct)",
-    kb.breedRestrictions.length === 0, JSON.stringify(kb.breedRestrictions.map((r) => r.id)));
+  /* T0-B3-b a rempli le registre : une seule entrée, et c'est un AVIS. Tant qu'il était vide, ce
+     harnais ne pouvait éprouver que des fixtures ; il éprouve maintenant aussi le référentiel. */
+  check("le registre versionné porte exactement l'avis IATA, et c'est un `warn`",
+    kb.breedRestrictions.length === 1
+      && kb.breedRestrictions[0].id === "brest_iata_snub_nose_hot_season"
+      && kb.breedRestrictions[0].action === "warn",
+    JSON.stringify(kb.breedRestrictions.map((r) => `${r.id}:${r.action}`)));
+  check("aucune entrée du registre ne REFUSE quoi que ce soit",
+    kb.breedRestrictions.every((r) => r.action !== "deny"));
 
   /* « Registre vide » et « registre oublié » sont deux états différents. Les confondre republierait
      des décisions de race sans leur référentiel. */
@@ -404,32 +411,45 @@ console.log("=== 7. Le motif de refus `breed_restricted` ===");
     JSON.stringify({ deny_reasons: c.deny_reasons, statuts: c.placement_decisions.map((d) => d.status) }));
 }
 
-console.log("=== 8. Sur le référentiel RÉEL, le câblage ne déplace rien ===");
+console.log("=== 8. Sur le référentiel RÉEL, après T0-B3-b ===");
 {
+  /* Avant T0-B3-b, ce paragraphe disait « le câblage ne déplace rien » : registre vide, 42 règles
+     en place, donc 0 cause de race sur 412 cartes. Le référentiel a changé, et la mesure avec lui.
+     Ce qui compte n'a PAS changé de nature : le chien visé reçoit une incertitude dite comme telle,
+     le chien non visé n'est touché en rien. */
   const kb = loadKB();
   const ROUTES = [["airport_cdg", "airport_bkk"], ["airport_cdg", "airport_jfk"],
     ["airport_lhr", "airport_mia"], ["airport_fra", "airport_sin"]];
-  let cartes = 0, causesRace = 0, preuves = 0, avis = 0;
+  const mesure = { [GOLDEN]: { cartes: 0, causes: 0, preuves: 0, avis: 0 },
+    [PUG]: { cartes: 0, causes: 0, preuves: 0, avis: 0 } };
   for (const [origin, destination] of ROUTES) {
     for (const breed_id of [GOLDEN, PUG]) {
       for (const mois of ["01-15", "07-15"]) {
         const rep = explain(evaluate(kb, { origin, destination, dog: { breed_id },
           travel_type: "pet", placement: "any", date: `2027-${mois}`, locale: "en" }), "en");
-        avis += rep.safety_advisories.length;
+        const m = mesure[breed_id];
+        m.avis += rep.safety_advisories.length;
         for (const a of rep.airlines) {
-          cartes++;
+          m.cartes++;
           for (const d of a.placement_decisions) {
-            causesRace += (d.confirmation_causes ?? []).filter((c) =>
+            m.causes += (d.confirmation_causes ?? []).filter((c) =>
               c.code === "breed_policy_unreviewed" || c.code === "breed_requirement").length;
-            preuves += d.evidence?.length ?? 0;
+            m.preuves += d.evidence?.length ?? 0;
           }
         }
       }
     }
   }
-  check(`sur ${cartes} cartes réelles : 0 cause de race, 0 preuve, 0 avis`,
-    causesRace === 0 && preuves === 0 && avis === 0,
-    JSON.stringify({ causesRace, preuves, avis }));
+  const carlin = mesure[PUG], golden = mesure[GOLDEN];
+  check(`le chien VISÉ reçoit l'incertitude : ${carlin.causes} causes de race sur ${carlin.cartes} cartes`,
+    carlin.causes === 272 && carlin.cartes === 206, JSON.stringify(carlin));
+  check("… et l'avis IATA lui est publié, une fois par rapport",
+    carlin.avis === 8, JSON.stringify(carlin.avis));
+  check("AUCUNE preuve de race : le registre ne porte qu'un avis, et un avis ne prouve rien",
+    carlin.preuves === 0, String(carlin.preuves));
+  check(`le chien NON visé n'est touché en RIEN : 0 cause, 0 avis sur ${golden.cartes} cartes`,
+    golden.causes === 0 && golden.avis === 0 && golden.cartes === carlin.cartes,
+    JSON.stringify(golden));
 }
 
 console.log(`\n${pass} OK, ${fail} FAIL`);

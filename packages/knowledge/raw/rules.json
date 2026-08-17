@@ -303,59 +303,6 @@
     }
   },
   {
-    "id": "rule_aegean_brachy_hold",
-    "scope": {
-      "type": "airline",
-      "id": "airline_aegean"
-    },
-    "category": "breed_ban",
-    "criticality": "critical",
-    "applies_when": {
-      "all": [
-        {
-          "fact": "dog.brachycephalic",
-          "op": "eq",
-          "value": true
-        },
-        {
-          "fact": "placement",
-          "op": "in",
-          "value": [
-            "hold",
-            "cargo"
-          ]
-        }
-      ]
-    },
-    "effect": {
-      "action": "deny",
-      "placement": [
-        "hold",
-        "cargo"
-      ]
-    },
-    "params": {},
-    "rationale": "Brachycephalic (snub-nosed) breeds are not accepted in the hold or cargo, due to the elevated risk of breathing difficulty.",
-    "source": {
-      "url": "https://mydogcanfly.com/aegean-airlines-dog-policy/",
-      "source_type": "other",
-      "verified_date": "2026-07-08",
-      "review_due": "2026-10-06",
-      "confidence": 3,
-      "reviewer": "MyDogCanFly Data Team",
-      "history": [
-        {
-          "date": "2026-07-08",
-          "reviewer": "MyDogCanFly Data Team",
-          "note": "Imported from MyDogCanFly's verified 62-airline comparison (June 2026)."
-        }
-      ]
-    },
-    "rationale_i18n": {
-      "fr": "Les races brachycéphales (au museau écrasé) ne sont pas acceptées en soute ni en fret, en raison du risque accru de difficultés respiratoires."
-    }
-  },
-  {
     "id": "rule_aegean_cabin_weight",
     "scope": {
       "type": "airline",
@@ -600,59 +547,6 @@
           "note": "Vérifié ligne à ligne contre la table APHA (compagnies commerciales) — voir add-gb-approved-carriers-rules.mjs pour la méthode."
         }
       ]
-    }
-  },
-  {
-    "id": "rule_aeromexico_brachy_hold",
-    "scope": {
-      "type": "airline",
-      "id": "airline_aeromexico"
-    },
-    "category": "breed_ban",
-    "criticality": "critical",
-    "applies_when": {
-      "all": [
-        {
-          "fact": "dog.brachycephalic",
-          "op": "eq",
-          "value": true
-        },
-        {
-          "fact": "placement",
-          "op": "in",
-          "value": [
-            "hold",
-            "cargo"
-          ]
-        }
-      ]
-    },
-    "effect": {
-      "action": "deny",
-      "placement": [
-        "hold",
-        "cargo"
-      ]
-    },
-    "params": {},
-    "rationale": "Brachycephalic (snub-nosed) breeds are not accepted in the hold or cargo, due to the elevated risk of breathing difficulty.",
-    "source": {
-      "url": "https://mydogcanfly.com/aeromexico-dog-policy/",
-      "source_type": "other",
-      "verified_date": "2026-07-08",
-      "review_due": "2026-10-06",
-      "confidence": 3,
-      "reviewer": "MyDogCanFly Data Team",
-      "history": [
-        {
-          "date": "2026-07-08",
-          "reviewer": "MyDogCanFly Data Team",
-          "note": "Imported from MyDogCanFly's verified 62-airline comparison (June 2026)."
-        }
-      ]
-    },
-    "rationale_i18n": {
-      "fr": "Les races brachycéphales (au museau écrasé) ne sont pas acceptées en soute ni en fret, en raison du risque accru de difficultés respiratoires."
     }
   },
   {
@@ -1133,59 +1027,6 @@
     }
   },
   {
-    "id": "rule_air_caraibes_brachy_hold",
-    "scope": {
-      "type": "airline",
-      "id": "airline_air_caraibes"
-    },
-    "category": "breed_ban",
-    "criticality": "critical",
-    "applies_when": {
-      "all": [
-        {
-          "fact": "dog.brachycephalic",
-          "op": "eq",
-          "value": true
-        },
-        {
-          "fact": "placement",
-          "op": "in",
-          "value": [
-            "hold",
-            "cargo"
-          ]
-        }
-      ]
-    },
-    "effect": {
-      "action": "deny",
-      "placement": [
-        "hold",
-        "cargo"
-      ]
-    },
-    "params": {},
-    "rationale": "Brachycephalic (snub-nosed) breeds are not accepted in the hold or cargo, due to the elevated risk of breathing difficulty.",
-    "source": {
-      "url": "https://mydogcanfly.com/air-caraibes-dog-policy/",
-      "source_type": "other",
-      "verified_date": "2026-07-08",
-      "review_due": "2026-10-06",
-      "confidence": 3,
-      "reviewer": "MyDogCanFly Data Team",
-      "history": [
-        {
-          "date": "2026-07-08",
-          "reviewer": "MyDogCanFly Data Team",
-          "note": "Imported from MyDogCanFly's verified 62-airline comparison (June 2026)."
-        }
-      ]
-    },
-    "rationale_i18n": {
-      "fr": "Les races brachycéphales (au museau écrasé) ne sont pas acceptées en soute ni en fret, en raison du risque accru de difficultés respiratoires."
-    }
-  },
-  {
     "id": "rule_air_caraibes_cabin_weight",
     "scope": {
       "type": "airline",
@@ -1497,59 +1338,6 @@
     }
   },
   {
-    "id": "rule_air_europa_brachy_hold",
-    "scope": {
-      "type": "airline",
-      "id": "airline_air_europa"
-    },
-    "category": "breed_ban",
-    "criticality": "critical",
-    "applies_when": {
-      "all": [
-        {
-          "fact": "dog.brachycephalic",
-          "op": "eq",
-          "value": true
-        },
-        {
-          "fact": "placement",
-          "op": "in",
-          "value": [
-            "hold",
-            "cargo"
-          ]
-        }
-      ]
-    },
-    "effect": {
-      "action": "deny",
-      "placement": [
-        "hold",
-        "cargo"
-      ]
-    },
-    "params": {},
-    "rationale": "Brachycephalic (snub-nosed) breeds are not accepted in the hold or cargo, due to the elevated risk of breathing difficulty.",
-    "source": {
-      "url": "https://mydogcanfly.com/air-europa-dog-policy/",
-      "source_type": "other",
-      "verified_date": "2026-07-08",
-      "review_due": "2026-10-06",
-      "confidence": 3,
-      "reviewer": "MyDogCanFly Data Team",
-      "history": [
-        {
-          "date": "2026-07-08",
-          "reviewer": "MyDogCanFly Data Team",
-          "note": "Imported from MyDogCanFly's verified 62-airline comparison (June 2026)."
-        }
-      ]
-    },
-    "rationale_i18n": {
-      "fr": "Les races brachycéphales (au museau écrasé) ne sont pas acceptées en soute ni en fret, en raison du risque accru de difficultés respiratoires."
-    }
-  },
-  {
     "id": "rule_air_europa_cabin_weight",
     "scope": {
       "type": "airline",
@@ -1707,59 +1495,6 @@
     }
   },
   {
-    "id": "rule_air_india_brachy_hold",
-    "scope": {
-      "type": "airline",
-      "id": "airline_air_india"
-    },
-    "category": "breed_ban",
-    "criticality": "critical",
-    "applies_when": {
-      "all": [
-        {
-          "fact": "dog.brachycephalic",
-          "op": "eq",
-          "value": true
-        },
-        {
-          "fact": "placement",
-          "op": "in",
-          "value": [
-            "hold",
-            "cargo"
-          ]
-        }
-      ]
-    },
-    "effect": {
-      "action": "deny",
-      "placement": [
-        "hold",
-        "cargo"
-      ]
-    },
-    "params": {},
-    "rationale": "Brachycephalic (snub-nosed) breeds are not accepted in the hold or cargo, due to the elevated risk of breathing difficulty.",
-    "source": {
-      "url": "https://mydogcanfly.com/air-india-dog-policy/",
-      "source_type": "other",
-      "verified_date": "2026-07-08",
-      "review_due": "2026-10-06",
-      "confidence": 3,
-      "reviewer": "MyDogCanFly Data Team",
-      "history": [
-        {
-          "date": "2026-07-08",
-          "reviewer": "MyDogCanFly Data Team",
-          "note": "Imported from MyDogCanFly's verified 62-airline comparison (June 2026)."
-        }
-      ]
-    },
-    "rationale_i18n": {
-      "fr": "Les races brachycéphales (au museau écrasé) ne sont pas acceptées en soute ni en fret, en raison du risque accru de difficultés respiratoires."
-    }
-  },
-  {
     "id": "rule_air_india_cabin_weight",
     "scope": {
       "type": "airline",
@@ -1859,59 +1594,6 @@
           "note": "Imported from the MyDogCanFly airline comparison (verified June 2026)."
         }
       ]
-    }
-  },
-  {
-    "id": "rule_air_mauritius_brachy_hold",
-    "scope": {
-      "type": "airline",
-      "id": "airline_air_mauritius"
-    },
-    "category": "breed_ban",
-    "criticality": "critical",
-    "applies_when": {
-      "all": [
-        {
-          "fact": "dog.brachycephalic",
-          "op": "eq",
-          "value": true
-        },
-        {
-          "fact": "placement",
-          "op": "in",
-          "value": [
-            "hold",
-            "cargo"
-          ]
-        }
-      ]
-    },
-    "effect": {
-      "action": "deny",
-      "placement": [
-        "hold",
-        "cargo"
-      ]
-    },
-    "params": {},
-    "rationale": "Brachycephalic (snub-nosed) breeds are not accepted in the hold or cargo, due to the elevated risk of breathing difficulty.",
-    "source": {
-      "url": "https://mydogcanfly.com/air-mauritius-dog-policy/",
-      "source_type": "other",
-      "verified_date": "2026-07-08",
-      "review_due": "2026-10-06",
-      "confidence": 3,
-      "reviewer": "MyDogCanFly Data Team",
-      "history": [
-        {
-          "date": "2026-07-08",
-          "reviewer": "MyDogCanFly Data Team",
-          "note": "Imported from MyDogCanFly's verified 62-airline comparison (June 2026)."
-        }
-      ]
-    },
-    "rationale_i18n": {
-      "fr": "Les races brachycéphales (au museau écrasé) ne sont pas acceptées en soute ni en fret, en raison du risque accru de difficultés respiratoires."
     }
   },
   {
@@ -2168,59 +1850,6 @@
     }
   },
   {
-    "id": "rule_air_tahiti_nui_brachy_hold",
-    "scope": {
-      "type": "airline",
-      "id": "airline_air_tahiti_nui"
-    },
-    "category": "breed_ban",
-    "criticality": "critical",
-    "applies_when": {
-      "all": [
-        {
-          "fact": "dog.brachycephalic",
-          "op": "eq",
-          "value": true
-        },
-        {
-          "fact": "placement",
-          "op": "in",
-          "value": [
-            "hold",
-            "cargo"
-          ]
-        }
-      ]
-    },
-    "effect": {
-      "action": "deny",
-      "placement": [
-        "hold",
-        "cargo"
-      ]
-    },
-    "params": {},
-    "rationale": "Brachycephalic (snub-nosed) breeds are not accepted in the hold or cargo, due to the elevated risk of breathing difficulty.",
-    "source": {
-      "url": "https://mydogcanfly.com/air-tahiti-nui-dog-policy/",
-      "source_type": "other",
-      "verified_date": "2026-07-08",
-      "review_due": "2026-10-06",
-      "confidence": 3,
-      "reviewer": "MyDogCanFly Data Team",
-      "history": [
-        {
-          "date": "2026-07-08",
-          "reviewer": "MyDogCanFly Data Team",
-          "note": "Imported from MyDogCanFly's verified 62-airline comparison (June 2026)."
-        }
-      ]
-    },
-    "rationale_i18n": {
-      "fr": "Les races brachycéphales (au museau écrasé) ne sont pas acceptées en soute ni en fret, en raison du risque accru de difficultés respiratoires."
-    }
-  },
-  {
     "id": "rule_air_tahiti_nui_cabin_weight",
     "scope": {
       "type": "airline",
@@ -2370,59 +1999,6 @@
     },
     "rationale_i18n": {
       "fr": "Air Tahiti Nui n'accepte pas les chiens en soute comme bagage ; les grands chiens voyagent en fret lorsque c'est possible."
-    }
-  },
-  {
-    "id": "rule_air_transat_brachy_hold",
-    "scope": {
-      "type": "airline",
-      "id": "airline_air_transat"
-    },
-    "category": "breed_ban",
-    "criticality": "critical",
-    "applies_when": {
-      "all": [
-        {
-          "fact": "dog.brachycephalic",
-          "op": "eq",
-          "value": true
-        },
-        {
-          "fact": "placement",
-          "op": "in",
-          "value": [
-            "hold",
-            "cargo"
-          ]
-        }
-      ]
-    },
-    "effect": {
-      "action": "deny",
-      "placement": [
-        "hold",
-        "cargo"
-      ]
-    },
-    "params": {},
-    "rationale": "Brachycephalic (snub-nosed) breeds are not accepted in the hold or cargo, due to the elevated risk of breathing difficulty.",
-    "source": {
-      "url": "https://mydogcanfly.com/air-transat-dog-policy/",
-      "source_type": "other",
-      "verified_date": "2026-07-08",
-      "review_due": "2026-10-06",
-      "confidence": 3,
-      "reviewer": "MyDogCanFly Data Team",
-      "history": [
-        {
-          "date": "2026-07-08",
-          "reviewer": "MyDogCanFly Data Team",
-          "note": "Imported from MyDogCanFly's verified 62-airline comparison (June 2026)."
-        }
-      ]
-    },
-    "rationale_i18n": {
-      "fr": "Les races brachycéphales (au museau écrasé) ne sont pas acceptées en soute ni en fret, en raison du risque accru de difficultés respiratoires."
     }
   },
   {
@@ -2635,59 +2211,6 @@
     },
     "rationale_i18n": {
       "fr": "Préparation : 4 à 6 semaines. Exigences : puce ISO, vaccination antirabique, certificat de santé, traitement antiparasitaire."
-    }
-  },
-  {
-    "id": "rule_alaska_brachy_hold",
-    "scope": {
-      "type": "airline",
-      "id": "airline_alaska"
-    },
-    "category": "breed_ban",
-    "criticality": "critical",
-    "applies_when": {
-      "all": [
-        {
-          "fact": "dog.brachycephalic",
-          "op": "eq",
-          "value": true
-        },
-        {
-          "fact": "placement",
-          "op": "in",
-          "value": [
-            "hold",
-            "cargo"
-          ]
-        }
-      ]
-    },
-    "effect": {
-      "action": "deny",
-      "placement": [
-        "hold",
-        "cargo"
-      ]
-    },
-    "params": {},
-    "rationale": "Brachycephalic (snub-nosed) breeds are not accepted in the hold or cargo, due to the elevated risk of breathing difficulty.",
-    "source": {
-      "url": "https://mydogcanfly.com/alaska-airlines-dog-policy/",
-      "source_type": "other",
-      "verified_date": "2026-07-08",
-      "review_due": "2026-10-06",
-      "confidence": 3,
-      "reviewer": "MyDogCanFly Data Team",
-      "history": [
-        {
-          "date": "2026-07-08",
-          "reviewer": "MyDogCanFly Data Team",
-          "note": "Imported from MyDogCanFly's verified 62-airline comparison (June 2026)."
-        }
-      ]
-    },
-    "rationale_i18n": {
-      "fr": "Les races brachycéphales (au museau écrasé) ne sont pas acceptées en soute ni en fret, en raison du risque accru de difficultés respiratoires."
     }
   },
   {
@@ -2937,59 +2460,6 @@
           "note": "Imported from the MyDogCanFly airline comparison (verified June 2026)."
         }
       ]
-    }
-  },
-  {
-    "id": "rule_ana_brachy_hold",
-    "scope": {
-      "type": "airline",
-      "id": "airline_ana"
-    },
-    "category": "breed_ban",
-    "criticality": "critical",
-    "applies_when": {
-      "all": [
-        {
-          "fact": "dog.brachycephalic",
-          "op": "eq",
-          "value": true
-        },
-        {
-          "fact": "placement",
-          "op": "in",
-          "value": [
-            "hold",
-            "cargo"
-          ]
-        }
-      ]
-    },
-    "effect": {
-      "action": "deny",
-      "placement": [
-        "hold",
-        "cargo"
-      ]
-    },
-    "params": {},
-    "rationale": "Brachycephalic (snub-nosed) breeds are not accepted in the hold or cargo, due to the elevated risk of breathing difficulty.",
-    "source": {
-      "url": "https://mydogcanfly.com/ana-dog-policy/",
-      "source_type": "other",
-      "verified_date": "2026-07-08",
-      "review_due": "2026-10-06",
-      "confidence": 3,
-      "reviewer": "MyDogCanFly Data Team",
-      "history": [
-        {
-          "date": "2026-07-08",
-          "reviewer": "MyDogCanFly Data Team",
-          "note": "Imported from MyDogCanFly's verified 62-airline comparison (June 2026)."
-        }
-      ]
-    },
-    "rationale_i18n": {
-      "fr": "Les races brachycéphales (au museau écrasé) ne sont pas acceptées en soute ni en fret, en raison du risque accru de difficultés respiratoires."
     }
   },
   {
@@ -3737,59 +3207,6 @@
     }
   },
   {
-    "id": "rule_austrian_brachy_hold",
-    "scope": {
-      "type": "airline",
-      "id": "airline_austrian"
-    },
-    "category": "breed_ban",
-    "criticality": "critical",
-    "applies_when": {
-      "all": [
-        {
-          "fact": "dog.brachycephalic",
-          "op": "eq",
-          "value": true
-        },
-        {
-          "fact": "placement",
-          "op": "in",
-          "value": [
-            "hold",
-            "cargo"
-          ]
-        }
-      ]
-    },
-    "effect": {
-      "action": "deny",
-      "placement": [
-        "hold",
-        "cargo"
-      ]
-    },
-    "params": {},
-    "rationale": "Brachycephalic (snub-nosed) breeds are not accepted in the hold or cargo, due to the elevated risk of breathing difficulty.",
-    "source": {
-      "url": "https://mydogcanfly.com/austrian-airlines-dog-policy/",
-      "source_type": "other",
-      "verified_date": "2026-07-08",
-      "review_due": "2026-10-06",
-      "confidence": 3,
-      "reviewer": "MyDogCanFly Data Team",
-      "history": [
-        {
-          "date": "2026-07-08",
-          "reviewer": "MyDogCanFly Data Team",
-          "note": "Imported from MyDogCanFly's verified 62-airline comparison (June 2026)."
-        }
-      ]
-    },
-    "rationale_i18n": {
-      "fr": "Les races brachycéphales (au museau écrasé) ne sont pas acceptées en soute ni en fret, en raison du risque accru de difficultés respiratoires."
-    }
-  },
-  {
     "id": "rule_austrian_cabin_weight",
     "scope": {
       "type": "airline",
@@ -3838,59 +3255,6 @@
           "note": "Imported from the MyDogCanFly airline comparison (verified June 2026)."
         }
       ]
-    }
-  },
-  {
-    "id": "rule_avianca_brachy_hold",
-    "scope": {
-      "type": "airline",
-      "id": "airline_avianca"
-    },
-    "category": "breed_ban",
-    "criticality": "critical",
-    "applies_when": {
-      "all": [
-        {
-          "fact": "dog.brachycephalic",
-          "op": "eq",
-          "value": true
-        },
-        {
-          "fact": "placement",
-          "op": "in",
-          "value": [
-            "hold",
-            "cargo"
-          ]
-        }
-      ]
-    },
-    "effect": {
-      "action": "deny",
-      "placement": [
-        "hold",
-        "cargo"
-      ]
-    },
-    "params": {},
-    "rationale": "Brachycephalic (snub-nosed) breeds are not accepted in the hold or cargo, due to the elevated risk of breathing difficulty.",
-    "source": {
-      "url": "https://mydogcanfly.com/avianca-dog-policy/",
-      "source_type": "other",
-      "verified_date": "2026-07-08",
-      "review_due": "2026-10-06",
-      "confidence": 3,
-      "reviewer": "MyDogCanFly Data Team",
-      "history": [
-        {
-          "date": "2026-07-08",
-          "reviewer": "MyDogCanFly Data Team",
-          "note": "Imported from MyDogCanFly's verified 62-airline comparison (June 2026)."
-        }
-      ]
-    },
-    "rationale_i18n": {
-      "fr": "Les races brachycéphales (au museau écrasé) ne sont pas acceptées en soute ni en fret, en raison du risque accru de difficultés respiratoires."
     }
   },
   {
@@ -5275,59 +4639,6 @@
     }
   },
   {
-    "id": "rule_brussels_brachy_hold",
-    "scope": {
-      "type": "airline",
-      "id": "airline_brussels"
-    },
-    "category": "breed_ban",
-    "criticality": "critical",
-    "applies_when": {
-      "all": [
-        {
-          "fact": "dog.brachycephalic",
-          "op": "eq",
-          "value": true
-        },
-        {
-          "fact": "placement",
-          "op": "in",
-          "value": [
-            "hold",
-            "cargo"
-          ]
-        }
-      ]
-    },
-    "effect": {
-      "action": "deny",
-      "placement": [
-        "hold",
-        "cargo"
-      ]
-    },
-    "params": {},
-    "rationale": "Brachycephalic (snub-nosed) breeds are not accepted in the hold or cargo, due to the elevated risk of breathing difficulty.",
-    "source": {
-      "url": "https://mydogcanfly.com/brussels-airlines-dog-policy/",
-      "source_type": "other",
-      "verified_date": "2026-07-08",
-      "review_due": "2026-10-06",
-      "confidence": 3,
-      "reviewer": "MyDogCanFly Data Team",
-      "history": [
-        {
-          "date": "2026-07-08",
-          "reviewer": "MyDogCanFly Data Team",
-          "note": "Imported from MyDogCanFly's verified 62-airline comparison (June 2026)."
-        }
-      ]
-    },
-    "rationale_i18n": {
-      "fr": "Les races brachycéphales (au museau écrasé) ne sont pas acceptées en soute ni en fret, en raison du risque accru de difficultés respiratoires."
-    }
-  },
-  {
     "id": "rule_brussels_cabin_weight",
     "scope": {
       "type": "airline",
@@ -6076,59 +5387,6 @@
     }
   },
   {
-    "id": "rule_china_airlines_brachy_hold",
-    "scope": {
-      "type": "airline",
-      "id": "airline_china_airlines"
-    },
-    "category": "breed_ban",
-    "criticality": "critical",
-    "applies_when": {
-      "all": [
-        {
-          "fact": "dog.brachycephalic",
-          "op": "eq",
-          "value": true
-        },
-        {
-          "fact": "placement",
-          "op": "in",
-          "value": [
-            "hold",
-            "cargo"
-          ]
-        }
-      ]
-    },
-    "effect": {
-      "action": "deny",
-      "placement": [
-        "hold",
-        "cargo"
-      ]
-    },
-    "params": {},
-    "rationale": "Brachycephalic (snub-nosed) breeds are not accepted in the hold or cargo, due to the elevated risk of breathing difficulty.",
-    "source": {
-      "url": "https://mydogcanfly.com/china-airlines-dog-policy/",
-      "source_type": "other",
-      "verified_date": "2026-07-08",
-      "review_due": "2026-10-06",
-      "confidence": 3,
-      "reviewer": "MyDogCanFly Data Team",
-      "history": [
-        {
-          "date": "2026-07-08",
-          "reviewer": "MyDogCanFly Data Team",
-          "note": "Imported from MyDogCanFly's verified 62-airline comparison (June 2026)."
-        }
-      ]
-    },
-    "rationale_i18n": {
-      "fr": "Les races brachycéphales (au museau écrasé) ne sont pas acceptées en soute ni en fret, en raison du risque accru de difficultés respiratoires."
-    }
-  },
-  {
     "id": "rule_china_airlines_hold_weight",
     "scope": {
       "type": "airline",
@@ -6832,59 +6090,6 @@
     }
   },
   {
-    "id": "rule_copa_brachy_hold",
-    "scope": {
-      "type": "airline",
-      "id": "airline_copa"
-    },
-    "category": "breed_ban",
-    "criticality": "critical",
-    "applies_when": {
-      "all": [
-        {
-          "fact": "dog.brachycephalic",
-          "op": "eq",
-          "value": true
-        },
-        {
-          "fact": "placement",
-          "op": "in",
-          "value": [
-            "hold",
-            "cargo"
-          ]
-        }
-      ]
-    },
-    "effect": {
-      "action": "deny",
-      "placement": [
-        "hold",
-        "cargo"
-      ]
-    },
-    "params": {},
-    "rationale": "Brachycephalic (snub-nosed) breeds are not accepted in the hold or cargo, due to the elevated risk of breathing difficulty.",
-    "source": {
-      "url": "https://mydogcanfly.com/copa-airlines-dog-policy/",
-      "source_type": "other",
-      "verified_date": "2026-07-08",
-      "review_due": "2026-10-06",
-      "confidence": 3,
-      "reviewer": "MyDogCanFly Data Team",
-      "history": [
-        {
-          "date": "2026-07-08",
-          "reviewer": "MyDogCanFly Data Team",
-          "note": "Imported from MyDogCanFly's verified 62-airline comparison (June 2026)."
-        }
-      ]
-    },
-    "rationale_i18n": {
-      "fr": "Les races brachycéphales (au museau écrasé) ne sont pas acceptées en soute ni en fret, en raison du risque accru de difficultés respiratoires."
-    }
-  },
-  {
     "id": "rule_copa_cabin_weight",
     "scope": {
       "type": "airline",
@@ -7034,59 +6239,6 @@
     },
     "rationale_i18n": {
       "fr": "Copa Airlines n'accepte pas les chiens en soute comme bagage ; les grands chiens voyagent en fret lorsque c'est possible."
-    }
-  },
-  {
-    "id": "rule_corsair_brachy_hold",
-    "scope": {
-      "type": "airline",
-      "id": "airline_corsair"
-    },
-    "category": "breed_ban",
-    "criticality": "critical",
-    "applies_when": {
-      "all": [
-        {
-          "fact": "dog.brachycephalic",
-          "op": "eq",
-          "value": true
-        },
-        {
-          "fact": "placement",
-          "op": "in",
-          "value": [
-            "hold",
-            "cargo"
-          ]
-        }
-      ]
-    },
-    "effect": {
-      "action": "deny",
-      "placement": [
-        "hold",
-        "cargo"
-      ]
-    },
-    "params": {},
-    "rationale": "Brachycephalic (snub-nosed) breeds are not accepted in the hold or cargo, due to the elevated risk of breathing difficulty.",
-    "source": {
-      "url": "https://mydogcanfly.com/corsair-dog-policy/",
-      "source_type": "other",
-      "verified_date": "2026-07-08",
-      "review_due": "2026-10-06",
-      "confidence": 3,
-      "reviewer": "MyDogCanFly Data Team",
-      "history": [
-        {
-          "date": "2026-07-08",
-          "reviewer": "MyDogCanFly Data Team",
-          "note": "Imported from MyDogCanFly's verified 62-airline comparison (June 2026)."
-        }
-      ]
-    },
-    "rationale_i18n": {
-      "fr": "Les races brachycéphales (au museau écrasé) ne sont pas acceptées en soute ni en fret, en raison du risque accru de difficultés respiratoires."
     }
   },
   {
@@ -9643,59 +8795,6 @@
     }
   },
   {
-    "id": "rule_egyptair_brachy_hold",
-    "scope": {
-      "type": "airline",
-      "id": "airline_egyptair"
-    },
-    "category": "breed_ban",
-    "criticality": "critical",
-    "applies_when": {
-      "all": [
-        {
-          "fact": "dog.brachycephalic",
-          "op": "eq",
-          "value": true
-        },
-        {
-          "fact": "placement",
-          "op": "in",
-          "value": [
-            "hold",
-            "cargo"
-          ]
-        }
-      ]
-    },
-    "effect": {
-      "action": "deny",
-      "placement": [
-        "hold",
-        "cargo"
-      ]
-    },
-    "params": {},
-    "rationale": "Brachycephalic (snub-nosed) breeds are not accepted in the hold or cargo, due to the elevated risk of breathing difficulty.",
-    "source": {
-      "url": "https://mydogcanfly.com/egyptair-dog-policy/",
-      "source_type": "other",
-      "verified_date": "2026-07-08",
-      "review_due": "2026-10-06",
-      "confidence": 3,
-      "reviewer": "MyDogCanFly Data Team",
-      "history": [
-        {
-          "date": "2026-07-08",
-          "reviewer": "MyDogCanFly Data Team",
-          "note": "Imported from MyDogCanFly's verified 62-airline comparison (June 2026)."
-        }
-      ]
-    },
-    "rationale_i18n": {
-      "fr": "Les races brachycéphales (au museau écrasé) ne sont pas acceptées en soute ni en fret, en raison du risque accru de difficultés respiratoires."
-    }
-  },
-  {
     "id": "rule_egyptair_cabin_weight",
     "scope": {
       "type": "airline",
@@ -9969,59 +9068,6 @@
           "note": "Wave-1 airline import — verified from the airline's official pet policy."
         }
       ]
-    }
-  },
-  {
-    "id": "rule_emirates_brachy_hold",
-    "scope": {
-      "type": "airline",
-      "id": "airline_emirates"
-    },
-    "category": "breed_ban",
-    "criticality": "critical",
-    "applies_when": {
-      "all": [
-        {
-          "fact": "dog.brachycephalic",
-          "op": "eq",
-          "value": true
-        },
-        {
-          "fact": "placement",
-          "op": "in",
-          "value": [
-            "hold",
-            "cargo"
-          ]
-        }
-      ]
-    },
-    "effect": {
-      "action": "deny",
-      "placement": [
-        "hold",
-        "cargo"
-      ]
-    },
-    "params": {},
-    "rationale": "Brachycephalic (snub-nosed) breeds are not accepted in the hold or cargo, due to the elevated risk of breathing difficulty.",
-    "source": {
-      "url": "https://mydogcanfly.com/emirates-dog-policy/",
-      "source_type": "other",
-      "verified_date": "2026-07-08",
-      "review_due": "2026-10-06",
-      "confidence": 3,
-      "reviewer": "MyDogCanFly Data Team",
-      "history": [
-        {
-          "date": "2026-07-08",
-          "reviewer": "MyDogCanFly Data Team",
-          "note": "Imported from MyDogCanFly's verified 62-airline comparison (June 2026)."
-        }
-      ]
-    },
-    "rationale_i18n": {
-      "fr": "Les races brachycéphales (au museau écrasé) ne sont pas acceptées en soute ni en fret, en raison du risque accru de difficultés respiratoires."
     }
   },
   {
@@ -10384,59 +9430,6 @@
     }
   },
   {
-    "id": "rule_ethiopian_brachy_hold",
-    "scope": {
-      "type": "airline",
-      "id": "airline_ethiopian"
-    },
-    "category": "breed_ban",
-    "criticality": "critical",
-    "applies_when": {
-      "all": [
-        {
-          "fact": "dog.brachycephalic",
-          "op": "eq",
-          "value": true
-        },
-        {
-          "fact": "placement",
-          "op": "in",
-          "value": [
-            "hold",
-            "cargo"
-          ]
-        }
-      ]
-    },
-    "effect": {
-      "action": "deny",
-      "placement": [
-        "hold",
-        "cargo"
-      ]
-    },
-    "params": {},
-    "rationale": "Brachycephalic (snub-nosed) breeds are not accepted in the hold or cargo, due to the elevated risk of breathing difficulty.",
-    "source": {
-      "url": "https://mydogcanfly.com/ethiopian-airlines-dog-policy/",
-      "source_type": "other",
-      "verified_date": "2026-07-08",
-      "review_due": "2026-10-06",
-      "confidence": 3,
-      "reviewer": "MyDogCanFly Data Team",
-      "history": [
-        {
-          "date": "2026-07-08",
-          "reviewer": "MyDogCanFly Data Team",
-          "note": "Imported from MyDogCanFly's verified 62-airline comparison (June 2026)."
-        }
-      ]
-    },
-    "rationale_i18n": {
-      "fr": "Les races brachycéphales (au museau écrasé) ne sont pas acceptées en soute ni en fret, en raison du risque accru de difficultés respiratoires."
-    }
-  },
-  {
     "id": "rule_ethiopian_cabin_weight",
     "scope": {
       "type": "airline",
@@ -10536,59 +9529,6 @@
           "note": "Imported from the MyDogCanFly airline comparison (verified June 2026)."
         }
       ]
-    }
-  },
-  {
-    "id": "rule_etihad_brachy_hold",
-    "scope": {
-      "type": "airline",
-      "id": "airline_etihad"
-    },
-    "category": "breed_ban",
-    "criticality": "critical",
-    "applies_when": {
-      "all": [
-        {
-          "fact": "dog.brachycephalic",
-          "op": "eq",
-          "value": true
-        },
-        {
-          "fact": "placement",
-          "op": "in",
-          "value": [
-            "hold",
-            "cargo"
-          ]
-        }
-      ]
-    },
-    "effect": {
-      "action": "deny",
-      "placement": [
-        "hold",
-        "cargo"
-      ]
-    },
-    "params": {},
-    "rationale": "Brachycephalic (snub-nosed) breeds are not accepted in the hold or cargo, due to the elevated risk of breathing difficulty.",
-    "source": {
-      "url": "https://mydogcanfly.com/etihad-airways-dog-policy/",
-      "source_type": "other",
-      "verified_date": "2026-07-08",
-      "review_due": "2026-10-06",
-      "confidence": 3,
-      "reviewer": "MyDogCanFly Data Team",
-      "history": [
-        {
-          "date": "2026-07-08",
-          "reviewer": "MyDogCanFly Data Team",
-          "note": "Imported from MyDogCanFly's verified 62-airline comparison (June 2026)."
-        }
-      ]
-    },
-    "rationale_i18n": {
-      "fr": "Les races brachycéphales (au museau écrasé) ne sont pas acceptées en soute ni en fret, en raison du risque accru de difficultés respiratoires."
     }
   },
   {
@@ -10840,59 +9780,6 @@
           "note": "Vérifié ligne à ligne contre la table APHA (compagnies commerciales) — voir add-gb-approved-carriers-rules.mjs pour la méthode."
         }
       ]
-    }
-  },
-  {
-    "id": "rule_eva_air_brachy_hold",
-    "scope": {
-      "type": "airline",
-      "id": "airline_eva_air"
-    },
-    "category": "breed_ban",
-    "criticality": "critical",
-    "applies_when": {
-      "all": [
-        {
-          "fact": "dog.brachycephalic",
-          "op": "eq",
-          "value": true
-        },
-        {
-          "fact": "placement",
-          "op": "in",
-          "value": [
-            "hold",
-            "cargo"
-          ]
-        }
-      ]
-    },
-    "effect": {
-      "action": "deny",
-      "placement": [
-        "hold",
-        "cargo"
-      ]
-    },
-    "params": {},
-    "rationale": "Brachycephalic (snub-nosed) breeds are not accepted in the hold or cargo, due to the elevated risk of breathing difficulty.",
-    "source": {
-      "url": "https://mydogcanfly.com/eva-air-dog-policy/",
-      "source_type": "other",
-      "verified_date": "2026-07-08",
-      "review_due": "2026-10-06",
-      "confidence": 3,
-      "reviewer": "MyDogCanFly Data Team",
-      "history": [
-        {
-          "date": "2026-07-08",
-          "reviewer": "MyDogCanFly Data Team",
-          "note": "Imported from MyDogCanFly's verified 62-airline comparison (June 2026)."
-        }
-      ]
-    },
-    "rationale_i18n": {
-      "fr": "Les races brachycéphales (au museau écrasé) ne sont pas acceptées en soute ni en fret, en raison du risque accru de difficultés respiratoires."
     }
   },
   {
@@ -11306,59 +10193,6 @@
           "note": "Règle créée pour le retour dans l'UE avec passeport européen. Vérifiée sur « Bringing a pet into the EU from a non-EU country », Exceptions › Animal health certificate, point 2 (règlement délégué (UE) 2026/131), et sur la FAQ DG SANTÉ (« travelling back to the EU after a short stay »). Se déclenche aussi quand la question est sans réponse, en parallèle de rule_fi_import_non_eu."
         }
       ]
-    }
-  },
-  {
-    "id": "rule_finnair_brachy_hold",
-    "scope": {
-      "type": "airline",
-      "id": "airline_finnair"
-    },
-    "category": "breed_ban",
-    "criticality": "critical",
-    "applies_when": {
-      "all": [
-        {
-          "fact": "dog.brachycephalic",
-          "op": "eq",
-          "value": true
-        },
-        {
-          "fact": "placement",
-          "op": "in",
-          "value": [
-            "hold",
-            "cargo"
-          ]
-        }
-      ]
-    },
-    "effect": {
-      "action": "deny",
-      "placement": [
-        "hold",
-        "cargo"
-      ]
-    },
-    "params": {},
-    "rationale": "Brachycephalic (snub-nosed) breeds are not accepted in the hold or cargo, due to the elevated risk of breathing difficulty.",
-    "source": {
-      "url": "https://mydogcanfly.com/finnair-dog-policy/",
-      "source_type": "other",
-      "verified_date": "2026-07-08",
-      "review_due": "2026-10-06",
-      "confidence": 3,
-      "reviewer": "MyDogCanFly Data Team",
-      "history": [
-        {
-          "date": "2026-07-08",
-          "reviewer": "MyDogCanFly Data Team",
-          "note": "Imported from MyDogCanFly's verified 62-airline comparison (June 2026)."
-        }
-      ]
-    },
-    "rationale_i18n": {
-      "fr": "Les races brachycéphales (au museau écrasé) ne sont pas acceptées en soute ni en fret, en raison du risque accru de difficultés respiratoires."
     }
   },
   {
@@ -11882,59 +10716,6 @@
           "note": "Règle créée pour le retour dans l'UE avec passeport européen. Vérifiée sur « Bringing a pet into the EU from a non-EU country », Exceptions › Animal health certificate, point 2 (règlement délégué (UE) 2026/131), et sur la FAQ DG SANTÉ (« travelling back to the EU after a short stay »). Se déclenche aussi quand la question est sans réponse, en parallèle de rule_fr_import_non_eu."
         }
       ]
-    }
-  },
-  {
-    "id": "rule_french_bee_brachy_hold",
-    "scope": {
-      "type": "airline",
-      "id": "airline_french_bee"
-    },
-    "category": "breed_ban",
-    "criticality": "critical",
-    "applies_when": {
-      "all": [
-        {
-          "fact": "dog.brachycephalic",
-          "op": "eq",
-          "value": true
-        },
-        {
-          "fact": "placement",
-          "op": "in",
-          "value": [
-            "hold",
-            "cargo"
-          ]
-        }
-      ]
-    },
-    "effect": {
-      "action": "deny",
-      "placement": [
-        "hold",
-        "cargo"
-      ]
-    },
-    "params": {},
-    "rationale": "Brachycephalic (snub-nosed) breeds are not accepted in the hold or cargo, due to the elevated risk of breathing difficulty.",
-    "source": {
-      "url": "https://mydogcanfly.com/french-bee-dog-policy/",
-      "source_type": "other",
-      "verified_date": "2026-07-08",
-      "review_due": "2026-10-06",
-      "confidence": 3,
-      "reviewer": "MyDogCanFly Data Team",
-      "history": [
-        {
-          "date": "2026-07-08",
-          "reviewer": "MyDogCanFly Data Team",
-          "note": "Imported from MyDogCanFly's verified 62-airline comparison (June 2026)."
-        }
-      ]
-    },
-    "rationale_i18n": {
-      "fr": "Les races brachycéphales (au museau écrasé) ne sont pas acceptées en soute ni en fret, en raison du risque accru de difficultés respiratoires."
     }
   },
   {
@@ -12571,58 +11352,6 @@
     },
     "rationale_i18n": {
       "fr": "Préparation : environ 1 mois. Exigences : puce ISO, vaccination antirabique, certificat de santé, traitement antiparasitaire."
-    }
-  },
-  {
-    "id": "rule_global_brachy_hold",
-    "scope": {
-      "type": "global"
-    },
-    "category": "breed_ban",
-    "criticality": "critical",
-    "applies_when": {
-      "all": [
-        {
-          "fact": "dog.brachycephalic",
-          "op": "eq",
-          "value": true
-        },
-        {
-          "fact": "placement",
-          "op": "in",
-          "value": [
-            "hold",
-            "cargo"
-          ]
-        }
-      ]
-    },
-    "effect": {
-      "action": "deny",
-      "placement": [
-        "hold",
-        "cargo"
-      ]
-    },
-    "params": {},
-    "rationale": "Snub-nosed (brachycephalic) breeds are, as a safety default, not accepted in the hold or cargo because of the elevated risk of breathing difficulty; most airlines embargo them and specialists advise against it.",
-    "rationale_i18n": {
-      "fr": "Par défaut de sécurité, les races au museau écrasé (brachycéphales) ne sont pas acceptées en soute ni en fret en raison du risque accru de difficultés respiratoires ; la plupart des compagnies les refusent et les spécialistes le déconseillent."
-    },
-    "source": {
-      "url": "https://www.iata.org/en/youandiata/travelers/pets/",
-      "source_type": "other",
-      "verified_date": "2026-07-08",
-      "review_due": "2027-01-04",
-      "confidence": 3,
-      "reviewer": "MyDogCanFly Data Team",
-      "history": [
-        {
-          "date": "2026-07-08",
-          "reviewer": "MyDogCanFly Data Team",
-          "note": "Universal brachycephalic hold/cargo safety default; airlines with a specific rule already deny."
-        }
-      ]
     }
   },
   {
@@ -13965,59 +12694,6 @@
     },
     "rationale_i18n": {
       "fr": "Les chiens ne sont pas transportés en soute ni en fret lorsque les températures prévues dépassent environ 30 °C, pour des raisons de bien-être."
-    }
-  },
-  {
-    "id": "rule_iberia_express_brachy_hold",
-    "scope": {
-      "type": "airline",
-      "id": "airline_iberia_express"
-    },
-    "category": "breed_ban",
-    "criticality": "critical",
-    "applies_when": {
-      "all": [
-        {
-          "fact": "dog.brachycephalic",
-          "op": "eq",
-          "value": true
-        },
-        {
-          "fact": "placement",
-          "op": "in",
-          "value": [
-            "hold",
-            "cargo"
-          ]
-        }
-      ]
-    },
-    "effect": {
-      "action": "deny",
-      "placement": [
-        "hold",
-        "cargo"
-      ]
-    },
-    "params": {},
-    "rationale": "Brachycephalic (snub-nosed) breeds are not accepted in the hold or cargo, due to the elevated risk of breathing difficulty.",
-    "source": {
-      "url": "https://mydogcanfly.com/iberia-express-dog-policy/",
-      "source_type": "other",
-      "verified_date": "2026-07-08",
-      "review_due": "2026-10-06",
-      "confidence": 3,
-      "reviewer": "MyDogCanFly Data Team",
-      "history": [
-        {
-          "date": "2026-07-08",
-          "reviewer": "MyDogCanFly Data Team",
-          "note": "Imported from MyDogCanFly's verified 62-airline comparison (June 2026)."
-        }
-      ]
-    },
-    "rationale_i18n": {
-      "fr": "Les races brachycéphales (au museau écrasé) ne sont pas acceptées en soute ni en fret, en raison du risque accru de difficultés respiratoires."
     }
   },
   {
@@ -15422,59 +14098,6 @@
     }
   },
   {
-    "id": "rule_ita_airways_brachy_hold",
-    "scope": {
-      "type": "airline",
-      "id": "airline_ita_airways"
-    },
-    "category": "breed_ban",
-    "criticality": "critical",
-    "applies_when": {
-      "all": [
-        {
-          "fact": "dog.brachycephalic",
-          "op": "eq",
-          "value": true
-        },
-        {
-          "fact": "placement",
-          "op": "in",
-          "value": [
-            "hold",
-            "cargo"
-          ]
-        }
-      ]
-    },
-    "effect": {
-      "action": "deny",
-      "placement": [
-        "hold",
-        "cargo"
-      ]
-    },
-    "params": {},
-    "rationale": "Brachycephalic (snub-nosed) breeds are not accepted in the hold or cargo, due to the elevated risk of breathing difficulty.",
-    "source": {
-      "url": "https://mydogcanfly.com/ita-airways-dog-policy/",
-      "source_type": "other",
-      "verified_date": "2026-07-08",
-      "review_due": "2026-10-06",
-      "confidence": 3,
-      "reviewer": "MyDogCanFly Data Team",
-      "history": [
-        {
-          "date": "2026-07-08",
-          "reviewer": "MyDogCanFly Data Team",
-          "note": "Imported from MyDogCanFly's verified 62-airline comparison (June 2026)."
-        }
-      ]
-    },
-    "rationale_i18n": {
-      "fr": "Les races brachycéphales (au museau écrasé) ne sont pas acceptées en soute ni en fret, en raison du risque accru de difficultés respiratoires."
-    }
-  },
-  {
     "id": "rule_ita_airways_cabin_weight",
     "scope": {
       "type": "airline",
@@ -15631,59 +14254,6 @@
           "note": "Imported from the MyDogCanFly airline comparison (verified June 2026)."
         }
       ]
-    }
-  },
-  {
-    "id": "rule_jal_brachy_hold",
-    "scope": {
-      "type": "airline",
-      "id": "airline_jal"
-    },
-    "category": "breed_ban",
-    "criticality": "critical",
-    "applies_when": {
-      "all": [
-        {
-          "fact": "dog.brachycephalic",
-          "op": "eq",
-          "value": true
-        },
-        {
-          "fact": "placement",
-          "op": "in",
-          "value": [
-            "hold",
-            "cargo"
-          ]
-        }
-      ]
-    },
-    "effect": {
-      "action": "deny",
-      "placement": [
-        "hold",
-        "cargo"
-      ]
-    },
-    "params": {},
-    "rationale": "Brachycephalic (snub-nosed) breeds are not accepted in the hold or cargo, due to the elevated risk of breathing difficulty.",
-    "source": {
-      "url": "https://mydogcanfly.com/japan-airlines-dog-policy/",
-      "source_type": "other",
-      "verified_date": "2026-07-08",
-      "review_due": "2026-10-06",
-      "confidence": 3,
-      "reviewer": "MyDogCanFly Data Team",
-      "history": [
-        {
-          "date": "2026-07-08",
-          "reviewer": "MyDogCanFly Data Team",
-          "note": "Imported from MyDogCanFly's verified 62-airline comparison (June 2026)."
-        }
-      ]
-    },
-    "rationale_i18n": {
-      "fr": "Les races brachycéphales (au museau écrasé) ne sont pas acceptées en soute ni en fret, en raison du risque accru de difficultés respiratoires."
     }
   },
   {
@@ -16496,59 +15066,6 @@
     }
   },
   {
-    "id": "rule_korean_air_brachy_hold",
-    "scope": {
-      "type": "airline",
-      "id": "airline_korean_air"
-    },
-    "category": "breed_ban",
-    "criticality": "critical",
-    "applies_when": {
-      "all": [
-        {
-          "fact": "dog.brachycephalic",
-          "op": "eq",
-          "value": true
-        },
-        {
-          "fact": "placement",
-          "op": "in",
-          "value": [
-            "hold",
-            "cargo"
-          ]
-        }
-      ]
-    },
-    "effect": {
-      "action": "deny",
-      "placement": [
-        "hold",
-        "cargo"
-      ]
-    },
-    "params": {},
-    "rationale": "Brachycephalic (snub-nosed) breeds are not accepted in the hold or cargo, due to the elevated risk of breathing difficulty.",
-    "source": {
-      "url": "https://mydogcanfly.com/korean-air-dog-policy/",
-      "source_type": "other",
-      "verified_date": "2026-07-08",
-      "review_due": "2026-10-06",
-      "confidence": 3,
-      "reviewer": "MyDogCanFly Data Team",
-      "history": [
-        {
-          "date": "2026-07-08",
-          "reviewer": "MyDogCanFly Data Team",
-          "note": "Imported from MyDogCanFly's verified 62-airline comparison (June 2026)."
-        }
-      ]
-    },
-    "rationale_i18n": {
-      "fr": "Les races brachycéphales (au museau écrasé) ne sont pas acceptées en soute ni en fret, en raison du risque accru de difficultés respiratoires."
-    }
-  },
-  {
     "id": "rule_korean_air_cabin_weight",
     "scope": {
       "type": "airline",
@@ -16803,59 +15320,6 @@
           "note": "Vérifié ligne à ligne contre la table APHA (compagnies commerciales) — voir add-gb-approved-carriers-rules.mjs pour la méthode."
         }
       ]
-    }
-  },
-  {
-    "id": "rule_latam_brachy_hold",
-    "scope": {
-      "type": "airline",
-      "id": "airline_latam"
-    },
-    "category": "breed_ban",
-    "criticality": "critical",
-    "applies_when": {
-      "all": [
-        {
-          "fact": "dog.brachycephalic",
-          "op": "eq",
-          "value": true
-        },
-        {
-          "fact": "placement",
-          "op": "in",
-          "value": [
-            "hold",
-            "cargo"
-          ]
-        }
-      ]
-    },
-    "effect": {
-      "action": "deny",
-      "placement": [
-        "hold",
-        "cargo"
-      ]
-    },
-    "params": {},
-    "rationale": "Brachycephalic (snub-nosed) breeds are not accepted in the hold or cargo, due to the elevated risk of breathing difficulty.",
-    "source": {
-      "url": "https://mydogcanfly.com/latam-dog-policy/",
-      "source_type": "other",
-      "verified_date": "2026-07-08",
-      "review_due": "2026-10-06",
-      "confidence": 3,
-      "reviewer": "MyDogCanFly Data Team",
-      "history": [
-        {
-          "date": "2026-07-08",
-          "reviewer": "MyDogCanFly Data Team",
-          "note": "Imported from MyDogCanFly's verified 62-airline comparison (June 2026)."
-        }
-      ]
-    },
-    "rationale_i18n": {
-      "fr": "Les races brachycéphales (au museau écrasé) ne sont pas acceptées en soute ni en fret, en raison du risque accru de difficultés respiratoires."
     }
   },
   {
@@ -17530,59 +15994,6 @@
     },
     "rationale_i18n": {
       "fr": "Préparation : environ 1 à 2 mois. Exigences : permis d’importation, vaccination antirabique, certificat de santé, traitement antiparasitaire, quarantaine."
-    }
-  },
-  {
-    "id": "rule_lot_brachy_hold",
-    "scope": {
-      "type": "airline",
-      "id": "airline_lot"
-    },
-    "category": "breed_ban",
-    "criticality": "critical",
-    "applies_when": {
-      "all": [
-        {
-          "fact": "dog.brachycephalic",
-          "op": "eq",
-          "value": true
-        },
-        {
-          "fact": "placement",
-          "op": "in",
-          "value": [
-            "hold",
-            "cargo"
-          ]
-        }
-      ]
-    },
-    "effect": {
-      "action": "deny",
-      "placement": [
-        "hold",
-        "cargo"
-      ]
-    },
-    "params": {},
-    "rationale": "Brachycephalic (snub-nosed) breeds are not accepted in the hold or cargo, due to the elevated risk of breathing difficulty.",
-    "source": {
-      "url": "https://mydogcanfly.com/lot-polish-airlines-dog-policy/",
-      "source_type": "other",
-      "verified_date": "2026-07-08",
-      "review_due": "2026-10-06",
-      "confidence": 3,
-      "reviewer": "MyDogCanFly Data Team",
-      "history": [
-        {
-          "date": "2026-07-08",
-          "reviewer": "MyDogCanFly Data Team",
-          "note": "Imported from MyDogCanFly's verified 62-airline comparison (June 2026)."
-        }
-      ]
-    },
-    "rationale_i18n": {
-      "fr": "Les races brachycéphales (au museau écrasé) ne sont pas acceptées en soute ni en fret, en raison du risque accru de difficultés respiratoires."
     }
   },
   {
@@ -20290,59 +18701,6 @@
     }
   },
   {
-    "id": "rule_norwegian_brachy_hold",
-    "scope": {
-      "type": "airline",
-      "id": "airline_norwegian"
-    },
-    "category": "breed_ban",
-    "criticality": "critical",
-    "applies_when": {
-      "all": [
-        {
-          "fact": "dog.brachycephalic",
-          "op": "eq",
-          "value": true
-        },
-        {
-          "fact": "placement",
-          "op": "in",
-          "value": [
-            "hold",
-            "cargo"
-          ]
-        }
-      ]
-    },
-    "effect": {
-      "action": "deny",
-      "placement": [
-        "hold",
-        "cargo"
-      ]
-    },
-    "params": {},
-    "rationale": "Brachycephalic (snub-nosed) breeds are not accepted in the hold or cargo, due to the elevated risk of breathing difficulty.",
-    "source": {
-      "url": "https://mydogcanfly.com/norwegian-dog-policy/",
-      "source_type": "other",
-      "verified_date": "2026-07-08",
-      "review_due": "2026-10-06",
-      "confidence": 3,
-      "reviewer": "MyDogCanFly Data Team",
-      "history": [
-        {
-          "date": "2026-07-08",
-          "reviewer": "MyDogCanFly Data Team",
-          "note": "Imported from MyDogCanFly's verified 62-airline comparison (June 2026)."
-        }
-      ]
-    },
-    "rationale_i18n": {
-      "fr": "Les races brachycéphales (au museau écrasé) ne sont pas acceptées en soute ni en fret, en raison du risque accru de difficultés respiratoires."
-    }
-  },
-  {
     "id": "rule_norwegian_cabin_weight",
     "scope": {
       "type": "airline",
@@ -20812,59 +19170,6 @@
     },
     "rationale_i18n": {
       "fr": "Préparation : environ 1 mois. Exigences : puce ISO, vaccination antirabique, certificat de santé, permis d’importation, traitement antiparasitaire."
-    }
-  },
-  {
-    "id": "rule_philippine_brachy_hold",
-    "scope": {
-      "type": "airline",
-      "id": "airline_philippine"
-    },
-    "category": "breed_ban",
-    "criticality": "critical",
-    "applies_when": {
-      "all": [
-        {
-          "fact": "dog.brachycephalic",
-          "op": "eq",
-          "value": true
-        },
-        {
-          "fact": "placement",
-          "op": "in",
-          "value": [
-            "hold",
-            "cargo"
-          ]
-        }
-      ]
-    },
-    "effect": {
-      "action": "deny",
-      "placement": [
-        "hold",
-        "cargo"
-      ]
-    },
-    "params": {},
-    "rationale": "Brachycephalic (snub-nosed) breeds are not accepted in the hold or cargo, due to the elevated risk of breathing difficulty.",
-    "source": {
-      "url": "https://mydogcanfly.com/philippine-airlines-dog-policy/",
-      "source_type": "other",
-      "verified_date": "2026-07-08",
-      "review_due": "2026-10-06",
-      "confidence": 3,
-      "reviewer": "MyDogCanFly Data Team",
-      "history": [
-        {
-          "date": "2026-07-08",
-          "reviewer": "MyDogCanFly Data Team",
-          "note": "Imported from MyDogCanFly's verified 62-airline comparison (June 2026)."
-        }
-      ]
-    },
-    "rationale_i18n": {
-      "fr": "Les races brachycéphales (au museau écrasé) ne sont pas acceptées en soute ni en fret, en raison du risque accru de difficultés respiratoires."
     }
   },
   {
@@ -21834,59 +20139,6 @@
     }
   },
   {
-    "id": "rule_qatar_airways_brachy_hold",
-    "scope": {
-      "type": "airline",
-      "id": "airline_qatar_airways"
-    },
-    "category": "breed_ban",
-    "criticality": "critical",
-    "applies_when": {
-      "all": [
-        {
-          "fact": "dog.brachycephalic",
-          "op": "eq",
-          "value": true
-        },
-        {
-          "fact": "placement",
-          "op": "in",
-          "value": [
-            "hold",
-            "cargo"
-          ]
-        }
-      ]
-    },
-    "effect": {
-      "action": "deny",
-      "placement": [
-        "hold",
-        "cargo"
-      ]
-    },
-    "params": {},
-    "rationale": "Brachycephalic (snub-nosed) breeds are not accepted in the hold or cargo, due to the elevated risk of breathing difficulty.",
-    "source": {
-      "url": "https://mydogcanfly.com/qatar-airways-dog-policy/",
-      "source_type": "other",
-      "verified_date": "2026-07-08",
-      "review_due": "2026-10-06",
-      "confidence": 3,
-      "reviewer": "MyDogCanFly Data Team",
-      "history": [
-        {
-          "date": "2026-07-08",
-          "reviewer": "MyDogCanFly Data Team",
-          "note": "Imported from MyDogCanFly's verified 62-airline comparison (June 2026)."
-        }
-      ]
-    },
-    "rationale_i18n": {
-      "fr": "Les races brachycéphales (au museau écrasé) ne sont pas acceptées en soute ni en fret, en raison du risque accru de difficultés respiratoires."
-    }
-  },
-  {
     "id": "rule_qatar_airways_hold_weight",
     "scope": {
       "type": "airline",
@@ -22294,59 +20546,6 @@
           "note": "Règle créée pour le retour dans l'UE avec passeport européen. Vérifiée sur « Bringing a pet into the EU from a non-EU country », Exceptions › Animal health certificate, point 2 (règlement délégué (UE) 2026/131), et sur la FAQ DG SANTÉ (« travelling back to the EU after a short stay »). Se déclenche aussi quand la question est sans réponse, en parallèle de rule_ro_import_non_eu."
         }
       ]
-    }
-  },
-  {
-    "id": "rule_royal_air_maroc_brachy_hold",
-    "scope": {
-      "type": "airline",
-      "id": "airline_royal_air_maroc"
-    },
-    "category": "breed_ban",
-    "criticality": "critical",
-    "applies_when": {
-      "all": [
-        {
-          "fact": "dog.brachycephalic",
-          "op": "eq",
-          "value": true
-        },
-        {
-          "fact": "placement",
-          "op": "in",
-          "value": [
-            "hold",
-            "cargo"
-          ]
-        }
-      ]
-    },
-    "effect": {
-      "action": "deny",
-      "placement": [
-        "hold",
-        "cargo"
-      ]
-    },
-    "params": {},
-    "rationale": "Brachycephalic (snub-nosed) breeds are not accepted in the hold or cargo, due to the elevated risk of breathing difficulty.",
-    "source": {
-      "url": "https://mydogcanfly.com/royal-air-maroc-dog-policy/",
-      "source_type": "other",
-      "verified_date": "2026-07-08",
-      "review_due": "2026-10-06",
-      "confidence": 3,
-      "reviewer": "MyDogCanFly Data Team",
-      "history": [
-        {
-          "date": "2026-07-08",
-          "reviewer": "MyDogCanFly Data Team",
-          "note": "Imported from MyDogCanFly's verified 62-airline comparison (June 2026)."
-        }
-      ]
-    },
-    "rationale_i18n": {
-      "fr": "Les races brachycéphales (au museau écrasé) ne sont pas acceptées en soute ni en fret, en raison du risque accru de difficultés respiratoires."
     }
   },
   {
@@ -22764,59 +20963,6 @@
     },
     "rationale_i18n": {
       "fr": "Préparation : 1 à 2 mois. Exigences : puce ISO, vaccination antirabique, permis d’importation, certificat de santé."
-    }
-  },
-  {
-    "id": "rule_sas_brachy_hold",
-    "scope": {
-      "type": "airline",
-      "id": "airline_sas"
-    },
-    "category": "breed_ban",
-    "criticality": "critical",
-    "applies_when": {
-      "all": [
-        {
-          "fact": "dog.brachycephalic",
-          "op": "eq",
-          "value": true
-        },
-        {
-          "fact": "placement",
-          "op": "in",
-          "value": [
-            "hold",
-            "cargo"
-          ]
-        }
-      ]
-    },
-    "effect": {
-      "action": "deny",
-      "placement": [
-        "hold",
-        "cargo"
-      ]
-    },
-    "params": {},
-    "rationale": "Brachycephalic (snub-nosed) breeds are not accepted in the hold or cargo, due to the elevated risk of breathing difficulty.",
-    "source": {
-      "url": "https://mydogcanfly.com/sas-dog-policy/",
-      "source_type": "other",
-      "verified_date": "2026-07-08",
-      "review_due": "2026-10-06",
-      "confidence": 3,
-      "reviewer": "MyDogCanFly Data Team",
-      "history": [
-        {
-          "date": "2026-07-08",
-          "reviewer": "MyDogCanFly Data Team",
-          "note": "Imported from MyDogCanFly's verified 62-airline comparison (June 2026)."
-        }
-      ]
-    },
-    "rationale_i18n": {
-      "fr": "Les races brachycéphales (au museau écrasé) ne sont pas acceptées en soute ni en fret, en raison du risque accru de difficultés respiratoires."
     }
   },
   {
@@ -23703,59 +21849,6 @@
     }
   },
   {
-    "id": "rule_singapore_airlines_brachy_hold",
-    "scope": {
-      "type": "airline",
-      "id": "airline_singapore_airlines"
-    },
-    "category": "breed_ban",
-    "criticality": "critical",
-    "applies_when": {
-      "all": [
-        {
-          "fact": "dog.brachycephalic",
-          "op": "eq",
-          "value": true
-        },
-        {
-          "fact": "placement",
-          "op": "in",
-          "value": [
-            "hold",
-            "cargo"
-          ]
-        }
-      ]
-    },
-    "effect": {
-      "action": "deny",
-      "placement": [
-        "hold",
-        "cargo"
-      ]
-    },
-    "params": {},
-    "rationale": "Brachycephalic (snub-nosed) breeds are not accepted in the hold or cargo, due to the elevated risk of breathing difficulty.",
-    "source": {
-      "url": "https://mydogcanfly.com/singapore-airlines-dog-policy/",
-      "source_type": "other",
-      "verified_date": "2026-07-08",
-      "review_due": "2026-10-06",
-      "confidence": 3,
-      "reviewer": "MyDogCanFly Data Team",
-      "history": [
-        {
-          "date": "2026-07-08",
-          "reviewer": "MyDogCanFly Data Team",
-          "note": "Imported from MyDogCanFly's verified 62-airline comparison (June 2026)."
-        }
-      ]
-    },
-    "rationale_i18n": {
-      "fr": "Les races brachycéphales (au museau écrasé) ne sont pas acceptées en soute ni en fret, en raison du risque accru de difficultés respiratoires."
-    }
-  },
-  {
     "id": "rule_singapore_airlines_hold_weight",
     "scope": {
       "type": "airline",
@@ -24476,59 +22569,6 @@
     }
   },
   {
-    "id": "rule_swiss_brachy_hold",
-    "scope": {
-      "type": "airline",
-      "id": "airline_swiss"
-    },
-    "category": "breed_ban",
-    "criticality": "critical",
-    "applies_when": {
-      "all": [
-        {
-          "fact": "dog.brachycephalic",
-          "op": "eq",
-          "value": true
-        },
-        {
-          "fact": "placement",
-          "op": "in",
-          "value": [
-            "hold",
-            "cargo"
-          ]
-        }
-      ]
-    },
-    "effect": {
-      "action": "deny",
-      "placement": [
-        "hold",
-        "cargo"
-      ]
-    },
-    "params": {},
-    "rationale": "Brachycephalic (snub-nosed) breeds are not accepted in the hold or cargo, due to the elevated risk of breathing difficulty.",
-    "source": {
-      "url": "https://mydogcanfly.com/swiss-air-dog-policy/",
-      "source_type": "other",
-      "verified_date": "2026-07-08",
-      "review_due": "2026-10-06",
-      "confidence": 3,
-      "reviewer": "MyDogCanFly Data Team",
-      "history": [
-        {
-          "date": "2026-07-08",
-          "reviewer": "MyDogCanFly Data Team",
-          "note": "Imported from MyDogCanFly's verified 62-airline comparison (June 2026)."
-        }
-      ]
-    },
-    "rationale_i18n": {
-      "fr": "Les races brachycéphales (au museau écrasé) ne sont pas acceptées en soute ni en fret, en raison du risque accru de difficultés respiratoires."
-    }
-  },
-  {
     "id": "rule_swiss_cabin_weight",
     "scope": {
       "type": "airline",
@@ -24577,59 +22617,6 @@
           "note": "Imported from the MyDogCanFly airline comparison (verified June 2026)."
         }
       ]
-    }
-  },
-  {
-    "id": "rule_tap_brachy_hold",
-    "scope": {
-      "type": "airline",
-      "id": "airline_tap"
-    },
-    "category": "breed_ban",
-    "criticality": "critical",
-    "applies_when": {
-      "all": [
-        {
-          "fact": "dog.brachycephalic",
-          "op": "eq",
-          "value": true
-        },
-        {
-          "fact": "placement",
-          "op": "in",
-          "value": [
-            "hold",
-            "cargo"
-          ]
-        }
-      ]
-    },
-    "effect": {
-      "action": "deny",
-      "placement": [
-        "hold",
-        "cargo"
-      ]
-    },
-    "params": {},
-    "rationale": "Brachycephalic (snub-nosed) breeds are not accepted in the hold or cargo, due to the elevated risk of breathing difficulty.",
-    "source": {
-      "url": "https://mydogcanfly.com/tap-air-portugal-dog-policy/",
-      "source_type": "other",
-      "verified_date": "2026-07-08",
-      "review_due": "2026-10-06",
-      "confidence": 3,
-      "reviewer": "MyDogCanFly Data Team",
-      "history": [
-        {
-          "date": "2026-07-08",
-          "reviewer": "MyDogCanFly Data Team",
-          "note": "Imported from MyDogCanFly's verified 62-airline comparison (June 2026)."
-        }
-      ]
-    },
-    "rationale_i18n": {
-      "fr": "Les races brachycéphales (au museau écrasé) ne sont pas acceptées en soute ni en fret, en raison du risque accru de difficultés respiratoires."
     }
   },
   {
@@ -24939,59 +22926,6 @@
     },
     "rationale_i18n": {
       "fr": "Préparation : 1 à 2 mois (permis d’importation). Exigences : permis d’importation, 1, puce ISO, vaccination antirabique, certificat de santé."
-    }
-  },
-  {
-    "id": "rule_thai_airways_brachy_hold",
-    "scope": {
-      "type": "airline",
-      "id": "airline_thai_airways"
-    },
-    "category": "breed_ban",
-    "criticality": "critical",
-    "applies_when": {
-      "all": [
-        {
-          "fact": "dog.brachycephalic",
-          "op": "eq",
-          "value": true
-        },
-        {
-          "fact": "placement",
-          "op": "in",
-          "value": [
-            "hold",
-            "cargo"
-          ]
-        }
-      ]
-    },
-    "effect": {
-      "action": "deny",
-      "placement": [
-        "hold",
-        "cargo"
-      ]
-    },
-    "params": {},
-    "rationale": "Brachycephalic (snub-nosed) breeds are not accepted in the hold or cargo, due to the elevated risk of breathing difficulty.",
-    "source": {
-      "url": "https://mydogcanfly.com/thai-airways-dog-policy/",
-      "source_type": "other",
-      "verified_date": "2026-07-08",
-      "review_due": "2026-10-06",
-      "confidence": 3,
-      "reviewer": "MyDogCanFly Data Team",
-      "history": [
-        {
-          "date": "2026-07-08",
-          "reviewer": "MyDogCanFly Data Team",
-          "note": "Imported from MyDogCanFly's verified 62-airline comparison (June 2026)."
-        }
-      ]
-    },
-    "rationale_i18n": {
-      "fr": "Les races brachycéphales (au museau écrasé) ne sont pas acceptées en soute ni en fret, en raison du risque accru de difficultés respiratoires."
     }
   },
   {
@@ -25340,59 +23274,6 @@
     },
     "rationale_i18n": {
       "fr": "La Turquie exige une puce ISO, une vaccination antirabique valide, un test sérologique antirabique (titrage) et un certificat vétérinaire de bonne santé. Prévoyez environ 4 mois de préparation et d’anticipation."
-    }
-  },
-  {
-    "id": "rule_transavia_brachy_hold",
-    "scope": {
-      "type": "airline",
-      "id": "airline_transavia"
-    },
-    "category": "breed_ban",
-    "criticality": "critical",
-    "applies_when": {
-      "all": [
-        {
-          "fact": "dog.brachycephalic",
-          "op": "eq",
-          "value": true
-        },
-        {
-          "fact": "placement",
-          "op": "in",
-          "value": [
-            "hold",
-            "cargo"
-          ]
-        }
-      ]
-    },
-    "effect": {
-      "action": "deny",
-      "placement": [
-        "hold",
-        "cargo"
-      ]
-    },
-    "params": {},
-    "rationale": "Brachycephalic (snub-nosed) breeds are not accepted in the hold or cargo, due to the elevated risk of breathing difficulty.",
-    "source": {
-      "url": "https://mydogcanfly.com/transavia-dog-policy/",
-      "source_type": "other",
-      "verified_date": "2026-07-08",
-      "review_due": "2026-10-06",
-      "confidence": 3,
-      "reviewer": "MyDogCanFly Data Team",
-      "history": [
-        {
-          "date": "2026-07-08",
-          "reviewer": "MyDogCanFly Data Team",
-          "note": "Imported from MyDogCanFly's verified 62-airline comparison (June 2026)."
-        }
-      ]
-    },
-    "rationale_i18n": {
-      "fr": "Les races brachycéphales (au museau écrasé) ne sont pas acceptées en soute ni en fret, en raison du risque accru de difficultés respiratoires."
     }
   },
   {
@@ -26260,59 +24141,6 @@
     }
   },
   {
-    "id": "rule_vietnam_airlines_brachy_hold",
-    "scope": {
-      "type": "airline",
-      "id": "airline_vietnam_airlines"
-    },
-    "category": "breed_ban",
-    "criticality": "critical",
-    "applies_when": {
-      "all": [
-        {
-          "fact": "dog.brachycephalic",
-          "op": "eq",
-          "value": true
-        },
-        {
-          "fact": "placement",
-          "op": "in",
-          "value": [
-            "hold",
-            "cargo"
-          ]
-        }
-      ]
-    },
-    "effect": {
-      "action": "deny",
-      "placement": [
-        "hold",
-        "cargo"
-      ]
-    },
-    "params": {},
-    "rationale": "Brachycephalic (snub-nosed) breeds are not accepted in the hold or cargo, due to the elevated risk of breathing difficulty.",
-    "source": {
-      "url": "https://mydogcanfly.com/vietnam-airlines-dog-policy/",
-      "source_type": "other",
-      "verified_date": "2026-07-08",
-      "review_due": "2026-10-06",
-      "confidence": 3,
-      "reviewer": "MyDogCanFly Data Team",
-      "history": [
-        {
-          "date": "2026-07-08",
-          "reviewer": "MyDogCanFly Data Team",
-          "note": "Imported from MyDogCanFly's verified 62-airline comparison (June 2026)."
-        }
-      ]
-    },
-    "rationale_i18n": {
-      "fr": "Les races brachycéphales (au museau écrasé) ne sont pas acceptées en soute ni en fret, en raison du risque accru de difficultés respiratoires."
-    }
-  },
-  {
     "id": "rule_vietnam_airlines_cabin_weight",
     "scope": {
       "type": "airline",
@@ -27075,59 +24903,6 @@
           "note": "Vérifié ligne à ligne contre la table APHA (compagnies commerciales) — voir add-gb-approved-carriers-rules.mjs pour la méthode."
         }
       ]
-    }
-  },
-  {
-    "id": "rule_westjet_brachy_hold",
-    "scope": {
-      "type": "airline",
-      "id": "airline_westjet"
-    },
-    "category": "breed_ban",
-    "criticality": "critical",
-    "applies_when": {
-      "all": [
-        {
-          "fact": "dog.brachycephalic",
-          "op": "eq",
-          "value": true
-        },
-        {
-          "fact": "placement",
-          "op": "in",
-          "value": [
-            "hold",
-            "cargo"
-          ]
-        }
-      ]
-    },
-    "effect": {
-      "action": "deny",
-      "placement": [
-        "hold",
-        "cargo"
-      ]
-    },
-    "params": {},
-    "rationale": "Brachycephalic (snub-nosed) breeds are not accepted in the hold or cargo, due to the elevated risk of breathing difficulty.",
-    "source": {
-      "url": "https://mydogcanfly.com/westjet-dog-policy/",
-      "source_type": "other",
-      "verified_date": "2026-07-08",
-      "review_due": "2026-10-06",
-      "confidence": 3,
-      "reviewer": "MyDogCanFly Data Team",
-      "history": [
-        {
-          "date": "2026-07-08",
-          "reviewer": "MyDogCanFly Data Team",
-          "note": "Imported from MyDogCanFly's verified 62-airline comparison (June 2026)."
-        }
-      ]
-    },
-    "rationale_i18n": {
-      "fr": "Les races brachycéphales (au museau écrasé) ne sont pas acceptées en soute ni en fret, en raison du risque accru de difficultés respiratoires."
     }
   },
   {
