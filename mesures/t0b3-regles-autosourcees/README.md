@@ -28,6 +28,11 @@ worktree Git détaché au commit qui a produit ces artefacts** (`a9a6556…`, mo
 puis comparés **octet à octet** aux fichiers archivés ici. Un artefact intact ne prouve rien ; un
 calcul qui se rejoue, si.
 
+Le rejeu vérifie aussi son propre environnement : il **refuse** de tourner si `package-lock.json` a
+changé depuis la mesure — monter les dépendances du jour dans un worktree d'hier rejouerait le code
+d'alors sur d'autres bibliothèques — et consigne la version de Node employée, confrontée au
+`.nvmrc` historique.
+
 Ce qui n'est plus fait, et ne doit pas l'être : recalculer sur le moteur actuel. Cela remplacerait
 en silence une mesure validée par une autre. Pour mesurer le moteur d'aujourd'hui, il faut déclarer
 une **nouvelle base** et un **nouveau dossier**.

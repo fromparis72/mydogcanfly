@@ -43,7 +43,49 @@ const DOSSIER = "mesures/t0b3a-arbitrage-brachy";
 const ECRIRE = process.argv.includes("--ecrire");
 const OUTILS = ["arbitrer", "simuler-h"];
 const ARTEFACTS = ["README.md", "OPTION-H.md", "arbitrage-p0-brachy.json", "option-h-simulee.json"];
-const CONTRE_EPREUVES = ["causes", "table", "ids42", "bascules", "validateur", "multi"];
+/* ---- LES CONTRE-ÉPREUVES, ET CE QU'ELLES DOIVENT DIRE -------------------------------------------
+ *
+ * Se contenter de `status !== 0` acceptait n'importe quel échec pour une réussite : un processus
+ * tué, une erreur d'import, une exception levée AVANT l'assertion visée — tout cela « prouvait »
+ * que le simulateur savait échouer. On exige donc le code 1 exact, l'absence de signal, ET un
+ * fragment de diagnostic PROPRE à l'invariant cassé : sans lui, l'échec ne dit pas qu'on a bien
+ * atteint puis mis en défaut l'assertion qu'on visait.
+ *
+ * `mode` distingue les deux façons dont une contre-épreuve peut légitimement échouer :
+ *   `exigence`  — le simulateur va au bout et refuse ses propres exigences ;
+ *   `exception` — le chargement du référentiel est refusé, et rien ne doit aller plus loin. */
+const CONTRE_EPREUVES = [
+  { code: "causes", mode: "exigence", fragment: "G5 · aucune cause préexistante perdue" },
+  { code: "table", mode: "exigence", fragment: "les fixtures de la table H sont toutes conformes" },
+  { code: "ids42", mode: "exigence", fragment: "les 42 identités sont exactement 42" },
+  { code: "bascules", mode: "exigence", fragment: "bascules vont EXCLUSIVEMENT vers confirmation_required" },
+  { code: "validateur", mode: "exception", fragment: "ensemble refusé par validateBreedRestrictions" },
+  { code: "multi", mode: "exigence", fragment: "deux exigences auditées produisent DEUX causes distinctes" },
+];
+
+/** Une contre-épreuve n'a réussi que si elle échoue POUR LA BONNE RAISON. */
+function exigerContreEpreuve(ce, r, ou) {
+  const sortie = `${r.stdout || ""}${r.stderr || ""}`;
+  if (r.signal) echouer(`contre-épreuve « ${ce.code} » ${ou} : processus tué par ${r.signal} — un `
+    + `processus abattu n'est pas une assertion mise en défaut`);
+  if (r.status !== 1) echouer(`contre-épreuve « ${ce.code} » ${ou} : code ${r.status}, attendu 1`);
+  if (!sortie.includes(ce.fragment)) {
+    echouer(`contre-épreuve « ${ce.code} » ${ou} : sortie en 1, mais SANS le diagnostic attendu `
+      + `« ${ce.fragment} » — elle a échoué pour une autre raison que l'invariant visé.\n`
+      + `${sortie.slice(-800)}`);
+  }
+  /* Le mode dit COMMENT elle doit échouer : aller au bout et refuser ses exigences, ou refuser le
+     référentiel au chargement. Confondre les deux laisserait passer une exception précoce. */
+  const auBout = /ÉCHEC — \d+ exigence\(s\) non tenue\(s\)/.test(sortie);
+  if (ce.mode === "exigence" && !auBout) {
+    echouer(`contre-épreuve « ${ce.code} » ${ou} : elle devait aller au bout et refuser ses `
+      + `exigences ; elle s'est interrompue avant.\n${sortie.slice(-800)}`);
+  }
+  if (ce.mode === "exception" && auBout) {
+    echouer(`contre-épreuve « ${ce.code} » ${ou} : elle devait refuser le référentiel AU `
+      + `CHARGEMENT ; elle est allée jusqu'au décompte des exigences.`);
+  }
+}
 const SOURCES = OUTILS.map((o) => `outils/${o}.mjs`).concat("outils/lib-arbitrage.mjs", "outils/reproduire.mjs");
 
 const sha256 = (b) => createHash("sha256").update(b).digest("hex");
@@ -114,6 +156,52 @@ if (!moteur.conforme) {
 }
 
 
+
+/* ---- L'ENVIRONNEMENT DU REJEU -------------------------------------------------------------------
+ *
+ * Un worktree au bon commit ne suffit pas : les dépendances et le moteur Node en font partie. La
+ * v1 montait les `node_modules` COURANTS dans le worktree historique — cela fonctionnait parce que
+ * les deux lockfiles se trouvaient identiques, mais la première mise à niveau de dépendance aurait
+ * silencieusement transformé le rejeu en « mesure sur d'autres bibliothèques ».
+ *
+ * On refuse donc de rejouer si le lockfile a bougé, plutôt que de monter les modules actuels sans
+ * le dire. Et la version de Node est CONSIGNÉE et confrontée au `.nvmrc` du commit historique —
+ * plancher de version, comme partout dans ce dépôt, pas égalité stricte. */
+function verifierEnvironnementDuRejeu() {
+  const auCommit = (chemin) => {
+    try {
+      return execFileSync("git", ["show", `${MESURE_MOTEUR_SHA}:${chemin}`],
+        { maxBuffer: 256 * 1024 * 1024, stdio: ["ignore", "pipe", "ignore"] });
+    } catch { return null; }
+  };
+  const lockHist = auCommit("package-lock.json");
+  if (!lockHist) {
+    echouer(`package-lock.json introuvable au commit ${MESURE_MOTEUR_SHA.slice(0, 7)} — rejeu impossible`);
+  }
+  const lockCourant = readFileSync("package-lock.json");
+  if (sha256(lockHist) !== sha256(lockCourant)) {
+    echouer(`les dépendances ont changé depuis la mesure : le rejeu utiliserait D'AUTRES `
+      + `bibliothèques que celles qui ont produit ces chiffres.\n`
+      + `  package-lock.json au ${MESURE_MOTEUR_SHA.slice(0, 7)} : ${sha256(lockHist).slice(0, 12)}\n`
+      + `  package-lock.json actuel                  : ${sha256(lockCourant).slice(0, 12)}\n`
+      + `Rejouer depuis un « npm ci » à ce commit, ou déclarer une nouvelle base de mesure.`);
+  }
+  /* `.nvmrc` déclare un PLANCHER (voir scripts/lib/require-node.mjs) : même majeure, version au
+     moins égale. Exiger l'égalité stricte serait plus dur que le contrat du dépôt lui-même. */
+  const nvmrc = (auCommit(".nvmrc") ?? Buffer.from("")).toString("utf8").trim();
+  const num = (v) => v.replace(/^v/, "").split(".").map(Number);
+  const [majH, minH, patH] = num(nvmrc || "0.0.0");
+  const [maj, min, pat] = num(process.version);
+  const conforme = nvmrc
+    ? maj === majH && (min > minH || (min === minH && pat >= patH))
+    : true;
+  if (!conforme) {
+    echouer(`Node ${process.version} ne satisfait pas le contrat du commit historique `
+      + `(.nvmrc ${nvmrc}, plancher sur la majeure ${majH}) — le rejeu tournerait sur un autre moteur.`);
+  }
+  return { node: process.version, nvmrc: nvmrc || "(absent)", lock: sha256(lockCourant).slice(0, 12) };
+}
+
 /* ---- REPRODUCTION DANS UN WORKTREE HISTORIQUE ---------------------------------------------------
  *
  * Quand le moteur a changé, rejouer les outils SUR PLACE donnerait d'autres chiffres : ce ne serait
@@ -128,6 +216,9 @@ if (!moteur.conforme) {
  * Seuls les JSON sont comparés : les `.md` sont écrits à la main et ont légitimement évolué depuis.
  */
 function reproduireAuMoteurHistorique() {
+  const env = verifierEnvironnementDuRejeu();
+  dire(`1quater/4 environnement du rejeu : Node ${env.node} (.nvmrc historique ${env.nvmrc}), `
+    + `lockfile ${env.lock} identique à celui de la mesure`);
   const base = `${tmpdir()}/mdcf-mesure-t0b3a-${process.pid}`;
   const racine = execFileSync("git", ["rev-parse", "--show-toplevel"], { encoding: "utf8" }).trim();
   execFileSync("git", ["worktree", "add", "--detach", "--quiet", base, MESURE_MOTEUR_SHA]);
@@ -135,13 +226,10 @@ function reproduireAuMoteurHistorique() {
     symlinkSync(`${racine}/node_modules`, `${base}/node_modules`);
     /* Les CONTRE-ÉPREUVES aussi se rejouent dans le worktree : un simulateur historique dont on ne
        vérifierait plus qu'il sait échouer ne prouverait rien de plus qu'un fichier intact. */
-    for (const c of CONTRE_EPREUVES) {
+    for (const ce of CONTRE_EPREUVES) {
       const r = spawnSync(process.execPath, ["--import", "tsx",
-        `${DOSSIER}/outils/simuler-h.mjs`, `--contre-epreuve=${c}`], { encoding: "utf8", cwd: base });
-      if (r.status === 0) {
-        echouer(`reproduction historique : la contre-épreuve « ${c} » passe au VERT au commit `
-          + `${MESURE_MOTEUR_SHA.slice(0, 7)} — le simulateur ne sait pas échouer`);
-      }
+        `${DOSSIER}/outils/simuler-h.mjs`, `--contre-epreuve=${ce.code}`], { encoding: "utf8", cwd: base });
+      exigerContreEpreuve(ce, r, `au commit ${MESURE_MOTEUR_SHA.slice(0, 7)}`);
     }
     for (const o of OUTILS) {
       const r = spawnSync(process.execPath, ["--import", "tsx", `${DOSSIER}/outils/${o}.mjs`, ...[]],
@@ -176,12 +264,12 @@ function reproduireAuMoteurHistorique() {
    casse volontairement un invariant et DOIT sortir en 1. Si l'une d'elles passait au vert, tout ce
    que le dossier affiche par ailleurs perdrait sa valeur. */
 if (moteur.conforme) {
-  for (const c of CONTRE_EPREUVES) {
+  for (const ce of CONTRE_EPREUVES) {
     const r = spawnSync(process.execPath, ["--import", "tsx",
-      `${DOSSIER}/outils/simuler-h.mjs`, `--contre-epreuve=${c}`], { encoding: "utf8" });
-    if (r.status === 0) echouer(`la contre-épreuve « ${c} » est passée au VERT — le simulateur ne sait pas échouer`);
+      `${DOSSIER}/outils/simuler-h.mjs`, `--contre-epreuve=${ce.code}`], { encoding: "utf8" });
+    exigerContreEpreuve(ce, r, "dans l'arbre courant");
   }
-  dire(`1bis/4 les 6 contre-épreuves échouent bien (code 1)`);
+  dire(`1bis/4 les ${CONTRE_EPREUVES.length} contre-épreuves sortent en 1 AVEC leur diagnostic propre`);
 
   for (const o of OUTILS) {
     const r = spawnSync(process.execPath, ["--import", "tsx", `${DOSSIER}/outils/${o}.mjs`], { encoding: "utf8" });
@@ -191,7 +279,7 @@ if (moteur.conforme) {
 } else {
   const n = reproduireAuMoteurHistorique();
   dire(`1bis/4 les ${CONTRE_EPREUVES.length} contre-épreuves rejouées dans le worktree historique — `
-    + `toutes en code 1`);
+    + `code 1 et diagnostic propre pour chacune`);
   dire(`2/4 les ${n} artefacts REJOUÉS dans un worktree au moteur d'origine `
     + `(${MESURE_MOTEUR_SHA.slice(0, 7)}) — identiques aux archivés, octet à octet`);
 }

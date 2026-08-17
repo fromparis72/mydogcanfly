@@ -173,29 +173,43 @@ console.log("=== 2. Les branches décisives — statut, causes, PREUVES, et le r
         rep.sources.some((s) => s.url === `https://exemple.example/${id}`)),
       JSON.stringify(rep.sources.map((s) => s.url)));
   }
-  /* La confiance d'une preuve pèse VRAIMENT sur le ★ et le score. */
+  /* ---- LA CONFIANCE D'UNE PREUVE : elle compte, et elle ne compte QU'UNE FOIS ---------------
+     Deux épreuves distinctes, et deux conjonctions strictes. La v1 écrivait `||` entre la
+     confiance publiée et le score : neutraliser entièrement `confidenceRatio` dans `computeScore`
+     laissait le test vert, puisque le ★ bougeait encore. Un `||` entre deux effets attendus ne
+     teste que le plus facile des deux. */
   {
+    /* 1 · ELLE COMPTE. Une seule compagnie, pour que la contribution ne soit pas noyée. */
     const seule = [AIRLINE];
     const avec = (confidence) => rapport(kbAvec([{
       id: "brest_conf", applies_to: cible, action: "require", placements: ["hold"], detail: DETAIL,
       source: SRC("https://exemple.example/brest_conf", "Official sentence, long enough here.", confidence),
     }], () => false, seule), req());
     const basse = avec(1), haute = avec(5);
-    check("faire varier la confiance d'une preuve DÉPLACE la confiance publiée et le score",
-      basse.confidence !== haute.confidence || basse.score !== haute.score,
+    check("1★ → 5★ : la confiance publiée ET le score se déplacent — les DEUX, pas l'un ou l'autre",
+      basse.confidence !== haute.confidence && basse.score !== haute.score,
       JSON.stringify({ conf1: [basse.confidence, basse.score], conf5: [haute.confidence, haute.score] }));
-    /* Une restriction GLOBALE s'applique à 102 compagnies et 3 canaux : compter sa confiance 306
-       fois ferait mesurer au ★ la PORTÉE d'une restriction, pas la qualité des sources. */
-    const global = (n) => {
-      const kb = kbAvec([{ id: "brest_glob", applies_to: cible, action: "require",
-        placements: ["cabin", "hold", "cargo"], detail: DETAIL,
-        source: SRC("https://exemple.example/brest_glob", "Official global sentence, long enough.", n) }]);
-      return rapport(kb, req());
-    };
-    const g1 = global(1), g5 = global(5);
-    check("… mais une restriction ne compte qu'UNE fois, quelle que soit sa portée",
-      Math.abs(g1.score - g5.score) <= 2,
-      JSON.stringify({ conf1: g1.score, conf5: g5.score }));
+
+    /* 2 · ELLE NE COMPTE QU'UNE FOIS. Une restriction `allow` ne déplace aucun statut : le choix,
+       la qualité d'itinéraire et les pénalités sont donc identiques dans les deux montages, et
+       seule la contribution à la confiance peut expliquer un écart. La même preuve est portée par
+       50 décisions dans l'un et par UNE dans l'autre. */
+    const allow = (over) => ({ id: "brest_card", applies_to: cible, action: "allow",
+      source: SRC("https://exemple.example/brest_card", "Official acceptance sentence here.", 1), ...over });
+    const large = rapport(kbAvec([allow({ placements: ["cabin", "hold", "cargo"] })]), req());
+    const etroit = rapport(kbAvec([allow({ placements: ["hold"], airline_id: AIRLINE })]), req());
+    const vierge = rapport(kbAvec([]), req());
+    const porteuses = (rep) => rep.airlines
+      .reduce((n, a) => n + a.placement_decisions.reduce((m, d) => m + (d.evidence?.length ?? 0), 0), 0);
+    check("montage : la même preuve est portée par BEAUCOUP de décisions d'un côté, par UNE de l'autre",
+      porteuses(large) > 10 && porteuses(etroit) === 1,
+      JSON.stringify({ large: porteuses(large), etroit: porteuses(etroit) }));
+    check("… et pourtant confiance et score sont STRICTEMENT identiques — une restriction, un vote",
+      large.confidence === etroit.confidence && large.score === etroit.score,
+      JSON.stringify({ large: [large.confidence, large.score], etroit: [etroit.confidence, etroit.score] }));
+    check("… tout en étant bien COMPTÉE : le score diffère de celui d'un référentiel sans elle",
+      large.score !== vierge.score,
+      JSON.stringify({ avec: large.score, sans: vierge.score }));
   }
   /* allow */
   {
