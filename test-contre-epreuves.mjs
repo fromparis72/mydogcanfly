@@ -242,9 +242,9 @@ const MUTATIONS = [
   {
     nom: "un guide renvoie vers un outil que le site ne sert pas",
     fichier: "packages/ui/src/content/guides/en/dog-heatstroke.md",
-    cherche: "## Recognizing the signs",
+    cherche: "## Why are dogs so vulnerable to heat?",
     remplace:
-      "👉 Check the live heat risk with our [checker](/tools/is-it-too-hot-for-my-dog/).\n\n## Recognizing the signs",
+      "👉 Check the live heat risk with our [checker](/tools/is-it-too-hot-for-my-dog/).\n\n## Why are dogs so vulnerable to heat?",
     harnais: "test-guides-traduits.mjs",
     attendu: "visent une route existante",
   },
