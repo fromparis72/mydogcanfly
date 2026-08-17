@@ -42,7 +42,7 @@ Parques, jardines públicos, calles comerciales y terrazas suelen ser lo más ac
 - **Museos y monumentos**: en su mayoría prohibidos, salvo perros guía y raras excepciones; consulta antes.
 - **Comercios**: varía según la tienda; los de alimentación suelen estar cerrados a los perros.
 
-Para preparar una escapada completa, lee también nuestra guía sobre [un fin de semana cerca de París con perro](/travel-hub/weekend-near-paris-with-a-dog/).
+Para preparar una escapada completa, lee también nuestra guía sobre [un fin de semana cerca de París con perro](/es/travel-hub/fin-de-semana-cerca-de-paris-con-perro/).
 
 ## ¿Cómo proteger a tu perro del asfalto caliente?
 
@@ -78,7 +78,7 @@ Muchas redes aceptan perros pequeños en bolso y perros grandes con correa, a ve
 - Colócate en un rincón tranquilo, lejos de las puertas.
 - Acostumbra a tu perro a los ruidos urbanos poco a poco antes del viaje.
 
-Para el detalle según el medio de transporte, consulta nuestra guía sobre [el metro, el autobús y el tranvía con perro](/travel-hub/public-transit-with-a-dog/).
+Para el detalle según el medio de transporte, consulta nuestra guía sobre [el metro, el autobús y el tranvía con perro](/es/travel-hub/transporte-publico-con-perro/).
 
 ## ¿Cómo saber si la salida le conviene a tu perro?
 

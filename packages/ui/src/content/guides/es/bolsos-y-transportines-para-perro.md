@@ -42,7 +42,7 @@ Las principales diferencias:
 - **Ventilación**: ambos deben ofrecer paso de aire por varios lados.
 - **Limpieza**: el transportín rígido se lava más fácilmente tras un accidente.
 
-Para el coche en particular, el transportín rígido es —junto con el [arnés de coche para perro](/travel-hub/dog-car-harness/)— uno de los dos únicos sistemas de sujeción realmente fiables.
+Para el coche en particular, el transportín rígido es —junto con el [arnés de coche para perro](/es/travel-hub/arnes-de-coche-para-perro/)— uno de los dos únicos sistemas de sujeción realmente fiables.
 
 ## ¿Cómo elegir el tamaño correcto de transportín o bolso?
 

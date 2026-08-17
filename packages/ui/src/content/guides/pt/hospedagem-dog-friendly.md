@@ -95,7 +95,7 @@ A maioria das decepções nasce de um mal-entendido que não foi esclarecido ant
 4. **Fotografe a hospedagem na chegada**: isso protege a sua caução.
 5. **Localize o veterinário mais próximo** ao reservar, e não em plena emergência.
 
-Se você procura ideias concretas de destino, o nosso guia sobre um [fim de semana perto de Paris com o seu cachorro](/travel-hub/weekend-near-paris-with-a-dog/) detalha várias opções testadas. E para ampliar horizontes, veja a nossa seleção de [destinos dog-friendly na França](/travel-hub/dog-friendly-france/).
+Se você procura ideias concretas de destino, o nosso guia sobre um [fim de semana perto de Paris com o seu cachorro](/pt/travel-hub/fim-de-semana-perto-de-paris-com-cachorro/) detalha várias opções testadas. E para ampliar horizontes, veja a nossa seleção de [destinos dog-friendly na França](/pt/travel-hub/destinos-dog-friendly-na-franca/).
 
 ## Como ler avaliações on-line com olhos de tutor
 

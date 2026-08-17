@@ -42,7 +42,7 @@ Parques, jardins públicos, ruas comerciais e terraços costumam ser os mais ace
 - **Museus e monumentos**: em geral proibidos, salvo cães-guia e raras exceções; consulte antes.
 - **Comércios**: varia conforme a loja; os de alimentos costumam ser fechados a cães.
 
-Para preparar uma escapada completa, leia também o nosso guia sobre [um fim de semana perto de Paris com cachorro](/travel-hub/weekend-near-paris-with-a-dog/).
+Para preparar uma escapada completa, leia também o nosso guia sobre [um fim de semana perto de Paris com cachorro](/pt/travel-hub/fim-de-semana-perto-de-paris-com-cachorro/).
 
 ## Como proteger o seu cachorro do asfalto quente?
 
@@ -78,7 +78,7 @@ Muitas redes aceitam cães pequenos em bolsa e cães grandes na guia, às vezes 
 - Posicione-se em um canto tranquilo, longe das portas.
 - Acostume o seu cachorro aos ruídos urbanos aos poucos, antes da viagem.
 
-Para o detalhe conforme o meio de transporte, veja o nosso guia sobre [metrô, ônibus e bonde com cachorro](/travel-hub/public-transit-with-a-dog/).
+Para o detalhe conforme o meio de transporte, veja o nosso guia sobre [metrô, ônibus e bonde com cachorro](/pt/travel-hub/transporte-publico-com-cachorro/).
 
 ## Como saber se o passeio combina com o seu cachorro?
 

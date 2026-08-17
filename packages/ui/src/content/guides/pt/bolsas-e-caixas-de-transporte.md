@@ -42,7 +42,7 @@ As principais diferenças:
 - **Ventilação**: as duas precisam permitir a passagem de ar por vários lados.
 - **Limpeza**: a caixa rígida se lava com mais facilidade depois de um acidente.
 
-Para o carro em especial, a caixa rígida é — junto com o [peitoral de carro para cachorro](/travel-hub/dog-car-harness/) — um dos dois únicos sistemas de contenção realmente confiáveis.
+Para o carro em especial, a caixa rígida é — junto com o [peitoral de carro para cachorro](/pt/travel-hub/peitoral-de-carro-para-cachorro/) — um dos dois únicos sistemas de contenção realmente confiáveis.
 
 ## Como escolher o tamanho certo de caixa ou bolsa?
 

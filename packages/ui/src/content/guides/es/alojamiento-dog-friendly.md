@@ -95,7 +95,7 @@ La mayoría de las decepciones nacen de un malentendido que no se aclaró antes 
 4. **Fotografía el alojamiento a la llegada**: protege tu fianza.
 5. **Localiza al veterinario más cercano** al reservar, no en plena urgencia.
 
-Si buscas ideas concretas de destino, nuestra guía sobre un [fin de semana cerca de París con tu perro](/travel-hub/weekend-near-paris-with-a-dog/) detalla varias opciones probadas. Y para ampliar horizontes, consulta nuestra selección de [destinos dog-friendly en Francia](/travel-hub/dog-friendly-france/).
+Si buscas ideas concretas de destino, nuestra guía sobre un [fin de semana cerca de París con tu perro](/es/travel-hub/fin-de-semana-cerca-de-paris-con-perro/) detalla varias opciones probadas. Y para ampliar horizontes, consulta nuestra selección de [destinos dog-friendly en Francia](/es/travel-hub/destinos-dog-friendly-en-francia/).
 
 ## Cómo leer las opiniones en línea con ojos de dueño de perro
 
