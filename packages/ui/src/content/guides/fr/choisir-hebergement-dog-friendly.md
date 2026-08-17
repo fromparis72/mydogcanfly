@@ -73,7 +73,7 @@ Chaque formule a sa logique. Ce tableau résume les forces et limites de chacune
 | Gîte | Autonomie totale, espace, chien seul possible | Sécurité du terrain variable, ménage à votre charge |
 | Hôtel | Services, central, pratique en transit | Suppléments fréquents, peu d'extérieur, ascenseurs et halls fréquentés |
 
-Pour un premier séjour ou un week-end posé, la chambre d'hôtes offre souvent le meilleur équilibre entre confort et accompagnement. C'est par exemple le parti pris de [Stay with Bailey](https://stay-with-bailey.com), une chambre d'hôtes dog-friendly près de Paris pensée dès le départ pour les voyageurs accompagnés de leur chien, avec extérieur adapté et règles claires.
+Pour un premier séjour ou un week-end posé, la chambre d'hôtes offre souvent le meilleur équilibre entre confort et accompagnement. C'est par exemple le parti pris de [Stay with Bailey](https://stay-with-bailey.com/fr/), une chambre d'hôtes dog-friendly près de Paris pensée dès le départ pour les voyageurs accompagnés de leur chien, avec extérieur adapté et règles claires.
 
 ## Combien coûte vraiment un séjour avec un chien ?
 

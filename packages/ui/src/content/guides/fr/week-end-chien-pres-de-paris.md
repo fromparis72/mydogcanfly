@@ -56,7 +56,7 @@ Un week-end réussi se prépare. Voici un déroulé type, facile à adapter :
 4. **Dimanche matin** : seconde promenade, au bord de l'eau par exemple.
 5. **Dimanche après-midi** : retour tranquille, en évitant les heures les plus chaudes pour le trajet.
 
-Pour le logement, le choix de l'hébergement fait toute la différence. Une bonne option est de réserver une [chambre d'hôtes dog-friendly près de Paris comme celles proposées sur stay-with-bailey.com](https://stay-with-bailey.com), pensées pour accueillir les chiens dans un cadre calme et verdoyant, à quelques dizaines de minutes de la capitale. Pour comparer les formules, consultez aussi notre guide pour [bien choisir un hébergement dog-friendly](/fr/travel-hub/choisir-hebergement-dog-friendly/).
+Pour le logement, le choix de l'hébergement fait toute la différence. Une bonne option est de réserver une [chambre d'hôtes dog-friendly près de Paris comme celles proposées sur stay-with-bailey.com](https://stay-with-bailey.com/fr/), pensées pour accueillir les chiens dans un cadre calme et verdoyant, à quelques dizaines de minutes de la capitale. Pour comparer les formules, consultez aussi notre guide pour [bien choisir un hébergement dog-friendly](/fr/travel-hub/choisir-hebergement-dog-friendly/).
 
 ## Quel massif forestier choisir selon son chien et son temps de trajet ?
 
