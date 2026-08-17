@@ -1,0 +1,2816 @@
+{
+ "lot": "T0-B3-d — le poids du contenant : le périmètre réel",
+ "nature": "mesure seule : aucune règle retirée, aucun seuil déplacé, aucun fichier de packages/ écrit",
+ "sceau": {
+  "measurement_base_sha": "eb3562c27cafb5a41ee19d2519580753a9a040f8",
+  "raw_rules_sha256": "c87313aba29c6f69354cbd9d073a306801071cfbb86ea3d6991cc49a8497537c",
+  "raw_objects_sha256": "dca1706134b188fa569f7172fa2ccfcff8c81b131e554326cb5d1c47b65ffef0",
+  "moteur_sha256": "1b093a7c39c694199d52256c15251a0d0d8b79b46dd07f7430c1dec6ec85a2ba",
+  "page_sha256": "c31d8b3ae063fe576af133513e9ba25af7d2cae6e173d820f5f33c5d2a4f36f5",
+  "date_de_voyage": "2027-01-15",
+  "date_de_voyage_origine": "dérivée du commit de base, jamais de l'horloge"
+ },
+ "methode": {
+  "principe": "partir de TOUS les seuils publiés, pas d'une phrase : tout `params.max_weight_kg` du référentiel, toutes catégories, toutes sources. Chaque seuil doit être classé — contenant, ou résidu nommé. Aucun troisième état.",
+  "lexique": {
+   "en": [
+    "/combined dog \\+ crate/i",
+    "/including the carrier/i",
+    "/dog plus crate/i"
+   ],
+   "fr": [
+    "/caisse comprise/i",
+    "/sac compris/i",
+    "/ensemble chien \\+ caisse/i",
+    "/le chien et sa caisse/i"
+   ]
+  },
+  "residu_versionne": {
+   "rule_global_cabin_weight_cap": "Défaut de sécurité global, non rattaché à une compagnie. Son texte parle bien du CHIEN (« dogs over about 10 kg are not accepted in the cabin ») ; la mention du sac souple qualifie le canal, pas la limite. C'est le seul seuil publié dont l'annonce et la condition portent sur la même quantité."
+  }
+ },
+ "perimetre": {
+  "seuils_publies": 96,
+  "annoncent_le_contenant": 95,
+  "residu": [
+   "rule_global_cabin_weight_cap"
+  ],
+  "par_categorie": {
+   "cabin_weight": 53,
+   "hold_weight": 42
+  },
+  "auto_cites": 74,
+  "citent_un_tiers": 21,
+  "compagnies_distinctes": 63
+ },
+ "ce_que_t0b3c_voyait": {
+  "sa_phrase_attrape": 41,
+  "son_perimetre": 34,
+  "lecture": "34 sur 95. Le chiffre de T0-B3-c était juste pour le périmètre qu'il s'était donné ; il décrivait un onzième du défaut. 21 des 95 citent un tiers : aucun lot « retirer les règles auto-citées » ne les atteindrait."
+ },
+ "ampleur_relative": {
+  "seuils": {
+   "cabin_weight": {
+    "n": 53,
+    "min": 6,
+    "mediane": 8,
+    "max": 10
+   },
+   "hold_weight": {
+    "n": 42,
+    "min": 14,
+    "mediane": 45,
+    "max": 100
+   }
+  },
+  "lecture": "L'écart permissif vaut exactement le poids du contenant. Sur un seuil de soute médian à 45 kg, une caisse de 8 kg ouvre une fenêtre de 18 %. Sur un seuil de cabine médian à 8 kg, un sac de 2 kg en ouvre une de 25 %, et le canal concerné est celui que le voyageur consulte en premier. Ces pourcentages illustrent : le référentiel ne détient AUCUN poids de contenant, et ce dossier n'en invente pas."
+ },
+ "langues": {
+  "traduction": {
+   "fr": {
+    "traduites": 96,
+    "repli_anglais": 0
+   },
+   "es": {
+    "traduites": 1,
+    "repli_anglais": 95
+   },
+   "pt": {
+    "traduites": 1,
+    "repli_anglais": 95
+   }
+  },
+  "divergences_en_fr": [],
+  "lecture": "Le français couvre les 96 seuils et annonce le contenant partout. L'espagnol et le portugais n'en traduisent qu'un : les 95 autres phrases sont publiées EN ANGLAIS sur les pages `es` et `pt`. C'est une dette distincte de celle-ci, mesurée ici parce qu'elle porte sur les mêmes phrases."
+ },
+ "la_fiche": {
+  "muettes": 75,
+  "republient_le_meme_nombre": 20,
+  "divergentes": 0,
+  "lecture": "Là où la fiche publie un seuil, c'est le même nombre que la règle — au kilo près. La fiche ne fournit donc aucun garde-fou : elle republie l'annonce, contenant compris.",
+  "detail": [
+   {
+    "id": "rule_aa_cabin_weight",
+    "compagnie": "airline_american",
+    "canal": "cabin",
+    "seuil_regle": 8,
+    "seuil_fiche": null
+   },
+   {
+    "id": "rule_ac_cabin_weight",
+    "compagnie": "airline_air_canada",
+    "canal": "cabin",
+    "seuil_regle": 10,
+    "seuil_fiche": null
+   },
+   {
+    "id": "rule_aegean_cabin_weight",
+    "compagnie": "airline_aegean",
+    "canal": "cabin",
+    "seuil_regle": 8,
+    "seuil_fiche": null
+   },
+   {
+    "id": "rule_aegean_hold_weight",
+    "compagnie": "airline_aegean",
+    "canal": "hold",
+    "seuil_regle": 32,
+    "seuil_fiche": null
+   },
+   {
+    "id": "rule_aeromexico_cabin_weight",
+    "compagnie": "airline_aeromexico",
+    "canal": "cabin",
+    "seuil_regle": 9,
+    "seuil_fiche": 9
+   },
+   {
+    "id": "rule_aeromexico_hold_weight",
+    "compagnie": "airline_aeromexico",
+    "canal": "hold",
+    "seuil_regle": 45,
+    "seuil_fiche": null
+   },
+   {
+    "id": "rule_af_cabin_weight",
+    "compagnie": "airline_air_france",
+    "canal": "cabin",
+    "seuil_regle": 8,
+    "seuil_fiche": 8
+   },
+   {
+    "id": "rule_air_algerie_cabin_weight",
+    "compagnie": "airline_air_algerie",
+    "canal": "cabin",
+    "seuil_regle": 6,
+    "seuil_fiche": 6
+   },
+   {
+    "id": "rule_air_algerie_hold_weight",
+    "compagnie": "airline_air_algerie",
+    "canal": "hold",
+    "seuil_regle": 32,
+    "seuil_fiche": null
+   },
+   {
+    "id": "rule_air_caraibes_cabin_weight",
+    "compagnie": "airline_air_caraibes",
+    "canal": "cabin",
+    "seuil_regle": 8,
+    "seuil_fiche": null
+   },
+   {
+    "id": "rule_air_caraibes_hold_weight",
+    "compagnie": "airline_air_caraibes",
+    "canal": "hold",
+    "seuil_regle": 75,
+    "seuil_fiche": null
+   },
+   {
+    "id": "rule_air_china_hold_weight",
+    "compagnie": "airline_air_china",
+    "canal": "hold",
+    "seuil_regle": 32,
+    "seuil_fiche": null
+   },
+   {
+    "id": "rule_air_europa_cabin_weight",
+    "compagnie": "airline_air_europa",
+    "canal": "cabin",
+    "seuil_regle": 8,
+    "seuil_fiche": null
+   },
+   {
+    "id": "rule_air_europa_hold_weight",
+    "compagnie": "airline_air_europa",
+    "canal": "hold",
+    "seuil_regle": 50,
+    "seuil_fiche": null
+   },
+   {
+    "id": "rule_air_france_hold_weight",
+    "compagnie": "airline_air_france",
+    "canal": "hold",
+    "seuil_regle": 75,
+    "seuil_fiche": null
+   },
+   {
+    "id": "rule_air_india_cabin_weight",
+    "compagnie": "airline_air_india",
+    "canal": "cabin",
+    "seuil_regle": 10,
+    "seuil_fiche": null
+   },
+   {
+    "id": "rule_air_india_hold_weight",
+    "compagnie": "airline_air_india",
+    "canal": "hold",
+    "seuil_regle": 32,
+    "seuil_fiche": null
+   },
+   {
+    "id": "rule_air_new_zealand_hold_weight",
+    "compagnie": "airline_air_new_zealand",
+    "canal": "hold",
+    "seuil_regle": 60,
+    "seuil_fiche": null
+   },
+   {
+    "id": "rule_air_tahiti_nui_cabin_weight",
+    "compagnie": "airline_air_tahiti_nui",
+    "canal": "cabin",
+    "seuil_regle": 8,
+    "seuil_fiche": null
+   },
+   {
+    "id": "rule_air_transat_cabin_weight",
+    "compagnie": "airline_air_transat",
+    "canal": "cabin",
+    "seuil_regle": 8,
+    "seuil_fiche": null
+   },
+   {
+    "id": "rule_air_transat_hold_weight",
+    "compagnie": "airline_air_transat",
+    "canal": "hold",
+    "seuil_regle": 45,
+    "seuil_fiche": null
+   },
+   {
+    "id": "rule_alaska_cabin_weight",
+    "compagnie": "airline_alaska",
+    "canal": "cabin",
+    "seuil_regle": 9,
+    "seuil_fiche": null
+   },
+   {
+    "id": "rule_alaska_hold_weight",
+    "compagnie": "airline_alaska",
+    "canal": "hold",
+    "seuil_regle": 68,
+    "seuil_fiche": null
+   },
+   {
+    "id": "rule_american_cabin_weight",
+    "compagnie": "airline_american",
+    "canal": "cabin",
+    "seuil_regle": 9,
+    "seuil_fiche": null
+   },
+   {
+    "id": "rule_ana_hold_weight",
+    "compagnie": "airline_ana",
+    "canal": "hold",
+    "seuil_regle": 45,
+    "seuil_fiche": null
+   },
+   {
+    "id": "rule_austrian_cabin_weight",
+    "compagnie": "airline_austrian",
+    "canal": "cabin",
+    "seuil_regle": 8,
+    "seuil_fiche": null
+   },
+   {
+    "id": "rule_avianca_cabin_weight",
+    "compagnie": "airline_avianca",
+    "canal": "cabin",
+    "seuil_regle": 10,
+    "seuil_fiche": null
+   },
+   {
+    "id": "rule_avianca_hold_weight",
+    "compagnie": "airline_avianca",
+    "canal": "hold",
+    "seuil_regle": 70,
+    "seuil_fiche": null
+   },
+   {
+    "id": "rule_brussels_cabin_weight",
+    "compagnie": "airline_brussels",
+    "canal": "cabin",
+    "seuil_regle": 8,
+    "seuil_fiche": null
+   },
+   {
+    "id": "rule_brussels_hold_weight",
+    "compagnie": "airline_brussels",
+    "canal": "hold",
+    "seuil_regle": 20,
+    "seuil_fiche": null
+   },
+   {
+    "id": "rule_china_airlines_hold_weight",
+    "compagnie": "airline_china_airlines",
+    "canal": "hold",
+    "seuil_regle": 45,
+    "seuil_fiche": null
+   },
+   {
+    "id": "rule_china_eastern_hold_weight",
+    "compagnie": "airline_china_eastern",
+    "canal": "hold",
+    "seuil_regle": 32,
+    "seuil_fiche": null
+   },
+   {
+    "id": "rule_china_southern_hold_weight",
+    "compagnie": "airline_china_southern",
+    "canal": "hold",
+    "seuil_regle": 32,
+    "seuil_fiche": null
+   },
+   {
+    "id": "rule_condor_cabin_weight",
+    "compagnie": "airline_condor",
+    "canal": "cabin",
+    "seuil_regle": 8,
+    "seuil_fiche": null
+   },
+   {
+    "id": "rule_copa_cabin_weight",
+    "compagnie": "airline_copa",
+    "canal": "cabin",
+    "seuil_regle": 10,
+    "seuil_fiche": null
+   },
+   {
+    "id": "rule_corsair_cabin_weight",
+    "compagnie": "airline_corsair",
+    "canal": "cabin",
+    "seuil_regle": 8,
+    "seuil_fiche": null
+   },
+   {
+    "id": "rule_corsair_hold_weight",
+    "compagnie": "airline_corsair",
+    "canal": "hold",
+    "seuil_regle": 50,
+    "seuil_fiche": null
+   },
+   {
+    "id": "rule_delta_cabin_weight",
+    "compagnie": "airline_delta",
+    "canal": "cabin",
+    "seuil_regle": 9,
+    "seuil_fiche": null
+   },
+   {
+    "id": "rule_dl_cabin_weight",
+    "compagnie": "airline_delta",
+    "canal": "cabin",
+    "seuil_regle": 8,
+    "seuil_fiche": null
+   },
+   {
+    "id": "rule_egyptair_cabin_weight",
+    "compagnie": "airline_egyptair",
+    "canal": "cabin",
+    "seuil_regle": 8,
+    "seuil_fiche": 8
+   },
+   {
+    "id": "rule_egyptair_hold_weight",
+    "compagnie": "airline_egyptair",
+    "canal": "hold",
+    "seuil_regle": 32,
+    "seuil_fiche": null
+   },
+   {
+    "id": "rule_el_al_cabin_weight",
+    "compagnie": "airline_el_al",
+    "canal": "cabin",
+    "seuil_regle": 9,
+    "seuil_fiche": null
+   },
+   {
+    "id": "rule_el_al_hold_weight",
+    "compagnie": "airline_el_al",
+    "canal": "hold",
+    "seuil_regle": 100,
+    "seuil_fiche": null
+   },
+   {
+    "id": "rule_ethiopian_cabin_weight",
+    "compagnie": "airline_ethiopian",
+    "canal": "cabin",
+    "seuil_regle": 8,
+    "seuil_fiche": null
+   },
+   {
+    "id": "rule_ethiopian_hold_weight",
+    "compagnie": "airline_ethiopian",
+    "canal": "hold",
+    "seuil_regle": 45,
+    "seuil_fiche": null
+   },
+   {
+    "id": "rule_etihad_cabin_weight",
+    "compagnie": "airline_etihad",
+    "canal": "cabin",
+    "seuil_regle": 8,
+    "seuil_fiche": 8
+   },
+   {
+    "id": "rule_eurowings_cabin_weight",
+    "compagnie": "airline_eurowings",
+    "canal": "cabin",
+    "seuil_regle": 8,
+    "seuil_fiche": 8
+   },
+   {
+    "id": "rule_eva_air_hold_weight",
+    "compagnie": "airline_eva_air",
+    "canal": "hold",
+    "seuil_regle": 32,
+    "seuil_fiche": null
+   },
+   {
+    "id": "rule_finnair_cabin_weight",
+    "compagnie": "airline_finnair",
+    "canal": "cabin",
+    "seuil_regle": 8,
+    "seuil_fiche": null
+   },
+   {
+    "id": "rule_finnair_hold_weight",
+    "compagnie": "airline_finnair",
+    "canal": "hold",
+    "seuil_regle": 75,
+    "seuil_fiche": null
+   },
+   {
+    "id": "rule_french_bee_cabin_weight",
+    "compagnie": "airline_french_bee",
+    "canal": "cabin",
+    "seuil_regle": 8,
+    "seuil_fiche": 8
+   },
+   {
+    "id": "rule_french_bee_hold_weight",
+    "compagnie": "airline_french_bee",
+    "canal": "hold",
+    "seuil_regle": 75,
+    "seuil_fiche": null
+   },
+   {
+    "id": "rule_garuda_indonesia_hold_weight",
+    "compagnie": "airline_garuda_indonesia",
+    "canal": "hold",
+    "seuil_regle": 32,
+    "seuil_fiche": null
+   },
+   {
+    "id": "rule_ib_cabin_weight",
+    "compagnie": "airline_iberia",
+    "canal": "cabin",
+    "seuil_regle": 8,
+    "seuil_fiche": 8
+   },
+   {
+    "id": "rule_iberia_express_cabin_weight",
+    "compagnie": "airline_iberia_express",
+    "canal": "cabin",
+    "seuil_regle": 8,
+    "seuil_fiche": null
+   },
+   {
+    "id": "rule_iberia_hold_weight",
+    "compagnie": "airline_iberia",
+    "canal": "hold",
+    "seuil_regle": 45,
+    "seuil_fiche": null
+   },
+   {
+    "id": "rule_ita_airways_cabin_weight",
+    "compagnie": "airline_ita_airways",
+    "canal": "cabin",
+    "seuil_regle": 8,
+    "seuil_fiche": null
+   },
+   {
+    "id": "rule_ita_airways_hold_weight",
+    "compagnie": "airline_ita_airways",
+    "canal": "hold",
+    "seuil_regle": 75,
+    "seuil_fiche": null
+   },
+   {
+    "id": "rule_jal_hold_weight",
+    "compagnie": "airline_jal",
+    "canal": "hold",
+    "seuil_regle": 32,
+    "seuil_fiche": null
+   },
+   {
+    "id": "rule_jetblue_cabin_weight",
+    "compagnie": "airline_jetblue",
+    "canal": "cabin",
+    "seuil_regle": 9,
+    "seuil_fiche": null
+   },
+   {
+    "id": "rule_kl_cabin_weight",
+    "compagnie": "airline_klm",
+    "canal": "cabin",
+    "seuil_regle": 8,
+    "seuil_fiche": 8
+   },
+   {
+    "id": "rule_klm_hold_weight",
+    "compagnie": "airline_klm",
+    "canal": "hold",
+    "seuil_regle": 75,
+    "seuil_fiche": null
+   },
+   {
+    "id": "rule_km_malta_cabin_weight",
+    "compagnie": "airline_km_malta",
+    "canal": "cabin",
+    "seuil_regle": 10,
+    "seuil_fiche": 10
+   },
+   {
+    "id": "rule_km_malta_hold_weight",
+    "compagnie": "airline_km_malta",
+    "canal": "hold",
+    "seuil_regle": 32,
+    "seuil_fiche": null
+   },
+   {
+    "id": "rule_korean_air_cabin_weight",
+    "compagnie": "airline_korean_air",
+    "canal": "cabin",
+    "seuil_regle": 7,
+    "seuil_fiche": null
+   },
+   {
+    "id": "rule_korean_air_hold_weight",
+    "compagnie": "airline_korean_air",
+    "canal": "hold",
+    "seuil_regle": 45,
+    "seuil_fiche": null
+   },
+   {
+    "id": "rule_latam_cabin_weight",
+    "compagnie": "airline_latam",
+    "canal": "cabin",
+    "seuil_regle": 7,
+    "seuil_fiche": null
+   },
+   {
+    "id": "rule_latam_hold_weight",
+    "compagnie": "airline_latam",
+    "canal": "hold",
+    "seuil_regle": 45,
+    "seuil_fiche": null
+   },
+   {
+    "id": "rule_lh_cabin_weight",
+    "compagnie": "airline_lufthansa",
+    "canal": "cabin",
+    "seuil_regle": 8,
+    "seuil_fiche": 8
+   },
+   {
+    "id": "rule_lot_cabin_weight",
+    "compagnie": "airline_lot",
+    "canal": "cabin",
+    "seuil_regle": 8,
+    "seuil_fiche": 8
+   },
+   {
+    "id": "rule_norwegian_cabin_weight",
+    "compagnie": "airline_norwegian",
+    "canal": "cabin",
+    "seuil_regle": 8,
+    "seuil_fiche": 8
+   },
+   {
+    "id": "rule_norwegian_hold_weight",
+    "compagnie": "airline_norwegian",
+    "canal": "hold",
+    "seuil_regle": 14,
+    "seuil_fiche": null
+   },
+   {
+    "id": "rule_philippine_cabin_weight",
+    "compagnie": "airline_philippine",
+    "canal": "cabin",
+    "seuil_regle": 10,
+    "seuil_fiche": 10
+   },
+   {
+    "id": "rule_philippine_hold_weight",
+    "compagnie": "airline_philippine",
+    "canal": "hold",
+    "seuil_regle": 32,
+    "seuil_fiche": null
+   },
+   {
+    "id": "rule_qatar_airways_hold_weight",
+    "compagnie": "airline_qatar_airways",
+    "canal": "hold",
+    "seuil_regle": 75,
+    "seuil_fiche": null
+   },
+   {
+    "id": "rule_royal_air_maroc_cabin_weight",
+    "compagnie": "airline_royal_air_maroc",
+    "canal": "cabin",
+    "seuil_regle": 8,
+    "seuil_fiche": null
+   },
+   {
+    "id": "rule_royal_air_maroc_hold_weight",
+    "compagnie": "airline_royal_air_maroc",
+    "canal": "hold",
+    "seuil_regle": 70,
+    "seuil_fiche": null
+   },
+   {
+    "id": "rule_sas_cabin_weight",
+    "compagnie": "airline_sas",
+    "canal": "cabin",
+    "seuil_regle": 8,
+    "seuil_fiche": null
+   },
+   {
+    "id": "rule_sas_hold_weight",
+    "compagnie": "airline_sas",
+    "canal": "hold",
+    "seuil_regle": 50,
+    "seuil_fiche": null
+   },
+   {
+    "id": "rule_singapore_airlines_hold_weight",
+    "compagnie": "airline_singapore_airlines",
+    "canal": "hold",
+    "seuil_regle": 32,
+    "seuil_fiche": null
+   },
+   {
+    "id": "rule_smartwings_cabin_weight",
+    "compagnie": "airline_smartwings",
+    "canal": "cabin",
+    "seuil_regle": 8,
+    "seuil_fiche": 8
+   },
+   {
+    "id": "rule_swiss_cabin_weight",
+    "compagnie": "airline_swiss",
+    "canal": "cabin",
+    "seuil_regle": 8,
+    "seuil_fiche": 8
+   },
+   {
+    "id": "rule_tap_cabin_weight",
+    "compagnie": "airline_tap",
+    "canal": "cabin",
+    "seuil_regle": 8,
+    "seuil_fiche": null
+   },
+   {
+    "id": "rule_tap_hold_weight",
+    "compagnie": "airline_tap",
+    "canal": "hold",
+    "seuil_regle": 45,
+    "seuil_fiche": null
+   },
+   {
+    "id": "rule_thai_airways_hold_weight",
+    "compagnie": "airline_thai_airways",
+    "canal": "hold",
+    "seuil_regle": 32,
+    "seuil_fiche": null
+   },
+   {
+    "id": "rule_tk_cabin_weight",
+    "compagnie": "airline_turkish",
+    "canal": "cabin",
+    "seuil_regle": 8,
+    "seuil_fiche": 8
+   },
+   {
+    "id": "rule_transavia_cabin_weight",
+    "compagnie": "airline_transavia",
+    "canal": "cabin",
+    "seuil_regle": 8,
+    "seuil_fiche": 8
+   },
+   {
+    "id": "rule_tunisair_cabin_weight",
+    "compagnie": "airline_tunisair",
+    "canal": "cabin",
+    "seuil_regle": 8,
+    "seuil_fiche": null
+   },
+   {
+    "id": "rule_ua_cabin_weight",
+    "compagnie": "airline_united",
+    "canal": "cabin",
+    "seuil_regle": 8,
+    "seuil_fiche": null
+   },
+   {
+    "id": "rule_united_cabin_weight",
+    "compagnie": "airline_united",
+    "canal": "cabin",
+    "seuil_regle": 9,
+    "seuil_fiche": null
+   },
+   {
+    "id": "rule_vietnam_airlines_cabin_weight",
+    "compagnie": "airline_vietnam_airlines",
+    "canal": "cabin",
+    "seuil_regle": 6,
+    "seuil_fiche": null
+   },
+   {
+    "id": "rule_vietnam_airlines_hold_weight",
+    "compagnie": "airline_vietnam_airlines",
+    "canal": "hold",
+    "seuil_regle": 32,
+    "seuil_fiche": null
+   },
+   {
+    "id": "rule_volotea_cabin_weight",
+    "compagnie": "airline_volotea",
+    "canal": "cabin",
+    "seuil_regle": 10,
+    "seuil_fiche": 10
+   },
+   {
+    "id": "rule_vueling_cabin_weight",
+    "compagnie": "airline_vueling",
+    "canal": "cabin",
+    "seuil_regle": 10,
+    "seuil_fiche": 10
+   },
+   {
+    "id": "rule_westjet_hold_weight",
+    "compagnie": "airline_westjet",
+    "canal": "hold",
+    "seuil_regle": 45,
+    "seuil_fiche": null
+   }
+  ]
+ },
+ "effet_mesure": {
+  "mordent": 95,
+  "dominantes": 84,
+  "dominantes_par_canal": {
+   "cabin": 42,
+   "hold": 42
+  },
+  "masquees_par_un_autre_refus": 11,
+  "masquees_detail": [
+   {
+    "id": "rule_ac_cabin_weight",
+    "canal": "cabin",
+    "par": [
+     "rule_global_cabin_weight_cap"
+    ]
+   },
+   {
+    "id": "rule_air_india_cabin_weight",
+    "canal": "cabin",
+    "par": [
+     "rule_global_cabin_weight_cap"
+    ]
+   },
+   {
+    "id": "rule_american_cabin_weight",
+    "canal": "cabin",
+    "par": [
+     "rule_aa_cabin_weight",
+     "rule_aa_no_hold_cargo",
+     "rule_american_no_hold"
+    ]
+   },
+   {
+    "id": "rule_avianca_cabin_weight",
+    "canal": "cabin",
+    "par": [
+     "rule_global_cabin_weight_cap"
+    ]
+   },
+   {
+    "id": "rule_copa_cabin_weight",
+    "canal": "cabin",
+    "par": [
+     "rule_global_cabin_weight_cap",
+     "rule_copa_hold_deny"
+    ]
+   },
+   {
+    "id": "rule_delta_cabin_weight",
+    "canal": "cabin",
+    "par": [
+     "rule_dl_cabin_weight",
+     "rule_delta_no_hold",
+     "rule_dl_no_hold_cargo"
+    ]
+   },
+   {
+    "id": "rule_km_malta_cabin_weight",
+    "canal": "cabin",
+    "par": [
+     "rule_global_cabin_weight_cap"
+    ]
+   },
+   {
+    "id": "rule_philippine_cabin_weight",
+    "canal": "cabin",
+    "par": [
+     "rule_philippine_cabin_deny",
+     "rule_global_cabin_weight_cap"
+    ]
+   },
+   {
+    "id": "rule_united_cabin_weight",
+    "canal": "cabin",
+    "par": [
+     "rule_ua_cabin_weight",
+     "rule_ua_no_hold_cargo",
+     "rule_united_no_hold"
+    ]
+   },
+   {
+    "id": "rule_volotea_cabin_weight",
+    "canal": "cabin",
+    "par": [
+     "rule_global_cabin_weight_cap",
+     "rule_volotea_cabin_only"
+    ]
+   },
+   {
+    "id": "rule_vueling_cabin_weight",
+    "canal": "cabin",
+    "par": [
+     "rule_global_cabin_weight_cap",
+     "rule_vueling_cabin_only"
+    ]
+   }
+  ],
+  "statut_apres_retrait": {
+   "cabin : denied → allowed": 42,
+   "cabin : denied → denied": 11,
+   "hold : denied → allowed": 41,
+   "hold : denied → confirmation_required": 1
+  },
+  "deplacent_le_score": 83,
+  "lecture": "Une règle masquée n'est pas inoffensive : elle est fausse au même titre que les autres, mais son retrait ne déplacerait rien tant que le refus qui la couvre tient. Distinguer les deux évite de compter comme « sans effet » une erreur qui attend son tour.",
+  "detail": [
+   {
+    "id": "rule_aa_cabin_weight",
+    "compagnie": "airline_american",
+    "canal": "cabin",
+    "route": "airport_ams|airport_phl",
+    "seuil_kg": 8,
+    "mord": true,
+    "temoin": {
+     "au_dessus_kg": 9,
+     "en_dessous_kg": 7
+    },
+    "mord_encore_sous_le_seuil": false,
+    "statut_au_dessus": "denied",
+    "statut_en_dessous": "allowed",
+    "statut_sans_la_regle": "allowed",
+    "dominante": true,
+    "masquee_par": [],
+    "score_avec": 46,
+    "score_sans": 57
+   },
+   {
+    "id": "rule_ac_cabin_weight",
+    "compagnie": "airline_air_canada",
+    "canal": "cabin",
+    "route": "airport_ams|airport_yul",
+    "seuil_kg": 10,
+    "mord": true,
+    "temoin": {
+     "au_dessus_kg": 11,
+     "en_dessous_kg": 9
+    },
+    "mord_encore_sous_le_seuil": false,
+    "statut_au_dessus": "denied",
+    "statut_en_dessous": "allowed",
+    "statut_sans_la_regle": "denied",
+    "dominante": false,
+    "masquee_par": [
+     "rule_global_cabin_weight_cap"
+    ],
+    "score_avec": 9,
+    "score_sans": 9
+   },
+   {
+    "id": "rule_aegean_cabin_weight",
+    "compagnie": "airline_aegean",
+    "canal": "cabin",
+    "route": "airport_agp|airport_ath",
+    "seuil_kg": 8,
+    "mord": true,
+    "temoin": {
+     "au_dessus_kg": 9,
+     "en_dessous_kg": 7
+    },
+    "mord_encore_sous_le_seuil": false,
+    "statut_au_dessus": "denied",
+    "statut_en_dessous": "allowed",
+    "statut_sans_la_regle": "allowed",
+    "dominante": true,
+    "masquee_par": [],
+    "score_avec": 36,
+    "score_sans": 42
+   },
+   {
+    "id": "rule_aegean_hold_weight",
+    "compagnie": "airline_aegean",
+    "canal": "hold",
+    "route": "airport_agp|airport_ath",
+    "seuil_kg": 32,
+    "mord": true,
+    "temoin": {
+     "au_dessus_kg": 33,
+     "en_dessous_kg": 31
+    },
+    "mord_encore_sous_le_seuil": false,
+    "statut_au_dessus": "denied",
+    "statut_en_dessous": "allowed",
+    "statut_sans_la_regle": "allowed",
+    "dominante": true,
+    "masquee_par": [],
+    "score_avec": 57,
+    "score_sans": 60
+   },
+   {
+    "id": "rule_aeromexico_cabin_weight",
+    "compagnie": "airline_aeromexico",
+    "canal": "cabin",
+    "route": "airport_ams|airport_mex",
+    "seuil_kg": 9,
+    "mord": true,
+    "temoin": {
+     "au_dessus_kg": 10,
+     "en_dessous_kg": 8
+    },
+    "mord_encore_sous_le_seuil": false,
+    "statut_au_dessus": "denied",
+    "statut_en_dessous": "allowed",
+    "statut_sans_la_regle": "allowed",
+    "dominante": true,
+    "masquee_par": [],
+    "score_avec": 32,
+    "score_sans": 41
+   },
+   {
+    "id": "rule_aeromexico_hold_weight",
+    "compagnie": "airline_aeromexico",
+    "canal": "hold",
+    "route": "airport_ams|airport_mex",
+    "seuil_kg": 45,
+    "mord": true,
+    "temoin": {
+     "au_dessus_kg": 46,
+     "en_dessous_kg": 44
+    },
+    "mord_encore_sous_le_seuil": false,
+    "statut_au_dessus": "denied",
+    "statut_en_dessous": "allowed",
+    "statut_sans_la_regle": "allowed",
+    "dominante": true,
+    "masquee_par": [],
+    "score_avec": 50,
+    "score_sans": 55
+   },
+   {
+    "id": "rule_af_cabin_weight",
+    "compagnie": "airline_air_france",
+    "canal": "cabin",
+    "route": "airport_abj|airport_cdg",
+    "seuil_kg": 8,
+    "mord": true,
+    "temoin": {
+     "au_dessus_kg": 9,
+     "en_dessous_kg": 7
+    },
+    "mord_encore_sous_le_seuil": false,
+    "statut_au_dessus": "denied",
+    "statut_en_dessous": "allowed",
+    "statut_sans_la_regle": "allowed",
+    "dominante": true,
+    "masquee_par": [],
+    "score_avec": 5,
+    "score_sans": 48
+   },
+   {
+    "id": "rule_air_algerie_cabin_weight",
+    "compagnie": "airline_air_algerie",
+    "canal": "cabin",
+    "route": "airport_abj|airport_alg",
+    "seuil_kg": 6,
+    "mord": true,
+    "temoin": {
+     "au_dessus_kg": 7,
+     "en_dessous_kg": 5
+    },
+    "mord_encore_sous_le_seuil": false,
+    "statut_au_dessus": "denied",
+    "statut_en_dessous": "allowed",
+    "statut_sans_la_regle": "allowed",
+    "dominante": true,
+    "masquee_par": [],
+    "score_avec": 58,
+    "score_sans": 79
+   },
+   {
+    "id": "rule_air_algerie_hold_weight",
+    "compagnie": "airline_air_algerie",
+    "canal": "hold",
+    "route": "airport_abj|airport_alg",
+    "seuil_kg": 32,
+    "mord": true,
+    "temoin": {
+     "au_dessus_kg": 33,
+     "en_dessous_kg": 31
+    },
+    "mord_encore_sous_le_seuil": false,
+    "statut_au_dessus": "denied",
+    "statut_en_dessous": "allowed",
+    "statut_sans_la_regle": "allowed",
+    "dominante": true,
+    "masquee_par": [],
+    "score_avec": 58,
+    "score_sans": 79
+   },
+   {
+    "id": "rule_air_caraibes_cabin_weight",
+    "compagnie": "airline_air_caraibes",
+    "canal": "cabin",
+    "route": "airport_cay|airport_ory",
+    "seuil_kg": 8,
+    "mord": true,
+    "temoin": {
+     "au_dessus_kg": 9,
+     "en_dessous_kg": 7
+    },
+    "mord_encore_sous_le_seuil": false,
+    "statut_au_dessus": "denied",
+    "statut_en_dessous": "allowed",
+    "statut_sans_la_regle": "allowed",
+    "dominante": true,
+    "masquee_par": [],
+    "score_avec": 12,
+    "score_sans": 70
+   },
+   {
+    "id": "rule_air_caraibes_hold_weight",
+    "compagnie": "airline_air_caraibes",
+    "canal": "hold",
+    "route": "airport_cay|airport_ory",
+    "seuil_kg": 75,
+    "mord": true,
+    "temoin": {
+     "au_dessus_kg": 76,
+     "en_dessous_kg": 74
+    },
+    "mord_encore_sous_le_seuil": false,
+    "statut_au_dessus": "denied",
+    "statut_en_dessous": "allowed",
+    "statut_sans_la_regle": "allowed",
+    "dominante": true,
+    "masquee_par": [],
+    "score_avec": 12,
+    "score_sans": 70
+   },
+   {
+    "id": "rule_air_china_hold_weight",
+    "compagnie": "airline_air_china",
+    "canal": "hold",
+    "route": "airport_akl|airport_pek",
+    "seuil_kg": 32,
+    "mord": true,
+    "temoin": {
+     "au_dessus_kg": 33,
+     "en_dessous_kg": 31
+    },
+    "mord_encore_sous_le_seuil": false,
+    "statut_au_dessus": "denied",
+    "statut_en_dessous": "allowed",
+    "statut_sans_la_regle": "allowed",
+    "dominante": true,
+    "masquee_par": [],
+    "score_avec": 35,
+    "score_sans": 47
+   },
+   {
+    "id": "rule_air_europa_cabin_weight",
+    "compagnie": "airline_air_europa",
+    "canal": "cabin",
+    "route": "airport_agp|airport_mad",
+    "seuil_kg": 8,
+    "mord": true,
+    "temoin": {
+     "au_dessus_kg": 9,
+     "en_dessous_kg": 7
+    },
+    "mord_encore_sous_le_seuil": false,
+    "statut_au_dessus": "denied",
+    "statut_en_dessous": "allowed",
+    "statut_sans_la_regle": "allowed",
+    "dominante": true,
+    "masquee_par": [],
+    "score_avec": 35,
+    "score_sans": 46
+   },
+   {
+    "id": "rule_air_europa_hold_weight",
+    "compagnie": "airline_air_europa",
+    "canal": "hold",
+    "route": "airport_agp|airport_mad",
+    "seuil_kg": 50,
+    "mord": true,
+    "temoin": {
+     "au_dessus_kg": 51,
+     "en_dessous_kg": 49
+    },
+    "mord_encore_sous_le_seuil": false,
+    "statut_au_dessus": "denied",
+    "statut_en_dessous": "allowed",
+    "statut_sans_la_regle": "allowed",
+    "dominante": true,
+    "masquee_par": [],
+    "score_avec": 50,
+    "score_sans": 57
+   },
+   {
+    "id": "rule_air_france_hold_weight",
+    "compagnie": "airline_air_france",
+    "canal": "hold",
+    "route": "airport_abj|airport_cdg",
+    "seuil_kg": 75,
+    "mord": true,
+    "temoin": {
+     "au_dessus_kg": 76,
+     "en_dessous_kg": 74
+    },
+    "mord_encore_sous_le_seuil": false,
+    "statut_au_dessus": "denied",
+    "statut_en_dessous": "allowed",
+    "statut_sans_la_regle": "allowed",
+    "dominante": true,
+    "masquee_par": [],
+    "score_avec": 25,
+    "score_sans": 43
+   },
+   {
+    "id": "rule_air_india_cabin_weight",
+    "compagnie": "airline_air_india",
+    "canal": "cabin",
+    "route": "airport_ams|airport_del",
+    "seuil_kg": 10,
+    "mord": true,
+    "temoin": {
+     "au_dessus_kg": 11,
+     "en_dessous_kg": 9
+    },
+    "mord_encore_sous_le_seuil": false,
+    "statut_au_dessus": "denied",
+    "statut_en_dessous": "allowed",
+    "statut_sans_la_regle": "denied",
+    "dominante": false,
+    "masquee_par": [
+     "rule_global_cabin_weight_cap"
+    ],
+    "score_avec": 3,
+    "score_sans": 3
+   },
+   {
+    "id": "rule_air_india_hold_weight",
+    "compagnie": "airline_air_india",
+    "canal": "hold",
+    "route": "airport_ams|airport_del",
+    "seuil_kg": 32,
+    "mord": true,
+    "temoin": {
+     "au_dessus_kg": 33,
+     "en_dessous_kg": 31
+    },
+    "mord_encore_sous_le_seuil": false,
+    "statut_au_dessus": "denied",
+    "statut_en_dessous": "allowed",
+    "statut_sans_la_regle": "allowed",
+    "dominante": true,
+    "masquee_par": [],
+    "score_avec": 60,
+    "score_sans": 63
+   },
+   {
+    "id": "rule_air_new_zealand_hold_weight",
+    "compagnie": "airline_air_new_zealand",
+    "canal": "hold",
+    "route": "airport_akl|airport_bne",
+    "seuil_kg": 60,
+    "mord": true,
+    "temoin": {
+     "au_dessus_kg": 61,
+     "en_dessous_kg": 59
+    },
+    "mord_encore_sous_le_seuil": false,
+    "statut_au_dessus": "denied",
+    "statut_en_dessous": "allowed",
+    "statut_sans_la_regle": "allowed",
+    "dominante": true,
+    "masquee_par": [],
+    "score_avec": 3,
+    "score_sans": 49
+   },
+   {
+    "id": "rule_air_tahiti_nui_cabin_weight",
+    "compagnie": "airline_air_tahiti_nui",
+    "canal": "cabin",
+    "route": "airport_akl|airport_ppt",
+    "seuil_kg": 8,
+    "mord": true,
+    "temoin": {
+     "au_dessus_kg": 9,
+     "en_dessous_kg": 7
+    },
+    "mord_encore_sous_le_seuil": false,
+    "statut_au_dessus": "denied",
+    "statut_en_dessous": "allowed",
+    "statut_sans_la_regle": "allowed",
+    "dominante": true,
+    "masquee_par": [],
+    "score_avec": 6,
+    "score_sans": 65
+   },
+   {
+    "id": "rule_air_transat_cabin_weight",
+    "compagnie": "airline_air_transat",
+    "canal": "cabin",
+    "route": "airport_agp|airport_yul",
+    "seuil_kg": 8,
+    "mord": true,
+    "temoin": {
+     "au_dessus_kg": 9,
+     "en_dessous_kg": 7
+    },
+    "mord_encore_sous_le_seuil": false,
+    "statut_au_dessus": "denied",
+    "statut_en_dessous": "allowed",
+    "statut_sans_la_regle": "allowed",
+    "dominante": true,
+    "masquee_par": [],
+    "score_avec": 10,
+    "score_sans": 50
+   },
+   {
+    "id": "rule_air_transat_hold_weight",
+    "compagnie": "airline_air_transat",
+    "canal": "hold",
+    "route": "airport_agp|airport_yul",
+    "seuil_kg": 45,
+    "mord": true,
+    "temoin": {
+     "au_dessus_kg": 46,
+     "en_dessous_kg": 44
+    },
+    "mord_encore_sous_le_seuil": false,
+    "statut_au_dessus": "denied",
+    "statut_en_dessous": "allowed",
+    "statut_sans_la_regle": "allowed",
+    "dominante": true,
+    "masquee_par": [],
+    "score_avec": 59,
+    "score_sans": 66
+   },
+   {
+    "id": "rule_alaska_cabin_weight",
+    "compagnie": "airline_alaska",
+    "canal": "cabin",
+    "route": "airport_atl|airport_sea",
+    "seuil_kg": 9,
+    "mord": true,
+    "temoin": {
+     "au_dessus_kg": 10,
+     "en_dessous_kg": 8
+    },
+    "mord_encore_sous_le_seuil": false,
+    "statut_au_dessus": "denied",
+    "statut_en_dessous": "allowed",
+    "statut_sans_la_regle": "allowed",
+    "dominante": true,
+    "masquee_par": [],
+    "score_avec": 47,
+    "score_sans": 56
+   },
+   {
+    "id": "rule_alaska_hold_weight",
+    "compagnie": "airline_alaska",
+    "canal": "hold",
+    "route": "airport_atl|airport_sea",
+    "seuil_kg": 68,
+    "mord": true,
+    "temoin": {
+     "au_dessus_kg": 69,
+     "en_dessous_kg": 67
+    },
+    "mord_encore_sous_le_seuil": false,
+    "statut_au_dessus": "denied",
+    "statut_en_dessous": "allowed",
+    "statut_sans_la_regle": "allowed",
+    "dominante": true,
+    "masquee_par": [],
+    "score_avec": 42,
+    "score_sans": 53
+   },
+   {
+    "id": "rule_american_cabin_weight",
+    "compagnie": "airline_american",
+    "canal": "cabin",
+    "route": "airport_ams|airport_phl",
+    "seuil_kg": 9,
+    "mord": true,
+    "temoin": {
+     "au_dessus_kg": 10,
+     "en_dessous_kg": 8
+    },
+    "mord_encore_sous_le_seuil": false,
+    "statut_au_dessus": "denied",
+    "statut_en_dessous": "allowed",
+    "statut_sans_la_regle": "denied",
+    "dominante": false,
+    "masquee_par": [
+     "rule_aa_cabin_weight",
+     "rule_aa_no_hold_cargo",
+     "rule_american_no_hold"
+    ],
+    "score_avec": 40,
+    "score_sans": 40
+   },
+   {
+    "id": "rule_ana_hold_weight",
+    "compagnie": "airline_ana",
+    "canal": "hold",
+    "route": "airport_arn|airport_hnd",
+    "seuil_kg": 45,
+    "mord": true,
+    "temoin": {
+     "au_dessus_kg": 46,
+     "en_dessous_kg": 44
+    },
+    "mord_encore_sous_le_seuil": false,
+    "statut_au_dessus": "denied",
+    "statut_en_dessous": "allowed",
+    "statut_sans_la_regle": "allowed",
+    "dominante": true,
+    "masquee_par": [],
+    "score_avec": 52,
+    "score_sans": 59
+   },
+   {
+    "id": "rule_austrian_cabin_weight",
+    "compagnie": "airline_austrian",
+    "canal": "cabin",
+    "route": "airport_agp|airport_vie",
+    "seuil_kg": 8,
+    "mord": true,
+    "temoin": {
+     "au_dessus_kg": 9,
+     "en_dessous_kg": 7
+    },
+    "mord_encore_sous_le_seuil": false,
+    "statut_au_dessus": "denied",
+    "statut_en_dessous": "allowed",
+    "statut_sans_la_regle": "allowed",
+    "dominante": true,
+    "masquee_par": [],
+    "score_avec": 39,
+    "score_sans": 43
+   },
+   {
+    "id": "rule_avianca_cabin_weight",
+    "compagnie": "airline_avianca",
+    "canal": "cabin",
+    "route": "airport_asu|airport_bog",
+    "seuil_kg": 10,
+    "mord": true,
+    "temoin": {
+     "au_dessus_kg": 11,
+     "en_dessous_kg": 9
+    },
+    "mord_encore_sous_le_seuil": false,
+    "statut_au_dessus": "denied",
+    "statut_en_dessous": "allowed",
+    "statut_sans_la_regle": "denied",
+    "dominante": false,
+    "masquee_par": [
+     "rule_global_cabin_weight_cap"
+    ],
+    "score_avec": 10,
+    "score_sans": 10
+   },
+   {
+    "id": "rule_avianca_hold_weight",
+    "compagnie": "airline_avianca",
+    "canal": "hold",
+    "route": "airport_asu|airport_bog",
+    "seuil_kg": 70,
+    "mord": true,
+    "temoin": {
+     "au_dessus_kg": 71,
+     "en_dessous_kg": 69
+    },
+    "mord_encore_sous_le_seuil": false,
+    "statut_au_dessus": "denied",
+    "statut_en_dessous": "allowed",
+    "statut_sans_la_regle": "allowed",
+    "dominante": true,
+    "masquee_par": [],
+    "score_avec": 9,
+    "score_sans": 59
+   },
+   {
+    "id": "rule_brussels_cabin_weight",
+    "compagnie": "airline_brussels",
+    "canal": "cabin",
+    "route": "airport_abj|airport_bru",
+    "seuil_kg": 8,
+    "mord": true,
+    "temoin": {
+     "au_dessus_kg": 9,
+     "en_dessous_kg": 7
+    },
+    "mord_encore_sous_le_seuil": false,
+    "statut_au_dessus": "denied",
+    "statut_en_dessous": "allowed",
+    "statut_sans_la_regle": "allowed",
+    "dominante": true,
+    "masquee_par": [],
+    "score_avec": 5,
+    "score_sans": 46
+   },
+   {
+    "id": "rule_brussels_hold_weight",
+    "compagnie": "airline_brussels",
+    "canal": "hold",
+    "route": "airport_abj|airport_bru",
+    "seuil_kg": 20,
+    "mord": true,
+    "temoin": {
+     "au_dessus_kg": 21,
+     "en_dessous_kg": 19
+    },
+    "mord_encore_sous_le_seuil": false,
+    "statut_au_dessus": "denied",
+    "statut_en_dessous": "allowed",
+    "statut_sans_la_regle": "allowed",
+    "dominante": true,
+    "masquee_par": [],
+    "score_avec": 64,
+    "score_sans": 72
+   },
+   {
+    "id": "rule_china_airlines_hold_weight",
+    "compagnie": "airline_china_airlines",
+    "canal": "hold",
+    "route": "airport_akl|airport_bne",
+    "seuil_kg": 45,
+    "mord": true,
+    "temoin": {
+     "au_dessus_kg": 46,
+     "en_dessous_kg": 44
+    },
+    "mord_encore_sous_le_seuil": false,
+    "statut_au_dessus": "denied",
+    "statut_en_dessous": "allowed",
+    "statut_sans_la_regle": "allowed",
+    "dominante": true,
+    "masquee_par": [],
+    "score_avec": 49,
+    "score_sans": 61
+   },
+   {
+    "id": "rule_china_eastern_hold_weight",
+    "compagnie": "airline_china_eastern",
+    "canal": "hold",
+    "route": "airport_akl|airport_eze",
+    "seuil_kg": 32,
+    "mord": true,
+    "temoin": {
+     "au_dessus_kg": 33,
+     "en_dessous_kg": 31
+    },
+    "mord_encore_sous_le_seuil": false,
+    "statut_au_dessus": "denied",
+    "statut_en_dessous": "allowed",
+    "statut_sans_la_regle": "allowed",
+    "dominante": true,
+    "masquee_par": [],
+    "score_avec": 57,
+    "score_sans": 85
+   },
+   {
+    "id": "rule_china_southern_hold_weight",
+    "compagnie": "airline_china_southern",
+    "canal": "hold",
+    "route": "airport_akl|airport_can",
+    "seuil_kg": 32,
+    "mord": true,
+    "temoin": {
+     "au_dessus_kg": 33,
+     "en_dessous_kg": 31
+    },
+    "mord_encore_sous_le_seuil": false,
+    "statut_au_dessus": "denied",
+    "statut_en_dessous": "allowed",
+    "statut_sans_la_regle": "allowed",
+    "dominante": true,
+    "masquee_par": [],
+    "score_avec": 41,
+    "score_sans": 50
+   },
+   {
+    "id": "rule_condor_cabin_weight",
+    "compagnie": "airline_condor",
+    "canal": "cabin",
+    "route": "airport_bcn|airport_fra",
+    "seuil_kg": 8,
+    "mord": true,
+    "temoin": {
+     "au_dessus_kg": 9,
+     "en_dessous_kg": 7
+    },
+    "mord_encore_sous_le_seuil": false,
+    "statut_au_dessus": "denied",
+    "statut_en_dessous": "allowed",
+    "statut_sans_la_regle": "allowed",
+    "dominante": true,
+    "masquee_par": [],
+    "score_avec": 39,
+    "score_sans": 44
+   },
+   {
+    "id": "rule_copa_cabin_weight",
+    "compagnie": "airline_copa",
+    "canal": "cabin",
+    "route": "airport_asu|airport_pty",
+    "seuil_kg": 10,
+    "mord": true,
+    "temoin": {
+     "au_dessus_kg": 11,
+     "en_dessous_kg": 9
+    },
+    "mord_encore_sous_le_seuil": false,
+    "statut_au_dessus": "denied",
+    "statut_en_dessous": "allowed",
+    "statut_sans_la_regle": "denied",
+    "dominante": false,
+    "masquee_par": [
+     "rule_global_cabin_weight_cap",
+     "rule_copa_hold_deny"
+    ],
+    "score_avec": 7,
+    "score_sans": 7
+   },
+   {
+    "id": "rule_corsair_cabin_weight",
+    "compagnie": "airline_corsair",
+    "canal": "cabin",
+    "route": "airport_abj|airport_ory",
+    "seuil_kg": 8,
+    "mord": true,
+    "temoin": {
+     "au_dessus_kg": 9,
+     "en_dessous_kg": 7
+    },
+    "mord_encore_sous_le_seuil": false,
+    "statut_au_dessus": "denied",
+    "statut_en_dessous": "allowed",
+    "statut_sans_la_regle": "allowed",
+    "dominante": true,
+    "masquee_par": [],
+    "score_avec": 5,
+    "score_sans": 48
+   },
+   {
+    "id": "rule_corsair_hold_weight",
+    "compagnie": "airline_corsair",
+    "canal": "hold",
+    "route": "airport_abj|airport_ory",
+    "seuil_kg": 50,
+    "mord": true,
+    "temoin": {
+     "au_dessus_kg": 51,
+     "en_dessous_kg": 49
+    },
+    "mord_encore_sous_le_seuil": false,
+    "statut_au_dessus": "denied",
+    "statut_en_dessous": "allowed",
+    "statut_sans_la_regle": "allowed",
+    "dominante": true,
+    "masquee_par": [],
+    "score_avec": 47,
+    "score_sans": 59
+   },
+   {
+    "id": "rule_delta_cabin_weight",
+    "compagnie": "airline_delta",
+    "canal": "cabin",
+    "route": "airport_acc|airport_jfk",
+    "seuil_kg": 9,
+    "mord": true,
+    "temoin": {
+     "au_dessus_kg": 10,
+     "en_dessous_kg": 8
+    },
+    "mord_encore_sous_le_seuil": false,
+    "statut_au_dessus": "denied",
+    "statut_en_dessous": "allowed",
+    "statut_sans_la_regle": "denied",
+    "dominante": false,
+    "masquee_par": [
+     "rule_dl_cabin_weight",
+     "rule_delta_no_hold",
+     "rule_dl_no_hold_cargo"
+    ],
+    "score_avec": 10,
+    "score_sans": 10
+   },
+   {
+    "id": "rule_dl_cabin_weight",
+    "compagnie": "airline_delta",
+    "canal": "cabin",
+    "route": "airport_acc|airport_jfk",
+    "seuil_kg": 8,
+    "mord": true,
+    "temoin": {
+     "au_dessus_kg": 9,
+     "en_dessous_kg": 7
+    },
+    "mord_encore_sous_le_seuil": false,
+    "statut_au_dessus": "denied",
+    "statut_en_dessous": "allowed",
+    "statut_sans_la_regle": "allowed",
+    "dominante": true,
+    "masquee_par": [],
+    "score_avec": 10,
+    "score_sans": 52
+   },
+   {
+    "id": "rule_egyptair_cabin_weight",
+    "compagnie": "airline_egyptair",
+    "canal": "cabin",
+    "route": "airport_abj|airport_cai",
+    "seuil_kg": 8,
+    "mord": true,
+    "temoin": {
+     "au_dessus_kg": 9,
+     "en_dessous_kg": 7
+    },
+    "mord_encore_sous_le_seuil": false,
+    "statut_au_dessus": "denied",
+    "statut_en_dessous": "allowed",
+    "statut_sans_la_regle": "allowed",
+    "dominante": true,
+    "masquee_par": [],
+    "score_avec": 10,
+    "score_sans": 54
+   },
+   {
+    "id": "rule_egyptair_hold_weight",
+    "compagnie": "airline_egyptair",
+    "canal": "hold",
+    "route": "airport_cai|airport_dar",
+    "seuil_kg": 32,
+    "mord": true,
+    "temoin": {
+     "au_dessus_kg": 33,
+     "en_dessous_kg": 31
+    },
+    "mord_encore_sous_le_seuil": false,
+    "statut_au_dessus": "denied",
+    "statut_en_dessous": "allowed",
+    "statut_sans_la_regle": "allowed",
+    "dominante": true,
+    "masquee_par": [],
+    "score_avec": 61,
+    "score_sans": 79
+   },
+   {
+    "id": "rule_el_al_cabin_weight",
+    "compagnie": "airline_el_al",
+    "canal": "cabin",
+    "route": "airport_ams|airport_tlv",
+    "seuil_kg": 9,
+    "mord": true,
+    "temoin": {
+     "au_dessus_kg": 10,
+     "en_dessous_kg": 8
+    },
+    "mord_encore_sous_le_seuil": false,
+    "statut_au_dessus": "denied",
+    "statut_en_dessous": "allowed",
+    "statut_sans_la_regle": "allowed",
+    "dominante": true,
+    "masquee_par": [],
+    "score_avec": 31,
+    "score_sans": 37
+   },
+   {
+    "id": "rule_el_al_hold_weight",
+    "compagnie": "airline_el_al",
+    "canal": "hold",
+    "route": "airport_ams|airport_tlv",
+    "seuil_kg": 100,
+    "mord": true,
+    "temoin": {
+     "au_dessus_kg": 101,
+     "en_dessous_kg": 99
+    },
+    "mord_encore_sous_le_seuil": false,
+    "statut_au_dessus": "denied",
+    "statut_en_dessous": "allowed",
+    "statut_sans_la_regle": "allowed",
+    "dominante": true,
+    "masquee_par": [],
+    "score_avec": 41,
+    "score_sans": 45
+   },
+   {
+    "id": "rule_ethiopian_cabin_weight",
+    "compagnie": "airline_ethiopian",
+    "canal": "cabin",
+    "route": "airport_abj|airport_add",
+    "seuil_kg": 8,
+    "mord": true,
+    "temoin": {
+     "au_dessus_kg": 9,
+     "en_dessous_kg": 7
+    },
+    "mord_encore_sous_le_seuil": false,
+    "statut_au_dessus": "denied",
+    "statut_en_dessous": "allowed",
+    "statut_sans_la_regle": "allowed",
+    "dominante": true,
+    "masquee_par": [],
+    "score_avec": 12,
+    "score_sans": 62
+   },
+   {
+    "id": "rule_ethiopian_hold_weight",
+    "compagnie": "airline_ethiopian",
+    "canal": "hold",
+    "route": "airport_abj|airport_add",
+    "seuil_kg": 45,
+    "mord": true,
+    "temoin": {
+     "au_dessus_kg": 46,
+     "en_dessous_kg": 44
+    },
+    "mord_encore_sous_le_seuil": false,
+    "statut_au_dessus": "denied",
+    "statut_en_dessous": "allowed",
+    "statut_sans_la_regle": "allowed",
+    "dominante": true,
+    "masquee_par": [],
+    "score_avec": 52,
+    "score_sans": 72
+   },
+   {
+    "id": "rule_etihad_cabin_weight",
+    "compagnie": "airline_etihad",
+    "canal": "cabin",
+    "route": "airport_add|airport_auh",
+    "seuil_kg": 8,
+    "mord": true,
+    "temoin": {
+     "au_dessus_kg": 9,
+     "en_dessous_kg": 7
+    },
+    "mord_encore_sous_le_seuil": false,
+    "statut_au_dessus": "denied",
+    "statut_en_dessous": "allowed",
+    "statut_sans_la_regle": "allowed",
+    "dominante": true,
+    "masquee_par": [],
+    "score_avec": 8,
+    "score_sans": 59
+   },
+   {
+    "id": "rule_eurowings_cabin_weight",
+    "compagnie": "airline_eurowings",
+    "canal": "cabin",
+    "route": "airport_agp|airport_ber",
+    "seuil_kg": 8,
+    "mord": true,
+    "temoin": {
+     "au_dessus_kg": 9,
+     "en_dessous_kg": 7
+    },
+    "mord_encore_sous_le_seuil": false,
+    "statut_au_dessus": "denied",
+    "statut_en_dessous": "allowed",
+    "statut_sans_la_regle": "allowed",
+    "dominante": true,
+    "masquee_par": [],
+    "score_avec": 39,
+    "score_sans": 44
+   },
+   {
+    "id": "rule_eva_air_hold_weight",
+    "compagnie": "airline_eva_air",
+    "canal": "hold",
+    "route": "airport_ams|airport_bkk",
+    "seuil_kg": 32,
+    "mord": true,
+    "temoin": {
+     "au_dessus_kg": 33,
+     "en_dessous_kg": 31
+    },
+    "mord_encore_sous_le_seuil": false,
+    "statut_au_dessus": "denied",
+    "statut_en_dessous": "allowed",
+    "statut_sans_la_regle": "allowed",
+    "dominante": true,
+    "masquee_par": [],
+    "score_avec": 56,
+    "score_sans": 58
+   },
+   {
+    "id": "rule_finnair_cabin_weight",
+    "compagnie": "airline_finnair",
+    "canal": "cabin",
+    "route": "airport_agp|airport_hel",
+    "seuil_kg": 8,
+    "mord": true,
+    "temoin": {
+     "au_dessus_kg": 9,
+     "en_dessous_kg": 7
+    },
+    "mord_encore_sous_le_seuil": false,
+    "statut_au_dessus": "denied",
+    "statut_en_dessous": "allowed",
+    "statut_sans_la_regle": "allowed",
+    "dominante": true,
+    "masquee_par": [],
+    "score_avec": 42,
+    "score_sans": 49
+   },
+   {
+    "id": "rule_finnair_hold_weight",
+    "compagnie": "airline_finnair",
+    "canal": "hold",
+    "route": "airport_agp|airport_hel",
+    "seuil_kg": 75,
+    "mord": true,
+    "temoin": {
+     "au_dessus_kg": 76,
+     "en_dessous_kg": 74
+    },
+    "mord_encore_sous_le_seuil": false,
+    "statut_au_dessus": "denied",
+    "statut_en_dessous": "allowed",
+    "statut_sans_la_regle": "allowed",
+    "dominante": true,
+    "masquee_par": [],
+    "score_avec": 44,
+    "score_sans": 50
+   },
+   {
+    "id": "rule_french_bee_cabin_weight",
+    "compagnie": "airline_french_bee",
+    "canal": "cabin",
+    "route": "airport_ewr|airport_ory",
+    "seuil_kg": 8,
+    "mord": true,
+    "temoin": {
+     "au_dessus_kg": 9,
+     "en_dessous_kg": 7
+    },
+    "mord_encore_sous_le_seuil": false,
+    "statut_au_dessus": "denied",
+    "statut_en_dessous": "allowed",
+    "statut_sans_la_regle": "allowed",
+    "dominante": true,
+    "masquee_par": [],
+    "score_avec": 46,
+    "score_sans": 54
+   },
+   {
+    "id": "rule_french_bee_hold_weight",
+    "compagnie": "airline_french_bee",
+    "canal": "hold",
+    "route": "airport_ewr|airport_ory",
+    "seuil_kg": 75,
+    "mord": true,
+    "temoin": {
+     "au_dessus_kg": 76,
+     "en_dessous_kg": 74
+    },
+    "mord_encore_sous_le_seuil": false,
+    "statut_au_dessus": "denied",
+    "statut_en_dessous": "allowed",
+    "statut_sans_la_regle": "allowed",
+    "dominante": true,
+    "masquee_par": [],
+    "score_avec": 25,
+    "score_sans": 43
+   },
+   {
+    "id": "rule_garuda_indonesia_hold_weight",
+    "compagnie": "airline_garuda_indonesia",
+    "canal": "hold",
+    "route": "airport_ams|airport_cgk",
+    "seuil_kg": 32,
+    "mord": true,
+    "temoin": {
+     "au_dessus_kg": 33,
+     "en_dessous_kg": 31
+    },
+    "mord_encore_sous_le_seuil": false,
+    "statut_au_dessus": "denied",
+    "statut_en_dessous": "confirmation_required",
+    "statut_sans_la_regle": "confirmation_required",
+    "dominante": true,
+    "masquee_par": [],
+    "score_avec": 46,
+    "score_sans": 46
+   },
+   {
+    "id": "rule_ib_cabin_weight",
+    "compagnie": "airline_iberia",
+    "canal": "cabin",
+    "route": "airport_agp|airport_mad",
+    "seuil_kg": 8,
+    "mord": true,
+    "temoin": {
+     "au_dessus_kg": 9,
+     "en_dessous_kg": 7
+    },
+    "mord_encore_sous_le_seuil": false,
+    "statut_au_dessus": "denied",
+    "statut_en_dessous": "allowed",
+    "statut_sans_la_regle": "allowed",
+    "dominante": true,
+    "masquee_par": [],
+    "score_avec": 35,
+    "score_sans": 46
+   },
+   {
+    "id": "rule_iberia_express_cabin_weight",
+    "compagnie": "airline_iberia_express",
+    "canal": "cabin",
+    "route": "airport_agp|airport_mad",
+    "seuil_kg": 8,
+    "mord": true,
+    "temoin": {
+     "au_dessus_kg": 9,
+     "en_dessous_kg": 7
+    },
+    "mord_encore_sous_le_seuil": false,
+    "statut_au_dessus": "denied",
+    "statut_en_dessous": "allowed",
+    "statut_sans_la_regle": "allowed",
+    "dominante": true,
+    "masquee_par": [],
+    "score_avec": 35,
+    "score_sans": 46
+   },
+   {
+    "id": "rule_iberia_hold_weight",
+    "compagnie": "airline_iberia",
+    "canal": "hold",
+    "route": "airport_agp|airport_mad",
+    "seuil_kg": 45,
+    "mord": true,
+    "temoin": {
+     "au_dessus_kg": 46,
+     "en_dessous_kg": 44
+    },
+    "mord_encore_sous_le_seuil": false,
+    "statut_au_dessus": "denied",
+    "statut_en_dessous": "allowed",
+    "statut_sans_la_regle": "allowed",
+    "dominante": true,
+    "masquee_par": [],
+    "score_avec": 57,
+    "score_sans": 63
+   },
+   {
+    "id": "rule_ita_airways_cabin_weight",
+    "compagnie": "airline_ita_airways",
+    "canal": "cabin",
+    "route": "airport_acc|airport_fco",
+    "seuil_kg": 8,
+    "mord": true,
+    "temoin": {
+     "au_dessus_kg": 9,
+     "en_dessous_kg": 7
+    },
+    "mord_encore_sous_le_seuil": false,
+    "statut_au_dessus": "denied",
+    "statut_en_dessous": "allowed",
+    "statut_sans_la_regle": "allowed",
+    "dominante": true,
+    "masquee_par": [],
+    "score_avec": 5,
+    "score_sans": 49
+   },
+   {
+    "id": "rule_ita_airways_hold_weight",
+    "compagnie": "airline_ita_airways",
+    "canal": "hold",
+    "route": "airport_acc|airport_fco",
+    "seuil_kg": 75,
+    "mord": true,
+    "temoin": {
+     "au_dessus_kg": 76,
+     "en_dessous_kg": 74
+    },
+    "mord_encore_sous_le_seuil": false,
+    "statut_au_dessus": "denied",
+    "statut_en_dessous": "allowed",
+    "statut_sans_la_regle": "allowed",
+    "dominante": true,
+    "masquee_par": [],
+    "score_avec": 37,
+    "score_sans": 52
+   },
+   {
+    "id": "rule_jal_hold_weight",
+    "compagnie": "airline_jal",
+    "canal": "hold",
+    "route": "airport_bkk|airport_hnd",
+    "seuil_kg": 32,
+    "mord": true,
+    "temoin": {
+     "au_dessus_kg": 33,
+     "en_dessous_kg": 31
+    },
+    "mord_encore_sous_le_seuil": false,
+    "statut_au_dessus": "denied",
+    "statut_en_dessous": "allowed",
+    "statut_sans_la_regle": "allowed",
+    "dominante": true,
+    "masquee_par": [],
+    "score_avec": 40,
+    "score_sans": 45
+   },
+   {
+    "id": "rule_jetblue_cabin_weight",
+    "compagnie": "airline_jetblue",
+    "canal": "cabin",
+    "route": "airport_ams|airport_bos",
+    "seuil_kg": 9,
+    "mord": true,
+    "temoin": {
+     "au_dessus_kg": 10,
+     "en_dessous_kg": 8
+    },
+    "mord_encore_sous_le_seuil": false,
+    "statut_au_dessus": "denied",
+    "statut_en_dessous": "allowed",
+    "statut_sans_la_regle": "allowed",
+    "dominante": true,
+    "masquee_par": [],
+    "score_avec": 33,
+    "score_sans": 41
+   },
+   {
+    "id": "rule_kl_cabin_weight",
+    "compagnie": "airline_klm",
+    "canal": "cabin",
+    "route": "airport_acc|airport_ams",
+    "seuil_kg": 8,
+    "mord": true,
+    "temoin": {
+     "au_dessus_kg": 9,
+     "en_dessous_kg": 7
+    },
+    "mord_encore_sous_le_seuil": false,
+    "statut_au_dessus": "denied",
+    "statut_en_dessous": "allowed",
+    "statut_sans_la_regle": "allowed",
+    "dominante": true,
+    "masquee_par": [],
+    "score_avec": 5,
+    "score_sans": 47
+   },
+   {
+    "id": "rule_klm_hold_weight",
+    "compagnie": "airline_klm",
+    "canal": "hold",
+    "route": "airport_acc|airport_ams",
+    "seuil_kg": 75,
+    "mord": true,
+    "temoin": {
+     "au_dessus_kg": 76,
+     "en_dessous_kg": 74
+    },
+    "mord_encore_sous_le_seuil": false,
+    "statut_au_dessus": "denied",
+    "statut_en_dessous": "allowed",
+    "statut_sans_la_regle": "allowed",
+    "dominante": true,
+    "masquee_par": [],
+    "score_avec": 41,
+    "score_sans": 51
+   },
+   {
+    "id": "rule_km_malta_cabin_weight",
+    "compagnie": "airline_km_malta",
+    "canal": "cabin",
+    "route": "airport_ams|airport_mla",
+    "seuil_kg": 10,
+    "mord": true,
+    "temoin": {
+     "au_dessus_kg": 11,
+     "en_dessous_kg": 9
+    },
+    "mord_encore_sous_le_seuil": false,
+    "statut_au_dessus": "denied",
+    "statut_en_dessous": "allowed",
+    "statut_sans_la_regle": "denied",
+    "dominante": false,
+    "masquee_par": [
+     "rule_global_cabin_weight_cap"
+    ],
+    "score_avec": 9,
+    "score_sans": 9
+   },
+   {
+    "id": "rule_km_malta_hold_weight",
+    "compagnie": "airline_km_malta",
+    "canal": "hold",
+    "route": "airport_ams|airport_mla",
+    "seuil_kg": 32,
+    "mord": true,
+    "temoin": {
+     "au_dessus_kg": 33,
+     "en_dessous_kg": 31
+    },
+    "mord_encore_sous_le_seuil": false,
+    "statut_au_dessus": "denied",
+    "statut_en_dessous": "allowed",
+    "statut_sans_la_regle": "allowed",
+    "dominante": true,
+    "masquee_par": [],
+    "score_avec": 50,
+    "score_sans": 54
+   },
+   {
+    "id": "rule_korean_air_cabin_weight",
+    "compagnie": "airline_korean_air",
+    "canal": "cabin",
+    "route": "airport_akl|airport_icn",
+    "seuil_kg": 7,
+    "mord": true,
+    "temoin": {
+     "au_dessus_kg": 8,
+     "en_dessous_kg": 6
+    },
+    "mord_encore_sous_le_seuil": false,
+    "statut_au_dessus": "denied",
+    "statut_en_dessous": "allowed",
+    "statut_sans_la_regle": "allowed",
+    "dominante": true,
+    "masquee_par": [],
+    "score_avec": 4,
+    "score_sans": 44
+   },
+   {
+    "id": "rule_korean_air_hold_weight",
+    "compagnie": "airline_korean_air",
+    "canal": "hold",
+    "route": "airport_akl|airport_icn",
+    "seuil_kg": 45,
+    "mord": true,
+    "temoin": {
+     "au_dessus_kg": 46,
+     "en_dessous_kg": 44
+    },
+    "mord_encore_sous_le_seuil": false,
+    "statut_au_dessus": "denied",
+    "statut_en_dessous": "allowed",
+    "statut_sans_la_regle": "allowed",
+    "dominante": true,
+    "masquee_par": [],
+    "score_avec": 33,
+    "score_sans": 44
+   },
+   {
+    "id": "rule_latam_cabin_weight",
+    "compagnie": "airline_latam",
+    "canal": "cabin",
+    "route": "airport_aep|airport_gig",
+    "seuil_kg": 7,
+    "mord": true,
+    "temoin": {
+     "au_dessus_kg": 8,
+     "en_dessous_kg": 6
+    },
+    "mord_encore_sous_le_seuil": false,
+    "statut_au_dessus": "denied",
+    "statut_en_dessous": "allowed",
+    "statut_sans_la_regle": "allowed",
+    "dominante": true,
+    "masquee_par": [],
+    "score_avec": 67,
+    "score_sans": 89
+   },
+   {
+    "id": "rule_latam_hold_weight",
+    "compagnie": "airline_latam",
+    "canal": "hold",
+    "route": "airport_aep|airport_gig",
+    "seuil_kg": 45,
+    "mord": true,
+    "temoin": {
+     "au_dessus_kg": 46,
+     "en_dessous_kg": 44
+    },
+    "mord_encore_sous_le_seuil": false,
+    "statut_au_dessus": "denied",
+    "statut_en_dessous": "allowed",
+    "statut_sans_la_regle": "allowed",
+    "dominante": true,
+    "masquee_par": [],
+    "score_avec": 67,
+    "score_sans": 89
+   },
+   {
+    "id": "rule_lh_cabin_weight",
+    "compagnie": "airline_lufthansa",
+    "canal": "cabin",
+    "route": "airport_agp|airport_fra",
+    "seuil_kg": 8,
+    "mord": true,
+    "temoin": {
+     "au_dessus_kg": 9,
+     "en_dessous_kg": 7
+    },
+    "mord_encore_sous_le_seuil": false,
+    "statut_au_dessus": "denied",
+    "statut_en_dessous": "allowed",
+    "statut_sans_la_regle": "allowed",
+    "dominante": true,
+    "masquee_par": [],
+    "score_avec": 10,
+    "score_sans": 48
+   },
+   {
+    "id": "rule_lot_cabin_weight",
+    "compagnie": "airline_lot",
+    "canal": "cabin",
+    "route": "airport_agp|airport_waw",
+    "seuil_kg": 8,
+    "mord": true,
+    "temoin": {
+     "au_dessus_kg": 9,
+     "en_dessous_kg": 7
+    },
+    "mord_encore_sous_le_seuil": false,
+    "statut_au_dessus": "denied",
+    "statut_en_dessous": "allowed",
+    "statut_sans_la_regle": "allowed",
+    "dominante": true,
+    "masquee_par": [],
+    "score_avec": 9,
+    "score_sans": 47
+   },
+   {
+    "id": "rule_norwegian_cabin_weight",
+    "compagnie": "airline_norwegian",
+    "canal": "cabin",
+    "route": "airport_agp|airport_arn",
+    "seuil_kg": 8,
+    "mord": true,
+    "temoin": {
+     "au_dessus_kg": 9,
+     "en_dessous_kg": 7
+    },
+    "mord_encore_sous_le_seuil": false,
+    "statut_au_dessus": "denied",
+    "statut_en_dessous": "allowed",
+    "statut_sans_la_regle": "allowed",
+    "dominante": true,
+    "masquee_par": [],
+    "score_avec": 41,
+    "score_sans": 45
+   },
+   {
+    "id": "rule_norwegian_hold_weight",
+    "compagnie": "airline_norwegian",
+    "canal": "hold",
+    "route": "airport_agp|airport_arn",
+    "seuil_kg": 14,
+    "mord": true,
+    "temoin": {
+     "au_dessus_kg": 15,
+     "en_dessous_kg": 13
+    },
+    "mord_encore_sous_le_seuil": false,
+    "statut_au_dessus": "denied",
+    "statut_en_dessous": "allowed",
+    "statut_sans_la_regle": "allowed",
+    "dominante": true,
+    "masquee_par": [],
+    "score_avec": 63,
+    "score_sans": 65
+   },
+   {
+    "id": "rule_philippine_cabin_weight",
+    "compagnie": "airline_philippine",
+    "canal": "cabin",
+    "route": "airport_bkk|airport_mnl",
+    "seuil_kg": 10,
+    "mord": true,
+    "temoin": {
+     "au_dessus_kg": 11,
+     "en_dessous_kg": 9
+    },
+    "mord_encore_sous_le_seuil": false,
+    "statut_au_dessus": "denied",
+    "statut_en_dessous": "denied",
+    "statut_sans_la_regle": "denied",
+    "dominante": false,
+    "masquee_par": [
+     "rule_philippine_cabin_deny",
+     "rule_global_cabin_weight_cap"
+    ],
+    "score_avec": 7,
+    "score_sans": 7
+   },
+   {
+    "id": "rule_philippine_hold_weight",
+    "compagnie": "airline_philippine",
+    "canal": "hold",
+    "route": "airport_bkk|airport_mnl",
+    "seuil_kg": 32,
+    "mord": true,
+    "temoin": {
+     "au_dessus_kg": 33,
+     "en_dessous_kg": 31
+    },
+    "mord_encore_sous_le_seuil": false,
+    "statut_au_dessus": "denied",
+    "statut_en_dessous": "allowed",
+    "statut_sans_la_regle": "allowed",
+    "dominante": true,
+    "masquee_par": [],
+    "score_avec": 38,
+    "score_sans": 49
+   },
+   {
+    "id": "rule_qatar_airways_hold_weight",
+    "compagnie": "airline_qatar_airways",
+    "canal": "hold",
+    "route": "airport_abj|airport_acc",
+    "seuil_kg": 75,
+    "mord": true,
+    "temoin": {
+     "au_dessus_kg": 76,
+     "en_dessous_kg": 74
+    },
+    "mord_encore_sous_le_seuil": false,
+    "statut_au_dessus": "denied",
+    "statut_en_dessous": "allowed",
+    "statut_sans_la_regle": "allowed",
+    "dominante": true,
+    "masquee_par": [],
+    "score_avec": 63,
+    "score_sans": 79
+   },
+   {
+    "id": "rule_royal_air_maroc_cabin_weight",
+    "compagnie": "airline_royal_air_maroc",
+    "canal": "cabin",
+    "route": "airport_abj|airport_cmn",
+    "seuil_kg": 8,
+    "mord": true,
+    "temoin": {
+     "au_dessus_kg": 9,
+     "en_dessous_kg": 7
+    },
+    "mord_encore_sous_le_seuil": false,
+    "statut_au_dessus": "denied",
+    "statut_en_dessous": "allowed",
+    "statut_sans_la_regle": "allowed",
+    "dominante": true,
+    "masquee_par": [],
+    "score_avec": 10,
+    "score_sans": 69
+   },
+   {
+    "id": "rule_royal_air_maroc_hold_weight",
+    "compagnie": "airline_royal_air_maroc",
+    "canal": "hold",
+    "route": "airport_abj|airport_cmn",
+    "seuil_kg": 70,
+    "mord": true,
+    "temoin": {
+     "au_dessus_kg": 71,
+     "en_dessous_kg": 69
+    },
+    "mord_encore_sous_le_seuil": false,
+    "statut_au_dessus": "denied",
+    "statut_en_dessous": "allowed",
+    "statut_sans_la_regle": "allowed",
+    "dominante": true,
+    "masquee_par": [],
+    "score_avec": 10,
+    "score_sans": 67
+   },
+   {
+    "id": "rule_sas_cabin_weight",
+    "compagnie": "airline_sas",
+    "canal": "cabin",
+    "route": "airport_agp|airport_arn",
+    "seuil_kg": 8,
+    "mord": true,
+    "temoin": {
+     "au_dessus_kg": 9,
+     "en_dessous_kg": 7
+    },
+    "mord_encore_sous_le_seuil": false,
+    "statut_au_dessus": "denied",
+    "statut_en_dessous": "allowed",
+    "statut_sans_la_regle": "allowed",
+    "dominante": true,
+    "masquee_par": [],
+    "score_avec": 41,
+    "score_sans": 45
+   },
+   {
+    "id": "rule_sas_hold_weight",
+    "compagnie": "airline_sas",
+    "canal": "hold",
+    "route": "airport_agp|airport_arn",
+    "seuil_kg": 50,
+    "mord": true,
+    "temoin": {
+     "au_dessus_kg": 51,
+     "en_dessous_kg": 49
+    },
+    "mord_encore_sous_le_seuil": false,
+    "statut_au_dessus": "denied",
+    "statut_en_dessous": "allowed",
+    "statut_sans_la_regle": "allowed",
+    "dominante": true,
+    "masquee_par": [],
+    "score_avec": 54,
+    "score_sans": 57
+   },
+   {
+    "id": "rule_singapore_airlines_hold_weight",
+    "compagnie": "airline_singapore_airlines",
+    "canal": "hold",
+    "route": "airport_akl|airport_sin",
+    "seuil_kg": 32,
+    "mord": true,
+    "temoin": {
+     "au_dessus_kg": 33,
+     "en_dessous_kg": 31
+    },
+    "mord_encore_sous_le_seuil": false,
+    "statut_au_dessus": "denied",
+    "statut_en_dessous": "allowed",
+    "statut_sans_la_regle": "allowed",
+    "dominante": true,
+    "masquee_par": [],
+    "score_avec": 44,
+    "score_sans": 52
+   },
+   {
+    "id": "rule_smartwings_cabin_weight",
+    "compagnie": "airline_smartwings",
+    "canal": "cabin",
+    "route": "airport_agp|airport_prg",
+    "seuil_kg": 8,
+    "mord": true,
+    "temoin": {
+     "au_dessus_kg": 9,
+     "en_dessous_kg": 7
+    },
+    "mord_encore_sous_le_seuil": false,
+    "statut_au_dessus": "denied",
+    "statut_en_dessous": "allowed",
+    "statut_sans_la_regle": "allowed",
+    "dominante": true,
+    "masquee_par": [],
+    "score_avec": 38,
+    "score_sans": 43
+   },
+   {
+    "id": "rule_swiss_cabin_weight",
+    "compagnie": "airline_swiss",
+    "canal": "cabin",
+    "route": "airport_agp|airport_zrh",
+    "seuil_kg": 8,
+    "mord": true,
+    "temoin": {
+     "au_dessus_kg": 9,
+     "en_dessous_kg": 7
+    },
+    "mord_encore_sous_le_seuil": false,
+    "statut_au_dessus": "denied",
+    "statut_en_dessous": "allowed",
+    "statut_sans_la_regle": "allowed",
+    "dominante": true,
+    "masquee_par": [],
+    "score_avec": 34,
+    "score_sans": 42
+   },
+   {
+    "id": "rule_tap_cabin_weight",
+    "compagnie": "airline_tap",
+    "canal": "cabin",
+    "route": "airport_acc|airport_lis",
+    "seuil_kg": 8,
+    "mord": true,
+    "temoin": {
+     "au_dessus_kg": 9,
+     "en_dessous_kg": 7
+    },
+    "mord_encore_sous_le_seuil": false,
+    "statut_au_dessus": "denied",
+    "statut_en_dessous": "allowed",
+    "statut_sans_la_regle": "allowed",
+    "dominante": true,
+    "masquee_par": [],
+    "score_avec": 7,
+    "score_sans": 66
+   },
+   {
+    "id": "rule_tap_hold_weight",
+    "compagnie": "airline_tap",
+    "canal": "hold",
+    "route": "airport_acc|airport_lis",
+    "seuil_kg": 45,
+    "mord": true,
+    "temoin": {
+     "au_dessus_kg": 46,
+     "en_dessous_kg": 44
+    },
+    "mord_encore_sous_le_seuil": false,
+    "statut_au_dessus": "denied",
+    "statut_en_dessous": "allowed",
+    "statut_sans_la_regle": "allowed",
+    "dominante": true,
+    "masquee_par": [],
+    "score_avec": 52,
+    "score_sans": 80
+   },
+   {
+    "id": "rule_thai_airways_hold_weight",
+    "compagnie": "airline_thai_airways",
+    "canal": "hold",
+    "route": "airport_ams|airport_bkk",
+    "seuil_kg": 32,
+    "mord": true,
+    "temoin": {
+     "au_dessus_kg": 33,
+     "en_dessous_kg": 31
+    },
+    "mord_encore_sous_le_seuil": false,
+    "statut_au_dessus": "denied",
+    "statut_en_dessous": "allowed",
+    "statut_sans_la_regle": "allowed",
+    "dominante": true,
+    "masquee_par": [],
+    "score_avec": 56,
+    "score_sans": 58
+   },
+   {
+    "id": "rule_tk_cabin_weight",
+    "compagnie": "airline_turkish",
+    "canal": "cabin",
+    "route": "airport_abj|airport_ist",
+    "seuil_kg": 8,
+    "mord": true,
+    "temoin": {
+     "au_dessus_kg": 9,
+     "en_dessous_kg": 7
+    },
+    "mord_encore_sous_le_seuil": false,
+    "statut_au_dessus": "denied",
+    "statut_en_dessous": "allowed",
+    "statut_sans_la_regle": "allowed",
+    "dominante": true,
+    "masquee_par": [],
+    "score_avec": 6,
+    "score_sans": 47
+   },
+   {
+    "id": "rule_transavia_cabin_weight",
+    "compagnie": "airline_transavia",
+    "canal": "cabin",
+    "route": "airport_agp|airport_ams",
+    "seuil_kg": 8,
+    "mord": true,
+    "temoin": {
+     "au_dessus_kg": 9,
+     "en_dessous_kg": 7
+    },
+    "mord_encore_sous_le_seuil": false,
+    "statut_au_dessus": "denied",
+    "statut_en_dessous": "allowed",
+    "statut_sans_la_regle": "allowed",
+    "dominante": true,
+    "masquee_par": [],
+    "score_avec": 47,
+    "score_sans": 49
+   },
+   {
+    "id": "rule_tunisair_cabin_weight",
+    "compagnie": "airline_tunisair",
+    "canal": "cabin",
+    "route": "airport_abj|airport_tun",
+    "seuil_kg": 8,
+    "mord": true,
+    "temoin": {
+     "au_dessus_kg": 9,
+     "en_dessous_kg": 7
+    },
+    "mord_encore_sous_le_seuil": false,
+    "statut_au_dessus": "denied",
+    "statut_en_dessous": "allowed",
+    "statut_sans_la_regle": "allowed",
+    "dominante": true,
+    "masquee_par": [],
+    "score_avec": 10,
+    "score_sans": 60
+   },
+   {
+    "id": "rule_ua_cabin_weight",
+    "compagnie": "airline_united",
+    "canal": "cabin",
+    "route": "airport_acc|airport_iad",
+    "seuil_kg": 8,
+    "mord": true,
+    "temoin": {
+     "au_dessus_kg": 9,
+     "en_dessous_kg": 7
+    },
+    "mord_encore_sous_le_seuil": false,
+    "statut_au_dessus": "denied",
+    "statut_en_dessous": "allowed",
+    "statut_sans_la_regle": "allowed",
+    "dominante": true,
+    "masquee_par": [],
+    "score_avec": 9,
+    "score_sans": 50
+   },
+   {
+    "id": "rule_united_cabin_weight",
+    "compagnie": "airline_united",
+    "canal": "cabin",
+    "route": "airport_acc|airport_iad",
+    "seuil_kg": 9,
+    "mord": true,
+    "temoin": {
+     "au_dessus_kg": 10,
+     "en_dessous_kg": 8
+    },
+    "mord_encore_sous_le_seuil": false,
+    "statut_au_dessus": "denied",
+    "statut_en_dessous": "allowed",
+    "statut_sans_la_regle": "denied",
+    "dominante": false,
+    "masquee_par": [
+     "rule_ua_cabin_weight",
+     "rule_ua_no_hold_cargo",
+     "rule_united_no_hold"
+    ],
+    "score_avec": 9,
+    "score_sans": 9
+   },
+   {
+    "id": "rule_vietnam_airlines_cabin_weight",
+    "compagnie": "airline_vietnam_airlines",
+    "canal": "cabin",
+    "route": "airport_bkk|airport_dad",
+    "seuil_kg": 6,
+    "mord": true,
+    "temoin": {
+     "au_dessus_kg": 7,
+     "en_dessous_kg": 5
+    },
+    "mord_encore_sous_le_seuil": false,
+    "statut_au_dessus": "denied",
+    "statut_en_dessous": "allowed",
+    "statut_sans_la_regle": "allowed",
+    "dominante": true,
+    "masquee_par": [],
+    "score_avec": 12,
+    "score_sans": 71
+   },
+   {
+    "id": "rule_vietnam_airlines_hold_weight",
+    "compagnie": "airline_vietnam_airlines",
+    "canal": "hold",
+    "route": "airport_bkk|airport_dad",
+    "seuil_kg": 32,
+    "mord": true,
+    "temoin": {
+     "au_dessus_kg": 33,
+     "en_dessous_kg": 31
+    },
+    "mord_encore_sous_le_seuil": false,
+    "statut_au_dessus": "denied",
+    "statut_en_dessous": "allowed",
+    "statut_sans_la_regle": "allowed",
+    "dominante": true,
+    "masquee_par": [],
+    "score_avec": 68,
+    "score_sans": 91
+   },
+   {
+    "id": "rule_volotea_cabin_weight",
+    "compagnie": "airline_volotea",
+    "canal": "cabin",
+    "route": "airport_agp|airport_bio",
+    "seuil_kg": 10,
+    "mord": true,
+    "temoin": {
+     "au_dessus_kg": 11,
+     "en_dessous_kg": 9
+    },
+    "mord_encore_sous_le_seuil": false,
+    "statut_au_dessus": "denied",
+    "statut_en_dessous": "allowed",
+    "statut_sans_la_regle": "denied",
+    "dominante": false,
+    "masquee_par": [
+     "rule_global_cabin_weight_cap",
+     "rule_volotea_cabin_only"
+    ],
+    "score_avec": 12,
+    "score_sans": 12
+   },
+   {
+    "id": "rule_vueling_cabin_weight",
+    "compagnie": "airline_vueling",
+    "canal": "cabin",
+    "route": "airport_agp|airport_ams",
+    "seuil_kg": 10,
+    "mord": true,
+    "temoin": {
+     "au_dessus_kg": 11,
+     "en_dessous_kg": 9
+    },
+    "mord_encore_sous_le_seuil": false,
+    "statut_au_dessus": "denied",
+    "statut_en_dessous": "allowed",
+    "statut_sans_la_regle": "denied",
+    "dominante": false,
+    "masquee_par": [
+     "rule_global_cabin_weight_cap",
+     "rule_vueling_cabin_only"
+    ],
+    "score_avec": 9,
+    "score_sans": 9
+   },
+   {
+    "id": "rule_westjet_hold_weight",
+    "compagnie": "airline_westjet",
+    "canal": "hold",
+    "route": "airport_ams|airport_yhz",
+    "seuil_kg": 45,
+    "mord": true,
+    "temoin": {
+     "au_dessus_kg": 46,
+     "en_dessous_kg": 44
+    },
+    "mord_encore_sous_le_seuil": false,
+    "statut_au_dessus": "denied",
+    "statut_en_dessous": "allowed",
+    "statut_sans_la_regle": "allowed",
+    "dominante": true,
+    "masquee_par": [],
+    "score_avec": 40,
+    "score_sans": 51
+   }
+  ]
+ },
+ "publication": {
+  "pages_lues": 2957,
+  "pages_portant_la_classe": 0,
+  "pages_portant_une_rationale": 0,
+  "comptes_de_fiches": null,
+  "lecture": "Lu dans les OCTETS du site construit, et il dément ce que la lecture du code laissait croire. `EntityPage.astro` contient un bloc qui afficherait `rule.rationale` ; il ne sort sur aucune des 2 957 pages. Les 95 phrases contradictoires sont donc invisibles : ce qui atteint le voyageur, c'est leur CONSÉQUENCE — un verdict calculé sur le chien seul — sans le texte qui permettrait de la contester.",
+  "a_mesurer_ensuite": "la FICHE publie ses propres notes, qui annoncent parfois une limite « contenant compris » dans la langue du visiteur. Les compter demande un lexique fermé par résidu CONTRE LE CORPUS DES FICHES, dans les quatre langues — celui de ce dossier est fermé contre les règles et n'y vaut rien. Aucun compte de fiches n'est publié ici : c'est un dossier à part, et le donner de travers referait la faute que celui-ci corrige."
+ },
+ "grille_publique": {
+  "scenarios": 72,
+  "placements_deplaces": 155,
+  "cibles": {
+   "cabin : denied → allowed": 111,
+   "hold : denied → allowed": 44
+  }
+ },
+ "exigences_tenues": true
+}
