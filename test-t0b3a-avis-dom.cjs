@@ -223,19 +223,28 @@ async function main() {
 
     /* 8 · LES DEUX ÉTATS QUE L'INTERFACE DOIT REFUSER, pas rendre à moitié. */
     {
+      /* REFUSÉ N'EST PAS PLANTÉ. La v1 se contentait de « pas de `.report` » : un rendu qui
+         explose sur `undefined.length` satisfait ce contrôle aussi bien qu'une garde qui refuse.
+         Trouvé par `npm run contre-epreuves` — retirer la SEULE garde laissait le test vert,
+         parce que le rendu plantait à sa place. On exige donc le chemin d'erreur PRÉVU : le
+         message que le visiteur doit lire, pas un DOM vide. */
+      const refuseProprement = (d) => {
+        const err = d.window.document.querySelector(".finder__error");
+        return !!err && texte(err).length > 0 && !d.window.document.querySelector(".report");
+      };
       const sansChamp = RAPPORT(code, []);
       delete sansChamp.safety_advisories;
       const d1 = await rendre(parts, sansChamp);
-      check("`safety_advisories` ABSENT → rapport refusé, pas rendu « sans avis »",
-        !d1.window.document.querySelector(".report"),
-        texte(d1.window.document.querySelector(".report")).slice(0, 160));
+      check("`safety_advisories` ABSENT → rapport REFUSÉ par la garde, avec le message d'erreur prévu",
+        refuseProprement(d1),
+        texte(d1.window.document.querySelector(".finder__error") ?? d1.window.document.querySelector(".report")).slice(0, 160));
 
       const orphelin = RAPPORT(code, [{ ...AVIS(code)[1], scope: "airline_absente_du_rapport" }]);
       const d2 = await rendre(parts, orphelin);
       const sec2 = d2.window.document.querySelector(".report__sec.safety");
-      check("portée ORPHELINE → rapport refusé, et surtout JAMAIS élargi à « toutes les compagnies »",
-        !d2.window.document.querySelector(".report") && !sec2,
-        sec2 ? texte(sec2).slice(0, 200) : "");
+      check("portée ORPHELINE → rapport refusé proprement, et JAMAIS élargi à « toutes les compagnies »",
+        refuseProprement(d2) && !sec2,
+        sec2 ? texte(sec2).slice(0, 200) : texte(d2.window.document.querySelector(".finder__error")).slice(0, 120));
     }
   }
 
