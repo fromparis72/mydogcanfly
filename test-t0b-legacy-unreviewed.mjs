@@ -447,9 +447,36 @@ console.log("=== 8. Baseline FIGÉE : le point de comparaison de T0-B2 est scell
   check("empreinte de la baseline figée APRÈS T0-B2-UI = 5ed39d4de782… (scellée, elle ne bouge plus)",
     createHash("sha256").update(readFileSync("test-baselines/t0b2ui-finder-baseline-apres.json")).digest("hex")
       === "5ed39d4de782a51e837f09d34f54911daceec08de0bc3d4003cd8b199502f3b2");
-  check("chaîne ininterrompue : l'AVANT de T0-B3-b est exactement l'APRÈS de T0-B2-UI",
-    readFileSync("test-baselines/t0b3b-finder-baseline-avant.json")
-      .equals(readFileSync("test-baselines/t0b2ui-finder-baseline-apres.json")));
+  /* La chaîne se vérifie CHAMP PAR CHAMP, plus par égalité d'octets : T0-B3-b a ajouté
+     `safety_advisories` à la projection canonique, et les figées antérieures sont nées avant ce
+     champ. L'affirmation devient donc plus précise, et plus forte — l'AVANT de T0-B3-b est
+     l'APRÈS de T0-B2-UI augmenté de ce seul champ, VIDE partout, ce qui est exactement l'état du
+     registre de race à ce commit. Elle a été établie en régénérant l'AVANT dans un worktree
+     détaché au commit d'origine, jamais en éditant le fichier. */
+  {
+    const av = JSON.parse(readFileSync("test-baselines/t0b3b-finder-baseline-avant.json", "utf8"));
+    const b2 = JSON.parse(readFileSync("test-baselines/t0b2ui-finder-baseline-apres.json", "utf8"));
+    const cles = Object.keys(b2);
+    const memeMetier = cles.length === Object.keys(av).length && cles.every((k) => {
+      const { safety_advisories, ...reste } = av[k] ?? {};
+      return JSON.stringify(reste) === JSON.stringify(b2[k]);
+    });
+    check("chaîne ininterrompue : l'AVANT de T0-B3-b est l'APRÈS de T0-B2-UI, champ pour champ",
+      memeMetier, cles.filter((k) => {
+        const { safety_advisories, ...reste } = av[k] ?? {};
+        return JSON.stringify(reste) !== JSON.stringify(b2[k]);
+      }).slice(0, 3).join(", "));
+    check("… et le seul champ ajouté y est VIDE partout : aucun avis avant l'entrée IATA",
+      cles.every((k) => (av[k].safety_advisories ?? []).length === 0),
+      cles.filter((k) => (av[k].safety_advisories ?? []).length).slice(0, 3).join(", "));
+    check("l'APRÈS de T0-B3-b, lui, publie l'avis IATA sur les 36 scénarios carlin",
+      (() => {
+        const ap = JSON.parse(readFileSync("test-baselines/t0b3b-finder-baseline-apres.json", "utf8"));
+        const avec = Object.keys(ap).filter((k) => (ap[k].safety_advisories ?? []).length > 0);
+        return avec.length === 36 && avec.every((k) => k.includes("pug"))
+          && avec.every((k) => ap[k].safety_advisories[0].startsWith("brest_iata_snub_nose_hot_season|global|cabin+hold+cargo|"));
+      })());
+  }
   check("T0-B3-b : la baseline vivante est identique à la figée la plus récente",
     vivante.equals(readFileSync("test-baselines/t0b3b-finder-baseline-apres.json")));
   check("T0-B3-b : la figée APRÈS diffère de celle de T0-B2-UI (le retrait des 42 a bien déplacé le métier)",

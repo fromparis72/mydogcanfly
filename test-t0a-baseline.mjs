@@ -89,6 +89,13 @@ function canonical(body) {
     conditions: (body.conditions ?? []).map((c) => c.text),
     positives: body.positives ?? [], warnings: body.warnings ?? [], risks: body.risks ?? [],
     alternatives: body.alternatives ?? [], sources: (body.sources ?? []).map((x) => x.url).sort(),
+    /* Les AVIS DE SÉCURITÉ entrent dans la surface figée (T0-B3-b) : ils sont publiés au visiteur,
+       donc un lot futur qui les perdrait, les élargirait ou en changerait la citation doit avoir à
+       s'en expliquer devant la baseline. Forme compacte, comme les cartes compagnie — identité,
+       portée, canaux, citation — et TRIÉE, pour que le diff soit lisible. */
+    safety_advisories: (body.safety_advisories ?? [])
+      .map((a) => `${a.restriction_ref}|${a.scope}|${(a.placements ?? []).join("+")}|${a.source?.url ?? "-"}|${a.source?.quote ?? "-"}`)
+      .sort(),
     airlines: (body.airlines ?? []).map(air),
   });
 }
