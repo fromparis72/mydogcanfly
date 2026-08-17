@@ -34,8 +34,6 @@ faq:
 
 En verano pensamos en la crema solar, el sombrero y la botella de agua para nosotros, pero solemos olvidar que nuestro perro camina descalzo sobre superficies que pueden alcanzar temperaturas temibles. El asfalto, la arena e incluso ciertas baldosas pueden provocar auténticas quemaduras en las almohadillas, a veces en menos de un minuto de exposición. La buena noticia: proteger las patas de tu perro en verano depende sobre todo de reflejos sencillos y de un poco de buen material. Así puedes anticipar el peligro, elegir el bálsamo o las botitas adecuadas y reconocer las señales de alerta.
 
-👉 **¿No sabes si el suelo es seguro hoy?** Consulta el riesgo por suelo caliente y por calor donde estés con nuestro **[medidor de riesgo por calor](/es/tools/heat/)**, gratuito.
-
 *Este artículo tiene carácter informativo y no sustituye el consejo de un veterinario.*
 
 ## ¿Por qué el suelo caliente es peligroso para las almohadillas?

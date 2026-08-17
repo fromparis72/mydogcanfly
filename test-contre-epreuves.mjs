@@ -239,6 +239,15 @@ const MUTATIONS = [
     harnais: "test-guides-traduits.mjs",
     attendu: "aucun lien ne sort de la langue du lecteur",
   },
+  {
+    nom: "un guide renvoie vers un outil que le site ne sert pas",
+    fichier: "packages/ui/src/content/guides/en/dog-heatstroke.md",
+    cherche: "## Recognizing the signs",
+    remplace:
+      "👉 Check the live heat risk with our [checker](/tools/is-it-too-hot-for-my-dog/).\n\n## Recognizing the signs",
+    harnais: "test-guides-traduits.mjs",
+    attendu: "visent une route existante",
+  },
   // ---- L'INTERFACE (chaque mutation exige un build, d'où `--dom`) ----
   {
     dom: true,

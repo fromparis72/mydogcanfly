@@ -34,8 +34,6 @@ faq:
 
 No verão, pensamos em protetor solar, chapéu e garrafa de água para nós mesmos, mas costumamos esquecer que o nosso cachorro anda descalço sobre superfícies que podem atingir temperaturas terríveis. O asfalto, a areia e até certos pisos podem provocar verdadeiras queimaduras nas almofadinhas, às vezes em menos de um minuto de exposição. A boa notícia: proteger as patas do seu cachorro no verão depende sobretudo de reflexos simples e de um pouco de bom material. Veja como antecipar o perigo, escolher o bálsamo ou as botinhas adequadas e reconhecer os sinais de alerta.
 
-👉 **Não sabe se o chão está seguro hoje?** Consulte o risco de chão quente e de calor onde você está com o nosso **[medidor de risco de calor](/pt/tools/heat/)**, gratuito.
-
 *Este artigo tem caráter informativo e não substitui a orientação de um veterinário.*
 
 ## Por que o chão quente é perigoso para as almofadinhas?

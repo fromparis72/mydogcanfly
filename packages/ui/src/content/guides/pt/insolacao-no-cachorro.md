@@ -35,8 +35,6 @@ faq:
 
 Todo verão, as emergências veterinárias veem uma enxurrada de cães com insolação — um quadro que pode se instalar em poucos minutos. Ao contrário de nós, os cães quase não suam: regulam a temperatura quase inteiramente pela ofegação. Quando o ar fica quente demais, esse mecanismo deixa de funcionar e a temperatura interna sobe de forma perigosa. Este guia é para qualquer tutor que queira reconhecer os primeiros sinais, reagir corretamente e, sobretudo, evitar a tragédia — em casa, no passeio ou a caminho das férias.
 
-👉 **Está se perguntando se o calor está demais agora?** Consulte o risco de calor em tempo real onde você está com o nosso **[medidor de risco de calor](/pt/tools/heat/)**, gratuito.
-
 *Este artigo tem caráter informativo e não substitui a orientação de um veterinário.*
 
 ## Por que os cães são tão vulneráveis ao calor?

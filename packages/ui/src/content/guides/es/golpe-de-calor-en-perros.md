@@ -35,8 +35,6 @@ faq:
 
 Cada verano, las urgencias veterinarias ven una avalancha de perros con golpe de calor, un cuadro que puede instalarse en apenas unos minutos. A diferencia de nosotros, los perros apenas sudan: regulan su temperatura casi por completo mediante el jadeo. Cuando el aire se vuelve demasiado cálido, ese mecanismo deja de funcionar y su temperatura interna sube de forma peligrosa. Esta guía está pensada para cualquier dueño que quiera reconocer las primeras señales, reaccionar correctamente y, sobre todo, evitar el drama, ya sea en casa, de paseo o de camino a las vacaciones.
 
-👉 **¿Te preguntas si hace demasiado calor ahora mismo?** Consulta el riesgo por calor en tiempo real donde estés con nuestro **[medidor de riesgo por calor](/es/tools/heat/)**, gratuito.
-
 *Este artículo tiene carácter informativo y no sustituye el criterio de un veterinario.*
 
 ## ¿Por qué son los perros tan vulnerables al calor?

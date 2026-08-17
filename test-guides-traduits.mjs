@@ -216,6 +216,38 @@ for (const l of LANGUES) {
   }
 }
 
+/* ---- 6. Les liens vers les OUTILS visent une route qui existe ---------------------------------
+ * Le contrôle 5 ne regarde que les renvois d'un guide vers un autre guide. Or six liens du corpus
+ * visaient un outil : quatre vers des adresses qu'aucune page ne sert (rattrapées par une 301 dans
+ * `_redirects` — un lien interne ne doit pas passer par une redirection), et deux vers
+ * `/tools/is-it-too-hot-for-my-dog/`, qui n'existe NI comme page NI comme redirection.
+ *
+ * La liste des outils n'est pas recopiée ici : elle est LUE dans les routes, hors ligne. Renommer
+ * un outil sans mettre les guides à jour fait donc échouer ce contrôle, et le lexique ne peut pas
+ * mentir sur ce que le site sert réellement. */
+const ROUTES_OUTILS = join("packages/ui/src/pages/[...loc]/tools");
+const outils = new Set(
+  existsSync(ROUTES_OUTILS)
+    ? readdirSync(ROUTES_OUTILS).filter((f) => /\.astro$/.test(f)).map((f) => f.replace(/\.astro$/, ""))
+    : [],
+);
+/* Jamais vert faute de matière : si les routes deviennent introuvables, l'ensemble serait vide et
+   tout lien passerait — ou plutôt échouerait en masse. On exige donc qu'elles soient là. */
+exiger("les routes d'outils sont lisibles (sinon ce contrôle ne prouve rien)",
+  outils.size >= 5, `${outils.size} route(s) trouvée(s) sous ${ROUTES_OUTILS}`);
+for (const l of LANGUES) {
+  for (const g of parLangue[l]) {
+    const inconnus = [];
+    for (const m of (g.corps ?? "").matchAll(/(?:\]\(|href=")(\/(?:(?:fr|es|pt)\/)?tools\/([a-z0-9-]*)\/?)(?:\)|")/g)) {
+      const slug = m[2];
+      if (slug === "" || outils.has(slug)) continue;   // « /tools/ » est l'index, une route réelle
+      inconnus.push(`${m[1]} — aucun outil « ${slug} » n'est servi`);
+    }
+    exiger(`${l}/${g.fichier} — ses liens vers un outil visent une route existante`,
+      inconnus.length === 0, inconnus.join(", "));
+  }
+}
+
 /* ---- Verdict ---------------------------------------------------------------------------------- */
 const traduits = TRADUITES.map((l) => `${l}=${parLangue[l].length}`).join(" · ");
 dire("");
