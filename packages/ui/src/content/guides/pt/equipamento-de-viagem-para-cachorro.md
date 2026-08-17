@@ -86,7 +86,7 @@ No carro, um cachorro solto vira um projétil em uma freada brusca. Um peitoral 
 - **Ajuste correto**: nem frouxo nem apertado demais, adequado à circunferência do peito.
 - **Compatibilidade** com o cinto de segurança ou com uma fixação Isofix.
 
-Um peitoral costuma andar junto com uma habituação gradual, sobretudo em cães propensos ao estresse ou à náusea. Se o seu cachorro sofre no carro, veja os nossos conselhos sobre [o enjoo do cachorro no transporte](/travel-hub/dog-motion-sickness/).
+Um peitoral costuma andar junto com uma habituação gradual, sobretudo em cães propensos ao estresse ou à náusea. Se o seu cachorro sofre no carro, veja os nossos conselhos sobre [o enjoo do cachorro no transporte](/pt/travel-hub/enjoo-do-cachorro-no-carro/).
 
 ## Qual bolsa para um cachorro pequeno?
 
@@ -128,7 +128,7 @@ Além do sistema de contenção, alguns itens essenciais facilitam a viagem:
 4. Uma **guia longa** para as paradas nas áreas de descanso.
 5. O **kit de saúde**: carteira de vacinação, antiparasitários, ataduras.
 
-Para preparar bem as suas viagens de carro, veja o nosso guia completo sobre [viajar de carro com cachorro](/travel-hub/traveling-by-car-with-a-dog/).
+Para preparar bem as suas viagens de carro, veja o nosso guia completo sobre [viajar de carro com cachorro](/pt/travel-hub/viajar-de-carro-com-cachorro/).
 
 ## Fontes
 

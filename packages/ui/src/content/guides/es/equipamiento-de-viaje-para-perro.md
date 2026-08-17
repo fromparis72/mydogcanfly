@@ -86,7 +86,7 @@ En un coche, un perro sin sujetar se convierte en un proyectil al frenar bruscam
 - **Ajuste correcto**: ni demasiado suelto ni demasiado apretado, adaptado al contorno del pecho.
 - **Compatibilidad** con el cinturón de seguridad o con un anclaje Isofix.
 
-Un arnés suele ir de la mano de una habituación progresiva, sobre todo en perros propensos al estrés o a las náuseas. Si a tu perro le cuesta el coche, consulta nuestros consejos sobre [el mareo del perro en el transporte](/travel-hub/dog-motion-sickness/).
+Un arnés suele ir de la mano de una habituación progresiva, sobre todo en perros propensos al estrés o a las náuseas. Si a tu perro le cuesta el coche, consulta nuestros consejos sobre [el mareo del perro en el transporte](/es/travel-hub/mareo-del-perro-en-el-coche/).
 
 ## ¿Qué bolso para un perro pequeño?
 
@@ -128,7 +128,7 @@ Más allá del sistema de sujeción, algunos imprescindibles facilitan el viaje:
 4. Una **correa larga** para las paradas en las áreas de descanso.
 5. El **kit sanitario**: cartilla de vacunación, antiparasitarios, vendas.
 
-Para preparar bien tus road trips, consulta nuestra guía completa sobre [viajar en coche con perro](/travel-hub/traveling-by-car-with-a-dog/).
+Para preparar bien tus road trips, consulta nuestra guía completa sobre [viajar en coche con perro](/es/travel-hub/viajar-en-coche-con-perro/).
 
 ## Fuentes
 

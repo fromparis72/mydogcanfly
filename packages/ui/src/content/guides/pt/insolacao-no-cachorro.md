@@ -104,7 +104,7 @@ A prevenção continua sendo a melhor proteção. Algumas regras simples reduzem
 - **Nunca deixe um cachorro no carro**, nem por alguns minutos, nem à sombra, nem com os vidros entreabertos. O interior pode ultrapassar 50 °C em menos de 15 minutos.
 - **Desloque os passeios** para o começo da manhã e o fim da tarde, evitando a faixa das 11h às 18h nos picos de calor.
 - **Mantenha sempre água fresca disponível** e leve água nos passeios.
-- **Prefira superfícies frescas**: grama em vez de asfalto, que ainda por cima queima as almofadinhas. Veja o nosso guia sobre [como proteger as almofadinhas do seu cachorro](/travel-hub/protecting-dog-paw-pads/).
+- **Prefira superfícies frescas**: grama em vez de asfalto, que ainda por cima queima as almofadinhas. Veja o nosso guia sobre [como proteger as almofadinhas do seu cachorro](/pt/travel-hub/proteger-as-almofadinhas-do-cachorro/).
 - **Prepare áreas de sombra** e um tapete refrescante em casa.
 
 Para se antecipar aos dias de risco, acompanhe as previsões de calor da sua região: assine os alertas de calor do seu serviço meteorológico nacional ou local, para ajustar as saídas com antecedência.

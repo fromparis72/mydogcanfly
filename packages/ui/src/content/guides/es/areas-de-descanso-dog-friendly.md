@@ -41,7 +41,7 @@ Ajusta la frecuencia a tu compañero:
 - Un **perro ansioso** o **propenso al mareo** lleva mejor paradas más cortas pero más frecuentes.
 - Con **calor**, multiplica las pausas a la sombra y las ofertas de agua.
 
-Estas paradas se inscriben en un conjunto más amplio: nuestra guía completa sobre el [viaje por carretera con perro](/travel-hub/road-trip-with-a-dog/) trata la planificación de la ruta y el ritmo general del viaje.
+Estas paradas se inscriben en un conjunto más amplio: nuestra guía completa sobre el [viaje por carretera con perro](/es/travel-hub/road-trip-con-perro/) trata la planificación de la ruta y el ritmo general del viaje.
 
 ## ¿Cómo sacar al perro con seguridad en un área de descanso?
 
@@ -95,7 +95,7 @@ Como mínimo, mete dentro:
 - Una **toalla**, un **juguete familiar** y algunos premios.
 - El **botiquín** y la documentación de tu perro.
 
-Para situar estas paradas en el contexto de un trayecto cómodo y seguro, consulta también nuestra guía sobre [viajar en coche con perro](/travel-hub/traveling-by-car-with-a-dog/).
+Para situar estas paradas en el contexto de un trayecto cómodo y seguro, consulta también nuestra guía sobre [viajar en coche con perro](/es/travel-hub/viajar-en-coche-con-perro/).
 
 ## Fuentes
 

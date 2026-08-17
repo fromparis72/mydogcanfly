@@ -123,7 +123,7 @@ Si tu perro muestra una ansiedad marcada, háblalo con tu veterinario mucho ante
 
 ## ¿Transportín de bodega o bolso de cabina: cómo decidir?
 
-Todo depende del tamaño de tu perro y de la política de la aerolínea. Los perros pequeños viajan a menudo en cabina en un bolso flexible homologado que se desliza bajo el asiento, mientras que los más grandes van en bodega en un transportín rígido IATA. Ni las limitaciones ni el material son los mismos. Si estás sopesando ambas opciones, nuestra comparativa de [bolsos y transportines para perro](/travel-hub/dog-carriers-and-crates/) te ayuda a elegir según el tamaño del animal, la duración del vuelo y las normas de la compañía.
+Todo depende del tamaño de tu perro y de la política de la aerolínea. Los perros pequeños viajan a menudo en cabina en un bolso flexible homologado que se desliza bajo el asiento, mientras que los más grandes van en bodega en un transportín rígido IATA. Ni las limitaciones ni el material son los mismos. Si estás sopesando ambas opciones, nuestra comparativa de [bolsos y transportines para perro](/es/travel-hub/bolsos-y-transportines-para-perro/) te ayuda a elegir según el tamaño del animal, la duración del vuelo y las normas de la compañía.
 
 <ol class="gd-etapes"><li><a href="/es/airlines/">Comprueba las condiciones de bodega de tu aerolínea</a></li><li><a href="/es/tools/crate/">Calcula el tamaño del transportín con la calculadora IATA</a></li><li><a href="/es/travel-hub/ansiedad-del-perro-en-los-viajes/">Acostumbra a tu perro al transportín y gestiona el estrés del vuelo</a></li></ol>
 

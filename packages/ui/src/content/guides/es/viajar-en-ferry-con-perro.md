@@ -43,7 +43,7 @@ Las configuraciones más habituales son:
 - **Tu vehículo en la cubierta de coches**, permitido por algunos operadores en travesías cortas, pero desaconsejable con calor.
 - **Las cubiertas exteriores o zonas señalizadas**, donde a veces un perro con correa puede quedarse contigo.
 
-Como el trayecto en coche suele ser la etapa justo anterior a la travesía, nuestra guía sobre [viajar en coche con perro](/travel-hub/traveling-by-car-with-a-dog/) te ayudará a preparar la parte por carretera.
+Como el trayecto en coche suele ser la etapa justo anterior a la travesía, nuestra guía sobre [viajar en coche con perro](/es/travel-hub/viajar-en-coche-con-perro/) te ayudará a preparar la parte por carretera.
 
 ## ¿Cómo reservar la plaza de tu perro en un ferry?
 

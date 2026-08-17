@@ -45,7 +45,7 @@ Os sinais mais frequentes são:
 - Choramingos, latidos ou choro.
 - Recusa em entrar no veículo, ou mesmo vômitos por estresse.
 
-Alguns cachorros combinam estresse e enjoo — dois fenômenos distintos que se alimentam um do outro. Para distinguir a náusea de um verdadeiro mal-estar emocional, o nosso artigo sobre [o enjoo do cachorro no transporte](/travel-hub/dog-motion-sickness/) traz pistas úteis.
+Alguns cachorros combinam estresse e enjoo — dois fenômenos distintos que se alimentam um do outro. Para distinguir a náusea de um verdadeiro mal-estar emocional, o nosso artigo sobre [o enjoo do cachorro no transporte](/pt/travel-hub/enjoo-do-cachorro-no-carro/) traz pistas úteis.
 
 ## Por que o meu cachorro tem medo no carro ou no trem?
 
@@ -65,7 +65,7 @@ Esta é uma progressão possível:
 4. Faça trajetos bem curtos até um destino agradável, como o lugar de passeio preferido dele.
 5. Aumente aos poucos a duração dos deslocamentos, desde que o cachorro continue relaxado em cada etapa.
 
-Se o seu cachorro demonstrar estresse, volte à etapa anterior sem pressa. Esse método funciona especialmente bem quando começa cedo: as nossas dicas para [viajar com um filhote](/travel-hub/traveling-with-a-puppy/) tratam dessa habituação desde a idade mais tenra.
+Se o seu cachorro demonstrar estresse, volte à etapa anterior sem pressa. Esse método funciona especialmente bem quando começa cedo: as nossas dicas para [viajar com um filhote](/pt/travel-hub/viajar-com-um-filhote/) tratam dessa habituação desde a idade mais tenra.
 
 ## Que gestos simples acalmam um cachorro estressado na estrada?
 

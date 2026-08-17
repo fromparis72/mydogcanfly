@@ -104,7 +104,7 @@ La prevención sigue siendo la mejor protección. Unas reglas sencillas reducen 
 - **Nunca dejes a un perro en un coche**, ni unos minutos, ni a la sombra, ni con las ventanillas entreabiertas. El interior puede superar los 50 °C en menos de 15 minutos.
 - **Desplaza los paseos** a primera hora de la mañana y al final de la tarde, evitando la franja de 11 a 18 h en los picos de calor.
 - **Ten siempre agua fresca disponible** y lleva contigo en los paseos.
-- **Prefiere las superficies frescas**: hierba en lugar de asfalto, que además quema las almohadillas. Consulta nuestra guía sobre [cómo proteger las almohadillas de tu perro](/travel-hub/protecting-dog-paw-pads/).
+- **Prefiere las superficies frescas**: hierba en lugar de asfalto, que además quema las almohadillas. Consulta nuestra guía sobre [cómo proteger las almohadillas de tu perro](/es/travel-hub/proteger-las-almohadillas-del-perro/).
 - **Prepara zonas de sombra** y una alfombrilla refrescante en casa.
 
 Para anticiparte a los días de riesgo, vigila las previsiones de calor de tu zona: suscríbete a los avisos de calor de tu servicio meteorológico nacional o local para poder ajustar las salidas con antelación.

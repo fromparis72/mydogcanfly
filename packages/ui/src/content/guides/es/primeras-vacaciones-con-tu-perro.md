@@ -68,7 +68,7 @@ En cuanto a la hidratación, un perro bebe de media **50 a 60 ml de agua por kg 
 
 ## ¿Cómo elegir el alojamiento?
 
-El alojamiento hace o deshace el viaje. Un sitio realmente dog-friendly tiene una zona exterior segura, suelos fáciles de limpiar y normas claras. Le hemos dedicado una guía entera: [elegir un alojamiento dog-friendly](/travel-hub/dog-friendly-accommodation/).
+El alojamiento hace o deshace el viaje. Un sitio realmente dog-friendly tiene una zona exterior segura, suelos fáciles de limpiar y normas claras. Le hemos dedicado una guía entera: [elegir un alojamiento dog-friendly](/es/travel-hub/alojamiento-dog-friendly/).
 
 Para una primera experiencia, una casa de huéspedes pensada para perros lo facilita todo. Sitios como [Stay with Bailey](https://stay-with-bailey.com), cerca de París, muestran lo que es una acogida realmente centrada en el perro: llegas relajado, sin miedo a una mala sorpresa.
 

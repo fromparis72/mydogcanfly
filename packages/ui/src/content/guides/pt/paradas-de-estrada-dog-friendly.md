@@ -41,7 +41,7 @@ Ajuste a frequência ao seu companheiro:
 - Um **cachorro ansioso** ou **propenso ao enjoo** lida melhor com paradas mais curtas, porém mais frequentes.
 - No **calor**, multiplique as pausas à sombra e as ofertas de água.
 
-Essas paradas fazem parte de um conjunto maior: o nosso guia completo sobre a [viagem de carro com cachorro](/travel-hub/road-trip-with-a-dog/) trata do planejamento da rota e do ritmo geral da viagem.
+Essas paradas fazem parte de um conjunto maior: o nosso guia completo sobre a [viagem de carro com cachorro](/pt/travel-hub/road-trip-com-cachorro/) trata do planejamento da rota e do ritmo geral da viagem.
 
 ## Como tirar o cachorro do carro com segurança em uma parada?
 
@@ -95,7 +95,7 @@ No mínimo, coloque dentro:
 - Uma **toalha**, um **brinquedo familiar** e alguns petiscos.
 - O **kit de primeiros socorros** e os documentos do seu cachorro.
 
-Para situar essas paradas no contexto de um trajeto confortável e seguro, veja também o nosso guia sobre [viajar de carro com cachorro](/travel-hub/traveling-by-car-with-a-dog/).
+Para situar essas paradas no contexto de um trajeto confortável e seguro, veja também o nosso guia sobre [viajar de carro com cachorro](/pt/travel-hub/viajar-de-carro-com-cachorro/).
 
 ## Fontes
 

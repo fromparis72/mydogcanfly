@@ -68,7 +68,7 @@ Quanto à hidratação, um cachorro bebe em média **50 a 60 ml de água por kg 
 
 ## Como escolher a hospedagem?
 
-A hospedagem faz ou desfaz a viagem. Um lugar realmente dog-friendly tem uma área externa segura, pisos fáceis de limpar e regras claras. Dedicamos um guia inteiro à questão: [escolher uma hospedagem dog-friendly](/travel-hub/dog-friendly-accommodation/).
+A hospedagem faz ou desfaz a viagem. Um lugar realmente dog-friendly tem uma área externa segura, pisos fáceis de limpar e regras claras. Dedicamos um guia inteiro à questão: [escolher uma hospedagem dog-friendly](/pt/travel-hub/hospedagem-dog-friendly/).
 
 Para uma primeira experiência, uma pousada pensada para cães facilita tudo. Lugares como o [Stay with Bailey](https://stay-with-bailey.com), perto de Paris, mostram o que é uma recepção realmente centrada no cachorro: você chega relaxado, sem medo de uma má surpresa.
 

@@ -43,7 +43,7 @@ As configurações mais comuns são:
 - **O seu veículo no deque de carros**, permitido por algumas operadoras em travessias curtas, mas desaconselhável no calor.
 - **Os deques externos ou áreas sinalizadas**, onde às vezes um cachorro na guia pode ficar com você.
 
-Como o trajeto de carro costuma ser a etapa imediatamente anterior à travessia, o nosso guia sobre [viajar de carro com cachorro](/travel-hub/traveling-by-car-with-a-dog/) vai ajudar você a preparar a parte rodoviária.
+Como o trajeto de carro costuma ser a etapa imediatamente anterior à travessia, o nosso guia sobre [viajar de carro com cachorro](/pt/travel-hub/viajar-de-carro-com-cachorro/) vai ajudar você a preparar a parte rodoviária.
 
 ## Como reservar o lugar do seu cachorro em um ferry?
 

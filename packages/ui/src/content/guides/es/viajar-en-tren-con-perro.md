@@ -72,7 +72,7 @@ Las tarifas y condiciones evolucionan, y los trenes regionales tienen a menudo s
 
 **Amtrak** admite animales de compañía, pero con límites mucho más estrictos que las redes europeas: perros (y gatos) de hasta **9 kg incluido el transportín**, en un transportín homologado que quepa bajo tu asiento, en trayectos de **7 horas o menos**, con una tarifa por animal. Los perros más grandes no se aceptan en ningún caso, sea cual sea la ruta. Los animales de asistencia, tal como los define la ley estadounidense, viajan gratis y sin esas restricciones.
 
-En la práctica, eso convierte al tren en una opción real en Estados Unidos solo para perros pequeños en trayectos cortos y medios; para un perro más grande, lo habitual es optar por un [viaje por carretera](/travel-hub/road-trip-with-a-dog/).
+En la práctica, eso convierte al tren en una opción real en Estados Unidos solo para perros pequeños en trayectos cortos y medios; para un perro más grande, lo habitual es optar por un [viaje por carretera](/es/travel-hub/road-trip-con-perro/).
 
 ## ¿Cómo se reserva el billete del perro?
 
@@ -115,7 +115,7 @@ Al reservar, mira también tus transbordos: un enlace con **20 minutos** de marg
 
 ## Tren, coche o avión: ¿cómo elegir?
 
-Cada medio tiene sus ventajas. El tren evita el estrés de la conducción y mantiene a tu perro justo a tu lado. El coche ofrece más libertad para las paradas, como explicamos en nuestra guía sobre [viajar en coche con tu perro](/travel-hub/traveling-by-car-with-a-dog/). Para largas distancias o viajes internacionales, el avión se vuelve inevitable: detallamos el proceso en nuestra guía sobre [viajar en avión con perro](/es/travel-hub/viajar-en-avion-con-perro/). Para trayectos nacionales de unas horas, el tren sigue siendo el mejor compromiso, siempre que tu perro encaje en las normas de tu operador.
+Cada medio tiene sus ventajas. El tren evita el estrés de la conducción y mantiene a tu perro justo a tu lado. El coche ofrece más libertad para las paradas, como explicamos en nuestra guía sobre [viajar en coche con tu perro](/es/travel-hub/viajar-en-coche-con-perro/). Para largas distancias o viajes internacionales, el avión se vuelve inevitable: detallamos el proceso en nuestra guía sobre [viajar en avión con perro](/es/travel-hub/viajar-en-avion-con-perro/). Para trayectos nacionales de unas horas, el tren sigue siendo el mejor compromiso, siempre que tu perro encaje en las normas de tu operador.
 
 ## Fuentes
 

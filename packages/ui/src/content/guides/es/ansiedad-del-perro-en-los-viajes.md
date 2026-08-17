@@ -45,7 +45,7 @@ Las señales más frecuentes son:
 - Gemidos, ladridos o llantos.
 - Negarse a subir al vehículo, o incluso vómitos por estrés.
 
-Algunos perros combinan estrés y mareo: dos fenómenos distintos que se alimentan mutuamente. Para distinguir las náuseas de un verdadero malestar emocional, nuestro artículo sobre [el mareo del perro en el transporte](/travel-hub/dog-motion-sickness/) ofrece pistas útiles.
+Algunos perros combinan estrés y mareo: dos fenómenos distintos que se alimentan mutuamente. Para distinguir las náuseas de un verdadero malestar emocional, nuestro artículo sobre [el mareo del perro en el transporte](/es/travel-hub/mareo-del-perro-en-el-coche/) ofrece pistas útiles.
 
 ## ¿Por qué mi perro tiene miedo en el coche o en el tren?
 
@@ -65,7 +65,7 @@ Esta es una progresión posible:
 4. Haz trayectos muy cortos hacia un destino agradable, como su lugar de paseo preferido.
 5. Alarga poco a poco los desplazamientos, siempre que tu perro se mantenga relajado en cada etapa.
 
-Si tu perro muestra estrés, vuelve a la etapa anterior sin prisa. Este método funciona especialmente bien cuando se empieza pronto: nuestros consejos para [viajar con un cachorro](/travel-hub/traveling-with-a-puppy/) tratan esta habituación desde la edad más temprana.
+Si tu perro muestra estrés, vuelve a la etapa anterior sin prisa. Este método funciona especialmente bien cuando se empieza pronto: nuestros consejos para [viajar con un cachorro](/es/travel-hub/viajar-con-un-cachorro/) tratan esta habituación desde la edad más temprana.
 
 ## ¿Qué gestos sencillos calman a un perro estresado en la carretera?
 

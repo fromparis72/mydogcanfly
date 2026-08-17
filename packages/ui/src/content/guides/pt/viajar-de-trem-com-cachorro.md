@@ -72,7 +72,7 @@ Tarifas e condições evoluem, e os trens regionais costumam ter regras própria
 
 A **Amtrak** aceita animais de companhia, mas com limites bem mais rígidos que as redes europeias: cães (e gatos) de até **9 kg incluindo a caixa**, em caixa homologada que fique embaixo do seu assento, em trajetos de **7 horas ou menos**, mediante taxa por animal. Cães maiores não são aceitos em hipótese alguma, qualquer que seja a rota. Animais de assistência, conforme define a lei norte-americana, viajam de graça e sem essas restrições.
 
-Na prática, isso faz do trem uma opção real nos Estados Unidos apenas para cães pequenos em trajetos curtos e médios; para um cachorro maior, o habitual é optar por uma [viagem de carro](/travel-hub/road-trip-with-a-dog/).
+Na prática, isso faz do trem uma opção real nos Estados Unidos apenas para cães pequenos em trajetos curtos e médios; para um cachorro maior, o habitual é optar por uma [viagem de carro](/pt/travel-hub/road-trip-com-cachorro/).
 
 ## Como reservar a passagem do cachorro?
 
@@ -115,7 +115,7 @@ Ao reservar, olhe também as suas conexões: uma baldeação com **20 minutos** 
 
 ## Trem, carro ou avião: como escolher?
 
-Cada meio tem as suas vantagens. O trem evita o estresse da direção e mantém o seu cachorro bem ao seu lado. O carro oferece mais liberdade para as paradas, como explicamos no nosso guia sobre [viajar de carro com o seu cachorro](/travel-hub/traveling-by-car-with-a-dog/). Para longas distâncias ou viagens internacionais, o avião se torna inevitável: detalhamos o processo no nosso guia sobre [viajar de avião com cachorro](/pt/travel-hub/viajar-de-aviao-com-cachorro/). Para trajetos nacionais de algumas horas, o trem continua sendo o melhor meio-termo — desde que o seu cachorro caiba nas regras da sua operadora.
+Cada meio tem as suas vantagens. O trem evita o estresse da direção e mantém o seu cachorro bem ao seu lado. O carro oferece mais liberdade para as paradas, como explicamos no nosso guia sobre [viajar de carro com o seu cachorro](/pt/travel-hub/viajar-de-carro-com-cachorro/). Para longas distâncias ou viagens internacionais, o avião se torna inevitável: detalhamos o processo no nosso guia sobre [viajar de avião com cachorro](/pt/travel-hub/viajar-de-aviao-com-cachorro/). Para trajetos nacionais de algumas horas, o trem continua sendo o melhor meio-termo — desde que o seu cachorro caiba nas regras da sua operadora.
 
 ## Fontes
 
