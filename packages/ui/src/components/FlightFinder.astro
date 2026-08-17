@@ -125,6 +125,10 @@ const labels = {
   // clés air.national_* restent dans strings.json, réservées à la réintroduction avec flag_carrier.
   fromAirport: t(locale, "air.from_airport"),
   toAirport: t(locale, "air.to_airport"),
+  safetyTitle: t(locale, "report.safety_title"),
+  safetyScopeGlobal: t(locale, "report.safety_scope_global"),
+  safetyChannels: t(locale, "report.safety_channels"),
+  safetyNote: t(locale, "report.safety_note"),
   climateTitle: t(locale, "report.climate_title"),
   climateEst: t(locale, "report.climate_est"),
   climateEstNote: t(locale, "report.climate_est_note"),
@@ -348,6 +352,47 @@ const labels = {
 
   // Makes the (default) seasonal temperature filter visible: shows the estimated destination heat and,
   // when it's above the embargo threshold, warns that some airlines suspend hold/cargo.
+  /* ---- LES AVIS DE SÉCURITÉ (T0-B3-a) --------------------------------------------------------
+   *
+   * Un avis naît d'une `BreedRestriction warn` : il CONSEILLE, il n'interdit pas. C'est le cas
+   * fondateur du contrat — l'IATA écrit « not recommended … in hot season », et en avoir fait un
+   * refus est ce qui a produit une interdiction universelle et permanente.
+   *
+   * Le rendu doit donc dire trois choses que rien d'autre ne dit :
+   *   · le conseil lui-même, DÉJÀ localisé par le moteur (`text`) — l'interface ne traduit rien ;
+   *   · sa PORTÉE : toutes les compagnies, ou celle-ci nommément — un avis sans portée laisserait
+   *     croire qu'il vaut partout ;
+   *   · sa SOURCE, avec la phrase officielle CITÉE dans sa langue d'origine. La traduire
+   *     l'interpréterait ; c'est tout le sens du champ `quote_language`.
+   *
+   * Le style est celui du signal climatique — ambre — jamais celui d'un embargo : le canal reste
+   * ouvert, et l'écrire en rouge redirait visuellement l'interdiction que ce lot supprime. */
+  function safetyAdvisories(r: DecisionReport): string {
+    const list = r.safety_advisories ?? [];
+    if (!list.length) return "";
+    const nameOf = (scope: string) => {
+      if (scope === "global") return L.safetyScopeGlobal;
+      const a = (r.airlines ?? []).find((x: any) => x.airline_id === scope);
+      /* Jamais l'identifiant brut à l'écran : un avis dont la compagnie n'est pas dans le rapport
+         ne devrait pas exister (le moteur les filtre), et s'il arrivait, mieux vaut la portée
+         générale qu'un « airline_xxx » lâché devant le visiteur. */
+      return a ? a.name : L.safetyScopeGlobal;
+    };
+    const chan = (p: string) => (p === "cabin" ? L.cabinShort : p === "hold" ? L.holdShort : L.cargoShort);
+    const items = list.map((a: any) => `
+        <li class="safety__item">
+          <p class="safety__text">${esc(a.text)}</p>
+          <p class="safety__meta"><b>${esc(nameOf(a.scope))}</b> · ${esc(L.safetyChannels)} ${esc((a.placements ?? []).map(chan).join(", "))}</p>
+          <blockquote class="safety__quote" lang="${esc(a.source.quote_language)}">« ${esc(a.source.quote)} »</blockquote>
+          <p class="safety__src"><a href="${esc(a.source.url)}" rel="nofollow noopener" target="_blank">${esc(a.source.url)}</a></p>
+        </li>`).join("");
+    return `<div class="report__sec safety">
+        <h4>${esc(L.safetyTitle)}</h4>
+        <p class="safety__note">${esc(L.safetyNote)}</p>
+        <ul class="safety__list">${items}</ul>
+      </div>`;
+  }
+
   function climateBanner(r: DecisionReport): string {
     const c = r.climate;
     if (!c) return "";
@@ -631,6 +676,7 @@ const labels = {
         </div>
         ${climateBanner(r)}
         ${roundTripFlag()}
+        ${safetyAdvisories(r)}
         ${why}
         ${r.domestic ? (() => {
           // Domestic: the country's import rules don't apply. Show what actually does, plus any
@@ -1321,6 +1367,15 @@ const labels = {
   .step__tgt { font-size: 10.5px; color: var(--mdcf-muted); }
   .step__go { margin-left: auto; font-size: 13px; font-weight: 800; color: var(--mdcf-muted); }
   .step:hover .step__go { color: var(--mdcf-accent-ink); }
+  /* Avis de sécurité : le jaune du SIGNAL, jamais le rouge du refus — le canal reste ouvert. */
+  .safety { border-left: 3px solid #d99a2b; padding-left: 12px; }
+  .safety__note { font-size: 13px; color: var(--mdcf-muted); margin: 2px 0 10px; }
+  .safety__list { list-style: none; margin: 0; padding: 0; }
+  .safety__item + .safety__item { margin-top: 14px; border-top: 1px solid var(--mdcf-border, #e5e5e5); padding-top: 12px; }
+  .safety__text { margin: 0 0 4px; }
+  .safety__meta { font-size: 13px; color: var(--mdcf-muted); margin: 0 0 6px; }
+  .safety__quote { margin: 0 0 4px; padding-left: 10px; border-left: 2px solid var(--mdcf-border, #e5e5e5); font-style: italic; }
+  .safety__src { font-size: 12px; margin: 0; word-break: break-all; }
   .report__sources { margin-top: 16px; }
   .report__sources summary { cursor: pointer; font-size: 12px; text-transform: uppercase; letter-spacing: .05em; color: var(--mdcf-muted); }
   .report__sources ul { margin-top: 6px; padding-left: 18px; }
