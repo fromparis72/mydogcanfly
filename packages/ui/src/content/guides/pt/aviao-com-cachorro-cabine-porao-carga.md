@@ -36,13 +36,13 @@ Voar com um cachorro não é uma pergunta de resposta única. Conforme o porte d
 
 A cabine é reservada aos **cães pequenos**. A regra quase universal: o cachorro **e** a sua caixa de transporte não podem ultrapassar um peso máximo, na maioria das vezes **8 kg** (às vezes 6 kg, e até 10 kg em algumas companhias de baixo custo, como a Vueling ou a Volotea). A caixa precisa ser **flexível**, respeitar as dimensões exigidas pela companhia e caber **embaixo do assento** da frente. O animal deve permanecer dentro dela durante todo o voo.
 
-É a fórmula mais tranquilizadora: o seu cachorro fica com você, em temperatura normal, longe do estresse do porão. A taxa costuma ir de **30 a 250 €**, conforme a distância. Como o número de lugares para animais na cabine é limitado (muitas vezes de 1 a 6 por aeronave), reserve cedo e por telefone. Para preparar o seu companheiro para o voo, veja os nossos conselhos sobre [a ansiedade do cachorro no transporte](/travel-hub/dog-travel-anxiety/).
+É a fórmula mais tranquilizadora: o seu cachorro fica com você, em temperatura normal, longe do estresse do porão. A taxa costuma ir de **30 a 250 €**, conforme a distância. Como o número de lugares para animais na cabine é limitado (muitas vezes de 1 a 6 por aeronave), reserve cedo e por telefone. Para preparar o seu companheiro para o voo, veja os nossos conselhos sobre [a ansiedade do cachorro no transporte](/pt/travel-hub/ansiedade-do-cachorro-em-viagem/).
 
 ## 2. No porão: para cães maiores
 
 Acima do limite de peso da cabine, o cachorro viaja no **porão**, em um **compartimento pressurizado e aquecido** pensado para animais vivos (código AVIH no jargão aéreo: *Animal in Hold*). Trata-se sempre de **bagagem acompanhada**: o seu cachorro viaja **no mesmo voo que você**, sob a sua passagem.
 
-As condições: uma **caixa rígida homologada pela IATA** (resistente, ventilada em vários lados, com piso estanque e ferragens de metal), um peso máximo combinado de cachorro + caixa (muitas vezes até 45 ou 75 kg, conforme a companhia) e uma reserva antecipada. Ponto crucial: a maioria das companhias **proíbe raças braquicefálicas no porão** (bulldogues, pugs, boxers…) por motivos de saúde respiratória. Calcule o tamanho da caixa com a nossa [calculadora de caixa IATA](/pt/tools/crate/) e leia o nosso guia para [escolher uma caixa homologada](/travel-hub/airline-approved-dog-crate/).
+As condições: uma **caixa rígida homologada pela IATA** (resistente, ventilada em vários lados, com piso estanque e ferragens de metal), um peso máximo combinado de cachorro + caixa (muitas vezes até 45 ou 75 kg, conforme a companhia) e uma reserva antecipada. Ponto crucial: a maioria das companhias **proíbe raças braquicefálicas no porão** (bulldogues, pugs, boxers…) por motivos de saúde respiratória. Calcule o tamanho da caixa com a nossa [calculadora de caixa IATA](/pt/tools/crate/) e leia o nosso guia para [escolher uma caixa homologada](/pt/travel-hub/caixa-de-transporte-homologada-iata/).
 
 ## 3. Como carga: não confundir com o porão
 
@@ -72,7 +72,7 @@ A mais divulgada é a **Bark Air**, lançada em maio de 2024: operadora de freta
 
 Para a imensa maioria dos viajantes, a escolha se resume a **cabine** (cachorro pequeno) ou **porão** (cachorro médio a grande) em uma companhia regular — a carga fica reservada aos casos particulares, e as companhias só para cães, a orçamentos excepcionais. Antes de reservar, confira sempre as **exigências de entrada do país de destino** (veja as nossas [formalidades por país](/pt/countries/)) e compare as condições com a [comparação das políticas de animais das companhias](/pt/airlines/). Para o detalhe prático de um voo comum, o nosso guia sobre [viajar de avião com cachorro](/pt/travel-hub/viajar-de-aviao-com-cachorro/) percorre todas as etapas.
 
-<ol class="gd-etapes"><li><a href="/travel-hub/international-travel-with-a-dog/">Verifique as exigências sanitárias</a></li><li><a href="/travel-hub/airline-approved-dog-crate/">Escolha uma caixa homologada pela IATA</a></li><li><a href="/travel-hub/dog-travel-anxiety/">Prepare o seu cachorro para o estresse do voo</a></li><li><a href="/pt/airlines/">Compare as 62 companhias aéreas</a></li></ol>
+<ol class="gd-etapes"><li><a href="/pt/travel-hub/viajar-ao-exterior-com-cachorro/">Verifique as exigências sanitárias</a></li><li><a href="/pt/travel-hub/caixa-de-transporte-homologada-iata/">Escolha uma caixa homologada pela IATA</a></li><li><a href="/pt/travel-hub/ansiedade-do-cachorro-em-viagem/">Prepare o seu cachorro para o estresse do voo</a></li><li><a href="/pt/airlines/">Compare as 62 companhias aéreas</a></li></ol>
 
 ## Fontes
 

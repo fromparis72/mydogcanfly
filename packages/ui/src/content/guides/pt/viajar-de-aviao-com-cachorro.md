@@ -47,7 +47,7 @@ Confirme sempre as condições exatas com a sua companhia aérea antes de reserv
 
 A caixa IATA é a norma internacional para o transporte aéreo de animais. Ela precisa ser rígida, bem ventilada em pelo menos três lados, com uma porta que trave com segurança e um piso estanque. O seu cachorro tem de conseguir ficar de pé, virar-se e deitar-se confortavelmente lá dentro.
 
-Acostume o seu cachorro à caixa várias semanas antes do voo. Para escolher a certa, consulte o nosso guia sobre [o equipamento de viagem do cachorro](/travel-hub/dog-travel-gear/), que detalha dimensões e critérios de segurança.
+Acostume o seu cachorro à caixa várias semanas antes do voo. Para escolher a certa, consulte o nosso guia sobre [o equipamento de viagem do cachorro](/pt/travel-hub/equipamento-de-viagem-para-cachorro/), que detalha dimensões e critérios de segurança.
 
 ## Como calcular corretamente o tamanho da caixa?
 
@@ -95,7 +95,7 @@ O custo depende da companhia aérea, da distância e da forma como o cachorro vi
 
 ## Trem ou avião: o que escolher?
 
-Para deslocamentos dentro da Europa continental, o trem costuma ser mais simples e menos estressante para o animal: veja as nossas dicas para [viajar de trem com cachorro](/travel-hub/train-travel-with-a-dog/). O avião é a resposta para as distâncias longas e os destinos insulares ou intercontinentais. Em todos os casos, começar cedo com a documentação faz toda a diferença.
+Para deslocamentos dentro da Europa continental, o trem costuma ser mais simples e menos estressante para o animal: veja as nossas dicas para [viajar de trem com cachorro](/pt/travel-hub/viajar-de-trem-com-cachorro/). O avião é a resposta para as distâncias longas e os destinos insulares ou intercontinentais. Em todos os casos, começar cedo com a documentação faz toda a diferença.
 
 ## Fontes
 
@@ -104,4 +104,4 @@ Para deslocamentos dentro da Europa continental, o trem costuma ser mais simples
 - [Service-public.fr — animais de companhia e viagens](https://www.service-public.fr)
 - [Comissão Europeia — viajar com animais de companhia](https://europa.eu)
 
-<ol class="gd-etapes"><li><a href="/travel-hub/international-travel-with-a-dog/">Verifique as exigências sanitárias</a></li><li><a href="/travel-hub/airline-approved-dog-crate/">Escolha uma caixa homologada pela IATA</a></li><li><a href="/travel-hub/dog-travel-anxiety/">Prepare o seu cachorro para o estresse do voo</a></li><li><a href="/pt/airlines/">Compare as 62 companhias aéreas</a></li></ol>
+<ol class="gd-etapes"><li><a href="/pt/travel-hub/viajar-ao-exterior-com-cachorro/">Verifique as exigências sanitárias</a></li><li><a href="/pt/travel-hub/caixa-de-transporte-homologada-iata/">Escolha uma caixa homologada pela IATA</a></li><li><a href="/pt/travel-hub/ansiedade-do-cachorro-em-viagem/">Prepare o seu cachorro para o estresse do voo</a></li><li><a href="/pt/airlines/">Compare as 62 companhias aéreas</a></li></ol>

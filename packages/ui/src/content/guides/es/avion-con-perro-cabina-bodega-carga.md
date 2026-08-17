@@ -36,13 +36,13 @@ Volar con un perro no es una pregunta con una sola respuesta. Según el tamaño 
 
 La cabina está reservada a los **perros pequeños**. La regla casi universal: el perro **y** su transportín no deben superar un peso máximo, la mayoría de las veces **8 kg** (a veces 6 kg, y hasta 10 kg en algunas compañías de bajo coste como Vueling o Volotea). El transportín debe ser **flexible**, respetar las dimensiones exigidas por la aerolínea y caber **bajo el asiento** de delante. El animal debe permanecer dentro durante todo el vuelo.
 
-Es la fórmula más tranquilizadora: tu perro se queda contigo, a temperatura normal, lejos del estrés de la bodega. La tarifa suele ir de **30 a 250 €** según la distancia. Como el número de plazas para animales en cabina es limitado (a menudo de 1 a 6 por avión), reserva pronto y por teléfono. Para preparar a tu compañero para el vuelo, consulta nuestros consejos sobre [la ansiedad del perro en el transporte](/travel-hub/dog-travel-anxiety/).
+Es la fórmula más tranquilizadora: tu perro se queda contigo, a temperatura normal, lejos del estrés de la bodega. La tarifa suele ir de **30 a 250 €** según la distancia. Como el número de plazas para animales en cabina es limitado (a menudo de 1 a 6 por avión), reserva pronto y por teléfono. Para preparar a tu compañero para el vuelo, consulta nuestros consejos sobre [la ansiedad del perro en el transporte](/es/travel-hub/ansiedad-del-perro-en-los-viajes/).
 
 ## 2. En bodega: para perros más grandes
 
 Por encima del límite de peso de cabina, el perro viaja en **bodega**, en un **compartimento presurizado y con calefacción** pensado para animales vivos (código AVIH en la jerga aérea: *Animal in Hold*). Se trata siempre de **equipaje acompañado**: tu perro viaja en **el mismo vuelo que tú**, bajo tu billete.
 
-Las condiciones: un **transportín rígido homologado IATA** (sólido, ventilado por varios lados, con suelo estanco y herrajes metálicos), un peso máximo combinado de perro + transportín (a menudo hasta 45 o 75 kg según la aerolínea) y una reserva previa. Punto crucial: la mayoría de las aerolíneas **prohíbe las razas braquicéfalas en bodega** (bulldogs, carlinos, bóxeres…) por motivos de salud respiratoria. Calcula el tamaño del transportín con nuestra [calculadora de transportín IATA](/es/tools/crate/) y lee nuestra guía para [elegir un transportín homologado](/travel-hub/airline-approved-dog-crate/).
+Las condiciones: un **transportín rígido homologado IATA** (sólido, ventilado por varios lados, con suelo estanco y herrajes metálicos), un peso máximo combinado de perro + transportín (a menudo hasta 45 o 75 kg según la aerolínea) y una reserva previa. Punto crucial: la mayoría de las aerolíneas **prohíbe las razas braquicéfalas en bodega** (bulldogs, carlinos, bóxeres…) por motivos de salud respiratoria. Calcula el tamaño del transportín con nuestra [calculadora de transportín IATA](/es/tools/crate/) y lee nuestra guía para [elegir un transportín homologado](/es/travel-hub/transportin-homologado-iata-perro/).
 
 ## 3. Como carga: que no se confunda con la bodega
 
@@ -72,7 +72,7 @@ La más mediática es **Bark Air**, lanzada en mayo de 2024: operador chárter, 
 
 Para la inmensa mayoría de los viajeros, la elección se reduce a **cabina** (perro pequeño) o **bodega** (perro mediano o grande) en una aerolínea regular; la carga queda reservada a los casos particulares, y las aerolíneas solo para perros, a presupuestos excepcionales. Antes de reservar, comprueba siempre los **requisitos de entrada del país de destino** (consulta nuestras [formalidades por país](/es/countries/)) y compara las condiciones con la [comparativa de políticas de animales de las aerolíneas](/es/airlines/). Para el detalle práctico de un vuelo estándar, nuestra guía sobre [viajar en avión con perro](/es/travel-hub/viajar-en-avion-con-perro/) repasa todas las etapas.
 
-<ol class="gd-etapes"><li><a href="/travel-hub/international-travel-with-a-dog/">Comprueba los requisitos sanitarios</a></li><li><a href="/travel-hub/airline-approved-dog-crate/">Elige un transportín homologado IATA</a></li><li><a href="/travel-hub/dog-travel-anxiety/">Prepara a tu perro para el estrés del vuelo</a></li><li><a href="/es/airlines/">Compara las 62 aerolíneas</a></li></ol>
+<ol class="gd-etapes"><li><a href="/es/travel-hub/viajar-al-extranjero-con-perro/">Comprueba los requisitos sanitarios</a></li><li><a href="/es/travel-hub/transportin-homologado-iata-perro/">Elige un transportín homologado IATA</a></li><li><a href="/es/travel-hub/ansiedad-del-perro-en-los-viajes/">Prepara a tu perro para el estrés del vuelo</a></li><li><a href="/es/airlines/">Compara las 62 aerolíneas</a></li></ol>
 
 ## Fuentes
 

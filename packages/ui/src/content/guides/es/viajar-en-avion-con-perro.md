@@ -47,7 +47,7 @@ Comprueba siempre las condiciones exactas con tu aerolínea antes de reservar.
 
 El transportín IATA es la norma internacional para el transporte aéreo de animales. Debe ser rígido, bien ventilado por al menos tres lados, con una puerta que cierre con seguridad y un suelo estanco. Tu perro tiene que poder ponerse de pie, darse la vuelta y tumbarse cómodamente dentro.
 
-Acostumbra a tu perro al transportín varias semanas antes del vuelo. Para elegir el adecuado, consulta nuestra guía sobre [el equipamiento de viaje del perro](/travel-hub/dog-travel-gear/), que detalla dimensiones y criterios de seguridad.
+Acostumbra a tu perro al transportín varias semanas antes del vuelo. Para elegir el adecuado, consulta nuestra guía sobre [el equipamiento de viaje del perro](/es/travel-hub/equipamiento-de-viaje-para-perro/), que detalla dimensiones y criterios de seguridad.
 
 ## ¿Cómo calcular bien el tamaño del transportín?
 
@@ -95,7 +95,7 @@ El coste depende de la aerolínea, la distancia y la forma de viajar del perro. 
 
 ## ¿Tren o avión: qué elegir?
 
-Para desplazamientos dentro de la Europa continental, el tren suele ser más sencillo y menos estresante para el animal: consulta nuestros consejos para [viajar en tren con perro](/travel-hub/train-travel-with-a-dog/). El avión es la respuesta para las distancias largas y los destinos insulares o intercontinentales. En todos los casos, empezar pronto con el papeleo marca la diferencia.
+Para desplazamientos dentro de la Europa continental, el tren suele ser más sencillo y menos estresante para el animal: consulta nuestros consejos para [viajar en tren con perro](/es/travel-hub/viajar-en-tren-con-perro/). El avión es la respuesta para las distancias largas y los destinos insulares o intercontinentales. En todos los casos, empezar pronto con el papeleo marca la diferencia.
 
 ## Fuentes
 
@@ -104,4 +104,4 @@ Para desplazamientos dentro de la Europa continental, el tren suele ser más sen
 - [Service-public.fr — animales de compañía y viajes](https://www.service-public.fr)
 - [Comisión Europea — viajar con animales de compañía](https://europa.eu)
 
-<ol class="gd-etapes"><li><a href="/travel-hub/international-travel-with-a-dog/">Comprueba los requisitos sanitarios</a></li><li><a href="/travel-hub/airline-approved-dog-crate/">Elige un transportín homologado IATA</a></li><li><a href="/travel-hub/dog-travel-anxiety/">Prepara a tu perro para el estrés del vuelo</a></li><li><a href="/es/airlines/">Compara las 62 aerolíneas</a></li></ol>
+<ol class="gd-etapes"><li><a href="/es/travel-hub/viajar-al-extranjero-con-perro/">Comprueba los requisitos sanitarios</a></li><li><a href="/es/travel-hub/transportin-homologado-iata-perro/">Elige un transportín homologado IATA</a></li><li><a href="/es/travel-hub/ansiedad-del-perro-en-los-viajes/">Prepara a tu perro para el estrés del vuelo</a></li><li><a href="/es/airlines/">Compara las 62 aerolíneas</a></li></ol>
