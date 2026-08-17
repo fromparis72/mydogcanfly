@@ -26,10 +26,14 @@ const LOCALES = [{ code: "en", dir: "" }, { code: "fr", dir: "fr" }, { code: "es
 /* Libellés ATTENDUS, en toutes lettres — alignés sur packages/knowledge/translations/<loc>/strings.json.
    S'ils changent, c'est une décision éditoriale, et elle doit se voir ici. */
 const EXPECTED = {
-  en: { titre: "Safety advisories", global: "All airlines", canaux: "Concerns", hold: "Hold", cargo: "Cargo" },
-  fr: { titre: "Avis de sécurité", global: "Toutes les compagnies", canaux: "Concerne", hold: "Soute", cargo: "Fret" },
-  es: { titre: "Avisos de seguridad", global: "Todas las aerolíneas", canaux: "Afecta a", hold: "Bodega", cargo: "Carga" },
-  pt: { titre: "Avisos de segurança", global: "Todas as companhias", canaux: "Diz respeito a", hold: "Porão", cargo: "Carga" },
+  en: { titre: "Safety advisories", global: "All airlines", canaux: "Concerns", hold: "Hold", cargo: "Cargo",
+        note: "Advice, not a refusal: it does not change the statuses shown below. The official wording is quoted under each advisory." },
+  fr: { titre: "Avis de sécurité", global: "Toutes les compagnies", canaux: "Concerne", hold: "Soute", cargo: "Fret",
+        note: "Un conseil, pas un refus : il ne modifie pas les statuts affichés ci-dessous. La formulation officielle est citée sous chaque avis." },
+  es: { titre: "Avisos de seguridad", global: "Todas las aerolíneas", canaux: "Afecta a", hold: "Bodega", cargo: "Carga",
+        note: "Un consejo, no una negativa: no modifica los estados que se muestran abajo. La formulación oficial se cita debajo de cada aviso." },
+  pt: { titre: "Avisos de segurança", global: "Todas as companhias", canaux: "Diz respeito a", hold: "Porão", cargo: "Carga",
+        note: "Um conselho, não uma recusa: não altera os estados apresentados abaixo. A formulação oficial é citada abaixo de cada aviso." },
 };
 
 /* Le texte de l'avis est LOCALISÉ PAR LE MOTEUR : le rapport simulé porte donc quatre phrases
@@ -50,14 +54,20 @@ const SOURCE = (url, quote) => ({
   confidence: 4, reviewer: "harnais T0-B3-a", history: [], quote, quote_language: "en",
 });
 
+/* UNE CARTE AUX TROIS STATUTS DIFFÉRENTS. La v1 du harnais donnait trois canaux `allowed` : elle
+   ne pouvait donc pas voir que la note « ces canaux restent ouverts » était FAUSSE. Un avis ne
+   déplace aucun statut, mais les canaux qu'il vise peuvent être refusés ou à confirmer pour de
+   tout autres raisons — poids, politique, entrée du pays. La fixture les mélange donc. */
 const CARTE = {
   airline_id: "airline_air_france", name: "Air France",
-  direct: true, cabin: true, hold: true, cargo: true,
-  cabin_status: "allowed", hold_status: "allowed", cargo_status: "allowed",
+  direct: true, cabin: true, hold: false, cargo: false,
+  cabin_status: "allowed", hold_status: "confirmation_required", cargo_status: "denied",
+  to_confirm: ["hold"],
   placement_decisions: [
     { placement: "cabin", status: "allowed", allowed: true },
-    { placement: "hold", status: "allowed", allowed: true },
-    { placement: "cargo", status: "allowed", allowed: true },
+    { placement: "hold", status: "confirmation_required", allowed: false,
+      confirmation_causes: [{ code: "policy_unpublished", policy_ref: "airline_air_france#hold" }] },
+    { placement: "cargo", status: "denied", allowed: false },
   ],
   label: "OK", carrier_of_origin: false, carrier_of_destination: false,
   itinerary_confidence: "direct_documented", heat_embargo: false, fee: "",
@@ -166,12 +176,28 @@ async function main() {
       citations.every((q) => q.getAttribute("lang") === "en"),
       citations.map((q) => q.getAttribute("lang")).join(","));
 
-    /* 5 · La source, cliquable et vers la page officielle. */
+    /* 5 · LA NOTE dit ce qu'un avis fait, et rien de plus. */
+    check(`la note est celle de la langue, en toutes lettres`,
+      texte(sec.querySelector(".safety__note")) === E.note, texte(sec.querySelector(".safety__note")));
+    check("la note ne prétend PAS que les canaux visés sont ouverts",
+      !/reste[nt]? ouvert|stay open|siguen abiertos|continuam abertos/i.test(texte(sec.querySelector(".safety__note"))),
+      texte(sec.querySelector(".safety__note")));
+
+    /* 5 bis · Et la carte, elle, porte bien trois statuts DIFFÉRENTS — sans quoi la note ci-dessus
+       serait vérifiée sur un cas où elle ne risquait rien. */
+    {
+      const c = doc.querySelector(".acard");
+      const t = texte(c);
+      check("la fixture mêle bien `allowed`, « à confirmer » et `denied` sur la même compagnie",
+        !!c && /\bconfirm|confirmer|confirmar|confirmação/i.test(t), t.slice(0, 220));
+    }
+
+    /* 6 · La source, cliquable et vers la page officielle. */
     const liens = [...sec.querySelectorAll(".safety__src a")].map((a) => a.getAttribute("href"));
     check("chaque avis renvoie à sa page officielle",
       liens.includes(URL_IATA) && liens.includes(URL_CIE), liens.join(" | "));
 
-    /* 6 · UN AVIS N'EST PAS UN REFUS. Le canal reste ouvert, et le rapport ne se dégrade pas. */
+    /* 7 · UN AVIS NE DÉPLACE AUCUN STATUT — ce qui n'est pas dire que les canaux sont ouverts. */
     const sansAvis = await rendre(parts, RAPPORT(code, []));
     const rep = (d) => d.window.document.querySelector(".report");
     check("aucun avis → la section n'existe pas du tout (un bloc vide dirait autre chose)",
@@ -181,8 +207,25 @@ async function main() {
       `${rep(dom).className} vs ${rep(sansAvis).className}`);
     const statuts = (d) => [...d.window.document.querySelectorAll(".acard")]
       .map((c) => c.textContent.replace(/\s+/g, " ").trim()).join(" || ");
-    check("les cartes compagnie sont identiques avec et sans avis",
+    check("les cartes compagnie sont identiques avec et sans avis, statuts mêlés compris",
       statuts(dom) === statuts(sansAvis));
+
+    /* 8 · LES DEUX ÉTATS QUE L'INTERFACE DOIT REFUSER, pas rendre à moitié. */
+    {
+      const sansChamp = RAPPORT(code, []);
+      delete sansChamp.safety_advisories;
+      const d1 = await rendre(parts, sansChamp);
+      check("`safety_advisories` ABSENT → rapport refusé, pas rendu « sans avis »",
+        !d1.window.document.querySelector(".report"),
+        texte(d1.window.document.querySelector(".report")).slice(0, 160));
+
+      const orphelin = RAPPORT(code, [{ ...AVIS(code)[1], scope: "airline_absente_du_rapport" }]);
+      const d2 = await rendre(parts, orphelin);
+      const sec2 = d2.window.document.querySelector(".report__sec.safety");
+      check("portée ORPHELINE → rapport refusé, et surtout JAMAIS élargi à « toutes les compagnies »",
+        !d2.window.document.querySelector(".report") && !sec2,
+        sec2 ? texte(sec2).slice(0, 200) : "");
+    }
   }
 
   console.log(failures === 0 ? "\nTous les contrôles passent." : `\n${failures} contrôle(s) en échec.`);
