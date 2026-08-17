@@ -57,7 +57,11 @@ const SOURCE = (url, quote) => ({
 /* UNE CARTE AUX TROIS STATUTS DIFFÉRENTS. La v1 du harnais donnait trois canaux `allowed` : elle
    ne pouvait donc pas voir que la note « ces canaux restent ouverts » était FAUSSE. Un avis ne
    déplace aucun statut, mais les canaux qu'il vise peuvent être refusés ou à confirmer pour de
-   tout autres raisons — poids, politique, entrée du pays. La fixture les mélange donc. */
+   tout autres raisons — poids, politique, entrée du pays. La fixture les mélange donc.
+
+   Le mélange est LUI-MÊME vérifié plus bas, sur les classes que le rendu pose (`ab--ok`,
+   `ab--confirm`, `ab--no`) : retirer n'importe lequel des trois statuts d'ici doit faire sortir ce
+   harnais en code 1. */
 const CARTE = {
   airline_id: "airline_air_france", name: "Air France",
   direct: true, cabin: true, hold: false, cargo: false,
@@ -183,13 +187,20 @@ async function main() {
       !/reste[nt]? ouvert|stay open|siguen abiertos|continuam abertos/i.test(texte(sec.querySelector(".safety__note"))),
       texte(sec.querySelector(".safety__note")));
 
-    /* 5 bis · Et la carte, elle, porte bien trois statuts DIFFÉRENTS — sans quoi la note ci-dessus
-       serait vérifiée sur un cas où elle ne risquait rien. */
+    /* 5 bis · Et la carte porte bien UN BADGE DE CHAQUE CLASSE — sans quoi la note ci-dessus
+       serait vérifiée sur un cas où elle ne risque rien.
+       La v1 de ce contrôle cherchait un mot de la famille « confirmer » dans le texte de la carte :
+       remplacer le fret `denied` par `allowed` — donc retirer tout statut refusé de la fixture — la
+       laissait verte. Un contrôle qui prétend voir trois statuts et n'en cherche qu'un est un faux
+       vert. On lit donc les classes que le rendu POSE, une par statut, et on exige exactement une
+       de chaque. */
     {
       const c = doc.querySelector(".acard");
-      const t = texte(c);
-      check("la fixture mêle bien `allowed`, « à confirmer » et `denied` sur la même compagnie",
-        !!c && /\bconfirm|confirmer|confirmar|confirmação/i.test(t), t.slice(0, 220));
+      const compte = (cls) => (c ? c.querySelectorAll(cls).length : 0);
+      const vus = { "ab--ok": compte(".ab--ok"), "ab--confirm": compte(".ab--confirm"), "ab--no": compte(".ab--no") };
+      check("la carte porte EXACTEMENT un badge `allowed`, un « à confirmer » et un `denied`",
+        !!c && vus["ab--ok"] === 1 && vus["ab--confirm"] === 1 && vus["ab--no"] === 1,
+        JSON.stringify(vus));
     }
 
     /* 6 · La source, cliquable et vers la page officielle. */
