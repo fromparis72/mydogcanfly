@@ -134,3 +134,19 @@ jobs:
       # fichier, même à total constant, et échoue aussi à la baisse pour forcer à resserrer.
       - name: Dette astro check (plafond)
         run: node packages/knowledge/scripts/check-astro-debt.mjs
+
+      # ── Les harnais savent-ils rougir ? ──────────────────────────────────────────────────
+      # Tout ce qui précède est un contrôle qui passe. Rien, jusqu'ici, ne vérifiait qu'il SAIT
+      # échouer. Le runner casse une à une les garanties du moteur, du référentiel et de
+      # l'interface, et exige que le bon harnais sorte en code 1 AVEC son diagnostic propre.
+      #
+      # Il était resté manuel depuis sa création — c'est-à-dire oubliable, exactement ce que son
+      # propre en-tête reproche aux contre-épreuves faites à la main. Une mutation dont le point
+      # d'ancrage a bougé devient MUETTE et le runner échoue : la dérive se voit ici, pas six
+      # semaines plus tard.
+      #
+      # EN DERNIER, ET C'EST VOULU : `--dom` reconstruit `packages/ui/dist` en version réduite à
+      # chaque mutation d'interface. Placé plus haut, il priverait `test:entities:complet` des
+      # pages que le build complet vient de produire. Un `dist` de CI n'est jamais déployé.
+      - name: Contre-épreuves (chaque garantie doit savoir échouer)
+        run: npm run contre-epreuves -- --dom
