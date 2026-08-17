@@ -10,6 +10,7 @@
   ],
   "scripts": {
     "check": "npm -w @mydogcanfly/knowledge run check",
+    "check:actions": "node packages/knowledge/scripts/check-actions-node.mjs",
     "ingest": "tsx packages/knowledge/scripts/ingest-airlines.mjs",
     "ingest:check": "tsx packages/knowledge/scripts/ingest-airlines.mjs --check",
     "demo": "npm -w @mydogcanfly/engine run demo",
