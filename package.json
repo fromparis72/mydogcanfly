@@ -35,7 +35,8 @@
     "audit": "node packages/knowledge/scripts/audit-site.mjs",
     "test:ingest": "node test-ingest-check.mjs",
     "mesure:t0b3": "node mesures/t0b3-regles-autosourcees/outils/reproduire.mjs",
-    "mesure:t0b3a": "node mesures/t0b3a-arbitrage-brachy/outils/reproduire.mjs"
+    "mesure:t0b3a": "node mesures/t0b3a-arbitrage-brachy/outils/reproduire.mjs",
+    "mesure:t0b3b": "node mesures/t0b3b-referentiel-brachy/outils/reproduire.mjs"
   },
   "devDependencies": {
     "@types/node": "^22.5.0",

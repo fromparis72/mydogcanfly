@@ -152,6 +152,66 @@ if (WRITE) {
  * approuvé, dont la bijection reste exigée dans les deux sens. Le témoin vivant continue, lui,
  * de servir dans la preuve T0-B2 ci-dessous, sur les données de ce lot.
  */
+/**
+ * Preuve PERMANENTE T0-B3-b — le retrait des 42 règles brachycéphales auto-citées.
+ *
+ * Même discipline que la preuve T0-A ci-dessous : deux fichiers SCELLÉS, jamais l'état vivant.
+ * Ce que ce lot a déplacé n'a aucune raison de vieillir, et un lot futur ne doit ni le rougir ni
+ * l'effacer — il doit avoir à s'expliquer devant lui.
+ *
+ * Ce qui est verrouillé ici tient en une phrase : le changement ne touche QUE les chiens
+ * brachycéphales. Les 36 scénarios « carlin » bougent tous, les 36 scénarios « golden » ne bougent
+ * pas d'un octet. Une régression qui élargirait le retrait à d'autres races se verrait ici.
+ */
+console.log("=== Preuve PERMANENTE T0-B3-b (deux baselines FIGÉES : les 42 retirées) ===");
+{
+  const AVANT = "test-baselines/t0b3b-finder-baseline-avant.json";
+  const APRES = "test-baselines/t0b3b-finder-baseline-apres.json";
+  check("la baseline AVANT le retrait des 42 est versionnée", existsSync(AVANT));
+  check("la baseline APRÈS le retrait des 42 est versionnée", existsSync(APRES));
+  if (existsSync(AVANT) && existsSync(APRES)) {
+    const avant = JSON.parse(readFileSync(AVANT, "utf8"));
+    const apres = JSON.parse(readFileSync(APRES, "utf8"));
+    const cles = Object.keys(apres);
+    check("les deux baselines couvrent les mêmes 72 scénarios",
+      cles.length === 72 && Object.keys(avant).length === 72
+        && cles.every((k) => k in avant), `${Object.keys(avant).length} → ${cles.length}`);
+    const bouge = cles.filter((k) => JSON.stringify(avant[k]) !== JSON.stringify(apres[k]));
+    const carlins = cles.filter((k) => k.includes("pug"));
+    const goldens = cles.filter((k) => k.includes("golden"));
+    check("EXACTEMENT 36 scénarios bougent", bouge.length === 36, `${bouge.length}`);
+    check("ce sont exactement les 36 scénarios CARLIN — tous, et rien qu'eux",
+      bouge.length === carlins.length && carlins.every((k) => bouge.includes(k)),
+      bouge.filter((k) => !k.includes("pug")).join(", "));
+    check("AUCUN scénario golden retriever ne bouge, pas d'un octet",
+      goldens.every((k) => JSON.stringify(avant[k]) === JSON.stringify(apres[k])),
+      goldens.filter((k) => JSON.stringify(avant[k]) !== JSON.stringify(apres[k])).join(", "));
+    /* Le SENS de la bascule, pas seulement son existence : un canal ne s'ouvre jamais en
+       `allowed`. Le site cesse d'affirmer un refus qu'il ne peut pas prouver ; il n'affirme pas
+       une acceptation qu'il ne peut pas prouver davantage. */
+    let versAllowed = 0, versConfirmer = 0, autres = 0;
+    const statuts = (ligne) => (ligne.split(" | ")[3] ?? "").replace("st:", "").split("/");
+    for (const k of bouge) {
+      const A = new Map((avant[k].airlines ?? []).map((l) => [l.split(" | ")[0], l]));
+      for (const ligne of apres[k].airlines ?? []) {
+        const a = A.get(ligne.split(" | ")[0]);
+        if (!a) continue;
+        const sa = statuts(a), sb = statuts(ligne);
+        for (let i = 0; i < 3; i++) {
+          if (sa[i] === sb[i]) continue;
+          if (sa[i] === "denied" && sb[i] === "confirmation_required") versConfirmer++;
+          else if (sb[i] === "allowed") versAllowed++;
+          else autres++;
+        }
+      }
+    }
+    check("aucun canal ne s'ouvre en `allowed` — le retrait ne fabrique aucune acceptation",
+      versAllowed === 0, `${versAllowed} bascule(s) vers allowed`);
+    check("toutes les bascules vont de `denied` vers « à confirmer », et il y en a 940",
+      versConfirmer === 940 && autres === 0, `${versConfirmer} vers confirmer, ${autres} autre(s)`);
+  }
+}
+
 console.log("=== Preuve HISTORIQUE T0-A (deux baselines FIGÉES — permanente) ===");
 {
   const AVANT = "test-baselines/t0a-finder-baseline-avant.json";
@@ -420,10 +480,16 @@ console.log("=== Preuve T0-B2-UI (deux baselines FIGÉES — permanente) ===");
     }
     check("aucune URL ne subsiste au titre de source RACINE (une preuve de canal peut, elle, rester)",
       restantes.size === 0, [...restantes].slice(0, 3).join(" | "));
-    /* La baseline VIVANTE et la baseline FIGÉE la plus récente doivent coïncider, sinon la figée
-       pourrit en silence pendant que la vivante suit les lots. */
-    check("la baseline vivante est identique à la baseline figée APRÈS T0-B2-UI",
-      readFileSync("test-baselines/t0a-finder-baseline.json", "utf8") === readFileSync(APRES, "utf8"));
+    /* La baseline VIVANTE et la baseline FIGÉE LA PLUS RÉCENTE doivent coïncider, sinon la figée
+       pourrit en silence pendant que la vivante suit les lots.
+       Ce garde-fou est ROULANT par nature : chaque lot métier qui déplace la baseline doit figer
+       SON « après » et le désigner ici. C'est précisément ce qui rend permanentes les figées
+       précédentes — celle de T0-B2-UI reste comparée à celle de T0-A dans les contrôles ci-dessus,
+       et personne ne peut plus les toucher. La plus récente est désormais celle de T0-B3-b, qui a
+       retiré les 42 règles brachycéphales auto-citées. */
+    check("la baseline vivante est identique à la baseline figée la plus récente (T0-B3-b)",
+      readFileSync("test-baselines/t0a-finder-baseline.json", "utf8")
+        === readFileSync("test-baselines/t0b3b-finder-baseline-apres.json", "utf8"));
   }
 }
 

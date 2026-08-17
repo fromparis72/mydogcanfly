@@ -84,20 +84,6 @@ const arbreSale = () =>
   dire(sale ? "0bis/4 arbre sale au départ, toléré par --ecrire" : "0bis/4 arbre propre au départ");
 }
 
-/* ---- 1. la base de mesure ---------------------------------------------------------------------- */
-for (const f of ["packages/knowledge/raw/rules.json", "packages/knowledge/raw/objects.json"]) {
-  let auCommit;
-  try {
-    auCommit = execFileSync("git", ["show", `${MESURE_BASE_SHA}:${f}`], { maxBuffer: 256 * 1024 * 1024 });
-  } catch {
-    echouer(`la base de mesure ${MESURE_BASE_SHA.slice(0, 7)} est absente du dépôt local — « git fetch origin main » puis relancer`);
-  }
-  if (sha256(readFileSync(f)) !== sha256(auCommit)) {
-    echouer(`${f} diffère de la base ${MESURE_BASE_SHA.slice(0, 7)} — le dossier ne peut pas se régénérer sur un autre état`);
-  }
-}
-dire(`1/4 référentiel conforme à la base ${MESURE_BASE_SHA.slice(0, 7)}`);
-
 /* ---- 1 ter. LE MOTEUR ---------------------------------------------------------------------------
    Un dossier de mesure décrit un état, MOTEUR COMPRIS. Quand le moteur a changé, ces chiffres ne
    se régénèrent plus : les recalculer remplacerait en silence une mesure validée par une autre,
@@ -112,6 +98,32 @@ if (!moteur.conforme) {
 } else {
   dire(`1ter/4 moteur identique à celui de la mesure (${moteur.courant.slice(0, 12)})`);
 }
+
+/* ---- 1. la base de mesure ---------------------------------------------------------------------- */
+/* Le référentiel de l'ARBRE DE TRAVAIL ne doit correspondre à la base que si l'on régénère ICI.
+   Quand le moteur a changé, la reproduction se joue dans un worktree au commit d'origine, où les
+   fichiers bruts sont ceux de la base par construction — et l'arbre courant a parfaitement le
+   droit d'avoir avancé depuis, c'est même ce qui a motivé le worktree. Exiger la conformité ici
+   rendrait tout dossier irreproductible dès le premier lot qui touche au référentiel : T0-B3-b a
+   retiré 42 règles, et les deux dossiers seraient morts le jour même. */
+if (moteur.conforme) {
+  for (const f of ["packages/knowledge/raw/rules.json", "packages/knowledge/raw/objects.json"]) {
+    let auCommit;
+    try {
+      auCommit = execFileSync("git", ["show", `${MESURE_BASE_SHA}:${f}`], { maxBuffer: 256 * 1024 * 1024 });
+    } catch {
+      echouer(`la base de mesure ${MESURE_BASE_SHA.slice(0, 7)} est absente du dépôt local — « git fetch origin main » puis relancer`);
+    }
+    if (sha256(readFileSync(f)) !== sha256(auCommit)) {
+      echouer(`${f} diffère de la base ${MESURE_BASE_SHA.slice(0, 7)} — le dossier ne peut pas se régénérer sur un autre état`);
+    }
+  }
+  dire(`1/4 référentiel de l'arbre conforme à la base ${MESURE_BASE_SHA.slice(0, 7)}`);
+} else {
+  dire(`1/4 référentiel de l'arbre AVANCÉ depuis la base ${MESURE_BASE_SHA.slice(0, 7)} — la `
+    + `reproduction se jouera au commit d'origine, où il est celui de la mesure`);
+}
+
 
 
 

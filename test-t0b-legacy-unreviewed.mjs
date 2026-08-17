@@ -434,11 +434,27 @@ console.log("=== 8. Baseline FIGÉE : le point de comparaison de T0-B2 est scell
      `sources` par identité d'URL dans `t0b2ui-approved-diff.json`.
      La borne de T0-B2 reste scellée à son empreinte ci-dessus : elle ne bougera plus jamais, et
      le point de comparaison vivant devient la figée de T0-B2-UI. */
-  check("T0-B2-UI : la baseline vivante est identique à la figée APRÈS T0-B2-UI",
-    vivante.equals(readFileSync("test-baselines/t0b2ui-finder-baseline-apres.json")));
   check("T0-B2-UI : la figée APRÈS diffère de celle de T0-B2 (le lot a bien changé quelque chose)",
     !readFileSync("test-baselines/t0b2ui-finder-baseline-apres.json")
       .equals(readFileSync("test-baselines/t0b2-finder-baseline-apres.json")));
+  /* T0-B3-b : même mécanique, un cran plus loin — et cette fois le lot est MÉTIER. Le retrait des
+     42 règles brachycéphales auto-citées a déplacé 36 des 72 scénarios, tous carlins. La borne de
+     T0-B2-UI est donc scellée à son empreinte, comme l'a été celle de T0-B2 : elle ne bougera plus
+     jamais. Le point de comparaison vivant devient la figée de T0-B3-b.
+     Ce qui rend la chaîne vérifiable plutôt que déclarative : l'« avant » de T0-B3-b est
+     OCTET POUR OCTET l'« après » de T0-B2-UI. Aucun état intermédiaire n'a disparu entre les deux
+     lots, et un artefact fabriqué à la main s'y casserait. */
+  check("empreinte de la baseline figée APRÈS T0-B2-UI = 5ed39d4de782… (scellée, elle ne bouge plus)",
+    createHash("sha256").update(readFileSync("test-baselines/t0b2ui-finder-baseline-apres.json")).digest("hex")
+      === "5ed39d4de782a51e837f09d34f54911daceec08de0bc3d4003cd8b199502f3b2");
+  check("chaîne ininterrompue : l'AVANT de T0-B3-b est exactement l'APRÈS de T0-B2-UI",
+    readFileSync("test-baselines/t0b3b-finder-baseline-avant.json")
+      .equals(readFileSync("test-baselines/t0b2ui-finder-baseline-apres.json")));
+  check("T0-B3-b : la baseline vivante est identique à la figée la plus récente",
+    vivante.equals(readFileSync("test-baselines/t0b3b-finder-baseline-apres.json")));
+  check("T0-B3-b : la figée APRÈS diffère de celle de T0-B2-UI (le retrait des 42 a bien déplacé le métier)",
+    !readFileSync("test-baselines/t0b3b-finder-baseline-apres.json")
+      .equals(readFileSync("test-baselines/t0b2ui-finder-baseline-apres.json")));
 }
 
 console.log(`\n${pass} OK, ${fail} FAIL`);
