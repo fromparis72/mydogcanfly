@@ -365,18 +365,28 @@ const labels = {
    *   · sa SOURCE, avec la phrase officielle CITÉE dans sa langue d'origine. La traduire
    *     l'interpréterait ; c'est tout le sens du champ `quote_language`.
    *
-   * Le style est celui du signal climatique — ambre — jamais celui d'un embargo : le canal reste
-   * ouvert, et l'écrire en rouge redirait visuellement l'interdiction que ce lot supprime. */
+   * Le style est celui du signal climatique — ambre — jamais celui d'un embargo. Attention à ce
+   * que cela veut dire exactement : un avis ne DÉPLACE aucun statut, mais il ne dit pas que les
+   * canaux qu'il vise sont ouverts. Ils peuvent être refusés ou à confirmer pour de tout autres
+   * raisons — poids, politique, entrée du pays. La v1 écrivait « ces canaux restent ouverts » :
+   * c'était faux, et le harnais ne le voyait pas parce que sa carte fictive avait trois canaux
+   * `allowed`. Le rouge reste néanmoins exclu : il redirait visuellement l'interdiction que ce
+   * chantier supprime, alors que l'avis n'interdit rien. */
   function safetyAdvisories(r: DecisionReport): string {
-    const list = r.safety_advisories ?? [];
+    /* Pas de `?? []` ici : `avisRecevables()` a déjà refusé le rapport si le champ manquait. Un
+       repli à cet endroit rendrait la garde inutile — il dirait « aucun avis » là où la garde dit
+       « je ne sais pas lire ce rapport ». */
+    const list = r.safety_advisories;
     if (!list.length) return "";
     const nameOf = (scope: string) => {
       if (scope === "global") return L.safetyScopeGlobal;
       const a = (r.airlines ?? []).find((x: any) => x.airline_id === scope);
-      /* Jamais l'identifiant brut à l'écran : un avis dont la compagnie n'est pas dans le rapport
-         ne devrait pas exister (le moteur les filtre), et s'il arrivait, mieux vaut la portée
-         générale qu'un « airline_xxx » lâché devant le visiteur. */
-      return a ? a.name : L.safetyScopeGlobal;
+      /* La portée est GARANTIE par `avisRecevables()` : une compagnie absente du rapport a fait
+         refuser le rapport entier. Ce `throw` n'est donc pas un repli, c'est le refus de fabriquer
+         une portée — élargir un avis de compagnie à « toutes les compagnies » serait précisément
+         le glissement que ce chantier corrige, à l'échelle d'un avis. */
+      if (!a) throw new Error(`safety advisory: unknown scope ${scope}`);
+      return a.name;
     };
     const chan = (p: string) => (p === "cabin" ? L.cabinShort : p === "hold" ? L.holdShort : L.cargoShort);
     const items = list.map((a: any) => `
@@ -1085,6 +1095,27 @@ const labels = {
    * Une seule nouvelle tentative, pour absorber le vrai cas transitoire (démarrage à froid
    * du Worker, micro-coupure), puis on rend la main à l'appelant qui affichera une erreur.
    */
+  /**
+   * `safety_advisories` EST OBLIGATOIRE — le contrat le dit, la garde doit le tenir.
+   *
+   * Le rendu écrivait `r.safety_advisories ?? []` : l'absence du champ devenait « aucun avis », et
+   * un déploiement désynchronisé — Worker d'avant l'étape 2, interface d'après — aurait supprimé
+   * TOUS les avis en silence. Un champ obligatoire absent n'est pas un rapport vide : c'est un
+   * rapport qu'on ne sait pas lire, et il vaut mieux une erreur visible.
+   *
+   * La PORTÉE est vérifiée dans le même mouvement. Le rendu repliait une compagnie inconnue sur
+   * « toutes les compagnies » : un défaut d'intégrité aurait transformé la recommandation propre à
+   * UNE compagnie en recommandation universelle — exactement le glissement que ce chantier
+   * corrige, à l'échelle d'un avis. On refuse ; on n'élargit pas.
+   */
+  function avisRecevables(r: DecisionReport): boolean {
+    const list = (r as { safety_advisories?: unknown }).safety_advisories;
+    if (!Array.isArray(list)) return false;
+    const connues = new Set((r.airlines ?? []).map((a: any) => a.airline_id));
+    return list.every((a: any) => a && typeof a.text === "string" && a.source
+      && (a.scope === "global" || connues.has(a.scope)));
+  }
+
   async function fetchReport(req: FinderRequest): Promise<DecisionReport> {
     let lastStatus = 0;
     for (let attempt = 0; attempt < 2; attempt++) {
@@ -1094,7 +1125,7 @@ const labels = {
           const data = (await res.json()) as DecisionReport;
           // Garde-fou de forme : un corps sans verdict n'est pas un rapport, quel que soit
           // le code HTTP. On préfère une erreur visible à un rendu partiel muet.
-          if (data && typeof (data as { verdict?: unknown }).verdict === "string") return data;
+          if (data && typeof (data as { verdict?: unknown }).verdict === "string" && avisRecevables(data)) return data;
           throw new Error("malformed report");
         }
         lastStatus = res.status;
@@ -1367,7 +1398,8 @@ const labels = {
   .step__tgt { font-size: 10.5px; color: var(--mdcf-muted); }
   .step__go { margin-left: auto; font-size: 13px; font-weight: 800; color: var(--mdcf-muted); }
   .step:hover .step__go { color: var(--mdcf-accent-ink); }
-  /* Avis de sécurité : le jaune du SIGNAL, jamais le rouge du refus — le canal reste ouvert. */
+  /* Avis de sécurité : le jaune du SIGNAL, jamais le rouge du refus — l'avis ne ferme rien.
+     (Il ne dit pas non plus que le canal est ouvert : son statut se lit sur les cartes.) */
   .safety { border-left: 3px solid #d99a2b; padding-left: 12px; }
   .safety__note { font-size: 13px; color: var(--mdcf-muted); margin: 2px 0 10px; }
   .safety__list { list-style: none; margin: 0; padding: 0; }
