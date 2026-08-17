@@ -52,8 +52,12 @@ const arbreSale = () =>
   if (r.status !== 1) {
     echouer(`la contre-épreuve « sans-changement » sort en ${r.status}, attendu 1 — la mesure ne sait pas échouer`);
   }
-  if (!`${r.stdout}${r.stderr}`.includes("exactement 42 règles retirées")) {
-    echouer("la contre-épreuve « sans-changement » échoue, mais sans le diagnostic attendu");
+  /* Le fragment est celui de l'exigence VISÉE, pas un mot vague : un échec pour une autre raison
+     — import cassé, exception précoce — ne doit pas passer pour une contre-épreuve réussie. */
+  const attendu = "les règles retirées sont EXACTEMENT les 42 approuvées";
+  if (!`${r.stdout}${r.stderr}`.includes(attendu)) {
+    echouer(`la contre-épreuve « sans-changement » échoue, mais sans le diagnostic attendu `
+      + `« ${attendu} » — elle a échoué pour une autre raison`);
   }
   dire("1/4 la mesure sait échouer : sur un référentiel inchangé, ses exigences tombent");
 }

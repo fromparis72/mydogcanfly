@@ -452,5 +452,75 @@ console.log("=== 8. Sur le référentiel RÉEL, après T0-B3-b ===");
     JSON.stringify(golden));
 }
 
+console.log("=== 9. L'ENTRÉE RÉELLE `brest_iata_snub_nose_hot_season`, de bout en bout ===");
+{
+  /* POURQUOI CE PARAGRAPHE. Tout ce qui précède éprouve des FIXTURES : le registre réel n'était
+     vérifié que par `id` + `action`. Contre-épreuve de la contre-revue : réduire la portée à
+     `["hold"]`, remplacer les quatre textes, remplacer l'URL et la citation de l'IATA par des
+     valeurs fausses mais conformes au schéma — `test:unit` restait vert et la mesure T0-B3-b aussi.
+     Une donnée que rien ne fige n'est pas une donnée sourcée : c'est une donnée plausible.
+
+     Les valeurs ci-dessous sont celles relevées sur la page vivante de l'IATA par la contre-revue,
+     les 16 et 17/08/2026. Les changer est une décision documentaire, et elle doit se voir ici. */
+  const ATTENDU = {
+    id: "brest_iata_snub_nose_hot_season",
+    url: "https://www.iata.org/en/programs/cargo/live-animals/pets/",
+    quote: "Transport of snub nose dogs, such as boxers, pugs, bulldogs and Pekinese, in hot season is not recommended.",
+    quote_language: "en",
+    source_type: "official_website",
+    verified_date: "2026-08-16",
+    review_due: "2027-02-12",
+    confidence: 4,
+    textes: {
+      en: "IATA advises against transporting snub-nosed dogs in hot season.",
+      fr: "L'IATA déconseille le transport des chiens au museau écrasé en saison chaude.",
+      es: "La IATA desaconseja transportar perros de hocico chato en temporada calurosa.",
+      pt: "A IATA desaconselha o transporte de cães de focinho achatado em época quente.",
+    },
+  };
+  const r = loadKB().breedRestrictions.find((x) => x.id === ATTENDU.id);
+  check("l'entrée existe dans le registre normalisé", !!r);
+  if (r) {
+    check("elle est GLOBALE — aucune compagnie nommée", r.airline_id === undefined, String(r.airline_id));
+    check("elle vise le TRAIT brachycéphale, pas une liste de races",
+      JSON.stringify(r.applies_to) === JSON.stringify({ trait: "brachycephalic" }), JSON.stringify(r.applies_to));
+    check("elle porte les TROIS canaux — la page IATA ne limite pas son conseil à la soute",
+      JSON.stringify(r.placements) === JSON.stringify(["cabin", "hold", "cargo"]), JSON.stringify(r.placements));
+    check("elle est INCONDITIONNELLE dans le référentiel : aucun seuil, aucune saison inventés",
+      r.when === undefined, JSON.stringify(r.when));
+    check("la CITATION est celle de l'IATA, mot pour mot", r.source.quote === ATTENDU.quote, r.source.quote);
+    check("l'URL est la page vivante, jamais l'ancienne en 404", r.source.url === ATTENDU.url, r.source.url);
+    check("la provenance est complète et figée : type, langue, dates, confiance",
+      r.source.source_type === ATTENDU.source_type && r.source.quote_language === ATTENDU.quote_language
+        && r.source.verified_date === ATTENDU.verified_date && r.source.review_due === ATTENDU.review_due
+        && r.source.confidence === ATTENDU.confidence,
+      JSON.stringify({ t: r.source.source_type, l: r.source.quote_language, v: r.source.verified_date,
+        d: r.source.review_due, c: r.source.confidence }));
+    for (const [loc, texte] of Object.entries(ATTENDU.textes)) {
+      check(`le texte « ${loc} » du référentiel est exact`, r.detail?.[loc] === texte, r.detail?.[loc]);
+    }
+    check("le référentiel ne porte QUE les quatre langues publiées",
+      JSON.stringify(Object.keys(r.detail ?? {}).sort()) === JSON.stringify(["en", "es", "fr", "pt"]),
+      JSON.stringify(Object.keys(r.detail ?? {})));
+  }
+
+  /* Et ce que le RAPPORT publie, dans les quatre langues — pas seulement ce que le fichier dit. */
+  const kbReel = loadKB();
+  for (const [loc, texte] of Object.entries(ATTENDU.textes)) {
+    const rep = explain(evaluate(kbReel, { origin: "airport_cdg", destination: "airport_bkk",
+      dog: { breed_id: PUG }, travel_type: "pet", placement: "any", date: "2027-07-15", locale: loc }), loc);
+    const a = rep.safety_advisories[0];
+    check(`rapport « ${loc} » : un avis, le bon, avec son texte et sa citation`,
+      rep.safety_advisories.length === 1 && a?.restriction_ref === ATTENDU.id && a?.scope === "global"
+        && a?.text === texte && a?.source.quote === ATTENDU.quote && a?.source.url === ATTENDU.url
+        && JSON.stringify(a?.placements) === JSON.stringify(["cabin", "hold", "cargo"]),
+      JSON.stringify(a));
+  }
+  const golden = explain(evaluate(kbReel, { origin: "airport_cdg", destination: "airport_bkk",
+    dog: { breed_id: GOLDEN }, travel_type: "pet", placement: "any", date: "2027-07-15", locale: "fr" }), "fr");
+  check("un golden retriever ne reçoit AUCUN avis — l'entrée vise le trait, pas tous les chiens",
+    golden.safety_advisories.length === 0, JSON.stringify(golden.safety_advisories));
+}
+
 console.log(`\n${pass} OK, ${fail} FAIL`);
 if (fail > 0) process.exit(1);

@@ -34,8 +34,9 @@
  *              Ce mode SEUL tolère un arbre sale au départ : les outils viennent d'être modifiés.
  */
 import { execFileSync, spawnSync } from "node:child_process";
-import { readFileSync, writeFileSync, unlinkSync, existsSync, symlinkSync } from "node:fs";
+import { readFileSync, writeFileSync, unlinkSync, existsSync } from "node:fs";
 import { tmpdir } from "node:os";
+import { preparerWorktree } from "../../../test-lib/worktree-historique.mjs";
 import { createHash } from "node:crypto";
 import { MESURE_BASE_SHA, MESURE_MOTEUR_SHA, etatDuMoteur } from "./lib-regles.mjs";
 
@@ -194,7 +195,9 @@ function reproduireAuMoteurHistorique() {
   const racine = execFileSync("git", ["rev-parse", "--show-toplevel"], { encoding: "utf8" }).trim();
   execFileSync("git", ["worktree", "add", "--detach", "--quiet", base, MESURE_MOTEUR_SHA]);
   try {
-    symlinkSync(`${racine}/node_modules`, `${base}/node_modules`);
+    /* Le worktree reçoit SON PROPRE `node_modules` : lier celui de la racine ferait résoudre
+       `@mydogcanfly/…` vers les paquets d'AUJOURD'HUI, et le rejeu ne rejouerait plus rien. */
+    preparerWorktree(base, racine);
     for (const o of OUTILS) {
       const r = spawnSync(process.execPath, ["--import", "tsx", `${DOSSIER}/outils/${o}.mjs`, ...(o === "simuler-retrait" ? ["--ecrire-baseline"] : [])],
         { encoding: "utf8", cwd: base });

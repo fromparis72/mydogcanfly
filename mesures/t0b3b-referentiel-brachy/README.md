@@ -57,6 +57,36 @@ recalculés ici sur le référentiel réel, jamais recopiés. Un écart aurait f
 **Aucun canal ne s'ouvre en `allowed`.** Le site cesse d'affirmer un refus qu'il ne peut pas
 prouver ; il n'affirme pas pour autant une acceptation qu'il ne prouverait pas davantage.
 
+## Ce que la première version de ces preuves ne prouvait pas
+
+La mutation était juste ; les garanties ne l'étaient pas. Trois faux verts, tous de la même
+famille — des **formes** et des **cardinalités** vérifiées, jamais des **identités** ni des
+**contenus** :
+
+| ce qui passait au vert | ce qui l'exige maintenant |
+|---|---|
+| modifier `source.reviewer` d'une règle **conservée** | l'après est l'avant **privé des 42**, contenu et ordre, règle par règle |
+| réintroduire Aegean, retirer Air Canada — toujours 42 retraits, mais 540 cartes | **égalité d'ensembles** avec les 42 identités approuvées, lues dans l'artefact scellé de T0-B3-a |
+| réduire l'avis IATA à `["hold"]`, remplacer ses quatre textes, son URL et sa citation | l'entrée réelle est verrouillée **de bout en bout** : identité, portée, canaux, quatre textes, URL, citation, langue, dates, confiance — et l'avis publié dans les quatre langues |
+
+S'y ajoutent les chiffres eux-mêmes, désormais **exigés** et non plus seulement affichés : 20
+verdicts, 524 cartes, 940 placements, score `[0, 2]`, une seule transition possible, les six
+conservées par identité, et 41 auto-citations contre une page IATA.
+
+## Un worktree qui n'était pas isolé
+
+Trouvé en régénérant la baseline « avant ». Un worktree détaché dont on lie simplement
+`node_modules` **n'est pas lui-même** : `node_modules/@mydogcanfly/knowledge` est un lien vers
+`../../packages/knowledge`, résolu depuis **le dépôt principal**. Tout `import "@mydogcanfly/…"`
+exécuté dans le worktree lisait donc le code et les données d'aujourd'hui. La preuve est nette : au
+commit où le registre de race était vide, le rejeu publiait **36 avis**.
+
+Les outils de T0-B3 et T0-B3-a importaient par chemin **relatif** — leurs données venaient bien du
+worktree, et leurs artefacts rejoués octet pour octet le confirment, avant comme après correction.
+Mais la garantie tenait par accident : le moteur d'alors tirait ses fonctions utilitaires du paquet
+`knowledge` d'aujourd'hui. Le worktree reçoit désormais son propre `node_modules`, dont le scope
+`@mydogcanfly` pointe vers **ses** paquets.
+
 ## Une sentinelle posée le 13/08/2026 a joué — et sa prédiction était fausse
 
 `test-tristate-climat.mjs` portait ce commentaire : « quand P0-B requalifiera ces règles, des
@@ -82,7 +112,11 @@ réponse était zéro, la confusion ne se voyait pas. Elle compte désormais ce 
 ## Les baselines figées
 
 `test-baselines/t0b3b-finder-baseline-{avant,apres}.json` scellent les 72 scénarios de part et
-d'autre. Une preuve **permanente** de `test-t0a-baseline.mjs` les compare : exactement 36 scénarios
+d'autre. La projection canonique porte maintenant les **avis de sécurité**, sous forme compacte —
+identité, portée, canaux, URL, citation : un lot futur qui les perdrait, les élargirait ou en
+changerait la citation devra s'en expliquer devant la baseline. L'« avant » a été régénéré **dans
+un worktree détaché au commit d'origine**, jamais édité à la main, et il porte 0 avis — ce qui est
+exactement l'état du registre à ce commit. Une preuve **permanente** de `test-t0a-baseline.mjs` les compare : exactement 36 scénarios
 bougent, ce sont exactement les 36 carlins, aucun golden ne bouge d'un octet, et les 940 bascules
 vont toutes de `denied` vers « à confirmer ». Aucun lot futur ne pourra élargir ce retrait à
 d'autres races sans que cette preuve ne rougisse.

@@ -53,18 +53,89 @@ const exiger = (label, cond, detail = "") => {
 exiger("les fiches (objects.json) sont inchangées",
   sha256(auCommit(RAW.objets)) === sha256(readFileSync(RAW.objets)));
 
+/* ---- LES 42, PAR IDENTITÉ — pas par cardinalité ------------------------------------------------
+ *
+ * La v1 exigeait « 42 règles retirées, de forme `breed_ban / deny hold+cargo` ». Une cardinalité
+ * n'est pas une identité : réintroduire Aegean et retirer Air Canada laissait la mesure verte, à 42
+ * retraits, tout en publiant 540 cartes au lieu de 524 (contre-épreuve de la contre-revue).
+ *
+ * La liste vient de l'ARTEFACT SCELLÉ de T0-B3-a, celui que la contre-revue a validé — pas d'une
+ * constante recopiée ici, qui n'aurait aucune provenance. Cet artefact est lui-même verrouillé par
+ * `mesure:t0b3a` : empreinte SHA-256 et rejeu en worktree au commit d'origine. */
+const ARBITRAGE = JSON.parse(readFileSync("mesures/t0b3a-arbitrage-brachy/arbitrage-p0-brachy.json", "utf8"));
+const IDS_42 = [ARBITRAGE.familles["1_regle_globale_iata"].id,
+  ...ARBITRAGE.familles["2_regles_propres_aux_compagnies"].liste].sort();
+/* Toute entrée manquante dans l'artefact donnerait `undefined` ici, et `undefined` compte pour un
+   élément : on exige donc des identifiants BIEN FORMÉS, pas seulement une cardinalité. */
+exiger("la liste approuvée par T0-B3-a compte 42 identités distinctes et bien formées",
+  IDS_42.length === 42 && new Set(IDS_42).size === 42
+    && IDS_42.every((i) => typeof i === "string" && /^rule_[a-z0-9_]+$/.test(i)),
+  JSON.stringify(IDS_42.filter((i) => typeof i !== "string" || !/^rule_[a-z0-9_]+$/.test(i))));
+
 const idsAvant = new Set(kbAvant.rules.map((r) => r.id));
 const idsApres = new Set(kbApres.rules.map((r) => r.id));
 const retirees = [...idsAvant].filter((i) => !idsApres.has(i)).sort();
 const ajoutees = [...idsApres].filter((i) => !idsAvant.has(i)).sort();
-exiger("exactement 42 règles retirées", retirees.length === 42, String(retirees.length));
-exiger("aucune règle ajoutée ni modifiée", ajoutees.length === 0, ajoutees.join(", "));
+const memeEnsemble = (a, b) => a.length === b.length && a.every((x, i) => x === b[i]);
+exiger("les règles retirées sont EXACTEMENT les 42 approuvées — égalité d'ensembles, pas décompte",
+  memeEnsemble(retirees, IDS_42),
+  `en trop : ${retirees.filter((i) => !IDS_42.includes(i)).join(", ") || "—"} · manquantes : ${IDS_42.filter((i) => !retirees.includes(i)).join(", ") || "—"}`);
+exiger("aucune règle ajoutée", ajoutees.length === 0, ajoutees.join(", "));
+
+/* AUCUNE RÈGLE MODIFIÉE — sur le CONTENU, et dans l'ORDRE. La v1 ne regardait que les
+   identifiants : changer `source.reviewer` d'une règle conservée passait inaperçu (contre-épreuve
+   de la contre-revue). On confronte donc les tableaux BRUTS : l'après doit être, octet pour octet
+   après resérialisation, l'avant privé des 42 — même contenu, même ordre. */
+{
+  const brutAvant = JSON.parse(auCommit(RAW.regles).toString("utf8"));
+  const brutApres = JSON.parse(readFileSync(RAW.regles, "utf8"));
+  const attendu = brutAvant.filter((r) => !IDS_42.includes(r.id));
+  exiger("l'après est l'avant PRIVÉ des 42 : contenu et ordre, règle par règle",
+    JSON.stringify(brutApres) === JSON.stringify(attendu),
+    (() => {
+      const n = Math.min(brutApres.length, attendu.length);
+      for (let i = 0; i < n; i++) {
+        if (JSON.stringify(brutApres[i]) !== JSON.stringify(attendu[i])) return `1er écart : ${attendu[i]?.id ?? "?"} (index ${i})`;
+      }
+      return `longueurs ${brutApres.length} ≠ ${attendu.length}`;
+    })());
+}
+
 exiger("les 42 étaient toutes `breed_ban` et toutes `deny hold+cargo`",
-  retirees.every((i) => {
+  IDS_42.every((i) => {
     const r = kbAvant.rules.find((x) => x.id === i);
-    return r.category === "breed_ban" && r.effect.action === "deny"
+    return r && r.category === "breed_ban" && r.effect.action === "deny"
       && JSON.stringify(r.effect.placement) === JSON.stringify(["hold", "cargo"]);
   }));
+
+/* LEURS SOURCES : 41 auto-citations et une seule page IATA. C'est le fait qui a fondé tout
+   l'arbitrage — le vérifier ici empêche qu'un retrait futur se pare de la même justification. */
+{
+  const hote = (id) => new URL(kbAvant.rules.find((x) => x.id === id).source.url).hostname;
+  const auto = IDS_42.filter((i) => /(^|\.)mydogcanfly\.com$/i.test(hote(i)));
+  const iata = IDS_42.filter((i) => /(^|\.)iata\.org$/i.test(hote(i)));
+  exiger("41 des 42 citaient mydogcanfly.com, et la 42e la page IATA — aucune autre provenance",
+    auto.length === 41 && iata.length === 1 && auto.length + iata.length === 42,
+    JSON.stringify({ auto: auto.length, iata: iata.length }));
+  exiger("la seule citant l'IATA est bien la règle GLOBALE",
+    iata[0] === "rule_global_brachy_hold", iata[0]);
+}
+
+/* LES SIX CONSERVÉES, par identité : ce lot ne retire QUE ce que nous affirmions sans preuve. */
+const SIX_CONSERVEES = ["rule_ac_brachy_hold", "rule_af_brachy_hold", "rule_ba_brachy_hold",
+  "rule_kl_brachy_hold", "rule_lh_brachy_hold", "rule_tk_brachy_hold"];
+{
+  const restantes = kbApres.rules
+    .filter((r) => r.category === "breed_ban" && /brachy/i.test(JSON.stringify(r.applies_when)))
+    .map((r) => r.id).sort();
+  exiger("les interdictions brachycéphales conservées sont EXACTEMENT les six sourcées chez la compagnie",
+    memeEnsemble(restantes, SIX_CONSERVEES), restantes.join(", "));
+  exiger("aucune des six ne cite mydogcanfly.com — elles sont documentées chez la compagnie",
+    SIX_CONSERVEES.every((i) => {
+      const h = new URL(kbApres.rules.find((x) => x.id === i).source.url).hostname;
+      return !/(^|\.)mydogcanfly\.com$/i.test(h);
+    }));
+}
 exiger("le registre de race passe de 0 à 1 entrée",
   kbAvant.breedRestrictions.length === 0 && kbApres.breedRestrictions.length === 1);
 exiger("l'entrée ajoutée est un AVIS (`warn`), jamais un refus",
@@ -144,7 +215,21 @@ const mesurerGrille = (g) => {
 const brachy = mesurerGrille(grilleBrachy);
 const temoin = mesurerGrille(grilleTemoin);
 
-/* ---- LES SIX EXIGENCES, confrontées aux chiffres validés en contre-revue -------------------------- */
+/* ---- LES EXIGENCES, confrontées aux chiffres validés en contre-revue ------------------------------
+   Verrouillés à leurs VALEURS, pas seulement à leur existence. La v1 publiait « 20 verdicts,
+   524 cartes, 940 placements, score 0…+2 » sans jamais les exiger : une dérive du périmètre —
+   Aegean réintroduite, Air Canada retirée, toujours 42 retraits — affichait 540 cartes et
+   972 placements et sortait pourtant en code 0. */
+exiger("grille publique : exactement 20 verdicts déplacés", diff.verdicts === 20, String(diff.verdicts));
+exiger("grille publique : exactement 524 cartes modifiées", diff.cartes === 524, String(diff.cartes));
+exiger("grille publique : exactement 940 placements déplacés", diff.placements === 940, String(diff.placements));
+exiger("grille publique : le score ne bouge que de 0 à +2",
+  JSON.stringify(diff.ecart_score) === JSON.stringify([0, 2]), JSON.stringify(diff.ecart_score));
+/* UNE SEULE transition possible, et rien d'autre : `denied` → « à confirmer ». Un canal qui
+   s'ouvrirait en `allowed` remplacerait une affirmation non prouvée par une autre. */
+exiger("une seule transition sur toute la grille : 940 × `denied` → « à confirmer »",
+  JSON.stringify(bascules) === JSON.stringify({ "denied → confirmation_required": 940 }),
+  JSON.stringify(bascules));
 exiger("81 compagnies brachycéphales déplacées", brachy.compagnies === 81, String(brachy.compagnies));
 exiger("147 placements brachycéphales déplacés", brachy.placements === 147, String(brachy.placements));
 exiger("TOUS vers « à confirmer », aucun vers `allowed` ni `denied`",
@@ -154,9 +239,14 @@ exiger("aucun verdict public ne s'aggrave — le score ne baisse jamais",
   diff.ecart_score[0] >= 0, JSON.stringify(diff.ecart_score));
 exiger("aucun golden retriever affecté sur la grille publique", diff.golden_affecte === 0, String(diff.golden_affecte));
 /* L'avis IATA doit être RÉELLEMENT publié : le retrait sans l'avis serait une perte d'information. */
-exiger("l'avis IATA est publié sur tous les scénarios brachycéphales de la grille publique",
-  diff.scenarios_avec_avis === publique.filter((s) => s.chien === "pug").length,
-  `${diff.scenarios_avec_avis} / ${publique.filter((s) => s.chien === "pug").length}`);
+exiger("l'avis IATA est publié sur les 36 scénarios brachycéphales, et un seul par rapport",
+  diff.scenarios_avec_avis === 36 && diff.avis_emis === 36,
+  JSON.stringify({ scenarios: diff.scenarios_avec_avis, avis: diff.avis_emis }));
+/* Le grain COMPAGNIE de la grille brachycéphale, valeur par valeur lui aussi. */
+exiger("les 147 placements viennent tous de `denied` — soute et fret, jamais la cabine",
+  JSON.stringify(brachy.depuis) === JSON.stringify({
+    "hold denied → confirmation_required": 70, "cargo denied → confirmation_required": 77,
+  }), JSON.stringify(brachy.depuis));
 
 /* ---- L'INTERACTION CLIMAT × RACE, exigée par une sentinelle posée le 13/08/2026 ------------------
    `test-tristate-climat.mjs` annonçait : « quand P0-B requalifiera ces règles, des confirmations
