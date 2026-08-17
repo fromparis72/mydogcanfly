@@ -16,7 +16,10 @@ lieu de « 65 vers `allowed`, 82 vers *à confirmer* », et un écart de score d
 **`npm run mesure:t0b3a` reste une reproduction.** Lorsque l'empreinte des sources du moteur diffère
 de celle de la mesure, les outils — et les **six contre-épreuves** — sont rejoués dans un worktree
 Git détaché au commit qui a produit ces artefacts (`a9a6556…`), puis les artefacts sont comparés
-**octet à octet** à ceux archivés ici. Ce qui n'est plus fait : recalculer sur le moteur actuel, ce
+**octet à octet** à ceux archivés ici. Chaque contre-épreuve doit sortir en **code 1 exact**, sans
+signal, **avec le diagnostic propre à l'invariant qu'elle casse** : un processus tué ou une
+exception précoce ne prouvent rien. Le rejeu refuse par ailleurs de tourner si `package-lock.json`
+a changé depuis la mesure, et consigne la version de Node employée. Ce qui n'est plus fait : recalculer sur le moteur actuel, ce
 qui remplacerait en silence les chiffres d'un arbitrage tranché par une tautologie.
 
 Ce qui n'a **pas** bougé, et ce qui compte : les chiffres de l'option H elle-même. Rejouée sur le

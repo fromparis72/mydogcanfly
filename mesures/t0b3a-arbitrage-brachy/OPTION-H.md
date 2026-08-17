@@ -47,6 +47,42 @@ qu'un contrôle d'intégrité — un fichier intact ne prouve pas qu'un calcul s
 Ce qui est refusé : recalculer sur le moteur actuel. Dans T0-B3-a cela remplacerait les options d'un
 arbitrage tranché par une tautologie, chacune contenant désormais H.
 
+### Le durcissement des preuves — contre-revue du 17/08/2026, second passage
+
+Les six corrections fonctionnelles tenaient, mais deux de leurs **preuves** étaient complaisantes.
+
+**Le harnais ne prouvait pas que la confiance pèse sur le score.** Il écrivait `||` entre « la
+confiance publiée bouge » et « le score bouge » : neutraliser entièrement `confidenceRatio` dans
+`computeScore` laissait le test vert, puisque le ★ bougeait encore. Un `||` entre deux effets
+attendus ne teste que le plus facile des deux. La conjonction est désormais stricte, et la
+cardinalité est prouvée **à part**, sur un montage où elle est la seule variable possible :
+
+| montage | décisions portant la preuve | confiance | score |
+|---|---|---|---|
+| restriction `allow` **globale**, trois canaux | **50** | 3 | **71** |
+| **la même** preuve, une compagnie, un canal | **1** | 3 | **71** |
+| référentiel **sans** elle | 0 | 3 | **72** |
+
+`allow` ne déplaçant aucun statut, le choix, la qualité d'itinéraire et les pénalités sont
+identiques dans les trois : l'écart ne peut venir que de la confiance. Les deux premières lignes
+prouvent qu'elle ne compte **qu'une fois** ; la troisième, qu'elle compte **bien**. Retirer la
+déduplication fait rougir la première épreuve ; mettre `confidenceRatio = 0` fait rougir les deux
+autres.
+
+**Les contre-épreuves acceptaient un crash pour une réussite.** Elles ne vérifiaient que
+`status !== 0` : un processus tué, une erreur d'import, une exception levée *avant* l'assertion
+visée — tout cela « prouvait » que le simulateur savait échouer. Chacune exige maintenant le code 1
+**exact**, l'absence de signal, un **fragment de diagnostic propre à l'invariant cassé**, et le bon
+**mode** d'échec — aller au bout et refuser ses exigences, ou refuser le référentiel au chargement.
+Fausser un fragment ou intervertir un mode fait échouer la reproduction.
+
+**Le worktree historique montait les dépendances actuelles.** Le rejeu ne rejouait donc pas
+l'environnement d'alors ; cela ne tenait que parce que les deux lockfiles se trouvaient identiques.
+Le rejeu est désormais **refusé** si `package-lock.json` a bougé depuis le commit de la mesure —
+plutôt que de monter les modules du jour sans le dire — et la version de Node utilisée est
+**consignée** et confrontée au `.nvmrc` historique, en plancher de version comme partout dans ce
+dépôt. Altérer le lockfile fait échouer le rejeu avec les deux empreintes en clair.
+
 ### Les six points de la contre-revue du 17/08/2026
 
 | # | défaut | correction |

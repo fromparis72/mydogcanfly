@@ -115,6 +115,52 @@ if (!moteur.conforme) {
 
 
 
+
+/* ---- L'ENVIRONNEMENT DU REJEU -------------------------------------------------------------------
+ *
+ * Un worktree au bon commit ne suffit pas : les dépendances et le moteur Node en font partie. La
+ * v1 montait les `node_modules` COURANTS dans le worktree historique — cela fonctionnait parce que
+ * les deux lockfiles se trouvaient identiques, mais la première mise à niveau de dépendance aurait
+ * silencieusement transformé le rejeu en « mesure sur d'autres bibliothèques ».
+ *
+ * On refuse donc de rejouer si le lockfile a bougé, plutôt que de monter les modules actuels sans
+ * le dire. Et la version de Node est CONSIGNÉE et confrontée au `.nvmrc` du commit historique —
+ * plancher de version, comme partout dans ce dépôt, pas égalité stricte. */
+function verifierEnvironnementDuRejeu() {
+  const auCommit = (chemin) => {
+    try {
+      return execFileSync("git", ["show", `${MESURE_MOTEUR_SHA}:${chemin}`],
+        { maxBuffer: 256 * 1024 * 1024, stdio: ["ignore", "pipe", "ignore"] });
+    } catch { return null; }
+  };
+  const lockHist = auCommit("package-lock.json");
+  if (!lockHist) {
+    echouer(`package-lock.json introuvable au commit ${MESURE_MOTEUR_SHA.slice(0, 7)} — rejeu impossible`);
+  }
+  const lockCourant = readFileSync("package-lock.json");
+  if (sha256(lockHist) !== sha256(lockCourant)) {
+    echouer(`les dépendances ont changé depuis la mesure : le rejeu utiliserait D'AUTRES `
+      + `bibliothèques que celles qui ont produit ces chiffres.\n`
+      + `  package-lock.json au ${MESURE_MOTEUR_SHA.slice(0, 7)} : ${sha256(lockHist).slice(0, 12)}\n`
+      + `  package-lock.json actuel                  : ${sha256(lockCourant).slice(0, 12)}\n`
+      + `Rejouer depuis un « npm ci » à ce commit, ou déclarer une nouvelle base de mesure.`);
+  }
+  /* `.nvmrc` déclare un PLANCHER (voir scripts/lib/require-node.mjs) : même majeure, version au
+     moins égale. Exiger l'égalité stricte serait plus dur que le contrat du dépôt lui-même. */
+  const nvmrc = (auCommit(".nvmrc") ?? Buffer.from("")).toString("utf8").trim();
+  const num = (v) => v.replace(/^v/, "").split(".").map(Number);
+  const [majH, minH, patH] = num(nvmrc || "0.0.0");
+  const [maj, min, pat] = num(process.version);
+  const conforme = nvmrc
+    ? maj === majH && (min > minH || (min === minH && pat >= patH))
+    : true;
+  if (!conforme) {
+    echouer(`Node ${process.version} ne satisfait pas le contrat du commit historique `
+      + `(.nvmrc ${nvmrc}, plancher sur la majeure ${majH}) — le rejeu tournerait sur un autre moteur.`);
+  }
+  return { node: process.version, nvmrc: nvmrc || "(absent)", lock: sha256(lockCourant).slice(0, 12) };
+}
+
 /* ---- REPRODUCTION DANS UN WORKTREE HISTORIQUE ---------------------------------------------------
  *
  * Quand le moteur a changé, rejouer les outils SUR PLACE donnerait d'autres chiffres : ce ne serait
@@ -129,6 +175,9 @@ if (!moteur.conforme) {
  * Seuls les JSON sont comparés : les `.md` sont écrits à la main et ont légitimement évolué depuis.
  */
 function reproduireAuMoteurHistorique() {
+  const env = verifierEnvironnementDuRejeu();
+  dire(`1quater/4 environnement du rejeu : Node ${env.node} (.nvmrc historique ${env.nvmrc}), `
+    + `lockfile ${env.lock} identique à celui de la mesure`);
   const base = `${tmpdir()}/mdcf-mesure-t0b3-${process.pid}`;
   const racine = execFileSync("git", ["rev-parse", "--show-toplevel"], { encoding: "utf8" }).trim();
   execFileSync("git", ["worktree", "add", "--detach", "--quiet", base, MESURE_MOTEUR_SHA]);
