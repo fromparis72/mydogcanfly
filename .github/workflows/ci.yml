@@ -29,6 +29,15 @@ permissions:
 #
 # Node 22 partout : un build Astro complet sous Node 24.18.0 échoue après plusieurs milliers de
 # pages sur un ENOENT dans dist/chunks/, sans jamais mentionner Node (constaté le 11/08/2026).
+#
+# DEUX NODE, À NE PAS CONFONDRE — la ligne ci-dessus parle du Node DU PROJET, installé depuis
+# `.nvmrc` par setup-node, et c'est lui qui exécute build, harnais et scripts. Les actions, elles,
+# tournent dans un Node choisi par LEURS auteurs (`runs.using` dans leur `action.yml`). Le 16/08/2026
+# le runner écrivait : « Node.js 20 is deprecated. The following actions target Node.js 20 but are
+# being forced to run on Node.js 24 » — checkout et setup-node tournaient donc déjà sous un Node que
+# leur code n'avait jamais vu, sans que rien ne rougisse. Les deux sont passées en v7 (`using:
+# node24`) le 17/08/2026. Le Node du projet reste 22.22.2 : ce changement ne le touche pas.
+# `.github/actions-epinglees.json` fige ce qui a été mesuré, `check-actions-node.mjs` le fait tenir.
 
 # CE QUI EST VÉRIFIÉ SUR UNE PULL REQUEST N'EST PAS LE SOMMET DE LA BRANCHE. `actions/checkout`
 # extrait par défaut, pour l'événement `pull_request`, le commit de FUSION synthétique entre la tête
@@ -53,13 +62,19 @@ jobs:
     timeout-minutes: 30
 
     steps:
-      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4.4.0
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
 
       - name: Node 22 (depuis .nvmrc)
-        uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4.4.0
+        uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020 # v7.0.0
         with:
           node-version-file: .nvmrc
           cache: npm
+
+      # Le seul contrôle du lot qui ne lise pas le site : il relit ce workflow. Chaque `uses:` doit
+      # être épinglé sur un SHA complet, déclaré au manifeste avec le runtime relevé dans son
+      # `action.yml`, et ce runtime doit être supporté. Sans réseau, donc sans aléa.
+      - name: Actions épinglées sur un runtime supporté
+        run: node packages/knowledge/scripts/check-actions-node.mjs
 
       # `npm ci` et non `npm install` : installation reproductible, à partir du seul lockfile.
       # C'est aussi ce qui rend obligatoire la déclaration de jsdom en devDependency — en tant que
