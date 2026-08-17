@@ -1,0 +1,1569 @@
+{
+ "lot": "T0-B3-e — ce que le site montre, et dans quelle langue",
+ "nature": "mesure seule : aucune règle retirée, aucun texte réécrit, aucun fichier de packages/ écrit",
+ "sceau": {
+  "measurement_base_sha": "34b04cd8fe9ec9c60d41a34e28f48908699127c5",
+  "raw_rules_sha256": "c87313aba29c6f69354cbd9d073a306801071cfbb86ea3d6991cc49a8497537c",
+  "moteur_sha256": "1b093a7c39c694199d52256c15251a0d0d8b79b46dd07f7430c1dec6ec85a2ba",
+  "chemin_de_publication_sha256": "925a62050c7ae1658ead51ab9080f2df52d2e4a55851186518ba7abd32878fa5",
+  "date_de_voyage": "2027-01-15",
+  "date_de_voyage_origine": "dérivée du commit de base, jamais de l'horloge"
+ },
+ "methode": {
+  "principe": "la partition n'est pas déduite de `explain.ts` : elle est récoltée sur la grille EXHAUSTIVE des couples de pays que le référentiel sait relier.",
+  "pays_reliables": 108,
+  "passes_du_moteur": 11556,
+  "aucun_echantillon": true
+ },
+ "corpus": {
+  "total": 407,
+  "par_categorie": {
+   "cabin_weight": 54,
+   "placement": 105,
+   "breed_ban": 17,
+   "summer_embargo": 6,
+   "import_rules": 182,
+   "hold_weight": 42,
+   "vaccination": 1
+  }
+ },
+ "ce_qui_atteint_un_lecteur": {
+  "regles_atteignant_le_rapport": 148,
+  "categories_atteignant_un_lecteur": [
+   "import_rules",
+   "vaccination"
+  ],
+  "hors_import_rules": {
+   "rule_jp_import": "règle d'entrée du Japon (MAFF) classée `vaccination` et non `import_rules` : son identifiant dit ce qu'elle est, sa catégorie le contredit."
+  },
+  "regles_n_atteignant_jamais": 259,
+  "dont_import_rules_non_atteintes": 35,
+  "detail_non_atteintes": [
+   {
+    "id": "rule_am_import",
+    "pays": "country_am",
+    "motif": "aucun aéroport dans ce pays : le référentiel ne sait pas y router"
+   },
+   {
+    "id": "rule_ao_import",
+    "pays": "country_ao",
+    "motif": "aucun aéroport dans ce pays : le référentiel ne sait pas y router"
+   },
+   {
+    "id": "rule_ba_import",
+    "pays": "country_ba",
+    "motif": "aucun aéroport dans ce pays : le référentiel ne sait pas y router"
+   },
+   {
+    "id": "rule_bf_import",
+    "pays": "country_bf",
+    "motif": "aucun aéroport dans ce pays : le référentiel ne sait pas y router"
+   },
+   {
+    "id": "rule_bj_import",
+    "pays": "country_bj",
+    "motif": "aucun aéroport dans ce pays : le référentiel ne sait pas y router"
+   },
+   {
+    "id": "rule_by_import",
+    "pays": "country_by",
+    "motif": "aucun aéroport dans ce pays : le référentiel ne sait pas y router"
+   },
+   {
+    "id": "rule_cd_import",
+    "pays": "country_cd",
+    "motif": "aucun aéroport dans ce pays : le référentiel ne sait pas y router"
+   },
+   {
+    "id": "rule_cg_import",
+    "pays": "country_cg",
+    "motif": "aucun aéroport dans ce pays : le référentiel ne sait pas y router"
+   },
+   {
+    "id": "rule_cm_import",
+    "pays": "country_cm",
+    "motif": "aucun aéroport dans ce pays : le référentiel ne sait pas y router"
+   },
+   {
+    "id": "rule_dj_import",
+    "pays": "country_dj",
+    "motif": "aucun aéroport dans ce pays : le référentiel ne sait pas y router"
+   },
+   {
+    "id": "rule_ga_import",
+    "pays": "country_ga",
+    "motif": "aucun aéroport dans ce pays : le référentiel ne sait pas y router"
+   },
+   {
+    "id": "rule_gm_import",
+    "pays": "country_gm",
+    "motif": "aucun aéroport dans ce pays : le référentiel ne sait pas y router"
+   },
+   {
+    "id": "rule_gn_import",
+    "pays": "country_gn",
+    "motif": "aucun aéroport dans ce pays : le référentiel ne sait pas y router"
+   },
+   {
+    "id": "rule_gt_import",
+    "pays": "country_gt",
+    "motif": "aucun aéroport dans ce pays : le référentiel ne sait pas y router"
+   },
+   {
+    "id": "rule_hn_import",
+    "pays": "country_hn",
+    "motif": "aucun aéroport dans ce pays : le référentiel ne sait pas y router"
+   },
+   {
+    "id": "rule_ir_import",
+    "pays": "country_ir",
+    "motif": "aucun aéroport dans ce pays : le référentiel ne sait pas y router"
+   },
+   {
+    "id": "rule_li_import",
+    "pays": "country_li",
+    "motif": "aucun aéroport dans ce pays : le référentiel ne sait pas y router"
+   },
+   {
+    "id": "rule_li_import_low_risk",
+    "pays": "country_li",
+    "motif": "aucun aéroport dans ce pays : le référentiel ne sait pas y router"
+   },
+   {
+    "id": "rule_li_import_high_risk",
+    "pays": "country_li",
+    "motif": "aucun aéroport dans ce pays : le référentiel ne sait pas y router"
+   },
+   {
+    "id": "rule_md_import",
+    "pays": "country_md",
+    "motif": "aucun aéroport dans ce pays : le référentiel ne sait pas y router"
+   },
+   {
+    "id": "rule_mk_import",
+    "pays": "country_mk",
+    "motif": "aucun aéroport dans ce pays : le référentiel ne sait pas y router"
+   },
+   {
+    "id": "rule_ml_import",
+    "pays": "country_ml",
+    "motif": "aucun aéroport dans ce pays : le référentiel ne sait pas y router"
+   },
+   {
+    "id": "rule_mm_import",
+    "pays": "country_mm",
+    "motif": "aucun aéroport dans ce pays : le référentiel ne sait pas y router"
+   },
+   {
+    "id": "rule_mn_import",
+    "pays": "country_mn",
+    "motif": "aucun aéroport dans ce pays : le référentiel ne sait pas y router"
+   },
+   {
+    "id": "rule_mr_import",
+    "pays": "country_mr",
+    "motif": "aucun aéroport dans ce pays : le référentiel ne sait pas y router"
+   },
+   {
+    "id": "rule_ne_import",
+    "pays": "country_ne",
+    "motif": "aucun aéroport dans ce pays : le référentiel ne sait pas y router"
+   },
+   {
+    "id": "rule_ni_import",
+    "pays": "country_ni",
+    "motif": "aucun aéroport dans ce pays : le référentiel ne sait pas y router"
+   },
+   {
+    "id": "rule_sl_import",
+    "pays": "country_sl",
+    "motif": "aucun aéroport dans ce pays : le référentiel ne sait pas y router"
+   },
+   {
+    "id": "rule_sv_import",
+    "pays": "country_sv",
+    "motif": "aucun aéroport dans ce pays : le référentiel ne sait pas y router"
+   },
+   {
+    "id": "rule_td_import",
+    "pays": "country_td",
+    "motif": "aucun aéroport dans ce pays : le référentiel ne sait pas y router"
+   },
+   {
+    "id": "rule_tg_import",
+    "pays": "country_tg",
+    "motif": "aucun aéroport dans ce pays : le référentiel ne sait pas y router"
+   },
+   {
+    "id": "rule_tt_import",
+    "pays": "country_tt",
+    "motif": "aucun aéroport dans ce pays : le référentiel ne sait pas y router"
+   },
+   {
+    "id": "rule_us_hnl_animal_quarantine",
+    "pays": "country_us",
+    "motif": "conditions non satisfaites par un couple de pays de la grille"
+   },
+   {
+    "id": "rule_ve_import",
+    "pays": "country_ve",
+    "motif": "aucun aéroport dans ce pays : le référentiel ne sait pas y router"
+   },
+   {
+    "id": "rule_xk_import",
+    "pays": "country_xk",
+    "motif": "aucun aéroport dans ce pays : le référentiel ne sait pas y router"
+   }
+  ],
+  "lecture": "Les seules phrases du référentiel qu'un lecteur puisse voir sont des exigences d'entrée de pays, servies comme « conditions » du rapport. Tout le reste — poids, placement, races, embargos de chaleur — décide de ce que le site affirme sans jamais montrer sur quoi il se fonde. La catégorie ne suffit pas à le dire : `rule_jp_import` atteint le lecteur en étant classée `vaccination`, et 35 `import_rules` n'atteignent personne."
+ },
+ "la_langue": {
+  "par_langue": {
+   "en": {
+    "servies": 148,
+    "identiques_a_l_anglais": 0
+   },
+   "fr": {
+    "servies": 148,
+    "identiques_a_l_anglais": 0
+   },
+   "es": {
+    "servies": 148,
+    "identiques_a_l_anglais": 118
+   },
+   "pt": {
+    "servies": 148,
+    "identiques_a_l_anglais": 148
+   }
+  },
+  "lecture": "Mesuré dans le RAPPORT, pas dans la donnée : le texte renvoyé est comparé à celui renvoyé en anglais pour le même couple. Le portugais reçoit l'anglais pour la totalité des règles atteintes ; l'espagnol pour la plupart. Sur la seule prose que le site montre, et qui porte sur les conditions légales d'entrée d'un animal.",
+  "detail": [
+   {
+    "id": "rule_ae_import",
+    "pays": "country_ae",
+    "temoin": "country_al → country_ae",
+    "en_anglais": [
+     "es",
+     "pt"
+    ]
+   },
+   {
+    "id": "rule_al_import",
+    "pays": "country_al",
+    "temoin": "country_ae → country_al",
+    "en_anglais": [
+     "es",
+     "pt"
+    ]
+   },
+   {
+    "id": "rule_ar_import",
+    "pays": "country_ar",
+    "temoin": "country_ae → country_ar",
+    "en_anglais": [
+     "es",
+     "pt"
+    ]
+   },
+   {
+    "id": "rule_at_import",
+    "pays": "country_at",
+    "temoin": "country_be → country_at",
+    "en_anglais": [
+     "es",
+     "pt"
+    ]
+   },
+   {
+    "id": "rule_at_import_non_eu",
+    "pays": "country_at",
+    "temoin": "country_ae → country_at",
+    "en_anglais": [
+     "es",
+     "pt"
+    ]
+   },
+   {
+    "id": "rule_at_import_returning_eu",
+    "pays": "country_at",
+    "temoin": "country_ae → country_at",
+    "en_anglais": [
+     "pt"
+    ]
+   },
+   {
+    "id": "rule_au_import",
+    "pays": "country_au",
+    "temoin": "country_ae → country_au",
+    "en_anglais": [
+     "es",
+     "pt"
+    ]
+   },
+   {
+    "id": "rule_az_import",
+    "pays": "country_az",
+    "temoin": "country_ae → country_az",
+    "en_anglais": [
+     "es",
+     "pt"
+    ]
+   },
+   {
+    "id": "rule_bd_import",
+    "pays": "country_bd",
+    "temoin": "country_ae → country_bd",
+    "en_anglais": [
+     "es",
+     "pt"
+    ]
+   },
+   {
+    "id": "rule_be_import",
+    "pays": "country_be",
+    "temoin": "country_at → country_be",
+    "en_anglais": [
+     "es",
+     "pt"
+    ]
+   },
+   {
+    "id": "rule_be_import_non_eu",
+    "pays": "country_be",
+    "temoin": "country_ae → country_be",
+    "en_anglais": [
+     "es",
+     "pt"
+    ]
+   },
+   {
+    "id": "rule_be_import_returning_eu",
+    "pays": "country_be",
+    "temoin": "country_ae → country_be",
+    "en_anglais": [
+     "pt"
+    ]
+   },
+   {
+    "id": "rule_bg_import",
+    "pays": "country_bg",
+    "temoin": "country_at → country_bg",
+    "en_anglais": [
+     "es",
+     "pt"
+    ]
+   },
+   {
+    "id": "rule_bg_import_non_eu",
+    "pays": "country_bg",
+    "temoin": "country_ae → country_bg",
+    "en_anglais": [
+     "es",
+     "pt"
+    ]
+   },
+   {
+    "id": "rule_bg_import_returning_eu",
+    "pays": "country_bg",
+    "temoin": "country_ae → country_bg",
+    "en_anglais": [
+     "pt"
+    ]
+   },
+   {
+    "id": "rule_bo_import",
+    "pays": "country_bo",
+    "temoin": "country_ae → country_bo",
+    "en_anglais": [
+     "es",
+     "pt"
+    ]
+   },
+   {
+    "id": "rule_br_import",
+    "pays": "country_br",
+    "temoin": "country_ae → country_br",
+    "en_anglais": [
+     "es",
+     "pt"
+    ]
+   },
+   {
+    "id": "rule_ca_import",
+    "pays": "country_ca",
+    "temoin": "country_ae → country_ca",
+    "en_anglais": [
+     "es",
+     "pt"
+    ]
+   },
+   {
+    "id": "rule_ch_import",
+    "pays": "country_ch",
+    "temoin": "country_at → country_ch",
+    "en_anglais": [
+     "es",
+     "pt"
+    ]
+   },
+   {
+    "id": "rule_ch_import_low_risk",
+    "pays": "country_ch",
+    "temoin": "country_ae → country_ch",
+    "en_anglais": [
+     "pt"
+    ]
+   },
+   {
+    "id": "rule_ch_import_high_risk",
+    "pays": "country_ch",
+    "temoin": "country_al → country_ch",
+    "en_anglais": [
+     "pt"
+    ]
+   },
+   {
+    "id": "rule_cl_import",
+    "pays": "country_cl",
+    "temoin": "country_ae → country_cl",
+    "en_anglais": [
+     "es",
+     "pt"
+    ]
+   },
+   {
+    "id": "rule_cn_import",
+    "pays": "country_cn",
+    "temoin": "country_ae → country_cn",
+    "en_anglais": [
+     "es",
+     "pt"
+    ]
+   },
+   {
+    "id": "rule_co_import",
+    "pays": "country_co",
+    "temoin": "country_ae → country_co",
+    "en_anglais": [
+     "es",
+     "pt"
+    ]
+   },
+   {
+    "id": "rule_cr_import",
+    "pays": "country_cr",
+    "temoin": "country_ae → country_cr",
+    "en_anglais": [
+     "es",
+     "pt"
+    ]
+   },
+   {
+    "id": "rule_cu_import",
+    "pays": "country_cu",
+    "temoin": "country_ae → country_cu",
+    "en_anglais": [
+     "es",
+     "pt"
+    ]
+   },
+   {
+    "id": "rule_cv_import",
+    "pays": "country_cv",
+    "temoin": "country_ae → country_cv",
+    "en_anglais": [
+     "es",
+     "pt"
+    ]
+   },
+   {
+    "id": "rule_cy_import",
+    "pays": "country_cy",
+    "temoin": "country_at → country_cy",
+    "en_anglais": [
+     "es",
+     "pt"
+    ]
+   },
+   {
+    "id": "rule_cy_import_non_eu",
+    "pays": "country_cy",
+    "temoin": "country_ae → country_cy",
+    "en_anglais": [
+     "es",
+     "pt"
+    ]
+   },
+   {
+    "id": "rule_cy_import_returning_eu",
+    "pays": "country_cy",
+    "temoin": "country_ae → country_cy",
+    "en_anglais": [
+     "pt"
+    ]
+   },
+   {
+    "id": "rule_cz_import",
+    "pays": "country_cz",
+    "temoin": "country_at → country_cz",
+    "en_anglais": [
+     "es",
+     "pt"
+    ]
+   },
+   {
+    "id": "rule_cz_import_non_eu",
+    "pays": "country_cz",
+    "temoin": "country_ae → country_cz",
+    "en_anglais": [
+     "es",
+     "pt"
+    ]
+   },
+   {
+    "id": "rule_cz_import_returning_eu",
+    "pays": "country_cz",
+    "temoin": "country_ae → country_cz",
+    "en_anglais": [
+     "pt"
+    ]
+   },
+   {
+    "id": "rule_de_import",
+    "pays": "country_de",
+    "temoin": "country_at → country_de",
+    "en_anglais": [
+     "es",
+     "pt"
+    ]
+   },
+   {
+    "id": "rule_de_import_non_eu",
+    "pays": "country_de",
+    "temoin": "country_ae → country_de",
+    "en_anglais": [
+     "es",
+     "pt"
+    ]
+   },
+   {
+    "id": "rule_de_import_returning_eu",
+    "pays": "country_de",
+    "temoin": "country_ae → country_de",
+    "en_anglais": [
+     "pt"
+    ]
+   },
+   {
+    "id": "rule_dk_import",
+    "pays": "country_dk",
+    "temoin": "country_at → country_dk",
+    "en_anglais": [
+     "es",
+     "pt"
+    ]
+   },
+   {
+    "id": "rule_dk_import_non_eu",
+    "pays": "country_dk",
+    "temoin": "country_ae → country_dk",
+    "en_anglais": [
+     "es",
+     "pt"
+    ]
+   },
+   {
+    "id": "rule_dk_import_returning_eu",
+    "pays": "country_dk",
+    "temoin": "country_ae → country_dk",
+    "en_anglais": [
+     "pt"
+    ]
+   },
+   {
+    "id": "rule_do_import",
+    "pays": "country_do",
+    "temoin": "country_ae → country_do",
+    "en_anglais": [
+     "es",
+     "pt"
+    ]
+   },
+   {
+    "id": "rule_dz_import",
+    "pays": "country_dz",
+    "temoin": "country_ae → country_dz",
+    "en_anglais": [
+     "es",
+     "pt"
+    ]
+   },
+   {
+    "id": "rule_ee_import",
+    "pays": "country_ee",
+    "temoin": "country_at → country_ee",
+    "en_anglais": [
+     "es",
+     "pt"
+    ]
+   },
+   {
+    "id": "rule_ee_import_non_eu",
+    "pays": "country_ee",
+    "temoin": "country_ae → country_ee",
+    "en_anglais": [
+     "es",
+     "pt"
+    ]
+   },
+   {
+    "id": "rule_ee_import_returning_eu",
+    "pays": "country_ee",
+    "temoin": "country_ae → country_ee",
+    "en_anglais": [
+     "pt"
+    ]
+   },
+   {
+    "id": "rule_eg_import",
+    "pays": "country_eg",
+    "temoin": "country_ae → country_eg",
+    "en_anglais": [
+     "es",
+     "pt"
+    ]
+   },
+   {
+    "id": "rule_es_import",
+    "pays": "country_es",
+    "temoin": "country_at → country_es",
+    "en_anglais": [
+     "es",
+     "pt"
+    ]
+   },
+   {
+    "id": "rule_es_import_non_eu",
+    "pays": "country_es",
+    "temoin": "country_ae → country_es",
+    "en_anglais": [
+     "es",
+     "pt"
+    ]
+   },
+   {
+    "id": "rule_es_import_returning_eu",
+    "pays": "country_es",
+    "temoin": "country_ae → country_es",
+    "en_anglais": [
+     "pt"
+    ]
+   },
+   {
+    "id": "rule_fi_import",
+    "pays": "country_fi",
+    "temoin": "country_at → country_fi",
+    "en_anglais": [
+     "es",
+     "pt"
+    ]
+   },
+   {
+    "id": "rule_fi_import_non_eu",
+    "pays": "country_fi",
+    "temoin": "country_ae → country_fi",
+    "en_anglais": [
+     "es",
+     "pt"
+    ]
+   },
+   {
+    "id": "rule_fi_import_returning_eu",
+    "pays": "country_fi",
+    "temoin": "country_ae → country_fi",
+    "en_anglais": [
+     "pt"
+    ]
+   },
+   {
+    "id": "rule_fr_import",
+    "pays": "country_fr",
+    "temoin": "country_at → country_fr",
+    "en_anglais": [
+     "es",
+     "pt"
+    ]
+   },
+   {
+    "id": "rule_fr_import_non_eu",
+    "pays": "country_fr",
+    "temoin": "country_ae → country_fr",
+    "en_anglais": [
+     "es",
+     "pt"
+    ]
+   },
+   {
+    "id": "rule_fr_import_returning_eu",
+    "pays": "country_fr",
+    "temoin": "country_ae → country_fr",
+    "en_anglais": [
+     "pt"
+    ]
+   },
+   {
+    "id": "rule_gb_import",
+    "pays": "country_gb",
+    "temoin": "country_ae → country_gb",
+    "en_anglais": [
+     "es",
+     "pt"
+    ]
+   },
+   {
+    "id": "rule_ge_import",
+    "pays": "country_ge",
+    "temoin": "country_ae → country_ge",
+    "en_anglais": [
+     "es",
+     "pt"
+    ]
+   },
+   {
+    "id": "rule_gr_import",
+    "pays": "country_gr",
+    "temoin": "country_at → country_gr",
+    "en_anglais": [
+     "es",
+     "pt"
+    ]
+   },
+   {
+    "id": "rule_gr_import_non_eu",
+    "pays": "country_gr",
+    "temoin": "country_ae → country_gr",
+    "en_anglais": [
+     "es",
+     "pt"
+    ]
+   },
+   {
+    "id": "rule_gr_import_returning_eu",
+    "pays": "country_gr",
+    "temoin": "country_ae → country_gr",
+    "en_anglais": [
+     "pt"
+    ]
+   },
+   {
+    "id": "rule_hk_import",
+    "pays": "country_hk",
+    "temoin": "country_ae → country_hk",
+    "en_anglais": [
+     "es",
+     "pt"
+    ]
+   },
+   {
+    "id": "rule_hr_import",
+    "pays": "country_hr",
+    "temoin": "country_at → country_hr",
+    "en_anglais": [
+     "es",
+     "pt"
+    ]
+   },
+   {
+    "id": "rule_hr_import_non_eu",
+    "pays": "country_hr",
+    "temoin": "country_ae → country_hr",
+    "en_anglais": [
+     "es",
+     "pt"
+    ]
+   },
+   {
+    "id": "rule_hr_import_returning_eu",
+    "pays": "country_hr",
+    "temoin": "country_ae → country_hr",
+    "en_anglais": [
+     "pt"
+    ]
+   },
+   {
+    "id": "rule_hu_import",
+    "pays": "country_hu",
+    "temoin": "country_at → country_hu",
+    "en_anglais": [
+     "es",
+     "pt"
+    ]
+   },
+   {
+    "id": "rule_hu_import_non_eu",
+    "pays": "country_hu",
+    "temoin": "country_ae → country_hu",
+    "en_anglais": [
+     "es",
+     "pt"
+    ]
+   },
+   {
+    "id": "rule_hu_import_returning_eu",
+    "pays": "country_hu",
+    "temoin": "country_ae → country_hu",
+    "en_anglais": [
+     "pt"
+    ]
+   },
+   {
+    "id": "rule_id_import",
+    "pays": "country_id",
+    "temoin": "country_ae → country_id",
+    "en_anglais": [
+     "es",
+     "pt"
+    ]
+   },
+   {
+    "id": "rule_ie_import",
+    "pays": "country_ie",
+    "temoin": "country_at → country_ie",
+    "en_anglais": [
+     "es",
+     "pt"
+    ]
+   },
+   {
+    "id": "rule_ie_import_non_eu",
+    "pays": "country_ie",
+    "temoin": "country_ae → country_ie",
+    "en_anglais": [
+     "es",
+     "pt"
+    ]
+   },
+   {
+    "id": "rule_ie_import_returning_eu",
+    "pays": "country_ie",
+    "temoin": "country_ae → country_ie",
+    "en_anglais": [
+     "pt"
+    ]
+   },
+   {
+    "id": "rule_il_import",
+    "pays": "country_il",
+    "temoin": "country_ae → country_il",
+    "en_anglais": [
+     "es",
+     "pt"
+    ]
+   },
+   {
+    "id": "rule_in_import",
+    "pays": "country_in",
+    "temoin": "country_ae → country_in",
+    "en_anglais": [
+     "es",
+     "pt"
+    ]
+   },
+   {
+    "id": "rule_iq_import",
+    "pays": "country_iq",
+    "temoin": "country_ae → country_iq",
+    "en_anglais": [
+     "es",
+     "pt"
+    ]
+   },
+   {
+    "id": "rule_is_import",
+    "pays": "country_is",
+    "temoin": "country_ae → country_is",
+    "en_anglais": [
+     "es",
+     "pt"
+    ]
+   },
+   {
+    "id": "rule_it_import",
+    "pays": "country_it",
+    "temoin": "country_at → country_it",
+    "en_anglais": [
+     "es",
+     "pt"
+    ]
+   },
+   {
+    "id": "rule_it_import_non_eu",
+    "pays": "country_it",
+    "temoin": "country_ae → country_it",
+    "en_anglais": [
+     "es",
+     "pt"
+    ]
+   },
+   {
+    "id": "rule_it_import_returning_eu",
+    "pays": "country_it",
+    "temoin": "country_ae → country_it",
+    "en_anglais": [
+     "pt"
+    ]
+   },
+   {
+    "id": "rule_jo_import",
+    "pays": "country_jo",
+    "temoin": "country_ae → country_jo",
+    "en_anglais": [
+     "es",
+     "pt"
+    ]
+   },
+   {
+    "id": "rule_jp_import",
+    "pays": "country_jp",
+    "temoin": "country_ae → country_jp",
+    "en_anglais": [
+     "es",
+     "pt"
+    ]
+   },
+   {
+    "id": "rule_ke_import",
+    "pays": "country_ke",
+    "temoin": "country_ae → country_ke",
+    "en_anglais": [
+     "es",
+     "pt"
+    ]
+   },
+   {
+    "id": "rule_kh_import",
+    "pays": "country_kh",
+    "temoin": "country_ae → country_kh",
+    "en_anglais": [
+     "es",
+     "pt"
+    ]
+   },
+   {
+    "id": "rule_kr_import",
+    "pays": "country_kr",
+    "temoin": "country_ae → country_kr",
+    "en_anglais": [
+     "es",
+     "pt"
+    ]
+   },
+   {
+    "id": "rule_kz_import",
+    "pays": "country_kz",
+    "temoin": "country_ae → country_kz",
+    "en_anglais": [
+     "es",
+     "pt"
+    ]
+   },
+   {
+    "id": "rule_lk_import",
+    "pays": "country_lk",
+    "temoin": "country_ae → country_lk",
+    "en_anglais": [
+     "es",
+     "pt"
+    ]
+   },
+   {
+    "id": "rule_lt_import",
+    "pays": "country_lt",
+    "temoin": "country_at → country_lt",
+    "en_anglais": [
+     "es",
+     "pt"
+    ]
+   },
+   {
+    "id": "rule_lt_import_non_eu",
+    "pays": "country_lt",
+    "temoin": "country_ae → country_lt",
+    "en_anglais": [
+     "es",
+     "pt"
+    ]
+   },
+   {
+    "id": "rule_lt_import_returning_eu",
+    "pays": "country_lt",
+    "temoin": "country_ae → country_lt",
+    "en_anglais": [
+     "pt"
+    ]
+   },
+   {
+    "id": "rule_lu_import",
+    "pays": "country_lu",
+    "temoin": "country_at → country_lu",
+    "en_anglais": [
+     "es",
+     "pt"
+    ]
+   },
+   {
+    "id": "rule_lu_import_non_eu",
+    "pays": "country_lu",
+    "temoin": "country_ae → country_lu",
+    "en_anglais": [
+     "es",
+     "pt"
+    ]
+   },
+   {
+    "id": "rule_lu_import_returning_eu",
+    "pays": "country_lu",
+    "temoin": "country_ae → country_lu",
+    "en_anglais": [
+     "pt"
+    ]
+   },
+   {
+    "id": "rule_lv_import",
+    "pays": "country_lv",
+    "temoin": "country_at → country_lv",
+    "en_anglais": [
+     "es",
+     "pt"
+    ]
+   },
+   {
+    "id": "rule_lv_import_non_eu",
+    "pays": "country_lv",
+    "temoin": "country_ae → country_lv",
+    "en_anglais": [
+     "es",
+     "pt"
+    ]
+   },
+   {
+    "id": "rule_lv_import_returning_eu",
+    "pays": "country_lv",
+    "temoin": "country_ae → country_lv",
+    "en_anglais": [
+     "pt"
+    ]
+   },
+   {
+    "id": "rule_ma_import",
+    "pays": "country_ma",
+    "temoin": "country_ae → country_ma",
+    "en_anglais": [
+     "es",
+     "pt"
+    ]
+   },
+   {
+    "id": "rule_me_import",
+    "pays": "country_me",
+    "temoin": "country_ae → country_me",
+    "en_anglais": [
+     "es",
+     "pt"
+    ]
+   },
+   {
+    "id": "rule_mt_import",
+    "pays": "country_mt",
+    "temoin": "country_at → country_mt",
+    "en_anglais": [
+     "es",
+     "pt"
+    ]
+   },
+   {
+    "id": "rule_mt_import_non_eu",
+    "pays": "country_mt",
+    "temoin": "country_ae → country_mt",
+    "en_anglais": [
+     "es",
+     "pt"
+    ]
+   },
+   {
+    "id": "rule_mt_import_returning_eu",
+    "pays": "country_mt",
+    "temoin": "country_ae → country_mt",
+    "en_anglais": [
+     "pt"
+    ]
+   },
+   {
+    "id": "rule_mu_import",
+    "pays": "country_mu",
+    "temoin": "country_ae → country_mu",
+    "en_anglais": [
+     "es",
+     "pt"
+    ]
+   },
+   {
+    "id": "rule_mx_import_other",
+    "pays": "country_mx",
+    "temoin": "country_ae → country_mx",
+    "en_anglais": [
+     "es",
+     "pt"
+    ]
+   },
+   {
+    "id": "rule_mx_import_us_ca",
+    "pays": "country_mx",
+    "temoin": "country_ca → country_mx",
+    "en_anglais": [
+     "es",
+     "pt"
+    ]
+   },
+   {
+    "id": "rule_my_import",
+    "pays": "country_my",
+    "temoin": "country_ae → country_my",
+    "en_anglais": [
+     "es",
+     "pt"
+    ]
+   },
+   {
+    "id": "rule_mz_import",
+    "pays": "country_mz",
+    "temoin": "country_ae → country_mz",
+    "en_anglais": [
+     "es",
+     "pt"
+    ]
+   },
+   {
+    "id": "rule_nl_import",
+    "pays": "country_nl",
+    "temoin": "country_at → country_nl",
+    "en_anglais": [
+     "es",
+     "pt"
+    ]
+   },
+   {
+    "id": "rule_nl_import_non_eu",
+    "pays": "country_nl",
+    "temoin": "country_ae → country_nl",
+    "en_anglais": [
+     "es",
+     "pt"
+    ]
+   },
+   {
+    "id": "rule_nl_import_returning_eu",
+    "pays": "country_nl",
+    "temoin": "country_ae → country_nl",
+    "en_anglais": [
+     "pt"
+    ]
+   },
+   {
+    "id": "rule_no_import",
+    "pays": "country_no",
+    "temoin": "country_at → country_no",
+    "en_anglais": [
+     "es",
+     "pt"
+    ]
+   },
+   {
+    "id": "rule_no_import_non_eea",
+    "pays": "country_no",
+    "temoin": "country_ae → country_no",
+    "en_anglais": [
+     "pt"
+    ]
+   },
+   {
+    "id": "rule_nz_import",
+    "pays": "country_nz",
+    "temoin": "country_ae → country_nz",
+    "en_anglais": [
+     "es",
+     "pt"
+    ]
+   },
+   {
+    "id": "rule_pa_import",
+    "pays": "country_pa",
+    "temoin": "country_ae → country_pa",
+    "en_anglais": [
+     "es",
+     "pt"
+    ]
+   },
+   {
+    "id": "rule_pe_import",
+    "pays": "country_pe",
+    "temoin": "country_ae → country_pe",
+    "en_anglais": [
+     "es",
+     "pt"
+    ]
+   },
+   {
+    "id": "rule_ph_import",
+    "pays": "country_ph",
+    "temoin": "country_ae → country_ph",
+    "en_anglais": [
+     "es",
+     "pt"
+    ]
+   },
+   {
+    "id": "rule_pk_import",
+    "pays": "country_pk",
+    "temoin": "country_ae → country_pk",
+    "en_anglais": [
+     "es",
+     "pt"
+    ]
+   },
+   {
+    "id": "rule_pl_import",
+    "pays": "country_pl",
+    "temoin": "country_at → country_pl",
+    "en_anglais": [
+     "es",
+     "pt"
+    ]
+   },
+   {
+    "id": "rule_pl_import_non_eu",
+    "pays": "country_pl",
+    "temoin": "country_ae → country_pl",
+    "en_anglais": [
+     "es",
+     "pt"
+    ]
+   },
+   {
+    "id": "rule_pl_import_returning_eu",
+    "pays": "country_pl",
+    "temoin": "country_ae → country_pl",
+    "en_anglais": [
+     "pt"
+    ]
+   },
+   {
+    "id": "rule_pt_import",
+    "pays": "country_pt",
+    "temoin": "country_at → country_pt",
+    "en_anglais": [
+     "es",
+     "pt"
+    ]
+   },
+   {
+    "id": "rule_pt_import_non_eu",
+    "pays": "country_pt",
+    "temoin": "country_ae → country_pt",
+    "en_anglais": [
+     "es",
+     "pt"
+    ]
+   },
+   {
+    "id": "rule_pt_import_returning_eu",
+    "pays": "country_pt",
+    "temoin": "country_ae → country_pt",
+    "en_anglais": [
+     "pt"
+    ]
+   },
+   {
+    "id": "rule_py_import",
+    "pays": "country_py",
+    "temoin": "country_ae → country_py",
+    "en_anglais": [
+     "es",
+     "pt"
+    ]
+   },
+   {
+    "id": "rule_qa_import",
+    "pays": "country_qa",
+    "temoin": "country_ae → country_qa",
+    "en_anglais": [
+     "es",
+     "pt"
+    ]
+   },
+   {
+    "id": "rule_ro_import",
+    "pays": "country_ro",
+    "temoin": "country_at → country_ro",
+    "en_anglais": [
+     "es",
+     "pt"
+    ]
+   },
+   {
+    "id": "rule_ro_import_non_eu",
+    "pays": "country_ro",
+    "temoin": "country_ae → country_ro",
+    "en_anglais": [
+     "es",
+     "pt"
+    ]
+   },
+   {
+    "id": "rule_ro_import_returning_eu",
+    "pays": "country_ro",
+    "temoin": "country_ae → country_ro",
+    "en_anglais": [
+     "pt"
+    ]
+   },
+   {
+    "id": "rule_rs_import",
+    "pays": "country_rs",
+    "temoin": "country_ae → country_rs",
+    "en_anglais": [
+     "es",
+     "pt"
+    ]
+   },
+   {
+    "id": "rule_rw_import",
+    "pays": "country_rw",
+    "temoin": "country_ae → country_rw",
+    "en_anglais": [
+     "es",
+     "pt"
+    ]
+   },
+   {
+    "id": "rule_sa_import",
+    "pays": "country_sa",
+    "temoin": "country_ae → country_sa",
+    "en_anglais": [
+     "es",
+     "pt"
+    ]
+   },
+   {
+    "id": "rule_se_import",
+    "pays": "country_se",
+    "temoin": "country_at → country_se",
+    "en_anglais": [
+     "es",
+     "pt"
+    ]
+   },
+   {
+    "id": "rule_se_import_non_eu",
+    "pays": "country_se",
+    "temoin": "country_ae → country_se",
+    "en_anglais": [
+     "es",
+     "pt"
+    ]
+   },
+   {
+    "id": "rule_se_import_returning_eu",
+    "pays": "country_se",
+    "temoin": "country_ae → country_se",
+    "en_anglais": [
+     "pt"
+    ]
+   },
+   {
+    "id": "rule_sg_import",
+    "pays": "country_sg",
+    "temoin": "country_ae → country_sg",
+    "en_anglais": [
+     "es",
+     "pt"
+    ]
+   },
+   {
+    "id": "rule_si_import",
+    "pays": "country_si",
+    "temoin": "country_at → country_si",
+    "en_anglais": [
+     "es",
+     "pt"
+    ]
+   },
+   {
+    "id": "rule_si_import_non_eu",
+    "pays": "country_si",
+    "temoin": "country_ae → country_si",
+    "en_anglais": [
+     "es",
+     "pt"
+    ]
+   },
+   {
+    "id": "rule_si_import_returning_eu",
+    "pays": "country_si",
+    "temoin": "country_ae → country_si",
+    "en_anglais": [
+     "pt"
+    ]
+   },
+   {
+    "id": "rule_sk_import",
+    "pays": "country_sk",
+    "temoin": "country_at → country_sk",
+    "en_anglais": [
+     "es",
+     "pt"
+    ]
+   },
+   {
+    "id": "rule_sk_import_non_eu",
+    "pays": "country_sk",
+    "temoin": "country_ae → country_sk",
+    "en_anglais": [
+     "es",
+     "pt"
+    ]
+   },
+   {
+    "id": "rule_sk_import_returning_eu",
+    "pays": "country_sk",
+    "temoin": "country_ae → country_sk",
+    "en_anglais": [
+     "pt"
+    ]
+   },
+   {
+    "id": "rule_sn_import",
+    "pays": "country_sn",
+    "temoin": "country_ae → country_sn",
+    "en_anglais": [
+     "es",
+     "pt"
+    ]
+   },
+   {
+    "id": "rule_th_import",
+    "pays": "country_th",
+    "temoin": "country_ae → country_th",
+    "en_anglais": [
+     "es",
+     "pt"
+    ]
+   },
+   {
+    "id": "rule_tn_import",
+    "pays": "country_tn",
+    "temoin": "country_ae → country_tn",
+    "en_anglais": [
+     "es",
+     "pt"
+    ]
+   },
+   {
+    "id": "rule_tr_import",
+    "pays": "country_tr",
+    "temoin": "country_ae → country_tr",
+    "en_anglais": [
+     "es",
+     "pt"
+    ]
+   },
+   {
+    "id": "rule_tw_import",
+    "pays": "country_tw",
+    "temoin": "country_ae → country_tw",
+    "en_anglais": [
+     "es",
+     "pt"
+    ]
+   },
+   {
+    "id": "rule_tz_import",
+    "pays": "country_tz",
+    "temoin": "country_ae → country_tz",
+    "en_anglais": [
+     "es",
+     "pt"
+    ]
+   },
+   {
+    "id": "rule_ua_import",
+    "pays": "country_ua",
+    "temoin": "country_ae → country_ua",
+    "en_anglais": [
+     "es",
+     "pt"
+    ]
+   },
+   {
+    "id": "rule_ug_import",
+    "pays": "country_ug",
+    "temoin": "country_ae → country_ug",
+    "en_anglais": [
+     "es",
+     "pt"
+    ]
+   },
+   {
+    "id": "rule_us_import",
+    "pays": "country_us",
+    "temoin": "country_ae → country_us",
+    "en_anglais": [
+     "es",
+     "pt"
+    ]
+   },
+   {
+    "id": "rule_vn_import",
+    "pays": "country_vn",
+    "temoin": "country_ae → country_vn",
+    "en_anglais": [
+     "es",
+     "pt"
+    ]
+   },
+   {
+    "id": "rule_za_import",
+    "pays": "country_za",
+    "temoin": "country_ae → country_za",
+    "en_anglais": [
+     "es",
+     "pt"
+    ]
+   }
+  ]
+ },
+ "le_repli_mort_mais_arme": {
+  "importeurs_de_EntityPage": [
+   "packages/ui/src/components/EntityDetail.astro"
+  ],
+  "compagnies_sans_fiche": 0,
+  "pays_sans_guide": 0,
+  "pages_construites": 2957,
+  "pages_rendues_par_le_repli": 0,
+  "lecture": "Le seul bloc du site capable de publier une rationale est dans un composant que rien n'atteint : 102 compagnies sur 102 ont une fiche, 140 pays sur 140 ont un guide. Il n'est donc ni rendu, ni exercé par un harnais — et une seule entité ajoutée sans sa fiche le mettrait en production, publiant d'un coup des textes que personne n'a relus pour l'affichage. Ce n'est pas du code mort : c'est du code armé."
+ },
+ "les_sources": {
+  "parmi_les_publiees": {
+   "total": 148,
+   "auto_citees": 13,
+   "citent_un_tiers": 135
+  },
+  "parmi_les_jamais_publiees": {
+   "total": 259,
+   "auto_citees": 117,
+   "citent_un_tiers": 142
+  },
+  "lecture": "Les règles auto-citées le sont autant sur ce que le site montre que sur ce qu'il tait : la dette de sourcing n'est pas cantonnée à l'invisible."
+ },
+ "exigences_tenues": true
+}
