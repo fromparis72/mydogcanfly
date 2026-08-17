@@ -1,0 +1,1391 @@
+{
+ "lot": "T0-B3-c — les 34 seuils de soute auto-cités",
+ "nature": "mesure seule : aucune règle retirée, aucun seuil déplacé, aucun fichier de packages/ écrit",
+ "sceau": {
+  "measurement_base_sha": "ff692b2d2a446f069c965b5901021150fab44d83",
+  "raw_rules_sha256": "c87313aba29c6f69354cbd9d073a306801071cfbb86ea3d6991cc49a8497537c",
+  "raw_objects_sha256": "dca1706134b188fa569f7172fa2ccfcff8c81b131e554326cb5d1c47b65ffef0",
+  "moteur_sha256": "1b093a7c39c694199d52256c15251a0d0d8b79b46dd07f7430c1dec6ec85a2ba"
+ },
+ "perimetre": {
+  "seuils_de_soute_au_total": 42,
+  "auto_cites": 34,
+  "non_auto_cites": 8,
+  "compagnies": [
+   "airline_aegean",
+   "airline_aeromexico",
+   "airline_air_algerie",
+   "airline_air_caraibes",
+   "airline_air_europa",
+   "airline_air_france",
+   "airline_air_india",
+   "airline_air_transat",
+   "airline_alaska",
+   "airline_ana",
+   "airline_avianca",
+   "airline_brussels",
+   "airline_china_airlines",
+   "airline_corsair",
+   "airline_ethiopian",
+   "airline_eva_air",
+   "airline_finnair",
+   "airline_french_bee",
+   "airline_iberia",
+   "airline_ita_airways",
+   "airline_jal",
+   "airline_klm",
+   "airline_korean_air",
+   "airline_latam",
+   "airline_norwegian",
+   "airline_philippine",
+   "airline_qatar_airways",
+   "airline_royal_air_maroc",
+   "airline_sas",
+   "airline_singapore_airlines",
+   "airline_tap",
+   "airline_thai_airways",
+   "airline_vietnam_airlines",
+   "airline_westjet"
+  ]
+ },
+ "ecart_central": {
+  "question": "ce que la règle DIT vs ce qu'elle MESURE",
+  "rationales_decrivant_chien_plus_caisse": 34,
+  "conditions_mesurant_le_chien_seul": 34,
+  "faits_de_poids_disponibles_dans_le_moteur": [
+   "dog.weight_kg"
+  ],
+  "poids_de_caisse_dans_le_referentiel": null,
+  "sens_de_l_ecart": "PERMISSIF : la limite citée couvre le chien ET sa caisse ; la condition ne pèse que le chien. Le site ouvre donc la soute à des chiens que la limite citée exclut, d'une marge égale au poids de la caisse — quantité que le référentiel ne détient pas.",
+  "detail": [
+   {
+    "id": "rule_aegean_hold_weight",
+    "compagnie": "airline_aegean",
+    "seuil_kg": 32,
+    "condition": {
+     "fait": "dog.weight_kg",
+     "op": "gt",
+     "valeur": 32
+    },
+    "rationale": "As accompanied baggage the combined dog + crate must not exceed about 32 kg; heavier dogs travel via cargo.",
+    "la_source_dit_chien_plus_caisse": true,
+    "la_condition_mesure_le_chien_seul": true
+   },
+   {
+    "id": "rule_aeromexico_hold_weight",
+    "compagnie": "airline_aeromexico",
+    "seuil_kg": 45,
+    "condition": {
+     "fait": "dog.weight_kg",
+     "op": "gt",
+     "valeur": 45
+    },
+    "rationale": "As accompanied baggage the combined dog + crate must not exceed about 45 kg; heavier dogs travel via cargo.",
+    "la_source_dit_chien_plus_caisse": true,
+    "la_condition_mesure_le_chien_seul": true
+   },
+   {
+    "id": "rule_air_algerie_hold_weight",
+    "compagnie": "airline_air_algerie",
+    "seuil_kg": 32,
+    "condition": {
+     "fait": "dog.weight_kg",
+     "op": "gt",
+     "valeur": 32
+    },
+    "rationale": "As accompanied baggage the combined dog + crate must not exceed about 32 kg; heavier dogs travel via cargo.",
+    "la_source_dit_chien_plus_caisse": true,
+    "la_condition_mesure_le_chien_seul": true
+   },
+   {
+    "id": "rule_air_caraibes_hold_weight",
+    "compagnie": "airline_air_caraibes",
+    "seuil_kg": 75,
+    "condition": {
+     "fait": "dog.weight_kg",
+     "op": "gt",
+     "valeur": 75
+    },
+    "rationale": "As accompanied baggage the combined dog + crate must not exceed about 75 kg; heavier dogs travel via cargo.",
+    "la_source_dit_chien_plus_caisse": true,
+    "la_condition_mesure_le_chien_seul": true
+   },
+   {
+    "id": "rule_air_europa_hold_weight",
+    "compagnie": "airline_air_europa",
+    "seuil_kg": 50,
+    "condition": {
+     "fait": "dog.weight_kg",
+     "op": "gt",
+     "valeur": 50
+    },
+    "rationale": "As accompanied baggage the combined dog + crate must not exceed about 50 kg; heavier dogs travel via cargo.",
+    "la_source_dit_chien_plus_caisse": true,
+    "la_condition_mesure_le_chien_seul": true
+   },
+   {
+    "id": "rule_air_france_hold_weight",
+    "compagnie": "airline_air_france",
+    "seuil_kg": 75,
+    "condition": {
+     "fait": "dog.weight_kg",
+     "op": "gt",
+     "valeur": 75
+    },
+    "rationale": "As accompanied baggage the combined dog + crate must not exceed about 75 kg; heavier dogs travel via cargo.",
+    "la_source_dit_chien_plus_caisse": true,
+    "la_condition_mesure_le_chien_seul": true
+   },
+   {
+    "id": "rule_air_india_hold_weight",
+    "compagnie": "airline_air_india",
+    "seuil_kg": 32,
+    "condition": {
+     "fait": "dog.weight_kg",
+     "op": "gt",
+     "valeur": 32
+    },
+    "rationale": "As accompanied baggage the combined dog + crate must not exceed about 32 kg; heavier dogs travel via cargo.",
+    "la_source_dit_chien_plus_caisse": true,
+    "la_condition_mesure_le_chien_seul": true
+   },
+   {
+    "id": "rule_air_transat_hold_weight",
+    "compagnie": "airline_air_transat",
+    "seuil_kg": 45,
+    "condition": {
+     "fait": "dog.weight_kg",
+     "op": "gt",
+     "valeur": 45
+    },
+    "rationale": "As accompanied baggage the combined dog + crate must not exceed about 45 kg; heavier dogs travel via cargo.",
+    "la_source_dit_chien_plus_caisse": true,
+    "la_condition_mesure_le_chien_seul": true
+   },
+   {
+    "id": "rule_alaska_hold_weight",
+    "compagnie": "airline_alaska",
+    "seuil_kg": 68,
+    "condition": {
+     "fait": "dog.weight_kg",
+     "op": "gt",
+     "valeur": 68
+    },
+    "rationale": "As accompanied baggage the combined dog + crate must not exceed about 68 kg; heavier dogs travel via cargo.",
+    "la_source_dit_chien_plus_caisse": true,
+    "la_condition_mesure_le_chien_seul": true
+   },
+   {
+    "id": "rule_ana_hold_weight",
+    "compagnie": "airline_ana",
+    "seuil_kg": 45,
+    "condition": {
+     "fait": "dog.weight_kg",
+     "op": "gt",
+     "valeur": 45
+    },
+    "rationale": "As accompanied baggage the combined dog + crate must not exceed about 45 kg; heavier dogs travel via cargo.",
+    "la_source_dit_chien_plus_caisse": true,
+    "la_condition_mesure_le_chien_seul": true
+   },
+   {
+    "id": "rule_avianca_hold_weight",
+    "compagnie": "airline_avianca",
+    "seuil_kg": 70,
+    "condition": {
+     "fait": "dog.weight_kg",
+     "op": "gt",
+     "valeur": 70
+    },
+    "rationale": "As accompanied baggage the combined dog + crate must not exceed about 70 kg; heavier dogs travel via cargo.",
+    "la_source_dit_chien_plus_caisse": true,
+    "la_condition_mesure_le_chien_seul": true
+   },
+   {
+    "id": "rule_brussels_hold_weight",
+    "compagnie": "airline_brussels",
+    "seuil_kg": 20,
+    "condition": {
+     "fait": "dog.weight_kg",
+     "op": "gt",
+     "valeur": 20
+    },
+    "rationale": "As accompanied baggage the combined dog + crate must not exceed about 20 kg; heavier dogs travel via cargo.",
+    "la_source_dit_chien_plus_caisse": true,
+    "la_condition_mesure_le_chien_seul": true
+   },
+   {
+    "id": "rule_china_airlines_hold_weight",
+    "compagnie": "airline_china_airlines",
+    "seuil_kg": 45,
+    "condition": {
+     "fait": "dog.weight_kg",
+     "op": "gt",
+     "valeur": 45
+    },
+    "rationale": "As accompanied baggage the combined dog + crate must not exceed about 45 kg; heavier dogs travel via cargo.",
+    "la_source_dit_chien_plus_caisse": true,
+    "la_condition_mesure_le_chien_seul": true
+   },
+   {
+    "id": "rule_corsair_hold_weight",
+    "compagnie": "airline_corsair",
+    "seuil_kg": 50,
+    "condition": {
+     "fait": "dog.weight_kg",
+     "op": "gt",
+     "valeur": 50
+    },
+    "rationale": "As accompanied baggage the combined dog + crate must not exceed about 50 kg; heavier dogs travel via cargo.",
+    "la_source_dit_chien_plus_caisse": true,
+    "la_condition_mesure_le_chien_seul": true
+   },
+   {
+    "id": "rule_ethiopian_hold_weight",
+    "compagnie": "airline_ethiopian",
+    "seuil_kg": 45,
+    "condition": {
+     "fait": "dog.weight_kg",
+     "op": "gt",
+     "valeur": 45
+    },
+    "rationale": "As accompanied baggage the combined dog + crate must not exceed about 45 kg; heavier dogs travel via cargo.",
+    "la_source_dit_chien_plus_caisse": true,
+    "la_condition_mesure_le_chien_seul": true
+   },
+   {
+    "id": "rule_eva_air_hold_weight",
+    "compagnie": "airline_eva_air",
+    "seuil_kg": 32,
+    "condition": {
+     "fait": "dog.weight_kg",
+     "op": "gt",
+     "valeur": 32
+    },
+    "rationale": "As accompanied baggage the combined dog + crate must not exceed about 32 kg; heavier dogs travel via cargo.",
+    "la_source_dit_chien_plus_caisse": true,
+    "la_condition_mesure_le_chien_seul": true
+   },
+   {
+    "id": "rule_finnair_hold_weight",
+    "compagnie": "airline_finnair",
+    "seuil_kg": 75,
+    "condition": {
+     "fait": "dog.weight_kg",
+     "op": "gt",
+     "valeur": 75
+    },
+    "rationale": "As accompanied baggage the combined dog + crate must not exceed about 75 kg; heavier dogs travel via cargo.",
+    "la_source_dit_chien_plus_caisse": true,
+    "la_condition_mesure_le_chien_seul": true
+   },
+   {
+    "id": "rule_french_bee_hold_weight",
+    "compagnie": "airline_french_bee",
+    "seuil_kg": 75,
+    "condition": {
+     "fait": "dog.weight_kg",
+     "op": "gt",
+     "valeur": 75
+    },
+    "rationale": "As accompanied baggage the combined dog + crate must not exceed about 75 kg; heavier dogs travel via cargo.",
+    "la_source_dit_chien_plus_caisse": true,
+    "la_condition_mesure_le_chien_seul": true
+   },
+   {
+    "id": "rule_iberia_hold_weight",
+    "compagnie": "airline_iberia",
+    "seuil_kg": 45,
+    "condition": {
+     "fait": "dog.weight_kg",
+     "op": "gt",
+     "valeur": 45
+    },
+    "rationale": "As accompanied baggage the combined dog + crate must not exceed about 45 kg; heavier dogs travel via cargo.",
+    "la_source_dit_chien_plus_caisse": true,
+    "la_condition_mesure_le_chien_seul": true
+   },
+   {
+    "id": "rule_ita_airways_hold_weight",
+    "compagnie": "airline_ita_airways",
+    "seuil_kg": 75,
+    "condition": {
+     "fait": "dog.weight_kg",
+     "op": "gt",
+     "valeur": 75
+    },
+    "rationale": "As accompanied baggage the combined dog + crate must not exceed about 75 kg; heavier dogs travel via cargo.",
+    "la_source_dit_chien_plus_caisse": true,
+    "la_condition_mesure_le_chien_seul": true
+   },
+   {
+    "id": "rule_jal_hold_weight",
+    "compagnie": "airline_jal",
+    "seuil_kg": 32,
+    "condition": {
+     "fait": "dog.weight_kg",
+     "op": "gt",
+     "valeur": 32
+    },
+    "rationale": "As accompanied baggage the combined dog + crate must not exceed about 32 kg; heavier dogs travel via cargo.",
+    "la_source_dit_chien_plus_caisse": true,
+    "la_condition_mesure_le_chien_seul": true
+   },
+   {
+    "id": "rule_klm_hold_weight",
+    "compagnie": "airline_klm",
+    "seuil_kg": 75,
+    "condition": {
+     "fait": "dog.weight_kg",
+     "op": "gt",
+     "valeur": 75
+    },
+    "rationale": "As accompanied baggage the combined dog + crate must not exceed about 75 kg; heavier dogs travel via cargo.",
+    "la_source_dit_chien_plus_caisse": true,
+    "la_condition_mesure_le_chien_seul": true
+   },
+   {
+    "id": "rule_korean_air_hold_weight",
+    "compagnie": "airline_korean_air",
+    "seuil_kg": 45,
+    "condition": {
+     "fait": "dog.weight_kg",
+     "op": "gt",
+     "valeur": 45
+    },
+    "rationale": "As accompanied baggage the combined dog + crate must not exceed about 45 kg; heavier dogs travel via cargo.",
+    "la_source_dit_chien_plus_caisse": true,
+    "la_condition_mesure_le_chien_seul": true
+   },
+   {
+    "id": "rule_latam_hold_weight",
+    "compagnie": "airline_latam",
+    "seuil_kg": 45,
+    "condition": {
+     "fait": "dog.weight_kg",
+     "op": "gt",
+     "valeur": 45
+    },
+    "rationale": "As accompanied baggage the combined dog + crate must not exceed about 45 kg; heavier dogs travel via cargo.",
+    "la_source_dit_chien_plus_caisse": true,
+    "la_condition_mesure_le_chien_seul": true
+   },
+   {
+    "id": "rule_norwegian_hold_weight",
+    "compagnie": "airline_norwegian",
+    "seuil_kg": 14,
+    "condition": {
+     "fait": "dog.weight_kg",
+     "op": "gt",
+     "valeur": 14
+    },
+    "rationale": "As accompanied baggage the combined dog + crate must not exceed about 14 kg; heavier dogs travel via cargo.",
+    "la_source_dit_chien_plus_caisse": true,
+    "la_condition_mesure_le_chien_seul": true
+   },
+   {
+    "id": "rule_philippine_hold_weight",
+    "compagnie": "airline_philippine",
+    "seuil_kg": 32,
+    "condition": {
+     "fait": "dog.weight_kg",
+     "op": "gt",
+     "valeur": 32
+    },
+    "rationale": "As accompanied baggage the combined dog + crate must not exceed about 32 kg; heavier dogs travel via cargo.",
+    "la_source_dit_chien_plus_caisse": true,
+    "la_condition_mesure_le_chien_seul": true
+   },
+   {
+    "id": "rule_qatar_airways_hold_weight",
+    "compagnie": "airline_qatar_airways",
+    "seuil_kg": 75,
+    "condition": {
+     "fait": "dog.weight_kg",
+     "op": "gt",
+     "valeur": 75
+    },
+    "rationale": "As accompanied baggage the combined dog + crate must not exceed about 75 kg; heavier dogs travel via cargo.",
+    "la_source_dit_chien_plus_caisse": true,
+    "la_condition_mesure_le_chien_seul": true
+   },
+   {
+    "id": "rule_royal_air_maroc_hold_weight",
+    "compagnie": "airline_royal_air_maroc",
+    "seuil_kg": 70,
+    "condition": {
+     "fait": "dog.weight_kg",
+     "op": "gt",
+     "valeur": 70
+    },
+    "rationale": "As accompanied baggage the combined dog + crate must not exceed about 70 kg; heavier dogs travel via cargo.",
+    "la_source_dit_chien_plus_caisse": true,
+    "la_condition_mesure_le_chien_seul": true
+   },
+   {
+    "id": "rule_sas_hold_weight",
+    "compagnie": "airline_sas",
+    "seuil_kg": 50,
+    "condition": {
+     "fait": "dog.weight_kg",
+     "op": "gt",
+     "valeur": 50
+    },
+    "rationale": "As accompanied baggage the combined dog + crate must not exceed about 50 kg; heavier dogs travel via cargo.",
+    "la_source_dit_chien_plus_caisse": true,
+    "la_condition_mesure_le_chien_seul": true
+   },
+   {
+    "id": "rule_singapore_airlines_hold_weight",
+    "compagnie": "airline_singapore_airlines",
+    "seuil_kg": 32,
+    "condition": {
+     "fait": "dog.weight_kg",
+     "op": "gt",
+     "valeur": 32
+    },
+    "rationale": "As accompanied baggage the combined dog + crate must not exceed about 32 kg; heavier dogs travel via cargo.",
+    "la_source_dit_chien_plus_caisse": true,
+    "la_condition_mesure_le_chien_seul": true
+   },
+   {
+    "id": "rule_tap_hold_weight",
+    "compagnie": "airline_tap",
+    "seuil_kg": 45,
+    "condition": {
+     "fait": "dog.weight_kg",
+     "op": "gt",
+     "valeur": 45
+    },
+    "rationale": "As accompanied baggage the combined dog + crate must not exceed about 45 kg; heavier dogs travel via cargo.",
+    "la_source_dit_chien_plus_caisse": true,
+    "la_condition_mesure_le_chien_seul": true
+   },
+   {
+    "id": "rule_thai_airways_hold_weight",
+    "compagnie": "airline_thai_airways",
+    "seuil_kg": 32,
+    "condition": {
+     "fait": "dog.weight_kg",
+     "op": "gt",
+     "valeur": 32
+    },
+    "rationale": "As accompanied baggage the combined dog + crate must not exceed about 32 kg; heavier dogs travel via cargo.",
+    "la_source_dit_chien_plus_caisse": true,
+    "la_condition_mesure_le_chien_seul": true
+   },
+   {
+    "id": "rule_vietnam_airlines_hold_weight",
+    "compagnie": "airline_vietnam_airlines",
+    "seuil_kg": 32,
+    "condition": {
+     "fait": "dog.weight_kg",
+     "op": "gt",
+     "valeur": 32
+    },
+    "rationale": "As accompanied baggage the combined dog + crate must not exceed about 32 kg; heavier dogs travel via cargo.",
+    "la_source_dit_chien_plus_caisse": true,
+    "la_condition_mesure_le_chien_seul": true
+   },
+   {
+    "id": "rule_westjet_hold_weight",
+    "compagnie": "airline_westjet",
+    "seuil_kg": 45,
+    "condition": {
+     "fait": "dog.weight_kg",
+     "op": "gt",
+     "valeur": 45
+    },
+    "rationale": "As accompanied baggage the combined dog + crate must not exceed about 45 kg; heavier dogs travel via cargo.",
+    "la_source_dit_chien_plus_caisse": true,
+    "la_condition_mesure_le_chien_seul": true
+   }
+  ]
+ },
+ "second_ecart": {
+  "question": "six règles ferment le fret en disant que le fret est la solution",
+  "ferment_soute_seule": 28,
+  "ferment_soute_et_fret": 6,
+  "lecture": "La rationale est la même pour les 34 : « heavier dogs travel via cargo ». Pour ces six-là, un seuil faux ne déplace pas le chien vers le fret — il lui ferme la dernière porte, et le texte affiché lui conseille pourtant d'y aller.",
+  "detail": [
+   {
+    "id": "rule_air_europa_hold_weight",
+    "compagnie": "airline_air_europa",
+    "seuil_kg": 50,
+    "rationale_renvoie_au_fret": true
+   },
+   {
+    "id": "rule_air_transat_hold_weight",
+    "compagnie": "airline_air_transat",
+    "seuil_kg": 45,
+    "rationale_renvoie_au_fret": true
+   },
+   {
+    "id": "rule_alaska_hold_weight",
+    "compagnie": "airline_alaska",
+    "seuil_kg": 68,
+    "rationale_renvoie_au_fret": true
+   },
+   {
+    "id": "rule_brussels_hold_weight",
+    "compagnie": "airline_brussels",
+    "seuil_kg": 20,
+    "rationale_renvoie_au_fret": true
+   },
+   {
+    "id": "rule_tap_hold_weight",
+    "compagnie": "airline_tap",
+    "seuil_kg": 45,
+    "rationale_renvoie_au_fret": true
+   },
+   {
+    "id": "rule_westjet_hold_weight",
+    "compagnie": "airline_westjet",
+    "seuil_kg": 45,
+    "rationale_renvoie_au_fret": true
+   }
+  ]
+ },
+ "la_fiche": {
+  "fiches_sans_seuil_de_soute": 34,
+  "lecture": "La règle est SEULE à porter le seuil : aucune fiche n'en publie. Son retrait ne révélerait donc aucune limite de repli.",
+  "detail": [
+   {
+    "compagnie": "airline_aegean",
+    "seuil_regle": 32,
+    "seuil_fiche": null,
+    "statut_fiche": "allowed",
+    "source_fiche": "https://en.aegeanair.com/"
+   },
+   {
+    "compagnie": "airline_aeromexico",
+    "seuil_regle": 45,
+    "seuil_fiche": null,
+    "statut_fiche": "allowed",
+    "source_fiche": "https://www.aeromexico.com"
+   },
+   {
+    "compagnie": "airline_air_algerie",
+    "seuil_regle": 32,
+    "seuil_fiche": null,
+    "statut_fiche": "allowed",
+    "source_fiche": "https://www.airalgerie.dz"
+   },
+   {
+    "compagnie": "airline_air_caraibes",
+    "seuil_regle": 75,
+    "seuil_fiche": null,
+    "statut_fiche": "allowed",
+    "source_fiche": "https://www.aircaraibes.com"
+   },
+   {
+    "compagnie": "airline_air_europa",
+    "seuil_regle": 50,
+    "seuil_fiche": null,
+    "statut_fiche": "allowed",
+    "source_fiche": "https://www.aireuropa.com"
+   },
+   {
+    "compagnie": "airline_air_france",
+    "seuil_regle": 75,
+    "seuil_fiche": null,
+    "statut_fiche": "allowed",
+    "source_fiche": "https://wwws.airfrance.us/information/passagers/voyager-avec-son-animal-chien-chat"
+   },
+   {
+    "compagnie": "airline_air_india",
+    "seuil_regle": 32,
+    "seuil_fiche": null,
+    "statut_fiche": "allowed",
+    "source_fiche": "https://www.airindia.com"
+   },
+   {
+    "compagnie": "airline_air_transat",
+    "seuil_regle": 45,
+    "seuil_fiche": null,
+    "statut_fiche": "allowed",
+    "source_fiche": "https://www.airtransat.com"
+   },
+   {
+    "compagnie": "airline_alaska",
+    "seuil_regle": 68,
+    "seuil_fiche": null,
+    "statut_fiche": "allowed",
+    "source_fiche": "https://www.alaskaair.com/"
+   },
+   {
+    "compagnie": "airline_ana",
+    "seuil_regle": 45,
+    "seuil_fiche": null,
+    "statut_fiche": "allowed",
+    "source_fiche": "https://www.ana.co.jp"
+   },
+   {
+    "compagnie": "airline_avianca",
+    "seuil_regle": 70,
+    "seuil_fiche": null,
+    "statut_fiche": "allowed",
+    "source_fiche": "https://www.avianca.com"
+   },
+   {
+    "compagnie": "airline_brussels",
+    "seuil_regle": 20,
+    "seuil_fiche": null,
+    "statut_fiche": "allowed",
+    "source_fiche": "https://www.brusselsairlines.com/"
+   },
+   {
+    "compagnie": "airline_china_airlines",
+    "seuil_regle": 45,
+    "seuil_fiche": null,
+    "statut_fiche": "allowed",
+    "source_fiche": "https://www.china-airlines.com"
+   },
+   {
+    "compagnie": "airline_corsair",
+    "seuil_regle": 50,
+    "seuil_fiche": null,
+    "statut_fiche": "allowed",
+    "source_fiche": "https://www.corsair.fr"
+   },
+   {
+    "compagnie": "airline_ethiopian",
+    "seuil_regle": 45,
+    "seuil_fiche": null,
+    "statut_fiche": "allowed",
+    "source_fiche": "https://www.ethiopianairlines.com"
+   },
+   {
+    "compagnie": "airline_eva_air",
+    "seuil_regle": 32,
+    "seuil_fiche": null,
+    "statut_fiche": "allowed",
+    "source_fiche": "https://www.evaair.com"
+   },
+   {
+    "compagnie": "airline_finnair",
+    "seuil_regle": 75,
+    "seuil_fiche": null,
+    "statut_fiche": "allowed",
+    "source_fiche": "https://www.finnair.com"
+   },
+   {
+    "compagnie": "airline_french_bee",
+    "seuil_regle": 75,
+    "seuil_fiche": null,
+    "statut_fiche": "allowed",
+    "source_fiche": "https://www.frenchbee.com"
+   },
+   {
+    "compagnie": "airline_iberia",
+    "seuil_regle": 45,
+    "seuil_fiche": null,
+    "statut_fiche": "allowed",
+    "source_fiche": "https://www.iberia.com/us/faqs/pets-carriage/"
+   },
+   {
+    "compagnie": "airline_ita_airways",
+    "seuil_regle": 75,
+    "seuil_fiche": null,
+    "statut_fiche": "allowed",
+    "source_fiche": "https://www.ita-airways.com"
+   },
+   {
+    "compagnie": "airline_jal",
+    "seuil_regle": 32,
+    "seuil_fiche": null,
+    "statut_fiche": "allowed",
+    "source_fiche": "https://www.jal.co.jp"
+   },
+   {
+    "compagnie": "airline_klm",
+    "seuil_regle": 75,
+    "seuil_fiche": null,
+    "statut_fiche": "allowed",
+    "source_fiche": "https://www.klm.com/information/pets/reservation"
+   },
+   {
+    "compagnie": "airline_korean_air",
+    "seuil_regle": 45,
+    "seuil_fiche": null,
+    "statut_fiche": "allowed",
+    "source_fiche": "https://www.koreanair.com"
+   },
+   {
+    "compagnie": "airline_latam",
+    "seuil_regle": 45,
+    "seuil_fiche": null,
+    "statut_fiche": "allowed",
+    "source_fiche": "https://www.latamairlines.com"
+   },
+   {
+    "compagnie": "airline_norwegian",
+    "seuil_regle": 14,
+    "seuil_fiche": null,
+    "statut_fiche": "allowed",
+    "source_fiche": "https://www.norwegian.com"
+   },
+   {
+    "compagnie": "airline_philippine",
+    "seuil_regle": 32,
+    "seuil_fiche": null,
+    "statut_fiche": "allowed",
+    "source_fiche": "https://www.philippineairlines.com/"
+   },
+   {
+    "compagnie": "airline_qatar_airways",
+    "seuil_regle": 75,
+    "seuil_fiche": null,
+    "statut_fiche": "allowed",
+    "source_fiche": "https://www.qatarairways.com/"
+   },
+   {
+    "compagnie": "airline_royal_air_maroc",
+    "seuil_regle": 70,
+    "seuil_fiche": null,
+    "statut_fiche": "allowed",
+    "source_fiche": "https://www.royalairmaroc.com"
+   },
+   {
+    "compagnie": "airline_sas",
+    "seuil_regle": 50,
+    "seuil_fiche": null,
+    "statut_fiche": "allowed",
+    "source_fiche": "https://www.flysas.com"
+   },
+   {
+    "compagnie": "airline_singapore_airlines",
+    "seuil_regle": 32,
+    "seuil_fiche": null,
+    "statut_fiche": "allowed",
+    "source_fiche": "https://www.singaporeair.com/"
+   },
+   {
+    "compagnie": "airline_tap",
+    "seuil_regle": 45,
+    "seuil_fiche": null,
+    "statut_fiche": "allowed",
+    "source_fiche": "https://www.flytap.com/"
+   },
+   {
+    "compagnie": "airline_thai_airways",
+    "seuil_regle": 32,
+    "seuil_fiche": null,
+    "statut_fiche": "allowed",
+    "source_fiche": "https://www.thaiairways.com"
+   },
+   {
+    "compagnie": "airline_vietnam_airlines",
+    "seuil_regle": 32,
+    "seuil_fiche": null,
+    "statut_fiche": "allowed",
+    "source_fiche": "https://www.vietnamairlines.com"
+   },
+   {
+    "compagnie": "airline_westjet",
+    "seuil_regle": 45,
+    "seuil_fiche": null,
+    "statut_fiche": "allowed",
+    "source_fiche": "https://www.westjet.com/en-ca/pets"
+   }
+  ]
+ },
+ "effet_mesure": {
+  "temoins_constructibles": 34,
+  "mordent_sur_leur_temoin": 34,
+  "dominantes": 34,
+  "statut_de_la_soute_apres_retrait": {
+   "allowed": 34
+  },
+  "ecart_de_score": 34,
+  "detail": [
+   {
+    "id": "rule_aegean_hold_weight",
+    "compagnie": "airline_aegean",
+    "route": "airport_agp|airport_ath",
+    "seuil_kg": 32,
+    "temoin": {
+     "au_dessus_kg": 33,
+     "en_dessous_kg": 31
+    },
+    "fired": true,
+    "soute_au_dessus": "denied",
+    "soute_en_dessous": "allowed",
+    "soute_sans_la_regle": "allowed",
+    "dominante": true,
+    "score_avec": 57,
+    "score_sans": 60
+   },
+   {
+    "id": "rule_aeromexico_hold_weight",
+    "compagnie": "airline_aeromexico",
+    "route": "airport_ams|airport_mex",
+    "seuil_kg": 45,
+    "temoin": {
+     "au_dessus_kg": 46,
+     "en_dessous_kg": 44
+    },
+    "fired": true,
+    "soute_au_dessus": "denied",
+    "soute_en_dessous": "allowed",
+    "soute_sans_la_regle": "allowed",
+    "dominante": true,
+    "score_avec": 50,
+    "score_sans": 55
+   },
+   {
+    "id": "rule_air_algerie_hold_weight",
+    "compagnie": "airline_air_algerie",
+    "route": "airport_abj|airport_alg",
+    "seuil_kg": 32,
+    "temoin": {
+     "au_dessus_kg": 33,
+     "en_dessous_kg": 31
+    },
+    "fired": true,
+    "soute_au_dessus": "denied",
+    "soute_en_dessous": "allowed",
+    "soute_sans_la_regle": "allowed",
+    "dominante": true,
+    "score_avec": 58,
+    "score_sans": 79
+   },
+   {
+    "id": "rule_air_caraibes_hold_weight",
+    "compagnie": "airline_air_caraibes",
+    "route": "airport_cay|airport_ory",
+    "seuil_kg": 75,
+    "temoin": {
+     "au_dessus_kg": 76,
+     "en_dessous_kg": 74
+    },
+    "fired": true,
+    "soute_au_dessus": "denied",
+    "soute_en_dessous": "allowed",
+    "soute_sans_la_regle": "allowed",
+    "dominante": true,
+    "score_avec": 12,
+    "score_sans": 70
+   },
+   {
+    "id": "rule_air_europa_hold_weight",
+    "compagnie": "airline_air_europa",
+    "route": "airport_agp|airport_mad",
+    "seuil_kg": 50,
+    "temoin": {
+     "au_dessus_kg": 51,
+     "en_dessous_kg": 49
+    },
+    "fired": true,
+    "soute_au_dessus": "denied",
+    "soute_en_dessous": "allowed",
+    "soute_sans_la_regle": "allowed",
+    "dominante": true,
+    "score_avec": 50,
+    "score_sans": 57
+   },
+   {
+    "id": "rule_air_france_hold_weight",
+    "compagnie": "airline_air_france",
+    "route": "airport_abj|airport_cdg",
+    "seuil_kg": 75,
+    "temoin": {
+     "au_dessus_kg": 76,
+     "en_dessous_kg": 74
+    },
+    "fired": true,
+    "soute_au_dessus": "denied",
+    "soute_en_dessous": "allowed",
+    "soute_sans_la_regle": "allowed",
+    "dominante": true,
+    "score_avec": 25,
+    "score_sans": 43
+   },
+   {
+    "id": "rule_air_india_hold_weight",
+    "compagnie": "airline_air_india",
+    "route": "airport_ams|airport_del",
+    "seuil_kg": 32,
+    "temoin": {
+     "au_dessus_kg": 33,
+     "en_dessous_kg": 31
+    },
+    "fired": true,
+    "soute_au_dessus": "denied",
+    "soute_en_dessous": "allowed",
+    "soute_sans_la_regle": "allowed",
+    "dominante": true,
+    "score_avec": 60,
+    "score_sans": 63
+   },
+   {
+    "id": "rule_air_transat_hold_weight",
+    "compagnie": "airline_air_transat",
+    "route": "airport_agp|airport_yul",
+    "seuil_kg": 45,
+    "temoin": {
+     "au_dessus_kg": 46,
+     "en_dessous_kg": 44
+    },
+    "fired": true,
+    "soute_au_dessus": "denied",
+    "soute_en_dessous": "allowed",
+    "soute_sans_la_regle": "allowed",
+    "dominante": true,
+    "score_avec": 59,
+    "score_sans": 66
+   },
+   {
+    "id": "rule_alaska_hold_weight",
+    "compagnie": "airline_alaska",
+    "route": "airport_atl|airport_sea",
+    "seuil_kg": 68,
+    "temoin": {
+     "au_dessus_kg": 69,
+     "en_dessous_kg": 67
+    },
+    "fired": true,
+    "soute_au_dessus": "denied",
+    "soute_en_dessous": "allowed",
+    "soute_sans_la_regle": "allowed",
+    "dominante": true,
+    "score_avec": 42,
+    "score_sans": 53
+   },
+   {
+    "id": "rule_ana_hold_weight",
+    "compagnie": "airline_ana",
+    "route": "airport_arn|airport_hnd",
+    "seuil_kg": 45,
+    "temoin": {
+     "au_dessus_kg": 46,
+     "en_dessous_kg": 44
+    },
+    "fired": true,
+    "soute_au_dessus": "denied",
+    "soute_en_dessous": "allowed",
+    "soute_sans_la_regle": "allowed",
+    "dominante": true,
+    "score_avec": 52,
+    "score_sans": 59
+   },
+   {
+    "id": "rule_avianca_hold_weight",
+    "compagnie": "airline_avianca",
+    "route": "airport_asu|airport_bog",
+    "seuil_kg": 70,
+    "temoin": {
+     "au_dessus_kg": 71,
+     "en_dessous_kg": 69
+    },
+    "fired": true,
+    "soute_au_dessus": "denied",
+    "soute_en_dessous": "allowed",
+    "soute_sans_la_regle": "allowed",
+    "dominante": true,
+    "score_avec": 9,
+    "score_sans": 59
+   },
+   {
+    "id": "rule_brussels_hold_weight",
+    "compagnie": "airline_brussels",
+    "route": "airport_abj|airport_bru",
+    "seuil_kg": 20,
+    "temoin": {
+     "au_dessus_kg": 21,
+     "en_dessous_kg": 19
+    },
+    "fired": true,
+    "soute_au_dessus": "denied",
+    "soute_en_dessous": "allowed",
+    "soute_sans_la_regle": "allowed",
+    "dominante": true,
+    "score_avec": 64,
+    "score_sans": 72
+   },
+   {
+    "id": "rule_china_airlines_hold_weight",
+    "compagnie": "airline_china_airlines",
+    "route": "airport_akl|airport_bne",
+    "seuil_kg": 45,
+    "temoin": {
+     "au_dessus_kg": 46,
+     "en_dessous_kg": 44
+    },
+    "fired": true,
+    "soute_au_dessus": "denied",
+    "soute_en_dessous": "allowed",
+    "soute_sans_la_regle": "allowed",
+    "dominante": true,
+    "score_avec": 49,
+    "score_sans": 61
+   },
+   {
+    "id": "rule_corsair_hold_weight",
+    "compagnie": "airline_corsair",
+    "route": "airport_abj|airport_ory",
+    "seuil_kg": 50,
+    "temoin": {
+     "au_dessus_kg": 51,
+     "en_dessous_kg": 49
+    },
+    "fired": true,
+    "soute_au_dessus": "denied",
+    "soute_en_dessous": "allowed",
+    "soute_sans_la_regle": "allowed",
+    "dominante": true,
+    "score_avec": 47,
+    "score_sans": 59
+   },
+   {
+    "id": "rule_ethiopian_hold_weight",
+    "compagnie": "airline_ethiopian",
+    "route": "airport_abj|airport_add",
+    "seuil_kg": 45,
+    "temoin": {
+     "au_dessus_kg": 46,
+     "en_dessous_kg": 44
+    },
+    "fired": true,
+    "soute_au_dessus": "denied",
+    "soute_en_dessous": "allowed",
+    "soute_sans_la_regle": "allowed",
+    "dominante": true,
+    "score_avec": 52,
+    "score_sans": 72
+   },
+   {
+    "id": "rule_eva_air_hold_weight",
+    "compagnie": "airline_eva_air",
+    "route": "airport_ams|airport_bkk",
+    "seuil_kg": 32,
+    "temoin": {
+     "au_dessus_kg": 33,
+     "en_dessous_kg": 31
+    },
+    "fired": true,
+    "soute_au_dessus": "denied",
+    "soute_en_dessous": "allowed",
+    "soute_sans_la_regle": "allowed",
+    "dominante": true,
+    "score_avec": 56,
+    "score_sans": 58
+   },
+   {
+    "id": "rule_finnair_hold_weight",
+    "compagnie": "airline_finnair",
+    "route": "airport_agp|airport_hel",
+    "seuil_kg": 75,
+    "temoin": {
+     "au_dessus_kg": 76,
+     "en_dessous_kg": 74
+    },
+    "fired": true,
+    "soute_au_dessus": "denied",
+    "soute_en_dessous": "allowed",
+    "soute_sans_la_regle": "allowed",
+    "dominante": true,
+    "score_avec": 44,
+    "score_sans": 50
+   },
+   {
+    "id": "rule_french_bee_hold_weight",
+    "compagnie": "airline_french_bee",
+    "route": "airport_ewr|airport_ory",
+    "seuil_kg": 75,
+    "temoin": {
+     "au_dessus_kg": 76,
+     "en_dessous_kg": 74
+    },
+    "fired": true,
+    "soute_au_dessus": "denied",
+    "soute_en_dessous": "allowed",
+    "soute_sans_la_regle": "allowed",
+    "dominante": true,
+    "score_avec": 25,
+    "score_sans": 43
+   },
+   {
+    "id": "rule_iberia_hold_weight",
+    "compagnie": "airline_iberia",
+    "route": "airport_agp|airport_mad",
+    "seuil_kg": 45,
+    "temoin": {
+     "au_dessus_kg": 46,
+     "en_dessous_kg": 44
+    },
+    "fired": true,
+    "soute_au_dessus": "denied",
+    "soute_en_dessous": "allowed",
+    "soute_sans_la_regle": "allowed",
+    "dominante": true,
+    "score_avec": 57,
+    "score_sans": 63
+   },
+   {
+    "id": "rule_ita_airways_hold_weight",
+    "compagnie": "airline_ita_airways",
+    "route": "airport_acc|airport_fco",
+    "seuil_kg": 75,
+    "temoin": {
+     "au_dessus_kg": 76,
+     "en_dessous_kg": 74
+    },
+    "fired": true,
+    "soute_au_dessus": "denied",
+    "soute_en_dessous": "allowed",
+    "soute_sans_la_regle": "allowed",
+    "dominante": true,
+    "score_avec": 37,
+    "score_sans": 52
+   },
+   {
+    "id": "rule_jal_hold_weight",
+    "compagnie": "airline_jal",
+    "route": "airport_bkk|airport_hnd",
+    "seuil_kg": 32,
+    "temoin": {
+     "au_dessus_kg": 33,
+     "en_dessous_kg": 31
+    },
+    "fired": true,
+    "soute_au_dessus": "denied",
+    "soute_en_dessous": "allowed",
+    "soute_sans_la_regle": "allowed",
+    "dominante": true,
+    "score_avec": 40,
+    "score_sans": 45
+   },
+   {
+    "id": "rule_klm_hold_weight",
+    "compagnie": "airline_klm",
+    "route": "airport_acc|airport_ams",
+    "seuil_kg": 75,
+    "temoin": {
+     "au_dessus_kg": 76,
+     "en_dessous_kg": 74
+    },
+    "fired": true,
+    "soute_au_dessus": "denied",
+    "soute_en_dessous": "allowed",
+    "soute_sans_la_regle": "allowed",
+    "dominante": true,
+    "score_avec": 41,
+    "score_sans": 51
+   },
+   {
+    "id": "rule_korean_air_hold_weight",
+    "compagnie": "airline_korean_air",
+    "route": "airport_akl|airport_icn",
+    "seuil_kg": 45,
+    "temoin": {
+     "au_dessus_kg": 46,
+     "en_dessous_kg": 44
+    },
+    "fired": true,
+    "soute_au_dessus": "denied",
+    "soute_en_dessous": "allowed",
+    "soute_sans_la_regle": "allowed",
+    "dominante": true,
+    "score_avec": 33,
+    "score_sans": 44
+   },
+   {
+    "id": "rule_latam_hold_weight",
+    "compagnie": "airline_latam",
+    "route": "airport_aep|airport_gig",
+    "seuil_kg": 45,
+    "temoin": {
+     "au_dessus_kg": 46,
+     "en_dessous_kg": 44
+    },
+    "fired": true,
+    "soute_au_dessus": "denied",
+    "soute_en_dessous": "allowed",
+    "soute_sans_la_regle": "allowed",
+    "dominante": true,
+    "score_avec": 67,
+    "score_sans": 89
+   },
+   {
+    "id": "rule_norwegian_hold_weight",
+    "compagnie": "airline_norwegian",
+    "route": "airport_agp|airport_arn",
+    "seuil_kg": 14,
+    "temoin": {
+     "au_dessus_kg": 15,
+     "en_dessous_kg": 13
+    },
+    "fired": true,
+    "soute_au_dessus": "denied",
+    "soute_en_dessous": "allowed",
+    "soute_sans_la_regle": "allowed",
+    "dominante": true,
+    "score_avec": 63,
+    "score_sans": 65
+   },
+   {
+    "id": "rule_philippine_hold_weight",
+    "compagnie": "airline_philippine",
+    "route": "airport_bkk|airport_mnl",
+    "seuil_kg": 32,
+    "temoin": {
+     "au_dessus_kg": 33,
+     "en_dessous_kg": 31
+    },
+    "fired": true,
+    "soute_au_dessus": "denied",
+    "soute_en_dessous": "allowed",
+    "soute_sans_la_regle": "allowed",
+    "dominante": true,
+    "score_avec": 38,
+    "score_sans": 49
+   },
+   {
+    "id": "rule_qatar_airways_hold_weight",
+    "compagnie": "airline_qatar_airways",
+    "route": "airport_abj|airport_acc",
+    "seuil_kg": 75,
+    "temoin": {
+     "au_dessus_kg": 76,
+     "en_dessous_kg": 74
+    },
+    "fired": true,
+    "soute_au_dessus": "denied",
+    "soute_en_dessous": "allowed",
+    "soute_sans_la_regle": "allowed",
+    "dominante": true,
+    "score_avec": 63,
+    "score_sans": 79
+   },
+   {
+    "id": "rule_royal_air_maroc_hold_weight",
+    "compagnie": "airline_royal_air_maroc",
+    "route": "airport_abj|airport_cmn",
+    "seuil_kg": 70,
+    "temoin": {
+     "au_dessus_kg": 71,
+     "en_dessous_kg": 69
+    },
+    "fired": true,
+    "soute_au_dessus": "denied",
+    "soute_en_dessous": "allowed",
+    "soute_sans_la_regle": "allowed",
+    "dominante": true,
+    "score_avec": 10,
+    "score_sans": 67
+   },
+   {
+    "id": "rule_sas_hold_weight",
+    "compagnie": "airline_sas",
+    "route": "airport_agp|airport_arn",
+    "seuil_kg": 50,
+    "temoin": {
+     "au_dessus_kg": 51,
+     "en_dessous_kg": 49
+    },
+    "fired": true,
+    "soute_au_dessus": "denied",
+    "soute_en_dessous": "allowed",
+    "soute_sans_la_regle": "allowed",
+    "dominante": true,
+    "score_avec": 54,
+    "score_sans": 57
+   },
+   {
+    "id": "rule_singapore_airlines_hold_weight",
+    "compagnie": "airline_singapore_airlines",
+    "route": "airport_akl|airport_sin",
+    "seuil_kg": 32,
+    "temoin": {
+     "au_dessus_kg": 33,
+     "en_dessous_kg": 31
+    },
+    "fired": true,
+    "soute_au_dessus": "denied",
+    "soute_en_dessous": "allowed",
+    "soute_sans_la_regle": "allowed",
+    "dominante": true,
+    "score_avec": 44,
+    "score_sans": 52
+   },
+   {
+    "id": "rule_tap_hold_weight",
+    "compagnie": "airline_tap",
+    "route": "airport_acc|airport_lis",
+    "seuil_kg": 45,
+    "temoin": {
+     "au_dessus_kg": 46,
+     "en_dessous_kg": 44
+    },
+    "fired": true,
+    "soute_au_dessus": "denied",
+    "soute_en_dessous": "allowed",
+    "soute_sans_la_regle": "allowed",
+    "dominante": true,
+    "score_avec": 52,
+    "score_sans": 80
+   },
+   {
+    "id": "rule_thai_airways_hold_weight",
+    "compagnie": "airline_thai_airways",
+    "route": "airport_ams|airport_bkk",
+    "seuil_kg": 32,
+    "temoin": {
+     "au_dessus_kg": 33,
+     "en_dessous_kg": 31
+    },
+    "fired": true,
+    "soute_au_dessus": "denied",
+    "soute_en_dessous": "allowed",
+    "soute_sans_la_regle": "allowed",
+    "dominante": true,
+    "score_avec": 56,
+    "score_sans": 58
+   },
+   {
+    "id": "rule_vietnam_airlines_hold_weight",
+    "compagnie": "airline_vietnam_airlines",
+    "route": "airport_bkk|airport_dad",
+    "seuil_kg": 32,
+    "temoin": {
+     "au_dessus_kg": 33,
+     "en_dessous_kg": 31
+    },
+    "fired": true,
+    "soute_au_dessus": "denied",
+    "soute_en_dessous": "allowed",
+    "soute_sans_la_regle": "allowed",
+    "dominante": true,
+    "score_avec": 68,
+    "score_sans": 91
+   },
+   {
+    "id": "rule_westjet_hold_weight",
+    "compagnie": "airline_westjet",
+    "route": "airport_ams|airport_yhz",
+    "seuil_kg": 45,
+    "temoin": {
+     "au_dessus_kg": 46,
+     "en_dessous_kg": 44
+    },
+    "fired": true,
+    "soute_au_dessus": "denied",
+    "soute_en_dessous": "allowed",
+    "soute_sans_la_regle": "allowed",
+    "dominante": true,
+    "score_avec": 40,
+    "score_sans": 51
+   }
+  ]
+ },
+ "grille_publique": {
+  "scenarios": 54,
+  "cartes_touchees": 36,
+  "placements": 36,
+  "cibles": {
+   "denied → allowed": 36
+  }
+ },
+ "exigences_tenues": true
+}
