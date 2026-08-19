@@ -359,6 +359,37 @@ const MUTATIONS = [
     harnais: "test-crate-harness.cjs",
     attendu: "couvre le minimum calculé",
   },
+  /* ---- Le chercheur de coins pipi ----
+   * Cet outil ne calcule rien : il oriente. Son risque propre est l'orientation FAUSSE — une
+   * pastille qui annonce une zone documentée là où le référentiel n'en connaît pas, un raccourci
+   * « bien documenté » qui n'en est pas un, une soumission vide qui emmène quelque part. */
+  {
+    dom: true,
+    nom: "la pastille de statut annonce une zone documentée là où il n'y en a pas",
+    fichier: "packages/ui/src/components/PetReliefFinder.astro",
+    cherche: 'no: "prf-d-no"',
+    remplace: 'no: "prf-d-yes"',
+    harnais: "test-pet-relief-harness.cjs",
+    attendu: "la pastille rendue est celle du statut",
+  },
+  {
+    dom: true,
+    nom: "les raccourcis « bien documentés » ne filtrent plus sur le statut",
+    fichier: "packages/ui/src/components/PetReliefFinder.astro",
+    cherche: 'const featured = airports.filter((a) => a.relief === "yes").slice(0, 8);',
+    remplace: "const featured = airports.slice(0, 8);",
+    harnais: "test-pet-relief-harness.cjs",
+    attendu: "tous les raccourcis sont au statut documenté",
+  },
+  {
+    dom: true,
+    nom: "une soumission sans aéroport navigue quand même",
+    fichier: "packages/ui/src/components/PetReliefFinder.astro",
+    cherche: "if (!a || !norm(input.value))",
+    remplace: "if (false)",
+    harnais: "test-pet-relief-harness.cjs",
+    attendu: "une soumission sans aéroport affiche le message d'aide",
+  },
 ];
 
 const dire = (m) => process.stdout.write(m + "\n");
