@@ -308,3 +308,54 @@ site change nécessairement l'inventaire.
 portugaises (travail de données, pas de code) ; et le fait que quatre des huit outils — `crate`,
 `pet-relief`, `best-carriers`, `best-crates` — ne sont lus par **aucun harnais**. Ce dossier les
 mesure ; il ne les surveille pas. Le harnais est l'étape suivante.
+
+### 2026-08-19 — les deux outils que rien ne lisait sont harnachés (115 contrôles, 6 contre-épreuves)
+
+Suite directe de T0-B3-g, qui a constaté que quatre des huit outils du site ne sont lus par aucun
+harnais. Les deux **vrais outils** de ce lot le sont désormais ; les deux autres sont des pages
+d'attente, et je n'ai pas écrit de test décoratif pour elles.
+
+**`crate` — 84 contrôles.** C'est le plus lourd des quatre : il conseille une taille de caisse, et
+une caisse trop petite est un refus à l'embarquement. Sur la page construite, sélecteurs précis,
+quatre langues :
+
+- les compagnies qui refusent **les trois** placements affichent le message dédié **mot pour mot**,
+  nom de la compagnie compris, et jamais une ligne de soute qui laisserait croire la cabine
+  possible — la régression du 09/08/2026, corrigée à la main et gardée par rien depuis ;
+- la taille standard proposée est **≥ au minimum calculé sur les trois dimensions** ;
+- la majoration brachycéphale est strictement positive ;
+- au-delà de la limite de poids publiée, aucun verdict cabine favorable ;
+- mêmes taille, mêmes verdicts, même minimum dans les quatre langues.
+
+**Une contre-épreuve a d'abord échoué sans son diagnostic, et elle avait raison.** Neutralisée, la
+priorité « aucun animal » laissait le message générique de soute — qui est bien une ligne rouge,
+donc « un refus est affiché » restait vrai. C'est exactement le danger d'origine : un refus qui ne
+parle **que** de la soute. Le harnais exige désormais la phrase dédiée mot pour mot.
+
+**`pet-relief` — 31 contrôles.** Cet outil ne calcule rien, il oriente : son risque propre est
+l'orientation fausse. Raccourcis « bien documentés » ne contenant que des aéroports documentés et
+pointant vers la fiche dans **leur** langue ; pastille rendue correspondant exactement au statut ;
+soumission vide qui affiche l'aide et ne navigue pas ; mêmes aéroports et mêmes statuts dans les
+quatre langues. Le contrôle de navigation porte son **témoin** — une soumission valide doit
+déclencher une navigation détectable, sans quoi « ne navigue nulle part » passerait aussi bien
+parce que la navigation ne marche jamais sous JSDOM.
+
+**Deux dérives signalées, aucune corrigée** — ce sont des décisions, pas des bugs :
+
+1. `CrateCalculator.astro` nomme **sept** compagnies refusant les trois placements, comme une liste
+   close (retest du 09/08/2026). Le référentiel en produit **dix-sept** aujourd'hui : s'y ajoutent
+   Aer Lingus, Aircalin, Cathay Pacific, Garuda Indonesia, Gulf Air, Kenya Airways, Qantas, South
+   African Airways, TUI Airways et Virgin Atlantic. Le code n'a pas dérivé — les **données** ont
+   bougé sous un commentaire resté figé. Réécrire un commentaire daté d'une contre-revue ne
+   m'appartient pas ; le harnais fige le 17 et nomme les dix.
+2. Le statut « règle US (zone côté piste) » de `pet-relief` n'est produit par **aucun** aéroport :
+   le référentiel documente les 31 aéroports américains, le repli est inatteignable. Sa **légende
+   est pourtant rendue** sur la page — une légende pour une catégorie vide. Le harnais fige ce zéro
+   pour que l'entrée d'un aéroport américain non documenté se voie.
+
+**Contre-épreuves : 33 garanties éprouvées sur 33**, six nouvelles. Les deux mutations exigeant le
+site entier restent hors du lot rapide, et le runner le dit à chaque exécution.
+
+Restent sans harnais, et c'est assumé : `best-carriers` et `best-crates`, qui n'ont rien à
+surveiller tant qu'elles n'ont pas de classement — leur seul défaut est d'être annoncées au sitemap
+au rang des outils, ce qui est une question éditoriale, pas un test.
