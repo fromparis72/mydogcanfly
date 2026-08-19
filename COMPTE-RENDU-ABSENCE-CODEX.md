@@ -208,3 +208,58 @@ C'est le comportement voulu — « pour mesurer autre chose, il faut déclarer u
 mais la décision de retirer cinq dossiers de leur base la veille d'une contre-revue n'est pas la
 mienne. **À arbitrer :** traduire puis rebaser les cinq, traduire dans un fichier séparé, ou
 attendre.
+
+### 2026-08-19 — ce que le site ANNONCE doit exister (`test-annonce-du-site.mjs`, commits `14a56ed` et `873aedf`)
+
+La plus vieille leçon de ce chantier — un portugais **annoncé avant d'exister** — n'était surveillée
+par rien de permanent. Vérifié avant d'écrire, plutôt que supposé : `hreflang` n'apparaît dans les
+harnais existants que comme *repère* pour retrouver le script en ligne de `Base.astro`, jamais comme
+objet de contrôle ; `test-guides-traduits.mjs` ne dit « alternates » que dans un commentaire.
+
+Le harnais lit les octets du site construit et vérifie **dans les deux sens** : tout `hreflang`
+annoncé vise une page réellement construite ; toute page construite est listée au sitemap de **sa**
+langue ; aucun sitemap n'annonce une URL sans page. Il refuse de tourner sous 2 000 pages HTML.
+Sur le site entier : 3 121 pages, 288 pages de guides, 1 440 alternates lus, 2 536 URL au sitemap,
+zéro écart dans les deux sens.
+
+**Une exigence est conservée SANS être revendiquée, et le fichier le dit.** « Chaque guide annonce
+exactement les langues où sa clé existe » est vraie, mais le corpus est devenu **symétrique**
+(72 clés × 4 langues, aucune asymétrie nulle part). Muter `languesDe()` pour qu'elle renvoie les
+quatre langues sans les constater ne changerait donc rien à la sortie : la garantie est
+**infalsifiable aujourd'hui**. Elle est gardée pour le jour où un contenu partiel reviendra, et
+**aucune contre-épreuve ne la réclame**.
+
+**Le premier passage des contre-épreuves a échoué, et c'est lui qui a appris le plus.** Les deux
+mutations sont tombées *sans leur diagnostic* : le harnais sortait « site absent ou partiel
+(121 pages) ». `build:ci` est un build **réduit** qui ne construit ni les guides ni les fiches, alors
+que les sitemaps restent complets — sous ce build, le harnais dénonce ~2 400 pages « annoncées sans
+page », et la mutation n'y est pour rien. Il aurait prouvé le vide. Trois conséquences :
+
+- `npm run build:ci -- --complet` : même sentinelle, même environnement, sans les filtres d'entités.
+  Le drapeau vit dans `build-ci.mjs` et non dans un second script pour que l'adresse sentinelle reste
+  écrite **une seule fois**. Argument inconnu → code 2, comme `build-preview.mjs`.
+- le runner distingue `dom` (build réduit) de `buildComplet` (site entier, ~12 min), gate chacun
+  derrière son drapeau, restaure `dist` dans la portée **la plus large** jouée — sinon `dist`
+  resterait amputé de 2 400 pages, intact au sens « sans mutation » mais inutilisable — et annonce
+  **séparément** ce qu'il n'a pas joué.
+- `test-annonce-du-site.mjs` sort de `test:built-ui` : il y aurait échoué sur **chaque pull request**.
+  Il tourne sur main, après le build complet, avec le motif écrit dans le workflow.
+
+**Corrigé au passage, découvert en écrivant la mutation :** la restauration `git checkout` utilise
+`:(literal)`. Le chemin `sitemap-[lang].xml.ts` est un **motif git valide** qui ne désigne aucun
+fichier existant ; l'échec serait survenu dans un `finally`, laissant la mutation dans l'arbre et
+corrompant tout ce qui suit.
+
+Verdict après trois builds complets : **27 garanties éprouvées sur 27**, les deux nouvelles incluses
+(n° 26 et 27). Les deux anciennes mutations d'interface n'étaient pas jouées dans ce passage, et le
+runner l'a dit.
+
+**À arbitrer :** faut-il ajouter `--complet` à la CI de main ? Cela lui ajoute trois builds complets,
+soit environ 35 minutes. Modifier la durée de la CI n'est pas une décision que j'ai prise seul ; en
+l'état les deux contre-épreuves n° 26 et 27 se lancent à la main, ce que leur propre en-tête reproche
+aux contre-épreuves manuelles.
+
+**Piste ouverte puis refermée, consignée pour qu'elle ne soit pas rouverte :** `/tools/timeline/`
+existe en quatre langues et ne figure dans aucun sitemap. Ce n'est pas un défaut — sa source porte
+`noindex={true}` explicitement. Le `noindex` lu dans `dist` ne prouvait rien de son côté : le build
+de preview le pose sur **toutes** les pages.
