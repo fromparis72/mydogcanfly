@@ -288,6 +288,35 @@ const MUTATIONS = [
     harnais: "test-t0b3a-avis-dom.cjs",
     attendu: "JAMAIS élargi",
   },
+  /* ---- Ce que le site ANNONCE ----
+   * Les deux régressions que la plus vieille leçon du chantier a laissées derrière elle : une
+   * adresse annoncée qui ne mène nulle part, et une famille de pages qui décroche du sitemap sans
+   * que rien ne le dise. Elles ont toujours été surveillées à la main, dans une conversation ;
+   * elles le sont désormais ici. Le harnais visé lit les octets du site construit, d'où « dom ».
+   *
+   * CE QU'ELLES NE COUVRENT PAS, ET JE PRÉFÈRE L'ÉCRIRE : « chaque guide annonce EXACTEMENT les
+   * langues où sa clé existe » n'est revendiquée par aucune mutation, parce qu'elle est
+   * aujourd'hui infalsifiable — le corpus est symétrique (72 clés × 4 langues), donc une
+   * `languesDe()` qui renverrait les quatre langues sans les constater produirait exactement la
+   * même sortie. Elle redeviendra éprouvable au premier contenu partiel. */
+  {
+    dom: true,
+    nom: "l'adresse annoncée d'un guide traduit perd son préfixe de langue",
+    fichier: "packages/ui/src/lib/guides.ts",
+    cherche: 'locale === "en" ? `/travel-hub/${slug}/` : `/${locale}/travel-hub/${slug}/`;',
+    remplace: '`/travel-hub/${slug}/`;',
+    harnais: "test-annonce-du-site.mjs",
+    attendu: "vise une page réellement construite",
+  },
+  {
+    dom: true,
+    nom: "les guides des langues traduites décrochent du sitemap",
+    fichier: "packages/ui/src/pages/sitemap-[lang].xml.ts",
+    cherche: "const guides = await guidesDe(lang);",
+    remplace: 'const guides = lang === "en" ? await guidesDe(lang) : [];',
+    harnais: "test-annonce-du-site.mjs",
+    attendu: "listée au sitemap de SA langue",
+  },
 ];
 
 const dire = (m) => process.stdout.write(m + "\n");
