@@ -439,3 +439,68 @@ suivre écrite dans ses notes.
 **Restent ouvertes**, et aucune ne m'appartient : le sens exact de la promesse ; l'autorisation
 d'aller relever les fiches techniques constructeur ; la liste de marques de départ ; l'affiliation ;
 les photos — même impasse que pour les dix articles récents, et je n'inventerai pas de crédit.
+
+### 2026-08-19 — l'audit qui accusait à tort, et deux harnais du site entier (commit `79be098`)
+
+**`npm run audit` existait, il est BLOQUANT, et la CI ne le lançait jamais.** Un contrôle laissé à
+la main — c'est-à-dire oubliable, exactement ce que son propre en-tête reproche aux vérifications
+manuelles. Lancé sur le site complet, il sortait **deux anomalies bloquantes, toutes deux fausses** :
+
+1. « **1 656 URL avec une query string APRÈS l'ancre** ». C'est la convention **délibérée** du site
+   depuis que `Base.astro` définit `mdcfQuery`, qui lit le dièse d'abord et `location.search`
+   seulement en repli ; `mdcfPut` y place les paramètres exprès. La convention est documentée dans
+   `env.d.ts`, `OnwardNav.astro` et `BreedTravelPage.astro`, et **vérifié : aucune source ne lit
+   `location.search` en direct**. Le contrôle a été **retourné** : il protège désormais la
+   dépendance réelle — une page qui porte ces liens *sans* embarquer `mdcfQuery` les casserait
+   toutes en silence.
+2. « **4 URL du sitemap sans page** ». Ce sont les quatre fichiers de langue annoncés par l'index
+   depuis le 01/08/2026, présents, 430 ko chacun. L'audit ignorait le découpage ; l'index est
+   désormais **suivi**, et son absence de suivi ne peut plus se traduire en accusation.
+
+Un audit qui accuse à tort est pire qu'un audit absent : il apprend à ignorer ses alertes.
+
+**Relancé sur un build de PRODUCTION** — le premier passage tournait sur un build de preview, où
+toutes les pages sont `noindex`, ce qui rend muets les contrôles SEO ; annoncer « vert » sur cette
+moitié de mesure aurait été malhonnête. Résultat : **rien de bloquant**, et le contrôle
+« pages indexables absentes du sitemap » ne trouve **rien**, cette fois pour de bon. Restent trois
+constats non bloquants, consignés sans y toucher :
+
+- `nom-pays` : « Türkiye » sur 5 pages en/es. C'est le nom officiel en anglais depuis 2022 — le
+  contrôle est peut-être lui-même trop zélé ; à trancher.
+- `titre-long` : 4 titres > 65 caractères (dont `/fr/travel-hub/`, 79).
+- `desc-longue` : 102 descriptions > 165 caractères, presque toutes des fiches compagnies.
+
+**Deux harnais neufs, branchés sur la CI de main.**
+
+`test-liens-internes.mjs` — **1 426 588 liens internes relevés sur 3 121 pages**. Trois états, et le
+deuxième n'est pas un défaut : résout / redirige par une règle déclarée / mort. J'avais moi-même
+annoncé « quatre liens morts » alors que trois étaient des redirections : les confondre, c'est
+accuser à tort. Une redirection qui mène au vide est un échec aussi, `:splat` compris. Le partage
+entre pages offertes aux moteurs et pages retirées se fait sur la **présence au sitemap**, jamais
+sur la balise `robots` : un build de preview marque tout `noindex` et rendrait le harnais aveugle
+une fois sur deux. **Une seule adresse morte**, sur le prototype `/lab/roundtrip/` retiré des
+sitemaps — `/fr/countries/${d}/`, un littéral non substitué. Elle est **nommée et son nombre figé**,
+pas effacée.
+
+`test-page-guide.mjs` — les **288 pages de guides que rien ne lisait**. Il ne reparse pas le
+Markdown, délibérément : ce serait écrire un second gabarit avec ses propres bogues. Il compare la
+page **à elle-même**, le HTML visible contre ses données structurées — deux rendus de la même
+source. 1 079 questions de FAQ, 1 367 puces « en bref », 248 pages illustrées.
+
+**Trois de mes exigences étaient fausses, et la troisième aurait dégradé le site.**
+
+1. J'exigeais `lang="pt"` : `Base.astro` fait correspondre `pt` à `pt-BR`. Les 72 pages portugaises
+   avaient raison, mon contrôle avait tort.
+2. « Toute illustration porte son crédit » : `flying-with-a-dog-cabin-hold-cargo` l'omet dans ses
+   quatre langues. Je ne sais pas d'où vient ce fichier — s'il appartient au site, aucun crédit
+   n'est dû. Trancher demande de savoir, pas de deviner : figé à 4, une cinquième ferait échouer.
+3. « Les quatre langues affichent le même nombre de questions » dénonçait `train-travel-with-a-dog`.
+   Vérification faite : le **français est l'original** et parle de la SNCF (« < 6 kg », « tout le
+   réseau SNCF ») quand l'anglais est une réécriture générique qui ajoute **Amtrak** — et la
+   question surnuméraire porte précisément sur Amtrak. Appliquer la symétrie aurait poussé à mettre
+   Amtrak dans un guide SNCF : **le contrôle aurait dégradé le contenu qu'il prétend protéger.** La
+   règle ne contraint plus que ce qui *est* une traduction — `es`/`pt` toujours, `fr` seulement pour
+   les guides nés ici, l'origine se lisant sur la présence de `sourceUrl` chez le jumeau anglais.
+
+**À arbitrer :** le crédit photo manquant (à qui appartient l'image ?) ; le `${d}` du prototype
+`/lab/` ; « Türkiye » ; les 102 descriptions trop longues.
