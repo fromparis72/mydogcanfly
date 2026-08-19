@@ -175,3 +175,36 @@ internes du corpus, zéro mort**.
   le bon chiffre pour l'Australie, seulement que la règle et sa phrase se contredisent.
 - **Le rendu visuel.** Aucune preview, aucun déploiement. Les dix nouveaux articles n'ont **pas de
   visuel de couverture** — choix assumé plutôt qu'un crédit photo faux.
+
+---
+
+## 8. Journal — travaux postérieurs à ce compte rendu
+
+Cette section reste ouverte jusqu'au retour de la contre-revue. Chaque entrée est datée et porte
+son commit.
+
+### 2026-08-19 — fiche d'arbitrage des 14 divergences (`FICHE-ARBITRAGE-14-DELAIS.md`)
+
+Rien n'est corrigé. La fiche rassemble, pour chacune des 14 règles de T0-B3-f : ce que le moteur
+applique, ce que la phrase annonce, l'écart en jours, l'URL de la source citée, son type, sa
+confiance, sa date de vérification et l'échéance de revue — puis la question exacte à trancher.
+Elle est **générée depuis l'artefact scellé**, pas recopiée à la main : elle ne peut pas diverger
+du dossier.
+
+Objectif : que la session de contre-revue serve à **décider**, pas à rassembler.
+
+### Décision consignée — le corpus de règles n'a PAS été traduit, et pourquoi
+
+Le chantier le plus gros disponible sans arbitrage était la traduction des phrases de règles :
+**359 en espagnol, 399 en portugais, ~38 k mots**. Il a été mesuré puis **écarté**, pour une raison
+qui appartient à la contre-revue et non à moi :
+
+**cinq dossiers scellent `rules.json`** — `t0b3b` (base `dadecc2`), `t0b3c` (`ff692b2`),
+`t0b3d` (`eb3562c`), `t0b3e` (`34b04cd`), `t0b3f` (`adfd06d`). Chacun relit l'empreinte du fichier
+et **échoue si elle diffère**. Traduire le corpus ferait donc tomber la reproduction des cinq d'un
+seul coup.
+
+C'est le comportement voulu — « pour mesurer autre chose, il faut déclarer une nouvelle base » —
+mais la décision de retirer cinq dossiers de leur base la veille d'une contre-revue n'est pas la
+mienne. **À arbitrer :** traduire puis rebaser les cinq, traduire dans un fichier séparé, ou
+attendre.
