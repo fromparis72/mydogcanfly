@@ -359,3 +359,48 @@ site entier restent hors du lot rapide, et le runner le dit à chaque exécution
 Restent sans harnais, et c'est assumé : `best-carriers` et `best-crates`, qui n'ont rien à
 surveiller tant qu'elles n'ont pas de classement — leur seul défaut est d'être annoncées au sitemap
 au rang des outils, ce qui est une question éditoriale, pas un test.
+
+### 2026-08-19 — T0-B3-h, ce que le site ENTIER dit en portugais (base `2948ee9`)
+
+Septième dossier, `npm run mesure:t0b3h`. Suite directe de T0-B3-g : « 33 dans les outils »
+appelait immédiatement « et ailleurs ? », et tant qu'on ne répondait pas, l'arbitrage portait sur
+une image partielle. Le site compte **887** sites d'appel, dont 355 dans les outils.
+
+**887 occurrences repérées, 887 classées.** Les alias sont **découverts fichier par fichier**, pas
+supposés : un fichier qui nommerait `Tr` sa fonction de traduction échapperait à un lecteur câblé
+sur `T` et `L`. Trois alias existent au sceau (`T`, `L`, `F`), et un fichier qui appellerait
+`inlineT` sans en déclarer l'alias fait échouer la mesure. L'arborescence elle-même est relue au
+commit de base : un fichier ajouté depuis le sceau fait échouer plutôt que de s'y glisser.
+
+**L'espagnol est complet** — 0 site sur l'anglais, 0 clé littérale manquante. C'est un résultat, pas
+une absence de mesure.
+
+**Le portugais : 49 chaînes.** Trois groupes comptent plus que leur nombre :
+
+1. **L'accueil, 10 chaînes — des avertissements de planification.** Le FlightFinder de la page
+   d'accueil sert en anglais « Country formalities — outbound AND return », « The return needs a
+   long procedure (rabies titer) started BEFORE you leave », « Entry requires an import permit and
+   quarantine — plan several months ahead. » Le lecteur portugais reçoit le résultat dans sa langue
+   et l'avertissement qui le conditionne en anglais.
+2. **Le gabarit des guides, 2 chaînes — mais sur 72 pages.** « updated » et « In short » sont en
+   anglais sur **chacun** des 72 guides portugais.
+3. **Les outils, 32 chaînes** — déjà détaillées dans T0-B3-g (les 33 s'y retrouvent en 32 `tools`
+   + 1 `RelatedTools`, partagé entre plusieurs familles).
+
+`airlines`, `breeds` et `countries` — 170 sites d'appel à elles trois — sont **entièrement servies**.
+
+**Ce que je refuse de confondre.** Une clé construite dynamiquement n'est **pas** une clé manquante.
+Neuf appels `t(locale, …)` calculent leur clé ; le dossier les **nomme** au lieu de les ranger avec
+les autres. Les compter comme « incomplètes » aurait produit une accusation fausse — c'est la même
+discipline que les trois versions rejetées de T0-B3-f.
+
+**Attribution des familles.** Les composants n'ont pas de famille propre : ils héritent de celles
+des routes qui les atteignent, transitivement. Un composant qui ne sert qu'une famille compte pour
+elle, sinon il est « partagé ». Rattacher d'autorité un composant à une famille fausserait le poids
+relatif des familles, qui est précisément ce que le dossier cherche à établir.
+
+**À arbitrer.** Traduire les 49 est un travail de **données** — une table, pas du code. Mais
+`translations/pt/inline.json` est scellé par T0-B3-g **et** par T0-B3-h : le traduire ferait tomber
+la reproduction des deux. Trois options : traduire puis rebaser les deux dossiers ; traduire d'abord
+les trois groupes prioritaires et laisser le reste ; ou attendre. Question annexe : les 9 clés
+dynamiques méritent-elles d'être rendues littérales pour devenir mesurables ?
