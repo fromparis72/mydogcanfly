@@ -263,3 +263,48 @@ aux contre-épreuves manuelles.
 existe en quatre langues et ne figure dans aucun sitemap. Ce n'est pas un défaut — sa source porte
 `noindex={true}` explicitement. Le `noindex` lu dans `dist` ne prouvait rien de son côté : le build
 de preview le pose sur **toutes** les pages.
+
+### 2026-08-19 — T0-B3-g, ce que les huit outils servent et dans quelle langue (base `50188bd`)
+
+Sixième dossier de mesure, `npm run mesure:t0b3g`. Rien n'est corrigé : les 21 fichiers lus sont
+comparés au bit près à leur version du commit de base, et la moindre différence fait échouer la
+mesure avant qu'elle ne dise quoi que ce soit.
+
+**La langue se mesure sans interpréter.** `inlineT` et `t()` portent tous deux un repli vers
+l'anglais **écrit dans leur signature** (`es ?? en`, `TABLES[locale]?.[key] ?? TABLES.en[key]`). Le
+dossier compte deux conséquences mécaniques du code ; il ne juge rien. Mesurer `inlineT` seul aurait
+laissé croire le périmètre couvert alors qu'il ne l'était qu'à moitié.
+
+**Constats.** 355 sites d'appel analysés sur 355 repérés — l'égalité est une exigence, un site
+illisible fait échouer la mesure au lieu d'en disparaître.
+
+- **espagnol : 0 site sur l'anglais.** **Portugais : 33.** Ce ne sont pas des phrases d'ornement :
+  les messages d'erreur des deux outils interactifs, les messages de validation et de résultat de
+  `destinations`, et les **réserves de l'outil chaleur** — « This value is a monthly climate average
+  — not the maximum temperature », « MyDogCanFly indicative threshold: amber from {risk} °C ». Le
+  lecteur portugais reçoit le **résultat** dans sa langue et la **réserve qui le qualifie** en anglais.
+- `best-carriers` et `best-crates` sont des **pages d'attente** — aucun composant qui calcule,
+  « classement en préparation » — mais déclarées au sitemap à **priorité 0.8** (le rang des outils)
+  et liées depuis `/tools/` comme les quatre vrais outils.
+- `timeline` est un outil **complet** (63 sites d'appel, rétro-planning daté, quatre langues),
+  délibérément `noindex`, hors sitemap, non lié. Volontaire ou oublié : ce n'est pas à la mesure de
+  le dire.
+- `t(locale, clé)` : 22 sites, 8 clés distinctes, **aucune incomplète** dans les quatre tables.
+- 0 traduction identique à l'anglais dans l'une ou l'autre langue — comptées à part, sans jugement :
+  « IATA » se dit IATA partout, ce ne serait pas un repli.
+
+**Ce que je n'ai PAS mesuré, et je l'écris plutôt que de le maquiller.** La provenance des chiffres
+est **inventoriée** (les imports du référentiel scellé, fichier par fichier), jamais jugée. Classer
+un littéral numérique en « affirmation » confondrait un seuil IATA avec un index de tableau —
+T0-B3-f a rejeté trois versions d'un contrôle pour cette raison exacte. `layouts/Base.astro` est
+exclu du périmètre, et l'exclusion est **déclarée** dans l'artefact avec son motif : il porte le
+chrome de toutes les pages du site, pas celui des outils.
+
+**Quatre contre-épreuves chirurgicales** — chacune déplace un seul site ou une seule route pour ne
+faire tomber que l'exigence visée. `residu` en fait tomber deux, et le README le dit : perdre un
+site change nécessairement l'inventaire.
+
+**À arbitrer :** les deux pages d'attente au sitemap ; le sort de `timeline` ; les 33 chaînes
+portugaises (travail de données, pas de code) ; et le fait que quatre des huit outils — `crate`,
+`pet-relief`, `best-carriers`, `best-crates` — ne sont lus par **aucun harnais**. Ce dossier les
+mesure ; il ne les surveille pas. Le harnais est l'étape suivante.
