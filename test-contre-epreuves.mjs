@@ -390,6 +390,30 @@ const MUTATIONS = [
     harnais: "test-pet-relief-harness.cjs",
     attendu: "une soumission sans aéroport affiche le message d'aide",
   },
+  /* ---- Ce que le site LIE, et ce que ses pages de guides affichent ----
+   * Deux harnais du site entier, donc deux mutations à build complet. Sous le build réduit, les
+   * pages d'entités et les guides n'existent pas : les deux harnais échoueraient faute de matière,
+   * sans que la mutation y soit pour rien. */
+  {
+    dom: true,
+    buildComplet: true,
+    nom: "les fiches d'entités sont liées par une adresse que le site ne sert pas",
+    fichier: "packages/ui/src/lib/routes.ts",
+    cherche: "  return localizeHref(`/${plural}/${slug}/`, locale);",
+    remplace: "  return localizeHref(`/${plural}/${slug}-x/`, locale);",
+    harnais: "test-liens-internes.mjs",
+    attendu: "ne mènent nulle part",
+  },
+  {
+    dom: true,
+    buildComplet: true,
+    nom: "le schéma FAQ annonce une question que la page n'affiche pas",
+    fichier: "packages/ui/src/pages/[...loc]/travel-hub/[slug].astro",
+    cherche: "    mainEntity: d.faq.map((f) => ({",
+    remplace: "    mainEntity: [...d.faq, d.faq[0]].map((f) => ({",
+    harnais: "test-page-guide.mjs",
+    attendu: "annonce EXACTEMENT les questions",
+  },
 ];
 
 const dire = (m) => process.stdout.write(m + "\n");

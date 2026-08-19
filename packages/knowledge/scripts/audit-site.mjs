@@ -46,15 +46,29 @@ const read = (p) => readFileSync(p, "utf8");
   }
 }
 
-// ─── 1. URL malformées : query après l'ancre (le bug des 507 pages races) ────────────
+// ─── 1. Les paramètres passés dans le dièse — et le mécanisme qui les lit ────────────
+//
+// CE CONTRÔLE A ÉTÉ RETOURNÉ LE 19/08/2026, PARCE QU'IL ACCUSAIT LE SITE À TORT.
+// Il dénonçait toute adresse « chemin#ancre?cle=valeur » comme un paramètre perdu — le bug des
+// 507 pages races. Depuis, `Base.astro` définit `window.mdcfQuery`, qui lit LE DIÈSE D'ABORD et
+// `location.search` seulement en repli, et `window.mdcfPut` place délibérément les paramètres
+// dans le dièse. La convention est documentée dans env.d.ts, OnwardNav.astro et
+// BreedTravelPage.astro. Vérifié : aucune source ne lit `location.search` en direct.
+// Le contrôle dénonçait donc 1 656 adresses correctes — la pire faute possible pour un audit.
+//
+// Ce qui reste vrai, et que ce contrôle protège désormais : ces adresses ne fonctionnent QUE
+// parce que le lecteur est là. Une page qui porte de tels liens sans embarquer `mdcfQuery` les
+// casserait toutes en silence. C'est cette dépendance qui est vérifiée, plus la convention.
 {
-  const bad = new Set();
+  const sansLecteur = [];
   for (const p of html) {
-    for (const m of read(p).matchAll(/href="([^"]*#[^"?]*\?[^"]*)"/g)) bad.add(m[1]);
+    const b = read(p);
+    if (!/href="[^"]*#[^"?]*\?[^"]*"/.test(b)) continue;
+    if (!b.includes("mdcfQuery")) sansLecteur.push(rel(p));
   }
-  if (bad.size) add("BLOQUANT", "url-fragment",
-    `${bad.size} URL avec une query string APRÈS l'ancre : le paramètre n'atteint jamais location.search`,
-    [...bad].slice(0, 3));
+  if (sansLecteur.length) add("BLOQUANT", "dièse-sans-lecteur",
+    `${sansLecteur.length} page(s) portent des paramètres dans le dièse SANS embarquer mdcfQuery : `
+    + "ces liens perdent leur paramètre en silence", sansLecteur.slice(0, 3));
 }
 
 // ─── 2. Liens internes morts ────────────────────────────────────────────────────────
@@ -174,10 +188,26 @@ if (!existsSync(join(DIST, "404.html")))
 
 // ─── 7. Sitemap ↔ pages réelles ─────────────────────────────────────────────────────
 {
+  // LE SITEMAP EST UN INDEX DEPUIS LE 01/08/2026, et ce contrôle l'ignorait : il prenait les
+  // quatre `<loc>` de l'index — les fichiers `sitemap-<lang>.xml` — pour des pages, et déclarait
+  // « 4 URL du sitemap sans page correspondante ». Les quatre fichiers existent et pèsent 430 ko
+  // chacun. Corrigé le 19/08/2026 : l'index est SUIVI, et son absence de suivi ne peut plus se
+  // traduire par une accusation.
   const sm = join(DIST, "sitemap.xml");
   if (!existsSync(sm)) add("SEO", "sitemap", "sitemap.xml absent");
   else {
-    const urls = [...read(sm).matchAll(/<loc>([^<]+)<\/loc>/g)].map((m) => m[1].replace(/^https?:\/\/[^/]+/, ""));
+    const brut = read(sm);
+    let sources = [sm];
+    if (/<sitemapindex/.test(brut)) {
+      const refs = [...brut.matchAll(/<loc>([^<]+)<\/loc>/g)].map((m) => m[1].replace(/^https?:\/\/[^/]+\//, ""));
+      const absents = refs.filter((r) => !existsSync(join(DIST, r)));
+      if (absents.length) add("BLOQUANT", "sitemap-index",
+        `${absents.length} sitemap(s) annoncé(s) par l'index et absent(s) du site`, absents.slice(0, 3));
+      sources = refs.filter((r) => existsSync(join(DIST, r))).map((r) => join(DIST, r));
+      if (!sources.length) add("BLOQUANT", "sitemap-index", "l'index ne mène à aucun sitemap lisible");
+    }
+    const urls = sources.flatMap((f) => [...read(f).matchAll(/<loc>([^<]+)<\/loc>/g)]
+      .map((m) => m[1].replace(/^https?:\/\/[^/]+/, "")));
     const pages = new Set(html.map(rel));
     const missing = urls.filter((u) => !pages.has(u.endsWith("/") ? u : u + "/"));
     if (missing.length) add("BLOQUANT", "sitemap-404",

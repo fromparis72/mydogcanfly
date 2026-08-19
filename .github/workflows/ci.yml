@@ -137,6 +137,25 @@ jobs:
         if: github.event_name == 'push'
         run: npm run test:annonce
 
+      # Les trois contrôles du SITE ENTIER, sur main seulement pour la même raison que le précédent :
+      # sous le build réduit ils échoueraient faute de pages, pas faute de qualité.
+      #
+      # `audit` existait depuis longtemps et n'était lancé PAR RIEN — un contrôle bloquant laissé à
+      # la main, c'est-à-dire oubliable, exactement ce que son propre en-tête reproche aux
+      # vérifications manuelles. Il sortait d'ailleurs deux anomalies bloquantes FAUSSES, l'une et
+      # l'autre corrigées le 19/08/2026 (voir ses commentaires).
+      - name: Tout lien interne mène quelque part (main)
+        if: github.event_name == 'push'
+        run: npm run test:liens
+
+      - name: Les pages de guides affichent ce qu'elles annoncent (main)
+        if: github.event_name == 'push'
+        run: npm run test:guide-page
+
+      - name: Audit de cohérence du site construit (main)
+        if: github.event_name == 'push'
+        run: npm run audit
+
       - name: Bundle épinglé sur le Worker attendu
         run: node packages/knowledge/scripts/check-bundle.mjs --expect="https://00000000-mydogcanfly-api-preview.fromparis.workers.dev"
 

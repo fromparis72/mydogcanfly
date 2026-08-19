@@ -23,6 +23,8 @@
     "test:date": "tsx test-worker-date.mjs && tsx test-tristate-climat.mjs",
     "test:built-ui": "node test-fiche-harness.cjs && node test-flightfinder-harness.cjs && node test-heat-harness.cjs && node test-destinations-harness.cjs && node test-t0b3a-avis-dom.cjs && node test-crate-harness.cjs && node test-pet-relief-harness.cjs",
     "test:annonce": "node test-annonce-du-site.mjs",
+    "test:liens": "node test-liens-internes.mjs",
+    "test:guide-page": "node test-page-guide.mjs",
     "test:entities": "tsx test-entity-pages-harness.mjs",
     "test:entities:complet": "HARNAIS_PORTEE=complet NODE_OPTIONS=--max-old-space-size=1024 tsx test-entity-pages-harness.mjs",
     "build": "node packages/knowledge/scripts/lib/require-node.mjs \"le build\" && npm -w @mydogcanfly/ui run build",
