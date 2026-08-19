@@ -404,3 +404,38 @@ relatif des familles, qui est précisément ce que le dossier cherche à établi
 la reproduction des deux. Trois options : traduire puis rebaser les deux dossiers ; traduire d'abord
 les trois groupes prioritaires et laisser le reste ; ou attendre. Question annexe : les 9 clés
 dynamiques méritent-elles d'être rendues littérales pour devenir mesurables ?
+
+### 2026-08-19 — la page « meilleures cages de transport » : étudiée, puis reportée
+
+Question de Philippe : comment réaliser `best-crates`, l'une des deux pages d'attente que T0-B3-g a
+trouvées annoncées au sitemap au rang des outils. **Rien n'a été écrit** : la page reste en l'état,
+et la décision est de la reporter. Ce qui suit est consigné pour ne pas être réétudié à zéro.
+
+**Ce n'est pas un problème de code, c'est un problème de référentiel.** La page porte sa propre
+promesse : « nous ne publierons que des modèles réellement évalués et sourcés (aucune recommandation
+fabriquée) ».
+
+**Le point dur, posé avant tout le reste : « évalué » et « sourcé » ne sont pas la même chose.** Un
+classement **sourcé** est à ma portée — chaque dimension relevée sur la fiche technique du
+fabricant, avec URL et date, comme le reste du référentiel. Une **évaluation** ne l'est pas :
+personne ici n'a eu ces caisses en main. Si la promesse veut dire « testées », la page doit attendre
+de vrais tests ; si elle veut dire « vérifiées sur les caractéristiques publiées », la phrase doit
+être réécrite. C'est une décision éditoriale, et elle précède tout travail technique.
+
+**La forme proposée, qui rendrait le classement infabricable.** Le calculateur `crate` produit déjà
+un minimum L×W×H et une série standard (100 à 700). La page ne serait donc pas « nos préférées »
+mais « votre chien a besoin d'une 400 → voici les modèles dont l'**intérieur** atteint réellement
+84×57×60 » : un appariement contre des dimensions mesurées. Les autres filtres seraient des
+exigences IATA, pas des goûts — ventilation sur les quatre côtés, fermeture par boulons métalliques,
+sol étanche.
+
+**Trois étapes, si le chantier reprend :** `crates.json` sur le modèle du reste du référentiel
+(dimensions intérieures ET extérieures, poids maximal, `source.url` du fabricant, `verified_date`,
+`review_due`, `confidence`) → la page dérivée du fichier, aucune phrase sans source, date de
+vérification visible puisque le titre annonce « 2026 » → l'affiliation, qui ne demande aucun code :
+`partner_iata_crates` existe déjà en `status: placeholder`, vertical `equipment`, avec la marche à
+suivre écrite dans ses notes.
+
+**Restent ouvertes**, et aucune ne m'appartient : le sens exact de la promesse ; l'autorisation
+d'aller relever les fiches techniques constructeur ; la liste de marques de départ ; l'affiliation ;
+les photos — même impasse que pour les dix articles récents, et je n'inventerai pas de crédit.
