@@ -248,6 +248,22 @@ const MUTATIONS = [
     harnais: "test-guides-traduits.mjs",
     attendu: "visent une route existante",
   },
+  {
+    nom: "un guide français importé perd son adresse d'origine",
+    fichier: "packages/ui/src/content/guides/fr/mal-des-transports-chien.md",
+    cherche: 'sourceUrl: "/mal-des-transports-chien/"\n',
+    remplace: "",
+    harnais: "test-guides-traduits.mjs",
+    attendu: "même statut d'origine que son jumeau anglais",
+  },
+  {
+    nom: "un guide français né ici s'invente une adresse d'origine",
+    fichier: "packages/ui/src/content/guides/fr/retroplanning-vol-international-chien.md",
+    cherche: 'key: "pet-flight-timeline"',
+    remplace: 'key: "pet-flight-timeline"\nsourceUrl: "/retroplanning-vol-international-chien/"',
+    harnais: "test-guides-traduits.mjs",
+    attendu: "même statut d'origine que son jumeau anglais",
+  },
   // ---- L'INTERFACE (chaque mutation exige un build, d'où `--dom`) ----
   {
     dom: true,

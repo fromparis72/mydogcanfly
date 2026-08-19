@@ -92,7 +92,7 @@ for (const g of tous) {
 /* ---- 1. Le pivot ---------------------------------------------------------------------------- */
 /* `key` relie les langues entre elles. Une traduction sans jumeau anglais serait une page
    orpheline : pas d'alternates, pas d'entrée à l'index, invisible au sélecteur de langue. */
-for (const l of TRADUITES) {
+for (const l of ["fr", ...TRADUITES]) {
   const orphelins = parLangue[l].filter((g) => !parCle.get(g.key)?.en);
   exiger(`chaque guide ${l} a son jumeau anglais (pivot \`key\`)`,
     orphelins.length === 0, orphelins.map((g) => `${g.fichier} → key « ${g.key} » inconnue`).join(", "));
@@ -122,9 +122,22 @@ const faux = parLangue.en
   .filter((g) => !existsSync(join("content/posts", `${(g.sourceUrl ?? "").replace(/^\/|\/$/g, "")}.md`)))
   .map((g) => `${g.fichier} → « ${g.sourceUrl} » : aucun article hérité de ce nom`);
 exiger("chaque `sourceUrl` anglais désigne un article hérité réel", faux.length === 0, faux.join(", "));
-exiger("les guides français importés portent tous leur `sourceUrl` (leur origine n'est pas dans ce dépôt)",
-  IMPORTES.fr.length === parLangue.fr.length,
-  parLangue.fr.filter((g) => !g.aSourceUrl).map((g) => g.fichier).join(", "));
+/* LE FRANÇAIS A DÉSORMAIS DEUX POPULATIONS, comme l'anglais : les 62 importés de l'ancien site, et
+ * ceux qui naissent ici. « tous les guides fr portent un sourceUrl » devient donc faux — mais le
+ * relâcher en « certains en portent » ne prouverait plus rien.
+ *
+ * La règle exacte est ailleurs : le statut d'origine d'un guide français doit être CELUI DE SON
+ * JUMEAU ANGLAIS. C'est plus fort que l'ancienne règle, et c'est vérifiable, parce que le sourceUrl
+ * anglais est lui-même confronté aux fichiers réels de content/posts juste au-dessus. Un importé
+ * qui perdrait son adresse échoue ; un article né ici qui s'en inventerait une échoue aussi. */
+const desaccords = parLangue.fr
+  .map((g) => ({ g, en: parCle.get(g.key)?.en }))
+  .filter(({ en }) => en)                       // sans jumeau : déjà signalé par le contrôle du pivot
+  .filter(({ g, en }) => g.aSourceUrl !== en.aSourceUrl)
+  .map(({ g, en }) => `${g.fichier} : ${g.aSourceUrl ? "porte" : "n'a pas"} de \`sourceUrl\`,`
+    + ` son jumeau anglais ${en.aSourceUrl ? "en a un" : "n'en a pas"}`);
+exiger("chaque guide français a le même statut d'origine que son jumeau anglais",
+  desaccords.length === 0, desaccords.join(", "));
 for (const l of TRADUITES) {
   const avec = parLangue[l].filter((g) => g.aSourceUrl);
   exiger(`aucun guide ${l} ne s'invente un \`sourceUrl\` : ils naissent ici`,
@@ -269,7 +282,15 @@ for (const l of LANGUES) {
 const traduits = TRADUITES.map((l) => `${l}=${parLangue[l].length}`).join(" · ");
 dire("");
 dire(`  guides : en=${parLangue.en.length} · fr=${parLangue.fr.length} · ${traduits}`);
-dire(`  reste à traduire : ${TRADUITES.map((l) => `${l} ${62 - parLangue[l].length}`).join(" · ")}`);
+/* Le reste à traduire se COMPTE, il ne se déduit pas d'un 62 figé : ce nombre était le total du
+   corpus importé, et il est devenu faux le jour où des articles sont nés ici. Un compteur qui
+   affiche « es -10 » ne renseigne plus personne — on compare donc les clés, langue par langue. */
+const clesEn = new Set(parLangue.en.map((g) => g.key));
+const restant = (l) => {
+  const presentes = new Set(parLangue[l].map((g) => g.key));
+  return [...clesEn].filter((k) => !presentes.has(k)).length;
+};
+dire(`  reste à traduire : ${["fr", ...TRADUITES].map((l) => `${l} ${restant(l)}`).join(" · ")}`);
 if (echecs) {
   process.stderr.write(`\n[guides-traduits] ÉCHEC — ${echecs} contrôle(s) non tenu(s)\n`);
   process.exit(1);
