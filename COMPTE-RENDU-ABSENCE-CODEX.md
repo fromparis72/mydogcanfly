@@ -504,3 +504,10 @@ source. 1 079 questions de FAQ, 1 367 puces « en bref », 248 pages illustrées
 
 **À arbitrer :** le crédit photo manquant (à qui appartient l'image ?) ; le `${d}` du prototype
 `/lab/` ; « Türkiye » ; les 102 descriptions trop longues.
+
+**Vérification finale — 37 garanties éprouvées sur 37.** `npm run contre-epreuves -- --dom --complet`,
+pour la première fois le catalogue ENTIER en une seule passe : les 27 mutations rapides, les 6
+d'interface, et les 4 qui exigent le site entier — dont les deux du jour, « les fiches d'entités
+sont liées par une adresse que le site ne sert pas » et « le schéma FAQ annonce une question que la
+page n'affiche pas ». Quatre builds complets et six réduits, arbre rendu intact, `dist` reconstruit
+depuis la source restaurée. Les deux harnais d'aujourd'hui savent rougir, et pour la bonne raison.
