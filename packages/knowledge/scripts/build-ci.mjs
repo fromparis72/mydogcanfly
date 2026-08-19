@@ -28,7 +28,15 @@
  * inexistante : la CI n'a pas à joindre Cloudflare, et une sentinelle permet de vérifier que le
  * bundle est bien épinglé sur ce qu'on lui a demandé — et sur rien d'autre.
  *
- *   npm run build:ci
+ * `--complet` — MÊME sentinelle, MÊME environnement, mais SANS les filtres d'entités : le site
+ * entier. Ajouté le 19/08/2026 pour les contre-épreuves de `test-annonce-du-site.mjs`, qui
+ * confrontent les `hreflang` et les sitemaps aux pages construites : sous le build réduit, elles
+ * échoueraient parce que les pages manquent, pas parce que la mutation a mordu — c'est-à-dire
+ * qu'elles prouveraient le vide. Le drapeau vit ICI et non dans un second script pour que
+ * l'adresse sentinelle reste écrite UNE fois : deux copies finissent toujours par diverger.
+ *
+ *   npm run build:ci              le site réduit (pull request)
+ *   npm run build:ci -- --complet le site entier, même sentinelle (~12 min)
  */
 import { spawnSync } from "node:child_process";
 import { join } from "node:path";
@@ -38,12 +46,25 @@ import { BUILD_ONLY_SENTINELLES, BUILD_SLUGS_SENTINELLES } from "./lib/sentinell
 
 requireNode("le build de CI");
 
+/* Un argument non reconnu est une ERREUR, jamais un silence — même garde-fou que build-preview.mjs :
+ * `--complte` construirait sinon un site réduit en croyant l'avoir demandé entier, et les
+ * contre-épreuves échoueraient faute de pages, sans que rien ne dise pourquoi. */
+const COMPLET = process.argv.includes("--complet");
+const inconnus = process.argv.slice(2).filter((a) => a !== "--complet");
+if (inconnus.length > 0) {
+  process.stderr.write(`[build-ci] Argument(s) non reconnu(s) : ${inconnus.join(", ")}\n`);
+  process.stderr.write("[build-ci] Argument accepté : --complet\n");
+  process.exit(2);
+}
+
 const SENTINEL_API_BASE = "https://00000000-mydogcanfly-api-preview.fromparis.workers.dev";
 const REPO_ROOT = join(fileURLToPath(import.meta.url), "..", "..", "..", "..");
 const log = (m) => process.stderr.write(`[build-ci] ${m}\n`);
 
 log(`PUBLIC_API_BASE=${SENTINEL_API_BASE} (sentinelle : aucune requête réseau attendue)`);
-log(`PUBLIC_SITE_ENV=preview · BUILD_ONLY=${BUILD_ONLY_SENTINELLES} · BUILD_SLUGS=${BUILD_SLUGS_SENTINELLES}`);
+log(COMPLET
+  ? "PUBLIC_SITE_ENV=preview · site ENTIER (--complet) : aucun filtre d'entités"
+  : `PUBLIC_SITE_ENV=preview · BUILD_ONLY=${BUILD_ONLY_SENTINELLES} · BUILD_SLUGS=${BUILD_SLUGS_SENTINELLES}`);
 
 const r = spawnSync("npm", ["-w", "@mydogcanfly/ui", "run", "build"], {
   cwd: REPO_ROOT,
@@ -54,8 +75,10 @@ const r = spawnSync("npm", ["-w", "@mydogcanfly/ui", "run", "build"], {
     /* Les deux familles d'entités, réduites à leurs sentinelles, dans la MÊME passe. Les autres
        familles (races, aéroports, guides) restent hors du build réduit ; les pages qui ne sont
        pas des entités (accueil, outils) ne passent pas par ce filtre et sont construites. */
-    BUILD_ONLY: BUILD_ONLY_SENTINELLES,
-    BUILD_SLUGS: BUILD_SLUGS_SENTINELLES,
+    ...(COMPLET ? {} : {
+      BUILD_ONLY: BUILD_ONLY_SENTINELLES,
+      BUILD_SLUGS: BUILD_SLUGS_SENTINELLES,
+    }),
   },
   stdio: ["ignore", 2, 2],
 });
@@ -63,4 +86,6 @@ if (r.status !== 0) {
   log("ÉCHEC : le build réduit a échoué (voir la sortie ci-dessus).");
   process.exit(1);
 }
-log("Build réduit prêt. Les harnais lisant packages/ui/dist peuvent tourner.");
+log(COMPLET
+  ? "Site ENTIER prêt. Les harnais lisant packages/ui/dist peuvent tourner."
+  : "Build réduit prêt. Les harnais lisant packages/ui/dist peuvent tourner.");

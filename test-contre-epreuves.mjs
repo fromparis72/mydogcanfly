@@ -4,6 +4,7 @@
  *
  *   npm run contre-epreuves            les mutations du moteur et des données (rapide)
  *   npm run contre-epreuves -- --dom   y ajoute celles de l'interface (chacune exige un build)
+ *   npm run contre-epreuves -- --complet  y ajoute celles qui exigent le SITE ENTIER (~12 min chacune)
  *
  * POURQUOI CE FICHIER EXISTE. Un harnais vert ne prouve rien tant qu'on n'a pas montré qu'il sait
  * rougir. Depuis dix tours de contre-revue, chaque garantie de ce chantier a été éprouvée en
@@ -29,6 +30,12 @@ import { execFileSync, spawnSync } from "node:child_process";
 import { readFileSync, writeFileSync } from "node:fs";
 
 const AVEC_DOM = process.argv.includes("--dom");
+/* Certaines garanties ne se lisent que sur le site ENTIER — les `hreflang` et les sitemaps
+ * confrontés aux pages construites. Sous le build réduit, leur harnais échouerait faute de pages
+ * et non parce que la mutation a mordu : il prouverait le vide. Elles sont donc derrière un
+ * drapeau distinct, parce qu'elles coûtent un build complet chacune, et le total ci-dessous dit
+ * toujours combien n'ont PAS été jouées. */
+const AVEC_COMPLET = process.argv.includes("--complet");
 
 /* ---- LE CATALOGUE ---------------------------------------------------------------------------
  * `editions` : une ou plusieurs substitutions, chacune devant apparaître EXACTEMENT une fois —
@@ -292,7 +299,9 @@ const MUTATIONS = [
    * Les deux régressions que la plus vieille leçon du chantier a laissées derrière elle : une
    * adresse annoncée qui ne mène nulle part, et une famille de pages qui décroche du sitemap sans
    * que rien ne le dise. Elles ont toujours été surveillées à la main, dans une conversation ;
-   * elles le sont désormais ici. Le harnais visé lit les octets du site construit, d'où « dom ».
+   * elles le sont désormais ici. Le harnais visé lit les octets du site construit, d'où « dom » —
+   * et le site ENTIER, d'où « buildComplet » : sous le build réduit, sitemaps complets contre
+   * 121 pages construites, il échouerait sans que la mutation y soit pour rien.
    *
    * CE QU'ELLES NE COUVRENT PAS, ET JE PRÉFÈRE L'ÉCRIRE : « chaque guide annonce EXACTEMENT les
    * langues où sa clé existe » n'est revendiquée par aucune mutation, parce qu'elle est
@@ -301,6 +310,7 @@ const MUTATIONS = [
    * même sortie. Elle redeviendra éprouvable au premier contenu partiel. */
   {
     dom: true,
+    buildComplet: true,
     nom: "l'adresse annoncée d'un guide traduit perd son préfixe de langue",
     fichier: "packages/ui/src/lib/guides.ts",
     cherche: 'locale === "en" ? `/travel-hub/${slug}/` : `/${locale}/travel-hub/${slug}/`;',
@@ -310,6 +320,7 @@ const MUTATIONS = [
   },
   {
     dom: true,
+    buildComplet: true,
     nom: "les guides des langues traduites décrochent du sitemap",
     fichier: "packages/ui/src/pages/sitemap-[lang].xml.ts",
     cherche: "const guides = await guidesDe(lang);",
@@ -330,8 +341,10 @@ if (arbreSale()) {
   process.exit(1);
 }
 
-const choisies = MUTATIONS.filter((m) => AVEC_DOM || !m.dom);
-const ignorees = MUTATIONS.length - choisies.length;
+const choisies = MUTATIONS.filter((m) =>
+  m.buildComplet ? AVEC_COMPLET : AVEC_DOM || !m.dom);
+const ignoreesDom = MUTATIONS.filter((m) => m.dom && !m.buildComplet && !AVEC_DOM).length;
+const ignoreesCompletes = MUTATIONS.filter((m) => m.buildComplet && !AVEC_COMPLET).length;
 
 let tenues = 0;
 const echecs = [];
@@ -353,7 +366,8 @@ for (const m of choisies) {
   try {
     writeFileSync(m.fichier, editions.reduce((t, e) => t.replace(e.cherche, e.remplace), source));
     if (m.dom) {
-      const b = spawnSync("npm", ["run", "build:ci"], { encoding: "utf8" });
+      const b = spawnSync("npm", ["run", "build:ci", ...(m.buildComplet ? ["--", "--complet"] : [])],
+        { encoding: "utf8" });
       if (b.status !== 0) { resultat = { erreur: "le build a échoué" }; }
     }
     if (!resultat) {
@@ -370,8 +384,11 @@ for (const m of choisies) {
       }
     }
   } finally {
-    /* Restauration systématique : une mutation laissée en place corromprait tout ce qui suit. */
-    git("checkout", "--", m.fichier);
+    /* Restauration systématique : une mutation laissée en place corromprait tout ce qui suit.
+       `:(literal)` parce qu'un chemin de route Astro contient des crochets — `sitemap-[lang].xml.ts`
+       est un motif valide pour git, qui ne désigne AUCUN fichier existant. La restauration
+       échouerait alors dans un `finally`, et la mutation resterait dans l'arbre. */
+    git("checkout", "--", `:(literal)${m.fichier}`);
   }
   if (resultat?.erreur) { echecs.push(`${m.nom}\n      ${resultat.erreur}`); dire(`  ÉCHEC   ${m.nom}`); }
   else { tenues++; dire(`  tenue   ${m.nom}`); }
@@ -384,7 +401,12 @@ for (const m of choisies) {
  * et un déploiement depuis ce `dist` publierait la mutation. Trouvé en enchaînant les deux commandes.
  * On reconstruit donc depuis la source restaurée, et on le dit. */
 if (choisies.some((m) => m.dom)) {
-  const r = spawnSync("npm", ["run", "build:ci"], { encoding: "utf8" });
+  /* Reconstruit dans la portée LA PLUS LARGE qui vient d'être jouée : après une mutation du site
+     entier, restaurer un site réduit laisserait `dist` amputé de 2 400 pages — intact au sens de
+     « sans mutation », mais inutilisable pour le harnais suivant, qui échouerait faute de matière. */
+  const large = choisies.some((m) => m.buildComplet);
+  const r = spawnSync("npm", ["run", "build:ci", ...(large ? ["--", "--complet"] : [])],
+    { encoding: "utf8" });
   if (r.status !== 0) {
     echecs.push("le build de restauration a échoué — `packages/ui/dist` contient encore une mutation. "
       + "Relancer `npm run build:ci` avant tout autre harnais d'interface.");
@@ -401,9 +423,12 @@ if (restant) {
 
 dire("");
 dire(`  ${tenues} garantie(s) éprouvée(s) sur ${choisies.length}`);
-if (ignorees) {
-  /* Jamais de troncature muette : dire ce qui n'a pas été joué vaut mieux qu'un total flatteur. */
-  dire(`  ${ignorees} mutation(s) d'interface NON jouée(s) — chacune exige un build. « npm run contre-epreuves -- --dom » les inclut.`);
+/* Jamais de troncature muette : dire ce qui n'a pas été joué vaut mieux qu'un total flatteur. */
+if (ignoreesDom) {
+  dire(`  ${ignoreesDom} mutation(s) d'interface NON jouée(s) — chacune exige un build. « npm run contre-epreuves -- --dom » les inclut.`);
+}
+if (ignoreesCompletes) {
+  dire(`  ${ignoreesCompletes} mutation(s) NON jouée(s) exigeant le SITE ENTIER — environ douze minutes de build chacune. « npm run contre-epreuves -- --complet » les inclut.`);
 }
 if (echecs.length) {
   process.stderr.write(`\n[contre-épreuves] ÉCHEC — ${echecs.length} :\n`

@@ -127,6 +127,16 @@ jobs:
         if: github.event_name == 'push'
         run: npm run test:entities:complet
 
+      # CE QUE LE SITE ANNONCE — sur main SEULEMENT, et la raison est de fond : ce harnais
+      # confronte les `hreflang` et les quatre sitemaps aux pages RÉELLEMENT construites. Sur une
+      # pull request, `build:ci` ne construit ni les guides ni les fiches ; les sitemaps, eux, sont
+      # toujours complets. Il dénoncerait donc 2 400 « pages annoncées sans page » qui ne sont que
+      # l'effet du build réduit — une accusation fausse, le pire défaut possible pour un contrôle.
+      # Il refuse d'ailleurs de tourner sous 2 000 pages HTML plutôt que de passer faute de matière.
+      - name: Ce que le site annonce existe (hreflang + sitemaps — main)
+        if: github.event_name == 'push'
+        run: npm run test:annonce
+
       - name: Bundle épinglé sur le Worker attendu
         run: node packages/knowledge/scripts/check-bundle.mjs --expect="https://00000000-mydogcanfly-api-preview.fromparis.workers.dev"
 
