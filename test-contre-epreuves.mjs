@@ -328,6 +328,37 @@ const MUTATIONS = [
     harnais: "test-annonce-du-site.mjs",
     attendu: "listée au sitemap de SA langue",
   },
+  /* ---- Le calculateur de caisse ----
+   * T0-B3-g a constaté que quatre des huit outils du site ne sont lus par aucun harnais. Celui-ci
+   * conseille une taille de caisse : une caisse trop petite est un refus à l'embarquement. Les
+   * trois mutations décrivent les régressions réellement dangereuses, pas les plus petites. */
+  {
+    dom: true,
+    nom: "une compagnie qui refuse les trois placements retrouve un message de soute ambigu",
+    fichier: "packages/ui/src/components/CrateCalculator.astro",
+    cherche: "if (air && air.noPets) {",
+    remplace: "if (false && air.noPets) {",
+    harnais: "test-crate-harness.cjs",
+    attendu: "le refus total est affiché, en une seule ligne",
+  },
+  {
+    dom: true,
+    nom: "la majoration brachycéphale de la caisse est neutralisée",
+    fichier: "packages/ui/src/components/CrateCalculator.astro",
+    cherche: "const k = brachy ? 1.1 : 1;",
+    remplace: "const k = 1;",
+    harnais: "test-crate-harness.cjs",
+    attendu: "majore STRICTEMENT les trois dimensions",
+  },
+  {
+    dom: true,
+    nom: "la taille standard proposée ne couvre plus le minimum calculé",
+    fichier: "packages/ui/src/components/CrateCalculator.astro",
+    cherche: "const size = SIZES.find((s) => s.l >= Lc && s.w >= Wc && s.h >= Hc);",
+    remplace: "const size = SIZES[0];",
+    harnais: "test-crate-harness.cjs",
+    attendu: "couvre le minimum calculé",
+  },
 ];
 
 const dire = (m) => process.stdout.write(m + "\n");
