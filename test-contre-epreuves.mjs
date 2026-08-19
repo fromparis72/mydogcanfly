@@ -339,7 +339,7 @@ const MUTATIONS = [
     cherche: "if (air && air.noPets) {",
     remplace: "if (false && air.noPets) {",
     harnais: "test-crate-harness.cjs",
-    attendu: "le refus total est affiché, en une seule ligne",
+    attendu: "le message « ni cabine ni soute » est affiché mot pour mot",
   },
   {
     dom: true,

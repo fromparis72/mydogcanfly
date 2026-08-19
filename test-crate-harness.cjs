@@ -115,12 +115,18 @@ for (const id of sansAnimaux) {
   const r = scenario(pages.en, { a: 60, d: 45, poids: 12, airId: id });
   if (r.erreur) { check(`${id} : un résultat est rendu`, false, r.erreur); continue; }
   const refus = r.lignes.filter((l) => l.genre === "no");
+  /* LA PHRASE EXACTE, PAS UNE APPROXIMATION. Le danger n'est pas l'absence de refus — c'est un
+     refus qui ne parle QUE de la soute : le lecteur en déduit que la cabine reste possible. Le
+     harnais exige donc le message dédié, mot pour mot, et non « une ligne rouge quelconque ». */
+  const attendu = String(pages.en.L.s.noPetsAtAll).replace("{name}", AIR[id].name).replace(/\s+/g, " ").trim();
+  check(`${id} : le message « ni cabine ni soute » est affiché mot pour mot`,
+    refus.some((l) => l.texte.includes(attendu)),
+    refus.map((l) => l.texte.slice(0, 90)).join(" | ") || "aucune ligne de refus");
   check(`${id} : le refus total est affiché, en une seule ligne`, refus.length === 1,
     `${refus.length} ligne(s) de refus`);
   check(`${id} : aucune ligne de soute ne laisse croire la cabine possible`,
     !r.lignes.some((l) => l.genre === "soute" || l.genre === "neutral"),
     r.lignes.map((l) => `${l.genre}: ${l.texte.slice(0, 60)}`).join(" | "));
-  check(`${id} : le refus nomme la compagnie`, refus[0]?.texte.includes(AIR[id].name), refus[0]?.texte);
 }
 
 /* ---- 2 et 3. La taille standard couvre le minimum · le brachycéphale majore strictement ------- */
