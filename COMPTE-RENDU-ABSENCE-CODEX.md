@@ -633,53 +633,83 @@ le site entier (`npm run contre-epreuves -- --complet`) **ne sont pas** dans la 
 quatre builds complets, soit environ cinquante minutes. Elles sont lancées à la main, et c'est
 exactement le reproche que leur propre en-tête adresse aux vérifications manuelles. À arbitrer.
 
-### Demande 4 — le découpage en PR : ma première proposition était fausse, voici la seconde
+### Demande 4 — le découpage en PR : deux propositions fausses, voici la troisième
 
-**La contre-revue a refusé la section précédente, et elle avait raison sur les deux points.**
+**Première version refusée** : mes plages excluaient chacune leur premier commit (`A..B` là où il
+fallait lire « de A inclus »), et surtout elles rejouaient chronologiquement des erreurs déjà
+comprises. Les comptes exacts sont ceux de la contre-revue : `e2cf302..3927b43` (26),
+`3927b43..adfd06d` (12), `adfd06d..168876f` (19), `168876f..c9c07ac` (7).
 
-Mes plages excluaient chacune leur premier commit — j'ai écrit `A..B` là où il fallait lire « de A
-inclus à B ». Les comptes exacts sont ceux qu'elle donne : `e2cf302..3927b43` (26), `3927b43..adfd06d`
-(12), `adfd06d..168876f` (19), `168876f..c9c07ac` (7).
+**Deuxième version refusée aussi, et le défaut était pire** : mon lot 0 affirmait « il ne référence
+que des contrôles déjà présents sur `main` ». C'était **faux**, et vérifiable en une commande. La
+dépendance était circulaire : la CI du lot 0 appelait des scripts qui n'arrivaient qu'aux lots 1 et 3.
 
-Le reproche de fond est plus lourd, et je le reprends à mon compte : **préserver l'ordre historique
-ne préserve pas la qualité intermédiaire.** Ma PR 1 aurait contenu le `quality/check.ts` cassé, dont
-le correctif n'arrivait qu'en PR 4 ; ma PR 2 aurait introduit les dates du futur et l'ancien
-formateur ; ma PR 3, un T0-B3-g non reproductible. Écrire « chacune reçoit les deux jobs et une CI
-verte » était donc **faux** : trois des quatre auraient été rouges, et le savoir d'avance ne les
-rend pas moins rouges. Rejouer chronologiquement des erreurs déjà comprises n'a aucune vertu.
+**Ce que `main` contient réellement**, relevé sur `origin/main` plutôt que supposé :
 
-**Nouveau découpage : quatre lots THÉMATIQUES reconstruits, chaque correctif placé avec le lot qu'il
-répare.** L'ancienne branche `claude/t0b3a-arbitrage-brachy` reste en place et conserve toute la
-traçabilité — elle n'est pas réécrite, elle n'est simplement pas ce qu'on fusionne.
+| présent sur `main` | absent de `main` |
+|---|---|
+| `check` · `ingest:check` · `typecheck` · `smoke` · `test:unit` | `contre-epreuves` |
+| `build:ci` · `build:preview` · `test:built-ui` | `test:annonce` · `test:liens` · `test:guide-page` |
+| `test:entities` · `test:entities:complet` · `audit` | `test-guides-traduits.mjs` |
+| `check-bundle.mjs` · `check-astro-debt.mjs` | **`check-actions-node.mjs`** |
 
-| lot | contenu | les correctifs qui y sont RAPATRIÉS |
+La contre-revue en cite quatre ; il y en a **cinq**. `check-actions-node.mjs` — l'étape « Actions
+épinglées sur un runtime supporté » — n'existe pas non plus sur `main` : il naît en `eb3562c`, dans
+le lot moteur. Je l'ai trouvé en listant l'arbre distant au lieu de reprendre la liste reçue.
+
+#### Le découpage corrigé
+
+Principe repris de la contre-revue : **la CI ne grandit qu'avec ce qu'elle sait vérifier**, et
+chaque correctif voyage avec le lot qu'il répare.
+
+| lot | ce qu'il apporte | ce qui y est RAPATRIÉ |
 |---|---|---|
-| **0 — La CI qui vérifiera les suivants** | les deux jobs `verify` / `site-complet`, le workflow hebdomadaire des contre-épreuves complètes, l'audit corrigé, `build:ci --complet` | — (il ne référence que les contrôles déjà présents sur `main`) |
-| **1 — Moteur et référentiel brachycéphale** | T0-B3-a à T0-B3-e : contrats, moteur, avis IATA, 42 retraits, seuils de soute, poids du contenant, ce que le site montre ; contre-épreuves mécanisées ; dette Node 20 | le correctif de `quality/check.ts` (c'est ce lot qui a rendu `breed_restrictions` obligatoire) ; la reproductibilité de T0-B3-d et T0-B3-e |
-| **2 — Le Travel Hub en quatre langues** | 124 traductions es/pt, 10 articles anglais, leurs 30 traductions, les liens d'outils | les dates justes **d'emblée** (aucun article daté du futur n'entre jamais) ; le formateur de dates unifié ; le contrat `lastmod` ; les deux traductions portugaises arbitrées |
-| **3 — L'outillage de vérification** | les cinq harnais du site, les dossiers T0-B3-f/g/h, les étapes de CI qui les exécutent | T0-B3-g **déjà reproductible** ; les bases de T0-B3-g/h scellées après le lot 2 |
+| **0 — la CI, à la taille de `main`** | les deux jobs `verify` / `site-complet`, avec les **seuls** contrôles présents sur `main` : `check`, `ingest:check`, `typecheck`, `smoke`, `test:unit`, `build:ci`, `test:built-ui`, `test:entities`, `check-bundle`, `check-astro-debt` — puis, côté complet, `build:preview`, `test:entities:complet`, `audit` | **les deux correctifs de l'audit** — sans eux ce lot serait rouge, l'audit dénonçant 1 656 URL correctes et 4 sitemaps existants |
+| **1 — moteur et référentiel brachycéphale** | T0-B3-a à T0-B3-e ; le runner de contre-épreuves ; `check-actions-node.mjs` — **et, dans la même PR, les étapes de CI qui les exécutent** | le correctif de `quality/check.ts` (c'est ce lot qui rend `breed_restrictions` obligatoire) ; la reproductibilité de T0-B3-d et T0-B3-e |
+| **2 — le Travel Hub en quatre langues** | 124 traductions es/pt, 10 articles anglais, leurs 30 traductions, les liens d'outils, `test-guides-traduits.mjs` et son entrée dans `test:unit` | les dates justes **d'emblée** ; le formateur unifié ; le contrat `lastmod` ; les deux traductions portugaises arbitrées |
+| **3 — l'outillage de vérification du site** | les cinq harnais (`annonce`, `liens`, `guide-page`, caisse, coins pipi), les dossiers T0-B3-f/g/h, `build:ci --complet`, l'extension du job complet **et** le workflow hebdomadaire | T0-B3-g déjà reproductible ; les bases de T0-B3-g/h scellées **après** le lot 2, donc justes du premier coup |
 
-**Pourquoi le lot 0 vient en premier.** Il ne dépend de rien et il fait que **les trois lots suivants
-sont vérifiés par la CI complète, sur leur propre commit**. Il ne référence que des contrôles déjà
-présents sur `main` — les trois harnais neufs ne sont branchés qu'au lot 3, avec eux. La CI grandit
-avec ce qu'elle sait vérifier ; elle n'annonce jamais un contrôle qui n'existe pas encore.
+**Le lot 0 n'est plus « la CI complète »** : il installe la structure à deux jobs et rien d'autre.
+Chaque lot suivant y ajoute ses propres étapes, dans la PR qui apporte les scripts. Aucune étape ne
+nomme jamais une commande qui n'existe pas encore.
 
-**Ordre de fusion : 0, 1, 2, 3.** Chacun après ses deux jobs verts sur son propre résultat fusionné.
-Le workflow des contre-épreuves complètes est déclenché explicitement sur le SHA final, avant la
-fusion du lot 3.
+#### Le déclenchement manuel, et pourquoi il ne peut pas servir au lot 3
+
+`workflow_dispatch` n'est proposé que si le fichier existe **déjà sur la branche par défaut** — la
+contre-revue a raison, et cela interdit d'exercer le workflow complet sur la PR du lot 3, puisqu'il
+y naît. Plutôt qu'un lot d'automatisation séparé, je propose que ce workflow porte **trois**
+déclencheurs :
+
+- `schedule` — une fois par semaine, une fois installé sur `main` ;
+- `workflow_dispatch` — à la demande, ensuite ;
+- `pull_request` **conditionné à une étiquette** `contre-epreuves-completes`.
+
+Le troisième résout exactement le problème : un workflow déclenché par `pull_request` s'exécute
+depuis la copie du fichier portée par la branche, donc **avant** d'exister sur `main`. L'étiquette
+évite d'imposer cinquante minutes de build à chaque petite PR, tout en rendant l'exercice
+obligatoire et TRAÇABLE sur le SHA du lot 3 : il suffit de poser l'étiquette.
+
+#### Ordre de fusion et preuves
+
+**0, 1, 2, 3**, chacun après ses deux jobs verts sur son propre résultat fusionné. Le workflow
+complet est exercé, par étiquette, sur la PR du lot 3 avant sa fusion.
 
 **Comment prouver que rien n'a été perdu**, puisque la reconstruction n'est plus l'historique :
 
-1. `git range-diff e2cf302..c9c07ac <lot0>..<lot3>` — chaque commit d'origine retrouvé, déplacé ou
-   fondu, aucun disparu sans que la comparaison le dise ;
-2. l'arbre final des quatre lots doit être **identique au bit près** à celui de `c9c07ac` augmenté
-   des correctifs postérieurs : `git diff <tip des lots> claude/t0b3a-arbitrage-brachy` doit être vide ;
-3. les **neuf dossiers scellés** rejoués sur le tip des lots — c'est la preuve la plus forte, parce
+1. `git range-diff e2cf302..<tip actuel> <lot0>..<lot3>` — chaque commit d'origine retrouvé,
+   déplacé ou fondu, aucun disparu sans que la comparaison le dise ;
+2. `git diff <tip des lots> claude/t0b3a-arbitrage-brachy` doit être **vide** : l'arbre final des
+   quatre lots est identique au bit près à celui de la branche de travail ;
+3. les **neuf dossiers scellés** rejoués sur le tip des lots — la preuve la plus forte, parce
    qu'elle ne porte pas sur les fichiers mais sur ce qu'ils mesurent.
 
-**Ce que ce découpage coûte, et je le dis avant de commencer.** Reconstruire, ce n'est pas
-cueillir : là où un commit tardif corrige un commit ancien DANS LE MÊME FICHIER — les dates des
-guides, le formateur, `check.ts` — il faut refondre les deux en un seul, puis reconstruire et tester
-chaque lot. Le contenu se déplace mécaniquement ; ces trois endroits-là ne le font pas. C'est une
-journée de travail, et le risque n'est pas nul : c'est exactement pourquoi les trois preuves
-ci-dessus ne sont pas facultatives.
+**Ce que ce découpage coûte, dit avant de commencer.** Reconstruire n'est pas cueillir : là où un
+commit tardif corrige un commit ancien DANS LE MÊME FICHIER — les dates des guides, le formateur,
+`check.ts` — il faut refondre les deux en un seul, puis reconstruire et tester chaque lot. Le
+contenu se déplace mécaniquement ; ces trois endroits-là, non. C'est une journée de travail, et le
+risque n'est pas nul : c'est exactement pourquoi les trois preuves ci-dessus ne sont pas
+facultatives.
+
+**L'ancienne branche `claude/t0b3a-arbitrage-brachy` n'est pas réécrite.** Elle conserve toute la
+traçabilité — y compris mes erreurs et leurs corrections. Elle n'est simplement pas ce qu'on
+fusionne.
