@@ -1,15 +1,19 @@
-import { readFileSync } from "node:fs";
-import { fileURLToPath } from "node:url";
-import { dirname, join } from "node:path";
 import { normalize } from "../src/normalize";
+import { rawKB } from "../src/data";
 
 /* Quality gates (ADR-0015): schema-check · rule-check · coverage · (link-check offline-skipped). */
 
-const here = dirname(fileURLToPath(import.meta.url));
-const raw = {
-  ...JSON.parse(readFileSync(join(here, "../raw/objects.json"), "utf8")),
-  rules: JSON.parse(readFileSync(join(here, "../raw/rules.json"), "utf8")),
-};
+/* LE RÉFÉRENTIEL BRUT EST ASSEMBLÉ UNE SEULE FOIS, dans `src/data.ts`, et ce fichier le réutilise.
+ *
+ * Il l'assemblait auparavant lui-même — `objects.json` + `rules.json` — et cette seconde copie a
+ * fini par diverger, exactement comme une liste écrite deux fois finit toujours par le faire :
+ * quand `breed_restrictions` est devenu obligatoire au chargement (T0-B3-a), `data.ts` a été mis à
+ * jour et pas celui-ci. `npm run check`, PREMIÈRE étape de la CI, échouait donc sur un registre
+ * absent que personne n'avait retiré. Relevé par la contre-revue du 20/08/2026.
+ *
+ * Réutiliser `rawKB` ne relâche rien : c'est le même objet que charge le moteur, lu depuis les
+ * mêmes fichiers. Cela supprime seulement l'endroit où la divergence pouvait naître. */
+const raw = rawKB;
 
 let failed = 0;
 function ok(name: string, cond: boolean, detail = ""): void {

@@ -46,7 +46,6 @@ const DOSSIER = "mesures/t0b3g-ce-que-les-outils-servent";
 const ROUTES = "packages/ui/src/pages/[...loc]/tools";
 const COMPOSANTS = "packages/ui/src/components";
 const TABLE_PT = "packages/knowledge/translations/pt/inline.json";
-const DIST = "packages/ui/dist";
 
 const sha256 = (b) => createHash("sha256").update(b).digest("hex");
 const auCommit = (c) => execFileSync("git", ["show", `${MESURE_BASE_SHA}:${c}`],
@@ -296,22 +295,44 @@ exiger("sur les 8 routes : 4 outils servis, 2 pages d'attente, 2 retirées de l'
   parEtat("servi").length === 4 && parEtat("attente").length === 2 && parEtat("retire").length === 2,
   `${parEtat("servi").length} servis · ${parEtat("attente").length} en attente · ${parEtat("retire").length} retirés`);
 
-/* Ce qu'un visiteur — et Google — trouve annoncé, lu sur le site CONSTRUIT quand il existe. */
-let annonce = null;
-try {
-  const sitemap = readFileSync(`${DIST}/sitemap-en.xml`, "utf8");
-  const index = readFileSync(`${DIST}/tools/index.html`, "utf8");
-  annonce = outils.map((o) => ({
-    outil: o.outil,
-    auSitemap: sitemap.includes(`/tools/${o.outil}/`),
-    lieDepuisTools: index.includes(`/tools/${o.outil}/`),
-  }));
-  const attenteAnnoncee = annonce.filter((a) => a.auSitemap && outils.find((o) => o.outil === a.outil).etat === "attente");
-  process.stdout.write(`  annoncés au sitemap : ${annonce.filter((a) => a.auSitemap).length} — dont `
-    + `${attenteAnnoncee.length} page(s) d'attente\n`);
-} catch {
-  process.stdout.write("  (site non construit : l'annonce au sitemap et les liens ne sont pas relus ici)\n");
+/* CE QUI EST ANNONCÉ, LU DANS LES SOURCES ET NON DANS `dist` — corrigé le 20/08/2026.
+ *
+ * Cette section lisait le site construit, et retombait sur `null` quand `dist` était absent. Le
+ * dossier n'était donc PAS reproductible depuis un arbre propre : l'artefact changeait, puis
+ * SHA256SUMS échouait. Un dossier de mesure dont le résultat dépend d'un répertoire ignoré par git
+ * ne mesure rien de scellable — relevé par la contre-revue du 20/08/2026, et c'est exact.
+ *
+ * Les deux listes sont pourtant écrites en clair dans les sources : `sitemapEntries.ts` énumère les
+ * outils déclarés au sitemap, `tools.astro` énumère ceux qui sont liés depuis `/tools/`. Elles sont
+ * lues là, scellées comme le reste, et le dossier redevient reproductible partout — sans build. */
+const OUTILS_CITES = (texte) => new Set([...texte.matchAll(/\/tools\/([a-z-]+)\//g)].map((m) => m[1]));
+/* `tools.astro` est la PAGE `/tools/`, sœur du répertoire des outils et non l'un d'eux : elle ne
+   fait donc pas partie du périmètre mesuré, mais c'est elle qui porte les liens. */
+const ANNONCEURS = ["packages/ui/src/lib/sitemapEntries.ts", "packages/ui/src/pages/[...loc]/tools.astro"];
+const lus = {};
+for (const chemin of ANNONCEURS) {
+  const octets = readFileSync(chemin);
+  if (sha256(octets) !== sha256(auCommit(chemin))) {
+    process.stderr.write(`[t0b3g] ÉCHEC — ${chemin} diffère de la base.\n`); process.exit(1);
+  }
+  lus[chemin] = octets.toString("utf8");
 }
+const auSitemap = OUTILS_CITES(lus[ANNONCEURS[0]]);
+const liesDepuisTools = OUTILS_CITES(lus[ANNONCEURS[1]]);
+exiger("les deux listes d'annonce sont lisibles dans les sources (sinon ce contrôle ne prouve rien)",
+  auSitemap.size >= 4 && liesDepuisTools.size >= 4,
+  `${auSitemap.size} au sitemap · ${liesDepuisTools.size} liés depuis /tools/`);
+const annonce = outils.map((o) => ({
+  outil: o.outil,
+  auSitemap: auSitemap.has(o.outil),
+  lieDepuisTools: liesDepuisTools.has(o.outil),
+}));
+const attenteAnnoncee = annonce.filter((a) => a.auSitemap
+  && outils.find((o) => o.outil === a.outil).etat === "attente");
+process.stdout.write(`  annoncés au sitemap : ${annonce.filter((a) => a.auSitemap).length} — dont `
+  + `${attenteAnnoncee.length} page(s) d'attente\n`);
+exiger("les deux pages d'attente sont bien annoncées au sitemap au rang des outils",
+  attenteAnnoncee.length === 2, `${attenteAnnoncee.length} page(s) d'attente annoncée(s)`);
 
 /* ---- 4. LA PROVENANCE, INVENTORIÉE — JAMAIS JUGÉE --------------------------------------------- */
 const provenance = [...fichiers].map(([chemin, texte]) => ({
