@@ -145,7 +145,18 @@ for (const l of TRADUITES) {
 }
 
 /* ---- 3. Fidélité de structure au jumeau anglais ---------------------------------------------- */
-const CHAMPS_IDENTIQUES = ["date", "lastmod", "author", "coverImage"];
+/* `lastmod` A QUITTÉ CETTE LISTE le 20/08/2026, sur contre-revue, et le motif est de fond.
+ *
+ * Exiger `lastmod` identique à l'anglais forçait à ANTIDATER les traductions : un texte espagnol
+ * écrit le 19 devait se déclarer modifié le 17 pour satisfaire une égalité qui ne correspondait à
+ * rien. C'est le contrôle qui produisait la fausseté, pas le contenu.
+ *
+ * Le contrat retenu sépare ce qui doit être commun de ce qui est propre à chaque version :
+ *   · `date`    — la publication de l'ARTICLE : identique dans les quatre langues ;
+ *   · `lastmod` — la dernière révision de CE FICHIER : propre à chacun ;
+ *   · et pour tous, `date <= lastmod <= maintenant`.
+ * Aucune traduction n'est jamais antidatée pour satisfaire une égalité artificielle. */
+const CHAMPS_IDENTIQUES = ["date", "author", "coverImage"];
 const CHAMPS_TRADUITS = ["title", "description", "summary"];
 for (const l of TRADUITES) {
   for (const g of parLangue[l]) {
@@ -172,6 +183,31 @@ for (const l of TRADUITES) {
       g.categories.split(",").length === en.categories.split(",").length,
       `« ${g.categories} » vs « ${en.categories} »`);
   }
+}
+
+/* ---- 3bis. LA CHRONOLOGIE DE CHAQUE FICHIER, DANS TOUTES LES LANGUES -------------------------
+ * `lastmod` étant désormais propre à chaque version, il lui faut son propre contrat — sans quoi
+ * l'assouplissement ci-dessus ouvrirait la porte à n'importe quelle date. Trois bornes, et elles
+ * valent pour l'anglais et le français autant que pour les traductions. Le futur est exclu :
+ * six articles s'étaient déclarés publiés jusqu'au 26 août, un étalement inventé sans aucun
+ * mécanisme de programmation derrière. */
+{
+  const MAINTENANT = new Date();
+  const jour = (v) => (v ?? "").slice(0, 10);
+  const desordre = [], futur = [];
+  for (const l of LANGUES) {
+    for (const g of parLangue[l]) {
+      if (!g.date || !g.lastmod) { desordre.push(`${l}/${g.fichier} — date ou lastmod absent`); continue; }
+      if (jour(g.lastmod) < jour(g.date)) {
+        desordre.push(`${l}/${g.fichier} — révisé (${jour(g.lastmod)}) AVANT sa publication (${jour(g.date)})`);
+      }
+      if (new Date(g.date) > MAINTENANT || new Date(g.lastmod) > MAINTENANT) {
+        futur.push(`${l}/${g.fichier} — ${jour(g.date)} / ${jour(g.lastmod)}`);
+      }
+    }
+  }
+  exiger("aucun guide n'est révisé avant d'être publié", desordre.length === 0, desordre.slice(0, 6).join(" · "));
+  exiger("aucun guide ne se déclare publié ou révisé dans le futur", futur.length === 0, futur.slice(0, 6).join(" · "));
 }
 
 /* ---- 4. Aucun bloc laissé dans la langue source ----------------------------------------------

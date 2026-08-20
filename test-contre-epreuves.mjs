@@ -180,32 +180,53 @@ const MUTATIONS = [
   {
     nom: "une action redevient épinglée sur un tag, qui se déplace",
     fichier: ".github/workflows/ci.yml",
-    cherche: "uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1",
-    remplace: "uses: actions/checkout@v7 # v7.0.1",
+    /* ANCRE ÉLARGIE le 20/08/2026 : deux jobs partagent désormais ces étapes. */
+    cherche: "timeout-minutes: 30\n\n    steps:\n      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1",
+    remplace: "timeout-minutes: 30\n\n    steps:\n      - uses: actions/checkout@v7 # v7.0.1",
     harnais: "packages/knowledge/scripts/check-actions-node.mjs",
     attendu: "n'est pas épinglée sur un SHA complet",
   },
   {
     nom: "une épingle jamais mesurée entre dans le workflow",
     fichier: ".github/workflows/ci.yml",
-    cherche: "uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1",
-    remplace: "uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4.4.0",
+    /* ANCRE ÉLARGIE le 20/08/2026 : le workflow a désormais DEUX jobs, qui partagent les mêmes
+       étapes d'installation. La mutation courte est devenue ambiguë et le runner l'a déclarée
+       MUETTE — c'est exactement ce pour quoi cet état existe. L'ancre inclut le voisinage qui
+       distingue le job `verify` de `site-complet`. */
+    cherche: "timeout-minutes: 30\n\n    steps:\n      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1",
+    remplace: "timeout-minutes: 30\n\n    steps:\n      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4.4.0",
     harnais: "packages/knowledge/scripts/check-actions-node.mjs",
     attendu: "n'est PAS déclarée au manifeste",
   },
   {
     nom: "le commentaire de version ment sur le SHA qu'il annote",
     fichier: ".github/workflows/ci.yml",
-    cherche: "uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020 # v7.0.0",
-    remplace: "uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020 # v6.5.0",
+    /* ANCRE ÉLARGIE le 20/08/2026 : le workflow a désormais DEUX jobs, qui partagent les mêmes
+       étapes d'installation. La mutation courte est devenue ambiguë et le runner l'a déclarée
+       MUETTE — c'est exactement ce pour quoi cet état existe. L'ancre inclut le voisinage qui
+       distingue le job `verify` de `site-complet`. */
+    cherche: "      - name: Node 22 (depuis .nvmrc)\n        uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020 # v7.0.0\n        with:\n          node-version-file: .nvmrc\n          cache: npm\n\n      # Le seul contrôle du lot",
+    remplace: "      - name: Node 22 (depuis .nvmrc)\n        uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020 # v6.5.0\n        with:\n          node-version-file: .nvmrc\n          cache: npm\n\n      # Le seul contrôle du lot",
     harnais: "packages/knowledge/scripts/check-actions-node.mjs",
     attendu: "alors que le manifeste dit",
   },
   {
     nom: "une épingle du manifeste ne sert plus à rien et y reste",
     fichier: ".github/workflows/ci.yml",
-    cherche: "        uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020 # v7.0.0",
-    remplace: "        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1",
+    /* ANCRE ÉLARGIE le 20/08/2026 : le workflow a désormais DEUX jobs, qui partagent les mêmes
+       étapes d'installation. La mutation courte est devenue ambiguë et le runner l'a déclarée
+       MUETTE — c'est exactement ce pour quoi cet état existe. L'ancre inclut le voisinage qui
+       distingue le job `verify` de `site-complet`. */
+    /* DEUX ÉDITIONS, et c'est le runner qui l'a montré : retirer `setup-node` du seul job
+       `verify` laissait `site-complet` l'utiliser encore — l'épingle restait donc utile et le
+       harnais restait vert. Une mutation doit décrire l'état RÉELLEMENT à craindre : l'action
+       disparaît des deux jobs, et alors seulement son épingle devient orpheline. */
+    editions: [
+      { cherche: "      - name: Node 22 (depuis .nvmrc)\n        uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020 # v7.0.0\n        with:\n          node-version-file: .nvmrc\n          cache: npm\n\n      # Le seul contrôle du lot",
+        remplace: "      - name: Node 22 (depuis .nvmrc)\n        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1\n        with:\n          node-version-file: .nvmrc\n          cache: npm\n\n      # Le seul contrôle du lot" },
+      { cherche: "      - name: Node 22 (depuis .nvmrc)\n        uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020 # v7.0.0\n        with:\n          node-version-file: .nvmrc\n          cache: npm\n\n      - name: Installation reproductible",
+        remplace: "      - name: Node 22 (depuis .nvmrc)\n        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1\n        with:\n          node-version-file: .nvmrc\n          cache: npm\n\n      - name: Installation reproductible" },
+    ],
     harnais: "packages/knowledge/scripts/check-actions-node.mjs",
     attendu: "n'est utilisée par aucun",
   },
@@ -413,6 +434,26 @@ const MUTATIONS = [
     remplace: "    mainEntity: [...d.faq, d.faq[0]].map((f) => ({",
     harnais: "test-page-guide.mjs",
     attendu: "annonce EXACTEMENT les questions",
+  },
+  /* ---- La chronologie des guides ----
+   * `lastmod` a cessé le 20/08/2026 d'être exigé identique à l'anglais — cette égalité forçait à
+   * ANTIDATER les traductions. L'assouplissement ouvrait la porte à n'importe quelle date : ces
+   * deux mutations prouvent que le contrat qui l'a remplacé la referme. */
+  {
+    nom: "une traduction se déclare révisée AVANT d'avoir été publiée",
+    fichier: "packages/ui/src/content/guides/es/retroplanning-de-un-vuelo-internacional.md",
+    cherche: 'lastmod: "2026-08-19',
+    remplace: 'lastmod: "2026-08-15',
+    harnais: "test-guides-traduits.mjs",
+    attendu: "aucun guide n'est révisé avant d'être publié",
+  },
+  {
+    nom: "un guide se redate dans le futur, comme les six de l'étalement inventé",
+    fichier: "packages/ui/src/content/guides/es/retroplanning-de-un-vuelo-internacional.md",
+    cherche: 'lastmod: "2026-08-19T09:00:00+02:00"',
+    remplace: 'lastmod: "2027-08-19T09:00:00+02:00"',
+    harnais: "test-guides-traduits.mjs",
+    attendu: "aucun guide ne se déclare publié ou révisé dans le futur",
   },
 ];
 
