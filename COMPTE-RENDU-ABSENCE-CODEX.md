@@ -10,16 +10,32 @@ Dernier commit que tu as contre-examiné : **`8636d99`** (T0-B3-b, les preuves d
 Tout ce qui suit est en attente.
 
 ```
-git log --oneline 8636d99..HEAD          # 19 commits
-git diff --shortstat 8636d99..HEAD       # 206 fichiers, +23 790 / −36
+git log --oneline 8636d99..HEAD          # 36 commits
+git diff --shortstat 8636d99..HEAD       # 225 fichiers, +42 258 / −49
 ```
 
-Branche : `claude/t0b3a-arbitrage-brachy`, **39 commits en avance sur `origin/main`**.
+Branche : `claude/t0b3a-arbitrage-brachy`, **56 commits en avance sur `origin/main`**.
 Rien n'est fusionné, **aucune PR n'a été ouverte, aucun déploiement ni preview n'a eu lieu.**
+
+## État à ton retour, en cinq lignes
+
+| | |
+|---|---|
+| dossiers de mesure scellés | **7** — T0-B3-b à T0-B3-h, chacun reproductible par une commande |
+| garanties mécanisées | **37**, toutes éprouvées en une passe (`contre-epreuves -- --dom --complet`) |
+| harnais neufs | annonce du site, caisse, coins pipi, liens internes, pages de guides |
+| pages lues par un contrôle | 3 121, dont les 288 pages de guides que rien ne regardait |
+| contenu produit | 164 traductions + 10 articles anglais, soit 72 clés × 4 langues |
+
+**Lis d'abord la section 5 (ce qui attend ton arbitrage), puis le journal en section 8**, qui
+raconte chaque chantier dans l'ordre, avec les erreurs.
 
 ---
 
-## 1. Ce qui a été MESURÉ — quatre dossiers scellés
+## 1. Ce qui a été MESURÉ — les dossiers scellés
+
+*Écrite au moment où quatre dossiers existaient. Les trois suivants — T0-B3-g, T0-B3-h et leurs
+suites — sont racontés au journal, section 8.*
 
 Aucun ne corrige quoi que ce soit. Chacun fige une base SHA en dur, relit l'empreinte du
 référentiel avant et après, et porte des contre-épreuves qui doivent sortir en 1 avec **leur**
@@ -144,6 +160,34 @@ relire deux fois.
    anglais le citaient ; l'appel a été retiré faute de destination honnête.
 6. **`/tools/is-it-too-hot-for-my-dog/` n'a aucune redirection**, à la différence des trois autres.
    Si l'adresse a été publiée, les liens entrants tombent en 404. Je n'ai pas touché au routage.
+
+### Ajouts postérieurs — chacun documenté au journal (section 8)
+
+7. **Les 49 chaînes anglaises servies aux lecteurs portugais** (T0-B3-h). L'espagnol est complet.
+   Trois groupes comptent plus que leur nombre : les **avertissements de planification** du
+   FlightFinder de l'accueil (10), les libellés du gabarit des guides — « updated », « In short » —
+   qui apparaissent sur **chacun** des 72 guides portugais (2), et les **réserves de l'outil
+   chaleur** (dans les 32 des outils). Traduire est un travail de données, mais
+   `translations/pt/inline.json` est scellé par T0-B3-g **et** T0-B3-h : le traduire ferait tomber
+   la reproduction des deux. Traduire puis rebaser, ne traiter que les trois groupes, ou attendre ?
+8. **Le commentaire figé à sept compagnies** de `CrateCalculator.astro` (retest du 09/08) quand le
+   référentiel en produit **dix-sept**. Le code n'a pas dérivé, les données ont bougé sous un
+   commentaire daté d'une de tes contre-revues : je ne l'ai pas réécrit.
+9. **La légende « règle US (zone côté piste) »** de `pet-relief`, rendue sur la page alors
+   qu'**aucun** aéroport ne porte ce statut — les 31 aéroports américains sont tous documentés.
+10. **`best-carriers` et `best-crates`**, pages d'attente sans aucun composant qui calcule, mais
+    déclarées au sitemap à **priorité 0.8** — le rang des vrais outils — et liées depuis `/tools/`.
+11. **`timeline`** : outil complet (63 sites d'appel, quatre langues), délibérément `noindex`, hors
+    sitemap, non lié. Fini et oublié, ou volontairement retenu ?
+12. **Une illustration sans crédit** sur `flying-with-a-dog-cabin-hold-cargo`, dans ses quatre
+    langues. Si le fichier appartient au site, aucun crédit n'est dû ; sinon il en manque un. Je ne
+    sais pas, donc je n'ai pas tranché — le chiffre est figé à 4 dans le harnais.
+13. **Le `${d}` non substitué** dans le prototype `/lab/roundtrip/`, seul lien mort du site.
+14. **Faut-il ajouter `--complet` à la CI de main ?** Cela lui ajoute trois builds complets,
+    environ 35 minutes. Les deux contre-épreuves du site entier se lancent donc à la main — ce que
+    leur propre en-tête reproche aux contre-épreuves manuelles.
+15. **Les 9 clés `t(locale, …)` construites dynamiquement** : les rendre littérales pour qu'elles
+    deviennent mesurables, ou les laisser ?
 
 ---
 
