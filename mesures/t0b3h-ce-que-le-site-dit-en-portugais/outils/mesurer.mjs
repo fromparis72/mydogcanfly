@@ -39,7 +39,13 @@ import { posix } from "node:path";
 import { createHash } from "node:crypto";
 
 /** Base de mesure FIGÉE, jamais `HEAD` : régénérer ne doit pas déplacer le sceau. */
-export const MESURE_BASE_SHA = "2948ee9b12acf0af29267349449dc6147e2410e6";
+/* BASE DÉPLACÉE LE 20/08/2026, de `2948ee9` à `aff1fb8`, et le motif est écrit ici plutôt que
+   supposé : la contre-revue a demandé de corriger le formateur de date, qui vit dans deux fichiers
+   `.astro` du périmètre. Mesurer autre chose exige de déclarer une nouvelle base — c'est la règle,
+   et c'est pourquoi je n'avais PAS rebasé de mon propre chef pour traduire les 49 chaînes. Ici la
+   modification est arbitrée, donc la base bouge avec elle. Les chiffres ci-dessous sont recalculés
+   sur la nouvelle base, pas recopiés. */
+export const MESURE_BASE_SHA = "aff1fb8476465070bfc67cb031a12ed5e39a8446";
 
 const DOSSIER = "mesures/t0b3h-ce-que-le-site-dit-en-portugais";
 const SRC = "packages/ui/src";

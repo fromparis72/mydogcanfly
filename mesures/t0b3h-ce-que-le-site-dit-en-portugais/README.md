@@ -1,6 +1,10 @@
 # T0-B3-h — Ce que le site dit en portugais (et en espagnol)
 
-**Base de mesure figée : `2948ee9b12acf0af29267349449dc6147e2410e6`.**
+**Base de mesure figée : `aff1fb8476465070bfc67cb031a12ed5e39a8446`.**
+*Base déplacée le 20/08/2026 (de `2948ee9`), la contre-revue ayant demandé de corriger le formateur
+de date, qui vit dans deux fichiers `.astro` du périmètre. Les chiffres ci-dessous sont recalculés
+sur la nouvelle base, jamais recopiés — ils sont d'ailleurs identiques : la correction touche le
+FORMAT des dates, pas les chaînes mesurées.*
 Reproduction : `npm run mesure:t0b3h` — une seconde, sans build ni réseau.
 
 **Ce dossier ne corrige rien.** Aucune phrase traduite, aucun fichier de `packages/` écrit. Les
