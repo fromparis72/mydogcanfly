@@ -298,7 +298,8 @@ const pagesHtml = [];
     else if (e.endsWith(".html")) pagesHtml.push(p);
   }
 })(SITE);
-if (pagesHtml.length < 2000) {
+const PLANCHER_PAGES = 2000;
+if (pagesHtml.length < PLANCHER_PAGES) {
   process.stderr.write(`[t0b3d] ÉCHEC — le site construit est absent ou partiel (${pagesHtml.length} pages HTML `
     + "sous packages/ui/dist, attendu ≥ 2000). Ce dossier prouve la publication sur les octets "
     + "publiés : `npm run build` d'abord.\n");
@@ -309,8 +310,20 @@ if (pagesHtml.length < 2000) {
  * phrase contradictoire était sous les yeux du voyageur. Les 2 957 pages construites disent le
  * contraire. La classe `ep__rationale` — la seule par laquelle une rationale puisse sortir —
  * n'apparaît sur AUCUNE page. Lire le code ne remplace pas lire le site. */
+/* LE NOMBRE DE PAGES LUES NE FAIT PAS PARTIE DE L'ARTEFACT — corrigé le 20/08/2026.
+ *
+ * Il y figurait, figé à 2 957. C'est le nombre de pages qu'avait le site ce jour-là, pas un fait
+ * mesuré sur le poids du contenant : chaque article publié depuis le faisait bouger, l'artefact
+ * changeait, et SHA256SUMS échouait. Le dossier n'était donc plus reproductible — même famille de
+ * défaut que celui relevé sur T0-B3-g par la contre-revue du 20/08/2026, trouvé en cherchant s'il
+ * était seul de son espèce. Il ne l'était pas.
+ *
+ * Ce qui est mesuré ne change pas : AUCUNE page ne publie de rationale. Ce qui disparaît du sceau
+ * est le décompte incident du site ; ce qui reste est le PLANCHER déclaré, qui garantit qu'on a
+ * bien lu quelque chose. Le compte réel est toujours affiché à l'écran, il n'est simplement plus
+ * scellé. */
 const CLASSE_RATIONALE = "ep__rationale";
-const publication = { pages_lues: pagesHtml.length, pages_portant_la_classe: 0, pages_portant_une_rationale: 0 };
+const publication = { pages_lues_minimum: PLANCHER_PAGES, pages_portant_la_classe: 0, pages_portant_une_rationale: 0 };
 const phrasesDesRegles = AVEC_CONTENANT.flatMap((r) => [r.rationale, r.rationale_i18n?.fr, r.rationale_i18n?.es,
   r.rationale_i18n?.pt].filter(Boolean).map((t) => t.slice(0, 60)));
 for (const p of pagesHtml) {
@@ -320,8 +333,9 @@ for (const p of pagesHtml) {
 }
 exiger("aucune page ne porte la classe qui publierait une rationale — le bloc existe, il ne sort jamais",
   publication.pages_portant_la_classe === 0, String(publication.pages_portant_la_classe));
-exiger("aucune des 2957 pages ne publie l'une des 95 rationales, dans aucune des 4 langues",
-  publication.pages_portant_une_rationale === 0, String(publication.pages_portant_une_rationale));
+exiger("aucune page du site ne publie l'une des 95 rationales, dans aucune des 4 langues",
+  publication.pages_portant_une_rationale === 0,
+  `${publication.pages_portant_une_rationale} page(s) sur ${pagesHtml.length} lues`);
 
 /* CE QUE CE DOSSIER NE MESURE PAS, ET POURQUOI IL S'EN ABSTIENT.
  *
@@ -461,7 +475,7 @@ process.stdout.write(`
   la fiche     : ${ficheMuette.length} muettes · ${ficheIdentique.length} republient le même nombre · ${ficheDivergente.length} divergentes
   effet        : ${mordantes.length}/${AVEC_CONTENANT.length} mordent · ${dominantes.length} dominantes ${JSON.stringify(dominantes.reduce((a, e) => (a[e.canal] = (a[e.canal] ?? 0) + 1, a), {}))} · ${masquees.length} masquées par un autre refus
   après retrait: ${JSON.stringify(apresRetrait)}
-  publication  : ${publication.pages_lues} pages lues · ${publication.pages_portant_une_rationale} publient une rationale
+  publication  : ${pagesHtml.length} pages lues · ${publication.pages_portant_une_rationale} publient une rationale
   publique     : ${publique.scenarios} scénarios · ${publique.placements_deplaces} déplacés · ${JSON.stringify(publique.cibles)}
 `);
 
