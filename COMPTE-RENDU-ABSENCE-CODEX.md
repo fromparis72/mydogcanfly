@@ -555,3 +555,78 @@ d'interface, et les 4 qui exigent le site entier — dont les deux du jour, « l
 sont liées par une adresse que le site ne sert pas » et « le schéma FAQ annonce une question que la
 page n'affiche pas ». Quatre builds complets et six réduits, arbre rendu intact, `dist` reconstruit
 depuis la source restaurée. Les deux harnais d'aujourd'hui savent rougir, et pour la bonne raison.
+
+---
+
+## 9. Réponse à la contre-revue du 20/08/2026
+
+Codex a levé deux blocages et trois demandes. Tous sont traités ci-dessous, avec ce que j'ai trouvé
+en cherchant si chaque défaut était seul de son espèce — il ne l'était jamais.
+
+### Blocage 1 — `npm run check` échouait, première étape de la CI
+
+`quality/check.ts` assemblait le référentiel brut **une seconde fois** (`objects.json` + `rules.json`
+à la main) au lieu de réutiliser celui du moteur. Cette copie a divergé quand `breed_restrictions`
+est devenu obligatoire au chargement (T0-B3-a) : `src/data.ts` a été mis à jour, pas celle-là.
+
+Le fichier réutilise désormais `rawKB` — le même objet que charge le moteur, lu depuis les mêmes
+fichiers. **L'endroit où la divergence pouvait naître disparaît**, plutôt que d'être rattrapé.
+
+### Blocage 2 — T0-B3-g n'était pas reproductible sans `dist/`
+
+Exact, et le diagnostic de Codex était le bon : la section « annonce » lisait le site construit et
+retombait sur `null` quand `dist` était absent — l'artefact changeait, puis SHA256SUMS échouait. Un
+dossier de mesure dont le résultat dépend d'un répertoire ignoré par git ne mesure rien de scellable.
+
+Les deux listes sont pourtant écrites en clair dans les sources : `sitemapEntries.ts` énumère les
+outils déclarés au sitemap, `tools.astro` ceux qui sont liés depuis `/tools/`. Elles y sont lues,
+scellées comme le reste. Le constat est **durci en exigence** : « les deux pages d'attente sont bien
+annoncées au sitemap au rang des outils » n'était qu'une ligne imprimée.
+
+**Puis j'ai cherché s'il était seul. Il ne l'était pas — deux dossiers de plus, que personne
+n'avait testés :** `T0-B3-d` scellait `pages_lues: 2957` et `T0-B3-e` `pages_construites: 2957`. Le
+nombre de pages du site n'a rien à voir avec ce que ces dossiers établissent, et il bouge à chaque
+article publié. Le décompte incident sort du sceau ; le **plancher déclaré** (2 000 pages) reste,
+puisque c'est lui qui garantit qu'on a lu quelque chose.
+
+**Les neuf dossiers se reproduisent aujourd'hui sur un arbre propre** — `t0b3`, `a`, `b`, `c`, `d`,
+`e`, `f`, `g`, `h`, vérifiés un par un. `T0-B3-f`, `g` et `h` n'ont besoin d'aucun `dist` ; `d` et
+`e` le **construisent** quand il manque, ce qui est le comportement correct et explique leurs douze
+minutes.
+
+### Demande 1 — les six articles datés du futur
+
+Corrigé, et je suis allé plus loin que la demande parce que la demande visait un symptôme.
+L'étalement du 17 au 26 août était **une invention de ma part**, sans aucun mécanisme de
+programmation derrière. Les **dix** articles portent désormais le 17 août — le jour où ils ont été
+écrits et commités (`5a7d1d2`) — et `lastmod` suit le dernier commit ayant touché chaque fichier.
+Aucun guide n'est plus daté du futur, et une exigence du harnais le vérifie désormais.
+
+### Demande 2 — le format des dates ES/PT rendu en anglais
+
+Exact : les 144 pages espagnoles et portugaises affichaient « 17 August 2026 ». La table des langues
+existait **en double** — complète dans le hub (`fr-FR`/`es-ES`/`pt-BR`/`en-GB`), tronquée dans la
+page de guide (« français, sinon `en-GB` »). Elle n'est plus écrite qu'une fois, dans
+`lib/guides.ts`.
+
+Le harnais ne relit pas le gabarit pour le vérifier : il **reformate lui-même** la date que la page
+annonce dans ses données structurées, avec l'étiquette de sa langue, et exige de la retrouver à
+l'écran. Deux chemins indépendants vers le même résultat — c'est ce qui en fait une vérification.
+
+### Demande 3 — une CI complète avant fusion
+
+L'angle mort est refermé **structurellement**, pas par une exception. Le workflow a maintenant deux
+jobs, sur les **mêmes déclencheurs** et le **même commit** :
+
+- `verify` — build réduit, contrôles rapides, sentinelles, contre-épreuves `--dom`. Rend la main vite.
+- `site-complet` — build complet, puis `test:entities:complet`, `test:annonce`, `test:liens`,
+  `test:guide-page` et `audit`.
+
+**Il ne reste plus une seule condition `github.event_name` dans le fichier.** Ce qui tourne sur main
+tourne sur la pull request, sur son SHA exact. Rien ne s'exécutera pour la première fois après
+l'écriture dans `main`.
+
+Une réserve que je pose plutôt que de la laisser découvrir : les quatre contre-épreuves qui exigent
+le site entier (`npm run contre-epreuves -- --complet`) **ne sont pas** dans la CI. Elles coûtent
+quatre builds complets, soit environ cinquante minutes. Elles sont lancées à la main, et c'est
+exactement le reproche que leur propre en-tête adresse aux vérifications manuelles. À arbitrer.
