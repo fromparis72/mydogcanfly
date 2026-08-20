@@ -223,7 +223,8 @@ const pagesHtml = [];
     else if (e.endsWith(".html")) pagesHtml.push(p);
   }
 })(SITE);
-if (pagesHtml.length < 2000) {
+const PLANCHER_PAGES = 2000;
+if (pagesHtml.length < PLANCHER_PAGES) {
   process.stderr.write(`[t0b3e] ÉCHEC — site absent ou partiel (${pagesHtml.length} pages HTML, attendu ≥ 2000). `
     + "Ce dossier lit les octets publiés : `npm run build` d'abord.\n");
   process.exit(1);
@@ -293,7 +294,12 @@ const artefact = {
     importeurs_de_EntityPage: importeursEntityPage,
     compagnies_sans_fiche: cieSansFiche.length,
     pays_sans_guide: paysSansGuide.length,
-    pages_construites: pagesHtml.length,
+    /* LE DÉCOMPTE INCIDENT DU SITE NE FAIT PAS PARTIE DU SCEAU — corrigé le 20/08/2026, même
+       défaut que T0-B3-d et T0-B3-g. `pages_construites` valait 2 957, le nombre de pages qu'avait
+       le site ce jour-là : chaque article publié depuis le faisait bouger, l'artefact changeait et
+       SHA256SUMS échouait. Ce qui compte ici — 0 page rendue par le repli — ne dépend pas du
+       nombre total ; c'est le PLANCHER qui garantit qu'on a lu quelque chose, et lui est déclaré. */
+    pages_construites_minimum: PLANCHER_PAGES,
     pages_rendues_par_le_repli: pagesDuRepli,
     lecture: "Le seul bloc du site capable de publier une rationale est dans un composant que rien "
       + "n'atteint : 102 compagnies sur 102 ont une fiche, 140 pays sur 140 ont un guide. Il n'est "
