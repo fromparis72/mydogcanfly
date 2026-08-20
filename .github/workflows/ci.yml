@@ -7,17 +7,31 @@ permissions:
 
 # Filet de sécurité : transformer en contrôles automatiques ce qui était vérifié à la main.
 #
-# DEUX NIVEAUX, décidés avec Philippe et Codex le 11/08/2026 après mesure :
+# DEUX JOBS, ET NON DEUX NIVEAUX — corrigé le 20/08/2026 sur contre-revue.
 #
-#   pull request  → build RÉDUIT (97 pages, ~36 s). Retour rapide sur ce qui casse vraiment.
-#   push sur main → build COMPLET (2949 pages, ~12 min) + contrôle `noindex` sur la totalité.
+# Le partage était auparavant « pull request → build réduit, main → build complet ». Six contrôles
+# ne savent lire que le site COMPLET : ils étaient donc réservés à `main`, c'est-à-dire qu'ils
+# s'exécutaient pour la PREMIÈRE FOIS APRÈS la fusion. Une vérification qui n'a lieu qu'une fois le
+# code écrit dans `main` ne protège plus rien : elle constate.
 #
-# Pourquoi ce partage plutôt qu'un build complet partout : les 2728 pages d'entités (aéroports,
-# races, pays, compagnies) n'apportent rien aux harnais, qui lisent la page d'accueil dans les
-# 4 langues et /tools/fiche. Et surtout, la garantie forte existe déjà là où elle compte :
-# `deploy:preview` exécute un build complet AVEC vérification du noindex sur les 2957 pages avant
-# tout déploiement. La CI de pull request n'a pas à certifier un déploiement, elle doit détecter
-# une régression vite.
+#   verify        → build RÉDUIT (~120 pages, ~40 s) : contrôles rapides, sentinelles,
+#                   contre-épreuves. Rend la main vite sur ce qui casse vraiment.
+#   site-complet  → build COMPLET (3121 pages, ~20 min) + `noindex` partout, puis les six
+#                   contrôles qui exigent le site entier.
+#
+# Les deux tournent sur les MÊMES déclencheurs et le MÊME commit, en parallèle. Il ne reste aucune
+# condition `github.event_name` dans ce fichier : ce qui tourne sur `main` tourne sur la pull
+# request. Les deux statuts doivent être exigés par la protection de branche de `main` — sans cela
+# le partage ci-dessus ne serait qu'une intention.
+#
+# CE QUE LA CI DE PULL REQUEST TESTE EXACTEMENT : `actions/checkout` teste par défaut le COMMIT DE
+# FUSION synthétique entre la tête de la branche et sa base, pas le SHA brut de la branche. C'est
+# préférable — c'est le résultat fusionné qui sera écrit dans `main` — mais ce n'est pas la même
+# chose, et un compte rendu qui dit « sur le SHA de la branche » se trompe. Le SHA de tête reste
+# lisible dans `github.event.pull_request.head.sha`.
+#
+# `deploy:preview` conserve sa propre garantie : build complet AVEC vérification du `noindex` sur
+# la totalité des pages avant tout déploiement. La CI ne certifie pas un déploiement.
 #
 # ORDRE NON NÉGOCIABLE : le build précède les harnais DOM. `test-fiche-harness.cjs` et
 # `test-flightfinder-harness.cjs` lisent packages/ui/dist ; sans build ils meurent sur ENOENT.

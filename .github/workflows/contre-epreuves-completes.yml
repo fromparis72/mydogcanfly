@@ -1,0 +1,55 @@
+name: Contre-épreuves complètes
+
+# Permissions minimales : ce workflow lit le dépôt et n'écrit rien.
+permissions:
+  contents: read
+
+# POURQUOI CE WORKFLOW EXISTE, SÉPARÉ DE LA CI.
+#
+# Quatre mutations du catalogue exigent le SITE ENTIER : sous le build réduit, les guides et les
+# fiches n'existent pas, leur harnais échouerait faute de matière et non parce que la mutation a
+# mordu — il prouverait le vide. Elles coûtent donc un build complet chacune, plus celui de
+# restauration : environ cent minutes.
+#
+# Les imposer à chaque petite pull request reviendrait à payer cent minutes pour vérifier une
+# correction de trois lignes. Elles étaient jusqu'ici lancées À LA MAIN — c'est-à-dire oubliables,
+# exactement ce que l'en-tête de `test-contre-epreuves.mjs` reproche aux contre-épreuves manuelles.
+#
+# Découpage arbitré par la contre-revue du 20/08/2026 :
+#   · une fois par semaine, sans que personne y pense ;
+#   · à la demande, par `workflow_dispatch`, notamment sur le SHA final d'une intégration avant
+#     la fusion du dernier lot — c'est là qu'il est OBLIGATOIRE.
+#
+# Il joue le catalogue ENTIER (`--dom --complet`), pas seulement les quatre : les mutations rapides
+# ne coûtent rien de plus une fois les builds payés, et un passage hebdomadaire qui n'en jouerait
+# qu'une partie laisserait croire à une couverture qu'il n'a pas.
+on:
+  schedule:
+    # Lundi 04:00 UTC — hors des heures où quelqu'un attend un retour de CI.
+    - cron: "0 4 * * 1"
+  workflow_dispatch:
+
+jobs:
+  toutes:
+    name: Les 37 garanties, y compris celles qui exigent le site entier
+    runs-on: ubuntu-latest
+    # Cinq builds complets dans le pire des cas. La marge est large à dessein : un dépassement
+    # laisserait l'arbre muté sur le runner et le rapport sans conclusion.
+    timeout-minutes: 180
+
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+
+      - name: Node 22 (depuis .nvmrc)
+        uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020 # v7.0.0
+        with:
+          node-version-file: .nvmrc
+          cache: npm
+
+      - name: Installation reproductible
+        run: npm ci
+
+      # Le runner exige un arbre PROPRE au départ : il écrit dans les fichiers du dépôt et les
+      # restaure par `git checkout`. Il vérifie aussi que l'arbre est rendu intact à la fin.
+      - name: Chaque garantie doit savoir échouer — catalogue entier
+        run: npm run contre-epreuves -- --dom --complet

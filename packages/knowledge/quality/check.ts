@@ -111,12 +111,15 @@ ok(
   promisedWithoutAirport.length ? `${promisedWithoutAirport.length} without: ${promisedWithoutAirport.join(", ")}` : "",
 );
 
-// Message corrigé (K-bis, 11/08/2026) : l'ancien texte affirmait « runs in CI » alors
-// qu'AUCUN contrôle de liens n'existe, ni ici ni dans le workflow. Un contrôle annoncé et
-// absent est pire qu'un contrôle absent : quelqu'un finit par s'appuyer dessus.
-// Chantier consigné dans docs/matrice-tests.md : liens internes à chaque CI, URLs externes
-// dans un workflow programmé.
-console.log("ℹ️  link-check: absent — aucun contrôle de liens n'existe encore (ni ici ni en CI)");
+// Message corrigé une seconde fois (20/08/2026, sur contre-revue). Il affirmait « aucun contrôle
+// de liens n'existe, ni ici ni en CI » — vrai le 11/08, faux depuis le 19/08 :
+// `test-liens-internes.mjs` relève 1,4 million de liens internes sur les 3 121 pages construites
+// et tourne dans le job `site-complet`, sur pull request comme sur main.
+// Un message qui décrit un manque déjà comblé est du même tonneau qu'un contrôle annoncé et
+// absent : il désigne un chantier à faire alors qu'il est fait.
+// Reste ouvert, et c'est ce qui est dit ici : les URL EXTERNES, que rien ne vérifie.
+console.log("ℹ️  link-check: liens INTERNES vérifiés par `npm run test:liens` (job site-complet) ; "
+  + "les URL externes ne sont vérifiées nulle part");
 
 console.log(failed ? `\n${failed} check(s) failed` : "\nAll quality checks passed ✨");
 process.exit(failed ? 1 : 0);
