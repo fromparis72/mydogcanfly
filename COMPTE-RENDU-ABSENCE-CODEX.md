@@ -631,32 +631,53 @@ le site entier (`npm run contre-epreuves -- --complet`) **ne sont pas** dans la 
 quatre builds complets, soit environ cinquante minutes. Elles sont lancées à la main, et c'est
 exactement le reproche que leur propre en-tête adresse aux vérifications manuelles. À arbitrer.
 
-### Demande 4 — des PR découpées, pas une PR de 268 fichiers
+### Demande 4 — le découpage en PR : ma première proposition était fausse, voici la seconde
 
-D'accord, et voici le découpage que je propose. **Quatre PR empilées** — chacune basée sur la
-précédente, la première sur `main` — plutôt que quatre branches reconstruites par cueillette de
-commits. La raison est pratique : une branche recomposée peut ne pas se construire à elle seule,
-et on ne s'en aperçoit qu'en CI. Empilées, chacune est un préfixe réel de l'historique, donc
-constructible par construction. Chacune reçoit les **deux jobs** sur son propre SHA.
+**La contre-revue a refusé la section précédente, et elle avait raison sur les deux points.**
 
-| PR | commits | contenu | pourquoi ce point de coupe |
-|---|---|---|---|
-| 1 | `0163448..3927b43` (26) | T0-B3-a à T0-B3-e : contrats, moteur, avis IATA, 42 retraits, seuils, poids du contenant, ce que le site montre — plus les contre-épreuves mécanisées et la dette Node 20 | **c'est le lot que tu as déjà contre-examiné.** Aucun contenu éditorial, aucun harnais neuf |
-| 2 | `67e66a8..adfd06d` (11) | Le Travel Hub en quatre langues : 124 traductions es/pt, 10 articles anglais, leurs 30 traductions, les liens d'outils corrigés | homogène et éditorial : c'est la PR qui demande une relecture native, pas une relecture de code |
-| 3 | `5fe5534..7c01dfc` (18) | Les dossiers T0-B3-f/g/h et les cinq harnais du site (annonce, caisse, coins pipi, liens, pages de guides) + l'audit corrigé | outillage de vérification seul ; le site public ne change pas |
-| 4 | `ea7593b..HEAD` (6) | Les correctifs de ta contre-revue du 20/08 : `check.ts`, reproductibilité de `d`/`e`/`g`, dates, formateur, CI en deux jobs | petit, ciblé, relisible en une passe |
+Mes plages excluaient chacune leur premier commit — j'ai écrit `A..B` là où il fallait lire « de A
+inclus à B ». Les comptes exacts sont ceux qu'elle donne : `e2cf302..3927b43` (26), `3927b43..adfd06d`
+(12), `adfd06d..168876f` (19), `168876f..c9c07ac` (7).
 
-**Deux réserves, que je pose plutôt que de les laisser découvrir.**
+Le reproche de fond est plus lourd, et je le reprends à mon compte : **préserver l'ordre historique
+ne préserve pas la qualité intermédiaire.** Ma PR 1 aurait contenu le `quality/check.ts` cassé, dont
+le correctif n'arrivait qu'en PR 4 ; ma PR 2 aurait introduit les dates du futur et l'ancien
+formateur ; ma PR 3, un T0-B3-g non reproductible. Écrire « chacune reçoit les deux jobs et une CI
+verte » était donc **faux** : trois des quatre auraient été rouges, et le savoir d'avance ne les
+rend pas moins rouges. Rejouer chronologiquement des erreurs déjà comprises n'a aucune vertu.
 
-La PR 4 redate 39 fichiers de guides introduits par la PR 2. J'aurais pu réécrire l'historique pour
-que les guides arrivent correctement datés dès la PR 2 — je ne l'ai pas fait : cela effacerait la
-trace de ce que j'ai inventé (l'étalement des dates) puis corrigé. La trace vaut mieux qu'un
-historique propre.
+**Nouveau découpage : quatre lots THÉMATIQUES reconstruits, chaque correctif placé avec le lot qu'il
+répare.** L'ancienne branche `claude/t0b3a-arbitrage-brachy` reste en place et conserve toute la
+traçabilité — elle n'est pas réécrite, elle n'est simplement pas ce qu'on fusionne.
 
-La PR 3 scelle des fichiers `.astro` que la PR 4 modifie : T0-B3-h y change donc de base, et ce
-changement de base est **dans** la PR 4, avec son motif écrit. C'est la règle appliquée telle
-qu'elle est — et c'est exactement pourquoi je n'ai pas rebasé de mon propre chef pour traduire les
-49 chaînes portugaises.
+| lot | contenu | les correctifs qui y sont RAPATRIÉS |
+|---|---|---|
+| **0 — La CI qui vérifiera les suivants** | les deux jobs `verify` / `site-complet`, le workflow hebdomadaire des contre-épreuves complètes, l'audit corrigé, `build:ci --complet` | — (il ne référence que les contrôles déjà présents sur `main`) |
+| **1 — Moteur et référentiel brachycéphale** | T0-B3-a à T0-B3-e : contrats, moteur, avis IATA, 42 retraits, seuils de soute, poids du contenant, ce que le site montre ; contre-épreuves mécanisées ; dette Node 20 | le correctif de `quality/check.ts` (c'est ce lot qui a rendu `breed_restrictions` obligatoire) ; la reproductibilité de T0-B3-d et T0-B3-e |
+| **2 — Le Travel Hub en quatre langues** | 124 traductions es/pt, 10 articles anglais, leurs 30 traductions, les liens d'outils | les dates justes **d'emblée** (aucun article daté du futur n'entre jamais) ; le formateur de dates unifié ; le contrat `lastmod` ; les deux traductions portugaises arbitrées |
+| **3 — L'outillage de vérification** | les cinq harnais du site, les dossiers T0-B3-f/g/h, les étapes de CI qui les exécutent | T0-B3-g **déjà reproductible** ; les bases de T0-B3-g/h scellées après le lot 2 |
 
-**Ordre de fusion : 1, 2, 3, 4**, chacune après CI verte sur son propre SHA. Rien n'est déployé
-tant que les quatre ne sont pas dans `main`.
+**Pourquoi le lot 0 vient en premier.** Il ne dépend de rien et il fait que **les trois lots suivants
+sont vérifiés par la CI complète, sur leur propre commit**. Il ne référence que des contrôles déjà
+présents sur `main` — les trois harnais neufs ne sont branchés qu'au lot 3, avec eux. La CI grandit
+avec ce qu'elle sait vérifier ; elle n'annonce jamais un contrôle qui n'existe pas encore.
+
+**Ordre de fusion : 0, 1, 2, 3.** Chacun après ses deux jobs verts sur son propre résultat fusionné.
+Le workflow des contre-épreuves complètes est déclenché explicitement sur le SHA final, avant la
+fusion du lot 3.
+
+**Comment prouver que rien n'a été perdu**, puisque la reconstruction n'est plus l'historique :
+
+1. `git range-diff e2cf302..c9c07ac <lot0>..<lot3>` — chaque commit d'origine retrouvé, déplacé ou
+   fondu, aucun disparu sans que la comparaison le dise ;
+2. l'arbre final des quatre lots doit être **identique au bit près** à celui de `c9c07ac` augmenté
+   des correctifs postérieurs : `git diff <tip des lots> claude/t0b3a-arbitrage-brachy` doit être vide ;
+3. les **neuf dossiers scellés** rejoués sur le tip des lots — c'est la preuve la plus forte, parce
+   qu'elle ne porte pas sur les fichiers mais sur ce qu'ils mesurent.
+
+**Ce que ce découpage coûte, et je le dis avant de commencer.** Reconstruire, ce n'est pas
+cueillir : là où un commit tardif corrige un commit ancien DANS LE MÊME FICHIER — les dates des
+guides, le formateur, `check.ts` — il faut refondre les deux en un seul, puis reconstruire et tester
+chaque lot. Le contenu se déplace mécaniquement ; ces trois endroits-là ne le font pas. C'est une
+journée de travail, et le risque n'est pas nul : c'est exactement pourquoi les trois preuves
+ci-dessus ne sont pas facultatives.
