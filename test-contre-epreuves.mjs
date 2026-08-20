@@ -212,21 +212,23 @@ const MUTATIONS = [
   },
   {
     nom: "une épingle du manifeste ne sert plus à rien et y reste",
-    fichier: ".github/workflows/ci.yml",
-    /* ANCRE ÉLARGIE le 20/08/2026 : le workflow a désormais DEUX jobs, qui partagent les mêmes
-       étapes d'installation. La mutation courte est devenue ambiguë et le runner l'a déclarée
-       MUETTE — c'est exactement ce pour quoi cet état existe. L'ancre inclut le voisinage qui
-       distingue le job `verify` de `site-complet`. */
-    /* DEUX ÉDITIONS, et c'est le runner qui l'a montré : retirer `setup-node` du seul job
-       `verify` laissait `site-complet` l'utiliser encore — l'épingle restait donc utile et le
-       harnais restait vert. Une mutation doit décrire l'état RÉELLEMENT à craindre : l'action
-       disparaît des deux jobs, et alors seulement son épingle devient orpheline. */
-    editions: [
-      { cherche: "      - name: Node 22 (depuis .nvmrc)\n        uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020 # v7.0.0\n        with:\n          node-version-file: .nvmrc\n          cache: npm\n\n      # Le seul contrôle du lot",
-        remplace: "      - name: Node 22 (depuis .nvmrc)\n        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1\n        with:\n          node-version-file: .nvmrc\n          cache: npm\n\n      # Le seul contrôle du lot" },
-      { cherche: "      - name: Node 22 (depuis .nvmrc)\n        uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020 # v7.0.0\n        with:\n          node-version-file: .nvmrc\n          cache: npm\n\n      - name: Installation reproductible",
-        remplace: "      - name: Node 22 (depuis .nvmrc)\n        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1\n        with:\n          node-version-file: .nvmrc\n          cache: npm\n\n      - name: Installation reproductible" },
-    ],
+    /* MUTATION REPORTÉE SUR LE MANIFESTE le 20/08/2026, et c'est le runner qui l'a exigé deux fois.
+       Elle retirait `setup-node` du workflow pour rendre son épingle orpheline. Première fois : le
+       second job l'utilisait encore, la garantie ne tombait pas. Deuxième fois, après passage à
+       deux éditions : le workflow hebdomadaire l'utilisait à son tour. Poursuivre revenait à
+       éditer autant d'endroits qu'il y a de workflows — une mutation qui doit courir après le code
+       ne prouve rien de durable.
+       Or la garantie visée porte sur le MANIFESTE, pas sur le workflow : « une épingle qui ne sert
+       plus à rien et y reste ». On l'y attaque donc directement, en y ajoutant une épingle
+       qu'aucun workflow n'utilise. C'est aussi l'état réellement à craindre : une action retirée
+       d'un workflow dont on oublie de retirer l'épingle. */
+    fichier: ".github/actions-epinglees.json",
+    cherche: '  "epingles": [\n    {\n      "action": "actions/checkout",',
+    remplace: '  "epingles": [\n    {\n      "action": "actions/cache",\n'
+      + '      "sha": "0000000000000000000000000000000000000000",\n'
+      + '      "version": "v0.0.0",\n      "using": "node24",\n'
+      + '      "note": "contre-épreuve : épingle qu\'aucun workflow n\'utilise"\n    },\n    {\n'
+      + '      "action": "actions/checkout",',
     harnais: "packages/knowledge/scripts/check-actions-node.mjs",
     attendu: "n'est utilisée par aucun",
   },
