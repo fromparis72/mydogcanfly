@@ -1,6 +1,9 @@
 # T0-B3-g — Ce que les outils servent, et dans quelle langue
 
-**Base de mesure figée : `50188bd4d20b38ebddf277de1514f3e8bd42e0c7`.**
+**Base de mesure figée : `6c81edf9f356619694e63694ccf5b5ac4ff9b021`.**
+*Base déplacée le 20/08/2026 (de `50188bd`) : la contre-revue a arbitré l'ajout de deux clés
+portugaises dans la table scellée par ce dossier. Les chiffres sont recalculés — ils sont ici
+inchangés, les deux chaînes traduites appartenant au gabarit des guides, hors de ce périmètre.*
 Reproduction : `npm run mesure:t0b3g` — une seconde, sans réseau ni moteur.
 
 **Ce dossier ne corrige rien.** Aucun outil modifié, aucune phrase traduite, aucun fichier de

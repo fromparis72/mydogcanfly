@@ -40,7 +40,11 @@ import { posix } from "node:path";
 import { createHash } from "node:crypto";
 
 /** Base de mesure FIGÉE, jamais `HEAD` : régénérer ne doit pas déplacer le sceau. */
-export const MESURE_BASE_SHA = "50188bd4d20b38ebddf277de1514f3e8bd42e0c7";
+/* BASE DÉPLACÉE le 20/08/2026, de `50188bd` à `6c81edf` : la contre-revue a arbitré
+   l'ajout de deux clés portugaises — « updated » et « In short » — dans la table scellée par ce
+   dossier. Mesurer autre chose exige de déclarer une nouvelle base. Les chiffres sont
+   RECALCULÉS sur la nouvelle base, jamais recopiés. */
+export const MESURE_BASE_SHA = "6c81edf9f356619694e63694ccf5b5ac4ff9b021";
 
 const DOSSIER = "mesures/t0b3g-ce-que-les-outils-servent";
 const ROUTES = "packages/ui/src/pages/[...loc]/tools";

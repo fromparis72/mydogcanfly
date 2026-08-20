@@ -1,5 +1,5 @@
 {
-  "base": "aff1fb8476465070bfc67cb031a12ed5e39a8446",
+  "base": "6c81edf9f356619694e63694ccf5b5ac4ff9b021",
   "perimetre": {
     "fichiers": [
       "packages/ui/src/components/AirlinePremiumPage.astro",
@@ -70,9 +70,9 @@
     "total": 887,
     "occurrencesTexte": 887,
     "compte": {
-      "servi": 838,
+      "servi": 840,
       "es-anglais": 0,
-      "pt-anglais": 49,
+      "pt-anglais": 47,
       "es-et-pt-anglais": 0,
       "cle-non-litterale": 0,
       "illisible": 0
@@ -143,9 +143,9 @@
         "illisible": 0
       },
       "travel-hub": {
-        "servi": 8,
+        "servi": 10,
         "es-anglais": 0,
-        "pt-anglais": 2,
+        "pt-anglais": 0,
         "es-et-pt-anglais": 0,
         "cle-non-litterale": 0,
         "illisible": 0
@@ -9805,7 +9805,7 @@
         "ligne": 109,
         "mecanisme": "inlineT",
         "args": 3,
-        "etat": "pt-anglais",
+        "etat": "servi",
         "cle": "updated",
         "esIdentique": false,
         "ptIdentique": false
@@ -9816,7 +9816,7 @@
         "ligne": 124,
         "mecanisme": "inlineT",
         "args": 3,
-        "etat": "pt-anglais",
+        "etat": "servi",
         "cle": "In short",
         "esIdentique": false,
         "ptIdentique": false

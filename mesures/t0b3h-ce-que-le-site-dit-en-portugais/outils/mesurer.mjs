@@ -45,7 +45,11 @@ import { createHash } from "node:crypto";
    et c'est pourquoi je n'avais PAS rebasé de mon propre chef pour traduire les 49 chaînes. Ici la
    modification est arbitrée, donc la base bouge avec elle. Les chiffres ci-dessous sont recalculés
    sur la nouvelle base, pas recopiés. */
-export const MESURE_BASE_SHA = "aff1fb8476465070bfc67cb031a12ed5e39a8446";
+/* BASE DÉPLACÉE le 20/08/2026, de `aff1fb8` à `6c81edf` : la contre-revue a arbitré
+   l'ajout de deux clés portugaises — « updated » et « In short » — dans la table scellée par ce
+   dossier. Mesurer autre chose exige de déclarer une nouvelle base. Les chiffres sont
+   RECALCULÉS sur la nouvelle base, jamais recopiés. */
+export const MESURE_BASE_SHA = "6c81edf9f356619694e63694ccf5b5ac4ff9b021";
 
 const DOSSIER = "mesures/t0b3h-ce-que-le-site-dit-en-portugais";
 const SRC = "packages/ui/src";
@@ -282,8 +286,10 @@ exiger("les trois états des clés couvrent tout : leur somme égale le nombre d
 
 /* CES CONSTATS SONT DES EXIGENCES : un chiffre seulement imprimé se dégrade sans que rien ne rougisse. */
 exiger("aucun site du site entier ne sert l'anglais en espagnol", es === 0, `${es} site(s)`);
-exiger("l'inventaire portugais est celui du sceau : 838 servis, 49 sur l'anglais",
-  compte.servi === 838 && pt === 49, `${compte.servi} servis · ${pt} sur l'anglais`);
+/* 49 → 47 le 20/08/2026 : « updated » et « In short » ont été traduites sur arbitrage. Le chiffre
+   figé BOUGE avec la base, il n'est jamais recopié — c'est tout l'intérêt de le figer. */
+exiger("l'inventaire portugais est celui du sceau : 840 servis, 47 sur l'anglais",
+  compte.servi === 840 && pt === 47, `${compte.servi} servis · ${pt} sur l'anglais`);
 exiger("aucune clé littérale de `t()` n'est incomplète dans les trois langues",
   clefsIncompletes.length === 0,
   clefsIncompletes.slice(0, 6).map((c) => `${c.cle} (${c.manquantes.join(",")})`).join(" · "));

@@ -1,10 +1,10 @@
 # T0-B3-h — Ce que le site dit en portugais (et en espagnol)
 
-**Base de mesure figée : `aff1fb8476465070bfc67cb031a12ed5e39a8446`.**
-*Base déplacée le 20/08/2026 (de `2948ee9`), la contre-revue ayant demandé de corriger le formateur
-de date, qui vit dans deux fichiers `.astro` du périmètre. Les chiffres ci-dessous sont recalculés
-sur la nouvelle base, jamais recopiés — ils sont d'ailleurs identiques : la correction touche le
-FORMAT des dates, pas les chaînes mesurées.*
+**Base de mesure figée : `6c81edf9f356619694e63694ccf5b5ac4ff9b021`.**
+*Base déplacée deux fois le 20/08/2026, chaque fois sur arbitrage de la contre-revue : d'abord de
+`2948ee9` à `aff1fb8` (correction du formateur de date, qui vit dans deux `.astro` du périmètre),
+puis à `6c81edf` (traduction de « updated » et « In short »). Les chiffres sont RECALCULÉS à
+chaque déplacement, jamais recopiés — et le second les a fait bouger : 49 → 47.*
 Reproduction : `npm run mesure:t0b3h` — une seconde, sans build ni réseau.
 
 **Ce dossier ne corrige rien.** Aucune phrase traduite, aucun fichier de `packages/` écrit. Les
@@ -52,26 +52,25 @@ ranger avec les autres. Les compter comme « incomplètes » aurait produit une 
 | | |
 |---|---|
 | sites d'appel analysés | **887** sur 887 repérés |
-| servis dans les quatre langues | **838** |
+| servis dans les quatre langues | **840** |
 | servant l'anglais en **espagnol** | **0** |
-| servant l'anglais en **portugais** | **49** |
+| servant l'anglais en **portugais** | **47** |
 | clés `t(locale, …)` | 229 sites, 168 clés littérales, **0 incomplète**, 9 dynamiques |
 | traductions identiques à l'anglais | 6 en espagnol, 7 en portugais — comptées à part, sans jugement |
 
 **L'espagnol est complet.** Les 887 appels portent leurs trois arguments, et aucune clé littérale de
 `t()` ne manque en espagnol. C'est un résultat, pas une absence de mesure.
 
-### Les 49 chaînes servies en anglais aux lecteurs portugais
+### Les 47 chaînes servies en anglais aux lecteurs portugais
 
 | famille | sur l'anglais | sites |
 |---|---|---|
 | `tools` | 32 | 343 |
 | `accueil` | 10 | 43 |
 | `page isolée` | 3 | 238 |
-| `travel-hub` | 2 | 10 |
 | `airports` | 1 | 57 |
 | `partagé` | 1 | 26 |
-| `airlines`, `breeds`, `countries` | 0 | 49 · 61 · 60 |
+| `airlines`, `breeds`, `countries`, `travel-hub` | 0 | 49 · 61 · 60 · 10 |
 
 *Les composants n'ont pas de famille propre : ils héritent de celles des routes qui les atteignent,
 transitivement. Un composant qui ne sert qu'une famille compte pour elle ; sinon il est « partagé ».
@@ -86,8 +85,10 @@ précisément ce que ce dossier cherche à établir. Les 33 de T0-B3-g se retrou
    needs a long procedure (rabies titer) started BEFORE you leave », « Entry requires an import
    permit and quarantine — plan several months ahead. » Un lecteur portugais reçoit le résultat dans
    sa langue et l'avertissement qui le conditionne en anglais.
-2. **Le gabarit des guides, 2 chaînes — sur 72 pages.** `[slug].astro` sert « updated » et
-   « In short » en anglais : ces deux mots apparaissent sur **chacun** des 72 guides portugais.
+2. **Le gabarit des guides : réglé le 20/08/2026.** `[slug].astro` servait « updated » et
+   « In short » en anglais sur **chacun** des 72 guides portugais — juste à côté de la date qui
+   venait d'être corrigée. Les deux chaînes ont été traduites sur arbitrage (« atualizado em »,
+   « Em resumo »), ce qui fait passer l'inventaire de 49 à 47 et vide la famille `travel-hub`.
 3. **Les outils, 32 chaînes** — messages d'erreur, validations et **réserves** de l'outil chaleur.
    Détaillées dans T0-B3-g.
 
@@ -110,7 +111,7 @@ l'inventaire.
 
 ## Ce qui attend un arbitrage
 
-**Traduire les 49 chaînes est un travail de données** — une table, pas du code : ajouter les clés
+**Traduire les 47 restantes est un travail de données** — une table, pas du code : ajouter les clés
 manquantes à `translations/pt/inline.json`. Mais ce fichier est **scellé par T0-B3-g et par ce
 dossier** : le traduire ferait tomber la reproduction des deux. C'est le comportement voulu — pour
 mesurer autre chose, il faut déclarer une nouvelle base — et la décision de rebaser deux dossiers
