@@ -630,3 +630,33 @@ Une réserve que je pose plutôt que de la laisser découvrir : les quatre contr
 le site entier (`npm run contre-epreuves -- --complet`) **ne sont pas** dans la CI. Elles coûtent
 quatre builds complets, soit environ cinquante minutes. Elles sont lancées à la main, et c'est
 exactement le reproche que leur propre en-tête adresse aux vérifications manuelles. À arbitrer.
+
+### Demande 4 — des PR découpées, pas une PR de 268 fichiers
+
+D'accord, et voici le découpage que je propose. **Quatre PR empilées** — chacune basée sur la
+précédente, la première sur `main` — plutôt que quatre branches reconstruites par cueillette de
+commits. La raison est pratique : une branche recomposée peut ne pas se construire à elle seule,
+et on ne s'en aperçoit qu'en CI. Empilées, chacune est un préfixe réel de l'historique, donc
+constructible par construction. Chacune reçoit les **deux jobs** sur son propre SHA.
+
+| PR | commits | contenu | pourquoi ce point de coupe |
+|---|---|---|---|
+| 1 | `0163448..3927b43` (26) | T0-B3-a à T0-B3-e : contrats, moteur, avis IATA, 42 retraits, seuils, poids du contenant, ce que le site montre — plus les contre-épreuves mécanisées et la dette Node 20 | **c'est le lot que tu as déjà contre-examiné.** Aucun contenu éditorial, aucun harnais neuf |
+| 2 | `67e66a8..adfd06d` (11) | Le Travel Hub en quatre langues : 124 traductions es/pt, 10 articles anglais, leurs 30 traductions, les liens d'outils corrigés | homogène et éditorial : c'est la PR qui demande une relecture native, pas une relecture de code |
+| 3 | `5fe5534..7c01dfc` (18) | Les dossiers T0-B3-f/g/h et les cinq harnais du site (annonce, caisse, coins pipi, liens, pages de guides) + l'audit corrigé | outillage de vérification seul ; le site public ne change pas |
+| 4 | `ea7593b..HEAD` (6) | Les correctifs de ta contre-revue du 20/08 : `check.ts`, reproductibilité de `d`/`e`/`g`, dates, formateur, CI en deux jobs | petit, ciblé, relisible en une passe |
+
+**Deux réserves, que je pose plutôt que de les laisser découvrir.**
+
+La PR 4 redate 39 fichiers de guides introduits par la PR 2. J'aurais pu réécrire l'historique pour
+que les guides arrivent correctement datés dès la PR 2 — je ne l'ai pas fait : cela effacerait la
+trace de ce que j'ai inventé (l'étalement des dates) puis corrigé. La trace vaut mieux qu'un
+historique propre.
+
+La PR 3 scelle des fichiers `.astro` que la PR 4 modifie : T0-B3-h y change donc de base, et ce
+changement de base est **dans** la PR 4, avec son motif écrit. C'est la règle appliquée telle
+qu'elle est — et c'est exactement pourquoi je n'ai pas rebasé de mon propre chef pour traduire les
+49 chaînes portugaises.
+
+**Ordre de fusion : 1, 2, 3, 4**, chacune après CI verte sur son propre SHA. Rien n'est déployé
+tant que les quatre ne sont pas dans `main`.
