@@ -4,8 +4,8 @@ title: "Your Airport Day With a Dog, From Kerb to Gate"
 seoTitle: "Flying With a Dog: What Happens at the Airport"
 description: "What actually happens on the day: pet check-in desks, security screening with an animal, relief areas, and where the delays come from."
 summary: "The airport day has a shape: arrive earlier than you would alone, check in at a specific desk, carry the dog through screening, then find a relief area before boarding."
-date: "2026-08-24T09:00:00+02:00"
-lastmod: "2026-08-24T09:00:00+02:00"
+date: "2026-08-17T09:00:00+02:00"
+lastmod: "2026-08-17T09:00:00+02:00"
 author: "Camille Roussel"
 categories: ["Travel"]
 tags: ["dog", "flying", "airport", "check-in"]

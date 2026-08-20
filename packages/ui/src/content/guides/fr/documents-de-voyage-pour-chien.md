@@ -4,8 +4,8 @@ title: "Documents de voyage pour un chien : pourquoi ils dépendent du pays d'ar
 seoTitle: "Documents de voyage par destination : ce qui est exigé"
 description: "Puce, vaccination antirabique, certificat sanitaire, titrage : à quoi sert chaque document, qui le décide, et pourquoi c'est la destination qui fixe les règles."
 summary: "La compagnie décide comment votre animal vole ; la destination décide s'il peut entrer. Ce sont deux autorités distinctes, deux listes distinctes et deux calendriers distincts."
-date: "2026-08-25T09:00:00+02:00"
-lastmod: "2026-08-25T09:00:00+02:00"
+date: "2026-08-17T09:00:00+02:00"
+lastmod: "2026-08-19T09:00:00+02:00"
 author: "Camille Roussel"
 categories: ["Travel"]
 tags: ["animal", "avion", "documents", "international"]

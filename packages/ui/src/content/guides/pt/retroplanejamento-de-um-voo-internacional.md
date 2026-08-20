@@ -4,8 +4,8 @@ title: "Raciocinar de trás para frente: o retroplanejamento de um voo internaci
 seoTitle: "Retroplanejamento de um voo internacional com animal"
 description: "Algumas etapas da viagem internacional de um animal não se comprimem. Volte no tempo a partir da data de partida para ver quais decidem se a viagem é possível."
 summary: "São os prazos de espera, e não os papéis, que decidem se um animal pode voar em uma data. Parta da data de partida e volte no tempo: o prazo antirrábico e a titulação fixam a partida mais cedo possível."
-date: "2026-08-26T09:00:00+02:00"
-lastmod: "2026-08-26T09:00:00+02:00"
+date: "2026-08-17T09:00:00+02:00"
+lastmod: "2026-08-19T09:00:00+02:00"
 author: "Camille Roussel"
 categories: ["Travel"]
 tags: ["animal", "avião", "organização", "internacional"]

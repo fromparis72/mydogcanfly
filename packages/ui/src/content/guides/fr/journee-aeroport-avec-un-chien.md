@@ -4,8 +4,8 @@ title: "Votre journée à l'aéroport avec un chien, du trottoir à la porte d'e
 seoTitle: "Avion avec un chien : ce qui se passe à l'aéroport"
 description: "Ce qui se passe réellement le jour J : comptoirs d'enregistrement animaux, passage au contrôle de sûreté avec un animal, zones de soulagement, et d'où viennent les retards."
 summary: "La journée d'aéroport a une forme : arriver plus tôt que seul, enregistrer à un comptoir précis, porter le chien au contrôle, puis trouver une zone de soulagement avant l'embarquement."
-date: "2026-08-24T09:00:00+02:00"
-lastmod: "2026-08-24T09:00:00+02:00"
+date: "2026-08-17T09:00:00+02:00"
+lastmod: "2026-08-19T09:00:00+02:00"
 author: "Camille Roussel"
 categories: ["Travel"]
 tags: ["chien", "avion", "aéroport", "enregistrement"]

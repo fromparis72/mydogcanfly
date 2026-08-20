@@ -77,6 +77,7 @@ function lire(chemin) {
     lang: /<html[^>]*\slang="([^"]+)"/.exec(html)?.[1] ?? null,
     canonical: /<link[^>]*rel="canonical"[^>]*href="([^"]+)"/.exec(html)?.[1] ?? null,
     h1: textesDe(html, /<h1 class="gd__h1"[^>]*>([\s\S]*?)<\/h1>/g)[0] ?? null,
+    meta: textesDe(html, /<p class="gd__meta"[^>]*>([\s\S]*?)<\/p>/g)[0] ?? null,
     questions: textesDe(html, /<summary[^>]*>([\s\S]*?)<\/summary>/g),
     puces: (html.match(/<aside class="gd__bref"[\s\S]*?<\/aside>/)?.[0].match(/<li\b/g) ?? []).length,
     figures: (html.match(/<figure class="gd__cover"[\s\S]*?<\/figure>/g) ?? []),
@@ -136,6 +137,38 @@ const sansCredit = [...lues.values()].filter((x) => x.page.figures.some((f) => !
 exiger(`les illustrations sans crédit sont les ${SANS_CREDIT_CONNUES} connues, pas une de plus`,
   sansCredit.length === SANS_CREDIT_CONNUES,
   `${sansCredit.length} : ` + sansCredit.slice(0, 6).map((x) => x.chemin).join(", "));
+
+/* ---- 2bis. LA DATE EST ÉCRITE DANS LA LANGUE DE LA PAGE ---------------------------------------
+ * Les 144 pages espagnoles et portugaises affichaient « 17 August 2026 » : le formateur de la page
+ * de guide ne connaissait que le français, tout le reste retombait sur `en-GB`. Relevé par la
+ * contre-revue du 20/08/2026.
+ * Le harnais ne relit pas le gabarit : il reformate lui-même la date que la page ANNONCE dans ses
+ * données structurées, avec l'étiquette de sa langue, et exige de la retrouver à l'écran. Deux
+ * chemins indépendants vers le même résultat — c'est ce qui en fait une vérification. */
+const ETIQUETTE = { en: "en-GB", fr: "fr-FR", es: "es-ES", pt: "pt-BR" };
+const dateFausse = [];
+for (const x of lues.values()) {
+  const ld = x.page.article;
+  if (!ld || !x.page.meta) { dateFausse.push(`${x.chemin} — pas de méta ou pas de schéma`); continue; }
+  const f = new Intl.DateTimeFormat(ETIQUETTE[x.l], { day: "numeric", month: "long", year: "numeric" });
+  const attendues = [ld.datePublished, ld.dateModified].filter(Boolean)
+    .map((d) => f.format(new Date(d)).replace(/\s+/g, " ").trim());
+  if (!attendues.some((d) => x.page.meta.includes(d))) {
+    dateFausse.push(`${x.chemin}\n        à l'écran « ${x.page.meta} »\n        attendu   « ${attendues.join(" » ou « ")} »`);
+  }
+}
+exiger("la date affichée est écrite dans la langue de la page", dateFausse.length === 0,
+  dateFausse.slice(0, 3).join("\n      "));
+
+/* AUCUN GUIDE N'EST DATÉ DU FUTUR. Six l'étaient — un étalement de publication que j'avais
+ * inventé, sans mécanisme de programmation derrière. Une date de publication postérieure au jour
+ * où la page est servie est un mensonge au lecteur comme au moteur. */
+const auFutur = [...lues.values()].filter((x) => {
+  const d = x.page.article?.datePublished;
+  return d && new Date(d) > new Date();
+});
+exiger("aucun guide ne se déclare publié dans le futur", auFutur.length === 0,
+  auFutur.slice(0, 5).map((x) => `${x.chemin} → ${x.page.article.datePublished}`).join("\n      "));
 
 /* ---- 3. L'IDENTITÉ DE LA PAGE ------------------------------------------------------------------ */
 /* `lang` peut porter une variante régionale : Base.astro fait correspondre `pt` à `pt-BR`. Exiger

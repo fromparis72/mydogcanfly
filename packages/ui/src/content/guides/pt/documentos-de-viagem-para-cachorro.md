@@ -4,8 +4,8 @@ title: "Documentos de viagem para um cachorro: por que dependem do país de cheg
 seoTitle: "Documentos de viagem por destino: o que é exigido"
 description: "Microchip, vacinação antirrábica, atestado sanitário, titulação de anticorpos: para que serve cada documento, quem o decide e por que é o destino que fixa as regras."
 summary: "A companhia decide como o seu animal voa; o destino decide se ele pode entrar. São duas autoridades distintas, duas listas distintas e dois calendários distintos."
-date: "2026-08-25T09:00:00+02:00"
-lastmod: "2026-08-25T09:00:00+02:00"
+date: "2026-08-17T09:00:00+02:00"
+lastmod: "2026-08-19T09:00:00+02:00"
 author: "Camille Roussel"
 categories: ["Travel"]
 tags: ["animal", "avião", "documentos", "internacional"]

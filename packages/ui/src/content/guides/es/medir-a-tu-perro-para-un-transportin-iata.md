@@ -4,8 +4,8 @@ title: "Medir a tu perro para un transportín IATA, sin adivinar"
 seoTitle: "Medir a un perro para un transportín IATA"
 description: "Las cuatro medidas que las aerolíneas comprueban de verdad, cómo tomarlas correctamente y por qué pasarse de tamaño no es la respuesta segura."
 summary: "Cuatro medidas deciden el transportín: longitud, altura a la cruz, altura de pie con la cabeza alta y anchura. Tómalas con el perro de pie, añade los márgenes y contrasta el resultado con la aerolínea."
-date: "2026-08-21T09:00:00+02:00"
-lastmod: "2026-08-21T09:00:00+02:00"
+date: "2026-08-17T09:00:00+02:00"
+lastmod: "2026-08-19T09:00:00+02:00"
 author: "Camille Roussel"
 categories: ["Travel"]
 tags: ["perro", "avión", "transportín", "IATA"]

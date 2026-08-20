@@ -23,6 +23,23 @@ export function decompose(entry: Guide): { locale: string; slug: string } {
   return { locale: entry.id.slice(0, i), slug: entry.id.slice(i + 1).replace(/\.mdx?$/, "") };
 }
 
+/**
+ * L'étiquette BCP-47 de chaque langue publiée, pour `Intl`.
+ *
+ * Elle vivait en double, dans deux ternaires : le hub couvrait les quatre langues, la page de
+ * guide s'arrêtait à « français, sinon en-GB ». Les dates des 144 pages espagnoles et portugaises
+ * sortaient donc en anglais — « 17 August 2026 » au lieu de « 17 de agosto de 2026 ». Relevé par
+ * la contre-revue du 20/08/2026. Une liste écrite deux fois finit toujours par diverger : elle
+ * n'est plus écrite qu'ici. `pt-BR` suit `HTML_LANG` de Base.astro, qui déclare déjà le portugais
+ * brésilien.
+ */
+export const ETIQUETTE_BCP47: Record<string, string> = { en: "en-GB", fr: "fr-FR", es: "es-ES", pt: "pt-BR" };
+
+/** Le formateur de date d'une langue, `Intl` compris. `style` distingue le hub (court) de la page. */
+export const formateurDeDate = (locale: string, mois: "long" | "short" = "long") =>
+  new Intl.DateTimeFormat(ETIQUETTE_BCP47[locale] ?? ETIQUETTE_BCP47.en,
+    { day: "numeric", month: mois, year: "numeric" });
+
 /** L'URL publique d'un guide, dans sa langue. L'anglais vit à la racine, comme partout. */
 export const guideHref = (locale: string, slug: string) =>
   locale === "en" ? `/travel-hub/${slug}/` : `/${locale}/travel-hub/${slug}/`;

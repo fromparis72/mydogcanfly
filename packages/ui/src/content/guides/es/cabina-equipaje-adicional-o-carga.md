@@ -4,8 +4,8 @@ title: "Cabina, equipaje adicional o carga manifestada: tres contratos, tres pre
 seoTitle: "Carga, equipaje adicional o cabina: las diferencias"
 description: "El mismo perro en el mismo avión puede viajar bajo tres contratos distintos. Qué cambia en precio, documentación, manipulación y responsabilidad."
 summary: "Cabina, bodega como equipaje acompañado y carga manifestada son tres acuerdos distintos, no tres clases. Difieren en el canal de reserva, la base del precio, la documentación y quién manipula al animal."
-date: "2026-08-22T09:00:00+02:00"
-lastmod: "2026-08-22T09:00:00+02:00"
+date: "2026-08-17T09:00:00+02:00"
+lastmod: "2026-08-19T09:00:00+02:00"
 author: "Camille Roussel"
 categories: ["Travel"]
 tags: ["animal", "avión", "carga", "equipaje"]

@@ -4,8 +4,8 @@ title: "O seu dia de aeroporto com um cachorro, da calçada ao portão"
 seoTitle: "Avião com cachorro: o que acontece no aeroporto"
 description: "O que acontece de fato no dia do voo: balcões de check-in para animais, inspeção de segurança com um animal, áreas de alívio e de onde vêm os atrasos."
 summary: "O dia de aeroporto tem uma forma: chegar mais cedo do que se estivesse sozinho, fazer o check-in em um balcão específico, carregar o cachorro pela inspeção e procurar uma área de alívio antes de embarcar."
-date: "2026-08-24T09:00:00+02:00"
-lastmod: "2026-08-24T09:00:00+02:00"
+date: "2026-08-17T09:00:00+02:00"
+lastmod: "2026-08-19T09:00:00+02:00"
 author: "Camille Roussel"
 categories: ["Travel"]
 tags: ["cachorro", "avião", "aeroporto", "check-in"]

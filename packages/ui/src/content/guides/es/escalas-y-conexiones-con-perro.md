@@ -4,8 +4,8 @@ title: "Escalas y conexiones con perro: el punto débil de cualquier itinerario"
 seoTitle: "Viajar en avión con perro: las conexiones"
 description: "Las conexiones multiplican las formas en que un itinerario con animal puede fallar: dos aerolíneas, dos controles de temperatura, tiempo mínimo de conexión y cambios de terminal."
 summary: "Cada escala añade un juego de normas, un control de temperatura y una operación de manipulación. Un vuelo directo no solo es más cómodo: elimina categorías enteras de fallo."
-date: "2026-08-23T09:00:00+02:00"
-lastmod: "2026-08-23T09:00:00+02:00"
+date: "2026-08-17T09:00:00+02:00"
+lastmod: "2026-08-19T09:00:00+02:00"
 author: "Camille Roussel"
 categories: ["Travel"]
 tags: ["animal", "avión", "conexión", "aeropuerto"]

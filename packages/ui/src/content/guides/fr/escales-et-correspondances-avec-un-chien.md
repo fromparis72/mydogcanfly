@@ -4,8 +4,8 @@ title: "Escales et correspondances avec un chien : le point faible de tout itin�
 seoTitle: "Voyager en avion avec un chien : les correspondances"
 description: "Les correspondances multiplient les façons dont un itinéraire avec animal peut échouer : deux transporteurs, deux contrôles de température, temps de correspondance minimal et changements de terminal."
 summary: "Chaque escale ajoute un jeu de règles, un contrôle de température et une opération de manutention. Un vol direct n'est pas seulement plus confortable : il supprime des catégories entières de défaillance."
-date: "2026-08-23T09:00:00+02:00"
-lastmod: "2026-08-23T09:00:00+02:00"
+date: "2026-08-17T09:00:00+02:00"
+lastmod: "2026-08-19T09:00:00+02:00"
 author: "Camille Roussel"
 categories: ["Travel"]
 tags: ["animal", "avion", "correspondance", "aéroport"]

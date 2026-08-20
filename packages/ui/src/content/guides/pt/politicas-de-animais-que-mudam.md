@@ -4,8 +4,8 @@ title: "Por que as políticas de animais das companhias mudam tanto, e como conf
 seoTitle: "Políticas de animais: conferir antes de voar"
 description: "As regras de animais das companhias mudam com a estação, a aeronave e a rota. Por que isso acontece, o que muda com mais frequência e como conferir a sua companhia antes da partida."
 summary: "Uma política de animais não é um documento estável: ela se move com os embargos de temperatura, as trocas de aeronave, as rotas e as regras de raça. Confira a companhia operadora, na sua rota, perto da partida."
-date: "2026-08-18T09:00:00+02:00"
-lastmod: "2026-08-18T09:00:00+02:00"
+date: "2026-08-17T09:00:00+02:00"
+lastmod: "2026-08-19T09:00:00+02:00"
 author: "Camille Roussel"
 categories: ["Travel"]
 tags: ["cachorro", "avião", "companhia aérea", "regulamentação"]

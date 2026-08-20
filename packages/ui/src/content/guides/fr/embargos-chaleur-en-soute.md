@@ -4,8 +4,8 @@ title: "Embargos chaleur : quand les compagnies cessent de transporter les anima
 seoTitle: "Embargos chaleur : pourquoi la soute ferme l'été"
 description: "Les compagnies suspendent le transport d'animaux en soute au-dessus de certaines températures. Comment fonctionnent les embargos, quel aéroport de votre itinéraire décide, et comment planifier autour."
 summary: "Un embargo chaleur suspend le transport en soute quand la température dépasse un seuil — mesuré au départ, à l'arrivée et à chaque escale. C'est l'aéroport le plus chaud de l'itinéraire qui décide, et ce n'est souvent pas celui qu'on croit."
-date: "2026-08-20T09:00:00+02:00"
-lastmod: "2026-08-20T09:00:00+02:00"
+date: "2026-08-17T09:00:00+02:00"
+lastmod: "2026-08-19T09:00:00+02:00"
 author: "Camille Roussel"
 categories: ["Travel"]
 tags: ["chien", "avion", "chaleur", "soute"]

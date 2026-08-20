@@ -4,8 +4,8 @@ title: "Pet Travel Documents: Why They Depend on Where You Land"
 seoTitle: "Pet Travel Documents by Destination: What's Required"
 description: "Microchip, rabies vaccination, health certificate, titre test: what each document is for, who decides it, and why the destination sets the rules."
 summary: "The airline sets how your pet flies; the destination sets whether it may enter. Those are two separate authorities, two separate checklists, and two separate timetables."
-date: "2026-08-25T09:00:00+02:00"
-lastmod: "2026-08-25T09:00:00+02:00"
+date: "2026-08-17T09:00:00+02:00"
+lastmod: "2026-08-17T09:00:00+02:00"
 author: "Camille Roussel"
 categories: ["Travel"]
 tags: ["pet", "flying", "documents", "international"]

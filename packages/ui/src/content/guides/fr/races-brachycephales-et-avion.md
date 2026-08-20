@@ -4,7 +4,7 @@ title: "Races brachycéphales et avion : ce qui est restreint, et pourquoi"
 seoTitle: "Chiens brachycéphales et avion : les restrictions"
 description: "Pourquoi les compagnies restreignent ou refusent les races brachycéphales en soute, quels chiens sont concernés, et quelles options restent pour un chien au museau court."
 summary: "Les chiens brachycéphales respirent moins efficacement, et la chaleur ajoutée au stress aggrave le phénomène. La plupart des compagnies les restreignent ou les refusent en soute ; certaines restreignent aussi la cabine. La restriction vise le trait, pas une liste figée."
-date: "2026-08-19T09:00:00+02:00"
+date: "2026-08-17T09:00:00+02:00"
 lastmod: "2026-08-19T09:00:00+02:00"
 author: "Camille Roussel"
 categories: ["Travel"]

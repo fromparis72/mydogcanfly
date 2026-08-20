@@ -5,7 +5,7 @@ seoTitle: "Reservar un vuelo con perro: el orden que funciona"
 description: "Reservar un vuelo con perro no es reservar un asiento y añadir un animal. Este es el orden que funciona: leer la política, llamar, confirmar por escrito, volver a comprobar."
 summary: "La reserva del animal es un expediente aparte, con su cupo, su tarifa y su confirmación. Reserva al animal antes que el billete, consíguelo por escrito y vuelve a comprobarlo unos días antes de salir."
 date: "2026-08-17T09:00:00+02:00"
-lastmod: "2026-08-17T09:00:00+02:00"
+lastmod: "2026-08-19T09:00:00+02:00"
 author: "Camille Roussel"
 categories: ["Travel"]
 tags: ["perro", "avión", "reserva", "aerolínea"]

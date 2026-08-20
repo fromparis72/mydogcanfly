@@ -4,8 +4,8 @@ title: "Embargos por calor: cuando las aerolíneas dejan de transportar animales
 seoTitle: "Embargos por calor: por qué la bodega cierra en verano"
 description: "Las aerolíneas suspenden el transporte de animales en bodega por encima de ciertas temperaturas. Cómo funcionan los embargos, qué aeropuerto de tu ruta decide y cómo planificar en consecuencia."
 summary: "Un embargo por calor suspende el transporte en bodega cuando la temperatura supera un umbral, medido a la salida, a la llegada y en cada escala. Decide el aeropuerto más caluroso de la ruta, y a menudo no es el que uno cree."
-date: "2026-08-20T09:00:00+02:00"
-lastmod: "2026-08-20T09:00:00+02:00"
+date: "2026-08-17T09:00:00+02:00"
+lastmod: "2026-08-19T09:00:00+02:00"
 author: "Camille Roussel"
 categories: ["Travel"]
 tags: ["perro", "avión", "calor", "bodega"]

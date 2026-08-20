@@ -4,8 +4,8 @@ title: "Pourquoi les politiques animaux des compagnies changent si souvent — e
 seoTitle: "Politiques animaux : vérifier avant de voler"
 description: "Les règles animaux des compagnies changent avec la saison, l'appareil et la ligne. Pourquoi, ce qui bouge le plus souvent, et comment vérifier votre transporteur avant le départ."
 summary: "Une politique animaux n'est pas un document stable : elle bouge avec les embargos de température, les changements d'appareil, les lignes et les règles de race. Vérifiez le transporteur opérant, sur votre ligne, près du départ."
-date: "2026-08-18T09:00:00+02:00"
-lastmod: "2026-08-18T09:00:00+02:00"
+date: "2026-08-17T09:00:00+02:00"
+lastmod: "2026-08-19T09:00:00+02:00"
 author: "Camille Roussel"
 categories: ["Travel"]
 tags: ["chien", "avion", "compagnie aérienne", "réglementation"]

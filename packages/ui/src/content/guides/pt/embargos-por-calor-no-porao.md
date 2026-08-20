@@ -4,8 +4,8 @@ title: "Embargos por calor: quando as companhias param de transportar animais no
 seoTitle: "Embargos por calor: por que o porão fecha no verão"
 description: "As companhias suspendem o transporte de animais no porão acima de certas temperaturas. Como funcionam os embargos, que aeroporto da sua rota decide e como planejar em torno disso."
 summary: "Um embargo por calor suspende o transporte no porão quando a temperatura ultrapassa um limite, medido na partida, na chegada e em cada escala. Decide o aeroporto mais quente da rota, e muitas vezes não é o que se imagina."
-date: "2026-08-20T09:00:00+02:00"
-lastmod: "2026-08-20T09:00:00+02:00"
+date: "2026-08-17T09:00:00+02:00"
+lastmod: "2026-08-19T09:00:00+02:00"
 author: "Camille Roussel"
 categories: ["Travel"]
 tags: ["cachorro", "avião", "calor", "porão"]

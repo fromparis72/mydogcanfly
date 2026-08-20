@@ -4,8 +4,8 @@ title: "Raisonner à rebours : le rétroplanning d'un vol international avec un 
 seoTitle: "Rétroplanning d'un vol international avec un animal"
 description: "Certaines étapes du voyage international d'un animal ne se compriment pas. Remontez le temps depuis la date de départ pour voir lesquelles décident si le voyage est possible."
 summary: "Ce sont les délais d'attente, et non les papiers, qui décident si un animal peut voler à une date donnée. Partez de la date de départ et remontez : le délai antirabique et le titrage fixent le départ le plus tôt possible."
-date: "2026-08-26T09:00:00+02:00"
-lastmod: "2026-08-26T09:00:00+02:00"
+date: "2026-08-17T09:00:00+02:00"
+lastmod: "2026-08-19T09:00:00+02:00"
 author: "Camille Roussel"
 categories: ["Travel"]
 tags: ["animal", "avion", "organisation", "international"]

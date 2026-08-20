@@ -4,8 +4,8 @@ title: "Planning Backwards: The Timeline of an International Pet Flight"
 seoTitle: "Pet Flight Timeline: Plan an International Trip Backwards"
 description: "Some steps in a pet's international journey cannot be compressed. Work backwards from the departure date to see which ones decide whether the trip is possible."
 summary: "Waiting periods, not paperwork, decide whether a pet can fly on a given date. Start from the departure date and work backwards: the rabies delay and the titre test set the earliest possible departure."
-date: "2026-08-26T09:00:00+02:00"
-lastmod: "2026-08-26T09:00:00+02:00"
+date: "2026-08-17T09:00:00+02:00"
+lastmod: "2026-08-17T09:00:00+02:00"
 author: "Camille Roussel"
 categories: ["Travel"]
 tags: ["pet", "flying", "planning", "international"]

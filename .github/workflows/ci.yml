@@ -95,19 +95,18 @@ jobs:
         run: npm run test:unit
 
       # ── Build ────────────────────────────────────────────────────────────────────────────
-      # Réduit sur pull request, complet sur main. Les deux produisent packages/ui/dist et
-      # épinglent PUBLIC_API_BASE sur une URL Worker versionnée.
-      - name: Build réduit (pull request)
-        if: github.event_name == 'pull_request'
+      # TOUJOURS RÉDUIT ICI, sur pull request comme sur main. Le site entier est construit par le
+      # job `site-complet`, qui tourne EN PARALLÈLE et sur les mêmes déclencheurs.
+      #
+      # Ce job construisait le site complet sur main et le site réduit sur pull request. Six
+      # contrôles ne pouvaient donc s'exécuter qu'après la fusion : leur premier passage réel avait
+      # lieu une fois le code DANS main, ce qui n'est pas une vérification, c'est un constat après
+      # coup. Relevé par la contre-revue du 20/08/2026, et c'est exact.
+      #
+      # La sentinelle versionnée vaut pour les deux (K-bis) : un dist de CI n'est jamais déployé,
+      # il n'a aucune raison de porter une adresse réelle, et surtout pas la seule qui soit mutable.
+      - name: Build réduit
         run: npm run build:ci
-
-      # La sentinelle versionnée vaut aussi pour main (K-bis) : la première version de ce
-      # workflow construisait main contre l'ALIAS MUTABLE, en contradiction avec le commentaire
-      # au-dessus — un dist de CI n'est jamais déployé, il n'a donc aucune raison de porter une
-      # adresse réelle, et surtout pas la seule qui soit mutable.
-      - name: Build complet + noindex sur toutes les pages (main)
-        if: github.event_name == 'push'
-        run: npm run build:preview -- --api-base=https://00000000-mydogcanfly-api-preview.fromparis.workers.dev
 
       # ── Après build ──────────────────────────────────────────────────────────────────────
       - name: Harnais DOM (fiche + Finder, 4 langues)
@@ -115,46 +114,12 @@ jobs:
 
       # Les pages d'ENTITÉS — le trou par lequel les trois anomalies du contre-test navigateur
       # du 15/08/2026 sont passées : aucun harnais ne les lisait, et `build:ci` n'en construisait
-      # aucune. La portée suit le build : les sentinelles sur pull request (que `build:ci`
-      # construit désormais, compagnies ET pays en une seule passe), les 71 fiches × 4 langues
-      # sur main, où le build est complet. Aucune des deux ne passe « faute de matière » : chacune
-      # a une cible EXACTE calculée sur les données, et échoue si une page manque.
-      - name: Harnais DOM des pages d'entités (sentinelles — pull request)
-        if: github.event_name == 'pull_request'
+      # aucune. Ici les SENTINELLES, que `build:ci` construit (compagnies ET pays en une passe) ;
+      # les 78 canaux × 4 langues sont couverts par le job `site-complet`, sur le même commit.
+      # Aucune des deux portées ne passe « faute de matière » : chacune a une cible EXACTE calculée
+      # sur les données, et échoue si une page manque.
+      - name: Harnais DOM des pages d'entités (sentinelles)
         run: npm run test:entities
-
-      - name: Harnais DOM des pages d'entités (78 canaux × 4 langues — main)
-        if: github.event_name == 'push'
-        run: npm run test:entities:complet
-
-      # CE QUE LE SITE ANNONCE — sur main SEULEMENT, et la raison est de fond : ce harnais
-      # confronte les `hreflang` et les quatre sitemaps aux pages RÉELLEMENT construites. Sur une
-      # pull request, `build:ci` ne construit ni les guides ni les fiches ; les sitemaps, eux, sont
-      # toujours complets. Il dénoncerait donc 2 400 « pages annoncées sans page » qui ne sont que
-      # l'effet du build réduit — une accusation fausse, le pire défaut possible pour un contrôle.
-      # Il refuse d'ailleurs de tourner sous 2 000 pages HTML plutôt que de passer faute de matière.
-      - name: Ce que le site annonce existe (hreflang + sitemaps — main)
-        if: github.event_name == 'push'
-        run: npm run test:annonce
-
-      # Les trois contrôles du SITE ENTIER, sur main seulement pour la même raison que le précédent :
-      # sous le build réduit ils échoueraient faute de pages, pas faute de qualité.
-      #
-      # `audit` existait depuis longtemps et n'était lancé PAR RIEN — un contrôle bloquant laissé à
-      # la main, c'est-à-dire oubliable, exactement ce que son propre en-tête reproche aux
-      # vérifications manuelles. Il sortait d'ailleurs deux anomalies bloquantes FAUSSES, l'une et
-      # l'autre corrigées le 19/08/2026 (voir ses commentaires).
-      - name: Tout lien interne mène quelque part (main)
-        if: github.event_name == 'push'
-        run: npm run test:liens
-
-      - name: Les pages de guides affichent ce qu'elles annoncent (main)
-        if: github.event_name == 'push'
-        run: npm run test:guide-page
-
-      - name: Audit de cohérence du site construit (main)
-        if: github.event_name == 'push'
-        run: npm run audit
 
       - name: Bundle épinglé sur le Worker attendu
         run: node packages/knowledge/scripts/check-bundle.mjs --expect="https://00000000-mydogcanfly-api-preview.fromparis.workers.dev"
@@ -179,3 +144,59 @@ jobs:
       # pages que le build complet vient de produire. Un `dist` de CI n'est jamais déployé.
       - name: Contre-épreuves (chaque garantie doit savoir échouer)
         run: npm run contre-epreuves -- --dom
+
+  # ────────────────────────────────────────────────────────────────────────────────────────
+  # LE SITE ENTIER — même déclencheur, même SHA, en parallèle du job rapide.
+  #
+  # POURQUOI UN SECOND JOB PLUTÔT QU'UNE BRANCHE `if` DE PLUS. Six contrôles ne savent lire que
+  # le site COMPLET : sous le build réduit, les guides et les fiches n'existent pas, ils
+  # échoueraient faute de matière et non faute de qualité. Ils étaient donc réservés à `main` —
+  # c'est-à-dire qu'ils s'exécutaient pour la première fois APRÈS la fusion. Une vérification qui
+  # n'a lieu qu'une fois le code écrit dans `main` ne protège plus rien : elle constate.
+  #
+  # Ce job les exécute sur le SHA EXACT de la pull request, avant toute fusion. Il est séparé pour
+  # que le job rapide reste rapide — un build complet demande une vingtaine de minutes, et une
+  # erreur de typage n'a pas à les attendre pour être signalée. Les deux jobs partent du même
+  # commit et échouent indépendamment.
+  site-complet:
+    name: Site entier (build complet + contrôles du site)
+    runs-on: ubuntu-latest
+    timeout-minutes: 90
+
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+
+      - name: Node 22 (depuis .nvmrc)
+        uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020 # v7.0.0
+        with:
+          node-version-file: .nvmrc
+          cache: npm
+
+      - name: Installation reproductible
+        run: npm ci
+
+      # Même sentinelle versionnée que le job rapide, et `noindex` sur toutes les pages : ce dist
+      # n'est jamais déployé. `build:preview` refuse de déclarer le build utilisable si l'une de
+      # ses vérifications d'après-build échoue.
+      - name: Build complet + noindex sur toutes les pages
+        run: npm run build:preview -- --api-base=https://00000000-mydogcanfly-api-preview.fromparis.workers.dev
+
+      # Les fiches d'entités, à leur portée réelle : 78 canaux × 4 langues, et non les sentinelles.
+      - name: Harnais DOM des pages d'entités (78 canaux × 4 langues)
+        run: npm run test:entities:complet
+
+      # Ce que le site ANNONCE doit exister : chaque `hreflang` vise une page construite, chaque
+      # page construite est au sitemap de SA langue, aucun sitemap n'annonce une page absente.
+      - name: Ce que le site annonce existe (hreflang + sitemaps)
+        run: npm run test:annonce
+
+      - name: Tout lien interne mène quelque part
+        run: npm run test:liens
+
+      - name: Les pages de guides affichent ce qu'elles annoncent
+        run: npm run test:guide-page
+
+      # `audit` est BLOQUANT et n'était lancé par rien — un contrôle laissé à la main, c'est-à-dire
+      # oubliable, exactement ce que son propre en-tête reproche aux vérifications manuelles.
+      - name: Audit de cohérence du site construit
+        run: npm run audit

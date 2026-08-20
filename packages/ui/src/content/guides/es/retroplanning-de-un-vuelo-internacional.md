@@ -4,8 +4,8 @@ title: "Razonar hacia atrás: el retroplanning de un vuelo internacional con per
 seoTitle: "Retroplanning de un vuelo internacional con animal"
 description: "Algunas etapas del viaje internacional de un animal no se pueden comprimir. Ve hacia atrás desde la fecha de salida para ver cuáles deciden si el viaje es posible."
 summary: "Son los plazos de espera, y no los papeles, los que deciden si un animal puede volar en una fecha dada. Parte de la fecha de salida y ve hacia atrás: el plazo antirrábico y la titulación fijan la salida más temprana posible."
-date: "2026-08-26T09:00:00+02:00"
-lastmod: "2026-08-26T09:00:00+02:00"
+date: "2026-08-17T09:00:00+02:00"
+lastmod: "2026-08-19T09:00:00+02:00"
 author: "Camille Roussel"
 categories: ["Travel"]
 tags: ["animal", "avión", "organización", "internacional"]

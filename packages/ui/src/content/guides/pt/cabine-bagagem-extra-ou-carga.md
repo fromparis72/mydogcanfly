@@ -4,8 +4,8 @@ title: "Cabine, bagagem extra ou carga manifestada: três contratos, três preç
 seoTitle: "Carga, bagagem extra ou cabine: as diferenças"
 description: "O mesmo cachorro na mesma aeronave pode viajar sob três contratos diferentes. O que muda em preço, documentos, manuseio e responsabilidade."
 summary: "Cabine, porão como bagagem acompanhada e carga manifestada são três acordos distintos, não três classes. Diferem no canal de reserva, na base do preço, nos documentos e em quem manuseia o animal."
-date: "2026-08-22T09:00:00+02:00"
-lastmod: "2026-08-22T09:00:00+02:00"
+date: "2026-08-17T09:00:00+02:00"
+lastmod: "2026-08-19T09:00:00+02:00"
 author: "Camille Roussel"
 categories: ["Travel"]
 tags: ["animal", "avião", "carga", "bagagem"]

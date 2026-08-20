@@ -4,8 +4,8 @@ title: "Cabin, Excess Baggage or Manifest Cargo: Three Contracts, Three Prices"
 seoTitle: "Pet Cargo vs Excess Baggage vs Cabin: The Differences"
 description: "The same dog on the same aircraft can travel under three different contracts. What changes in price, paperwork, handling and who is responsible."
 summary: "Cabin, accompanied hold baggage and manifest cargo are three distinct arrangements, not three seat classes. They differ in booking channel, price basis, paperwork and who handles the animal."
-date: "2026-08-22T09:00:00+02:00"
-lastmod: "2026-08-22T09:00:00+02:00"
+date: "2026-08-17T09:00:00+02:00"
+lastmod: "2026-08-17T09:00:00+02:00"
 author: "Camille Roussel"
 categories: ["Travel"]
 tags: ["pet", "flying", "cargo", "baggage"]

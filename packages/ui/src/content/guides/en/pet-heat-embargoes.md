@@ -4,8 +4,8 @@ title: "Summer Heat Embargoes: When Airlines Stop Carrying Pets in the Hold"
 seoTitle: "Pet Heat Embargoes: Why Summer Hold Travel Stops"
 description: "Airlines suspend hold pet transport above certain temperatures. How embargoes work, which airport on your route decides, and how to plan around them."
 summary: "A heat embargo suspends hold transport when temperatures exceed a threshold — measured at departure, arrival and every stopover. The hottest airport on the route decides, and it is often not the one you expect."
-date: "2026-08-20T09:00:00+02:00"
-lastmod: "2026-08-20T09:00:00+02:00"
+date: "2026-08-17T09:00:00+02:00"
+lastmod: "2026-08-17T09:00:00+02:00"
 author: "Camille Roussel"
 categories: ["Travel"]
 tags: ["dog", "flying", "heat", "hold"]

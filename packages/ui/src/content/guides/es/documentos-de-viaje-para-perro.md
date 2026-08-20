@@ -4,8 +4,8 @@ title: "Documentos de viaje para un perro: por qué dependen del país de llegad
 seoTitle: "Documentos de viaje por destino: qué se exige"
 description: "Microchip, vacunación antirrábica, certificado sanitario, titulación de anticuerpos: para qué sirve cada documento, quién lo decide y por qué es el destino quien fija las normas."
 summary: "La aerolínea decide cómo vuela tu animal; el destino decide si puede entrar. Son dos autoridades distintas, dos listas distintas y dos calendarios distintos."
-date: "2026-08-25T09:00:00+02:00"
-lastmod: "2026-08-25T09:00:00+02:00"
+date: "2026-08-17T09:00:00+02:00"
+lastmod: "2026-08-19T09:00:00+02:00"
 author: "Camille Roussel"
 categories: ["Travel"]
 tags: ["animal", "avión", "documentos", "internacional"]

@@ -4,7 +4,7 @@ title: "Razas braquicéfalas y avión: qué está restringido, y por qué"
 seoTitle: "Perros braquicéfalos y avión: las restricciones"
 description: "Por qué las aerolíneas restringen o rechazan las razas braquicéfalas en bodega, qué perros están afectados y qué opciones quedan para un perro de hocico corto."
 summary: "Los perros braquicéfalos respiran con menos eficacia, y el calor sumado al estrés lo agrava. La mayoría de las aerolíneas los restringe o los rechaza en bodega; algunas restringen también la cabina. La restricción apunta al rasgo, no a una lista fija."
-date: "2026-08-19T09:00:00+02:00"
+date: "2026-08-17T09:00:00+02:00"
 lastmod: "2026-08-19T09:00:00+02:00"
 author: "Camille Roussel"
 categories: ["Travel"]

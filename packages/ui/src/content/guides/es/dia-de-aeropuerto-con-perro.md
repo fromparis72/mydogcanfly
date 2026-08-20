@@ -4,8 +4,8 @@ title: "Tu día de aeropuerto con perro, de la acera a la puerta de embarque"
 seoTitle: "Avión con perro: qué pasa en el aeropuerto"
 description: "Qué ocurre realmente el día del vuelo: mostradores de facturación para animales, control de seguridad con un animal, zonas de alivio y de dónde salen los retrasos."
 summary: "El día de aeropuerto tiene una forma: llegar antes que si viajaras solo, facturar en un mostrador concreto, llevar al perro en brazos por el control y buscar una zona de alivio antes de embarcar."
-date: "2026-08-24T09:00:00+02:00"
-lastmod: "2026-08-24T09:00:00+02:00"
+date: "2026-08-17T09:00:00+02:00"
+lastmod: "2026-08-19T09:00:00+02:00"
 author: "Camille Roussel"
 categories: ["Travel"]
 tags: ["perro", "avión", "aeropuerto", "facturación"]

@@ -4,8 +4,8 @@ title: "Layovers and Connections With a Pet: the Weak Point of Any Itinerary"
 seoTitle: "Flying With a Pet: Layovers and Connections"
 description: "Connections multiply the ways a pet itinerary can fail: two carriers, two temperature checks, minimum connection times and terminal changes."
 summary: "Every stopover adds a set of rules, a temperature check and a handling operation. A direct flight is not merely more comfortable — it removes whole categories of failure."
-date: "2026-08-23T09:00:00+02:00"
-lastmod: "2026-08-23T09:00:00+02:00"
+date: "2026-08-17T09:00:00+02:00"
+lastmod: "2026-08-17T09:00:00+02:00"
 author: "Camille Roussel"
 categories: ["Travel"]
 tags: ["pet", "flying", "connection", "airport"]

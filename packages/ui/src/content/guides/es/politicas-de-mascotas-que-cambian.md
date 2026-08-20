@@ -4,8 +4,8 @@ title: "Por qué las políticas de animales de las aerolíneas cambian tan a men
 seoTitle: "Políticas de animales: comprobar antes de volar"
 description: "Las normas de animales de las aerolíneas cambian con la temporada, el avión y la ruta. Por qué ocurre, qué cambia más a menudo y cómo verificar tu aerolínea antes de salir."
 summary: "Una política de animales no es un documento estable: se mueve con los embargos de temperatura, los cambios de avión, las rutas y las normas de raza. Verifica la aerolínea operadora, en tu ruta, cerca de la salida."
-date: "2026-08-18T09:00:00+02:00"
-lastmod: "2026-08-18T09:00:00+02:00"
+date: "2026-08-17T09:00:00+02:00"
+lastmod: "2026-08-19T09:00:00+02:00"
 author: "Camille Roussel"
 categories: ["Travel"]
 tags: ["perro", "avión", "aerolínea", "normativa"]

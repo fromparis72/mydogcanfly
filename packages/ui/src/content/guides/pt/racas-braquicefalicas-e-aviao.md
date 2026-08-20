@@ -4,7 +4,7 @@ title: "Raças braquicefálicas e avião: o que é restrito, e por quê"
 seoTitle: "Cães braquicefálicos e avião: as restrições"
 description: "Por que as companhias restringem ou recusam raças braquicefálicas no porão, que cães são afetados e que opções restam para um cachorro de focinho curto."
 summary: "Os cães braquicefálicos respiram com menos eficiência, e o calor somado ao estresse agrava isso. A maioria das companhias os restringe ou recusa no porão; algumas restringem também a cabine. A restrição visa o traço, não uma lista fixa."
-date: "2026-08-19T09:00:00+02:00"
+date: "2026-08-17T09:00:00+02:00"
 lastmod: "2026-08-19T09:00:00+02:00"
 author: "Camille Roussel"
 categories: ["Travel"]

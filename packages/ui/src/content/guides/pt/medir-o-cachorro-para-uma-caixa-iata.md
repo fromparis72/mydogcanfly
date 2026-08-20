@@ -4,8 +4,8 @@ title: "Medir o seu cachorro para uma caixa IATA, sem adivinhar"
 seoTitle: "Medir um cachorro para uma caixa de transporte IATA"
 description: "As quatro medidas que as companhias realmente conferem, como tomá-las corretamente e por que exagerar no tamanho não é a resposta segura."
 summary: "Quatro medidas decidem a caixa: comprimento, altura na cernelha, altura de pé com a cabeça erguida e largura. Tome-as com o cachorro de pé, acrescente as margens e confronte o resultado com a companhia."
-date: "2026-08-21T09:00:00+02:00"
-lastmod: "2026-08-21T09:00:00+02:00"
+date: "2026-08-17T09:00:00+02:00"
+lastmod: "2026-08-19T09:00:00+02:00"
 author: "Camille Roussel"
 categories: ["Travel"]
 tags: ["cachorro", "avião", "caixa de transporte", "IATA"]

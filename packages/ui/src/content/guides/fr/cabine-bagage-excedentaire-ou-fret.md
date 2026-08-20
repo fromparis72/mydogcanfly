@@ -4,8 +4,8 @@ title: "Cabine, bagage excédentaire ou fret manifesté : trois contrats, trois 
 seoTitle: "Fret, bagage excédentaire ou cabine : les différences"
 description: "Le même chien sur le même avion peut voyager sous trois contrats différents. Ce qui change en prix, en documents, en manutention et en responsabilité."
 summary: "Cabine, soute en bagage accompagné et fret manifesté sont trois arrangements distincts, et non trois classes. Ils diffèrent par le canal de réservation, la base tarifaire, les documents et la personne qui manipule l'animal."
-date: "2026-08-22T09:00:00+02:00"
-lastmod: "2026-08-22T09:00:00+02:00"
+date: "2026-08-17T09:00:00+02:00"
+lastmod: "2026-08-19T09:00:00+02:00"
 author: "Camille Roussel"
 categories: ["Travel"]
 tags: ["animal", "avion", "fret", "bagage"]
