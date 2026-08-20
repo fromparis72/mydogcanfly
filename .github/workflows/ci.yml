@@ -168,7 +168,9 @@ jobs:
   # c'est-à-dire qu'ils s'exécutaient pour la première fois APRÈS la fusion. Une vérification qui
   # n'a lieu qu'une fois le code écrit dans `main` ne protège plus rien : elle constate.
   #
-  # Ce job les exécute sur le SHA EXACT de la pull request, avant toute fusion. Il est séparé pour
+  # Ce job les exécute AVANT toute fusion, sur le même état que le job rapide — c'est-à-dire, sur
+  # une pull request, le commit de FUSION synthétique décrit en tête de ce fichier, et non le SHA
+  # brut de la branche. C'est ce qu'on veut vérifier : le résultat fusionné. Il est séparé pour
   # que le job rapide reste rapide — un build complet demande une vingtaine de minutes, et une
   # erreur de typage n'a pas à les attendre pour être signalée. Les deux jobs partent du même
   # commit et échouent indépendamment.

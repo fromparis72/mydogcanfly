@@ -222,4 +222,3 @@ Un voyageur qui suit l outil démarre plus tard que ce que le texte de la même 
 > About 4 months. Requirements: microchip, rabies vaccination, rabies titer test, health certificate.
 
 **À trancher :** la source dit-elle 150 j, ou 120 j ? Le perdant est corrigé, pas arbitré au milieu.
-

@@ -623,7 +623,9 @@ jobs, sur les **mêmes déclencheurs** et le **même commit** :
   `test:guide-page` et `audit`.
 
 **Il ne reste plus une seule condition `github.event_name` dans le fichier.** Ce qui tourne sur main
-tourne sur la pull request, sur son SHA exact. Rien ne s'exécutera pour la première fois après
+tourne sur la pull request — sur le commit de FUSION synthétique qu'`actions/checkout` teste par
+défaut, c'est-à-dire sur le résultat fusionné exact, le SHA de tête restant lisible dans
+`github.event.pull_request.head.sha`. Rien ne s'exécutera pour la première fois après
 l'écriture dans `main`.
 
 Une réserve que je pose plutôt que de la laisser découvrir : les quatre contre-épreuves qui exigent
