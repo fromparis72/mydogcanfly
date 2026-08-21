@@ -707,15 +707,45 @@ avoir raison : écrire le nom change la chose nommée.
 **Le tip source est donc figé HORS de l'arbre**, une fois le dernier commit documentaire écrit.
 Ce document n'en nomme aucun : le nommer le périmerait.
 
-*Premier essai : un tag annoté. Le remote le REFUSE — `HTTP 403` sur `refs/tags/*`, alors que les
-branches passent. Constaté en poussant, pas supposé.* Le gel prend donc deux formes complémentaires :
+**DEUX RÉFÉRENCES, ET NON UNE — corrigé le 20/08/2026 au soir, sur contre-revue.** Le premier
+schéma était impossible à honorer : la reconstruction fait apparaître des correctifs que le tip
+source figé ne contient pas — la contre-revue du lot 0 en a produit six d'un coup. Exiger que
+l'arbre reconstruit soit identique au tip figé reviendrait à **supprimer ces correctifs**.
+
+D'où deux références distinctes, chacune pour une preuve :
+
+| référence | ce qu'elle sert | quand elle est créée |
+|---|---|---|
+| `t0b3-source-fige` — **20ceb454…** | le `range-diff` : aucun commit d'origine perdu | figée, ne bouge plus jamais |
+| `t0b3-source-fige-v2` | l'égalité d'arbre finale | à la FIN, sur la branche de travail |
+
+**L'invariant qui rend la seconde honnête** : tout correctif approuvé après le gel est appliqué à la
+branche de travail *aussi*, à mesure. La branche de travail reste donc, à chaque instant, l'état
+complet et corrigé de l'intégration — et le « delta approuvé » n'est pas une liste en prose mais
+`git log t0b3-source-fige..t0b3-source-fige-v2`, auditable commit par commit.
+
+*Premier essai pour figer : un tag annoté. Le remote le REFUSE — `HTTP 403` sur `refs/tags/*`, alors
+que les branches passent. Constaté en poussant puis en relisant `git ls-remote`, le premier `push`
+ayant répondu « Everything up-to-date » sans que le tag arrive.* Le gel prend donc deux formes
+complémentaires :
 
 - une branche dédiée `t0b3-source-fige`, poussée sur `origin` et **jamais avancée** — résolvable par
   quiconque, contrairement à un SHA recopié à la main ;
 - le SHA exact relevé **hors du dépôt** : dans le message de livraison et dans la description de
   chaque PR, comme la contre-revue l'a demandé.
 
-Les deux preuves visent cette référence :
+**Une branche reste techniquement mutable** : l'autorité est donc le SHA transmis, la branche
+n'étant qu'un pointeur vérifiable. Les preuves commencent par cette garde, qui refuse de conclure
+si le pointeur a bougé :
+
+```bash
+SOURCE_SHA=20ceb4540f44c5db87b3c9998be129c3068bf87b
+REMOTE_SHA="$(git ls-remote origin refs/heads/t0b3-source-fige | cut -f1)"
+test "$REMOTE_SHA" = "$SOURCE_SHA" || { echo "STOP — la branche source figée a bougé"; exit 1; }
+```
+
+Les deux preuves visent ensuite ces références — le `range-diff` l'ORIGINALE, l'égalité d'arbre la
+`-v2` :
 
 1. ```
    git range-diff \
@@ -723,8 +753,10 @@ Les deux preuves visent cette référence :
      e2cf302ccf045c539ca450f23964bb7bf20af84c..<tip-final-reconstruit>
    ```
    chaque commit d'origine retrouvé, déplacé ou fondu, aucun disparu sans que la comparaison le dise ;
-2. `git diff --exit-code t0b3-source-fige <tip-final-reconstruit>` — **vide**, donc code 0 :
-   l'arbre final des quatre lots est identique au bit près à celui du tip source figé ;
+2. `git diff --exit-code t0b3-source-fige-v2 <tip-final-reconstruit>` — **vide**, donc code 0 :
+   l'arbre final des quatre lots est identique au bit près à celui de la branche de travail,
+   correctifs post-gel compris. C'est `-v2` et non l'original : viser l'original effacerait les
+   correctifs nés de la contre-revue ;
 3. les **neuf dossiers scellés** rejoués sur le tip des lots — la preuve la plus forte, parce
    qu'elle ne porte pas sur les fichiers mais sur ce qu'ils mesurent.
 
