@@ -38,41 +38,14 @@
  *   npm run build:ci              le site réduit (pull request)
  *   npm run build:ci -- --complet le site entier, même sentinelle (~12 min)
  */
-import { execFileSync, spawnSync } from "node:child_process";
-import { existsSync, readdirSync, writeFileSync } from "node:fs";
+import { spawnSync } from "node:child_process";
 import { join } from "node:path";
 import { fileURLToPath } from "node:url";
 import { requireNode } from "./lib/require-node.mjs";
+import { ecrireProvenance } from "./lib/provenance.mjs";
 import { BUILD_ONLY_SENTINELLES, BUILD_SLUGS_SENTINELLES } from "./lib/sentinelles-entites.mjs";
 
 
-/* ---- LA PROVENANCE DU SITE CONSTRUIT ----------------------------------------------------------
- * `dist` est ignoré par git : rien, en le lisant, ne dit de QUELLE version il sort. Un dossier de
- * mesure qui s'en contente parce qu'il compte « assez de pages » peut donc valider un site
- * construit d'un autre commit, ou amputé de pages qu'il ne regarde pas. Relevé par la contre-revue
- * du 20/08/2026. Chaque build dépose donc sa carte d'identité, et les dossiers l'exigent. */
-function ecrireProvenance(dist, portee) {
-  const git = (...a) => { try { return execFileSync("git", a, { encoding: "utf8" }).trim(); } catch { return ""; } };
-  const pages = (function compter(d) {
-    if (!existsSync(d)) return 0;
-    let n = 0;
-    for (const e of readdirSync(d, { withFileTypes: true })) {
-      if (e.isDirectory()) { if (e.name !== "_astro") n += compter(join(d, e.name)); }
-      else if (e.name.endsWith(".html")) n++;
-    }
-    return n;
-  })(dist);
-  /* L'EMPREINTE DES SOURCES DU SITE, ET PAS SEULEMENT LE SHA. Exiger l'égalité du commit rendait la
-     carte périmée par TOUT commit — même un qui ne touche que `mesures/`, alors que le site n'a pas
-     bougé d'un octet. Ce qui doit correspondre, ce sont les SOURCES DONT LE SITE EST FAIT. */
-  const sources = Object.fromEntries(["packages/ui", "packages/knowledge", "packages/engine"]
-    .map((d) => [d, git("rev-parse", `HEAD:${d}`)]));
-  writeFileSync(join(dist, ".provenance.json"), JSON.stringify({
-    sha: git("rev-parse", "HEAD"),
-    arbre_propre: git("status", "--porcelain", "--untracked-files=all") === "",
-    sources, portee, pages,
-  }, null, 2) + "\n");
-}
 
 requireNode("le build de CI");
 
@@ -119,4 +92,10 @@ if (r.status !== 0) {
 log(COMPLET
   ? "Site ENTIER prêt. Les harnais lisant packages/ui/dist peuvent tourner."
   : "Build réduit prêt. Les harnais lisant packages/ui/dist peuvent tourner.");
-ecrireProvenance(join(REPO_ROOT, "packages", "ui", "dist"), COMPLET ? "complet" : "reduit");
+
+/* La carte d'identité du site : voir lib/provenance.mjs. Les paramètres du build en font partie,
+   c'est ce qui distingue un site réduit d'un site complet. */
+ecrireProvenance(join(REPO_ROOT, "packages", "ui", "dist"), COMPLET ? "complet" : "reduit",
+  { ...process.env, BUILD_ONLY: COMPLET ? undefined : BUILD_ONLY_SENTINELLES,
+    BUILD_SLUGS: COMPLET ? undefined : BUILD_SLUGS_SENTINELLES,
+    PUBLIC_API_BASE: SENTINEL_API_BASE, PUBLIC_SITE_ENV: "preview" });

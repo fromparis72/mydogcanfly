@@ -29,6 +29,7 @@
 import { execFileSync } from "node:child_process";
 import { readFileSync, writeFileSync, readdirSync, statSync, existsSync } from "node:fs";
 import { join } from "node:path";
+import { exigerProvenance } from "../../../packages/knowledge/scripts/lib/provenance.mjs";
 import { createHash } from "node:crypto";
 import { normalize } from "../../../packages/knowledge/src/normalize.ts";
 import { evaluate } from "../../../packages/engine/src/evaluate.ts";
@@ -300,57 +301,11 @@ const pagesHtml = [];
 })(SITE);
 
 /* ---- D'OÙ VIENT CE SITE ? ----------------------------------------------------------------------
- * Compter les pages ne dit pas de quelle VERSION elles sortent. `dist` est ignoré par git : un
- * build d'hier, ou un build amputé de pages que ce dossier ne regarde pas, passait le seuil sans
- * que rien ne s'en aperçoive. Relevé par la contre-revue du 20/08/2026, et c'est exact — le
- * dossier n'était indépendant que du NOMBRE de pages, pas de leur provenance.
- * Chaque build dépose maintenant `.provenance.json` ; il est exigé ici, et confronté au SHA
- * courant, à la propreté de l'arbre et à la complétude des sitemaps. */
-{
-  const cheminProv = join(SITE, ".provenance.json");
-  if (!existsSync(cheminProv)) {
-    process.stderr.write(`[t0b3d] ÉCHEC — ${SITE}/.provenance.json absent : impossible de savoir de `
-      + "quelle version ce site a été construit. Reconstruire (`npm run build`) le déposera.\n");
-    process.exit(1);
-  }
-  const prov = JSON.parse(readFileSync(cheminProv, "utf8"));
-  const git = (...a) => execFileSync("git", a, { encoding: "utf8" }).trim();
-  /* PROPRETÉ DES SOURCES DU SITE, ET NON DE L'ARBRE ENTIER. Exiger l'arbre entier propre rendait ce
-     contrôle inutilisable : rescelller un dossier salit `mesures/`, et le suivant refusait alors de
-     mesurer un site qui n'avait pas bougé. C'est la même erreur que le SHA, commise deux fois — la
-     garde doit porter sur ce dont le site est fait, pas sur tout ce qui l'entoure. */
-  const ARBRES = ["packages/ui", "packages/knowledge", "packages/engine"];
-  const sale = git("status", "--porcelain", "--untracked-files=all", "--", ...ARBRES);
-  const ecarts = [];
-  /* CE QUI DOIT CORRESPONDRE, CE SONT LES SOURCES DU SITE — pas le commit. Exiger l'égalité du SHA
-     périmait la carte à chaque commit, même un qui ne touche que `mesures/` : le site n'avait pas
-     bougé d'un octet et la mesure exigeait pourtant douze minutes de reconstruction. On compare
-     donc les empreintes des trois arbres dont le site est fait. */
-  for (const d of ARBRES) {
-    const attendu = git("rev-parse", `HEAD:${d}`);
-    if (prov.sources?.[d] !== attendu) {
-      ecarts.push(`${d} : site construit depuis ${String(prov.sources?.[d]).slice(0, 8)}…, `
-        + `sources à ${attendu.slice(0, 8)}…`);
-    }
-  }
-  if (!prov.arbre_propre) ecarts.push("construit depuis un arbre SALE : ses pages ne correspondent à aucun commit");
-  if (prov.portee !== "complet") ecarts.push(`portée « ${prov.portee} » et non « complet »`);
-  if (sale) ecarts.push(`les sources du site ont changé depuis le build :\n      ${sale.replace(/\n/g, "\n      ")}`);
-  /* Complétude par les sitemaps, qui ne dépendent pas de l'environnement de build : un site amputé
-     de familles entières garde ses sitemaps complets, l'écart se voit donc là. */
-  let urls = 0;
-  for (const l of ["en", "fr", "es", "pt"]) {
-    const f = join(SITE, `sitemap-${l}.xml`);
-    if (!existsSync(f)) { ecarts.push(`sitemap-${l}.xml absent`); continue; }
-    urls += [...readFileSync(f, "utf8").matchAll(/<loc>/g)].length;
-  }
-  if (urls < 2000) ecarts.push(`${urls} URL aux sitemaps, attendu ≥ 2000`);
-  if (ecarts.length) {
-    process.stderr.write(`[t0b3d] ÉCHEC — le site construit ne correspond pas aux sources mesurées :\n`
-      + ecarts.map((e) => `  · ${e}`).join("\n") + "\n");
-    process.exit(1);
-  }
-}
+ * Compter les pages ne dit pas de quelle VERSION elles sortent, ni si le site est complet. Le
+ * contrat est écrit UNE fois, dans `scripts/lib/provenance.mjs` : empreinte des sources, des
+ * fichiers déterminants et des paramètres du build, décompte annoncé confronté au décompte réel,
+ * et bijection sitemap → fichiers. Il l'était auparavant quatre fois, et les copies divergeaient. */
+exigerProvenance(SITE, "t0b3d");
 
 const PLANCHER_PAGES = 2000;
 if (pagesHtml.length < PLANCHER_PAGES) {

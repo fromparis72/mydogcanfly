@@ -59,7 +59,12 @@ const pagesHtml = (d) => {
   if (n < 2000) {
     if (SANS_BUILD) echouer(`site absent ou partiel (${n} pages) et --sans-build interdit de le construire`);
     dire(`1/5 site partiel (${n} pages) — construction complète en cours, comptez une douzaine de minutes`);
-    const b = spawnSync("npm", ["run", "build"], { encoding: "utf8", stdio: ["ignore", "pipe", "pipe"] });
+    /* `build:ci -- --complet` ET NON `npm run build` : seul le premier dépose la carte d'identité du
+       site, que la mesure exige juste après. Avec `npm run build`, la reproduction depuis un clone
+       neuf construisait douze minutes puis échouait sur « provenance absente ». Relevé par la
+       contre-revue du 20/08/2026. */
+    const b = spawnSync("npm", ["run", "build:ci", "--", "--complet"],
+      { encoding: "utf8", stdio: ["ignore", "pipe", "pipe"] });
     if (b.status !== 0) echouer(`le build complet a échoué :\n${(b.stdout || "").slice(-1500)}${(b.stderr || "").slice(-800)}`);
     const m = pagesHtml(SITE);
     if (m < 2000) echouer(`build terminé mais seulement ${m} pages HTML — la preuve serait partielle`);
