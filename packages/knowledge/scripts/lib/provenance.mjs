@@ -29,8 +29,25 @@ import { execFileSync } from "node:child_process";
 import { existsSync, readdirSync, readFileSync, writeFileSync } from "node:fs";
 import { join } from "node:path";
 
-/** Les arbres de sources dont le site est fait. */
-export const ARBRES = ["packages/ui", "packages/knowledge", "packages/engine"];
+/**
+ * Les arbres dont le CONTENU du site est fait — et rien d'autre.
+ *
+ * PÉRIMÈTRE RESSERRÉ, cinquième et dernier ajustement, celui-ci sur un principe et non au jugé.
+ * Il couvrait `packages/ui`, `packages/knowledge` et `packages/engine` en entier, donc aussi
+ * `scripts/` : corriger une phrase dans ce fichier-ci périmait un site qui n'avait pas bougé, et
+ * imposait douze minutes de reconstruction pour rien. Une garde qu'on doit contourner pour
+ * travailler finit contournée.
+ *
+ * LA LIGNE EST CELLE-CI : le CONTENU vient des sources ci-dessous ; l'influence du CONSTRUCTEUR,
+ * elle, est déjà capturée par `PARAMETRES` — `BUILD_ONLY` et `BUILD_SLUGS` sont exactement ce que
+ * `build-ci.mjs` décide, et ils sont inscrits sur la carte. Les deux ensemble couvrent ce qui fait
+ * le site ; l'arbre entier, lui, couvrait en plus tout ce qui ne le fait pas.
+ */
+export const ARBRES = [
+  "packages/ui/src", "packages/ui/public",
+  "packages/knowledge/src", "packages/knowledge/raw", "packages/knowledge/translations",
+  "packages/engine/src",
+];
 /** Les fichiers qui déterminent le build sans appartenir à ces arbres. */
 export const FICHIERS = ["package.json", "package-lock.json", ".nvmrc"];
 /** Les variables d'environnement qui changent le site produit. */
