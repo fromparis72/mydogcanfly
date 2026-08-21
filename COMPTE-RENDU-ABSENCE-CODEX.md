@@ -694,12 +694,21 @@ obligatoire et TRAÇABLE sur le SHA du lot 3 : il suffit de poser l'étiquette.
 **0, 1, 2, 3**, chacun après ses deux jobs verts sur son propre résultat fusionné. Le workflow
 complet est exercé, par étiquette, sur la PR du lot 3 avant sa fusion.
 
-**Comment prouver que rien n'a été perdu**, puisque la reconstruction n'est plus l'historique :
+**Comment prouver que rien n'a été perdu**, puisque la reconstruction n'est plus l'historique.
+*Les deux premières commandes étaient fausses et la contre-revue les a corrigées : `<lot0>..<lot3>`
+commence APRÈS le tip du lot 0, donc excluait tout le premier lot de la comparaison ; et comparer à
+un nom de branche compare à une cible mutable. Les deux séries partent désormais de la MÊME base, et
+l'égalité vise un SHA figé.*
 
-1. `git range-diff e2cf302..<tip actuel> <lot0>..<lot3>` — chaque commit d'origine retrouvé,
-   déplacé ou fondu, aucun disparu sans que la comparaison le dise ;
-2. `git diff <tip des lots> claude/t0b3a-arbitrage-brachy` doit être **vide** : l'arbre final des
-   quatre lots est identique au bit près à celui de la branche de travail ;
+1. ```
+   git range-diff \
+     e2cf302ccf045c539ca450f23964bb7bf20af84c..e14b40c7372b9ee66b902cb1e5c14a7ceb3acc1f \
+     e2cf302ccf045c539ca450f23964bb7bf20af84c..<tip-final-reconstruit>
+   ```
+   chaque commit d'origine retrouvé, déplacé ou fondu, aucun disparu sans que la comparaison le dise ;
+2. `git diff e14b40c7372b9ee66b902cb1e5c14a7ceb3acc1f <tip-final-reconstruit>` doit être **vide** :
+   l'arbre final des quatre lots est identique au bit près à celui du SHA figé — pas au nom d'une
+   branche qui peut encore bouger ;
 3. les **neuf dossiers scellés** rejoués sur le tip des lots — la preuve la plus forte, parce
    qu'elle ne porte pas sur les fichiers mais sur ce qu'ils mesurent.
 
@@ -713,3 +722,73 @@ facultatives.
 **L'ancienne branche `claude/t0b3a-arbitrage-brachy` n'est pas réécrite.** Elle conserve toute la
 traçabilité — y compris mes erreurs et leurs corrections. Elle n'est simplement pas ce qu'on
 fusionne.
+
+#### Le catalogue de contre-épreuves doit être PROGRESSIF, lot par lot
+
+Deuxième blocage relevé, et il est de la même famille que le premier : **le runner arrive au lot 1,
+mais 18 de ses 39 mutations visent des fichiers qui n'existeront qu'aux lots 2 et 3.** Reprendre le
+catalogue final en bloc rendrait le lot 1 rouge.
+
+Ce n'est pas une hypothèse : le runner **lit** le fichier cible avant de muter. Une cible absente le
+fait tomber sur-le-champ ; un point d'ancrage absent le fait déclarer la mutation **MUETTE**, ce qui
+est un échec dur et jamais un « rien à faire ». La garantie demandée — « aucune mutation
+silencieusement ignorée faute de cible » — est donc déjà **mécanique** ; c'est précisément pour cela
+que le catalogue doit être découpé, et non parce qu'un oubli serait discret.
+
+Répartition calculée sur le catalogue actuel, mutation par mutation :
+
+| lot | mutations | cibles |
+|---|---|---|
+| **1** | **21** | `contracts.ts` (4), `explain.ts` (4), `evaluate.ts` (2), `normalize.ts` (1), `breed-restrictions.json` (2), `rules.json` (1), `FlightFinder.astro` (2), `ci.yml` (3), `actions-epinglees.json` (2) |
+| **2** | **8** | les six guides mutés : `viajar-en-avion-con-perro` (2), `retroplanning-de-un-vuelo-internacional` (2), `avion-con-perro-cabina-bodega-carga`, `dog-heatstroke`, `mal-des-transports-chien`, `retroplanning-vol-international-chien` |
+| **3** | **10** | `CrateCalculator.astro` (3), `PetReliefFinder.astro` (3), `guides.ts`, `routes.ts`, `sitemap-[lang].xml.ts`, `[slug].astro` |
+
+21 + 8 + 10 = 39. Chaque lot ajoute ses mutations **dans la PR qui apporte à la fois la cible et le
+harnais qui doit rougir** — jamais avant.
+
+Deux points d'attention que je note maintenant pour ne pas les redécouvrir en reconstruisant :
+
+- les trois mutations sur `ci.yml` s'ancrent sur le voisinage qui distingue `verify` de
+  `site-complet`, dont le commentaire introduisant `check-actions-node`. Ce commentaire **naît au
+  lot 1**, avec le script : l'ancre est donc valide au lot 1, et pas avant ;
+- les deux mutations d'interface du lot 1 (`FlightFinder.astro`) exigent `--dom`, donc un build
+  réduit. Les quatre qui exigent le site entier n'apparaissent qu'au lot 3.
+
+#### La précision YAML sur le déclenchement
+
+`labeled` doit être **déclaré** : sans lui, poser l'étiquette après l'ouverture de la PR ne
+déclenche rien. Et la contre-revue préfère, à juste titre, un déclenchement qui ne dépende d'aucun
+geste humain. Les deux se combinent :
+
+```yaml
+on:
+  schedule:
+    - cron: "0 4 * * 1"          # tous les lundis, une fois installé sur main
+  workflow_dispatch:              # à la demande, une fois le fichier sur main
+  pull_request:
+    types: [opened, synchronize, reopened, labeled]
+    paths:
+      - ".github/workflows/contre-epreuves-completes.yml"
+      - "test-contre-epreuves.mjs"
+      - "test-annonce-du-site.mjs"
+      - "test-liens-internes.mjs"
+      - "test-page-guide.mjs"
+      - "packages/ui/src/lib/**"
+      - "packages/ui/src/pages/**"
+```
+
+**Ce que cela donne exactement, et ce que cela ne donne pas.** Le lot 3 introduit le workflow
+lui-même et le catalogue : sa PR correspond aux `paths`, donc le passage complet s'exécute
+**automatiquement**, sans étiquette et sans geste. L'étiquette reste un moyen de RELANCER, pas un
+préalable.
+
+En revanche `paths` filtre **tous** les types d'activité, `labeled` compris : sur une PR qui ne
+touche aucun de ces chemins, poser l'étiquette ne déclenchera rien. Je le dis plutôt que de laisser
+croire à une porte de sortie universelle — pour ces PR-là, les contre-épreuves complètes ne sont de
+toute façon pas en cause.
+
+Dernier détail, qui vaut d'être écrit parce qu'il se rate en silence : les chemins réels
+`sitemap-[lang].xml.ts` et `[...loc]/travel-hub/[slug].astro` contiennent des crochets, que le
+filtre `paths` interprète comme des **classes de caractères**. Un filtre littéral ne correspondrait
+jamais, et le workflow ne se déclencherait pas — sans la moindre erreur. D'où les deux motifs larges
+`packages/ui/src/lib/**` et `packages/ui/src/pages/**`.
