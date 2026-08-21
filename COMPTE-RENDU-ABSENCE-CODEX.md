@@ -704,9 +704,18 @@ reconstruire un arbre identique à ce SHA-là aurait supprimé les corrections q
 et restauré la version précédente du plan. Un rapport qui nomme son propre « SHA final » ne peut pas
 avoir raison : écrire le nom change la chose nommée.
 
-**Le SHA source est donc figé HORS de l'arbre**, une fois le dernier commit documentaire écrit —
-dans un tag annoté `t0b3-source-fige`, qui vit dans les références et non dans les fichiers. Le
-créer ne modifie rien ; il est poussé sur `origin` et vérifiable indépendamment.
+**Le tip source est donc figé HORS de l'arbre**, une fois le dernier commit documentaire écrit.
+Ce document n'en nomme aucun : le nommer le périmerait.
+
+*Premier essai : un tag annoté. Le remote le REFUSE — `HTTP 403` sur `refs/tags/*`, alors que les
+branches passent. Constaté en poussant, pas supposé.* Le gel prend donc deux formes complémentaires :
+
+- une branche dédiée `t0b3-source-fige`, poussée sur `origin` et **jamais avancée** — résolvable par
+  quiconque, contrairement à un SHA recopié à la main ;
+- le SHA exact relevé **hors du dépôt** : dans le message de livraison et dans la description de
+  chaque PR, comme la contre-revue l'a demandé.
+
+Les deux preuves visent cette référence :
 
 1. ```
    git range-diff \
