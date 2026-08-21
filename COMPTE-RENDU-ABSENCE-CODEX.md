@@ -695,20 +695,27 @@ obligatoire et TRAÇABLE sur le SHA du lot 3 : il suffit de poser l'étiquette.
 complet est exercé, par étiquette, sur la PR du lot 3 avant sa fusion.
 
 **Comment prouver que rien n'a été perdu**, puisque la reconstruction n'est plus l'historique.
-*Les deux premières commandes étaient fausses et la contre-revue les a corrigées : `<lot0>..<lot3>`
-commence APRÈS le tip du lot 0, donc excluait tout le premier lot de la comparaison ; et comparer à
-un nom de branche compare à une cible mutable. Les deux séries partent désormais de la MÊME base, et
-l'égalité vise un SHA figé.*
+
+*Trois versions de ces commandes ont été fausses, et la troisième l'était d'une façon
+particulière.* La première comparait `<lot0>..<lot3>`, qui commence APRÈS le tip du lot 0 et
+excluait donc tout le premier lot. La deuxième comparait à un nom de branche, cible mutable. La
+troisième inscrivait un SHA en dur — et **le commit qui l'inscrivait le périmait aussitôt** :
+reconstruire un arbre identique à ce SHA-là aurait supprimé les corrections que ce commit apportait,
+et restauré la version précédente du plan. Un rapport qui nomme son propre « SHA final » ne peut pas
+avoir raison : écrire le nom change la chose nommée.
+
+**Le SHA source est donc figé HORS de l'arbre**, une fois le dernier commit documentaire écrit —
+dans un tag annoté `t0b3-source-fige`, qui vit dans les références et non dans les fichiers. Le
+créer ne modifie rien ; il est poussé sur `origin` et vérifiable indépendamment.
 
 1. ```
    git range-diff \
-     e2cf302ccf045c539ca450f23964bb7bf20af84c..e14b40c7372b9ee66b902cb1e5c14a7ceb3acc1f \
+     e2cf302ccf045c539ca450f23964bb7bf20af84c..t0b3-source-fige \
      e2cf302ccf045c539ca450f23964bb7bf20af84c..<tip-final-reconstruit>
    ```
    chaque commit d'origine retrouvé, déplacé ou fondu, aucun disparu sans que la comparaison le dise ;
-2. `git diff e14b40c7372b9ee66b902cb1e5c14a7ceb3acc1f <tip-final-reconstruit>` doit être **vide** :
-   l'arbre final des quatre lots est identique au bit près à celui du SHA figé — pas au nom d'une
-   branche qui peut encore bouger ;
+2. `git diff --exit-code t0b3-source-fige <tip-final-reconstruit>` — **vide**, donc code 0 :
+   l'arbre final des quatre lots est identique au bit près à celui du tip source figé ;
 3. les **neuf dossiers scellés** rejoués sur le tip des lots — la preuve la plus forte, parce
    qu'elle ne porte pas sur les fichiers mais sur ce qu'ils mesurent.
 
