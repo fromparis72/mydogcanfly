@@ -16,9 +16,13 @@
     "CE QUE CE MANIFESTE PROUVE ET CE QU'IL NE PROUVE PAS. Il prouve qu'aucun `uses:` n'a été ajouté",
     "ou déplacé sans mesure : le contrôle hors ligne compare les épingles du workflow à cette liste.",
     "Il ne prouve PAS, à lui seul, que ces SHA portent bien ce `using` en amont — c'est une lecture",
-    "faite à une date donnée. Pour la refaire contre GitHub : `npm run check:actions -- --en-ligne`."
+    "faite à une date donnée. Pour la refaire contre GitHub : `npm run check:actions -- --en-ligne`.",
+    "",
+    "USAGES ATTENDUS, PAR WORKFLOW ET PAR JOB (20/08/2026). Le contrôle vérifiait seulement qu'une épingle déclarée servait QUELQUE PART : retirer `setup-node` du seul job `site-complet` le laissait vert. Chaque épingle déclare donc désormais le nombre d'occurrences attendu par job, et l'écart est fautif DANS LES DEUX SENS — une disparition comme une occurrence en trop."
   ],
-  "runtimes_admis": ["node24"],
+  "runtimes_admis": [
+    "node24"
+  ],
   "mesure": {
     "faite_le": "2026-08-17",
     "methode": [
@@ -32,14 +36,26 @@
       "sha": "3d3c42e5aac5ba805825da76410c181273ba90b1",
       "version": "v7.0.1",
       "using": "node24",
-      "note": "v5.0.0 passe en node24 ; v6.0.0 range les identifiants dans $RUNNER_TEMP au lieu de .git/config ; v7.0.0 refuse le checkout d'une PR de fork sous `pull_request_target`/`workflow_run` et passe en ESM ; v7.0.1 durcit la lecture de `ref` (BOM/NBSP) et n'applique plus la garde au checkout par défaut. Ce workflow ne déclenche ni `pull_request_target` ni `workflow_run` et ne lance aucune commande git authentifiée depuis une action Docker : aucune de ces ruptures ne le touche."
+      "note": "v5.0.0 passe en node24 ; v6.0.0 range les identifiants dans $RUNNER_TEMP au lieu de .git/config ; v7.0.0 refuse le checkout d'une PR de fork sous `pull_request_target`/`workflow_run` et passe en ESM ; v7.0.1 durcit la lecture de `ref` (BOM/NBSP) et n'applique plus la garde au checkout par défaut. Ce workflow ne déclenche ni `pull_request_target` ni `workflow_run` et ne lance aucune commande git authentifiée depuis une action Docker : aucune de ces ruptures ne le touche.",
+      "usages": {
+        "ci.yml": {
+          "verify": 1,
+          "site-complet": 1
+        }
+      }
     },
     {
       "action": "actions/setup-node",
       "sha": "820762786026740c76f36085b0efc47a31fe5020",
       "version": "v7.0.0",
       "using": "node24",
-      "note": "v5.0.0 passe en node24 et active le cache par défaut ; v6.0.0 retire l'entrée `always-auth` et lie le cache automatique au champ `packageManager` de package.json ; v7.0.0 passe en ESM. Ce workflow ne se sert pas d'`always-auth`, `package.json` ne déclare aucun `packageManager`, et le cache reste demandé explicitement par `cache: npm` : le comportement mesuré ne change pas."
+      "note": "v5.0.0 passe en node24 et active le cache par défaut ; v6.0.0 retire l'entrée `always-auth` et lie le cache automatique au champ `packageManager` de package.json ; v7.0.0 passe en ESM. Ce workflow ne se sert pas d'`always-auth`, `package.json` ne déclare aucun `packageManager`, et le cache reste demandé explicitement par `cache: npm` : le comportement mesuré ne change pas.",
+      "usages": {
+        "ci.yml": {
+          "verify": 1,
+          "site-complet": 1
+        }
+      }
     }
   ]
 }

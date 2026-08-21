@@ -83,10 +83,28 @@ if (fichiers.length === 0) {
 const LIGNE_USES = /^\s*(?:-\s+)?uses:\s*([^\s#]+)\s*(?:#\s*(\S+))?/;
 const EPINGLE = /^([A-Za-z0-9._-]+\/[A-Za-z0-9._-]+)@([0-9a-f]{40})$/;
 
+/* ---- OÙ CHAQUE ÉPINGLE EST-ELLE UTILISÉE ? ----------------------------------------------------
+ * Le contrôle ne vérifiait que l'existence d'UN usage quelque part. Retirer `setup-node` du seul
+ * job `site-complet` le laissait vert, avec « 3 épingles, toutes déclarées » — le workflow avait
+ * pourtant perdu une étape d'installation. Les usages sont donc relevés PAR JOB et confrontés au
+ * manifeste, dans les deux sens. Relevé par la contre-revue du 20/08/2026.
+ *
+ * Le suivi du job est volontairement littéral : une clé à deux espaces d'indentation, après la
+ * ligne `jobs:`. C'est la forme de ce workflow, et une forme inattendue se voit — `jobsLus`
+ * doit correspondre aux jobs réellement déclarés, sinon le relevé ne prouve rien. */
+const usagesVus = new Map();   // `${fichier}\u0000${job}\u0000${sha}` → nombre
+const jobsLus = new Map();     // fichier → Set(jobs)
+const cle = (f, job, sha) => `${f}\u0000${job}\u0000${sha}`;
+
 let epinglesLues = 0;
 for (const f of fichiers) {
   const lignes = readFileSync(join(DOSSIER_WORKFLOWS, f), "utf8").split("\n");
+  let dansJobs = false, jobCourant = "(hors job)";
+  jobsLus.set(f, new Set());
   lignes.forEach((ligne, i) => {
+    if (/^jobs:\s*$/.test(ligne)) { dansJobs = true; return; }
+    const j = dansJobs ? /^ {2}([A-Za-z0-9_-]+):\s*$/.exec(ligne) : null;
+    if (j) { jobCourant = j[1]; jobsLus.get(f).add(jobCourant); return; }
     const m = LIGNE_USES.exec(ligne);
     if (!m) return;
     epinglesLues++;
@@ -113,6 +131,8 @@ for (const f of fichiers) {
       return;
     }
     declaree.vue = true;
+    const k = cle(f, jobCourant, sha);
+    usagesVus.set(k, (usagesVus.get(k) ?? 0) + 1);
     if (declaree.action !== action) {
       faute(`${ou} : le SHA ${sha.slice(0, 8)}… est déclaré au manifeste pour ${declaree.action}, `
         + `pas pour ${action}.`);
@@ -132,6 +152,49 @@ for (const f of fichiers) {
 if (epinglesLues === 0) {
   faute(`aucune ligne « uses: » trouvée dans les ${fichiers.length} workflow(s) lu(s). `
     + "Le format a changé, ou la lecture est cassée — dans les deux cas ce contrôle ne prouve rien.");
+}
+
+/* ---- LES USAGES ATTENDUS, CONFRONTÉS DANS LES DEUX SENS -------------------------------------- */
+{
+  const attendus = new Map();
+  for (const e of parSha.values()) {
+    if (!e.usages) {
+      faute(`manifeste : ${e.action} ${e.version} ne déclare aucun \`usages\`. Sans lui, une épingle `
+        + "retirée d'un job passerait inaperçue tant qu'elle sert ailleurs.");
+      continue;
+    }
+    for (const [f, parJob] of Object.entries(e.usages)) {
+      if (!fichiers.includes(f)) {
+        faute(`manifeste : ${e.action} déclare des usages dans « ${f} », qui n'est pas un workflow lu.`);
+        continue;
+      }
+      for (const [job, n] of Object.entries(parJob)) {
+        if (!jobsLus.get(f)?.has(job)) {
+          faute(`manifeste : ${e.action} déclare des usages dans le job « ${job} » de ${f}, `
+            + `qui n'existe pas (jobs lus : ${[...(jobsLus.get(f) ?? [])].join(", ") || "aucun"}).`);
+          continue;
+        }
+        attendus.set(cle(f, job, e.sha), n);
+      }
+    }
+  }
+  for (const [k, attendu] of attendus) {
+    const [f, job, sha] = k.split("\u0000");
+    const vu = usagesVus.get(k) ?? 0;
+    if (vu !== attendu) {
+      const e = parSha.get(sha);
+      faute(`${f}, job « ${job} » : ${e.action} ${e.version} y est utilisée ${vu} fois, `
+        + `le manifeste en attend ${attendu}. Un écart dans un sens comme dans l'autre est fautif : `
+        + "une étape disparue ne se voit pas si l'épingle sert encore ailleurs.");
+    }
+  }
+  for (const [k, vu] of usagesVus) {
+    if (attendus.has(k)) continue;
+    const [f, job, sha] = k.split("\u0000");
+    const e = parSha.get(sha);
+    faute(`${f}, job « ${job} » : ${e.action} ${e.version} y est utilisée ${vu} fois, `
+      + "sans que le manifeste l'y déclare. Toute épingle doit être attendue là où elle se trouve.");
+  }
 }
 
 for (const e of parSha.values()) {

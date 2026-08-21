@@ -4,7 +4,13 @@
  *
  *   npm run contre-epreuves            les mutations du moteur et des données (rapide)
  *   npm run contre-epreuves -- --dom   y ajoute celles de l'interface (chacune exige un build)
- *   npm run contre-epreuves -- --complet  y ajoute celles qui exigent le SITE ENTIER (~12 min chacune)
+ *   npm run contre-epreuves -- --dist-complet  celles qui LISENT un site complet déjà construit
+ *   npm run contre-epreuves -- --complet       celles qui exigent de RECONSTRUIRE le site entier
+ *
+ * TROIS BESOINS DISTINCTS, ET LES CONFONDRE COÛTE CHER. Une mutation qui touche une SOURCE DU SITE
+ * oblige à reconstruire ; une mutation qui touche un OUTIL D'ANALYSE — l'audit, par exemple — n'y
+ * change rien : le site déjà construit lui suffit. Confondre les deux ajoutait trois builds de
+ * douze minutes pour rien.
  *
  * POURQUOI CE FICHIER EXISTE. Un harnais vert ne prouve rien tant qu'on n'a pas montré qu'il sait
  * rougir. Depuis dix tours de contre-revue, chaque garantie de ce chantier a été éprouvée en
@@ -27,7 +33,8 @@
  * L'arbre est restauré quoi qu'il arrive, et sa propreté est vérifiée à la fin.
  */
 import { execFileSync, spawnSync } from "node:child_process";
-import { readFileSync, writeFileSync } from "node:fs";
+import { readFileSync, writeFileSync, existsSync, readdirSync } from "node:fs";
+import { join } from "node:path";
 
 const AVEC_DOM = process.argv.includes("--dom");
 /* Certaines garanties ne se lisent que sur le site ENTIER — l'audit, par exemple, refuse de
@@ -36,6 +43,10 @@ const AVEC_DOM = process.argv.includes("--dom");
  * distinct, parce qu'elles coûtent un build complet chacune, et le total ci-dessous dit toujours
  * combien n'ont PAS été jouées. */
 const AVEC_COMPLET = process.argv.includes("--complet");
+/* `--dist-complet` : la mutation ne touche pas le site, elle touche ce qui le LIT. Aucun build
+ * n'est nécessaire — mais un `dist` complet, si, et son absence doit faire échouer plutôt que
+ * laisser le harnais lire un message d'arrêt. */
+const AVEC_DIST_COMPLET = process.argv.includes("--dist-complet");
 
 /* ---- LE CATALOGUE ---------------------------------------------------------------------------
  * `editions` : une ou plusieurs substitutions, chacune devant apparaître EXACTEMENT une fois —
@@ -270,11 +281,25 @@ const MUTATIONS = [
    * n'imprimant JAMAIS ses constatations de niveau `INFO` : code juste, rapport muet. Aucun
    * contrôle ne pouvait le voir, puisque tous ne lisaient que le code de sortie.
    *
-   * Elles exigent le site ENTIER : l'audit s'arrête de lui-même sous 1 500 pages, et sous le build
-   * réduit le harnais lirait un message d'arrêt au lieu d'un rapport. */
+   * Elles exigent un `dist` COMPLET — l'audit s'arrête de lui-même sous 1 500 pages — mais PAS de
+   * reconstruire : `audit-site.mjs` n'entre dans aucun build, le site produit est le même avant et
+   * après la mutation. D'où `distComplet` et non `dom` : le site déjà construit suffit, et trois
+   * builds de douze minutes disparaissent. La distinction a été relevée par la contre-revue du
+   * 20/08/2026 ; je les avais confondus. */
   {
-    dom: true,
-    buildComplet: true,
+    /* UNE SEULE OCCURRENCE RETIRÉE, ET C'EST TOUT L'ENJEU. Le contrôle ne vérifiait que l'existence
+       d'un usage QUELQUE PART : retirer `setup-node` du seul job `site-complet` le laissait vert,
+       « 3 épingles, toutes déclarées », alors que le workflow avait perdu une étape d'installation.
+       Trouvé par la contre-revue du 20/08/2026, qui a joué exactement cette mutation. */
+    nom: "une étape d'installation disparaît d'un seul job, l'épingle servant encore ailleurs",
+    fichier: ".github/workflows/ci.yml",
+    cherche: "      - name: Node 22 (depuis .nvmrc)\n        uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020 # v7.0.0\n        with:\n          node-version-file: .nvmrc\n          cache: npm\n\n      - name: Installation reproductible",
+    remplace: "      - name: Installation reproductible",
+    harnais: "packages/knowledge/scripts/check-actions-node.mjs",
+    attendu: "le manifeste en attend 1",
+  },
+  {
+    distComplet: true,
     nom: "le contrôle hors-sitemap se tait au lieu de dire qu'il ne peut pas conclure",
     fichier: "packages/knowledge/scripts/audit-site.mjs",
     cherche: "if (indexables.length === 0) {",
@@ -283,8 +308,7 @@ const MUTATIONS = [
     attendu: "« non concluant »",
   },
   {
-    dom: true,
-    buildComplet: true,
+    distComplet: true,
     nom: "la sévérité INFO quitte l'ordre d'affichage, ET sa garde est neutralisée",
     fichier: "packages/knowledge/scripts/audit-site.mjs",
     /* DEUX ÉDITIONS, PARCE QUE LA RÉGRESSION EN EXIGE DEUX. Retirer `INFO` de l'ordre déclenche la
@@ -312,10 +336,35 @@ if (arbreSale()) {
   process.exit(1);
 }
 
-const choisies = MUTATIONS.filter((m) =>
-  m.buildComplet ? AVEC_COMPLET : AVEC_DOM || !m.dom);
+const joue = (m) => m.buildComplet ? AVEC_COMPLET
+  : m.distComplet ? AVEC_DIST_COMPLET
+  : AVEC_DOM || !m.dom;
+const choisies = MUTATIONS.filter(joue);
 const ignoreesDom = MUTATIONS.filter((m) => m.dom && !m.buildComplet && !AVEC_DOM).length;
 const ignoreesCompletes = MUTATIONS.filter((m) => m.buildComplet && !AVEC_COMPLET).length;
+const ignoreesDist = MUTATIONS.filter((m) => m.distComplet && !AVEC_DIST_COMPLET).length;
+
+/* JAMAIS VERT FAUTE DE MATIÈRE. Les mutations `distComplet` ne reconstruisent rien : si le site
+   n'est pas déjà là, leur harnais lirait un message d'arrêt et « échouerait » sans que la mutation
+   y soit pour rien. On refuse de les jouer plutôt que de prouver le vide. */
+if (choisies.some((m) => m.distComplet)) {
+  const compter = (d) => {
+    if (!existsSync(d)) return 0;
+    let n = 0;
+    for (const e of readdirSync(d, { withFileTypes: true })) {
+      if (e.isDirectory()) { if (e.name !== "_astro") n += compter(join(d, e.name)); }
+      else if (e.name.endsWith(".html")) n++;
+    }
+    return n;
+  };
+  const pages = compter("packages/ui/dist");
+  if (pages < 1500) {
+    process.stderr.write(`[contre-épreuves] ÉCHEC — ${pages} pages sous packages/ui/dist, et `
+      + "des mutations `--dist-complet` ont été demandées. Elles LISENT le site sans le reconstruire : "
+      + "sans site complet, leur harnais lirait un message d'arrêt au lieu d'un rapport.\n");
+    process.exit(1);
+  }
+}
 
 let tenues = 0;
 const echecs = [];
@@ -399,7 +448,10 @@ if (ignoreesDom) {
   dire(`  ${ignoreesDom} mutation(s) d'interface NON jouée(s) — chacune exige un build. « npm run contre-epreuves -- --dom » les inclut.`);
 }
 if (ignoreesCompletes) {
-  dire(`  ${ignoreesCompletes} mutation(s) NON jouée(s) exigeant le SITE ENTIER — environ douze minutes de build chacune. « npm run contre-epreuves -- --complet » les inclut.`);
+  dire(`  ${ignoreesCompletes} mutation(s) NON jouée(s) exigeant de RECONSTRUIRE le site entier — environ douze minutes de build chacune. « npm run contre-epreuves -- --complet » les inclut.`);
+}
+if (ignoreesDist) {
+  dire(`  ${ignoreesDist} mutation(s) NON jouée(s) LISANT un site complet déjà construit — aucun build, mais un « dist » complet. « npm run contre-epreuves -- --dist-complet » les inclut.`);
 }
 if (echecs.length) {
   process.stderr.write(`\n[contre-épreuves] ÉCHEC — ${echecs.length} :\n`
