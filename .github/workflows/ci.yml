@@ -212,3 +212,12 @@ jobs:
       # request : voir les commentaires de `audit-site.mjs`.
       - name: Audit de cohérence du site construit
         run: npm run audit
+
+      # L'AUDIT DIT-IL CE QU'IL A VU ? L'étape ci-dessus ne lit que le code de sortie. L'audit
+      # sortait en 0 tout en n'imprimant JAMAIS ses constatations de niveau `INFO` : code juste,
+      # rapport muet — et aucun contrôle ne pouvait le voir. Celui-ci juge le TEXTE du rapport, et
+      # exige notamment la phrase « non concluant » du contrôle qui ne peut pas conclure sous un
+      # build de preview. Un contrôle qui ne sait pas conclure et se tait est indiscernable d'un
+      # contrôle qui a conclu.
+      - name: L'audit imprime ce qu'il a vu
+        run: npm run test:audit-obs
