@@ -92,8 +92,15 @@ export function verifierProvenance(dist, porteeAttendue = "complet") {
   catch (e) { return [`${chemin} illisible : ${e.message}`]; }
 
   const ecarts = [];
-  const sha = git("rev-parse", "HEAD");
-  if (prov.sha !== sha) ecarts.push(`construit depuis ${String(prov.sha).slice(0, 8)}…, HEAD est ${sha.slice(0, 8)}…`);
+  /* LE SHA DU COMMIT EST INSCRIT POUR LE LECTEUR, ET NE VAUT PAS EXIGENCE — quatrième fois que je
+     dessine ce périmètre trop large, et cette fois le contrôle en trop était STRICTEMENT plus
+     faible qu'un autre déjà présent. Tout commit déplace `HEAD`, y compris celui qui rescelle un
+     dossier ou corrige une phrase : la carte devenait périmée sans que le site ait bougé d'un
+     octet, et il fallait douze minutes de reconstruction pour rien. Ce qui détermine le site, ce
+     sont les EMPREINTES vérifiées plus bas — les trois arbres, les fichiers déterminants, les
+     paramètres du build. Elles sont plus précises que le SHA et le rendent inutile.
+     Trouvé parce que le témoin « la mesure passe » échouait : sans lui, j'aurais publié quatre
+     contre-épreuves qui ne prouvaient rien. */
   if (!prov.arbre_propre) ecarts.push("construit depuis des sources MODIFIÉES : ses pages ne correspondent à aucun commit");
   if (prov.portee !== porteeAttendue) ecarts.push(`portée « ${prov.portee} » et non « ${porteeAttendue} »`);
 
