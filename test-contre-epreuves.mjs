@@ -305,7 +305,7 @@ const MUTATIONS = [
     cherche: "if (indexables.length === 0) {",
     remplace: "if (false) {",
     harnais: "test-audit-observations.mjs",
-    attendu: "« non concluant »",
+    attendu: "la section INFO porte la ligne ENTIÈRE du contrôle hors-sitemap",
   },
   {
     distComplet: true,
