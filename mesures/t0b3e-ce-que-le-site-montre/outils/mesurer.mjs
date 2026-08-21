@@ -240,13 +240,18 @@ const pagesHtml = [];
   }
   const prov = JSON.parse(readFileSync(cheminProv, "utf8"));
   const git = (...a) => execFileSync("git", a, { encoding: "utf8" }).trim();
-  const sale = git("status", "--porcelain", "--untracked-files=all");
+  /* PROPRETÉ DES SOURCES DU SITE, ET NON DE L'ARBRE ENTIER. Exiger l'arbre entier propre rendait ce
+     contrôle inutilisable : rescelller un dossier salit `mesures/`, et le suivant refusait alors de
+     mesurer un site qui n'avait pas bougé. C'est la même erreur que le SHA, commise deux fois — la
+     garde doit porter sur ce dont le site est fait, pas sur tout ce qui l'entoure. */
+  const ARBRES = ["packages/ui", "packages/knowledge", "packages/engine"];
+  const sale = git("status", "--porcelain", "--untracked-files=all", "--", ...ARBRES);
   const ecarts = [];
   /* CE QUI DOIT CORRESPONDRE, CE SONT LES SOURCES DU SITE — pas le commit. Exiger l'égalité du SHA
      périmait la carte à chaque commit, même un qui ne touche que `mesures/` : le site n'avait pas
      bougé d'un octet et la mesure exigeait pourtant douze minutes de reconstruction. On compare
      donc les empreintes des trois arbres dont le site est fait. */
-  for (const d of ["packages/ui", "packages/knowledge", "packages/engine"]) {
+  for (const d of ARBRES) {
     const attendu = git("rev-parse", `HEAD:${d}`);
     if (prov.sources?.[d] !== attendu) {
       ecarts.push(`${d} : site construit depuis ${String(prov.sources?.[d]).slice(0, 8)}…, `
@@ -255,7 +260,7 @@ const pagesHtml = [];
   }
   if (!prov.arbre_propre) ecarts.push("construit depuis un arbre SALE : ses pages ne correspondent à aucun commit");
   if (prov.portee !== "complet") ecarts.push(`portée « ${prov.portee} » et non « complet »`);
-  if (sale) ecarts.push("l'arbre est sale MAINTENANT : le site ne correspond plus aux sources");
+  if (sale) ecarts.push(`les sources du site ont changé depuis le build :\n      ${sale.replace(/\n/g, "\n      ")}`);
   /* Complétude par les sitemaps, qui ne dépendent pas de l'environnement de build : un site amputé
      de familles entières garde ses sitemaps complets, l'écart se voit donc là. */
   let urls = 0;
