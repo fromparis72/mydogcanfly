@@ -173,32 +173,44 @@ const MUTATIONS = [
   {
     nom: "une action redevient épinglée sur un tag, qui se déplace",
     fichier: ".github/workflows/ci.yml",
-    cherche: "uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1",
-    remplace: "uses: actions/checkout@v7 # v7.0.1",
+    /* ANCRE ÉLARGIE : le workflow a DEUX jobs, qui partagent les mêmes étapes d'installation.
+       La mutation courte est devenue ambiguë et le runner l'a déclarée MUETTE — c'est exactement
+       ce pour quoi cet état existe. L'ancre inclut le voisinage qui distingue `verify`. */
+    cherche: "timeout-minutes: 30\n\n    steps:\n      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1",
+    remplace: "timeout-minutes: 30\n\n    steps:\n      - uses: actions/checkout@v7 # v7.0.1",
     harnais: "packages/knowledge/scripts/check-actions-node.mjs",
     attendu: "n'est pas épinglée sur un SHA complet",
   },
   {
     nom: "une épingle jamais mesurée entre dans le workflow",
     fichier: ".github/workflows/ci.yml",
-    cherche: "uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1",
-    remplace: "uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4.4.0",
+    /* ANCRE ÉLARGIE : le workflow a DEUX jobs, qui partagent les mêmes étapes d'installation.
+       La mutation courte est devenue ambiguë et le runner l'a déclarée MUETTE — c'est exactement
+       ce pour quoi cet état existe. L'ancre inclut le voisinage qui distingue `verify`. */
+    cherche: "timeout-minutes: 30\n\n    steps:\n      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1",
+    remplace: "timeout-minutes: 30\n\n    steps:\n      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4.4.0",
     harnais: "packages/knowledge/scripts/check-actions-node.mjs",
     attendu: "n'est PAS déclarée au manifeste",
   },
   {
     nom: "le commentaire de version ment sur le SHA qu'il annote",
     fichier: ".github/workflows/ci.yml",
-    cherche: "uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020 # v7.0.0",
-    remplace: "uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020 # v6.5.0",
+    /* ANCRE ÉLARGIE : le workflow a DEUX jobs, qui partagent les mêmes étapes d'installation.
+       La mutation courte est devenue ambiguë et le runner l'a déclarée MUETTE — c'est exactement
+       ce pour quoi cet état existe. L'ancre inclut le voisinage qui distingue `verify`. */
+    cherche: "      - name: Node 22 (depuis .nvmrc)\n        uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020 # v7.0.0\n        with:\n          node-version-file: .nvmrc\n          cache: npm\n\n      # Le seul contrôle du lot",
+    remplace: "      - name: Node 22 (depuis .nvmrc)\n        uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020 # v6.5.0\n        with:\n          node-version-file: .nvmrc\n          cache: npm\n\n      # Le seul contrôle du lot",
     harnais: "packages/knowledge/scripts/check-actions-node.mjs",
     attendu: "alors que le manifeste dit",
   },
   {
     nom: "une épingle du manifeste ne sert plus à rien et y reste",
     fichier: ".github/workflows/ci.yml",
-    cherche: "        uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020 # v7.0.0",
-    remplace: "        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1",
+    /* ANCRE ÉLARGIE : le workflow a DEUX jobs, qui partagent les mêmes étapes d'installation.
+       La mutation courte est devenue ambiguë et le runner l'a déclarée MUETTE — c'est exactement
+       ce pour quoi cet état existe. L'ancre inclut le voisinage qui distingue `verify`. */
+    cherche: "      - name: Node 22 (depuis .nvmrc)\n        uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020 # v7.0.0\n        with:\n          node-version-file: .nvmrc\n          cache: npm\n\n      # Le seul contrôle du lot",
+    remplace: "      - name: Node 22 (depuis .nvmrc)\n        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1\n        with:\n          node-version-file: .nvmrc\n          cache: npm\n\n      # Le seul contrôle du lot",
     harnais: "packages/knowledge/scripts/check-actions-node.mjs",
     attendu: "n'est utilisée par aucun",
   },
