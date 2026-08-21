@@ -12,8 +12,14 @@
  * CE QU'IL EXIGE, et c'est délibérément littéral :
  *   · l'audit sort en 0 — sinon ce n'est pas le rapport qu'on juge, c'est une anomalie ;
  *   · le rapport porte la section `INFO` ;
- *   · il porte la phrase EXACTE « non concluant » du contrôle hors-sitemap, qui ne peut pas
- *     conclure sous un build de preview et doit le DIRE plutôt que de se taire.
+ *   · la section `INFO` porte la LIGNE LITTÉRALE ENTIÈRE du contrôle hors-sitemap — son étiquette
+ *     `[hors-sitemap]` comprise — et non une sous-chaîne trouvée n'importe où dans la sortie.
+ *
+ * POURQUOI LA LIGNE ENTIÈRE, ET DANS SA SECTION. La première version se contentait de chercher
+ * « non concluant » quelque part dans le rapport. Deux mots peuvent apparaître dans un autre
+ * message, ou hors de la section `INFO` qui les rend visibles : le harnais aurait été vert avec un
+ * rapport dont la constatation ne s'affiche plus au bon endroit, ou plus du tout sous cette forme.
+ * Relevé par la contre-revue du 20/08/2026.
  *
  * Un contrôle qui ne sait pas conclure et se tait est indiscernable d'un contrôle qui a conclu.
  * C'est cette différence-là que ce harnais protège, et elle ne se lit que dans le texte.
@@ -58,12 +64,28 @@ exiger("l'audit sort en 0 — sinon c'est une anomalie qu'on lit, pas un rapport
   r.status === 0, `code ${r.status}\n      ${sortie.trim().split("\n").slice(-3).join("\n      ")}`);
 exiger("le rapport porte une section INFO", /^INFO$/m.test(sortie),
   "aucune section INFO : les constatations de ce niveau ne sont pas imprimées");
-exiger("le contrôle hors-sitemap DIT qu'il est « non concluant » sous un build de preview",
-  sortie.includes("non concluant"),
-  "la phrase est absente : un contrôle qui ne sait pas conclure et se tait est indiscernable "
-  + "d'un contrôle qui a conclu");
+
+/* La section `INFO` seule : de sa ligne d'en-tête jusqu'à la première ligne non indentée qui suit
+   — c'est-à-dire la barre de séparation finale ou la section suivante. Chercher ailleurs dans la
+   sortie reviendrait à accepter la phrase là où le lecteur ne la verrait pas. */
+const lignes = sortie.split("\n");
+const debut = lignes.findIndex((l) => l === "INFO");
+const section = debut === -1 ? []
+  : lignes.slice(debut + 1, (() => {
+      for (let i = debut + 1; i < lignes.length; i++) if (l0(lignes[i])) return i;
+      return lignes.length;
+    })());
+function l0(l) { return l.trim() !== "" && !/^\s/.test(l); }
+
+const LIGNE_ATTENDUE = "  • [hors-sitemap] non concluant : ce build déclare `noindex` sur la TOTALITÉ "
+  + "des pages (build de preview). Ce contrôle exige un build de production pour distinguer "
+  + "indexable et non indexable.";
+exiger("la section INFO porte la ligne ENTIÈRE du contrôle hors-sitemap, étiquette comprise",
+  section.includes(LIGNE_ATTENDUE),
+  `attendu, mot pour mot :\n        ${LIGNE_ATTENDUE}\n      section INFO lue (${section.length} ligne(s)) :\n`
+  + (section.length ? section.map((l) => `        ${l}`).join("\n") : "        (vide)"));
 
 dire("");
-dire(`  audit lu sur ${total} pages · ${sortie.split("\n").length} lignes de rapport`);
+dire(`  audit lu sur ${total} pages · ${lignes.length} lignes de rapport · section INFO : ${section.length} ligne(s)`);
 if (echecs) { process.stderr.write(`[audit-obs] ÉCHEC — ${echecs} exigence(s) non tenue(s).\n`); process.exit(1); }
 dire("[audit-obs] l'audit imprime ce qu'il a vu, y compris ce qu'il ne peut pas conclure.");

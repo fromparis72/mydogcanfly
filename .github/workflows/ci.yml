@@ -221,3 +221,11 @@ jobs:
       # contrôle qui a conclu.
       - name: L'audit imprime ce qu'il a vu
         run: npm run test:audit-obs
+
+      # LES CONTRE-ÉPREUVES QUI LISENT LE SITE COMPLET. Elles ne reconstruisent rien — elles mutent
+      # ce qui LIT le site, pas le site — et se servent donc du `dist` que ce job vient de produire.
+      # Sans cette étape, elles n'étaient jouées NULLE PART : le job rapide lance `--dom`, et son
+      # relevé disait honnêtement « 2 mutations NON jouées ». Deux garanties déclarées et jamais
+      # éprouvées, ce qui est exactement ce que ce catalogue existe pour interdire.
+      - name: Contre-épreuves du site complet (sans reconstruire)
+        run: npm run contre-epreuves -- --dist-complet
