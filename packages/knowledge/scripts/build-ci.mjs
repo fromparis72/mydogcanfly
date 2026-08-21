@@ -62,10 +62,15 @@ function ecrireProvenance(dist, portee) {
     }
     return n;
   })(dist);
+  /* L'EMPREINTE DES SOURCES DU SITE, ET PAS SEULEMENT LE SHA. Exiger l'égalité du commit rendait la
+     carte périmée par TOUT commit — même un qui ne touche que `mesures/`, alors que le site n'a pas
+     bougé d'un octet. Ce qui doit correspondre, ce sont les SOURCES DONT LE SITE EST FAIT. */
+  const sources = Object.fromEntries(["packages/ui", "packages/knowledge", "packages/engine"]
+    .map((d) => [d, git("rev-parse", `HEAD:${d}`)]));
   writeFileSync(join(dist, ".provenance.json"), JSON.stringify({
     sha: git("rev-parse", "HEAD"),
     arbre_propre: git("status", "--porcelain", "--untracked-files=all") === "",
-    portee, pages,
+    sources, portee, pages,
   }, null, 2) + "\n");
 }
 

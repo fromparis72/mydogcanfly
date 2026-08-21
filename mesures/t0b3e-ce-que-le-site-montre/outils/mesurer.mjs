@@ -239,10 +239,20 @@ const pagesHtml = [];
     process.exit(1);
   }
   const prov = JSON.parse(readFileSync(cheminProv, "utf8"));
-  const sha = execFileSync("git", ["rev-parse", "HEAD"], { encoding: "utf8" }).trim();
-  const sale = execFileSync("git", ["status", "--porcelain", "--untracked-files=all"], { encoding: "utf8" }).trim();
+  const git = (...a) => execFileSync("git", a, { encoding: "utf8" }).trim();
+  const sale = git("status", "--porcelain", "--untracked-files=all");
   const ecarts = [];
-  if (prov.sha !== sha) ecarts.push(`construit depuis ${String(prov.sha).slice(0, 8)}…, HEAD est ${sha.slice(0, 8)}…`);
+  /* CE QUI DOIT CORRESPONDRE, CE SONT LES SOURCES DU SITE — pas le commit. Exiger l'égalité du SHA
+     périmait la carte à chaque commit, même un qui ne touche que `mesures/` : le site n'avait pas
+     bougé d'un octet et la mesure exigeait pourtant douze minutes de reconstruction. On compare
+     donc les empreintes des trois arbres dont le site est fait. */
+  for (const d of ["packages/ui", "packages/knowledge", "packages/engine"]) {
+    const attendu = git("rev-parse", `HEAD:${d}`);
+    if (prov.sources?.[d] !== attendu) {
+      ecarts.push(`${d} : site construit depuis ${String(prov.sources?.[d]).slice(0, 8)}…, `
+        + `sources à ${attendu.slice(0, 8)}…`);
+    }
+  }
   if (!prov.arbre_propre) ecarts.push("construit depuis un arbre SALE : ses pages ne correspondent à aucun commit");
   if (prov.portee !== "complet") ecarts.push(`portée « ${prov.portee} » et non « complet »`);
   if (sale) ecarts.push("l'arbre est sale MAINTENANT : le site ne correspond plus aux sources");
