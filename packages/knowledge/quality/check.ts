@@ -118,7 +118,7 @@ ok(
 // Un message qui décrit un manque déjà comblé est du même tonneau qu'un contrôle annoncé et
 // absent : il désigne un chantier à faire alors qu'il est fait.
 // Reste ouvert, et c'est ce qui est dit ici : les URL EXTERNES, que rien ne vérifie.
-console.log("ℹ️  link-check: liens INTERNES vérifiés par `npm run test:liens` (job site-complet) ; "
+console.log("ℹ️  link-check: liens INTERNES vérifiés par `npm run audit` (job site-complet) ; "
   + "les URL externes ne sont vérifiées nulle part");
 
 console.log(failed ? `\n${failed} check(s) failed` : "\nAll quality checks passed ✨");
