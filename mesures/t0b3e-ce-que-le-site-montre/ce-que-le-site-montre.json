@@ -1548,7 +1548,7 @@
   ],
   "compagnies_sans_fiche": 0,
   "pays_sans_guide": 0,
-  "pages_construites": 2957,
+  "pages_construites_minimum": 2000,
   "pages_rendues_par_le_repli": 0,
   "lecture": "Le seul bloc du site capable de publier une rationale est dans un composant que rien n'atteint : 102 compagnies sur 102 ont une fiche, 140 pays sur 140 ont un guide. Il n'est donc ni rendu, ni exercé par un harnais — et une seule entité ajoutée sans sa fiche le mettrait en production, publiant d'un coup des textes que personne n'a relus pour l'affichage. Ce n'est pas du code mort : c'est du code armé."
  },
