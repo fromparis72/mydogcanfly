@@ -209,8 +209,16 @@ const MUTATIONS = [
     /* ANCRE ÉLARGIE : le workflow a DEUX jobs, qui partagent les mêmes étapes d'installation.
        La mutation courte est devenue ambiguë et le runner l'a déclarée MUETTE — c'est exactement
        ce pour quoi cet état existe. L'ancre inclut le voisinage qui distingue `verify`. */
-    cherche: "      - name: Node 22 (depuis .nvmrc)\n        uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020 # v7.0.0\n        with:\n          node-version-file: .nvmrc\n          cache: npm\n\n      # Le seul contrôle du lot",
-    remplace: "      - name: Node 22 (depuis .nvmrc)\n        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1\n        with:\n          node-version-file: .nvmrc\n          cache: npm\n\n      # Le seul contrôle du lot",
+    /* DEUX ÉDITIONS, ET C'EST LE FOND DE LA MUTATION. Le workflow a deux jobs : remplacer
+       `setup-node` dans UN seul laisse l'épingle utilisée par l'autre, donc toujours utile — le
+       runner l'a montré en restant vert. Pour qu'une épingle du manifeste devienne réellement
+       inutilisée, il faut qu'AUCUN job ne s'en serve. */
+    editions: [
+      { cherche: "      - name: Node 22 (depuis .nvmrc)\n        uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020 # v7.0.0\n        with:\n          node-version-file: .nvmrc\n          cache: npm\n\n      # Le seul contrôle du lot",
+        remplace: "      - name: Node 22 (depuis .nvmrc)\n        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1\n        with:\n          node-version-file: .nvmrc\n          cache: npm\n\n      # Le seul contrôle du lot" },
+      { cherche: "      - name: Node 22 (depuis .nvmrc)\n        uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020 # v7.0.0\n        with:\n          node-version-file: .nvmrc\n          cache: npm\n\n      - name: Installation reproductible",
+        remplace: "      - name: Node 22 (depuis .nvmrc)\n        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1\n        with:\n          node-version-file: .nvmrc\n          cache: npm\n\n      - name: Installation reproductible" },
+    ],
     harnais: "packages/knowledge/scripts/check-actions-node.mjs",
     attendu: "n'est utilisée par aucun",
   },
