@@ -38,11 +38,36 @@
  *   npm run build:ci              le site réduit (pull request)
  *   npm run build:ci -- --complet le site entier, même sentinelle (~12 min)
  */
-import { spawnSync } from "node:child_process";
+import { execFileSync, spawnSync } from "node:child_process";
+import { existsSync, readdirSync, writeFileSync } from "node:fs";
 import { join } from "node:path";
 import { fileURLToPath } from "node:url";
 import { requireNode } from "./lib/require-node.mjs";
 import { BUILD_ONLY_SENTINELLES, BUILD_SLUGS_SENTINELLES } from "./lib/sentinelles-entites.mjs";
+
+
+/* ---- LA PROVENANCE DU SITE CONSTRUIT ----------------------------------------------------------
+ * `dist` est ignoré par git : rien, en le lisant, ne dit de QUELLE version il sort. Un dossier de
+ * mesure qui s'en contente parce qu'il compte « assez de pages » peut donc valider un site
+ * construit d'un autre commit, ou amputé de pages qu'il ne regarde pas. Relevé par la contre-revue
+ * du 20/08/2026. Chaque build dépose donc sa carte d'identité, et les dossiers l'exigent. */
+function ecrireProvenance(dist, portee) {
+  const git = (...a) => { try { return execFileSync("git", a, { encoding: "utf8" }).trim(); } catch { return ""; } };
+  const pages = (function compter(d) {
+    if (!existsSync(d)) return 0;
+    let n = 0;
+    for (const e of readdirSync(d, { withFileTypes: true })) {
+      if (e.isDirectory()) { if (e.name !== "_astro") n += compter(join(d, e.name)); }
+      else if (e.name.endsWith(".html")) n++;
+    }
+    return n;
+  })(dist);
+  writeFileSync(join(dist, ".provenance.json"), JSON.stringify({
+    sha: git("rev-parse", "HEAD"),
+    arbre_propre: git("status", "--porcelain", "--untracked-files=all") === "",
+    portee, pages,
+  }, null, 2) + "\n");
+}
 
 requireNode("le build de CI");
 
@@ -89,3 +114,4 @@ if (r.status !== 0) {
 log(COMPLET
   ? "Site ENTIER prêt. Les harnais lisant packages/ui/dist peuvent tourner."
   : "Build réduit prêt. Les harnais lisant packages/ui/dist peuvent tourner.");
+ecrireProvenance(join(REPO_ROOT, "packages", "ui", "dist"), COMPLET ? "complet" : "reduit");

@@ -18,12 +18,36 @@
  *
  * Idempotent : peut être relancé autant de fois que nécessaire, reproduit le même résultat.
  */
-import { spawnSync } from "node:child_process";
-import { readdirSync, readFileSync } from "node:fs";
+import { execFileSync, spawnSync } from "node:child_process";
+import { existsSync, readdirSync, readFileSync, writeFileSync } from "node:fs";
 import { join, relative } from "node:path";
 import { fileURLToPath } from "node:url";
 import { validateApiBase } from "./lib/preview-select.mjs";
 import { requireNode } from "./lib/require-node.mjs";
+
+
+/* ---- LA PROVENANCE DU SITE CONSTRUIT ----------------------------------------------------------
+ * `dist` est ignoré par git : rien, en le lisant, ne dit de QUELLE version il sort. Un dossier de
+ * mesure qui s'en contente parce qu'il compte « assez de pages » peut donc valider un site
+ * construit d'un autre commit, ou amputé de pages qu'il ne regarde pas. Relevé par la contre-revue
+ * du 20/08/2026. Chaque build dépose donc sa carte d'identité, et les dossiers l'exigent. */
+function ecrireProvenance(dist, portee) {
+  const git = (...a) => { try { return execFileSync("git", a, { encoding: "utf8" }).trim(); } catch { return ""; } };
+  const pages = (function compter(d) {
+    if (!existsSync(d)) return 0;
+    let n = 0;
+    for (const e of readdirSync(d, { withFileTypes: true })) {
+      if (e.isDirectory()) { if (e.name !== "_astro") n += compter(join(d, e.name)); }
+      else if (e.name.endsWith(".html")) n++;
+    }
+    return n;
+  })(dist);
+  writeFileSync(join(dist, ".provenance.json"), JSON.stringify({
+    sha: git("rev-parse", "HEAD"),
+    arbre_propre: git("status", "--porcelain", "--untracked-files=all") === "",
+    portee, pages,
+  }, null, 2) + "\\n");
+}
 
 requireNode("le build de preview");
 
@@ -208,3 +232,4 @@ log(`OK — les ${htmlFiles.length} pages HTML portent toutes une balise robots 
 
 log(`Build preview prêt : ${rel(DIST_DIR)}`);
 log("Prochaine étape : npx wrangler pages deploy packages/ui/dist --project-name=mydogcanfly-v2-preview --branch=<nom> [--commit-hash=<sha>]");
+ecrireProvenance(DIST_DIR, "complet");

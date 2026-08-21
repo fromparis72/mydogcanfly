@@ -223,6 +223,45 @@ const pagesHtml = [];
     else if (e.endsWith(".html")) pagesHtml.push(p);
   }
 })(SITE);
+
+/* ---- D'OÙ VIENT CE SITE ? ----------------------------------------------------------------------
+ * Compter les pages ne dit pas de quelle VERSION elles sortent. `dist` est ignoré par git : un
+ * build d'hier, ou un build amputé de pages que ce dossier ne regarde pas, passait le seuil sans
+ * que rien ne s'en aperçoive. Relevé par la contre-revue du 20/08/2026, et c'est exact — le
+ * dossier n'était indépendant que du NOMBRE de pages, pas de leur provenance.
+ * Chaque build dépose maintenant `.provenance.json` ; il est exigé ici, et confronté au SHA
+ * courant, à la propreté de l'arbre et à la complétude des sitemaps. */
+{
+  const cheminProv = join(SITE, ".provenance.json");
+  if (!existsSync(cheminProv)) {
+    process.stderr.write(`[t0b3e] ÉCHEC — ${SITE}/.provenance.json absent : impossible de savoir de `
+      + "quelle version ce site a été construit. Reconstruire (`npm run build`) le déposera.\n");
+    process.exit(1);
+  }
+  const prov = JSON.parse(readFileSync(cheminProv, "utf8"));
+  const sha = execFileSync("git", ["rev-parse", "HEAD"], { encoding: "utf8" }).trim();
+  const sale = execFileSync("git", ["status", "--porcelain", "--untracked-files=all"], { encoding: "utf8" }).trim();
+  const ecarts = [];
+  if (prov.sha !== sha) ecarts.push(`construit depuis ${String(prov.sha).slice(0, 8)}…, HEAD est ${sha.slice(0, 8)}…`);
+  if (!prov.arbre_propre) ecarts.push("construit depuis un arbre SALE : ses pages ne correspondent à aucun commit");
+  if (prov.portee !== "complet") ecarts.push(`portée « ${prov.portee} » et non « complet »`);
+  if (sale) ecarts.push("l'arbre est sale MAINTENANT : le site ne correspond plus aux sources");
+  /* Complétude par les sitemaps, qui ne dépendent pas de l'environnement de build : un site amputé
+     de familles entières garde ses sitemaps complets, l'écart se voit donc là. */
+  let urls = 0;
+  for (const l of ["en", "fr", "es", "pt"]) {
+    const f = join(SITE, `sitemap-${l}.xml`);
+    if (!existsSync(f)) { ecarts.push(`sitemap-${l}.xml absent`); continue; }
+    urls += [...readFileSync(f, "utf8").matchAll(/<loc>/g)].length;
+  }
+  if (urls < 2000) ecarts.push(`${urls} URL aux sitemaps, attendu ≥ 2000`);
+  if (ecarts.length) {
+    process.stderr.write(`[t0b3e] ÉCHEC — le site construit ne correspond pas aux sources mesurées :\n`
+      + ecarts.map((e) => `  · ${e}`).join("\n") + "\n");
+    process.exit(1);
+  }
+}
+
 const PLANCHER_PAGES = 2000;
 if (pagesHtml.length < PLANCHER_PAGES) {
   process.stderr.write(`[t0b3e] ÉCHEC — site absent ou partiel (${pagesHtml.length} pages HTML, attendu ≥ 2000). `
