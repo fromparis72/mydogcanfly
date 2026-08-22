@@ -252,6 +252,78 @@ const MUTATIONS = [
     harnais: "packages/knowledge/scripts/check-actions-node.mjs",
     attendu: "qui n'est pas supporté",
   },
+  /* ---- LE CONTRAT DE PROVENANCE : ce qui prouve qu'un site vient bien de ses entrées ----------
+   *
+   * `args: ["--arbre-modifie-attendu"]` — ces mutations écrivent DANS le dépôt, et
+   * `test-provenance.mjs` refuse par défaut de conclure sur un arbre modifié : sans ce drapeau il
+   * ne dirait jamais que son refus, et ces cinq mutations seraient injouables. Le drapeau lève ce
+   * refus et rien d'autre ; le harnais fige alors son relevé de saleté et juge ses attaques sur ce
+   * qu'elles CHANGENT. Voir l'en-tête de `test-provenance.mjs`.
+   */
+  {
+    nom: "le périmètre redevient une liste de fichiers, et l'outillage de build en sort",
+    fichier: "packages/knowledge/scripts/lib/provenance.mjs",
+    /* La v5 exacte, celle où Codex a montré le 22/08/2026 qu'on pouvait modifier
+       `packages/ui/scripts/fix-404.mjs` — invoqué par le script `build` de `packages/ui` — sans
+       que l'empreinte bouge ni que `salete()` dise quoi que ce soit. */
+    cherche: `export const ENTREES = [
+  "packages/ui",`,
+    remplace: `export const ENTREES = [
+  "packages/ui/src", "packages/ui/public", "packages/ui/astro.config.mjs", "packages/ui/package.json",`,
+    harnais: "test-provenance.mjs",
+    args: ["--arbre-modifie-attendu"],
+    attendu: "n'est couvert par aucune entrée",
+  },
+  {
+    nom: "un filtre d'entités hérité survit au mode complet",
+    fichier: "packages/knowledge/scripts/lib/provenance.mjs",
+    cherche: "  for (const k of NEUTRALISEES) delete env[k];",
+    remplace: "  for (const k of []) delete env[k];",
+    harnais: "test-provenance.mjs",
+    args: ["--arbre-modifie-attendu"],
+    attendu: "un filtre hérité amputerait un site déclaré complet",
+  },
+  {
+    nom: "OUTDIR redevient accepté : Astro écrirait ailleurs qu'on ne scelle",
+    fichier: "packages/knowledge/scripts/lib/provenance.mjs",
+    cherche: "  for (const k of REFUSEES) {\n    const v = surcharges[k] ?? base[k];",
+    remplace: "  for (const k of []) {\n    const v = surcharges[k] ?? base[k];",
+    harnais: "test-provenance.mjs",
+    args: ["--arbre-modifie-attendu"],
+    attendu: "le build écrirait ailleurs que là où l'on scelle",
+  },
+  {
+    nom: "git redevient un échec OUVERT : « je n'ai rien pu lire » repasse pour « il n'y a rien »",
+    fichier: "packages/knowledge/scripts/lib/provenance.mjs",
+    /* QUATRE ÉDITIONS, ET C'EST LE FOND DE LA MUTATION — pas une commodité. « Échouer fermé hors
+       dépôt » n'est pas écrit à un endroit mais à quatre, et EN RETIRER UN SEUL LAISSE LA PROPRIÉTÉ
+       DEBOUT : le garde suivant rattrape, le harnais reste vert, et le runner le dirait — à juste
+       titre. Pour retrouver l'état qu'a reproduit Codex — quatorze condensés `e3b0c442…` et
+       `salete() === ""`, c'est-à-dire « propre » déclaré là où rien n'a pu être lu —, il faut les
+       relâcher tous les quatre. C'est exactement la v5. */
+    editions: [
+      { cherche: 'function git(...args) {\n  const r = spawnSync("git", ["-C", RACINE, ...args], {',
+        remplace: 'function git(...args) {\n  const q = spawnSync("git", ["-C", RACINE, ...args], '
+          + '{ encoding: "utf8", maxBuffer: 1 << 28 });\n  if (q.status !== 0) return "";\n'
+          + '  return q.stdout.trim();\n  const r = spawnSync("git", ["-C", RACINE, ...args], {' },
+      { cherche: 'function exigerDepot() {\n  const sommet = git("rev-parse", "--show-toplevel");',
+        remplace: 'function exigerDepot() {\n  if (1) return;\n  const sommet = git("rev-parse", "--show-toplevel");' },
+      { cherche: "    if (!suivis.has(x)) {", remplace: "    if (false) {" },
+      { cherche: "    if (l.length === 0) {", remplace: "    if (false) {" },
+    ],
+    harnais: "test-provenance.mjs",
+    args: ["--arbre-modifie-attendu"],
+    attendu: "« e3b0c44298fc1c14 » présent",
+  },
+  {
+    nom: "les URL des sitemaps peuvent à nouveau être comptées deux fois",
+    fichier: "packages/knowledge/scripts/lib/provenance.mjs",
+    cherche: "      if (vues.has(m[1])) doublons.add(m[1]); else vues.add(m[1]);",
+    remplace: "      vues.add(m[1]);",
+    harnais: "test-provenance.mjs",
+    args: ["--arbre-modifie-attendu"],
+    attendu: "PLUSIEURS fois par les sitemaps » attendu",
+  },
   // ---- L'INTERFACE (chaque mutation exige un build, d'où `--dom`) ----
   {
     dom: true,

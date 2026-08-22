@@ -19,7 +19,16 @@
  * modifications en cours — `salete()` ne dit pas QUI a écrit. Plutôt que de sauter les contrôles
  * qu'il ne peut pas juger, il s'arrête et le dit : un harnais qui saute est un harnais vert.
  *
+ * `--arbre-modifie-attendu` LÈVE CE REFUS, ET RIEN D'AUTRE. Un seul appelant s'en sert :
+ * `test-contre-epreuves.mjs`, qui écrit ses mutations DANS le dépôt avant de lancer ce harnais —
+ * sans ce drapeau, il ne verrait jamais que le refus ci-dessus, et les cinq mutations qui éprouvent
+ * ce contrat seraient impossibles à jouer. Le drapeau ne désactive AUCUN contrôle : il fige le
+ * relevé de saleté au démarrage et exige ensuite l'égalité à ce relevé, si bien qu'une attaque
+ * reste jugée sur ce qu'elle CHANGE. Les deux écarts imputables à un arbre modifié — et eux seuls —
+ * sont admis dans le témoin du site.
+ *
  *   node test-provenance.mjs
+ *   node test-provenance.mjs --arbre-modifie-attendu   (réservé aux contre-épreuves)
  */
 import { execFileSync, spawnSync } from "node:child_process";
 import { cpSync, mkdirSync, mkdtempSync, readFileSync, rmSync, writeFileSync } from "node:fs";
@@ -57,24 +66,38 @@ function attaque(libelle, motif, temoin, apres) {
 }
 
 /* ── 0. L'arbre doit être propre ─────────────────────────────────────────────────────────── */
+const TOLERE = process.argv.includes("--arbre-modifie-attendu");
+{
+  const inconnus = process.argv.slice(2).filter((a) => a !== "--arbre-modifie-attendu");
+  if (inconnus.length > 0) {
+    process.stderr.write(`[provenance] Argument(s) non reconnu(s) : ${inconnus.join(", ")}\n`);
+    process.stderr.write("[provenance] Argument accepté : --arbre-modifie-attendu\n");
+    process.exit(2);
+  }
+}
+/** Les deux écarts qu'un arbre modifié explique À LUI SEUL — aucun autre n'est admis au témoin. */
+const ECARTS_DE_SALETE = ["entrées MODIFIÉES", "les entrées du site ont changé depuis le build"];
+let SALETE_INITIALE;
 titre("0 · Conditions d'exécution");
 {
-  let sale;
-  try { sale = salete(); }
+  try { SALETE_INITIALE = salete(); }
   catch (e) {
     process.stderr.write(`[provenance] impossible de lire l'état du dépôt : ${e.message}\n`);
     process.exit(1);
   }
-  if (sale) {
+  if (SALETE_INITIALE && !TOLERE) {
     process.stderr.write(
       "[provenance] ARRÊT — l'arbre de travail est modifié sur le périmètre des entrées :\n"
-      + sale.split("\n").map((l) => `    ${l}`).join("\n") + "\n"
+      + SALETE_INITIALE.split("\n").map((l) => `    ${l}`).join("\n") + "\n"
       + "[provenance] Ce harnais compare des états AVANT et APRÈS ses propres attaques ; il ne\n"
       + "[provenance] sait pas distinguer les vôtres des siennes. Committer ou remiser, puis relancer.\n"
     );
     process.exit(1);
   }
-  ok("arbre propre sur le périmètre des entrées");
+  ok(SALETE_INITIALE
+    ? `arbre modifié (${SALETE_INITIALE.split("\n").length} fichier(s)), relevé figé — `
+      + "les attaques sont jugées sur ce qu'elles CHANGENT"
+    : "arbre propre sur le périmètre des entrées");
 }
 
 /* ── 1. Le contrat des variables d'environnement ─────────────────────────────────────────── */
@@ -105,26 +128,40 @@ titre("2 · Le périmètre couvre TOUT ce qui construit le site");
   }).filter((x) => !EXCLUSIONS.includes(x.split(" ")[1]));
   const condense = (l) => createHash("sha256").update(l.slice().sort().join("\n")).digest("hex").slice(0, 16);
 
-  const releve = relever("packages/ui");
-  const reference = empreinte().entrees["packages/ui"];
-  verifier("le modèle du harnais reproduit exactement l'empreinte du module",
-    condense(releve) === reference.sha,
-    `harnais ${condense(releve)}, module ${reference.sha} — le reste de ce bloc ne prouverait rien`);
-  verifier("chaque ligne relevée porte bien un condensé d'objet git",
-    releve.every((x) => BLOB.test(x.split(" ")[0])), "format de « ls-files -s » inattendu");
+  const carteDesEntrees = empreinte().entrees;
 
-  /* Les deux fichiers que la v5 laissait dehors. La preuve porte sur l'INDEX : si la ligne du
-     fichier disparaissait du relevé, l'empreinte du paquet changerait — c'est donc que son
-     contenu y participe. On ne touche pas à l'index pour le montrer. */
-  for (const chemin of ["packages/ui/scripts/fix-404.mjs", "packages/ui/tsconfig.json"]) {
+  /* LES DEUX FICHIERS QUE LA v5 LAISSAIT DEHORS, et le troisième qui les accompagne : c'est le
+     script `build` de `packages/ui` qui invoque `fix-404.mjs`, et `astro.config.mjs` qui lit
+     `OUTDIR`. Le rattachement est calculé SUR `ENTREES` — jamais sur un préfixe écrit en dur ici,
+     sans quoi ce bloc resterait vert le jour où le périmètre se rétrécirait. */
+  const couvre = (c) => ENTREES.find((e) => c === e || c.startsWith(e + "/"));
+  const CRITIQUES = [
+    "packages/ui/scripts/fix-404.mjs",
+    "packages/ui/tsconfig.json",
+    "packages/ui/astro.config.mjs",
+    "packages/ui/package.json",
+  ];
+  for (const chemin of CRITIQUES) {
+    const e = couvre(chemin);
+    if (!verifier(`${chemin} est couvert par une entrée déclarée`, !!e,
+      `${chemin} n'est couvert par aucune entrée : le modifier ne déplacerait pas l'empreinte`)) continue;
+    const releve = relever(e);
+    const reference = carteDesEntrees[e];
+    verifier(`entrée « ${e} » : le modèle du harnais reproduit l'empreinte du module`,
+      condense(releve) === reference?.sha,
+      `harnais ${condense(releve)}, module ${reference?.sha} — le reste ne prouverait rien`);
+    verifier(`entrée « ${e} » : chaque ligne relevée porte un condensé d'objet git`,
+      releve.every((x) => BLOB.test(x.split(" ")[0])), "format de « ls-files -s » inattendu");
+    /* La preuve porte sur l'INDEX : si la ligne du fichier disparaissait du relevé, l'empreinte du
+       paquet changerait — c'est donc que son contenu y participe. On ne touche pas à l'index. */
     const present = releve.some((x) => x.endsWith(` ${chemin}`));
-    if (!verifier(`${chemin} est dans le périmètre`, present, "absent du relevé")) continue;
-    const sans = releve.filter((x) => !x.endsWith(` ${chemin}`));
-    verifier(`${chemin} pèse sur l'empreinte de packages/ui`,
-      condense(sans) !== reference.sha, "le retirer ne change pas le condensé");
+    if (!verifier(`${chemin} figure au relevé de « ${e} »`, present, "absent du relevé")) continue;
+    verifier(`${chemin} pèse sur l'empreinte de « ${e} »`,
+      condense(releve.filter((x) => !x.endsWith(` ${chemin}`))) !== reference?.sha,
+      "le retirer ne change pas le condensé");
   }
 
-  for (const e of Object.entries(empreinte().entrees)) {
+  for (const e of Object.entries(carteDesEntrees)) {
     verifier(`entrée « ${e[0]} » : ${e[1].fichiers} fichier(s) suivis`, e[1].fichiers > 0, "entrée vide");
   }
 }
@@ -268,8 +305,11 @@ try {
      rend les attaques lisibles : sans lui, une liste non vide ne dirait pas si la garantie a mordu
      ou si le montage était cassé d'avance. */
   const temoin = verifierProvenance(modele, "complet");
-  if (!verifier("témoin : un site intact ne produit aucun écart", temoin.length === 0,
-    temoin.map((e) => e.split("\n")[0]).join(" | "))) {
+  const admis = temoin.filter((e) => !ECARTS_DE_SALETE.some((m) => e.includes(m)));
+  if (!verifier(SALETE_INITIALE
+    ? "témoin : un site intact ne produit QUE les écarts imputables à l'arbre modifié"
+    : "témoin : un site intact ne produit aucun écart",
+  admis.length === 0, admis.map((e) => e.split("\n")[0]).join(" | "))) {
     process.stderr.write("[provenance] le témoin est rouge : les attaques ci-dessous ne prouveraient rien.\n");
   }
 
@@ -368,7 +408,15 @@ try {
     attaque("entrées d'un autre commit → écart nommant l'entrée", `${k} : site construit sur`,
       temoin, verifierProvenance(d, "complet"));
   }
-  {
+  if (SALETE_INITIALE) {
+    /* L'arbre est RÉELLEMENT modifié : la carte scellée à l'instant porte donc `entrees_propres:
+       false`, et le témoin l'a déjà dit. Rejouer l'attaque de synthèse serait sans objet — et la
+       déclarer « non jugeable » serait un contrôle sauté. On juge ce qui est vrai ici : c'est la
+       saleté vécue, et non une carte trafiquée, qui a produit le diagnostic. */
+    verifier("l'arbre réellement modifié a produit l'écart d'entrées modifiées",
+      carte(modele).entrees_propres === false && temoin.some((e) => e.includes("entrées MODIFIÉES")),
+      `entrees_propres = ${carte(modele).entrees_propres}, témoin : ${temoin.join(" | ").slice(0, 200)}`);
+  } else {
     const d = site();
     const c = carte(d); c.entrees_propres = false; rescelller(d, c);
     attaque("construit depuis des entrées modifiées → écart", "entrées MODIFIÉES",
@@ -384,7 +432,9 @@ for (const chemin of ["packages/ui/scripts/fix-404.mjs", "packages/ui/tsconfig.j
   const abs = join(RACINE, chemin);
   const original = readFileSync(abs);
   try {
-    verifier(`témoin : ${chemin} intact → périmètre propre`, salete() === "");
+    /* Le témoin porte sur CE fichier, pas sur l'arbre entier : sous `--arbre-modifie-attendu` le
+       relevé n'est pas vide, et exiger le vide reviendrait à ne rien pouvoir juger. */
+    verifier(`témoin : ${chemin} intact → non nommé par le relevé`, !salete().includes(chemin));
     writeFileSync(abs, Buffer.concat([original, Buffer.from("\n")]));
     const sale = salete();
     verifier(`${chemin} modifié → le périmètre est déclaré SALE et le nomme`,
@@ -393,7 +443,8 @@ for (const chemin of ["packages/ui/scripts/fix-404.mjs", "packages/ui/tsconfig.j
     writeFileSync(abs, original);
   }
 }
-verifier("le harnais n'a rien laissé derrière lui", salete() === "", salete().replace(/\n/g, " ; "));
+verifier("le harnais n'a rien laissé derrière lui", salete() === SALETE_INITIALE,
+  `relevé initial : « ${SALETE_INITIALE.replace(/\n/g, " ; ")} », relevé final : « ${salete().replace(/\n/g, " ; ")} »`);
 
 /* ── Verdict ─────────────────────────────────────────────────────────────────────────────── */
 process.stdout.write(`\n${total - echecs}/${total} contrôles OK\n`);
