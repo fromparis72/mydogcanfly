@@ -32,8 +32,23 @@ const guides = defineCollection({
     author: z.string().optional(),
     categories: z.array(z.string()).default([]),
     tags: z.array(z.string()).default([]),
-    /** L'URL sur le site d'origine — matière première des redirections. */
-    sourceUrl: z.string().startsWith("/"),
+    /* L'URL sur le site d'origine — matière première des redirections.
+     *
+     * OPTIONNEL, et il faut dire pourquoi. Ce champ ne sépare pas les langues : il sépare ce qui
+     * a été IMPORTÉ de ce qui NAÎT ici. Les 124 guides importés — 62 anglais, 62 français —
+     * viennent d'ailleurs : chacun a une adresse antérieure, et `gen-redirects.mjs` la lit pour
+     * fabriquer les 301. Tout le reste naît ici et n'a aucun prédécesseur : les guides espagnols
+     * et portugais, et désormais les articles anglais écrits directement pour ce site. Leur
+     * inventer un `sourceUrl` produirait une donnée fausse — et un jour, une redirection vers une
+     * page qui n'a jamais existé.
+     *
+     * Rendre le champ optionnel ne relâche rien : la garantie est déplacée, pas supprimée.
+     * `test-guides-traduits.mjs` exige que les 62 importés anglais et les 62 français soient
+     * TOUJOURS là, qu'aucun guide `es`/`pt` ne s'invente une adresse, et — côté anglais, où le
+     * corpus hérité est dans ce dépôt — que chaque `sourceUrl` désigne un article de
+     * `content/posts/` qui existe réellement. Rien de tout cela n'est formulable par le schéma,
+     * qui ne voit ni le chemin du fichier ni le reste du dépôt. */
+    sourceUrl: z.string().startsWith("/").optional(),
     /** Le « en bref » : des données, pas un paragraphe, donc réutilisables ailleurs. */
     enbref: z.array(z.string()).default([]),
     cover: z
