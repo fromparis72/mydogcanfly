@@ -89,3 +89,43 @@ export function chargerReferentiel() {
 export const AUTO_CITATION = /(^|\.)mydogcanfly\.com$/i;
 export const estAutoCitee = (r) => { try { return AUTO_CITATION.test(new URL(r.source.url).hostname); } catch { return false; } };
 export const ecrireJson = (p, v) => writeFileSync(p, JSON.stringify(v, null, 1) + "\n");
+
+/**
+ * LE PLANCHER DE VERSION NODE, ISOLÉ POUR ÊTRE ÉPROUVABLE.
+ *
+ * `.nvmrc` déclare un PLANCHER (voir `scripts/lib/require-node.mjs`) : même majeure, version au
+ * moins égale. Exiger l'égalité stricte serait plus dur que le contrat du dépôt lui-même.
+ *
+ * POURQUOI CETTE FONCTION EXISTE PLUTÔT QU'UN `if` DANS LE SCRIPT. La contre-revue du 23/08/2026 a
+ * relevé qu'un `.nvmrc` PRÉSENT MAIS VIDE passait : la lecture manquante échouait bien, mais un
+ * `Buffer` vide est truthy, `nvmrc` valait `""`, et le ternaire `nvmrc ? … : true` rendait
+ * `conforme` VRAI. Une absence déguisée en conformité — exactement le repli bénin que ce chantier
+ * traque partout ailleurs.
+ *
+ * Le contrôle vit ici parce qu'on ne peut PAS fabriquer un `.nvmrc` vide dans un commit historique
+ * immuable : la seule façon de l'éprouver est une fonction pure, appelée par un harnais qui lui
+ * passe les cas que l'histoire ne fournira jamais.
+ *
+ * @returns {{ok: boolean, motif: string}} — `motif` est vide quand tout tient.
+ */
+export function plancherNode(nvmrc, version) {
+  const brut = String(nvmrc ?? "").trim();
+  if (!/^v?\d+\.\d+\.\d+$/.test(brut)) {
+    return { ok: false, motif: `.nvmrc vaut « ${brut || "(vide)"} », qui n'est pas une version `
+      + "complète « majeure.mineure.correctif » — un plancher qu'on ne sait pas lire n'est pas un "
+      + "plancher, et le supposer respecté serait pire que de s'arrêter" };
+  }
+  const num = (v) => String(v).replace(/^v/, "").split(".").map(Number);
+  const [majH, minH, patH] = num(brut);
+  const [maj, min, pat] = num(version);
+  if (![maj, min, pat].every(Number.isFinite)) {
+    return { ok: false, motif: `version courante « ${version} » illisible` };
+  }
+  if (maj !== majH) {
+    return { ok: false, motif: `Node ${version} n'est pas de la majeure ${majH} exigée par .nvmrc ${brut}` };
+  }
+  if (min < minH || (min === minH && pat < patH)) {
+    return { ok: false, motif: `Node ${version} est ANTÉRIEUR au plancher .nvmrc ${brut}` };
+  }
+  return { ok: true, motif: "" };
+}

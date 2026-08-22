@@ -187,6 +187,22 @@ const MUTATIONS = [
     args: ["--sans-ecrire"],
     attendu: "l'après est l'avant PRIVÉ des 42",
   },
+  {
+    nom: "un `.nvmrc` vide redevient un plancher satisfait",
+    fichier: "mesures/t0b3a-arbitrage-brachy/outils/lib-arbitrage.mjs",
+    /* LE DÉFAUT EXACT TROUVÉ PAR LA CONTRE-REVUE DU 23/08/2026, FIGÉ. La lecture manquante
+       échouait bien, mais un `Buffer` vide est truthy : `nvmrc` valait `""`, et le ternaire
+       `nvmrc ? … : true` rendait la conformité VRAIE. Une absence déguisée en conformité.
+       La mutation remet ce repli en relâchant le format exigé. */
+    /* La première version de cette mutation ajoutait `brut &&` devant la garde de format. Elle NE
+       MORDAIT PAS : avec un `.nvmrc` vide, `majH` devenait `NaN` et la comparaison de majeure
+       refusait quand même — la garantie tenait par une autre branche. Une mutation qui laisse le
+       harnais vert ne prouve rien ; celle-ci rétablit exactement l'ancien repli permissif. */
+    cherche: '  const brut = String(nvmrc ?? "").trim();',
+    remplace: '  const brut = String(nvmrc ?? "").trim();\n  if (!brut) return { ok: true, motif: "" };',
+    harnais: "test-plancher-node.mjs",
+    attendu: "`.nvmrc` vide",
+  },
   // ---- LA CHAÎNE D'INTÉGRATION : les actions et leur runtime ----
   {
     nom: "une action redevient épinglée sur un tag, qui se déplace",
@@ -194,8 +210,8 @@ const MUTATIONS = [
     /* ANCRE ÉLARGIE : le workflow a DEUX jobs, qui partagent les mêmes étapes d'installation.
        La mutation courte est devenue ambiguë et le runner l'a déclarée MUETTE — c'est exactement
        ce pour quoi cet état existe. L'ancre inclut le voisinage qui distingue `verify`. */
-    cherche: "timeout-minutes: 30\n\n    steps:\n      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1",
-    remplace: "timeout-minutes: 30\n\n    steps:\n      - uses: actions/checkout@v7 # v7.0.1",
+    cherche: "timeout-minutes: 30\n\n    steps:\n      # `fetch-depth: 0`",
+    remplace: "timeout-minutes: 30\n\n    steps:\n      - uses: actions/checkout@v7 # v7.0.1\n      # `fetch-depth: 0`",
     harnais: "packages/knowledge/scripts/check-actions-node.mjs",
     attendu: "n'est pas épinglée sur un SHA complet",
   },
@@ -205,8 +221,8 @@ const MUTATIONS = [
     /* ANCRE ÉLARGIE : le workflow a DEUX jobs, qui partagent les mêmes étapes d'installation.
        La mutation courte est devenue ambiguë et le runner l'a déclarée MUETTE — c'est exactement
        ce pour quoi cet état existe. L'ancre inclut le voisinage qui distingue `verify`. */
-    cherche: "timeout-minutes: 30\n\n    steps:\n      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1",
-    remplace: "timeout-minutes: 30\n\n    steps:\n      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4.4.0",
+    cherche: "timeout-minutes: 30\n\n    steps:\n      # `fetch-depth: 0`",
+    remplace: "timeout-minutes: 30\n\n    steps:\n      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4.4.0\n      # `fetch-depth: 0`",
     harnais: "packages/knowledge/scripts/check-actions-node.mjs",
     attendu: "n'est PAS déclarée au manifeste",
   },

@@ -38,7 +38,7 @@ import { readFileSync, writeFileSync, unlinkSync, existsSync } from "node:fs";
 import { tmpdir } from "node:os";
 import { preparerWorktree } from "../../../test-lib/worktree-historique.mjs";
 import { createHash } from "node:crypto";
-import { MESURE_BASE_SHA, MESURE_MOTEUR_SHA, etatDuMoteur } from "./lib-arbitrage.mjs";
+import { MESURE_BASE_SHA, MESURE_MOTEUR_SHA, etatDuMoteur, plancherNode } from "./lib-arbitrage.mjs";
 
 const DOSSIER = "mesures/t0b3a-arbitrage-brachy";
 const ECRIRE = process.argv.includes("--ecrire");
@@ -201,18 +201,23 @@ function verifierEnvironnementDuRejeu() {
   }
   /* `.nvmrc` déclare un PLANCHER (voir scripts/lib/require-node.mjs) : même majeure, version au
      moins égale. Exiger l'égalité stricte serait plus dur que le contrat du dépôt lui-même. */
-  const nvmrc = (auCommit(".nvmrc") ?? Buffer.from("")).toString("utf8").trim();
-  const num = (v) => v.replace(/^v/, "").split(".").map(Number);
-  const [majH, minH, patH] = num(nvmrc || "0.0.0");
-  const [maj, min, pat] = num(process.version);
-  const conforme = nvmrc
-    ? maj === majH && (min > minH || (min === minH && pat >= patH))
-    : true;
-  if (!conforme) {
-    echouer(`Node ${process.version} ne satisfait pas le contrat du commit historique `
-      + `(.nvmrc ${nvmrc}, plancher sur la majeure ${majH}) — le rejeu tournerait sur un autre moteur.`);
+  /* Un `.nvmrc` illisible au commit de base ne devient PAS une version « 0.0.0 » : une absence
+     qu'on remplace par une valeur bénigne est une absence qu'on ne verra jamais. Même règle que
+     `package-lock.json` juste au-dessus, et même défaut que celui corrigé le 22/08/2026 dans
+     `lib/provenance.mjs` — git doit échouer FERMÉ. */
+  const nvmrcBrut = auCommit(".nvmrc");
+  if (!nvmrcBrut) {
+    echouer(`.nvmrc introuvable au commit ${MESURE_MOTEUR_SHA.slice(0, 7)} — le plancher de version `
+      + `ne peut pas être vérifié, et le supposer serait pire que de s'arrêter.`);
   }
-  return { node: process.version, nvmrc: nvmrc || "(absent)", lock: sha256(lockCourant).slice(0, 12) };
+  const nvmrc = nvmrcBrut.toString("utf8").trim();
+  /* Le jugement lui-même vit dans `lib-arbitrage.mjs` : c'est une fonction pure, donc éprouvable
+     sur les cas que l'histoire ne fournira jamais — un `.nvmrc` vide, par exemple. */
+  const plancher = plancherNode(nvmrc, process.version);
+  if (!plancher.ok) {
+    echouer(`le rejeu tournerait sur un autre moteur que la mesure : ${plancher.motif}.`);
+  }
+  return { node: process.version, nvmrc, lock: sha256(lockCourant).slice(0, 12) };
 }
 
 /* ---- REPRODUCTION DANS UN WORKTREE HISTORIQUE ---------------------------------------------------
