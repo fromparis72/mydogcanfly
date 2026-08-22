@@ -24,6 +24,9 @@ import { join, relative } from "node:path";
 import { fileURLToPath } from "node:url";
 import { validateApiBase } from "./lib/preview-select.mjs";
 import { requireNode } from "./lib/require-node.mjs";
+import { ecrireProvenance, environnementDeBuild, ErreurProvenance } from "./lib/provenance.mjs";
+
+
 
 requireNode("le build de preview");
 
@@ -109,8 +112,27 @@ function fail(msg) {
  * PUIS écrase avec les variables de `process.env`. Retirer la variable laisserait donc un futur
  * `.env.production` (aucun n'existe aujourd'hui, mais rien ne l'interdit) fournir
  * `PUBLIC_SITE_ENV=production` à Astro — et un build de preview deviendrait indexable.
- * La fixer à "preview" gagne dans tous les cas, puisque `process.env` est appliqué en dernier. */
-const childEnv = { ...process.env, PUBLIC_API_BASE: PREVIEW_API_BASE, PUBLIC_SITE_ENV: "preview" };
+ * La fixer à "preview" gagne dans tous les cas, puisque `process.env` est appliqué en dernier.
+ *
+ * L'environnement est fabriqué par `lib/provenance.mjs`, comme pour `build-ci.mjs`, pour que les
+ * deux constructeurs ne puissent pas diverger : il REFUSE `OUTDIR` — sans quoi Astro écrirait
+ * ailleurs pendant que ce script vérifie et scelle un `packages/ui/dist` ancien, et les deux
+ * contrôles bloquants ci-dessous porteraient sur un site qui n'est pas celui qu'on vient de
+ * construire — et RETIRE `BUILD_ONLY`, `BUILD_SLUGS`, `BUILD_SHARDS`, `BUILD_SHARD`. Ce dernier
+ * point n'est pas théorique : une preview est par définition COMPLÈTE, et un filtre hérité
+ * l'aurait amputée en silence tout en passant les deux vérifications, qui ne jugent que les pages
+ * PRÉSENTES. Relevé par Codex le 22/08/2026. */
+let childEnv;
+try {
+  childEnv = environnementDeBuild(process.env, {
+    PUBLIC_API_BASE: PREVIEW_API_BASE,
+    PUBLIC_SITE_ENV: "preview",
+  });
+} catch (e) {
+  if (!(e instanceof ErreurProvenance)) throw e;
+  console.error(`[build-preview] ${e.message}`);
+  process.exit(2);
+}
 
 log(`PUBLIC_API_BASE=${PREVIEW_API_BASE}`);
 log('PUBLIC_SITE_ENV=preview (fixé explicitement — le preview doit rester noindex)');
@@ -205,6 +227,17 @@ if (indexable.length > 0) {
   fail("un preview ne doit exposer aucune page indexable.");
 }
 log(`OK — les ${htmlFiles.length} pages HTML portent toutes une balise robots noindex.`);
+
+/* La carte d'identité du site : voir lib/provenance.mjs. Elle porte l'environnement RÉEL du build
+   — `childEnv` — et non celui du script, sans quoi les paramètres inscrits seraient faux.
+   Un échec est BLOQUANT et emprunte le même chemin que les deux vérifications ci-dessus : un
+   dist sans carte ne doit pas être déclaré déployable. */
+try {
+  ecrireProvenance(DIST_DIR, "complet", childEnv);
+} catch (e) {
+  if (!(e instanceof ErreurProvenance)) throw e;
+  fail(`la carte d'identité du site n'a pas pu être écrite — ${e.message}`);
+}
 
 log(`Build preview prêt : ${rel(DIST_DIR)}`);
 log("Prochaine étape : npx wrangler pages deploy packages/ui/dist --project-name=mydogcanfly-v2-preview --branch=<nom> [--commit-hash=<sha>]");

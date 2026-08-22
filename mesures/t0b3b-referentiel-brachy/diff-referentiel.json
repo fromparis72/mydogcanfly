@@ -1,0 +1,149 @@
+{
+ "lot": "T0-B3-b — retrait des 42 règles brachycéphales et entrée de l'avis IATA",
+ "nature": "mesure RÉELLE du diff : deux états du référentiel, un seul et même moteur",
+ "sceau": {
+  "measurement_base_sha": "dadecc29bd377fc6fa598ae234988cdb1ff0a8c1",
+  "raw_objects_sha256": "dca1706134b188fa569f7172fa2ccfcff8c81b131e554326cb5d1c47b65ffef0",
+  "raw_rules_sha256_avant": "a80118fac2cf4344f89521c1703c834c36d8d4d42b2dfb80dd858a4d95cec422",
+  "raw_rules_sha256_apres": "c87313aba29c6f69354cbd9d073a306801071cfbb86ea3d6991cc49a8497537c",
+  "raw_breed_restrictions_sha256_apres": "41318f220230f3193766de71319b9f3fc9e68a72ad20f20856c63ea5f0fef425"
+ },
+ "referentiel": {
+  "regles_avant": 449,
+  "regles_apres": 407,
+  "retirees": 42,
+  "ajoutees": 0,
+  "identites_retirees": [
+   "rule_aegean_brachy_hold",
+   "rule_aeromexico_brachy_hold",
+   "rule_air_caraibes_brachy_hold",
+   "rule_air_europa_brachy_hold",
+   "rule_air_india_brachy_hold",
+   "rule_air_mauritius_brachy_hold",
+   "rule_air_tahiti_nui_brachy_hold",
+   "rule_air_transat_brachy_hold",
+   "rule_alaska_brachy_hold",
+   "rule_ana_brachy_hold",
+   "rule_austrian_brachy_hold",
+   "rule_avianca_brachy_hold",
+   "rule_brussels_brachy_hold",
+   "rule_china_airlines_brachy_hold",
+   "rule_copa_brachy_hold",
+   "rule_corsair_brachy_hold",
+   "rule_egyptair_brachy_hold",
+   "rule_emirates_brachy_hold",
+   "rule_ethiopian_brachy_hold",
+   "rule_etihad_brachy_hold",
+   "rule_eva_air_brachy_hold",
+   "rule_finnair_brachy_hold",
+   "rule_french_bee_brachy_hold",
+   "rule_global_brachy_hold",
+   "rule_iberia_express_brachy_hold",
+   "rule_ita_airways_brachy_hold",
+   "rule_jal_brachy_hold",
+   "rule_korean_air_brachy_hold",
+   "rule_latam_brachy_hold",
+   "rule_lot_brachy_hold",
+   "rule_norwegian_brachy_hold",
+   "rule_philippine_brachy_hold",
+   "rule_qatar_airways_brachy_hold",
+   "rule_royal_air_maroc_brachy_hold",
+   "rule_sas_brachy_hold",
+   "rule_singapore_airlines_brachy_hold",
+   "rule_swiss_brachy_hold",
+   "rule_tap_brachy_hold",
+   "rule_thai_airways_brachy_hold",
+   "rule_transavia_brachy_hold",
+   "rule_vietnam_airlines_brachy_hold",
+   "rule_westjet_brachy_hold"
+  ],
+  "registre_de_race_avant": [],
+  "registre_de_race_apres": [
+   "brest_iata_snub_nose_hot_season"
+  ],
+  "regles_brachycephales_conservees": [
+   {
+    "id": "rule_ac_brachy_hold",
+    "compagnie": "airline_air_canada",
+    "source": "https://www.aircanada.com/ca/en/aco/home/plan/special-assistance/pets.html"
+   },
+   {
+    "id": "rule_af_brachy_hold",
+    "compagnie": "airline_air_france",
+    "source": "https://www.airfrance.com/information/optionsvols/animaux-en-avion"
+   },
+   {
+    "id": "rule_ba_brachy_hold",
+    "compagnie": "airline_british_airways",
+    "source": "https://www.britishairways.com/en-gb/information/travel-assistance/travelling-with-pets"
+   },
+   {
+    "id": "rule_kl_brachy_hold",
+    "compagnie": "airline_klm",
+    "source": "https://www.klm.com/information/travel-classes-extra-options/pets"
+   },
+   {
+    "id": "rule_lh_brachy_hold",
+    "compagnie": "airline_lufthansa",
+    "source": "https://www.lufthansa.com/de/en/travelling-with-animals"
+   },
+   {
+    "id": "rule_tk_brachy_hold",
+    "compagnie": "airline_turkish",
+    "source": "https://www.turkishairlines.com/en-int/any-questions/traveling-with-pets/"
+   }
+  ]
+ },
+ "diff_public": {
+  "scenarios": 72,
+  "verdicts": 20,
+  "cartes": 524,
+  "placements": 940,
+  "ecart_score": [
+   0,
+   2
+  ],
+  "golden_affecte": 0,
+  "avis_emis": 36,
+  "scenarios_avec_avis": 36,
+  "bascules": {
+   "denied → confirmation_required": 940
+  }
+ },
+ "diff_brachycephale": {
+  "compagnies": 81,
+  "placements": 147,
+  "cibles": {
+   "confirmation_required": 147
+  },
+  "depuis": {
+   "hold denied → confirmation_required": 70,
+   "cargo denied → confirmation_required": 77
+  }
+ },
+ "temoin_non_brachycephale": {
+  "compagnies": 0,
+  "placements": 0,
+  "cibles": {},
+  "depuis": {}
+ },
+ "interaction_climat_race": {
+  "route": "CDG→IST, carlin, juillet",
+  "avant": {
+   "canaux": 60,
+   "a_confirmer": 0,
+   "par_cause": {},
+   "climatiques": 0
+  },
+  "apres": {
+   "canaux": 60,
+   "a_confirmer": 24,
+   "par_cause": {
+    "breed_policy_unreviewed": 24,
+    "legacy_unreviewed": 14
+   },
+   "climatiques": 0
+  }
+ },
+ "exigences_tenues": true
+}

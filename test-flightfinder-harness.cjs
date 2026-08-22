@@ -59,6 +59,11 @@ const FAKE_REPORT = {
     label: "OK", source_url: "", carrier_of_origin: false, carrier_of_destination: false,
     itinerary_confidence: "confirmed", heat_embargo: false, fee: "",
   }],
+  /* `safety_advisories` est OBLIGATOIRE au contrat depuis T0-B3-a, et l'interface REFUSE désormais
+     un rapport qui ne le porte pas — un champ obligatoire absent n'est pas un rapport vide, c'est
+     un rapport qu'on ne sait pas lire. Ce fauteuil-là n'existait pas quand cette fixture a été
+     écrite : sans cette ligne, elle décrit un rapport que le contrat n'admet plus. */
+  safety_advisories: [],
   sources: [],
 };
 

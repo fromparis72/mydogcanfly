@@ -1,0 +1,581 @@
+{
+ "lot": "T0-B3-a — simulation de l'option H (v5, contrats moteur en place)",
+ "nature": "SIMULATION — aucun code moteur écrit, aucun fichier de packages/ modifié",
+ "sceau": {
+  "measurement_base_sha": "e2cf302ccf045c539ca450f23964bb7bf20af84c",
+  "raw_rules_sha256": "a80118fac2cf4344f89521c1703c834c36d8d4d42b2dfb80dd858a4d95cec422",
+  "raw_objects_sha256": "dca1706134b188fa569f7172fa2ccfcff8c81b131e554326cb5d1c47b65ffef0"
+ },
+ "referentiel_intact": true,
+ "contre_epreuve_active": null,
+ "modele": {
+  "contrat_consomme": "BreedRestriction (packages/knowledge/src/breed-restrictions.ts)",
+  "pourquoi": "le contrat canonique existe déjà : action allow|deny|warn|require, cible de race, placements, conditions, et une SourcedQuote obligatoire — citation, langue, type factuel, refus des domaines MyDogCanFly. La v2 proposait un état concurrent dans PlacementPolicy et s'appuyait sur `preuveAuditee`, qui ne vérifie NI citation NI langue : ce n'était pas une preuve brachycéphale au sens du contrat.",
+  "entrees_dans_le_referentiel_aujourd_hui": 0,
+  "entrees_dans_le_referentiel_cible_de_H": 1,
+  "consequence": "AUJOURD'HUI le référentiel n'en contient aucune. La CIBLE de H en contient une seule — l'avertissement IATA, action `warn`, qui ne décide rien. Les 102 compagnies tombent donc toutes sur « aucun fait audité applicable » : c'est un état de notre documentation, pas un choix de simulation.",
+  "table": [
+   "1 · canal structurellement fermé → denied",
+   "2 · BreedRestriction `deny` applicable → denied",
+   "5 · BreedRestriction `require` applicable → confirmation_required (l'exigence est à satisfaire)",
+   "3 · BreedRestriction `allow` applicable → statut général inchangé",
+   "4 · aucun fait audité applicable → confirmation_required (breed_policy_unreviewed)",
+   "`warn` (IATA) → conseil séparé, AUCUN effet sur le statut ni sur le score",
+   "AUCUNE priorité de résolution : `allow` + `deny` (CONTRADICTION) et `deny` + `require` (UNREACHABLE) sont refusés au CHARGEMENT par validateBreedRestrictions. Seul `allow` + `require`, que le validateur autorise, est tranché ici — l'exigence l'emporte, puisqu'elle dit ce qu'il faut faire pour que l'autorisation vaille."
+  ]
+ },
+ "exigences": [
+  {
+   "exigence": "les 42 identités sont exactement 42",
+   "tenue": true,
+   "detail": ""
+  },
+  {
+   "exigence": "les 42 identités sont uniques",
+   "tenue": true,
+   "detail": ""
+  },
+  {
+   "exigence": "les 41 règles compagnie sont bien de catégorie breed_ban et auto-citées",
+   "tenue": true,
+   "detail": ""
+  },
+  {
+   "exigence": "la règle globale IATA est présente et de portée globale",
+   "tenue": true,
+   "detail": ""
+  },
+  {
+   "exigence": "les 102 compagnies sont couvertes par la grille brachycéphale",
+   "tenue": true,
+   "detail": ""
+  },
+  {
+   "exigence": "le contrat accepte `breed_policy_unreviewed`",
+   "tenue": true,
+   "detail": ""
+  },
+  {
+   "exigence": "le contrat CONSERVE deux exigences distinctes sur le même canal",
+   "tenue": true,
+   "detail": ""
+  },
+  {
+   "exigence": "le contrat CONSERVE les DEUX preuves qui les fondent",
+   "tenue": true,
+   "detail": ""
+  },
+  {
+   "exigence": "`breed_requirement` sans `restriction_ref` est REFUSÉ",
+   "tenue": true,
+   "detail": ""
+  },
+  {
+   "exigence": "une exigence SANS preuve est refusée",
+   "tenue": true,
+   "detail": ""
+  },
+  {
+   "exigence": "une preuve SANS exigence correspondante est refusée",
+   "tenue": true,
+   "detail": ""
+  },
+  {
+   "exigence": "une preuve DUPLIQUÉE est refusée",
+   "tenue": true,
+   "detail": ""
+  },
+  {
+   "exigence": "G1 · aucun chien non brachycéphale touché",
+   "tenue": true,
+   "detail": ""
+  },
+  {
+   "exigence": "G2 · aucun refus STRUCTUREL (base sans les 42) n'est levé par H",
+   "tenue": true,
+   "detail": ""
+  },
+  {
+   "exigence": "G2bis · tout refus levé l'est UNIQUEMENT par le retrait des 42",
+   "tenue": true,
+   "detail": ""
+  },
+  {
+   "exigence": "G3 · aucune confirmation de race ne devient message climatique",
+   "tenue": true,
+   "detail": ""
+  },
+  {
+   "exigence": "G3bis · des causes climatiques sont RÉELLEMENT observées",
+   "tenue": true,
+   "detail": ""
+  },
+  {
+   "exigence": "G4 · aucune auto-citation ni URL IATA morte présentée comme preuve",
+   "tenue": true,
+   "detail": ""
+  },
+  {
+   "exigence": "G5 · aucune cause préexistante perdue, scénario par scénario",
+   "tenue": true,
+   "detail": ""
+  },
+  {
+   "exigence": "G6 · la dominance est exercée par une fixture et respectée",
+   "tenue": true,
+   "detail": ""
+  },
+  {
+   "exigence": "G7 · aucune des 42 n'entre dans le calcul",
+   "tenue": true,
+   "detail": ""
+  },
+  {
+   "exigence": "les fixtures de la table H sont toutes conformes",
+   "tenue": true,
+   "detail": ""
+  },
+  {
+   "exigence": "aucun rapport refusé par explain",
+   "tenue": true,
+   "detail": ""
+  },
+  {
+   "exigence": "aucune restriction conditionnelle laissée non simulée",
+   "tenue": true,
+   "detail": ""
+  },
+  {
+   "exigence": "les 147 bascules vont EXCLUSIVEMENT vers confirmation_required",
+   "tenue": true,
+   "detail": ""
+  },
+  {
+   "exigence": "deux exigences auditées produisent DEUX causes distinctes dans le rapport",
+   "tenue": true,
+   "detail": ""
+  },
+  {
+   "exigence": "`causeKey()` du moteur distingue maintenant deux exigences",
+   "tenue": true,
+   "detail": ""
+  },
+  {
+   "exigence": "un refus audité fait descendre LA SOURCE DE LA RESTRICTION jusqu'au rapport",
+   "tenue": true,
+   "detail": ""
+  },
+  {
+   "exigence": "`breed_policy_unreviewed` ne porte aucune preuve de race",
+   "tenue": true,
+   "detail": ""
+  },
+  {
+   "exigence": "un rapport précis porte EXACTEMENT un avis de sécurité",
+   "tenue": true,
+   "detail": ""
+  },
+  {
+   "exigence": "cet avis porte la référence, la portée, les trois placements, l'URL et la citation attendues",
+   "tenue": true,
+   "detail": ""
+  },
+  {
+   "exigence": "l'avis est rendu dans les QUATRE langues, avec quatre textes distincts",
+   "tenue": true,
+   "detail": ""
+  },
+  {
+   "exigence": "tous les avis émis passent leur contrat SafetyAdvisory",
+   "tenue": true,
+   "detail": ""
+  },
+  {
+   "exigence": "deux exigences produisent DEUX preuves distinctes à la sortie publique",
+   "tenue": true,
+   "detail": ""
+  },
+  {
+   "exigence": "la perte de preuves du contrat actuel est mesurée, non nulle et publiée",
+   "tenue": true,
+   "detail": ""
+  },
+  {
+   "exigence": "les sept contrats moteur exigés par l'arbitrage sont en place",
+   "tenue": true,
+   "detail": ""
+  },
+  {
+   "exigence": "`DecisionSource` NE porte PAS la citation — un seul chemin de preuve, pas deux",
+   "tenue": true,
+   "detail": ""
+  },
+  {
+   "exigence": "l'avertissement IATA `warn` ne change NI verdict NI score NI statut",
+   "tenue": true,
+   "detail": ""
+  },
+  {
+   "exigence": "l'avertissement IATA est réellement émis dans le parcours public",
+   "tenue": true,
+   "detail": ""
+  },
+  {
+   "exigence": "aucune URL d'avis n'apparaît comme source probante",
+   "tenue": true,
+   "detail": ""
+  },
+  {
+   "exigence": "72 scénarios publics",
+   "tenue": true,
+   "detail": ""
+  },
+  {
+   "exigence": "20 verdicts modifiés",
+   "tenue": true,
+   "detail": ""
+  },
+  {
+   "exigence": "524 cartes modifiées",
+   "tenue": true,
+   "detail": ""
+  },
+  {
+   "exigence": "940 placements modifiés",
+   "tenue": true,
+   "detail": ""
+  },
+  {
+   "exigence": "écart de score exactement [0, 2]",
+   "tenue": true,
+   "detail": ""
+  },
+  {
+   "exigence": "81 compagnies brachycéphales touchées",
+   "tenue": true,
+   "detail": ""
+  },
+  {
+   "exigence": "147 placements brachycéphales déplacés",
+   "tenue": true,
+   "detail": ""
+  },
+  {
+   "exigence": "147 cibles confirmation_required, et aucune autre",
+   "tenue": true,
+   "detail": ""
+  },
+  {
+   "exigence": "56 causes climatiques observées",
+   "tenue": true,
+   "detail": ""
+  },
+  {
+   "exigence": "le référentiel est intact après simulation",
+   "tenue": true,
+   "detail": ""
+  }
+ ],
+ "violations": [],
+ "branches_exercees_par_les_grilles": {
+  "0": 0,
+  "1": 1420,
+  "2": 0,
+  "3": 0,
+  "4": 2110,
+  "5": 0,
+  "9": 0
+ },
+ "branches_toutes_appels_confondus": {
+  "0": 0,
+  "1": 2832,
+  "2": 2,
+  "3": 0,
+  "4": 4325,
+  "5": 2,
+  "9": 0
+ },
+ "fixtures": [
+  {
+   "nom": "branche 1 · canal structurellement fermé",
+   "statut": "denied",
+   "branche": 1,
+   "cause": null,
+   "restriction_ref": null,
+   "source_url": null,
+   "citation": null,
+   "attendu": {
+    "statut": "denied",
+    "branche": 1
+   },
+   "conseils": 0,
+   "conforme": true
+  },
+  {
+   "nom": "branche 2 · deny audité",
+   "statut": "denied",
+   "branche": 2,
+   "cause": null,
+   "restriction_ref": "brest_fx_deny",
+   "source_url": "https://fx.example/pets",
+   "citation": "Snub-nosed breeds are not accepted in the hold.",
+   "attendu": {
+    "statut": "denied",
+    "branche": 2,
+    "cause": null,
+    "restriction_ref": "brest_fx_deny",
+    "source_url": "https://fx.example/pets",
+    "citation": "Snub-nosed breeds are not accepted in the hold."
+   },
+   "conseils": 0,
+   "conforme": true
+  },
+  {
+   "nom": "branche 3 · allow audité",
+   "statut": "allowed",
+   "branche": 3,
+   "cause": null,
+   "restriction_ref": "brest_fx_allow",
+   "source_url": "https://fx.example/pets",
+   "citation": "Snub-nosed breeds are accepted in the hold.",
+   "attendu": {
+    "statut": "allowed",
+    "branche": 3,
+    "cause": null,
+    "restriction_ref": "brest_fx_allow",
+    "source_url": "https://fx.example/pets",
+    "citation": "Snub-nosed breeds are accepted in the hold."
+   },
+   "conseils": 0,
+   "conforme": true
+  },
+  {
+   "nom": "branche 4 · aucun fait audité applicable",
+   "statut": "confirmation_required",
+   "branche": 4,
+   "cause": "breed_policy_unreviewed",
+   "restriction_ref": null,
+   "source_url": null,
+   "citation": null,
+   "attendu": {
+    "statut": "confirmation_required",
+    "branche": 4,
+    "cause": "breed_policy_unreviewed",
+    "restriction_ref": null,
+    "source_url": null,
+    "citation": null
+   },
+   "conseils": 0,
+   "conforme": true
+  },
+  {
+   "nom": "branche 5 · require audité → confirmation",
+   "statut": "confirmation_required",
+   "branche": 5,
+   "cause": "breed_requirement",
+   "restriction_ref": "brest_fx_require",
+   "source_url": "https://fx.example/pets",
+   "citation": "A veterinary fitness certificate is required for snub-nosed breeds.",
+   "attendu": {
+    "statut": "confirmation_required",
+    "branche": 5,
+    "cause": "breed_requirement",
+    "restriction_ref": "brest_fx_require",
+    "source_url": "https://fx.example/pets",
+    "citation": "A veterinary fitness certificate is required for snub-nosed breeds."
+   },
+   "conseils": 0,
+   "conforme": true
+  },
+  {
+   "nom": "warn IATA · aucun effet sur le statut",
+   "statut": "confirmation_required",
+   "branche": 4,
+   "cause": "breed_policy_unreviewed",
+   "restriction_ref": null,
+   "source_url": null,
+   "citation": null,
+   "attendu": {
+    "statut": "confirmation_required",
+    "branche": 4
+   },
+   "conseils": 1,
+   "conforme": true
+  },
+  {
+   "nom": "deny audité ciblant une AUTRE race · ne touche pas le carlin",
+   "statut": "confirmation_required",
+   "branche": 4,
+   "cause": "breed_policy_unreviewed",
+   "restriction_ref": null,
+   "source_url": null,
+   "citation": null,
+   "attendu": {
+    "statut": "confirmation_required",
+    "branche": 4
+   },
+   "conseils": 0,
+   "conforme": true
+  },
+  {
+   "nom": "chien NON brachycéphale · la table ne s'applique pas",
+   "statut": "allowed",
+   "branche": 9,
+   "cause": null,
+   "restriction_ref": null,
+   "source_url": null,
+   "citation": null,
+   "attendu": {
+    "statut": "allowed",
+    "branche": 9
+   },
+   "conseils": 0,
+   "conforme": true
+  }
+ ],
+ "fixture_dominance": {
+  "statut": "denied",
+  "causes_restantes": 0,
+  "conforme": true
+ },
+ "conseils_iata_emis": 3320,
+ "causes_finales_par_code": {
+  "policy_unpublished": 16,
+  "legacy_unreviewed": 896,
+  "estimated_climate": 56,
+  "breed_policy_unreviewed": 940
+ },
+ "coexistence_des_causes": {
+  "breed_policy_unreviewed + legacy_unreviewed": 440,
+  "breed_policy_unreviewed + policy_unpublished": 8,
+  "breed_policy_unreviewed + estimated_climate": 4
+ },
+ "causes_climatiques_observees": 56,
+ "dominance_jouee": 1,
+ "dette_auto_citee_residuelle_hors_perimetre": {
+  "occurrences": 224,
+  "regles_distinctes": [
+   "rule_air_algerie_cabin_weight",
+   "rule_american_no_hold",
+   "rule_cathay_pacific_hold_weight",
+   "rule_delta_no_hold",
+   "rule_etihad_hold_deny",
+   "rule_eurowings_cabin_only",
+   "rule_jetblue_cabin_only",
+   "rule_korean_air_cabin_weight",
+   "rule_latam_cabin_weight",
+   "rule_united_no_hold",
+   "rule_vietnam_airlines_cabin_weight",
+   "rule_vueling_cabin_only"
+  ],
+  "lecture": "les AUTRES auto-citations de T0-B3 (poids, placement, importation) — hors périmètre de H, résorption au lot suivant. Comptées à part pour ne pas lire la garantie 7 comme une propreté générale qui n'est pas atteinte."
+ },
+ "sonde_de_contrat": {
+  "breed_policy_unreviewed_acceptee": true,
+  "deux_exigences_conservees": true,
+  "deux_preuves_conservees": true,
+  "breed_requirement_sans_restriction_ref_refusee": true,
+  "exigence_sans_preuve_refusee": true,
+  "preuve_sans_exigence_refusee": true,
+  "preuve_dupliquee_refusee": true
+ },
+ "cardinalite_des_preuves": {
+  "causes": 2,
+  "preuves": 2,
+  "references_des_preuves": [
+   "brest_fx_req1",
+   "brest_fx_req2"
+  ],
+  "portees_par_PlacementDecision_source": 1,
+  "perdues_par_le_contrat_actuel": 1
+ },
+ "contrat_moteur_verifie": {
+  "DecisionReport_declare_safety_advisories": true,
+  "SafetyAdvisory_exporte_par_le_moteur": true,
+  "cle_de_deduplication_des_avis": true,
+  "ConfirmationCause_connait_breed_policy_unreviewed": true,
+  "ConfirmationCause_connait_breed_requirement": true,
+  "causeKey_integre_restriction_ref": true,
+  "preuves_plurielles_RestrictionEvidence": true,
+  "RestrictionEvidence_compose_SourcedQuote": true
+ },
+ "avis_sur_un_rapport_precis": {
+  "attendu": {
+   "restriction_ref": "brest_iata_snub_nose_hot_season",
+   "scope": "global",
+   "placements": [
+    "cabin",
+    "cargo",
+    "hold"
+   ],
+   "url": "https://www.iata.org/en/programs/cargo/live-animals/pets/",
+   "quote": "Transport of snub nose dogs, such as boxers, pugs, bulldogs and Pekinese, in hot season is not recommended."
+  },
+  "obtenu": {
+   "restriction_ref": "brest_iata_snub_nose_hot_season",
+   "scope": "global",
+   "placements": [
+    "cabin",
+    "cargo",
+    "hold"
+   ],
+   "text": "IATA advises against transporting snub-nosed dogs in hot season.",
+   "criticality": "medium",
+   "source": {
+    "url": "https://www.iata.org/en/programs/cargo/live-animals/pets/",
+    "source_type": "official_website",
+    "verified_date": "2026-08-16",
+    "review_due": "2027-02-12",
+    "confidence": 4,
+    "reviewer": "contre-revue Codex",
+    "history": [],
+    "quote": "Transport of snub nose dogs, such as boxers, pugs, bulldogs and Pekinese, in hot season is not recommended.",
+    "quote_language": "en"
+   }
+  },
+  "nombre": 1,
+  "par_langue": {
+   "en": {
+    "nombre": 1,
+    "text": "IATA advises against transporting snub-nosed dogs in hot season."
+   },
+   "fr": {
+    "nombre": 1,
+    "text": "L'IATA déconseille le transport des chiens au museau écrasé en saison chaude."
+   },
+   "es": {
+    "nombre": 1,
+    "text": "La IATA desaconseja transportar perros de hocico chato en temporada calurosa."
+   },
+   "pt": {
+    "nombre": 1,
+    "text": "A IATA desaconselha o transporte de cães de focinho achatado em época quente."
+   }
+  },
+  "textes_distincts": 4
+ },
+ "preuves": {
+  "attendues": 6,
+  "transportees_par_le_contrat_actuel": 4
+ },
+ "diff_contre_le_statu_quo": {
+  "grille_publique": {
+   "scenarios": 72,
+   "verdicts": 20,
+   "cartes": 524,
+   "placements": 940,
+   "ecart_score": [
+    0,
+    2
+   ],
+   "golden_affectes": 0
+  },
+  "grille_brachycephale": {
+   "compagnies": 81,
+   "placements": 147,
+   "par_statut_cible": {
+    "confirmation_required": 147
+   }
+  }
+ }
+}

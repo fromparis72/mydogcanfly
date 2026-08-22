@@ -14,6 +14,29 @@ Elle vérifie que les fichiers bruts correspondent à la base de mesure figée, 
 artefacts, vérifie `SHA256SUMS`, puis **exige un arbre Git propre** : régénérer ne doit rien
 changer.
 
+## ⚠ Ces chiffres décrivent le moteur du 17/08/2026 — et se rejouent sur lui
+
+Le câblage de l'option H a changé le moteur : **le retrait des 42 règles brachycéphales ne rouvre
+plus une soute en `allowed`, il la place à « à confirmer »**. C'est l'effet voulu par l'arbitrage
+T0-B3-a — mais la ligne « `breed_ban` + `rule_global_brachy_hold` » du tableau ci-dessous décrit
+donc un comportement que le moteur n'a plus.
+
+**`npm run mesure:t0b3` reste une reproduction, pas un contrôle d'intégrité.** Le sceau ne portait
+que le référentiel, jamais le code qui le lit — lacune révélée par l'incident. Il porte désormais
+aussi l'empreinte des sources du moteur, et lorsqu'elle diffère, les outils sont **rejoués dans un
+worktree Git détaché au commit qui a produit ces artefacts** (`a9a6556…`, moteur d'alors compris),
+puis comparés **octet à octet** aux fichiers archivés ici. Un artefact intact ne prouve rien ; un
+calcul qui se rejoue, si.
+
+Le rejeu vérifie aussi son propre environnement : il **refuse** de tourner si `package-lock.json` a
+changé depuis la mesure — monter les dépendances du jour dans un worktree d'hier rejouerait le code
+d'alors sur d'autres bibliothèques — et consigne la version de Node employée, confrontée au
+`.nvmrc` historique.
+
+Ce qui n'est plus fait, et ne doit pas l'être : recalculer sur le moteur actuel. Cela remplacerait
+en silence une mesure validée par une autre. Pour mesurer le moteur d'aujourd'hui, il faut déclarer
+une **nouvelle base** et un **nouveau dossier**.
+
 **Base de mesure : `ca254bf973bbab89f06073bdc36716f0cdb58660`**, en dur dans `lib-regles.mjs`. Elle
 n'est pas déduite de `HEAD` — la première version de ce dossier le faisait, et ses artefacts
 devenaient irreproductibles dès leur propre commit : régénérés, ils restaient métier-identiques mais

@@ -1,5 +1,6 @@
 import { z } from "zod";
-import { Placement, TravelType, Locale, TravelDate, PlacementStatus, TemperatureProvenance, estAutoCitation } from "@mydogcanfly/knowledge";
+import { Placement, TravelType, Locale, TravelDate, PlacementStatus, TemperatureProvenance, estAutoCitation, SourcedQuote } from "@mydogcanfly/knowledge";
+import type { LocalizedText } from "@mydogcanfly/knowledge";
 export type { PlacementStatus, TemperatureProvenance };
 
 /* ---- T0-A : le statut porte sa cause (contre-revues des 13–14/08/2026) ----------------------
@@ -18,6 +19,9 @@ export type { PlacementStatus, TemperatureProvenance };
  *  (une règle se référence par `rule_id`). */
 const POLICY_REF_RE = /^airline_[a-z0-9_]+#(cabin|hold|cargo)$/;
 
+/** Les trois statuts, en littéraux — pour indexer une table sans la désynchroniser du contrat. */
+type PlacementStatusLitteral = "allowed" | "denied" | "confirmation_required";
+
 export const ConfirmationCause = z.discriminatedUnion("code", [
   /** Embargo `summer_embargo` déclenché sur une température ESTIMÉE — la seule cause active en T0-A. */
   z.object({ code: z.literal("estimated_climate"), rule_id: z.string().min(1) }).strict(),
@@ -31,6 +35,29 @@ export const ConfirmationCause = z.discriminatedUnion("code", [
    *  la perte d'interprétation que T0-B répare. `policy_ref` est obligatoire — une donnée non
    *  revérifiée sans le couple (compagnie, canal) qu'elle concerne serait inauditables. */
   z.object({ code: z.literal("legacy_unreviewed"), policy_ref: z.string().regex(POLICY_REF_RE) }).strict(),
+  /**
+   * NOTRE politique BRACHYCÉPHALE n'a pas été revérifiée (T0-B3-a). Distincte de
+   * `legacy_unreviewed`, qui parle de notre donnée de CANAL : celle-ci parle de ce que la
+   * compagnie fait des chiens au museau écrasé, et les confondre reproduirait exactement la perte
+   * d'interprétation que T0-B a réparée. Aucune preuve ne l'accompagne — une absence de fait n'en
+   * a pas ; lui attacher la provenance du canal présenterait cette page comme la preuve d'une
+   * politique de race qu'elle ne documente pas.
+   */
+  z.object({ code: z.literal("breed_policy_unreviewed"), policy_ref: z.string().regex(POLICY_REF_RE) }).strict(),
+  /**
+   * Une EXIGENCE officielle auditée porte sur cette race (`BreedRestriction` `require`) : la
+   * compagnie accepte, à condition que quelque chose soit satisfait. Ce n'est PAS une politique
+   * non revérifiée — l'une dit « nous ne savons pas », l'autre « la compagnie exige ceci ».
+   *
+   * `restriction_ref` est OBLIGATOIRE : le contrat autorise plusieurs exigences sur un même canal
+   * — certificat vétérinaire ET caisse renforcée — et sans elle `causeKey()` les écraserait en
+   * une, si bien que le visiteur n'en verrait qu'une (mesuré en simulation, 2 causes → 1 clé).
+   */
+  z.object({
+    code: z.literal("breed_requirement"),
+    policy_ref: z.string().regex(POLICY_REF_RE),
+    restriction_ref: z.string().regex(/^brest_[a-z0-9_]+$/),
+  }).strict(),
   /** Fait requis absent (poids total T2, âge T3). `fact` restera à resserrer en registre fermé
    *  avant la première migration T2/T3 — aucune donnée réelle ne l'émet en T0-A. */
   z.object({ code: z.literal("missing_fact"), fact: z.string().min(1), requirement_ref: z.string().min(1) }).strict(),
@@ -41,6 +68,9 @@ export type ConfirmationCause = z.infer<typeof ConfirmationCause>;
 export const causeKey = (c: ConfirmationCause): string =>
   c.code === "estimated_climate" ? `${c.code}|${c.rule_id}`
   : c.code === "missing_fact" ? `${c.code}|${c.fact}|${c.requirement_ref}`
+  /* `restriction_ref` fait partie de l'identité d'une exigence : deux exigences distinctes sur le
+     même canal partagent leur `policy_ref` et seraient dédupliquées sans elle. */
+  : c.code === "breed_requirement" ? `${c.code}|${c.policy_ref}|${c.restriction_ref}`
   : `${c.code}|${c.policy_ref}`;
 
 const sortDedupCauses = (causes: ConfirmationCause[]): ConfirmationCause[] => {
@@ -71,17 +101,141 @@ export const DecisionSource = z.object({
 });
 export type DecisionSource = z.infer<typeof DecisionSource>;
 
-export const PlacementDecision = z.discriminatedUnion("status", [
-  z.object({ placement: Placement, status: z.literal("allowed"), allowed: z.literal(true), source: DecisionSource.optional() }).strict(),
-  z.object({ placement: Placement, status: z.literal("denied"), allowed: z.literal(false), source: DecisionSource.optional() }).strict(),
+/**
+ * LA PREUVE D'UNE RESTRICTION DE RACE — au PLURIEL, et distincte de `DecisionSource`.
+ *
+ * Deux chemins concurrents auraient été pires que le défaut : `DecisionSource` reste la projection
+ * COURTE de la politique générale du canal (quatre champs, pas de citation), et les faits de race
+ * portent leur propre preuve, complète et au pluriel.
+ *
+ * Pourquoi le pluriel : le contrat `BreedRestriction` autorise plusieurs entrées décisives sur un
+ * même canal — deux `require`, ou deux `deny` concordants documentés sur deux pages. Une source
+ * singulière en perdait une (mesuré en simulation : 2 preuves produites, 1 transportée).
+ *
+ * Pourquoi `SourcedQuote` et non une provenance réduite : ce contrat garantit la citation, sa
+ * langue, un type de source factuel, les dates, la confiance, le relecteur, l'historique et le
+ * refus des auto-citations. En redéfinir une version appauvrie ici recréerait le modèle parallèle
+ * que T0-B3-a a passé quatre revues à supprimer.
+ */
+export const RestrictionEvidence = z.object({
+  restriction_ref: z.string().regex(/^brest_[a-z0-9_]+$/),
+  /**
+   * CE QUE LA PREUVE FONDE — ajouté au câblage de l'étape 2, sur un état que l'étape 1-bis
+   * n'avait pas rencontré et que le contrat refusait donc à tort.
+   *
+   * Une restriction `allow` sur un canal dont le statut de base est déjà « à confirmer » (politique
+   * non publiée, par exemple) laisse le statut inchangé et ne crée AUCUNE cause : sa preuve
+   * apparaissait alors comme « une preuve sans cause correspondante » et la décision devenait
+   * inconstructible. Les deux réponses possibles étaient mauvaises : perdre la preuve de
+   * l'autorisation (la même restriction serait citée quand la politique est ouverte et muette
+   * quand elle est à confirmer), ou relâcher l'accord et rouvrir le défaut que l'étape 1-bis a
+   * fermé.
+   *
+   * Le rôle tranche : l'accord exact ne porte que sur les preuves d'EXIGENCE, celles qui motivent
+   * une cause. Les preuves d'autorisation et de refus documentent sans motiver — elles restent
+   * libres, mais toujours uniques et jamais orphelines d'une restriction réelle.
+   */
+  role: z.enum(["requirement", "authorisation", "refusal"]),
+  source: SourcedQuote,
+}).strict();
+export type RestrictionEvidence = z.infer<typeof RestrictionEvidence>;
+
+/** Un tableau de preuves : jamais vide quand il est présent — `evidence: []` dirait « des preuves,
+ *  aucune », ce qui n'a pas de sens et masquerait un chemin de code qui les a perdues. */
+const EvidenceArray = z.array(RestrictionEvidence).min(1);
+
+const PlacementDecisionShape = z.discriminatedUnion("status", [
+  z.object({ placement: Placement, status: z.literal("allowed"), allowed: z.literal(true),
+    source: DecisionSource.optional(), evidence: EvidenceArray.optional() }).strict(),
+  z.object({ placement: Placement, status: z.literal("denied"), allowed: z.literal(false),
+    source: DecisionSource.optional(), evidence: EvidenceArray.optional() }).strict(),
   z.object({
     placement: Placement,
     status: z.literal("confirmation_required"),
     allowed: z.literal(false),
     confirmation_causes: z.array(ConfirmationCause).min(1),
     source: DecisionSource.optional(),
+    evidence: EvidenceArray.optional(),
   }).strict(),
 ]);
+
+/* ---- L'ACCORD ENTRE LES CAUSES ET LES PREUVES (contre-revue du 16/08/2026) -------------------
+ *
+ * Le contrat pluriel existait, mais rien ne le RELIAIT aux causes : une exigence sans preuve, une
+ * preuve sans exigence, la même preuve deux fois et une politique non revérifiée accompagnée d'une
+ * preuve de race passaient toutes les quatre. Un contrat qui décrit la forme sans décrire la
+ * relation laisse au moteur le soin de la tenir — c'est-à-dire à personne.
+ *
+ * La règle est une ÉGALITÉ D'ENSEMBLES, pas une inclusion : sur un canal `confirmation_required`,
+ * les `restriction_ref` des preuves d'EXIGENCE (`role: "requirement"`) sont exactement ceux des
+ * causes `breed_requirement`.
+ *   · une exigence sans sa preuve publierait « la compagnie exige ceci » sans dire d'où ça sort ;
+ *   · une preuve d'exigence sans sa cause afficherait une citation qui ne motive rien ;
+ *   · le cas `breed_policy_unreviewed` n'a AUCUNE preuve de race, quel qu'en soit le rôle — une
+ *     absence de fait n'en a pas, et lui en attacher une la présenterait comme documentée ;
+ *   · un doublon compterait deux fois la même page.
+ *
+ * `allowed` / `denied` ne portent pas de causes : leurs preuves restent facultatives (une
+ * interdiction de race documentée reste utile à afficher), mais toujours non vides et uniques.
+ * Une preuve d'EXIGENCE y reste légitime : c'est l'état exact d'une confirmation dégradée en refus
+ * par `entryAllowed`, où les causes s'éteignent et où la preuve, elle, doit survivre.
+ */
+/**
+ * Quels RÔLES un statut peut porter.
+ *
+ *   · `allowed` — une autorisation, et rien d'autre : une preuve de refus sur un canal ouvert, ou
+ *     une exigence sur un canal sans condition, décriraient un état que le moteur ne peut pas
+ *     produire et que le visiteur ne pourrait pas lire ;
+ *   · `confirmation_required` — une autorisation ou une exigence ; jamais un refus, qui aurait
+ *     fermé le canal ;
+ *   · `denied` — LES TROIS. Une confirmation dégradée en refus par l'interdiction d'entrée du pays
+ *     garde ses preuves, exigences comprises : c'est le cas verrouillé par l'étape 1-bis, et le
+ *     refuser ici reperdrait exactement ce qu'elle a sauvé.
+ */
+const ROLES_ADMIS: Record<PlacementStatusLitteral, readonly string[]> = {
+  allowed: ["authorisation"],
+  confirmation_required: ["authorisation", "requirement"],
+  denied: ["authorisation", "requirement", "refusal"],
+};
+
+export const PlacementDecision = PlacementDecisionShape.superRefine((d, ctx) => {
+  const refs = (d.evidence ?? []).map((e) => e.restriction_ref);
+  const uniques = new Set(refs);
+  const admis = ROLES_ADMIS[d.status];
+  for (const e of d.evidence ?? []) {
+    if (!admis.includes(e.role)) {
+      ctx.addIssue({ code: z.ZodIssueCode.custom, path: ["evidence"],
+        message: `preuve de rôle « ${e.role} » sur un canal ${d.status} (${e.restriction_ref}) : `
+          + `rôles admis — ${admis.join(", ")}` });
+    }
+  }
+  if (uniques.size !== refs.length) {
+    ctx.addIssue({ code: z.ZodIssueCode.custom, path: ["evidence"],
+      message: `preuve dupliquée sur ${d.placement} : ${refs.join(", ")}` });
+  }
+  if (d.status !== "confirmation_required") return;
+  if (d.confirmation_causes.some((c) => c.code === "breed_policy_unreviewed") && refs.length) {
+    ctx.addIssue({ code: z.ZodIssueCode.custom, path: ["evidence"],
+      message: `« politique de race non revérifiée » sur ${d.placement} : une absence de fait ne `
+        + `porte aucune preuve (${refs.join(", ")})` });
+  }
+  const exigences = new Set(
+    d.confirmation_causes.flatMap((c) => (c.code === "breed_requirement" ? [c.restriction_ref] : [])),
+  );
+  const preuvesExigence = new Set(
+    (d.evidence ?? []).flatMap((e) => (e.role === "requirement" ? [e.restriction_ref] : [])),
+  );
+  const sansPreuve = [...exigences].filter((r) => !preuvesExigence.has(r));
+  const sansCause = [...preuvesExigence].filter((r) => !exigences.has(r));
+  if (sansPreuve.length) {
+    ctx.addIssue({ code: z.ZodIssueCode.custom, path: ["evidence"],
+      message: `exigence de race sans preuve sur ${d.placement} : ${sansPreuve.join(", ")}` });
+  }
+  if (sansCause.length) {
+    ctx.addIssue({ code: z.ZodIssueCode.custom, path: ["evidence"],
+      message: `preuve d'exigence sans cause correspondante sur ${d.placement} : ${sansCause.join(", ")}` });
+  }
+});
 export type PlacementDecision = z.infer<typeof PlacementDecision>;
 
 /** Le triplet complet d'une compagnie : exactement cabine, soute et fret — ni absence, ni doublon.
@@ -102,16 +256,26 @@ export function makePlacementDecision(
   causes?: ConfirmationCause[],
   /** La preuve du canal, DÉJÀ passée par `preuveAuditee` — jamais la source racine de la fiche. */
   source?: unknown,
+  /** Les preuves des restrictions de RACE qui ont tranché — une par restriction décisive, jamais
+   *  réduites à la première. Distinctes de `source`, qui reste la projection courte du canal. */
+  evidence?: RestrictionEvidence[],
 ): PlacementDecision {
   /* La preuve est facultative : la plupart des politiques n'en ont pas d'auditée, et une décision
      sans source vaut mieux qu'une décision avec une source fabriquée. Quand elle existe, elle est
      réduite aux quatre champs du contrat — le reste (citation, relecteur, historique) appartient
      à la fiche, pas à la carte. */
   const preuve = source ? DecisionSource.parse(reduireSource(source)) : undefined;
+  /* `evidence === undefined` (aucune preuve) et `evidence === []` (« des preuves, aucune ») sont
+     deux choses différentes : la première est légitime, la seconde est refusée par le schéma.
+     La première version ramenait le tableau vide à `undefined` — un appelant qui aurait perdu ses
+     preuves en chemin aurait produit une décision valide et muette. Les preuves sont TRIÉES ici,
+     jamais dédupliquées : dédupliquer effacerait le doublon que le contrat doit refuser. */
+  const preuves = evidence && [...evidence].sort((a, b) => a.restriction_ref.localeCompare(b.restriction_ref));
   return PlacementDecision.parse(
     status === "confirmation_required"
-      ? { placement, status, allowed: false, confirmation_causes: sortDedupCauses(causes ?? []), source: preuve }
-      : { placement, status, allowed: status === "allowed", source: preuve },
+      ? { placement, status, allowed: false, confirmation_causes: sortDedupCauses(causes ?? []),
+          source: preuve, evidence: preuves }
+      : { placement, status, allowed: status === "allowed", source: preuve, evidence: preuves },
   );
 }
 /** Les quatre champs du contrat, extraits d'une source de fiche — `.strict()` refuse les autres. */
@@ -360,6 +524,9 @@ export interface Decision {
   domestic: boolean;       // same country at both ends: no border crossing, so no import requirements apply
   brachycephalic: boolean; // effective snub-nosed flag (from request or breed) — drives welfare wording
   climate: Climate;        // seasonal temperature context (drives the automatic heat embargo)
+  /** Les signaux d'avis levés par les restrictions `warn`, AVANT localisation et déduplication.
+   *  OBLIGATOIRE, quitte à être vide — voir `DecisionReport.safety_advisories`. */
+  breed_advisories: AdvisorySignal[];
 }
 
 /* ---- Public output contract: the Decision Report (Explanation Engine output) ---- */
@@ -435,6 +602,62 @@ export interface AirlineResult {
   origin_airport_id?: string;       // the specific origin airport used, when it differs from the one searched (city search)
   destination_airport_id?: string;  // idem for the destination
 }
+/**
+ * UN AVIS DE SÉCURITÉ — ce que le site RECOMMANDE sans l'imposer.
+ *
+ * Il naît d'une `BreedRestriction` `warn` : le cas fondateur du contrat, celui de la
+ * recommandation IATA qui déconseille le transport des chiens au museau écrasé en saison chaude
+ * sans l'interdire. En faire un refus est précisément ce qui a produit `rule_global_brachy_hold`,
+ * une interdiction universelle et permanente là où la source dit « not recommended ».
+ *
+ * Un avis N'AGIT SUR RIEN : ni statut de canal, ni score, ni `fired`, ni sources probantes. Il
+ * informe. C'est pourquoi il vit dans un champ à lui et non parmi les preuves.
+ *
+ * `text` est DÉJÀ localisé, comme `ReportItem.text` : le rapport ne transporte pas un objet
+ * multilingue que l'interface aurait à démêler.
+ */
+export const SafetyAdvisory = z.object({
+  restriction_ref: z.string().regex(/^brest_[a-z0-9_]+$/),
+  /** « global » ou une compagnie — la portée de l'avis, jamais devinée. */
+  scope: z.union([z.literal("global"), z.string().regex(/^airline_[a-z0-9_]+$/)]),
+  /** Non vide ET sans doublon : `["hold","hold"]` afficherait deux fois le même conseil sur le
+   *  même canal, et rendrait la longueur du tableau inutilisable comme mesure de portée. */
+  placements: z.array(Placement).min(1).refine((p) => new Set(p).size === p.length, {
+    message: "placements : doublon",
+  }),
+  text: z.string().min(1),
+  /* PAS DE `criticality`. La v1 en publiait une, toujours `"medium"` : aucune `BreedRestriction`
+     n'en porte, et la page IATA ne donne aucune échelle de gravité. Une valeur constante présentée
+     comme un fait de la source est une affirmation inventée, fût-elle neutre — exactement le
+     glissement que ce chantier corrige. Si l'interface a besoin d'un ordre d'affichage, ce sera un
+     contrat de PRÉSENTATION distinct, avec sa grille documentée, jamais un attribut prêté à la
+     source. */
+  source: SourcedQuote,
+}).strict();
+export type SafetyAdvisory = z.infer<typeof SafetyAdvisory>;
+
+/** Clé de déduplication d'un avis : (restriction, portée). Un avis GLOBAL vaut pour le RAPPORT —
+ *  l'émettre une fois par compagnie et par canal ne dit rien de ce que reçoit un visiteur. */
+export const advisoryKey = (a: SafetyAdvisory): string => `${a.restriction_ref}|${a.scope}`;
+
+/**
+ * LE SIGNAL D'AVIS, tel qu'`evaluate` le produit — avant le choix de la langue.
+ *
+ * `evaluate` décide QUOI dire et sur quels canaux ; `explain` décide DANS QUELLE LANGUE, comme
+ * pour tout `ReportItem`. Faire choisir la langue à `evaluate` l'aurait obligé à lire
+ * `request.locale` alors que `explain(decision, locale)` reçoit la sienne : deux sources de
+ * vérité pour la même question, et un rapport qui pourrait sortir dans une langue que son
+ * appelant n'a pas demandée.
+ */
+export interface AdvisorySignal {
+  restriction_ref: string;
+  scope: "global" | string;
+  placements: Placement[];
+  /** Le texte MULTILINGUE de la restriction — `explain` en extrait la langue du rapport. */
+  detail: LocalizedText;
+  source: SourcedQuote;
+}
+
 export interface DecisionReport {
   verdict: "compatible" | "conditional" | "incompatible";
   /** 0..100 TRIP-level score (see computeScore() in explain.ts) — every candidate airline on this
@@ -445,6 +668,10 @@ export interface DecisionReport {
   score: number;
   /** Airline-by-airline comparison for this dog + route, direct flights first. */
   airlines: AirlineResult[];
+  /** Les avis de sécurité du rapport, dédupliqués par (restriction, portée). OBLIGATOIRE, quitte
+   *  à être vide : un champ facultatif est un champ que l'interface peut ignorer sans que rien
+   *  n'échoue — c'est exactement ce que la contre-revue a refusé. */
+  safety_advisories: SafetyAdvisory[];
   /** Destination country, for the flag + link to its entry-requirements page. */
   destination_country?: { iso2: string; name: string };
   /** True when origin and destination are the same country: no border, so no import formalities apply. */
