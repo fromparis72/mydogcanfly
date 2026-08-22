@@ -407,6 +407,22 @@ const MUTATIONS = [
     attendu: "aucun lien ne sort de la langue du lecteur",
   },
   {
+    nom: "un paragraphe FRANÇAIS est resté dans sa version anglaise exacte",
+    fichier: "packages/ui/src/content/guides/fr/retroplanning-vol-international-chien.md",
+    /* LA CONTRE-ÉPREUVE DE CODEX DU 23/08/2026, FIGÉE. Elle a montré un faux vert : `fr` était rangé
+       parmi les langues SOURCES, si bien que les contrôles de fidélité, de cardinalité et d'anglais
+       résiduel ne parcouraient que `es` et `pt`. Les dix traductions françaises nées dans ce lot y
+       échappaient entièrement, et remplacer un paragraphe par sa version anglaise EXACTE laissait
+       le harnais répondre « tout tient ».
+
+       La mutation reprend son geste mot pour mot : le premier paragraphe français cède la place au
+       premier paragraphe anglais de son jumeau `pet-flight-timeline`. */
+    cherche: "La plupart des guides sur l'avion avec un animal présentent une liste à cocher. Une liste laisse entendre que les points peuvent se faire dans n'importe quel ordre et en parallèle, et pour un déménagement international c'est exactement le mauvais modèle mental. Plusieurs étapes comportent des **délais d'attente obligatoires**, et ce sont ces délais — pas les papiers, pas la réservation — qui décident si une date de départ donnée est possible.",
+    remplace: "Most guides to flying with a pet present a checklist. A checklist implies the items can be done in any order and in parallel, and for an international move that is exactly the wrong mental model. Several steps carry **mandatory waiting periods**, and those periods — not the paperwork, not the booking — decide whether a given departure date is possible at all.",
+    harnais: "test-guides-traduits.mjs",
+    attendu: "aucune phrase n'est restée en anglais",
+  },
+  {
     nom: "un guide renvoie vers un outil que le site ne sert pas",
     fichier: "packages/ui/src/content/guides/en/dog-heatstroke.md",
     cherche: "## Why are dogs so vulnerable to heat?",

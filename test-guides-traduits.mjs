@@ -89,6 +89,40 @@ for (const g of tous) {
   parCle.get(g.key)[g.locale] = g;
 }
 
+/* ---- QUI EST UNE TRADUCTION ? ÇA SE DÉDUIT, ÇA NE SE DÉCLARE PAS PAR LA LANGUE ---------------
+ *
+ * LE FAUX VERT DU 23/08/2026, trouvé par Codex et reproduit : `fr` était rangé une fois pour
+ * toutes parmi les langues SOURCES, si bien que les sections 3 et 4 — fidélité au jumeau anglais,
+ * cardinalités, corps non recopié, phrases restées en anglais — ne parcouraient que `es` et `pt`.
+ * Remplacer un paragraphe français par sa version anglaise EXACTE laissait le harnais vert.
+ *
+ * Le classement par langue était juste le jour où il a été écrit — le français ne contenait alors
+ * que des articles importés — et il est devenu faux dès que dix traductions françaises sont nées
+ * ici. C'est le même défaut que les listes de chemins écrites à la main : vrai à l'écriture, faux
+ * au fichier suivant.
+ *
+ * LE DISCRIMINANT EXISTE DÉJÀ, ET IL EST DÉJÀ VÉRIFIÉ. Un guide importé de l'ancien site porte un
+ * `sourceUrl` ; un guide né ici n'en a pas. La section 2 confronte en outre chaque `sourceUrl`
+ * anglais aux fichiers réels de `content/posts`, et exige que le statut d'un guide français soit
+ * celui de son jumeau anglais. On peut donc s'y fier : est une TRADUCTION tout guide non anglais
+ * sans `sourceUrl`, quelle que soit sa langue.
+ *
+ * Et les 62 français importés restent hors de ces contrôles, à raison : ce ne sont pas des
+ * traductions de l'anglais mais des originaux écrits dans leur langue. Leur exiger la cardinalité
+ * de FAQ de l'anglais serait la faute que ce chantier a déjà commise une fois. */
+const A_CONFRONTER = Object.fromEntries(LANGUES.filter((l) => l !== "en")
+  .map((l) => [l, parLangue[l].filter((g) => !g.aSourceUrl)]));
+/* JAMAIS VERT FAUTE DE MATIÈRE, et c'est ce contrôle-ci qui aurait crié le 23/08 : le nombre de
+   traductions françaises confrontées doit être EXACTEMENT le nombre d'articles anglais nés ici.
+   S'il retombait à zéro — le trou d'origine —, cette ligne le dirait au lieu de le taire. */
+const EN_NES_ICI = parLangue.en.filter((g) => !g.aSourceUrl);
+for (const l of Object.keys(A_CONFRONTER)) {
+  const attendu = l === "fr" ? EN_NES_ICI.length : parLangue.en.length;
+  exiger(`${A_CONFRONTER[l].length} traduction(s) ${l} sont confrontées à l'anglais, ${attendu} attendue(s)`,
+    A_CONFRONTER[l].length === attendu && attendu > 0,
+    `un écart ici veut dire que des traductions échappent aux sections 3 et 4`);
+}
+
 /* ---- 1. Le pivot ---------------------------------------------------------------------------- */
 /* `key` relie les langues entre elles. Une traduction sans jumeau anglais serait une page
    orpheline : pas d'alternates, pas d'entrée à l'index, invisible au sélecteur de langue. */
@@ -104,6 +138,23 @@ for (const l of LANGUES) {
   exiger(`les slugs ${l} sont en minuscules, sans accent ni espace`,
     slugs.every((s) => /^[a-z0-9]+(-[a-z0-9]+)*$/.test(s)),
     slugs.filter((s) => !/^[a-z0-9]+(-[a-z0-9]+)*$/.test(s)).join(", "));
+}
+
+/* ---- 1bis. TOUT ARTICLE ANGLAIS PARAÎT DANS LES QUATRE LANGUES ------------------------------
+ * Le pivot ci-dessus interdit l'orphelin dans UN sens : une traduction sans jumeau anglais. Il ne
+ * disait rien de l'autre — un article anglais sans traduction passait sans un mot. Le « reste à
+ * traduire » du verdict le comptait bien, mais il n'était qu'AFFICHÉ : un nombre qu'il faut
+ * regarder n'est pas un contrôle. Ici il bloque, et c'est ce qui rend vraie la promesse du lot —
+ * chaque article paraît d'emblée dans les quatre langues. */
+{
+  const autres = LANGUES.filter((l) => l !== "en");
+  const manques = [];
+  for (const g of parLangue.en) {
+    for (const l of autres) if (!parCle.get(g.key)?.[l]) manques.push(`${g.key} → ${l}`);
+  }
+  exiger(`les ${parLangue.en.length} articles anglais paraissent tous en ${autres.join(", ")}`,
+    manques.length === 0 && parLangue.en.length > 0,
+    manques.slice(0, 6).join(", ") + (manques.length > 6 ? `, et ${manques.length - 6} autre(s)` : ""));
 }
 
 /* ---- 2. `sourceUrl` : la garantie déplacée, pas supprimée ------------------------------------ */
@@ -158,8 +209,8 @@ for (const l of TRADUITES) {
  * Aucune traduction n'est jamais antidatée pour satisfaire une égalité artificielle. */
 const CHAMPS_IDENTIQUES = ["date", "author", "coverImage"];
 const CHAMPS_TRADUITS = ["title", "description", "summary"];
-for (const l of TRADUITES) {
-  for (const g of parLangue[l]) {
+for (const l of Object.keys(A_CONFRONTER)) {
+  for (const g of A_CONFRONTER[l]) {
     const en = parCle.get(g.key)?.en;
     if (!en) continue; // déjà signalé plus haut
     const ou = `${l}/${g.fichier}`;
@@ -232,8 +283,8 @@ const phrases = (t) => (t ?? "")
   .split(/(?<=[.!?])\s+|\n{2,}/)
   .map((p) => p.replace(/[*_#>`|-]/g, " ").replace(/\s+/g, " ").trim().toLowerCase())
   .filter((p) => p.split(" ").length >= 8);
-for (const l of TRADUITES) {
-  for (const g of parLangue[l]) {
+for (const l of Object.keys(A_CONFRONTER)) {
+  for (const g of A_CONFRONTER[l]) {
     const en = parCle.get(g.key)?.en;
     if (!en) continue;
     const communes = new Set(phrases(en.corps));
@@ -318,6 +369,12 @@ for (const l of LANGUES) {
 const traduits = TRADUITES.map((l) => `${l}=${parLangue[l].length}`).join(" · ");
 dire("");
 dire(`  guides : en=${parLangue.en.length} · fr=${parLangue.fr.length} · ${traduits}`);
+/* Le français a DEUX populations, et les confondre est exactement ce qui a produit le faux vert du
+   23/08/2026 : le total « fr=72 » ne disait pas que dix d'entre eux sont des traductions, ni
+   qu'aucune n'était confrontée à l'anglais. Le relevé les sépare désormais. */
+dire(`  dont traductions confrontées à l'anglais : `
+  + Object.keys(A_CONFRONTER).map((l) => `${l} ${A_CONFRONTER[l].length}`).join(" · ")
+  + ` (fr : ${parLangue.fr.length - A_CONFRONTER.fr.length} importés, hors ces contrôles)`);
 /* Le reste à traduire se COMPTE, il ne se déduit pas d'un 62 figé : ce nombre était le total du
    corpus importé, et il est devenu faux le jour où des articles sont nés ici. Un compteur qui
    affiche « es -10 » ne renseigne plus personne — on compare donc les clés, langue par langue. */
