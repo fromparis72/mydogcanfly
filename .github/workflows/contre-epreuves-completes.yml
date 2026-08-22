@@ -57,7 +57,19 @@ jobs:
     timeout-minutes: 180
 
     steps:
+      # `fetch-depth: 0` — MÊME EXIGENCE QUE DANS `ci.yml`, ET POUR LA MÊME RAISON.
+      # `--tout` joue les mutations qui visent les dossiers de mesure ; ceux-ci lisent leur état
+      # « avant » au commit de base par `git show <sha>:<chemin>`. Sur le clone superficiel que
+      # `actions/checkout` fait par défaut, ce commit n'existe pas. Ce troisième checkout avait été
+      # oublié le 23/08/2026 : le défaut corrigé dans `ci.yml` se serait reproduit ici dès la pose
+      # de l'étiquette, une heure de build plus tard.
+      #
+      # L'historique entier importe doublement ici : les bases de T0-B3-b, c, d, e et du dossier
+      # moteur ne vivent que sur la branche `t0b3-source-fige`, conservée exprès (voir
+      # `mesures/DEPENDANCE-HISTORIQUE.md`).
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          fetch-depth: 0
 
       - name: Node 22 (depuis .nvmrc)
         uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020 # v7.0.0
