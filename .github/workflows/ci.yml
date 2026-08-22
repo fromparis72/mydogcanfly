@@ -105,6 +105,16 @@ jobs:
       - name: Tests unitaires
         run: npm run test:unit
 
+      # LE CONTRAT DE PROVENANCE, ÉPROUVÉ PAR SES PROPRES ATTAQUES. Les huit contre-épreuves qui
+      # l'ont établi les 20 et 21/08/2026 avaient été jouées À LA MAIN, une fois, et consignées
+      # dans un compte rendu — c'est-à-dire non rejouables, ce que ce dépôt reproche par ailleurs
+      # à toute vérification manuelle. Les trois trous trouvés le 22/08/2026 (outillage de build
+      # hors périmètre, `OUTDIR`/`BUILD_SHARD(S)` ignorés, git échouant OUVERT) sont exactement le
+      # genre de régression qu'un catalogue figé aurait vue. Ce harnais construit son propre site
+      # témoin — il n'attend donc aucun build — et refuse de conclure sur un arbre modifié.
+      - name: Contrat de provenance (attaques et témoins)
+        run: npm run test:provenance
+
       # ── Build ────────────────────────────────────────────────────────────────────────────
       # TOUJOURS RÉDUIT ICI, sur pull request comme sur main. Le site entier est construit par le
       # job `site-complet`, qui tourne EN PARALLÈLE et sur les mêmes déclencheurs.

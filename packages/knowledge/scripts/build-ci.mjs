@@ -42,7 +42,7 @@ import { spawnSync } from "node:child_process";
 import { join } from "node:path";
 import { fileURLToPath } from "node:url";
 import { requireNode } from "./lib/require-node.mjs";
-import { ecrireProvenance } from "./lib/provenance.mjs";
+import { ecrireProvenance, environnementDeBuild, ErreurProvenance } from "./lib/provenance.mjs";
 import { BUILD_ONLY_SENTINELLES, BUILD_SLUGS_SENTINELLES } from "./lib/sentinelles-entites.mjs";
 
 
@@ -69,10 +69,19 @@ log(COMPLET
   ? "PUBLIC_SITE_ENV=preview · site ENTIER (--complet) : aucun filtre d'entités"
   : `PUBLIC_SITE_ENV=preview · BUILD_ONLY=${BUILD_ONLY_SENTINELLES} · BUILD_SLUGS=${BUILD_SLUGS_SENTINELLES}`);
 
-const r = spawnSync("npm", ["-w", "@mydogcanfly/ui", "run", "build"], {
-  cwd: REPO_ROOT,
-  env: {
-    ...process.env,
+/* L'ENVIRONNEMENT DU BUILD est fabriqué par `lib/provenance.mjs` et par lui seul : il REFUSE
+ * `OUTDIR` — qui ferait écrire Astro ailleurs que dans le dossier scellé et mesuré — et RETIRE
+ * les filtres hérités (`BUILD_ONLY`, `BUILD_SLUGS`, `BUILD_SHARDS`, `BUILD_SHARD`) avant que les
+ * surcharges nommées ci-dessous ne s'appliquent.
+ *
+ * C'est ce retrait qui rend `--complet` honnête : jusqu'au 22/08/2026 le mode complet se
+ * contentait de ne RIEN ajouter (`...(COMPLET ? {} : …)`), si bien qu'un `BUILD_ONLY` hérité d'un
+ * shell ou d'un essai précédent survivait — et produisait un « site complet » amputé, scellé
+ * comme complet. Codex l'a relevé le même jour, avec `BUILD_SHARDS`/`BUILD_SHARD` qui amputent
+ * de la même façon sans même nommer ce qu'ils retirent. */
+let childEnv;
+try {
+  childEnv = environnementDeBuild(process.env, {
     PUBLIC_API_BASE: SENTINEL_API_BASE,
     PUBLIC_SITE_ENV: "preview",
     /* Les deux familles d'entités, réduites à leurs sentinelles, dans la MÊME passe. Les autres
@@ -82,7 +91,16 @@ const r = spawnSync("npm", ["-w", "@mydogcanfly/ui", "run", "build"], {
       BUILD_ONLY: BUILD_ONLY_SENTINELLES,
       BUILD_SLUGS: BUILD_SLUGS_SENTINELLES,
     }),
-  },
+  });
+} catch (e) {
+  if (!(e instanceof ErreurProvenance)) throw e;
+  log(`ÉCHEC : ${e.message}`);
+  process.exit(2);
+}
+
+const r = spawnSync("npm", ["-w", "@mydogcanfly/ui", "run", "build"], {
+  cwd: REPO_ROOT,
+  env: childEnv,
   stdio: ["ignore", 2, 2],
 });
 if (r.status !== 0) {
@@ -94,8 +112,17 @@ log(COMPLET
   : "Build réduit prêt. Les harnais lisant packages/ui/dist peuvent tourner.");
 
 /* La carte d'identité du site : voir lib/provenance.mjs. Les paramètres du build en font partie,
-   c'est ce qui distingue un site réduit d'un site complet. */
-ecrireProvenance(join(REPO_ROOT, "packages", "ui", "dist"), COMPLET ? "complet" : "reduit",
-  { ...process.env, BUILD_ONLY: COMPLET ? undefined : BUILD_ONLY_SENTINELLES,
-    BUILD_SLUGS: COMPLET ? undefined : BUILD_SLUGS_SENTINELLES,
-    PUBLIC_API_BASE: SENTINEL_API_BASE, PUBLIC_SITE_ENV: "preview" });
+   c'est ce qui distingue un site réduit d'un site complet — et c'est `childEnv`, l'environnement
+   RÉELLEMENT passé au build, qui est inscrit : une seconde reconstitution « à la main » de ces
+   variables finirait par mentir le jour où l'une des deux changerait sans l'autre.
+
+   Un échec ici est BLOQUANT : un `dist` sans carte est un dossier dont plus rien ne dit de quelle
+   version il sort, et les harnais qui le lisent le refuseraient de toute façon. Mieux vaut que le
+   build le dise tout de suite, et avec le motif. */
+try {
+  ecrireProvenance(join(REPO_ROOT, "packages", "ui", "dist"), COMPLET ? "complet" : "reduit", childEnv);
+} catch (e) {
+  if (!(e instanceof ErreurProvenance)) throw e;
+  log(`ÉCHEC : la carte d'identité du site n'a pas pu être écrite — ${e.message}`);
+  process.exit(1);
+}

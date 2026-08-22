@@ -37,6 +37,7 @@
     "test:ingest": "node test-ingest-check.mjs",
     "contre-epreuves": "node --import tsx test-contre-epreuves.mjs",
     "test:audit-obs": "node test-audit-observations.mjs",
+    "test:provenance": "node test-provenance.mjs",
     "mesure:t0b3": "node mesures/t0b3-regles-autosourcees/outils/reproduire.mjs",
     "mesure:t0b3a": "node mesures/t0b3a-arbitrage-brachy/outils/reproduire.mjs",
     "mesure:t0b3b": "node mesures/t0b3b-referentiel-brachy/outils/reproduire.mjs",
