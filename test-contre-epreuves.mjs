@@ -194,8 +194,8 @@ const MUTATIONS = [
     /* ANCRE ÉLARGIE : le workflow a DEUX jobs, qui partagent les mêmes étapes d'installation.
        La mutation courte est devenue ambiguë et le runner l'a déclarée MUETTE — c'est exactement
        ce pour quoi cet état existe. L'ancre inclut le voisinage qui distingue `verify`. */
-    cherche: "timeout-minutes: 30\n\n    steps:\n      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1",
-    remplace: "timeout-minutes: 30\n\n    steps:\n      - uses: actions/checkout@v7 # v7.0.1",
+    cherche: "timeout-minutes: 30\n\n    steps:\n      # `fetch-depth: 0`",
+    remplace: "timeout-minutes: 30\n\n    steps:\n      - uses: actions/checkout@v7 # v7.0.1\n      # `fetch-depth: 0`",
     harnais: "packages/knowledge/scripts/check-actions-node.mjs",
     attendu: "n'est pas épinglée sur un SHA complet",
   },
@@ -205,8 +205,8 @@ const MUTATIONS = [
     /* ANCRE ÉLARGIE : le workflow a DEUX jobs, qui partagent les mêmes étapes d'installation.
        La mutation courte est devenue ambiguë et le runner l'a déclarée MUETTE — c'est exactement
        ce pour quoi cet état existe. L'ancre inclut le voisinage qui distingue `verify`. */
-    cherche: "timeout-minutes: 30\n\n    steps:\n      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1",
-    remplace: "timeout-minutes: 30\n\n    steps:\n      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4.4.0",
+    cherche: "timeout-minutes: 30\n\n    steps:\n      # `fetch-depth: 0`",
+    remplace: "timeout-minutes: 30\n\n    steps:\n      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4.4.0\n      # `fetch-depth: 0`",
     harnais: "packages/knowledge/scripts/check-actions-node.mjs",
     attendu: "n'est PAS déclarée au manifeste",
   },
