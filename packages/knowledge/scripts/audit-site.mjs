@@ -184,7 +184,17 @@ const estPublique = (p) => PUBLIQUE.has(rel(p));
    * La dette est donc déclarée à L'IDENTITÉ, pas au nombre : une adresse morte différente, ou une
    * seconde, fait échouer. Elle disparaît avec le lot éditorial, qui retire ce lien du guide.
    */
-  const DETTE_CONNUE = new Set(["/tools/is-it-too-hot-for-my-dog/"]);
+  /* PLUS AUCUNE DETTE, ET C'EST L'ÉTAT VISÉ. Cet ensemble a porté `/tools/is-it-too-hot-for-my-dog/`
+     tant que deux guides anglais promettaient un risque chaleur GÉOLOCALISÉ que le site ne sert pas.
+     Y repointer l'appel vers `/tools/heat/` — un estimateur d'embargo en soute PAR ITINÉRAIRE ET PAR
+     MOIS — aurait fabriqué un lien trompeur, pire qu'un lien mort parce qu'il aboutit. L'appel a
+     donc été retiré dans les six fichiers, ce qui rétablit la parité avec le français.
+
+     L'entrée sort d'ici DANS LE MÊME LOT que le retrait, exactement comme l'exige le contrôle
+     `dette-perimee` ci-dessous — c'est lui qui a rougi le jour où le lot éditorial est arrivé, et
+     c'est ce qu'on lui demande. Un ensemble VIDE n'est pas un contrôle sans matière : toute adresse
+     morte tombe alors dans `lien-mort`, qui bloque. Ne rien réinscrire ici sans le motif écrit. */
+  const DETTE_CONNUE = new Set([]);
   const nouvelles = [...dead].filter(([h]) => !DETTE_CONNUE.has(h));
   const dettePresente = [...DETTE_CONNUE].filter((h) => dead.has(h));
   const detteDisparue = [...DETTE_CONNUE].filter((h) => !dead.has(h));
