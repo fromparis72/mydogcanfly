@@ -15,23 +15,40 @@ permissions:
 # correction de trois lignes. Elles étaient jusqu'ici lancées À LA MAIN — c'est-à-dire oubliables,
 # exactement ce que l'en-tête de `test-contre-epreuves.mjs` reproche aux contre-épreuves manuelles.
 #
-# Découpage arbitré par la contre-revue du 20/08/2026 :
-#   · une fois par semaine, sans que personne y pense ;
-#   · à la demande, par `workflow_dispatch`, notamment sur le SHA final d'une intégration avant
-#     la fusion du dernier lot — c'est là qu'il est OBLIGATOIRE.
+# TROIS DÉCLENCHEURS, ET LE TROISIÈME RÈGLE UN PROBLÈME PRÉCIS :
+#   · `schedule` — une fois par semaine, sans que personne y pense ;
+#   · `workflow_dispatch` — à la demande… mais GitHub ne le propose QUE si ce fichier existe déjà
+#     sur la branche par défaut. Il ne peut donc pas servir à exercer ce workflow sur la pull
+#     request qui l'APPORTE : c'est précisément là qu'il naît.
+#   · `pull_request` conditionné à l'étiquette `contre-epreuves-completes` — un workflow déclenché
+#     par `pull_request` s'exécute depuis la copie portée par la BRANCHE, donc avant d'exister sur
+#     `main`. L'étiquette évite d'imposer deux heures de build à chaque petite pull request, tout
+#     en rendant l'exercice possible et TRAÇABLE : il suffit de la poser.
 #
-# Il joue le catalogue ENTIER (`--dom --complet`), pas seulement les quatre : les mutations rapides
-# ne coûtent rien de plus une fois les builds payés, et un passage hebdomadaire qui n'en jouerait
-# qu'une partie laisserait croire à une couverture qu'il n'a pas.
+# IL JOUE LE CATALOGUE ENTIER, ET IL LE PROUVE. La version précédente lançait `--dom --complet`
+# sous un titre annonçant « toutes les garanties » : c'était faux de deux mutations, celles qui
+# LISENT un site complet déjà construit et relèvent d'un troisième drapeau. Le runner les déclarait
+# « non jouées » puis sortait en 0 — un passage vert qui saute deux garanties en se disant complet.
+# `--tout` allume les trois portées ET ÉCHOUE si le compte des non-jouées n'est pas nul.
 on:
   schedule:
     # Lundi 04:00 UTC — hors des heures où quelqu'un attend un retour de CI.
     - cron: "0 4 * * 1"
   workflow_dispatch:
+  # L'étiquette est lue à CHAQUE événement de pull request (`labeled` compris), sans quoi la poser
+  # après coup ne déclencherait rien et il faudrait un commit vide pour l'exercer.
+  pull_request:
+    types: [opened, synchronize, reopened, labeled]
 
 jobs:
   toutes:
-    name: Les 37 garanties, y compris celles qui exigent le site entier
+    name: Le catalogue entier, y compris ce qui exige le site complet
+    # AUCUN NOMBRE DANS CE NOM. Il annonçait « les 37 garanties » alors que le catalogue en compte
+    # davantage : un chiffre écrit ici dérive en silence et finit par mentir, puisque rien ne le
+    # confronte au catalogue. Le décompte exact est publié par le runner, qui, lui, le calcule.
+    if: >-
+      github.event_name != 'pull_request'
+      || contains(github.event.pull_request.labels.*.name, 'contre-epreuves-completes')
     runs-on: ubuntu-latest
     # Cinq builds complets dans le pire des cas. La marge est large à dessein : un dépassement
     # laisserait l'arbre muté sur le runner et le rapport sans conclusion.
@@ -49,7 +66,14 @@ jobs:
       - name: Installation reproductible
         run: npm ci
 
+      # LE SITE COMPLET D'ABORD, et ce n'est pas facultatif : les mutations qui le LISENT ne le
+      # reconstruisent pas. Sans ce build, `--tout` refuse de démarrer plutôt que de faire échouer
+      # leurs harnais faute de matière — ce qui aurait l'air d'une garantie qui ne porte pas.
+      - name: Site complet (les mutations qui le lisent en ont besoin)
+        run: npm run build:preview -- --api-base=https://00000000-mydogcanfly-api-preview.fromparis.workers.dev
+
       # Le runner exige un arbre PROPRE au départ : il écrit dans les fichiers du dépôt et les
-      # restaure par `git checkout`. Il vérifie aussi que l'arbre est rendu intact à la fin.
+      # restaure par `git checkout`. Il vérifie aussi que l'arbre est rendu intact à la fin, et,
+      # sous `--tout`, que RIEN n'a été laissé de côté.
       - name: Chaque garantie doit savoir échouer — catalogue entier
-        run: npm run contre-epreuves -- --dom --complet
+        run: npm run contre-epreuves -- --tout

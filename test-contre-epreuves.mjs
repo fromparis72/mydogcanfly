@@ -36,17 +36,29 @@ import { execFileSync, spawnSync } from "node:child_process";
 import { readFileSync, writeFileSync, existsSync, readdirSync } from "node:fs";
 import { join } from "node:path";
 
-const AVEC_DOM = process.argv.includes("--dom");
+const TOUT = process.argv.includes("--tout");
+const AVEC_DOM = process.argv.includes("--dom") || TOUT;
 /* Certaines garanties ne se lisent que sur le site ENTIER — l'audit, par exemple, refuse de
  * conclure sous 1 500 pages. Sous le build réduit, leur harnais échouerait faute de matière et non
  * parce que la mutation a mordu : il prouverait le vide. Elles sont donc derrière un drapeau
  * distinct, parce qu'elles coûtent un build complet chacune, et le total ci-dessous dit toujours
  * combien n'ont PAS été jouées. */
-const AVEC_COMPLET = process.argv.includes("--complet");
+const AVEC_COMPLET = process.argv.includes("--complet") || TOUT;
 /* `--dist-complet` : la mutation ne touche pas le site, elle touche ce qui le LIT. Aucun build
  * n'est nécessaire — mais un `dist` complet, si, et son absence doit faire échouer plutôt que
  * laisser le harnais lire un message d'arrêt. */
-const AVEC_DIST_COMPLET = process.argv.includes("--dist-complet");
+const AVEC_DIST_COMPLET = process.argv.includes("--dist-complet") || TOUT;
+
+/* `--tout` — LE CATALOGUE ENTIER, ET LA PREUVE QU'IL L'EST.
+ *
+ * Le workflow hebdomadaire lançait `--dom --complet` sous un titre qui annonçait « toutes les
+ * garanties ». C'était FAUX de deux mutations : celles qui LISENT un site complet déjà construit
+ * relèvent d'un troisième drapeau, et sans lui le runner les déclarait simplement « non jouées » —
+ * puis sortait en 0. Un passage vert qui saute deux garanties tout en se disant complet est
+ * exactement le genre de faux vert que ce fichier existe pour interdire.
+ *
+ * `--tout` allume les trois portées ET exige, à la fin, que le compte des non-jouées soit NUL.
+ * Il ne se contente donc pas de demander la couverture : il refuse de conclure sans elle. */
 
 /* ---- LE CATALOGUE ---------------------------------------------------------------------------
  * `editions` : une ou plusieurs substitutions, chacune devant apparaître EXACTEMENT une fois —
@@ -550,7 +562,13 @@ if (arbreSale()) {
 const joue = (m) => m.buildComplet ? AVEC_COMPLET
   : m.distComplet ? AVEC_DIST_COMPLET
   : AVEC_DOM || !m.dom;
-const choisies = MUTATIONS.filter(joue);
+/* L'ORDRE N'EST PAS LIBRE, et c'est ce qui rend `--tout` jouable en UNE passe. Une mutation
+   d'interface reconstruit `packages/ui/dist` en portée RÉDUITE ; jouée avant celles qui LISENT le
+   site complet, elle leur retirerait la matière sous les pieds et elles échoueraient sans que la
+   mutation y soit pour rien. Les voici donc reléguées à la fin — partition stable, l'ordre relatif
+   du catalogue est conservé dans chaque moitié. */
+const choisies = [...MUTATIONS.filter((m) => joue(m) && !m.dom),
+                  ...MUTATIONS.filter((m) => joue(m) && m.dom)];
 const ignoreesDom = MUTATIONS.filter((m) => m.dom && !m.buildComplet && !AVEC_DOM).length;
 const ignoreesCompletes = MUTATIONS.filter((m) => m.buildComplet && !AVEC_COMPLET).length;
 const ignoreesDist = MUTATIONS.filter((m) => m.distComplet && !AVEC_DIST_COMPLET).length;
@@ -663,6 +681,11 @@ if (ignoreesCompletes) {
 }
 if (ignoreesDist) {
   dire(`  ${ignoreesDist} mutation(s) NON jouée(s) LISANT un site complet déjà construit — aucun build, mais un « dist » complet. « npm run contre-epreuves -- --dist-complet » les inclut.`);
+}
+/* Sous `--tout`, ne pas jouer une mutation n'est plus une information : c'est un échec. */
+if (TOUT && (ignoreesDom || ignoreesCompletes || ignoreesDist)) {
+  echecs.push(`« --tout » demandé, mais ${ignoreesDom + ignoreesCompletes + ignoreesDist} mutation(s) `
+    + "n'ont pas été jouées. La couverture annoncée n'est pas celle obtenue.");
 }
 if (echecs.length) {
   process.stderr.write(`\n[contre-épreuves] ÉCHEC — ${echecs.length} :\n`
