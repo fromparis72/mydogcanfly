@@ -235,20 +235,32 @@ const MUTATIONS = [
   },
   {
     nom: "une épingle du manifeste ne sert plus à rien et y reste",
-    fichier: ".github/workflows/ci.yml",
-    /* ANCRE ÉLARGIE : le workflow a DEUX jobs, qui partagent les mêmes étapes d'installation.
-       La mutation courte est devenue ambiguë et le runner l'a déclarée MUETTE — c'est exactement
-       ce pour quoi cet état existe. L'ancre inclut le voisinage qui distingue `verify`. */
-    /* DEUX ÉDITIONS, ET C'EST LE FOND DE LA MUTATION. Le workflow a deux jobs : remplacer
-       `setup-node` dans UN seul laisse l'épingle utilisée par l'autre, donc toujours utile — le
-       runner l'a montré en restant vert. Pour qu'une épingle du manifeste devienne réellement
-       inutilisée, il faut qu'AUCUN job ne s'en serve. */
-    editions: [
+    /* TROIS ÉDITIONS DANS DEUX FICHIERS, ET C'EST LE FOND DE LA MUTATION. Le diagnostic visé —
+       « n'est utilisée par aucun » — ne se déclenche que si l'épingle ne sert NULLE PART.
+
+       Premier temps : `ci.yml` a deux jobs, et la retirer d'un seul la laissait utile à l'autre ;
+       le runner l'a montré en restant vert. Second temps, 23/08/2026 : le lot 3 ajoute un SECOND
+       WORKFLOW qui l'utilise aussi, et deux éditions ne suffisent plus — le runner l'a montré une
+       deuxième fois, en refusant un échec obtenu pour une AUTRE raison (un écart de décompte par
+       job, pas une épingle orpheline). Le même raisonnement, monté d'un cran.
+
+       C'est cette mutation qui a rendu nécessaire le support multi-fichiers : décrire la régression
+       réelle passe par les deux workflows, sans quoi elle décrit autre chose. */
+    fichiers: [{
+      fichier: ".github/workflows/contre-epreuves-completes.yml",
+      editions: [
+        { cherche: "        uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020 # v7.0.0",
+          remplace: "        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1" },
+      ],
+    }, {
+      fichier: ".github/workflows/ci.yml",
+      editions: [
       { cherche: "      - name: Node 22 (depuis .nvmrc)\n        uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020 # v7.0.0\n        with:\n          node-version-file: .nvmrc\n          cache: npm\n\n      # Le seul contrôle du lot",
         remplace: "      - name: Node 22 (depuis .nvmrc)\n        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1\n        with:\n          node-version-file: .nvmrc\n          cache: npm\n\n      # Le seul contrôle du lot" },
       { cherche: "      - name: Node 22 (depuis .nvmrc)\n        uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020 # v7.0.0\n        with:\n          node-version-file: .nvmrc\n          cache: npm\n\n      - name: Installation reproductible",
         remplace: "      - name: Node 22 (depuis .nvmrc)\n        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1\n        with:\n          node-version-file: .nvmrc\n          cache: npm\n\n      - name: Installation reproductible" },
-    ],
+      ],
+    }],
     harnais: "packages/knowledge/scripts/check-actions-node.mjs",
     attendu: "n'est utilisée par aucun",
   },
@@ -598,22 +610,41 @@ if (choisies.some((m) => m.distComplet)) {
 let tenues = 0;
 const echecs = [];
 
+/* UNE MUTATION PEUT TOUCHER PLUSIEURS FICHIERS, et c'est parfois la seule façon de décrire la
+   régression réelle. `fichiers: [{ fichier, editions }]` en donne le moyen ; `fichier` + `editions`
+   (ou `cherche`/`remplace`) restent la forme courte pour le cas ordinaire.
+
+   POURQUOI CE BESOIN EST APPARU. La mutation « une épingle du manifeste ne sert plus à rien »
+   portait déjà DEUX éditions parce que le workflow a deux jobs : la retirer d'un seul la laissait
+   utile à l'autre. Le lot 3 ajoute un SECOND WORKFLOW qui l'utilise aussi — le même raisonnement
+   monte donc d'un cran, et deux éditions dans un seul fichier ne suffisent plus. Le runner l'a
+   montré tout seul : il a refusé le diagnostic obtenu parce que ce n'était pas celui attendu. */
+const cibles = (m) => m.fichiers
+  ?? [{ fichier: m.fichier, editions: m.editions ?? [{ cherche: m.cherche, remplace: m.remplace }] }];
+
 for (const m of choisies) {
-  const source = readFileSync(m.fichier, "utf8");
-  const editions = m.editions ?? [{ cherche: m.cherche, remplace: m.remplace }];
+  const sources = new Map(cibles(m).map((c) => [c.fichier, readFileSync(c.fichier, "utf8")]));
   /* Une édition qui ne s'applique plus est un ÉCHEC DUR, jamais un « rien à faire » : elle
      prouverait le vide en silence. Une chaîne ambiguë l'est tout autant. */
-  const muette = editions.find((e) => source.split(e.cherche).length - 1 !== 1);
+  let muette = null;
+  for (const c of cibles(m)) {
+    const src = sources.get(c.fichier);
+    const e = c.editions.find((x) => src.split(x.cherche).length - 1 !== 1);
+    if (e) { muette = { ...e, fichier: c.fichier, vu: src.split(e.cherche).length - 1 }; break; }
+  }
   if (muette) {
     echecs.push(`${m.nom}\n      la mutation ne s'applique pas : « ${muette.cherche.slice(0, 60)}… » `
-      + `apparaît ${source.split(muette.cherche).length - 1} fois dans ${m.fichier} (attendu : 1). `
+      + `apparaît ${muette.vu} fois dans ${muette.fichier} (attendu : 1). `
       + `Le code a bougé — la mutation doit être remise à jour, sans quoi elle ne prouve plus rien.`);
     dire(`  MUETTE  ${m.nom}`);
     continue;
   }
   let resultat;
   try {
-    writeFileSync(m.fichier, editions.reduce((t, e) => t.replace(e.cherche, e.remplace), source));
+    for (const c of cibles(m)) {
+      writeFileSync(c.fichier,
+        c.editions.reduce((t, e) => t.replace(e.cherche, e.remplace), sources.get(c.fichier)));
+    }
     if (m.dom) {
       const b = spawnSync("npm", ["run", "build:ci", ...(m.buildComplet ? ["--", "--complet"] : [])],
         { encoding: "utf8" });
@@ -637,7 +668,7 @@ for (const m of choisies) {
        `:(literal)` parce qu'un chemin de route Astro contient des crochets — `sitemap-[lang].xml.ts`
        est un motif valide pour git, qui ne désigne AUCUN fichier existant. La restauration
        échouerait alors dans un `finally`, et la mutation resterait dans l'arbre. */
-    git("checkout", "--", `:(literal)${m.fichier}`);
+    for (const c of cibles(m)) git("checkout", "--", `:(literal)${c.fichier}`);
   }
   if (resultat?.erreur) { echecs.push(`${m.nom}\n      ${resultat.erreur}`); dire(`  ÉCHEC   ${m.nom}`); }
   else { tenues++; dire(`  tenue   ${m.nom}`); }
