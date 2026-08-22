@@ -529,6 +529,13 @@ const MUTATIONS = [
   /* ---- LE CATALOGUE SE SURVEILLE LUI-MÊME -----------------------------------------------------
    * Ces trois-là mutent CE FICHIER et n'appellent que `--contrat`, qui vérifie la bijection puis
    * sort sans jouer une seule mutation : sans quoi le runner se relancerait entièrement lui-même.
+   *
+   * LEUR ANCRE EST MULTILIGNE, ET CE N'EST PAS UN DÉTAIL. Un fichier qui se mute lui-même contient
+   * ses propres chaînes de recherche : l'ancre d'une seule ligne `id: "…"` apparaissait au vrai
+   * site ET dans le texte de ces trois mutations, donc trois fois. Le runner les a déclarées
+   * MUETTES — son échec dur pour « la mutation ne s'applique pas de façon univoque » —, et il
+   * avait raison. Dans un littéral JS le saut de ligne s'écrit `\n`, deux caractères : une ancre
+   * qui en porte un ne peut donc matcher que le vrai code, jamais sa propre citation.
    */
   {
     nom: "une garantie disparaît proprement du catalogue",
@@ -544,8 +551,8 @@ const MUTATIONS = [
     nom: "deux mutations portent le même identifiant",
     id: "deux-mutations-portent-le-meme-identifiant",
     fichier: "test-contre-epreuves.mjs",
-    cherche: '    id: "un-avis-peut-a-nouveau-repeter-le-meme-canal",',
-    remplace: '    id: "un-tableau-de-preuves-vide-redevient-acceptable",',
+    cherche: '\n    id: "un-avis-peut-a-nouveau-repeter-le-meme-canal",',
+    remplace: '\n    id: "un-tableau-de-preuves-vide-redevient-acceptable",',
     harnais: "test-contre-epreuves.mjs",
     args: ["--contrat"],
     attendu: "identifiant(s) EN DOUBLE",
@@ -554,8 +561,8 @@ const MUTATIONS = [
     nom: "une identité est substituée, à effectif constant",
     id: "une-identite-est-substituee-a-effectif-constant",
     fichier: "test-contre-epreuves.mjs",
-    cherche: '    id: "un-avis-peut-a-nouveau-repeter-le-meme-canal",',
-    remplace: '    id: "un-avis-peut-a-nouveau-repeter-le-meme-canal-bis",',
+    cherche: '\n    id: "un-avis-peut-a-nouveau-repeter-le-meme-canal",',
+    remplace: '\n    id: "un-avis-peut-a-nouveau-repeter-le-meme-canal-bis",',
     harnais: "test-contre-epreuves.mjs",
     args: ["--contrat"],
     attendu: "INCONNUE(s) de la référence",
