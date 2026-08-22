@@ -119,6 +119,7 @@ export const SOURCES_A_SCRUTER = [
   "packages/ui/scripts",
   "packages/ui/astro.config.mjs",
   "packages/knowledge/src",
+  "packages/knowledge/scripts",
   "packages/engine/src",
 ];
 
@@ -131,11 +132,38 @@ export const SOURCES_A_SCRUTER = [
  * — `test-provenance.mjs` exige que TOUT chemin suivi des trois paquets soit ou bien scruté, ou
  * bien inscrit ici avec son motif. Un `packages/ui/lib` nouveau fait donc rougir tant que personne
  * ne l'a classé, et le classement est une phrase qu'il faut écrire, pas un oubli qui passe.
+ *
+ * ────────────────────────────────────────────────────────────────────────────────────────────
+ * UN RÉPERTOIRE NE CLASSE JAMAIS DU CODE. Le résidu, tel qu'il a été écrit le 22/08/2026, avait un
+ * FAUX VERT que Codex a reproduit le lendemain : `packages/knowledge/scripts` était classé EN BLOC,
+ * alors qu'il contient `build-ci.mjs` et `build-preview.mjs`. Ajouter dans `build-ci.mjs` une
+ * lecture d'une variable nommée `PROVENANCE_UNTRACKED_ENV` choisissant entre deux scripts de build —
+ * qui change réellement le site — laissait le harnais à 74/74 : le code nouveau restait couvert par
+ * la classification du répertoire, il n'apparaissait jamais en résidu.
+ *
+ * Le défaut n'est pas ce répertoire-là. C'est qu'un classement PAR RÉPERTOIRE est une promesse sur
+ * du code qui n'est pas encore écrit. La règle est donc structurelle, et le harnais l'exige :
+ *
+ *     tout fichier EXÉCUTABLE (.mjs .cjs .js .ts .tsx .astro) des trois paquets est soit scruté,
+ *     soit classé PAR SON CHEMIN EXACT — jamais par le répertoire qui le contient.
+ *
+ * Les répertoires ne classent donc plus que ce qui ne s'exécute pas : données, traductions, actifs.
+ * Un exécutable nouveau devient du résidu, où qu'il naisse — c'est ce qui rend le cas de Codex
+ * impossible plutôt que corrigé.
+ *
+ * CONSÉQUENCE SUR LA PROSE, ET ELLE EST ASSUMÉE. Ce fichier est désormais SCRUTÉ comme les autres,
+ * et le relevé des lectures ne fait pas la différence entre du code et un commentaire : il
+ * SUR-détecte, délibérément, parce qu'un relevé qui sous-détecte laisse passer exactement ce qu'il
+ * existe pour voir. On n'écrit donc pas ici la forme littérale d'une lecture (`process` `.env.X`,
+ * `env.X`) pour une variable qu'on ne déclare pas — on la nomme sans cette forme. Le jour où
+ * quelqu'un l'oublie, le harnais rougit et demande de choisir : reformuler, ou déclarer.
+ * ────────────────────────────────────────────────────────────────────────────────────────────
  */
 export const HORS_SCRUTATION = {
   "packages/ui/README.md": "documentation, aucun code exécuté au build",
   "packages/ui/package.json": "manifeste : il FIXE des variables (`build:prod`), il n'en lit aucune",
-  "packages/ui/public": "actifs statiques copiés tels quels, aucun code exécuté au build",
+  "packages/ui/public": "actifs statiques copiés tels quels ; les trois scripts qu'il contient "
+    + "sont classés nommément plus bas, comme l'exige la règle des exécutables",
   "packages/ui/tsconfig.json": "configuration TypeScript déclarative",
   "packages/knowledge/README.md": "documentation, aucun code exécuté au build",
   "packages/knowledge/package.json": "manifeste npm : dépendances et scripts, aucune lecture d'environnement",
@@ -143,13 +171,23 @@ export const HORS_SCRUTATION = {
   "packages/knowledge/quality": "contrôles de la base de connaissances, hors construction de pages",
   "packages/knowledge/raw": "données brutes : elles sont LUES par le code, elles ne lisent rien",
   "packages/knowledge/translations": "données de traduction : lues, ne lisent rien",
-  "packages/knowledge/scripts": "les constructeurs eux-mêmes — ils n'atteignent l'environnement "
-    + "qu'à travers `environnementDeBuild`, dont les surcharges sont littérales, et toute `PUBLIC_*` "
-    + "de l'environnement réel est de toute façon inscrite dynamiquement sur la carte",
   "packages/engine/README.md": "documentation, aucun code exécuté au build",
   "packages/engine/package.json": "manifeste npm : dépendances et scripts, aucune lecture d'environnement",
   "packages/engine/tsconfig.json": "configuration TypeScript déclarative",
   "packages/engine/scripts": "démonstration, jamais exécutée par un build",
+  /* LES EXÉCUTABLES SE CLASSENT UN PAR UN, JAMAIS PAR RÉPERTOIRE — voir la règle ci-dessous. */
+  "packages/engine/scripts/demo.ts": "démonstration lancée à la main (`npm run demo`)",
+  "packages/engine/scripts/dest-test.ts": "essai de destinations lancé à la main",
+  "packages/engine/scripts/repro-finder2.ts": "reproduction d'anomalie lancée à la main",
+  "packages/knowledge/quality/check.ts": "contrôle de la base de connaissances (`npm run check`) : "
+    + "il LIT les données et n'entre dans aucune page",
+  "packages/ui/public/_worker.js": "Worker Cloudflare : son `env` est un jeu de LIAISONS "
+    + "d'exécution — la liaison `ASSETS` de Cloudflare —, pas l'environnement du build : il ne "
+    + "change aucune page produite",
+  "packages/ui/public/presskit/doc-page.js": "script de page servi tel quel, exécuté dans le "
+    + "navigateur du visiteur : il n'a pas d'environnement de build à lire",
+  "packages/ui/public/presskit/support.js": "script de page servi tel quel, exécuté dans le "
+    + "navigateur du visiteur : il n'a pas d'environnement de build à lire",
 };
 
 /** Les paquets sur lesquels le résidu ci-dessus est exigé. */

@@ -316,6 +316,40 @@ const MUTATIONS = [
     attendu: "« e3b0c44298fc1c14 » présent",
   },
   {
+    nom: "une variable non déclarée entre dans un constructeur et choisit le script de build",
+    fichier: "packages/knowledge/scripts/build-ci.mjs",
+    /* LA CONTRE-ÉPREUVE DE CODEX DU 23/08/2026, FIGÉE. Elle a montré un FAUX VERT : le harnais
+       restait à 74/74 alors qu'une variable inconnue du contrat choisissait entre deux scripts de
+       build — donc changeait réellement le site. Le résidu ne pouvait rien y voir : le code neuf
+       était couvert par la classification EN BLOC de `packages/knowledge/scripts`, il n'apparaissait
+       donc jamais comme résidu. `build:prod` fixe `PUBLIC_SITE_ENV=production` : le site produit
+       devient indexable, ce n'est pas une nuance. */
+    cherche: 'const r = spawnSync("npm", ["-w", "@mydogcanfly/ui", "run", "build"], {',
+    remplace: 'const r = spawnSync("npm", ["-w", "@mydogcanfly/ui", "run",\n'
+      + '  process.env.PROVENANCE_UNTRACKED_ENV ? "build:prod" : "build"], {',
+    harnais: "test-provenance.mjs",
+    args: ["--arbre-modifie-attendu"],
+    attendu: "variable non déclarée",
+  },
+  {
+    nom: "un exécutable redevient classé par le répertoire qui le contient",
+    fichier: "packages/knowledge/scripts/lib/provenance.mjs",
+    /* La correction de fond du 23/08/2026 : ce n'est pas `packages/knowledge/scripts` qui était le
+       défaut, c'est qu'un classement PAR RÉPERTOIRE est une promesse sur du code pas encore écrit.
+       Remettre les constructeurs sous un classement de répertoire doit rougir même si, à cet
+       instant précis, aucune variable nouvelle n'y est lue. */
+    editions: [
+      { cherche: '  "packages/knowledge/scripts",\n  "packages/engine/src",',
+        remplace: '  "packages/engine/src",' },
+      { cherche: 'export const HORS_SCRUTATION = {',
+        remplace: 'export const HORS_SCRUTATION = {\n  "packages/knowledge/scripts": '
+          + '"classement en bloc, exactement ce que la regle interdit",' },
+    ],
+    harnais: "test-provenance.mjs",
+    args: ["--arbre-modifie-attendu"],
+    attendu: "classé par le répertoire qui le contient",
+  },
+  {
     nom: "un répertoire de sources sort de la scrutation sans être classé",
     fichier: "packages/knowledge/scripts/lib/provenance.mjs",
     /* Le relevé des variables d'environnement ne vaut que ce que vaut la liste des chemins

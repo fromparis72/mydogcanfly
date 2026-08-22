@@ -109,7 +109,9 @@ titre("1 · Aucune variable ne change le site sans figurer au contrat");
   const manquantes = lues.filter((v) => !declarees.includes(v));
   const superflues = declarees.filter((v) => !lues.includes(v));
   verifier(`les ${lues.length} variables lues par les sources sont toutes déclarées`,
-    manquantes.length === 0, `non déclarée(s) : ${manquantes.join(", ")}`);
+    manquantes.length === 0,
+    `variable non déclarée au contrat : ${manquantes.join(", ")} — elle change le site produit `
+    + "sans figurer sur aucune carte, donc sans qu'aucune relecture puisse la voir");
   /* L'autre sens compte autant : une variable déclarée que plus personne ne lit fait croire à une
      couverture qui n'existe plus, et masque le jour où une VRAIE variable disparaît du relevé. */
   verifier("aucune variable déclarée n'est devenue morte",
@@ -129,6 +131,27 @@ titre("1 · Aucune variable ne change le site sans figurer au contrat");
     residu.length === 0,
     `${residu.length} chemin(s) échappent au classement — ni scrutés, ni déclarés hors scrutation : `
     + residu.slice(0, 5).join(", ") + (residu.length > 5 ? ", et d'autres" : ""));
+  /* UN RÉPERTOIRE NE CLASSE JAMAIS DU CODE — le faux vert reproduit par Codex le 23/08/2026.
+     `packages/knowledge/scripts` était classé en bloc alors qu'il porte les deux constructeurs :
+     une lecture d'environnement ajoutée dans `build-ci.mjs` restait couverte par le classement du
+     répertoire et n'apparaissait donc JAMAIS en résidu. Le résidu ci-dessus ne pouvait pas le voir,
+     puisque le chemin était bel et bien classé. On exige donc, en plus, que tout fichier exécutable
+     soit scruté ou classé PAR SON CHEMIN EXACT. */
+  const EXECUTABLE = /\.(mjs|cjs|js|ts|tsx|astro)$/;
+  const codeNonNomme = suivis.filter((c) => EXECUTABLE.test(c)
+    && !couvertPar(c, SOURCES_A_SCRUTER) && !classes.includes(c));
+  verifier("aucun fichier exécutable n'est classé par le répertoire qui le contient",
+    codeNonNomme.length === 0,
+    `${codeNonNomme.length} exécutable(s) hors scrutation sans classement NOMMÉ : `
+    + codeNonNomme.slice(0, 5).join(", ") + (codeNonNomme.length > 5 ? ", et d'autres" : "")
+    + " — un classement par répertoire est une promesse sur du code qui n'est pas encore écrit");
+  const constructeurs = ["packages/knowledge/scripts/build-ci.mjs",
+    "packages/knowledge/scripts/build-preview.mjs"];
+  for (const c of constructeurs) {
+    verifier(`${c} est scruté`, couvertPar(c, SOURCES_A_SCRUTER),
+      "le constructeur lui-même échappe au relevé des variables");
+  }
+
   const fantomes = classes.filter((c) => !suivis.some((s) => s === c || s.startsWith(c + "/")));
   verifier("aucun classement « hors scrutation » ne désigne un chemin disparu",
     fantomes.length === 0, `fantôme(s) : ${fantomes.join(", ")}`);
