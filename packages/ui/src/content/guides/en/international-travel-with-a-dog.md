@@ -98,6 +98,6 @@ A few useful habits on site:
 - [European Commission — Traveling with pets and other animals in the EU](https://europa.eu/youreurope/citizens/travel/carry/animal-plant/index_en.htm)
 - [ANSES — Rabies](https://www.anses.fr/fr/content/la-rage)
 
-Compare requirements by destination with our **[dog entry requirements checker by country](/tools/dog-entry-requirements-by-country/)**.
+Compare requirements by destination with our **[dog entry requirements checker by country](/countries/)**.
 
 <ol class="gd-etapes"><li><a href="/travel-hub/international-travel-with-a-dog/">Check the health requirements</a></li><li><a href="/travel-hub/airline-approved-dog-crate/">Choose an IATA-approved travel crate</a></li><li><a href="/travel-hub/dog-travel-anxiety/">Prepare your dog for the stress of the flight</a></li><li><a href="/airlines/">Compare all 62 airlines</a></li></ol>

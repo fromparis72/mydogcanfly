@@ -31,7 +31,7 @@ faq:
     a: "Yes: Bark Air (since 2024) and K9 Jets offer flights where the dog travels in the cabin at your side, on jets or premium-configured aircraft. Fares are high (several thousand dollars)."
 ---
 
-Flying with a dog is not a one-answer question. Depending on the animal's size, the airline, the destination and your situation, several solutions exist — and they don't come with the same price, the same comfort level or the same constraints. Here is the complete panorama of ways to take a dog into the air, from the most common to the most exotic. To find the right airline for your route, keep our ["can my dog fly?" checker](/tools/can-my-dog-fly/) and the [comparison of all 62 airlines](/airlines/) close at hand.
+Flying with a dog is not a one-answer question. Depending on the animal's size, the airline, the destination and your situation, several solutions exist — and they don't come with the same price, the same comfort level or the same constraints. Here is the complete panorama of ways to take a dog into the air, from the most common to the most exotic. To find the right airline for your route, keep our ["can my dog fly?" checker](/#flight-finder) and the [comparison of all 62 airlines](/airlines/) close at hand.
 
 ## 1. In the cabin: the most reassuring option
 
@@ -43,7 +43,7 @@ It's the most reassuring formula: your dog stays with you, at normal temperature
 
 Above the cabin weight limit, the dog travels in the **hold**, in a **pressurized, heated compartment** designed for live animals (code AVIH in airline jargon: *Animal in Hold*). This is always **accompanied baggage**: your dog travels on **the same flight as you**, under your ticket.
 
-The conditions: a **rigid IATA-approved crate** (sturdy, ventilated on several sides, with a leak-proof floor and metal hardware), a maximum combined weight for dog + crate (often up to 45 or 75 kg / 99 or 165 lb depending on the airline), and an advance reservation. Crucial point: most airlines **ban brachycephalic breeds from the hold** (bulldogs, pugs, boxers…) for respiratory health reasons. Size the crate with our [IATA crate calculator](/tools/iata-dog-crate-calculator/) and read our guide to [choosing an airline-approved crate](/travel-hub/airline-approved-dog-crate/).
+The conditions: a **rigid IATA-approved crate** (sturdy, ventilated on several sides, with a leak-proof floor and metal hardware), a maximum combined weight for dog + crate (often up to 45 or 75 kg / 99 or 165 lb depending on the airline), and an advance reservation. Crucial point: most airlines **ban brachycephalic breeds from the hold** (bulldogs, pugs, boxers…) for respiratory health reasons. Size the crate with our [IATA crate calculator](/tools/crate/) and read our guide to [choosing an airline-approved crate](/travel-hub/airline-approved-dog-crate/).
 
 ## 3. As cargo: not to be confused with the hold
 

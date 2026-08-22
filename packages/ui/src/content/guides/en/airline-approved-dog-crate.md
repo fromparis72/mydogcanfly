@@ -126,7 +126,7 @@ If your dog shows marked anxiety, talk to your veterinarian well before departur
 
 It all depends on your dog's size and the airline's policy. Small dogs often travel in the cabin in an approved soft-sided carrier slid under the seat, while larger dogs go in the hold in a rigid IATA crate. The constraints and the gear are not the same. If you're weighing the two options, our comparison of [dog carriers and crates](/travel-hub/dog-carriers-and-crates/) helps you choose based on the animal's size, flight duration and the carrier's rules.
 
-<ol class="gd-etapes"><li><a href="/airlines/">Check your airline's hold conditions</a></li><li><a href="/tools/iata-dog-crate-calculator/">Size the crate with the IATA calculator</a></li><li><a href="/travel-hub/dog-travel-anxiety/">Crate-train your dog and manage flight stress</a></li></ol>
+<ol class="gd-etapes"><li><a href="/airlines/">Check your airline's hold conditions</a></li><li><a href="/tools/crate/">Size the crate with the IATA calculator</a></li><li><a href="/travel-hub/dog-travel-anxiety/">Crate-train your dog and manage flight stress</a></li></ol>
 
 ## Sources
 

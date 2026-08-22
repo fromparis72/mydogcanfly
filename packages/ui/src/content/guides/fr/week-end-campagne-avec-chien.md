@@ -93,7 +93,7 @@ Emportez sa nourriture habituelle pour éviter les troubles digestifs, de quoi l
 - Trousse de soins : pince à tiques, désinfectant, sacs à déjections.
 - Carnet de santé et contact d'un vétérinaire local.
 
-Pour repérer des gîtes et adresses qui accueillent les animaux, des plateformes spécialisées comme [Stay With Bailey](https://stay-with-bailey.com) peuvent faciliter vos recherches.
+Pour repérer des gîtes et adresses qui accueillent les animaux, des plateformes spécialisées comme [Stay With Bailey](https://stay-with-bailey.com/fr/) peuvent faciliter vos recherches.
 
 ## Sources
 
