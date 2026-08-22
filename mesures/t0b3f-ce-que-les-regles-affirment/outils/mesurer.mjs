@@ -40,7 +40,7 @@ import { readFileSync, writeFileSync } from "node:fs";
 import { createHash } from "node:crypto";
 
 /** Base de mesure FIGÉE, jamais `HEAD` : régénérer ne doit pas déplacer le sceau. */
-export const MESURE_BASE_SHA = "adfd06d1341201e029c2220185a484af13948913";
+export const MESURE_BASE_SHA = "5888c45c56d92288faf7d4ec589f1b9c3ca98674";
 
 const DOSSIER = "mesures/t0b3f-ce-que-les-regles-affirment";
 const RAW = { regles: "packages/knowledge/raw/rules.json" };

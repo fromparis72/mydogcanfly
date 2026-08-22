@@ -5,7 +5,7 @@ applique, ce que la phrase publiée annonce, et la source à relire pour tranche
 T0-B3-f a établi la divergence ; il ne peut pas dire lequel des deux nombres est le bon, parce
 qu il ne lit aucune source externe.
 
-Base : `adfd06d1341201e029c2220185a484af13948913` · reproduction : `npm run mesure:t0b3f`
+Base : `5888c45c56d92288faf7d4ec589f1b9c3ca98674` · reproduction : `npm run mesure:t0b3f`
 
 ## Sens DANGEREUX — le moteur planifie MOINS que sa propre phrase (3)
 

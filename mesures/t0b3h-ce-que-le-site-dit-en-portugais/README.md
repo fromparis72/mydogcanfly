@@ -1,9 +1,9 @@
 # T0-B3-h — Ce que le site dit en portugais (et en espagnol)
 
-**Base de mesure figée : `6c81edf9f356619694e63694ccf5b5ac4ff9b021`.**
+**Base de mesure figée : `5888c45c56d92288faf7d4ec589f1b9c3ca98674`.**
 *Base déplacée deux fois le 20/08/2026, chaque fois sur arbitrage de la contre-revue : d'abord de
 `2948ee9` à `aff1fb8` (correction du formateur de date, qui vit dans deux `.astro` du périmètre),
-puis à `6c81edf` (traduction de « updated » et « In short »). Les chiffres sont RECALCULÉS à
+puis à `5888c45` (traduction de « updated » et « In short »). Les chiffres sont RECALCULÉS à
 chaque déplacement, jamais recopiés — et le second les a fait bouger : 49 → 47.*
 Reproduction : `npm run mesure:t0b3h` — une seconde, sans build ni réseau.
 

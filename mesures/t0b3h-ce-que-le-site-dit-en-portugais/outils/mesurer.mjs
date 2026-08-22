@@ -45,11 +45,11 @@ import { createHash } from "node:crypto";
    et c'est pourquoi je n'avais PAS rebasé de mon propre chef pour traduire les 49 chaînes. Ici la
    modification est arbitrée, donc la base bouge avec elle. Les chiffres ci-dessous sont recalculés
    sur la nouvelle base, pas recopiés. */
-/* BASE DÉPLACÉE le 20/08/2026, de `aff1fb8` à `6c81edf` : la contre-revue a arbitré
+/* BASE DÉPLACÉE le 20/08/2026, de `aff1fb8` à `5888c45` : la contre-revue a arbitré
    l'ajout de deux clés portugaises — « updated » et « In short » — dans la table scellée par ce
    dossier. Mesurer autre chose exige de déclarer une nouvelle base. Les chiffres sont
    RECALCULÉS sur la nouvelle base, jamais recopiés. */
-export const MESURE_BASE_SHA = "6c81edf9f356619694e63694ccf5b5ac4ff9b021";
+export const MESURE_BASE_SHA = "5888c45c56d92288faf7d4ec589f1b9c3ca98674";
 
 const DOSSIER = "mesures/t0b3h-ce-que-le-site-dit-en-portugais";
 const SRC = "packages/ui/src";

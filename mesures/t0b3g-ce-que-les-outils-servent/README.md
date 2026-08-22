@@ -1,6 +1,6 @@
 # T0-B3-g — Ce que les outils servent, et dans quelle langue
 
-**Base de mesure figée : `6c81edf9f356619694e63694ccf5b5ac4ff9b021`.**
+**Base de mesure figée : `5888c45c56d92288faf7d4ec589f1b9c3ca98674`.**
 *Base déplacée le 20/08/2026 (de `50188bd`) : la contre-revue a arbitré l'ajout de deux clés
 portugaises dans la table scellée par ce dossier. Les chiffres sont recalculés — ils sont ici
 inchangés, les deux chaînes traduites appartenant au gabarit des guides, hors de ce périmètre.*

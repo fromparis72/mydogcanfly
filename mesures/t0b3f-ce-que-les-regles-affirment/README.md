@@ -13,7 +13,7 @@ npm run mesure:t0b3f
 Ni build, ni moteur, ni réseau : ce dossier ne lit que `rules.json`. Il se rejoue en une seconde,
 et c'est la raison pour laquelle il peut être rejoué souvent.
 
-**Base de mesure : `adfd06d1341201e029c2220185a484af13948913`**, en dur dans `mesurer.mjs`, jamais
+**Base de mesure : `5888c45c56d92288faf7d4ec589f1b9c3ca98674`**, en dur dans `mesurer.mjs`, jamais
 déduite de `HEAD` — un sceau qui change parce qu'on a commité le sceau ne scelle rien.
 
 ## La question
