@@ -187,6 +187,22 @@ const MUTATIONS = [
     args: ["--sans-ecrire"],
     attendu: "l'après est l'avant PRIVÉ des 42",
   },
+  {
+    nom: "un `.nvmrc` vide redevient un plancher satisfait",
+    fichier: "mesures/t0b3a-arbitrage-brachy/outils/lib-arbitrage.mjs",
+    /* LE DÉFAUT EXACT TROUVÉ PAR LA CONTRE-REVUE DU 23/08/2026, FIGÉ. La lecture manquante
+       échouait bien, mais un `Buffer` vide est truthy : `nvmrc` valait `""`, et le ternaire
+       `nvmrc ? … : true` rendait la conformité VRAIE. Une absence déguisée en conformité.
+       La mutation remet ce repli en relâchant le format exigé. */
+    /* La première version de cette mutation ajoutait `brut &&` devant la garde de format. Elle NE
+       MORDAIT PAS : avec un `.nvmrc` vide, `majH` devenait `NaN` et la comparaison de majeure
+       refusait quand même — la garantie tenait par une autre branche. Une mutation qui laisse le
+       harnais vert ne prouve rien ; celle-ci rétablit exactement l'ancien repli permissif. */
+    cherche: '  const brut = String(nvmrc ?? "").trim();',
+    remplace: '  const brut = String(nvmrc ?? "").trim();\n  if (!brut) return { ok: true, motif: "" };',
+    harnais: "test-plancher-node.mjs",
+    attendu: "`.nvmrc` vide",
+  },
   // ---- LA CHAÎNE D'INTÉGRATION : les actions et leur runtime ----
   {
     nom: "une action redevient épinglée sur un tag, qui se déplace",
