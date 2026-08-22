@@ -6,6 +6,9 @@
  *   npm run contre-epreuves -- --dom   y ajoute celles de l'interface (chacune exige un build)
  *   npm run contre-epreuves -- --dist-complet  celles qui LISENT un site complet déjà construit
  *   npm run contre-epreuves -- --complet       celles qui exigent de RECONSTRUIRE le site entier
+ *   npm run contre-epreuves -- --tout          les trois portées, et RIEN de non joué
+ *   npm run contre-epreuves -- --contrat       la bijection avec la référence, sans jouer une seule
+ *                                              mutation (deux secondes)
  *
  * TROIS BESOINS DISTINCTS, ET LES CONFONDRE COÛTE CHER. Une mutation qui touche une SOURCE DU SITE
  * oblige à reconstruire ; une mutation qui touche un OUTIL D'ANALYSE — l'audit, par exemple — n'y
@@ -36,17 +39,29 @@ import { execFileSync, spawnSync } from "node:child_process";
 import { readFileSync, writeFileSync, existsSync, readdirSync } from "node:fs";
 import { join } from "node:path";
 
-const AVEC_DOM = process.argv.includes("--dom");
+const TOUT = process.argv.includes("--tout");
+const AVEC_DOM = process.argv.includes("--dom") || TOUT;
 /* Certaines garanties ne se lisent que sur le site ENTIER — l'audit, par exemple, refuse de
  * conclure sous 1 500 pages. Sous le build réduit, leur harnais échouerait faute de matière et non
  * parce que la mutation a mordu : il prouverait le vide. Elles sont donc derrière un drapeau
  * distinct, parce qu'elles coûtent un build complet chacune, et le total ci-dessous dit toujours
  * combien n'ont PAS été jouées. */
-const AVEC_COMPLET = process.argv.includes("--complet");
+const AVEC_COMPLET = process.argv.includes("--complet") || TOUT;
 /* `--dist-complet` : la mutation ne touche pas le site, elle touche ce qui le LIT. Aucun build
  * n'est nécessaire — mais un `dist` complet, si, et son absence doit faire échouer plutôt que
  * laisser le harnais lire un message d'arrêt. */
-const AVEC_DIST_COMPLET = process.argv.includes("--dist-complet");
+const AVEC_DIST_COMPLET = process.argv.includes("--dist-complet") || TOUT;
+
+/* `--tout` — LE CATALOGUE ENTIER, ET LA PREUVE QU'IL L'EST.
+ *
+ * Le workflow hebdomadaire lançait `--dom --complet` sous un titre qui annonçait « toutes les
+ * garanties ». C'était FAUX de deux mutations : celles qui LISENT un site complet déjà construit
+ * relèvent d'un troisième drapeau, et sans lui le runner les déclarait simplement « non jouées » —
+ * puis sortait en 0. Un passage vert qui saute deux garanties tout en se disant complet est
+ * exactement le genre de faux vert que ce fichier existe pour interdire.
+ *
+ * `--tout` allume les trois portées ET exige, à la fin, que le compte des non-jouées soit NUL.
+ * Il ne se contente donc pas de demander la couverture : il refuse de conclure sans elle. */
 
 /* ---- LE CATALOGUE ---------------------------------------------------------------------------
  * `editions` : une ou plusieurs substitutions, chacune devant apparaître EXACTEMENT une fois —
@@ -63,6 +78,7 @@ const MUTATIONS = [
   // ---- Le contrat : causes, preuves, rôles ----
   {
     nom: "l'accord causes ↔ preuves est neutralisé",
+    id: "l-accord-causes-preuves-est-neutralise",
     fichier: "packages/engine/src/contracts.ts",
     cherche: "export const PlacementDecision = PlacementDecisionShape.superRefine((d, ctx) => {",
     remplace: "export const PlacementDecision = PlacementDecisionShape.superRefine((d, ctx) => { if (1) return;",
@@ -71,6 +87,7 @@ const MUTATIONS = [
   },
   {
     nom: "un tableau de preuves VIDE redevient acceptable",
+    id: "un-tableau-de-preuves-vide-redevient-acceptable",
     fichier: "packages/engine/src/contracts.ts",
     cherche: "const EvidenceArray = z.array(RestrictionEvidence).min(1);",
     remplace: "const EvidenceArray = z.array(RestrictionEvidence);",
@@ -79,6 +96,7 @@ const MUTATIONS = [
   },
   {
     nom: "les rôles de preuve ne sont plus contraints par le statut",
+    id: "les-roles-de-preuve-ne-sont-plus-contraints-par-le-statu",
     fichier: "packages/engine/src/contracts.ts",
     cherche: "  const admis = ROLES_ADMIS[d.status];",
     remplace: '  const admis = ["authorisation", "requirement", "refusal"];',
@@ -87,6 +105,7 @@ const MUTATIONS = [
   },
   {
     nom: "un avis peut à nouveau répéter le même canal",
+    id: "un-avis-peut-a-nouveau-repeter-le-meme-canal",
     fichier: "packages/engine/src/contracts.ts",
     cherche: `  placements: z.array(Placement).min(1).refine((p) => new Set(p).size === p.length, {
     message: "placements : doublon",
@@ -98,6 +117,7 @@ const MUTATIONS = [
   // ---- `explain` : ce qui atteint le rapport ----
   {
     nom: "les preuves sont perdues quand `entryAllowed` dégrade le statut",
+    id: "les-preuves-sont-perdues-quand-entryallowed-degrade-le-s",
     fichier: "packages/engine/src/explain.ts",
     cherche: "        d.evidence);",
     remplace: "        );",
@@ -106,6 +126,7 @@ const MUTATIONS = [
   },
   {
     nom: "les preuves n'atteignent plus les sources du rapport",
+    id: "les-preuves-n-atteignent-plus-les-sources-du-rapport",
     fichier: "packages/engine/src/explain.ts",
     cherche: "    for (const d of placement_decisions) {\n      for (const e of d.evidence ?? []) {",
     remplace: "    for (const d of []) {\n      for (const e of d.evidence ?? []) {",
@@ -114,6 +135,7 @@ const MUTATIONS = [
   },
   {
     nom: "une restriction compte autant de fois qu'elle est portée (déduplication retirée)",
+    id: "une-restriction-compte-autant-de-fois-qu-elle-est-portee",
     fichier: "packages/engine/src/explain.ts",
     cherche: `        if (!preuvesDeRaceVues.has(e.restriction_ref)) {
           preuvesDeRaceVues.add(e.restriction_ref);
@@ -125,6 +147,7 @@ const MUTATIONS = [
   },
   {
     nom: "la confiance ne pèse plus sur le score",
+    id: "la-confiance-ne-pese-plus-sur-le-score",
     fichier: "packages/engine/src/explain.ts",
     cherche: "  const confidenceRatio = Math.max(0, Math.min(1, avgConfidence / 5));",
     remplace: "  const confidenceRatio = 0;",
@@ -134,6 +157,7 @@ const MUTATIONS = [
   // ---- `evaluate` : motifs, avis, registre ----
   {
     nom: "un refus de race ne porte plus son motif",
+    id: "un-refus-de-race-ne-porte-plus-son-motif",
     fichier: "packages/engine/src/evaluate.ts",
     cherche: "        placement: x.decision.placement, fires: x.fires, breedDeny: x.breedDeny }))),",
     remplace: "        placement: x.decision.placement, fires: x.fires }))),",
@@ -142,6 +166,7 @@ const MUTATIONS = [
   },
   {
     nom: "les avis sont collectés avant le filtre des itinéraires — donc orphelins",
+    id: "les-avis-sont-collectes-avant-le-filtre-des-itineraires",
     fichier: "packages/engine/src/evaluate.ts",
     cherche: "  const advisories: AdvisorySignal[] = airlineDecisions",
     remplace: "  const advisories: AdvisorySignal[] = airlineDecisionsRaw",
@@ -150,6 +175,7 @@ const MUTATIONS = [
   },
   {
     nom: "un registre de race absent redevient « aucun fait audité »",
+    id: "un-registre-de-race-absent-redevient-aucun-fait-audite",
     fichier: "packages/knowledge/src/normalize.ts",
     cherche: `  if (!Array.isArray(raw.breed_restrictions)) {
     throw new Error("normalize: \`breed_restrictions\` ABSENT — un registre vide s'écrit \`[]\`. "
@@ -164,6 +190,7 @@ const MUTATIONS = [
   // ---- LES DONNÉES : le référentiel lui-même ----
   {
     nom: "l'avis IATA voit sa portée réduite à la soute",
+    id: "l-avis-iata-voit-sa-portee-reduite-a-la-soute",
     fichier: "packages/knowledge/raw/breed-restrictions.json",
     cherche: `    "placements": ["cabin", "hold", "cargo"],`,
     remplace: `    "placements": ["hold"],`,
@@ -172,6 +199,7 @@ const MUTATIONS = [
   },
   {
     nom: "la citation de l'IATA est remplacée par une phrase plausible",
+    id: "la-citation-de-l-iata-est-remplacee-par-une-phrase-plaus",
     fichier: "packages/knowledge/raw/breed-restrictions.json",
     cherche: `"quote": "Transport of snub nose dogs, such as boxers, pugs, bulldogs and Pekinese, in hot season is not recommended."`,
     remplace: `"quote": "Snub-nosed dogs must never be transported by air."`,
@@ -180,6 +208,7 @@ const MUTATIONS = [
   },
   {
     nom: "une règle CONSERVÉE est modifiée en douce",
+    id: "une-regle-conservee-est-modifiee-en-douce",
     fichier: "packages/knowledge/raw/rules.json",
     cherche: `    "id": "rule_aa_cabin_weight",`,
     remplace: `    "id": "rule_aa_cabin_weight",\n    "_mutation": "contre-épreuve",`,
@@ -189,6 +218,7 @@ const MUTATIONS = [
   },
   {
     nom: "un `.nvmrc` vide redevient un plancher satisfait",
+    id: "un-nvmrc-vide-redevient-un-plancher-satisfait",
     fichier: "mesures/t0b3a-arbitrage-brachy/outils/lib-arbitrage.mjs",
     /* LE DÉFAUT EXACT TROUVÉ PAR LA CONTRE-REVUE DU 23/08/2026, FIGÉ. La lecture manquante
        échouait bien, mais un `Buffer` vide est truthy : `nvmrc` valait `""`, et le ternaire
@@ -206,6 +236,7 @@ const MUTATIONS = [
   // ---- LA CHAÎNE D'INTÉGRATION : les actions et leur runtime ----
   {
     nom: "une action redevient épinglée sur un tag, qui se déplace",
+    id: "une-action-redevient-epinglee-sur-un-tag-qui-se-deplace",
     fichier: ".github/workflows/ci.yml",
     /* ANCRE ÉLARGIE : le workflow a DEUX jobs, qui partagent les mêmes étapes d'installation.
        La mutation courte est devenue ambiguë et le runner l'a déclarée MUETTE — c'est exactement
@@ -217,6 +248,7 @@ const MUTATIONS = [
   },
   {
     nom: "une épingle jamais mesurée entre dans le workflow",
+    id: "une-epingle-jamais-mesuree-entre-dans-le-workflow",
     fichier: ".github/workflows/ci.yml",
     /* ANCRE ÉLARGIE : le workflow a DEUX jobs, qui partagent les mêmes étapes d'installation.
        La mutation courte est devenue ambiguë et le runner l'a déclarée MUETTE — c'est exactement
@@ -228,6 +260,7 @@ const MUTATIONS = [
   },
   {
     nom: "le commentaire de version ment sur le SHA qu'il annote",
+    id: "le-commentaire-de-version-ment-sur-le-sha-qu-il-annote",
     fichier: ".github/workflows/ci.yml",
     /* ANCRE ÉLARGIE : le workflow a DEUX jobs, qui partagent les mêmes étapes d'installation.
        La mutation courte est devenue ambiguë et le runner l'a déclarée MUETTE — c'est exactement
@@ -239,25 +272,39 @@ const MUTATIONS = [
   },
   {
     nom: "une épingle du manifeste ne sert plus à rien et y reste",
-    fichier: ".github/workflows/ci.yml",
-    /* ANCRE ÉLARGIE : le workflow a DEUX jobs, qui partagent les mêmes étapes d'installation.
-       La mutation courte est devenue ambiguë et le runner l'a déclarée MUETTE — c'est exactement
-       ce pour quoi cet état existe. L'ancre inclut le voisinage qui distingue `verify`. */
-    /* DEUX ÉDITIONS, ET C'EST LE FOND DE LA MUTATION. Le workflow a deux jobs : remplacer
-       `setup-node` dans UN seul laisse l'épingle utilisée par l'autre, donc toujours utile — le
-       runner l'a montré en restant vert. Pour qu'une épingle du manifeste devienne réellement
-       inutilisée, il faut qu'AUCUN job ne s'en serve. */
-    editions: [
+    id: "une-epingle-du-manifeste-ne-sert-plus-a-rien-et-y-reste",
+    /* TROIS ÉDITIONS DANS DEUX FICHIERS, ET C'EST LE FOND DE LA MUTATION. Le diagnostic visé —
+       « n'est utilisée par aucun » — ne se déclenche que si l'épingle ne sert NULLE PART.
+
+       Premier temps : `ci.yml` a deux jobs, et la retirer d'un seul la laissait utile à l'autre ;
+       le runner l'a montré en restant vert. Second temps, 23/08/2026 : le lot 3 ajoute un SECOND
+       WORKFLOW qui l'utilise aussi, et deux éditions ne suffisent plus — le runner l'a montré une
+       deuxième fois, en refusant un échec obtenu pour une AUTRE raison (un écart de décompte par
+       job, pas une épingle orpheline). Le même raisonnement, monté d'un cran.
+
+       C'est cette mutation qui a rendu nécessaire le support multi-fichiers : décrire la régression
+       réelle passe par les deux workflows, sans quoi elle décrit autre chose. */
+    fichiers: [{
+      fichier: ".github/workflows/contre-epreuves-completes.yml",
+      editions: [
+        { cherche: "        uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020 # v7.0.0",
+          remplace: "        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1" },
+      ],
+    }, {
+      fichier: ".github/workflows/ci.yml",
+      editions: [
       { cherche: "      - name: Node 22 (depuis .nvmrc)\n        uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020 # v7.0.0\n        with:\n          node-version-file: .nvmrc\n          cache: npm\n\n      # Le seul contrôle du lot",
         remplace: "      - name: Node 22 (depuis .nvmrc)\n        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1\n        with:\n          node-version-file: .nvmrc\n          cache: npm\n\n      # Le seul contrôle du lot" },
       { cherche: "      - name: Node 22 (depuis .nvmrc)\n        uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020 # v7.0.0\n        with:\n          node-version-file: .nvmrc\n          cache: npm\n\n      - name: Installation reproductible",
         remplace: "      - name: Node 22 (depuis .nvmrc)\n        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1\n        with:\n          node-version-file: .nvmrc\n          cache: npm\n\n      - name: Installation reproductible" },
-    ],
+      ],
+    }],
     harnais: "packages/knowledge/scripts/check-actions-node.mjs",
     attendu: "n'est utilisée par aucun",
   },
   {
     nom: "le runtime Node 20 déprécié redevient acceptable",
+    id: "le-runtime-node-20-deprecie-redevient-acceptable",
     fichier: ".github/actions-epinglees.json",
     cherche: `      "sha": "3d3c42e5aac5ba805825da76410c181273ba90b1",
       "version": "v7.0.1",
@@ -278,6 +325,7 @@ const MUTATIONS = [
    */
   {
     nom: "le périmètre redevient une liste de fichiers, et l'outillage de build en sort",
+    id: "le-perimetre-redevient-une-liste-de-fichiers-et-l-outill",
     fichier: "packages/knowledge/scripts/lib/provenance.mjs",
     /* La v5 exacte, celle où Codex a montré le 22/08/2026 qu'on pouvait modifier
        `packages/ui/scripts/fix-404.mjs` — invoqué par le script `build` de `packages/ui` — sans
@@ -292,6 +340,7 @@ const MUTATIONS = [
   },
   {
     nom: "un filtre d'entités hérité survit au mode complet",
+    id: "un-filtre-d-entites-herite-survit-au-mode-complet",
     fichier: "packages/knowledge/scripts/lib/provenance.mjs",
     cherche: "  for (const k of NEUTRALISEES) delete env[k];",
     remplace: "  for (const k of []) delete env[k];",
@@ -301,6 +350,7 @@ const MUTATIONS = [
   },
   {
     nom: "OUTDIR redevient accepté : Astro écrirait ailleurs qu'on ne scelle",
+    id: "outdir-redevient-accepte-astro-ecrirait-ailleurs-qu-on-n",
     fichier: "packages/knowledge/scripts/lib/provenance.mjs",
     cherche: "  for (const k of REFUSEES) {\n    const v = surcharges[k] ?? base[k];",
     remplace: "  for (const k of []) {\n    const v = surcharges[k] ?? base[k];",
@@ -310,6 +360,7 @@ const MUTATIONS = [
   },
   {
     nom: "git redevient un échec OUVERT : « je n'ai rien pu lire » repasse pour « il n'y a rien »",
+    id: "git-redevient-un-echec-ouvert-je-n-ai-rien-pu-lire-repas",
     fichier: "packages/knowledge/scripts/lib/provenance.mjs",
     /* QUATRE ÉDITIONS, ET C'EST LE FOND DE LA MUTATION — pas une commodité. « Échouer fermé hors
        dépôt » n'est pas écrit à un endroit mais à quatre, et EN RETIRER UN SEUL LAISSE LA PROPRIÉTÉ
@@ -333,6 +384,7 @@ const MUTATIONS = [
   },
   {
     nom: "une variable non déclarée entre dans un constructeur et choisit le script de build",
+    id: "une-variable-non-declaree-entre-dans-un-constructeur-et",
     fichier: "packages/knowledge/scripts/build-ci.mjs",
     /* LA CONTRE-ÉPREUVE DE CODEX DU 23/08/2026, FIGÉE. Elle a montré un FAUX VERT : le harnais
        restait à 74/74 alors qu'une variable inconnue du contrat choisissait entre deux scripts de
@@ -349,6 +401,7 @@ const MUTATIONS = [
   },
   {
     nom: "un exécutable redevient classé par le répertoire qui le contient",
+    id: "un-executable-redevient-classe-par-le-repertoire-qui-le",
     fichier: "packages/knowledge/scripts/lib/provenance.mjs",
     /* La correction de fond du 23/08/2026 : ce n'est pas `packages/knowledge/scripts` qui était le
        défaut, c'est qu'un classement PAR RÉPERTOIRE est une promesse sur du code pas encore écrit.
@@ -367,6 +420,7 @@ const MUTATIONS = [
   },
   {
     nom: "un répertoire de sources sort de la scrutation sans être classé",
+    id: "un-repertoire-de-sources-sort-de-la-scrutation-sans-etre",
     fichier: "packages/knowledge/scripts/lib/provenance.mjs",
     /* Le relevé des variables d'environnement ne vaut que ce que vaut la liste des chemins
        scrutés — écrite à la main, donc du même bois que l'`ENTREES` de la v5. Le résidu est ce qui
@@ -379,6 +433,7 @@ const MUTATIONS = [
   },
   {
     nom: "les URL des sitemaps peuvent à nouveau être comptées deux fois",
+    id: "les-url-des-sitemaps-peuvent-a-nouveau-etre-comptees-deu",
     fichier: "packages/knowledge/scripts/lib/provenance.mjs",
     cherche: "      if (vues.has(m[1])) doublons.add(m[1]); else vues.add(m[1]);",
     remplace: "      vues.add(m[1]);",
@@ -400,6 +455,7 @@ const MUTATIONS = [
    */
   {
     nom: "un paragraphe est resté dans la langue source",
+    id: "un-paragraphe-est-reste-dans-la-langue-source",
     fichier: "packages/ui/src/content/guides/es/viajar-en-avion-con-perro.md",
     cherche: "El avión abre la puerta a viajes lejanos con tu perro, pero es también el medio de transporte más regulado.",
     remplace: "Flying opens the door to far-away trips with your dog, but it's also the most heavily regulated way to travel.",
@@ -408,6 +464,7 @@ const MUTATIONS = [
   },
   {
     nom: "un guide né ici s'invente une adresse d'origine",
+    id: "un-guide-ne-ici-s-invente-une-adresse-d-origine",
     fichier: "packages/ui/src/content/guides/es/viajar-en-avion-con-perro.md",
     cherche: `key: "flying-with-a-dog"`,
     remplace: `key: "flying-with-a-dog"\nsourceUrl: "/viajar-en-avion-con-perro/"`,
@@ -416,6 +473,7 @@ const MUTATIONS = [
   },
   {
     nom: "un lien renvoie à l'anglais alors que la traduction existe",
+    id: "un-lien-renvoie-a-l-anglais-alors-que-la-traduction-exis",
     fichier: "packages/ui/src/content/guides/es/avion-con-perro-cabina-bodega-carga.md",
     cherche: "](/es/travel-hub/viajar-en-avion-con-perro/)",
     remplace: "](/travel-hub/flying-with-a-dog/)",
@@ -424,6 +482,7 @@ const MUTATIONS = [
   },
   {
     nom: "un paragraphe FRANÇAIS est resté dans sa version anglaise exacte",
+    id: "un-paragraphe-francais-est-reste-dans-sa-version-anglais",
     fichier: "packages/ui/src/content/guides/fr/retroplanning-vol-international-chien.md",
     /* LA CONTRE-ÉPREUVE DE CODEX DU 23/08/2026, FIGÉE. Elle a montré un faux vert : `fr` était rangé
        parmi les langues SOURCES, si bien que les contrôles de fidélité, de cardinalité et d'anglais
@@ -440,6 +499,7 @@ const MUTATIONS = [
   },
   {
     nom: "un guide renvoie vers un outil que le site ne sert pas",
+    id: "un-guide-renvoie-vers-un-outil-que-le-site-ne-sert-pas",
     fichier: "packages/ui/src/content/guides/en/dog-heatstroke.md",
     cherche: "## Why are dogs so vulnerable to heat?",
     remplace:
@@ -449,6 +509,7 @@ const MUTATIONS = [
   },
   {
     nom: "un guide français importé perd son adresse d'origine",
+    id: "un-guide-francais-importe-perd-son-adresse-d-origine",
     fichier: "packages/ui/src/content/guides/fr/mal-des-transports-chien.md",
     cherche: 'sourceUrl: "/mal-des-transports-chien/"\n',
     remplace: "",
@@ -457,6 +518,7 @@ const MUTATIONS = [
   },
   {
     nom: "un guide français né ici s'invente une adresse d'origine",
+    id: "un-guide-francais-ne-ici-s-invente-une-adresse-d-origine",
     fichier: "packages/ui/src/content/guides/fr/retroplanning-vol-international-chien.md",
     cherche: 'key: "pet-flight-timeline"',
     remplace: 'key: "pet-flight-timeline"\nsourceUrl: "/retroplanning-vol-international-chien/"',
@@ -465,6 +527,7 @@ const MUTATIONS = [
   },
   {
     nom: "une traduction se déclare révisée AVANT d'avoir été publiée",
+    id: "une-traduction-se-declare-revisee-avant-d-avoir-ete-publ",
     fichier: "packages/ui/src/content/guides/es/retroplanning-de-un-vuelo-internacional.md",
     cherche: 'lastmod: "2026-08-19',
     remplace: 'lastmod: "2026-08-15',
@@ -473,16 +536,59 @@ const MUTATIONS = [
   },
   {
     nom: "un guide se redate dans le futur, comme les six de l'étalement inventé",
+    id: "un-guide-se-redate-dans-le-futur-comme-les-six-de-l-etal",
     fichier: "packages/ui/src/content/guides/es/retroplanning-de-un-vuelo-internacional.md",
     cherche: 'lastmod: "2026-08-19T09:00:00+02:00"',
     remplace: 'lastmod: "2027-08-19T09:00:00+02:00"',
     harnais: "test-guides-traduits.mjs",
     attendu: "aucun guide ne se déclare publié ou révisé dans le futur",
   },
+  /* ---- LE CATALOGUE SE SURVEILLE LUI-MÊME -----------------------------------------------------
+   * Ces trois-là mutent CE FICHIER et n'appellent que `--contrat`, qui vérifie la bijection puis
+   * sort sans jouer une seule mutation : sans quoi le runner se relancerait entièrement lui-même.
+   *
+   * LEUR ANCRE EST MULTILIGNE, ET CE N'EST PAS UN DÉTAIL. Un fichier qui se mute lui-même contient
+   * ses propres chaînes de recherche : l'ancre d'une seule ligne `id: "…"` apparaissait au vrai
+   * site ET dans le texte de ces trois mutations, donc trois fois. Le runner les a déclarées
+   * MUETTES — son échec dur pour « la mutation ne s'applique pas de façon univoque » —, et il
+   * avait raison. Dans un littéral JS le saut de ligne s'écrit `\n`, deux caractères : une ancre
+   * qui en porte un ne peut donc matcher que le vrai code, jamais sa propre citation.
+   */
+  {
+    nom: "une garantie disparaît proprement du catalogue",
+    id: "une-garantie-disparait-proprement-du-catalogue",
+    fichier: "test-contre-epreuves.mjs",
+    cherche: '\n    id: "un-avis-peut-a-nouveau-repeter-le-meme-canal",',
+    remplace: "",
+    harnais: "test-contre-epreuves.mjs",
+    args: ["--contrat"],
+    attendu: "attendue(s) mais ABSENTE(s) du catalogue",
+  },
+  {
+    nom: "deux mutations portent le même identifiant",
+    id: "deux-mutations-portent-le-meme-identifiant",
+    fichier: "test-contre-epreuves.mjs",
+    cherche: '\n    id: "un-avis-peut-a-nouveau-repeter-le-meme-canal",',
+    remplace: '\n    id: "un-tableau-de-preuves-vide-redevient-acceptable",',
+    harnais: "test-contre-epreuves.mjs",
+    args: ["--contrat"],
+    attendu: "identifiant(s) EN DOUBLE",
+  },
+  {
+    nom: "une identité est substituée, à effectif constant",
+    id: "une-identite-est-substituee-a-effectif-constant",
+    fichier: "test-contre-epreuves.mjs",
+    cherche: '\n    id: "un-avis-peut-a-nouveau-repeter-le-meme-canal",',
+    remplace: '\n    id: "un-avis-peut-a-nouveau-repeter-le-meme-canal-bis",',
+    harnais: "test-contre-epreuves.mjs",
+    args: ["--contrat"],
+    attendu: "INCONNUE(s) de la référence",
+  },
   // ---- L'INTERFACE (chaque mutation exige un build, d'où `--dom`) ----
   {
     dom: true,
     nom: "l'interface republie un rapport sans `safety_advisories` comme « aucun avis »",
+    id: "l-interface-republie-un-rapport-sans-safety-advisories-c",
     fichier: "packages/ui/src/components/FlightFinder.astro",
     editions: [
       { cherche: "&& avisRecevables(data)) return data;", remplace: ") return data;" },
@@ -494,6 +600,7 @@ const MUTATIONS = [
   {
     dom: true,
     nom: "une portée inconnue est de nouveau élargie à « toutes les compagnies »",
+    id: "une-portee-inconnue-est-de-nouveau-elargie-a-toutes-les",
     fichier: "packages/ui/src/components/FlightFinder.astro",
     editions: [
       { cherche: '      && (a.scope === "global" || connues.has(a.scope)));', remplace: "      );" },
@@ -519,6 +626,7 @@ const MUTATIONS = [
        « 3 épingles, toutes déclarées », alors que le workflow avait perdu une étape d'installation.
        Trouvé par la contre-revue du 20/08/2026, qui a joué exactement cette mutation. */
     nom: "une étape d'installation disparaît d'un seul job, l'épingle servant encore ailleurs",
+    id: "une-etape-d-installation-disparait-d-un-seul-job-l-eping",
     fichier: ".github/workflows/ci.yml",
     cherche: "      - name: Node 22 (depuis .nvmrc)\n        uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020 # v7.0.0\n        with:\n          node-version-file: .nvmrc\n          cache: npm\n\n      - name: Installation reproductible",
     remplace: "      - name: Installation reproductible",
@@ -528,6 +636,7 @@ const MUTATIONS = [
   {
     distComplet: true,
     nom: "le contrôle hors-sitemap se tait au lieu de dire qu'il ne peut pas conclure",
+    id: "le-controle-hors-sitemap-se-tait-au-lieu-de-dire-qu-il-n",
     fichier: "packages/knowledge/scripts/audit-site.mjs",
     cherche: "if (indexables.length === 0) {",
     remplace: "if (false) {",
@@ -537,6 +646,7 @@ const MUTATIONS = [
   {
     distComplet: true,
     nom: "la sévérité INFO quitte l'ordre d'affichage, ET sa garde est neutralisée",
+    id: "la-severite-info-quitte-l-ordre-d-affichage-et-sa-garde",
     fichier: "packages/knowledge/scripts/audit-site.mjs",
     /* DEUX ÉDITIONS, PARCE QUE LA RÉGRESSION EN EXIGE DEUX. Retirer `INFO` de l'ordre déclenche la
        garde des sévérités inconnues, qui arrête l'audit en code 2 : le défaut serait donc déjà vu.
@@ -553,8 +663,70 @@ const MUTATIONS = [
 ];
 
 const dire = (m) => process.stdout.write(m + "\n");
+let ATTENDUES_N = 0;
 const git = (...a) => execFileSync("git", a, { encoding: "utf8" });
 const arbreSale = () => git("status", "--porcelain", "--untracked-files=all").trim();
+
+/* ---- LE CONTRAT DU CATALOGUE : UNE SECONDE SOURCE, ET UNE BIJECTION -------------------------
+ *
+ * LE TROU QUE CECI FERME, trouvé par Codex le 23/08/2026. `--tout` garantit que toutes les
+ * mutations PRÉSENTES ont été sélectionnées et jouées. Il ne garantit RIEN sur celles qui
+ * devraient l'être : supprimer proprement un objet de `MUTATIONS` laissait les trois compteurs de
+ * non-jouées à zéro et le runner concluait « 40 sur 40 », avec succès. Une garantie disparue en
+ * silence, et un workflow hebdomadaire vert pour l'annoncer.
+ *
+ * POURQUOI PAS UN SIMPLE DÉCOMPTE. `MUTATIONS.length === 44` attraperait la suppression — pas la
+ * SUBSTITUTION à effectif constant : retirer une garantie et en ajouter une autre laisse le total
+ * intact. C'est donc une BIJECTION sur des identifiants, pas une comparaison de cardinaux.
+ *
+ * Quatre défauts distincts, quatre diagnostics distincts : identifiant manquant ou mal formé,
+ * identifiant en double, garantie attendue absente, mutation inconnue de la référence. Et la
+ * référence vide est refusée d'emblée — elle s'accorderait avec n'importe quel catalogue, ce qui
+ * est la version « faute de matière » de ce contrôle-ci.
+ *
+ * `--contrat` vérifie tout cela puis SORT, sans jouer une seule mutation : c'est ce qui permet aux
+ * trois contre-épreuves du catalogue de s'appeler elles-mêmes sans se relancer entièrement. Il ne
+ * dépend pas de la propreté de l'arbre — il n'écrit rien — et se place donc avant ce garde-fou. */
+const CONTRAT = process.argv.includes("--contrat");
+{
+  const ATTENDUES = JSON.parse(readFileSync("contre-epreuves-attendues.json", "utf8")).identifiants;
+  const ids = MUTATIONS.map((m) => m.id);
+  const malFormes = MUTATIONS.filter((m) => typeof m.id !== "string"
+    || !/^[a-z0-9]+(-[a-z0-9]+)*$/.test(m.id)).map((m) => m.nom);
+  const doubles = [...new Set(ids.filter((i, n) => i && ids.indexOf(i) !== n))];
+  const presentes = new Set(ids.filter(Boolean));
+  const absentes = ATTENDUES.filter((i) => !presentes.has(i));
+  const inconnues = [...presentes].filter((i) => !ATTENDUES.includes(i));
+  const griefs = [];
+  if (!Array.isArray(ATTENDUES) || ATTENDUES.length === 0) {
+    griefs.push("la référence est VIDE : elle s'accorderait avec n'importe quel catalogue");
+  }
+  if (new Set(ATTENDUES).size !== ATTENDUES.length) {
+    griefs.push("la référence elle-même porte des identifiant(s) EN DOUBLE");
+  }
+  if (malFormes.length) {
+    griefs.push(`${malFormes.length} mutation(s) sans identifiant utilisable : ${malFormes.slice(0, 3).join(" · ")}`);
+  }
+  if (doubles.length) griefs.push(`${doubles.length} identifiant(s) EN DOUBLE : ${doubles.join(" · ")}`);
+  if (absentes.length) {
+    griefs.push(`${absentes.length} garantie(s) attendue(s) mais ABSENTE(s) du catalogue : ${absentes.join(" · ")}`);
+  }
+  if (inconnues.length) {
+    griefs.push(`${inconnues.length} mutation(s) INCONNUE(s) de la référence : ${inconnues.join(" · ")}`);
+  }
+  if (griefs.length) {
+    process.stderr.write("[contre-épreuves] ÉCHEC — le catalogue ne correspond pas à sa référence :\n"
+      + griefs.map((g) => `  · ${g}`).join("\n") + "\n"
+      + "  Retirer ou renommer une garantie se fait en DEUX endroits : ici et dans "
+      + "`contre-epreuves-attendues.json`.\n");
+    process.exit(1);
+  }
+  ATTENDUES_N = ATTENDUES.length;
+  if (CONTRAT) {
+    dire(`[contre-épreuves] contrat du catalogue : ${ATTENDUES_N} garanties, bijection exacte avec la référence.`);
+    process.exit(0);
+  }
+}
 
 if (arbreSale()) {
   process.stderr.write("[contre-épreuves] ÉCHEC — l'arbre est sale : ces mutations écrivent dans "
@@ -566,7 +738,13 @@ if (arbreSale()) {
 const joue = (m) => m.buildComplet ? AVEC_COMPLET
   : m.distComplet ? AVEC_DIST_COMPLET
   : AVEC_DOM || !m.dom;
-const choisies = MUTATIONS.filter(joue);
+/* L'ORDRE N'EST PAS LIBRE, et c'est ce qui rend `--tout` jouable en UNE passe. Une mutation
+   d'interface reconstruit `packages/ui/dist` en portée RÉDUITE ; jouée avant celles qui LISENT le
+   site complet, elle leur retirerait la matière sous les pieds et elles échoueraient sans que la
+   mutation y soit pour rien. Les voici donc reléguées à la fin — partition stable, l'ordre relatif
+   du catalogue est conservé dans chaque moitié. */
+const choisies = [...MUTATIONS.filter((m) => joue(m) && !m.dom),
+                  ...MUTATIONS.filter((m) => joue(m) && m.dom)];
 const ignoreesDom = MUTATIONS.filter((m) => m.dom && !m.buildComplet && !AVEC_DOM).length;
 const ignoreesCompletes = MUTATIONS.filter((m) => m.buildComplet && !AVEC_COMPLET).length;
 const ignoreesDist = MUTATIONS.filter((m) => m.distComplet && !AVEC_DIST_COMPLET).length;
@@ -596,22 +774,41 @@ if (choisies.some((m) => m.distComplet)) {
 let tenues = 0;
 const echecs = [];
 
+/* UNE MUTATION PEUT TOUCHER PLUSIEURS FICHIERS, et c'est parfois la seule façon de décrire la
+   régression réelle. `fichiers: [{ fichier, editions }]` en donne le moyen ; `fichier` + `editions`
+   (ou `cherche`/`remplace`) restent la forme courte pour le cas ordinaire.
+
+   POURQUOI CE BESOIN EST APPARU. La mutation « une épingle du manifeste ne sert plus à rien »
+   portait déjà DEUX éditions parce que le workflow a deux jobs : la retirer d'un seul la laissait
+   utile à l'autre. Le lot 3 ajoute un SECOND WORKFLOW qui l'utilise aussi — le même raisonnement
+   monte donc d'un cran, et deux éditions dans un seul fichier ne suffisent plus. Le runner l'a
+   montré tout seul : il a refusé le diagnostic obtenu parce que ce n'était pas celui attendu. */
+const cibles = (m) => m.fichiers
+  ?? [{ fichier: m.fichier, editions: m.editions ?? [{ cherche: m.cherche, remplace: m.remplace }] }];
+
 for (const m of choisies) {
-  const source = readFileSync(m.fichier, "utf8");
-  const editions = m.editions ?? [{ cherche: m.cherche, remplace: m.remplace }];
+  const sources = new Map(cibles(m).map((c) => [c.fichier, readFileSync(c.fichier, "utf8")]));
   /* Une édition qui ne s'applique plus est un ÉCHEC DUR, jamais un « rien à faire » : elle
      prouverait le vide en silence. Une chaîne ambiguë l'est tout autant. */
-  const muette = editions.find((e) => source.split(e.cherche).length - 1 !== 1);
+  let muette = null;
+  for (const c of cibles(m)) {
+    const src = sources.get(c.fichier);
+    const e = c.editions.find((x) => src.split(x.cherche).length - 1 !== 1);
+    if (e) { muette = { ...e, fichier: c.fichier, vu: src.split(e.cherche).length - 1 }; break; }
+  }
   if (muette) {
     echecs.push(`${m.nom}\n      la mutation ne s'applique pas : « ${muette.cherche.slice(0, 60)}… » `
-      + `apparaît ${source.split(muette.cherche).length - 1} fois dans ${m.fichier} (attendu : 1). `
+      + `apparaît ${muette.vu} fois dans ${muette.fichier} (attendu : 1). `
       + `Le code a bougé — la mutation doit être remise à jour, sans quoi elle ne prouve plus rien.`);
     dire(`  MUETTE  ${m.nom}`);
     continue;
   }
   let resultat;
   try {
-    writeFileSync(m.fichier, editions.reduce((t, e) => t.replace(e.cherche, e.remplace), source));
+    for (const c of cibles(m)) {
+      writeFileSync(c.fichier,
+        c.editions.reduce((t, e) => t.replace(e.cherche, e.remplace), sources.get(c.fichier)));
+    }
     if (m.dom) {
       const b = spawnSync("npm", ["run", "build:ci", ...(m.buildComplet ? ["--", "--complet"] : [])],
         { encoding: "utf8" });
@@ -635,7 +832,7 @@ for (const m of choisies) {
        `:(literal)` parce qu'un chemin de route Astro contient des crochets — `sitemap-[lang].xml.ts`
        est un motif valide pour git, qui ne désigne AUCUN fichier existant. La restauration
        échouerait alors dans un `finally`, et la mutation resterait dans l'arbre. */
-    git("checkout", "--", `:(literal)${m.fichier}`);
+    for (const c of cibles(m)) git("checkout", "--", `:(literal)${c.fichier}`);
   }
   if (resultat?.erreur) { echecs.push(`${m.nom}\n      ${resultat.erreur}`); dire(`  ÉCHEC   ${m.nom}`); }
   else { tenues++; dire(`  tenue   ${m.nom}`); }
@@ -679,6 +876,16 @@ if (ignoreesCompletes) {
 }
 if (ignoreesDist) {
   dire(`  ${ignoreesDist} mutation(s) NON jouée(s) LISANT un site complet déjà construit — aucun build, mais un « dist » complet. « npm run contre-epreuves -- --dist-complet » les inclut.`);
+}
+/* Sous `--tout`, ne pas jouer une mutation n'est plus une information : c'est un échec. */
+/* Sous `--tout`, la couverture se juge sur la RÉFÉRENCE, pas sur ce que le catalogue contenait au
+   moment de l'exécution : c'est ce qui distingue « tout ce qui est là » de « tout ce qui est dû ». */
+if (TOUT && tenues !== ATTENDUES_N) {
+  echecs.push(`« --tout » : ${tenues} garantie(s) tenue(s) pour ${ATTENDUES_N} attendues par la référence.`);
+}
+if (TOUT && (ignoreesDom || ignoreesCompletes || ignoreesDist)) {
+  echecs.push(`« --tout » demandé, mais ${ignoreesDom + ignoreesCompletes + ignoreesDist} mutation(s) `
+    + "n'ont pas été jouées. La couverture annoncée n'est pas celle obtenue.");
 }
 if (echecs.length) {
   process.stderr.write(`\n[contre-épreuves] ÉCHEC — ${echecs.length} :\n`
