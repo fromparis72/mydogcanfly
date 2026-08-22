@@ -11,7 +11,7 @@
  * visiteur verra. Aucun chiffre n'est repris de la simulation : ils sont recalculés, puis
  * CONFRONTÉS à ceux que la contre-revue a validés — un écart est un échec, pas une nuance.
  */
-import { execFileSync } from "node:child_process";
+import { execFileSync, spawnSync } from "node:child_process";
 import { readFileSync, writeFileSync } from "node:fs";
 import { createHash } from "node:crypto";
 import { normalize } from "../../../packages/knowledge/src/index.ts";
@@ -28,11 +28,34 @@ const RAW = {
   race: "packages/knowledge/raw/breed-restrictions.json",
 };
 const sha256 = (b) => createHash("sha256").update(b).digest("hex");
-const auCommit = (chemin) => execFileSync("git", ["show", `${MESURE_BASE_SHA}:${chemin}`],
-  { maxBuffer: 256 * 1024 * 1024, stdio: ["ignore", "pipe", "ignore"] });
+/* LA LECTURE AU COMMIT DE BASE ÉCHOUE FERMÉ, et ce n'est pas une précaution de style.
+ *
+ * Elle échouait OUVERT jusqu'au 22/08/2026 : `litAvant` enveloppait cet appel dans un
+ * `catch { return [] }`. Un commit de base illisible donnait donc un « avant » VIDE, et la mesure
+ * comparait le référentiel entier à rien du tout — sans jamais dire qu'elle n'avait rien pu lire.
+ * C'est mot pour mot le défaut que la contre-revue avait fait corriger dans `lib/provenance.mjs`
+ * cinq jours plus tôt ; il vivait ici aussi, dans le dossier qui MESURE le référentiel.
+ *
+ * La CI l'a exposé sans le nommer : `actions/checkout` clone en profondeur 1, `git show <base>:…`
+ * ne résout pas, l'« avant » devenait vide et le harnais mourait plus loin d'une exception. Le
+ * runner de contre-épreuves a refusé cet échec — « sans le diagnostic attendu, mis en défaut pour
+ * une autre raison » —, et il avait raison : c'est exactement ce qu'il existe pour attraper. */
+const auCommit = (chemin) => {
+  const r = spawnSync("git", ["show", `${MESURE_BASE_SHA}:${chemin}`],
+    { maxBuffer: 256 * 1024 * 1024 });
+  if (r.status !== 0) {
+    process.stderr.write(`[t0b3b] ÉCHEC — impossible de lire ${chemin} au commit de base `
+      + `${MESURE_BASE_SHA.slice(0, 7)} : ${(r.stderr ?? "").toString().trim() || "git muet"}.\n`
+      + "  Un « avant » qu'on ne peut pas lire ne se remplace pas par un « avant » vide : la mesure\n"
+      + "  comparerait le référentiel entier à rien. Si l'historique est superficiel (la CI clone en\n"
+      + "  profondeur 1 par défaut), demander « fetch-depth: 0 ».\n");
+    process.exit(1);
+  }
+  return r.stdout;
+};
 
 /* ---- Les deux états ------------------------------------------------------------------------- */
-const litAvant = (chemin) => { try { return JSON.parse(auCommit(chemin).toString("utf8")); } catch { return []; } };
+const litAvant = (chemin) => JSON.parse(auCommit(chemin).toString("utf8"));
 const litApres = (chemin) => JSON.parse(readFileSync(chemin, "utf8"));
 
 /* CONTRE-ÉPREUVE : on fait croire à la mesure que le référentiel n'a pas bougé. Ses exigences
