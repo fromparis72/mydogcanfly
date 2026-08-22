@@ -71,7 +71,7 @@ Côté hydratation, un chien boit en moyenne **50 à 60 ml d'eau par kilo et par
 
 L'hébergement fait ou défait le séjour. Un lieu réellement dog-friendly prévoit un extérieur sécurisé, des sols faciles à entretenir et des règles claires. Nous avons consacré un guide entier à la question : [bien choisir un hébergement dog-friendly](/fr/travel-hub/choisir-hebergement-dog-friendly/).
 
-Pour une première expérience, une chambre d'hôtes pensée pour les chiens facilite grandement les choses. Des adresses comme [Stay with Bailey](https://stay-with-bailey.com), près de Paris, montrent à quoi ressemble un accueil vraiment adapté : on y arrive détendu, sans craindre la mauvaise surprise.
+Pour une première expérience, une chambre d'hôtes pensée pour les chiens facilite grandement les choses. Des adresses comme [Stay with Bailey](https://stay-with-bailey.com/fr/), près de Paris, montrent à quoi ressemble un accueil vraiment adapté : on y arrive détendu, sans craindre la mauvaise surprise.
 
 Avant de réserver, posez toujours par écrit les bonnes questions : le chien est-il accepté dans **toutes** les pièces ou seulement dans la chambre ? Peut-il rester seul à l'hébergement, et combien de temps ? Y a-t-il un supplément par nuit (souvent **5 à 15 €**) ? Le jardin est-il clôturé ? Existe-t-il des espaces de promenade à proximité ? Confirmez ces réponses par e-mail : en cas de litige à l'arrivée, vous aurez une trace écrite.
 

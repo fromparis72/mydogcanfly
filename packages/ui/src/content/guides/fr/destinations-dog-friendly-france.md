@@ -82,7 +82,7 @@ Toutes les destinations ne conviennent pas à tous les chiens. Quelques repères
 4. **Vérifiez les activités sur place** : sentiers, plages autorisées, restaurants accueillants.
 5. **Réservez un hébergement adapté** en amont, car les bonnes adresses dog-friendly partent vite.
 
-Pour un séjour près de la capitale, une [chambre d'hôtes dog-friendly près de Paris sur stay-with-bailey.com](https://stay-with-bailey.com) offre un point de chute pratique pour rayonner en Île-de-France. Avant de réserver où que ce soit, consultez nos conseils pour [bien choisir un hébergement dog-friendly](/fr/travel-hub/choisir-hebergement-dog-friendly/).
+Pour un séjour près de la capitale, une [chambre d'hôtes dog-friendly près de Paris sur stay-with-bailey.com](https://stay-with-bailey.com/fr/) offre un point de chute pratique pour rayonner en Île-de-France. Avant de réserver où que ce soit, consultez nos conseils pour [bien choisir un hébergement dog-friendly](/fr/travel-hub/choisir-hebergement-dog-friendly/).
 
 ## Mer, montagne ou campagne : quel profil de chien pour quel terrain ?
 

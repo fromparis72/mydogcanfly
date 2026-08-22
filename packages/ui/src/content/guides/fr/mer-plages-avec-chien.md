@@ -79,7 +79,7 @@ Rincez votre chien à l'eau claire en insistant sur le ventre, les pattes et ent
 - Séchez soigneusement les oreilles pour prévenir les otites.
 - Surveillez l'apparition de rougeurs ou de démangeaisons les jours suivants.
 
-Pour trouver un hébergement en bord de mer qui accueille votre chien, des plateformes spécialisées comme [Stay With Bailey](https://stay-with-bailey.com) recensent des adresses adaptées aux animaux.
+Pour trouver un hébergement en bord de mer qui accueille votre chien, des plateformes spécialisées comme [Stay With Bailey](https://stay-with-bailey.com/fr/) recensent des adresses adaptées aux animaux.
 
 ## Sources
 
