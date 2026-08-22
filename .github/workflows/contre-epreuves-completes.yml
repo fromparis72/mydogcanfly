@@ -6,14 +6,16 @@ permissions:
 
 # POURQUOI CE WORKFLOW EXISTE, SÉPARÉ DE LA CI.
 #
-# Quatre mutations du catalogue exigent le SITE ENTIER : sous le build réduit, les guides et les
-# fiches n'existent pas, leur harnais échouerait faute de matière et non parce que la mutation a
-# mordu — il prouverait le vide. Elles coûtent donc un build complet chacune, plus celui de
-# restauration : environ cent minutes.
+# LE COÛT RÉEL, RELEVÉ ET NON SUPPOSÉ. Ce commentaire annonçait « un build complet par mutation,
+# environ cent minutes » pour quatre mutations. C'était faux, et Codex l'a relevé le 23/08/2026 :
+# le catalogue porte deux mutations qui LISENT un site complet — elles n'en reconstruisent aucun —
+# et deux mutations d'interface, qui reconstruisent un site RÉDUIT. Aucune n'exige de rebâtir le
+# site entier. Le déroulé exact est donc : un build complet initial, deux builds réduits pendant
+# les mutations d'interface, un build réduit de restauration.
 #
-# Les imposer à chaque petite pull request reviendrait à payer cent minutes pour vérifier une
-# correction de trois lignes. Elles étaient jusqu'ici lancées À LA MAIN — c'est-à-dire oubliables,
-# exactement ce que l'en-tête de `test-contre-epreuves.mjs` reproche aux contre-épreuves manuelles.
+# Ce qui reste vrai : ce build complet initial ne se justifie pas à chaque petite pull request, et
+# ces garanties étaient jusqu'ici lancées À LA MAIN — c'est-à-dire oubliables, exactement ce que
+# l'en-tête de `test-contre-epreuves.mjs` reproche aux contre-épreuves manuelles.
 #
 # TROIS DÉCLENCHEURS, ET LE TROISIÈME RÈGLE UN PROBLÈME PRÉCIS :
 #   · `schedule` — une fois par semaine, sans que personne y pense ;
@@ -50,8 +52,8 @@ jobs:
       github.event_name != 'pull_request'
       || contains(github.event.pull_request.labels.*.name, 'contre-epreuves-completes')
     runs-on: ubuntu-latest
-    # Cinq builds complets dans le pire des cas. La marge est large à dessein : un dépassement
-    # laisserait l'arbre muté sur le runner et le rapport sans conclusion.
+    # Un build complet puis trois réduits, plus les harnais : la marge reste large à dessein, un
+    # dépassement laisserait l'arbre muté sur le runner et le rapport sans conclusion.
     timeout-minutes: 180
 
     steps:
