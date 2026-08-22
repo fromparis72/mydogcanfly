@@ -201,7 +201,16 @@ function verifierEnvironnementDuRejeu() {
   }
   /* `.nvmrc` déclare un PLANCHER (voir scripts/lib/require-node.mjs) : même majeure, version au
      moins égale. Exiger l'égalité stricte serait plus dur que le contrat du dépôt lui-même. */
-  const nvmrc = (auCommit(".nvmrc") ?? Buffer.from("")).toString("utf8").trim();
+  /* Un `.nvmrc` illisible au commit de base ne devient PAS une version « 0.0.0 » : une absence
+     qu'on remplace par une valeur bénigne est une absence qu'on ne verra jamais. Même règle que
+     `package-lock.json` juste au-dessus, et même défaut que celui corrigé le 22/08/2026 dans
+     `lib/provenance.mjs` — git doit échouer FERMÉ. */
+  const nvmrcBrut = auCommit(".nvmrc");
+  if (!nvmrcBrut) {
+    echouer(`.nvmrc introuvable au commit ${MESURE_MOTEUR_SHA.slice(0, 7)} — le plancher de version `
+      + `ne peut pas être vérifié, et le supposer serait pire que de s'arrêter.`);
+  }
+  const nvmrc = nvmrcBrut.toString("utf8").trim();
   const num = (v) => v.replace(/^v/, "").split(".").map(Number);
   const [majH, minH, patH] = num(nvmrc || "0.0.0");
   const [maj, min, pat] = num(process.version);

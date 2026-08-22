@@ -62,7 +62,14 @@ jobs:
     timeout-minutes: 30
 
     steps:
+      # `fetch-depth: 0` — L'HISTORIQUE ENTIER, ET C'EST UNE EXIGENCE, PAS UN CONFORT.
+      # `actions/checkout` clone par défaut en PROFONDEUR 1. Or les dossiers de mesure lisent leur
+      # état « avant » au commit de base par `git show <sha>:<chemin>` : sur un clone superficiel ce
+      # commit n'existe pas et la lecture échoue. Constaté le 23/08/2026 sur les trois pull requests,
+      # dans l'étape de contre-épreuves — le seul endroit de la CI qui invoque un mesureur.
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          fetch-depth: 0
 
       - name: Node 22 (depuis .nvmrc)
         uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020 # v7.0.0
@@ -195,7 +202,14 @@ jobs:
       # le manifeste et `check-actions-node.mjs` qui les vérifie : les DEUX jobs migrent donc
       # ensemble, avec leur garde. Les laisser en v4 ici ferait vivre côte à côte deux runtimes
       # dans le même fichier, dont un déprécié — et le contrôle du job rapide le dirait.
+      # `fetch-depth: 0` — L'HISTORIQUE ENTIER, ET C'EST UNE EXIGENCE, PAS UN CONFORT.
+      # `actions/checkout` clone par défaut en PROFONDEUR 1. Or les dossiers de mesure lisent leur
+      # état « avant » au commit de base par `git show <sha>:<chemin>` : sur un clone superficiel ce
+      # commit n'existe pas et la lecture échoue. Constaté le 23/08/2026 sur les trois pull requests,
+      # dans l'étape de contre-épreuves — le seul endroit de la CI qui invoque un mesureur.
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          fetch-depth: 0
 
       - name: Node 22 (depuis .nvmrc)
         uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020 # v7.0.0
