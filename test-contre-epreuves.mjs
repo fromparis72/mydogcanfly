@@ -218,6 +218,7 @@ const MUTATIONS = [
   },
   {
     nom: "un `.nvmrc` vide redevient un plancher satisfait",
+    id: "un-nvmrc-vide-redevient-un-plancher-satisfait",
     fichier: "mesures/t0b3a-arbitrage-brachy/outils/lib-arbitrage.mjs",
     /* LE DÉFAUT EXACT TROUVÉ PAR LA CONTRE-REVUE DU 23/08/2026, FIGÉ. La lecture manquante
        échouait bien, mais un `Buffer` vide est truthy : `nvmrc` valait `""`, et le ternaire
