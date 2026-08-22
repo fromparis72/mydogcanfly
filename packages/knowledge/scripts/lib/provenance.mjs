@@ -122,6 +122,39 @@ export const SOURCES_A_SCRUTER = [
   "packages/engine/src",
 ];
 
+/**
+ * CE QUI, DANS LES TROIS PAQUETS, NE PEUT PAS LIRE L'ENVIRONNEMENT EN CONSTRUISANT UNE PAGE — et
+ * POURQUOI, chemin par chemin.
+ *
+ * `SOURCES_A_SCRUTER` est une liste écrite à la main : c'est exactement le défaut que la v5 a payé
+ * sur `ENTREES`, vraie le jour où on l'écrit et fausse au répertoire suivant. Le RÉSIDU la referme
+ * — `test-provenance.mjs` exige que TOUT chemin suivi des trois paquets soit ou bien scruté, ou
+ * bien inscrit ici avec son motif. Un `packages/ui/lib` nouveau fait donc rougir tant que personne
+ * ne l'a classé, et le classement est une phrase qu'il faut écrire, pas un oubli qui passe.
+ */
+export const HORS_SCRUTATION = {
+  "packages/ui/README.md": "documentation, aucun code exécuté au build",
+  "packages/ui/package.json": "manifeste : il FIXE des variables (`build:prod`), il n'en lit aucune",
+  "packages/ui/public": "actifs statiques copiés tels quels, aucun code exécuté au build",
+  "packages/ui/tsconfig.json": "configuration TypeScript déclarative",
+  "packages/knowledge/README.md": "documentation, aucun code exécuté au build",
+  "packages/knowledge/package.json": "manifeste npm : dépendances et scripts, aucune lecture d'environnement",
+  "packages/knowledge/tsconfig.json": "configuration TypeScript déclarative",
+  "packages/knowledge/quality": "contrôles de la base de connaissances, hors construction de pages",
+  "packages/knowledge/raw": "données brutes : elles sont LUES par le code, elles ne lisent rien",
+  "packages/knowledge/translations": "données de traduction : lues, ne lisent rien",
+  "packages/knowledge/scripts": "les constructeurs eux-mêmes — ils n'atteignent l'environnement "
+    + "qu'à travers `environnementDeBuild`, dont les surcharges sont littérales, et toute `PUBLIC_*` "
+    + "de l'environnement réel est de toute façon inscrite dynamiquement sur la carte",
+  "packages/engine/README.md": "documentation, aucun code exécuté au build",
+  "packages/engine/package.json": "manifeste npm : dépendances et scripts, aucune lecture d'environnement",
+  "packages/engine/tsconfig.json": "configuration TypeScript déclarative",
+  "packages/engine/scripts": "démonstration, jamais exécutée par un build",
+};
+
+/** Les paquets sur lesquels le résidu ci-dessus est exigé. */
+export const PAQUETS = ["packages/ui", "packages/knowledge", "packages/engine"];
+
 /** Le format de la carte. Une carte d'un autre schéma est REFUSÉE, jamais interprétée. */
 export const SCHEMA = 3;
 

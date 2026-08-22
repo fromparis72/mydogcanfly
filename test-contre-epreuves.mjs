@@ -316,6 +316,18 @@ const MUTATIONS = [
     attendu: "« e3b0c44298fc1c14 » présent",
   },
   {
+    nom: "un répertoire de sources sort de la scrutation sans être classé",
+    fichier: "packages/knowledge/scripts/lib/provenance.mjs",
+    /* Le relevé des variables d'environnement ne vaut que ce que vaut la liste des chemins
+       scrutés — écrite à la main, donc du même bois que l'`ENTREES` de la v5. Le résidu est ce qui
+       l'empêche de se rétrécir en silence. */
+    cherche: '  "packages/ui/src",\n  "packages/ui/scripts",\n  "packages/ui/astro.config.mjs",',
+    remplace: '  "packages/ui/src",\n  "packages/ui/astro.config.mjs",',
+    harnais: "test-provenance.mjs",
+    args: ["--arbre-modifie-attendu"],
+    attendu: "échappent au classement",
+  },
+  {
     nom: "les URL des sitemaps peuvent à nouveau être comptées deux fois",
     fichier: "packages/knowledge/scripts/lib/provenance.mjs",
     cherche: "      if (vues.has(m[1])) doublons.add(m[1]); else vues.add(m[1]);",

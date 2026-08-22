@@ -36,7 +36,8 @@ import { createHash } from "node:crypto";
 import { tmpdir } from "node:os";
 import { join } from "node:path";
 import {
-  ENTREES, EXCLUSIONS, NEUTRALISEES, PARAMETRES, RACINE, REFUSEES, SCHEMA,
+  ENTREES, EXCLUSIONS, HORS_SCRUTATION, NEUTRALISEES, PAQUETS, PARAMETRES, RACINE, REFUSEES,
+  SCHEMA, SOURCES_A_SCRUTER,
   ecrireProvenance, empreinte, environnementDeBuild, ErreurProvenance,
   salete, variablesLuesParLesSources, verifierProvenance,
 } from "./packages/knowledge/scripts/lib/provenance.mjs";
@@ -114,6 +115,29 @@ titre("1 · Aucune variable ne change le site sans figurer au contrat");
   verifier("aucune variable déclarée n'est devenue morte",
     superflues.length === 0, `déclarée(s) mais lue(s) nulle part : ${superflues.join(", ")}`);
   verifier("le relevé n'est pas vide", lues.length > 0, "relevé vide : le contrôle passerait sans matière");
+
+  /* EXHAUSTIVITÉ PAR RÉSIDU. Le relevé ci-dessus ne vaut que ce que vaut la liste des chemins
+     scrutés — une liste écrite à la main, donc du même bois que l'ENTREES de la v5. On exige donc
+     que TOUT chemin suivi des trois paquets soit ou bien scruté, ou bien classé hors scrutation
+     avec son motif. Un répertoire nouveau ne peut plus se glisser entre les deux. */
+  const suivis = execFileSync("git", ["-C", RACINE, "ls-files", "--", ...PAQUETS],
+    { encoding: "utf8", maxBuffer: 1 << 28 }).trim().split("\n").filter(Boolean);
+  const couvertPar = (c, liste) => liste.some((e) => c === e || c.startsWith(e + "/"));
+  const classes = Object.keys(HORS_SCRUTATION);
+  const residu = suivis.filter((c) => !couvertPar(c, SOURCES_A_SCRUTER) && !couvertPar(c, classes));
+  verifier(`résidu : aucun des ${suivis.length} chemins des trois paquets n'échappe au classement`,
+    residu.length === 0,
+    `${residu.length} chemin(s) échappent au classement — ni scrutés, ni déclarés hors scrutation : `
+    + residu.slice(0, 5).join(", ") + (residu.length > 5 ? ", et d'autres" : ""));
+  const fantomes = classes.filter((c) => !suivis.some((s) => s === c || s.startsWith(c + "/")));
+  verifier("aucun classement « hors scrutation » ne désigne un chemin disparu",
+    fantomes.length === 0, `fantôme(s) : ${fantomes.join(", ")}`);
+  verifier("aucun chemin n'est à la fois scruté et déclaré hors scrutation",
+    classes.every((c) => !couvertPar(c, SOURCES_A_SCRUTER)),
+    `contradiction : ${classes.filter((c) => couvertPar(c, SOURCES_A_SCRUTER)).join(", ")}`);
+  verifier("chaque classement porte un motif écrit",
+    Object.values(HORS_SCRUTATION).every((m) => typeof m === "string" && m.trim().length > 10),
+    "un motif vide ou évasif n'est pas un classement");
 }
 
 /* ── 2. Le périmètre couvre l'outillage de build (P0-1, reproduit par Codex le 22/08/2026) ── */
