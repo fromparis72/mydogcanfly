@@ -237,8 +237,21 @@ for (const [cle, entree] of Object.entries(REF)) {
         echec(6, `${cle} : « verifie: true » mais « ${c} » vide — une provenance vérifiée dit par qui, quand, et d'où`);
         continue;
       }
-      if (c === "url_origine" && !/^https?:\/\/[^\s/$.?#].[^\s]*$/i.test(v)) {
-        echec(6, `${cle} : « url_origine » n'est pas une adresse HTTP(S) absolue — « ${v} »`);
+      if (c === "url_origine") {
+        /* LE PARSEUR STANDARD, PAS UNE EXPRESSION MAISON. La mienne — `^https?://[^\s/$.?#].[^\s]*$`
+         * — acceptait `https://user@:80`, que `new URL()` refuse : après le schéma, `u` satisfaisait
+         * la première classe et `s` le point, et le reste passait. Écrire soi-même la grammaire des
+         * URL, c'est réécrire une spécification de plusieurs centaines de lignes en une ligne, et
+         * se tromper. Le parseur de la plateforme la connaît ; on lui demande, puis on restreint
+         * ce qu'on accepte de ce qu'il a compris. */
+        let u = null;
+        try { u = new URL(v); } catch { /* laissé à null : diagnostiqué juste en dessous */ }
+        if (!u) echec(6, `${cle} : « url_origine » n'est pas une URL analysable — « ${v} »`);
+        else if (u.protocol !== "http:" && u.protocol !== "https:") {
+          echec(6, `${cle} : « url_origine » n'est pas en HTTP(S) — schéma « ${u.protocol} » dans « ${v} »`);
+        } else if (!u.hostname) {
+          echec(6, `${cle} : « url_origine » n'a pas de nom d'hôte — « ${v} »`);
+        }
       }
       if (c === "verifie_le") {
         /* Le format ET la date : « 2026-02-31 » a la bonne forme et n'existe pas. On reconstruit

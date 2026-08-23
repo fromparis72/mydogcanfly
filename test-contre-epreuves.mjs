@@ -909,6 +909,21 @@ const MUTATIONS = [
     attendu: "n'est pas une date ISO valide",
   },
   {
+    nom: "une URL d'origine passe la grammaire maison et non le parseur standard",
+    id: "une-url-d-origine-passe-la-grammaire-maison-et-non-le-pa",
+    /* `https://user@:80` — hôte VIDE, et pourtant accepté par l'expression régulière que j'avais
+       écrite : après le schéma, `u` satisfaisait la première classe et `s` le point qui suit.
+       Écrire soi-même la grammaire des URL revient à réécrire une spécification de plusieurs
+       centaines de lignes en une ligne, et à se tromper. La date est ici VALIDE, pour que seul
+       le contrôle d'URL puisse mettre en défaut — sans quoi la mutation prouverait autre chose
+       que ce qu'elle prétend. */
+    fichier: "couvertures-guides.json",
+    cherche: '      "auteur": null,\n      "url_origine": null,\n      "base_de_droits": "licence Unsplash standard, DÉCLARÉE par le propriétaire",\n      "verifie": false,\n      "verificateur": null,\n      "verifie_le": null,\n      "acquise_le": "2026-08-23",\n      "alt": {\n        "en": "A Boeing 747',
+    remplace: '      "auteur": "Jane Doe",\n      "url_origine": "https://user@:80",\n      "base_de_droits": "licence Unsplash standard, DÉCLARÉE par le propriétaire",\n      "verifie": true,\n      "verificateur": "Codex",\n      "verifie_le": "2026-08-23",\n      "acquise_le": "2026-08-23",\n      "alt": {\n        "en": "A Boeing 747',
+    harnais: "test-couvertures-guides.mjs",
+    attendu: "n'est pas une URL analysable",
+  },
+  {
     distComplet: true,
     nom: "une page sans crédit n'est plus déclarée, et le harnais compte au lieu d'identifier",
     id: "une-page-sans-credit-n-est-plus-declaree-et-le-harnais-c",
