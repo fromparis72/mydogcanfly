@@ -91,7 +91,7 @@ Tenez votre chien en laisse dans les allées et les espaces communs, ramassez sy
 - Vigilance sur les aboiements aux heures de repos.
 - Ne pas laisser le chien divaguer vers les autres emplacements.
 
-Le camping prolonge naturellement d'autres formats de séjour nature : découvrez aussi notre guide pour [un week-end à la campagne avec son chien](/fr/travel-hub/week-end-campagne-avec-chien/). Pour repérer des adresses qui acceptent les animaux, des plateformes spécialisées comme [Stay With Bailey](https://stay-with-bailey.com) peuvent vous aider.
+Le camping prolonge naturellement d'autres formats de séjour nature : découvrez aussi notre guide pour [un week-end à la campagne avec son chien](/fr/travel-hub/week-end-campagne-avec-chien/). Pour repérer des adresses qui acceptent les animaux, des plateformes spécialisées comme [Stay With Bailey](https://stay-with-bailey.com/fr/) peuvent vous aider.
 
 ## Sources
 

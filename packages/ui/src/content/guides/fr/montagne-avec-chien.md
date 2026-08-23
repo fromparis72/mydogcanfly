@@ -87,7 +87,7 @@ Un chien fatigué ralentit, traîne, cherche l'ombre ou s'allonge spontanément 
 
 Surveillez le halètement, la démarche, l'appétit aux pauses et l'état des coussinets. Une boiterie, un saignement entre les doigts ou une réticence à poser une patte imposent l'arrêt. Pour les longues sorties, prévoyez toujours un itinéraire de repli plus court.
 
-Si vous cherchez un hébergement de montagne accueillant pour votre chien après l'effort, des plateformes spécialisées comme [Stay With Bailey](https://stay-with-bailey.com) recensent des adresses qui acceptent les animaux.
+Si vous cherchez un hébergement de montagne accueillant pour votre chien après l'effort, des plateformes spécialisées comme [Stay With Bailey](https://stay-with-bailey.com/fr/) recensent des adresses qui acceptent les animaux.
 
 ## Sources
 

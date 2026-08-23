@@ -386,6 +386,99 @@ const MUTATIONS = [
     args: ["--arbre-modifie-attendu"],
     attendu: "PLUSIEURS fois par les sitemaps » attendu",
   },
+  /* ---- LE HUB DE VOYAGE EN QUATRE LANGUES ----------------------------------------------------
+   * Les huit garanties de `test-guides-traduits.mjs`, éprouvées. Elles LISENT les sources — aucun
+   * build n'est nécessaire —, et elles arrivent avec le lot qui apporte le harnais : une garantie
+   * livrée sans sa contre-épreuve est une garantie dont personne n'a montré qu'elle sait rougir.
+   *
+   * Celle du lien d'outil mort mérite d'être nommée. `/tools/is-it-too-hot-for-my-dog/` promettait
+   * un risque chaleur GÉOLOCALISÉ que le site ne sert pas ; `/tools/heat/` estime un embargo en
+   * soute PAR ITINÉRAIRE ET PAR MOIS. Y repointer l'appel aurait fabriqué un lien trompeur — pire
+   * qu'un lien mort, parce qu'il aboutit. L'appel a donc été retiré dans les six fichiers, ce qui
+   * rétablit la parité avec le français, qui ne l'avait jamais eu. La mutation réintroduit
+   * exactement ce lien et exige que le harnais le refuse.
+   */
+  {
+    nom: "un paragraphe est resté dans la langue source",
+    fichier: "packages/ui/src/content/guides/es/viajar-en-avion-con-perro.md",
+    cherche: "El avión abre la puerta a viajes lejanos con tu perro, pero es también el medio de transporte más regulado.",
+    remplace: "Flying opens the door to far-away trips with your dog, but it's also the most heavily regulated way to travel.",
+    harnais: "test-guides-traduits.mjs",
+    attendu: "aucune phrase n'est restée en anglais",
+  },
+  {
+    nom: "un guide né ici s'invente une adresse d'origine",
+    fichier: "packages/ui/src/content/guides/es/viajar-en-avion-con-perro.md",
+    cherche: `key: "flying-with-a-dog"`,
+    remplace: `key: "flying-with-a-dog"\nsourceUrl: "/viajar-en-avion-con-perro/"`,
+    harnais: "test-guides-traduits.mjs",
+    attendu: "ne s'invente un `sourceUrl`",
+  },
+  {
+    nom: "un lien renvoie à l'anglais alors que la traduction existe",
+    fichier: "packages/ui/src/content/guides/es/avion-con-perro-cabina-bodega-carga.md",
+    cherche: "](/es/travel-hub/viajar-en-avion-con-perro/)",
+    remplace: "](/travel-hub/flying-with-a-dog/)",
+    harnais: "test-guides-traduits.mjs",
+    attendu: "aucun lien ne sort de la langue du lecteur",
+  },
+  {
+    nom: "un paragraphe FRANÇAIS est resté dans sa version anglaise exacte",
+    fichier: "packages/ui/src/content/guides/fr/retroplanning-vol-international-chien.md",
+    /* LA CONTRE-ÉPREUVE DE CODEX DU 23/08/2026, FIGÉE. Elle a montré un faux vert : `fr` était rangé
+       parmi les langues SOURCES, si bien que les contrôles de fidélité, de cardinalité et d'anglais
+       résiduel ne parcouraient que `es` et `pt`. Les dix traductions françaises nées dans ce lot y
+       échappaient entièrement, et remplacer un paragraphe par sa version anglaise EXACTE laissait
+       le harnais répondre « tout tient ».
+
+       La mutation reprend son geste mot pour mot : le premier paragraphe français cède la place au
+       premier paragraphe anglais de son jumeau `pet-flight-timeline`. */
+    cherche: "La plupart des guides sur l'avion avec un animal présentent une liste à cocher. Une liste laisse entendre que les points peuvent se faire dans n'importe quel ordre et en parallèle, et pour un déménagement international c'est exactement le mauvais modèle mental. Plusieurs étapes comportent des **délais d'attente obligatoires**, et ce sont ces délais — pas les papiers, pas la réservation — qui décident si une date de départ donnée est possible.",
+    remplace: "Most guides to flying with a pet present a checklist. A checklist implies the items can be done in any order and in parallel, and for an international move that is exactly the wrong mental model. Several steps carry **mandatory waiting periods**, and those periods — not the paperwork, not the booking — decide whether a given departure date is possible at all.",
+    harnais: "test-guides-traduits.mjs",
+    attendu: "aucune phrase n'est restée en anglais",
+  },
+  {
+    nom: "un guide renvoie vers un outil que le site ne sert pas",
+    fichier: "packages/ui/src/content/guides/en/dog-heatstroke.md",
+    cherche: "## Why are dogs so vulnerable to heat?",
+    remplace:
+      "👉 Check the live heat risk with our [checker](/tools/is-it-too-hot-for-my-dog/).\n\n## Why are dogs so vulnerable to heat?",
+    harnais: "test-guides-traduits.mjs",
+    attendu: "visent une route existante",
+  },
+  {
+    nom: "un guide français importé perd son adresse d'origine",
+    fichier: "packages/ui/src/content/guides/fr/mal-des-transports-chien.md",
+    cherche: 'sourceUrl: "/mal-des-transports-chien/"\n',
+    remplace: "",
+    harnais: "test-guides-traduits.mjs",
+    attendu: "même statut d'origine que son jumeau anglais",
+  },
+  {
+    nom: "un guide français né ici s'invente une adresse d'origine",
+    fichier: "packages/ui/src/content/guides/fr/retroplanning-vol-international-chien.md",
+    cherche: 'key: "pet-flight-timeline"',
+    remplace: 'key: "pet-flight-timeline"\nsourceUrl: "/retroplanning-vol-international-chien/"',
+    harnais: "test-guides-traduits.mjs",
+    attendu: "même statut d'origine que son jumeau anglais",
+  },
+  {
+    nom: "une traduction se déclare révisée AVANT d'avoir été publiée",
+    fichier: "packages/ui/src/content/guides/es/retroplanning-de-un-vuelo-internacional.md",
+    cherche: 'lastmod: "2026-08-19',
+    remplace: 'lastmod: "2026-08-15',
+    harnais: "test-guides-traduits.mjs",
+    attendu: "aucun guide n'est révisé avant d'être publié",
+  },
+  {
+    nom: "un guide se redate dans le futur, comme les six de l'étalement inventé",
+    fichier: "packages/ui/src/content/guides/es/retroplanning-de-un-vuelo-internacional.md",
+    cherche: 'lastmod: "2026-08-19T09:00:00+02:00"',
+    remplace: 'lastmod: "2027-08-19T09:00:00+02:00"',
+    harnais: "test-guides-traduits.mjs",
+    attendu: "aucun guide ne se déclare publié ou révisé dans le futur",
+  },
   // ---- L'INTERFACE (chaque mutation exige un build, d'où `--dom`) ----
   {
     dom: true,

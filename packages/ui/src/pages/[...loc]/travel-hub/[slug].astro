@@ -19,7 +19,7 @@ import Base from "../../../layouts/Base.astro";
 import Breadcrumb from "../../../components/Breadcrumb.astro";
 import RelatedTools from "../../../components/RelatedTools.astro";
 import { inlineT } from "@mydogcanfly/knowledge";
-import { decompose, guideHref, languesDe, GUIDE_LOCALES, type Guide } from "../../../lib/guides";
+import { decompose, guideHref, languesDe, formateurDeDate, GUIDE_LOCALES, type Guide } from "../../../lib/guides";
 import { LEGAL } from "../../../lib/legal";
 
 export async function getStaticPaths() {
@@ -55,7 +55,7 @@ const cover = d.cover?.image ? (d.cover.image.startsWith("http") ? d.cover.image
  * doit le dire — c'est la même exigence de fraîcheur datée que sur les fiches. */
 const dt = (s: string) => new Date(s);
 const revise = dt(d.lastmod) > dt(d.date);
-const fmt = new Intl.DateTimeFormat(locale === "fr" ? "fr-FR" : "en-GB", { day: "numeric", month: "long", year: "numeric" });
+const fmt = formateurDeDate(locale);
 
 const ld: Record<string, any>[] = [
   {

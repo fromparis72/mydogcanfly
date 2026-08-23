@@ -14,7 +14,7 @@ import Base from "../../../layouts/Base.astro";
 import RelatedTools from "../../../components/RelatedTools.astro";
 import { t, inlineT } from "@mydogcanfly/knowledge";
 import { localizeHref } from "../../../lib/routes";
-import { guidesDe, decompose, guideHref } from "../../../lib/guides";
+import { guidesDe, decompose, guideHref, formateurDeDate } from "../../../lib/guides";
 
 export function getStaticPaths() {
   return [
@@ -64,8 +64,7 @@ const refs = [
   { href: localizeHref("/breeds/", locale), icon: "🐕", label: t(locale, "index.breeds.title") },
   { href: localizeHref("/airports/", locale), icon: "🛂", label: t(locale, "index.airports.title") },
 ];
-const fmt = new Intl.DateTimeFormat(locale === "fr" ? "fr-FR" : locale === "es" ? "es-ES" : locale === "pt" ? "pt-BR" : "en-GB",
-  { day: "numeric", month: "short", year: "numeric" });
+const fmt = formateurDeDate(locale, "short");
 ---
 <Base locale={locale} title={title} description={metaDesc}>
   <section class="mdcf-section">
