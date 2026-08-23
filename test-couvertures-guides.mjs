@@ -94,6 +94,29 @@ if (!REF || Object.keys(REF).length === 0) {
   process.exit(1);
 }
 
+/* LES DIX IDENTITÉS ATTENDUES, ÉCRITES ICI ET NON LUES DANS LA RÉFÉRENCE.
+ *
+ * « Référence non vide » ne verrouille rien : retirer une entrée de `images` retirait du même
+ * geste l'image, sa provenance et ses quatre textes alternatifs, et le harnais annonçait
+ * tranquillement « 9 images du lot 2 · 36 textes alternatifs », en sortant 0. Une garantie
+ * disparue en silence, exactement comme une mutation supprimée du catalogue.
+ *
+ * La liste vit donc DANS LE CONTRÔLE, et la bijection est exigée dans les deux sens : une clé
+ * absente de la référence échoue, une clé qu'elle ajouterait sans qu'on l'ait décidé aussi. */
+const CLES_LOT2 = [
+  "airline-pet-policy-changes", "airport-day-with-a-dog", "booking-a-pet-flight",
+  "cargo-vs-excess-baggage", "layovers-with-a-pet", "measuring-your-dog-for-a-crate",
+  "pet-flight-timeline", "pet-heat-embargoes", "pet-travel-documents",
+  "snub-nosed-breeds-and-flying",
+];
+{
+  const presentes = new Set(Object.keys(REF));
+  const absentes = CLES_LOT2.filter((k) => !presentes.has(k));
+  const intruses = [...presentes].filter((k) => !CLES_LOT2.includes(k));
+  if (absentes.length) echec(6, `${absentes.length} clé(s) ATTENDUE(S) absente(s) de la référence : ${absentes.join(", ")}`);
+  if (intruses.length) echec(6, `${intruses.length} clé(s) INCONNUE(S) du contrôle dans la référence : ${intruses.join(", ")}`);
+}
+
 /** clé → langue → { chemin, cover }. Les doublons sont conservés pour être dénoncés. */
 const parCle = new Map();
 const doublons = [];
@@ -173,7 +196,12 @@ if (quadrilingues !== CLES_ATTENDUES) {
 }
 
 /* ---- 6. RÉFÉRENCE ET PROVENANCE ------------------------------------------------------------- */
-const OBLIGATOIRES = ["fichier", "sha256", "octets", "largeur", "origine", "base_de_droits", "acquise_le"];
+/* Requis quel que soit le statut : ce qui identifie le fichier et ce sur quoi on s'appuie. */
+const OBLIGATOIRES = ["fichier", "sha256", "octets", "largeur", "origine", "methode_acquisition",
+                      "base_de_droits", "acquise_le"];
+/* Requis SEULEMENT si la provenance se déclare VÉRIFIÉE. */
+const EXIGES_SI_VERIFIE = ["auteur", "url_origine", "verificateur", "verifie_le"];
+
 for (const [cle, entree] of Object.entries(REF)) {
   const versions = parCle.get(cle);
   if (!versions) { echec(6, `${cle} : référencé mais aucun guide ne porte cette clé`); continue; }
@@ -181,6 +209,28 @@ for (const [cle, entree] of Object.entries(REF)) {
   for (const c of OBLIGATOIRES) {
     if (entree[c] === undefined || entree[c] === null || entree[c] === "") {
       echec(6, `${cle} : champ de provenance « ${c} » vide ou absent`);
+    }
+  }
+
+  /* LE STATUT DE PROVENANCE EST UN CONTRAT, PAS UNE ÉTIQUETTE.
+   *
+   * Deux attaques passaient : supprimer entièrement `verifie`, et poser `verifie: true` avec un
+   * auteur et une URL à `null`. Le champ censé distinguer « déclaré » de « établi » ne
+   * distinguait donc rien — il décorait. Une union stricte le rend contraignant :
+   *
+   *   verifie: false  les lacunes sont PERMISES, mais l'origine et la méthode d'acquisition
+   *                   doivent être explicites : on doit savoir d'où le fichier vient et comment
+   *                   il est arrivé, même si l'on ignore qui l'a photographié.
+   *   verifie: true   auteur, URL d'origine, NOM DU VÉRIFICATEUR et DATE de vérification sont
+   *                   obligatoires. Se déclarer vérifié sans dire par qui ni quand n'est pas une
+   *                   vérification, c'est une affirmation. */
+  if (typeof entree.verifie !== "boolean") {
+    echec(6, `${cle} : champ « verifie » absent ou non booléen — le statut de provenance doit être déclaré, jamais sous-entendu`);
+  } else if (entree.verifie === true) {
+    for (const c of EXIGES_SI_VERIFIE) {
+      if (entree[c] === undefined || entree[c] === null || entree[c] === "") {
+        echec(6, `${cle} : « verifie: true » mais « ${c} » vide — une provenance vérifiée dit par qui, quand, et d'où`);
+      }
     }
   }
 

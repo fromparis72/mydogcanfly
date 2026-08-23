@@ -21,9 +21,17 @@
  *   1. TÉLÉCHARGEMENT PARTIEL — `curl` rend un fichier de 300 octets. Attendu : aucune image
  *      publiée, aucun `.part` laissé derrière, et les QUATRE front matter INTACTS.
  *   2. CURL EN ÉCHEC — code de sortie non nul, aucun fichier produit. Mêmes exigences.
- *   3. TÉLÉCHARGEMENT VALIDE — une vraie image. Attendu : publiée, et les quatre front matter
+ *   3. TÉLÉCHARGEMENT VALIDE — un VRAI JPEG. Attendu : publié, et les quatre front matter
  *      repointés vers le chemin local. Sans ce cas, les deux premiers seraient satisfaits par un
  *      script qui ne fait jamais rien.
+ *   4. FICHIER DÉJÀ PRÉSENT MAIS INVALIDE — un `.jpg` de 9 000 octets de TEXTE est posé avant le
+ *      lancement. Le script le classait « déjà présent », donc valide, et repointait les quatre
+ *      langues vers lui. « Existe » n'est pas « validé », et la taille ne dit rien du format.
+ *   5. TÉLÉCHARGEMENT D'UN FICHIER QUI N'EST PAS UNE IMAGE — 20 000 octets de texte, donc au-delà
+ *      du seuil de taille. Seule une lecture du CONTENU peut le voir.
+ *
+ * TOUT ÉCHEC DOIT AUSSI SORTIR EN CODE NON NUL : le script listait ses échecs et sortait en 0,
+ * si bien qu'un appelant le croyait réussi.
  */
 import { mkdtempSync, mkdirSync, writeFileSync, readFileSync, readdirSync, rmSync, existsSync, chmodSync, copyFileSync } from "node:fs";
 import { spawnSync } from "node:child_process";
@@ -38,8 +46,16 @@ const URL_SOURCE = "https://images.unsplash.com/photo-temoin?ixid=abc";
 const defauts = [];
 const echec = (cas, m) => defauts.push(`${cas} — ${m}`);
 
-/** Une image WebP réelle du dépôt, pour le cas nominal. */
-const IMAGE_REELLE = "packages/ui/public/travel-hub/pet-travel-documents.webp";
+/* UNE VRAIE FIXTURE JPEG, ET C'EST TOUT LE SUJET DU CAS 3.
+ *
+ * La première version servait un WebP renommé `.jpg`. Sur Linux, sans `sips` ni ImageMagick,
+ * aucun redimensionnement n'avait lieu et le harnais passait ; sur le Mac de Philippe, `sips`
+ * refusait de réécrire ce fichier et le cas nominal échouait. Un harnais dont le verdict dépend
+ * des outils présents sur la machine ne prouve rien — il constate un environnement.
+ *
+ * La fixture est donc un JPEG RÉEL, versionné, de 1200 px : elle traverse `sips` comme
+ * ImageMagick comme l'absence des deux. */
+const IMAGE_REELLE = "test-fixtures/couverture-temoin.jpg";
 
 const guide = (cle, url) =>
   `---\nkey: "${cle}"\ntitle: "Titre"\ndate: "2026-01-01T00:00:00+01:00"\ncategory: "travel"\n` +
@@ -66,6 +82,8 @@ function bac(mode) {
     partiel: `head -c 300 /dev/zero > "$CIBLE"`,
     echec: `exit 22`,
     valide: `cp ${resolve(IMAGE_REELLE)} "$CIBLE"`,
+    "pas-une-image": `yes "ceci nest pas une image" | head -c 20000 > "$CIBLE"`,
+    "deja-invalide": `cp ${resolve(IMAGE_REELLE)} "$CIBLE"`,
   }[mode];
   writeFileSync(sortie,
     `#!/bin/sh\nCIBLE=""\nwhile [ $# -gt 0 ]; do\n  if [ "$1" = "-o" ]; then CIBLE="$2"; shift; fi\n  shift\ndone\n${corps}\n`);
@@ -79,8 +97,15 @@ for (const [cas, mode, doitPublier] of [
   ["1 partiel", "partiel", false],
   ["2 curl en échec", "echec", false],
   ["3 valide", "valide", true],
+  ["4 déjà présent mais invalide", "deja-invalide", false],
+  ["5 pas une image", "pas-une-image", false],
 ]) {
   const { base, bin } = bac(mode);
+  /* Le cas 4 pose le fichier AVANT le lancement : le script doit le rencontrer comme « déjà
+     présent », et le refuser au lieu de s'en contenter. */
+  if (mode === "deja-invalide") {
+    writeFileSync(join(base, "packages/ui/public/travel-hub/temoin.jpg"), "x".repeat(9000));
+  }
   const avant = empreintes(base);
 
   const r = spawnSync("node", [SCRIPT], {
@@ -104,8 +129,11 @@ for (const [cas, mode, doitPublier] of [
       echec(cas, `${repointes} front matter repointé(s) sur ${LANGUES.length} — les quatre langues doivent suivre`);
     }
   } else {
+    if (r.status === 0) echec(cas, "le script sort en 0 alors qu'il a échoué — un appelant le croirait réussi");
+    /* Au cas 4 le fichier invalide était là AVANT : on n'exige pas qu'il disparaisse, mais qu'il
+       ne soit ni déclaré valide ni utilisé. Aux autres cas, rien ne doit avoir été publié. */
     const publies = fichiers.filter((f) => !f.endsWith(".part"));
-    if (publies.length) echec(cas, `image PUBLIÉE malgré l'échec : ${publies.join(", ")}`);
+    if (mode !== "deja-invalide" && publies.length) echec(cas, `image PUBLIÉE malgré l'échec : ${publies.join(", ")}`);
     for (let n = 0; n < LANGUES.length; n++) {
       if (avant[n] !== apres[n]) {
         echec(cas, `le front matter ${LANGUES[n].toUpperCase()} a été MODIFIÉ alors que le téléchargement a échoué`);
@@ -118,8 +146,10 @@ for (const [cas, mode, doitPublier] of [
 }
 
 if (defauts.length === 0) {
-  process.stdout.write("3 cas éprouvés avec un « curl » factice : téléchargement partiel, curl en échec,\n");
-  process.stdout.write("téléchargement valide. Aucun temporaire laissé, aucun front matter touché en cas d'échec.\n\n");
+  process.stdout.write("5 cas éprouvés avec un « curl » factice : téléchargement partiel, curl en échec,\n");
+  process.stdout.write("téléchargement valide (vraie fixture JPEG), fichier déjà présent mais invalide,\n");
+  process.stdout.write("téléchargement d'un fichier qui n'est pas une image.\n");
+  process.stdout.write("Aucun temporaire laissé, aucun front matter touché, code de sortie non nul à chaque échec.\n\n");
   process.stdout.write("[fetch-couvertures] un téléchargement raté ne publie rien.\n");
   process.exit(0);
 }

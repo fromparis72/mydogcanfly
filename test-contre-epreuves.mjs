@@ -845,6 +845,69 @@ const MUTATIONS = [
     harnais: "test-fetch-couvertures.mjs",
     attendu: "a été MODIFIÉ alors que le téléchargement a échoué",
   },
+  {
+    nom: "un fichier déjà présent est cru sur son existence, sans être ouvert",
+    id: "un-fichier-deja-present-est-cru-sur-son-existence-sans-e",
+    /* « Existe » n'est pas « validé ». Un `.jpg` de 9 000 octets de TEXTE dépassait le seuil de
+       taille, était classé « déjà présent », et les quatre langues étaient repointées vers lui.
+       La taille ne dit rien du format : seule une lecture des octets le voit. */
+    fichier: "packages/knowledge/scripts/fetch-guide-covers.mjs",
+    editions: [
+      { cherche: "    try { validerJpeg(out); deja.push(key); }\n    catch (e) { echecs.push(`${key} : fichier déjà présent mais INVALIDE — ${e.message}`); }\n    continue;",
+        remplace: "    deja.push(key);\n    continue;" },
+    ],
+    harnais: "test-fetch-couvertures.mjs",
+    attendu: "a été MODIFIÉ alors que le téléchargement a échoué",
+  },
+  {
+    nom: "le téléchargeur liste ses échecs puis sort en 0",
+    id: "le-telechargeur-liste-ses-echecs-puis-sort-en-0",
+    /* Un travail qui rend compte de son échec dans un code de sortie « tout va bien » ne rend
+       compte de rien : l'appelant — CI, script, humain pressé — le croit réussi. */
+    fichier: "packages/knowledge/scripts/fetch-guide-covers.mjs",
+    cherche: "  console.error(`\\n${echecs.length} échec(s) : aucun de ces guides n'a été repointé.`);\n  process.exit(1);",
+    remplace: "  console.error(`\\n${echecs.length} échec(s) : aucun de ces guides n'a été repointé.`);",
+    harnais: "test-fetch-couvertures.mjs",
+    attendu: "sort en 0 alors qu'il a échoué",
+  },
+  {
+    nom: "une image disparaît de la référence avec toute sa provenance",
+    id: "une-image-disparait-de-la-reference-avec-toute-sa-proven",
+    /* « Référence non vide » ne verrouillait rien : retirer une entrée emportait l'image, sa
+       provenance et ses quatre textes alternatifs, et le harnais annonçait « 9 images · 36
+       textes », en sortant 0. Les dix identités sont désormais écrites DANS le contrôle. */
+    fichier: "couvertures-guides.json",
+    cherche: '"pet-travel-documents": {',
+    remplace: '"pet-travel-papers": {',
+    harnais: "test-couvertures-guides.mjs",
+    attendu: "clé(s) ATTENDUE(S) absente(s) de la référence",
+  },
+  {
+    nom: "une provenance se déclare vérifiée sans dire par qui ni d'où",
+    id: "une-provenance-se-declare-verifiee-sans-dire-par-qui-ni",
+    /* Le champ `verifie` décorait : le poser à `true` avec un auteur et une URL à `null` passait.
+       Se déclarer vérifié sans nommer le vérificateur, la date et la source n'est pas une
+       vérification, c'est une affirmation. */
+    fichier: "couvertures-guides.json",
+    cherche: '      "verifie": false,\n      "acquise_le": "2026-08-23",\n      "alt": {\n        "en": "A small Pomeranian',
+    remplace: '      "verifie": true,\n      "acquise_le": "2026-08-23",\n      "alt": {\n        "en": "A small Pomeranian',
+    harnais: "test-couvertures-guides.mjs",
+    attendu: "« verifie: true » mais « auteur » vide",
+  },
+  {
+    distComplet: true,
+    nom: "une page sans crédit n'est plus déclarée, et le harnais compte au lieu d'identifier",
+    id: "une-page-sans-credit-n-est-plus-declaree-et-le-harnais-c",
+    /* Le contrôle figeait un NOMBRE — « les 4 connues, pas une de plus » — sans dire lesquelles.
+       Il rougissait donc pour toute décision éditoriale nouvelle, et serait resté vert si quatre
+       AUTRES pages avaient perdu leur crédit. Retirer une clé de l'ensemble déclaré doit faire
+       apparaître ses quatre pages comme NON déclarées. */
+    fichier: "test-page-guide.mjs",
+    cherche: '  "flying-with-a-dog-cabin-hold-cargo",',
+    remplace: "",
+    harnais: "test-page-guide.mjs",
+    attendu: "NON déclarée",
+  },
 ];
 
 const dire = (m) => process.stdout.write(m + "\n");
