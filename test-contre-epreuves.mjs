@@ -889,8 +889,8 @@ const MUTATIONS = [
        Se déclarer vérifié sans nommer le vérificateur, la date et la source n'est pas une
        vérification, c'est une affirmation. */
     fichier: "couvertures-guides.json",
-    cherche: '      "verifie": false,\n      "acquise_le": "2026-08-23",\n      "alt": {\n        "en": "A small Pomeranian',
-    remplace: '      "verifie": true,\n      "acquise_le": "2026-08-23",\n      "alt": {\n        "en": "A small Pomeranian',
+    cherche: '      "verifie": false,\n      "verificateur": null,\n      "verifie_le": null,\n      "acquise_le": "2026-08-23",\n      "alt": {\n        "en": "A small Pomeranian',
+    remplace: '      "verifie": true,\n      "verificateur": null,\n      "verifie_le": null,\n      "acquise_le": "2026-08-23",\n      "alt": {\n        "en": "A small Pomeranian',
     harnais: "test-couvertures-guides.mjs",
     attendu: "« verifie: true » mais « auteur » vide",
   },
