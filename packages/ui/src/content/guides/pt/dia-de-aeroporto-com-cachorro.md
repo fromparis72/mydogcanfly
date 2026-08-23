@@ -9,6 +9,9 @@ lastmod: "2026-08-19T09:00:00+02:00"
 author: "Camille Roussel"
 category: "travel"
 tags: ["cachorro", "avião", "aeroporto", "check-in"]
+cover:
+  image: "/travel-hub/airport-day-with-a-dog.webp"
+  alt: "Um labrador amarelo deitado no piso de um terminal, de peitoral e guia, aos pés do seu tutor"
 enbref:
   - "🕐 Chegue **bem antes** da sua margem habitual — o check-in de animal é mais lento"
   - "🎫 Os animais costumam ser despachados em um **balcão específico**, não pela internet"

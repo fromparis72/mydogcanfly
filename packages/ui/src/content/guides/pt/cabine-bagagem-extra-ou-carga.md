@@ -9,6 +9,9 @@ lastmod: "2026-08-19T09:00:00+02:00"
 author: "Camille Roussel"
 category: "travel"
 tags: ["animal", "avião", "carga", "bagagem"]
+cover:
+  image: "/travel-hub/cargo-vs-excess-baggage.webp"
+  alt: "Um Boeing 747 na ponte de embarque, cercado por contêineres de carga e veículos de pista"
 enbref:
   - "🎒 **Cabine**: com você, embaixo do assento, com limite de porte"
   - "🧳 **Porão como bagagem acompanhada**: o seu voo, despachado no balcão"

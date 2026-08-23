@@ -9,6 +9,9 @@ lastmod: "2026-08-17T09:00:00+02:00"
 author: "Camille Roussel"
 category: "travel"
 tags: ["pet", "flying", "cargo", "baggage"]
+cover:
+  image: "/travel-hub/cargo-vs-excess-baggage.webp"
+  alt: "A Boeing 747 at the jet bridge, surrounded by cargo containers and ground vehicles"
 enbref:
   - "🎒 **Cabin**: with you, under the seat, size-limited"
   - "🧳 **Accompanied hold baggage**: same flight as you, checked at the desk"

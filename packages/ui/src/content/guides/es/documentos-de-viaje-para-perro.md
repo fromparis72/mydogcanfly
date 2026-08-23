@@ -9,6 +9,9 @@ lastmod: "2026-08-19T09:00:00+02:00"
 author: "Camille Roussel"
 category: "travel"
 tags: ["animal", "avión", "documentos", "internacional"]
+cover:
+  image: "/travel-hub/pet-travel-documents.webp"
+  alt: "Un pasaporte abierto cubierto de sellos de visado, sobre una carpeta"
 enbref:
   - "🌍 Es el **destino** quien decide la entrada, no la aerolínea"
   - "💠 Un **microchip** legible va antes que todo lo demás"

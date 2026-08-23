@@ -9,6 +9,9 @@ lastmod: "2026-08-17T09:00:00+02:00"
 author: "Camille Roussel"
 category: "travel"
 tags: ["dog", "flying", "airport", "check-in"]
+cover:
+  image: "/travel-hub/airport-day-with-a-dog.webp"
+  alt: "A yellow Labrador lying on a terminal floor, in a harness and on a lead, at its handler's feet"
 enbref:
   - "🕐 Arrive **well before** your usual margin — pet check-in is slower"
   - "🎫 Pets are often checked in at a **specific desk**, not online"

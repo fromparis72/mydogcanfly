@@ -126,17 +126,48 @@ exiger("une image déclarée au schéma correspond à une illustration rendue, e
   imageDiscordante.slice(0, 4).map((x) => `${x.chemin} — schéma ${x.page.article?.image ? "oui" : "non"}, `
     + `figure ${x.page.figures.length}`).join("\n      "));
 
-/* ---- 2. LE CRÉDIT PHOTO EST UNE OBLIGATION DE LICENCE ------------------------------------------ */
-/* UNE EXCEPTION EXISTE, ET ELLE EST NOMMÉE PLUTÔT QU'EFFACÉE. `flying-with-a-dog-cabin-hold-cargo`
-   porte une illustration sans crédit dans ses quatre langues. Je ne sais pas d'où vient ce fichier :
-   s'il appartient au site, aucun crédit n'est dû ; s'il vient d'ailleurs, il en manque un. Trancher
-   demande de savoir, pas de deviner — le chiffre est donc FIGÉ à 4, et une cinquième page sans
-   crédit ferait échouer le harnais. */
-const SANS_CREDIT_CONNUES = 4;
-const sansCredit = [...lues.values()].filter((x) => x.page.figures.some((f) => !/<figcaption/.test(f)));
-exiger(`les illustrations sans crédit sont les ${SANS_CREDIT_CONNUES} connues, pas une de plus`,
-  sansCredit.length === SANS_CREDIT_CONNUES,
-  `${sansCredit.length} : ` + sansCredit.slice(0, 6).map((x) => x.chemin).join(", "));
+/* ---- 2. LE CRÉDIT PHOTO EST APPRÉCIÉ, PAS EXIGÉ — MAIS SON ABSENCE EST NOMMÉE ------------------
+ *
+ * Ce contrôle s'intitulait « LE CRÉDIT PHOTO EST UNE OBLIGATION DE LICENCE ». C'était faux, et la
+ * même erreur figurait dans le commentaire du schéma : la licence Unsplash standard accorde le
+ * droit de copier, modifier et distribuer, y compris commercialement, SANS attribution — laquelle
+ * est encouragée et non obligatoire. Une contrainte inventée dans un commentaire finit par être
+ * obéie comme une vraie, et se retourne le jour où l'on décide légitimement de s'en écarter :
+ * c'est exactement ce qui s'est produit ici.
+ *
+ * LE CHIFFRE FIGÉ À 4 ÉTAIT LE VRAI DÉFAUT. Il disait « pas une de plus » sans dire LESQUELLES,
+ * si bien qu'il rougissait pour toute décision éditoriale nouvelle — 40 pages ajoutées d'un coup
+ * l'ont mis en échec — et qu'il serait resté vert si quatre AUTRES pages avaient perdu leur
+ * crédit. Un décompte n'identifie rien : c'est la même leçon que la bijection du catalogue de
+ * mutations et que celle des guides entre langues.
+ *
+ * L'ENSEMBLE EXACT, donc, dans les DEUX SENS : une page sans crédit qui n'est pas déclarée fait
+ * échouer, et une page déclarée qui a retrouvé un crédit aussi — sans quoi la liste enflerait
+ * d'exceptions périmées que plus personne n'oserait retirer. */
+const CLES_SANS_CREDIT = new Set([
+  /* Antérieur au lot 2 : origine du fichier inconnue. S'il appartient au site, aucun crédit n'est
+     dû ; s'il vient d'ailleurs, il en manque un. Trancher demande de savoir, pas de deviner. */
+  "flying-with-a-dog-cabin-hold-cargo",
+  /* Les dix guides du lot 2. Leur provenance est consignée — origine, base de droits, empreinte,
+     date — dans le manifeste lu ci-dessous, et le propriétaire du site a choisi de ne pas afficher
+     d'attribution. L'absence de crédit AFFICHÉ n'est pas une absence de provenance. */
+  ...Object.keys(JSON.parse(readFileSync("couvertures-guides.json", "utf8")).images),
+]);
+
+const attenduesSansCredit = new Set();
+for (const cle of CLES_SANS_CREDIT) for (const l of LANGUES) attenduesSansCredit.add(`${cle}|${l}`);
+
+const sansCredit = new Set([...lues.values()]
+  .filter((x) => x.page.figures.some((f) => !/<figcaption/.test(f)))
+  .map((x) => `${x.cle}|${x.l}`));
+
+const intruses = [...sansCredit].filter((k) => !attenduesSansCredit.has(k));
+const disparues = [...attenduesSansCredit].filter((k) => !sansCredit.has(k));
+exiger(`les illustrations sans crédit sont EXACTEMENT les ${attenduesSansCredit.size} déclarées`,
+  intruses.length === 0 && disparues.length === 0,
+  [intruses.length ? `${intruses.length} NON déclarée(s) : ${intruses.slice(0, 6).join(", ")}` : "",
+   disparues.length ? `${disparues.length} déclarée(s) mais CRÉDITÉE(S) — à retirer de la liste : ${disparues.slice(0, 6).join(", ")}` : ""]
+    .filter(Boolean).join("\n      "));
 
 /* ---- 2bis. LA DATE EST ÉCRITE DANS LA LANGUE DE LA PAGE ---------------------------------------
  * Les 144 pages espagnoles et portugaises affichaient « 17 August 2026 » : le formateur de la page

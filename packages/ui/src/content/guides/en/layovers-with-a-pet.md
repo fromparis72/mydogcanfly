@@ -9,6 +9,9 @@ lastmod: "2026-08-17T09:00:00+02:00"
 author: "Camille Roussel"
 category: "travel"
 tags: ["pet", "flying", "connection", "airport"]
+cover:
+  image: "/travel-hub/layovers-with-a-pet.webp"
+  alt: "A deserted airport connecting walkway, lined with moving walkways and glass walls"
 enbref:
   - "🛫 Prefer a **direct flight** whenever one exists"
   - "🌡️ The embargo applies at the **connection airport** too"

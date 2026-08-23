@@ -9,6 +9,9 @@ lastmod: "2026-08-19T09:00:00+02:00"
 author: "Camille Roussel"
 category: "travel"
 tags: ["chien", "avion", "compagnie aérienne", "réglementation"]
+cover:
+  image: "/travel-hub/airline-pet-policy-changes.webp"
+  alt: "Un yorkshire tenu dans une cabine d'avion, près d'un hublot et d'un siège, portant une étiquette d'identification"
 enbref:
   - "📅 Les règles animaux bougent avec la **saison**, pas seulement avec l'année"
   - "✈️ Un **changement d'appareil** peut supprimer l'accès à la soute du jour au lendemain"

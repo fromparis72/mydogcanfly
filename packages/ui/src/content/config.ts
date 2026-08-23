@@ -70,8 +70,17 @@ const guides = defineCollection({
       .object({
         image: z.string(),
         alt: z.string().optional(),
-        /* Le crédit photo n'est pas décoratif : la licence Unsplash l'exige, et héberger
-         * la photo chez soi n'y change rien. */
+        /* LE CRÉDIT PHOTO — apprécié, jamais exigé, et ce commentaire disait le contraire.
+         *
+         * Il affirmait « la licence Unsplash l'exige ». C'est faux : cette licence accorde le
+         * droit de copier, modifier et distribuer, y compris commercialement, SANS attribution
+         * — laquelle est encouragée et non obligatoire. Une contrainte inventée dans un
+         * commentaire finit par être obéie comme une vraie, et se retourne le jour où l'on
+         * décide légitimement de s'en écarter.
+         *
+         * Les 62 guides importés portent une attribution ; les 10 nés du lot 2 n'en portent pas,
+         * par décision du propriétaire du site. Le champ reste donc optionnel, et l'écart entre
+         * les deux familles est un choix documenté, pas une négligence. */
         credit: z.string().optional(),
       })
       .optional(),

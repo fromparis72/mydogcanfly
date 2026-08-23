@@ -9,6 +9,9 @@ lastmod: "2026-08-19T09:00:00+02:00"
 author: "Camille Roussel"
 category: "travel"
 tags: ["chien", "avion", "caisse de transport", "IATA"]
+cover:
+  image: "/travel-hub/measuring-your-dog-for-a-crate.webp"
+  alt: "Un chien à robe merle couché dans une caisse grillagée ouverte, sur un tapis"
 enbref:
   - "📏 Quatre mesures : **longueur, hauteur au garrot, hauteur debout, largeur**"
   - "🧍 Mesurez un chien **debout**, jamais couché"

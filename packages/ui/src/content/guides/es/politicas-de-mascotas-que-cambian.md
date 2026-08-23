@@ -9,6 +9,9 @@ lastmod: "2026-08-19T09:00:00+02:00"
 author: "Camille Roussel"
 category: "travel"
 tags: ["perro", "avión", "aerolínea", "normativa"]
+cover:
+  image: "/travel-hub/airline-pet-policy-changes.webp"
+  alt: "Un yorkshire terrier sostenido en la cabina de un avión, junto a una ventanilla y un asiento, con una etiqueta de identificación"
 enbref:
   - "📅 Las normas de animales se mueven con la **temporada**, no solo con el año"
   - "✈️ Un **cambio de avión** puede eliminar el acceso a la bodega de un día para otro"

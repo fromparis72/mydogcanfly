@@ -9,6 +9,9 @@ lastmod: "2026-08-17T09:00:00+02:00"
 author: "Camille Roussel"
 category: "travel"
 tags: ["dog", "flying", "airline", "policy"]
+cover:
+  image: "/travel-hub/airline-pet-policy-changes.webp"
+  alt: "A Yorkshire Terrier held up in an aircraft cabin, beside a window and a seat, wearing an identification tag"
 enbref:
   - "📅 Pet rules move with the **season**, not just the year"
   - "✈️ An **aircraft swap** can remove hold access overnight"

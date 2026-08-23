@@ -9,6 +9,9 @@ lastmod: "2026-08-19T09:00:00+02:00"
 author: "Camille Roussel"
 category: "travel"
 tags: ["chien", "avion", "chaleur", "soute"]
+cover:
+  image: "/travel-hub/pet-heat-embargoes.webp"
+  alt: "Un chien au poil clair affalé à l'ombre sur des pavés, coiffé de lunettes de soleil"
 enbref:
   - "🌡️ Les seuils s'appliquent au **départ, à l'arrivée et à chaque escale**"
   - "🛬 C'est l'**aéroport le plus chaud** de l'itinéraire qui décide, pas votre ville"

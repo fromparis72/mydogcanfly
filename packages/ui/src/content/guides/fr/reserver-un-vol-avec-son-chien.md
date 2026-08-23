@@ -9,6 +9,9 @@ lastmod: "2026-08-19T09:00:00+02:00"
 author: "Camille Roussel"
 category: "travel"
 tags: ["chien", "avion", "réservation", "compagnie aérienne"]
+cover:
+  image: "/travel-hub/booking-a-pet-flight.webp"
+  alt: "Un petit spitz nain à lunettes, debout devant une tablette posée sur une table en bois"
 enbref:
   - "🎟️ L'animal fait l'objet d'une **réservation distincte**, pas d'une option sur la vôtre"
   - "🔢 Les places en cabine sont **plafonnées par vol** — souvent très peu"

@@ -9,6 +9,9 @@ lastmod: "2026-08-19T09:00:00+02:00"
 author: "Camille Roussel"
 category: "travel"
 tags: ["perro", "avión", "reserva", "aerolínea"]
+cover:
+  image: "/travel-hub/booking-a-pet-flight.webp"
+  alt: "Un pequeño pomerania con gafas, de pie ante una tableta sobre una mesa de madera"
 enbref:
   - "🎟️ El animal es una **reserva independiente**, no una opción de la tuya"
   - "🔢 Las plazas en cabina están **limitadas por vuelo**, y suelen ser muy pocas"

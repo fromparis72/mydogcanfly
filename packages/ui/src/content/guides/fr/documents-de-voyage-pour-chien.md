@@ -9,6 +9,9 @@ lastmod: "2026-08-19T09:00:00+02:00"
 author: "Camille Roussel"
 category: "travel"
 tags: ["animal", "avion", "documents", "international"]
+cover:
+  image: "/travel-hub/pet-travel-documents.webp"
+  alt: "Un passeport ouvert couvert de tampons de visa, posé sur une chemise"
 enbref:
   - "🌍 C'est la **destination** qui décide de l'entrée, pas la compagnie"
   - "💠 Une **puce** lisible passe avant tout le reste"

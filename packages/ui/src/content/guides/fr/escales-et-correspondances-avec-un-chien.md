@@ -9,6 +9,9 @@ lastmod: "2026-08-19T09:00:00+02:00"
 author: "Camille Roussel"
 category: "travel"
 tags: ["animal", "avion", "correspondance", "aéroport"]
+cover:
+  image: "/travel-hub/layovers-with-a-pet.webp"
+  alt: "Une passerelle de correspondance déserte, bordée de tapis roulants et de baies vitrées"
 enbref:
   - "🛫 Préférez un **vol direct** chaque fois qu'il en existe un"
   - "🌡️ L'embargo s'applique aussi à l'**aéroport de correspondance**"

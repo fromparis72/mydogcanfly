@@ -9,6 +9,9 @@ lastmod: "2026-08-19T09:00:00+02:00"
 author: "Camille Roussel"
 category: "travel"
 tags: ["chien", "avion", "races", "brachycéphale"]
+cover:
+  image: "/travel-hub/snub-nosed-breeds-and-flying.webp"
+  alt: "Un bouledogue français couché sur une peau de mouton, museau court bien visible"
 enbref:
   - "🐽 La restriction vise le **museau court**, pas une liste de races figée"
   - "🌡️ Chaleur et stress multiplient le risque — d'où les **refus en soute**"

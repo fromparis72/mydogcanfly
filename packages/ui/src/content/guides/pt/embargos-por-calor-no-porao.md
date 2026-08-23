@@ -9,6 +9,9 @@ lastmod: "2026-08-19T09:00:00+02:00"
 author: "Camille Roussel"
 category: "travel"
 tags: ["cachorro", "avião", "calor", "porão"]
+cover:
+  image: "/travel-hub/pet-heat-embargoes.webp"
+  alt: "Um cachorro de pelo claro largado à sombra sobre paralelepípedos, de óculos de sol"
 enbref:
   - "🌡️ Os limites valem na **partida, na chegada e em cada escala**"
   - "🛬 Decide o **aeroporto mais quente** da rota, não a sua cidade"

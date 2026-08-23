@@ -175,6 +175,18 @@ jobs:
       - name: La migration des rubriques est tout ou rien
         run: npm run test:migration-categories
 
+      # Les couvertures : présence, existence réelle du fichier, et texte alternatif propre à
+      # chaque langue. Le champ est `optional()` au schéma — à raison, un guide sans photo reste
+      # lisible — mais « toléré » n'est pas « voulu », et l'écart entre les deux ne se voyait
+      # qu'à l'œil. Aucun build : le harnais lit les sources.
+      - name: Bijection des guides, images réelles, textes alternatifs approuvés
+        run: npm run test:couvertures
+
+      # Le rapatriement des photos, éprouvé avec un `curl` FACTICE — un chemin d'erreur ne se
+      # présente jamais quand on l'observe, et un harnais qui dépend du réseau ne vaut rien.
+      - name: Un téléchargement de couverture raté ne publie rien
+        run: npm run test:fetch-couvertures
+
       - name: Bundle épinglé sur le Worker attendu
         run: node packages/knowledge/scripts/check-bundle.mjs --expect="https://00000000-mydogcanfly-api-preview.fromparis.workers.dev"
 

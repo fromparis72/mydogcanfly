@@ -759,6 +759,184 @@ const MUTATIONS = [
     harnais: "preuve-migration-categories.mjs",
     attendu: "aurait dû donner",
   },
+
+  // ---- LES COUVERTURES DES GUIDES ----
+  //
+  // Le champ `cover` est `optional()` au schéma, à raison : un guide sans photo reste lisible.
+  // Mais « toléré par le schéma » n'est pas « voulu », et c'est tout l'écart que ces trois
+  // mutations éprouvent. Aucune ne casse le build : le site se construit dans les trois cas.
+  {
+    nom: "une couverture pointe vers une image qui n'existe pas",
+    id: "une-couverture-pointe-vers-une-image-qui-n-existe-pas",
+    /* `image` est une chaîne au schéma : Astro construit sans broncher et la page sert une
+       image morte. Seule une confrontation au disque peut le voir. */
+    fichier: "packages/ui/src/content/guides/en/pet-travel-documents.md",
+    cherche: 'image: "/travel-hub/pet-travel-documents.webp"',
+    remplace: 'image: "/travel-hub/pet-travel-documents-disparue.webp"',
+    harnais: "test-couvertures-guides.mjs",
+    attendu: "image INTROUVABLE",
+  },
+  {
+    nom: "un texte alternatif portugais est recopié de l'anglais",
+    id: "un-texte-alternatif-portugais-est-recopie-de-l-anglais",
+    /* Le `alt` ne s'adresse qu'à qui NE VOIT PAS l'image — donc au seul lecteur qui ne pourra
+       jamais s'apercevoir qu'on lui parle anglais. C'est la forme la plus silencieuse du défaut
+       que le Travel Hub vient de fermer sur ses rubriques. */
+    fichier: "packages/ui/src/content/guides/pt/documentos-de-viagem-para-cachorro.md",
+    cherche: '  alt: "Um passaporte aberto coberto de carimbos de visto, sobre uma pasta"',
+    remplace: '  alt: "An open passport covered in visa stamps, resting on a folder"',
+    harnais: "test-couvertures-guides.mjs",
+    attendu: "partagent le MÊME texte alternatif",
+  },
+  {
+    nom: "deux langues d'un même guide montrent deux photos différentes",
+    id: "deux-langues-d-un-meme-guide-montrent-deux-photos-diffe",
+    /* Une couverture est un fait éditorial attaché au GUIDE, pas à sa traduction. Deux images
+       pour un même article signalent presque toujours une reprise partielle — et l'image posée
+       ici existe bel et bien, si bien que le contrôle du disque, lui, resterait vert. */
+    fichier: "packages/ui/src/content/guides/es/documentos-de-viaje-para-perro.md",
+    cherche: 'image: "/travel-hub/pet-travel-documents.webp"',
+    remplace: 'image: "/travel-hub/booking-a-pet-flight.webp"',
+    harnais: "test-couvertures-guides.mjs",
+    attendu: "images différentes selon la langue",
+  },
+  {
+    nom: "un texte alternatif s'écarte de la référence approuvée",
+    id: "un-texte-alternatif-s-ecarte-de-la-reference-approuvee",
+    /* La phrase posée ici est FRANÇAISE, plausible, et différente des trois autres langues : elle
+       satisfait tous les contrôles de forme. Seule la confrontation à la référence peut la voir.
+       C'est ce qui remplace la prétention abandonnée — « chaque alt dans sa langue » — par une
+       promesse tenable : ces textes sont ceux qui ont été relus. */
+    fichier: "packages/ui/src/content/guides/fr/documents-de-voyage-pour-chien.md",
+    cherche: '  alt: "Un passeport ouvert couvert de tampons de visa, posé sur une chemise"',
+    remplace: '  alt: "Un passeport ouvert posé sur un bureau, avec des tampons"',
+    harnais: "test-couvertures-guides.mjs",
+    attendu: "NON CONFORME à la référence",
+  },
+  {
+    nom: "un guide perd une langue et gagne une clé fantôme",
+    id: "un-guide-perd-une-langue-et-gagne-une-cle-fantome",
+    /* Compter 72 fichiers par langue ne prouvait RIEN : renommer la seule clé portugaise laisse
+       72 fichiers partout, un guide en trois langues et une clé qui n'existe qu'en portugais. Le
+       harnais annonçait alors « 73 guides pourvus dans les quatre langues ». Un décompte n'est
+       pas une bijection. */
+    fichier: "packages/ui/src/content/guides/pt/documentos-de-viagem-para-cachorro.md",
+    cherche: 'key: "pet-travel-documents"',
+    remplace: 'key: "pet-travel-papers"',
+    harnais: "test-couvertures-guides.mjs",
+    attendu: "absent en PT",
+  },
+  {
+    nom: "un téléchargement incomplet est publié, et les quatre guides y sont repointés",
+    id: "un-telechargement-incomplet-est-publie-et-les-quatre-gui",
+    /* L'état exact d'avant le correctif, en trois éditions parce que le défaut en exigeait trois :
+       écriture directe dans la destination, aucun nettoyage, et une réécriture conditionnée à
+       l'EXISTENCE du fichier plutôt qu'à sa validation. Le fichier partiel survivait à l'échec,
+       et les quatre langues étaient repointées vers lui dans la seconde où le compte rendu
+       annonçait « échec ». */
+    fichier: "packages/knowledge/scripts/fetch-guide-covers.mjs",
+    editions: [
+      { cherche: "  const temp = `${out}.part`;", remplace: "  const temp = out;" },
+      { cherche: "    if (existsSync(temp)) rmSync(temp, { force: true });",
+        remplace: "    /* aucun nettoyage */" },
+      { cherche: "    if (!key || !validees.has(key) || !existsSync(join(DEST, `${key}.jpg`))) continue;",
+        remplace: "    if (!key || !existsSync(join(DEST, `${key}.jpg`))) continue;" },
+    ],
+    harnais: "test-fetch-couvertures.mjs",
+    attendu: "a été MODIFIÉ alors que le téléchargement a échoué",
+  },
+  {
+    nom: "un fichier déjà présent est cru sur son existence, sans être ouvert",
+    id: "un-fichier-deja-present-est-cru-sur-son-existence-sans-e",
+    /* « Existe » n'est pas « validé ». Un `.jpg` de 9 000 octets de TEXTE dépassait le seuil de
+       taille, était classé « déjà présent », et les quatre langues étaient repointées vers lui.
+       La taille ne dit rien du format : seule une lecture des octets le voit. */
+    fichier: "packages/knowledge/scripts/fetch-guide-covers.mjs",
+    editions: [
+      { cherche: "    try { validerJpeg(out); deja.push(key); }\n    catch (e) { echecs.push(`${key} : fichier déjà présent mais INVALIDE — ${e.message}`); }\n    continue;",
+        remplace: "    deja.push(key);\n    continue;" },
+    ],
+    harnais: "test-fetch-couvertures.mjs",
+    attendu: "a été MODIFIÉ alors que le téléchargement a échoué",
+  },
+  {
+    nom: "le téléchargeur liste ses échecs puis sort en 0",
+    id: "le-telechargeur-liste-ses-echecs-puis-sort-en-0",
+    /* Un travail qui rend compte de son échec dans un code de sortie « tout va bien » ne rend
+       compte de rien : l'appelant — CI, script, humain pressé — le croit réussi. */
+    fichier: "packages/knowledge/scripts/fetch-guide-covers.mjs",
+    cherche: "  console.error(`\\n${echecs.length} échec(s) : aucun de ces guides n'a été repointé.`);\n  process.exit(1);",
+    remplace: "  console.error(`\\n${echecs.length} échec(s) : aucun de ces guides n'a été repointé.`);",
+    harnais: "test-fetch-couvertures.mjs",
+    attendu: "sort en 0 alors qu'il a échoué",
+  },
+  {
+    nom: "une image disparaît de la référence avec toute sa provenance",
+    id: "une-image-disparait-de-la-reference-avec-toute-sa-proven",
+    /* « Référence non vide » ne verrouillait rien : retirer une entrée emportait l'image, sa
+       provenance et ses quatre textes alternatifs, et le harnais annonçait « 9 images · 36
+       textes », en sortant 0. Les dix identités sont désormais écrites DANS le contrôle. */
+    fichier: "couvertures-guides.json",
+    cherche: '"pet-travel-documents": {',
+    remplace: '"pet-travel-papers": {',
+    harnais: "test-couvertures-guides.mjs",
+    attendu: "clé(s) ATTENDUE(S) absente(s) de la référence",
+  },
+  {
+    nom: "une provenance se déclare vérifiée sans dire par qui ni d'où",
+    id: "une-provenance-se-declare-verifiee-sans-dire-par-qui-ni",
+    /* Le champ `verifie` décorait : le poser à `true` avec un auteur et une URL à `null` passait.
+       Se déclarer vérifié sans nommer le vérificateur, la date et la source n'est pas une
+       vérification, c'est une affirmation. */
+    fichier: "couvertures-guides.json",
+    cherche: '      "verifie": false,\n      "verificateur": null,\n      "verifie_le": null,\n      "acquise_le": "2026-08-23",\n      "alt": {\n        "en": "A small Pomeranian',
+    remplace: '      "verifie": true,\n      "verificateur": null,\n      "verifie_le": null,\n      "acquise_le": "2026-08-23",\n      "alt": {\n        "en": "A small Pomeranian',
+    harnais: "test-couvertures-guides.mjs",
+    attendu: "« verifie: true » mais « auteur » vide",
+  },
+  {
+    nom: "une provenance se déclare vérifiée avec une URL bidon et une date qui n'en est pas une",
+    id: "une-provenance-se-declare-verifiee-avec-une-url-bidon-et",
+    /* LE FAUX VERT DU CONTRAT LUI-MÊME. Sa première version n'exigeait que des chaînes NON VIDES :
+       `url_origine: "x"` et `verifie_le: "demain"` la satisfaisaient pleinement. Un contrat de
+       FORME déguisé en contrat de FOND, c'est-à-dire la même faute que celle qu'il est censé
+       interdire — se déclarer vérifié sans l'être. Chaque champ est désormais éprouvé sur ce
+       qu'il prétend être : adresse HTTP(S) absolue, date ISO réellement existante. */
+    fichier: "couvertures-guides.json",
+    cherche: '      "auteur": null,\n      "url_origine": null,\n      "base_de_droits": "licence Unsplash standard, DÉCLARÉE par le propriétaire",\n      "verifie": false,\n      "verificateur": null,\n      "verifie_le": null,\n      "acquise_le": "2026-08-23",\n      "alt": {\n        "en": "A deserted airport connecting walkway',
+    remplace: '      "auteur": "x",\n      "url_origine": "x",\n      "base_de_droits": "licence Unsplash standard, DÉCLARÉE par le propriétaire",\n      "verifie": true,\n      "verificateur": "x",\n      "verifie_le": "demain",\n      "acquise_le": "2026-08-23",\n      "alt": {\n        "en": "A deserted airport connecting walkway',
+    harnais: "test-couvertures-guides.mjs",
+    attendu: "n'est pas une date ISO valide",
+  },
+  {
+    nom: "une URL d'origine passe la grammaire maison et non le parseur standard",
+    id: "une-url-d-origine-passe-la-grammaire-maison-et-non-le-pa",
+    /* `https://user@:80` — hôte VIDE, et pourtant accepté par l'expression régulière que j'avais
+       écrite : après le schéma, `u` satisfaisait la première classe et `s` le point qui suit.
+       Écrire soi-même la grammaire des URL revient à réécrire une spécification de plusieurs
+       centaines de lignes en une ligne, et à se tromper. La date est ici VALIDE, pour que seul
+       le contrôle d'URL puisse mettre en défaut — sans quoi la mutation prouverait autre chose
+       que ce qu'elle prétend. */
+    fichier: "couvertures-guides.json",
+    cherche: '      "auteur": null,\n      "url_origine": null,\n      "base_de_droits": "licence Unsplash standard, DÉCLARÉE par le propriétaire",\n      "verifie": false,\n      "verificateur": null,\n      "verifie_le": null,\n      "acquise_le": "2026-08-23",\n      "alt": {\n        "en": "A Boeing 747',
+    remplace: '      "auteur": "Jane Doe",\n      "url_origine": "https://user@:80",\n      "base_de_droits": "licence Unsplash standard, DÉCLARÉE par le propriétaire",\n      "verifie": true,\n      "verificateur": "Codex",\n      "verifie_le": "2026-08-23",\n      "acquise_le": "2026-08-23",\n      "alt": {\n        "en": "A Boeing 747',
+    harnais: "test-couvertures-guides.mjs",
+    attendu: "n'est pas une URL analysable",
+  },
+  {
+    distComplet: true,
+    nom: "une page sans crédit n'est plus déclarée, et le harnais compte au lieu d'identifier",
+    id: "une-page-sans-credit-n-est-plus-declaree-et-le-harnais-c",
+    /* Le contrôle figeait un NOMBRE — « les 4 connues, pas une de plus » — sans dire lesquelles.
+       Il rougissait donc pour toute décision éditoriale nouvelle, et serait resté vert si quatre
+       AUTRES pages avaient perdu leur crédit. Retirer une clé de l'ensemble déclaré doit faire
+       apparaître ses quatre pages comme NON déclarées. */
+    fichier: "test-page-guide.mjs",
+    cherche: '  "flying-with-a-dog-cabin-hold-cargo",',
+    remplace: "",
+    harnais: "test-page-guide.mjs",
+    attendu: "NON déclarée",
+  },
 ];
 
 const dire = (m) => process.stdout.write(m + "\n");
