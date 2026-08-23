@@ -7,17 +7,22 @@ permissions:
 
 # Filet de sécurité : transformer en contrôles automatiques ce qui était vérifié à la main.
 #
-# DEUX NIVEAUX, décidés avec Philippe et Codex le 11/08/2026 après mesure :
+# DEUX JOBS, SUR LES MÊMES DÉCLENCHEURS ET LE MÊME COMMIT (20/08/2026) :
 #
-#   pull request  → build RÉDUIT (97 pages, ~36 s). Retour rapide sur ce qui casse vraiment.
-#   push sur main → build COMPLET (2949 pages, ~12 min) + contrôle `noindex` sur la totalité.
+#   verify        build RÉDUIT (~100 pages, ~36 s) + les contrôles rapides. Rend la main vite.
+#   site-complet  build COMPLET (~3 000 pages, ~12 min) + les contrôles qui ne savent lire que
+#                 le site entier. Tourne EN PARALLÈLE.
 #
-# Pourquoi ce partage plutôt qu'un build complet partout : les 2728 pages d'entités (aéroports,
-# races, pays, compagnies) n'apportent rien aux harnais, qui lisent la page d'accueil dans les
-# 4 langues et /tools/fiche. Et surtout, la garantie forte existe déjà là où elle compte :
-# `deploy:preview` exécute un build complet AVEC vérification du noindex sur les 2957 pages avant
-# tout déploiement. La CI de pull request n'a pas à certifier un déploiement, elle doit détecter
-# une régression vite.
+# CE QUE CETTE ARCHITECTURE REMPLACE, et pourquoi. Le partage précédent — « pull request réduite,
+# main complet », décidé le 11/08/2026 — donnait un retour rapide, mais il avait une conséquence
+# qu'on n'avait pas vue : les contrôles du site entier ne s'exécutaient QU'APRÈS la fusion. Leur
+# premier passage réel avait lieu une fois le code dans `main`. Ce n'est pas une vérification,
+# c'est un constat après coup. Les deux jobs suppriment ce délai sans sacrifier la rapidité : le
+# job court reste court, le job long s'exécute à côté, et aucune condition `github.event_name` ne
+# subsiste dans ce fichier.
+#
+# La garantie de déploiement reste ailleurs et inchangée : `deploy:preview` exécute un build
+# complet AVEC vérification du `noindex` avant tout déploiement. Un dist de CI n'est jamais déployé.
 #
 # ORDRE NON NÉGOCIABLE : le build précède les harnais DOM. `test-fiche-harness.cjs` et
 # `test-flightfinder-harness.cjs` lisent packages/ui/dist ; sans build ils meurent sur ENOENT.
@@ -25,6 +30,12 @@ permissions:
 # Node 22 partout : un build Astro complet sous Node 24.18.0 échoue après plusieurs milliers de
 # pages sur un ENOENT dans dist/chunks/, sans jamais mentionner Node (constaté le 11/08/2026).
 
+# CE QUI EST VÉRIFIÉ SUR UNE PULL REQUEST N'EST PAS LE SOMMET DE LA BRANCHE. `actions/checkout`
+# extrait par défaut, pour l'événement `pull_request`, le commit de FUSION synthétique entre la tête
+# de la branche et sa base, pas le SHA brut de la branche. C'est préférable — on vérifie le résultat
+# fusionné, qui est ce qui atterrira dans `main` — mais ce n'est pas la même chose, et un compte
+# rendu qui dit « sur le SHA de la branche » se trompe. Le SHA de tête reste lisible dans
+# `github.event.pull_request.head.sha`.
 on:
   pull_request:
   push:
@@ -80,19 +91,18 @@ jobs:
         run: npm run test:unit
 
       # ── Build ────────────────────────────────────────────────────────────────────────────
-      # Réduit sur pull request, complet sur main. Les deux produisent packages/ui/dist et
-      # épinglent PUBLIC_API_BASE sur une URL Worker versionnée.
-      - name: Build réduit (pull request)
-        if: github.event_name == 'pull_request'
+      # TOUJOURS RÉDUIT ICI, sur pull request comme sur main. Le site entier est construit par le
+      # job `site-complet`, qui tourne EN PARALLÈLE et sur les mêmes déclencheurs.
+      #
+      # Ce job construisait le site complet sur main et le site réduit sur pull request. Les
+      # contrôles qui exigent le site entier ne pouvaient donc s'exécuter qu'APRÈS la fusion : leur
+      # premier passage réel avait lieu une fois le code DANS main, ce qui n'est pas une
+      # vérification mais un constat après coup.
+      #
+      # La sentinelle versionnée vaut pour les deux (K-bis) : un dist de CI n'est jamais déployé,
+      # il n'a aucune raison de porter une adresse réelle, et surtout pas la seule qui soit mutable.
+      - name: Build réduit
         run: npm run build:ci
-
-      # La sentinelle versionnée vaut aussi pour main (K-bis) : la première version de ce
-      # workflow construisait main contre l'ALIAS MUTABLE, en contradiction avec le commentaire
-      # au-dessus — un dist de CI n'est jamais déployé, il n'a donc aucune raison de porter une
-      # adresse réelle, et surtout pas la seule qui soit mutable.
-      - name: Build complet + noindex sur toutes les pages (main)
-        if: github.event_name == 'push'
-        run: npm run build:preview -- --api-base=https://00000000-mydogcanfly-api-preview.fromparis.workers.dev
 
       # ── Après build ──────────────────────────────────────────────────────────────────────
       - name: Harnais DOM (fiche + Finder, 4 langues)
@@ -102,15 +112,11 @@ jobs:
       # du 15/08/2026 sont passées : aucun harnais ne les lisait, et `build:ci` n'en construisait
       # aucune. La portée suit le build : les sentinelles sur pull request (que `build:ci`
       # construit désormais, compagnies ET pays en une seule passe), les 71 fiches × 4 langues
-      # sur main, où le build est complet. Aucune des deux ne passe « faute de matière » : chacune
-      # a une cible EXACTE calculée sur les données, et échoue si une page manque.
-      - name: Harnais DOM des pages d'entités (sentinelles — pull request)
-        if: github.event_name == 'pull_request'
+      # sur main. Ici les SENTINELLES seules ; les 78 canaux × 4 langues sont couverts par le job
+      # `site-complet`, sur le même commit. Aucune des deux portées ne passe « faute de matière » :
+      # chacune a une cible EXACTE calculée sur les données, et échoue si une page manque.
+      - name: Harnais DOM des pages d'entités (sentinelles)
         run: npm run test:entities
-
-      - name: Harnais DOM des pages d'entités (78 canaux × 4 langues — main)
-        if: github.event_name == 'push'
-        run: npm run test:entities:complet
 
       - name: Bundle épinglé sur le Worker attendu
         run: node packages/knowledge/scripts/check-bundle.mjs --expect="https://00000000-mydogcanfly-api-preview.fromparis.workers.dev"
@@ -119,3 +125,59 @@ jobs:
       # fichier, même à total constant, et échoue aussi à la baisse pour forcer à resserrer.
       - name: Dette astro check (plafond)
         run: node packages/knowledge/scripts/check-astro-debt.mjs
+
+  # ────────────────────────────────────────────────────────────────────────────────────────
+  # LE SITE ENTIER — même déclencheur, même commit, en parallèle du job rapide.
+  #
+  # POURQUOI UN SECOND JOB PLUTÔT QU'UNE BRANCHE `if` DE PLUS. Certains contrôles ne savent lire
+  # que le site COMPLET : sous le build réduit, les fiches et les guides n'existent pas, ils
+  # échoueraient faute de matière et non faute de qualité. Ils étaient donc réservés à `main` —
+  # c'est-à-dire qu'ils s'exécutaient pour la première fois APRÈS la fusion. Une vérification qui
+  # n'a lieu qu'une fois le code écrit dans `main` ne protège plus rien : elle constate.
+  #
+  # Ce job les exécute AVANT toute fusion, sur le même état que le job rapide — c'est-à-dire, sur
+  # une pull request, le commit de FUSION synthétique décrit en tête de ce fichier. Il est séparé
+  # pour que le job rapide reste rapide : un build complet demande une vingtaine de minutes, et une
+  # erreur de typage n'a pas à les attendre pour être signalée.
+  #
+  # CE JOB GRANDIRA. Il ne porte ici que les contrôles du site entier qui EXISTENT DÉJÀ ; les lots
+  # suivants y ajouteront les leurs, dans la pull request qui apporte le script correspondant.
+  # Aucune étape ne nomme jamais une commande qui n'existe pas encore.
+  site-complet:
+    name: Site entier (build complet + contrôles du site)
+    runs-on: ubuntu-latest
+    timeout-minutes: 90
+
+    steps:
+      # LES MÊMES ÉPINGLES QUE LE JOB RAPIDE, c'est-à-dire celles de `main`. Le lot suivant porte
+      # la migration Node 20 → 22 des actions, le manifeste et le contrôle qui les vérifie : il
+      # migrera les DEUX jobs ensemble, avec sa garde. Introduire ici des SHA que rien ne vérifie
+      # encore reviendrait à faire entrer une épingle non mesurée — précisément ce que ce contrôle,
+      # quand il arrivera, existe pour interdire.
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4.4.0
+
+      - name: Node 22 (depuis .nvmrc)
+        uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4.4.0
+        with:
+          node-version-file: .nvmrc
+          cache: npm
+
+      - name: Installation reproductible
+        run: npm ci
+
+      # Même sentinelle versionnée que le job rapide, et `noindex` sur toutes les pages : ce dist
+      # n'est jamais déployé. `build:preview` refuse de déclarer le build utilisable si l'une de
+      # ses vérifications d'après-build échoue.
+      - name: Build complet + noindex sur toutes les pages
+        run: npm run build:preview -- --api-base=https://00000000-mydogcanfly-api-preview.fromparis.workers.dev
+
+      # Les fiches d'entités à leur portée réelle : 78 canaux × 4 langues, et non les sentinelles.
+      - name: Harnais DOM des pages d'entités (78 canaux × 4 langues)
+        run: npm run test:entities:complet
+
+      # `audit` est BLOQUANT et n'était lancé PAR RIEN — un contrôle laissé à la main, c'est-à-dire
+      # oubliable, exactement ce que son propre en-tête reproche aux vérifications manuelles. Il
+      # sortait d'ailleurs deux anomalies bloquantes FAUSSES, corrigées dans cette même pull
+      # request : voir les commentaires de `audit-site.mjs`.
+      - name: Audit de cohérence du site construit
+        run: npm run audit
