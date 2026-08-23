@@ -138,8 +138,41 @@ Les deux questions sont différentes : l'une porte sur un **itinéraire futur**,
 lien mort, parce qu'il aboutit**.
 
 **Effet public :** si cette adresse a été publiée avant la refonte, les liens entrants tombent en
-404. Le volume réel est **inconnu** : il demande les journaux du fournisseur, que je n'ai pas.
-C'est une donnée à produire avant d'arbitrer, pas après.
+404.
+
+> **ARBITRAGE DU PROPRIÉTAIRE, 23/08/2026 : les journaux d'accès n'existent pas.**
+>
+> Le volume de trafic sur cette adresse est donc **définitivement inconnaissable**. Ce n'est plus
+> une donnée en attente, c'est une donnée qui ne viendra pas — et il faut trancher sans elle
+> plutôt que de laisser le point ouvert indéfiniment en invoquant une mesure impossible.
+>
+> **Ce que l'absence de mesure élimine.** Construire l'outil ne peut plus se justifier par la
+> demande : personne ne saura jamais s'il y avait dix visiteurs par an ou dix mille. Le construire
+> resterait défendable pour des raisons éditoriales — parce que la question « fait-il trop chaud
+> ici, maintenant ? » mérite une réponse — mais ce serait alors une décision de PRODUIT, sans
+> rapport avec cette adresse morte, et elle appartient à Philippe seul.
+>
+> **Ce qui reste à arbitrer**, et qui se réduit à deux voies :
+>
+> | voie | ce qu'elle dit au visiteur | coût |
+> |---|---|---|
+> | laisser en 404 | rien — page introuvable, comme aujourd'hui | nul |
+> | page explicative | ce qui existe à la place, et pourquoi cette adresse a disparu | faible |
+>
+> **Ma recommandation : la seconde**, et je la donne en sachant qu'elle n'est pas mesurable. Un
+> visiteur qui arrive par un lien ancien est, par définition, quelqu'un qui cherchait précisément
+> ce sujet ; lui servir une page vide quand `/tools/heat/` existe et traite une question voisine
+> est un gâchis, alors que lui expliquer la différence coûte une page.
+>
+> **Un préalable technique au lot**, à vérifier avant d'écrire quoi que ce soit : quels codes de
+> statut l'hébergement sait réellement servir. Un **410 Gone** dirait aux moteurs que la ressource
+> a disparu définitivement, ce qu'un 404 laisse ambigu ; encore faut-il que Cloudflare Pages
+> permette de le produire sans Worker dédié. Le lot commence par cette vérification, pas par du
+> code.
+>
+> **Ce qui reste interdit, et le demeure :** rediriger vers `/tools/heat/`. Les deux questions sont
+> différentes — un itinéraire futur, un lieu et un instant — et un lien qui aboutit sur une réponse
+> à une autre question est pire qu'un lien mort.
 
 ### P1-1 · Provenance métier
 
@@ -302,14 +335,18 @@ C'est le seul lot dont un autre dépend.
 
 ### Lot F — Arbitrage de l'outil de chaleur *(conception avant code)*
 
-Trois voies, à trancher **avant** d'écrire une ligne :
+Deux voies, à trancher **avant** d'écrire une ligne — la troisième, construire l'outil, a été
+sortie du lot par l'arbitrage du 23/08 :
 
-1. **Construire l'outil local** — répond à la question posée, coût le plus élevé.
-2. **Laisser l'adresse sans destination** — honnête, coût nul, perd les liens entrants.
-3. **Répondre par une page explicative** en 404 ou 410, qui dit ce qui existe à la place.
+1. **Laisser l'adresse sans destination** — honnête, coût nul, perd les liens entrants.
+2. **Répondre par une page explicative**, qui dit ce qui existe à la place et pourquoi. *Recommandée.*
 
-- **Préalable de mesure :** le volume réel de trafic sur l'ancienne adresse, à tirer des journaux
-  du fournisseur. **Je ne l'ai pas** et ne peux pas l'inventer.
+- **Préalable levé, et par la négative :** les journaux d'accès **n'existent pas** (arbitrage du
+  23/08/2026). Le trafic est définitivement inconnaissable ; le lot tranche sans lui.
+- **Voie recommandée :** la page explicative. La construction de l'outil, si elle a lieu, relève
+  d'une décision de produit distincte et non de cette adresse morte.
+- **Première étape du lot, avant tout code :** vérifier quels codes de statut l'hébergement sait
+  servir — un 410 vaut mieux qu'un 404, encore faut-il pouvoir le produire.
 - **Interdit :** rediriger vers `/tools/heat/`, qui répond à une autre question.
 
 ### Lot G — Correspondances multi-opérateurs *(dossier de conception seul)*
