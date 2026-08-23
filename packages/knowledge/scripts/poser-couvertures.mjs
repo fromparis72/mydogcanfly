@@ -8,13 +8,20 @@
  * c'est le seul élément du bloc qui s'adresse à un lecteur, et un `alt` anglais sur une page
  * portugaise est exactement le défaut que le Travel Hub vient de fermer sur ses rubriques.
  *
- * PAS DE CHAMP `credit`, ET C'EST UNE DÉCISION. Les 62 guides importés en portent un —
- * attribution Unsplash avec ses paramètres UTM — parce qu'ils ont été constitués ainsi. Pour ces
- * dix-là, le propriétaire du site a choisi de ne pas en poser. La licence Unsplash ne l'exige
- * pas : elle rend l'attribution appréciée, non obligatoire. Le schéma la déclare d'ailleurs
- * `optional()`. On l'écrit ici pour que l'exception soit LUE comme un choix et non découverte
- * comme un oubli — et pour corriger au passage le commentaire du schéma, qui affirmait à tort
- * que « la licence Unsplash l'exige ».
+ * PAS DE CHAMP `credit`, ET C'EST UNE DÉCISION. Le compte exact, puisqu'il a été énoncé faux une
+ * fois : 62 guides portaient déjà une couverture, mais 61 seulement portent un crédit. Le
+ * soixante-deuxième — `flying-with-a-dog-cabin-hold-cargo` — n'en a jamais eu. Avec les dix
+ * nouveaux, ce sont donc ONZE guides sans attribution, et non dix.
+ *
+ * Pour ces dix-là, le propriétaire du site a choisi de ne pas en poser. La licence Unsplash ne
+ * l'exige pas : elle rend l'attribution appréciée, non obligatoire. Le schéma la déclare
+ * d'ailleurs `optional()`. On l'écrit ici pour que l'exception soit LUE comme un choix et non
+ * découverte comme un oubli — et pour corriger au passage le commentaire du schéma, qui
+ * affirmait à tort que « la licence Unsplash l'exige ».
+ *
+ * L'ABSENCE DE CRÉDIT AFFICHÉ N'EST PAS UNE ABSENCE DE PROVENANCE. Origine, base de droits,
+ * empreinte et date d'acquisition de chaque binaire sont consignées dans `couvertures-guides.json`,
+ * avec un champ `verifie` qui distingue ce qui est DÉCLARÉ de ce qui est établi.
  *
  * IL ÉCHOUE FERMÉ. Une clé sans image sur le disque, une langue manquante, un guide portant déjà
  * une couverture : tout arrête le script avant la moindre écriture. Comme la migration des
@@ -30,75 +37,12 @@ const RACINE = "packages/ui/src/content/guides";
 const IMAGES = "packages/ui/public/travel-hub";
 const LANGUES = ["en", "fr", "es", "pt"];
 
-/**
- * Ce que MONTRE chaque photo, dans les quatre langues.
- *
- * Rédigé en REGARDANT les images, une à une. Un `alt` qui décrit ce que l'article traite plutôt
- * que ce que la photo montre est pire qu'un `alt` absent : il ment à qui ne voit pas l'image,
- * et lui seul.
- */
-const ALT = {
-  "airline-pet-policy-changes": {
-    en: "A Yorkshire Terrier held up in an aircraft cabin, beside a window and a seat, wearing an identification tag",
-    fr: "Un yorkshire tenu dans une cabine d'avion, près d'un hublot et d'un siège, portant une étiquette d'identification",
-    es: "Un yorkshire terrier sostenido en la cabina de un avión, junto a una ventanilla y un asiento, con una etiqueta de identificación",
-    pt: "Um yorkshire terrier no colo dentro da cabine de um avião, junto a uma janela e a um assento, com uma etiqueta de identificação",
-  },
-  "airport-day-with-a-dog": {
-    en: "A yellow Labrador lying on a terminal floor, in a harness and on a lead, at its handler's feet",
-    fr: "Un labrador sable couché sur le sol d'une aérogare, en harnais et en laisse, aux pieds de son maître",
-    es: "Un labrador color arena tumbado en el suelo de una terminal, con arnés y correa, a los pies de su guía",
-    pt: "Um labrador amarelo deitado no piso de um terminal, de peitoral e guia, aos pés do seu tutor",
-  },
-  "booking-a-pet-flight": {
-    en: "A small Pomeranian wearing glasses, standing in front of a tablet on a wooden table",
-    fr: "Un petit spitz nain à lunettes, debout devant une tablette posée sur une table en bois",
-    es: "Un pequeño pomerania con gafas, de pie ante una tableta sobre una mesa de madera",
-    pt: "Um pequeno lulu da pomerânia de óculos, em pé diante de um tablet sobre uma mesa de madeira",
-  },
-  "cargo-vs-excess-baggage": {
-    en: "A Boeing 747 at the jet bridge, surrounded by cargo containers and ground vehicles",
-    fr: "Un Boeing 747 à la passerelle, entouré de conteneurs de fret et d'engins de piste",
-    es: "Un Boeing 747 en la pasarela, rodeado de contenedores de carga y vehículos de pista",
-    pt: "Um Boeing 747 na ponte de embarque, cercado por contêineres de carga e veículos de pista",
-  },
-  "layovers-with-a-pet": {
-    en: "A deserted airport connecting walkway, lined with moving walkways and glass walls",
-    fr: "Une passerelle de correspondance déserte, bordée de tapis roulants et de baies vitrées",
-    es: "Una pasarela de conexión desierta, flanqueada por cintas transportadoras y cristaleras",
-    pt: "Uma passarela de conexão deserta, ladeada por esteiras rolantes e paredes de vidro",
-  },
-  "measuring-your-dog-for-a-crate": {
-    en: "A Border Collie lying in an open wire crate, on a mat",
-    fr: "Un border collie couché dans une caisse grillagée ouverte, sur un tapis",
-    es: "Un border collie tumbado en un transportín de rejilla abierto, sobre una manta",
-    pt: "Um border collie deitado numa caixa de arame aberta, sobre um tapete",
-  },
-  "pet-flight-timeline": {
-    en: "Two black Labradors in vests, sitting on the apron in front of an aircraft",
-    fr: "Deux labradors noirs en gilet, assis sur le tarmac devant un avion",
-    es: "Dos labradores negros con chaleco, sentados en la pista ante un avión",
-    pt: "Dois labradores pretos de colete, sentados na pista diante de um avião",
-  },
-  "pet-heat-embargoes": {
-    en: "A light-coated dog flopped in the shade on cobblestones, wearing sunglasses",
-    fr: "Un chien au poil clair affalé à l'ombre sur des pavés, coiffé de lunettes de soleil",
-    es: "Un perro de pelo claro tumbado a la sombra sobre adoquines, con gafas de sol",
-    pt: "Um cachorro de pelo claro largado à sombra sobre paralelepípedos, de óculos de sol",
-  },
-  "pet-travel-documents": {
-    en: "An open passport covered in visa stamps, resting on a folder",
-    fr: "Un passeport ouvert couvert de tampons de visa, posé sur une chemise",
-    es: "Un pasaporte abierto cubierto de sellos de visado, sobre una carpeta",
-    pt: "Um passaporte aberto coberto de carimbos de visto, sobre uma pasta",
-  },
-  "snub-nosed-breeds-and-flying": {
-    en: "A French Bulldog lying on a sheepskin, its short muzzle clearly visible",
-    fr: "Un bouledogue français couché sur une peau de mouton, museau court bien visible",
-    es: "Un bulldog francés tumbado sobre una piel de oveja, con el hocico corto bien visible",
-    pt: "Um buldogue francês deitado sobre uma pele de carneiro, com o focinho curto bem visível",
-  },
-};
+/* LES TEXTES ALTERNATIFS NE SONT PAS ÉCRITS ICI. Ils vivent dans `couvertures-guides.json`,
+ * qui sert aussi de référence au harnais : une table recopiée dans le script qui l'applique et
+ * dans le contrôle qui la vérifie n'est plus une référence, c'est un miroir. Ce fichier porte
+ * aussi la provenance de chaque binaire — origine, base de droits, empreinte, date. */
+const REF = JSON.parse(readFileSync("couvertures-guides.json", "utf-8")).images;
+const ALT = Object.fromEntries(Object.entries(REF).map(([k, v]) => [k, v.alt]));
 
 const DRY = process.argv.includes("--dry");
 const inconnus = process.argv.slice(2).filter((a) => a !== "--dry");

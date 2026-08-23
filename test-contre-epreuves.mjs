@@ -800,6 +800,51 @@ const MUTATIONS = [
     harnais: "test-couvertures-guides.mjs",
     attendu: "images différentes selon la langue",
   },
+  {
+    nom: "un texte alternatif s'écarte de la référence approuvée",
+    id: "un-texte-alternatif-s-ecarte-de-la-reference-approuvee",
+    /* La phrase posée ici est FRANÇAISE, plausible, et différente des trois autres langues : elle
+       satisfait tous les contrôles de forme. Seule la confrontation à la référence peut la voir.
+       C'est ce qui remplace la prétention abandonnée — « chaque alt dans sa langue » — par une
+       promesse tenable : ces textes sont ceux qui ont été relus. */
+    fichier: "packages/ui/src/content/guides/fr/documents-de-voyage-pour-chien.md",
+    cherche: '  alt: "Un passeport ouvert couvert de tampons de visa, posé sur une chemise"',
+    remplace: '  alt: "Un passeport ouvert posé sur un bureau, avec des tampons"',
+    harnais: "test-couvertures-guides.mjs",
+    attendu: "NON CONFORME à la référence",
+  },
+  {
+    nom: "un guide perd une langue et gagne une clé fantôme",
+    id: "un-guide-perd-une-langue-et-gagne-une-cle-fantome",
+    /* Compter 72 fichiers par langue ne prouvait RIEN : renommer la seule clé portugaise laisse
+       72 fichiers partout, un guide en trois langues et une clé qui n'existe qu'en portugais. Le
+       harnais annonçait alors « 73 guides pourvus dans les quatre langues ». Un décompte n'est
+       pas une bijection. */
+    fichier: "packages/ui/src/content/guides/pt/documentos-de-viagem-para-cachorro.md",
+    cherche: 'key: "pet-travel-documents"',
+    remplace: 'key: "pet-travel-papers"',
+    harnais: "test-couvertures-guides.mjs",
+    attendu: "absent en PT",
+  },
+  {
+    nom: "un téléchargement incomplet est publié, et les quatre guides y sont repointés",
+    id: "un-telechargement-incomplet-est-publie-et-les-quatre-gui",
+    /* L'état exact d'avant le correctif, en trois éditions parce que le défaut en exigeait trois :
+       écriture directe dans la destination, aucun nettoyage, et une réécriture conditionnée à
+       l'EXISTENCE du fichier plutôt qu'à sa validation. Le fichier partiel survivait à l'échec,
+       et les quatre langues étaient repointées vers lui dans la seconde où le compte rendu
+       annonçait « échec ». */
+    fichier: "packages/knowledge/scripts/fetch-guide-covers.mjs",
+    editions: [
+      { cherche: "  const temp = `${out}.part`;", remplace: "  const temp = out;" },
+      { cherche: "    if (existsSync(temp)) rmSync(temp, { force: true });",
+        remplace: "    /* aucun nettoyage */" },
+      { cherche: "    if (!key || !validees.has(key) || !existsSync(join(DEST, `${key}.jpg`))) continue;",
+        remplace: "    if (!key || !existsSync(join(DEST, `${key}.jpg`))) continue;" },
+    ],
+    harnais: "test-fetch-couvertures.mjs",
+    attendu: "a été MODIFIÉ alors que le téléchargement a échoué",
+  },
 ];
 
 const dire = (m) => process.stdout.write(m + "\n");

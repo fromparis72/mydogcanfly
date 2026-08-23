@@ -1,105 +1,220 @@
 #!/usr/bin/env node
 /**
- * CHAQUE GUIDE A UNE COUVERTURE, ELLE EXISTE SUR LE DISQUE, ET SON TEXTE EST DANS SA LANGUE.
+ * LES COUVERTURES DES GUIDES — CE QUE CE HARNAIS PROUVE, ET CE QU'IL NE PROUVE PAS.
  *
  *   node test-couvertures-guides.mjs        (lit les sources, aucun build nécessaire)
  *
- * POURQUOI. Les 10 guides nés du lot 2 n'avaient aucune couverture, dans aucune des quatre
- * langues — 40 fichiers — et rien ne le disait. Le champ est `optional()` au schéma, à raison :
- * un guide sans photo reste lisible. Mais « toléré par le schéma » n'est pas « voulu », et la
- * différence entre les deux ne se voit qu'à l'œil, sur une page, si quelqu'un pense à regarder.
+ * IL NE PROUVE PAS QUE LES TEXTES ALTERNATIFS SONT DANS LA BONNE LANGUE. Sa première version le
+ * laissait croire — elle concluait « chaque guide montre quelque chose, et le dit dans sa
+ * langue » alors qu'elle vérifiait seulement que les quatre chaînes DIFFÈRENT. Remplacer l'alt
+ * portugais par une AUTRE phrase anglaise la laissait verte. Aucun contrôle automatique ne juge
+ * une langue de façon fiable sur une phrase de dix mots, et prétendre le contraire est pire que
+ * de se taire : cela endort la relecture humaine qui, elle, le pourrait.
  *
- * TROIS CHOSES QU'UN SCHÉMA NE PEUT PAS DIRE :
+ * CE QU'IL PROUVE À LA PLACE, plus étroit et plus vrai : les 40 textes alternatifs des dix guides
+ * du lot 2 sont EXACTEMENT ceux qui ont été relus et approuvés, consignés dans
+ * `couvertures-guides.json`. Changer un alt devient un geste en deux endroits, chacun relisible
+ * en revue. La relecture par un locuteur natif reste un PRÉREQUIS, jamais une conséquence.
  *
- *   1. LE FICHIER EXISTE. `image` est une chaîne : le schéma accepte `/travel-hub/inexistant.webp`
- *      sans broncher, et la page se construit avec une image morte. On confronte donc chaque
- *      chemin au disque.
- *   2. LES QUATRE LANGUES PARTAGENT LA MÊME IMAGE. Une couverture est un fait éditorial attaché
- *      au guide, pas à sa traduction : deux langues qui montrent deux photos différentes du même
- *      article sont presque toujours le signe d'une reprise partielle.
- *   3. LE TEXTE ALTERNATIF EST TRADUIT. C'est le seul élément du bloc qui s'adresse à un lecteur,
- *      et il ne s'adresse qu'à celui qui NE VOIT PAS l'image — donc le seul qui ne pourra jamais
- *      s'apercevoir qu'on lui parle anglais. Un `alt` identique entre deux langues est un `alt`
- *      recopié.
+ * SIX PROPRIÉTÉS :
  *
- * JAMAIS VERT FAUTE DE MATIÈRE : le harnais exige 72 guides par langue et échoue s'il en lit
- * moins, plutôt que de conclure sur ce qu'il a trouvé.
+ *   1. BIJECTION DES GUIDES — exactement 72 clés logiques, chacune présente dans les QUATRE
+ *      langues, aucun doublon (clé, langue). Compter 72 fichiers par langue ne suffisait pas :
+ *      renommer la seule clé portugaise d'un guide laissait 72 fichiers partout, un guide en
+ *      trois langues, une clé fantôme en portugais — et le harnais annonçait « 73 guides
+ *      pourvus dans les quatre langues ». Un décompte n'est pas une bijection.
+ *   2. COUVERTURE COMPLÈTE — exactement 72 guides pourvus dans les quatre langues.
+ *   3. L'IMAGE EXISTE ET EST UNE IMAGE — `image` n'est qu'une chaîne au schéma : un fichier texte
+ *      renommé `.webp` passait. On vérifie la signature RIFF/WEBP, une taille non triviale, et
+ *      la largeur décodée depuis l'en-tête.
+ *   4. UNE SEULE IMAGE PAR GUIDE — une couverture est un fait éditorial attaché au guide, pas à
+ *      sa traduction.
+ *   5. TEXTES ALTERNATIFS PRÉSENTS ET DISTINCTS entre langues d'un même guide.
+ *   6. RÉFÉRENCE RESPECTÉE — pour les dix guides du lot 2 : alt identique à la référence, et
+ *      manifeste de provenance complet, empreinte et taille confrontées au fichier réel.
+ *
+ * JAMAIS VERT FAUTE DE MATIÈRE : il exige 72 clés et échoue s'il en lit moins.
  */
-import { readFileSync, readdirSync, existsSync } from "node:fs";
+import { readFileSync, readdirSync, existsSync, statSync } from "node:fs";
+import { createHash } from "node:crypto";
 import { join } from "node:path";
 
 const RACINE = "packages/ui/src/content/guides";
 const PUBLIC = "packages/ui/public";
+const REFERENCE = "couvertures-guides.json";
 const LANGUES = ["en", "fr", "es", "pt"];
-const ATTENDUS = 72;
+const CLES_ATTENDUES = 72;
+const OCTETS_MINIMUM = 4096;   // en deçà, ce n'est pas une photographie de 1 400 px
 
 const defauts = [];
 const echec = (n, m) => defauts.push(`${n}. ${m}`);
 
 const champ = (t, n) => (new RegExp(`^\\s*${n}:\\s*"([\\s\\S]*?)"\\s*$`, "m").exec(t) || [])[1] ?? null;
 
-/** Le bloc `cover:` d'un guide : son image et son texte alternatif. */
 function couverture(texte) {
   const bloc = /^cover:\s*\n((?:[ \t]+\w+:.*\n?)+)/m.exec(texte);
   if (!bloc) return null;
   return { image: champ(bloc[1], "image"), alt: champ(bloc[1], "alt") };
 }
 
-const parCle = new Map();
-for (const langue of LANGUES) {
-  const fichiers = readdirSync(join(RACINE, langue)).filter((f) => f.endsWith(".md"));
-  if (fichiers.length !== ATTENDUS) {
-    echec(0, `${langue.toUpperCase()} : ${fichiers.length} guides au lieu de ${ATTENDUS} — le harnais refuse de conclure sur un corpus partiel`);
+/**
+ * La largeur d'un WebP, lue dans son en-tête — sans dépendance.
+ *
+ * Rend `{ largeur }` ou `{ motif }`. Trois formes de flux existent et une image produite
+ * aujourd'hui peut changer de forme demain selon l'encodeur : les trois sont donc décodées,
+ * plutôt qu'une seule avec un repli silencieux sur « je ne sais pas », qui reviendrait à ne rien
+ * vérifier le jour où l'encodeur change.
+ */
+function largeurWebp(octets) {
+  if (octets.length < 30) return { motif: "fichier trop court pour porter un en-tête WebP" };
+  if (octets.toString("ascii", 0, 4) !== "RIFF") return { motif: "signature RIFF absente" };
+  if (octets.toString("ascii", 8, 12) !== "WEBP") return { motif: "signature WEBP absente" };
+  const forme = octets.toString("ascii", 12, 16);
+  const p = 20;                                   // début de la charge utile du premier chunk
+  if (forme === "VP8 ") {
+    if (octets.toString("hex", p + 3, p + 6) !== "9d012a") return { motif: "code de départ VP8 absent" };
+    return { largeur: octets.readUInt16LE(p + 6) & 0x3fff };
   }
-  for (const nom of fichiers) {
+  if (forme === "VP8L") {
+    if (octets[p] !== 0x2f) return { motif: "signature VP8L absente" };
+    return { largeur: (octets.readUInt32LE(p + 1) & 0x3fff) + 1 };
+  }
+  if (forme === "VP8X") return { largeur: octets.readUIntLE(p + 4, 3) + 1 };
+  return { motif: `forme de flux inconnue « ${forme} »` };
+}
+
+/* ---- lecture ------------------------------------------------------------------------------- */
+if (!existsSync(REFERENCE)) {
+  process.stderr.write(`[couvertures] ÉCHEC — référence absente : ${REFERENCE}\n`);
+  process.exit(1);
+}
+const REF = JSON.parse(readFileSync(REFERENCE, "utf-8")).images;
+if (!REF || Object.keys(REF).length === 0) {
+  process.stderr.write("[couvertures] ÉCHEC — la référence est VIDE : elle s'accorderait avec n'importe quoi.\n");
+  process.exit(1);
+}
+
+/** clé → langue → { chemin, cover }. Les doublons sont conservés pour être dénoncés. */
+const parCle = new Map();
+const doublons = [];
+for (const langue of LANGUES) {
+  for (const nom of readdirSync(join(RACINE, langue)).filter((f) => f.endsWith(".md"))) {
     const chemin = join(RACINE, langue, nom);
     const texte = readFileSync(chemin, "utf-8");
     const cle = champ(texte, "key");
-    if (!cle) { echec(0, `${chemin} : aucun champ « key: »`); continue; }
-    const c = couverture(texte);
-
-    if (!c) { echec(1, `${chemin} : aucune couverture`); }
-    else {
-      if (!c.image) echec(1, `${chemin} : bloc « cover: » sans « image: »`);
-      else {
-        /* 1. l'image existe VRAIMENT */
-        const disque = join(PUBLIC, c.image.replace(/^\//, ""));
-        if (!c.image.startsWith("/")) echec(1, `${chemin} : image « ${c.image} » n'est pas un chemin du site`);
-        else if (!existsSync(disque)) echec(1, `${chemin} : image INTROUVABLE sur le disque — ${disque}`);
-      }
-      if (!c.alt || !c.alt.trim()) echec(3, `${chemin} : couverture sans texte alternatif`);
-    }
-
+    if (!cle) { echec(1, `${chemin} : aucun champ « key: »`); continue; }
     if (!parCle.has(cle)) parCle.set(cle, new Map());
-    parCle.get(cle).set(langue, { chemin, cover: c });
+    if (parCle.get(cle).has(langue)) {
+      doublons.push(`${cle} en ${langue.toUpperCase()} : ${parCle.get(cle).get(langue).chemin} ET ${chemin}`);
+    }
+    parCle.get(cle).set(langue, { chemin, cover: couverture(texte) });
   }
 }
 
+/* ---- 1. BIJECTION -------------------------------------------------------------------------- */
+if (parCle.size !== CLES_ATTENDUES) {
+  echec(1, `${parCle.size} clés logiques au lieu de ${CLES_ATTENDUES} — le harnais refuse de conclure sur un corpus qui n'est pas celui qu'il connaît`);
+}
+for (const d of doublons) echec(1, `doublon (clé, langue) — ${d}`);
+for (const [cle, versions] of parCle) {
+  const manquantes = LANGUES.filter((l) => !versions.has(l));
+  if (manquantes.length) {
+    echec(1, `${cle} : absent en ${manquantes.map((l) => l.toUpperCase()).join(", ")} — présent seulement en ${[...versions.keys()].map((l) => l.toUpperCase()).join(", ")}`);
+  }
+}
+
+/* ---- 2 à 5. couvertures --------------------------------------------------------------------- */
+let quadrilingues = 0;
 for (const [cle, versions] of parCle) {
   const images = new Set();
   const alts = new Map();
+  let completes = 0;
+
   for (const [langue, v] of versions) {
-    if (!v.cover) continue;
-    if (v.cover.image) images.add(v.cover.image);
-    if (v.cover.alt) alts.set(langue, v.cover.alt);
+    const c = v.cover;
+    if (!c) { echec(2, `${v.chemin} : aucune couverture`); continue; }
+    if (!c.image) { echec(2, `${v.chemin} : bloc « cover: » sans « image: »`); continue; }
+    if (!c.alt || !c.alt.trim()) { echec(5, `${v.chemin} : couverture sans texte alternatif`); continue; }
+    completes++;
+    images.add(c.image);
+    alts.set(langue, c.alt);
+
+    /* 3. l'image existe, et c'est une image */
+    if (!c.image.startsWith("/")) { echec(3, `${v.chemin} : « ${c.image} » n'est pas un chemin du site`); continue; }
+    const disque = join(PUBLIC, c.image.replace(/^\//, ""));
+    if (!existsSync(disque)) { echec(3, `${v.chemin} : image INTROUVABLE — ${disque}`); continue; }
+    const taille = statSync(disque).size;
+    if (taille < OCTETS_MINIMUM) {
+      echec(3, `${disque} : ${taille} octets — trop petit pour une photographie, fichier probablement tronqué`);
+      continue;
+    }
+    const l = largeurWebp(readFileSync(disque));
+    if (l.motif) echec(3, `${disque} : ce n'est pas un WebP décodable — ${l.motif}`);
+    else if (REF[cle] && l.largeur !== REF[cle].largeur) {
+      echec(3, `${disque} : largeur ${l.largeur} px au lieu des ${REF[cle].largeur} px déclarés à la référence`);
+    }
   }
-  /* 2. une seule image pour les quatre langues */
+
+  if (completes === LANGUES.length) quadrilingues++;
+
+  /* 4. une seule image pour les quatre langues */
   if (images.size > 1) {
-    echec(2, `${cle} : ${images.size} images différentes selon la langue — ${[...images].join(" · ")}`);
+    echec(4, `${cle} : ${images.size} images différentes selon la langue — ${[...images].join(" · ")}`);
   }
-  /* 3. des textes alternatifs distincts d'une langue à l'autre */
+  /* 5. des textes alternatifs distincts */
   const vus = new Map();
   for (const [langue, alt] of alts) {
-    if (vus.has(alt)) echec(3, `${cle} : ${langue.toUpperCase()} et ${vus.get(alt).toUpperCase()} partagent le MÊME texte alternatif — « ${alt.slice(0, 60)}… »`);
+    if (vus.has(alt)) echec(5, `${cle} : ${langue.toUpperCase()} et ${vus.get(alt).toUpperCase()} partagent le MÊME texte alternatif — « ${alt.slice(0, 60)}… »`);
     else vus.set(alt, langue);
   }
 }
+if (quadrilingues !== CLES_ATTENDUES) {
+  echec(2, `${quadrilingues} guides pourvus d'une couverture dans les quatre langues, au lieu de ${CLES_ATTENDUES}`);
+}
 
-const avec = [...parCle.values()].filter((v) => [...v.values()].every((x) => x.cover)).length;
+/* ---- 6. RÉFÉRENCE ET PROVENANCE ------------------------------------------------------------- */
+const OBLIGATOIRES = ["fichier", "sha256", "octets", "largeur", "origine", "base_de_droits", "acquise_le"];
+for (const [cle, entree] of Object.entries(REF)) {
+  const versions = parCle.get(cle);
+  if (!versions) { echec(6, `${cle} : référencé mais aucun guide ne porte cette clé`); continue; }
+
+  for (const c of OBLIGATOIRES) {
+    if (entree[c] === undefined || entree[c] === null || entree[c] === "") {
+      echec(6, `${cle} : champ de provenance « ${c} » vide ou absent`);
+    }
+  }
+
+  const disque = join(PUBLIC, String(entree.fichier ?? "").replace(/^\//, ""));
+  if (!existsSync(disque)) { echec(6, `${cle} : le fichier déclaré à la référence est introuvable — ${disque}`); }
+  else {
+    const octets = readFileSync(disque);
+    if (octets.length !== entree.octets) echec(6, `${cle} : ${octets.length} octets sur le disque, ${entree.octets} déclarés`);
+    const sha = createHash("sha256").update(octets).digest("hex");
+    if (sha !== entree.sha256) echec(6, `${cle} : empreinte ${sha.slice(0, 16)}… sur le disque, ${String(entree.sha256).slice(0, 16)}… déclarée`);
+  }
+
+  for (const langue of LANGUES) {
+    const attendu = entree.alt?.[langue];
+    if (!attendu) { echec(6, `${cle} : aucun texte alternatif ${langue.toUpperCase()} à la référence`); continue; }
+    const v = versions.get(langue);
+    if (!v?.cover?.alt) continue;                 // déjà dénoncé plus haut
+    if (v.cover.alt !== attendu) {
+      echec(6, `${v.chemin} : texte alternatif NON CONFORME à la référence\n        fichier  « ${v.cover.alt} »\n        référence « ${attendu} »`);
+    }
+  }
+}
+
+/* ---- verdict --------------------------------------------------------------------------------- */
 if (defauts.length === 0) {
-  process.stdout.write(`${parCle.size} guides · ${avec} pourvus d'une couverture dans les quatre langues\n`);
-  process.stdout.write("image partagée entre langues, présente sur le disque, texte alternatif propre à chaque langue.\n\n");
-  process.stdout.write("[couvertures] chaque guide montre quelque chose, et le dit dans sa langue.\n");
+  const nonVerifies = Object.values(REF).filter((e) => e.verifie !== true).length;
+  process.stdout.write(`${parCle.size} clés · chacune en ${LANGUES.length} langues · ${quadrilingues} pourvues d'une couverture partout\n`);
+  process.stdout.write(`${Object.keys(REF).length} images du lot 2 : WebP décodés, empreintes et tailles conformes au manifeste,\n`);
+  process.stdout.write(`${Object.keys(REF).length * LANGUES.length} textes alternatifs identiques à la référence approuvée.\n\n`);
+  if (nonVerifies) {
+    process.stdout.write(`  (${nonVerifies} provenance(s) DÉCLARÉE(S) et non vérifiée(s) — voir « verifie » à la référence)\n`);
+  }
+  process.stdout.write("  (la LANGUE des textes alternatifs n'est pas contrôlable ici — cette relecture reste humaine)\n\n");
+  process.stdout.write("[couvertures] bijection tenue, images réelles, textes alternatifs conformes à ce qui a été approuvé.\n");
   process.exit(0);
 }
 process.stderr.write(`\n[couvertures] ÉCHEC — ${defauts.length} défaut(s) :\n`);

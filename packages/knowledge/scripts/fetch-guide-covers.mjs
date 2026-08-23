@@ -21,7 +21,7 @@
  *
  *   cd ~/Documents/GitHub/mydogcanfly && node packages/knowledge/scripts/fetch-guide-covers.mjs
  */
-import { readFileSync, writeFileSync, mkdirSync, existsSync, readdirSync, statSync } from "node:fs";
+import { readFileSync, writeFileSync, mkdirSync, existsSync, readdirSync, statSync, renameSync, rmSync } from "node:fs";
 import { execFileSync } from "node:child_process";
 import { join } from "node:path";
 
@@ -61,29 +61,55 @@ for (const f of fichiers) {
   if (existsSync(out)) { deja.push(key); continue; }
   if (dry) { ok.push(key); continue; }
   process.stdout.write(`  [${String(++i).padStart(2)}] ${key.padEnd(38)} `);
+  /* TÉLÉCHARGEMENT EN DEUX TEMPS, ET C'EST LA CORRECTION LA PLUS IMPORTANTE DE CE SCRIPT.
+   *
+   * Il écrivait DIRECTEMENT dans le fichier de destination. Un téléchargement interrompu, un
+   * disque plein, un redimensionnement échoué : l'erreur était bien consignée dans `echecs`,
+   * mais le fichier partiel RESTAIT SUR PLACE. Or la phase de réécriture qui suit ne vérifie
+   * que l'EXISTENCE du fichier — elle repointait donc les quatre langues vers une image cassée,
+   * et le compte rendu annonçait l'échec dans la même seconde. Un fichier à moitié écrit qu'on
+   * publie est pire qu'un fichier absent : le second se voit, le premier se sert.
+   *
+   * On télécharge donc à côté, on valide, et on ne renomme qu'en cas de succès — un renommage
+   * dans le même dossier est atomique. Le `finally` efface le temporaire quoi qu'il arrive. */
+  const temp = `${out}.part`;
   try {
     /* `-f` fait échouer curl sur un code HTTP d'erreur au lieu d'écrire la page d'erreur
      * dans le fichier — sans ça on se retrouve avec des « images » de 2 Ko illisibles. */
-    execFileSync("curl", ["-fsSL", "--max-time", "45", "-o", out, url], { stdio: "pipe" });
-    if (statSync(out).size < 8000) throw new Error(`fichier suspect (${statSync(out).size} octets)`);
-    if (SIPS) execFileSync("sips", ["-Z", "1600", out], { stdio: "pipe" });
-    else if (MAGICK) execFileSync(dispo("magick") ? "magick" : "convert", [out, "-resize", "1600x>", "-quality", "82", out], { stdio: "pipe" });
+    execFileSync("curl", ["-fsSL", "--max-time", "45", "-o", temp, url], { stdio: "pipe" });
+    if (!existsSync(temp)) throw new Error("curl n'a produit aucun fichier");
+    if (statSync(temp).size < 8000) throw new Error(`fichier suspect (${statSync(temp).size} octets)`);
+    if (SIPS) execFileSync("sips", ["-Z", "1600", temp], { stdio: "pipe" });
+    else if (MAGICK) execFileSync(dispo("magick") ? "magick" : "convert", [temp, "-resize", "1600x>", "-quality", "82", temp], { stdio: "pipe" });
+    /* Second contrôle APRÈS redimensionnement : un outil peut sortir en 0 et laisser un fichier
+       tronqué, et c'est le fichier final qui compte, pas celui d'avant. */
+    if (statSync(temp).size < 8000) throw new Error(`fichier suspect après redimensionnement (${statSync(temp).size} octets)`);
+    renameSync(temp, out);
     console.log(`${Math.round(statSync(out).size / 1024)} Ko`);
     ok.push(key);
   } catch (e) {
     console.log("échec");
     echecs.push(`${key} : ${e.message.split("\n")[0]}`);
+  } finally {
+    if (existsSync(temp)) rmSync(temp, { force: true });
   }
 }
 
-/* Réécriture des deux langues, et seulement pour les photos réellement présentes. */
+/* RÉÉCRITURE DES QUATRE LANGUES, et seulement pour les photos RÉELLEMENT VALIDÉES.
+ *
+ * Le commentaire disait « des deux langues » : faux depuis que le lot 2 a créé `es` et `pt`.
+ * Et la condition portait sur l'EXISTENCE du fichier, ce qui suffisait à repointer un guide vers
+ * une image cassée restée sur le disque. On n'accepte plus que les clés sorties VALIDÉES de la
+ * boucle ci-dessus — celles téléchargées à l'instant, plus celles déjà présentes avant le
+ * lancement. Une clé en échec ne fait bouger AUCUN front matter. */
+const validees = new Set([...ok, ...deja]);
 let reecrits = 0;
 if (!dry) for (const dir of LANGUES) {
   for (const f of readdirSync(dir).filter((f) => f.endsWith(".md"))) {
     const p = join(dir, f);
     const t = readFileSync(p, "utf-8");
     const key = champ(t, "key");
-    if (!key || !existsSync(join(DEST, `${key}.jpg`))) continue;
+    if (!key || !validees.has(key) || !existsSync(join(DEST, `${key}.jpg`))) continue;
     const url = coverImage(t);
     if (!url || url.startsWith("/")) continue;
     writeFileSync(p, t.replace(`image: "${url}"`, `image: "/travel-hub/${key}.jpg"`));

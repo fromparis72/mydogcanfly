@@ -11,7 +11,7 @@ category: "travel"
 tags: ["chien", "avion", "caisse de transport", "IATA"]
 cover:
   image: "/travel-hub/measuring-your-dog-for-a-crate.webp"
-  alt: "Un border collie couché dans une caisse grillagée ouverte, sur un tapis"
+  alt: "Un chien à robe merle couché dans une caisse grillagée ouverte, sur un tapis"
 enbref:
   - "📏 Quatre mesures : **longueur, hauteur au garrot, hauteur debout, largeur**"
   - "🧍 Mesurez un chien **debout**, jamais couché"

@@ -11,7 +11,7 @@ category: "travel"
 tags: ["dog", "flying", "crate", "IATA"]
 cover:
   image: "/travel-hub/measuring-your-dog-for-a-crate.webp"
-  alt: "A Border Collie lying in an open wire crate, on a mat"
+  alt: "A merle-coated dog lying in an open wire crate, on a mat"
 enbref:
   - "📏 Four measurements: **length, shoulder height, standing height, width**"
   - "🧍 Measure a **standing** dog, never a lying one"
