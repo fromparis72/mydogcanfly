@@ -7,7 +7,7 @@ summary: "Comparativo das melhores fontes de água para cachorro: capacidade, fi
 date: "2026-06-29T09:00:00+02:00"
 lastmod: "2026-06-29T09:00:00+02:00"
 author: "Camille Roussel"
-categories: ["Gear"]
+category: "gear"
 tags: ["cachorro", "fonte de água", "hidratação", "equipamento"]
 enbref:
   - "💧 **Capacidade** compatível com o porte do seu cachorro"

@@ -7,7 +7,7 @@ summary: "Cabina, bodega como equipaje acompañado y carga manifestada son tres 
 date: "2026-08-17T09:00:00+02:00"
 lastmod: "2026-08-19T09:00:00+02:00"
 author: "Camille Roussel"
-categories: ["Travel"]
+category: "travel"
 tags: ["animal", "avión", "carga", "equipaje"]
 enbref:
   - "🎒 **Cabina**: contigo, bajo el asiento, con límite de tamaño"

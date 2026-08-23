@@ -7,7 +7,7 @@ summary: "El golpe de calor aparece cuando el perro ya no logra regular su tempe
 date: "2026-06-25T08:00:00+02:00"
 lastmod: "2026-06-25T08:00:00+02:00"
 author: "Camille Roussel"
-categories: ["Health"]
+category: "health"
 tags: ["perro", "ola de calor", "golpe de calor", "verano"]
 enbref:
   - "🌡️ **Urgencia vital a partir de 40,5 °C** de temperatura rectal"

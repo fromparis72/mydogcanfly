@@ -6,7 +6,7 @@ summary: "Halètement, tremblements, bave, gémissements : le stress du transpor
 date: "2026-07-01T08:00:00+02:00"
 lastmod: "2026-07-01T08:00:00+02:00"
 author: "Camille Roussel"
-categories: ["Santé"]
+category: "health"
 tags: ["chien", "anxiété", "stress", "transport"]
 sourceUrl: "/anxiete-chien-transport/"
 enbref:

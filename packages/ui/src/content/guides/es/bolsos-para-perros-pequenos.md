@@ -7,7 +7,7 @@ summary: "Bolsos de transporte para perros pequeños: criterios de comodidad y s
 date: "2026-06-24T09:00:00+02:00"
 lastmod: "2026-06-24T09:00:00+02:00"
 author: "Camille Roussel"
-categories: ["Gear"]
+category: "gear"
 tags: ["perro", "transportín", "perro pequeño", "equipamiento"]
 enbref:
   - "💨 **Ventilación** generosa, base **acolchada y estable**"

@@ -7,7 +7,7 @@ summary: "Para um fim de semana perto de Paris com cachorro, conte com as grande
 date: "2026-06-25T08:00:00+02:00"
 lastmod: "2026-06-25T08:00:00+02:00"
 author: "Camille Roussel"
-categories: ["Destinations"]
+category: "destinations"
 tags: ["cachorro", "Paris", "fim de semana", "dog-friendly"]
 enbref:
   - "🌲 Grandes **florestas em torno de Paris** (Fontainebleau, Rambouillet, Saint-Germain)"

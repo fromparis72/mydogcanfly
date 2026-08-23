@@ -6,7 +6,7 @@ summary: "Gourde et système d'hydratation nomade pour chien : gourde à abreuvo
 date: "2026-06-14T08:00:00+02:00"
 lastmod: "2026-06-14T08:00:00+02:00"
 author: "Camille Roussel"
-categories: ["Équipement"]
+category: "gear"
 tags: ["chien", "équipement", "hydratation", "gamelle"]
 sourceUrl: "/gourde-hydratation-nomade-chien/"
 enbref:

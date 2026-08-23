@@ -7,7 +7,7 @@ summary: "O equipamento certo depende do porte do cachorro e do meio de transpor
 date: "2026-06-25T09:30:00+02:00"
 lastmod: "2026-06-25T09:30:00+02:00"
 author: "Camille Roussel"
-categories: ["Gear"]
+category: "gear"
 tags: ["cachorro", "equipamento", "segurança", "transporte"]
 enbref:
   - "🎒 O equipamento depende do **porte** do cachorro e do **meio de transporte**"

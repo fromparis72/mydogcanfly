@@ -1,11 +1,12 @@
 ---
 /* L'index du Travel Hub, dans les quatre langues.
  *
- * L'index existe partout, les guides seulement en français et en anglais. C'est voulu, et
- * c'est la raison d'être de la double écriture ci-dessous : en français et en anglais la page
- * liste 62 guides ; en espagnol et en portugais elle garde le message « en construction » et
- * ses renvois vers ce qui existe déjà. Retirer la page dans ces deux langues aurait cassé une
- * URL présente au sitemap et dans le sélecteur de langue depuis des semaines.
+ * Les quatre langues sont désormais PEUPLÉES : 72 guides chacune depuis le lot 2. Ce commentaire
+ * a longtemps affirmé le contraire — « les guides seulement en français et en anglais », « en
+ * espagnol et en portugais elle garde le message en construction » — et c'était faux depuis des
+ * semaines. Une notice qui décrit un code disparu est pire qu'une absence de notice : elle est
+ * crue. Le bloc « en construction » subsiste plus bas, mais comme GARDE-FOU pour une langue
+ * ouverte et non encore peuplée, plus comme description de l'état courant.
  *
  * Cette page-ci a bien ses quatre alternates — c'est son adresse qui est identique d'une
  * langue à l'autre. Seuls les guides, dont le slug est traduit, fournissent leur propre liste.
@@ -39,24 +40,34 @@ const metaDesc = L(
   "Guías prácticas para viajar con un perro: carretera, tren y ferry, camping y playas, transportines y arneses, calor, garrapatas y ansiedad.",
 );
 
-/* Regroupement par thème. La catégorie vient des données ; on ne la réinvente pas ici. */
+/* Regroupement par thème. La donnée porte une CLÉ — `gear`, `travel`, `health`,
+ * `destinations` — que le schéma contraint ; le libellé lu par l'humain vient des traductions.
+ *
+ * Ici vivait `g.data.categories[0]`, c'est-à-dire le libellé brut du guide, et le commentaire
+ * disait « la catégorie vient des données ; on ne la réinvente pas ici ». L'intention était
+ * juste, la conséquence non : la donnée était traduite dans les guides français importés et
+ * anglaise partout ailleurs, si bien que l'index français montrait DEUX rubriques pour le
+ * voyage — « Voyager » 10 et « Travel » 10 — et que les pages espagnoles et portugaises
+ * affichaient « Gear », « Health », « Destinations » en anglais. Trouvé à l'œil au contre-test
+ * navigateur du 23/08/2026, par personne d'autre : aucun harnais ne regardait le chrome du hub. */
 const groupes = new Map<string, typeof guides>();
 for (const g of guides) {
-  const cat = g.data.categories[0] ?? L("Guides", "Guides", "Guías");
-  if (!groupes.has(cat)) groupes.set(cat, []);
-  groupes.get(cat)!.push(g);
+  const cle = g.data.category;
+  if (!groupes.has(cle)) groupes.set(cle, []);
+  groupes.get(cle)!.push(g);
 }
-/* Les rubriques sont triées par volume : sur une page de 62 guides, l'ordre alphabétique
+/* Les rubriques sont triées par volume : sur une page de 72 guides, l'ordre alphabétique
  * n'apprend rien, alors que « le plus fourni d'abord » dit au lecteur où est la matière. */
 const rubriques = [...groupes.entries()].sort((a, b) => b[1].length - a[1].length);
 
-/* L'ancre d'une rubrique. Les intitulés sont accentués — « Équipement », « Santé » — et un
- * accent dans un identifiant HTML est licite mais se transforme en pourcentages illisibles
- * une fois l'URL partagée. On translittère donc, sans dépendre d'une table à tenir à jour :
- * la décomposition Unicode sépare la lettre de son accent, et on ne garde que la lettre. */
-const ancre = (s: string) =>
-  s.normalize("NFD").replace(/[̀-ͯ]/g, "").toLowerCase()
-    .replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "");
+/** Le libellé affiché d'une rubrique, dans la langue de la page. */
+const libelle = (cle: string) => t(locale, `travel_hub.category.${cle}`);
+
+/* L'ancre EST la clé. Elle était auparavant translittérée depuis le libellé — « Équipement »
+ * donnait `equipement` — ce qui produisait une ancre DIFFÉRENTE par langue pour un même thème :
+ * `#equipement`, `#gear`, et rien de partageable. Les clés sont déjà des identifiants ASCII
+ * stables, donc `#gear` désigne la même rubrique dans les quatre langues, et la fonction de
+ * translittération qui vivait ici n'a plus d'objet. */
 
 const refs = [
   { href: localizeHref("/airlines/", locale), icon: "✈️", label: t(locale, "nav.airlines") },
@@ -75,10 +86,14 @@ const fmt = formateurDeDate(locale, "short");
       {guides.length === 0 ? (
         <div class="th-soon">
           <p class="th-soon__head">🚧 {L("This section is under construction.", "Cette section est en construction.", "Esta sección está en construcción.")}</p>
+          {/* Ce texte nommait le français et l'anglais comme seules langues pourvues. Les quatre
+              le sont depuis le lot 2, et ce bloc n'est plus atteint ; il reste comme garde-fou
+              pour une langue ouverte avant d'être peuplée. Sa formulation ne désigne donc plus
+              aucune langue en particulier — sans quoi elle redeviendrait fausse à la prochaine. */}
           <p>{L(
-            "These guides already exist in French and English. They will be translated — we would rather publish them late than badly.",
-            "Ces guides existent déjà en français et en anglais. Ils seront traduits : nous préférons les publier en retard que mal.",
-            "Estas guías ya existen en francés e inglés. Se traducirán: preferimos publicarlas tarde que mal.",
+            "These guides already exist in other languages. They will be translated — we would rather publish them late than badly.",
+            "Ces guides existent déjà dans d'autres langues. Ils seront traduits : nous préférons les publier en retard que mal.",
+            "Estas guías ya existen en otros idiomas. Se traducirán: preferimos publicarlas tarde que mal.",
           )}</p>
         </div>
       ) : (
@@ -90,14 +105,14 @@ const fmt = formateurDeDate(locale, "short");
               serait invisible pour eux. La position courante est signalée par
               `:target`, en CSS pur, sans une ligne de script. */}
           <nav class="th-jump" aria-label={L("Sections", "Rubriques", "Secciones")}>
-            {rubriques.map(([cat, items]) => (
-              <a href={`#${ancre(cat)}`}>{cat} <span>{items.length}</span></a>
+            {rubriques.map(([cle, items]) => (
+              <a href={`#${cle}`}>{libelle(cle)} <span>{items.length}</span></a>
             ))}
           </nav>
 
-          {rubriques.map(([cat, items]) => (
+          {rubriques.map(([cle, items]) => (
             <>
-              <h2 class="th-h2" id={ancre(cat)}>{cat} <span class="th-n">{items.length}</span></h2>
+              <h2 class="th-h2" id={cle} data-categorie={cle}>{libelle(cle)} <span class="th-n">{items.length}</span></h2>
               <div class="th-cards">
                 {items.map((g) => (
                   <a class="th-card" href={guideHref(locale, decompose(g).slug)}>

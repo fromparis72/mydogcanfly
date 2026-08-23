@@ -7,7 +7,7 @@ summary: "A GPS tracker locates your dog in real time, unlike the identification
 date: "2026-07-12T08:00:00+02:00"
 lastmod: "2026-07-12T08:00:00+02:00"
 author: "Camille Roussel"
-categories: ["Gear"]
+category: "gear"
 tags: ["dog", "GPS", "tracker", "safety"]
 sourceUrl: "/dog-gps-trackers/"
 enbref:

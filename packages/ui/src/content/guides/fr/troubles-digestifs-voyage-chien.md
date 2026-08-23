@@ -6,7 +6,7 @@ summary: "Diarrhée et vomissements du chien en voyage : causes (stress, changem
 date: "2026-06-02T08:00:00+02:00"
 lastmod: "2026-06-02T08:00:00+02:00"
 author: "Camille Roussel"
-categories: ["Santé"]
+category: "health"
 tags: ["chien", "santé", "digestion", "voyage"]
 sourceUrl: "/troubles-digestifs-voyage-chien/"
 enbref:

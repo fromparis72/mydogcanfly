@@ -7,7 +7,7 @@ summary: "Los mejores destinos dog-friendly de Francia combinan naturaleza, aloj
 date: "2026-06-26T14:00:00+02:00"
 lastmod: "2026-06-26T14:00:00+02:00"
 author: "Camille Roussel"
-categories: ["Destinations"]
+category: "destinations"
 tags: ["perro", "dog-friendly", "vacaciones", "Francia"]
 enbref:
   - "🌊 **Bretaña** y sus playas"

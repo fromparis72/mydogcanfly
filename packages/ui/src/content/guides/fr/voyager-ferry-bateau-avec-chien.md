@@ -6,7 +6,7 @@ summary: "Sur la plupart des ferries, le chien voyage en cabine pet-friendly, en
 date: "2026-07-05T08:00:00+02:00"
 lastmod: "2026-07-05T08:00:00+02:00"
 author: "Camille Roussel"
-categories: ["Voyager"]
+category: "travel"
 tags: ["chien", "ferry", "bateau", "traversée"]
 sourceUrl: "/voyager-ferry-bateau-avec-chien/"
 enbref:

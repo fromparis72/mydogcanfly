@@ -7,7 +7,7 @@ summary: "Ansiedade de separação do cachorro nas férias: reconhecer os sinais
 date: "2026-05-29T08:00:00+02:00"
 lastmod: "2026-05-29T08:00:00+02:00"
 author: "Camille Roussel"
-categories: ["Health"]
+category: "health"
 tags: ["cachorro", "saúde", "ansiedade", "comportamento"]
 enbref:
   - "😟 Sinais: latidos, destruição, xixi em casa, agitação quando fica sozinho"

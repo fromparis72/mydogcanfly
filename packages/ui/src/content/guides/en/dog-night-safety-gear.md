@@ -7,7 +7,7 @@ summary: "Make your dog visible at night: LED collar, reflective harness, ID tag
 date: "2026-06-16T08:00:00+02:00"
 lastmod: "2026-06-16T08:00:00+02:00"
 author: "Camille Roussel"
-categories: ["Gear"]
+category: "gear"
 tags: ["dog", "gear", "safety", "visibility"]
 sourceUrl: "/dog-night-safety-gear/"
 enbref:

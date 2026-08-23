@@ -6,7 +6,7 @@ summary: "Trousse de toilette pour chien en voyage : brosse, serviette microfibr
 date: "2026-06-15T08:00:00+02:00"
 lastmod: "2026-06-15T08:00:00+02:00"
 author: "Camille Roussel"
-categories: ["Équipement"]
+category: "gear"
 tags: ["chien", "équipement", "entretien", "hygiène"]
 sourceUrl: "/trousse-toilette-entretien-chien/"
 enbref:

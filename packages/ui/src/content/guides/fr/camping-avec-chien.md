@@ -6,7 +6,7 @@ summary: "Choisissez un camping qui accepte les chiens, prévoyez un coin ombrag
 date: "2026-07-06T08:00:00+02:00"
 lastmod: "2026-07-06T08:00:00+02:00"
 author: "Camille Roussel"
-categories: ["Destinations"]
+category: "destinations"
 tags: ["chien", "camping", "vacances", "plein air"]
 sourceUrl: "/camping-avec-chien/"
 enbref:

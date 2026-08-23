@@ -7,7 +7,7 @@ summary: "No todos los perros necesitan abrigo, pero las razas pequeñas, los pe
 date: "2026-07-16T08:00:00+02:00"
 lastmod: "2026-07-16T08:00:00+02:00"
 author: "Camille Roussel"
-categories: ["Gear"]
+category: "gear"
 tags: ["perro", "abrigo", "botitas", "tiempo"]
 enbref:
   - "🧥 Útiles para **razas pequeñas, perros mayores o enfermos, pelo corto**"

@@ -6,7 +6,7 @@ summary: "Chien qui tire en laisse : quel harnais anti-traction choisir ? Types,
 date: "2026-06-27T09:00:00+02:00"
 lastmod: "2026-06-27T09:00:00+02:00"
 author: "Camille Roussel"
-categories: ["Équipement"]
+category: "gear"
 tags: ["chien", "harnais", "éducation", "équipement"]
 sourceUrl: "/harnais-chien-qui-tire/"
 enbref:

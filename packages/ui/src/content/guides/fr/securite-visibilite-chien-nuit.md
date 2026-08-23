@@ -6,7 +6,7 @@ summary: "Rendre son chien visible la nuit : collier LED, harnais réfléchissan
 date: "2026-06-16T08:00:00+02:00"
 lastmod: "2026-06-16T08:00:00+02:00"
 author: "Camille Roussel"
-categories: ["Équipement"]
+category: "gear"
 tags: ["chien", "équipement", "sécurité", "visibilité"]
 sourceUrl: "/securite-visibilite-chien-nuit/"
 enbref:

@@ -7,7 +7,7 @@ summary: "O contêiner certo depende do porte do seu cachorro e de como você vi
 date: "2026-07-04T08:00:00+02:00"
 lastmod: "2026-07-04T08:00:00+02:00"
 author: "Camille Roussel"
-categories: ["Gear"]
+category: "gear"
 tags: ["cachorro", "caixa de transporte", "bolsa", "equipamento"]
 enbref:
   - "👜 **Bolsa flexível**: cães pequenos na cabine"

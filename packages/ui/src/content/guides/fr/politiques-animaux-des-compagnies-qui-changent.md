@@ -7,7 +7,7 @@ summary: "Une politique animaux n'est pas un document stable : elle bouge avec l
 date: "2026-08-17T09:00:00+02:00"
 lastmod: "2026-08-19T09:00:00+02:00"
 author: "Camille Roussel"
-categories: ["Travel"]
+category: "travel"
 tags: ["chien", "avion", "compagnie aérienne", "réglementation"]
 enbref:
   - "📅 Les règles animaux bougent avec la **saison**, pas seulement avec l'année"

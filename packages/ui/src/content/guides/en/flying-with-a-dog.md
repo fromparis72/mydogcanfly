@@ -7,7 +7,7 @@ summary: "Flying with a dog means an IATA crate, a weight within your airline's 
 date: "2026-06-25T11:00:00+02:00"
 lastmod: "2026-06-25T11:00:00+02:00"
 author: "Camille Roussel"
-categories: ["Travel"]
+category: "travel"
 tags: ["dog", "airplane", "international travel"]
 sourceUrl: "/flying-with-a-dog/"
 enbref:

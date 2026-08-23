@@ -7,7 +7,7 @@ summary: "En el coche, el perro debe ir sujeto o contenido por la seguridad de t
 date: "2026-06-26T10:00:00+02:00"
 lastmod: "2026-06-26T10:00:00+02:00"
 author: "Camille Roussel"
-categories: ["Travel"]
+category: "travel"
 tags: ["perro", "coche", "seguridad vial", "viaje"]
 enbref:
   - "🔗 Sujeto: **transportín amarrado**, **arnés con crash test** + cinturón, o **reja separadora**"

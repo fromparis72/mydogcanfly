@@ -7,7 +7,7 @@ summary: "Um bom road trip canino se prepara: uma parada a cada 2 horas, água s
 date: "2026-07-01T08:00:00+02:00"
 lastmod: "2026-07-01T08:00:00+02:00"
 author: "Camille Roussel"
-categories: ["Travel"]
+category: "travel"
 tags: ["cachorro", "road trip", "carro", "viagem"]
 enbref:
   - "🗺️ Uma **rota pensada para o seu cachorro**"

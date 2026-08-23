@@ -6,7 +6,7 @@ summary: "Anxiété de séparation du chien en vacances : reconnaître les signe
 date: "2026-05-29T08:00:00+02:00"
 lastmod: "2026-05-29T08:00:00+02:00"
 author: "Camille Roussel"
-categories: ["Santé"]
+category: "health"
 tags: ["chien", "santé", "anxiété", "comportement"]
 sourceUrl: "/anxiete-separation-vacances-chien/"
 enbref:

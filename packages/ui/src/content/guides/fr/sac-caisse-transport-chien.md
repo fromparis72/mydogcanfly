@@ -6,7 +6,7 @@ summary: "Le bon contenant dépend du gabarit et du mode de transport : sac soup
 date: "2026-07-04T08:00:00+02:00"
 lastmod: "2026-07-04T08:00:00+02:00"
 author: "Camille Roussel"
-categories: ["Équipement"]
+category: "gear"
 tags: ["chien", "caisse de transport", "sac", "équipement"]
 sourceUrl: "/sac-caisse-transport-chien/"
 enbref:

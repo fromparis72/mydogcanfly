@@ -6,7 +6,7 @@ summary: "Les équipements vraiment utiles pour voyager en voiture avec son chie
 date: "2026-06-28T09:00:00+02:00"
 lastmod: "2026-06-28T09:00:00+02:00"
 author: "Camille Roussel"
-categories: ["Équipement"]
+category: "gear"
 tags: ["chien", "voiture", "sécurité", "équipement"]
 sourceUrl: "/voyager-voiture-chien-equipements/"
 enbref:

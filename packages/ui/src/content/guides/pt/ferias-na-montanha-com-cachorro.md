@@ -7,7 +7,7 @@ summary: "A montanha se aproveita aos poucos: treine o seu cachorro, leve água 
 date: "2026-06-28T08:00:00+02:00"
 lastmod: "2026-06-28T08:00:00+02:00"
 author: "Camille Roussel"
-categories: ["Destinations"]
+category: "destinations"
 tags: ["cachorro", "montanha", "trilha", "natureza"]
 enbref:
   - "🥾 Preparo gradual: **saídas curtas** antes de grandes desníveis"

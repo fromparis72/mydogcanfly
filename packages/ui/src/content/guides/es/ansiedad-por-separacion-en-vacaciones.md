@@ -7,7 +7,7 @@ summary: "Ansiedad por separación del perro en vacaciones: reconocer las señal
 date: "2026-05-29T08:00:00+02:00"
 lastmod: "2026-05-29T08:00:00+02:00"
 author: "Camille Roussel"
-categories: ["Health"]
+category: "health"
 tags: ["perro", "salud", "ansiedad", "comportamiento"]
 enbref:
   - "😟 Señales: ladridos, destrozos, micciones en casa, agitación al quedarse solo"

@@ -7,7 +7,7 @@ summary: "Dog ramp or steps: protect your dog's joints getting into the car, ont
 date: "2026-06-10T08:00:00+02:00"
 lastmod: "2026-06-10T08:00:00+02:00"
 author: "Camille Roussel"
-categories: ["Gear"]
+category: "gear"
 tags: ["dog", "gear", "car", "joints"]
 sourceUrl: "/dog-ramps-and-steps/"
 enbref:

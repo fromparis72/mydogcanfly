@@ -7,7 +7,7 @@ summary: "The countryside is ideal for a dog: wide-open spaces, welcoming rental
 date: "2026-07-14T08:00:00+02:00"
 lastmod: "2026-07-14T08:00:00+02:00"
 author: "Camille Roussel"
-categories: ["Destinations"]
+category: "destinations"
 tags: ["dog", "countryside", "weekend", "vacation rental"]
 sourceUrl: "/countryside-weekend-with-a-dog/"
 enbref:

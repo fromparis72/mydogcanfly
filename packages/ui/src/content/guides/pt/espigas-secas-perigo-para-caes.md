@@ -7,7 +7,7 @@ summary: "Espigas secas no cachorro: essas aristas de gramínea se enfiam na pel
 date: "2026-05-30T08:00:00+02:00"
 lastmod: "2026-05-30T08:00:00+02:00"
 author: "Camille Roussel"
-categories: ["Health"]
+category: "health"
 tags: ["cachorro", "saúde", "espigas", "verão"]
 enbref:
   - "🌾 Pequenas **aristas secas de gramínea** que se prendem e **penetram** sob a pele"

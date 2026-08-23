@@ -7,7 +7,7 @@ summary: "En viaje, mantén el mismo pienso que en casa, evita dar de comer just
 date: "2026-06-29T08:00:00+02:00"
 lastmod: "2026-06-29T08:00:00+02:00"
 author: "Camille Roussel"
-categories: ["Health"]
+category: "health"
 tags: ["perro", "hidratación", "alimentación", "viaje"]
 enbref:
   - "🥣 Mantén el **pienso habitual**"

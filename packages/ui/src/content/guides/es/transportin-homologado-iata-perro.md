@@ -7,7 +7,7 @@ summary: "Guía del transportín de avión para perro: requisitos IATA, método 
 date: "2026-06-22T09:00:00+02:00"
 lastmod: "2026-06-22T09:00:00+02:00"
 author: "Camille Roussel"
-categories: ["Gear"]
+category: "gear"
 tags: ["perro", "transportín de viaje", "avión", "IATA"]
 enbref:
   - "📏 Transportín **rígido de doble casco**, conforme a **IATA** (CR82)"

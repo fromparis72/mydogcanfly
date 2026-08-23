@@ -7,7 +7,7 @@ summary: "Rampa o escalones para perro: proteger sus articulaciones al subir al 
 date: "2026-06-10T08:00:00+02:00"
 lastmod: "2026-06-10T08:00:00+02:00"
 author: "Camille Roussel"
-categories: ["Gear"]
+category: "gear"
 tags: ["perro", "equipamiento", "coche", "articulaciones"]
 enbref:
   - "🦴 Protege las **articulaciones** (cachorros, perros mayores, lomos largos, razas grandes)"

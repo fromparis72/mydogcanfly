@@ -7,7 +7,7 @@ summary: "Casi todas las redes ferroviarias admiten perros, pero las normas sigu
 date: "2026-06-25T16:00:00+02:00"
 lastmod: "2026-06-25T16:00:00+02:00"
 author: "Camille Roussel"
-categories: ["Travel"]
+category: "travel"
 tags: ["perro", "tren", "viaje en tren", "transporte"]
 enbref:
   - "🚆 Los perros son bienvenidos en **casi todas las redes ferroviarias**: cada operador fija sus normas"

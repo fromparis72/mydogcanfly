@@ -6,7 +6,7 @@ summary: "Voyager avec un chien âgé ou malade : bilan vétérinaire, trajets a
 date: "2026-06-04T08:00:00+02:00"
 lastmod: "2026-06-04T08:00:00+02:00"
 author: "Camille Roussel"
-categories: ["Santé"]
+category: "health"
 tags: ["chien", "santé", "chien âgé", "voyage"]
 sourceUrl: "/voyager-chien-age-malade/"
 enbref:

@@ -7,7 +7,7 @@ summary: "Caminhas e tapetes de viagem para cachorro: colchonete enrolável, tap
 date: "2026-06-12T08:00:00+02:00"
 lastmod: "2026-06-12T08:00:00+02:00"
 author: "Camille Roussel"
-categories: ["Gear"]
+category: "gear"
 tags: ["cachorro", "equipamento", "descanso", "conforto"]
 enbref:
   - "🛏️ Uma caminha **enrolável ou dobrável** que ocupe pouco"

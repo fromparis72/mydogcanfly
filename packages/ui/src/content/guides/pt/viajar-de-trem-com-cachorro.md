@@ -7,7 +7,7 @@ summary: "Quase todas as ferrovias aceitam cães, mas as regras seguem um mesmo 
 date: "2026-06-25T16:00:00+02:00"
 lastmod: "2026-06-25T16:00:00+02:00"
 author: "Camille Roussel"
-categories: ["Travel"]
+category: "travel"
 tags: ["cachorro", "trem", "viagem de trem", "transporte"]
 enbref:
   - "🚆 Os cães são bem-vindos em **quase todas as redes ferroviárias**: cada operadora define as suas regras"

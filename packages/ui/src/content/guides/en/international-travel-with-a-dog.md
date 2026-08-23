@@ -7,7 +7,7 @@ summary: "To travel within the EU, your dog needs an EU pet passport, a microchi
 date: "2026-06-27T08:00:00+02:00"
 lastmod: "2026-06-27T08:00:00+02:00"
 author: "Camille Roussel"
-categories: ["Travel"]
+category: "travel"
 tags: ["dog", "international travel", "passport", "paperwork"]
 sourceUrl: "/international-travel-with-a-dog/"
 enbref:

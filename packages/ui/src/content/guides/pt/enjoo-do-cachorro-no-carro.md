@@ -7,7 +7,7 @@ summary: "O enjoo do cachorro costuma vir de um ouvido interno imaturo ou do est
 date: "2026-06-25T13:00:00+02:00"
 lastmod: "2026-06-25T13:00:00+02:00"
 author: "Camille Roussel"
-categories: ["Health"]
+category: "health"
 tags: ["cachorro", "saúde", "transporte", "carro"]
 enbref:
   - "🤢 Sinais: **bocejos, salivação, tremores, vômitos**"

@@ -6,7 +6,7 @@ summary: "Le mal des transports du chien provient souvent d'un oreille interne i
 date: "2026-06-25T13:00:00+02:00"
 lastmod: "2026-06-25T13:00:00+02:00"
 author: "Camille Roussel"
-categories: ["Santé"]
+category: "health"
 tags: ["chien", "santé", "transport", "voiture"]
 sourceUrl: "/mal-des-transports-chien/"
 enbref:

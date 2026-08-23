@@ -7,7 +7,7 @@ summary: "Mochilas e canguru frontal para cães pequenos: o que observar em vent
 date: "2026-06-09T08:00:00+02:00"
 lastmod: "2026-06-09T08:00:00+02:00"
 author: "Camille Roussel"
-categories: ["Gear"]
+category: "gear"
 tags: ["cachorro", "equipamento", "caixa de transporte", "trilha"]
 enbref:
   - "🎒 Só para **cães pequenos** (até cerca de 7-8 kg conforme o modelo)"

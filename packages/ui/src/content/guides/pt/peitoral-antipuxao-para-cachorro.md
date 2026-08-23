@@ -7,7 +7,7 @@ summary: "Cachorro que puxa a guia: que peitoral antipuxão escolher? Tipos, cri
 date: "2026-06-27T09:00:00+02:00"
 lastmod: "2026-06-27T09:00:00+02:00"
 author: "Camille Roussel"
-categories: ["Gear"]
+category: "gear"
 tags: ["cachorro", "peitoral", "adestramento", "equipamento"]
 enbref:
   - "🎯 O modelo certo **reduz os puxões** e protege o pescoço"

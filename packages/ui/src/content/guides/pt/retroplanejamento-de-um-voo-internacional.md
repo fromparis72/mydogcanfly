@@ -7,7 +7,7 @@ summary: "São os prazos de espera, e não os papéis, que decidem se um animal 
 date: "2026-08-17T09:00:00+02:00"
 lastmod: "2026-08-19T09:00:00+02:00"
 author: "Camille Roussel"
-categories: ["Travel"]
+category: "travel"
 tags: ["animal", "avião", "organização", "internacional"]
 enbref:
   - "⏳ Alguns prazos são **prazos legais** — ninguém pode dispensá-los"

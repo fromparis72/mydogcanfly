@@ -7,7 +7,7 @@ summary: "Travel bowls and water bottles for dogs: collapsible, built-in dispens
 date: "2026-06-23T09:00:00+02:00"
 lastmod: "2026-06-23T09:00:00+02:00"
 author: "Camille Roussel"
-categories: ["Gear"]
+category: "gear"
 tags: ["dog", "bowl", "travel", "gear"]
 sourceUrl: "/best-travel-dog-bowls/"
 enbref:

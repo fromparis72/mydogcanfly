@@ -7,7 +7,7 @@ summary: "While traveling, keep the same kibble as at home, avoid feeding right 
 date: "2026-06-29T08:00:00+02:00"
 lastmod: "2026-06-29T08:00:00+02:00"
 author: "Camille Roussel"
-categories: ["Health"]
+category: "health"
 tags: ["dog", "hydration", "feeding", "travel"]
 sourceUrl: "/feeding-your-dog-while-traveling/"
 enbref:

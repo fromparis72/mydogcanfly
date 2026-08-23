@@ -7,7 +7,7 @@ summary: "El equipamiento realmente útil para viajar en coche con tu perro: arn
 date: "2026-06-28T09:00:00+02:00"
 lastmod: "2026-06-28T09:00:00+02:00"
 author: "Camille Roussel"
-categories: ["Gear"]
+category: "gear"
 tags: ["perro", "coche", "seguridad", "equipamiento"]
 enbref:
   - "🔗 Imprescindible: un **sistema de sujeción** (arnés homologado + cinturón)"

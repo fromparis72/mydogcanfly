@@ -7,7 +7,7 @@ summary: "Em viagem, mantenha a mesma ração de casa, evite alimentar logo ante
 date: "2026-06-29T08:00:00+02:00"
 lastmod: "2026-06-29T08:00:00+02:00"
 author: "Camille Roussel"
-categories: ["Health"]
+category: "health"
 tags: ["cachorro", "hidratação", "alimentação", "viagem"]
 enbref:
   - "🥣 Mantenha a **ração habitual**"

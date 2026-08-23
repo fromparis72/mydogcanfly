@@ -7,7 +7,7 @@ summary: "Uma primeira viagem com o seu cachorro se apoia em três pilares: docu
 date: "2026-06-26T09:00:00+02:00"
 lastmod: "2026-06-26T09:00:00+02:00"
 author: "Camille Roussel"
-categories: ["Travel"]
+category: "travel"
 tags: ["cachorro", "lista de verificação", "férias", "preparação"]
 enbref:
   - "📄 A **documentação** dele (microchip, vacinas em dia)"

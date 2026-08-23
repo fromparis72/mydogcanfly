@@ -7,7 +7,7 @@ summary: "Guia da caixa de avião para cachorro: exigências da IATA, método de
 date: "2026-06-22T09:00:00+02:00"
 lastmod: "2026-06-22T09:00:00+02:00"
 author: "Camille Roussel"
-categories: ["Gear"]
+category: "gear"
 tags: ["cachorro", "caixa de transporte", "avião", "IATA"]
 enbref:
   - "📏 Caixa **rígida de casco duplo**, em conformidade com a **IATA** (CR82)"

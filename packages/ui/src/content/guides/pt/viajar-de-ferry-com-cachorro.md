@@ -7,7 +7,7 @@ summary: "Na maioria dos ferries, o cachorro viaja em uma cabine pet-friendly, e
 date: "2026-07-05T08:00:00+02:00"
 lastmod: "2026-07-05T08:00:00+02:00"
 author: "Camille Roussel"
-categories: ["Travel"]
+category: "travel"
 tags: ["cachorro", "ferry", "barco", "travessia"]
 enbref:
   - "⛴️ Conforme a operadora: **cabine pet-friendly**, canil a bordo ou o seu veículo no deque de carros"

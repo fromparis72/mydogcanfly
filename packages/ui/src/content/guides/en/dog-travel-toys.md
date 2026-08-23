@@ -7,7 +7,7 @@ summary: "Keeping your dog busy on a long trip: chew toys, snuffle mats, treat-d
 date: "2026-06-13T08:00:00+02:00"
 lastmod: "2026-06-13T08:00:00+02:00"
 author: "Camille Roussel"
-categories: ["Gear"]
+category: "gear"
 tags: ["dog", "gear", "toys", "travel"]
 sourceUrl: "/dog-travel-toys/"
 enbref:

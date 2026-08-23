@@ -7,7 +7,7 @@ summary: "La montaña se disfruta poco a poco: entrena a tu perro, lleva agua y 
 date: "2026-06-28T08:00:00+02:00"
 lastmod: "2026-06-28T08:00:00+02:00"
 author: "Camille Roussel"
-categories: ["Destinations"]
+category: "destinations"
 tags: ["perro", "montaña", "senderismo", "naturaleza"]
 enbref:
   - "🥾 Preparación progresiva: **salidas cortas** antes de grandes desniveles"

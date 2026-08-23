@@ -7,7 +7,7 @@ summary: "Diarrea y vómitos del perro en viaje: causas (estrés, agua nueva, ca
 date: "2026-06-02T08:00:00+02:00"
 lastmod: "2026-06-02T08:00:00+02:00"
 author: "Camille Roussel"
-categories: ["Health"]
+category: "health"
 tags: ["perro", "salud", "digestión", "viaje"]
 enbref:
   - "🥣 Mantén la **misma alimentación** que en casa"

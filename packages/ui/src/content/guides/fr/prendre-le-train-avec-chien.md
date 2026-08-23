@@ -7,7 +7,7 @@ summary: "Prendre le train avec son chien est autorisé sur tout le réseau SNCF
 date: "2026-06-25T16:00:00+02:00"
 lastmod: "2026-06-25T16:00:00+02:00"
 author: "Camille Roussel"
-categories: ["Voyager"]
+category: "travel"
 tags: ["chien", "train", "SNCF", "transport"]
 sourceUrl: "/prendre-le-train-avec-chien/"
 enbref:

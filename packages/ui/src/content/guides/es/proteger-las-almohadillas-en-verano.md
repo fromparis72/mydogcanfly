@@ -7,7 +7,7 @@ summary: "Proteger las almohadillas de tu perro en verano: asfalto ardiente, tes
 date: "2026-06-25T09:00:00+02:00"
 lastmod: "2026-06-25T09:00:00+02:00"
 author: "Camille Roussel"
-categories: ["Gear"]
+category: "gear"
 tags: ["perro", "almohadillas", "verano", "equipamiento"]
 enbref:
   - "🔥 Asfalto, arena y grava **queman las almohadillas** en segundos"

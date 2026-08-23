@@ -7,7 +7,7 @@ summary: "Botellas de agua para perro e hidratación portátil: botellas con dis
 date: "2026-06-14T08:00:00+02:00"
 lastmod: "2026-06-14T08:00:00+02:00"
 author: "Camille Roussel"
-categories: ["Gear"]
+category: "gear"
 tags: ["perro", "equipamiento", "hidratación", "comedero"]
 enbref:
   - "💧 Una **botella 2 en 1** (depósito + bandeja para beber): el accesorio clave en el paseo"

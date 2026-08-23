@@ -7,7 +7,7 @@ summary: "La compagnie décide comment votre animal vole ; la destination décid
 date: "2026-08-17T09:00:00+02:00"
 lastmod: "2026-08-19T09:00:00+02:00"
 author: "Camille Roussel"
-categories: ["Travel"]
+category: "travel"
 tags: ["animal", "avion", "documents", "international"]
 enbref:
   - "🌍 C'est la **destination** qui décide de l'entrée, pas la compagnie"

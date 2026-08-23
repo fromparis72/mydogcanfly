@@ -7,7 +7,7 @@ summary: "Un embargo chaleur suspend le transport en soute quand la température
 date: "2026-08-17T09:00:00+02:00"
 lastmod: "2026-08-19T09:00:00+02:00"
 author: "Camille Roussel"
-categories: ["Travel"]
+category: "travel"
 tags: ["chien", "avion", "chaleur", "soute"]
 enbref:
   - "🌡️ Les seuils s'appliquent au **départ, à l'arrivée et à chaque escale**"

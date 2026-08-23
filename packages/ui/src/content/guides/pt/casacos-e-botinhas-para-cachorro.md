@@ -7,7 +7,7 @@ summary: "Nem todo cachorro precisa de casaco, mas as raças pequenas, os cães 
 date: "2026-07-16T08:00:00+02:00"
 lastmod: "2026-07-16T08:00:00+02:00"
 author: "Camille Roussel"
-categories: ["Gear"]
+category: "gear"
 tags: ["cachorro", "casaco", "botinhas", "tempo"]
 enbref:
   - "🧥 Úteis para **raças pequenas, cães idosos ou doentes, pelo curto**"

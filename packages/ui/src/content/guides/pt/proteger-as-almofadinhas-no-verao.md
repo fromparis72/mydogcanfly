@@ -7,7 +7,7 @@ summary: "Proteger as almofadinhas do seu cachorro no verão: asfalto escaldante
 date: "2026-06-25T09:00:00+02:00"
 lastmod: "2026-06-25T09:00:00+02:00"
 author: "Camille Roussel"
-categories: ["Gear"]
+category: "gear"
 tags: ["cachorro", "almofadinhas", "verão", "equipamento"]
 enbref:
   - "🔥 Asfalto, areia e cascalho **queimam as almofadinhas** em segundos"

@@ -7,7 +7,7 @@ summary: "La réservation de l'animal est un dossier à part, avec son quota, so
 date: "2026-08-17T09:00:00+02:00"
 lastmod: "2026-08-19T09:00:00+02:00"
 author: "Camille Roussel"
-categories: ["Travel"]
+category: "travel"
 tags: ["chien", "avion", "réservation", "compagnie aérienne"]
 enbref:
   - "🎟️ L'animal fait l'objet d'une **réservation distincte**, pas d'une option sur la vôtre"

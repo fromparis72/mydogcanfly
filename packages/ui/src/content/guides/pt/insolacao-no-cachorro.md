@@ -7,7 +7,7 @@ summary: "A insolação surge quando o cachorro não consegue mais regular a tem
 date: "2026-06-25T08:00:00+02:00"
 lastmod: "2026-06-25T08:00:00+02:00"
 author: "Camille Roussel"
-categories: ["Health"]
+category: "health"
 tags: ["cachorro", "onda de calor", "insolação", "verão"]
 enbref:
   - "🌡️ **Emergência vital a partir de 40,5 °C** de temperatura retal"

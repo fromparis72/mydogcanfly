@@ -159,6 +159,22 @@ jobs:
       - name: Harnais DOM des pages d'entités (sentinelles)
         run: npm run test:entities
 
+      # L'INDEX du Travel Hub, dans les quatre langues. Il vit ICI et non dans `site-complet`
+      # parce que la page lit la COLLECTION de contenu, que `BUILD_ONLY` ne filtre pas : les 72
+      # guides de chaque langue y sont comptés même sous le build réduit. Le défaut trouvé à
+      # l'œil le 23/08/2026 — cinq rubriques en français, libellés anglais en ES/PT — doit se
+      # voir sur la pull request qui le produirait, pas douze minutes plus tard.
+      - name: Les quatre index du Travel Hub disent la même chose
+        run: npm run test:index-hub
+
+      # La migration des rubriques est ATOMIQUE. Sur jeux d'essai jetables, donc sans build et
+      # sans toucher aux 288 fichiers réels — qu'on ne peut pas casser exprès pour voir ce qui
+      # se passe. Le défaut d'origine ne se voyait pas dans la preuve de migration : celle-ci
+      # constate un état final réussi, et un état final réussi ne dit rien du comportement en
+      # cas d'échec. C'est ce comportement-là qui laissait 287 fichiers écrits sous une sortie 1.
+      - name: La migration des rubriques est tout ou rien
+        run: npm run test:migration-categories
+
       - name: Bundle épinglé sur le Worker attendu
         run: node packages/knowledge/scripts/check-bundle.mjs --expect="https://00000000-mydogcanfly-api-preview.fromparis.workers.dev"
 

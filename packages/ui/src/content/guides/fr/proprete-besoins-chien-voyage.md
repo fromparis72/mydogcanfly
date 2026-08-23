@@ -6,7 +6,7 @@ summary: "Propreté et besoins du chien en voyage : rythme des pauses, gérer un
 date: "2026-06-06T08:00:00+02:00"
 lastmod: "2026-06-06T08:00:00+02:00"
 author: "Camille Roussel"
-categories: ["Santé"]
+category: "health"
 tags: ["chien", "santé", "propreté", "voyage"]
 sourceUrl: "/proprete-besoins-chien-voyage/"
 enbref:

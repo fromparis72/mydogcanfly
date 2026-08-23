@@ -7,7 +7,7 @@ summary: "Viajar de avião com cachorro exige uma caixa IATA, um peso dentro do 
 date: "2026-06-25T11:00:00+02:00"
 lastmod: "2026-06-25T11:00:00+02:00"
 author: "Camille Roussel"
-categories: ["Travel"]
+category: "travel"
 tags: ["cachorro", "avião", "viagem internacional"]
 enbref:
   - "🧳 **Cabine** para cães pequenos (muitas vezes ≤ 8 kg, caixa incluída)"

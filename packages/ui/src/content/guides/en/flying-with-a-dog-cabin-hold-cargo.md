@@ -7,7 +7,7 @@ summary: "Cabin, hold, cargo, service dog, emotional support animal or dedicated
 date: "2026-07-01T08:15:00+02:00"
 lastmod: "2026-07-01T08:15:00+02:00"
 author: "Camille Roussel"
-categories: ["Travel", "Airlines"]
+category: "travel"
 tags: ["dog", "airplane", "cabin", "hold", "cargo", "service dog"]
 sourceUrl: "/flying-with-a-dog-cabin-hold-cargo/"
 enbref:

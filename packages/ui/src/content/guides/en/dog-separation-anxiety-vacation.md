@@ -7,7 +7,7 @@ summary: "Dog separation anxiety on vacation: recognize the signs, prepare for a
 date: "2026-05-29T08:00:00+02:00"
 lastmod: "2026-05-29T08:00:00+02:00"
 author: "Camille Roussel"
-categories: ["Health"]
+category: "health"
 tags: ["dog", "health", "anxiety", "behavior"]
 sourceUrl: "/dog-separation-anxiety-vacation/"
 enbref:

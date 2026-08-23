@@ -7,7 +7,7 @@ summary: "Um antiparasitário em dia, uma checagem sistemática depois de cada p
 date: "2026-07-07T08:00:00+02:00"
 lastmod: "2026-07-07T08:00:00+02:00"
 author: "Camille Roussel"
-categories: ["Health"]
+category: "health"
 tags: ["cachorro", "carrapatos", "pulgas", "prevenção"]
 enbref:
   - "💊 **Antiparasitário** em dia"

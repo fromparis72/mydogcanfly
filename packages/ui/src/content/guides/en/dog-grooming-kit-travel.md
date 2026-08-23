@@ -7,7 +7,7 @@ summary: "Travel grooming kit for your dog: brush, microfiber towel, wipes, nail
 date: "2026-06-15T08:00:00+02:00"
 lastmod: "2026-06-15T08:00:00+02:00"
 author: "Camille Roussel"
-categories: ["Gear"]
+category: "gear"
 tags: ["dog", "gear", "grooming", "hygiene"]
 sourceUrl: "/dog-grooming-kit-travel/"
 enbref:

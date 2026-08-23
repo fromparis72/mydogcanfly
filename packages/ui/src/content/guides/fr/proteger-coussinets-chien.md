@@ -7,7 +7,7 @@ summary: "Les coussinets du chien brûlent sur le bitume chaud et gèlent en hiv
 date: "2026-06-26T08:00:00+02:00"
 lastmod: "2026-06-26T08:00:00+02:00"
 author: "Camille Roussel"
-categories: ["Santé"]
+category: "health"
 tags: ["chien", "coussinets", "été", "soins"]
 sourceUrl: "/proteger-coussinets-chien/"
 enbref:

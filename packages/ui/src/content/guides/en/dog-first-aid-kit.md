@@ -7,7 +7,7 @@ summary: "A dog first-aid kit gathers what you need to disinfect, bandage, remov
 date: "2026-06-26T16:10:00+02:00"
 lastmod: "2026-06-26T16:10:00+02:00"
 author: "Camille Roussel"
-categories: ["Health"]
+category: "health"
 tags: ["dog", "first aid", "health", "travel"]
 sourceUrl: "/dog-first-aid-kit/"
 enbref:

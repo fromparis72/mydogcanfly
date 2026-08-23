@@ -7,7 +7,7 @@ summary: "Cabina, bodega, carga, perro de asistencia, animal de apoyo emocional 
 date: "2026-07-01T08:15:00+02:00"
 lastmod: "2026-07-01T08:15:00+02:00"
 author: "Camille Roussel"
-categories: ["Travel", "Airlines"]
+category: "travel"
 tags: ["perro", "avión", "cabina", "bodega", "carga", "perro de asistencia"]
 enbref:
   - "🧳 **Cabina** (perros pequeños, transportín bajo el asiento)"

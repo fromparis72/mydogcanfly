@@ -7,7 +7,7 @@ summary: "As necessidades do cachorro em viagem: de quanto em quanto tempo parar
 date: "2026-06-06T08:00:00+02:00"
 lastmod: "2026-06-06T08:00:00+02:00"
 author: "Camille Roussel"
-categories: ["Health"]
+category: "health"
 tags: ["cachorro", "saúde", "higiene", "viagem"]
 enbref:
   - "⏸️ Uma **parada para as necessidades** a cada 2-4 horas, conforme a idade"

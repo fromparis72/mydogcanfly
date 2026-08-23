@@ -7,7 +7,7 @@ summary: "Dog motion sickness often comes from an immature inner ear or stress. 
 date: "2026-06-25T13:00:00+02:00"
 lastmod: "2026-06-25T13:00:00+02:00"
 author: "Camille Roussel"
-categories: ["Health"]
+category: "health"
 tags: ["dog", "health", "transport", "car"]
 sourceUrl: "/dog-motion-sickness/"
 enbref:

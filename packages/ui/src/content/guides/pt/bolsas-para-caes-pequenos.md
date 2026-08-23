@@ -7,7 +7,7 @@ summary: "Bolsas de transporte para cães pequenos: critérios de conforto e seg
 date: "2026-06-24T09:00:00+02:00"
 lastmod: "2026-06-24T09:00:00+02:00"
 author: "Camille Roussel"
-categories: ["Gear"]
+category: "gear"
 tags: ["cachorro", "bolsa de transporte", "cachorro pequeno", "equipamento"]
 enbref:
   - "💨 **Ventilação** generosa, base **acolchoada e estável**"

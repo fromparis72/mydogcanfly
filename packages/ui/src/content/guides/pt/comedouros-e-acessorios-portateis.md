@@ -7,7 +7,7 @@ summary: "Uma vasilha dobrável, uma garrafa com dispensador integrado, um tapet
 date: "2026-07-08T08:00:00+02:00"
 lastmod: "2026-07-08T08:00:00+02:00"
 author: "Camille Roussel"
-categories: ["Gear"]
+category: "gear"
 tags: ["cachorro", "comedouro", "acessórios", "viagem"]
 enbref:
   - "🥣 Uma vasilha **dobrável**"

@@ -7,7 +7,7 @@ summary: "Na cidade, prefira terraços, parques e comércios dog-friendly, evite
 date: "2026-07-10T08:00:00+02:00"
 lastmod: "2026-07-10T08:00:00+02:00"
 author: "Camille Roussel"
-categories: ["Destinations"]
+category: "destinations"
 tags: ["cachorro", "cidade", "passeio", "turismo"]
 enbref:
   - "☕ Prefira **terraços, parques e comércios** dog-friendly"

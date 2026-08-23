@@ -7,7 +7,7 @@ summary: "The right container depends on your dog's size and how you travel: a s
 date: "2026-07-04T08:00:00+02:00"
 lastmod: "2026-07-04T08:00:00+02:00"
 author: "Camille Roussel"
-categories: ["Gear"]
+category: "gear"
 tags: ["dog", "travel crate", "carrier", "gear"]
 sourceUrl: "/dog-carriers-and-crates/"
 enbref:

@@ -6,7 +6,7 @@ summary: "Une trousse de premiers secours canine réunit de quoi désinfecter, p
 date: "2026-06-26T16:10:00+02:00"
 lastmod: "2026-06-26T16:10:00+02:00"
 author: "Camille Roussel"
-categories: ["Santé"]
+category: "health"
 tags: ["chien", "premiers secours", "santé", "voyage"]
 sourceUrl: "/trousse-premiers-secours-chien/"
 enbref:

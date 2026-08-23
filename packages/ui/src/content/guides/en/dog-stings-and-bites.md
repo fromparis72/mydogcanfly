@@ -7,7 +7,7 @@ summary: "Stings and bites in dogs: wasp, bee, snake (viper), processionary cate
 date: "2026-06-03T08:00:00+02:00"
 lastmod: "2026-06-03T08:00:00+02:00"
 author: "Camille Roussel"
-categories: ["Health"]
+category: "health"
 tags: ["dog", "health", "first aid", "summer"]
 sourceUrl: "/dog-stings-and-bites/"
 enbref:

@@ -7,7 +7,7 @@ summary: "Torne o seu cachorro visível à noite: coleira LED, peitoral refletiv
 date: "2026-06-16T08:00:00+02:00"
 lastmod: "2026-06-16T08:00:00+02:00"
 author: "Camille Roussel"
-categories: ["Gear"]
+category: "gear"
 tags: ["cachorro", "equipamento", "segurança", "visibilidade"]
 enbref:
   - "🔦 **Coleira ou peitoral LED** recarregável para serem vistos de longe"

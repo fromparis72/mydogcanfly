@@ -7,7 +7,7 @@ summary: "Tapetes refrescantes para cachorro: como funcionam, como escolher (gel
 date: "2026-06-26T09:00:00+02:00"
 lastmod: "2026-06-26T09:00:00+02:00"
 author: "Camille Roussel"
-categories: ["Gear"]
+category: "gear"
 tags: ["cachorro", "tapete refrescante", "onda de calor", "equipamento"]
 enbref:
   - "❄️ Uma ajuda ao **conforto**, não um dispositivo contra a insolação"

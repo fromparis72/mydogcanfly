@@ -7,7 +7,7 @@ summary: "Para viajar dentro de la UE, tu perro necesita pasaporte europeo, micr
 date: "2026-06-27T08:00:00+02:00"
 lastmod: "2026-06-27T08:00:00+02:00"
 author: "Camille Roussel"
-categories: ["Travel"]
+category: "travel"
 tags: ["perro", "viaje internacional", "pasaporte", "papeleo"]
 enbref:
   - "🇪🇺 **UE**: pasaporte para animales de compañía (o certificado sanitario) + microchip + vacuna antirrábica en vigor"

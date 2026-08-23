@@ -7,7 +7,7 @@ summary: "Grades e separadores de porta-malas para transportar o seu cachorro co
 date: "2026-06-11T08:00:00+02:00"
 lastmod: "2026-06-11T08:00:00+02:00"
 author: "Camille Roussel"
-categories: ["Gear"]
+category: "gear"
 tags: ["cachorro", "equipamento", "carro", "segurança no trânsito"]
 enbref:
   - "🚗 Mantém o cachorro fora do habitáculo e evita que ele seja arremessado"

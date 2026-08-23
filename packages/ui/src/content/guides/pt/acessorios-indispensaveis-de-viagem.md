@@ -7,7 +7,7 @@ summary: "Transporte, segurança, hidratação, localização, conforto, saúde:
 date: "2026-06-30T10:00:00+02:00"
 lastmod: "2026-06-30T10:00:00+02:00"
 author: "Camille Roussel"
-categories: ["Gear"]
+category: "gear"
 tags: ["cachorro", "acessórios", "viagem", "equipamento", "checklist"]
 enbref:
   - "🚗 Um **sistema de transporte seguro** (peitoral de carro ou caixa)"

@@ -6,7 +6,7 @@ summary: "Un chiot voyage une fois ses vaccins en place : trajets courts, pauses
 date: "2026-07-15T08:00:00+02:00"
 lastmod: "2026-07-15T08:00:00+02:00"
 author: "Camille Roussel"
-categories: ["Santé"]
+category: "health"
 tags: ["chien", "chiot", "santé", "voyage"]
 sourceUrl: "/voyager-avec-chiot/"
 enbref:

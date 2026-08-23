@@ -7,7 +7,7 @@ summary: "Viajar con un perro mayor o enfermo: revisión veterinaria antes de sa
 date: "2026-06-04T08:00:00+02:00"
 lastmod: "2026-06-04T08:00:00+02:00"
 author: "Camille Roussel"
-categories: ["Health"]
+category: "health"
 tags: ["perro", "salud", "perro mayor", "viaje"]
 enbref:
   - "🩺 **Revisión veterinaria** antes de salir (aptitud para viajar, recetas)"

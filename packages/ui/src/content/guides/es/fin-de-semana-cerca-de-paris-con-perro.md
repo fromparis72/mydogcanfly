@@ -7,7 +7,7 @@ summary: "Para un fin de semana cerca de París con perro, cuenta con los grande
 date: "2026-06-25T08:00:00+02:00"
 lastmod: "2026-06-25T08:00:00+02:00"
 author: "Camille Roussel"
-categories: ["Destinations"]
+category: "destinations"
 tags: ["perro", "París", "fin de semana", "dog-friendly"]
 enbref:
   - "🌲 Grandes **bosques alrededor de París** (Fontainebleau, Rambouillet, Saint-Germain)"

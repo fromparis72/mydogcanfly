@@ -30,7 +30,22 @@ const guides = defineCollection({
     date: z.string(),
     lastmod: z.string(),
     author: z.string().optional(),
-    categories: z.array(z.string()).default([]),
+    /* LA RUBRIQUE DU GUIDE — une clé, jamais un libellé.
+     *
+     * Ce champ était `categories: z.array(z.string()).default([])`, et cette signature portait
+     * trois fautes à elle seule. Un TABLEAU, alors qu'une seule valeur était lue. Une CHAÎNE
+     * LIBRE, donc traduite dans les 62 guides français importés et anglaise dans les 10 nés du
+     * lot 2 — l'index français affichait cinq rubriques pour quatre thèmes. Et un DÉFAUT VIDE,
+     * qui laissait un guide sans rubrique se construire sans rien dire.
+     *
+     * `z.enum` déplace la sanction au plus tôt : une rubrique inventée n'abîme plus l'affichage,
+     * elle EMPÊCHE LE SITE DE SE CONSTRUIRE, avec le nom du fichier fautif. Obligatoire et sans
+     * défaut : un guide doit dire où il va, et l'oubli doit se voir.
+     *
+     * Le libellé affiché vit dans les traductions (`travel_hub.category.*`), pas ici. C'est toute
+     * la leçon du défaut : un identifiant de regroupement et un texte d'interface sont deux
+     * choses, et les confondre rend l'un intraduisible et l'autre invérifiable. */
+    category: z.enum(["gear", "travel", "health", "destinations"]),
     tags: z.array(z.string()).default([]),
     /* L'URL sur le site d'origine — matière première des redirections.
      *

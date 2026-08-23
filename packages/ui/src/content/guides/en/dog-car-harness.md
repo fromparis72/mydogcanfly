@@ -7,7 +7,7 @@ summary: "A car harness must be crash-tested, correctly sized and connected to t
 date: "2026-06-30T08:00:00+02:00"
 lastmod: "2026-06-30T08:00:00+02:00"
 author: "Camille Roussel"
-categories: ["Gear"]
+category: "gear"
 tags: ["dog", "harness", "road safety", "car"]
 sourceUrl: "/dog-car-harness/"
 enbref:

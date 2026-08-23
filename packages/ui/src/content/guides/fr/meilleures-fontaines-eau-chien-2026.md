@@ -7,7 +7,7 @@ summary: "Comparatif des meilleures fontaines à eau pour chien : capacité, fil
 date: "2026-06-29T09:00:00+02:00"
 lastmod: "2026-06-29T09:00:00+02:00"
 author: "Camille Roussel"
-categories: ["Équipement"]
+category: "gear"
 tags: ["chien", "fontaine à eau", "hydratation", "équipement"]
 sourceUrl: "/meilleures-fontaines-eau-chien-2026/"
 enbref:

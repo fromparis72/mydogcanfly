@@ -7,7 +7,7 @@ summary: "Cuidar las almohadillas del perro después de una ruta o de la playa: 
 date: "2026-06-05T08:00:00+02:00"
 lastmod: "2026-06-05T08:00:00+02:00"
 author: "Camille Roussel"
-categories: ["Health"]
+category: "health"
 tags: ["perro", "salud", "almohadillas", "senderismo"]
 enbref:
   - "🐾 **Inspecciona** las almohadillas después de cada salida exigente"

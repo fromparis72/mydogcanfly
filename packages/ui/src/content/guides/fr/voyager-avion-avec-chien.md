@@ -6,7 +6,7 @@ summary: "Voyager en avion avec son chien suppose une caisse IATA, un poids conf
 date: "2026-06-25T11:00:00+02:00"
 lastmod: "2026-06-25T11:00:00+02:00"
 author: "Camille Roussel"
-categories: ["Voyager"]
+category: "travel"
 tags: ["chien", "avion", "voyage international"]
 sourceUrl: "/voyager-avion-avec-chien/"
 enbref:

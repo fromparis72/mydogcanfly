@@ -7,7 +7,7 @@ summary: "Comedouros e garrafas de viagem para cachorro: dobráveis, com dispens
 date: "2026-06-23T09:00:00+02:00"
 lastmod: "2026-06-23T09:00:00+02:00"
 author: "Camille Roussel"
-categories: ["Gear"]
+category: "gear"
 tags: ["cachorro", "comedouro", "viagem", "equipamento"]
 enbref:
   - "🎒 **Compacto** depois de guardado"

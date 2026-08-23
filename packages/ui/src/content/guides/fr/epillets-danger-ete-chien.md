@@ -6,7 +6,7 @@ summary: "Épillets chez le chien : ces épis secs s'infiltrent dans la peau, le
 date: "2026-05-30T08:00:00+02:00"
 lastmod: "2026-05-30T08:00:00+02:00"
 author: "Camille Roussel"
-categories: ["Santé"]
+category: "health"
 tags: ["chien", "santé", "épillets", "été"]
 sourceUrl: "/epillets-danger-ete-chien/"
 enbref:

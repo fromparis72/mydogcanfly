@@ -7,7 +7,7 @@ summary: "Perro que tira de la correa: ¿qué arnés antitirón elegir? Tipos, c
 date: "2026-06-27T09:00:00+02:00"
 lastmod: "2026-06-27T09:00:00+02:00"
 author: "Camille Roussel"
-categories: ["Gear"]
+category: "gear"
 tags: ["perro", "arnés", "educación", "equipamiento"]
 enbref:
   - "🎯 El modelo adecuado **reduce los tirones** y protege el cuello"

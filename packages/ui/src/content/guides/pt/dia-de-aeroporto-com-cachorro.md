@@ -7,7 +7,7 @@ summary: "O dia de aeroporto tem uma forma: chegar mais cedo do que se estivesse
 date: "2026-08-17T09:00:00+02:00"
 lastmod: "2026-08-19T09:00:00+02:00"
 author: "Camille Roussel"
-categories: ["Travel"]
+category: "travel"
 tags: ["cachorro", "avião", "aeroporto", "check-in"]
 enbref:
   - "🕐 Chegue **bem antes** da sua margem habitual — o check-in de animal é mais lento"

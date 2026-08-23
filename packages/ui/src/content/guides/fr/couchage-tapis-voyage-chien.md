@@ -6,7 +6,7 @@ summary: "Couchage et tapis de voyage pour chien : matelas roulable, tapis imper
 date: "2026-06-12T08:00:00+02:00"
 lastmod: "2026-06-12T08:00:00+02:00"
 author: "Camille Roussel"
-categories: ["Équipement"]
+category: "gear"
 tags: ["chien", "équipement", "couchage", "confort"]
 sourceUrl: "/couchage-tapis-voyage-chien/"
 enbref:

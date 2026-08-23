@@ -7,7 +7,7 @@ summary: "Cuidar das almofadinhas do cachorro depois de uma trilha ou da praia: 
 date: "2026-06-05T08:00:00+02:00"
 lastmod: "2026-06-05T08:00:00+02:00"
 author: "Camille Roussel"
-categories: ["Health"]
+category: "health"
 tags: ["cachorro", "saúde", "almofadinhas", "trilha"]
 enbref:
   - "🐾 **Inspecione** as almofadinhas depois de cada saída exigente"

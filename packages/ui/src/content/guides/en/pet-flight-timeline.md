@@ -7,7 +7,7 @@ summary: "Waiting periods, not paperwork, decide whether a pet can fly on a give
 date: "2026-08-17T09:00:00+02:00"
 lastmod: "2026-08-17T09:00:00+02:00"
 author: "Camille Roussel"
-categories: ["Travel"]
+category: "travel"
 tags: ["pet", "flying", "planning", "international"]
 enbref:
   - "⏳ Some delays are **legal waiting periods** — nobody can waive them"

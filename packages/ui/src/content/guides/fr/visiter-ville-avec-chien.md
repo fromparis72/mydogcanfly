@@ -7,7 +7,7 @@ summary: "En ville, privilégiez les terrasses, parcs et boutiques dog-friendly,
 date: "2026-07-10T08:00:00+02:00"
 lastmod: "2026-07-10T08:00:00+02:00"
 author: "Camille Roussel"
-categories: ["Destinations"]
+category: "destinations"
 tags: ["chien", "ville", "visite", "tourisme"]
 sourceUrl: "/visiter-ville-avec-chien/"
 enbref:

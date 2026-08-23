@@ -7,7 +7,7 @@ summary: "Un botiquín para perro reúne lo necesario para desinfectar, vendar, 
 date: "2026-06-26T16:10:00+02:00"
 lastmod: "2026-06-26T16:10:00+02:00"
 author: "Camille Roussel"
-categories: ["Health"]
+category: "health"
 tags: ["perro", "primeros auxilios", "salud", "viaje"]
 enbref:
   - "🧼 **Limpiar/desinfectar**: gasas, antiséptico, suero fisiológico"

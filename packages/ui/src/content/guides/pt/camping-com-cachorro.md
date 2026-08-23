@@ -7,7 +7,7 @@ summary: "Escolha um camping que aceite cães, planeje uma área com sombra e um
 date: "2026-07-06T08:00:00+02:00"
 lastmod: "2026-07-06T08:00:00+02:00"
 author: "Camille Roussel"
-categories: ["Destinations"]
+category: "destinations"
 tags: ["cachorro", "camping", "férias", "ar livre"]
 enbref:
   - "🏕️ Um camping que **aceite explicitamente** cães"

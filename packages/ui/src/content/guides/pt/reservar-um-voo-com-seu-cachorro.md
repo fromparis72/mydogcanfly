@@ -7,7 +7,7 @@ summary: "A reserva do animal é um processo à parte, com a sua cota, o seu pre
 date: "2026-08-17T09:00:00+02:00"
 lastmod: "2026-08-19T09:00:00+02:00"
 author: "Camille Roussel"
-categories: ["Travel"]
+category: "travel"
 tags: ["cachorro", "avião", "reserva", "companhia aérea"]
 enbref:
   - "🎟️ O animal é uma **reserva separada**, não uma opção da sua"

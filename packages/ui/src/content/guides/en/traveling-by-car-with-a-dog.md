@@ -7,7 +7,7 @@ summary: "In the car, a dog must be restrained or contained for everyone's safet
 date: "2026-06-26T10:00:00+02:00"
 lastmod: "2026-06-26T10:00:00+02:00"
 author: "Camille Roussel"
-categories: ["Travel"]
+category: "travel"
 tags: ["dog", "car", "road safety", "travel"]
 sourceUrl: "/traveling-by-car-with-a-dog/"
 enbref:

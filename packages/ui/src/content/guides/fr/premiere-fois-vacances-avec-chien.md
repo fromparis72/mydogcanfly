@@ -7,7 +7,7 @@ summary: "Partir pour la première fois avec son chien repose sur trois piliers 
 date: "2026-06-26T09:00:00+02:00"
 lastmod: "2026-06-26T09:00:00+02:00"
 author: "Camille Roussel"
-categories: ["Voyager"]
+category: "travel"
 tags: ["chien", "checklist", "vacances", "préparation"]
 sourceUrl: "/premiere-fois-vacances-avec-chien/"
 enbref:

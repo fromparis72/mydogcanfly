@@ -7,7 +7,7 @@ summary: "A collapsible bowl, a water bottle with built-in dispenser, a roll-up 
 date: "2026-07-08T08:00:00+02:00"
 lastmod: "2026-07-08T08:00:00+02:00"
 author: "Camille Roussel"
-categories: ["Gear"]
+category: "gear"
 tags: ["dog", "bowl", "accessories", "travel"]
 sourceUrl: "/portable-dog-feeding-gear/"
 enbref:

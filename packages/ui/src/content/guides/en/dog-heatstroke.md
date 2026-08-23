@@ -7,7 +7,7 @@ summary: "Heatstroke happens when a dog can no longer regulate its body temperat
 date: "2026-06-25T08:00:00+02:00"
 lastmod: "2026-06-25T08:00:00+02:00"
 author: "Camille Roussel"
-categories: ["Health"]
+category: "health"
 tags: ["dog", "heat wave", "heatstroke", "summer"]
 sourceUrl: "/dog-heatstroke/"
 enbref:

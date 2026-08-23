@@ -6,7 +6,7 @@ summary: "Les règles varient selon les réseaux : petits chiens en sac, grands 
 date: "2026-07-09T08:00:00+02:00"
 lastmod: "2026-07-09T08:00:00+02:00"
 author: "Camille Roussel"
-categories: ["Voyager"]
+category: "travel"
 tags: ["chien", "transports en commun", "ville", "métro"]
 sourceUrl: "/transports-urbains-avec-chien/"
 enbref:

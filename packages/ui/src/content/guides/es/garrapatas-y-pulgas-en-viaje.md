@@ -7,7 +7,7 @@ summary: "Un antiparasitario al día, una revisión sistemática después de cad
 date: "2026-07-07T08:00:00+02:00"
 lastmod: "2026-07-07T08:00:00+02:00"
 author: "Camille Roussel"
-categories: ["Health"]
+category: "health"
 tags: ["perro", "garrapatas", "pulgas", "prevención"]
 enbref:
   - "💊 **Antiparasitario** al día"

@@ -7,7 +7,7 @@ summary: "A good dog-friendly stay doesn't just tolerate your dog: it genuinely 
 date: "2026-06-26T12:00:00+02:00"
 lastmod: "2026-06-26T12:00:00+02:00"
 author: "Camille Roussel"
-categories: ["Destinations"]
+category: "destinations"
 tags: ["dog", "dog-friendly accommodation", "travel", "bed and breakfast"]
 sourceUrl: "/dog-friendly-accommodation/"
 enbref:

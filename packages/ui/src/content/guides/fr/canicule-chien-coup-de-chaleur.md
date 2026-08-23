@@ -7,7 +7,7 @@ summary: "Le coup de chaleur survient quand un chien ne parvient plus à régule
 date: "2026-06-25T08:00:00+02:00"
 lastmod: "2026-06-25T08:00:00+02:00"
 author: "Camille Roussel"
-categories: ["Santé"]
+category: "health"
 tags: ["chien", "canicule", "coup de chaleur", "été"]
 sourceUrl: "/canicule-chien-coup-de-chaleur/"
 enbref:

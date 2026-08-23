@@ -7,7 +7,7 @@ summary: "Quatro medidas decidem a caixa: comprimento, altura na cernelha, altur
 date: "2026-08-17T09:00:00+02:00"
 lastmod: "2026-08-19T09:00:00+02:00"
 author: "Camille Roussel"
-categories: ["Travel"]
+category: "travel"
 tags: ["cachorro", "avião", "caixa de transporte", "IATA"]
 enbref:
   - "📏 Quatro medidas: **comprimento, altura na cernelha, altura de pé, largura**"

@@ -6,7 +6,7 @@ summary: "Antiparasitaires à jour, inspection systématique après chaque balad
 date: "2026-07-07T08:00:00+02:00"
 lastmod: "2026-07-07T08:00:00+02:00"
 author: "Camille Roussel"
-categories: ["Santé"]
+category: "health"
 tags: ["chien", "tiques", "puces", "prévention"]
 sourceUrl: "/tiques-puces-chien-voyage/"
 enbref:

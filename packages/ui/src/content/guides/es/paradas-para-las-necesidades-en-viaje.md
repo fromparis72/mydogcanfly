@@ -7,7 +7,7 @@ summary: "Las necesidades del perro en viaje: cada cuánto parar, cómo manejar 
 date: "2026-06-06T08:00:00+02:00"
 lastmod: "2026-06-06T08:00:00+02:00"
 author: "Camille Roussel"
-categories: ["Health"]
+category: "health"
 tags: ["perro", "salud", "higiene", "viaje"]
 enbref:
   - "⏸️ Una **parada para sus necesidades** cada 2-4 horas según la edad"

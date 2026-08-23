@@ -7,7 +7,7 @@ summary: "Focinheira para viajar com cachorro: a focinheira tipo cesta adequada,
 date: "2026-06-17T08:00:00+02:00"
 lastmod: "2026-06-17T08:00:00+02:00"
 author: "Camille Roussel"
-categories: ["Gear"]
+category: "gear"
 tags: ["cachorro", "equipamento", "focinheira", "transporte"]
 enbref:
   - "🧺 Escolha uma **focinheira tipo cesta** que permita ofegar e beber"

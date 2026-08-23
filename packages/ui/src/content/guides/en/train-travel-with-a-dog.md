@@ -7,7 +7,7 @@ summary: "Most railways welcome dogs, but the rules follow a pattern: small dogs
 date: "2026-06-25T16:00:00+02:00"
 lastmod: "2026-06-25T16:00:00+02:00"
 author: "Camille Roussel"
-categories: ["Travel"]
+category: "travel"
 tags: ["dog", "train", "rail travel", "transportation"]
 sourceUrl: "/train-travel-with-a-dog/"
 enbref:

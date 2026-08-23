@@ -6,7 +6,7 @@ summary: "Barrière de coffre et grille de séparation pour transporter son chie
 date: "2026-06-11T08:00:00+02:00"
 lastmod: "2026-06-11T08:00:00+02:00"
 author: "Camille Roussel"
-categories: ["Équipement"]
+category: "gear"
 tags: ["chien", "équipement", "voiture", "sécurité routière"]
 sourceUrl: "/barriere-coffre-separation-voiture-chien/"
 enbref:

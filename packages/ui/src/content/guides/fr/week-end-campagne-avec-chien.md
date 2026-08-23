@@ -6,7 +6,7 @@ summary: "La campagne est idéale pour un chien : grands espaces, gîtes accueil
 date: "2026-07-14T08:00:00+02:00"
 lastmod: "2026-07-14T08:00:00+02:00"
 author: "Camille Roussel"
-categories: ["Destinations"]
+category: "destinations"
 tags: ["chien", "campagne", "week-end", "gîte"]
 sourceUrl: "/week-end-campagne-avec-chien/"
 enbref:

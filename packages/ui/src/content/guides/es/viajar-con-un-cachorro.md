@@ -7,7 +7,7 @@ summary: "Un cachorro viaja cuando sus vacunas están al día: trayectos cortos,
 date: "2026-07-15T08:00:00+02:00"
 lastmod: "2026-07-15T08:00:00+02:00"
 author: "Camille Roussel"
-categories: ["Health"]
+category: "health"
 tags: ["perro", "cachorro", "salud", "viaje"]
 enbref:
   - "💉 Viajar **cuando las vacunas estén al día** (criterio veterinario)"

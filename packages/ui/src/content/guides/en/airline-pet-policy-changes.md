@@ -7,7 +7,7 @@ summary: "Pet policies are not stable documents: they move with temperature emba
 date: "2026-08-17T09:00:00+02:00"
 lastmod: "2026-08-17T09:00:00+02:00"
 author: "Camille Roussel"
-categories: ["Travel"]
+category: "travel"
 tags: ["dog", "flying", "airline", "policy"]
 enbref:
   - "📅 Pet rules move with the **season**, not just the year"

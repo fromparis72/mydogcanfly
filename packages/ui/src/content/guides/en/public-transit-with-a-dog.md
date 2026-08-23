@@ -7,7 +7,7 @@ summary: "Rules vary by network: small dogs in a carrier, large dogs on a leash 
 date: "2026-07-09T08:00:00+02:00"
 lastmod: "2026-07-09T08:00:00+02:00"
 author: "Camille Roussel"
-categories: ["Travel"]
+category: "travel"
 tags: ["dog", "public transit", "city", "subway"]
 sourceUrl: "/public-transit-with-a-dog/"
 enbref:

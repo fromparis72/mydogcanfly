@@ -7,7 +7,7 @@ summary: "Every stopover adds a set of rules, a temperature check and a handling
 date: "2026-08-17T09:00:00+02:00"
 lastmod: "2026-08-17T09:00:00+02:00"
 author: "Camille Roussel"
-categories: ["Travel"]
+category: "travel"
 tags: ["pet", "flying", "connection", "airport"]
 enbref:
   - "🛫 Prefer a **direct flight** whenever one exists"
