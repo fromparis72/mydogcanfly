@@ -1,10 +1,14 @@
 # Dossier d'achèvement — MyDogCanFly
 
-**Établi sur `cbf442974fceb720cce05df29d16d53d1f31bd51`, le 23/08/2026.**
+**Données mesurées sur `cbf442974fceb720cce05df29d16d53d1f31bd51`, à la date fixée du 23/08/2026.**
 
-Ce dossier **ne corrige rien**. Il mesure, il chiffre, il découpe. Aucune ligne de code métier n'a
-été touchée pour le produire, et le découpage proposé au chapitre 5 attend la contre-revue avant
-qu'un seul lot ne commence.
+Ce dossier **ne corrige rien**. Il mesure, il chiffre, il découpe. Aucune donnée métier n'a été
+touchée : cette branche ajoute **exactement deux fichiers** — ce document et son annexe de mesure —
+et rien d'autre, ce qui se vérifie d'une commande (chapitre 7).
+
+> **Cette version corrige la précédente.** Trois de ses mesures étaient fausses, et le chapitre 2
+> les nomme. Un dossier d'achèvement qui se trompe de chiffres oriente les lots vers le mauvais
+> travail — la première version en tirait un lot qui aurait fabriqué des dates sans audit.
 
 ---
 
@@ -12,64 +16,62 @@ qu'un seul lot ne commence.
 
 | | valeur | contrôle |
 |---|---|---|
-| `origin/main` | `cbf442974fceb720cce05df29d16d53d1f31bd51` | `git rev-parse` — concorde avec la passation |
-| arbre de travail | propre avant l'ajout des deux fichiers de ce dossier | `git status --porcelain -uall` |
+| commit mesuré | `cbf442974fceb720cce05df29d16d53d1f31bd51` | `git rev-parse` |
+| écart de cette branche | **2 fichiers, 0 donnée métier** | `git diff --name-only` |
 | `.nvmrc` | `22.22.2` | plancher exact, `node -v` identique |
 | npm | `10.9.7` | |
 | CI | verte sur les deux jobs requis | `Vérifications` 10 min 46 s · `Site entier` 14 min 40 s |
 | workflows présents | **2** — `ci.yml`, `contre-epreuves-completes.yml` | rien d'autre |
-| contre-épreuves au catalogue | **65**, bijection exacte avec la référence versionnée | `npm run contre-epreuves -- --contrat` |
-
-Le relevé complet se rejoue d'une commande :
-
-```bash
-node mesurer-achevement.mjs          # texte lisible
-node mesurer-achevement.mjs --json   # le même relevé, exploitable
-```
-
-> Le script signale « arbre MODIFIÉ » lorsqu'il est lui-même encore non suivi par git. C'est
-> exact et voulu : il rapporte l'état au moment où il tourne, sans indulgence pour sa propre
-> présence.
+| contre-épreuves | **65**, bijection exacte avec la référence versionnée | `npm run contre-epreuves -- --contrat` |
 
 ---
 
-## 2. Méthode : pourquoi chaque nombre est recalculé
+## 2. Trois mesures fausses, et ce qu'elles auraient coûté
 
-Un chiffre écrit à la main dans un document vieillit sans prévenir. Il reste juste le jour où on
-l'écrit et devient faux au commit suivant, **sans que rien ne le signale**. Tous les nombres de ce
-dossier proviennent donc de `mesurer-achevement.mjs`, qui lit les sources vivantes.
+**Les pays étaient lus au mauvais niveau.** Le script cherchait `pays.verified_date` ; la date vit
+sous `pays.source.verified_date`. Il concluait **« 0 pays daté sur 140 »** là où **122** le sont.
 
-Ce n'est pas une précaution théorique. **Le cadrage de cette mission contenait deux chiffres
-périmés**, et les reprendre aurait produit un dossier d'achèvement fondé sur un état disparu.
+C'est la pire espèce d'erreur : **une lecture fausse qui rend zéro ressemble à une découverte.** La
+version précédente en tirait un « lot A » consistant à poser le champ sur 140 fiches — c'est-à-dire
+à **fabriquer 122 dates qui existaient déjà**, et à en inventer 18 sans audit. Le lot A de cette
+version est tout autre chose, et beaucoup plus petit.
 
-| chiffre annoncé | chiffre mesuré | pourquoi l'écart |
+**La fraîcheur ne couvrait que `rules.json`.** Les 407 règles ne sont pas toutes les sources datées
+du référentiel : `objects.json` en porte **1 118** de plus. Le total réel est **1 525**, et la
+version précédente en ignorait **73 %**.
+
+**Les auto-citations n'étaient comptées que dans les règles.** Il y en a **226**, pas 130, réparties
+sur trois familles — 130 règles, 52 compagnies, 44 pays.
+
+**En outre, l'annexe n'était pas reproductible.** Elle appelait `new Date()` : ses compteurs
+d'échéance dépendaient du jour où on la lançait. `--as-of` est désormais **obligatoire**, et le
+script refuse de tourner sans.
+
+Deux chiffres du cadrage étaient par ailleurs périmés, et le sont toujours :
+
+| chiffre annoncé | mesuré | pourquoi l'écart |
 |---|---|---|
-| « 124 traductions ES/PT » | **144** (72 + 72) | le 124 valait 62 + 62, avant que les dix articles du lot 2 ne soient traduits |
-| « 171 règles auto-citées » | **130** | mesure T0-B3, antérieure aux corrections de sources |
-
-Deux autres points du cadrage ne résistent pas à la mesure, et le chapitre 4 y revient : la
-cadence « 180 jours pour les pays » n'a **aucune donnée** sur quoi mordre, et « inspecter d'abord
-les workflows existants » donne un résultat net — **il n'existe aucun système de fraîcheur**, donc
-rien à dupliquer.
+| « 124 traductions ES/PT » | **144** (72 + 72) | le 124 valait 62 + 62, avant la traduction des dix articles du lot 2 |
+| « 171 règles auto-citées » | **130** règles (226 sources au total) | mesure T0-B3, antérieure aux corrections |
 
 ---
 
-## 3. Ce qui est acquis, et qu'il n'est pas question de rouvrir
+## 3. Ce qui est acquis
 
 - **`main` est vert** sur les deux jobs protégés, dont le site complet (3 121 pages).
-- **72 clés de guides × 4 langues**, bijection vérifiée, aucune clé orpheline.
-- **72 couvertures**, toutes présentes sur le disque, décodées et conformes à leur manifeste.
+- **72 clés de guides × 4 langues**, bijection vérifiée.
+- **72 couvertures**, présentes, décodées, conformes à leur manifeste.
 - **Les quatre index du Travel Hub** exposent les mêmes rubriques, chacun dans sa langue.
-- **La production est intacte** et n'a jamais été touchée.
+- **La production est intacte.**
 - **`t0b3-source-fige` ne doit jamais être supprimée** — cinq dossiers de mesure en dépendent.
 
 ---
 
 ## 4. Les dettes, mesurées
 
-### P0-1 · Relecture linguistique — **154 textes**, et non 124
+### P0-1 · Relecture linguistique — **154 textes**
 
-| langue | textes nés ici (traductions) | originaux importés |
+| langue | traductions (nées ici) | originaux importés |
 |---|---|---|
 | fr | **10** | 62 |
 | es | **72** | 0 |
@@ -77,311 +79,266 @@ rien à dupliquer.
 | **total à relire** | **154** | |
 
 Une traduction se reconnaît **à son origine, pas à sa langue** : un guide non anglais sans
-`sourceUrl` est né ici, donc traduit. Les 62 français importés sont des originaux écrits dans leur
-langue — les compter gonflerait la dette d'un tiers.
+`sourceUrl` est né ici, donc traduit. Les 62 français importés sont des originaux — les compter
+gonflerait la dette d'un tiers.
 
-**Ce qui est déjà prouvé, et ce qui ne l'est pas.** `test-guides-traduits.mjs` établit structure,
-métadonnées, langue déclarée, exhaustivité des quatre langues et validité des liens. Il écrit
-lui-même sa limite : *« la JUSTESSE de la traduction n'est pas contrôlable ici — cette relecture
-reste humaine »*. Aucun harnais ne jugera jamais une tournure espagnole.
+`test-guides-traduits.mjs` établit structure, métadonnées, langue déclarée, exhaustivité et liens.
+Il écrit lui-même sa limite : *« la JUSTESSE de la traduction n'est pas contrôlable ici — cette
+relecture reste humaine »*.
 
-**Effet public :** 144 pages hispanophones et lusophones sont publiées sans qu'un locuteur natif
-les ait lues. C'est la dette la plus visible du site et la moins détectable par machine.
+**Effet public :** 144 pages hispanophones et lusophones publiées sans qu'un locuteur natif les ait
+lues. Dette la plus visible du site, la moins détectable par machine.
 
-### P0-2 · Provenance des dix couvertures
+### P0-2 · Provenance métier — **226 sources auto-citées sur 1 525**
 
-| | |
+Le référentiel porte **1 525 sources datées** :
+
+| famille | objets | sources datées | dont auto-citées |
+|---|---|---|---|
+| `airlines` | 102 | **465** | **52** |
+| `airports` | 268 | 377 | 0 |
+| `breeds` | 172 | 154 | 0 |
+| `countries` | 140 | 122 | **44** |
+| `partners` | 6 | 0 | 0 |
+| `rules` | 407 | **407** | **130** |
+| **total** | | **1 525** | **226** |
+
+| type de source | sources |
 |---|---|
-| images | **10** |
-| `verifie: false` | **10** |
-| sans `auteur` | **10** |
-| sans `url_origine` | **10** |
-| base de droits | « licence Unsplash standard, **DÉCLARÉE** par le propriétaire » |
+| `official_website` | 804 |
+| `other` | 431 |
+| `government` | 264 |
+| `airline_contact` | 23 |
+| `regulation` | 3 |
 
-Le manifeste est **honnête** : il distingue le déclaré de l'établi, et le contrat interdit désormais
-de passer à `verifie: true` sans auteur, URL absolue HTTP(S), vérificateur et date ISO réelle. Mais
-il reste lacunaire, et une provenance lacunaire ne devient pas complète en attendant.
+**Les 226 auto-citations sont le cœur de la dette.** Une source qui pointe vers le site lui-même
+n'est pas une source : elle affirme ce qu'elle prétend justifier. C'est une **boucle**, et elle
+touche **15 %** du référentiel — dont **32 % des règles** du moteur.
 
-**Effet public :** dix fichiers binaires publiés dont personne ne peut, aujourd'hui, retracer
-l'auteur. La licence standard n'exige pas l'attribution ; le risque n'est pas juridique mais
-**probatoire** — si l'origine déclarée s'avérait inexacte, rien ne permettrait de le savoir.
+**Politiques non revues, sur les 102 compagnies :**
 
-> **ARBITRAGE DU PROPRIÉTAIRE, 23/08/2026 : dette ACCEPTÉE, recherche abandonnée.**
->
-> Philippe a tranché : les URL Unsplash ne seront pas recherchées. Ce point cesse donc d'être une
-> action en attente et devient un **état choisi**, ce qui n'est pas la même chose et ne doit pas
-> se relire comme un oubli dans six mois.
->
-> Conséquences, écrites pour qu'elles soient tenues :
->
-> - les dix entrées **restent à `verifie: false`**, définitivement en l'état ;
-> - le contrat du manifeste n'a **rien à changer** — il est déjà exact, il distingue le déclaré de
->   l'établi et interdit de relever le statut sans auteur, URL et vérificateur ;
-> - **aucun lot n'est ouvert** pour ce point ;
-> - si un tiers conteste un jour l'origine d'une image, la réponse est celle du manifeste : origine
->   déclarée par le propriétaire, non vérifiée, et le dépôt le dit depuis le premier jour.
->
-> Ce qui reste interdit, et le demeure : passer une entrée à `verifie: true` sans les quatre champs
-> exigés. Renoncer à chercher n'autorise pas à déclarer trouvé.
+| canal | `legacy_unreviewed` |
+|---|---|
+| `cargo` | **73** |
+| `hold` | 8 |
+| `cabin` | 2 |
+| **total** | **83**, sur **74 compagnies sur 102** |
 
-### P0-3 · Outil de chaleur locale
+Le fret concentre presque tout : canal le moins documenté publiquement, et celui dont les
+conséquences pour l'animal sont les plus lourdes.
+
+**Fraîcheur, à la date du 23/08/2026 :**
+
+| horizon | sources |
+|---|---|
+| échues | **0** |
+| sous 30 jours | **0** |
+| sous 90 jours | **722** |
+| au-delà | 803 |
+| sans `review_due` | 0 |
+
+De **28/09/2026** à **30/07/2027**. Par mois : 09 → 122 · 10 → **427** · 11 → 173 · 12 → 44 ·
+01 → 159 · 02 → 68 · 07 → 532.
+
+**Octobre 2026 est la vraie échéance du projet** : 427 sources y arrivent à terme, presque le
+quadruple d'un mois ordinaire. Rien n'est échu aujourd'hui, et rien ne le sera avant le 28/09.
+
+Côté compagnies : aucune sans `verified_date`, âge médian **43 jours**, aucune au-delà des 90 jours
+de cadence cible.
+
+### P0-3 · Dix-huit pays sans aucune source
+
+**122 pays sur 140 portent une source datée. Les 18 autres n'ont AUCUNE source** — ni URL, ni date,
+ni échéance :
+
+`country_bh` · `country_bs` · `country_ci` · `country_ec` · `country_et` · `country_fj` ·
+`country_gh` · `country_jm` · `country_kw` · `country_lb` · `country_mg` · `country_mv` ·
+`country_ng` · `country_np` · `country_om` · `country_ru` · `country_sc` · `country_uy`
+
+Ce n'est **pas** un champ manquant : c'est une **absence d'audit**. Poser une date sur ces fiches
+sans les auditer fabriquerait une provenance, ce qui est pire que de n'en avoir aucune.
+
+### P0-4 · Outil de chaleur locale
 
 | constat | mesure |
 |---|---|
 | `/tools/heat/` existe | oui — embargo en soute **par itinéraire et par mois** |
 | « is it too hot here, now » | **n'existe pas** |
 | `/tools/is-it-too-hot-for-my-dog/` | **aucune redirection déclarée** |
-| citations dans le contenu | **0** — l'appel a été retiré des six fichiers au lot 2 |
-
-Les deux questions sont différentes : l'une porte sur un **itinéraire futur**, l'autre sur un
-**lieu et un instant**. Y rediriger par commodité fabriquerait un lien **trompeur — pire qu'un
-lien mort, parce qu'il aboutit**.
-
-**Effet public :** si cette adresse a été publiée avant la refonte, les liens entrants tombent en
-404.
+| citations dans le contenu | **0** — l'appel a été retiré au lot 2 |
 
 > **ARBITRAGE DU PROPRIÉTAIRE, 23/08/2026 : les journaux d'accès n'existent pas.**
 >
-> Le volume de trafic sur cette adresse est donc **définitivement inconnaissable**. Ce n'est plus
-> une donnée en attente, c'est une donnée qui ne viendra pas — et il faut trancher sans elle
-> plutôt que de laisser le point ouvert indéfiniment en invoquant une mesure impossible.
+> Le trafic sur cette adresse est **définitivement inconnaissable**. Ce n'est plus une donnée en
+> attente : il faut trancher sans elle plutôt que de laisser le point ouvert en invoquant une
+> mesure impossible.
 >
-> **Ce que l'absence de mesure élimine.** Construire l'outil ne peut plus se justifier par la
-> demande : personne ne saura jamais s'il y avait dix visiteurs par an ou dix mille. Le construire
-> resterait défendable pour des raisons éditoriales — parce que la question « fait-il trop chaud
-> ici, maintenant ? » mérite une réponse — mais ce serait alors une décision de PRODUIT, sans
-> rapport avec cette adresse morte, et elle appartient à Philippe seul.
+> **Construire l'outil ne peut plus se justifier par la demande.** Cela reste défendable pour des
+> raisons éditoriales — la question « fait-il trop chaud ici, maintenant ? » mérite une réponse —
+> mais ce serait alors une décision de **produit**, sans rapport avec cette adresse morte.
 >
-> **Ce qui reste à arbitrer**, et qui se réduit à deux voies :
+> Restent deux voies : laisser en 404, ou servir une page qui explique ce qui existe à la place.
+> **Je recommande la seconde**, en sachant qu'elle n'est pas mesurable : un visiteur arrivant par
+> un lien ancien cherchait précisément ce sujet, et lui servir une page vide quand `/tools/heat/`
+> traite une question voisine est un gâchis que coûte une page d'explication.
 >
-> | voie | ce qu'elle dit au visiteur | coût |
-> |---|---|---|
-> | laisser en 404 | rien — page introuvable, comme aujourd'hui | nul |
-> | page explicative | ce qui existe à la place, et pourquoi cette adresse a disparu | faible |
->
-> **Ma recommandation : la seconde**, et je la donne en sachant qu'elle n'est pas mesurable. Un
-> visiteur qui arrive par un lien ancien est, par définition, quelqu'un qui cherchait précisément
-> ce sujet ; lui servir une page vide quand `/tools/heat/` existe et traite une question voisine
-> est un gâchis, alors que lui expliquer la différence coûte une page.
->
-> **Un préalable technique au lot**, à vérifier avant d'écrire quoi que ce soit : quels codes de
-> statut l'hébergement sait réellement servir. Un **410 Gone** dirait aux moteurs que la ressource
-> a disparu définitivement, ce qu'un 404 laisse ambigu ; encore faut-il que Cloudflare Pages
-> permette de le produire sans Worker dédié. Le lot commence par cette vérification, pas par du
-> code.
->
-> **Ce qui reste interdit, et le demeure :** rediriger vers `/tools/heat/`. Les deux questions sont
-> différentes — un itinéraire futur, un lieu et un instant — et un lien qui aboutit sur une réponse
+> **Interdit, et le demeure :** rediriger vers `/tools/heat/`. Un lien qui aboutit sur une réponse
 > à une autre question est pire qu'un lien mort.
 
-### P1-1 · Provenance métier
-
-**407 règles**, réparties ainsi :
-
-| type de source | nombre | lecture |
-|---|---|---|
-| `government` | 192 | source publique officielle |
-| `other` | 142 | dont **130 auto-citations** vers `mydogcanfly.com` |
-| `official_website` | 73 | site de la compagnie |
-
-Les **12 sources `other` non auto-citées** sont nommément : `pettravel.com` (8),
-`anivetvoyage.com`, `iata.org`, `kenya.org.za`, `petabroad.eu`.
-
-| confiance déclarée | règles |
-|---|---|
-| 2 | 48 |
-| 3 | 142 |
-| 4 | 96 |
-| 5 | 121 |
-
-**Les 130 auto-citations sont le cœur de la dette.** Une règle dont la source est le site
-lui-même n'a pas de source : elle affirme ce qu'elle prétend justifier. C'est une **boucle**, et
-elle porte aujourd'hui **32 %** des règles du moteur.
-
-**Politiques non revues, sur les 102 compagnies :**
-
-| canal | politiques `legacy_unreviewed` |
-|---|---|
-| `cargo` | **73** |
-| `hold` | 8 |
-| `cabin` | 2 |
-| **total** | **83**, réparties sur **74 compagnies sur 102** |
-
-Le fret concentre presque tout : c'est le canal le moins documenté publiquement, et celui dont les
-conséquences pour l'animal sont les plus lourdes.
-
-**Fraîcheur — rien n'est échu, mais la vague est datée :**
-
-| horizon | règles |
-|---|---|
-| échues | **0** |
-| sous 30 jours | **0** |
-| sous 90 jours | **214** |
-| au-delà | 193 |
-
-Première échéance le **28/09/2026** (dans 36 jours), dernière le **08/02/2027**. Par mois :
-09 → 78 · 10 → 77 · 11 → 59 · 12 → 44 · 01 → 81 · 02 → 68.
-
-Côté compagnies : **aucune sans `verified_date`**, âge médian **43 jours**, maximum 43,
-**aucune au-delà des 90 jours** de cadence cible. Cette dette-là est **saine aujourd'hui** et le
-restera jusqu'à fin septembre.
-
-**Côté pays, en revanche : 140 fiches, ZÉRO `verified_date`.** La cadence de 180 jours annoncée
-au cadrage ne peut mordre sur rien — le champ n'existe pas dans les données. C'est un prérequis,
-pas un réglage.
-
-### P1-2 · Correspondances et vols multi-opérateurs
+### P1-1 · Correspondances et vols multi-opérateurs
 
 | ce qui est modélisé | mesure |
 |---|---|
-| champs de route disponibles | **`direct_routes`**, **`seasonal_routes`** — et rien d'autre |
+| champs de route | **`direct_routes`**, **`seasonal_routes`** — et rien d'autre |
 | compagnies pourvues | 101 |
-| marqueurs `codeshare`, `operating_carrier`, `marketing_carrier`, `operated_by` | **AUCUN**, dans `engine/src` comme dans `knowledge/src` |
+| `codeshare`, `operating_carrier`, `marketing_carrier`, `operated_by` | **AUCUN**, dans `engine/src` comme dans `knowledge/src` |
 
 Le cas Paris → Kuala Lumpur s'explique entièrement : **KLM apparaît parce que le moteur connaît
-deux segments directs KLM** (CDG→AMS, AMS→KUL) et les enchaîne. Air France n'apparaît pas parce
-qu'elle ne vole pas elle-même jusqu'à KUL — l'itinéraire réellement vendu passe par un partenaire,
-notion que le modèle de données **n'a pas**.
+deux segments directs KLM** et les enchaîne. Air France ne peut pas apparaître — l'itinéraire vendu
+passe par un partenaire, notion que le modèle **n'a pas**.
 
-Ce n'est donc pas un défaut de données mais **une limite de modèle** : il n'existe aujourd'hui
-aucun endroit où écrire « vendu par AF, opéré par MH ». Et la distinction est **décisive pour
-l'animal** — les règles de transport sont celles de l'**opérateur**, pas du vendeur.
+Ce n'est pas un défaut de données mais **une limite de modèle**, et elle est décisive : les règles
+de transport sont celles de l'**opérateur**, pas du vendeur.
 
-**Interdit explicite, et je le fais mien :** ne pas ajouter Air France à KUL artificiellement.
-Cela produirait une réponse juste en apparence et fausse en droit.
+### P1-2 · Système de mises à jour
 
-### P1-3 · Système de mises à jour
+Deux workflows existent — `ci.yml` et `contre-epreuves-completes.yml` (lundi 04:00 UTC). **Aucun ne
+surveille la fraîcheur des sources.** Il n'y a donc pas de second système à créer : il n'y en a
+aucun. Le workflow hebdomadaire offre en revanche un emplacement et une cadence déjà arbitrés.
 
-**Inspection d'abord, comme demandé.** Deux workflows existent :
+### Hors priorités · Provenance des dix couvertures — **dette acceptée, close**
 
-| workflow | déclencheurs |
+| | |
 |---|---|
-| `ci.yml` | `pull_request`, `push` sur `main` |
-| `contre-epreuves-completes.yml` | `schedule` lundi 04:00 UTC, `workflow_dispatch`, `pull_request` étiquetée |
+| images | 10 · toutes à `verifie: false` |
+| auteur, URL d'origine | inconnus pour les dix |
+| base de droits | « licence Unsplash standard, **DÉCLARÉE** par le propriétaire » |
 
-**Aucun ne surveille la fraîcheur des sources.** Il n'y a donc pas de second système à créer : il
-n'y en a aucun. Le workflow hebdomadaire existant offre en revanche un **emplacement, une cadence
-et une heure déjà arbitrés**, et une extension y coûterait moins qu'un nouveau fichier.
+> **ARBITRAGE DU PROPRIÉTAIRE, 23/08/2026, validé en contre-revue.** Les URL Unsplash ne seront pas
+> recherchées. Les dix entrées restent à `verifie: false` définitivement, et le manifeste n'a rien
+> à changer : il distingue déjà le déclaré de l'établi.
+
+Ce point **ne porte plus de priorité** et **n'ouvre aucun lot** : aucune action n'est attendue.
+L'état est : **provenance lacunaire, acceptée par le propriétaire.**
+
+Reste interdit : passer une entrée à `verifie: true` sans auteur, URL absolue HTTP(S), vérificateur
+et date ISO. Renoncer à chercher n'autorise pas à déclarer trouvé.
 
 ---
 
-## 5. Découpage proposé — sept lots indépendants
+## 5. Découpage proposé — **sept lots, A à G**
 
-Chaque lot est **fusionnable seul**, sans attendre les autres. L'ordre ci-dessous est un ordre
-d'**impact**, pas de dépendance technique.
+Chaque lot est **fusionnable seul**. L'ordre est un ordre d'**impact**, pas de dépendance.
 
-### Lot A — `verified_date` pour les 140 pays *(prérequis, petit)*
+> **Le compte, puisque la version précédente s'est trompée dessus.** Elle annonçait « sept devenus
+> six » en croyant qu'un lot couvrait les couvertures ; il n'en existait aucun, et l'arbitrage n'a
+> donc rien retiré. Ce sont **sept lots**, A à G, et la provenance des couvertures n'en a jamais eu.
 
-**Pourquoi en premier :** sans ce champ, aucun système de fraîcheur ne peut couvrir les pays.
-C'est le seul lot dont un autre dépend.
+### Lot A — Audit des 18 pays sans source
 
-- **Impact mesuré :** 140 fiches, 0 date aujourd'hui.
-- **Acceptation :** chaque pays porte `verified_date` et `review_due` ; le schéma les rend
-  obligatoires ; la cadence de 180 jours devient calculable.
-- **Contre-épreuves :** une fiche sans date empêche le build ; une date au format libre échoue ;
-  une `review_due` antérieure à sa `verified_date` échoue.
-- **Ne fait pas :** ne juge pas la fraîcheur, n'audite aucun pays. Il pose le champ, rien de plus.
+**Ce lot a changé de nature depuis la version précédente**, où il consistait à poser un champ sur
+140 fiches. 122 le portent déjà ; **18 n'ont aucune source du tout**.
+
+- **Impact mesuré :** 18 pays nommés au P0-3.
+- **Acceptation :** chaque pays obtient une source réelle avec `url`, `source_type`,
+  `verified_date`, `review_due`, ou reste **explicitement déclaré sans source**, avec son motif.
+- **Contre-épreuves :** une `verified_date` posée sans `url` échoue ; une `review_due` antérieure à
+  sa `verified_date` échoue ; un pays retiré de la liste sans source échoue.
+- **Interdit :** poser une date sans audit. Fabriquer une provenance est pire que n'en avoir aucune.
 
 ### Lot B — Surveillance de fraîcheur *(étend l'existant)*
 
-- **Impact mesuré :** 407 règles, 214 échéances sous 90 jours, première le 28/09.
-- **Acceptation :** le workflow hebdomadaire produit une liste d'audit **par identité** de règle
-  et de source ; il distingue **trois états** — changement détecté, source inaccessible, revue
-  humaine terminée ; il compare des versions **figées par SHA**, jamais un alias ; il ne promeut
-  rien et ne touche pas la production ; une source inaccessible n'est **jamais** silencieuse.
-- **Contre-épreuves :** une source injoignable doit produire « inaccessible » et non « inchangée » —
-  c'est l'échec ouvert que ce dépôt a déjà fermé trois fois ; une échéance dépassée doit
-  apparaître ; un catalogue vide doit échouer au lieu de conclure « rien à faire ».
-- **À arbitrer :** la cadence exacte et le seuil qui rend la CI rouge. Ma recommandation : **aucun
-  seuil bloquant au premier lot**. Un contrôle qui rougit pour une échéance naturelle serait
-  désarmé en deux semaines.
+- **Impact mesuré :** **1 525** sources datées, **722** sous 90 jours, **427 pour le seul mois
+  d'octobre 2026**, première échéance le 28/09.
+- **Acceptation :** le workflow hebdomadaire produit une liste d'audit **par identité** de source ;
+  il distingue **trois états** — changement détecté, source inaccessible, revue humaine terminée ;
+  il compare des versions **figées par SHA**, jamais un alias ; il ne promeut rien et ne touche pas
+  la production.
+- **Contre-épreuves :** une source injoignable doit produire « inaccessible » et **non**
+  « inchangée » — c'est l'échec ouvert que ce dépôt a déjà fermé quatre fois ; un catalogue vide
+  doit échouer au lieu de conclure « rien à faire ».
+- **À arbitrer :** **aucun seuil bloquant au premier lot**, selon ma recommandation. Un contrôle qui
+  rougit pour une échéance naturelle serait désarmé en deux semaines, et emporterait les autres.
 
-### Lot C — Auto-citations, par ordre d'exposition publique
+### Lot C — Les 226 auto-citations, par ordre d'exposition publique
 
-- **Impact mesuré :** 130 règles, 32 % du moteur.
-- **Acceptation :** chaque règle traitée porte une source `government` ou `official_website`
-  vérifiable, ou est **explicitement déclassée** avec son motif ; aucune ne reste `other`
-  auto-citée sans décision écrite.
-- **Contre-épreuves :** une auto-citation réintroduite doit échouer ; un décompte figé est
-  interdit — l'ensemble exact, comme pour les pages sans crédit.
-- **Découpe :** par **effet public**, pas par ordre alphabétique. Les règles qui changent un
-  verdict d'abord, celles qui n'affectent qu'une note ensuite.
+- **Impact mesuré :** 226 sources — 130 règles, 52 compagnies, 44 pays — soit 15 % du référentiel.
+- **Acceptation :** chaque source traitée devient `government` ou `official_website` vérifiable, ou
+  est **explicitement déclassée** avec son motif écrit.
+- **Contre-épreuves :** une auto-citation réintroduite échoue ; l'**ensemble exact** est exigé, pas
+  un décompte — même leçon que les pages sans crédit et le catalogue de mutations.
+- **Découpe :** par **effet public**. Les sources qui changent un verdict d'abord.
 
 ### Lot D — Les 83 politiques `legacy_unreviewed`
 
 - **Impact mesuré :** 83 politiques, 74 compagnies sur 102, dont **73 en fret**.
-- **Acceptation :** chaque politique traitée obtient un état revu et une preuve datée, ou reste
-  `legacy_unreviewed` **avec un motif écrit**. Le compte diminue de façon traçable.
-- **Contre-épreuves :** un état revu sans preuve doit échouer ; le passage de `legacy_unreviewed`
-  à revu sans source officielle doit échouer.
-- **Recommandation :** traiter le **fret en premier** — c'est le canal où une erreur coûte le plus
-  cher à l'animal.
+- **Acceptation :** chaque politique obtient un état revu **avec preuve datée**, ou reste
+  `legacy_unreviewed` avec un motif écrit. Le compte diminue de façon traçable.
+- **Contre-épreuves :** un état revu sans preuve échoue ; le passage à « revu » sans source
+  officielle échoue.
+- **Recommandation :** **le fret en premier** — c'est là qu'une erreur coûte le plus cher à l'animal.
 
 ### Lot E — Relecture native es/pt *(humain, non automatisable)*
 
 - **Impact mesuré :** 144 textes es/pt, plus 10 français nés ici.
-- **Livrable :** une **matrice par guide et par langue** — relu par, date, corrections proposées,
-  statut — versionnée comme `couvertures-guides.json` l'est pour les images.
+- **Livrable :** une **matrice par guide et par langue** — relu par, date, corrections, statut —
+  versionnée comme `couvertures-guides.json` l'est pour les images.
 - **Acceptation :** aucun statut « validé » ne peut être posé par un script ; le harnais vérifie la
-  **forme** de la matrice et son **exhaustivité**, jamais la qualité de la traduction ; il écrit
-  lui-même qu'il ne juge pas la langue.
-- **Contre-épreuves :** un statut « validé » sans relecteur ni date doit échouer ; un guide absent
-  de la matrice doit échouer ; une matrice vide doit échouer.
-- **Ne fait pas :** ne corrige aucune traduction. Il rend l'état lisible et empêche de le
-  surestimer.
-
-> **Aucun lot pour la provenance des couvertures (P0-2).** Le propriétaire a arbitré le 23/08/2026
-> en faveur de l'état actuel : dette acceptée, recherche abandonnée, manifeste inchangé.
+  **forme** et l'**exhaustivité** de la matrice, jamais la qualité de la traduction, et l'écrit.
+- **Contre-épreuves :** un « validé » sans relecteur ni date échoue ; un guide absent de la matrice
+  échoue ; une matrice vide échoue.
 
 ### Lot F — Arbitrage de l'outil de chaleur *(conception avant code)*
 
-Deux voies, à trancher **avant** d'écrire une ligne — la troisième, construire l'outil, a été
-sortie du lot par l'arbitrage du 23/08 :
-
-1. **Laisser l'adresse sans destination** — honnête, coût nul, perd les liens entrants.
-2. **Répondre par une page explicative**, qui dit ce qui existe à la place et pourquoi. *Recommandée.*
-
-- **Préalable levé, et par la négative :** les journaux d'accès **n'existent pas** (arbitrage du
-  23/08/2026). Le trafic est définitivement inconnaissable ; le lot tranche sans lui.
-- **Voie recommandée :** la page explicative. La construction de l'outil, si elle a lieu, relève
-  d'une décision de produit distincte et non de cette adresse morte.
-- **Première étape du lot, avant tout code :** vérifier quels codes de statut l'hébergement sait
-  servir — un 410 vaut mieux qu'un 404, encore faut-il pouvoir le produire.
-- **Interdit :** rediriger vers `/tools/heat/`, qui répond à une autre question.
+- **Préalable levé par la négative :** les journaux **n'existent pas**. Le lot tranche sans eux.
+- **Deux voies :** laisser en 404, ou page explicative. **La seconde est recommandée.**
+- **Première étape, avant tout code :** vérifier quels codes de statut l'hébergement sait servir —
+  un **410** dirait aux moteurs que la ressource a disparu, ce qu'un 404 laisse ambigu ; encore
+  faut-il pouvoir le produire sans Worker dédié.
+- **Interdit :** rediriger vers `/tools/heat/`.
 
 ### Lot G — Correspondances multi-opérateurs *(dossier de conception seul)*
 
-- **Impact mesuré :** modèle de route limité à `direct_routes` et `seasonal_routes`, zéro marqueur
+- **Impact mesuré :** modèle limité à `direct_routes` et `seasonal_routes`, zéro marqueur
   d'opérateur dans tout le moteur.
-- **Livrable de ce lot :** **un dossier, pas du code.** Il doit trancher comment représenter
-  « vendu par X, opéré par Y », quelles règles s'appliquent — celles de l'opérateur — et ce que
-  l'interface montre au voyageur.
+- **Livrable :** **un dossier, pas du code.** Comment représenter « vendu par X, opéré par Y »,
+  quelles règles s'appliquent — celles de l'opérateur — et ce que l'interface montre.
 - **Interdit :** ajouter Air France à KUL sans modèle. Une réponse juste en apparence et fausse en
   droit est plus dangereuse qu'une absence de réponse.
 
 ---
 
-## 6. Ce que ce dossier ne fait pas, et pourquoi
+## 6. Ce que ce dossier ne fait pas
 
-- **Aucune correction métier.** Le cadrage l'interdit, et c'est le bon choix : quatre dettes
-  distinctes réunies en un patch seraient illisibles en revue.
-- **Aucun travail SEO**, hors périmètre.
-- **Aucun dossier d'affiliation hôtels**, hors périmètre.
+- **Aucune correction métier.** Quatre dettes réunies en un patch seraient illisibles en revue.
+- **Aucun travail SEO**, hors périmètre. **Aucun dossier d'affiliation hôtels**, hors périmètre.
 - **Aucune preview, aucune promotion, aucune production.**
-- **Aucun chiffre repris du cadrage sans recalcul** — deux s'étaient déjà périmés.
+- **Aucun chiffre repris sans recalcul** — deux du cadrage et trois des miens s'étaient périmés ou
+  révélés faux.
 
 ---
 
 ## 7. Reproduire ce dossier
 
 ```bash
-git fetch origin main
-git checkout cbf442974fceb720cce05df29d16d53d1f31bd51
-git status --porcelain -uall          # doit être vide
-node -v && cat .nvmrc                 # doivent concorder
-node mesurer-achevement.mjs           # tous les chiffres de ce dossier
-npm run contre-epreuves -- --contrat  # 65 garanties, bijection exacte
+git fetch origin claude/dossier-achevement
+git checkout claude/dossier-achevement
+
+# la branche n'ajoute QUE le dossier et son annexe : les données mesurées sont celles de cbf4429
+git diff --name-only cbf442974fceb720cce05df29d16d53d1f31bd51..HEAD
+# → DOSSIER-ACHEVEMENT-PROJET.md, mesurer-achevement.mjs, et rien d'autre
+
+node -v && cat .nvmrc                              # doivent concorder
+node mesurer-achevement.mjs --as-of=2026-08-23     # tous les chiffres de ce dossier
+npm run contre-epreuves -- --contrat               # 65 garanties, bijection exacte
 ```
 
-Tout nombre de ce document qui ne se retrouve pas dans la sortie de `mesurer-achevement.mjs` est
-une erreur de ma part, et doit être traité comme telle.
+> **`--as-of` est obligatoire** et le script refuse de tourner sans. Une autre date donnera d'autres
+> compteurs d'échéance, et c'est voulu : ce sont des chiffres datés, pas des constantes.
+>
+> La version précédente demandait de revenir à `cbf4429` pour lancer un script qui n'y existe pas.
+> C'est corrigé : on se place sur cette branche, et le `git diff` ci-dessus prouve qu'elle ne touche
+> à aucune donnée.
+
+Tout nombre de ce document absent de la sortie de `mesurer-achevement.mjs` est une erreur de ma
+part, et doit être traité comme telle.

@@ -2,32 +2,52 @@
 /**
  * mesurer-achevement.mjs — l'annexe reproductible du DOSSIER-ACHEVEMENT-PROJET.
  *
- *   node mesurer-achevement.mjs            texte lisible
- *   node mesurer-achevement.mjs --json     le même relevé, exploitable
+ *   node mesurer-achevement.mjs --as-of=2026-08-23
+ *   node mesurer-achevement.mjs --as-of=2026-08-23 --json
  *
- * POURQUOI CE SCRIPT PLUTÔT QU'UN TABLEAU RECOPIÉ. Le dossier d'achèvement énonce des dettes
- * chiffrées. Un chiffre écrit à la main dans un document vieillit sans prévenir : il reste juste
- * le jour où on l'écrit et devient faux au commit suivant, sans que rien ne le signale. Chaque
- * nombre du dossier provient donc d'ici, et se recalcule d'une commande.
+ * `--as-of` EST OBLIGATOIRE, et c'est le correctif le plus important de cette version.
  *
- * L'ENJEU EST CONCRET, ET IL S'EST DÉJÀ PRODUIT. Le cadrage de cette mission parlait de « 124
- * traductions ES/PT » et de « 171 règles auto-citées ». Les deux étaient vrais à leur date et
- * faux aujourd'hui : les traductions sont 144, et les règles auto-citées 130. Reprendre ces
- * chiffres aurait produit un dossier d'achèvement fondé sur un état disparu.
+ *   La première mouture appelait `new Date()`. Les compteurs d'échéance dépendaient donc du JOUR
+ *   où on la lançait : rejouer le script une semaine plus tard donnait d'autres nombres, et le
+ *   lecteur n'avait aucun moyen de savoir si l'écart venait des données ou du calendrier. Une
+ *   annexe dont on ne peut pas reproduire les chiffres n'est pas une annexe.
+ *
+ * TROIS FAUTES DE MESURE FERMÉES ICI, toutes trouvées en contre-revue :
+ *
+ *   1. LES PAYS ÉTAIENT LUS AU MAUVAIS NIVEAU. Le script cherchait `pays.verified_date` ; la date
+ *      vit sous `pays.source.verified_date`. Il concluait « 0 pays daté sur 140 » là où 122 le
+ *      sont, et le dossier en tirait un lot qui aurait FABRIQUÉ des dates sans audit. Une lecture
+ *      fausse qui rend zéro est la pire espèce : elle ressemble à une découverte.
+ *
+ *   2. LA FRAÎCHEUR NE COUVRAIT QUE `rules.json`. Les 407 règles ne sont pas toutes les sources
+ *      datées du référentiel : `objects.json` en porte 1 118 de plus. On parcourt donc TOUTE
+ *      structure portant un `verified_date`, où qu'elle se trouve, plutôt qu'une liste de chemins
+ *      écrite à la main — laquelle oublierait la prochaine famille ajoutée.
+ *
+ *   3. LES PAYS SANS SOURCE N'ÉTAIENT PAS DISTINGUÉS des pays sans date. Ce sont deux dettes
+ *      différentes : 18 pays n'ont AUCUNE source, ce qui appelle un audit, et non un champ.
  *
  * IL NE CORRIGE RIEN. Il lit, il compte, il n'écrit aucun fichier du dépôt.
- *
- * BASE DE LECTURE : l'arbre de travail courant. Le dossier nomme le SHA sur lequel il a été
- * établi ; rejouer ce script sur un autre commit donnera d'autres nombres, et c'est voulu.
  */
 import { readFileSync, readdirSync, existsSync } from "node:fs";
 import { spawnSync } from "node:child_process";
 import { join } from "node:path";
 
-const AUJOURDHUI = new Date().toISOString().slice(0, 10);
-const JSON_OUT = process.argv.includes("--json");
+const args = process.argv.slice(2);
+const JSON_OUT = args.includes("--json");
+const asOf = (args.find((a) => a.startsWith("--as-of=")) || "").slice(8);
+if (!/^\d{4}-\d{2}-\d{2}$/.test(asOf) || Number.isNaN(Date.parse(`${asOf}T00:00:00Z`))) {
+  process.stderr.write(
+    "[mesure] ÉCHEC : --as-of=AAAA-MM-JJ est OBLIGATOIRE.\n" +
+    "[mesure] Sans date fixée, les compteurs d'échéance dépendent du jour où l'on lance le script,\n" +
+    "[mesure] et les chiffres du dossier cessent d'être reproductibles.\n" +
+    "[mesure]   node mesurer-achevement.mjs --as-of=2026-08-23\n");
+  process.exit(2);
+}
+
 const lire = (p) => JSON.parse(readFileSync(p, "utf-8"));
-const jours = (a, b) => Math.round((Date.parse(a) - Date.parse(b)) / 86400000);
+const jours = (a, b) => Math.round((Date.parse(`${a}T00:00:00Z`) - Date.parse(`${b}T00:00:00Z`)) / 86400000);
+const compter = (xs) => xs.reduce((m, x) => (m[x] = (m[x] ?? 0) + 1, m), {});
 
 /* ---- état du dépôt -------------------------------------------------------------------------- */
 const git = (...a) => spawnSync("git", a, { encoding: "utf-8" });
@@ -47,47 +67,68 @@ for (const l of LANGUES) {
     const cle = champ(t, "key");
     if (!cle) continue;
     if (!parCle.has(cle)) parCle.set(cle, {});
-    parCle.get(cle)[l] = { fichier: f, sourceUrl: champ(t, "sourceUrl") };
+    parCle.get(cle)[l] = { sourceUrl: champ(t, "sourceUrl") };
   }
 }
 /* Une TRADUCTION se reconnaît à son ORIGINE, pas à sa langue : un guide non anglais SANS
-   `sourceUrl` est né ici, donc traduit de l'anglais. Les 62 français importés sont des originaux
-   écrits dans leur langue — les compter comme traductions gonflerait la dette d'un tiers. */
-const traductions = { fr: [], es: [], pt: [] };
-for (const [cle, v] of parCle) {
-  for (const l of ["fr", "es", "pt"]) {
-    if (v[l] && !v[l].sourceUrl) traductions[l].push(cle);
+   `sourceUrl` est né ici, donc traduit. Les 62 français importés sont des originaux écrits dans
+   leur langue — les compter gonflerait la dette d'un tiers. */
+const traductions = { fr: 0, es: 0, pt: 0 };
+for (const v of parCle.values()) {
+  for (const l of ["fr", "es", "pt"]) if (v[l] && !v[l].sourceUrl) traductions[l]++;
+}
+
+/* ---- TOUTES les sources datées du référentiel ------------------------------------------------ */
+/* Parcours générique plutôt que liste de chemins : une liste écrite à la main oublie la prochaine
+   famille ajoutée, et l'oubli est silencieux — le compteur reste vert avec moins de matière. */
+function* sourcesDatees(x, famille) {
+  if (Array.isArray(x)) { for (const v of x) yield* sourcesDatees(v, famille); return; }
+  if (x && typeof x === "object") {
+    if (typeof x.verified_date === "string") yield { famille, ...x };
+    for (const v of Object.values(x)) yield* sourcesDatees(v, famille);
   }
 }
 
-/* ---- couvertures ----------------------------------------------------------------------------- */
-const couv = existsSync("couvertures-guides.json") ? lire("couvertures-guides.json").images : {};
-const provenance = {
-  images: Object.keys(couv).length,
-  non_verifiees: Object.values(couv).filter((v) => v.verifie !== true).length,
-  sans_auteur: Object.values(couv).filter((v) => !v.auteur).length,
-  sans_url_origine: Object.values(couv).filter((v) => !v.url_origine).length,
-};
-
-/* ---- règles et sources ------------------------------------------------------------------------ */
+const objets = lire("packages/knowledge/raw/objects.json");
 const regles = lire("packages/knowledge/raw/rules.json");
-const source = (r) => (Array.isArray(r.source) ? r.source[0] ?? {} : r.source ?? {});
-const compter = (xs) => xs.reduce((m, x) => (m[x] = (m[x] ?? 0) + 1, m), {});
 
-const autocitees = regles.filter((r) => String(source(r).url ?? "").toLowerCase().includes("mydogcanfly"));
-const echeances = regles.map((r) => source(r).review_due).filter(Boolean).sort();
-const parEcheance = { echue: 0, moins_30j: 0, moins_90j: 0, plus_90j: 0, sans: regles.length - echeances.length };
-for (const d of echeances) {
-  const j = jours(d, AUJOURDHUI);
-  if (j < 0) parEcheance.echue++;
-  else if (j < 30) parEcheance.moins_30j++;
-  else if (j < 90) parEcheance.moins_90j++;
-  else parEcheance.plus_90j++;
+const toutes = [];
+const parFamille = {};
+for (const [fam, contenu] of Object.entries(objets)) {
+  const s = [...sourcesDatees(contenu, fam)];
+  const items = Array.isArray(contenu) ? contenu : Object.values(contenu ?? {});
+  parFamille[fam] = { objets: items.length, sources_datees: s.length };
+  toutes.push(...s);
 }
+{
+  const s = [...sourcesDatees(regles, "rules")];
+  parFamille.rules = { objets: regles.length, sources_datees: s.length };
+  toutes.push(...s);
+}
+
+const fraicheur = { echue: 0, moins_30j: 0, moins_90j: 0, plus_90j: 0, sans_review_due: 0 };
+const echeances = [];
+for (const s of toutes) {
+  if (!s.review_due) { fraicheur.sans_review_due++; continue; }
+  echeances.push(s.review_due);
+  const j = jours(s.review_due, asOf);
+  if (j < 0) fraicheur.echue++;
+  else if (j < 30) fraicheur.moins_30j++;
+  else if (j < 90) fraicheur.moins_90j++;
+  else fraicheur.plus_90j++;
+}
+echeances.sort();
+
+const autocitees = toutes.filter((s) => String(s.url ?? "").toLowerCase().includes("mydogcanfly"));
+
+/* ---- pays : source ABSENTE et date manquante sont deux dettes distinctes ---------------------- */
+const pays = Array.isArray(objets.countries) ? objets.countries : Object.values(objets.countries ?? {});
+const paysSansSource = pays.filter((c) => !c.source);
+const paysDates = pays.filter((c) => c.source?.verified_date);
 
 /* ---- compagnies ------------------------------------------------------------------------------- */
 const cies = lire("packages/ui/src/data/airlines.generated.json");
-const legacy = { cabin: 0, hold: 0, cargo: 0 };
+const legacy = {};
 const ciesTouchees = new Set();
 for (const [id, c] of Object.entries(cies)) {
   for (const [canal, p] of Object.entries(c.policies ?? {})) {
@@ -95,48 +136,51 @@ for (const [id, c] of Object.entries(cies)) {
   }
 }
 const agesCies = Object.values(cies).filter((c) => c.verified_date)
-  .map((c) => jours(AUJOURDHUI, c.verified_date)).sort((a, b) => a - b);
+  .map((c) => jours(asOf, c.verified_date)).sort((a, b) => a - b);
 
-/* ---- pays --------------------------------------------------------------------------------------- */
-const objets = lire("packages/knowledge/raw/objects.json");
-const pays = Array.isArray(objets.countries) ? objets.countries : Object.values(objets.countries ?? {});
-const paysDates = pays.filter((p) => p.verified_date).length;
-
-/* ---- correspondances ------------------------------------------------------------------------------ */
+/* ---- couvertures, correspondances, workflows -------------------------------------------------- */
+const couv = existsSync("couvertures-guides.json") ? lire("couvertures-guides.json").images : {};
 const routes = lire("packages/knowledge/raw/collecte-2026-07/routes_FULL_strict.json");
 const champsRoutes = [...new Set(Object.values(routes).flatMap((v) => Object.keys(v)))].sort();
-/* Le moteur connaît-il la distinction commercialisateur / opérateur ? On cherche les mots qui la
-   porteraient. Leur ABSENCE est le résultat : elle dit que la question n'est pas modélisée. */
 const motsOperateur = ["codeshare", "operating_carrier", "marketing_carrier", "operated_by"];
 const trouves = motsOperateur.filter((m) =>
   spawnSync("grep", ["-rql", m, "packages/engine/src", "packages/knowledge/src"], { encoding: "utf-8" }).status === 0);
-
-/* ---- workflows ------------------------------------------------------------------------------------- */
 const workflows = existsSync(".github/workflows") ? readdirSync(".github/workflows").sort() : [];
-
-/* ---- contre-épreuves --------------------------------------------------------------------------------- */
 const catalogue = existsSync("contre-epreuves-attendues.json")
   ? lire("contre-epreuves-attendues.json").identifiants.length : null;
 
 const releve = {
-  releve_du: AUJOURDHUI,
+  as_of: asOf,
   depot: { sha, arbre_propre: propre, nvmrc, node: process.version, workflows },
   guides: {
     cles_logiques: parCle.size,
     par_langue: Object.fromEntries(LANGUES.map((l) => [l, [...parCle.values()].filter((v) => v[l]).length])),
-    traductions_a_relire: Object.fromEntries(Object.entries(traductions).map(([l, v]) => [l, v.length])),
-    traductions_total: Object.values(traductions).reduce((s, v) => s + v.length, 0),
+    traductions_a_relire: traductions,
+    traductions_total: Object.values(traductions).reduce((s, n) => s + n, 0),
   },
-  couvertures: provenance,
-  regles: {
-    total: regles.length,
-    par_type_de_source: compter(regles.map((r) => source(r).source_type ?? "(absent)")),
-    par_confiance: compter(regles.map((r) => String(source(r).confidence ?? "(absente)"))),
+  couvertures: {
+    images: Object.keys(couv).length,
+    non_verifiees: Object.values(couv).filter((v) => v.verifie !== true).length,
+    sans_auteur: Object.values(couv).filter((v) => !v.auteur).length,
+    sans_url_origine: Object.values(couv).filter((v) => !v.url_origine).length,
+  },
+  referentiel: {
+    sources_datees_total: toutes.length,
+    par_famille: parFamille,
+    par_type_de_source: compter(toutes.map((s) => s.source_type ?? "(absent)")),
+    par_confiance: compter(toutes.map((s) => String(s.confidence ?? "(absente)"))),
     autocitees: autocitees.length,
-    echeances: parEcheance,
+    autocitees_par_famille: compter(autocitees.map((s) => s.famille)),
+    fraicheur,
     premiere_echeance: echeances[0] ?? null,
     derniere_echeance: echeances[echeances.length - 1] ?? null,
-    par_mois: compter(echeances.map((d) => d.slice(0, 7))),
+    echeances_par_mois: compter(echeances.map((d) => d.slice(0, 7))),
+  },
+  pays: {
+    total: pays.length,
+    avec_source_datee: paysDates.length,
+    sans_source: paysSansSource.length,
+    identites_sans_source: paysSansSource.map((c) => c.id).sort(),
   },
   compagnies: {
     total: Object.keys(cies).length,
@@ -149,7 +193,6 @@ const releve = {
           au_dela_90j: agesCies.filter((a) => a > 90).length }
       : null,
   },
-  pays: { total: pays.length, avec_verified_date: paysDates },
   correspondances: {
     compagnies_avec_routes: Object.keys(routes).length,
     champs_de_route: champsRoutes,
@@ -161,31 +204,35 @@ const releve = {
 if (JSON_OUT) { process.stdout.write(JSON.stringify(releve, null, 2) + "\n"); process.exit(0); }
 
 const l = (m) => process.stdout.write(m + "\n");
-l(`RELEVÉ DU ${releve.releve_du} — ${sha}`);
+l(`RELEVÉ AU ${asOf} — ${sha}`);
 l(`arbre ${propre ? "PROPRE" : "MODIFIÉ"} · .nvmrc ${nvmrc} · node ${process.version} · ${workflows.length} workflow(s)`);
 l("");
 l("GUIDES");
 l(`  ${releve.guides.cles_logiques} clés · ${JSON.stringify(releve.guides.par_langue)}`);
-l(`  traductions à relire : ${JSON.stringify(releve.guides.traductions_a_relire)} — total ${releve.guides.traductions_total}`);
+l(`  traductions à relire : ${JSON.stringify(traductions)} — total ${releve.guides.traductions_total}`);
 l("");
 l("COUVERTURES");
-l(`  ${provenance.images} images · ${provenance.non_verifiees} non vérifiées · ${provenance.sans_auteur} sans auteur · ${provenance.sans_url_origine} sans URL`);
+l(`  ${releve.couvertures.images} images · ${releve.couvertures.non_verifiees} non vérifiées · ${releve.couvertures.sans_auteur} sans auteur`);
 l("");
-l("RÈGLES");
-l(`  ${releve.regles.total} au total · types ${JSON.stringify(releve.regles.par_type_de_source)}`);
-l(`  AUTO-CITÉES : ${releve.regles.autocitees}`);
-l(`  échéances : ${JSON.stringify(releve.regles.echeances)}`);
-l(`  de ${releve.regles.premiere_echeance} à ${releve.regles.derniere_echeance} · ${JSON.stringify(releve.regles.par_mois)}`);
+l("RÉFÉRENTIEL — TOUTES SOURCES DATÉES");
+l(`  ${releve.referentiel.sources_datees_total} sources datées`);
+for (const [f, v] of Object.entries(parFamille)) l(`    ${f.padEnd(12)} ${String(v.objets).padStart(4)} objets · ${String(v.sources_datees).padStart(5)} source(s)`);
+l(`  types : ${JSON.stringify(releve.referentiel.par_type_de_source)}`);
+l(`  AUTO-CITÉES : ${releve.referentiel.autocitees} — ${JSON.stringify(releve.referentiel.autocitees_par_famille)}`);
+l(`  fraîcheur : ${JSON.stringify(fraicheur)}`);
+l(`  de ${releve.referentiel.premiere_echeance} à ${releve.referentiel.derniere_echeance}`);
+l(`  par mois : ${JSON.stringify(releve.referentiel.echeances_par_mois)}`);
+l("");
+l("PAYS");
+l(`  ${releve.pays.total} · ${releve.pays.avec_source_datee} avec source datée · ${releve.pays.sans_source} SANS AUCUNE SOURCE`);
+l(`  sans source : ${releve.pays.identites_sans_source.join(", ")}`);
 l("");
 l("COMPAGNIES");
 l(`  ${releve.compagnies.total} · legacy_unreviewed ${JSON.stringify(legacy)} = ${releve.compagnies.policies_legacy_total} sur ${ciesTouchees.size} compagnies`);
 l(`  âge de vérification : ${JSON.stringify(releve.compagnies.age_verification_jours)}`);
 l("");
-l("PAYS");
-l(`  ${releve.pays.total} · avec verified_date : ${releve.pays.avec_verified_date}`);
-l("");
 l("CORRESPONDANCES");
 l(`  ${releve.correspondances.compagnies_avec_routes} compagnies · champs ${JSON.stringify(champsRoutes)}`);
-l(`  marqueurs commercialisateur/opérateur trouvés : ${trouves.length ? trouves.join(", ") : "AUCUN"}`);
+l(`  marqueurs commercialisateur/opérateur : ${trouves.length ? trouves.join(", ") : "AUCUN"}`);
 l("");
 l(`CONTRE-ÉPREUVES au catalogue : ${catalogue}`);
