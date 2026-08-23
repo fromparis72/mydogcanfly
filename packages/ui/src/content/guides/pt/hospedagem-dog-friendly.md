@@ -7,7 +7,7 @@ summary: "Uma boa estadia dog-friendly não apenas tolera o seu cachorro: ela o 
 date: "2026-06-26T12:00:00+02:00"
 lastmod: "2026-06-26T12:00:00+02:00"
 author: "Camille Roussel"
-categories: ["Destinations"]
+category: "destinations"
 tags: ["cachorro", "hospedagem dog-friendly", "viagem", "pousada"]
 enbref:
   - "🏡 Espaço externo **cercado ou seguro**, pisos **fáceis de limpar**"

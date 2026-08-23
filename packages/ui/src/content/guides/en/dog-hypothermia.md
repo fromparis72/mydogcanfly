@@ -7,7 +7,7 @@ summary: "Cold and hypothermia in dogs: at-risk dogs, warning signs, how to warm
 date: "2026-05-31T08:00:00+02:00"
 lastmod: "2026-05-31T08:00:00+02:00"
 author: "Camille Roussel"
-categories: ["Health"]
+category: "health"
 tags: ["dog", "health", "cold", "winter"]
 sourceUrl: "/dog-hypothermia/"
 enbref:

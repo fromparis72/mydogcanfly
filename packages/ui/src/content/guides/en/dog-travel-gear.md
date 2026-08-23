@@ -7,7 +7,7 @@ summary: "The right dog travel gear depends on your dog's size and your mode of 
 date: "2026-06-25T09:30:00+02:00"
 lastmod: "2026-06-25T09:30:00+02:00"
 author: "Camille Roussel"
-categories: ["Gear"]
+category: "gear"
 tags: ["dog", "gear", "safety", "transport"]
 sourceUrl: "/dog-travel-gear/"
 enbref:

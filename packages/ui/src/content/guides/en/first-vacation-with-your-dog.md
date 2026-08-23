@@ -7,7 +7,7 @@ summary: "A first trip with your dog rests on three pillars: up-to-date paperwor
 date: "2026-06-26T09:00:00+02:00"
 lastmod: "2026-06-26T09:00:00+02:00"
 author: "Camille Roussel"
-categories: ["Travel"]
+category: "travel"
 tags: ["dog", "checklist", "vacation", "preparation"]
 sourceUrl: "/first-vacation-with-your-dog/"
 enbref:

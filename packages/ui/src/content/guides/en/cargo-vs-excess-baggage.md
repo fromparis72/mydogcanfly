@@ -7,7 +7,7 @@ summary: "Cabin, accompanied hold baggage and manifest cargo are three distinct 
 date: "2026-08-17T09:00:00+02:00"
 lastmod: "2026-08-17T09:00:00+02:00"
 author: "Camille Roussel"
-categories: ["Travel"]
+category: "travel"
 tags: ["pet", "flying", "cargo", "baggage"]
 enbref:
   - "🎒 **Cabin**: with you, under the seat, size-limited"

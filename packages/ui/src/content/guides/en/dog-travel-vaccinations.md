@@ -7,7 +7,7 @@ summary: "Getting your dog's health travel-ready: up-to-date vaccines, deworming
 date: "2026-05-28T08:00:00+02:00"
 lastmod: "2026-05-28T08:00:00+02:00"
 author: "Camille Roussel"
-categories: ["Health"]
+category: "health"
 tags: ["dog", "health", "vaccines", "deworming", "travel"]
 sourceUrl: "/dog-travel-vaccinations/"
 enbref:

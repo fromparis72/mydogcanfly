@@ -7,7 +7,7 @@ summary: "Pour voyager dans l'UE, votre chien a besoin d'un passeport européen,
 date: "2026-06-27T08:00:00+02:00"
 lastmod: "2026-06-27T08:00:00+02:00"
 author: "Camille Roussel"
-categories: ["Voyager"]
+category: "travel"
 tags: ["chien", "voyage à l'étranger", "passeport", "formalités"]
 sourceUrl: "/voyager-etranger-avec-chien/"
 enbref:

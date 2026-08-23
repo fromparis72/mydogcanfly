@@ -7,7 +7,7 @@ summary: "Cabine, porão, carga, cão de assistência, animal de apoio emocional
 date: "2026-07-01T08:15:00+02:00"
 lastmod: "2026-07-01T08:15:00+02:00"
 author: "Camille Roussel"
-categories: ["Travel", "Airlines"]
+category: "travel"
 tags: ["cachorro", "avião", "cabine", "porão", "carga", "cão de assistência"]
 enbref:
   - "🧳 **Cabine** (cães pequenos, caixa embaixo do assento)"

@@ -7,7 +7,7 @@ summary: "Brachycephalic dogs breathe less efficiently, and heat plus stress mak
 date: "2026-08-17T09:00:00+02:00"
 lastmod: "2026-08-17T09:00:00+02:00"
 author: "Camille Roussel"
-categories: ["Travel"]
+category: "travel"
 tags: ["dog", "flying", "breeds", "brachycephalic"]
 enbref:
   - "🐽 The restriction targets the **short muzzle**, not a fixed breed list"

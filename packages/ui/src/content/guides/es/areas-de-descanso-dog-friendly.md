@@ -7,7 +7,7 @@ summary: "Una parada cada 2 horas: saca al perro con correa, ofrécele agua, dej
 date: "2026-07-13T08:00:00+02:00"
 lastmod: "2026-07-13T08:00:00+02:00"
 author: "Camille Roussel"
-categories: ["Travel"]
+category: "travel"
 tags: ["perro", "autopista", "área de descanso", "viaje"]
 enbref:
   - "⏸️ Una parada **cada 2 horas aproximadamente**"

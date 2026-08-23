@@ -7,7 +7,7 @@ summary: "Um filhote viaja quando as vacinas estão em dia: trajetos curtos, par
 date: "2026-07-15T08:00:00+02:00"
 lastmod: "2026-07-15T08:00:00+02:00"
 author: "Camille Roussel"
-categories: ["Health"]
+category: "health"
 tags: ["cachorro", "filhote", "saúde", "viagem"]
 enbref:
   - "💉 Viajar **quando as vacinas estiverem em dia** (orientação veterinária)"

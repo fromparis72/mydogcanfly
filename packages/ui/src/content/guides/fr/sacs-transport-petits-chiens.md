@@ -6,7 +6,7 @@ summary: "Sac de transport pour petit chien : critères de confort et de sécuri
 date: "2026-06-24T09:00:00+02:00"
 lastmod: "2026-06-24T09:00:00+02:00"
 author: "Camille Roussel"
-categories: ["Équipement"]
+category: "gear"
 tags: ["chien", "sac de transport", "petit chien", "équipement"]
 sourceUrl: "/sacs-transport-petits-chiens/"
 enbref:

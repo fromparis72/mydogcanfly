@@ -7,7 +7,7 @@ summary: "La reserva del animal es un expediente aparte, con su cupo, su tarifa 
 date: "2026-08-17T09:00:00+02:00"
 lastmod: "2026-08-19T09:00:00+02:00"
 author: "Camille Roussel"
-categories: ["Travel"]
+category: "travel"
 tags: ["perro", "avión", "reserva", "aerolínea"]
 enbref:
   - "🎟️ El animal es una **reserva independiente**, no una opción de la tuya"

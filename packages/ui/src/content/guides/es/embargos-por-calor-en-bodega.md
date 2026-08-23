@@ -7,7 +7,7 @@ summary: "Un embargo por calor suspende el transporte en bodega cuando la temper
 date: "2026-08-17T09:00:00+02:00"
 lastmod: "2026-08-19T09:00:00+02:00"
 author: "Camille Roussel"
-categories: ["Travel"]
+category: "travel"
 tags: ["perro", "avión", "calor", "bodega"]
 enbref:
   - "🌡️ Los umbrales se aplican a la **salida, la llegada y cada escala**"

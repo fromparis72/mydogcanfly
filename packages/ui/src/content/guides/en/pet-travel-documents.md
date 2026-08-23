@@ -7,7 +7,7 @@ summary: "The airline sets how your pet flies; the destination sets whether it m
 date: "2026-08-17T09:00:00+02:00"
 lastmod: "2026-08-17T09:00:00+02:00"
 author: "Camille Roussel"
-categories: ["Travel"]
+category: "travel"
 tags: ["pet", "flying", "documents", "international"]
 enbref:
   - "🌍 The **destination** decides entry, not the airline"

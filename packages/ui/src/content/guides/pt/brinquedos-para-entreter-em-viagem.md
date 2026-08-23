@@ -7,7 +7,7 @@ summary: "Entreter o seu cachorro em um trajeto longo: brinquedos para mastigar,
 date: "2026-06-13T08:00:00+02:00"
 lastmod: "2026-06-13T08:00:00+02:00"
 author: "Camille Roussel"
-categories: ["Gear"]
+category: "gear"
 tags: ["cachorro", "equipamento", "brinquedos", "viagem"]
 enbref:
   - "🦴 **Brinquedos para mastigar** resistentes para canalizar o estresse"

@@ -6,7 +6,7 @@ summary: "Une pause toutes les 2 heures : sortez le chien en laisse, proposez-lu
 date: "2026-07-13T08:00:00+02:00"
 lastmod: "2026-07-13T08:00:00+02:00"
 author: "Camille Roussel"
-categories: ["Voyager"]
+category: "travel"
 tags: ["chien", "autoroute", "pause", "voyage"]
 sourceUrl: "/aires-autoroute-dog-friendly/"
 enbref:

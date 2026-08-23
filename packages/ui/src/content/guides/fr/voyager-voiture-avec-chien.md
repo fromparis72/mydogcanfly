@@ -6,7 +6,7 @@ summary: "En voiture, le chien doit être attaché ou contenu pour la sécurité
 date: "2026-06-26T10:00:00+02:00"
 lastmod: "2026-06-26T10:00:00+02:00"
 author: "Camille Roussel"
-categories: ["Voyager"]
+category: "travel"
 tags: ["chien", "voiture", "sécurité routière", "voyage"]
 sourceUrl: "/voyager-voiture-avec-chien/"
 enbref:

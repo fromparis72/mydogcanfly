@@ -7,7 +7,7 @@ summary: "Bozal para viajar con perro: el bozal tipo cesta adecuado, cuándo es 
 date: "2026-06-17T08:00:00+02:00"
 lastmod: "2026-06-17T08:00:00+02:00"
 author: "Camille Roussel"
-categories: ["Gear"]
+category: "gear"
 tags: ["perro", "equipamiento", "bozal", "transporte"]
 enbref:
   - "🧺 Elige un **bozal tipo cesta** que permita jadear y beber"

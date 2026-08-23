@@ -6,7 +6,7 @@ summary: "La montagne se savoure progressivement : entraînez votre chien, empor
 date: "2026-06-28T08:00:00+02:00"
 lastmod: "2026-06-28T08:00:00+02:00"
 author: "Camille Roussel"
-categories: ["Destinations"]
+category: "destinations"
 tags: ["chien", "montagne", "randonnée", "nature"]
 sourceUrl: "/montagne-avec-chien/"
 enbref:

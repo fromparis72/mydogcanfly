@@ -7,7 +7,7 @@ summary: "Alfombrillas refrescantes para perro: cómo funcionan, cómo elegirlas
 date: "2026-06-26T09:00:00+02:00"
 lastmod: "2026-06-26T09:00:00+02:00"
 author: "Camille Roussel"
-categories: ["Gear"]
+category: "gear"
 tags: ["perro", "alfombrilla refrescante", "ola de calor", "equipamiento"]
 enbref:
   - "❄️ Una ayuda al **confort**, no un dispositivo contra el golpe de calor"

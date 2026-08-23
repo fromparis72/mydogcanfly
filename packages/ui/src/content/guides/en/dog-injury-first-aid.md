@@ -7,7 +7,7 @@ summary: "Faced with a cut, a foxtail or a limp: clean, protect and assess the s
 date: "2026-07-11T08:00:00+02:00"
 lastmod: "2026-07-11T08:00:00+02:00"
 author: "Camille Roussel"
-categories: ["Health"]
+category: "health"
 tags: ["dog", "first aid", "injury", "walks"]
 sourceUrl: "/dog-injury-first-aid/"
 enbref:

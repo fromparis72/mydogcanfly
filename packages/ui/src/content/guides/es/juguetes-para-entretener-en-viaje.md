@@ -7,7 +7,7 @@ summary: "Entretener a tu perro en un trayecto largo: juguetes para masticar, al
 date: "2026-06-13T08:00:00+02:00"
 lastmod: "2026-06-13T08:00:00+02:00"
 author: "Camille Roussel"
-categories: ["Gear"]
+category: "gear"
 tags: ["perro", "equipamiento", "juguetes", "viaje"]
 enbref:
   - "🦴 **Juguetes para masticar** resistentes para canalizar el estrés"

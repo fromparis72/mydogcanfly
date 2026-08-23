@@ -7,7 +7,7 @@ summary: "Up-to-date parasite prevention, a systematic check after every walk an
 date: "2026-07-07T08:00:00+02:00"
 lastmod: "2026-07-07T08:00:00+02:00"
 author: "Camille Roussel"
-categories: ["Health"]
+category: "health"
 tags: ["dog", "ticks", "fleas", "prevention"]
 sourceUrl: "/ticks-and-fleas-dog-travel/"
 enbref:

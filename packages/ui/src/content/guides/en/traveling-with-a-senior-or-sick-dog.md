@@ -7,7 +7,7 @@ summary: "Traveling with a senior or sick dog: pre-trip vet check, adapted trave
 date: "2026-06-04T08:00:00+02:00"
 lastmod: "2026-06-04T08:00:00+02:00"
 author: "Camille Roussel"
-categories: ["Health"]
+category: "health"
 tags: ["dog", "health", "senior dog", "travel"]
 sourceUrl: "/traveling-with-a-senior-or-sick-dog/"
 enbref:

@@ -7,7 +7,7 @@ summary: "Dog potty breaks while traveling: how often to stop, handling a puppy 
 date: "2026-06-06T08:00:00+02:00"
 lastmod: "2026-06-06T08:00:00+02:00"
 author: "Camille Roussel"
-categories: ["Health"]
+category: "health"
 tags: ["dog", "health", "potty training", "travel"]
 sourceUrl: "/dog-potty-breaks-travel/"
 enbref:

@@ -7,7 +7,7 @@ summary: "El mareo del perro suele venir de un oído interno inmaduro o del estr
 date: "2026-06-25T13:00:00+02:00"
 lastmod: "2026-06-25T13:00:00+02:00"
 author: "Camille Roussel"
-categories: ["Health"]
+category: "health"
 tags: ["perro", "salud", "transporte", "coche"]
 enbref:
   - "🤢 Señales: **bostezos, babeo, temblores, vómitos**"

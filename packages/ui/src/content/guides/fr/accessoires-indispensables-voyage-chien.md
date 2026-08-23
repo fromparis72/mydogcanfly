@@ -7,7 +7,7 @@ summary: "Transport, sécurité, hydratation, repérage, confort, santé : le to
 date: "2026-06-30T10:00:00+02:00"
 lastmod: "2026-06-30T10:00:00+02:00"
 author: "Camille Roussel"
-categories: ["Équipement"]
+category: "gear"
 tags: ["chien", "accessoires", "voyage", "équipement", "checklist"]
 sourceUrl: "/accessoires-indispensables-voyage-chien/"
 enbref:

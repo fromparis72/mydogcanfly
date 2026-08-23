@@ -28,6 +28,7 @@
  */
 import { readFileSync, writeFileSync, mkdirSync, readdirSync } from "node:fs";
 import { join } from "node:path";
+import { CANONIQUE, ABANDONNEES, cleCanonique } from "./lib/categories-guides.mjs";
 
 const ZIP_FR = "/tmp/lcv/content/posts";
 const EN_DIR = "content/posts";
@@ -105,6 +106,41 @@ function shortcodes(corps) {
   return { corps: c.replace(/\n{3,}/g, "\n\n").trim(), reste: c.match(/\{\{<[^>]*>\}\}/g) ?? [] };
 }
 
+/* ------------------------------------------------------------------ rubrique */
+
+/**
+ * La clé canonique d'un guide importé, à partir des libellés du site d'origine.
+ *
+ * ÉCHOUE FERMÉ, et c'est tout l'intérêt. Un import qui rencontre une rubrique inconnue doit
+ * s'arrêter et la nommer, pas la recopier telle quelle : c'est exactement ainsi que le champ
+ * libre s'est peuplé de sept orthographes pour quatre thèmes. Ajouter une rubrique devient donc
+ * un geste délibéré — une ligne dans `lib/categories-guides.mjs`, plus le libellé dans les
+ * quatre fichiers de traduction — et non un effet de bord d'un import.
+ *
+ * La seconde valeur éventuelle est abandonnée si elle figure parmi les abandons déclarés, et
+ * fait échouer l'import sinon.
+ */
+function cleRubrique(ou, libelles) {
+  if (libelles.length === 0) {
+    throw new Error(`[import-travel-hub] ${ou} : aucune rubrique. Le champ est obligatoire et sans défaut.`);
+  }
+  const cle = cleCanonique(libelles[0]);
+  if (!cle) {
+    throw new Error(
+      `[import-travel-hub] ${ou} : rubrique « ${libelles[0]} » inconnue.\n` +
+      `  Rubriques connues : ${[...CANONIQUE.keys()].join(", ")}\n` +
+      `  Pour en ajouter une : lib/categories-guides.mjs, puis le libellé dans les 4 fichiers strings.json.`);
+  }
+  for (const reste of libelles.slice(1)) {
+    if (!ABANDONNEES.has(reste)) {
+      throw new Error(
+        `[import-travel-hub] ${ou} : seconde rubrique « ${reste} » ni canonique ni déclarée abandonnée.\n` +
+        `  Le hub n'affiche que la première : une seconde valeur non déclarée serait perdue en silence.`);
+    }
+  }
+  return cle;
+}
+
 /* ------------------------------------------------------------------ écriture */
 
 const q = (s) => `"${String(s).replace(/\\/g, "\\\\").replace(/"/g, '\\"')}"`;
@@ -116,7 +152,12 @@ function ecris(dir, slug, m, corps) {
   if (m.summary) l.push(`summary: ${q(m.summary)}`);
   l.push(`date: ${q(m.date)}`, `lastmod: ${q(m.lastmod || m.date)}`);
   if (m.author) l.push(`author: ${q(m.author)}`);
-  if (m.categories.length) l.push(`categories: [${m.categories.map(q).join(", ")}]`);
+  /* UNE clé, jamais un tableau de libellés. Ce script écrivait `categories: [<texte source>]`,
+   * c'est-à-dire le libellé du site d'origine — français pour les guides français, anglais pour
+   * les autres. C'est ainsi que l'index français s'est retrouvé avec « Voyager » 10 et
+   * « Travel » 10 pour un seul thème. La clé est calculée en amont par `cleRubrique()`, qui
+   * refuse ce qu'elle ne connaît pas ; ici on écrit, on ne décide plus. */
+  l.push(`category: ${q(m.category)}`);
   if (m.tags.length) l.push(`tags: [${m.tags.map(q).join(", ")}]`);
   /* L'URL d'origine : elle sert à fabriquer les 301 sans réinventer la correspondance. */
   l.push(`sourceUrl: ${q(m.sourceUrl)}`);
@@ -162,7 +203,7 @@ for (const slug of bSlugs) {
       key, title: champ(fm, "title"), seoTitle: champ(fm, "seoTitle"),
       description: champ(fm, "description"), summary: champ(fm, "summary"),
       date: champ(fm, "date"), lastmod: champ(fm, "lastmod"), author: champ(fm, "author"),
-      categories: liste(fm, "categories"), tags: liste(fm, "tags"),
+      category: cleRubrique(`${langue}/${nom}`, liste(fm, "categories")), tags: liste(fm, "tags"),
       sourceUrl: url ?? (champ(fm, "url") || `/${nom}/`),
       enbref: e.enbref, cover: cover(fm), faq: faq(fm),
     }, s.corps);

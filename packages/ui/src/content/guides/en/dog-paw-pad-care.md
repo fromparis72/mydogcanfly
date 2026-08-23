@@ -7,7 +7,7 @@ summary: "Caring for dog paw pads after a hike or the beach: inspection, cleanin
 date: "2026-06-05T08:00:00+02:00"
 lastmod: "2026-06-05T08:00:00+02:00"
 author: "Camille Roussel"
-categories: ["Health"]
+category: "health"
 tags: ["dog", "health", "paw pads", "hiking"]
 sourceUrl: "/dog-paw-pad-care/"
 enbref:

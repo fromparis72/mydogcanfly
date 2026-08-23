@@ -7,7 +7,7 @@ summary: "A pet booking is a separate reservation with its own quota, its own pr
 date: "2026-08-17T09:00:00+02:00"
 lastmod: "2026-08-17T09:00:00+02:00"
 author: "Camille Roussel"
-categories: ["Travel"]
+category: "travel"
 tags: ["dog", "flying", "booking", "airline"]
 enbref:
   - "🎟️ The pet is a **separate booking**, not an option on yours"

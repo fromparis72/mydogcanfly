@@ -7,7 +7,7 @@ summary: "A heat embargo suspends hold transport when temperatures exceed a thre
 date: "2026-08-17T09:00:00+02:00"
 lastmod: "2026-08-17T09:00:00+02:00"
 author: "Camille Roussel"
-categories: ["Travel"]
+category: "travel"
 tags: ["dog", "flying", "heat", "hold"]
 enbref:
   - "🌡️ Thresholds apply at **departure, arrival and every stopover**"

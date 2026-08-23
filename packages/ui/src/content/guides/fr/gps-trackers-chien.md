@@ -6,7 +6,7 @@ summary: "Un traceur GPS localise le chien en temps réel, contrairement à la p
 date: "2026-07-12T08:00:00+02:00"
 lastmod: "2026-07-12T08:00:00+02:00"
 author: "Camille Roussel"
-categories: ["Équipement"]
+category: "gear"
 tags: ["chien", "GPS", "tracker", "sécurité"]
 sourceUrl: "/gps-trackers-chien/"
 enbref:

@@ -7,7 +7,7 @@ summary: "Cada escala añade un juego de normas, un control de temperatura y una
 date: "2026-08-17T09:00:00+02:00"
 lastmod: "2026-08-19T09:00:00+02:00"
 author: "Camille Roussel"
-categories: ["Travel"]
+category: "travel"
 tags: ["animal", "avión", "conexión", "aeropuerto"]
 enbref:
   - "🛫 Prefiere un **vuelo directo** siempre que exista"

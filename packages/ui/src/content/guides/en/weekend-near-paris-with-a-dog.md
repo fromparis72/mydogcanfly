@@ -7,7 +7,7 @@ summary: "For a weekend near Paris with a dog, count on the great forests of the
 date: "2026-06-25T08:00:00+02:00"
 lastmod: "2026-06-25T08:00:00+02:00"
 author: "Camille Roussel"
-categories: ["Destinations"]
+category: "destinations"
 tags: ["dog", "Paris", "weekend", "dog-friendly"]
 sourceUrl: "/weekend-near-paris-with-a-dog/"
 enbref:

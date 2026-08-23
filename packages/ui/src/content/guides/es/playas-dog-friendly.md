@@ -7,7 +7,7 @@ summary: "Muchas playas acogen perros fuera de temporada o en zonas señalizadas
 date: "2026-07-02T08:00:00+02:00"
 lastmod: "2026-07-02T08:00:00+02:00"
 author: "Camille Roussel"
-categories: ["Destinations"]
+category: "destinations"
 tags: ["perro", "playa", "mar", "verano"]
 enbref:
   - "🏖️ Playas abiertas a los perros sobre todo **fuera de temporada** o en zonas señalizadas"

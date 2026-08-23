@@ -6,7 +6,7 @@ summary: "Gamelle pliable, gourde à abreuvoir intégré, tapis de couchage roul
 date: "2026-07-08T08:00:00+02:00"
 lastmod: "2026-07-08T08:00:00+02:00"
 author: "Camille Roussel"
-categories: ["Équipement"]
+category: "gear"
 tags: ["chien", "gamelle", "accessoires", "voyage"]
 sourceUrl: "/gamelles-accessoires-nomades-chien/"
 enbref:

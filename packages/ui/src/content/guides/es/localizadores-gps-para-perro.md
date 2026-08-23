@@ -7,7 +7,7 @@ summary: "Un localizador GPS sitúa a tu perro en tiempo real, al contrario que 
 date: "2026-07-12T08:00:00+02:00"
 lastmod: "2026-07-12T08:00:00+02:00"
 author: "Camille Roussel"
-categories: ["Gear"]
+category: "gear"
 tags: ["perro", "GPS", "localizador", "seguridad"]
 enbref:
   - "📡 Localización en **tiempo real** (≠ microchip de identificación)"

@@ -7,7 +7,7 @@ summary: "Muitas praias acolhem cães fora de temporada ou em áreas sinalizadas
 date: "2026-07-02T08:00:00+02:00"
 lastmod: "2026-07-02T08:00:00+02:00"
 author: "Camille Roussel"
-categories: ["Destinations"]
+category: "destinations"
 tags: ["cachorro", "praia", "mar", "verão"]
 enbref:
   - "🏖️ Praias abertas a cães sobretudo **fora de temporada** ou em áreas sinalizadas"

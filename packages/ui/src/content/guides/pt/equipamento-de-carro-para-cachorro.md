@@ -7,7 +7,7 @@ summary: "O equipamento realmente útil para viajar de carro com o seu cachorro:
 date: "2026-06-28T09:00:00+02:00"
 lastmod: "2026-06-28T09:00:00+02:00"
 author: "Camille Roussel"
-categories: ["Gear"]
+category: "gear"
 tags: ["cachorro", "carro", "segurança", "equipamento"]
 enbref:
   - "🔗 Indispensável: um **sistema de contenção** (peitoral homologado + cinto)"

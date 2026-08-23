@@ -6,7 +6,7 @@ summary: "En voyage, gardez les mêmes croquettes qu'à la maison, évitez de no
 date: "2026-06-29T08:00:00+02:00"
 lastmod: "2026-06-29T08:00:00+02:00"
 author: "Camille Roussel"
-categories: ["Santé"]
+category: "health"
 tags: ["chien", "hydratation", "alimentation", "voyage"]
 sourceUrl: "/hydratation-alimentation-chien-voyage/"
 enbref:

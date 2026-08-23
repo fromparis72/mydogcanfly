@@ -6,7 +6,7 @@ summary: "Piqûres et morsures chez le chien : guêpe, abeille, serpent (vipère
 date: "2026-06-03T08:00:00+02:00"
 lastmod: "2026-06-03T08:00:00+02:00"
 author: "Camille Roussel"
-categories: ["Santé"]
+category: "health"
 tags: ["chien", "santé", "premiers secours", "été"]
 sourceUrl: "/piqures-morsures-chien/"
 enbref:

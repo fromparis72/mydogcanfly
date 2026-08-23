@@ -7,7 +7,7 @@ summary: "Cabine, soute en bagage accompagné et fret manifesté sont trois arra
 date: "2026-08-17T09:00:00+02:00"
 lastmod: "2026-08-19T09:00:00+02:00"
 author: "Camille Roussel"
-categories: ["Travel"]
+category: "travel"
 tags: ["animal", "avion", "fret", "bagage"]
 enbref:
   - "🎒 **Cabine** : avec vous, sous le siège, taille limitée"

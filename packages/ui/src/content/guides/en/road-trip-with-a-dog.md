@@ -7,7 +7,7 @@ summary: "A good canine road trip takes planning: a break every 2 hours, water a
 date: "2026-07-01T08:00:00+02:00"
 lastmod: "2026-07-01T08:00:00+02:00"
 author: "Camille Roussel"
-categories: ["Travel"]
+category: "travel"
 tags: ["dog", "road trip", "car", "travel"]
 sourceUrl: "/road-trip-with-a-dog/"
 enbref:

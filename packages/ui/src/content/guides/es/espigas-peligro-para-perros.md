@@ -7,7 +7,7 @@ summary: "Espigas en el perro: estas aristas secas de gramínea se clavan en la 
 date: "2026-05-30T08:00:00+02:00"
 lastmod: "2026-05-30T08:00:00+02:00"
 author: "Camille Roussel"
-categories: ["Health"]
+category: "health"
 tags: ["perro", "salud", "espigas", "verano"]
 enbref:
   - "🌾 Pequeñas **aristas secas de gramínea** que se enganchan y **se clavan** bajo la piel"

@@ -7,7 +7,7 @@ summary: "Not every dog needs a coat, but small breeds, senior dogs and short-ha
 date: "2026-07-16T08:00:00+02:00"
 lastmod: "2026-07-16T08:00:00+02:00"
 author: "Camille Roussel"
-categories: ["Gear"]
+category: "gear"
 tags: ["dog", "coat", "boots", "weather"]
 sourceUrl: "/dog-coats-and-boots/"
 enbref:

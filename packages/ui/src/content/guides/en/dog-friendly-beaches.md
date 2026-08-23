@@ -7,7 +7,7 @@ summary: "Many beaches welcome dogs off-season or in designated areas: always ch
 date: "2026-07-02T08:00:00+02:00"
 lastmod: "2026-07-02T08:00:00+02:00"
 author: "Camille Roussel"
-categories: ["Destinations"]
+category: "destinations"
 tags: ["dog", "beach", "ocean", "summer"]
 sourceUrl: "/dog-friendly-beaches/"
 enbref:

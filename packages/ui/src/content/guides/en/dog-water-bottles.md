@@ -7,7 +7,7 @@ summary: "Dog water bottles and portable hydration: bottles with built-in dispen
 date: "2026-06-14T08:00:00+02:00"
 lastmod: "2026-06-14T08:00:00+02:00"
 author: "Camille Roussel"
-categories: ["Gear"]
+category: "gear"
 tags: ["dog", "gear", "hydration", "bowl"]
 sourceUrl: "/dog-water-bottles/"
 enbref:

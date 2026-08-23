@@ -7,7 +7,7 @@ summary: "Les chiens brachycéphales respirent moins efficacement, et la chaleur
 date: "2026-08-17T09:00:00+02:00"
 lastmod: "2026-08-19T09:00:00+02:00"
 author: "Camille Roussel"
-categories: ["Travel"]
+category: "travel"
 tags: ["chien", "avion", "races", "brachycéphale"]
 enbref:
   - "🐽 La restriction vise le **museau court**, pas une liste de races figée"

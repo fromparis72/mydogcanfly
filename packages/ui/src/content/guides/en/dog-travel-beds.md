@@ -7,7 +7,7 @@ summary: "Dog travel beds and mats: roll-up mattress, waterproof mat, familiar s
 date: "2026-06-12T08:00:00+02:00"
 lastmod: "2026-06-12T08:00:00+02:00"
 author: "Camille Roussel"
-categories: ["Gear"]
+category: "gear"
 tags: ["dog", "gear", "bedding", "comfort"]
 sourceUrl: "/dog-travel-beds/"
 enbref:

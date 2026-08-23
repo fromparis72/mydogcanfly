@@ -7,7 +7,7 @@ summary: "Un arnés de coche debe estar sometido a crash test, bien ajustado y c
 date: "2026-06-30T08:00:00+02:00"
 lastmod: "2026-06-30T08:00:00+02:00"
 author: "Camille Roussel"
-categories: ["Gear"]
+category: "gear"
 tags: ["perro", "arnés", "seguridad vial", "coche"]
 enbref:
   - "🚗 Protege en **frenada fuerte o impacto**, si tiene **crash test**"

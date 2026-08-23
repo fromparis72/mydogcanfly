@@ -7,7 +7,7 @@ summary: "Picadas e mordidas no cachorro: vespa, abelha, serpente (víbora), lag
 date: "2026-06-03T08:00:00+02:00"
 lastmod: "2026-06-03T08:00:00+02:00"
 author: "Camille Roussel"
-categories: ["Health"]
+category: "health"
 tags: ["cachorro", "saúde", "primeiros socorros", "verão"]
 enbref:
   - "🐝 **Vespa/abelha**: inchaço local; perigoso na boca ou garganta ou com alergia"

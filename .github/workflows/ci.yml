@@ -159,6 +159,14 @@ jobs:
       - name: Harnais DOM des pages d'entités (sentinelles)
         run: npm run test:entities
 
+      # L'INDEX du Travel Hub, dans les quatre langues. Il vit ICI et non dans `site-complet`
+      # parce que la page lit la COLLECTION de contenu, que `BUILD_ONLY` ne filtre pas : les 72
+      # guides de chaque langue y sont comptés même sous le build réduit. Le défaut trouvé à
+      # l'œil le 23/08/2026 — cinq rubriques en français, libellés anglais en ES/PT — doit se
+      # voir sur la pull request qui le produirait, pas douze minutes plus tard.
+      - name: Les quatre index du Travel Hub disent la même chose
+        run: npm run test:index-hub
+
       - name: Bundle épinglé sur le Worker attendu
         run: node packages/knowledge/scripts/check-bundle.mjs --expect="https://00000000-mydogcanfly-api-preview.fromparis.workers.dev"
 

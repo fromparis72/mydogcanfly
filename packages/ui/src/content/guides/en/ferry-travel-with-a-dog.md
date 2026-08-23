@@ -7,7 +7,7 @@ summary: "On most ferries, dogs travel in a pet-friendly cabin, an onboard kenne
 date: "2026-07-05T08:00:00+02:00"
 lastmod: "2026-07-05T08:00:00+02:00"
 author: "Camille Roussel"
-categories: ["Travel"]
+category: "travel"
 tags: ["dog", "ferry", "boat", "crossing"]
 sourceUrl: "/ferry-travel-with-a-dog/"
 enbref:

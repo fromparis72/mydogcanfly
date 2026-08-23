@@ -7,7 +7,7 @@ summary: "Dog cooling mats: how they work, how to choose (gel, size, durability)
 date: "2026-06-26T09:00:00+02:00"
 lastmod: "2026-06-26T09:00:00+02:00"
 author: "Camille Roussel"
-categories: ["Gear"]
+category: "gear"
 tags: ["dog", "cooling mat", "heat wave", "gear"]
 sourceUrl: "/best-dog-cooling-mats/"
 enbref:

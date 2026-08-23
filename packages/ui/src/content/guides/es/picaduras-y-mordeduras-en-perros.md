@@ -7,7 +7,7 @@ summary: "Picaduras y mordeduras en el perro: avispa, abeja, serpiente (víbora)
 date: "2026-06-03T08:00:00+02:00"
 lastmod: "2026-06-03T08:00:00+02:00"
 author: "Camille Roussel"
-categories: ["Health"]
+category: "health"
 tags: ["perro", "salud", "primeros auxilios", "verano"]
 enbref:
   - "🐝 **Avispa/abeja**: hinchazón local; peligrosa en boca o garganta o si hay alergia"

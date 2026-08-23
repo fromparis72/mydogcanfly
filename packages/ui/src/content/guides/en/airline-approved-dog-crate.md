@@ -7,7 +7,7 @@ summary: "Airline dog crate guide: IATA requirements, sizing method, materials, 
 date: "2026-06-22T09:00:00+02:00"
 lastmod: "2026-06-22T09:00:00+02:00"
 author: "Camille Roussel"
-categories: ["Gear"]
+category: "gear"
 tags: ["dog", "travel crate", "airplane", "IATA"]
 sourceUrl: "/airline-approved-dog-crate/"
 enbref:

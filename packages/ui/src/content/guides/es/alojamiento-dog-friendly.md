@@ -7,7 +7,7 @@ summary: "Una buena estancia dog-friendly no se limita a tolerar a tu perro: lo 
 date: "2026-06-26T12:00:00+02:00"
 lastmod: "2026-06-26T12:00:00+02:00"
 author: "Camille Roussel"
-categories: ["Destinations"]
+category: "destinations"
 tags: ["perro", "alojamiento dog-friendly", "viaje", "casa de huéspedes"]
 enbref:
   - "🏡 Espacio exterior **vallado o seguro**, suelos **fáciles de limpiar**"

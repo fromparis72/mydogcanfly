@@ -7,7 +7,7 @@ summary: "Las almohadillas del perro se queman con el asfalto caliente y se agri
 date: "2026-06-26T08:00:00+02:00"
 lastmod: "2026-06-26T08:00:00+02:00"
 author: "Camille Roussel"
-categories: ["Health"]
+category: "health"
 tags: ["perro", "almohadillas", "verano", "cuidados"]
 enbref:
   - "🔥 Almohadillas **quemadas** (asfalto/arena calientes), **agrietadas** (hielo, sal)"

@@ -7,7 +7,7 @@ summary: "El equipamiento adecuado depende del tamaño de tu perro y del medio d
 date: "2026-06-25T09:30:00+02:00"
 lastmod: "2026-06-25T09:30:00+02:00"
 author: "Camille Roussel"
-categories: ["Gear"]
+category: "gear"
 tags: ["perro", "equipamiento", "seguridad", "transporte"]
 enbref:
   - "🎒 El equipamiento depende del **tamaño** del perro y del **medio de transporte**"

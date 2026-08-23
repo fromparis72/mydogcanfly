@@ -7,7 +7,7 @@ summary: "Os cães braquicefálicos respiram com menos eficiência, e o calor so
 date: "2026-08-17T09:00:00+02:00"
 lastmod: "2026-08-19T09:00:00+02:00"
 author: "Camille Roussel"
-categories: ["Travel"]
+category: "travel"
 tags: ["cachorro", "avião", "raças", "braquicefálico"]
 enbref:
   - "🐽 A restrição visa o **focinho curto**, não uma lista fixa de raças"

@@ -7,7 +7,7 @@ summary: "Camas y esterillas de viaje para perro: colchoneta enrollable, esteril
 date: "2026-06-12T08:00:00+02:00"
 lastmod: "2026-06-12T08:00:00+02:00"
 author: "Camille Roussel"
-categories: ["Gear"]
+category: "gear"
 tags: ["perro", "equipamiento", "descanso", "confort"]
 enbref:
   - "🛏️ Una cama **enrollable o plegable** que ocupe poco"

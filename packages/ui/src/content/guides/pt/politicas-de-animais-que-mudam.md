@@ -7,7 +7,7 @@ summary: "Uma política de animais não é um documento estável: ela se move co
 date: "2026-08-17T09:00:00+02:00"
 lastmod: "2026-08-19T09:00:00+02:00"
 author: "Camille Roussel"
-categories: ["Travel"]
+category: "travel"
 tags: ["cachorro", "avião", "companhia aérea", "regulamentação"]
 enbref:
   - "📅 As regras de animais mudam com a **estação**, não só com o ano"

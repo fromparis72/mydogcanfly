@@ -7,7 +7,7 @@ summary: "El día de aeropuerto tiene una forma: llegar antes que si viajaras so
 date: "2026-08-17T09:00:00+02:00"
 lastmod: "2026-08-19T09:00:00+02:00"
 author: "Camille Roussel"
-categories: ["Travel"]
+category: "travel"
 tags: ["perro", "avión", "aeropuerto", "facturación"]
 enbref:
   - "🕐 Llega **bastante antes** de tu margen habitual: facturar un animal es más lento"

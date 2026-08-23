@@ -7,7 +7,7 @@ summary: "Dog diarrhea and vomiting while traveling: causes (stress, new water, 
 date: "2026-06-02T08:00:00+02:00"
 lastmod: "2026-06-02T08:00:00+02:00"
 author: "Camille Roussel"
-categories: ["Health"]
+category: "health"
 tags: ["dog", "health", "digestion", "travel"]
 sourceUrl: "/dog-digestive-issues-travel/"
 enbref:

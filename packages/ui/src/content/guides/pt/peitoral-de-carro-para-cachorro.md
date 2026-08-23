@@ -7,7 +7,7 @@ summary: "Um peitoral de carro precisa ter passado por crash test, estar bem aju
 date: "2026-06-30T08:00:00+02:00"
 lastmod: "2026-06-30T08:00:00+02:00"
 author: "Camille Roussel"
-categories: ["Gear"]
+category: "gear"
 tags: ["cachorro", "peitoral", "segurança viária", "carro"]
 enbref:
   - "🚗 Protege em **freada forte ou impacto** — se tiver **crash test**"

@@ -7,7 +7,7 @@ summary: "Frío e hipotermia en el perro: perros de riesgo, señales de alerta, 
 date: "2026-05-31T08:00:00+02:00"
 lastmod: "2026-05-31T08:00:00+02:00"
 author: "Camille Roussel"
-categories: ["Health"]
+category: "health"
 tags: ["perro", "salud", "frío", "invierno"]
 enbref:
   - "❄️ En riesgo: perros pequeños, pelo corto, cachorros, mayores o enfermos"

@@ -7,7 +7,7 @@ summary: "A break every 2 hours: walk your dog on a leash, offer water, let them
 date: "2026-07-13T08:00:00+02:00"
 lastmod: "2026-07-13T08:00:00+02:00"
 author: "Camille Roussel"
-categories: ["Travel"]
+category: "travel"
 tags: ["dog", "highway", "rest stop", "travel"]
 sourceUrl: "/dog-friendly-rest-stops/"
 enbref:

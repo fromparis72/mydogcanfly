@@ -7,7 +7,7 @@ summary: "Viajar en avión con perro exige un transportín IATA, un peso dentro 
 date: "2026-06-25T11:00:00+02:00"
 lastmod: "2026-06-25T11:00:00+02:00"
 author: "Camille Roussel"
-categories: ["Travel"]
+category: "travel"
 tags: ["perro", "avión", "viaje internacional"]
 enbref:
   - "🧳 **Cabina** para perros pequeños (a menudo ≤ 8 kg, transportín incluido)"

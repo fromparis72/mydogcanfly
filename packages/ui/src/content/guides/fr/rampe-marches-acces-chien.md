@@ -6,7 +6,7 @@ summary: "Rampe ou marches pour chien : protéger ses articulations pour monter 
 date: "2026-06-10T08:00:00+02:00"
 lastmod: "2026-06-10T08:00:00+02:00"
 author: "Camille Roussel"
-categories: ["Équipement"]
+category: "gear"
 tags: ["chien", "équipement", "voiture", "articulations"]
 sourceUrl: "/rampe-marches-acces-chien/"
 enbref:

@@ -7,7 +7,7 @@ summary: "Para viajar dentro da UE, o cachorro precisa de passaporte europeu, mi
 date: "2026-06-27T08:00:00+02:00"
 lastmod: "2026-06-27T08:00:00+02:00"
 author: "Camille Roussel"
-categories: ["Travel"]
+category: "travel"
 tags: ["cachorro", "viagem internacional", "passaporte", "documentos"]
 enbref:
   - "🇪🇺 **UE**: passaporte para animais de companhia (ou certificado sanitário) + microchip + vacina antirrábica em dia"

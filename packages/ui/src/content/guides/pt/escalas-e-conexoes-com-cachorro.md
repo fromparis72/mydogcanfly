@@ -7,7 +7,7 @@ summary: "Cada escala acrescenta um conjunto de regras, um controle de temperatu
 date: "2026-08-17T09:00:00+02:00"
 lastmod: "2026-08-19T09:00:00+02:00"
 author: "Camille Roussel"
-categories: ["Travel"]
+category: "travel"
 tags: ["animal", "avião", "conexão", "aeroporto"]
 enbref:
   - "🛫 Prefira um **voo direto** sempre que existir um"

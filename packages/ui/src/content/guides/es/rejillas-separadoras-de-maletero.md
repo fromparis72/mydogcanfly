@@ -7,7 +7,7 @@ summary: "Rejillas y separadores de maletero para transportar a tu perro con seg
 date: "2026-06-11T08:00:00+02:00"
 lastmod: "2026-06-11T08:00:00+02:00"
 author: "Camille Roussel"
-categories: ["Gear"]
+category: "gear"
 tags: ["perro", "equipamiento", "coche", "seguridad vial"]
 enbref:
   - "🚗 Mantiene al perro fuera del habitáculo, y evita que salga despedido"

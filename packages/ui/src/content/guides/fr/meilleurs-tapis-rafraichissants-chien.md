@@ -6,7 +6,7 @@ summary: "Tapis rafraîchissant pour chien : comment ça marche, comment choisir
 date: "2026-06-26T09:00:00+02:00"
 lastmod: "2026-06-26T09:00:00+02:00"
 author: "Camille Roussel"
-categories: ["Équipement"]
+category: "gear"
 tags: ["chien", "tapis rafraîchissant", "canicule", "équipement"]
 sourceUrl: "/meilleurs-tapis-rafraichissants-chien/"
 enbref:

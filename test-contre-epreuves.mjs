@@ -660,6 +660,72 @@ const MUTATIONS = [
     harnais: "test-audit-observations.mjs",
     attendu: "le rapport porte une section INFO",
   },
+
+  // ---- LES QUATRE INDEX DU TRAVEL HUB ----
+  //
+  // Le défaut d'origine — cinq rubriques en français, libellés anglais en espagnol et en
+  // portugais — a vécu plusieurs jours dans `main`, a traversé quatre pull requests, deux jobs
+  // de CI, 45 contre-épreuves et un contre-test navigateur. Il a été vu à l'œil sur une capture.
+  // Les cinq mutations ci-dessous reproduisent chacune une FORME de ce défaut, et exigent que
+  // `test-index-travel-hub.mjs` rougisse avec son diagnostic propre — pas seulement qu'il échoue.
+  {
+    dom: true,
+    nom: "un libellé de rubrique redevient anglais sur les pages espagnoles",
+    id: "un-libelle-de-rubrique-redevient-anglais-sur-les-pages-e",
+    fichier: "packages/knowledge/translations/es/strings.json",
+    cherche: '"travel_hub.category.gear": "Equipo"',
+    remplace: '"travel_hub.category.gear": "Gear"',
+    harnais: "test-index-travel-hub.mjs",
+    attendu: "libellé anglais « Gear » sur une page ES",
+  },
+  {
+    dom: true,
+    nom: "le surtitre espagnol redevient « Travel Hub »",
+    id: "le-surtitre-espagnol-redevient-travel-hub",
+    fichier: "packages/knowledge/translations/es/strings.json",
+    cherche: '"nav.travel_hub": "Central de viajes"',
+    remplace: '"nav.travel_hub": "Travel Hub"',
+    harnais: "test-index-travel-hub.mjs",
+    attendu: "surtitre « Travel Hub » au lieu de « Central de viajes »",
+  },
+  {
+    dom: true,
+    nom: "la clé de rubrique est affichée telle quelle, sans passer par les traductions",
+    id: "la-cle-de-rubrique-est-affichee-telle-quelle-sans-passer",
+    fichier: "packages/ui/src/pages/[...loc]/travel-hub/index.astro",
+    cherche: "const libelle = (cle: string) => t(locale, `travel_hub.category.${cle}`);",
+    remplace: "const libelle = (cle: string) => cle;",
+    harnais: "test-index-travel-hub.mjs",
+    attendu: "la clé est affichée telle quelle comme libellé",
+  },
+  {
+    dom: true,
+    nom: "une langue seule voit ses effectifs dériver, les trois autres restant justes",
+    id: "une-langue-seule-voit-ses-effectifs-deriver-les-trois-au",
+    /* La forme EXACTE du défaut d'origine : une langue en désaccord avec les autres. Le total
+       français restait pourtant juste — 10 + 10 font 20 — ce qui montre qu'un contrôle du seul
+       total serait passé à côté. Ici un guide change de rubrique : 19 et 26 au lieu de 20 et 25,
+       et la signature française cesse de correspondre aux trois autres. */
+    fichier: "packages/ui/src/content/guides/fr/embargos-chaleur-en-soute.md",
+    cherche: 'category: "travel"',
+    remplace: 'category: "gear"',
+    harnais: "test-index-travel-hub.mjs",
+    attendu: "guide(s) au lieu de",
+  },
+  {
+    dom: true,
+    nom: "les rubriques deviennent illisibles au harnais, qui doit le dire au lieu de se taire",
+    id: "les-rubriques-deviennent-illisibles-au-harnais-qui-doit",
+    /* « JAMAIS VERT FAUTE DE MATIÈRE ». Sans l'attribut, l'extraction ne trouve plus aucune
+       rubrique. Un harnais mal écrit conclurait « rien à redire » sur zéro rubrique lue — c'est
+       la panne la plus dangereuse, parce qu'elle est verte. Celui-ci doit compter QUATRE
+       rubriques, donc zéro le met en défaut. */
+    fichier: "packages/ui/src/pages/[...loc]/travel-hub/index.astro",
+    cherche: '<h2 class="th-h2" id={cle} data-categorie={cle}>',
+    remplace: '<h2 class="th-h2" id={cle}>',
+    harnais: "test-index-travel-hub.mjs",
+    attendu: "rubrique(s) au lieu de 4",
+  },
 ];
 
 const dire = (m) => process.stdout.write(m + "\n");

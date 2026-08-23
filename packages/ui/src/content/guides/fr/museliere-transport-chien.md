@@ -6,7 +6,7 @@ summary: "Muselière pour le transport du chien : muselière-panier adaptée, qu
 date: "2026-06-17T08:00:00+02:00"
 lastmod: "2026-06-17T08:00:00+02:00"
 author: "Camille Roussel"
-categories: ["Équipement"]
+category: "gear"
 tags: ["chien", "équipement", "muselière", "transport"]
 sourceUrl: "/museliere-transport-chien/"
 enbref:

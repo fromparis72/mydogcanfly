@@ -6,7 +6,7 @@ summary: "Gamelles et gourdes de voyage pour chien : pliables, à abreuvoir int�
 date: "2026-06-23T09:00:00+02:00"
 lastmod: "2026-06-23T09:00:00+02:00"
 author: "Camille Roussel"
-categories: ["Équipement"]
+category: "gear"
 tags: ["chien", "gamelle", "voyage", "équipement"]
 sourceUrl: "/meilleures-gamelles-voyage-chien/"
 enbref:

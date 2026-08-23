@@ -7,7 +7,7 @@ summary: "Ce sont les délais d'attente, et non les papiers, qui décident si un
 date: "2026-08-17T09:00:00+02:00"
 lastmod: "2026-08-19T09:00:00+02:00"
 author: "Camille Roussel"
-categories: ["Travel"]
+category: "travel"
 tags: ["animal", "avion", "organisation", "international"]
 enbref:
   - "⏳ Certains délais sont des **délais légaux** — personne ne peut les lever"

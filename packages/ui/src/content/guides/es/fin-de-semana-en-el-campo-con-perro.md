@@ -7,7 +7,7 @@ summary: "El campo es ideal para un perro: espacios abiertos, casas acogedoras y
 date: "2026-07-14T08:00:00+02:00"
 lastmod: "2026-07-14T08:00:00+02:00"
 author: "Camille Roussel"
-categories: ["Destinations"]
+category: "destinations"
 tags: ["perro", "campo", "fin de semana", "casa rural"]
 enbref:
   - "🌾 **Espacios abiertos**, casas acogedoras, paseos sin fin"

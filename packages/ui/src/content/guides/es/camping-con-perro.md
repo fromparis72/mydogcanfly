@@ -7,7 +7,7 @@ summary: "Elige un cámping que acepte perros, prevé una parcela con sombra y u
 date: "2026-07-06T08:00:00+02:00"
 lastmod: "2026-07-06T08:00:00+02:00"
 author: "Camille Roussel"
-categories: ["Destinations"]
+category: "destinations"
 tags: ["perro", "camping", "vacaciones", "aire libre"]
 enbref:
   - "🏕️ Un cámping que **acepte explícitamente** perros"

@@ -7,7 +7,7 @@ summary: "Mochilas y portadores frontales para perros pequeños: qué mirar en v
 date: "2026-06-09T08:00:00+02:00"
 lastmod: "2026-06-09T08:00:00+02:00"
 author: "Camille Roussel"
-categories: ["Gear"]
+category: "gear"
 tags: ["perro", "equipamiento", "transportín", "senderismo"]
 enbref:
   - "🎒 Solo para **perros pequeños** (hasta unos 7-8 kg según el modelo)"

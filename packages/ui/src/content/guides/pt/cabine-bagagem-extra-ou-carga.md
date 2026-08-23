@@ -7,7 +7,7 @@ summary: "Cabine, porão como bagagem acompanhada e carga manifestada são três
 date: "2026-08-17T09:00:00+02:00"
 lastmod: "2026-08-19T09:00:00+02:00"
 author: "Camille Roussel"
-categories: ["Travel"]
+category: "travel"
 tags: ["animal", "avião", "carga", "bagagem"]
 enbref:
   - "🎒 **Cabine**: com você, embaixo do assento, com limite de porte"

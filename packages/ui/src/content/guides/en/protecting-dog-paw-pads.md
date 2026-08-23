@@ -7,7 +7,7 @@ summary: "Dog paw pads burn on hot asphalt and crack in winter. Test the ground 
 date: "2026-06-26T08:00:00+02:00"
 lastmod: "2026-06-26T08:00:00+02:00"
 author: "Camille Roussel"
-categories: ["Health"]
+category: "health"
 tags: ["dog", "paw pads", "summer", "care"]
 sourceUrl: "/protecting-dog-paw-pads/"
 enbref:

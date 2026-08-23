@@ -7,7 +7,7 @@ summary: "As regras variam conforme a rede: cães pequenos em bolsa, cães grand
 date: "2026-07-09T08:00:00+02:00"
 lastmod: "2026-07-09T08:00:00+02:00"
 author: "Camille Roussel"
-categories: ["Travel"]
+category: "travel"
 tags: ["cachorro", "transporte público", "cidade", "metrô"]
 enbref:
   - "🚇 O acesso **depende da rede de cada cidade**"

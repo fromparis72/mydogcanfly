@@ -7,7 +7,7 @@ summary: "Haz visible a tu perro de noche: collar LED, arnés reflectante, chapa
 date: "2026-06-16T08:00:00+02:00"
 lastmod: "2026-06-16T08:00:00+02:00"
 author: "Camille Roussel"
-categories: ["Gear"]
+category: "gear"
 tags: ["perro", "equipamiento", "seguridad", "visibilidad"]
 enbref:
   - "🔦 **Collar o arnés LED** recargable para que os vean de lejos"

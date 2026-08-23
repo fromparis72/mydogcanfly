@@ -6,7 +6,7 @@ summary: "Un bon road trip canin se prépare : une pause toutes les 2 heures, de
 date: "2026-07-01T08:00:00+02:00"
 lastmod: "2026-07-01T08:00:00+02:00"
 author: "Camille Roussel"
-categories: ["Voyager"]
+category: "travel"
 tags: ["chien", "road trip", "voiture", "voyage"]
 sourceUrl: "/road-trip-avec-chien/"
 enbref:

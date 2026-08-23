@@ -7,7 +7,7 @@ summary: "De nombreuses plages acceptent les chiens hors saison ou sur des zones
 date: "2026-07-02T08:00:00+02:00"
 lastmod: "2026-07-02T08:00:00+02:00"
 author: "Camille Roussel"
-categories: ["Destinations"]
+category: "destinations"
 tags: ["chien", "mer", "plage", "été"]
 sourceUrl: "/mer-plages-avec-chien/"
 enbref:

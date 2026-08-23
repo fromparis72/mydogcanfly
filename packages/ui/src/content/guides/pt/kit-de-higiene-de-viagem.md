@@ -7,7 +7,7 @@ summary: "Kit de higiene de viagem para o seu cachorro: escova, toalha de microf
 date: "2026-06-15T08:00:00+02:00"
 lastmod: "2026-06-15T08:00:00+02:00"
 author: "Camille Roussel"
-categories: ["Gear"]
+category: "gear"
 tags: ["cachorro", "equipamento", "higiene", "limpeza"]
 enbref:
   - "🧽 **Toalha de microfibra** absorvente para secar depois da chuva ou do banho"

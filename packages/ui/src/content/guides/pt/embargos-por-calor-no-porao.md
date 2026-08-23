@@ -7,7 +7,7 @@ summary: "Um embargo por calor suspende o transporte no porão quando a temperat
 date: "2026-08-17T09:00:00+02:00"
 lastmod: "2026-08-19T09:00:00+02:00"
 author: "Camille Roussel"
-categories: ["Travel"]
+category: "travel"
 tags: ["cachorro", "avião", "calor", "porão"]
 enbref:
   - "🌡️ Os limites valem na **partida, na chegada e em cada escala**"

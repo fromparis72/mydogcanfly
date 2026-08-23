@@ -7,7 +7,7 @@ summary: "La aerolínea decide cómo vuela tu animal; el destino decide si puede
 date: "2026-08-17T09:00:00+02:00"
 lastmod: "2026-08-19T09:00:00+02:00"
 author: "Camille Roussel"
-categories: ["Travel"]
+category: "travel"
 tags: ["animal", "avión", "documentos", "internacional"]
 enbref:
   - "🌍 Es el **destino** quien decide la entrada, no la aerolínea"

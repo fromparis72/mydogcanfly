@@ -7,7 +7,7 @@ summary: "Poner al día la salud de tu perro antes de viajar: vacunas, desparasi
 date: "2026-05-28T08:00:00+02:00"
 lastmod: "2026-05-28T08:00:00+02:00"
 author: "Camille Roussel"
-categories: ["Health"]
+category: "health"
 tags: ["perro", "salud", "vacunas", "desparasitación", "viaje"]
 enbref:
   - "💉 **Vacuna antirrábica** al día (exigida para viajar al extranjero; válida 21 días después de la primovacunación en la UE y en muchos países)"

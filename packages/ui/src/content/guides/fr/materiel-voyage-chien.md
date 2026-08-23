@@ -7,7 +7,7 @@ summary: "Le bon matériel de voyage pour chien dépend du gabarit et du mode de
 date: "2026-06-25T09:30:00+02:00"
 lastmod: "2026-06-25T09:30:00+02:00"
 author: "Camille Roussel"
-categories: ["Équipement"]
+category: "gear"
 tags: ["chien", "équipement", "sécurité", "transport"]
 sourceUrl: "/materiel-voyage-chien/"
 enbref:

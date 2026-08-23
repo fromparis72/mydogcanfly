@@ -7,7 +7,7 @@ summary: "Cargo barriers and divider grilles for transporting your dog safely by
 date: "2026-06-11T08:00:00+02:00"
 lastmod: "2026-06-11T08:00:00+02:00"
 author: "Camille Roussel"
-categories: ["Gear"]
+category: "gear"
 tags: ["dog", "gear", "car", "road safety"]
 sourceUrl: "/dog-car-barriers/"
 enbref:

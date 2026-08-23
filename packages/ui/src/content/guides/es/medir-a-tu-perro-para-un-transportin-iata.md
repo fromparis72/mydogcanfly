@@ -7,7 +7,7 @@ summary: "Cuatro medidas deciden el transportín: longitud, altura a la cruz, al
 date: "2026-08-17T09:00:00+02:00"
 lastmod: "2026-08-19T09:00:00+02:00"
 author: "Camille Roussel"
-categories: ["Travel"]
+category: "travel"
 tags: ["perro", "avión", "transportín", "IATA"]
 enbref:
   - "📏 Cuatro medidas: **longitud, altura a la cruz, altura de pie, anchura**"

@@ -7,7 +7,7 @@ summary: "Ante un corte, una espiga o una cojera: limpiar, proteger y valorar la
 date: "2026-07-11T08:00:00+02:00"
 lastmod: "2026-07-11T08:00:00+02:00"
 author: "Camille Roussel"
-categories: ["Health"]
+category: "health"
 tags: ["perro", "primeros auxilios", "herida", "paseos"]
 enbref:
   - "🩹 Los reflejos correctos: **limpiar, proteger, valorar** la gravedad"

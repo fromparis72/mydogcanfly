@@ -7,7 +7,7 @@ summary: "Comederos y botellas de viaje para perro: plegables, con dispensador i
 date: "2026-06-23T09:00:00+02:00"
 lastmod: "2026-06-23T09:00:00+02:00"
 author: "Camille Roussel"
-categories: ["Gear"]
+category: "gear"
 tags: ["perro", "comedero", "viaje", "equipamiento"]
 enbref:
   - "🎒 **Compacto** una vez guardado"

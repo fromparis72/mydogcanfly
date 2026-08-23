@@ -7,7 +7,7 @@ summary: "Otite do cachorro depois do banho: a umidade retida na orelha favorece
 date: "2026-06-01T08:00:00+02:00"
 lastmod: "2026-06-01T08:00:00+02:00"
 author: "Camille Roussel"
-categories: ["Health"]
+category: "health"
 tags: ["cachorro", "saúde", "otite", "banho de mar"]
 enbref:
   - "💧 A **água na orelha** favorece otites, sobretudo no verão"

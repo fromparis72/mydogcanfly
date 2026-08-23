@@ -7,7 +7,7 @@ summary: "Garrafas de água para cachorro e hidratação portátil: garrafas com
 date: "2026-06-14T08:00:00+02:00"
 lastmod: "2026-06-14T08:00:00+02:00"
 author: "Camille Roussel"
-categories: ["Gear"]
+category: "gear"
 tags: ["cachorro", "equipamento", "hidratação", "comedouro"]
 enbref:
   - "💧 Uma **garrafa 2 em 1** (reservatório + bandeja para beber): o acessório-chave no passeio"

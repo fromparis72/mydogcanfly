@@ -7,7 +7,7 @@ summary: "Las normas varían según la red: perros pequeños en bolso, perros gr
 date: "2026-07-09T08:00:00+02:00"
 lastmod: "2026-07-09T08:00:00+02:00"
 author: "Camille Roussel"
-categories: ["Travel"]
+category: "travel"
 tags: ["perro", "transporte público", "ciudad", "metro"]
 enbref:
   - "🚇 El acceso **depende de la red de cada ciudad**"

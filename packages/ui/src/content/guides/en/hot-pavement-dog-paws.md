@@ -7,7 +7,7 @@ summary: "Protect your dog's paw pads in summer: scorching asphalt, the 7-second
 date: "2026-06-25T09:00:00+02:00"
 lastmod: "2026-06-25T09:00:00+02:00"
 author: "Camille Roussel"
-categories: ["Gear"]
+category: "gear"
 tags: ["dog", "paw pads", "summer", "gear"]
 sourceUrl: "/hot-pavement-dog-paws/"
 enbref:

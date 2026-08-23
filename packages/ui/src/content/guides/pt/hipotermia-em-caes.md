@@ -7,7 +7,7 @@ summary: "Frio e hipotermia no cachorro: cães de risco, sinais de alerta, como 
 date: "2026-05-31T08:00:00+02:00"
 lastmod: "2026-05-31T08:00:00+02:00"
 author: "Camille Roussel"
-categories: ["Health"]
+category: "health"
 tags: ["cachorro", "saúde", "frio", "inverno"]
 enbref:
   - "❄️ Em risco: cães pequenos, pelo curto, filhotes, idosos ou doentes"

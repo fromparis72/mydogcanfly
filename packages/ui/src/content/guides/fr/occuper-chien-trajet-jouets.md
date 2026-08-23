@@ -6,7 +6,7 @@ summary: "Occuper son chien pendant un long trajet : jouets à mâcher, tapis de
 date: "2026-06-13T08:00:00+02:00"
 lastmod: "2026-06-13T08:00:00+02:00"
 author: "Camille Roussel"
-categories: ["Équipement"]
+category: "gear"
 tags: ["chien", "équipement", "jouets", "voyage"]
 sourceUrl: "/occuper-chien-trajet-jouets/"
 enbref:

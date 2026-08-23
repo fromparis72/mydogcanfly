@@ -7,7 +7,7 @@ summary: "Los perros braquicéfalos respiran con menos eficacia, y el calor suma
 date: "2026-08-17T09:00:00+02:00"
 lastmod: "2026-08-19T09:00:00+02:00"
 author: "Camille Roussel"
-categories: ["Travel"]
+category: "travel"
 tags: ["perro", "avión", "razas", "braquicéfalo"]
 enbref:
   - "🐽 La restricción apunta al **hocico corto**, no a una lista fija de razas"

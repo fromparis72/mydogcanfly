@@ -7,7 +7,7 @@ summary: "En la mayoría de los ferris, el perro viaja en un camarote pet-friend
 date: "2026-07-05T08:00:00+02:00"
 lastmod: "2026-07-05T08:00:00+02:00"
 author: "Camille Roussel"
-categories: ["Travel"]
+category: "travel"
 tags: ["perro", "ferry", "barco", "travesía"]
 enbref:
   - "⛴️ Según el operador: **camarote pet-friendly**, perrera a bordo o tu vehículo en la cubierta de coches"

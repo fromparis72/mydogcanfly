@@ -7,7 +7,7 @@ summary: "Colocar a saúde do seu cachorro em dia antes de viajar: vacinas, verm
 date: "2026-05-28T08:00:00+02:00"
 lastmod: "2026-05-28T08:00:00+02:00"
 author: "Camille Roussel"
-categories: ["Health"]
+category: "health"
 tags: ["cachorro", "saúde", "vacinas", "vermifugação", "viagem"]
 enbref:
   - "💉 **Vacina antirrábica** em dia (exigida para viagens internacionais; válida 21 dias após a primovacinação na UE e em muitos países)"

@@ -7,7 +7,7 @@ summary: "Diante de um corte, de uma espiga ou de um mancar: limpar, proteger e 
 date: "2026-07-11T08:00:00+02:00"
 lastmod: "2026-07-11T08:00:00+02:00"
 author: "Camille Roussel"
-categories: ["Health"]
+category: "health"
 tags: ["cachorro", "primeiros socorros", "ferimento", "passeios"]
 enbref:
   - "🩹 Os gestos certos: **limpar, proteger, avaliar** a gravidade"

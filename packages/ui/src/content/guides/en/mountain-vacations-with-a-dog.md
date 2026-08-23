@@ -7,7 +7,7 @@ summary: "The mountains are best savored gradually: train your dog, carry water 
 date: "2026-06-28T08:00:00+02:00"
 lastmod: "2026-06-28T08:00:00+02:00"
 author: "Camille Roussel"
-categories: ["Destinations"]
+category: "destinations"
 tags: ["dog", "mountains", "hiking", "nature"]
 sourceUrl: "/mountain-vacations-with-a-dog/"
 enbref:

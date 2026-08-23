@@ -7,7 +7,7 @@ summary: "Un harnais de voiture doit être crash-testé, à la bonne taille et r
 date: "2026-06-30T08:00:00+02:00"
 lastmod: "2026-06-30T08:00:00+02:00"
 author: "Camille Roussel"
-categories: ["Équipement"]
+category: "gear"
 tags: ["chien", "harnais", "sécurité routière", "voiture"]
 sourceUrl: "/harnais-securite-voiture-chien/"
 enbref:

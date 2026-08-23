@@ -7,7 +7,7 @@ summary: "Les meilleures destinations dog-friendly en France allient nature, hé
 date: "2026-06-26T14:00:00+02:00"
 lastmod: "2026-06-26T14:00:00+02:00"
 author: "Camille Roussel"
-categories: ["Destinations"]
+category: "destinations"
 tags: ["chien", "dog-friendly", "vacances", "France"]
 sourceUrl: "/destinations-dog-friendly-france/"
 enbref:

@@ -7,7 +7,7 @@ summary: "The airport day has a shape: arrive earlier than you would alone, chec
 date: "2026-08-17T09:00:00+02:00"
 lastmod: "2026-08-17T09:00:00+02:00"
 author: "Camille Roussel"
-categories: ["Travel"]
+category: "travel"
 tags: ["dog", "flying", "airport", "check-in"]
 enbref:
   - "🕐 Arrive **well before** your usual margin — pet check-in is slower"

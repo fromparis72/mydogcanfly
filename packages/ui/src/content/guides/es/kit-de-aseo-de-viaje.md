@@ -7,7 +7,7 @@ summary: "Kit de aseo de viaje para tu perro: cepillo, toalla de microfibra, toa
 date: "2026-06-15T08:00:00+02:00"
 lastmod: "2026-06-15T08:00:00+02:00"
 author: "Camille Roussel"
-categories: ["Gear"]
+category: "gear"
 tags: ["perro", "equipamiento", "aseo", "higiene"]
 enbref:
   - "🧽 **Toalla de microfibra** absorbente para secar tras la lluvia o el baño"

@@ -7,7 +7,7 @@ summary: "Comparativa de las mejores fuentes de agua para perro: capacidad, filt
 date: "2026-06-29T09:00:00+02:00"
 lastmod: "2026-06-29T09:00:00+02:00"
 author: "Camille Roussel"
-categories: ["Gear"]
+category: "gear"
 tags: ["perro", "fuente de agua", "hidratación", "equipamiento"]
 enbref:
   - "💧 **Capacidad** acorde con el tamaño de tu perro"

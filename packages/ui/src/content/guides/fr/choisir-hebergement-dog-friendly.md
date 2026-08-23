@@ -7,7 +7,7 @@ summary: "Un bon hébergement dog-friendly ne se contente pas d'accepter le chie
 date: "2026-06-26T12:00:00+02:00"
 lastmod: "2026-06-26T12:00:00+02:00"
 author: "Camille Roussel"
-categories: ["Destinations"]
+category: "destinations"
 tags: ["chien", "hébergement dog-friendly", "voyage", "chambre d'hôtes"]
 sourceUrl: "/choisir-hebergement-dog-friendly/"
 enbref:

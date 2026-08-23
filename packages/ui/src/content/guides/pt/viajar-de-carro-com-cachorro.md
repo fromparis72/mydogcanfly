@@ -7,7 +7,7 @@ summary: "No carro, o cachorro precisa estar preso ou contido pela segurança de
 date: "2026-06-26T10:00:00+02:00"
 lastmod: "2026-06-26T10:00:00+02:00"
 author: "Camille Roussel"
-categories: ["Travel"]
+category: "travel"
 tags: ["cachorro", "carro", "segurança viária", "viagem"]
 enbref:
   - "🔗 Preso: **caixa amarrada**, **peitoral com crash test** + cinto, ou **grade separadora**"

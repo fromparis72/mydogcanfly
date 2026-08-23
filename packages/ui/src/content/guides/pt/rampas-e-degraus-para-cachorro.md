@@ -7,7 +7,7 @@ summary: "Rampa ou degraus para cachorro: proteger as articulações dele ao sub
 date: "2026-06-10T08:00:00+02:00"
 lastmod: "2026-06-10T08:00:00+02:00"
 author: "Camille Roussel"
-categories: ["Gear"]
+category: "gear"
 tags: ["cachorro", "equipamento", "carro", "articulações"]
 enbref:
   - "🦴 Protege as **articulações** (filhotes, cães idosos, dorsos longos, raças grandes)"

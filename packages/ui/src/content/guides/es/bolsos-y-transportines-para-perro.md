@@ -7,7 +7,7 @@ summary: "El contenedor adecuado depende del tamaño de tu perro y de cómo viaj
 date: "2026-07-04T08:00:00+02:00"
 lastmod: "2026-07-04T08:00:00+02:00"
 author: "Camille Roussel"
-categories: ["Gear"]
+category: "gear"
 tags: ["perro", "transportín de viaje", "bolso", "equipamiento"]
 enbref:
   - "👜 **Bolso flexible**: perros pequeños en cabina"

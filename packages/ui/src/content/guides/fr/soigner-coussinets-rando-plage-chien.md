@@ -6,7 +6,7 @@ summary: "Soigner les coussinets du chien après une rando ou la plage : inspect
 date: "2026-06-05T08:00:00+02:00"
 lastmod: "2026-06-05T08:00:00+02:00"
 author: "Camille Roussel"
-categories: ["Santé"]
+category: "health"
 tags: ["chien", "santé", "coussinets", "randonnée"]
 sourceUrl: "/soigner-coussinets-rando-plage-chien/"
 enbref:

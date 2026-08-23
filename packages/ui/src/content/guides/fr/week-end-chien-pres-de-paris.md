@@ -7,7 +7,7 @@ summary: "Pour un week-end avec son chien près de Paris, misez sur les forêts 
 date: "2026-06-25T08:00:00+02:00"
 lastmod: "2026-06-25T08:00:00+02:00"
 author: "Camille Roussel"
-categories: ["Destinations"]
+category: "destinations"
 tags: ["chien", "Paris", "week-end", "dog-friendly"]
 sourceUrl: "/week-end-chien-pres-de-paris/"
 enbref:

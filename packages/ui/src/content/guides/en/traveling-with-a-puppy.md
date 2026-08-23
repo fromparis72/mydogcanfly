@@ -7,7 +7,7 @@ summary: "A puppy travels once its vaccines are in place: short trips, frequent 
 date: "2026-07-15T08:00:00+02:00"
 lastmod: "2026-07-15T08:00:00+02:00"
 author: "Camille Roussel"
-categories: ["Health"]
+category: "health"
 tags: ["dog", "puppy", "health", "travel"]
 sourceUrl: "/traveling-with-a-puppy/"
 enbref:

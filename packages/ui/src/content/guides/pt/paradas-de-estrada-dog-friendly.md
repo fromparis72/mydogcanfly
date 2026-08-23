@@ -7,7 +7,7 @@ summary: "Uma parada a cada 2 horas: leve o cachorro na guia, ofereça água, de
 date: "2026-07-13T08:00:00+02:00"
 lastmod: "2026-07-13T08:00:00+02:00"
 author: "Camille Roussel"
-categories: ["Travel"]
+category: "travel"
 tags: ["cachorro", "rodovia", "parada de estrada", "viagem"]
 enbref:
   - "⏸️ Uma parada **a cada 2 horas, aproximadamente**"

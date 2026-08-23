@@ -7,7 +7,7 @@ summary: "Un primer viaje con tu perro se apoya en tres pilares: papeleo al día
 date: "2026-06-26T09:00:00+02:00"
 lastmod: "2026-06-26T09:00:00+02:00"
 author: "Camille Roussel"
-categories: ["Travel"]
+category: "travel"
 tags: ["perro", "lista de comprobación", "vacaciones", "preparación"]
 enbref:
   - "📄 Su **documentación** (microchip, vacunas al día)"
