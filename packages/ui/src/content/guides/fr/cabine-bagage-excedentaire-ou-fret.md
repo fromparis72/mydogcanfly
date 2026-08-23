@@ -9,6 +9,9 @@ lastmod: "2026-08-19T09:00:00+02:00"
 author: "Camille Roussel"
 category: "travel"
 tags: ["animal", "avion", "fret", "bagage"]
+cover:
+  image: "/travel-hub/cargo-vs-excess-baggage.webp"
+  alt: "Un Boeing 747 à la passerelle, entouré de conteneurs de fret et d'engins de piste"
 enbref:
   - "🎒 **Cabine** : avec vous, sous le siège, taille limitée"
   - "🧳 **Soute en bagage accompagné** : votre vol, enregistré au comptoir"

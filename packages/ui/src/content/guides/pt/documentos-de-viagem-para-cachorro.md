@@ -9,6 +9,9 @@ lastmod: "2026-08-19T09:00:00+02:00"
 author: "Camille Roussel"
 category: "travel"
 tags: ["animal", "avião", "documentos", "internacional"]
+cover:
+  image: "/travel-hub/pet-travel-documents.webp"
+  alt: "Um passaporte aberto coberto de carimbos de visto, sobre uma pasta"
 enbref:
   - "🌍 É o **destino** que decide a entrada, não a companhia"
   - "💠 Um **microchip** legível vem antes de tudo"

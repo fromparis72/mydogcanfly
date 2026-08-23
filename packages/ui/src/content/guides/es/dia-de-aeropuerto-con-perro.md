@@ -9,6 +9,9 @@ lastmod: "2026-08-19T09:00:00+02:00"
 author: "Camille Roussel"
 category: "travel"
 tags: ["perro", "avión", "aeropuerto", "facturación"]
+cover:
+  image: "/travel-hub/airport-day-with-a-dog.webp"
+  alt: "Un labrador color arena tumbado en el suelo de una terminal, con arnés y correa, a los pies de su guía"
 enbref:
   - "🕐 Llega **bastante antes** de tu margen habitual: facturar un animal es más lento"
   - "🎫 Los animales se facturan a menudo en un **mostrador específico**, no por internet"

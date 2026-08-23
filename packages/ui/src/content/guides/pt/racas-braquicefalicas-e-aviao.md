@@ -9,6 +9,9 @@ lastmod: "2026-08-19T09:00:00+02:00"
 author: "Camille Roussel"
 category: "travel"
 tags: ["cachorro", "avião", "raças", "braquicefálico"]
+cover:
+  image: "/travel-hub/snub-nosed-breeds-and-flying.webp"
+  alt: "Um buldogue francês deitado sobre uma pele de carneiro, com o focinho curto bem visível"
 enbref:
   - "🐽 A restrição visa o **focinho curto**, não uma lista fixa de raças"
   - "🌡️ Calor e estresse multiplicam o risco — daí as **recusas no porão**"

@@ -9,6 +9,9 @@ lastmod: "2026-08-19T09:00:00+02:00"
 author: "Camille Roussel"
 category: "travel"
 tags: ["cachorro", "avião", "caixa de transporte", "IATA"]
+cover:
+  image: "/travel-hub/measuring-your-dog-for-a-crate.webp"
+  alt: "Um border collie deitado numa caixa de arame aberta, sobre um tapete"
 enbref:
   - "📏 Quatro medidas: **comprimento, altura na cernelha, altura de pé, largura**"
   - "🧍 Meça o cachorro **de pé**, nunca deitado"

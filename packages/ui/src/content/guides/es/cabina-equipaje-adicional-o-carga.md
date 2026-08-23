@@ -9,6 +9,9 @@ lastmod: "2026-08-19T09:00:00+02:00"
 author: "Camille Roussel"
 category: "travel"
 tags: ["animal", "avión", "carga", "equipaje"]
+cover:
+  image: "/travel-hub/cargo-vs-excess-baggage.webp"
+  alt: "Un Boeing 747 en la pasarela, rodeado de contenedores de carga y vehículos de pista"
 enbref:
   - "🎒 **Cabina**: contigo, bajo el asiento, con límite de tamaño"
   - "🧳 **Bodega como equipaje acompañado**: tu vuelo, facturado en el mostrador"

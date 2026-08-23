@@ -9,6 +9,9 @@ lastmod: "2026-08-17T09:00:00+02:00"
 author: "Camille Roussel"
 category: "travel"
 tags: ["pet", "flying", "documents", "international"]
+cover:
+  image: "/travel-hub/pet-travel-documents.webp"
+  alt: "An open passport covered in visa stamps, resting on a folder"
 enbref:
   - "🌍 The **destination** decides entry, not the airline"
   - "💠 A readable **microchip** comes before everything else"

@@ -9,6 +9,9 @@ lastmod: "2026-08-19T09:00:00+02:00"
 author: "Camille Roussel"
 category: "travel"
 tags: ["perro", "avión", "calor", "bodega"]
+cover:
+  image: "/travel-hub/pet-heat-embargoes.webp"
+  alt: "Un perro de pelo claro tumbado a la sombra sobre adoquines, con gafas de sol"
 enbref:
   - "🌡️ Los umbrales se aplican a la **salida, la llegada y cada escala**"
   - "🛬 Decide el **aeropuerto más caluroso** de la ruta, no tu ciudad"

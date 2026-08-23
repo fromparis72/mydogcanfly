@@ -9,6 +9,9 @@ lastmod: "2026-08-19T09:00:00+02:00"
 author: "Camille Roussel"
 category: "travel"
 tags: ["chien", "avion", "aéroport", "enregistrement"]
+cover:
+  image: "/travel-hub/airport-day-with-a-dog.webp"
+  alt: "Un labrador sable couché sur le sol d'une aérogare, en harnais et en laisse, aux pieds de son maître"
 enbref:
   - "🕐 Arrivez **bien avant** votre marge habituelle — l'enregistrement animal est plus lent"
   - "🎫 Les animaux s'enregistrent souvent à un **comptoir dédié**, pas en ligne"

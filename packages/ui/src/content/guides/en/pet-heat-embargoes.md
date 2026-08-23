@@ -9,6 +9,9 @@ lastmod: "2026-08-17T09:00:00+02:00"
 author: "Camille Roussel"
 category: "travel"
 tags: ["dog", "flying", "heat", "hold"]
+cover:
+  image: "/travel-hub/pet-heat-embargoes.webp"
+  alt: "A light-coated dog flopped in the shade on cobblestones, wearing sunglasses"
 enbref:
   - "🌡️ Thresholds apply at **departure, arrival and every stopover**"
   - "🛬 The **hottest airport** on the route decides, not your city"

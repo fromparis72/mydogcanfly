@@ -9,6 +9,9 @@ lastmod: "2026-08-19T09:00:00+02:00"
 author: "Camille Roussel"
 category: "travel"
 tags: ["animal", "avión", "conexión", "aeropuerto"]
+cover:
+  image: "/travel-hub/layovers-with-a-pet.webp"
+  alt: "Una pasarela de conexión desierta, flanqueada por cintas transportadoras y cristaleras"
 enbref:
   - "🛫 Prefiere un **vuelo directo** siempre que exista"
   - "🌡️ El embargo se aplica también en el **aeropuerto de conexión**"

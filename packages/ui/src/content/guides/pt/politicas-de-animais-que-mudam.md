@@ -9,6 +9,9 @@ lastmod: "2026-08-19T09:00:00+02:00"
 author: "Camille Roussel"
 category: "travel"
 tags: ["cachorro", "avião", "companhia aérea", "regulamentação"]
+cover:
+  image: "/travel-hub/airline-pet-policy-changes.webp"
+  alt: "Um yorkshire terrier no colo dentro da cabine de um avião, junto a uma janela e a um assento, com uma etiqueta de identificação"
 enbref:
   - "📅 As regras de animais mudam com a **estação**, não só com o ano"
   - "✈️ Uma **troca de aeronave** pode eliminar o acesso ao porão de um dia para o outro"

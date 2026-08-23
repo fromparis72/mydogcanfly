@@ -9,6 +9,9 @@ lastmod: "2026-08-19T09:00:00+02:00"
 author: "Camille Roussel"
 category: "travel"
 tags: ["animal", "avião", "organização", "internacional"]
+cover:
+  image: "/travel-hub/pet-flight-timeline.webp"
+  alt: "Dois labradores pretos de colete, sentados na pista diante de um avião"
 enbref:
   - "⏳ Alguns prazos são **prazos legais** — ninguém pode dispensá-los"
   - "🔙 Planeje **de trás para frente** a partir da data de partida, não para a frente a partir de hoje"

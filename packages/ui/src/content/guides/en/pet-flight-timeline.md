@@ -9,6 +9,9 @@ lastmod: "2026-08-17T09:00:00+02:00"
 author: "Camille Roussel"
 category: "travel"
 tags: ["pet", "flying", "planning", "international"]
+cover:
+  image: "/travel-hub/pet-flight-timeline.webp"
+  alt: "Two black Labradors in vests, sitting on the apron in front of an aircraft"
 enbref:
   - "⏳ Some delays are **legal waiting periods** — nobody can waive them"
   - "🔙 Plan **backwards** from the departure date, not forwards from today"

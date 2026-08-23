@@ -9,6 +9,9 @@ lastmod: "2026-08-17T09:00:00+02:00"
 author: "Camille Roussel"
 category: "travel"
 tags: ["dog", "flying", "breeds", "brachycephalic"]
+cover:
+  image: "/travel-hub/snub-nosed-breeds-and-flying.webp"
+  alt: "A French Bulldog lying on a sheepskin, its short muzzle clearly visible"
 enbref:
   - "🐽 The restriction targets the **short muzzle**, not a fixed breed list"
   - "🌡️ Heat and stress multiply the risk — hence **hold refusals**"

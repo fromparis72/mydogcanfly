@@ -9,6 +9,9 @@ lastmod: "2026-08-17T09:00:00+02:00"
 author: "Camille Roussel"
 category: "travel"
 tags: ["dog", "flying", "booking", "airline"]
+cover:
+  image: "/travel-hub/booking-a-pet-flight.webp"
+  alt: "A small Pomeranian wearing glasses, standing in front of a tablet on a wooden table"
 enbref:
   - "🎟️ The pet is a **separate booking**, not an option on yours"
   - "🔢 Cabin spots are **capped per flight** — often very low"

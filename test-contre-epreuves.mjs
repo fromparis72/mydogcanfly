@@ -759,6 +759,47 @@ const MUTATIONS = [
     harnais: "preuve-migration-categories.mjs",
     attendu: "aurait dû donner",
   },
+
+  // ---- LES COUVERTURES DES GUIDES ----
+  //
+  // Le champ `cover` est `optional()` au schéma, à raison : un guide sans photo reste lisible.
+  // Mais « toléré par le schéma » n'est pas « voulu », et c'est tout l'écart que ces trois
+  // mutations éprouvent. Aucune ne casse le build : le site se construit dans les trois cas.
+  {
+    nom: "une couverture pointe vers une image qui n'existe pas",
+    id: "une-couverture-pointe-vers-une-image-qui-n-existe-pas",
+    /* `image` est une chaîne au schéma : Astro construit sans broncher et la page sert une
+       image morte. Seule une confrontation au disque peut le voir. */
+    fichier: "packages/ui/src/content/guides/en/pet-travel-documents.md",
+    cherche: 'image: "/travel-hub/pet-travel-documents.webp"',
+    remplace: 'image: "/travel-hub/pet-travel-documents-disparue.webp"',
+    harnais: "test-couvertures-guides.mjs",
+    attendu: "image INTROUVABLE sur le disque",
+  },
+  {
+    nom: "un texte alternatif portugais est recopié de l'anglais",
+    id: "un-texte-alternatif-portugais-est-recopie-de-l-anglais",
+    /* Le `alt` ne s'adresse qu'à qui NE VOIT PAS l'image — donc au seul lecteur qui ne pourra
+       jamais s'apercevoir qu'on lui parle anglais. C'est la forme la plus silencieuse du défaut
+       que le Travel Hub vient de fermer sur ses rubriques. */
+    fichier: "packages/ui/src/content/guides/pt/documentos-de-viagem-para-cachorro.md",
+    cherche: '  alt: "Um passaporte aberto coberto de carimbos de visto, sobre uma pasta"',
+    remplace: '  alt: "An open passport covered in visa stamps, resting on a folder"',
+    harnais: "test-couvertures-guides.mjs",
+    attendu: "partagent le MÊME texte alternatif",
+  },
+  {
+    nom: "deux langues d'un même guide montrent deux photos différentes",
+    id: "deux-langues-d-un-meme-guide-montrent-deux-photos-diffe",
+    /* Une couverture est un fait éditorial attaché au GUIDE, pas à sa traduction. Deux images
+       pour un même article signalent presque toujours une reprise partielle — et l'image posée
+       ici existe bel et bien, si bien que le contrôle du disque, lui, resterait vert. */
+    fichier: "packages/ui/src/content/guides/es/documentos-de-viaje-para-perro.md",
+    cherche: 'image: "/travel-hub/pet-travel-documents.webp"',
+    remplace: 'image: "/travel-hub/booking-a-pet-flight.webp"',
+    harnais: "test-couvertures-guides.mjs",
+    attendu: "images différentes selon la langue",
+  },
 ];
 
 const dire = (m) => process.stdout.write(m + "\n");

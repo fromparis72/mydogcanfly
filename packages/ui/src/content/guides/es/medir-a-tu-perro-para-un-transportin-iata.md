@@ -9,6 +9,9 @@ lastmod: "2026-08-19T09:00:00+02:00"
 author: "Camille Roussel"
 category: "travel"
 tags: ["perro", "avión", "transportín", "IATA"]
+cover:
+  image: "/travel-hub/measuring-your-dog-for-a-crate.webp"
+  alt: "Un border collie tumbado en un transportín de rejilla abierto, sobre una manta"
 enbref:
   - "📏 Cuatro medidas: **longitud, altura a la cruz, altura de pie, anchura**"
   - "🧍 Mide al perro **de pie**, nunca tumbado"

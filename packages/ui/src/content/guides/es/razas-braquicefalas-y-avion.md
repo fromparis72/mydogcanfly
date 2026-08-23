@@ -9,6 +9,9 @@ lastmod: "2026-08-19T09:00:00+02:00"
 author: "Camille Roussel"
 category: "travel"
 tags: ["perro", "avión", "razas", "braquicéfalo"]
+cover:
+  image: "/travel-hub/snub-nosed-breeds-and-flying.webp"
+  alt: "Un bulldog francés tumbado sobre una piel de oveja, con el hocico corto bien visible"
 enbref:
   - "🐽 La restricción apunta al **hocico corto**, no a una lista fija de razas"
   - "🌡️ Calor y estrés multiplican el riesgo: de ahí los **rechazos en bodega**"

@@ -9,6 +9,9 @@ lastmod: "2026-08-19T09:00:00+02:00"
 author: "Camille Roussel"
 category: "travel"
 tags: ["cachorro", "avião", "reserva", "companhia aérea"]
+cover:
+  image: "/travel-hub/booking-a-pet-flight.webp"
+  alt: "Um pequeno lulu da pomerânia de óculos, em pé diante de um tablet sobre uma mesa de madeira"
 enbref:
   - "🎟️ O animal é uma **reserva separada**, não uma opção da sua"
   - "🔢 As vagas na cabine são **limitadas por voo** — em geral pouquíssimas"

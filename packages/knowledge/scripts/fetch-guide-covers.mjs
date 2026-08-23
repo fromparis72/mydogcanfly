@@ -10,7 +10,7 @@
  *   1. lit `cover.image` dans les 62 guides français ;
  *   2. télécharge chaque photo (curl), la redimensionne à 1600 px de large (sips sur macOS,
  *      ImageMagick sinon) et l'écrit dans `packages/ui/public/travel-hub/<key>.jpg` ;
- *   3. réécrit `cover.image` dans les fichiers fr ET en pour pointer vers le fichier local.
+ *   3. réécrit `cover.image` dans les QUATRE langues pour pointer vers le fichier local.
  *
  * Il est ré-exécutable : une photo déjà présente n'est pas retéléchargée. En cas d'échec sur
  * une URL, le guide concerné GARDE son lien Unsplash — mieux vaut une image fragile qu'une
@@ -25,8 +25,12 @@ import { readFileSync, writeFileSync, mkdirSync, existsSync, readdirSync, statSy
 import { execFileSync } from "node:child_process";
 import { join } from "node:path";
 
+/* LES QUATRE LANGUES, et non plus deux. Ce script ne connaissait que `fr` et `en` : il lisait
+ * les URL dans le français et repointait `[FR, EN]`. Le lot 2 a créé `es` et `pt` — 144 guides
+ * de plus — et le script ne les a pas suivis. Une couverture rapatriée y serait restée pointée
+ * sur Unsplash, c'est-à-dire sur l'URL fragile que ce script existe pour supprimer. */
+const LANGUES = ["en", "fr", "es", "pt"].map((l) => `packages/ui/src/content/guides/${l}`);
 const FR = "packages/ui/src/content/guides/fr";
-const EN = "packages/ui/src/content/guides/en";
 const DEST = "packages/ui/public/travel-hub";
 const dry = process.argv.includes("--dry");
 
@@ -74,7 +78,7 @@ for (const f of fichiers) {
 
 /* Réécriture des deux langues, et seulement pour les photos réellement présentes. */
 let reecrits = 0;
-if (!dry) for (const dir of [FR, EN]) {
+if (!dry) for (const dir of LANGUES) {
   for (const f of readdirSync(dir).filter((f) => f.endsWith(".md"))) {
     const p = join(dir, f);
     const t = readFileSync(p, "utf-8");
