@@ -106,6 +106,24 @@ il reste lacunaire, et une provenance lacunaire ne devient pas complète en atte
 l'auteur. La licence standard n'exige pas l'attribution ; le risque n'est pas juridique mais
 **probatoire** — si l'origine déclarée s'avérait inexacte, rien ne permettrait de le savoir.
 
+> **ARBITRAGE DU PROPRIÉTAIRE, 23/08/2026 : dette ACCEPTÉE, recherche abandonnée.**
+>
+> Philippe a tranché : les URL Unsplash ne seront pas recherchées. Ce point cesse donc d'être une
+> action en attente et devient un **état choisi**, ce qui n'est pas la même chose et ne doit pas
+> se relire comme un oubli dans six mois.
+>
+> Conséquences, écrites pour qu'elles soient tenues :
+>
+> - les dix entrées **restent à `verifie: false`**, définitivement en l'état ;
+> - le contrat du manifeste n'a **rien à changer** — il est déjà exact, il distingue le déclaré de
+>   l'établi et interdit de relever le statut sans auteur, URL et vérificateur ;
+> - **aucun lot n'est ouvert** pour ce point ;
+> - si un tiers conteste un jour l'origine d'une image, la réponse est celle du manifeste : origine
+>   déclarée par le propriétaire, non vérifiée, et le dépôt le dit depuis le premier jour.
+>
+> Ce qui reste interdit, et le demeure : passer une entrée à `verifie: true` sans les quatre champs
+> exigés. Renoncer à chercher n'autorise pas à déclarer trouvé.
+
 ### P0-3 · Outil de chaleur locale
 
 | constat | mesure |
@@ -278,6 +296,9 @@ C'est le seul lot dont un autre dépend.
   de la matrice doit échouer ; une matrice vide doit échouer.
 - **Ne fait pas :** ne corrige aucune traduction. Il rend l'état lisible et empêche de le
   surestimer.
+
+> **Aucun lot pour la provenance des couvertures (P0-2).** Le propriétaire a arbitré le 23/08/2026
+> en faveur de l'état actuel : dette acceptée, recherche abandonnée, manifeste inchangé.
 
 ### Lot F — Arbitrage de l'outil de chaleur *(conception avant code)*
 
