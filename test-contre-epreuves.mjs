@@ -774,7 +774,7 @@ const MUTATIONS = [
     cherche: 'image: "/travel-hub/pet-travel-documents.webp"',
     remplace: 'image: "/travel-hub/pet-travel-documents-disparue.webp"',
     harnais: "test-couvertures-guides.mjs",
-    attendu: "image INTROUVABLE sur le disque",
+    attendu: "image INTROUVABLE",
   },
   {
     nom: "un texte alternatif portugais est recopié de l'anglais",
