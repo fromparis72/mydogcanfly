@@ -122,6 +122,15 @@ jobs:
       - name: Contrat de provenance (attaques et témoins)
         run: npm run test:provenance
 
+      # LE CATALOGUE DE CONTRE-ÉPREUVES A-T-IL TOUJOURS SES GARANTIES ? Ce contrôle ne joue AUCUNE
+      # mutation : il confronte les identifiants du catalogue à leur référence versionnée et exige
+      # une bijection. Il ferme le trou trouvé le 23/08/2026 — une garantie supprimée proprement
+      # laissait le runner conclure « 40 sur 40 », avec succès. Deux secondes, et il tourne ici
+      # plutôt que dans le workflow hebdomadaire : une disparition doit se voir sur la pull request
+      # qui la produit, pas le lundi suivant.
+      - name: Le catalogue de contre-épreuves correspond à sa référence
+        run: npm run contre-epreuves -- --contrat
+
       # ── Build ────────────────────────────────────────────────────────────────────────────
       # TOUJOURS RÉDUIT ICI, sur pull request comme sur main. Le site entier est construit par le
       # job `site-complet`, qui tourne EN PARALLÈLE et sur les mêmes déclencheurs.
@@ -245,6 +254,19 @@ jobs:
       # contrôle qui a conclu.
       - name: L'audit imprime ce qu'il a vu
         run: npm run test:audit-obs
+
+      # ─────────────────────────────────────────────────────────────────────────────────────
+      # CE QUE LE SITE ANNONCE DOIT EXISTER. Trois contrôles qui ne savent lire que le site entier,
+      # et qui arrivent avec le lot qui apporte leurs scripts — jamais une étape ne nomme une
+      # commande qui n'existe pas encore.
+      - name: Ce que le site annonce existe (hreflang + sitemaps)
+        run: npm run test:annonce
+
+      - name: Tout lien interne mène quelque part
+        run: npm run test:liens
+
+      - name: Les pages de guides affichent ce qu'elles annoncent
+        run: npm run test:guide-page
 
       # LES CONTRE-ÉPREUVES QUI LISENT LE SITE COMPLET. Elles ne reconstruisent rien — elles mutent
       # ce qui LIT le site, pas le site — et se servent donc du `dist` que ce job vient de produire.

@@ -21,7 +21,10 @@
     "test:mel": "tsx test-mel-import.mjs",
     "test:breed": "tsx test-breed-restrictions.mjs",
     "test:date": "tsx test-worker-date.mjs && tsx test-tristate-climat.mjs",
-    "test:built-ui": "node test-fiche-harness.cjs && node test-flightfinder-harness.cjs && node test-heat-harness.cjs && node test-destinations-harness.cjs && node test-t0b3a-avis-dom.cjs",
+    "test:built-ui": "node test-fiche-harness.cjs && node test-flightfinder-harness.cjs && node test-heat-harness.cjs && node test-destinations-harness.cjs && node test-t0b3a-avis-dom.cjs && node test-crate-harness.cjs && node test-pet-relief-harness.cjs",
+    "test:annonce": "node test-annonce-du-site.mjs",
+    "test:liens": "node test-liens-internes.mjs",
+    "test:guide-page": "node test-page-guide.mjs",
     "test:entities": "tsx test-entity-pages-harness.mjs",
     "test:entities:complet": "HARNAIS_PORTEE=complet NODE_OPTIONS=--max-old-space-size=1024 tsx test-entity-pages-harness.mjs",
     "build": "node packages/knowledge/scripts/lib/require-node.mjs \"le build\" && npm -w @mydogcanfly/ui run build",
@@ -43,7 +46,10 @@
     "mesure:t0b3b": "node mesures/t0b3b-referentiel-brachy/outils/reproduire.mjs",
     "mesure:t0b3c": "node mesures/t0b3c-seuils-de-soute/outils/reproduire.mjs",
     "mesure:t0b3d": "node mesures/t0b3d-poids-du-contenant/outils/reproduire.mjs",
-    "mesure:t0b3e": "node mesures/t0b3e-ce-que-le-site-montre/outils/reproduire.mjs"
+    "mesure:t0b3e": "node mesures/t0b3e-ce-que-le-site-montre/outils/reproduire.mjs",
+    "mesure:t0b3f": "node mesures/t0b3f-ce-que-les-regles-affirment/outils/reproduire.mjs",
+    "mesure:t0b3g": "node mesures/t0b3g-ce-que-les-outils-servent/outils/reproduire.mjs",
+    "mesure:t0b3h": "node mesures/t0b3h-ce-que-le-site-dit-en-portugais/outils/reproduire.mjs"
   },
   "devDependencies": {
     "@types/node": "^22.5.0",

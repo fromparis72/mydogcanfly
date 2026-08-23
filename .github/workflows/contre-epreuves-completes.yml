@@ -1,0 +1,93 @@
+name: Contre-épreuves complètes
+
+# Permissions minimales : ce workflow lit le dépôt et n'écrit rien.
+permissions:
+  contents: read
+
+# POURQUOI CE WORKFLOW EXISTE, SÉPARÉ DE LA CI.
+#
+# LE COÛT RÉEL, RELEVÉ ET NON SUPPOSÉ. Ce commentaire annonçait « un build complet par mutation,
+# environ cent minutes » pour quatre mutations. C'était faux, et Codex l'a relevé le 23/08/2026 :
+# le catalogue porte deux mutations qui LISENT un site complet — elles n'en reconstruisent aucun —
+# et deux mutations d'interface, qui reconstruisent un site RÉDUIT. Aucune n'exige de rebâtir le
+# site entier. Le déroulé exact est donc : un build complet initial, deux builds réduits pendant
+# les mutations d'interface, un build réduit de restauration.
+#
+# Ce qui reste vrai : ce build complet initial ne se justifie pas à chaque petite pull request, et
+# ces garanties étaient jusqu'ici lancées À LA MAIN — c'est-à-dire oubliables, exactement ce que
+# l'en-tête de `test-contre-epreuves.mjs` reproche aux contre-épreuves manuelles.
+#
+# TROIS DÉCLENCHEURS, ET LE TROISIÈME RÈGLE UN PROBLÈME PRÉCIS :
+#   · `schedule` — une fois par semaine, sans que personne y pense ;
+#   · `workflow_dispatch` — à la demande… mais GitHub ne le propose QUE si ce fichier existe déjà
+#     sur la branche par défaut. Il ne peut donc pas servir à exercer ce workflow sur la pull
+#     request qui l'APPORTE : c'est précisément là qu'il naît.
+#   · `pull_request` conditionné à l'étiquette `contre-epreuves-completes` — un workflow déclenché
+#     par `pull_request` s'exécute depuis la copie portée par la BRANCHE, donc avant d'exister sur
+#     `main`. L'étiquette évite d'imposer deux heures de build à chaque petite pull request, tout
+#     en rendant l'exercice possible et TRAÇABLE : il suffit de la poser.
+#
+# IL JOUE LE CATALOGUE ENTIER, ET IL LE PROUVE. La version précédente lançait `--dom --complet`
+# sous un titre annonçant « toutes les garanties » : c'était faux de deux mutations, celles qui
+# LISENT un site complet déjà construit et relèvent d'un troisième drapeau. Le runner les déclarait
+# « non jouées » puis sortait en 0 — un passage vert qui saute deux garanties en se disant complet.
+# `--tout` allume les trois portées ET ÉCHOUE si le compte des non-jouées n'est pas nul.
+on:
+  schedule:
+    # Lundi 04:00 UTC — hors des heures où quelqu'un attend un retour de CI.
+    - cron: "0 4 * * 1"
+  workflow_dispatch:
+  # L'étiquette est lue à CHAQUE événement de pull request (`labeled` compris), sans quoi la poser
+  # après coup ne déclencherait rien et il faudrait un commit vide pour l'exercer.
+  pull_request:
+    types: [opened, synchronize, reopened, labeled]
+
+jobs:
+  toutes:
+    name: Le catalogue entier, y compris ce qui exige le site complet
+    # AUCUN NOMBRE DANS CE NOM. Il annonçait « les 37 garanties » alors que le catalogue en compte
+    # davantage : un chiffre écrit ici dérive en silence et finit par mentir, puisque rien ne le
+    # confronte au catalogue. Le décompte exact est publié par le runner, qui, lui, le calcule.
+    if: >-
+      github.event_name != 'pull_request'
+      || contains(github.event.pull_request.labels.*.name, 'contre-epreuves-completes')
+    runs-on: ubuntu-latest
+    # Un build complet puis trois réduits, plus les harnais : la marge reste large à dessein, un
+    # dépassement laisserait l'arbre muté sur le runner et le rapport sans conclusion.
+    timeout-minutes: 180
+
+    steps:
+      # `fetch-depth: 0` — MÊME EXIGENCE QUE DANS `ci.yml`, ET POUR LA MÊME RAISON.
+      # `--tout` joue les mutations qui visent les dossiers de mesure ; ceux-ci lisent leur état
+      # « avant » au commit de base par `git show <sha>:<chemin>`. Sur le clone superficiel que
+      # `actions/checkout` fait par défaut, ce commit n'existe pas. Ce troisième checkout avait été
+      # oublié le 23/08/2026 : le défaut corrigé dans `ci.yml` se serait reproduit ici dès la pose
+      # de l'étiquette, une heure de build plus tard.
+      #
+      # L'historique entier importe doublement ici : les bases de T0-B3-b, c, d, e et du dossier
+      # moteur ne vivent que sur la branche `t0b3-source-fige`, conservée exprès (voir
+      # `mesures/DEPENDANCE-HISTORIQUE.md`).
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          fetch-depth: 0
+
+      - name: Node 22 (depuis .nvmrc)
+        uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020 # v7.0.0
+        with:
+          node-version-file: .nvmrc
+          cache: npm
+
+      - name: Installation reproductible
+        run: npm ci
+
+      # LE SITE COMPLET D'ABORD, et ce n'est pas facultatif : les mutations qui le LISENT ne le
+      # reconstruisent pas. Sans ce build, `--tout` refuse de démarrer plutôt que de faire échouer
+      # leurs harnais faute de matière — ce qui aurait l'air d'une garantie qui ne porte pas.
+      - name: Site complet (les mutations qui le lisent en ont besoin)
+        run: npm run build:preview -- --api-base=https://00000000-mydogcanfly-api-preview.fromparis.workers.dev
+
+      # Le runner exige un arbre PROPRE au départ : il écrit dans les fichiers du dépôt et les
+      # restaure par `git checkout`. Il vérifie aussi que l'arbre est rendu intact à la fin, et,
+      # sous `--tout`, que RIEN n'a été laissé de côté.
+      - name: Chaque garantie doit savoir échouer — catalogue entier
+        run: npm run contre-epreuves -- --tout

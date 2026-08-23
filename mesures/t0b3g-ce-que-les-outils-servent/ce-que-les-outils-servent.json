@@ -1,0 +1,3683 @@
+{
+  "base": "5888c45c56d92288faf7d4ec589f1b9c3ca98674",
+  "perimetre": {
+    "routes": [
+      "best-carriers.astro",
+      "best-crates.astro",
+      "crate.astro",
+      "destinations.astro",
+      "fiche.astro",
+      "heat.astro",
+      "pet-relief.astro",
+      "timeline.astro"
+    ],
+    "fichiers": [
+      "packages/ui/src/components/Breadcrumb.astro",
+      "packages/ui/src/components/CrateCalculator.astro",
+      "packages/ui/src/components/DestinationFinder.astro",
+      "packages/ui/src/components/HeatCalculator.astro",
+      "packages/ui/src/components/PageActions.astro",
+      "packages/ui/src/components/PetReliefFinder.astro",
+      "packages/ui/src/components/RelatedTools.astro",
+      "packages/ui/src/components/TravelTimeline.astro",
+      "packages/ui/src/pages/[...loc]/tools/best-carriers.astro",
+      "packages/ui/src/pages/[...loc]/tools/best-crates.astro",
+      "packages/ui/src/pages/[...loc]/tools/crate.astro",
+      "packages/ui/src/pages/[...loc]/tools/destinations.astro",
+      "packages/ui/src/pages/[...loc]/tools/fiche.astro",
+      "packages/ui/src/pages/[...loc]/tools/heat.astro",
+      "packages/ui/src/pages/[...loc]/tools/pet-relief.astro",
+      "packages/ui/src/pages/[...loc]/tools/timeline.astro"
+    ],
+    "exclus": {
+      "fichiers": [
+        "packages/ui/src/layouts/Base.astro"
+      ],
+      "motif": "gabarit de page commun à tout le site, pas aux outils"
+    }
+  },
+  "service": [
+    {
+      "outil": "best-carriers",
+      "etat": "attente",
+      "composants": [],
+      "noindex": false
+    },
+    {
+      "outil": "best-crates",
+      "etat": "attente",
+      "composants": [],
+      "noindex": false
+    },
+    {
+      "outil": "crate",
+      "etat": "servi",
+      "composants": [
+        "packages/ui/src/components/CrateCalculator.astro"
+      ],
+      "noindex": false
+    },
+    {
+      "outil": "destinations",
+      "etat": "servi",
+      "composants": [
+        "packages/ui/src/components/DestinationFinder.astro"
+      ],
+      "noindex": false
+    },
+    {
+      "outil": "fiche",
+      "etat": "retire",
+      "composants": [
+        "packages/ui/src/components/PageActions.astro"
+      ],
+      "noindex": true
+    },
+    {
+      "outil": "heat",
+      "etat": "servi",
+      "composants": [
+        "packages/ui/src/components/HeatCalculator.astro"
+      ],
+      "noindex": false
+    },
+    {
+      "outil": "pet-relief",
+      "etat": "servi",
+      "composants": [
+        "packages/ui/src/components/PetReliefFinder.astro"
+      ],
+      "noindex": false
+    },
+    {
+      "outil": "timeline",
+      "etat": "retire",
+      "composants": [
+        "packages/ui/src/components/TravelTimeline.astro"
+      ],
+      "noindex": true
+    }
+  ],
+  "annonce": [
+    {
+      "outil": "best-carriers",
+      "auSitemap": true,
+      "lieDepuisTools": true
+    },
+    {
+      "outil": "best-crates",
+      "auSitemap": true,
+      "lieDepuisTools": true
+    },
+    {
+      "outil": "crate",
+      "auSitemap": true,
+      "lieDepuisTools": true
+    },
+    {
+      "outil": "destinations",
+      "auSitemap": true,
+      "lieDepuisTools": true
+    },
+    {
+      "outil": "fiche",
+      "auSitemap": false,
+      "lieDepuisTools": false
+    },
+    {
+      "outil": "heat",
+      "auSitemap": true,
+      "lieDepuisTools": true
+    },
+    {
+      "outil": "pet-relief",
+      "auSitemap": true,
+      "lieDepuisTools": true
+    },
+    {
+      "outil": "timeline",
+      "auSitemap": false,
+      "lieDepuisTools": false
+    }
+  ],
+  "langue": {
+    "total": 355,
+    "occurrencesTexte": 355,
+    "compte": {
+      "servi": 322,
+      "es-anglais": 0,
+      "pt-anglais": 33,
+      "es-et-pt-anglais": 0,
+      "cle-non-litterale": 0,
+      "illisible": 0
+    },
+    "parOutil": {
+      "best-carriers": {
+        "servi": 5,
+        "es-anglais": 0,
+        "pt-anglais": 0,
+        "es-et-pt-anglais": 0,
+        "cle-non-litterale": 0,
+        "illisible": 0
+      },
+      "best-crates": {
+        "servi": 5,
+        "es-anglais": 0,
+        "pt-anglais": 0,
+        "es-et-pt-anglais": 0,
+        "cle-non-litterale": 0,
+        "illisible": 0
+      },
+      "crate": {
+        "servi": 49,
+        "es-anglais": 0,
+        "pt-anglais": 0,
+        "es-et-pt-anglais": 0,
+        "cle-non-litterale": 0,
+        "illisible": 0
+      },
+      "destinations": {
+        "servi": 62,
+        "es-anglais": 0,
+        "pt-anglais": 23,
+        "es-et-pt-anglais": 0,
+        "cle-non-litterale": 0,
+        "illisible": 0
+      },
+      "fiche": {
+        "servi": 85,
+        "es-anglais": 0,
+        "pt-anglais": 0,
+        "es-et-pt-anglais": 0,
+        "cle-non-litterale": 0,
+        "illisible": 0
+      },
+      "heat": {
+        "servi": 31,
+        "es-anglais": 0,
+        "pt-anglais": 9,
+        "es-et-pt-anglais": 0,
+        "cle-non-litterale": 0,
+        "illisible": 0
+      },
+      "pet-relief": {
+        "servi": 16,
+        "es-anglais": 0,
+        "pt-anglais": 0,
+        "es-et-pt-anglais": 0,
+        "cle-non-litterale": 0,
+        "illisible": 0
+      },
+      "timeline": {
+        "servi": 63,
+        "es-anglais": 0,
+        "pt-anglais": 0,
+        "es-et-pt-anglais": 0,
+        "cle-non-litterale": 0,
+        "illisible": 0
+      }
+    },
+    "sites": [
+      {
+        "chemin": "packages/ui/src/pages/[...loc]/tools/best-carriers.astro",
+        "ligne": 16,
+        "args": 3,
+        "etat": "servi",
+        "cle": "The best cabin carriers 2026",
+        "esIdentique": false,
+        "ptIdentique": false
+      },
+      {
+        "chemin": "packages/ui/src/pages/[...loc]/tools/best-carriers.astro",
+        "ligne": 17,
+        "args": 3,
+        "etat": "servi",
+        "cle": "Our ranking of the best soft cabin carriers is coming soon: a selection based on comfort, ventilation, under-seat compliance and airline acceptance — with verified sources.",
+        "esIdentique": false,
+        "ptIdentique": false
+      },
+      {
+        "chemin": "packages/ui/src/pages/[...loc]/tools/best-carriers.astro",
+        "ligne": 19,
+        "args": 3,
+        "etat": "servi",
+        "cle": "The best soft cabin carriers for dogs: comfort, ventilation, under-seat compliance and airline acceptance. Ranking coming soon.",
+        "esIdentique": false,
+        "ptIdentique": false
+      },
+      {
+        "chemin": "packages/ui/src/pages/[...loc]/tools/best-carriers.astro",
+        "ligne": 28,
+        "args": 3,
+        "etat": "servi",
+        "cle": "🏆 Ranking in preparation — we will only publish models that are genuinely reviewed and sourced (no fabricated recommendations).",
+        "esIdentique": false,
+        "ptIdentique": false
+      },
+      {
+        "chemin": "packages/ui/src/pages/[...loc]/tools/best-carriers.astro",
+        "ligne": 29,
+        "args": 3,
+        "etat": "servi",
+        "cle": "In the meantime, check whether your dog is cabin-eligible",
+        "esIdentique": false,
+        "ptIdentique": false
+      },
+      {
+        "chemin": "packages/ui/src/pages/[...loc]/tools/best-crates.astro",
+        "ligne": 16,
+        "args": 3,
+        "etat": "servi",
+        "cle": "The best travel crates 2026",
+        "esIdentique": false,
+        "ptIdentique": false
+      },
+      {
+        "chemin": "packages/ui/src/pages/[...loc]/tools/best-crates.astro",
+        "ligne": 17,
+        "args": 3,
+        "etat": "servi",
+        "cle": "Our ranking of the best IATA-compliant travel crates is coming soon: a selection based on safety, ventilation, sturdiness and airline compliance — with verified sources.",
+        "esIdentique": false,
+        "ptIdentique": false
+      },
+      {
+        "chemin": "packages/ui/src/pages/[...loc]/tools/best-crates.astro",
+        "ligne": 19,
+        "args": 3,
+        "etat": "servi",
+        "cle": "The best IATA-compliant dog travel crates: safety, ventilation, sturdiness and airline compliance. Ranking coming soon.",
+        "esIdentique": false,
+        "ptIdentique": false
+      },
+      {
+        "chemin": "packages/ui/src/pages/[...loc]/tools/best-crates.astro",
+        "ligne": 28,
+        "args": 3,
+        "etat": "servi",
+        "cle": "🏆 Ranking in preparation — we will only publish models that are genuinely reviewed and sourced (no fabricated recommendations).",
+        "esIdentique": false,
+        "ptIdentique": false
+      },
+      {
+        "chemin": "packages/ui/src/pages/[...loc]/tools/best-crates.astro",
+        "ligne": 29,
+        "args": 3,
+        "etat": "servi",
+        "cle": "In the meantime, calculate the ideal crate size for your dog",
+        "esIdentique": false,
+        "ptIdentique": false
+      },
+      {
+        "chemin": "packages/ui/src/pages/[...loc]/tools/crate.astro",
+        "ligne": 18,
+        "args": 3,
+        "etat": "servi",
+        "cle": "Which travel crate size for my dog?",
+        "esIdentique": false,
+        "ptIdentique": false
+      },
+      {
+        "chemin": "packages/ui/src/pages/[...loc]/tools/crate.astro",
+        "ligne": 19,
+        "args": 3,
+        "etat": "servi",
+        "cle": "Measure your dog (length + height) and get the ideal IATA crate size — safe and comfortable — with a cabin-or-hold check by airline.",
+        "esIdentique": false,
+        "ptIdentique": false
+      },
+      {
+        "chemin": "packages/ui/src/pages/[...loc]/tools/crate.astro",
+        "ligne": 71,
+        "args": 3,
+        "etat": "servi",
+        "cle": "Home",
+        "esIdentique": false,
+        "ptIdentique": false
+      },
+      {
+        "chemin": "packages/ui/src/pages/[...loc]/tools/crate.astro",
+        "ligne": 73,
+        "args": 3,
+        "etat": "servi",
+        "cle": "Crate size",
+        "esIdentique": false,
+        "ptIdentique": false
+      },
+      {
+        "chemin": "packages/ui/src/pages/[...loc]/tools/crate.astro",
+        "ligne": 81,
+        "args": 3,
+        "etat": "servi",
+        "cle": "Frequently asked questions",
+        "esIdentique": false,
+        "ptIdentique": false
+      },
+      {
+        "chemin": "packages/ui/src/components/CrateCalculator.astro",
+        "ligne": 80,
+        "args": 3,
+        "etat": "servi",
+        "cle": "Calculating…",
+        "esIdentique": false,
+        "ptIdentique": false
+      },
+      {
+        "chemin": "packages/ui/src/components/CrateCalculator.astro",
+        "ligne": 81,
+        "args": 3,
+        "etat": "servi",
+        "cle": "Enter your dog's length, height and weight (or pick a breed to pre-fill an estimate).",
+        "esIdentique": false,
+        "ptIdentique": false
+      },
+      {
+        "chemin": "packages/ui/src/components/CrateCalculator.astro",
+        "ligne": 82,
+        "args": 3,
+        "etat": "servi",
+        "cle": "Estimate from breed — replace the dimensions and the weight with your dog's real values.",
+        "esIdentique": false,
+        "ptIdentique": false
+      },
+      {
+        "chemin": "packages/ui/src/components/CrateCalculator.astro",
+        "ligne": 83,
+        "args": 3,
+        "etat": "servi",
+        "cle": "Calculated minimum",
+        "esIdentique": false,
+        "ptIdentique": false
+      },
+      {
+        "chemin": "packages/ui/src/components/CrateCalculator.astro",
+        "ligne": 84,
+        "args": 3,
+        "etat": "servi",
+        "cle": "Estimated minimum interior dimensions from your measurements. Elbow height and shoulder width are estimated — check that your dog can stand up, turn around and lie down comfortably.",
+        "esIdentique": false,
+        "ptIdentique": false
+      },
+      {
+        "chemin": "packages/ui/src/components/CrateCalculator.astro",
+        "ligne": 85,
+        "args": 3,
+        "etat": "servi",
+        "cle": "Snub-nosed breed: MyDogCanFly adds a +10% comfort margin for breathing ease — this is our own margin, not a universal IATA formula.",
+        "esIdentique": false,
+        "ptIdentique": false
+      },
+      {
+        "chemin": "packages/ui/src/components/CrateCalculator.astro",
+        "ligne": 86,
+        "args": 3,
+        "etat": "servi",
+        "cle": "Recommended size",
+        "esIdentique": false,
+        "ptIdentique": false
+      },
+      {
+        "chemin": "packages/ui/src/components/CrateCalculator.astro",
+        "ligne": 87,
+        "args": 3,
+        "etat": "servi",
+        "cle": "Indicative series — always check the real crate's interior dimensions.",
+        "esIdentique": false,
+        "ptIdentique": false
+      },
+      {
+        "chemin": "packages/ui/src/components/CrateCalculator.astro",
+        "ligne": 88,
+        "args": 3,
+        "etat": "servi",
+        "cle": "Larger than a standard 700 — a custom/XXL crate is needed.",
+        "esIdentique": false,
+        "ptIdentique": false
+      },
+      {
+        "chemin": "packages/ui/src/components/CrateCalculator.astro",
+        "ligne": 89,
+        "args": 3,
+        "etat": "servi",
+        "cle": "Cabin or hold?",
+        "esIdentique": false,
+        "ptIdentique": false
+      },
+      {
+        "chemin": "packages/ui/src/components/CrateCalculator.astro",
+        "ligne": 90,
+        "args": 3,
+        "etat": "servi",
+        "cle": "Cabin-eligible",
+        "esIdentique": false,
+        "ptIdentique": false
+      },
+      {
+        "chemin": "packages/ui/src/components/CrateCalculator.astro",
+        "ligne": 91,
+        "args": 3,
+        "etat": "servi",
+        "cle": "Cabin-eligible by weight",
+        "esIdentique": false,
+        "ptIdentique": false
+      },
+      {
+        "chemin": "packages/ui/src/components/CrateCalculator.astro",
+        "ligne": 92,
+        "args": 3,
+        "etat": "servi",
+        "cle": "check your soft carrier meets the airline's cabin dimensions",
+        "esIdentique": false,
+        "ptIdentique": false
+      },
+      {
+        "chemin": "packages/ui/src/components/CrateCalculator.astro",
+        "ligne": 93,
+        "args": 3,
+        "etat": "servi",
+        "cle": "Cabin allowed up to {kg} — enter the weight to confirm",
+        "esIdentique": false,
+        "ptIdentique": false
+      },
+      {
+        "chemin": "packages/ui/src/components/CrateCalculator.astro",
+        "ligne": 94,
+        "args": 3,
+        "etat": "servi",
+        "cle": "Cabin accepted — check weight & carrier size on the airline's page",
+        "esIdentique": false,
+        "ptIdentique": false
+      },
+      {
+        "chemin": "packages/ui/src/components/CrateCalculator.astro",
+        "ligne": 95,
+        "args": 3,
+        "etat": "servi",
+        "cle": "soft carrier, dog lies down",
+        "esIdentique": false,
+        "ptIdentique": false
+      },
+      {
+        "chemin": "packages/ui/src/components/CrateCalculator.astro",
+        "ligne": 96,
+        "args": 3,
+        "etat": "servi",
+        "cle": "Too big for the cabin carrier — travels in the hold",
+        "esIdentique": false,
+        "ptIdentique": false
+      },
+      {
+        "chemin": "packages/ui/src/components/CrateCalculator.astro",
+        "ligne": 97,
+        "args": 3,
+        "etat": "servi",
+        "cle": "Over the cabin weight limit — hold required",
+        "esIdentique": false,
+        "ptIdentique": false
+      },
+      {
+        "chemin": "packages/ui/src/components/CrateCalculator.astro",
+        "ligne": 98,
+        "args": 3,
+        "etat": "servi",
+        "cle": "allows dogs to travel in the hold",
+        "esIdentique": false,
+        "ptIdentique": false
+      },
+      {
+        "chemin": "packages/ui/src/components/CrateCalculator.astro",
+        "ligne": 99,
+        "args": 3,
+        "etat": "servi",
+        "cle": "Hold-eligible too — both are possible",
+        "esIdentique": false,
+        "ptIdentique": false
+      },
+      {
+        "chemin": "packages/ui/src/components/CrateCalculator.astro",
+        "ligne": 100,
+        "args": 3,
+        "etat": "servi",
+        "cle": "Hold travel — check the airline's page for its conditions",
+        "esIdentique": false,
+        "ptIdentique": false
+      },
+      {
+        "chemin": "packages/ui/src/components/CrateCalculator.astro",
+        "ligne": 101,
+        "args": 3,
+        "etat": "servi",
+        "cle": "This airline does not accept this dog in the hold — check alternatives",
+        "esIdentique": false,
+        "ptIdentique": false
+      },
+      {
+        "chemin": "packages/ui/src/components/CrateCalculator.astro",
+        "ligne": 105,
+        "args": 3,
+        "etat": "servi",
+        "cle": "{name} does not transport pet dogs in the cabin or the hold. Only certain eligible assistance dogs are accepted, under conditions.",
+        "esIdentique": false,
+        "ptIdentique": false
+      },
+      {
+        "chemin": "packages/ui/src/components/CrateCalculator.astro",
+        "ligne": 106,
+        "args": 3,
+        "etat": "servi",
+        "cle": "Cabin dimensions not published for this airline — verify directly.",
+        "esIdentique": false,
+        "ptIdentique": false
+      },
+      {
+        "chemin": "packages/ui/src/components/CrateCalculator.astro",
+        "ligne": 107,
+        "args": 3,
+        "etat": "servi",
+        "cle": "Typical hard cabin carrier max is about {dims} — most airlines only allow small dogs in cabin.",
+        "esIdentique": false,
+        "ptIdentique": false
+      },
+      {
+        "chemin": "packages/ui/src/components/CrateCalculator.astro",
+        "ligne": 108,
+        "args": 3,
+        "etat": "servi",
+        "cle": "Safety & comfort",
+        "esIdentique": false,
+        "ptIdentique": false
+      },
+      {
+        "chemin": "packages/ui/src/components/CrateCalculator.astro",
+        "ligne": 125,
+        "args": 3,
+        "etat": "servi",
+        "cle": "Breed (optional — pre-fills an estimate)",
+        "esIdentique": false,
+        "ptIdentique": false
+      },
+      {
+        "chemin": "packages/ui/src/components/CrateCalculator.astro",
+        "ligne": 126,
+        "args": 3,
+        "etat": "servi",
+        "cle": "Type a breed…",
+        "esIdentique": false,
+        "ptIdentique": false
+      },
+      {
+        "chemin": "packages/ui/src/components/CrateCalculator.astro",
+        "ligne": 127,
+        "args": 3,
+        "etat": "servi",
+        "cle": "Airline (optional)",
+        "esIdentique": false,
+        "ptIdentique": false
+      },
+      {
+        "chemin": "packages/ui/src/components/CrateCalculator.astro",
+        "ligne": 128,
+        "args": 3,
+        "etat": "servi",
+        "cle": "Any airline",
+        "esIdentique": false,
+        "ptIdentique": false
+      },
+      {
+        "chemin": "packages/ui/src/components/CrateCalculator.astro",
+        "ligne": 129,
+        "args": 3,
+        "etat": "servi",
+        "cle": "Weight",
+        "esIdentique": false,
+        "ptIdentique": false
+      },
+      {
+        "chemin": "packages/ui/src/components/CrateCalculator.astro",
+        "ligne": 130,
+        "args": 3,
+        "etat": "servi",
+        "cle": "Calculate crate size",
+        "esIdentique": false,
+        "ptIdentique": false
+      },
+      {
+        "chemin": "packages/ui/src/components/CrateCalculator.astro",
+        "ligne": 131,
+        "args": 3,
+        "etat": "servi",
+        "cle": "Length — nose to base of tail",
+        "esIdentique": false,
+        "ptIdentique": false
+      },
+      {
+        "chemin": "packages/ui/src/components/CrateCalculator.astro",
+        "ligne": 132,
+        "args": 3,
+        "etat": "servi",
+        "cle": "Height — floor to top of head/ears (standing)",
+        "esIdentique": false,
+        "ptIdentique": false
+      },
+      {
+        "chemin": "packages/ui/src/components/CrateCalculator.astro",
+        "ligne": 133,
+        "args": 3,
+        "etat": "servi",
+        "cle": "How to measure your dog for its IATA travel crate",
+        "esIdentique": false,
+        "ptIdentique": false
+      },
+      {
+        "chemin": "packages/ui/src/components/CrateCalculator.astro",
+        "ligne": 134,
+        "args": 3,
+        "etat": "servi",
+        "cle": "What's next?",
+        "esIdentique": false,
+        "ptIdentique": false
+      },
+      {
+        "chemin": "packages/ui/src/components/CrateCalculator.astro",
+        "ligne": 135,
+        "args": 3,
+        "etat": "servi",
+        "cle": "Best travel crates 2026",
+        "esIdentique": false,
+        "ptIdentique": false
+      },
+      {
+        "chemin": "packages/ui/src/components/CrateCalculator.astro",
+        "ligne": 136,
+        "args": 3,
+        "etat": "servi",
+        "cle": "Best cabin carriers 2026",
+        "esIdentique": false,
+        "ptIdentique": false
+      },
+      {
+        "chemin": "packages/ui/src/components/CrateCalculator.astro",
+        "ligne": 137,
+        "args": 3,
+        "etat": "servi",
+        "cle": "Book with",
+        "esIdentique": false,
+        "ptIdentique": false
+      },
+      {
+        "chemin": "packages/ui/src/components/CrateCalculator.astro",
+        "ligne": 138,
+        "args": 3,
+        "etat": "servi",
+        "cle": "Conditions",
+        "esIdentique": false,
+        "ptIdentique": false
+      },
+      {
+        "chemin": "packages/ui/src/components/CrateCalculator.astro",
+        "ligne": 139,
+        "args": 3,
+        "etat": "servi",
+        "cle": "Check country requirements",
+        "esIdentique": false,
+        "ptIdentique": false
+      },
+      {
+        "chemin": "packages/ui/src/components/CrateCalculator.astro",
+        "ligne": 140,
+        "args": 3,
+        "etat": "servi",
+        "cle": "Find a flight for your dog",
+        "esIdentique": false,
+        "ptIdentique": false
+      },
+      {
+        "chemin": "packages/ui/src/components/CrateCalculator.astro",
+        "ligne": 166,
+        "args": 3,
+        "etat": "servi",
+        "cle": "Units",
+        "esIdentique": false,
+        "ptIdentique": false
+      },
+      {
+        "chemin": "packages/ui/src/components/CrateCalculator.astro",
+        "ligne": 179,
+        "args": 3,
+        "etat": "servi",
+        "cle": "Snub-nosed (brachycephalic) breed — adds +10%",
+        "esIdentique": false,
+        "ptIdentique": false
+      },
+      {
+        "chemin": "packages/ui/src/components/RelatedTools.astro",
+        "ligne": 22,
+        "args": 3,
+        "etat": "servi",
+        "cle": "Find a dog-friendly flight",
+        "esIdentique": false,
+        "ptIdentique": false
+      },
+      {
+        "chemin": "packages/ui/src/components/RelatedTools.astro",
+        "ligne": 23,
+        "args": 3,
+        "etat": "servi",
+        "cle": "Where can I take my dog",
+        "esIdentique": false,
+        "ptIdentique": false
+      },
+      {
+        "chemin": "packages/ui/src/components/RelatedTools.astro",
+        "ligne": 24,
+        "args": 3,
+        "etat": "servi",
+        "cle": "Summer heat risk",
+        "esIdentique": false,
+        "ptIdentique": false
+      },
+      {
+        "chemin": "packages/ui/src/components/RelatedTools.astro",
+        "ligne": 25,
+        "args": 3,
+        "etat": "servi",
+        "cle": "Which crate size",
+        "esIdentique": false,
+        "ptIdentique": false
+      },
+      {
+        "chemin": "packages/ui/src/components/RelatedTools.astro",
+        "ligne": 26,
+        "args": 3,
+        "etat": "servi",
+        "cle": "Airport pet relief",
+        "esIdentique": false,
+        "ptIdentique": false
+      },
+      {
+        "chemin": "packages/ui/src/components/RelatedTools.astro",
+        "ligne": 30,
+        "args": 3,
+        "etat": "pt-anglais",
+        "cle": "Travel Hub guides",
+        "esIdentique": false,
+        "ptIdentique": false
+      },
+      {
+        "chemin": "packages/ui/src/components/RelatedTools.astro",
+        "ligne": 35,
+        "args": 3,
+        "etat": "servi",
+        "cle": "Related tools",
+        "esIdentique": false,
+        "ptIdentique": false
+      },
+      {
+        "chemin": "packages/ui/src/pages/[...loc]/tools/destinations.astro",
+        "ligne": 18,
+        "args": 3,
+        "etat": "servi",
+        "cle": "Where can I take my dog?",
+        "esIdentique": false,
+        "ptIdentique": false
+      },
+      {
+        "chemin": "packages/ui/src/pages/[...loc]/tools/destinations.astro",
+        "ligne": 19,
+        "args": 3,
+        "etat": "servi",
+        "cle": "Discover the destinations best suited to your dog: we prioritise a pleasant, bearable temperature on arrival and a direct flight. The distance stays your choice.",
+        "esIdentique": false,
+        "ptIdentique": false
+      },
+      {
+        "chemin": "packages/ui/src/pages/[...loc]/tools/destinations.astro",
+        "ligne": 34,
+        "args": 3,
+        "etat": "servi",
+        "cle": "Home",
+        "esIdentique": false,
+        "ptIdentique": false
+      },
+      {
+        "chemin": "packages/ui/src/pages/[...loc]/tools/destinations.astro",
+        "ligne": 36,
+        "args": 3,
+        "etat": "servi",
+        "cle": "Where to go",
+        "esIdentique": false,
+        "ptIdentique": false
+      },
+      {
+        "chemin": "packages/ui/src/components/DestinationFinder.astro",
+        "ligne": 60,
+        "args": 3,
+        "etat": "servi",
+        "cle": "Scanning destinations…",
+        "esIdentique": false,
+        "ptIdentique": false
+      },
+      {
+        "chemin": "packages/ui/src/components/DestinationFinder.astro",
+        "ligne": 61,
+        "args": 3,
+        "etat": "servi",
+        "cle": "Choose a departure city and your dog's breed.",
+        "esIdentique": false,
+        "ptIdentique": false
+      },
+      {
+        "chemin": "packages/ui/src/components/DestinationFinder.astro",
+        "ligne": 62,
+        "args": 3,
+        "etat": "servi",
+        "cle": "Best cities right now",
+        "esIdentique": false,
+        "ptIdentique": false
+      },
+      {
+        "chemin": "packages/ui/src/components/DestinationFinder.astro",
+        "ligne": 63,
+        "args": 3,
+        "etat": "servi",
+        "cle": "Show other cities",
+        "esIdentique": false,
+        "ptIdentique": false
+      },
+      {
+        "chemin": "packages/ui/src/components/DestinationFinder.astro",
+        "ligne": 64,
+        "args": 3,
+        "etat": "servi",
+        "cle": "Hide other cities",
+        "esIdentique": false,
+        "ptIdentique": false
+      },
+      {
+        "chemin": "packages/ui/src/components/DestinationFinder.astro",
+        "ligne": 65,
+        "args": 3,
+        "etat": "servi",
+        "cle": "No direct destination found from this city. Try a larger hub.",
+        "esIdentique": false,
+        "ptIdentique": false
+      },
+      {
+        "chemin": "packages/ui/src/components/DestinationFinder.astro",
+        "ligne": 71,
+        "args": 3,
+        "etat": "pt-anglais",
+        "cle": "The engine didn't answer.",
+        "esIdentique": false,
+        "ptIdentique": false
+      },
+      {
+        "chemin": "packages/ui/src/components/DestinationFinder.astro",
+        "ligne": 72,
+        "args": 3,
+        "etat": "pt-anglais",
+        "cle": "Please try again in a moment.",
+        "esIdentique": false,
+        "ptIdentique": false
+      },
+      {
+        "chemin": "packages/ui/src/components/DestinationFinder.astro",
+        "ligne": 76,
+        "args": 3,
+        "etat": "pt-anglais",
+        "cle": "compatible cities — referenced direct route, check schedules",
+        "esIdentique": false,
+        "ptIdentique": false
+      },
+      {
+        "chemin": "packages/ui/src/components/DestinationFinder.astro",
+        "ligne": 77,
+        "args": 3,
+        "etat": "servi",
+        "cle": "Direct flights only",
+        "esIdentique": false,
+        "ptIdentique": false
+      },
+      {
+        "chemin": "packages/ui/src/components/DestinationFinder.astro",
+        "ligne": 80,
+        "args": 3,
+        "etat": "servi",
+        "cle": "Estimated heat signal on some cities — check each card",
+        "esIdentique": false,
+        "ptIdentique": false
+      },
+      {
+        "chemin": "packages/ui/src/components/DestinationFinder.astro",
+        "ligne": 81,
+        "args": 3,
+        "etat": "servi",
+        "cle": "Add a date to estimate the climate",
+        "esIdentique": false,
+        "ptIdentique": false
+      },
+      {
+        "chemin": "packages/ui/src/components/DestinationFinder.astro",
+        "ligne": 82,
+        "args": 3,
+        "etat": "servi",
+        "cle": "Estimate — always confirm the exact rules on each country's page.",
+        "esIdentique": false,
+        "ptIdentique": false
+      },
+      {
+        "chemin": "packages/ui/src/components/DestinationFinder.astro",
+        "ligne": 83,
+        "args": 3,
+        "etat": "servi",
+        "cle": "View country guide",
+        "esIdentique": false,
+        "ptIdentique": false
+      },
+      {
+        "chemin": "packages/ui/src/components/DestinationFinder.astro",
+        "ligne": 84,
+        "args": 3,
+        "etat": "servi",
+        "cle": "Climate",
+        "esIdentique": false,
+        "ptIdentique": false
+      },
+      {
+        "chemin": "packages/ui/src/components/DestinationFinder.astro",
+        "ligne": 85,
+        "args": 3,
+        "etat": "servi",
+        "cle": "Formalities",
+        "esIdentique": false,
+        "ptIdentique": false
+      },
+      {
+        "chemin": "packages/ui/src/components/DestinationFinder.astro",
+        "ligne": 86,
+        "args": 3,
+        "etat": "servi",
+        "cle": "Flights",
+        "esIdentique": false,
+        "ptIdentique": false
+      },
+      {
+        "chemin": "packages/ui/src/components/DestinationFinder.astro",
+        "ligne": 91,
+        "args": 3,
+        "etat": "servi",
+        "cle": "No heat signal from this indicator (estimate)",
+        "esIdentique": false,
+        "ptIdentique": false
+      },
+      {
+        "chemin": "packages/ui/src/components/DestinationFinder.astro",
+        "ligne": 92,
+        "args": 3,
+        "etat": "servi",
+        "cle": "Possible heat wave — watch the hold",
+        "esIdentique": false,
+        "ptIdentique": false
+      },
+      {
+        "chemin": "packages/ui/src/components/DestinationFinder.astro",
+        "ligne": 95,
+        "args": 3,
+        "etat": "servi",
+        "cle": "Estimated heat above threshold — hold/cargo to confirm with the airline",
+        "esIdentique": false,
+        "ptIdentique": false
+      },
+      {
+        "chemin": "packages/ui/src/components/DestinationFinder.astro",
+        "ligne": 96,
+        "args": 3,
+        "etat": "servi",
+        "cle": "To confirm with the airline",
+        "esIdentique": false,
+        "ptIdentique": false
+      },
+      {
+        "chemin": "packages/ui/src/components/DestinationFinder.astro",
+        "ligne": 97,
+        "args": 3,
+        "etat": "servi",
+        "cle": "High estimated heat (latitude+month model) — an estimate, not a forecast",
+        "esIdentique": false,
+        "ptIdentique": false
+      },
+      {
+        "chemin": "packages/ui/src/components/DestinationFinder.astro",
+        "ligne": 98,
+        "args": 3,
+        "etat": "servi",
+        "cle": "High estimated heat — snub-nosed dogs are especially heat-sensitive",
+        "esIdentique": false,
+        "ptIdentique": false
+      },
+      {
+        "chemin": "packages/ui/src/components/DestinationFinder.astro",
+        "ligne": 101,
+        "args": 3,
+        "etat": "servi",
+        "cle": "Estimated heat — risky for a snub-nosed dog: hold/cargo to confirm with the airline",
+        "esIdentique": false,
+        "ptIdentique": false
+      },
+      {
+        "chemin": "packages/ui/src/components/DestinationFinder.astro",
+        "ligne": 103,
+        "args": 3,
+        "etat": "servi",
+        "cle": "Light — you already hold the key documents",
+        "esIdentique": false,
+        "ptIdentique": false
+      },
+      {
+        "chemin": "packages/ui/src/components/DestinationFinder.astro",
+        "ligne": 104,
+        "args": 3,
+        "etat": "servi",
+        "cle": "Moderate — a step or two to prepare",
+        "esIdentique": false,
+        "ptIdentique": false
+      },
+      {
+        "chemin": "packages/ui/src/components/DestinationFinder.astro",
+        "ligne": 105,
+        "args": 3,
+        "etat": "servi",
+        "cle": "Heavy — antibody test and waiting period likely",
+        "esIdentique": false,
+        "ptIdentique": false
+      },
+      {
+        "chemin": "packages/ui/src/components/DestinationFinder.astro",
+        "ligne": 106,
+        "args": 3,
+        "etat": "servi",
+        "cle": "Microchip + rabies vaccine required first",
+        "esIdentique": false,
+        "ptIdentique": false
+      },
+      {
+        "chemin": "packages/ui/src/components/DestinationFinder.astro",
+        "ligne": 107,
+        "args": 3,
+        "etat": "servi",
+        "cle": "To be checked — no detailed guide yet",
+        "esIdentique": false,
+        "ptIdentique": false
+      },
+      {
+        "chemin": "packages/ui/src/components/DestinationFinder.astro",
+        "ligne": 109,
+        "args": 3,
+        "etat": "servi",
+        "cle": "Direct flight available",
+        "esIdentique": false,
+        "ptIdentique": false
+      },
+      {
+        "chemin": "packages/ui/src/components/DestinationFinder.astro",
+        "ligne": 110,
+        "args": 3,
+        "etat": "servi",
+        "cle": "Direct, but placement is limited",
+        "esIdentique": false,
+        "ptIdentique": false
+      },
+      {
+        "chemin": "packages/ui/src/components/DestinationFinder.astro",
+        "ligne": 111,
+        "args": 3,
+        "etat": "servi",
+        "cle": "Not recommended on this date",
+        "esIdentique": false,
+        "ptIdentique": false
+      },
+      {
+        "chemin": "packages/ui/src/components/DestinationFinder.astro",
+        "ligne": 112,
+        "args": 3,
+        "etat": "servi",
+        "cle": "direct",
+        "esIdentique": false,
+        "ptIdentique": false
+      },
+      {
+        "chemin": "packages/ui/src/components/DestinationFinder.astro",
+        "ligne": 120,
+        "args": 3,
+        "etat": "servi",
+        "cle": "cargo — unaccompanied, booked separately",
+        "esIdentique": false,
+        "ptIdentique": false
+      },
+      {
+        "chemin": "packages/ui/src/components/DestinationFinder.astro",
+        "ligne": 121,
+        "args": 3,
+        "etat": "servi",
+        "cle": "Any",
+        "esIdentique": false,
+        "ptIdentique": false
+      },
+      {
+        "chemin": "packages/ui/src/components/DestinationFinder.astro",
+        "ligne": 122,
+        "args": 3,
+        "etat": "pt-anglais",
+        "cle": "Criteria changed — rerun the search.",
+        "esIdentique": false,
+        "ptIdentique": false
+      },
+      {
+        "chemin": "packages/ui/src/components/DestinationFinder.astro",
+        "ligne": 123,
+        "args": 3,
+        "etat": "pt-anglais",
+        "cle": "Choose a city or airport from the list.",
+        "esIdentique": false,
+        "ptIdentique": false
+      },
+      {
+        "chemin": "packages/ui/src/components/DestinationFinder.astro",
+        "ligne": 124,
+        "args": 3,
+        "etat": "pt-anglais",
+        "cle": "Choose your dog's breed.",
+        "esIdentique": false,
+        "ptIdentique": false
+      },
+      {
+        "chemin": "packages/ui/src/components/DestinationFinder.astro",
+        "ligne": 125,
+        "args": 3,
+        "etat": "pt-anglais",
+        "cle": "Choose a future travel date.",
+        "esIdentique": false,
+        "ptIdentique": false
+      },
+      {
+        "chemin": "packages/ui/src/components/DestinationFinder.astro",
+        "ligne": 126,
+        "args": 3,
+        "etat": "pt-anglais",
+        "cle": "Choose a date within the next 18 months — routes further out aren't referenced yet.",
+        "esIdentique": false,
+        "ptIdentique": false
+      },
+      {
+        "chemin": "packages/ui/src/components/DestinationFinder.astro",
+        "ligne": 127,
+        "args": 3,
+        "etat": "pt-anglais",
+        "cle": "No direct route referenced from this city yet.",
+        "esIdentique": false,
+        "ptIdentique": false
+      },
+      {
+        "chemin": "packages/ui/src/components/DestinationFinder.astro",
+        "ligne": 128,
+        "args": 3,
+        "etat": "pt-anglais",
+        "cle": "No direct airline currently seems to accept {breed} on a route referenced from this city.",
+        "esIdentique": false,
+        "ptIdentique": false
+      },
+      {
+        "chemin": "packages/ui/src/components/DestinationFinder.astro",
+        "ligne": 129,
+        "args": 3,
+        "etat": "pt-anglais",
+        "cle": "No direct airline seems to accept {breed} for {placement} on a route referenced from this city. Try another placement or contact a specialised carrier.",
+        "esIdentique": false,
+        "ptIdentique": false
+      },
+      {
+        "chemin": "packages/ui/src/components/DestinationFinder.astro",
+        "ligne": 130,
+        "args": 3,
+        "etat": "pt-anglais",
+        "cle": "No destination in this distance band. Try widening the filter.",
+        "esIdentique": false,
+        "ptIdentique": false
+      },
+      {
+        "chemin": "packages/ui/src/components/DestinationFinder.astro",
+        "ligne": 131,
+        "args": 3,
+        "etat": "pt-anglais",
+        "cle": "Alternatives with a different placement",
+        "esIdentique": false,
+        "ptIdentique": false
+      },
+      {
+        "chemin": "packages/ui/src/components/DestinationFinder.astro",
+        "ligne": 132,
+        "args": 3,
+        "etat": "servi",
+        "cle": "To confirm with the airline (estimated heat)",
+        "esIdentique": false,
+        "ptIdentique": false
+      },
+      {
+        "chemin": "packages/ui/src/components/DestinationFinder.astro",
+        "ligne": 135,
+        "args": 3,
+        "etat": "servi",
+        "cle": "To confirm with the airline",
+        "esIdentique": false,
+        "ptIdentique": false
+      },
+      {
+        "chemin": "packages/ui/src/components/DestinationFinder.astro",
+        "ligne": 136,
+        "args": 3,
+        "etat": "servi",
+        "cle": "Airline policy to confirm before booking",
+        "esIdentique": false,
+        "ptIdentique": false
+      },
+      {
+        "chemin": "packages/ui/src/components/DestinationFinder.astro",
+        "ligne": 139,
+        "args": 3,
+        "etat": "servi",
+        "cle": "This information has not yet been reverified against a current official source — confirm directly with the airline before booking.",
+        "esIdentique": false,
+        "ptIdentique": false
+      },
+      {
+        "chemin": "packages/ui/src/components/DestinationFinder.astro",
+        "ligne": 140,
+        "args": 3,
+        "etat": "servi",
+        "cle": "Additional information needed — confirm with the airline",
+        "esIdentique": false,
+        "ptIdentique": false
+      },
+      {
+        "chemin": "packages/ui/src/components/DestinationFinder.astro",
+        "ligne": 144,
+        "args": 3,
+        "etat": "servi",
+        "cle": "For these routes, the requested placement depends on a confirmation from the airline for this date. Channels that are documented open, if any, are named on each card.",
+        "esIdentique": false,
+        "ptIdentique": false
+      },
+      {
+        "chemin": "packages/ui/src/components/DestinationFinder.astro",
+        "ligne": 145,
+        "args": 3,
+        "etat": "pt-anglais",
+        "cle": "Reachable directly, but not with the placement you selected — shown here rather than hidden.",
+        "esIdentique": false,
+        "ptIdentique": false
+      },
+      {
+        "chemin": "packages/ui/src/components/DestinationFinder.astro",
+        "ligne": 146,
+        "args": 3,
+        "etat": "pt-anglais",
+        "cle": "suggested from the breed's average weight",
+        "esIdentique": false,
+        "ptIdentique": false
+      },
+      {
+        "chemin": "packages/ui/src/components/DestinationFinder.astro",
+        "ligne": 147,
+        "args": 3,
+        "etat": "pt-anglais",
+        "cle": "airline",
+        "esIdentique": false,
+        "ptIdentique": false
+      },
+      {
+        "chemin": "packages/ui/src/components/DestinationFinder.astro",
+        "ligne": 148,
+        "args": 3,
+        "etat": "pt-anglais",
+        "cle": "airlines",
+        "esIdentique": false,
+        "ptIdentique": false
+      },
+      {
+        "chemin": "packages/ui/src/components/DestinationFinder.astro",
+        "ligne": 149,
+        "args": 3,
+        "etat": "pt-anglais",
+        "cle": "with a referenced direct route",
+        "esIdentique": false,
+        "ptIdentique": false
+      },
+      {
+        "chemin": "packages/ui/src/components/DestinationFinder.astro",
+        "ligne": 150,
+        "args": 3,
+        "etat": "pt-anglais",
+        "cle": "direct, but none compatible with the requested placement",
+        "esIdentique": false,
+        "ptIdentique": false
+      },
+      {
+        "chemin": "packages/ui/src/components/DestinationFinder.astro",
+        "ligne": 151,
+        "args": 3,
+        "etat": "pt-anglais",
+        "cle": "Available directly:",
+        "esIdentique": false,
+        "ptIdentique": false
+      },
+      {
+        "chemin": "packages/ui/src/components/DestinationFinder.astro",
+        "ligne": 152,
+        "args": 3,
+        "etat": "pt-anglais",
+        "cle": "Cool/cold — check your dog's cold tolerance",
+        "esIdentique": false,
+        "ptIdentique": false
+      },
+      {
+        "chemin": "packages/ui/src/components/DestinationFinder.astro",
+        "ligne": 153,
+        "args": 3,
+        "etat": "pt-anglais",
+        "cle": "Light — but confirm the remaining document(s) on the country page",
+        "esIdentique": false,
+        "ptIdentique": false
+      },
+      {
+        "chemin": "packages/ui/src/components/DestinationFinder.astro",
+        "ligne": 154,
+        "args": 3,
+        "etat": "pt-anglais",
+        "cle": "Missing for 100%:",
+        "esIdentique": false,
+        "ptIdentique": false
+      },
+      {
+        "chemin": "packages/ui/src/components/DestinationFinder.astro",
+        "ligne": 155,
+        "args": 3,
+        "etat": "servi",
+        "cle": "EU pet passport",
+        "esIdentique": false,
+        "ptIdentique": false
+      },
+      {
+        "chemin": "packages/ui/src/components/DestinationFinder.astro",
+        "ligne": 156,
+        "args": 3,
+        "etat": "servi",
+        "cle": "Health certificate",
+        "esIdentique": false,
+        "ptIdentique": false
+      },
+      {
+        "chemin": "packages/ui/src/components/DestinationFinder.astro",
+        "ligne": 157,
+        "args": 3,
+        "etat": "servi",
+        "cle": "Rabies antibody test",
+        "esIdentique": false,
+        "ptIdentique": false
+      },
+      {
+        "chemin": "packages/ui/src/components/DestinationFinder.astro",
+        "ligne": 163,
+        "args": 3,
+        "etat": "servi",
+        "cle": "Ranked for your dog's wellbeing",
+        "esIdentique": false,
+        "ptIdentique": false
+      },
+      {
+        "chemin": "packages/ui/src/components/DestinationFinder.astro",
+        "ligne": 164,
+        "args": 3,
+        "etat": "servi",
+        "cle": "we prioritise a pleasant, bearable temperature on arrival and a direct flight. The distance stays your choice, via the “Trip distance” filter.",
+        "esIdentique": false,
+        "ptIdentique": false
+      },
+      {
+        "chemin": "packages/ui/src/components/DestinationFinder.astro",
+        "ligne": 169,
+        "args": 3,
+        "etat": "servi",
+        "cle": "Departure city",
+        "esIdentique": false,
+        "ptIdentique": false
+      },
+      {
+        "chemin": "packages/ui/src/components/DestinationFinder.astro",
+        "ligne": 174,
+        "args": 3,
+        "etat": "servi",
+        "cle": "Travel date",
+        "esIdentique": false,
+        "ptIdentique": false
+      },
+      {
+        "chemin": "packages/ui/src/components/DestinationFinder.astro",
+        "ligne": 183,
+        "args": 3,
+        "etat": "servi",
+        "cle": "Placement",
+        "esIdentique": false,
+        "ptIdentique": false
+      },
+      {
+        "chemin": "packages/ui/src/components/DestinationFinder.astro",
+        "ligne": 185,
+        "args": 3,
+        "etat": "servi",
+        "cle": "Any",
+        "esIdentique": false,
+        "ptIdentique": false
+      },
+      {
+        "chemin": "packages/ui/src/components/DestinationFinder.astro",
+        "ligne": 193,
+        "args": 3,
+        "etat": "servi",
+        "cle": "Trip distance",
+        "esIdentique": false,
+        "ptIdentique": false
+      },
+      {
+        "chemin": "packages/ui/src/components/DestinationFinder.astro",
+        "ligne": 195,
+        "args": 3,
+        "etat": "servi",
+        "cle": "Any",
+        "esIdentique": false,
+        "ptIdentique": false
+      },
+      {
+        "chemin": "packages/ui/src/components/DestinationFinder.astro",
+        "ligne": 196,
+        "args": 3,
+        "etat": "servi",
+        "cle": "Short haul (< 3 h)",
+        "esIdentique": false,
+        "ptIdentique": false
+      },
+      {
+        "chemin": "packages/ui/src/components/DestinationFinder.astro",
+        "ligne": 197,
+        "args": 3,
+        "etat": "servi",
+        "cle": "Medium haul (3–6 h)",
+        "esIdentique": false,
+        "ptIdentique": false
+      },
+      {
+        "chemin": "packages/ui/src/components/DestinationFinder.astro",
+        "ligne": 198,
+        "args": 3,
+        "etat": "servi",
+        "cle": "Long haul (> 6 h)",
+        "esIdentique": false,
+        "ptIdentique": false
+      },
+      {
+        "chemin": "packages/ui/src/components/DestinationFinder.astro",
+        "ligne": 203,
+        "args": 3,
+        "etat": "servi",
+        "cle": "Documents you already have",
+        "esIdentique": false,
+        "ptIdentique": false
+      },
+      {
+        "chemin": "packages/ui/src/components/DestinationFinder.astro",
+        "ligne": 204,
+        "args": 3,
+        "etat": "servi",
+        "cle": "Microchip + rabies vaccine",
+        "esIdentique": false,
+        "ptIdentique": false
+      },
+      {
+        "chemin": "packages/ui/src/components/DestinationFinder.astro",
+        "ligne": 205,
+        "args": 3,
+        "etat": "servi",
+        "cle": "EU pet passport",
+        "esIdentique": false,
+        "ptIdentique": false
+      },
+      {
+        "chemin": "packages/ui/src/components/DestinationFinder.astro",
+        "ligne": 206,
+        "args": 3,
+        "etat": "servi",
+        "cle": "Rabies antibody test",
+        "esIdentique": false,
+        "ptIdentique": false
+      },
+      {
+        "chemin": "packages/ui/src/components/DestinationFinder.astro",
+        "ligne": 207,
+        "args": 3,
+        "etat": "servi",
+        "cle": "Health certificate",
+        "esIdentique": false,
+        "ptIdentique": false
+      },
+      {
+        "chemin": "packages/ui/src/components/DestinationFinder.astro",
+        "ligne": 210,
+        "args": 3,
+        "etat": "servi",
+        "cle": "Find destinations",
+        "esIdentique": false,
+        "ptIdentique": false
+      },
+      {
+        "chemin": "packages/ui/src/pages/[...loc]/tools/fiche.astro",
+        "ligne": 85,
+        "args": 3,
+        "etat": "servi",
+        "cle": "Travel requirements — tailored sheet",
+        "esIdentique": false,
+        "ptIdentique": false
+      },
+      {
+        "chemin": "packages/ui/src/pages/[...loc]/tools/fiche.astro",
+        "ligne": 86,
+        "args": 3,
+        "etat": "servi",
+        "cle": "Dog",
+        "esIdentique": false,
+        "ptIdentique": false
+      },
+      {
+        "chemin": "packages/ui/src/pages/[...loc]/tools/fiche.astro",
+        "ligne": 87,
+        "args": 3,
+        "etat": "servi",
+        "cle": "Chosen airline",
+        "esIdentique": false,
+        "ptIdentique": false
+      },
+      {
+        "chemin": "packages/ui/src/pages/[...loc]/tools/fiche.astro",
+        "ligne": 88,
+        "args": 3,
+        "etat": "servi",
+        "cle": "Open this sheet from the Finder results to build it.",
+        "esIdentique": false,
+        "ptIdentique": false
+      },
+      {
+        "chemin": "packages/ui/src/pages/[...loc]/tools/fiche.astro",
+        "ligne": 89,
+        "args": 3,
+        "etat": "servi",
+        "cle": "Labels",
+        "esIdentique": false,
+        "ptIdentique": false
+      },
+      {
+        "chemin": "packages/ui/src/pages/[...loc]/tools/fiche.astro",
+        "ligne": 90,
+        "args": 3,
+        "etat": "servi",
+        "cle": "Required",
+        "esIdentique": false,
+        "ptIdentique": false
+      },
+      {
+        "chemin": "packages/ui/src/pages/[...loc]/tools/fiche.astro",
+        "ligne": 90,
+        "args": 3,
+        "etat": "servi",
+        "cle": "Depending",
+        "esIdentique": false,
+        "ptIdentique": false
+      },
+      {
+        "chemin": "packages/ui/src/pages/[...loc]/tools/fiche.astro",
+        "ligne": 91,
+        "args": 3,
+        "etat": "servi",
+        "cle": "Advised",
+        "esIdentique": false,
+        "ptIdentique": false
+      },
+      {
+        "chemin": "packages/ui/src/pages/[...loc]/tools/fiche.astro",
+        "ligne": 91,
+        "args": 3,
+        "etat": "servi",
+        "cle": "To verify",
+        "esIdentique": false,
+        "ptIdentique": false
+      },
+      {
+        "chemin": "packages/ui/src/pages/[...loc]/tools/fiche.astro",
+        "ligne": 92,
+        "args": 3,
+        "etat": "servi",
+        "cle": "The basics — identity & vaccination (both ways)",
+        "esIdentique": false,
+        "ptIdentique": false
+      },
+      {
+        "chemin": "packages/ui/src/pages/[...loc]/tools/fiche.astro",
+        "ligne": 94,
+        "args": 3,
+        "etat": "servi",
+        "cle": "ISO microchip (11784/11785), implanted before or with the rabies shot.",
+        "esIdentique": false,
+        "ptIdentique": false
+      },
+      {
+        "chemin": "packages/ui/src/pages/[...loc]/tools/fiche.astro",
+        "ligne": 95,
+        "args": 3,
+        "etat": "servi",
+        "cle": "Valid rabies vaccination: first dose from 12 weeks, then a 21-day wait.",
+        "esIdentique": false,
+        "ptIdentique": false
+      },
+      {
+        "chemin": "packages/ui/src/pages/[...loc]/tools/fiche.astro",
+        "ligne": 96,
+        "args": 3,
+        "etat": "servi",
+        "cle": "Boosters kept up to date, with no lapse in validity.",
+        "esIdentique": false,
+        "ptIdentique": false
+      },
+      {
+        "chemin": "packages/ui/src/pages/[...loc]/tools/fiche.astro",
+        "ligne": 97,
+        "args": 3,
+        "etat": "servi",
+        "cle": "Dog healthy and fit to travel on the day.",
+        "esIdentique": false,
+        "ptIdentique": false
+      },
+      {
+        "chemin": "packages/ui/src/pages/[...loc]/tools/fiche.astro",
+        "ligne": 99,
+        "args": 3,
+        "etat": "servi",
+        "cle": "Your trip, step by step",
+        "esIdentique": false,
+        "ptIdentique": false
+      },
+      {
+        "chemin": "packages/ui/src/pages/[...loc]/tools/fiche.astro",
+        "ligne": 100,
+        "args": 3,
+        "etat": "servi",
+        "cle": "Domestic flight — no import formalities",
+        "esIdentique": false,
+        "ptIdentique": false
+      },
+      {
+        "chemin": "packages/ui/src/pages/[...loc]/tools/fiche.astro",
+        "ligne": 101,
+        "args": 3,
+        "etat": "servi",
+        "cle": "Watch out — special territories",
+        "esIdentique": false,
+        "ptIdentique": false
+      },
+      {
+        "chemin": "packages/ui/src/pages/[...loc]/tools/fiche.astro",
+        "ligne": 102,
+        "args": 3,
+        "etat": "servi",
+        "cle": "No border is crossed, so no import formality applies. Check your airline's own conditions (health certificate, age, crate).",
+        "esIdentique": false,
+        "ptIdentique": false
+      },
+      {
+        "chemin": "packages/ui/src/pages/[...loc]/tools/fiche.astro",
+        "ligne": 106,
+        "args": 3,
+        "etat": "servi",
+        "cle": "Outbound",
+        "esIdentique": false,
+        "ptIdentique": false
+      },
+      {
+        "chemin": "packages/ui/src/pages/[...loc]/tools/fiche.astro",
+        "ligne": 106,
+        "args": 3,
+        "etat": "servi",
+        "cle": "Return",
+        "esIdentique": false,
+        "ptIdentique": false
+      },
+      {
+        "chemin": "packages/ui/src/pages/[...loc]/tools/fiche.astro",
+        "ligne": 107,
+        "args": 3,
+        "etat": "servi",
+        "cle": "Before departure — leaving",
+        "esIdentique": false,
+        "ptIdentique": false
+      },
+      {
+        "chemin": "packages/ui/src/pages/[...loc]/tools/fiche.astro",
+        "ligne": 108,
+        "args": 3,
+        "etat": "servi",
+        "cle": "Arrival — entering",
+        "esIdentique": false,
+        "ptIdentique": false
+      },
+      {
+        "chemin": "packages/ui/src/pages/[...loc]/tools/fiche.astro",
+        "ligne": 109,
+        "args": 3,
+        "etat": "servi",
+        "cle": "Before the return — leaving",
+        "esIdentique": false,
+        "ptIdentique": false
+      },
+      {
+        "chemin": "packages/ui/src/pages/[...loc]/tools/fiche.astro",
+        "ligne": 110,
+        "args": 3,
+        "etat": "servi",
+        "cle": "Return — entering",
+        "esIdentique": false,
+        "ptIdentique": false
+      },
+      {
+        "chemin": "packages/ui/src/pages/[...loc]/tools/fiche.astro",
+        "ligne": 116,
+        "args": 3,
+        "etat": "servi",
+        "cle": "No export formality: the dog leaves the EU freely. What matters is the return to the home country (step 4).",
+        "esIdentique": false,
+        "ptIdentique": false
+      },
+      {
+        "chemin": "packages/ui/src/pages/[...loc]/tools/fiche.astro",
+        "ligne": 117,
+        "args": 3,
+        "etat": "servi",
+        "cle": "Check the export rules of the origin country with its veterinary authority.",
+        "esIdentique": false,
+        "ptIdentique": false
+      },
+      {
+        "chemin": "packages/ui/src/pages/[...loc]/tools/fiche.astro",
+        "ligne": 127,
+        "args": 3,
+        "etat": "servi",
+        "cle": "Destination {0}: the certificate to obtain is the one that country requires — see step 2. On the departure side, {1} issues or endorses it: allow for the lead time and book before your flight.",
+        "esIdentique": false,
+        "ptIdentique": false
+      },
+      {
+        "chemin": "packages/ui/src/pages/[...loc]/tools/fiche.astro",
+        "ligne": 131,
+        "args": 3,
+        "etat": "servi",
+        "cle": "Authority",
+        "esIdentique": false,
+        "ptIdentique": false
+      },
+      {
+        "chemin": "packages/ui/src/pages/[...loc]/tools/fiche.astro",
+        "ligne": 132,
+        "args": 3,
+        "etat": "servi",
+        "cle": "Country sheet",
+        "esIdentique": false,
+        "ptIdentique": false
+      },
+      {
+        "chemin": "packages/ui/src/pages/[...loc]/tools/fiche.astro",
+        "ligne": 137,
+        "args": 3,
+        "etat": "servi",
+        "cle": "Other cases and details",
+        "esIdentique": false,
+        "ptIdentique": false
+      },
+      {
+        "chemin": "packages/ui/src/pages/[...loc]/tools/fiche.astro",
+        "ligne": 141,
+        "args": 3,
+        "etat": "servi",
+        "cle": "an EU / EEA country",
+        "esIdentique": false,
+        "ptIdentique": false
+      },
+      {
+        "chemin": "packages/ui/src/pages/[...loc]/tools/fiche.astro",
+        "ligne": 154,
+        "args": 3,
+        "etat": "servi",
+        "cle": "Two possible routes here, and a single document separates them: an EU pet passport already in order before the dog left the EU removes the need for an EU animal health certificate. As long as that is not settled, both are shown.",
+        "esIdentique": false,
+        "ptIdentique": false
+      },
+      {
+        "chemin": "packages/ui/src/pages/[...loc]/tools/fiche.astro",
+        "ligne": 158,
+        "args": 3,
+        "etat": "servi",
+        "cle": "With an EU pet passport",
+        "esIdentique": false,
+        "ptIdentique": false
+      },
+      {
+        "chemin": "packages/ui/src/pages/[...loc]/tools/fiche.astro",
+        "ligne": 159,
+        "args": 3,
+        "etat": "servi",
+        "cle": "Without an EU pet passport",
+        "esIdentique": false,
+        "ptIdentique": false
+      },
+      {
+        "chemin": "packages/ui/src/pages/[...loc]/tools/fiche.astro",
+        "ligne": 160,
+        "args": 3,
+        "etat": "servi",
+        "cle": "Your dog comes back on its EU pet passport alone, with no EU animal health certificate, provided that passport — completed by an authorised veterinarian — establishes that BEFORE it left the EU the dog already met the rabies vaccination conditions and, where applicable, the rabies antibody titration test. It still needs its ISO microchip and a rabies vaccination valid on the day of travel; a booster given abroad can be entered in Section V of the passport by an authorised veterinarian. If any of these elements cannot be established from the passport, the EU animal health certificate applies instead. Two limits: this covers a stay abroad, not a change of residence — once you habitually reside outside the EU the passport can no longer be used, whatever your nationality or property in the EU; and a passport issued to an owner resident in Great Britain has not been valid for travel to the EU since 31 December 2020.",
+        "esIdentique": false,
+        "ptIdentique": false
+      },
+      {
+        "chemin": "packages/ui/src/pages/[...loc]/tools/fiche.astro",
+        "ligne": 168,
+        "args": 3,
+        "etat": "servi",
+        "cle": "With that passport there is no EU animal health certificate to have issued and endorsed here before the flight to the EU — the dog travels on its passport. Check only that the rabies vaccination is still valid on the day of the flight: a booster given abroad can be entered in Section V of the passport by an authorised veterinarian.",
+        "esIdentique": false,
+        "ptIdentique": false
+      },
+      {
+        "chemin": "packages/ui/src/pages/[...loc]/tools/fiche.astro",
+        "ligne": 172,
+        "args": 3,
+        "etat": "servi",
+        "cle": "a third country listed by the EU",
+        "esIdentique": false,
+        "ptIdentique": false
+      },
+      {
+        "chemin": "packages/ui/src/pages/[...loc]/tools/fiche.astro",
+        "ligne": 173,
+        "args": 3,
+        "etat": "servi",
+        "cle": "a third country not listed by the EU",
+        "esIdentique": false,
+        "ptIdentique": false
+      },
+      {
+        "chemin": "packages/ui/src/pages/[...loc]/tools/fiche.astro",
+        "ligne": 174,
+        "args": 3,
+        "etat": "servi",
+        "cle": "Special cases & reserves — check if they apply to you",
+        "esIdentique": false,
+        "ptIdentique": false
+      },
+      {
+        "chemin": "packages/ui/src/pages/[...loc]/tools/fiche.astro",
+        "ligne": 177,
+        "args": 3,
+        "etat": "servi",
+        "cle": "Brachycephalic breed (bulldog, pug…): hold often refused, especially in summer.",
+        "esIdentique": false,
+        "ptIdentique": false
+      },
+      {
+        "chemin": "packages/ui/src/pages/[...loc]/tools/fiche.astro",
+        "ligne": 178,
+        "args": 3,
+        "etat": "servi",
+        "cle": "Puppy under 12 weeks: the rabies vaccine cannot be given before that age, and nearly every country requires it.",
+        "esIdentique": false,
+        "ptIdentique": false
+      },
+      {
+        "chemin": "packages/ui/src/pages/[...loc]/tools/fiche.astro",
+        "ligne": 179,
+        "args": 3,
+        "etat": "servi",
+        "cle": "Recent stay (6 months) in a high-rabies-risk country: stricter entry (permit/titer).",
+        "esIdentique": false,
+        "ptIdentique": false
+      },
+      {
+        "chemin": "packages/ui/src/pages/[...loc]/tools/fiche.astro",
+        "ligne": 180,
+        "args": 3,
+        "etat": "servi",
+        "cle": "Layover in a third country: the applicable rule can change — check the whole itinerary, not just the two ends.",
+        "esIdentique": false,
+        "ptIdentique": false
+      },
+      {
+        "chemin": "packages/ui/src/pages/[...loc]/tools/fiche.astro",
+        "ligne": 181,
+        "args": 3,
+        "etat": "servi",
+        "cle": "Several animals or a commercial purpose: switches to the commercial regime, other rules.",
+        "esIdentique": false,
+        "ptIdentique": false
+      },
+      {
+        "chemin": "packages/ui/src/pages/[...loc]/tools/fiche.astro",
+        "ligne": 188,
+        "args": 3,
+        "etat": "servi",
+        "cle": "Puppy under 12 weeks or not yet vaccinated: travel to the EU is not possible.",
+        "esIdentique": false,
+        "ptIdentique": false
+      },
+      {
+        "chemin": "packages/ui/src/pages/[...loc]/tools/fiche.astro",
+        "ligne": 189,
+        "args": 3,
+        "etat": "servi",
+        "cle": "Layover through a non-listed third country: a rabies titer may then become mandatory to enter the EU.",
+        "esIdentique": false,
+        "ptIdentique": false
+      },
+      {
+        "chemin": "packages/ui/src/pages/[...loc]/tools/fiche.astro",
+        "ligne": 190,
+        "args": 3,
+        "etat": "servi",
+        "cle": "More than 5 animals or commercial purpose: the EU switches to the commercial regime, other rules.",
+        "esIdentique": false,
+        "ptIdentique": false
+      },
+      {
+        "chemin": "packages/ui/src/pages/[...loc]/tools/fiche.astro",
+        "ligne": 192,
+        "args": 3,
+        "etat": "servi",
+        "cle": "The flight & the airline",
+        "esIdentique": false,
+        "ptIdentique": false
+      },
+      {
+        "chemin": "packages/ui/src/pages/[...loc]/tools/fiche.astro",
+        "ligne": 193,
+        "args": 3,
+        "etat": "servi",
+        "cle": "Cabin",
+        "esIdentique": false,
+        "ptIdentique": false
+      },
+      {
+        "chemin": "packages/ui/src/pages/[...loc]/tools/fiche.astro",
+        "ligne": 193,
+        "args": 3,
+        "etat": "servi",
+        "cle": "Hold",
+        "esIdentique": false,
+        "ptIdentique": false
+      },
+      {
+        "chemin": "packages/ui/src/pages/[...loc]/tools/fiche.astro",
+        "ligne": 193,
+        "args": 3,
+        "etat": "servi",
+        "cle": "Cargo",
+        "esIdentique": false,
+        "ptIdentique": false
+      },
+      {
+        "chemin": "packages/ui/src/pages/[...loc]/tools/fiche.astro",
+        "ligne": 194,
+        "args": 3,
+        "etat": "servi",
+        "cle": "Above ~8 kg (dog + bag) the dog travels in the accompanied hold, not the cabin.",
+        "esIdentique": false,
+        "ptIdentique": false
+      },
+      {
+        "chemin": "packages/ui/src/pages/[...loc]/tools/fiche.astro",
+        "ligne": 195,
+        "args": 3,
+        "etat": "servi",
+        "cle": "Book the animal slot early: limited number per flight.",
+        "esIdentique": false,
+        "ptIdentique": false
+      },
+      {
+        "chemin": "packages/ui/src/pages/[...loc]/tools/fiche.astro",
+        "ligne": 196,
+        "args": 3,
+        "etat": "servi",
+        "cle": "Summer heat embargo possible depending on temperature.",
+        "esIdentique": false,
+        "ptIdentique": false
+      },
+      {
+        "chemin": "packages/ui/src/pages/[...loc]/tools/fiche.astro",
+        "ligne": 197,
+        "args": 3,
+        "etat": "servi",
+        "cle": "Exact fee and breed conditions: confirm with the airline.",
+        "esIdentique": false,
+        "ptIdentique": false
+      },
+      {
+        "chemin": "packages/ui/src/pages/[...loc]/tools/fiche.astro",
+        "ligne": 198,
+        "args": 3,
+        "etat": "servi",
+        "cle": "The travel crate (IATA)",
+        "esIdentique": false,
+        "ptIdentique": false
+      },
+      {
+        "chemin": "packages/ui/src/pages/[...loc]/tools/fiche.astro",
+        "ligne": 200,
+        "args": 3,
+        "etat": "servi",
+        "cle": "The dog must be able to stand, turn around and lie down.",
+        "esIdentique": false,
+        "ptIdentique": false
+      },
+      {
+        "chemin": "packages/ui/src/pages/[...loc]/tools/fiche.astro",
+        "ligne": 201,
+        "args": 3,
+        "etat": "servi",
+        "cle": "Rigid, ventilated on ≥ 3 sides, lockable door, no wheels.",
+        "esIdentique": false,
+        "ptIdentique": false
+      },
+      {
+        "chemin": "packages/ui/src/pages/[...loc]/tools/fiche.astro",
+        "ligne": 202,
+        "args": 3,
+        "etat": "servi",
+        "cle": "Water bowl, absorbent bedding, 'Live Animal' labels and arrows.",
+        "esIdentique": false,
+        "ptIdentique": false
+      },
+      {
+        "chemin": "packages/ui/src/pages/[...loc]/tools/fiche.astro",
+        "ligne": 204,
+        "args": 3,
+        "etat": "servi",
+        "cle": "Heat & the hold",
+        "esIdentique": false,
+        "ptIdentique": false
+      },
+      {
+        "chemin": "packages/ui/src/pages/[...loc]/tools/fiche.astro",
+        "ligne": 206,
+        "args": 3,
+        "etat": "servi",
+        "cle": "Above roughly 30 °C, many airlines suspend hold and cargo — the ban follows the temperature, not the season.",
+        "esIdentique": false,
+        "ptIdentique": false
+      },
+      {
+        "chemin": "packages/ui/src/pages/[...loc]/tools/fiche.astro",
+        "ligne": 209,
+        "args": 3,
+        "etat": "servi",
+        "cle": "Snub-nosed breeds face stricter thresholds, and are often barred from the hold all year round.",
+        "esIdentique": false,
+        "ptIdentique": false
+      },
+      {
+        "chemin": "packages/ui/src/pages/[...loc]/tools/fiche.astro",
+        "ligne": 212,
+        "args": 3,
+        "etat": "servi",
+        "cle": "The temperature that counts is the one on the tarmac at departure AND on arrival, not the forecast in town.",
+        "esIdentique": false,
+        "ptIdentique": false
+      },
+      {
+        "chemin": "packages/ui/src/pages/[...loc]/tools/fiche.astro",
+        "ligne": 216,
+        "args": 3,
+        "etat": "servi",
+        "cle": "Calculate the heat risk",
+        "esIdentique": false,
+        "ptIdentique": false
+      },
+      {
+        "chemin": "packages/ui/src/pages/[...loc]/tools/fiche.astro",
+        "ligne": 217,
+        "args": 3,
+        "etat": "servi",
+        "cle": "Well-being & logistics",
+        "esIdentique": false,
+        "ptIdentique": false
+      },
+      {
+        "chemin": "packages/ui/src/pages/[...loc]/tools/fiche.astro",
+        "ligne": 219,
+        "args": 3,
+        "etat": "servi",
+        "cle": "Sedation discouraged (breathing risk at altitude).",
+        "esIdentique": false,
+        "ptIdentique": false
+      },
+      {
+        "chemin": "packages/ui/src/pages/[...loc]/tools/fiche.astro",
+        "ligne": 220,
+        "args": 3,
+        "etat": "servi",
+        "cle": "Get the dog used to its crate beforehand; light meal before the flight.",
+        "esIdentique": false,
+        "ptIdentique": false
+      },
+      {
+        "chemin": "packages/ui/src/pages/[...loc]/tools/fiche.astro",
+        "ligne": 221,
+        "args": 3,
+        "etat": "servi",
+        "cle": "Early check-in; collect at the cargo terminal if applicable.",
+        "esIdentique": false,
+        "ptIdentique": false
+      },
+      {
+        "chemin": "packages/ui/src/pages/[...loc]/tools/fiche.astro",
+        "ligne": 223,
+        "args": 3,
+        "etat": "servi",
+        "cle": "Book the ticket",
+        "esIdentique": false,
+        "ptIdentique": false
+      },
+      {
+        "chemin": "packages/ui/src/pages/[...loc]/tools/fiche.astro",
+        "ligne": 224,
+        "args": 3,
+        "etat": "servi",
+        "cle": "Crate size",
+        "esIdentique": false,
+        "ptIdentique": false
+      },
+      {
+        "chemin": "packages/ui/src/pages/[...loc]/tools/fiche.astro",
+        "ligne": 225,
+        "args": 3,
+        "etat": "servi",
+        "cle": "Print / PDF",
+        "esIdentique": false,
+        "ptIdentique": false
+      },
+      {
+        "chemin": "packages/ui/src/pages/[...loc]/tools/fiche.astro",
+        "ligne": 226,
+        "args": 3,
+        "etat": "servi",
+        "cle": "Send by email",
+        "esIdentique": false,
+        "ptIdentique": false
+      },
+      {
+        "chemin": "packages/ui/src/pages/[...loc]/tools/fiche.astro",
+        "ligne": 227,
+        "args": 3,
+        "etat": "servi",
+        "cle": "My dog's travel sheet",
+        "esIdentique": false,
+        "ptIdentique": false
+      },
+      {
+        "chemin": "packages/ui/src/pages/[...loc]/tools/fiche.astro",
+        "ligne": 228,
+        "args": 3,
+        "etat": "servi",
+        "cle": "Further reading:",
+        "esIdentique": false,
+        "ptIdentique": false
+      },
+      {
+        "chemin": "packages/ui/src/pages/[...loc]/tools/fiche.astro",
+        "ligne": 229,
+        "args": 3,
+        "etat": "servi",
+        "cle": "Breed sheet",
+        "esIdentique": false,
+        "ptIdentique": false
+      },
+      {
+        "chemin": "packages/ui/src/pages/[...loc]/tools/fiche.astro",
+        "ligne": 230,
+        "args": 3,
+        "etat": "servi",
+        "cle": "Airline sheet",
+        "esIdentique": false,
+        "ptIdentique": false
+      },
+      {
+        "chemin": "packages/ui/src/pages/[...loc]/tools/fiche.astro",
+        "ligne": 231,
+        "args": 3,
+        "etat": "servi",
+        "cle": "Official sources",
+        "esIdentique": false,
+        "ptIdentique": false
+      },
+      {
+        "chemin": "packages/ui/src/pages/[...loc]/tools/fiche.astro",
+        "ligne": 232,
+        "args": 3,
+        "etat": "servi",
+        "cle": "Tailored, non-indexed page. Outbound links open in a new tab.",
+        "esIdentique": false,
+        "ptIdentique": false
+      },
+      {
+        "chemin": "packages/ui/src/pages/[...loc]/tools/fiche.astro",
+        "ligne": 233,
+        "args": 3,
+        "etat": "servi",
+        "cle": "For guidance only — no warranty or liability. Before travelling, always confirm your case with the destination country's embassy or consulate and with your vet.",
+        "esIdentique": false,
+        "ptIdentique": false
+      },
+      {
+        "chemin": "packages/ui/src/pages/[...loc]/tools/fiche.astro",
+        "ligne": 274,
+        "args": 3,
+        "etat": "servi",
+        "cle": "Your dog's travel sheet",
+        "esIdentique": false,
+        "ptIdentique": false
+      },
+      {
+        "chemin": "packages/ui/src/components/PageActions.astro",
+        "ligne": 38,
+        "args": 3,
+        "etat": "servi",
+        "cle": "Travelling with my dog — MyDogCanFly",
+        "esIdentique": false,
+        "ptIdentique": false
+      },
+      {
+        "chemin": "packages/ui/src/components/PageActions.astro",
+        "ligne": 42,
+        "args": 3,
+        "etat": "servi",
+        "cle": "Take it with you",
+        "esIdentique": false,
+        "ptIdentique": false
+      },
+      {
+        "chemin": "packages/ui/src/components/PageActions.astro",
+        "ligne": 46,
+        "args": 3,
+        "etat": "servi",
+        "cle": "Book the ticket",
+        "esIdentique": false,
+        "ptIdentique": false
+      },
+      {
+        "chemin": "packages/ui/src/components/PageActions.astro",
+        "ligne": 49,
+        "args": 3,
+        "etat": "servi",
+        "cle": "Print / PDF",
+        "esIdentique": false,
+        "ptIdentique": false
+      },
+      {
+        "chemin": "packages/ui/src/components/PageActions.astro",
+        "ligne": 51,
+        "args": 3,
+        "etat": "servi",
+        "cle": "Send by email",
+        "esIdentique": false,
+        "ptIdentique": false
+      },
+      {
+        "chemin": "packages/ui/src/pages/[...loc]/tools/heat.astro",
+        "ligne": 33,
+        "args": 3,
+        "etat": "servi",
+        "cle": "Can my dog fly in the hold in this heat?",
+        "esIdentique": false,
+        "ptIdentique": false
+      },
+      {
+        "chemin": "packages/ui/src/pages/[...loc]/tools/heat.astro",
+        "ligne": 34,
+        "args": 3,
+        "etat": "servi",
+        "cle": "Departure, arrival and month: estimate the summer heat-embargo risk for hold/cargo on your route, and find the best months to travel with your dog.",
+        "esIdentique": false,
+        "ptIdentique": false
+      },
+      {
+        "chemin": "packages/ui/src/pages/[...loc]/tools/heat.astro",
+        "ligne": 81,
+        "args": 3,
+        "etat": "servi",
+        "cle": "Home",
+        "esIdentique": false,
+        "ptIdentique": false
+      },
+      {
+        "chemin": "packages/ui/src/pages/[...loc]/tools/heat.astro",
+        "ligne": 83,
+        "args": 3,
+        "etat": "servi",
+        "cle": "Heat risk",
+        "esIdentique": false,
+        "ptIdentique": false
+      },
+      {
+        "chemin": "packages/ui/src/pages/[...loc]/tools/heat.astro",
+        "ligne": 91,
+        "args": 3,
+        "etat": "servi",
+        "cle": "Frequently asked questions",
+        "esIdentique": false,
+        "ptIdentique": false
+      },
+      {
+        "chemin": "packages/ui/src/pages/[...loc]/tools/heat.astro",
+        "ligne": 102,
+        "args": 3,
+        "etat": "servi",
+        "cle": "Breeds most at risk in the heat",
+        "esIdentique": false,
+        "ptIdentique": false
+      },
+      {
+        "chemin": "packages/ui/src/pages/[...loc]/tools/heat.astro",
+        "ligne": 103,
+        "args": 3,
+        "etat": "servi",
+        "cle": "Snub-nosed breeds are banned from the hold year-round by many airlines, whatever the temperature. Open a breed to see its heat tolerance and the airlines that accept it.",
+        "esIdentique": false,
+        "ptIdentique": false
+      },
+      {
+        "chemin": "packages/ui/src/pages/[...loc]/tools/heat.astro",
+        "ligne": 110,
+        "args": 3,
+        "etat": "servi",
+        "cle": "Snub-nosed",
+        "esIdentique": false,
+        "ptIdentique": false
+      },
+      {
+        "chemin": "packages/ui/src/components/HeatCalculator.astro",
+        "ligne": 46,
+        "args": 3,
+        "etat": "servi",
+        "cle": "Departure airport (city or code)",
+        "esIdentique": false,
+        "ptIdentique": false
+      },
+      {
+        "chemin": "packages/ui/src/components/HeatCalculator.astro",
+        "ligne": 47,
+        "args": 3,
+        "etat": "servi",
+        "cle": "Arrival airport (city or code)",
+        "esIdentique": false,
+        "ptIdentique": false
+      },
+      {
+        "chemin": "packages/ui/src/components/HeatCalculator.astro",
+        "ligne": 48,
+        "args": 3,
+        "etat": "servi",
+        "cle": "Breed (optional — refines the risk)",
+        "esIdentique": false,
+        "ptIdentique": false
+      },
+      {
+        "chemin": "packages/ui/src/components/HeatCalculator.astro",
+        "ligne": 49,
+        "args": 3,
+        "etat": "servi",
+        "cle": "Check the heat risk",
+        "esIdentique": false,
+        "ptIdentique": false
+      },
+      {
+        "chemin": "packages/ui/src/components/HeatCalculator.astro",
+        "ligne": 50,
+        "args": 3,
+        "etat": "servi",
+        "cle": "Pick a departure and an arrival airport.",
+        "esIdentique": false,
+        "ptIdentique": false
+      },
+      {
+        "chemin": "packages/ui/src/components/HeatCalculator.astro",
+        "ligne": 51,
+        "args": 3,
+        "etat": "servi",
+        "cle": "at",
+        "esIdentique": false,
+        "ptIdentique": false
+      },
+      {
+        "chemin": "packages/ui/src/components/HeatCalculator.astro",
+        "ligne": 55,
+        "args": 3,
+        "etat": "pt-anglais",
+        "cle": "Very approximate climate indicator",
+        "esIdentique": false,
+        "ptIdentique": false
+      },
+      {
+        "chemin": "packages/ui/src/components/HeatCalculator.astro",
+        "ligne": 56,
+        "args": 3,
+        "etat": "servi",
+        "cle": "Hold / cargo heat verdict",
+        "esIdentique": false,
+        "ptIdentique": false
+      },
+      {
+        "chemin": "packages/ui/src/components/HeatCalculator.astro",
+        "ligne": 60,
+        "args": 3,
+        "etat": "servi",
+        "cle": "No heat signal from this indicator",
+        "esIdentique": false,
+        "ptIdentique": false
+      },
+      {
+        "chemin": "packages/ui/src/components/HeatCalculator.astro",
+        "ligne": 61,
+        "args": 3,
+        "etat": "servi",
+        "cle": "Elevated risk",
+        "esIdentique": false,
+        "ptIdentique": false
+      },
+      {
+        "chemin": "packages/ui/src/components/HeatCalculator.astro",
+        "ligne": 67,
+        "args": 3,
+        "etat": "servi",
+        "cle": "Estimated heat above the usual threshold",
+        "esIdentique": false,
+        "ptIdentique": false
+      },
+      {
+        "chemin": "packages/ui/src/components/HeatCalculator.astro",
+        "ligne": 68,
+        "args": 3,
+        "etat": "servi",
+        "cle": "This latitude + month estimate finds no heat signal for hold/cargo on this route — it is not a forecast and not a safety guarantee: confirm with the airline.",
+        "esIdentique": false,
+        "ptIdentique": false
+      },
+      {
+        "chemin": "packages/ui/src/components/HeatCalculator.astro",
+        "ligne": 69,
+        "args": 3,
+        "etat": "servi",
+        "cle": "Warm enough that airlines may restrict hold/cargo travel — confirm with the carrier.",
+        "esIdentique": false,
+        "ptIdentique": false
+      },
+      {
+        "chemin": "packages/ui/src/components/HeatCalculator.astro",
+        "ligne": 70,
+        "args": 3,
+        "etat": "servi",
+        "cle": "The latitude+month estimate exceeds the threshold some carriers publish for hold/cargo. This is a modelled estimate — not a record of past embargoes, not a forecast: check the policy with the airline.",
+        "esIdentique": false,
+        "ptIdentique": false
+      },
+      {
+        "chemin": "packages/ui/src/components/HeatCalculator.astro",
+        "ligne": 73,
+        "args": 3,
+        "etat": "pt-anglais",
+        "cle": "This value is a monthly climate average — not the maximum temperature, nor the forecast for the actual flight day.",
+        "esIdentique": false,
+        "ptIdentique": false
+      },
+      {
+        "chemin": "packages/ui/src/components/HeatCalculator.astro",
+        "ligne": 75,
+        "args": 3,
+        "etat": "pt-anglais",
+        "cle": "MyDogCanFly indicative threshold: amber from {risk} °C, red from {emb} °C.",
+        "esIdentique": false,
+        "ptIdentique": false
+      },
+      {
+        "chemin": "packages/ui/src/components/HeatCalculator.astro",
+        "ligne": 76,
+        "args": 3,
+        "etat": "pt-anglais",
+        "cle": "Some carriers apply a lower threshold, or an independent seasonal embargo regardless of temperature.",
+        "esIdentique": false,
+        "ptIdentique": false
+      },
+      {
+        "chemin": "packages/ui/src/components/HeatCalculator.astro",
+        "ligne": 77,
+        "args": 3,
+        "etat": "servi",
+        "cle": "Snub-nosed breed: stricter limits apply, and many carriers ban them from the hold year-round regardless of temperature.",
+        "esIdentique": false,
+        "ptIdentique": false
+      },
+      {
+        "chemin": "packages/ui/src/components/HeatCalculator.astro",
+        "ligne": 78,
+        "args": 3,
+        "etat": "servi",
+        "cle": "Heat by month on this route",
+        "esIdentique": false,
+        "ptIdentique": false
+      },
+      {
+        "chemin": "packages/ui/src/components/HeatCalculator.astro",
+        "ligne": 79,
+        "args": 3,
+        "etat": "servi",
+        "cle": "Worst of the two airports each month. Green = no signal, amber = elevated estimate, red = estimate above threshold.",
+        "esIdentique": false,
+        "ptIdentique": false
+      },
+      {
+        "chemin": "packages/ui/src/components/HeatCalculator.astro",
+        "ligne": 80,
+        "args": 3,
+        "etat": "servi",
+        "cle": "Best months",
+        "esIdentique": false,
+        "ptIdentique": false
+      },
+      {
+        "chemin": "packages/ui/src/components/HeatCalculator.astro",
+        "ligne": 84,
+        "args": 3,
+        "etat": "pt-anglais",
+        "cle": "Climatically least unfavourable months — this does not mean the breed is accepted in the hold.",
+        "esIdentique": false,
+        "ptIdentique": false
+      },
+      {
+        "chemin": "packages/ui/src/components/HeatCalculator.astro",
+        "ligne": 85,
+        "args": 3,
+        "etat": "pt-anglais",
+        "cle": "Estimates from airport latitude + month only — no altitude, coastal/continental climate, or local normals. Not a live forecast. Heat embargoes apply to hold/cargo; a small dog travelling in the climate-controlled cabin is not affected. Always confirm with the airline.",
+        "esIdentique": false,
+        "ptIdentique": false
+      },
+      {
+        "chemin": "packages/ui/src/components/HeatCalculator.astro",
+        "ligne": 86,
+        "args": 3,
+        "etat": "servi",
+        "cle": "Find the best airline for this trip",
+        "esIdentique": false,
+        "ptIdentique": false
+      },
+      {
+        "chemin": "packages/ui/src/components/HeatCalculator.astro",
+        "ligne": 87,
+        "args": 3,
+        "etat": "servi",
+        "cle": "Which travel crate size?",
+        "esIdentique": false,
+        "ptIdentique": false
+      },
+      {
+        "chemin": "packages/ui/src/components/HeatCalculator.astro",
+        "ligne": 90,
+        "args": 3,
+        "etat": "pt-anglais",
+        "cle": "Choose a breed from the list, or clear the field to continue without one.",
+        "esIdentique": false,
+        "ptIdentique": false
+      },
+      {
+        "chemin": "packages/ui/src/components/HeatCalculator.astro",
+        "ligne": 91,
+        "args": 3,
+        "etat": "pt-anglais",
+        "cle": "Criteria changed — rerun the check.",
+        "esIdentique": false,
+        "ptIdentique": false
+      },
+      {
+        "chemin": "packages/ui/src/components/HeatCalculator.astro",
+        "ligne": 92,
+        "args": 3,
+        "etat": "pt-anglais",
+        "cle": "Departure and arrival must be different.",
+        "esIdentique": false,
+        "ptIdentique": false
+      },
+      {
+        "chemin": "packages/ui/src/components/HeatCalculator.astro",
+        "ligne": 98,
+        "args": 3,
+        "etat": "servi",
+        "cle": "Departure",
+        "esIdentique": false,
+        "ptIdentique": false
+      },
+      {
+        "chemin": "packages/ui/src/components/HeatCalculator.astro",
+        "ligne": 100,
+        "args": 3,
+        "etat": "servi",
+        "cle": "Arrival",
+        "esIdentique": false,
+        "ptIdentique": false
+      },
+      {
+        "chemin": "packages/ui/src/components/HeatCalculator.astro",
+        "ligne": 102,
+        "args": 3,
+        "etat": "servi",
+        "cle": "Month",
+        "esIdentique": false,
+        "ptIdentique": false
+      },
+      {
+        "chemin": "packages/ui/src/components/HeatCalculator.astro",
+        "ligne": 104,
+        "args": 3,
+        "etat": "servi",
+        "cle": "Breed",
+        "esIdentique": false,
+        "ptIdentique": false
+      },
+      {
+        "chemin": "packages/ui/src/pages/[...loc]/tools/pet-relief.astro",
+        "ligne": 19,
+        "args": 3,
+        "etat": "servi",
+        "cle": "Airport pet relief finder",
+        "esIdentique": false,
+        "ptIdentique": false
+      },
+      {
+        "chemin": "packages/ui/src/pages/[...loc]/tools/pet-relief.astro",
+        "ligne": 20,
+        "args": 3,
+        "etat": "servi",
+        "cle": "Airport pet relief areas: dog bathroom by airport",
+        "esIdentique": false,
+        "ptIdentique": false
+      },
+      {
+        "chemin": "packages/ui/src/pages/[...loc]/tools/pet-relief.astro",
+        "ligne": 25,
+        "args": 3,
+        "etat": "servi",
+        "cle": "Where can your dog relieve itself at the airport? Pick an airport and see its relief areas — before or after security — with the exact spots and source.",
+        "esIdentique": false,
+        "ptIdentique": false
+      },
+      {
+        "chemin": "packages/ui/src/pages/[...loc]/tools/pet-relief.astro",
+        "ligne": 30,
+        "args": 3,
+        "etat": "servi",
+        "cle": "Where is the dog bathroom at the airport? Find the pet relief area of any airport, before or after security, with its official source.",
+        "esIdentique": false,
+        "ptIdentique": false
+      },
+      {
+        "chemin": "packages/ui/src/pages/[...loc]/tools/pet-relief.astro",
+        "ligne": 73,
+        "args": 3,
+        "etat": "servi",
+        "cle": "Home",
+        "esIdentique": false,
+        "ptIdentique": false
+      },
+      {
+        "chemin": "packages/ui/src/pages/[...loc]/tools/pet-relief.astro",
+        "ligne": 75,
+        "args": 3,
+        "etat": "servi",
+        "cle": "Pet relief",
+        "esIdentique": false,
+        "ptIdentique": false
+      },
+      {
+        "chemin": "packages/ui/src/pages/[...loc]/tools/pet-relief.astro",
+        "ligne": 82,
+        "args": 3,
+        "etat": "servi",
+        "cle": "Browse the full list of airports with relief areas",
+        "esIdentique": false,
+        "ptIdentique": false
+      },
+      {
+        "chemin": "packages/ui/src/pages/[...loc]/tools/pet-relief.astro",
+        "ligne": 114,
+        "args": 3,
+        "etat": "servi",
+        "cle": "Frequently asked questions",
+        "esIdentique": false,
+        "ptIdentique": false
+      },
+      {
+        "chemin": "packages/ui/src/components/PetReliefFinder.astro",
+        "ligne": 28,
+        "args": 3,
+        "etat": "servi",
+        "cle": "Airport — city or code (e.g. CDG, New York)",
+        "esIdentique": false,
+        "ptIdentique": false
+      },
+      {
+        "chemin": "packages/ui/src/components/PetReliefFinder.astro",
+        "ligne": 29,
+        "args": 3,
+        "etat": "servi",
+        "cle": "Find the relief areas",
+        "esIdentique": false,
+        "ptIdentique": false
+      },
+      {
+        "chemin": "packages/ui/src/components/PetReliefFinder.astro",
+        "ligne": 30,
+        "args": 3,
+        "etat": "servi",
+        "cle": "Pick an airport from the list.",
+        "esIdentique": false,
+        "ptIdentique": false
+      },
+      {
+        "chemin": "packages/ui/src/components/PetReliefFinder.astro",
+        "ligne": 31,
+        "args": 3,
+        "etat": "servi",
+        "cle": "Well-documented airports",
+        "esIdentique": false,
+        "ptIdentique": false
+      },
+      {
+        "chemin": "packages/ui/src/components/PetReliefFinder.astro",
+        "ligne": 32,
+        "args": 3,
+        "etat": "servi",
+        "cle": "Documented relief area",
+        "esIdentique": false,
+        "ptIdentique": false
+      },
+      {
+        "chemin": "packages/ui/src/components/PetReliefFinder.astro",
+        "ligne": 33,
+        "args": 3,
+        "etat": "servi",
+        "cle": "US rule (airside area)",
+        "esIdentique": false,
+        "ptIdentique": false
+      },
+      {
+        "chemin": "packages/ui/src/components/PetReliefFinder.astro",
+        "ligne": 34,
+        "args": 3,
+        "etat": "servi",
+        "cle": "Not documented yet",
+        "esIdentique": false,
+        "ptIdentique": false
+      },
+      {
+        "chemin": "packages/ui/src/components/PetReliefFinder.astro",
+        "ligne": 41,
+        "args": 3,
+        "etat": "servi",
+        "cle": "Airport",
+        "esIdentique": false,
+        "ptIdentique": false
+      },
+      {
+        "chemin": "packages/ui/src/pages/[...loc]/tools/timeline.astro",
+        "ligne": 18,
+        "args": 3,
+        "etat": "servi",
+        "cle": "Pet travel timeline: plan your dog's trip backwards",
+        "esIdentique": false,
+        "ptIdentique": false
+      },
+      {
+        "chemin": "packages/ui/src/pages/[...loc]/tools/timeline.astro",
+        "ligne": 19,
+        "args": 3,
+        "etat": "servi",
+        "cle": "Enter the destination country and date: get a dated backwards plan of every step (microchip, rabies, titration, tapeworm, certificate…), exportable to your calendar and printable.",
+        "esIdentique": false,
+        "ptIdentique": false
+      },
+      {
+        "chemin": "packages/ui/src/pages/[...loc]/tools/timeline.astro",
+        "ligne": 71,
+        "args": 3,
+        "etat": "servi",
+        "cle": "Home",
+        "esIdentique": false,
+        "ptIdentique": false
+      },
+      {
+        "chemin": "packages/ui/src/pages/[...loc]/tools/timeline.astro",
+        "ligne": 73,
+        "args": 3,
+        "etat": "servi",
+        "cle": "Travel timeline",
+        "esIdentique": false,
+        "ptIdentique": false
+      },
+      {
+        "chemin": "packages/ui/src/pages/[...loc]/tools/timeline.astro",
+        "ligne": 81,
+        "args": 3,
+        "etat": "servi",
+        "cle": "Frequently asked questions",
+        "esIdentique": false,
+        "ptIdentique": false
+      },
+      {
+        "chemin": "packages/ui/src/components/TravelTimeline.astro",
+        "ligne": 69,
+        "args": 3,
+        "etat": "servi",
+        "cle": "Destination country (type to search)",
+        "esIdentique": false,
+        "ptIdentique": false
+      },
+      {
+        "chemin": "packages/ui/src/components/TravelTimeline.astro",
+        "ligne": 70,
+        "args": 3,
+        "etat": "servi",
+        "cle": "Travel date",
+        "esIdentique": false,
+        "ptIdentique": false
+      },
+      {
+        "chemin": "packages/ui/src/components/TravelTimeline.astro",
+        "ligne": 71,
+        "args": 3,
+        "etat": "servi",
+        "cle": "Coming from",
+        "esIdentique": false,
+        "ptIdentique": false
+      },
+      {
+        "chemin": "packages/ui/src/components/TravelTimeline.astro",
+        "ligne": 72,
+        "args": 3,
+        "etat": "servi",
+        "cle": "an EU / rabies-controlled country",
+        "esIdentique": false,
+        "ptIdentique": false
+      },
+      {
+        "chemin": "packages/ui/src/components/TravelTimeline.astro",
+        "ligne": 73,
+        "args": 3,
+        "etat": "servi",
+        "cle": "a non-listed / high-risk country",
+        "esIdentique": false,
+        "ptIdentique": false
+      },
+      {
+        "chemin": "packages/ui/src/components/TravelTimeline.astro",
+        "ligne": 74,
+        "args": 3,
+        "etat": "servi",
+        "cle": "Build my timeline",
+        "esIdentique": false,
+        "ptIdentique": false
+      },
+      {
+        "chemin": "packages/ui/src/components/TravelTimeline.astro",
+        "ligne": 75,
+        "args": 3,
+        "etat": "servi",
+        "cle": "Pick a destination country and a travel date.",
+        "esIdentique": false,
+        "ptIdentique": false
+      },
+      {
+        "chemin": "packages/ui/src/components/TravelTimeline.astro",
+        "ligne": 76,
+        "args": 3,
+        "etat": "servi",
+        "cle": "Pick a travel date that hasn't passed yet.",
+        "esIdentique": false,
+        "ptIdentique": false
+      },
+      {
+        "chemin": "packages/ui/src/components/TravelTimeline.astro",
+        "ligne": 77,
+        "args": 3,
+        "etat": "servi",
+        "cle": "Your reverse timeline",
+        "esIdentique": false,
+        "ptIdentique": false
+      },
+      {
+        "chemin": "packages/ui/src/components/TravelTimeline.astro",
+        "ligne": 78,
+        "args": 3,
+        "etat": "servi",
+        "cle": "for",
+        "esIdentique": false,
+        "ptIdentique": false
+      },
+      {
+        "chemin": "packages/ui/src/components/TravelTimeline.astro",
+        "ligne": 79,
+        "args": 3,
+        "etat": "servi",
+        "cle": "Verify",
+        "esIdentique": false,
+        "ptIdentique": false
+      },
+      {
+        "chemin": "packages/ui/src/components/TravelTimeline.astro",
+        "ligne": 80,
+        "args": 3,
+        "etat": "servi",
+        "cle": "If it applies to you",
+        "esIdentique": false,
+        "ptIdentique": false
+      },
+      {
+        "chemin": "packages/ui/src/components/TravelTimeline.astro",
+        "ligne": 81,
+        "args": 3,
+        "etat": "servi",
+        "cle": "Required",
+        "esIdentique": false,
+        "ptIdentique": false
+      },
+      {
+        "chemin": "packages/ui/src/components/TravelTimeline.astro",
+        "ligne": 82,
+        "args": 3,
+        "etat": "servi",
+        "cle": "On arrival",
+        "esIdentique": false,
+        "ptIdentique": false
+      },
+      {
+        "chemin": "packages/ui/src/components/TravelTimeline.astro",
+        "ligne": 83,
+        "args": 3,
+        "etat": "servi",
+        "cle": "Start now",
+        "esIdentique": false,
+        "ptIdentique": false
+      },
+      {
+        "chemin": "packages/ui/src/components/TravelTimeline.astro",
+        "ligne": 84,
+        "args": 3,
+        "etat": "servi",
+        "cle": "Add to calendar (.ics)",
+        "esIdentique": false,
+        "ptIdentique": false
+      },
+      {
+        "chemin": "packages/ui/src/components/TravelTimeline.astro",
+        "ligne": 85,
+        "args": 3,
+        "etat": "servi",
+        "cle": "Print / save as PDF",
+        "esIdentique": false,
+        "ptIdentique": false
+      },
+      {
+        "chemin": "packages/ui/src/components/TravelTimeline.astro",
+        "ligne": 86,
+        "args": 3,
+        "etat": "servi",
+        "cle": "Full country guide",
+        "esIdentique": false,
+        "ptIdentique": false
+      },
+      {
+        "chemin": "packages/ui/src/components/TravelTimeline.astro",
+        "ligne": 87,
+        "args": 3,
+        "etat": "servi",
+        "cle": "Dates use documented standard intervals; each country's exact wording is shown per step and may differ. This is a planning aid, not legal advice — always confirm timings with the destination's veterinary authority and your vet.",
+        "esIdentique": false,
+        "ptIdentique": false
+      },
+      {
+        "chemin": "packages/ui/src/components/TravelTimeline.astro",
+        "ligne": 88,
+        "args": 3,
+        "etat": "servi",
+        "cle": "Travel day",
+        "esIdentique": false,
+        "ptIdentique": false
+      },
+      {
+        "chemin": "packages/ui/src/components/TravelTimeline.astro",
+        "ligne": 89,
+        "args": 3,
+        "etat": "servi",
+        "cle": "days before",
+        "esIdentique": false,
+        "ptIdentique": false
+      },
+      {
+        "chemin": "packages/ui/src/components/TravelTimeline.astro",
+        "ligne": 90,
+        "args": 3,
+        "etat": "servi",
+        "cle": "Check the summer heat risk",
+        "esIdentique": false,
+        "ptIdentique": false
+      },
+      {
+        "chemin": "packages/ui/src/components/TravelTimeline.astro",
+        "ligne": 91,
+        "args": 3,
+        "etat": "servi",
+        "cle": "Which travel crate size?",
+        "esIdentique": false,
+        "ptIdentique": false
+      },
+      {
+        "chemin": "packages/ui/src/components/TravelTimeline.astro",
+        "ligne": 92,
+        "args": 3,
+        "etat": "servi",
+        "cle": "Get this plan",
+        "esIdentique": false,
+        "ptIdentique": false
+      },
+      {
+        "chemin": "packages/ui/src/components/TravelTimeline.astro",
+        "ligne": 93,
+        "args": 3,
+        "etat": "servi",
+        "cle": "Email it to yourself (or someone else), add it to your calendar, or print it.",
+        "esIdentique": false,
+        "ptIdentique": false
+      },
+      {
+        "chemin": "packages/ui/src/components/TravelTimeline.astro",
+        "ligne": 94,
+        "args": 3,
+        "etat": "servi",
+        "cle": "First name",
+        "esIdentique": false,
+        "ptIdentique": false
+      },
+      {
+        "chemin": "packages/ui/src/components/TravelTimeline.astro",
+        "ligne": 95,
+        "args": 3,
+        "etat": "servi",
+        "cle": "Last name",
+        "esIdentique": false,
+        "ptIdentique": false
+      },
+      {
+        "chemin": "packages/ui/src/components/TravelTimeline.astro",
+        "ligne": 96,
+        "args": 3,
+        "etat": "servi",
+        "cle": "Email address",
+        "esIdentique": false,
+        "ptIdentique": false
+      },
+      {
+        "chemin": "packages/ui/src/components/TravelTimeline.astro",
+        "ligne": 97,
+        "args": 3,
+        "etat": "servi",
+        "cle": "Dog's name",
+        "esIdentique": false,
+        "ptIdentique": false
+      },
+      {
+        "chemin": "packages/ui/src/components/TravelTimeline.astro",
+        "ligne": 98,
+        "args": 3,
+        "etat": "servi",
+        "cle": "I understand these details are used only to generate my email (no data is stored on our servers) and I accept the",
+        "esIdentique": false,
+        "ptIdentique": false
+      },
+      {
+        "chemin": "packages/ui/src/components/TravelTimeline.astro",
+        "ligne": 99,
+        "args": 3,
+        "etat": "servi",
+        "cle": "cookie terms and data-rights notice",
+        "esIdentique": false,
+        "ptIdentique": false
+      },
+      {
+        "chemin": "packages/ui/src/components/TravelTimeline.astro",
+        "ligne": 100,
+        "args": 3,
+        "etat": "servi",
+        "cle": "Email me the timeline",
+        "esIdentique": false,
+        "ptIdentique": false
+      },
+      {
+        "chemin": "packages/ui/src/components/TravelTimeline.astro",
+        "ligne": 101,
+        "args": 3,
+        "etat": "servi",
+        "cle": "Enter a valid email address.",
+        "esIdentique": false,
+        "ptIdentique": false
+      },
+      {
+        "chemin": "packages/ui/src/components/TravelTimeline.astro",
+        "ligne": 102,
+        "args": 3,
+        "etat": "servi",
+        "cle": "Please tick the consent box first.",
+        "esIdentique": false,
+        "ptIdentique": false
+      },
+      {
+        "chemin": "packages/ui/src/components/TravelTimeline.astro",
+        "ligne": 103,
+        "args": 3,
+        "etat": "servi",
+        "cle": "Your dog travel timeline",
+        "esIdentique": false,
+        "ptIdentique": false
+      },
+      {
+        "chemin": "packages/ui/src/components/TravelTimeline.astro",
+        "ligne": 104,
+        "args": 3,
+        "etat": "servi",
+        "cle": "Hi",
+        "esIdentique": false,
+        "ptIdentique": false
+      },
+      {
+        "chemin": "packages/ui/src/components/TravelTimeline.astro",
+        "ligne": 105,
+        "args": 3,
+        "etat": "servi",
+        "cle": "Here is the preparation timeline for flying",
+        "esIdentique": false,
+        "ptIdentique": false
+      },
+      {
+        "chemin": "packages/ui/src/components/TravelTimeline.astro",
+        "ligne": 106,
+        "args": 3,
+        "etat": "servi",
+        "cle": "on",
+        "esIdentique": false,
+        "ptIdentique": false
+      },
+      {
+        "chemin": "packages/ui/src/components/TravelTimeline.astro",
+        "ligne": 107,
+        "args": 3,
+        "etat": "servi",
+        "cle": "Full country guide",
+        "esIdentique": false,
+        "ptIdentique": false
+      },
+      {
+        "chemin": "packages/ui/src/components/TravelTimeline.astro",
+        "ligne": 108,
+        "args": 3,
+        "etat": "servi",
+        "cle": "Generated with MyDogCanFly — always confirm timings with the destination's veterinary authority and your vet.",
+        "esIdentique": false,
+        "ptIdentique": false
+      },
+      {
+        "chemin": "packages/ui/src/components/TravelTimeline.astro",
+        "ligne": 111,
+        "args": 3,
+        "etat": "servi",
+        "cle": "ISO microchip",
+        "esIdentique": false,
+        "ptIdentique": false
+      },
+      {
+        "chemin": "packages/ui/src/components/TravelTimeline.astro",
+        "ligne": 111,
+        "args": 3,
+        "etat": "servi",
+        "cle": "Implant the ISO microchip. It must be in place before the rabies vaccination, otherwise the vaccine may not count.",
+        "esIdentique": false,
+        "ptIdentique": false
+      },
+      {
+        "chemin": "packages/ui/src/components/TravelTimeline.astro",
+        "ligne": 112,
+        "args": 3,
+        "etat": "servi",
+        "cle": "Rabies vaccination",
+        "esIdentique": false,
+        "ptIdentique": false
+      },
+      {
+        "chemin": "packages/ui/src/components/TravelTimeline.astro",
+        "ligne": 112,
+        "args": 3,
+        "etat": "servi",
+        "cle": "Primary rabies vaccination (after the microchip). It becomes valid 21 days later.",
+        "esIdentique": false,
+        "ptIdentique": false
+      },
+      {
+        "chemin": "packages/ui/src/components/TravelTimeline.astro",
+        "ligne": 112,
+        "args": 3,
+        "etat": "servi",
+        "cle": "Rabies vaccination (after the microchip) — must be early enough for the blood test that follows.",
+        "esIdentique": false,
+        "ptIdentique": false
+      },
+      {
+        "chemin": "packages/ui/src/components/TravelTimeline.astro",
+        "ligne": 113,
+        "args": 3,
+        "etat": "servi",
+        "cle": "Rabies antibody test (titration)",
+        "esIdentique": false,
+        "ptIdentique": false
+      },
+      {
+        "chemin": "packages/ui/src/components/TravelTimeline.astro",
+        "ligne": 113,
+        "args": 3,
+        "etat": "servi",
+        "cle": "Blood sample at an approved lab, ≥30 days after the vaccination and ≥3 months before entry. Result must be ≥0.5 IU/ml.",
+        "esIdentique": false,
+        "ptIdentique": false
+      },
+      {
+        "chemin": "packages/ui/src/components/TravelTimeline.astro",
+        "ligne": 114,
+        "args": 3,
+        "etat": "servi",
+        "cle": "Tapeworm / parasite treatment",
+        "esIdentique": false,
+        "ptIdentique": false
+      },
+      {
+        "chemin": "packages/ui/src/components/TravelTimeline.astro",
+        "ligne": 114,
+        "args": 3,
+        "etat": "servi",
+        "cle": "Vet-administered treatment, typically 24–120 hours (1–5 days) before arrival, recorded on the certificate.",
+        "esIdentique": false,
+        "ptIdentique": false
+      },
+      {
+        "chemin": "packages/ui/src/components/TravelTimeline.astro",
+        "ligne": 115,
+        "args": 3,
+        "etat": "servi",
+        "cle": "Veterinary health certificate",
+        "esIdentique": false,
+        "ptIdentique": false
+      },
+      {
+        "chemin": "packages/ui/src/components/TravelTimeline.astro",
+        "ligne": 115,
+        "args": 3,
+        "etat": "servi",
+        "cle": "Issued and endorsed shortly before travel — often within 10 days of entry.",
+        "esIdentique": false,
+        "ptIdentique": false
+      },
+      {
+        "chemin": "packages/ui/src/components/TravelTimeline.astro",
+        "ligne": 116,
+        "args": 3,
+        "etat": "servi",
+        "cle": "Import permit / advance notification",
+        "esIdentique": false,
+        "ptIdentique": false
+      },
+      {
+        "chemin": "packages/ui/src/components/TravelTimeline.astro",
+        "ligne": 116,
+        "args": 3,
+        "etat": "servi",
+        "cle": "Apply well ahead — lead times vary and some authorities need several weeks.",
+        "esIdentique": false,
+        "ptIdentique": false
+      },
+      {
+        "chemin": "packages/ui/src/components/TravelTimeline.astro",
+        "ligne": 117,
+        "args": 3,
+        "etat": "servi",
+        "cle": "Quarantine on arrival",
+        "esIdentique": false,
+        "ptIdentique": false
+      },
+      {
+        "chemin": "packages/ui/src/components/TravelTimeline.astro",
+        "ligne": 117,
+        "args": 3,
+        "etat": "servi",
+        "cle": "Some countries hold the dog in quarantine after arrival. Check the duration in the guide.",
+        "esIdentique": false,
+        "ptIdentique": false
+      },
+      {
+        "chemin": "packages/ui/src/components/TravelTimeline.astro",
+        "ligne": 123,
+        "args": 3,
+        "etat": "servi",
+        "cle": "Destination",
+        "esIdentique": false,
+        "ptIdentique": false
+      },
+      {
+        "chemin": "packages/ui/src/components/TravelTimeline.astro",
+        "ligne": 138,
+        "args": 3,
+        "etat": "servi",
+        "cle": "Important",
+        "esIdentique": false,
+        "ptIdentique": false
+      },
+      {
+        "chemin": "packages/ui/src/components/TravelTimeline.astro",
+        "ligne": 139,
+        "args": 3,
+        "etat": "servi",
+        "cle": "MyDogCanFly provides indicative planning guidance only and accepts no liability for the accuracy or currency of the information. Rules change frequently: before booking or travelling, always confirm the latest requirements with the embassy or consulate of the destination country and with your veterinarian. See also the full country guide for that destination.",
+        "esIdentique": false,
+        "ptIdentique": false
+      }
+    ]
+  },
+  "identiques": {
+    "es": 0,
+    "pt": 0
+  },
+  "clefs": {
+    "total": 22,
+    "distinctes": [
+      "finder.all_airports",
+      "finder.breed",
+      "finder.breed_ph",
+      "finder.choose_airport",
+      "nav.tools",
+      "placement.cabin",
+      "placement.cargo",
+      "placement.hold"
+    ],
+    "sites": [
+      {
+        "chemin": "packages/ui/src/pages/[...loc]/tools/best-carriers.astro",
+        "ligne": 24,
+        "cle": "nav.tools",
+        "manquantes": [],
+        "etat": "servie"
+      },
+      {
+        "chemin": "packages/ui/src/pages/[...loc]/tools/best-crates.astro",
+        "ligne": 24,
+        "cle": "nav.tools",
+        "manquantes": [],
+        "etat": "servie"
+      },
+      {
+        "chemin": "packages/ui/src/pages/[...loc]/tools/crate.astro",
+        "ligne": 72,
+        "cle": "nav.tools",
+        "manquantes": [],
+        "etat": "servie"
+      },
+      {
+        "chemin": "packages/ui/src/pages/[...loc]/tools/crate.astro",
+        "ligne": 75,
+        "cle": "nav.tools",
+        "manquantes": [],
+        "etat": "servie"
+      },
+      {
+        "chemin": "packages/ui/src/pages/[...loc]/tools/destinations.astro",
+        "ligne": 35,
+        "cle": "nav.tools",
+        "manquantes": [],
+        "etat": "servie"
+      },
+      {
+        "chemin": "packages/ui/src/pages/[...loc]/tools/destinations.astro",
+        "ligne": 38,
+        "cle": "nav.tools",
+        "manquantes": [],
+        "etat": "servie"
+      },
+      {
+        "chemin": "packages/ui/src/components/DestinationFinder.astro",
+        "ligne": 21,
+        "cle": "finder.all_airports",
+        "manquantes": [],
+        "etat": "servie"
+      },
+      {
+        "chemin": "packages/ui/src/components/DestinationFinder.astro",
+        "ligne": 115,
+        "cle": "placement.cabin",
+        "manquantes": [],
+        "etat": "servie"
+      },
+      {
+        "chemin": "packages/ui/src/components/DestinationFinder.astro",
+        "ligne": 116,
+        "cle": "placement.hold",
+        "manquantes": [],
+        "etat": "servie"
+      },
+      {
+        "chemin": "packages/ui/src/components/DestinationFinder.astro",
+        "ligne": 119,
+        "cle": "placement.cargo",
+        "manquantes": [],
+        "etat": "servie"
+      },
+      {
+        "chemin": "packages/ui/src/components/DestinationFinder.astro",
+        "ligne": 170,
+        "cle": "finder.choose_airport",
+        "manquantes": [],
+        "etat": "servie"
+      },
+      {
+        "chemin": "packages/ui/src/components/DestinationFinder.astro",
+        "ligne": 178,
+        "cle": "finder.breed",
+        "manquantes": [],
+        "etat": "servie"
+      },
+      {
+        "chemin": "packages/ui/src/components/DestinationFinder.astro",
+        "ligne": 179,
+        "cle": "finder.breed_ph",
+        "manquantes": [],
+        "etat": "servie"
+      },
+      {
+        "chemin": "packages/ui/src/components/DestinationFinder.astro",
+        "ligne": 186,
+        "cle": "placement.cabin",
+        "manquantes": [],
+        "etat": "servie"
+      },
+      {
+        "chemin": "packages/ui/src/components/DestinationFinder.astro",
+        "ligne": 187,
+        "cle": "placement.hold",
+        "manquantes": [],
+        "etat": "servie"
+      },
+      {
+        "chemin": "packages/ui/src/components/DestinationFinder.astro",
+        "ligne": 188,
+        "cle": "placement.cargo",
+        "manquantes": [],
+        "etat": "servie"
+      },
+      {
+        "chemin": "packages/ui/src/pages/[...loc]/tools/heat.astro",
+        "ligne": 82,
+        "cle": "nav.tools",
+        "manquantes": [],
+        "etat": "servie"
+      },
+      {
+        "chemin": "packages/ui/src/pages/[...loc]/tools/heat.astro",
+        "ligne": 85,
+        "cle": "nav.tools",
+        "manquantes": [],
+        "etat": "servie"
+      },
+      {
+        "chemin": "packages/ui/src/pages/[...loc]/tools/pet-relief.astro",
+        "ligne": 74,
+        "cle": "nav.tools",
+        "manquantes": [],
+        "etat": "servie"
+      },
+      {
+        "chemin": "packages/ui/src/pages/[...loc]/tools/pet-relief.astro",
+        "ligne": 77,
+        "cle": "nav.tools",
+        "manquantes": [],
+        "etat": "servie"
+      },
+      {
+        "chemin": "packages/ui/src/pages/[...loc]/tools/timeline.astro",
+        "ligne": 72,
+        "cle": "nav.tools",
+        "manquantes": [],
+        "etat": "servie"
+      },
+      {
+        "chemin": "packages/ui/src/pages/[...loc]/tools/timeline.astro",
+        "ligne": 75,
+        "cle": "nav.tools",
+        "manquantes": [],
+        "etat": "servie"
+      }
+    ]
+  },
+  "provenance": [
+    {
+      "fichier": "packages/ui/src/pages/[...loc]/tools/best-carriers.astro",
+      "referentiel": [
+        "@mydogcanfly/knowledge"
+      ]
+    },
+    {
+      "fichier": "packages/ui/src/pages/[...loc]/tools/best-crates.astro",
+      "referentiel": [
+        "@mydogcanfly/knowledge"
+      ]
+    },
+    {
+      "fichier": "packages/ui/src/pages/[...loc]/tools/crate.astro",
+      "referentiel": [
+        "@mydogcanfly/knowledge"
+      ]
+    },
+    {
+      "fichier": "packages/ui/src/components/CrateCalculator.astro",
+      "referentiel": [
+        "@mydogcanfly/knowledge"
+      ]
+    },
+    {
+      "fichier": "packages/ui/src/components/RelatedTools.astro",
+      "referentiel": [
+        "@mydogcanfly/knowledge"
+      ]
+    },
+    {
+      "fichier": "packages/ui/src/pages/[...loc]/tools/destinations.astro",
+      "referentiel": [
+        "@mydogcanfly/knowledge"
+      ]
+    },
+    {
+      "fichier": "packages/ui/src/components/DestinationFinder.astro",
+      "referentiel": [
+        "@mydogcanfly/knowledge"
+      ]
+    },
+    {
+      "fichier": "packages/ui/src/pages/[...loc]/tools/fiche.astro",
+      "referentiel": [
+        "@mydogcanfly/knowledge"
+      ]
+    },
+    {
+      "fichier": "packages/ui/src/components/PageActions.astro",
+      "referentiel": [
+        "@mydogcanfly/knowledge"
+      ]
+    },
+    {
+      "fichier": "packages/ui/src/pages/[...loc]/tools/heat.astro",
+      "referentiel": [
+        "@mydogcanfly/knowledge"
+      ]
+    },
+    {
+      "fichier": "packages/ui/src/components/HeatCalculator.astro",
+      "referentiel": [
+        "@mydogcanfly/knowledge"
+      ]
+    },
+    {
+      "fichier": "packages/ui/src/pages/[...loc]/tools/pet-relief.astro",
+      "referentiel": [
+        "@mydogcanfly/knowledge"
+      ]
+    },
+    {
+      "fichier": "packages/ui/src/components/PetReliefFinder.astro",
+      "referentiel": [
+        "@mydogcanfly/knowledge"
+      ]
+    },
+    {
+      "fichier": "packages/ui/src/pages/[...loc]/tools/timeline.astro",
+      "referentiel": [
+        "@mydogcanfly/knowledge"
+      ]
+    },
+    {
+      "fichier": "packages/ui/src/components/TravelTimeline.astro",
+      "referentiel": [
+        "@mydogcanfly/knowledge"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,143 @@
+{
+  "base_de_mesure": "5888c45c56d92288faf7d4ec589f1b9c3ca98674",
+  "date_du_sceau": "2026-08-22",
+  "regles": 407,
+  "provenance": {
+    "sans_source": 0,
+    "sans_url_resoluble": 0,
+    "revues_echues": 0,
+    "sans_date_de_revue": 0,
+    "auto_citees": 130,
+    "hotes_distincts": 85
+  },
+  "phrases_publiees_par_langue": {
+    "fr": 407,
+    "es": 48,
+    "pt": 8
+  },
+  "seuils_directs": {
+    "couples": 131,
+    "ecrits_en_anglais": 131,
+    "ecrits_en_francais": 131,
+    "manquants": []
+  },
+  "delais": {
+    "total": 183,
+    "muettes": 130,
+    "concordantes": 39,
+    "divergentes": [
+      {
+        "id": "rule_au_import",
+        "applique_jours": 150,
+        "phrase": "6 to 7 months",
+        "annonce_min_jours": 180,
+        "annonce_max_jours": 210,
+        "sens": "moteur_plus_permissif"
+      },
+      {
+        "id": "rule_cn_import",
+        "applique_jours": 150,
+        "phrase": "2 to 4 months",
+        "annonce_min_jours": 60,
+        "annonce_max_jours": 120,
+        "sens": "moteur_plus_strict"
+      },
+      {
+        "id": "rule_fi_import",
+        "applique_jours": 30,
+        "phrase": "21 days",
+        "annonce_min_jours": 21,
+        "annonce_max_jours": 21,
+        "sens": "moteur_plus_strict"
+      },
+      {
+        "id": "rule_ie_import",
+        "applique_jours": 30,
+        "phrase": "21 days",
+        "annonce_min_jours": 21,
+        "annonce_max_jours": 21,
+        "sens": "moteur_plus_strict"
+      },
+      {
+        "id": "rule_il_import",
+        "applique_jours": 150,
+        "phrase": "2 to 3 months",
+        "annonce_min_jours": 60,
+        "annonce_max_jours": 90,
+        "sens": "moteur_plus_strict"
+      },
+      {
+        "id": "rule_ke_import",
+        "applique_jours": 60,
+        "phrase": "About 1 month",
+        "annonce_min_jours": 30,
+        "annonce_max_jours": 30,
+        "sens": "moteur_plus_strict"
+      },
+      {
+        "id": "rule_kr_import",
+        "applique_jours": 150,
+        "phrase": "3 to 4 months",
+        "annonce_min_jours": 90,
+        "annonce_max_jours": 120,
+        "sens": "moteur_plus_strict"
+      },
+      {
+        "id": "rule_mt_import",
+        "applique_jours": 30,
+        "phrase": "21 days",
+        "annonce_min_jours": 21,
+        "annonce_max_jours": 21,
+        "sens": "moteur_plus_strict"
+      },
+      {
+        "id": "rule_no_import",
+        "applique_jours": 30,
+        "phrase": "21 days",
+        "annonce_min_jours": 21,
+        "annonce_max_jours": 21,
+        "sens": "moteur_plus_strict"
+      },
+      {
+        "id": "rule_nz_import",
+        "applique_jours": 150,
+        "phrase": "6 to 7 months",
+        "annonce_min_jours": 180,
+        "annonce_max_jours": 210,
+        "sens": "moteur_plus_permissif"
+      },
+      {
+        "id": "rule_pa_import",
+        "applique_jours": 60,
+        "phrase": "1 to 2 weeks",
+        "annonce_min_jours": 7,
+        "annonce_max_jours": 14,
+        "sens": "moteur_plus_strict"
+      },
+      {
+        "id": "rule_ph_import",
+        "applique_jours": 60,
+        "phrase": "About 1 month",
+        "annonce_min_jours": 30,
+        "annonce_max_jours": 30,
+        "sens": "moteur_plus_strict"
+      },
+      {
+        "id": "rule_ua_import",
+        "applique_jours": 150,
+        "phrase": "About 4 months",
+        "annonce_min_jours": 120,
+        "annonce_max_jours": 120,
+        "sens": "moteur_plus_strict"
+      },
+      {
+        "id": "rule_vn_import",
+        "applique_jours": 21,
+        "phrase": "About 1 month",
+        "annonce_min_jours": 30,
+        "annonce_max_jours": 30,
+        "sens": "moteur_plus_permissif"
+      }
+    ]
+  }
+}
