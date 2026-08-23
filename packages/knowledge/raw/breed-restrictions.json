@@ -1,0 +1,25 @@
+[
+  {
+    "id": "brest_iata_snub_nose_hot_season",
+    "applies_to": { "trait": "brachycephalic" },
+    "action": "warn",
+    "placements": ["cabin", "hold", "cargo"],
+    "detail": {
+      "en": "IATA advises against transporting snub-nosed dogs in hot season.",
+      "fr": "L'IATA déconseille le transport des chiens au museau écrasé en saison chaude.",
+      "es": "La IATA desaconseja transportar perros de hocico chato en temporada calurosa.",
+      "pt": "A IATA desaconselha o transporte de cães de focinho achatado em época quente."
+    },
+    "source": {
+      "url": "https://www.iata.org/en/programs/cargo/live-animals/pets/",
+      "source_type": "official_website",
+      "verified_date": "2026-08-16",
+      "review_due": "2027-02-12",
+      "confidence": 4,
+      "reviewer": "contre-revue Codex",
+      "history": [],
+      "quote": "Transport of snub nose dogs, such as boxers, pugs, bulldogs and Pekinese, in hot season is not recommended.",
+      "quote_language": "en"
+    }
+  }
+]

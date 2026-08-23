@@ -29,6 +29,15 @@ permissions:
 #
 # Node 22 partout : un build Astro complet sous Node 24.18.0 échoue après plusieurs milliers de
 # pages sur un ENOENT dans dist/chunks/, sans jamais mentionner Node (constaté le 11/08/2026).
+#
+# DEUX NODE, À NE PAS CONFONDRE — la ligne ci-dessus parle du Node DU PROJET, installé depuis
+# `.nvmrc` par setup-node, et c'est lui qui exécute build, harnais et scripts. Les actions, elles,
+# tournent dans un Node choisi par LEURS auteurs (`runs.using` dans leur `action.yml`). Le 16/08/2026
+# le runner écrivait : « Node.js 20 is deprecated. The following actions target Node.js 20 but are
+# being forced to run on Node.js 24 » — checkout et setup-node tournaient donc déjà sous un Node que
+# leur code n'avait jamais vu, sans que rien ne rougisse. Les deux sont passées en v7 (`using:
+# node24`) le 17/08/2026. Le Node du projet reste 22.22.2 : ce changement ne le touche pas.
+# `.github/actions-epinglees.json` fige ce qui a été mesuré, `check-actions-node.mjs` le fait tenir.
 
 # CE QUI EST VÉRIFIÉ SUR UNE PULL REQUEST N'EST PAS LE SOMMET DE LA BRANCHE. `actions/checkout`
 # extrait par défaut, pour l'événement `pull_request`, le commit de FUSION synthétique entre la tête
@@ -53,13 +62,26 @@ jobs:
     timeout-minutes: 30
 
     steps:
-      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4.4.0
+      # `fetch-depth: 0` — L'HISTORIQUE ENTIER, ET C'EST UNE EXIGENCE, PAS UN CONFORT.
+      # `actions/checkout` clone par défaut en PROFONDEUR 1. Or les dossiers de mesure lisent leur
+      # état « avant » au commit de base par `git show <sha>:<chemin>` : sur un clone superficiel ce
+      # commit n'existe pas et la lecture échoue. Constaté le 23/08/2026 sur les trois pull requests,
+      # dans l'étape de contre-épreuves — le seul endroit de la CI qui invoque un mesureur.
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          fetch-depth: 0
 
       - name: Node 22 (depuis .nvmrc)
-        uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4.4.0
+        uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020 # v7.0.0
         with:
           node-version-file: .nvmrc
           cache: npm
+
+      # Le seul contrôle du lot qui ne lise pas le site : il relit ce workflow. Chaque `uses:` doit
+      # être épinglé sur un SHA complet, déclaré au manifeste avec le runtime relevé dans son
+      # `action.yml`, et ce runtime doit être supporté. Sans réseau, donc sans aléa.
+      - name: Actions épinglées sur un runtime supporté
+        run: node packages/knowledge/scripts/check-actions-node.mjs
 
       # `npm ci` et non `npm install` : installation reproductible, à partir du seul lockfile.
       # C'est aussi ce qui rend obligatoire la déclaration de jsdom en devDependency — en tant que
@@ -89,6 +111,16 @@ jobs:
       # et sémantique de `carrier_of_origin`.
       - name: Tests unitaires
         run: npm run test:unit
+
+      # LE CONTRAT DE PROVENANCE, ÉPROUVÉ PAR SES PROPRES ATTAQUES. Les huit contre-épreuves qui
+      # l'ont établi les 20 et 21/08/2026 avaient été jouées À LA MAIN, une fois, et consignées
+      # dans un compte rendu — c'est-à-dire non rejouables, ce que ce dépôt reproche par ailleurs
+      # à toute vérification manuelle. Les trois trous trouvés le 22/08/2026 (outillage de build
+      # hors périmètre, `OUTDIR`/`BUILD_SHARD(S)` ignorés, git échouant OUVERT) sont exactement le
+      # genre de régression qu'un catalogue figé aurait vue. Ce harnais construit son propre site
+      # témoin — il n'attend donc aucun build — et refuse de conclure sur un arbre modifié.
+      - name: Contrat de provenance (attaques et témoins)
+        run: npm run test:provenance
 
       # ── Build ────────────────────────────────────────────────────────────────────────────
       # TOUJOURS RÉDUIT ICI, sur pull request comme sur main. Le site entier est construit par le
@@ -126,6 +158,23 @@ jobs:
       - name: Dette astro check (plafond)
         run: node packages/knowledge/scripts/check-astro-debt.mjs
 
+      # ── Les harnais savent-ils rougir ? ──────────────────────────────────────────────────
+      # Tout ce qui précède est un contrôle qui passe. Rien, jusqu'ici, ne vérifiait qu'il SAIT
+      # échouer. Le runner casse une à une les garanties du moteur, du référentiel et de
+      # l'interface, et exige que le bon harnais sorte en code 1 AVEC son diagnostic propre.
+      #
+      # Il était resté manuel depuis sa création — c'est-à-dire oubliable, exactement ce que son
+      # propre en-tête reproche aux contre-épreuves faites à la main. Une mutation dont le point
+      # d'ancrage a bougé devient MUETTE et le runner échoue : la dérive se voit ici, pas six
+      # semaines plus tard.
+      #
+      # EN DERNIER DE CE JOB, ET C'EST VOULU : `--dom` reconstruit `packages/ui/dist` à chaque
+      # mutation d'interface. Placé plus haut, il priverait les harnais qui le suivent des pages
+      # que le build vient de produire. Le job `site-complet` a son propre `dist`, dans son propre
+      # runner : les deux ne se marchent pas dessus. Un `dist` de CI n'est jamais déployé.
+      - name: Contre-épreuves (chaque garantie doit savoir échouer)
+        run: npm run contre-epreuves -- --dom
+
   # ────────────────────────────────────────────────────────────────────────────────────────
   # LE SITE ENTIER — même déclencheur, même commit, en parallèle du job rapide.
   #
@@ -149,15 +198,21 @@ jobs:
     timeout-minutes: 90
 
     steps:
-      # LES MÊMES ÉPINGLES QUE LE JOB RAPIDE, c'est-à-dire celles de `main`. Le lot suivant porte
-      # la migration Node 20 → 22 des actions, le manifeste et le contrôle qui les vérifie : il
-      # migrera les DEUX jobs ensemble, avec sa garde. Introduire ici des SHA que rien ne vérifie
-      # encore reviendrait à faire entrer une épingle non mesurée — précisément ce que ce contrôle,
-      # quand il arrivera, existe pour interdire.
-      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4.4.0
+      # LES MÊMES ÉPINGLES QUE LE JOB RAPIDE. Ce lot apporte la migration Node 20 → 22 des actions,
+      # le manifeste et `check-actions-node.mjs` qui les vérifie : les DEUX jobs migrent donc
+      # ensemble, avec leur garde. Les laisser en v4 ici ferait vivre côte à côte deux runtimes
+      # dans le même fichier, dont un déprécié — et le contrôle du job rapide le dirait.
+      # `fetch-depth: 0` — L'HISTORIQUE ENTIER, ET C'EST UNE EXIGENCE, PAS UN CONFORT.
+      # `actions/checkout` clone par défaut en PROFONDEUR 1. Or les dossiers de mesure lisent leur
+      # état « avant » au commit de base par `git show <sha>:<chemin>` : sur un clone superficiel ce
+      # commit n'existe pas et la lecture échoue. Constaté le 23/08/2026 sur les trois pull requests,
+      # dans l'étape de contre-épreuves — le seul endroit de la CI qui invoque un mesureur.
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          fetch-depth: 0
 
       - name: Node 22 (depuis .nvmrc)
-        uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4.4.0
+        uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020 # v7.0.0
         with:
           node-version-file: .nvmrc
           cache: npm
@@ -181,3 +236,20 @@ jobs:
       # request : voir les commentaires de `audit-site.mjs`.
       - name: Audit de cohérence du site construit
         run: npm run audit
+
+      # L'AUDIT DIT-IL CE QU'IL A VU ? L'étape ci-dessus ne lit que le code de sortie. L'audit
+      # sortait en 0 tout en n'imprimant JAMAIS ses constatations de niveau `INFO` : code juste,
+      # rapport muet — et aucun contrôle ne pouvait le voir. Celui-ci juge le TEXTE du rapport, et
+      # exige notamment la phrase « non concluant » du contrôle qui ne peut pas conclure sous un
+      # build de preview. Un contrôle qui ne sait pas conclure et se tait est indiscernable d'un
+      # contrôle qui a conclu.
+      - name: L'audit imprime ce qu'il a vu
+        run: npm run test:audit-obs
+
+      # LES CONTRE-ÉPREUVES QUI LISENT LE SITE COMPLET. Elles ne reconstruisent rien — elles mutent
+      # ce qui LIT le site, pas le site — et se servent donc du `dist` que ce job vient de produire.
+      # Sans cette étape, elles n'étaient jouées NULLE PART : le job rapide lance `--dom`, et son
+      # relevé disait honnêtement « 2 mutations NON jouées ». Deux garanties déclarées et jamais
+      # éprouvées, ce qui est exactement ce que ce catalogue existe pour interdire.
+      - name: Contre-épreuves du site complet (sans reconstruire)
+        run: npm run contre-epreuves -- --dist-complet

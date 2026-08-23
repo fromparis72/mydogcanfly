@@ -1,8 +1,45 @@
 import { t, isEstimatedTemperature } from "@mydogcanfly/knowledge";
-import type { Decision, DecisionReport, ReportItem, AirlineResult, PlacementStatus } from "./contracts";
-import { hasActiveClimateCause, makePlacementDecision } from "./contracts";
+import type { Decision, DecisionReport, ReportItem, AirlineResult, PlacementStatus, AdvisorySignal, SafetyAdvisory } from "./contracts";
+import { hasActiveClimateCause, makePlacementDecision, advisoryKey, SafetyAdvisory as SafetyAdvisorySchema } from "./contracts";
 
 const CRIT_ORDER: Record<string, number> = { critical: 0, high: 1, medium: 2, low: 3 };
+
+/**
+ * LES AVIS DE SÉCURITÉ DU RAPPORT — dédupliqués, localisés, triés.
+ *
+ * `evaluate` lève un signal par (restriction, canal) ; un avis GLOBAL levé sur 102 compagnies et
+ * 3 canaux ferait 306 signaux pour UNE phrase à lire. La déduplication porte donc sur
+ * (restriction, portée) — `advisoryKey` — et les canaux des signaux fusionnés sont réunis.
+ *
+ * Le tri est TOTAL et STABLE : par clé pour les avis, alphabétique pour leurs canaux. Un rapport
+ * ne doit pas changer d'ordre entre deux exécutions identiques.
+ *
+ * Un avis ne porte PAS de gravité : aucune `BreedRestriction` n'en déclare, et la page IATA n'offre
+ * aucune échelle. La v1 publiait `"medium"` pour tout — une valeur constante présentée comme un
+ * fait de la source. Elle est retirée.
+ */
+function assemblerAvis(signaux: AdvisorySignal[], locale: string): SafetyAdvisory[] {
+  const parCle = new Map<string, { s: AdvisorySignal; placements: Set<string> }>();
+  for (const s of signaux) {
+    const cle = `${s.restriction_ref}|${s.scope}`;
+    const deja = parCle.get(cle);
+    if (deja) for (const p of s.placements) deja.placements.add(p);
+    else parCle.set(cle, { s, placements: new Set(s.placements) });
+  }
+  return [...parCle.values()]
+    .map(({ s, placements }) => SafetyAdvisorySchema.parse({
+      restriction_ref: s.restriction_ref,
+      scope: s.scope,
+      /* Ordre canonique des canaux, pas l'ordre de rencontre : `["cabin","hold","cargo"]` se lit
+         comme la fiche, et deux exécutions donnent la même liste. */
+      placements: (["cabin", "hold", "cargo"] as const).filter((p) => placements.has(p)),
+      /* La langue est choisie ICI, jamais par `evaluate` : `explain` est le seul à connaître celle
+         du rapport. Repli sur l'anglais, garanti non vide par le contrat `LocalizedText`. */
+      text: s.detail[locale] ?? s.detail.en,
+      source: s.source,
+    }))
+    .sort((a, b) => advisoryKey(a).localeCompare(advisoryKey(b)));
+}
 /** Temperature above which seasonal heat embargoes suspend hold/cargo (matches the summer_embargo rules). */
 const HEAT_EMBARGO_THRESHOLD_C = 30;
 
@@ -101,6 +138,9 @@ export function explain(decision: Decision, locale = "en"): DecisionReport {
   const conditions: ReportItem[] = [];
   const sources = new Map<string, { url: string }>();
   const confidences: number[] = [];
+  /** Les restrictions de race déjà comptées dans la confiance — UNE par fait, pour tout le
+   *  rapport, quelle que soit sa portée. Voir le commentaire au point de collecte. */
+  const preuvesDeRaceVues = new Set<string>();
   const L = (key: string) => t(locale, key);
 
   // Country entry requirements → "before departure" conditions.
@@ -222,7 +262,13 @@ export function explain(decision: Decision, locale = "en"): DecisionReport {
            une confirmation en refus, la source qui documente le canal reste la même — seules les
            causes s'éteignent. La perdre ici ferait disparaître la source officielle des cartes
            exactement sur les trajets où le pays refuse l'entrée. */
-        d.source);
+        d.source,
+        /* Les PREUVES DE RACE survivent au même titre (contre-revue du 16/08/2026) : les omettre
+           ici les faisait disparaître silencieusement dès qu'`entryAllowed` reconstruisait la
+           décision — le canal restait refusé, mais plus rien ne disait sur quelle page officielle.
+           Le contrat les tient : sur un canal redevenu `denied` elles sont facultatives, et sur
+           une confirmation conservée elles restent en accord avec ses causes. */
+        d.evidence);
     });
     // National-carrier ranking (no price/distance data): flag carrier of the departure country, then destination.
     /* ATTENTION AU NOM : ces deux champs signifient « compagnie IMMATRICULÉE dans le pays de
@@ -270,6 +316,30 @@ export function explain(decision: Decision, locale = "en"): DecisionReport {
      * Le REMPLACEMENT des sources racines est un autre lot : ici on cesse seulement de les
      * présenter comme des preuves, sans toucher à une seule donnée. */
     for (const d of placement_decisions) if (d.source) sources.set(d.source.url, { url: d.source.url });
+    /* ---- LES PREUVES DE RACE SONT DES PREUVES DU RAPPORT --------------------------------------
+     *
+     * Elles n'y arrivaient pas : seule `d.source` était versée, et le contrat public affirme que
+     * la confiance affichée dérive des sources citées. Deux exigences documentées sur deux pages
+     * n'en faisaient donc citer qu'une, et faire varier la confiance d'une preuve de 1 à 5 ne
+     * bougeait ni le ★ ni le score.
+     *
+     * DÉDUPLICATION PAR RESTRICTION, pour tout le rapport. Une entrée du registre est UN fait :
+     * une restriction globale s'applique aux 102 compagnies et à trois canaux, et compter sa
+     * confiance 306 fois écraserait toutes les autres sources — le ★ mesurerait alors la PORTÉE
+     * d'une restriction, pas la qualité des sources. Les règles `fired`, elles, restent comptées
+     * par compagnie : elles appartiennent à la compagnie, une restriction non.
+     *
+     * Les AVIS (`warn`) n'entrent ni ici ni dans la confiance : ils ne fondent aucune décision.
+     * C'est l'invariant du contrat — un avis informe, il ne prouve rien. */
+    for (const d of placement_decisions) {
+      for (const e of d.evidence ?? []) {
+        sources.set(e.source.url, { url: e.source.url });
+        if (!preuvesDeRaceVues.has(e.restriction_ref)) {
+          preuvesDeRaceVues.add(e.restriction_ref);
+          confidences.push(e.source.confidence);
+        }
+      }
+    }
     return { airline_id: a.airline_id, name: a.airline_name, direct: a.direct, itinerary_confidence: a.itinerary_confidence, deny_reasons: (cabin || hold || cargo || to_confirm.length > 0) ? undefined : reasons, connect_airport_id: a.connect_airport_id, detour_km: a.detour_km, cabin, hold, cargo, cabin_status, hold_status, cargo_status, to_confirm: to_confirm.length ? to_confirm : undefined, placement_decisions, offers_pet_transport: a.offers_pet_transport, carries_pets: a.carries_pets, label, fee: fee_quote_only ? L("air.fee_cargo_quote") : feeShown, fee_quote_only, heat_embargo, heat_confirmation_required, carrier_of_origin, carrier_of_destination, origin_airport_id: a.origin_airport_id, destination_airport_id: a.destination_airport_id };
   });
   /* Le placement demandé, AVANT le tri (contre-revue v4 : le classement l'ignorait — quatre
@@ -450,6 +520,10 @@ export function explain(decision: Decision, locale = "en"): DecisionReport {
 
   return {
     verdict, score, airlines, domestic: decision.domestic,
+    /* OBLIGATOIRE, quitte à être vide : un tableau vide dit « aucun avis », ce qu'aucun champ
+       absent ne saurait dire. Le rendre facultatif aurait laissé l'interface l'ignorer sans que
+       rien n'échoue — le défaut refusé en contre-revue. */
+    safety_advisories: assemblerAvis(decision.breed_advisories, locale),
     destination_country: { iso2: decision.destination.country_id.replace(/^country_/, ""), name: decision.destination.country_name },
     climate,
     positives, compatible, conditions,

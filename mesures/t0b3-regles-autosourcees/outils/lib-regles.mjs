@@ -57,6 +57,52 @@ function sha256AuCommit(sha, chemin) {
   return sha256(execFileSync("git", ["show", `${sha}:${chemin}`], { maxBuffer: 256 * 1024 * 1024 }));
 }
 
+/**
+ * LE COMMIT QUI A PRODUIT CES ARTEFACTS — moteur compris.
+ *
+ * `MESURE_BASE_SHA` scelle le RÉFÉRENTIEL ; celui-ci scelle le CODE. Quand le moteur de l'arbre de
+ * travail en diffère, la reproduction se joue dans un worktree détaché à ce commit : les chiffres
+ * se rejouent dans leur monde, au lieu d'être recalculés dans un autre et de remplacer les anciens.
+ */
+export const MESURE_MOTEUR_SHA = "a9a6556a6d386584af4849bbb23d1b1a841714e8";
+
+/* ---- L'EMPREINTE DU MOTEUR QUI A PRODUIT CES CHIFFRES -----------------------------------------
+ *
+ * Le sceau ne portait que le RÉFÉRENTIEL. Il était donc muet sur le CODE qui le lit — et le
+ * câblage de l'option H (17/08/2026) l'a démontré : à référentiel strictement identique, la sonde
+ * de retrait groupé est passée de « la soute se rouvre en `allowed` » à « la soute passe à
+ * “à confirmer” », et l'arbitrage voyait ses options B à G se confondre avec H. `SHA256SUMS` l'a
+ * bien signalé, mais rien n'en donnait la cause : on pouvait croire à une dérive du référentiel.
+ *
+ * Un dossier de mesure décrit un ÉTAT, moteur compris. Quand le moteur change, ces chiffres ne se
+ * régénèrent plus : ils deviennent historiques. Les recalculer les remplacerait en silence — et
+ * ici, cela aurait remplacé les options d'un arbitrage déjà tranché par une tautologie, chaque
+ * option contenant désormais H.
+ */
+const SOURCES_MOTEUR = [
+  "packages/engine/src/contracts.ts",
+  "packages/engine/src/evaluate.ts",
+  "packages/engine/src/explain.ts",
+  "packages/knowledge/src/normalize.ts",
+  "packages/knowledge/src/breed-restrictions.ts",
+  "packages/knowledge/raw/breed-restrictions.json",
+];
+/** `sha` absent = l'arbre de travail ; sinon le contenu AU COMMIT. Un fichier qui n'existait pas
+ *  à la base de mesure vaut « absent » — c'est un état, pas une erreur. */
+const empreinteMoteur = (sha) => sha256(SOURCES_MOTEUR.map((c) => {
+  let h;
+  try { h = sha ? sha256(execFileSync("git", ["show", `${sha}:${c}`], { maxBuffer: 256 * 1024 * 1024, stdio: ["ignore", "pipe", "ignore"] })) : sha256(readFileSync(c)); }
+  catch { h = "absent"; }
+  return `${c}:${h}`;
+}).join("\n"));
+
+/** Le moteur de l'arbre de travail est-il celui qui a produit les artefacts scellés ? */
+export function etatDuMoteur() {
+  const attendu = empreinteMoteur(MESURE_MOTEUR_SHA);
+  const courant = empreinteMoteur();
+  return { attendu, courant, conforme: attendu === courant };
+}
+
 /** Charge le référentiel ET son empreinte. Sans scellement, une mesure n'est qu'une opinion
  *  datée : rejouer ce dossier sur un autre état donnerait d'autres chiffres sans le dire. */
 export function chargerReferentiel() {

@@ -128,15 +128,23 @@ console.log("\n=== 4. Tri-state : estimation → confirmation_required ; fournie
 }
 
 console.log("\n=== 5. Dominance : denied > confirmation_required — interaction P0 climat / P0-B brachy ===");
-/* Un carlin sur la même route : les règles brachycéphales actuelles ferment soute et fret en dur.
- * L'embargo estimé s'y ajoute — le statut doit rester `denied`, jamais « à confirmer » : une
- * confirmation de chaleur ne rouvre pas un canal fermé pour la race.
+/* Un carlin sur la même route. Turkish garde SA règle brachycéphale — sourcée sur
+ * `turkishairlines.com`, elle n'était pas dans les 42 auto-citées retirées en T0-B3-b : soute et
+ * fret restent donc fermés en dur, et l'embargo estimé ne les rouvre pas.
  *
- * TEST D'INTERACTION AVEC P0-B (exigé par la revue du 13/08/2026) : aujourd'hui, un carlin produit
- * ZÉRO confirmation climatique sur tout le balayage, parce que les 48 règles brachy dominent.
- * Quand P0-B requalifiera ces règles (audit des sources compagnie), des confirmations climatiques
- * APPARAÎTRONT pour les brachycéphales — ce contrôle-ci échouera alors, et c'est voulu : il force
- * le lot P0-B à re-mesurer l'interaction au lieu de l'hériter en silence. */
+ * LA SENTINELLE P0-B A JOUÉ (13/08/2026 → 17/08/2026). Elle annonçait : « quand P0-B requalifiera
+ * ces règles, des confirmations climatiques APPARAÎTRONT pour les brachycéphales — ce contrôle
+ * échouera alors, et c'est voulu ». Elle a bien échoué, et la re-mesure exigée donne un résultat
+ * DIFFÉRENT de celui qu'elle anticipait :
+ *
+ *   confirmations sur CDG→IST, carlin, juillet   0 / 60  →  24 / 60
+ *   dont de cause CLIMATIQUE                     0       →  0
+ *
+ * Aucune confirmation climatique n'apparaît. Les 24 nouvelles ont pour cause la RACE
+ * (`breed_policy_unreviewed`), pas la chaleur — et la chaleur, elle, ne se déclenche pas sur cette
+ * route parce que le modèle région donne 28 °C, sous le seuil. La sentinelle comptait TOUTES les
+ * confirmations sous l'étiquette « climatique » : tant que la réponse était zéro, la confusion ne
+ * se voyait pas. Elle compte désormais ce qu'elle annonce — la cause `estimated_climate`. */
 {
   const est = evaluate(kb, FinderRequest.parse({ origin: "airport_cdg", destination: "airport_ist", dog: CARLIN, date: JUILLET }));
   for (const pl of ["hold", "cargo"]) {
@@ -144,9 +152,17 @@ console.log("\n=== 5. Dominance : denied > confirmation_required — interaction
     check(`carlin : ${pl} = denied (la règle de race domine l'embargo estimé)`,
       p?.status === "denied", JSON.stringify(p));
   }
-  const confirmations = est.airlines.flatMap((a) => a.placements).filter((p) => p.status === "confirmation_required").length;
-  check("carlin : ZÉRO confirmation climatique sur cette route (domination brachy actuelle — sentinelle P0-B)",
-    confirmations === 0, `${confirmations} confirmation(s)`);
+  const tousLesCanaux = est.airlines.flatMap((a) => a.placements);
+  const confirmations = tousLesCanaux.filter((p) => p.status === "confirmation_required");
+  const climatiques = confirmations.filter((p) =>
+    (p.confirmation_causes ?? []).some((c) => c.code === "estimated_climate")).length;
+  const race = confirmations.filter((p) =>
+    (p.confirmation_causes ?? []).some((c) => c.code === "breed_policy_unreviewed")).length;
+  check("carlin : ZÉRO confirmation de cause CLIMATIQUE sur cette route (28 °C estimés, sous le seuil)",
+    climatiques === 0, `${climatiques} confirmation(s) climatique(s)`);
+  check("carlin : les confirmations qui existent ont pour cause la RACE, et elles sont 24",
+    race === 24 && confirmations.length === 24,
+    `${confirmations.length} confirmation(s), dont ${race} de race, sur ${tousLesCanaux.length} canaux`);
 }
 
 console.log("\n=== 6. Verdict : règle exacte, par restriction en mémoire ===");
@@ -350,8 +366,16 @@ for (const [dogLabel, dog] of [["golden", GOLDEN], ["carlin", CARLIN]]) {
   check("carlin/Athènes : estimated_heat_signal=true, heat_confirmation_required=FALSE",
     ath?.estimated_heat_signal === true && ath?.heat_confirmation_required === false,
     JSON.stringify({ sig: ath?.estimated_heat_signal, conf: ath?.heat_confirmation_required, h: ath?.hold_status, c: ath?.cargo_status }));
-  check("carlin/Athènes : hold et cargo sont denied (rien à confirmer)",
-    ath?.hold_status === "denied" && ath?.cargo_status === "denied");
+  /* T0-B3-b : Aegean était l'une des 42. Sa soute et son fret ne sont plus refusés — ils sont
+     « à confirmer », faute de fait de race audité. Le drapeau CHALEUR reste pourtant faux, et
+     c'est le point : il dérive d'une cause climatique ACTIVE, pas du statut. Une confirmation de
+     race ne l'allume pas. Le cas d'Athènes prouve donc maintenant quelque chose de plus fort
+     qu'avant — il l'a prouvé sur un canal `denied`, il le prouve sur un canal « à confirmer ». */
+  check("carlin/Athènes : hold et cargo sont désormais « à confirmer » (les 42 sont retirées)",
+    ath?.hold_status === "confirmation_required" && ath?.cargo_status === "confirmation_required",
+    JSON.stringify({ h: ath?.hold_status, c: ath?.cargo_status }));
+  check("carlin/Athènes : une confirmation de RACE n'allume pas le drapeau CHALEUR",
+    ath?.heat_confirmation_required === false);
 }
 {
   // Rapport Finder : même invariant sur le bandeau global.
@@ -362,8 +386,17 @@ for (const [dogLabel, dog] of [["golden", GOLDEN], ["carlin", CARLIN]]) {
      partie signal : le modèle RÉGION du Finder donne 28° à Athènes (Europe), sous le seuil ;
      c'est l'outil Destinations (latitude, 31°) qui portait le signal d'Athènes, testé au §8. */
   check("bandeau Finder (carlin/ATH) : rapport climatique présent", !!rep.climate);
-  check("bandeau Finder (carlin/ATH) : AUCUNE compagnie n'a de canal à confirmer (témoin)",
-    rep.airlines.every((a) => (a.to_confirm?.length ?? 0) === 0));
+  /* T0-B3-b : des canaux sont maintenant « à confirmer » sur ce trajet — pour la RACE. Le témoin
+     ne peut donc plus être « aucune compagnie n'a de canal à confirmer ». Il devient plus
+     exigeant : des confirmations existent, ET aucune n'est climatique, ET le bandeau chaleur
+     reste éteint. C'est exactement l'invariant que ce paragraphe défend. */
+  const aConfirmer = rep.airlines.filter((a) => (a.to_confirm?.length ?? 0) > 0).length;
+  check("bandeau Finder (carlin/ATH) : des canaux sont à confirmer — témoin non vide", aConfirmer > 0, String(aConfirmer));
+  check("bandeau Finder (carlin/ATH) : AUCUNE de ces confirmations n'est climatique",
+    est.airlines.flatMap((a) => a.placements).every((p) =>
+      !(p.confirmation_causes ?? []).some((c) => c.code === "estimated_climate")));
+  check("bandeau Finder (carlin/ATH) : le drapeau chaleur reste éteint sur toutes les cartes",
+    rep.airlines.every((a) => a.heat_confirmation_required === false));
   check("bandeau Finder (carlin/ATH) : confirmation_required=false, embargo=false",
     rep.climate?.confirmation_required === false && rep.climate?.embargo === false, JSON.stringify(rep.climate));
   const estIst = evaluate(kb, FinderRequest.parse({ origin: "airport_cdg", destination: "airport_ist", dog: CARLIN, date: JUILLET }));
