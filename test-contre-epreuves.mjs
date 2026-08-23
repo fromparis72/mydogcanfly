@@ -726,6 +726,39 @@ const MUTATIONS = [
     harnais: "test-index-travel-hub.mjs",
     attendu: "rubrique(s) au lieu de 4",
   },
+
+  // ---- LA MIGRATION DES RUBRIQUES ----
+  //
+  // Les deux mutations ci-dessous reproduisent les deux P0 relevés par la contre-revue du
+  // 23/08/2026. Toutes deux portent sur du code de VÉRIFICATION, et c'est ce qui les rend
+  // précieuses : un défaut dans un vérificateur ne se voit jamais dans son verdict.
+  {
+    nom: "la migration écrit au fil de l'eau et laisse un dépôt à moitié migré",
+    id: "la-migration-ecrit-au-fil-de-l-eau-et-laisse-un-depot-a",
+    /* L'état exact d'avant le correctif : validation et écriture dans la même boucle. Codex a
+       placé une rubrique inconnue dans le dernier fichier PT — sortie 1, et 287 fichiers déjà
+       écrits. Un code de sortie honnête sur un dépôt incohérent. */
+    fichier: "packages/knowledge/scripts/migrer-categories.mjs",
+    editions: [
+      { cherche: "    plan.push({ chemin, texte, ligne: ligne[0], cle });",
+        remplace: "    if (!DRY) writeFileSync(chemin, texte.replace(ligne[0], `category: \"${cle}\"`));\n    plan.push({ chemin, texte, ligne: ligne[0], cle });" },
+    ],
+    harnais: "test-migration-categories.mjs",
+    attendu: "l'arbre a CHANGÉ malgré l'échec",
+  },
+  {
+    nom: "un guide est rangé sous une clé valide mais fausse au regard de son ancienne rubrique",
+    id: "un-guide-est-range-sous-une-cle-valide-mais-fausse-au-re",
+    /* La correspondance doit MORDRE, et pas seulement exister. La clé posée ici est parfaitement
+       licite au regard du schéma — `z.enum` la laisse passer, le site se construit, l'index
+       affiche quatre rubriques — mais elle ne correspond PAS à ce que portait le fichier avant
+       migration. Seul un vérificateur qui recalcule depuis l'état antérieur peut le voir. */
+    fichier: "packages/ui/src/content/guides/es/embargos-por-calor-en-bodega.md",
+    cherche: 'category: "travel"',
+    remplace: 'category: "health"',
+    harnais: "preuve-migration-categories.mjs",
+    attendu: "aurait dû donner",
+  },
 ];
 
 const dire = (m) => process.stdout.write(m + "\n");

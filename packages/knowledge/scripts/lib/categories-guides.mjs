@@ -38,10 +38,17 @@ export const CANONIQUE = new Map([
  *
  * Un seul article — `flying-with-a-dog-cabin-hold-cargo`, dans les quatre langues — portait
  * `["Travel", "Airlines"]`. Cette seconde valeur n'a jamais été rendue : le hub ne lisait que la
- * première. Ce n'est donc pas une cinquième rubrique qu'on supprime, c'est une donnée morte, et
- * son information survit dans les `tags` du même article (avion, cabine, soute, fret). Les nommer
- * ici est ce qui distingue une décision d'un oubli : une seconde valeur absente de cette liste
- * fait échouer l'appelant.
+ * première. Ce n'est donc pas une cinquième rubrique qu'on supprime, c'est une donnée morte.
+ *
+ * Sur ce qu'il en reste, il faut être exact. Le même article porte des `tags` — avion, cabine,
+ * soute, fret — qui recouvrent le sujet, mais ces `tags` NE SONT RENDUS NULLE PART : ni sur
+ * l'index, ni sur la page d'un guide. Aucun gabarit ne les lit. Écrire qu'ils « restent
+ * affichés » serait faux, et cette phrase a bel et bien figuré ici avant que la contre-revue ne
+ * la relève. L'énoncé juste est plus modeste : rien de VISIBLE n'est perdu, puisque rien de tout
+ * cela n'était visible, et le sujet reste retrouvable DANS LA DONNÉE.
+ *
+ * Les nommer ici est ce qui distingue une décision d'un oubli : une seconde valeur absente de
+ * cette liste fait échouer l'appelant.
  */
 export const ABANDONNEES = new Set(["Airlines", "Compagnies aériennes"]);
 

@@ -26,6 +26,7 @@
     "test:liens": "node test-liens-internes.mjs",
     "test:guide-page": "node test-page-guide.mjs",
     "test:index-hub": "node test-index-travel-hub.mjs",
+    "test:migration-categories": "node test-migration-categories.mjs",
     "preuve:migration-categories": "node preuve-migration-categories.mjs",
     "test:entities": "tsx test-entity-pages-harness.mjs",
     "test:entities:complet": "HARNAIS_PORTEE=complet NODE_OPTIONS=--max-old-space-size=1024 tsx test-entity-pages-harness.mjs",

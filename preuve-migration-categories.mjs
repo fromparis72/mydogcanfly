@@ -12,15 +12,23 @@
  *
  *   1. IDENTITÉ DE L'ENSEMBLE — mêmes 288 chemins avant et après, aucun ajout, aucune perte.
  *   2. CORRESPONDANCE — pour chaque fichier, l'ancienne PREMIÈRE catégorie donne bien la clé
- *      canonique inscrite. C'est la propriété que le script de migration ne peut pas prouver
- *      lui-même : elle est recalculée ici depuis la donnée antérieure.
+ *      canonique inscrite, recalculée ici depuis la donnée antérieure. Une ancienne valeur
+ *      ABSENTE de la table de ce vérificateur MET EN DÉFAUT : elle disait auparavant « attendu
+ *      indéfini, je passe », si bien que vider la table rendait la preuve verte et bavarde.
+ *      Les quatre secondes catégories abandonnées sont verrouillées par chemin, dans les deux
+ *      sens : une déclarée mais introuvable échoue, une trouvée mais non déclarée aussi.
  *   3. HORS-CHAMP INCHANGÉ — le fichier privé de sa ligne de catégorie est IDENTIQUE AU BIT PRÈS
  *      avant et après. C'est le contrôle qui attrape une réécriture accidentelle du corps, d'une
  *      date, d'un `alt` — tout ce qu'un compte de fichiers ne verrait jamais.
  *   4. AUCUN OUBLI — plus une seule ligne `categories:` dans l'arbre ; exactement une ligne
  *      `category:` par fichier, et sa valeur est l'une des quatre clés.
- *   5. IDEMPOTENCE — rejouer la migration sur l'état migré n'écrit rien. Vérifié en la rejouant
- *      RÉELLEMENT à blanc et en exigeant « 0 fichier migré ».
+ *   5. IDEMPOTENCE — rejouée SANS `--dry`, dans un worktree jetable détaché sur HEAD, en exigeant
+ *      que git n'y voie aucune modification. Le rejeu se faisait à blanc, ce qui ne prouvait
+ *      rien : un mode qui n'écrit jamais ne peut pas montrer qu'une écriture n'a pas lieu.
+ *
+ * L'ATOMICITÉ N'EST PAS ICI, et c'est délibéré : elle porte sur le COMPORTEMENT EN CAS D'ÉCHEC,
+ * qu'un état final réussi ne peut pas révéler. Elle est éprouvée sur jeux d'essai jetables par
+ * `test-migration-categories.mjs`, qui casse exprès ce qu'on ne peut pas casser ici.
  *
  * La base de comparaison est FIGÉE dans le fichier, comme un dossier de mesure : un contrôle
  * dont la référence bouge avec la branche finit par se comparer à lui-même.
@@ -35,7 +43,8 @@
  *
  *   node preuve-migration-categories.mjs
  */
-import { readFileSync, readdirSync } from "node:fs";
+import { readFileSync, readdirSync, mkdtempSync, rmSync } from "node:fs";
+import { tmpdir } from "node:os";
 import { spawnSync } from "node:child_process";
 import { join } from "node:path";
 
@@ -46,11 +55,25 @@ const RACINE = "packages/ui/src/content/guides";
 const LANGUES = ["en", "fr", "es", "pt"];
 const CLES = ["gear", "travel", "health", "destinations"];
 
+/* SECONDE SOURCE, recopiée à dessein : ce vérificateur ne doit rien emprunter au code qu'il
+ * vérifie. Mais une seconde source qui se TAIT sur ce qu'elle ignore ne vérifie rien non plus —
+ * Codex a retiré la ligne « Travel » de cette table et la preuve est restée verte, annonçant
+ * encore « chaque clé recalculée ». Toute ancienne valeur absente d'ici met désormais en défaut. */
 const CANONIQUE = new Map([
   ["Gear", "gear"], ["Équipement", "gear"],
   ["Travel", "travel"], ["Voyager", "travel"],
   ["Health", "health"], ["Santé", "health"],
   ["Destinations", "destinations"],
+]);
+
+/* Les quatre — et SEULEMENT quatre — secondes catégories abandonnées, verrouillées par chemin.
+ * Sans cette liste, la disparition d'une seconde valeur sur un autre fichier passerait pour un
+ * abandon décidé. Un abandon décidé se nomme ; un abandon non listé est une perte. */
+const ABANDONS_ATTENDUS = new Map([
+  ["packages/ui/src/content/guides/en/flying-with-a-dog-cabin-hold-cargo.md", "Airlines"],
+  ["packages/ui/src/content/guides/fr/voyager-avion-chien-options.md", "Compagnies aériennes"],
+  ["packages/ui/src/content/guides/es/avion-con-perro-cabina-bodega-carga.md", "Airlines"],
+  ["packages/ui/src/content/guides/pt/aviao-com-cachorro-cabine-porao-carga.md", "Airlines"],
 ]);
 
 /* git DOIT échouer FERMÉ. Un `catch` qui rendrait la chaîne vide transformerait « je n'ai pas pu
@@ -71,11 +94,11 @@ function auCommit(chemin) {
 /** Le fichier privé de sa ligne de catégorie, quelle que soit sa forme. */
 const horsChamp = (t) => t.replace(/^categor(?:y|ies):.*$\n?/m, "");
 
-const premiereCategorie = (t) => {
+/** Toutes les valeurs du champ antérieur, dans l'ordre. `null` si le champ était absent. */
+const anciennesValeurs = (t) => {
   const l = /^categories:.*$/m.exec(t);
   if (!l) return null;
-  const v = [...l[0].matchAll(/"([^"]*)"/g)].map((m) => m[1]);
-  return v[0] ?? null;
+  return [...l[0].matchAll(/"([^"]*)"/g)].map((m) => m[1]);
 };
 
 const defauts = [];
@@ -99,13 +122,14 @@ if (ajoutes.length) echec(`1. ${ajoutes.length} fichier(s) AJOUTÉ(S) : ${ajoute
 
 /* ---- 2, 3, 4. correspondance, hors-champ, aucun oubli -------------------------------------- */
 const compte = new Map(CLES.map((k) => [k, 0]));
+const abandonsVus = new Map();
 let compares = 0;
 for (const chemin of apres.filter((p) => avant.includes(p))) {
   const a = auCommit(chemin);
   const b = readFileSync(chemin, "utf-8");
   compares++;
 
-  const attendue = CANONIQUE.get(premiereCategorie(a) ?? "");
+  const vals = anciennesValeurs(a);
   const obtenue = (/^category:\s*"([^"]*)"\s*$/m.exec(b) || [])[1];
 
   if (!obtenue) echec(`4. ${chemin} : aucune ligne « category: » après migration`);
@@ -115,8 +139,27 @@ for (const chemin of apres.filter((p) => avant.includes(p))) {
   if (/^categories:/m.test(b)) echec(`4. ${chemin} : une ligne « categories: » subsiste`);
   if ((b.match(/^category:/gm) || []).length !== 1) echec(`4. ${chemin} : la ligne « category: » n'apparaît pas exactement une fois`);
 
-  if (attendue && obtenue && attendue !== obtenue) {
-    echec(`2. ${chemin} : « ${premiereCategorie(a)} » aurait dû donner « ${attendue} », a donné « ${obtenue} »`);
+  /* 2. LA CORRESPONDANCE, ET SON ANGLE MORT D'ORIGINE.
+   *
+   * Ces trois refus disaient auparavant « si l'attendu existe et diffère de l'obtenu ». Une
+   * valeur antérieure ABSENTE de la table donnait donc un attendu indéfini, la comparaison
+   * était sautée, et la preuve concluait au vert en annonçant « chaque clé recalculée ». C'est
+   * la faute d'échec OUVERT, dans le vérificateur lui-même : l'endroit où elle coûte le plus
+   * cher, puisque c'est lui qu'on croit sur parole. */
+  if (vals === null) {
+    echec(`2. ${chemin} : aucun champ « categories: » à l'état antérieur — rien à confronter, la correspondance est INVÉRIFIABLE`);
+  } else if (vals.length === 0) {
+    echec(`2. ${chemin} : champ « categories: » vide à l'état antérieur`);
+  } else if (!CANONIQUE.has(vals[0])) {
+    echec(`2. ${chemin} : ancienne valeur « ${vals[0]} » absente de la table de ce vérificateur — la correspondance ne peut PAS être recalculée`);
+  } else if (obtenue && CANONIQUE.get(vals[0]) !== obtenue) {
+    echec(`2. ${chemin} : « ${vals[0]} » aurait dû donner « ${CANONIQUE.get(vals[0])} », a donné « ${obtenue} »`);
+  }
+
+  /* 2 bis. les secondes valeurs, verrouillées une à une */
+  if (vals && vals.length > 1) {
+    if (vals.length > 2) echec(`2. ${chemin} : ${vals.length} catégories à l'état antérieur, cas non prévu`);
+    abandonsVus.set(chemin, vals[1]);
   }
 
   if (horsChamp(a) !== horsChamp(b)) {
@@ -124,11 +167,53 @@ for (const chemin of apres.filter((p) => avant.includes(p))) {
   }
 }
 
-/* ---- 5. idempotence ------------------------------------------------------------------------ */
-const rejeu = spawnSync("node", ["packages/knowledge/scripts/migrer-categories.mjs", "--dry"], { encoding: "utf-8" });
-if (rejeu.status !== 0) echec(`5. le rejeu à blanc de la migration échoue (code ${rejeu.status})`);
-else if (!/^\[à blanc\] 0 fichier\(s\) migré\(s\) · 288 déjà au format/m.test(rejeu.stdout)) {
-  echec(`5. le rejeu à blanc ne dit pas « 0 migré · 288 déjà » — il dit : ${rejeu.stdout.split("\n")[0]}`);
+/* 2 ter. exactement les quatre abandons déclarés, ni un de plus, ni un de moins --------------- */
+for (const [chemin, valeur] of ABANDONS_ATTENDUS) {
+  if (!abandonsVus.has(chemin)) echec(`2. ${chemin} : abandon déclaré « ${valeur} » INTROUVABLE à l'état antérieur`);
+  else if (abandonsVus.get(chemin) !== valeur) {
+    echec(`2. ${chemin} : seconde valeur « ${abandonsVus.get(chemin)} » au lieu de « ${valeur} »`);
+  }
+}
+for (const [chemin, valeur] of abandonsVus) {
+  if (!ABANDONS_ATTENDUS.has(chemin)) {
+    echec(`2. ${chemin} : seconde valeur « ${valeur} » abandonnée SANS avoir été déclarée`);
+  }
+}
+
+/* ---- 5. IDEMPOTENCE, REJOUÉE POUR DE VRAI --------------------------------------------------- */
+/*
+ * Elle était rejouée avec `--dry`, ce qui ne prouvait rien : le mode à blanc n'écrit jamais, donc
+ * il ne peut pas montrer qu'une écriture n'a pas lieu. On rejoue la migration SANS `--dry`, dans
+ * un worktree jetable détaché sur HEAD, et on exige que git n'y voie AUCUNE modification. Le
+ * worktree est jetable précisément pour qu'un défaut d'idempotence abîme une copie et non le
+ * dépôt de travail.
+ */
+{
+  const base = mkdtempSync(join(tmpdir(), "preuve-idem-"));
+  const arbre = join(base, "wt");
+  const g = (...a) => spawnSync("git", a, { encoding: "utf-8" });
+  const ajout = g("worktree", "add", "--detach", "--quiet", arbre, "HEAD");
+  if (ajout.status !== 0) {
+    echec(`5. worktree jetable impossible : ${(ajout.stderr || "").trim()}`);
+  } else {
+    const rejeu = spawnSync("node",
+      ["packages/knowledge/scripts/migrer-categories.mjs", `--racine=${join(arbre, RACINE)}`],
+      { encoding: "utf-8" });
+    const etat = g("-C", arbre, "status", "--porcelain", "-uall");
+    if (rejeu.status !== 0) {
+      echec(`5. le rejeu RÉEL de la migration échoue (code ${rejeu.status}) : ${(rejeu.stderr || "").trim().split("\n")[0]}`);
+    }
+    if (!/^0 fichier\(s\) migré\(s\) · 288 déjà au format/m.test(rejeu.stdout)) {
+      echec(`5. le rejeu réel ne dit pas « 0 migré · 288 déjà » — il dit : ${rejeu.stdout.split("\n")[0]}`);
+    }
+    const sales = (etat.stdout || "").trim();
+    if (sales) {
+      echec(`5. le rejeu réel a MODIFIÉ l'arbre — ${sales.split("\n").length} fichier(s) :\n        ` +
+        sales.split("\n").slice(0, 5).join("\n        "));
+    }
+    g("worktree", "remove", "--force", arbre);
+  }
+  rmSync(base, { recursive: true, force: true });
 }
 
 /* ---- verdict ------------------------------------------------------------------------------- */
