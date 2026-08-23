@@ -227,9 +227,37 @@ for (const [cle, entree] of Object.entries(REF)) {
   if (typeof entree.verifie !== "boolean") {
     echec(6, `${cle} : champ « verifie » absent ou non booléen — le statut de provenance doit être déclaré, jamais sous-entendu`);
   } else if (entree.verifie === true) {
+    /* UNE CHAÎNE NON VIDE N'EST PAS UNE PREUVE. La première version de cette union se contentait
+       de « présent et non vide » : `url_origine: "x"` et `verifie_le: "demain"` la satisfaisaient.
+       C'était un contrat de FORME déguisé en contrat de FOND — le genre de faux vert que ce dépôt
+       passe son temps à fermer ailleurs. Chaque champ est donc éprouvé sur ce qu'il prétend être. */
     for (const c of EXIGES_SI_VERIFIE) {
-      if (entree[c] === undefined || entree[c] === null || entree[c] === "") {
+      const v = entree[c];
+      if (v === undefined || v === null || typeof v !== "string" || v.trim() === "") {
         echec(6, `${cle} : « verifie: true » mais « ${c} » vide — une provenance vérifiée dit par qui, quand, et d'où`);
+        continue;
+      }
+      if (c === "url_origine" && !/^https?:\/\/[^\s/$.?#].[^\s]*$/i.test(v)) {
+        echec(6, `${cle} : « url_origine » n'est pas une adresse HTTP(S) absolue — « ${v} »`);
+      }
+      if (c === "verifie_le") {
+        /* Le format ET la date : « 2026-02-31 » a la bonne forme et n'existe pas. On reconstruit
+           la date depuis ce que JavaScript en a compris, et on exige de retrouver la chaîne. */
+        const iso = /^(\d{4})-(\d{2})-(\d{2})$/.exec(v);
+        const d = iso ? new Date(`${v}T00:00:00Z`) : null;
+        if (!iso || Number.isNaN(d?.getTime()) || d.toISOString().slice(0, 10) !== v) {
+          echec(6, `${cle} : « verifie_le » n'est pas une date ISO valide (AAAA-MM-JJ) — « ${v} »`);
+        }
+      }
+    }
+  } else {
+    /* verifie: false — L'ÉTAT CONTRADICTOIRE EST INTERDIT. Nommer un vérificateur et une date
+       tout en se déclarant non vérifié laisserait un lecteur croire à une vérification qui n'a
+       pas eu lieu, ou à un statut oublié après coup. Les deux champs restent nuls tant que le
+       statut n'a pas basculé. */
+    for (const c of ["verificateur", "verifie_le"]) {
+      if (entree[c] !== null && entree[c] !== undefined) {
+        echec(6, `${cle} : « verifie: false » mais « ${c} » renseigné (« ${entree[c]} ») — état contradictoire`);
       }
     }
   }

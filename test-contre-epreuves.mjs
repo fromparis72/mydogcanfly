@@ -895,6 +895,20 @@ const MUTATIONS = [
     attendu: "« verifie: true » mais « auteur » vide",
   },
   {
+    nom: "une provenance se déclare vérifiée avec une URL bidon et une date qui n'en est pas une",
+    id: "une-provenance-se-declare-verifiee-avec-une-url-bidon-et",
+    /* LE FAUX VERT DU CONTRAT LUI-MÊME. Sa première version n'exigeait que des chaînes NON VIDES :
+       `url_origine: "x"` et `verifie_le: "demain"` la satisfaisaient pleinement. Un contrat de
+       FORME déguisé en contrat de FOND, c'est-à-dire la même faute que celle qu'il est censé
+       interdire — se déclarer vérifié sans l'être. Chaque champ est désormais éprouvé sur ce
+       qu'il prétend être : adresse HTTP(S) absolue, date ISO réellement existante. */
+    fichier: "couvertures-guides.json",
+    cherche: '      "auteur": null,\n      "url_origine": null,\n      "base_de_droits": "licence Unsplash standard, DÉCLARÉE par le propriétaire",\n      "verifie": false,\n      "verificateur": null,\n      "verifie_le": null,\n      "acquise_le": "2026-08-23",\n      "alt": {\n        "en": "A deserted airport connecting walkway',
+    remplace: '      "auteur": "x",\n      "url_origine": "x",\n      "base_de_droits": "licence Unsplash standard, DÉCLARÉE par le propriétaire",\n      "verifie": true,\n      "verificateur": "x",\n      "verifie_le": "demain",\n      "acquise_le": "2026-08-23",\n      "alt": {\n        "en": "A deserted airport connecting walkway',
+    harnais: "test-couvertures-guides.mjs",
+    attendu: "n'est pas une date ISO valide",
+  },
+  {
     distComplet: true,
     nom: "une page sans crédit n'est plus déclarée, et le harnais compte au lieu d'identifier",
     id: "une-page-sans-credit-n-est-plus-declaree-et-le-harnais-c",

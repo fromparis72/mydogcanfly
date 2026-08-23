@@ -38,7 +38,17 @@
     "                   vérification, c'est une affirmation.",
     "",
     "Les dix entrées sont à `false`. Passer l'une d'elles à `true` exige donc de remplir les quatre",
-    "champs — ce qui est le but : le statut ne peut pas être relevé par commodité."
+    "champs — ce qui est le but : le statut ne peut pas être relevé par commodité.",
+    "",
+    "Les champs du versant « vérifié » — `verifie`, `verificateur`, `verifie_le` — sont VOISINS,",
+    "pour qu'un relecteur voie d'un coup d'œil ce que le statut engage, et qu'une contre-épreuve",
+    "puisse les muter d'un seul bloc.",
+    "",
+    "`verifie: true` n'exige pas seulement des champs REMPLIS mais des champs JUSTES : `url_origine`",
+    "doit être une adresse HTTP(S) absolue et `verifie_le` une date ISO réellement existante —",
+    "« x » et « demain » satisfaisaient la première version de ce contrat. Symétriquement,",
+    "`verifie: false` interdit de nommer un vérificateur ou une date : un état à moitié rempli",
+    "laisse croire à une vérification qui n'a pas eu lieu."
   ],
   "images": {
     "airline-pet-policy-changes": {
@@ -52,15 +62,15 @@
       "url_origine": null,
       "base_de_droits": "licence Unsplash standard, DÉCLARÉE par le propriétaire",
       "verifie": false,
+      "verificateur": null,
+      "verifie_le": null,
       "acquise_le": "2026-08-23",
       "alt": {
         "en": "A Yorkshire Terrier held up in an aircraft cabin, beside a window and a seat, wearing an identification tag",
         "fr": "Un yorkshire tenu dans une cabine d'avion, près d'un hublot et d'un siège, portant une étiquette d'identification",
         "es": "Un yorkshire terrier sostenido en la cabina de un avión, junto a una ventanilla y un asiento, con una etiqueta de identificación",
         "pt": "Um yorkshire terrier no colo dentro da cabine de um avião, junto a uma janela e a um assento, com uma etiqueta de identificação"
-      },
-      "verificateur": null,
-      "verifie_le": null
+      }
     },
     "airport-day-with-a-dog": {
       "fichier": "/travel-hub/airport-day-with-a-dog.webp",
@@ -73,15 +83,15 @@
       "url_origine": null,
       "base_de_droits": "licence Unsplash standard, DÉCLARÉE par le propriétaire",
       "verifie": false,
+      "verificateur": null,
+      "verifie_le": null,
       "acquise_le": "2026-08-23",
       "alt": {
         "en": "A yellow Labrador lying on a terminal floor, in a harness and on a lead, at its handler's feet",
         "fr": "Un labrador sable couché sur le sol d'une aérogare, en harnais et en laisse, aux pieds de son maître",
         "es": "Un labrador color arena tumbado en el suelo de una terminal, con arnés y correa, a los pies de su guía",
         "pt": "Um labrador amarelo deitado no piso de um terminal, de peitoral e guia, aos pés do seu tutor"
-      },
-      "verificateur": null,
-      "verifie_le": null
+      }
     },
     "booking-a-pet-flight": {
       "fichier": "/travel-hub/booking-a-pet-flight.webp",
@@ -94,15 +104,15 @@
       "url_origine": null,
       "base_de_droits": "licence Unsplash standard, DÉCLARÉE par le propriétaire",
       "verifie": false,
+      "verificateur": null,
+      "verifie_le": null,
       "acquise_le": "2026-08-23",
       "alt": {
         "en": "A small Pomeranian wearing glasses, standing in front of a tablet on a wooden table",
         "fr": "Un petit spitz nain à lunettes, debout devant une tablette posée sur une table en bois",
         "es": "Un pequeño pomerania con gafas, de pie ante una tableta sobre una mesa de madera",
         "pt": "Um pequeno lulu da pomerânia de óculos, em pé diante de um tablet sobre uma mesa de madeira"
-      },
-      "verificateur": null,
-      "verifie_le": null
+      }
     },
     "cargo-vs-excess-baggage": {
       "fichier": "/travel-hub/cargo-vs-excess-baggage.webp",
@@ -115,15 +125,15 @@
       "url_origine": null,
       "base_de_droits": "licence Unsplash standard, DÉCLARÉE par le propriétaire",
       "verifie": false,
+      "verificateur": null,
+      "verifie_le": null,
       "acquise_le": "2026-08-23",
       "alt": {
         "en": "A Boeing 747 at the jet bridge, surrounded by cargo containers and ground vehicles",
         "fr": "Un Boeing 747 à la passerelle, entouré de conteneurs de fret et d'engins de piste",
         "es": "Un Boeing 747 en la pasarela, rodeado de contenedores de carga y vehículos de pista",
         "pt": "Um Boeing 747 na ponte de embarque, cercado por contêineres de carga e veículos de pista"
-      },
-      "verificateur": null,
-      "verifie_le": null
+      }
     },
     "layovers-with-a-pet": {
       "fichier": "/travel-hub/layovers-with-a-pet.webp",
@@ -136,15 +146,15 @@
       "url_origine": null,
       "base_de_droits": "licence Unsplash standard, DÉCLARÉE par le propriétaire",
       "verifie": false,
+      "verificateur": null,
+      "verifie_le": null,
       "acquise_le": "2026-08-23",
       "alt": {
         "en": "A deserted airport connecting walkway, lined with moving walkways and glass walls",
         "fr": "Une passerelle de correspondance déserte, bordée de tapis roulants et de baies vitrées",
         "es": "Una pasarela de conexión desierta, flanqueada por cintas transportadoras y cristaleras",
         "pt": "Uma passarela de conexão deserta, ladeada por esteiras rolantes e paredes de vidro"
-      },
-      "verificateur": null,
-      "verifie_le": null
+      }
     },
     "measuring-your-dog-for-a-crate": {
       "fichier": "/travel-hub/measuring-your-dog-for-a-crate.webp",
@@ -157,15 +167,15 @@
       "url_origine": null,
       "base_de_droits": "licence Unsplash standard, DÉCLARÉE par le propriétaire",
       "verifie": false,
+      "verificateur": null,
+      "verifie_le": null,
       "acquise_le": "2026-08-23",
       "alt": {
         "en": "A merle-coated dog lying in an open wire crate, on a mat",
         "fr": "Un chien à robe merle couché dans une caisse grillagée ouverte, sur un tapis",
         "es": "Un perro de capa merle tumbado en un transportín de rejilla abierto, sobre una manta",
         "pt": "Um cachorro de pelagem merle deitado numa caixa de arame aberta, sobre um tapete"
-      },
-      "verificateur": null,
-      "verifie_le": null
+      }
     },
     "pet-flight-timeline": {
       "fichier": "/travel-hub/pet-flight-timeline.webp",
@@ -178,15 +188,15 @@
       "url_origine": null,
       "base_de_droits": "licence Unsplash standard, DÉCLARÉE par le propriétaire",
       "verifie": false,
+      "verificateur": null,
+      "verifie_le": null,
       "acquise_le": "2026-08-23",
       "alt": {
         "en": "Two black Labradors in vests, sitting on the apron in front of an aircraft",
         "fr": "Deux labradors noirs en gilet, assis sur le tarmac devant un avion",
         "es": "Dos labradores negros con chaleco, sentados en la pista ante un avión",
         "pt": "Dois labradores pretos de colete, sentados na pista diante de um avião"
-      },
-      "verificateur": null,
-      "verifie_le": null
+      }
     },
     "pet-heat-embargoes": {
       "fichier": "/travel-hub/pet-heat-embargoes.webp",
@@ -199,15 +209,15 @@
       "url_origine": null,
       "base_de_droits": "licence Unsplash standard, DÉCLARÉE par le propriétaire",
       "verifie": false,
+      "verificateur": null,
+      "verifie_le": null,
       "acquise_le": "2026-08-23",
       "alt": {
         "en": "A light-coated dog flopped in the shade on cobblestones, wearing sunglasses",
         "fr": "Un chien au poil clair affalé à l'ombre sur des pavés, coiffé de lunettes de soleil",
         "es": "Un perro de pelo claro tumbado a la sombra sobre adoquines, con gafas de sol",
         "pt": "Um cachorro de pelo claro largado à sombra sobre paralelepípedos, de óculos de sol"
-      },
-      "verificateur": null,
-      "verifie_le": null
+      }
     },
     "pet-travel-documents": {
       "fichier": "/travel-hub/pet-travel-documents.webp",
@@ -220,15 +230,15 @@
       "url_origine": null,
       "base_de_droits": "licence Unsplash standard, DÉCLARÉE par le propriétaire",
       "verifie": false,
+      "verificateur": null,
+      "verifie_le": null,
       "acquise_le": "2026-08-23",
       "alt": {
         "en": "An open passport covered in visa stamps, resting on a folder",
         "fr": "Un passeport ouvert couvert de tampons de visa, posé sur une chemise",
         "es": "Un pasaporte abierto cubierto de sellos de visado, sobre una carpeta",
         "pt": "Um passaporte aberto coberto de carimbos de visto, sobre uma pasta"
-      },
-      "verificateur": null,
-      "verifie_le": null
+      }
     },
     "snub-nosed-breeds-and-flying": {
       "fichier": "/travel-hub/snub-nosed-breeds-and-flying.webp",
@@ -241,15 +251,15 @@
       "url_origine": null,
       "base_de_droits": "licence Unsplash standard, DÉCLARÉE par le propriétaire",
       "verifie": false,
+      "verificateur": null,
+      "verifie_le": null,
       "acquise_le": "2026-08-23",
       "alt": {
         "en": "A French Bulldog lying on a sheepskin, its short muzzle clearly visible",
         "fr": "Un bouledogue français couché sur une peau de mouton, museau court bien visible",
         "es": "Un bulldog francés tumbado sobre una piel de oveja, con el hocico corto bien visible",
         "pt": "Um buldogue francês deitado sobre uma pele de carneiro, com o focinho curto bem visível"
-      },
-      "verificateur": null,
-      "verifie_le": null
+      }
     }
   }
 }
