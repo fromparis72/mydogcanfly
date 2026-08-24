@@ -16,12 +16,14 @@
  * (cas 0) ; chaque cas suivant mute UNE chose et exige la sortie 1 avec la cause nommée.
  * Aucune donnée réelle n'est affirmée : la fixture vit dans l'arbre jetable, jamais au dépôt.
  *
- * TRENTE-SEPT CAS : 0 (fixture conforme → 0), puis 17 à 44 dans l'ordre du dossier, puis
- * 45-47 (ancres : extrait absent, extrait concordant mais introuvable, rattachement sans
- * capture), puis 48-51 (contre-revue v5 : extrait fait de balises seules, extrait fait
- * d'entités seules, PDF texte — l'extrait qui y figure S'ANCRE et celui qui n'y figure pas
- * rougit —, PDF illisible/scanné où rien ne s'ancre). Chaque consultation de la fixture
- * scelle brut + texte dérivé + version d'extracteur, comme l'exige le validateur.
+ * TRENTE-SEPT CAS : 0 (fixture conforme → 0 — dont une candidate PDF dont la pièce est sa
+ * capture, la forme licite), puis 17 à 44, puis 45-47 (ancres), 48-49 (extrait de balises
+ * seules, d'entités seules), 50-51 (contre-revue v5-bis : pièce EXTRAIT depuis un PDF
+ * interdite MÊME quand l'extrait s'ancre dans le texte dérivé dégradé ; preuve de
+ * rattachement depuis un PDF interdite), et 52 (l'attaque de contre-revue : url_finale et
+ * source.url réécrites ENSEMBLE, capture et manifeste intacts — la concordance passe, seule
+ * la liaison au manifeste le voit). La fixture porte un MANIFESTE de consultation complet ;
+ * chaque candidate le référence par manifeste_n, et la matrice n'ajoute que le jugement.
  */
 import { readFileSync, writeFileSync, mkdirSync, copyFileSync, symlinkSync, mkdtempSync, rmSync } from "node:fs";
 import { createHash } from "node:crypto";
@@ -54,18 +56,35 @@ const quoteFixture = (texte) => ({
 const sha256 = (b) => createHash("sha256").update(b).digest("hex");
 const EXTRAIT_TEMOIN = "Extrait témoin relevé sur la page consultée (jeu d'essai).";
 
-/** La matrice-fixture : bijection réelle, observations d'essai, extraits ANCRÉS dans des
- *  captures-fixtures versionnées dans l'arbre jetable (le validateur les exige). */
-function fabriquerMatrice(guides, scelle, captureTemoin, preuveTemoin) {
+/** La fixture : matrice ET manifeste, construits d'une même énumération — le manifeste
+ *  porte les observations, la matrice les référence par manifeste_n et n'ajoute que le
+ *  jugement. Une candidate PDF (country_bs[1]) montre la forme licite : sa pièce est sa
+ *  capture, jamais un extrait. */
+function fabriquerJeu(guides, scelle, fx) {
   const audits = {};
+  const resultats = [];
+  let n = 0;
   for (const id of Object.keys(scelle.pays)) {
-    const candidates = guides[id].sources.map((s) => ({
-      label: s.label, url_publiee: s.url, acces: "consultee",
-      url_finale: s.url, statut_http: 200, consultee_le: JOUR,
-      capture: { ...captureTemoin },
-      piece: { type: "extrait", extrait: EXTRAIT_TEMOIN, langue: "en", locator: "section témoin" },
-      nature_editeur: "non_etabli", preuves_rattachement: [], pertinence: "non_evaluee",
-    }));
+    const candidates = guides[id].sources.map((s, i) => {
+      n++;
+      const estPdf = id === "country_bs" && i === 1;
+      const cap = JSON.parse(JSON.stringify(estPdf ? fx.capturePdfTexte : fx.captureTemoin));
+      resultats.push({
+        n, country_id: id, index_lien: i, label: s.label, url_publiee: s.url,
+        acces: "consultee", statut_http: 200, url_finale: s.url, redirections: 0,
+        consultee_le: JOUR, content_type: cap.content_type,
+        capture: JSON.parse(JSON.stringify(cap)),
+        entetes: { ...fx.entetesTemoin }, trace: { ...fx.traceTemoin },
+      });
+      return {
+        manifeste_n: n, label: s.label, url_publiee: s.url, acces: "consultee",
+        url_finale: s.url, statut_http: 200, consultee_le: JOUR,
+        capture: cap, entetes: { ...fx.entetesTemoin }, trace: { ...fx.traceTemoin },
+        piece: estPdf ? { type: "capture", chemin: cap.chemin, sha256: cap.sha256 }
+                      : { type: "extrait", extrait: EXTRAIT_TEMOIN, langue: "en", locator: "section témoin" },
+        nature_editeur: "non_etabli", preuves_rattachement: [], pertinence: "non_evaluee",
+      };
+    });
     audits[id] = {
       audite_par: "Harnais lot A", audite_le: JOUR, candidates,
       decision: { statut: "aucune_source_officielle", motif: "Jeu d'essai : aucune candidate n'est jugée ici." },
@@ -75,7 +94,7 @@ function fabriquerMatrice(guides, scelle, captureTemoin, preuveTemoin) {
   const fj = audits.country_fj;
   const c0 = fj.candidates[0];
   c0.nature_editeur = "autorite_pays";
-  c0.preuves_rattachement = [preuveTemoin()];
+  c0.preuves_rattachement = [fx.preuveTemoin()];
   c0.pertinence = "etaye_le_fait";
   fj.decision = {
     statut: "promue", observation_decisive: 0,
@@ -85,7 +104,10 @@ function fabriquerMatrice(guides, scelle, captureTemoin, preuveTemoin) {
       quote: c0.piece.extrait, quote_language: c0.piece.langue, locator: c0.piece.locator,
     },
   };
-  return { audits };
+  return {
+    matrice: { audits },
+    manifeste: { consultees_le: JOUR, run: "audit-pays-pieces", total: n, extracteur: VERSION_EXTRACTEUR, resultats },
+  };
 }
 
 try {
@@ -132,9 +154,22 @@ try {
     citation: quoteFixture(CITATION_RATTACHEMENT),
     capture: JSON.parse(JSON.stringify(captureRattachement)),
   });
+  const poserFichier = (nom, contenu) => {
+    const chemin = `audit-pays-pieces/${nom}`;
+    writeFileSync(join(arbre, chemin), contenu);
+    gitArbre("add", "--", chemin);
+    return { chemin, sha256: sha256(contenu) };
+  };
+  const entetesTemoin = poserFichier("entetes-temoin.txt",
+    "HTTP/1.1 200 OK\n[en-tête expurgé : cookies/authentification/proxy]\nContent-Type: text/html; charset=utf-8\n");
+  const traceTemoinF = poserFichier("trace-temoin.txt", "# trace témoin du jeu d'essai\n[ligne expurgée : proxy/authentification]\n");
+  const traceTemoin = { type: "transcript", ...traceTemoinF };
+  const fx = { captureTemoin, capturePdfTexte, capturePdfScanne, preuveTemoin, entetesTemoin, traceTemoin };
 
   const poser = (m) => writeFileSync(CHEMIN_MATRICE, JSON.stringify(m, null, 2));
-  const neuve = () => fabriquerMatrice(guides, scelle, captureTemoin, preuveTemoin);
+  const jeu0 = fabriquerJeu(guides, scelle, fx);
+  writeFileSync(join(arbre, "audit-pays-consultations.json"), JSON.stringify(jeu0.manifeste, null, 2));
+  const neuve = () => fabriquerJeu(guides, scelle, fx).matrice;
 
   /** Mute une matrice neuve, la pose, lance, et exige 1 + motifs. */
   const cas = (nom, muter, motifs) => {
@@ -284,29 +319,29 @@ try {
     delete fj(m).candidates[0].preuves_rattachement[0].capture;
   }, [/schéma/, /preuves_rattachement/]);
 
-  /* ---- 48-51 · le vide ne s'ancre nulle part, et les PDF se lisent honnêtement --------------- */
+  /* ---- 48-52 · le vide ne s'ancre nulle part, les PDF ne font pas preuve, le manifeste fait foi */
   cas("48 extrait de balises seules", (m) => {
     bs(m).candidates[0].piece.extrait = "<b></b><i></i>";   // 14 caractères, 0 significatif
   }, [/schéma/, /SIGNIFICATIFS|balisage/]);
   cas("49 extrait d'entités seules", (m) => {
     bs(m).candidates[0].piece.extrait = "&nbsp;&nbsp;&amp;&nbsp;&nbsp;&nbsp;";
   }, [/schéma/, /SIGNIFICATIFS/]);
-  { /* 50 · PDF texte : l'extrait qui y figure s'ancre (vert), celui qui n'y figure pas rougit */
-    const m = neuve();
-    bs(m).candidates[0].capture = JSON.parse(JSON.stringify(capturePdfTexte));
-    bs(m).candidates[0].piece.extrait = EXTRAIT_PDF;
-    poser(m);
-    const r = lancer(arbre);
-    if (r.status !== 0) echec("50 PDF texte (ancré)", `sortie ${r.status} — un extrait réellement présent dans le PDF ne s'ancre pas :\n      ${r.stderr.trim().split("\n").slice(0, 3).join("\n      ")}`);
-  }
-  cas("50 PDF texte (extrait absent)", (m) => {
-    bs(m).candidates[0].capture = JSON.parse(JSON.stringify(capturePdfTexte));
-    bs(m).candidates[0].piece.extrait = "Une phrase qui ne figure pas dans le PDF témoin du jeu d'essai.";
-  }, [/country_bs/, /INTROUVABLE dans le texte dérivé/]);
-  cas("51 PDF illisible ou scanné", (m) => {
-    bs(m).candidates[0].capture = JSON.parse(JSON.stringify(capturePdfScanne));
-    bs(m).candidates[0].piece.extrait = EXTRAIT_PDF;
-  }, [/country_bs/, /INTROUVABLE dans le texte dérivé/]);
+  cas("50 pièce extrait depuis un PDF", (m) => {
+    /* La candidate PDF licite (pièce = capture) reçoit un extrait POURTANT ANCRABLE dans le
+     * texte dérivé dégradé : l'interdiction lot-a-1 doit primer sur l'ancrage. */
+    bs(m).candidates[1].piece = { type: "extrait", extrait: EXTRAIT_PDF, langue: "en", locator: "page 1" };
+  }, [/country_bs/, /pièce EXTRAIT depuis un PDF/]);
+  cas("51 rattachement depuis un PDF", (m) => {
+    const preuve = preuveTemoin();
+    preuve.capture = JSON.parse(JSON.stringify(capturePdfTexte));
+    fj(m).candidates[0].preuves_rattachement = [preuve];
+  }, [/country_fj/, /rattachement \[0\] depuis un PDF/]);
+  cas("52 observation réécrite hors manifeste", (m) => {
+    /* L'attaque exacte de la contre-revue : url_finale ET source.url réécrites ensemble —
+     * la concordance passe, la capture et le manifeste sont intacts. */
+    fj(m).candidates[0].url_finale = "https://autorite-inventee.example/politique-chiens";
+    fj(m).decision.source.url = "https://autorite-inventee.example/politique-chiens";
+  }, [/country_fj/, /url_finale/, /observation réécrite hors manifeste/]);
 } finally {
   gitWt("remove", "--force", arbre);
   rmSync(conteneur, { recursive: true, force: true });
@@ -314,16 +349,12 @@ try {
 
 /* ---- verdict ---------------------------------------------------------------------------------- */
 if (defauts.length === 0) {
-  process.stdout.write("37 cas éprouvés sur matrice-fixture en arbre jetable : la fixture conforme sort en 0,\n");
-  process.stdout.write("les 28 contrôles d'exécution du dossier (17-44) rougissent chacun pour sa cause —\n");
-  process.stdout.write("bijection triplet, éligibilité, escalade du non-officiel affiché, concordances,\n");
-  process.stdout.write("dérivation ADR-0007, contrats SourcedQuote, pièces prouvées (existence, empreinte,\n");
-  process.stdout.write("suivi git, fichier régulier), relations temporelles, la matrice qui fait foi —\n");
-  process.stdout.write("les ancres (45-47) : extrait absent, extrait concordant mais introuvable,\n");
-  process.stdout.write("rattachement sans capture — et l'extraction (48-51) : balises seules et entités\n");
-  process.stdout.write("seules refusées (le vide s'ancre partout), PDF texte ancré ou rougissant selon que\n");
-  process.stdout.write("l'extrait y figure, PDF illisible où rien ne s'ancre.\n\n");
-  process.stdout.write("[audit-pays] le validateur mord, sur les 35 contrôles.\n");
+  process.stdout.write("37 cas éprouvés : la fixture conforme (manifeste lié, candidate PDF à pièce-capture)\n");
+  process.stdout.write("sort en 0 ; les contrôles 17-47 rougissent chacun pour sa cause ; le vide (balises,\n");
+  process.stdout.write("entités) ne s'ancre nulle part ; une pièce extrait ou un rattachement issus d'un PDF\n");
+  process.stdout.write("sont refusés même ancrables ; et l'observation réécrite hors manifeste — url_finale\n");
+  process.stdout.write("et source.url ensemble, concordance verte — rougit par la liaison au manifeste.\n\n");
+  process.stdout.write("[audit-pays] le validateur mord, sur les 36 contrôles.\n");
   process.exit(0);
 }
 process.stderr.write(`\n[audit-pays] ÉCHEC — ${defauts.length} défaut(s) :\n`);

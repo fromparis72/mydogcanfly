@@ -36,6 +36,16 @@
  *     projection canonique EXACTE du `SourcedQuote` promu (URL FINALE comprise). L'inverse
  *     (promue non encore appliquée) est licite : les promotions s'appliquent après contre-revue.
  *
+ *   · LE MANIFESTE FAIT FOI DE L'OBSERVATION — chaque candidate référence, par `manifeste_n`,
+ *     un résultat du manifeste de consultation (`audit-pays-consultations.json`), et tous les
+ *     champs OBSERVÉS doivent lui être ÉGAUX : triplet publié, accès, statut, URL finale,
+ *     date, Content-Type, capture scellée, en-têtes, trace. La matrice n'ajoute que le
+ *     JUGEMENT (éditeur, pertinence, pièce, décision) — une observation réécrite hors
+ *     manifeste rougit (contre-revue v5-bis) ;
+ *   · AUCUNE PREUVE TEXTUELLE DEPUIS UN PDF en lot-a-1 — l'extracteur produit des mots
+ *     éclatés sur les PDF réels : le brut est conservé, mais ni pièce `extrait`, ni preuve
+ *     de rattachement, ni candidate décisive ne peuvent venir d'un PDF.
+ *
  * Sortie 0 si tout tient ; 1 au premier lot d'écarts, chacun nommé (pays, candidate, champ) ;
  * 2 si --as-of manque ou n'existe pas.
  */
@@ -93,6 +103,7 @@ const Pertinence = z.enum(["etaye_le_fait", "partielle", "page_generique", "hors
 const PreuveRattachement = z.object({ citation: z.unknown(), capture: CaptureScellee }).strict();
 
 const CandidateConsultee = z.object({
+  manifeste_n: z.number().int().min(1),      // l'identité stable de l'observation dans le manifeste
   label: LT,
   url_publiee: z.string().url(),
   acces: z.literal("consultee"),
@@ -100,6 +111,8 @@ const CandidateConsultee = z.object({
   statut_http: z.number().int().min(200).max(299),
   consultee_le: DateISO,
   capture: CaptureScellee,                   // brut + texte dérivé + version d'extracteur, scellés ensemble
+  entetes: Fichier,                          // la copie canonique EXPURGÉE des en-têtes corrélés
+  trace: Trace,
   piece: z.union([PieceExtrait, PieceCapture]),
   captures_complementaires: z.array(Fichier).optional(),
   nature_editeur: NatureEditeur,
@@ -108,6 +121,7 @@ const CandidateConsultee = z.object({
 }).strict();
 
 const CandidateTentative = z.object({
+  manifeste_n: z.number().int().min(1),
   label: LT,
   url_publiee: z.string().url(),
   acces: z.literal("tentative"),
@@ -149,6 +163,17 @@ const scelle = lire(SCELLE);
 const guides = lire("packages/ui/src/data/countries.generated.json");
 const objets = lire("packages/knowledge/raw/objects.json");
 const CONTRACTUELS = Object.keys(scelle.pays);
+let manifeste;
+try { manifeste = lire("audit-pays-consultations.json"); }
+catch {
+  process.stderr.write("[audit] ÉCHEC : audit-pays-consultations.json introuvable — la matrice ne se juge pas sans le manifeste de consultation (jamais vert faute de matière).\n");
+  process.exit(1);
+}
+const parN = new Map((manifeste.resultats ?? []).map((r) => [r.n, r]));
+if (manifeste.extracteur !== VERSION_EXTRACTEUR) {
+  echec(`manifeste — extracteur « ${manifeste.extracteur} » ≠ version courante « ${VERSION_EXTRACTEUR} »`);
+}
+const nsVus = new Set();
 
 const parseMatrice = Matrice.safeParse(matriceBrute);
 if (!parseMatrice.success) {
@@ -242,13 +267,58 @@ for (const id of CONTRACTUELS) {
   dansFenetre(a.audite_le, id, "audite_le");
   for (const [i, c] of (a.candidates ?? []).entries()) {
     const qui = `candidate[${i}] (${c.url_publiee})`;
+
+    /* LE MANIFESTE FAIT FOI : l'observation de la matrice doit être CELLE du manifeste,
+     * champ à champ — la matrice n'ajoute que le jugement. */
+    const res = parN.get(c.manifeste_n);
+    if (!res) { echec(`${id} — ${qui} : manifeste_n ${c.manifeste_n} ne désigne aucun résultat du manifeste`); continue; }
+    if (nsVus.has(c.manifeste_n)) echec(`${id} — ${qui} : manifeste_n ${c.manifeste_n} déjà utilisé par une autre candidate`);
+    nsVus.add(c.manifeste_n);
+    const observe = (champ, matrice, mani) => {
+      if (jsonCanonique(matrice) !== jsonCanonique(mani)) {
+        echec(`${id} — ${qui} : « ${champ} » ≠ manifeste (matrice ${jsonCanonique(matrice)?.slice(0, 60)} · manifeste ${jsonCanonique(mani)?.slice(0, 60)}) — observation réécrite hors manifeste`);
+      }
+    };
+    if (res.country_id !== id || res.index_lien !== i) {
+      echec(`${id} — ${qui} : manifeste_n ${c.manifeste_n} appartient à ${res.country_id}[${res.index_lien}], pas à ${id}[${i}]`);
+    }
+    observe("label", c.label, res.label);
+    observe("url_publiee", c.url_publiee, res.url_publiee);
+    observe("acces", c.acces, res.acces);
+    if (c.acces === "consultee" && res.acces === "consultee") {
+      observe("statut_http", c.statut_http, res.statut_http);
+      observe("url_finale", c.url_finale, res.url_finale);
+      observe("consultee_le", c.consultee_le, res.consultee_le);
+      observe("content_type", c.capture?.content_type, res.content_type);
+      const capMani = res.capture ? { chemin: res.capture.chemin, sha256: res.capture.sha256,
+        content_type: res.capture.content_type, texte_derive: res.capture.texte_derive,
+        extracteur: res.capture.extracteur } : null;
+      observe("capture", c.capture, capMani);
+      observe("entetes", c.entetes, res.entetes);
+      observe("trace", c.trace, res.trace);
+    } else if (c.acces === "tentative" && res.acces === "tentative") {
+      observe("tentee_le", c.tentee_le, res.tentee_le);
+      observe("resultat", c.resultat, res.resultat);
+      observe("trace", c.trace, res.trace);
+    }
+
+    /* AUCUNE PREUVE TEXTUELLE DEPUIS UN PDF (lot-a-1) : l'extracteur produit des mots éclatés
+     * sur les PDF réels — le brut est conservé, le texte n'y fait pas preuve. */
+    const estPdf = c.acces === "consultee" && /pdf/i.test(String(c.capture?.content_type));
+    if (estPdf && c.piece?.type === "extrait") {
+      echec(`${id} — ${qui} : pièce EXTRAIT depuis un PDF — interdit en lot-a-1 (texte dérivé non fiable), la pièce d'un PDF est sa capture`);
+    }
     if (c.acces === "consultee") {
       dansFenetre(c.consultee_le, id, `${qui} consultee_le`);
       if (a.audite_le < c.consultee_le) echec(`${id} — audite_le « ${a.audite_le} » antérieure à la consultation ${qui}`);
       if (c.capture?.chemin) {
         captureProuvee(id, `${qui} capture`, c.capture);
-        if (c.piece?.type === "extrait") ancre(id, `${qui} pièce extrait`, c.piece.extrait, c.capture);
+        if (c.piece?.type === "extrait" && !/pdf/i.test(String(c.capture.content_type))) {
+          ancre(id, `${qui} pièce extrait`, c.piece.extrait, c.capture);
+        }
       }
+      if (c.entetes?.chemin) fichierProuve(id, `${qui} en-têtes`, c.entetes.chemin, c.entetes.sha256);
+      if (c.trace?.chemin) fichierProuve(id, `${qui} trace`, c.trace.chemin, c.trace.sha256);
       if (c.piece?.type === "capture") fichierProuve(id, `${qui} pièce capture`, c.piece.chemin, c.piece.sha256);
       for (const [j, f] of (c.captures_complementaires ?? []).entries()) fichierProuve(id, `${qui} capture complémentaire [${j}]`, f.chemin, f.sha256);
     } else if (c.acces === "tentative") {
@@ -270,7 +340,11 @@ for (const id of CONTRACTUELS) {
       }
       /* Chaque preuve de rattachement est LIÉE à sa propre capture scellée, et sa citation s'y retrouve. */
       captureProuvee(id, `${qui} capture de rattachement [${j}]`, p.capture);
-      if (typeof p.citation?.quote === "string") ancre(id, `${qui} citation de rattachement [${j}]`, p.citation.quote, p.capture);
+      if (/pdf/i.test(String(p.capture?.content_type))) {
+        echec(`${id} — ${qui} preuve de rattachement [${j}] depuis un PDF — interdit en lot-a-1`);
+      } else if (typeof p.citation?.quote === "string") {
+        ancre(id, `${qui} citation de rattachement [${j}]`, p.citation.quote, p.capture);
+      }
     }
     /* 25 — ESCALADE : le lien reste affiché sous « Sources officielles » par la fiche. */
     if (c.nature_editeur === "non_officiel") {
@@ -288,6 +362,9 @@ for (const id of CONTRACTUELS) {
     if (c.nature_editeur !== "autorite_pays") echec(`${id} — promotion depuis une nature « ${c.nature_editeur} » — seule l'autorité du pays est éligible`);
     if (c.pertinence !== "etaye_le_fait") echec(`${id} — promotion depuis une pertinence « ${c.pertinence} »`);
     if (c.piece?.type !== "extrait") echec(`${id} — la pièce décisive d'une promotion doit être un EXTRAIT (capture seule refusée)`);
+    if (c.acces === "consultee" && /pdf/i.test(String(c.capture?.content_type))) {
+      echec(`${id} — la candidate décisive est un PDF — aucune preuve décisive depuis un PDF en lot-a-1`);
+    }
 
     const r = SourcedQuote.safeParse(d.source);
     if (!r.success) {

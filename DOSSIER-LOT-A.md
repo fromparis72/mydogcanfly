@@ -1,4 +1,4 @@
-# Lot A — Audit des 18 pays sans source · dossier de mesure et de conception (v5-bis)
+# Lot A — Audit des 18 pays sans source · dossier de mesure et de conception (v5-ter)
 
 **Mesuré sur `main` après fusion du dossier d'achèvement (`1dd62010ea183422f02553877df4706714739080`).
 Ce dossier ne corrige rien : aucune date, aucune source, aucune donnée métier n'est écrite.
@@ -9,8 +9,8 @@ Reproduction :
 ```bash
 node --import tsx mesurer-lot-a.mjs --as-of=2026-08-24   # l'état contre le scellé — sortie 1 au premier écart
 node test-mesure-lot-a.mjs                               # 16 cas : le scellé est exact, et il ne se remplace pas
-node test-audit-pays.mjs                                 # 37 cas : le validateur de la matrice mord (17-51)
-node test-consulter-lot-a.mjs                            # 9 cas au faux curl : le collecteur ne fabrique rien
+node test-audit-pays.mjs                                 # 37 cas : le validateur de la matrice mord (17-52)
+node test-consulter-lot-a.mjs                            # 11 cas au faux curl : le collecteur ne fabrique rien
 ```
 
 La liste des 18 est celle que le bloc contractuel du dossier d'achèvement fige
@@ -121,6 +121,26 @@ version scellés ensemble, le validateur **re-dérivant** le texte depuis le bru
 **détection environnementale vaut pour chaque requête** (`r.error`, statut nul, signature de
 proxy dans la trace brute → tout le run s'interrompt, manifeste intact). Contre-épreuves
 48–51 et cas collecteur 9.
+
+**Le manifeste n'était relié à rien, l'extracteur PDF ne fermait pas l'échec, et la détection
+restait partielle** (contre-revue v5-bis, trois P0). (1) Le validateur ne lisait jamais le
+manifeste de consultation : réécrire `url_finale` ET `source.url` ensemble — concordance
+verte, capture intacte — sortait en 0. Désormais **le manifeste fait foi de l'observation** :
+chaque candidate le référence par `manifeste_n` (identité stable, unicité exigée, pays et
+indice vérifiés), et tous les champs OBSERVÉS — triplet, accès, statut, URL finale, date,
+Content-Type, capture scellée, en-têtes, trace — doivent lui être ÉGAUX ; la matrice n'ajoute
+que le jugement (contre-épreuve 52). (2) L'extracteur `lot-a-1` produit sur les PDF réels des
+mots éclatés et des caractères de contrôle (contre-examen indépendant : APHIS, Bahamas,
+Fidji) — une citation illisible aurait pu être copiée depuis ce dérivé. Voie simple retenue,
+comme proposé : les PDF bruts sont conservés, mais **ni pièce `extrait`, ni preuve de
+rattachement, ni candidate décisive ne peuvent venir d'un PDF** en lot-a-1 — chaque pays a
+au moins trois candidates non-PDF ; aucun décodeur ToUnicode n'est nécessaire dans ce lot
+(contre-épreuves 50–51, refusées MÊME quand l'extrait s'ancre). (3) La détection
+environnementale n'inspectait que stderr : un 403 dont seul le corps ou les en-têtes
+portaient « EGRESS_BLOCKED » devenait une tentative légitime ; et les en-têtes se scellaient
+sans assainissement (`Set-Cookie` versionnable). Désormais stderr + en-têtes + corps sont
+inspectés avant toute classification, et les en-têtes sont EXPURGÉS (`Set-Cookie`,
+`Authorization`, `WWW-Authenticate`, `Proxy-*`) avant scellement — cas collecteur 10 et 11.
 
 ## 1. La mesure a changé la nature de la dette — et ce que la promotion fait, honnêtement
 
@@ -327,10 +347,10 @@ Les **16 premières** sont éprouvées par `test-mesure-lot-a.mjs` sur l'état d
 les trois faux verts de la v1, les trois passages indus de la v2, la dérive commitée et le
 `_scelle` falsifié de la v3, les contrôles `--as-of`, la date future, et la génération saine
 (candidat égal au scellé, scellé jamais touché par l'instrument).
-Le harnais d'exécution `test-audit-pays.mjs` éprouve les contrôles **17 à 51** (37 cas,
-fixture jetable et sous-cas vert du PDF compris), et `test-consulter-lot-a.mjs` éprouve le
-collecteur (9 cas au faux `curl`, dont le proxy PARTIEL — sonde verte, une autorité bloquée —
-qui interrompt tout le run). Le total est **verrouillé à 51 + 9** :
+Le harnais d'exécution `test-audit-pays.mjs` éprouve les contrôles **17 à 52** (37 cas — la
+fixture porte un manifeste complet et une candidate PDF à pièce-capture, la forme licite), et
+`test-consulter-lot-a.mjs` éprouve le collecteur (11 cas au faux `curl`). Le total est
+**verrouillé à 52 + 11** :
 
 | # | mutation | attendu |
 |---|---|---|
@@ -367,8 +387,9 @@ qui interrompt tout le run). Le total est **verrouillé à 51 + 9** :
 | 47 | preuve de rattachement **sans capture** appariée | échec — schéma, la paire est obligatoire |
 | 48 | extrait fait de **balises seules** (se normalise en vide) | échec — dix caractères significatifs exigés, le vide s'ancre partout |
 | 49 | extrait fait d'**entités seules** | échec — même garde |
-| 50 | **PDF texte** : l'extrait qui y figure S'ANCRE (sous-cas vert) ; celui qui n'y figure pas | échec — introuvable dans le texte dérivé |
-| 51 | **PDF illisible ou scanné** : texte dérivé vide | échec — rien ne s'ancre dans le vide |
+| 50 | pièce `extrait` depuis un **PDF** — même quand l'extrait s'ancre dans le texte dérivé dégradé | échec — aucune preuve textuelle depuis un PDF en lot-a-1 |
+| 51 | preuve de rattachement dont la capture est un **PDF** | échec — même interdiction |
+| 52 | `url_finale` ET `source.url` réécrites ENSEMBLE, capture et manifeste intacts (concordance verte) | échec — le manifeste fait foi : observation réécrite hors manifeste |
 
 ## 6. Interdits, et effets de bord assumés
 

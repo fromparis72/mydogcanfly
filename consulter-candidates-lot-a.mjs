@@ -22,11 +22,14 @@
  * PENDANT LA COLLECTE :
  *   · UNE SEULE invocation curl par URL : corps (`-o`), en-têtes (`-D`), métadonnées (`-w`,
  *     `Content-Type` compris) et trace (`-v`, stderr) viennent du MÊME appel ;
- *   · la DÉTECTION ENVIRONNEMENTALE vaut pour CHAQUE requête, pas seulement la sonde
- *     (contre-revue : la sonde passait, une autorité répondait « CONNECT tunnel failed »,
- *     et cette signature — expurgée — devenait une « tentative » de la source) : `r.error`,
- *     `status === null` ou une signature de proxy dans la trace BRUTE interrompent TOUT le
- *     run, sortie 2, manifeste intact ;
+ *   · la DÉTECTION ENVIRONNEMENTALE vaut pour CHAQUE requête, et inspecte STDERR, les
+ *     EN-TÊTES et le CORPS PROVISOIRE avant toute classification (contre-revue v5-bis : un
+ *     403 dont seul le corps portait « EGRESS_BLOCKED » devenait une tentative légitime) :
+ *     `r.error`, `status === null` ou une signature environnementale où que ce soit
+ *     interrompent TOUT le run, sortie 2, manifeste intact ;
+ *   · les EN-TÊTES sont ASSAINIS avant scellement : `Set-Cookie`, `Authorization`,
+ *     `WWW-Authenticate` et tout `Proxy-*` sont remplacés par une marque d'expurgation —
+ *     aucun secret ne se versionne ;
  *   · chaque corps 2xx est conservé BRUT (extension selon le Content-Type), et son TEXTE
  *     DÉRIVÉ est produit par l'extracteur déterministe versionné
  *     (`extraire-texte-lot-a.mjs`, version scellée dans le manifeste) — c'est dans ce texte
@@ -93,6 +96,12 @@ if (existsSync(RUN)) refus(2, `le répertoire de run ${RUN} existe déjà`);
 mkdirSync(RUN, { recursive: true });
 const aujourdhui = new Date().toISOString().slice(0, 10);
 
+/* En-têtes assainis avant scellement : aucun cookie, aucun secret d'authentification. */
+const assainirEntetes = (texte) => String(texte).split(/\r?\n/)
+  .map((l) => (/^(set-cookie|authorization|www-authenticate|proxy-[^:]*)\s*:/i.test(l)
+    ? "[en-tête expurgé : cookies/authentification/proxy]" : l))
+  .join("\n");
+
 /* Les traces sont assainies : rien de ce qui décrit NOTRE réseau n'est versionné. */
 const assainir = (texte) => String(texte).split("\n")
   .map((l) => (/proxy|CONNECT|Authorization|authorization|NO_PROXY|no_proxy/i.test(l) ? "[ligne expurgée : proxy/authentification]" : l))
@@ -117,13 +126,22 @@ for (const id of pays) {
       "-w", "%{http_code}\t%{url_effective}\t%{num_redirects}\t%{content_type}", lien.url,
     ], { encoding: "utf-8" });
 
-    /* LA DÉTECTION ENVIRONNEMENTALE VAUT POUR CHAQUE REQUÊTE — sur la trace BRUTE, avant
-     * tout assainissement : une panne de NOTRE côté interrompt tout, elle ne devient jamais
-     * une « tentative » de la source. Le manifeste précédent reste intact. */
-    if (r.error || r.status === null || SIGNATURES_PROXY.test(r.stderr || "")) {
-      refus(2, `panne d'environnement sur ${lien.url} (${r.error?.message ?? (r.status === null ? "processus interrompu" : "signature de proxy bloquant dans la trace")}) — ` +
+    /* LA DÉTECTION ENVIRONNEMENTALE VAUT POUR CHAQUE REQUÊTE — sur la trace BRUTE, les
+     * EN-TÊTES et le CORPS PROVISOIRE, avant toute classification et tout assainissement :
+     * une panne de NOTRE côté interrompt tout, elle ne devient jamais une « tentative » de la
+     * source. Le manifeste précédent reste intact. */
+    const entetesBruts = existsSync(cheminEntetes) ? readFileSync(cheminEntetes, "utf-8") : "";
+    const corpsBrut = existsSync(corpsProvisoire) ? readFileSync(corpsProvisoire) : Buffer.alloc(0);
+    const signatureEnv = SIGNATURES_PROXY.test(r.stderr || "") ? "trace"
+      : SIGNATURES_PROXY.test(entetesBruts) ? "en-têtes"
+      : SIGNATURES_PROXY.test(corpsBrut.toString("latin1")) ? "corps" : null;
+    if (r.error || r.status === null || signatureEnv) {
+      refus(2, `panne d'environnement sur ${lien.url} (${r.error?.message ?? (r.status === null ? "processus interrompu" : `signature de blocage environnemental dans ${signatureEnv}`)}) — ` +
         `TOUT le run est interrompu, le manifeste n'est pas touché (répertoire conservé : ${RUN})`);
     }
+    /* Les en-têtes sont ASSAINIS avant d'exister comme pièce : la copie canonique expurgée
+     * remplace le fichier brut, et c'est ELLE qui est scellée. */
+    writeFileSync(cheminEntetes, assainirEntetes(entetesBruts));
 
     const [code, urlFinale, redirections, contentType] = (r.stdout || "\t\t\t").split("\t");
     const trace = assainir(`# ${aujourdhui} — ${lien.url}\n# curl exit=${r.status} · http=${code || "?"}\n\n${r.stderr || ""}`);

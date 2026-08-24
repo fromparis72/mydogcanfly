@@ -37,6 +37,12 @@
  *      en 2xx) → sortie 2 : la signature environnementale interrompt TOUT le run avant
  *      d'être expurgée, elle ne devient jamais une « tentative » de la source ; le manifeste
  *      précédent est intact. [contre-revue v5]
+ *   10. EGRESS_BLOCKED uniquement dans le CORPS d'un 403 (stderr muet), puis uniquement dans
+ *       les EN-TÊTES → sortie 2 dans les deux cas, ancien manifeste intact : la détection
+ *       inspecte stderr + en-têtes + corps avant toute classification. [contre-revue v5-bis]
+ *   11. Set-Cookie: SECRET dans les en-têtes de chaque réponse → le secret est ABSENT de
+ *       toutes les pièces du run (en-têtes assainis avant scellement), la marque
+ *       d'expurgation présente. [contre-revue v5-bis]
  */
 import { readFileSync, writeFileSync, mkdirSync, copyFileSync, symlinkSync, mkdtempSync, rmSync, existsSync, readdirSync, chmodSync } from "node:fs";
 import { spawnSync } from "node:child_process";
@@ -78,15 +84,17 @@ if (mode === "interruption" && !url.includes("example.com")) {
   fs.writeFileSync(c, String(n));
   if (n === 10) { process.kill(process.ppid, "SIGKILL"); process.exit(1); }
 }
-const est403 = mode === "tous403" && !url.includes("example.com");
+const est403 = (mode === "tous403" || (mode === "egress-corps" && url.includes("paaf.gov.kw"))) && !url.includes("example.com");
 const mixte403 = mode === "mixte" && url.includes("services.bahrain.bh");
 const timeout = mode === "mixte" && url.includes("cdn.bahamas.gov.bs");
 if (timeout) { process.stderr.write("curl: (28) Operation timed out\\n"); process.exit(28); }
 const code = (est403 || mixte403) ? "403" : "200";
 let finale = url;
 if (mode === "derive" && url.includes("moa.gov.jm")) finale = "https://parking-domaine.example/vendu";
-if (sortie) fs.writeFileSync(sortie, "<html><body>Page de " + url + " (faux curl, jeu d'essai)</body></html>");
-if (entetes) fs.writeFileSync(entetes, "HTTP/1.1 " + code + " OK\\r\\nContent-Type: text/html; charset=utf-8\\r\\n\\r\\n");
+const corpsEgress = (mode === "egress-corps" && url.includes("paaf.gov.kw")) ? "Access denied: EGRESS_BLOCKED by network policy." : "";
+if (sortie) fs.writeFileSync(sortie, "<html><body>Page de " + url + " (faux curl, jeu d'essai)" + corpsEgress + "</body></html>");
+const enteteEgress = (mode === "egress-entetes" && url.includes("paaf.gov.kw")) ? "X-Deny: EGRESS_BLOCKED\\r\\n" : "";
+if (entetes) fs.writeFileSync(entetes, "HTTP/1.1 " + code + " OK\\r\\nContent-Type: text/html; charset=utf-8\\r\\nSet-Cookie: session=SECRET-COOKIE-42\\r\\n" + enteteEgress + "\\r\\n");
 /* Le format -w est RESPECTÉ, comme le vrai curl : la sonde demande %{http_code} seul. */
 const format = args.includes("-w") ? args[args.indexOf("-w") + 1] : "";
 process.stdout.write(format.replace("%{http_code}", code).replace("%{url_effective}", finale)
@@ -218,6 +226,34 @@ try {
     if (!/panne d'environnement sur/.test(r.stderr)) echec("9 proxy partiel", "le refus ne nomme pas la panne par requête");
     if (readFileSync(MANIFESTE(), "utf-8") !== manifesteAvant) echec("9 proxy partiel", "le manifeste précédent a été touché");
   }
+
+  /* ---- 10. EGRESS_BLOCKED dans le corps, puis dans les en-têtes ------------------------------ */
+  for (const [variante, mode] of [["corps", "egress-corps"], ["en-têtes", "egress-entetes"]]) {
+    const manifesteAvant = readFileSync(MANIFESTE(), "utf-8");
+    const r = lancer(mode);
+    if (r.status !== 2) echec(`10 EGRESS dans ${variante}`, `sortie ${r.status} au lieu de 2 — la signature devient une tentative légitime`);
+    if (!new RegExp(`signature de blocage environnemental dans ${variante}`).test(r.stderr)) {
+      echec(`10 EGRESS dans ${variante}`, `le refus ne nomme pas « ${variante} » — reçu :\n      ${r.stderr.trim().split("\n").slice(0, 2).join("\n      ")}`);
+    }
+    if (readFileSync(MANIFESTE(), "utf-8") !== manifesteAvant) echec(`10 EGRESS dans ${variante}`, "le manifeste a été touché");
+  }
+
+  /* ---- 11. Set-Cookie: SECRET — absent de TOUTES les pièces ---------------------------------- */
+  {
+    const r = lancer("ok");
+    if (r.status !== 0) echec("11 Set-Cookie", `sortie ${r.status} sur collecte nominale`);
+    const m = JSON.parse(readFileSync(MANIFESTE(), "utf-8"));
+    const run = join(arbre, m.run);
+    let fuites = 0, marques = 0;
+    for (const f of readdirSync(run)) {
+      const contenu = readFileSync(join(run, f), "latin1");
+      if (contenu.includes("SECRET-COOKIE-42")) { fuites++; echec("11 Set-Cookie", `le secret apparaît dans ${f}`); }
+      /* La marque porte un « é » UTF-8 : elle se cherche dans une lecture UTF-8, pas latin1. */
+      if (f.endsWith(".headers.txt") && readFileSync(join(run, f), "utf-8").includes("[en-tête expurgé : cookies/authentification/proxy]")) marques++;
+    }
+    if (marques === 0) echec("11 Set-Cookie", "aucune marque d'expurgation dans les en-têtes scellés");
+    if (readFileSync(MANIFESTE(), "utf-8").includes("SECRET-COOKIE-42")) echec("11 Set-Cookie", "le secret apparaît dans le manifeste");
+  }
 } finally {
   gitWt("remove", "--force", arbre);
   rmSync(conteneur, { recursive: true, force: true });
@@ -225,13 +261,14 @@ try {
 
 /* ---- verdict ---------------------------------------------------------------------------------- */
 if (defauts.length === 0) {
-  process.stdout.write("9 cas éprouvés au faux curl : curl absent, proxy bloquant et inventaire dérivé\n");
+  process.stdout.write("11 cas éprouvés au faux curl : curl absent, proxy bloquant et inventaire dérivé\n");
   process.stdout.write("REFUSENT sans rien écrire ; la collecte nominale corrèle corps et trace d'un même\n");
   process.stdout.write("appel et expurge les secrets de proxy ; un 403 et un timeout restent des tentatives\n");
   process.stdout.write("précises ; une URL dérivée est enregistrée fidèlement ; une interruption ne publie\n");
   process.stdout.write("rien et ne détruit rien ; zéro consultation refuse au lieu de fabriquer 91 pièces ;\n");
-  process.stdout.write("et une signature de proxy sur UNE requête, sonde pourtant verte, interrompt tout le\n");
-  process.stdout.write("run avant expurgation — jamais une « tentative » de la source.\n\n");
+  process.stdout.write("et une signature environnementale sur UNE requête — dans la trace, le CORPS ou les\n");
+  process.stdout.write("EN-TÊTES, sonde pourtant verte — interrompt tout le run avant expurgation ; enfin un\n");
+  process.stdout.write("Set-Cookie secret n'atteint aucune pièce : les en-têtes sont expurgés avant scellement.\n\n");
   process.stdout.write("[collecte] une panne d'environnement n'est pas une observation de source.\n");
   process.exit(0);
 }
