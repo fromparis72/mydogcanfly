@@ -1,4 +1,4 @@
-# Lot A — Audit des 18 pays sans source · dossier de mesure et de conception (v5-sexies)
+# Lot A — Audit des 18 pays sans source · dossier de mesure et de conception (v5-septies)
 
 **Mesuré sur `main` après fusion du dossier d'achèvement (`1dd62010ea183422f02553877df4706714739080`).
 Ce dossier ne corrige rien : aucune date, aucune source, aucune donnée métier n'est écrite.
@@ -9,8 +9,8 @@ Reproduction :
 ```bash
 node --import tsx mesurer-lot-a.mjs --as-of=2026-08-24   # l'état contre le scellé — sortie 1 au premier écart
 node test-mesure-lot-a.mjs                               # 16 cas : le scellé est exact, et il ne se remplace pas
-node test-audit-pays.mjs                                 # 51 cas : le validateur de la matrice mord (17-66)
-node test-consulter-lot-a.mjs                            # 13 cas au faux curl : le collecteur ne fabrique rien
+node test-audit-pays.mjs                                 # 54 cas : le validateur de la matrice mord (17-69)
+node test-consulter-lot-a.mjs                            # 14 cas au faux curl : le collecteur ne fabrique rien
 ```
 
 La liste des 18 est celle que le bloc contractuel du dossier d'achèvement fige
@@ -203,6 +203,28 @@ garde `obs.role === "rattachement"` est explicite (contre-épreuve 66). Au passa
 « suivi par git » est **mémoïsé par chemin** — pure mémoïsation d'un fait stable pendant le
 run, chaque contexte gardant son propre diagnostic ; la double preuve manifeste + matrice ne
 double pas les appels git.
+
+**Les tentatives laissaient des pièces orphelines dans le run, et le contrat des observations
+restait plus faible dans le validateur que dans le collecteur** (contre-revue v5-sexies, deux
+P0 au bord collecte/manifeste, plus un P1). (1) Le corps et les en-têtes assainis d'une
+tentative (403, timeout) restaient dans le run sans être référencés par le manifeste — le
+répertoire contenait plus que l'inventaire déclaré. Une **tentative ne garde désormais que sa
+trace** (corps provisoire et en-têtes supprimés), et le validateur exige l'**inventaire
+exact** : chaque fichier du répertoire de run est référencé par un résultat du manifeste, une
+pièce orpheline rougit (cas collecteur 5 durci — égalité dans les deux sens ; contre-épreuve
+69). (2) Le schéma du manifeste acceptait `statut_http: 404` sous `acces: "consultee"` et
+`url_finale: "file:///etc/passwd"` (`z.string().url()` accepte `file://`) — le collecteur ne
+produit plus ces états, mais le validateur permanent devait les refuser par lui-même. Le
+schéma exige désormais `statut_http` 200-299 pour toute consultation et le **contrat HTTP(S)
+partagé** (`estUrlHttp`, un seul code : liste, collecteur, validateur) pour TOUTES les URL
+observées — `url_publiee`, `url_demandee`, `url_finale`, matrice comme manifeste
+(contre-épreuves 67 et 68, qui rougissent au schéma même quand l'observation est ensuite
+écartée). (3) P1 fermé avant tout réseau réel : le corps est **borné en octets** (25 MiB) —
+`--max-filesize` côté curl ET stat du fichier avant toute lecture en mémoire ; un corps
+au-delà devient une tentative explicite « au-delà de la borne », jamais une capture ni une
+lecture (cas collecteur 14, borne exigée sur chaque appel au cas nominal). Le PDF « scanné »
+de la fixture historique, référencé par personne, a été retiré — l'inventaire exact l'aurait
+refusé, à raison.
 
 ## 1. La mesure a changé la nature de la dette — et ce que la promotion fait, honnêtement
 
@@ -409,11 +431,12 @@ Les **16 premières** sont éprouvées par `test-mesure-lot-a.mjs` sur l'état d
 les trois faux verts de la v1, les trois passages indus de la v2, la dérive commitée et le
 `_scelle` falsifié de la v3, les contrôles `--as-of`, la date future, et la génération saine
 (candidat égal au scellé, scellé jamais touché par l'instrument).
-Le harnais d'exécution `test-audit-pays.mjs` éprouve les contrôles **17 à 66** (51 cas — la
+Le harnais d'exécution `test-audit-pays.mjs` éprouve les contrôles **17 à 69** (54 cas — la
 fixture porte un manifeste en ensemble exact égal à la liste versionnée, un rattachement
 utilisé, un PDF et une tentative proprement écartés, une candidate PDF à pièce-capture), et
-`test-consulter-lot-a.mjs` éprouve le collecteur (13 cas au faux `curl`, dont la batterie de
-six listes malformées et la redirection hors HTTP(S)). Le total est **verrouillé à 66 + 13** :
+`test-consulter-lot-a.mjs` éprouve le collecteur (14 cas au faux `curl`, dont la batterie de
+six listes malformées, la redirection hors HTTP(S), le corps au-delà de la borne et
+l'inventaire exact du run). Le total est **verrouillé à 69 + 14** :
 
 | # | mutation | attendu |
 |---|---|---|
@@ -467,6 +490,9 @@ six listes malformées et la redirection hors HTTP(S)). Le total est **verrouill
 | 64 | liste versionnée difforme au VALIDATEUR (`{}` à la place du tableau, puis URL locale `file://`) | échec — le schéma strict est partagé avec le collecteur, la CI rougit sur la même cause |
 | 65 | pièces d'un rattachement **écarté** remplacées par des fichiers inexistants, décision conservée | échec — tout résultat du manifeste reste contre-vérifiable, décision ou pas |
 | 66 | preuve de rattachement visant une **candidate ordinaire** (citation ancrée, capture concordante, observation dédiée écartée) | échec — `role === "rattachement"` exigé, la liste versionnée ne se contourne pas |
+| 67 | rattachement écarté muté en `statut_http: 404` sous `acces: "consultee"` | échec — le schéma du manifeste borne 200-299, même sur une observation écartée |
+| 68 | rattachement écarté muté en `url_finale: "file:///etc/passwd"` | échec — contrat HTTP(S) partagé sur toutes les URL observées, `z.string().url()` ne suffit pas |
+| 69 | pièce présente dans le run mais référencée par aucun résultat du manifeste | échec — le run est l'inventaire EXACT des pièces, l'orpheline est nommée |
 
 ## 6. Interdits, et effets de bord assumés
 

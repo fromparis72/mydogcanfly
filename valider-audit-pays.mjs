@@ -54,8 +54,8 @@
  * Sortie 0 si tout tient ; 1 au premier lot d'écarts, chacun nommé (pays, candidate, champ) ;
  * 2 si --as-of manque ou n'existe pas.
  */
-import { readFileSync, lstatSync } from "node:fs";
-import { resolve, sep } from "node:path";
+import { readFileSync, lstatSync, readdirSync } from "node:fs";
+import { resolve, sep, join } from "node:path";
 import { createHash } from "node:crypto";
 import { spawnSync } from "node:child_process";
 import { z } from "zod";
@@ -63,7 +63,7 @@ import { Source } from "./packages/knowledge/src/common.ts";
 import { reviewDueFrom } from "./packages/knowledge/src/common.ts";
 import { SourcedQuote } from "./packages/knowledge/src/breed-restrictions.ts";
 import { extraireTexte, normaliser, detecterFormat, VERSION_EXTRACTEUR } from "./extraire-texte-lot-a.mjs";
-import { erreursListeRattachements } from "./liste-rattachements-lot-a.mjs";
+import { erreursListeRattachements, estUrlHttp } from "./liste-rattachements-lot-a.mjs";
 
 const MATRICE = "audit-pays.json";
 const SCELLE = "etat-reference-lot-a.json";
@@ -87,6 +87,9 @@ const echec = (m) => ecarts.push(m);
 
 /* ---- schéma STRICT de la matrice ------------------------------------------------------------- */
 const DateISO = z.string().refine(dateExiste, { message: "date inexistante au calendrier" });
+/* Le contrat HTTP(S) PARTAGÉ (liste, collecteur, validateur) : `z.string().url()` accepte
+ * `file://` — pas ce schéma (contre-revue v5-sexies). */
+const UrlHttp = z.string().refine(estUrlHttp, { message: "URL au contrat HTTP(S) partagé exigée (http/https, hôte non vide)" });
 const LT = z.object({ en: z.string(), fr: z.string(), es: z.string().optional(), pt: z.string().optional() }).strict();
 const Langue = z.string().regex(/^[a-z]{2,3}(-[A-Za-z0-9]{2,8})*$/);
 const Sha256 = z.string().regex(/^[0-9a-f]{64}$/, "SHA-256 de 64 caractères hexadécimaux attendu");
@@ -113,9 +116,9 @@ const PreuveRattachement = z.object({ manifeste_n: z.number().int().min(1), cita
 const CandidateConsultee = z.object({
   manifeste_n: z.number().int().min(1),      // l'identité stable de l'observation dans le manifeste
   label: LT,
-  url_publiee: z.string().url(),
+  url_publiee: UrlHttp,
   acces: z.literal("consultee"),
-  url_finale: z.string().url(),
+  url_finale: UrlHttp,
   statut_http: z.number().int().min(200).max(299),
   consultee_le: DateISO,
   capture: CaptureScellee,                   // brut + texte dérivé + version d'extracteur, scellés ensemble
@@ -131,7 +134,7 @@ const CandidateConsultee = z.object({
 const CandidateTentative = z.object({
   manifeste_n: z.number().int().min(1),
   label: LT,
-  url_publiee: z.string().url(),
+  url_publiee: UrlHttp,
   acces: z.literal("tentative"),
   tentee_le: DateISO,
   resultat: z.string().min(1),
@@ -194,10 +197,13 @@ const CaptureManifeste = CaptureScellee.extend({ octets: z.number().int().min(0)
 /* Les RÔLES sont des LITTÉRAUX par branche : un résultat de forme candidate ne peut pas se
  * déclarer « rattachement », ni l'inverse (contre-revue v5-quater). */
 const ResCandidate = { n: z.number().int().min(1), role: z.literal("candidate"),
-  country_id: z.string().min(1), index_lien: z.number().int().min(0), label: LT, url_publiee: z.string().url() };
+  country_id: z.string().min(1), index_lien: z.number().int().min(0), label: LT, url_publiee: UrlHttp };
 const ResRattachement = { n: z.number().int().min(1), role: z.literal("rattachement"),
-  url_demandee: z.string().url(), motif: z.string().min(1) };
-const ObsConsultee = { acces: z.literal("consultee"), statut_http: z.number().int(), url_finale: z.string().url(),
+  url_demandee: UrlHttp, motif: z.string().min(1) };
+/* `statut_http` 200-299 et URL au contrat partagé DANS LE SCHÉMA DU MANIFESTE : le collecteur
+ * ne produit plus ces états, mais le validateur permanent doit les refuser par lui-même — y
+ * compris sur une observation ensuite écartée (contre-revue v5-sexies). */
+const ObsConsultee = { acces: z.literal("consultee"), statut_http: z.number().int().min(200).max(299), url_finale: UrlHttp,
   redirections: z.number().int().min(0).optional(), consultee_le: DateISO, content_type: z.string().min(1),
   capture: CaptureManifeste, entetes: Fichier, trace: Trace };
 const ObsTentative = { acces: z.literal("tentative"), tentee_le: DateISO, resultat: z.string().min(1), trace: Trace };
@@ -244,12 +250,34 @@ if (manifeste.extracteur !== VERSION_EXTRACTEUR) {
 /* L'appartenance au run se juge sur CHEMINS RÉSOLUS, pas au préfixe. */
 const racineRun = resolve(manifeste.run) + sep;
 const parN = new Map();
+const cheminsReferences = new Set();
 for (const r of manifeste.resultats) {
   if (!parN.has(r.n)) parN.set(r.n, r);
   for (const f of [r.capture?.chemin, r.capture?.texte_derive?.chemin, r.entetes?.chemin, r.trace?.chemin]) {
-    if (f && !resolve(String(f)).startsWith(racineRun)) {
+    if (!f) continue;
+    cheminsReferences.add(resolve(String(f)));
+    if (!resolve(String(f)).startsWith(racineRun)) {
       echec(`manifeste — n ${r.n} : « ${f} » hors du répertoire de run déclaré « ${manifeste.run} » (chemins résolus)`);
     }
+  }
+}
+/* Le run est l'INVENTAIRE EXACT des pièces : chaque fichier du répertoire de run est référencé
+ * par un résultat du manifeste — une pièce ORPHELINE (corps ou en-têtes d'une tentative,
+ * fichier déposé après coup) rougit (contre-revue v5-sexies). Le sens inverse (référencée
+ * mais absente) est tenu par la preuve de fichier de chaque résultat. */
+{
+  const orphelines = [];
+  const marcher = (d) => {
+    for (const e of readdirSync(d, { withFileTypes: true })) {
+      const p = join(d, e.name);
+      if (e.isDirectory()) marcher(p);
+      else if (!cheminsReferences.has(resolve(p))) orphelines.push(p);
+    }
+  };
+  try { marcher(manifeste.run); }
+  catch { echec(`manifeste — répertoire de run « ${manifeste.run} » introuvable ou illisible`); }
+  for (const p of orphelines) {
+    echec(`manifeste — pièce ORPHELINE « ${p} » : présente dans le run, référencée par aucun résultat — le run n'est pas un inventaire exact`);
   }
 }
 /* Les rattachements du manifeste = EXACTEMENT la liste versionnée, dans l'ordre — et la liste

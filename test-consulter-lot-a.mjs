@@ -15,7 +15,7 @@
  * comportements sont pilotés par FAUX_MODE. Chaque cas exige le refus, ou la collecte, ou la
  * conservation — exactement.
  *
- * TREIZE CAS :
+ * QUATORZE CAS :
  *   1. curl ABSENT → sortie 2, « curl est absent », AUCUN répertoire de run créé.
  *   2. PROXY BLOQUANT (la sonde échoue sur « CONNECT tunnel failed ») → sortie 2, panne
  *      systémique, rien d'écrit.
@@ -48,6 +48,10 @@
  *   13. REDIRECTION HORS HTTP(S) (url_finale = file:///etc/passwd) → sortie 2, manifeste
  *       intact, contenu local détruit ; et chaque appel curl est épinglé
  *       --proto/--proto-redir =http,https (exigé au cas nominal). [contre-revue v5-quinquies]
+ *   14. CORPS AU-DELÀ DE LA BORNE D'OCTETS (25 MiB, servi en 200) → tentative explicite
+ *       « au-delà de la borne », aucune pièce orpheline ; chaque appel curl est borné
+ *       --max-filesize (exigé au cas nominal). Le cas 5 vérifie de plus l'INVENTAIRE EXACT :
+ *       les fichiers du run = exactement les chemins référencés. [contre-revue v5-sexies]
  */
 import { readFileSync, writeFileSync, mkdirSync, copyFileSync, symlinkSync, mkdtempSync, rmSync, existsSync, readdirSync, chmodSync } from "node:fs";
 import { spawnSync } from "node:child_process";
@@ -83,6 +87,10 @@ if (!(args.includes("--proto") && args[args.indexOf("--proto") + 1] === "=http,h
    && args.includes("--proto-redir") && args[args.indexOf("--proto-redir") + 1] === "=http,https")) {
   fs.writeFileSync(path.join(etat, "proto-manquant"), url);
 }
+/* Et BORNÉ en octets (--max-filesize) — le temps ne borne pas la taille. */
+if (!(args.includes("--max-filesize") && Number(args[args.indexOf("--max-filesize") + 1]) > 0)) {
+  fs.writeFileSync(path.join(etat, "borne-manquante"), url);
+}
 /* La ligne que l'assainisseur DOIT expurger. */
 process.stderr.write("* Uses proxy env variable https_proxy == 'http://SECRET-PROXY:3128'\\n* Connected (faux)\\n");
 if (mode === "proxy") { process.stderr.write("curl: (56) CONNECT tunnel failed, response 403\\n"); process.exit(56); }
@@ -107,9 +115,11 @@ if (mode === "derive" && url.includes("moa.gov.jm")) finale = "https://parking-d
 const localePasswd = mode === "redirige-local" && url.includes("moa.gov.jm");
 if (localePasswd) finale = "file:///etc/passwd";
 const corpsEgress = (mode === "egress-corps" && url.includes("paaf.gov.kw")) ? "Access denied: EGRESS_BLOCKED by network policy." : "";
+/* Un corps AU-DELÀ de la borne (25 MiB), servi en 200 — comme si curl n'avait pas pu borner. */
+const enorme = mode === "corps-enorme" && url.includes("moa.gov.jm");
 const corps = localePasswd ? "root:x:0:0:CONTENU-LOCAL-PASSWD:/root:/bin/sh"
   : "<html><body>Page de " + url + " (faux curl, jeu d'essai)" + corpsEgress + "</body></html>";
-if (sortie) fs.writeFileSync(sortie, corps);
+if (sortie) fs.writeFileSync(sortie, enorme ? Buffer.alloc(26214401, 65) : corps);
 const enteteEgress = (mode === "egress-entetes" && url.includes("paaf.gov.kw")) ? "X-Deny: EGRESS_BLOCKED\\r\\n" : "";
 if (entetes) fs.writeFileSync(entetes, "HTTP/1.1 " + code + " OK\\r\\nContent-Type: text/html; charset=utf-8\\r\\nSet-Cookie: session=SECRET-COOKIE-42\\r\\n" + enteteEgress + "\\r\\n");
 /* Le format -w est RESPECTÉ, comme le vrai curl : la sonde demande %{http_code} seul. */
@@ -197,9 +207,13 @@ try {
       }
       if (!ex.capture.extracteur || !ex.capture.content_type) echec("4 nominale", "la capture ne scelle pas extracteur et content_type");
     }
-    /* Chaque appel réseau (sonde comprise) doit avoir été ÉPINGLÉ --proto/--proto-redir. */
+    /* Chaque appel réseau (sonde comprise) doit avoir été ÉPINGLÉ --proto/--proto-redir,
+     * et BORNÉ --max-filesize. */
     if (existsSync(join(etat, "proto-manquant"))) {
       echec("4 nominale", `un appel curl n'était pas épinglé =http,https (URL : ${readFileSync(join(etat, "proto-manquant"), "utf-8")})`);
+    }
+    if (existsSync(join(etat, "borne-manquante"))) {
+      echec("4 nominale", `un appel curl n'était pas borné --max-filesize (URL : ${readFileSync(join(etat, "borne-manquante"), "utf-8")})`);
     }
   }
 
@@ -215,6 +229,15 @@ try {
     if (t403 && !existsSync(join(arbre, t403.trace.chemin))) echec("5 mixte", "la trace du 403 n'existe pas");
     const consultees = m.resultats.filter((x) => x.role === "candidate" && x.acces === "consultee").length;
     if (consultees !== 89) echec("5 mixte", `${consultees} consultations candidates au lieu de 89`);
+    /* Le run est l'INVENTAIRE EXACT des pièces : rien d'orphelin (corps/en-têtes des
+     * tentatives supprimés), rien de référencé absent (contre-revue v5-sexies). */
+    const refs = new Set();
+    for (const x of m.resultats) {
+      for (const f of [x.capture?.chemin, x.capture?.texte_derive?.chemin, x.entetes?.chemin, x.trace?.chemin]) if (f) refs.add(f);
+    }
+    const reels = readdirSync(join(arbre, m.run)).map((f) => `${m.run}/${f}`);
+    for (const f of reels) if (!refs.has(f)) echec("5 mixte", `pièce ORPHELINE dans le run : ${f} — le manifeste n'est pas l'inventaire exact`);
+    for (const f of refs) if (!reels.includes(f)) echec("5 mixte", `pièce référencée ABSENTE du run : ${f}`);
   }
 
   /* ---- 6. dérive d'URL ----------------------------------------------------------------------- */
@@ -341,6 +364,27 @@ try {
       }
     }
   }
+
+  /* ---- 14. corps au-delà de la borne d'octets : tentative explicite, jamais une capture ------
+   * [P1 de la contre-revue v5-sexies : --max-time borne le temps, pas la taille ; la stat
+   * revérifie avant toute lecture en mémoire, même si curl n'a pas pu borner] */
+  {
+    const r = lancer("corps-enorme");
+    if (r.status !== 0) echec("14 corps énorme", `sortie ${r.status} — la borne devait produire une tentative, pas un refus`);
+    const m = JSON.parse(readFileSync(MANIFESTE(), "utf-8"));
+    const g = m.resultats.find((x) => x.url_publiee?.includes("moa.gov.jm"));
+    if (g?.acces !== "tentative" || !/au-delà de la borne/.test(g?.resultat ?? "")) {
+      echec("14 corps énorme", `le corps hors borne n'est pas une tentative « au-delà de la borne » (${JSON.stringify(g?.resultat)})`);
+    }
+    /* Le corps énorme n'a laissé AUCUNE pièce orpheline dans le run. */
+    const refs = new Set();
+    for (const x of m.resultats) {
+      for (const f of [x.capture?.chemin, x.capture?.texte_derive?.chemin, x.entetes?.chemin, x.trace?.chemin]) if (f) refs.add(f);
+    }
+    for (const f of readdirSync(join(arbre, m.run))) {
+      if (!refs.has(`${m.run}/${f}`)) echec("14 corps énorme", `pièce orpheline dans le run : ${f}`);
+    }
+  }
 } finally {
   gitWt("remove", "--force", arbre);
   rmSync(conteneur, { recursive: true, force: true });
@@ -348,11 +392,13 @@ try {
 
 /* ---- verdict ---------------------------------------------------------------------------------- */
 if (defauts.length === 0) {
-  process.stdout.write("13 cas éprouvés au faux curl : curl absent, proxy bloquant, inventaire dérivé, et la\n");
+  process.stdout.write("14 cas éprouvés au faux curl : curl absent, proxy bloquant, inventaire dérivé, et la\n");
   process.stdout.write("liste de rattachements au schéma strict (file:// local, champ inconnu, motif blanc,\n");
   process.stdout.write("URL en double, JSON invalide, fichier absent) REFUSENT sans rien écrire ; une\n");
   process.stdout.write("redirection qui quitte HTTP(S) interrompt tout — manifeste intact, contenu local\n");
-  process.stdout.write("détruit, chaque appel curl épinglé =http,https ; la nominale rapporte\n");
+  process.stdout.write("détruit, chaque appel curl épinglé =http,https et borné --max-filesize ; un corps\n");
+  process.stdout.write("au-delà de la borne devient une tentative explicite ; le run est l'inventaire EXACT\n");
+  process.stdout.write("des pièces (tentatives : trace seule, rien d'orphelin) ; la nominale rapporte\n");
   process.stdout.write("91 candidates + 4 observations de rattachement, formats détectés depuis les octets ;\n");
   process.stdout.write("corps et trace se corrèlent d'un même appel ; un 403 et un timeout restent des tentatives\n");
   process.stdout.write("précises ; une URL dérivée est enregistrée fidèlement ; une interruption ne publie\n");

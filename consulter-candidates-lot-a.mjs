@@ -48,6 +48,12 @@
  *     que les extraits s'ancreront ;
  *   · chaque run écrit dans un RÉPERTOIRE NEUF `audit-pays-pieces/run-<horodatage>/` ; rien
  *     n'est effacé — les runs précédents restent ce qu'ils sont ;
+ *   · le manifeste est l'INVENTAIRE EXACT des pièces du run : une TENTATIVE ne garde que sa
+ *     trace — corps provisoire et en-têtes assainis sont supprimés, aucune pièce orpheline
+ *     (contre-revue v5-sexies) ;
+ *   · le corps est BORNÉ en octets (`--max-filesize` + stat avant toute lecture, 25 MiB) :
+ *     un corps au-delà devient une tentative explicite, jamais une capture ni une lecture
+ *     en mémoire ;
  *   · les traces sont ASSAINIES avant écriture : toute ligne portant une information de proxy
  *     ou d'authentification est remplacée par « [ligne expurgée : proxy/authentification] ».
  *
@@ -60,16 +66,21 @@
  *
  * Il n'émet AUCUN verdict, ne touche ni objects.json, ni les guides, ni la matrice.
  */
-import { readFileSync, writeFileSync, mkdirSync, renameSync, existsSync, rmSync } from "node:fs";
+import { readFileSync, writeFileSync, mkdirSync, renameSync, existsSync, rmSync, statSync } from "node:fs";
 import { spawnSync } from "node:child_process";
 import { createHash } from "node:crypto";
 import { join } from "node:path";
 import { tmpdir } from "node:os";
 import { extraireTexte, detecterFormat, VERSION_EXTRACTEUR } from "./extraire-texte-lot-a.mjs";
-import { erreursListeRattachements } from "./liste-rattachements-lot-a.mjs";
+import { erreursListeRattachements, estUrlHttp } from "./liste-rattachements-lot-a.mjs";
 
 const RACINE_PIECES = "audit-pays-pieces";
 const MANIFESTE = "audit-pays-consultations.json";
+/* La borne en OCTETS d'un corps de réponse : 25 MiB — `--max-time` borne le temps, pas la
+ * taille, et le corps est ensuite chargé en mémoire pour l'empreinte et l'extraction. La
+ * borne est passée à curl (`--max-filesize`) ET revérifiée sur le fichier avant toute
+ * lecture ; un corps au-delà devient une TENTATIVE explicite, jamais une capture. */
+const LIMITE_CORPS_OCTETS = 26214400;
 const sha256 = (b) => createHash("sha256").update(b).digest("hex");
 const jsonCanonique = (x) => {
   if (Array.isArray(x)) return "[" + x.map(jsonCanonique).join(",") + "]";
@@ -109,7 +120,8 @@ const version = spawnSync("curl", ["--version"], { encoding: "utf-8" });
 if (version.error || version.status !== 0) refus(2, "curl est absent ou inopérant — panne d'environnement, aucune « tentative » ne sera fabriquée");
 const SIGNATURES_PROXY = /CONNECT tunnel failed|EGRESS_BLOCKED|Proxy CONNECT aborted|Received HTTP code 403 from proxy/i;
 const sonde = spawnSync("curl", ["-vsS", "--proto", "=http,https", "--proto-redir", "=http,https",
-  "--max-time", "20", "-o", "/dev/null", "-w", "%{http_code}", "https://example.com/"], { encoding: "utf-8" });
+  "--max-time", "20", "--max-filesize", String(LIMITE_CORPS_OCTETS),
+  "-o", "/dev/null", "-w", "%{http_code}", "https://example.com/"], { encoding: "utf-8" });
 if (sonde.error || sonde.status !== 0 || !/^2\d\d$/.test(sonde.stdout) || SIGNATURES_PROXY.test(sonde.stderr || "")) {
   refus(2, `la sonde https://example.com/ échoue (${sonde.stdout || sonde.error?.message || "réseau"}) — panne systémique ou proxy bloquant : rien ne sera collecté`);
 }
@@ -154,6 +166,7 @@ function consulter(url, role, extras) {
        * quitter HTTP(S) — file://, ftp://, gopher:// ne seront JAMAIS suivis (contre-revue
        * v5-quinquies : une url_finale locale était persistée). */
       "-vsSL", "--proto", "=http,https", "--proto-redir", "=http,https", "--max-time", "30",
+      "--max-filesize", String(LIMITE_CORPS_OCTETS),
       "-A", "MyDogCanFly-Audit/lot-A (contact: audit@mydogcanfly.com)",
       "-o", corpsProvisoire, "-D", entetesBrutsChemin,
       "-w", "%{http_code}\t%{url_effective}\t%{num_redirects}\t%{content_type}", url,
@@ -163,7 +176,10 @@ function consulter(url, role, extras) {
      * CORPS PROVISOIRE, avant toute classification : une panne de NOTRE côté interrompt tout,
      * elle ne devient jamais une observation. Le manifeste précédent reste intact. */
     const entetesBruts = existsSync(entetesBrutsChemin) ? readFileSync(entetesBrutsChemin, "utf-8") : "";
-    const corpsBrut = existsSync(corpsProvisoire) ? readFileSync(corpsProvisoire) : Buffer.alloc(0);
+    /* La BORNE EN OCTETS est revérifiée sur le fichier AVANT toute lecture en mémoire —
+     * `--max-filesize` la tient déjà côté curl, la stat la tient même si curl ne l'a pas pu. */
+    const tailleCorps = existsSync(corpsProvisoire) ? statSync(corpsProvisoire).size : 0;
+    const corpsBrut = tailleCorps > 0 && tailleCorps <= LIMITE_CORPS_OCTETS ? readFileSync(corpsProvisoire) : Buffer.alloc(0);
     const signatureEnv = SIGNATURES_PROXY.test(r.stderr || "") ? "trace"
       : SIGNATURES_PROXY.test(entetesBruts) ? "en-têtes"
       : SIGNATURES_PROXY.test(corpsBrut.toString("latin1")) ? "corps" : null;
@@ -178,9 +194,7 @@ function consulter(url, role, extras) {
      * local n'entrerait dans les pièces — le corps provisoire est détruit, tout le run
      * s'interrompt, le manifeste précédent reste intact (contre-revue v5-quinquies). */
     if (r.status === 0) {
-      let uf = null;
-      try { uf = new URL(urlFinale); } catch { /* jugée ci-dessous */ }
-      if (!uf || !/^https?:$/.test(uf.protocol) || uf.hostname.length === 0) {
+      if (!estUrlHttp(urlFinale)) {
         rmSync(corpsProvisoire, { force: true });
         rmSync(entetesBrutsChemin, { force: true });
         refus(2, `url_finale « ${urlFinale} » hors HTTP(S) sur ${url} — une redirection a quitté le web : ` +
@@ -193,7 +207,7 @@ function consulter(url, role, extras) {
     const cheminTrace = join(RUN, `${num}-${hote}.trace.txt`);
     writeFileSync(cheminTrace, trace);
 
-    if (r.status === 0 && /^2\d\d$/.test(code)) {
+    if (r.status === 0 && /^2\d\d$/.test(code) && tailleCorps <= LIMITE_CORPS_OCTETS) {
       const contenu = readFileSync(corpsProvisoire);
       /* Le FORMAT vient des OCTETS — le Content-Type déclaré ne décide de rien. */
       const format = detecterFormat(contenu);
@@ -217,10 +231,18 @@ function consulter(url, role, extras) {
         trace: { type: "transcript", chemin: cheminTrace, sha256: sha256(Buffer.from(trace)) },
       });
     } else {
+      /* TENTATIVE : le run ne garde QUE la trace. Le corps provisoire et les en-têtes
+       * assainis sont SUPPRIMÉS — le manifeste est l'inventaire EXACT des pièces du run,
+       * une pièce orpheline n'existe pas (contre-revue v5-sexies). */
+      rmSync(corpsProvisoire, { force: true });
+      rmSync(cheminEntetes, { force: true });
       resultats.push({
         n, role, ...extras,
         acces: "tentative", tentee_le: aujourdhui,
-        resultat: r.status !== 0 ? `curl exit ${r.status} (réseau/délai)` : `HTTP ${code}`,
+        resultat: r.status === 63 ? `curl exit 63 (corps au-delà de la borne de ${LIMITE_CORPS_OCTETS} octets)`
+          : r.status !== 0 ? `curl exit ${r.status} (réseau/délai)`
+          : !/^2\d\d$/.test(code) ? `HTTP ${code}`
+          : `corps de ${tailleCorps} octets au-delà de la borne de ${LIMITE_CORPS_OCTETS} octets`,
         trace: { type: "transcript", chemin: cheminTrace, sha256: sha256(Buffer.from(trace)) },
       });
     }

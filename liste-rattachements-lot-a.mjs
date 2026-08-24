@@ -11,6 +11,16 @@
  * (un schéma local comme file:// ne sera jamais consulté), motif non blanc, URL uniques.
  */
 
+/** LE contrat HTTP(S) — un seul code pour toutes les URL du lot A : la liste versionnée,
+ *  l'`url_finale` revalidée par le collecteur, et le schéma du manifeste côté validateur
+ *  (contre-revue v5-sexies : `z.string().url()` acceptait `file://`). */
+export const estUrlHttp = (valeur) => {
+  try {
+    const u = new URL(String(valeur));
+    return /^https?:$/.test(u.protocol) && u.hostname.length > 0;
+  } catch { return false; }
+};
+
 /** Retourne la liste des écarts (vide si la valeur est conforme). */
 export function erreursListeRattachements(liste) {
   if (!Array.isArray(liste)) return ["un TABLEAU d'objets { url, motif } est attendu"];
@@ -22,11 +32,11 @@ export function erreursListeRattachements(liste) {
       erreurs.push(`[${k}] : champs [${cles.join(", ")}] — exactement { url, motif } est exigé, aucun champ inconnu`);
       continue;
     }
-    let u = null;
-    try { u = new URL(String(r.url)); } catch { /* jugé ci-dessous */ }
-    if (!u) {
+    let parsable = true;
+    try { new URL(String(r.url)); } catch { parsable = false; }
+    if (!parsable) {
       erreurs.push(`[${k}] : URL imparsable « ${r.url} »`);
-    } else if (!/^https?:$/.test(u.protocol) || u.hostname.length === 0) {
+    } else if (!estUrlHttp(r.url)) {
       erreurs.push(`[${k}] : « ${r.url} » — HTTP(S) UNIQUEMENT, un schéma local ne sera jamais consulté`);
     }
     if (typeof r.motif !== "string" || r.motif.trim().length === 0) {
