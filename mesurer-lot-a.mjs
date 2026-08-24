@@ -1,33 +1,32 @@
 #!/usr/bin/env node
 /**
- * LOT A — L'ÉTAT DE RÉFÉRENCE DES 18 PAYS SANS SOURCE, SCELLÉ EXACTEMENT, ET UN SCELLEUR
- * QUI NE PEUT PAS CONSACRER UNE DÉRIVE.
+ * LOT A — L'ÉTAT DE RÉFÉRENCE DES 18 PAYS SANS SOURCE. LE SCELLÉ NE SE REMPLACE PAS.
  *
- *   node --import tsx mesurer-lot-a.mjs --as-of=2026-08-24
- *   node --import tsx mesurer-lot-a.mjs --as-of=… --sceller [--remplace=<sha256 du scellé actuel>]
+ *   node --import tsx mesurer-lot-a.mjs --as-of=2026-08-24                    vérification
+ *   node --import tsx mesurer-lot-a.mjs --as-of=… --generer-scelle-candidat   candidat SEULEMENT
  *
- * TROIS PASSAGES INDUS fermés depuis la v2 (contre-revue du 24/08/2026) :
- *   · `pet_scheme` modifié → sortie 0. Or c'est LE fait que la future source doit étayer.
- *     Le scellé porte désormais sa valeur exacte.
- *   · `iso2` altéré dans le scellé, pays parasite ajouté → sortie 0. La comparaison est
- *     désormais STRUCTURELLE et symétrique sur l'objet entier : pays absent ou supplémentaire,
- *     champ absent ou supplémentaire, valeur modifiée — chacun nommé.
- *   · une URL remplacée puis `--sceller` → le scellé consacrait la dérive. `--sceller` est
- *     désormais VERROUILLÉ : refus si les données mesurées (content/countries,
- *     countries.generated.json, knowledge/raw) ne sont pas propres au sens de git, et — si un
- *     scellé existe déjà — exigence de `--remplace=<sha256>` égal à l'empreinte du scellé en
- *     place : remplacer un état de référence est un acte explicite, tracé, jamais un réflexe.
+ * LE SCELLEUR NE PEUT PLUS CONSACRER UNE DÉRIVE — même commitée (contre-revue v3 : une dérive
+ * commitée passait la propreté git, puis `--sceller --remplace=…` la consacrait) :
+ *   · l'instrument N'ÉCRIT JAMAIS `etat-reference-lot-a.json`. Le remplacement du scellé est
+ *     supprimé. `--generer-scelle-candidat` produit `etat-reference-lot-a.candidat.json`,
+ *     qu'un humain promeut par un geste git séparé, sous revue.
+ *   · le candidat n'est produit que si les données mesurées sont IDENTIQUES À LA BASE EXACTE
+ *     `1dd62010…` — `git diff --exit-code <base> -- <données>` (dérives commitées comprises)
+ *     ET `git status --porcelain` vide sur ces chemins (fichiers non suivis compris).
+ *   · `_scelle` est VALIDÉ STRICTEMENT à la vérification : exactement { sha_base }, égal à la
+ *     base `1dd62010…` — un `_scelle` falsifié rougit au lieu d'être ignoré.
  *
- * `--as-of` est OBLIGATOIRE : la date doit exister (reconstruction UTC), et aucune
- * `verified_date` de guide ne peut lui être postérieure — une vérification datée du futur
- * n'est pas une vérification.
+ * FERMÉ EN v3 (contre-revue v2) : `pet_scheme` scellé à valeur exacte (LE fait que la future
+ * source doit étayer) ; comparaison STRUCTURELLE et symétrique de l'objet scellé entier (pays
+ * ou champ absent/supplémentaire, `iso2` compris, chacun nommé) ; `--as-of` obligatoire et
+ * calendaire, `verified_date` future refusée.
  *
- * Le reste est inchangé depuis la v2 : empreinte SHA-256 par pays des triplets (label, url),
- * sémantique canonique `rulesForCountry` (scope + prédicats de destination), relecture des
- * YAML et égalité canonique avec l'artefact généré, validation calendaire et http(s).
- * IL NE CORRIGE RIEN : il lit, il compte, et n'écrit que le scellé, sur ordre verrouillé.
+ * Le socle v2 est inchangé : empreinte SHA-256 par pays des triplets (label, url), sémantique
+ * canonique `rulesForCountry` (scope + prédicats de destination), relecture des YAML et
+ * égalité canonique avec l'artefact généré, validation calendaire et http(s).
+ * IL NE CORRIGE RIEN : il lit, il compte, et n'écrit — sur ordre — qu'un CANDIDAT de scellé.
  */
-import { readFileSync, writeFileSync, existsSync } from "node:fs";
+import { readFileSync, writeFileSync } from "node:fs";
 import { createHash } from "node:crypto";
 import { spawnSync } from "node:child_process";
 import YAML from "yaml";
@@ -35,13 +34,17 @@ import { loadKB } from "./packages/knowledge/src/data.ts";
 import { rulesForCountry } from "./packages/knowledge/src/views.ts";
 
 const SCELLE = "etat-reference-lot-a.json";
-/* Les seuls chemins dont la propreté conditionne le scellement : les DONNÉES mesurées.
+const CANDIDAT = "etat-reference-lot-a.candidat.json";
+/* LA BASE EXACTE de la mesure : le commit de fusion du dossier d'achèvement sur `main`.
+ * Le candidat de scellé ne peut être produit que sur des données IDENTIQUES à cette base,
+ * et le scellé vérifié doit la déclarer — falsifier `_scelle.sha_base` rougit. */
+const BASE = "1dd62010ea183422f02553877df4706714739080";
+/* Les données mesurées — les seuls chemins dont l'identité à la base conditionne le candidat.
  * L'instrument lui-même s'édite sous revue git ; il ne scelle pas son propre code. */
 const DONNEES = ["content/countries", "packages/ui/src/data/countries.generated.json", "packages/knowledge/raw"];
 
 const args = process.argv.slice(2);
-const SCELLER = args.includes("--sceller");
-const REMPLACE = (args.find((a) => a.startsWith("--remplace=")) || "").slice(11);
+const GENERER = args.includes("--generer-scelle-candidat");
 const asOf = (args.find((a) => a.startsWith("--as-of=")) || "").slice(8);
 
 const dateExiste = (d) => {
@@ -137,32 +140,31 @@ for (const id of CONTRACTUELS) {
   };
 }
 
-/* ---- scellement : verrouillé — jamais un réflexe -------------------------------------------- */
-if (SCELLER) {
+/* ---- génération du CANDIDAT : jamais le scellé, et seulement sur la base exacte ------------- */
+if (GENERER) {
   if (defauts.length) {
-    process.stderr.write("[lot-a] REFUS de sceller un état en défaut :\n");
+    process.stderr.write("[lot-a] REFUS de générer un candidat depuis un état en défaut :\n");
     for (const d of defauts) process.stderr.write(`  ${d}\n`);
+    process.exit(1);
+  }
+  /* Identité à la base exacte : `git diff` voit les dérives COMMITÉES comme les autres —
+   * la propreté seule ne voyait qu'un arbre non commité (contre-revue v3). */
+  const diff = spawnSync("git", ["diff", "--exit-code", "--stat", BASE, "--", ...DONNEES], { encoding: "utf-8" });
+  if (diff.status !== 0) {
+    process.stderr.write(`[lot-a] REFUS de générer : les données mesurées DIFFÈRENT de la base exacte ${BASE.slice(0, 7)} —\n` +
+      "[lot-a] un candidat produit sur des données dérivées, même commitées, consacrerait la dérive.\n" +
+      diff.stdout.split("\n").filter(Boolean).slice(0, 10).map((x) => `  ${x}\n`).join(""));
     process.exit(1);
   }
   const statut = spawnSync("git", ["status", "--porcelain", "--", ...DONNEES], { encoding: "utf-8" });
   if (statut.status !== 0 || statut.stdout.trim() !== "") {
-    process.stderr.write("[lot-a] REFUS de sceller : les données mesurées ne sont pas propres au sens de git —\n" +
-      "[lot-a] un scellé posé sur des données non revues consacrerait la dérive qu'il doit révéler.\n" +
+    process.stderr.write("[lot-a] REFUS de générer : fichiers non commités ou non suivis dans les données mesurées :\n" +
       statut.stdout.split("\n").filter(Boolean).slice(0, 10).map((x) => `  ${x}\n`).join(""));
     process.exit(1);
   }
-  if (existsSync(SCELLE)) {
-    const actuel = sha(readFileSync(SCELLE, "utf-8"));
-    if (REMPLACE !== actuel) {
-      process.stderr.write(`[lot-a] REFUS de remplacer le scellé existant sans le nommer :\n` +
-        `[lot-a]   --remplace=${actuel}\n` +
-        `[lot-a] Remplacer un état de référence est un acte explicite et tracé, jamais un réflexe.\n`);
-      process.exit(1);
-    }
-  }
-  const base = spawnSync("git", ["rev-parse", "HEAD"], { encoding: "utf-8" }).stdout.trim();
-  writeFileSync(SCELLE, JSON.stringify({ _scelle: { sha_base: base, remplace: REMPLACE || null }, ...releve }, null, 2) + "\n");
-  l(`[lot-a] scellé écrit : ${SCELLE} — ${Object.keys(releve.pays).length} pays · ${releve.liens_total} liens · base ${base.slice(0, 7)}`);
+  writeFileSync(CANDIDAT, JSON.stringify({ _scelle: { sha_base: BASE }, ...releve }, null, 2) + "\n");
+  l(`[lot-a] CANDIDAT écrit : ${CANDIDAT} — ${Object.keys(releve.pays).length} pays · ${releve.liens_total} liens · base ${BASE.slice(0, 7)}`);
+  l(`[lot-a] le scellé ${SCELLE} n'a PAS été touché : sa promotion est un geste git humain, sous revue.`);
   process.exit(0);
 }
 
@@ -171,7 +173,20 @@ let attendu = null;
 try { attendu = JSON.parse(readFileSync(SCELLE, "utf-8")); }
 catch { echec("scellé", `${SCELLE} introuvable ou illisible — un état de référence non scellé ne se vérifie pas`); }
 if (attendu) {
-  const { _scelle, ...corps } = attendu; // la traçabilité du scellement n'est pas une mesure
+  /* `_scelle` est VALIDÉ, pas ignoré : exactement { sha_base }, égal à la base exacte.
+   * Un `_scelle` falsifié — sha changé, champ ajouté — rougit (contre-revue v3). */
+  const { _scelle, ...corps } = attendu;
+  if (!_scelle || typeof _scelle !== "object") {
+    echec("scellé", "_scelle absent ou invalide — le scellé ne déclare pas sa base");
+  } else {
+    const cles = Object.keys(_scelle).sort();
+    if (JSON.stringify(cles) !== JSON.stringify(["sha_base"])) {
+      echec("scellé", `_scelle porte des champs inattendus : [${cles.join(", ")}] (attendu : exactement [sha_base])`);
+    }
+    if (_scelle.sha_base !== BASE) {
+      echec("scellé", `_scelle.sha_base « ${String(_scelle.sha_base).slice(0, 12)}… » n'est pas la base exacte ${BASE.slice(0, 7)} (${BASE})`);
+    }
+  }
   const comparer = (a, b, chemin) => {   // a = scellé, b = relevé
     if (a === null || b === null || typeof a !== "object" || typeof b !== "object") {
       if (JSON.stringify(a) !== JSON.stringify(b)) {
