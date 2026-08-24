@@ -27,7 +27,14 @@
  */
 import { inflateSync } from "node:zlib";
 
-export const VERSION_EXTRACTEUR = "lot-a-2";
+/* lot-a-3 : la regex des tableaux TJ de lot-a-2 était AMBIGUË — `[^\]]` acceptait aussi `(`,
+ * donc un flux dégonflé portant `[` puis des groupes `(…)` sans `]` (polices, flux binaires
+ * de PDF réels) se lisait de 2^k façons : retour-arrière exponentiel, mesuré 0,5 s à
+ * 20 groupes, 19 s à 28, au-delà de 100 s à 32 — c'est le blocage constaté en collecte
+ * réelle sur le PDF des Bahamas (incident du 24/08/2026). L'alternative caractère exclut
+ * désormais les parenthèses : chaque position n'a plus qu'UNE lecture, l'échec est linéaire.
+ * Sur un tableau TJ bien formé, l'extraction est inchangée. */
+export const VERSION_EXTRACTEUR = "lot-a-3";
 
 /** Le FORMAT se détecte depuis les OCTETS, jamais depuis le Content-Type déclaré (contre-revue
  *  v5-ter : les mêmes octets `%PDF-` servis en `text/plain` redevenaient une preuve). La
@@ -74,7 +81,7 @@ const extrairePdf = (tampon) => {
   const textes = [];
   /* (chaîne) Tj · (chaîne) ' · [ (a) -120 (b) ] TJ · <hex> Tj */
   for (const t of corpus.matchAll(/\(((?:\\.|[^\\()])*)\)\s*(?:Tj|')/g)) textes.push(decoderLitterale(t[1]));
-  for (const t of corpus.matchAll(/\[((?:\((?:\\.|[^\\()])*\)|[^\]])*)\]\s*TJ/g)) {
+  for (const t of corpus.matchAll(/\[((?:\((?:\\.|[^\\()])*\)|[^\]()])*)\]\s*TJ/g)) {
     for (const s of t[1].matchAll(/\(((?:\\.|[^\\()])*)\)/g)) textes.push(decoderLitterale(s[1]));
   }
   for (const t of corpus.matchAll(/<([0-9A-Fa-f\s]+)>\s*Tj/g)) {

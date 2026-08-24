@@ -16,7 +16,7 @@
  * (cas 0) ; chaque cas suivant mute UNE chose et exige la sortie 1 avec la cause nommée.
  * Aucune donnée réelle n'est affirmée : la fixture vit dans l'arbre jetable, jamais au dépôt.
  *
- * CINQUANTE-SEPT CAS : 0 (fixture conforme — manifeste complet avec une observation de
+ * CINQUANTE-HUIT CAS : 0 (fixture conforme — manifeste complet avec une observation de
  * rattachement de rôle dédié, candidate PDF à pièce-capture), 17 à 52 (bijection, décisions,
  * pièces, ancres, PDF, liaison au manifeste), puis 53-57 (contre-revue v5-ter) : PDF déguisé
  * en text/plain — le format recalculé depuis les OCTETS prime ; résultat de manifeste
@@ -36,6 +36,8 @@
  * partageant les mêmes pièces (anciennes pièces retirées, matrice alignée) rougissent avec
  * les deux n nommés ; et `octets` est obligatoire (absent → schéma) et prouvé (falsifié →
  * ≠ taille réelle). La fixture crée UNE pièce par (résultat, champ).
+ * Puis 73 (incident de collecte réelle) : l'extraction PDF TERMINE en temps borné sur un
+ * flux adversarial — sous lot-a-2, retour-arrière exponentiel, jamais de retour.
  */
 import { readFileSync, writeFileSync, mkdirSync, copyFileSync, symlinkSync, mkdtempSync, rmSync } from "node:fs";
 import { createHash } from "node:crypto";
@@ -594,6 +596,27 @@ try {
   cas("72 octets falsifié", (m) => { /* matrice inchangée */ }, [
     /capture\.octets/, /taille réelle/,
   ], (mf) => { mf.resultats[0].capture.octets += 1; });
+
+  /* ---- 73 · l'extraction PDF TERMINE en temps borné sur un flux adversarial ------------------
+   * [incident de collecte réelle du 24/08/2026 : la regex TJ de lot-a-2 était ambiguë — un
+   * flux dégonflé portant « [ » puis des groupes « (…) » sans « ] » se lisait en 2^k façons ;
+   * mesuré : 0,5 s à 20 groupes, 19 s à 28, >100 s à 32. À 40 groupes, lot-a-2 ne rend
+   * JAMAIS la main — lot-a-3 termine en quelques millisecondes.] */
+  {
+    const code = [
+      'import { extraireTexte } from "./extraire-texte-lot-a.mjs";',
+      'import { deflateSync } from "node:zlib";',
+      'const flux = deflateSync(Buffer.from("[" + "(a)".repeat(40) + " sans crochet fermant", "latin1"));',
+      'const pdf = Buffer.concat([Buffer.from("%PDF-1.4\\n1 0 obj << >> stream\\n", "latin1"),',
+      '  flux, Buffer.from("\\nendstream\\ntrailer\\n%%EOF", "latin1")]);',
+      'extraireTexte(pdf, "application/pdf");',
+      'process.stdout.write("TERMINE");',
+    ].join("\n");
+    const r = spawnSync("node", ["--input-type=module", "-e", code], { cwd: arbre, encoding: "utf-8", timeout: 20000 });
+    if (r.stdout !== "TERMINE") {
+      echec("73 extraction PDF bornée", `l'extracteur n'a pas terminé en 20 s sur le flux adversarial (40 groupes) — retour-arrière exponentiel`);
+    }
+  }
 } finally {
   gitWt("remove", "--force", arbre);
   rmSync(conteneur, { recursive: true, force: true });
@@ -601,7 +624,7 @@ try {
 
 /* ---- verdict ---------------------------------------------------------------------------------- */
 if (defauts.length === 0) {
-  process.stdout.write("57 cas éprouvés : la fixture conforme — manifeste en ensemble exact égal à la liste\n");
+  process.stdout.write("58 cas éprouvés : la fixture conforme — manifeste en ensemble exact égal à la liste\n");
   process.stdout.write("versionnée, rattachement utilisé + PDF et tentative proprement écartés — sort en 0 ;\n");
   process.stdout.write("rattachement de rôle dédié, candidate PDF à pièce-capture — sort en 0 ; les contrôles\n");
   process.stdout.write("17-52 rougissent chacun pour sa cause (bijection triplet, décisions, pièces prouvées,\n");
@@ -618,7 +641,8 @@ if (defauts.length === 0) {
   process.stdout.write("2xx ou url_finale locale échouent AU SCHÉMA DU MANIFESTE même écartés, et une pièce\n");
   process.stdout.write("orpheline du run rougit — le manifeste est l'inventaire exact des pièces ; et la\n");
   process.stdout.write("v5-septies : l'inventaire est une BIJECTION (pièces partagées → les deux n nommés),\n");
-  process.stdout.write("octets obligatoire au schéma et égal à la taille réelle du fichier.\n\n");
+  process.stdout.write("octets obligatoire au schéma et égal à la taille réelle du fichier ; et l'extraction\n");
+  process.stdout.write("PDF termine en temps borné sur un flux adversarial (lot-a-3).\n\n");
   process.stdout.write("[audit-pays] le validateur mord, sur les 56 contrôles.\n");
   process.exit(0);
 }
