@@ -2,53 +2,62 @@
 /**
  * mesurer-achevement.mjs — l'annexe reproductible du DOSSIER-ACHEVEMENT-PROJET.
  *
- *   node mesurer-achevement.mjs --as-of=2026-08-23              relevé lisible
- *   node mesurer-achevement.mjs --as-of=2026-08-23 --json       le même, exploitable
- *   node mesurer-achevement.mjs --as-of=2026-08-23 --verifier-dossier
- *                                                               CONFRONTE le dossier au relevé
+ *   node --import tsx mesurer-achevement.mjs --as-of=2026-08-23                     relevé lisible
+ *   node --import tsx mesurer-achevement.mjs --as-of=2026-08-23 --json              le même, exploitable
+ *   node --import tsx mesurer-achevement.mjs --as-of=2026-08-23 --bloc              le bloc contractuel à embarquer
+ *   node --import tsx mesurer-achevement.mjs --as-of=2026-08-23 --verifier-dossier  le dossier CONTRE le relevé
  *
- * POURQUOI UN MODE DE VÉRIFICATION. La version précédente calculait un relevé et l'affichait ;
- * la concordance avec le dossier était vérifiée À CÔTÉ, dans un shell, et annoncée « 19 contrôles,
- * zéro écart ». Ces contrôles n'existaient dans aucun des deux fichiers livrés : modifier un
- * chiffre du Markdown laissait tout sortir en 0. Une vérification qui ne vit pas dans le livrable
- * n'est pas une vérification — c'est un souvenir. `--verifier-dossier` exécute des contrôles
- * BLOQUANTS, chacun avec son diagnostic nommé, et sort en 1 au premier écart. `--dossier=<chemin>`
- * permet de le pointer sur une copie — c'est ce que fait la contre-épreuve, qui altère une valeur
- * et exige la sortie 1.
+ * `--import tsx` parce que ce script réutilise le SCHÉMA CANONIQUE `Source` de
+ * `packages/knowledge/src/common.ts` — celui que `npm run check` applique aux données. La version
+ * précédente maintenait un validateur partiel (« url, source_type, review_due ») qui laissait
+ * passer une confiance absente, un reviewer absent, un type inconnu, une date impossible. Deux
+ * validateurs pour un même contrat finissent toujours par diverger, et c'est le partiel qu'on
+ * croit.
  *
- * LA DATE EST VALIDÉE POUR DE VRAI. `--as-of=2026-02-31` passait : `Date.parse` NORMALISE les
- * dates impossibles au lieu de les refuser, et le relevé sortait daté du 31 février. La date est
- * désormais reconstruite en UTC puis confrontée champ à champ — année, mois, jour — à la chaîne
- * fournie. « 2026-02-31 », « 2026-13-01 » et un 29 février d'année non bissextile sortent en 2.
+ * LA CONCORDANCE EST UN BLOC STRUCTURÉ, PAS DES SOUS-CHAÎNES. La version précédente cherchait 38
+ * fragments avec `includes()` : un fragment présent DEUX fois dans le dossier laissait passer
+ * l'altération de l'une des occurrences — contre-épreuve de Codex, « 28/09/2026 » modifié dans la
+ * section fraîcheur, intact dans le lot B, sortie 0. Le dossier embarque désormais un BLOC
+ * CONTRACTUEL JSON, délimité, exigé UNIQUE, comparé au relevé À ÉGALITÉ EXACTE et dans les deux
+ * sens. Cinq classes d'écart, chacune avec son diagnostic : valeur modifiée, entrée supprimée du
+ * bloc, entrée ajoutée au bloc, donnée source modifiée (le relevé recalculé ne correspond plus),
+ * bloc dupliqué ou absent. La prose du dossier est narrative ; le bloc fait foi.
  *
- * LA FORME `Source` EST EXIGÉE, PAS SEULEMENT RENCONTRÉE. Le parcours générique comptait comme
- * source toute structure portant un `verified_date` : une future métadonnée qui n'en serait pas
- * une aurait été comptée sans bruit. Chaque objet trouvé doit désormais porter `url`,
- * `source_type` et `review_due` ; un manquement est BLOQUANT et nommé par son chemin. Chaque
- * source reçoit d'ailleurs une identité de chemin stable — `airlines[airline_aegean].policies.
- * cargo` — qui servira de clé au registre du lot B.
+ * LES IDENTITÉS SONT STABLES. 250 sources vivantes vivaient sous un indice numérique
+ * (`contacts[0].source`) : une insertion ou un tri changeait leur identité. Un élément de tableau
+ * sans `id` est désormais adressé par l'EMPREINTE DE L'URL de sa source (`h:xxxxxxxxxxxx`) —
+ * l'URL est l'identité logique d'une source, et elle survit aux rejeux de revue, ce qu'une
+ * empreinte du contenu entier ne ferait pas. Les évènements datés d'une frise historique joignent
+ * leur `year` à l'empreinte : deux évènements citent légitimement la même page. Zéro identité
+ * instable dans les données actuelles ; seule compte l'identité d'un élément dont le sous-arbre
+ * porte une source datée (les tableaux de tags ou de routes n'ont pas d'identité à perdre), et la
+ * première source rangée sous un élément sans clé — ou sous une empreinte en collision —
+ * incrémenterait `identites_instables`, que le bloc contractuel fige à 0.
  *
- * L'AUTO-CITATION SE JUGE AU NOM D'HÔTE. `includes("mydogcanfly")` attraperait aussi
- * `example.com/mydogcanfly-review` et raterait un déguisement. L'URL est parsée ; est auto-citée
- * une source dont l'hôte est `mydogcanfly.com` ou l'un de ses sous-domaines. Les deux mesures
- * coïncident aujourd'hui (226) — c'est le bon moment pour durcir : aucun écart à expliquer.
+ * LES ARCHIVES SONT UN CONTRAT, PAS UN MOT-CLÉ. L'exclusion de `history` était globale : toute
+ * future source rangée sous n'importe quel champ `history` aurait disparu du registre en silence.
+ * Seul le chemin d'archive CONNU — `airlines[*].premium.history[*]` — est admis ; une source
+ * datée sous tout autre `history` est BLOQUANTE et nommée. Les archives elles-mêmes sont
+ * validées au schéma canonique : hors registre n'est pas hors contrat.
  *
  * IL NE CORRIGE RIEN. Il lit, il compte, il n'écrit aucun fichier du dépôt.
  */
 import { readFileSync, readdirSync, existsSync } from "node:fs";
 import { spawnSync } from "node:child_process";
+import { createHash } from "node:crypto";
 import { join } from "node:path";
-import { URL } from "node:url";
+import { Source } from "./packages/knowledge/src/common.ts";
 
 /* ---- arguments ------------------------------------------------------------------------------ */
 const args = process.argv.slice(2);
 const JSON_OUT = args.includes("--json");
+const BLOC_OUT = args.includes("--bloc");
 const VERIFIER = args.includes("--verifier-dossier");
 const CHEMIN_DOSSIER = (args.find((a) => a.startsWith("--dossier=")) || "--dossier=DOSSIER-ACHEVEMENT-PROJET.md").slice(10);
 const asOf = (args.find((a) => a.startsWith("--as-of=")) || "").slice(8);
 
 /* La date DOIT exister. `Date.parse` normalise « 2026-02-31 » en 3 mars au lieu de refuser : on
- * reconstruit donc la date en UTC et on exige l'égalité exacte année/mois/jour avec la chaîne. */
+ * reconstruit en UTC et on exige l'égalité exacte année/mois/jour avec la chaîne. */
 {
   const m = /^(\d{4})-(\d{2})-(\d{2})$/.exec(asOf);
   const d = m ? new Date(Date.UTC(+m[1], +m[2] - 1, +m[3])) : null;
@@ -57,7 +66,7 @@ const asOf = (args.find((a) => a.startsWith("--as-of=")) || "").slice(8);
     process.stderr.write(
       "[mesure] ÉCHEC : --as-of=AAAA-MM-JJ est OBLIGATOIRE et la date doit EXISTER.\n" +
       (asOf ? `[mesure] « ${asOf} » n'est pas un jour du calendrier.\n` : "") +
-      "[mesure]   node mesurer-achevement.mjs --as-of=2026-08-23\n");
+      "[mesure]   node --import tsx mesurer-achevement.mjs --as-of=2026-08-23\n");
     process.exit(2);
   }
 }
@@ -65,8 +74,6 @@ const asOf = (args.find((a) => a.startsWith("--as-of=")) || "").slice(8);
 const lire = (p) => JSON.parse(readFileSync(p, "utf-8"));
 const jours = (a, b) => Math.round((Date.parse(`${a}T00:00:00Z`) - Date.parse(`${b}T00:00:00Z`)) / 86400000);
 const compter = (xs) => xs.reduce((m, x) => (m[x] = (m[x] ?? 0) + 1, m), {});
-/* Milliers à la française — le dossier écrit « 1 525 », pas « 1525 ». */
-const fmt = (n) => String(n).replace(/\B(?=(\d{3})+(?!\d))/g, " ").replace(/ /g, " ");
 
 /* ---- état du dépôt -------------------------------------------------------------------------- */
 const git = (...a) => spawnSync("git", a, { encoding: "utf-8" });
@@ -100,33 +107,54 @@ for (const v of parCle.values()) {
   }
 }
 
-/* ---- TOUTES les sources du référentiel, avec identité de chemin ------------------------------ */
-/**
- * Parcourt une structure et rend chaque objet portant `verified_date`, avec un CHEMIN STABLE —
- * `airlines[airline_aegean].policies.cargo` — destiné à servir de clé au registre du lot B.
- * Les tableaux sont adressés par l'`id` de l'élément quand il existe, par l'indice sinon.
- */
-function* sourcesDatees(x, chemin, dansHistory = false) {
+/* ---- TOUTES les sources du référentiel, identités stables ------------------------------------ */
+const empreinte = (s) => "h:" + createHash("sha256").update(String(s)).digest("hex").slice(0, 12);
+/** L'URL qui identifie un élément de tableau : la sienne, ou celle de sa source imbriquée. */
+const urlDe = (v) => (v && typeof v === "object")
+  ? (typeof v.url === "string" ? v.url : (v.source && typeof v.source.url === "string" ? v.source.url : null))
+  : null;
+/** La clé stable d'un élément : son `id`, sinon l'empreinte de son URL — jointe à son `year`
+ *  quand l'élément est un évènement daté, car deux évènements d'une même frise citent
+ *  légitimement la même page (Air Canada 1937 et 1997 citent le même article Wikipédia). */
+const cleDe = (v) => {
+  if (v && typeof v === "object" && typeof v.id === "string") return v.id;
+  const u = urlDe(v);
+  if (u === null) return null;
+  return typeof v.year === "number" ? empreinte(`${u}#${v.year}`) : empreinte(u);
+};
+
+let identitesInstables = 0;
+function sourcesDatees(x, chemin, dansHistory = false) {
   if (Array.isArray(x)) {
+    const resultats = [];
+    const vues = new Set();
     for (let i = 0; i < x.length; i++) {
       const v = x[i];
-      const cle = (v && typeof v === "object" && typeof v.id === "string") ? v.id : String(i);
-      yield* sourcesDatees(v, `${chemin}[${cle}]`, dansHistory);
+      let cle = cleDe(v);
+      const instable = cle === null || vues.has(cle);
+      if (instable) cle = String(i);
+      vues.add(cle);
+      const sous = sourcesDatees(v, `${chemin}[${cle}]`, dansHistory);
+      /* Un indice n'est une identité INSTABLE que s'il adresse quelque chose : seul un élément
+       * dont le sous-arbre porte au moins une source datée entre au registre. Les milliers
+       * d'éléments de tableaux sans source (tags, routes, alias) n'ont pas d'identité à perdre —
+       * les compter noierait le signal. Le bloc contractuel fige ce compteur à sa valeur du jour
+       * (0) : la première source rangée sous un élément sans `id` ni URL — ou sous une empreinte
+       * en collision — fera échouer la concordance. */
+      if (instable && sous.length) identitesInstables++;
+      resultats.push(...sous);
     }
-    return;
+    return resultats;
   }
   if (x && typeof x === "object") {
-    if (typeof x.verified_date === "string") yield { chemin, source: x, dansHistory };
+    const resultats = [];
+    if (typeof x.verified_date === "string") resultats.push({ chemin, source: x, dansHistory });
     for (const [k, v] of Object.entries(x)) {
-      /* `history` porte des instantanés PASSÉS de la même politique — 20 aujourd'hui, tous sous
-       * `airlines[*].premium.history[]`, supplantés par la source vivante du même objet. Les
-       * compter dans la charge de revue reviendrait à réviser des archives immuables, et le même
-       * `review_due` y serait compté deux fois. Ils sont donc SÉPARÉS du registre vivant — mais
-       * comptés et nommés, jamais tus : une exclusion silencieuse est une mesure qu'on ne peut
-       * plus contester. */
-      yield* sourcesDatees(v, `${chemin}.${k}`, dansHistory || k === "history");
+      resultats.push(...sourcesDatees(v, `${chemin}.${k}`, dansHistory || k === "history"));
     }
+    return resultats;
   }
+  return [];
 }
 
 const objets = lire("packages/knowledge/raw/objects.json");
@@ -144,33 +172,51 @@ for (const [fam, contenu] of [...Object.entries(objets), ["rules", regles]]) {
   toutes.push(...vivantes);
 }
 
-/* LA FORME EST EXIGÉE. Un `verified_date` sans `url`, `source_type` ou `review_due` n'est pas une
- * source : c'est une métadonnée qui en a l'air, et la compter fausserait tous les totaux. */
-const OBLIGATOIRES = ["url", "source_type", "review_due"];
-const formesIncompletes = [];
-for (const { famille, chemin, source } of toutes) {
-  const absents = OBLIGATOIRES.filter((c) => !source[c]);
-  if (absents.length) formesIncompletes.push(`${chemin} : sans ${absents.join(", ")}`);
+/* L'ARCHIVE EST UN CONTRAT DE CHEMIN, pas un mot-clé. Seul `airlines[*].premium.history[*]` est
+ * une forme d'archive connue ; une source datée sous tout autre `history` serait sortie du
+ * registre EN SILENCE par la simple présence du mot — c'est l'exclusion globale que la
+ * contre-revue a refusée. */
+const ARCHIVE_CONTRACTUELLE = /^airlines\[[^\]]+\]\.premium\.history\[/;
+const archivesHorsContrat = archives.filter((e) => !ARCHIVE_CONTRACTUELLE.test(e.chemin));
+
+/* LE SCHÉMA CANONIQUE, sur les vivantes ET les archives : hors registre n'est pas hors contrat.
+ * L'entrée `history` d'une Source cite d'autres sources par `date` — un `ReviewEvent`, pas une
+ * `Source` — et le schéma canonique le sait déjà. */
+const invalides = [];
+for (const { chemin, source } of [...toutes, ...archives]) {
+  const r = Source.safeParse(source);
+  if (!r.success) {
+    const motifs = r.error.issues.map((i) => `${i.path.join(".") || "(racine)"} — ${i.code}`).join(" · ");
+    invalides.push(`${chemin} : ${motifs}`);
+  }
 }
 
-/* L'AUTO-CITATION, au nom d'hôte et non à la sous-chaîne. */
+if (archivesHorsContrat.length || invalides.length) {
+  if (archivesHorsContrat.length) {
+    process.stderr.write(`[mesure] ÉCHEC — ${archivesHorsContrat.length} source(s) datée(s) sous un « history » HORS CONTRAT d'archive :\n`);
+    for (const e of archivesHorsContrat.slice(0, 10)) process.stderr.write(`  ${e.chemin}\n`);
+  }
+  if (invalides.length) {
+    process.stderr.write(`[mesure] ÉCHEC — ${invalides.length} source(s) rejetée(s) par le schéma canonique \`Source\` :\n`);
+    for (const m of invalides.slice(0, 20)) process.stderr.write(`  ${m}\n`);
+  }
+  process.exit(1);
+}
+
+/* L'AUTO-CITATION, au nom d'hôte parsé et non à la sous-chaîne. */
 const estAutoCitee = (u) => {
   try {
     const h = new URL(String(u)).hostname.toLowerCase();
     return h === "mydogcanfly.com" || h.endsWith(".mydogcanfly.com");
   } catch { return false; }
 };
-const urlsImparsables = toutes.filter(({ source }) => {
-  try { new URL(String(source.url)); return false; } catch { return true; }
-});
 const autocitees = toutes.filter(({ source }) => estAutoCitee(source.url));
 
 /* ---- fraîcheur ------------------------------------------------------------------------------- */
-const fraicheur = { echue: 0, moins_30j: 0, moins_90j: 0, plus_90j: 0, sans_review_due: formesIncompletes.length ? undefined : 0 };
+const fraicheur = { echue: 0, moins_30j: 0, moins_90j: 0, plus_90j: 0 };
 const echeances = [];
 const octobre = {};
 for (const { famille, source } of toutes) {
-  if (!source.review_due) continue;
   echeances.push(source.review_due);
   if (String(source.review_due).startsWith("2026-10")) octobre[famille] = (octobre[famille] ?? 0) + 1;
   const j = jours(source.review_due, asOf);
@@ -179,15 +225,12 @@ for (const { famille, source } of toutes) {
   else if (j < 90) fraicheur.moins_90j++;
   else fraicheur.plus_90j++;
 }
-fraicheur.sans_review_due = toutes.length - echeances.length;
 echeances.sort();
 
-/* ---- pays ------------------------------------------------------------------------------------- */
+/* ---- pays, compagnies, couvertures, correspondances ------------------------------------------ */
 const pays = Array.isArray(objets.countries) ? objets.countries : Object.values(objets.countries ?? {});
 const paysSansSource = pays.filter((c) => !c.source);
-const paysDates = pays.filter((c) => c.source?.verified_date);
 
-/* ---- compagnies ------------------------------------------------------------------------------- */
 const cies = lire("packages/ui/src/data/airlines.generated.json");
 const legacy = {};
 const ciesTouchees = new Set();
@@ -199,7 +242,6 @@ for (const [id, c] of Object.entries(cies)) {
 const agesCies = Object.values(cies).filter((c) => c.verified_date)
   .map((c) => jours(asOf, c.verified_date)).sort((a, b) => a - b);
 
-/* ---- couvertures, correspondances, workflows -------------------------------------------------- */
 const couv = existsSync("couvertures-guides.json") ? lire("couvertures-guides.json").images : {};
 const routes = lire("packages/knowledge/raw/collecte-2026-07/routes_FULL_strict.json");
 const champsRoutes = [...new Set(Object.values(routes).flatMap((v) => Object.keys(v)))].sort();
@@ -210,9 +252,13 @@ const workflows = existsSync(".github/workflows") ? readdirSync(".github/workflo
 const catalogue = existsSync("contre-epreuves-attendues.json")
   ? lire("contre-epreuves-attendues.json").identifiants.length : null;
 
-const releve = {
+/* ---- LE BLOC CONTRACTUEL ---------------------------------------------------------------------
+ * La projection EXCLUT ce qui varie sans que les données changent — SHA du commit, version de
+ * Node, propreté de l'arbre — et fige tout le reste. C'est ce bloc, embarqué dans le dossier
+ * entre marqueurs, que `--verifier-dossier` confronte au relevé recalculé, à égalité exacte. */
+const bloc = {
   as_of: asOf,
-  depot: { sha, arbre_propre: propre, nvmrc, node: process.version, workflows },
+  workflows,
   guides: {
     cles_logiques: parCle.size,
     par_langue: Object.fromEntries(LANGUES.map((l) => [l, [...parCle.values()].filter((v) => v[l]).length])),
@@ -227,12 +273,10 @@ const releve = {
   referentiel: {
     sources_datees_total: toutes.length,
     archives_dans_history: archives.length,
-    total_avec_archives: toutes.length + archives.length,
-    formes_incompletes: formesIncompletes,
-    urls_imparsables: urlsImparsables.map((e) => e.chemin),
+    identites_instables: identitesInstables,
     par_famille: parFamille,
-    par_type_de_source: compter(toutes.map(({ source }) => source.source_type ?? "(absent)")),
-    par_confiance: compter(toutes.map(({ source }) => String(source.confidence ?? "(absente)"))),
+    par_type_de_source: compter(toutes.map(({ source }) => source.source_type)),
+    par_confiance: compter(toutes.map(({ source }) => String(source.confidence))),
     autocitees: autocitees.length,
     autocitees_par_famille: compter(autocitees.map((e) => e.famille)),
     fraicheur,
@@ -243,7 +287,7 @@ const releve = {
   },
   pays: {
     total: pays.length,
-    avec_source_datee: paysDates.length,
+    avec_source_datee: pays.filter((c) => c.source?.verified_date).length,
     sans_source: paysSansSource.length,
     identites_sans_source: paysSansSource.map((c) => c.id).sort(),
   },
@@ -265,98 +309,98 @@ const releve = {
   contre_epreuves: catalogue,
 };
 
-/* Une forme incomplète est BLOQUANTE : les totaux ci-dessus seraient faussés par sa présence. */
-if (formesIncompletes.length) {
-  process.stderr.write(`[mesure] ÉCHEC — ${formesIncompletes.length} objet(s) portent un « verified_date » SANS la forme Source complète :\n`);
-  for (const m of formesIncompletes.slice(0, 20)) process.stderr.write(`  ${m}\n`);
-  process.exit(1);
+const DEBUT = "<!-- BLOC-CONTRACTUEL:debut -->";
+const FIN = "<!-- BLOC-CONTRACTUEL:fin -->";
+
+if (BLOC_OUT) {
+  process.stdout.write(`${DEBUT}\n\`\`\`json\n${JSON.stringify(bloc, null, 2)}\n\`\`\`\n${FIN}\n`);
+  process.exit(0);
 }
 
-/* ---- mode vérification : le dossier CONTRE le relevé ----------------------------------------- */
+/* ---- mode vérification : égalité EXACTE, dans les deux sens ---------------------------------- */
 if (VERIFIER) {
-  /* Chaque contrôle cherche dans le Markdown un fragment CONSTRUIT depuis le relevé. Si la donnée
-   * bouge, le fragment calculé ne se retrouve plus dans le dossier resté en arrière — écart. Si le
-   * dossier est altéré, le fragment calculé ne s'y retrouve plus non plus — écart. Les deux sens
-   * du même défaut, un seul mécanisme. */
-  const R = releve;
-  const controles = [
-    ["total des sources datées", `**${fmt(R.referentiel.sources_datees_total)} sources datées**`],
-    ["titre P0-2 (auto-citées / total)", `**${R.referentiel.autocitees} sources auto-citées sur ${fmt(R.referentiel.sources_datees_total)}**`],
-    ["famille airlines", `| \`airlines\` | ${R.referentiel.par_famille.airlines.objets} | **${R.referentiel.par_famille.airlines.sources_datees}** | **${R.referentiel.autocitees_par_famille.airlines}** |`],
-    ["famille airports", `| \`airports\` | ${R.referentiel.par_famille.airports.objets} | ${R.referentiel.par_famille.airports.sources_datees} | 0 |`],
-    ["famille breeds", `| \`breeds\` | ${R.referentiel.par_famille.breeds.objets} | ${R.referentiel.par_famille.breeds.sources_datees} | 0 |`],
-    ["famille countries", `| \`countries\` | ${R.pays.total} | ${R.pays.avec_source_datee} | **${R.referentiel.autocitees_par_famille.countries}** |`],
-    ["famille rules", `| \`rules\` | ${R.referentiel.par_famille.rules.objets} | **${R.referentiel.par_famille.rules.sources_datees}** | **${R.referentiel.autocitees_par_famille.rules}** |`],
-    ["type official_website", `| \`official_website\` | ${R.referentiel.par_type_de_source.official_website} |`],
-    ["type other", `| \`other\` | ${R.referentiel.par_type_de_source.other} |`],
-    ["type government", `| \`government\` | ${R.referentiel.par_type_de_source.government} |`],
-    ["fraîcheur sous 90 j", `| sous 90 jours | **${R.referentiel.fraicheur.moins_90j}** |`],
-    ["fraîcheur au-delà", `| au-delà | ${R.referentiel.fraicheur.plus_90j} |`],
-    ["vague d'octobre", `**${R.referentiel.octobre_2026_par_famille.airlines}** \`airlines\` et **${R.referentiel.octobre_2026_par_famille.rules}** \`rules\``],
-    ["première échéance", `**${R.referentiel.premiere_echeance.split("-").reverse().join("/")}**`],
-    ["pays sourcés / sans source", `**${R.pays.avec_source_datee} pays sur ${R.pays.total} portent une source datée. Les ${R.pays.sans_source} autres n'ont AUCUNE source**`],
-    ["traductions totales", `| **total à relire** | **${R.guides.traductions_total}** |`],
-    ["originaux français importés", `| fr | **${R.guides.traductions_a_relire.fr}** | ${R.guides.originaux_importes.fr} |`],
-    ["politiques legacy", `**${R.compagnies.policies_legacy_total}**, sur **${R.compagnies.compagnies_touchees} compagnies sur ${R.compagnies.total}**`],
-    ["fret legacy", `| \`cargo\` | **${R.compagnies.policies_legacy_unreviewed.cargo}** |`],
-    ["catalogue de contre-épreuves", `**${R.contre_epreuves}**, bijection exacte`],
-    ...R.pays.identites_sans_source.map((id) => [`pays sans source « ${id} »`, `\`${id}\``]),
-  ];
-
   let dossier;
   try { dossier = readFileSync(CHEMIN_DOSSIER, "utf-8"); }
   catch { process.stderr.write(`[verif] ÉCHEC : dossier introuvable — ${CHEMIN_DOSSIER}\n`); process.exit(1); }
 
-  const ecarts = [];
-  for (const [nom, fragment] of controles) {
-    if (!dossier.includes(fragment)) ecarts.push([nom, fragment]);
+  /* Le bloc doit exister UNE fois. Deux blocs, c'est le doublon documentaire : l'un pourrait
+   * être juste et l'autre faux, et un lecteur ne saurait pas lequel fait foi. */
+  const occurrences = dossier.split(DEBUT).length - 1;
+  if (occurrences !== 1) {
+    process.stderr.write(`[verif] ÉCHEC — ${occurrences} bloc(s) contractuel(s) dans le dossier (attendu : exactement 1).\n`);
+    process.exit(1);
   }
+  const brut = dossier.split(DEBUT)[1].split(FIN)[0];
+  const json = (/```json\n([\s\S]*?)\n```/.exec(brut) || [])[1];
+  let declare;
+  try { declare = JSON.parse(json); }
+  catch { process.stderr.write("[verif] ÉCHEC — le bloc contractuel n'est pas un JSON lisible.\n"); process.exit(1); }
+
+  /* Comparaison profonde, symétrique, chemins nommés. Trois classes d'écart : une valeur qui
+   * diffère, une entrée que le bloc a en trop (ajoutée), une entrée qui lui manque (supprimée).
+   * La quatrième classe — donnée source modifiée — passe par les deux premières : le relevé
+   * recalculé ne correspond plus au bloc resté figé. */
+  const ecarts = [];
+  const compare = (a, b, chemin) => {   // a = bloc déclaré, b = relevé recalculé
+    if (a === null || b === null || typeof a !== "object" || typeof b !== "object") {
+      if (JSON.stringify(a) !== JSON.stringify(b)) {
+        ecarts.push(`valeur modifiée à ${chemin} : bloc ${JSON.stringify(a)} · relevé ${JSON.stringify(b)}`);
+      }
+      return;
+    }
+    if (Array.isArray(a) !== Array.isArray(b)) { ecarts.push(`nature différente à ${chemin}`); return; }
+    const clesA = Array.isArray(a) ? a.map((_, i) => String(i)) : Object.keys(a);
+    const clesB = Array.isArray(b) ? b.map((_, i) => String(i)) : Object.keys(b);
+    for (const k of clesA) if (!clesB.includes(k)) ecarts.push(`entrée AJOUTÉE au bloc : ${chemin}.${k} = ${JSON.stringify(a[k])}`);
+    for (const k of clesB) if (!clesA.includes(k)) ecarts.push(`entrée SUPPRIMÉE du bloc : ${chemin}.${k} (relevé : ${JSON.stringify(b[k])})`);
+    for (const k of clesA) if (clesB.includes(k)) compare(a[k], b[k], `${chemin}.${k}`);
+  };
+  compare(declare, bloc, "bloc");
+
   if (ecarts.length === 0) {
-    process.stdout.write(`[verif] ${controles.length} contrôles de concordance : le dossier dit ce que le relevé mesure.\n`);
+    process.stdout.write("[verif] bloc contractuel unique, égal au relevé recalculé, dans les deux sens.\n");
     process.exit(0);
   }
-  process.stderr.write(`[verif] ÉCHEC — ${ecarts.length} écart(s) entre le dossier et le relevé :\n`);
-  for (const [nom, fragment] of ecarts) {
-    process.stderr.write(`  · ${nom} : le dossier ne contient pas « ${fragment} »\n`);
-  }
-  process.stderr.write("[verif] Soit la donnée a bougé et le dossier est resté en arrière, soit le dossier a été altéré.\n");
+  process.stderr.write(`[verif] ÉCHEC — ${ecarts.length} écart(s) entre le bloc contractuel et le relevé :\n`);
+  for (const e of ecarts.slice(0, 20)) process.stderr.write(`  · ${e}\n`);
+  process.stderr.write("[verif] Soit une donnée a bougé sous un dossier resté figé, soit le dossier a été altéré.\n");
   process.exit(1);
 }
 
 /* ---- sortie ----------------------------------------------------------------------------------- */
-if (JSON_OUT) { process.stdout.write(JSON.stringify(releve, null, 2) + "\n"); process.exit(0); }
+if (JSON_OUT) { process.stdout.write(JSON.stringify({ depot: { sha, arbre_propre: propre, nvmrc, node: process.version }, ...bloc }, null, 2) + "\n"); process.exit(0); }
 
 const l = (m) => process.stdout.write(m + "\n");
 l(`RELEVÉ AU ${asOf} — ${sha}`);
-l(`arbre ${propre ? "PROPRE" : "MODIFIÉ"} · .nvmrc ${nvmrc} · node ${process.version} · ${workflows.length} workflow(s)`);
+l(`arbre ${propre ? "PROPRE" : "MODIFIÉ"} · .nvmrc ${nvmrc} (plancher) · node ${process.version} · ${workflows.length} workflow(s)`);
 l("");
 l("GUIDES");
-l(`  ${releve.guides.cles_logiques} clés · ${JSON.stringify(releve.guides.par_langue)}`);
-l(`  traductions à relire : ${JSON.stringify(traductions)} — total ${releve.guides.traductions_total} · importés ${JSON.stringify(importes)}`);
+l(`  ${bloc.guides.cles_logiques} clés · ${JSON.stringify(bloc.guides.par_langue)}`);
+l(`  traductions à relire : ${JSON.stringify(traductions)} — total ${bloc.guides.traductions_total} · importés ${JSON.stringify(importes)}`);
 l("");
 l("COUVERTURES");
-l(`  ${releve.couvertures.images} images · ${releve.couvertures.non_verifiees} non vérifiées (dette acceptée)`);
+l(`  ${bloc.couvertures.images} images · ${bloc.couvertures.non_verifiees} non vérifiées (dette acceptée)`);
 l("");
-l("RÉFÉRENTIEL — TOUTES SOURCES DATÉES (forme Source complète exigée)");
-l(`  ${releve.referentiel.sources_datees_total} sources VIVANTES (+ ${archives.length} archives dans history, hors registre) · formes incomplètes : ${formesIncompletes.length} · URL imparsables : ${urlsImparsables.length}`);
+l("RÉFÉRENTIEL — schéma canonique Source appliqué aux 1 505 vivantes ET aux archives");
+l(`  ${bloc.referentiel.sources_datees_total} sources VIVANTES (+ ${archives.length} archives contractuelles, hors registre) · identités instables : ${identitesInstables}`);
 for (const [f, v] of Object.entries(parFamille)) l(`    ${f.padEnd(12)} ${String(v.objets).padStart(4)} objets · ${String(v.sources_datees).padStart(5)} source(s)`);
-l(`  types : ${JSON.stringify(releve.referentiel.par_type_de_source)}`);
-l(`  AUTO-CITÉES (au nom d'hôte) : ${releve.referentiel.autocitees} — ${JSON.stringify(releve.referentiel.autocitees_par_famille)}`);
+l(`  types : ${JSON.stringify(bloc.referentiel.par_type_de_source)}`);
+l(`  AUTO-CITÉES (au nom d'hôte) : ${bloc.referentiel.autocitees} — ${JSON.stringify(bloc.referentiel.autocitees_par_famille)}`);
 l(`  fraîcheur : ${JSON.stringify(fraicheur)}`);
-l(`  de ${releve.referentiel.premiere_echeance} à ${releve.referentiel.derniere_echeance}`);
-l(`  par mois : ${JSON.stringify(releve.referentiel.echeances_par_mois)}`);
+l(`  de ${bloc.referentiel.premiere_echeance} à ${bloc.referentiel.derniere_echeance}`);
+l(`  par mois : ${JSON.stringify(bloc.referentiel.echeances_par_mois)}`);
 l(`  octobre 2026 : ${JSON.stringify(octobre)}`);
 l("");
 l("PAYS");
-l(`  ${releve.pays.total} · ${releve.pays.avec_source_datee} avec source datée · ${releve.pays.sans_source} SANS AUCUNE SOURCE`);
-l(`  sans source : ${releve.pays.identites_sans_source.join(", ")}`);
+l(`  ${bloc.pays.total} · ${bloc.pays.avec_source_datee} avec source datée · ${bloc.pays.sans_source} SANS AUCUNE SOURCE`);
+l(`  sans source : ${bloc.pays.identites_sans_source.join(", ")}`);
 l("");
 l("COMPAGNIES");
-l(`  ${releve.compagnies.total} · legacy_unreviewed ${JSON.stringify(legacy)} = ${releve.compagnies.policies_legacy_total} sur ${ciesTouchees.size} compagnies`);
-l(`  âge de vérification : ${JSON.stringify(releve.compagnies.age_verification_jours)}`);
+l(`  ${bloc.compagnies.total} · legacy_unreviewed ${JSON.stringify(legacy)} = ${bloc.compagnies.policies_legacy_total} sur ${ciesTouchees.size} compagnies`);
+l(`  âge de vérification : ${JSON.stringify(bloc.compagnies.age_verification_jours)}`);
 l("");
 l("CORRESPONDANCES");
-l(`  ${releve.correspondances.compagnies_avec_routes} compagnies · champs ${JSON.stringify(champsRoutes)}`);
+l(`  ${bloc.correspondances.compagnies_avec_routes} compagnies · champs ${JSON.stringify(champsRoutes)}`);
 l(`  marqueurs commercialisateur/opérateur : ${trouves.length ? trouves.join(", ") : "AUCUN"}`);
 l("");
 l(`CONTRE-ÉPREUVES au catalogue : ${catalogue}`);

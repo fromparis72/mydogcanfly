@@ -6,10 +6,13 @@ Ce dossier **ne corrige rien**. Il mesure, il chiffre, il découpe. Aucune donn�
 touchée : cette branche ajoute le dossier, son annexe de mesure et le harnais de cette annexe —
 rien d'autre, ce qui se vérifie d'une commande (chapitre 7).
 
-> **Ce que les chiffres de ce document engagent.** Tout chiffre de dette du chapitre 4 provient de
-> `mesurer-achevement.mjs` et est **confronté mécaniquement** à ce document par
-> `--verifier-dossier` : un écart — donnée qui a bougé, ou dossier altéré — sort en 1 avec le
-> contrôle nommé. Les nombres de **contexte** ne relèvent pas de l'instrument et portent chacun
+> **Ce que les chiffres de ce document engagent.** Ce dossier embarque un **bloc contractuel
+> JSON** (annexe A), produit par `mesurer-achevement.mjs --bloc`. `--verifier-dossier` recalcule
+> le relevé et le confronte au bloc **à égalité exacte, dans les deux sens** : valeur modifiée,
+> entrée supprimée du bloc, entrée ajoutée au bloc, donnée source qui a bougé sous un bloc resté
+> figé, bloc dupliqué ou absent — chaque classe d'écart sort en 1 avec son diagnostic. La prose
+> de ce document est narrative ; **le bloc fait foi**, et tout chiffre de dette du chapitre 4 en
+> provient. Les nombres de **contexte** ne relèvent pas de l'instrument et portent chacun
 > leur provenance : les 3 121 pages et les durées de CI viennent des journaux du run GitHub cité
 > au chapitre 1 ; les cinq commits historiques, de `mesures/DEPENDANCE-HISTORIQUE.md` ; les
 > constats sur l'outil de chaleur, de l'arborescence `packages/ui/src/pages` lue au chapitre 4.
@@ -33,8 +36,8 @@ rien d'autre, ce qui se vérifie d'une commande (chapitre 7).
 
 ## 2. Erreurs de mesure corrigées en route, et ce qu'elles auraient coûté
 
-Ce dossier en est à sa troisième version, et chacune a corrigé des chiffres de la précédente.
-C'est le fonctionnement voulu — les erreurs sont nommées, pas effacées :
+Ce dossier en est à sa quatrième version, et chacune a corrigé des chiffres ou des mécanismes de
+la précédente. C'est le fonctionnement voulu — les erreurs sont nommées, pas effacées :
 
 **Les pays étaient lus au mauvais niveau** (v2). Le script cherchait `pays.verified_date` ; la
 date vit sous `pays.source.verified_date`. Il concluait « 0 pays daté sur 140 » là où **122** le
@@ -46,9 +49,35 @@ plus. La v1 ignorait 73 % du référentiel.
 
 **La concordance dossier/relevé n'existait que dans un shell** (v3). Elle était annoncée
 « 19 contrôles, zéro écart » sans vivre dans les livrables : altérer un chiffre du Markdown
-laissait tout sortir en 0. `--verifier-dossier` exécute désormais ces contrôles **dans
-l'instrument**, en bloquant, et `test-mesure-achevement.mjs` prouve qu'un chiffre altéré d'un
-caractère sort en 1 avec le contrôle nommé.
+laissait tout sortir en 0. `--verifier-dossier` a d'abord exécuté ces contrôles dans l'instrument,
+par recherche de fragments.
+
+**La concordance par fragments était vaincue par les doublons** (v4). Un fragment présent deux
+fois dans le dossier — contre-épreuve de Codex : « 28/09/2026 », dans la section fraîcheur ET
+dans le lot B — laissait l'altération de l'une des occurrences sortir en 0. Un `includes()` ne
+sait pas non plus voir une entrée **ajoutée** ni un bloc **dupliqué**. Le dossier embarque
+désormais un **bloc contractuel JSON** unique (annexe A), comparé au relevé recalculé à égalité
+exacte et dans les deux sens ; `test-mesure-achevement.mjs` prouve que chaque classe d'écart
+rougit.
+
+**Le validateur de forme était partiel** (v4). L'instrument exigeait « `url`, `source_type`,
+`review_due` » — un validateur maison qui laissait passer une confiance absente, un relecteur
+absent, un type inconnu, une date impossible. Deux validateurs pour un même contrat finissent
+par diverger, et c'est le partiel qu'on croit. L'instrument réutilise désormais **le schéma
+canonique `Source`** de `packages/knowledge/src/common.ts` — celui de `npm run check` — sur les
+1 505 vivantes ET les 20 archives, en bloquant : toute source rejetée nomme son chemin et le champ
+en défaut.
+
+**250 sources vivaient sous un indice numérique** (v4). `contacts[0].source` : une insertion ou un
+tri changeait leur identité, ce qui rendait tout futur registre de suivi (lot B) inconstruisible.
+Chaque élément de tableau est désormais adressé par son `id`, sinon par l'**empreinte de l'URL de
+sa source** — jointe à son `year` pour les évènements de frise historique, qui citent légitimement
+la même page. Zéro identité instable aujourd'hui, et le bloc contractuel **fige ce compteur à 0**.
+
+**L'exclusion des archives était un mot-clé, pas un contrat** (v4). Tout champ `history`, où qu'il
+soit, sortait ses sources du registre en silence. Seul le chemin d'archive connu —
+`airlines[*].premium.history[*]` — est désormais admis ; une source datée sous tout autre
+`history` est **bloquante et nommée**.
 
 **`--as-of` acceptait des dates inexistantes** (v3). `Date.parse` normalise « 2026-02-31 » en
 3 mars au lieu de refuser. La date est reconstruite en UTC et confrontée champ à champ ;
@@ -107,8 +136,11 @@ lues. Dette la plus visible du site, la moins détectable par machine.
 
 ### P0-2 · Provenance métier — **226 sources auto-citées sur 1 505**
 
-Le référentiel porte **1 505 sources datées** vivantes — plus 20 archives dans `history`, hors
-registre et hors totaux, comptées à part :
+Le référentiel porte **1 505 sources datées** vivantes — plus 20 archives sous
+`airlines[*].premium.history[*]` (les frises historiques des compagnies), hors registre et hors
+totaux, comptées à part. Les 1 525 passent **toutes** le schéma canonique `Source` — l'instrument
+bloque au premier rejet, et n'a rien rejeté. Zéro identité instable : chaque source est adressable
+par un chemin qui survit aux insertions et aux tris.
 
 | famille | objets | sources datées | dont auto-citées |
 |---|---|---|---|
@@ -157,7 +189,8 @@ conséquences pour l'animal sont les plus lourdes.
 De **28/09/2026** à **30/07/2027**. Par mois : 09 → 122 · 10 → **407** · 11 → 173 · 12 → 44 ·
 01 → 159 · 02 → 68 · 07 → 532.
 
-**Octobre 2026 est la plus grosse vague de 2026** : 407 échéances, soit **330** `airlines` et **77** `rules` — plus du triple d'un mois ordinaire. Ce que ce dossier peut dire s'arrête là : savoir si
+**Octobre 2026 est la plus grosse vague de 2026** : 407 échéances, soit **330** `airlines` et
+**77** `rules`. Ce que ce dossier peut dire s'arrête là : savoir si
 cette vague est **absorbable** — par qui, à quel rythme, en priorisant quoi — est un **arbitrage
 de capacité** qui appartient à Philippe, pas une conclusion de mesure. Rien n'est échu
 aujourd'hui, et rien ne le sera avant le 28/09.
@@ -331,6 +364,7 @@ Chaque lot est **fusionnable seul**. L'ordre est un ordre d'**impact**, pas de d
 ```bash
 git fetch origin claude/dossier-achevement
 git checkout claude/dossier-achevement
+npm ci   # l'instrument importe le schéma canonique TypeScript via tsx
 
 # la branche n'ajoute que le dossier, son annexe et le harnais de l'annexe :
 git diff --name-only cbf442974fceb720cce05df29d16d53d1f31bd51..HEAD
@@ -338,19 +372,198 @@ git diff --name-only cbf442974fceb720cce05df29d16d53d1f31bd51..HEAD
 
 node -v   # doit SATISFAIRE le plancher .nvmrc (même majeure, version >=) — pas être identique
 
-node mesurer-achevement.mjs --as-of=2026-08-23                     # le relevé
-node mesurer-achevement.mjs --as-of=2026-08-23 --verifier-dossier  # CE dossier contre le relevé
+node --import tsx mesurer-achevement.mjs --as-of=2026-08-23                     # le relevé
+node --import tsx mesurer-achevement.mjs --as-of=2026-08-23 --verifier-dossier  # CE dossier contre le relevé
+node --import tsx mesurer-achevement.mjs --as-of=2026-08-23 --bloc              # régénère l'annexe A
 node test-mesure-achevement.mjs                                    # la vérification sait rougir
 npm run contre-epreuves -- --contrat                               # 65 garanties, bijection exacte
 ```
 
-> **`--as-of` est obligatoire** et la date doit exister — « 2026-02-31 » est refusé. Une autre
-> date valide donnera d'autres compteurs d'échéance, et c'est voulu.
+> **`--import tsx` est nécessaire** : l'instrument réutilise le schéma canonique `Source` de
+> `packages/knowledge/src/common.ts` au lieu d'entretenir un validateur parallèle.
 >
-> `--verifier-dossier` confronte ce document au relevé, contrôle par contrôle, et sort en 1 au
-> premier écart en le nommant. `test-mesure-achevement.mjs` prouve que cette vérification **mord** :
-> un chiffre altéré d'un caractère dans une copie du dossier produit la sortie 1 et le nom du
-> contrôle en écart.
+> **`--as-of` est obligatoire** et la date doit exister — « 2026-02-31 » est refusé. Une autre
+> date valide donnera d'autres compteurs d'échéance, donc un écart avec le bloc contractuel figé
+> au 23/08/2026 — et c'est voulu.
+>
+> `--verifier-dossier` exige le bloc contractuel **exactement une fois** dans ce document, le
+> parse, et le compare au relevé recalculé **à égalité exacte, dans les deux sens** : valeur
+> modifiée, entrée supprimée, entrée ajoutée, donnée source qui a bougé, bloc dupliqué ou absent —
+> chaque classe sort en 1 avec son diagnostic.
+>
+> **`test-mesure-achevement.mjs` est une preuve manuelle, datée** — comme
+> `preuve-migration-categories.mjs`, et pour la même raison : il éprouve la livraison de CE
+> dossier, pas un invariant permanent du dépôt, et il n'est délibérément **pas** câblé en CI. Il
+> monte ses propres copies altérées du dossier et ses propres arbres de travail git avec données
+> mutées, et prouve que chaque classe d'écart — documentaire ET source — produit la sortie 1 avec
+> le diagnostic attendu.
 
-Les chiffres de dette de ce document sont ceux que `--verifier-dossier` confronte ; les nombres de
+Les chiffres de dette de ce document sont ceux du bloc contractuel de l'annexe A ; les nombres de
 contexte portent leur provenance en tête de document.
+
+---
+
+## Annexe A — Le bloc contractuel
+
+Ce bloc est produit par `mesurer-achevement.mjs --bloc` et confronté par `--verifier-dossier`.
+**Ne pas l'éditer à la main** : s'il diverge du relevé recalculé, la vérification sort en 1 — dans
+les deux sens, qu'un chiffre du bloc ait été altéré ou qu'une donnée du dépôt ait bougé sous un
+bloc resté figé.
+
+<!-- BLOC-CONTRACTUEL:debut -->
+```json
+{
+  "as_of": "2026-08-23",
+  "workflows": [
+    "ci.yml",
+    "contre-epreuves-completes.yml"
+  ],
+  "guides": {
+    "cles_logiques": 72,
+    "par_langue": {
+      "en": 72,
+      "fr": 72,
+      "es": 72,
+      "pt": 72
+    },
+    "traductions_a_relire": {
+      "fr": 10,
+      "es": 72,
+      "pt": 72
+    },
+    "originaux_importes": {
+      "fr": 62,
+      "es": 0,
+      "pt": 0
+    },
+    "traductions_total": 154
+  },
+  "couvertures": {
+    "images": 10,
+    "non_verifiees": 10
+  },
+  "referentiel": {
+    "sources_datees_total": 1505,
+    "archives_dans_history": 20,
+    "identites_instables": 0,
+    "par_famille": {
+      "countries": {
+        "objets": 140,
+        "sources_datees": 122
+      },
+      "airports": {
+        "objets": 268,
+        "sources_datees": 377
+      },
+      "airlines": {
+        "objets": 102,
+        "sources_datees": 445
+      },
+      "breeds": {
+        "objets": 172,
+        "sources_datees": 154
+      },
+      "partners": {
+        "objets": 6,
+        "sources_datees": 0
+      },
+      "rules": {
+        "objets": 407,
+        "sources_datees": 407
+      }
+    },
+    "par_type_de_source": {
+      "government": 264,
+      "other": 411,
+      "official_website": 804,
+      "airline_contact": 23,
+      "regulation": 3
+    },
+    "par_confiance": {
+      "1": 1,
+      "2": 113,
+      "3": 929,
+      "4": 304,
+      "5": 158
+    },
+    "autocitees": 226,
+    "autocitees_par_famille": {
+      "countries": 44,
+      "airlines": 52,
+      "rules": 130
+    },
+    "fraicheur": {
+      "echue": 0,
+      "moins_30j": 0,
+      "moins_90j": 702,
+      "plus_90j": 803
+    },
+    "premiere_echeance": "2026-09-28",
+    "derniere_echeance": "2027-07-30",
+    "echeances_par_mois": {
+      "2026-09": 122,
+      "2026-10": 407,
+      "2026-11": 173,
+      "2026-12": 44,
+      "2027-01": 159,
+      "2027-02": 68,
+      "2027-07": 532
+    },
+    "octobre_2026_par_famille": {
+      "airlines": 330,
+      "rules": 77
+    }
+  },
+  "pays": {
+    "total": 140,
+    "avec_source_datee": 122,
+    "sans_source": 18,
+    "identites_sans_source": [
+      "country_bh",
+      "country_bs",
+      "country_ci",
+      "country_ec",
+      "country_et",
+      "country_fj",
+      "country_gh",
+      "country_jm",
+      "country_kw",
+      "country_lb",
+      "country_mg",
+      "country_mv",
+      "country_ng",
+      "country_np",
+      "country_om",
+      "country_ru",
+      "country_sc",
+      "country_uy"
+    ]
+  },
+  "compagnies": {
+    "total": 102,
+    "policies_legacy_unreviewed": {
+      "cargo": 73,
+      "hold": 8,
+      "cabin": 2
+    },
+    "policies_legacy_total": 83,
+    "compagnies_touchees": 74,
+    "age_verification_jours": {
+      "min": 15,
+      "mediane": 43,
+      "max": 43,
+      "au_dela_90j": 0
+    }
+  },
+  "correspondances": {
+    "compagnies_avec_routes": 101,
+    "champs_de_route": [
+      "direct_routes",
+      "seasonal_routes"
+    ],
+    "marqueurs_operateur_trouves": []
+  },
+  "contre_epreuves": 65
+}
+```
+<!-- BLOC-CONTRACTUEL:fin -->
