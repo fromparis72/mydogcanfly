@@ -10,9 +10,13 @@
  *     est une erreur, une branche `tentative` ne peut porter ni pièce ni pertinence affirmée ;
  *   · BIJECTION 91/91 sur le TRIPLET EXACT (country_id, label, url_publiee) avec les liens
  *     publiés par les guides — un libellé modifié rougit autant qu'une URL ;
- *   · PIÈCES PROUVÉES — extrait verbatim (langue BCP-47, locator), ou fichier sous
- *     `audit-pays-pieces/`, RÉGULIER (pas un lien symbolique), SUIVI par git
- *     (`git ls-files --error-unmatch`), SHA-256 de 64 hexa égal au contenu ;
+ *   · PIÈCES PROUVÉES — tout fichier référencé est sous `audit-pays-pieces/`, RÉGULIER (pas
+ *     un lien symbolique), SUIVI par git (`git ls-files --error-unmatch`), SHA-256 de 64 hexa
+ *     égal au contenu ;
+ *   · EXTRAITS ANCRÉS — toute consultation référence sa CAPTURE BRUTE versionnée, et tout
+ *     extrait (pièce décisive comme citation de rattachement) doit être RETROUVÉ dans sa
+ *     capture après normalisation déterministe (balises HTML ôtées, entités décodées, blancs
+ *     unifiés, casse conservée) : une citation inventée ne passe pas ;
  *   · CONTRATS CANONIQUES RÉUTILISÉS — `SourcedQuote` pour la preuve décisive et pour chaque
  *     preuve de rattachement ; `Source` pour la projection ; `reviewDueFrom` pour l'échéance ;
  *   · PROMOTION — désigne son observation décisive, dont la pièce est un `extrait` ;
@@ -75,6 +79,8 @@ const Trace = z.object({ type: z.enum(["transcript", "capture"]), chemin: z.stri
 const NatureEditeur = z.enum(["autorite_pays", "mission_diplomatique_pays", "officiel_tiers", "non_officiel", "non_etabli"]);
 const Pertinence = z.enum(["etaye_le_fait", "partielle", "page_generique", "hors_sujet", "non_evaluee"]);
 
+const PreuveRattachement = z.object({ citation: z.unknown(), capture: Fichier }).strict();
+
 const CandidateConsultee = z.object({
   label: LT,
   url_publiee: z.string().url(),
@@ -82,10 +88,11 @@ const CandidateConsultee = z.object({
   url_finale: z.string().url(),
   statut_http: z.number().int().min(200).max(299),
   consultee_le: DateISO,
+  capture: Fichier,                          // la capture BRUTE de la page — l'ancre des extraits
   piece: z.union([PieceExtrait, PieceCapture]),
   captures_complementaires: z.array(Fichier).optional(),
   nature_editeur: NatureEditeur,
-  preuves_rattachement: z.array(z.unknown()).default([]),
+  preuves_rattachement: z.array(PreuveRattachement).default([]),
   pertinence: Pertinence,
 }).strict();
 
@@ -97,7 +104,7 @@ const CandidateTentative = z.object({
   resultat: z.string().min(1),
   trace: Trace,
   nature_editeur: NatureEditeur,
-  preuves_rattachement: z.array(z.unknown()).default([]),
+  preuves_rattachement: z.array(PreuveRattachement).default([]),
   pertinence: z.literal("non_evaluee"),
 }).strict();
 
@@ -134,9 +141,13 @@ const CONTRACTUELS = Object.keys(scelle.pays);
 
 const parseMatrice = Matrice.safeParse(matriceBrute);
 if (!parseMatrice.success) {
+  /* Un schéma en défaut ARRÊTE la vérification : continuer sur une matrice difforme
+   * produirait des diagnostics dérivés d'une forme qu'on vient de refuser. */
+  process.stderr.write(`[audit] ÉCHEC — schéma de la matrice refusé (${parseMatrice.error.issues.length} défaut(s)) :\n`);
   for (const i of parseMatrice.error.issues.slice(0, 30)) {
-    echec(`schéma — ${i.path.join(".") || "(racine)"} : ${i.message}`);
+    process.stderr.write(`  · schéma — ${i.path.join(".") || "(racine)"} : ${i.message}\n`);
   }
+  process.exit(1);
 }
 const audits = matriceBrute.audits ?? {};
 
@@ -173,6 +184,27 @@ const fichierProuve = (pays, quoi, chemin, sha) => {
   if (reel !== sha) echec(`${pays} — ${quoi} : SHA-256 de « ${chemin} » ≠ scellé (contenu remplacé à chemin constant ?)`);
 };
 
+/* ---- ancrage des extraits : normalisation DÉTERMINISTE, définie une fois -------------------- */
+const normaliser = (texte) => String(texte)
+  .replace(/<script[\s\S]*?<\/script>/gi, " ")
+  .replace(/<style[\s\S]*?<\/style>/gi, " ")
+  .replace(/<[^>]*>/g, " ")
+  .replace(/&nbsp;/gi, " ").replace(/&amp;/gi, "&").replace(/&lt;/gi, "<").replace(/&gt;/gi, ">")
+  .replace(/&quot;/gi, '"').replace(/&apos;|&#0*39;/gi, "'")
+  .replace(/&#x([0-9a-f]+);/gi, (_, h) => { try { return String.fromCodePoint(parseInt(h, 16)); } catch { return " "; } })
+  .replace(/&#(\d+);/g, (_, d) => { try { return String.fromCodePoint(Number(d)); } catch { return " "; } })
+  .replace(/\s+/g, " ").trim();
+
+/** L'extrait doit se RETROUVER dans la capture — sinon il est inventé, ou la page a changé. */
+const ancre = (pays, quoi, extrait, cheminCapture) => {
+  let brut;
+  try { brut = readFileSync(cheminCapture, "utf-8"); }
+  catch { return; /* l'existence du fichier est déjà jugée par fichierProuve */ }
+  if (!normaliser(brut).includes(normaliser(extrait))) {
+    echec(`${pays} — ${quoi} : l'extrait est INTROUVABLE dans la capture « ${cheminCapture} » (après normalisation déterministe) — citation inventée ou page changée`);
+  }
+};
+
 /* ---- par pays -------------------------------------------------------------------------------- */
 for (const id of CONTRACTUELS) {
   const a = audits[id];
@@ -189,6 +221,10 @@ for (const id of CONTRACTUELS) {
     if (c.acces === "consultee") {
       dansFenetre(c.consultee_le, id, `${qui} consultee_le`);
       if (a.audite_le < c.consultee_le) echec(`${id} — audite_le « ${a.audite_le} » antérieure à la consultation ${qui}`);
+      if (c.capture?.chemin) {
+        fichierProuve(id, `${qui} capture brute`, c.capture.chemin, c.capture.sha256);
+        if (c.piece?.type === "extrait") ancre(id, `${qui} pièce extrait`, c.piece.extrait, c.capture.chemin);
+      }
       if (c.piece?.type === "capture") fichierProuve(id, `${qui} pièce capture`, c.piece.chemin, c.piece.sha256);
       for (const [j, f] of (c.captures_complementaires ?? []).entries()) fichierProuve(id, `${qui} capture complémentaire [${j}]`, f.chemin, f.sha256);
     } else if (c.acces === "tentative") {
@@ -202,9 +238,15 @@ for (const id of CONTRACTUELS) {
       echec(`${id} — ${qui} : nature « ${c.nature_editeur} » sans AUCUNE preuve de rattachement`);
     }
     for (const [j, p] of (c.preuves_rattachement ?? []).entries()) {
-      const r = SourcedQuote.safeParse(p);
-      if (!r.success) echec(`${id} — ${qui} preuve de rattachement [${j}] rejetée par SourcedQuote : ${r.error.issues.map((x) => `${x.path.join(".")} — ${x.message}`).slice(0, 3).join(" · ")}`);
-      else dansFenetre(p.verified_date, id, `${qui} preuve de rattachement [${j}] verified_date`);
+      const r = SourcedQuote.safeParse(p.citation);
+      if (!r.success) {
+        echec(`${id} — ${qui} preuve de rattachement [${j}] rejetée par SourcedQuote : ${r.error.issues.map((x) => `${x.path.join(".")} — ${x.message}`).slice(0, 3).join(" · ")}`);
+      } else {
+        dansFenetre(p.citation.verified_date, id, `${qui} preuve de rattachement [${j}] verified_date`);
+      }
+      /* Chaque preuve de rattachement est LIÉE à sa propre capture scellée, et sa citation s'y retrouve. */
+      fichierProuve(id, `${qui} capture de rattachement [${j}]`, p.capture.chemin, p.capture.sha256);
+      if (typeof p.citation?.quote === "string") ancre(id, `${qui} citation de rattachement [${j}]`, p.citation.quote, p.capture.chemin);
     }
     /* 25 — ESCALADE : le lien reste affiché sous « Sources officielles » par la fiche. */
     if (c.nature_editeur === "non_officiel") {

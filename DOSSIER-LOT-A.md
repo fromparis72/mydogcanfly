@@ -1,4 +1,4 @@
-# Lot A — Audit des 18 pays sans source · dossier de mesure et de conception (v4-ter)
+# Lot A — Audit des 18 pays sans source · dossier de mesure et de conception (v5)
 
 **Mesuré sur `main` après fusion du dossier d'achèvement (`1dd62010ea183422f02553877df4706714739080`).
 Ce dossier ne corrige rien : aucune date, aucune source, aucune donnée métier n'est écrite.
@@ -9,6 +9,8 @@ Reproduction :
 ```bash
 node --import tsx mesurer-lot-a.mjs --as-of=2026-08-24   # l'état contre le scellé — sortie 1 au premier écart
 node test-mesure-lot-a.mjs                               # 16 cas : le scellé est exact, et il ne se remplace pas
+node test-audit-pays.mjs                                 # 32 cas : le validateur de la matrice mord (17-47)
+node test-consulter-lot-a.mjs                            # 8 cas au faux curl : le collecteur ne fabrique rien
 ```
 
 La liste des 18 est celle que le bloc contractuel du dossier d'achèvement fige
@@ -82,6 +84,26 @@ se **prouve** désormais : chemin relatif sous le répertoire fixe du lot, fichi
 64 caractères égal au contenu. Trois contre-épreuves (42–44), et `statut_http` est défini —
 un entier 200–299 : tout le reste est une tentative.
 
+**Les extraits n'étaient ancrés nulle part, et le collecteur fabriquait des tentatives**
+(contre-revue de l'outillage d'exécution). Une citation inventée passait : `PieceExtrait` ne
+vérifiait que longueur, langue et locator, sans lien à aucune capture. Et le collecteur v1
+transformait ses propres pannes en observations — contre-épreuve : `curl` ABSENT produisait
+« 91 tentatives », sortie 0 ; il lisait l'inventaire sans le confronter au scellé, effaçait
+les captures précédentes, faisait DEUX requêtes par échec (statut de l'une, transcript de
+l'autre), laissait un relevé partiel après interruption, et versionnait des traces porteuses
+d'informations de proxy. La v5 ferme tout : chaque consultation référence sa **capture brute
+versionnée**, tout extrait — pièce décisive comme citation de rattachement — doit s'y
+**retrouver après normalisation déterministe** (balises ôtées, entités décodées, blancs
+unifiés, casse conservée), et chaque preuve de rattachement est appariée à sa propre capture
+scellée (contre-épreuves 45–47). Le collecteur v2 reconfronte l'inventaire au scellé avant
+toute écriture, exige `curl` et une sonde verte (refus explicite des signatures de proxy
+bloquant), fait UNE invocation par URL (corps, métadonnées et trace corrélés), écrit dans un
+répertoire de run neuf sans rien effacer, assainit les traces (lignes proxy/authentification
+expurgées), refuse de publier sur 0 consultation (la signature d'une panne), et ne publie le
+manifeste que complet, par renommage atomique — 8 contre-épreuves au faux `curl` (absent,
+proxy bloquant, inventaire dérivé, nominale, 403+timeout, dérive d'URL, interruption, zéro
+consultation).
+
 ## 1. La mesure a changé la nature de la dette — et ce que la promotion fait, honnêtement
 
 Le dossier d'achèvement décrivait la dette ainsi : « 18 pays n'ont AUCUNE source ». C'est vrai
@@ -154,7 +176,9 @@ ne pouvait plus être rattachée à une autorité ; une candidate non officielle
 1. **Observation d'accès** — discriminant `acces`, et l'observation EST la branche : chaque
    champ n'existe qu'à UN endroit (contre-revue v4 : deux copies d'`url_finale` pouvaient
    diverger).
-   - `{ acces: "consultee", url_finale, statut_http, consultee_le, piece }` — `statut_http`
+   - `{ acces: "consultee", url_finale, statut_http, consultee_le, capture, piece }` — la
+     **capture brute** de la page (fichier versionné + SHA-256) est OBLIGATOIRE : c'est
+     l'**ancre** de tout extrait. `statut_http`
      est un **entier 200–299** : une consultation est une page réellement obtenue ; toute
      autre issue (403, 5xx, timeout…) est une **tentative**. La **pièce est obligatoire**,
      sous union stricte :
@@ -162,7 +186,12 @@ ne pouvait plus être rattachée à une autorité ; une candidate non officielle
      `{ type: "capture", chemin, sha256 }` — et **la pièce décisive d'une promotion est
      obligatoirement un `extrait`** : une capture ne porte ni citation, ni langue, ni
      locator, elle ne peut donc pas fonder la concordance ; elle peut être **jointe en
-     complément**, jamais remplacer l'extrait (contre-revue v4-bis).
+     complément**, jamais remplacer l'extrait (contre-revue v4-bis). Tout extrait doit se
+     **retrouver dans la capture brute** après une normalisation DÉTERMINISTE, définie une
+     fois : balises HTML ôtées (`script`/`style` compris), entités décodées (`&amp;`,
+     `&lt;`, `&gt;`, `&quot;`, `&#39;`, `&nbsp;`, numériques), blancs unifiés, casse
+     conservée — une citation inventée, ou réécrite de façon concordante des deux côtés,
+     est INTROUVABLE et rougit.
      Une capture (ou un transcript) est « versionnée » au sens **prouvé** : chemin relatif
      sous le répertoire fixe `audit-pays-pieces/`, fichier **régulier** (un lien symbolique
      est refusé), présence dans l'index confirmée par `git ls-files --error-unmatch`, et
@@ -280,8 +309,9 @@ Les **16 premières** sont éprouvées par `test-mesure-lot-a.mjs` sur l'état d
 les trois faux verts de la v1, les trois passages indus de la v2, la dérive commitée et le
 `_scelle` falsifié de la v3, les contrôles `--as-of`, la date future, et la génération saine
 (candidat égal au scellé, scellé jamais touché par l'instrument).
-Le harnais d'exécution devra faire rougir, en plus, les contrôles **17 à 44** — le total est
-**verrouillé à 44** :
+Le harnais d'exécution `test-audit-pays.mjs` éprouve les contrôles **17 à 47** (32 cas,
+fixture jetable comprise), et `test-consulter-lot-a.mjs` éprouve le collecteur (8 cas au faux
+`curl`). Le total est **verrouillé à 47 + 8** :
 
 | # | mutation | attendu |
 |---|---|---|
@@ -313,6 +343,9 @@ Le harnais d'exécution devra faire rougir, en plus, les contrôles **17 à 44**
 | 42 | candidate éligible promue avec une **capture seule** comme pièce | échec ciblé — la pièce décisive d'une promotion est un `extrait` |
 | 43 | pièce dont le fichier existe mais n'est **pas suivi** par git (`git ls-files --error-unmatch`) | échec — « versionnée » se prouve |
 | 44 | pièce dont le chemin est un **lien symbolique** pointant hors de `audit-pays-pieces/` | échec — fichier régulier exigé |
+| 45 | extrait **absent** de la capture brute référencée | échec — ancré ou inventé |
+| 46 | extrait **réécrit de façon concordante** des deux côtés (concordance verte) mais introuvable dans la capture | échec — seule l'ancre le voit |
+| 47 | preuve de rattachement **sans capture** appariée | échec — schéma, la paire est obligatoire |
 
 ## 6. Interdits, et effets de bord assumés
 

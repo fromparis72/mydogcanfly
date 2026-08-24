@@ -16,9 +16,14 @@
  * (cas 0) ; chaque cas suivant mute UNE chose et exige la sortie 1 avec la cause nommée.
  * Aucune donnée réelle n'est affirmée : la fixture vit dans l'arbre jetable, jamais au dépôt.
  *
- * VINGT-NEUF CAS : 0 (fixture conforme → 0) puis 17 à 44, dans l'ordre du dossier v4-ter.
+ * TRENTE-DEUX CAS : 0 (fixture conforme → 0), puis 17 à 44 dans l'ordre du dossier v4-ter,
+ * puis 45-47 (contre-revue de l'exécution) : extrait absent de sa capture, extrait modifié
+ * de façon concordante mais introuvable, preuve de rattachement sans capture. Chaque
+ * consultation de la fixture référence sa CAPTURE BRUTE versionnée dans l'arbre jetable, et
+ * chaque extrait s'y retrouve — comme l'exige le validateur.
  */
 import { readFileSync, writeFileSync, mkdirSync, copyFileSync, symlinkSync, mkdtempSync, rmSync } from "node:fs";
+import { createHash } from "node:crypto";
 import { spawnSync } from "node:child_process";
 import { tmpdir } from "node:os";
 import { join, resolve } from "node:path";
@@ -44,15 +49,19 @@ const quoteFixture = (texte) => ({
   verified_date: JOUR, review_due: DUE, confidence: 3, reviewer: "Harnais lot A",
   history: [], quote: texte, quote_language: "en", locator: "section témoin de l'annuaire",
 });
+const sha256 = (b) => createHash("sha256").update(b).digest("hex");
+const EXTRAIT_TEMOIN = "Extrait témoin relevé sur la page consultée (jeu d'essai).";
 
-/** La matrice-fixture : bijection réelle, observations d'essai. */
-function fabriquerMatrice(guides, scelle) {
+/** La matrice-fixture : bijection réelle, observations d'essai, extraits ANCRÉS dans des
+ *  captures-fixtures versionnées dans l'arbre jetable (le validateur les exige). */
+function fabriquerMatrice(guides, scelle, captureTemoin, preuveTemoin) {
   const audits = {};
   for (const id of Object.keys(scelle.pays)) {
     const candidates = guides[id].sources.map((s) => ({
       label: s.label, url_publiee: s.url, acces: "consultee",
       url_finale: s.url, statut_http: 200, consultee_le: JOUR,
-      piece: { type: "extrait", extrait: "Extrait témoin relevé sur la page consultée (jeu d'essai).", langue: "en", locator: "section témoin" },
+      capture: { ...captureTemoin },
+      piece: { type: "extrait", extrait: EXTRAIT_TEMOIN, langue: "en", locator: "section témoin" },
       nature_editeur: "non_etabli", preuves_rattachement: [], pertinence: "non_evaluee",
     }));
     audits[id] = {
@@ -60,11 +69,11 @@ function fabriquerMatrice(guides, scelle) {
       decision: { statut: "aucune_source_officielle", motif: "Jeu d'essai : aucune candidate n'est jugée ici." },
     };
   }
-  /* country_fj : la promotion complète et concordante. */
+  /* country_fj : la promotion complète et concordante, rattachement ancré dans sa capture. */
   const fj = audits.country_fj;
   const c0 = fj.candidates[0];
   c0.nature_editeur = "autorite_pays";
-  c0.preuves_rattachement = [quoteFixture("La Biosecurity Authority of Fiji est instituée par la loi sur la biosécurité (pièce d'essai).")];
+  c0.preuves_rattachement = [preuveTemoin()];
   c0.pertinence = "etaye_le_fait";
   fj.decision = {
     statut: "promue", observation_decisive: 0,
@@ -91,8 +100,21 @@ try {
   const CHEMIN_OBJETS = join(arbre, "packages/knowledge/raw/objects.json");
   const objetsPristins = readFileSync(CHEMIN_OBJETS, "utf-8");
 
+  /* Les captures-fixtures, versionnées dans l'arbre jetable : l'ancre des extraits. */
+  const CITATION_RATTACHEMENT = "La Biosecurity Authority of Fiji est instituée par la loi sur la biosécurité (pièce d'essai).";
+  const contenuCapture = `<html><body><h2>section témoin</h2><p>${EXTRAIT_TEMOIN}</p></body></html>`;
+  const contenuRattachement = `<html><body><h2>section témoin de l'annuaire</h2><p>${CITATION_RATTACHEMENT}</p></body></html>`;
+  writeFileSync(join(arbre, "audit-pays-pieces/capture-temoin.html"), contenuCapture);
+  writeFileSync(join(arbre, "audit-pays-pieces/rattachement-temoin.html"), contenuRattachement);
+  gitArbre("add", "--", "audit-pays-pieces/capture-temoin.html", "audit-pays-pieces/rattachement-temoin.html");
+  const captureTemoin = { chemin: "audit-pays-pieces/capture-temoin.html", sha256: sha256(contenuCapture) };
+  const preuveTemoin = () => ({
+    citation: quoteFixture(CITATION_RATTACHEMENT),
+    capture: { chemin: "audit-pays-pieces/rattachement-temoin.html", sha256: sha256(contenuRattachement) },
+  });
+
   const poser = (m) => writeFileSync(CHEMIN_MATRICE, JSON.stringify(m, null, 2));
-  const neuve = () => fabriquerMatrice(guides, scelle);
+  const neuve = () => fabriquerMatrice(guides, scelle, captureTemoin, preuveTemoin);
 
   /** Mute une matrice neuve, la pose, lance, et exige 1 + motifs. */
   const cas = (nom, muter, motifs) => {
@@ -135,7 +157,7 @@ try {
   cas("21 négatif malgré candidate éligible", (m) => {
     const c = bs(m).candidates[0];
     c.nature_editeur = "autorite_pays"; c.pertinence = "etaye_le_fait";
-    c.preuves_rattachement = [quoteFixture("Preuve de rattachement d'essai pour la contre-épreuve numéro vingt-et-un.")];
+    c.preuves_rattachement = [preuveTemoin()];
   }, [/country_bs/, /candidate ÉLIGIBLE existe/]);
 
   /* ---- 22-26 --------------------------------------------------------------------------------- */
@@ -145,7 +167,7 @@ try {
     [/country_fj/, /reviewer « Quelqu'un d'autre » ≠ audite_par/]);
   cas("24 champ inconnu", (m) => { bs(m).candidates[0].champ_fantome = 1; }, [/schéma/, /champ_fantome|[Uu]nrecognized/]);
   cas("25 non officiel affiché « Sources officielles »", (m) => { bs(m).candidates[1].nature_editeur = "non_officiel";
-    bs(m).candidates[1].preuves_rattachement = [quoteFixture("Pièce d'essai établissant un éditeur tiers, contre-épreuve vingt-cinq.")]; },
+    bs(m).candidates[1].preuves_rattachement = [preuveTemoin()]; },
     [/country_bs/, /ÉCHEC BLOQUANT/, /arbitrage requis/]);
   cas("26 review_due non dérivée", (m) => { fj(m).decision.source.review_due = "2027-02-21"; },
     [/country_fj/, /dérivation ADR-0007/]);
@@ -167,12 +189,12 @@ try {
   /* ---- 29-33 --------------------------------------------------------------------------------- */
   cas("29 citation trop courte", (m) => { fj(m).candidates[0].piece.extrait = "court"; fj(m).decision.source.quote = "court"; },
     [/country_fj/, /schéma|SourcedQuote/]);
-  cas("30 promue sans locator", (m) => { delete fj(m).decision.source.locator; delete fj(m).candidates[0].piece.locator; },
-    [/country_fj/, /locator/]);
+  cas("30 promue sans locator", (m) => { delete fj(m).decision.source.locator; },
+    [/country_fj/, /sans locator \(obligatoire au lot A\)/]);
   cas("31 projection sur l'URL publiée", (m) => { fj(m).candidates[0].url_finale = fj(m).candidates[0].url_publiee + "?finale=autre"; },
     [/country_fj/, /URL FINALE/]);
   cas("32 rattachement en URL nue", (m) => { fj(m).candidates[0].preuves_rattachement = [{ url: "https://example.org/annuaire" }]; },
-    [/country_fj/, /preuve de rattachement \[0\] rejetée par SourcedQuote/]);
+    [/schéma/, /preuves_rattachement/]);
   cas("33 audit antérieur à la consultation", (m) => { fj(m).audite_le = "2026-08-23"; },
     [/country_fj/, /audite_le « 2026-08-23 » antérieure/]);
 
@@ -228,6 +250,19 @@ try {
     try { symlinkSync("/etc/hostname", join(arbre, "audit-pays-pieces/lien-44.html")); } catch {}
     bs(m).candidates[0].piece = { type: "capture", chemin: "audit-pays-pieces/lien-44.html", sha256: "0".repeat(64) };
   }, [/country_bs/, /fichier régulier|lien symbolique/]);
+
+  /* ---- 45-47 · les extraits sont ancrés, les rattachements capturés -------------------------- */
+  cas("45 extrait absent de la capture", (m) => {
+    bs(m).candidates[0].piece.extrait = "Texte qui ne figure dans aucune capture versionnée du jeu d'essai.";
+  }, [/country_bs/, /INTROUVABLE dans la capture/]);
+  cas("46 extrait modifié de façon concordante", (m) => {
+    const nouveau = "Citation réécrite à l'identique des deux côtés, mais absente de la page.";
+    fj(m).candidates[0].piece.extrait = nouveau;
+    fj(m).decision.source.quote = nouveau;   // la concordance passe — seule l'ANCRE peut le voir
+  }, [/country_fj/, /INTROUVABLE dans la capture/]);
+  cas("47 rattachement sans capture", (m) => {
+    delete fj(m).candidates[0].preuves_rattachement[0].capture;
+  }, [/schéma/, /preuves_rattachement/]);
 } finally {
   gitWt("remove", "--force", arbre);
   rmSync(conteneur, { recursive: true, force: true });
@@ -235,12 +270,14 @@ try {
 
 /* ---- verdict ---------------------------------------------------------------------------------- */
 if (defauts.length === 0) {
-  process.stdout.write("29 cas éprouvés sur matrice-fixture en arbre jetable : la fixture conforme sort en 0,\n");
-  process.stdout.write("et les 28 contrôles d'exécution du dossier (17-44) rougissent chacun pour sa cause —\n");
+  process.stdout.write("32 cas éprouvés sur matrice-fixture en arbre jetable : la fixture conforme sort en 0,\n");
+  process.stdout.write("les 28 contrôles d'exécution du dossier (17-44) rougissent chacun pour sa cause —\n");
   process.stdout.write("bijection triplet, éligibilité, escalade du non-officiel affiché, concordances,\n");
   process.stdout.write("dérivation ADR-0007, contrats SourcedQuote, pièces prouvées (existence, empreinte,\n");
-  process.stdout.write("suivi git, fichier régulier), relations temporelles, et la matrice qui fait foi.\n\n");
-  process.stdout.write("[audit-pays] le validateur mord, sur les 28 contrôles.\n");
+  process.stdout.write("suivi git, fichier régulier), relations temporelles, la matrice qui fait foi —\n");
+  process.stdout.write("et les trois ancres (45-47) : extrait absent de sa capture, extrait réécrit de\n");
+  process.stdout.write("façon concordante mais introuvable, rattachement sans capture.\n\n");
+  process.stdout.write("[audit-pays] le validateur mord, sur les 31 contrôles.\n");
   process.exit(0);
 }
 process.stderr.write(`\n[audit-pays] ÉCHEC — ${defauts.length} défaut(s) :\n`);
