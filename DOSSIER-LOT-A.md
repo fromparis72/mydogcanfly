@@ -1,4 +1,4 @@
-# Lot A — Audit des 18 pays sans source · dossier de mesure et de conception (v4-bis)
+# Lot A — Audit des 18 pays sans source · dossier de mesure et de conception (v4-ter)
 
 **Mesuré sur `main` après fusion du dossier d'achèvement (`1dd62010ea183422f02553877df4706714739080`).
 Ce dossier ne corrige rien : aucune date, aucune source, aucune donnée métier n'est écrite.
@@ -72,6 +72,16 @@ obligatoire** pour toute tentative, exige la **concordance** entre la promotion 
 observation décisive, et interdit toute nature d'éditeur autre que `non_etabli` sans preuve
 de rattachement. Cinq contre-épreuves (37–41).
 
+**La v4-bis rendait indéfinissable une promotion fondée sur une capture** (contre-revue
+v4-bis) : la branche `capture` ne porte ni citation, ni langue, ni locator — exiger la
+concordance rendait toute capture impromouvable, l'ignorer fabriquait un faux vert. La
+v4-ter tranche : **la pièce décisive d'une promotion est obligatoirement un `extrait`** ;
+une capture peut être jointe en complément, jamais remplacer l'extrait. Et « versionnée »
+se **prouve** désormais : chemin relatif sous le répertoire fixe du lot, fichier régulier
+(pas un lien symbolique), présence confirmée par `git ls-files --error-unmatch`, SHA-256 de
+64 caractères égal au contenu. Trois contre-épreuves (42–44), et `statut_http` est défini —
+un entier 200–299 : tout le reste est une tentative.
+
 ## 1. La mesure a changé la nature de la dette — et ce que la promotion fait, honnêtement
 
 Le dossier d'achèvement décrivait la dette ainsi : « 18 pays n'ont AUCUNE source ». C'est vrai
@@ -144,12 +154,20 @@ ne pouvait plus être rattachée à une autorité ; une candidate non officielle
 1. **Observation d'accès** — discriminant `acces`, et l'observation EST la branche : chaque
    champ n'existe qu'à UN endroit (contre-revue v4 : deux copies d'`url_finale` pouvaient
    diverger).
-   - `{ acces: "consultee", url_finale, statut_http, consultee_le, piece }` — la **pièce est
-     obligatoire**, sous union stricte :
+   - `{ acces: "consultee", url_finale, statut_http, consultee_le, piece }` — `statut_http`
+     est un **entier 200–299** : une consultation est une page réellement obtenue ; toute
+     autre issue (403, 5xx, timeout…) est une **tentative**. La **pièce est obligatoire**,
+     sous union stricte :
      `{ type: "extrait", extrait, langue, locator }` (verbatim) **ou**
-     `{ type: "capture", chemin, sha256 }` — une capture **versionnée dans le dépôt**, dont le
-     validateur vérifie l'**existence ET l'empreinte SHA-256** : un identifiant qui pointe
-     vers rien, ou un contenu remplacé à chemin constant, rougit.
+     `{ type: "capture", chemin, sha256 }` — et **la pièce décisive d'une promotion est
+     obligatoirement un `extrait`** : une capture ne porte ni citation, ni langue, ni
+     locator, elle ne peut donc pas fonder la concordance ; elle peut être **jointe en
+     complément**, jamais remplacer l'extrait (contre-revue v4-bis).
+     Une capture (ou un transcript) est « versionnée » au sens **prouvé** : chemin relatif
+     sous le répertoire fixe `audit-pays-pieces/`, fichier **régulier** (un lien symbolique
+     est refusé), présence dans l'index confirmée par `git ls-files --error-unmatch`, et
+     `sha256` de 64 caractères hexadécimaux égal au contenu — existence seule et empreinte
+     seule ne prouvent pas l'appartenance au dépôt.
    - `{ acces: "tentative", url, tentee_le, resultat, trace }` — le résultat est précis
      (« HTTP 403 », « timeout DNS »…) et la **trace durable est OBLIGATOIRE** :
      `{ type: "transcript" | "capture", chemin, sha256 }`, versionnée et vérifiée comme
@@ -243,9 +261,11 @@ non consultée.
    que `non_etabli`, au moins une preuve de rattachement ; toute promotion désigne son
    observation décisive et son `SourcedQuote` concorde avec elle.
 3. Toute `promue` : `SourcedQuote` valide **avec `locator`**, sur l'`url_finale` d'une
-   candidate `acces: "consultee"` + `autorite_pays` + `etaye_le_fait` ; `review_due` égale à
-   la dérivation ADR-0007 ; `verified_date` = `consultee_le` de la candidate retenue ;
-   `reviewer` = `audite_par` ; `audite_le` ≥ toutes les consultations du pays.
+   candidate `acces: "consultee"` + `autorite_pays` + `etaye_le_fait`, dont la pièce
+   décisive est un **`extrait`** (une capture ne peut être que complémentaire) ;
+   `review_due` égale à la dérivation ADR-0007 ; `verified_date` = `consultee_le` de la
+   candidate retenue ; `reviewer` = `audite_par` ; `audite_le` ≥ toutes les consultations
+   du pays.
 4. `Country.source` = projection canonique exacte du `SourcedQuote` de la matrice (dont
    l'`url_finale`) — l'égalité champ à champ est le lien entre les couches, vérifiée
    mécaniquement.
@@ -260,8 +280,8 @@ Les **16 premières** sont éprouvées par `test-mesure-lot-a.mjs` sur l'état d
 les trois faux verts de la v1, les trois passages indus de la v2, la dérive commitée et le
 `_scelle` falsifié de la v3, les contrôles `--as-of`, la date future, et la génération saine
 (candidat égal au scellé, scellé jamais touché par l'instrument).
-Le harnais d'exécution devra faire rougir, en plus, les contrôles **17 à 41** — le total est
-**verrouillé à 41** :
+Le harnais d'exécution devra faire rougir, en plus, les contrôles **17 à 44** — le total est
+**verrouillé à 44** :
 
 | # | mutation | attendu |
 |---|---|---|
@@ -290,6 +310,9 @@ Le harnais d'exécution devra faire rougir, en plus, les contrôles **17 à 41**
 | 39 | `tentative` sans trace durable (transcript ou capture versionnée) | échec — « lorsqu'elle existe » n'existe pas |
 | 40 | observation désignée et `SourcedQuote` contradictoires (URL finale, date, citation, langue ou locator) | échec — concordance exigée |
 | 41 | `autorite_pays` (ou toute nature ≠ `non_etabli`) sans `preuve_rattachement` | échec |
+| 42 | candidate éligible promue avec une **capture seule** comme pièce | échec ciblé — la pièce décisive d'une promotion est un `extrait` |
+| 43 | pièce dont le fichier existe mais n'est **pas suivi** par git (`git ls-files --error-unmatch`) | échec — « versionnée » se prouve |
+| 44 | pièce dont le chemin est un **lien symbolique** pointant hors de `audit-pays-pieces/` | échec — fichier régulier exigé |
 
 ## 6. Interdits, et effets de bord assumés
 
@@ -304,9 +327,9 @@ Le harnais d'exécution devra faire rougir, en plus, les contrôles **17 à 41**
   d'achèvement (« donnée source modifiée sous bloc figé ») — instantané daté du 23/08/2026,
   vérifiable sur son SHA de référence ; personne ne régénère ce bloc en silence.
 
-## 7. Séquence d'exécution (après feu vert sur cette v4)
+## 7. Séquence d'exécution (après feu vert sur cette v4-ter)
 
-1. **Contre-revue de cette v4** — aucune exécution avant.
+1. **Contre-revue de cette v4-ter** — aucune exécution avant.
 2. **Remplissage de `audit-pays.json`** : consultation réelle des 91 liens + pièces de
    rattachement, quatre axes, citations verbatim — **sans aucune mutation d'`objects.json`**.
    Le harnais d'exécution et le pas CI arrivent dans ce même livrable.
