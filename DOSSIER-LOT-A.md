@@ -1,4 +1,4 @@
-# Lot A — Audit des 18 pays sans source · dossier de mesure et de conception (v2)
+# Lot A — Audit des 18 pays sans source · dossier de mesure et de conception (v3)
 
 **Mesuré sur `main` après fusion du dossier d'achèvement (`1dd62010ea183422f02553877df4706714739080`).
 Ce dossier ne corrige rien : aucune date, aucune source, aucune donnée métier n'est écrite.
@@ -7,8 +7,8 @@ Il sera soumis à contre-revue AVANT toute exécution.**
 Reproduction :
 
 ```bash
-node --import tsx mesurer-lot-a.mjs    # l'état de référence contre le scellé — sortie 1 au premier écart
-node test-mesure-lot-a.mjs             # 8 cas : le scellé mord, dont les trois faux verts de la contre-revue
+node --import tsx mesurer-lot-a.mjs --as-of=2026-08-24   # l'état contre le scellé — sortie 1 au premier écart
+node test-mesure-lot-a.mjs                               # 14 cas : le scellé est exact, le scelleur ne consacre rien
 ```
 
 La liste des 18 est celle que le bloc contractuel du dossier d'achèvement fige
@@ -32,9 +32,22 @@ triplets (label, url) complets**, identité de `verified_date`, `reviewer`, `con
 la fonction canonique de `views.ts`, pas une réimplémentation), **relecture des YAML et
 égalité canonique avec l'artefact généré** (l'artefact ne fait pas foi seul), **validation
 calendaire des dates** (reconstruction UTC — la regex de l'ingestion accepte « 2026-02-31 »)
-et **validation http(s) de chaque URL**. `--sceller` refuse de sceller un état en défaut.
-`test-mesure-lot-a.mjs` rejoue les trois mutations de la contre-revue, plus cinq autres :
-8 cas, chacun exigeant la sortie 1 avec le pays et le champ nommés.
+et **validation http(s) de chaque URL**.
+
+**Le scellé v2 n'était pas encore exact** (contre-revue, trois passages indus reproduits) :
+`pet_scheme` — **le fait même que la future source doit étayer** — pouvait changer sans
+rougir ; un scellé altéré (iso2 modifié, pays parasite ajouté) passait, faute d'égalité
+structurelle ; et `--sceller` relancé sur des données dérivées **consacrait la dérive** au
+lieu de la révéler. La v3 ferme les trois : `pet_scheme` est scellé à valeur exacte ; la
+comparaison est **structurelle et symétrique sur l'objet entier** (pays absent ou
+supplémentaire, champ absent ou supplémentaire, `iso2` compris — chacun nommé) ; et le
+scelleur est **verrouillé** — refus si les données mesurées ne sont pas propres au sens de
+git, et remplacement d'un scellé existant subordonné à `--remplace=<sha256 du scellé en
+place>` : un acte explicite et tracé, jamais un réflexe. `--as-of` est devenu obligatoire et
+calendaire, et une `verified_date` postérieure à `--as-of` rougit — une vérification datée du
+futur n'en est pas une. `test-mesure-lot-a.mjs` : **14 cas**, dont les trois faux verts de la
+v1 et les trois passages indus de la v2, chacun exigeant la sortie attendue avec pays et
+champ nommés.
 
 ## 1. La mesure a changé la nature de la dette — et ce que la promotion fait, honnêtement
 
@@ -99,34 +112,63 @@ harnais de dossier (preuves manuelles datées), la cohérence matrice ↔ liens 
 référentiel est un invariant permanent du dépôt, donc un pas de `ci.yml`.
 
 Une entrée par pays, exactement les 18. Chaque **candidate** est évaluée sur **quatre axes
-séparés** — la contre-revue a montré que les confondre fabrique des verdicts :
+séparés** — et la contre-revue de la v2 a exigé qu'ils soient **réellement indépendants dans
+la forme** : la v2 les déclarait séparés mais les rendait dépendants (une page inaccessible
+ne pouvait plus être rattachée à une autorité ; une candidate non officielle aurait exigé un
+`source_type: "other"` que `SourcedQuote` refuse à bon droit). La candidate est donc une
+**union discriminée stricte** dont chaque branche ne porte que ce qu'elle peut porter :
 
-1. **Accessibilité** : `accessible: true|false` + `consultee_le` (date existante au
-   calendrier). Une page en 403 n'est ni officielle ni non officielle : elle est
-   **non consultée**, et rien d'autre ne peut être affirmé d'elle (cas koweïtien).
-2. **Nature de l'éditeur** : `autorite_pays` · `mission_diplomatique_pays` ·
-   `officiel_tiers` (USDA APHIS, trade.gov…) · `non_officiel` · `non_etabli`.
-   Le rattachement officiel se **prouve** (`preuves_rattachement`: URL du portail
-   gouvernemental, texte de loi — comme les pièces fidjiennes), il ne se lit pas dans le TLD.
-3. **Pertinence au fait ciblé** (§ 1) : `etaye_le_fait` · `partielle` · `page_generique` ·
-   `hors_sujet`. Une page d'accueil d'autorité est `page_generique` (cas éthiopien).
-4. **Preuve** : URL finale après redirections, **citation verbatim**, langue, locator —
-   c'est-à-dire exactement le contrat **`SourcedQuote`** existant
-   (`breed-restrictions.ts` : `Source` + `quote` ≥ 10 caractères + `quote_language` BCP-47 +
-   `locator`, strict, http(s) seulement, anti-auto-citation, types factuels, `review_due` ≥
-   `verified_date`). **Aucun modèle parallèle n'est créé.**
+1. **Observation d'accès** — discriminant `acces` :
+   `{ acces: "consultee", consultee_le, url_finale }` ou
+   `{ acces: "tentative", tentee_le, resultat }` (« 403 », « timeout », « DNS »…).
+   Les dates existent au calendrier et ne sont pas futures. Une tentative n'est pas une
+   consultation : elle date un échec, elle n'autorise aucun verdict de contenu.
+2. **Nature de l'éditeur** — `autorite_pays` · `mission_diplomatique_pays` ·
+   `officiel_tiers` (USDA APHIS, trade.gov…) · `non_officiel` · `non_etabli` — **établie
+   indépendamment de l'accès à la page** : un domaine inaccessible peut être rattaché à une
+   autorité par un annuaire gouvernemental (cas fidjien). Le rattachement se **prouve** par
+   `preuves_rattachement`, à forme stricte (P1) : chaque pièce est un **`SourcedQuote`** dont
+   la citation établit la propriété institutionnelle (« BAF est l'autorité de biosécurité
+   instituée par… », depuis l'annuaire ou le texte de loi) — une URL nue ne prouve rien.
+   `non_etabli` est l'état honnête par défaut.
+3. **Pertinence au fait ciblé** (§ 1) — `etaye_le_fait` · `partielle` · `page_generique` ·
+   `hors_sujet` · **`non_evaluee`**. Une page non consultée est **forcée** à `non_evaluee`
+   (le schéma strict de la matrice l'impose) — sans que cela n'efface le rattachement
+   institutionnel établi par ailleurs. Une page d'accueil d'autorité est `page_generique`
+   (cas éthiopien).
+4. **Preuve factuelle décisive** — un **`SourcedQuote`** (contrat existant de
+   `breed-restrictions.ts` : `Source` + `quote` ≥ 10 caractères + `quote_language` BCP-47 +
+   `locator`, strict, http(s), anti-auto-citation, types factuels, `review_due` ≥
+   `verified_date`), présent **uniquement** sur une candidate `acces: "consultee"` dont
+   l'éditeur et la pertinence la rendent promouvable. Les candidates non officielles ou non
+   consultées n'en portent pas — leur observation suffit, et aucun `source_type: "other"`
+   n'est forcé dans un contrat qui le refuse. **Aucun modèle parallèle n'est créé.**
+
+Quatre exigences transverses (P1 de contre-revue) :
+
+- **`locator` obligatoire pour toute promotion** : le contrat canonique le laisse facultatif,
+  le lot A l'exige — une citation qu'on ne sait pas retrouver sur la page ne se contre-vérifie
+  pas.
+- **`url_publiee` ≠ `url_finale`** : la bijection 91/91 se fait sur l'`url_publiee` (celle du
+  guide) ; la consultation enregistre l'`url_finale` après redirections ; la projection dans
+  `Country.source` utilise **explicitement l'`url_finale`**.
+- **`--as-of` obligatoire et relations temporelles contrôlées** : toutes les dates existent au
+  calendrier et ne sont pas futures ; `audite_le` ≥ toute `consultee_le`/`tentee_le` du pays ;
+  `verified_date` de la promue = `consultee_le` de la candidate retenue. Le validateur CI de
+  la matrice prend `--as-of` comme l'instrument de mesure.
+- **Schéma strict partout** : un champ inconnu dans la matrice est une erreur.
 
 **Décision par pays** — deux états, pas de troisième :
 
-- `promue` : porte un **`SourcedQuote` complet** (la preuve) dont l'URL est celle d'une
-  candidate `accessible: true` + `autorite_pays` + `etaye_le_fait`. `verified_date` = la date
-  de consultation ; `review_due` **dérivée** par `reviewDueFrom(verified_date, "country")`
-  (ADR-0007) — vérifié : le schéma `Source` seul accepte une `review_due` antérieure, la
-  dérivation exacte est donc exigée en plus. `Country.source` dans `objects.json` reçoit la
-  **projection canonique `Source`** de ce `SourcedQuote` (les champs communs, à l'identique —
-  `Country` n'est pas strict, y glisser les champs de citation serait silencieusement toléré
-  puis perdu : la citation vit dans la matrice, la liaison est l'égalité de projection,
-  vérifiée en CI).
+- `promue` : porte le **`SourcedQuote` complet** (avec `locator`, obligatoire ici) d'une
+  candidate `acces: "consultee"` + `autorite_pays` + `etaye_le_fait`, sur son **`url_finale`**.
+  `verified_date` = la `consultee_le` de cette candidate ; `review_due` **dérivée** par
+  `reviewDueFrom(verified_date, "country")` (ADR-0007) — vérifié : le schéma `Source` seul
+  accepte une `review_due` antérieure, la dérivation exacte est donc exigée en plus.
+  `Country.source` dans `objects.json` reçoit la **projection canonique `Source`** de ce
+  `SourcedQuote` (les champs communs, à l'identique — `Country` n'est pas strict, y glisser
+  les champs de citation serait silencieusement toléré puis perdu : la citation vit dans la
+  matrice, la liaison est l'égalité de projection, vérifiée en CI).
 - `aucune_source_officielle` : `motif` obligatoire. `objects.json` reste sans `source`.
   Une `mission_diplomatique_pays` qui étaye le fait sans qu'aucune page de l'autorité ne
   tienne est un cas d'**arbitrage** (Philippe), pas une promotion automatique.
@@ -144,29 +186,35 @@ non consultée.
 
 ## 4. Critères d'acceptation
 
-1. `audit-pays.json` couvre exactement les 18 ; schéma strict ; contrôle câblé en CI.
-2. Bijection exacte : 91/91 liens publiés classés sur les quatre axes.
-3. Toute `promue` : `SourcedQuote` valide (contrat existant), URL d'une candidate
-   `accessible` + `autorite_pays` + `etaye_le_fait`, `review_due` égale à la dérivation
-   ADR-0007, `verified_date` = `consultee_le` de la candidate retenue, `reviewer` =
-   `audite_par`.
-4. `Country.source` = projection canonique exacte du `SourcedQuote` de la matrice — l'égalité
-   champ à champ est le lien entre les couches, vérifiée mécaniquement.
+1. `audit-pays.json` couvre exactement les 18 ; schéma strict (union discriminée du § 3,
+   champ inconnu = erreur) ; contrôle câblé en CI, avec `--as-of` et les relations
+   temporelles du § 3.
+2. Bijection exacte : 91/91 `url_publiee` des guides classées ; les pièces de rattachement
+   entrent comme `preuves_rattachement` (`SourcedQuote`), jamais comme candidates.
+3. Toute `promue` : `SourcedQuote` valide **avec `locator`**, sur l'`url_finale` d'une
+   candidate `acces: "consultee"` + `autorite_pays` + `etaye_le_fait` ; `review_due` égale à
+   la dérivation ADR-0007 ; `verified_date` = `consultee_le` de la candidate retenue ;
+   `reviewer` = `audite_par` ; `audite_le` ≥ toutes les consultations du pays.
+4. `Country.source` = projection canonique exacte du `SourcedQuote` de la matrice (dont
+   l'`url_finale`) — l'égalité champ à champ est le lien entre les couches, vérifiée
+   mécaniquement.
 5. Tout `aucune_source_officielle` : motif non vide, et **aucune candidate éligible
-   existante** (une candidate `autorite_pays` + `etaye_le_fait` + `accessible` rend cet état
+   existante** (une candidate `consultee` + `autorite_pays` + `etaye_le_fait` rend cet état
    invalide).
 6. `objects.json` ne change que par l'ajout des blocs `source` promus (`git diff` en fait foi).
 
 ## 5. Contre-épreuves — celles du harnais d'exécution
 
-Les 8 premières sont déjà éprouvées par `test-mesure-lot-a.mjs` sur l'état de référence.
+Les 14 premières sont déjà éprouvées par `test-mesure-lot-a.mjs` sur l'état de référence —
+dont les trois faux verts de la v1, les trois passages indus de la v2 (pet_scheme, scellé
+altéré, scelleur sur dérive), les contrôles `--as-of` et la date future.
 Le harnais d'exécution devra faire rougir, en plus :
 
 | # | mutation | attendu |
 |---|---|---|
 | 9 | candidate publiée retirée, remplacée ou ajoutée dans la matrice | échec — bijection 91/91 |
 | 10 | candidate `page_generique` (officielle) promue | échec — pertinence exigée |
-| 11 | `accessible: false` avec un verdict d'éditeur ou de pertinence affirmé | échec — une page non consultée n'a pas de verdict |
+| 11 | candidate `acces: "tentative"` avec une pertinence affirmée (≠ `non_evaluee`) | échec — une page non consultée n'a pas de verdict de contenu ; son rattachement d'éditeur, prouvé par ailleurs, reste licite |
 | 12 | `aucune_source_officielle` alors qu'une candidate éligible existe dans la matrice | échec |
 | 13 | `source.verified_date` ≠ `consultee_le` de la candidate retenue | échec |
 | 14 | `source.reviewer` ≠ `audite_par` | échec |
@@ -176,6 +224,11 @@ Le harnais d'exécution devra faire rougir, en plus :
 | 18 | promotion dans `objects.json` sans entrée `promue` dans la matrice | échec — la matrice fait foi |
 | 19 | hôte `mydogcanfly.com` promu | échec — `SourcedQuote` le refuse déjà, la contre-épreuve le prouve |
 | 20 | citation absente ou < 10 caractères sur une promue | échec — `SourcedQuote` |
+| 21 | promue sans `locator` | échec — obligatoire au lot A, au-delà du contrat canonique |
+| 22 | projection dans `Country.source` sur l'`url_publiee` au lieu de l'`url_finale` | échec |
+| 23 | `preuves_rattachement` réduites à une URL nue (sans citation qui établit la propriété institutionnelle) | échec — forme `SourcedQuote` exigée |
+| 24 | candidate `acces: "tentative"` avec une pertinence autre que `non_evaluee`, ou porteuse d'un `SourcedQuote` | échec — l'union discriminée l'interdit |
+| 25 | `consultee_le` ou `audite_le` future par rapport à `--as-of`, ou `audite_le` antérieure à une consultation | échec — relations temporelles |
 
 ## 6. Interdits, et effets de bord assumés
 
