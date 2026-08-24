@@ -16,7 +16,7 @@
  * (cas 0) ; chaque cas suivant mute UNE chose et exige la sortie 1 avec la cause nommée.
  * Aucune donnée réelle n'est affirmée : la fixture vit dans l'arbre jetable, jamais au dépôt.
  *
- * QUARANTE-HUIT CAS : 0 (fixture conforme — manifeste complet avec une observation de
+ * CINQUANTE-ET-UN CAS : 0 (fixture conforme — manifeste complet avec une observation de
  * rattachement de rôle dédié, candidate PDF à pièce-capture), 17 à 52 (bijection, décisions,
  * pièces, ancres, PDF, liaison au manifeste), puis 53-57 (contre-revue v5-ter) : PDF déguisé
  * en text/plain — le format recalculé depuis les OCTETS prime ; résultat de manifeste
@@ -25,6 +25,10 @@
  * Puis 58-63 (contre-revue v5-quater) : rattachement sans décision éditoriale ; PDF déclaré
  * utilisé ; compteur falsifié ; run hors motif ; n non contigus ; manifeste ≠ liste
  * versionnée. La fixture écarte proprement un rattachement PDF et une tentative (vert).
+ * Puis 64-66 (contre-revue v5-quinquies) : liste versionnée difforme ({} puis URL locale)
+ * refusée PAR LE VALIDATEUR aussi ; pièces d'un rattachement ÉCARTÉ remplacées par du néant ;
+ * preuve de rattachement visant une candidate ordinaire (citation ancrée, capture concordante,
+ * observation dédiée écartée — seule la garde de RÔLE la voit).
  */
 import { readFileSync, writeFileSync, mkdirSync, copyFileSync, symlinkSync, mkdtempSync, rmSync } from "node:fs";
 import { createHash } from "node:crypto";
@@ -153,6 +157,7 @@ try {
   symlinkSync(resolve("node_modules"), join(arbre, "node_modules"));
   copyFileSync("valider-audit-pays.mjs", join(arbre, "valider-audit-pays.mjs"));
   copyFileSync("extraire-texte-lot-a.mjs", join(arbre, "extraire-texte-lot-a.mjs"));
+  copyFileSync("liste-rattachements-lot-a.mjs", join(arbre, "liste-rattachements-lot-a.mjs"));
   copyFileSync("etat-reference-lot-a.json", join(arbre, "etat-reference-lot-a.json"));
   mkdirSync(join(arbre, "audit-pays-pieces"), { recursive: true });
 
@@ -453,6 +458,49 @@ try {
     const r = mf.resultats.find((x) => x.role === "rattachement");
     r.motif = "Motif réécrit après coup, différent de la liste versionnée.";
   });
+
+  /* ---- 64-66 · liste difforme, pièces de l'écarté, rôle des preuves (contre-revue v5-quinquies) */
+  {
+    /* 64 — le VALIDATEUR aussi refuse une liste versionnée difforme : `{}` à la place du
+     * tableau, puis une URL locale — le schéma strict est PARTAGÉ avec le collecteur. */
+    const CHEMIN_LISTE = join(arbre, "rattachements-a-consulter.json");
+    const listePristine = readFileSync(CHEMIN_LISTE, "utf-8");
+    const variantes = [
+      ["{} à la place du tableau", "{}", /TABLEAU d'objets/],
+      ["URL locale file://", JSON.stringify([{ url: "file:///etc/passwd", motif: "Motif présent mais schéma local." }]), /HTTP\(S\) UNIQUEMENT/],
+    ];
+    for (const [nom, contenu, motif] of variantes) {
+      writeFileSync(CHEMIN_LISTE, contenu);
+      poser(neuve());
+      const r = lancer(arbre);
+      writeFileSync(CHEMIN_LISTE, listePristine);
+      if (r.status !== 1) { echec(`64 liste difforme (${nom})`, `sortie ${r.status} au lieu de 1 — le validateur saute la liste versionnée`); continue; }
+      if (!motif.test(r.stderr)) {
+        echec(`64 liste difforme (${nom})`, `le diagnostic ne satisfait pas ${motif} — reçu :\n      ${r.stderr.trim().split("\n").slice(0, 5).join("\n      ")}`);
+      }
+    }
+  }
+  cas("65 pièces du rattachement écarté remplacées par du néant", (m) => { /* matrice inchangée, décision ecartee conservée */ }, [
+    /manifeste — n \d+ \(rattachement/, /ne désigne aucun fichier/,
+  ], (mf) => {
+    const pdf = mf.resultats.find((x) => x.role === "rattachement" && /document-pdf/.test(x.url_demandee));
+    pdf.capture.chemin = "audit-pays-pieces/run-fixture/fantome.pdf";
+    pdf.capture.sha256 = "0".repeat(64);
+    pdf.capture.texte_derive = { chemin: "audit-pays-pieces/run-fixture/fantome.texte.txt", sha256: "0".repeat(64) };
+  });
+  cas("66 preuve de rattachement visant une candidate ordinaire", (m) => {
+    /* L'attaque exacte : la preuve pointe la candidate ELLE-MÊME ; citation et capture sont
+     * ajustées pour concorder avec l'observation (la citation s'ANCRE dans la capture de la
+     * candidate), et l'observation de rattachement dédiée est proprement écartée — sans la
+     * garde de RÔLE, tout passe. */
+    const c = fj(m).candidates[0];
+    const p = c.preuves_rattachement[0];
+    p.manifeste_n = c.manifeste_n;
+    p.citation.url = c.url_finale;
+    p.citation.quote = EXTRAIT_TEMOIN;
+    p.capture = JSON.parse(JSON.stringify(c.capture));
+    m.rattachements["92"] = { statut: "ecartee", motif: "Écartée pour couvrir le contournement (jeu d'essai)." };
+  }, [/country_fj/, /rôle « candidate »/, /liste versionnée ne se contourne pas/]);
 } finally {
   gitWt("remove", "--force", arbre);
   rmSync(conteneur, { recursive: true, force: true });
@@ -460,7 +508,7 @@ try {
 
 /* ---- verdict ---------------------------------------------------------------------------------- */
 if (defauts.length === 0) {
-  process.stdout.write("48 cas éprouvés : la fixture conforme — manifeste en ensemble exact égal à la liste\n");
+  process.stdout.write("51 cas éprouvés : la fixture conforme — manifeste en ensemble exact égal à la liste\n");
   process.stdout.write("versionnée, rattachement utilisé + PDF et tentative proprement écartés — sort en 0 ;\n");
   process.stdout.write("rattachement de rôle dédié, candidate PDF à pièce-capture — sort en 0 ; les contrôles\n");
   process.stdout.write("17-52 rougissent chacun pour sa cause (bijection triplet, décisions, pièces prouvées,\n");
@@ -470,7 +518,10 @@ if (defauts.length === 0) {
   process.stdout.write("citation intactes — rougit par la liaison, un rattachement sans manifeste_n échoue au\n");
   process.stdout.write("schéma, un chemin hors run (résolu) est nommé ; et les décisions font loi : sans\n");
   process.stdout.write("décision rouge, PDF « utilisé » rouge, compteurs et contiguïté recalculés, liste\n");
-  process.stdout.write("versionnée exigée à l'identique.\n\n");
+  process.stdout.write("versionnée exigée à l'identique ; enfin la contre-revue v5-quinquies est morte : la\n");
+  process.stdout.write("liste difforme rougit AU VALIDATEUR aussi (schéma partagé), les pièces d'un\n");
+  process.stdout.write("rattachement écarté restent contre-vérifiables, et une preuve visant une candidate\n");
+  process.stdout.write("ordinaire est arrêtée par la garde de rôle.\n\n");
   process.stdout.write("[audit-pays] le validateur mord, sur les 47 contrôles.\n");
   process.exit(0);
 }

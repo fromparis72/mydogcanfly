@@ -15,7 +15,7 @@
  * comportements sont pilotés par FAUX_MODE. Chaque cas exige le refus, ou la collecte, ou la
  * conservation — exactement.
  *
- * DOUZE CAS :
+ * TREIZE CAS :
  *   1. curl ABSENT → sortie 2, « curl est absent », AUCUN répertoire de run créé.
  *   2. PROXY BLOQUANT (la sonde échoue sur « CONNECT tunnel failed ») → sortie 2, panne
  *      systémique, rien d'écrit.
@@ -43,6 +43,11 @@
  *   11. Set-Cookie: SECRET dans les en-têtes de chaque réponse → le secret est ABSENT de
  *       toutes les pièces du run (en-têtes assainis avant scellement), la marque
  *       d'expurgation présente. [contre-revue v5-bis]
+ *   12. LISTE DE RATTACHEMENTS MALFORMÉE (six variantes, file:///etc/passwd comprise) →
+ *       sortie 2 AVANT toute écriture. [contre-revue v5-quater]
+ *   13. REDIRECTION HORS HTTP(S) (url_finale = file:///etc/passwd) → sortie 2, manifeste
+ *       intact, contenu local détruit ; et chaque appel curl est épinglé
+ *       --proto/--proto-redir =http,https (exigé au cas nominal). [contre-revue v5-quinquies]
  */
 import { readFileSync, writeFileSync, mkdirSync, copyFileSync, symlinkSync, mkdtempSync, rmSync, existsSync, readdirSync, chmodSync } from "node:fs";
 import { spawnSync } from "node:child_process";
@@ -72,6 +77,12 @@ const sortie = args.includes("-o") ? args[args.indexOf("-o") + 1] : null;
 const entetes = args.includes("-D") ? args[args.indexOf("-D") + 1] : null;
 const mode = process.env.FAUX_MODE || "ok";
 const etat = process.env.FAUX_ETAT;
+/* TOUT appel réseau doit être ÉPINGLÉ --proto/--proto-redir =http,https — sinon une
+ * redirection pourrait quitter le web. Le manquement est journalisé, le cas nominal l'exige. */
+if (!(args.includes("--proto") && args[args.indexOf("--proto") + 1] === "=http,https"
+   && args.includes("--proto-redir") && args[args.indexOf("--proto-redir") + 1] === "=http,https")) {
+  fs.writeFileSync(path.join(etat, "proto-manquant"), url);
+}
 /* La ligne que l'assainisseur DOIT expurger. */
 process.stderr.write("* Uses proxy env variable https_proxy == 'http://SECRET-PROXY:3128'\\n* Connected (faux)\\n");
 if (mode === "proxy") { process.stderr.write("curl: (56) CONNECT tunnel failed, response 403\\n"); process.exit(56); }
@@ -91,8 +102,14 @@ if (timeout) { process.stderr.write("curl: (28) Operation timed out\\n"); proces
 const code = (est403 || mixte403) ? "403" : "200";
 let finale = url;
 if (mode === "derive" && url.includes("moa.gov.jm")) finale = "https://parking-domaine.example/vendu";
+/* Un curl NON épinglé qui aurait suivi une redirection hors du web : url_effective locale,
+ * et le CONTENU LOCAL déjà écrit dans le corps provisoire. */
+const localePasswd = mode === "redirige-local" && url.includes("moa.gov.jm");
+if (localePasswd) finale = "file:///etc/passwd";
 const corpsEgress = (mode === "egress-corps" && url.includes("paaf.gov.kw")) ? "Access denied: EGRESS_BLOCKED by network policy." : "";
-if (sortie) fs.writeFileSync(sortie, "<html><body>Page de " + url + " (faux curl, jeu d'essai)" + corpsEgress + "</body></html>");
+const corps = localePasswd ? "root:x:0:0:CONTENU-LOCAL-PASSWD:/root:/bin/sh"
+  : "<html><body>Page de " + url + " (faux curl, jeu d'essai)" + corpsEgress + "</body></html>";
+if (sortie) fs.writeFileSync(sortie, corps);
 const enteteEgress = (mode === "egress-entetes" && url.includes("paaf.gov.kw")) ? "X-Deny: EGRESS_BLOCKED\\r\\n" : "";
 if (entetes) fs.writeFileSync(entetes, "HTTP/1.1 " + code + " OK\\r\\nContent-Type: text/html; charset=utf-8\\r\\nSet-Cookie: session=SECRET-COOKIE-42\\r\\n" + enteteEgress + "\\r\\n");
 /* Le format -w est RESPECTÉ, comme le vrai curl : la sonde demande %{http_code} seul. */
@@ -116,6 +133,7 @@ try {
   if (ajout.status !== 0) throw new Error(`git worktree add : ${(ajout.stderr || "").trim()}`);
   copyFileSync("consulter-candidates-lot-a.mjs", join(arbre, "consulter-candidates-lot-a.mjs"));
   copyFileSync("extraire-texte-lot-a.mjs", join(arbre, "extraire-texte-lot-a.mjs"));
+  copyFileSync("liste-rattachements-lot-a.mjs", join(arbre, "liste-rattachements-lot-a.mjs"));
   copyFileSync("etat-reference-lot-a.json", join(arbre, "etat-reference-lot-a.json"));
   copyFileSync("rattachements-a-consulter.json", join(arbre, "rattachements-a-consulter.json"));
   const CHEMIN_GUIDES = join(arbre, "packages/ui/src/data/countries.generated.json");
@@ -178,6 +196,10 @@ try {
         echec("4 nominale", "le texte dérivé de la première consultation n'existe pas");
       }
       if (!ex.capture.extracteur || !ex.capture.content_type) echec("4 nominale", "la capture ne scelle pas extracteur et content_type");
+    }
+    /* Chaque appel réseau (sonde comprise) doit avoir été ÉPINGLÉ --proto/--proto-redir. */
+    if (existsSync(join(etat, "proto-manquant"))) {
+      echec("4 nominale", `un appel curl n'était pas épinglé =http,https (URL : ${readFileSync(join(etat, "proto-manquant"), "utf-8")})`);
     }
   }
 
@@ -298,6 +320,27 @@ try {
     }
     writeFileSync(CHEMIN_LISTE, pristin);
   }
+
+  /* ---- 13. redirection hors HTTP(S) : url_finale = file:///etc/passwd -------------------------
+   * [contre-revue v5-quinquies : un curl non épinglé suivait la redirection, l'url_finale locale
+   * était persistée et le manifeste remplacé, sortie 0] */
+  {
+    const manifesteAvant = readFileSync(MANIFESTE(), "utf-8");
+    const r = lancer("redirige-local");
+    if (r.status !== 2) echec("13 redirection locale", `sortie ${r.status} au lieu de 2 — une url_finale hors HTTP(S) est persistée`);
+    if (!/hors HTTP\(S\)/.test(r.stderr)) {
+      echec("13 redirection locale", `le refus ne nomme pas « hors HTTP(S) » — reçu :\n      ${r.stderr.trim().split("\n").slice(0, 2).join("\n      ")}`);
+    }
+    if (readFileSync(MANIFESTE(), "utf-8") !== manifesteAvant) echec("13 redirection locale", "le manifeste précédent a été REMPLACÉ malgré le refus");
+    /* Le contenu LOCAL ne survit dans AUCUNE pièce d'AUCUN run — le corps provisoire est détruit. */
+    for (const run of runs()) {
+      for (const f of readdirSync(join(arbre, "audit-pays-pieces", run))) {
+        if (readFileSync(join(arbre, "audit-pays-pieces", run, f), "latin1").includes("CONTENU-LOCAL-PASSWD")) {
+          echec("13 redirection locale", `le contenu local apparaît dans ${run}/${f} — le corps provisoire a survécu au refus`);
+        }
+      }
+    }
+  }
 } finally {
   gitWt("remove", "--force", arbre);
   rmSync(conteneur, { recursive: true, force: true });
@@ -305,10 +348,11 @@ try {
 
 /* ---- verdict ---------------------------------------------------------------------------------- */
 if (defauts.length === 0) {
-  process.stdout.write("12 cas éprouvés au faux curl : curl absent, proxy bloquant, inventaire dérivé, et la\n");
+  process.stdout.write("13 cas éprouvés au faux curl : curl absent, proxy bloquant, inventaire dérivé, et la\n");
   process.stdout.write("liste de rattachements au schéma strict (file:// local, champ inconnu, motif blanc,\n");
-  process.stdout.write("URL en double, JSON invalide, fichier absent) REFUSENT sans rien écrire ; la nominale\n");
-  process.stdout.write("rapporte\n");
+  process.stdout.write("URL en double, JSON invalide, fichier absent) REFUSENT sans rien écrire ; une\n");
+  process.stdout.write("redirection qui quitte HTTP(S) interrompt tout — manifeste intact, contenu local\n");
+  process.stdout.write("détruit, chaque appel curl épinglé =http,https ; la nominale rapporte\n");
   process.stdout.write("91 candidates + 4 observations de rattachement, formats détectés depuis les octets ;\n");
   process.stdout.write("corps et trace se corrèlent d'un même appel ; un 403 et un timeout restent des tentatives\n");
   process.stdout.write("précises ; une URL dérivée est enregistrée fidèlement ; une interruption ne publie\n");

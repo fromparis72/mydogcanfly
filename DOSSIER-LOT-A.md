@@ -1,4 +1,4 @@
-# Lot A — Audit des 18 pays sans source · dossier de mesure et de conception (v5-quinquies)
+# Lot A — Audit des 18 pays sans source · dossier de mesure et de conception (v5-sexies)
 
 **Mesuré sur `main` après fusion du dossier d'achèvement (`1dd62010ea183422f02553877df4706714739080`).
 Ce dossier ne corrige rien : aucune date, aucune source, aucune donnée métier n'est écrite.
@@ -9,8 +9,8 @@ Reproduction :
 ```bash
 node --import tsx mesurer-lot-a.mjs --as-of=2026-08-24   # l'état contre le scellé — sortie 1 au premier écart
 node test-mesure-lot-a.mjs                               # 16 cas : le scellé est exact, et il ne se remplace pas
-node test-audit-pays.mjs                                 # 48 cas : le validateur de la matrice mord (17-63)
-node test-consulter-lot-a.mjs                            # 12 cas au faux curl : le collecteur ne fabrique rien
+node test-audit-pays.mjs                                 # 51 cas : le validateur de la matrice mord (17-66)
+node test-consulter-lot-a.mjs                            # 13 cas au faux curl : le collecteur ne fabrique rien
 ```
 
 La liste des 18 est celle que le bloc contractuel du dossier d'achèvement fige
@@ -179,6 +179,30 @@ et le « PDF utilisé » rougissent. (3) Le manifeste est durci : compteurs `can
 **égalité exacte** des rattachements avec la liste versionnée (url et motif, dans l'ordre),
 `run` contraint à `audit-pays-pieces/run-*`, appartenance des fichiers jugée sur **chemins
 résolus** et non au préfixe. Contre-épreuves 58–63.
+
+**Une redirection sortait de HTTP(S), le validateur sautait la liste versionnée difforme,
+les pièces d'un rattachement écarté n'étaient jamais vérifiées, et une preuve pouvait viser
+une candidate ordinaire** (contre-revue v5-quinquies, quatre faux verts reproduits).
+(1) curl suivait les redirections sans contrainte de protocole : une
+`url_finale = file:///etc/passwd` était persistée et le manifeste remplacé, sortie 0. Le
+protocole est désormais **épinglé** (`--proto =http,https`, `--proto-redir =http,https`) et
+l'`url_finale` **revalidée au même contrat HTTP(S) avant toute persistance** — refus, corps
+provisoire détruit, manifeste intact (cas collecteur 13 ; l'épinglage de chaque appel est
+exigé au cas nominal). (2) Le schéma strict de la liste des rattachements ne vivait que dans
+le collecteur : `{}` remplaçant le tableau versionné laissait le validateur permanent vert.
+Le schéma vit désormais dans **un module partagé** (`liste-rattachements-lot-a.mjs`) importé
+par les DEUX outils — toute liste non-tableau, URL non HTTP(S), champ inconnu, motif blanc
+ou duplication rougit aussi en CI (contre-épreuve 64, deux variantes). (3) Les pièces d'un
+rattachement **écarté** n'étaient vérifiées par personne : chemins et empreintes remplacés
+par des fichiers inexistants, décision `ecartee` conservée, sortie 0. **Chaque résultat du
+manifeste est contre-vérifié indépendamment de toute décision** — consultation : brut, texte
+dérivé, en-têtes et trace prouvés ; tentative : trace prouvée (contre-épreuve 65). (4) Une
+preuve de rattachement pouvait viser la candidate ELLE-MÊME (citation ancrée dans sa capture,
+concordance verte, observation dédiée écartée) et contourner toute la liste versionnée : la
+garde `obs.role === "rattachement"` est explicite (contre-épreuve 66). Au passage, le verdict
+« suivi par git » est **mémoïsé par chemin** — pure mémoïsation d'un fait stable pendant le
+run, chaque contexte gardant son propre diagnostic ; la double preuve manifeste + matrice ne
+double pas les appels git.
 
 ## 1. La mesure a changé la nature de la dette — et ce que la promotion fait, honnêtement
 
@@ -385,11 +409,11 @@ Les **16 premières** sont éprouvées par `test-mesure-lot-a.mjs` sur l'état d
 les trois faux verts de la v1, les trois passages indus de la v2, la dérive commitée et le
 `_scelle` falsifié de la v3, les contrôles `--as-of`, la date future, et la génération saine
 (candidat égal au scellé, scellé jamais touché par l'instrument).
-Le harnais d'exécution `test-audit-pays.mjs` éprouve les contrôles **17 à 63** (48 cas — la
+Le harnais d'exécution `test-audit-pays.mjs` éprouve les contrôles **17 à 66** (51 cas — la
 fixture porte un manifeste en ensemble exact égal à la liste versionnée, un rattachement
 utilisé, un PDF et une tentative proprement écartés, une candidate PDF à pièce-capture), et
-`test-consulter-lot-a.mjs` éprouve le collecteur (12 cas au faux `curl`, dont la batterie de
-six listes malformées). Le total est **verrouillé à 63 + 12** :
+`test-consulter-lot-a.mjs` éprouve le collecteur (13 cas au faux `curl`, dont la batterie de
+six listes malformées et la redirection hors HTTP(S)). Le total est **verrouillé à 66 + 13** :
 
 | # | mutation | attendu |
 |---|---|---|
@@ -440,6 +464,9 @@ six listes malformées). Le total est **verrouillé à 63 + 12** :
 | 61 | `run` hors du motif `audit-pays-pieces/run-*` | échec — schéma du manifeste |
 | 62 | `n` non contigus | échec — 1..total, sans trou ni doublon |
 | 63 | rattachements du manifeste ≠ liste versionnée `rattachements-a-consulter.json` | échec — égalité exacte, url et motif |
+| 64 | liste versionnée difforme au VALIDATEUR (`{}` à la place du tableau, puis URL locale `file://`) | échec — le schéma strict est partagé avec le collecteur, la CI rougit sur la même cause |
+| 65 | pièces d'un rattachement **écarté** remplacées par des fichiers inexistants, décision conservée | échec — tout résultat du manifeste reste contre-vérifiable, décision ou pas |
+| 66 | preuve de rattachement visant une **candidate ordinaire** (citation ancrée, capture concordante, observation dédiée écartée) | échec — `role === "rattachement"` exigé, la liste versionnée ne se contourne pas |
 
 ## 6. Interdits, et effets de bord assumés
 

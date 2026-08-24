@@ -44,7 +44,12 @@
  *     manifeste rougit (contre-revue v5-bis) ;
  *   · AUCUNE PREUVE TEXTUELLE DEPUIS UN PDF en lot-a-1 — l'extracteur produit des mots
  *     éclatés sur les PDF réels : le brut est conservé, mais ni pièce `extrait`, ni preuve
- *     de rattachement, ni candidate décisive ne peuvent venir d'un PDF.
+ *     de rattachement, ni candidate décisive ne peuvent venir d'un PDF ;
+ *   · TOUT RÉSULTAT DU MANIFESTE RESTE CONTRE-VÉRIFIABLE, décision ou pas — consultation :
+ *     brut, texte dérivé, en-têtes et trace prouvés ; tentative : trace prouvée. La liste
+ *     versionnée des rattachements passe le SCHÉMA STRICT PARTAGÉ avec le collecteur
+ *     (`liste-rattachements-lot-a.mjs`), et une preuve de rattachement vise une observation
+ *     de RÔLE « rattachement » — jamais une candidate ordinaire (contre-revue v5-quinquies).
  *
  * Sortie 0 si tout tient ; 1 au premier lot d'écarts, chacun nommé (pays, candidate, champ) ;
  * 2 si --as-of manque ou n'existe pas.
@@ -58,6 +63,7 @@ import { Source } from "./packages/knowledge/src/common.ts";
 import { reviewDueFrom } from "./packages/knowledge/src/common.ts";
 import { SourcedQuote } from "./packages/knowledge/src/breed-restrictions.ts";
 import { extraireTexte, normaliser, detecterFormat, VERSION_EXTRACTEUR } from "./extraire-texte-lot-a.mjs";
+import { erreursListeRattachements } from "./liste-rattachements-lot-a.mjs";
 
 const MATRICE = "audit-pays.json";
 const SCELLE = "etat-reference-lot-a.json";
@@ -246,11 +252,21 @@ for (const r of manifeste.resultats) {
     }
   }
 }
-/* Les rattachements du manifeste = EXACTEMENT la liste versionnée, dans l'ordre. */
+/* Les rattachements du manifeste = EXACTEMENT la liste versionnée, dans l'ordre — et la liste
+ * elle-même passe le SCHÉMA STRICT PARTAGÉ avec le collecteur (contre-revue v5-quinquies :
+ * `{}` à la place du tableau laissait le validateur vert alors que le collecteur refusait). */
 {
-  let liste = null;
+  let liste = null, listeLisible = true;
   try { liste = JSON.parse(readFileSync("rattachements-a-consulter.json", "utf-8")); }
-  catch { echec("manifeste — rattachements-a-consulter.json introuvable ou illisible : la liste versionnée est le contrat des rattachements"); }
+  catch {
+    listeLisible = false;
+    echec("manifeste — rattachements-a-consulter.json introuvable ou illisible : la liste versionnée est le contrat des rattachements");
+  }
+  if (listeLisible) {
+    for (const e of erreursListeRattachements(liste)) {
+      echec(`liste versionnée — rattachements-a-consulter.json ${e}`);
+    }
+  }
   if (Array.isArray(liste)) {
     const duManifeste = manifeste.resultats.filter((r) => r.role === "rattachement")
       .map((r) => ({ url: r.url_demandee, motif: r.motif }));
@@ -307,6 +323,10 @@ const dansFenetre = (d, pays, quoi) => {
 };
 
 /* ---- pièces : versionnées au sens PROUVÉ ----------------------------------------------------- */
+/* Le verdict « suivi par git » est MÉMOÏSÉ par chemin (il ne change pas pendant un run) : le
+ * même fichier prouvé depuis le manifeste ET depuis la matrice ne coûte qu'un seul appel git —
+ * chaque contexte garde son propre diagnostic. */
+const suiviParChemin = new Map();
 const fichierProuve = (pays, quoi, chemin, sha) => {
   if (!chemin.startsWith(PIECES) || chemin.includes("..")) {
     echec(`${pays} — ${quoi} : chemin « ${chemin} » hors du répertoire ${PIECES}`); return;
@@ -315,8 +335,10 @@ const fichierProuve = (pays, quoi, chemin, sha) => {
   try { st = lstatSync(chemin); }
   catch { echec(`${pays} — ${quoi} : « ${chemin} » ne désigne aucun fichier`); return; }
   if (st.isSymbolicLink() || !st.isFile()) { echec(`${pays} — ${quoi} : « ${chemin} » n'est pas un fichier régulier (lien symbolique refusé)`); return; }
-  const suivi = spawnSync("git", ["ls-files", "--error-unmatch", "--", chemin], { encoding: "utf-8" });
-  if (suivi.status !== 0) { echec(`${pays} — ${quoi} : « ${chemin} » n'est PAS SUIVI par git — « versionnée » se prouve`); return; }
+  if (!suiviParChemin.has(chemin)) {
+    suiviParChemin.set(chemin, spawnSync("git", ["ls-files", "--error-unmatch", "--", chemin], { encoding: "utf-8" }).status === 0);
+  }
+  if (!suiviParChemin.get(chemin)) { echec(`${pays} — ${quoi} : « ${chemin} » n'est PAS SUIVI par git — « versionnée » se prouve`); return; }
   const reel = createHash("sha256").update(readFileSync(chemin)).digest("hex");
   if (reel !== sha) echec(`${pays} — ${quoi} : SHA-256 de « ${chemin} » ≠ scellé (contenu remplacé à chemin constant ?)`);
 };
@@ -366,6 +388,21 @@ const ancre = (pays, quoi, extrait, cap) => {
     echec(`${pays} — ${quoi} : l'extrait est INTROUVABLE dans le texte dérivé « ${cap.texte_derive.chemin} » — citation inventée ou page changée`);
   }
 };
+
+/* ---- CHAQUE résultat du manifeste reste CONTRE-VÉRIFIABLE, quelle que soit la décision -------
+ * (contre-revue v5-quinquies : les pièces d'un rattachement ÉCARTÉ n'étaient jamais vérifiées —
+ * remplacer ses chemins et empreintes par des fichiers inexistants sortait en 0). Consultation :
+ * brut, texte dérivé, en-têtes et trace prouvés ; tentative : trace prouvée. */
+for (const r of manifeste.resultats) {
+  const qui = `n ${r.n} (${r.role === "rattachement" ? `rattachement ${r.url_demandee}` : `candidate ${r.country_id}[${r.index_lien}]`})`;
+  if (r.acces === "consultee") {
+    captureProuvee("manifeste", `${qui} capture`, r.capture);
+    fichierProuve("manifeste", `${qui} en-têtes`, r.entetes.chemin, r.entetes.sha256);
+    fichierProuve("manifeste", `${qui} trace`, r.trace.chemin, r.trace.sha256);
+  } else if (r.acces === "tentative") {
+    fichierProuve("manifeste", `${qui} trace`, r.trace.chemin, r.trace.sha256);
+  }
+}
 
 /* ---- par pays -------------------------------------------------------------------------------- */
 for (const id of CONTRACTUELS) {
@@ -453,7 +490,15 @@ for (const id of CONTRACTUELS) {
       if (!obs) {
         echec(`${id} — ${qui} preuve de rattachement [${j}] : manifeste_n ${p.manifeste_n} ne désigne aucune observation du manifeste`);
       } else {
-        nsRattachementExerces.add(p.manifeste_n);
+        /* Le RÔLE est exigé explicitement : une preuve de rattachement qui vise une candidate
+         * ordinaire contourne toute la liste versionnée — citation et capture peuvent concorder
+         * avec la candidate, seule cette garde le voit (contre-revue v5-quinquies). */
+        if (obs.role !== "rattachement") {
+          echec(`${id} — ${qui} preuve de rattachement [${j}] : manifeste_n ${p.manifeste_n} est de rôle « ${obs.role} » — ` +
+            `une preuve de rattachement vise une observation de RÔLE rattachement, la liste versionnée ne se contourne pas`);
+        } else {
+          nsRattachementExerces.add(p.manifeste_n);
+        }
         if (obs.acces !== "consultee") echec(`${id} — ${qui} preuve de rattachement [${j}] : l'observation ${p.manifeste_n} n'est pas une consultation`);
         else {
           if (p.citation?.url !== obs.url_finale) {

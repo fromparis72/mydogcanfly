@@ -22,6 +22,10 @@
  * PENDANT LA COLLECTE :
  *   · UNE SEULE invocation curl par URL : corps (`-o`), en-têtes (`-D`), métadonnées (`-w`,
  *     `Content-Type` compris) et trace (`-v`, stderr) viennent du MÊME appel ;
+ *   · le PROTOCOLE est ÉPINGLÉ (`--proto =http,https`, `--proto-redir =http,https`) et
+ *     l'`url_finale` est REVALIDÉE au même contrat HTTP(S) avant toute persistance : une
+ *     redirection qui quitte le web interrompt tout le run, corps provisoire détruit,
+ *     manifeste intact (contre-revue v5-quinquies) ;
  *   · la DÉTECTION ENVIRONNEMENTALE vaut pour CHAQUE requête, et inspecte STDERR, les
  *     EN-TÊTES et le CORPS PROVISOIRE avant toute classification (contre-revue v5-bis : un
  *     403 dont seul le corps portait « EGRESS_BLOCKED » devenait une tentative légitime) :
@@ -62,6 +66,7 @@ import { createHash } from "node:crypto";
 import { join } from "node:path";
 import { tmpdir } from "node:os";
 import { extraireTexte, detecterFormat, VERSION_EXTRACTEUR } from "./extraire-texte-lot-a.mjs";
+import { erreursListeRattachements } from "./liste-rattachements-lot-a.mjs";
 
 const RACINE_PIECES = "audit-pays-pieces";
 const MANIFESTE = "audit-pays-consultations.json";
@@ -88,7 +93,8 @@ for (const id of pays) {
   attendus += liens.length;
 }
 if (attendus !== scelle.liens_total) refus(2, `${attendus} liens relevés, scellé ${scelle.liens_total}`);
-/* La liste des rattachements — versionnée, curée AVANT le run, et au SCHÉMA STRICT : la v4
+/* La liste des rattachements — versionnée, curée AVANT le run, et au SCHÉMA STRICT PARTAGÉ
+ * (`liste-rattachements-lot-a.mjs`, le même code que le validateur permanent) : la v4
  * acceptait file:///etc/passwd (contre-revue v5-quater), et le vrai curl aurait laissé du
  * contenu LOCAL dans le fichier provisoire du run. HTTP(S) uniquement, objets sans champ
  * inconnu, motif non blanc, URL uniques, fichier OBLIGATOIRE — tout écart refuse AVANT toute
@@ -96,32 +102,14 @@ if (attendus !== scelle.liens_total) refus(2, `${attendus} liens relevés, scell
 let rattachements;
 try { rattachements = JSON.parse(readFileSync("rattachements-a-consulter.json", "utf-8")); }
 catch { refus(2, "rattachements-a-consulter.json ABSENT ou JSON invalide — la liste versionnée est obligatoire, rien n'est écrit"); }
-if (!Array.isArray(rattachements)) refus(2, "rattachements-a-consulter.json : un TABLEAU d'objets { url, motif } est attendu");
-{
-  const urlsVues = new Set();
-  for (const [k, r] of rattachements.entries()) {
-    const cles = Object.keys(r ?? {}).sort();
-    if (JSON.stringify(cles) !== JSON.stringify(["motif", "url"])) {
-      refus(2, `rattachements-a-consulter.json [${k}] : champs [${cles.join(", ")}] — exactement { url, motif } est exigé, aucun champ inconnu`);
-    }
-    let u;
-    try { u = new URL(String(r.url)); } catch { refus(2, `rattachements-a-consulter.json [${k}] : URL imparsable « ${r.url} »`); }
-    if (!/^https?:$/.test(u.protocol) || u.hostname.length === 0) {
-      refus(2, `rattachements-a-consulter.json [${k}] : « ${r.url} » — HTTP(S) UNIQUEMENT, un schéma local ne sera jamais consulté`);
-    }
-    if (typeof r.motif !== "string" || r.motif.trim().length === 0) {
-      refus(2, `rattachements-a-consulter.json [${k}] : motif blanc ou absent`);
-    }
-    if (urlsVues.has(r.url)) refus(2, `rattachements-a-consulter.json [${k}] : URL « ${r.url} » en double`);
-    urlsVues.add(r.url);
-  }
-}
+for (const e of erreursListeRattachements(rattachements)) refus(2, `rattachements-a-consulter.json ${e}`);
 
 /* ---- 2. l'environnement est apte, sinon on REFUSE — on n'observe pas avec un thermomètre cassé */
 const version = spawnSync("curl", ["--version"], { encoding: "utf-8" });
 if (version.error || version.status !== 0) refus(2, "curl est absent ou inopérant — panne d'environnement, aucune « tentative » ne sera fabriquée");
 const SIGNATURES_PROXY = /CONNECT tunnel failed|EGRESS_BLOCKED|Proxy CONNECT aborted|Received HTTP code 403 from proxy/i;
-const sonde = spawnSync("curl", ["-vsS", "--max-time", "20", "-o", "/dev/null", "-w", "%{http_code}", "https://example.com/"], { encoding: "utf-8" });
+const sonde = spawnSync("curl", ["-vsS", "--proto", "=http,https", "--proto-redir", "=http,https",
+  "--max-time", "20", "-o", "/dev/null", "-w", "%{http_code}", "https://example.com/"], { encoding: "utf-8" });
 if (sonde.error || sonde.status !== 0 || !/^2\d\d$/.test(sonde.stdout) || SIGNATURES_PROXY.test(sonde.stderr || "")) {
   refus(2, `la sonde https://example.com/ échoue (${sonde.stdout || sonde.error?.message || "réseau"}) — panne systémique ou proxy bloquant : rien ne sera collecté`);
 }
@@ -162,7 +150,10 @@ function consulter(url, role, extras) {
   let r;
   try {
     r = spawnSync("curl", [
-      "-vsSL", "--max-time", "30",
+      /* Le protocole est ÉPINGLÉ, redirections comprises : une redirection ne peut pas faire
+       * quitter HTTP(S) — file://, ftp://, gopher:// ne seront JAMAIS suivis (contre-revue
+       * v5-quinquies : une url_finale locale était persistée). */
+      "-vsSL", "--proto", "=http,https", "--proto-redir", "=http,https", "--max-time", "30",
       "-A", "MyDogCanFly-Audit/lot-A (contact: audit@mydogcanfly.com)",
       "-o", corpsProvisoire, "-D", entetesBrutsChemin,
       "-w", "%{http_code}\t%{url_effective}\t%{num_redirects}\t%{content_type}", url,
@@ -181,10 +172,23 @@ function consulter(url, role, extras) {
       refus(2, `panne d'environnement sur ${url} (${r.error?.message ?? (r.status === null ? "processus interrompu" : `signature de blocage environnemental dans ${signatureEnv}`)}) — ` +
         `TOUT le run est interrompu, le manifeste n'est pas touché (répertoire conservé : ${RUN})`);
     }
+    const [code, urlFinale, redirections, contentType] = (r.stdout || "\t\t\t").split("\t");
+    /* L'URL FINALE est revalidée au MÊME contrat HTTP(S) que les listes d'entrée, AVANT toute
+     * persistance : même si un curl non épinglé suivait une redirection hors du web, rien de
+     * local n'entrerait dans les pièces — le corps provisoire est détruit, tout le run
+     * s'interrompt, le manifeste précédent reste intact (contre-revue v5-quinquies). */
+    if (r.status === 0) {
+      let uf = null;
+      try { uf = new URL(urlFinale); } catch { /* jugée ci-dessous */ }
+      if (!uf || !/^https?:$/.test(uf.protocol) || uf.hostname.length === 0) {
+        rmSync(corpsProvisoire, { force: true });
+        rmSync(entetesBrutsChemin, { force: true });
+        refus(2, `url_finale « ${urlFinale} » hors HTTP(S) sur ${url} — une redirection a quitté le web : ` +
+          `TOUT le run est interrompu, le corps provisoire est détruit, le manifeste n'est pas touché (répertoire conservé : ${RUN})`);
+      }
+    }
     /* Seule la PROJECTION ASSAINIE des en-têtes entre dans le run. */
     writeFileSync(cheminEntetes, assainirEntetes(entetesBruts));
-
-    const [code, urlFinale, redirections, contentType] = (r.stdout || "\t\t\t").split("\t");
     const trace = assainir(`# ${aujourdhui} — ${url}\n# curl exit=${r.status} · http=${code || "?"}\n\n${r.stderr || ""}`);
     const cheminTrace = join(RUN, `${num}-${hote}.trace.txt`);
     writeFileSync(cheminTrace, trace);
