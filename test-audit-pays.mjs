@@ -619,7 +619,7 @@ if (defauts.length === 0) {
   process.stdout.write("orpheline du run rougit — le manifeste est l'inventaire exact des pièces ; et la\n");
   process.stdout.write("v5-septies : l'inventaire est une BIJECTION (pièces partagées → les deux n nommés),\n");
   process.stdout.write("octets obligatoire au schéma et égal à la taille réelle du fichier.\n\n");
-  process.stdout.write("[audit-pays] le validateur mord, sur les 47 contrôles.\n");
+  process.stdout.write("[audit-pays] le validateur mord, sur les 56 contrôles.\n");
   process.exit(0);
 }
 process.stderr.write(`\n[audit-pays] ÉCHEC — ${defauts.length} défaut(s) :\n`);
