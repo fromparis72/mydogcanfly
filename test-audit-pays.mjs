@@ -16,14 +16,16 @@
  * (cas 0) ; chaque cas suivant mute UNE chose et exige la sortie 1 avec la cause nommée.
  * Aucune donnée réelle n'est affirmée : la fixture vit dans l'arbre jetable, jamais au dépôt.
  *
- * TRENTE-DEUX CAS : 0 (fixture conforme → 0), puis 17 à 44 dans l'ordre du dossier v4-ter,
- * puis 45-47 (contre-revue de l'exécution) : extrait absent de sa capture, extrait modifié
- * de façon concordante mais introuvable, preuve de rattachement sans capture. Chaque
- * consultation de la fixture référence sa CAPTURE BRUTE versionnée dans l'arbre jetable, et
- * chaque extrait s'y retrouve — comme l'exige le validateur.
+ * TRENTE-SEPT CAS : 0 (fixture conforme → 0), puis 17 à 44 dans l'ordre du dossier, puis
+ * 45-47 (ancres : extrait absent, extrait concordant mais introuvable, rattachement sans
+ * capture), puis 48-51 (contre-revue v5 : extrait fait de balises seules, extrait fait
+ * d'entités seules, PDF texte — l'extrait qui y figure S'ANCRE et celui qui n'y figure pas
+ * rougit —, PDF illisible/scanné où rien ne s'ancre). Chaque consultation de la fixture
+ * scelle brut + texte dérivé + version d'extracteur, comme l'exige le validateur.
  */
 import { readFileSync, writeFileSync, mkdirSync, copyFileSync, symlinkSync, mkdtempSync, rmSync } from "node:fs";
 import { createHash } from "node:crypto";
+import { extraireTexte, VERSION_EXTRACTEUR } from "./extraire-texte-lot-a.mjs";
 import { spawnSync } from "node:child_process";
 import { tmpdir } from "node:os";
 import { join, resolve } from "node:path";
@@ -91,6 +93,7 @@ try {
   if (ajout.status !== 0) throw new Error(`git worktree add : ${(ajout.stderr || "").trim()}`);
   symlinkSync(resolve("node_modules"), join(arbre, "node_modules"));
   copyFileSync("valider-audit-pays.mjs", join(arbre, "valider-audit-pays.mjs"));
+  copyFileSync("extraire-texte-lot-a.mjs", join(arbre, "extraire-texte-lot-a.mjs"));
   copyFileSync("etat-reference-lot-a.json", join(arbre, "etat-reference-lot-a.json"));
   mkdirSync(join(arbre, "audit-pays-pieces"), { recursive: true });
 
@@ -100,17 +103,34 @@ try {
   const CHEMIN_OBJETS = join(arbre, "packages/knowledge/raw/objects.json");
   const objetsPristins = readFileSync(CHEMIN_OBJETS, "utf-8");
 
-  /* Les captures-fixtures, versionnées dans l'arbre jetable : l'ancre des extraits. */
+  /* Les captures-fixtures : brut + texte dérivé (extracteur versionné) + PDF témoins. */
   const CITATION_RATTACHEMENT = "La Biosecurity Authority of Fiji est instituée par la loi sur la biosécurité (pièce d'essai).";
-  const contenuCapture = `<html><body><h2>section témoin</h2><p>${EXTRAIT_TEMOIN}</p></body></html>`;
-  const contenuRattachement = `<html><body><h2>section témoin de l'annuaire</h2><p>${CITATION_RATTACHEMENT}</p></body></html>`;
-  writeFileSync(join(arbre, "audit-pays-pieces/capture-temoin.html"), contenuCapture);
-  writeFileSync(join(arbre, "audit-pays-pieces/rattachement-temoin.html"), contenuRattachement);
-  gitArbre("add", "--", "audit-pays-pieces/capture-temoin.html", "audit-pays-pieces/rattachement-temoin.html");
-  const captureTemoin = { chemin: "audit-pays-pieces/capture-temoin.html", sha256: sha256(contenuCapture) };
+  const EXTRAIT_PDF = "Extrait temoin PDF du jeu d'essai, lot A.";
+  const poserCapture = (nom, contenu, contentType) => {
+    const chemin = `audit-pays-pieces/${nom}`;
+    writeFileSync(join(arbre, chemin), contenu);
+    const texte = extraireTexte(Buffer.isBuffer(contenu) ? contenu : Buffer.from(contenu), contentType);
+    const cheminTexte = `audit-pays-pieces/${nom}.texte.txt`;
+    writeFileSync(join(arbre, cheminTexte), texte);
+    gitArbre("add", "--", chemin, cheminTexte);
+    return { chemin, sha256: sha256(contenu), content_type: contentType,
+      texte_derive: { chemin: cheminTexte, sha256: sha256(Buffer.from(texte)) },
+      extracteur: VERSION_EXTRACTEUR };
+  };
+  const captureTemoin = poserCapture("capture-temoin.html",
+    `<html><body><h2>section témoin</h2><p>${EXTRAIT_TEMOIN}</p></body></html>`, "text/html; charset=utf-8");
+  const captureRattachement = poserCapture("rattachement-temoin.html",
+    `<html><body><h2>section témoin de l'annuaire</h2><p>${CITATION_RATTACHEMENT}</p></body></html>`, "text/html; charset=utf-8");
+  const fluxPdf = `BT /F1 12 Tf 72 700 Td (${EXTRAIT_PDF}) Tj ET`;
+  const capturePdfTexte = poserCapture("pdf-temoin.pdf",
+    Buffer.from(`%PDF-1.4\n4 0 obj << /Length ${fluxPdf.length} >> stream\n${fluxPdf}\nendstream endobj\ntrailer\n%%EOF`),
+    "application/pdf");
+  const capturePdfScanne = poserCapture("pdf-scanne.pdf",
+    Buffer.from("%PDF-1.4\n4 0 obj << >> stream\nimagebinairesanstexte\nendstream\n%%EOF"),
+    "application/pdf");
   const preuveTemoin = () => ({
     citation: quoteFixture(CITATION_RATTACHEMENT),
-    capture: { chemin: "audit-pays-pieces/rattachement-temoin.html", sha256: sha256(contenuRattachement) },
+    capture: JSON.parse(JSON.stringify(captureRattachement)),
   });
 
   const poser = (m) => writeFileSync(CHEMIN_MATRICE, JSON.stringify(m, null, 2));
@@ -254,15 +274,39 @@ try {
   /* ---- 45-47 · les extraits sont ancrés, les rattachements capturés -------------------------- */
   cas("45 extrait absent de la capture", (m) => {
     bs(m).candidates[0].piece.extrait = "Texte qui ne figure dans aucune capture versionnée du jeu d'essai.";
-  }, [/country_bs/, /INTROUVABLE dans la capture/]);
+  }, [/country_bs/, /INTROUVABLE dans le texte dérivé/]);
   cas("46 extrait modifié de façon concordante", (m) => {
     const nouveau = "Citation réécrite à l'identique des deux côtés, mais absente de la page.";
     fj(m).candidates[0].piece.extrait = nouveau;
     fj(m).decision.source.quote = nouveau;   // la concordance passe — seule l'ANCRE peut le voir
-  }, [/country_fj/, /INTROUVABLE dans la capture/]);
+  }, [/country_fj/, /INTROUVABLE dans le texte dérivé/]);
   cas("47 rattachement sans capture", (m) => {
     delete fj(m).candidates[0].preuves_rattachement[0].capture;
   }, [/schéma/, /preuves_rattachement/]);
+
+  /* ---- 48-51 · le vide ne s'ancre nulle part, et les PDF se lisent honnêtement --------------- */
+  cas("48 extrait de balises seules", (m) => {
+    bs(m).candidates[0].piece.extrait = "<b></b><i></i>";   // 14 caractères, 0 significatif
+  }, [/schéma/, /SIGNIFICATIFS|balisage/]);
+  cas("49 extrait d'entités seules", (m) => {
+    bs(m).candidates[0].piece.extrait = "&nbsp;&nbsp;&amp;&nbsp;&nbsp;&nbsp;";
+  }, [/schéma/, /SIGNIFICATIFS/]);
+  { /* 50 · PDF texte : l'extrait qui y figure s'ancre (vert), celui qui n'y figure pas rougit */
+    const m = neuve();
+    bs(m).candidates[0].capture = JSON.parse(JSON.stringify(capturePdfTexte));
+    bs(m).candidates[0].piece.extrait = EXTRAIT_PDF;
+    poser(m);
+    const r = lancer(arbre);
+    if (r.status !== 0) echec("50 PDF texte (ancré)", `sortie ${r.status} — un extrait réellement présent dans le PDF ne s'ancre pas :\n      ${r.stderr.trim().split("\n").slice(0, 3).join("\n      ")}`);
+  }
+  cas("50 PDF texte (extrait absent)", (m) => {
+    bs(m).candidates[0].capture = JSON.parse(JSON.stringify(capturePdfTexte));
+    bs(m).candidates[0].piece.extrait = "Une phrase qui ne figure pas dans le PDF témoin du jeu d'essai.";
+  }, [/country_bs/, /INTROUVABLE dans le texte dérivé/]);
+  cas("51 PDF illisible ou scanné", (m) => {
+    bs(m).candidates[0].capture = JSON.parse(JSON.stringify(capturePdfScanne));
+    bs(m).candidates[0].piece.extrait = EXTRAIT_PDF;
+  }, [/country_bs/, /INTROUVABLE dans le texte dérivé/]);
 } finally {
   gitWt("remove", "--force", arbre);
   rmSync(conteneur, { recursive: true, force: true });
@@ -270,14 +314,16 @@ try {
 
 /* ---- verdict ---------------------------------------------------------------------------------- */
 if (defauts.length === 0) {
-  process.stdout.write("32 cas éprouvés sur matrice-fixture en arbre jetable : la fixture conforme sort en 0,\n");
+  process.stdout.write("37 cas éprouvés sur matrice-fixture en arbre jetable : la fixture conforme sort en 0,\n");
   process.stdout.write("les 28 contrôles d'exécution du dossier (17-44) rougissent chacun pour sa cause —\n");
   process.stdout.write("bijection triplet, éligibilité, escalade du non-officiel affiché, concordances,\n");
   process.stdout.write("dérivation ADR-0007, contrats SourcedQuote, pièces prouvées (existence, empreinte,\n");
   process.stdout.write("suivi git, fichier régulier), relations temporelles, la matrice qui fait foi —\n");
-  process.stdout.write("et les trois ancres (45-47) : extrait absent de sa capture, extrait réécrit de\n");
-  process.stdout.write("façon concordante mais introuvable, rattachement sans capture.\n\n");
-  process.stdout.write("[audit-pays] le validateur mord, sur les 31 contrôles.\n");
+  process.stdout.write("les ancres (45-47) : extrait absent, extrait concordant mais introuvable,\n");
+  process.stdout.write("rattachement sans capture — et l'extraction (48-51) : balises seules et entités\n");
+  process.stdout.write("seules refusées (le vide s'ancre partout), PDF texte ancré ou rougissant selon que\n");
+  process.stdout.write("l'extrait y figure, PDF illisible où rien ne s'ancre.\n\n");
+  process.stdout.write("[audit-pays] le validateur mord, sur les 35 contrôles.\n");
   process.exit(0);
 }
 process.stderr.write(`\n[audit-pays] ÉCHEC — ${defauts.length} défaut(s) :\n`);

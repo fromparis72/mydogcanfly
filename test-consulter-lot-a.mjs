@@ -33,6 +33,10 @@
  *      manifeste qui se ferait passer pour complet.
  *   8. 0 CONSULTATION (tous les liens en 403, sonde pourtant verte) → sortie 2 : 0/91 est la
  *      signature d'une panne, le manifeste n'est PAS remplacé.
+ *   9. PROXY PARTIEL (sonde verte, UNE autorité répond « CONNECT tunnel failed », les autres
+ *      en 2xx) → sortie 2 : la signature environnementale interrompt TOUT le run avant
+ *      d'être expurgée, elle ne devient jamais une « tentative » de la source ; le manifeste
+ *      précédent est intact. [contre-revue v5]
  */
 import { readFileSync, writeFileSync, mkdirSync, copyFileSync, symlinkSync, mkdtempSync, rmSync, existsSync, readdirSync, chmodSync } from "node:fs";
 import { spawnSync } from "node:child_process";
@@ -59,11 +63,15 @@ const args = process.argv.slice(2);
 if (args.includes("--version")) { process.stdout.write("curl 8.0.0-faux\\n"); process.exit(0); }
 const url = args[args.length - 1];
 const sortie = args.includes("-o") ? args[args.indexOf("-o") + 1] : null;
+const entetes = args.includes("-D") ? args[args.indexOf("-D") + 1] : null;
 const mode = process.env.FAUX_MODE || "ok";
 const etat = process.env.FAUX_ETAT;
 /* La ligne que l'assainisseur DOIT expurger. */
 process.stderr.write("* Uses proxy env variable https_proxy == 'http://SECRET-PROXY:3128'\\n* Connected (faux)\\n");
 if (mode === "proxy") { process.stderr.write("curl: (56) CONNECT tunnel failed, response 403\\n"); process.exit(56); }
+if (mode === "proxy-partiel" && url.includes("paaf.gov.kw")) {
+  process.stderr.write("curl: (56) CONNECT tunnel failed, response 403\\n"); process.exit(56);
+}
 if (mode === "interruption" && !url.includes("example.com")) {
   const c = path.join(etat, "compteur");
   const n = (fs.existsSync(c) ? Number(fs.readFileSync(c, "utf8")) : 0) + 1;
@@ -78,9 +86,11 @@ const code = (est403 || mixte403) ? "403" : "200";
 let finale = url;
 if (mode === "derive" && url.includes("moa.gov.jm")) finale = "https://parking-domaine.example/vendu";
 if (sortie) fs.writeFileSync(sortie, "<html><body>Page de " + url + " (faux curl, jeu d'essai)</body></html>");
+if (entetes) fs.writeFileSync(entetes, "HTTP/1.1 " + code + " OK\\r\\nContent-Type: text/html; charset=utf-8\\r\\n\\r\\n");
 /* Le format -w est RESPECTÉ, comme le vrai curl : la sonde demande %{http_code} seul. */
 const format = args.includes("-w") ? args[args.indexOf("-w") + 1] : "";
-process.stdout.write(format.replace("%{http_code}", code).replace("%{url_effective}", finale).replace("%{num_redirects}", "0"));
+process.stdout.write(format.replace("%{http_code}", code).replace("%{url_effective}", finale)
+  .replace("%{num_redirects}", "0").replace("%{content_type}", "text/html; charset=utf-8"));
 process.exit(0);
 `);
 writeFileSync(join(bin, "curl"), `#!/bin/sh\nexec "${process.execPath}" "${fauxCurlJs}" "$@"\n`);
@@ -97,6 +107,7 @@ try {
   const ajout = gitWt("add", "--detach", arbre, "HEAD");
   if (ajout.status !== 0) throw new Error(`git worktree add : ${(ajout.stderr || "").trim()}`);
   copyFileSync("consulter-candidates-lot-a.mjs", join(arbre, "consulter-candidates-lot-a.mjs"));
+  copyFileSync("extraire-texte-lot-a.mjs", join(arbre, "extraire-texte-lot-a.mjs"));
   copyFileSync("etat-reference-lot-a.json", join(arbre, "etat-reference-lot-a.json"));
   const CHEMIN_GUIDES = join(arbre, "packages/ui/src/data/countries.generated.json");
   const guidesPristins = readFileSync(CHEMIN_GUIDES, "utf-8");
@@ -147,6 +158,10 @@ try {
       const trace = readFileSync(join(arbre, ex.trace.chemin), "utf-8");
       if (trace.includes("SECRET-PROXY")) echec("4 nominale", "le SECRET de proxy apparaît dans une trace versionnable");
       if (!trace.includes("[ligne expurgée : proxy/authentification]")) echec("4 nominale", "l'assainissement ne laisse pas sa marque");
+      if (!ex.capture.texte_derive || !existsSync(join(arbre, ex.capture.texte_derive.chemin))) {
+        echec("4 nominale", "le texte dérivé de la première consultation n'existe pas");
+      }
+      if (!ex.capture.extracteur || !ex.capture.content_type) echec("4 nominale", "la capture ne scelle pas extracteur et content_type");
     }
   }
 
@@ -194,6 +209,15 @@ try {
     if (!/signature d'une panne/.test(r.stderr)) echec("8 zéro consultation", "le refus ne nomme pas la panne");
     if (readFileSync(MANIFESTE(), "utf-8") !== manifesteAvant) echec("8 zéro consultation", "le manifeste a été remplacé malgré le refus");
   }
+
+  /* ---- 9. proxy partiel : la signature environnementale interrompt TOUT le run --------------- */
+  {
+    const manifesteAvant = readFileSync(MANIFESTE(), "utf-8");
+    const r = lancer("proxy-partiel");
+    if (r.status !== 2) echec("9 proxy partiel", `sortie ${r.status} au lieu de 2 — la signature de proxy devient une « tentative » de la source`);
+    if (!/panne d'environnement sur/.test(r.stderr)) echec("9 proxy partiel", "le refus ne nomme pas la panne par requête");
+    if (readFileSync(MANIFESTE(), "utf-8") !== manifesteAvant) echec("9 proxy partiel", "le manifeste précédent a été touché");
+  }
 } finally {
   gitWt("remove", "--force", arbre);
   rmSync(conteneur, { recursive: true, force: true });
@@ -201,11 +225,13 @@ try {
 
 /* ---- verdict ---------------------------------------------------------------------------------- */
 if (defauts.length === 0) {
-  process.stdout.write("8 cas éprouvés au faux curl : curl absent, proxy bloquant et inventaire dérivé\n");
+  process.stdout.write("9 cas éprouvés au faux curl : curl absent, proxy bloquant et inventaire dérivé\n");
   process.stdout.write("REFUSENT sans rien écrire ; la collecte nominale corrèle corps et trace d'un même\n");
   process.stdout.write("appel et expurge les secrets de proxy ; un 403 et un timeout restent des tentatives\n");
   process.stdout.write("précises ; une URL dérivée est enregistrée fidèlement ; une interruption ne publie\n");
-  process.stdout.write("rien et ne détruit rien ; zéro consultation refuse au lieu de fabriquer 91 pièces.\n\n");
+  process.stdout.write("rien et ne détruit rien ; zéro consultation refuse au lieu de fabriquer 91 pièces ;\n");
+  process.stdout.write("et une signature de proxy sur UNE requête, sonde pourtant verte, interrompt tout le\n");
+  process.stdout.write("run avant expurgation — jamais une « tentative » de la source.\n\n");
   process.stdout.write("[collecte] une panne d'environnement n'est pas une observation de source.\n");
   process.exit(0);
 }

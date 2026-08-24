@@ -1,4 +1,4 @@
-# Lot A — Audit des 18 pays sans source · dossier de mesure et de conception (v5)
+# Lot A — Audit des 18 pays sans source · dossier de mesure et de conception (v5-bis)
 
 **Mesuré sur `main` après fusion du dossier d'achèvement (`1dd62010ea183422f02553877df4706714739080`).
 Ce dossier ne corrige rien : aucune date, aucune source, aucune donnée métier n'est écrite.
@@ -9,8 +9,8 @@ Reproduction :
 ```bash
 node --import tsx mesurer-lot-a.mjs --as-of=2026-08-24   # l'état contre le scellé — sortie 1 au premier écart
 node test-mesure-lot-a.mjs                               # 16 cas : le scellé est exact, et il ne se remplace pas
-node test-audit-pays.mjs                                 # 32 cas : le validateur de la matrice mord (17-47)
-node test-consulter-lot-a.mjs                            # 8 cas au faux curl : le collecteur ne fabrique rien
+node test-audit-pays.mjs                                 # 37 cas : le validateur de la matrice mord (17-51)
+node test-consulter-lot-a.mjs                            # 9 cas au faux curl : le collecteur ne fabrique rien
 ```
 
 La liste des 18 est celle que le bloc contractuel du dossier d'achèvement fige
@@ -103,6 +103,24 @@ expurgées), refuse de publier sur 0 consultation (la signature d'une panne), et
 manifeste que complet, par renommage atomique — 8 contre-épreuves au faux `curl` (absent,
 proxy bloquant, inventaire dérivé, nominale, 403+timeout, dérive d'URL, interruption, zéro
 consultation).
+
+**L'ancrage v5 acceptait un extrait vide, et lisait les PDF comme du HTML** (contre-revue
+v5). Un « extrait » fait de balises (`<b></b><i></i>`, 14 caractères) se normalisait en
+chaîne vide — et le vide s'ancre dans n'importe quelle capture ; et 17 des 91 candidates
+sont des PDF, que le collecteur nommait `.html` sans Content-Type et que le validateur
+lisait en UTF-8 avant d'y ôter des balises — une citation de PDF ne pouvait pas s'ancrer
+honnêtement. Par ailleurs, la détection environnementale ne valait que pour la sonde : la
+sonde verte, une autorité répondant « CONNECT tunnel failed » devenait une « tentative » de
+la source, sa signature expurgée. La v5-bis ferme tout : au moins **dix caractères
+significatifs après normalisation** et **aucun balisage** dans l'extrait ; le collecteur
+scelle le **Content-Type et les en-têtes corrélés**, conserve le **brut** (extension selon
+le type), et produit le **texte dérivé** par l'**extracteur déterministe versionné**
+`extraire-texte-lot-a.mjs` (HTML et PDF — flux dégonflés par zlib, opérateurs de texte
+relevés ; un PDF scanné donne une chaîne vide où rien ne s'ancre) — brut, texte dérivé et
+version scellés ensemble, le validateur **re-dérivant** le texte depuis le brut ; et la
+**détection environnementale vaut pour chaque requête** (`r.error`, statut nul, signature de
+proxy dans la trace brute → tout le run s'interrompt, manifeste intact). Contre-épreuves
+48–51 et cas collecteur 9.
 
 ## 1. La mesure a changé la nature de la dette — et ce que la promotion fait, honnêtement
 
@@ -309,9 +327,10 @@ Les **16 premières** sont éprouvées par `test-mesure-lot-a.mjs` sur l'état d
 les trois faux verts de la v1, les trois passages indus de la v2, la dérive commitée et le
 `_scelle` falsifié de la v3, les contrôles `--as-of`, la date future, et la génération saine
 (candidat égal au scellé, scellé jamais touché par l'instrument).
-Le harnais d'exécution `test-audit-pays.mjs` éprouve les contrôles **17 à 47** (32 cas,
-fixture jetable comprise), et `test-consulter-lot-a.mjs` éprouve le collecteur (8 cas au faux
-`curl`). Le total est **verrouillé à 47 + 8** :
+Le harnais d'exécution `test-audit-pays.mjs` éprouve les contrôles **17 à 51** (37 cas,
+fixture jetable et sous-cas vert du PDF compris), et `test-consulter-lot-a.mjs` éprouve le
+collecteur (9 cas au faux `curl`, dont le proxy PARTIEL — sonde verte, une autorité bloquée —
+qui interrompt tout le run). Le total est **verrouillé à 51 + 9** :
 
 | # | mutation | attendu |
 |---|---|---|
@@ -346,6 +365,10 @@ fixture jetable comprise), et `test-consulter-lot-a.mjs` éprouve le collecteur 
 | 45 | extrait **absent** de la capture brute référencée | échec — ancré ou inventé |
 | 46 | extrait **réécrit de façon concordante** des deux côtés (concordance verte) mais introuvable dans la capture | échec — seule l'ancre le voit |
 | 47 | preuve de rattachement **sans capture** appariée | échec — schéma, la paire est obligatoire |
+| 48 | extrait fait de **balises seules** (se normalise en vide) | échec — dix caractères significatifs exigés, le vide s'ancre partout |
+| 49 | extrait fait d'**entités seules** | échec — même garde |
+| 50 | **PDF texte** : l'extrait qui y figure S'ANCRE (sous-cas vert) ; celui qui n'y figure pas | échec — introuvable dans le texte dérivé |
+| 51 | **PDF illisible ou scanné** : texte dérivé vide | échec — rien ne s'ancre dans le vide |
 
 ## 6. Interdits, et effets de bord assumés
 

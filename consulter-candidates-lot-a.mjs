@@ -20,9 +20,17 @@
  *     SYSTÉMIQUE : refus, sortie 2, rien d'écrit.
  *
  * PENDANT LA COLLECTE :
- *   · UNE SEULE invocation curl par URL : corps (`-o`), métadonnées (`-w`) et trace (`-v`,
- *     stderr) viennent du MÊME appel — jamais un statut d'une requête et un transcript d'une
- *     autre ;
+ *   · UNE SEULE invocation curl par URL : corps (`-o`), en-têtes (`-D`), métadonnées (`-w`,
+ *     `Content-Type` compris) et trace (`-v`, stderr) viennent du MÊME appel ;
+ *   · la DÉTECTION ENVIRONNEMENTALE vaut pour CHAQUE requête, pas seulement la sonde
+ *     (contre-revue : la sonde passait, une autorité répondait « CONNECT tunnel failed »,
+ *     et cette signature — expurgée — devenait une « tentative » de la source) : `r.error`,
+ *     `status === null` ou une signature de proxy dans la trace BRUTE interrompent TOUT le
+ *     run, sortie 2, manifeste intact ;
+ *   · chaque corps 2xx est conservé BRUT (extension selon le Content-Type), et son TEXTE
+ *     DÉRIVÉ est produit par l'extracteur déterministe versionné
+ *     (`extraire-texte-lot-a.mjs`, version scellée dans le manifeste) — c'est dans ce texte
+ *     que les extraits s'ancreront ;
  *   · chaque run écrit dans un RÉPERTOIRE NEUF `audit-pays-pieces/run-<horodatage>/` ; rien
  *     n'est effacé — les runs précédents restent ce qu'ils sont ;
  *   · les traces sont ASSAINIES avant écriture : toute ligne portant une information de proxy
@@ -41,6 +49,7 @@ import { readFileSync, writeFileSync, mkdirSync, renameSync, existsSync } from "
 import { spawnSync } from "node:child_process";
 import { createHash } from "node:crypto";
 import { join } from "node:path";
+import { extraireTexte, VERSION_EXTRACTEUR } from "./extraire-texte-lot-a.mjs";
 
 const RACINE_PIECES = "audit-pays-pieces";
 const MANIFESTE = "audit-pays-consultations.json";
@@ -78,7 +87,7 @@ if (sonde.error || sonde.status !== 0 || !/^2\d\d$/.test(sonde.stdout) || SIGNAT
 }
 
 /* ---- 3. répertoire de run NEUF — rien n'est effacé ------------------------------------------ */
-const horodatage = new Date().toISOString().replace(/[:.]/g, "-").slice(0, 19);
+const horodatage = new Date().toISOString().replace(/[:.]/g, "-").slice(0, 23);
 const RUN = join(RACINE_PIECES, `run-${horodatage}`);
 if (existsSync(RUN)) refus(2, `le répertoire de run ${RUN} existe déjà`);
 mkdirSync(RUN, { recursive: true });
@@ -99,24 +108,49 @@ for (const id of pays) {
     const hote = (() => { try { return new URL(lien.url).hostname.replace(/^www\./, ""); } catch { return "hote-invalide"; } })();
     process.stdout.write(`[${num}/${attendus}] ${id} · ${lien.url}\n`);
 
-    const corps = join(RUN, `${num}-${hote}.html`);
+    const corpsProvisoire = join(RUN, `${num}-${hote}.corps`);
+    const cheminEntetes = join(RUN, `${num}-${hote}.headers.txt`);
     const r = spawnSync("curl", [
       "-vsSL", "--max-time", "30",
       "-A", "MyDogCanFly-Audit/lot-A (contact: audit@mydogcanfly.com)",
-      "-o", corps, "-w", "%{http_code}\t%{url_effective}\t%{num_redirects}", lien.url,
+      "-o", corpsProvisoire, "-D", cheminEntetes,
+      "-w", "%{http_code}\t%{url_effective}\t%{num_redirects}\t%{content_type}", lien.url,
     ], { encoding: "utf-8" });
-    const [code, urlFinale, redirections] = (r.stdout || "\t\t").split("\t");
+
+    /* LA DÉTECTION ENVIRONNEMENTALE VAUT POUR CHAQUE REQUÊTE — sur la trace BRUTE, avant
+     * tout assainissement : une panne de NOTRE côté interrompt tout, elle ne devient jamais
+     * une « tentative » de la source. Le manifeste précédent reste intact. */
+    if (r.error || r.status === null || SIGNATURES_PROXY.test(r.stderr || "")) {
+      refus(2, `panne d'environnement sur ${lien.url} (${r.error?.message ?? (r.status === null ? "processus interrompu" : "signature de proxy bloquant dans la trace")}) — ` +
+        `TOUT le run est interrompu, le manifeste n'est pas touché (répertoire conservé : ${RUN})`);
+    }
+
+    const [code, urlFinale, redirections, contentType] = (r.stdout || "\t\t\t").split("\t");
     const trace = assainir(`# ${aujourdhui} — ${lien.url}\n# curl exit=${r.status} · http=${code || "?"}\n\n${r.stderr || ""}`);
     const cheminTrace = join(RUN, `${num}-${hote}.trace.txt`);
     writeFileSync(cheminTrace, trace);
 
     if (r.status === 0 && /^2\d\d$/.test(code)) {
-      const contenu = readFileSync(corps);
+      const contenu = readFileSync(corpsProvisoire);
+      /* Le brut garde son extension selon le Content-Type ; le texte dérivé vient de
+       * l'extracteur déterministe versionné — c'est LUI que les extraits devront retrouver. */
+      const ext = /pdf/i.test(contentType) ? "pdf" : (/html|xml|text\//i.test(contentType) ? "html" : "bin");
+      const corps = join(RUN, `${num}-${hote}.${ext}`);
+      renameSync(corpsProvisoire, corps);
+      const texte = extraireTexte(contenu, contentType);
+      const cheminTexte = join(RUN, `${num}-${hote}.texte.txt`);
+      writeFileSync(cheminTexte, texte);
+      const entetes = readFileSync(cheminEntetes);
       resultats.push({
         n, country_id: id, index_lien: i, label: lien.label, url_publiee: lien.url,
         acces: "consultee", statut_http: Number(code), url_finale: urlFinale,
         redirections: Number(redirections), consultee_le: aujourdhui,
-        capture: { chemin: corps, sha256: sha256(contenu), octets: contenu.length },
+        content_type: contentType || "inconnu",
+        capture: { chemin: corps, sha256: sha256(contenu), octets: contenu.length,
+          content_type: contentType || "inconnu",
+          texte_derive: { chemin: cheminTexte, sha256: sha256(Buffer.from(texte)) },
+          extracteur: VERSION_EXTRACTEUR },
+        entetes: { chemin: cheminEntetes, sha256: sha256(entetes) },
         trace: { type: "transcript", chemin: cheminTrace, sha256: sha256(Buffer.from(trace)) },
       });
     } else {
@@ -138,7 +172,8 @@ if (consultees === 0) {
     `Manifeste NON publié ; traces conservées dans ${RUN} pour diagnostic.`);
 }
 const brouillon = join(RUN, "manifeste.tmp.json");
-writeFileSync(brouillon, JSON.stringify({ consultees_le: aujourdhui, run: RUN, total: attendus, resultats }, null, 2) + "\n");
+writeFileSync(brouillon, JSON.stringify({ consultees_le: aujourdhui, run: RUN, total: attendus,
+  extracteur: VERSION_EXTRACTEUR, resultats }, null, 2) + "\n");
 renameSync(brouillon, MANIFESTE);
 
 process.stdout.write(`\n${attendus} liens · ${consultees} consultation(s) · ${attendus - consultees} tentative(s)\n`);

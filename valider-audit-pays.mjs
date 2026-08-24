@@ -13,10 +13,12 @@
  *   · PIÈCES PROUVÉES — tout fichier référencé est sous `audit-pays-pieces/`, RÉGULIER (pas
  *     un lien symbolique), SUIVI par git (`git ls-files --error-unmatch`), SHA-256 de 64 hexa
  *     égal au contenu ;
- *   · EXTRAITS ANCRÉS — toute consultation référence sa CAPTURE BRUTE versionnée, et tout
- *     extrait (pièce décisive comme citation de rattachement) doit être RETROUVÉ dans sa
- *     capture après normalisation déterministe (balises HTML ôtées, entités décodées, blancs
- *     unifiés, casse conservée) : une citation inventée ne passe pas ;
+ *   · EXTRAITS ANCRÉS — toute consultation scelle sa CAPTURE BRUTE, son TEXTE DÉRIVÉ et la
+ *     VERSION de l'extracteur déterministe (`extraire-texte-lot-a.mjs`, HTML et PDF). Le
+ *     validateur RE-DÉRIVE le texte depuis le brut et exige l'égalité d'empreinte, puis
+ *     recherche l'extrait dans CE texte. L'extrait lui-même : au moins dix caractères
+ *     SIGNIFICATIFS après normalisation (un extrait fait de balises se normalise en vide, et
+ *     le vide s'ancre partout — refusé), et AUCUN balisage dans l'extrait ;
  *   · CONTRATS CANONIQUES RÉUTILISÉS — `SourcedQuote` pour la preuve décisive et pour chaque
  *     preuve de rattachement ; `Source` pour la projection ; `reviewDueFrom` pour l'échéance ;
  *   · PROMOTION — désigne son observation décisive, dont la pièce est un `extrait` ;
@@ -44,6 +46,7 @@ import { z } from "zod";
 import { Source } from "./packages/knowledge/src/common.ts";
 import { reviewDueFrom } from "./packages/knowledge/src/common.ts";
 import { SourcedQuote } from "./packages/knowledge/src/breed-restrictions.ts";
+import { extraireTexte, normaliser, VERSION_EXTRACTEUR } from "./extraire-texte-lot-a.mjs";
 
 const MATRICE = "audit-pays.json";
 const SCELLE = "etat-reference-lot-a.json";
@@ -71,15 +74,23 @@ const LT = z.object({ en: z.string(), fr: z.string(), es: z.string().optional(),
 const Langue = z.string().regex(/^[a-z]{2,3}(-[A-Za-z0-9]{2,8})*$/);
 const Sha256 = z.string().regex(/^[0-9a-f]{64}$/, "SHA-256 de 64 caractères hexadécimaux attendu");
 const Fichier = z.object({ chemin: z.string().min(1), sha256: Sha256 }).strict();
+const CaptureScellee = z.object({
+  chemin: z.string().min(1), sha256: Sha256,
+  content_type: z.string().min(1),
+  texte_derive: Fichier,
+  extracteur: z.string().min(1),
+}).strict();
 
-const PieceExtrait = z.object({ type: z.literal("extrait"), extrait: z.string().min(10), langue: Langue, locator: z.string().min(1) }).strict();
+const PieceExtrait = z.object({ type: z.literal("extrait"), extrait: z.string().min(10), langue: Langue, locator: z.string().min(1) }).strict()
+  .refine((p) => normaliser(p.extrait).length >= 10, { message: "moins de dix caractères SIGNIFICATIFS après normalisation — le vide s'ancre partout", path: ["extrait"] })
+  .refine((p) => !/<[^>]*>/.test(p.extrait), { message: "balisage refusé dans l'extrait — l'extrait est du texte, pas du HTML", path: ["extrait"] });
 const PieceCapture = z.object({ type: z.literal("capture"), chemin: z.string().min(1), sha256: Sha256 }).strict();
 const Trace = z.object({ type: z.enum(["transcript", "capture"]), chemin: z.string().min(1), sha256: Sha256 }).strict();
 
 const NatureEditeur = z.enum(["autorite_pays", "mission_diplomatique_pays", "officiel_tiers", "non_officiel", "non_etabli"]);
 const Pertinence = z.enum(["etaye_le_fait", "partielle", "page_generique", "hors_sujet", "non_evaluee"]);
 
-const PreuveRattachement = z.object({ citation: z.unknown(), capture: Fichier }).strict();
+const PreuveRattachement = z.object({ citation: z.unknown(), capture: CaptureScellee }).strict();
 
 const CandidateConsultee = z.object({
   label: LT,
@@ -88,7 +99,7 @@ const CandidateConsultee = z.object({
   url_finale: z.string().url(),
   statut_http: z.number().int().min(200).max(299),
   consultee_le: DateISO,
-  capture: Fichier,                          // la capture BRUTE de la page — l'ancre des extraits
+  capture: CaptureScellee,                   // brut + texte dérivé + version d'extracteur, scellés ensemble
   piece: z.union([PieceExtrait, PieceCapture]),
   captures_complementaires: z.array(Fichier).optional(),
   nature_editeur: NatureEditeur,
@@ -184,24 +195,37 @@ const fichierProuve = (pays, quoi, chemin, sha) => {
   if (reel !== sha) echec(`${pays} — ${quoi} : SHA-256 de « ${chemin} » ≠ scellé (contenu remplacé à chemin constant ?)`);
 };
 
-/* ---- ancrage des extraits : normalisation DÉTERMINISTE, définie une fois -------------------- */
-const normaliser = (texte) => String(texte)
-  .replace(/<script[\s\S]*?<\/script>/gi, " ")
-  .replace(/<style[\s\S]*?<\/style>/gi, " ")
-  .replace(/<[^>]*>/g, " ")
-  .replace(/&nbsp;/gi, " ").replace(/&amp;/gi, "&").replace(/&lt;/gi, "<").replace(/&gt;/gi, ">")
-  .replace(/&quot;/gi, '"').replace(/&apos;|&#0*39;/gi, "'")
-  .replace(/&#x([0-9a-f]+);/gi, (_, h) => { try { return String.fromCodePoint(parseInt(h, 16)); } catch { return " "; } })
-  .replace(/&#(\d+);/g, (_, d) => { try { return String.fromCodePoint(Number(d)); } catch { return " "; } })
-  .replace(/\s+/g, " ").trim();
+/* ---- ancrage : le texte dérivé fait foi, et il est RE-DÉRIVÉ depuis le brut ----------------- */
+/** Vérifie la capture scellée entière : brut prouvé, texte dérivé prouvé, version d'extracteur
+ *  exacte, et texte dérivé ÉGAL à la re-dérivation depuis le brut. */
+const captureProuvee = (pays, quoi, cap) => {
+  fichierProuve(pays, `${quoi} (brut)`, cap.chemin, cap.sha256);
+  fichierProuve(pays, `${quoi} (texte dérivé)`, cap.texte_derive.chemin, cap.texte_derive.sha256);
+  if (cap.extracteur !== VERSION_EXTRACTEUR) {
+    echec(`${pays} — ${quoi} : extracteur « ${cap.extracteur} » ≠ version courante « ${VERSION_EXTRACTEUR} »`);
+    return;
+  }
+  try {
+    const rederive = extraireTexte(readFileSync(cap.chemin), cap.content_type);
+    const reel = createHash("sha256").update(Buffer.from(rederive)).digest("hex");
+    if (reel !== cap.texte_derive.sha256) {
+      echec(`${pays} — ${quoi} : le texte dérivé scellé n'est PAS la re-dérivation du brut par l'extracteur ${VERSION_EXTRACTEUR}`);
+    }
+  } catch { /* brut illisible : déjà jugé par fichierProuve */ }
+};
 
-/** L'extrait doit se RETROUVER dans la capture — sinon il est inventé, ou la page a changé. */
-const ancre = (pays, quoi, extrait, cheminCapture) => {
-  let brut;
-  try { brut = readFileSync(cheminCapture, "utf-8"); }
-  catch { return; /* l'existence du fichier est déjà jugée par fichierProuve */ }
-  if (!normaliser(brut).includes(normaliser(extrait))) {
-    echec(`${pays} — ${quoi} : l'extrait est INTROUVABLE dans la capture « ${cheminCapture} » (après normalisation déterministe) — citation inventée ou page changée`);
+/** L'extrait doit se RETROUVER dans le TEXTE DÉRIVÉ — sinon il est inventé, ou la page a changé. */
+const ancre = (pays, quoi, extrait, cap) => {
+  let texte;
+  try { texte = readFileSync(cap.texte_derive.chemin, "utf-8"); }
+  catch { return; /* l'existence est déjà jugée */ }
+  const cible = normaliser(extrait);
+  if (cible.length < 10) {
+    echec(`${pays} — ${quoi} : moins de dix caractères SIGNIFICATIFS après normalisation — le vide s'ancre partout`);
+    return;
+  }
+  if (!normaliser(texte).includes(cible)) {
+    echec(`${pays} — ${quoi} : l'extrait est INTROUVABLE dans le texte dérivé « ${cap.texte_derive.chemin} » — citation inventée ou page changée`);
   }
 };
 
@@ -222,8 +246,8 @@ for (const id of CONTRACTUELS) {
       dansFenetre(c.consultee_le, id, `${qui} consultee_le`);
       if (a.audite_le < c.consultee_le) echec(`${id} — audite_le « ${a.audite_le} » antérieure à la consultation ${qui}`);
       if (c.capture?.chemin) {
-        fichierProuve(id, `${qui} capture brute`, c.capture.chemin, c.capture.sha256);
-        if (c.piece?.type === "extrait") ancre(id, `${qui} pièce extrait`, c.piece.extrait, c.capture.chemin);
+        captureProuvee(id, `${qui} capture`, c.capture);
+        if (c.piece?.type === "extrait") ancre(id, `${qui} pièce extrait`, c.piece.extrait, c.capture);
       }
       if (c.piece?.type === "capture") fichierProuve(id, `${qui} pièce capture`, c.piece.chemin, c.piece.sha256);
       for (const [j, f] of (c.captures_complementaires ?? []).entries()) fichierProuve(id, `${qui} capture complémentaire [${j}]`, f.chemin, f.sha256);
@@ -245,8 +269,8 @@ for (const id of CONTRACTUELS) {
         dansFenetre(p.citation.verified_date, id, `${qui} preuve de rattachement [${j}] verified_date`);
       }
       /* Chaque preuve de rattachement est LIÉE à sa propre capture scellée, et sa citation s'y retrouve. */
-      fichierProuve(id, `${qui} capture de rattachement [${j}]`, p.capture.chemin, p.capture.sha256);
-      if (typeof p.citation?.quote === "string") ancre(id, `${qui} citation de rattachement [${j}]`, p.citation.quote, p.capture.chemin);
+      captureProuvee(id, `${qui} capture de rattachement [${j}]`, p.capture);
+      if (typeof p.citation?.quote === "string") ancre(id, `${qui} citation de rattachement [${j}]`, p.citation.quote, p.capture);
     }
     /* 25 — ESCALADE : le lien reste affiché sous « Sources officielles » par la fiche. */
     if (c.nature_editeur === "non_officiel") {
