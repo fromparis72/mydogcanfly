@@ -1,4 +1,4 @@
-# Lot A — Audit des 18 pays sans source · dossier de mesure et de conception (v4)
+# Lot A — Audit des 18 pays sans source · dossier de mesure et de conception (v4-bis)
 
 **Mesuré sur `main` après fusion du dossier d'achèvement (`1dd62010ea183422f02553877df4706714739080`).
 Ce dossier ne corrige rien : aucune date, aucune source, aucune donnée métier n'est écrite.
@@ -59,6 +59,18 @@ qu'un **candidat**, et seulement si les données mesurées sont **identiques à 
 humain, sous revue. `_scelle` est **validé strictement** : exactement `{ sha_base }`, égal à
 la base — falsifié, il rougit. `test-mesure-lot-a.mjs` : **16 cas**, dont la dérive commitée
 (génération refusée, candidat absent, scellé intact) et le `_scelle` falsifié.
+
+**L'observation v4 n'était ni durable ni univoque** (contre-revue v4). `url_finale` et
+`consultee_le` étaient définies deux fois — dans la branche `consultee` puis dans
+l'« observation stricte » — deux copies qui pouvaient diverger ; un « identifiant de
+capture » pouvait désigner un fichier absent ou remplacé ; et « trace ou capture lorsqu'elle
+existe » laissait passer une tentative sans preuve, le validateur ne pouvant pas savoir si
+une trace existait. La v4-bis fond l'observation DANS la branche (aucune duplication), met la
+pièce sous **union stricte vérifiable** (extrait verbatim, ou capture **versionnée** à chemin
+et SHA-256 dont l'existence et l'empreinte se vérifient), rend la **trace durable
+obligatoire** pour toute tentative, exige la **concordance** entre la promotion et son
+observation décisive, et interdit toute nature d'éditeur autre que `non_etabli` sans preuve
+de rattachement. Cinq contre-épreuves (37–41).
 
 ## 1. La mesure a changé la nature de la dette — et ce que la promotion fait, honnêtement
 
@@ -129,9 +141,20 @@ ne pouvait plus être rattachée à une autorité ; une candidate non officielle
 `source_type: "other"` que `SourcedQuote` refuse à bon droit). La candidate est donc une
 **union discriminée stricte** dont chaque branche ne porte que ce qu'elle peut porter :
 
-1. **Observation d'accès** — discriminant `acces` :
-   `{ acces: "consultee", consultee_le, url_finale }` ou
-   `{ acces: "tentative", tentee_le, resultat }` (« 403 », « timeout », « DNS »…).
+1. **Observation d'accès** — discriminant `acces`, et l'observation EST la branche : chaque
+   champ n'existe qu'à UN endroit (contre-revue v4 : deux copies d'`url_finale` pouvaient
+   diverger).
+   - `{ acces: "consultee", url_finale, statut_http, consultee_le, piece }` — la **pièce est
+     obligatoire**, sous union stricte :
+     `{ type: "extrait", extrait, langue, locator }` (verbatim) **ou**
+     `{ type: "capture", chemin, sha256 }` — une capture **versionnée dans le dépôt**, dont le
+     validateur vérifie l'**existence ET l'empreinte SHA-256** : un identifiant qui pointe
+     vers rien, ou un contenu remplacé à chemin constant, rougit.
+   - `{ acces: "tentative", url, tentee_le, resultat, trace }` — le résultat est précis
+     (« HTTP 403 », « timeout DNS »…) et la **trace durable est OBLIGATOIRE** :
+     `{ type: "transcript" | "capture", chemin, sha256 }`, versionnée et vérifiée comme
+     ci-dessus. « Lorsqu'elle existe » n'existe pas : le validateur ne peut pas savoir si une
+     trace existait — donc elle existe, ou la tentative n'est pas enregistrable.
    Les dates existent au calendrier et ne sont pas futures. Une tentative n'est pas une
    consultation : elle date un échec, elle n'autorise aucun verdict de contenu.
 2. **Nature de l'éditeur** — `autorite_pays` · `mission_diplomatique_pays` ·
@@ -155,17 +178,13 @@ ne pouvait plus être rattachée à une autorité ; une candidate non officielle
    consultées n'en portent pas — leur observation suffit, et aucun `source_type: "other"`
    n'est forcé dans un contrat qui le refuse. **Aucun modèle parallèle n'est créé.**
 
-**L'observation d'audit — obligatoire, pour que les verdicts NÉGATIFS se contre-vérifient**
-(P0 de contre-revue v3) : réserver la pièce au seul `SourcedQuote` des promouvables laissait
-le cas éthiopien être classé `page_generique` sans conserver ce qui permet de contre-vérifier
-ce verdict. Toute candidate `acces: "consultee"` porte donc une **observation stricte** :
-`url_finale`, `statut_http`, `consultee_le`, `langue` de la page, `locator` et **extrait
-verbatim ou identifiant de capture**. Cette observation est **non probante et non projetée** —
-elle ne concurrence ni `Source` ni `SourcedQuote`, elle documente ce qui a été vu, y compris
-pour `partielle`, `page_generique`, `hors_sujet` et `non_officiel`. Une promotion porte **en
-plus** le `SourcedQuote` canonique. Symétriquement, toute `acces: "tentative"` conserve la
-**preuve de tentative** : URL, `tentee_le`, résultat précis (« HTTP 403 », « timeout DNS »…)
-et trace ou capture lorsqu'elle existe.
+**Pourquoi la pièce est obligatoire jusque sur les verdicts NÉGATIFS** (P0 de contre-revue
+v3) : réserver la preuve au seul `SourcedQuote` des promouvables laissait le cas éthiopien
+être classé `page_generique` sans conserver ce qui permet de contre-vérifier ce verdict. La
+pièce de l'observation est **non probante et non projetée** — elle ne concurrence ni `Source`
+ni `SourcedQuote`, elle documente ce qui a été vu, y compris pour `partielle`,
+`page_generique`, `hors_sujet` et `non_officiel`. Une promotion porte **en plus** le
+`SourcedQuote` canonique, concordant avec elle.
 
 Quatre exigences transverses (P1 de contre-revue) :
 
@@ -184,8 +203,12 @@ Quatre exigences transverses (P1 de contre-revue) :
 
 **Décision par pays** — deux états, pas de troisième :
 
-- `promue` : porte le **`SourcedQuote` complet** (avec `locator`, obligatoire ici) d'une
-  candidate `acces: "consultee"` + `autorite_pays` + `etaye_le_fait`, sur son **`url_finale`**.
+- `promue` : **désigne l'observation décisive** (la candidate et sa pièce) et porte le
+  **`SourcedQuote` complet** (avec `locator`, obligatoire ici) d'une candidate
+  `acces: "consultee"` + `autorite_pays` + `etaye_le_fait`, sur son **`url_finale`**. Le
+  `SourcedQuote` doit **concorder avec l'observation désignée** sur l'URL finale, la date, la
+  citation (l'extrait), la langue et le locator — une promotion qui dit autre chose que sa
+  pièce est contradictoire, donc rouge.
   `verified_date` = la `consultee_le` de cette candidate ; `review_due` **dérivée** par
   `reviewDueFrom(verified_date, "country")` (ADR-0007) — vérifié : le schéma `Source` seul
   accepte une `review_due` antérieure, la dérivation exacte est donc exigée en plus.
@@ -215,8 +238,10 @@ non consultée.
    temporelles du § 3.
 2. Bijection exacte sur le triplet `(country_id, label, url_publiee)` : 91/91 ; les pièces de
    rattachement entrent comme `preuves_rattachement` (`SourcedQuote`), jamais comme candidates.
-   Toute candidate `consultee` porte son observation d'audit complète ; toute `tentative`, sa
-   preuve de tentative.
+   Toute candidate `consultee` porte sa pièce (extrait verbatim, ou capture versionnée à
+   empreinte vérifiée) ; toute `tentative`, sa trace durable ; toute nature d'éditeur autre
+   que `non_etabli`, au moins une preuve de rattachement ; toute promotion désigne son
+   observation décisive et son `SourcedQuote` concorde avec elle.
 3. Toute `promue` : `SourcedQuote` valide **avec `locator`**, sur l'`url_finale` d'une
    candidate `acces: "consultee"` + `autorite_pays` + `etaye_le_fait` ; `review_due` égale à
    la dérivation ADR-0007 ; `verified_date` = `consultee_le` de la candidate retenue ;
@@ -235,8 +260,8 @@ Les **16 premières** sont éprouvées par `test-mesure-lot-a.mjs` sur l'état d
 les trois faux verts de la v1, les trois passages indus de la v2, la dérive commitée et le
 `_scelle` falsifié de la v3, les contrôles `--as-of`, la date future, et la génération saine
 (candidat égal au scellé, scellé jamais touché par l'instrument).
-Le harnais d'exécution devra faire rougir, en plus, les contrôles **17 à 36** — le total est
-**verrouillé à 36** :
+Le harnais d'exécution devra faire rougir, en plus, les contrôles **17 à 41** — le total est
+**verrouillé à 41** :
 
 | # | mutation | attendu |
 |---|---|---|
@@ -257,9 +282,14 @@ Le harnais d'exécution devra faire rougir, en plus, les contrôles **17 à 36**
 | 31 | projection dans `Country.source` sur l'`url_publiee` au lieu de l'`url_finale` | échec |
 | 32 | `preuves_rattachement` réduites à une URL nue (sans citation qui établit la propriété institutionnelle) | échec — forme `SourcedQuote` exigée |
 | 33 | `consultee_le` ou `audite_le` future par rapport à `--as-of`, ou `audite_le` antérieure à une consultation | échec — relations temporelles |
-| 34 | candidate `consultee` sans observation d'audit complète (extrait ou capture manquants) | échec — les verdicts doivent se contre-vérifier |
-| 35 | verdict négatif (`partielle`, `page_generique`, `hors_sujet`, `non_officiel`) sans extrait ni capture | échec — même exigence que pour les positifs |
-| 36 | `tentative` sans résultat précis, ou sans trace alors qu'elle existe | échec — la preuve de tentative est symétrique |
+| 34 | candidate `consultee` sans pièce (ni extrait verbatim, ni capture versionnée) | échec — les verdicts doivent se contre-vérifier |
+| 35 | verdict négatif (`partielle`, `page_generique`, `hors_sujet`, `non_officiel`) sans pièce | échec — même exigence que pour les positifs |
+| 36 | `tentative` sans résultat précis | échec — la preuve de tentative est symétrique |
+| 37 | pièce `capture` dont le `chemin` ne désigne aucun fichier versionné | échec — existence vérifiée |
+| 38 | capture dont le contenu change à chemin constant (SHA-256 ≠ scellé) | échec — empreinte vérifiée |
+| 39 | `tentative` sans trace durable (transcript ou capture versionnée) | échec — « lorsqu'elle existe » n'existe pas |
+| 40 | observation désignée et `SourcedQuote` contradictoires (URL finale, date, citation, langue ou locator) | échec — concordance exigée |
+| 41 | `autorite_pays` (ou toute nature ≠ `non_etabli`) sans `preuve_rattachement` | échec |
 
 ## 6. Interdits, et effets de bord assumés
 
