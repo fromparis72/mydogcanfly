@@ -15,26 +15,25 @@
  *
  *   · HTML  : balises ôtées (`script`/`style` compris), entités décodées, blancs unifiés,
  *             casse conservée ;
- *   · PDF   : flux `stream…endstream` dégonflés quand ils sont FlateDecode (zlib de Node,
- *             rien d'externe), opérateurs de texte `Tj`/`TJ`/`'` relevés, chaînes littérales
- *             (échappements et octaux) et hexadécimales décodées, blancs unifiés. Un PDF
- *             scanné ou illisible produit une chaîne VIDE — et rien ne s'ancre dans le vide :
- *             c'est voulu, un extrait qui prétend en venir rougit ;
+ *   · PDF   : chaîne VIDE, PAR CONSTRUCTION — le brut est conservé (sa capture est sa seule
+ *             pièce licite), mais il n'est NI décompressé NI analysé. Rien ne s'ancre dans
+ *             le vide : un extrait qui prétend venir d'un PDF rougit ;
  *   · autre : chaîne vide — on n'ancre pas dans ce qu'on ne sait pas lire.
  *
  * `normaliser` est exporté : c'est la normalisation UNIQUE, utilisée des deux côtés de la
  * recherche (texte dérivé et extrait), définie une fois.
  */
-import { inflateSync } from "node:zlib";
 
-/* lot-a-3 : la regex des tableaux TJ de lot-a-2 était AMBIGUË — `[^\]]` acceptait aussi `(`,
- * donc un flux dégonflé portant `[` puis des groupes `(…)` sans `]` (polices, flux binaires
- * de PDF réels) se lisait de 2^k façons : retour-arrière exponentiel, mesuré 0,5 s à
- * 20 groupes, 19 s à 28, au-delà de 100 s à 32 — c'est le blocage constaté en collecte
- * réelle sur le PDF des Bahamas (incident du 24/08/2026). L'alternative caractère exclut
- * désormais les parenthèses : chaque position n'a plus qu'UNE lecture, l'échec est linéaire.
- * Sur un tableau TJ bien formé, l'extraction est inchangée. */
-export const VERSION_EXTRACTEUR = "lot-a-3";
+/* lot-a-3 : la regex des tableaux TJ de lot-a-2 était AMBIGUË — retour-arrière exponentiel
+ * sur les flux dégonflés de PDF réels (incident de collecte du 24/08/2026, PDF des Bahamas :
+ * 0,5 s à 20 groupes, 19 s à 28, au-delà de 100 s à 32).
+ * lot-a-4 : la même frontière de calcul restait ouverte par `inflateSync`, SANS LIMITE — la
+ * borne de 25 MiB s'applique au PDF comprimé, pas aux flux dégonflés (contre-épreuve Codex :
+ * 32 699 octets bruts → 33 554 432 octets dégonflés, ratio ×1026, +67,5 MiB de mémoire).
+ * Puisque le lot A n'admet AUCUNE preuve textuelle depuis un PDF, le chemin d'analyse PDF
+ * est FERMÉ en entier : `extraireTexte` retourne immédiatement la chaîne vide pour tout
+ * format `pdf` — plus de décompression, plus d'analyse, plus de surface. */
+export const VERSION_EXTRACTEUR = "lot-a-4";
 
 /** Le FORMAT se détecte depuis les OCTETS, jamais depuis le Content-Type déclaré (contre-revue
  *  v5-ter : les mêmes octets `%PDF-` servis en `text/plain` redevenaient une preuve). La
@@ -60,45 +59,14 @@ export const normaliser = (texte) => String(texte)
 
 const extraireHtml = (tampon) => normaliser(tampon.toString("utf-8"));
 
-/** Décode une chaîne littérale PDF : échappements \n \r \t \( \) \\ et octaux \ddd. */
-const decoderLitterale = (s) => s.replace(/\\(\d{1,3}|.)/g, (_, e) => {
-  if (/^\d/.test(e)) { try { return String.fromCharCode(parseInt(e, 8)); } catch { return ""; } }
-  return { n: "\n", r: "\r", t: "\t", "(": "(", ")": ")", "\\": "\\" }[e] ?? e;
-});
-
-const extrairePdf = (tampon) => {
-  const brut = tampon.toString("latin1");
-  /* Chaque flux est tenté en FlateDecode ; s'il ne se dégonfle pas, il est lu tel quel. */
-  const morceaux = [];
-  const flux = /stream\r?\n([\s\S]*?)endstream/g;
-  let m;
-  while ((m = flux.exec(brut)) !== null) {
-    let contenu = m[1];
-    try { contenu = inflateSync(Buffer.from(m[1], "latin1")).toString("latin1"); } catch { /* flux non compressé */ }
-    morceaux.push(contenu);
-  }
-  const corpus = morceaux.length ? morceaux.join("\n") : brut;
-  const textes = [];
-  /* (chaîne) Tj · (chaîne) ' · [ (a) -120 (b) ] TJ · <hex> Tj */
-  for (const t of corpus.matchAll(/\(((?:\\.|[^\\()])*)\)\s*(?:Tj|')/g)) textes.push(decoderLitterale(t[1]));
-  for (const t of corpus.matchAll(/\[((?:\((?:\\.|[^\\()])*\)|[^\]()])*)\]\s*TJ/g)) {
-    for (const s of t[1].matchAll(/\(((?:\\.|[^\\()])*)\)/g)) textes.push(decoderLitterale(s[1]));
-  }
-  for (const t of corpus.matchAll(/<([0-9A-Fa-f\s]+)>\s*Tj/g)) {
-    const hex = t[1].replace(/\s+/g, "");
-    let s = "";
-    for (let i = 0; i + 1 < hex.length; i += 2) s += String.fromCharCode(parseInt(hex.slice(i, i + 2), 16));
-    textes.push(s);
-  }
-  return textes.join(" ").replace(/\s+/g, " ").trim();
-};
-
 /** Le brut → le texte où les extraits s'ancrent. Pure, déterministe, versionnée.
  *  Le routage suit le FORMAT DÉTECTÉ DEPUIS LES OCTETS — le Content-Type ne sert qu'à
- *  admettre le texte brut sans balises (une page text/plain reste citable). */
+ *  admettre le texte brut sans balises (une page text/plain reste citable).
+ *  PDF → chaîne vide IMMÉDIATE (lot-a-4) : ni décompression, ni analyse — le chemin PDF
+ *  probatoire est fermé par conception, pas seulement borné. */
 export function extraireTexte(tampon, contentType) {
   const format = detecterFormat(tampon);
-  if (format === "pdf") return extrairePdf(tampon);
+  if (format === "pdf") return "";
   if (format === "html") return extraireHtml(tampon);
   if (/text\/|xml|json/i.test(String(contentType))) return normaliser(tampon.toString("utf-8"));
   return "";

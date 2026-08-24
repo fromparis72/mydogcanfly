@@ -14,7 +14,8 @@
  *     un lien symbolique), SUIVI par git (`git ls-files --error-unmatch`), SHA-256 de 64 hexa
  *     égal au contenu ;
  *   · EXTRAITS ANCRÉS — toute consultation scelle sa CAPTURE BRUTE, son TEXTE DÉRIVÉ et la
- *     VERSION de l'extracteur déterministe (`extraire-texte-lot-a.mjs`, HTML et PDF). Le
+ *     VERSION de l'extracteur déterministe (`extraire-texte-lot-a.mjs` — HTML ; PDF → chaîne
+ *     vide PAR CONSTRUCTION depuis lot-a-4, ni décompressé ni analysé). Le
  *     validateur RE-DÉRIVE le texte depuis le brut et exige l'égalité d'empreinte, puis
  *     recherche l'extrait dans CE texte. L'extrait lui-même : au moins dix caractères
  *     SIGNIFICATIFS après normalisation (un extrait fait de balises se normalise en vide, et

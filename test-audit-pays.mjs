@@ -16,7 +16,7 @@
  * (cas 0) ; chaque cas suivant mute UNE chose et exige la sortie 1 avec la cause nommée.
  * Aucune donnée réelle n'est affirmée : la fixture vit dans l'arbre jetable, jamais au dépôt.
  *
- * CINQUANTE-HUIT CAS : 0 (fixture conforme — manifeste complet avec une observation de
+ * CINQUANTE-NEUF CAS : 0 (fixture conforme — manifeste complet avec une observation de
  * rattachement de rôle dédié, candidate PDF à pièce-capture), 17 à 52 (bijection, décisions,
  * pièces, ancres, PDF, liaison au manifeste), puis 53-57 (contre-revue v5-ter) : PDF déguisé
  * en text/plain — le format recalculé depuis les OCTETS prime ; résultat de manifeste
@@ -38,8 +38,12 @@
  * ≠ taille réelle). La fixture crée UNE pièce par (résultat, champ).
  * Puis 73 (incident de collecte réelle) : l'extraction PDF TERMINE en temps borné sur un
  * flux adversarial — sous lot-a-2, retour-arrière exponentiel, jamais de retour.
+ * Puis 74 (lot-a-4) : le chemin PDF probatoire est FERMÉ — un PDF comprimé portant un
+ * opérateur textuel VALIDE produit la chaîne vide, immédiatement (la bombe de décompression
+ * d'inflateSync est morte avec le chemin).
  */
 import { readFileSync, writeFileSync, mkdirSync, copyFileSync, symlinkSync, mkdtempSync, rmSync } from "node:fs";
+import { deflateSync } from "node:zlib";
 import { createHash } from "node:crypto";
 import { extraireTexte, detecterFormat, VERSION_EXTRACTEUR } from "./extraire-texte-lot-a.mjs";
 import { spawnSync } from "node:child_process";
@@ -411,8 +415,9 @@ try {
     bs(m).candidates[0].piece.extrait = "&nbsp;&nbsp;&amp;&nbsp;&nbsp;&nbsp;";
   }, [/schéma/, /SIGNIFICATIFS/]);
   cas("50 pièce extrait depuis un PDF", (m) => {
-    /* La candidate PDF licite (pièce = capture) reçoit un extrait POURTANT ANCRABLE dans le
-     * texte dérivé dégradé : l'interdiction lot-a-1 doit primer sur l'ancrage. */
+    /* La candidate PDF licite (pièce = capture) reçoit un extrait : l'interdiction doit
+     * frapper PAR LE FORMAT, avant tout ancrage — depuis lot-a-4 le texte dérivé d'un PDF
+     * est vide par construction, l'interdiction reste le premier rempart nommé. */
     bs(m).candidates[1].piece = { type: "extrait", extrait: EXTRAIT_PDF, langue: "en", locator: "page 1" };
   }, [/country_bs/, /pièce EXTRAIT depuis un PDF/]);
   cas("51 rattachement depuis un PDF", (m) => {
@@ -617,6 +622,30 @@ try {
       echec("73 extraction PDF bornée", `l'extracteur n'a pas terminé en 20 s sur le flux adversarial (40 groupes) — retour-arrière exponentiel`);
     }
   }
+
+  /* ---- 74 · le chemin PDF probatoire est FERMÉ, pas seulement borné --------------------------
+   * [contre-revue lot-a-3 : `inflateSync` décompressait SANS LIMITE — 32 699 octets bruts
+   * → 33 554 432 octets dégonflés (×1026, +67,5 MiB) sous la borne de 25 MiB qui ne
+   * s'applique qu'au comprimé. lot-a-4 : un PDF comprimé portant un opérateur textuel
+   * VALIDE produit malgré tout la chaîne vide, immédiatement — ni décompression, ni
+   * analyse.] */
+  {
+    const flux = deflateSync(Buffer.from("BT /F1 12 Tf 72 700 Td (Bonjour, opérateur textuel valide.) Tj ET", "latin1"));
+    const pdf = Buffer.concat([
+      Buffer.from(`%PDF-1.4\n4 0 obj << /Length ${flux.length} /Filter /FlateDecode >> stream\n`, "latin1"),
+      flux,
+      Buffer.from("\nendstream endobj\ntrailer\n%%EOF", "latin1"),
+    ]);
+    const t0 = Date.now();
+    const texte = extraireTexte(pdf, "application/pdf");
+    const duree = Date.now() - t0;
+    if (texte !== "") {
+      echec("74 chemin PDF probatoire fermé", `l'extracteur a produit du texte depuis un PDF (« ${texte.slice(0, 40)} ») — lot-a-4 doit retourner la chaîne VIDE`);
+    }
+    if (duree > 5000) {
+      echec("74 chemin PDF probatoire fermé", `${duree} ms — le PDF ne doit être ni décompressé ni analysé`);
+    }
+  }
 } finally {
   gitWt("remove", "--force", arbre);
   rmSync(conteneur, { recursive: true, force: true });
@@ -624,7 +653,7 @@ try {
 
 /* ---- verdict ---------------------------------------------------------------------------------- */
 if (defauts.length === 0) {
-  process.stdout.write("58 cas éprouvés : la fixture conforme — manifeste en ensemble exact égal à la liste\n");
+  process.stdout.write("59 cas éprouvés : la fixture conforme — manifeste en ensemble exact égal à la liste\n");
   process.stdout.write("versionnée, rattachement utilisé + PDF et tentative proprement écartés — sort en 0 ;\n");
   process.stdout.write("rattachement de rôle dédié, candidate PDF à pièce-capture — sort en 0 ; les contrôles\n");
   process.stdout.write("17-52 rougissent chacun pour sa cause (bijection triplet, décisions, pièces prouvées,\n");
@@ -641,9 +670,10 @@ if (defauts.length === 0) {
   process.stdout.write("2xx ou url_finale locale échouent AU SCHÉMA DU MANIFESTE même écartés, et une pièce\n");
   process.stdout.write("orpheline du run rougit — le manifeste est l'inventaire exact des pièces ; et la\n");
   process.stdout.write("v5-septies : l'inventaire est une BIJECTION (pièces partagées → les deux n nommés),\n");
-  process.stdout.write("octets obligatoire au schéma et égal à la taille réelle du fichier ; et l'extraction\n");
-  process.stdout.write("PDF termine en temps borné sur un flux adversarial (lot-a-3).\n\n");
-  process.stdout.write("[audit-pays] le validateur mord, sur les 56 contrôles.\n");
+  process.stdout.write("octets obligatoire au schéma et égal à la taille réelle du fichier ; le chemin PDF\n");
+  process.stdout.write("probatoire est FERMÉ (lot-a-4) : un PDF comprimé à opérateur textuel valide produit\n");
+  process.stdout.write("la chaîne vide, immédiatement — plus de décompression, plus d'analyse.\n\n");
+  process.stdout.write("[audit-pays] le validateur mord, sur les 58 contrôles.\n");
   process.exit(0);
 }
 process.stderr.write(`\n[audit-pays] ÉCHEC — ${defauts.length} défaut(s) :\n`);

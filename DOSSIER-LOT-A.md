@@ -1,4 +1,4 @@
-# Lot A — Audit des 18 pays sans source · dossier de mesure et de conception (v5-nonies)
+# Lot A — Audit des 18 pays sans source · dossier de mesure et de conception (v5-decies)
 
 **Mesuré sur `main` après fusion du dossier d'achèvement (`1dd62010ea183422f02553877df4706714739080`).
 Ce dossier ne corrige rien : aucune date, aucune source, aucune donnée métier n'est écrite.
@@ -9,7 +9,7 @@ Reproduction :
 ```bash
 node --import tsx mesurer-lot-a.mjs --as-of=2026-08-24   # l'état contre le scellé — sortie 1 au premier écart
 node test-mesure-lot-a.mjs                               # 16 cas : le scellé est exact, et il ne se remplace pas
-node test-audit-pays.mjs                                 # 58 cas : le validateur de la matrice mord (17-73)
+node test-audit-pays.mjs                                 # 59 cas : le validateur de la matrice mord (17-74)
 node test-consulter-lot-a.mjs                            # 14 cas au faux curl : le collecteur ne fabrique rien
 ```
 
@@ -259,6 +259,21 @@ lot-a-2 n'en revient jamais, lot-a-3 en revient en millisecondes. La collecte do
 du commit portant lot-a-3 : le manifeste scelle la version d'extracteur, et aucun manifeste
 n'avait été publié sous lot-a-2.
 
+**La même frontière de calcul restait ouverte : `inflateSync` décompressait sans limite**
+(contre-revue lot-a-3, un P0). La borne de 25 MiB s'applique au PDF COMPRIMÉ, pas aux flux
+dégonflés — contre-épreuve de Codex reproduite : un PDF brut de 32 699 octets déployait
+33 554 432 octets (ratio ×1026, +67,5 MiB de mémoire) ; un PDF autorisé de 25 MiB pouvait
+donc épuiser la mémoire du Mac. Fermeture **lot-a-4**, la plus cohérente avec la conception
+approuvée : puisque le lot A n'admet AUCUNE preuve textuelle depuis un PDF, le chemin
+d'analyse PDF est **fermé en entier** — `extraireTexte` retourne immédiatement la chaîne
+vide pour tout format `pdf` ; le brut est conservé (sa capture reste sa seule pièce licite)
+mais n'est ni décompressé ni analysé ; `inflateSync` et les regex d'opérateurs textuels ont
+disparu du module. Contre-épreuve 74 : un PDF **comprimé portant un opérateur textuel
+valide** produit malgré tout la chaîne vide, immédiatement — c'est le CHEMIN probatoire qui
+est prouvé fermé, pas une regex particulière qui termine. Le run partiel de l'incident
+(collecté sous lot-a-2) reste non publiable et n'est pas repris : la collecte repart de zéro
+depuis le commit portant lot-a-4.
+
 ## 1. La mesure a changé la nature de la dette — et ce que la promotion fait, honnêtement
 
 Le dossier d'achèvement décrivait la dette ainsi : « 18 pays n'ont AUCUNE source ». C'est vrai
@@ -464,13 +479,13 @@ Les **16 premières** sont éprouvées par `test-mesure-lot-a.mjs` sur l'état d
 les trois faux verts de la v1, les trois passages indus de la v2, la dérive commitée et le
 `_scelle` falsifié de la v3, les contrôles `--as-of`, la date future, et la génération saine
 (candidat égal au scellé, scellé jamais touché par l'instrument).
-Le harnais d'exécution `test-audit-pays.mjs` éprouve les contrôles **17 à 73** (58 cas — la
+Le harnais d'exécution `test-audit-pays.mjs` éprouve les contrôles **17 à 74** (59 cas — la
 fixture porte un manifeste en ensemble exact égal à la liste versionnée, UNE pièce par
 (résultat, champ), un rattachement utilisé, un PDF et une tentative proprement écartés, une
 candidate PDF à pièce-capture), et `test-consulter-lot-a.mjs` éprouve le collecteur (14 cas
 au faux `curl`, dont la batterie de six listes malformées, la redirection hors HTTP(S), le
 corps au-delà de la borne et l'inventaire exact du run). Le total est **verrouillé à
-73 + 14** :
+74 + 14** :
 
 | # | mutation | attendu |
 |---|---|---|
@@ -531,6 +546,7 @@ corps au-delà de la borne et l'inventaire exact du run). Le total est **verroui
 | 71 | `capture.octets` supprimé d'un résultat du manifeste | échec — obligatoire au schéma, borné par la limite partagée (25 MiB) |
 | 72 | `capture.octets` falsifié (taille + 1) | échec — égal à la taille réelle du fichier, jamais déclaratif |
 | 73 | flux PDF adversarial (`[` puis 40 groupes `(…)` sans `]`), extraction en sous-processus sous délai | terminaison en temps borné — lot-a-2 n'en revenait jamais (incident de collecte réelle) |
+| 74 | PDF **comprimé** portant un opérateur textuel **valide** | chaîne vide, immédiatement — le chemin PDF probatoire est fermé par construction (lot-a-4), la bombe de décompression avec lui |
 
 ## 6. Interdits, et effets de bord assumés
 
