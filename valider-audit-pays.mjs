@@ -56,7 +56,7 @@ import { z } from "zod";
 import { Source } from "./packages/knowledge/src/common.ts";
 import { reviewDueFrom } from "./packages/knowledge/src/common.ts";
 import { SourcedQuote } from "./packages/knowledge/src/breed-restrictions.ts";
-import { extraireTexte, normaliser, VERSION_EXTRACTEUR } from "./extraire-texte-lot-a.mjs";
+import { extraireTexte, normaliser, detecterFormat, VERSION_EXTRACTEUR } from "./extraire-texte-lot-a.mjs";
 
 const MATRICE = "audit-pays.json";
 const SCELLE = "etat-reference-lot-a.json";
@@ -87,6 +87,7 @@ const Fichier = z.object({ chemin: z.string().min(1), sha256: Sha256 }).strict()
 const CaptureScellee = z.object({
   chemin: z.string().min(1), sha256: Sha256,
   content_type: z.string().min(1),
+  format_detecte: z.enum(["pdf", "html", "autre"]),
   texte_derive: Fichier,
   extracteur: z.string().min(1),
 }).strict();
@@ -100,7 +101,7 @@ const Trace = z.object({ type: z.enum(["transcript", "capture"]), chemin: z.stri
 const NatureEditeur = z.enum(["autorite_pays", "mission_diplomatique_pays", "officiel_tiers", "non_officiel", "non_etabli"]);
 const Pertinence = z.enum(["etaye_le_fait", "partielle", "page_generique", "hors_sujet", "non_evaluee"]);
 
-const PreuveRattachement = z.object({ citation: z.unknown(), capture: CaptureScellee }).strict();
+const PreuveRattachement = z.object({ manifeste_n: z.number().int().min(1), citation: z.unknown(), capture: CaptureScellee }).strict();
 
 const CandidateConsultee = z.object({
   manifeste_n: z.number().int().min(1),      // l'identité stable de l'observation dans le manifeste
@@ -169,11 +170,67 @@ catch {
   process.stderr.write("[audit] ÉCHEC : audit-pays-consultations.json introuvable — la matrice ne se juge pas sans le manifeste de consultation (jamais vert faute de matière).\n");
   process.exit(1);
 }
-const parN = new Map((manifeste.resultats ?? []).map((r) => [r.n, r]));
+
+/* ---- LE MANIFESTE EST UN ENSEMBLE EXACT, validé strictement (contre-revue v5-ter, P1) ------- */
+const CaptureManifeste = CaptureScellee.extend({ octets: z.number().int().min(0).optional() }).strict();
+const ResCommun = { n: z.number().int().min(1), role: z.enum(["candidate", "rattachement"]) };
+const ResCandidate = { country_id: z.string().min(1), index_lien: z.number().int().min(0), label: LT, url_publiee: z.string().url() };
+const ResRattachement = { url_demandee: z.string().url(), motif: z.string().min(1) };
+const ObsConsultee = { acces: z.literal("consultee"), statut_http: z.number().int(), url_finale: z.string().url(),
+  redirections: z.number().int().min(0).optional(), consultee_le: DateISO, content_type: z.string().min(1),
+  capture: CaptureManifeste, entetes: Fichier, trace: Trace };
+const ObsTentative = { acces: z.literal("tentative"), tentee_le: DateISO, resultat: z.string().min(1), trace: Trace };
+const Resultat = z.union([
+  z.object({ ...ResCommun, ...ResCandidate, ...ObsConsultee }).strict(),
+  z.object({ ...ResCommun, ...ResCandidate, ...ObsTentative }).strict(),
+  z.object({ ...ResCommun, ...ResRattachement, ...ObsConsultee }).strict(),
+  z.object({ ...ResCommun, ...ResRattachement, ...ObsTentative }).strict(),
+]);
+const ManifesteSchema = z.object({
+  consultees_le: DateISO, run: z.string().min(1), total: z.number().int().min(1),
+  candidates: z.number().int().min(0).optional(), rattachements: z.number().int().min(0).optional(),
+  extracteur: z.string().min(1), resultats: z.array(Resultat).min(1),
+}).strict();
+const parseManifeste = ManifesteSchema.safeParse(manifeste);
+if (!parseManifeste.success) {
+  process.stderr.write(`[audit] ÉCHEC — schéma du MANIFESTE refusé (${parseManifeste.error.issues.length} défaut(s)) :\n`);
+  for (const i of parseManifeste.error.issues.slice(0, 20)) {
+    process.stderr.write(`  · manifeste — ${i.path.join(".") || "(racine)"} : ${i.message}\n`);
+  }
+  process.exit(1);
+}
+if (manifeste.total !== manifeste.resultats.length) {
+  echec(`manifeste — total ${manifeste.total} ≠ ${manifeste.resultats.length} résultats — l'ensemble n'est pas exact`);
+}
 if (manifeste.extracteur !== VERSION_EXTRACTEUR) {
   echec(`manifeste — extracteur « ${manifeste.extracteur} » ≠ version courante « ${VERSION_EXTRACTEUR} »`);
 }
+const parN = new Map();
+for (const r of manifeste.resultats) {
+  if (parN.has(r.n)) echec(`manifeste — n ${r.n} en double`);
+  parN.set(r.n, r);
+  for (const f of [r.capture?.chemin, r.capture?.texte_derive?.chemin, r.entetes?.chemin, r.trace?.chemin]) {
+    if (f && !String(f).startsWith(manifeste.run.replace(/\/?$/, "/")) && !String(f).startsWith(manifeste.run)) {
+      echec(`manifeste — n ${r.n} : « ${f} » hors du répertoire de run déclaré « ${manifeste.run} »`);
+    }
+  }
+}
+/* L'ensemble des candidates du manifeste = EXACTEMENT les couples (pays, indice) publiés. */
+{
+  const attendus = new Set();
+  for (const id of CONTRACTUELS) for (const [i] of (guides[id]?.sources ?? []).entries()) attendus.add(`${id}#${i}`);
+  const presents = new Set();
+  for (const r of manifeste.resultats) {
+    if (r.role !== "candidate") continue;
+    const cle = `${r.country_id}#${r.index_lien}`;
+    if (!attendus.has(cle)) echec(`manifeste — n ${r.n} : candidate ${cle} HORS de l'ensemble attendu`);
+    if (presents.has(cle)) echec(`manifeste — candidate ${cle} en double`);
+    presents.add(cle);
+  }
+  for (const cle of attendus) if (!presents.has(cle)) echec(`manifeste — candidate attendue ${cle} ABSENTE`);
+}
 const nsVus = new Set();
+const nsRattachementExerces = new Set();
 
 const parseMatrice = Matrice.safeParse(matriceBrute);
 if (!parseMatrice.success) {
@@ -231,12 +288,24 @@ const captureProuvee = (pays, quoi, cap) => {
     return;
   }
   try {
-    const rederive = extraireTexte(readFileSync(cap.chemin), cap.content_type);
-    const reel = createHash("sha256").update(Buffer.from(rederive)).digest("hex");
-    if (reel !== cap.texte_derive.sha256) {
+    const brut = readFileSync(cap.chemin);
+    /* Le FORMAT est RECALCULÉ depuis les octets — un PDF déguisé en text/plain reste un PDF. */
+    const reel = detecterFormat(brut);
+    if (reel !== cap.format_detecte) {
+      echec(`${pays} — ${quoi} : format_detecte « ${cap.format_detecte} » ≠ recalculé depuis les octets « ${reel} » — un PDF déguisé reste un PDF`);
+    }
+    const rederive = extraireTexte(brut, cap.content_type);
+    const empreinte = createHash("sha256").update(Buffer.from(rederive)).digest("hex");
+    if (empreinte !== cap.texte_derive.sha256) {
       echec(`${pays} — ${quoi} : le texte dérivé scellé n'est PAS la re-dérivation du brut par l'extracteur ${VERSION_EXTRACTEUR}`);
     }
   } catch { /* brut illisible : déjà jugé par fichierProuve */ }
+};
+
+/** Le format VÉCU d'une capture : recalculé depuis les octets quand le fichier est lisible,
+ *  sinon la valeur déclarée (déjà mise en cause par captureProuvee). */
+const formatReel = (cap) => {
+  try { return detecterFormat(readFileSync(cap.chemin)); } catch { return cap?.format_detecte; }
 };
 
 /** L'extrait doit se RETROUVER dans le TEXTE DÉRIVÉ — sinon il est inventé, ou la page a changé. */
@@ -279,6 +348,7 @@ for (const id of CONTRACTUELS) {
         echec(`${id} — ${qui} : « ${champ} » ≠ manifeste (matrice ${jsonCanonique(matrice)?.slice(0, 60)} · manifeste ${jsonCanonique(mani)?.slice(0, 60)}) — observation réécrite hors manifeste`);
       }
     };
+    if (res.role !== "candidate") echec(`${id} — ${qui} : manifeste_n ${c.manifeste_n} est de rôle « ${res.role} », pas une candidate`);
     if (res.country_id !== id || res.index_lien !== i) {
       echec(`${id} — ${qui} : manifeste_n ${c.manifeste_n} appartient à ${res.country_id}[${res.index_lien}], pas à ${id}[${i}]`);
     }
@@ -291,8 +361,8 @@ for (const id of CONTRACTUELS) {
       observe("consultee_le", c.consultee_le, res.consultee_le);
       observe("content_type", c.capture?.content_type, res.content_type);
       const capMani = res.capture ? { chemin: res.capture.chemin, sha256: res.capture.sha256,
-        content_type: res.capture.content_type, texte_derive: res.capture.texte_derive,
-        extracteur: res.capture.extracteur } : null;
+        content_type: res.capture.content_type, format_detecte: res.capture.format_detecte,
+        texte_derive: res.capture.texte_derive, extracteur: res.capture.extracteur } : null;
       observe("capture", c.capture, capMani);
       observe("entetes", c.entetes, res.entetes);
       observe("trace", c.trace, res.trace);
@@ -304,7 +374,7 @@ for (const id of CONTRACTUELS) {
 
     /* AUCUNE PREUVE TEXTUELLE DEPUIS UN PDF (lot-a-1) : l'extracteur produit des mots éclatés
      * sur les PDF réels — le brut est conservé, le texte n'y fait pas preuve. */
-    const estPdf = c.acces === "consultee" && /pdf/i.test(String(c.capture?.content_type));
+    const estPdf = c.acces === "consultee" && formatReel(c.capture) === "pdf";
     if (estPdf && c.piece?.type === "extrait") {
       echec(`${id} — ${qui} : pièce EXTRAIT depuis un PDF — interdit en lot-a-1 (texte dérivé non fiable), la pièce d'un PDF est sa capture`);
     }
@@ -313,7 +383,7 @@ for (const id of CONTRACTUELS) {
       if (a.audite_le < c.consultee_le) echec(`${id} — audite_le « ${a.audite_le} » antérieure à la consultation ${qui}`);
       if (c.capture?.chemin) {
         captureProuvee(id, `${qui} capture`, c.capture);
-        if (c.piece?.type === "extrait" && !/pdf/i.test(String(c.capture.content_type))) {
+        if (c.piece?.type === "extrait" && formatReel(c.capture) !== "pdf") {
           ancre(id, `${qui} pièce extrait`, c.piece.extrait, c.capture);
         }
       }
@@ -332,6 +402,30 @@ for (const id of CONTRACTUELS) {
       echec(`${id} — ${qui} : nature « ${c.nature_editeur} » sans AUCUNE preuve de rattachement`);
     }
     for (const [j, p] of (c.preuves_rattachement ?? []).entries()) {
+      /* LE RATTACHEMENT AUSSI VIENT DU MANIFESTE : une preuve dont l'URL ne correspond à
+       * aucune observation collectée autoriserait autorite_pays — donc la promotion — sur
+       * une pièce inventée (contre-revue v5-ter). */
+      const obs = parN.get(p.manifeste_n);
+      if (!obs) {
+        echec(`${id} — ${qui} preuve de rattachement [${j}] : manifeste_n ${p.manifeste_n} ne désigne aucune observation du manifeste`);
+      } else {
+        nsRattachementExerces.add(p.manifeste_n);
+        if (obs.acces !== "consultee") echec(`${id} — ${qui} preuve de rattachement [${j}] : l'observation ${p.manifeste_n} n'est pas une consultation`);
+        else {
+          if (p.citation?.url !== obs.url_finale) {
+            echec(`${id} — ${qui} preuve de rattachement [${j}] : citation.url « ${p.citation?.url} » ≠ url_finale observée « ${obs.url_finale} » — rattachement hors manifeste`);
+          }
+          if (p.citation?.verified_date !== obs.consultee_le) {
+            echec(`${id} — ${qui} preuve de rattachement [${j}] : verified_date « ${p.citation?.verified_date} » ≠ consultee_le observée « ${obs.consultee_le} »`);
+          }
+          const capObs = obs.capture ? { chemin: obs.capture.chemin, sha256: obs.capture.sha256,
+            content_type: obs.capture.content_type, format_detecte: obs.capture.format_detecte,
+            texte_derive: obs.capture.texte_derive, extracteur: obs.capture.extracteur } : null;
+          if (jsonCanonique(p.capture) !== jsonCanonique(capObs)) {
+            echec(`${id} — ${qui} preuve de rattachement [${j}] : la capture ne correspond pas à l'observation ${p.manifeste_n} du manifeste`);
+          }
+        }
+      }
       const r = SourcedQuote.safeParse(p.citation);
       if (!r.success) {
         echec(`${id} — ${qui} preuve de rattachement [${j}] rejetée par SourcedQuote : ${r.error.issues.map((x) => `${x.path.join(".")} — ${x.message}`).slice(0, 3).join(" · ")}`);
@@ -340,7 +434,7 @@ for (const id of CONTRACTUELS) {
       }
       /* Chaque preuve de rattachement est LIÉE à sa propre capture scellée, et sa citation s'y retrouve. */
       captureProuvee(id, `${qui} capture de rattachement [${j}]`, p.capture);
-      if (/pdf/i.test(String(p.capture?.content_type))) {
+      if (formatReel(p.capture) === "pdf") {
         echec(`${id} — ${qui} preuve de rattachement [${j}] depuis un PDF — interdit en lot-a-1`);
       } else if (typeof p.citation?.quote === "string") {
         ancre(id, `${qui} citation de rattachement [${j}]`, p.citation.quote, p.capture);
@@ -362,7 +456,7 @@ for (const id of CONTRACTUELS) {
     if (c.nature_editeur !== "autorite_pays") echec(`${id} — promotion depuis une nature « ${c.nature_editeur} » — seule l'autorité du pays est éligible`);
     if (c.pertinence !== "etaye_le_fait") echec(`${id} — promotion depuis une pertinence « ${c.pertinence} »`);
     if (c.piece?.type !== "extrait") echec(`${id} — la pièce décisive d'une promotion doit être un EXTRAIT (capture seule refusée)`);
-    if (c.acces === "consultee" && /pdf/i.test(String(c.capture?.content_type))) {
+    if (c.acces === "consultee" && formatReel(c.capture) === "pdf") {
       echec(`${id} — la candidate décisive est un PDF — aucune preuve décisive depuis un PDF en lot-a-1`);
     }
 
@@ -406,6 +500,16 @@ for (const id of CONTRACTUELS) {
         echec(`${id} — la source d'objects.json n'est PAS la projection canonique exacte du SourcedQuote promu`);
       }
     }
+  }
+}
+
+/* ---- chaque résultat du manifeste est EXERCÉ : jugé (candidate) ou cité (rattachement) ------ */
+for (const r of manifeste.resultats ?? []) {
+  if (r.role === "candidate" && !nsVus.has(r.n)) {
+    echec(`manifeste — n ${r.n} (candidate ${r.country_id}[${r.index_lien}]) n'est référencé par aucune candidate de la matrice — résultat sans jugement`);
+  }
+  if (r.role === "rattachement" && !nsRattachementExerces.has(r.n)) {
+    echec(`manifeste — n ${r.n} (rattachement ${r.url_demandee}) n'est cité par aucune preuve — résultat sans rôle exercé`);
   }
 }
 

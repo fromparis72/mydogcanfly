@@ -1,4 +1,4 @@
-# Lot A — Audit des 18 pays sans source · dossier de mesure et de conception (v5-ter)
+# Lot A — Audit des 18 pays sans source · dossier de mesure et de conception (v5-quater)
 
 **Mesuré sur `main` après fusion du dossier d'achèvement (`1dd62010ea183422f02553877df4706714739080`).
 Ce dossier ne corrige rien : aucune date, aucune source, aucune donnée métier n'est écrite.
@@ -9,8 +9,8 @@ Reproduction :
 ```bash
 node --import tsx mesurer-lot-a.mjs --as-of=2026-08-24   # l'état contre le scellé — sortie 1 au premier écart
 node test-mesure-lot-a.mjs                               # 16 cas : le scellé est exact, et il ne se remplace pas
-node test-audit-pays.mjs                                 # 37 cas : le validateur de la matrice mord (17-52)
-node test-consulter-lot-a.mjs                            # 11 cas au faux curl : le collecteur ne fabrique rien
+node test-audit-pays.mjs                                 # 42 cas : le validateur de la matrice mord (17-57)
+node test-consulter-lot-a.mjs                            # 12 cas au faux curl : le collecteur ne fabrique rien
 ```
 
 La liste des 18 est celle que le bloc contractuel du dossier d'achèvement fige
@@ -141,6 +141,26 @@ portaient « EGRESS_BLOCKED » devenait une tentative légitime ; et les en-têt
 sans assainissement (`Set-Cookie` versionnable). Désormais stderr + en-têtes + corps sont
 inspectés avant toute classification, et les en-têtes sont EXPURGÉS (`Set-Cookie`,
 `Authorization`, `WWW-Authenticate`, `Proxy-*`) avant scellement — cas collecteur 10 et 11.
+
+**Un PDF mal étiqueté redevenait une preuve, les refus fuyaient des secrets, les rattachements
+restaient hors manifeste, et le manifeste n'était pas un ensemble exact** (contre-revue
+v5-ter, trois P0 + un P1). (1) L'interdiction PDF reposait sur le seul `Content-Type` : les
+mêmes octets `%PDF-` servis en `text/plain` refaisaient preuve. Le **format se détecte
+désormais depuis les octets** (`detecterFormat`, signature `%PDF-` dans les 1024 premiers
+octets), est enregistré comme `format_detecte`, **recalculé par le validateur**, et porte
+toutes les interdictions PDF — extracteur passé en `lot-a-2` (routage par octets).
+(2) Les en-têtes BRUTS restaient dans les runs partiels lors d'un refus : ils ne touchent
+plus JAMAIS `audit-pays-pieces/` — curl écrit dans un temporaire hors dépôt, seule la
+projection assainie entre dans le run, et la contre-épreuve inspecte TOUS les fichiers des
+runs interrompus. (3) Une `preuve_rattachement` à capture ancrée pouvait porter une URL
+gouvernementale inventée : chaque rattachement référence désormais une **observation du
+manifeste** (`manifeste_n`), concorde sur URL finale, date et capture — et les URL hors des
+91 candidates sont collectées par le collecteur comme **observations de rattachement de rôle
+dédié** (liste versionnée `rattachements-a-consulter.json`, curée des pièces de contre-revue,
+url et motif obligatoires). (4) Le manifeste est validé comme **ensemble exact** : schéma
+strict, `total` = nombre de résultats, identifiants uniques, candidates = exactement les 91
+couples publiés, aucun résultat sans jugement ni rôle exercé, tous les fichiers sous le
+répertoire de run déclaré. Contre-épreuves 53–57 et cas collecteur 12.
 
 ## 1. La mesure a changé la nature de la dette — et ce que la promotion fait, honnêtement
 
@@ -347,10 +367,10 @@ Les **16 premières** sont éprouvées par `test-mesure-lot-a.mjs` sur l'état d
 les trois faux verts de la v1, les trois passages indus de la v2, la dérive commitée et le
 `_scelle` falsifié de la v3, les contrôles `--as-of`, la date future, et la génération saine
 (candidat égal au scellé, scellé jamais touché par l'instrument).
-Le harnais d'exécution `test-audit-pays.mjs` éprouve les contrôles **17 à 52** (37 cas — la
-fixture porte un manifeste complet et une candidate PDF à pièce-capture, la forme licite), et
-`test-consulter-lot-a.mjs` éprouve le collecteur (11 cas au faux `curl`). Le total est
-**verrouillé à 52 + 11** :
+Le harnais d'exécution `test-audit-pays.mjs` éprouve les contrôles **17 à 57** (42 cas — la
+fixture porte un manifeste en ensemble exact, une observation de rattachement de rôle dédié
+et une candidate PDF à pièce-capture), et `test-consulter-lot-a.mjs` éprouve le collecteur
+(12 cas au faux `curl`). Le total est **verrouillé à 57 + 12** :
 
 | # | mutation | attendu |
 |---|---|---|
@@ -390,6 +410,11 @@ fixture porte un manifeste complet et une candidate PDF à pièce-capture, la fo
 | 50 | pièce `extrait` depuis un **PDF** — même quand l'extrait s'ancre dans le texte dérivé dégradé | échec — aucune preuve textuelle depuis un PDF en lot-a-1 |
 | 51 | preuve de rattachement dont la capture est un **PDF** | échec — même interdiction |
 | 52 | `url_finale` ET `source.url` réécrites ENSEMBLE, capture et manifeste intacts (concordance verte) | échec — le manifeste fait foi : observation réécrite hors manifeste |
+| 53 | les mêmes octets `%PDF-` servis en `text/plain`, alignés matrice + manifeste + dérivé | échec — le format recalculé depuis les OCTETS prime, l'interdiction PDF avec lui |
+| 54 | résultat de manifeste supplémentaire (n : 999), non référencé | échec — ensemble exact : aucun résultat sans jugement ni rôle exercé |
+| 55 | `citation.url` de rattachement inventée, capture et citation intactes | échec — rattachement hors manifeste |
+| 56 | preuve de rattachement sans `manifeste_n` | échec — schéma |
+| 57 | pièce du manifeste hors du répertoire de run déclaré | échec |
 
 ## 6. Interdits, et effets de bord assumés
 

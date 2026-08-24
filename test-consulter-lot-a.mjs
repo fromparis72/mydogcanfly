@@ -15,7 +15,7 @@
  * comportements sont pilotés par FAUX_MODE. Chaque cas exige le refus, ou la collecte, ou la
  * conservation — exactement.
  *
- * HUIT CAS :
+ * DOUZE CAS :
  *   1. curl ABSENT → sortie 2, « curl est absent », AUCUN répertoire de run créé.
  *   2. PROXY BLOQUANT (la sonde échoue sur « CONNECT tunnel failed ») → sortie 2, panne
  *      systémique, rien d'écrit.
@@ -117,6 +117,7 @@ try {
   copyFileSync("consulter-candidates-lot-a.mjs", join(arbre, "consulter-candidates-lot-a.mjs"));
   copyFileSync("extraire-texte-lot-a.mjs", join(arbre, "extraire-texte-lot-a.mjs"));
   copyFileSync("etat-reference-lot-a.json", join(arbre, "etat-reference-lot-a.json"));
+  copyFileSync("rattachements-a-consulter.json", join(arbre, "rattachements-a-consulter.json"));
   const CHEMIN_GUIDES = join(arbre, "packages/ui/src/data/countries.generated.json");
   const guidesPristins = readFileSync(CHEMIN_GUIDES, "utf-8");
 
@@ -157,8 +158,15 @@ try {
     if (!existsSync(MANIFESTE())) { echec("4 nominale", "manifeste absent"); }
     else {
       const m = JSON.parse(readFileSync(MANIFESTE(), "utf-8"));
+      if (m.total !== m.resultats.length) echec("4 nominale", `total ${m.total} ≠ ${m.resultats.length} résultats`);
+      const candidates = m.resultats.filter((x) => x.role === "candidate");
+      const rattachements = m.resultats.filter((x) => x.role === "rattachement");
+      if (candidates.length !== 91) echec("4 nominale", `${candidates.length}/91 candidates`);
+      if (rattachements.length !== 4) echec("4 nominale", `${rattachements.length}/4 observations de rattachement`);
+      if (rattachements.some((x) => !x.url_demandee || !x.motif)) echec("4 nominale", "une observation de rattachement sans url_demandee ou motif");
       const consultees = m.resultats.filter((x) => x.acces === "consultee");
-      if (consultees.length !== 91) echec("4 nominale", `${consultees.length}/91 consultations`);
+      if (consultees.length !== 95) echec("4 nominale", `${consultees.length}/95 consultations`);
+      if (!consultees.every((x) => x.capture.format_detecte)) echec("4 nominale", "format_detecte absent d'une capture");
       const ex = consultees[0];
       if (!existsSync(join(arbre, ex.capture.chemin)) || !existsSync(join(arbre, ex.trace.chemin))) {
         echec("4 nominale", "corps ou trace manquants pour la première consultation");
@@ -183,8 +191,8 @@ try {
     if (t403?.acces !== "tentative" || t403?.resultat !== "HTTP 403") echec("5 mixte", `le 403 n'est pas une tentative « HTTP 403 » (${JSON.stringify(t403?.resultat)})`);
     if (t28?.acces !== "tentative" || !/curl exit 28/.test(t28?.resultat ?? "")) echec("5 mixte", `le timeout n'est pas une tentative « curl exit 28 » (${JSON.stringify(t28?.resultat)})`);
     if (t403 && !existsSync(join(arbre, t403.trace.chemin))) echec("5 mixte", "la trace du 403 n'existe pas");
-    const consultees = m.resultats.filter((x) => x.acces === "consultee").length;
-    if (consultees !== 89) echec("5 mixte", `${consultees} consultations au lieu de 89`);
+    const consultees = m.resultats.filter((x) => x.role === "candidate" && x.acces === "consultee").length;
+    if (consultees !== 89) echec("5 mixte", `${consultees} consultations candidates au lieu de 89`);
   }
 
   /* ---- 6. dérive d'URL ----------------------------------------------------------------------- */
@@ -227,7 +235,9 @@ try {
     if (readFileSync(MANIFESTE(), "utf-8") !== manifesteAvant) echec("9 proxy partiel", "le manifeste précédent a été touché");
   }
 
-  /* ---- 10. EGRESS_BLOCKED dans le corps, puis dans les en-têtes ------------------------------ */
+  /* ---- 10. EGRESS_BLOCKED dans le corps, puis dans les en-têtes — et AUCUN secret dans les
+   *          runs interrompus (contre-revue v5-ter : les en-têtes bruts restaient dans les
+   *          runs partiels) ------------------------------------------------------------------ */
   for (const [variante, mode] of [["corps", "egress-corps"], ["en-têtes", "egress-entetes"]]) {
     const manifesteAvant = readFileSync(MANIFESTE(), "utf-8");
     const r = lancer(mode);
@@ -236,6 +246,14 @@ try {
       echec(`10 EGRESS dans ${variante}`, `le refus ne nomme pas « ${variante} » — reçu :\n      ${r.stderr.trim().split("\n").slice(0, 2).join("\n      ")}`);
     }
     if (readFileSync(MANIFESTE(), "utf-8") !== manifesteAvant) echec(`10 EGRESS dans ${variante}`, "le manifeste a été touché");
+    /* TOUS les fichiers de TOUS les runs — y compris le run interrompu — sont inspectés. */
+    for (const run of runs()) {
+      for (const f of readdirSync(join(arbre, "audit-pays-pieces", run))) {
+        if (readFileSync(join(arbre, "audit-pays-pieces", run, f), "latin1").includes("SECRET-COOKIE-42")) {
+          echec(`10 EGRESS dans ${variante}`, `le secret apparaît dans ${run}/${f} — les en-têtes bruts ont touché les pièces`);
+        }
+      }
+    }
   }
 
   /* ---- 11. Set-Cookie: SECRET — absent de TOUTES les pièces ---------------------------------- */
@@ -254,6 +272,18 @@ try {
     if (marques === 0) echec("11 Set-Cookie", "aucune marque d'expurgation dans les en-têtes scellés");
     if (readFileSync(MANIFESTE(), "utf-8").includes("SECRET-COOKIE-42")) echec("11 Set-Cookie", "le secret apparaît dans le manifeste");
   }
+
+  /* ---- 12. liste de rattachements malformée : refus AVANT toute écriture -------------------- */
+  {
+    const pristin = readFileSync(join(arbre, "rattachements-a-consulter.json"), "utf-8");
+    writeFileSync(join(arbre, "rattachements-a-consulter.json"), JSON.stringify([{ url: "https://example.org/sans-motif" }]));
+    const runsAvant = runs().length;
+    const r = lancer("ok");
+    if (r.status !== 2) echec("12 rattachements malformés", `sortie ${r.status} au lieu de 2`);
+    if (!/url et motif sont obligatoires/.test(r.stderr)) echec("12 rattachements malformés", "le refus ne nomme pas l'exigence");
+    if (runs().length !== runsAvant) echec("12 rattachements malformés", "un run a été créé malgré le refus");
+    writeFileSync(join(arbre, "rattachements-a-consulter.json"), pristin);
+  }
 } finally {
   gitWt("remove", "--force", arbre);
   rmSync(conteneur, { recursive: true, force: true });
@@ -261,9 +291,10 @@ try {
 
 /* ---- verdict ---------------------------------------------------------------------------------- */
 if (defauts.length === 0) {
-  process.stdout.write("11 cas éprouvés au faux curl : curl absent, proxy bloquant et inventaire dérivé\n");
-  process.stdout.write("REFUSENT sans rien écrire ; la collecte nominale corrèle corps et trace d'un même\n");
-  process.stdout.write("appel et expurge les secrets de proxy ; un 403 et un timeout restent des tentatives\n");
+  process.stdout.write("12 cas éprouvés au faux curl : curl absent, proxy bloquant, inventaire dérivé et\n");
+  process.stdout.write("rattachements malformés REFUSENT sans rien écrire ; la collecte nominale rapporte\n");
+  process.stdout.write("91 candidates + 4 observations de rattachement, formats détectés depuis les octets ;\n");
+  process.stdout.write("corps et trace se corrèlent d'un même appel ; un 403 et un timeout restent des tentatives\n");
   process.stdout.write("précises ; une URL dérivée est enregistrée fidèlement ; une interruption ne publie\n");
   process.stdout.write("rien et ne détruit rien ; zéro consultation refuse au lieu de fabriquer 91 pièces ;\n");
   process.stdout.write("et une signature environnementale sur UNE requête — dans la trace, le CORPS ou les\n");

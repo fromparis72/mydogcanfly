@@ -27,7 +27,18 @@
  */
 import { inflateSync } from "node:zlib";
 
-export const VERSION_EXTRACTEUR = "lot-a-1";
+export const VERSION_EXTRACTEUR = "lot-a-2";
+
+/** Le FORMAT se détecte depuis les OCTETS, jamais depuis le Content-Type déclaré (contre-revue
+ *  v5-ter : les mêmes octets `%PDF-` servis en `text/plain` redevenaient une preuve). La
+ *  signature `%PDF-` est cherchée dans les 1024 premiers octets, comme le veut la norme. */
+export function detecterFormat(tampon) {
+  const tete = tampon.slice(0, 1024).toString("latin1");
+  if (tete.includes("%PDF-")) return "pdf";
+  const debut = tete.replace(/^\uFEFF/, "").trimStart();
+  if (debut.startsWith("<") || /<!doctype|<html/i.test(tete)) return "html";
+  return "autre";
+}
 
 /** Normalisation déterministe : balises ôtées, entités décodées, blancs unifiés, casse gardée. */
 export const normaliser = (texte) => String(texte)
@@ -75,9 +86,13 @@ const extrairePdf = (tampon) => {
   return textes.join(" ").replace(/\s+/g, " ").trim();
 };
 
-/** Le brut → le texte où les extraits s'ancrent. Pure, déterministe, versionnée. */
+/** Le brut → le texte où les extraits s'ancrent. Pure, déterministe, versionnée.
+ *  Le routage suit le FORMAT DÉTECTÉ DEPUIS LES OCTETS — le Content-Type ne sert qu'à
+ *  admettre le texte brut sans balises (une page text/plain reste citable). */
 export function extraireTexte(tampon, contentType) {
-  if (/pdf/i.test(String(contentType))) return extrairePdf(tampon);
-  if (/html|xml|text\//i.test(String(contentType))) return extraireHtml(tampon);
+  const format = detecterFormat(tampon);
+  if (format === "pdf") return extrairePdf(tampon);
+  if (format === "html") return extraireHtml(tampon);
+  if (/text\/|xml|json/i.test(String(contentType))) return normaliser(tampon.toString("utf-8"));
   return "";
 }

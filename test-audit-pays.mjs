@@ -16,18 +16,16 @@
  * (cas 0) ; chaque cas suivant mute UNE chose et exige la sortie 1 avec la cause nommée.
  * Aucune donnée réelle n'est affirmée : la fixture vit dans l'arbre jetable, jamais au dépôt.
  *
- * TRENTE-SEPT CAS : 0 (fixture conforme → 0 — dont une candidate PDF dont la pièce est sa
- * capture, la forme licite), puis 17 à 44, puis 45-47 (ancres), 48-49 (extrait de balises
- * seules, d'entités seules), 50-51 (contre-revue v5-bis : pièce EXTRAIT depuis un PDF
- * interdite MÊME quand l'extrait s'ancre dans le texte dérivé dégradé ; preuve de
- * rattachement depuis un PDF interdite), et 52 (l'attaque de contre-revue : url_finale et
- * source.url réécrites ENSEMBLE, capture et manifeste intacts — la concordance passe, seule
- * la liaison au manifeste le voit). La fixture porte un MANIFESTE de consultation complet ;
- * chaque candidate le référence par manifeste_n, et la matrice n'ajoute que le jugement.
+ * QUARANTE-DEUX CAS : 0 (fixture conforme — manifeste complet avec une observation de
+ * rattachement de rôle dédié, candidate PDF à pièce-capture), 17 à 52 (bijection, décisions,
+ * pièces, ancres, PDF, liaison au manifeste), puis 53-57 (contre-revue v5-ter) : PDF déguisé
+ * en text/plain — le format recalculé depuis les OCTETS prime ; résultat de manifeste
+ * supplémentaire non exercé ; URL de rattachement inventée (capture et citation intactes) ;
+ * rattachement sans manifeste_n ; pièce du manifeste hors du répertoire de run déclaré.
  */
 import { readFileSync, writeFileSync, mkdirSync, copyFileSync, symlinkSync, mkdtempSync, rmSync } from "node:fs";
 import { createHash } from "node:crypto";
-import { extraireTexte, VERSION_EXTRACTEUR } from "./extraire-texte-lot-a.mjs";
+import { extraireTexte, detecterFormat, VERSION_EXTRACTEUR } from "./extraire-texte-lot-a.mjs";
 import { spawnSync } from "node:child_process";
 import { tmpdir } from "node:os";
 import { join, resolve } from "node:path";
@@ -70,7 +68,7 @@ function fabriquerJeu(guides, scelle, fx) {
       const estPdf = id === "country_bs" && i === 1;
       const cap = JSON.parse(JSON.stringify(estPdf ? fx.capturePdfTexte : fx.captureTemoin));
       resultats.push({
-        n, country_id: id, index_lien: i, label: s.label, url_publiee: s.url,
+        n, role: "candidate", country_id: id, index_lien: i, label: s.label, url_publiee: s.url,
         acces: "consultee", statut_http: 200, url_finale: s.url, redirections: 0,
         consultee_le: JOUR, content_type: cap.content_type,
         capture: JSON.parse(JSON.stringify(cap)),
@@ -90,11 +88,23 @@ function fabriquerJeu(guides, scelle, fx) {
       decision: { statut: "aucune_source_officielle", motif: "Jeu d'essai : aucune candidate n'est jugée ici." },
     };
   }
+  /* L'observation de RATTACHEMENT distincte (rôle « rattachement ») : la preuve doit venir
+   * du manifeste, comme toute observation. */
+  n++;
+  const nRattachement = n;
+  resultats.push({
+    n: nRattachement, role: "rattachement",
+    url_demandee: "https://example.org/annuaire-temoin", motif: "Annuaire témoin du jeu d'essai.",
+    acces: "consultee", statut_http: 200, url_finale: "https://example.org/annuaire-temoin",
+    redirections: 0, consultee_le: JOUR, content_type: fx.captureRattachement.content_type,
+    capture: JSON.parse(JSON.stringify(fx.captureRattachement)),
+    entetes: { ...fx.entetesTemoin }, trace: { ...fx.traceTemoin },
+  });
   /* country_fj : la promotion complète et concordante, rattachement ancré dans sa capture. */
   const fj = audits.country_fj;
   const c0 = fj.candidates[0];
   c0.nature_editeur = "autorite_pays";
-  c0.preuves_rattachement = [fx.preuveTemoin()];
+  c0.preuves_rattachement = [fx.preuveTemoin(nRattachement)];
   c0.pertinence = "etaye_le_fait";
   fj.decision = {
     statut: "promue", observation_decisive: 0,
@@ -106,7 +116,8 @@ function fabriquerJeu(guides, scelle, fx) {
   };
   return {
     matrice: { audits },
-    manifeste: { consultees_le: JOUR, run: "audit-pays-pieces", total: n, extracteur: VERSION_EXTRACTEUR, resultats },
+    manifeste: { consultees_le: JOUR, run: "audit-pays-pieces", total: n,
+      candidates: n - 1, rattachements: 1, extracteur: VERSION_EXTRACTEUR, resultats },
   };
 }
 
@@ -136,6 +147,7 @@ try {
     writeFileSync(join(arbre, cheminTexte), texte);
     gitArbre("add", "--", chemin, cheminTexte);
     return { chemin, sha256: sha256(contenu), content_type: contentType,
+      format_detecte: detecterFormat(Buffer.isBuffer(contenu) ? contenu : Buffer.from(contenu)),
       texte_derive: { chemin: cheminTexte, sha256: sha256(Buffer.from(texte)) },
       extracteur: VERSION_EXTRACTEUR };
   };
@@ -150,7 +162,8 @@ try {
   const capturePdfScanne = poserCapture("pdf-scanne.pdf",
     Buffer.from("%PDF-1.4\n4 0 obj << >> stream\nimagebinairesanstexte\nendstream\n%%EOF"),
     "application/pdf");
-  const preuveTemoin = () => ({
+  const preuveTemoin = (manifeste_n = 92) => ({
+    manifeste_n,
     citation: quoteFixture(CITATION_RATTACHEMENT),
     capture: JSON.parse(JSON.stringify(captureRattachement)),
   });
@@ -164,19 +177,28 @@ try {
     "HTTP/1.1 200 OK\n[en-tête expurgé : cookies/authentification/proxy]\nContent-Type: text/html; charset=utf-8\n");
   const traceTemoinF = poserFichier("trace-temoin.txt", "# trace témoin du jeu d'essai\n[ligne expurgée : proxy/authentification]\n");
   const traceTemoin = { type: "transcript", ...traceTemoinF };
-  const fx = { captureTemoin, capturePdfTexte, capturePdfScanne, preuveTemoin, entetesTemoin, traceTemoin };
+  const fx = { captureTemoin, captureRattachement, capturePdfTexte, capturePdfScanne, preuveTemoin, entetesTemoin, traceTemoin };
 
   const poser = (m) => writeFileSync(CHEMIN_MATRICE, JSON.stringify(m, null, 2));
+  const CHEMIN_MANIFESTE = join(arbre, "audit-pays-consultations.json");
   const jeu0 = fabriquerJeu(guides, scelle, fx);
-  writeFileSync(join(arbre, "audit-pays-consultations.json"), JSON.stringify(jeu0.manifeste, null, 2));
+  const manifestePristin = JSON.stringify(jeu0.manifeste, null, 2);
+  writeFileSync(CHEMIN_MANIFESTE, manifestePristin);
   const neuve = () => fabriquerJeu(guides, scelle, fx).matrice;
+  const neuveManifeste = () => JSON.parse(manifestePristin);
 
-  /** Mute une matrice neuve, la pose, lance, et exige 1 + motifs. */
-  const cas = (nom, muter, motifs) => {
+  /** Mute une matrice neuve (et, si demandé, une copie du manifeste), pose, lance, exige 1 + motifs. */
+  const cas = (nom, muter, motifs, muterManifeste = null) => {
     const m = neuve();
     muter(m);
     poser(m);
+    if (muterManifeste) {
+      const mf = neuveManifeste();
+      muterManifeste(mf);
+      writeFileSync(CHEMIN_MANIFESTE, JSON.stringify(mf, null, 2));
+    }
     const r = lancer(arbre);
+    if (muterManifeste) writeFileSync(CHEMIN_MANIFESTE, manifestePristin);
     if (r.status !== 1) { echec(nom, `sortie ${r.status} au lieu de 1 — la mutation passe`); return; }
     for (const motif of motifs) {
       if (!motif.test(r.stderr)) {
@@ -342,6 +364,42 @@ try {
     fj(m).candidates[0].url_finale = "https://autorite-inventee.example/politique-chiens";
     fj(m).decision.source.url = "https://autorite-inventee.example/politique-chiens";
   }, [/country_fj/, /url_finale/, /observation réécrite hors manifeste/]);
+
+  /* ---- 53-57 · format par octets, ensemble exact, rattachement lié --------------------------- */
+  cas("53 PDF déguisé en text/plain", (m) => {
+    /* Les mêmes octets %PDF- sous text/plain, ALIGNÉS matrice + manifeste + dérivé : le
+     * format recalculé depuis les octets doit primer, et l'interdiction PDF avec lui. */
+    const deguisee = JSON.parse(JSON.stringify(capturePdfTexte));
+    deguisee.content_type = "text/plain";
+    deguisee.format_detecte = "autre";
+    const c = bs(m).candidates[1];
+    c.capture = deguisee;
+    c.piece = { type: "extrait", extrait: EXTRAIT_PDF, langue: "en", locator: "page 1" };
+  }, [/country_bs/, /format_detecte|PDF/, /recalculé depuis les octets|pièce EXTRAIT depuis un PDF/], (mf) => {
+    const res = mf.resultats.find((x) => x.country_id === "country_bs" && x.index_lien === 1);
+    res.content_type = "text/plain";
+    res.capture.content_type = "text/plain";
+    res.capture.format_detecte = "autre";
+  });
+  cas("54 résultat manifeste supplémentaire", (m) => { /* matrice inchangée */ }, [
+    /999/, /sans jugement|sans rôle exercé|HORS de l'ensemble attendu/,
+  ], (mf) => {
+    const clone = JSON.parse(JSON.stringify(mf.resultats[0]));
+    clone.n = 999;
+    mf.resultats.push(clone);
+    mf.total = mf.resultats.length;
+  });
+  cas("55 URL de rattachement inventée", (m) => {
+    fj(m).candidates[0].preuves_rattachement[0].citation.url = "https://ministere-invente.gov.example/decret";
+  }, [/country_fj/, /citation\.url/, /rattachement hors manifeste/]);
+  cas("56 rattachement sans manifeste_n", (m) => {
+    delete fj(m).candidates[0].preuves_rattachement[0].manifeste_n;
+  }, [/schéma/, /manifeste_n/]);
+  cas("57 pièce du manifeste hors du répertoire de run", (m) => { /* matrice inchangée */ }, [
+    /hors du répertoire de run déclaré/,
+  ], (mf) => {
+    mf.resultats[0].capture.chemin = "packages/knowledge/raw/objects.json";
+  });
 } finally {
   gitWt("remove", "--force", arbre);
   rmSync(conteneur, { recursive: true, force: true });
@@ -349,12 +407,15 @@ try {
 
 /* ---- verdict ---------------------------------------------------------------------------------- */
 if (defauts.length === 0) {
-  process.stdout.write("37 cas éprouvés : la fixture conforme (manifeste lié, candidate PDF à pièce-capture)\n");
-  process.stdout.write("sort en 0 ; les contrôles 17-47 rougissent chacun pour sa cause ; le vide (balises,\n");
-  process.stdout.write("entités) ne s'ancre nulle part ; une pièce extrait ou un rattachement issus d'un PDF\n");
-  process.stdout.write("sont refusés même ancrables ; et l'observation réécrite hors manifeste — url_finale\n");
-  process.stdout.write("et source.url ensemble, concordance verte — rougit par la liaison au manifeste.\n\n");
-  process.stdout.write("[audit-pays] le validateur mord, sur les 36 contrôles.\n");
+  process.stdout.write("42 cas éprouvés : la fixture conforme — manifeste en ensemble exact, observation de\n");
+  process.stdout.write("rattachement de rôle dédié, candidate PDF à pièce-capture — sort en 0 ; les contrôles\n");
+  process.stdout.write("17-52 rougissent chacun pour sa cause (bijection triplet, décisions, pièces prouvées,\n");
+  process.stdout.write("ancres, interdictions PDF, liaison au manifeste) ; et la contre-revue v5-ter est morte :\n");
+  process.stdout.write("le format se recalcule depuis les OCTETS (PDF déguisé en text/plain refusé), un\n");
+  process.stdout.write("résultat de manifeste non exercé rougit, une URL de rattachement inventée — capture et\n");
+  process.stdout.write("citation intactes — rougit par la liaison, un rattachement sans manifeste_n échoue au\n");
+  process.stdout.write("schéma, et un chemin hors du répertoire de run déclaré est nommé.\n\n");
+  process.stdout.write("[audit-pays] le validateur mord, sur les 41 contrôles.\n");
   process.exit(0);
 }
 process.stderr.write(`\n[audit-pays] ÉCHEC — ${defauts.length} défaut(s) :\n`);
