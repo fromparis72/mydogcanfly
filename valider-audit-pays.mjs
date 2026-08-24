@@ -50,6 +50,7 @@
  * 2 si --as-of manque ou n'existe pas.
  */
 import { readFileSync, lstatSync } from "node:fs";
+import { resolve, sep } from "node:path";
 import { createHash } from "node:crypto";
 import { spawnSync } from "node:child_process";
 import { z } from "zod";
@@ -153,7 +154,18 @@ const EntreePays = z.object({
   decision: z.discriminatedUnion("statut", [DecisionPromue, DecisionSans]),
 }).strict();
 
-const Matrice = z.object({ audits: z.record(z.string(), EntreePays) }).strict();
+/* Chaque observation de rattachement du manifeste reçoit EXACTEMENT UNE décision éditoriale :
+ * `utilisee` (liée à au moins une preuve) ou `ecartee` (motif obligatoire, citée par aucune
+ * preuve) — un PDF réussi ou un échec réseau légitime s'ÉCARTENT, ils ne bloquent pas la
+ * matrice (contre-revue v5-quater). */
+const DecisionRattachement = z.discriminatedUnion("statut", [
+  z.object({ statut: z.literal("utilisee") }).strict(),
+  z.object({ statut: z.literal("ecartee"), motif: z.string().min(10) }).strict(),
+]);
+const Matrice = z.object({
+  audits: z.record(z.string(), EntreePays),
+  rattachements: z.record(z.string(), DecisionRattachement),
+}).strict();
 
 /* ---- chargements ----------------------------------------------------------------------------- */
 const lire = (p) => JSON.parse(readFileSync(p, "utf-8"));
@@ -173,22 +185,27 @@ catch {
 
 /* ---- LE MANIFESTE EST UN ENSEMBLE EXACT, validé strictement (contre-revue v5-ter, P1) ------- */
 const CaptureManifeste = CaptureScellee.extend({ octets: z.number().int().min(0).optional() }).strict();
-const ResCommun = { n: z.number().int().min(1), role: z.enum(["candidate", "rattachement"]) };
-const ResCandidate = { country_id: z.string().min(1), index_lien: z.number().int().min(0), label: LT, url_publiee: z.string().url() };
-const ResRattachement = { url_demandee: z.string().url(), motif: z.string().min(1) };
+/* Les RÔLES sont des LITTÉRAUX par branche : un résultat de forme candidate ne peut pas se
+ * déclarer « rattachement », ni l'inverse (contre-revue v5-quater). */
+const ResCandidate = { n: z.number().int().min(1), role: z.literal("candidate"),
+  country_id: z.string().min(1), index_lien: z.number().int().min(0), label: LT, url_publiee: z.string().url() };
+const ResRattachement = { n: z.number().int().min(1), role: z.literal("rattachement"),
+  url_demandee: z.string().url(), motif: z.string().min(1) };
 const ObsConsultee = { acces: z.literal("consultee"), statut_http: z.number().int(), url_finale: z.string().url(),
   redirections: z.number().int().min(0).optional(), consultee_le: DateISO, content_type: z.string().min(1),
   capture: CaptureManifeste, entetes: Fichier, trace: Trace };
 const ObsTentative = { acces: z.literal("tentative"), tentee_le: DateISO, resultat: z.string().min(1), trace: Trace };
 const Resultat = z.union([
-  z.object({ ...ResCommun, ...ResCandidate, ...ObsConsultee }).strict(),
-  z.object({ ...ResCommun, ...ResCandidate, ...ObsTentative }).strict(),
-  z.object({ ...ResCommun, ...ResRattachement, ...ObsConsultee }).strict(),
-  z.object({ ...ResCommun, ...ResRattachement, ...ObsTentative }).strict(),
+  z.object({ ...ResCandidate, ...ObsConsultee }).strict(),
+  z.object({ ...ResCandidate, ...ObsTentative }).strict(),
+  z.object({ ...ResRattachement, ...ObsConsultee }).strict(),
+  z.object({ ...ResRattachement, ...ObsTentative }).strict(),
 ]);
 const ManifesteSchema = z.object({
-  consultees_le: DateISO, run: z.string().min(1), total: z.number().int().min(1),
-  candidates: z.number().int().min(0).optional(), rattachements: z.number().int().min(0).optional(),
+  consultees_le: DateISO,
+  run: z.string().regex(/^audit-pays-pieces\/run-[A-Za-z0-9-]+$/, "run doit être audit-pays-pieces/run-*"),
+  total: z.number().int().min(1),
+  candidates: z.number().int().min(0), rattachements: z.number().int().min(0),
   extracteur: z.string().min(1), resultats: z.array(Resultat).min(1),
 }).strict();
 const parseManifeste = ManifesteSchema.safeParse(manifeste);
@@ -202,16 +219,43 @@ if (!parseManifeste.success) {
 if (manifeste.total !== manifeste.resultats.length) {
   echec(`manifeste — total ${manifeste.total} ≠ ${manifeste.resultats.length} résultats — l'ensemble n'est pas exact`);
 }
+/* Les COMPTEURS sont RECALCULÉS — les déclarer ne suffit pas (contre-revue : rattachements: 999). */
+const nbCandidates = manifeste.resultats.filter((r) => r.role === "candidate").length;
+const nbRattachements = manifeste.resultats.filter((r) => r.role === "rattachement").length;
+if (manifeste.candidates !== nbCandidates) echec(`manifeste — candidates ${manifeste.candidates} ≠ ${nbCandidates} recalculées`);
+if (manifeste.rattachements !== nbRattachements) echec(`manifeste — rattachements ${manifeste.rattachements} ≠ ${nbRattachements} recalculés`);
 if (manifeste.extracteur !== VERSION_EXTRACTEUR) {
   echec(`manifeste — extracteur « ${manifeste.extracteur} » ≠ version courante « ${VERSION_EXTRACTEUR} »`);
 }
+/* Les n sont UNIQUES ET CONTIGUS : 1..total, sans trou ni doublon. */
+{
+  const ns = manifeste.resultats.map((r) => r.n).sort((a, b) => a - b);
+  const attendu = Array.from({ length: manifeste.resultats.length }, (_, i) => i + 1);
+  if (JSON.stringify(ns) !== JSON.stringify(attendu)) {
+    echec(`manifeste — les n ne sont pas uniques et contigus de 1 à ${manifeste.resultats.length} (relevés : ${ns.slice(0, 8).join(", ")}…)`);
+  }
+}
+/* L'appartenance au run se juge sur CHEMINS RÉSOLUS, pas au préfixe. */
+const racineRun = resolve(manifeste.run) + sep;
 const parN = new Map();
 for (const r of manifeste.resultats) {
-  if (parN.has(r.n)) echec(`manifeste — n ${r.n} en double`);
-  parN.set(r.n, r);
+  if (!parN.has(r.n)) parN.set(r.n, r);
   for (const f of [r.capture?.chemin, r.capture?.texte_derive?.chemin, r.entetes?.chemin, r.trace?.chemin]) {
-    if (f && !String(f).startsWith(manifeste.run.replace(/\/?$/, "/")) && !String(f).startsWith(manifeste.run)) {
-      echec(`manifeste — n ${r.n} : « ${f} » hors du répertoire de run déclaré « ${manifeste.run} »`);
+    if (f && !resolve(String(f)).startsWith(racineRun)) {
+      echec(`manifeste — n ${r.n} : « ${f} » hors du répertoire de run déclaré « ${manifeste.run} » (chemins résolus)`);
+    }
+  }
+}
+/* Les rattachements du manifeste = EXACTEMENT la liste versionnée, dans l'ordre. */
+{
+  let liste = null;
+  try { liste = JSON.parse(readFileSync("rattachements-a-consulter.json", "utf-8")); }
+  catch { echec("manifeste — rattachements-a-consulter.json introuvable ou illisible : la liste versionnée est le contrat des rattachements"); }
+  if (Array.isArray(liste)) {
+    const duManifeste = manifeste.resultats.filter((r) => r.role === "rattachement")
+      .map((r) => ({ url: r.url_demandee, motif: r.motif }));
+    if (jsonCanonique(duManifeste) !== jsonCanonique(liste)) {
+      echec("manifeste — les observations de rattachement ne sont pas EXACTEMENT la liste versionnée rattachements-a-consulter.json (url et motif, dans l'ordre)");
     }
   }
 }
@@ -252,11 +296,11 @@ if (JSON.stringify(idsMatrice) !== JSON.stringify([...CONTRACTUELS].sort())) {
 }
 
 const canon = (x) => JSON.stringify(x, Object.keys(x ?? {}).sort ? undefined : undefined);
-const jsonCanonique = (x) => {
+function jsonCanonique(x) {
   if (Array.isArray(x)) return "[" + x.map(jsonCanonique).join(",") + "]";
   if (x && typeof x === "object") return "{" + Object.keys(x).sort().map((k) => JSON.stringify(k) + ":" + jsonCanonique(x[k])).join(",") + "}";
   return JSON.stringify(x);
-};
+}
 
 const dansFenetre = (d, pays, quoi) => {
   if (typeof d === "string" && dateExiste(d) && d > asOf) echec(`${pays} — ${quoi} « ${d} » est POSTÉRIEURE à --as-of=${asOf}`);
@@ -503,14 +547,29 @@ for (const id of CONTRACTUELS) {
   }
 }
 
-/* ---- chaque résultat du manifeste est EXERCÉ : jugé (candidate) ou cité (rattachement) ------ */
+/* ---- chaque résultat du manifeste a un ÉTAT LÉGAL : jugé (candidate) ou DÉCIDÉ (rattachement).
+ * Un PDF réussi, un échec réseau, une pièce non pertinente s'ÉCARTENT avec motif — ils ne
+ * rendent pas la matrice invalidable (contre-revue v5-quater). */
+const decisionsRattachement = matriceBrute.rattachements ?? {};
 for (const r of manifeste.resultats ?? []) {
   if (r.role === "candidate" && !nsVus.has(r.n)) {
     echec(`manifeste — n ${r.n} (candidate ${r.country_id}[${r.index_lien}]) n'est référencé par aucune candidate de la matrice — résultat sans jugement`);
   }
-  if (r.role === "rattachement" && !nsRattachementExerces.has(r.n)) {
-    echec(`manifeste — n ${r.n} (rattachement ${r.url_demandee}) n'est cité par aucune preuve — résultat sans rôle exercé`);
+  if (r.role === "rattachement") {
+    const d = decisionsRattachement[String(r.n)];
+    if (!d) {
+      echec(`manifeste — n ${r.n} (rattachement ${r.url_demandee}) SANS DÉCISION éditoriale — utilisee ou ecartee, rien d'implicite`);
+    } else if (d.statut === "utilisee" && !nsRattachementExerces.has(r.n)) {
+      echec(`matrice — rattachement n ${r.n} déclaré UTILISÉ mais cité par aucune preuve`);
+    } else if (d.statut === "ecartee" && nsRattachementExerces.has(r.n)) {
+      echec(`matrice — rattachement n ${r.n} déclaré ÉCARTÉ mais cité par une preuve — les deux ne se cumulent pas`);
+    }
   }
+}
+/* Aucune décision orpheline : les clés de matrice.rattachements = exactement les n de rôle rattachement. */
+for (const cle of Object.keys(decisionsRattachement)) {
+  const r = parN.get(Number(cle));
+  if (!r || r.role !== "rattachement") echec(`matrice — décision de rattachement « ${cle} » ne correspond à aucune observation de rattachement du manifeste`);
 }
 
 /* ---- verdict --------------------------------------------------------------------------------- */

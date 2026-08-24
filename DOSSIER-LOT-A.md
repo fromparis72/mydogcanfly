@@ -1,4 +1,4 @@
-# Lot A — Audit des 18 pays sans source · dossier de mesure et de conception (v5-quater)
+# Lot A — Audit des 18 pays sans source · dossier de mesure et de conception (v5-quinquies)
 
 **Mesuré sur `main` après fusion du dossier d'achèvement (`1dd62010ea183422f02553877df4706714739080`).
 Ce dossier ne corrige rien : aucune date, aucune source, aucune donnée métier n'est écrite.
@@ -9,7 +9,7 @@ Reproduction :
 ```bash
 node --import tsx mesurer-lot-a.mjs --as-of=2026-08-24   # l'état contre le scellé — sortie 1 au premier écart
 node test-mesure-lot-a.mjs                               # 16 cas : le scellé est exact, et il ne se remplace pas
-node test-audit-pays.mjs                                 # 42 cas : le validateur de la matrice mord (17-57)
+node test-audit-pays.mjs                                 # 48 cas : le validateur de la matrice mord (17-63)
 node test-consulter-lot-a.mjs                            # 12 cas au faux curl : le collecteur ne fabrique rien
 ```
 
@@ -161,6 +161,24 @@ url et motif obligatoires). (4) Le manifeste est validé comme **ensemble exact*
 strict, `total` = nombre de résultats, identifiants uniques, candidates = exactement les 91
 couples publiés, aucun résultat sans jugement ni rôle exercé, tous les fichiers sous le
 répertoire de run déclaré. Contre-épreuves 53–57 et cas collecteur 12.
+
+**La liste des rattachements acceptait des URL locales, certaines observations n'avaient
+aucun état légal, et le manifeste n'était toujours pas un ensemble exact** (contre-revue
+v5-quater, trois P0). (1) `file:///etc/passwd` avec motif passait — le vrai curl aurait
+laissé du contenu LOCAL dans le run. La liste est désormais au **schéma strict, refus avant
+toute écriture** : HTTP(S) uniquement, exactement `{ url, motif }`, motif non blanc, URL
+uniques, fichier obligatoire et JSON valide (batterie de six variantes au harnais collecteur).
+(2) Un rattachement PDF réussi, un échec réseau ou une pièce non pertinente rendaient la
+matrice invalidable (cité-par-preuve obligatoire vs preuve-PDF interdite). Chaque observation
+de rattachement reçoit désormais **exactement une décision éditoriale** dans la matrice :
+`utilisee` (citée par au moins une preuve) ou `ecartee` (motif obligatoire, citée par
+aucune) — la fixture écarte proprement un PDF et une tentative (vert), l'absence de décision
+et le « PDF utilisé » rougissent. (3) Le manifeste est durci : compteurs `candidates` et
+`rattachements` OBLIGATOIRES et **recalculés** (`rattachements: 999` rougit), `n` uniques et
+**contigus** de 1 à total, **rôles littéraux** dans les quatre branches du schéma,
+**égalité exacte** des rattachements avec la liste versionnée (url et motif, dans l'ordre),
+`run` contraint à `audit-pays-pieces/run-*`, appartenance des fichiers jugée sur **chemins
+résolus** et non au préfixe. Contre-épreuves 58–63.
 
 ## 1. La mesure a changé la nature de la dette — et ce que la promotion fait, honnêtement
 
@@ -367,10 +385,11 @@ Les **16 premières** sont éprouvées par `test-mesure-lot-a.mjs` sur l'état d
 les trois faux verts de la v1, les trois passages indus de la v2, la dérive commitée et le
 `_scelle` falsifié de la v3, les contrôles `--as-of`, la date future, et la génération saine
 (candidat égal au scellé, scellé jamais touché par l'instrument).
-Le harnais d'exécution `test-audit-pays.mjs` éprouve les contrôles **17 à 57** (42 cas — la
-fixture porte un manifeste en ensemble exact, une observation de rattachement de rôle dédié
-et une candidate PDF à pièce-capture), et `test-consulter-lot-a.mjs` éprouve le collecteur
-(12 cas au faux `curl`). Le total est **verrouillé à 57 + 12** :
+Le harnais d'exécution `test-audit-pays.mjs` éprouve les contrôles **17 à 63** (48 cas — la
+fixture porte un manifeste en ensemble exact égal à la liste versionnée, un rattachement
+utilisé, un PDF et une tentative proprement écartés, une candidate PDF à pièce-capture), et
+`test-consulter-lot-a.mjs` éprouve le collecteur (12 cas au faux `curl`, dont la batterie de
+six listes malformées). Le total est **verrouillé à 63 + 12** :
 
 | # | mutation | attendu |
 |---|---|---|
@@ -414,7 +433,13 @@ et une candidate PDF à pièce-capture), et `test-consulter-lot-a.mjs` éprouve 
 | 54 | résultat de manifeste supplémentaire (n : 999), non référencé | échec — ensemble exact : aucun résultat sans jugement ni rôle exercé |
 | 55 | `citation.url` de rattachement inventée, capture et citation intactes | échec — rattachement hors manifeste |
 | 56 | preuve de rattachement sans `manifeste_n` | échec — schéma |
-| 57 | pièce du manifeste hors du répertoire de run déclaré | échec |
+| 57 | pièce du manifeste hors du répertoire de run déclaré (chemins résolus) | échec |
+| 58 | observation de rattachement **sans décision** éditoriale | échec — utilisee ou ecartee, rien d'implicite |
+| 59 | rattachement **PDF déclaré `utilisee`** | échec — utilisée exige d'être citée, et une preuve PDF est interdite |
+| 60 | compteur `rattachements` falsifié (999) | échec — compteurs recalculés |
+| 61 | `run` hors du motif `audit-pays-pieces/run-*` | échec — schéma du manifeste |
+| 62 | `n` non contigus | échec — 1..total, sans trou ni doublon |
+| 63 | rattachements du manifeste ≠ liste versionnée `rattachements-a-consulter.json` | échec — égalité exacte, url et motif |
 
 ## 6. Interdits, et effets de bord assumés
 

@@ -88,12 +88,32 @@ for (const id of pays) {
   attendus += liens.length;
 }
 if (attendus !== scelle.liens_total) refus(2, `${attendus} liens relevés, scellé ${scelle.liens_total}`);
-/* Les URL de rattachement à consulter — versionnées, curées AVANT le run, jamais inventées ici. */
-let rattachements = [];
-if (existsSync("rattachements-a-consulter.json")) {
-  rattachements = JSON.parse(readFileSync("rattachements-a-consulter.json", "utf-8"));
+/* La liste des rattachements — versionnée, curée AVANT le run, et au SCHÉMA STRICT : la v4
+ * acceptait file:///etc/passwd (contre-revue v5-quater), et le vrai curl aurait laissé du
+ * contenu LOCAL dans le fichier provisoire du run. HTTP(S) uniquement, objets sans champ
+ * inconnu, motif non blanc, URL uniques, fichier OBLIGATOIRE — tout écart refuse AVANT toute
+ * écriture. */
+let rattachements;
+try { rattachements = JSON.parse(readFileSync("rattachements-a-consulter.json", "utf-8")); }
+catch { refus(2, "rattachements-a-consulter.json ABSENT ou JSON invalide — la liste versionnée est obligatoire, rien n'est écrit"); }
+if (!Array.isArray(rattachements)) refus(2, "rattachements-a-consulter.json : un TABLEAU d'objets { url, motif } est attendu");
+{
+  const urlsVues = new Set();
   for (const [k, r] of rattachements.entries()) {
-    if (!r?.url || !r?.motif) refus(2, `rattachements-a-consulter.json [${k}] : url et motif sont obligatoires`);
+    const cles = Object.keys(r ?? {}).sort();
+    if (JSON.stringify(cles) !== JSON.stringify(["motif", "url"])) {
+      refus(2, `rattachements-a-consulter.json [${k}] : champs [${cles.join(", ")}] — exactement { url, motif } est exigé, aucun champ inconnu`);
+    }
+    let u;
+    try { u = new URL(String(r.url)); } catch { refus(2, `rattachements-a-consulter.json [${k}] : URL imparsable « ${r.url} »`); }
+    if (!/^https?:$/.test(u.protocol) || u.hostname.length === 0) {
+      refus(2, `rattachements-a-consulter.json [${k}] : « ${r.url} » — HTTP(S) UNIQUEMENT, un schéma local ne sera jamais consulté`);
+    }
+    if (typeof r.motif !== "string" || r.motif.trim().length === 0) {
+      refus(2, `rattachements-a-consulter.json [${k}] : motif blanc ou absent`);
+    }
+    if (urlsVues.has(r.url)) refus(2, `rattachements-a-consulter.json [${k}] : URL « ${r.url} » en double`);
+    urlsVues.add(r.url);
   }
 }
 

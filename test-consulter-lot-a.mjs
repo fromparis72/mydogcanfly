@@ -273,16 +273,30 @@ try {
     if (readFileSync(MANIFESTE(), "utf-8").includes("SECRET-COOKIE-42")) echec("11 Set-Cookie", "le secret apparaît dans le manifeste");
   }
 
-  /* ---- 12. liste de rattachements malformée : refus AVANT toute écriture -------------------- */
+  /* ---- 12. liste de rattachements : SCHÉMA STRICT, refus AVANT toute écriture ----------------
+   * [contre-revue v5-quater : file:///etc/passwd passait, et le vrai curl aurait laissé du
+   * contenu LOCAL dans le run] */
   {
     const pristin = readFileSync(join(arbre, "rattachements-a-consulter.json"), "utf-8");
-    writeFileSync(join(arbre, "rattachements-a-consulter.json"), JSON.stringify([{ url: "https://example.org/sans-motif" }]));
-    const runsAvant = runs().length;
-    const r = lancer("ok");
-    if (r.status !== 2) echec("12 rattachements malformés", `sortie ${r.status} au lieu de 2`);
-    if (!/url et motif sont obligatoires/.test(r.stderr)) echec("12 rattachements malformés", "le refus ne nomme pas l'exigence");
-    if (runs().length !== runsAvant) echec("12 rattachements malformés", "un run a été créé malgré le refus");
-    writeFileSync(join(arbre, "rattachements-a-consulter.json"), pristin);
+    const CHEMIN_LISTE = join(arbre, "rattachements-a-consulter.json");
+    const variantes = [
+      ["URL locale file://", JSON.stringify([{ url: "file:///etc/passwd", motif: "Motif présent mais schéma local." }]), /HTTP\(S\) UNIQUEMENT/],
+      ["champ inconnu", JSON.stringify([{ url: "https://example.org/a", motif: "Motif valide du jeu d'essai.", note: "x" }]), /aucun champ inconnu/],
+      ["motif blanc", JSON.stringify([{ url: "https://example.org/a", motif: "   " }]), /motif blanc/],
+      ["URL en double", JSON.stringify([{ url: "https://example.org/a", motif: "Premier motif." }, { url: "https://example.org/a", motif: "Second motif." }]), /en double/],
+      ["JSON invalide", "{ pas du json", /ABSENT ou JSON invalide/],
+      ["fichier absent", null, /ABSENT ou JSON invalide/],
+    ];
+    for (const [nom, contenu, motif] of variantes) {
+      if (contenu === null) rmSync(CHEMIN_LISTE, { force: true });
+      else writeFileSync(CHEMIN_LISTE, contenu);
+      const runsAvant = runs().length;
+      const r = lancer("ok");
+      if (r.status !== 2) echec(`12 liste (${nom})`, `sortie ${r.status} au lieu de 2 — la liste malformée passe`);
+      if (!motif.test(r.stderr)) echec(`12 liste (${nom})`, `le refus ne satisfait pas ${motif} — reçu :\n      ${r.stderr.trim().split("\n").slice(0, 2).join("\n      ")}`);
+      if (runs().length !== runsAvant) echec(`12 liste (${nom})`, "un run a été créé malgré le refus");
+    }
+    writeFileSync(CHEMIN_LISTE, pristin);
   }
 } finally {
   gitWt("remove", "--force", arbre);
@@ -291,8 +305,10 @@ try {
 
 /* ---- verdict ---------------------------------------------------------------------------------- */
 if (defauts.length === 0) {
-  process.stdout.write("12 cas éprouvés au faux curl : curl absent, proxy bloquant, inventaire dérivé et\n");
-  process.stdout.write("rattachements malformés REFUSENT sans rien écrire ; la collecte nominale rapporte\n");
+  process.stdout.write("12 cas éprouvés au faux curl : curl absent, proxy bloquant, inventaire dérivé, et la\n");
+  process.stdout.write("liste de rattachements au schéma strict (file:// local, champ inconnu, motif blanc,\n");
+  process.stdout.write("URL en double, JSON invalide, fichier absent) REFUSENT sans rien écrire ; la nominale\n");
+  process.stdout.write("rapporte\n");
   process.stdout.write("91 candidates + 4 observations de rattachement, formats détectés depuis les octets ;\n");
   process.stdout.write("corps et trace se corrèlent d'un même appel ; un 403 et un timeout restent des tentatives\n");
   process.stdout.write("précises ; une URL dérivée est enregistrée fidèlement ; une interruption ne publie\n");
