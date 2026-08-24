@@ -22,7 +22,7 @@
  * raison : elle éprouve la livraison de CE dossier, pas un invariant permanent du dépôt. Elle
  * n'est délibérément pas câblée en CI.
  *
- * DIX-HUIT CAS, en trois familles :
+ * VINGT-ET-UN CAS, en trois familles :
  *
  *   DATES (5) — « 2026-02-31 », « 2026-13-01 », « 2027-02-29 » (non bissextile) : sortie 2 en
  *   nommant la date. « 2028-02-29 » (bissextile) : sortie 0 — sans ce cas, les trois premiers
@@ -33,15 +33,18 @@
  *   documentaire — lequel ferait foi ?) ; le bloc absent. Chaque cas : sortie 1, et le diagnostic
  *   nomme la classe d'écart.
  *
- *   DONNÉES (8) — dans un ARBRE DE TRAVAIL GIT jetable où l'on mute les données réelles :
+ *   DONNÉES (11) — dans un ARBRE DE TRAVAIL GIT jetable où l'on mute les données réelles :
  *   les cinq contre-épreuves minimales exigées par la contre-revue sur le schéma canonique —
  *   confiance absente, relecteur absent, type de source inconnu, date impossible, URL invalide —
  *   chacune : sortie 1, chemin et champ nommés. Puis une `review_due` déplacée vers une autre
  *   date VALIDE : le schéma passe, mais `--verifier-dossier` voit la donnée qui a bougé sous le
- *   bloc resté figé. Une source datée glissée sous un `history` HORS du contrat d'archive :
- *   bloquée et nommée, au lieu de disparaître du registre en silence. Enfin un contact dupliqué —
- *   même URL deux fois dans un même tableau — fait retomber une identité sur l'indice, et le
- *   compteur `identites_instables`, figé à 0 par le bloc, fait rougir la concordance.
+ *   bloc resté figé. Puis les trois mutations INVISIBLES AUX AGRÉGATS — URL valide remplacée,
+ *   relecteur modifié, `verified_date` déplacée sans changer de tranche — que seule l'empreinte
+ *   SHA-256 du registre exact peut voir, localisées par famille. Une source datée glissée sous un
+ *   `history` HORS du contrat d'archive : bloquée et nommée, au lieu de disparaître du registre
+ *   en silence. Enfin un contact dupliqué — même URL deux fois dans un même tableau — fait
+ *   retomber une identité sur l'indice, et le compteur `identites_instables`, figé à 0 par le
+ *   bloc, fait rougir la concordance.
  */
 import { readFileSync, writeFileSync, copyFileSync, symlinkSync, mkdtempSync, rmSync } from "node:fs";
 import { spawnSync } from "node:child_process";
@@ -180,6 +183,32 @@ try {
       writeFileSync(CHEMIN_REGLES, reglesPristines);
     }
 
+    /* Les TROIS contre-épreuves d'empreinte de la contre-revue. Aucune ne change le moindre
+     * agrégat — ni total, ni répartition, ni classe d'auto-citation, ni tranche d'échéance.
+     * C'est exactement le trou de la v4 : une source métier remplacée en silence pendant que la
+     * vérification annonçait l'égalité exacte. Seule l'empreinte du registre exact peut les voir,
+     * et l'empreinte par famille doit LOCALISER l'écart. */
+    const INVISIBLES_AUX_AGREGATS = [
+      ["URL valide remplacée", (s) => { s.url = "https://example.org/replacement-pet-policy"; }],
+      ["relecteur modifié", (s) => { s.reviewer = "Quelqu'un d'autre"; }],
+      ["verified_date déplacée sans changer de tranche", (s) => {
+        const d = new Date(s.verified_date + "T00:00:00Z");
+        d.setUTCDate(d.getUTCDate() - 1);
+        s.verified_date = d.toISOString().slice(0, 10);
+      }],
+    ];
+    for (const [nom, muter] of INVISIBLES_AUX_AGREGATS) {
+      const regles = JSON.parse(reglesPristines);
+      muter(regles[0].source);
+      writeFileSync(CHEMIN_REGLES, JSON.stringify(regles, null, 2));
+      const r = lancer(arbre, `--as-of=${AS_OF}`, "--verifier-dossier");
+      if (r.status !== 1) echec(`empreinte · ${nom}`, `sortie ${r.status} au lieu de 1 — la source est modifiée en silence sous une égalité annoncée exacte`);
+      if (!/empreinte_registre/.test(r.stderr) || !/empreinte_par_famille\.rules/.test(r.stderr)) {
+        echec(`empreinte · ${nom}`, `le diagnostic ne nomme pas l'empreinte globale ET celle de la famille rules — reçu :\n      ${r.stderr.trim().split("\n").slice(0, 4).join("\n      ")}`);
+      }
+      writeFileSync(CHEMIN_REGLES, reglesPristines);
+    }
+
     { /* une source datée sous un `history` HORS contrat d'archive : bloquée et nommée, au lieu
        * de sortir du registre en silence — c'est l'exclusion globale que la contre-revue a refusée. */
       const objets = JSON.parse(objetsPristins);
@@ -218,13 +247,16 @@ try {
 /* ============================== verdict ======================================================= */
 
 if (defauts.length === 0) {
-  process.stdout.write("18 cas éprouvés : trois dates impossibles refusées en nommant la date, un 29 février\n");
+  process.stdout.write("21 cas éprouvés : trois dates impossibles refusées en nommant la date, un 29 février\n");
   process.stdout.write("bissextile accepté, le dossier réel conforme ; cinq altérations du document — valeur\n");
   process.stdout.write("modifiée, entrée supprimée, entrée ajoutée, bloc dupliqué, bloc absent — chacune en 1\n");
-  process.stdout.write("avec sa classe nommée ; et huit mutations de données en arbre de travail jetable —\n");
+  process.stdout.write("avec sa classe nommée ; et onze mutations de données en arbre de travail jetable —\n");
   process.stdout.write("les cinq rejets du schéma canonique avec chemin et champ, une review_due qui bouge\n");
-  process.stdout.write("sous le bloc figé, une archive hors contrat bloquée au lieu d'exclue en silence,\n");
-  process.stdout.write("une identité retombée sur l'indice qui fait rougir le compteur figé à 0.\n\n");
+  process.stdout.write("sous le bloc figé, trois mutations invisibles aux agrégats (URL valide remplacée,\n");
+  process.stdout.write("relecteur modifié, verified_date déplacée dans sa tranche) vues par les empreintes\n");
+  process.stdout.write("du registre exact et localisées par famille, une archive hors contrat bloquée au\n");
+  process.stdout.write("lieu d'exclue en silence, une identité retombée sur l'indice qui fait rougir le\n");
+  process.stdout.write("compteur figé à 0.\n\n");
   process.stdout.write("[mesure-achevement] la vérification mord, dans les deux sens.\n");
   process.exit(0);
 }

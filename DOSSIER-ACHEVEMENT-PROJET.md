@@ -10,9 +10,12 @@ rien d'autre, ce qui se vérifie d'une commande (chapitre 7).
 > JSON** (annexe A), produit par `mesurer-achevement.mjs --bloc`. `--verifier-dossier` recalcule
 > le relevé et le confronte au bloc **à égalité exacte, dans les deux sens** : valeur modifiée,
 > entrée supprimée du bloc, entrée ajoutée au bloc, donnée source qui a bougé sous un bloc resté
-> figé, bloc dupliqué ou absent — chaque classe d'écart sort en 1 avec son diagnostic. La prose
-> de ce document est narrative ; **le bloc fait foi**, et tout chiffre de dette du chapitre 4 en
-> provient. Les nombres de **contexte** ne relèvent pas de l'instrument et portent chacun
+> figé, bloc dupliqué ou absent — chaque classe d'écart sort en 1 avec son diagnostic. Le bloc
+> fige aussi le **registre exact** des sources, pas seulement ses agrégats : empreintes SHA-256
+> des objets `Source` canoniques et de leurs locators — globale, par famille, archives à part —
+> si bien qu'une source remplacée par une autre d'apparence équivalente rougit même quand aucun
+> total ne bouge. La prose de ce document est narrative ; **le bloc fait foi**, et tout chiffre
+> de dette du chapitre 4 en provient. Les nombres de **contexte** ne relèvent pas de l'instrument et portent chacun
 > leur provenance : les 3 121 pages et les durées de CI viennent des journaux du run GitHub cité
 > au chapitre 1 ; les cinq commits historiques, de `mesures/DEPENDANCE-HISTORIQUE.md` ; les
 > constats sur l'outil de chaleur, de l'arborescence `packages/ui/src/pages` lue au chapitre 4.
@@ -36,7 +39,7 @@ rien d'autre, ce qui se vérifie d'une commande (chapitre 7).
 
 ## 2. Erreurs de mesure corrigées en route, et ce qu'elles auraient coûté
 
-Ce dossier en est à sa quatrième version, et chacune a corrigé des chiffres ou des mécanismes de
+Ce dossier en est à sa cinquième version, et chacune a corrigé des chiffres ou des mécanismes de
 la précédente. C'est le fonctionnement voulu — les erreurs sont nommées, pas effacées :
 
 **Les pays étaient lus au mauvais niveau** (v2). Le script cherchait `pays.verified_date` ; la
@@ -69,10 +72,24 @@ canonique `Source`** de `packages/knowledge/src/common.ts` — celui de `npm run
 en défaut.
 
 **250 sources vivaient sous un indice numérique** (v4). `contacts[0].source` : une insertion ou un
-tri changeait leur identité, ce qui rendait tout futur registre de suivi (lot B) inconstruisible.
+tri changeait leur adresse, ce qui rendait tout futur registre de suivi (lot B) inconstruisible.
 Chaque élément de tableau est désormais adressé par son `id`, sinon par l'**empreinte de l'URL de
 sa source** — jointe à son `year` pour les évènements de frise historique, qui citent légitimement
 la même page. Zéro identité instable aujourd'hui, et le bloc contractuel **fige ce compteur à 0**.
+Ce locator est un **fingerprint provisoire, pas une identité longitudinale** (v5, contre-revue) :
+il résiste aux insertions et aux tris, **pas au déménagement d'une source** — si une URL
+officielle change, un suivi y verrait une suppression et une création, pas la mise à jour d'une
+même source. Le lot B devra soit introduire des identifiants explicites, soit assumer cette
+sémantique par écrit.
+
+**Le bloc figeait les agrégats, pas le registre** (v5). Contre-épreuve de Codex : remplacer une
+URL par une autre URL valide de même type ne changeait aucun total, aucune répartition, aucune
+classe d'auto-citation — la vérification sortait en 0 pendant qu'une source métier était
+**remplacée en silence**. Le bloc porte désormais l'**empreinte SHA-256 du registre exact** : les
+objets `Source` canoniques complets, appariés à leur locator, triés, sérialisés en JSON canonique
+— une empreinte **globale**, une **par famille** (pour localiser l'écart), une **séparée pour les
+20 archives**. Une URL remplacée, un relecteur modifié, une `verified_date` déplacée sans changer
+de tranche : aucun agrégat ne bouge, l'empreinte rougit — et le harnais le prouve.
 
 **L'exclusion des archives était un mot-clé, pas un contrat** (v4). Tout champ `history`, où qu'il
 soit, sortait ses sources du registre en silence. Seul le chemin d'archive connu —
@@ -84,12 +101,14 @@ soit, sortait ses sources du registre en silence. Seul le chemin d'archive connu
 « 2026-02-31 », « 2026-13-01 » et un 29 février non bissextile sortent en 2, un 29 février
 bissextile passe.
 
-**Vingt « sources » étaient des archives** (v3). Le total de 1 525 comptait 20 instantanés
-passés logés sous `airlines[*].premium.history[]` — supplantés par la source vivante du même
-objet, immuables par construction. Les compter dans la charge de revue reviendrait à réviser des
-archives. Le registre vivant est donc de **1 505**, et l'exclusion est **comptée et nommée** dans
-le relevé (`archives_dans_history: 20`) plutôt que tue : une exclusion silencieuse est une mesure
-qu'on ne peut plus contester.
+**Vingt « sources » étaient des archives** (v3 ; nature précisée en v5). Le total de 1 525
+comptait 20 citations logées sous `airlines[*].premium.history[]` — les **frises historiques**
+des compagnies : année + évènement + citation, deux évènements d'une même frise citant
+légitimement la même page. Elles adossent des **faits passés immuables** (une fondation, une
+alliance), pas des politiques vivantes : les compter dans la charge de revue reviendrait à
+réviser l'histoire. Le registre vivant est donc de **1 505**, et l'exclusion est **comptée et
+nommée** dans le relevé (`archives_dans_history: 20`) plutôt que tue : une exclusion silencieuse
+est une mesure qu'on ne peut plus contester.
 
 **L'auto-citation se juge désormais au nom d'hôte** (v3), URL parsée — `mydogcanfly.com` et ses
 sous-domaines — et non plus à la sous-chaîne, qui attraperait `example.com/mydogcanfly-review`.
@@ -256,7 +275,10 @@ de conception du lot G devra documenter **sur sources officielles**, sans la pr�
 Deux workflows existent — `ci.yml` et `contre-epreuves-completes.yml` (lundi 04:00 UTC). **Aucun ne
 surveille la fraîcheur des sources.** Il n'y a donc pas de second système à créer : il n'y en a
 aucun. Le workflow hebdomadaire offre un emplacement et une cadence déjà arbitrés, et le relevé
-fournit désormais l'**identité de chemin stable** de chaque source — la clé du futur registre.
+fournit désormais un **locator** par source — un fingerprint **provisoire** : il résiste aux
+insertions et aux tris, pas au déménagement d'une source (une URL officielle qui change y paraît
+comme une suppression plus une création). Le lot B devra soit introduire des **identifiants
+explicites**, soit assumer cette sémantique par écrit — c'est sa première décision de conception.
 
 ### Hors priorités · Provenance des dix couvertures — **dette acceptée, close**
 
@@ -289,10 +311,11 @@ Chaque lot est **fusionnable seul**. L'ordre est un ordre d'**impact**, pas de d
 
 - **Impact mesuré :** **1 505** sources vivantes, **702** sous 90 jours, **407 pour le seul mois
   d'octobre 2026**, première échéance le **28/09/2026**.
-- **Acceptation :** le workflow hebdomadaire produit une liste d'audit **par identité de chemin**
-  de source (fournie par le relevé) ; il distingue **trois états** — changement détecté, source
-  inaccessible, revue humaine terminée ; il compare des versions **figées par SHA**, jamais un
-  alias ; il ne promeut rien et ne touche pas la production.
+- **Acceptation :** le workflow hebdomadaire produit une liste d'audit **par locator** de source
+  (fourni par le relevé — fingerprint provisoire, voir P1-2 : le lot tranche d'abord entre
+  identifiants explicites et sémantique suppression + création) ; il distingue **trois états** —
+  changement détecté, source inaccessible, revue humaine terminée ; il compare des versions
+  **figées par SHA**, jamais un alias ; il ne promeut rien et ne touche pas la production.
 - **Contre-épreuves :** une source injoignable doit produire « inaccessible » et **non**
   « inchangée » ; un catalogue vide doit échouer au lieu de conclure « rien à faire ».
 - **À arbitrer :** **aucun seuil bloquant au premier lot**, selon ma recommandation. Un contrôle
@@ -410,6 +433,12 @@ Ce bloc est produit par `mesurer-achevement.mjs --bloc` et confronté par `--ver
 les deux sens, qu'un chiffre du bloc ait été altéré ou qu'une donnée du dépôt ait bougé sous un
 bloc resté figé.
 
+Les champs `empreinte_registre`, `empreinte_par_famille` et `empreinte_archives` sont des
+SHA-256 du **registre exact** : les objets `Source` canoniques complets, appariés à leur locator,
+triés par locator, sérialisés en JSON canonique (clés ordonnées récursivement). Ils attrapent ce
+qu'aucun agrégat ne voit — une URL remplacée par une autre URL valide, un relecteur modifié, une
+date déplacée à l'intérieur d'une tranche — et l'empreinte par famille localise l'écart.
+
 <!-- BLOC-CONTRACTUEL:debut -->
 ```json
 {
@@ -446,6 +475,16 @@ bloc resté figé.
     "sources_datees_total": 1505,
     "archives_dans_history": 20,
     "identites_instables": 0,
+    "empreinte_registre": "4507876b2f9ab8ddd32242b343b6a623f638c021175997877a6e13e13ff20341",
+    "empreinte_par_famille": {
+      "countries": "33a1570226fc1cb37493832b2351bb0ee7dff3dba9ea4cd8479966eb85ef1de5",
+      "airports": "72113f10e210b05c54ca93b300205fb315c0349071fdca842c6d9ea061dc3628",
+      "airlines": "05e069a61ac2965d711d6763f78fd32cf046001d566af66f0e9ce066dacab599",
+      "breeds": "6c823a01e3c91c99689418de48abd3d2cccdb5f6c9421a0ae925fb774ffcad82",
+      "partners": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "rules": "987b86c16f08db22ed790fe5bea4f9e89fd7fbf005109cfcbfb29fa75e13777a"
+    },
+    "empreinte_archives": "f84d5eba2ce6678678a6baacb559d0d04064e216c99ac7b2edbc187d3137a038",
     "par_famille": {
       "countries": {
         "objets": 140,

@@ -23,16 +23,24 @@
  * bloc, entrée ajoutée au bloc, donnée source modifiée (le relevé recalculé ne correspond plus),
  * bloc dupliqué ou absent. La prose du dossier est narrative ; le bloc fait foi.
  *
- * LES IDENTITÉS SONT STABLES. 250 sources vivantes vivaient sous un indice numérique
- * (`contacts[0].source`) : une insertion ou un tri changeait leur identité. Un élément de tableau
- * sans `id` est désormais adressé par l'EMPREINTE DE L'URL de sa source (`h:xxxxxxxxxxxx`) —
- * l'URL est l'identité logique d'une source, et elle survit aux rejeux de revue, ce qu'une
- * empreinte du contenu entier ne ferait pas. Les évènements datés d'une frise historique joignent
- * leur `year` à l'empreinte : deux évènements citent légitimement la même page. Zéro identité
- * instable dans les données actuelles ; seule compte l'identité d'un élément dont le sous-arbre
- * porte une source datée (les tableaux de tags ou de routes n'ont pas d'identité à perdre), et la
- * première source rangée sous un élément sans clé — ou sous une empreinte en collision —
- * incrémenterait `identites_instables`, que le bloc contractuel fige à 0.
+ * LE BLOC FIGE AUSSI LE REGISTRE EXACT, pas seulement les agrégats : empreintes SHA-256 des
+ * objets `Source` canoniques appariés à leur locator, en JSON canonique — globale, par famille,
+ * et séparée pour les archives. Remplacer une URL par une autre URL valide de même type, modifier
+ * un relecteur, déplacer une `verified_date` sans changer de tranche : aucun agrégat ne bouge,
+ * l'empreinte rougit.
+ *
+ * LES IDENTITÉS SONT UN LOCATOR PROVISOIRE, PAS UNE IDENTITÉ LONGITUDINALE. 250 sources vivantes
+ * vivaient sous un indice numérique (`contacts[0].source`) : une insertion ou un tri changeait
+ * leur adresse. Un élément de tableau sans `id` est désormais adressé par l'EMPREINTE DE L'URL de
+ * sa source (`h:xxxxxxxxxxxx`), jointe à son `year` pour les évènements de frise historique, qui
+ * citent légitimement la même page. Ce locator résiste aux insertions et aux tris — PAS au
+ * déménagement d'une source : si une URL officielle change, l'empreinte change, et un suivi
+ * longitudinal y verrait une suppression et une création, pas la mise à jour d'une même source.
+ * C'est une empreinte provisoire ; le lot B devra soit introduire des identifiants explicites,
+ * soit assumer cette sémantique. Seule compte l'adresse d'un élément dont le sous-arbre porte une
+ * source datée (les tableaux de tags ou de routes n'ont pas d'adresse à perdre) ; la première
+ * source rangée sous un élément sans clé — ou sous une empreinte en collision — incrémenterait
+ * `identites_instables`, que le bloc contractuel fige à 0.
  *
  * LES ARCHIVES SONT UN CONTRAT, PAS UN MOT-CLÉ. L'exclusion de `history` était globale : toute
  * future source rangée sous n'importe quel champ `history` aurait disparu du registre en silence.
@@ -183,11 +191,14 @@ const archivesHorsContrat = archives.filter((e) => !ARCHIVE_CONTRACTUELLE.test(e
  * L'entrée `history` d'une Source cite d'autres sources par `date` — un `ReviewEvent`, pas une
  * `Source` — et le schéma canonique le sait déjà. */
 const invalides = [];
-for (const { chemin, source } of [...toutes, ...archives]) {
-  const r = Source.safeParse(source);
+for (const e of [...toutes, ...archives]) {
+  const r = Source.safeParse(e.source);
   if (!r.success) {
     const motifs = r.error.issues.map((i) => `${i.path.join(".") || "(racine)"} — ${i.code}`).join(" · ");
-    invalides.push(`${chemin} : ${motifs}`);
+    invalides.push(`${e.chemin} : ${motifs}`);
+  } else {
+    /* La vue CANONIQUE de la source — ce que le schéma a validé — sert aux empreintes. */
+    e.canonique = r.data;
   }
 }
 
@@ -202,6 +213,28 @@ if (archivesHorsContrat.length || invalides.length) {
   }
   process.exit(1);
 }
+
+/* LE BLOC FIGE LE REGISTRE, PAS SEULEMENT LES AGRÉGATS. Contre-épreuve de Codex sur la v4 :
+ * remplacer une URL par une autre URL valide de même type ne changeait aucun total, aucune
+ * répartition, aucune classe d'auto-citation — la vérification sortait en 0 pendant qu'une source
+ * métier était remplacée en silence. Le bloc porte donc l'EMPREINTE SHA-256 DU REGISTRE EXACT :
+ * les objets `Source` CANONIQUES complets (la vue validée par le schéma) appariés à leur locator,
+ * triés par locator, sérialisés en JSON canonique (clés ordonnées récursivement). Une empreinte
+ * globale, une par famille — pour LOCALISER l'écart — et une, séparée, pour les 20 archives. */
+const jsonCanonique = (x) => {
+  if (Array.isArray(x)) return "[" + x.map(jsonCanonique).join(",") + "]";
+  if (x && typeof x === "object") {
+    return "{" + Object.keys(x).sort().map((k) => JSON.stringify(k) + ":" + jsonCanonique(x[k])).join(",") + "}";
+  }
+  return JSON.stringify(x);
+};
+const empreinteRegistre = (entrees) => createHash("sha256").update(jsonCanonique(
+  entrees.slice().sort((a, b) => (a.chemin < b.chemin ? -1 : a.chemin > b.chemin ? 1 : 0))
+    .map((e) => ({ locator: e.chemin, source: e.canonique }))
+)).digest("hex");
+const empreintesParFamille = Object.fromEntries(
+  Object.keys(parFamille).map((f) => [f, empreinteRegistre(toutes.filter((e) => e.famille === f))])
+);
 
 /* L'AUTO-CITATION, au nom d'hôte parsé et non à la sous-chaîne. */
 const estAutoCitee = (u) => {
@@ -274,6 +307,9 @@ const bloc = {
     sources_datees_total: toutes.length,
     archives_dans_history: archives.length,
     identites_instables: identitesInstables,
+    empreinte_registre: empreinteRegistre(toutes),
+    empreinte_par_famille: empreintesParFamille,
+    empreinte_archives: empreinteRegistre(archives),
     par_famille: parFamille,
     par_type_de_source: compter(toutes.map(({ source }) => source.source_type)),
     par_confiance: compter(toutes.map(({ source }) => String(source.confidence))),
@@ -383,6 +419,8 @@ l(`  ${bloc.couvertures.images} images · ${bloc.couvertures.non_verifiees} non 
 l("");
 l("RÉFÉRENTIEL — schéma canonique Source appliqué aux 1 505 vivantes ET aux archives");
 l(`  ${bloc.referentiel.sources_datees_total} sources VIVANTES (+ ${archives.length} archives contractuelles, hors registre) · identités instables : ${identitesInstables}`);
+l(`  empreinte du registre : ${bloc.referentiel.empreinte_registre}`);
+l(`  empreinte des archives : ${bloc.referentiel.empreinte_archives}`);
 for (const [f, v] of Object.entries(parFamille)) l(`    ${f.padEnd(12)} ${String(v.objets).padStart(4)} objets · ${String(v.sources_datees).padStart(5)} source(s)`);
 l(`  types : ${JSON.stringify(bloc.referentiel.par_type_de_source)}`);
 l(`  AUTO-CITÉES (au nom d'hôte) : ${bloc.referentiel.autocitees} — ${JSON.stringify(bloc.referentiel.autocitees_par_famille)}`);
