@@ -1,194 +1,201 @@
-# Lot A — Audit des 18 pays sans source · dossier de mesure et de conception
+# Lot A — Audit des 18 pays sans source · dossier de mesure et de conception (v2)
 
 **Mesuré sur `main` après fusion du dossier d'achèvement (`1dd62010ea183422f02553877df4706714739080`).
 Ce dossier ne corrige rien : aucune date, aucune source, aucune donnée métier n'est écrite.
 Il sera soumis à contre-revue AVANT toute exécution.**
 
-Reproduction : `node mesurer-lot-a.mjs` (lecture seule ; sortie 1 si l'état de référence a dérivé).
+Reproduction :
+
+```bash
+node --import tsx mesurer-lot-a.mjs    # l'état de référence contre le scellé — sortie 1 au premier écart
+node test-mesure-lot-a.mjs             # 8 cas : le scellé mord, dont les trois faux verts de la contre-revue
+```
+
 La liste des 18 est celle que le bloc contractuel du dossier d'achèvement fige
 (`pays.identites_sans_source`, annexe A).
 
 ---
 
-## 1. La mesure a changé la nature de la dette
+## 0. Erreurs de la v1, corrigées — et ce qu'elles auraient coûté
 
-Le dossier d'achèvement décrivait la dette ainsi : « 18 pays n'ont AUCUNE source — ni URL, ni
-date, ni échéance ». C'est vrai **du référentiel** (`packages/knowledge/raw/objects.json`), et
-c'est la couche que le registre des 1 505 mesure. Mais la mesure du lot révèle une **seconde
-couche de provenance** que le dossier d'achèvement ne couvrait pas :
+**Le garde de mesure produisait trois faux verts** (contre-revue du 24/08/2026, reproduits) :
+une URL remplacée par une autre URL valide sortait en 0 ; un lien retiré avec une
+`verified_date` « 2026-02-31 » sortait en 0 ; une règle ajoutée visant `country_fj` par
+`route.dest_country_id` sortait en 0 — la v1 ne scellait ni les 91 liens, ni les métadonnées,
+ni l'égalité YAML ↔ artefact, et recomptait les règles avec un filtre sur le seul `scope` au
+lieu de la sémantique canonique. Un état de référence qui ne sait pas rougir aurait laissé
+l'audit travailler sur un inventaire silencieusement altéré.
+
+La v2 scelle l'état dans `etat-reference-lot-a.json` : **empreinte SHA-256 par pays des
+triplets (label, url) complets**, identité de `verified_date`, `reviewer`, `confidence`,
+**compte de règles ciblantes par `rulesForCountry`** (scope ET prédicats de destination —
+la fonction canonique de `views.ts`, pas une réimplémentation), **relecture des YAML et
+égalité canonique avec l'artefact généré** (l'artefact ne fait pas foi seul), **validation
+calendaire des dates** (reconstruction UTC — la regex de l'ingestion accepte « 2026-02-31 »)
+et **validation http(s) de chaque URL**. `--sceller` refuse de sceller un état en défaut.
+`test-mesure-lot-a.mjs` rejoue les trois mutations de la contre-revue, plus cinq autres :
+8 cas, chacun exigeant la sortie 1 avec le pays et le champ nommés.
+
+## 1. La mesure a changé la nature de la dette — et ce que la promotion fait, honnêtement
+
+Le dossier d'achèvement décrivait la dette ainsi : « 18 pays n'ont AUCUNE source ». C'est vrai
+**du référentiel** (`packages/knowledge/raw/objects.json`), la couche que le registre des 1 505
+mesure. Mais il existe une **seconde couche de provenance** :
 
 | couche | contenu pour les 18 | contrat de forme |
 |---|---|---|
-| **Référentiel** (`objects.json`) | cinq champs (`id, iso2, name, region, pet_scheme`), `pet_scheme` générique « National import rules », **0 règle du moteur ciblante**, **pas de `source`** | schéma canonique `Source` — absent ici |
-| **Guides pays** (`content/countries/<iso2>.yml` → `countries.generated.json`) | un guide **riche et publié** par pays : exigences d'entrée détaillées (~20 000 caractères pour Bahreïn), races restreintes, autorité de sortie nommée, checklist, **3 à 7 liens sources (91 au total)**, `verified_date` (17 × 2026-07-15, 1 × 2026-07-11), `reviewer`, `confidence` 2–4 | zod à l'ingestion : `label+url` par lien — **sans date, sans type, sans confiance par lien** ; `verified_date` validé par **regex seulement** (une date impossible passerait) |
+| **Référentiel** (`objects.json`) | cinq champs (`id, iso2, name, region, pet_scheme`), `pet_scheme` générique « National import rules », **0 règle ciblante** (sémantique canonique `rulesForCountry`, scellée), **pas de `source`** | schéma canonique `Source` — absent ici |
+| **Guides pays** (`content/countries/<iso2>.yml` → `countries.generated.json`) | un guide **riche et publié** par pays : exigences détaillées, races restreintes, autorité de sortie, **91 liens sources** (3 à 7 par pays), `verified_date`, `reviewer`, `confidence` | zod à l'ingestion : `label+url` par lien, `verified_date` par regex |
 
-**La dette réelle n'est donc pas « trouver des sources » : les candidates existent déjà, publiées.**
-La dette est que rien ne relie les deux couches : le site affirme des formalités détaillées avec
-des liens vers des autorités, pendant que le référentiel — la couche que le système de revue
-mesurera (lot B) — dit « aucune provenance ». Le lot A doit **auditer les sources déjà publiées
-et promouvoir, par pays, UNE `Source` canonique dans le référentiel** — ou constater
-véridiquement qu'aucune ne tient, ce qui met alors le guide publié lui-même en cause (§ 6,
-escalade — jamais de correction silencieuse).
+**Ce que la promotion fait — et ne fait pas.** `Country.source` est un champ facultatif du
+petit objet pays. La mesure établit qu'il n'est consommé **ni par le moteur** (aucune règle ne
+le lit) **ni par la page** (`CountryGuidePage` rend exclusivement `g.sources`, les liens du
+guide). Promouvoir une source dans `objects.json` améliore donc **le registre** — le substrat
+que le lot B surveillera — avec **zéro effet moteur et zéro effet public**. Le dossier
+l'annonce plutôt que de le laisser croire : le lot A ne « relie » pas les couches par magie ;
+il crée, par pays, UN lien explicite et vérifiable entre une candidate auditée et le
+référentiel.
 
-Deux faits de mesure encadrent l'ambition :
+**Ce que `Country.source` atteste — le fait ciblé, précisément défini.** Pas les exigences
+détaillées du guide (elles restent adossées à `g.sources`, hors périmètre du lot A) :
 
-- **Les guides des 18 citent presque exclusivement des hôtes gouvernementaux du pays de
-  destination** (`customs.gov.bh`, `agrocalidad.gob.ec`, `fsvps.gov.ru`, `gub.uy`…). À
-  l'inverse, le panorama des **122 pays déjà sourcés** au référentiel montre : 44 ×
-  `mydogcanfly.com` (la boucle du lot C), 5 × `pettravel.com` (agrégateur commercial), 1 ×
-  `anivetvoyage.com`, 1 × `kenya.org.za`. **Les 18 « sans source » ont des candidates souvent
-  meilleures que les sources actuelles des 122.** Le lot A fixera la barre de qualité vers le
-  haut, pas vers l'existant.
-- **La couche guides, globalement : 140 guides sur 140 datés, 800 liens sources** — tous hors du
-  registre des 1 505. Ce constat est transmis pour l'exactitude du périmètre du dossier
-  d'achèvement (son registre est celui de `raw/`, et il le dit) ; l'unification éventuelle des
-  deux couches est une question de conception pour le **lot B**, pas pour le lot A.
+> *« L'importation des chiens vers ce pays est soumise à des conditions nationales, publiées
+> par l'autorité compétente du pays à l'URL citée. »*
 
-## 2. Inventaire exact
+C'est exactement ce que le champ `pet_scheme` (« National import rules ») affirme aujourd'hui
+sans preuve. Une candidate n'étaye ce fait que si la page consultée **décrit effectivement des
+conditions d'importation d'animaux de compagnie** — une page d'accueil d'autorité, même
+officielle, ne l'étaye pas (cas éthiopien, § 2).
 
-Colonne « candidates » : les hôtes des liens **déjà publiés par le guide du pays** — aucune URL
-inventée. Classification proposée (à confirmer par l'audit, § 3) : **D** = autorité du pays de
-destination · **T** = source officielle tierce (USDA APHIS, trade.gov…) · **A** = autre.
+Deux faits de mesure encadrent la barre :
 
-| pays | régime (guide) | conf. | candidates (hôtes distincts) | classe |
-|---|---|---|---|---|
-| `country_bh` Bahreïn | listed | 3 | customs.gov.bh · services.bahrain.bh · mun.gov.bh | D |
-| `country_bs` Bahamas | non_listed | 3 | bahamas.gov.bs · cdn.bahamas.gov.bs · bahfsabahamas.com | D |
-| `country_ci` Côte d'Ivoire | non_listed | 3 | ressourcesanimales.gouv.ci · gucecotedivoire.ci · aphis.usda.gov | D+T |
-| `country_ec` Équateur | non_listed | 4 | agrocalidad.gob.ec · cancilleria.gob.ec · bioseguridadgalapagos.gob.ec · abgalapagos.gob.ec | D |
-| `country_et` Éthiopie | non_listed | 2 | eaa.gov.et · esw.et · moa.gov.et · aphis.usda.gov · trade.gov | D+T |
-| `country_fj` Fidji | listed | 4 | baf.com.fj (Biosecurity Authority of Fiji) | D |
-| `country_gh` Ghana | non_listed | 3 | vsd.gov.gh · mofa.gov.gh · brussels.mfa.gov.gh · gra.gov.gh · aphis.usda.gov | D+T |
-| `country_jm` Jamaïque | listed | 4 | moa.gov.jm | D |
-| `country_kw` Koweït | non_listed | 2 | paaf.gov.kw · e.gov.kw · washington.mofa.gov.kw · aphis.usda.gov | D+T |
-| `country_lb` Liban | non_listed | 2 | agriculture.gov.lb · regulations.agriculture.gov.lb · nylebcons.org · leap.unep.org · aphis.usda.gov | D+T+A |
-| `country_mg` Madagascar | non_listed | 2 | douanes.gov.mg · minae.gov.mg · aphis.usda.gov | D+T |
-| `country_mv` Maldives | non_listed | 4 | customs.gov.mv · gov.mv | D |
-| `country_ng` Nigeria | non_listed | 3 | naqs.gov.ng · customs.gov.ng · aphis.usda.gov | D+T |
-| `country_np` Népal | non_listed | 3 | dls.gov.np · lawcommission.gov.np · vcn.gov.np · tia.immigration.gov.np · uk.nepalembassy.gov.np | D |
-| `country_om` Oman | non_listed | 4 | customs.gov.om · gov.om · omanportal.gov.om | D |
-| `country_ru` Russie | non_listed | 3 | fsvps.gov.ru · customs.gov.ru · static.government.ru | D |
-| `country_sc` Seychelles | non_listed | 3 | mofbe.gov.sc · environment.gov.sc · saa.gov.sc | D |
-| `country_uy` Uruguay | non_listed | 4 | gub.uy · normas.mercosur.int | D |
+- Les guides des 18 citent presque exclusivement des hôtes gouvernementaux du pays. Le
+  panorama des **122 pays déjà sourcés** : 44 × `mydogcanfly.com`, 5 × `pettravel.com`, 1 ×
+  `anivetvoyage.com`, 1 × `kenya.org.za`. **Les 18 ont des candidates souvent meilleures que
+  les sources actuelles des 122.** La barre se fixe vers le haut, pas vers l'existant.
+- La couche guides, globalement : 140/140 guides datés, 800 liens sources, hors du registre
+  des 1 505. L'unification des deux couches est une question de conception pour le **lot B**.
 
-Points d'attention relevés par la mesure, à traiter pendant l'audit :
+## 2. Inventaire exact, et les cinq cas nommés — mis à jour en contre-revue
 
-- **Fidji** : tous les liens sont sur `baf.com.fj` — la Biosecurity Authority of Fiji est bien
-  l'autorité compétente mais son domaine n'est pas `.gov.fj` ; l'audit devra établir
-  l'officialité du domaine (par exemple depuis le portail gouvernemental fidjien), pas la
-  supposer au TLD.
-- **Bahamas** : même cas pour `bahfsabahamas.com` (BAHFSA) — l'autorité nommée par le guide.
-- **Liban** : deux liens ne sont ni l'autorité ni une source officielle tierce
-  (`nylebcons.org` — consulat à New York ; `leap.unep.org` — base juridique du PNUE). S'ils
-  restent les seuls à tenir, le cas passe en arbitrage (§ 6).
-- **Éthiopie et Koweït** (confiance guide : 2) : candidates les plus fragiles ; les liens
-  `aphis.usda.gov` (exigences vues par les USA) ne décrivent pas l'importation VERS le pays
-  avec autorité — utiles en corroboration, **inéligibles comme source promue** (§ 3).
+Inventaire scellé par `etat-reference-lot-a.json` (empreintes par pays) ; la table complète
+des hôtes est dans la v1 de ce dossier (`git show 28b48b8:DOSSIER-LOT-A.md`, § 2) et reste
+exacte — le scellé la rend désormais inviolable. Les cinq cas d'attention, **avec les
+constats de contre-revue** :
 
-## 3. Conception — la matrice d'audit, et ce qui peut être promu
+| cas | état après contre-revue | pièces fournies en contre-revue (à consulter et documenter pendant l'audit) |
+|---|---|---|
+| **Fidji** (`baf.com.fj`) | **éligible en principe** : le portail gouvernemental identifie `baf.com.fj` comme le site de la Biosecurity Authority of Fiji, la loi institue l'autorité, la page animaux décrit les conditions | `directory.digital.gov.fj/organisation?orgId=62` · `laws.gov.fj/Acts/DisplayAct/2994` · page BAF chats/chiens |
+| **Bahamas** (`bahfsabahamas.com`) | **éligible en principe** : un document gouvernemental qualifie BAHFSA d'autorité SPS sous tutelle ministérielle ; sa page chats/chiens publie les conditions | document `cdn.bahamas.gov.bs` (RFP e-inspection) · page BAHFSA trade-facilitation chats/chiens |
+| **Liban** | **classification v1 à corriger** : `nylebcons.org` est le consulat général officiel (confirmé par l'ambassade) — `mission_diplomatique`, pas « autre » ; sa valeur probante s'évalue séparément. Le ministère publie déjà un décret de quarantaine vétérinaire et une rubrique importation | `regulations.agriculture.gov.lb/en/legislation/523` · rubrique `agriculture.gov.lb` Animal-Wealth/Import-Export · `lebanonembassyus.org` (juridictions consulaires) |
+| **Éthiopie** | **éditeur officiel, pertinence NON démontrée** : EAA est bien l'autorité fédérale, mais les pages examinées sont génériques — un éditeur officiel ne suffit pas, la page doit étayer le fait | `eaa.gov.et/overview` · `eaa.gov.et/services` |
+| **Koweït** | **à maintenir ouvert** : la page MOFA dédiée a répondu **403** pendant la contre-revue. Elle ne sera déclarée auditée qu'après consultation réelle **avec capture de preuve** | — |
 
-**Livrable d'exécution : `audit-pays.json`**, versionné à la racine (même philosophie que
-`couvertures-guides.json` : l'état d'un travail humain, sous contrôle de forme mécanique).
-Une entrée par pays — exactement les 18, ni plus ni moins :
+## 3. Conception — la matrice d'audit sur quatre axes, et les contrats existants réutilisés
 
-```json
-{
-  "country_bh": {
-    "candidates": [
-      { "url": "https://www.customs.gov.bh/…", "consultee_le": "AAAA-MM-JJ",
-        "accessible": true, "verdict": "officielle",
-        "notes": "Douanes de Bahreïn, page d'importation des animaux personnels" }
-    ],
-    "decision": {
-      "statut": "promue",
-      "source": { "url": "…", "source_type": "government", "verified_date": "AAAA-MM-JJ",
-                  "review_due": "(dérivée)", "confidence": 3,
-                  "reviewer": "…", "history": [] }
-    },
-    "audite_par": "…", "audite_le": "AAAA-MM-JJ"
-  }
-}
-```
+**Livrable d'exécution : `audit-pays.json`**, versionné, à **schéma strict permanent**
+(un champ inconnu est une erreur, pas une tolérance) et **contrôlé en CI** — contrairement aux
+harnais de dossier (preuves manuelles datées), la cohérence matrice ↔ liens publiés ↔
+référentiel est un invariant permanent du dépôt, donc un pas de `ci.yml`.
 
-Règles de conception :
+Une entrée par pays, exactement les 18. Chaque **candidate** est évaluée sur **quatre axes
+séparés** — la contre-revue a montré que les confondre fabrique des verdicts :
 
-- **`verdict` par candidate** : `officielle` (l'autorité du pays, ou son portail gouvernemental),
-  `officielle_tierce` (USDA APHIS, trade.gov — corroboration seulement), `non_officielle`,
-  `inaccessible`. Une candidate `inaccessible` est un constat, jamais un verdict d'officialité.
-- **`decision.statut`** : `promue` (une `Source` canonique complète, prête à écrire dans
-  `objects.json`) ou `aucune_source_officielle` (avec `motif` obligatoire). Pas de troisième
-  état : « en cours » n'existe pas dans un livrable fusionnable.
-- **Éligibilité à la promotion** : verdict `officielle` uniquement — l'autorité du pays de
-  destination. Ni `officielle_tierce`, ni un lien du guide qui n'aurait pas été consulté.
-- **`verified_date` = la date de consultation pendant l'audit** — pas la date du guide
-  (2026-07-15), qui appartient à une autre couche et à un autre contrat.
-- **`review_due` dérivée, jamais saisie** : `reviewDueFrom(verified_date, "country")` —
-  ADR-0007, cadence 180 jours. C'est plus fort que l'ordre des dates : l'égalité exacte à la
-  dérivation canonique est exigée.
-- **Le schéma du référentiel n'est PAS étendu.** Pour un pays en `aucune_source_officielle`,
-  `objects.json` reste sans `source` ; la déclaration véridique vit dans `audit-pays.json`
-  (motif, date, auditeur). *Alternative écartée mais soumise à contre-revue : un champ
-  `source_audit` dans `objects.json` — écartée parce qu'elle change le schéma canonique pour
-  porter une absence, et que le lot A doit toucher le moins de contrats possible.*
-- **Qui audite** : je consulte et documente chaque candidate ; Codex contre-vérifie sur pièces ;
-  les cas ambigus (§ 2) sont arbitrés par Philippe. Aucun verdict `officielle` sans que l'URL
-  ait été consultée le jour dit.
+1. **Accessibilité** : `accessible: true|false` + `consultee_le` (date existante au
+   calendrier). Une page en 403 n'est ni officielle ni non officielle : elle est
+   **non consultée**, et rien d'autre ne peut être affirmé d'elle (cas koweïtien).
+2. **Nature de l'éditeur** : `autorite_pays` · `mission_diplomatique_pays` ·
+   `officiel_tiers` (USDA APHIS, trade.gov…) · `non_officiel` · `non_etabli`.
+   Le rattachement officiel se **prouve** (`preuves_rattachement`: URL du portail
+   gouvernemental, texte de loi — comme les pièces fidjiennes), il ne se lit pas dans le TLD.
+3. **Pertinence au fait ciblé** (§ 1) : `etaye_le_fait` · `partielle` · `page_generique` ·
+   `hors_sujet`. Une page d'accueil d'autorité est `page_generique` (cas éthiopien).
+4. **Preuve** : URL finale après redirections, **citation verbatim**, langue, locator —
+   c'est-à-dire exactement le contrat **`SourcedQuote`** existant
+   (`breed-restrictions.ts` : `Source` + `quote` ≥ 10 caractères + `quote_language` BCP-47 +
+   `locator`, strict, http(s) seulement, anti-auto-citation, types factuels, `review_due` ≥
+   `verified_date`). **Aucun modèle parallèle n'est créé.**
+
+**Décision par pays** — deux états, pas de troisième :
+
+- `promue` : porte un **`SourcedQuote` complet** (la preuve) dont l'URL est celle d'une
+  candidate `accessible: true` + `autorite_pays` + `etaye_le_fait`. `verified_date` = la date
+  de consultation ; `review_due` **dérivée** par `reviewDueFrom(verified_date, "country")`
+  (ADR-0007) — vérifié : le schéma `Source` seul accepte une `review_due` antérieure, la
+  dérivation exacte est donc exigée en plus. `Country.source` dans `objects.json` reçoit la
+  **projection canonique `Source`** de ce `SourcedQuote` (les champs communs, à l'identique —
+  `Country` n'est pas strict, y glisser les champs de citation serait silencieusement toléré
+  puis perdu : la citation vit dans la matrice, la liaison est l'égalité de projection,
+  vérifiée en CI).
+- `aucune_source_officielle` : `motif` obligatoire. `objects.json` reste sans `source`.
+  Une `mission_diplomatique_pays` qui étaye le fait sans qu'aucune page de l'autorité ne
+  tienne est un cas d'**arbitrage** (Philippe), pas une promotion automatique.
+
+**Bijection avec les liens publiés** : chacun des **91 liens** des guides des 18 apparaît dans
+la matrice, classé sur les quatre axes — aucun lien publié laissé sans verdict, aucune
+candidate sortie de nulle part (les pièces de contre-revue entrent comme
+`preuves_rattachement`, pas comme candidates). Si un lien publié est classé `non_officiel`
+alors que la fiche continue de le présenter sous « Sources officielles », le constat est
+**bloquant** — documenté et escaladé, jamais corrigé en silence dans ce lot.
+
+**Qui audite** : je consulte et documente (URL finale, citation, langue, locator, capture) ;
+Codex contre-vérifie sur pièces ; Philippe arbitre les cas nommés. Aucun verdict sur une page
+non consultée.
 
 ## 4. Critères d'acceptation
 
-1. `audit-pays.json` couvre **exactement** les 18 identités contractuelles — aucune retirée,
-   aucune ajoutée.
-2. Chaque pays a un `decision.statut` parmi les deux états, et chaque `promue` porte une
-   `Source` **validée par le schéma canonique** (`Source.safeParse`), avec `review_due`
-   **égale** à `reviewDueFrom(verified_date, "country")`.
-3. Aucune source promue sur un hôte `mydogcanfly.com` (jugé au nom d'hôte parsé) ni sur un
-   verdict autre que `officielle`.
-4. Chaque candidate promue a `accessible: true` et une `consultee_le` qui existe au calendrier.
-5. Tout `aucune_source_officielle` porte un `motif` non vide.
-6. `objects.json` ne change **que** par l'ajout de blocs `source` aux pays promus — l'écart se
-   vérifie d'un `git diff` : aucun autre champ, aucun autre objet.
+1. `audit-pays.json` couvre exactement les 18 ; schéma strict ; contrôle câblé en CI.
+2. Bijection exacte : 91/91 liens publiés classés sur les quatre axes.
+3. Toute `promue` : `SourcedQuote` valide (contrat existant), URL d'une candidate
+   `accessible` + `autorite_pays` + `etaye_le_fait`, `review_due` égale à la dérivation
+   ADR-0007, `verified_date` = `consultee_le` de la candidate retenue, `reviewer` =
+   `audite_par`.
+4. `Country.source` = projection canonique exacte du `SourcedQuote` de la matrice — l'égalité
+   champ à champ est le lien entre les couches, vérifiée mécaniquement.
+5. Tout `aucune_source_officielle` : motif non vide, et **aucune candidate éligible
+   existante** (une candidate `autorite_pays` + `etaye_le_fait` + `accessible` rend cet état
+   invalide).
+6. `objects.json` ne change que par l'ajout des blocs `source` promus (`git diff` en fait foi).
 
-## 5. Contre-épreuves (le harnais d'exécution devra les faire rougir)
+## 5. Contre-épreuves — celles du harnais d'exécution
+
+Les 8 premières sont déjà éprouvées par `test-mesure-lot-a.mjs` sur l'état de référence.
+Le harnais d'exécution devra faire rougir, en plus :
 
 | # | mutation | attendu |
 |---|---|---|
-| 1 | une `verified_date` posée sans `url` | échec — schéma canonique |
-| 2 | `review_due` ≠ `reviewDueFrom(verified_date, "country")` (même postérieure et valide) | échec — dérivation ADR-0007, le schéma seul ne la voit pas (vérifié : il accepte `review_due` antérieure) |
-| 3 | un pays retiré de `audit-pays.json` | échec — la matrice doit compter 18/18 |
-| 4 | un 19ᵉ pays ajouté à la matrice | échec — symétrique |
-| 5 | source promue avec hôte `mydogcanfly.com` | échec — auto-citation, au nom d'hôte |
-| 6 | source promue depuis une candidate `officielle_tierce` ou `non_officielle` | échec — éligibilité |
-| 7 | source promue dont l'URL n'apparaît dans aucune candidate consultée | échec — pas d'audit, pas de promotion |
-| 8 | `consultee_le` ou `audite_le` = « 2026-02-31 » | échec — l'existence du jour, pas la regex (la leçon des guides) |
-| 9 | `aucune_source_officielle` sans motif | échec |
-| 10 | un bloc `source` écrit dans `objects.json` pour un pays dont la matrice dit `aucune_source_officielle` | échec — la matrice fait foi |
+| 9 | candidate publiée retirée, remplacée ou ajoutée dans la matrice | échec — bijection 91/91 |
+| 10 | candidate `page_generique` (officielle) promue | échec — pertinence exigée |
+| 11 | `accessible: false` avec un verdict d'éditeur ou de pertinence affirmé | échec — une page non consultée n'a pas de verdict |
+| 12 | `aucune_source_officielle` alors qu'une candidate éligible existe dans la matrice | échec |
+| 13 | `source.verified_date` ≠ `consultee_le` de la candidate retenue | échec |
+| 14 | `source.reviewer` ≠ `audite_par` | échec |
+| 15 | champ inconnu dans la matrice | échec — schéma strict |
+| 16 | lien classé `non_officiel` toujours présenté « Sources officielles » par la fiche | échec bloquant — escalade |
+| 17 | `review_due` ≠ `reviewDueFrom(verified_date, "country")` | échec — dérivation, pas ordre |
+| 18 | promotion dans `objects.json` sans entrée `promue` dans la matrice | échec — la matrice fait foi |
+| 19 | hôte `mydogcanfly.com` promu | échec — `SourcedQuote` le refuse déjà, la contre-épreuve le prouve |
+| 20 | citation absente ou < 10 caractères sur une promue | échec — `SourcedQuote` |
 
 ## 6. Interdits, et effets de bord assumés
 
 - **Interdit : poser une date sans audit.** Fabriquer une provenance est pire que n'en avoir
-  aucune — c'est le principe fondateur du lot, hérité du dossier d'achèvement.
-- **Interdit : modifier les guides YAML dans ce lot.** Si l'audit révèle qu'un guide publié
-  n'est pas soutenu par ses propres sources (liens morts, autorité mal nommée, affirmation sans
-  appui), le constat est documenté dans la matrice et **escaladé à Philippe et Codex** — la
-  correction du guide serait un autre lot, avec son propre périmètre.
-- **Interdit : promouvoir `aphis.usda.gov` ou tout tiers comme source d'un pays de
-  destination** — la corroboration n'est pas la provenance.
-- **Effet de bord assumé : le bloc contractuel du dossier d'achèvement rougira.** L'exécution du
-  lot A changera `pays.sans_source` (18 → moins), les totaux et les empreintes du registre :
-  `--verifier-dossier` sortira en 1 sur le nouveau `main` — **c'est le comportement voulu**
-  (« donnée source modifiée sous un bloc figé »). Le dossier d'achèvement est un instantané
-  daté du 23/08/2026 : sa vérification se reproduit sur son SHA de référence, pas sur la tête
-  de `main`. Ce point est posé ici pour que personne ne « répare » ce rouge en régénérant le
-  bloc en silence.
+  aucune.
+- **Interdit : modifier les guides YAML dans ce lot.** Un guide non soutenu par ses propres
+  sources est documenté et escaladé — sa correction est un autre lot.
+- **Interdit : promouvoir un `officiel_tiers`** — la corroboration n'est pas la provenance.
+- **Interdit : tout verdict sur une page non consultée** (le 403 koweïtien reste ouvert tant
+  que la page n'a pas été réellement lue, preuve à l'appui).
+- **Effet de bord assumé :** l'exécution fera rougir le bloc contractuel du dossier
+  d'achèvement (« donnée source modifiée sous bloc figé ») — instantané daté du 23/08/2026,
+  vérifiable sur son SHA de référence ; personne ne régénère ce bloc en silence.
 
-## 7. Ce que ce dossier attend de la contre-revue
+## 7. Séquence d'exécution (après feu vert sur cette v2)
 
-1. Validation de la **requalification** (§ 1) : auditer et promouvoir l'existant publié, plutôt
-   que chercher ex nihilo.
-2. Validation du choix **matrice sans extension de schéma** (§ 3) — ou demande de l'alternative
-   `source_audit`.
-3. Validation de la **barre d'éligibilité** (verdict `officielle` du pays de destination
-   uniquement) et du traitement des cas nommés : Fidji, Bahamas, Liban, Éthiopie, Koweït.
-4. Complément éventuel de la table des contre-épreuves (§ 5).
-
-Aucune exécution avant ce feu vert.
+1. **Contre-revue de cette v2** — aucune exécution avant.
+2. **Remplissage de `audit-pays.json`** : consultation réelle des 91 liens + pièces de
+   rattachement, quatre axes, citations verbatim — **sans aucune mutation d'`objects.json`**.
+   Le harnais d'exécution et le pas CI arrivent dans ce même livrable.
+3. **Contre-revue des 18 décisions** sur pièces.
+4. **Application des seules promotions approuvées** dans `objects.json` (projection canonique),
+   contre-vérifiée par le critère 4, puis PR, CI, fusion sur décision de Philippe.
