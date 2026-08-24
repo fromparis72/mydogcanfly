@@ -1,4 +1,4 @@
-# Lot A — Audit des 18 pays sans source · dossier de mesure et de conception (v5-septies)
+# Lot A — Audit des 18 pays sans source · dossier de mesure et de conception (v5-octies)
 
 **Mesuré sur `main` après fusion du dossier d'achèvement (`1dd62010ea183422f02553877df4706714739080`).
 Ce dossier ne corrige rien : aucune date, aucune source, aucune donnée métier n'est écrite.
@@ -9,7 +9,7 @@ Reproduction :
 ```bash
 node --import tsx mesurer-lot-a.mjs --as-of=2026-08-24   # l'état contre le scellé — sortie 1 au premier écart
 node test-mesure-lot-a.mjs                               # 16 cas : le scellé est exact, et il ne se remplace pas
-node test-audit-pays.mjs                                 # 54 cas : le validateur de la matrice mord (17-69)
+node test-audit-pays.mjs                                 # 57 cas : le validateur de la matrice mord (17-72)
 node test-consulter-lot-a.mjs                            # 14 cas au faux curl : le collecteur ne fabrique rien
 ```
 
@@ -226,6 +226,22 @@ lecture (cas collecteur 14, borne exigée sur chaque appel au cas nominal). Le P
 de la fixture historique, référencé par personne, a été retiré — l'inventaire exact l'aurait
 refusé, à raison.
 
+**L'inventaire était exact comme ensemble, pas comme bijection — et `octets` restait
+déclaratif** (contre-revue v5-septies, un P0 + un P1). (1) La fixture « conforme » portait
+94 résultats pour 8 fichiers distincts : traces et en-têtes partagés, que le `Set` des
+références masquait — deux résultats pouvaient partager les mêmes pièces, leurs anciennes
+pièces retirées du run, sortie 0. L'inventaire est désormais une **bijection** : chaque
+pièce appartient à UN SEUL couple (résultat n, champ) — un partage rougit en nommant tous
+les couples — et la **fixture a été reconstruite** avec une pièce par (résultat, champ)
+(`n-<n>.*`, ~370 fichiers), le collecteur réel étant déjà bijectif par construction
+(`<num>-<hôte>.*`). Contre-épreuve 70 : pièces partagées entre n 1 et n 2, anciennes pièces
+retirées, matrice alignée — rouge avec les deux n nommés. Le verdict « suivi par git » se lit
+désormais dans l'index chargé une fois par run (`git ls-files -z`) — même preuve
+d'appartenance, sans un appel git par pièce. (2) `capture.octets` est **obligatoire** au
+schéma du manifeste, **borné** par la limite partagée (`LIMITE_CORPS_OCTETS`, 25 MiB,
+exportée du module commun) et **confronté à `statSync(...).size`** — le supprimer échoue au
+schéma (contre-épreuve 71), le falsifier échoue à la taille réelle (contre-épreuve 72).
+
 ## 1. La mesure a changé la nature de la dette — et ce que la promotion fait, honnêtement
 
 Le dossier d'achèvement décrivait la dette ainsi : « 18 pays n'ont AUCUNE source ». C'est vrai
@@ -431,12 +447,13 @@ Les **16 premières** sont éprouvées par `test-mesure-lot-a.mjs` sur l'état d
 les trois faux verts de la v1, les trois passages indus de la v2, la dérive commitée et le
 `_scelle` falsifié de la v3, les contrôles `--as-of`, la date future, et la génération saine
 (candidat égal au scellé, scellé jamais touché par l'instrument).
-Le harnais d'exécution `test-audit-pays.mjs` éprouve les contrôles **17 à 69** (54 cas — la
-fixture porte un manifeste en ensemble exact égal à la liste versionnée, un rattachement
-utilisé, un PDF et une tentative proprement écartés, une candidate PDF à pièce-capture), et
-`test-consulter-lot-a.mjs` éprouve le collecteur (14 cas au faux `curl`, dont la batterie de
-six listes malformées, la redirection hors HTTP(S), le corps au-delà de la borne et
-l'inventaire exact du run). Le total est **verrouillé à 69 + 14** :
+Le harnais d'exécution `test-audit-pays.mjs` éprouve les contrôles **17 à 72** (57 cas — la
+fixture porte un manifeste en ensemble exact égal à la liste versionnée, UNE pièce par
+(résultat, champ), un rattachement utilisé, un PDF et une tentative proprement écartés, une
+candidate PDF à pièce-capture), et `test-consulter-lot-a.mjs` éprouve le collecteur (14 cas
+au faux `curl`, dont la batterie de six listes malformées, la redirection hors HTTP(S), le
+corps au-delà de la borne et l'inventaire exact du run). Le total est **verrouillé à
+72 + 14** :
 
 | # | mutation | attendu |
 |---|---|---|
@@ -493,6 +510,9 @@ l'inventaire exact du run). Le total est **verrouillé à 69 + 14** :
 | 67 | rattachement écarté muté en `statut_http: 404` sous `acces: "consultee"` | échec — le schéma du manifeste borne 200-299, même sur une observation écartée |
 | 68 | rattachement écarté muté en `url_finale: "file:///etc/passwd"` | échec — contrat HTTP(S) partagé sur toutes les URL observées, `z.string().url()` ne suffit pas |
 | 69 | pièce présente dans le run mais référencée par aucun résultat du manifeste | échec — le run est l'inventaire EXACT des pièces, l'orpheline est nommée |
+| 70 | deux résultats PARTAGEANT les mêmes pièces, anciennes pièces retirées du run, matrice alignée | échec — l'inventaire est une BIJECTION : chaque pièce appartient à un seul (n, champ), les deux n sont nommés |
+| 71 | `capture.octets` supprimé d'un résultat du manifeste | échec — obligatoire au schéma, borné par la limite partagée (25 MiB) |
+| 72 | `capture.octets` falsifié (taille + 1) | échec — égal à la taille réelle du fichier, jamais déclaratif |
 
 ## 6. Interdits, et effets de bord assumés
 

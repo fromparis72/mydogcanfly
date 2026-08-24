@@ -16,7 +16,7 @@
  * (cas 0) ; chaque cas suivant mute UNE chose et exige la sortie 1 avec la cause nommée.
  * Aucune donnée réelle n'est affirmée : la fixture vit dans l'arbre jetable, jamais au dépôt.
  *
- * CINQUANTE-QUATRE CAS : 0 (fixture conforme — manifeste complet avec une observation de
+ * CINQUANTE-SEPT CAS : 0 (fixture conforme — manifeste complet avec une observation de
  * rattachement de rôle dédié, candidate PDF à pièce-capture), 17 à 52 (bijection, décisions,
  * pièces, ancres, PDF, liaison au manifeste), puis 53-57 (contre-revue v5-ter) : PDF déguisé
  * en text/plain — le format recalculé depuis les OCTETS prime ; résultat de manifeste
@@ -32,6 +32,10 @@
  * Puis 67-69 (contre-revue v5-sexies) : statut_http 404 gardé « consultee » et url_finale
  * locale — refusés PAR LE SCHÉMA DU MANIFESTE, même sur une observation écartée ; et une
  * pièce orpheline dans le run rougit — le manifeste est l'inventaire exact des pièces.
+ * Puis 70-72 (contre-revue v5-septies) : l'inventaire est une BIJECTION — deux résultats
+ * partageant les mêmes pièces (anciennes pièces retirées, matrice alignée) rougissent avec
+ * les deux n nommés ; et `octets` est obligatoire (absent → schéma) et prouvé (falsifié →
+ * ≠ taille réelle). La fixture crée UNE pièce par (résultat, champ).
  */
 import { readFileSync, writeFileSync, mkdirSync, copyFileSync, symlinkSync, mkdtempSync, rmSync } from "node:fs";
 import { createHash } from "node:crypto";
@@ -63,12 +67,51 @@ const quoteFixture = (texte) => ({
 });
 const sha256 = (b) => createHash("sha256").update(b).digest("hex");
 const EXTRAIT_TEMOIN = "Extrait témoin relevé sur la page consultée (jeu d'essai).";
+const CITATION_RATTACHEMENT = "La Biosecurity Authority of Fiji est instituée par la loi sur la biosécurité (pièce d'essai).";
+const EXTRAIT_PDF = "Extrait temoin PDF du jeu d'essai, lot A.";
+const CONTENU_HTML = `<html><body><h2>section témoin</h2><p>${EXTRAIT_TEMOIN}</p></body></html>`;
+const CONTENU_HTML_RATTACHEMENT = `<html><body><h2>section témoin de l'annuaire</h2><p>${CITATION_RATTACHEMENT}</p></body></html>`;
+const FLUX_PDF = `BT /F1 12 Tf 72 700 Td (${EXTRAIT_PDF}) Tj ET`;
+const CONTENU_PDF = Buffer.from(`%PDF-1.4\n4 0 obj << /Length ${FLUX_PDF.length} >> stream\n${FLUX_PDF}\nendstream endobj\ntrailer\n%%EOF`);
+const CONTENU_ENTETES = "HTTP/1.1 200 OK\n[en-tête expurgé : cookies/authentification/proxy]\nContent-Type: text/html; charset=utf-8\n";
+const CONTENU_TRACE = "# trace témoin du jeu d'essai\n[ligne expurgée : proxy/authentification]\n";
+
+/* Chaque RÉSULTAT a SES pièces (n-<n>.*) : l'inventaire du run est une BIJECTION — une pièce
+ * appartient à un seul couple (résultat, champ), le partage rougit (contre-revue v5-septies).
+ * Les fichiers sont créés une seule fois (mémoïsés) puis git-ajoutés en bloc. */
+const fichiersCrees = new Set();
+const ecrireFixture = (chemin, contenu) => {
+  if (fichiersCrees.has(chemin)) return;
+  writeFileSync(join(arbre, chemin), contenu);
+  fichiersCrees.add(chemin);
+};
+const capturePourN = (n, contenu, contentType) => {
+  const buf = Buffer.isBuffer(contenu) ? contenu : Buffer.from(contenu);
+  const ext = contentType.includes("pdf") ? "pdf" : "html";
+  const chemin = `audit-pays-pieces/run-fixture/n-${n}.${ext}`;
+  ecrireFixture(chemin, buf);
+  const texte = extraireTexte(buf, contentType);
+  const cheminTexte = `audit-pays-pieces/run-fixture/n-${n}.texte.txt`;
+  ecrireFixture(cheminTexte, texte);
+  return { chemin, sha256: sha256(buf), octets: buf.length, content_type: contentType,
+    format_detecte: detecterFormat(buf),
+    texte_derive: { chemin: cheminTexte, sha256: sha256(Buffer.from(texte)) },
+    extracteur: VERSION_EXTRACTEUR };
+};
+const fichierPourN = (n, quoi, contenu) => {
+  const chemin = `audit-pays-pieces/run-fixture/n-${n}.${quoi}.txt`;
+  ecrireFixture(chemin, contenu);
+  return { chemin, sha256: sha256(Buffer.from(contenu)) };
+};
+/* La capture du MANIFESTE porte `octets` (obligatoire, confronté à la taille réelle) ; la
+ * capture de la MATRICE et des preuves reste le contrat CaptureScellee, sans octets. */
+const sansOctets = (cap) => { const { octets, ...reste } = cap; return reste; };
 
 /** La fixture : matrice ET manifeste, construits d'une même énumération — le manifeste
  *  porte les observations, la matrice les référence par manifeste_n et n'ajoute que le
  *  jugement. Une candidate PDF (country_bs[1]) montre la forme licite : sa pièce est sa
  *  capture, jamais un extrait. */
-function fabriquerJeu(guides, scelle, fx) {
+function fabriquerJeu(guides, scelle) {
   const audits = {};
   const resultats = [];
   let n = 0;
@@ -76,18 +119,21 @@ function fabriquerJeu(guides, scelle, fx) {
     const candidates = guides[id].sources.map((s, i) => {
       n++;
       const estPdf = id === "country_bs" && i === 1;
-      const cap = JSON.parse(JSON.stringify(estPdf ? fx.capturePdfTexte : fx.captureTemoin));
+      const cap = estPdf ? capturePourN(n, CONTENU_PDF, "application/pdf")
+                         : capturePourN(n, CONTENU_HTML, "text/html; charset=utf-8");
+      const entetes = fichierPourN(n, "entetes", CONTENU_ENTETES);
+      const trace = { type: "transcript", ...fichierPourN(n, "trace", CONTENU_TRACE) };
       resultats.push({
         n, role: "candidate", country_id: id, index_lien: i, label: s.label, url_publiee: s.url,
         acces: "consultee", statut_http: 200, url_finale: s.url, redirections: 0,
         consultee_le: JOUR, content_type: cap.content_type,
         capture: JSON.parse(JSON.stringify(cap)),
-        entetes: { ...fx.entetesTemoin }, trace: { ...fx.traceTemoin },
+        entetes: { ...entetes }, trace: { ...trace },
       });
       return {
         manifeste_n: n, label: s.label, url_publiee: s.url, acces: "consultee",
         url_finale: s.url, statut_http: 200, consultee_le: JOUR,
-        capture: cap, entetes: { ...fx.entetesTemoin }, trace: { ...fx.traceTemoin },
+        capture: sansOctets(cap), entetes: { ...entetes }, trace: { ...trace },
         piece: estPdf ? { type: "capture", chemin: cap.chemin, sha256: cap.sha256 }
                       : { type: "extrait", extrait: EXTRAIT_TEMOIN, langue: "en", locator: "section témoin" },
         nature_editeur: "non_etabli", preuves_rattachement: [], pertinence: "non_evaluee",
@@ -103,36 +149,42 @@ function fabriquerJeu(guides, scelle, fx) {
    * ils s'ÉCARTENT avec motif (contre-revue v5-quater). */
   n++;
   const nRattachement = n;
+  const capRatt = capturePourN(n, CONTENU_HTML_RATTACHEMENT, "text/html; charset=utf-8");
   resultats.push({
     n: nRattachement, role: "rattachement",
     url_demandee: "https://example.org/annuaire-temoin", motif: "Annuaire témoin du jeu d'essai.",
     acces: "consultee", statut_http: 200, url_finale: "https://example.org/annuaire-temoin",
-    redirections: 0, consultee_le: JOUR, content_type: fx.captureRattachement.content_type,
-    capture: JSON.parse(JSON.stringify(fx.captureRattachement)),
-    entetes: { ...fx.entetesTemoin }, trace: { ...fx.traceTemoin },
+    redirections: 0, consultee_le: JOUR, content_type: capRatt.content_type,
+    capture: JSON.parse(JSON.stringify(capRatt)),
+    entetes: fichierPourN(n, "entetes", CONTENU_ENTETES),
+    trace: { type: "transcript", ...fichierPourN(n, "trace", CONTENU_TRACE) },
   });
   n++;
   const nRattachementPdf = n;
+  const capRattPdf = capturePourN(n, CONTENU_PDF, "application/pdf");
   resultats.push({
     n: nRattachementPdf, role: "rattachement",
     url_demandee: "https://example.org/document-pdf-temoin", motif: "Document PDF témoin du jeu d'essai.",
     acces: "consultee", statut_http: 200, url_finale: "https://example.org/document-pdf-temoin",
-    redirections: 0, consultee_le: JOUR, content_type: fx.capturePdfTexte.content_type,
-    capture: JSON.parse(JSON.stringify(fx.capturePdfTexte)),
-    entetes: { ...fx.entetesTemoin }, trace: { ...fx.traceTemoin },
+    redirections: 0, consultee_le: JOUR, content_type: capRattPdf.content_type,
+    capture: JSON.parse(JSON.stringify(capRattPdf)),
+    entetes: fichierPourN(n, "entetes", CONTENU_ENTETES),
+    trace: { type: "transcript", ...fichierPourN(n, "trace", CONTENU_TRACE) },
   });
   n++;
   const nRattachementTentative = n;
   resultats.push({
     n: nRattachementTentative, role: "rattachement",
     url_demandee: "https://example.org/annuaire-injoignable", motif: "Annuaire injoignable du jeu d'essai.",
-    acces: "tentative", tentee_le: JOUR, resultat: "HTTP 403", trace: { ...fx.traceTemoin },
+    acces: "tentative", tentee_le: JOUR, resultat: "HTTP 403",
+    trace: { type: "transcript", ...fichierPourN(n, "trace", CONTENU_TRACE) },
   });
   /* country_fj : la promotion complète et concordante, rattachement ancré dans sa capture. */
   const fj = audits.country_fj;
   const c0 = fj.candidates[0];
   c0.nature_editeur = "autorite_pays";
-  c0.preuves_rattachement = [fx.preuveTemoin(nRattachement)];
+  c0.preuves_rattachement = [{ manifeste_n: nRattachement,
+    citation: quoteFixture(CITATION_RATTACHEMENT), capture: sansOctets(capRatt) }];
   c0.pertinence = "etaye_le_fait";
   fj.decision = {
     statut: "promue", observation_decisive: 0,
@@ -151,6 +203,8 @@ function fabriquerJeu(guides, scelle, fx) {
     manifeste: { consultees_le: JOUR, run: "audit-pays-pieces/run-fixture", total: n,
       candidates: n - 3, rattachements: 3, extracteur: VERSION_EXTRACTEUR, resultats },
     liste: resultats.filter((r) => r.role === "rattachement").map((r) => ({ url: r.url_demandee, motif: r.motif })),
+    captureRattachement: sansOctets(capRatt),
+    capturePdf: sansOctets(capRattPdf),
   };
 }
 
@@ -170,58 +224,28 @@ try {
   const CHEMIN_OBJETS = join(arbre, "packages/knowledge/raw/objects.json");
   const objetsPristins = readFileSync(CHEMIN_OBJETS, "utf-8");
 
-  /* Les captures-fixtures : brut + texte dérivé (extracteur versionné) + PDF témoins. */
-  const CITATION_RATTACHEMENT = "La Biosecurity Authority of Fiji est instituée par la loi sur la biosécurité (pièce d'essai).";
-  const EXTRAIT_PDF = "Extrait temoin PDF du jeu d'essai, lot A.";
-  mkdirSync(join(arbre, "audit-pays-pieces/run-fixture"), { recursive: true });
-  const poserCapture = (nom, contenu, contentType) => {
-    const chemin = `audit-pays-pieces/run-fixture/${nom}`;
-    writeFileSync(join(arbre, chemin), contenu);
-    const texte = extraireTexte(Buffer.isBuffer(contenu) ? contenu : Buffer.from(contenu), contentType);
-    const cheminTexte = `audit-pays-pieces/run-fixture/${nom}.texte.txt`;
-    writeFileSync(join(arbre, cheminTexte), texte);
-    gitArbre("add", "--", chemin, cheminTexte);
-    return { chemin, sha256: sha256(contenu), content_type: contentType,
-      format_detecte: detecterFormat(Buffer.isBuffer(contenu) ? contenu : Buffer.from(contenu)),
-      texte_derive: { chemin: cheminTexte, sha256: sha256(Buffer.from(texte)) },
-      extracteur: VERSION_EXTRACTEUR };
-  };
-  const captureTemoin = poserCapture("capture-temoin.html",
-    `<html><body><h2>section témoin</h2><p>${EXTRAIT_TEMOIN}</p></body></html>`, "text/html; charset=utf-8");
-  const captureRattachement = poserCapture("rattachement-temoin.html",
-    `<html><body><h2>section témoin de l'annuaire</h2><p>${CITATION_RATTACHEMENT}</p></body></html>`, "text/html; charset=utf-8");
-  const fluxPdf = `BT /F1 12 Tf 72 700 Td (${EXTRAIT_PDF}) Tj ET`;
-  const capturePdfTexte = poserCapture("pdf-temoin.pdf",
-    Buffer.from(`%PDF-1.4\n4 0 obj << /Length ${fluxPdf.length} >> stream\n${fluxPdf}\nendstream endobj\ntrailer\n%%EOF`),
-    "application/pdf");
-  /* (le PDF « scanné » de la fixture historique a été retiré : plus référencé par personne,
+  /* Les pièces-fixtures : une par (résultat, champ) — brut, texte dérivé (extracteur
+   * versionné), en-têtes, trace — créées par fabriquerJeu puis git-ajoutées EN BLOC.
+   * (Le PDF « scanné » de la fixture historique a été retiré : référencé par personne,
    * il serait une pièce ORPHELINE du run — l'inventaire exact le refuserait, à raison.) */
-  const preuveTemoin = (manifeste_n = 92) => ({
-    manifeste_n,
-    citation: quoteFixture(CITATION_RATTACHEMENT),
-    capture: JSON.parse(JSON.stringify(captureRattachement)),
-  });
-  const poserFichier = (nom, contenu) => {
-    const chemin = `audit-pays-pieces/run-fixture/${nom}`;
-    writeFileSync(join(arbre, chemin), contenu);
-    gitArbre("add", "--", chemin);
-    return { chemin, sha256: sha256(contenu) };
-  };
-  const entetesTemoin = poserFichier("entetes-temoin.txt",
-    "HTTP/1.1 200 OK\n[en-tête expurgé : cookies/authentification/proxy]\nContent-Type: text/html; charset=utf-8\n");
-  const traceTemoinF = poserFichier("trace-temoin.txt", "# trace témoin du jeu d'essai\n[ligne expurgée : proxy/authentification]\n");
-  const traceTemoin = { type: "transcript", ...traceTemoinF };
-  const fx = { captureTemoin, captureRattachement, capturePdfTexte, preuveTemoin, entetesTemoin, traceTemoin };
+  mkdirSync(join(arbre, "audit-pays-pieces/run-fixture"), { recursive: true });
 
   const poser = (m) => writeFileSync(CHEMIN_MATRICE, JSON.stringify(m, null, 2));
   const CHEMIN_MANIFESTE = join(arbre, "audit-pays-consultations.json");
-  const jeu0 = fabriquerJeu(guides, scelle, fx);
+  const jeu0 = fabriquerJeu(guides, scelle);
+  gitArbre("add", "--", "audit-pays-pieces/run-fixture");
+  const matricePristine = JSON.stringify(jeu0.matrice, null, 2);
   const manifestePristin = JSON.stringify(jeu0.manifeste, null, 2);
   writeFileSync(CHEMIN_MANIFESTE, manifestePristin);
   /* La liste versionnée des rattachements — le manifeste doit lui être EXACTEMENT égal. */
   writeFileSync(join(arbre, "rattachements-a-consulter.json"), JSON.stringify(jeu0.liste, null, 2));
-  const neuve = () => fabriquerJeu(guides, scelle, fx).matrice;
+  const neuve = () => JSON.parse(matricePristine);
   const neuveManifeste = () => JSON.parse(manifestePristin);
+  const preuveTemoin = (manifeste_n = 92) => ({
+    manifeste_n,
+    citation: quoteFixture(CITATION_RATTACHEMENT),
+    capture: JSON.parse(JSON.stringify(jeu0.captureRattachement)),
+  });
 
   /** Mute une matrice neuve (et, si demandé, une copie du manifeste), pose, lance, exige 1 + motifs. */
   const cas = (nom, muter, motifs, muterManifeste = null) => {
@@ -391,7 +415,7 @@ try {
   }, [/country_bs/, /pièce EXTRAIT depuis un PDF/]);
   cas("51 rattachement depuis un PDF", (m) => {
     const preuve = preuveTemoin();
-    preuve.capture = JSON.parse(JSON.stringify(capturePdfTexte));
+    preuve.capture = JSON.parse(JSON.stringify(jeu0.capturePdf));
     fj(m).candidates[0].preuves_rattachement = [preuve];
   }, [/country_fj/, /rattachement \[0\] depuis un PDF/]);
   cas("52 observation réécrite hors manifeste", (m) => {
@@ -405,11 +429,8 @@ try {
   cas("53 PDF déguisé en text/plain", (m) => {
     /* Les mêmes octets %PDF- sous text/plain, ALIGNÉS matrice + manifeste + dérivé : le
      * format recalculé depuis les octets doit primer, et l'interdiction PDF avec lui. */
-    const deguisee = JSON.parse(JSON.stringify(capturePdfTexte));
-    deguisee.content_type = "text/plain";
-    deguisee.format_detecte = "autre";
     const c = bs(m).candidates[1];
-    c.capture = deguisee;
+    c.capture = { ...c.capture, content_type: "text/plain", format_detecte: "autre" };
     c.piece = { type: "extrait", extrait: EXTRAIT_PDF, langue: "en", locator: "page 1" };
   }, [/country_bs/, /format_detecte|PDF/, /recalculé depuis les octets|pièce EXTRAIT depuis un PDF/], (mf) => {
     const res = mf.resultats.find((x) => x.country_id === "country_bs" && x.index_lien === 1);
@@ -531,6 +552,48 @@ try {
       echec("69 pièce orpheline dans le run", `le diagnostic ne nomme pas l'orpheline — reçu :\n      ${r.stderr.trim().split("\n").slice(0, 5).join("\n      ")}`);
     }
   }
+
+  /* ---- 70-72 · la bijection de l'inventaire, et octets prouvé (contre-revue v5-septies) ------ */
+  {
+    /* 70 — deux résultats PARTAGEANT les mêmes pièces, les anciennes pièces du second retirées
+     * du run : l'ensemble reste exact (rien d'orphelin, tout existe), la matrice est ALIGNÉE
+     * pour que l'égalité champ à champ passe — seule la BIJECTION peut le voir, et elle doit
+     * nommer les deux n. */
+    const mf = neuveManifeste();
+    const A = mf.resultats.find((x) => x.n === 1);
+    const B = mf.resultats.find((x) => x.n === 2);
+    const anciens = [B.capture.chemin, B.capture.texte_derive.chemin, B.entetes.chemin, B.trace.chemin];
+    const sauvegardes = anciens.map((c) => [c, readFileSync(join(arbre, c))]);
+    B.capture = JSON.parse(JSON.stringify(A.capture));
+    B.entetes = { ...A.entetes };
+    B.trace = { ...A.trace };
+    const m = neuve();
+    const candB = Object.values(m.audits).flatMap((a) => a.candidates).find((c) => c.manifeste_n === 2);
+    candB.capture = JSON.parse(JSON.stringify(sansOctets(A.capture)));
+    candB.entetes = { ...A.entetes };
+    candB.trace = { ...A.trace };
+    for (const c of anciens) rmSync(join(arbre, c), { force: true });
+    poser(m);
+    writeFileSync(CHEMIN_MANIFESTE, JSON.stringify(mf, null, 2));
+    const r = lancer(arbre);
+    for (const [c, contenu] of sauvegardes) writeFileSync(join(arbre, c), contenu);
+    writeFileSync(CHEMIN_MANIFESTE, manifestePristin);
+    if (r.status !== 1) echec("70 pièces partagées entre deux résultats", `sortie ${r.status} au lieu de 1 — l'inventaire n'est qu'un ensemble, pas une bijection`);
+    else {
+      if (!/PLUSIEURS couples/.test(r.stderr)) {
+        echec("70 pièces partagées entre deux résultats", `le diagnostic ne nomme pas le partage — reçu :\n      ${r.stderr.trim().split("\n").slice(0, 5).join("\n      ")}`);
+      }
+      if (!/n 1 \(/.test(r.stderr) || !/n 2 \(/.test(r.stderr)) {
+        echec("70 pièces partagées entre deux résultats", `les DEUX n ne sont pas nommés — reçu :\n      ${r.stderr.trim().split("\n").slice(0, 5).join("\n      ")}`);
+      }
+    }
+  }
+  cas("71 octets absent du manifeste", (m) => { /* matrice inchangée */ }, [
+    /schéma du MANIFESTE refusé/,
+  ], (mf) => { delete mf.resultats[0].capture.octets; });
+  cas("72 octets falsifié", (m) => { /* matrice inchangée */ }, [
+    /capture\.octets/, /taille réelle/,
+  ], (mf) => { mf.resultats[0].capture.octets += 1; });
 } finally {
   gitWt("remove", "--force", arbre);
   rmSync(conteneur, { recursive: true, force: true });
@@ -538,7 +601,7 @@ try {
 
 /* ---- verdict ---------------------------------------------------------------------------------- */
 if (defauts.length === 0) {
-  process.stdout.write("54 cas éprouvés : la fixture conforme — manifeste en ensemble exact égal à la liste\n");
+  process.stdout.write("57 cas éprouvés : la fixture conforme — manifeste en ensemble exact égal à la liste\n");
   process.stdout.write("versionnée, rattachement utilisé + PDF et tentative proprement écartés — sort en 0 ;\n");
   process.stdout.write("rattachement de rôle dédié, candidate PDF à pièce-capture — sort en 0 ; les contrôles\n");
   process.stdout.write("17-52 rougissent chacun pour sa cause (bijection triplet, décisions, pièces prouvées,\n");
@@ -553,7 +616,9 @@ if (defauts.length === 0) {
   process.stdout.write("rattachement écarté restent contre-vérifiables, et une preuve visant une candidate\n");
   process.stdout.write("ordinaire est arrêtée par la garde de rôle ; la v5-sexies aussi : statut_http hors\n");
   process.stdout.write("2xx ou url_finale locale échouent AU SCHÉMA DU MANIFESTE même écartés, et une pièce\n");
-  process.stdout.write("orpheline du run rougit — le manifeste est l'inventaire exact des pièces.\n\n");
+  process.stdout.write("orpheline du run rougit — le manifeste est l'inventaire exact des pièces ; et la\n");
+  process.stdout.write("v5-septies : l'inventaire est une BIJECTION (pièces partagées → les deux n nommés),\n");
+  process.stdout.write("octets obligatoire au schéma et égal à la taille réelle du fichier.\n\n");
   process.stdout.write("[audit-pays] le validateur mord, sur les 47 contrôles.\n");
   process.exit(0);
 }

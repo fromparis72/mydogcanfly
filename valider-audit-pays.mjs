@@ -49,7 +49,11 @@
  *     brut, texte dérivé, en-têtes et trace prouvés ; tentative : trace prouvée. La liste
  *     versionnée des rattachements passe le SCHÉMA STRICT PARTAGÉ avec le collecteur
  *     (`liste-rattachements-lot-a.mjs`), et une preuve de rattachement vise une observation
- *     de RÔLE « rattachement » — jamais une candidate ordinaire (contre-revue v5-quinquies).
+ *     de RÔLE « rattachement » — jamais une candidate ordinaire (contre-revue v5-quinquies) ;
+ *   · L'INVENTAIRE DU RUN EST UNE BIJECTION — chaque pièce appartient à UN SEUL couple
+ *     (résultat n, champ), aucune pièce orpheline, et `capture.octets` est OBLIGATOIRE,
+ *     borné par la limite partagée (25 MiB) et ÉGAL à la taille réelle du fichier
+ *     (contre-revue v5-septies).
  *
  * Sortie 0 si tout tient ; 1 au premier lot d'écarts, chacun nommé (pays, candidate, champ) ;
  * 2 si --as-of manque ou n'existe pas.
@@ -63,7 +67,7 @@ import { Source } from "./packages/knowledge/src/common.ts";
 import { reviewDueFrom } from "./packages/knowledge/src/common.ts";
 import { SourcedQuote } from "./packages/knowledge/src/breed-restrictions.ts";
 import { extraireTexte, normaliser, detecterFormat, VERSION_EXTRACTEUR } from "./extraire-texte-lot-a.mjs";
-import { erreursListeRattachements, estUrlHttp } from "./liste-rattachements-lot-a.mjs";
+import { erreursListeRattachements, estUrlHttp, LIMITE_CORPS_OCTETS } from "./liste-rattachements-lot-a.mjs";
 
 const MATRICE = "audit-pays.json";
 const SCELLE = "etat-reference-lot-a.json";
@@ -193,7 +197,11 @@ catch {
 }
 
 /* ---- LE MANIFESTE EST UN ENSEMBLE EXACT, validé strictement (contre-revue v5-ter, P1) ------- */
-const CaptureManifeste = CaptureScellee.extend({ octets: z.number().int().min(0).optional() }).strict();
+/* `octets` est OBLIGATOIRE, borné par la limite PARTAGÉE, et confronté plus bas à la taille
+ * réelle du fichier — le supprimer ou le falsifier rougit (contre-revue v5-septies, P1). */
+const CaptureManifeste = CaptureScellee.extend({
+  octets: z.number().int().min(0).max(LIMITE_CORPS_OCTETS, `au-delà de la borne partagée de ${LIMITE_CORPS_OCTETS} octets`),
+}).strict();
 /* Les RÔLES sont des LITTÉRAUX par branche : un résultat de forme candidate ne peut pas se
  * déclarer « rattachement », ni l'inverse (contre-revue v5-quater). */
 const ResCandidate = { n: z.number().int().min(1), role: z.literal("candidate"),
@@ -250,28 +258,40 @@ if (manifeste.extracteur !== VERSION_EXTRACTEUR) {
 /* L'appartenance au run se juge sur CHEMINS RÉSOLUS, pas au préfixe. */
 const racineRun = resolve(manifeste.run) + sep;
 const parN = new Map();
-const cheminsReferences = new Set();
+/* chemin résolu → liste des couples (n, champ) qui le référencent : l'inventaire est une
+ * BIJECTION, pas un simple ensemble (contre-revue v5-septies : deux résultats partageant les
+ * mêmes pièces, leurs anciennes pièces retirées du run, passaient au Set). */
+const referencesParChemin = new Map();
 for (const r of manifeste.resultats) {
   if (!parN.has(r.n)) parN.set(r.n, r);
-  for (const f of [r.capture?.chemin, r.capture?.texte_derive?.chemin, r.entetes?.chemin, r.trace?.chemin]) {
+  for (const [champ, f] of [["capture", r.capture?.chemin], ["texte dérivé", r.capture?.texte_derive?.chemin],
+    ["en-têtes", r.entetes?.chemin], ["trace", r.trace?.chemin]]) {
     if (!f) continue;
-    cheminsReferences.add(resolve(String(f)));
-    if (!resolve(String(f)).startsWith(racineRun)) {
+    const cle = resolve(String(f));
+    if (!referencesParChemin.has(cle)) referencesParChemin.set(cle, { chemin: String(f), usages: [] });
+    referencesParChemin.get(cle).usages.push(`n ${r.n} (${champ})`);
+    if (!cle.startsWith(racineRun)) {
       echec(`manifeste — n ${r.n} : « ${f} » hors du répertoire de run déclaré « ${manifeste.run} » (chemins résolus)`);
     }
   }
 }
-/* Le run est l'INVENTAIRE EXACT des pièces : chaque fichier du répertoire de run est référencé
- * par un résultat du manifeste — une pièce ORPHELINE (corps ou en-têtes d'une tentative,
- * fichier déposé après coup) rougit (contre-revue v5-sexies). Le sens inverse (référencée
- * mais absente) est tenu par la preuve de fichier de chaque résultat. */
+/* Chaque pièce appartient à UN SEUL couple (résultat, champ)… */
+for (const { chemin, usages } of referencesParChemin.values()) {
+  if (usages.length > 1) {
+    echec(`manifeste — pièce « ${chemin} » référencée par PLUSIEURS couples : ${usages.join(" ; ")} — l'inventaire est une bijection, chaque pièce appartient à un seul (n, champ)`);
+  }
+}
+/* …et le run est l'INVENTAIRE EXACT des pièces : chaque fichier du répertoire de run est
+ * référencé par un résultat du manifeste — une pièce ORPHELINE (corps ou en-têtes d'une
+ * tentative, fichier déposé après coup) rougit (contre-revue v5-sexies). Le sens inverse
+ * (référencée mais absente) est tenu par la preuve de fichier de chaque résultat. */
 {
   const orphelines = [];
   const marcher = (d) => {
     for (const e of readdirSync(d, { withFileTypes: true })) {
       const p = join(d, e.name);
       if (e.isDirectory()) marcher(p);
-      else if (!cheminsReferences.has(resolve(p))) orphelines.push(p);
+      else if (!referencesParChemin.has(resolve(p))) orphelines.push(p);
     }
   };
   try { marcher(manifeste.run); }
@@ -351,10 +371,18 @@ const dansFenetre = (d, pays, quoi) => {
 };
 
 /* ---- pièces : versionnées au sens PROUVÉ ----------------------------------------------------- */
-/* Le verdict « suivi par git » est MÉMOÏSÉ par chemin (il ne change pas pendant un run) : le
- * même fichier prouvé depuis le manifeste ET depuis la matrice ne coûte qu'un seul appel git —
- * chaque contexte garde son propre diagnostic. */
-const suiviParChemin = new Map();
+/* Le verdict « suivi par git » se lit dans l'INDEX, chargé UNE fois par run (`git ls-files -z
+ * -- audit-pays-pieces/`) : même preuve d'appartenance que `--error-unmatch` fichier par
+ * fichier, sans un appel git par pièce — l'inventaire par résultat porte des centaines de
+ * pièces uniques. L'index ne change pas pendant un run ; chaque contexte garde son diagnostic. */
+let indexPieces = null;
+const suiviParGit = (chemin) => {
+  if (indexPieces === null) {
+    const r = spawnSync("git", ["ls-files", "-z", "--", PIECES], { encoding: "utf-8" });
+    indexPieces = new Set((r.stdout || "").split("\0").filter(Boolean));
+  }
+  return indexPieces.has(chemin);
+};
 const fichierProuve = (pays, quoi, chemin, sha) => {
   if (!chemin.startsWith(PIECES) || chemin.includes("..")) {
     echec(`${pays} — ${quoi} : chemin « ${chemin} » hors du répertoire ${PIECES}`); return;
@@ -363,10 +391,7 @@ const fichierProuve = (pays, quoi, chemin, sha) => {
   try { st = lstatSync(chemin); }
   catch { echec(`${pays} — ${quoi} : « ${chemin} » ne désigne aucun fichier`); return; }
   if (st.isSymbolicLink() || !st.isFile()) { echec(`${pays} — ${quoi} : « ${chemin} » n'est pas un fichier régulier (lien symbolique refusé)`); return; }
-  if (!suiviParChemin.has(chemin)) {
-    suiviParChemin.set(chemin, spawnSync("git", ["ls-files", "--error-unmatch", "--", chemin], { encoding: "utf-8" }).status === 0);
-  }
-  if (!suiviParChemin.get(chemin)) { echec(`${pays} — ${quoi} : « ${chemin} » n'est PAS SUIVI par git — « versionnée » se prouve`); return; }
+  if (!suiviParGit(chemin)) { echec(`${pays} — ${quoi} : « ${chemin} » n'est PAS SUIVI par git — « versionnée » se prouve`); return; }
   const reel = createHash("sha256").update(readFileSync(chemin)).digest("hex");
   if (reel !== sha) echec(`${pays} — ${quoi} : SHA-256 de « ${chemin} » ≠ scellé (contenu remplacé à chemin constant ?)`);
 };
@@ -425,6 +450,14 @@ for (const r of manifeste.resultats) {
   const qui = `n ${r.n} (${r.role === "rattachement" ? `rattachement ${r.url_demandee}` : `candidate ${r.country_id}[${r.index_lien}]`})`;
   if (r.acces === "consultee") {
     captureProuvee("manifeste", `${qui} capture`, r.capture);
+    /* `octets` se prouve sur le fichier : égal à la taille réelle, jamais déclaratif
+     * (contre-revue v5-septies — la borne est déjà tenue par le schéma). */
+    try {
+      const taille = lstatSync(r.capture.chemin).size;
+      if (r.capture.octets !== taille) {
+        echec(`manifeste — ${qui} : capture.octets ${r.capture.octets} ≠ taille réelle ${taille} du fichier « ${r.capture.chemin} »`);
+      }
+    } catch { /* l'existence est déjà jugée par la preuve de fichier */ }
     fichierProuve("manifeste", `${qui} en-têtes`, r.entetes.chemin, r.entetes.sha256);
     fichierProuve("manifeste", `${qui} trace`, r.trace.chemin, r.trace.sha256);
   } else if (r.acces === "tentative") {

@@ -11,6 +11,11 @@
  * (un schéma local comme file:// ne sera jamais consulté), motif non blanc, URL uniques.
  */
 
+/** LA borne PARTAGÉE en octets d'un corps de réponse : 25 MiB. Le collecteur la passe à curl
+ *  (`--max-filesize`) et la revérifie par stat avant toute lecture ; le validateur exige que
+ *  `capture.octets` lui soit inférieur ou égal ET égal à la taille réelle du fichier. */
+export const LIMITE_CORPS_OCTETS = 26214400;
+
 /** LE contrat HTTP(S) — un seul code pour toutes les URL du lot A : la liste versionnée,
  *  l'`url_finale` revalidée par le collecteur, et le schéma du manifeste côté validateur
  *  (contre-revue v5-sexies : `z.string().url()` acceptait `file://`). */

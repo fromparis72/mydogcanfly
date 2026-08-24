@@ -72,15 +72,15 @@ import { createHash } from "node:crypto";
 import { join } from "node:path";
 import { tmpdir } from "node:os";
 import { extraireTexte, detecterFormat, VERSION_EXTRACTEUR } from "./extraire-texte-lot-a.mjs";
-import { erreursListeRattachements, estUrlHttp } from "./liste-rattachements-lot-a.mjs";
+import { erreursListeRattachements, estUrlHttp, LIMITE_CORPS_OCTETS } from "./liste-rattachements-lot-a.mjs";
 
 const RACINE_PIECES = "audit-pays-pieces";
 const MANIFESTE = "audit-pays-consultations.json";
-/* La borne en OCTETS d'un corps de réponse : 25 MiB — `--max-time` borne le temps, pas la
- * taille, et le corps est ensuite chargé en mémoire pour l'empreinte et l'extraction. La
- * borne est passée à curl (`--max-filesize`) ET revérifiée sur le fichier avant toute
- * lecture ; un corps au-delà devient une TENTATIVE explicite, jamais une capture. */
-const LIMITE_CORPS_OCTETS = 26214400;
+/* La borne en OCTETS d'un corps de réponse (LIMITE_CORPS_OCTETS, 25 MiB) est PARTAGÉE avec le
+ * validateur — `--max-time` borne le temps, pas la taille, et le corps est ensuite chargé en
+ * mémoire pour l'empreinte et l'extraction. La borne est passée à curl (`--max-filesize`) ET
+ * revérifiée sur le fichier avant toute lecture ; un corps au-delà devient une TENTATIVE
+ * explicite, jamais une capture. */
 const sha256 = (b) => createHash("sha256").update(b).digest("hex");
 const jsonCanonique = (x) => {
   if (Array.isArray(x)) return "[" + x.map(jsonCanonique).join(",") + "]";
