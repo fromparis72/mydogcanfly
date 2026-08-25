@@ -16,7 +16,7 @@
  * (cas 0) ; chaque cas suivant mute UNE chose et exige la sortie 1 avec la cause nommée.
  * Aucune donnée réelle n'est affirmée : la fixture vit dans l'arbre jetable, jamais au dépôt.
  *
- * SOIXANTE-QUATRE CAS : 0 (fixture conforme — manifeste complet avec une observation de
+ * SOIXANTE-SIX CAS : 0 (fixture conforme — manifeste complet avec une observation de
  * rattachement de rôle dédié, candidate PDF à pièce-capture), 17 à 52 (bijection, décisions,
  * pièces, ancres, PDF, liaison au manifeste), puis 53-57 (contre-revue v5-ter) : PDF déguisé
  * en text/plain — le format recalculé depuis les OCTETS prime ; résultat de manifeste
@@ -41,11 +41,13 @@
  * Puis 74 (lot-a-4) : le chemin PDF probatoire est FERMÉ — un PDF comprimé portant un
  * opérateur textuel VALIDE produit la chaîne vide, immédiatement (la bombe de décompression
  * d'inflateSync est morte avec le chemin).
- * Puis 75-79 (contre-revue des 18 décisions) : le DOMAINE se prouve — « website » réécrit
- * dans la capture brute (empreintes recalculées) rougit par l'attestation d'annuaire ;
- * promotion sans preuve de domaine rougit ; « aucune_source_officielle » rougit face à une
- * candidate étayante non instruite, et sans aucune consultation ; une promotion déclarée
- * appliquée sans source dans objects.json rougit (projection bidirectionnelle).
+ * Puis 75-81 (contre-revues des 18 décisions) : le DOMAINE se prouve dans le MÊME objet
+ * organisationDetails du JSON parsé (« website » réécrit rougit ; organisationName substitué
+ * avec homonyme conservé dans personnelList rougit) ; promotion sans preuve de domaine
+ * rougit ; « aucune_source_officielle » rougit face à une candidate étayante non instruite,
+ * sans aucune consultation, ou avec une candidate INCONNUE (tentative ou non_evaluee — les
+ * Seychelles) ; la règle d'étape 4 forcée à true rougit toute promue sans projection, sans
+ * marqueur de données à retirer.
  */
 import { readFileSync, writeFileSync, mkdirSync, copyFileSync, symlinkSync, mkdtempSync, rmSync } from "node:fs";
 import { deflateSync } from "node:zlib";
@@ -81,10 +83,12 @@ const EXTRAIT_TEMOIN = "Extrait témoin relevé sur la page consultée (jeu d'es
 const CITATION_RATTACHEMENT = "La Biosecurity Authority of Fiji est instituée par la loi sur la biosécurité (pièce d'essai).";
 const EXTRAIT_PDF = "Extrait temoin PDF du jeu d'essai, lot A.";
 const CONTENU_HTML = `<html><body><h2>section témoin</h2><p>${EXTRAIT_TEMOIN}</p></body></html>`;
-/* La capture d'annuaire porte, comme l'annuaire réel, un blob JSON de <script> — que
- * l'extracteur ôte du texte dérivé : le champ website n'est PAS ancrable, seule
- * l'ATTESTATION D'ANNUAIRE structurée le prouve mécaniquement. */
-const CONTENU_HTML_RATTACHEMENT = `<html><head><script>var etat = {"organisation":{"organisationName":"Autorité témoin du jeu d'essai","organisationTypeCode":"Government Agencies","website":"http://www.baf.com.fj"}};</script></head><body><h2>section témoin de l'annuaire</h2><p>${CITATION_RATTACHEMENT}</p></body></html>`;
+/* La capture d'annuaire porte, comme l'annuaire réel, l'appel initMinisterDetailPlaceholder
+ * avec son objet organisationDetails ET une occurrence HOMONYME dans personnelList — que
+ * l'extracteur ôte du texte dérivé : le site n'est PAS ancrable, seule l'ATTESTATION
+ * D'ANNUAIRE le prouve, en lisant le MÊME sous-arbre organisationDetails (l'homonyme du
+ * personnel ne compte pas — contre-revue). */
+const CONTENU_HTML_RATTACHEMENT = `<html><head><script>initMinisterDetailPlaceholder({"homePageURL":"https://exemple.invalid","organisationDetails":{"organisationName":"Autorité témoin du jeu d'essai","organisationTypeCode":"Government Agencies","organisationData":{"city":"Suva","website":"http://www.baf.com.fj"}},"personnelList":[{"firstName":"Témoin","organisationName":"Autorité témoin du jeu d'essai"}]});</script></head><body><h2>section témoin de l'annuaire</h2><p>${CITATION_RATTACHEMENT}</p></body></html>`;
 const ATTESTATION_TEMOIN = { organisation: "Autorité témoin du jeu d'essai",
   type_organisation: "Government Agencies", site_web: "http://www.baf.com.fj" };
 const FLUX_PDF = `BT /F1 12 Tf 72 700 Td (${EXTRAIT_PDF}) Tj ET`;
@@ -152,7 +156,9 @@ function fabriquerJeu(guides, scelle) {
         capture: sansOctets(cap), entetes: { ...entetes }, trace: { ...trace },
         piece: estPdf ? { type: "capture", chemin: cap.chemin, sha256: cap.sha256 }
                       : { type: "extrait", extrait: EXTRAIT_TEMOIN, langue: "en", locator: "section témoin" },
-        nature_editeur: "non_etabli", preuves_rattachement: [], pertinence: "non_evaluee",
+        /* pertinence JUGÉE (page_generique) : « aucune_source_officielle » exige désormais
+         * qu'aucune candidate ne reste inconnue — ni tentative, ni non_evaluee. */
+        nature_editeur: "non_etabli", preuves_rattachement: [], pertinence: "page_generique",
       };
     });
     audits[id] = {
@@ -682,8 +688,8 @@ try {
     writeFileSync(join(arbre, chemin92), brutAvant);
     writeFileSync(CHEMIN_MANIFESTE, manifestePristin);
     if (r.status !== 1) echec("75 domaine réécrit dans la capture brute", `sortie ${r.status} au lieu de 1 — bad.com.fj passe encore`);
-    else if (!/attestation d'annuaire/.test(r.stderr) || !/website (NON|oui)/.test(r.stderr)) {
-      echec("75 domaine réécrit dans la capture brute", `le diagnostic ne vient pas de l'attestation — reçu :\n      ${r.stderr.trim().split("\n").slice(0, 5).join("\n      ")}`);
+    else if (!/organisationDetails/.test(r.stderr) || !/organisationData\.website NON/.test(r.stderr)) {
+      echec("75 domaine réécrit dans la capture brute", `le diagnostic ne vient pas du sous-arbre organisationDetails — reçu :\n      ${r.stderr.trim().split("\n").slice(0, 5).join("\n      ")}`);
     }
   }
   cas("76 promotion sans preuve de domaine", (m) => {
@@ -691,6 +697,41 @@ try {
      * promotion doit exiger la preuve de domaine. */
     delete m.audits.country_fj.candidates[0].preuves_rattachement[0].attestation_annuaire;
   }, [/country_fj/, /DOMAINE de la candidate décisive n'est PAS prouvé/]);
+  {
+    /* 80 — l'attaque exacte de la contre-revue : SEUL le organisationName du sous-arbre
+     * organisationDetails est remplacé par une autre organisation ; l'occurrence HOMONYME de
+     * personnelList est conservée ; type et website intacts ; empreintes rescellées partout.
+     * Les sous-chaînes éparses laissaient passer — le parse du même objet rougit. */
+    const chemin92 = "audit-pays-pieces/run-fixture/n-92.html";
+    const brutAvant = readFileSync(join(arbre, chemin92));
+    const texte = brutAvant.toString("utf-8");
+    const brutMute = Buffer.from(texte.replace(
+      '"organisationDetails":{"organisationName":"Autorité témoin du jeu d\'essai"',
+      '"organisationDetails":{"organisationName":"Autre organisation substituée"'), "utf-8");
+    if (brutMute.equals(brutAvant)) echec("80 organisationName substitué", "la mutation n'a pas eu lieu — motif introuvable");
+    writeFileSync(join(arbre, chemin92), brutMute);
+    const shaMute = sha256(brutMute);
+    const m = neuve();
+    const mf = neuveManifeste();
+    const res92 = mf.resultats.find((x) => x.n === 92);
+    res92.capture.sha256 = shaMute;
+    res92.capture.octets = brutMute.length;
+    m.audits.country_fj.candidates[0].preuves_rattachement[0].capture.sha256 = shaMute;
+    poser(m);
+    writeFileSync(CHEMIN_MANIFESTE, JSON.stringify(mf, null, 2));
+    const r = lancer(arbre);
+    writeFileSync(join(arbre, chemin92), brutAvant);
+    writeFileSync(CHEMIN_MANIFESTE, manifestePristin);
+    if (r.status !== 1) echec("80 organisationName substitué", `sortie ${r.status} au lieu de 1 — l'homonyme du personnel maintient le vert`);
+    else if (!/organisationName NON/.test(r.stderr)) {
+      echec("80 organisationName substitué", `le diagnostic ne nomme pas organisationName — reçu :\n      ${r.stderr.trim().split("\n").slice(0, 5).join("\n      ")}`);
+    }
+  }
+  cas("81 « aucune_source_officielle » avec une candidate non évaluée", (m) => {
+    /* les Seychelles de la contre-revue : une pertinence non_evaluee subsiste, conclure à
+     * l'absence est une surqualification. */
+    bs(m).candidates[0].pertinence = "non_evaluee";
+  }, [/country_bs/, /reste INCONNUE/, /aucune_source_promouvable_dans_ce_run/]);
   cas("77 « aucune_source_officielle » malgré une candidate étayante non instruite", (m) => {
     bs(m).candidates[0].pertinence = "etaye_le_fait";
   }, [/country_bs/, /ÉTAYE LE FAIT sans nature instruite/, /aucune_source_promouvable_dans_ce_run/]);
@@ -710,9 +751,23 @@ try {
       }
     }
   });
-  cas("79 promotion déclarée appliquée sans source dans objects.json", (m) => {
-    m.audits.country_fj.decision.appliquee = true;
-  }, [/country_fj/, /APPLIQUÉE mais objects\.json ne porte AUCUNE source/]);
+  {
+    /* 79 — la règle d'étape 4 est éprouvée EN LA FORÇANT : la constante de code passe à true
+     * dans la copie de travail du validateur — toute promue sans projection rougit, et il
+     * n'existe AUCUN marqueur de données à retirer avec la source pour contourner
+     * (contre-revue : « source et marqueur retirés ensemble »). */
+    const CHEMIN_VALIDATEUR = join(arbre, "valider-audit-pays.mjs");
+    const validateurAvant = readFileSync(CHEMIN_VALIDATEUR, "utf-8");
+    writeFileSync(CHEMIN_VALIDATEUR, validateurAvant.replace(
+      "const PROJECTION_INCONDITIONNELLE = false;", "const PROJECTION_INCONDITIONNELLE = true;"));
+    poser(neuve());
+    const r = lancer(arbre);
+    writeFileSync(CHEMIN_VALIDATEUR, validateurAvant);
+    if (r.status !== 1) echec("79 étape 4 : promue sans projection", `sortie ${r.status} au lieu de 1 — la règle inconditionnelle ne mord pas`);
+    else if (!/country_fj/.test(r.stderr) || !/SANS PROJECTION/.test(r.stderr)) {
+      echec("79 étape 4 : promue sans projection", `le diagnostic ne nomme pas la projection manquante — reçu :\n      ${r.stderr.trim().split("\n").slice(0, 5).join("\n      ")}`);
+    }
+  }
 } finally {
   gitWt("remove", "--force", arbre);
   rmSync(conteneur, { recursive: true, force: true });
@@ -720,7 +775,7 @@ try {
 
 /* ---- verdict ---------------------------------------------------------------------------------- */
 if (defauts.length === 0) {
-  process.stdout.write("64 cas éprouvés : la fixture conforme — manifeste en ensemble exact égal à la liste\n");
+  process.stdout.write("66 cas éprouvés : la fixture conforme — manifeste en ensemble exact égal à la liste\n");
   process.stdout.write("versionnée, rattachement utilisé + PDF et tentative proprement écartés — sort en 0 ;\n");
   process.stdout.write("rattachement de rôle dédié, candidate PDF à pièce-capture — sort en 0 ; les contrôles\n");
   process.stdout.write("17-52 rougissent chacun pour sa cause (bijection triplet, décisions, pièces prouvées,\n");
@@ -740,11 +795,12 @@ if (defauts.length === 0) {
   process.stdout.write("octets obligatoire au schéma et égal à la taille réelle du fichier ; le chemin PDF\n");
   process.stdout.write("probatoire est FERMÉ (lot-a-4) : un PDF comprimé à opérateur textuel valide produit\n");
   process.stdout.write("la chaîne vide, immédiatement — plus de décompression, plus d'analyse ; et la\n");
-  process.stdout.write("contre-revue des 18 décisions est morte : le domaine se prouve (attestation\n");
-  process.stdout.write("d'annuaire mécanique — bad.com.fj rougit), les négatifs sont honnêtes (candidate\n");
-  process.stdout.write("étayante non instruite et zéro consultation rougissent), la projection est\n");
-  process.stdout.write("bidirectionnelle dès qu'une promotion est appliquée.\n\n");
-  process.stdout.write("[audit-pays] le validateur mord, sur les 63 contrôles.\n");
+  process.stdout.write("contre-revue des 18 décisions est morte : le domaine se prouve dans le MÊME objet\n");
+  process.stdout.write("organisationDetails du JSON parsé (bad.com.fj et le nom substitué rougissent, homonyme\n");
+  process.stdout.write("du personnel conservé), les négatifs sont honnêtes (étayante non instruite, zéro\n");
+  process.stdout.write("consultation, candidate inconnue — tentative ou non_evaluee — rougissent), et la\n");
+  process.stdout.write("règle d'étape 4, forcée, rougit toute promue sans projection.\n\n");
+  process.stdout.write("[audit-pays] le validateur mord, sur les 65 contrôles.\n");
   process.exit(0);
 }
 process.stderr.write(`\n[audit-pays] ÉCHEC — ${defauts.length} défaut(s) :\n`);

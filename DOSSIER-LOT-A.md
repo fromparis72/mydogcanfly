@@ -1,4 +1,4 @@
-# Lot A — Audit des 18 pays sans source · dossier de mesure et de conception (v5-duodecies)
+# Lot A — Audit des 18 pays sans source · dossier de mesure et de conception (v5-terdecies)
 
 **Mesuré sur `main` après fusion du dossier d'achèvement (`1dd62010ea183422f02553877df4706714739080`).
 Ce dossier ne corrige rien : aucune date, aucune source, aucune donnée métier n'est écrite.
@@ -9,7 +9,7 @@ Reproduction :
 ```bash
 node --import tsx mesurer-lot-a.mjs --as-of=2026-08-24   # l'état contre le scellé — sortie 1 au premier écart
 node test-mesure-lot-a.mjs                               # 16 cas : le scellé est exact, et il ne se remplace pas
-node test-audit-pays.mjs                                 # 64 cas : le validateur de la matrice mord (17-79)
+node test-audit-pays.mjs                                 # 66 cas : le validateur de la matrice mord (17-81)
 node test-consulter-lot-a.mjs                            # 14 cas au faux curl : le collecteur ne fabrique rien
 ```
 
@@ -327,6 +327,29 @@ APHIS Liban **requalifiée** `page_generique` (elle ne porte aucune section chie
 la projection devient **bidirectionnelle** dès qu'une promotion est déclarée `appliquee`
 (étape 4) — supprimer la source projetée rougit (contre-épreuve 79).
 
+**L'attestation cherchait trois sous-chaînes éparses, et les Seychelles concluaient avec des
+inconnues** (contre-revue v5-duodecies, deux P0 + un P1). (1) Les trois champs attestés
+étaient cherchés séparément dans toute la capture : remplacer
+`organisationDetails.organisationName` par une autre organisation en conservant l'occurrence
+HOMONYME de `personnelList` sortait en 0. Le validateur **parse désormais l'objet JSON passé
+à `initMinisterDetailPlaceholder(...)`** (balayage d'accolades équilibrées, marqueur unique
+exigé, `JSON.parse`) et vérifie les trois champs **dans le même sous-arbre
+`organisationDetails`** (`organisationName`, `organisationTypeCode`,
+`organisationData.website`) — contre-épreuves 75 (site substitué) et 80 (nom substitué,
+homonyme conservé, empreintes rescellées). Et la règle alternative « la citation contient
+l'hôte » est **supprimée** : mentionner un domaine ne prouve pas son attribution — seule
+l'attestation vérifiée prouve le domaine. (2) `aucune_source_officielle` exige désormais
+qu'**aucune candidate ne reste inconnue** : ni tentative, ni pertinence `non_evaluee`
+(contre-épreuve 81) — les Seychelles (une tentative, un PDF non évalué) sont requalifiées :
+**1 promue (fj), 1 sans source officielle (et), 16 non promouvables dans ce run**. La
+fixture juge désormais ses candidates témoins (`page_generique`) au lieu de les laisser
+`non_evaluee`. (3) P1 : le marqueur `appliquee` est **supprimé** — retirer ensemble la
+source et le marqueur contournait la bidirectionnalité ; l'étape 4 est un **changement de
+code** (constante `PROJECTION_INCONDITIONNELLE`, sous contre-revue, portée par la CI) qui
+rend la projection obligatoire pour TOUTE promue — la contre-épreuve 79 l'éprouve en forçant
+la constante à true dans la copie de travail : rouge sans aucun marqueur de données à
+retirer.
+
 ## 1. La mesure a changé la nature de la dette — et ce que la promotion fait, honnêtement
 
 Le dossier d'achèvement décrivait la dette ainsi : « 18 pays n'ont AUCUNE source ». C'est vrai
@@ -538,7 +561,7 @@ fixture porte un manifeste en ensemble exact égal à la liste versionnée, UNE 
 candidate PDF à pièce-capture), et `test-consulter-lot-a.mjs` éprouve le collecteur (14 cas
 au faux `curl`, dont la batterie de six listes malformées, la redirection hors HTTP(S), le
 corps au-delà de la borne et l'inventaire exact du run). Le total est **verrouillé à
-79 + 14** :
+81 + 14** :
 
 | # | mutation | attendu |
 |---|---|---|
@@ -600,11 +623,13 @@ corps au-delà de la borne et l'inventaire exact du run). Le total est **verroui
 | 72 | `capture.octets` falsifié (taille + 1) | échec — égal à la taille réelle du fichier, jamais déclaratif |
 | 73 | flux PDF adversarial (`[` puis 40 groupes `(…)` sans `]`), extraction en sous-processus sous délai | terminaison en temps borné — lot-a-2 n'en revenait jamais (incident de collecte réelle) |
 | 74 | PDF **comprimé** portant un opérateur textuel **valide** | chaîne vide, immédiatement — le chemin PDF probatoire est fermé par construction (lot-a-4), la bombe de décompression avec lui |
-| 75 | `website` réécrit vers un autre domaine DANS LA CAPTURE BRUTE de l'annuaire, empreintes recalculées partout, citation intacte | échec — l'attestation d'annuaire compare les octets de la capture aux champs attestés |
+| 75 | `website` réécrit vers un autre domaine DANS LA CAPTURE BRUTE de l'annuaire, empreintes recalculées partout, citation intacte | échec — l'attestation se vérifie dans le MÊME objet `organisationDetails` du JSON parsé (`initMinisterDetailPlaceholder`) |
 | 76 | attestation d'annuaire retirée de la preuve, citation intacte (sans l'hôte) | échec — toute promotion exige la preuve du DOMAINE de sa décisive |
 | 77 | `aucune_source_officielle` alors qu'une candidate `etaye_le_fait + non_etabli` subsiste | échec — rattachement non instruit : le statut honnête est `aucune_source_promouvable_dans_ce_run` |
 | 78 | `aucune_source_officielle` sans AUCUNE consultation (toutes les candidates en tentative) | échec — zéro page lue ne conclut pas à l'absence (cas des Maldives) |
-| 79 | promotion déclarée `appliquee` sans source dans `objects.json` | échec — la projection est BIDIRECTIONNELLE après l'étape 4 |
+| 79 | règle d'étape 4 FORCÉE (constante de code à true) : promue sans projection dans `objects.json` | échec — projection obligatoire et bidirectionnelle, AUCUN marqueur de données à retirer avec la source |
+| 80 | `organisationDetails.organisationName` substitué par une autre organisation, l'HOMONYME de `personnelList` conservé, empreintes rescellées | échec — les trois champs se lisent dans le même sous-arbre, les sous-chaînes éparses ne comptent pas |
+| 81 | `aucune_source_officielle` avec une candidate INCONNUE (tentative ou pertinence `non_evaluee`) | échec — l'absence ne se conclut pas avec des candidates non évaluées (cas des Seychelles) |
 
 ## 6. Interdits, et effets de bord assumés
 
