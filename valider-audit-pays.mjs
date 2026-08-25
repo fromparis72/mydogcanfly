@@ -37,12 +37,14 @@
  *     projection canonique EXACTE du `SourcedQuote` promu (URL FINALE comprise). L'inverse
  *     (promue non encore appliquée) est licite : les promotions s'appliquent après contre-revue.
  *
- *   · LE MANIFESTE FAIT FOI DE L'OBSERVATION — chaque candidate référence, par `manifeste_n`,
- *     un résultat du manifeste de consultation (`audit-pays-consultations.json`), et tous les
- *     champs OBSERVÉS doivent lui être ÉGAUX : triplet publié, accès, statut, URL finale,
- *     date, Content-Type, capture scellée, en-têtes, trace. La matrice n'ajoute que le
- *     JUGEMENT (éditeur, pertinence, pièce, décision) — une observation réécrite hors
- *     manifeste rougit (contre-revue v5-bis) ;
+ *   · LES MANIFESTES FONT FOI DE L'OBSERVATION, ET ILS SONT PLUSIEURS ET IMMUABLES — chaque
+ *     candidate et chaque preuve référencent un résultat par RÉFÉRENCE COMPOSITE
+ *     { manifeste, manifeste_sha256, n } : le manifeste doit exister, son empreinte courante
+ *     doit égaler l'empreinte référencée, et n se résout DANS CE MANIFESTE seulement (jamais
+ *     par numéro nu). Tous les champs OBSERVÉS doivent être ÉGAUX au résultat référencé.
+ *     Chaque manifeste garde son ensemble exact (n contigus, bijection, inventaire de son
+ *     run) ; l'union des candidates = exactement les couples publiés ; la concaténation des
+ *     rattachements = exactement la liste cumulative (contre-revue du second passage) ;
  *   · AUCUNE PREUVE TEXTUELLE DEPUIS UN PDF en lot-a-1 — l'extracteur produit des mots
  *     éclatés sur les PDF réels : le brut est conservé, mais ni pièce `extrait`, ni preuve
  *     de rattachement, ni candidate décisive ne peuvent venir d'un PDF ;
@@ -128,11 +130,19 @@ const AttestationAnnuaire = z.object({
   type_organisation: z.string().min(1),
   site_web: UrlHttp,
 }).strict();
-const PreuveRattachement = z.object({ manifeste_n: z.number().int().min(1), citation: z.unknown(), capture: CaptureScellee,
+/* La RÉFÉRENCE COMPOSITE : une observation se désigne par (manifeste, empreinte du manifeste,
+ * n) — jamais par un numéro nu, qui redeviendrait ambigu entre manifestes ; l'empreinte rend
+ * chaque manifeste publié IMMUABLE (contre-revue du second passage). */
+const ReferenceObservation = z.object({
+  manifeste: z.string().regex(/^audit-pays-consultations(-\d+)?\.json$/),
+  manifeste_sha256: Sha256,
+  n: z.number().int().min(1),
+}).strict();
+const PreuveRattachement = z.object({ observation: ReferenceObservation, citation: z.unknown(), capture: CaptureScellee,
   attestation_annuaire: AttestationAnnuaire.optional() }).strict();
 
 const CandidateConsultee = z.object({
-  manifeste_n: z.number().int().min(1),      // l'identité stable de l'observation dans le manifeste
+  observation: ReferenceObservation,         // l'identité composite de l'observation
   label: LT,
   url_publiee: UrlHttp,
   acces: z.literal("consultee"),
@@ -150,7 +160,7 @@ const CandidateConsultee = z.object({
 }).strict();
 
 const CandidateTentative = z.object({
-  manifeste_n: z.number().int().min(1),
+  observation: ReferenceObservation,
   label: LT,
   url_publiee: UrlHttp,
   acces: z.literal("tentative"),
@@ -217,12 +227,27 @@ const scelle = lire(SCELLE);
 const guides = lire("packages/ui/src/data/countries.generated.json");
 const objets = lire("packages/knowledge/raw/objects.json");
 const CONTRACTUELS = Object.keys(scelle.pays);
-let manifeste;
-try { manifeste = lire("audit-pays-consultations.json"); }
-catch {
-  process.stderr.write("[audit] ÉCHEC : audit-pays-consultations.json introuvable — la matrice ne se juge pas sans le manifeste de consultation (jamais vert faute de matière).\n");
+/* ---- MULTI-RUNS : TOUS les manifestes publiés, IMMUABLES, chargés avec leur empreinte -------
+ * (contre-revue du second passage : le second run est ADDITIONNEL, jamais un remplacement). */
+const nomsManifestes = readdirSync(".")
+  .filter((f) => /^audit-pays-consultations(-\d+)?\.json$/.test(f))
+  .sort((a, b) => (Number(/-(\d+)\.json$/.exec(a)?.[1] ?? 1)) - (Number(/-(\d+)\.json$/.exec(b)?.[1] ?? 1)));
+if (nomsManifestes.length === 0) {
+  process.stderr.write("[audit] ÉCHEC : aucun manifeste de consultation (audit-pays-consultations*.json) — la matrice ne se juge pas sans observation (jamais vert faute de matière).\n");
   process.exit(1);
 }
+const manifestes = [];   // { nom, donnees, sha256, parN }
+for (const nom of nomsManifestes) {
+  try {
+    const octetsManifeste = readFileSync(nom);
+    manifestes.push({ nom, donnees: JSON.parse(octetsManifeste.toString("utf-8")),
+      sha256: createHash("sha256").update(octetsManifeste).digest("hex"), parN: new Map() });
+  } catch {
+    process.stderr.write(`[audit] ÉCHEC : ${nom} illisible — un manifeste publié ne se lit pas à moitié.\n`);
+    process.exit(1);
+  }
+}
+const parNomManifeste = new Map(manifestes.map((m) => [m.nom, m]));
 
 /* ---- LE MANIFESTE EST UN ENSEMBLE EXACT, validé strictement (contre-revue v5-ter, P1) ------- */
 /* `octets` est OBLIGATOIRE, borné par la limite PARTAGÉE, et confronté plus bas à la taille
@@ -256,87 +281,86 @@ const ManifesteSchema = z.object({
   candidates: z.number().int().min(0), rattachements: z.number().int().min(0),
   extracteur: z.string().min(1), resultats: z.array(Resultat).min(1),
 }).strict();
-const parseManifeste = ManifesteSchema.safeParse(manifeste);
-if (!parseManifeste.success) {
-  process.stderr.write(`[audit] ÉCHEC — schéma du MANIFESTE refusé (${parseManifeste.error.issues.length} défaut(s)) :\n`);
-  for (const i of parseManifeste.error.issues.slice(0, 20)) {
-    process.stderr.write(`  · manifeste — ${i.path.join(".") || "(racine)"} : ${i.message}\n`);
+/* Chaque manifeste, séparément, est un ENSEMBLE EXACT : schéma strict, compteurs recalculés,
+ * n contigus PAR MANIFESTE (la résolution inter-manifestes est composite, jamais par numéro
+ * nu), bijection des pièces et inventaire exact de SON répertoire de run. */
+const referencesParChemin = new Map();   // globale : une pièce n'appartient qu'à UN (manifeste, n, champ)
+const runsDeclares = new Set();
+let rattachementsEnAttente = 0;
+for (const m of manifestes) {
+  const parseManifeste = ManifesteSchema.safeParse(m.donnees);
+  if (!parseManifeste.success) {
+    process.stderr.write(`[audit] ÉCHEC — schéma du MANIFESTE « ${m.nom} » refusé (${parseManifeste.error.issues.length} défaut(s)) :\n`);
+    for (const i of parseManifeste.error.issues.slice(0, 20)) {
+      process.stderr.write(`  · ${m.nom} — ${i.path.join(".") || "(racine)"} : ${i.message}\n`);
+    }
+    process.exit(1);
   }
-  process.exit(1);
-}
-if (manifeste.total !== manifeste.resultats.length) {
-  echec(`manifeste — total ${manifeste.total} ≠ ${manifeste.resultats.length} résultats — l'ensemble n'est pas exact`);
-}
-/* Les COMPTEURS sont RECALCULÉS — les déclarer ne suffit pas (contre-revue : rattachements: 999). */
-const nbCandidates = manifeste.resultats.filter((r) => r.role === "candidate").length;
-const nbRattachements = manifeste.resultats.filter((r) => r.role === "rattachement").length;
-if (manifeste.candidates !== nbCandidates) echec(`manifeste — candidates ${manifeste.candidates} ≠ ${nbCandidates} recalculées`);
-if (manifeste.rattachements !== nbRattachements) echec(`manifeste — rattachements ${manifeste.rattachements} ≠ ${nbRattachements} recalculés`);
-if (manifeste.extracteur !== VERSION_EXTRACTEUR) {
-  echec(`manifeste — extracteur « ${manifeste.extracteur} » ≠ version courante « ${VERSION_EXTRACTEUR} »`);
-}
-/* Les n sont UNIQUES ET CONTIGUS : 1..total, sans trou ni doublon. */
-{
-  const ns = manifeste.resultats.map((r) => r.n).sort((a, b) => a - b);
-  const attendu = Array.from({ length: manifeste.resultats.length }, (_, i) => i + 1);
+  const donnees = m.donnees;
+  if (donnees.total !== donnees.resultats.length) {
+    echec(`${m.nom} — total ${donnees.total} ≠ ${donnees.resultats.length} résultats — l'ensemble n'est pas exact`);
+  }
+  const nbCandidates = donnees.resultats.filter((r) => r.role === "candidate").length;
+  const nbRattachements = donnees.resultats.filter((r) => r.role === "rattachement").length;
+  if (donnees.candidates !== nbCandidates) echec(`${m.nom} — candidates ${donnees.candidates} ≠ ${nbCandidates} recalculées`);
+  if (donnees.rattachements !== nbRattachements) echec(`${m.nom} — rattachements ${donnees.rattachements} ≠ ${nbRattachements} recalculés`);
+  if (donnees.extracteur !== VERSION_EXTRACTEUR) {
+    echec(`${m.nom} — extracteur « ${donnees.extracteur} » ≠ version courante « ${VERSION_EXTRACTEUR} »`);
+  }
+  const ns = donnees.resultats.map((r) => r.n).sort((a, b) => a - b);
+  const attendu = Array.from({ length: donnees.resultats.length }, (_, i) => i + 1);
   if (JSON.stringify(ns) !== JSON.stringify(attendu)) {
-    echec(`manifeste — les n ne sont pas uniques et contigus de 1 à ${manifeste.resultats.length} (relevés : ${ns.slice(0, 8).join(", ")}…)`);
+    echec(`${m.nom} — les n ne sont pas uniques et contigus de 1 à ${donnees.resultats.length} (relevés : ${ns.slice(0, 8).join(", ")}…)`);
   }
-}
-/* L'appartenance au run se juge sur CHEMINS RÉSOLUS, pas au préfixe. */
-const racineRun = resolve(manifeste.run) + sep;
-const parN = new Map();
-/* chemin résolu → liste des couples (n, champ) qui le référencent : l'inventaire est une
- * BIJECTION, pas un simple ensemble (contre-revue v5-septies : deux résultats partageant les
- * mêmes pièces, leurs anciennes pièces retirées du run, passaient au Set). */
-const referencesParChemin = new Map();
-for (const r of manifeste.resultats) {
-  if (!parN.has(r.n)) parN.set(r.n, r);
-  for (const [champ, f] of [["capture", r.capture?.chemin], ["texte dérivé", r.capture?.texte_derive?.chemin],
-    ["en-têtes", r.entetes?.chemin], ["trace", r.trace?.chemin]]) {
-    if (!f) continue;
-    const cle = resolve(String(f));
-    if (!referencesParChemin.has(cle)) referencesParChemin.set(cle, { chemin: String(f), usages: [] });
-    referencesParChemin.get(cle).usages.push(`n ${r.n} (${champ})`);
-    if (!cle.startsWith(racineRun)) {
-      echec(`manifeste — n ${r.n} : « ${f} » hors du répertoire de run déclaré « ${manifeste.run} » (chemins résolus)`);
+  if (runsDeclares.has(donnees.run)) echec(`${m.nom} — répertoire de run « ${donnees.run} » déjà déclaré par un autre manifeste`);
+  runsDeclares.add(donnees.run);
+  const racineRun = resolve(donnees.run) + sep;
+  for (const r of donnees.resultats) {
+    if (!m.parN.has(r.n)) m.parN.set(r.n, r);
+    for (const [champ, f] of [["capture", r.capture?.chemin], ["texte dérivé", r.capture?.texte_derive?.chemin],
+      ["en-têtes", r.entetes?.chemin], ["trace", r.trace?.chemin]]) {
+      if (!f) continue;
+      const cle = resolve(String(f));
+      if (!referencesParChemin.has(cle)) referencesParChemin.set(cle, { chemin: String(f), usages: [] });
+      referencesParChemin.get(cle).usages.push(`${m.nom} n ${r.n} (${champ})`);
+      if (!cle.startsWith(racineRun)) {
+        echec(`${m.nom} — n ${r.n} : « ${f} » hors du répertoire de run déclaré « ${donnees.run} » (chemins résolus)`);
+      }
+    }
+  }
+  {
+    const orphelines = [];
+    const marcher = (d) => {
+      for (const e of readdirSync(d, { withFileTypes: true })) {
+        const p = join(d, e.name);
+        if (e.isDirectory()) marcher(p);
+        else if (!referencesParChemin.has(resolve(p))) orphelines.push(p);
+      }
+    };
+    try { marcher(donnees.run); }
+    catch { echec(`${m.nom} — répertoire de run « ${donnees.run} » introuvable ou illisible`); }
+    for (const p of orphelines) {
+      echec(`${m.nom} — pièce ORPHELINE « ${p} » : présente dans le run, référencée par aucun résultat — le run n'est pas un inventaire exact`);
     }
   }
 }
-/* Chaque pièce appartient à UN SEUL couple (résultat, champ)… */
+/* Chaque pièce appartient à UN SEUL couple (manifeste, n, champ) — entre manifestes aussi. */
 for (const { chemin, usages } of referencesParChemin.values()) {
   if (usages.length > 1) {
-    echec(`manifeste — pièce « ${chemin} » référencée par PLUSIEURS couples : ${usages.join(" ; ")} — l'inventaire est une bijection, chaque pièce appartient à un seul (n, champ)`);
+    echec(`manifestes — pièce « ${chemin} » référencée par PLUSIEURS couples : ${usages.join(" ; ")} — l'inventaire est une bijection`);
   }
 }
-/* …et le run est l'INVENTAIRE EXACT des pièces : chaque fichier du répertoire de run est
- * référencé par un résultat du manifeste — une pièce ORPHELINE (corps ou en-têtes d'une
- * tentative, fichier déposé après coup) rougit (contre-revue v5-sexies). Le sens inverse
- * (référencée mais absente) est tenu par la preuve de fichier de chaque résultat. */
-{
-  const orphelines = [];
-  const marcher = (d) => {
-    for (const e of readdirSync(d, { withFileTypes: true })) {
-      const p = join(d, e.name);
-      if (e.isDirectory()) marcher(p);
-      else if (!referencesParChemin.has(resolve(p))) orphelines.push(p);
-    }
-  };
-  try { marcher(manifeste.run); }
-  catch { echec(`manifeste — répertoire de run « ${manifeste.run} » introuvable ou illisible`); }
-  for (const p of orphelines) {
-    echec(`manifeste — pièce ORPHELINE « ${p} » : présente dans le run, référencée par aucun résultat — le run n'est pas un inventaire exact`);
-  }
-}
-/* Les rattachements du manifeste = EXACTEMENT la liste versionnée, dans l'ordre — et la liste
- * elle-même passe le SCHÉMA STRICT PARTAGÉ avec le collecteur (contre-revue v5-quinquies :
- * `{}` à la place du tableau laissait le validateur vert alors que le collecteur refusait). */
+/* La CONCATÉNATION des rattachements de tous les manifestes (dans l'ordre des runs) =
+ * EXACTEMENT la liste cumulative versionnée : une ancienne URL recollectée devient un
+ * doublon, une nouvelle URL omise ou surnuméraire rompt l'égalité (contre-revue du second
+ * passage). Et l'union des candidates = exactement les couples publiés, chacun UNE fois,
+ * tous manifestes confondus. */
 {
   let liste = null, listeLisible = true;
   try { liste = JSON.parse(readFileSync("rattachements-a-consulter.json", "utf-8")); }
   catch {
     listeLisible = false;
-    echec("manifeste — rattachements-a-consulter.json introuvable ou illisible : la liste versionnée est le contrat des rattachements");
+    echec("manifestes — rattachements-a-consulter.json introuvable ou illisible : la liste cumulative est le contrat des rattachements");
   }
   if (listeLisible) {
     for (const e of erreursListeRattachements(liste)) {
@@ -344,29 +368,57 @@ for (const { chemin, usages } of referencesParChemin.values()) {
     }
   }
   if (Array.isArray(liste)) {
-    const duManifeste = manifeste.resultats.filter((r) => r.role === "rattachement")
-      .map((r) => ({ url: r.url_demandee, motif: r.motif }));
-    if (jsonCanonique(duManifeste) !== jsonCanonique(liste)) {
-      echec("manifeste — les observations de rattachement ne sont pas EXACTEMENT la liste versionnée rattachements-a-consulter.json (url et motif, dans l'ordre)");
+    /* La liste cumulative est APPEND-ONLY : les observations, dans l'ordre des runs, doivent
+     * en être EXACTEMENT le PRÉFIXE — une ancienne URL recollectée (doublon), une observation
+     * hors liste (surnuméraire) ou un ordre réécrit rompent le préfixe. Les entrées de queue
+     * non encore observées sont l'état légitime entre la curation et la collecte : elles sont
+     * COMPTÉES et affichées, jamais silencieuses. */
+    const desManifestes = manifestes.flatMap((m) => m.donnees.resultats
+      .filter((r) => r.role === "rattachement").map((r) => ({ url: r.url_demandee, motif: r.motif })));
+    if (jsonCanonique(desManifestes) !== jsonCanonique(liste.slice(0, desManifestes.length))) {
+      echec("manifestes — les observations de rattachement (dans l'ordre des runs) ne sont pas le PRÉFIXE EXACT de la liste cumulative rattachements-a-consulter.json (url et motif, dans l'ordre) — ancienne URL recollectée, observation hors liste ou ordre réécrit");
     }
+    rattachementsEnAttente = Math.max(0, liste.length - desManifestes.length);
   }
 }
-/* L'ensemble des candidates du manifeste = EXACTEMENT les couples (pays, indice) publiés. */
 {
   const attendus = new Set();
   for (const id of CONTRACTUELS) for (const [i] of (guides[id]?.sources ?? []).entries()) attendus.add(`${id}#${i}`);
   const presents = new Set();
-  for (const r of manifeste.resultats) {
-    if (r.role !== "candidate") continue;
-    const cle = `${r.country_id}#${r.index_lien}`;
-    if (!attendus.has(cle)) echec(`manifeste — n ${r.n} : candidate ${cle} HORS de l'ensemble attendu`);
-    if (presents.has(cle)) echec(`manifeste — candidate ${cle} en double`);
-    presents.add(cle);
+  for (const m of manifestes) {
+    for (const r of m.donnees.resultats) {
+      if (r.role !== "candidate") continue;
+      const cle = `${r.country_id}#${r.index_lien}`;
+      if (!attendus.has(cle)) echec(`${m.nom} — n ${r.n} : candidate ${cle} HORS de l'ensemble attendu`);
+      if (presents.has(cle)) echec(`${m.nom} — candidate ${cle} en double (tous manifestes confondus)`);
+      presents.add(cle);
+    }
   }
-  for (const cle of attendus) if (!presents.has(cle)) echec(`manifeste — candidate attendue ${cle} ABSENTE`);
+  for (const cle of attendus) if (!presents.has(cle)) echec(`manifestes — candidate attendue ${cle} ABSENTE de tous les manifestes`);
 }
 const nsVus = new Set();
 const nsRattachementExerces = new Set();
+const cleRef = (ref) => `${ref.manifeste}#${ref.n}`;
+/** Résout une RÉFÉRENCE COMPOSITE : le manifeste doit exister, son empreinte courante doit
+ *  égaler l'empreinte référencée (immuabilité — supprimer ou modifier un manifeste encore
+ *  référencé rougit), et n se résout DANS CE MANIFESTE seulement. */
+const resoudre = (contexte, ref) => {
+  const man = parNomManifeste.get(ref.manifeste);
+  if (!man) {
+    echec(`${contexte} : manifeste référencé « ${ref.manifeste} » INTROUVABLE — un manifeste encore référencé ne se supprime pas`);
+    return null;
+  }
+  if (man.sha256 !== ref.manifeste_sha256) {
+    echec(`${contexte} : empreinte courante de « ${ref.manifeste} » ≠ empreinte référencée — un manifeste publié est IMMUABLE (modifié à chemin constant ?)`);
+    return null;
+  }
+  const r = man.parN.get(ref.n);
+  if (!r) {
+    echec(`${contexte} : n ${ref.n} ne désigne aucun résultat du manifeste « ${ref.manifeste} » — la résolution est PAR MANIFESTE, jamais par numéro nu`);
+    return null;
+  }
+  return r;
+};
 /* Par candidate : le DOMAINE est-il prouvé (citation ancrée portant l'hôte, ou attestation
  * d'annuaire vérifiée sur la capture brute) ? Toute PROMOTION l'exige pour sa décisive. */
 const domaineProuveParCandidate = new Set();
@@ -502,22 +554,24 @@ const ancre = (pays, quoi, extrait, cap) => {
  * (contre-revue v5-quinquies : les pièces d'un rattachement ÉCARTÉ n'étaient jamais vérifiées —
  * remplacer ses chemins et empreintes par des fichiers inexistants sortait en 0). Consultation :
  * brut, texte dérivé, en-têtes et trace prouvés ; tentative : trace prouvée. */
-for (const r of manifeste.resultats) {
-  const qui = `n ${r.n} (${r.role === "rattachement" ? `rattachement ${r.url_demandee}` : `candidate ${r.country_id}[${r.index_lien}]`})`;
-  if (r.acces === "consultee") {
-    captureProuvee("manifeste", `${qui} capture`, r.capture);
-    /* `octets` se prouve sur le fichier : égal à la taille réelle, jamais déclaratif
-     * (contre-revue v5-septies — la borne est déjà tenue par le schéma). */
-    try {
-      const taille = lstatSync(r.capture.chemin).size;
-      if (r.capture.octets !== taille) {
-        echec(`manifeste — ${qui} : capture.octets ${r.capture.octets} ≠ taille réelle ${taille} du fichier « ${r.capture.chemin} »`);
-      }
-    } catch { /* l'existence est déjà jugée par la preuve de fichier */ }
-    fichierProuve("manifeste", `${qui} en-têtes`, r.entetes.chemin, r.entetes.sha256);
-    fichierProuve("manifeste", `${qui} trace`, r.trace.chemin, r.trace.sha256);
-  } else if (r.acces === "tentative") {
-    fichierProuve("manifeste", `${qui} trace`, r.trace.chemin, r.trace.sha256);
+for (const m of manifestes) {
+  for (const r of m.donnees.resultats) {
+    const qui = `n ${r.n} (${r.role === "rattachement" ? `rattachement ${r.url_demandee}` : `candidate ${r.country_id}[${r.index_lien}]`})`;
+    if (r.acces === "consultee") {
+      captureProuvee(m.nom, `${qui} capture`, r.capture);
+      /* `octets` se prouve sur le fichier : égal à la taille réelle, jamais déclaratif
+       * (contre-revue v5-septies — la borne est déjà tenue par le schéma). */
+      try {
+        const taille = lstatSync(r.capture.chemin).size;
+        if (r.capture.octets !== taille) {
+          echec(`${m.nom} — ${qui} : capture.octets ${r.capture.octets} ≠ taille réelle ${taille} du fichier « ${r.capture.chemin} »`);
+        }
+      } catch { /* l'existence est déjà jugée par la preuve de fichier */ }
+      fichierProuve(m.nom, `${qui} en-têtes`, r.entetes.chemin, r.entetes.sha256);
+      fichierProuve(m.nom, `${qui} trace`, r.trace.chemin, r.trace.sha256);
+    } else if (r.acces === "tentative") {
+      fichierProuve(m.nom, `${qui} trace`, r.trace.chemin, r.trace.sha256);
+    }
   }
 }
 
@@ -537,18 +591,18 @@ for (const id of CONTRACTUELS) {
 
     /* LE MANIFESTE FAIT FOI : l'observation de la matrice doit être CELLE du manifeste,
      * champ à champ — la matrice n'ajoute que le jugement. */
-    const res = parN.get(c.manifeste_n);
-    if (!res) { echec(`${id} — ${qui} : manifeste_n ${c.manifeste_n} ne désigne aucun résultat du manifeste`); continue; }
-    if (nsVus.has(c.manifeste_n)) echec(`${id} — ${qui} : manifeste_n ${c.manifeste_n} déjà utilisé par une autre candidate`);
-    nsVus.add(c.manifeste_n);
+    const res = resoudre(`${id} — ${qui}`, c.observation);
+    if (!res) continue;
+    if (nsVus.has(cleRef(c.observation))) echec(`${id} — ${qui} : observation ${cleRef(c.observation)} déjà utilisée par une autre candidate`);
+    nsVus.add(cleRef(c.observation));
     const observe = (champ, matrice, mani) => {
       if (jsonCanonique(matrice) !== jsonCanonique(mani)) {
         echec(`${id} — ${qui} : « ${champ} » ≠ manifeste (matrice ${jsonCanonique(matrice)?.slice(0, 60)} · manifeste ${jsonCanonique(mani)?.slice(0, 60)}) — observation réécrite hors manifeste`);
       }
     };
-    if (res.role !== "candidate") echec(`${id} — ${qui} : manifeste_n ${c.manifeste_n} est de rôle « ${res.role} », pas une candidate`);
+    if (res.role !== "candidate") echec(`${id} — ${qui} : l'observation ${cleRef(c.observation)} est de rôle « ${res.role} », pas une candidate`);
     if (res.country_id !== id || res.index_lien !== i) {
-      echec(`${id} — ${qui} : manifeste_n ${c.manifeste_n} appartient à ${res.country_id}[${res.index_lien}], pas à ${id}[${i}]`);
+      echec(`${id} — ${qui} : l'observation ${cleRef(c.observation)} appartient à ${res.country_id}[${res.index_lien}], pas à ${id}[${i}]`);
     }
     observe("label", c.label, res.label);
     observe("url_publiee", c.url_publiee, res.url_publiee);
@@ -603,20 +657,20 @@ for (const id of CONTRACTUELS) {
       /* LE RATTACHEMENT AUSSI VIENT DU MANIFESTE : une preuve dont l'URL ne correspond à
        * aucune observation collectée autoriserait autorite_pays — donc la promotion — sur
        * une pièce inventée (contre-revue v5-ter). */
-      const obs = parN.get(p.manifeste_n);
+      const obs = resoudre(`${id} — ${qui} preuve de rattachement [${j}]`, p.observation);
       if (!obs) {
-        echec(`${id} — ${qui} preuve de rattachement [${j}] : manifeste_n ${p.manifeste_n} ne désigne aucune observation du manifeste`);
+        /* échec déjà nommé par la résolution composite */
       } else {
         /* Le RÔLE est exigé explicitement : une preuve de rattachement qui vise une candidate
          * ordinaire contourne toute la liste versionnée — citation et capture peuvent concorder
          * avec la candidate, seule cette garde le voit (contre-revue v5-quinquies). */
         if (obs.role !== "rattachement") {
-          echec(`${id} — ${qui} preuve de rattachement [${j}] : manifeste_n ${p.manifeste_n} est de rôle « ${obs.role} » — ` +
+          echec(`${id} — ${qui} preuve de rattachement [${j}] : l'observation ${cleRef(p.observation)} est de rôle « ${obs.role} » — ` +
             `une preuve de rattachement vise une observation de RÔLE rattachement, la liste versionnée ne se contourne pas`);
         } else {
-          nsRattachementExerces.add(p.manifeste_n);
+          nsRattachementExerces.add(cleRef(p.observation));
         }
-        if (obs.acces !== "consultee") echec(`${id} — ${qui} preuve de rattachement [${j}] : l'observation ${p.manifeste_n} n'est pas une consultation`);
+        if (obs.acces !== "consultee") echec(`${id} — ${qui} preuve de rattachement [${j}] : l'observation ${cleRef(p.observation)} n'est pas une consultation`);
         else {
           if (p.citation?.url !== obs.url_finale) {
             echec(`${id} — ${qui} preuve de rattachement [${j}] : citation.url « ${p.citation?.url} » ≠ url_finale observée « ${obs.url_finale} » — rattachement hors manifeste`);
@@ -628,7 +682,7 @@ for (const id of CONTRACTUELS) {
             content_type: obs.capture.content_type, format_detecte: obs.capture.format_detecte,
             texte_derive: obs.capture.texte_derive, extracteur: obs.capture.extracteur } : null;
           if (jsonCanonique(p.capture) !== jsonCanonique(capObs)) {
-            echec(`${id} — ${qui} preuve de rattachement [${j}] : la capture ne correspond pas à l'observation ${p.manifeste_n} du manifeste`);
+            echec(`${id} — ${qui} preuve de rattachement [${j}] : la capture ne correspond pas à l'observation ${cleRef(p.observation)}`);
           }
         }
       }
@@ -777,25 +831,32 @@ for (const id of CONTRACTUELS) {
  * Un PDF réussi, un échec réseau, une pièce non pertinente s'ÉCARTENT avec motif — ils ne
  * rendent pas la matrice invalidable (contre-revue v5-quater). */
 const decisionsRattachement = matriceBrute.rattachements ?? {};
-for (const r of manifeste.resultats ?? []) {
-  if (r.role === "candidate" && !nsVus.has(r.n)) {
-    echec(`manifeste — n ${r.n} (candidate ${r.country_id}[${r.index_lien}]) n'est référencé par aucune candidate de la matrice — résultat sans jugement`);
-  }
-  if (r.role === "rattachement") {
-    const d = decisionsRattachement[String(r.n)];
-    if (!d) {
-      echec(`manifeste — n ${r.n} (rattachement ${r.url_demandee}) SANS DÉCISION éditoriale — utilisee ou ecartee, rien d'implicite`);
-    } else if (d.statut === "utilisee" && !nsRattachementExerces.has(r.n)) {
-      echec(`matrice — rattachement n ${r.n} déclaré UTILISÉ mais cité par aucune preuve`);
-    } else if (d.statut === "ecartee" && nsRattachementExerces.has(r.n)) {
-      echec(`matrice — rattachement n ${r.n} déclaré ÉCARTÉ mais cité par une preuve — les deux ne se cumulent pas`);
+const clesRattachementConnues = new Set();
+for (const m of manifestes) {
+  for (const r of m.donnees.resultats ?? []) {
+    const cle = `${m.nom}#${r.n}`;
+    if (r.role === "candidate" && !nsVus.has(cle)) {
+      echec(`${m.nom} — n ${r.n} (candidate ${r.country_id}[${r.index_lien}]) n'est référencé par aucune candidate de la matrice — résultat sans jugement`);
+    }
+    if (r.role === "rattachement") {
+      clesRattachementConnues.add(cle);
+      const d = decisionsRattachement[cle];
+      if (!d) {
+        echec(`${m.nom} — n ${r.n} (rattachement ${r.url_demandee}) SANS DÉCISION éditoriale — utilisee ou ecartee, rien d'implicite (clé « ${cle} »)`);
+      } else if (d.statut === "utilisee" && !nsRattachementExerces.has(cle)) {
+        echec(`matrice — rattachement ${cle} déclaré UTILISÉ mais cité par aucune preuve`);
+      } else if (d.statut === "ecartee" && nsRattachementExerces.has(cle)) {
+        echec(`matrice — rattachement ${cle} déclaré ÉCARTÉ mais cité par une preuve — les deux ne se cumulent pas`);
+      }
     }
   }
 }
-/* Aucune décision orpheline : les clés de matrice.rattachements = exactement les n de rôle rattachement. */
+/* Aucune décision orpheline : les clés de matrice.rattachements = exactement les couples
+ * composites « <manifeste>#<n> » des observations de rôle rattachement. */
 for (const cle of Object.keys(decisionsRattachement)) {
-  const r = parN.get(Number(cle));
-  if (!r || r.role !== "rattachement") echec(`matrice — décision de rattachement « ${cle} » ne correspond à aucune observation de rattachement du manifeste`);
+  if (!clesRattachementConnues.has(cle)) {
+    echec(`matrice — décision de rattachement « ${cle} » ne correspond à aucune observation de rattachement d'aucun manifeste`);
+  }
 }
 
 /* ---- verdict --------------------------------------------------------------------------------- */
@@ -810,4 +871,6 @@ const promues = Object.values(audits).filter((a) => a.decision.statut === "promu
 const sans = Object.values(audits).filter((a) => a.decision.statut === "aucune_source_officielle").length;
 const nonConcluantes = Object.values(audits).filter((a) => a.decision.statut === "aucune_source_promouvable_dans_ce_run").length;
 process.stdout.write(`[audit] matrice conforme — 18 pays · ${total} candidates (bijection triplet) · ${promues} promue(s) · ` +
-  `${sans} sans source officielle · ${nonConcluantes} non promouvable(s) dans ce run · pièces prouvées, contrats canoniques tenus (${asOf}).\n`);
+  `${sans} sans source officielle · ${nonConcluantes} non promouvable(s) dans ce run · ${manifestes.length} manifeste(s)` +
+  `${rattachementsEnAttente ? ` · ${rattachementsEnAttente} rattachement(s) EN ATTENTE de collecte` : ""} · ` +
+  `pièces prouvées, contrats canoniques tenus (${asOf}).\n`);

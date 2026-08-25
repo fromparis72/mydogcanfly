@@ -1,4 +1,4 @@
-# Lot A — Audit des 18 pays sans source · dossier de mesure et de conception (v5-terdecies)
+# Lot A — Audit des 18 pays sans source · dossier de mesure et de conception (v5-quaterdecies)
 
 **Mesuré sur `main` après fusion du dossier d'achèvement (`1dd62010ea183422f02553877df4706714739080`).
 Ce dossier ne corrige rien : aucune date, aucune source, aucune donnée métier n'est écrite.
@@ -9,8 +9,8 @@ Reproduction :
 ```bash
 node --import tsx mesurer-lot-a.mjs --as-of=2026-08-24   # l'état contre le scellé — sortie 1 au premier écart
 node test-mesure-lot-a.mjs                               # 16 cas : le scellé est exact, et il ne se remplace pas
-node test-audit-pays.mjs                                 # 66 cas : le validateur de la matrice mord (17-81)
-node test-consulter-lot-a.mjs                            # 14 cas au faux curl : le collecteur ne fabrique rien
+node test-audit-pays.mjs                                 # 71 cas : le validateur de la matrice mord (17-86)
+node test-consulter-lot-a.mjs                            # 17 cas au faux curl : le collecteur ne fabrique rien
 ```
 
 La liste des 18 est celle que le bloc contractuel du dossier d'achèvement fige
@@ -350,6 +350,35 @@ rend la projection obligatoire pour TOUTE promue — la contre-épreuve 79 l'ép
 la constante à true dans la copie de travail : rouge sans aucun marqueur de données à
 retirer.
 
+**Le second passage devait être ADDITIONNEL — le remplacement du manifeste aurait déraciné
+tous les jugements** (contre-revue du second passage, correction de séquence). Mécanisme
+multi-runs mis en œuvre et soumis à contre-revue AVANT toute collecte : (1) les manifestes
+publiés sont **immuables** — le mode complet du collecteur refuse dès qu'un manifeste
+existe ; le mode `--rattachements-seulement` exige les 91 candidates déjà couvertes (jamais
+retéléchargées), collecte **exactement la différence** entre la liste cumulative et les URL
+déjà observées, et publie `audit-pays-consultations-<k>.json`, additionnel. (2) La matrice
+référence toute observation par **référence composite** `{ manifeste, manifeste_sha256, n }` :
+le manifeste doit exister (le supprimer rougit), son empreinte courante doit égaler
+l'empreinte référencée (le modifier à chemin constant rougit), et `n` se résout DANS CE
+MANIFESTE seulement — les clés de décision des rattachements deviennent
+`« <manifeste>#<n> »`. Chaque manifeste garde son ensemble exact (n contigus, bijection,
+inventaire de SON run) ; l'union des candidates = exactement les couples publiés ; la
+concaténation des rattachements (dans l'ordre des runs) = le **préfixe exact** de la liste
+cumulative — écart assumé vis-à-vis de l'égalité stricte demandée : entre la curation et la
+collecte, les entrées de queue non observées sont l'état légitime, il est VERT mais COMPTÉ
+et affiché (« N rattachement(s) EN ATTENTE de collecte »), jamais silencieux ; le collecteur,
+lui, refuse toute omission à la publication (la différence exacte, ni plus ni moins).
+Contre-épreuves 82-86 (validateur) et 15-17 (collecteur) — les six contre-épreuves minimales
+de la contre-revue sont couvertes ; les cas plein-mode du harnais partent désormais d'un état
+sans manifeste (« un run refusé ne publie RIEN » remplace « l'ancien manifeste est intact »,
+que l'immuabilité rend vacant). La liste cumulative porte les 12 URL (4 observées + 8 curées
+en attente). Notes de contre-revue enregistrées : l'Équateur reste NON PRÉJUGÉ jusqu'à
+l'examen de la page /espana/ ; le Népal est orienté mission_diplomatique_pays, jamais
+promouvable ; l'extension du contrat de preuve (union discriminée d'attestations par forme
+institutionnelle, jamais « la citation mentionne le domaine ») précède tout nouveau jugement ;
+à l'étape 4, la constante `PROJECTION_INCONDITIONNELLE` passera à true DANS LE MÊME COMMIT
+que la projection fidjienne.
+
 ## 1. La mesure a changé la nature de la dette — et ce que la promotion fait, honnêtement
 
 Le dossier d'achèvement décrivait la dette ainsi : « 18 pays n'ont AUCUNE source ». C'est vrai
@@ -560,8 +589,8 @@ fixture porte un manifeste en ensemble exact égal à la liste versionnée, UNE 
 (résultat, champ), un rattachement utilisé, un PDF et une tentative proprement écartés, une
 candidate PDF à pièce-capture), et `test-consulter-lot-a.mjs` éprouve le collecteur (14 cas
 au faux `curl`, dont la batterie de six listes malformées, la redirection hors HTTP(S), le
-corps au-delà de la borne et l'inventaire exact du run). Le total est **verrouillé à
-81 + 14** :
+corps au-delà de la borne, l'inventaire exact du run et le multi-runs). Le total est
+**verrouillé à 86 + 17** :
 
 | # | mutation | attendu |
 |---|---|---|
@@ -630,6 +659,11 @@ corps au-delà de la borne et l'inventaire exact du run). Le total est **verroui
 | 79 | règle d'étape 4 FORCÉE (constante de code à true) : promue sans projection dans `objects.json` | échec — projection obligatoire et bidirectionnelle, AUCUN marqueur de données à retirer avec la source |
 | 80 | `organisationDetails.organisationName` substitué par une autre organisation, l'HOMONYME de `personnelList` conservé, empreintes rescellées | échec — les trois champs se lisent dans le même sous-arbre, les sous-chaînes éparses ne comptent pas |
 | 81 | `aucune_source_officielle` avec une candidate INCONNUE (tentative ou pertinence `non_evaluee`) | échec — l'absence ne se conclut pas avec des candidates non évaluées (cas des Seychelles) |
+| 82 | référence composite au bon `n` mais au MAUVAIS manifeste (les n des deux manifestes se recouvrent) | échec — la résolution est PAR MANIFESTE, jamais par numéro nu |
+| 83 | manifeste modifié à CHEMIN CONSTANT (JSON toujours valide), références non rescellées | échec — l'empreinte référencée rend chaque manifeste publié IMMUABLE |
+| 84 | ancienne URL RECOLLECTÉE dans le second run (observation dupliquée) | échec — les observations doivent être le PRÉFIXE EXACT de la liste cumulative |
+| 85 | entrée de liste curée, PAS ENCORE collectée | vert, mais JAMAIS silencieux — « N rattachement(s) EN ATTENTE de collecte » est affiché |
+| 86 | premier manifeste SUPPRIMÉ alors que la matrice le référence | échec — un manifeste encore référencé ne se supprime pas |
 
 ## 6. Interdits, et effets de bord assumés
 

@@ -16,7 +16,7 @@
  * (cas 0) ; chaque cas suivant mute UNE chose et exige la sortie 1 avec la cause nommée.
  * Aucune donnée réelle n'est affirmée : la fixture vit dans l'arbre jetable, jamais au dépôt.
  *
- * SOIXANTE-SIX CAS : 0 (fixture conforme — manifeste complet avec une observation de
+ * SOIXANTE-ET-ONZE CAS : 0 (fixture conforme — manifeste complet avec une observation de
  * rattachement de rôle dédié, candidate PDF à pièce-capture), 17 à 52 (bijection, décisions,
  * pièces, ancres, PDF, liaison au manifeste), puis 53-57 (contre-revue v5-ter) : PDF déguisé
  * en text/plain — le format recalculé depuis les OCTETS prime ; résultat de manifeste
@@ -48,8 +48,13 @@
  * sans aucune consultation, ou avec une candidate INCONNUE (tentative ou non_evaluee — les
  * Seychelles) ; la règle d'étape 4 forcée à true rougit toute promue sans projection, sans
  * marqueur de données à retirer.
+ * Puis 82-86 (multi-runs, contre-revue du second passage) : la fixture porte DEUX manifestes
+ * aux n recouvrants — la résolution est composite (bon n, mauvais manifeste → rouge) ; un
+ * manifeste modifié à chemin constant rougit par l'empreinte ; une ancienne URL recollectée
+ * rompt le préfixe exact de la liste cumulative ; une entrée en attente de collecte est
+ * verte mais COMPTÉE ; un manifeste supprimé encore référencé rougit.
  */
-import { readFileSync, writeFileSync, mkdirSync, copyFileSync, symlinkSync, mkdtempSync, rmSync } from "node:fs";
+import { readFileSync, writeFileSync, mkdirSync, copyFileSync, symlinkSync, mkdtempSync, rmSync, readdirSync } from "node:fs";
 import { deflateSync } from "node:zlib";
 import { createHash } from "node:crypto";
 import { extraireTexte, detecterFormat, VERSION_EXTRACTEUR } from "./extraire-texte-lot-a.mjs";
@@ -99,27 +104,30 @@ const CONTENU_TRACE = "# trace témoin du jeu d'essai\n[ligne expurgée : proxy/
 /* Chaque RÉSULTAT a SES pièces (n-<n>.*) : l'inventaire du run est une BIJECTION — une pièce
  * appartient à un seul couple (résultat, champ), le partage rougit (contre-revue v5-septies).
  * Les fichiers sont créés une seule fois (mémoïsés) puis git-ajoutés en bloc. */
+const M1 = "audit-pays-consultations.json";
+const M2 = "audit-pays-consultations-2.json";
+const refFixture = (manifeste, n) => ({ manifeste, manifeste_sha256: "0".repeat(64), n });
 const fichiersCrees = new Set();
 const ecrireFixture = (chemin, contenu) => {
   if (fichiersCrees.has(chemin)) return;
   writeFileSync(join(arbre, chemin), contenu);
   fichiersCrees.add(chemin);
 };
-const capturePourN = (n, contenu, contentType) => {
+const capturePourN = (n, contenu, contentType, run = "run-fixture") => {
   const buf = Buffer.isBuffer(contenu) ? contenu : Buffer.from(contenu);
   const ext = contentType.includes("pdf") ? "pdf" : "html";
-  const chemin = `audit-pays-pieces/run-fixture/n-${n}.${ext}`;
+  const chemin = `audit-pays-pieces/${run}/n-${n}.${ext}`;
   ecrireFixture(chemin, buf);
   const texte = extraireTexte(buf, contentType);
-  const cheminTexte = `audit-pays-pieces/run-fixture/n-${n}.texte.txt`;
+  const cheminTexte = `audit-pays-pieces/${run}/n-${n}.texte.txt`;
   ecrireFixture(cheminTexte, texte);
   return { chemin, sha256: sha256(buf), octets: buf.length, content_type: contentType,
     format_detecte: detecterFormat(buf),
     texte_derive: { chemin: cheminTexte, sha256: sha256(Buffer.from(texte)) },
     extracteur: VERSION_EXTRACTEUR };
 };
-const fichierPourN = (n, quoi, contenu) => {
-  const chemin = `audit-pays-pieces/run-fixture/n-${n}.${quoi}.txt`;
+const fichierPourN = (n, quoi, contenu, run = "run-fixture") => {
+  const chemin = `audit-pays-pieces/${run}/n-${n}.${quoi}.txt`;
   ecrireFixture(chemin, contenu);
   return { chemin, sha256: sha256(Buffer.from(contenu)) };
 };
@@ -151,7 +159,7 @@ function fabriquerJeu(guides, scelle) {
         entetes: { ...entetes }, trace: { ...trace },
       });
       return {
-        manifeste_n: n, label: s.label, url_publiee: s.url, acces: "consultee",
+        observation: refFixture(M1, n), label: s.label, url_publiee: s.url, acces: "consultee",
         url_finale: s.url, statut_http: 200, consultee_le: JOUR,
         capture: sansOctets(cap), entetes: { ...entetes }, trace: { ...trace },
         piece: estPdf ? { type: "capture", chemin: cap.chemin, sha256: cap.sha256 }
@@ -205,7 +213,7 @@ function fabriquerJeu(guides, scelle) {
   const fj = audits.country_fj;
   const c0 = fj.candidates[0];
   c0.nature_editeur = "autorite_pays";
-  c0.preuves_rattachement = [{ manifeste_n: nRattachement,
+  c0.preuves_rattachement = [{ observation: refFixture(M1, nRattachement),
     citation: quoteFixture(CITATION_RATTACHEMENT), capture: sansOctets(capRatt),
     attestation_annuaire: { ...ATTESTATION_TEMOIN } }];
   c0.pertinence = "etaye_le_fait";
@@ -217,15 +225,30 @@ function fabriquerJeu(guides, scelle) {
       quote: c0.piece.extrait, quote_language: c0.piece.langue, locator: c0.piece.locator,
     },
   };
+  /* Le SECOND manifeste (multi-runs) : un rattachement de second run, n = 1 — le même n que
+   * le premier résultat du manifeste 1 : seule la référence COMPOSITE lève l'ambiguïté. */
+  const capRatt2 = capturePourN(1, CONTENU_HTML, "text/html; charset=utf-8", "run-fixture-2");
+  const resultats2 = [{
+    n: 1, role: "rattachement",
+    url_demandee: "https://example.org/annuaire-second-run", motif: "Annuaire du second run (jeu d'essai).",
+    acces: "consultee", statut_http: 200, url_finale: "https://example.org/annuaire-second-run",
+    redirections: 0, consultee_le: JOUR, content_type: capRatt2.content_type,
+    capture: JSON.parse(JSON.stringify(capRatt2)),
+    entetes: fichierPourN(1, "entetes", CONTENU_ENTETES, "run-fixture-2"),
+    trace: { type: "transcript", ...fichierPourN(1, "trace", CONTENU_TRACE, "run-fixture-2") },
+  }];
   return {
     matrice: { audits, rattachements: {
-      [String(nRattachement)]: { statut: "utilisee" },
-      [String(nRattachementPdf)]: { statut: "ecartee", motif: "PDF : aucune preuve textuelle en lot-a-1 (jeu d'essai)." },
-      [String(nRattachementTentative)]: { statut: "ecartee", motif: "Tentative : la page n'a pas été obtenue (jeu d'essai)." },
+      [`${M1}#${nRattachement}`]: { statut: "utilisee" },
+      [`${M1}#${nRattachementPdf}`]: { statut: "ecartee", motif: "PDF : aucune preuve textuelle en lot-a-1 (jeu d'essai)." },
+      [`${M1}#${nRattachementTentative}`]: { statut: "ecartee", motif: "Tentative : la page n'a pas été obtenue (jeu d'essai)." },
+      [`${M2}#1`]: { statut: "ecartee", motif: "Second run : observation non encore exploitée (jeu d'essai)." },
     } },
     manifeste: { consultees_le: JOUR, run: "audit-pays-pieces/run-fixture", total: n,
       candidates: n - 3, rattachements: 3, extracteur: VERSION_EXTRACTEUR, resultats },
-    liste: resultats.filter((r) => r.role === "rattachement").map((r) => ({ url: r.url_demandee, motif: r.motif })),
+    manifeste2: { consultees_le: JOUR, run: "audit-pays-pieces/run-fixture-2", total: 1,
+      candidates: 0, rattachements: 1, extracteur: VERSION_EXTRACTEUR, resultats: resultats2 },
+    liste: resultats.concat(resultats2).filter((r) => r.role === "rattachement").map((r) => ({ url: r.url_demandee, motif: r.motif })),
     captureRattachement: sansOctets(capRatt),
     capturePdf: sansOctets(capRattPdf),
   };
@@ -252,20 +275,45 @@ try {
    * (Le PDF « scanné » de la fixture historique a été retiré : référencé par personne,
    * il serait une pièce ORPHELINE du run — l'inventaire exact le refuserait, à raison.) */
   mkdirSync(join(arbre, "audit-pays-pieces/run-fixture"), { recursive: true });
+  mkdirSync(join(arbre, "audit-pays-pieces/run-fixture-2"), { recursive: true });
+  /* Les manifestes RÉELS du dépôt (présents dans HEAD) sont écartés de l'arbre de travail :
+   * la fixture est le seul monde observable du harnais. */
+  for (const f of readdirSync(arbre).filter((x) => /^audit-pays-consultations(-\d+)?\.json$/.test(x))) {
+    rmSync(join(arbre, f), { force: true });
+  }
 
   const poser = (m) => writeFileSync(CHEMIN_MATRICE, JSON.stringify(m, null, 2));
   const CHEMIN_MANIFESTE = join(arbre, "audit-pays-consultations.json");
+  const CHEMIN_MANIFESTE_2 = join(arbre, "audit-pays-consultations-2.json");
   const jeu0 = fabriquerJeu(guides, scelle);
-  gitArbre("add", "--", "audit-pays-pieces/run-fixture");
-  const matricePristine = JSON.stringify(jeu0.matrice, null, 2);
+  gitArbre("add", "--", "audit-pays-pieces/run-fixture", "audit-pays-pieces/run-fixture-2");
   const manifestePristin = JSON.stringify(jeu0.manifeste, null, 2);
+  const manifestePristin2 = JSON.stringify(jeu0.manifeste2, null, 2);
   writeFileSync(CHEMIN_MANIFESTE, manifestePristin);
+  writeFileSync(CHEMIN_MANIFESTE_2, manifestePristin2);
+  const shaFichier = (chemin) => sha256(readFileSync(chemin));
+  /* Les références composites de la matrice sont RESCELLÉES sur les manifestes tels qu'ils
+   * sont sur disque — après toute mutation de manifeste, pour que l'immuabilité ne masque
+   * pas le défaut visé par un cas. */
+  const rescellerRefs = (m) => {
+    const shas = { [M1]: shaFichier(CHEMIN_MANIFESTE), [M2]: shaFichier(CHEMIN_MANIFESTE_2) };
+    for (const a of Object.values(m.audits)) {
+      for (const c of a.candidates) {
+        if (c.observation && shas[c.observation.manifeste]) c.observation.manifeste_sha256 = shas[c.observation.manifeste];
+        for (const pr of c.preuves_rattachement ?? []) {
+          if (pr.observation && shas[pr.observation.manifeste]) pr.observation.manifeste_sha256 = shas[pr.observation.manifeste];
+        }
+      }
+    }
+    return m;
+  };
+  const matricePristine = JSON.stringify(rescellerRefs(jeu0.matrice), null, 2);
   /* La liste versionnée des rattachements — le manifeste doit lui être EXACTEMENT égal. */
   writeFileSync(join(arbre, "rattachements-a-consulter.json"), JSON.stringify(jeu0.liste, null, 2));
   const neuve = () => JSON.parse(matricePristine);
   const neuveManifeste = () => JSON.parse(manifestePristin);
-  const preuveTemoin = (manifeste_n = 92) => ({
-    manifeste_n,
+  const preuveTemoin = (n = 92) => ({
+    observation: { manifeste: M1, manifeste_sha256: shaFichier(CHEMIN_MANIFESTE), n },
     citation: quoteFixture(CITATION_RATTACHEMENT),
     capture: JSON.parse(JSON.stringify(jeu0.captureRattachement)),
   });
@@ -274,12 +322,13 @@ try {
   const cas = (nom, muter, motifs, muterManifeste = null) => {
     const m = neuve();
     muter(m);
-    poser(m);
     if (muterManifeste) {
       const mf = neuveManifeste();
       muterManifeste(mf);
       writeFileSync(CHEMIN_MANIFESTE, JSON.stringify(mf, null, 2));
+      rescellerRefs(m);
     }
+    poser(m);
     const r = lancer(arbre);
     if (muterManifeste) writeFileSync(CHEMIN_MANIFESTE, manifestePristin);
     if (r.status !== 1) { echec(nom, `sortie ${r.status} au lieu de 1 — la mutation passe`); return; }
@@ -473,9 +522,9 @@ try {
   cas("55 URL de rattachement inventée", (m) => {
     fj(m).candidates[0].preuves_rattachement[0].citation.url = "https://ministere-invente.gov.example/decret";
   }, [/country_fj/, /citation\.url/, /rattachement hors manifeste/]);
-  cas("56 rattachement sans manifeste_n", (m) => {
-    delete fj(m).candidates[0].preuves_rattachement[0].manifeste_n;
-  }, [/schéma/, /manifeste_n/]);
+  cas("56 rattachement sans référence d'observation", (m) => {
+    delete fj(m).candidates[0].preuves_rattachement[0].observation;
+  }, [/schéma/, /observation/]);
   cas("57 pièce du manifeste hors du répertoire de run", (m) => { /* matrice inchangée */ }, [
     /hors du répertoire de run déclaré/,
   ], (mf) => {
@@ -484,7 +533,7 @@ try {
 
   /* ---- 58-63 · décisions de rattachement et ensemble exact (contre-revue v5-quater) ---------- */
   cas("58 rattachement sans décision", (m) => {
-    delete m.rattachements[Object.keys(m.rattachements).find((k) => m.audits.country_fj.candidates[0].preuves_rattachement[0].manifeste_n !== Number(k))];
+    delete m.rattachements[Object.keys(m.rattachements).find((k) => k !== `${M1}#92`)];
   }, [/SANS DÉCISION éditoriale/]);
   cas("59 PDF déclaré utilisé", (m) => {
     const nPdf = Object.keys(m.rattachements).find((k) => /PDF/.test(m.rattachements[k].motif ?? ""));
@@ -500,7 +549,7 @@ try {
     /uniques et contigus/,
   ], (mf) => { mf.resultats[mf.resultats.length - 1].n = 500; });
   cas("63 manifeste ≠ liste versionnée des rattachements", (m) => { /* matrice inchangée */ }, [
-    /EXACTEMENT la liste versionnée/,
+    /PRÉFIXE EXACT de la liste cumulative/,
   ], (mf) => {
     const r = mf.resultats.find((x) => x.role === "rattachement");
     r.motif = "Motif réécrit après coup, différent de la liste versionnée.";
@@ -528,7 +577,7 @@ try {
     }
   }
   cas("65 pièces du rattachement écarté remplacées par du néant", (m) => { /* matrice inchangée, décision ecartee conservée */ }, [
-    /manifeste — n \d+ \(rattachement/, /ne désigne aucun fichier/,
+    /audit-pays-consultations\.json — n \d+ \(rattachement/, /ne désigne aucun fichier/,
   ], (mf) => {
     const pdf = mf.resultats.find((x) => x.role === "rattachement" && /document-pdf/.test(x.url_demandee));
     pdf.capture.chemin = "audit-pays-pieces/run-fixture/fantome.pdf";
@@ -542,23 +591,23 @@ try {
      * garde de RÔLE, tout passe. */
     const c = fj(m).candidates[0];
     const p = c.preuves_rattachement[0];
-    p.manifeste_n = c.manifeste_n;
+    p.observation = { ...c.observation };
     p.citation.url = c.url_finale;
     p.citation.quote = EXTRAIT_TEMOIN;
     p.capture = JSON.parse(JSON.stringify(c.capture));
-    m.rattachements["92"] = { statut: "ecartee", motif: "Écartée pour couvrir le contournement (jeu d'essai)." };
+    m.rattachements[`${M1}#92`] = { statut: "ecartee", motif: "Écartée pour couvrir le contournement (jeu d'essai)." };
   }, [/country_fj/, /rôle « candidate »/, /liste versionnée ne se contourne pas/]);
 
   /* ---- 67-69 · le contrat des observations au schéma du manifeste, l'inventaire exact du run
    *             (contre-revue v5-sexies) ------------------------------------------------------ */
   cas("67 rattachement écarté en 404 gardé « consultee »", (m) => { /* matrice inchangée, décision ecartee conservée */ }, [
-    /schéma du MANIFESTE refusé/,
+    /schéma du MANIFESTE .* refusé/,
   ], (mf) => {
     const pdf = mf.resultats.find((x) => x.role === "rattachement" && /document-pdf/.test(x.url_demandee));
     pdf.statut_http = 404;
   });
   cas("68 rattachement écarté à url_finale locale", (m) => { /* matrice inchangée, décision ecartee conservée */ }, [
-    /schéma du MANIFESTE refusé/,
+    /schéma du MANIFESTE .* refusé/,
   ], (mf) => {
     const pdf = mf.resultats.find((x) => x.role === "rattachement" && /document-pdf/.test(x.url_demandee));
     pdf.url_finale = "file:///etc/passwd";
@@ -592,7 +641,7 @@ try {
     B.entetes = { ...A.entetes };
     B.trace = { ...A.trace };
     const m = neuve();
-    const candB = Object.values(m.audits).flatMap((a) => a.candidates).find((c) => c.manifeste_n === 2);
+    const candB = Object.values(m.audits).flatMap((a) => a.candidates).find((c) => c.observation.n === 2);
     candB.capture = JSON.parse(JSON.stringify(sansOctets(A.capture)));
     candB.entetes = { ...A.entetes };
     candB.trace = { ...A.trace };
@@ -613,7 +662,7 @@ try {
     }
   }
   cas("71 octets absent du manifeste", (m) => { /* matrice inchangée */ }, [
-    /schéma du MANIFESTE refusé/,
+    /schéma du MANIFESTE .* refusé/,
   ], (mf) => { delete mf.resultats[0].capture.octets; });
   cas("72 octets falsifié", (m) => { /* matrice inchangée */ }, [
     /capture\.octets/, /taille réelle/,
@@ -682,8 +731,9 @@ try {
     res92.capture.octets = brutMute.length;
     const preuve = m.audits.country_fj.candidates[0].preuves_rattachement[0];
     preuve.capture.sha256 = shaMute;
-    poser(m);
     writeFileSync(CHEMIN_MANIFESTE, JSON.stringify(mf, null, 2));
+    rescellerRefs(m);
+    poser(m);
     const r = lancer(arbre);
     writeFileSync(join(arbre, chemin92), brutAvant);
     writeFileSync(CHEMIN_MANIFESTE, manifestePristin);
@@ -717,8 +767,9 @@ try {
     res92.capture.sha256 = shaMute;
     res92.capture.octets = brutMute.length;
     m.audits.country_fj.candidates[0].preuves_rattachement[0].capture.sha256 = shaMute;
-    poser(m);
     writeFileSync(CHEMIN_MANIFESTE, JSON.stringify(mf, null, 2));
+    rescellerRefs(m);
+    poser(m);
     const r = lancer(arbre);
     writeFileSync(join(arbre, chemin92), brutAvant);
     writeFileSync(CHEMIN_MANIFESTE, manifestePristin);
@@ -739,7 +790,7 @@ try {
     /* toutes les candidates du pays deviennent des tentatives — zéro page lue ne conclut
      * pas à l'absence de source (cas des Maldives). */
     bs(m).candidates = bs(m).candidates.map((c) => ({
-      manifeste_n: c.manifeste_n, label: c.label, url_publiee: c.url_publiee,
+      observation: c.observation, label: c.label, url_publiee: c.url_publiee,
       acces: "tentative", tentee_le: JOUR, resultat: "HTTP 403", trace: { ...c.trace },
       nature_editeur: "non_etabli", preuves_rattachement: [], pertinence: "non_evaluee",
     }));
@@ -768,6 +819,71 @@ try {
       echec("79 étape 4 : promue sans projection", `le diagnostic ne nomme pas la projection manquante — reçu :\n      ${r.stderr.trim().split("\n").slice(0, 5).join("\n      ")}`);
     }
   }
+
+  /* ---- 82-86 · multi-runs : références composites, manifestes immuables (contre-revue du
+   *             second passage). La fixture conforme porte DEUX manifestes dont les n se
+   *             recouvrent (n = 1 dans chacun) : le cas 0 prouve déjà l'absence d'ambiguïté. */
+  cas("82 référence au bon n mais au mauvais manifeste", (m) => {
+    /* n 92 existe dans le manifeste 1, pas dans le 2 : la résolution est PAR MANIFESTE,
+     * jamais par numéro nu. */
+    const p = fj(m).candidates[0].preuves_rattachement[0];
+    p.observation = { manifeste: M2, manifeste_sha256: shaFichier(CHEMIN_MANIFESTE_2), n: 92 };
+  }, [/country_fj/, /aucun résultat du manifeste « audit-pays-consultations-2\.json »/, /jamais par numéro nu/]);
+  {
+    /* 83 — manifeste 1 modifié à CHEMIN CONSTANT (un octet ajouté, JSON toujours valide),
+     * références de la matrice NON rescellées : l'immuabilité rougit par l'empreinte. */
+    writeFileSync(CHEMIN_MANIFESTE, manifestePristin + "\n");
+    poser(neuve());
+    const r = lancer(arbre);
+    writeFileSync(CHEMIN_MANIFESTE, manifestePristin);
+    if (r.status !== 1) echec("83 manifeste modifié à chemin constant", `sortie ${r.status} au lieu de 1 — un manifeste publié n'est plus immuable`);
+    else if (!/IMMUABLE|empreinte/.test(r.stderr)) {
+      echec("83 manifeste modifié à chemin constant", `le diagnostic ne nomme pas l'immuabilité — reçu :\n      ${r.stderr.trim().split("\n").slice(0, 5).join("\n      ")}`);
+    }
+  }
+  {
+    /* 84 — une ANCIENNE URL recollectée dans le second run : l'observation du manifeste 2
+     * duplique une URL du manifeste 1 — le préfixe exact de la liste cumulative rompt. */
+    const mf2 = JSON.parse(manifestePristin2);
+    mf2.resultats[0].url_demandee = "https://example.org/annuaire-temoin";
+    mf2.resultats[0].url_finale = "https://example.org/annuaire-temoin";
+    writeFileSync(CHEMIN_MANIFESTE_2, JSON.stringify(mf2, null, 2));
+    const m = rescellerRefs(neuve());
+    poser(m);
+    const r = lancer(arbre);
+    writeFileSync(CHEMIN_MANIFESTE_2, manifestePristin2);
+    if (r.status !== 1) echec("84 ancienne URL recollectée", `sortie ${r.status} au lieu de 1 — la recollecte d'une URL déjà observée passe`);
+    else if (!/PRÉFIXE EXACT/.test(r.stderr)) {
+      echec("84 ancienne URL recollectée", `le diagnostic ne nomme pas le préfixe — reçu :\n      ${r.stderr.trim().split("\n").slice(0, 5).join("\n      ")}`);
+    }
+  }
+  {
+    /* 85 — une entrée de liste PAS ENCORE observée est l'état légitime entre curation et
+     * collecte : vert, mais JAMAIS silencieux — le compte « EN ATTENTE » est affiché. */
+    const CHEMIN_LISTE = join(arbre, "rattachements-a-consulter.json");
+    const listePristine = readFileSync(CHEMIN_LISTE, "utf-8");
+    const liste = JSON.parse(listePristine);
+    liste.push({ url: "https://example.org/annuaire-en-attente", motif: "Entrée curée, pas encore collectée (jeu d'essai)." });
+    writeFileSync(CHEMIN_LISTE, JSON.stringify(liste, null, 2));
+    poser(neuve());
+    const r = lancer(arbre);
+    writeFileSync(CHEMIN_LISTE, listePristine);
+    if (r.status !== 0) echec("85 entrée en attente de collecte", `sortie ${r.status} au lieu de 0 — l'état intermédiaire légitime rougit :\n      ${r.stderr.trim().split("\n").slice(0, 4).join("\n      ")}`);
+    else if (!/1 rattachement\(s\) EN ATTENTE de collecte/.test(r.stdout)) {
+      echec("85 entrée en attente de collecte", `le compte rendu ne nomme pas l'attente — reçu : ${r.stdout.trim()}`);
+    }
+  }
+  {
+    /* 86 — le manifeste 1 SUPPRIMÉ alors que la matrice le référence encore. */
+    rmSync(CHEMIN_MANIFESTE, { force: true });
+    poser(neuve());
+    const r = lancer(arbre);
+    writeFileSync(CHEMIN_MANIFESTE, manifestePristin);
+    if (r.status !== 1) echec("86 manifeste supprimé encore référencé", `sortie ${r.status} au lieu de 1`);
+    else if (!/INTROUVABLE|ne se supprime pas|ABSENTE de tous les manifestes/.test(r.stderr)) {
+      echec("86 manifeste supprimé encore référencé", `le diagnostic ne nomme pas la suppression — reçu :\n      ${r.stderr.trim().split("\n").slice(0, 5).join("\n      ")}`);
+    }
+  }
 } finally {
   gitWt("remove", "--force", arbre);
   rmSync(conteneur, { recursive: true, force: true });
@@ -775,7 +891,7 @@ try {
 
 /* ---- verdict ---------------------------------------------------------------------------------- */
 if (defauts.length === 0) {
-  process.stdout.write("66 cas éprouvés : la fixture conforme — manifeste en ensemble exact égal à la liste\n");
+  process.stdout.write("71 cas éprouvés : la fixture conforme — DEUX manifestes immuables aux n recouvrants,\n");
   process.stdout.write("versionnée, rattachement utilisé + PDF et tentative proprement écartés — sort en 0 ;\n");
   process.stdout.write("rattachement de rôle dédié, candidate PDF à pièce-capture — sort en 0 ; les contrôles\n");
   process.stdout.write("17-52 rougissent chacun pour sa cause (bijection triplet, décisions, pièces prouvées,\n");
@@ -799,8 +915,10 @@ if (defauts.length === 0) {
   process.stdout.write("organisationDetails du JSON parsé (bad.com.fj et le nom substitué rougissent, homonyme\n");
   process.stdout.write("du personnel conservé), les négatifs sont honnêtes (étayante non instruite, zéro\n");
   process.stdout.write("consultation, candidate inconnue — tentative ou non_evaluee — rougissent), et la\n");
-  process.stdout.write("règle d'étape 4, forcée, rougit toute promue sans projection.\n\n");
-  process.stdout.write("[audit-pays] le validateur mord, sur les 65 contrôles.\n");
+  process.stdout.write("règle d'étape 4, forcée, rougit toute promue sans projection ; et le multi-runs\n");
+  process.stdout.write("tient : références composites (jamais un numéro nu), manifestes immuables par\n");
+  process.stdout.write("empreinte, préfixe exact de la liste cumulative, attente de collecte comptée.\n\n");
+  process.stdout.write("[audit-pays] le validateur mord, sur les 70 contrôles.\n");
   process.exit(0);
 }
 process.stderr.write(`\n[audit-pays] ÉCHEC — ${defauts.length} défaut(s) :\n`);

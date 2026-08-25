@@ -15,7 +15,7 @@
  * comportements sont pilotés par FAUX_MODE. Chaque cas exige le refus, ou la collecte, ou la
  * conservation — exactement.
  *
- * QUATORZE CAS :
+ * DIX-SEPT CAS :
  *   1. curl ABSENT → sortie 2, « curl est absent », AUCUN répertoire de run créé.
  *   2. PROXY BLOQUANT (la sonde échoue sur « CONNECT tunnel failed ») → sortie 2, panne
  *      systémique, rien d'écrit.
@@ -28,9 +28,10 @@
  *      résultat précis et leur trace ; rien n'est maquillé en consultation.
  *   6. DÉRIVE D'URL (redirection vers un autre hôte) → l'url_finale ENREGISTRÉE est l'hôte
  *      dérivé, fidèlement — l'observation dit ce qu'elle a vu.
- *   7. INTERRUPTION (le processus meurt au 10ᵉ appel) → le manifeste précédent est INTACT
- *      octet à octet, les runs précédents aussi ; le run interrompu reste partiel, sans
- *      manifeste qui se ferait passer pour complet.
+ *   7. INTERRUPTION (le processus meurt au 10ᵉ appel) → RIEN n'est publié, le run interrompu
+ *      reste partiel — et les cas de refus (8-10, 13) prouvent tous qu'un run refusé ne
+ *      publie AUCUN manifeste (chaque cas plein-mode part d'un état sans manifeste :
+ *      l'immuabilité interdit de rejouer un relevé).
  *   8. 0 CONSULTATION (tous les liens en 403, sonde pourtant verte) → sortie 2 : 0/91 est la
  *      signature d'une panne, le manifeste n'est PAS remplacé.
  *   9. PROXY PARTIEL (sonde verte, UNE autorité répond « CONNECT tunnel failed », les autres
@@ -52,6 +53,11 @@
  *       « au-delà de la borne », aucune pièce orpheline ; chaque appel curl est borné
  *       --max-filesize (exigé au cas nominal). Le cas 5 vérifie de plus l'INVENTAIRE EXACT :
  *       les fichiers du run = exactement les chemins référencés. [contre-revue v5-sexies]
+ *   15. --rattachements-seulement → collecte EXACTEMENT la différence (2 nouvelles URL),
+ *       0 candidate, n repartant de 1, manifeste ADDITIONNEL — le manifeste 1 intact.
+ *   16. MODE COMPLET REFUSÉ dès qu'un manifeste existe : les relevés publiés sont immuables.
+ *   17. COUVERTURE AMPUTÉE (une candidate retirée du manifeste 1) → refus : le mode
+ *       rattachements-seulement ne régénère jamais les candidates. [multi-runs]
  */
 import { readFileSync, writeFileSync, mkdirSync, copyFileSync, symlinkSync, mkdtempSync, rmSync, existsSync, readdirSync, chmodSync } from "node:fs";
 import { spawnSync } from "node:child_process";
@@ -134,12 +140,20 @@ process.exit(0);
 writeFileSync(join(bin, "curl"), `#!/bin/sh\nexec "${process.execPath}" "${fauxCurlJs}" "$@"\n`);
 chmodSync(join(bin, "curl"), 0o755);
 
-const lancer = (mode, cheminBin = bin) => spawnSync("node", ["consulter-candidates-lot-a.mjs"], {
+const lancer = (mode, cheminBin = bin, args = []) => spawnSync("node", ["consulter-candidates-lot-a.mjs", ...args], {
   cwd: arbre, encoding: "utf-8",
   env: { ...process.env, PATH: `${cheminBin}:${dirname(process.execPath)}`, FAUX_MODE: mode, FAUX_ETAT: etat },
 });
 const runs = () => (existsSync(join(arbre, "audit-pays-pieces")) ? readdirSync(join(arbre, "audit-pays-pieces")).filter((d) => d.startsWith("run-")) : []);
 const MANIFESTE = () => join(arbre, "audit-pays-consultations.json");
+/* Le mode COMPLET refuse tout manifeste existant (immuabilité) : chaque cas plein-mode
+ * simule donc l'état « premier run » en écartant les manifestes de l'arbre de travail —
+ * et « un run refusé ne publie RIEN » remplace « l'ancien manifeste est intact ». */
+const effacerManifestes = () => {
+  for (const f of readdirSync(arbre).filter((x) => /^audit-pays-consultations(-\d+)?\.json$/.test(x))) {
+    rmSync(join(arbre, f), { force: true });
+  }
+};
 
 try {
   const ajout = gitWt("add", "--detach", arbre, "HEAD");
@@ -149,6 +163,14 @@ try {
   copyFileSync("liste-rattachements-lot-a.mjs", join(arbre, "liste-rattachements-lot-a.mjs"));
   copyFileSync("etat-reference-lot-a.json", join(arbre, "etat-reference-lot-a.json"));
   copyFileSync("rattachements-a-consulter.json", join(arbre, "rattachements-a-consulter.json"));
+  /* Les cas en mode COMPLET jouent le PREMIER run : liste ramenée aux 4 rattachements
+   * historiques, et les manifestes du dépôt (HEAD) sont écartés de l'arbre de travail — le
+   * mode complet refuse tout manifeste existant, par immuabilité. */
+  const LISTE_CUMULATIVE = JSON.parse(readFileSync(join(arbre, "rattachements-a-consulter.json"), "utf-8"));
+  writeFileSync(join(arbre, "rattachements-a-consulter.json"), JSON.stringify(LISTE_CUMULATIVE.slice(0, 4), null, 2));
+  for (const f of readdirSync(arbre).filter((x) => /^audit-pays-consultations(-\d+)?\.json$/.test(x))) {
+    rmSync(join(arbre, f), { force: true });
+  }
   const CHEMIN_GUIDES = join(arbre, "packages/ui/src/data/countries.generated.json");
   const guidesPristins = readFileSync(CHEMIN_GUIDES, "utf-8");
   /* Des runs RÉELS sont désormais commités dans le dépôt : la base de comparaison est l'état
@@ -225,6 +247,7 @@ try {
 
   /* ---- 5. mixte : 403 + timeout, le reste passe ---------------------------------------------- */
   {
+    effacerManifestes();
     const r = lancer("mixte");
     if (r.status !== 0) echec("5 mixte", `sortie ${r.status}`);
     const m = JSON.parse(readFileSync(MANIFESTE(), "utf-8"));
@@ -248,6 +271,7 @@ try {
 
   /* ---- 6. dérive d'URL ----------------------------------------------------------------------- */
   {
+    effacerManifestes();
     const r = lancer("derive");
     if (r.status !== 0) echec("6 dérive", `sortie ${r.status}`);
     const m = JSON.parse(readFileSync(MANIFESTE(), "utf-8"));
@@ -259,44 +283,44 @@ try {
 
   /* ---- 7. interruption au 10e appel ---------------------------------------------------------- */
   {
-    const manifesteAvant = readFileSync(MANIFESTE(), "utf-8");
+    effacerManifestes();
     const runsAvant = runs().length;
     rmSync(join(etat, "compteur"), { force: true });
     const r = lancer("interruption");
     if (r.status === 0) echec("7 interruption", "sortie 0 alors que le processus devait mourir");
-    if (readFileSync(MANIFESTE(), "utf-8") !== manifesteAvant) echec("7 interruption", "le manifeste précédent a été ALTÉRÉ par un run interrompu");
+    if (existsSync(MANIFESTE())) echec("7 interruption", "un run INTERROMPU a publié un manifeste");
     if (runs().length !== runsAvant + 1) echec("7 interruption", "le run interrompu n'a pas laissé son répertoire partiel (ou en a détruit un ancien)");
   }
 
   /* ---- 8. zéro consultation : la signature d'une panne --------------------------------------- */
   {
-    const manifesteAvant = readFileSync(MANIFESTE(), "utf-8");
+    effacerManifestes();
     const r = lancer("tous403");
     if (r.status !== 2) echec("8 zéro consultation", `sortie ${r.status} au lieu de 2 — 91 tentatives fabriquées`);
     if (!/signature d'une panne/.test(r.stderr)) echec("8 zéro consultation", "le refus ne nomme pas la panne");
-    if (readFileSync(MANIFESTE(), "utf-8") !== manifesteAvant) echec("8 zéro consultation", "le manifeste a été remplacé malgré le refus");
+    if (existsSync(MANIFESTE())) echec("8 zéro consultation", "un manifeste a été publié malgré le refus");
   }
 
   /* ---- 9. proxy partiel : la signature environnementale interrompt TOUT le run --------------- */
   {
-    const manifesteAvant = readFileSync(MANIFESTE(), "utf-8");
+    effacerManifestes();
     const r = lancer("proxy-partiel");
     if (r.status !== 2) echec("9 proxy partiel", `sortie ${r.status} au lieu de 2 — la signature de proxy devient une « tentative » de la source`);
     if (!/panne d'environnement sur/.test(r.stderr)) echec("9 proxy partiel", "le refus ne nomme pas la panne par requête");
-    if (readFileSync(MANIFESTE(), "utf-8") !== manifesteAvant) echec("9 proxy partiel", "le manifeste précédent a été touché");
+    if (existsSync(MANIFESTE())) echec("9 proxy partiel", "un manifeste a été publié malgré le refus");
   }
 
   /* ---- 10. EGRESS_BLOCKED dans le corps, puis dans les en-têtes — et AUCUN secret dans les
    *          runs interrompus (contre-revue v5-ter : les en-têtes bruts restaient dans les
    *          runs partiels) ------------------------------------------------------------------ */
   for (const [variante, mode] of [["corps", "egress-corps"], ["en-têtes", "egress-entetes"]]) {
-    const manifesteAvant = readFileSync(MANIFESTE(), "utf-8");
+    effacerManifestes();
     const r = lancer(mode);
     if (r.status !== 2) echec(`10 EGRESS dans ${variante}`, `sortie ${r.status} au lieu de 2 — la signature devient une tentative légitime`);
     if (!new RegExp(`signature de blocage environnemental dans ${variante}`).test(r.stderr)) {
       echec(`10 EGRESS dans ${variante}`, `le refus ne nomme pas « ${variante} » — reçu :\n      ${r.stderr.trim().split("\n").slice(0, 2).join("\n      ")}`);
     }
-    if (readFileSync(MANIFESTE(), "utf-8") !== manifesteAvant) echec(`10 EGRESS dans ${variante}`, "le manifeste a été touché");
+    if (existsSync(MANIFESTE())) echec(`10 EGRESS dans ${variante}`, "un manifeste a été publié malgré le refus");
     /* TOUS les fichiers de TOUS les runs — y compris le run interrompu — sont inspectés. */
     for (const run of runs()) {
       for (const f of readdirSync(join(arbre, "audit-pays-pieces", run))) {
@@ -309,6 +333,7 @@ try {
 
   /* ---- 11. Set-Cookie: SECRET — absent de TOUTES les pièces ---------------------------------- */
   {
+    effacerManifestes();
     const r = lancer("ok");
     if (r.status !== 0) echec("11 Set-Cookie", `sortie ${r.status} sur collecte nominale`);
     const m = JSON.parse(readFileSync(MANIFESTE(), "utf-8"));
@@ -354,13 +379,13 @@ try {
    * [contre-revue v5-quinquies : un curl non épinglé suivait la redirection, l'url_finale locale
    * était persistée et le manifeste remplacé, sortie 0] */
   {
-    const manifesteAvant = readFileSync(MANIFESTE(), "utf-8");
+    effacerManifestes();
     const r = lancer("redirige-local");
     if (r.status !== 2) echec("13 redirection locale", `sortie ${r.status} au lieu de 2 — une url_finale hors HTTP(S) est persistée`);
     if (!/hors HTTP\(S\)/.test(r.stderr)) {
       echec("13 redirection locale", `le refus ne nomme pas « hors HTTP(S) » — reçu :\n      ${r.stderr.trim().split("\n").slice(0, 2).join("\n      ")}`);
     }
-    if (readFileSync(MANIFESTE(), "utf-8") !== manifesteAvant) echec("13 redirection locale", "le manifeste précédent a été REMPLACÉ malgré le refus");
+    if (existsSync(MANIFESTE())) echec("13 redirection locale", "un manifeste a été publié malgré le refus");
     /* Le contenu LOCAL ne survit dans AUCUNE pièce d'AUCUN run — le corps provisoire est détruit. */
     for (const run of runs()) {
       for (const f of readdirSync(join(arbre, "audit-pays-pieces", run))) {
@@ -371,10 +396,12 @@ try {
     }
   }
 
+  /* ---- MULTI-RUNS (15-17) : voir après le cas 14 --------------------------------------------- */
   /* ---- 14. corps au-delà de la borne d'octets : tentative explicite, jamais une capture ------
    * [P1 de la contre-revue v5-sexies : --max-time borne le temps, pas la taille ; la stat
    * revérifie avant toute lecture en mémoire, même si curl n'a pas pu borner] */
   {
+    effacerManifestes();
     const r = lancer("corps-enorme");
     if (r.status !== 0) echec("14 corps énorme", `sortie ${r.status} — la borne devait produire une tentative, pas un refus`);
     const m = JSON.parse(readFileSync(MANIFESTE(), "utf-8"));
@@ -391,6 +418,60 @@ try {
       if (!refs.has(`${m.run}/${f}`)) echec("14 corps énorme", `pièce orpheline dans le run : ${f}`);
     }
   }
+  /* ---- 15. --rattachements-seulement : EXACTEMENT la différence, dans un manifeste ADDITIONNEL */
+  {
+    const LISTE_6 = LISTE_CUMULATIVE.slice(0, 4).concat([
+      { url: "https://annuaire-a.example/fiche", motif: "Premier rattachement du second run (jeu d'essai)." },
+      { url: "https://annuaire-b.example/fiche", motif: "Second rattachement du second run (jeu d'essai)." },
+    ]);
+    writeFileSync(join(arbre, "rattachements-a-consulter.json"), JSON.stringify(LISTE_6, null, 2));
+    const manifeste1Avant = readFileSync(MANIFESTE(), "utf-8");
+    const r = lancer("ok", bin, ["--rattachements-seulement"]);
+    if (r.status !== 0) echec("15 rattachements-seulement", `sortie ${r.status} :\n      ${r.stderr.trim().split("\n").slice(0, 3).join("\n      ")}`);
+    if (readFileSync(MANIFESTE(), "utf-8") !== manifeste1Avant) echec("15 rattachements-seulement", "le manifeste 1 a été TOUCHÉ — il est immuable");
+    const CHEMIN_M2 = join(arbre, "audit-pays-consultations-2.json");
+    if (!existsSync(CHEMIN_M2)) { echec("15 rattachements-seulement", "audit-pays-consultations-2.json absent"); }
+    else {
+      const m2 = JSON.parse(readFileSync(CHEMIN_M2, "utf-8"));
+      if (m2.candidates !== 0) echec("15 rattachements-seulement", `${m2.candidates} candidates au lieu de 0 — les candidates ne se retéléchargent pas`);
+      if (m2.rattachements !== 2 || m2.total !== 2) echec("15 rattachements-seulement", `total ${m2.total} / rattachements ${m2.rattachements} ≠ 2 — la différence exacte n'est pas respectée`);
+      const urls = m2.resultats.map((x) => x.url_demandee).sort();
+      if (JSON.stringify(urls) !== JSON.stringify(["https://annuaire-a.example/fiche", "https://annuaire-b.example/fiche"])) {
+        echec("15 rattachements-seulement", `URL collectées inattendues : ${urls.join(", ")}`);
+      }
+      const ns = m2.resultats.map((x) => x.n).sort();
+      if (JSON.stringify(ns) !== JSON.stringify([1, 2])) echec("15 rattachements-seulement", "les n du second manifeste ne repartent pas de 1");
+    }
+  }
+
+  /* ---- 16. le mode COMPLET est REFUSÉ dès qu'un manifeste existe (immuabilité) --------------- */
+  {
+    const runsAvant = runs().length;
+    const r = lancer("ok");
+    if (r.status !== 2) echec("16 mode complet refusé", `sortie ${r.status} au lieu de 2 — le mode complet rejouerait un relevé immuable`);
+    if (!/IMMUABLES|rattachements-seulement/.test(r.stderr)) {
+      echec("16 mode complet refusé", `le refus ne nomme pas l'immuabilité — reçu :\n      ${r.stderr.trim().split("\n").slice(0, 2).join("\n      ")}`);
+    }
+    if (runs().length !== runsAvant) echec("16 mode complet refusé", "un run a été créé malgré le refus");
+  }
+
+  /* ---- 17. rattachements-seulement REFUSE une couverture de candidates amputée --------------- */
+  {
+    rmSync(join(arbre, "audit-pays-consultations-2.json"), { force: true });
+    const manifeste1Avant = readFileSync(MANIFESTE(), "utf-8");
+    const ampute = JSON.parse(manifeste1Avant);
+    const iCandidate = ampute.resultats.findIndex((x) => x.role === "candidate");
+    ampute.resultats.splice(iCandidate, 1);
+    writeFileSync(MANIFESTE(), JSON.stringify(ampute, null, 2));
+    const runsAvant = runs().length;
+    const r = lancer("ok", bin, ["--rattachements-seulement"]);
+    writeFileSync(MANIFESTE(), manifeste1Avant);
+    if (r.status !== 2) echec("17 candidates amputées", `sortie ${r.status} au lieu de 2 — le mode rattachements-seulement régénérerait des candidates`);
+    if (!/ne régénère JAMAIS|couverte par aucun manifeste/.test(r.stderr)) {
+      echec("17 candidates amputées", `le refus ne nomme pas la couverture — reçu :\n      ${r.stderr.trim().split("\n").slice(0, 2).join("\n      ")}`);
+    }
+    if (runs().length !== runsAvant) echec("17 candidates amputées", "un run a été créé malgré le refus");
+  }
 } finally {
   gitWt("remove", "--force", arbre);
   rmSync(conteneur, { recursive: true, force: true });
@@ -398,7 +479,7 @@ try {
 
 /* ---- verdict ---------------------------------------------------------------------------------- */
 if (defauts.length === 0) {
-  process.stdout.write("14 cas éprouvés au faux curl : curl absent, proxy bloquant, inventaire dérivé, et la\n");
+  process.stdout.write("17 cas éprouvés au faux curl : curl absent, proxy bloquant, inventaire dérivé, et la\n");
   process.stdout.write("liste de rattachements au schéma strict (file:// local, champ inconnu, motif blanc,\n");
   process.stdout.write("URL en double, JSON invalide, fichier absent) REFUSENT sans rien écrire ; une\n");
   process.stdout.write("redirection qui quitte HTTP(S) interrompt tout — manifeste intact, contenu local\n");
@@ -411,7 +492,10 @@ if (defauts.length === 0) {
   process.stdout.write("rien et ne détruit rien ; zéro consultation refuse au lieu de fabriquer 91 pièces ;\n");
   process.stdout.write("et une signature environnementale sur UNE requête — dans la trace, le CORPS ou les\n");
   process.stdout.write("EN-TÊTES, sonde pourtant verte — interrompt tout le run avant expurgation ; enfin un\n");
-  process.stdout.write("Set-Cookie secret n'atteint aucune pièce : les en-têtes sont expurgés avant scellement.\n\n");
+  process.stdout.write("Set-Cookie secret n'atteint aucune pièce : les en-têtes sont expurgés avant scellement ;\n");
+  process.stdout.write("et le multi-runs tient : le mode complet refuse tout manifeste existant, le mode\n");
+  process.stdout.write("rattachements-seulement collecte exactement la différence dans un manifeste additionnel\n");
+  process.stdout.write("et refuse une couverture de candidates amputée.\n\n");
   process.stdout.write("[collecte] une panne d'environnement n'est pas une observation de source.\n");
   process.exit(0);
 }

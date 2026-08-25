@@ -3,7 +3,13 @@
  * LOT A — LA CONSULTATION MÉCANIQUE DES 91 CANDIDATES. UNE PANNE D'ENVIRONNEMENT N'EST PAS
  * UNE OBSERVATION DE SOURCE.
  *
- *   node consulter-candidates-lot-a.mjs
+ *   node consulter-candidates-lot-a.mjs                            # premier run (complet) — refusé si un manifeste existe
+ *   node consulter-candidates-lot-a.mjs --rattachements-seulement  # runs suivants : la différence exacte, rien d'autre
+ *
+ * MULTI-RUNS (contre-revue du second passage) : les manifestes publiés sont IMMUABLES — le
+ * mode complet est refusé dès qu'un manifeste existe ; le mode rattachements-seulement exige
+ * les 91 candidates déjà couvertes, ne les retélécharge jamais, collecte exactement
+ * (liste cumulative − URL déjà observées) et publie audit-pays-consultations-<k>.json.
  *
  * POURQUOI CE SCRIPT TOURNE SUR LE MAC. L'environnement distant est derrière un proxy à liste
  * d'autorisation (« EGRESS_BLOCKED ») : ses refus ne disent RIEN des sources. La v1 de ce
@@ -68,7 +74,7 @@
  *
  * Il n'émet AUCUN verdict, ne touche ni objects.json, ni les guides, ni la matrice.
  */
-import { readFileSync, writeFileSync, mkdirSync, renameSync, existsSync, rmSync, statSync } from "node:fs";
+import { readFileSync, writeFileSync, mkdirSync, renameSync, existsSync, rmSync, statSync, readdirSync } from "node:fs";
 import { spawnSync } from "node:child_process";
 import { createHash } from "node:crypto";
 import { join } from "node:path";
@@ -117,6 +123,62 @@ let rattachements;
 try { rattachements = JSON.parse(readFileSync("rattachements-a-consulter.json", "utf-8")); }
 catch { refus(2, "rattachements-a-consulter.json ABSENT ou JSON invalide — la liste versionnée est obligatoire, rien n'est écrit"); }
 for (const e of erreursListeRattachements(rattachements)) refus(2, `rattachements-a-consulter.json ${e}`);
+
+/* ---- 1-bis. MULTI-RUNS : les manifestes publiés sont IMMUABLES ------------------------------
+ * (contre-revue du second passage). Le mode COMPLET n'est licite que sur un dépôt sans aucun
+ * manifeste — il ne « remplace » jamais un relevé. Le mode --rattachements-seulement collecte
+ * EXACTEMENT la différence entre la liste cumulative et les URL déjà observées dans les
+ * manifestes immuables : les 91 candidates ne sont JAMAIS retéléchargées, et le nouveau
+ * manifeste (audit-pays-consultations-<k>.json) ne porte que des rattachements. */
+const MODE_RATTACHEMENTS = process.argv.includes("--rattachements-seulement");
+const manifestesExistants = readdirSync(".")
+  .filter((f) => /^audit-pays-consultations(-\d+)?\.json$/.test(f))
+  .sort((a, b) => (Number(/-(\d+)\.json$/.exec(a)?.[1] ?? 1)) - (Number(/-(\d+)\.json$/.exec(b)?.[1] ?? 1)));
+let aConsulterCandidates = true;
+let rattachementsAConsulter = rattachements;
+let CIBLE_MANIFESTE = MANIFESTE;
+if (!MODE_RATTACHEMENTS && manifestesExistants.length > 0) {
+  refus(2, `un manifeste existe déjà (${manifestesExistants.join(", ")}) — les manifestes publiés sont IMMUABLES, ` +
+    `le mode complet ne rejoue jamais un relevé : utilisez --rattachements-seulement`);
+}
+if (MODE_RATTACHEMENTS) {
+  if (manifestesExistants.length === 0) refus(2, "--rattachements-seulement exige au moins un manifeste publié — rien n'a encore été observé");
+  const urlsObservees = new Set();
+  const couplesObserves = new Set();
+  for (const f of manifestesExistants) {
+    let mExistant;
+    try { mExistant = JSON.parse(readFileSync(f, "utf-8")); } catch { refus(2, `${f} illisible — un manifeste immuable ne se lit pas à moitié`); }
+    for (const r of mExistant.resultats ?? []) {
+      if (r.role === "candidate") {
+        urlsObservees.add(r.url_publiee);
+        const couple = `${r.country_id}#${r.index_lien}`;
+        if (couplesObserves.has(couple)) refus(2, `${f} : candidate ${couple} observée deux fois dans les manifestes`);
+        couplesObserves.add(couple);
+      } else if (r.role === "rattachement") {
+        if (urlsObservees.has(r.url_demandee)) refus(2, `rattachement « ${r.url_demandee} » observé deux fois dans les manifestes`);
+        urlsObservees.add(r.url_demandee);
+        if (!rattachements.some((x) => x.url === r.url_demandee)) {
+          refus(2, `le rattachement déjà observé « ${r.url_demandee} » n'est plus dans la liste cumulative — la liste est append-only`);
+        }
+      }
+    }
+  }
+  /* Les 91 candidates doivent être DÉJÀ couvertes, exactement — ce mode ne régénère JAMAIS. */
+  for (const id of pays) {
+    for (const [i] of (guides[id]?.sources ?? []).entries()) {
+      if (!couplesObserves.has(`${id}#${i}`)) {
+        refus(2, `la candidate ${id}#${i} n'est couverte par aucun manifeste — le mode rattachements-seulement ` +
+          `ne régénère JAMAIS les candidates ; un manifeste complet manque ou a été amputé`);
+      }
+    }
+  }
+  if (couplesObserves.size !== attendus) refus(2, `${couplesObserves.size} candidates observées ≠ ${attendus} attendues`);
+  rattachementsAConsulter = rattachements.filter((r) => !urlsObservees.has(r.url));
+  if (rattachementsAConsulter.length === 0) refus(2, "aucune nouvelle URL de rattachement — la liste cumulative est déjà entièrement observée, rien à collecter");
+  aConsulterCandidates = false;
+  CIBLE_MANIFESTE = `audit-pays-consultations-${manifestesExistants.length + 1}.json`;
+  process.stdout.write(`mode rattachements-seulement : ${rattachementsAConsulter.length} nouvelle(s) URL (différence exacte liste cumulative − manifestes immuables) → ${CIBLE_MANIFESTE}\n`);
+}
 
 /* ---- 2. l'environnement est apte, sinon on REFUSE — on n'observe pas avec un thermomètre cassé */
 const version = spawnSync("curl", ["--version"], { encoding: "utf-8" });
@@ -248,17 +310,20 @@ function consulter(url, role, extras) {
   }
 }
 
-for (const id of pays) {
-  for (const [i, lien] of guides[id].sources.entries()) {
-    consulter(lien.url, "candidate", { country_id: id, index_lien: i, label: lien.label, url_publiee: lien.url });
+if (aConsulterCandidates) {
+  for (const id of pays) {
+    for (const [i, lien] of guides[id].sources.entries()) {
+      consulter(lien.url, "candidate", { country_id: id, index_lien: i, label: lien.label, url_publiee: lien.url });
+    }
   }
 }
-for (const r of rattachements) {
+for (const r of rattachementsAConsulter) {
   consulter(r.url, "rattachement", { url_demandee: r.url, motif: r.motif });
 }
 
 /* ---- 5. publication ATOMIQUE, et jamais sur une collecte manifestement en panne ------------- */
-const totalAttendu = attendus + rattachements.length;
+const candidatesAttendues = aConsulterCandidates ? attendus : 0;
+const totalAttendu = candidatesAttendues + rattachementsAConsulter.length;
 if (resultats.length !== totalAttendu) refus(2, `${resultats.length}/${totalAttendu} résultats — run incomplet, manifeste NON publié (répertoire conservé : ${RUN})`);
 const consultees = resultats.filter((x) => x.acces === "consultee").length;
 if (consultees === 0) {
@@ -267,10 +332,10 @@ if (consultees === 0) {
 }
 const brouillon = join(RUN, "manifeste.tmp.json");
 writeFileSync(brouillon, JSON.stringify({ consultees_le: aujourdhui, run: RUN, total: totalAttendu,
-  candidates: attendus, rattachements: rattachements.length,
+  candidates: candidatesAttendues, rattachements: rattachementsAConsulter.length,
   extracteur: VERSION_EXTRACTEUR, resultats }, null, 2) + "\n");
-renameSync(brouillon, MANIFESTE);
+renameSync(brouillon, CIBLE_MANIFESTE);
 
-process.stdout.write(`\n${totalAttendu} liens (${attendus} candidates + ${rattachements.length} rattachements) · ${consultees} consultation(s) · ${totalAttendu - consultees} tentative(s)\n`);
-process.stdout.write(`manifeste : ${MANIFESTE} · pièces : ${RUN}/\n`);
+process.stdout.write(`\n${totalAttendu} liens (${candidatesAttendues} candidates + ${rattachementsAConsulter.length} rattachements) · ${consultees} consultation(s) · ${totalAttendu - consultees} tentative(s)\n`);
+process.stdout.write(`manifeste : ${CIBLE_MANIFESTE} · pièces : ${RUN}/\n`);
 process.stdout.write("Aucun verdict n'a été rendu : l'observation d'abord, le jugement ensuite.\n");
