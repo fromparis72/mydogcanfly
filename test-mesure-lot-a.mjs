@@ -17,7 +17,13 @@
  *
  * Preuve manuelle datée — elle éprouve la livraison du lot A, pas un invariant du dépôt.
  *
- * SEIZE CAS :
+ * DEPUIS L'ÉTAPE 4 (contre-revue de a59a0f9) : les seize contrôles historiques s'exécutent
+ * dans un arbre construit depuis `_scelle.sha_base` — l'ÉTAT INITIAL que le scellé fige —
+ * avec l'instrument et le scellé COURANTS copiés dedans ; HEAD, lui, porte légitimement les
+ * deux projections promues, et le 17e cas l'éprouve : EXACTEMENT l'écart accompli attendu
+ * (country_fj et country_om disparus de l'ensemble initial), pas un de plus.
+ *
+ * DIX-SEPT CAS :
  *   1.  état conforme → 0.
  *   2.  URL fidjienne remplacée par une URL VALIDE (YAML + artefact) → 1, empreinte. [c-r v1]
  *   3.  la même mutation dans l'artefact SEUL → 1, divergence YAML ↔ généré.
@@ -37,6 +43,8 @@
  *   15. verified_date future (2030-01-01) → 1, « POSTÉRIEURE à --as-of ».
  *   16. génération sur données saines → 0, le candidat naît ÉGAL au scellé promu, et le
  *       scellé lui-même n'a pas bougé d'un octet.
+ *   17. l'état FINAL (HEAD, après étape 4) → 1, EXACTEMENT un écart : les deux promues
+ *       disparues de l'ensemble initial des 18 — rien d'autre. [c-r a59a0f9]
  */
 import { readFileSync, writeFileSync, copyFileSync, symlinkSync, mkdtempSync, rmSync, existsSync } from "node:fs";
 import { spawnSync } from "node:child_process";
@@ -63,7 +71,11 @@ const arbre = join(conteneur, "arbre");
 const gitWt = (...a) => spawnSync("git", ["worktree", ...a], { encoding: "utf-8" });
 
 try {
-  const ajout = gitWt("add", "--detach", arbre, "HEAD");
+  /* Les seize contrôles historiques jouent sur l'ÉTAT INITIAL scellé (`_scelle.sha_base`),
+   * jamais sur HEAD : depuis l'étape 4, HEAD porte les deux projections promues et le
+   * scellé — l'instantané de départ — les compterait à raison comme un écart (cas 17). */
+  const SHA_BASE = JSON.parse(readFileSync("etat-reference-lot-a.json", "utf-8"))._scelle.sha_base;
+  const ajout = gitWt("add", "--detach", arbre, SHA_BASE);
   if (ajout.status !== 0) throw new Error(`git worktree add : ${(ajout.stderr || "").trim()}`);
   symlinkSync(resolve("node_modules"), join(arbre, "node_modules"));
   copyFileSync("mesurer-lot-a.mjs", join(arbre, "mesurer-lot-a.mjs"));
@@ -234,6 +246,32 @@ try {
       rmSync(CANDIDAT, { force: true });
     }
   }
+
+  /* ---- 17. l'état FINAL (HEAD) : exactement l'écart accompli, rien d'autre --------------------
+   * [contre-revue de a59a0f9 : « 16/16 » était devenu un faux vert de compte rendu — le
+   * harnais jouait sur HEAD, qui porte désormais les projections. L'état final est un CAS :
+   * il doit rougir d'EXACTEMENT un écart — les deux promues disparues de l'ensemble
+   * initial — ni zéro (l'œuvre aurait disparu), ni deux (une dérive se cacherait derrière).] */
+  {
+    const arbreFinal = join(conteneur, "arbre-final");
+    const ajoutFinal = gitWt("add", "--detach", arbreFinal, "HEAD");
+    if (ajoutFinal.status !== 0) throw new Error(`git worktree add (final) : ${(ajoutFinal.stderr || "").trim()}`);
+    symlinkSync(resolve("node_modules"), join(arbreFinal, "node_modules"));
+    copyFileSync("mesurer-lot-a.mjs", join(arbreFinal, "mesurer-lot-a.mjs"));
+    copyFileSync("etat-reference-lot-a.json", join(arbreFinal, "etat-reference-lot-a.json"));
+    const r = lancer(arbreFinal);
+    gitWt("remove", "--force", arbreFinal);
+    if (r.status !== 1) {
+      echec("17 état final", `sortie ${r.status} au lieu de 1 — l'écart accompli de l'étape 4 a disparu du relevé`);
+    } else {
+      if (!/ÉCHEC — 1 écart\(s\)/.test(r.stderr)) {
+        echec("17 état final", `PLUS d'un écart avec le scellé initial — reçu :\n      ${r.stderr.trim().split("\n").slice(0, 5).join("\n      ")}`);
+      }
+      if (!/disparus \[country_fj, country_om\]/.test(r.stderr)) {
+        echec("17 état final", `l'écart n'est pas exactement les deux promues disparues — reçu :\n      ${r.stderr.trim().split("\n").slice(0, 5).join("\n      ")}`);
+      }
+    }
+  }
 } finally {
   gitWt("remove", "--force", arbre);
   rmSync(conteneur, { recursive: true, force: true });
@@ -241,12 +279,15 @@ try {
 
 /* ---- verdict ---------------------------------------------------------------------------------- */
 if (defauts.length === 0) {
-  process.stdout.write("16 cas éprouvés en arbre de travail jetable : l'état conforme sort en 0 ; les trois\n");
+  process.stdout.write("17 cas éprouvés en arbres de travail jetables : l'état INITIAL (sha_base scellé) sort\n");
+  process.stdout.write("en 0 et les seize contrôles historiques y restent reproductibles ; les trois\n");
   process.stdout.write("faux verts de la v1, les trois passages indus de la v2 et les deux de la v3 sont\n");
   process.stdout.write("morts — une dérive, commitée ou non, fait refuser la génération sans qu'un candidat\n");
   process.stdout.write("naisse ni que le scellé bouge ; un _scelle falsifié (sha_base, champ fantôme) rougit ;\n");
   process.stdout.write("--as-of est obligatoire et calendaire, une date future rougit ; et sur données saines\n");
-  process.stdout.write("le candidat naît égal au scellé promu, sans que l'instrument touche jamais au scellé.\n\n");
+  process.stdout.write("le candidat naît égal au scellé promu, sans que l'instrument touche jamais au scellé ;\n");
+  process.stdout.write("et l'état FINAL (HEAD, étape 4 accomplie) rougit d'EXACTEMENT un écart : les deux\n");
+  process.stdout.write("promues disparues de l'ensemble initial — ni zéro, ni deux.\n\n");
   process.stdout.write("[lot-a] le scellé est exact, et il ne se remplace pas.\n");
   process.exit(0);
 }

@@ -1,4 +1,4 @@
-# Lot A — Audit des 18 pays sans source · dossier de mesure et de conception (v5-octodecies)
+# Lot A — Audit des 18 pays sans source · dossier de mesure et de conception (v5-novodecies)
 
 **Mesuré sur `main` après fusion du dossier d'achèvement (`1dd62010ea183422f02553877df4706714739080`).
 Ce dossier ne corrige rien : aucune date, aucune source, aucune donnée métier n'est écrite.
@@ -8,7 +8,7 @@ Reproduction :
 
 ```bash
 node --import tsx mesurer-lot-a.mjs --as-of=2026-08-24   # l'état contre le scellé — sortie 1 au premier écart
-node test-mesure-lot-a.mjs                               # 16 cas : le scellé est exact, et il ne se remplace pas
+node test-mesure-lot-a.mjs                               # 17 cas : le scellé est exact (état initial ET état final)
 node test-audit-pays.mjs                                 # 84 cas : le validateur de la matrice mord (17-99)
 node test-consulter-lot-a.mjs                            # 21 cas au faux curl : le collecteur ne fabrique rien
 ```
@@ -494,6 +494,20 @@ modifiés. Deux finitions documentaires de contre-revue voyagent avec ce commit 
 des contrôles (17 à 99, 84 cas) et la section 7, réécrite au présent de la séquence
 réellement accomplie.
 
+**La contre-revue de l'étape 4 (`a59a0f9`) a trouvé un FAUX VERT DE COMPTE RENDU — nommé
+ici, comme toutes les erreurs.** J'ai annoncé « 16/16 » pour `test-mesure-lot-a.mjs` en
+ayant mesuré sur l'arbre de travail AVANT le commit des projections ; après commit, le
+harnais — qui construisait son arbre depuis HEAD — sortait en 1 avec 4 défauts (cas 1, 11,
+12 et 16) : HEAD porte désormais les projections que le scellé de départ ne connaît pas, et
+les contre-épreuves 11-12 échouaient AVANT d'atteindre la dérive qu'elles prétendent
+éprouver. La CI, qui n'exécute pas cette preuve manuelle, ne pouvait pas le voir.
+Correction (prescrite en contre-revue) : les seize contrôles historiques s'exécutent
+désormais dans un arbre construit depuis **`_scelle.sha_base`** — l'état initial que le
+scellé fige — avec l'instrument et le scellé courants copiés dedans ; et un **17e cas** joue
+sur HEAD en exigeant EXACTEMENT l'écart accompli (« disparus [country_fj, country_om] »,
+UN seul écart — ni zéro, ni deux : un écart de plus serait une dérive cachée derrière
+l'œuvre). 17/17 mesurés réellement, après commit.
+
 ## 1. La mesure a changé la nature de la dette — et ce que la promotion fait, honnêtement
 
 Le dossier d'achèvement décrivait la dette ainsi : « 18 pays n'ont AUCUNE source ». C'est vrai
@@ -695,10 +709,13 @@ non consultée.
 
 ## 5. Contre-épreuves — celles du harnais d'exécution
 
-Les **16 premières** sont éprouvées par `test-mesure-lot-a.mjs` sur l'état de référence —
-les trois faux verts de la v1, les trois passages indus de la v2, la dérive commitée et le
-`_scelle` falsifié de la v3, les contrôles `--as-of`, la date future, et la génération saine
-(candidat égal au scellé, scellé jamais touché par l'instrument).
+Les **17 premières** sont éprouvées par `test-mesure-lot-a.mjs` — les seize contrôles
+historiques sur l'ÉTAT INITIAL scellé (arbre construit depuis `_scelle.sha_base`, instrument
+et scellé courants copiés) : les trois faux verts de la v1, les trois passages indus de la
+v2, la dérive commitée et le `_scelle` falsifié de la v3, les contrôles `--as-of`, la date
+future, et la génération saine (candidat égal au scellé, scellé jamais touché par
+l'instrument) ; et le 17e sur l'ÉTAT FINAL (HEAD) : EXACTEMENT un écart — les deux promues
+disparues de l'ensemble initial, ni zéro, ni deux.
 Le harnais d'exécution `test-audit-pays.mjs` éprouve les contrôles **17 à 99** (84 cas — la
 fixture porte DEUX manifestes immuables aux n recouvrants, en ensembles exacts égaux au
 préfixe de la liste versionnée scellée par la curation, UNE pièce par (résultat, champ), un
