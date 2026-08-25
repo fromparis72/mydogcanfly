@@ -1,0 +1,60 @@
+# 2026-08-25 — http://government.ru/department/62/
+# curl exit=0 · http=200
+
+* Host government.ru:80 was resolved.
+* IPv6: (none)
+* IPv4: 95.173.136.168, 95.173.136.163, 95.173.136.162
+*   Trying 95.173.136.168:80...
+[ligne expurgée : proxy/authentification]
+> GET /department/62/ HTTP/1.1
+> Host: government.ru
+> User-Agent: MyDogCanFly-Audit/lot-A (contact: audit@mydogcanfly.com)
+> Accept: */*
+> 
+* Request completely sent off
+< HTTP/1.1 303 See Other
+< Server: nginx
+< Date: Tue, 25 Aug 2026 16:17:33 GMT
+< Content-Type: text/html; charset=UTF-8
+< Content-Length: 280
+< Location: http://government.ru/department/62/events/
+< X-Frame-Options: DENY
+< X-Content-Type-Options: nosniff
+< Access-Control-Allow-Origin: http://services.government.ru
+< Access-Control-Allow-Methods: GET, POST, OPTIONS
+[ligne expurgée : proxy/authentification]
+< Access-Control-Allow-Credentials: true
+< Vary: Origin
+< X-Cache: MISS from bc01
+< Via: 1.1 bc01 (squid/3.5.27)
+[ligne expurgée : proxy/authentification]
+< 
+[ligne expurgée : proxy/authentification]
+* Issue another request to this URL: 'http://government.ru/department/62/events/'
+* Hostname government.ru was found in DNS cache
+*   Trying 95.173.136.168:80...
+[ligne expurgée : proxy/authentification]
+> GET /department/62/events/ HTTP/1.1
+> Host: government.ru
+> User-Agent: MyDogCanFly-Audit/lot-A (contact: audit@mydogcanfly.com)
+> Accept: */*
+> 
+* Request completely sent off
+< HTTP/1.1 200 OK
+< Server: nginx
+< Date: Tue, 25 Aug 2026 16:17:36 GMT
+< Content-Type: text/html; charset=UTF-8
+< Content-Length: 97459
+< X-Frame-Options: DENY
+< X-Content-Type-Options: nosniff
+< Access-Control-Allow-Origin: http://services.government.ru
+< Access-Control-Allow-Methods: GET, POST, OPTIONS
+[ligne expurgée : proxy/authentification]
+< Access-Control-Allow-Credentials: true
+< Vary: Origin
+< X-Cache: MISS from bc01
+< Via: 1.1 bc01 (squid/3.5.27)
+[ligne expurgée : proxy/authentification]
+< 
+{ [3933 bytes data]
+[ligne expurgée : proxy/authentification]

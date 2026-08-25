@@ -1,0 +1,31 @@
+# 2026-08-25 — http://sommet45-sadc.gov.mg/?page_id=2358
+# curl exit=0 · http=200
+
+* Host sommet45-sadc.gov.mg:80 was resolved.
+* IPv6: (none)
+* IPv4: 102.216.23.246
+*   Trying 102.216.23.246:80...
+[ligne expurgée : proxy/authentification]
+> GET /?page_id=2358 HTTP/1.1
+> Host: sommet45-sadc.gov.mg
+> User-Agent: MyDogCanFly-Audit/lot-A (contact: audit@mydogcanfly.com)
+> Accept: */*
+> 
+* Request completely sent off
+< HTTP/1.1 200 OK
+< Date: Tue, 25 Aug 2026 16:17:21 GMT
+< Server: Apache/2.4.68 (Debian)
+< X-dlm-no-waypoints: true
+< Expires: Thu, 19 Nov 1981 08:52:00 GMT
+< Cache-Control: no-store, no-cache, must-revalidate
+< Pragma: no-cache
+< Link: <https://sommet45-sadc.gov.mg/index.php?rest_route=/>; rel="https://api.w.org/", <https://sommet45-sadc.gov.mg/index.php?rest_route=/wp/v2/pages/2358>; rel="alternate"; title="JSON"; type="application/json", <https://sommet45-sadc.gov.mg/?p=2358>; rel=shortlink
+[ligne expurgée : proxy/authentification]
+< Vary: Accept-Encoding
+< Content-Type: text/html; charset=UTF-8
+< X-Cache: MISS from bc01
+< Via: 1.1 bc01 (squid/3.5.27)
+[ligne expurgée : proxy/authentification]
+< 
+{ [9720 bytes data]
+[ligne expurgée : proxy/authentification]
