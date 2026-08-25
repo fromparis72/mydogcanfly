@@ -129,6 +129,18 @@ const AttestationAnnuaire = z.object({
   type_organisation: z.string().min(1),
   site_web: UrlHttp,
 }).strict();
+/* La VALIDATION ÉDITORIALE HUMAINE de l'identité d'éditeur (arbitrage du 25/08/2026 —
+ * recalibrage de la profondeur d'audit : pas d'infrastructure de parseurs par site
+ * institutionnel). Elle enregistre QUI a validé, QUAND et POURQUOI, sur QUELLE observation
+ * (celle de la preuve qui la porte). Elle ne peut attester QUE l'identité de l'éditeur :
+ * le FAIT MÉTIER reste obligatoirement porté par l'extrait ancré de la page source —
+ * aucune garde mécanique (ancre, concordance, pièce EXTRAIT, rôle, capture scellée)
+ * n'est levée par une validation humaine. */
+const ValidationEditeur = z.object({
+  validateur: z.string().min(1),
+  date: DateISO,
+  motif: z.string().min(10),
+}).strict();
 /* La RÉFÉRENCE COMPOSITE : une observation se désigne par (manifeste, empreinte du manifeste,
  * n) — jamais par un numéro nu, qui redeviendrait ambigu entre manifestes ; l'empreinte rend
  * chaque manifeste publié IMMUABLE (contre-revue du second passage). */
@@ -138,7 +150,8 @@ const ReferenceObservation = z.object({
   n: z.number().int().min(1),
 }).strict();
 const PreuveRattachement = z.object({ observation: ReferenceObservation, citation: z.unknown(), capture: CaptureScellee,
-  attestation_annuaire: AttestationAnnuaire.optional() }).strict();
+  attestation_annuaire: AttestationAnnuaire.optional(),
+  validation_editeur: ValidationEditeur.optional() }).strict();
 
 const CandidateConsultee = z.object({
   observation: ReferenceObservation,         // l'identité composite de l'observation
@@ -488,6 +501,19 @@ for (const id of CONTRACTUELS) {
           }
         }
       }
+      /* La VALIDATION ÉDITORIALE HUMAINE : seconde voie de preuve d'identité d'éditeur —
+       * datée, motivée, nominative, portée par une preuve COMPLÈTE (observation de rôle
+       * rattachement, consultée ; citation ancrée et capture concordante restent exigées
+       * par les gardes ci-dessus, qu'aucune validation ne lève). Elle n'atteste que
+       * l'identité : la pièce décisive, l'ancre et la concordance portent seules le fait. */
+      if (p.validation_editeur) {
+        dansFenetre(p.validation_editeur.date, id, `${qui} validation éditoriale [${j}] date`);
+        if (obs && obs.role === "rattachement" && obs.acces === "consultee") {
+          domaineProuveParCandidate.add(`${id}#${i}`);
+        } else {
+          echec(`${id} — ${qui} validation éditoriale [${j}] : une validation d'identité d'éditeur ne porte que sur une observation de rattachement CONSULTÉE — elle ne remplace ni une observation ni le fait métier`);
+        }
+      }
     }
     /* 25 — ESCALADE : le lien reste affiché sous « Sources officielles » par la fiche. */
     if (c.nature_editeur === "non_officiel") {
@@ -512,7 +538,8 @@ for (const id of CONTRACTUELS) {
      * (contre-revue des 18 décisions : bad.com.fj passait). */
     if (!domaineProuveParCandidate.has(`${id}#${d.observation_decisive}`)) {
       echec(`${id} — promotion : le DOMAINE de la candidate décisive n'est PAS prouvé — aucune attestation d'annuaire ` +
-        `vérifiée ne lui attribue le site (mentionner un hôte dans une citation ne prouve pas son attribution)`);
+        `vérifiée ni validation éditoriale humaine ne lui attribue l'identité de son éditeur ` +
+        `(mentionner un hôte dans une citation ne prouve pas son attribution)`);
     }
 
     const r = SourcedQuote.safeParse(d.source);

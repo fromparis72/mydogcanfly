@@ -3239,8 +3239,44 @@
             "langue": "en",
             "locator": "conditions du permis — Veterinary Permit to Import Dogs and Cats (douanes d'Oman)"
           },
-          "nature_editeur": "non_etabli",
-          "preuves_rattachement": [],
+          "nature_editeur": "autorite_pays",
+          "preuves_rattachement": [
+            {
+              "observation": {
+                "manifeste": "audit-pays-consultations-2.json",
+                "manifeste_sha256": "fd75f3075f50ac25b75e3d87d370eae4a3076306021201122ace8484975b28e9",
+                "n": 2
+              },
+              "citation": {
+                "url": "https://www.rop.gov.om/english/Index.aspx",
+                "source_type": "government",
+                "verified_date": "2026-08-25",
+                "review_due": "2027-02-21",
+                "confidence": 3,
+                "reviewer": "Claude — audit lot A",
+                "history": [],
+                "quote": "Electronic single window customs service To access the service click here",
+                "quote_language": "en",
+                "locator": "carte de service de la page d'accueil de la Royal Oman Police : le guichet douanier électronique unique, dont la cible est le site des douanes d'Oman (customs.gov.om) — l'hôte de la candidate décisive"
+              },
+              "capture": {
+                "chemin": "audit-pays-pieces/run-2026-08-25T16-17-04-174/02-rop.gov.om.html",
+                "sha256": "778d5f09aabab96a0496c308597a56d103ed10b6cf9e3895070a814db78d6238",
+                "content_type": "text/html; charset=utf-8",
+                "format_detecte": "html",
+                "texte_derive": {
+                  "chemin": "audit-pays-pieces/run-2026-08-25T16-17-04-174/02-rop.gov.om.texte.txt",
+                  "sha256": "ff51f3b24a2a1243fe95860e1779abd6ba0cef8f4b22a2dbacd3cb7fe33728e3"
+                },
+                "extracteur": "lot-a-4"
+              },
+              "validation_editeur": {
+                "validateur": "Philippe",
+                "date": "2026-08-25",
+                "motif": "Arbitrage explicite du 25/08/2026 : la page d'accueil de la Royal Oman Police présente le guichet douanier électronique ciblant customs.gov.om — l'identité de l'éditeur de la candidate décisive (douanes d'Oman, autorité du pays) est validée éditorialement. Cette validation n'atteste que l'identité : le fait métier (permis vétérinaire PRÉALABLE pour chiens et chats) reste porté par l'extrait ancré de la page décisive."
+              }
+            }
+          ],
           "pertinence": "etaye_le_fait"
         },
         {
@@ -3317,8 +3353,20 @@
         }
       ],
       "decision": {
-        "statut": "aucune_source_promouvable_dans_ce_run",
-        "motif": "Des candidates étayent le fait mais leur nature d'éditeur n'est pas instruite — aucune observation de rattachement dédiée à ce pays dans ce run : rien n'est promouvable DANS CE RUN, et l'absence de source officielle ne peut pas être affirmée. Un second run de rattachements est requis pour conclure."
+        "statut": "promue",
+        "observation_decisive": 0,
+        "source": {
+          "url": "https://www.customs.gov.om/en/business-services/permit/veterinary-permit-to-import-dogs-and-cats",
+          "source_type": "government",
+          "verified_date": "2026-08-25",
+          "review_due": "2027-02-21",
+          "confidence": 3,
+          "reviewer": "Claude — audit lot A",
+          "history": [],
+          "quote": "Obtaining a PRIOR veterinary permit (before the arrival of the pet) to import pets (dogs and cats)، through the Customs Bayan System",
+          "quote_language": "en",
+          "locator": "conditions du permis — Veterinary Permit to Import Dogs and Cats (douanes d'Oman)"
+        }
       }
     },
     "country_ru": {
@@ -4030,28 +4078,35 @@
       "statut": "utilisee"
     },
     "audit-pays-consultations-2.json#1": {
-      "statut": "a_instruire"
+      "statut": "ecartee",
+      "motif": "Écartée (arbitrage du 25/08/2026) : le modal de redirection de gob.ec/mremh atteste un rattachement institutionnel équatorien mais n'appuie, dans ce run, aucune modalité concrète intéressant le voyageur — l'Équateur reste non préjugé jusqu'à l'examen de la page /espana/."
     },
     "audit-pays-consultations-2.json#2": {
-      "statut": "a_instruire"
+      "statut": "utilisee"
     },
     "audit-pays-consultations-2.json#3": {
-      "statut": "a_instruire"
+      "statut": "ecartee",
+      "motif": "Écartée (arbitrage du 25/08/2026) : la déclaration du site du Sommet SADC (observée en HTTP — corroboration, jamais décisive seule) n'appuie aucune modalité concrète dans ce run."
     },
     "audit-pays-consultations-2.json#4": {
-      "statut": "a_instruire"
+      "statut": "ecartee",
+      "motif": "Écartée (arbitrage du 25/08/2026) : la fiche du service vétérinaire russe (observée en HTTP — corroboration, jamais décisive seule) n'appuie aucune modalité concrète dans ce run."
     },
     "audit-pays-consultations-2.json#5": {
-      "statut": "a_instruire"
+      "statut": "ecartee",
+      "motif": "Écartée : tentative — la page n'a pas été obtenue (curl exit 35, réseau/délai)."
     },
     "audit-pays-consultations-2.json#6": {
-      "statut": "a_instruire"
+      "statut": "ecartee",
+      "motif": "Écartée (arbitrage du 25/08/2026) : le registre Agesic atteste la nature gouvernementale du suffixe gub.uy sans identifier d'institution précise — aucune modalité concrète appuyée dans ce run."
     },
     "audit-pays-consultations-2.json#7": {
-      "statut": "a_instruire"
+      "statut": "ecartee",
+      "motif": "Écartée (arbitrage du 25/08/2026) : la fiche ministérielle jamaïcaine atteste une identité institutionnelle mais n'appuie aucune modalité concrète dans ce run."
     },
     "audit-pays-consultations-2.json#8": {
-      "statut": "a_instruire"
+      "statut": "ecartee",
+      "motif": "Écartée : tentative — la page n'a pas été obtenue (curl exit 35, réseau/délai) ; l'orientation mission_diplomatique_pays du Népal reste non démontrée dans les pièces collectées."
     }
   }
 }

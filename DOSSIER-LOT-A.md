@@ -1,4 +1,4 @@
-# Lot A — Audit des 18 pays sans source · dossier de mesure et de conception (v5-quindecies)
+# Lot A — Audit des 18 pays sans source · dossier de mesure et de conception (v5-sexdecies)
 
 **Mesuré sur `main` après fusion du dossier d'achèvement (`1dd62010ea183422f02553877df4706714739080`).
 Ce dossier ne corrige rien : aucune date, aucune source, aucune donnée métier n'est écrite.
@@ -9,7 +9,7 @@ Reproduction :
 ```bash
 node --import tsx mesurer-lot-a.mjs --as-of=2026-08-24   # l'état contre le scellé — sortie 1 au premier écart
 node test-mesure-lot-a.mjs                               # 16 cas : le scellé est exact, et il ne se remplace pas
-node test-audit-pays.mjs                                 # 75 cas : le validateur de la matrice mord (17-90)
+node test-audit-pays.mjs                                 # 81 cas : le validateur de la matrice mord (17-96)
 node test-consulter-lot-a.mjs                            # 21 cas au faux curl : le collecteur ne fabrique rien
 ```
 
@@ -412,6 +412,52 @@ version scellée** dans chaque manifeste — une version hors gel rougit (contre
 admettre une version future exigera son dispatch sous contre-revue, jamais le réalignement
 d'un manifeste immuable.
 
+**Le second run a été exécuté et contre-revu, puis l'arbitrage de Philippe a recalibré la
+profondeur de la preuve d'identité** (25/08/2026). Temps 1 : collecte additionnelle sur le
+Mac depuis `79ab3ad` — manifeste `audit-pays-consultations-2.json` (8 rattachements : 6
+consultations, 2 tentatives `curl exit 35` — gub.uy/para-que-sirve et mofa.gov.np), premier
+manifeste intact au bit près, aucune pièce orpheline, aucun secret dans les pièces (précision
+de contre-revue : deux lignes inoffensives `Access-Control-Allow-Headers: Authorization`
+figurent dans les en-têtes russes — ce ne sont pas des en-têtes sensibles ; aucune ligne
+`Authorization:`, `Set-Cookie:`, `WWW-Authenticate:` ou `Proxy-*:` n'existe). Les 8
+observations ont reçu mécaniquement `a_instruire` (validateur vert, mode final rouge —
+verdict attendu). La capture omanaise embarque une clé navigateur Google Maps publiée par la
+page source (`AIzaSyBl…hQYg`) : **acceptée explicitement par Philippe** (même statut que la
+clé bahreïnienne — donnée tierce publiée, jamais utilisée par MyDogCanFly ; si l'analyse de
+secrets de GitHub la signale à la PR, retour en contre-revue, aucun contournement
+silencieux). La contre-revue prescrivait ensuite une union de six parseurs déterministes par
+site institutionnel ; les six ont été **conçus et mesurés sur les captures immuables**
+(extractions nettes pour gob.ec — Ministerio de Relaciones Exteriores ↔ cancilleria.gob.ec —,
+rop.gov.om — guichet douanier ↔ customs.gov.om —, sommet45-sadc.gov.mg — Direction Générale
+des Douanes ↔ douanes.gov.mg —, government.ru — Rosselkhoznadzor ↔ fsvps.gov.ru —, gub.uy —
+Agesic ↔ suffixe gub.uy ; la fiche jamaïcaine s'est révélée AMBIGUË — deux `entry-title`
+dans le même article), puis l'**arbitrage de Philippe a écarté cette infrastructure** :
+proportionner la preuve institutionnelle à son effet sur les réponses réellement servies au
+voyageur (cabine/soute/fret, caisse, races, permis, documents, délais). Le travail de
+conception est consigné ici et n'a pas été commité — ce n'est pas une erreur effacée, c'est
+une profondeur jugée disproportionnée.
+
+**Le mécanisme retenu : la VALIDATION ÉDITORIALE HUMAINE de l'identité d'éditeur**
+(`validation_editeur` sur une preuve de rattachement : validateur, date calendaire dans la
+fenêtre `--as-of`, motif ≥ 10 caractères). Elle est la seconde voie — à côté de
+l'attestation d'annuaire mécanique — pour prouver l'identité d'éditeur de la candidate
+décisive, et RIEN d'autre : elle ne lève aucune garde (rôle rattachement, consultation,
+citation ancrée, capture concordante, pièce décisive EXTRAIT) et ne porte jamais le fait
+métier. Contre-épreuves 91-96 : chemin vert sur preuve complète ; date future rouge ; motif
+indigent rouge (schéma) ; citation désancrée rouge malgré la validation ; pièce décisive en
+capture seule rouge malgré la validation ; observation non consultée (tentative) rouge.
+**Oman est promue** sur cet arbitrage : décisive n73 (`customs.gov.om`, page « Veterinary
+Permit to Import Dogs and Cats », extrait ancré du permis vétérinaire PRÉALABLE),
+rattachement `audit-pays-consultations-2.json#2` (la carte de service de la page d'accueil
+de la Royal Oman Police cible customs.gov.om — citation ancrée « Electronic single window
+customs service … ») + validation éditoriale de Philippe. Les 7 autres observations du
+second run sont ÉCARTÉES avec motif (aucune modalité concrète immédiatement appuyée ; les
+deux pages HTTP notées corroboration jamais décisive ; le suffixe gub.uy n'identifie aucune
+institution ; les tentatives restent des tentatives — l'orientation népalaise
+mission_diplomatique_pays demeure non démontrée). Résultat : **2 promues (fj, om) · 1 sans
+source officielle (et) · 15 non promouvables dans ce run** ; `--exiger-audit-complet` est
+désormais VERT — plus rien à instruire ni à collecter.
+
 ## 1. La mesure a changé la nature de la dette — et ce que la promotion fait, honnêtement
 
 Le dossier d'achèvement décrivait la dette ainsi : « 18 pays n'ont AUCUNE source ». C'est vrai
@@ -626,7 +672,9 @@ pièce-capture, une observation de second run `a_instruire`), et `test-consulter
 redirection hors HTTP(S), le corps au-delà de la borne, l'inventaire exact du run, le
 multi-runs — et sa contre-revue : le préflight partagé refusant une base altérée ou un trou
 de séquence AVANT tout appel, la publication exclusive préservant une cible apparue, le
-scellé de curation mordant au collecteur aussi). Le total est **verrouillé à 90 + 21** :
+scellé de curation mordant au collecteur aussi). S'y ajoutent les contre-épreuves 91-96 de
+la validation éditoriale humaine (arbitrage du 25/08/2026). Le total est **verrouillé à
+96 + 21** :
 
 | # | mutation | attendu |
 |---|---|---|
@@ -704,6 +752,12 @@ scellé de curation mordant au collecteur aussi). Le total est **verrouillé à 
 | 88 | observation de rattachement `a_instruire` citée par une preuve de la promotion | échec — l'instruction précède tout usage probatoire |
 | 89 | `--exiger-audit-complet` alors qu'une observation reste `a_instruire` | échec — le mode final rougit tant qu'il reste à instruire ou à collecter |
 | 90 | version d'extracteur HORS du gel (`lot-a-5` au manifeste et à une capture) | échec — les versions admises sont gelées avec leur dispatch de re-dérivation ; un manifeste immuable ne se réaligne jamais |
+| 91 | attestation mécanique retirée, VALIDATION ÉDITORIALE HUMAINE posée sur la preuve complète | vert — la seconde voie d'identité d'éditeur suffit, toutes les autres gardes tiennent |
+| 92 | validation éditoriale datée du FUTUR (postérieure à `--as-of`) | échec — la fenêtre temporelle s'applique à la validation comme au reste |
+| 93 | validation présente mais citation de rattachement DÉSANCRÉE | échec — la validation n'atteste que l'identité, jamais l'ancrage du fait |
+| 94 | validation au motif indigent (< 10 caractères) | échec — schéma : datée, motivée, nominative |
+| 95 | validation présente mais pièce décisive en CAPTURE seule | échec — le fait métier reste porté par un EXTRAIT ancré, la validation n'en fabrique aucun |
+| 96 | validation portée par une preuve visant une observation TENTATIVE | échec — une validation ne remplace ni une observation ni sa capture |
 
 ## 6. Interdits, et effets de bord assumés
 

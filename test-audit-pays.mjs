@@ -16,7 +16,7 @@
  * (cas 0) ; chaque cas suivant mute UNE chose et exige la sortie 1 avec la cause nommée.
  * Aucune donnée réelle n'est affirmée : la fixture vit dans l'arbre jetable, jamais au dépôt.
  *
- * SOIXANTE-QUINZE CAS : 0 (fixture conforme — manifeste complet avec une observation de
+ * QUATRE-VINGT-UN CAS : 0 (fixture conforme — manifeste complet avec une observation de
  * rattachement de rôle dédié, candidate PDF à pièce-capture), 17 à 52 (bijection, décisions,
  * pièces, ancres, PDF, liaison au manifeste), puis 53-57 (contre-revue v5-ter) : PDF déguisé
  * en text/plain — le format recalculé depuis les OCTETS prime ; résultat de manifeste
@@ -60,6 +60,11 @@
  * rougit, et `--exiger-audit-complet` rougit tant qu'il en reste un ; une version
  * d'extracteur hors des versions ADMISES gelées rougit — un manifeste immuable ne se
  * réaligne jamais.
+ * Puis 91-96 (arbitrage du 25/08/2026) : la VALIDATION ÉDITORIALE HUMAINE — seconde voie
+ * d'identité d'éditeur (validateur, date, motif) — passe au vert sur une preuve complète,
+ * rougit datée du futur, rougit au motif indigent (schéma), ne lève PAS l'ancre (citation
+ * réécrite rouge malgré la validation), ne fabrique PAS le fait métier (pièce capture
+ * refusée pour la décisive), et ne remplace pas une observation consultée (tentative rouge).
  */
 import { readFileSync, writeFileSync, mkdirSync, copyFileSync, symlinkSync, mkdtempSync, rmSync, readdirSync } from "node:fs";
 import { deflateSync } from "node:zlib";
@@ -104,6 +109,10 @@ const CONTENU_HTML = `<html><body><h2>section témoin</h2><p>${EXTRAIT_TEMOIN}</
 const CONTENU_HTML_RATTACHEMENT = `<html><head><script>initMinisterDetailPlaceholder({"homePageURL":"https://exemple.invalid","organisationDetails":{"organisationName":"Autorité témoin du jeu d'essai","organisationTypeCode":"Government Agencies","organisationData":{"city":"Suva","website":"http://www.baf.com.fj"}},"personnelList":[{"firstName":"Témoin","organisationName":"Autorité témoin du jeu d'essai"}]});</script></head><body><h2>section témoin de l'annuaire</h2><p>${CITATION_RATTACHEMENT}</p></body></html>`;
 const ATTESTATION_TEMOIN = { organisation: "Autorité témoin du jeu d'essai",
   type_organisation: "Government Agencies", site_web: "http://www.baf.com.fj" };
+/* La VALIDATION ÉDITORIALE HUMAINE témoin (arbitrage du 25/08/2026) : identité d'éditeur
+ * validée par une personne — datée, motivée, nominative ; jamais le fait métier. */
+const VALIDATION_TEMOIN = { validateur: "Arbitre du jeu d'essai", date: JOUR,
+  motif: "Validation éditoriale témoin du jeu d'essai : l'identité de l'éditeur est validée par l'arbitre." };
 const FLUX_PDF = `BT /F1 12 Tf 72 700 Td (${EXTRAIT_PDF}) Tj ET`;
 const CONTENU_PDF = Buffer.from(`%PDF-1.4\n4 0 obj << /Length ${FLUX_PDF.length} >> stream\n${FLUX_PDF}\nendstream endobj\ntrailer\n%%EOF`);
 const CONTENU_ENTETES = "HTTP/1.1 200 OK\n[en-tête expurgé : cookies/authentification/proxy]\nContent-Type: text/html; charset=utf-8\n";
@@ -959,6 +968,57 @@ try {
     mf.extracteur = "lot-a-5";
     mf.resultats[0].capture.extracteur = "lot-a-5";
   });
+
+  /* ---- 91-96 · la validation éditoriale humaine (arbitrage du 25/08/2026) : seconde voie
+   *             d'identité d'éditeur — datée, motivée, nominative — qui ne lève AUCUNE garde
+   *             mécanique et ne porte JAMAIS le fait métier ----------------------------------- */
+  const basculerSurValidation = (m) => {
+    const p = fj(m).candidates[0].preuves_rattachement[0];
+    delete p.attestation_annuaire;
+    p.validation_editeur = { ...VALIDATION_TEMOIN };
+    return p;
+  };
+  {
+    /* 91 — le chemin VERT : l'attestation mécanique retirée, la validation humaine suffit à
+     * prouver l'identité d'éditeur de la décisive — toutes les autres gardes tiennent. */
+    const m = neuve();
+    basculerSurValidation(m);
+    poser(m);
+    const r = lancer(arbre);
+    if (r.status !== 0) echec("91 validation éditoriale — chemin vert", `sortie ${r.status} :\n      ${r.stderr.trim().split("\n").slice(0, 5).join("\n      ")}`);
+    else if (!/1 promue/.test(r.stdout)) echec("91 validation éditoriale — chemin vert", "le compte rendu n'annonce plus la promotion");
+  }
+  cas("92 validation éditoriale datée du futur", (m) => {
+    basculerSurValidation(m).validation_editeur.date = "2026-08-25";   // > AS_OF
+  }, [/validation éditoriale/, /POSTÉRIEURE à --as-of/]);
+  cas("93 validation présente mais citation non ancrée", (m) => {
+    /* la validation n'atteste que l'identité : une citation qui ne s'ancre plus dans la
+     * capture rougit MALGRÉ la validation — le fait ne se décrète pas. */
+    basculerSurValidation(m);
+    fj(m).candidates[0].preuves_rattachement[0].citation.quote = "Citation réécrite, absente de la capture du jeu d'essai.";
+  }, [/country_fj/, /INTROUVABLE dans le texte dérivé/]);
+  cas("94 validation au motif indigent", (m) => {
+    basculerSurValidation(m).validation_editeur.motif = "court";
+  }, [/schéma/, /validation_editeur|motif/]);
+  cas("95 validation ne fabrique pas le fait métier", (m) => {
+    /* pièce décisive basculée en capture seule, validation présente : la promotion exige
+     * toujours un EXTRAIT ancré — l'identité validée ne produit aucun fait. */
+    basculerSurValidation(m);
+    const chemin = join(arbre, "audit-pays-pieces/temoin-95.html");
+    const contenu = "capture témoin pour la contre-épreuve quatre-vingt-quinze";
+    writeFileSync(chemin, contenu);
+    gitArbre("add", "--", "audit-pays-pieces/temoin-95.html");
+    fj(m).candidates[0].piece = { type: "capture", chemin: "audit-pays-pieces/temoin-95.html",
+      sha256: sha256(Buffer.from(contenu)) };
+  }, [/country_fj/, /pièce décisive d'une promotion doit être un EXTRAIT/]);
+  cas("96 validation sur une observation non consultée", (m) => {
+    /* la preuve vise la TENTATIVE de rattachement : une validation humaine ne remplace ni
+     * une observation ni sa capture — le rôle et l'accès restent exigés. */
+    const p = basculerSurValidation(m);
+    p.observation = { manifeste: M1, manifeste_sha256: shaFichier(CHEMIN_MANIFESTE), n: 94 };
+    m.rattachements[`${M1}#94`] = { statut: "utilisee" };
+    m.rattachements[`${M1}#92`] = { statut: "ecartee", motif: "Écartée pour la contre-épreuve quatre-vingt-seize (jeu d'essai)." };
+  }, [/validation éditoriale/, /rattachement CONSULTÉE/]);
 } finally {
   gitWt("remove", "--force", arbre);
   rmSync(conteneur, { recursive: true, force: true });
@@ -966,7 +1026,7 @@ try {
 
 /* ---- verdict ---------------------------------------------------------------------------------- */
 if (defauts.length === 0) {
-  process.stdout.write("75 cas éprouvés : la fixture conforme — DEUX manifestes immuables aux n recouvrants,\n");
+  process.stdout.write("81 cas éprouvés : la fixture conforme — DEUX manifestes immuables aux n recouvrants,\n");
   process.stdout.write("versionnée, rattachement utilisé + PDF et tentative proprement écartés — sort en 0 ;\n");
   process.stdout.write("rattachement de rôle dédié, candidate PDF à pièce-capture — sort en 0 ; les contrôles\n");
   process.stdout.write("17-52 rougissent chacun pour sa cause (bijection triplet, décisions, pièces prouvées,\n");
@@ -998,8 +1058,11 @@ if (defauts.length === 0) {
   process.stdout.write("rescellement, trois rouges), « a_instruire » est l'état légal de la collecte brute\n");
   process.stdout.write("(cité par une preuve il rougit, --exiger-audit-complet rougit tant qu'il en reste),\n");
   process.stdout.write("et les versions d'extracteur sont GELÉES — un manifeste immuable ne se réaligne\n");
-  process.stdout.write("jamais.\n\n");
-  process.stdout.write("[audit-pays] le validateur mord, sur les 74 contrôles.\n");
+  process.stdout.write("jamais ; enfin la validation éditoriale humaine (arbitrage du 25/08/2026) est une\n");
+  process.stdout.write("seconde voie d'identité d'éditeur, jamais un passe-droit : verte sur preuve complète,\n");
+  process.stdout.write("rouge datée du futur, au motif indigent, sur citation désancrée, sur pièce sans\n");
+  process.stdout.write("extrait, sur observation non consultée — le fait métier reste porté par l'ancre.\n\n");
+  process.stdout.write("[audit-pays] le validateur mord, sur les 80 contrôles.\n");
   process.exit(0);
 }
 process.stderr.write(`\n[audit-pays] ÉCHEC — ${defauts.length} défaut(s) :\n`);
