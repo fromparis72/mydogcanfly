@@ -20,6 +20,12 @@
  * AVANT TOUTE ÉCRITURE :
  *   · les 18 pays, les 91 triplets et leurs EMPREINTES sont reconfrontés au scellé
  *     `etat-reference-lot-a.json` — collecter sur un inventaire dérivé est refusé ;
+ *   · la liste cumulative est confrontée au SCELLÉ DE CURATION
+ *     `etat-curation-rattachements.json` (cardinalité + empreinte) — une entrée supprimée,
+ *     ajoutée ou réécrite sans rescellement explicite refuse (contre-revue multi-runs) ;
+ *   · en mode --rattachements-seulement, LE MÊME PRÉFLIGHT PERMANENT que le validateur
+ *     (`verifier-base-lot-a.mjs`) s'exécute AVANT tout appel réseau — une base altérée
+ *     refuse : aucun curl, aucun run, aucun manifeste (contre-revue multi-runs) ;
  *   · `curl --version` doit répondre — sinon refus explicite ;
  *   · une SONDE (https://example.com) doit obtenir un 2xx — un échec, ou la signature d'un
  *     proxy bloquant (« CONNECT tunnel failed », « EGRESS_BLOCKED »), est une PANNE
@@ -68,13 +74,15 @@
  * APRÈS LA COLLECTE :
  *   · si AUCUNE consultation n'a abouti, le manifeste n'est PAS publié : 0/91 est la
  *     signature d'une panne, pas un état du monde — sortie 2 ;
- *   · le manifeste `audit-pays-consultations.json` n'est publié qu'à 91/91 résultats, par
- *     RENOMMAGE ATOMIQUE depuis le répertoire de run — une interruption laisse un run
- *     incomplet SANS manifeste, jamais un relevé partiel qui se fait passer pour complet.
+ *   · le manifeste (audit-pays-consultations.json au premier run, -<k> ensuite — le nom
+ *     dérive de la SÉQUENCE CANONIQUE validée) n'est publié qu'au compte exact de résultats,
+ *     par PUBLICATION EXCLUSIVE (`linkSync` : si la cible existe, refus — un manifeste
+ *     publié ne s'écrase JAMAIS) — une interruption laisse un run incomplet SANS manifeste,
+ *     jamais un relevé partiel qui se fait passer pour complet.
  *
  * Il n'émet AUCUN verdict, ne touche ni objects.json, ni les guides, ni la matrice.
  */
-import { readFileSync, writeFileSync, mkdirSync, renameSync, existsSync, rmSync, statSync, readdirSync } from "node:fs";
+import { readFileSync, writeFileSync, mkdirSync, renameSync, existsSync, rmSync, statSync, readdirSync, linkSync } from "node:fs";
 import { spawnSync } from "node:child_process";
 import { createHash } from "node:crypto";
 import { join } from "node:path";
@@ -82,6 +90,7 @@ import { tmpdir } from "node:os";
 import { extraireTexte, detecterFormat, VERSION_EXTRACTEUR } from "./extraire-texte-lot-a.mjs";
 import { erreursListeRattachements, estUrlHttp, LIMITE_CORPS_OCTETS,
   assainirEntetes, assainirTrace } from "./liste-rattachements-lot-a.mjs";
+import { verifierBase, nomManifeste, empreinteListe, CURATION } from "./verifier-base-lot-a.mjs";
 
 const RACINE_PIECES = "audit-pays-pieces";
 const MANIFESTE = "audit-pays-consultations.json";
@@ -123,6 +132,15 @@ let rattachements;
 try { rattachements = JSON.parse(readFileSync("rattachements-a-consulter.json", "utf-8")); }
 catch { refus(2, "rattachements-a-consulter.json ABSENT ou JSON invalide — la liste versionnée est obligatoire, rien n'est écrit"); }
 for (const e of erreursListeRattachements(rattachements)) refus(2, `rattachements-a-consulter.json ${e}`);
+/* La CURATION est SCELLÉE : cardinalité + empreinte (contre-revue du second passage — la
+ * suppression silencieuse d'une entrée approuvée mais pas encore collectée passait). */
+let curation;
+try { curation = JSON.parse(readFileSync(CURATION, "utf-8")); }
+catch { refus(2, `${CURATION} ABSENT ou illisible — la curation approuvée se scelle (cardinalité + empreinte), rien n'est écrit`); }
+if (rattachements.length !== curation.total || empreinteListe(rattachements) !== curation.empreinte_liste) {
+  refus(2, `la liste cumulative ne correspond pas au scellé de curation ${CURATION} (cardinalité ou empreinte) — ` +
+    `entrée supprimée, ajoutée ou motif réécrit sans rescellement explicite`);
+}
 
 /* ---- 1-bis. MULTI-RUNS : les manifestes publiés sont IMMUABLES ------------------------------
  * (contre-revue du second passage). Le mode COMPLET n'est licite que sur un dépôt sans aucun
@@ -143,40 +161,32 @@ if (!MODE_RATTACHEMENTS && manifestesExistants.length > 0) {
 }
 if (MODE_RATTACHEMENTS) {
   if (manifestesExistants.length === 0) refus(2, "--rattachements-seulement exige au moins un manifeste publié — rien n'a encore été observé");
+  /* LE MÊME PRÉFLIGHT PERMANENT QUE LE VALIDATEUR (verifier-base-lot-a.mjs), AVANT tout appel
+   * réseau et toute création de run : séquence canonique des manifestes, schéma strict,
+   * compteurs, bijections, inventaires, pièces PROUVÉES (git, SHA-256, octets, formats,
+   * re-dérivations), curation scellée, préfixe exact, union des 91 candidates, et — si la
+   * matrice existe — la résolution de toutes ses références composites. Une base altérée
+   * (capture.sha256 réécrit, manifeste amputé, trou dans la séquence) refuse ICI :
+   * aucun curl, aucun run, aucun manifeste nouveau (contre-revue du second passage). */
+  const ecartsBase = [];
+  const base = verifierBase((m) => ecartsBase.push(m));
+  if (ecartsBase.length) {
+    process.stderr.write(`[collecte] la BASE ne tient pas — ${ecartsBase.length} écart(s), dont :\n`);
+    for (const e of ecartsBase.slice(0, 10)) process.stderr.write(`  · ${e}\n`);
+    refus(2, "préflight refusé : on ne collecte pas sur une base altérée — aucun appel réseau, aucun run, aucun manifeste");
+  }
   const urlsObservees = new Set();
-  const couplesObserves = new Set();
-  for (const f of manifestesExistants) {
-    let mExistant;
-    try { mExistant = JSON.parse(readFileSync(f, "utf-8")); } catch { refus(2, `${f} illisible — un manifeste immuable ne se lit pas à moitié`); }
-    for (const r of mExistant.resultats ?? []) {
-      if (r.role === "candidate") {
-        urlsObservees.add(r.url_publiee);
-        const couple = `${r.country_id}#${r.index_lien}`;
-        if (couplesObserves.has(couple)) refus(2, `${f} : candidate ${couple} observée deux fois dans les manifestes`);
-        couplesObserves.add(couple);
-      } else if (r.role === "rattachement") {
-        if (urlsObservees.has(r.url_demandee)) refus(2, `rattachement « ${r.url_demandee} » observé deux fois dans les manifestes`);
-        urlsObservees.add(r.url_demandee);
-        if (!rattachements.some((x) => x.url === r.url_demandee)) {
-          refus(2, `le rattachement déjà observé « ${r.url_demandee} » n'est plus dans la liste cumulative — la liste est append-only`);
-        }
-      }
+  for (const man of base.manifestes) {
+    for (const r of man.donnees.resultats ?? []) {
+      urlsObservees.add(r.role === "candidate" ? r.url_publiee : r.url_demandee);
     }
   }
-  /* Les 91 candidates doivent être DÉJÀ couvertes, exactement — ce mode ne régénère JAMAIS. */
-  for (const id of pays) {
-    for (const [i] of (guides[id]?.sources ?? []).entries()) {
-      if (!couplesObserves.has(`${id}#${i}`)) {
-        refus(2, `la candidate ${id}#${i} n'est couverte par aucun manifeste — le mode rattachements-seulement ` +
-          `ne régénère JAMAIS les candidates ; un manifeste complet manque ou a été amputé`);
-      }
-    }
-  }
-  if (couplesObserves.size !== attendus) refus(2, `${couplesObserves.size} candidates observées ≠ ${attendus} attendues`);
   rattachementsAConsulter = rattachements.filter((r) => !urlsObservees.has(r.url));
   if (rattachementsAConsulter.length === 0) refus(2, "aucune nouvelle URL de rattachement — la liste cumulative est déjà entièrement observée, rien à collecter");
   aConsulterCandidates = false;
-  CIBLE_MANIFESTE = `audit-pays-consultations-${manifestesExistants.length + 1}.json`;
+  /* Le nom cible dérive de la SÉQUENCE CANONIQUE (validée par la base) — jamais d'un compte
+   * ambigu (contre-revue : base + -3 faisait recalculer -3 et écraser l'existant). */
+  CIBLE_MANIFESTE = nomManifeste(base.manifestes.length + 1);
   process.stdout.write(`mode rattachements-seulement : ${rattachementsAConsulter.length} nouvelle(s) URL (différence exacte liste cumulative − manifestes immuables) → ${CIBLE_MANIFESTE}\n`);
 }
 
@@ -334,7 +344,14 @@ const brouillon = join(RUN, "manifeste.tmp.json");
 writeFileSync(brouillon, JSON.stringify({ consultees_le: aujourdhui, run: RUN, total: totalAttendu,
   candidates: candidatesAttendues, rattachements: rattachementsAConsulter.length,
   extracteur: VERSION_EXTRACTEUR, resultats }, null, 2) + "\n");
-renameSync(brouillon, CIBLE_MANIFESTE);
+/* Publication EXCLUSIVE : le lien dur échoue si la cible EXISTE (EEXIST) — contrairement à
+ * rename, qui remplace silencieusement. Une cible apparue pendant la collecte n'est JAMAIS
+ * écrasée. */
+try { linkSync(brouillon, CIBLE_MANIFESTE); }
+catch (e) {
+  refus(2, `la cible ${CIBLE_MANIFESTE} existe déjà ou ne peut pas être créée (${e.code}) — un manifeste publié ne s'écrase JAMAIS (répertoire conservé : ${RUN})`);
+}
+rmSync(brouillon, { force: true });
 
 process.stdout.write(`\n${totalAttendu} liens (${candidatesAttendues} candidates + ${rattachementsAConsulter.length} rattachements) · ${consultees} consultation(s) · ${totalAttendu - consultees} tentative(s)\n`);
 process.stdout.write(`manifeste : ${CIBLE_MANIFESTE} · pièces : ${RUN}/\n`);

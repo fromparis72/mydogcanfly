@@ -15,7 +15,7 @@
  * comportements sont pilotés par FAUX_MODE. Chaque cas exige le refus, ou la collecte, ou la
  * conservation — exactement.
  *
- * DIX-SEPT CAS :
+ * VINGT-ET-UN CAS :
  *   1. curl ABSENT → sortie 2, « curl est absent », AUCUN répertoire de run créé.
  *   2. PROXY BLOQUANT (la sonde échoue sur « CONNECT tunnel failed ») → sortie 2, panne
  *      systémique, rien d'écrit.
@@ -58,11 +58,26 @@
  *   16. MODE COMPLET REFUSÉ dès qu'un manifeste existe : les relevés publiés sont immuables.
  *   17. COUVERTURE AMPUTÉE (une candidate retirée du manifeste 1) → refus : le mode
  *       rattachements-seulement ne régénère jamais les candidates. [multi-runs]
+ *   18. BASE ALTÉRÉE (un capture.sha256 d'un ancien manifeste réécrit) → le mode additionnel
+ *       exécute LE MÊME PRÉFLIGHT PERMANENT que le validateur AVANT tout : sortie 2, AUCUN
+ *       appel curl (journal des appels vide), aucun run, aucun manifeste nouveau.
+ *       [contre-revue multi-runs]
+ *   19. TROU DANS LA SÉQUENCE (base + -3, le -2 manquant) → sortie 2, « séquence NON
+ *       CANONIQUE », aucun appel curl — la cible calculée ne peut plus être ambiguë.
+ *       [contre-revue multi-runs]
+ *   20. CIBLE APPARUE AVANT PUBLICATION (le faux curl crée audit-pays-consultations-2.json
+ *       pendant la collecte) → la publication est EXCLUSIVE (linkSync) : sortie 2, le
+ *       contenu de l'intrus est PRÉSERVÉ, le manifeste 1 intact — un manifeste publié ne
+ *       s'écrase JAMAIS. [contre-revue multi-runs]
+ *   21. MOTIF DE LA LISTE RÉÉCRIT SANS RESCELLEMENT → le collecteur porte LE MÊME scellé de
+ *       curation que le validateur : sortie 2 avant tout appel, aucun run.
+ *       [contre-revue multi-runs]
  */
 import { readFileSync, writeFileSync, mkdirSync, copyFileSync, symlinkSync, mkdtempSync, rmSync, existsSync, readdirSync, chmodSync } from "node:fs";
 import { spawnSync } from "node:child_process";
 import { tmpdir } from "node:os";
 import { join, resolve, dirname } from "node:path";
+import { empreinteListe } from "./verifier-base-lot-a.mjs";
 
 const defauts = [];
 const echec = (cas, m) => defauts.push(`${cas} — ${m}`);
@@ -81,6 +96,9 @@ writeFileSync(fauxCurlJs, `
 const fs = require("fs");
 const path = require("path");
 const args = process.argv.slice(2);
+/* CHAQUE invocation est JOURNALISÉE (--version comprise) : les cas de préflight prouvent
+ * « aucun appel curl » par l'absence du journal, pas par une promesse. */
+fs.appendFileSync(path.join(process.env.FAUX_ETAT, "appels.log"), args.join(" ") + "\\n");
 if (args.includes("--version")) { process.stdout.write("curl 8.0.0-faux\\n"); process.exit(0); }
 const url = args[args.length - 1];
 const sortie = args.includes("-o") ? args[args.indexOf("-o") + 1] : null;
@@ -102,6 +120,12 @@ if (!(args.includes("--max-filesize") && Number(args[args.indexOf("--max-filesiz
  * le secret n'était injecté que dans la sortie -D, jamais dans la trace (faux vert). */
 process.stderr.write("* Uses proxy env variable https_proxy == 'http://SECRET-PROXY:3128'\\n* Connected (faux)\\n");
 process.stderr.write("< Set-Cookie: session=SECRET-COOKIE-42; Path=/\\n< Content-Type: text/html\\n");
+/* La CIBLE APPARAÎT pendant la collecte : un concurrent (ou un rejeu) publie
+ * audit-pays-consultations-2.json entre le calcul du nom et la publication — la
+ * publication exclusive doit refuser SANS écraser ce contenu (contre-revue multi-runs). */
+if (mode === "cible-apparait" && !fs.existsSync("audit-pays-consultations-2.json")) {
+  fs.writeFileSync("audit-pays-consultations-2.json", "CONTENU-INTERLOPE");
+}
 if (mode === "proxy") { process.stderr.write("curl: (56) CONNECT tunnel failed, response 403\\n"); process.exit(56); }
 if (mode === "proxy-partiel" && url.includes("paaf.gov.kw")) {
   process.stderr.write("curl: (56) CONNECT tunnel failed, response 403\\n"); process.exit(56);
@@ -140,9 +164,15 @@ process.exit(0);
 writeFileSync(join(bin, "curl"), `#!/bin/sh\nexec "${process.execPath}" "${fauxCurlJs}" "$@"\n`);
 chmodSync(join(bin, "curl"), 0o755);
 
+/* Le PATH du collecteur reste MINIMAL (le faux curl doit être le seul curl, et le cas 1 exige
+ * son absence) — mais le préflight partagé prouve les pièces par `git ls-files` : le vrai git
+ * est exposé SEUL, par lien symbolique, dans un répertoire d'outils dédié. */
+const outils = join(conteneur, "outils");
+mkdirSync(outils, { recursive: true });
+symlinkSync(spawnSync("which", ["git"], { encoding: "utf-8" }).stdout.trim(), join(outils, "git"));
 const lancer = (mode, cheminBin = bin, args = []) => spawnSync("node", ["consulter-candidates-lot-a.mjs", ...args], {
   cwd: arbre, encoding: "utf-8",
-  env: { ...process.env, PATH: `${cheminBin}:${dirname(process.execPath)}`, FAUX_MODE: mode, FAUX_ETAT: etat },
+  env: { ...process.env, PATH: `${cheminBin}:${dirname(process.execPath)}:${outils}`, FAUX_MODE: mode, FAUX_ETAT: etat },
 });
 const runs = () => (existsSync(join(arbre, "audit-pays-pieces")) ? readdirSync(join(arbre, "audit-pays-pieces")).filter((d) => d.startsWith("run-")) : []);
 const MANIFESTE = () => join(arbre, "audit-pays-consultations.json");
@@ -158,16 +188,31 @@ const effacerManifestes = () => {
 try {
   const ajout = gitWt("add", "--detach", arbre, "HEAD");
   if (ajout.status !== 0) throw new Error(`git worktree add : ${(ajout.stderr || "").trim()}`);
+  /* Le collecteur porte désormais le préflight partagé (verifier-base-lot-a.mjs → zod) :
+   * l'arbre jetable reçoit node_modules par lien symbolique, comme le harnais du validateur. */
+  symlinkSync(resolve("node_modules"), join(arbre, "node_modules"));
   copyFileSync("consulter-candidates-lot-a.mjs", join(arbre, "consulter-candidates-lot-a.mjs"));
+  copyFileSync("verifier-base-lot-a.mjs", join(arbre, "verifier-base-lot-a.mjs"));
   copyFileSync("extraire-texte-lot-a.mjs", join(arbre, "extraire-texte-lot-a.mjs"));
   copyFileSync("liste-rattachements-lot-a.mjs", join(arbre, "liste-rattachements-lot-a.mjs"));
   copyFileSync("etat-reference-lot-a.json", join(arbre, "etat-reference-lot-a.json"));
   copyFileSync("rattachements-a-consulter.json", join(arbre, "rattachements-a-consulter.json"));
+  /* La liste et son SCEAU DE CURATION se posent d'un seul geste — le collecteur refuse toute
+   * liste qui ne correspond pas au scellé (cardinalité + empreinte). */
+  const poserListe = (liste) => {
+    writeFileSync(join(arbre, "rattachements-a-consulter.json"), JSON.stringify(liste, null, 2));
+    writeFileSync(join(arbre, "etat-curation-rattachements.json"),
+      JSON.stringify({ total: liste.length, empreinte_liste: empreinteListe(liste) }, null, 2));
+  };
+  const gitArbre = (...a) => spawnSync("git", ["-C", arbre, ...a], { encoding: "utf-8" });
   /* Les cas en mode COMPLET jouent le PREMIER run : liste ramenée aux 4 rattachements
    * historiques, et les manifestes du dépôt (HEAD) sont écartés de l'arbre de travail — le
-   * mode complet refuse tout manifeste existant, par immuabilité. */
+   * mode complet refuse tout manifeste existant, par immuabilité. La MATRICE du dépôt est
+   * écartée aussi : ses références composites visent les manifestes RÉELS, pas la fixture —
+   * le préflight partagé (cas 15+) la confronterait à un monde qui n'est pas le sien. */
   const LISTE_CUMULATIVE = JSON.parse(readFileSync(join(arbre, "rattachements-a-consulter.json"), "utf-8"));
-  writeFileSync(join(arbre, "rattachements-a-consulter.json"), JSON.stringify(LISTE_CUMULATIVE.slice(0, 4), null, 2));
+  poserListe(LISTE_CUMULATIVE.slice(0, 4));
+  rmSync(join(arbre, "audit-pays.json"), { force: true });
   for (const f of readdirSync(arbre).filter((x) => /^audit-pays-consultations(-\d+)?\.json$/.test(x))) {
     rmSync(join(arbre, f), { force: true });
   }
@@ -424,7 +469,10 @@ try {
       { url: "https://annuaire-a.example/fiche", motif: "Premier rattachement du second run (jeu d'essai)." },
       { url: "https://annuaire-b.example/fiche", motif: "Second rattachement du second run (jeu d'essai)." },
     ]);
-    writeFileSync(join(arbre, "rattachements-a-consulter.json"), JSON.stringify(LISTE_6, null, 2));
+    poserListe(LISTE_6);
+    /* Le préflight partagé PROUVE les pièces (suivies par git, SHA-256, re-dérivation) : les
+     * pièces du run publié au cas 14 sont suivies, comme au dépôt réel. */
+    gitArbre("add", "--", "audit-pays-pieces");
     const manifeste1Avant = readFileSync(MANIFESTE(), "utf-8");
     const r = lancer("ok", bin, ["--rattachements-seulement"]);
     if (r.status !== 0) echec("15 rattachements-seulement", `sortie ${r.status} :\n      ${r.stderr.trim().split("\n").slice(0, 3).join("\n      ")}`);
@@ -460,17 +508,98 @@ try {
     rmSync(join(arbre, "audit-pays-consultations-2.json"), { force: true });
     const manifeste1Avant = readFileSync(MANIFESTE(), "utf-8");
     const ampute = JSON.parse(manifeste1Avant);
+    /* L'amputation est COHÉRENTE en interne (compteurs décrémentés) : seule l'UNION des
+     * candidates publiées — le préflight partagé — peut la voir. */
     const iCandidate = ampute.resultats.findIndex((x) => x.role === "candidate");
     ampute.resultats.splice(iCandidate, 1);
+    ampute.total -= 1;
+    ampute.candidates -= 1;
     writeFileSync(MANIFESTE(), JSON.stringify(ampute, null, 2));
     const runsAvant = runs().length;
     const r = lancer("ok", bin, ["--rattachements-seulement"]);
     writeFileSync(MANIFESTE(), manifeste1Avant);
     if (r.status !== 2) echec("17 candidates amputées", `sortie ${r.status} au lieu de 2 — le mode rattachements-seulement régénérerait des candidates`);
-    if (!/ne régénère JAMAIS|couverte par aucun manifeste/.test(r.stderr)) {
-      echec("17 candidates amputées", `le refus ne nomme pas la couverture — reçu :\n      ${r.stderr.trim().split("\n").slice(0, 2).join("\n      ")}`);
+    if (!/ABSENTE de tous les manifestes|couverte par aucun manifeste/.test(r.stderr)) {
+      echec("17 candidates amputées", `le refus ne nomme pas la couverture — reçu :\n      ${r.stderr.trim().split("\n").slice(0, 4).join("\n      ")}`);
     }
     if (runs().length !== runsAvant) echec("17 candidates amputées", "un run a été créé malgré le refus");
+  }
+
+  /* ---- 18. BASE ALTÉRÉE : le préflight partagé refuse AVANT tout appel réseau ----------------
+   * [contre-épreuve exacte de la contre-revue multi-runs : altérer un ancien manifeste sans
+   * rescellage, lancer le mode additionnel — code 2, aucun appel curl, aucun run, aucun
+   * manifeste nouveau] */
+  {
+    const manifeste1Avant = readFileSync(MANIFESTE(), "utf-8");
+    const altere = JSON.parse(manifeste1Avant);
+    const res = altere.resultats.find((x) => x.acces === "consultee");
+    res.capture.sha256 = "1111111111111111111111111111111111111111111111111111111111111111";
+    writeFileSync(MANIFESTE(), JSON.stringify(altere, null, 2));
+    rmSync(join(etat, "appels.log"), { force: true });
+    const runsAvant = runs().length;
+    const r = lancer("ok", bin, ["--rattachements-seulement"]);
+    writeFileSync(MANIFESTE(), manifeste1Avant);
+    if (r.status !== 2) echec("18 base altérée", `sortie ${r.status} au lieu de 2 — on collecte sur une base altérée`);
+    if (!/préflight refusé/.test(r.stderr) || !/SHA-256/.test(r.stderr)) {
+      echec("18 base altérée", `le refus ne nomme pas le préflight et le SHA — reçu :\n      ${r.stderr.trim().split("\n").slice(0, 4).join("\n      ")}`);
+    }
+    if (existsSync(join(etat, "appels.log"))) {
+      echec("18 base altérée", `curl a été APPELÉ malgré le refus du préflight :\n      ${readFileSync(join(etat, "appels.log"), "utf-8").trim().split("\n").slice(0, 2).join("\n      ")}`);
+    }
+    if (runs().length !== runsAvant) echec("18 base altérée", "un run a été créé malgré le refus");
+    if (existsSync(join(arbre, "audit-pays-consultations-2.json"))) echec("18 base altérée", "un manifeste nouveau a été publié malgré le refus");
+  }
+
+  /* ---- 19. TROU DANS LA SÉQUENCE : base + -3 → « séquence NON CANONIQUE », aucun appel ------- */
+  {
+    const CHEMIN_M3 = join(arbre, "audit-pays-consultations-3.json");
+    writeFileSync(CHEMIN_M3, readFileSync(MANIFESTE(), "utf-8"));
+    rmSync(join(etat, "appels.log"), { force: true });
+    const runsAvant = runs().length;
+    const r = lancer("ok", bin, ["--rattachements-seulement"]);
+    rmSync(CHEMIN_M3, { force: true });
+    if (r.status !== 2) echec("19 trou dans la séquence", `sortie ${r.status} au lieu de 2 — la cible calculée redevient ambiguë`);
+    if (!/séquence NON CANONIQUE/.test(r.stderr)) {
+      echec("19 trou dans la séquence", `le refus ne nomme pas la séquence canonique — reçu :\n      ${r.stderr.trim().split("\n").slice(0, 4).join("\n      ")}`);
+    }
+    if (existsSync(join(etat, "appels.log"))) echec("19 trou dans la séquence", "curl a été appelé malgré le refus du préflight");
+    if (runs().length !== runsAvant) echec("19 trou dans la séquence", "un run a été créé malgré le refus");
+  }
+
+  /* ---- 20. CIBLE APPARUE AVANT PUBLICATION : la publication est EXCLUSIVE (linkSync) --------- */
+  {
+    const CHEMIN_M2 = join(arbre, "audit-pays-consultations-2.json");
+    rmSync(CHEMIN_M2, { force: true });
+    const manifeste1Avant = readFileSync(MANIFESTE(), "utf-8");
+    const r = lancer("cible-apparait", bin, ["--rattachements-seulement"]);
+    if (r.status !== 2) echec("20 cible apparue", `sortie ${r.status} au lieu de 2 — la cible apparue a été écrasée`);
+    if (!/ne s'écrase JAMAIS/.test(r.stderr)) {
+      echec("20 cible apparue", `le refus ne nomme pas la publication exclusive — reçu :\n      ${r.stderr.trim().split("\n").slice(0, 2).join("\n      ")}`);
+    }
+    if (!existsSync(CHEMIN_M2) || readFileSync(CHEMIN_M2, "utf-8") !== "CONTENU-INTERLOPE") {
+      echec("20 cible apparue", "le contenu de la cible apparue n'a pas été PRÉSERVÉ — la publication n'est pas exclusive");
+    }
+    if (readFileSync(MANIFESTE(), "utf-8") !== manifeste1Avant) echec("20 cible apparue", "le manifeste 1 a été touché");
+    rmSync(CHEMIN_M2, { force: true });
+  }
+
+  /* ---- 21. MOTIF RÉÉCRIT SANS RESCELLEMENT : le scellé de curation mord AU COLLECTEUR aussi -- */
+  {
+    const CHEMIN_LISTE = join(arbre, "rattachements-a-consulter.json");
+    const pristin = readFileSync(CHEMIN_LISTE, "utf-8");
+    const liste = JSON.parse(pristin);
+    liste[liste.length - 1].motif = "Motif réécrit après approbation (jeu d'essai).";
+    writeFileSync(CHEMIN_LISTE, JSON.stringify(liste, null, 2));
+    rmSync(join(etat, "appels.log"), { force: true });
+    const runsAvant = runs().length;
+    const r = lancer("ok", bin, ["--rattachements-seulement"]);
+    writeFileSync(CHEMIN_LISTE, pristin);
+    if (r.status !== 2) echec("21 curation non rescellée", `sortie ${r.status} au lieu de 2 — la curation se mute en silence`);
+    if (!/scellé de curation|rescellement/.test(r.stderr)) {
+      echec("21 curation non rescellée", `le refus ne nomme pas le scellé — reçu :\n      ${r.stderr.trim().split("\n").slice(0, 2).join("\n      ")}`);
+    }
+    if (existsSync(join(etat, "appels.log"))) echec("21 curation non rescellée", "curl a été appelé malgré le refus");
+    if (runs().length !== runsAvant) echec("21 curation non rescellée", "un run a été créé malgré le refus");
   }
 } finally {
   gitWt("remove", "--force", arbre);
@@ -479,7 +608,7 @@ try {
 
 /* ---- verdict ---------------------------------------------------------------------------------- */
 if (defauts.length === 0) {
-  process.stdout.write("17 cas éprouvés au faux curl : curl absent, proxy bloquant, inventaire dérivé, et la\n");
+  process.stdout.write("21 cas éprouvés au faux curl : curl absent, proxy bloquant, inventaire dérivé, et la\n");
   process.stdout.write("liste de rattachements au schéma strict (file:// local, champ inconnu, motif blanc,\n");
   process.stdout.write("URL en double, JSON invalide, fichier absent) REFUSENT sans rien écrire ; une\n");
   process.stdout.write("redirection qui quitte HTTP(S) interrompt tout — manifeste intact, contenu local\n");
@@ -495,7 +624,12 @@ if (defauts.length === 0) {
   process.stdout.write("Set-Cookie secret n'atteint aucune pièce : les en-têtes sont expurgés avant scellement ;\n");
   process.stdout.write("et le multi-runs tient : le mode complet refuse tout manifeste existant, le mode\n");
   process.stdout.write("rattachements-seulement collecte exactement la différence dans un manifeste additionnel\n");
-  process.stdout.write("et refuse une couverture de candidates amputée.\n\n");
+  process.stdout.write("et refuse une couverture de candidates amputée ; et sa contre-revue est morte : le\n");
+  process.stdout.write("mode additionnel exécute LE MÊME PRÉFLIGHT PERMANENT que le validateur — une base\n");
+  process.stdout.write("altérée (SHA réécrit) ou un trou dans la séquence (base + -3) refusent AVANT tout\n");
+  process.stdout.write("appel curl (journal des appels vide), une cible apparue avant publication est\n");
+  process.stdout.write("préservée (publication exclusive — un manifeste publié ne s'écrase jamais), et le\n");
+  process.stdout.write("scellé de curation mord au collecteur aussi (motif réécrit sans rescellement → refus).\n\n");
   process.stdout.write("[collecte] une panne d'environnement n'est pas une observation de source.\n");
   process.exit(0);
 }

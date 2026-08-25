@@ -16,7 +16,7 @@
  * (cas 0) ; chaque cas suivant mute UNE chose et exige la sortie 1 avec la cause nommée.
  * Aucune donnée réelle n'est affirmée : la fixture vit dans l'arbre jetable, jamais au dépôt.
  *
- * SOIXANTE-ET-ONZE CAS : 0 (fixture conforme — manifeste complet avec une observation de
+ * SOIXANTE-QUINZE CAS : 0 (fixture conforme — manifeste complet avec une observation de
  * rattachement de rôle dédié, candidate PDF à pièce-capture), 17 à 52 (bijection, décisions,
  * pièces, ancres, PDF, liaison au manifeste), puis 53-57 (contre-revue v5-ter) : PDF déguisé
  * en text/plain — le format recalculé depuis les OCTETS prime ; résultat de manifeste
@@ -53,11 +53,19 @@
  * manifeste modifié à chemin constant rougit par l'empreinte ; une ancienne URL recollectée
  * rompt le préfixe exact de la liste cumulative ; une entrée en attente de collecte est
  * verte mais COMPTÉE ; un manifeste supprimé encore référencé rougit.
+ * Puis 87-90 (contre-revue du mécanisme multi-runs) : la CURATION est SCELLÉE — la queue
+ * approuvée mais pas encore collectée ne se supprime pas (l'attaque népalaise), ne s'enfle
+ * pas et ne se réécrit pas sans rescellement explicite (trois variantes, que le préfixe ne
+ * voit pas) ; « a_instruire » est l'état légal de la collecte brute — cité par une preuve il
+ * rougit, et `--exiger-audit-complet` rougit tant qu'il en reste un ; une version
+ * d'extracteur hors des versions ADMISES gelées rougit — un manifeste immuable ne se
+ * réaligne jamais.
  */
 import { readFileSync, writeFileSync, mkdirSync, copyFileSync, symlinkSync, mkdtempSync, rmSync, readdirSync } from "node:fs";
 import { deflateSync } from "node:zlib";
 import { createHash } from "node:crypto";
 import { extraireTexte, detecterFormat, VERSION_EXTRACTEUR } from "./extraire-texte-lot-a.mjs";
+import { empreinteListe } from "./verifier-base-lot-a.mjs";
 import { spawnSync } from "node:child_process";
 import { tmpdir } from "node:os";
 import { join, resolve } from "node:path";
@@ -71,7 +79,7 @@ const DUE = plus180(JOUR);
 
 const defauts = [];
 const echec = (cas, m) => defauts.push(`${cas} — ${m}`);
-const lancer = (cwd) => spawnSync("node", ["--import", "tsx", "valider-audit-pays.mjs", `--as-of=${AS_OF}`], { cwd, encoding: "utf-8" });
+const lancer = (cwd, args = []) => spawnSync("node", ["--import", "tsx", "valider-audit-pays.mjs", `--as-of=${AS_OF}`, ...args], { cwd, encoding: "utf-8" });
 
 const conteneur = mkdtempSync(join(tmpdir(), "audit-wt-"));
 const arbre = join(conteneur, "arbre");
@@ -242,7 +250,9 @@ function fabriquerJeu(guides, scelle) {
       [`${M1}#${nRattachement}`]: { statut: "utilisee" },
       [`${M1}#${nRattachementPdf}`]: { statut: "ecartee", motif: "PDF : aucune preuve textuelle en lot-a-1 (jeu d'essai)." },
       [`${M1}#${nRattachementTentative}`]: { statut: "ecartee", motif: "Tentative : la page n'a pas été obtenue (jeu d'essai)." },
-      [`${M2}#1`]: { statut: "ecartee", motif: "Second run : observation non encore exploitée (jeu d'essai)." },
+      /* L'observation du second run reste À INSTRUIRE : l'état LÉGAL de la collecte brute —
+       * comptée, jamais probatoire, refusée par --exiger-audit-complet (cas 88-89). */
+      [`${M2}#1`]: { statut: "a_instruire" },
     } },
     manifeste: { consultees_le: JOUR, run: "audit-pays-pieces/run-fixture", total: n,
       candidates: n - 3, rattachements: 3, extracteur: VERSION_EXTRACTEUR, resultats },
@@ -259,6 +269,7 @@ try {
   if (ajout.status !== 0) throw new Error(`git worktree add : ${(ajout.stderr || "").trim()}`);
   symlinkSync(resolve("node_modules"), join(arbre, "node_modules"));
   copyFileSync("valider-audit-pays.mjs", join(arbre, "valider-audit-pays.mjs"));
+  copyFileSync("verifier-base-lot-a.mjs", join(arbre, "verifier-base-lot-a.mjs"));
   copyFileSync("extraire-texte-lot-a.mjs", join(arbre, "extraire-texte-lot-a.mjs"));
   copyFileSync("liste-rattachements-lot-a.mjs", join(arbre, "liste-rattachements-lot-a.mjs"));
   copyFileSync("etat-reference-lot-a.json", join(arbre, "etat-reference-lot-a.json"));
@@ -308,8 +319,13 @@ try {
     return m;
   };
   const matricePristine = JSON.stringify(rescellerRefs(jeu0.matrice), null, 2);
-  /* La liste versionnée des rattachements — le manifeste doit lui être EXACTEMENT égal. */
+  /* La liste versionnée des rattachements — le manifeste doit lui être EXACTEMENT égal —
+   * et son SCEAU DE CURATION (cardinalité + empreinte canonique), que tout changement
+   * légitime de la liste doit resceller (cas 85), et qu'aucune mutation ne contourne (87). */
+  const poserSceau = (liste) => writeFileSync(join(arbre, "etat-curation-rattachements.json"),
+    JSON.stringify({ total: liste.length, empreinte_liste: empreinteListe(liste) }, null, 2));
   writeFileSync(join(arbre, "rattachements-a-consulter.json"), JSON.stringify(jeu0.liste, null, 2));
+  poserSceau(jeu0.liste);
   const neuve = () => JSON.parse(matricePristine);
   const neuveManifeste = () => JSON.parse(manifestePristin);
   const preuveTemoin = (n = 92) => ({
@@ -859,15 +875,18 @@ try {
   }
   {
     /* 85 — une entrée de liste PAS ENCORE observée est l'état légitime entre curation et
-     * collecte : vert, mais JAMAIS silencieux — le compte « EN ATTENTE » est affiché. */
+     * collecte : vert, mais JAMAIS silencieux — le compte « EN ATTENTE » est affiché. La
+     * curation est RESCELLÉE avec la liste : c'est le geste légitime, d'un seul mouvement. */
     const CHEMIN_LISTE = join(arbre, "rattachements-a-consulter.json");
     const listePristine = readFileSync(CHEMIN_LISTE, "utf-8");
     const liste = JSON.parse(listePristine);
     liste.push({ url: "https://example.org/annuaire-en-attente", motif: "Entrée curée, pas encore collectée (jeu d'essai)." });
     writeFileSync(CHEMIN_LISTE, JSON.stringify(liste, null, 2));
+    poserSceau(liste);
     poser(neuve());
     const r = lancer(arbre);
     writeFileSync(CHEMIN_LISTE, listePristine);
+    poserSceau(JSON.parse(listePristine));
     if (r.status !== 0) echec("85 entrée en attente de collecte", `sortie ${r.status} au lieu de 0 — l'état intermédiaire légitime rougit :\n      ${r.stderr.trim().split("\n").slice(0, 4).join("\n      ")}`);
     else if (!/1 rattachement\(s\) EN ATTENTE de collecte/.test(r.stdout)) {
       echec("85 entrée en attente de collecte", `le compte rendu ne nomme pas l'attente — reçu : ${r.stdout.trim()}`);
@@ -884,6 +903,62 @@ try {
       echec("86 manifeste supprimé encore référencé", `le diagnostic ne nomme pas la suppression — reçu :\n      ${r.stderr.trim().split("\n").slice(0, 5).join("\n      ")}`);
     }
   }
+
+  /* ---- 87-90 · curation scellée, a_instruire, versions gelées (contre-revue multi-runs) ------ */
+  {
+    /* 87 — la CURATION est SCELLÉE indépendamment du préfixe : l'état légitime « queue
+     * approuvée, pas encore collectée » est posé AVEC rescellement (liste + sceau, le geste
+     * du cas 85), puis trois attaques mutent la liste SANS resceller — l'entrée en attente
+     * SUPPRIMÉE (l'attaque népalaise : le préfixe ne la voit pas, elle est après la partie
+     * observée), une entrée AJOUTÉE hors curation, un MOTIF réécrit. Chacune rougit par le
+     * scellé, jamais en silence. */
+    const CHEMIN_LISTE = join(arbre, "rattachements-a-consulter.json");
+    const listePristine = readFileSync(CHEMIN_LISTE, "utf-8");
+    const enAttente = { url: "https://example.org/annuaire-cure-en-attente", motif: "Entrée curée en attente de collecte (jeu d'essai)." };
+    const listeCuree = JSON.parse(listePristine).concat([enAttente]);
+    const variantes = [
+      ["entrée en attente supprimée", JSON.parse(listePristine)],
+      ["entrée ajoutée hors curation", listeCuree.concat([{ url: "https://example.org/entree-inseree", motif: "Insérée sans curation (jeu d'essai)." }])],
+      ["motif réécrit", listeCuree.map((e) => (e.url === enAttente.url ? { ...e, motif: "Motif réécrit après approbation (jeu d'essai)." } : e))],
+    ];
+    for (const [nom, listeMutee] of variantes) {
+      writeFileSync(CHEMIN_LISTE, JSON.stringify(listeCuree, null, 2));
+      poserSceau(listeCuree);
+      writeFileSync(CHEMIN_LISTE, JSON.stringify(listeMutee, null, 2));   // la mutation, SANS resceller
+      poser(neuve());
+      const r = lancer(arbre);
+      if (r.status !== 1) { echec(`87 curation non rescellée (${nom})`, `sortie ${r.status} au lieu de 1 — la curation se mute en silence`); continue; }
+      if (!/curation/.test(r.stderr) || !/sans rescellement/.test(r.stderr)) {
+        echec(`87 curation non rescellée (${nom})`, `le diagnostic ne vient pas du scellé de curation — reçu :\n      ${r.stderr.trim().split("\n").slice(0, 5).join("\n      ")}`);
+      }
+    }
+    writeFileSync(CHEMIN_LISTE, listePristine);
+    poserSceau(JSON.parse(listePristine));
+  }
+  cas("88 observation À INSTRUIRE citée par une preuve", (m) => {
+    /* la promotion fidjienne cite M1#92 ; l'observation passe « a_instruire » : l'état de
+     * collecte brute n'est JAMAIS probatoire — l'instruction précède tout usage, la
+     * promotion qui s'appuie dessus rougit avec elle. */
+    m.rattachements[`${M1}#92`] = { statut: "a_instruire" };
+  }, [/audit-pays-consultations\.json#92/, /À INSTRUIRE mais cité par une preuve/]);
+  {
+    /* 89 — le mode FINAL : `--exiger-audit-complet` rougit tant qu'il reste UNE observation
+     * à instruire — la fixture pristine en porte une (le rattachement du second run). */
+    poser(neuve());
+    const r = lancer(arbre, ["--exiger-audit-complet"]);
+    if (r.status !== 1) echec("89 mode final avec reste à instruire", `sortie ${r.status} au lieu de 1 — --exiger-audit-complet laisse passer un a_instruire`);
+    else if (!/encore À INSTRUIRE/.test(r.stderr)) {
+      echec("89 mode final avec reste à instruire", `le diagnostic ne nomme pas l'instruction restante — reçu :\n      ${r.stderr.trim().split("\n").slice(0, 5).join("\n      ")}`);
+    }
+  }
+  cas("90 version d'extracteur hors des versions admises", (m) => { /* matrice inchangée */ }, [
+    /hors des versions ADMISES/, /ne se réaligne jamais/,
+  ], (mf) => {
+    /* le gel des versions (P1) : « lot-a-5 » n'existe pas dans le dispatch — le manifeste ET
+     * la capture qui s'en réclament rougissent, on n'aligne jamais un manifeste immuable. */
+    mf.extracteur = "lot-a-5";
+    mf.resultats[0].capture.extracteur = "lot-a-5";
+  });
 } finally {
   gitWt("remove", "--force", arbre);
   rmSync(conteneur, { recursive: true, force: true });
@@ -891,7 +966,7 @@ try {
 
 /* ---- verdict ---------------------------------------------------------------------------------- */
 if (defauts.length === 0) {
-  process.stdout.write("71 cas éprouvés : la fixture conforme — DEUX manifestes immuables aux n recouvrants,\n");
+  process.stdout.write("75 cas éprouvés : la fixture conforme — DEUX manifestes immuables aux n recouvrants,\n");
   process.stdout.write("versionnée, rattachement utilisé + PDF et tentative proprement écartés — sort en 0 ;\n");
   process.stdout.write("rattachement de rôle dédié, candidate PDF à pièce-capture — sort en 0 ; les contrôles\n");
   process.stdout.write("17-52 rougissent chacun pour sa cause (bijection triplet, décisions, pièces prouvées,\n");
@@ -917,8 +992,14 @@ if (defauts.length === 0) {
   process.stdout.write("consultation, candidate inconnue — tentative ou non_evaluee — rougissent), et la\n");
   process.stdout.write("règle d'étape 4, forcée, rougit toute promue sans projection ; et le multi-runs\n");
   process.stdout.write("tient : références composites (jamais un numéro nu), manifestes immuables par\n");
-  process.stdout.write("empreinte, préfixe exact de la liste cumulative, attente de collecte comptée.\n\n");
-  process.stdout.write("[audit-pays] le validateur mord, sur les 70 contrôles.\n");
+  process.stdout.write("empreinte, préfixe exact de la liste cumulative, attente de collecte comptée ; et sa\n");
+  process.stdout.write("contre-revue est morte : la curation est SCELLÉE (entrée en attente supprimée —\n");
+  process.stdout.write("l'attaque népalaise —, entrée ajoutée, motif réécrit : trois mutations sans\n");
+  process.stdout.write("rescellement, trois rouges), « a_instruire » est l'état légal de la collecte brute\n");
+  process.stdout.write("(cité par une preuve il rougit, --exiger-audit-complet rougit tant qu'il en reste),\n");
+  process.stdout.write("et les versions d'extracteur sont GELÉES — un manifeste immuable ne se réaligne\n");
+  process.stdout.write("jamais.\n\n");
+  process.stdout.write("[audit-pays] le validateur mord, sur les 74 contrôles.\n");
   process.exit(0);
 }
 process.stderr.write(`\n[audit-pays] ÉCHEC — ${defauts.length} défaut(s) :\n`);

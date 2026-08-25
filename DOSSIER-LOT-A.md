@@ -1,4 +1,4 @@
-# Lot A — Audit des 18 pays sans source · dossier de mesure et de conception (v5-quaterdecies)
+# Lot A — Audit des 18 pays sans source · dossier de mesure et de conception (v5-quindecies)
 
 **Mesuré sur `main` après fusion du dossier d'achèvement (`1dd62010ea183422f02553877df4706714739080`).
 Ce dossier ne corrige rien : aucune date, aucune source, aucune donnée métier n'est écrite.
@@ -9,8 +9,8 @@ Reproduction :
 ```bash
 node --import tsx mesurer-lot-a.mjs --as-of=2026-08-24   # l'état contre le scellé — sortie 1 au premier écart
 node test-mesure-lot-a.mjs                               # 16 cas : le scellé est exact, et il ne se remplace pas
-node test-audit-pays.mjs                                 # 71 cas : le validateur de la matrice mord (17-86)
-node test-consulter-lot-a.mjs                            # 17 cas au faux curl : le collecteur ne fabrique rien
+node test-audit-pays.mjs                                 # 75 cas : le validateur de la matrice mord (17-90)
+node test-consulter-lot-a.mjs                            # 21 cas au faux curl : le collecteur ne fabrique rien
 ```
 
 La liste des 18 est celle que le bloc contractuel du dossier d'achèvement fige
@@ -379,6 +379,39 @@ institutionnelle, jamais « la citation mentionne le domaine ») précède tout 
 à l'étape 4, la constante `PROJECTION_INCONDITIONNELLE` passera à true DANS LE MÊME COMMIT
 que la projection fidjienne.
 
+**La contre-revue du mécanisme multi-runs a rendu quatre P0 et un P1 — tous fermés AVANT
+toute collecte.** (1) La queue curée mais pas encore collectée pouvait être **supprimée en
+silence** (l'entrée népalaise retirée de la liste : le préfixe exact, qui ne voit que la
+partie observée, restait vert). La curation est désormais **scellée indépendamment** :
+`etat-curation-rattachements.json` porte la cardinalité attendue et l'empreinte SHA-256 du
+JSON canonique de la liste cumulative ; le validateur **et** le collecteur la confrontent —
+supprimer, ajouter ou réécrire le motif d'une entrée sans rescellement explicite rougit
+(contre-épreuves 87, trois variantes, et 21 au collecteur ; le rescellement légitime est le
+geste du cas 85 : liste et sceau d'un seul mouvement). (2) Le collecteur « parsait et
+comptait » sans vérifier : altérer un `capture.sha256` d'un ancien manifeste puis lancer le
+mode additionnel collectait sur une base falsifiée. La vérification de base est **extraite
+dans le module partagé `verifier-base-lot-a.mjs`** — séquence canonique des manifestes,
+schémas stricts, compteurs recalculés, n contigus, bijection des pièces, inventaires exacts,
+pièces PROUVÉES (git, SHA-256, octets, format recalculé des octets, re-dérivation), curation
+scellée, préfixe exact, union des 91 candidates, et résolution des références composites de
+la matrice quand elle existe — et le mode `--rattachements-seulement` l'exécute comme
+**préflight permanent AVANT tout appel réseau** : contre-épreuve 18 — base altérée → code 2,
+**journal d'appels curl vide**, aucun run, aucun manifeste nouveau. (3) Le nom de cible
+`longueur + 1` pouvait **écraser** un manifeste existant (état `base + -3` → cible calculée
+`-3`). La séquence des manifestes est **canonique** (`base`, `-2`, …, `-k` — sans `-0`,
+`-1`, zéro initial ni trou ; contre-épreuve 19) et la publication est **exclusive**
+(`linkSync`, qui échoue si la cible existe — jamais d'écrasement ; contre-épreuve 20 : une
+cible apparue PENDANT la collecte est préservée octet pour octet, le run refuse). (4) La
+collecte brute n'avait **pas d'état légal** côté matrice avant instruction : le statut
+`a_instruire` est cet état — accepté et **compté** (affiché au compte rendu), jamais une
+preuve (cité par une preuve → rouge, contre-épreuve 88), refusé par le mode final
+`--exiger-audit-complet` tant qu'il en reste un, comme toute entrée encore en attente de
+collecte (contre-épreuve 89). P1 : les versions d'extracteur admises sont **gelées**
+(`VERSIONS_EXTRACTEUR_ADMISES = ["lot-a-4"]`) et la re-dérivation est **dispatchée par la
+version scellée** dans chaque manifeste — une version hors gel rougit (contre-épreuve 90) ;
+admettre une version future exigera son dispatch sous contre-revue, jamais le réalignement
+d'un manifeste immuable.
+
 ## 1. La mesure a changé la nature de la dette — et ce que la promotion fait, honnêtement
 
 Le dossier d'achèvement décrivait la dette ainsi : « 18 pays n'ont AUCUNE source ». C'est vrai
@@ -584,13 +617,16 @@ Les **16 premières** sont éprouvées par `test-mesure-lot-a.mjs` sur l'état d
 les trois faux verts de la v1, les trois passages indus de la v2, la dérive commitée et le
 `_scelle` falsifié de la v3, les contrôles `--as-of`, la date future, et la génération saine
 (candidat égal au scellé, scellé jamais touché par l'instrument).
-Le harnais d'exécution `test-audit-pays.mjs` éprouve les contrôles **17 à 74** (59 cas — la
-fixture porte un manifeste en ensemble exact égal à la liste versionnée, UNE pièce par
-(résultat, champ), un rattachement utilisé, un PDF et une tentative proprement écartés, une
-candidate PDF à pièce-capture), et `test-consulter-lot-a.mjs` éprouve le collecteur (14 cas
-au faux `curl`, dont la batterie de six listes malformées, la redirection hors HTTP(S), le
-corps au-delà de la borne, l'inventaire exact du run et le multi-runs). Le total est
-**verrouillé à 86 + 17** :
+Le harnais d'exécution `test-audit-pays.mjs` éprouve les contrôles **17 à 90** (75 cas — la
+fixture porte DEUX manifestes immuables aux n recouvrants, en ensembles exacts égaux au
+préfixe de la liste versionnée scellée par la curation, UNE pièce par (résultat, champ), un
+rattachement utilisé, un PDF et une tentative proprement écartés, une candidate PDF à
+pièce-capture, une observation de second run `a_instruire`), et `test-consulter-lot-a.mjs`
+éprouve le collecteur (21 cas au faux `curl`, dont la batterie de six listes malformées, la
+redirection hors HTTP(S), le corps au-delà de la borne, l'inventaire exact du run, le
+multi-runs — et sa contre-revue : le préflight partagé refusant une base altérée ou un trou
+de séquence AVANT tout appel, la publication exclusive préservant une cible apparue, le
+scellé de curation mordant au collecteur aussi). Le total est **verrouillé à 90 + 21** :
 
 | # | mutation | attendu |
 |---|---|---|
@@ -664,6 +700,10 @@ corps au-delà de la borne, l'inventaire exact du run et le multi-runs). Le tota
 | 84 | ancienne URL RECOLLECTÉE dans le second run (observation dupliquée) | échec — les observations doivent être le PRÉFIXE EXACT de la liste cumulative |
 | 85 | entrée de liste curée, PAS ENCORE collectée | vert, mais JAMAIS silencieux — « N rattachement(s) EN ATTENTE de collecte » est affiché |
 | 86 | premier manifeste SUPPRIMÉ alors que la matrice le référence | échec — un manifeste encore référencé ne se supprime pas |
+| 87 | liste cumulative mutée SANS rescellement de la curation : entrée en attente SUPPRIMÉE (l'attaque népalaise, invisible au préfixe), entrée AJOUTÉE, MOTIF réécrit — trois variantes | échec — la curation est scellée indépendamment (cardinalité + empreinte du JSON canonique) |
+| 88 | observation de rattachement `a_instruire` citée par une preuve de la promotion | échec — l'instruction précède tout usage probatoire |
+| 89 | `--exiger-audit-complet` alors qu'une observation reste `a_instruire` | échec — le mode final rougit tant qu'il reste à instruire ou à collecter |
+| 90 | version d'extracteur HORS du gel (`lot-a-5` au manifeste et à une capture) | échec — les versions admises sont gelées avec leur dispatch de re-dérivation ; un manifeste immuable ne se réaligne jamais |
 
 ## 6. Interdits, et effets de bord assumés
 
