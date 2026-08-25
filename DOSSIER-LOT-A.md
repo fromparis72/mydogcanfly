@@ -1,4 +1,4 @@
-# Lot A — Audit des 18 pays sans source · dossier de mesure et de conception (v5-undecies)
+# Lot A — Audit des 18 pays sans source · dossier de mesure et de conception (v5-duodecies)
 
 **Mesuré sur `main` après fusion du dossier d'achèvement (`1dd62010ea183422f02553877df4706714739080`).
 Ce dossier ne corrige rien : aucune date, aucune source, aucune donnée métier n'est écrite.
@@ -9,7 +9,7 @@ Reproduction :
 ```bash
 node --import tsx mesurer-lot-a.mjs --as-of=2026-08-24   # l'état contre le scellé — sortie 1 au premier écart
 node test-mesure-lot-a.mjs                               # 16 cas : le scellé est exact, et il ne se remplace pas
-node test-audit-pays.mjs                                 # 59 cas : le validateur de la matrice mord (17-74)
+node test-audit-pays.mjs                                 # 64 cas : le validateur de la matrice mord (17-79)
 node test-consulter-lot-a.mjs                            # 14 cas au faux curl : le collecteur ne fabrique rien
 ```
 
@@ -274,6 +274,7 @@ est prouvé fermé, pas une regex particulière qui termine. Le run partiel de l
 (collecté sous lot-a-2) reste non publiable et n'est pas repris : la collecte repart de zéro
 depuis le commit portant lot-a-4.
 
+
 **La collecte réelle a réussi (95 résultats, 66 consultations, 29 tentatives, zéro écart
 structurel) — mais ses traces n'étaient PAS assainies** (contre-revue de la collecte,
 `e6fb546` : un P0 de confidentialité + un P1). (1) **46 en-têtes `Set-Cookie` en clair dans
@@ -297,6 +298,34 @@ d'acceptation explicite avant PR : `04-services.bahrain.bh.html` contient une cl
 Google Maps (`AIza…`) que le site publie lui-même dans sa page (`<script
 src="maps.googleapis.com/maps/api/js?key=…">`) — c'est le contenu public capturé, scellé par
 empreinte ; l'expurger falsifierait la preuve.
+
+**Le domaine BAF n'était pas prouvé, et « aucune source officielle » signifiait encore
+« rattachement non instruit »** (contre-revue des 18 décisions, deux P0 éditoriaux + P1).
+(1) La citation n 92 prouvait que la BAF est une autorité fidjienne, pas que `baf.com.fj`
+lui appartient : Codex a remplacé `website` par `bad.com.fj` dans la capture brute,
+empreintes recalculées — sortie 0. Fermeture : l'**attestation d'annuaire structurée**
+(`attestation_annuaire` sur la preuve de rattachement) — le validateur lit la CAPTURE BRUTE
+et exige mécaniquement, sur les OCTETS, les fragments JSON exacts `organisationName`,
+`organisationTypeCode`, `website`, l'**unicité** du champ `website`, et l'égalité d'hôte avec
+la candidate ; et toute **promotion exige la preuve du domaine** de sa décisive (citation
+ancrée portant l'hôte, ou attestation vérifiée) — contre-épreuves 75 (`bad.com.fj` rougit)
+et 76 (attestation retirée : promotion refusée). Incident de fabrication nommé : la première
+version comparait en latin1 et cassait les accents — corrigée en comparaison d'octets UTF-8.
+(2) Treize décisions négatives affirmaient une absence que les pièces ne montraient pas.
+Nouveau statut honnête : **`aucune_source_promouvable_dans_ce_run`** ; le validateur
+INTERDIT `aucune_source_officielle` quand une candidate `consultee + etaye_le_fait +
+non_etabli` subsiste (le rattachement n'est pas instruit) ou quand AUCUNE page n'a été
+consultée (cas des Maldives : zéro lecture ne conclut pas à l'absence) — contre-épreuves 77
+et 78. La matrice est requalifiée : 1 promue (fj), 2 `aucune_source_officielle` (et, sc —
+audits conclus sur pièces), 15 `aucune_source_promouvable_dans_ce_run`. Un second run,
+limité aux rattachements des éditeurs `etaye_le_fait + non_etabli` (liste dérivée
+mécaniquement de la matrice), est la voie de conclusion. (3) P1 fermés : extraits APHIS
+Ghana/Nigeria et Équateur remplacés par des prescriptions substantielles ancrées ; la page
+APHIS Liban **requalifiée** `page_generique` (elle ne porte aucune section chiens — mon
+`etaye_le_fait` initial était une erreur, nommée ici) ; `audite_par`/`reviewer` ramenés à
+« Claude — audit lot A » (l'approbation de Codex s'enregistre séparément, pas dans le champ) ;
+la projection devient **bidirectionnelle** dès qu'une promotion est déclarée `appliquee`
+(étape 4) — supprimer la source projetée rougit (contre-épreuve 79).
 
 ## 1. La mesure a changé la nature de la dette — et ce que la promotion fait, honnêtement
 
@@ -509,7 +538,7 @@ fixture porte un manifeste en ensemble exact égal à la liste versionnée, UNE 
 candidate PDF à pièce-capture), et `test-consulter-lot-a.mjs` éprouve le collecteur (14 cas
 au faux `curl`, dont la batterie de six listes malformées, la redirection hors HTTP(S), le
 corps au-delà de la borne et l'inventaire exact du run). Le total est **verrouillé à
-74 + 14** :
+79 + 14** :
 
 | # | mutation | attendu |
 |---|---|---|
@@ -571,6 +600,11 @@ corps au-delà de la borne et l'inventaire exact du run). Le total est **verroui
 | 72 | `capture.octets` falsifié (taille + 1) | échec — égal à la taille réelle du fichier, jamais déclaratif |
 | 73 | flux PDF adversarial (`[` puis 40 groupes `(…)` sans `]`), extraction en sous-processus sous délai | terminaison en temps borné — lot-a-2 n'en revenait jamais (incident de collecte réelle) |
 | 74 | PDF **comprimé** portant un opérateur textuel **valide** | chaîne vide, immédiatement — le chemin PDF probatoire est fermé par construction (lot-a-4), la bombe de décompression avec lui |
+| 75 | `website` réécrit vers un autre domaine DANS LA CAPTURE BRUTE de l'annuaire, empreintes recalculées partout, citation intacte | échec — l'attestation d'annuaire compare les octets de la capture aux champs attestés |
+| 76 | attestation d'annuaire retirée de la preuve, citation intacte (sans l'hôte) | échec — toute promotion exige la preuve du DOMAINE de sa décisive |
+| 77 | `aucune_source_officielle` alors qu'une candidate `etaye_le_fait + non_etabli` subsiste | échec — rattachement non instruit : le statut honnête est `aucune_source_promouvable_dans_ce_run` |
+| 78 | `aucune_source_officielle` sans AUCUNE consultation (toutes les candidates en tentative) | échec — zéro page lue ne conclut pas à l'absence (cas des Maldives) |
+| 79 | promotion déclarée `appliquee` sans source dans `objects.json` | échec — la projection est BIDIRECTIONNELLE après l'étape 4 |
 
 ## 6. Interdits, et effets de bord assumés
 

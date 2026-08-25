@@ -116,7 +116,20 @@ const Trace = z.object({ type: z.enum(["transcript", "capture"]), chemin: z.stri
 const NatureEditeur = z.enum(["autorite_pays", "mission_diplomatique_pays", "officiel_tiers", "non_officiel", "non_etabli"]);
 const Pertinence = z.enum(["etaye_le_fait", "partielle", "page_generique", "hors_sujet", "non_evaluee"]);
 
-const PreuveRattachement = z.object({ manifeste_n: z.number().int().min(1), citation: z.unknown(), capture: CaptureScellee }).strict();
+/* L'ATTESTATION D'ANNUAIRE : la pièce structurée qui prouve le DOMAINE d'une candidate quand
+ * le lien n'est pas ancrable en texte dérivé (contre-revue des 18 décisions : la fiche de
+ * l'annuaire fidjien porte « website » dans un blob JSON de <script>, que l'extracteur ôte —
+ * remplacer baf.com.fj par bad.com.fj dans la capture brute, empreintes recalculées, sortait
+ * en 0). Le validateur lit la CAPTURE BRUTE de l'observation et exige mécaniquement les trois
+ * champs EXACTS — organisationName, organisationTypeCode, website — et l'unicité du champ
+ * website ; puis l'égalité d'hôte avec la candidate. */
+const AttestationAnnuaire = z.object({
+  organisation: z.string().min(1),
+  type_organisation: z.string().min(1),
+  site_web: UrlHttp,
+}).strict();
+const PreuveRattachement = z.object({ manifeste_n: z.number().int().min(1), citation: z.unknown(), capture: CaptureScellee,
+  attestation_annuaire: AttestationAnnuaire.optional() }).strict();
 
 const CandidateConsultee = z.object({
   manifeste_n: z.number().int().min(1),      // l'identité stable de l'observation dans le manifeste
@@ -155,9 +168,20 @@ const DecisionPromue = z.object({
   statut: z.literal("promue"),
   observation_decisive: z.number().int().min(0),
   source: z.unknown(),               // SourcedQuote — validé par le contrat canonique ci-dessous
+  /* posé à true à l'étape 4 : la projection devient BIDIRECTIONNELLE — supprimer la source
+   * d'objects.json fait rougir (contre-revue des 18 décisions). */
+  appliquee: z.boolean().optional(),
 }).strict();
 const DecisionSans = z.object({
   statut: z.literal("aucune_source_officielle"),
+  motif: z.string().min(10),
+}).strict();
+/* Le statut HONNÊTE quand l'audit ne peut pas conclure DANS CE RUN : rattachements non
+ * instruits alors qu'une candidate étaye le fait, ou aucune page consultée — « aucune source
+ * officielle » affirmerait une absence que les pièces ne montrent pas (contre-revue des 18
+ * décisions, cas des Maldives). */
+const DecisionNonConcluante = z.object({
+  statut: z.literal("aucune_source_promouvable_dans_ce_run"),
   motif: z.string().min(10),
 }).strict();
 
@@ -165,7 +189,7 @@ const EntreePays = z.object({
   audite_par: z.string().min(1),
   audite_le: DateISO,
   candidates: z.array(Candidate).min(1),
-  decision: z.discriminatedUnion("statut", [DecisionPromue, DecisionSans]),
+  decision: z.discriminatedUnion("statut", [DecisionPromue, DecisionSans, DecisionNonConcluante]),
 }).strict();
 
 /* Chaque observation de rattachement du manifeste reçoit EXACTEMENT UNE décision éditoriale :
@@ -340,6 +364,10 @@ for (const { chemin, usages } of referencesParChemin.values()) {
 }
 const nsVus = new Set();
 const nsRattachementExerces = new Set();
+/* Par candidate : le DOMAINE est-il prouvé (citation ancrée portant l'hôte, ou attestation
+ * d'annuaire vérifiée sur la capture brute) ? Toute PROMOTION l'exige pour sa décisive. */
+const domaineProuveParCandidate = new Set();
+const hote = (u) => { try { return new URL(String(u)).hostname.replace(/^www\./, "").toLowerCase(); } catch { return null; } };
 
 const parseMatrice = Matrice.safeParse(matriceBrute);
 if (!parseMatrice.success) {
@@ -590,6 +618,37 @@ for (const id of CONTRACTUELS) {
       } else if (typeof p.citation?.quote === "string") {
         ancre(id, `${qui} citation de rattachement [${j}]`, p.citation.quote, p.capture);
       }
+      /* Le DOMAINE de la candidate : par citation ancrée qui porte l'hôte… */
+      const hoteCandidate = hote(c.acces === "consultee" ? c.url_finale : c.url_publiee);
+      if (hoteCandidate && typeof p.citation?.quote === "string"
+        && normaliser(p.citation.quote).toLowerCase().includes(hoteCandidate)) {
+        domaineProuveParCandidate.add(`${id}#${i}`);
+      }
+      /* …ou par ATTESTATION D'ANNUAIRE, vérifiée MÉCANIQUEMENT sur la capture brute : les
+       * trois champs JSON exacts doivent y figurer, le champ website doit être UNIQUE, et
+       * l'hôte attesté doit être celui de la candidate — remplacer le domaine dans le brut
+       * (empreintes recalculées ou non) rougit ici. */
+      if (p.attestation_annuaire) {
+        const att = p.attestation_annuaire;
+        let brut = null;
+        try { brut = readFileSync(p.capture.chemin); } catch { /* déjà jugé par la preuve de fichier */ }
+        if (brut !== null) {
+          /* La recherche se fait sur les OCTETS (les fragments attestés encodés en UTF-8,
+           * l'encodage des pages) — une lecture latin1 casserait tout caractère accentué. */
+          const okNom = brut.includes(Buffer.from(`"organisationName":"${att.organisation}"`, "utf-8"));
+          const okType = brut.includes(Buffer.from(`"organisationTypeCode":"${att.type_organisation}"`, "utf-8"));
+          const okSite = brut.includes(Buffer.from(`"website":"${att.site_web}"`, "utf-8"));
+          const nbSites = (brut.toString("latin1").match(/"website"\s*:\s*"/g) ?? []).length;
+          if (!okNom || !okType || !okSite || nbSites !== 1) {
+            echec(`${id} — ${qui} attestation d'annuaire [${j}] : la capture brute ne porte pas EXACTEMENT les champs attestés ` +
+              `(organisationName ${okNom ? "oui" : "NON"} · organisationTypeCode ${okType ? "oui" : "NON"} · website ${okSite ? "oui" : "NON"} · occurrences de website ${nbSites} ≠ 1)`);
+          } else if (!hoteCandidate || hote(att.site_web) !== hoteCandidate) {
+            echec(`${id} — ${qui} attestation d'annuaire [${j}] : site attesté « ${att.site_web} » ≠ domaine de la candidate « ${hoteCandidate ?? "?"} »`);
+          } else {
+            domaineProuveParCandidate.add(`${id}#${i}`);
+          }
+        }
+      }
     }
     /* 25 — ESCALADE : le lien reste affiché sous « Sources officielles » par la fiche. */
     if (c.nature_editeur === "non_officiel") {
@@ -609,6 +668,12 @@ for (const id of CONTRACTUELS) {
     if (c.piece?.type !== "extrait") echec(`${id} — la pièce décisive d'une promotion doit être un EXTRAIT (capture seule refusée)`);
     if (c.acces === "consultee" && formatReel(c.capture) === "pdf") {
       echec(`${id} — la candidate décisive est un PDF — aucune preuve décisive depuis un PDF en lot-a-1`);
+    }
+    /* Le DOMAINE de la décisive se prouve — être une autorité ne prouve pas posséder le site
+     * (contre-revue des 18 décisions : bad.com.fj passait). */
+    if (!domaineProuveParCandidate.has(`${id}#${d.observation_decisive}`)) {
+      echec(`${id} — promotion : le DOMAINE de la candidate décisive n'est PAS prouvé — aucune preuve de rattachement ` +
+        `ne porte l'hôte dans sa citation ancrée ni d'attestation d'annuaire vérifiée sur la capture brute`);
     }
 
     const r = SourcedQuote.safeParse(d.source);
@@ -632,14 +697,34 @@ for (const id of CONTRACTUELS) {
       }
       dansFenetre(s.verified_date, id, "source promue verified_date");
     }
-  } else if (d.statut === "aucune_source_officielle") {
+  } else if (d.statut === "aucune_source_officielle" || d.statut === "aucune_source_promouvable_dans_ce_run") {
     const eligible = (a.candidates ?? []).find((c) =>
       c.acces === "consultee" && c.nature_editeur === "autorite_pays" && c.pertinence === "etaye_le_fait");
-    if (eligible) echec(`${id} — « aucune_source_officielle » alors qu'une candidate ÉLIGIBLE existe : ${eligible.url_publiee}`);
+    if (eligible) echec(`${id} — « ${d.statut} » alors qu'une candidate ÉLIGIBLE existe : ${eligible.url_publiee}`);
+    if (d.statut === "aucune_source_officielle") {
+      /* « Aucune source officielle » AFFIRME une absence : elle est interdite tant que le
+       * rattachement d'une candidate qui étaye le fait n'est pas instruit, et interdite sans
+       * aucune page consultée (contre-revue des 18 décisions — l'absence ne se conclut pas
+       * de zéro lecture). Le statut honnête est aucune_source_promouvable_dans_ce_run. */
+      const nonInstruite = (a.candidates ?? []).find((c) =>
+        c.acces === "consultee" && c.pertinence === "etaye_le_fait" && c.nature_editeur === "non_etabli");
+      if (nonInstruite) {
+        echec(`${id} — « aucune_source_officielle » alors que « ${nonInstruite.url_publiee} » ÉTAYE LE FAIT sans nature instruite — ` +
+          `rattachement non instruit : le statut honnête est aucune_source_promouvable_dans_ce_run`);
+      }
+      if ((a.candidates ?? []).filter((c) => c.acces === "consultee").length === 0) {
+        echec(`${id} — « aucune_source_officielle » sans AUCUNE consultation — zéro page lue ne conclut pas à l'absence ; ` +
+          `le statut honnête est aucune_source_promouvable_dans_ce_run`);
+      }
+    }
   }
 
-  /* ---- 27/31 · projection dans objects.json : jamais sans la matrice, jamais différente ------- */
+  /* ---- 27/31 · projection dans objects.json : jamais sans la matrice, jamais différente ;
+   *      et BIDIRECTIONNELLE dès qu'une promotion est déclarée APPLIQUÉE ------------------------ */
   const pays = objets.countries.find((x) => x.id === id);
+  if (d.statut === "promue" && d.appliquee === true && !pays?.source) {
+    echec(`${id} — promotion déclarée APPLIQUÉE mais objects.json ne porte AUCUNE source — la projection est bidirectionnelle après l'étape 4`);
+  }
   if (pays?.source) {
     if (d.statut !== "promue") {
       echec(`${id} — objects.json porte une source alors que la matrice ne promeut pas — la matrice fait foi`);
@@ -688,5 +773,7 @@ if (ecarts.length) {
 }
 const total = Object.values(audits).reduce((n, a) => n + a.candidates.length, 0);
 const promues = Object.values(audits).filter((a) => a.decision.statut === "promue").length;
+const sans = Object.values(audits).filter((a) => a.decision.statut === "aucune_source_officielle").length;
+const nonConcluantes = Object.values(audits).filter((a) => a.decision.statut === "aucune_source_promouvable_dans_ce_run").length;
 process.stdout.write(`[audit] matrice conforme — 18 pays · ${total} candidates (bijection triplet) · ${promues} promue(s) · ` +
-  `${18 - promues} sans source officielle · pièces prouvées, contrats canoniques tenus (${asOf}).\n`);
+  `${sans} sans source officielle · ${nonConcluantes} non promouvable(s) dans ce run · pièces prouvées, contrats canoniques tenus (${asOf}).\n`);

@@ -1,7 +1,7 @@
 {
   "audits": {
     "country_bh": {
-      "audite_par": "Claude — audit lot A (contre-revue Codex)",
+      "audite_par": "Claude — audit lot A",
       "audite_le": "2026-08-25",
       "candidates": [
         {
@@ -155,12 +155,12 @@
         }
       ],
       "decision": {
-        "statut": "aucune_source_officielle",
-        "motif": "Aucune candidate éligible : la nature d'éditeur des candidates consultées n'a pas pu être établie — aucune observation de rattachement dédiée à ce pays dans ce run — et l'éligibilité exige autorite_pays et etaye_le_fait. Documenté pour instruction ultérieure."
+        "statut": "aucune_source_promouvable_dans_ce_run",
+        "motif": "Les trois pages douanières dédiées (customs.gov.bh) ont répondu 403 et les deux pages consultées sont génériques : l'audit de ce run ne peut ni promouvoir ni conclure à l'absence de source."
       }
     },
     "country_bs": {
-      "audite_par": "Claude — audit lot A (contre-revue Codex)",
+      "audite_par": "Claude — audit lot A",
       "audite_le": "2026-08-25",
       "candidates": [
         {
@@ -291,12 +291,12 @@
         }
       ],
       "decision": {
-        "statut": "aucune_source_officielle",
-        "motif": "Une seule candidate consultée, un PDF sans preuve textuelle possible en lot-a-1 (pièce = capture) ; les pages BAHFSA et bahamas.gov.bs ont répondu 403, et l'observation de rattachement dédiée (n 94) est un PDF, écartée. Aucune candidate éligible."
+        "statut": "aucune_source_promouvable_dans_ce_run",
+        "motif": "Une seule candidate consultée, un PDF sans preuve textuelle possible en lot-a-1 (pièce = capture) ; les pages BAHFSA et bahamas.gov.bs ont répondu 403, et l'observation de rattachement dédiée (n 94) est un PDF, écartée. Rien de promouvable ni de concluant dans ce run."
       }
     },
     "country_ci": {
-      "audite_par": "Claude — audit lot A (contre-revue Codex)",
+      "audite_par": "Claude — audit lot A",
       "audite_le": "2026-08-25",
       "candidates": [
         {
@@ -514,12 +514,12 @@
         }
       ],
       "decision": {
-        "statut": "aucune_source_officielle",
-        "motif": "Aucune candidate éligible : la nature d'éditeur des candidates consultées n'a pas pu être établie — aucune observation de rattachement dédiée à ce pays dans ce run — et l'éligibilité exige autorite_pays et etaye_le_fait. Documenté pour instruction ultérieure."
+        "statut": "aucune_source_promouvable_dans_ce_run",
+        "motif": "Des candidates étayent le fait mais leur nature d'éditeur n'est pas instruite — aucune observation de rattachement dédiée à ce pays dans ce run : rien n'est promouvable DANS CE RUN, et l'absence de source officielle ne peut pas être affirmée. Un second run de rattachements est requis pour conclure."
       }
     },
     "country_ec": {
-      "audite_par": "Claude — audit lot A (contre-revue Codex)",
+      "audite_par": "Claude — audit lot A",
       "audite_le": "2026-08-25",
       "candidates": [
         {
@@ -620,9 +620,9 @@
           },
           "piece": {
             "type": "extrait",
-            "extrait": "Requisitos de ingreso de mascotas de compañía (perros y gatos) a Ecuador La presente información ha sido tomada de la web oficial de la Agencia AGROCALIDAD del Gobierno del Ecuador.",
+            "extrait": "PASO 1. – Presentar el Certificado Zoosanitario de Exportación para su perro y/o gato otorgado por el Servicio Veterinario Oficial del país de procedencia en español, detallando el cumpliendo de los requisitos sanitarios exigidos por Ecuador.",
             "langue": "es",
-            "locator": "corps de l'article (Red Cancillería, Espagne)"
+            "locator": "Puntos a cumplir — PASO 1 (article Red Cancillería, Espagne)"
           },
           "nature_editeur": "non_etabli",
           "preuves_rattachement": [],
@@ -715,12 +715,12 @@
         }
       ],
       "decision": {
-        "statut": "aucune_source_officielle",
-        "motif": "Aucune candidate éligible : la nature d'éditeur des candidates consultées n'a pas pu être établie — aucune observation de rattachement dédiée à ce pays dans ce run — et l'éligibilité exige autorite_pays et etaye_le_fait. Documenté pour instruction ultérieure."
+        "statut": "aucune_source_promouvable_dans_ce_run",
+        "motif": "Des candidates étayent le fait mais leur nature d'éditeur n'est pas instruite — aucune observation de rattachement dédiée à ce pays dans ce run : rien n'est promouvable DANS CE RUN, et l'absence de source officielle ne peut pas être affirmée. Un second run de rattachements est requis pour conclure."
       }
     },
     "country_et": {
-      "audite_par": "Claude — audit lot A (contre-revue Codex)",
+      "audite_par": "Claude — audit lot A",
       "audite_le": "2026-08-25",
       "candidates": [
         {
@@ -984,11 +984,11 @@
       ],
       "decision": {
         "statut": "aucune_source_officielle",
-        "motif": "Aucune candidate éligible : la nature d'éditeur des candidates consultées n'a pas pu être établie — aucune observation de rattachement dédiée à ce pays dans ce run — et l'éligibilité exige autorite_pays et etaye_le_fait. Documenté pour instruction ultérieure."
+        "motif": "Six pages consultées, toutes génériques (accueil, secteurs, services, guichet unique, guide commercial) : aucune ne décrit les conditions d'importation des chiens — aucune source officielle n'est établie parmi les candidates publiées."
       }
     },
     "country_fj": {
-      "audite_par": "Claude — audit lot A (contre-revue Codex)",
+      "audite_par": "Claude — audit lot A",
       "audite_le": "2026-08-25",
       "candidates": [
         {
@@ -1039,11 +1039,11 @@
                 "verified_date": "2026-08-25",
                 "review_due": "2027-02-21",
                 "confidence": 3,
-                "reviewer": "Claude — audit lot A (contre-revue Codex)",
+                "reviewer": "Claude — audit lot A",
                 "history": [],
                 "quote": "Home Biosecurity Authority of Fiji (BAF) Personnel Mr. Surend Pratap (Acting) Chief Executive Officer for Biosecurity Authority of Fiji (BAF)",
                 "quote_language": "en",
-                "locator": "fiche BAF de l'annuaire officiel des organisations gouvernementales fidjiennes ; le champ « website » de la même fiche, dans la capture brute scellée (blob JSON, non extractible en texte dérivé), porte http://www.baf.com.fj"
+                "locator": "fiche BAF de l'annuaire officiel des organisations gouvernementales fidjiennes ; le champ « website » de la même fiche est prouvé par l'attestation d'annuaire ci-jointe, vérifiée mécaniquement sur la capture brute"
               },
               "capture": {
                 "chemin": "audit-pays-pieces/run-2026-08-25T05-05-53-556/92-directory.digital.gov.fj.html",
@@ -1055,6 +1055,11 @@
                   "sha256": "8485e5e0762038b41e23df9b1e04dba21416ead54522901ea8c96ec426cff901"
                 },
                 "extracteur": "lot-a-4"
+              },
+              "attestation_annuaire": {
+                "organisation": "Biosecurity Authority of Fiji (BAF)",
+                "type_organisation": "Government Agencies",
+                "site_web": "http://www.baf.com.fj"
               }
             }
           ],
@@ -1109,11 +1114,11 @@
                 "verified_date": "2026-08-25",
                 "review_due": "2027-02-21",
                 "confidence": 3,
-                "reviewer": "Claude — audit lot A (contre-revue Codex)",
+                "reviewer": "Claude — audit lot A",
                 "history": [],
                 "quote": "Home Biosecurity Authority of Fiji (BAF) Personnel Mr. Surend Pratap (Acting) Chief Executive Officer for Biosecurity Authority of Fiji (BAF)",
                 "quote_language": "en",
-                "locator": "fiche BAF de l'annuaire officiel des organisations gouvernementales fidjiennes ; le champ « website » de la même fiche, dans la capture brute scellée (blob JSON, non extractible en texte dérivé), porte http://www.baf.com.fj"
+                "locator": "fiche BAF de l'annuaire officiel des organisations gouvernementales fidjiennes ; le champ « website » de la même fiche est prouvé par l'attestation d'annuaire ci-jointe, vérifiée mécaniquement sur la capture brute"
               },
               "capture": {
                 "chemin": "audit-pays-pieces/run-2026-08-25T05-05-53-556/92-directory.digital.gov.fj.html",
@@ -1125,6 +1130,11 @@
                   "sha256": "8485e5e0762038b41e23df9b1e04dba21416ead54522901ea8c96ec426cff901"
                 },
                 "extracteur": "lot-a-4"
+              },
+              "attestation_annuaire": {
+                "organisation": "Biosecurity Authority of Fiji (BAF)",
+                "type_organisation": "Government Agencies",
+                "site_web": "http://www.baf.com.fj"
               }
             }
           ],
@@ -1178,11 +1188,11 @@
                 "verified_date": "2026-08-25",
                 "review_due": "2027-02-21",
                 "confidence": 3,
-                "reviewer": "Claude — audit lot A (contre-revue Codex)",
+                "reviewer": "Claude — audit lot A",
                 "history": [],
                 "quote": "Home Biosecurity Authority of Fiji (BAF) Personnel Mr. Surend Pratap (Acting) Chief Executive Officer for Biosecurity Authority of Fiji (BAF)",
                 "quote_language": "en",
-                "locator": "fiche BAF de l'annuaire officiel des organisations gouvernementales fidjiennes ; le champ « website » de la même fiche, dans la capture brute scellée (blob JSON, non extractible en texte dérivé), porte http://www.baf.com.fj"
+                "locator": "fiche BAF de l'annuaire officiel des organisations gouvernementales fidjiennes ; le champ « website » de la même fiche est prouvé par l'attestation d'annuaire ci-jointe, vérifiée mécaniquement sur la capture brute"
               },
               "capture": {
                 "chemin": "audit-pays-pieces/run-2026-08-25T05-05-53-556/92-directory.digital.gov.fj.html",
@@ -1194,6 +1204,11 @@
                   "sha256": "8485e5e0762038b41e23df9b1e04dba21416ead54522901ea8c96ec426cff901"
                 },
                 "extracteur": "lot-a-4"
+              },
+              "attestation_annuaire": {
+                "organisation": "Biosecurity Authority of Fiji (BAF)",
+                "type_organisation": "Government Agencies",
+                "site_web": "http://www.baf.com.fj"
               }
             }
           ],
@@ -1248,11 +1263,11 @@
                 "verified_date": "2026-08-25",
                 "review_due": "2027-02-21",
                 "confidence": 3,
-                "reviewer": "Claude — audit lot A (contre-revue Codex)",
+                "reviewer": "Claude — audit lot A",
                 "history": [],
                 "quote": "Home Biosecurity Authority of Fiji (BAF) Personnel Mr. Surend Pratap (Acting) Chief Executive Officer for Biosecurity Authority of Fiji (BAF)",
                 "quote_language": "en",
-                "locator": "fiche BAF de l'annuaire officiel des organisations gouvernementales fidjiennes ; le champ « website » de la même fiche, dans la capture brute scellée (blob JSON, non extractible en texte dérivé), porte http://www.baf.com.fj"
+                "locator": "fiche BAF de l'annuaire officiel des organisations gouvernementales fidjiennes ; le champ « website » de la même fiche est prouvé par l'attestation d'annuaire ci-jointe, vérifiée mécaniquement sur la capture brute"
               },
               "capture": {
                 "chemin": "audit-pays-pieces/run-2026-08-25T05-05-53-556/92-directory.digital.gov.fj.html",
@@ -1264,6 +1279,11 @@
                   "sha256": "8485e5e0762038b41e23df9b1e04dba21416ead54522901ea8c96ec426cff901"
                 },
                 "extracteur": "lot-a-4"
+              },
+              "attestation_annuaire": {
+                "organisation": "Biosecurity Authority of Fiji (BAF)",
+                "type_organisation": "Government Agencies",
+                "site_web": "http://www.baf.com.fj"
               }
             }
           ],
@@ -1300,7 +1320,7 @@
           "verified_date": "2026-08-25",
           "review_due": "2027-02-21",
           "confidence": 3,
-          "reviewer": "Claude — audit lot A (contre-revue Codex)",
+          "reviewer": "Claude — audit lot A",
           "history": [],
           "quote": "Apply for a BAF import permit One of the first requirements for bringing pets (dogs and cats) into Fiji is to apply for an import permit with BAF.",
           "quote_language": "en",
@@ -1309,7 +1329,7 @@
       }
     },
     "country_gh": {
-      "audite_par": "Claude — audit lot A (contre-revue Codex)",
+      "audite_par": "Claude — audit lot A",
       "audite_le": "2026-08-25",
       "candidates": [
         {
@@ -1432,9 +1452,9 @@
           },
           "piece": {
             "type": "extrait",
-            "extrait": "Pet Travel From the United States to Ghana Last Modified: July 30, 2025",
+            "extrait": "Health certificates must be legible, accurate, and complete. Expand All Collapse All Dogs and Cats International Health Certificate",
             "langue": "en",
-            "locator": "page APHIS Pet Travel to Ghana"
+            "locator": "page APHIS Pet Travel to Ghana — section Dogs and Cats, certificat sanitaire international"
           },
           "nature_editeur": "non_etabli",
           "preuves_rattachement": [],
@@ -1527,12 +1547,12 @@
         }
       ],
       "decision": {
-        "statut": "aucune_source_officielle",
-        "motif": "Aucune candidate éligible : la nature d'éditeur des candidates consultées n'a pas pu être établie — aucune observation de rattachement dédiée à ce pays dans ce run — et l'éligibilité exige autorite_pays et etaye_le_fait. Documenté pour instruction ultérieure."
+        "statut": "aucune_source_promouvable_dans_ce_run",
+        "motif": "Des candidates étayent le fait mais leur nature d'éditeur n'est pas instruite — aucune observation de rattachement dédiée à ce pays dans ce run : rien n'est promouvable DANS CE RUN, et l'absence de source officielle ne peut pas être affirmée. Un second run de rattachements est requis pour conclure."
       }
     },
     "country_jm": {
-      "audite_par": "Claude — audit lot A (contre-revue Codex)",
+      "audite_par": "Claude — audit lot A",
       "audite_le": "2026-08-25",
       "candidates": [
         {
@@ -1750,12 +1770,12 @@
         }
       ],
       "decision": {
-        "statut": "aucune_source_officielle",
-        "motif": "Aucune candidate éligible : la nature d'éditeur des candidates consultées n'a pas pu être établie — aucune observation de rattachement dédiée à ce pays dans ce run — et l'éligibilité exige autorite_pays et etaye_le_fait. Documenté pour instruction ultérieure."
+        "statut": "aucune_source_promouvable_dans_ce_run",
+        "motif": "Des candidates étayent le fait mais leur nature d'éditeur n'est pas instruite — aucune observation de rattachement dédiée à ce pays dans ce run : rien n'est promouvable DANS CE RUN, et l'absence de source officielle ne peut pas être affirmée. Un second run de rattachements est requis pour conclure."
       }
     },
     "country_kw": {
-      "audite_par": "Claude — audit lot A (contre-revue Codex)",
+      "audite_par": "Claude — audit lot A",
       "audite_le": "2026-08-25",
       "candidates": [
         {
@@ -1908,12 +1928,12 @@
         }
       ],
       "decision": {
-        "statut": "aucune_source_officielle",
-        "motif": "La page dédiée du MOFA a de nouveau répondu 403 (déjà constaté en contre-revue v1) ; les deux pages consultées sont éditées par APHIS, autorité des États-Unis, dont le rattachement à l'autorité du Koweït n'est pas en cause : nature non établie, aucune candidate éligible."
+        "statut": "aucune_source_promouvable_dans_ce_run",
+        "motif": "La page dédiée du MOFA a de nouveau répondu 403 (déjà constaté en contre-revue v1) ; la page APHIS consultée étaye le fait mais sa nature n'est pas instruite dans ce run : rien de promouvable ni de concluant."
       }
     },
     "country_lb": {
-      "audite_par": "Claude — audit lot A (contre-revue Codex)",
+      "audite_par": "Claude — audit lot A",
       "audite_le": "2026-08-25",
       "candidates": [
         {
@@ -2007,7 +2027,7 @@
                 "verified_date": "2026-08-25",
                 "review_due": "2027-02-21",
                 "confidence": 3,
-                "reviewer": "Claude — audit lot A (contre-revue Codex)",
+                "reviewer": "Claude — audit lot A",
                 "history": [],
                 "quote": "Consulate General of Lebanon Nine E. 76th St. New York, New York 10021 Telephone: Fax: URL: Email: (212) 744-7905 (212) 794-1510 www.nylebcons.org",
                 "quote_language": "en",
@@ -2106,13 +2126,13 @@
           },
           "piece": {
             "type": "extrait",
-            "extrait": "Pet Travel From the United States to Lebanon Last Modified: July 30, 2025",
+            "extrait": "Expand All Collapse All Turtles Requirements for traveling with your pet are described in the health certificate.",
             "langue": "en",
-            "locator": "page APHIS Pet Travel to Lebanon"
+            "locator": "page APHIS Pet Travel to Lebanon — seules sections : Turtles et Other Pets, aucune section chiens"
           },
           "nature_editeur": "non_etabli",
           "preuves_rattachement": [],
-          "pertinence": "etaye_le_fait"
+          "pertinence": "page_generique"
         },
         {
           "manifeste_n": 53,
@@ -2159,12 +2179,12 @@
         }
       ],
       "decision": {
-        "statut": "aucune_source_officielle",
-        "motif": "La page du consulat (mission_diplomatique_pays, prouvée par n 95) étaye le fait mais n'est pas l'autorité du pays ; le décret 523 du ministère a rendu une page sans texte extractible (pièce = capture). Aucune candidate autorite_pays + etaye_le_fait."
+        "statut": "aucune_source_promouvable_dans_ce_run",
+        "motif": "La page du consulat (mission_diplomatique_pays, prouvée par n 95) étaye le fait mais une mission n'est pas l'autorité du pays ; le décret 523 a rendu une page sans texte extractible : rien de promouvable dans ce run, sans pouvoir affirmer l'absence de source."
       }
     },
     "country_mg": {
-      "audite_par": "Claude — audit lot A (contre-revue Codex)",
+      "audite_par": "Claude — audit lot A",
       "audite_le": "2026-08-25",
       "candidates": [
         {
@@ -2362,12 +2382,12 @@
         }
       ],
       "decision": {
-        "statut": "aucune_source_officielle",
-        "motif": "Aucune candidate éligible : la nature d'éditeur des candidates consultées n'a pas pu être établie — aucune observation de rattachement dédiée à ce pays dans ce run — et l'éligibilité exige autorite_pays et etaye_le_fait. Documenté pour instruction ultérieure."
+        "statut": "aucune_source_promouvable_dans_ce_run",
+        "motif": "Des candidates étayent le fait mais leur nature d'éditeur n'est pas instruite — aucune observation de rattachement dédiée à ce pays dans ce run : rien n'est promouvable DANS CE RUN, et l'absence de source officielle ne peut pas être affirmée. Un second run de rattachements est requis pour conclure."
       }
     },
     "country_mv": {
-      "audite_par": "Claude — audit lot A (contre-revue Codex)",
+      "audite_par": "Claude — audit lot A",
       "audite_le": "2026-08-25",
       "candidates": [
         {
@@ -2456,12 +2476,12 @@
         }
       ],
       "decision": {
-        "statut": "aucune_source_officielle",
-        "motif": "Aucune candidate n'a pu être consultée (quatre tentatives : trois HTTP 403 et un échec DNS) — aucun verdict sur pièce n'est possible."
+        "statut": "aucune_source_promouvable_dans_ce_run",
+        "motif": "Aucune candidate n'a pu être consultée (quatre tentatives : trois HTTP 403 et un échec DNS) — zéro page lue ne permet ni promotion ni conclusion d'absence."
       }
     },
     "country_ng": {
-      "audite_par": "Claude — audit lot A (contre-revue Codex)",
+      "audite_par": "Claude — audit lot A",
       "audite_le": "2026-08-25",
       "candidates": [
         {
@@ -2585,9 +2605,9 @@
           },
           "piece": {
             "type": "extrait",
-            "extrait": "Pet Travel From the United States to Nigeria Last Modified: July 30, 2025",
+            "extrait": "Dogs and Cats Health Certificate The requirements for traveling with your pet are described in the health certificate.",
             "langue": "en",
-            "locator": "page APHIS Pet Travel to Nigeria"
+            "locator": "page APHIS Pet Travel to Nigeria — section Dogs and Cats"
           },
           "nature_editeur": "non_etabli",
           "preuves_rattachement": [],
@@ -2680,12 +2700,12 @@
         }
       ],
       "decision": {
-        "statut": "aucune_source_officielle",
-        "motif": "Aucune candidate éligible : la nature d'éditeur des candidates consultées n'a pas pu être établie — aucune observation de rattachement dédiée à ce pays dans ce run — et l'éligibilité exige autorite_pays et etaye_le_fait. Documenté pour instruction ultérieure."
+        "statut": "aucune_source_promouvable_dans_ce_run",
+        "motif": "Des candidates étayent le fait mais leur nature d'éditeur n'est pas instruite — aucune observation de rattachement dédiée à ce pays dans ce run : rien n'est promouvable DANS CE RUN, et l'absence de source officielle ne peut pas être affirmée. Un second run de rattachements est requis pour conclure."
       }
     },
     "country_np": {
-      "audite_par": "Claude — audit lot A (contre-revue Codex)",
+      "audite_par": "Claude — audit lot A",
       "audite_le": "2026-08-25",
       "candidates": [
         {
@@ -2860,12 +2880,12 @@
         }
       ],
       "decision": {
-        "statut": "aucune_source_officielle",
-        "motif": "Aucune candidate éligible : la nature d'éditeur des candidates consultées n'a pas pu être établie — aucune observation de rattachement dédiée à ce pays dans ce run — et l'éligibilité exige autorite_pays et etaye_le_fait. Documenté pour instruction ultérieure."
+        "statut": "aucune_source_promouvable_dans_ce_run",
+        "motif": "Des candidates étayent le fait mais leur nature d'éditeur n'est pas instruite — aucune observation de rattachement dédiée à ce pays dans ce run : rien n'est promouvable DANS CE RUN, et l'absence de source officielle ne peut pas être affirmée. Un second run de rattachements est requis pour conclure."
       }
     },
     "country_om": {
-      "audite_par": "Claude — audit lot A (contre-revue Codex)",
+      "audite_par": "Claude — audit lot A",
       "audite_le": "2026-08-25",
       "candidates": [
         {
@@ -2977,12 +2997,12 @@
         }
       ],
       "decision": {
-        "statut": "aucune_source_officielle",
-        "motif": "Aucune candidate éligible : la nature d'éditeur des candidates consultées n'a pas pu être établie — aucune observation de rattachement dédiée à ce pays dans ce run — et l'éligibilité exige autorite_pays et etaye_le_fait. Documenté pour instruction ultérieure."
+        "statut": "aucune_source_promouvable_dans_ce_run",
+        "motif": "Des candidates étayent le fait mais leur nature d'éditeur n'est pas instruite — aucune observation de rattachement dédiée à ce pays dans ce run : rien n'est promouvable DANS CE RUN, et l'absence de source officielle ne peut pas être affirmée. Un second run de rattachements est requis pour conclure."
       }
     },
     "country_ru": {
-      "audite_par": "Claude — audit lot A (contre-revue Codex)",
+      "audite_par": "Claude — audit lot A",
       "audite_le": "2026-08-25",
       "candidates": [
         {
@@ -3157,12 +3177,12 @@
         }
       ],
       "decision": {
-        "statut": "aucune_source_officielle",
-        "motif": "Aucune candidate éligible : la nature d'éditeur des candidates consultées n'a pas pu être établie — aucune observation de rattachement dédiée à ce pays dans ce run — et l'éligibilité exige autorite_pays et etaye_le_fait. Documenté pour instruction ultérieure."
+        "statut": "aucune_source_promouvable_dans_ce_run",
+        "motif": "Des candidates étayent le fait mais leur nature d'éditeur n'est pas instruite — aucune observation de rattachement dédiée à ce pays dans ce run : rien n'est promouvable DANS CE RUN, et l'absence de source officielle ne peut pas être affirmée. Un second run de rattachements est requis pour conclure."
       }
     },
     "country_sc": {
-      "audite_par": "Claude — audit lot A (contre-revue Codex)",
+      "audite_par": "Claude — audit lot A",
       "audite_le": "2026-08-25",
       "candidates": [
         {
@@ -3317,11 +3337,11 @@
       ],
       "decision": {
         "statut": "aucune_source_officielle",
-        "motif": "Aucune candidate éligible : la nature d'éditeur des candidates consultées n'a pas pu être établie — aucune observation de rattachement dédiée à ce pays dans ce run — et l'éligibilité exige autorite_pays et etaye_le_fait. Documenté pour instruction ultérieure."
+        "motif": "Les pages consultées sont générales (restrictions sur les animaux, page de division) et l'unique PDF reste sans preuve textuelle : aucune candidate n'étaye précisément le fait — aucune source officielle n'est établie parmi les candidates publiées."
       }
     },
     "country_uy": {
-      "audite_par": "Claude — audit lot A (contre-revue Codex)",
+      "audite_par": "Claude — audit lot A",
       "audite_le": "2026-08-25",
       "candidates": [
         {
@@ -3605,8 +3625,8 @@
         }
       ],
       "decision": {
-        "statut": "aucune_source_officielle",
-        "motif": "Aucune candidate éligible : la nature d'éditeur des candidates consultées n'a pas pu être établie — aucune observation de rattachement dédiée à ce pays dans ce run — et l'éligibilité exige autorite_pays et etaye_le_fait. Documenté pour instruction ultérieure."
+        "statut": "aucune_source_promouvable_dans_ce_run",
+        "motif": "Des candidates étayent le fait mais leur nature d'éditeur n'est pas instruite — aucune observation de rattachement dédiée à ce pays dans ce run : rien n'est promouvable DANS CE RUN, et l'absence de source officielle ne peut pas être affirmée. Un second run de rattachements est requis pour conclure."
       }
     }
   },
