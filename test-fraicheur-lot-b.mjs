@@ -9,7 +9,7 @@
  * (seul dans le PATH, journalisant CHAQUE invocation) pilote les réponses par FAUX_MODE.
  * Chaque cas exige le refus, le rapport, ou l'invariant — exactement.
  *
- * QUATORZE CAS :
+ * SEIZE CAS :
  *   1.  registre VIDE → sortie 2, « AUCUNE source vivante », aucun rapport.
  *   2.  les DEUX AXES sont indépendants : une source ÉCHUE et INACCESSIBLE porte les deux
  *       états ; une source à jour hors tranche reste NON_CONTROLEE — jamais implicitement
@@ -39,6 +39,13 @@
  *       MODIFIÉE — jamais « règle devenue fausse » (le rapport ne porte aucun verdict).
  *   14. registre EXACT : une URL remplacée à agrégats constants change l'empreinte globale
  *       ET celle de sa famille, et la comparaison symétrique la nomme au locator.
+ *   15. scellé du registre ABSENT → sortie 2, aucun rapport — rien ne se surveille sans
+ *       contrat. [contre-revue du socle]
+ *   16. source changée SANS rescellement → la vérification de CI (sceller-registre) la
+ *       NOMME au locator et échoue ; le contrôleur hebdomadaire REFUSE (panne structurelle,
+ *       aucun rapport) ; rescellée explicitement, la vérification repasse au vert — le
+ *       remplacement furtif d'URL est mort DANS LE SYSTÈME QUI TOURNE, plus seulement dans
+ *       les tests. [contre-revue du socle]
  */
 import { readFileSync, writeFileSync, mkdirSync, copyFileSync, symlinkSync, mkdtempSync, rmSync, existsSync, readdirSync, chmodSync } from "node:fs";
 import { createHash } from "node:crypto";
@@ -105,16 +112,21 @@ try {
   symlinkSync(resolve("node_modules"), join(arbre, "node_modules"));
   mkdirSync(join(arbre, "fraicheur"), { recursive: true });
   for (const f of ["fraicheur/registre-fraicheur.mjs", "fraicheur/reseau-fraicheur.mjs",
-    "fraicheur/controler-fraicheur.mjs", "fraicheur/references.json", "liste-rattachements-lot-a.mjs"]) {
+    "fraicheur/controler-fraicheur.mjs", "fraicheur/sceller-registre.mjs",
+    "fraicheur/registre-scelle.json", "fraicheur/references.json", "liste-rattachements-lot-a.mjs"]) {
     copyFileSync(f, join(arbre, f));
   }
-  const CHEMINS_DONNEES = ["fraicheur/references.json", "packages/knowledge/raw/objects.json",
+  const CHEMINS_DONNEES = ["fraicheur/references.json", "fraicheur/registre-scelle.json",
+    "packages/knowledge/raw/objects.json",
     "packages/knowledge/raw/rules.json", "packages/knowledge/raw/breed-restrictions.json"];
   const pristins = Object.fromEntries(CHEMINS_DONNEES.map((p) => [p, readFileSync(join(arbre, p))]));
   const restaurer = () => { for (const [p, c] of Object.entries(pristins)) writeFileSync(join(arbre, p), c); };
 
   /* le registre RÉEL de l'arbre, lu par le module lui-même (cas 10, 11, 14) */
   const registre = lireRegistre(arbre);
+  /* le geste légitime : source changée + scellé RESCELLÉ dans le même mouvement */
+  const sceller = (...args) => spawnSync("node", ["--import", "tsx", "fraicheur/sceller-registre.mjs", ...args],
+    { cwd: arbre, encoding: "utf-8" });
   const urlMax = [...registre.parUrl.entries()].sort((a, b) => b[1].length - a[1].length)[0];
 
   /* ---- 1. registre vide ---------------------------------------------------------------------- */
@@ -275,6 +287,7 @@ try {
     const ancienne = cible.source.url;
     cible.source.url = "https://autorite-deplacee.example/nouvelle-adresse";
     writeFileSync(join(arbre, "packages/knowledge/raw/objects.json"), JSON.stringify(objets, null, 2));
+    sceller("--ecrire");   // le geste légitime : la donnée ET son scellé, ensemble
     const registreApres = lireRegistre(arbre);
     const ecarts = comparerRegistres(registre, registreApres);
     if (!ecarts.some((e) => e.type === "modifiee" && e.famille === "countries")) {
@@ -298,6 +311,38 @@ try {
     restaurer();
   }
 
+  /* ---- 15. scellé du registre ABSENT → panne structurelle, rien d'interprétable -------------- */
+  {
+    rmSync(join(arbre, "fraicheur/registre-scelle.json"), { force: true });
+    const r = lancer(["--date=2026-10-15", "--sortie=sortie-15"]);
+    restaurer();
+    if (r.status !== 2 || !/registre-scelle\.json ABSENT/.test(r.stderr)) {
+      echec("15 scellé absent", `sortie ${r.status} — un run sans contrat de registre passe :\n      ${r.stderr.trim().split("\n").slice(0, 2).join("\n      ")}`);
+    }
+    if (existsSync(join(arbre, "sortie-15"))) echec("15 scellé absent", "un rapport a été produit sans scellé");
+  }
+
+  /* ---- 16. source changée SANS rescellement : nommée par la CI, refusée par le run,
+   *          puis verte une fois RESCELLÉE — le remplacement furtif d'URL est mort ------------- */
+  {
+    const objets = JSON.parse(pristins["packages/knowledge/raw/objects.json"].toString("utf-8"));
+    objets.countries.find((c) => c.source).source.url = "https://furtive.example/remplacee-sans-bouger-les-agregats";
+    writeFileSync(join(arbre, "packages/knowledge/raw/objects.json"), JSON.stringify(objets, null, 2));
+    const v = sceller();
+    if (v.status !== 1 || !/SANS rescellement/.test(v.stderr) || !/modifiee — countries/.test(v.stderr)) {
+      echec("16 remplacement furtif", `la vérification de CI ne nomme pas l'écart (statut ${v.status}) :\n      ${(v.stderr || "").trim().split("\n").slice(0, 3).join("\n      ")}`);
+    }
+    const r = lancer(["--date=2026-10-15", "--sortie=sortie-16"]);
+    if (r.status !== 2 || !/≠ scellé versionné/.test(r.stderr)) {
+      echec("16 remplacement furtif", `le contrôleur hebdomadaire laisse passer (statut ${r.status})`);
+    }
+    if (existsSync(join(arbre, "sortie-16"))) echec("16 remplacement furtif", "un rapport a été produit sur un registre hors scellé");
+    const e = sceller("--ecrire");
+    if (e.status !== 0) echec("16 remplacement furtif", "le rescellement explicite échoue");
+    else if (sceller().status !== 0) echec("16 remplacement furtif", "après rescellement, la vérification ne repasse pas au vert");
+    restaurer();
+  }
+
   /* ---- 12. le secret n'atteint AUCUN artefact ------------------------------------------------ */
   {
     let fuites = 0;
@@ -318,7 +363,7 @@ try {
 
 /* ---- verdict ---------------------------------------------------------------------------------- */
 if (defauts.length === 0) {
-  process.stdout.write("14 cas éprouvés au faux curl : un registre vide refuse ; les axes échéance et contrôle\n");
+  process.stdout.write("16 cas éprouvés au faux curl : un registre vide refuse ; les axes échéance et contrôle\n");
   process.stdout.write("sont indépendants (échue ET inaccessible, hors tranche = non contrôlée) ; la première\n");
   process.stdout.write("capture ne consacre rien (sans_reference, jamais inchangée) ; les échues sont toutes en\n");
   process.stdout.write("file et la sortie reste 0 ; le contrôleur n'écrit rien hors de sa sortie et refuse une\n");
@@ -326,8 +371,10 @@ if (defauts.length === 0) {
   process.stdout.write("schéma et des références difformes refusent ; une URL se télécharge UNE fois pour tous\n");
   process.stdout.write("ses locators ; le coupe-circuit (sonde, zéro joignable, egress) ne fabrique aucune\n");
   process.stdout.write("inaccessible ; la rotation sans état couvre tout en 8 semaines ; une URL déplacée est\n");
-  process.stdout.write("nommée puis sans référence ; aucun secret n'atteint un artefact ; et la référence figée\n");
-  process.stdout.write("distingue inchangée de potentiellement modifiée — sans jamais prononcer de verdict.\n\n");
+  process.stdout.write("nommée puis sans référence ; aucun secret n'atteint un artefact ; la référence figée\n");
+  process.stdout.write("distingue inchangée de potentiellement modifiée — sans jamais prononcer de verdict ;\n");
+  process.stdout.write("et le SCELLÉ du registre vit dans le système qui tourne : absent → refus, source\n");
+  process.stdout.write("changée sans rescellement → nommée en CI et refusée au run, rescellée → vert.\n\n");
   process.stdout.write("[fraicheur] le contrôleur observe, il ne fabrique rien.\n");
   process.exit(0);
 }

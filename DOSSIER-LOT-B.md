@@ -7,8 +7,9 @@ verdict, ni une référence — toute correction est une PR humaine.
 Reproduction :
 
 ```bash
+node --import tsx fraicheur/sceller-registre.mjs                        # scellé ≡ registre (câblé en CI de PR, quelques secondes)
 node --import tsx fraicheur/controler-fraicheur.mjs --date=AAAA-MM-JJ   # le run (réseau réel)
-node --import tsx test-fraicheur-lot-b.mjs                              # 14 cas au faux curl
+node --import tsx test-fraicheur-lot-b.mjs                              # 16 cas au faux curl (câblé en CI de PR, ~2 min 30)
 ```
 
 ## 0. Mesure fondatrice — recalculée depuis `main` après fusion du lot A
@@ -34,6 +35,19 @@ schéma canonique importé, jamais un second validateur partiel) ; tri détermin
 nommant toute entrée ajoutée, supprimée ou modifiée au locator — le faux vert historique
 (une URL remplacée sans déplacer aucun agrégat) est mort (contre-épreuve 14). Échec bruyant :
 registre vide, source rejetée par le schéma, identité instable — chacun nommé.
+
+**Le registre est SCELLÉ dans le système qui tourne** (contre-revue du socle : un registre
+exact que le run ne confronte à rien ne protège rien). `fraicheur/registre-scelle.json`
+(versionné) porte les triplets triés (famille, locator, empreinte de la Source canonique) et
+les empreintes ; toute PR qui change une source **rescelle dans la même PR**
+(`sceller-registre.mjs --ecrire` — le diff du scellé rend le changement visible et revu) ;
+la **CI de PR** vérifie l'égalité (pas dédié, sans réseau, quelques secondes) et le
+**contrôleur hebdomadaire** la vérifie aussi avant tout run — un `main` hors de son scellé
+est une panne STRUCTURELLE, sortie 2, rien d'interprétable (contre-épreuves 15-16 : scellé
+absent → refus ; URL remplacée sans rescellement → nommée au locator par la CI ET refusée
+par le run ; rescellée → vert). À la différence du scellé du lot A (instantané figé d'un
+départ), celui-ci est FAIT pour être rescellé à chaque évolution légitime — le motif du
+scellé de curation.
 
 L'identité RÉSEAU (`SHA256(url)`) est distincte de l'identité des sources par locator :
 elle sert au dédoublonnage (une URL, un téléchargement par run, résultat distribué à tous
@@ -102,7 +116,7 @@ la sortie reste 0 : **une échéance naturelle ne rougit ni ce workflow, ni la C
 actions épinglées mesurées au manifeste — `upload-artifact` v6.0.0 mesuré le 25/08/2026 par
 la méthode documentée).
 
-## 7. Contre-épreuves — `test-fraicheur-lot-b.mjs` (14 cas au faux curl)
+## 7. Contre-épreuves — `test-fraicheur-lot-b.mjs` (16 cas au faux curl, câblés en CI de PR ; ~2 min 30 mesurées — le faux réseau lance un sous-processus par URL)
 
 | # | cas | attendu |
 |---|---|---|
@@ -120,6 +134,8 @@ la méthode documentée).
 | 12 | Set-Cookie SECRET dans chaque réponse | absent de TOUS les artefacts |
 | 13 | référence figée | corps identique → inchangee ; altéré → potentiellement_modifiee ; aucun verdict |
 | 14 | URL remplacée à agrégats constants | empreintes globale ET famille changent ; nommée au locator |
+| 15 | scellé du registre ABSENT | sortie 2, aucun rapport — rien ne se surveille sans contrat |
+| 16 | source changée SANS rescellement | nommée au locator par la vérification de CI, refusée par le run hebdomadaire, verte une fois rescellée |
 
 ## 8. Interdits, et ce qui reste hors du socle
 

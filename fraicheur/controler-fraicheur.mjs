@@ -44,6 +44,7 @@ import { lireRegistre, jsonCanonique, sha256De, CLASSE_IMPACT, ORDRE_IMPACT,
   etatEcheance, dansLaTranche, trancheDe, semaineContinue, N_TRANCHES,
   SEUIL_BIENTOT_JOURS, VERSION_CONTROLEUR } from "./registre-fraicheur.mjs";
 import { sondeEnvironnement, consulterUrl } from "./reseau-fraicheur.mjs";
+import { ecartsAuScelle, CHEMIN_SCELLE } from "./sceller-registre.mjs";
 import { estUrlHttp } from "../liste-rattachements-lot-a.mjs";
 
 const CHEMIN_REFERENCES = "fraicheur/references.json";
@@ -69,10 +70,25 @@ for (const interdit of ["packages", "content", "fraicheur", "audit-pays-pieces",
   }
 }
 
-/* ---- 1. le registre exact -------------------------------------------------------------------- */
+/* ---- 1. le registre exact, CONFRONTÉ à son scellé versionné ---------------------------------
+ * (contre-revue du socle : un registre exact que le run ne confronte à rien ne protège rien).
+ * La CI de PR porte le rouge au moment du changement ; un `main` qui ne respecte pas son
+ * scellé est donc une panne STRUCTURELLE — le run refuse, rien n'est interprétable. */
 let registre;
 try { registre = lireRegistre("."); }
 catch (e) { refus(e.message); }
+{
+  let scelle;
+  try { scelle = JSON.parse(readFileSync(CHEMIN_SCELLE, "utf-8")); }
+  catch { refus(`${CHEMIN_SCELLE} ABSENT ou illisible — le registre exact se scelle, rien ne se surveille sans contrat`); }
+  const ecarts = ecartsAuScelle(registre, scelle);
+  if (ecarts.length) {
+    refus(`le registre recalculé ≠ scellé versionné : ${ecarts.length} écart(s) — ` +
+      ecarts.slice(0, 8).map((e) => `${e.type} ${e.famille}:${e.locator}`).join(" · ") +
+      (ecarts.length > 8 ? ` · … et ${ecarts.length - 8} autre(s)` : "") +
+      " — une source a changé sans rescellement (la CI de PR aurait dû rougir) : panne structurelle, rien n'est interprétable");
+  }
+}
 
 /* ---- 2. les références FIGÉES (versionnées, modifiées par PR humaine uniquement) ------------- */
 const Reference = z.object({
