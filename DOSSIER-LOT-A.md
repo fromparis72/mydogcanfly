@@ -1,4 +1,4 @@
-# Lot A — Audit des 18 pays sans source · dossier de mesure et de conception (v5-sexdecies)
+# Lot A — Audit des 18 pays sans source · dossier de mesure et de conception (v5-septdecies)
 
 **Mesuré sur `main` après fusion du dossier d'achèvement (`1dd62010ea183422f02553877df4706714739080`).
 Ce dossier ne corrige rien : aucune date, aucune source, aucune donnée métier n'est écrite.
@@ -9,7 +9,7 @@ Reproduction :
 ```bash
 node --import tsx mesurer-lot-a.mjs --as-of=2026-08-24   # l'état contre le scellé — sortie 1 au premier écart
 node test-mesure-lot-a.mjs                               # 16 cas : le scellé est exact, et il ne se remplace pas
-node test-audit-pays.mjs                                 # 81 cas : le validateur de la matrice mord (17-96)
+node test-audit-pays.mjs                                 # 84 cas : le validateur de la matrice mord (17-99)
 node test-consulter-lot-a.mjs                            # 21 cas au faux curl : le collecteur ne fabrique rien
 ```
 
@@ -446,6 +446,20 @@ citation ancrée, capture concordante, pièce décisive EXTRAIT) et ne porte jam
 métier. Contre-épreuves 91-96 : chemin vert sur preuve complète ; date future rouge ; motif
 indigent rouge (schéma) ; citation désancrée rouge malgré la validation ; pièce décisive en
 capture seule rouge malgré la validation ; observation non consultée (tentative) rouge.
+**La contre-revue de v5-sexdecies a rendu un P0 et un P1 sur la validation, fermés
+aussitôt** : (P0) la validation ne NOMMAIT pas ce qu'elle validait — `{ validateur, date,
+motif }` sans objet : l'attaque reproduite recopiait la preuve conçue pour `customs.gov.om`
+sur l'autre candidate omanaise (`gov.om`), reconstruisait la promotion depuis l'extrait de
+`gov.om`, et sortait en 0 alors que le motif nommait encore customs.gov.om. La validation
+porte désormais trois champs structurés — `editeur`, `site_web`, `nature_validee` — et le
+validateur exige l'hôte du site validé EXACTEMENT égal à celui de la candidate, la nature
+validée EXACTEMENT égale à la nature déclarée, et ne déduit JAMAIS un domaine du texte
+libre du motif (contre-épreuves 97 — recopiage → rouge — et 98 — nature transposée →
+rouge ; l'attaque exacte de la contre-revue re-jouée sur la matrice réelle rougit avec sa
+cause nommée). (P1) une validation datée AVANT la consultation de son observation passait :
+`validation_editeur.date ≥ observation.consultee_le` est désormais exigé, en plus de la
+borne `--as-of` existante (contre-épreuve 99).
+
 **Oman est promue** sur cet arbitrage : décisive n73 (`customs.gov.om`, page « Veterinary
 Permit to Import Dogs and Cats », extrait ancré du permis vétérinaire PRÉALABLE),
 rattachement `audit-pays-consultations-2.json#2` (la carte de service de la page d'accueil
@@ -672,9 +686,10 @@ pièce-capture, une observation de second run `a_instruire`), et `test-consulter
 redirection hors HTTP(S), le corps au-delà de la borne, l'inventaire exact du run, le
 multi-runs — et sa contre-revue : le préflight partagé refusant une base altérée ou un trou
 de séquence AVANT tout appel, la publication exclusive préservant une cible apparue, le
-scellé de curation mordant au collecteur aussi). S'y ajoutent les contre-épreuves 91-96 de
-la validation éditoriale humaine (arbitrage du 25/08/2026). Le total est **verrouillé à
-96 + 21** :
+scellé de curation mordant au collecteur aussi). S'y ajoutent les contre-épreuves 91-99 de
+la validation éditoriale humaine (arbitrage du 25/08/2026, puis contre-revue de
+v5-sexdecies : la validation nomme ce qu'elle valide). Le total est **verrouillé à
+99 + 21** :
 
 | # | mutation | attendu |
 |---|---|---|
@@ -758,6 +773,9 @@ la validation éditoriale humaine (arbitrage du 25/08/2026). Le total est **verr
 | 94 | validation au motif indigent (< 10 caractères) | échec — schéma : datée, motivée, nominative |
 | 95 | validation présente mais pièce décisive en CAPTURE seule | échec — le fait métier reste porté par un EXTRAIT ancré, la validation n'en fabrique aucun |
 | 96 | validation portée par une preuve visant une observation TENTATIVE | échec — une validation ne remplace ni une observation ni sa capture |
+| 97 | validation RECOPIÉE sur un autre éditeur (site validé ≠ hôte de la candidate) | échec — la validation nomme ce qu'elle valide, elle ne se réutilise pas |
+| 98 | nature validée TRANSPOSÉE (≠ nature déclarée de la candidate) | échec — égalité exacte exigée, l'identité validée ne se transpose pas |
+| 99 | validation datée AVANT la consultation de son observation | échec — on ne valide pas ce qu'on n'a pas encore observé |
 
 ## 6. Interdits, et effets de bord assumés
 

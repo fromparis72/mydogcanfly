@@ -135,11 +135,19 @@ const AttestationAnnuaire = z.object({
  * (celle de la preuve qui la porte). Elle ne peut attester QUE l'identité de l'éditeur :
  * le FAIT MÉTIER reste obligatoirement porté par l'extrait ancré de la page source —
  * aucune garde mécanique (ancre, concordance, pièce EXTRAIT, rôle, capture scellée)
- * n'est levée par une validation humaine. */
+ * n'est levée par une validation humaine.
+ * LA VALIDATION NOMME CE QU'ELLE VALIDE (contre-revue de v5-sexdecies, attaque reproduite :
+ * la preuve conçue pour customs.gov.om recopiée sur gov.om passait) : éditeur, site et
+ * nature validés sont des CHAMPS STRUCTURÉS — l'hôte du site validé doit être exactement
+ * celui de la candidate, la nature validée exactement celle que la matrice déclare, et
+ * AUCUN domaine ne se déduit du texte libre du motif. */
 const ValidationEditeur = z.object({
   validateur: z.string().min(1),
   date: DateISO,
   motif: z.string().min(10),
+  editeur: z.string().min(1),
+  site_web: UrlHttp,
+  nature_validee: NatureEditeur,
 }).strict();
 /* La RÉFÉRENCE COMPOSITE : une observation se désigne par (manifeste, empreinte du manifeste,
  * n) — jamais par un numéro nu, qui redeviendrait ambigu entre manifestes ; l'empreinte rend
@@ -507,11 +515,28 @@ for (const id of CONTRACTUELS) {
        * par les gardes ci-dessus, qu'aucune validation ne lève). Elle n'atteste que
        * l'identité : la pièce décisive, l'ancre et la concordance portent seules le fait. */
       if (p.validation_editeur) {
-        dansFenetre(p.validation_editeur.date, id, `${qui} validation éditoriale [${j}] date`);
-        if (obs && obs.role === "rattachement" && obs.acces === "consultee") {
-          domaineProuveParCandidate.add(`${id}#${i}`);
-        } else {
+        const val = p.validation_editeur;
+        dansFenetre(val.date, id, `${qui} validation éditoriale [${j}] date`);
+        if (!(obs && obs.role === "rattachement" && obs.acces === "consultee")) {
           echec(`${id} — ${qui} validation éditoriale [${j}] : une validation d'identité d'éditeur ne porte que sur une observation de rattachement CONSULTÉE — elle ne remplace ni une observation ni le fait métier`);
+        } else {
+          let saine = true;
+          /* une validation FONDÉE sur une observation ne peut pas la précéder */
+          if (val.date < obs.consultee_le) {
+            echec(`${id} — ${qui} validation éditoriale [${j}] : datée « ${val.date} », ANTÉRIEURE à la consultation de son observation « ${obs.consultee_le} » — on ne valide pas ce qu'on n'a pas encore observé`);
+            saine = false;
+          }
+          /* la validation nomme ce qu'elle valide : hôte EXACT, nature EXACTE — jamais
+           * réutilisable pour un autre éditeur que celui arbitré */
+          if (!hoteCandidate || hote(val.site_web) !== hoteCandidate) {
+            echec(`${id} — ${qui} validation éditoriale [${j}] : site validé « ${val.site_web} » ≠ domaine de la candidate « ${hoteCandidate ?? "?"} » — une validation nomme ce qu'elle valide, elle ne se réutilise pas`);
+            saine = false;
+          }
+          if (val.nature_validee !== c.nature_editeur) {
+            echec(`${id} — ${qui} validation éditoriale [${j}] : nature validée « ${val.nature_validee} » ≠ nature déclarée de la candidate « ${c.nature_editeur} » — l'identité validée ne se transpose pas`);
+            saine = false;
+          }
+          if (saine) domaineProuveParCandidate.add(`${id}#${i}`);
         }
       }
     }

@@ -16,7 +16,7 @@
  * (cas 0) ; chaque cas suivant mute UNE chose et exige la sortie 1 avec la cause nommée.
  * Aucune donnée réelle n'est affirmée : la fixture vit dans l'arbre jetable, jamais au dépôt.
  *
- * QUATRE-VINGT-UN CAS : 0 (fixture conforme — manifeste complet avec une observation de
+ * QUATRE-VINGT-QUATRE CAS : 0 (fixture conforme — manifeste complet avec une observation de
  * rattachement de rôle dédié, candidate PDF à pièce-capture), 17 à 52 (bijection, décisions,
  * pièces, ancres, PDF, liaison au manifeste), puis 53-57 (contre-revue v5-ter) : PDF déguisé
  * en text/plain — le format recalculé depuis les OCTETS prime ; résultat de manifeste
@@ -65,6 +65,9 @@
  * rougit datée du futur, rougit au motif indigent (schéma), ne lève PAS l'ancre (citation
  * réécrite rouge malgré la validation), ne fabrique PAS le fait métier (pièce capture
  * refusée pour la décisive), et ne remplace pas une observation consultée (tentative rouge).
+ * Puis 97-99 (contre-revue de v5-sexdecies) : la validation NOMME ce qu'elle valide —
+ * recopiée sur un autre éditeur (site validé ≠ hôte de la candidate) rouge ; nature validée
+ * transposée rouge ; datée AVANT la consultation de son observation rouge.
  */
 import { readFileSync, writeFileSync, mkdirSync, copyFileSync, symlinkSync, mkdtempSync, rmSync, readdirSync } from "node:fs";
 import { deflateSync } from "node:zlib";
@@ -110,9 +113,13 @@ const CONTENU_HTML_RATTACHEMENT = `<html><head><script>initMinisterDetailPlaceho
 const ATTESTATION_TEMOIN = { organisation: "Autorité témoin du jeu d'essai",
   type_organisation: "Government Agencies", site_web: "http://www.baf.com.fj" };
 /* La VALIDATION ÉDITORIALE HUMAINE témoin (arbitrage du 25/08/2026) : identité d'éditeur
- * validée par une personne — datée, motivée, nominative ; jamais le fait métier. */
+ * validée par une personne — datée, motivée, nominative, et NOMMANT ce qu'elle valide
+ * (éditeur, site, nature — contre-revue : une validation sans objet se recopiait sur une
+ * autre candidate) ; jamais le fait métier. */
 const VALIDATION_TEMOIN = { validateur: "Arbitre du jeu d'essai", date: JOUR,
-  motif: "Validation éditoriale témoin du jeu d'essai : l'identité de l'éditeur est validée par l'arbitre." };
+  motif: "Validation éditoriale témoin du jeu d'essai : l'identité de l'éditeur est validée par l'arbitre.",
+  editeur: "Autorité témoin du jeu d'essai", site_web: "http://www.baf.com.fj",
+  nature_validee: "autorite_pays" };
 const FLUX_PDF = `BT /F1 12 Tf 72 700 Td (${EXTRAIT_PDF}) Tj ET`;
 const CONTENU_PDF = Buffer.from(`%PDF-1.4\n4 0 obj << /Length ${FLUX_PDF.length} >> stream\n${FLUX_PDF}\nendstream endobj\ntrailer\n%%EOF`);
 const CONTENU_ENTETES = "HTTP/1.1 200 OK\n[en-tête expurgé : cookies/authentification/proxy]\nContent-Type: text/html; charset=utf-8\n";
@@ -1019,6 +1026,21 @@ try {
     m.rattachements[`${M1}#94`] = { statut: "utilisee" };
     m.rattachements[`${M1}#92`] = { statut: "ecartee", motif: "Écartée pour la contre-épreuve quatre-vingt-seize (jeu d'essai)." };
   }, [/validation éditoriale/, /rattachement CONSULTÉE/]);
+  cas("97 validation recopiée sur un autre éditeur", (m) => {
+    /* l'attaque exacte de la contre-revue : la validation conçue pour un site se recopie
+     * sur une candidate d'un AUTRE hôte — le site validé est un champ structuré, l'hôte
+     * doit être exactement celui de la candidate. */
+    basculerSurValidation(m).validation_editeur.site_web = "http://www.autre-autorite.example";
+  }, [/validation éditoriale/, /site validé/, /ne se réutilise pas/]);
+  cas("98 nature validée ≠ nature déclarée", (m) => {
+    /* le domaine conservé mais la nature transposée : la validation nomme la nature qu'elle
+     * valide, à égalité exacte avec celle que la matrice déclare. */
+    basculerSurValidation(m).validation_editeur.nature_validee = "officiel_tiers";
+  }, [/validation éditoriale/, /nature validée/, /ne se transpose pas/]);
+  cas("99 validation antérieure à la consultation", (m) => {
+    /* une validation FONDÉE sur une observation ne peut pas la précéder. */
+    basculerSurValidation(m).validation_editeur.date = "2026-08-23";   // < consultee_le (JOUR)
+  }, [/validation éditoriale/, /ANTÉRIEURE à la consultation/]);
 } finally {
   gitWt("remove", "--force", arbre);
   rmSync(conteneur, { recursive: true, force: true });
@@ -1026,7 +1048,7 @@ try {
 
 /* ---- verdict ---------------------------------------------------------------------------------- */
 if (defauts.length === 0) {
-  process.stdout.write("81 cas éprouvés : la fixture conforme — DEUX manifestes immuables aux n recouvrants,\n");
+  process.stdout.write("84 cas éprouvés : la fixture conforme — DEUX manifestes immuables aux n recouvrants,\n");
   process.stdout.write("versionnée, rattachement utilisé + PDF et tentative proprement écartés — sort en 0 ;\n");
   process.stdout.write("rattachement de rôle dédié, candidate PDF à pièce-capture — sort en 0 ; les contrôles\n");
   process.stdout.write("17-52 rougissent chacun pour sa cause (bijection triplet, décisions, pièces prouvées,\n");
@@ -1061,8 +1083,10 @@ if (defauts.length === 0) {
   process.stdout.write("jamais ; enfin la validation éditoriale humaine (arbitrage du 25/08/2026) est une\n");
   process.stdout.write("seconde voie d'identité d'éditeur, jamais un passe-droit : verte sur preuve complète,\n");
   process.stdout.write("rouge datée du futur, au motif indigent, sur citation désancrée, sur pièce sans\n");
-  process.stdout.write("extrait, sur observation non consultée — le fait métier reste porté par l'ancre.\n\n");
-  process.stdout.write("[audit-pays] le validateur mord, sur les 80 contrôles.\n");
+  process.stdout.write("extrait, sur observation non consultée — le fait métier reste porté par l'ancre ;\n");
+  process.stdout.write("et elle NOMME ce qu'elle valide : recopiée sur un autre éditeur, nature transposée,\n");
+  process.stdout.write("ou datée avant la consultation de son observation — trois rouges.\n\n");
+  process.stdout.write("[audit-pays] le validateur mord, sur les 83 contrôles.\n");
   process.exit(0);
 }
 process.stderr.write(`\n[audit-pays] ÉCHEC — ${defauts.length} défaut(s) :\n`);
