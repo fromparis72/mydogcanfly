@@ -54,8 +54,10 @@
  *   · le corps est BORNÉ en octets (`--max-filesize` + stat avant toute lecture, 25 MiB) :
  *     un corps au-delà devient une tentative explicite, jamais une capture ni une lecture
  *     en mémoire ;
- *   · les traces sont ASSAINIES avant écriture : toute ligne portant une information de proxy
- *     ou d'authentification est remplacée par « [ligne expurgée : proxy/authentification] ».
+ *   · les traces sont ASSAINIES avant écriture, par le MÊME code partagé que les en-têtes :
+ *     tout en-tête sensible (`Set-Cookie`, `Authorization`, `WWW-Authenticate`, `Proxy-*`,
+ *     préfixes `< `/`> ` de curl -v compris) et toute ligne décrivant notre réseau sont
+ *     remplacés par « [ligne expurgée : proxy/authentification] ».
  *
  * APRÈS LA COLLECTE :
  *   · si AUCUNE consultation n'a abouti, le manifeste n'est PAS publié : 0/91 est la
@@ -72,7 +74,8 @@ import { createHash } from "node:crypto";
 import { join } from "node:path";
 import { tmpdir } from "node:os";
 import { extraireTexte, detecterFormat, VERSION_EXTRACTEUR } from "./extraire-texte-lot-a.mjs";
-import { erreursListeRattachements, estUrlHttp, LIMITE_CORPS_OCTETS } from "./liste-rattachements-lot-a.mjs";
+import { erreursListeRattachements, estUrlHttp, LIMITE_CORPS_OCTETS,
+  assainirEntetes, assainirTrace } from "./liste-rattachements-lot-a.mjs";
 
 const RACINE_PIECES = "audit-pays-pieces";
 const MANIFESTE = "audit-pays-consultations.json";
@@ -133,16 +136,10 @@ if (existsSync(RUN)) refus(2, `le répertoire de run ${RUN} existe déjà`);
 mkdirSync(RUN, { recursive: true });
 const aujourdhui = new Date().toISOString().slice(0, 10);
 
-/* En-têtes assainis avant scellement : aucun cookie, aucun secret d'authentification. */
-const assainirEntetes = (texte) => String(texte).split(/\r?\n/)
-  .map((l) => (/^(set-cookie|authorization|www-authenticate|proxy-[^:]*)\s*:/i.test(l)
-    ? "[en-tête expurgé : cookies/authentification/proxy]" : l))
-  .join("\n");
-
-/* Les traces sont assainies : rien de ce qui décrit NOTRE réseau n'est versionné. */
-const assainir = (texte) => String(texte).split("\n")
-  .map((l) => (/proxy|CONNECT|Authorization|authorization|NO_PROXY|no_proxy/i.test(l) ? "[ligne expurgée : proxy/authentification]" : l))
-  .join("\n");
+/* En-têtes et traces sont assainis par le CODE PARTAGÉ (liste-rattachements-lot-a.mjs) :
+ * aucun cookie ni secret d'authentification, ni dans la projection `-D`, ni dans le stderr
+ * de `curl -v` (préfixes `< `/`> ` compris) — contre-revue de la collecte : les traces
+ * laissaient passer `< Set-Cookie: … ». */
 
 /* ---- 4. UNE invocation par URL : corps + métadonnées + trace corrélés ----------------------- */
 const resultats = [];
@@ -203,7 +200,7 @@ function consulter(url, role, extras) {
     }
     /* Seule la PROJECTION ASSAINIE des en-têtes entre dans le run. */
     writeFileSync(cheminEntetes, assainirEntetes(entetesBruts));
-    const trace = assainir(`# ${aujourdhui} — ${url}\n# curl exit=${r.status} · http=${code || "?"}\n\n${r.stderr || ""}`);
+    const trace = assainirTrace(`# ${aujourdhui} — ${url}\n# curl exit=${r.status} · http=${code || "?"}\n\n${r.stderr || ""}`);
     const cheminTrace = join(RUN, `${num}-${hote}.trace.txt`);
     writeFileSync(cheminTrace, trace);
 

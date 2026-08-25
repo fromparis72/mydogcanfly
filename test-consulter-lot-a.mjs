@@ -91,8 +91,11 @@ if (!(args.includes("--proto") && args[args.indexOf("--proto") + 1] === "=http,h
 if (!(args.includes("--max-filesize") && Number(args[args.indexOf("--max-filesize") + 1]) > 0)) {
   fs.writeFileSync(path.join(etat, "borne-manquante"), url);
 }
-/* La ligne que l'assainisseur DOIT expurger. */
+/* Les lignes que l'assainisseur DOIT expurger — y compris l'en-tête de réponse répété par
+ * curl -v dans STDERR avec son préfixe « < » : la contre-revue de la collecte a montré que
+ * le secret n'était injecté que dans la sortie -D, jamais dans la trace (faux vert). */
 process.stderr.write("* Uses proxy env variable https_proxy == 'http://SECRET-PROXY:3128'\\n* Connected (faux)\\n");
+process.stderr.write("< Set-Cookie: session=SECRET-COOKIE-42; Path=/\\n< Content-Type: text/html\\n");
 if (mode === "proxy") { process.stderr.write("curl: (56) CONNECT tunnel failed, response 403\\n"); process.exit(56); }
 if (mode === "proxy-partiel" && url.includes("paaf.gov.kw")) {
   process.stderr.write("curl: (56) CONNECT tunnel failed, response 403\\n"); process.exit(56);
@@ -148,6 +151,9 @@ try {
   copyFileSync("rattachements-a-consulter.json", join(arbre, "rattachements-a-consulter.json"));
   const CHEMIN_GUIDES = join(arbre, "packages/ui/src/data/countries.generated.json");
   const guidesPristins = readFileSync(CHEMIN_GUIDES, "utf-8");
+  /* Des runs RÉELS sont désormais commités dans le dépôt : la base de comparaison est l'état
+   * initial de l'arbre, plus jamais « zéro run ». */
+  const runsInitiaux = runs().length;
 
   /* ---- 1. curl absent ------------------------------------------------------------------------ */
   {
@@ -156,7 +162,7 @@ try {
     const r = lancer("ok", vide);
     if (r.status !== 2) echec("1 curl absent", `sortie ${r.status} au lieu de 2 — la panne devient observation`);
     if (!/curl est absent/.test(r.stderr)) echec("1 curl absent", "le refus ne nomme pas curl");
-    if (runs().length !== 0) echec("1 curl absent", "un répertoire de run a été créé malgré le refus");
+    if (runs().length !== runsInitiaux) echec("1 curl absent", "un répertoire de run a été créé malgré le refus");
   }
 
   /* ---- 2. proxy bloquant --------------------------------------------------------------------- */
@@ -164,7 +170,7 @@ try {
     const r = lancer("proxy");
     if (r.status !== 2) echec("2 proxy bloquant", `sortie ${r.status} au lieu de 2`);
     if (!/panne systémique|proxy bloquant/.test(r.stderr)) echec("2 proxy bloquant", "le refus ne nomme pas la panne systémique");
-    if (runs().length !== 0) echec("2 proxy bloquant", "un répertoire de run a été créé malgré le refus");
+    if (runs().length !== runsInitiaux) echec("2 proxy bloquant", "un répertoire de run a été créé malgré le refus");
   }
 
   /* ---- 3. inventaire dérivé ------------------------------------------------------------------ */
@@ -175,7 +181,7 @@ try {
     const r = lancer("ok");
     if (r.status !== 2) echec("3 inventaire dérivé", `sortie ${r.status} au lieu de 2 — on collecte sur un inventaire altéré`);
     if (!/ne correspondent plus au scellé/.test(r.stderr)) echec("3 inventaire dérivé", "le refus ne nomme pas le scellé");
-    if (runs().length !== 0) echec("3 inventaire dérivé", "un run a été créé malgré le refus");
+    if (runs().length !== runsInitiaux) echec("3 inventaire dérivé", "un run a été créé malgré le refus");
     writeFileSync(CHEMIN_GUIDES, guidesPristins);
   }
 

@@ -11,6 +11,26 @@
  * (un schéma local comme file:// ne sera jamais consulté), motif non blanc, URL uniques.
  */
 
+/** L'ASSAINISSEMENT PARTAGÉ des projections diagnostiques — un seul code pour le collecteur
+ *  et pour tout outil de réparation (contre-revue de la collecte : 46 en-têtes `Set-Cookie`
+ *  en clair dans 23 traces, parce que l'assainisseur de traces ne connaissait ni les en-têtes
+ *  sensibles ni les préfixes `< `/`> ` de `curl -v` — le harnais n'injectait le secret que
+ *  dans la sortie `-D`, jamais dans stderr : faux vert).
+ *
+ *  · en-têtes (`-D`) : toute ligne `Set-Cookie` / `Authorization` / `WWW-Authenticate` /
+ *    `Proxy-*` est remplacée par la marque d'expurgation ;
+ *  · traces (`-v`, stderr) : les MÊMES en-têtes sensibles, préfixes curl `< ` et `> `
+ *    compris, PLUS toute ligne décrivant notre réseau (proxy, CONNECT, authentification). */
+const ENTETE_SENSIBLE = /^(set-cookie|authorization|www-authenticate|proxy-[^:]*)\s*:/i;
+export const assainirEntetes = (texte) => String(texte).split(/\r?\n/)
+  .map((l) => (ENTETE_SENSIBLE.test(l) ? "[en-tête expurgé : cookies/authentification/proxy]" : l))
+  .join("\n");
+export const assainirTrace = (texte) => String(texte).split("\n")
+  .map((l) => (ENTETE_SENSIBLE.test(l.replace(/^\s*[<>]\s*/, "").replace(/\r$/, ""))
+    || /proxy|CONNECT|Authorization|authorization|NO_PROXY|no_proxy/i.test(l)
+    ? "[ligne expurgée : proxy/authentification]" : l))
+  .join("\n");
+
 /** LA borne PARTAGÉE en octets d'un corps de réponse : 25 MiB. Le collecteur la passe à curl
  *  (`--max-filesize`) et la revérifie par stat avant toute lecture ; le validateur exige que
  *  `capture.octets` lui soit inférieur ou égal ET égal à la taille réelle du fichier. */

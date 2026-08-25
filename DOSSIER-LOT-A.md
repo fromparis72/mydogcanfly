@@ -1,4 +1,4 @@
-# Lot A — Audit des 18 pays sans source · dossier de mesure et de conception (v5-decies)
+# Lot A — Audit des 18 pays sans source · dossier de mesure et de conception (v5-undecies)
 
 **Mesuré sur `main` après fusion du dossier d'achèvement (`1dd62010ea183422f02553877df4706714739080`).
 Ce dossier ne corrige rien : aucune date, aucune source, aucune donnée métier n'est écrite.
@@ -273,6 +273,30 @@ valide** produit malgré tout la chaîne vide, immédiatement — c'est le CHEMI
 est prouvé fermé, pas une regex particulière qui termine. Le run partiel de l'incident
 (collecté sous lot-a-2) reste non publiable et n'est pas repris : la collecte repart de zéro
 depuis le commit portant lot-a-4.
+
+**La collecte réelle a réussi (95 résultats, 66 consultations, 29 tentatives, zéro écart
+structurel) — mais ses traces n'étaient PAS assainies** (contre-revue de la collecte,
+`e6fb546` : un P0 de confidentialité + un P1). (1) **46 en-têtes `Set-Cookie` en clair dans
+23 fichiers `.trace.txt`** : l'assainisseur d'en-têtes traitait la sortie `-D`, mais celui
+des traces ne connaissait ni les en-têtes sensibles ni les préfixes `< `/`> ` par lesquels
+`curl -v` répète les en-têtes de réponse dans stderr — et le faux curl du harnais n'injectait
+le secret que dans `-D`, jamais dans stderr : le cas 11 était un **faux vert**. La
+contre-vérification de Claude avait le MÊME angle mort (elle cherchait proxy/Authorization
+dans les traces, pas Set-Cookie) — nommé ici. Fermeture : l'assainissement vit désormais
+dans le **module partagé** (`assainirEntetes` + `assainirTrace`, en-têtes sensibles +
+préfixes curl + lignes réseau, un seul code pour le collecteur et l'outil de réparation) ;
+le faux curl émet le secret dans les en-têtes ET dans stderr (le cas 11 mord vraiment) ; les
+23 traces ont été expurgées **déterministement** (46 lignes remplacées, seconde passe = zéro
+changement) et leurs SHA recalculés dans le manifeste ; et l'**historique de la branche a
+été réécrit** — `e6fb546`, porteur des cookies, n'est plus un ancêtre et est non promouvable,
+la collecte assainie repart de `91e6164`. (2) P1 : `git diff --check` sortait en 2 avec
+27 694 diagnostics d'espacement sur le contenu brut — les pièces ne seront jamais
+normalisées ; `.gitattributes` les déclare `-text -diff` (l'intégrité se juge au SHA-256
+scellé, pas à la ligne), et `git diff --check` est vert. Fait qualifié, en attente
+d'acceptation explicite avant PR : `04-services.bahrain.bh.html` contient une clé navigateur
+Google Maps (`AIza…`) que le site publie lui-même dans sa page (`<script
+src="maps.googleapis.com/maps/api/js?key=…">`) — c'est le contenu public capturé, scellé par
+empreinte ; l'expurger falsifierait la preuve.
 
 ## 1. La mesure a changé la nature de la dette — et ce que la promotion fait, honnêtement
 
