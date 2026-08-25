@@ -1,4 +1,4 @@
-# Lot A — Audit des 18 pays sans source · dossier de mesure et de conception (v5-septdecies)
+# Lot A — Audit des 18 pays sans source · dossier de mesure et de conception (v5-octodecies)
 
 **Mesuré sur `main` après fusion du dossier d'achèvement (`1dd62010ea183422f02553877df4706714739080`).
 Ce dossier ne corrige rien : aucune date, aucune source, aucune donnée métier n'est écrite.
@@ -15,6 +15,13 @@ node test-consulter-lot-a.mjs                            # 21 cas au faux curl :
 
 La liste des 18 est celle que le bloc contractuel du dossier d'achèvement fige
 (`pays.identites_sans_source`, annexe A).
+
+**Depuis l'étape 4, la première commande rapporte — à raison — UN écart : « les pays sans
+source ne sont plus les 18 contractuels : disparus [country_fj, country_om] ».** Le scellé
+est l'instantané de l'ÉTAT DE DÉPART (23/08/2026) ; cet écart nommé est l'œuvre accomplie du
+lot, pas une dérive — le scellé ne se régénère jamais en silence (même sémantique que
+l'effet de bord assumé du §6 sur le bloc du dossier d'achèvement). Le validateur PERMANENT
+du lot — celui de la CI — reste `valider-audit-pays.mjs`, vert.
 
 ---
 
@@ -472,6 +479,21 @@ mission_diplomatique_pays demeure non démontrée). Résultat : **2 promues (fj,
 source officielle (et) · 15 non promouvables dans ce run** ; `--exiger-audit-complet` est
 désormais VERT — plus rien à instruire ni à collecter.
 
+**L'étape 4 est ACCOMPLIE** (feu vert de contre-revue sur `5e27fd2`, 25/08/2026) : les
+projections canoniques EXACTES de Fidji et d'Oman sont posées dans `objects.json` (sept
+champs dérivés du `SourcedQuote` promu, `Source.parse` conforme) et
+`PROJECTION_INCONDITIONNELLE` passe à `true` DANS LE MÊME COMMIT. Contre-épreuves de la
+suppression exécutées SÉPARÉMENT sur les données réelles : `country_fj.source` supprimée →
+rouge « promotion SANS PROJECTION » ; `country_om.source` supprimée → rouge, chacune avec
+son pays nommé ; la contre-épreuve 79 du harnais passe de « constante forcée par mutation de
+la copie de travail » à « constante vraie de plein droit, projection supprimée de la
+fixture » — la fixture porte désormais sa propre projection fidjienne dans son
+`objects.json` (les projections réelles des 18 en sont retirées : le monde de la fixture est
+cohérent avec sa matrice, pas avec le dépôt). Aucun manifeste ni aucune pièce collectée
+modifiés. Deux finitions documentaires de contre-revue voyagent avec ce commit : le compte
+des contrôles (17 à 99, 84 cas) et la section 7, réécrite au présent de la séquence
+réellement accomplie.
+
 ## 1. La mesure a changé la nature de la dette — et ce que la promotion fait, honnêtement
 
 Le dossier d'achèvement décrivait la dette ainsi : « 18 pays n'ont AUCUNE source ». C'est vrai
@@ -677,7 +699,7 @@ Les **16 premières** sont éprouvées par `test-mesure-lot-a.mjs` sur l'état d
 les trois faux verts de la v1, les trois passages indus de la v2, la dérive commitée et le
 `_scelle` falsifié de la v3, les contrôles `--as-of`, la date future, et la génération saine
 (candidat égal au scellé, scellé jamais touché par l'instrument).
-Le harnais d'exécution `test-audit-pays.mjs` éprouve les contrôles **17 à 90** (75 cas — la
+Le harnais d'exécution `test-audit-pays.mjs` éprouve les contrôles **17 à 99** (84 cas — la
 fixture porte DEUX manifestes immuables aux n recouvrants, en ensembles exacts égaux au
 préfixe de la liste versionnée scellée par la curation, UNE pièce par (résultat, champ), un
 rattachement utilisé, un PDF et une tentative proprement écartés, une candidate PDF à
@@ -755,7 +777,7 @@ v5-sexdecies : la validation nomme ce qu'elle valide). Le total est **verrouill�
 | 76 | attestation d'annuaire retirée de la preuve, citation intacte (sans l'hôte) | échec — toute promotion exige la preuve du DOMAINE de sa décisive |
 | 77 | `aucune_source_officielle` alors qu'une candidate `etaye_le_fait + non_etabli` subsiste | échec — rattachement non instruit : le statut honnête est `aucune_source_promouvable_dans_ce_run` |
 | 78 | `aucune_source_officielle` sans AUCUNE consultation (toutes les candidates en tentative) | échec — zéro page lue ne conclut pas à l'absence (cas des Maldives) |
-| 79 | règle d'étape 4 FORCÉE (constante de code à true) : promue sans projection dans `objects.json` | échec — projection obligatoire et bidirectionnelle, AUCUN marqueur de données à retirer avec la source |
+| 79 | étape 4 ACCOMPLIE (constante true de plein droit) : projection d'une promue SUPPRIMÉE d'`objects.json` | échec — projection obligatoire et bidirectionnelle, AUCUN marqueur de données à retirer avec la source |
 | 80 | `organisationDetails.organisationName` substitué par une autre organisation, l'HOMONYME de `personnelList` conservé, empreintes rescellées | échec — les trois champs se lisent dans le même sous-arbre, les sous-chaînes éparses ne comptent pas |
 | 81 | `aucune_source_officielle` avec une candidate INCONNUE (tentative ou pertinence `non_evaluee`) | échec — l'absence ne se conclut pas avec des candidates non évaluées (cas des Seychelles) |
 | 82 | référence composite au bon `n` mais au MAUVAIS manifeste (les n des deux manifestes se recouvrent) | échec — la résolution est PAR MANIFESTE, jamais par numéro nu |
@@ -790,19 +812,22 @@ v5-sexdecies : la validation nomme ce qu'elle valide). Le total est **verrouill�
   d'achèvement (« donnée source modifiée sous bloc figé ») — instantané daté du 23/08/2026,
   vérifiable sur son SHA de référence ; personne ne régénère ce bloc en silence.
 
-## 7. Séquence d'exécution (après feu vert sur cette v4-ter)
+## 7. Séquence d'exécution — accomplie
 
-1. **Contre-revue de cette v4-ter** — aucune exécution avant.
-2. **Remplissage de `audit-pays.json`** : consultation réelle des 91 liens + pièces de
-   rattachement, quatre axes, citations verbatim — **sans aucune mutation d'`objects.json`**.
-   Le harnais d'exécution et le pas CI arrivent dans ce même livrable.
-3. **Contre-revue des 18 décisions** sur pièces.
-4. **Application des seules promotions approuvées** dans `objects.json` (projection canonique),
-   contre-vérifiée par le critère 4, puis PR, CI, fusion sur décision de Philippe.
-
-**État au 25/08/2026** : étapes 1 et 2 accomplies — collecte réelle assainie (95 résultats,
-66 consultations, 29 tentatives), matrice `audit-pays.json` remplie (91 candidates jugées,
-4 décisions de rattachement, **1 promue dans la matrice : country_fj**, 17
-`aucune_source_officielle`), validateur permanent câblé en CI (`--as-of` = date du dernier
-commit). Étape 3 (contre-revue Codex des 18 décisions) : soumise. Étape 4 : NON ouverte —
-`objects.json` et les guides intacts, la promotion fidjienne n'est pas appliquée.
+1. **Conception contre-revue** (v4-ter puis quatorze rondes de durcissement, §0) — aucune
+   exécution avant feu vert.
+2. **Collecte mécanique** : DEUX manifestes immuables — `audit-pays-consultations.json`
+   (95 résultats : 91 candidates + 4 rattachements, 66 consultations, 29 tentatives) puis
+   `audit-pays-consultations-2.json` (8 rattachements curés et scellés, second run additionnel
+   exécuté sur le Mac après contre-revue du mécanisme multi-runs) — sans aucune mutation
+   d'`objects.json`. Harnais d'exécution et pas CI livrés avec.
+3. **Jugement éditorial sur pièces, contre-revu** : 91 candidates jugées, 12 décisions de
+   rattachement, arbitrage de proportionnalité du 25/08/2026 (validation éditoriale humaine
+   de l'identité d'éditeur — jamais le fait métier). Résultat : **2 promues (country_fj,
+   country_om) · 1 sans source officielle (country_et) · 15 non promouvables dans ce run** ;
+   `--exiger-audit-complet` vert.
+4. **Étape 4 accomplie** : projections canoniques exactes de Fidji et d'Oman dans
+   `objects.json` et `PROJECTION_INCONDITIONNELLE = true` dans le même commit, suppression de
+   chaque projection contre-éprouvée séparément. Reste : PR, CI, fusion sur décision de
+   Philippe (vigilance au scan de secrets GitHub — deux clés Google Maps publiées par les
+   pages sources, acceptées explicitement ; si signalées, retour en contre-revue).

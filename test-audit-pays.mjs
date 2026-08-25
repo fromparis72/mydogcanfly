@@ -46,8 +46,9 @@
  * avec homonyme conservé dans personnelList rougit) ; promotion sans preuve de domaine
  * rougit ; « aucune_source_officielle » rougit face à une candidate étayante non instruite,
  * sans aucune consultation, ou avec une candidate INCONNUE (tentative ou non_evaluee — les
- * Seychelles) ; la règle d'étape 4 forcée à true rougit toute promue sans projection, sans
- * marqueur de données à retirer.
+ * Seychelles) ; la règle d'étape 4, ACCOMPLIE (constante true de plein droit), rougit toute
+ * projection supprimée, sans marqueur de données à retirer — la fixture porte sa propre
+ * projection fidjienne dans son objects.json.
  * Puis 82-86 (multi-runs, contre-revue du second passage) : la fixture porte DEUX manifestes
  * aux n recouvrants — la résolution est composite (bon n, mauvais manifeste → rouge) ; un
  * manifeste modifié à chemin constant rougit par l'empreinte ; une ancienne URL recollectée
@@ -296,6 +297,11 @@ try {
   const CHEMIN_MATRICE = join(arbre, "audit-pays.json");
   const CHEMIN_OBJETS = join(arbre, "packages/knowledge/raw/objects.json");
   const objetsPristins = readFileSync(CHEMIN_OBJETS, "utf-8");
+  /* Depuis l'étape 4, la projection est INCONDITIONNELLE : la fixture porte SA projection
+   * fidjienne (dérivée de sa propre promotion d'essai) et retire les projections RÉELLES
+   * des 18 (fj, om) — le monde de la fixture est cohérent avec sa matrice, pas avec le
+   * dépôt. objetsFixture est le nouvel état de référence de l'arbre jetable. */
+  let objetsFixture = null;   // posé après fabrication du jeu
 
   /* Les pièces-fixtures : une par (résultat, champ) — brut, texte dérivé (extracteur
    * versionné), en-têtes, trace — créées par fabriquerJeu puis git-ajoutées EN BLOC.
@@ -313,6 +319,16 @@ try {
   const CHEMIN_MANIFESTE = join(arbre, "audit-pays-consultations.json");
   const CHEMIN_MANIFESTE_2 = join(arbre, "audit-pays-consultations-2.json");
   const jeu0 = fabriquerJeu(guides, scelle);
+  {
+    const o = JSON.parse(objetsPristins);
+    const s = jeu0.matrice.audits.country_fj.decision.source;
+    for (const id of Object.keys(scelle.pays)) delete o.countries.find((c) => c.id === id)?.source;
+    o.countries.find((c) => c.id === "country_fj").source = { url: s.url, source_type: s.source_type,
+      verified_date: s.verified_date, review_due: s.review_due, confidence: s.confidence,
+      reviewer: s.reviewer, history: s.history ?? [] };
+    objetsFixture = JSON.stringify(o, null, 2);
+    writeFileSync(CHEMIN_OBJETS, objetsFixture);
+  }
   gitArbre("add", "--", "audit-pays-pieces/run-fixture", "audit-pays-pieces/run-fixture-2");
   const manifestePristin = JSON.stringify(jeu0.manifeste, null, 2);
   const manifestePristin2 = JSON.stringify(jeu0.manifeste2, null, 2);
@@ -415,13 +431,13 @@ try {
 
   /* ---- 27-28 --------------------------------------------------------------------------------- */
   cas("27 objects.json sans matrice", (m) => {
-    const o = JSON.parse(objetsPristins);
+    const o = JSON.parse(objetsFixture);
     o.countries.find((c) => c.id === "country_bs").source = {
       url: "https://example.org/x", source_type: "government", verified_date: JOUR,
       review_due: DUE, confidence: 3, reviewer: "X", history: [] };
     writeFileSync(CHEMIN_OBJETS, JSON.stringify(o, null, 2));
   }, [/country_bs/, /la matrice fait foi/]);
-  writeFileSync(CHEMIN_OBJETS, objetsPristins);
+  writeFileSync(CHEMIN_OBJETS, objetsFixture);
   cas("28 hôte MyDogCanFly promu", (m) => {
     fj(m).candidates[0].url_finale = "https://mydogcanfly.com/faux";
     fj(m).decision.source.url = "https://mydogcanfly.com/faux";
@@ -835,20 +851,19 @@ try {
     }
   });
   {
-    /* 79 — la règle d'étape 4 est éprouvée EN LA FORÇANT : la constante de code passe à true
-     * dans la copie de travail du validateur — toute promue sans projection rougit, et il
-     * n'existe AUCUN marqueur de données à retirer avec la source pour contourner
-     * (contre-revue : « source et marqueur retirés ensemble »). */
-    const CHEMIN_VALIDATEUR = join(arbre, "valider-audit-pays.mjs");
-    const validateurAvant = readFileSync(CHEMIN_VALIDATEUR, "utf-8");
-    writeFileSync(CHEMIN_VALIDATEUR, validateurAvant.replace(
-      "const PROJECTION_INCONDITIONNELLE = false;", "const PROJECTION_INCONDITIONNELLE = true;"));
+    /* 79 — l'étape 4 est ACCOMPLIE : la constante est true DE PLEIN DROIT dans le validateur
+     * livré — supprimer la projection d'une promue rougit, sans qu'aucun marqueur de données
+     * ne puisse partir avec la source (contre-revue : « source et marqueur retirés
+     * ensemble » ; contre-épreuve de la suppression exigée à l'étape 4). */
+    const o = JSON.parse(objetsFixture);
+    delete o.countries.find((c) => c.id === "country_fj").source;
+    writeFileSync(CHEMIN_OBJETS, JSON.stringify(o, null, 2));
     poser(neuve());
     const r = lancer(arbre);
-    writeFileSync(CHEMIN_VALIDATEUR, validateurAvant);
-    if (r.status !== 1) echec("79 étape 4 : promue sans projection", `sortie ${r.status} au lieu de 1 — la règle inconditionnelle ne mord pas`);
+    writeFileSync(CHEMIN_OBJETS, objetsFixture);
+    if (r.status !== 1) echec("79 étape 4 : projection supprimée", `sortie ${r.status} au lieu de 1 — la règle inconditionnelle ne mord pas`);
     else if (!/country_fj/.test(r.stderr) || !/SANS PROJECTION/.test(r.stderr)) {
-      echec("79 étape 4 : promue sans projection", `le diagnostic ne nomme pas la projection manquante — reçu :\n      ${r.stderr.trim().split("\n").slice(0, 5).join("\n      ")}`);
+      echec("79 étape 4 : projection supprimée", `le diagnostic ne nomme pas la projection manquante — reçu :\n      ${r.stderr.trim().split("\n").slice(0, 5).join("\n      ")}`);
     }
   }
 
@@ -1072,7 +1087,7 @@ if (defauts.length === 0) {
   process.stdout.write("organisationDetails du JSON parsé (bad.com.fj et le nom substitué rougissent, homonyme\n");
   process.stdout.write("du personnel conservé), les négatifs sont honnêtes (étayante non instruite, zéro\n");
   process.stdout.write("consultation, candidate inconnue — tentative ou non_evaluee — rougissent), et la\n");
-  process.stdout.write("règle d'étape 4, forcée, rougit toute promue sans projection ; et le multi-runs\n");
+  process.stdout.write("règle d'étape 4, accomplie, rougit toute projection supprimée ; et le multi-runs\n");
   process.stdout.write("tient : références composites (jamais un numéro nu), manifestes immuables par\n");
   process.stdout.write("empreinte, préfixe exact de la liste cumulative, attente de collecte comptée ; et sa\n");
   process.stdout.write("contre-revue est morte : la curation est SCELLÉE (entrée en attente supprimée —\n");

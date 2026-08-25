@@ -204,7 +204,7 @@ const DecisionPromue = z.object({
  * dans objects.json, et la supprimer rougit. Aucun interrupteur dans les DONNÉES : un
  * marqueur par décision se retirait avec la source (contre-revue des 18 décisions) ; le
  * passage à l'étape 4 est un changement de CODE, sous contre-revue, porté par la CI. */
-const PROJECTION_INCONDITIONNELLE = false;
+const PROJECTION_INCONDITIONNELLE = true;
 const DecisionSans = z.object({
   statut: z.literal("aucune_source_officielle"),
   motif: z.string().min(10),
