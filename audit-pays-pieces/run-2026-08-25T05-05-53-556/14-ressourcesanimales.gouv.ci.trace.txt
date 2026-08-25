@@ -1,0 +1,73 @@
+# 2026-08-25 — https://ressourcesanimales.gouv.ci/direction/direction-des-services-veterinaires-dsv/
+# curl exit=0 · http=200
+
+* Host ressourcesanimales.gouv.ci:443 was resolved.
+* IPv6: (none)
+* IPv4: 164.160.41.94
+*   Trying 164.160.41.94:443...
+[ligne expurgée : proxy/authentification]
+* ALPN: curl offers h2,http/1.1
+* (304) (OUT), TLS handshake, Client hello (1):
+} [331 bytes data]
+*  CAfile: /etc/ssl/cert.pem
+*  CApath: none
+* (304) (IN), TLS handshake, Server hello (2):
+{ [102 bytes data]
+* TLSv1.2 (IN), TLS handshake, Certificate (11):
+{ [2639 bytes data]
+* TLSv1.2 (IN), TLS handshake, Server key exchange (12):
+{ [115 bytes data]
+* TLSv1.2 (IN), TLS handshake, Server finished (14):
+{ [4 bytes data]
+* TLSv1.2 (OUT), TLS handshake, Client key exchange (16):
+} [37 bytes data]
+* TLSv1.2 (OUT), TLS change cipher, Change cipher spec (1):
+} [1 bytes data]
+* TLSv1.2 (OUT), TLS handshake, Finished (20):
+} [16 bytes data]
+* TLSv1.2 (IN), TLS change cipher, Change cipher spec (1):
+{ [1 bytes data]
+* TLSv1.2 (IN), TLS handshake, Finished (20):
+{ [16 bytes data]
+[ligne expurgée : proxy/authentification]
+* ALPN: server accepted h2
+* Server certificate:
+*  subject: CN=ressourcesanimales.gouv.ci
+*  start date: Jul 23 00:00:00 2026 GMT
+*  expire date: Oct 21 23:59:59 2026 GMT
+*  subjectAltName: host "ressourcesanimales.gouv.ci" matched cert's "ressourcesanimales.gouv.ci"
+*  issuer: C=AT; O=ZeroSSL GmbH; CN=ZeroSSL ECC DV SSL CA 2
+*  SSL certificate verify ok.
+* using HTTP/2
+* [HTTP/2] [1] OPENED stream for https://ressourcesanimales.gouv.ci/direction/direction-des-services-veterinaires-dsv/
+* [HTTP/2] [1] [:method: GET]
+* [HTTP/2] [1] [:scheme: https]
+* [HTTP/2] [1] [:authority: ressourcesanimales.gouv.ci]
+* [HTTP/2] [1] [:path: /direction/direction-des-services-veterinaires-dsv/]
+* [HTTP/2] [1] [user-agent: MyDogCanFly-Audit/lot-A (contact: audit@mydogcanfly.com)]
+* [HTTP/2] [1] [accept: */*]
+> GET /direction/direction-des-services-veterinaires-dsv/ HTTP/2
+> Host: ressourcesanimales.gouv.ci
+> User-Agent: MyDogCanFly-Audit/lot-A (contact: audit@mydogcanfly.com)
+> Accept: */*
+> 
+* Request completely sent off
+< HTTP/2 200 
+< x-frame-options: SAMEORIGIN
+< x-content-type-options: nosniff
+< referrer-policy: strict-origin-when-cross-origin
+< permissions-policy: geolocation=(), microphone=(), camera=()
+< x-xss-protection: 1; mode=block
+< content-security-policy: default-src 'self' https:; script-src 'self' 'unsafe-inline' https: https://www.youtube.com https://s.ytimg.com; style-src 'self' 'unsafe-inline' https:; img-src 'self' data: https: https://i.ytimg.com https://s.ytimg.com; font-src 'self' data: https:; frame-src 'self' https://www.youtube.com https://www.youtube-nocookie.com; frame-ancestors 'self'; media-src 'self' https://www.youtube.com https://www.youtube-nocookie.com;
+< date: Tue, 25 Aug 2026 05:06:39 GMT
+< server: Apache/2.4.37 (centos) OpenSSL/1.1.1k mod_wsgi/4.6.8 Python/3.8
+< x-frame-options: DENY
+< content-length: 79460
+< x-content-type-options: nosniff
+< referrer-policy: same-origin
+< cross-origin-opener-policy: same-origin
+< content-type: text/html; charset=utf-8
+< vary: Accept-Encoding
+< 
+{ [15708 bytes data]
+[ligne expurgée : proxy/authentification]

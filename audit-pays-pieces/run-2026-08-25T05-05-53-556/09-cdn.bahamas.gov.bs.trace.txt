@@ -1,0 +1,69 @@
+# 2026-08-25 — https://cdn.bahamas.gov.bs/tenant/tenanttgotb/documents/ImportApplicationRevisedJuly2023-20240131192708-20250528042152.pdf
+# curl exit=0 · http=200
+
+* Host cdn.bahamas.gov.bs:443 was resolved.
+* IPv6: (none)
+* IPv4: 3.166.181.125, 3.166.181.65, 3.166.181.60, 3.166.181.22
+*   Trying 3.166.181.125:443...
+[ligne expurgée : proxy/authentification]
+* ALPN: curl offers h2,http/1.1
+* (304) (OUT), TLS handshake, Client hello (1):
+} [323 bytes data]
+*  CAfile: /etc/ssl/cert.pem
+*  CApath: none
+* (304) (IN), TLS handshake, Server hello (2):
+{ [122 bytes data]
+* (304) (IN), TLS handshake, Unknown (8):
+{ [19 bytes data]
+* (304) (IN), TLS handshake, Certificate (11):
+{ [3833 bytes data]
+* (304) (IN), TLS handshake, CERT verify (15):
+{ [264 bytes data]
+* (304) (IN), TLS handshake, Finished (20):
+{ [36 bytes data]
+* (304) (OUT), TLS handshake, Finished (20):
+} [36 bytes data]
+[ligne expurgée : proxy/authentification]
+* ALPN: server accepted h2
+* Server certificate:
+*  subject: CN=bahamas.gov.bs
+*  start date: Apr 30 00:00:00 2026 GMT
+*  expire date: Nov 13 23:59:59 2026 GMT
+*  subjectAltName: host "cdn.bahamas.gov.bs" matched cert's "*.bahamas.gov.bs"
+*  issuer: C=US; O=Amazon; CN=Amazon RSA 2048 M01
+*  SSL certificate verify ok.
+* using HTTP/2
+* [HTTP/2] [1] OPENED stream for https://cdn.bahamas.gov.bs/tenant/tenanttgotb/documents/ImportApplicationRevisedJuly2023-20240131192708-20250528042152.pdf
+* [HTTP/2] [1] [:method: GET]
+* [HTTP/2] [1] [:scheme: https]
+* [HTTP/2] [1] [:authority: cdn.bahamas.gov.bs]
+* [HTTP/2] [1] [:path: /tenant/tenanttgotb/documents/ImportApplicationRevisedJuly2023-20240131192708-20250528042152.pdf]
+* [HTTP/2] [1] [user-agent: MyDogCanFly-Audit/lot-A (contact: audit@mydogcanfly.com)]
+* [HTTP/2] [1] [accept: */*]
+> GET /tenant/tenanttgotb/documents/ImportApplicationRevisedJuly2023-20240131192708-20250528042152.pdf HTTP/2
+> Host: cdn.bahamas.gov.bs
+> User-Agent: MyDogCanFly-Audit/lot-A (contact: audit@mydogcanfly.com)
+> Accept: */*
+> 
+* Request completely sent off
+< HTTP/2 200 
+< content-type: application/pdf
+< content-length: 112504
+< date: Mon, 24 Aug 2026 14:44:16 GMT
+< last-modified: Sat, 31 May 2025 09:02:04 GMT
+< etag: "23f23303ac6d55e9b0a709929ecfd263"
+< x-amz-server-side-encryption: AES256
+< x-amz-meta-sha256: 405067d16871955bba04738636871bd415b88aa753cbe16d15e0a4e530163da9
+< x-amz-meta-s3b-last-modified: 20250528T092152Z
+< accept-ranges: bytes
+< server: AmazonS3
+< x-cache: Hit from cloudfront
+< via: 1.1 cabb3c513008311282f8cda7d1f41664.cloudfront.net (CloudFront)
+< x-amz-cf-pop: MIA50-P4
+< alt-svc: h3=":443"; ma=86400
+< x-amz-cf-id: 3CDC0mq83vOp9NoLvJo3mAw_N52QXRgW99N_zgBwqWlmzwtgdrmoBQ==
+< age: 51702
+< vary: Origin
+< 
+{ [8192 bytes data]
+[ligne expurgée : proxy/authentification]

@@ -1,0 +1,79 @@
+# 2026-08-25 — https://www.trade.gov/country-commercial-guides/ethiopia-import-requirements-and-documentation
+# curl exit=0 · http=200
+
+* Host www.trade.gov:443 was resolved.
+* IPv6: (none)
+* IPv4: 34.204.255.176
+*   Trying 34.204.255.176:443...
+[ligne expurgée : proxy/authentification]
+* ALPN: curl offers h2,http/1.1
+* (304) (OUT), TLS handshake, Client hello (1):
+} [318 bytes data]
+*  CAfile: /etc/ssl/cert.pem
+*  CApath: none
+* (304) (IN), TLS handshake, Server hello (2):
+{ [88 bytes data]
+* (304) (OUT), TLS handshake, Client hello (1):
+} [351 bytes data]
+* (304) (IN), TLS handshake, Server hello (2):
+{ [155 bytes data]
+* (304) (IN), TLS handshake, Unknown (8):
+{ [19 bytes data]
+* (304) (IN), TLS handshake, Certificate (11):
+{ [4620 bytes data]
+* (304) (IN), TLS handshake, CERT verify (15):
+{ [264 bytes data]
+* (304) (IN), TLS handshake, Finished (20):
+{ [52 bytes data]
+* (304) (OUT), TLS handshake, Finished (20):
+} [52 bytes data]
+[ligne expurgée : proxy/authentification]
+* ALPN: server accepted h2
+* Server certificate:
+*  subject: CN=*.trade.gov
+*  start date: Jul 21 00:00:00 2026 GMT
+*  expire date: Feb  4 23:59:59 2027 GMT
+*  subjectAltName: host "www.trade.gov" matched cert's "*.trade.gov"
+*  issuer: C=CA; O=Entrust Limited; CN=Entrust DV TLS Issuing RSA CA 2
+*  SSL certificate verify ok.
+* using HTTP/2
+* [HTTP/2] [1] OPENED stream for https://www.trade.gov/country-commercial-guides/ethiopia-import-requirements-and-documentation
+* [HTTP/2] [1] [:method: GET]
+* [HTTP/2] [1] [:scheme: https]
+* [HTTP/2] [1] [:authority: www.trade.gov]
+* [HTTP/2] [1] [:path: /country-commercial-guides/ethiopia-import-requirements-and-documentation]
+* [HTTP/2] [1] [user-agent: MyDogCanFly-Audit/lot-A (contact: audit@mydogcanfly.com)]
+* [HTTP/2] [1] [accept: */*]
+> GET /country-commercial-guides/ethiopia-import-requirements-and-documentation HTTP/2
+> Host: www.trade.gov
+> User-Agent: MyDogCanFly-Audit/lot-A (contact: audit@mydogcanfly.com)
+> Accept: */*
+> 
+* Request completely sent off
+< HTTP/2 200 
+< server: nginx
+< date: Tue, 25 Aug 2026 05:07:19 GMT
+< content-type: text/html; charset=utf-8
+< content-length: 267926
+< cache-control: max-age=31536000, public
+< x-drupal-dynamic-cache: MISS
+< content-language: en
+< x-content-type-options: nosniff
+< x-frame-options: SAMEORIGIN
+< expires: Sun, 19 Nov 1978 05:00:00 GMT
+< vary: Cookie,Accept-Encoding
+< x-generator: Drupal 11 (https://www.drupal.org)
+< strict-transport-security: max-age=31536000; includeSubDomains
+< x-drupal-cache: MISS
+< last-modified: Mon, 24 Aug 2026 21:28:00 GMT
+< x-request-id: v-ae9414a4-a002-11f1-b775-bb1401e014e1
+< x-ah-environment: prod
+< age: 27558
+< etag: W/"1787606880-gzip"
+< via: varnish
+< x-cache: HIT
+< x-cache-hits: 20
+< accept-ranges: bytes
+< 
+{ [8192 bytes data]
+[ligne expurgée : proxy/authentification]

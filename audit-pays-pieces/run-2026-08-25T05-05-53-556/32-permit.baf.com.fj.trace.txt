@@ -1,0 +1,59 @@
+# 2026-08-25 — https://permit.baf.com.fj/
+# curl exit=0 · http=503
+
+* Host permit.baf.com.fj:443 was resolved.
+* IPv6: (none)
+* IPv4: 38.242.240.231
+*   Trying 38.242.240.231:443...
+[ligne expurgée : proxy/authentification]
+* ALPN: curl offers h2,http/1.1
+* (304) (OUT), TLS handshake, Client hello (1):
+} [322 bytes data]
+*  CAfile: /etc/ssl/cert.pem
+*  CApath: none
+* (304) (IN), TLS handshake, Server hello (2):
+{ [122 bytes data]
+* (304) (IN), TLS handshake, Unknown (8):
+{ [19 bytes data]
+* (304) (IN), TLS handshake, Certificate (11):
+{ [4077 bytes data]
+* (304) (IN), TLS handshake, CERT verify (15):
+{ [264 bytes data]
+* (304) (IN), TLS handshake, Finished (20):
+{ [52 bytes data]
+* (304) (OUT), TLS handshake, Finished (20):
+} [52 bytes data]
+[ligne expurgée : proxy/authentification]
+* ALPN: server accepted h2
+* Server certificate:
+*  subject: CN=permit.baf.com.fj
+*  start date: Jul  1 22:37:40 2026 GMT
+*  expire date: Sep 29 22:37:39 2026 GMT
+*  subjectAltName: host "permit.baf.com.fj" matched cert's "permit.baf.com.fj"
+*  issuer: C=US; O=Let's Encrypt; CN=YR2
+*  SSL certificate verify ok.
+* using HTTP/2
+* [HTTP/2] [1] OPENED stream for https://permit.baf.com.fj/
+* [HTTP/2] [1] [:method: GET]
+* [HTTP/2] [1] [:scheme: https]
+* [HTTP/2] [1] [:authority: permit.baf.com.fj]
+* [HTTP/2] [1] [:path: /]
+* [HTTP/2] [1] [user-agent: MyDogCanFly-Audit/lot-A (contact: audit@mydogcanfly.com)]
+* [HTTP/2] [1] [accept: */*]
+> GET / HTTP/2
+> Host: permit.baf.com.fj
+> User-Agent: MyDogCanFly-Audit/lot-A (contact: audit@mydogcanfly.com)
+> Accept: */*
+> 
+* Request completely sent off
+< HTTP/2 503 
+< server: nginx
+< date: Tue, 25 Aug 2026 05:07:27 GMT
+< content-type: text/html
+< content-length: 918
+< last-modified: Sun, 06 Jul 2025 22:22:32 GMT
+< etag: "396-6394a29ce7438"
+< accept-ranges: bytes
+< 
+{ [918 bytes data]
+[ligne expurgée : proxy/authentification]

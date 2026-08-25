@@ -1,0 +1,66 @@
+# 2026-08-25 — https://www.moa.gov.jm/content/importing-live-animals
+# curl exit=0 · http=200
+
+* Host www.moa.gov.jm:443 was resolved.
+* IPv6: (none)
+* IPv4: 142.4.0.79
+*   Trying 142.4.0.79:443...
+[ligne expurgée : proxy/authentification]
+* ALPN: curl offers h2,http/1.1
+* (304) (OUT), TLS handshake, Client hello (1):
+} [319 bytes data]
+*  CAfile: /etc/ssl/cert.pem
+*  CApath: none
+* (304) (IN), TLS handshake, Server hello (2):
+{ [122 bytes data]
+* (304) (IN), TLS handshake, Unknown (8):
+{ [19 bytes data]
+* (304) (IN), TLS handshake, Certificate (11):
+{ [3205 bytes data]
+* (304) (IN), TLS handshake, CERT verify (15):
+{ [264 bytes data]
+* (304) (IN), TLS handshake, Finished (20):
+{ [52 bytes data]
+* (304) (OUT), TLS handshake, Finished (20):
+} [52 bytes data]
+[ligne expurgée : proxy/authentification]
+* ALPN: server accepted h2
+* Server certificate:
+*  subject: CN=*.moa.gov.jm
+*  start date: Feb 12 00:00:00 2026 GMT
+*  expire date: Feb 12 23:59:59 2027 GMT
+*  subjectAltName: host "www.moa.gov.jm" matched cert's "*.moa.gov.jm"
+*  issuer: C=GB; O=Sectigo Limited; CN=Sectigo Public Server Authentication CA DV R36
+*  SSL certificate verify ok.
+* using HTTP/2
+* [HTTP/2] [1] OPENED stream for https://www.moa.gov.jm/content/importing-live-animals
+* [HTTP/2] [1] [:method: GET]
+* [HTTP/2] [1] [:scheme: https]
+* [HTTP/2] [1] [:authority: www.moa.gov.jm]
+* [HTTP/2] [1] [:path: /content/importing-live-animals]
+* [HTTP/2] [1] [user-agent: MyDogCanFly-Audit/lot-A (contact: audit@mydogcanfly.com)]
+* [HTTP/2] [1] [accept: */*]
+> GET /content/importing-live-animals HTTP/2
+> Host: www.moa.gov.jm
+> User-Agent: MyDogCanFly-Audit/lot-A (contact: audit@mydogcanfly.com)
+> Accept: */*
+> 
+* Request completely sent off
+< HTTP/2 200 
+< server: nginx
+< date: Tue, 25 Aug 2026 05:08:36 GMT
+< content-type: text/html; charset=utf-8
+< x-powered-by: PHP/7.4.33
+< expires: Sun, 19 Nov 1978 05:00:00 GMT
+< cache-control: no-cache, must-revalidate
+< x-frame-options: SAMEORIGIN
+< strict-transport-security: max-age=63072000; includeSubDomains
+< content-language: en
+< x-content-type-options: nosniff
+< x-generator: Drupal 7 (https://www.drupal.org)
+< link: <https://www.moa.gov.jm/content/importing-live-animals>; rel="canonical",<https://www.moa.gov.jm/node/1237>; rel="shortlink"
+< vary: Accept-Encoding
+< x-powered-by: PleskLin
+< 
+{ [7587 bytes data]
+[ligne expurgée : proxy/authentification]

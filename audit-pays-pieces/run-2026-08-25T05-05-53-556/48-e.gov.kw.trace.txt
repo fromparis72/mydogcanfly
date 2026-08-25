@@ -1,0 +1,56 @@
+# 2026-08-25 — https://www.e.gov.kw/sites/kgoenglish/Pages/HomePage.aspx
+# curl exit=0 · http=403
+
+* Host www.e.gov.kw:443 was resolved.
+* IPv6: (none)
+* IPv4: 20.233.91.87
+*   Trying 20.233.91.87:443...
+[ligne expurgée : proxy/authentification]
+* ALPN: curl offers h2,http/1.1
+* (304) (OUT), TLS handshake, Client hello (1):
+} [317 bytes data]
+*  CAfile: /etc/ssl/cert.pem
+*  CApath: none
+* (304) (IN), TLS handshake, Server hello (2):
+{ [122 bytes data]
+* (304) (IN), TLS handshake, Unknown (8):
+{ [19 bytes data]
+* (304) (IN), TLS handshake, Certificate (11):
+{ [3899 bytes data]
+* (304) (IN), TLS handshake, CERT verify (15):
+{ [264 bytes data]
+* (304) (IN), TLS handshake, Finished (20):
+{ [52 bytes data]
+* (304) (OUT), TLS handshake, Finished (20):
+} [52 bytes data]
+[ligne expurgée : proxy/authentification]
+* ALPN: server accepted h2
+* Server certificate:
+*  subject: CN=*.e.gov.kw
+*  start date: Apr 16 13:01:05 2026 GMT
+*  expire date: Oct 31 13:01:05 2026 GMT
+*  subjectAltName: host "www.e.gov.kw" matched cert's "*.e.gov.kw"
+*  issuer: C=US; ST=Arizona; L=Scottsdale; O=GoDaddy.com, Inc.; OU=http://certs.godaddy.com/repository/; CN=Go Daddy Secure Certificate Authority - G2
+*  SSL certificate verify ok.
+* using HTTP/2
+* [HTTP/2] [1] OPENED stream for https://www.e.gov.kw/sites/kgoenglish/Pages/HomePage.aspx
+* [HTTP/2] [1] [:method: GET]
+* [HTTP/2] [1] [:scheme: https]
+* [HTTP/2] [1] [:authority: www.e.gov.kw]
+* [HTTP/2] [1] [:path: /sites/kgoenglish/Pages/HomePage.aspx]
+* [HTTP/2] [1] [user-agent: MyDogCanFly-Audit/lot-A (contact: audit@mydogcanfly.com)]
+* [HTTP/2] [1] [accept: */*]
+> GET /sites/kgoenglish/Pages/HomePage.aspx HTTP/2
+> Host: www.e.gov.kw
+> User-Agent: MyDogCanFly-Audit/lot-A (contact: audit@mydogcanfly.com)
+> Accept: */*
+> 
+* Request completely sent off
+< HTTP/2 403 
+< server: Microsoft-Azure-Application-Gateway/v2
+< date: Tue, 25 Aug 2026 05:09:39 GMT
+< content-type: text/html
+< content-length: 179
+< 
+{ [179 bytes data]
+[ligne expurgée : proxy/authentification]

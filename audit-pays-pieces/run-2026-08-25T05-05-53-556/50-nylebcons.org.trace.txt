@@ -1,0 +1,69 @@
+# 2026-08-25 — https://nylebcons.org/shipping-of-pets/
+# curl exit=0 · http=200
+
+* Host nylebcons.org:443 was resolved.
+* IPv6: (none)
+* IPv4: 160.153.0.177
+*   Trying 160.153.0.177:443...
+[ligne expurgée : proxy/authentification]
+* ALPN: curl offers h2,http/1.1
+* (304) (OUT), TLS handshake, Client hello (1):
+} [318 bytes data]
+*  CAfile: /etc/ssl/cert.pem
+*  CApath: none
+* (304) (IN), TLS handshake, Server hello (2):
+{ [122 bytes data]
+* (304) (IN), TLS handshake, Unknown (8):
+{ [19 bytes data]
+* (304) (IN), TLS handshake, Certificate (11):
+{ [2493 bytes data]
+* (304) (IN), TLS handshake, CERT verify (15):
+{ [80 bytes data]
+* (304) (IN), TLS handshake, Finished (20):
+{ [36 bytes data]
+* (304) (OUT), TLS handshake, Finished (20):
+} [36 bytes data]
+[ligne expurgée : proxy/authentification]
+* ALPN: server accepted h2
+* Server certificate:
+*  subject: CN=nylebcons.org
+*  start date: Jul  1 18:04:54 2026 GMT
+*  expire date: Sep 29 19:04:47 2026 GMT
+*  subjectAltName: host "nylebcons.org" matched cert's "nylebcons.org"
+*  issuer: C=US; O=Google Trust Services; CN=WE1
+*  SSL certificate verify ok.
+* using HTTP/2
+* [HTTP/2] [1] OPENED stream for https://nylebcons.org/shipping-of-pets/
+* [HTTP/2] [1] [:method: GET]
+* [HTTP/2] [1] [:scheme: https]
+* [HTTP/2] [1] [:authority: nylebcons.org]
+* [HTTP/2] [1] [:path: /shipping-of-pets/]
+* [HTTP/2] [1] [user-agent: MyDogCanFly-Audit/lot-A (contact: audit@mydogcanfly.com)]
+* [HTTP/2] [1] [accept: */*]
+> GET /shipping-of-pets/ HTTP/2
+> Host: nylebcons.org
+> User-Agent: MyDogCanFly-Audit/lot-A (contact: audit@mydogcanfly.com)
+> Accept: */*
+> 
+* Request completely sent off
+< HTTP/2 200 
+< date: Tue, 25 Aug 2026 05:09:39 GMT
+< content-type: text/html; charset=UTF-8
+< cf-ray: a30815fc6bcad477-CDG
+< cf-cache-status: HIT
+< age: 128529
+< cache-control: public, max-age=2678400
+[ligne expurgée : proxy/authentification]
+< expires: Fri, 25 Sep 2026 05:09:39 GMT
+< last-modified: Sun, 23 Aug 2026 17:27:30 GMT
+< link: <https://nylebcons.org/wp-json/>; rel="https://api.w.org/", <https://nylebcons.org/wp-json/wp/v2/pages/2217>; rel="alternate"; title="JSON"; type="application/json", <https://nylebcons.org/?p=2217>; rel=shortlink
+< server: cloudflare
+< vary: Accept-Encoding
+< x-gateway-cache-key: 1787489829.208|standard|https|nylebcons.org|||/shipping-of-pets/
+< x-gateway-cache-status: MISS
+< x-gateway-request-id: eff80d4fd755952a0ba11452e9f1c899
+< x-gateway-skip-cache: 0
+< alt-svc: h3=":443"; ma=86400
+< 
+{ [1360 bytes data]
+[ligne expurgée : proxy/authentification]

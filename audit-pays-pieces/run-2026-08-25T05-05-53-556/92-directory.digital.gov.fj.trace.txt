@@ -1,0 +1,66 @@
+# 2026-08-25 — https://directory.digital.gov.fj/organisation?orgId=62
+# curl exit=0 · http=200
+
+* Host directory.digital.gov.fj:443 was resolved.
+* IPv6: 2606:4700:10::ac42:a9a1, 2606:4700:10::6814:220d
+* IPv4: 104.20.34.13, 172.66.169.161
+*   Trying [2606:4700:10::ac42:a9a1]:443...
+[ligne expurgée : proxy/authentification]
+* ALPN: curl offers h2,http/1.1
+* (304) (OUT), TLS handshake, Client hello (1):
+} [329 bytes data]
+*  CAfile: /etc/ssl/cert.pem
+*  CApath: none
+* (304) (IN), TLS handshake, Server hello (2):
+{ [122 bytes data]
+* (304) (IN), TLS handshake, Unknown (8):
+{ [19 bytes data]
+* (304) (IN), TLS handshake, Certificate (11):
+{ [6075 bytes data]
+* (304) (IN), TLS handshake, CERT verify (15):
+{ [264 bytes data]
+* (304) (IN), TLS handshake, Finished (20):
+{ [36 bytes data]
+* (304) (OUT), TLS handshake, Finished (20):
+} [36 bytes data]
+[ligne expurgée : proxy/authentification]
+* ALPN: server accepted h2
+* Server certificate:
+*  subject: CN=*.digital.gov.fj
+*  start date: Jun 29 00:04:23 2026 GMT
+*  expire date: Jan 13 00:04:23 2027 GMT
+*  subjectAltName: host "directory.digital.gov.fj" matched cert's "*.digital.gov.fj"
+*  issuer: C=US; O=GoDaddy.com; CN=GoDaddy TLS Intermediate CA DV - R1v1
+*  SSL certificate verify ok.
+* using HTTP/2
+* [HTTP/2] [1] OPENED stream for https://directory.digital.gov.fj/organisation?orgId=62
+* [HTTP/2] [1] [:method: GET]
+* [HTTP/2] [1] [:scheme: https]
+* [HTTP/2] [1] [:authority: directory.digital.gov.fj]
+* [HTTP/2] [1] [:path: /organisation?orgId=62]
+* [HTTP/2] [1] [user-agent: MyDogCanFly-Audit/lot-A (contact: audit@mydogcanfly.com)]
+* [HTTP/2] [1] [accept: */*]
+> GET /organisation?orgId=62 HTTP/2
+> Host: directory.digital.gov.fj
+> User-Agent: MyDogCanFly-Audit/lot-A (contact: audit@mydogcanfly.com)
+> Accept: */*
+> 
+* Request completely sent off
+< HTTP/2 200 
+< date: Tue, 25 Aug 2026 05:12:54 GMT
+< content-type: text/html; charset=utf-8
+< server: cloudflare
+< strict-transport-security: max-age=63072000; includeSubDomains
+< cache-control: no-cache
+< pragma: no-cache
+< cf-cache-status: DYNAMIC
+< expires: -1
+< vary: Accept-Encoding
+< x-frame-options: SAMEORIGIN
+[ligne expurgée : proxy/authentification]
+[ligne expurgée : proxy/authentification]
+[ligne expurgée : proxy/authentification]
+< cf-ray: a3081ab70aa53573-CDG
+< 
+{ [1360 bytes data]
+[ligne expurgée : proxy/authentification]

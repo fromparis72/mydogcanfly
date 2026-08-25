@@ -1,0 +1,72 @@
+# 2026-08-25 — https://normas.mercosur.int/public/normativas/3111
+# curl exit=0 · http=403
+
+* Host normas.mercosur.int:443 was resolved.
+* IPv6: 2606:4700:10::ac42:927c, 2606:4700:10::6814:233b
+* IPv4: 104.20.35.59, 172.66.146.124
+*   Trying [2606:4700:10::ac42:927c]:443...
+[ligne expurgée : proxy/authentification]
+* ALPN: curl offers h2,http/1.1
+* (304) (OUT), TLS handshake, Client hello (1):
+} [324 bytes data]
+*  CAfile: /etc/ssl/cert.pem
+*  CApath: none
+* (304) (IN), TLS handshake, Server hello (2):
+{ [122 bytes data]
+* (304) (IN), TLS handshake, Unknown (8):
+{ [19 bytes data]
+* (304) (IN), TLS handshake, Certificate (11):
+{ [2491 bytes data]
+* (304) (IN), TLS handshake, CERT verify (15):
+{ [79 bytes data]
+* (304) (IN), TLS handshake, Finished (20):
+{ [36 bytes data]
+* (304) (OUT), TLS handshake, Finished (20):
+} [36 bytes data]
+[ligne expurgée : proxy/authentification]
+* ALPN: server accepted h2
+* Server certificate:
+*  subject: CN=mercosur.int
+*  start date: Jul 13 00:33:32 2026 GMT
+*  expire date: Oct 11 01:33:18 2026 GMT
+*  subjectAltName: host "normas.mercosur.int" matched cert's "*.mercosur.int"
+*  issuer: C=US; O=Google Trust Services; CN=WE1
+*  SSL certificate verify ok.
+* using HTTP/2
+* [HTTP/2] [1] OPENED stream for https://normas.mercosur.int/public/normativas/3111
+* [HTTP/2] [1] [:method: GET]
+* [HTTP/2] [1] [:scheme: https]
+* [HTTP/2] [1] [:authority: normas.mercosur.int]
+* [HTTP/2] [1] [:path: /public/normativas/3111]
+* [HTTP/2] [1] [user-agent: MyDogCanFly-Audit/lot-A (contact: audit@mydogcanfly.com)]
+* [HTTP/2] [1] [accept: */*]
+> GET /public/normativas/3111 HTTP/2
+> Host: normas.mercosur.int
+> User-Agent: MyDogCanFly-Audit/lot-A (contact: audit@mydogcanfly.com)
+> Accept: */*
+> 
+* Request completely sent off
+< HTTP/2 403 
+< date: Tue, 25 Aug 2026 05:12:51 GMT
+< content-type: text/html; charset=UTF-8
+< content-length: 5604
+< accept-ch: Sec-CH-UA-Bitness, Sec-CH-UA-Arch, Sec-CH-UA-Full-Version, Sec-CH-UA-Mobile, Sec-CH-UA-Model, Sec-CH-UA-Platform-Version, Sec-CH-UA-Full-Version-List, Sec-CH-UA-Platform, Sec-CH-UA, UA-Bitness, UA-Arch, UA-Full-Version, UA-Mobile, UA-Model, UA-Platform-Version, UA-Platform, UA
+< cf-mitigated: challenge
+[ligne expurgée : proxy/authentification]
+< server: cloudflare
+< critical-ch: Sec-CH-UA-Bitness, Sec-CH-UA-Arch, Sec-CH-UA-Full-Version, Sec-CH-UA-Mobile, Sec-CH-UA-Model, Sec-CH-UA-Platform-Version, Sec-CH-UA-Full-Version-List, Sec-CH-UA-Platform, Sec-CH-UA, UA-Bitness, UA-Arch, UA-Full-Version, UA-Mobile, UA-Model, UA-Platform-Version, UA-Platform, UA
+< cross-origin-embedder-policy: require-corp
+< cross-origin-opener-policy: same-origin
+< cross-origin-resource-policy: same-origin
+< origin-agent-cluster: ?1
+< permissions-policy: accelerometer=(),camera=(),clipboard-read=(),clipboard-write=(),geolocation=(),gyroscope=(),hid=(),magnetometer=(),microphone=(),payment=(),publickey-credentials-get=(),screen-wake-lock=(),serial=(),sync-xhr=(),usb=(),xr-spatial-tracking=*
+< referrer-policy: same-origin
+< server-timing: chlray;desc="a3081aa87a8c7033"
+< x-content-type-options: nosniff
+< x-frame-options: SAMEORIGIN
+< speculation-rules: "/cdn-cgi/speculation"
+< cf-ray: a3081aa87a8c7033-CDG
+< alt-svc: h3=":443"; ma=86400
+< 
+{ [1360 bytes data]
+[ligne expurgée : proxy/authentification]

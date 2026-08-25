@@ -1,0 +1,65 @@
+# 2026-08-25 — https://lawcommission.gov.np/content/12744/12744-animal-health-and-livestock-se/
+# curl exit=0 · http=200
+
+* Host lawcommission.gov.np:443 was resolved.
+* IPv6: (none)
+* IPv4: 103.69.124.8
+*   Trying 103.69.124.8:443...
+[ligne expurgée : proxy/authentification]
+* ALPN: curl offers h2,http/1.1
+* (304) (OUT), TLS handshake, Client hello (1):
+} [325 bytes data]
+*  CAfile: /etc/ssl/cert.pem
+*  CApath: none
+* (304) (IN), TLS handshake, Server hello (2):
+{ [122 bytes data]
+* (304) (IN), TLS handshake, Unknown (8):
+{ [25 bytes data]
+* (304) (IN), TLS handshake, Certificate (11):
+{ [3454 bytes data]
+* (304) (IN), TLS handshake, CERT verify (15):
+{ [79 bytes data]
+* (304) (IN), TLS handshake, Finished (20):
+{ [36 bytes data]
+* (304) (OUT), TLS handshake, Finished (20):
+} [36 bytes data]
+[ligne expurgée : proxy/authentification]
+* ALPN: server accepted http/1.1
+* Server certificate:
+*  subject: CN=lawcommission.gov.np
+*  start date: Aug  2 04:18:20 2026 GMT
+*  expire date: Oct 31 04:18:19 2026 GMT
+*  subjectAltName: host "lawcommission.gov.np" matched cert's "lawcommission.gov.np"
+*  issuer: C=US; O=Let's Encrypt; CN=YE2
+*  SSL certificate verify ok.
+* using HTTP/1.x
+> GET /content/12744/12744-animal-health-and-livestock-se/ HTTP/1.1
+> Host: lawcommission.gov.np
+> User-Agent: MyDogCanFly-Audit/lot-A (contact: audit@mydogcanfly.com)
+> Accept: */*
+> 
+* Request completely sent off
+< HTTP/1.1 200 OK
+< Server: nginx/1.26.1
+< Date: Tue, 25 Aug 2026 05:08:41 GMT
+< Content-Type: text/html; charset=utf-8
+< Transfer-Encoding: chunked
+[ligne expurgée : proxy/authentification]
+< x-pref-lang: ne
+< x-frame-options: SAMEORIGIN
+< x-content-type-options: nosniff
+< referrer-policy: same-origin
+< cross-origin-opener-policy: same-origin
+< x-varnish: 71837154
+< via: 1.1 varnish (Varnish/6.2)
+< p3p: CP="ALL DSP COR PSAa PSDa OUR NOR ONL UNI COM NAV"
+< Vary: Accept-Encoding, Accept-Language, Accept-Language
+< X-Varnish: 1037731964
+< Age: 0
+< Via: 1.1 varnish (Varnish/6.2)
+< X-Cache: MISS
+< X-Cache-Language: ne
+< Accept-Ranges: bytes
+< 
+{ [15775 bytes data]
+[ligne expurgée : proxy/authentification]

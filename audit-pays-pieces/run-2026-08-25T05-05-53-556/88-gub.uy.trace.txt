@@ -1,0 +1,93 @@
+# 2026-08-25 — https://www.gub.uy/ministerio-ganaderia-agricultura-pesca/institucional/normativa/resolucion-273018-dgsg-27082018
+# curl exit=0 · http=200
+
+* Host www.gub.uy:443 was resolved.
+* IPv6: (none)
+* IPv4: 179.27.169.201
+*   Trying 179.27.169.201:443...
+[ligne expurgée : proxy/authentification]
+* ALPN: curl offers h2,http/1.1
+* (304) (OUT), TLS handshake, Client hello (1):
+} [315 bytes data]
+*  CAfile: /etc/ssl/cert.pem
+*  CApath: none
+* (304) (IN), TLS handshake, Server hello (2):
+{ [91 bytes data]
+* TLSv1.2 (IN), TLS handshake, Certificate (11):
+{ [4055 bytes data]
+* TLSv1.2 (IN), TLS handshake, Server key exchange (12):
+{ [333 bytes data]
+* TLSv1.2 (IN), TLS handshake, Server finished (14):
+{ [4 bytes data]
+* TLSv1.2 (OUT), TLS handshake, Client key exchange (16):
+} [70 bytes data]
+* TLSv1.2 (OUT), TLS change cipher, Change cipher spec (1):
+} [1 bytes data]
+* TLSv1.2 (OUT), TLS handshake, Finished (20):
+} [16 bytes data]
+* TLSv1.2 (IN), TLS change cipher, Change cipher spec (1):
+{ [1 bytes data]
+* TLSv1.2 (IN), TLS handshake, Finished (20):
+{ [16 bytes data]
+[ligne expurgée : proxy/authentification]
+* ALPN: server did not agree on a protocol. Uses default.
+* Server certificate:
+*  subject: CN=www.gub.uy
+*  start date: Jul 24 11:11:59 2026 GMT
+*  expire date: Oct 22 11:11:58 2026 GMT
+*  subjectAltName: host "www.gub.uy" matched cert's "www.gub.uy"
+*  issuer: C=US; O=Let's Encrypt; CN=YR2
+*  SSL certificate verify ok.
+* using HTTP/1.x
+> GET /ministerio-ganaderia-agricultura-pesca/institucional/normativa/resolucion-273018-dgsg-27082018 HTTP/1.1
+> Host: www.gub.uy
+> User-Agent: MyDogCanFly-Audit/lot-A (contact: audit@mydogcanfly.com)
+> Accept: */*
+> 
+* Request completely sent off
+< HTTP/1.1 301 Moved Permanently
+< Date: Tue, 25 Aug 2026 03:03:21 GMT
+< X-Drupal-Route-Normalizer: 1
+< Content-language: es
+< X-Content-Type-Options: nosniff
+< X-Frame-Options: DENY
+< Cache-Control: must-revalidate, no-cache, private
+< Expires: Sun, 19 Nov 1978 05:00:00 GMT
+< Content-Security-Policy: frame-ancestors 'self';
+< Upgrade: h2
+[ligne expurgée : proxy/authentification]
+< Location: https://www.gub.uy/ministerio-ganaderia-agricultura-pesca/institucional/normativa/resolucion-n-273018-dgsg-se-adecuan-normas-control-certificacion-sanitaria
+< Content-Length: 870
+< Content-Type: text/html; charset=utf-8
+[ligne expurgée : proxy/authentification]
+< Strict-Transport-Security: max-age=63072000; includeSubDomains; preload
+[ligne expurgée : proxy/authentification]
+< Vary: Accept-Encoding
+< 
+* Ignoring the response-body
+[ligne expurgée : proxy/authentification]
+* Issue another request to this URL: 'https://www.gub.uy/ministerio-ganaderia-agricultura-pesca/institucional/normativa/resolucion-n-273018-dgsg-se-adecuan-normas-control-certificacion-sanitaria'
+* Found bundle for host: 0x1011979e0 [serially]
+* Can not multiplex, even if we wanted to
+[ligne expurgée : proxy/authentification]
+> GET /ministerio-ganaderia-agricultura-pesca/institucional/normativa/resolucion-n-273018-dgsg-se-adecuan-normas-control-certificacion-sanitaria HTTP/1.1
+> Host: www.gub.uy
+> User-Agent: MyDogCanFly-Audit/lot-A (contact: audit@mydogcanfly.com)
+> Accept: */*
+> 
+* Request completely sent off
+< HTTP/1.1 200 OK
+< Date: Tue, 25 Aug 2026 05:12:47 GMT
+< Cache-Control: must-revalidate, no-cache, private
+< Content-language: es
+< X-Content-Type-Options: nosniff
+< X-Frame-Options: DENY
+< Expires: Sun, 19 Nov 1978 05:00:00 GMT
+< Content-Security-Policy: frame-ancestors 'self';
+< Content-Length: 55384
+< Content-Type: text/html; charset=UTF-8
+< Strict-Transport-Security: max-age=63072000; includeSubDomains; preload
+< Vary: Accept-Encoding
+< 
+{ [1087 bytes data]
+[ligne expurgée : proxy/authentification]

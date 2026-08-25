@@ -1,0 +1,36 @@
+# 2026-08-25 — http://www.saa.gov.sc/
+# curl exit=28 · http=301
+
+* Host www.saa.gov.sc:80 was resolved.
+* IPv6: (none)
+* IPv4: 196.13.208.103
+*   Trying 196.13.208.103:80...
+[ligne expurgée : proxy/authentification]
+> GET / HTTP/1.1
+> Host: www.saa.gov.sc
+> User-Agent: MyDogCanFly-Audit/lot-A (contact: audit@mydogcanfly.com)
+> Accept: */*
+> 
+* Request completely sent off
+< HTTP/1.1 301 Moved Permanently
+< Server: nginx
+< Date: Tue, 25 Aug 2026 05:12:45 GMT
+< Content-Type: text/html
+< Content-Length: 162
+[ligne expurgée : proxy/authentification]
+< Location: https://www.saa.gov.sc/
+< Strict-Transport-Security: max-age=100; includeSubDomains
+< Access-Control-Allow-Headers: ssid
+< Access-Control-Allow-Headers: _ssid
+< 
+* Ignoring the response-body
+[ligne expurgée : proxy/authentification]
+* Clear auth, redirects to port from 80 to 443
+* Issue another request to this URL: 'https://www.saa.gov.sc/'
+* Host www.saa.gov.sc:443 was resolved.
+* IPv6: (none)
+* IPv4: 196.13.208.103
+*   Trying 196.13.208.103:443...
+[ligne expurgée : proxy/authentification]
+[ligne expurgée : proxy/authentification]
+[ligne expurgée : proxy/authentification]

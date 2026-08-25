@@ -1,0 +1,70 @@
+# 2026-08-25 — https://www.aphis.usda.gov/sites/default/files/nigeria-dog-cat.pdf
+# curl exit=0 · http=200
+
+* Host www.aphis.usda.gov:443 was resolved.
+* IPv6: 2a02:26f0:2b80:999::500, 2a02:26f0:2b80:9bb::500
+* IPv4: 104.85.51.175
+*   Trying [2a02:26f0:2b80:999::500]:443...
+[ligne expurgée : proxy/authentification]
+* ALPN: curl offers h2,http/1.1
+* (304) (OUT), TLS handshake, Client hello (1):
+} [323 bytes data]
+*  CAfile: /etc/ssl/cert.pem
+*  CApath: none
+* (304) (IN), TLS handshake, Server hello (2):
+{ [122 bytes data]
+* (304) (IN), TLS handshake, Unknown (8):
+{ [31 bytes data]
+* (304) (IN), TLS handshake, Certificate (11):
+{ [4576 bytes data]
+* (304) (IN), TLS handshake, CERT verify (15):
+{ [264 bytes data]
+* (304) (IN), TLS handshake, Finished (20):
+{ [36 bytes data]
+* (304) (OUT), TLS handshake, Finished (20):
+} [36 bytes data]
+[ligne expurgée : proxy/authentification]
+* ALPN: server accepted h2
+* Server certificate:
+*  subject: C=US; ST=District of Columbia; L=Washington; O=U.S. Department of Agriculture; CN=usda.gov
+*  start date: Aug 19 00:00:00 2026 GMT
+*  expire date: Jan 16 23:59:59 2027 GMT
+*  subjectAltName: host "www.aphis.usda.gov" matched cert's "www.aphis.usda.gov"
+*  issuer: C=US; O=DigiCert Inc; OU=www.digicert.com; CN=GeoTrust TLS RSA CA G1
+*  SSL certificate verify ok.
+* using HTTP/2
+* [HTTP/2] [1] OPENED stream for https://www.aphis.usda.gov/sites/default/files/nigeria-dog-cat.pdf
+* [HTTP/2] [1] [:method: GET]
+* [HTTP/2] [1] [:scheme: https]
+* [HTTP/2] [1] [:authority: www.aphis.usda.gov]
+* [HTTP/2] [1] [:path: /sites/default/files/nigeria-dog-cat.pdf]
+* [HTTP/2] [1] [user-agent: MyDogCanFly-Audit/lot-A (contact: audit@mydogcanfly.com)]
+* [HTTP/2] [1] [accept: */*]
+> GET /sites/default/files/nigeria-dog-cat.pdf HTTP/2
+> Host: www.aphis.usda.gov
+> User-Agent: MyDogCanFly-Audit/lot-A (contact: audit@mydogcanfly.com)
+> Accept: */*
+> 
+* Request completely sent off
+< HTTP/2 200 
+< content-type: application/pdf
+< content-length: 283052
+< x-content-type-options: nosniff
+< last-modified: Thu, 20 Jul 2023 20:46:14 GMT
+< etag: "451ac-600f13d3cde91"
+< accept-ranges: bytes
+< x-varnish: 3510312
+< expires: Tue, 25 Aug 2026 05:10:48 GMT
+< cache-control: max-age=0, no-cache, no-store
+< pragma: no-cache
+< date: Tue, 25 Aug 2026 05:10:48 GMT
+< server-timing: cdn-cache; desc=MISS
+< server-timing: edge; dur=8099
+< server-timing: origin; dur=40
+< alt-svc: h3=":443"; ma=93600
+< strict-transport-security: max-age=31536000 ; includeSubDomains
+< akamai-grn: 0.3f961602.1787634640.170f2921
+< server-timing: ak_p; desc="1787634640135_35034687_386869537_813888_11839_6_10_15";dur=1
+< 
+{ [1310 bytes data]
+[ligne expurgée : proxy/authentification]

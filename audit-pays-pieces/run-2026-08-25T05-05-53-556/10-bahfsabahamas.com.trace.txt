@@ -1,0 +1,74 @@
+# 2026-08-25 — https://bahfsabahamas.com/ePermitting/Pet-Permitting-Instructions-2025.pdf
+# curl exit=0 · http=403
+
+* Host bahfsabahamas.com:443 was resolved.
+* IPv6: 2606:4700:20::ac43:459e, 2606:4700:20::681a:899, 2606:4700:20::681a:999
+* IPv4: 104.26.8.153, 172.67.69.158, 104.26.9.153
+*   Trying [2606:4700:20::ac43:459e]:443...
+[ligne expurgée : proxy/authentification]
+* ALPN: curl offers h2,http/1.1
+* (304) (OUT), TLS handshake, Client hello (1):
+} [322 bytes data]
+*  CAfile: /etc/ssl/cert.pem
+*  CApath: none
+* (304) (IN), TLS handshake, Server hello (2):
+{ [122 bytes data]
+* (304) (IN), TLS handshake, Unknown (8):
+{ [19 bytes data]
+* (304) (IN), TLS handshake, Certificate (11):
+{ [2506 bytes data]
+* (304) (IN), TLS handshake, CERT verify (15):
+{ [78 bytes data]
+* (304) (IN), TLS handshake, Finished (20):
+{ [36 bytes data]
+* (304) (OUT), TLS handshake, Finished (20):
+} [36 bytes data]
+[ligne expurgée : proxy/authentification]
+* ALPN: server accepted h2
+* Server certificate:
+*  subject: CN=bahfsabahamas.com
+*  start date: Aug 23 01:06:36 2026 GMT
+*  expire date: Nov 21 02:06:33 2026 GMT
+*  subjectAltName: host "bahfsabahamas.com" matched cert's "bahfsabahamas.com"
+*  issuer: C=US; O=Google Trust Services; CN=WE1
+*  SSL certificate verify ok.
+* using HTTP/2
+* [HTTP/2] [1] OPENED stream for https://bahfsabahamas.com/ePermitting/Pet-Permitting-Instructions-2025.pdf
+* [HTTP/2] [1] [:method: GET]
+* [HTTP/2] [1] [:scheme: https]
+* [HTTP/2] [1] [:authority: bahfsabahamas.com]
+* [HTTP/2] [1] [:path: /ePermitting/Pet-Permitting-Instructions-2025.pdf]
+* [HTTP/2] [1] [user-agent: MyDogCanFly-Audit/lot-A (contact: audit@mydogcanfly.com)]
+* [HTTP/2] [1] [accept: */*]
+> GET /ePermitting/Pet-Permitting-Instructions-2025.pdf HTTP/2
+> Host: bahfsabahamas.com
+> User-Agent: MyDogCanFly-Audit/lot-A (contact: audit@mydogcanfly.com)
+> Accept: */*
+> 
+* Request completely sent off
+< HTTP/2 403 
+< date: Tue, 25 Aug 2026 05:05:58 GMT
+< content-type: text/html; charset=UTF-8
+< content-length: 5744
+< accept-ch: Sec-CH-UA-Bitness, Sec-CH-UA-Arch, Sec-CH-UA-Full-Version, Sec-CH-UA-Mobile, Sec-CH-UA-Model, Sec-CH-UA-Platform-Version, Sec-CH-UA-Full-Version-List, Sec-CH-UA-Platform, Sec-CH-UA, UA-Bitness, UA-Arch, UA-Full-Version, UA-Mobile, UA-Model, UA-Platform-Version, UA-Platform, UA
+< cf-mitigated: challenge
+[ligne expurgée : proxy/authentification]
+< server: cloudflare
+< critical-ch: Sec-CH-UA-Bitness, Sec-CH-UA-Arch, Sec-CH-UA-Full-Version, Sec-CH-UA-Mobile, Sec-CH-UA-Model, Sec-CH-UA-Platform-Version, Sec-CH-UA-Full-Version-List, Sec-CH-UA-Platform, Sec-CH-UA, UA-Bitness, UA-Arch, UA-Full-Version, UA-Mobile, UA-Model, UA-Platform-Version, UA-Platform, UA
+< cross-origin-embedder-policy: require-corp
+< cross-origin-opener-policy: same-origin
+< cross-origin-resource-policy: same-origin
+< origin-agent-cluster: ?1
+< permissions-policy: accelerometer=(),camera=(),clipboard-read=(),clipboard-write=(),geolocation=(),gyroscope=(),hid=(),magnetometer=(),microphone=(),payment=(),publickey-credentials-get=(),screen-wake-lock=(),serial=(),sync-xhr=(),usb=(),xr-spatial-tracking=*
+< referrer-policy: same-origin
+< server-timing: chlray;desc="a3081094ccecd107"
+< x-content-type-options: nosniff
+< x-frame-options: SAMEORIGIN
+< report-to: {"group":"cf-nel","max_age":604800,"endpoints":[{"url":"https://a.nel.cloudflare.com/report/v4?s=lWzPmV%2BgZR%2FqrGrpstYXiJ6xaG6TS5XeFE17FZUV5H%2BcYoaHl7nvvaHRhM9tK9OnINwEMbZ5GNgOCPAnmYosM8e71c%2FyUIEzaWSbyY8E8NepwwCFlYyku9hqxqJhxh8MnfuzubePL84LYe7F5c9U"}]}
+< nel: {"report_to":"cf-nel","success_fraction":0.0,"max_age":604800}
+< expect-ct: max-age=86400, enforce
+< x-xss-protection: 1; mode=block
+< cf-ray: a3081094ccecd107-CDG
+< 
+{ [1360 bytes data]
+[ligne expurgée : proxy/authentification]

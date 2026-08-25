@@ -1,0 +1,52 @@
+# 2026-08-25 — https://www.agrocalidad.gob.ec/wp-content/uploads/2026/03/REquisitos-Zoosanitarios.pdf
+# curl exit=0 · http=403
+
+* Host www.agrocalidad.gob.ec:443 was resolved.
+* IPv6: (none)
+* IPv4: 45.60.198.55
+*   Trying 45.60.198.55:443...
+[ligne expurgée : proxy/authentification]
+* ALPN: curl offers h2,http/1.1
+* (304) (OUT), TLS handshake, Client hello (1):
+} [327 bytes data]
+*  CAfile: /etc/ssl/cert.pem
+*  CApath: none
+* (304) (IN), TLS handshake, Server hello (2):
+{ [122 bytes data]
+* (304) (IN), TLS handshake, Unknown (8):
+{ [32 bytes data]
+* (304) (IN), TLS handshake, Certificate (11):
+{ [6527 bytes data]
+* (304) (IN), TLS handshake, CERT verify (15):
+{ [264 bytes data]
+* (304) (IN), TLS handshake, Finished (20):
+{ [36 bytes data]
+* (304) (OUT), TLS handshake, Finished (20):
+} [36 bytes data]
+[ligne expurgée : proxy/authentification]
+* ALPN: server did not agree on a protocol. Uses default.
+* Server certificate:
+*  subject: CN=*.agrocalidad.gob.ec
+*  start date: May  5 00:00:00 2026 GMT
+*  expire date: Nov 19 23:59:59 2026 GMT
+*  subjectAltName: host "www.agrocalidad.gob.ec" matched cert's "*.agrocalidad.gob.ec"
+*  issuer: C=GB; O=Sectigo Limited; CN=Sectigo Public Server Authentication CA DV R36
+*  SSL certificate verify ok.
+* using HTTP/1.x
+> GET /wp-content/uploads/2026/03/REquisitos-Zoosanitarios.pdf HTTP/1.1
+> Host: www.agrocalidad.gob.ec
+> User-Agent: MyDogCanFly-Audit/lot-A (contact: audit@mydogcanfly.com)
+> Accept: */*
+> 
+* Request completely sent off
+< HTTP/1.1 403 Forbidden
+< Content-Type: text/html
+< Cache-Control: no-cache, no-store
+[ligne expurgée : proxy/authentification]
+< Content-Length: 859
+< X-Iinfo: 51-6321669-0 0NNN RT(1787634401974 10) q(0 -1 -1 -1) r(0 -1) B16 U18
+[ligne expurgée : proxy/authentification]
+[ligne expurgée : proxy/authentification]
+< 
+{ [859 bytes data]
+[ligne expurgée : proxy/authentification]

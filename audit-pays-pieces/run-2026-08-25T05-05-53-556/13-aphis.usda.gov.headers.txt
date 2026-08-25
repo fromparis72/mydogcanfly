@@ -1,0 +1,44 @@
+HTTP/2 301 
+content-type: text/html; charset=utf-8
+content-length: 422
+x-content-type-options: nosniff
+x-redirect-id: 32014
+location: /sites/default/files/ivory-coast-cat-dog.pdf
+x-drupal-dynamic-cache: UNCACHEABLE (301)
+content-language: en
+x-frame-options: SAMEORIGIN
+x-generator: Drupal 11 (https://www.drupal.org)
+x-drupal-cache: UNCACHEABLE (response policy)
+x-varnish: 2730896
+expires: Tue, 25 Aug 2026 05:06:28 GMT
+cache-control: max-age=0, no-cache, no-store
+pragma: no-cache
+date: Tue, 25 Aug 2026 05:06:28 GMT
+server-timing: cdn-cache; desc=MISS
+server-timing: edge; dur=10098
+server-timing: origin; dur=109
+alt-svc: h3=":443"; ma=93600
+strict-transport-security: max-age=31536000 ; includeSubDomains
+akamai-grn: 0.1d961602.1787634378.21ffa46e
+server-timing: ak_p; desc="1787634378144_35034653_570401902_1020711_15219_7_14_15";dur=1
+
+HTTP/2 200 
+content-type: application/pdf
+content-length: 113255
+x-content-type-options: nosniff
+last-modified: Fri, 21 Jul 2023 04:57:42 GMT
+etag: "1ba67-600f81ad3bd97"
+accept-ranges: bytes
+x-varnish: 3643863
+expires: Tue, 25 Aug 2026 05:06:38 GMT
+cache-control: max-age=0, no-cache, no-store
+pragma: no-cache
+date: Tue, 25 Aug 2026 05:06:38 GMT
+server-timing: cdn-cache; desc=MISS
+server-timing: edge; dur=10097
+server-timing: origin; dur=46
+alt-svc: h3=":443"; ma=93600
+strict-transport-security: max-age=31536000 ; includeSubDomains
+akamai-grn: 0.1d961602.1787634388.22002a1b
+server-timing: ak_p; desc="1787634388507_35034653_570436123_1014388_10127_21_0_15";dur=1
+

@@ -1,0 +1,62 @@
+# 2026-08-25 — https://www.douanes.gov.mg/prohibitions-et-interdictions/
+# curl exit=0 · http=200
+
+* Host www.douanes.gov.mg:443 was resolved.
+* IPv6: (none)
+* IPv4: 154.126.81.51
+*   Trying 154.126.81.51:443...
+[ligne expurgée : proxy/authentification]
+* ALPN: curl offers h2,http/1.1
+* (304) (OUT), TLS handshake, Client hello (1):
+} [323 bytes data]
+*  CAfile: /etc/ssl/cert.pem
+*  CApath: none
+* (304) (IN), TLS handshake, Server hello (2):
+{ [93 bytes data]
+* TLSv1.2 (IN), TLS handshake, Certificate (11):
+{ [3313 bytes data]
+* TLSv1.2 (IN), TLS handshake, Server key exchange (12):
+{ [333 bytes data]
+* TLSv1.2 (IN), TLS handshake, Server finished (14):
+{ [4 bytes data]
+* TLSv1.2 (OUT), TLS handshake, Client key exchange (16):
+} [70 bytes data]
+* TLSv1.2 (OUT), TLS change cipher, Change cipher spec (1):
+} [1 bytes data]
+* TLSv1.2 (OUT), TLS handshake, Finished (20):
+} [16 bytes data]
+* TLSv1.2 (IN), TLS change cipher, Change cipher spec (1):
+{ [1 bytes data]
+* TLSv1.2 (IN), TLS handshake, Finished (20):
+{ [16 bytes data]
+[ligne expurgée : proxy/authentification]
+* ALPN: server did not agree on a protocol. Uses default.
+* Server certificate:
+*  subject: CN=*.douanes.gov.mg
+*  start date: Jan 19 00:00:00 2026 GMT
+*  expire date: Dec 16 23:59:59 2026 GMT
+*  subjectAltName: host "www.douanes.gov.mg" matched cert's "*.douanes.gov.mg"
+*  issuer: C=GB; O=Sectigo Limited; CN=Sectigo Public Server Authentication CA DV R36
+*  SSL certificate verify ok.
+* using HTTP/1.x
+> GET /prohibitions-et-interdictions/ HTTP/1.1
+> Host: www.douanes.gov.mg
+> User-Agent: MyDogCanFly-Audit/lot-A (contact: audit@mydogcanfly.com)
+> Accept: */*
+> 
+* Request completely sent off
+< HTTP/1.1 200 OK
+< Date: Tue, 25 Aug 2026 05:10:36 GMT
+< Server: Apache/2.4.6 (CentOS) OpenSSL/1.0.2k-fips PHP/7.3.24
+< Vary: Host
+< X-Powered-By: PHP/7.3.24
+[ligne expurgée : proxy/authentification]
+< Link: <https://www.douanes.gov.mg/wp-json/>; rel="https://api.w.org/"
+< Link: <https://www.douanes.gov.mg/wp-json/wp/v2/pages/1814>; rel="alternate"; type="application/json"
+< Link: <https://www.douanes.gov.mg/?p=1814>; rel=shortlink
+[ligne expurgée : proxy/authentification]
+< Transfer-Encoding: chunked
+< Content-Type: text/html; charset=UTF-8
+< 
+{ [7 bytes data]
+[ligne expurgée : proxy/authentification]

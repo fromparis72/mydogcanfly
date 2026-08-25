@@ -1,0 +1,44 @@
+HTTP/2 301 
+content-type: text/html; charset=utf-8
+content-length: 398
+x-content-type-options: nosniff
+x-redirect-id: 35675
+location: /sites/default/files/ghana-dog-cat.pdf
+x-drupal-dynamic-cache: UNCACHEABLE (301)
+content-language: en
+x-frame-options: SAMEORIGIN
+x-generator: Drupal 11 (https://www.drupal.org)
+x-drupal-cache: UNCACHEABLE (response policy)
+x-varnish: 3510170
+expires: Tue, 25 Aug 2026 05:08:17 GMT
+cache-control: max-age=0, no-cache, no-store
+pragma: no-cache
+date: Tue, 25 Aug 2026 05:08:17 GMT
+server-timing: cdn-cache; desc=MISS
+server-timing: edge; dur=8098
+server-timing: origin; dur=120
+alt-svc: h3=":443"; ma=93600
+strict-transport-security: max-age=31536000 ; includeSubDomains
+akamai-grn: 0.1d961602.1787634489.2200ed20
+server-timing: ak_p; desc="1787634489639_35034653_570486048_821874_9968_9_11_15";dur=1
+
+HTTP/2 200 
+content-type: application/pdf
+content-length: 189795
+x-content-type-options: nosniff
+last-modified: Fri, 21 Jul 2023 13:06:56 GMT
+etag: "2e563-600fef079a6fb"
+accept-ranges: bytes
+x-varnish: 5088486
+expires: Tue, 25 Aug 2026 05:08:27 GMT
+cache-control: max-age=0, no-cache, no-store
+pragma: no-cache
+date: Tue, 25 Aug 2026 05:08:27 GMT
+server-timing: cdn-cache; desc=MISS
+server-timing: edge; dur=9097
+server-timing: origin; dur=39
+alt-svc: h3=":443"; ma=93600
+strict-transport-security: max-age=31536000 ; includeSubDomains
+akamai-grn: 0.1d961602.1787634497.2200fd07
+server-timing: ak_p; desc="1787634497890_35034653_570490119_913629_9948_8_0_15";dur=1
+

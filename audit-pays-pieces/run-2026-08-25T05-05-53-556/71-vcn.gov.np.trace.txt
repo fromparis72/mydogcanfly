@@ -1,0 +1,58 @@
+# 2026-08-25 — https://vcn.gov.np/rules/animal-health-and-livestock-services-rules-2056-1999English_1504432245-1657782197.pdf
+# curl exit=0 · http=200
+
+* Host vcn.gov.np:443 was resolved.
+* IPv6: (none)
+* IPv4: 143.95.228.107
+*   Trying 143.95.228.107:443...
+[ligne expurgée : proxy/authentification]
+* ALPN: curl offers h2,http/1.1
+* (304) (OUT), TLS handshake, Client hello (1):
+} [315 bytes data]
+*  CAfile: /etc/ssl/cert.pem
+*  CApath: none
+* (304) (IN), TLS handshake, Server hello (2):
+{ [122 bytes data]
+* (304) (IN), TLS handshake, Unknown (8):
+{ [19 bytes data]
+* (304) (IN), TLS handshake, Certificate (11):
+{ [4544 bytes data]
+* (304) (IN), TLS handshake, CERT verify (15):
+{ [392 bytes data]
+* (304) (IN), TLS handshake, Finished (20):
+{ [52 bytes data]
+* (304) (OUT), TLS handshake, Finished (20):
+} [52 bytes data]
+[ligne expurgée : proxy/authentification]
+* ALPN: server accepted h2
+* Server certificate:
+*  subject: CN=vcn.gov.np
+*  start date: Jun  8 00:00:00 2026 GMT
+*  expire date: Sep  6 23:59:59 2026 GMT
+*  subjectAltName: host "vcn.gov.np" matched cert's "vcn.gov.np"
+*  issuer: C=AT; O=ZeroSSL GmbH; CN=ZeroSSL RSA DV SSL CA 2
+*  SSL certificate verify ok.
+* using HTTP/2
+* [HTTP/2] [1] OPENED stream for https://vcn.gov.np/rules/animal-health-and-livestock-services-rules-2056-1999English_1504432245-1657782197.pdf
+* [HTTP/2] [1] [:method: GET]
+* [HTTP/2] [1] [:scheme: https]
+* [HTTP/2] [1] [:authority: vcn.gov.np]
+* [HTTP/2] [1] [:path: /rules/animal-health-and-livestock-services-rules-2056-1999English_1504432245-1657782197.pdf]
+* [HTTP/2] [1] [user-agent: MyDogCanFly-Audit/lot-A (contact: audit@mydogcanfly.com)]
+* [HTTP/2] [1] [accept: */*]
+> GET /rules/animal-health-and-livestock-services-rules-2056-1999English_1504432245-1657782197.pdf HTTP/2
+> Host: vcn.gov.np
+> User-Agent: MyDogCanFly-Audit/lot-A (contact: audit@mydogcanfly.com)
+> Accept: */*
+> 
+* Request completely sent off
+< HTTP/2 200 
+< last-modified: Mon, 20 May 2024 06:35:35 GMT
+< accept-ranges: bytes
+< content-length: 330552
+< content-type: application/pdf
+< date: Tue, 25 Aug 2026 05:10:56 GMT
+< server: Apache
+< 
+{ [16283 bytes data]
+[ligne expurgée : proxy/authentification]

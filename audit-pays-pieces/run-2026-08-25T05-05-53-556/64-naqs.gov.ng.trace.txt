@@ -1,0 +1,63 @@
+# 2026-08-25 — https://naqs.gov.ng/
+# curl exit=0 · http=200
+
+* Host naqs.gov.ng:443 was resolved.
+* IPv6: (none)
+* IPv4: 197.159.67.12
+*   Trying 197.159.67.12:443...
+[ligne expurgée : proxy/authentification]
+* ALPN: curl offers h2,http/1.1
+* (304) (OUT), TLS handshake, Client hello (1):
+} [316 bytes data]
+*  CAfile: /etc/ssl/cert.pem
+*  CApath: none
+* (304) (IN), TLS handshake, Server hello (2):
+{ [122 bytes data]
+* (304) (IN), TLS handshake, Unknown (8):
+{ [19 bytes data]
+* (304) (IN), TLS handshake, Certificate (11):
+{ [3426 bytes data]
+* (304) (IN), TLS handshake, CERT verify (15):
+{ [78 bytes data]
+* (304) (IN), TLS handshake, Finished (20):
+{ [36 bytes data]
+* (304) (OUT), TLS handshake, Finished (20):
+} [36 bytes data]
+[ligne expurgée : proxy/authentification]
+* ALPN: server accepted h2
+* Server certificate:
+*  subject: CN=naqs.gov.ng
+*  start date: Jul 27 10:17:02 2026 GMT
+*  expire date: Oct 25 10:17:01 2026 GMT
+*  subjectAltName: host "naqs.gov.ng" matched cert's "naqs.gov.ng"
+*  issuer: C=US; O=Let's Encrypt; CN=YE1
+*  SSL certificate verify ok.
+* using HTTP/2
+* [HTTP/2] [1] OPENED stream for https://naqs.gov.ng/
+* [HTTP/2] [1] [:method: GET]
+* [HTTP/2] [1] [:scheme: https]
+* [HTTP/2] [1] [:authority: naqs.gov.ng]
+* [HTTP/2] [1] [:path: /]
+* [HTTP/2] [1] [user-agent: MyDogCanFly-Audit/lot-A (contact: audit@mydogcanfly.com)]
+* [HTTP/2] [1] [accept: */*]
+> GET / HTTP/2
+> Host: naqs.gov.ng
+> User-Agent: MyDogCanFly-Audit/lot-A (contact: audit@mydogcanfly.com)
+> Accept: */*
+> 
+* Request completely sent off
+< HTTP/2 200 
+< server: nginx
+< date: Tue, 25 Aug 2026 05:10:29 GMT
+< content-type: text/html; charset=UTF-8
+< permissions-policy: private-state-token-redemption=(self "https://www.google.com" "https://www.gstatic.com" "https://recaptcha.net" "https://challenges.cloudflare.com" "https://hcaptcha.com"), private-state-token-issuance=(self "https://www.google.com" "https://www.gstatic.com" "https://recaptcha.net" "https://challenges.cloudflare.com" "https://hcaptcha.com")
+< link: <http://naqs.gov.ng/wp-json/>; rel="https://api.w.org/", <http://naqs.gov.ng/wp-json/wp/v2/pages/8591>; rel="alternate"; title="JSON"; type="application/json", <http://naqs.gov.ng/>; rel=shortlink
+< x-content-type-options: nosniff
+< x-frame-options: DENY
+< x-xss-protection: 1; mode=block
+< referrer-policy: strict-origin-when-cross-origin
+< x-robots-tag: all
+< content-security-policy: upgrade-insecure-requests
+< 
+{ [576 bytes data]
+[ligne expurgée : proxy/authentification]

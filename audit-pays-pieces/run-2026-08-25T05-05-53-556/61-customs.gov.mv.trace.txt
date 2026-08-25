@@ -1,0 +1,74 @@
+# 2026-08-25 — https://www.customs.gov.mv/
+# curl exit=0 · http=403
+
+* Host www.customs.gov.mv:443 was resolved.
+* IPv6: 2606:4700:20::ac43:494e, 2606:4700:20::681a:2ad, 2606:4700:20::681a:3ad
+* IPv4: 104.26.2.173, 104.26.3.173, 172.67.73.78
+*   Trying [2606:4700:20::ac43:494e]:443...
+[ligne expurgée : proxy/authentification]
+* ALPN: curl offers h2,http/1.1
+* (304) (OUT), TLS handshake, Client hello (1):
+} [323 bytes data]
+*  CAfile: /etc/ssl/cert.pem
+*  CApath: none
+* (304) (IN), TLS handshake, Server hello (2):
+{ [122 bytes data]
+* (304) (IN), TLS handshake, Unknown (8):
+{ [19 bytes data]
+* (304) (IN), TLS handshake, Certificate (11):
+{ [2498 bytes data]
+* (304) (IN), TLS handshake, CERT verify (15):
+{ [78 bytes data]
+* (304) (IN), TLS handshake, Finished (20):
+{ [36 bytes data]
+* (304) (OUT), TLS handshake, Finished (20):
+} [36 bytes data]
+[ligne expurgée : proxy/authentification]
+* ALPN: server accepted h2
+* Server certificate:
+*  subject: CN=customs.gov.mv
+*  start date: Aug 14 04:59:04 2026 GMT
+*  expire date: Nov 12 05:59:00 2026 GMT
+*  subjectAltName: host "www.customs.gov.mv" matched cert's "*.customs.gov.mv"
+*  issuer: C=US; O=Google Trust Services; CN=WE1
+*  SSL certificate verify ok.
+* using HTTP/2
+* [HTTP/2] [1] OPENED stream for https://www.customs.gov.mv/
+* [HTTP/2] [1] [:method: GET]
+* [HTTP/2] [1] [:scheme: https]
+* [HTTP/2] [1] [:authority: www.customs.gov.mv]
+* [HTTP/2] [1] [:path: /]
+* [HTTP/2] [1] [user-agent: MyDogCanFly-Audit/lot-A (contact: audit@mydogcanfly.com)]
+* [HTTP/2] [1] [accept: */*]
+> GET / HTTP/2
+> Host: www.customs.gov.mv
+> User-Agent: MyDogCanFly-Audit/lot-A (contact: audit@mydogcanfly.com)
+> Accept: */*
+> 
+* Request completely sent off
+< HTTP/2 403 
+< date: Tue, 25 Aug 2026 05:10:25 GMT
+< content-type: text/html; charset=UTF-8
+< content-length: 5516
+< accept-ch: Sec-CH-UA-Bitness, Sec-CH-UA-Arch, Sec-CH-UA-Full-Version, Sec-CH-UA-Mobile, Sec-CH-UA-Model, Sec-CH-UA-Platform-Version, Sec-CH-UA-Full-Version-List, Sec-CH-UA-Platform, Sec-CH-UA, UA-Bitness, UA-Arch, UA-Full-Version, UA-Mobile, UA-Model, UA-Platform-Version, UA-Platform, UA
+< cf-mitigated: challenge
+[ligne expurgée : proxy/authentification]
+< server: cloudflare
+< critical-ch: Sec-CH-UA-Bitness, Sec-CH-UA-Arch, Sec-CH-UA-Full-Version, Sec-CH-UA-Mobile, Sec-CH-UA-Model, Sec-CH-UA-Platform-Version, Sec-CH-UA-Full-Version-List, Sec-CH-UA-Platform, Sec-CH-UA, UA-Bitness, UA-Arch, UA-Full-Version, UA-Mobile, UA-Model, UA-Platform-Version, UA-Platform, UA
+< cross-origin-embedder-policy: require-corp
+< cross-origin-opener-policy: same-origin
+< cross-origin-resource-policy: same-origin
+< origin-agent-cluster: ?1
+< permissions-policy: accelerometer=(),camera=(),clipboard-read=(),clipboard-write=(),geolocation=(),gyroscope=(),hid=(),magnetometer=(),microphone=(),payment=(),publickey-credentials-get=(),screen-wake-lock=(),serial=(),sync-xhr=(),usb=(),xr-spatial-tracking=*
+< referrer-policy: same-origin
+< server-timing: chlray;desc="a30817163adf9ef4"
+< x-content-type-options: nosniff
+< x-frame-options: SAMEORIGIN
+< speculation-rules: "/cdn-cgi/speculation"
+< report-to: {"group":"cf-nel","max_age":604800,"endpoints":[{"url":"https://a.nel.cloudflare.com/report/v4?s=MswMbHcWzwXV0CBPOfe58JMfouPqUOIa8idr7dgGSm2Z3FqL9W3Zvr7FYawrhrLK7CPB01PAj%2F7jOHWGEoyVUysAUmBmxZDhsFsDvGPsgeijTfgzkQvXsnClzq%2FXxUfEyxlnkuPZ59YY9OloPgbQRw%3D%3D"}]}
+< nel: {"report_to":"cf-nel","success_fraction":0.0,"max_age":604800}
+< cf-ray: a30817163adf9ef4-CDG
+< alt-svc: h3=":443"; ma=86400
+< 
+{ [1360 bytes data]
+[ligne expurgée : proxy/authentification]
