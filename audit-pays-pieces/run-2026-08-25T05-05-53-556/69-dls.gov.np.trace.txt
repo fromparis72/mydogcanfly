@@ -1,0 +1,27 @@
+# 2026-08-25 — https://www.dls.gov.np/en/pages/47/35865569/
+# curl exit=60 · http=000
+
+* Host www.dls.gov.np:443 was resolved.
+* IPv6: (none)
+* IPv4: 143.95.225.99
+*   Trying 143.95.225.99:443...
+[ligne expurgée : proxy/authentification]
+* ALPN: curl offers h2,http/1.1
+* (304) (OUT), TLS handshake, Client hello (1):
+} [319 bytes data]
+*  CAfile: /etc/ssl/cert.pem
+*  CApath: none
+* (304) (IN), TLS handshake, Server hello (2):
+{ [122 bytes data]
+* (304) (IN), TLS handshake, Unknown (8):
+{ [19 bytes data]
+* (304) (IN), TLS handshake, Certificate (11):
+{ [2831 bytes data]
+* SSL certificate problem: certificate has expired
+[ligne expurgée : proxy/authentification]
+curl: (60) SSL certificate problem: certificate has expired
+More details here: https://curl.se/docs/sslcerts.html
+
+curl failed to verify the legitimacy of the server and therefore could not
+[ligne expurgée : proxy/authentification]
+how to fix it, please visit the web page mentioned above.

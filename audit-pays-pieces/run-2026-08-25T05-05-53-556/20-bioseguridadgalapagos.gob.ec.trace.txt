@@ -1,0 +1,53 @@
+# 2026-08-25 — https://bioseguridadgalapagos.gob.ec/wp-content/uploads/downloads/transparencia/juridico/2016/04/a2/reglamento_de_tenencia_de_mascotas.pdf
+# curl exit=0 · http=200
+
+* Host bioseguridadgalapagos.gob.ec:443 was resolved.
+* IPv6: (none)
+* IPv4: 66.70.229.29
+*   Trying 66.70.229.29:443...
+[ligne expurgée : proxy/authentification]
+* ALPN: curl offers h2,http/1.1
+* (304) (OUT), TLS handshake, Client hello (1):
+} [333 bytes data]
+*  CAfile: /etc/ssl/cert.pem
+*  CApath: none
+* (304) (IN), TLS handshake, Server hello (2):
+{ [122 bytes data]
+* (304) (IN), TLS handshake, Unknown (8):
+{ [25 bytes data]
+* (304) (IN), TLS handshake, Certificate (11):
+{ [4168 bytes data]
+* (304) (IN), TLS handshake, CERT verify (15):
+{ [264 bytes data]
+* (304) (IN), TLS handshake, Finished (20):
+{ [52 bytes data]
+* (304) (OUT), TLS handshake, Finished (20):
+} [52 bytes data]
+[ligne expurgée : proxy/authentification]
+* ALPN: server accepted http/1.1
+* Server certificate:
+*  subject: CN=abgalapagos.gob.ec
+*  start date: Jun 30 05:40:43 2026 GMT
+*  expire date: Sep 28 05:40:42 2026 GMT
+*  subjectAltName: host "bioseguridadgalapagos.gob.ec" matched cert's "bioseguridadgalapagos.gob.ec"
+*  issuer: C=US; O=Let's Encrypt; CN=YR1
+*  SSL certificate verify ok.
+* using HTTP/1.x
+> GET /wp-content/uploads/downloads/transparencia/juridico/2016/04/a2/reglamento_de_tenencia_de_mascotas.pdf HTTP/1.1
+> Host: bioseguridadgalapagos.gob.ec
+> User-Agent: MyDogCanFly-Audit/lot-A (contact: audit@mydogcanfly.com)
+> Accept: */*
+> 
+* Request completely sent off
+< HTTP/1.1 200 OK
+< Server: nginx/1.30.4
+< Date: Tue, 25 Aug 2026 05:06:46 GMT
+< Content-Type: application/pdf
+< Content-Length: 206271
+< Last-Modified: Thu, 23 Jan 2020 18:36:46 GMT
+[ligne expurgée : proxy/authentification]
+< ETag: "5e29e7be-325bf"
+< Accept-Ranges: bytes
+< 
+{ [16135 bytes data]
+[ligne expurgée : proxy/authentification]

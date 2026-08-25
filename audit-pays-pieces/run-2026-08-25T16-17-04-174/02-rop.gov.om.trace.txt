@@ -1,0 +1,59 @@
+# 2026-08-25 — https://www.rop.gov.om/english/Index.aspx
+# curl exit=0 · http=200
+
+* Host www.rop.gov.om:443 was resolved.
+* IPv6: (none)
+* IPv4: 212.72.11.44
+*   Trying 212.72.11.44:443...
+[ligne expurgée : proxy/authentification]
+* ALPN: curl offers h2,http/1.1
+* (304) (OUT), TLS handshake, Client hello (1):
+} [319 bytes data]
+*  CAfile: /etc/ssl/cert.pem
+*  CApath: none
+* (304) (IN), TLS handshake, Server hello (2):
+{ [122 bytes data]
+* (304) (IN), TLS handshake, Unknown (8):
+{ [15 bytes data]
+* (304) (IN), TLS handshake, Certificate (11):
+{ [6542 bytes data]
+* (304) (IN), TLS handshake, CERT verify (15):
+{ [264 bytes data]
+* (304) (IN), TLS handshake, Finished (20):
+{ [52 bytes data]
+* (304) (OUT), TLS handshake, Finished (20):
+} [52 bytes data]
+[ligne expurgée : proxy/authentification]
+* ALPN: server accepted h2
+* Server certificate:
+*  subject: C=OM; ST=Muscat; O=Royal Oman Police; CN=*.rop.gov.om
+*  start date: Apr 15 00:00:00 2026 GMT
+*  expire date: Oct 30 23:59:59 2026 GMT
+*  subjectAltName: host "www.rop.gov.om" matched cert's "*.rop.gov.om"
+*  issuer: C=CA; O=Entrust Limited; CN=Entrust OV TLS Issuing RSA CA 2
+*  SSL certificate verify ok.
+* using HTTP/2
+* [HTTP/2] [1] OPENED stream for https://www.rop.gov.om/english/Index.aspx
+* [HTTP/2] [1] [:method: GET]
+* [HTTP/2] [1] [:scheme: https]
+* [HTTP/2] [1] [:authority: www.rop.gov.om]
+* [HTTP/2] [1] [:path: /english/Index.aspx]
+* [HTTP/2] [1] [user-agent: MyDogCanFly-Audit/lot-A (contact: audit@mydogcanfly.com)]
+* [HTTP/2] [1] [accept: */*]
+> GET /english/Index.aspx HTTP/2
+> Host: www.rop.gov.om
+> User-Agent: MyDogCanFly-Audit/lot-A (contact: audit@mydogcanfly.com)
+> Accept: */*
+> 
+* Request completely sent off
+< HTTP/2 200 
+< cache-control: private
+< content-type: text/html; charset=utf-8
+< date: Tue, 25 Aug 2026 16:17:14 GMT
+< content-length: 150475
+< strict-transport-security: max-age=16070400; includeSubDomains
+[ligne expurgée : proxy/authentification]
+[ligne expurgée : proxy/authentification]
+< 
+{ [2048 bytes data]
+[ligne expurgée : proxy/authentification]

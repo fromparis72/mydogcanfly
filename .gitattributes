@@ -1,0 +1,5 @@
+# Les pièces de collecte du lot A sont des PREUVES BRUTES : jamais normalisées (-text),
+# jamais diffées comme du code (-diff) — leur intégrité se juge au SHA-256 scellé dans le
+# manifeste, pas à la ligne. (Contre-revue de la collecte : git diff --check produisait
+# 27 694 diagnostics d'espacement sur le contenu brut capturé.)
+audit-pays-pieces/** -text -diff

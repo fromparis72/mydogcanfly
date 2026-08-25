@@ -1,0 +1,70 @@
+# 2026-08-25 — https://www.baf.com.fj/wp-content/uploads/2021/05/FINAL_BRINGING-CATS-AND-DOGS-INTO-FIJI-ON-VESSELS.pdf
+# curl exit=0 · http=200
+
+* Host www.baf.com.fj:443 was resolved.
+* IPv6: (none)
+* IPv4: 192.124.249.164
+*   Trying 192.124.249.164:443...
+[ligne expurgée : proxy/authentification]
+* ALPN: curl offers h2,http/1.1
+* (304) (OUT), TLS handshake, Client hello (1):
+} [319 bytes data]
+*  CAfile: /etc/ssl/cert.pem
+*  CApath: none
+* (304) (IN), TLS handshake, Server hello (2):
+{ [122 bytes data]
+* (304) (IN), TLS handshake, Unknown (8):
+{ [41 bytes data]
+* (304) (IN), TLS handshake, Certificate (11):
+{ [5016 bytes data]
+* (304) (IN), TLS handshake, CERT verify (15):
+{ [264 bytes data]
+* (304) (IN), TLS handshake, Finished (20):
+{ [52 bytes data]
+* (304) (OUT), TLS handshake, Finished (20):
+} [52 bytes data]
+[ligne expurgée : proxy/authentification]
+* ALPN: server accepted h2
+* Server certificate:
+*  subject: CN=baf.com.fj
+*  start date: Jul 16 13:55:29 2026 GMT
+*  expire date: Oct 14 13:55:29 2026 GMT
+*  subjectAltName: host "www.baf.com.fj" matched cert's "www.baf.com.fj"
+*  issuer: C=US; O=Starfield Technologies; CN=Starfield TLS Intermediate CA DV - R1v1
+*  SSL certificate verify ok.
+* using HTTP/2
+* [HTTP/2] [1] OPENED stream for https://www.baf.com.fj/wp-content/uploads/2021/05/FINAL_BRINGING-CATS-AND-DOGS-INTO-FIJI-ON-VESSELS.pdf
+* [HTTP/2] [1] [:method: GET]
+* [HTTP/2] [1] [:scheme: https]
+* [HTTP/2] [1] [:authority: www.baf.com.fj]
+* [HTTP/2] [1] [:path: /wp-content/uploads/2021/05/FINAL_BRINGING-CATS-AND-DOGS-INTO-FIJI-ON-VESSELS.pdf]
+* [HTTP/2] [1] [user-agent: MyDogCanFly-Audit/lot-A (contact: audit@mydogcanfly.com)]
+* [HTTP/2] [1] [accept: */*]
+> GET /wp-content/uploads/2021/05/FINAL_BRINGING-CATS-AND-DOGS-INTO-FIJI-ON-VESSELS.pdf HTTP/2
+> Host: www.baf.com.fj
+> User-Agent: MyDogCanFly-Audit/lot-A (contact: audit@mydogcanfly.com)
+> Accept: */*
+> 
+* Request completely sent off
+< HTTP/2 200 
+< date: Tue, 25 Aug 2026 05:07:24 GMT
+< content-type: application/pdf
+< content-length: 281087
+< x-sucuri-id: 19012
+< x-xss-protection: 1; mode=block
+< x-frame-options: SAMEORIGIN
+< x-content-type-options: nosniff
+< strict-transport-security: max-age=31536000; includeSubdomains; preload
+< content-security-policy: upgrade-insecure-requests;
+< referrer-policy: no-referrer
+< last-modified: Mon, 03 May 2021 04:41:07 GMT
+< etag: "608f7ee3-449ff"
+[ligne expurgée : proxy/authentification]
+< expires: Wed, 26 Aug 2026 05:07:24 GMT
+< cache-control: max-age=86400
+< x-sucuri-cache: MISS
+< alt-svc: h3=":443"; ma=86400
+< accept-ranges: bytes
+< 
+{ [7746 bytes data]
+[ligne expurgée : proxy/authentification]

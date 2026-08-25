@@ -1,0 +1,344 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    
+    
+        <!-- Global site tag (gtag.js) - Google Analytics -->
+        <script async src="https://www.googletagmanager.com/gtag/js?id=UA-129532468-1"></script>
+        <script>
+            window.dataLayer = window.dataLayer || [];
+            function gtag() { dataLayer.push(arguments); }
+            gtag('js', new Date());
+
+            gtag('config', 'UA-129532468-1');
+        </script>
+    
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>MyFiji@Gov</title>
+    <!-- Bootstrap -->
+<link href="/App/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+<link href="/App/css/fiji.css?_t=2.4.2.2" rel="stylesheet" type="text/css">
+<link href="/App/css/custom.css?_t=2.4.2.2" rel="stylesheet" type="text/css"><!-- Note to Developers: Add New Styles or Override existing styles here -->
+<link href="/App/fonts/fonts.css" rel="stylesheet" type="text/css"> 
+</head>
+<body>
+    <div id="loader" class=""><div class="loader-box animated fadeIn"><img src="/App/images/gridloader.svg" class="loader-object">Please wait....</div></div>
+    <div class='wrapper subpage communication'>
+        
+<nav class="navbar navbar-default">
+    <nav class="navbar navbar-default">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <a class="navbar-brand" href="https://mobile.digital.gov.fj"><img src="/App/images/crest.png" alt="Fijian Government Crest" class="hidden-mob"></a>
+                <span class="navbar-brand"><img src="/App/images/welcome_digitalFIJI.svg" alt="digitalFIJI's logo" /></span>
+                <p><strong>Fijian Government's</strong><br>Digital Transformation Programme</p>
+            </div>
+            <div class="navbar-collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <li class="home"><a href="https://mobile.digital.gov.fj">Home</a></li>
+                    <li class="directory active"><a href="/">Directory</a></li>
+                    <li class="e-services"><a href="https://mobile.digital.gov.fj/EServices/Index"><span>e</span>-services</a></li>
+                    <li class="write-to-us"><a href="https://feedback.digital.gov.fj">M<span>y</span>Feedback</a></li>
+                    <li class="login"><a href="https://profile.digital.gov.fj">Profile</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+</nav>
+        <div class="login-overlay"></div>
+<div class="login-box">
+    <div class="login-header">
+        <div class="login-header-left">Sign In</div>
+        <div class="login-header-right">dont have an account? <a href="#">Sign up for free</a></div>
+
+    </div>
+    <div class="login-body">
+        <div class="login-by-email">
+            <form action="profile.html">
+                <div class="form-group">
+                    <label class="control-label">EMAIL ADDRESS</label>
+                    <input type="text" class="form-control">
+                </div>
+                <div class="form-group">
+                    <label class="control-label">PASSWORD<a href="#">Forgot Password?</a></label>
+                    <input type="password" class="form-control">
+                </div>
+                <div class="form-group">
+                    <button type="submit" class="btn btn-search">SIGN IN</button>
+                </div>
+            </form>
+        </div>
+
+    </div>
+
+    <div class="close-login"></div>
+    <div class="register-user">
+        <h4>Do not have account?<a href="profile.html">Sign up!</a></h4>
+    </div>
+</div>
+        
+
+<style>
+    .details-top {
+        padding-top: 20px !important;
+        min-height: 100px !important;
+    }
+</style>
+
+<div class="home-content">
+    <div class="home-bg-content">
+        <div class="details-top">
+            <div class="details-top-information">
+
+            </div>
+            <div class="container-fluid">
+                <div class="search-container">
+    <form method="post" id="form-directory-advanced-search" action="/">
+        <div class="advance-search">Advanced Search</div>
+        <div class="advance-search-container">
+            <div class="advance-search-row">
+                <p class="small-control"><input type="text" name="OrganisationName" placeholder="Organisation Name" class="form-control "></p>
+                <p class="small-control"><input type="text" name="Description" placeholder="Organisation Description" class="form-control "></p>
+            </div>
+            <div class="advance-search-row">
+                <p class="small-control"><input type="text" name="PersonnelName" placeholder="Officer's Name" class="form-control "></p>
+                <p class="small-control"><input type="text" name="JobTitle" placeholder="Job Title / Post" class="form-control "></p>
+            </div>
+            <div class="advance-search-row">
+                <p class="small-control"><input type="text" name="OrganisationUnitName" placeholder="Division Name" class="form-control"></p>
+                <p class="small-control hidden-search-block"></p>
+            </div>
+            <div class="btn-inline-center">
+                <button class="btn btn-default">FIND</button>
+            </div>
+        </div>
+    <input name="__RequestVerificationToken" type="hidden" value="CfDJ8PLbx8VsaPRFpKCQePWNzETC6994UNPWuufqbLCpRSzHLK8z3oNs8ReSJyEcci5d4G64ljfbV4HEYzKMTiWB2yCnN4Z4Yzvql6p-Najk45udTGvdHyGHkZJ3y6SZ-E8-qjXu5Eb0ospxkiHpb3rRmxQ" /></form>
+    <div class="clearfix"></div>
+    <form method="post" id="form-directory-search" action="/">
+        <div class="search-input-group">
+            <div class="input-group">
+                <input class="form-control" name="GeneralQuery" placeholder="Search by Organisation or Officer's Name" type="text">
+                <span class="input-group-btn">
+                    <button type="submit" id="btn-search" class="btn btn-search"></button>
+                </span>
+            </div>
+        </div>
+    <input name="__RequestVerificationToken" type="hidden" value="CfDJ8PLbx8VsaPRFpKCQePWNzETC6994UNPWuufqbLCpRSzHLK8z3oNs8ReSJyEcci5d4G64ljfbV4HEYzKMTiWB2yCnN4Z4Yzvql6p-Najk45udTGvdHyGHkZJ3y6SZ-E8-qjXu5Eb0ospxkiHpb3rRmxQ" /></form>
+</div>
+            </div>
+        </div>
+        <div class="container-fluid">
+            <div class="content">
+                <div class="clearfix"></div>
+                <div class="details-content">
+                    <ol class="breadcrumb">
+                        <li><a href="/">Home</a></li>
+                        <li class="active"><a>Biosecurity Authority of Fiji (BAF)</a></li>
+                    </ol>
+                        <p></p>
+                    <div class="panel-group" id="accordion">
+
+                        <div class="panel panel-default">
+                            <div class="panel-heading"><a data-toggle="collapse" href="#collapse2">Personnel</a></div>
+                            <div id="collapse2" class="panel-collapse  collapse in">
+                                <div class="panel-body">
+                                    <div class="inline-tabs">
+                                                            <div class="details-tab sub-tab">
+                                                                <div class="sub-details-img"><img src="../App/images/portrait.png" alt="" /></div>
+                                                    <div class="sub-details">
+                                                                <h4>Mr. Surend  Pratap<span>(Acting) Chief Executive Officer for <a href="/directory/organisation?orgId=62">Biosecurity Authority of Fiji (BAF)</a></span></h4>
+                                                                                                                                                                                                                            </div>
+                                                </div>
+                                                            <div class="details-tab sub-tab">
+                                                                <div class="sub-details-img"><img src="../App/images/portrait.png" alt="" /></div>
+                                                    <div class="sub-details">
+                                                                <h4>Mr. Uraia  Waibuta<span>Chairperson for <a href="/directory/organisation?orgId=62">Biosecurity Authority of Fiji (BAF)</a></span></h4>
+                                                                                                                                                                                                                                    <p class="mailto icon"><a href="/cdn-cgi/l/email-protection#334641525a521d44525a51464752735152551d505c5e1d5559"><span class="__cf_email__" data-cfemail="720700131b135c05131b10070613321013145c111d1f5c1418">[email&#160;protected]</span></a></p>
+                                                    </div>
+                                                </div>
+                                                            <div class="details-tab sub-tab">
+                                                                <div class="sub-details-img"><img src="../App/images/portrait.png" alt="" /></div>
+                                                    <div class="sub-details">
+                                                                <h4>Ms. Matilda  Hazelman<span>Personal Assistant to Chief Executive Officer for <a href="/directory/organisation?orgId=62">Biosecurity Authority of Fiji (BAF)</a></span></h4>
+                                                                                                                    <p class="phone icon"><a href="tel:&#x2B;679 3312512">&#x2B;679 3312512</a></p>
+                                                                                                                                                                            <p class="mailto icon"><a href="/cdn-cgi/l/email-protection#0f62676e756a63626e614f6d6e69216c6062216965"><span class="__cf_email__" data-cfemail="aac7c2cbd0cfc6c7cbc4eac8cbcc84c9c5c784ccc0">[email&#160;protected]</span></a></p>
+                                                    </div>
+                                                </div>
+                                                            <div class="details-tab sub-tab">
+                                                                <div class="sub-details-img"><img src="../App/images/portrait.png" alt="" /></div>
+                                                    <div class="sub-details">
+                                                                <h4>Mr. Kaliova  Ravuiwasa<span>Board Member  for <a href="/directory/organisation?orgId=62">Biosecurity Authority of Fiji (BAF)</a></span></h4>
+                                                                                                                                                                                                                                    <p class="mailto icon"><a href="/cdn-cgi/l/email-protection#9eecffe8ebf7e9ffedffdee7fff6f1f1b0fdf1f3"><span class="__cf_email__" data-cfemail="384a594e4d514f594b59784159505757165b5755">[email&#160;protected]</span></a></p>
+                                                    </div>
+                                                </div>
+                                                            <div class="details-tab sub-tab">
+                                                                <div class="sub-details-img"><img src="../App/images/portrait.png" alt="" /></div>
+                                                    <div class="sub-details">
+                                                                <h4>Mr. Arvind  Singh<span>Board Member  for <a href="/directory/organisation?orgId=62">Biosecurity Authority of Fiji (BAF)</a></span></h4>
+                                                                                                                                                                                                                                    <p class="mailto icon"><a href="/cdn-cgi/l/email-protection#8aebf8fce3e4eea4f9e3e4ede2a4b8babbbdebf9caede7ebe3e6a4e9e5e7"><span class="__cf_email__" data-cfemail="c1a0b3b7a8afa5efb2a8afa6a9eff3f1f0f6a0b281a6aca0a8adefa2aeac">[email&#160;protected]</span></a></p>
+                                                    </div>
+                                                </div>
+                                                            <div class="details-tab sub-tab">
+                                                                <div class="sub-details-img"><img src="../App/images/portrait.png" alt="" /></div>
+                                                    <div class="sub-details">
+                                                                <h4>Ms. Joytika  Jattan<span>Board Member  for <a href="/directory/organisation?orgId=62">Biosecurity Authority of Fiji (BAF)</a></span></h4>
+                                                                                                                                                                                                                                    <p class="mailto icon"><a href="/cdn-cgi/l/email-protection#593336202d30323833382d2d3837193e34383035773a3634"><span class="__cf_email__" data-cfemail="3a5055434e53515b505b4e4e5b547a5d575b535614595557">[email&#160;protected]</span></a></p>
+                                                    </div>
+                                                </div>
+                                                            <div class="details-tab sub-tab">
+                                                                <div class="sub-details-img"><img src="../App/images/portrait.png" alt="" /></div>
+                                                    <div class="sub-details">
+                                                                <h4>Mrs. Salote  Waqairatu<span>Board Member  for <a href="/directory/organisation?orgId=62">Biosecurity Authority of Fiji (BAF)</a></span></h4>
+                                                                                                                                                                                                                                    <p class="mailto icon"><a href="/cdn-cgi/l/email-protection#780b1914170c1d380c19161719551b17160b0d140c11161f551e111211561b1715"><span class="__cf_email__" data-cfemail="542735383b20311420353a3b3579373b3a272138203d3a3379323d3e3d7a373b39">[email&#160;protected]</span></a></p>
+                                                    </div>
+                                                </div>
+                                                            <div class="details-tab sub-tab">
+                                                                <div class="sub-details-img"><img src="../App/images/portrait.png" alt="" /></div>
+                                                    <div class="sub-details">
+                                                                <h4>Dr. Salesh  Kumar<span>Board Member  for <a href="/directory/organisation?orgId=62">Biosecurity Authority of Fiji (BAF)</a></span></h4>
+                                                                                                                                                                                                                                    <p class="mailto icon"><a href="/cdn-cgi/l/email-protection#e390828f86908bcd8888968e8291a3848e828a8fcd808c8e"><span class="__cf_email__" data-cfemail="7b081a171e08135510100e161a093b1c161a121755181416">[email&#160;protected]</span></a></p>
+                                                    </div>
+                                                </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                                <div class="panel panel-default">
+                                    <div class="panel-heading"><a data-toggle="collapse" class="collapse collapsed" href="#collapse3">Divisions</a></div>
+                                    <div id="collapse3" class="panel-collapse collapse">
+                                        <div class="panel-body" id="organisationDivision">
+                                            <div class="inline-content">
+                                                <div class="inline-tabs">
+                                                            <div class="details-tab sub-tab">
+
+                                                                    <div class="details-tab sub-tab">
+                                                                        <i>There are no divisions listed in this organisation.</i>
+                                                                    </div>
+                                                            </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+        
+<div class="clearfix"></div>
+<div class="footer-main">
+    <div class="container-fluid">
+        <div class="footer-links">
+            <a href="https://www.fiji.gov.fj/digitalFIJI" class="footer-digitalFIJI" target="_blank"></a>
+            <a href="https://mobile.digital.gov.fj/faq/" class="footer-faq"><span>Have a Question?</span>FAQs</a>
+            <a href="https://mobile.digital.gov.fj/contactus/" class="footer-contact"><span></span>Contact <b>Us</b></a>
+        </div>
+    </div>
+    <div class="footer">
+        <div class="container-fluid">
+            <div class="social">
+                <h5>Stay connected</h5>
+                <a href="http://www.facebook.com/pages/Fiji-Ministry-of-Information/207532522613024?ref=hl" target="_blank"><img src="/App/images/facebook.svg" alt="" /></a>
+                <a href="https://twitter.com/@fijiangovt" target="_blank"><img src="/App/images/twitter.svg" alt="" /></a>
+                <a href="https://www.youtube.com/user/minfofiji?gl=US&hl=en&client=mv-google&nomobile=1" target="_blank"><img src="/App/images/youtube.svg" alt="" /></a>
+            </div>
+            <div class="copyright">&copy; 2020 Ministry of Communications</div>
+            <div class="in-between">|</div>
+            <div class="terms-of-use"><a href="https://mobile.digital.gov.fj/TermsOfUse/" alt="Terms of Use" title="Terms of Use">Terms of Use</a></div>
+            <div class="in-between">|</div>
+            <div class="terms-of-use"><a href="https://mobile.digital.gov.fj/PrivacyPolicy/" alt="Privacy Policy" title="Privacy Policy">Privacy Policy</a></div>
+            <div class="in-between">|</div>
+            <div class="terms-of-use rate-app"><a href="https://goo.gl/forms/KTVKZK9GMNv6BLZQ2" alt="RateThisApp" title="Rate This App">Rate This App</a></div>
+        </div>
+    </div>
+</div>
+    </div>
+    <p class="back-to-top"></p>
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script src="/App/js/jquery-3.3.1.min.js"></script>
+
+<!-- Include all compiled plugins (below), or include individual files as needed -->
+<script src="/App/js/bootstrap.min.js"></script>
+<script src="/App/js/jquery.sticky.js"></script>
+<script src="/App/js/custom.js?_t=2.4.2.2"></script>
+<script>
+    $(window).on('load', function () {
+        $(".sticky").sticky({ topSpacing: 0 });
+    });
+
+</script>  
+    
+    <script src="/App/js/Utils/util.js?_t=2.4.2.2"></script>
+    <script src="/App/js/Directory/organisation.js?_t=2.4.2.2"></script>
+
+
+    <script>
+            $(document).ready(function () {
+                configureBackToTop();
+                
+    setFocusOnExpansion();
+    initMinisterDetailPlaceholder({"homePageURL":"https://clfijiportalwebpublic20180109084914.azurewebsites.net","organisationDetails":{"id":62,"parentOrganisationId":null,"organisationTypeCode":"Government Agencies","organisationName":"Biosecurity Authority of Fiji (BAF)","description":null,"displayRank":null,"effectiveStartDate":"2018-04-26T12:00:00","effectiveEndDate":null,"isSearchable":true,"isDisplayable":true,"isDeleted":null,"createdDate":"2018-04-26T17:09:34.477","createdBy":"riyadihpk@crimsonlogic.com","lastUpdatedDate":"2018-05-30T04:19:04.703","lastUpdatedBy":"riyadihpk@crimsonlogic.com","status":null,"isMerging":false,"isRetired":false,"splittingOrgId":0,"mergingOrganisationsJSON":null,"organisationData":{"settlement":"Lvl 3 Provident Plaza 1, Ellery St","locality":null,"city":"Suva","province":null,"island":null,"dateLocalResidentialAddressReported":null,"postalAddressCareOf":null,"postalAddressNumber":"P O Box 18630, Suva","postalAddressLocality":null,"postalAddressCity":null,"dateLocalPostalAddressReported":null,"country":"Fiji","email":null,"telephoneCountryCode":"679","telephone":"3312512","faxCountryCode":"679","fax":"3301657","website":"http://www.baf.com.fj","remark":null},"agencyAdminData":null,"filteredFields":[{"field":"OrganisationName","filterType":1},{"field":"OrganisationTypeCode","filterType":1},{"field":"EffectiveStartDateString","filterType":1},{"field":"EffectiveEndDateString","filterType":1}],"effectiveStartDateString":null,"effectiveEndDateString":null,"dateLocalResidentialAddressReportedStr":null,"dateLocalPostalAddressReportedStr":null},"personnelList":[{"id":1181,"tin":null,"firstName":"Surend","middleName":null,"lastName":"Pratap","roleName":"Chief Executive Officer","title":"Mr.","displayRank":null,"isDeleted":false,"organisationId":62,"organisationName":"Biosecurity Authority of Fiji (BAF)","organisationUnitName":"Management","organisationUnitId":242,"profilePictureURL":"../App/images/portrait.png","isActingRole":true,"roleIsDisplayed":true,"unitType":"No Division/Department","addressLine1":null,"addressLine2":null,"addressLine3":null,"addressLine4":null,"town":null,"city":null,"state":null,"country":null,"postalCode":null,"poBoxAddress":null,"telephone":null,"telephoneCountryCode":null,"email":null,"fax":null,"faxCountryCode":null,"websiteURL":null,"displayEmail":null},{"id":1777,"tin":null,"firstName":"Uraia","middleName":null,"lastName":"Waibuta","roleName":"Chairperson","title":"Mr.","displayRank":null,"isDeleted":false,"organisationId":62,"organisationName":"Biosecurity Authority of Fiji (BAF)","organisationUnitName":"Board Committee","organisationUnitId":243,"profilePictureURL":"../App/images/portrait.png","isActingRole":false,"roleIsDisplayed":true,"unitType":"Board Members","addressLine1":null,"addressLine2":null,"addressLine3":null,"addressLine4":null,"town":null,"city":null,"state":null,"country":null,"postalCode":null,"poBoxAddress":null,"telephone":null,"telephoneCountryCode":null,"email":null,"fax":null,"faxCountryCode":null,"websiteURL":null,"displayEmail":"uraia.waibuta@baf.com.fj"},{"id":727,"tin":null,"firstName":"Matilda","middleName":null,"lastName":"Hazelman","roleName":"Personal Assistant to Chief Executive Officer","title":"Ms.","displayRank":null,"isDeleted":false,"organisationId":62,"organisationName":"Biosecurity Authority of Fiji (BAF)","organisationUnitName":"Management","organisationUnitId":242,"profilePictureURL":"../App/images/portrait.png","isActingRole":false,"roleIsDisplayed":true,"unitType":"No Division/Department","addressLine1":null,"addressLine2":null,"addressLine3":null,"addressLine4":null,"town":null,"city":null,"state":null,"country":null,"postalCode":null,"poBoxAddress":null,"telephone":"3312512","telephoneCountryCode":"679","email":null,"fax":null,"faxCountryCode":null,"websiteURL":null,"displayEmail":"mhazelman@baf.com.fj"},{"id":1783,"tin":null,"firstName":"Kaliova","middleName":null,"lastName":"Ravuiwasa","roleName":"Board Member ","title":"Mr.","displayRank":null,"isDeleted":false,"organisationId":62,"organisationName":"Biosecurity Authority of Fiji (BAF)","organisationUnitName":"Board Committee","organisationUnitId":243,"profilePictureURL":"../App/images/portrait.png","isActingRole":false,"roleIsDisplayed":true,"unitType":"Board Members","addressLine1":null,"addressLine2":null,"addressLine3":null,"addressLine4":null,"town":null,"city":null,"state":null,"country":null,"postalCode":null,"poBoxAddress":null,"telephone":null,"telephoneCountryCode":null,"email":null,"fax":null,"faxCountryCode":null,"websiteURL":null,"displayEmail":"ravuiwasa@yahoo.com"},{"id":1919,"tin":null,"firstName":"Arvind","middleName":null,"lastName":"Singh","roleName":"Board Member ","title":"Mr.","displayRank":null,"isDeleted":false,"organisationId":62,"organisationName":"Biosecurity Authority of Fiji (BAF)","organisationUnitName":"Board Committee","organisationUnitId":243,"profilePictureURL":"../App/images/portrait.png","isActingRole":false,"roleIsDisplayed":true,"unitType":"Board Members","addressLine1":null,"addressLine2":null,"addressLine3":null,"addressLine4":null,"town":null,"city":null,"state":null,"country":null,"postalCode":null,"poBoxAddress":null,"telephone":null,"telephoneCountryCode":null,"email":null,"fax":null,"faxCountryCode":null,"websiteURL":null,"displayEmail":"arvind.singh.2017as@gmail.com"},{"id":2107,"tin":null,"firstName":"Joytika","middleName":null,"lastName":"Jattan","roleName":"Board Member ","title":"Ms.","displayRank":null,"isDeleted":false,"organisationId":62,"organisationName":"Biosecurity Authority of Fiji (BAF)","organisationUnitName":"Board Committee","organisationUnitId":243,"profilePictureURL":"../App/images/portrait.png","isActingRole":false,"roleIsDisplayed":true,"unitType":"Board Members","addressLine1":null,"addressLine2":null,"addressLine3":null,"addressLine4":null,"town":null,"city":null,"state":null,"country":null,"postalCode":null,"poBoxAddress":null,"telephone":null,"telephoneCountryCode":null,"email":null,"fax":null,"faxCountryCode":null,"websiteURL":null,"displayEmail":"joytikajattan@gmail.com"},{"id":2108,"tin":null,"firstName":"Salote","middleName":null,"lastName":"Waqairatu","roleName":"Board Member ","title":"Mrs.","displayRank":null,"isDeleted":false,"organisationId":62,"organisationName":"Biosecurity Authority of Fiji (BAF)","organisationUnitName":"Board Committee","organisationUnitId":243,"profilePictureURL":"../App/images/portrait.png","isActingRole":false,"roleIsDisplayed":true,"unitType":"Board Members","addressLine1":null,"addressLine2":null,"addressLine3":null,"addressLine4":null,"town":null,"city":null,"state":null,"country":null,"postalCode":null,"poBoxAddress":null,"telephone":null,"telephoneCountryCode":null,"email":null,"fax":null,"faxCountryCode":null,"websiteURL":null,"displayEmail":"salote@tanoa-consulting-fiji.com"},{"id":2185,"tin":null,"firstName":"Salesh","middleName":null,"lastName":"Kumar","roleName":"Board Member ","title":"Dr.","displayRank":null,"isDeleted":false,"organisationId":62,"organisationName":"Biosecurity Authority of Fiji (BAF)","organisationUnitName":"Board Committee","organisationUnitId":243,"profilePictureURL":"../App/images/portrait.png","isActingRole":false,"roleIsDisplayed":true,"unitType":"Board Members","addressLine1":null,"addressLine2":null,"addressLine3":null,"addressLine4":null,"town":null,"city":null,"state":null,"country":null,"postalCode":null,"poBoxAddress":null,"telephone":null,"telephoneCountryCode":null,"email":null,"fax":null,"faxCountryCode":null,"websiteURL":null,"displayEmail":"salesh.kkumar@gmail.com"}],"departmentList":[{"homePageURL":"https://clfijiportalwebpublic20180109084914.azurewebsites.net","id":242,"organisationUnitName":"Management","organisationUnitTypeCode":"No Division/Department","pageTitle":null,"pageSpecificWrapperClasses":null},{"homePageURL":"https://clfijiportalwebpublic20180109084914.azurewebsites.net","id":243,"organisationUnitName":"Board Committee","organisationUnitTypeCode":"Board Members","pageTitle":null,"pageSpecificWrapperClasses":null}],"pageTitle":"MyFiji@Gov","pageSpecificWrapperClasses":"subpage communication"});
+    setAdvanceSearchToggle();
+
+
+                $('.go-back').click(function () {
+                    parent.history.back();
+                    return false;
+                });
+            });
+
+			$(window).on('load',function () {
+                configureSticky();
+                
+                initHeartbeat(false, null);
+
+                
+    hideLoader();
+
+            });
+    </script>
+
+    <script>
+    (function (document, navigator, standalone) {
+        if (standalone in navigator && navigator[standalone]) {
+            $(document).ready(function () {
+                // Stop the default behavior of the browser, which
+                // is to change the URL of the page.
+
+                var sitDomain = "azurewebsites.net";
+                var uatDomain = "testing.gov.fj";
+                var prodDomain = "digital.gov.fj";
+
+                $(document).on('click', 'a', function (event) {
+                    if ($(this).get(0).href.includes(sitDomain)
+                        || $(this).get(0).href.includes(uatDomain)
+                        || $(this).get(0).href.includes(prodDomain)) {
+                        event.preventDefault();
+                        // Manually change the location of the page to stay in
+                        // "Standalone" mode and change the URL at the same time.
+                        window.location = $(this).attr('href');
+                    }
+                });
+
+                //remove href
+                $('.k-datepicker').click(function () {
+                    $('table.k-content.k-month>tbody>tr>td>a.k-link').removeAttr("href");
+                });
+            });
+        }
+    })(document, window.navigator, "standalone")
+</script>
+</body>
+</html>

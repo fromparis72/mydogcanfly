@@ -1,0 +1,70 @@
+# 2026-08-25 — https://washington.mofa.gov.kw/en/requirements-for-importing-pets-to-kuwait/
+# curl exit=0 · http=403
+
+* Host washington.mofa.gov.kw:443 was resolved.
+* IPv6: 2606:4700:10::6814:1c70, 2606:4700:10::ac42:91c3
+* IPv4: 172.66.145.195, 104.20.28.112
+*   Trying [2606:4700:10::6814:1c70]:443...
+[ligne expurgée : proxy/authentification]
+* ALPN: curl offers h2,http/1.1
+* (304) (OUT), TLS handshake, Client hello (1):
+} [327 bytes data]
+*  CAfile: /etc/ssl/cert.pem
+*  CApath: none
+* (304) (IN), TLS handshake, Server hello (2):
+{ [122 bytes data]
+* (304) (IN), TLS handshake, Unknown (8):
+{ [19 bytes data]
+* (304) (IN), TLS handshake, Certificate (11):
+{ [2492 bytes data]
+* (304) (IN), TLS handshake, CERT verify (15):
+{ [80 bytes data]
+* (304) (IN), TLS handshake, Finished (20):
+{ [36 bytes data]
+* (304) (OUT), TLS handshake, Finished (20):
+} [36 bytes data]
+[ligne expurgée : proxy/authentification]
+* ALPN: server accepted h2
+* Server certificate:
+*  subject: CN=washington.mofa.gov.kw
+*  start date: Jul 20 21:12:24 2026 GMT
+*  expire date: Oct 18 22:12:21 2026 GMT
+*  subjectAltName: host "washington.mofa.gov.kw" matched cert's "washington.mofa.gov.kw"
+*  issuer: C=US; O=Google Trust Services; CN=WE1
+*  SSL certificate verify ok.
+* using HTTP/2
+* [HTTP/2] [1] OPENED stream for https://washington.mofa.gov.kw/en/requirements-for-importing-pets-to-kuwait/
+* [HTTP/2] [1] [:method: GET]
+* [HTTP/2] [1] [:scheme: https]
+* [HTTP/2] [1] [:authority: washington.mofa.gov.kw]
+* [HTTP/2] [1] [:path: /en/requirements-for-importing-pets-to-kuwait/]
+* [HTTP/2] [1] [user-agent: MyDogCanFly-Audit/lot-A (contact: audit@mydogcanfly.com)]
+* [HTTP/2] [1] [accept: */*]
+> GET /en/requirements-for-importing-pets-to-kuwait/ HTTP/2
+> Host: washington.mofa.gov.kw
+> User-Agent: MyDogCanFly-Audit/lot-A (contact: audit@mydogcanfly.com)
+> Accept: */*
+> 
+* Request completely sent off
+< HTTP/2 403 
+< date: Tue, 25 Aug 2026 05:08:38 GMT
+< content-type: text/html; charset=UTF-8
+< content-length: 5633
+< accept-ch: Sec-CH-UA-Bitness, Sec-CH-UA-Arch, Sec-CH-UA-Full-Version, Sec-CH-UA-Mobile, Sec-CH-UA-Model, Sec-CH-UA-Platform-Version, Sec-CH-UA-Full-Version-List, Sec-CH-UA-Platform, Sec-CH-UA, UA-Bitness, UA-Arch, UA-Full-Version, UA-Mobile, UA-Model, UA-Platform-Version, UA-Platform, UA
+< cf-mitigated: challenge
+[ligne expurgée : proxy/authentification]
+< server: cloudflare
+< critical-ch: Sec-CH-UA-Bitness, Sec-CH-UA-Arch, Sec-CH-UA-Full-Version, Sec-CH-UA-Mobile, Sec-CH-UA-Model, Sec-CH-UA-Platform-Version, Sec-CH-UA-Full-Version-List, Sec-CH-UA-Platform, Sec-CH-UA, UA-Bitness, UA-Arch, UA-Full-Version, UA-Mobile, UA-Model, UA-Platform-Version, UA-Platform, UA
+< cross-origin-embedder-policy: require-corp
+< cross-origin-opener-policy: same-origin
+< cross-origin-resource-policy: same-origin
+< origin-agent-cluster: ?1
+< permissions-policy: accelerometer=(),camera=(),clipboard-read=(),clipboard-write=(),geolocation=(),gyroscope=(),hid=(),magnetometer=(),microphone=(),payment=(),publickey-credentials-get=(),screen-wake-lock=(),serial=(),sync-xhr=(),usb=(),xr-spatial-tracking=*
+< referrer-policy: same-origin
+< server-timing: chlray;desc="a308147cecd7d0b6"
+< x-content-type-options: nosniff
+< x-frame-options: SAMEORIGIN
+< cf-ray: a308147cecd7d0b6-CDG
+< 
+{ [1360 bytes data]
+[ligne expurgée : proxy/authentification]

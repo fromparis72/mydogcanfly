@@ -1,0 +1,57 @@
+# 2026-08-25 — https://www.laws.gov.fj/Acts/DisplayAct/2994
+# curl exit=0 · http=404
+
+* Host www.laws.gov.fj:443 was resolved.
+* IPv6: (none)
+* IPv4: 54.252.14.10, 13.238.44.60
+*   Trying 54.252.14.10:443...
+[ligne expurgée : proxy/authentification]
+* ALPN: curl offers h2,http/1.1
+* (304) (OUT), TLS handshake, Client hello (1):
+} [320 bytes data]
+*  CAfile: /etc/ssl/cert.pem
+*  CApath: none
+* (304) (IN), TLS handshake, Server hello (2):
+{ [122 bytes data]
+* (304) (IN), TLS handshake, Unknown (8):
+{ [19 bytes data]
+* (304) (IN), TLS handshake, Certificate (11):
+{ [3803 bytes data]
+* (304) (IN), TLS handshake, CERT verify (15):
+{ [264 bytes data]
+* (304) (IN), TLS handshake, Finished (20):
+{ [36 bytes data]
+* (304) (OUT), TLS handshake, Finished (20):
+} [36 bytes data]
+[ligne expurgée : proxy/authentification]
+* ALPN: server accepted h2
+* Server certificate:
+*  subject: CN=laws.gov.fj
+*  start date: Jul 21 00:00:00 2026 GMT
+*  expire date: Feb  3 23:59:59 2027 GMT
+*  subjectAltName: host "www.laws.gov.fj" matched cert's "www.laws.gov.fj"
+*  issuer: C=US; O=Amazon; CN=Amazon RSA 2048 M04
+*  SSL certificate verify ok.
+* using HTTP/2
+* [HTTP/2] [1] OPENED stream for https://www.laws.gov.fj/Acts/DisplayAct/2994
+* [HTTP/2] [1] [:method: GET]
+* [HTTP/2] [1] [:scheme: https]
+* [HTTP/2] [1] [:authority: www.laws.gov.fj]
+* [HTTP/2] [1] [:path: /Acts/DisplayAct/2994]
+* [HTTP/2] [1] [user-agent: MyDogCanFly-Audit/lot-A (contact: audit@mydogcanfly.com)]
+* [HTTP/2] [1] [accept: */*]
+> GET /Acts/DisplayAct/2994 HTTP/2
+> Host: www.laws.gov.fj
+> User-Agent: MyDogCanFly-Audit/lot-A (contact: audit@mydogcanfly.com)
+> Accept: */*
+> 
+* Request completely sent off
+< HTTP/2 404 
+< date: Tue, 25 Aug 2026 05:12:55 GMT
+< content-type: text/html
+< content-length: 1245
+< server: Microsoft-IIS/10.0
+< x-powered-by: ASP.NET
+< 
+{ [1245 bytes data]
+[ligne expurgée : proxy/authentification]

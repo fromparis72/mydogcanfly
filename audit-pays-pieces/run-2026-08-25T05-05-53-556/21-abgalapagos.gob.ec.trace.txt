@@ -1,0 +1,66 @@
+# 2026-08-25 — https://abgalapagos.gob.ec/normas-de-bioseguridad-para-ingresar-a-galapagos-biosecurity-standards-to-enter-the-galapagos-islands/
+# curl exit=0 · http=200
+
+* Host abgalapagos.gob.ec:443 was resolved.
+* IPv6: 2a06:98c1:3120::2, 2a06:98c1:3121::2
+* IPv4: 188.114.96.2, 188.114.97.2
+*   Trying [2a06:98c1:3120::2]:443...
+[ligne expurgée : proxy/authentification]
+* ALPN: curl offers h2,http/1.1
+* (304) (OUT), TLS handshake, Client hello (1):
+} [323 bytes data]
+*  CAfile: /etc/ssl/cert.pem
+*  CApath: none
+* (304) (IN), TLS handshake, Server hello (2):
+{ [122 bytes data]
+* (304) (IN), TLS handshake, Unknown (8):
+{ [19 bytes data]
+* (304) (IN), TLS handshake, Certificate (11):
+{ [2508 bytes data]
+* (304) (IN), TLS handshake, CERT verify (15):
+{ [79 bytes data]
+* (304) (IN), TLS handshake, Finished (20):
+{ [36 bytes data]
+* (304) (OUT), TLS handshake, Finished (20):
+} [36 bytes data]
+[ligne expurgée : proxy/authentification]
+* ALPN: server accepted h2
+* Server certificate:
+*  subject: CN=abgalapagos.gob.ec
+*  start date: Jul  5 23:49:16 2026 GMT
+*  expire date: Oct  4 00:47:44 2026 GMT
+*  subjectAltName: host "abgalapagos.gob.ec" matched cert's "abgalapagos.gob.ec"
+*  issuer: C=US; O=Google Trust Services; CN=WE1
+*  SSL certificate verify ok.
+* using HTTP/2
+* [HTTP/2] [1] OPENED stream for https://abgalapagos.gob.ec/normas-de-bioseguridad-para-ingresar-a-galapagos-biosecurity-standards-to-enter-the-galapagos-islands/
+* [HTTP/2] [1] [:method: GET]
+* [HTTP/2] [1] [:scheme: https]
+* [HTTP/2] [1] [:authority: abgalapagos.gob.ec]
+* [HTTP/2] [1] [:path: /normas-de-bioseguridad-para-ingresar-a-galapagos-biosecurity-standards-to-enter-the-galapagos-islands/]
+* [HTTP/2] [1] [user-agent: MyDogCanFly-Audit/lot-A (contact: audit@mydogcanfly.com)]
+* [HTTP/2] [1] [accept: */*]
+> GET /normas-de-bioseguridad-para-ingresar-a-galapagos-biosecurity-standards-to-enter-the-galapagos-islands/ HTTP/2
+> Host: abgalapagos.gob.ec
+> User-Agent: MyDogCanFly-Audit/lot-A (contact: audit@mydogcanfly.com)
+> Accept: */*
+> 
+* Request completely sent off
+< HTTP/2 200 
+< date: Tue, 25 Aug 2026 05:06:55 GMT
+< content-type: text/html; charset=UTF-8
+< server: cloudflare
+< nel: {"report_to":"cf-nel","success_fraction":0.0,"max_age":604800}
+< x-powered-by: PHP/7.4.33
+< x-pingback: https://abgalapagos.gob.ec/xmlrpc.php
+< link: <https://abgalapagos.gob.ec/wp-json/>; rel="https://api.w.org/", <https://abgalapagos.gob.ec/wp-json/wp/v2/posts/435>; rel="alternate"; title="JSON"; type="application/json", <https://abgalapagos.gob.ec/?p=435>; rel=shortlink
+< report-to: {"group":"cf-nel","max_age":604800,"endpoints":[{"url":"https://a.nel.cloudflare.com/report/v4?s=9JgZjtMHMIMpZOGJzGXQqn%2BMT2DLzEVzlF59u2CgQHEMdDn5V8vI9L9fyr%2FYaDsTbEh0i8G%2FZGrGLUggwNNduPX8A2W2oYUTLXXlOwEVFrxZNjBMNeQsSwDX19CwMdttzenOPANo6wXMMZNYBfI%2FdTc%3D"}]}
+< last-modified: Tue, 25 Aug 2026 05:06:55 GMT
+< cache-control: max-age=1
+< cf-cache-status: EXPIRED
+< vary: accept-encoding
+< cf-ray: a30811c338efd913-CDG
+< alt-svc: h3=":443"; ma=86400
+< 
+{ [1360 bytes data]
+[ligne expurgée : proxy/authentification]

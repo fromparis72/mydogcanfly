@@ -1,0 +1,63 @@
+# 2026-08-25 — https://gra.gov.gh/customs/import-procedures/
+# curl exit=0 · http=200
+
+* Host gra.gov.gh:443 was resolved.
+* IPv6: (none)
+* IPv4: 197.253.67.105
+*   Trying 197.253.67.105:443...
+[ligne expurgée : proxy/authentification]
+* ALPN: curl offers h2,http/1.1
+* (304) (OUT), TLS handshake, Client hello (1):
+} [315 bytes data]
+*  CAfile: /etc/ssl/cert.pem
+*  CApath: none
+* (304) (IN), TLS handshake, Server hello (2):
+{ [122 bytes data]
+* (304) (IN), TLS handshake, Unknown (8):
+{ [19 bytes data]
+* (304) (IN), TLS handshake, Certificate (11):
+{ [2998 bytes data]
+* (304) (IN), TLS handshake, CERT verify (15):
+{ [264 bytes data]
+* (304) (IN), TLS handshake, Finished (20):
+{ [36 bytes data]
+* (304) (OUT), TLS handshake, Finished (20):
+} [36 bytes data]
+[ligne expurgée : proxy/authentification]
+* ALPN: server accepted h2
+* Server certificate:
+*  subject: C=GH; L=Accra; O=Ghana Revenue Authority; CN=*.gra.gov.gh
+*  start date: Nov 18 00:00:00 2025 GMT
+*  expire date: Nov 25 23:59:59 2026 GMT
+*  subjectAltName: host "gra.gov.gh" matched cert's "gra.gov.gh"
+*  issuer: C=US; O=DigiCert Inc; CN=DigiCert Global G2 TLS RSA SHA256 2020 CA1
+*  SSL certificate verify ok.
+* using HTTP/2
+* [HTTP/2] [1] OPENED stream for https://gra.gov.gh/customs/import-procedures/
+* [HTTP/2] [1] [:method: GET]
+* [HTTP/2] [1] [:scheme: https]
+* [HTTP/2] [1] [:authority: gra.gov.gh]
+* [HTTP/2] [1] [:path: /customs/import-procedures/]
+* [HTTP/2] [1] [user-agent: MyDogCanFly-Audit/lot-A (contact: audit@mydogcanfly.com)]
+* [HTTP/2] [1] [accept: */*]
+> GET /customs/import-procedures/ HTTP/2
+> Host: gra.gov.gh
+> User-Agent: MyDogCanFly-Audit/lot-A (contact: audit@mydogcanfly.com)
+> Accept: */*
+> 
+* Request completely sent off
+< HTTP/2 200 
+< vary: accept,content-type,Accept-Encoding
+< link: <https://gra.gov.gh/wp-json/>; rel="https://api.w.org/", <https://gra.gov.gh/wp-json/wp/v2/pages/7888>; rel="alternate"; title="JSON"; type="application/json", <https://gra.gov.gh/?p=7888>; rel=shortlink
+< x-mod-pagespeed: 1.13.35.2-0
+< cache-control: max-age=0, no-cache
+< x-newfold-cache-level: 2
+< x-endurance-cache-level: 0
+< x-nginx-cache: WordPress
+< content-length: 149678
+< content-type: text/html; charset=UTF-8
+< date: Tue, 25 Aug 2026 05:08:26 GMT
+< server: Apache
+< 
+{ [16017 bytes data]
+[ligne expurgée : proxy/authentification]

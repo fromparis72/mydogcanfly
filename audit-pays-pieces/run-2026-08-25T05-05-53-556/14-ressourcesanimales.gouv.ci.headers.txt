@@ -1,0 +1,17 @@
+HTTP/2 200 
+x-frame-options: SAMEORIGIN
+x-content-type-options: nosniff
+referrer-policy: strict-origin-when-cross-origin
+permissions-policy: geolocation=(), microphone=(), camera=()
+x-xss-protection: 1; mode=block
+content-security-policy: default-src 'self' https:; script-src 'self' 'unsafe-inline' https: https://www.youtube.com https://s.ytimg.com; style-src 'self' 'unsafe-inline' https:; img-src 'self' data: https: https://i.ytimg.com https://s.ytimg.com; font-src 'self' data: https:; frame-src 'self' https://www.youtube.com https://www.youtube-nocookie.com; frame-ancestors 'self'; media-src 'self' https://www.youtube.com https://www.youtube-nocookie.com;
+date: Tue, 25 Aug 2026 05:06:39 GMT
+server: Apache/2.4.37 (centos) OpenSSL/1.1.1k mod_wsgi/4.6.8 Python/3.8
+x-frame-options: DENY
+content-length: 79460
+x-content-type-options: nosniff
+referrer-policy: same-origin
+cross-origin-opener-policy: same-origin
+content-type: text/html; charset=utf-8
+vary: Accept-Encoding
+

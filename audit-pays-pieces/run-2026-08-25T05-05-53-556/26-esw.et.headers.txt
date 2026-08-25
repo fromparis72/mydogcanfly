@@ -1,0 +1,19 @@
+HTTP/1.1 200 200
+Date: Tue, 25 Aug 2026 05:07:18 GMT
+Server: Apache
+[en-tête expurgé : cookies/authentification/proxy]
+X-Content-Type-Options: nosniff
+X-XSS-Protection: 1; mode=block
+Cache-Control: no-cache, no-store, max-age=0, must-revalidate
+Pragma: no-cache
+Expires: 0
+Strict-Transport-Security: max-age=31536000 ; includeSubDomains
+X-Frame-Options: DENY
+Content-Type: text/html;charset=UTF-8
+Content-Language: en
+Vary: Accept-Encoding
+[en-tête expurgé : cookies/authentification/proxy]
+Access-Control-Allow-Origin: *
+Connection: close
+Transfer-Encoding: chunked
+

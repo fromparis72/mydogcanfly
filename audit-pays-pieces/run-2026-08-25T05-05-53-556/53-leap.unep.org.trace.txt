@@ -1,0 +1,80 @@
+# 2026-08-25 — https://leap.unep.org/en/countries/lb/national-legislation/law-no-47-2017-animal-protection-and-welfare
+# curl exit=0 · http=200
+
+* Host leap.unep.org:443 was resolved.
+* IPv6: (none)
+* IPv4: 195.141.7.107
+*   Trying 195.141.7.107:443...
+[ligne expurgée : proxy/authentification]
+* ALPN: curl offers h2,http/1.1
+* (304) (OUT), TLS handshake, Client hello (1):
+} [318 bytes data]
+*  CAfile: /etc/ssl/cert.pem
+*  CApath: none
+* (304) (IN), TLS handshake, Server hello (2):
+{ [102 bytes data]
+* TLSv1.2 (IN), TLS handshake, Certificate (11):
+{ [4062 bytes data]
+* TLSv1.2 (IN), TLS handshake, Server key exchange (12):
+{ [300 bytes data]
+* TLSv1.2 (IN), TLS handshake, Server finished (14):
+{ [4 bytes data]
+* TLSv1.2 (OUT), TLS handshake, Client key exchange (16):
+} [37 bytes data]
+* TLSv1.2 (OUT), TLS change cipher, Change cipher spec (1):
+} [1 bytes data]
+* TLSv1.2 (OUT), TLS handshake, Finished (20):
+} [16 bytes data]
+* TLSv1.2 (IN), TLS change cipher, Change cipher spec (1):
+{ [1 bytes data]
+* TLSv1.2 (IN), TLS handshake, Finished (20):
+{ [16 bytes data]
+[ligne expurgée : proxy/authentification]
+* ALPN: server accepted h2
+* Server certificate:
+*  subject: CN=leap.unep.org
+*  start date: Jul 13 23:11:43 2026 GMT
+*  expire date: Oct 11 23:11:42 2026 GMT
+*  subjectAltName: host "leap.unep.org" matched cert's "leap.unep.org"
+*  issuer: C=US; O=Let's Encrypt; CN=YR2
+*  SSL certificate verify ok.
+* using HTTP/2
+* [HTTP/2] [1] OPENED stream for https://leap.unep.org/en/countries/lb/national-legislation/law-no-47-2017-animal-protection-and-welfare
+* [HTTP/2] [1] [:method: GET]
+* [HTTP/2] [1] [:scheme: https]
+* [HTTP/2] [1] [:authority: leap.unep.org]
+* [HTTP/2] [1] [:path: /en/countries/lb/national-legislation/law-no-47-2017-animal-protection-and-welfare]
+* [HTTP/2] [1] [user-agent: MyDogCanFly-Audit/lot-A (contact: audit@mydogcanfly.com)]
+* [HTTP/2] [1] [accept: */*]
+> GET /en/countries/lb/national-legislation/law-no-47-2017-animal-protection-and-welfare HTTP/2
+> Host: leap.unep.org
+> User-Agent: MyDogCanFly-Audit/lot-A (contact: audit@mydogcanfly.com)
+> Accept: */*
+> 
+* Request completely sent off
+< HTTP/2 200 
+< server: nginx
+< date: Tue, 25 Aug 2026 05:09:52 GMT
+< content-type: text/html; charset=UTF-8
+< content-length: 37421
+< vary: Accept-Encoding
+< cache-control: max-age=86400, public
+< x-drupal-dynamic-cache: UNCACHEABLE (poor cacheability)
+< content-language: en
+< x-content-type-options: nosniff
+< x-frame-options: SAMEORIGIN
+< expires: Sun, 19 Nov 1978 05:00:00 GMT
+< last-modified: Tue, 25 Aug 2026 05:09:52 GMT
+< etag: "1787634592"
+< vary: Cookie
+< x-generator: Drupal 10 (https://www.drupal.org)
+< x-drupal-cache: MISS
+< x-content-type-options: nosniff
+< x-xss-protection: 1; mode=block
+< referrer-policy: no-referrer-when-downgrade
+< x-frame-options: SAMEORIGIN
+< strict-transport-security: max-age=31536000; includeSubDomains
+< feature-policy: accelerometer 'none'; camera 'none'; geolocation 'none'; gyroscope 'none'; magnetometer 'none'; microphone 'none'; payment 'none'; usb 'none'
+< 
+{ [8192 bytes data]
+[ligne expurgée : proxy/authentification]

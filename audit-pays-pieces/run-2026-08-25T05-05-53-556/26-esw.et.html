@@ -1,0 +1,818 @@
+<!DOCTYPE html>
+<html lang="en" data-textdirection="ltr" class="loading">
+<head>
+    <meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="description" content="ESW - Ethiopian Electronic Single Window">
+<meta name="keywords" content="esw, ethiopian single window, single window">
+<meta name="author" content="ERCA, CUPIA">
+<meta name="_csrf_parameter" content="_csrf" /><meta name="_csrf_header" content="X-CSRF-TOKEN" /><meta name="_csrf" content="743d0874-bc70-4e55-9058-c9524c900c36" /><title>Main Portal - Ethiopian Electronic Single Window</title>
+    <link rel="shortcut icon" type="image/x-icon" href="/esw-trd/static/images/favicon.ico">
+<link rel="stylesheet" href="/esw-trd/static/css/bootstrap.css">
+<link rel="stylesheet" href="/esw-trd/static/css/jquery-ui.css">
+<link rel="stylesheet" href="/esw-trd/static/fonts/feather/style.min.css">
+<link rel="stylesheet" href="/esw-trd/static/fonts/montserrat/montserrat.css">
+<link rel="stylesheet" href="/esw-trd/static/fonts/font-awesome/css/font-awesome.min.css">
+<link rel="stylesheet" href="/esw-trd/static/css/bootstrap-extended.css">
+<link rel="stylesheet" href="/esw-trd/static/css/waitMe.min.css">
+<link rel="stylesheet" href="/esw-trd/static/css/app.css">
+<link rel="stylesheet" href="/esw-trd/static/css/colors.css">
+<link rel="stylesheet" href="/esw-trd/static/css/horizontal-menu.css">
+<link rel="stylesheet" href="/esw-trd/static/css/vertical-overlay-menu.css">
+<link rel="stylesheet" href="/esw-trd/static/css/form-extended.css">
+<link rel="stylesheet" href="/esw-trd/static/css/skin-win8/ui.fancytree.css">
+<link rel="stylesheet" href="/esw-trd/static/css/palette-tooltip.css">
+<link rel="stylesheet" href="/esw-trd/static/css/ui-smoothness.calendars.picker.css">
+<link rel="stylesheet" href="/esw-trd/static/css/style.css"></head>
+<body data-open="click" data-menu="horizontal-menu" data-col="content-detached-left-sidebar" class="horizontal-layout horizontal-menu content-detached-left-sidebar menu-expanded waitMe_body">
+    <div class="waitMe_container progress" style="background:#fff">
+        <div style="background:#8dc1bf"></div>
+    </div>
+    <!-- header start -->
+    <nav class="header-navbar navbar header-custom navbar-with-menu navbar-static-top navbar-light bg-gradient-x-grey-blue navbar-border navbar-brand-center">
+    <div class="container-main">
+    <div class="navbar-wrapper">
+            <div class="navbar-header">
+                <ul class="nav navbar-nav">
+                    <li class="nav-item mobile-menu hidden-md-up float-xs-left"><a href="/esw-trd/" class="nav-link nav-menu-main menu-toggle hidden-xs"><i class="ft-menu font-large-1"></i></a></li>
+                    <li class="nav-item">
+                        <a href="/esw-trd/" class="navbar-brand">
+                            <img alt="THE ETHIOPIAN SINGLE WINDOW" src="/esw-trd/static/images/logo/stack-logo-basic.png" class="brand-logo">
+                            <p style="text-transform: uppercase;">
+                                ETHIOPIAN ELECTRONIC SINGLE WINDOW FOR TRADER</p>
+                        </a>
+                    </li>
+                    <li class="nav-item hidden-md-up float-xs-right"><a data-toggle="collapse" data-target="#navbar-mobile" class="nav-link open-navbar-container"><i class="fa fa-ellipsis-v"></i></a></li>
+                </ul>
+            </div>
+            <div class="navbar-container content container-fluid navbar-link">
+                <div id="navbar-mobile" class="collapse navbar-toggleable-sm">
+                    <ul class="nav navbar-nav navbar-mobile-login">
+                        <li class="dropdown dropdown-user nav-item">
+                            <a href="#" data-toggle="dropdown" class="dropdown-toggle nav-link dropdown-user-link">
+                                <span class="user-name">User Name</span>
+                            </a>
+                            <div class="dropdown-menu dropdown-menu-right">
+                                <a href="/esw-trd/user/pwdChange" class="dropdown-item"><i class="ft-message-square"></i> Change Password</a>
+                                <div class="dropdown-divider"></div>
+                                <form class="login-form">
+                                    <input type="hidden" name="_csrf" value="743d0874-bc70-4e55-9058-c9524c900c36" /><a href="javascript:void 0;" class="dropdown-item logout"><i class="ft-power"></i> Log-out</a>
+                                </form>
+                            </div>
+                        </li>
+                    </ul>
+                    <ul class="nav navbar-nav navbar-mobile-login">
+                        <li class="dropdown dropdown-user nav-item">
+                            </li>
+                    </ul>
+                    <ul class="nav navbar-nav float-xs-right">
+                        <li class="dropdown dropdown-language nav-item main-lang-select-box px-card-0">
+                            <select class="form-control " name="mainLangCd" id="mainLangCdSelect"><option value="EN" selected data-user-custom-val="null">English</option><option value="AM" data-user-custom-val="null">Amharic</option></select><input type="hidden" id="menuId" value=""/>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    </nav>
+
+<div role="navigation" data-menu="menu-wrapper" class="header-navbar navbar navbar-horizontal navbar-fixed navbar-green navbar-shadow menu-border">
+    <div class="container-main">
+    <div data-menu="menu-container" class="navbar-container main-menu-content">
+            <ul id="main-menu-navigation" data-menu="menu-navigation" class="nav navbar-nav">
+                <li data-menu="dropdown" class="dropdown nav-item"><a href="javascript:void 0;" data-toggle="dropdown" class="nav-link dropdown-toggle">Business</a>
+                            <ul class="dropdown-menu">
+                                <li data-menu="dropdown-submenu" class="dropdown dropdown-submenu">
+                                            <a href="javascript:void 0;" data-toggle="dropdown" class="dropdown-item dropdown-toggle">LPCO Application</a>
+                                            <ul class="dropdown-menu">
+                                                <li><a href="/esw-trd/dcl/comm/apfmList?menuId=T01010100" data-toggle="dropdown" class="dropdown-item">Submission</a></li>
+                                                <li><a href="/esw-trd/prcs/apfm/prcsStusList?menuId=T01010200" data-toggle="dropdown" class="dropdown-item">My Applications</a></li>
+                                                <li><a href="/esw-trd/prcs/shipdoc/clctShipdocSttsList?menuId=T01010300" data-toggle="dropdown" class="dropdown-item">Collect Shipping Documents List</a></li>
+                                                <li><a href="/esw-trd/prcs/lpco/lpcoList?menuId=T01010500" data-toggle="dropdown" class="dropdown-item">LPCO List</a></li>
+                                                <li><a href="/esw-trd/prcs/bank/bnkExpLCList?menuId=T01010600" data-toggle="dropdown" class="dropdown-item">Authenticated SWIFT message</a></li>
+                                                <li><a href="/esw-trd/prcs/bank/bnkExpAPList?menuId=T01010700" data-toggle="dropdown" class="dropdown-item">Incoming transfer FCY/Credit advise</a></li>
+                                                </ul>
+                                        </li>
+                                    <li><a href="/esw-trd/info/ntfc/ntfcList?menuId=T01030000" data-toggle="dropdown" class="dropdown-item">Notification</a></li>
+                                    <li><a href="/esw-trd/prcs/lpco/lpcoPrintOutList?menuId=T01070000" data-toggle="dropdown" class="dropdown-item">Print LPCO</a></li>
+                                    <li><a href="/esw-trd/prcs/tempDoc/tempDocList?menuId=T01040000" data-toggle="dropdown" class="dropdown-item">Temporary Document</a></li>
+                                    <li data-menu="dropdown-submenu" class="dropdown dropdown-submenu">
+                                            <a href="javascript:void 0;" data-toggle="dropdown" class="dropdown-item dropdown-toggle">e-Document</a>
+                                            <ul class="dropdown-menu">
+                                                <li><a href="/esw-trd/info/ed/edSentMsgList?menuId=T01050100" data-toggle="dropdown" class="dropdown-item">Sent Message</a></li>
+                                                <li><a href="/esw-trd/info/ed/edRcvdMsgOutbndList?menuId=T01050200" data-toggle="dropdown" class="dropdown-item">Received Message</a></li>
+                                                </ul>
+                                        </li>
+                                    <li><a href="/esw-trd/info/iqs/iqsList?menuId=T01060000" data-toggle="dropdown" class="dropdown-item">IQS</a></li>
+                                    </ul>
+                        </li>
+                    <li data-menu="dropdown" class="dropdown nav-item"><a href="javascript:void 0;" data-toggle="dropdown" class="nav-link dropdown-toggle">Business Support</a>
+                            <ul class="dropdown-menu">
+                                <li data-menu="dropdown-submenu" class="dropdown dropdown-submenu">
+                                            <a href="javascript:void 0;" data-toggle="dropdown" class="dropdown-item dropdown-toggle">Intent Declaration</a>
+                                            <ul class="dropdown-menu">
+                                                <li><a href="/esw-trd/intd/intdList?menuId=T03010100" data-toggle="dropdown" class="dropdown-item">Intent Declaration List</a></li>
+                                                <li><a href="/esw-trd/intd/intdStusList?menuId=T03010500" data-toggle="dropdown" class="dropdown-item">Processing Status List</a></li>
+                                                <li><a href="/esw-trd/intd/searchApfm?menuId=T03010200" data-toggle="dropdown" class="dropdown-item">Search Application Form</a></li>
+                                                </ul>
+                                        </li>
+                                    <li data-menu="dropdown-submenu" class="dropdown dropdown-submenu">
+                                            <a href="javascript:void 0;" data-toggle="dropdown" class="dropdown-item dropdown-toggle">Integrated Tariff Management</a>
+                                            <ul class="dropdown-menu">
+                                                <li><a href="/esw-trd/refdata/trf/trfList?menuId=T03030100" data-toggle="dropdown" class="dropdown-item">Tariff List</a></li>
+                                                </ul>
+                                        </li>
+                                    </ul>
+                        </li>
+                    <li data-menu="dropdown" class="dropdown nav-item"><a href="javascript:void 0;" data-toggle="dropdown" class="nav-link dropdown-toggle">Bill Payment</a>
+                            <ul class="dropdown-menu">
+                                <li><a href="/esw-trd/paymt/bilList?menuId=T02010000" data-toggle="dropdown" class="dropdown-item">Bill List</a></li>
+                                    <li><a href="/esw-trd/paymt/paymtPrvlgList?menuId=T02020000" data-toggle="dropdown" class="dropdown-item">Payment Privilege</a></li>
+                                    <li><a href="/esw-trd/paymt/paymtRcptList?menuId=T02040000" data-toggle="dropdown" class="dropdown-item">Payment Receipt</a></li>
+                                    </ul>
+                        </li>
+                    <li data-menu="dropdown" class="dropdown nav-item"><a href="javascript:void 0;" data-toggle="dropdown" class="nav-link dropdown-toggle">Information</a>
+                            <ul class="dropdown-menu">
+                                <li><a href="/esw-trd/sys/cdGrpList?menuId=T04090000" data-toggle="dropdown" class="dropdown-item">Code</a></li>
+                                    <li><a href="/esw-trd/refdata/fxrt/fxrtList?menuId=T04010000" data-toggle="dropdown" class="dropdown-item">Exchange Rate</a></li>
+                                    <li><a href="/esw-trd/refdata/dlqnt/dlqntList?menuId=T04040000" data-toggle="dropdown" class="dropdown-item">Delinquent</a></li>
+                                    <li><a href="/esw-trd/info/form/infoFormList?menuId=T04050000" data-toggle="dropdown" class="dropdown-item">Form</a></li>
+                                    <li><a href="/esw-trd/info/form/infoFormAttchDocList?menuId=T04060000" data-toggle="dropdown" class="dropdown-item">Attachment </a></li>
+                                    <li><a href="/esw-trd/info/ed/edList?menuId=T04070000" data-toggle="dropdown" class="dropdown-item">e-Document</a></li>
+                                    <li><a href="/esw-trd/info/excelupload/lcneList?menuId=T04080000" data-toggle="dropdown" class="dropdown-item">License list</a></li>
+                                    </ul>
+                        </li>
+                    <li data-menu="dropdown" class="dropdown nav-item"><a href="javascript:void 0;" data-toggle="dropdown" class="nav-link dropdown-toggle">Customer Service</a>
+                            <ul class="dropdown-menu">
+                                <li data-menu="dropdown-submenu" class="dropdown dropdown-submenu">
+                                            <a href="javascript:void 0;" data-toggle="dropdown" class="dropdown-item dropdown-toggle">Service</a>
+                                            <ul class="dropdown-menu">
+                                                <li><a href="/esw-trd/sprt/introductionEsw?menuId=T05010100" data-toggle="dropdown" class="dropdown-item">Introduction ESW</a></li>
+                                                <li><a href="/esw-trd/sprt/introductionCbra?menuId=T05010200" data-toggle="dropdown" class="dropdown-item">Introduction CBRA</a></li>
+                                                <li><a href="/esw-trd/sprt/userRegistrationGuide?menuId=T05010300" data-toggle="dropdown" class="dropdown-item">User Registration Guide</a></li>
+                                                </ul>
+                                        </li>
+                                    <li data-menu="dropdown-submenu" class="dropdown dropdown-submenu">
+                                            <a href="javascript:void 0;" data-toggle="dropdown" class="dropdown-item dropdown-toggle">User</a>
+                                            <ul class="dropdown-menu">
+                                                <li><a href="/esw-trd/user/userRqst?menuId=T05020100" data-toggle="dropdown" class="dropdown-item">User Registration</a></li>
+                                                <li><a href="/esw-trd/user/forgotUserId?menuId=T05020200" data-toggle="dropdown" class="dropdown-item">Find User ID</a></li>
+                                                <li><a href="/esw-trd/user/forgotUserPwd?menuId=T05020300" data-toggle="dropdown" class="dropdown-item">Find User Password</a></li>
+                                                </ul>
+                                        </li>
+                                    <li data-menu="dropdown-submenu" class="dropdown dropdown-submenu">
+                                            <a href="javascript:void 0;" data-toggle="dropdown" class="dropdown-item dropdown-toggle">Community</a>
+                                            <ul class="dropdown-menu">
+                                                <li><a href="/esw-trd/usersprt/noticeList?menuId=T05030100" data-toggle="dropdown" class="dropdown-item">Notice</a></li>
+                                                <li><a href="/esw-trd/usersprt/faqList?menuId=T05030200" data-toggle="dropdown" class="dropdown-item">FAQ</a></li>
+                                                <li><a href="/esw-trd/usersprt/qnaList?menuId=T05030300" data-toggle="dropdown" class="dropdown-item">Q&amp;A</a></li>
+                                                </ul>
+                                        </li>
+                                    </ul>
+                        </li>
+                    <li data-menu="dropdown" class="dropdown nav-item"><a href="javascript:void 0;" data-toggle="dropdown" class="nav-link dropdown-toggle">My Page</a>
+                            <ul class="dropdown-menu">
+                                <li><a href="/esw-trd/user/myPageTrader?menuId=T06030000" data-toggle="dropdown" class="dropdown-item">My Page for Trader</a></li>
+                                    <li><a href="/esw-trd/user/myPageAdmin?menuId=T06040000" data-toggle="dropdown" class="dropdown-item">My Page for Admin</a></li>
+                                    <li data-menu="dropdown-submenu" class="dropdown dropdown-submenu">
+                                            <a href="javascript:void 0;" data-toggle="dropdown" class="dropdown-item dropdown-toggle">My Information</a>
+                                            <ul class="dropdown-menu">
+                                                <li><a href="/esw-trd/user/userMyInfo?menuId=T06010100" data-toggle="dropdown" class="dropdown-item">Change My Information</a></li>
+                                                <li><a href="/esw-trd/user/pwdChange?menuId=T06010200" data-toggle="dropdown" class="dropdown-item">Change Password </a></li>
+                                                </ul>
+                                        </li>
+                                    <li data-menu="dropdown-submenu" class="dropdown dropdown-submenu">
+                                            <a href="javascript:void 0;" data-toggle="dropdown" class="dropdown-item dropdown-toggle">User Management</a>
+                                            <ul class="dropdown-menu">
+                                                <li><a href="/esw-trd/user/userList?menuId=T06020100" data-toggle="dropdown" class="dropdown-item">User List</a></li>
+                                                <li><a href="/esw-trd/sys/pwdSetig?menuId=T06020200" data-toggle="dropdown" class="dropdown-item">Password Setting</a></li>
+                                                <li><a href="/esw-trd/sys/userSetig?menuId=T06020300" data-toggle="dropdown" class="dropdown-item">User Setting</a></li>
+                                                <li><a href="/esw-trd/user/selectAgent?menuId=T06020400" data-toggle="dropdown" class="dropdown-item">Select Agent</a></li>
+                                                </ul>
+                                        </li>
+                                    <li><a href="/esw-trd/info/trdParMngnt/trdParMngntList?menuId=T06050000" data-toggle="dropdown" class="dropdown-item">Trading Partner Management</a></li>
+                                    </ul>
+                        </li>
+                    <li class="nav-item">
+                            <a href="/esw-trd/sprt/siteMap?menuId=T08000000" class="nav-link">Site Map</a>
+                        </li>
+                    <li class="nav-item">
+                            <a href="https://customs.erca.gov.et/trade/?menuId=T13000000" class="nav-link">CMS</a>
+                        </li>
+                    </ul>
+            <ul class="nav navbar-nav  float-xs-right hidden-sm-down">
+                <li class="dropdown dropdown-user nav-item">
+                    <a href="/esw-trd/login" class="nav-link"><span class="user-name">Log-in</span></a>
+                    </li>
+            </ul>
+            <ul class="nav navbar-nav  float-xs-right hidden-sm-down">
+                <li class="dropdown dropdown-user nav-item">
+                    </li>
+            </ul>            
+        </div>
+    </div>
+    </div>
+<!-- header end -->
+    <!-- body start -->
+    <div class="app-content content container-fluid">
+        
+    <div id="carousel-example-caption" class="carousel slide" data-ride="carousel">
+        <ol class="carousel-indicators">
+            <li data-target="#carousel-example-caption" data-slide-to="0" class="active"></li>
+            <li data-target="#carousel-example-caption" data-slide-to="1"></li>
+        </ol>
+        <div class="carousel-inner" role="listbox">
+            <div class="carousel-item active">
+                <img src="/esw-trd/static/images/carousel/1.jpg" alt="Carousel">
+                <div class="carousel-caption caption-1">
+                    <h3>For Your Safe and Easy Import & Export Transaction</h3>
+                    <p>The Ethiopian Electronic Single Window</p>
+                </div>
+            </div>
+            <div class="carousel-item">
+                <img src="/esw-trd/static/images/carousel/3.jpg" alt="Carousel">
+                <div class="carousel-caption caption-2">
+                    <h3>Single Window for Better Trade Facilitation</h3>
+                    <p>The Ethiopian Electronic Single Window</p>
+                </div>
+            </div>
+        </div>
+        <a class="left carousel-control" href="#carousel-example-caption" role="button" data-slide="prev">
+            <span class="icon-prev" aria-hidden="true"></span>
+            <span class="sr-only">Previous</span>
+        </a>
+        <a class="right carousel-control" href="#carousel-example-caption" role="button" data-slide="next">
+            <span class="icon-next" aria-hidden="true"></span>
+            <span class="sr-only">Next</span>
+        </a>
+    </div>
+    <div class="content-wrapper">
+        <div class="container-main">
+            <div class="content-body">
+                <section class="col-sm-12">
+                    <div class="row mb-1 main-content-1">
+                        <div class="col-lg-4 col-xs-12 bg-teal content-login content-l">
+                            <div class="card bg-primary bg-teal mb-0">
+                                <div class="card-block">
+                                    <h5 class="lighten-4 text-white">Sign In<!--  
+                                    <a href="javascript:void 0;" id="loginUserListBtn" data-toggle="modal" data-backdrop="static" data-target="#myModal" class="lighten-4 text-white text-bold-700"> 
+                                    <i class="fa fa-key"></i></a>
+                                    -->
+                                    </h5>
+                                    <div class="row">
+                                        <form id="main-loginForm" method="post">
+                                            <input type="hidden" name="_csrf" value="743d0874-bc70-4e55-9058-c9524c900c36" /><div class="col-lg-9 col-md-10 col-xs-9">
+                                                <div class="form-group mb-1">
+                                                    <label class="hidden label-control" for="main-userId">User ID</label>
+                                                    <input type="text" class="form-control border-primary" name="userId" id="main-userId" placeholder="User ID">
+                                                </div>
+                                                <div class="form-group mb-1">
+                                                    <label class="hidden label-control" for="main-userPwd">Password</label>
+                                                    <input type="password" class="form-control border-primary" name="userPwd" id="main-userPwd" placeholder="Password">
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-3 col-md-2 col-xs-3 btn_login_pd">
+                                                <button type="submit" class="btn btn-login btn-float bg-teal bg-darken-2" id="main-loginBtn"><i class="fa fa-lock"></i><span>Log-in</span></button>
+                                            </div>
+                                        </form>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-xs-3 text-xs-left">
+                        <h7>
+                                <a href="javascript:void 0;" id="userRqstr-btn" class="lighten-4 text-white ">Register</a>
+                                </h7>
+                    </div>
+                    <div class="col-xs-9 text-xs-right">
+                        <h7>
+                            <a href="javascript:void 0;" id="forgotUserId-btn" class="lighten-4 text-white ">Forgot ID</a> |
+                        <a href="javascript:void 0;" id="forgotPwd-btn" class="lighten-4 text-white ">Forgot Password</a>
+                        </h7>
+                    </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-8 col-xs-12 content-r content-l">
+                            <ul class="main-quick">
+                                <li class="col-lg-4 col-md-4 col-sm-4 col-xs-12 quick-box">
+                                    <div class="card p-2 mb-0">
+                                        <h5 class="text-bold-700 primary darken-4 pt-15 mb-1">Application/Declaration</h5>
+                                        <i class="ft-globe"></i>
+                                        <dl class="mb-0">
+                                            <dd><a href="javascript:void 0;" id="main-quick-intentDeclarationLink">Intent Declaration</a></dd>
+                                            <dd><a href="javascript:void 0;" id="main-quick-LPCOApplicatioLink">Submit LPCO Application</a></dd>
+                                            <dd><a href="javascript:void 0;" id="main-quick-customsDeclarationLink">Submit Customs Declaration</a></dd>
+                                        </dl>
+                                    </div>
+                                </li>
+                                <li class="col-lg-4 col-md-4 col-sm-4 col-xs-12  quick-box">
+                                    <div class="card p-2 mb-0">
+                                        <h5 class="text-bold-700 primary darken-4 pt-15 mb-1">Processing Status</h5>
+                                        <i class="ft-zoom-in"></i>
+                                        <dl class="mb-0">
+                                            <dd><a href="javascript:void 0;" id="main-quick-applicationStatusLink">Application Status</a></dd>
+                                            <dd><a href="javascript:void 0;" id="main-quick-declarationStatusLink">Declaration Status</a></dd>
+                                            <dd><a href="javascript:void 0;" id="main-quick-notificationListLink">Notification List</a></dd>
+                                        </dl>
+                                    </div>
+                                </li>
+                                <li class="col-lg-4 col-md-4 col-sm-4 col-xs-12 quick-box">
+                                    <div class="card p-2 mb-0">
+                                        <h5 class="text-bold-700 primary darken-4 pt-15 mb-1">Reference Date</h5>
+                                        <i class="ft-file-text"></i>
+                                        <dl class="mb-0">
+                                            <dd><a href="javascript:void 0;" id="main-quick-coordinatedInspectionLink">Coordinated Inspection</a></dd>
+                                            <dd><a href="javascript:void 0;" id="main-quick-trfListLink">Tariff List</a></dd>
+                                            <dd><a href="javascript:void 0;" id="main-quick-codeLink">Code</a></dd>
+                                        </dl>
+                                    </div>
+                                </li>
+                                <div class="clearfix"></div>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="row mb-1 main-content-2">
+                        <div class="col-lg-4 col-md-4 col-xs-12 bg-white content-l content-mainExchange">
+                            <div class="card mb-0">
+                                <div class="card-header">
+                                    <h4 class="card-title">Exchange Rate</h4>
+                                    <div class="heading-elements">
+                                        <ul class="list-inline mb-0">
+                                            <li><a href="javascript:void 0;" id="main-fxrtViewMore">View More</a>
+                                        </ul>
+                                    </div>
+                                </div>
+                                <div class="card-body collapse in">
+                                    <div class="table-responsive">
+                                        <table class="table table-exchange table-striped mb-0">
+                                            <thead>
+                                            <tr>
+                                                <th>Country</th>
+                                                <th>Currency</th>
+                                                <th>Rate of Exchange</th>
+                                            </tr>
+                                            </thead>
+                                            <tbody id="main-mainFxrtList">
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    <div class="col-md-8 col-xs-12 content-r content-l">
+                        <div class="card mb-0">
+                            <div class="card-header">
+                                <h4 class="card-title">Notice</h4>
+                                <div class="heading-elements">
+                                    <ul class="list-inline mb-0">
+                                        <li><a href="javascript:void 0;" id="main-noticeViewMore">View More</a>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="card-body collapse in">
+                                <div class="card-block">
+                                    <div class="media-list media-bordered" id="main-newNoticeList">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    </div>
+                    <div class="row mb-1 main-content-5">
+                        <div class="col-lg-4 col-xs-12 content-l content-quick">
+                            <ul class="mb-0">
+                                <a>
+                                    <li><i class="ft-check-square"></i><p>Introduction<br>ESW</p></li>
+                                </a>
+                                <a>
+                                    <li><i class="ft-link"></i><p>Introduction<br>CBRA</p></li>
+                                    <div class="clearfix"></div>
+                                </a>
+                            </ul>
+                        </div>
+                        <div class="col-lg-8 col-xs-12 content-r content-l content-support">
+                            <ul>
+                                <li class="col-xs-8 col-sm-4 col-md-4"><i class="ft-mail"></i><h5>Email Support</h5><p class="mb-0">support@esw.et</p></li>
+                                <li class="col-xs-8 col-sm-4 col-md-4"><i class="ft-info"></i><h5>Information</h5><p class="mb-0">info@esw.et</p></li>
+                                <li class="col-xs-8 col-sm-4 col-md-4"><i class="ft-phone"></i><h5>Call Support</h5><p class="mb-0">+251118291258</p></li>
+                                <li class="col-xs-8 col-sm-4 col-md-4"><i class="ft-clock"></i><h5>Operating Hours</h5><p class="mb-0">MON-FRI. 8:00~18:00</p></li>
+                                <div class="clearfix">
+	                             </div>
+                            </ul>
+                        </div>
+                        
+                    </div>
+                </section>
+            </div>
+        </div>
+    </div>
+    
+    </div>
+    <!-- body end -->
+    <!-- footer start -->
+    <footer class="footer footer-static footer-light">
+    <div class="container-main">
+    <p class="clearfix blue-grey lighten-2 text-sm-center mb-0 px-2">
+            <span class="float-md-left d-xs-block d-md-inline-block">Copyright  &copy; 2019 COMPANY, All rights reserved. </span>
+            </p>
+    </div>
+    </footer><!-- footer end -->
+    <script>
+/**
+ * Global variables
+ */
+var globals = {
+	CONTEXT_PATH: '/esw-trd',
+	LANGUAGE: 'en',
+	IS_AUTHENTICATED: 'N'=='Y' ? true : false
+	//IS_AUTHENTICATED: '' ? true : false  
+};
+//console.log('[IS_AUTHENTICATED] ' + globals.IS_AUTHENTICATED);
+
+var g_prntCbraList = [];
+
+g_prntCbraList.push({cbraCd:"CB1901", prntCbraCd:",MOT,MOI,"});
+
+
+/**
+ * Common messages
+ */
+var commMsgs = {
+	message_1001 : 'Do you want to save?', // Do you want to save?
+	message_1002 : 'Do you want to register?', // Do you want to register?
+    message_1003 : 'Do you want to modify?', // Do you want to modify?
+    message_1004 : 'Do you want to delete?', // Do you want to delete?
+    message_1005 : 'Do you want to submit?', // Do you want to send?
+    message_1006 : 'Do you want to cancel?', // Do you want to cancel?
+	        
+	message_1101 : 'Successfully processed.', // Successfully processed.
+	message_1102 : 'Process failed. Please contact the administrator.', // Process failed. Please contact the administrator.
+	message_1104 : 'The server cannot find the requested page.', // The server cannot find the requested page.
+	message_1105 : 'The server encountered an internal error that prevented it from fulfilling this request.', // The server encountered an internal error that prevented it from fulfilling this request.
+	message_1106 : 'Requested JSON parse failed.', // Requested JSON parse failed.
+	message_1107 : 'Request timed out.', // Request timed out.
+	message_1108 : 'The request was aborted.', // The request was aborted.
+	message_1110 : 'This is not a valid session.', // This is not a valid session.
+	message_1113 : 'Unsupported file type', // Unsupported file type
+	message_1115 : 'This is already registered value.', // This is already registered value.
+	message_1116 : 'Please select.', // Please select.
+	message_1117 : 'There are no field to reset.', // There are no field to reset.
+	message_1118 : 'MaxFileSize must be greater than 0.', // MaxFileSize must be greater than 0.
+	message_1119 : 'The file size cannot exceed {0}.', // The file size cannot exceed {0}.
+	message_1120 : 'Access is denied.', // Access is denied.
+	
+	message_2001 : 'Please select a Region.', // Please select a Region.
+	message_2002 : 'Please select a Zone/Subcity.', // Please select a Zone/Subcity.
+	message_2003 : 'Please select an Woreda.', // Please select an Woreda.
+	message_2019 : 'Please select a locality.', // Please select a locality.
+	
+	message_3011 : 'Please select Commodity Code first.', // Please select Commodity Code first.
+	
+	message_4001 : 'Please enter at least 1 item.', // Please enter at least 1 item.
+	message_4004 : ':The attachment is mandatory.', // The attachment is mandatory
+	message_4040 : 'The size of attached documents cannot exceed 20 MB', // The size of attached documents can not exceed 20 MB 
+	message_4041 : 'Please select a file to attach.', // Please select a file to attach.
+	message_4042 : ':The Supporting Document Name is mandatory.', // The Supporting Document Name is mandatory.
+	
+	message_5004 : 'The size of attached documents cannot exceed 20 MB', // The size of attached documents can not exceed 20 MB 
+	message_5006 : 'Please select a file to attach.', // Please select a file to attach.
+	message_5010 : ':The Supporting Document Name is mandatory.', // The Supporting Document Name is mandatory.
+	
+	message_comm_2001: 'The file can not be downloaded because there is no saved file.', // The file can not be downloaded because there is no saved file.
+	
+	message_0008_25mb : 'Please upload a file between 0 MB and 25 MB.',
+	message_0008_10mb : 'Please upload a file between 0 MB and 10 MB.'
+};  
+
+/**
+ * Common labels
+ **/
+var commLabels = {
+	label_regn: 'Region',
+	label_zone: 'Zone / Subcity',
+	label_wrd: 'Woreda',
+	label_kbl: 'Kebele',
+	label_all: 'All',
+	label_yes: 'Yes',
+	label_no: 'No',
+	label_error: 'Error',
+	label_alert: 'Alert'
+}
+</script>
+
+<script>
+    var g_modalYn = '';
+    var g_modalHeight = '';
+    var g_parent = window.parent;
+</script>
+
+<script id="paginationTemplate" type="text/x-handlebars-template">
+    {{#if this.notEmpty}}
+    <div class="text-xs-center">
+        <nav aria-label="Page navigation">
+            <ul class="pagination pagination-sm my-0">
+                {{#pagination this type='previous'}}
+                <li class="page-item{{#if disabled}} disabled{{/if}}"><a href="javascript:void 0;" aria-label="Previous" data-pageno="{{pageNo}}"
+                                                                         class="page-link">Prev</a>
+                </li>
+                {{/pagination}}
+                {{#pagination this type='pageNo'}}
+                <li class="page-item{{#if active}} active{{/if}}"><a href="javascript:void 0;" data-pageno="{{pageNo}}" class="page-link">{{pageNo}}</a></li>
+                {{/pagination}}
+                {{#pagination this type='next'}}
+                <li class="page-item{{#if disabled}} disabled{{/if}}"><a href="javascript:void 0;" aria-label="Next" data-pageno="{{pageNo}}" class="page-link">Next</a>
+                </li>
+                {{/pagination}}
+            </ul>
+        </nav>
+    </div>
+    {{/if}}
+</script>
+
+<script id="paginationInfoTemplate" type="text/x-handlebars-template">
+    <span class="float-xs-left mt-1">All&nbsp;<b>{{totalCount}}</b> Rows</span>
+    <select class="form-control float-xs-left input-sm ml-05 mt-1" name="pageSize" id="{{pageSizeId}}" style="width: 60px;">
+        {{#each pageSizes}}
+        <option value="{{this}}" {{selectedPageSize this}}>{{this}}</option>
+        {{/each}}
+    </select>
+</script>
+
+<script id="vldnErrListTemplate" type="text/x-handlebars-template">
+    {{#each this}}
+    <tr>
+        <td class="text-xs-center">{{count @index}}</td>
+		{{#isSummary}}
+        	<td class="text-xs-center">{{errSctn}}</td>
+        	<td class="text-xs-center">{{errItemSn}}</td>
+		{{/isSummary}}
+		{{#isDtl}}
+        	<td class="text-xs-center">{{errSctn}}</td>
+        	<td class="text-xs-center">{{errItemSn}}</td>
+       		<td class="text-xs-center">{{errItemSubSn}}</td>
+		{{/isDtl}}
+        <td>{{errItemNm}}</td>
+        <td>{{errCn}}</td>
+    </tr>
+    {{/each}}
+</script>
+
+<script src="/esw-trd/static/js/lib/jquery-3.2.1.min.js"></script>
+
+<script src="/esw-trd/static/js/lib/jquery-ui.js"></script>
+<script src="/esw-trd/static/js/lib/tether.min.js"></script>
+<script src="/esw-trd/static/js/lib/popper.min.js"></script>
+<script src="/esw-trd/static/js/lib/bootstrap.min.js"></script>
+<script src="/esw-trd/static/js/lib/perfect-scrollbar.jquery.min.js"></script>
+<script src="/esw-trd/static/js/lib/unison.min.js"></script>
+<script src="/esw-trd/static/js/lib/jquery-sliding-menu.js"></script>
+<script src="/esw-trd/static/js/lib/jquery.sticky.js"></script>
+<script src="/esw-trd/static/js/lib/jquery.sparkline.min.js"></script>
+<script src="/esw-trd/static/js/lib/app-menu.js"></script>
+<script src="/esw-trd/static/js/lib/app.js"></script>
+<script src="/esw-trd/static/js/lib/breadcrumbs-with-stats.min.js"></script>
+<script src="/esw-trd/static/js/lib/sk-content-sidebar.js"></script>
+<script src="/esw-trd/static/js/lib/tooltip.min.js"></script>
+
+<script src="/esw-trd/static/js/lib/underscore.min.js"></script>
+<script src="/esw-trd/static/js/lib/underscore.string.min.js"></script>
+<script src="/esw-trd/static/js/lib/moment-with-locales.min.js"></script>
+
+<script src="/esw-trd/static/js/lib/jquery.serialize-object.min.js"></script>
+<script src="/esw-trd/static/js/lib/jquery.mask.js"></script>
+<script src="/esw-trd/static/js/lib/jquery.validate.js"></script>
+<script src="/esw-trd/static/js/lib/additional-methods.js"></script>
+<script src="/esw-trd/static/js/lib/localization/messages_en.js"></script>
+<script src="/esw-trd/static/js/lib/handlebars-v4.0.10.js"></script>
+<script src="/esw-trd/static/js/lib/waitMe.min.js"></script>
+<script src="/esw-trd/static/js/lib/uri.js"></script>
+<script src="/esw-trd/static/js/lib/jquery.plugin.min.js"></script>
+<script src="/esw-trd/static/js/lib/jquery.calendars.all.js"></script>
+<script src="/esw-trd/static/js/lib/jquery.calendars.picker.ext.js"></script>
+<script src="/esw-trd/static/js/lib/jquery.calendars.validation.js"></script>
+<script src="/esw-trd/static/js/lib/jquery.calendars.ethiopian.min.js"></script>
+<script src="/esw-trd/static/js/lib/jquery.floatThead.js"></script>
+<script src="/esw-trd/static/js/lib/jquery.fileDownload.js"></script>
+
+<script src="/esw-trd/static/js/trd/comm/commGlobals.js"></script>
+<script src="/esw-trd/static/js/trd/comm/commUtils.js"></script>
+<script src="/esw-trd/static/js/trd/comm/commExtend.js"></script>
+<script src="/esw-trd/static/js/trd/comm/commEthCalendar.js"></script>
+<script src="/esw-trd/static/js/trd/comm/commUi.js"></script>
+<script src="/esw-trd/static/js/trd/comm/commAjax.js"></script>
+
+
+    
+    <script>
+        var isRoleAdmin = false;
+        var isRoleUser = false;
+        ''
+        ''
+    </script>
+    <script>
+        var mainMsgs = {
+          label_userId: 'User ID',
+          label_userPwd: 'Password',
+          message_1111: 'Please login first.',  // Please login first.
+        };
+    </script>
+    <script id="main-newNoticeListTemplate" type="text/x-handlebars-template">
+        {{#each contents}}
+            <div class="media notice-list">
+                <a class="text-gray-dark" data-notice-id="{{noticeId}}" href="javascript:void 0;">
+                    <div class="media-body">
+                        <h5 class="media-heading">{{noticeTtle}}</h5>
+                        <p class="notice-text blue-grey lighten-1">{{noticeCn}}</p>
+                    </div>
+                    <span class="media-right">
+                        <p class="date">{{formatDate frstRgsrDttm}}</p>
+                    </span>
+                </a>
+            </div>
+        {{/each}}
+    </script>
+    <script id="main-mainFxrtListTemplate" type="text/x-handlebars-template">
+        {{#each contents}}
+             <tr>
+                <th scope="row"><img src="/esw-trd/static/images/flags/{{currCd}}.png"></th>
+                <td class="text-center">{{currCd}}</td>
+                <td class="text-center">{{fxrt}}</td>
+             </tr>
+        {{/each}}
+    </script>
+    <script id="main-inProgressCntTemplate" type="text/x-handlebars-template">
+        <tr>
+              <td class="text-center"><a href="javascript:void 0;" data-numOfApfm="{{numOfApfm}}">{{numOfApfm}}</a></td>
+              <td class="text-center">
+                  <a href="javascript:void 0;" data-numOfCtqryByVrfr="{{numOfCtqryByVrfr}}">{{numOfCtqryByVrfr}}</a>
+                  |
+                  <a href="javascript:void 0;" data-numOfCtqryByInsptr="{{numOfCtqryByInsptr}}">{{numOfCtqryByInsptr}}</a>
+              </td>
+              <td class="text-center"><a href="javascript:void 0;" data-numOfIqs="{{numOfIqs}}">{{numOfIqs}}</a></td>
+              <td class="text-center"><a href="javascript:void 0;" data-numOfUnpaidBill="{{numOfUnpaidBill}}">{{numOfUnpaidBill}}</a></td>
+        </tr>
+    </script>
+    <script id="main-billInfoListTemplate" type="text/x-handlebars-template">
+        {{#each contents}}
+        <tr>
+            <td class="text-xs-center" scope="row">{{formatNumber rowNo}}</td>
+            <td class="text-xs-center"><a href="javascript:void 0;" data-bilno="{{bilNo}}" data-bilsn="1">{{bilNo}}</a></td>
+            <td class="text-xs-center">{{formatDate bilIssuDt}}</t d>
+            <td class="text-xs-center">{{apfmRefno}}</td>
+            <td>{{billerCbraNm}}</td> 
+            <td>{{formNm}}</td>
+            <td class="text-xs-center">{{formatNumber totAmt}}</td>
+	</tr>
+	{{else}}
+	<tr>
+	    <td colspan="7" class="text-xs-center">Data does not exist.</td>
+	</tr>
+	{{/each}}
+    </script>
+    <script id="main-sentReceivedListTemplate" type="text/x-handlebars-template">
+        {{#each this}}
+            {{#if @last}}
+            <tr>
+                <th class="text-xs-center" scope="row">Total</th>
+                <td class="text-xs-center">{{sendCmplt}} / {{sendErr}}</td>
+                <td class="text-xs-center">{{rcvCmplt}} / {{rcvErr}}</td>
+                <td class="text-xs-center">{{rtngCmplt}} / {{rtngErr}}</td>
+                <td class="text-xs-center">{{cmpltTot}} / {{errTot}}</td>
+            </tr>
+            {{else}}
+            <tr>
+                <td class="text-xs-center" scope="row">{{formatDate prid}}</td>
+                <td class="text-xs-center">{{sendCmplt}} / {{sendErr}}</td>
+                <td class="text-xs-center">{{rcvCmplt}} / {{rcvErr}}</td>
+                <td class="text-xs-center">{{rtngCmplt}} / {{rtngErr}}</td>
+                <td class="text-xs-center">{{cmpltTot}} / {{errTot}}</td>
+            </tr>
+            {{/if}}
+        {{/each}}
+    </script>
+    <script id="main-prcsStusListTemplate" type="text/x-handlebars-template">
+        {{#each contents}}
+        <tr>
+            <td scope="row" class="text-xs-center" rowspan="2">{{rowNo}}</td>
+            <td>{{cbraBrnchNm}}</td>
+            <td class="text-xs-center" rowspan="2">
+                <a href="javascript:void 0;" title="Load LPCO Screen." data-lpco-no="{{lpcoNo}}" data-lpco-sn="{{lpcoSn}}" data-lpco-cd="{{lpcoCd}}" 
+                        data-cbra-cd="{{cbraCd}}" data-apfm-cd="{{apfmCd}}">{{lpcoNo}}</a>
+            </td>
+            <td class="text-xs-center">
+                <a href="javascript:void 0;" title="Load Application Screen." data-apfm-refno="{{apfmRefno}}" data-apfm-refno-sn="{{apfmRefnoSn}}" 
+                        data-cbra-cd="{{cbraCd}}" data-apfm-url="{{apfmUrl}}" data-apfm-cd="{{apfmCd}}" data-apfm-nm="{{apfmNm}}">{{apfmRefno}}</a>
+            </td>
+            <td class="text-xs-center">{{apfmNo}}</td>
+            <td class="text-xs-center">
+                <a href="javascript:void 0;" title="Load Process Status Screen." data-stus-apfm-refno="{{apfmRefno}}">
+                    {{trdApfmStusNm}}
+                    {{#ifNotEquals trdApfmStusNm lastTrdApfmStusNm}}
+                        <br>({{lastTrdApfmStusNm}})
+                    {{/ifNotEquals}}
+                </a>
+            </td>
+            <td class="text-xs-center" rowspan="2">
+                {{#if lpcoNo}}
+                    {{#notInArray apfmCd "ED_REQ_FC"}}
+                        {{#ifOrNotEquals cbraCd "ECCSA" trdApfmStusCd "10703"}}
+                            <button type="button" class="btn btn-secondary btn-sm mr-05" id="prcsStusList-prtBtn" data-apfm-refno="{{apfmRefno}}" data-apfm-refno-sn="{{apfmRefnoSn}}" 
+                                    data-lpco-no="{{lpcoNo}}" data-lpco-sn="{{lpcoSn}}" data-lpco-url="{{lpcoUrl}}"><i class="fa fa-print"></i> Print</button>
+                        {{/ifOrNotEquals}}
+                    {{/notInArray}}
+                {{/if}}
+            </td>
+        </tr>
+        <tr>
+            <td>{{apfmNm}}</td>
+            <td class="text-xs-center">{{formatDate apfmRgsrDt}}</td>
+            <td class="text-xs-center">{{formatDate accpDt}}</td>
+            <td class="text-xs-center">
+                {{formatDate trdPrcsDt}}
+                {{#ifNotEquals trdApfmStusNm lastTrdApfmStusNm}}
+                    <br>({{formatDate lastTrdPrcsDt}})
+                {{/ifNotEquals}}
+            </td>
+        </tr>
+        {{else}}
+        <tr>
+            <td colspan="7" class="text-xs-center">Data does not exist.</td>
+        </tr>
+        {{/each}}
+    </script>
+    <script id="main-ntfcListTemplate" type="text/x-handlebars-template">
+        {{#each contents}}
+        <tr>
+            <td scope="row" class="text-xs-center">{{rowNo}}</td>
+            <td class="text-xs-center">{{cbraCd}}</td>
+            <td class="text-xs-center" title="{{rmk}}">{{trdApfmStusNm}}</td>
+            <td class="text-xs-center">{{apfmRefno}}</td>
+            <td class="text-xs-center">{{apfmNo}}</td>
+            <td class="text-xs-center">{{formatDate apfmDt}}</td>
+            <td class="text-xs-center">{{formatTime stusDt}}</td>
+        </tr>
+        {{else}}
+        <tr>
+            <td colspan="7" class="text-xs-center">Data does not exist.</td>
+        </tr>
+        {{/each}}
+    </script>
+        
+    <script src="/esw-trd/static/js/trd/main/main.js"></script>
+<!-- Popup Modal -->
+<div class="modal fade" id="commModal" style="overflow:none;">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content bmd-modalContent">
+
+            <!-- header -->
+            <div id="modalHeader" class="modal-header">
+                <button id="headerCloseBtn" type="button" class="close" data-dismiss="modal">x</button>
+                <!-- header title -->
+                <h4 id="modalTitle" class="modal-title"></h4>
+            </div>
+
+            <!-- body -->
+            <div class="modal-body">
+                <div class="embed-responsive embed-responsive-16by9">
+                    <iframe id="modalIfCont" class="embed-responsive-item" frameborder="0"></iframe>
+                </div>
+            </div>
+
+            <!-- Footer -->
+            <div id="modalFooter" class="modal-footer">
+                <button id="footerCloseBtn" type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            </div>
+
+        </div><!-- modal-content -->
+    </div><!-- modal-dialog -->
+</div><!-- modal -->
+
+<!-- Message Modal -->
+<div class="modal fade" id="commMsgModal" style="overflow:none;">
+    <div class="modal-dialog modal-sm modal-center">
+    
+        <!-- Modal content-->
+        <div class="modal-content">
+            
+            <!-- header -->
+            <div class="modal-header small">
+                <button type="button" class="close" data-dismiss="modal">x</button>
+                <!-- header title -->
+                <h4 class="modal-title font-medium-3"></h4>
+            </div>
+            
+            <!-- body -->
+            <div class="modal-body font-medium-2"></div>
+            
+            <!-- Footer -->
+            <div class="modal-footer small">
+                <button id="commMsgConfirmBtn" type="button" class="btn btn-success" data-dismiss="modal" data-value="1" style="display:none;">Confirm</button>
+                <button id="commMsgCancelBtn" type="button" class="btn btn-primary" data-dismiss="modal" data-value="0" style="display:none;">Cancel</button>
+            </div>
+        
+        </div>
+
+    </div>
+</div></body>
+</html>

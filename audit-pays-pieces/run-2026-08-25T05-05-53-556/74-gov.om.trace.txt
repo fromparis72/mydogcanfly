@@ -1,0 +1,67 @@
+# 2026-08-25 — https://gov.om/en/w/get-a-veterinary-permit-to-import-animals-shipment
+# curl exit=0 · http=200
+
+* Host gov.om:443 was resolved.
+* IPv6: (none)
+* IPv4: 151.104.135.165
+*   Trying 151.104.135.165:443...
+[ligne expurgée : proxy/authentification]
+* ALPN: curl offers h2,http/1.1
+* (304) (OUT), TLS handshake, Client hello (1):
+} [311 bytes data]
+*  CAfile: /etc/ssl/cert.pem
+*  CApath: none
+* (304) (IN), TLS handshake, Server hello (2):
+{ [122 bytes data]
+* (304) (IN), TLS handshake, Unknown (8):
+{ [19 bytes data]
+* (304) (IN), TLS handshake, Certificate (11):
+{ [3655 bytes data]
+* (304) (IN), TLS handshake, CERT verify (15):
+{ [264 bytes data]
+* (304) (IN), TLS handshake, Finished (20):
+{ [36 bytes data]
+* (304) (OUT), TLS handshake, Finished (20):
+} [36 bytes data]
+[ligne expurgée : proxy/authentification]
+* ALPN: server accepted h2
+* Server certificate:
+*  subject: C=OM; ST=Muscat; L=Muscat; O=Ministry of Transport, Communications and Information Technology; CN=gov.om
+*  start date: Feb 19 10:24:01 2026 GMT
+*  expire date: Mar 22 10:31:16 2027 GMT
+*  subjectAltName: host "gov.om" matched cert's "gov.om"
+*  issuer: C=BE; O=GlobalSign nv-sa; CN=GlobalSign RSA OV SSL CA 2018
+*  SSL certificate verify ok.
+* using HTTP/2
+* [HTTP/2] [1] OPENED stream for https://gov.om/en/w/get-a-veterinary-permit-to-import-animals-shipment
+* [HTTP/2] [1] [:method: GET]
+* [HTTP/2] [1] [:scheme: https]
+* [HTTP/2] [1] [:authority: gov.om]
+* [HTTP/2] [1] [:path: /en/w/get-a-veterinary-permit-to-import-animals-shipment]
+* [HTTP/2] [1] [user-agent: MyDogCanFly-Audit/lot-A (contact: audit@mydogcanfly.com)]
+* [HTTP/2] [1] [accept: */*]
+> GET /en/w/get-a-veterinary-permit-to-import-animals-shipment HTTP/2
+> Host: gov.om
+> User-Agent: MyDogCanFly-Audit/lot-A (contact: audit@mydogcanfly.com)
+> Accept: */*
+> 
+* Request completely sent off
+< HTTP/2 200 
+< date: Tue, 25 Aug 2026 05:11:00 GMT
+< content-type: text/html;charset=UTF-8
+[ligne expurgée : proxy/authentification]
+< x-content-type-options: nosniff
+< x-frame-options: SAMEORIGIN
+[ligne expurgée : proxy/authentification]
+[ligne expurgée : proxy/authentification]
+< expires: Thu, 01 Jan 1970 00:00:00 GMT
+< cache-control: private, no-cache, no-store, must-revalidate
+< pragma: no-cache
+[ligne expurgée : proxy/authentification]
+< strict-transport-security: max-age=31536000; includeSubDomains
+< content-security-policy: frame-ancestors 'self'
+< referrer-policy: same-origin
+< x-xss-protection: 1; mode=block
+< 
+{ [7176 bytes data]
+[ligne expurgée : proxy/authentification]

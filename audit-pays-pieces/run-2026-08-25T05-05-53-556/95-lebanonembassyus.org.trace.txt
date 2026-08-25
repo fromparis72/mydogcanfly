@@ -1,0 +1,55 @@
+# 2026-08-25 — https://lebanonembassyus.org/consular-services/jurisdictions/
+# curl exit=0 · http=200
+
+* Host lebanonembassyus.org:443 was resolved.
+* IPv6: (none)
+* IPv4: 34.41.206.215
+*   Trying 34.41.206.215:443...
+[ligne expurgée : proxy/authentification]
+* ALPN: curl offers h2,http/1.1
+* (304) (OUT), TLS handshake, Client hello (1):
+} [325 bytes data]
+*  CAfile: /etc/ssl/cert.pem
+*  CApath: none
+* (304) (IN), TLS handshake, Server hello (2):
+{ [122 bytes data]
+* (304) (IN), TLS handshake, Unknown (8):
+{ [25 bytes data]
+* (304) (IN), TLS handshake, Certificate (11):
+{ [3456 bytes data]
+* (304) (IN), TLS handshake, CERT verify (15):
+{ [79 bytes data]
+* (304) (IN), TLS handshake, Finished (20):
+{ [52 bytes data]
+* (304) (OUT), TLS handshake, Finished (20):
+} [52 bytes data]
+[ligne expurgée : proxy/authentification]
+* ALPN: server accepted http/1.1
+* Server certificate:
+*  subject: CN=lebanonembassyus.org
+*  start date: Aug  3 18:04:50 2026 GMT
+*  expire date: Nov  1 18:04:49 2026 GMT
+*  subjectAltName: host "lebanonembassyus.org" matched cert's "lebanonembassyus.org"
+*  issuer: C=US; O=Let's Encrypt; CN=YE2
+*  SSL certificate verify ok.
+* using HTTP/1.x
+> GET /consular-services/jurisdictions/ HTTP/1.1
+> Host: lebanonembassyus.org
+> User-Agent: MyDogCanFly-Audit/lot-A (contact: audit@mydogcanfly.com)
+> Accept: */*
+> 
+* Request completely sent off
+< HTTP/1.1 200 OK
+< Date: Tue, 25 Aug 2026 05:12:57 GMT
+< Server: Apache
+< X-Powered-By: PHP/7.4.9
+< Link: <https://lebanonembassyus.org/wp-json/>; rel="https://api.w.org/", <https://lebanonembassyus.org/wp-json/wp/v2/pages/451>; rel="alternate"; title="JSON"; type="application/json", <https://lebanonembassyus.org/?p=451>; rel=shortlink
+< X-Frame-Options: SAMEORIGIN
+< Vary: Cookie,Accept-Encoding
+< X-Mod-Pagespeed: 1.13.35.2-0
+< Cache-Control: max-age=0, no-cache, s-maxage=10
+< Content-Length: 88535
+< Content-Type: text/html; charset=UTF-8
+< 
+{ [16384 bytes data]
+[ligne expurgée : proxy/authentification]

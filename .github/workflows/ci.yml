@@ -101,6 +101,15 @@ jobs:
       - name: Fiches et artefacts synchronisés (ingest --check)
         run: npm run ingest:check
 
+      # LOT A — la matrice d'audit des 18 pays sans source est un INVARIANT du dépôt, pas une
+      # preuve manuelle : schéma strict, bijection avec les liens publiés, manifeste de
+      # consultation en ensemble exact (bijection des pièces, octets prouvés), extraits ancrés
+      # dans les textes dérivés re-dérivés, contrats canoniques (SourcedQuote, Source,
+      # reviewDueFrom), projection exacte vers objects.json. --as-of = la date du dernier
+      # commit : le passé du dépôt reste vérifiable tel qu'il a été écrit.
+      - name: Lot A — matrice d'audit des 18 pays (validateur permanent)
+        run: node --import tsx valider-audit-pays.mjs --as-of="$(git log -1 --format=%cs)"
+
       - name: Typecheck (knowledge · engine · workers)
         run: npm run typecheck
 

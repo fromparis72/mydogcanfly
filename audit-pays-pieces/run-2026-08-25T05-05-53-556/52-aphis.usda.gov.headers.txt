@@ -1,0 +1,22 @@
+HTTP/2 200 
+content-type: text/html; charset=utf-8
+x-content-type-options: nosniff
+x-drupal-dynamic-cache: UNCACHEABLE (response policy)
+content-language: en
+x-frame-options: SAMEORIGIN
+x-generator: Drupal 11 (https://www.drupal.org)
+x-drupal-cache: UNCACHEABLE (response policy)
+x-varnish: 2821955
+x-akamai-transformed: 9 20844 0 pmb=mRUM,2
+expires: Tue, 25 Aug 2026 05:09:52 GMT
+cache-control: max-age=0, no-cache, no-store
+pragma: no-cache
+date: Tue, 25 Aug 2026 05:09:52 GMT
+server-timing: cdn-cache; desc=MISS
+server-timing: edge; dur=8314
+server-timing: origin; dur=274
+alt-svc: h3=":443"; ma=93600
+strict-transport-security: max-age=31536000 ; includeSubDomains
+akamai-grn: 0.3f961602.1787634583.170ef5b0
+server-timing: ak_p; desc="1787634583659_35034687_386856368_858790_11674_6_9_15";dur=1
+

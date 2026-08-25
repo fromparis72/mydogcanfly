@@ -1,0 +1,66 @@
+# 2026-08-25 — https://www.agriculture.gov.lb/
+# curl exit=0 · http=200
+
+* Host www.agriculture.gov.lb:443 was resolved.
+* IPv6: (none)
+* IPv4: 94.187.88.82
+*   Trying 94.187.88.82:443...
+[ligne expurgée : proxy/authentification]
+* ALPN: curl offers h2,http/1.1
+* (304) (OUT), TLS handshake, Client hello (1):
+} [327 bytes data]
+*  CAfile: /etc/ssl/cert.pem
+*  CApath: none
+* (304) (IN), TLS handshake, Server hello (2):
+{ [122 bytes data]
+* (304) (IN), TLS handshake, Unknown (8):
+{ [19 bytes data]
+* (304) (IN), TLS handshake, Certificate (11):
+{ [3462 bytes data]
+* (304) (IN), TLS handshake, CERT verify (15):
+{ [111 bytes data]
+* (304) (IN), TLS handshake, Finished (20):
+{ [36 bytes data]
+* (304) (OUT), TLS handshake, Finished (20):
+} [36 bytes data]
+[ligne expurgée : proxy/authentification]
+* ALPN: server accepted h2
+* Server certificate:
+*  subject: CN=www.agriculture.gov.lb
+*  start date: Aug  7 06:48:21 2026 GMT
+*  expire date: Nov  5 06:48:20 2026 GMT
+*  subjectAltName: host "www.agriculture.gov.lb" matched cert's "www.agriculture.gov.lb"
+*  issuer: C=US; O=Let's Encrypt; CN=YE1
+*  SSL certificate verify ok.
+* using HTTP/2
+* [HTTP/2] [1] OPENED stream for https://www.agriculture.gov.lb/
+* [HTTP/2] [1] [:method: GET]
+* [HTTP/2] [1] [:scheme: https]
+* [HTTP/2] [1] [:authority: www.agriculture.gov.lb]
+* [HTTP/2] [1] [:path: /]
+* [HTTP/2] [1] [user-agent: MyDogCanFly-Audit/lot-A (contact: audit@mydogcanfly.com)]
+* [HTTP/2] [1] [accept: */*]
+> GET / HTTP/2
+> Host: www.agriculture.gov.lb
+> User-Agent: MyDogCanFly-Audit/lot-A (contact: audit@mydogcanfly.com)
+> Accept: */*
+> 
+* Request completely sent off
+< HTTP/2 200 
+< server: openresty
+< date: Tue, 25 Aug 2026 05:09:43 GMT
+< content-type: text/html; charset=utf-8
+< cache-control: no-cache, no-store, must-revalidate
+< pragma: no-cache
+< expires: -1
+< x-frame-options: SAMEORIGIN
+[ligne expurgée : proxy/authentification]
+[ligne expurgée : proxy/authentification]
+[ligne expurgée : proxy/authentification]
+< x-ua-compatible: IE=Edge
+< x-aspnet-version: 4.0.30319
+< x-powered-by: ASP.NET
+< x-served-by: www.agriculture.gov.lb
+< 
+{ [7587 bytes data]
+[ligne expurgée : proxy/authentification]

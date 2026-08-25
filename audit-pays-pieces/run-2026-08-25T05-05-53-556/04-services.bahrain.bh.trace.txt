@@ -1,0 +1,70 @@
+# 2026-08-25 — https://services.bahrain.bh/wps/portal/en/BSP/GSX-UI-EServiceDetails?esID=2178
+# curl exit=0 · http=200
+
+* Host services.bahrain.bh:443 was resolved.
+* IPv6: (none)
+* IPv4: 34.241.194.178, 54.171.119.247
+*   Trying 34.241.194.178:443...
+[ligne expurgée : proxy/authentification]
+* ALPN: curl offers h2,http/1.1
+* (304) (OUT), TLS handshake, Client hello (1):
+} [324 bytes data]
+*  CAfile: /etc/ssl/cert.pem
+*  CApath: none
+* (304) (IN), TLS handshake, Server hello (2):
+{ [122 bytes data]
+* (304) (IN), TLS handshake, Unknown (8):
+{ [19 bytes data]
+* (304) (IN), TLS handshake, Certificate (11):
+{ [3075 bytes data]
+* (304) (IN), TLS handshake, CERT verify (15):
+{ [520 bytes data]
+* (304) (IN), TLS handshake, Finished (20):
+{ [36 bytes data]
+* (304) (OUT), TLS handshake, Finished (20):
+} [36 bytes data]
+[ligne expurgée : proxy/authentification]
+* ALPN: server accepted h2
+* Server certificate:
+*  subject: C=BH; L=Muharraq; O=Information & eGovernment Authority; CN=*.bahrain.bh
+*  start date: Nov 20 00:00:00 2025 GMT
+*  expire date: Nov 19 23:59:59 2026 GMT
+*  subjectAltName: host "services.bahrain.bh" matched cert's "*.bahrain.bh"
+*  issuer: C=US; O=DigiCert Inc; OU=www.digicert.com; CN=Thawte TLS RSA CA G1
+*  SSL certificate verify ok.
+* using HTTP/2
+* [HTTP/2] [1] OPENED stream for https://services.bahrain.bh/wps/portal/en/BSP/GSX-UI-EServiceDetails?esID=2178
+* [HTTP/2] [1] [:method: GET]
+* [HTTP/2] [1] [:scheme: https]
+* [HTTP/2] [1] [:authority: services.bahrain.bh]
+* [HTTP/2] [1] [:path: /wps/portal/en/BSP/GSX-UI-EServiceDetails?esID=2178]
+* [HTTP/2] [1] [user-agent: MyDogCanFly-Audit/lot-A (contact: audit@mydogcanfly.com)]
+* [HTTP/2] [1] [accept: */*]
+> GET /wps/portal/en/BSP/GSX-UI-EServiceDetails?esID=2178 HTTP/2
+> Host: services.bahrain.bh
+> User-Agent: MyDogCanFly-Audit/lot-A (contact: audit@mydogcanfly.com)
+> Accept: */*
+> 
+* Request completely sent off
+< HTTP/2 200 
+< date: Tue, 25 Aug 2026 05:05:54 GMT
+< content-type: text/html; charset=UTF-8
+[ligne expurgée : proxy/authentification]
+[ligne expurgée : proxy/authentification]
+< strict-transport-security: max-age=31536000; includeSubDomains; preload
+< x-powered-by: Servlet/3.1
+< x-oneagent-js-injection: true
+< server-timing: dtTrId;desc="c8b58b41312ec2cae2c4a8611c510e8a", dtSInfo;desc="0"
+< cache-control: no-cache, no-store, must-revalidate
+< expires: Thu, 01 Jan 1970 00:00:00 GMT
+< content-location: /wps/portal/en/BSP/GSX-UI-EServiceDetails/!ut/p/z1/04_Sj9CPykssy0xPLMnMz0vMAfIjo8ziDT1NDTwsnA0MAlxMjAwCwyyDzJx8DQ3Mzcz1w1EVWIaGuhmYWbi7mZiYWQQ5-ZnqRxGj3wAHcDQgTj8eBVH4jQ_Xj0K1AosPCJkRnJqnX5AbGhphkGUCAJDLr5g!/dz/d5/L3dHQSEvUUt3RS9nQSEh/
+< pragma: no-cache
+< vary: Cookie,User-Agent
+[ligne expurgée : proxy/authentification]
+< scheme: https
+< server-timing: dtRpid;desc="1356813929"
+[ligne expurgée : proxy/authentification]
+< content-language: en
+< 
+{ [8192 bytes data]
+[ligne expurgée : proxy/authentification]

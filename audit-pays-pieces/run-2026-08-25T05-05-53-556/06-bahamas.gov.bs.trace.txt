@@ -1,0 +1,56 @@
+# 2026-08-25 — https://www.bahamas.gov.bs/bringing-pets
+# curl exit=0 · http=403
+
+* Host www.bahamas.gov.bs:443 was resolved.
+* IPv6: (none)
+* IPv4: 3.98.210.105, 3.96.243.183
+*   Trying 3.98.210.105:443...
+[ligne expurgée : proxy/authentification]
+* ALPN: curl offers h2,http/1.1
+* (304) (OUT), TLS handshake, Client hello (1):
+} [323 bytes data]
+*  CAfile: /etc/ssl/cert.pem
+*  CApath: none
+* (304) (IN), TLS handshake, Server hello (2):
+{ [122 bytes data]
+* (304) (IN), TLS handshake, Unknown (8):
+{ [19 bytes data]
+* (304) (IN), TLS handshake, Certificate (11):
+{ [3813 bytes data]
+* (304) (IN), TLS handshake, CERT verify (15):
+{ [264 bytes data]
+* (304) (IN), TLS handshake, Finished (20):
+{ [36 bytes data]
+* (304) (OUT), TLS handshake, Finished (20):
+} [36 bytes data]
+[ligne expurgée : proxy/authentification]
+* ALPN: server accepted h2
+* Server certificate:
+*  subject: CN=bahamas.gov.bs
+*  start date: Apr 30 00:00:00 2026 GMT
+*  expire date: Nov 13 23:59:59 2026 GMT
+*  subjectAltName: host "www.bahamas.gov.bs" matched cert's "www.bahamas.gov.bs"
+*  issuer: C=US; O=Amazon; CN=Amazon RSA 2048 M04
+*  SSL certificate verify ok.
+* using HTTP/2
+* [HTTP/2] [1] OPENED stream for https://www.bahamas.gov.bs/bringing-pets
+* [HTTP/2] [1] [:method: GET]
+* [HTTP/2] [1] [:scheme: https]
+* [HTTP/2] [1] [:authority: www.bahamas.gov.bs]
+* [HTTP/2] [1] [:path: /bringing-pets]
+* [HTTP/2] [1] [user-agent: MyDogCanFly-Audit/lot-A (contact: audit@mydogcanfly.com)]
+* [HTTP/2] [1] [accept: */*]
+> GET /bringing-pets HTTP/2
+> Host: www.bahamas.gov.bs
+> User-Agent: MyDogCanFly-Audit/lot-A (contact: audit@mydogcanfly.com)
+> Accept: */*
+> 
+* Request completely sent off
+< HTTP/2 403 
+< server: awselb/2.0
+< date: Tue, 25 Aug 2026 05:05:56 GMT
+< content-type: text/html
+< content-length: 118
+< 
+{ [118 bytes data]
+[ligne expurgée : proxy/authentification]

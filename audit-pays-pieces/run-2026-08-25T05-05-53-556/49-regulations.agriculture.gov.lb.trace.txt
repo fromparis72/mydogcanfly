@@ -1,0 +1,67 @@
+# 2026-08-25 — https://regulations.agriculture.gov.lb/en/legislation/523
+# curl exit=0 · http=200
+
+* Host regulations.agriculture.gov.lb:443 was resolved.
+* IPv6: (none)
+* IPv4: 135.181.113.244
+*   Trying 135.181.113.244:443...
+[ligne expurgée : proxy/authentification]
+* ALPN: curl offers h2,http/1.1
+* (304) (OUT), TLS handshake, Client hello (1):
+} [335 bytes data]
+*  CAfile: /etc/ssl/cert.pem
+*  CApath: none
+* (304) (IN), TLS handshake, Server hello (2):
+{ [94 bytes data]
+* TLSv1.2 (IN), TLS handshake, Certificate (11):
+{ [4225 bytes data]
+* TLSv1.2 (IN), TLS handshake, Server key exchange (12):
+{ [493 bytes data]
+* TLSv1.2 (IN), TLS handshake, Server finished (14):
+{ [4 bytes data]
+* TLSv1.2 (OUT), TLS handshake, Client key exchange (16):
+} [102 bytes data]
+* TLSv1.2 (OUT), TLS change cipher, Change cipher spec (1):
+} [1 bytes data]
+* TLSv1.2 (OUT), TLS handshake, Finished (20):
+} [16 bytes data]
+* TLSv1.2 (IN), TLS change cipher, Change cipher spec (1):
+{ [1 bytes data]
+* TLSv1.2 (IN), TLS handshake, Finished (20):
+{ [16 bytes data]
+[ligne expurgée : proxy/authentification]
+* ALPN: server accepted h2
+* Server certificate:
+*  subject: CN=regulations.agriculture.gov.lb
+*  start date: Aug  3 05:24:54 2026 GMT
+*  expire date: Nov  1 05:24:53 2026 GMT
+*  subjectAltName: host "regulations.agriculture.gov.lb" matched cert's "regulations.agriculture.gov.lb"
+*  issuer: C=US; O=Let's Encrypt; CN=YR1
+*  SSL certificate verify ok.
+* using HTTP/2
+* [HTTP/2] [1] OPENED stream for https://regulations.agriculture.gov.lb/en/legislation/523
+* [HTTP/2] [1] [:method: GET]
+* [HTTP/2] [1] [:scheme: https]
+* [HTTP/2] [1] [:authority: regulations.agriculture.gov.lb]
+* [HTTP/2] [1] [:path: /en/legislation/523]
+* [HTTP/2] [1] [user-agent: MyDogCanFly-Audit/lot-A (contact: audit@mydogcanfly.com)]
+* [HTTP/2] [1] [accept: */*]
+> GET /en/legislation/523 HTTP/2
+> Host: regulations.agriculture.gov.lb
+> User-Agent: MyDogCanFly-Audit/lot-A (contact: audit@mydogcanfly.com)
+> Accept: */*
+> 
+* Request completely sent off
+< HTTP/2 200 
+< cache-control: private, no-cache, no-store, max-age=0, must-revalidate
+< content-type: text/html; charset=utf-8
+< etag: "5862-ButBBe6yjCUwWW58yp589nQWl3g"
+< vary: Accept-Encoding
+< server: Microsoft-IIS/10.0
+< x-powered-by: Next.js
+< x-powered-by: ASP.NET
+< date: Tue, 25 Aug 2026 05:09:39 GMT
+< content-length: 22626
+< 
+{ [16189 bytes data]
+[ligne expurgée : proxy/authentification]

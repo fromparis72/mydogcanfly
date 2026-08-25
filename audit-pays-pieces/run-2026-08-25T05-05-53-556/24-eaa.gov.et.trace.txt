@@ -1,0 +1,59 @@
+# 2026-08-25 — https://eaa.gov.et/read-morea/
+# curl exit=0 · http=200
+
+* Host eaa.gov.et:443 was resolved.
+* IPv6: (none)
+* IPv4: 213.55.96.150
+*   Trying 213.55.96.150:443...
+[ligne expurgée : proxy/authentification]
+* ALPN: curl offers h2,http/1.1
+* (304) (OUT), TLS handshake, Client hello (1):
+} [315 bytes data]
+*  CAfile: /etc/ssl/cert.pem
+*  CApath: none
+* (304) (IN), TLS handshake, Server hello (2):
+{ [122 bytes data]
+* (304) (IN), TLS handshake, Unknown (8):
+{ [19 bytes data]
+* (304) (IN), TLS handshake, Certificate (11):
+{ [4065 bytes data]
+* (304) (IN), TLS handshake, CERT verify (15):
+{ [264 bytes data]
+* (304) (IN), TLS handshake, Finished (20):
+{ [52 bytes data]
+* (304) (OUT), TLS handshake, Finished (20):
+} [52 bytes data]
+[ligne expurgée : proxy/authentification]
+* ALPN: server accepted h2
+* Server certificate:
+*  subject: CN=eaa.gov.et
+*  start date: Aug  8 11:48:36 2026 GMT
+*  expire date: Nov  6 11:48:35 2026 GMT
+*  subjectAltName: host "eaa.gov.et" matched cert's "eaa.gov.et"
+*  issuer: C=US; O=Let's Encrypt; CN=YR2
+*  SSL certificate verify ok.
+* using HTTP/2
+* [HTTP/2] [1] OPENED stream for https://eaa.gov.et/read-morea/
+* [HTTP/2] [1] [:method: GET]
+* [HTTP/2] [1] [:scheme: https]
+* [HTTP/2] [1] [:authority: eaa.gov.et]
+* [HTTP/2] [1] [:path: /read-morea/]
+* [HTTP/2] [1] [user-agent: MyDogCanFly-Audit/lot-A (contact: audit@mydogcanfly.com)]
+* [HTTP/2] [1] [accept: */*]
+> GET /read-morea/ HTTP/2
+> Host: eaa.gov.et
+> User-Agent: MyDogCanFly-Audit/lot-A (contact: audit@mydogcanfly.com)
+> Accept: */*
+> 
+* Request completely sent off
+< HTTP/2 200 
+< server: nginx
+< date: Tue, 25 Aug 2026 05:07:12 GMT
+< content-type: text/html; charset=UTF-8
+< x-powered-by: PHP/8.3.33
+< link: <https://eaa.gov.et/wp-json/>; rel="https://api.w.org/", <https://eaa.gov.et/wp-json/wp/v2/pages/1516>; rel="alternate"; title="JSON"; type="application/json", <https://eaa.gov.et/?p=1516>; rel=shortlink
+< strict-transport-security: max-age=15768000; includeSubDomains
+< x-powered-by: PleskLin
+< 
+{ [7809 bytes data]
+[ligne expurgée : proxy/authentification]

@@ -1,0 +1,69 @@
+# 2026-08-25 — https://opm.gov.jm/ministry/ministry-of-agriculture-and-fisheries/
+# curl exit=0 · http=200
+
+* Host opm.gov.jm:443 was resolved.
+* IPv6: (none)
+* IPv4: 172.67.206.158, 104.21.22.186
+*   Trying 172.67.206.158:443...
+[ligne expurgée : proxy/authentification]
+* ALPN: curl offers h2,http/1.1
+* (304) (OUT), TLS handshake, Client hello (1):
+} [315 bytes data]
+*  CAfile: /etc/ssl/cert.pem
+*  CApath: none
+* (304) (IN), TLS handshake, Server hello (2):
+{ [122 bytes data]
+* (304) (IN), TLS handshake, Unknown (8):
+{ [19 bytes data]
+* (304) (IN), TLS handshake, Certificate (11):
+{ [2483 bytes data]
+* (304) (IN), TLS handshake, CERT verify (15):
+{ [79 bytes data]
+* (304) (IN), TLS handshake, Finished (20):
+{ [36 bytes data]
+* (304) (OUT), TLS handshake, Finished (20):
+} [36 bytes data]
+[ligne expurgée : proxy/authentification]
+* ALPN: server accepted h2
+* Server certificate:
+*  subject: CN=opm.gov.jm
+*  start date: Jul  8 23:05:06 2026 GMT
+*  expire date: Oct  7 00:04:45 2026 GMT
+*  subjectAltName: host "opm.gov.jm" matched cert's "opm.gov.jm"
+*  issuer: C=US; O=Google Trust Services; CN=WE1
+*  SSL certificate verify ok.
+* using HTTP/2
+* [HTTP/2] [1] OPENED stream for https://opm.gov.jm/ministry/ministry-of-agriculture-and-fisheries/
+* [HTTP/2] [1] [:method: GET]
+* [HTTP/2] [1] [:scheme: https]
+* [HTTP/2] [1] [:authority: opm.gov.jm]
+* [HTTP/2] [1] [:path: /ministry/ministry-of-agriculture-and-fisheries/]
+* [HTTP/2] [1] [user-agent: MyDogCanFly-Audit/lot-A (contact: audit@mydogcanfly.com)]
+* [HTTP/2] [1] [accept: */*]
+> GET /ministry/ministry-of-agriculture-and-fisheries/ HTTP/2
+> Host: opm.gov.jm
+> User-Agent: MyDogCanFly-Audit/lot-A (contact: audit@mydogcanfly.com)
+> Accept: */*
+> 
+* Request completely sent off
+< HTTP/2 200 
+< date: Tue, 25 Aug 2026 16:18:03 GMT
+< content-type: text/html; charset=UTF-8
+< server: cloudflare
+< vary: User-Agent,Accept-Encoding
+< last-modified: Mon, 24 Aug 2026 23:09:04 GMT
+< report-to: {"group":"cf-nel","max_age":604800,"endpoints":[{"url":"https://a.nel.cloudflare.com/report/v4?s=KdwjjX0%2BKIk139cf2BR3K1JLjenkuAbZjWt6RQmWcp2mi427bF6HFWzGxj6KTr73bVB4rGfQvFg%2F5DBKDhjwss2dP%2F0O2CXny5UBlisj3v5h7DHVzp%2FZ7nuJ1Wll"}]}
+< nel: {"report_to":"cf-nel","success_fraction":0.0,"max_age":604800}
+< feature-policy: fullscreen 'self'; vibrate 'none'; geolocation 'none'; camera 'none';
+< cache-control: max-age=0, no-cache, no-store, must-revalidate
+< pragma: no-cache
+< expires: Mon, 29 Oct 1923 20:30:00 GMT
+< strict-transport-security: max-age=15552000; preload
+< x-powered-by: PleskLin
+< cf-cache-status: DYNAMIC
+< x-content-type-options: nosniff
+< cf-ray: a30be9108b7aaf0d-SJC
+< alt-svc: h3=":443"; ma=86400
+< 
+{ [1360 bytes data]
+[ligne expurgée : proxy/authentification]

@@ -1,0 +1,17 @@
+HTTP/1.1 200 OK
+Date: Tue, 25 Aug 2026 05:12:42 GMT
+Cache-Control: must-revalidate, no-cache, private
+Content-language: es
+X-Content-Type-Options: nosniff
+X-Frame-Options: DENY
+Expires: Sun, 19 Nov 1978 05:00:00 GMT
+Content-Security-Policy: frame-ancestors 'self';
+Upgrade: h2
+Connection: Upgrade
+Content-Type: text/html; charset=UTF-8
+[en-tête expurgé : cookies/authentification/proxy]
+Strict-Transport-Security: max-age=63072000; includeSubDomains; preload
+[en-tête expurgé : cookies/authentification/proxy]
+Vary: Accept-Encoding
+Transfer-Encoding: chunked
+

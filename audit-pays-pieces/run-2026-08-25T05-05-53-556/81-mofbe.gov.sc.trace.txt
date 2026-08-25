@@ -1,0 +1,63 @@
+# 2026-08-25 — https://mofbe.gov.sc/agriculture-department/border-control-and-support-division/
+# curl exit=0 · http=200
+
+* Host mofbe.gov.sc:443 was resolved.
+* IPv6: (none)
+* IPv4: 185.199.220.86
+*   Trying 185.199.220.86:443...
+[ligne expurgée : proxy/authentification]
+* ALPN: curl offers h2,http/1.1
+* (304) (OUT), TLS handshake, Client hello (1):
+} [317 bytes data]
+*  CAfile: /etc/ssl/cert.pem
+*  CApath: none
+* (304) (IN), TLS handshake, Server hello (2):
+{ [122 bytes data]
+* (304) (IN), TLS handshake, Unknown (8):
+{ [15 bytes data]
+* (304) (IN), TLS handshake, Certificate (11):
+{ [4085 bytes data]
+* (304) (IN), TLS handshake, CERT verify (15):
+{ [264 bytes data]
+* (304) (IN), TLS handshake, Finished (20):
+{ [36 bytes data]
+* (304) (OUT), TLS handshake, Finished (20):
+} [36 bytes data]
+[ligne expurgée : proxy/authentification]
+* ALPN: server accepted h2
+* Server certificate:
+*  subject: CN=mofbe.gov.sc
+*  start date: Aug 13 12:12:05 2026 GMT
+*  expire date: Nov 11 12:12:04 2026 GMT
+*  subjectAltName: host "mofbe.gov.sc" matched cert's "mofbe.gov.sc"
+*  issuer: C=US; O=Let's Encrypt; CN=YR2
+*  SSL certificate verify ok.
+* using HTTP/2
+* [HTTP/2] [1] OPENED stream for https://mofbe.gov.sc/agriculture-department/border-control-and-support-division/
+* [HTTP/2] [1] [:method: GET]
+* [HTTP/2] [1] [:scheme: https]
+* [HTTP/2] [1] [:authority: mofbe.gov.sc]
+* [HTTP/2] [1] [:path: /agriculture-department/border-control-and-support-division/]
+* [HTTP/2] [1] [user-agent: MyDogCanFly-Audit/lot-A (contact: audit@mydogcanfly.com)]
+* [HTTP/2] [1] [accept: */*]
+> GET /agriculture-department/border-control-and-support-division/ HTTP/2
+> Host: mofbe.gov.sc
+> User-Agent: MyDogCanFly-Audit/lot-A (contact: audit@mydogcanfly.com)
+> Accept: */*
+> 
+* Request completely sent off
+< HTTP/2 200 
+< content-type: text/html; charset=UTF-8
+< link: <https://mofbe.gov.sc/wp-json/>; rel="https://api.w.org/"
+< link: <https://mofbe.gov.sc/wp-json/wp/v2/pages/9200>; rel="alternate"; title="JSON"; type="application/json"
+< link: <https://mofbe.gov.sc/?p=9200>; rel=shortlink
+< x-tec-api-version: v1
+< x-tec-api-root: https://mofbe.gov.sc/wp-json/tribe/events/v1/
+< x-tec-api-origin: https://mofbe.gov.sc
+< date: Tue, 25 Aug 2026 05:12:05 GMT
+< server: LiteSpeed
+< vary: User-Agent
+< alt-svc: h3=":443"; ma=2592000, h3-29=":443"; ma=2592000
+< 
+{ [16375 bytes data]
+[ligne expurgée : proxy/authentification]

@@ -1,0 +1,236 @@
+{
+  "consultees_le": "2026-08-25",
+  "run": "audit-pays-pieces/run-2026-08-25T16-17-04-174",
+  "total": 8,
+  "candidates": 0,
+  "rattachements": 8,
+  "extracteur": "lot-a-4",
+  "resultats": [
+    {
+      "n": 1,
+      "role": "rattachement",
+      "url_demandee": "https://www.gob.ec/mremh",
+      "motif": "Équateur — la Guía Oficial de Trámites y Servicios identifie le Ministerio de Relaciones Exteriores y Movilidad Humana et redirige vers son site institutionnel www.cancilleria.gob.ec. Cette pièce établit le rattachement du domaine au ministère ; elle ne préjuge pas si la page /espana/ relève du ministère central ou d'une mission.",
+      "acces": "consultee",
+      "statut_http": 200,
+      "url_finale": "https://www.gob.ec/mremh",
+      "redirections": 0,
+      "consultee_le": "2026-08-25",
+      "content_type": "text/html; charset=UTF-8",
+      "capture": {
+        "chemin": "audit-pays-pieces/run-2026-08-25T16-17-04-174/01-gob.ec.html",
+        "sha256": "52845ff085c596467999879f2135917cf430cd7282d4395ad9df186ab6faed59",
+        "octets": 47533,
+        "content_type": "text/html; charset=UTF-8",
+        "format_detecte": "html",
+        "texte_derive": {
+          "chemin": "audit-pays-pieces/run-2026-08-25T16-17-04-174/01-gob.ec.texte.txt",
+          "sha256": "e3298e7c774bbca9039d275ae357c185c4a6f3a661ab2a05c2117bdda8304c59"
+        },
+        "extracteur": "lot-a-4"
+      },
+      "entetes": {
+        "chemin": "audit-pays-pieces/run-2026-08-25T16-17-04-174/01-gob.ec.headers.txt",
+        "sha256": "4d57b55defcb9a6a315e717a68983b05b1f3b7090da2cc6a9cb0fe62264535a3"
+      },
+      "trace": {
+        "type": "transcript",
+        "chemin": "audit-pays-pieces/run-2026-08-25T16-17-04-174/01-gob.ec.trace.txt",
+        "sha256": "b3bb73af0b09b87c8fd5d125896f494a71477a5aa707a3afc94116c571008dd2"
+      }
+    },
+    {
+      "n": 2,
+      "role": "rattachement",
+      "url_demandee": "https://www.rop.gov.om/english/Index.aspx",
+      "motif": "Oman — le site officiel de la Royal Oman Police présente l'Electronic single window customs service et son HTML pointe vers https://www.customs.gov.om/. Cette pièce vise le rattachement institutionnel du domaine customs.gov.om.",
+      "acces": "consultee",
+      "statut_http": 200,
+      "url_finale": "https://www.rop.gov.om/english/Index.aspx",
+      "redirections": 0,
+      "consultee_le": "2026-08-25",
+      "content_type": "text/html; charset=utf-8",
+      "capture": {
+        "chemin": "audit-pays-pieces/run-2026-08-25T16-17-04-174/02-rop.gov.om.html",
+        "sha256": "778d5f09aabab96a0496c308597a56d103ed10b6cf9e3895070a814db78d6238",
+        "octets": 150475,
+        "content_type": "text/html; charset=utf-8",
+        "format_detecte": "html",
+        "texte_derive": {
+          "chemin": "audit-pays-pieces/run-2026-08-25T16-17-04-174/02-rop.gov.om.texte.txt",
+          "sha256": "ff51f3b24a2a1243fe95860e1779abd6ba0cef8f4b22a2dbacd3cb7fe33728e3"
+        },
+        "extracteur": "lot-a-4"
+      },
+      "entetes": {
+        "chemin": "audit-pays-pieces/run-2026-08-25T16-17-04-174/02-rop.gov.om.headers.txt",
+        "sha256": "6d0e55a2b60e27c57265aaeaee6c3d2c09648977b11e3980bc8fa03bc1f48a96"
+      },
+      "trace": {
+        "type": "transcript",
+        "chemin": "audit-pays-pieces/run-2026-08-25T16-17-04-174/02-rop.gov.om.trace.txt",
+        "sha256": "c14c5b71021baf36f50b555439223e66fa12c75c20124baf38fa7c501bb4a961"
+      }
+    },
+    {
+      "n": 3,
+      "role": "rattachement",
+      "url_demandee": "http://sommet45-sadc.gov.mg/?page_id=2358",
+      "motif": "Madagascar — le site gouvernemental du 45e sommet de la SADC qualifie www.douanes.gov.mg de site officiel de la Direction générale des douanes. HTTP est volontaire : le certificat HTTPS était expiré lors de la contre-revue du 25/08/2026.",
+      "acces": "consultee",
+      "statut_http": 200,
+      "url_finale": "http://sommet45-sadc.gov.mg/?page_id=2358",
+      "redirections": 0,
+      "consultee_le": "2026-08-25",
+      "content_type": "text/html; charset=UTF-8",
+      "capture": {
+        "chemin": "audit-pays-pieces/run-2026-08-25T16-17-04-174/03-sommet45-sadc.gov.mg.html",
+        "sha256": "01c82954505f08c23a0c4d134c4640100487e91bfca6e734f2b1a39b51c2a147",
+        "octets": 177957,
+        "content_type": "text/html; charset=UTF-8",
+        "format_detecte": "html",
+        "texte_derive": {
+          "chemin": "audit-pays-pieces/run-2026-08-25T16-17-04-174/03-sommet45-sadc.gov.mg.texte.txt",
+          "sha256": "bab8696a74cd4885f31ab06b957c810c1d2efa2e11222552be3a8e44fe14f4eb"
+        },
+        "extracteur": "lot-a-4"
+      },
+      "entetes": {
+        "chemin": "audit-pays-pieces/run-2026-08-25T16-17-04-174/03-sommet45-sadc.gov.mg.headers.txt",
+        "sha256": "66b21acdb05a1166142d6f4ae6759f58616306f355f7bdcb31158ea2ba7ce2d0"
+      },
+      "trace": {
+        "type": "transcript",
+        "chemin": "audit-pays-pieces/run-2026-08-25T16-17-04-174/03-sommet45-sadc.gov.mg.trace.txt",
+        "sha256": "f413a1a553a1877080ee1848af4b75381030b9d664f6697b52f57d5e97907296"
+      }
+    },
+    {
+      "n": 4,
+      "role": "rattachement",
+      "url_demandee": "http://government.ru/department/62/",
+      "motif": "Russie — le portail du Gouvernement de la Fédération de Russie identifie Rosselkhoznadzor et donne https://fsvps.gov.ru/ comme site de l'administration. HTTP est volontaire : cette adresse répond et redirige vers la fiche, tandis que HTTPS expirait par délai dans l'environnement de contre-revue.",
+      "acces": "consultee",
+      "statut_http": 200,
+      "url_finale": "http://government.ru/department/62/events/",
+      "redirections": 1,
+      "consultee_le": "2026-08-25",
+      "content_type": "text/html; charset=UTF-8",
+      "capture": {
+        "chemin": "audit-pays-pieces/run-2026-08-25T16-17-04-174/04-government.ru.html",
+        "sha256": "b1a0c873b5749851d1acb29bd3f3bb4b386803037890a3ea40ca95b2546e564c",
+        "octets": 97459,
+        "content_type": "text/html; charset=UTF-8",
+        "format_detecte": "html",
+        "texte_derive": {
+          "chemin": "audit-pays-pieces/run-2026-08-25T16-17-04-174/04-government.ru.texte.txt",
+          "sha256": "391628c44fa3ee4e304c1b743268399e24ee76353b601d53878256fd80b8f9bd"
+        },
+        "extracteur": "lot-a-4"
+      },
+      "entetes": {
+        "chemin": "audit-pays-pieces/run-2026-08-25T16-17-04-174/04-government.ru.headers.txt",
+        "sha256": "912556a7e62d881f3c8a82a80114c736193a26533f5482464b3658c596e22544"
+      },
+      "trace": {
+        "type": "transcript",
+        "chemin": "audit-pays-pieces/run-2026-08-25T16-17-04-174/04-government.ru.trace.txt",
+        "sha256": "dc07ec2b063cbd7878be110a52cb50a73f53ecdfd06095b6d669db35e9f716cf"
+      }
+    },
+    {
+      "n": 5,
+      "role": "rattachement",
+      "url_demandee": "https://www.gub.uy/politicas-y-gestion/para-que-sirve-este-sitio",
+      "motif": "Uruguay — cette page officielle établit que gub.uy est le portail officiel de l'État uruguayen et qu'il réunit les informations des organismes publics, notamment ministères et organismes autonomes.",
+      "acces": "tentative",
+      "tentee_le": "2026-08-25",
+      "resultat": "curl exit 35 (réseau/délai)",
+      "trace": {
+        "type": "transcript",
+        "chemin": "audit-pays-pieces/run-2026-08-25T16-17-04-174/05-gub.uy.trace.txt",
+        "sha256": "51094e0bc2c41f6bd577cd5cece566c2d1b6d65eb3a00545a78bc6324e250af7"
+      }
+    },
+    {
+      "n": 6,
+      "role": "rattachement",
+      "url_demandee": "https://www.gub.uy/agencia-gobierno-electronico-sociedad-informacion-conocimiento/comunicacion/publicaciones/registro-dominios-gubernamentales",
+      "motif": "Uruguay — Agesic documente la gestion institutionnelle des domaines gouvernementaux gub.uy. Cette pièce complète l'attestation du portail officiel par la gouvernance du domaine.",
+      "acces": "consultee",
+      "statut_http": 200,
+      "url_finale": "https://www.gub.uy/agencia-gobierno-electronico-sociedad-informacion-conocimiento/comunicacion/publicaciones/registro-dominios-gubernamentales",
+      "redirections": 0,
+      "consultee_le": "2026-08-25",
+      "content_type": "text/html; charset=UTF-8",
+      "capture": {
+        "chemin": "audit-pays-pieces/run-2026-08-25T16-17-04-174/06-gub.uy.html",
+        "sha256": "01aec067f455b60317e01b5db428627084fb2e05aaa8e560e4e4427b018d1b42",
+        "octets": 48853,
+        "content_type": "text/html; charset=UTF-8",
+        "format_detecte": "html",
+        "texte_derive": {
+          "chemin": "audit-pays-pieces/run-2026-08-25T16-17-04-174/06-gub.uy.texte.txt",
+          "sha256": "f332d108ef2409d3ba65d80db35628469905ed3836f2bdcb7c36a45797e3eff2"
+        },
+        "extracteur": "lot-a-4"
+      },
+      "entetes": {
+        "chemin": "audit-pays-pieces/run-2026-08-25T16-17-04-174/06-gub.uy.headers.txt",
+        "sha256": "4abdf24d575dc63753e14eaa084a4e3a980cf8a744ecb7de41c525a0e23af351"
+      },
+      "trace": {
+        "type": "transcript",
+        "chemin": "audit-pays-pieces/run-2026-08-25T16-17-04-174/06-gub.uy.trace.txt",
+        "sha256": "79129e935e62c819baaf50da9e87ea3962c6434fac8717ec30e4f56c6bc2a3b7"
+      }
+    },
+    {
+      "n": 7,
+      "role": "rattachement",
+      "url_demandee": "https://opm.gov.jm/ministry/ministry-of-agriculture-and-fisheries/",
+      "motif": "Jamaïque — l'Office of the Prime Minister identifie le Ministry of Agriculture, Fisheries, and Mining comme ministère du gouvernement et donne explicitement https://www.moa.gov.jm/ comme site.",
+      "acces": "consultee",
+      "statut_http": 200,
+      "url_finale": "https://opm.gov.jm/ministry/ministry-of-agriculture-and-fisheries/",
+      "redirections": 0,
+      "consultee_le": "2026-08-25",
+      "content_type": "text/html; charset=UTF-8",
+      "capture": {
+        "chemin": "audit-pays-pieces/run-2026-08-25T16-17-04-174/07-opm.gov.jm.html",
+        "sha256": "75c4a0d9e99d1dc92010bd951152006c5395476f9642e5181332ffb8c68295ac",
+        "octets": 132164,
+        "content_type": "text/html; charset=UTF-8",
+        "format_detecte": "html",
+        "texte_derive": {
+          "chemin": "audit-pays-pieces/run-2026-08-25T16-17-04-174/07-opm.gov.jm.texte.txt",
+          "sha256": "15b4abb0c6a57fa9d0191f3aa1dcfed8abfa8f0167adc3a2bd3815651cce3b61"
+        },
+        "extracteur": "lot-a-4"
+      },
+      "entetes": {
+        "chemin": "audit-pays-pieces/run-2026-08-25T16-17-04-174/07-opm.gov.jm.headers.txt",
+        "sha256": "77d6c93e414ca1410d058ac6445978fffc6e345237646d29f1a29a0d04199491"
+      },
+      "trace": {
+        "type": "transcript",
+        "chemin": "audit-pays-pieces/run-2026-08-25T16-17-04-174/07-opm.gov.jm.trace.txt",
+        "sha256": "c693b1bc7368b28996a435774f29d4bb54cec5c813e6f8265e78fc305b0cc5a7"
+      }
+    },
+    {
+      "n": 8,
+      "role": "rattachement",
+      "url_demandee": "https://mofa.gov.np/pages/diplomatic-missions-25/",
+      "motif": "Népal — le Ministry of Foreign Affairs rattache uk.nepalembassy.gov.np à l'Embassy of Nepal, United Kingdom. Cette pièce doit conduire à mission_diplomatique_pays, jamais à autorite_pays ni à une promotion.",
+      "acces": "tentative",
+      "tentee_le": "2026-08-25",
+      "resultat": "curl exit 35 (réseau/délai)",
+      "trace": {
+        "type": "transcript",
+        "chemin": "audit-pays-pieces/run-2026-08-25T16-17-04-174/08-mofa.gov.np.trace.txt",
+        "sha256": "4836699a1a8218d0ed69d9b03318cb5ef19a8b1fbf30508c0bdd541b6f4f7050"
+      }
+    }
+  ]
+}

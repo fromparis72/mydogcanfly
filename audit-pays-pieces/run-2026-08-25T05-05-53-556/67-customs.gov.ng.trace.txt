@@ -1,0 +1,59 @@
+# 2026-08-25 — https://customs.gov.ng/?page_id=3075
+# curl exit=0 · http=200
+
+* Host customs.gov.ng:443 was resolved.
+* IPv6: 2606:4700:10::ac42:a207, 2606:4700:10::6814:2ae3
+* IPv4: 104.20.42.227, 172.66.162.7
+*   Trying [2606:4700:10::ac42:a207]:443...
+[ligne expurgée : proxy/authentification]
+* ALPN: curl offers h2,http/1.1
+* (304) (OUT), TLS handshake, Client hello (1):
+} [319 bytes data]
+*  CAfile: /etc/ssl/cert.pem
+*  CApath: none
+* (304) (IN), TLS handshake, Server hello (2):
+{ [122 bytes data]
+* (304) (IN), TLS handshake, Unknown (8):
+{ [19 bytes data]
+* (304) (IN), TLS handshake, Certificate (11):
+{ [2498 bytes data]
+* (304) (IN), TLS handshake, CERT verify (15):
+{ [79 bytes data]
+* (304) (IN), TLS handshake, Finished (20):
+{ [36 bytes data]
+* (304) (OUT), TLS handshake, Finished (20):
+} [36 bytes data]
+[ligne expurgée : proxy/authentification]
+* ALPN: server accepted h2
+* Server certificate:
+*  subject: CN=customs.gov.ng
+*  start date: Jul 31 21:44:23 2026 GMT
+*  expire date: Oct 29 22:44:18 2026 GMT
+*  subjectAltName: host "customs.gov.ng" matched cert's "customs.gov.ng"
+*  issuer: C=US; O=Google Trust Services; CN=WE1
+*  SSL certificate verify ok.
+* using HTTP/2
+* [HTTP/2] [1] OPENED stream for https://customs.gov.ng/?page_id=3075
+* [HTTP/2] [1] [:method: GET]
+* [HTTP/2] [1] [:scheme: https]
+* [HTTP/2] [1] [:authority: customs.gov.ng]
+* [HTTP/2] [1] [:path: /?page_id=3075]
+* [HTTP/2] [1] [user-agent: MyDogCanFly-Audit/lot-A (contact: audit@mydogcanfly.com)]
+* [HTTP/2] [1] [accept: */*]
+> GET /?page_id=3075 HTTP/2
+> Host: customs.gov.ng
+> User-Agent: MyDogCanFly-Audit/lot-A (contact: audit@mydogcanfly.com)
+> Accept: */*
+> 
+* Request completely sent off
+< HTTP/2 200 
+< date: Tue, 25 Aug 2026 05:10:48 GMT
+< content-type: text/html
+< last-modified: Mon, 03 Aug 2026 14:06:06 GMT
+< vary: Accept-Encoding
+< server: cloudflare
+< cf-cache-status: DYNAMIC
+< cf-ray: a30817ab1e3a3cc9-CDG
+< 
+{ [1360 bytes data]
+[ligne expurgée : proxy/authentification]

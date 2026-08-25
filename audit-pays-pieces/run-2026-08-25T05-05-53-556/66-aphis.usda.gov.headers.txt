@@ -1,0 +1,20 @@
+HTTP/2 200 
+content-type: application/pdf
+content-length: 283052
+x-content-type-options: nosniff
+last-modified: Thu, 20 Jul 2023 20:46:14 GMT
+etag: "451ac-600f13d3cde91"
+accept-ranges: bytes
+x-varnish: 3510312
+expires: Tue, 25 Aug 2026 05:10:48 GMT
+cache-control: max-age=0, no-cache, no-store
+pragma: no-cache
+date: Tue, 25 Aug 2026 05:10:48 GMT
+server-timing: cdn-cache; desc=MISS
+server-timing: edge; dur=8099
+server-timing: origin; dur=40
+alt-svc: h3=":443"; ma=93600
+strict-transport-security: max-age=31536000 ; includeSubDomains
+akamai-grn: 0.3f961602.1787634640.170f2921
+server-timing: ak_p; desc="1787634640135_35034687_386869537_813888_11839_6_10_15";dur=1
+
