@@ -594,3 +594,10 @@ corps au-delà de la borne et l'inventaire exact du run). Le total est **verroui
 3. **Contre-revue des 18 décisions** sur pièces.
 4. **Application des seules promotions approuvées** dans `objects.json` (projection canonique),
    contre-vérifiée par le critère 4, puis PR, CI, fusion sur décision de Philippe.
+
+**État au 25/08/2026** : étapes 1 et 2 accomplies — collecte réelle assainie (95 résultats,
+66 consultations, 29 tentatives), matrice `audit-pays.json` remplie (91 candidates jugées,
+4 décisions de rattachement, **1 promue dans la matrice : country_fj**, 17
+`aucune_source_officielle`), validateur permanent câblé en CI (`--as-of` = date du dernier
+commit). Étape 3 (contre-revue Codex des 18 décisions) : soumise. Étape 4 : NON ouverte —
+`objects.json` et les guides intacts, la promotion fidjienne n'est pas appliquée.
