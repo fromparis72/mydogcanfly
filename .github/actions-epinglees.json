@@ -44,6 +44,9 @@
         },
         "contre-epreuves-completes.yml": {
           "toutes": 1
+        },
+        "fraicheur.yml": {
+          "controle": 1
         }
       }
     },
@@ -60,6 +63,21 @@
         },
         "contre-epreuves-completes.yml": {
           "toutes": 1
+        },
+        "fraicheur.yml": {
+          "controle": 1
+        }
+      }
+    },
+    {
+      "action": "actions/upload-artifact",
+      "sha": "b7c566a772e6b6bfb58ed0dc250532a479d7789f",
+      "version": "v6.0.0",
+      "using": "node24",
+      "note": "Mesuré le 25/08/2026 par la méthode du manifeste (ls-remote du tag — objet commit — puis lecture d'action.yml au SHA : `using: node24`). Sert uniquement au workflow de fraîcheur (lot B) pour publier le rapport hebdomadaire en artefact ; `if: always()` avec `if-no-files-found: ignore` — l'absence de rapport (panne nommée) n'est pas une faute de publication.",
+      "usages": {
+        "fraicheur.yml": {
+          "controle": 1
         }
       }
     }
