@@ -50,14 +50,14 @@ export function sondeEnvironnement() {
  *  | { controle: "environnement", cause }               — signature systémique : au contrôleur
  *                                                         de couper le circuit, jamais une
  *                                                         propriété de la source. */
-export function consulterUrl(url) {
+export function consulterUrl(url, delaiSecondes = DELAI_PAR_URL_SECONDES) {
   if (!estUrlHttp(url)) return { controle: "inaccessible", cause: "URL hors du contrat HTTP(S) partagé" };
   const travail = mkdtempSync(join(tmpdir(), "fraicheur-"));
   const corps = join(travail, "corps");
   const entetes = join(travail, "entetes");
   try {
     const r = spawnSync("curl", ["-sS", "-v", "--proto", "=http,https", "--proto-redir", "=http,https",
-      "-L", "--max-redirs", "5", "--max-time", String(DELAI_PAR_URL_SECONDES), "--max-filesize", String(LIMITE_CORPS_OCTETS),
+      "-L", "--max-redirs", "5", "--max-time", String(delaiSecondes), "--max-filesize", String(LIMITE_CORPS_OCTETS),
       "-o", corps, "-D", entetes,
       "-w", "%{http_code}\t%{url_effective}\t%{content_type}", url], { encoding: "utf-8" });
     const stderrBrut = r.stderr || "";

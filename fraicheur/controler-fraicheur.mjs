@@ -47,7 +47,7 @@ import { z } from "zod";
 import { lireRegistre, jsonCanonique, sha256De, CLASSE_IMPACT, ORDRE_IMPACT,
   etatEcheance, dansLaTranche, trancheDe, semaineContinue, N_TRANCHES,
   SEUIL_BIENTOT_JOURS, VERSION_CONTROLEUR } from "./registre-fraicheur.mjs";
-import { sondeEnvironnement, consulterUrl } from "./reseau-fraicheur.mjs";
+import { sondeEnvironnement, consulterUrl, DELAI_PAR_URL_SECONDES } from "./reseau-fraicheur.mjs";
 import { ecartsAuScelle, CHEMIN_SCELLE } from "./sceller-registre.mjs";
 import { estUrlHttp } from "../liste-rattachements-lot-a.mjs";
 
@@ -128,7 +128,30 @@ const urgent = new Set();
 for (const [url, entrees] of registre.parUrl) {
   if (entrees.some((e) => echeanceParEntree.get(e) !== "a_jour")) urgent.add(url);
 }
-const selection = urls.filter((u) => urgent.has(u) || dansLaTranche(u, DATE));
+/* L'ORDRE D'EXÉCUTION est l'ordre de PRIORITÉ, pas l'ordre alphabétique (contre-revue :
+ * quand le budget s'épuisait, un aéroport documentaire à jour passait avant une règle
+ * urgente). Pour chaque URL, la priorité la plus FORTE de ses locators : urgence avant
+ * rotation, impact A→D, échéance la plus proche, puis l'URL comme départage déterministe. */
+const prioriteUrl = new Map();
+for (const [url, entrees] of registre.parUrl) {
+  let meilleure = null;
+  for (const e of entrees) {
+    const cand = [
+      echeanceParEntree.get(e) !== "a_jour" ? 0 : 1,
+      ORDRE_IMPACT[CLASSE_IMPACT[e.famille] ?? "D"],
+      e.source.review_due,
+    ];
+    if (!meilleure || cand[0] < meilleure[0]
+      || (cand[0] === meilleure[0] && (cand[1] < meilleure[1]
+      || (cand[1] === meilleure[1] && cand[2] < meilleure[2])))) meilleure = cand;
+  }
+  prioriteUrl.set(url, meilleure);
+}
+const parPriorite = (a, b) => {
+  const [pa, pb] = [prioriteUrl.get(a), prioriteUrl.get(b)];
+  return (pa[0] - pb[0]) || (pa[1] - pb[1]) || (pa[2] < pb[2] ? -1 : pa[2] > pb[2] ? 1 : 0) || (a < b ? -1 : 1);
+};
+const selection = urls.filter((u) => urgent.has(u) || dansLaTranche(u, DATE)).sort(parPriorite);
 
 /* ---- 4. environnement apte, puis UNE consultation par URL sélectionnée ----------------------- */
 const sonde = sondeEnvironnement();
@@ -137,13 +160,16 @@ const controleParUrl = new Map();
 const debutConsultations = Date.now();
 let joignables = 0, reportees = 0;
 for (const url of selection) {
-  if ((Date.now() - debutConsultations) / 1000 >= BUDGET_SECONDES) {
+  const restant = BUDGET_SECONDES - (Date.now() - debutConsultations) / 1000;
+  if (restant <= 0) {
     /* budget épuisé : l'URL n'est PAS exécutée — état honnête, jamais « inaccessible » */
     controleParUrl.set(url, { controle: "reportee" });
     reportees++;
     continue;
   }
-  const r = consulterUrl(url);
+  /* le temps RESTANT est transmis à curl : le run tient son budget à l'arrondi de seconde
+   * près — jamais « budget + vingt secondes » (finition de contre-revue) */
+  const r = consulterUrl(url, Math.min(DELAI_PAR_URL_SECONDES, Math.ceil(restant)));
   if (r.controle === "environnement") {
     refus(`${r.cause} — panne systémique en cours de run : rien n'est interprétable, AUCUNE source n'est déclarée inaccessible`);
   }
@@ -201,9 +227,13 @@ const lignes = registre.entrees.map((e) => {
     ...c,
   };
 });
+/* TOUTE reportée entre en file (contre-revue : 191 sources à jour, sélectionnées par
+ * rotation mais non exécutées, ne subsistaient que sous forme d'un compteur — un état qui
+ * n'est pas nommé n'existe pas). */
 const enFile = (l) => l.echeance !== "a_jour"
   || l.controle === "potentiellement_modifiee" || l.controle === "inaccessible"
-  || l.controle === "sans_reference" || l.controle === "reference_incompatible";
+  || l.controle === "sans_reference" || l.controle === "reference_incompatible"
+  || l.controle === "reportee";
 const file = lignes.filter(enFile).sort((a, b) =>
   (ORDRE_IMPACT[a.classe_impact] - ORDRE_IMPACT[b.classe_impact])
   || (a.review_due < b.review_due ? -1 : a.review_due > b.review_due ? 1 : 0)

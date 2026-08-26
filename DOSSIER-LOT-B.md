@@ -9,7 +9,7 @@ Reproduction :
 ```bash
 node --import tsx fraicheur/sceller-registre.mjs                        # scellé ≡ registre (câblé en CI de PR, quelques secondes)
 node --import tsx fraicheur/controler-fraicheur.mjs --date=AAAA-MM-JJ   # le run (réseau réel)
-node --import tsx test-fraicheur-lot-b.mjs                              # 20 cas au faux curl (câblé en CI de PR, ~3 min)
+node --import tsx test-fraicheur-lot-b.mjs                              # 21 cas au faux curl (câblé en CI de PR, ~4 min)
 ```
 
 ## 0. Mesure fondatrice — recalculée depuis `main` après fusion du lot A
@@ -127,10 +127,18 @@ réelles : lancé depuis l'environnement distant derrière son proxy, le contrô
 Les consultations sont séquentielles (20 s max chacune) sous un **budget global explicite**
 (`--budget-secondes`, 1 800 s par défaut — le workflow est borné à 45 min) : budget épuisé,
 les URL sélectionnées restantes sont classées **`reportee`** — comptées, nommées au rapport
-et au Markdown, jamais « inaccessibles », jamais silencieuses — et la sortie reste 0
-(contre-épreuve 20). Le coupe-circuit « zéro joignable » ne juge que les URL réellement
-EXÉCUTÉES. Une vague d'URL lentes ne tue plus le job sans rapport : le run termine toujours
-dans son budget, et la tranche suivante reprend là où la rotation la porte.
+et au Markdown, et **TOUTES en file de travail** (contre-revue de e4711d1 : 191 reportées à
+jour ne subsistaient que sous forme d'un compteur — un état qui n'est pas nommé n'existe
+pas ; contre-épreuve 20 : lignes `reportee` en file = compte exact), jamais
+« inaccessibles », jamais silencieuses — et la sortie reste 0. **L'ordre d'exécution est
+l'ordre de PRIORITÉ, pas l'alphabet** (contre-revue : une documentaire à jour passait avant
+une règle urgente quand le budget s'épuisait) : urgence avant rotation, impact A→D,
+échéance la plus proche, URL en départage — pour une URL partagée, la priorité la plus
+forte de ses locators (contre-épreuve 21 : le journal du faux curl égale le miroir de
+priorité, la première exécutée est une règle urgente). Le temps restant du budget est
+transmis à curl : le run tient son budget **à l'arrondi de seconde près**. Le coupe-circuit
+« zéro joignable » ne juge que les URL réellement EXÉCUTÉES. Une vague d'URL lentes ne tue
+plus le job sans rapport, et la tranche suivante reprend là où la rotation la porte.
 
 ## 7. La file de travail, priorisée par impact utilisateur
 
@@ -143,7 +151,7 @@ la sortie reste 0 : **une échéance naturelle ne rougit ni ce workflow, ni la C
 actions épinglées mesurées au manifeste — `upload-artifact` v6.0.0 mesuré le 25/08/2026 par
 la méthode documentée).
 
-## 8. Contre-épreuves — `test-fraicheur-lot-b.mjs` (20 cas au faux curl, câblés en CI de PR ; ~3 min mesurées — le faux réseau lance un sous-processus par URL)
+## 8. Contre-épreuves — `test-fraicheur-lot-b.mjs` (21 cas au faux curl, câblés en CI de PR ; ~4 min mesurées — le faux réseau lance un sous-processus par URL)
 
 | # | cas | attendu |
 |---|---|---|
@@ -166,7 +174,8 @@ la méthode documentée).
 | 17 | corps identique mais url_finale, statut, type, octets FAUX ; puis version de contrôleur différente | potentiellement_modifiee (champs divergents nommés) ; reference_incompatible |
 | 18 | signature EGRESS après 64 Kio de corps | environnement → refus — le corps borné se balaie en entier |
 | 19 | scellé aux empreintes FALSIFIÉES (triplets intacts) ; entrée dupliquée | échec nommé — égalité canonique TOTALE, rien de décoratif |
-| 20 | budget global épuisé | les non-exécutées sont REPORTÉES (comptées, nommées), jamais « inaccessibles » — sortie 0, terminaison garantie |
+| 20 | budget global épuisé | les non-exécutées sont REPORTÉES — comptées ET TOUTES nommées en file (lignes = compte exact), jamais « inaccessibles » ; sortie 0, budget tenu à l'arrondi de seconde près |
+| 21 | ordre d'exécution sous budget | la priorité gouverne (urgence, impact, échéance, URL) : journal = miroir de priorité, première exécutée = règle urgente, aucune rotation-à-jour avant une urgente |
 
 ## 9. Interdits, et ce qui reste hors du socle
 

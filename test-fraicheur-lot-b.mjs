@@ -9,7 +9,7 @@
  * (seul dans le PATH, journalisant CHAQUE invocation) pilote les réponses par FAUX_MODE.
  * Chaque cas exige le refus, le rapport, ou l'invariant — exactement.
  *
- * VINGT CAS :
+ * VINGT-ET-UN CAS :
  *   1.  registre VIDE → sortie 2, « AUCUNE source vivante », aucun rapport.
  *   2.  les DEUX AXES sont indépendants : une source ÉCHUE et INACCESSIBLE porte les deux
  *       états ; une source à jour hors tranche reste NON_CONTROLEE — jamais implicitement
@@ -54,16 +54,22 @@
  *       borné se balaie EN ENTIER. [contre-revue cf13cba]
  *   19. scellé aux EMPREINTES FALSIFIÉES (triplets intacts) → échec nommé — l'égalité est
  *       canonique et TOTALE ; une entrée dupliquée → échec nommé. [contre-revue cf13cba]
- *   20. BUDGET GLOBAL épuisé → les URL non exécutées sont REPORTÉES (comptées, nommées au
- *       Markdown), jamais « inaccessibles », et la sortie reste 0 — le run termine TOUJOURS
- *       dans son budget. [contre-revue cf13cba]
+ *   20. BUDGET GLOBAL épuisé → les URL non exécutées sont REPORTÉES — comptées, nommées au
+ *       Markdown, ET TOUTES en file (lignes reportee = compte exact : un compteur seul
+ *       n'est pas un état), jamais « inaccessibles » ; sortie 0, le run tient son budget à
+ *       l'arrondi de seconde près (le temps restant est transmis à curl). [contre-revues]
+ *   21. l'ORDRE D'EXÉCUTION est l'ordre de priorité : urgence avant rotation, impact A→D,
+ *       échéance la plus proche, URL en départage — le journal du faux curl égale le miroir
+ *       de priorité, la première exécutée est une règle urgente, et aucune rotation-à-jour
+ *       ne précède une urgente. [contre-revue e4711d1]
  */
 import { readFileSync, writeFileSync, mkdirSync, copyFileSync, symlinkSync, mkdtempSync, rmSync, existsSync, readdirSync, chmodSync } from "node:fs";
 import { createHash } from "node:crypto";
 import { spawnSync } from "node:child_process";
 import { tmpdir } from "node:os";
 import { join, resolve, dirname } from "node:path";
-import { lireRegistre, comparerRegistres, dansLaTranche, semaineContinue, N_TRANCHES } from "./fraicheur/registre-fraicheur.mjs";
+import { lireRegistre, comparerRegistres, dansLaTranche, semaineContinue, N_TRANCHES,
+  etatEcheance, CLASSE_IMPACT, ORDRE_IMPACT } from "./fraicheur/registre-fraicheur.mjs";
 
 const defauts = [];
 const echec = (cas, m) => defauts.push(`${cas} — ${m}`);
@@ -454,9 +460,60 @@ try {
       }
       if ((rap.controles.inaccessible ?? 0) !== 0) echec("20 budget épuisé", "des « inaccessibles » ont été fabriquées hors budget");
       if (!(rap.controles.reportee > 0)) echec("20 budget épuisé", "aucune source « reportee » au rapport");
+      /* TOUTES les reportées sont NOMMÉES en file — un compteur seul n'est pas un état
+       * (contre-revue : 191 reportées à jour n'existaient que comme nombre) */
+      const enFileReportees = rap.file_de_travail.filter((l) => l.controle === "reportee").length;
+      if (enFileReportees !== rap.controles.reportee) {
+        echec("20 budget épuisé", `${enFileReportees} reportée(s) en file ≠ ${rap.controles.reportee} comptée(s) — un état non nommé n'existe pas`);
+      }
       const md = readFileSync(join(arbre, "sortie-20", "RAPPORT-2026-10-15.md"), "utf-8");
       if (!/REPORTÉE/.test(md)) echec("20 budget épuisé", "le rapport Markdown ne nomme pas le report");
       if (rapportsR1 && rapportsR1.budget_secondes !== 1800) echec("20 budget épuisé", `budget par défaut ${rapportsR1.budget_secondes} ≠ 1800 s`);
+    }
+  }
+
+  /* ---- 21. l'ORDRE D'EXÉCUTION est l'ordre de PRIORITÉ, pas l'alphabet (contre-revue :
+   *          quand le budget s'épuise, la documentaire à jour ne passe jamais avant la
+   *          règle urgente — la file finale ne répare pas une consultation qui n'a jamais
+   *          eu lieu) ------------------------------------------------------------------------- */
+  {
+    viderJournal();
+    const r = lancer(["--date=2026-10-15", "--sortie=sortie-21"]);
+    if (r.status !== 0) echec("21 ordre d'exécution", `sortie ${r.status}`);
+    else {
+      const executees = journal().filter((u) => u !== "https://example.com/");
+      /* miroir du comparateur : la priorité la plus forte des locators de chaque URL */
+      const prio = new Map();
+      for (const [url, entrees] of registre.parUrl) {
+        let m = null;
+        for (const e of entrees) {
+          const cand = [etatEcheance(e.source.review_due, "2026-10-15") !== "a_jour" ? 0 : 1,
+            ORDRE_IMPACT[CLASSE_IMPACT[e.famille] ?? "D"], e.source.review_due];
+          if (!m || cand[0] < m[0] || (cand[0] === m[0] && (cand[1] < m[1] || (cand[1] === m[1] && cand[2] < m[2])))) m = cand;
+        }
+        prio.set(url, m);
+      }
+      const attendu = [...registre.parUrl.keys()]
+        .filter((u) => prio.get(u)[0] === 0 || dansLaTranche(u, "2026-10-15"))
+        .sort((a, b) => {
+          const [pa, pb] = [prio.get(a), prio.get(b)];
+          return (pa[0] - pb[0]) || (pa[1] - pb[1]) || (pa[2] < pb[2] ? -1 : pa[2] > pb[2] ? 1 : 0) || (a < b ? -1 : 1);
+        });
+      if (JSON.stringify(executees) !== JSON.stringify(attendu)) {
+        const i = executees.findIndex((u, k) => u !== attendu[k]);
+        echec("21 ordre d'exécution", `l'ordre réel diverge du miroir de priorité au rang ${i} : « ${executees[i]} » au lieu de « ${attendu[i]} »`);
+      }
+      /* ancres SÉMANTIQUES, indépendantes du miroir : la première exécutée est une règle
+       * urgente, et aucune rotation-à-jour ne précède une urgente */
+      const premiere = registre.parUrl.get(executees[0]) ?? [];
+      if (!premiere.some((e) => CLASSE_IMPACT[e.famille] === "A" && etatEcheance(e.source.review_due, "2026-10-15") !== "a_jour")) {
+        echec("21 ordre d'exécution", `la première URL exécutée (${executees[0]}) n'est pas une règle/restriction URGENTE`);
+      }
+      let vuNonUrgente = false;
+      for (const u of executees) {
+        if (prio.get(u)[0] !== 0) vuNonUrgente = true;
+        else if (vuNonUrgente) { echec("21 ordre d'exécution", `l'urgente « ${u} » passe APRÈS une rotation à jour`); break; }
+      }
     }
   }
 
@@ -480,7 +537,7 @@ try {
 
 /* ---- verdict ---------------------------------------------------------------------------------- */
 if (defauts.length === 0) {
-  process.stdout.write("20 cas éprouvés au faux curl : un registre vide refuse ; les axes échéance et contrôle\n");
+  process.stdout.write("21 cas éprouvés au faux curl : un registre vide refuse ; les axes échéance et contrôle\n");
   process.stdout.write("sont indépendants (échue ET inaccessible, hors tranche = non contrôlée) ; la première\n");
   process.stdout.write("capture ne consacre rien (sans_reference, jamais inchangée) ; les échues sont toutes en\n");
   process.stdout.write("file et la sortie reste 0 ; le contrôleur n'écrit rien hors de sa sortie et refuse une\n");
@@ -496,8 +553,10 @@ if (defauts.length === 0) {
   process.stdout.write("(quatre faux sous un corps identique → modifiée nommée ; version → incompatible), la\n");
   process.stdout.write("signature d'egress se trouve même après 64 Kio, le scellé se compare en égalité\n");
   process.stdout.write("canonique totale (empreintes falsifiées et doublon rougissent), la rotation tient à\n");
-  process.stdout.write("la frontière d'année, une référence orpheline est nommée, et le budget global\n");
-  process.stdout.write("garantit la terminaison — les non-exécutées sont reportées, jamais inaccessibles.\n\n");
+  process.stdout.write("la frontière d'année, une référence orpheline est nommée, le budget global garantit\n");
+  process.stdout.write("la terminaison — les non-exécutées sont reportées, TOUTES nommées en file, jamais\n");
+  process.stdout.write("inaccessibles — et l'exécution suit la priorité : la règle urgente d'abord, jamais\n");
+  process.stdout.write("l'alphabet.\n\n");
   process.stdout.write("[fraicheur] le contrôleur observe, il ne fabrique rien.\n");
   process.exit(0);
 }

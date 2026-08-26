@@ -121,7 +121,7 @@ jobs:
       # LOT B — les contre-épreuves du contrôleur de fraîcheur, au faux curl (AUCUN réseau
       # réel : un faux curl seul dans le PATH pilote toutes les réponses). ~3 min : le faux
       # réseau lance un sous-processus par URL contrôlée — durée assumée, consignée au dossier.
-      - name: Lot B — le contrôleur de fraîcheur ne fabrique rien (20 cas au faux curl)
+      - name: Lot B — le contrôleur de fraîcheur ne fabrique rien (21 cas au faux curl)
         run: node --import tsx test-fraicheur-lot-b.mjs
 
       - name: Typecheck (knowledge · engine · workers)
