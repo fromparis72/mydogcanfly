@@ -12,20 +12,24 @@
  *   · les DÉTAILS D'ERREUR retournés passent par l'assainisseur partagé du lot A
  *     (`assainirTrace`) — même un diagnostic ne transporte pas de secret ;
  *   · SIGNATURES ENVIRONNEMENTALES (proxy bloquant, egress) détectées dans le stderr, les
- *     en-têtes ET le corps : le résultat est marqué `environnement`, jamais une propriété
- *     de la source — le COUPE-CIRCUIT appartient au contrôleur ;
+ *     en-têtes ET le corps ENTIER borné (contre-revue du socle : une tranche initiale de
+ *     64 Kio laissait passer une signature tardive — le corps est déjà en mémoire pour
+ *     l'empreinte, il se balaie en entier) : le résultat est marqué `environnement`, jamais
+ *     une propriété de la source — le COUPE-CIRCUIT appartient au contrôleur ;
  *   · la SONDE (https://example.com) qualifie l'environnement avant tout run.
  */
 import { spawnSync } from "node:child_process";
-import { readFileSync, statSync, rmSync, mkdtempSync } from "node:fs";
+import { readFileSync, rmSync, mkdtempSync } from "node:fs";
 import { createHash } from "node:crypto";
 import { tmpdir } from "node:os";
 import { join } from "node:path";
 import { estUrlHttp, LIMITE_CORPS_OCTETS, assainirTrace } from "../liste-rattachements-lot-a.mjs";
 
 export const SIGNATURES_ENVIRONNEMENT = /CONNECT tunnel failed|EGRESS_BLOCKED|Proxy CONNECT aborted|Received HTTP code 403 from proxy/i;
-const sha256Fichier = (chemin) => createHash("sha256").update(readFileSync(chemin)).digest("hex");
 const detail = (texte) => assainirTrace(String(texte ?? "")).split("\n").filter(Boolean).slice(0, 3).join(" · ");
+/* Délai INDIVIDUEL réduit (contre-revue : 45 s × 280 URL séquentielles dépassait le budget
+ * du workflow) — le budget GLOBAL vit chez le contrôleur, ce délai borne chaque URL. */
+export const DELAI_PAR_URL_SECONDES = 20;
 
 /** La sonde environnementale : un 2xx sans signature de proxy, sinon l'environnement est
  *  inapte et AUCUN contrôle ne doit être interprété. */
@@ -53,20 +57,18 @@ export function consulterUrl(url) {
   const entetes = join(travail, "entetes");
   try {
     const r = spawnSync("curl", ["-sS", "-v", "--proto", "=http,https", "--proto-redir", "=http,https",
-      "-L", "--max-redirs", "5", "--max-time", "45", "--max-filesize", String(LIMITE_CORPS_OCTETS),
+      "-L", "--max-redirs", "5", "--max-time", String(DELAI_PAR_URL_SECONDES), "--max-filesize", String(LIMITE_CORPS_OCTETS),
       "-o", corps, "-D", entetes,
       "-w", "%{http_code}\t%{url_effective}\t%{content_type}", url], { encoding: "utf-8" });
     const stderrBrut = r.stderr || "";
-    let entetesBruts = "", octets = 0, corpsTete = "";
+    let entetesBruts = "", corpsBrut = null;
     try { entetesBruts = readFileSync(entetes, "latin1"); } catch { /* pas d'en-têtes : jugé plus bas */ }
-    try {
-      octets = statSync(corps).size;
-      /* la signature d'egress se cherche dans le corps aussi (leçon du lot A) — tête seule,
-       * jamais de chargement intégral pour une simple recherche */
-      const fd = readFileSync(corps);
-      corpsTete = fd.subarray(0, 65536).toString("latin1");
-    } catch { /* pas de corps : jugé plus bas */ }
-    if (SIGNATURES_ENVIRONNEMENT.test(stderrBrut) || SIGNATURES_ENVIRONNEMENT.test(entetesBruts) || SIGNATURES_ENVIRONNEMENT.test(corpsTete)) {
+    try { corpsBrut = readFileSync(corps); } catch { /* pas de corps : jugé plus bas */ }
+    const octets = corpsBrut ? corpsBrut.length : 0;
+    /* le corps est déjà en mémoire pour l'empreinte : la signature se cherche dans le corps
+     * ENTIER borné — une tranche initiale laissait passer une signature tardive (contre-revue) */
+    const corpsTexte = corpsBrut ? corpsBrut.toString("latin1") : "";
+    if (SIGNATURES_ENVIRONNEMENT.test(stderrBrut) || SIGNATURES_ENVIRONNEMENT.test(entetesBruts) || SIGNATURES_ENVIRONNEMENT.test(corpsTexte)) {
       return { controle: "environnement", cause: `signature environnementale sur ${url}` };
     }
     if (r.error || r.status !== 0) {
@@ -82,7 +84,7 @@ export function consulterUrl(url) {
       url_finale: urlFinale,
       content_type: contentType || "",
       octets,
-      empreinte_corps: sha256Fichier(corps),
+      empreinte_corps: createHash("sha256").update(corpsBrut ?? Buffer.alloc(0)).digest("hex"),
     };
   } finally {
     rmSync(travail, { recursive: true, force: true });

@@ -9,7 +9,7 @@ Reproduction :
 ```bash
 node --import tsx fraicheur/sceller-registre.mjs                        # scellé ≡ registre (câblé en CI de PR, quelques secondes)
 node --import tsx fraicheur/controler-fraicheur.mjs --date=AAAA-MM-JJ   # le run (réseau réel)
-node --import tsx test-fraicheur-lot-b.mjs                              # 16 cas au faux curl (câblé en CI de PR, ~2 min 30)
+node --import tsx test-fraicheur-lot-b.mjs                              # 20 cas au faux curl (câblé en CI de PR, ~3 min)
 ```
 
 ## 0. Mesure fondatrice — recalculée depuis `main` après fusion du lot A
@@ -42,7 +42,10 @@ exact que le run ne confronte à rien ne protège rien). `fraicheur/registre-sce
 les empreintes ; toute PR qui change une source **rescelle dans la même PR**
 (`sceller-registre.mjs --ecrire` — le diff du scellé rend le changement visible et revu) ;
 la **CI de PR** vérifie l'égalité (pas dédié, sans réseau, quelques secondes) et le
-**contrôleur hebdomadaire** la vérifie aussi avant tout run — un `main` hors de son scellé
+**contrôleur hebdomadaire** la vérifie aussi avant tout run — une égalité **canonique et
+TOTALE** : schéma strict, unicité des couples (famille, locator), triplets ET empreintes
+globale/par famille (contre-revue de cf13cba : les empreintes déclarées n'étaient pas
+confrontées, les falsifier laissait « scellé tenu » ; contre-épreuve 19) — un `main` hors de son scellé
 est une panne STRUCTURELLE, sortie 2, rien d'interprétable (contre-épreuves 15-16 : scellé
 absent → refus ; URL remplacée sans rescellement → nommée au locator par la CI ET refusée
 par le run ; rescellée → vert). À la différence du scellé du lot A (instantané figé d'un
@@ -62,14 +65,21 @@ dans ce lot.
 
 ```
 echeance : a_jour | bientot_a_revoir (≤ 45 jours) | echue      — TOUTES les sources, chaque run
-controle : non_controlee | sans_reference | inchangee
-         | potentiellement_modifiee | inaccessible             — les seules URL consultées
+controle : non_controlee | reportee (budget épuisé) | sans_reference | inchangee
+         | potentiellement_modifiee | reference_incompatible
+         | inaccessible                                        — les seules URL consultées
 ```
 
 Toute combinaison est représentable ; une source hors tranche reste `non_controlee`, jamais
 implicitement accessible ni inchangée (contre-épreuve 2). Une inaccessible n'est JAMAIS
-« inchangée ». Une comparaison d'empreintes dit « potentiellement modifié », jamais « règle
-devenue fausse » (contre-épreuve 13).
+« inchangée ». « Inchangée » exige l'égalité des CINQ champs observables de la référence —
+empreinte du corps, url_finale, statut, content_type, octets — sous la MÊME version de
+contrôleur : aucun champ du contrat n'est décoratif (contre-revue de cf13cba : seule
+l'empreinte était confrontée — quatre champs faux passaient « inchangée ») ; une version de
+contrôleur différente rend la référence `reference_incompatible` — elle ne prouve ni le
+même ni le changé, elle se re-promeut par PR humaine (contre-épreuve 17). Une comparaison
+d'empreintes dit « potentiellement modifié », jamais « règle devenue fausse »
+(contre-épreuve 13).
 
 ## 3. La référence FIGÉE naît d'une décision humaine (P0-3, P0-4)
 
@@ -77,9 +87,12 @@ devenue fausse » (contre-épreuve 13).
 URL finale, statut, Content-Type, taille, date de capture, version du contrôleur), modifié
 **uniquement par PR humaine** : l'historique Git de ce fichier EST l'historique durable.
 Sans référence, un contrôle abouti est `sans_reference` — la première exécution ne consacre
-RIEN (contre-épreuve 3), et le rapport dit explicitement l'absence d'historique. Le
-contrôleur n'écrit jamais dans le dépôt (garde de sortie + contre-épreuve 5) ; le rapport
-hebdomadaire vit en artefact GitHub Actions et dans le résumé du job.
+RIEN (contre-épreuve 3), et le rapport dit explicitement l'absence d'historique. Une
+référence dont l'URL n'existe plus au registre est **ORPHELINE** : nommée au rapport et en
+file de travail, jamais évaporée — la décision (retirer ou migrer) est une PR humaine
+(contre-épreuve 11). Le contrôleur n'écrit jamais dans le dépôt (garde de sortie +
+contre-épreuve 5) ; le rapport hebdomadaire vit en artefact GitHub Actions et dans le
+résumé du job.
 
 ## 4. La rotation SANS ÉTAT, et un écart argumenté
 
@@ -96,7 +109,11 @@ sans promesse d'escalade multi-runs.
 ## 5. Le coupe-circuit (P1-4)
 
 Module réseau générique (`fraicheur/reseau-fraicheur.mjs`) — PAS le collecteur du lot A,
-mais ses sécurités : HTTP(S) épinglé, borne d'octets partagée (25 MiB), rien de persisté
+mais ses sécurités : HTTP(S) épinglé, borne d'octets partagée (25 MiB), délai individuel de
+20 s par URL, signatures cherchées dans le stderr, les en-têtes et **le corps ENTIER borné**
+(contre-revue de cf13cba : une tranche initiale de 64 Kio laissait passer une signature
+tardive — le corps est déjà en mémoire pour l'empreinte ; contre-épreuve 18), rien de
+persisté
 (corps et en-têtes réduits à leurs métadonnées puis détruits — aucun cookie ne peut
 atteindre un artefact, contre-épreuve 12), signatures de proxy, sonde environnementale.
 Sonde rouge, signature d'egress en cours de run, ou zéro URL joignable → **sortie 2, aucun
@@ -105,7 +122,17 @@ Actions ne fabrique jamais 300 inaccessibles. (Démonstration involontaire en co
 réelles : lancé depuis l'environnement distant derrière son proxy, le contrôleur refuse —
 « environnement INAPTE », rien de produit.)
 
-## 6. La file de travail, priorisée par impact utilisateur
+## 6. Le budget réseau garantit la terminaison (contre-revue de cf13cba)
+
+Les consultations sont séquentielles (20 s max chacune) sous un **budget global explicite**
+(`--budget-secondes`, 1 800 s par défaut — le workflow est borné à 45 min) : budget épuisé,
+les URL sélectionnées restantes sont classées **`reportee`** — comptées, nommées au rapport
+et au Markdown, jamais « inaccessibles », jamais silencieuses — et la sortie reste 0
+(contre-épreuve 20). Le coupe-circuit « zéro joignable » ne juge que les URL réellement
+EXÉCUTÉES. Une vague d'URL lentes ne tue plus le job sans rapport : le run termine toujours
+dans son budget, et la tranche suivante reprend là où la rotation la porte.
+
+## 7. La file de travail, priorisée par impact utilisateur
 
 Classes possédées par le code : **A** verdict/modalité (règles du moteur, restrictions de
 race) · **B** compagnies · **C** pays · **D** documentaire (aéroports, races, partenaires).
@@ -116,7 +143,7 @@ la sortie reste 0 : **une échéance naturelle ne rougit ni ce workflow, ni la C
 actions épinglées mesurées au manifeste — `upload-artifact` v6.0.0 mesuré le 25/08/2026 par
 la méthode documentée).
 
-## 7. Contre-épreuves — `test-fraicheur-lot-b.mjs` (16 cas au faux curl, câblés en CI de PR ; ~2 min 30 mesurées — le faux réseau lance un sous-processus par URL)
+## 8. Contre-épreuves — `test-fraicheur-lot-b.mjs` (20 cas au faux curl, câblés en CI de PR ; ~3 min mesurées — le faux réseau lance un sous-processus par URL)
 
 | # | cas | attendu |
 |---|---|---|
@@ -129,15 +156,19 @@ la méthode documentée).
 | 7 | rapport + références difformes | schéma du rapport tenu ; references.json illisible → sortie 2 |
 | 8 | URL à 88 locators | UN téléchargement, 88 lignes de file |
 | 9 | sonde rouge · zéro joignable · egress | sortie 2 × 3, aucun rapport, aucune « inaccessible » fabriquée |
-| 10 | 8 semaines consécutives simulées | les 8 tranches passent, aucune URL jamais sélectionnée |
-| 11 | URL déplacée | nommée « modifiée » ; nouvelle URL sans_reference ; l'ancienne identité ne subsiste pas |
+| 10 | 8 semaines consécutives simulées — fenêtre ordinaire ET fenêtre traversant décembre-janvier | les 8 tranches passent, aucune URL jamais sélectionnée |
+| 11 | URL déplacée (référence figée existante) | nommée « modifiée » ; nouvelle URL sans_reference ; l'ancienne référence nommée ORPHELINE au rapport et en file |
 | 12 | Set-Cookie SECRET dans chaque réponse | absent de TOUS les artefacts |
 | 13 | référence figée | corps identique → inchangee ; altéré → potentiellement_modifiee ; aucun verdict |
 | 14 | URL remplacée à agrégats constants | empreintes globale ET famille changent ; nommée au locator |
 | 15 | scellé du registre ABSENT | sortie 2, aucun rapport — rien ne se surveille sans contrat |
 | 16 | source changée SANS rescellement | nommée au locator par la vérification de CI, refusée par le run hebdomadaire, verte une fois rescellée |
+| 17 | corps identique mais url_finale, statut, type, octets FAUX ; puis version de contrôleur différente | potentiellement_modifiee (champs divergents nommés) ; reference_incompatible |
+| 18 | signature EGRESS après 64 Kio de corps | environnement → refus — le corps borné se balaie en entier |
+| 19 | scellé aux empreintes FALSIFIÉES (triplets intacts) ; entrée dupliquée | échec nommé — égalité canonique TOTALE, rien de décoratif |
+| 20 | budget global épuisé | les non-exécutées sont REPORTÉES (comptées, nommées), jamais « inaccessibles » — sortie 0, terminaison garantie |
 
-## 8. Interdits, et ce qui reste hors du socle
+## 9. Interdits, et ce qui reste hors du socle
 
 - **Interdit : toute mutation automatique** — donnée, verdict, référence ; une correction
   est une PR humaine, préparée depuis la file de travail.

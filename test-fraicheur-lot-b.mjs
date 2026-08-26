@@ -9,7 +9,7 @@
  * (seul dans le PATH, journalisant CHAQUE invocation) pilote les réponses par FAUX_MODE.
  * Chaque cas exige le refus, le rapport, ou l'invariant — exactement.
  *
- * SEIZE CAS :
+ * VINGT CAS :
  *   1.  registre VIDE → sortie 2, « AUCUNE source vivante », aucun rapport.
  *   2.  les DEUX AXES sont indépendants : une source ÉCHUE et INACCESSIBLE porte les deux
  *       états ; une source à jour hors tranche reste NON_CONTROLEE — jamais implicitement
@@ -29,11 +29,12 @@
  *   9.  COUPE-CIRCUIT : sonde rouge → 2 ; zéro URL joignable → 2 ; signature EGRESS en
  *       cours de run → 2 — dans les trois cas AUCUNE source n'est classée inaccessible et
  *       aucun rapport n'est produit.
- *   10. ROTATION SANS ÉTAT : chaque URL du registre est sélectionnée au moins une fois sur
- *       8 semaines consécutives — aucune URL ne reste éternellement hors sélection.
- *   11. URL DÉPLACÉE : l'ancienne identité est nommée « modifiée » par la comparaison
- *       symétrique, et la nouvelle URL est SANS_REFERENCE au run suivant — jamais une
- *       migration silencieuse.
+ *   10. ROTATION SANS ÉTAT : chaque URL est sélectionnée au moins une fois sur 8 semaines
+ *       consécutives — fenêtre ordinaire ET fenêtre traversant décembre-janvier (la
+ *       frontière qui justifie la semaine continue).
+ *   11. URL DÉPLACÉE : nommée « modifiée » par la comparaison symétrique ; la nouvelle URL
+ *       est SANS_REFERENCE au run suivant ; et l'ANCIENNE référence figée est nommée
+ *       ORPHELINE au rapport ET en file — jamais évaporée.
  *   12. Set-Cookie SECRET injecté dans chaque réponse → absent de TOUS les artefacts.
  *   13. RÉFÉRENCE FIGÉE : corps identique → INCHANGEE ; corps altéré → POTENTIELLEMENT
  *       MODIFIÉE — jamais « règle devenue fausse » (le rapport ne porte aucun verdict).
@@ -46,6 +47,16 @@
  *       aucun rapport) ; rescellée explicitement, la vérification repasse au vert — le
  *       remplacement furtif d'URL est mort DANS LE SYSTÈME QUI TOURNE, plus seulement dans
  *       les tests. [contre-revue du socle]
+ *   17. la référence a HUIT champs, aucun n'est décoratif : corps identique mais url_finale,
+ *       statut, type ou octets faux → POTENTIELLEMENT MODIFIÉE, champs divergents nommés ;
+ *       version de contrôleur différente → REFERENCE_INCOMPATIBLE. [contre-revue cf13cba]
+ *   18. signature EGRESS placée APRÈS 64 Kio de corps → environnement, refus — le corps
+ *       borné se balaie EN ENTIER. [contre-revue cf13cba]
+ *   19. scellé aux EMPREINTES FALSIFIÉES (triplets intacts) → échec nommé — l'égalité est
+ *       canonique et TOTALE ; une entrée dupliquée → échec nommé. [contre-revue cf13cba]
+ *   20. BUDGET GLOBAL épuisé → les URL non exécutées sont REPORTÉES (comptées, nommées au
+ *       Markdown), jamais « inaccessibles », et la sortie reste 0 — le run termine TOUJOURS
+ *       dans son budget. [contre-revue cf13cba]
  */
 import { readFileSync, writeFileSync, mkdirSync, copyFileSync, symlinkSync, mkdtempSync, rmSync, existsSync, readdirSync, chmodSync } from "node:fs";
 import { createHash } from "node:crypto";
@@ -85,8 +96,12 @@ if (mode === "sonde-rouge" && estSonde) { process.stderr.write("curl: (56) CONNE
 if (mode === "tout-echoue" && !estSonde) { process.stderr.write("curl: (6) Could not resolve host\\n"); process.exit(6); }
 if (mode === "un-echec" && url === process.env.FAUX_URL_ECHEC) { process.stderr.write("curl: (28) Operation timed out\\n"); process.exit(28); }
 const egress = mode === "egress" && url === process.env.FAUX_URL_ECHEC;
+/* la signature APRÈS 64 Kio : une inspection en tranche initiale la manquait (contre-revue) */
+const tardif = mode === "egress-tardif" && url === process.env.FAUX_URL_ECHEC;
 const altere = mode === "corps-alterne" && url === process.env.FAUX_URL_CIBLE;
-const corps = "Corps de " + url + " (faux curl, jeu d'essai)" + (altere ? " ALTERE" : "") + (egress ? " Access denied: EGRESS_BLOCKED by network policy." : "") + "\\n";
+const corps = tardif
+  ? "A".repeat(70000) + " Access denied: EGRESS_BLOCKED by network policy.\\n"
+  : "Corps de " + url + " (faux curl, jeu d'essai)" + (altere ? " ALTERE" : "") + (egress ? " Access denied: EGRESS_BLOCKED by network policy." : "") + "\\n";
 if (sortie) fs.writeFileSync(sortie, corps);
 if (entetes) fs.writeFileSync(entetes, "HTTP/1.1 200 OK\\r\\nContent-Type: text/html; charset=utf-8\\r\\nSet-Cookie: session=SECRET-COOKIE-42\\r\\n\\r\\n");
 const format = args.includes("-w") ? args[args.indexOf("-w") + 1] : "";
@@ -267,26 +282,40 @@ try {
     if (existsSync(join(arbre, "sortie-9-egress"))) echec("9 coupe-circuit (egress)", "un rapport a été produit malgré la signature");
   }
 
-  /* ---- 10. rotation sans état : aucune URL éternellement hors sélection ---------------------- */
-  {
+  /* ---- 10. rotation sans état : aucune URL éternellement hors sélection — y compris à la
+   *          FRONTIÈRE D'ANNÉE, la raison d'être de la semaine continue (contre-revue) -------- */
+  for (const [nom, lundiDepart] of [["ordinaire", Date.UTC(2026, 8, 7)], ["frontière décembre-janvier", Date.UTC(2026, 10, 30)]]) {
     const semaines = Array.from({ length: 8 }, (_, i) => {
-      const d = new Date(Date.UTC(2026, 8, 7));   // lundi 2026-09-07
+      const d = new Date(lundiDepart);
       d.setUTCDate(d.getUTCDate() + 7 * i);
       return d.toISOString().slice(0, 10);
     });
+    if (nom.includes("frontière") && semaines[0].slice(0, 4) === semaines[7].slice(0, 4)) {
+      echec(`10 rotation (${nom})`, `la fenêtre ${semaines[0]} → ${semaines[7]} ne traverse pas l'année — cas non exercé`);
+    }
     const jamais = [...registre.parUrl.keys()].filter((u) => !semaines.some((s) => dansLaTranche(u, s)));
-    if (jamais.length) echec("10 rotation", `${jamais.length} URL jamais sélectionnée(s) sur 8 semaines consécutives (ex. ${jamais[0]})`);
+    if (jamais.length) echec(`10 rotation (${nom})`, `${jamais.length} URL jamais sélectionnée(s) sur 8 semaines consécutives (ex. ${jamais[0]})`);
     const tranches = new Set(semaines.map((s) => semaineContinue(s) % N_TRANCHES));
-    if (tranches.size !== 8) echec("10 rotation", `8 semaines consécutives ne couvrent que ${tranches.size} tranche(s)`);
+    if (tranches.size !== 8) echec(`10 rotation (${nom})`, `8 semaines consécutives ne couvrent que ${tranches.size} tranche(s)`);
   }
 
-  /* ---- 11 & 14. registre exact : URL remplacée nommée, puis sans référence ------------------- */
+  /* ---- 11 & 14. registre exact : URL remplacée nommée ; la nouvelle sans référence ; et
+   *              l'ANCIENNE référence figée devient ORPHELINE — nommée, jamais évaporée
+   *              (contre-revue : « une source disparue mais encore présente dans
+   *              l'historique doit être nommée »). ------------------------------------------- */
   {
+    /* une URL UNIQUE au registre : son déplacement la fait entièrement disparaître */
     const objets = JSON.parse(pristins["packages/knowledge/raw/objects.json"].toString("utf-8"));
-    const cible = objets.countries.find((c) => c.source);
-    const ancienne = cible.source.url;
+    const urlUnique = [...registre.parUrl.entries()]
+      .find(([u, es]) => es.length === 1 && es[0].famille === "countries" && objets.countries.some((c) => c.source?.url === u))[0];
+    const cible = objets.countries.find((c) => c.source?.url === urlUnique);
     cible.source.url = "https://autorite-deplacee.example/nouvelle-adresse";
     writeFileSync(join(arbre, "packages/knowledge/raw/objects.json"), JSON.stringify(objets, null, 2));
+    /* la référence figée de l'ANCIENNE adresse existe — elle doit devenir orpheline */
+    writeFileSync(join(arbre, "fraicheur/references.json"), JSON.stringify({ version: "fraicheur-1", references: [{
+      url: urlUnique, empreinte_corps: sha256(corpsFaux(urlUnique)), url_finale: urlUnique,
+      statut_http: 200, content_type: "text/html; charset=utf-8", octets: Buffer.byteLength(corpsFaux(urlUnique)),
+      capturee_le: "2026-09-01", version_controleur: "fraicheur-1" }] }, null, 2));
     sceller("--ecrire");   // le geste légitime : la donnée ET son scellé, ensemble
     const registreApres = lireRegistre(arbre);
     const ecarts = comparerRegistres(registre, registreApres);
@@ -297,16 +326,24 @@ try {
       || registre.empreintes.par_famille.countries === registreApres.empreintes.par_famille.countries) {
       echec("14 registre exact", "l'empreinte (globale ou famille) n'a pas bougé — un remplacement à agrégats constants passe");
     }
-    /* 11 — au run suivant, la nouvelle URL est SANS_REFERENCE, l'ancienne a disparu */
+    /* 11 — au run suivant : nouvelle URL sans_reference, ancienne identité disparue, et
+     * l'ancienne référence NOMMÉE orpheline au rapport ET en file */
     const r = lancer(["--date=2027-08-01", "--sortie=sortie-11"]);
     if (r.status !== 0) echec("11 URL déplacée", `sortie ${r.status}`);
     else {
       const rap = lireRapport("sortie-11", "2027-08-01");
       const nouvelle = rap.file_de_travail.find((l) => l.url === cible.source.url);
       if (!nouvelle || nouvelle.controle !== "sans_reference") echec("11 URL déplacée", `la nouvelle URL n'est pas sans_reference (${nouvelle?.controle})`);
-      if (rap.file_de_travail.some((l) => l.url === ancienne && l.famille === "countries" && l.locator === `countries[${cible.id}].source`)) {
+      if (rap.file_de_travail.some((l) => l.url === urlUnique && l.famille === "countries")) {
         echec("11 URL déplacée", "l'ancienne identité subsiste — la migration a été silencieuse");
       }
+      if (!(rap.references_orphelines ?? []).includes(urlUnique)) {
+        echec("11 URL déplacée", "l'ancienne référence n'est PAS nommée orpheline au rapport");
+      }
+      if (!rap.file_de_travail.some((l) => l.controle === "reference_orpheline" && l.url === urlUnique)) {
+        echec("11 URL déplacée", "l'ancienne référence n'est PAS en file de travail");
+      }
+      if (rap.references.orphelines !== 1) echec("11 URL déplacée", `compte d'orphelines ${rap.references.orphelines} ≠ 1`);
     }
     restaurer();
   }
@@ -343,6 +380,86 @@ try {
     restaurer();
   }
 
+  /* ---- 17. la référence a HUIT champs — aucun n'est décoratif (contre-revue) ----------------- */
+  {
+    const urlCible = registre.entrees.find((e) => e.source.review_due < "2026-10-15").source.url;
+    const champsJustes = {
+      url: urlCible, empreinte_corps: sha256(corpsFaux(urlCible)), url_finale: urlCible,
+      statut_http: 200, content_type: "text/html; charset=utf-8",
+      octets: Buffer.byteLength(corpsFaux(urlCible)), capturee_le: "2026-09-01", version_controleur: "fraicheur-1",
+    };
+    /* (a) corps IDENTIQUE mais url_finale, statut, type et octets faux → jamais « inchangée » */
+    writeFileSync(join(arbre, "fraicheur/references.json"), JSON.stringify({ version: "fraicheur-1", references: [{
+      ...champsJustes, url_finale: urlCible + "?ailleurs", statut_http: 299,
+      content_type: "application/pdf", octets: 999 }] }, null, 2));
+    const rA = lancer(["--date=2026-10-15", "--sortie=sortie-17a"]);
+    const lA = rA.status === 0 ? lireRapport("sortie-17a", "2026-10-15").file_de_travail.find((l) => l.url === urlCible) : null;
+    if (!lA || lA.controle !== "potentiellement_modifiee") {
+      echec("17 référence à huit champs", `corps identique + quatre champs faux → « ${lA?.controle} » au lieu de potentiellement_modifiee (statut ${rA.status})`);
+    } else {
+      for (const champ of ["url_finale", "statut_http", "content_type", "octets"]) {
+        if (!lA.champs_divergents.includes(champ)) echec("17 référence à huit champs", `le champ divergent « ${champ} » n'est pas nommé`);
+      }
+      if (lA.champs_divergents.includes("empreinte_corps")) echec("17 référence à huit champs", "empreinte_corps déclarée divergente alors que le corps est identique");
+    }
+    /* (b) tous les champs justes mais version de contrôleur DIFFÉRENTE → incompatible */
+    writeFileSync(join(arbre, "fraicheur/references.json"), JSON.stringify({ version: "fraicheur-1", references: [{
+      ...champsJustes, version_controleur: "ancienne-version" }] }, null, 2));
+    const rB = lancer(["--date=2026-10-15", "--sortie=sortie-17b"]);
+    const lB = rB.status === 0 ? lireRapport("sortie-17b", "2026-10-15").file_de_travail.find((l) => l.url === urlCible) : null;
+    if (!lB || lB.controle !== "reference_incompatible") {
+      echec("17 référence à huit champs", `version de contrôleur différente → « ${lB?.controle} » au lieu de reference_incompatible`);
+    }
+    restaurer();
+  }
+
+  /* ---- 18. signature EGRESS APRÈS 64 Kio : le corps se balaie EN ENTIER (contre-revue) ------- */
+  {
+    const urlTardive = registre.entrees.find((e) => e.source.review_due < "2026-10-15").source.url;
+    const r = lancer(["--date=2026-10-15", "--sortie=sortie-18"], { FAUX_MODE: "egress-tardif", FAUX_URL_ECHEC: urlTardive });
+    if (r.status !== 2 || !/signature environnementale/.test(r.stderr)) {
+      echec("18 signature tardive", `sortie ${r.status} — une signature après 64 Kio passe pour un contrôle « ok »`);
+    }
+    if (existsSync(join(arbre, "sortie-18"))) echec("18 signature tardive", "un rapport a été produit malgré la signature");
+  }
+
+  /* ---- 19. le scellé se compare à ÉGALITÉ CANONIQUE TOTALE (contre-revue) -------------------- */
+  {
+    const scelleFalsifie = JSON.parse(pristins["fraicheur/registre-scelle.json"].toString("utf-8"));
+    scelleFalsifie.empreintes.globale = "0".repeat(64);
+    scelleFalsifie.empreintes.par_famille.countries = "1".repeat(64);
+    writeFileSync(join(arbre, "fraicheur/registre-scelle.json"), JSON.stringify(scelleFalsifie, null, 2));
+    const v = sceller();
+    if (v.status !== 1 || !/empreintes_falsifiees|décoratif/.test(v.stderr)) {
+      echec("19 scellé à égalité totale", `empreintes falsifiées, triplets intacts → statut ${v.status} — un champ du contrat est décoratif`);
+    }
+    const scelleDouble = JSON.parse(pristins["fraicheur/registre-scelle.json"].toString("utf-8"));
+    scelleDouble.entrees.push({ ...scelleDouble.entrees[0] });
+    writeFileSync(join(arbre, "fraicheur/registre-scelle.json"), JSON.stringify(scelleDouble, null, 2));
+    const v2 = sceller();
+    if (v2.status !== 1 || !/doublon/.test(v2.stderr)) {
+      echec("19 scellé à égalité totale", `entrée dupliquée → statut ${v2.status} — le doublon est absorbé`);
+    }
+    restaurer();
+  }
+
+  /* ---- 20. le BUDGET global garantit la terminaison : les non-exécutées sont REPORTÉES ------- */
+  {
+    const r = lancer(["--date=2026-10-15", "--sortie=sortie-20", "--budget-secondes=0"]);
+    if (r.status !== 0) echec("20 budget épuisé", `sortie ${r.status} — un budget épuisé passe pour une panne :\n      ${r.stderr.trim().split("\n").slice(0, 2).join("\n      ")}`);
+    else {
+      const rap = lireRapport("sortie-20", "2026-10-15");
+      if (rap.selection.executees !== 0 || rap.selection.reportees !== rap.selection.urls) {
+        echec("20 budget épuisé", `exécutées ${rap.selection.executees} / reportées ${rap.selection.reportees} sur ${rap.selection.urls} — les non-exécutées ne sont pas honnêtement reportées`);
+      }
+      if ((rap.controles.inaccessible ?? 0) !== 0) echec("20 budget épuisé", "des « inaccessibles » ont été fabriquées hors budget");
+      if (!(rap.controles.reportee > 0)) echec("20 budget épuisé", "aucune source « reportee » au rapport");
+      const md = readFileSync(join(arbre, "sortie-20", "RAPPORT-2026-10-15.md"), "utf-8");
+      if (!/REPORTÉE/.test(md)) echec("20 budget épuisé", "le rapport Markdown ne nomme pas le report");
+      if (rapportsR1 && rapportsR1.budget_secondes !== 1800) echec("20 budget épuisé", `budget par défaut ${rapportsR1.budget_secondes} ≠ 1800 s`);
+    }
+  }
+
   /* ---- 12. le secret n'atteint AUCUN artefact ------------------------------------------------ */
   {
     let fuites = 0;
@@ -363,7 +480,7 @@ try {
 
 /* ---- verdict ---------------------------------------------------------------------------------- */
 if (defauts.length === 0) {
-  process.stdout.write("16 cas éprouvés au faux curl : un registre vide refuse ; les axes échéance et contrôle\n");
+  process.stdout.write("20 cas éprouvés au faux curl : un registre vide refuse ; les axes échéance et contrôle\n");
   process.stdout.write("sont indépendants (échue ET inaccessible, hors tranche = non contrôlée) ; la première\n");
   process.stdout.write("capture ne consacre rien (sans_reference, jamais inchangée) ; les échues sont toutes en\n");
   process.stdout.write("file et la sortie reste 0 ; le contrôleur n'écrit rien hors de sa sortie et refuse une\n");
@@ -374,7 +491,13 @@ if (defauts.length === 0) {
   process.stdout.write("nommée puis sans référence ; aucun secret n'atteint un artefact ; la référence figée\n");
   process.stdout.write("distingue inchangée de potentiellement modifiée — sans jamais prononcer de verdict ;\n");
   process.stdout.write("et le SCELLÉ du registre vit dans le système qui tourne : absent → refus, source\n");
-  process.stdout.write("changée sans rescellement → nommée en CI et refusée au run, rescellée → vert.\n\n");
+  process.stdout.write("changée sans rescellement → nommée en CI et refusée au run, rescellée → vert ; et la\n");
+  process.stdout.write("contre-revue du scellement est morte : les huit champs de la référence comptent tous\n");
+  process.stdout.write("(quatre faux sous un corps identique → modifiée nommée ; version → incompatible), la\n");
+  process.stdout.write("signature d'egress se trouve même après 64 Kio, le scellé se compare en égalité\n");
+  process.stdout.write("canonique totale (empreintes falsifiées et doublon rougissent), la rotation tient à\n");
+  process.stdout.write("la frontière d'année, une référence orpheline est nommée, et le budget global\n");
+  process.stdout.write("garantit la terminaison — les non-exécutées sont reportées, jamais inaccessibles.\n\n");
   process.stdout.write("[fraicheur] le contrôleur observe, il ne fabrique rien.\n");
   process.exit(0);
 }
