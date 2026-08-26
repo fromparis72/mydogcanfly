@@ -282,10 +282,22 @@ const MUTATIONS = [
        deuxième fois, en refusant un échec obtenu pour une AUTRE raison (un écart de décompte par
        job, pas une épingle orpheline). Le même raisonnement, monté d'un cran.
 
+       Troisième temps, 26/08/2026 : le lot B ajoute un TROISIÈME workflow (`fraicheur.yml`) qui
+       utilise setup-node — la CI de la PR #24 l'a montré une troisième fois, exactement de la même
+       façon (écarts de décompte au lieu de l'épingle orpheline). Toute mutation « épingle morte »
+       doit retirer l'usage de TOUS les workflows qui la portent — un workflow ajouté sans édition
+       ici refera rougir cette contre-épreuve, et c'est voulu.
+
        C'est cette mutation qui a rendu nécessaire le support multi-fichiers : décrire la régression
-       réelle passe par les deux workflows, sans quoi elle décrit autre chose. */
+       réelle passe par tous les workflows, sans quoi elle décrit autre chose. */
     fichiers: [{
       fichier: ".github/workflows/contre-epreuves-completes.yml",
+      editions: [
+        { cherche: "        uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020 # v7.0.0",
+          remplace: "        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1" },
+      ],
+    }, {
+      fichier: ".github/workflows/fraicheur.yml",
       editions: [
         { cherche: "        uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020 # v7.0.0",
           remplace: "        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1" },

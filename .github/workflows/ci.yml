@@ -110,6 +110,20 @@ jobs:
       - name: Lot A — matrice d'audit des 18 pays (validateur permanent)
         run: node --import tsx valider-audit-pays.mjs --as-of="$(git log -1 --format=%cs)"
 
+      # LOT B — le registre exact des 1 508 sources vivantes est SCELLÉ : toute PR qui change
+      # une source doit resceller DANS LA MÊME PR (`sceller-registre.mjs --ecrire`), et le diff
+      # du scellé rend le changement visible et revu — remplacer une URL sans déplacer aucun
+      # agrégat n'est plus silencieux (contre-revue du socle B). Vérification sans réseau,
+      # en quelques secondes.
+      - name: Lot B — registre des sources scellé (rescellement dans la même PR)
+        run: node --import tsx fraicheur/sceller-registre.mjs
+
+      # LOT B — les contre-épreuves du contrôleur de fraîcheur, au faux curl (AUCUN réseau
+      # réel : un faux curl seul dans le PATH pilote toutes les réponses). ~3 min : le faux
+      # réseau lance un sous-processus par URL contrôlée — durée assumée, consignée au dossier.
+      - name: Lot B — le contrôleur de fraîcheur ne fabrique rien (21 cas au faux curl)
+        run: node --import tsx test-fraicheur-lot-b.mjs
+
       - name: Typecheck (knowledge · engine · workers)
         run: npm run typecheck
 

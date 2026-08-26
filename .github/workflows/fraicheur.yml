@@ -1,0 +1,63 @@
+name: Fraîcheur des sources
+
+# LOT B — la veille hebdomadaire de fraîcheur des 1 508 sources du registre. Ce workflow
+# OBSERVE et RAPPORTE ; il ne modifie jamais une donnée, un verdict ni `references.json`
+# (toute correction est une PR humaine), et il est SÉPARÉ de la CI principale : une échéance
+# naturelle ne rougit jamais un build. Il échoue (rouge) UNIQUEMENT sur une panne
+# structurelle ou systémique nommée — registre invalide, références difformes, environnement
+# inapte, zéro URL joignable — jamais parce que des sources arrivent à échéance.
+#
+# La rotation est SANS ÉTAT (SHA256(url) mod 8 contre la semaine continue mod 8) : aucun
+# artefact antérieur n'est requis ; si l'historique manque, le rapport le dit et n'invente
+# aucune persistance.
+permissions:
+  contents: read
+
+on:
+  schedule:
+    # chaque lundi à 05:17 UTC — avant la journée européenne, hors des heures de pointe
+    - cron: "17 5 * * 1"
+  workflow_dispatch:
+
+concurrency:
+  group: fraicheur-${{ github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  controle:
+    name: Contrôle hebdomadaire
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+
+      - name: Node 22 (depuis .nvmrc)
+        uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020 # v7.0.0
+        with:
+          node-version-file: .nvmrc
+          cache: npm
+
+      - name: Installation reproductible
+        run: npm ci
+
+      - name: Contrôle de fraîcheur (registre exact · axes échéance/contrôle · file priorisée)
+        run: node --import tsx fraicheur/controler-fraicheur.mjs --date="$(date -u +%F)" --sortie=fraicheur-sortie
+
+      - name: Résumé du job (file de travail lisible)
+        if: always()
+        run: |
+          if ls fraicheur-sortie/RAPPORT-*.md >/dev/null 2>&1; then
+            cat fraicheur-sortie/RAPPORT-*.md >> "$GITHUB_STEP_SUMMARY"
+          else
+            echo "Aucun rapport produit — voir le journal du contrôle (panne structurelle ou systémique nommée)." >> "$GITHUB_STEP_SUMMARY"
+          fi
+
+      - name: Rapport en artefact (JSON + Markdown)
+        if: always()
+        uses: actions/upload-artifact@b7c566a772e6b6bfb58ed0dc250532a479d7789f # v6.0.0
+        with:
+          name: fraicheur-${{ github.run_id }}
+          path: fraicheur-sortie/
+          if-no-files-found: ignore
+          retention-days: 90
