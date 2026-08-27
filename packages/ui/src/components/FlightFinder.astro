@@ -311,6 +311,11 @@ const labels = {
   </form>
   <script type="application/json" id="mdcf-finder-labels" set:html={JSON.stringify(labels)} is:inline />
   <div id="mdcf-finder-result" class="finder__result" aria-live="polite" hidden></div>
+  {/* G minimal (arbitrage Codex 28/08/2026) : le modèle ne connaît ni marketing_carrier ni
+      operating_carrier — la mention dit ce que le résultat NE couvre pas, sans affirmer ce
+      que le modèle ne sait pas établir. Présence quadrilingue garantie par
+      test-mention-transporteur.mjs. */}
+  <p class="finder__codeshare">{t(locale, "codeshare.notice")}</p>
 </section>
 
 <script>
@@ -1226,6 +1231,7 @@ const labels = {
   .finder__radio:has(input:checked) { border-color: var(--mdcf-accent); background: var(--mdcf-accent-soft); color: var(--mdcf-accent-ink); }
   .finder__radio input { margin: 0; accent-color: var(--mdcf-accent); }
   .finder__eupass-hint { margin: 0; font-size: 12px; line-height: 1.4; color: var(--mdcf-muted); }
+  .finder__codeshare { margin: 10px 0 0; font-size: 12px; line-height: 1.5; color: var(--mdcf-muted); }
   .finder__field input, .finder__field select { box-sizing: border-box; height: 44px; padding: 10px 12px; border: 1px solid var(--mdcf-line); border-radius: 10px; font: inherit; line-height: 1.2; background: var(--mdcf-surface); }
   .finder__field--sm { flex: 0 0 150px; }
   .finder__weight { display: flex; gap: 6px; align-items: stretch; }
