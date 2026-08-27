@@ -317,8 +317,7 @@ async function sendHeatAlert(env, sub, wx, level) {
       <h2 style="color:#14294B">It's getting hot in ${sub.place || "your area"}</h2>
       <p>Current temperature: <b>${Math.round(wx.tempC)} °C (${Math.round(wx.tempC * 9 / 5 + 32)} °F)</b>,
          humidity ${Math.round(wx.hum)}%. Risk level for a dog: <b>${lbl}</b>.</p>
-      <p>Walk early or late, keep it short, avoid hot pavement, and carry water.
-         <a href="${env.SITE_URL}/tools/is-it-too-hot-for-my-dog/">Open the checker</a>.</p>
+      <p>Walk early or late, keep it short, avoid hot pavement, and carry water.</p>
       ${footer(env, sub.token)}
     </div>`);
 }

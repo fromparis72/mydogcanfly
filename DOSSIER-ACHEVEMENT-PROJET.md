@@ -350,6 +350,12 @@ Chaque lot est **fusionnable seul**. L'ordre est un ordre d'**impact**, pas de d
   **forme** et l'**exhaustivité** de la matrice, jamais la qualité de la traduction, et l'écrit.
 - **Contre-épreuves :** un « validé » sans relecteur ni date échoue ; un guide absent de la matrice
   échoue ; une matrice vide échoue.
+- **CLOS par arbitrage propriétaire (27/08/2026) :** les 72 traductions espagnoles et 72
+  portugaises sont **acceptées dans leur état actuel et considérées comme définitives**. La
+  relecture native globale — et sa matrice — sortent du programme d'achèvement. Les contrôles
+  automatisés existants restent actifs ; toute modification factuelle future suit le processus
+  normal. Le lot ci-dessus reste consigné tel qu'il avait été conçu : c'est l'arbitrage qui le
+  ferme, pas une exécution.
 
 ### Lot F — Arbitrage de l'outil de chaleur *(conception avant code)*
 
@@ -358,6 +364,17 @@ Chaque lot est **fusionnable seul**. L'ordre est un ordre d'**impact**, pas de d
 - **Première étape, avant tout code :** vérifier quels codes de statut l'hébergement sait servir —
   un **410** dirait aux moteurs que la ressource a disparu, ce qu'un 404 laisse ambigu.
 - **Interdit :** rediriger vers `/tools/heat/`.
+- **CLOS par arbitrage propriétaire (27/08/2026) :** l'outil ne sera pas construit ;
+  `/tools/is-it-too-hot-for-my-dog/` est retirée définitivement, sans redirection. La première
+  étape a été faite et tranche la question du 410 par la négative : l'hébergement (Pages) n'admet
+  que 200/301/302/303/307/308 dans `_redirects`, et `/tools/*` est exclu du Worker — la fermeture
+  propre est donc le **404 franc**, qui était déjà l'état servi (aucune page, aucune redirection,
+  aucun lien de guide — dette soldée par un lot antérieur, gardée par `audit-site` et le contrôle
+  des liens). Restait UNE promesse vivante : le lien « Open the checker » de l'e-mail d'alerte
+  chaleur du worker — retiré. La source héritée `static/tools/is-it-too-hot-for-my-dog/` (Hugo,
+  non servie) est supprimée pour rendre le retrait définitif dans les sources aussi. La
+  recommandation « page explicative » du présent dossier n'est pas suivie : c'est la voie 404,
+  choisie par le propriétaire — déviation d'arbitrage, nommée, pas une erreur d'exécution.
 
 ### Lot G — Correspondances multi-opérateurs *(dossier de conception seul)*
 
