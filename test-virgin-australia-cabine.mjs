@@ -83,6 +83,15 @@ const avant4 = defauts;
     "Only accredited assistance dogs may travel inside the passenger cabin",
     "ne sont pas autorisés à voyager en cabine",
     "Seuls les chiens d'assistance reconnus peuvent voyager dans la cabine",
+    /* les affirmations UNIVERSELLES sur des canaux legacy_unreviewed (contre-revue 28/08) :
+       « voyagent via Cargo » recréait le « soute sinon » refusé, et « non accepté en soute »
+       affirmait ce qu'aucune source revérifiée n'établit — tout doit rester conditionnel */
+    "not accepted in the hold",
+    "non accepté en soute",
+    "plus nationwide cargo",
+    "plus le cargo national",
+    "travel in the cargo hold (pet + container",
+    "voyagent en soute (animal + contenant",
   ];
   const RENDUS = [
     "packages/knowledge/raw/guides.json",

@@ -65,6 +65,22 @@ const STALE_VERSES = new Set([
 const DECISIONS_POST_MIGRATION = new Set([
   "airline_virgin_australia|cabin",
 ]);
+/* Éditions POST-MIGRATION d'un bloc AUDITÉ, nommées avec leur nouvelle empreinte.
+ *
+ * L'observation de migration reste INTACTE dans la baseline — elle prouve toujours qu'aucun
+ * bloc n'a bougé PENDANT la migration. Mais l'éditorial vit : quand une contre-revue impose
+ * de corriger un bloc audité, la correction est admise ici par identité, avec l'empreinte du
+ * bloc corrigé — le YAML relu doit correspondre soit à l'observation d'origine, soit à
+ * l'édition nommée. Toute autre divergence rougit toujours.
+ *
+ *  · airline_virgin_australia/cargo (28/08/2026, contre-revue Codex) : « les animaux non
+ *    éligibles à la cabine VOYAGENT en soute via Cargo » recréait le « soute sinon » refusé
+ *    par l'arbitrage A-bis — le détail devient conditionnel (« peuvent éventuellement être
+ *    transportés … sous réserve de l'itinéraire, de l'appareil, du partenaire de transport
+ *    et de l'acceptation préalable »), dans les quatre langues. */
+const EDITIONS_POST_MIGRATION = new Map([
+  ["airline_virgin_australia/cargo", "4398ecf181f18a61f2c1a0f99d4905f6bb9086c80cfd0a50e99a507c5f566fef"],
+]);
 /** Décision runtime visée par une ligne du manifeste, sous forme d'auteur. */
 const attenduPour = (r) => r.decision.state === "legacy_unreviewed"
   ? { review_state: "legacy_unreviewed" }
@@ -107,9 +123,13 @@ for (const r of rows) {
   const ch = (doc.channels || [])[parseInt(m[1], 10)];
   const fromYaml = {};
   for (const k of FIELDS) if (k in ch) fromYaml[k] = ch[k];
-  if (hash(fromYaml) !== obs.fingerprint) err(`${who}: empreinte ≠ YAML relu`);
+  /* Une édition post-migration NOMMÉE est admise : le YAML relu doit alors porter exactement
+     l'empreinte de l'édition — l'observation d'origine, elle, reste vérifiée telle quelle. */
+  const edition = EDITIONS_POST_MIGRATION.get(who);
+  const yamlAttendu = edition && hash(fromYaml) === edition ? edition : obs.fingerprint;
+  if (hash(fromYaml) !== yamlAttendu) err(`${who}: empreinte ≠ YAML relu`);
   if (hash(obs.block) !== obs.fingerprint) err(`${who}: empreinte ≠ bloc STOCKÉ (bloc falsifié ?)`);
-  if (cjson(obs.block) !== cjson(fromYaml)) err(`${who}: bloc stocké ≠ YAML relu`);
+  if (yamlAttendu === obs.fingerprint && cjson(obs.block) !== cjson(fromYaml)) err(`${who}: bloc stocké ≠ YAML relu`);
 }
 console.log(`${rows.length} lignes vérifiées, ${bad} écart(s)`);
 process.exit(bad ? 1 : 0);

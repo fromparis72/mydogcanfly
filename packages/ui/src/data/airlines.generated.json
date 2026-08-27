@@ -41544,10 +41544,10 @@
       }
     },
     "verdictNote": {
-      "en": "Pets now fly in the cabin on select domestic routes (trial), plus nationwide cargo — both booked by phone.",
-      "fr": "Les animaux volent désormais en cabine sur certaines routes domestiques (test), plus le cargo national — les deux se réservent par téléphone.",
-      "es": "Las mascotas ya vuelan en cabina en rutas nacionales seleccionadas (prueba), además de la carga en todo el país; ambas se reservan por teléfono.",
-      "pt": "Os animais agora voam na cabine em rotas domésticas selecionadas (teste), além da carga em todo o país — ambos reservados por telefone."
+      "en": "Pets now fly in the cabin on select domestic routes (trial); other animals may possibly travel via Virgin Australia Cargo, subject to route, aircraft, transport partner and prior acceptance.",
+      "fr": "Les animaux volent désormais en cabine sur certaines routes domestiques (test) ; les autres peuvent éventuellement voyager via Virgin Australia Cargo, sous réserve de l'itinéraire, de l'appareil, du partenaire de transport et de l'acceptation préalable.",
+      "es": "Las mascotas ya vuelan en cabina en rutas nacionales seleccionadas (prueba); los demás animales pueden eventualmente viajar vía Virgin Australia Cargo, sujeto a la ruta, el avión, el socio de transporte y la aceptación previa.",
+      "pt": "Os animais agora voam na cabine em rotas domésticas selecionadas (teste); os demais animais podem eventualmente viajar via Virgin Australia Cargo, sujeito à rota, à aeronave, ao parceiro de transporte e à aceitação prévia."
     },
     "ladder": [
       {
@@ -41581,6 +41581,18 @@
     "policies": {
       "cabin": {
         "availability": "case_by_case",
+        "source": {
+          "url": "https://www.virginaustralia.com/au/en/travel-info/specific-travel/pets/pets-in-cabin/",
+          "source_type": "official_website",
+          "verified_date": "2026-08-28",
+          "review_due": "2026-11-26",
+          "confidence": 4,
+          "reviewer": "Philippe (vérification humaine du 28/08/2026)",
+          "history": [],
+          "quote": "Be a small cat or dog, with a combined weight (pet + carrier) of no more than 8kg",
+          "quote_language": "en-AU",
+          "locator": "section « Pet requirements »"
+        },
         "conditions": {
           "en": "Small dog or cat only; combined weight of pet and carrier no more than 8 kg; domestic flights on eligible routes and dates only (trial service); phone booking and airline confirmation required.",
           "fr": "Petit chien ou chat uniquement ; poids combiné animal + sac ≤ 8 kg ; vols domestiques sur routes et dates éligibles uniquement (service en test) ; réservation par téléphone et confirmation de la compagnie obligatoires.",
@@ -41642,10 +41654,10 @@
           "pt": "Via carga"
         },
         "detail": {
-          "en": "Pets not eligible for the cabin travel in the cargo hold (pet + container ≤ 65 kg) via Virgin Australia Cargo, through a transport partner. Not on A320/Saab 340.",
-          "fr": "Les animaux non éligibles à la cabine voyagent en soute (animal + contenant ≤ 65 kg) via Virgin Australia Cargo, par un partenaire de transport. Pas sur A320/Saab 340.",
-          "es": "Las mascotas que no reúnen los requisitos para la cabina viajan en la bodega de carga (mascota + jaula ≤ 65 kg) a través de Virgin Australia Cargo, mediante un socio de transporte. No en A320/Saab 340.",
-          "pt": "Os animais que não são elegíveis para a cabine viajam no porão de carga (animal + recipiente ≤ 65 kg) via Virgin Australia Cargo, por meio de um parceiro de transporte. Não disponível em A320/Saab 340."
+          "en": "Pets not eligible for the cabin may possibly be transported in the cargo hold (pet + container ≤ 65 kg) via Virgin Australia Cargo, subject to route, aircraft, transport partner and prior acceptance. Not on A320/Saab 340.",
+          "fr": "Les animaux non éligibles à la cabine peuvent éventuellement être transportés en soute (animal + contenant ≤ 65 kg) via Virgin Australia Cargo, sous réserve de l'itinéraire, de l'appareil, du partenaire de transport et de l'acceptation préalable. Pas sur A320/Saab 340.",
+          "es": "Las mascotas que no reúnen los requisitos para la cabina pueden eventualmente ser transportadas en la bodega de carga (mascota + jaula ≤ 65 kg) vía Virgin Australia Cargo, sujeto a la ruta, el avión, el socio de transporte y la aceptación previa. No en A320/Saab 340.",
+          "pt": "Os animais que não são elegíveis para a cabine podem eventualmente ser transportados no porão de carga (animal + recipiente ≤ 65 kg) via Virgin Australia Cargo, sujeito à rota, à aeronave, ao parceiro de transporte e à aceitação prévia. Não disponível em A320/Saab 340."
         },
         "fee": {
           "en": "Quote",
