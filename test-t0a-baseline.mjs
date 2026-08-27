@@ -544,8 +544,13 @@ console.log("=== Couverture DIRECTE : les 302 politiques, hors des 72 scénarios
   check("302 politiques d'auteur, toutes projetées", vues === 302 && ecarts.length === 0, `${vues} vues · ${ecarts.length} écart(s) : ${ecarts.slice(0, 3).join(" ; ")}`);
   check("302 conformes à la table de projection", conformes === 302, String(conformes));
   check("ZÉRO forme d'auteur héritée subsistante", herites === 0, `${herites} résiduelle(s)`);
-  check("répartition runtime : 143 allowed · 75 denied · 84 à confirmer",
-    parStatut.allowed === 143 && parStatut.denied === 75 && parStatut.confirmation_required === 84,
+  /* 28/08/2026 — Virgin Australia cabine : `offered` → `case_by_case` (arbitrage A-bis,
+   * « Pets in Cabin » n'est ni interdit ni universel — routes/dates domestiques éligibles
+   * seulement). Une politique passe donc d'`allowed` à `confirmation_required` : 143→142 et
+   * 84→85. Le mouvement est nommé ici parce que cette répartition est un COMPTE FIGÉ : toute
+   * bascule non documentée doit rougir, celle-ci est documentée. */
+  check("répartition runtime : 142 allowed · 75 denied · 85 à confirmer",
+    parStatut.allowed === 142 && parStatut.denied === 75 && parStatut.confirmation_required === 85,
     JSON.stringify(parStatut));
   check("causes : 83 legacy_unreviewed · 1 policy_unpublished",
     parCause.legacy_unreviewed === 83 && parCause.policy_unpublished === 1, JSON.stringify(parCause));
