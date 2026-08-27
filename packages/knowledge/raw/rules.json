@@ -24484,50 +24484,6 @@
     }
   },
   {
-    "id": "rule_virgin_australia_no_cabin",
-    "scope": {
-      "type": "airline",
-      "id": "airline_virgin_australia"
-    },
-    "category": "placement",
-    "criticality": "high",
-    "applies_when": {
-      "all": [
-        {
-          "fact": "placement",
-          "op": "eq",
-          "value": "cabin"
-        }
-      ]
-    },
-    "effect": {
-      "action": "deny",
-      "placement": [
-        "cabin"
-      ]
-    },
-    "params": {},
-    "rationale": "Virgin Australia does not carry pets in the passenger cabin; only accredited assistance dogs are permitted. Dogs travel in the hold or via Virgin Australia Cargo.",
-    "rationale_i18n": {
-      "fr": "Virgin Australia ne transporte pas les animaux en cabine (seuls les chiens d’assistance reconnus sont admis). Les chiens voyagent en soute ou via Virgin Australia Cargo."
-    },
-    "source": {
-      "url": "https://www.virginaustralia.com/au/en/travel-info/specific-travel/travelling-with-pets/",
-      "source_type": "official_website",
-      "verified_date": "2026-07-09",
-      "review_due": "2026-10-07",
-      "confidence": 4,
-      "reviewer": "MyDogCanFly Data Team",
-      "history": [
-        {
-          "date": "2026-07-09",
-          "reviewer": "MyDogCanFly Data Team",
-          "note": "Added from Virgin Australia official pet page (no cabin; hold/cargo only)."
-        }
-      ]
-    }
-  },
-  {
     "id": "rule_virgin_no_cabin",
     "scope": {
       "type": "airline",

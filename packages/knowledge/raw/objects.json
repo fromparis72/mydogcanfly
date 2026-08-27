@@ -45977,7 +45977,7 @@
         "url": "https://www.virginaustralia.com/au/en/travel-info/specific-travel/travelling-with-pets/",
         "source_type": "official_website",
         "verified_date": "2026-07-09",
-        "review_due": "2026-10-07",
+        "review_due": "2026-09-30",
         "confidence": 4,
         "reviewer": "MyDogCanFly Data Team",
         "history": [
@@ -45985,6 +45985,11 @@
             "date": "2026-07-09",
             "reviewer": "MyDogCanFly Data Team",
             "note": "Added from Virgin Australia official pet page (no cabin; hold/cargo only)."
+          },
+          {
+            "date": "2026-08-28",
+            "reviewer": "MyDogCanFly Data Team",
+            "note": "Révision avancée au 30/09/2026 (arbitrage Codex, option A-bis) : le service « Pets in Cabin » est une expérimentation dont la majorité des routes actuelles s annonce jusqu à fin septembre 2026 — la fiche entière doit être revue à cette échéance. La source auditée de la politique cabine garde sa cadence contractuelle de 90 jours."
           }
         ]
       },
@@ -46020,7 +46025,13 @@
       "premium": {
         "policy": {
           "cabin": {
-            "availability": "offered",
+            "availability": "case_by_case",
+            "conditions": {
+              "en": "Small dog or cat only; combined weight of pet and carrier no more than 8 kg; domestic flights on eligible routes and dates only (trial service); phone booking and airline confirmation required.",
+              "fr": "Petit chien ou chat uniquement ; poids combiné animal + sac ≤ 8 kg ; vols domestiques sur routes et dates éligibles uniquement (service en test) ; réservation par téléphone et confirmation de la compagnie obligatoires.",
+              "es": "Solo perros o gatos pequeños; peso combinado de mascota y transportín ≤ 8 kg; únicamente vuelos nacionales en rutas y fechas elegibles (servicio en prueba); reserva telefónica y confirmación de la aerolínea obligatorias.",
+              "pt": "Apenas cães ou gatos pequenos; peso combinado do animal e da bolsa ≤ 8 kg; somente voos domésticos em rotas e datas elegíveis (serviço em teste); reserva por telefone e confirmação da companhia obrigatórias."
+            },
             "max_weight_kg": 8,
             "source": {
               "url": "https://www.virginaustralia.com/",

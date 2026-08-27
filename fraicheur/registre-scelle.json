@@ -2133,7 +2133,7 @@
     {
       "famille": "airlines",
       "locator": "airlines[airline_virgin_australia].source",
-      "empreinte_source": "d628c14eaecf81a97b1e55e59ac3ac4a17321f0f1dbc413889a7e30285b9542c"
+      "empreinte_source": "f733e2233c57e945b78697e19d561d15a6b230c25edc68b0165adfbd6424d680"
     },
     {
       "famille": "airlines",
@@ -7467,11 +7467,6 @@
     },
     {
       "famille": "rules",
-      "locator": "rules[rule_virgin_australia_no_cabin].source",
-      "empreinte_source": "d628c14eaecf81a97b1e55e59ac3ac4a17321f0f1dbc413889a7e30285b9542c"
-    },
-    {
-      "famille": "rules",
       "locator": "rules[rule_virgin_no_cabin].source",
       "empreinte_source": "52de836d8d9aaed9a6826187065d8fd796cc2e1642d233357e6764545e065185"
     },
@@ -7542,14 +7537,14 @@
     }
   ],
   "empreintes": {
-    "globale": "ab3c557b3acc32b362050b0ba76c3ce19eda37ff12ebc1aded05b066f4e370c0",
+    "globale": "2b9544751a4e1809627dc4a66682366a8d81ff88e01f51e14265d5aabd2601f1",
     "par_famille": {
-      "airlines": "32e5aa8089dcf942d1ceb6314c23b08ea6ab08b2bdb1a0a1662e0f355e7ec930",
+      "airlines": "80963c367f559dfc840a5f569159fe0a3d870de1c68f2a62e7c12a69b87d1e32",
       "airports": "915d2262732a378589b12216f81e11bde703b14d8645cacf5df24e60b862eb55",
       "breed_restrictions": "58a62da1fa8ecd8b4925f2164c28b8c2432268a3f47c4e142ac707289b22323e",
       "breeds": "2e72ef699d47b9652af8e1a3d154202f9c682fb3cb1a8d1204adbb010bf19cc0",
       "countries": "91dcd83dabbe2c7b8909702096d63335f4738e110431c1102d5eb3ebffa64346",
-      "rules": "26d066ed7245e7ec65dcb336affbeab1fbe2bdde3a75a0921a75a7eb0bdadc1b"
+      "rules": "fc0a6f8fbf35d2529b4d52de7639354896a923fecb21ebdb32c51e75ef45c913"
     }
   }
 }

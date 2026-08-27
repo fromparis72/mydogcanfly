@@ -41580,7 +41580,13 @@
     ],
     "policies": {
       "cabin": {
-        "availability": "offered"
+        "availability": "case_by_case",
+        "conditions": {
+          "en": "Small dog or cat only; combined weight of pet and carrier no more than 8 kg; domestic flights on eligible routes and dates only (trial service); phone booking and airline confirmation required.",
+          "fr": "Petit chien ou chat uniquement ; poids combiné animal + sac ≤ 8 kg ; vols domestiques sur routes et dates éligibles uniquement (service en test) ; réservation par téléphone et confirmation de la compagnie obligatoires.",
+          "es": "Solo perros o gatos pequeños; peso combinado de mascota y transportín ≤ 8 kg; únicamente vuelos nacionales en rutas y fechas elegibles (servicio en prueba); reserva telefónica y confirmación de la aerolínea obligatorias.",
+          "pt": "Apenas cães ou gatos pequenos; peso combinado do animal e da bolsa ≤ 8 kg; somente voos domésticos em rotas e datas elegíveis (serviço em teste); reserva por telefone e confirmação da companhia obrigatórias."
+        }
       },
       "hold": {
         "review_state": "legacy_unreviewed"
