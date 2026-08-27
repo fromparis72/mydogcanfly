@@ -50,6 +50,21 @@ const STALE_VERSES = new Set([
   "airline_norwegian|cargo", "airline_qantas|cargo", "airline_qantas|hold",
   "airline_virgin_australia|hold",
 ]);
+/* Décisions POST-MIGRATION arbitrées, scellées par IDENTITÉ — jamais par cardinal.
+ *
+ * Le manifeste fige la MIGRATION T0-B2 ; il ne gèle pas l'éditorial pour toujours. Mais toute
+ * bascule ultérieure vers une forme migrée (`case_by_case`, `undocumented`, `review_state`)
+ * doit être NOMMÉE ici avec sa décision, sinon elle rougit — c'est la même discipline que les
+ * dix POLICY_STALE ci-dessus.
+ *
+ *  · airline_virgin_australia|cabin (28/08/2026, arbitrage propriétaire + Codex, option
+ *    A-bis) : « offered » → « case_by_case ». « Pets in Cabin » existe (≤ 8 kg animal + sac)
+ *    mais seulement sur routes/dates domestiques éligibles, service encadré comme une
+ *    expérimentation — ni refus absolu (la règle no_cabin est supprimée), ni oui universel.
+ *    Contre-épreuves : test-virgin-australia-cabine.mjs. */
+const DECISIONS_POST_MIGRATION = new Set([
+  "airline_virgin_australia|cabin",
+]);
 /** Décision runtime visée par une ligne du manifeste, sous forme d'auteur. */
 const attenduPour = (r) => r.decision.state === "legacy_unreviewed"
   ? { review_state: "legacy_unreviewed" }
@@ -65,7 +80,7 @@ for (const a of objects.airlines) {
 }
 for (const k of formeHeritee) err(`forme d'auteur héritée réintroduite: ${k}`);
 for (const k of migrees) {
-  if (ids.includes(k) || STALE_VERSES.has(k)) continue;
+  if (ids.includes(k) || STALE_VERSES.has(k) || DECISIONS_POST_MIGRATION.has(k)) continue;
   err(`politique migrée hors manifeste et hors dette scellée: ${k}`);
 }
 for (const k of STALE_VERSES) if (!migrees.has(k)) err(`POLICY_STALE versé non migré: ${k}`);
