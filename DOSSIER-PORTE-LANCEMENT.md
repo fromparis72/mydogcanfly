@@ -1,7 +1,28 @@
 # Porte de lancement SEO/GEO — dossier de conception
 
-**Version 3 — 28/08/2026, sur `main` `b500168`. Conception avant code : aucun harnais n'est
-écrit tant que cette conception révisée n'est pas contre-revue.**
+**Version 4 — 28/08/2026, sur `main` `3a65e556` (la RC fusionnée, les deux jobs requis
+verts — run 81). Conception avant code : aucun harnais n'est écrit tant que cette
+conception révisée n'est pas contre-revue.**
+
+**Ce que la v4 corrige (3ᵉ contre-revue Codex du 28/08/2026), nommé :**
+1. **P0-1 — la surface réelle des redirections était absente du contrat.** La v3 (et ma
+   garde RC, et mon rapport) affirmaient que les 62 anciennes URL `*-dog-policy` répondent
+   404 : FAUX. Ma mesure s'était arrêtée à `_redirects` sans ouvrir `_worker.js` ni
+   `_routes.json` — le Worker Pages (`LEGACY_REDIRECTS`) redirige les 62/62 en 301 vers
+   leur cible exacte, périmètre contrôlé par `_routes.json`, et le contrôle HTTP de
+   contre-revue l'a établi. `_redirects` est une VUE PARTIELLE du routage Pages, pas son
+   registre effectif — même classe que « agrégats exacts, registre non figé ». P7 couvre
+   désormais les TROIS pièces du routage avec une attente INDÉPENDANTE du Worker
+   (§ 2, P7 bis), et trois contre-épreuves l'exercent (15–17). Le faux constat est corrigé
+   dans la garde RC (PR #28) et au dossier de lancement.
+2. **P0-2 — le déploiement n'était pas explicitement dirigé vers la production.** Sans
+   `--branch`, Wrangler peut déduire la branche courante et produire une PREVIEW depuis
+   une branche de travail — et le contrôle « production inchangée » passerait à tort. La
+   commande impose désormais `--project-name` + `--branch=main` + `--commit-hash`, et
+   quatre concordances sont vérifiées AVANT le contre-test HTTP (§ 6) ; contre-épreuve 18 :
+   l'omission de `--branch=main` interdit tout déploiement.
+3. **P1 — la conception se disait fondée sur `b500168`** : elle repart du `main` réel
+   `3a65e556` (branche fusionnée avec lui, CI verte confirmée).
 
 **Ce que la v3 corrige (2ᵉ contre-revue Codex du 28/08/2026), nommé :**
 1. **Le contrat preview se contredisait encore** : le résumé du § 0 exigeait toujours que
@@ -169,6 +190,25 @@ vérifie pas comme une redirection statique :
   résout par substitution du `:splat` et vérifie dans `dist/` — une règle dynamique sans
   exemple versionné rougit (règle non prouvable = règle non prouvée).
 
+**P7 bis — le routage EFFECTIF, pas sa vue partielle (v4).** Le routage Pages du dépôt a
+TROIS pièces : `_redirects`, `_routes.json` (qui décide ce qui atteint le Worker) et
+`packages/ui/public/_worker.js` (LEGACY_REDIRECTS 301, GONE_EXACT/GONE_PREFIXES 410,
+mapping `/dog-heat-safety/<slug>/` → `/breeds/<slug>/`, alias presskit). Contrôler le seul
+`_redirects` — le défaut de la v3, qui a produit le faux constat « 62 URL en 404 » — c'est
+juger une vue partielle. La porte :
+- **réutilise `packages/knowledge/scripts/test-legacy-urls.mjs`** tel quel : il reproduit le
+  routage de `_routes.json` puis exécute le VRAI `_worker.js` (sitemap jamais 301/410,
+  anciennes URL en 301 à cible vivante ou 410) ;
+- **ajoute l'attente INDÉPENDANTE que ce test n'a pas** — sa liste est lue dans le Worker
+  lui-même, donc retirer une entrée retire aussi son attente : bijection EXACTE entre les
+  62 fichiers `content/posts/*-dog-policy.md` et 62 entrées `*-dog-policy` de
+  LEGACY_REDIRECTS, chaque cible construite dans `dist/` et vivante à travers le routage
+  réel ; et un dénombrement par FAMILLE (301, 410 exacts, 410 par préfixe, chaleur/races,
+  alias presskit) figé dans la porte — toute famille qui apparaît, disparaît ou change
+  d'effectif sans mouvement nommé rougit ;
+- **exerce le vrai routage Pages** : chaque vérification passe par la reproduction
+  `_routes.json` + `_worker.js`, jamais par une table relue.
+
 **P8 — JSON-LD.** Chaque bloc `application/ld+json` parse ; les types utilisés sont ceux que
 le site émet sciemment (liste versionnée) ; pour une `FAQPage`, **chaque question et chaque
 réponse du bloc existent dans le texte visible de la page** — une FAQ structurée invisible
@@ -260,7 +300,7 @@ Conformément à l'arbitrage : **la porte vérifie, elle n'ajoute jamais de cont
   mot-clé, aucun texte additionnel ; ce point est une clause de conception, pas un contrôle
   exécutable, et il est écrit pour qu'on ne puisse pas l'ajouter « en passant ».
 
-## 5. Les quatorze contre-épreuves de la porte (exigées avant tout feu vert)
+## 5. Les dix-huit contre-épreuves de la porte (exigées avant tout feu vert)
 
 Sur le modèle des harnais du dépôt : chaque garantie doit avoir été **vue rougir pour sa
 cause**, par mutation d'une copie de `dist/` (jamais du dépôt), en exerçant la vraie porte :
@@ -286,7 +326,17 @@ cause**, par mutation d'une copie de `dist/` (jamais du dépôt), en exerçant l
     SHA → refus (empreinte juste, SHA étranger) ;
 13. **(v3)** un `Disallow: /` introduit dans le `robots.txt` d'un dist de préversion →
     V2 rougit — le défaut qui rendait le `noindex` illisible ne peut pas revenir en silence ;
-14. **(v3)** une ligne `Sitemap:` introduite dans le `robots.txt` de préversion → V3 rougit.
+14. **(v3)** une ligne `Sitemap:` introduite dans le `robots.txt` de préversion → V3 rougit ;
+15. **(v4)** la redirection Alaska retirée de LEGACY_REDIRECTS dans une copie du Worker,
+    SANS toucher aux 62 fichiers `*-dog-policy.md` → la bijection indépendante de P7 bis
+    rougit et nomme l'entrée manquante (le test qui lit sa liste dans le Worker, lui, ne
+    verrait rien — c'est exactement pourquoi l'attente indépendante existe) ;
+16. **(v4)** `_routes.json` modifié dans une copie pour qu'une ancienne URL n'atteigne plus
+    le Worker → l'exercice du routage réel rougit (l'URL cesse de répondre 301) ;
+17. **(v4)** une famille du Worker (les 410 exacts, l'alias presskit…) vidée ou gonflée dans
+    une copie → le dénombrement par famille rougit sans mouvement nommé ;
+18. **(v4)** `deployer-production.mjs` invoqué avec une commande de déploiement privée de
+    `--branch=main` → AUCUN déploiement autorisé, refus avant tout appel réseau.
 
 ## 6. Câblage — où la porte tourne, et sur quoi
 
@@ -309,9 +359,20 @@ cause**, par mutation d'une copie de `dist/` (jamais du dépôt), en exerçant l
      au SHA demandé ;
   3. exécute la porte `--attendu=production` ET les prérequis P9 (audit + liens) sur ce même
      `dist/` ;
-  4. SANS AUCUNE RECONSTRUCTION, déploie ce répertoire tel quel : `wrangler pages deploy
-     <dist> --commit-hash=<sha de la provenance>` (Pages accepte un dossier préconstruit et
-     ce drapeau — Direct Upload) ;
+  4. SANS AUCUNE RECONSTRUCTION, déploie ce répertoire tel quel — et **explicitement vers
+     la production (v4)** : sans `--branch`, Wrangler peut déduire la branche COURANTE et
+     produire une preview depuis une branche de travail, que le contrôle « production
+     inchangée » validerait ensuite à tort. La commande impose donc les trois drapeaux :
+     `wrangler pages deploy <dist> --project-name=mydogcanfly-v2-preview --branch=main
+     --commit-hash=<sha de la provenance>` (Pages accepte un dossier préconstruit,
+     `--branch` et `--commit-hash` sont documentés séparément — Direct Upload) ;
+  4 bis. **quatre concordances vérifiées AVANT le contre-test HTTP (v4)** :
+     (a) `production_branch === "main"` dans la configuration du projet Pages ;
+     (b) le déploiement renvoyé est de type PRODUCTION, pas preview ;
+     (c) son identifiant est devenu le déploiement ACTIF du projet ;
+     (d) son SHA est celui de la provenance.
+     Une seule discordance → rollback immédiat vers le déploiement mémorisé en 1, ou refus
+     avant publication si rien n'a encore été servi ;
   5. exécute IMMÉDIATEMENT le contre-test HTTP exhaustif sur la production servie — une
      règle Cloudflare pouvant être conditionnée par chemin, un échantillon passerait à côté :
      TOUTES les URL des sitemaps (meta robots + `X-Robots-Tag` reçus + canonique + statut
@@ -336,8 +397,8 @@ clôture chaleur, annonce du site) ni du contrat de provenance : elle les cite e
 
 ---
 
-*Prochaine étape : contre-revue de cette conception RÉVISÉE (v3) par Codex. Le code de la
+*Prochaine étape : contre-revue de cette conception RÉVISÉE (v4) par Codex. Le code de la
 porte, sa liste `porte-noindex-admis.json`, le wrapper de build production adossé à
 `provenance.mjs`, la commande `deployer-production.mjs` (cycle complet, rollback vérifié
-compris), le changement de `robots.txt.ts` en préversion et les quatorze contre-épreuves ne
+compris), le changement de `robots.txt.ts` en préversion et les dix-huit contre-épreuves ne
 s'écrivent qu'après son feu vert.*
