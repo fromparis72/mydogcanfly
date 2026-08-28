@@ -10,7 +10,7 @@
     {
       "motif": "^/(?:(?:fr|es|pt)/)?airports/[a-z0-9-]+/index\\.html$",
       "conditionnel": true,
-      "raison": "Fiches aéroports : noindex CONDITIONNEL aux données — [slug].astro pose noindex={!reliefIndexable(a)} : un aéroport à zone de besoins vérifiée est indexable, un aéroport sans donnée vérifiée ne promet rien (mesuré : 270 aéroports par langue, 141 noindex / 129 indexables). La porte n'exige donc pas que TOUTE page de ce motif soit noindex — figer le partage ici figerait des DONNÉES au mauvais étage, elles bougent par leurs propres registres scellés. L'invariant qui compte reste tenu par P3 : une page noindex n'entre dans aucun sitemap, une page indexable y est exactement.",
+      "raison": "Fiches aéroports : noindex CONDITIONNEL aux données — [slug].astro pose noindex={!reliefIndexable(a)}. Une fiche substantielle (zone de besoins vérifiée) est indexable et figure au sitemap ; une fiche insuffisante est noindex et en est absente. ARBITRAGE DU 28/08/2026 : ce partage est accepté, et le nombre de pages de chaque groupe n'est PAS une constante métier — il bouge avec les données, par leurs propres registres scellés. La porte n'exige donc pas que toute page de ce motif soit noindex ; ce qu'elle exige, et dans LES DEUX SENS, c'est l'équivalence « noindex ⇔ hors sitemap » sur l'artefact exact — c'est P3 qui la tient.",
       "statut_http": 200
     },
     {

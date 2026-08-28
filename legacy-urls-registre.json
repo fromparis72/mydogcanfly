@@ -1143,21 +1143,19 @@
   ],
   "prefixes_gone": [
     {
-      "prefixe": "/tags/",
-      "motif": "nuage de mots-clés v1 : la v2 n'a pas de taxonomie par étiquettes, aucune URL sous ce préfixe n'a d'équivalent"
+      "prefixe": "/categories/",
+      "motif": "rubriques du blog v1 : celles qui existaient réellement sont des entrées EXACTES ci-dessus (/categories/, airlines, health, travel vers le Travel Hub ou l'index compagnies ; destinations et gear vers leur outil précis). Ce qui reste est une rubrique qui n'a jamais existé — la rediriger vers le hub serait une soft 404 déguisée. Arbitrage du 28/08/2026. Les entrées exactes précèdent toujours le préfixe résiduel."
     },
     {
       "prefixe": "/dog-heat-safety/",
       "motif": "sous-pages « chaleur par race » de la v1 : la racine et les races connues sont des entrées exactes ci-dessus ; ce qui reste ne désigne aucune fiche existante et n'a donc pas d'équivalent"
-    }
-  ],
-  "prefixes_redirect": [
+    },
     {
-      "prefixe": "/categories/",
-      "cible": "/travel-hub/",
-      "motif": "rubriques du blog v1 : celles qui ont un équivalent précis sont des entrées exactes ci-dessus ; les autres mènent au hub thématique qui les reprend"
+      "prefixe": "/tags/",
+      "motif": "nuage de mots-clés v1 : la v2 n'a pas de taxonomie par étiquettes, aucune URL sous ce préfixe n'a d'équivalent"
     }
   ],
+  "prefixes_redirect": [],
   "breed_alias": [
     {
       "v1": "cavalier-king-charles-spaniel",

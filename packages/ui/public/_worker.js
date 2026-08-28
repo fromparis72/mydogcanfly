@@ -198,9 +198,8 @@ const GONE_EXACT = new Set([
   "/posts/",
   "/tags/",
 ]);
-const GONE_PREFIXES = ["/tags/", "/dog-heat-safety/"];
+const GONE_PREFIXES = ["/categories/", "/dog-heat-safety/", "/tags/"];
 const REDIRECT_PREFIXES = new Map([
-  ["/categories/", "/travel-hub/"],
 ]);
 const BREED_ALIAS = new Map([
   ["cavalier-king-charles-spaniel", "cavalier-king-charles"],
