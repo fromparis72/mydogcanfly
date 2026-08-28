@@ -368,4 +368,3 @@ jobs:
       # les restaurations ont restauré.
       - name: Les 21 contre-épreuves de la porte
         run: npm run test:porte -- --dist-production="$RUNNER_TEMP/dist-prod" --dist-preview="$RUNNER_TEMP/dist-preview"
-

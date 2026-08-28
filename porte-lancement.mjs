@@ -24,7 +24,8 @@ import { spawnSync } from "node:child_process";
 import { join, resolve } from "node:path";
 import { pathToFileURL, fileURLToPath } from "node:url";
 import { verifierProvenance } from "./packages/knowledge/scripts/lib/provenance.mjs";
-import { lireRoutage, comparerAuScelle, FICHIER_SCELLE } from "./porte-sceller-routage.mjs";
+import * as parse5 from "parse5";
+import { lireRoutage, comparerAuScelle, dementiDe, FICHIER_SCELLE } from "./porte-sceller-routage.mjs";
 
 const DOMAINE = "https://mydogcanfly.com";
 const LANGUES = ["en", "fr", "es", "pt"];
@@ -37,12 +38,12 @@ const TYPES_JSONLD_ADMIS = new Set(["Organization", "WebSite", "WebPage", "Perso
 /** L'adresse retirée par arbitrage (lot F) : nommée, en recouvrement assumé avec sa garde. */
 const ADRESSE_RETIREE = "/tools/is-it-too-hot-for-my-dog/";
 /** Échantillon GEO versionné : une entité par gabarit, dans les quatre langues. */
-const ECHANTILLON_GEO = [
-  { chemin: "airlines/air-france/", nom: "Air France", source: { en: "· confidence", fr: "· confiance", es: "· confianza", pt: "· confiança" } },
-  { chemin: "countries/fr/", nom: { en: "France", fr: "France", es: "Francia", pt: "França" }, source: null },
-  { chemin: "breeds/pug/", nom: { en: "Pug", fr: "Carlin", es: "Carlino", pt: "Pug" }, source: null },
-];
 const SENTINEL_API_BASE = "https://00000000-mydogcanfly-api-preview.fromparis.workers.dev";
+/** LES APPELS D'API QUE LE BUNDLE DOIT PORTER — mesurés le 28/08/2026 sur le dist scellé de
+ *  production : /v1/finder (Flight Finder), /v1/destinations (Où emmener mon chien) et
+ *  /v1/nearest-airport (aéroport le plus proche). P10 les exige POSITIVEMENT ; un outil qui
+ *  cesse d'appeler son API ne se voit pas dans une liste d'hôtes interdits. */
+const ENDPOINTS_ATTENDUS = ["/v1/finder", "/v1/destinations", "/v1/nearest-airport"];
 
 /* ---- CLI ------------------------------------------------------------------------------------ */
 const args = process.argv.slice(2);
@@ -143,6 +144,49 @@ if (ATTENDU === "preview") {
 }
 
 /* ============================== MODE PRODUCTION : P1–P10, G1–G4 ============================== */
+
+
+/* « TEXTE VISIBLE », DÉFINI — et la deuxième définition, parce que la première avait un trou.
+ *
+ * v1 (conception v3) retirait par EXPRESSION RÉGULIÈRE : script, style, template, noscript,
+ * svg, puis les éléments portant hidden/aria-hidden. Le motif de ce dernier retrait était
+ *
+ *     <(\w+)[^>]*(?:aria-hidden="true"|\shidden)[^>]*>[^<]*<\/\1>
+ *
+ * dont le `[^<]*` n'accepte AUCUNE balise entre l'ouverture et la fermeture : seules les
+ * feuilles étaient retirées. Codex l'a mesuré le 28/08/2026 (P0-6) — une FAQ répétée dans
+ * `<div hidden><span>Question…</span><span>Réponse…</span></div>` restait comptée pour du
+ * texte visible et « prouvait » le JSON-LD. C'est la faute qu'une regex fait toujours sur du
+ * HTML : elle ne connaît pas l'imbrication.
+ *
+ * v2, celle-ci — VRAI PARCOURS D'ARBRE (parse5, le parseur conforme qu'utilise jsdom, 17 fois
+ * plus rapide sur ce volume). On descend le document et on n'entre PAS dans un sous-arbre
+ * sauté : script (donc le JSON-LD lui-même), style, template, noscript, svg, et tout élément
+ * portant `hidden` ou `aria-hidden="true"` — avec TOUS ses descendants, quels qu'ils soient.
+ * Le reste est concaténé, puis NFKC, blancs réduits, casse pliée, guillemets droits.
+ * L'appartenance se juge en sous-chaîne des formes normalisées. */
+const normaliser = (s) => s.normalize("NFKC").replace(/[’‘]/g, "'").replace(/[“”]/g, '"')
+  .replace(/&#(\d+);/g, (_, n) => String.fromCodePoint(Number(n)))
+  .replace(/&#x([0-9a-f]+);/gi, (_, n) => String.fromCodePoint(parseInt(n, 16)))
+  .replace(/&amp;/g, "&").replace(/&apos;/g, "'").replace(/&quot;/g, '"')
+  .replace(/&lt;/g, "<").replace(/&gt;/g, ">").replace(/&nbsp;/g, " ")
+  .replace(/\s+/g, " ").trim().toLowerCase();
+const BALISES_SAUTEES = new Set(["script", "style", "template", "noscript", "svg"]);
+const estCache = (noeud) => (noeud.attrs ?? []).some((a) =>
+  a.name === "hidden" || (a.name === "aria-hidden" && a.value === "true"));
+const texteVisible = (html) => {
+  const morceaux = [];
+  (function descendre(n) {
+    for (const enfant of n.childNodes ?? []) {
+      if (enfant.nodeName === "#text") { morceaux.push(enfant.value); continue; }
+      if (enfant.nodeName === "#comment" || enfant.nodeName === "#documentType") continue;
+      /* SAUTÉ AVEC TOUT SON SOUS-ARBRE : on ne descend pas. */
+      if (BALISES_SAUTEES.has(enfant.nodeName) || estCache(enfant)) continue;
+      descendre(enfant);
+    }
+  })(parse5.parse(html));
+  return normaliser(morceaux.join(" "));
+};
 
 /* ---- P1 — indexabilité : le noindex du dist ↔ la liste admise, dans les deux sens ----------- */
 const admis = JSON.parse(readFileSync("porte-noindex-admis.json", "utf8")).motifs
@@ -257,8 +301,21 @@ const urlsSitemaps = new Set();
   const altsDe = new Map(); // rel -> Map(lang -> url)
   for (const p of pagesIndexables) {
     const t = lirePage(p.rel);
-    const alts = new Map([...t.matchAll(/<link rel="alternate" hreflang="([^"]+)" href="([^"]+)"/g)].map((m) => [m[1], m[2]]));
-    altsDe.set(p.rel, alts);
+    const paires = [...t.matchAll(/<link rel="alternate" hreflang="([^"]+)" href="([^"]+)"/g)].map((m) => [m[1], m[2]]);
+    /* LES DOUBLONS SE REFUSENT AVANT LA MAP. `new Map` garde la DERNIÈRE valeur : deux
+       alternates « pt » contradictoires devenaient un seul, et le mauvais disparaissait sans
+       bruit (Codex, 28/08/2026, P1). Un moteur, lui, voit les deux et n'a aucune raison de
+       préférer la nôtre. */
+    const vus = new Map();
+    for (const [lang, url] of paires) {
+      if (vus.has(lang) && vus.get(lang) !== url) {
+        echec("P5 hreflang doublon", `${p.rel} : deux alternates « ${lang} » CONTRADICTOIRES (${vus.get(lang)} et ${url})`);
+      } else if (vus.has(lang)) {
+        echec("P5 hreflang doublon", `${p.rel} : alternate « ${lang} » déclaré deux fois (${url})`);
+      }
+      vus.set(lang, url);
+    }
+    altsDe.set(p.rel, new Map(paires));
   }
   for (const p of pagesIndexables) {
     const alts = altsDe.get(p.rel);
@@ -351,7 +408,31 @@ const urlsSitemaps = new Set();
 {
   let defsAvant = defauts;
   const scelle = JSON.parse(readFileSync(FICHIER_SCELLE, "utf8"));
-  for (const e of comparerAuScelle(DIST, scelle)) echec("P7bis registre", e);
+  for (const e of await comparerAuScelle(DIST, scelle)) echec("P7bis registre", e);
+  /* P7 TER — CE QUE LA SURFACE RÉELLE DÉMENT.
+   *
+   * Trouvé le 28/08/2026 en écrivant le contre-test en ligne, et c'est un défaut du SITE, pas
+   * de la porte : `_routes.json` envoie 67 des 73 sources de `_redirects` au Worker, qui répond
+   * lui-même — la règle écrite n'est alors jamais consultée. Mesure : 54 règles démenties, dont
+   * 53 promettent une page INDEXABLE du site ; 46 sont servies 410 Gone.
+   *
+   * P7 jugeait `_redirects` en isolation et les déclarait saines. C'est la faute de méthode du
+   * faux constat « 62 URL en 404 », retournée : ici la règle promet plus que la surface ne rend.
+   *
+   * La porte ROUGIT donc, et c'est le comportement voulu : choisir entre « rediriger » et
+   * « faire disparaître » ces URL est un arbitrage de propriétaire, pas une correction que la
+   * porte peut faire ni taire. Une fois l'arbitrage rendu, chaque règle démentie porte au
+   * registre `ombre_approuvee` avec son motif écrit — et le diff du scellé montre la décision. */
+  {
+    const dementis = [];
+    for (const r of scelle.familles.redirects_statiques) {
+      const d = dementiDe(r);
+      if (d && !r.ombre_approuvee) dementis.push(d);
+    }
+    for (const d of dementis.slice(0, 6)) echec("P7ter surface", d + (dementis.length > 6 ? ` (+${dementis.length - 6} autres règles démenties)` : ""));
+    if (!dementis.length) ok(`P7ter surface : les ${scelle.familles.redirects_statiques.length} règles de _redirects tiennent leur promesse, ou leur ombre est approuvée au registre`);
+  }
+
 
   /* Le routage reproduit : périmètre _routes.json + VRAI _worker.js du dist, importé via une
      URL ESM UNIQUE — sans quoi le cache de modules ferait juger une ancienne copie (v6, P1). */
@@ -396,25 +477,7 @@ const urlsSitemaps = new Set();
 /* ---- P8 — JSON-LD : parse, types admis, FAQ ⊆ texte visible ---------------------------------- */
 {
   let defsAvant = defauts;
-  /* « Texte visible », défini (conception v3) : on retire script (donc le JSON-LD lui-même),
-     style, template, noscript et svg (icônes aria-hidden), plus les éléments feuilles portant
-     hidden/aria-hidden ; puis balises ôtées, NFKC, blancs réduits, casse pliée, guillemets
-     droits. L'appartenance se juge en sous-chaîne des formes normalisées. */
-  const normaliser = (s) => s.normalize("NFKC").replace(/[’‘]/g, "'").replace(/[“”]/g, '"')
-    .replace(/&#(\d+);/g, (_, n) => String.fromCodePoint(Number(n)))
-    .replace(/&#x([0-9a-f]+);/gi, (_, n) => String.fromCodePoint(parseInt(n, 16)))
-    .replace(/&amp;/g, "&").replace(/&apos;/g, "'").replace(/&quot;/g, '"')
-    .replace(/&lt;/g, "<").replace(/&gt;/g, ">").replace(/&nbsp;/g, " ")
-    .replace(/\s+/g, " ").trim().toLowerCase();
-  const texteVisible = (html) => normaliser(
-    html
-      .replace(/<script[\s\S]*?<\/script>/gi, " ")
-      .replace(/<style[\s\S]*?<\/style>/gi, " ")
-      .replace(/<template[\s\S]*?<\/template>/gi, " ")
-      .replace(/<noscript[\s\S]*?<\/noscript>/gi, " ")
-      .replace(/<svg[\s\S]*?<\/svg>/gi, " ")
-      .replace(/<(\w+)[^>]*(?:aria-hidden="true"|\shidden(?=[\s>]))[^>]*>[^<]*<\/\1>/gi, " ")
-      .replace(/<[^>]+>/g, " "));
+
   let nBlocs = 0, nFaq = 0;
   for (const p of pages) {
     const t = lirePage(p.rel);
@@ -465,8 +528,20 @@ const urlsSitemaps = new Set();
   const astroDir = join(DIST, "_astro");
   if (existsSync(astroDir)) marcher(astroDir);
   const hotes = new Set();
+  const endpointsVus = new Set();
   for (const a of assets) {
-    for (const m of readFileSync(a, "utf8").matchAll(/https?:\/\/([a-z0-9.-]*(?:workers\.dev|localhost)[a-z0-9.-]*)/gi)) hotes.add(m[1]);
+    const src = readFileSync(a, "utf8");
+    for (const m of src.matchAll(/https?:\/\/([a-z0-9.-]*(?:workers\.dev|localhost)[a-z0-9.-]*)/gi)) hotes.add(m[1]);
+    for (const e of ENDPOINTS_ATTENDUS) if (src.includes(e)) endpointsVus.add(e);
+  }
+  /* L'EXIGENCE POSITIVE. L'absence de « workers.dev » ne prouve RIEN sur ce que le bundle
+     appelle : un bundle qui n'appellerait plus l'API du tout la passerait aussi (Codex,
+     28/08/2026, P1). On exige donc que les trois endpoints mesurés soient là. Ils sont
+     VERSIONNÉS ci-dessus : un endpoint qui change bouge par mouvement nommé, pas en silence. */
+  {
+    const manquants = ENDPOINTS_ATTENDUS.filter((e) => !endpointsVus.has(e));
+    if (manquants.length) echec("P10 endpoints", `le bundle n'appelle plus : ${manquants.join(", ")} — les outils vivants du site passent par là`);
+    else ok(`P10 endpoints : les ${ENDPOINTS_ATTENDUS.length} appels d'API attendus sont présents dans les assets`);
   }
   if (apiBase === "") {
     if (hotes.size) echec("P10 bundle", `PUBLIC_API_BASE vide (same-origin) mais le bundle porte : ${[...hotes].join(", ")}`);
@@ -480,23 +555,64 @@ const urlsSitemaps = new Set();
   }
 }
 
-/* ---- G1–G3 — GEO sobre, sur l'échantillon versionné (G4 = P8, G5 = clause d'absence) --------- */
+/* ---- G1–G3 — GEO : ce qui est promis est ce qui est vérifié (G4 = P8, G5 = clause) --------
+ *
+ * Contre-revue Codex du 28/08/2026 (P0-5) : « G1–G3 annoncent beaucoup plus qu'ils ne prouvent ».
+ * C'était exact — seuls le <h1> et le <title> étaient regardés, plus un fragment de source pour
+ * Air France. Les attentes vivent désormais dans porte-geo-echantillon.json, MESURÉES par
+ * gabarit ET par langue, et chacune a sa mutation dans le harnais :
+ *   G1 — le VERDICT et ses CONDITIONS sont dans le texte visible du <main>, sans JavaScript ;
+ *   G2 — la SOURCE est nommée et une DATE de vérification est rendue, dans la langue de la page ;
+ *   G3 — le nom de l'entité est dans <h1>, dans <title> ET dans le JSON-LD.
+ * Tout se juge sur le TEXTE VISIBLE (même parcours d'arbre que P8) : un fragment caché dans un
+ * attribut ou un sous-arbre `hidden` ne prouve rien à un lecteur, humain ou machine. */
 {
   let defsAvant = defauts;
-  for (const e of ECHANTILLON_GEO) {
+  const geo = JSON.parse(readFileSync("porte-geo-echantillon.json", "utf8"));
+  let controles = 0;
+  for (const e of geo.entites) {
     for (const lang of LANGUES) {
       const rel = `/${lang === "en" ? "" : lang + "/"}${e.chemin}index.html`;
-      if (!existsSync(join(DIST, rel))) { echec("G1 échantillon", `${rel} absent du dist`); continue; }
-      const t = lirePage(rel);
-      const nom = typeof e.nom === "string" ? e.nom : e.nom[lang];
-      const h1 = t.match(/<h1[^>]*>([\s\S]*?)<\/h1>/)?.[1]?.replace(/<[^>]+>/g, "") ?? "";
-      const titre = t.match(/<title>([^<]*)<\/title>/)?.[1] ?? "";
-      if (!h1.includes(nom)) echec("G3 entité", `${rel} : « ${nom} » absent du <h1> (« ${h1.slice(0, 60)} »)`);
-      if (!titre.includes(nom)) echec("G3 entité", `${rel} : « ${nom} » absent du <title>`);
-      if (e.source && !t.includes(e.source[lang])) echec("G2 sources", `${rel} : le bloc source (« ${e.source[lang]} ») n'est pas rendu dans le HTML`);
+      const attendu = e.langues[lang];
+      if (!attendu) { echec("G0 registre", `${e.chemin} : aucune attente versionnée pour « ${lang} » — un gabarit non couvert est un gabarit non prouvé`); continue; }
+      if (!existsSync(join(DIST, rel))) { echec("G0 échantillon", `${rel} absent du dist`); continue; }
+      const html = lirePage(rel);
+      const main = html.match(/<main[\s\S]*?<\/main>/i)?.[0];
+      if (!main) { echec("G0 échantillon", `${rel} : aucun <main> — le contrôle porterait sur la navigation`); continue; }
+      const visible = texteVisible(main);
+      const cherche = (fragment) => visible.includes(normaliser(fragment));
+
+      /* G1 — le verdict et sa condition, rendus côté serveur. */
+      if (!cherche(attendu.verdict)) echec("G1 verdict", `${rel} : le verdict « ${attendu.verdict} » n'est pas dans le texte visible`);
+      if (!cherche(attendu.conditions)) echec("G1 conditions", `${rel} : la condition « ${attendu.conditions.slice(0, 50)}… » n'est pas dans le texte visible`);
+
+      /* G2 — la source nommée et une date de vérification rendue. */
+      if (!cherche(attendu.source)) echec("G2 source", `${rel} : la source « ${attendu.source} » n'est pas nommée dans le texte visible`);
+      if (!new RegExp(attendu.date, "i").test(visible)) echec("G2 date", `${rel} : aucune date de vérification au motif /${attendu.date}/ — le contenu ne dit pas de QUAND il date`);
+
+      /* G3 — l'entité, triangulée : <h1>, <title> et JSON-LD. */
+      const h1 = html.match(/<h1[^>]*>([\s\S]*?)<\/h1>/)?.[1]?.replace(/<[^>]+>/g, " ") ?? "";
+      const titre = html.match(/<title>([^<]*)<\/title>/)?.[1] ?? "";
+      const nom = normaliser(attendu.nom);
+      if (!normaliser(h1).includes(nom)) echec("G3 entité", `${rel} : « ${attendu.nom} » absent du <h1> (« ${h1.trim().slice(0, 60)} »)`);
+      if (!normaliser(titre).includes(nom)) echec("G3 entité", `${rel} : « ${attendu.nom} » absent du <title> (« ${titre.slice(0, 60)} »)`);
+      const blocsJsonld = [...html.matchAll(/<script type="application\/ld\+json">([\s\S]*?)<\/script>/g)].map((m) => m[1]);
+      const dansJsonld = blocsJsonld.some((b) => {
+        let o; try { o = JSON.parse(b); } catch { return false; }
+        const types = [o].flat().flatMap((x) => [x["@type"]].flat());
+        /* Organization et WebSite portent le nom du SITE sur toutes les pages : ils ne
+           prouveraient rien sur l'entité de CETTE page. */
+        if (!types.some((x) => x !== "Organization" && x !== "WebSite")) return false;
+        return normaliser(b).includes(nom);
+      });
+      if (!dansJsonld) echec("G3 entité", `${rel} : « ${attendu.nom} » dans aucun bloc JSON-LD propre à la page (Organization/WebSite exclus : ils nomment le site, pas l'entité)`);
+      controles++;
     }
   }
-  if (defauts === defsAvant) ok(`G1–G3 : l'échantillon versionné (${ECHANTILLON_GEO.length} entités × 4 langues) rend ses réponses, ses sources et ses entités dans le HTML servi`);
+  /* JAMAIS VERT FAUTE DE MATIÈRE. */
+  const attendus = geo.entites.length * LANGUES.length;
+  if (controles !== attendus && defauts === defsAvant) echec("G0 couverture", `${controles} couples entité×langue contrôlés sur ${attendus} attendus`);
+  if (defauts === defsAvant) ok(`G1–G3 : ${controles} couples entité×langue — verdict, conditions, source nommée, date rendue, entité dans h1+title+JSON-LD`);
   note("G4 = P8 (FAQ visible) · G5 = clause d'absence : la porte n'exige aucune densité, aucun mot-clé, aucun texte additionnel");
 }
 

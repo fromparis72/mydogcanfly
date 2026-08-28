@@ -1,0 +1,108 @@
+{
+  "schema": 1,
+  "_commentaire": "CE QUE G1–G3 EXIGENT, ENTITÉ PAR ENTITÉ ET LANGUE PAR LANGUE. Contre-revue Codex du 28/08/2026 (P0-5) : la première version de G1–G3 annonçait « le verdict et ses conditions sont dans le HTML servi », « sources et dates vérifiables », « entités cohérentes title/h1/JSON-LD » — et ne vérifiait en fait que le nom dans <h1> et <title>, plus un fragment de source pour Air France seulement. Les pages pays et race ne prouvaient ni verdict, ni conditions, ni source, ni JSON-LD : la promesse dépassait le contrôle. Les attentes ci-dessous sont MESURÉES le 28/08/2026 sur le dist de production scellé, gabarit par gabarit et langue par langue, et chacune est éprouvée par sa propre mutation dans test-porte-lancement.mjs. Elles se jugent sur le TEXTE VISIBLE du <main> (parcours d'arbre parse5, sous-arbres cachés retirés), jamais sur le HTML brut : un fragment présent dans un attribut ou un commentaire ne prouve rien à un lecteur. LES DATES NE SONT PAS FIGÉES LITTÉRALEMENT : « date » est un MOTIF. Une date de vérification bouge par son propre registre de fraîcheur, à son propre étage ; ce que la porte doit tenir, c'est qu'une date de vérification EST RENDUE, dans la langue de la page. Figer ici le 8 juillet 2026 ferait rougir la porte le jour où la source est revérifiée — une porte qui rougit pour une raison qui n'est pas une faute finit par être contournée.",
+  "entites": [
+    {
+      "chemin": "airlines/air-france/",
+      "gabarit": "fiche compagnie",
+      "langues": {
+        "en": {
+          "nom": "Air France",
+          "verdict": "Cabin Accepted",
+          "conditions": "under 8 kg",
+          "source": "wwws.airfrance.us",
+          "date": "Verified on \\d{1,2} [A-Za-zé]+ 20\\d\\d"
+        },
+        "fr": {
+          "nom": "Air France",
+          "verdict": "Cabine Accepté",
+          "conditions": "sac souple ventilé sous le siège",
+          "source": "wwws.airfrance.us",
+          "date": "Vérifié le \\d{1,2} [a-zûé]+ 20\\d\\d"
+        },
+        "es": {
+          "nom": "Air France",
+          "verdict": "Cabina Aceptado",
+          "conditions": "menos de 8 kg",
+          "source": "wwws.airfrance.us",
+          "date": "Verificado el \\d{1,2} de [a-z]+ de 20\\d\\d"
+        },
+        "pt": {
+          "nom": "Air France",
+          "verdict": "Cabine Aceito",
+          "conditions": "menos de 8 kg",
+          "source": "wwws.airfrance.us",
+          "date": "Verificado em \\d{1,2} de [a-zç]+ de 20\\d\\d"
+        }
+      }
+    },
+    {
+      "chemin": "countries/fr/",
+      "gabarit": "fiche pays",
+      "langues": {
+        "en": {
+          "nom": "France",
+          "verdict": "Difficulty: Easy to difficult",
+          "conditions": "ISO microchip",
+          "source": "agriculture.gouv.fr",
+          "date": "last verified \\d{1,2} [A-Za-z]+ 20\\d\\d"
+        },
+        "fr": {
+          "nom": "France",
+          "verdict": "Difficulté: Facile à difficile",
+          "conditions": "Puce électronique Requise",
+          "source": "agriculture.gouv.fr",
+          "date": "vérifiées le \\d{1,2} [a-zûé]+ 20\\d\\d"
+        },
+        "es": {
+          "nom": "Francia",
+          "verdict": "Dificultad: De fácil a difícil",
+          "conditions": "Microchip Obligatorio",
+          "source": "agriculture.gouv.fr",
+          "date": "verificada el \\d{1,2} de [a-z]+ de 20\\d\\d"
+        },
+        "pt": {
+          "nom": "França",
+          "verdict": "Dificuldade: De fácil a difícil",
+          "conditions": "Microchip Obrigatório",
+          "source": "agriculture.gouv.fr",
+          "date": "verificadas em \\d{1,2} de [a-zç]+ de 20\\d\\d"
+        }
+      }
+    },
+    {
+      "chemin": "breeds/pug/",
+      "gabarit": "fiche race",
+      "langues": {
+        "en": {
+          "nom": "Pug",
+          "verdict": "Cabin Very often possible",
+          "conditions": "19 of 20 airlines with a published cabin weight limit accept ~8 kg",
+          "source": "DogTime",
+          "date": "verified 20\\d\\d-\\d\\d-\\d\\d"
+        },
+        "fr": {
+          "nom": "Carlin",
+          "verdict": "Cabine Très souvent possible",
+          "conditions": "19 compagnie(s) sur 20 publiant une limite de poids cabine acceptent ~8 kg",
+          "source": "DogTime",
+          "date": "vérifié 20\\d\\d-\\d\\d-\\d\\d"
+        },
+        "es": {
+          "nom": "Carlino",
+          "verdict": "Cabina Muy a menudo posible",
+          "conditions": "19 de 20 aerolíneas con un límite de peso en cabina publicado aceptan ~8 kg",
+          "source": "DogTime",
+          "date": "verificado 20\\d\\d-\\d\\d-\\d\\d"
+        },
+        "pt": {
+          "nom": "Pug",
+          "verdict": "Cabine Quase sempre possível",
+          "conditions": "19 de 20 companhias aéreas com limite de peso em cabine publicado aceitam ~8 kg",
+          "source": "DogTime",
+          "date": "verificado em 20\\d\\d-\\d\\d-\\d\\d"
+        }
+      }
+    }
+  ]
+}

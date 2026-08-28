@@ -1,5 +1,5 @@
 {
-  "schema": 1,
+  "schema": 2,
   "routes": {
     "version": 1,
     "include": [
@@ -41,367 +41,805 @@
       {
         "source": "/tools/iata-dog-crate-calculator/",
         "cible": "/tools/crate/",
-        "statut": 301
+        "statut": 301,
+        "surface": "statique",
+        "effet": {
+          "par": "plateforme",
+          "status": 301,
+          "location": "/tools/crate/"
+        }
       },
       {
         "source": "/tools/iata-dog-crate-calculator",
         "cible": "/tools/crate/",
-        "statut": 301
+        "statut": 301,
+        "surface": "statique",
+        "effet": {
+          "par": "plateforme",
+          "status": 301,
+          "location": "/tools/crate/"
+        }
       },
       {
         "source": "/tools/can-my-dog-fly/",
         "cible": "/#flight-finder",
-        "statut": 301
+        "statut": 301,
+        "surface": "statique",
+        "effet": {
+          "par": "plateforme",
+          "status": 301,
+          "location": "/#flight-finder"
+        }
       },
       {
         "source": "/tools/can-my-dog-fly",
         "cible": "/#flight-finder",
-        "statut": 301
+        "statut": 301,
+        "surface": "statique",
+        "effet": {
+          "par": "plateforme",
+          "status": 301,
+          "location": "/#flight-finder"
+        }
       },
       {
         "source": "/tools/dog-entry-requirements-by-country/",
         "cible": "/countries/",
-        "statut": 301
+        "statut": 301,
+        "surface": "statique",
+        "effet": {
+          "par": "plateforme",
+          "status": 301,
+          "location": "/countries/"
+        }
       },
       {
         "source": "/tools/dog-entry-requirements-by-country",
         "cible": "/countries/",
-        "statut": 301
+        "statut": 301,
+        "surface": "statique",
+        "effet": {
+          "par": "plateforme",
+          "status": 301,
+          "location": "/countries/"
+        }
       },
       {
         "source": "/dog-heat-safety/cavalier-king-charles-spaniel/",
         "cible": "/breeds/cavalier-king-charles/",
-        "statut": 301
+        "statut": 301,
+        "surface": "worker",
+        "effet": {
+          "par": "worker",
+          "status": 410,
+          "location": null
+        }
       },
       {
         "source": "/dog-heat-safety/*",
         "cible": "/breeds/:splat",
-        "statut": 301
+        "statut": 301,
+        "surface": "worker",
+        "effet": {
+          "par": "worker",
+          "status": 410,
+          "location": null
+        }
       },
       {
         "source": "/categories/destinations/",
         "cible": "/tools/destinations/",
-        "statut": 301
+        "statut": 301,
+        "surface": "worker",
+        "effet": {
+          "par": "worker",
+          "status": 410,
+          "location": null
+        }
       },
       {
         "source": "/categories/gear/",
         "cible": "/tools/best-crates/",
-        "statut": 301
+        "statut": 301,
+        "surface": "worker",
+        "effet": {
+          "par": "worker",
+          "status": 410,
+          "location": null
+        }
       },
       {
         "source": "/categories/*",
         "cible": "/travel-hub/",
-        "statut": 301
+        "statut": 301,
+        "surface": "worker",
+        "effet": {
+          "par": "worker",
+          "status": 410,
+          "location": null
+        }
       },
       {
         "source": "/airline-approved-dog-crate/",
         "cible": "/travel-hub/airline-approved-dog-crate/",
-        "statut": 301
+        "statut": 301,
+        "surface": "worker",
+        "effet": {
+          "par": "worker",
+          "status": 301,
+          "location": "/tools/crate/"
+        }
       },
       {
         "source": "/best-dog-cooling-mats/",
         "cible": "/travel-hub/best-dog-cooling-mats/",
-        "statut": 301
+        "statut": 301,
+        "surface": "worker",
+        "effet": {
+          "par": "worker",
+          "status": 410,
+          "location": null
+        }
       },
       {
         "source": "/best-dog-water-fountains-2026/",
         "cible": "/travel-hub/best-dog-water-fountains-2026/",
-        "statut": 301
+        "statut": 301,
+        "surface": "worker",
+        "effet": {
+          "par": "worker",
+          "status": 410,
+          "location": null
+        }
       },
       {
         "source": "/best-travel-dog-bowls/",
         "cible": "/travel-hub/best-travel-dog-bowls/",
-        "statut": 301
+        "statut": 301,
+        "surface": "worker",
+        "effet": {
+          "par": "worker",
+          "status": 410,
+          "location": null
+        }
       },
       {
         "source": "/camping-with-a-dog/",
         "cible": "/travel-hub/camping-with-a-dog/",
-        "statut": 301
+        "statut": 301,
+        "surface": "worker",
+        "effet": {
+          "par": "plateforme",
+          "status": 301,
+          "location": "/travel-hub/camping-with-a-dog/"
+        }
       },
       {
         "source": "/car-travel-dog-gear/",
         "cible": "/travel-hub/car-travel-dog-gear/",
-        "statut": 301
+        "statut": 301,
+        "surface": "worker",
+        "effet": {
+          "par": "worker",
+          "status": 410,
+          "location": null
+        }
       },
       {
         "source": "/city-trips-with-a-dog/",
         "cible": "/travel-hub/city-trips-with-a-dog/",
-        "statut": 301
+        "statut": 301,
+        "surface": "worker",
+        "effet": {
+          "par": "plateforme",
+          "status": 301,
+          "location": "/travel-hub/city-trips-with-a-dog/"
+        }
       },
       {
         "source": "/countryside-weekend-with-a-dog/",
         "cible": "/travel-hub/countryside-weekend-with-a-dog/",
-        "statut": 301
+        "statut": 301,
+        "surface": "worker",
+        "effet": {
+          "par": "plateforme",
+          "status": 301,
+          "location": "/travel-hub/countryside-weekend-with-a-dog/"
+        }
       },
       {
         "source": "/dog-car-barriers/",
         "cible": "/travel-hub/dog-car-barriers/",
-        "statut": 301
+        "statut": 301,
+        "surface": "worker",
+        "effet": {
+          "par": "worker",
+          "status": 410,
+          "location": null
+        }
       },
       {
         "source": "/dog-car-harness/",
         "cible": "/travel-hub/dog-car-harness/",
-        "statut": 301
+        "statut": 301,
+        "surface": "worker",
+        "effet": {
+          "par": "worker",
+          "status": 410,
+          "location": null
+        }
       },
       {
         "source": "/dog-carrier-backpacks/",
         "cible": "/travel-hub/dog-carrier-backpacks/",
-        "statut": 301
+        "statut": 301,
+        "surface": "worker",
+        "effet": {
+          "par": "worker",
+          "status": 410,
+          "location": null
+        }
       },
       {
         "source": "/dog-carriers-and-crates/",
         "cible": "/travel-hub/dog-carriers-and-crates/",
-        "statut": 301
+        "statut": 301,
+        "surface": "worker",
+        "effet": {
+          "par": "worker",
+          "status": 301,
+          "location": "/tools/crate/"
+        }
       },
       {
         "source": "/dog-coats-and-boots/",
         "cible": "/travel-hub/dog-coats-and-boots/",
-        "statut": 301
+        "statut": 301,
+        "surface": "worker",
+        "effet": {
+          "par": "plateforme",
+          "status": 301,
+          "location": "/travel-hub/dog-coats-and-boots/"
+        }
       },
       {
         "source": "/dog-digestive-issues-travel/",
         "cible": "/travel-hub/dog-digestive-issues-travel/",
-        "statut": 301
+        "statut": 301,
+        "surface": "worker",
+        "effet": {
+          "par": "worker",
+          "status": 410,
+          "location": null
+        }
       },
       {
         "source": "/dog-ear-infections-swimming/",
         "cible": "/travel-hub/dog-ear-infections-swimming/",
-        "statut": 301
+        "statut": 301,
+        "surface": "worker",
+        "effet": {
+          "par": "plateforme",
+          "status": 301,
+          "location": "/travel-hub/dog-ear-infections-swimming/"
+        }
       },
       {
         "source": "/dog-first-aid-kit/",
         "cible": "/travel-hub/dog-first-aid-kit/",
-        "statut": 301
+        "statut": 301,
+        "surface": "worker",
+        "effet": {
+          "par": "worker",
+          "status": 410,
+          "location": null
+        }
       },
       {
         "source": "/dog-friendly-accommodation/",
         "cible": "/travel-hub/dog-friendly-accommodation/",
-        "statut": 301
+        "statut": 301,
+        "surface": "worker",
+        "effet": {
+          "par": "worker",
+          "status": 410,
+          "location": null
+        }
       },
       {
         "source": "/dog-friendly-beaches/",
         "cible": "/travel-hub/dog-friendly-beaches/",
-        "statut": 301
+        "statut": 301,
+        "surface": "worker",
+        "effet": {
+          "par": "worker",
+          "status": 410,
+          "location": null
+        }
       },
       {
         "source": "/dog-friendly-france/",
         "cible": "/travel-hub/dog-friendly-france/",
-        "statut": 301
+        "statut": 301,
+        "surface": "worker",
+        "effet": {
+          "par": "worker",
+          "status": 301,
+          "location": "/countries/fr/"
+        }
       },
       {
         "source": "/dog-friendly-rest-stops/",
         "cible": "/travel-hub/dog-friendly-rest-stops/",
-        "statut": 301
+        "statut": 301,
+        "surface": "worker",
+        "effet": {
+          "par": "plateforme",
+          "status": 301,
+          "location": "/travel-hub/dog-friendly-rest-stops/"
+        }
       },
       {
         "source": "/dog-gps-trackers/",
         "cible": "/travel-hub/dog-gps-trackers/",
-        "statut": 301
+        "statut": 301,
+        "surface": "worker",
+        "effet": {
+          "par": "plateforme",
+          "status": 301,
+          "location": "/travel-hub/dog-gps-trackers/"
+        }
       },
       {
         "source": "/dog-grooming-kit-travel/",
         "cible": "/travel-hub/dog-grooming-kit-travel/",
-        "statut": 301
+        "statut": 301,
+        "surface": "worker",
+        "effet": {
+          "par": "worker",
+          "status": 410,
+          "location": null
+        }
       },
       {
         "source": "/dog-heatstroke/",
         "cible": "/travel-hub/dog-heatstroke/",
-        "statut": 301
+        "statut": 301,
+        "surface": "worker",
+        "effet": {
+          "par": "worker",
+          "status": 301,
+          "location": "/tools/heat/"
+        }
       },
       {
         "source": "/dog-hypothermia/",
         "cible": "/travel-hub/dog-hypothermia/",
-        "statut": 301
+        "statut": 301,
+        "surface": "worker",
+        "effet": {
+          "par": "worker",
+          "status": 410,
+          "location": null
+        }
       },
       {
         "source": "/dog-injury-first-aid/",
         "cible": "/travel-hub/dog-injury-first-aid/",
-        "statut": 301
+        "statut": 301,
+        "surface": "worker",
+        "effet": {
+          "par": "plateforme",
+          "status": 301,
+          "location": "/travel-hub/dog-injury-first-aid/"
+        }
       },
       {
         "source": "/dog-leashes-collars-harnesses/",
         "cible": "/travel-hub/dog-leashes-collars-harnesses/",
-        "statut": 301
+        "statut": 301,
+        "surface": "worker",
+        "effet": {
+          "par": "worker",
+          "status": 410,
+          "location": null
+        }
       },
       {
         "source": "/dog-motion-sickness/",
         "cible": "/travel-hub/dog-motion-sickness/",
-        "statut": 301
+        "statut": 301,
+        "surface": "worker",
+        "effet": {
+          "par": "worker",
+          "status": 410,
+          "location": null
+        }
       },
       {
         "source": "/dog-muzzles-for-travel/",
         "cible": "/travel-hub/dog-muzzles-for-travel/",
-        "statut": 301
+        "statut": 301,
+        "surface": "worker",
+        "effet": {
+          "par": "worker",
+          "status": 410,
+          "location": null
+        }
       },
       {
         "source": "/dog-night-safety-gear/",
         "cible": "/travel-hub/dog-night-safety-gear/",
-        "statut": 301
+        "statut": 301,
+        "surface": "worker",
+        "effet": {
+          "par": "worker",
+          "status": 410,
+          "location": null
+        }
       },
       {
         "source": "/dog-paw-pad-care/",
         "cible": "/travel-hub/dog-paw-pad-care/",
-        "statut": 301
+        "statut": 301,
+        "surface": "worker",
+        "effet": {
+          "par": "worker",
+          "status": 410,
+          "location": null
+        }
       },
       {
         "source": "/dog-potty-breaks-travel/",
         "cible": "/travel-hub/dog-potty-breaks-travel/",
-        "statut": 301
+        "statut": 301,
+        "surface": "worker",
+        "effet": {
+          "par": "worker",
+          "status": 410,
+          "location": null
+        }
       },
       {
         "source": "/dog-ramps-and-steps/",
         "cible": "/travel-hub/dog-ramps-and-steps/",
-        "statut": 301
+        "statut": 301,
+        "surface": "worker",
+        "effet": {
+          "par": "worker",
+          "status": 410,
+          "location": null
+        }
       },
       {
         "source": "/dog-separation-anxiety-vacation/",
         "cible": "/travel-hub/dog-separation-anxiety-vacation/",
-        "statut": 301
+        "statut": 301,
+        "surface": "worker",
+        "effet": {
+          "par": "worker",
+          "status": 410,
+          "location": null
+        }
       },
       {
         "source": "/dog-stings-and-bites/",
         "cible": "/travel-hub/dog-stings-and-bites/",
-        "statut": 301
+        "statut": 301,
+        "surface": "worker",
+        "effet": {
+          "par": "worker",
+          "status": 410,
+          "location": null
+        }
       },
       {
         "source": "/dog-travel-accessories/",
         "cible": "/travel-hub/dog-travel-accessories/",
-        "statut": 301
+        "statut": 301,
+        "surface": "worker",
+        "effet": {
+          "par": "worker",
+          "status": 410,
+          "location": null
+        }
       },
       {
         "source": "/dog-travel-anxiety/",
         "cible": "/travel-hub/dog-travel-anxiety/",
-        "statut": 301
+        "statut": 301,
+        "surface": "worker",
+        "effet": {
+          "par": "worker",
+          "status": 410,
+          "location": null
+        }
       },
       {
         "source": "/dog-travel-beds/",
         "cible": "/travel-hub/dog-travel-beds/",
-        "statut": 301
+        "statut": 301,
+        "surface": "worker",
+        "effet": {
+          "par": "worker",
+          "status": 410,
+          "location": null
+        }
       },
       {
         "source": "/dog-travel-gear/",
         "cible": "/travel-hub/dog-travel-gear/",
-        "statut": 301
+        "statut": 301,
+        "surface": "worker",
+        "effet": {
+          "par": "worker",
+          "status": 410,
+          "location": null
+        }
       },
       {
         "source": "/dog-travel-toys/",
         "cible": "/travel-hub/dog-travel-toys/",
-        "statut": 301
+        "statut": 301,
+        "surface": "worker",
+        "effet": {
+          "par": "worker",
+          "status": 410,
+          "location": null
+        }
       },
       {
         "source": "/dog-travel-vaccinations/",
         "cible": "/travel-hub/dog-travel-vaccinations/",
-        "statut": 301
+        "statut": 301,
+        "surface": "worker",
+        "effet": {
+          "par": "worker",
+          "status": 301,
+          "location": "/countries/"
+        }
       },
       {
         "source": "/dog-water-bottles/",
         "cible": "/travel-hub/dog-water-bottles/",
-        "statut": 301
+        "statut": 301,
+        "surface": "worker",
+        "effet": {
+          "par": "worker",
+          "status": 410,
+          "location": null
+        }
       },
       {
         "source": "/feeding-your-dog-while-traveling/",
         "cible": "/travel-hub/feeding-your-dog-while-traveling/",
-        "statut": 301
+        "statut": 301,
+        "surface": "worker",
+        "effet": {
+          "par": "worker",
+          "status": 410,
+          "location": null
+        }
       },
       {
         "source": "/ferry-travel-with-a-dog/",
         "cible": "/travel-hub/ferry-travel-with-a-dog/",
-        "statut": 301
+        "statut": 301,
+        "surface": "worker",
+        "effet": {
+          "par": "worker",
+          "status": 410,
+          "location": null
+        }
       },
       {
         "source": "/first-vacation-with-your-dog/",
         "cible": "/travel-hub/first-vacation-with-your-dog/",
-        "statut": 301
+        "statut": 301,
+        "surface": "worker",
+        "effet": {
+          "par": "worker",
+          "status": 410,
+          "location": null
+        }
       },
       {
         "source": "/flying-with-a-dog/",
         "cible": "/travel-hub/flying-with-a-dog/",
-        "statut": 301
+        "statut": 301,
+        "surface": "worker",
+        "effet": {
+          "par": "worker",
+          "status": 301,
+          "location": "/"
+        }
       },
       {
         "source": "/flying-with-a-dog-cabin-hold-cargo/",
         "cible": "/travel-hub/flying-with-a-dog-cabin-hold-cargo/",
-        "statut": 301
+        "statut": 301,
+        "surface": "worker",
+        "effet": {
+          "par": "worker",
+          "status": 301,
+          "location": "/"
+        }
       },
       {
         "source": "/foxtails-danger-dogs/",
         "cible": "/travel-hub/foxtails-danger-dogs/",
-        "statut": 301
+        "statut": 301,
+        "surface": "worker",
+        "effet": {
+          "par": "worker",
+          "status": 410,
+          "location": null
+        }
       },
       {
         "source": "/hot-pavement-dog-paws/",
         "cible": "/travel-hub/hot-pavement-dog-paws/",
-        "statut": 301
+        "statut": 301,
+        "surface": "worker",
+        "effet": {
+          "par": "worker",
+          "status": 410,
+          "location": null
+        }
       },
       {
         "source": "/international-travel-with-a-dog/",
         "cible": "/travel-hub/international-travel-with-a-dog/",
-        "statut": 301
+        "statut": 301,
+        "surface": "worker",
+        "effet": {
+          "par": "worker",
+          "status": 301,
+          "location": "/"
+        }
       },
       {
         "source": "/mountain-vacations-with-a-dog/",
         "cible": "/travel-hub/mountain-vacations-with-a-dog/",
-        "statut": 301
+        "statut": 301,
+        "surface": "worker",
+        "effet": {
+          "par": "worker",
+          "status": 410,
+          "location": null
+        }
       },
       {
         "source": "/no-pull-dog-harness/",
         "cible": "/travel-hub/no-pull-dog-harness/",
-        "statut": 301
+        "statut": 301,
+        "surface": "worker",
+        "effet": {
+          "par": "worker",
+          "status": 410,
+          "location": null
+        }
       },
       {
         "source": "/portable-dog-feeding-gear/",
         "cible": "/travel-hub/portable-dog-feeding-gear/",
-        "statut": 301
+        "statut": 301,
+        "surface": "worker",
+        "effet": {
+          "par": "plateforme",
+          "status": 301,
+          "location": "/travel-hub/portable-dog-feeding-gear/"
+        }
       },
       {
         "source": "/protecting-dog-paw-pads/",
         "cible": "/travel-hub/protecting-dog-paw-pads/",
-        "statut": 301
+        "statut": 301,
+        "surface": "worker",
+        "effet": {
+          "par": "worker",
+          "status": 410,
+          "location": null
+        }
       },
       {
         "source": "/public-transit-with-a-dog/",
         "cible": "/travel-hub/public-transit-with-a-dog/",
-        "statut": 301
+        "statut": 301,
+        "surface": "worker",
+        "effet": {
+          "par": "plateforme",
+          "status": 301,
+          "location": "/travel-hub/public-transit-with-a-dog/"
+        }
       },
       {
         "source": "/road-trip-with-a-dog/",
         "cible": "/travel-hub/road-trip-with-a-dog/",
-        "statut": 301
+        "statut": 301,
+        "surface": "worker",
+        "effet": {
+          "par": "worker",
+          "status": 410,
+          "location": null
+        }
       },
       {
         "source": "/small-dog-carriers/",
         "cible": "/travel-hub/small-dog-carriers/",
-        "statut": 301
+        "statut": 301,
+        "surface": "worker",
+        "effet": {
+          "par": "worker",
+          "status": 410,
+          "location": null
+        }
       },
       {
         "source": "/ticks-and-fleas-dog-travel/",
         "cible": "/travel-hub/ticks-and-fleas-dog-travel/",
-        "statut": 301
+        "statut": 301,
+        "surface": "worker",
+        "effet": {
+          "par": "plateforme",
+          "status": 301,
+          "location": "/travel-hub/ticks-and-fleas-dog-travel/"
+        }
       },
       {
         "source": "/train-travel-with-a-dog/",
         "cible": "/travel-hub/train-travel-with-a-dog/",
-        "statut": 301
+        "statut": 301,
+        "surface": "worker",
+        "effet": {
+          "par": "worker",
+          "status": 410,
+          "location": null
+        }
       },
       {
         "source": "/traveling-by-car-with-a-dog/",
         "cible": "/travel-hub/traveling-by-car-with-a-dog/",
-        "statut": 301
+        "statut": 301,
+        "surface": "worker",
+        "effet": {
+          "par": "plateforme",
+          "status": 301,
+          "location": "/travel-hub/traveling-by-car-with-a-dog/"
+        }
       },
       {
         "source": "/traveling-with-a-puppy/",
         "cible": "/travel-hub/traveling-with-a-puppy/",
-        "statut": 301
+        "statut": 301,
+        "surface": "worker",
+        "effet": {
+          "par": "plateforme",
+          "status": 301,
+          "location": "/travel-hub/traveling-with-a-puppy/"
+        }
       },
       {
         "source": "/traveling-with-a-senior-or-sick-dog/",
         "cible": "/travel-hub/traveling-with-a-senior-or-sick-dog/",
-        "statut": 301
+        "statut": 301,
+        "surface": "worker",
+        "effet": {
+          "par": "worker",
+          "status": 410,
+          "location": null
+        }
       },
       {
         "source": "/weekend-near-paris-with-a-dog/",
         "cible": "/travel-hub/weekend-near-paris-with-a-dog/",
-        "statut": 301
+        "statut": 301,
+        "surface": "worker",
+        "effet": {
+          "par": "worker",
+          "status": 410,
+          "location": null
+        }
       }
     ],
     "legacy_redirects": [
@@ -966,9 +1404,9 @@
     "_worker.js": "0df6720bd72d639665229fcf06fc735bbf82a8af97cb326dce987626c891a625"
   },
   "empreintes": {
-    "globale": "83752b07df605f6b9ae9a6065aab5f41a193ad69d8b8b62e24e4d1c5c4914f25",
+    "globale": "e3b74eef4488cc1d7a7e7ac884e8479c04b1233f705016fab2ae66d52a5f589e",
     "par_famille": {
-      "redirects_statiques": "5e6289289e5fcbbb63e74b62aedf9a7887f07b6f697ee0f55c171419781dec57",
+      "redirects_statiques": "dfa890f640e97b118f136a0ff9be8403b1861df2b9e2924b3c619f34fc31c3d1",
       "legacy_redirects": "fe217f542060f7372612eeca490bed5d47ea2e981385b685f0364fd09b5d8185",
       "gone_exact": "947b06ceaf0873a24fd53ec71ad1a44a439b5a0c8e160c5988c19a30521edf09",
       "gone_prefixes": "8b0870081bd9a55c45f293c1b0f49bee47932c2ee51398037802ab6758efd12e"

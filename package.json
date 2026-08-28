@@ -44,7 +44,7 @@
     "test:porte": "node test-porte-lancement.mjs",
     "build:production": "node packages/knowledge/scripts/build-production.mjs",
     "deployer:production": "node packages/knowledge/scripts/deployer-production.mjs",
-    "release": "node packages/knowledge/scripts/lib/require-node.mjs \"le déploiement de production (release)\" && npm run build:prod && npm run verify:index && npx wrangler pages deploy packages/ui/dist --project-name=mydogcanfly-v2-preview --branch=main --commit-dirty=true",
+    "release": "node packages/knowledge/scripts/release-retiree.mjs",
     "typecheck": "npm -w @mydogcanfly/knowledge run typecheck && npm -w @mydogcanfly/engine run typecheck && npm -w @mydogcanfly/workers run typecheck",
     "audit": "node packages/knowledge/scripts/audit-site.mjs",
     "test:ingest": "node test-ingest-check.mjs",
@@ -64,6 +64,7 @@
   "devDependencies": {
     "@types/node": "^22.5.0",
     "jsdom": "30.0.1",
+    "parse5": "^7.3.0",
     "tsx": "^4.19.1",
     "typescript": "^5.6.2"
   }
