@@ -27,7 +27,15 @@ export const GET: APIRoute = ({ site }) => {
       `Disallow: /lab/\n` +
       `Sitemap: ${base}/sitemap.xml\n`;
   } else {
-    body = `# Preview / non-production build — indexing disabled\nUser-agent: *\nDisallow: /\n`;
+    /* PRÉVERSION : le robots N'INTERDIT PLUS l'exploration (contre-revue de la porte, v2→v6,
+     * constaté vivant le 28/08/2026). `Disallow: /` empêchait Google de LIRE le `noindex` que
+     * chaque page porte — une page bloquée par robots.txt ne peut pas être explorée pour lire
+     * sa balise, et son URL peut malgré tout apparaître dans l'index (Google Search Central,
+     * block-indexing). Le mécanisme qui tient la promesse « non indexée » est le `noindex,
+     * nofollow` global des pages de préversion (Base.astro) : le robots doit laisser passer
+     * pour qu'il soit lu. `Disallow:` vide = tout est explorable ; AUCUNE ligne Sitemap —
+     * une préversion n'annonce rien. Gardé par la porte (V2, V3) et ses contre-épreuves 13-14. */
+    body = `# Preview / non-production build — deindexed via per-page noindex\nUser-agent: *\nDisallow:\n`;
   }
   return new Response(body, { headers: { "content-type": "text/plain; charset=utf-8" } });
 };
