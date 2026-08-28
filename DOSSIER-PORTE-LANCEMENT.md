@@ -1,8 +1,30 @@
 # Porte de lancement SEO/GEO — dossier de conception
 
-**Version 5 — 28/08/2026, sur `main` `3a65e556` (la RC fusionnée, les deux jobs requis
-verts — run 81). Conception avant code : aucun harnais n'est écrit tant que cette
-conception révisée n'est pas contre-revue.**
+**Version 6 — 28/08/2026, sur `main` `52fe123` (branche resynchronisée — P1 de la 5ᵉ
+contre-revue). Conception avant code : aucun harnais n'est écrit tant que cette conception
+révisée n'est pas contre-revue.**
+
+**Ce que la v6 corrige (5ᵉ contre-revue Codex du 28/08/2026), nommé :**
+1. **P0-1 — la contre-épreuve 17 bis ne pouvait pas mordre.** Retirer une URL d'un sitemap
+   enfant RÉDUIT l'ensemble parcouru : toutes les URL restantes répondent encore 200, et
+   P3 ne vérifiait que « URL listée → fichier existant », jamais l'inverse. P3 exige
+   désormais l'ÉGALITÉ EXACTE entre l'ensemble des pages HTML publiques et indexables du
+   dist et l'union dédupliquée des quatre sitemaps enfants — une page publique absente des
+   sitemaps rougit, une URL surnuméraire rougit. 17 bis peut alors réellement échouer.
+2. **P0-2 — le scellé ne couvrait pas les trois pièces EXACTES du routage.** Le registre
+   couvrait les tables extraites, pas l'objet exact de `_routes.json` ni le code dynamique
+   du Worker (`heatRaceTarget()`, `presskitTarget()`) : une exclusion de `_routes.json`
+   troquée contre une autre non exercée par les sondes, ou une logique dynamique modifiée
+   sans toucher aux tables, passaient. Le scellé couvre désormais TROIS niveaux : la
+   représentation canonique exacte de `_routes.json`, le registre canonique des règles
+   parsées (diagnostics lisibles, diff approuvable), et l'empreinte SHA-256 de chacun des
+   trois fichiers du dist (`_routes.json`, `_redirects`, `_worker.js`) — les empreintes
+   garantissent qu'aucune logique ne change hors rescellement nommé. Contre-épreuves 19
+   et 20.
+3. **P1 — exécution des mutations** : un Worker muté doit être importé dans un processus
+   NEUF ou via une URL ESM unique (suffixe de cache-busting), sinon le cache de modules
+   ferait exercer l'ancienne copie pendant la contre-épreuve — consigné en tête du § 5.
+   Et la branche est resynchronisée sur le `main` réel `52fe123`.
 
 **Ce que la v5 corrige (4ᵉ contre-revue Codex du 28/08/2026, après sa contre-vérification
 de la préversion — 2 536 URL en 200 + noindex), nommé :**
@@ -181,12 +203,20 @@ contre-test post-déploiement du § 6, exhaustif et bloquant, qui la juge.
 pointant le domaine de production, et **rien d'autre** — un `Disallow: /` résiduel de
 préversion est le défaut classique du lancement raté.
 
-**P3 — sitemaps exacts.** L'index référence exactement les 4 sitemaps de langue. Chaque URL
-listée : (a) correspond à un fichier réellement présent dans `dist/` (aucune 404) ; (b) est
-sur le domaine de production ; (c) n'est la cible d'aucune règle de `_redirects` (une URL de
-sitemap qui redirige est une URL fausse) ; (d) n'est pas une page `noindex` ; (e) aucune URL
-retirée n'y figure — `/tools/is-it-too-hot-for-my-dog/` nommément (recouvrement assumé avec
-la garde du lot F : deux gardes valent mieux qu'un trou).
+**P3 — sitemaps exacts, dans les DEUX sens (v6).** L'index référence exactement les
+4 sitemaps de langue. Puis **égalité exacte d'ensembles** : l'union DÉDUPLIQUÉE des URL des
+quatre sitemaps enfants doit être identique à l'ensemble des pages HTML publiques et
+INDEXABLES du dist (toutes les pages construites, moins les entrées de
+`porte-noindex-admis.json`) —
+- une page publique indexable ABSENTE des sitemaps rougit (le défaut que « URL listée →
+  fichier existant » ne voyait pas : c'est ce qui rend la contre-épreuve 17 bis capable de
+  mordre) ;
+- une URL SURNUMÉRAIRE des sitemaps (sans page, ou vers une page `noindex`) rougit ;
+- un doublon entre sitemaps enfants rougit (l'union se calcule, les doublons se nomment).
+Chaque URL listée reste en outre : (a) sur le domaine de production ; (b) jamais cible d'une
+règle de `_redirects` ni du Worker (une URL de sitemap qui redirige est une URL fausse) ;
+(c) aucune URL retirée n'y figure — `/tools/is-it-too-hot-for-my-dog/` nommément
+(recouvrement assumé avec la garde du lot F : deux gardes valent mieux qu'un trou).
 
 **P4 — canoniques.** Chaque page publique porte exactement une canonique, absolue, sur le
 domaine de production, pointant une page qui existe dans `dist/` ; une canonique de préversion
@@ -237,6 +267,17 @@ juger une vue partielle. La porte :
   non figé » ne peut plus se produire ici). Tout mouvement = rescellement nommé, dans la
   même PR que le changement, revu par son diff. Chaque cible de redirection doit être
   construite dans le dist et vivante à travers le routage réel ;
+- **le scellé couvre les trois pièces EXACTES, pas seulement les tables (v6)** — les
+  tables parsées ne voient ni l'objet de `_routes.json` ni le code dynamique du Worker
+  (`heatRaceTarget()`, `presskitTarget()`) : une exclusion troquée contre une autre non
+  exercée par les sondes, ou une logique modifiée sans toucher aux tables, passeraient.
+  `porte-routage-scelle.json` porte donc trois niveaux : (a) la représentation canonique
+  EXACTE de `_routes.json` (include/exclude, ordonnés) ; (b) le registre canonique des
+  règles parsées, ci-dessus ; (c) l'**empreinte SHA-256 de chacun des trois fichiers du
+  dist** — `_routes.json`, `_redirects`, `_worker.js`. Les empreintes garantissent
+  qu'aucune logique dynamique ne change hors d'un rescellement nommé ; le registre garde
+  les diagnostics lisibles et le diff approuvable — les deux se complètent, aucun ne
+  remplace l'autre ;
 - **la cohérence SOURCES ↔ registre vit ailleurs, et c'est nommé** : une garde de
   test:unit (côté sources, hors porte) vérifie que les 62 fichiers
   `content/posts/*-dog-policy.md` ont chacun leur règle au registre scellé et
@@ -333,7 +374,12 @@ Conformément à l'arbitrage : **la porte vérifie, elle n'ajoute jamais de cont
   mot-clé, aucun texte additionnel ; ce point est une clause de conception, pas un contrôle
   exécutable, et il est écrit pour qu'on ne puisse pas l'ajouter « en passant ».
 
-## 5. Les dix-neuf contre-épreuves de la porte (exigées avant tout feu vert)
+## 5. Les vingt et une contre-épreuves de la porte (exigées avant tout feu vert)
+
+**Exécution des mutations (v6, 5ᵉ contre-revue)** : toute contre-épreuve qui mute le
+`_worker.js` importe la copie mutée dans un processus NEUF, ou via une URL ESM rendue
+unique (suffixe de requête de cache-busting) — sans quoi le cache de modules ferait
+exercer l'ANCIENNE copie et la contre-épreuve prouverait le vide.
 
 Sur le modèle des harnais du dépôt : chaque garantie doit avoir été **vue rougir pour sa
 cause**, par mutation d'une copie de `dist/` (jamais du dépôt), en exerçant la vraie porte :
@@ -371,10 +417,18 @@ cause**, par mutation d'une copie de `dist/` (jamais du dépôt), en exerçant l
     constant (cible changée, ou une entrée troquée contre une autre) → les décomptes ne
     bougent pas, le registre exact rougit — la contre-épreuve qui distingue un registre
     d'un agrégat ;
-17 bis. **(v5)** une URL de page retirée d'un sitemap ENFANT (l'index restant intact) →
-    le parcours complet des sitemaps le voit — la porte ne juge jamais l'index seul ;
+17 bis. **(v5, rendue mordante en v6)** une URL de page retirée d'un sitemap ENFANT
+    (l'index restant intact) → l'ÉGALITÉ D'ENSEMBLES de P3 rougit : la page publique
+    indexable existe dans le dist et manque à l'union des sitemaps — c'est le sens
+    inverse, celui que « URL listée → fichier existant » ne voyait pas ;
 18. **(v4)** `deployer-production.mjs` invoqué avec une commande de déploiement privée de
-    `--branch=main` → AUCUN déploiement autorisé, refus avant tout appel réseau.
+    `--branch=main` → AUCUN déploiement autorisé, refus avant tout appel réseau ;
+19. **(v6)** une exclusion de `dist/_routes.json` troquée contre une autre (même nombre
+    d'entrées, périmètre différent) → la représentation canonique scellée de
+    `_routes.json` rougit, même si aucune sonde n'exerce le chemin troqué ;
+20. **(v6)** une fonction dynamique du Worker (`heatRaceTarget()`, `presskitTarget()`)
+    modifiée dans une copie du `dist/_worker.js`, tables et effectifs intacts →
+    l'empreinte SHA-256 du fichier, scellée au registre, rougit.
 
 ## 6. Câblage — où la porte tourne, et sur quoi
 
@@ -435,8 +489,8 @@ clôture chaleur, annonce du site) ni du contrat de provenance : elle les cite e
 
 ---
 
-*Prochaine étape : contre-revue de cette conception RÉVISÉE (v4) par Codex. Le code de la
+*Prochaine étape : contre-revue de cette conception RÉVISÉE (v6) par Codex. Le code de la
 porte, sa liste `porte-noindex-admis.json`, le wrapper de build production adossé à
 `provenance.mjs`, la commande `deployer-production.mjs` (cycle complet, rollback vérifié
-compris), le changement de `robots.txt.ts` en préversion et les dix-neuf contre-épreuves (le registre de routage scellé compris) ne
+compris), le changement de `robots.txt.ts` en préversion et les vingt et une contre-épreuves (le registre de routage scellé à trois niveaux compris) ne
 s'écrivent qu'après son feu vert.*
