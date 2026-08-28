@@ -39,8 +39,6 @@ cover:
 
 The French Bulldog is, pound for pound, one of the breeds most likely to end up at an emergency vet with heatstroke. Its charm — that smushed, expressive face — is exactly what makes it so vulnerable to heat. If you share your life with a Frenchie, understanding its heat limits isn't optional; it's one of the most important things you can do to keep it safe through spring and summer.
 
-👉 **Want a live answer for right now?** Our free **[Is it too hot for your dog? checker](/tools/is-it-too-hot-for-my-dog/?breed=French%20Bulldog)** is pre-set for the French Bulldog — it reads your local weather and tells you whether it's safe to head out.
-
 *This article is for information only and does not replace advice from a veterinarian.*
 
 ## Why the French Bulldog is so vulnerable to heat
