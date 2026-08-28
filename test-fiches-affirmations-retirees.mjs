@@ -22,11 +22,22 @@
  * (62 fiches compagnies, dont alaska-airlines-dog-policy.md et ses « 68 kg / 150 lb ») et
  * `static/tools/can-my-dog-fly/index.html` (le jeu de données v1 complet). Leur état, MESURÉ :
  * elles ne sont PAS importées par le Travel Hub (aucun guide ne porte leur sourceUrl), PAS
- * construites par Astro (aucune page dans dist), et leurs URL ne sont PAS redirigées — les 86
- * règles de `_redirects` n'en couvrent aucune : elles répondent 404 sur le site v2, comme
- * toute la classe des 62. (Le premier constat de contre-revue supposait une redirection vers
- * /airlines/alaska/ — c'est inexact pour ce dépôt, et c'est dit plutôt que corrigé en douce.)
- * Le contrôle 1 bis rend cette exclusion OPPOSABLE : si une de ces sources se met à être
+ * construites par Astro (aucune page dans dist), et leurs 62 URL v1 sont REDIRIGÉES en 301
+ * vers /airlines/<slug>/ par le Worker Pages (`packages/ui/public/_worker.js`,
+ * LEGACY_REDIRECTS, périmètre contrôlé par `_routes.json`, exercé par
+ * `packages/knowledge/scripts/test-legacy-urls.mjs`).
+ *
+ * CORRECTION DE MESURE (28/08/2026, 2e contre-revue de la conception porte), nommée : la
+ * première version de ce commentaire affirmait « leurs URL ne sont PAS redirigées, elles
+ * répondent 404 » et qualifiait d'inexact le constat de contre-revue qui disait l'inverse.
+ * C'était MA mesure qui était fausse : j'avais grepé `_redirects` (86 règles, qui ne couvrent
+ * effectivement aucune de ces URL) sans ouvrir `_worker.js` NI `_routes.json` — deux fichiers
+ * du MÊME répertoire, que j'avais pourtant listé. `_redirects` est une vue partielle du
+ * routage Pages, pas son registre effectif — la même classe de défaut que « agrégats exacts,
+ * registre non figé ». Le contrôle HTTP de contre-revue a établi les 62/62 en 301 vers leur
+ * cible exacte.
+ *
+ * Le contrôle 1 bis rend l'exclusion OPPOSABLE : si une de ces sources se met à être
  * importée ou construite, il rougit. Le verdict final de cette garde est borné en
  * conséquence : « toutes les surfaces CONSTRUITES », jamais « toutes les surfaces ».
  */
