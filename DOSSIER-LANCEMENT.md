@@ -146,9 +146,14 @@ OK ou le défaut observé (page, texte, capture si utile)** :
 4. **Travel Hub** (`/travel-hub/`) : l'index rend ses rubriques ; ouvrir un guide au
    hasard : la couverture s'affiche (pas d'image cassée), le texte est dans la langue de
    la page.
-5. **Outils** (`/tools/`) : la page annonce TROIS outils, aucune promesse chaleur ;
-   `/tools/is-it-too-hot-for-my-dog/` répond **404** (c'est le contrat) ; le calculateur
-   de caisse rend et répond à une saisie.
+5. **Outils** (`/tools/`) : la page v2 « The tools that matter » liste SES cartes —
+   « Summer heat risk? » → `/tools/heat/` est un outil réel et légitime. Ce qui se vérifie :
+   aucune carte ne promet le vérificateur « fait-il trop chaud ici, maintenant » (jamais
+   construit) ; `/tools/is-it-too-hot-for-my-dog/` tapée à la main répond **404** (c'est le
+   contrat) ; une ou deux cartes ouvertes au hasard répondent.
+   *(Correction de protocole, nommée : la première version exigeait « TROIS outils » —
+   critère du fichier hérité v1 `content/tools.md`, que le site v2 ne publie pas, transposé
+   à tort sur la page v2. Constaté par Philippe au contre-test du 28/08.)*
 6. **Console + Réseau, bilan de la langue** : zéro erreur console (les avertissements
    sont notés mais non bloquants) ; aucune requête vers un domaine inattendu (uniquement
    la préversion elle-même et le Worker versionné) ; aucune 4xx/5xx hors le 404 voulu du
