@@ -9,12 +9,12 @@ attendent chacun un ordre explicite du propriétaire.
 
 ---
 
-## 1. État des PR au 28/08/2026 (04:30 UTC)
+## 1. État des PR au 28/08/2026 (07:00 UTC) — LES DEUX FUSIONNÉES
 
-| PR | Objet | Branche | Tête | Jobs requis | Mergeable | Fusion |
-|---|---|---|---|---|---|---|
-| #26 | Lot F clos : outil chaleur jamais construit, adresse morte partout, garde opposable | `claude/lot-f-cloture` | `6cf18b6` | verts (les deux) | clean | **attend l'ordre propriétaire** |
-| #27 | RC — corrections de lancement (sources vérifiées, VA conditionnelle, mention transporteur, 2ᵉ passe Codex intégrée) | `claude/rc-corrections` | `806064f` | CI en cours (tout vert en local, dont entities:complet 128 OK) | clean | **attend l'ordre propriétaire** |
+| PR | Objet | Tête fusionnée | Verdict Codex | Fusion |
+|---|---|---|---|---|
+| #26 | Lot F clos : outil chaleur jamais construit, adresse morte partout, garde opposable | `6cf18b6` → squash `d817e41` | feu vert final | **fusionnée** sur ordre Philippe (« OK pour fusion »), CI de main verte (run 79) |
+| #27 | RC — corrections de lancement (sources vérifiées, VA conditionnelle, fiches sans faits non prouvés, mention transporteur) | `4cb0417` (resync post-#26, réserve soldée en `dae5063`) → squash `3a65e55` | feu vert v2 + réserve soldée | **fusionnée** sur ordre Philippe (confirmation explicite pour la #27) ; CI de main sur `3a65e55` : `[EN COURS]` |
 
 Historique CI de la PR #27 : trois pannes successives, chacune nommée dans le corps
 de la PR et dans les messages de commit (sentinelle caisse corrigée à la dérivation ;
@@ -31,9 +31,9 @@ reformatage — le format d'un fichier visé par une mutation est porteur).
 
 ## 2. SHA de la release candidate
 
-`[EN ATTENTE]` — sera le SHA de `main` après fusion, dans l'ordre décidé par le
-propriétaire, des PR #26 et #27. Le SHA sera consigné ici avec le lien du run CI
-vert de `main`.
+**`3a65e556d477cad2aef9670dc2c3e38ade5155f3`** — `main` après les fusions #26 (`d817e41`,
+CI verte, run 79) puis #27 (squash de `4cb0417`, les deux jobs verts sur la branche).
+Le run CI de `main` sur ce SHA est à confirmer vert avant tout gel de préversion.
 
 ## 3. Porte SEO/GEO
 
@@ -59,7 +59,13 @@ vert de `main`.
 
 ## 4. Préversion finale immuable (chantier 4)
 
-`[EN ATTENTE]` des fusions. Séquence prévue, fondée sur l'outillage mesuré du dépôt :
+**Blocage matériel mesuré (28/08, 07:00 UTC)** : le conteneur de cette session ne porte
+AUCUN identifiant Cloudflare (zéro variable `CLOUDFLARE_*`/`CF_*`) — `deploy:preview` ne
+peut pas partir d'ici. Deux voies, au choix du propriétaire : (a) Philippe exécute
+lui-même `npm run --silent deploy:preview -- --json` sur un poste authentifié (arbre
+propre, HEAD = `3a65e55`), et me transmet le manifeste ; (b) un `CLOUDFLARE_API_TOKEN`
+est ajouté à l'environnement de la session (portée Pages+Workers minimale) et je déroule
+la séquence. Séquence, fondée sur l'outillage mesuré du dépôt :
 
 1. **Préflight** : arbre Git propre ET `HEAD == origin/main` — exigé sans dérogation
    par `deploy-preview.mjs` ; le SHA de la préversion est donc mécaniquement celui
