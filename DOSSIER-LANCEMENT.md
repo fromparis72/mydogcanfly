@@ -33,7 +33,9 @@ reformatage — le format d'un fichier visé par une mutation est porteur).
 
 **`3a65e556d477cad2aef9670dc2c3e38ade5155f3`** — `main` après les fusions #26 (`d817e41`,
 CI verte, run 79) puis #27 (squash de `4cb0417`, les deux jobs verts sur la branche).
-Le run CI de `main` sur ce SHA est à confirmer vert avant tout gel de préversion.
+**CI de `main` sur ce SHA : VERTE** — run 81, conclusion success, les deux jobs :
+https://github.com/fromparis72/mydogcanfly/actions/runs/33150628720 (28/08/2026, 07:12→07:27
+UTC). La RC est consacrée : c'est ce SHA que la préversion immuable devra geler.
 
 ## 3. Porte SEO/GEO
 
