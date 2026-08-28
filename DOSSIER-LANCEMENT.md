@@ -61,13 +61,34 @@ UTC). La RC est consacrée : c'est ce SHA que la préversion immuable devra gele
 
 ## 4. Préversion finale immuable (chantier 4)
 
-**Blocage matériel mesuré (28/08, 07:00 UTC)** : le conteneur de cette session ne porte
-AUCUN identifiant Cloudflare (zéro variable `CLOUDFLARE_*`/`CF_*`) — `deploy:preview` ne
-peut pas partir d'ici. Deux voies, au choix du propriétaire : (a) Philippe exécute
-lui-même `npm run --silent deploy:preview -- --json` sur un poste authentifié (arbre
-propre, HEAD = `3a65e55`), et me transmet le manifeste ; (b) un `CLOUDFLARE_API_TOKEN`
-est ajouté à l'environnement de la session (portée Pages+Workers minimale) et je déroule
-la séquence. Séquence, fondée sur l'outillage mesuré du dépôt :
+**DÉPLOYÉE ET VÉRIFIÉE (28/08/2026, ~09:12 UTC)** — voie (a) : Philippe a exécuté
+`npm run --silent deploy:preview -- --json` depuis un clone frais de `main` (le blocage
+matériel du conteneur — aucun identifiant Cloudflare — reste vrai et documenté plus bas).
+Manifeste transmis, **statut `verified`, `failed_step: null`, les 7 étapes vraies** :
+
+| champ | valeur |
+|---|---|
+| `git_sha` = `origin_main_sha` | `3a65e556d477cad2aef9670dc2c3e38ade5155f3` (la RC), arbre propre |
+| version Worker | `f1de133d-0381-46c0-a589-ee9c761809c1` |
+| URL Worker versionnée | `https://f1de133d-mydogcanfly-api-preview.fromparis.workers.dev` |
+| santé Worker | double concordance : `worker_health_sha` = SHA RC, `worker_health_version_id` = version |
+| projet · branche Pages | `mydogcanfly-v2-preview` · `review-3a65e556d477` |
+| déploiement Pages | `c069856d-1dc6-47a7-a4fa-57102e98b952` |
+| **URL de préversion IMMUABLE** | **`https://c069856d.mydogcanfly-v2-preview.pages.dev`** |
+| alias de branche | `https://review-3a65e556d477.mydogcanfly-v2-preview.pages.dev` |
+| `public_api_base` du bundle | l'URL Worker versionnée (jamais l'alias) |
+| smoke | 200 · noindex présent · bundle épinglé sur l'URL versionnée |
+| wrangler | 3.114.17 |
+| alias Worker partagé | **NON modifié** (invariant tenu) |
+
+Manifeste local : `.artifacts/previews/3a65e556…/manifest.json` sur le poste de Philippe
+(copie `~/manifest-preview.json`) ; contenu intégral relayé en session le 28/08. Étape
+suivante : le contre-test navigateur du § 6 sur l'URL immuable, puis — sur ordre
+propriétaire uniquement — `npm run promote:preview-alias -- .artifacts/previews/3a65e556…/manifest.json`.
+Observation consignée sans action : le projet Pages porte d'anciens déploiements
+« Production main » (tête `922786e`, il y a 2 semaines) — l'état de la production Pages
+sera re-vérifié par les quatre concordances du § 6 de la conception porte avant tout
+déploiement. Séquence, fondée sur l'outillage mesuré du dépôt :
 
 1. **Préflight** : arbre Git propre ET `HEAD == origin/main` — exigé sans dérogation
    par `deploy-preview.mjs` ; le SHA de la préversion est donc mécaniquement celui
@@ -85,9 +106,9 @@ la séquence. Séquence, fondée sur l'outillage mesuré du dépôt :
    Sa promotion (`npm run promote:preview-alias -- .artifacts/previews/<sha>/manifest.json`)
    exige le manifeste au statut `verified` et un **ordre explicite du propriétaire**.
 
-- URL de préversion (versionnée, immuable) : `[EN ATTENTE]`
-- ID de version Worker + tag `git-<sha>` : `[EN ATTENTE]`
-- sha256 du manifeste : `[EN ATTENTE]`
+- URL de préversion (versionnée, immuable) : **`https://c069856d.mydogcanfly-v2-preview.pages.dev`**
+- ID de version Worker : `f1de133d-0381-46c0-a589-ee9c761809c1` (santé concordante sur `3a65e556`)
+- sha256 du manifeste : `[EN ATTENTE]` (à relever sur le poste de Philippe : `shasum -a 256 ~/manifest-preview.json`)
 
 ## 5. Rapport SEO/GEO
 
