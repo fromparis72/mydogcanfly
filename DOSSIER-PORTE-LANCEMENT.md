@@ -1,8 +1,32 @@
 # Porte de lancement SEO/GEO — dossier de conception
 
-**Version 4 — 28/08/2026, sur `main` `3a65e556` (la RC fusionnée, les deux jobs requis
+**Version 5 — 28/08/2026, sur `main` `3a65e556` (la RC fusionnée, les deux jobs requis
 verts — run 81). Conception avant code : aucun harnais n'est écrit tant que cette
 conception révisée n'est pas contre-revue.**
+
+**Ce que la v5 corrige (4ᵉ contre-revue Codex du 28/08/2026, après sa contre-vérification
+de la préversion — 2 536 URL en 200 + noindex), nommé :**
+1. **P7 bis jugeait les SOURCES, pas l'artefact.** La bijection de la v4 comparait
+   `content/posts/*.md` (sources du dépôt) au `packages/ui/public/_worker.js` (source du
+   dépôt) — or la porte scelle et juge un `dist/` : ses objets sont `dist/_worker.js`,
+   `dist/_routes.json` et `dist/_redirects` (présents dans l'artefact, couverts par
+   l'empreinte de provenance — mesuré). Une porte qui lit hors de l'artefact qu'elle
+   scelle rejuge autre chose que ce qui sera publié. Corrigé : P7 bis ne lit QUE le dist ;
+   la cohérence sources ↔ registre vit dans une garde de test:unit, séparée et nommée.
+2. **Le parcours des sitemaps s'arrêtait à l'INDEX.** `dist/sitemap.xml` est un index à
+   4 entrées (mesuré) : un parcours de ses `<loc>` ne visite que les 4 sitemaps de langue,
+   jamais les 2 536 URL de pages. Corrigé : la porte parse l'index, PUIS chaque sitemap
+   enfant, et fait passer TOUTES les URL de pages par le routage reproduit.
+3. **Le « dénombrement par famille » était un agrégat, pas un registre.** Un décompte
+   stable peut couvrir une règle remplacée par une autre — la leçon du lot B, encore.
+   Corrigé : l'attente devient un REGISTRE EXACT versionné (`porte-routage-scelle.json`) —
+   chaque règle sérialisée canoniquement avec sa famille, empreintes SHA-256 globale et
+   par famille, comparaison BIDIRECTIONNELLE avec les tables parsées du `dist/_worker.js`
+   et du `dist/_redirects` ; les décomptes en dérivent, ils ne tiennent jamais seuls ;
+   tout mouvement passe par un rescellement nommé, dans la même PR que le changement.
+Constat vivant consigné par la même contre-revue : le `robots.txt` SERVI par la préversion
+porte encore `Disallow: /` — c'est précisément le changement de `robots.txt.ts` nommé
+depuis la v3, à livrer AVEC le code de la porte ; la contre-épreuve 13 le garde ensuite.
 
 **Ce que la v4 corrige (3ᵉ contre-revue Codex du 28/08/2026), nommé :**
 1. **P0-1 — la surface réelle des redirections était absente du contrat.** La v3 (et ma
@@ -190,24 +214,33 @@ vérifie pas comme une redirection statique :
   résout par substitution du `:splat` et vérifie dans `dist/` — une règle dynamique sans
   exemple versionné rougit (règle non prouvable = règle non prouvée).
 
-**P7 bis — le routage EFFECTIF, pas sa vue partielle (v4).** Le routage Pages du dépôt a
-TROIS pièces : `_redirects`, `_routes.json` (qui décide ce qui atteint le Worker) et
-`packages/ui/public/_worker.js` (LEGACY_REDIRECTS 301, GONE_EXACT/GONE_PREFIXES 410,
-mapping `/dog-heat-safety/<slug>/` → `/breeds/<slug>/`, alias presskit). Contrôler le seul
+**P7 bis — le routage EFFECTIF de l'ARTEFACT, contre un registre exact (v4, réusiné v5).**
+Le routage Pages a TROIS pièces, et la porte les lit **dans le dist qu'elle scelle** —
+`dist/_redirects`, `dist/_routes.json`, `dist/_worker.js` (présents dans l'artefact,
+couverts par l'empreinte de provenance) — jamais dans les sources du dépôt : une porte qui
+lit hors de son artefact juge autre chose que ce qui sera publié. Contrôler le seul
 `_redirects` — le défaut de la v3, qui a produit le faux constat « 62 URL en 404 » — c'est
 juger une vue partielle. La porte :
-- **réutilise `packages/knowledge/scripts/test-legacy-urls.mjs`** tel quel : il reproduit le
-  routage de `_routes.json` puis exécute le VRAI `_worker.js` (sitemap jamais 301/410,
-  anciennes URL en 301 à cible vivante ou 410) ;
-- **ajoute l'attente INDÉPENDANTE que ce test n'a pas** — sa liste est lue dans le Worker
-  lui-même, donc retirer une entrée retire aussi son attente : bijection EXACTE entre les
-  62 fichiers `content/posts/*-dog-policy.md` et 62 entrées `*-dog-policy` de
-  LEGACY_REDIRECTS, chaque cible construite dans `dist/` et vivante à travers le routage
-  réel ; et un dénombrement par FAMILLE (301, 410 exacts, 410 par préfixe, chaleur/races,
-  alias presskit) figé dans la porte — toute famille qui apparaît, disparaît ou change
-  d'effectif sans mouvement nommé rougit ;
-- **exerce le vrai routage Pages** : chaque vérification passe par la reproduction
-  `_routes.json` + `_worker.js`, jamais par une table relue.
+- **réutilise la mécanique de `packages/knowledge/scripts/test-legacy-urls.mjs`**, pointée
+  sur les copies du DIST : reproduction du périmètre `_routes.json`, exécution du vrai
+  `_worker.js` ;
+- **parcourt les sitemaps EN ENTIER (v5)** : parse de l'index `dist/sitemap.xml`, puis de
+  chacun de ses sitemaps enfants (4 langues), et TOUTES les URL de pages (2 536 au
+  28/08/2026) passent par le routage reproduit — aucune ne doit répondre 301/410 ;
+- **confronte le Worker du dist à un REGISTRE EXACT versionné (v5)** :
+  `porte-routage-scelle.json` porte CHAQUE règle, sérialisée canoniquement avec sa famille
+  (redirection 301 exacte, 410 exact, 410 par préfixe, mapping chaleur/races, alias
+  presskit) et sa cible ou son statut, avec empreintes SHA-256 globale et par famille.
+  Comparaison BIDIRECTIONNELLE : une règle du dist absente du registre rougit, une règle
+  du registre absente du dist rougit, une cible ou un statut qui change rougit — les
+  décomptes dérivent du registre et ne tiennent jamais seuls (« agrégats exacts, registre
+  non figé » ne peut plus se produire ici). Tout mouvement = rescellement nommé, dans la
+  même PR que le changement, revu par son diff. Chaque cible de redirection doit être
+  construite dans le dist et vivante à travers le routage réel ;
+- **la cohérence SOURCES ↔ registre vit ailleurs, et c'est nommé** : une garde de
+  test:unit (côté sources, hors porte) vérifie que les 62 fichiers
+  `content/posts/*-dog-policy.md` ont chacun leur règle au registre scellé et
+  réciproquement — la porte, elle, ne lit que l'artefact.
 
 **P8 — JSON-LD.** Chaque bloc `application/ld+json` parse ; les types utilisés sont ceux que
 le site émet sciemment (liste versionnée) ; pour une `FAQPage`, **chaque question et chaque
@@ -300,7 +333,7 @@ Conformément à l'arbitrage : **la porte vérifie, elle n'ajoute jamais de cont
   mot-clé, aucun texte additionnel ; ce point est une clause de conception, pas un contrôle
   exécutable, et il est écrit pour qu'on ne puisse pas l'ajouter « en passant ».
 
-## 5. Les dix-huit contre-épreuves de la porte (exigées avant tout feu vert)
+## 5. Les dix-neuf contre-épreuves de la porte (exigées avant tout feu vert)
 
 Sur le modèle des harnais du dépôt : chaque garantie doit avoir été **vue rougir pour sa
 cause**, par mutation d'une copie de `dist/` (jamais du dépôt), en exerçant la vraie porte :
@@ -327,14 +360,19 @@ cause**, par mutation d'une copie de `dist/` (jamais du dépôt), en exerçant l
 13. **(v3)** un `Disallow: /` introduit dans le `robots.txt` d'un dist de préversion →
     V2 rougit — le défaut qui rendait le `noindex` illisible ne peut pas revenir en silence ;
 14. **(v3)** une ligne `Sitemap:` introduite dans le `robots.txt` de préversion → V3 rougit ;
-15. **(v4)** la redirection Alaska retirée de LEGACY_REDIRECTS dans une copie du Worker,
-    SANS toucher aux 62 fichiers `*-dog-policy.md` → la bijection indépendante de P7 bis
-    rougit et nomme l'entrée manquante (le test qui lit sa liste dans le Worker, lui, ne
-    verrait rien — c'est exactement pourquoi l'attente indépendante existe) ;
-16. **(v4)** `_routes.json` modifié dans une copie pour qu'une ancienne URL n'atteigne plus
-    le Worker → l'exercice du routage réel rougit (l'URL cesse de répondre 301) ;
-17. **(v4)** une famille du Worker (les 410 exacts, l'alias presskit…) vidée ou gonflée dans
-    une copie → le dénombrement par famille rougit sans mouvement nommé ;
+15. **(v4, réancrée v5)** la redirection Alaska retirée de LEGACY_REDIRECTS dans une COPIE
+    du `dist/_worker.js`, registre scellé inchangé → la comparaison bidirectionnelle rougit
+    et nomme l'entrée manquante (le test qui lit sa liste dans le Worker, lui, ne verrait
+    rien — c'est exactement pourquoi le registre indépendant existe) ;
+16. **(v4, réancrée v5)** `dist/_routes.json` modifié dans une copie pour qu'une ancienne
+    URL n'atteigne plus le Worker → l'exercice du routage réel rougit (l'URL cesse de
+    répondre 301) ;
+17. **(v5)** une règle du Worker REMPLACÉE par une autre de la même famille, à effectif
+    constant (cible changée, ou une entrée troquée contre une autre) → les décomptes ne
+    bougent pas, le registre exact rougit — la contre-épreuve qui distingue un registre
+    d'un agrégat ;
+17 bis. **(v5)** une URL de page retirée d'un sitemap ENFANT (l'index restant intact) →
+    le parcours complet des sitemaps le voit — la porte ne juge jamais l'index seul ;
 18. **(v4)** `deployer-production.mjs` invoqué avec une commande de déploiement privée de
     `--branch=main` → AUCUN déploiement autorisé, refus avant tout appel réseau.
 
@@ -400,5 +438,5 @@ clôture chaleur, annonce du site) ni du contrat de provenance : elle les cite e
 *Prochaine étape : contre-revue de cette conception RÉVISÉE (v4) par Codex. Le code de la
 porte, sa liste `porte-noindex-admis.json`, le wrapper de build production adossé à
 `provenance.mjs`, la commande `deployer-production.mjs` (cycle complet, rollback vérifié
-compris), le changement de `robots.txt.ts` en préversion et les dix-huit contre-épreuves ne
+compris), le changement de `robots.txt.ts` en préversion et les dix-neuf contre-épreuves (le registre de routage scellé compris) ne
 s'écrivent qu'après son feu vert.*
