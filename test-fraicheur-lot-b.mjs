@@ -137,6 +137,14 @@ try {
     "fraicheur/registre-scelle.json", "fraicheur/references.json", "liste-rattachements-lot-a.mjs"]) {
     copyFileSync(f, join(arbre, f));
   }
+  /* L'arbre de mesure repart TOUJOURS de l'état canonique « aucune référence figée » : ce
+   * harnais prouve le mécanisme, pas l'état du dépôt. Les références réelles sont promues
+   * par PR humaine et grossiront avec le temps — sans cette ligne, la première promotion
+   * (China Eastern, 27/08/2026) rendait fausse la prémisse du cas 3 (« premier run, les
+   * références sont vides ») et rougissait la CI. Chaque cas qui a besoin d'une référence
+   * écrit la sienne ; aucun ne dépend de celles du dépôt. */
+  writeFileSync(join(arbre, "fraicheur/references.json"),
+    JSON.stringify({ version: "fraicheur-1", references: [] }, null, 2) + "\n");
   const CHEMINS_DONNEES = ["fraicheur/references.json", "fraicheur/registre-scelle.json",
     "packages/knowledge/raw/objects.json",
     "packages/knowledge/raw/rules.json", "packages/knowledge/raw/breed-restrictions.json"];
