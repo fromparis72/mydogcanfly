@@ -1,15 +1,15 @@
 ---
 title: "Tools to travel with your dog"
-description: "Free tools from My Dog Can Fly: compare 62 airlines, size an IATA crate, check country entry requirements, and see if it's too hot for your dog today."
+description: "Free tools from My Dog Can Fly: compare 62 airlines, size an IATA crate, and check country entry requirements."
 images: ["https://mydogcanfly.com/images/compagnies-aeriennes.png"]
 slug: "tools"
 url: "/tools/"
 hiddenInHomeList: true
 ---
 
-Interactive, exclusive tools to plan your trip with your dog in just a few clicks. Compare airlines, find the right travel crate, check your destination's entry requirements, and know when it's too hot to travel — all for free.
+Interactive, exclusive tools to plan your trip with your dog in just a few clicks. Compare airlines, find the right travel crate, and check your destination's entry requirements — all for free.
 
-## Four free tools to plan your dog's trip
+## Three free tools to plan your dog's trip
 
 <div class="lcv-tools-grid">
   <a class="lcv-tool" href="/tools/can-my-dog-fly/">
@@ -36,7 +36,7 @@ Interactive, exclusive tools to plan your trip with your dog in just a few click
 
 Each tool covers one specific step of planning a trip with your dog. The **flight comparison tool** helps you find and choose the airline that best fits your route and your dog's weight — in the cabin, in the hold or as cargo. The **IATA crate calculator** works out the size of airline-approved crate your dog needs if they travel in the hold. And the **entry requirements checker** lists, country by country, the documents and steps you must complete before departure.
 
-Used together, these four tools cover the essentials: which airline, which crate, which paperwork — and whether the heat is safe. Everything you need to travel with your dog with peace of mind.
+Used together, these three tools cover the essentials: which airline, which crate, which paperwork. Everything you need to travel with your dog with peace of mind.
 
 ## Traveling with your dog: the key steps
 

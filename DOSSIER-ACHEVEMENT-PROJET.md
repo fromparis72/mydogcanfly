@@ -386,6 +386,15 @@ Chaque lot est **fusionnable seul**. L'ordre est un ordre d'**impact**, pas de d
   sitemaps construits muets, aucune redirection — et la contre-épreuve prouve qu'un CTA
   réintroduit rougit. Seules subsistent les mentions historiques qualifiées (dossiers,
   commentaires d'audit, contre-épreuves, docs d'inventaire), hors du périmètre balayé.
+  **Seconde correction de contre-revue (28/08/2026), nommée :** « `tools.md` présente trois
+  outils » n'était vrai que des CARTES — le texte de la page promettait encore l'outil chaleur
+  en quatre passages (« see if it's too hot… », « know when it's too hot to travel », « Four
+  free tools », « these four tools […] whether the heat is safe »), et le scanner, qui ne
+  cherche que l'ancien slug, restait vert : la promesse fonctionnelle survivait à l'adresse
+  morte. Les quatre passages sont alignés sur trois outils, et la garde gagne le contrôle 6 :
+  le nombre d'outils ANNONCÉ dans le texte est confronté au nombre RÉEL de cartes, les motifs
+  de promesse chaleur sont interdits, et deux contre-épreuves prouvent que « four tools » sans
+  quatrième carte comme une promesse chaleur réintroduite font rougir.
 
 ### Lot G — Correspondances multi-opérateurs *(dossier de conception seul)*
 

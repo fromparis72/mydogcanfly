@@ -16,7 +16,12 @@
  *   3. l'adresse est absente des sitemaps construits (quand dist existe) ;
  *   4. le build complet ne sert pas la page et ne la redirige pas — le 404 est le contrat ;
  *   5. contre-épreuve : réintroduire un CTA dans un article fait rougir la garde (prouvé sur
- *      le VRAI scanner, contre une copie mutée).
+ *      le VRAI scanner, contre une copie mutée) ;
+ *   6. la page /tools/ ne promet que ce qu'elle montre : le nombre d'outils annoncé dans le
+ *      texte égale le nombre réel de cartes, et aucune promesse de diagnostic chaleur ne
+ *      subsiste. Contre-revue du 28/08 (2e passe) : le scanner ne cherchait que l'ancien slug,
+ *      quatre passages promettaient encore l'outil (« Four free tools », « too hot »…) sans
+ *      que rien ne rougisse — la promesse fonctionnelle survivait à l'adresse morte.
  * Les mentions HISTORIQUES qualifiées (dossiers, commentaires d'audit, contre-épreuves, docs
  * d'inventaire) vivent HORS du périmètre balayé — elles racontent, elles ne publient pas.
  */
@@ -96,6 +101,45 @@ function scanner(racine) {
     if (trouves.length !== 1) echec("5 contre-épreuve", `le scanner ne voit pas le CTA réintroduit (${trouves.length} trouvé(s))`);
     else ok("5 contre-épreuve : un CTA réintroduit dans un article est détecté par le même scanner");
   } finally { rmSync(tmp, { recursive: true, force: true }); }
+}
+
+/* ---- 6. la page /tools/ ne promet que ce qu'elle montre -------------------------------------- */
+
+/** Le vérificateur de cohérence : cardinalité annoncée vs cartes réelles, et promesses chaleur.
+ *  C'est LUI que les contre-épreuves 6b/6c exercent — pas une réimplémentation. */
+function verifierPromesses(texte) {
+  const problemes = [];
+  const cartes = (texte.match(/class="lcv-tool"/g) ?? []).length;
+  const NOMBRES = { two: 2, three: 3, four: 4, five: 5, six: 6 };
+  for (const m of texte.matchAll(/\b(two|three|four|five|six)\b(?:\s+\w+){0,2}\s+tools\b/gi)) {
+    const annonce = NOMBRES[m[1].toLowerCase()];
+    if (annonce !== cartes) {
+      problemes.push(`le texte annonce « ${m[0]} » (${annonce}) mais la page porte ${cartes} carte(s)`);
+    }
+  }
+  for (const motif of [/too hot/i, /heat is safe/i, /heat check/i, /trop chaud/i]) {
+    const m = texte.match(motif);
+    if (m) problemes.push(`promesse chaleur survivante : « ${m[0]} »`);
+  }
+  return problemes;
+}
+
+{
+  const texte = readFileSync("content/tools.md", "utf8");
+  const problemes = verifierPromesses(texte);
+  if (problemes.length > 0) for (const p of problemes) echec("6 promesses de la page /tools/", p);
+  else ok("6 la page /tools/ annonce exactement ses cartes, sans promesse chaleur");
+
+  // 6b. contre-épreuve : « four tools » réintroduit (cartes inchangées) doit être vu.
+  const quatre = texte.replace(/\bthree\b(?=(?:\s+\w+){0,2}\s+tools\b)/i, "four");
+  if (quatre === texte) echec("6b contre-épreuve", "la mutation « three → four » ne s'applique plus — la contre-épreuve ne prouve rien");
+  else if (verifierPromesses(quatre).length === 0) echec("6b contre-épreuve", "« four tools » réintroduit sans quatrième carte n'est PAS détecté");
+  else ok("6b contre-épreuve : « four tools » réintroduit sans quatrième carte est détecté");
+
+  // 6c. contre-épreuve : une promesse de diagnostic chaleur réintroduite doit être vue.
+  const chaleur = texte + "\nSee if it's too hot for your dog today.\n";
+  if (verifierPromesses(chaleur).length === 0) echec("6c contre-épreuve", "une promesse chaleur réintroduite n'est PAS détectée");
+  else ok("6c contre-épreuve : une promesse de diagnostic chaleur réintroduite est détectée");
 }
 
 if (defauts) { console.error(`\n[cloture-chaleur] ÉCHEC — ${defauts} défaut(s)`); process.exit(1); }
