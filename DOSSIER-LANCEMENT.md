@@ -97,8 +97,46 @@ V1–V3, G1–G5 avec son verdict et ses preuves.
 
 ## 6. Rapport navigateur
 
-`[EN ATTENTE]` de la préversion immuable (section 4). Vérifications à consigner par
-langue (en/fr/es/pt) : rendu des surfaces, console, réseau, santé Worker.
+`[EN ATTENTE]` de la préversion immuable (section 4). Le rapport sera l'exécution, langue
+par langue, du protocole ci-dessous — écrit à l'avance pour que le contre-test soit
+reproductible et complet, pas improvisé.
+
+### Protocole de contre-test navigateur (à dérouler sur l'URL VERSIONNÉE de la préversion)
+
+**Préambule, une fois** :
+- ouvrir l'URL versionnée du manifeste (jamais l'alias partagé) ; ouvrir les outils de
+  développement (F12), onglets Console et Réseau, cocher « conserver le journal » ;
+- vérifier `GET <worker versionné>/v1/health` → 200 et la version attendue du manifeste ;
+- vérifier qu'une page au hasard porte `<meta name="robots" content="noindex, nofollow">`
+  (une préversion qui ne le porte pas s'arrête là : défaut bloquant).
+
+**Par langue — en (racine), /fr/, /es/, /pt/ — dérouler les six points, et noter par point
+OK ou le défaut observé (page, texte, capture si utile)** :
+1. **Accueil + Flight Finder** : la page rend sans zone vide ; lancer une recherche réelle
+   (ex. CDG → JFK, carlin 8 kg, date d'été, « tous placements ») ; le résultat s'affiche
+   avec ses pastilles ; la **mention « transporteur effectif »** est visible sous le
+   résultat, dans la langue de la page ; l'appel réseau part vers le **Worker versionné**
+   (pas l'alias) et répond 200.
+2. **Fiche compagnie Virgin Australia** (`/airlines/virgin-australia/`) : la cabine rend
+   « à confirmer » avec ses conditions (≤ 8 kg animal + sac) — pas « refusé », pas un oui
+   sans condition ; la mention transporteur est présente sur la fiche.
+3. **Fiches Alaska et Garuda** : Alaska sans aucun « 150 lb » (les tarifs 150 $ sont
+   normaux) ; Garuda : cabine « à confirmer », aucun « 32 kg », aucun refus catégorique.
+4. **Travel Hub** (`/travel-hub/`) : l'index rend ses rubriques ; ouvrir un guide au
+   hasard : la couverture s'affiche (pas d'image cassée), le texte est dans la langue de
+   la page.
+5. **Outils** (`/tools/`) : la page annonce TROIS outils, aucune promesse chaleur ;
+   `/tools/is-it-too-hot-for-my-dog/` répond **404** (c'est le contrat) ; le calculateur
+   de caisse rend et répond à une saisie.
+6. **Console + Réseau, bilan de la langue** : zéro erreur console (les avertissements
+   sont notés mais non bloquants) ; aucune requête vers un domaine inattendu (uniquement
+   la préversion elle-même et le Worker versionné) ; aucune 4xx/5xx hors le 404 voulu du
+   point 5.
+
+**Clôture, une fois** : re-vérifier `/v1/health` (même version qu'au préambule — le
+déploiement n'a pas bougé sous le test) ; confirmer que l'**alias partagé** et la
+**production** n'ont pas été touchés ; consigner ici date, heure, navigateur, et le
+verdict par langue (4 × 6 points + préambule + clôture).
 
 ## 7. Défauts restants connus, assumés au lancement
 
