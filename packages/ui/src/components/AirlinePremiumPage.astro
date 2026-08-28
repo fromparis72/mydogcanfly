@@ -378,6 +378,10 @@ const jsonLd = faqItems.length ? [webpageLd, faqJsonLd(faqItems)] : [webpageLd];
 
     <div class="card src">
       <div class="chips"><span class="pill ok">🛡️ {T("Official source", "Source officielle", "Fuente oficial")}</span><span class="muted">{t(d.sources)}</span></div>
+      {/* G minimal (arbitrage Codex 28/08/2026) : la fiche décrit la compagnie qui vend — en
+          partage de code, l'opérateur effectif peut différer et ses conditions avec. Présence
+          quadrilingue garantie par test-mention-transporteur.mjs. */}
+      <p class="muted codeshare">{tt(locale, "codeshare.notice")}</p>
     </div>
 
     <PageActions locale={locale} airlineId={id} bookUrl={d.book?.url} bookLabel={T("Book on {n}", "Réserver sur {n}", "Reservar en {n}").replace("{n}", d.book?.host ?? d.name)} emailSubject={seoTitle} />

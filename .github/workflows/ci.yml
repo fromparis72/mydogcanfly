@@ -319,6 +319,12 @@ jobs:
       - name: Les pages de guides affichent ce qu'elles annoncent
         run: npm run test:guide-page
 
+      # Contre-revue Codex du 28/08/2026 (2e passe) : les affirmations non prouvées retirées des
+      # fiches Alaska et Garuda (150 lb transposé, 32 kg, refus cabine catégorique) ne doivent pas
+      # revenir — et sur le SITE ENTIER, l'absence des pages serait elle-même un défaut.
+      - name: Les affirmations retirées ne reviennent pas (dist complet)
+        run: node test-fiches-affirmations-retirees.mjs --dist-complet
+
       # LES CONTRE-ÉPREUVES QUI LISENT LE SITE COMPLET. Elles ne reconstruisent rien — elles mutent
       # ce qui LIT le site, pas le site — et se servent donc du `dist` que ce job vient de produire.
       # Sans cette étape, elles n'étaient jouées NULLE PART : le job rapide lance `--dom`, et son

@@ -7,10 +7,10 @@ titleH1:
   es: Volar con un perro en Garuda Indonesia
   pt: "Voar com um cachorro na Garuda Indonesia"
 metaDesc:
-  en: "Garuda Indonesia pet policy: hold only on short domestic flights, otherwise cargo, restrictions and official sources."
-  fr: "Politique animaux Garuda Indonesia : soute uniquement sur vols domestiques courts, sinon fret, restrictions et sources officielles."
-  es: "Política de mascotas de Garuda Indonesia: bodega solo en vuelos nacionales cortos, si no, carga, restricciones y fuentes oficiales."
-  pt: "Política de animais da Garuda Indonesia: porão somente em voos domésticos curtos, senão carga, restrições e fontes oficiais."
+  en: "Garuda Indonesia pet policy: hold on short domestic flights and cargo historically reported — to confirm with the airline; restrictions and official sources."
+  fr: "Politique animaux Garuda Indonesia : soute sur vols domestiques courts et fret annoncés historiquement — à confirmer auprès de la compagnie ; restrictions et sources officielles."
+  es: "Política de mascotas de Garuda Indonesia: bodega en vuelos nacionales cortos y carga según lo reportado históricamente — por confirmar con la aerolínea; restricciones y fuentes oficiales."
+  pt: "Política de animais da Garuda Indonesia: porão em voos domésticos curtos e carga conforme reportado historicamente — a confirmar com a companhia; restrições e fontes oficiais."
 chips:
   - icon: ✈
     label:
@@ -39,10 +39,10 @@ verdict:
     es: Difícil
     pt: "Difícil"
 verdictNote:
-  en: No cabin pets except service dogs; hold only on short domestic flights — otherwise via Garuda Cargo.
-  fr: Pas d'animaux en cabine sauf chiens d'assistance ; soute uniquement sur vols domestiques courts — sinon via Garuda Cargo.
-  es: Sin mascotas en cabina salvo perros de servicio; bodega solo en vuelos nacionales cortos; si no, por Garuda Cargo.
-  pt: "Sem animais em cabine, exceto cães de assistência; porão somente em voos domésticos curtos — senão via Garuda Cargo."
+  en: Historically, pets were reported hold-only on short domestic flights, with no cabin access except service dogs — no readable official page confirms this today; confirm every channel with Garuda before booking.
+  fr: Historiquement, les animaux étaient annoncés en soute seulement sur vols domestiques courts, sans accès cabine hors chiens d'assistance — aucune page officielle lisible ne le confirme aujourd'hui ; confirme chaque canal auprès de Garuda avant de réserver.
+  es: Históricamente, las mascotas iban solo en bodega en vuelos nacionales cortos, sin acceso a cabina salvo perros de servicio — ninguna página oficial legible lo confirma hoy; confirma cada canal con Garuda antes de reservar.
+  pt: "Historicamente, os animais eram aceitos somente no porão em voos domésticos curtos, sem acesso à cabine exceto cães de assistência — nenhuma página oficial legível confirma isso hoje; confirme cada canal com a Garuda antes de reservar."
 ladder:
   - flex: 8
     color: "#8a94a3"
@@ -78,7 +78,11 @@ ladder:
       pt: "intl. / grandes"
 policies:
   cabin:
-    availability: not_offered
+    # Contre-revue Codex (28/08/2026, 2e passe) : la lecture directe n'a trouvé AUCUNE page
+    # passager officielle lisible établissant l'interdiction cabine — la page Cargo ne la prouve
+    # pas. « not_offered » affirmait un refus non prouvé : la décision redevient l'héritage non
+    # re-vérifié, comme la soute et le fret de cette même fiche — « à confirmer », pas « refusé ».
+    review_state: legacy_unreviewed
   hold:
     review_state: legacy_unreviewed
   cargo:
@@ -91,17 +95,17 @@ channels:
       fr: Cabine
       es: Cabina
       pt: "Cabine"
-    cls: no
+    cls: warn
     statusLabel:
-      en: Not allowed
-      fr: Non autorisé
-      es: No permitido
-      pt: "Não permitido"
+      en: To confirm
+      fr: À confirmer
+      es: Por confirmar
+      pt: "A confirmar"
     detail:
-      en: No pets in the cabin — only trained service dogs.
-      fr: Pas d'animaux en cabine — seulement les chiens d'assistance dressés.
-      es: Sin mascotas en cabina; solo perros de servicio adiestrados.
-      pt: "Sem animais na cabine — somente cães de assistência adestrados."
+      en: Historically reported as closed to pets (service dogs only), but no readable official page confirms it — check with Garuda.
+      fr: Historiquement annoncée fermée aux animaux (chiens d'assistance seuls), mais aucune page officielle lisible ne le confirme — vérifie auprès de Garuda.
+      es: Históricamente cerrada a las mascotas (solo perros de servicio), pero ninguna página oficial legible lo confirma — verifica con Garuda.
+      pt: "Historicamente fechada aos animais (somente cães de serviço), mas nenhuma página oficial legível confirma isso — verifique com a Garuda."
     fee:
       en: —
       fr: —
@@ -121,10 +125,10 @@ channels:
       es: Solo nacional
       pt: "Somente doméstico"
     detail:
-      en: Dogs, cats & hamsters as checked baggage only on direct domestic flights ≤ 2 h (not via Denpasar); ≤ 32 kg incl. crate.
-      fr: Chiens, chats et hamsters en bagage enregistré uniquement sur vols domestiques directs ≤ 2 h (pas via Denpasar) ; ≤ 32 kg avec la caisse.
-      es: Perros, gatos y hámsteres como equipaje facturado solo en vuelos nacionales directos ≤ 2 h (no vía Denpasar); ≤ 32 kg con la jaula.
-      pt: "Cachorros, gatos e hamsters como bagagem despachada somente em voos domésticos diretos ≤ 2 h (não via Denpasar); ≤ 32 kg com a caixa."
+      en: Dogs, cats & hamsters as checked baggage only on direct domestic flights ≤ 2 h (not via Denpasar) — no verified weight limit; confirm with Garuda.
+      fr: Chiens, chats et hamsters en bagage enregistré uniquement sur vols domestiques directs ≤ 2 h (pas via Denpasar) — aucune limite de poids vérifiée ; à confirmer auprès de Garuda.
+      es: Perros, gatos y hámsteres como equipaje facturado solo en vuelos nacionales directos ≤ 2 h (no vía Denpasar) — sin límite de peso verificado; confírmalo con Garuda.
+      pt: "Cachorros, gatos e hamsters como bagagem despachada somente em voos domésticos diretos ≤ 2 h (não via Denpasar) — sem limite de peso verificado; confirme com a Garuda."
     fee:
       en: Excess-baggage rate
       fr: Tarif bagage excédentaire
@@ -144,10 +148,10 @@ channels:
       es: Vía carga
       pt: "Via carga"
     detail:
-      en: International routes and over 32 kg via Garuda Indonesia Cargo (Air Waybill, CITES if needed).
-      fr: Routes internationales et au-delà de 32 kg via Garuda Indonesia Cargo (lettre de transport, CITES si nécessaire).
-      es: Rutas internacionales y más de 32 kg por Garuda Indonesia Cargo (carta de porte aéreo, CITES si hace falta).
-      pt: "Rotas internacionais e acima de 32 kg via Garuda Indonesia Cargo (conhecimento aéreo, CITES se necessário)."
+      en: International routes and larger animals via Garuda Indonesia Cargo (Air Waybill, CITES if needed).
+      fr: Routes internationales et animaux plus grands via Garuda Indonesia Cargo (lettre de transport, CITES si nécessaire).
+      es: Rutas internacionales y animales más grandes por Garuda Indonesia Cargo (carta de porte aéreo, CITES si hace falta).
+      pt: "Rotas internacionais e animais maiores via Garuda Indonesia Cargo (conhecimento aéreo, CITES se necessário)."
     fee:
       en: Quote
       fr: Devis
@@ -156,10 +160,10 @@ channels:
 fareList:
   rows:
     - label:
-        en: Hold — domestic (≤ 2 h, ≤ 32 kg)
-        fr: Soute — domestique (≤ 2 h, ≤ 32 kg)
-        es: Bodega — nacional (≤ 2 h, ≤ 32 kg)
-        pt: "Porão — doméstico (≤ 2 h, ≤ 32 kg)"
+        en: Hold — domestic (≤ 2 h)
+        fr: Soute — domestique (≤ 2 h)
+        es: Bodega — nacional (≤ 2 h)
+        pt: "Porão — doméstico (≤ 2 h)"
       value:
         en: Excess-baggage rate (min 5 kg)
         fr: Tarif bagage excédentaire (min 5 kg)
@@ -198,12 +202,12 @@ restrictions:
       es: "Bodega: solo nacional"
       pt: "Porão: somente doméstico"
     pills:
-      - cls: no
+      - cls: warn
         label:
-          en: No pets in cabin
-          fr: Pas d'animaux en cabine
-          es: Sin mascotas en cabina
-          pt: "Sem animais em cabine"
+          en: "Cabin: to confirm"
+          fr: "Cabine : à confirmer"
+          es: "Cabina: por confirmar"
+          pt: "Cabine: a confirmar"
       - cls: warn
         label:
           en: Domestic ≤ 2 h

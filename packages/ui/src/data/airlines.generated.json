@@ -9011,7 +9011,12 @@
           "es": "Bodega",
           "pt": "Porão"
         },
-        "sub": "≤ 150 lb"
+        "sub": {
+          "en": "checked",
+          "fr": "enregistrée",
+          "es": "facturada",
+          "pt": "despachado"
+        }
       },
       {
         "flex": 20,
@@ -9022,12 +9027,23 @@
           "es": "Carga",
           "pt": "Carga"
         },
-        "sub": "> 150 lb"
+        "sub": {
+          "en": "unaccompanied",
+          "fr": "non accompagné",
+          "es": "no acompañadas",
+          "pt": "desacompanhados"
+        }
       }
     ],
     "policies": {
       "cabin": {
-        "availability": "offered"
+        "availability": "offered",
+        "conditions": {
+          "en": "The pet must be small enough to fit and stay comfortably in a carrier under the seat (soft-sided carrier up to 17 × 11 × 9.5 in). No published weight limit — the carrier fit is the rule.",
+          "fr": "L'animal doit être assez petit pour tenir confortablement dans un sac placé sous le siège (sac souple jusqu'à 17 × 11 × 9,5 po). Aucune limite de poids publiée — l'adaptation au sac fait la règle.",
+          "es": "La mascota debe ser lo bastante pequeña para caber cómodamente en un transportín bajo el asiento (transportín blando de hasta 17 × 11 × 9,5 pulgadas). Sin límite de peso publicado: la regla es que quepa en el transportín.",
+          "pt": "O animal deve ser pequeno o suficiente para caber confortavelmente em uma bolsa sob o assento (bolsa flexível de até 17 × 11 × 9,5 pol). Sem limite de peso publicado — a regra é caber na bolsa."
+        }
       },
       "hold": {
         "availability": "offered"
@@ -9083,10 +9099,10 @@
           "pt": "Permitido"
         },
         "detail": {
-          "en": "Larger pets in the climate-controlled baggage hold on your flight (pet + carrier ≤ 150 lb). Health certificate required.",
-          "fr": "Animaux plus grands dans la soute bagages climatisée sur ton vol (animal + caisse ≤ 150 lb). Certificat sanitaire requis.",
-          "es": "Mascotas más grandes en la bodega de equipaje climatizada de tu vuelo (mascota + jaula ≤ 150 lb). Se requiere certificado sanitario.",
-          "pt": "Animais maiores no porão de bagagem climatizado do seu voo (animal + caixa de transporte ≤ 150 lb). É exigido atestado de saúde."
+          "en": "Larger pets in the climate-controlled baggage hold on your flight — no published weight limit for checked pets. Health certificate required.",
+          "fr": "Animaux plus grands dans la soute bagages climatisée sur ton vol — aucune limite de poids publiée pour les animaux enregistrés. Certificat sanitaire requis.",
+          "es": "Mascotas más grandes en la bodega de equipaje climatizada de tu vuelo — sin límite de peso publicado para mascotas facturadas. Se requiere certificado sanitario.",
+          "pt": "Animais maiores no porão de bagagem climatizado do seu voo — sem limite de peso publicado para animais despachados. É exigido atestado de saúde."
         },
         "fee": {
           "en": "$150 / way",
@@ -9112,10 +9128,10 @@
           "pt": "Sob consulta"
         },
         "detail": {
-          "en": "Unaccompanied pets or over 150 lb, via Alaska Air Cargo Pet Connect.",
-          "fr": "Animaux non accompagnés ou de plus de 150 lb, via Alaska Air Cargo Pet Connect.",
-          "es": "Mascotas no acompañadas o de más de 150 lb, mediante Alaska Air Cargo Pet Connect.",
-          "pt": "Animais desacompanhados ou com mais de 150 lb, via Alaska Air Cargo Pet Connect."
+          "en": "Unaccompanied pets travel via Alaska Air Cargo Pet Connect, which applies its own acceptance rules and weight thresholds.",
+          "fr": "Les animaux non accompagnés voyagent via Alaska Air Cargo Pet Connect, qui applique ses propres règles d'acceptation et seuils de poids.",
+          "es": "Las mascotas no acompañadas viajan mediante Alaska Air Cargo Pet Connect, que aplica sus propias reglas de aceptación y umbrales de peso.",
+          "pt": "Animais desacompanhados viajam via Alaska Air Cargo Pet Connect, que aplica suas próprias regras de aceitação e limites de peso."
         },
         "fee": {
           "en": "Quote",
@@ -22056,10 +22072,10 @@
       "pt": "Voar com um cachorro na Garuda Indonesia"
     },
     "metaDesc": {
-      "en": "Garuda Indonesia pet policy: hold only on short domestic flights, otherwise cargo, restrictions and official sources.",
-      "fr": "Politique animaux Garuda Indonesia : soute uniquement sur vols domestiques courts, sinon fret, restrictions et sources officielles.",
-      "es": "Política de mascotas de Garuda Indonesia: bodega solo en vuelos nacionales cortos, si no, carga, restricciones y fuentes oficiales.",
-      "pt": "Política de animais da Garuda Indonesia: porão somente em voos domésticos curtos, senão carga, restrições e fontes oficiais."
+      "en": "Garuda Indonesia pet policy: hold on short domestic flights and cargo historically reported — to confirm with the airline; restrictions and official sources.",
+      "fr": "Politique animaux Garuda Indonesia : soute sur vols domestiques courts et fret annoncés historiquement — à confirmer auprès de la compagnie ; restrictions et sources officielles.",
+      "es": "Política de mascotas de Garuda Indonesia: bodega en vuelos nacionales cortos y carga según lo reportado históricamente — por confirmar con la aerolínea; restricciones y fuentes oficiales.",
+      "pt": "Política de animais da Garuda Indonesia: porão em voos domésticos curtos e carga conforme reportado historicamente — a confirmar com a companhia; restrições e fontes oficiais."
     },
     "chips": [
       {
@@ -22101,10 +22117,10 @@
       }
     },
     "verdictNote": {
-      "en": "No cabin pets except service dogs; hold only on short domestic flights — otherwise via Garuda Cargo.",
-      "fr": "Pas d'animaux en cabine sauf chiens d'assistance ; soute uniquement sur vols domestiques courts — sinon via Garuda Cargo.",
-      "es": "Sin mascotas en cabina salvo perros de servicio; bodega solo en vuelos nacionales cortos; si no, por Garuda Cargo.",
-      "pt": "Sem animais em cabine, exceto cães de assistência; porão somente em voos domésticos curtos — senão via Garuda Cargo."
+      "en": "Historically, pets were reported hold-only on short domestic flights, with no cabin access except service dogs — no readable official page confirms this today; confirm every channel with Garuda before booking.",
+      "fr": "Historiquement, les animaux étaient annoncés en soute seulement sur vols domestiques courts, sans accès cabine hors chiens d'assistance — aucune page officielle lisible ne le confirme aujourd'hui ; confirme chaque canal auprès de Garuda avant de réserver.",
+      "es": "Históricamente, las mascotas iban solo en bodega en vuelos nacionales cortos, sin acceso a cabina salvo perros de servicio — ninguna página oficial legible lo confirma hoy; confirma cada canal con Garuda antes de reservar.",
+      "pt": "Historicamente, os animais eram aceitos somente no porão em voos domésticos curtos, sem acesso à cabine exceto cães de assistência — nenhuma página oficial legível confirma isso hoje; confirme cada canal com a Garuda antes de reservar."
     },
     "ladder": [
       {
@@ -22153,7 +22169,7 @@
     ],
     "policies": {
       "cabin": {
-        "availability": "not_offered"
+        "review_state": "legacy_unreviewed"
       },
       "hold": {
         "review_state": "legacy_unreviewed"
@@ -22172,18 +22188,18 @@
           "es": "Cabina",
           "pt": "Cabine"
         },
-        "cls": "no",
+        "cls": "warn",
         "statusLabel": {
-          "en": "Not allowed",
-          "fr": "Non autorisé",
-          "es": "No permitido",
-          "pt": "Não permitido"
+          "en": "To confirm",
+          "fr": "À confirmer",
+          "es": "Por confirmar",
+          "pt": "A confirmar"
         },
         "detail": {
-          "en": "No pets in the cabin — only trained service dogs.",
-          "fr": "Pas d'animaux en cabine — seulement les chiens d'assistance dressés.",
-          "es": "Sin mascotas en cabina; solo perros de servicio adiestrados.",
-          "pt": "Sem animais na cabine — somente cães de assistência adestrados."
+          "en": "Historically reported as closed to pets (service dogs only), but no readable official page confirms it — check with Garuda.",
+          "fr": "Historiquement annoncée fermée aux animaux (chiens d'assistance seuls), mais aucune page officielle lisible ne le confirme — vérifie auprès de Garuda.",
+          "es": "Históricamente cerrada a las mascotas (solo perros de servicio), pero ninguna página oficial legible lo confirma — verifica con Garuda.",
+          "pt": "Historicamente fechada aos animais (somente cães de serviço), mas nenhuma página oficial legível confirma isso — verifique com a Garuda."
         },
         "fee": {
           "en": "—",
@@ -22209,10 +22225,10 @@
           "pt": "Somente doméstico"
         },
         "detail": {
-          "en": "Dogs, cats & hamsters as checked baggage only on direct domestic flights ≤ 2 h (not via Denpasar); ≤ 32 kg incl. crate.",
-          "fr": "Chiens, chats et hamsters en bagage enregistré uniquement sur vols domestiques directs ≤ 2 h (pas via Denpasar) ; ≤ 32 kg avec la caisse.",
-          "es": "Perros, gatos y hámsteres como equipaje facturado solo en vuelos nacionales directos ≤ 2 h (no vía Denpasar); ≤ 32 kg con la jaula.",
-          "pt": "Cachorros, gatos e hamsters como bagagem despachada somente em voos domésticos diretos ≤ 2 h (não via Denpasar); ≤ 32 kg com a caixa."
+          "en": "Dogs, cats & hamsters as checked baggage only on direct domestic flights ≤ 2 h (not via Denpasar) — no verified weight limit; confirm with Garuda.",
+          "fr": "Chiens, chats et hamsters en bagage enregistré uniquement sur vols domestiques directs ≤ 2 h (pas via Denpasar) — aucune limite de poids vérifiée ; à confirmer auprès de Garuda.",
+          "es": "Perros, gatos y hámsteres como equipaje facturado solo en vuelos nacionales directos ≤ 2 h (no vía Denpasar) — sin límite de peso verificado; confírmalo con Garuda.",
+          "pt": "Cachorros, gatos e hamsters como bagagem despachada somente em voos domésticos diretos ≤ 2 h (não via Denpasar) — sem limite de peso verificado; confirme com a Garuda."
         },
         "fee": {
           "en": "Excess-baggage rate",
@@ -22238,10 +22254,10 @@
           "pt": "Via carga"
         },
         "detail": {
-          "en": "International routes and over 32 kg via Garuda Indonesia Cargo (Air Waybill, CITES if needed).",
-          "fr": "Routes internationales et au-delà de 32 kg via Garuda Indonesia Cargo (lettre de transport, CITES si nécessaire).",
-          "es": "Rutas internacionales y más de 32 kg por Garuda Indonesia Cargo (carta de porte aéreo, CITES si hace falta).",
-          "pt": "Rotas internacionais e acima de 32 kg via Garuda Indonesia Cargo (conhecimento aéreo, CITES se necessário)."
+          "en": "International routes and larger animals via Garuda Indonesia Cargo (Air Waybill, CITES if needed).",
+          "fr": "Routes internationales et animaux plus grands via Garuda Indonesia Cargo (lettre de transport, CITES si nécessaire).",
+          "es": "Rutas internacionales y animales más grandes por Garuda Indonesia Cargo (carta de porte aéreo, CITES si hace falta).",
+          "pt": "Rotas internacionais e animais maiores via Garuda Indonesia Cargo (conhecimento aéreo, CITES se necessário)."
         },
         "fee": {
           "en": "Quote",
@@ -22255,10 +22271,10 @@
       "rows": [
         {
           "label": {
-            "en": "Hold — domestic (≤ 2 h, ≤ 32 kg)",
-            "fr": "Soute — domestique (≤ 2 h, ≤ 32 kg)",
-            "es": "Bodega — nacional (≤ 2 h, ≤ 32 kg)",
-            "pt": "Porão — doméstico (≤ 2 h, ≤ 32 kg)"
+            "en": "Hold — domestic (≤ 2 h)",
+            "fr": "Soute — domestique (≤ 2 h)",
+            "es": "Bodega — nacional (≤ 2 h)",
+            "pt": "Porão — doméstico (≤ 2 h)"
           },
           "value": {
             "en": "Excess-baggage rate (min 5 kg)",
@@ -22314,12 +22330,12 @@
         },
         "pills": [
           {
-            "cls": "no",
+            "cls": "warn",
             "label": {
-              "en": "No pets in cabin",
-              "fr": "Pas d'animaux en cabine",
-              "es": "Sin mascotas en cabina",
-              "pt": "Sem animais em cabine"
+              "en": "Cabin: to confirm",
+              "fr": "Cabine : à confirmer",
+              "es": "Cabina: por confirmar",
+              "pt": "Cabine: a confirmar"
             }
           },
           {
@@ -41544,10 +41560,10 @@
       }
     },
     "verdictNote": {
-      "en": "Pets now fly in the cabin on select domestic routes (trial), plus nationwide cargo — both booked by phone.",
-      "fr": "Les animaux volent désormais en cabine sur certaines routes domestiques (test), plus le cargo national — les deux se réservent par téléphone.",
-      "es": "Las mascotas ya vuelan en cabina en rutas nacionales seleccionadas (prueba), además de la carga en todo el país; ambas se reservan por teléfono.",
-      "pt": "Os animais agora voam na cabine em rotas domésticas selecionadas (teste), além da carga em todo o país — ambos reservados por telefone."
+      "en": "Pets now fly in the cabin on select domestic routes (trial); other animals may possibly travel via Virgin Australia Cargo, subject to route, aircraft, transport partner and prior acceptance.",
+      "fr": "Les animaux volent désormais en cabine sur certaines routes domestiques (test) ; les autres peuvent éventuellement voyager via Virgin Australia Cargo, sous réserve de l'itinéraire, de l'appareil, du partenaire de transport et de l'acceptation préalable.",
+      "es": "Las mascotas ya vuelan en cabina en rutas nacionales seleccionadas (prueba); los demás animales pueden eventualmente viajar vía Virgin Australia Cargo, sujeto a la ruta, el avión, el socio de transporte y la aceptación previa.",
+      "pt": "Os animais agora voam na cabine em rotas domésticas selecionadas (teste); os demais animais podem eventualmente viajar via Virgin Australia Cargo, sujeito à rota, à aeronave, ao parceiro de transporte e à aceitação prévia."
     },
     "ladder": [
       {
@@ -41580,7 +41596,25 @@
     ],
     "policies": {
       "cabin": {
-        "availability": "offered"
+        "availability": "case_by_case",
+        "source": {
+          "url": "https://www.virginaustralia.com/au/en/travel-info/specific-travel/pets/pets-in-cabin/",
+          "source_type": "official_website",
+          "verified_date": "2026-08-28",
+          "review_due": "2026-11-26",
+          "confidence": 4,
+          "reviewer": "Philippe (vérification humaine du 28/08/2026)",
+          "history": [],
+          "quote": "Be a small cat or dog, with a combined weight (pet + carrier) of no more than 8kg",
+          "quote_language": "en-AU",
+          "locator": "section « Pet requirements »"
+        },
+        "conditions": {
+          "en": "Small dog or cat only; combined weight of pet and carrier no more than 8 kg; domestic flights on eligible routes and dates only (trial service); phone booking and airline confirmation required.",
+          "fr": "Petit chien ou chat uniquement ; poids combiné animal + sac ≤ 8 kg ; vols domestiques sur routes et dates éligibles uniquement (service en test) ; réservation par téléphone et confirmation de la compagnie obligatoires.",
+          "es": "Solo perros o gatos pequeños; peso combinado de mascota y transportín ≤ 8 kg; únicamente vuelos nacionales en rutas y fechas elegibles (servicio en prueba); reserva telefónica y confirmación de la aerolínea obligatorias.",
+          "pt": "Apenas cães ou gatos pequenos; peso combinado do animal e da bolsa ≤ 8 kg; somente voos domésticos em rotas e datas elegíveis (serviço em teste); reserva por telefone e confirmação da companhia obrigatórias."
+        }
       },
       "hold": {
         "review_state": "legacy_unreviewed"
@@ -41636,10 +41670,10 @@
           "pt": "Via carga"
         },
         "detail": {
-          "en": "Pets not eligible for the cabin travel in the cargo hold (pet + container ≤ 65 kg) via Virgin Australia Cargo, through a transport partner. Not on A320/Saab 340.",
-          "fr": "Les animaux non éligibles à la cabine voyagent en soute (animal + contenant ≤ 65 kg) via Virgin Australia Cargo, par un partenaire de transport. Pas sur A320/Saab 340.",
-          "es": "Las mascotas que no reúnen los requisitos para la cabina viajan en la bodega de carga (mascota + jaula ≤ 65 kg) a través de Virgin Australia Cargo, mediante un socio de transporte. No en A320/Saab 340.",
-          "pt": "Os animais que não são elegíveis para a cabine viajam no porão de carga (animal + recipiente ≤ 65 kg) via Virgin Australia Cargo, por meio de um parceiro de transporte. Não disponível em A320/Saab 340."
+          "en": "Pets not eligible for the cabin may possibly be transported in the cargo hold (pet + container ≤ 65 kg) via Virgin Australia Cargo, subject to route, aircraft, transport partner and prior acceptance. Not on A320/Saab 340.",
+          "fr": "Les animaux non éligibles à la cabine peuvent éventuellement être transportés en soute (animal + contenant ≤ 65 kg) via Virgin Australia Cargo, sous réserve de l'itinéraire, de l'appareil, du partenaire de transport et de l'acceptation préalable. Pas sur A320/Saab 340.",
+          "es": "Las mascotas que no reúnen los requisitos para la cabina pueden eventualmente ser transportadas en la bodega de carga (mascota + jaula ≤ 65 kg) vía Virgin Australia Cargo, sujeto a la ruta, el avión, el socio de transporte y la aceptación previa. No en A320/Saab 340.",
+          "pt": "Os animais que não são elegíveis para a cabine podem eventualmente ser transportados no porão de carga (animal + recipiente ≤ 65 kg) via Virgin Australia Cargo, sujeito à rota, à aeronave, ao parceiro de transporte e à aceitação prévia. Não disponível em A320/Saab 340."
         },
         "fee": {
           "en": "Quote",

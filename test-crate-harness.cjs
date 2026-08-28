@@ -40,8 +40,20 @@ const LOCALES = [["en", ""], ["fr", "fr"], ["es", "es"], ["pt", "pt"]];
  *  s'y ajoutent Aer Lingus, Aircalin, Cathay Pacific, Garuda Indonesia, Gulf Air, Kenya Airways,
  *  Qantas, South African Airways, TUI Airways et Virgin Atlantic. Le code n'a pas dérivé — les
  *  DONNÉES ont bougé sous un commentaire resté figé. Signalé, non corrigé : réécrire un
- *  commentaire daté d'une contre-revue n'est pas à moi de le faire. */
-const SANS_ANIMAUX = 17;
+ *  commentaire daté d'une contre-revue n'est pas à moi de le faire.
+ *
+ *  RETOUR À 7 (28/08/2026, lot RC). Le « 17 » n'était pas une évolution des données : c'était
+ *  la dérivation qui confondait deux réalités que T0-A a séparées. `noPets` jugeait sur
+ *  `allowed === false`, qui recouvre le refus explicite (`denied`) ET l'incertitude à
+ *  confirmer (`confirmation_required`, dont les canaux `legacy_unreviewed`) — les dix
+ *  compagnies « ajoutées » avaient simplement une soute ou un fret non revérifiés, et l'outil
+ *  leur faisait dire « ne transporte pas les chiens ». La bascule de Virgin Australia en
+ *  cabine conditionnelle (arbitrage A-bis) l'a fait voir : elle entrait dans la liste alors
+ *  que sa cabine ACCEPTE les petits chiens sous conditions. La dérivation juge désormais par
+ *  STATUT (`denied` sur les trois canaux), et le compte retombe exactement sur les sept
+ *  compagnies du commentaire d'origine : Ryanair, easyJet, Wizz Air, Icelandair, IndiGo,
+ *  Batik Air Indonésie et Malaisie. */
+const SANS_ANIMAUX = 7;
 
 let pass = 0, fail = 0;
 const check = (label, cond, detail = "") => {

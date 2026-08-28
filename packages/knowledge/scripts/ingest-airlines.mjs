@@ -121,6 +121,12 @@ const DecisionPlacement = z.union([
   z.object({
     availability: z.enum(["offered", "not_offered", "case_by_case", "undocumented"]),
     source: T0bAuditSource.optional(),
+    /** Les CONDITIONS d'un placement conditionnel, dans les langues rendues (arbitrage
+     *  Codex 28/08/2026, cas Virgin Australia) : un `case_by_case` sans ses conditions
+     *  affiche « sous confirmation » sans dire de quoi la confirmation dépend. Le champ
+     *  existe déjà au schéma canonique (`PlacementPolicyCommon.conditions`) — la fiche
+     *  ne savait simplement pas l'exprimer, et la projection le perdait. */
+    conditions: LT.optional(),
   }).strict(),
   z.object({ review_state: z.literal("legacy_unreviewed") }).strict(),
 ]);
@@ -318,7 +324,8 @@ function derivePolicy(fiche) {
     const decision = fiche.policies[mode];
     if (decision === undefined) continue;      // la fiche ne décide pas ce placement → il n'existe pas
     /* `availability` XOR `review_state`, garanti par le schéma. `source` est extraite à part :
-       c'est une PREUVE, pas un discriminant — elle est réinjectée à l'écriture de la politique. */
+       c'est une PREUVE, pas un discriminant — elle est réinjectée à l'écriture de la politique.
+       `conditions` traverse telle quelle : un enrichissement localisé, pas une décision. */
     const { source: sourceAuditee, ...discriminant } = decision;
     p[mode] = { ...discriminant };
     if (sourceAuditee) Object.defineProperty(p[mode], "__source_auditee", { value: sourceAuditee, enumerable: false });
@@ -583,6 +590,7 @@ for (const a of (objects.airlines || [])) {
     const sourceRetenue = auditee ? auditee : provenanceDivergente ? provenanceExistante : source;
     pol[mode] = {
       ...decision,
+      ...(d.conditions ? { conditions: d.conditions } : {}),
       ...(d.max_weight_kg != null ? { max_weight_kg: d.max_weight_kg } : {}),
       ...(d.brachy_allowed === false ? { brachy_allowed: false } : {}),
       source: sourceRetenue,
