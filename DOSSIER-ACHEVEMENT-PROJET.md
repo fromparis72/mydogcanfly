@@ -372,9 +372,20 @@ Chaque lot est **fusionnable seul**. L'ordre est un ordre d'**impact**, pas de d
   aucun lien de guide — dette soldée par un lot antérieur, gardée par `audit-site` et le contrôle
   des liens). Restait UNE promesse vivante : le lien « Open the checker » de l'e-mail d'alerte
   chaleur du worker — retiré. La source héritée `static/tools/is-it-too-hot-for-my-dog/` (Hugo,
-  non servie) est supprimée pour rendre le retrait définitif dans les sources aussi. La
-  recommandation « page explicative » du présent dossier n'est pas suivie : c'est la voie 404,
-  choisie par le propriétaire — déviation d'arbitrage, nommée, pas une erreur d'exécution.
+  non servie) est supprimée. La recommandation « page explicative » du présent dossier n'est pas
+  suivie : c'est la voie 404, choisie par le propriétaire — déviation d'arbitrage, nommée, pas
+  une erreur d'exécution.
+  **Correction de contre-revue (28/08/2026), nommée :** le premier compte rendu affirmait un
+  retrait « définitif dans les sources » alors que **44 chemins hérités** portaient encore des
+  CTA vers l'adresse — 40 fiches `content/dog-heat-safety/`, deux articles `content/posts/`,
+  la carte de `content/tools.md` (qui présentait quatre outils) et une entrée de
+  `layouts/sitemap.xml`. Non servis par le build Astro, mais réimportables et rebâtissables :
+  l'affirmation était plus large que le geste. Les 44 sont purgés, `tools.md` présente trois
+  outils, et la clôture est désormais **opposable** par `test-cloture-outil-chaleur.mjs`
+  (CI des deux jobs) : page absente, zéro mention dans les sources publiables ou rebâtissables,
+  sitemaps construits muets, aucune redirection — et la contre-épreuve prouve qu'un CTA
+  réintroduit rougit. Seules subsistent les mentions historiques qualifiées (dossiers,
+  commentaires d'audit, contre-épreuves, docs d'inventaire), hors du périmètre balayé.
 
 ### Lot G — Correspondances multi-opérateurs *(dossier de conception seul)*
 

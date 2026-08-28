@@ -38,8 +38,6 @@ cover:
 
 How hot is too hot for a Australian Shepherd? It's one of the most useful questions a Australian Shepherd owner can ask, because heat affects this breed in specific ways tied to its build, its coat and its temperament. Here's what actually makes a Australian Shepherd vulnerable, the temperatures where things get risky, and the habits that keep it safe through the warm months.
 
-👉 **Want a live answer for right now?** Our free **[Is it too hot for your dog? checker](/tools/is-it-too-hot-for-my-dog/?breed=Australian%20Shepherd)** is pre-set for the Australian Shepherd — it reads your local weather and tells you whether it's safe to head out.
-
 *This article is for information only and does not replace advice from a veterinarian.*
 
 ## Why the Australian Shepherd is vulnerable to heat

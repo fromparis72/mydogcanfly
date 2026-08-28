@@ -30,17 +30,11 @@ Interactive, exclusive tools to plan your trip with your dog in just a few click
     <span class="lcv-tool-d">Pick your destination: the tool lists the entry requirements (microchip, vaccination, passport, rabies titer test, tapeworm treatment, permit), the lead times and the official sources.</span>
     <span class="lcv-tool-cta">Check the requirements →</span>
   </a>
-  <a class="lcv-tool" href="/tools/is-it-too-hot-for-my-dog/">
-    <img class="lcv-tool-img" src="https://images.unsplash.com/photo-1663501258049-77f9638cbaea?ixid=M3w5ODYzMDZ8MHwxfHNlYXJjaHwxfHxkb2clMjBkcmlua2luZyUyMHdhdGVyJTIwc3VtbWVyfGVufDF8MHx8fDE3ODI0ODEyOTB8MA&ixlib=rb-4.1.0&w=800&q=80&fm=jpg&fit=crop&crop=entropy" alt="Is it too hot for your dog? Heat and pavement safety checker" loading="lazy" decoding="async">
-    <span class="lcv-tool-t">Is it too hot for your dog?</span>
-    <span class="lcv-tool-d">Live heat check from your location: risk of heatstroke on a walk, how hot the pavement is for their paws, and whether airlines would fly your dog in the hold today.</span>
-    <span class="lcv-tool-cta">Check the heat risk →</span>
-  </a>
 </div>
 
 ## How to choose the right tool for your trip
 
-Each tool covers one specific step of planning a trip with your dog. The **flight comparison tool** helps you find and choose the airline that best fits your route and your dog's weight — in the cabin, in the hold or as cargo. The **IATA crate calculator** works out the size of airline-approved crate your dog needs if they travel in the hold. And the **entry requirements checker** lists, country by country, the documents and steps you must complete before departure. The **heat checker** tells you, from your location, whether it's too hot to walk your dog or fly them in the hold today.
+Each tool covers one specific step of planning a trip with your dog. The **flight comparison tool** helps you find and choose the airline that best fits your route and your dog's weight — in the cabin, in the hold or as cargo. The **IATA crate calculator** works out the size of airline-approved crate your dog needs if they travel in the hold. And the **entry requirements checker** lists, country by country, the documents and steps you must complete before departure.
 
 Used together, these four tools cover the essentials: which airline, which crate, which paperwork — and whether the heat is safe. Everything you need to travel with your dog with peace of mind.
 
