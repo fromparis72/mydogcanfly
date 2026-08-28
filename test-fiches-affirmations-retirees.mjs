@@ -16,6 +16,19 @@
  *      légitime ailleurs (China Southern…), « 150 lb » nulle part chez Alaska ;
  *   6. contre-épreuves : chaque réintroduction est détectée par le MÊME vérificateur,
  *      exercé contre une copie mutée — jamais une réimplémentation.
+ *
+ * EXCLUSION QUALIFIÉE (réserve de contre-revue du 28/08/2026, soldée ici) : les sources
+ * héritées du site v1 portent encore les anciens chiffres — `content/posts/*-dog-policy.md`
+ * (62 fiches compagnies, dont alaska-airlines-dog-policy.md et ses « 68 kg / 150 lb ») et
+ * `static/tools/can-my-dog-fly/index.html` (le jeu de données v1 complet). Leur état, MESURÉ :
+ * elles ne sont PAS importées par le Travel Hub (aucun guide ne porte leur sourceUrl), PAS
+ * construites par Astro (aucune page dans dist), et leurs URL ne sont PAS redirigées — les 86
+ * règles de `_redirects` n'en couvrent aucune : elles répondent 404 sur le site v2, comme
+ * toute la classe des 62. (Le premier constat de contre-revue supposait une redirection vers
+ * /airlines/alaska/ — c'est inexact pour ce dépôt, et c'est dit plutôt que corrigé en douce.)
+ * Le contrôle 1 bis rend cette exclusion OPPOSABLE : si une de ces sources se met à être
+ * importée ou construite, il rougit. Le verdict final de cette garde est borné en
+ * conséquence : « toutes les surfaces CONSTRUITES », jamais « toutes les surfaces ».
  */
 import { readFileSync, readdirSync, statSync, existsSync } from "node:fs";
 import { join } from "node:path";
@@ -77,6 +90,37 @@ function verifierGarudaDecision(policies) {
   const pg = [...verifierGarudaTexte(garuda), ...verifierGarudaDecision(YAML.parse(brut).policies)];
   if (pg.length) for (const p of pg) echec("2 fiche Garuda", p);
   else ok("2 fiche Garuda : aucun « 32 kg », aucun refus cabine catégorique, décision cabine héritée ou sourcée");
+}
+
+/* ---- 1 bis. L'exclusion des sources héritées v1 est réelle, pas supposée --------------------- */
+{
+  const problemes = [];
+  /* (a) aucun guide du Travel Hub n'importe une fiche compagnie héritée. */
+  const marcherGuides = (dossier) => {
+    for (const nom of readdirSync(dossier)) {
+      const chemin = join(dossier, nom);
+      if (statSync(chemin).isDirectory()) { marcherGuides(chemin); continue; }
+      if (!nom.endsWith(".md")) continue;
+      const m = readFileSync(chemin, "utf8").match(/sourceUrl:\s*"([^"]*-dog-policy\/?)"/);
+      if (m) problemes.push(`${chemin} importe la fiche héritée ${m[1]}`);
+    }
+  };
+  if (existsSync("packages/ui/src/content/guides")) marcherGuides("packages/ui/src/content/guides");
+  /* (b) le build ne sert aucune fiche héritée `*-dog-policy`. */
+  if (existsSync("packages/ui/dist")) {
+    const marcherDist = (dossier) => {
+      for (const nom of readdirSync(dossier)) {
+        const chemin = join(dossier, nom);
+        if (statSync(chemin).isDirectory()) {
+          if (/-dog-policy$/.test(nom)) problemes.push(`${chemin} : une fiche héritée est construite`);
+          else marcherDist(chemin);
+        }
+      }
+    };
+    marcherDist("packages/ui/dist");
+  }
+  if (problemes.length) for (const p of problemes) echec("1bis exclusion des sources héritées", p);
+  else ok("1bis sources héritées v1 : ni importées par le Travel Hub, ni construites — l'exclusion est réelle");
 }
 
 /* ---- 3. Les données générées ----------------------------------------------------------------- */
@@ -180,4 +224,4 @@ function verifierGarudaDecision(policies) {
 }
 
 if (defauts) { console.error(`\n[affirmations-retirees] ÉCHEC — ${defauts} défaut(s)`); process.exit(1); }
-console.log("\n[affirmations-retirees] les faits non prouvés sont retirés de toutes les surfaces — et leur retour rougirait.");
+console.log("\n[affirmations-retirees] les faits non prouvés sont retirés de toutes les surfaces CONSTRUITES — les sources héritées v1 restent non publiées (contrôle 1 bis) — et tout retour rougirait.");
