@@ -256,7 +256,11 @@ console.log("=== 7. T0-B2 : la migration est FAITE, et la forme héritée est in
 {
   /* 7.1 — la cause est désormais PORTÉE par la base réelle, à l'effectif exact du registre
      approuvé : 83 politiques non revérifiées (73 du manifeste + 10 anciens POLICY_STALE), et
-     elles seules. En T0-B1 ce compte valait 0 : la bascule est ce lot, et rien d'autre. */
+     elles seules. En T0-B1 ce compte valait 0 : la bascule est ce lot, et rien d'autre.
+     28/08/2026 (2e passe de contre-revue Codex) — 84 : la cabine Garuda Indonesia rejoint
+     l'héritage non re-vérifié (« not_offered » affirmait une interdiction qu'aucune page
+     officielle lisible ne prouve), décision nommée dans DECISIONS_POST_MIGRATION de
+     test-t0b-matrice.mjs. 73 manifeste + 10 stale + 1 décision post-migration. */
   let porteuses = 0, canaux = 0, nonPubliee = 0;
   for (const a of kb.airlines.values()) {
     for (const ch of ["cabin", "hold", "cargo"]) {
@@ -268,7 +272,7 @@ console.log("=== 7. T0-B2 : la migration est FAITE, et la forme héritée est in
     }
   }
   check(`les ${canaux} politiques réelles sont au complet`, canaux === 302, String(canaux));
-  check("83 politiques émettent legacy_unreviewed (73 manifeste + 10 stale)", porteuses === 83, String(porteuses));
+  check("84 politiques émettent legacy_unreviewed (73 manifeste + 10 stale + Garuda cabine)", porteuses === 84, String(porteuses));
   check("1 seule émet policy_unpublished (Thai Cargo)", nonPubliee === 1, String(nonPubliee));
 
   /* 7.2 — l'artefact ne porte plus AUCUNE forme d'auteur héritée. C'est la contrepartie

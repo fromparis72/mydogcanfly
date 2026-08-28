@@ -63,7 +63,13 @@ ladder:
       fr: Soute
       es: Bodega
       pt: "Porão"
-    sub: ≤ 150 lb
+    # Contre-revue Codex (28/08/2026, 2e passe) : les 150 lb sont un seuil Pet Connect (fret),
+    # jamais publié pour le bagage accompagné — le chiffre est retiré de TOUTES les surfaces.
+    sub:
+      en: checked
+      fr: enregistrée
+      es: facturada
+      pt: "despachado"
   - flex: 20
     color: "#9a6410"
     label:
@@ -71,7 +77,11 @@ ladder:
       fr: Fret
       es: Carga
       pt: "Carga"
-    sub: "> 150 lb"
+    sub:
+      en: unaccompanied
+      fr: non accompagné
+      es: no acompañadas
+      pt: "desacompanhados"
 policies:
   cabin:
     availability: offered
@@ -126,10 +136,10 @@ channels:
       es: Permitido
       pt: "Permitido"
     detail:
-      en: Larger pets in the climate-controlled baggage hold on your flight (pet + carrier ≤ 150 lb). Health certificate required.
-      fr: Animaux plus grands dans la soute bagages climatisée sur ton vol (animal + caisse ≤ 150 lb). Certificat sanitaire requis.
-      es: Mascotas más grandes en la bodega de equipaje climatizada de tu vuelo (mascota + jaula ≤ 150 lb). Se requiere certificado sanitario.
-      pt: "Animais maiores no porão de bagagem climatizado do seu voo (animal + caixa de transporte ≤ 150 lb). É exigido atestado de saúde."
+      en: Larger pets in the climate-controlled baggage hold on your flight — no published weight limit for checked pets. Health certificate required.
+      fr: Animaux plus grands dans la soute bagages climatisée sur ton vol — aucune limite de poids publiée pour les animaux enregistrés. Certificat sanitaire requis.
+      es: Mascotas más grandes en la bodega de equipaje climatizada de tu vuelo — sin límite de peso publicado para mascotas facturadas. Se requiere certificado sanitario.
+      pt: "Animais maiores no porão de bagagem climatizado do seu voo — sem limite de peso publicado para animais despachados. É exigido atestado de saúde."
     fee:
       en: $150 / way
       fr: 150 $ / trajet
@@ -149,10 +159,10 @@ channels:
       es: Bajo presupuesto
       pt: "Sob consulta"
     detail:
-      en: Unaccompanied pets or over 150 lb, via Alaska Air Cargo Pet Connect.
-      fr: Animaux non accompagnés ou de plus de 150 lb, via Alaska Air Cargo Pet Connect.
-      es: Mascotas no acompañadas o de más de 150 lb, mediante Alaska Air Cargo Pet Connect.
-      pt: "Animais desacompanhados ou com mais de 150 lb, via Alaska Air Cargo Pet Connect."
+      en: Unaccompanied pets travel via Alaska Air Cargo Pet Connect, which applies its own acceptance rules and weight thresholds.
+      fr: Les animaux non accompagnés voyagent via Alaska Air Cargo Pet Connect, qui applique ses propres règles d'acceptation et seuils de poids.
+      es: Las mascotas no acompañadas viajan mediante Alaska Air Cargo Pet Connect, que aplica sus propias reglas de aceptación y umbrales de peso.
+      pt: "Animais desacompanhados viajam via Alaska Air Cargo Pet Connect, que aplica suas próprias regras de aceitação e limites de peso."
     fee:
       en: Quote
       fr: Devis

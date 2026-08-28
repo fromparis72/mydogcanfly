@@ -552,12 +552,17 @@ console.log("=== Couverture DIRECTE : les 302 politiques, hors des 72 scénarios
    * « Pets in Cabin » n'est ni interdit ni universel — routes/dates domestiques éligibles
    * seulement). Une politique passe donc d'`allowed` à `confirmation_required` : 143→142 et
    * 84→85. Le mouvement est nommé ici parce que cette répartition est un COMPTE FIGÉ : toute
-   * bascule non documentée doit rougir, celle-ci est documentée. */
-  check("répartition runtime : 142 allowed · 75 denied · 85 à confirmer",
-    parStatut.allowed === 142 && parStatut.denied === 75 && parStatut.confirmation_required === 85,
+   * bascule non documentée doit rougir, celle-ci est documentée.
+   * 28/08/2026 (2e passe, contre-revue Codex) — Garuda Indonesia cabine : `not_offered` →
+   * `legacy_unreviewed`. La lecture directe n'a trouvé aucune page passager officielle lisible
+   * établissant l'interdiction cabine : « refusé » affirmait un fait non prouvé. La décision
+   * rejoint l'héritage non re-vérifié, comme la soute et le fret de la même fiche : 75→74
+   * denied, 85→86 à confirmer, et la cause legacy_unreviewed 83→84. */
+  check("répartition runtime : 142 allowed · 74 denied · 86 à confirmer",
+    parStatut.allowed === 142 && parStatut.denied === 74 && parStatut.confirmation_required === 86,
     JSON.stringify(parStatut));
-  check("causes : 83 legacy_unreviewed · 1 policy_unpublished",
-    parCause.legacy_unreviewed === 83 && parCause.policy_unpublished === 1, JSON.stringify(parCause));
+  check("causes : 84 legacy_unreviewed · 1 policy_unpublished",
+    parCause.legacy_unreviewed === 84 && parCause.policy_unpublished === 1, JSON.stringify(parCause));
 }
 
 console.log("=== Contre-épreuve N/N+1 : la baseline survit au passage des années ===");
