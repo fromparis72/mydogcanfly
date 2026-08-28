@@ -25,7 +25,8 @@ import { join, resolve } from "node:path";
 import { pathToFileURL, fileURLToPath } from "node:url";
 import { verifierProvenance } from "./packages/knowledge/scripts/lib/provenance.mjs";
 import * as parse5 from "parse5";
-import { lireRoutage, comparerAuScelle, dementiDe, FICHIER_SCELLE } from "./porte-sceller-routage.mjs";
+import { lireRoutage, comparerAuScelle, FICHIER_SCELLE } from "./porte-sceller-routage.mjs";
+import { verifierLegacy, verifierAucuneRegleHorsRegistre, FICHIER_REGISTRE } from "./porte-legacy.mjs";
 
 const DOMAINE = "https://mydogcanfly.com";
 const LANGUES = ["en", "fr", "es", "pt"];
@@ -409,29 +410,30 @@ const urlsSitemaps = new Set();
   let defsAvant = defauts;
   const scelle = JSON.parse(readFileSync(FICHIER_SCELLE, "utf8"));
   for (const e of await comparerAuScelle(DIST, scelle)) echec("P7bis registre", e);
-  /* P7 TER — CE QUE LA SURFACE RÉELLE DÉMENT.
+  /* P7 TER — LES ANCIENNES URL, CONTRE LE REGISTRE CANONIQUE.
    *
-   * Trouvé le 28/08/2026 en écrivant le contre-test en ligne, et c'est un défaut du SITE, pas
-   * de la porte : `_routes.json` envoie 67 des 73 sources de `_redirects` au Worker, qui répond
-   * lui-même — la règle écrite n'est alors jamais consultée. Mesure : 54 règles démenties, dont
-   * 53 promettent une page INDEXABLE du site ; 46 sont servies 410 Gone.
+   * Trouvé le 28/08/2026 en écrivant le contre-test en ligne : `_routes.json` envoyait 67 des 73
+   * sources de `_redirects` au Worker, qui répondait avant — 54 règles DÉMENTIES, dont 53
+   * promettaient une page vivante et indexable. P7 les validait toutes : il lisait `_redirects`
+   * en isolation. C'est la faute de méthode du faux constat « 62 URL en 404 », retournée.
    *
-   * P7 jugeait `_redirects` en isolation et les déclarait saines. C'est la faute de méthode du
-   * faux constat « 62 URL en 404 », retournée : ici la règle promet plus que la surface ne rend.
-   *
-   * La porte ROUGIT donc, et c'est le comportement voulu : choisir entre « rediriger » et
-   * « faire disparaître » ces URL est un arbitrage de propriétaire, pas une correction que la
-   * porte peut faire ni taire. Une fois l'arbitrage rendu, chaque règle démentie porte au
-   * registre `ombre_approuvee` avec son motif écrit — et le diff du scellé montre la décision. */
+   * Arbitrage du propriétaire : 301 partout où un équivalent pertinent existe, 410 seulement à
+   * défaut et avec un motif écrit. `legacy-urls-registre.json` porte la décision ; les tables du
+   * Worker en sont GÉNÉRÉES. Ce contrôle-ci exerce le VRAI Worker de l'artefact contre le
+   * registre — statut, cible exacte, query string, chaînes, cible vivante, annoncée et
+   * indexable —, puis vérifie l'autre sens : rien de servi que le registre n'ait décidé. */
   {
-    const dementis = [];
-    for (const r of scelle.familles.redirects_statiques) {
-      const d = dementiDe(r);
-      if (d && !r.ombre_approuvee) dementis.push(d);
+    const registre = JSON.parse(readFileSync(FICHIER_REGISTRE, "utf8"));
+    const avant = defauts;
+    for (const e of await verifierLegacy(DIST, registre, { urlsSitemaps, pagesNoindex, domaine: DOMAINE })) echec("P7ter legacy", e);
+    for (const e of verifierAucuneRegleHorsRegistre(DIST, registre, lireRoutage(DIST).familles)) echec("P7ter registre", e);
+    if (defauts === avant) {
+      const r = registre.entrees.filter((x) => x.type === "redirect").length;
+      const g = registre.entrees.filter((x) => x.type === "gone").length;
+      ok(`P7ter anciennes URL : ${r} redirections et ${g} disparitions exercées sur le VRAI Worker — statut, cible, query string, chaînes, cibles vivantes et annoncées ; rien de servi hors registre`);
     }
-    for (const d of dementis.slice(0, 6)) echec("P7ter surface", d + (dementis.length > 6 ? ` (+${dementis.length - 6} autres règles démenties)` : ""));
-    if (!dementis.length) ok(`P7ter surface : les ${scelle.familles.redirects_statiques.length} règles de _redirects tiennent leur promesse, ou leur ombre est approuvée au registre`);
   }
+
 
 
   /* Le routage reproduit : périmètre _routes.json + VRAI _worker.js du dist, importé via une

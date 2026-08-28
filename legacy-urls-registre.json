@@ -1,0 +1,1168 @@
+{
+  "schema": 1,
+  "_commentaire": "LE REGISTRE CANONIQUE DES ANCIENNES URL DU SITE v1 — source unique, décision Philippe du 28/08/2026. Jusqu'ici deux listes vivaient côte à côte et se contredisaient : les tables du Worker (_worker.js) et _redirects. Mesure : sur 73 règles de _redirects, 54 étaient DÉMENTIES par la surface réelle — _routes.json envoie leur source au Worker, qui répond lui-même (46 en 410 Gone, 8 vers une cible générique) sans que _redirects soit jamais consulté ; 53 d'entre elles promettaient une page vivante et indexable. Ce fichier est désormais LA liste ; packages/knowledge/scripts/generer-worker-legacy.mjs en GÉNÈRE les tables du Worker et CONTRÔLE que _redirects ne porte plus de règle interceptée. Chaque entrée porte son motif : un 410 est une décision écrite, jamais un oubli.",
+  "entrees": [
+    {
+      "source": "/aegean-airlines-dog-policy/",
+      "type": "redirect",
+      "cible": "/airlines/aegean/",
+      "motif": "équivalent v2 retenu lors du portage des anciennes URL v1",
+      "origine": "worker.LEGACY_REDIRECTS"
+    },
+    {
+      "source": "/aeromexico-dog-policy/",
+      "type": "redirect",
+      "cible": "/airlines/aeromexico/",
+      "motif": "équivalent v2 retenu lors du portage des anciennes URL v1",
+      "origine": "worker.LEGACY_REDIRECTS"
+    },
+    {
+      "source": "/air-algerie-dog-policy/",
+      "type": "redirect",
+      "cible": "/airlines/air-algerie/",
+      "motif": "équivalent v2 retenu lors du portage des anciennes URL v1",
+      "origine": "worker.LEGACY_REDIRECTS"
+    },
+    {
+      "source": "/air-canada-dog-policy/",
+      "type": "redirect",
+      "cible": "/airlines/air-canada/",
+      "motif": "équivalent v2 retenu lors du portage des anciennes URL v1",
+      "origine": "worker.LEGACY_REDIRECTS"
+    },
+    {
+      "source": "/air-caraibes-dog-policy/",
+      "type": "redirect",
+      "cible": "/airlines/air-caraibes/",
+      "motif": "équivalent v2 retenu lors du portage des anciennes URL v1",
+      "origine": "worker.LEGACY_REDIRECTS"
+    },
+    {
+      "source": "/air-europa-dog-policy/",
+      "type": "redirect",
+      "cible": "/airlines/air-europa/",
+      "motif": "équivalent v2 retenu lors du portage des anciennes URL v1",
+      "origine": "worker.LEGACY_REDIRECTS"
+    },
+    {
+      "source": "/air-france-dog-policy/",
+      "type": "redirect",
+      "cible": "/airlines/air-france/",
+      "motif": "équivalent v2 retenu lors du portage des anciennes URL v1",
+      "origine": "worker.LEGACY_REDIRECTS"
+    },
+    {
+      "source": "/air-india-dog-policy/",
+      "type": "redirect",
+      "cible": "/airlines/air-india/",
+      "motif": "équivalent v2 retenu lors du portage des anciennes URL v1",
+      "origine": "worker.LEGACY_REDIRECTS"
+    },
+    {
+      "source": "/air-mauritius-dog-policy/",
+      "type": "redirect",
+      "cible": "/airlines/air-mauritius/",
+      "motif": "équivalent v2 retenu lors du portage des anciennes URL v1",
+      "origine": "worker.LEGACY_REDIRECTS"
+    },
+    {
+      "source": "/air-tahiti-nui-dog-policy/",
+      "type": "redirect",
+      "cible": "/airlines/air-tahiti-nui/",
+      "motif": "équivalent v2 retenu lors du portage des anciennes URL v1",
+      "origine": "worker.LEGACY_REDIRECTS"
+    },
+    {
+      "source": "/air-transat-dog-policy/",
+      "type": "redirect",
+      "cible": "/airlines/air-transat/",
+      "motif": "équivalent v2 retenu lors du portage des anciennes URL v1",
+      "origine": "worker.LEGACY_REDIRECTS"
+    },
+    {
+      "source": "/airline-approved-dog-crate/",
+      "type": "redirect",
+      "cible": "/travel-hub/airline-approved-dog-crate/",
+      "motif": "arbitrage du 28/08/2026 : l'article précis du Travel Hub l'emporte sur la cible générique « /tools/crate/ » que le Worker servait",
+      "origine": "worker+_redirects (conflit arbitré)"
+    },
+    {
+      "source": "/airline-pet-policies/",
+      "type": "redirect",
+      "cible": "/airlines/",
+      "motif": "équivalent v2 retenu lors du portage des anciennes URL v1",
+      "origine": "worker.LEGACY_REDIRECTS"
+    },
+    {
+      "source": "/alaska-airlines-dog-policy/",
+      "type": "redirect",
+      "cible": "/airlines/alaska/",
+      "motif": "équivalent v2 retenu lors du portage des anciennes URL v1",
+      "origine": "worker.LEGACY_REDIRECTS"
+    },
+    {
+      "source": "/american-airlines-dog-policy/",
+      "type": "redirect",
+      "cible": "/airlines/american/",
+      "motif": "équivalent v2 retenu lors du portage des anciennes URL v1",
+      "origine": "worker.LEGACY_REDIRECTS"
+    },
+    {
+      "source": "/ana-dog-policy/",
+      "type": "redirect",
+      "cible": "/airlines/ana/",
+      "motif": "équivalent v2 retenu lors du portage des anciennes URL v1",
+      "origine": "worker.LEGACY_REDIRECTS"
+    },
+    {
+      "source": "/austrian-airlines-dog-policy/",
+      "type": "redirect",
+      "cible": "/airlines/austrian/",
+      "motif": "équivalent v2 retenu lors du portage des anciennes URL v1",
+      "origine": "worker.LEGACY_REDIRECTS"
+    },
+    {
+      "source": "/author/",
+      "type": "gone",
+      "motif": "page d'auteur du blog v1 : la v2 n'a pas de page d'auteur, et aucune page ne la remplace",
+      "origine": "worker.GONE_EXACT"
+    },
+    {
+      "source": "/avianca-dog-policy/",
+      "type": "redirect",
+      "cible": "/airlines/avianca/",
+      "motif": "équivalent v2 retenu lors du portage des anciennes URL v1",
+      "origine": "worker.LEGACY_REDIRECTS"
+    },
+    {
+      "source": "/best-dog-cooling-mats/",
+      "type": "redirect",
+      "cible": "/travel-hub/best-dog-cooling-mats/",
+      "motif": "article v1 dont l'équivalent vit au Travel Hub : le 410 perdait l'autorité d'un lien vers une page existante",
+      "origine": "worker.GONE_EXACT (arbitré en 301)"
+    },
+    {
+      "source": "/best-dog-water-fountains-2026/",
+      "type": "redirect",
+      "cible": "/travel-hub/best-dog-water-fountains-2026/",
+      "motif": "article v1 dont l'équivalent vit au Travel Hub : le 410 perdait l'autorité d'un lien vers une page existante",
+      "origine": "worker.GONE_EXACT (arbitré en 301)"
+    },
+    {
+      "source": "/best-travel-dog-bowls/",
+      "type": "redirect",
+      "cible": "/travel-hub/best-travel-dog-bowls/",
+      "motif": "article v1 dont l'équivalent vit au Travel Hub : le 410 perdait l'autorité d'un lien vers une page existante",
+      "origine": "worker.GONE_EXACT (arbitré en 301)"
+    },
+    {
+      "source": "/british-airways-dog-policy/",
+      "type": "redirect",
+      "cible": "/airlines/british-airways/",
+      "motif": "équivalent v2 retenu lors du portage des anciennes URL v1",
+      "origine": "worker.LEGACY_REDIRECTS"
+    },
+    {
+      "source": "/brussels-airlines-dog-policy/",
+      "type": "redirect",
+      "cible": "/airlines/brussels/",
+      "motif": "équivalent v2 retenu lors du portage des anciennes URL v1",
+      "origine": "worker.LEGACY_REDIRECTS"
+    },
+    {
+      "source": "/camping-with-a-dog/",
+      "type": "redirect",
+      "cible": "/travel-hub/camping-with-a-dog/",
+      "motif": "règle de _redirects que le Worker interceptait : elle rejoint le registre pour être réellement servie",
+      "origine": "_redirects (portée au Worker)"
+    },
+    {
+      "source": "/car-travel-dog-gear/",
+      "type": "redirect",
+      "cible": "/travel-hub/car-travel-dog-gear/",
+      "motif": "article v1 dont l'équivalent vit au Travel Hub : le 410 perdait l'autorité d'un lien vers une page existante",
+      "origine": "worker.GONE_EXACT (arbitré en 301)"
+    },
+    {
+      "source": "/categories/",
+      "type": "redirect",
+      "cible": "/travel-hub/",
+      "motif": "rubrique « guides » de la v1 : le Travel Hub est le hub des guides de la v2",
+      "origine": "worker.GONE_EXACT (arbitré en 301)"
+    },
+    {
+      "source": "/categories/airlines/",
+      "type": "redirect",
+      "cible": "/airlines/",
+      "motif": "rubrique « compagnies » de la v1 : l'index des fiches compagnies est son équivalent exact",
+      "origine": "worker.GONE_EXACT (arbitré en 301)"
+    },
+    {
+      "source": "/categories/destinations/",
+      "type": "redirect",
+      "cible": "/tools/destinations/",
+      "motif": "règle de _redirects que le Worker interceptait : elle rejoint le registre pour être réellement servie",
+      "origine": "_redirects (portée au Worker)"
+    },
+    {
+      "source": "/categories/gear/",
+      "type": "redirect",
+      "cible": "/tools/best-crates/",
+      "motif": "règle de _redirects que le Worker interceptait : elle rejoint le registre pour être réellement servie",
+      "origine": "_redirects (portée au Worker)"
+    },
+    {
+      "source": "/categories/health/",
+      "type": "redirect",
+      "cible": "/travel-hub/",
+      "motif": "rubrique « santé » de la v1 : ses articles vivent au Travel Hub, sans index de rubrique dédié",
+      "origine": "worker.GONE_EXACT (arbitré en 301)"
+    },
+    {
+      "source": "/categories/travel/",
+      "type": "redirect",
+      "cible": "/travel-hub/",
+      "motif": "rubrique « voyage » de la v1 : le Travel Hub la reprend entièrement",
+      "origine": "worker.GONE_EXACT (arbitré en 301)"
+    },
+    {
+      "source": "/cathay-pacific-dog-policy/",
+      "type": "redirect",
+      "cible": "/airlines/cathay-pacific/",
+      "motif": "équivalent v2 retenu lors du portage des anciennes URL v1",
+      "origine": "worker.LEGACY_REDIRECTS"
+    },
+    {
+      "source": "/china-airlines-dog-policy/",
+      "type": "redirect",
+      "cible": "/airlines/china-airlines/",
+      "motif": "équivalent v2 retenu lors du portage des anciennes URL v1",
+      "origine": "worker.LEGACY_REDIRECTS"
+    },
+    {
+      "source": "/city-trips-with-a-dog/",
+      "type": "redirect",
+      "cible": "/travel-hub/city-trips-with-a-dog/",
+      "motif": "règle de _redirects que le Worker interceptait : elle rejoint le registre pour être réellement servie",
+      "origine": "_redirects (portée au Worker)"
+    },
+    {
+      "source": "/contact/",
+      "type": "redirect",
+      "cible": "/report-error/",
+      "motif": "équivalent v2 retenu lors du portage des anciennes URL v1",
+      "origine": "worker.LEGACY_REDIRECTS"
+    },
+    {
+      "source": "/copa-airlines-dog-policy/",
+      "type": "redirect",
+      "cible": "/airlines/copa/",
+      "motif": "équivalent v2 retenu lors du portage des anciennes URL v1",
+      "origine": "worker.LEGACY_REDIRECTS"
+    },
+    {
+      "source": "/corsair-dog-policy/",
+      "type": "redirect",
+      "cible": "/airlines/corsair/",
+      "motif": "équivalent v2 retenu lors du portage des anciennes URL v1",
+      "origine": "worker.LEGACY_REDIRECTS"
+    },
+    {
+      "source": "/countryside-weekend-with-a-dog/",
+      "type": "redirect",
+      "cible": "/travel-hub/countryside-weekend-with-a-dog/",
+      "motif": "règle de _redirects que le Worker interceptait : elle rejoint le registre pour être réellement servie",
+      "origine": "_redirects (portée au Worker)"
+    },
+    {
+      "source": "/delta-dog-policy/",
+      "type": "redirect",
+      "cible": "/airlines/delta/",
+      "motif": "équivalent v2 retenu lors du portage des anciennes URL v1",
+      "origine": "worker.LEGACY_REDIRECTS"
+    },
+    {
+      "source": "/dog-car-barriers/",
+      "type": "redirect",
+      "cible": "/travel-hub/dog-car-barriers/",
+      "motif": "article v1 dont l'équivalent vit au Travel Hub : le 410 perdait l'autorité d'un lien vers une page existante",
+      "origine": "worker.GONE_EXACT (arbitré en 301)"
+    },
+    {
+      "source": "/dog-car-harness/",
+      "type": "redirect",
+      "cible": "/travel-hub/dog-car-harness/",
+      "motif": "article v1 dont l'équivalent vit au Travel Hub : le 410 perdait l'autorité d'un lien vers une page existante",
+      "origine": "worker.GONE_EXACT (arbitré en 301)"
+    },
+    {
+      "source": "/dog-carrier-backpacks/",
+      "type": "redirect",
+      "cible": "/travel-hub/dog-carrier-backpacks/",
+      "motif": "article v1 dont l'équivalent vit au Travel Hub : le 410 perdait l'autorité d'un lien vers une page existante",
+      "origine": "worker.GONE_EXACT (arbitré en 301)"
+    },
+    {
+      "source": "/dog-carriers-and-crates/",
+      "type": "redirect",
+      "cible": "/travel-hub/dog-carriers-and-crates/",
+      "motif": "arbitrage du 28/08/2026 : l'article précis du Travel Hub l'emporte sur la cible générique « /tools/crate/ » que le Worker servait",
+      "origine": "worker+_redirects (conflit arbitré)"
+    },
+    {
+      "source": "/dog-coats-and-boots/",
+      "type": "redirect",
+      "cible": "/travel-hub/dog-coats-and-boots/",
+      "motif": "règle de _redirects que le Worker interceptait : elle rejoint le registre pour être réellement servie",
+      "origine": "_redirects (portée au Worker)"
+    },
+    {
+      "source": "/dog-digestive-issues-travel/",
+      "type": "redirect",
+      "cible": "/travel-hub/dog-digestive-issues-travel/",
+      "motif": "article v1 dont l'équivalent vit au Travel Hub : le 410 perdait l'autorité d'un lien vers une page existante",
+      "origine": "worker.GONE_EXACT (arbitré en 301)"
+    },
+    {
+      "source": "/dog-ear-infections-swimming/",
+      "type": "redirect",
+      "cible": "/travel-hub/dog-ear-infections-swimming/",
+      "motif": "règle de _redirects que le Worker interceptait : elle rejoint le registre pour être réellement servie",
+      "origine": "_redirects (portée au Worker)"
+    },
+    {
+      "source": "/dog-first-aid-kit/",
+      "type": "redirect",
+      "cible": "/travel-hub/dog-first-aid-kit/",
+      "motif": "article v1 dont l'équivalent vit au Travel Hub : le 410 perdait l'autorité d'un lien vers une page existante",
+      "origine": "worker.GONE_EXACT (arbitré en 301)"
+    },
+    {
+      "source": "/dog-friendly-accommodation/",
+      "type": "redirect",
+      "cible": "/travel-hub/dog-friendly-accommodation/",
+      "motif": "article v1 dont l'équivalent vit au Travel Hub : le 410 perdait l'autorité d'un lien vers une page existante",
+      "origine": "worker.GONE_EXACT (arbitré en 301)"
+    },
+    {
+      "source": "/dog-friendly-beaches/",
+      "type": "redirect",
+      "cible": "/travel-hub/dog-friendly-beaches/",
+      "motif": "article v1 dont l'équivalent vit au Travel Hub : le 410 perdait l'autorité d'un lien vers une page existante",
+      "origine": "worker.GONE_EXACT (arbitré en 301)"
+    },
+    {
+      "source": "/dog-friendly-france/",
+      "type": "redirect",
+      "cible": "/travel-hub/dog-friendly-france/",
+      "motif": "arbitrage du 28/08/2026 : l'article précis du Travel Hub l'emporte sur la cible générique « /countries/fr/ » que le Worker servait",
+      "origine": "worker+_redirects (conflit arbitré)"
+    },
+    {
+      "source": "/dog-friendly-rest-stops/",
+      "type": "redirect",
+      "cible": "/travel-hub/dog-friendly-rest-stops/",
+      "motif": "règle de _redirects que le Worker interceptait : elle rejoint le registre pour être réellement servie",
+      "origine": "_redirects (portée au Worker)"
+    },
+    {
+      "source": "/dog-gps-trackers/",
+      "type": "redirect",
+      "cible": "/travel-hub/dog-gps-trackers/",
+      "motif": "règle de _redirects que le Worker interceptait : elle rejoint le registre pour être réellement servie",
+      "origine": "_redirects (portée au Worker)"
+    },
+    {
+      "source": "/dog-grooming-kit-travel/",
+      "type": "redirect",
+      "cible": "/travel-hub/dog-grooming-kit-travel/",
+      "motif": "article v1 dont l'équivalent vit au Travel Hub : le 410 perdait l'autorité d'un lien vers une page existante",
+      "origine": "worker.GONE_EXACT (arbitré en 301)"
+    },
+    {
+      "source": "/dog-heat-safety/",
+      "type": "redirect",
+      "cible": "/tools/heat/",
+      "motif": "équivalent v2 retenu lors du portage des anciennes URL v1",
+      "origine": "worker.LEGACY_REDIRECTS"
+    },
+    {
+      "source": "/dog-heat-safety/cavalier-king-charles-spaniel/",
+      "type": "redirect",
+      "cible": "/breeds/cavalier-king-charles/",
+      "motif": "règle de _redirects que le Worker interceptait : elle rejoint le registre pour être réellement servie",
+      "origine": "_redirects (portée au Worker)"
+    },
+    {
+      "source": "/dog-heatstroke/",
+      "type": "redirect",
+      "cible": "/travel-hub/dog-heatstroke/",
+      "motif": "arbitrage du 28/08/2026 : l'article précis du Travel Hub l'emporte sur la cible générique « /tools/heat/ » que le Worker servait",
+      "origine": "worker+_redirects (conflit arbitré)"
+    },
+    {
+      "source": "/dog-hypothermia/",
+      "type": "redirect",
+      "cible": "/travel-hub/dog-hypothermia/",
+      "motif": "article v1 dont l'équivalent vit au Travel Hub : le 410 perdait l'autorité d'un lien vers une page existante",
+      "origine": "worker.GONE_EXACT (arbitré en 301)"
+    },
+    {
+      "source": "/dog-injury-first-aid/",
+      "type": "redirect",
+      "cible": "/travel-hub/dog-injury-first-aid/",
+      "motif": "règle de _redirects que le Worker interceptait : elle rejoint le registre pour être réellement servie",
+      "origine": "_redirects (portée au Worker)"
+    },
+    {
+      "source": "/dog-leashes-collars-harnesses/",
+      "type": "redirect",
+      "cible": "/travel-hub/dog-leashes-collars-harnesses/",
+      "motif": "article v1 dont l'équivalent vit au Travel Hub : le 410 perdait l'autorité d'un lien vers une page existante",
+      "origine": "worker.GONE_EXACT (arbitré en 301)"
+    },
+    {
+      "source": "/dog-motion-sickness/",
+      "type": "redirect",
+      "cible": "/travel-hub/dog-motion-sickness/",
+      "motif": "article v1 dont l'équivalent vit au Travel Hub : le 410 perdait l'autorité d'un lien vers une page existante",
+      "origine": "worker.GONE_EXACT (arbitré en 301)"
+    },
+    {
+      "source": "/dog-muzzles-for-travel/",
+      "type": "redirect",
+      "cible": "/travel-hub/dog-muzzles-for-travel/",
+      "motif": "article v1 dont l'équivalent vit au Travel Hub : le 410 perdait l'autorité d'un lien vers une page existante",
+      "origine": "worker.GONE_EXACT (arbitré en 301)"
+    },
+    {
+      "source": "/dog-night-safety-gear/",
+      "type": "redirect",
+      "cible": "/travel-hub/dog-night-safety-gear/",
+      "motif": "article v1 dont l'équivalent vit au Travel Hub : le 410 perdait l'autorité d'un lien vers une page existante",
+      "origine": "worker.GONE_EXACT (arbitré en 301)"
+    },
+    {
+      "source": "/dog-paw-pad-care/",
+      "type": "redirect",
+      "cible": "/travel-hub/dog-paw-pad-care/",
+      "motif": "article v1 dont l'équivalent vit au Travel Hub : le 410 perdait l'autorité d'un lien vers une page existante",
+      "origine": "worker.GONE_EXACT (arbitré en 301)"
+    },
+    {
+      "source": "/dog-potty-breaks-travel/",
+      "type": "redirect",
+      "cible": "/travel-hub/dog-potty-breaks-travel/",
+      "motif": "article v1 dont l'équivalent vit au Travel Hub : le 410 perdait l'autorité d'un lien vers une page existante",
+      "origine": "worker.GONE_EXACT (arbitré en 301)"
+    },
+    {
+      "source": "/dog-ramps-and-steps/",
+      "type": "redirect",
+      "cible": "/travel-hub/dog-ramps-and-steps/",
+      "motif": "article v1 dont l'équivalent vit au Travel Hub : le 410 perdait l'autorité d'un lien vers une page existante",
+      "origine": "worker.GONE_EXACT (arbitré en 301)"
+    },
+    {
+      "source": "/dog-separation-anxiety-vacation/",
+      "type": "redirect",
+      "cible": "/travel-hub/dog-separation-anxiety-vacation/",
+      "motif": "article v1 dont l'équivalent vit au Travel Hub : le 410 perdait l'autorité d'un lien vers une page existante",
+      "origine": "worker.GONE_EXACT (arbitré en 301)"
+    },
+    {
+      "source": "/dog-stings-and-bites/",
+      "type": "redirect",
+      "cible": "/travel-hub/dog-stings-and-bites/",
+      "motif": "article v1 dont l'équivalent vit au Travel Hub : le 410 perdait l'autorité d'un lien vers une page existante",
+      "origine": "worker.GONE_EXACT (arbitré en 301)"
+    },
+    {
+      "source": "/dog-travel-accessories/",
+      "type": "redirect",
+      "cible": "/travel-hub/dog-travel-accessories/",
+      "motif": "article v1 dont l'équivalent vit au Travel Hub : le 410 perdait l'autorité d'un lien vers une page existante",
+      "origine": "worker.GONE_EXACT (arbitré en 301)"
+    },
+    {
+      "source": "/dog-travel-anxiety/",
+      "type": "redirect",
+      "cible": "/travel-hub/dog-travel-anxiety/",
+      "motif": "article v1 dont l'équivalent vit au Travel Hub : le 410 perdait l'autorité d'un lien vers une page existante",
+      "origine": "worker.GONE_EXACT (arbitré en 301)"
+    },
+    {
+      "source": "/dog-travel-beds/",
+      "type": "redirect",
+      "cible": "/travel-hub/dog-travel-beds/",
+      "motif": "article v1 dont l'équivalent vit au Travel Hub : le 410 perdait l'autorité d'un lien vers une page existante",
+      "origine": "worker.GONE_EXACT (arbitré en 301)"
+    },
+    {
+      "source": "/dog-travel-gear/",
+      "type": "redirect",
+      "cible": "/travel-hub/dog-travel-gear/",
+      "motif": "article v1 dont l'équivalent vit au Travel Hub : le 410 perdait l'autorité d'un lien vers une page existante",
+      "origine": "worker.GONE_EXACT (arbitré en 301)"
+    },
+    {
+      "source": "/dog-travel-requirements-by-country/",
+      "type": "redirect",
+      "cible": "/countries/",
+      "motif": "équivalent v2 retenu lors du portage des anciennes URL v1",
+      "origine": "worker.LEGACY_REDIRECTS"
+    },
+    {
+      "source": "/dog-travel-toys/",
+      "type": "redirect",
+      "cible": "/travel-hub/dog-travel-toys/",
+      "motif": "article v1 dont l'équivalent vit au Travel Hub : le 410 perdait l'autorité d'un lien vers une page existante",
+      "origine": "worker.GONE_EXACT (arbitré en 301)"
+    },
+    {
+      "source": "/dog-travel-vaccinations/",
+      "type": "redirect",
+      "cible": "/travel-hub/dog-travel-vaccinations/",
+      "motif": "arbitrage du 28/08/2026 : l'article précis du Travel Hub l'emporte sur la cible générique « /countries/ » que le Worker servait",
+      "origine": "worker+_redirects (conflit arbitré)"
+    },
+    {
+      "source": "/dog-water-bottles/",
+      "type": "redirect",
+      "cible": "/travel-hub/dog-water-bottles/",
+      "motif": "article v1 dont l'équivalent vit au Travel Hub : le 410 perdait l'autorité d'un lien vers une page existante",
+      "origine": "worker.GONE_EXACT (arbitré en 301)"
+    },
+    {
+      "source": "/easyjet-dog-policy/",
+      "type": "redirect",
+      "cible": "/airlines/easyjet/",
+      "motif": "équivalent v2 retenu lors du portage des anciennes URL v1",
+      "origine": "worker.LEGACY_REDIRECTS"
+    },
+    {
+      "source": "/editorial-standards/",
+      "type": "redirect",
+      "cible": "/about/",
+      "motif": "équivalent v2 retenu lors du portage des anciennes URL v1",
+      "origine": "worker.LEGACY_REDIRECTS"
+    },
+    {
+      "source": "/egyptair-dog-policy/",
+      "type": "redirect",
+      "cible": "/airlines/egyptair/",
+      "motif": "équivalent v2 retenu lors du portage des anciennes URL v1",
+      "origine": "worker.LEGACY_REDIRECTS"
+    },
+    {
+      "source": "/emirates-dog-policy/",
+      "type": "redirect",
+      "cible": "/airlines/emirates/",
+      "motif": "équivalent v2 retenu lors du portage des anciennes URL v1",
+      "origine": "worker.LEGACY_REDIRECTS"
+    },
+    {
+      "source": "/ethiopian-airlines-dog-policy/",
+      "type": "redirect",
+      "cible": "/airlines/ethiopian/",
+      "motif": "équivalent v2 retenu lors du portage des anciennes URL v1",
+      "origine": "worker.LEGACY_REDIRECTS"
+    },
+    {
+      "source": "/etihad-airways-dog-policy/",
+      "type": "redirect",
+      "cible": "/airlines/etihad/",
+      "motif": "équivalent v2 retenu lors du portage des anciennes URL v1",
+      "origine": "worker.LEGACY_REDIRECTS"
+    },
+    {
+      "source": "/eurowings-dog-policy/",
+      "type": "redirect",
+      "cible": "/airlines/eurowings/",
+      "motif": "équivalent v2 retenu lors du portage des anciennes URL v1",
+      "origine": "worker.LEGACY_REDIRECTS"
+    },
+    {
+      "source": "/eva-air-dog-policy/",
+      "type": "redirect",
+      "cible": "/airlines/eva-air/",
+      "motif": "équivalent v2 retenu lors du portage des anciennes URL v1",
+      "origine": "worker.LEGACY_REDIRECTS"
+    },
+    {
+      "source": "/feeding-your-dog-while-traveling/",
+      "type": "redirect",
+      "cible": "/travel-hub/feeding-your-dog-while-traveling/",
+      "motif": "article v1 dont l'équivalent vit au Travel Hub : le 410 perdait l'autorité d'un lien vers une page existante",
+      "origine": "worker.GONE_EXACT (arbitré en 301)"
+    },
+    {
+      "source": "/ferry-travel-with-a-dog/",
+      "type": "redirect",
+      "cible": "/travel-hub/ferry-travel-with-a-dog/",
+      "motif": "article v1 dont l'équivalent vit au Travel Hub : le 410 perdait l'autorité d'un lien vers une page existante",
+      "origine": "worker.GONE_EXACT (arbitré en 301)"
+    },
+    {
+      "source": "/finnair-dog-policy/",
+      "type": "redirect",
+      "cible": "/airlines/finnair/",
+      "motif": "équivalent v2 retenu lors du portage des anciennes URL v1",
+      "origine": "worker.LEGACY_REDIRECTS"
+    },
+    {
+      "source": "/first-vacation-with-your-dog/",
+      "type": "redirect",
+      "cible": "/travel-hub/first-vacation-with-your-dog/",
+      "motif": "article v1 dont l'équivalent vit au Travel Hub : le 410 perdait l'autorité d'un lien vers une page existante",
+      "origine": "worker.GONE_EXACT (arbitré en 301)"
+    },
+    {
+      "source": "/flying-with-a-dog-cabin-hold-cargo/",
+      "type": "redirect",
+      "cible": "/travel-hub/flying-with-a-dog-cabin-hold-cargo/",
+      "motif": "arbitrage du 28/08/2026 : l'article précis du Travel Hub l'emporte sur la cible générique « / » que le Worker servait",
+      "origine": "worker+_redirects (conflit arbitré)"
+    },
+    {
+      "source": "/flying-with-a-dog/",
+      "type": "redirect",
+      "cible": "/travel-hub/flying-with-a-dog/",
+      "motif": "arbitrage du 28/08/2026 : l'article précis du Travel Hub l'emporte sur la cible générique « / » que le Worker servait",
+      "origine": "worker+_redirects (conflit arbitré)"
+    },
+    {
+      "source": "/foxtails-danger-dogs/",
+      "type": "redirect",
+      "cible": "/travel-hub/foxtails-danger-dogs/",
+      "motif": "article v1 dont l'équivalent vit au Travel Hub : le 410 perdait l'autorité d'un lien vers une page existante",
+      "origine": "worker.GONE_EXACT (arbitré en 301)"
+    },
+    {
+      "source": "/french-bee-dog-policy/",
+      "type": "redirect",
+      "cible": "/airlines/french-bee/",
+      "motif": "équivalent v2 retenu lors du portage des anciennes URL v1",
+      "origine": "worker.LEGACY_REDIRECTS"
+    },
+    {
+      "source": "/hot-pavement-dog-paws/",
+      "type": "redirect",
+      "cible": "/travel-hub/hot-pavement-dog-paws/",
+      "motif": "article v1 dont l'équivalent vit au Travel Hub : le 410 perdait l'autorité d'un lien vers une page existante",
+      "origine": "worker.GONE_EXACT (arbitré en 301)"
+    },
+    {
+      "source": "/iberia-dog-policy/",
+      "type": "redirect",
+      "cible": "/airlines/iberia/",
+      "motif": "équivalent v2 retenu lors du portage des anciennes URL v1",
+      "origine": "worker.LEGACY_REDIRECTS"
+    },
+    {
+      "source": "/iberia-express-dog-policy/",
+      "type": "redirect",
+      "cible": "/airlines/iberia-express/",
+      "motif": "équivalent v2 retenu lors du portage des anciennes URL v1",
+      "origine": "worker.LEGACY_REDIRECTS"
+    },
+    {
+      "source": "/international-travel-with-a-dog/",
+      "type": "redirect",
+      "cible": "/travel-hub/international-travel-with-a-dog/",
+      "motif": "arbitrage du 28/08/2026 : l'article précis du Travel Hub l'emporte sur la cible générique « / » que le Worker servait",
+      "origine": "worker+_redirects (conflit arbitré)"
+    },
+    {
+      "source": "/ita-airways-dog-policy/",
+      "type": "redirect",
+      "cible": "/airlines/ita-airways/",
+      "motif": "équivalent v2 retenu lors du portage des anciennes URL v1",
+      "origine": "worker.LEGACY_REDIRECTS"
+    },
+    {
+      "source": "/japan-airlines-dog-policy/",
+      "type": "redirect",
+      "cible": "/airlines/jal/",
+      "motif": "équivalent v2 retenu lors du portage des anciennes URL v1",
+      "origine": "worker.LEGACY_REDIRECTS"
+    },
+    {
+      "source": "/jetblue-dog-policy/",
+      "type": "redirect",
+      "cible": "/airlines/jetblue/",
+      "motif": "équivalent v2 retenu lors du portage des anciennes URL v1",
+      "origine": "worker.LEGACY_REDIRECTS"
+    },
+    {
+      "source": "/klm-dog-policy/",
+      "type": "redirect",
+      "cible": "/airlines/klm/",
+      "motif": "équivalent v2 retenu lors du portage des anciennes URL v1",
+      "origine": "worker.LEGACY_REDIRECTS"
+    },
+    {
+      "source": "/korean-air-dog-policy/",
+      "type": "redirect",
+      "cible": "/airlines/korean-air/",
+      "motif": "équivalent v2 retenu lors du portage des anciennes URL v1",
+      "origine": "worker.LEGACY_REDIRECTS"
+    },
+    {
+      "source": "/latam-dog-policy/",
+      "type": "redirect",
+      "cible": "/airlines/latam/",
+      "motif": "équivalent v2 retenu lors du portage des anciennes URL v1",
+      "origine": "worker.LEGACY_REDIRECTS"
+    },
+    {
+      "source": "/lot-polish-airlines-dog-policy/",
+      "type": "redirect",
+      "cible": "/airlines/lot/",
+      "motif": "équivalent v2 retenu lors du portage des anciennes URL v1",
+      "origine": "worker.LEGACY_REDIRECTS"
+    },
+    {
+      "source": "/lufthansa-dog-policy/",
+      "type": "redirect",
+      "cible": "/airlines/lufthansa/",
+      "motif": "équivalent v2 retenu lors du portage des anciennes URL v1",
+      "origine": "worker.LEGACY_REDIRECTS"
+    },
+    {
+      "source": "/mountain-vacations-with-a-dog/",
+      "type": "redirect",
+      "cible": "/travel-hub/mountain-vacations-with-a-dog/",
+      "motif": "article v1 dont l'équivalent vit au Travel Hub : le 410 perdait l'autorité d'un lien vers une page existante",
+      "origine": "worker.GONE_EXACT (arbitré en 301)"
+    },
+    {
+      "source": "/no-pull-dog-harness/",
+      "type": "redirect",
+      "cible": "/travel-hub/no-pull-dog-harness/",
+      "motif": "article v1 dont l'équivalent vit au Travel Hub : le 410 perdait l'autorité d'un lien vers une page existante",
+      "origine": "worker.GONE_EXACT (arbitré en 301)"
+    },
+    {
+      "source": "/norwegian-dog-policy/",
+      "type": "redirect",
+      "cible": "/airlines/norwegian/",
+      "motif": "équivalent v2 retenu lors du portage des anciennes URL v1",
+      "origine": "worker.LEGACY_REDIRECTS"
+    },
+    {
+      "source": "/philippine-airlines-dog-policy/",
+      "type": "redirect",
+      "cible": "/airlines/philippine/",
+      "motif": "équivalent v2 retenu lors du portage des anciennes URL v1",
+      "origine": "worker.LEGACY_REDIRECTS"
+    },
+    {
+      "source": "/portable-dog-feeding-gear/",
+      "type": "redirect",
+      "cible": "/travel-hub/portable-dog-feeding-gear/",
+      "motif": "règle de _redirects que le Worker interceptait : elle rejoint le registre pour être réellement servie",
+      "origine": "_redirects (portée au Worker)"
+    },
+    {
+      "source": "/posts/",
+      "type": "gone",
+      "motif": "index chronologique des billets v1 : la v2 n'a pas de flux chronologique — le Travel Hub est thématique, il ne remplace pas un index par date",
+      "origine": "worker.GONE_EXACT"
+    },
+    {
+      "source": "/privacy-policy/",
+      "type": "redirect",
+      "cible": "/privacy/",
+      "motif": "équivalent v2 retenu lors du portage des anciennes URL v1",
+      "origine": "worker.LEGACY_REDIRECTS"
+    },
+    {
+      "source": "/protecting-dog-paw-pads/",
+      "type": "redirect",
+      "cible": "/travel-hub/protecting-dog-paw-pads/",
+      "motif": "article v1 dont l'équivalent vit au Travel Hub : le 410 perdait l'autorité d'un lien vers une page existante",
+      "origine": "worker.GONE_EXACT (arbitré en 301)"
+    },
+    {
+      "source": "/public-transit-with-a-dog/",
+      "type": "redirect",
+      "cible": "/travel-hub/public-transit-with-a-dog/",
+      "motif": "règle de _redirects que le Worker interceptait : elle rejoint le registre pour être réellement servie",
+      "origine": "_redirects (portée au Worker)"
+    },
+    {
+      "source": "/qatar-airways-dog-policy/",
+      "type": "redirect",
+      "cible": "/airlines/qatar-airways/",
+      "motif": "équivalent v2 retenu lors du portage des anciennes URL v1",
+      "origine": "worker.LEGACY_REDIRECTS"
+    },
+    {
+      "source": "/road-trip-with-a-dog/",
+      "type": "redirect",
+      "cible": "/travel-hub/road-trip-with-a-dog/",
+      "motif": "article v1 dont l'équivalent vit au Travel Hub : le 410 perdait l'autorité d'un lien vers une page existante",
+      "origine": "worker.GONE_EXACT (arbitré en 301)"
+    },
+    {
+      "source": "/royal-air-maroc-dog-policy/",
+      "type": "redirect",
+      "cible": "/airlines/royal-air-maroc/",
+      "motif": "équivalent v2 retenu lors du portage des anciennes URL v1",
+      "origine": "worker.LEGACY_REDIRECTS"
+    },
+    {
+      "source": "/ryanair-dog-policy/",
+      "type": "redirect",
+      "cible": "/airlines/ryanair/",
+      "motif": "équivalent v2 retenu lors du portage des anciennes URL v1",
+      "origine": "worker.LEGACY_REDIRECTS"
+    },
+    {
+      "source": "/sas-dog-policy/",
+      "type": "redirect",
+      "cible": "/airlines/sas/",
+      "motif": "équivalent v2 retenu lors du portage des anciennes URL v1",
+      "origine": "worker.LEGACY_REDIRECTS"
+    },
+    {
+      "source": "/saudia-dog-policy/",
+      "type": "redirect",
+      "cible": "/airlines/saudia/",
+      "motif": "équivalent v2 retenu lors du portage des anciennes URL v1",
+      "origine": "worker.LEGACY_REDIRECTS"
+    },
+    {
+      "source": "/singapore-airlines-dog-policy/",
+      "type": "redirect",
+      "cible": "/airlines/singapore-airlines/",
+      "motif": "équivalent v2 retenu lors du portage des anciennes URL v1",
+      "origine": "worker.LEGACY_REDIRECTS"
+    },
+    {
+      "source": "/small-dog-carriers/",
+      "type": "redirect",
+      "cible": "/travel-hub/small-dog-carriers/",
+      "motif": "article v1 dont l'équivalent vit au Travel Hub : le 410 perdait l'autorité d'un lien vers une page existante",
+      "origine": "worker.GONE_EXACT (arbitré en 301)"
+    },
+    {
+      "source": "/swiss-air-dog-policy/",
+      "type": "redirect",
+      "cible": "/airlines/swiss/",
+      "motif": "équivalent v2 retenu lors du portage des anciennes URL v1",
+      "origine": "worker.LEGACY_REDIRECTS"
+    },
+    {
+      "source": "/tags/",
+      "type": "gone",
+      "motif": "nuage de mots-clés v1 : la v2 n'a pas de taxonomie par étiquettes",
+      "origine": "worker.GONE_EXACT"
+    },
+    {
+      "source": "/tap-air-portugal-dog-policy/",
+      "type": "redirect",
+      "cible": "/airlines/tap/",
+      "motif": "équivalent v2 retenu lors du portage des anciennes URL v1",
+      "origine": "worker.LEGACY_REDIRECTS"
+    },
+    {
+      "source": "/thai-airways-dog-policy/",
+      "type": "redirect",
+      "cible": "/airlines/thai-airways/",
+      "motif": "équivalent v2 retenu lors du portage des anciennes URL v1",
+      "origine": "worker.LEGACY_REDIRECTS"
+    },
+    {
+      "source": "/ticks-and-fleas-dog-travel/",
+      "type": "redirect",
+      "cible": "/travel-hub/ticks-and-fleas-dog-travel/",
+      "motif": "règle de _redirects que le Worker interceptait : elle rejoint le registre pour être réellement servie",
+      "origine": "_redirects (portée au Worker)"
+    },
+    {
+      "source": "/train-travel-with-a-dog/",
+      "type": "redirect",
+      "cible": "/travel-hub/train-travel-with-a-dog/",
+      "motif": "article v1 dont l'équivalent vit au Travel Hub : le 410 perdait l'autorité d'un lien vers une page existante",
+      "origine": "worker.GONE_EXACT (arbitré en 301)"
+    },
+    {
+      "source": "/transavia-dog-policy/",
+      "type": "redirect",
+      "cible": "/airlines/transavia/",
+      "motif": "équivalent v2 retenu lors du portage des anciennes URL v1",
+      "origine": "worker.LEGACY_REDIRECTS"
+    },
+    {
+      "source": "/traveling-by-car-with-a-dog/",
+      "type": "redirect",
+      "cible": "/travel-hub/traveling-by-car-with-a-dog/",
+      "motif": "règle de _redirects que le Worker interceptait : elle rejoint le registre pour être réellement servie",
+      "origine": "_redirects (portée au Worker)"
+    },
+    {
+      "source": "/traveling-to-australia-with-a-dog/",
+      "type": "redirect",
+      "cible": "/countries/au/",
+      "motif": "équivalent v2 retenu lors du portage des anciennes URL v1",
+      "origine": "worker.LEGACY_REDIRECTS"
+    },
+    {
+      "source": "/traveling-to-belgium-netherlands-with-a-dog/",
+      "type": "redirect",
+      "cible": "/countries/",
+      "motif": "équivalent v2 retenu lors du portage des anciennes URL v1",
+      "origine": "worker.LEGACY_REDIRECTS"
+    },
+    {
+      "source": "/traveling-to-brazil-with-a-dog/",
+      "type": "redirect",
+      "cible": "/countries/br/",
+      "motif": "équivalent v2 retenu lors du portage des anciennes URL v1",
+      "origine": "worker.LEGACY_REDIRECTS"
+    },
+    {
+      "source": "/traveling-to-canada-with-a-dog/",
+      "type": "redirect",
+      "cible": "/countries/ca/",
+      "motif": "équivalent v2 retenu lors du portage des anciennes URL v1",
+      "origine": "worker.LEGACY_REDIRECTS"
+    },
+    {
+      "source": "/traveling-to-dubai-uae-with-a-dog/",
+      "type": "redirect",
+      "cible": "/countries/ae/",
+      "motif": "équivalent v2 retenu lors du portage des anciennes URL v1",
+      "origine": "worker.LEGACY_REDIRECTS"
+    },
+    {
+      "source": "/traveling-to-germany-with-a-dog/",
+      "type": "redirect",
+      "cible": "/countries/de/",
+      "motif": "équivalent v2 retenu lors du portage des anciennes URL v1",
+      "origine": "worker.LEGACY_REDIRECTS"
+    },
+    {
+      "source": "/traveling-to-greece-with-a-dog/",
+      "type": "redirect",
+      "cible": "/countries/gr/",
+      "motif": "équivalent v2 retenu lors du portage des anciennes URL v1",
+      "origine": "worker.LEGACY_REDIRECTS"
+    },
+    {
+      "source": "/traveling-to-ireland-finland-malta-norway-with-a-dog/",
+      "type": "redirect",
+      "cible": "/countries/",
+      "motif": "équivalent v2 retenu lors du portage des anciennes URL v1",
+      "origine": "worker.LEGACY_REDIRECTS"
+    },
+    {
+      "source": "/traveling-to-italy-with-a-dog/",
+      "type": "redirect",
+      "cible": "/countries/it/",
+      "motif": "équivalent v2 retenu lors du portage des anciennes URL v1",
+      "origine": "worker.LEGACY_REDIRECTS"
+    },
+    {
+      "source": "/traveling-to-japan-with-a-dog/",
+      "type": "redirect",
+      "cible": "/countries/jp/",
+      "motif": "équivalent v2 retenu lors du portage des anciennes URL v1",
+      "origine": "worker.LEGACY_REDIRECTS"
+    },
+    {
+      "source": "/traveling-to-mexico-with-a-dog/",
+      "type": "redirect",
+      "cible": "/countries/mx/",
+      "motif": "équivalent v2 retenu lors du portage des anciennes URL v1",
+      "origine": "worker.LEGACY_REDIRECTS"
+    },
+    {
+      "source": "/traveling-to-morocco-with-a-dog/",
+      "type": "redirect",
+      "cible": "/countries/ma/",
+      "motif": "équivalent v2 retenu lors du portage des anciennes URL v1",
+      "origine": "worker.LEGACY_REDIRECTS"
+    },
+    {
+      "source": "/traveling-to-new-zealand-with-a-dog/",
+      "type": "redirect",
+      "cible": "/countries/nz/",
+      "motif": "équivalent v2 retenu lors du portage des anciennes URL v1",
+      "origine": "worker.LEGACY_REDIRECTS"
+    },
+    {
+      "source": "/traveling-to-portugal-with-a-dog/",
+      "type": "redirect",
+      "cible": "/countries/pt/",
+      "motif": "équivalent v2 retenu lors du portage des anciennes URL v1",
+      "origine": "worker.LEGACY_REDIRECTS"
+    },
+    {
+      "source": "/traveling-to-singapore-with-a-dog/",
+      "type": "redirect",
+      "cible": "/countries/sg/",
+      "motif": "équivalent v2 retenu lors du portage des anciennes URL v1",
+      "origine": "worker.LEGACY_REDIRECTS"
+    },
+    {
+      "source": "/traveling-to-spain-with-a-dog/",
+      "type": "redirect",
+      "cible": "/countries/es/",
+      "motif": "équivalent v2 retenu lors du portage des anciennes URL v1",
+      "origine": "worker.LEGACY_REDIRECTS"
+    },
+    {
+      "source": "/traveling-to-switzerland-with-a-dog/",
+      "type": "redirect",
+      "cible": "/countries/ch/",
+      "motif": "équivalent v2 retenu lors du portage des anciennes URL v1",
+      "origine": "worker.LEGACY_REDIRECTS"
+    },
+    {
+      "source": "/traveling-to-thailand-with-a-dog/",
+      "type": "redirect",
+      "cible": "/countries/th/",
+      "motif": "équivalent v2 retenu lors du portage des anciennes URL v1",
+      "origine": "worker.LEGACY_REDIRECTS"
+    },
+    {
+      "source": "/traveling-to-the-eu-with-a-dog/",
+      "type": "redirect",
+      "cible": "/countries/",
+      "motif": "équivalent v2 retenu lors du portage des anciennes URL v1",
+      "origine": "worker.LEGACY_REDIRECTS"
+    },
+    {
+      "source": "/traveling-to-the-uk-with-a-dog/",
+      "type": "redirect",
+      "cible": "/countries/gb/",
+      "motif": "équivalent v2 retenu lors du portage des anciennes URL v1",
+      "origine": "worker.LEGACY_REDIRECTS"
+    },
+    {
+      "source": "/traveling-to-the-usa-with-a-dog/",
+      "type": "redirect",
+      "cible": "/countries/us/",
+      "motif": "équivalent v2 retenu lors du portage des anciennes URL v1",
+      "origine": "worker.LEGACY_REDIRECTS"
+    },
+    {
+      "source": "/traveling-to-tunisia-with-a-dog/",
+      "type": "redirect",
+      "cible": "/countries/tn/",
+      "motif": "équivalent v2 retenu lors du portage des anciennes URL v1",
+      "origine": "worker.LEGACY_REDIRECTS"
+    },
+    {
+      "source": "/traveling-to-turkey-with-a-dog/",
+      "type": "redirect",
+      "cible": "/countries/tr/",
+      "motif": "équivalent v2 retenu lors du portage des anciennes URL v1",
+      "origine": "worker.LEGACY_REDIRECTS"
+    },
+    {
+      "source": "/traveling-with-a-puppy/",
+      "type": "redirect",
+      "cible": "/travel-hub/traveling-with-a-puppy/",
+      "motif": "règle de _redirects que le Worker interceptait : elle rejoint le registre pour être réellement servie",
+      "origine": "_redirects (portée au Worker)"
+    },
+    {
+      "source": "/traveling-with-a-senior-or-sick-dog/",
+      "type": "redirect",
+      "cible": "/travel-hub/traveling-with-a-senior-or-sick-dog/",
+      "motif": "article v1 dont l'équivalent vit au Travel Hub : le 410 perdait l'autorité d'un lien vers une page existante",
+      "origine": "worker.GONE_EXACT (arbitré en 301)"
+    },
+    {
+      "source": "/tunisair-dog-policy/",
+      "type": "redirect",
+      "cible": "/airlines/tunisair/",
+      "motif": "équivalent v2 retenu lors du portage des anciennes URL v1",
+      "origine": "worker.LEGACY_REDIRECTS"
+    },
+    {
+      "source": "/turkish-airlines-dog-policy/",
+      "type": "redirect",
+      "cible": "/airlines/turkish/",
+      "motif": "équivalent v2 retenu lors du portage des anciennes URL v1",
+      "origine": "worker.LEGACY_REDIRECTS"
+    },
+    {
+      "source": "/united-airlines-dog-policy/",
+      "type": "redirect",
+      "cible": "/airlines/united/",
+      "motif": "équivalent v2 retenu lors du portage des anciennes URL v1",
+      "origine": "worker.LEGACY_REDIRECTS"
+    },
+    {
+      "source": "/vietnam-airlines-dog-policy/",
+      "type": "redirect",
+      "cible": "/airlines/vietnam-airlines/",
+      "motif": "équivalent v2 retenu lors du portage des anciennes URL v1",
+      "origine": "worker.LEGACY_REDIRECTS"
+    },
+    {
+      "source": "/volotea-dog-policy/",
+      "type": "redirect",
+      "cible": "/airlines/volotea/",
+      "motif": "équivalent v2 retenu lors du portage des anciennes URL v1",
+      "origine": "worker.LEGACY_REDIRECTS"
+    },
+    {
+      "source": "/vueling-dog-policy/",
+      "type": "redirect",
+      "cible": "/airlines/vueling/",
+      "motif": "équivalent v2 retenu lors du portage des anciennes URL v1",
+      "origine": "worker.LEGACY_REDIRECTS"
+    },
+    {
+      "source": "/weekend-near-paris-with-a-dog/",
+      "type": "redirect",
+      "cible": "/travel-hub/weekend-near-paris-with-a-dog/",
+      "motif": "article v1 dont l'équivalent vit au Travel Hub : le 410 perdait l'autorité d'un lien vers une page existante",
+      "origine": "worker.GONE_EXACT (arbitré en 301)"
+    },
+    {
+      "source": "/westjet-dog-policy/",
+      "type": "redirect",
+      "cible": "/airlines/westjet/",
+      "motif": "équivalent v2 retenu lors du portage des anciennes URL v1",
+      "origine": "worker.LEGACY_REDIRECTS"
+    },
+    {
+      "source": "/wizz-air-dog-policy/",
+      "type": "redirect",
+      "cible": "/airlines/wizz-air/",
+      "motif": "équivalent v2 retenu lors du portage des anciennes URL v1",
+      "origine": "worker.LEGACY_REDIRECTS"
+    }
+  ],
+  "prefixes_gone": [
+    {
+      "prefixe": "/tags/",
+      "motif": "nuage de mots-clés v1 : la v2 n'a pas de taxonomie par étiquettes, aucune URL sous ce préfixe n'a d'équivalent"
+    },
+    {
+      "prefixe": "/dog-heat-safety/",
+      "motif": "sous-pages « chaleur par race » de la v1 : la racine et les races connues sont des entrées exactes ci-dessus ; ce qui reste ne désigne aucune fiche existante et n'a donc pas d'équivalent"
+    }
+  ],
+  "prefixes_redirect": [
+    {
+      "prefixe": "/categories/",
+      "cible": "/travel-hub/",
+      "motif": "rubriques du blog v1 : celles qui ont un équivalent précis sont des entrées exactes ci-dessus ; les autres mènent au hub thématique qui les reprend"
+    }
+  ],
+  "breed_alias": [
+    {
+      "v1": "cavalier-king-charles-spaniel",
+      "v2": "cavalier-king-charles",
+      "motif": "slug de race renommé entre v1 et v2 ; sans cet alias, /dog-heat-safety/<v1>/ tombait en 410 alors que la fiche existe"
+    }
+  ]
+}

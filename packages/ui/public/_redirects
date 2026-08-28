@@ -1,86 +1,24 @@
+# LES REDIRECTIONS QUE LA PLATEFORME APPLIQUE VRAIMENT — et elles seules.
+#
+# Ce fichier n'agit QUE sur les chemins que `_routes.json` exclut du Worker : la liaison ASSETS
+# les sert, et c'est elle qui applique `_redirects`. Tout chemin qui passe par le Worker est
+# traité par lui, avant, et une règle écrite ici pour un tel chemin ne s'exécute JAMAIS.
+#
+# MESURÉ le 28/08/2026 : ce fichier portait 73 règles, dont 67 dans le périmètre du Worker.
+# 54 d'entre elles étaient DÉMENTIES par la surface réelle — 46 servies en 410 Gone, 8 redirigées
+# vers une cible générique — et 53 promettaient une page vivante et indexable. Autrement dit,
+# 53 anciennes URL du site v1 perdaient leur autorité de lien sans que rien ne le dise.
+#
+# Ces règles vivent désormais dans `legacy-urls-registre.json`, LE registre canonique des
+# anciennes URL, d'où `packages/knowledge/scripts/generer-worker-legacy.mjs` génère les tables
+# du Worker. Ce même script CONTRÔLE ce fichier : une règle qui retomberait dans le périmètre du
+# Worker fait rougir la CI, parce qu'elle serait une promesse que la plateforme ne tiendra pas.
+
 # Search Console 30/07/2026 : 148 impressions, rendait 404. /tools/* est exclu du Worker,
 # la redirection doit donc vivre ici.
-/tools/iata-dog-crate-calculator/ /tools/crate/ 301
-/tools/iata-dog-crate-calculator /tools/crate/ 301
-
-# — v1 → v2, relevé Search Console 08/08/2026 —
-
-# Outils renommés.
-/tools/can-my-dog-fly/                     /#flight-finder        301
-/tools/can-my-dog-fly                      /#flight-finder        301
-/tools/dog-entry-requirements-by-country/  /countries/            301
-/tools/dog-entry-requirements-by-country   /countries/            301
-
-# Fiches « chaleur par race » : la v2 les a fondues dans la fiche de race, qui dit la même
-# chose sur le climat et bien davantage. L'exception vient d'un slug raccourci en v2.
-/dog-heat-safety/cavalier-king-charles-spaniel/  /breeds/cavalier-king-charles/  301
-/dog-heat-safety/*                         /breeds/:splat         301
-
-# Catégories de la v1.
-/categories/destinations/                  /tools/destinations/   301
-/categories/gear/                          /tools/best-crates/    301
-/categories/*                              /travel-hub/           301
-
-# Guides déplacés à la racine → Travel Hub (62 règles, une par guide publié).
-/airline-approved-dog-crate/               /travel-hub/airline-approved-dog-crate/        301
-/best-dog-cooling-mats/                    /travel-hub/best-dog-cooling-mats/             301
-/best-dog-water-fountains-2026/            /travel-hub/best-dog-water-fountains-2026/     301
-/best-travel-dog-bowls/                    /travel-hub/best-travel-dog-bowls/             301
-/camping-with-a-dog/                       /travel-hub/camping-with-a-dog/                301
-/car-travel-dog-gear/                      /travel-hub/car-travel-dog-gear/               301
-/city-trips-with-a-dog/                    /travel-hub/city-trips-with-a-dog/             301
-/countryside-weekend-with-a-dog/           /travel-hub/countryside-weekend-with-a-dog/    301
-/dog-car-barriers/                         /travel-hub/dog-car-barriers/                  301
-/dog-car-harness/                          /travel-hub/dog-car-harness/                   301
-/dog-carrier-backpacks/                    /travel-hub/dog-carrier-backpacks/             301
-/dog-carriers-and-crates/                  /travel-hub/dog-carriers-and-crates/           301
-/dog-coats-and-boots/                      /travel-hub/dog-coats-and-boots/               301
-/dog-digestive-issues-travel/              /travel-hub/dog-digestive-issues-travel/       301
-/dog-ear-infections-swimming/              /travel-hub/dog-ear-infections-swimming/       301
-/dog-first-aid-kit/                        /travel-hub/dog-first-aid-kit/                 301
-/dog-friendly-accommodation/               /travel-hub/dog-friendly-accommodation/        301
-/dog-friendly-beaches/                     /travel-hub/dog-friendly-beaches/              301
-/dog-friendly-france/                      /travel-hub/dog-friendly-france/               301
-/dog-friendly-rest-stops/                  /travel-hub/dog-friendly-rest-stops/           301
-/dog-gps-trackers/                         /travel-hub/dog-gps-trackers/                  301
-/dog-grooming-kit-travel/                  /travel-hub/dog-grooming-kit-travel/           301
-/dog-heatstroke/                           /travel-hub/dog-heatstroke/                    301
-/dog-hypothermia/                          /travel-hub/dog-hypothermia/                   301
-/dog-injury-first-aid/                     /travel-hub/dog-injury-first-aid/              301
-/dog-leashes-collars-harnesses/            /travel-hub/dog-leashes-collars-harnesses/     301
-/dog-motion-sickness/                      /travel-hub/dog-motion-sickness/               301
-/dog-muzzles-for-travel/                   /travel-hub/dog-muzzles-for-travel/            301
-/dog-night-safety-gear/                    /travel-hub/dog-night-safety-gear/             301
-/dog-paw-pad-care/                         /travel-hub/dog-paw-pad-care/                  301
-/dog-potty-breaks-travel/                  /travel-hub/dog-potty-breaks-travel/           301
-/dog-ramps-and-steps/                      /travel-hub/dog-ramps-and-steps/               301
-/dog-separation-anxiety-vacation/          /travel-hub/dog-separation-anxiety-vacation/   301
-/dog-stings-and-bites/                     /travel-hub/dog-stings-and-bites/              301
-/dog-travel-accessories/                   /travel-hub/dog-travel-accessories/            301
-/dog-travel-anxiety/                       /travel-hub/dog-travel-anxiety/                301
-/dog-travel-beds/                          /travel-hub/dog-travel-beds/                   301
-/dog-travel-gear/                          /travel-hub/dog-travel-gear/                   301
-/dog-travel-toys/                          /travel-hub/dog-travel-toys/                   301
-/dog-travel-vaccinations/                  /travel-hub/dog-travel-vaccinations/           301
-/dog-water-bottles/                        /travel-hub/dog-water-bottles/                 301
-/feeding-your-dog-while-traveling/         /travel-hub/feeding-your-dog-while-traveling/  301
-/ferry-travel-with-a-dog/                  /travel-hub/ferry-travel-with-a-dog/           301
-/first-vacation-with-your-dog/             /travel-hub/first-vacation-with-your-dog/      301
-/flying-with-a-dog/                        /travel-hub/flying-with-a-dog/                 301
-/flying-with-a-dog-cabin-hold-cargo/       /travel-hub/flying-with-a-dog-cabin-hold-cargo/ 301
-/foxtails-danger-dogs/                     /travel-hub/foxtails-danger-dogs/              301
-/hot-pavement-dog-paws/                    /travel-hub/hot-pavement-dog-paws/             301
-/international-travel-with-a-dog/          /travel-hub/international-travel-with-a-dog/   301
-/mountain-vacations-with-a-dog/            /travel-hub/mountain-vacations-with-a-dog/     301
-/no-pull-dog-harness/                      /travel-hub/no-pull-dog-harness/               301
-/portable-dog-feeding-gear/                /travel-hub/portable-dog-feeding-gear/         301
-/protecting-dog-paw-pads/                  /travel-hub/protecting-dog-paw-pads/           301
-/public-transit-with-a-dog/                /travel-hub/public-transit-with-a-dog/         301
-/road-trip-with-a-dog/                     /travel-hub/road-trip-with-a-dog/              301
-/small-dog-carriers/                       /travel-hub/small-dog-carriers/                301
-/ticks-and-fleas-dog-travel/               /travel-hub/ticks-and-fleas-dog-travel/        301
-/train-travel-with-a-dog/                  /travel-hub/train-travel-with-a-dog/           301
-/traveling-by-car-with-a-dog/              /travel-hub/traveling-by-car-with-a-dog/       301
-/traveling-with-a-puppy/                   /travel-hub/traveling-with-a-puppy/            301
-/traveling-with-a-senior-or-sick-dog/      /travel-hub/traveling-with-a-senior-or-sick-dog/ 301
-/weekend-near-paris-with-a-dog/            /travel-hub/weekend-near-paris-with-a-dog/     301
+/tools/iata-dog-crate-calculator/          /tools/crate/                              301
+/tools/iata-dog-crate-calculator           /tools/crate/                              301
+/tools/can-my-dog-fly/                     /#flight-finder                            301
+/tools/can-my-dog-fly                      /#flight-finder                            301
+/tools/dog-entry-requirements-by-country/  /countries/                                301
+/tools/dog-entry-requirements-by-country   /countries/                                301

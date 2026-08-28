@@ -29,6 +29,8 @@
 // Le périmètre est contrôlé par _routes.json : le Worker ne voit jamais les pages vivantes.
 // ---------------------------------------------------------------------------
 // >>> LEGACY-DATA-START
+// GÉNÉRÉ depuis legacy-urls-registre.json par packages/knowledge/scripts/generer-worker-legacy.mjs.
+// Ne pas éditer à la main : le registre porte la décision et son motif, ce bloc n'en est que la copie.
 const LEGACY_REDIRECTS = new Map([
   ["/aegean-airlines-dog-policy/", "/airlines/aegean/"],
   ["/aeromexico-dog-policy/", "/airlines/aeromexico/"],
@@ -41,27 +43,70 @@ const LEGACY_REDIRECTS = new Map([
   ["/air-mauritius-dog-policy/", "/airlines/air-mauritius/"],
   ["/air-tahiti-nui-dog-policy/", "/airlines/air-tahiti-nui/"],
   ["/air-transat-dog-policy/", "/airlines/air-transat/"],
-  ["/airline-approved-dog-crate/", "/tools/crate/"],
+  ["/airline-approved-dog-crate/", "/travel-hub/airline-approved-dog-crate/"],
   ["/airline-pet-policies/", "/airlines/"],
   ["/alaska-airlines-dog-policy/", "/airlines/alaska/"],
   ["/american-airlines-dog-policy/", "/airlines/american/"],
   ["/ana-dog-policy/", "/airlines/ana/"],
   ["/austrian-airlines-dog-policy/", "/airlines/austrian/"],
   ["/avianca-dog-policy/", "/airlines/avianca/"],
+  ["/best-dog-cooling-mats/", "/travel-hub/best-dog-cooling-mats/"],
+  ["/best-dog-water-fountains-2026/", "/travel-hub/best-dog-water-fountains-2026/"],
+  ["/best-travel-dog-bowls/", "/travel-hub/best-travel-dog-bowls/"],
   ["/british-airways-dog-policy/", "/airlines/british-airways/"],
   ["/brussels-airlines-dog-policy/", "/airlines/brussels/"],
+  ["/camping-with-a-dog/", "/travel-hub/camping-with-a-dog/"],
+  ["/car-travel-dog-gear/", "/travel-hub/car-travel-dog-gear/"],
+  ["/categories/", "/travel-hub/"],
+  ["/categories/airlines/", "/airlines/"],
+  ["/categories/destinations/", "/tools/destinations/"],
+  ["/categories/gear/", "/tools/best-crates/"],
+  ["/categories/health/", "/travel-hub/"],
+  ["/categories/travel/", "/travel-hub/"],
   ["/cathay-pacific-dog-policy/", "/airlines/cathay-pacific/"],
   ["/china-airlines-dog-policy/", "/airlines/china-airlines/"],
+  ["/city-trips-with-a-dog/", "/travel-hub/city-trips-with-a-dog/"],
   ["/contact/", "/report-error/"],
   ["/copa-airlines-dog-policy/", "/airlines/copa/"],
   ["/corsair-dog-policy/", "/airlines/corsair/"],
+  ["/countryside-weekend-with-a-dog/", "/travel-hub/countryside-weekend-with-a-dog/"],
   ["/delta-dog-policy/", "/airlines/delta/"],
-  ["/dog-carriers-and-crates/", "/tools/crate/"],
-  ["/dog-friendly-france/", "/countries/fr/"],
+  ["/dog-car-barriers/", "/travel-hub/dog-car-barriers/"],
+  ["/dog-car-harness/", "/travel-hub/dog-car-harness/"],
+  ["/dog-carrier-backpacks/", "/travel-hub/dog-carrier-backpacks/"],
+  ["/dog-carriers-and-crates/", "/travel-hub/dog-carriers-and-crates/"],
+  ["/dog-coats-and-boots/", "/travel-hub/dog-coats-and-boots/"],
+  ["/dog-digestive-issues-travel/", "/travel-hub/dog-digestive-issues-travel/"],
+  ["/dog-ear-infections-swimming/", "/travel-hub/dog-ear-infections-swimming/"],
+  ["/dog-first-aid-kit/", "/travel-hub/dog-first-aid-kit/"],
+  ["/dog-friendly-accommodation/", "/travel-hub/dog-friendly-accommodation/"],
+  ["/dog-friendly-beaches/", "/travel-hub/dog-friendly-beaches/"],
+  ["/dog-friendly-france/", "/travel-hub/dog-friendly-france/"],
+  ["/dog-friendly-rest-stops/", "/travel-hub/dog-friendly-rest-stops/"],
+  ["/dog-gps-trackers/", "/travel-hub/dog-gps-trackers/"],
+  ["/dog-grooming-kit-travel/", "/travel-hub/dog-grooming-kit-travel/"],
   ["/dog-heat-safety/", "/tools/heat/"],
-  ["/dog-heatstroke/", "/tools/heat/"],
+  ["/dog-heat-safety/cavalier-king-charles-spaniel/", "/breeds/cavalier-king-charles/"],
+  ["/dog-heatstroke/", "/travel-hub/dog-heatstroke/"],
+  ["/dog-hypothermia/", "/travel-hub/dog-hypothermia/"],
+  ["/dog-injury-first-aid/", "/travel-hub/dog-injury-first-aid/"],
+  ["/dog-leashes-collars-harnesses/", "/travel-hub/dog-leashes-collars-harnesses/"],
+  ["/dog-motion-sickness/", "/travel-hub/dog-motion-sickness/"],
+  ["/dog-muzzles-for-travel/", "/travel-hub/dog-muzzles-for-travel/"],
+  ["/dog-night-safety-gear/", "/travel-hub/dog-night-safety-gear/"],
+  ["/dog-paw-pad-care/", "/travel-hub/dog-paw-pad-care/"],
+  ["/dog-potty-breaks-travel/", "/travel-hub/dog-potty-breaks-travel/"],
+  ["/dog-ramps-and-steps/", "/travel-hub/dog-ramps-and-steps/"],
+  ["/dog-separation-anxiety-vacation/", "/travel-hub/dog-separation-anxiety-vacation/"],
+  ["/dog-stings-and-bites/", "/travel-hub/dog-stings-and-bites/"],
+  ["/dog-travel-accessories/", "/travel-hub/dog-travel-accessories/"],
+  ["/dog-travel-anxiety/", "/travel-hub/dog-travel-anxiety/"],
+  ["/dog-travel-beds/", "/travel-hub/dog-travel-beds/"],
+  ["/dog-travel-gear/", "/travel-hub/dog-travel-gear/"],
   ["/dog-travel-requirements-by-country/", "/countries/"],
-  ["/dog-travel-vaccinations/", "/countries/"],
+  ["/dog-travel-toys/", "/travel-hub/dog-travel-toys/"],
+  ["/dog-travel-vaccinations/", "/travel-hub/dog-travel-vaccinations/"],
+  ["/dog-water-bottles/", "/travel-hub/dog-water-bottles/"],
   ["/easyjet-dog-policy/", "/airlines/easyjet/"],
   ["/editorial-standards/", "/about/"],
   ["/egyptair-dog-policy/", "/airlines/egyptair/"],
@@ -70,13 +115,18 @@ const LEGACY_REDIRECTS = new Map([
   ["/etihad-airways-dog-policy/", "/airlines/etihad/"],
   ["/eurowings-dog-policy/", "/airlines/eurowings/"],
   ["/eva-air-dog-policy/", "/airlines/eva-air/"],
+  ["/feeding-your-dog-while-traveling/", "/travel-hub/feeding-your-dog-while-traveling/"],
+  ["/ferry-travel-with-a-dog/", "/travel-hub/ferry-travel-with-a-dog/"],
   ["/finnair-dog-policy/", "/airlines/finnair/"],
-  ["/flying-with-a-dog-cabin-hold-cargo/", "/"],
-  ["/flying-with-a-dog/", "/"],
+  ["/first-vacation-with-your-dog/", "/travel-hub/first-vacation-with-your-dog/"],
+  ["/flying-with-a-dog-cabin-hold-cargo/", "/travel-hub/flying-with-a-dog-cabin-hold-cargo/"],
+  ["/flying-with-a-dog/", "/travel-hub/flying-with-a-dog/"],
+  ["/foxtails-danger-dogs/", "/travel-hub/foxtails-danger-dogs/"],
   ["/french-bee-dog-policy/", "/airlines/french-bee/"],
+  ["/hot-pavement-dog-paws/", "/travel-hub/hot-pavement-dog-paws/"],
   ["/iberia-dog-policy/", "/airlines/iberia/"],
   ["/iberia-express-dog-policy/", "/airlines/iberia-express/"],
-  ["/international-travel-with-a-dog/", "/"],
+  ["/international-travel-with-a-dog/", "/travel-hub/international-travel-with-a-dog/"],
   ["/ita-airways-dog-policy/", "/airlines/ita-airways/"],
   ["/japan-airlines-dog-policy/", "/airlines/jal/"],
   ["/jetblue-dog-policy/", "/airlines/jetblue/"],
@@ -85,19 +135,29 @@ const LEGACY_REDIRECTS = new Map([
   ["/latam-dog-policy/", "/airlines/latam/"],
   ["/lot-polish-airlines-dog-policy/", "/airlines/lot/"],
   ["/lufthansa-dog-policy/", "/airlines/lufthansa/"],
+  ["/mountain-vacations-with-a-dog/", "/travel-hub/mountain-vacations-with-a-dog/"],
+  ["/no-pull-dog-harness/", "/travel-hub/no-pull-dog-harness/"],
   ["/norwegian-dog-policy/", "/airlines/norwegian/"],
   ["/philippine-airlines-dog-policy/", "/airlines/philippine/"],
+  ["/portable-dog-feeding-gear/", "/travel-hub/portable-dog-feeding-gear/"],
   ["/privacy-policy/", "/privacy/"],
+  ["/protecting-dog-paw-pads/", "/travel-hub/protecting-dog-paw-pads/"],
+  ["/public-transit-with-a-dog/", "/travel-hub/public-transit-with-a-dog/"],
   ["/qatar-airways-dog-policy/", "/airlines/qatar-airways/"],
+  ["/road-trip-with-a-dog/", "/travel-hub/road-trip-with-a-dog/"],
   ["/royal-air-maroc-dog-policy/", "/airlines/royal-air-maroc/"],
   ["/ryanair-dog-policy/", "/airlines/ryanair/"],
   ["/sas-dog-policy/", "/airlines/sas/"],
   ["/saudia-dog-policy/", "/airlines/saudia/"],
   ["/singapore-airlines-dog-policy/", "/airlines/singapore-airlines/"],
+  ["/small-dog-carriers/", "/travel-hub/small-dog-carriers/"],
   ["/swiss-air-dog-policy/", "/airlines/swiss/"],
   ["/tap-air-portugal-dog-policy/", "/airlines/tap/"],
   ["/thai-airways-dog-policy/", "/airlines/thai-airways/"],
+  ["/ticks-and-fleas-dog-travel/", "/travel-hub/ticks-and-fleas-dog-travel/"],
+  ["/train-travel-with-a-dog/", "/travel-hub/train-travel-with-a-dog/"],
   ["/transavia-dog-policy/", "/airlines/transavia/"],
+  ["/traveling-by-car-with-a-dog/", "/travel-hub/traveling-by-car-with-a-dog/"],
   ["/traveling-to-australia-with-a-dog/", "/countries/au/"],
   ["/traveling-to-belgium-netherlands-with-a-dog/", "/countries/"],
   ["/traveling-to-brazil-with-a-dog/", "/countries/br/"],
@@ -121,64 +181,29 @@ const LEGACY_REDIRECTS = new Map([
   ["/traveling-to-the-usa-with-a-dog/", "/countries/us/"],
   ["/traveling-to-tunisia-with-a-dog/", "/countries/tn/"],
   ["/traveling-to-turkey-with-a-dog/", "/countries/tr/"],
+  ["/traveling-with-a-puppy/", "/travel-hub/traveling-with-a-puppy/"],
+  ["/traveling-with-a-senior-or-sick-dog/", "/travel-hub/traveling-with-a-senior-or-sick-dog/"],
   ["/tunisair-dog-policy/", "/airlines/tunisair/"],
   ["/turkish-airlines-dog-policy/", "/airlines/turkish/"],
   ["/united-airlines-dog-policy/", "/airlines/united/"],
   ["/vietnam-airlines-dog-policy/", "/airlines/vietnam-airlines/"],
   ["/volotea-dog-policy/", "/airlines/volotea/"],
   ["/vueling-dog-policy/", "/airlines/vueling/"],
+  ["/weekend-near-paris-with-a-dog/", "/travel-hub/weekend-near-paris-with-a-dog/"],
   ["/westjet-dog-policy/", "/airlines/westjet/"],
   ["/wizz-air-dog-policy/", "/airlines/wizz-air/"],
 ]);
 const GONE_EXACT = new Set([
   "/author/",
-  "/best-dog-cooling-mats/",
-  "/best-dog-water-fountains-2026/",
-  "/best-travel-dog-bowls/",
-  "/car-travel-dog-gear/",
-  "/categories/",
-  "/categories/airlines/",
-  "/categories/health/",
-  "/categories/travel/",
-  "/dog-car-barriers/",
-  "/dog-car-harness/",
-  "/dog-carrier-backpacks/",
-  "/dog-digestive-issues-travel/",
-  "/dog-first-aid-kit/",
-  "/dog-friendly-accommodation/",
-  "/dog-friendly-beaches/",
-  "/dog-grooming-kit-travel/",
-  "/dog-hypothermia/",
-  "/dog-leashes-collars-harnesses/",
-  "/dog-motion-sickness/",
-  "/dog-muzzles-for-travel/",
-  "/dog-night-safety-gear/",
-  "/dog-paw-pad-care/",
-  "/dog-potty-breaks-travel/",
-  "/dog-ramps-and-steps/",
-  "/dog-separation-anxiety-vacation/",
-  "/dog-stings-and-bites/",
-  "/dog-travel-accessories/",
-  "/dog-travel-anxiety/",
-  "/dog-travel-beds/",
-  "/dog-travel-gear/",
-  "/dog-travel-toys/",
-  "/dog-water-bottles/",
-  "/feeding-your-dog-while-traveling/",
-  "/ferry-travel-with-a-dog/",
-  "/first-vacation-with-your-dog/",
-  "/foxtails-danger-dogs/",
-  "/hot-pavement-dog-paws/",
-  "/mountain-vacations-with-a-dog/",
-  "/no-pull-dog-harness/",
   "/posts/",
-  "/protecting-dog-paw-pads/",
-  "/road-trip-with-a-dog/",
-  "/small-dog-carriers/",
   "/tags/",
-  "/train-travel-with-a-dog/",
-  "/traveling-with-a-senior-or-sick-dog/",
-  "/weekend-near-paris-with-a-dog/",
+]);
+const GONE_PREFIXES = ["/tags/", "/dog-heat-safety/"];
+const REDIRECT_PREFIXES = new Map([
+  ["/categories/", "/travel-hub/"],
+]);
+const BREED_ALIAS = new Map([
+  ["cavalier-king-charles-spaniel", "cavalier-king-charles"],
 ]);
 // <<< LEGACY-DATA-END
 // Search Console, 30/07/2026 : /dog-heat-safety/<race>/ pesait 1 175 impressions, soit
@@ -362,13 +387,14 @@ const BREED_SLUGS = new Set([
   "yorkshire-terrier"
 ]);
 // <<< BREED-SLUGS-END
-const GONE_PREFIXES = ["/tags/", "/categories/", "/dog-heat-safety/"];
 
-/** /dog-heat-safety/<slug>/ → /breeds/<slug>/ si la fiche existe. */
+
+/** /dog-heat-safety/<slug>/ → /breeds/<slug>/ si la fiche existe, alias v1→v2 compris. */
 function heatSafetyTarget(path) {
   const m = /^\/dog-heat-safety\/([a-z0-9-]+)\/?$/.exec(path);
   if (!m) return null;
-  return BREED_SLUGS.has(m[1]) ? `/breeds/${m[1]}/` : null;
+  const slug = BREED_ALIAS.get(m[1]) ?? m[1];
+  return BREED_SLUGS.has(slug) ? `/breeds/${slug}/` : null;
 }
 
 function normalizeLegacyPath(pathname) {
@@ -435,11 +461,21 @@ function legacyResponse(url) {
 
   const heat = heatSafetyTarget(path);
   if (heat) {
-    return new Response(null, { status: 301, headers: { Location: heat, "Cache-Control": "public, max-age=86400" } });
+    return new Response(null, { status: 301, headers: { Location: heat + url.search, "Cache-Control": "public, max-age=86400" } });
   }
 
+  /* Les préfixes 301 passent APRÈS les entrées exactes et les alias de race : une rubrique qui
+     a un équivalent précis y va, le reste rejoint le hub qui la reprend. */
   let gone = GONE_EXACT.has(path);
   if (!gone) {
+    for (const [prefix, cible] of REDIRECT_PREFIXES) {
+      if (path.startsWith(prefix)) {
+        return new Response(null, {
+          status: 301,
+          headers: { Location: cible + url.search, "Cache-Control": "public, max-age=86400" },
+        });
+      }
+    }
     for (const prefix of GONE_PREFIXES) {
       if (path.startsWith(prefix)) { gone = true; break; }
     }

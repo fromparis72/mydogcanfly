@@ -366,5 +366,11 @@ jobs:
       # copies, relance la VRAIE porte dans un processus neuf, exige le code 1 ET le diagnostic
       # attendu, restaure, et redemande un verdict vert sur les deux artefacts pour prouver que
       # les restaurations ont restauré.
+      # LE CONTRAT DES ANCIENNES URL, exercé sur le VRAI Worker de l artefact de production :
+      # statut, cible exacte, query string, chaînes, cibles vivantes, annoncées et indexables,
+      # et rien de servi que le registre canonique n ait décidé.
+      - name: Les anciennes URL tiennent le registre canonique (10 contre-épreuves)
+        run: npm run test:legacy -- --dist=packages/ui/dist
+
       - name: Les 21 contre-épreuves de la porte
         run: npm run test:porte -- --dist-production="$RUNNER_TEMP/dist-prod" --dist-preview="$RUNNER_TEMP/dist-preview"
