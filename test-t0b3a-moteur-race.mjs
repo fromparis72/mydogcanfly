@@ -80,10 +80,14 @@ console.log("=== 1. Le registre : OBLIGATOIRE, chargé et validé ===");
     Array.isArray(kb.breedRestrictions));
   /* T0-B3-b a rempli le registre : une seule entrée, et c'est un AVIS. Tant qu'il était vide, ce
      harnais ne pouvait éprouver que des fixtures ; il éprouve maintenant aussi le référentiel. */
-  check("le registre versionné porte exactement l'avis IATA, et c'est un `warn`",
-    kb.breedRestrictions.length === 1
-      && kb.breedRestrictions[0].id === "brest_iata_snub_nose_hot_season"
-      && kb.breedRestrictions[0].action === "warn",
+  /* 28/08/2026 (lot RC, lecture directe Codex) : le refus brachycéphale catégorique de BA
+     (rule_ba_brachy_hold) était faux — IAG Cargo dit « may not be accepted », au cas par cas.
+     Le registre porte donc DEUX avis : l'IATA global et l'avis IAG/BA conditionnel. Toujours
+     des `warn`, jamais un refus — et toute entrée de plus doit être nommée ici. */
+  check("le registre versionné porte exactement les avis IATA (global) et IAG/BA, deux `warn`",
+    kb.breedRestrictions.length === 2
+      && kb.breedRestrictions.some((r) => r.id === "brest_iata_snub_nose_hot_season" && r.action === "warn" && r.airline_id === undefined)
+      && kb.breedRestrictions.some((r) => r.id === "brest_ba_iag_snub_nose_case_by_case" && r.action === "warn" && r.airline_id === "airline_british_airways"),
     JSON.stringify(kb.breedRestrictions.map((r) => `${r.id}:${r.action}`)));
   check("aucune entrée du registre ne REFUSE quoi que ce soit",
     kb.breedRestrictions.every((r) => r.action !== "deny"));
@@ -441,10 +445,14 @@ console.log("=== 8. Sur le référentiel RÉEL, après T0-B3-b ===");
     }
   }
   const carlin = mesure[PUG], golden = mesure[GOLDEN];
+  /* 272 → 280 causes et 8 → 16 avis (28/08/2026, lot RC) : la suppression du refus catégorique
+     BA ouvre son cargo en « à confirmer » pour un brachycéphale (+1 cause par rapport), et
+     l'avis IAG/BA se publie À CÔTÉ de l'IATA (2 avis par rapport, 8 rapports). Comptes figés,
+     mouvement nommé — toute bascule non documentée doit toujours rougir. */
   check(`le chien VISÉ reçoit l'incertitude : ${carlin.causes} causes de race sur ${carlin.cartes} cartes`,
-    carlin.causes === 272 && carlin.cartes === 206, JSON.stringify(carlin));
-  check("… et l'avis IATA lui est publié, une fois par rapport",
-    carlin.avis === 8, JSON.stringify(carlin.avis));
+    carlin.causes === 280 && carlin.cartes === 206, JSON.stringify(carlin));
+  check("… et les avis IATA et IAG/BA lui sont publiés, une fois chacun par rapport",
+    carlin.avis === 16, JSON.stringify(carlin.avis));
   check("AUCUNE preuve de race : le registre ne porte qu'un avis, et un avis ne prouve rien",
     carlin.preuves === 0, String(carlin.preuves));
   check(`le chien NON visé n'est touché en RIEN : 0 cause, 0 avis sur ${golden.cartes} cartes`,
@@ -509,12 +517,19 @@ console.log("=== 9. L'ENTRÉE RÉELLE `brest_iata_snub_nose_hot_season`, de bout
   for (const [loc, texte] of Object.entries(ATTENDU.textes)) {
     const rep = explain(evaluate(kbReel, { origin: "airport_cdg", destination: "airport_bkk",
       dog: { breed_id: PUG }, travel_type: "pet", placement: "any", date: "2027-07-15", locale: loc }), loc);
-    const a = rep.safety_advisories[0];
-    check(`rapport « ${loc} » : un avis, le bon, avec son texte et sa citation`,
-      rep.safety_advisories.length === 1 && a?.restriction_ref === ATTENDU.id && a?.scope === "global"
+    /* Deux avis depuis le 28/08/2026 (lot RC) : l'IATA global ET l'IAG/BA conditionnel. On
+       vérifie chacun par sa référence — pas par un indice — et l'exactitude complète de
+       l'IATA, inchangée. */
+    const a = rep.safety_advisories.find((x) => x.restriction_ref === ATTENDU.id);
+    const iag = rep.safety_advisories.find((x) => x.restriction_ref === "brest_ba_iag_snub_nose_case_by_case");
+    check(`rapport « ${loc} » : deux avis, les bons — l'IATA exact, l'IAG/BA présent et conditionnel`,
+      rep.safety_advisories.length === 2 && a?.scope === "global"
         && a?.text === texte && a?.source.quote === ATTENDU.quote && a?.source.url === ATTENDU.url
-        && JSON.stringify(a?.placements) === JSON.stringify(["cabin", "hold", "cargo"]),
-      JSON.stringify(a));
+        && JSON.stringify(a?.placements) === JSON.stringify(["cabin", "hold", "cargo"])
+        && iag?.scope === "airline_british_airways"
+        && JSON.stringify(iag?.placements) === JSON.stringify(["hold", "cargo"])
+        && iag?.source.url === "https://www.iagcargo.com/en/products/pets/",
+      JSON.stringify(rep.safety_advisories));
   }
   const golden = explain(evaluate(kbReel, { origin: "airport_cdg", destination: "airport_bkk",
     dog: { breed_id: GOLDEN }, travel_type: "pet", placement: "any", date: "2027-07-15", locale: "fr" }), "fr");

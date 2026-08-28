@@ -4112,6 +4112,11 @@
     },
     {
       "famille": "breed_restrictions",
+      "locator": "breed_restrictions[brest_ba_iag_snub_nose_case_by_case].source",
+      "empreinte_source": "927ea5b2737d5e5d2c106548ce2bbe6aaa0641672b16951b06f6deb84e7058b0"
+    },
+    {
+      "famille": "breed_restrictions",
       "locator": "breed_restrictions[brest_iata_snub_nose_hot_season].source",
       "empreinte_source": "5fdc3d344c725fdf0982dc450c569ec60631e484bc615ec3c64af9e008bb1d95"
     },
@@ -5722,16 +5727,6 @@
     },
     {
       "famille": "rules",
-      "locator": "rules[rule_alaska_cabin_weight].source",
-      "empreinte_source": "c16f14641038c75e0819ff460bfe98ad76887cfbaea6d2635112f6ed2d0057e0"
-    },
-    {
-      "famille": "rules",
-      "locator": "rules[rule_alaska_hold_weight].source",
-      "empreinte_source": "97512d57356701d0f1342d49b305dda3669805ac05eca2f36a627619a2a898cd"
-    },
-    {
-      "famille": "rules",
       "locator": "rules[rule_am_import].source",
       "empreinte_source": "977a5ae6c35a6e4be79e88d123cd09293b02a59627c097f378306df5aa39a49a"
     },
@@ -5819,11 +5814,6 @@
       "famille": "rules",
       "locator": "rules[rule_az_import].source",
       "empreinte_source": "977a5ae6c35a6e4be79e88d123cd09293b02a59627c097f378306df5aa39a49a"
-    },
-    {
-      "famille": "rules",
-      "locator": "rules[rule_ba_brachy_hold].source",
-      "empreinte_source": "e0193e7e6bafdb749104e44974d99cb943eee7b867e1531cc3b3f5d8bc2d5584"
     },
     {
       "famille": "rules",
@@ -6008,7 +5998,7 @@
     {
       "famille": "rules",
       "locator": "rules[rule_china_southern_no_cabin].source",
-      "empreinte_source": "2c54bd1e162edeb11c510ac4ba81f9b18568ce75100ce1457ec97318f9929db7"
+      "empreinte_source": "83e051a6da1ace1684f1cf821712a415c3d389ed86995f8ef8528769946ea54b"
     },
     {
       "famille": "rules",
@@ -6389,16 +6379,6 @@
       "famille": "rules",
       "locator": "rules[rule_garuda_indonesia_gb_not_approved].source",
       "empreinte_source": "e9d9ccffb36de1ac8ab00975fcaa24da3e8058c85f23cc4834db5ad8df6ecc75"
-    },
-    {
-      "famille": "rules",
-      "locator": "rules[rule_garuda_indonesia_hold_weight].source",
-      "empreinte_source": "91d2b8ef63441667d9bdd5916fa1337900117a31b7f803ff7422cbdea427ec5e"
-    },
-    {
-      "famille": "rules",
-      "locator": "rules[rule_garuda_indonesia_no_cabin].source",
-      "empreinte_source": "91d2b8ef63441667d9bdd5916fa1337900117a31b7f803ff7422cbdea427ec5e"
     },
     {
       "famille": "rules",
@@ -6868,7 +6848,7 @@
     {
       "famille": "rules",
       "locator": "rules[rule_malaysia_airlines_no_cabin].source",
-      "empreinte_source": "e890fd0f074b0cf99db4102d99b4efdb8fd2fd2d3085654437426df896aa401e"
+      "empreinte_source": "15e2bad8433d8d1dc9595f0e824c775302dfc6e4c40c5ee947f919749720393a"
     },
     {
       "famille": "rules",
@@ -7253,7 +7233,7 @@
     {
       "famille": "rules",
       "locator": "rules[rule_smartwings_cabin_weight].source",
-      "empreinte_source": "4b0a5a04bc7cba0c00115dff1244839178a2a49c391ed2e055749a88ac32959b"
+      "empreinte_source": "a8d54ccc3111d2b20f2ebb197b47ce292e2f16654936495827166e4a976c83c1"
     },
     {
       "famille": "rules",
@@ -7537,14 +7517,14 @@
     }
   ],
   "empreintes": {
-    "globale": "18b113d638996e294a9cc640b336be628dcb052a708cef92ca1c78edfebcec6a",
+    "globale": "6f0c7f30c0650cf1eed30b8aa3d713bba1a662d8408bdd344f7f382e80f46d82",
     "par_famille": {
       "airlines": "0a41cec269ea92dc28c128d58a48057e06b5f1b3947b9d35e5a8f7348c378ecc",
       "airports": "915d2262732a378589b12216f81e11bde703b14d8645cacf5df24e60b862eb55",
-      "breed_restrictions": "58a62da1fa8ecd8b4925f2164c28b8c2432268a3f47c4e142ac707289b22323e",
+      "breed_restrictions": "bc9ea0fd8feb2eaf8dfe9d5bcabe3162537b3898376ca9eb2ac54144bc7c8606",
       "breeds": "2e72ef699d47b9652af8e1a3d154202f9c682fb3cb1a8d1204adbb010bf19cc0",
       "countries": "91dcd83dabbe2c7b8909702096d63335f4738e110431c1102d5eb3ebffa64346",
-      "rules": "d866fc90cd0be62dcc9d74ef903792ff43124c4f52495e522eccc009c99c05f1"
+      "rules": "824c9a5f2eb69843af7c7ecbff474e5a37fd95cbe4b5a9edcfd1be1766ee516f"
     }
   }
 }

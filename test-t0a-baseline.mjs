@@ -492,11 +492,15 @@ console.log("=== Preuve T0-B2-UI (deux baselines FIGÉES — permanente) ===");
        Ce garde-fou est ROULANT par nature : chaque lot métier qui déplace la baseline doit figer
        SON « après » et le désigner ici. C'est précisément ce qui rend permanentes les figées
        précédentes — celle de T0-B2-UI reste comparée à celle de T0-A dans les contrôles ci-dessus,
-       et personne ne peut plus les toucher. La plus récente est désormais celle de T0-B3-b, qui a
-       retiré les 42 règles brachycéphales auto-citées. */
-    check("la baseline vivante est identique à la baseline figée la plus récente (T0-B3-b)",
+       et personne ne peut plus les toucher. La plus récente est désormais celle du lot RC
+       (28/08/2026, lecture directe Codex) : suppression des cinq règles non prouvées — les deux
+       poids Alaska inventés, les deux affirmations Garuda sans page passager, le refus
+       brachycéphale catégorique de BA — et avis IAG « acceptation non garantie » à la place.
+       36 scénarios carlin bougent, AUCUN statut ne change (le mouvement est dans les avis de
+       sécurité publiés) ; les figées de T0-A, T0-B2-UI et T0-B3-b restent intouchables. */
+    check("la baseline vivante est identique à la baseline figée la plus récente (RC)",
       readFileSync("test-baselines/t0a-finder-baseline.json", "utf8")
-        === readFileSync("test-baselines/t0b3b-finder-baseline-apres.json", "utf8"));
+        === readFileSync("test-baselines/rc-finder-baseline-apres.json", "utf8"));
   }
 }
 

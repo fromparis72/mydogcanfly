@@ -9027,7 +9027,13 @@
     ],
     "policies": {
       "cabin": {
-        "availability": "offered"
+        "availability": "offered",
+        "conditions": {
+          "en": "The pet must be small enough to fit and stay comfortably in a carrier under the seat (soft-sided carrier up to 17 × 11 × 9.5 in). No published weight limit — the carrier fit is the rule.",
+          "fr": "L'animal doit être assez petit pour tenir confortablement dans un sac placé sous le siège (sac souple jusqu'à 17 × 11 × 9,5 po). Aucune limite de poids publiée — l'adaptation au sac fait la règle.",
+          "es": "La mascota debe ser lo bastante pequeña para caber cómodamente en un transportín bajo el asiento (transportín blando de hasta 17 × 11 × 9,5 pulgadas). Sin límite de peso publicado: la regla es que quepa en el transportín.",
+          "pt": "O animal deve ser pequeno o suficiente para caber confortavelmente em uma bolsa sob o assento (bolsa flexível de até 17 × 11 × 9,5 pol). Sem limite de peso publicado — a regra é caber na bolsa."
+        }
       },
       "hold": {
         "availability": "offered"
