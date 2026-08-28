@@ -2118,7 +2118,7 @@
     {
       "famille": "airlines",
       "locator": "airlines[airline_virgin_australia].premium.policy.cabin.source",
-      "empreinte_source": "ea7d7349729a736cfdf85a9c255ca81c2bb0938793a7d327eff57dcef99d2801"
+      "empreinte_source": "6ae7aec063e5e5a365cf60822bdcbf924217f472a2953e1caf8c3895aa4d3e48"
     },
     {
       "famille": "airlines",
@@ -2133,7 +2133,7 @@
     {
       "famille": "airlines",
       "locator": "airlines[airline_virgin_australia].source",
-      "empreinte_source": "d628c14eaecf81a97b1e55e59ac3ac4a17321f0f1dbc413889a7e30285b9542c"
+      "empreinte_source": "f733e2233c57e945b78697e19d561d15a6b230c25edc68b0165adfbd6424d680"
     },
     {
       "famille": "airlines",
@@ -4112,6 +4112,11 @@
     },
     {
       "famille": "breed_restrictions",
+      "locator": "breed_restrictions[brest_ba_iag_snub_nose_case_by_case].source",
+      "empreinte_source": "927ea5b2737d5e5d2c106548ce2bbe6aaa0641672b16951b06f6deb84e7058b0"
+    },
+    {
+      "famille": "breed_restrictions",
       "locator": "breed_restrictions[brest_iata_snub_nose_hot_season].source",
       "empreinte_source": "5fdc3d344c725fdf0982dc450c569ec60631e484bc615ec3c64af9e008bb1d95"
     },
@@ -5548,12 +5553,12 @@
     {
       "famille": "rules",
       "locator": "rules[rule_aer_lingus_no_cabin].source",
-      "empreinte_source": "c3f776c27dec1abf54c2410c89e68eaa3098e96c01828c62042460ed3970493d"
+      "empreinte_source": "98cf8f99d9526fd227633e86c4e1cb5221792e91fa887bd44a14ca3e93a361f0"
     },
     {
       "famille": "rules",
       "locator": "rules[rule_aer_lingus_no_hold].source",
-      "empreinte_source": "c3f776c27dec1abf54c2410c89e68eaa3098e96c01828c62042460ed3970493d"
+      "empreinte_source": "a3b2748bf4b805687bcbecb5fbf8ae246c2af15c71365f68ac422d49c99a3236"
     },
     {
       "famille": "rules",
@@ -5673,12 +5678,12 @@
     {
       "famille": "rules",
       "locator": "rules[rule_air_new_zealand_hold_weight].source",
-      "empreinte_source": "10454b02fcb917ceca343944120887189ac4f7ce737f5ec8e58560ad433ddd23"
+      "empreinte_source": "a4f45d767d4c16349b725688c6f3df6adda7569e342d89fdd0bb1ecc8aac9204"
     },
     {
       "famille": "rules",
       "locator": "rules[rule_air_new_zealand_no_cabin].source",
-      "empreinte_source": "10454b02fcb917ceca343944120887189ac4f7ce737f5ec8e58560ad433ddd23"
+      "empreinte_source": "a4f45d767d4c16349b725688c6f3df6adda7569e342d89fdd0bb1ecc8aac9204"
     },
     {
       "famille": "rules",
@@ -5719,16 +5724,6 @@
       "famille": "rules",
       "locator": "rules[rule_al_import].source",
       "empreinte_source": "a68aca1407b7eeb951a9e73a38d47c28a769e9ae098d6e0e530aaa0c43943a12"
-    },
-    {
-      "famille": "rules",
-      "locator": "rules[rule_alaska_cabin_weight].source",
-      "empreinte_source": "2596d8a0ad7a443483984dabce1431f56cd3740207ddd0105f3a34ecc17075c2"
-    },
-    {
-      "famille": "rules",
-      "locator": "rules[rule_alaska_hold_weight].source",
-      "empreinte_source": "2596d8a0ad7a443483984dabce1431f56cd3740207ddd0105f3a34ecc17075c2"
     },
     {
       "famille": "rules",
@@ -5819,11 +5814,6 @@
       "famille": "rules",
       "locator": "rules[rule_az_import].source",
       "empreinte_source": "977a5ae6c35a6e4be79e88d123cd09293b02a59627c097f378306df5aa39a49a"
-    },
-    {
-      "famille": "rules",
-      "locator": "rules[rule_ba_brachy_hold].source",
-      "empreinte_source": "b59a5cf99bcdb4d6a20536aa6feec9881d3668d21ae67ce9398e2d33790abf97"
     },
     {
       "famille": "rules",
@@ -6003,12 +5993,12 @@
     {
       "famille": "rules",
       "locator": "rules[rule_china_southern_hold_weight].source",
-      "empreinte_source": "63765f9227e09823010bf25638b54fd1f2e5e1ad2e418d034e18a92097148b27"
+      "empreinte_source": "436c89bab2cd396ce5fc64ecf5508e950d80d119720e18d37029931d646429f8"
     },
     {
       "famille": "rules",
       "locator": "rules[rule_china_southern_no_cabin].source",
-      "empreinte_source": "63765f9227e09823010bf25638b54fd1f2e5e1ad2e418d034e18a92097148b27"
+      "empreinte_source": "83e051a6da1ace1684f1cf821712a415c3d389ed86995f8ef8528769946ea54b"
     },
     {
       "famille": "rules",
@@ -6253,7 +6243,7 @@
     {
       "famille": "rules",
       "locator": "rules[rule_emirates_no_cabin].source",
-      "empreinte_source": "53df6994aadb7dd2854b4aceb8c67b77b8808b65845dfead0598b93c7758af32"
+      "empreinte_source": "2960b971dc2641f115f596b0aeccfb28c7f936a93c12f4c43fb3cfa83e1f0a13"
     },
     {
       "famille": "rules",
@@ -6389,16 +6379,6 @@
       "famille": "rules",
       "locator": "rules[rule_garuda_indonesia_gb_not_approved].source",
       "empreinte_source": "e9d9ccffb36de1ac8ab00975fcaa24da3e8058c85f23cc4834db5ad8df6ecc75"
-    },
-    {
-      "famille": "rules",
-      "locator": "rules[rule_garuda_indonesia_hold_weight].source",
-      "empreinte_source": "316dad44b5bb3ca310a22f2fcc7b6a5fbb5ea9857c881a8cf3530d5166e8a815"
-    },
-    {
-      "famille": "rules",
-      "locator": "rules[rule_garuda_indonesia_no_cabin].source",
-      "empreinte_source": "316dad44b5bb3ca310a22f2fcc7b6a5fbb5ea9857c881a8cf3530d5166e8a815"
     },
     {
       "famille": "rules",
@@ -6868,7 +6848,7 @@
     {
       "famille": "rules",
       "locator": "rules[rule_malaysia_airlines_no_cabin].source",
-      "empreinte_source": "f2db2b370c8a8dcf476643abba554c20ec3c49f67a9851f546f9b39da77fd290"
+      "empreinte_source": "15e2bad8433d8d1dc9595f0e824c775302dfc6e4c40c5ee947f919749720393a"
     },
     {
       "famille": "rules",
@@ -7253,7 +7233,7 @@
     {
       "famille": "rules",
       "locator": "rules[rule_smartwings_cabin_weight].source",
-      "empreinte_source": "d3e421d38a594eda9f954c48d5110749b313eb055133bfbeb10ca54c1760b91b"
+      "empreinte_source": "96ca61cdcc387fbf853d5db9f3a552b426d93277376dff0c991f31d4628d75c1"
     },
     {
       "famille": "rules",
@@ -7467,11 +7447,6 @@
     },
     {
       "famille": "rules",
-      "locator": "rules[rule_virgin_australia_no_cabin].source",
-      "empreinte_source": "d628c14eaecf81a97b1e55e59ac3ac4a17321f0f1dbc413889a7e30285b9542c"
-    },
-    {
-      "famille": "rules",
       "locator": "rules[rule_virgin_no_cabin].source",
       "empreinte_source": "52de836d8d9aaed9a6826187065d8fd796cc2e1642d233357e6764545e065185"
     },
@@ -7542,14 +7517,14 @@
     }
   ],
   "empreintes": {
-    "globale": "c5af146a3f504fbba0ba7ad888b1c702be462ec790222f066bba98ba3c6bba35",
+    "globale": "ac5a63aea9705f80866e85277d7048c76df2064ca8fa6e31e1f6ce2fd7a2c199",
     "par_famille": {
-      "airlines": "32e5aa8089dcf942d1ceb6314c23b08ea6ab08b2bdb1a0a1662e0f355e7ec930",
+      "airlines": "0a41cec269ea92dc28c128d58a48057e06b5f1b3947b9d35e5a8f7348c378ecc",
       "airports": "915d2262732a378589b12216f81e11bde703b14d8645cacf5df24e60b862eb55",
-      "breed_restrictions": "58a62da1fa8ecd8b4925f2164c28b8c2432268a3f47c4e142ac707289b22323e",
+      "breed_restrictions": "bc9ea0fd8feb2eaf8dfe9d5bcabe3162537b3898376ca9eb2ac54144bc7c8606",
       "breeds": "2e72ef699d47b9652af8e1a3d154202f9c682fb3cb1a8d1204adbb010bf19cc0",
       "countries": "91dcd83dabbe2c7b8909702096d63335f4738e110431c1102d5eb3ebffa64346",
-      "rules": "7c1d4af4bd1e6554faa2d9b651533d018bfd62cd89e8991ada9b4c850688d298"
+      "rules": "1a27b935a4072e400060177fc7362aa66c3c991a8e640c73fc50beb84101df8d"
     }
   }
 }

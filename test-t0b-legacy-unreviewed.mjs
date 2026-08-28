@@ -256,7 +256,11 @@ console.log("=== 7. T0-B2 : la migration est FAITE, et la forme héritée est in
 {
   /* 7.1 — la cause est désormais PORTÉE par la base réelle, à l'effectif exact du registre
      approuvé : 83 politiques non revérifiées (73 du manifeste + 10 anciens POLICY_STALE), et
-     elles seules. En T0-B1 ce compte valait 0 : la bascule est ce lot, et rien d'autre. */
+     elles seules. En T0-B1 ce compte valait 0 : la bascule est ce lot, et rien d'autre.
+     28/08/2026 (2e passe de contre-revue Codex) — 84 : la cabine Garuda Indonesia rejoint
+     l'héritage non re-vérifié (« not_offered » affirmait une interdiction qu'aucune page
+     officielle lisible ne prouve), décision nommée dans DECISIONS_POST_MIGRATION de
+     test-t0b-matrice.mjs. 73 manifeste + 10 stale + 1 décision post-migration. */
   let porteuses = 0, canaux = 0, nonPubliee = 0;
   for (const a of kb.airlines.values()) {
     for (const ch of ["cabin", "hold", "cargo"]) {
@@ -268,7 +272,7 @@ console.log("=== 7. T0-B2 : la migration est FAITE, et la forme héritée est in
     }
   }
   check(`les ${canaux} politiques réelles sont au complet`, canaux === 302, String(canaux));
-  check("83 politiques émettent legacy_unreviewed (73 manifeste + 10 stale)", porteuses === 83, String(porteuses));
+  check("84 politiques émettent legacy_unreviewed (73 manifeste + 10 stale + Garuda cabine)", porteuses === 84, String(porteuses));
   check("1 seule émet policy_unpublished (Thai Cargo)", nonPubliee === 1, String(nonPubliee));
 
   /* 7.2 — l'artefact ne porte plus AUCUNE forme d'auteur héritée. C'est la contrepartie
@@ -477,8 +481,12 @@ console.log("=== 8. Baseline FIGÉE : le point de comparaison de T0-B2 est scell
           && avec.every((k) => ap[k].safety_advisories[0].startsWith("brest_iata_snub_nose_hot_season|global|cabin+hold+cargo|"));
       })());
   }
-  check("T0-B3-b : la baseline vivante est identique à la figée la plus récente",
-    vivante.equals(readFileSync("test-baselines/t0b3b-finder-baseline-apres.json")));
+  /* 28/08/2026 — la figée la plus récente est désormais celle du lot RC (lecture directe
+   * Codex : cinq règles non prouvées supprimées, avis IAG conditionnel à la place ; 36
+   * scénarios carlin bougent par leurs avis publiés, aucun statut ne change). La figée
+   * T0-B3-b reste intouchable et comparée ci-dessus — c'est le principe roulant. */
+  check("RC : la baseline vivante est identique à la figée la plus récente",
+    vivante.equals(readFileSync("test-baselines/rc-finder-baseline-apres.json")));
   check("T0-B3-b : la figée APRÈS diffère de celle de T0-B2-UI (le retrait des 42 a bien déplacé le métier)",
     !readFileSync("test-baselines/t0b3b-finder-baseline-apres.json")
       .equals(readFileSync("test-baselines/t0b2ui-finder-baseline-apres.json")));

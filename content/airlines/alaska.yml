@@ -63,7 +63,13 @@ ladder:
       fr: Soute
       es: Bodega
       pt: "Porão"
-    sub: ≤ 150 lb
+    # Contre-revue Codex (28/08/2026, 2e passe) : les 150 lb sont un seuil Pet Connect (fret),
+    # jamais publié pour le bagage accompagné — le chiffre est retiré de TOUTES les surfaces.
+    sub:
+      en: checked
+      fr: enregistrée
+      es: facturada
+      pt: "despachado"
   - flex: 20
     color: "#9a6410"
     label:
@@ -71,10 +77,23 @@ ladder:
       fr: Fret
       es: Carga
       pt: "Carga"
-    sub: "> 150 lb"
+    sub:
+      en: unaccompanied
+      fr: non accompagné
+      es: no acompañadas
+      pt: "desacompanhados"
 policies:
   cabin:
     availability: offered
+    # Lecture directe Codex (28/08/2026) : la page officielle « Pets in Cabin » ne publie AUCUNE
+    # limite de poids — « Pets must be small enough to fit and stay comfortably in the carrier
+    # under the seat », sac souple 17 × 11 × 9,5 po. L'ancienne règle des ~9 kg était un poids
+    # inventé : supprimée. La contrainte réelle est l'adaptation au sac — elle vit ici.
+    conditions:
+      en: "The pet must be small enough to fit and stay comfortably in a carrier under the seat (soft-sided carrier up to 17 × 11 × 9.5 in). No published weight limit — the carrier fit is the rule."
+      fr: "L'animal doit être assez petit pour tenir confortablement dans un sac placé sous le siège (sac souple jusqu'à 17 × 11 × 9,5 po). Aucune limite de poids publiée — l'adaptation au sac fait la règle."
+      es: "La mascota debe ser lo bastante pequeña para caber cómodamente en un transportín bajo el asiento (transportín blando de hasta 17 × 11 × 9,5 pulgadas). Sin límite de peso publicado: la regla es que quepa en el transportín."
+      pt: "O animal deve ser pequeno o suficiente para caber confortavelmente em uma bolsa sob o assento (bolsa flexível de até 17 × 11 × 9,5 pol). Sem limite de peso publicado — a regra é caber na bolsa."
   hold:
     availability: offered
   cargo:
@@ -117,10 +136,10 @@ channels:
       es: Permitido
       pt: "Permitido"
     detail:
-      en: Larger pets in the climate-controlled baggage hold on your flight (pet + carrier ≤ 150 lb). Health certificate required.
-      fr: Animaux plus grands dans la soute bagages climatisée sur ton vol (animal + caisse ≤ 150 lb). Certificat sanitaire requis.
-      es: Mascotas más grandes en la bodega de equipaje climatizada de tu vuelo (mascota + jaula ≤ 150 lb). Se requiere certificado sanitario.
-      pt: "Animais maiores no porão de bagagem climatizado do seu voo (animal + caixa de transporte ≤ 150 lb). É exigido atestado de saúde."
+      en: Larger pets in the climate-controlled baggage hold on your flight — no published weight limit for checked pets. Health certificate required.
+      fr: Animaux plus grands dans la soute bagages climatisée sur ton vol — aucune limite de poids publiée pour les animaux enregistrés. Certificat sanitaire requis.
+      es: Mascotas más grandes en la bodega de equipaje climatizada de tu vuelo — sin límite de peso publicado para mascotas facturadas. Se requiere certificado sanitario.
+      pt: "Animais maiores no porão de bagagem climatizado do seu voo — sem limite de peso publicado para animais despachados. É exigido atestado de saúde."
     fee:
       en: $150 / way
       fr: 150 $ / trajet
@@ -140,10 +159,10 @@ channels:
       es: Bajo presupuesto
       pt: "Sob consulta"
     detail:
-      en: Unaccompanied pets or over 150 lb, via Alaska Air Cargo Pet Connect.
-      fr: Animaux non accompagnés ou de plus de 150 lb, via Alaska Air Cargo Pet Connect.
-      es: Mascotas no acompañadas o de más de 150 lb, mediante Alaska Air Cargo Pet Connect.
-      pt: "Animais desacompanhados ou com mais de 150 lb, via Alaska Air Cargo Pet Connect."
+      en: Unaccompanied pets travel via Alaska Air Cargo Pet Connect, which applies its own acceptance rules and weight thresholds.
+      fr: Les animaux non accompagnés voyagent via Alaska Air Cargo Pet Connect, qui applique ses propres règles d'acceptation et seuils de poids.
+      es: Las mascotas no acompañadas viajan mediante Alaska Air Cargo Pet Connect, que aplica sus propias reglas de aceptación y umbrales de peso.
+      pt: "Animais desacompanhados viajam via Alaska Air Cargo Pet Connect, que aplica suas próprias regras de aceitação e limites de peso."
     fee:
       en: Quote
       fr: Devis

@@ -377,8 +377,19 @@ console.log("\n=== 4. Carte RENDUE du Finder : les sources des canaux, et rien d
 // ---- 5. Chaque bloc contradictoire, dans chaque langue, VÉRIFIÉ et non compté -----------------
 console.log(`\n=== 5. Les ${CIBLE.length} canaux contradictoires × 4 langues : statut ET libellé ===`);
 {
-  check("78 canaux contradictoires sur 71 fiches, relus des fiches et du contrat runtime",
-    CONTRADICTOIRES.length === 78 && new Set(CONTRADICTOIRES.map((c) => c.slug)).size === 71,
+  /* 78 → 79 (28/08/2026, lot RC) : la cabine Virgin Australia passe de « offered » à
+   * « case_by_case » (arbitrage A-bis — « Pets in Cabin » n'est ni interdit ni universel).
+   * Son canal éditorial (cls `ok`, « Trial ») contredit désormais la décision canonique
+   * `confirmation_required` — c'est EXACT et voulu : la page rend la pastille canonique
+   * « à confirmer », vérifiée bloc par bloc ci-dessous, et l'éditorial garde sa couleur
+   * d'époque comme les 78 autres dettes scellées. Compte figé, mouvement nommé.
+   * 79 → 80 (28/08/2026, 2e passe de contre-revue Codex) : la cabine Garuda Indonesia
+   * passe de « not_offered » à l'héritage non re-vérifié (l'interdiction n'est prouvée par
+   * aucune page officielle lisible). Son éditorial requalifié (cls `warn`, « À confirmer »)
+   * se lit « allowed » au sens de litDeCls face à `confirmation_required` : le canal rejoint
+   * le registre où la soute et le fret de la même fiche vivaient déjà — 71 fiches, inchangé. */
+  check("80 canaux contradictoires sur 71 fiches, relus des fiches et du contrat runtime",
+    CONTRADICTOIRES.length === 80 && new Set(CONTRADICTOIRES.map((c) => c.slug)).size === 71,
     `${CONTRADICTOIRES.length} canaux · ${new Set(CONTRADICTOIRES.map((c) => c.slug)).size} fiches`);
 
   /* LA LECTURE SE FAIT PAR LOTS, DANS DES PROCESSUS COURTS (CI du 16/08/2026, run 31 sur main).

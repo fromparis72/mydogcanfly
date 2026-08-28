@@ -21,5 +21,30 @@
       "quote": "Transport of snub nose dogs, such as boxers, pugs, bulldogs and Pekinese, in hot season is not recommended.",
       "quote_language": "en"
     }
+  },
+  {
+    "id": "brest_ba_iag_snub_nose_case_by_case",
+    "airline_id": "airline_british_airways",
+    "applies_to": { "trait": "brachycephalic" },
+    "action": "warn",
+    "placements": ["hold", "cargo"],
+    "detail": {
+      "en": "Acceptance of snub-nosed (brachycephalic) breeds is not guaranteed on British Airways: IAG Cargo, BA's animal carrier, decides case by case — confirmation from the IAG Cargo pet travel agent is required before booking.",
+      "fr": "L'acceptation des races brachycéphales (museau écrasé) n'est pas garantie sur British Airways : IAG Cargo, le transporteur animalier de BA, décide au cas par cas — la confirmation de l'agent animalier IAG Cargo est obligatoire avant de réserver.",
+      "es": "La aceptación de razas braquicéfalas (hocico chato) no está garantizada en British Airways: IAG Cargo, el transportista de animales de BA, decide caso por caso; es obligatoria la confirmación del agente de viajes de mascotas de IAG Cargo antes de reservar.",
+      "pt": "A aceitação de raças braquicefálicas (focinho achatado) não é garantida na British Airways: a IAG Cargo, transportadora de animais da BA, decide caso a caso — a confirmação do agente de viagens de animais da IAG Cargo é obrigatória antes de reservar."
+    },
+    "source": {
+      "url": "https://www.iagcargo.com/en/products/pets/",
+      "source_type": "official_website",
+      "verified_date": "2026-08-28",
+      "review_due": "2027-02-24",
+      "confidence": 4,
+      "reviewer": "Codex (lecture directe du 28/08/2026)",
+      "history": [],
+      "quote": "Some dangerous dog breeds and snub nosed breeds of cats and dogs may not be accepted.",
+      "quote_language": "en",
+      "locator": "FAQ « Are all breeds accepted? »"
+    }
   }
 ]
