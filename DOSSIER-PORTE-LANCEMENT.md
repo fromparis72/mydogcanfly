@@ -1,7 +1,39 @@
 # Porte de lancement SEO/GEO — dossier de conception
 
-**Version 2 — 28/08/2026, sur `main` `b500168`. Conception avant code : aucun harnais n'est
+**Version 3 — 28/08/2026, sur `main` `b500168`. Conception avant code : aucun harnais n'est
 écrit tant que cette conception révisée n'est pas contre-revue.**
+
+**Ce que la v3 corrige (2ᵉ contre-revue Codex du 28/08/2026), nommé :**
+1. **Le contrat preview se contredisait encore** : le résumé du § 0 exigeait toujours que
+   `robots.txt` « interdise tout » pendant que le § 3 exigeait, correctement, l'absence de
+   `Disallow: /`. Le résumé est aligné, et deux contre-épreuves preview sont ajoutées
+   (13 : un `Disallow: /` fait rougir V2 ; 14 : une ligne `Sitemap:` fait rougir V3).
+2. **La v2 créait une seconde provenance** (`porte-provenance.json`) alors que le dépôt
+   possède déjà LE contrat — `packages/knowledge/scripts/lib/provenance.mjs`
+   (`ecrireProvenance`, `verifierProvenance`, `empreinteDist`, `.provenance.json` : SHA,
+   empreintes des entrées par paquets entiers, propreté à échec fermé, paramètres, portée,
+   empreinte exacte du dist). Deux contrats concurrents divergeraient — c'est la leçon écrite
+   dans l'en-tête de ce module même. Le § 2 bis RÉUTILISE ce module et n'ajoute que
+   l'exigence propre au lancement : SHA courant exactement égal au SHA demandé. La
+   contre-épreuve 9 de la v2 était mal formulée (une modification non commitée ne change pas
+   HEAD) : scindée en 9 (source modifiée non commitée après build → refus, par la propreté et
+   les empreintes d'entrées) et 10 (nouveau commit après build → refus, par le SHA).
+3. **Le contrôle en ligne et le rollback appartenaient à deux moments différents** — un
+   contre-test « dans la séquence » puis un rollback « sur ordre » pouvait laisser une
+   production fautive visible pendant l'attente. `deployer-production.mjs` (§ 6) porte
+   désormais TOUT le cycle : mémoriser le déploiement production précédent, déployer les
+   octets scellés, contrôler immédiatement en HTTP exhaustif, et au premier défaut appeler
+   lui-même le rollback Cloudflare Pages vers ce déploiement précédent, vérifier que le
+   rollback a réellement abouti, et interdire la Search Console dans tous les cas d'échec.
+   L'autorité reste intacte : la commande entière ne se lance QUE sur ordre explicite du
+   propriétaire, et cet ordre inclut le rollback automatique en cas d'échec — c'est une seule
+   décision, pas deux.
+4. **P1 documentaire** : la variable de build s'appelle `PUBLIC_API_BASE` (pas `API_BASE`) ;
+   en production sa valeur attendue est VIDE — le bundle appelle `/v1/*` en same-origin — et
+   la CI utilise une sentinelle versionnée. Le contrôle de bundle correspondant est ajouté
+   (P10). Recommandation Codex consignée : activer Cloudflare Access sur les dernières
+   previews (les URL de preview Pages sont publiques par défaut, même si Pages leur ajoute
+   automatiquement `X-Robots-Tag: noindex`).
 
 Commande donnée (arbitrage propriétaire du 28/08/2026, spécification Codex) : une **porte de
 lancement unique**, automatisée, limitée aux **risques de lancement** — pas un chantier SEO.
@@ -45,8 +77,10 @@ node porte-lancement.mjs --dist=packages/ui/dist --attendu=preview     # garde d
 - `--attendu=production` : la surface publique est **intégralement indexable** — zéro
   `noindex` accidentel, robots ouvert, sitemaps exacts, canoniques de production, hreflang
   réciproques. C'est la porte que le déploiement exige verte.
-- `--attendu=preview` : **chaque page** porte `noindex, nofollow` et `robots.txt` interdit
-  tout. Une préversion qui fuit dans l'index est le défaut symétrique, et il est aussi grave.
+- `--attendu=preview` : **chaque page** porte `noindex, nofollow`, et `robots.txt` n'empêche
+  PAS la lecture de ce `noindex` (pas de `Disallow: /`) ni n'annonce de sitemap — le
+  mécanisme exact est au § 3. Une préversion qui fuit dans l'index est le défaut symétrique,
+  et il est aussi grave.
 - Tout écart est nommé (page, contrôle, valeur vue/attendue) ; la sortie est 0 ou 1, jamais
   un avertissement. Une porte qui « signale » sans bloquer n'est pas une porte.
 
@@ -155,20 +189,30 @@ elle-même**, dans le même processus, contre le même `dist/` scellé, avant de
 verdict — l'ordre des étapes n'est plus une croyance, c'est un appel de fonction. Aucune
 réimplémentation : ce sont les scripts existants, invoqués.
 
-## 2 bis. La porte scelle l'ARTEFACT, pas seulement ses propriétés (v2)
+**P10 — le bundle appelle la bonne API (v3).** En mode production, aucun asset construit ne
+porte d'URL d'API de préversion — pas de `*.workers.dev`, pas de `localhost` : la valeur
+attendue de `PUBLIC_API_BASE` est VIDE et le bundle appelle `/v1/*` en same-origin. En mode
+preview, l'inverse est déjà garanti par `build-preview.mjs` (URL Worker versionnée exigée
+dans le bundle) : la porte le cite, elle ne le réimplémente pas.
+
+## 2 bis. La porte scelle l'ARTEFACT, pas seulement ses propriétés (v2, réusiné v3)
 
 Sans cela, la porte est un faux vert de la même classe que « agrégats exacts, registre non
 figé » : toutes les propriétés du site seraient exactes sans que l'objet réellement publié
 soit figé. Trois pièces :
 
-1. **Provenance de build production** — le build production (wrapper autour de `build:prod`,
-   même patron que `build-preview.mjs` qui écrit déjà la sienne) écrit
-   `porte-provenance.json` : SHA de HEAD, arbre Git PROPRE exigé (sinon refus d'écrire),
-   portée complète prouvée (le compte de pages du build, confronté au manifeste), variables
-   d'environnement de build (`PUBLIC_SITE_ENV=production`, `API_BASE`), et **empreinte exacte
-   du `dist/`** : liste triée des fichiers + SHA-256 par fichier + empreinte globale de
-   l'ensemble. La porte REFUSE de juger un `dist/` sans provenance, avec une provenance dont
-   l'empreinte ne correspond pas aux octets présents, ou dont le SHA n'est pas celui demandé.
+1. **Provenance de build production — LE module existant, jamais un second contrat (v3).**
+   Le dépôt possède déjà la carte d'identité d'un site construit :
+   `packages/knowledge/scripts/lib/provenance.mjs` (`ecrireProvenance` / `verifierProvenance`
+   / `empreinteDist`, fichier `.provenance.json` dans le dist), déjà écrit par `build-ci.mjs`
+   et `build-preview.mjs` — SHA de HEAD, empreintes des ENTRÉES par paquets entiers avec
+   exclusions vérifiées, propreté de l'arbre à échec FERMÉ, paramètres de build, portée,
+   empreinte exacte du dist. Son propre en-tête raconte pourquoi les copies divergent : la v2
+   de ce dossier, avec son `porte-provenance.json`, recréait exactement ce défaut. Le wrapper
+   de build production RÉUTILISE ce module tel quel (avec `PUBLIC_SITE_ENV=production` et
+   `PUBLIC_API_BASE` vide parmi les paramètres inscrits) ; la porte appelle
+   `verifierProvenance` et n'ajoute que l'exigence propre au lancement : **le SHA de la
+   provenance est exactement le SHA demandé au déploiement**.
 2. **Le verdict est lié à l'empreinte** — le rapport de la porte cite l'empreinte globale
    jugée : un verdict ne porte jamais sur « un dist », il porte sur CES octets.
 3. **Déploiement sans reconstruction** — § 6 : la commande de lancement revérifie l'empreinte
@@ -188,12 +232,14 @@ préversion n'empêche PAS la lecture du `noindex` : aucun `Disallow: /` global 
 `robots.txt.ts` actuel fait l'inverse — **changement de code nommé**, à faire avec la porte).
 **V3** — aucune ligne `Sitemap:` n'y annonce quoi que ce soit.
 
-**Option nommée pour arbitrage propriétaire** : l'invisibilité GARANTIE (personne n'atteint
-la préversion sans s'authentifier) existe — Cloudflare Access sur les préversions Pages.
-Coût : une authentification pour chaque contre-test navigateur (Philippe, et Codex via
-Philippe). La porte fonctionne dans les deux cas ; sans Access, la protection réelle reste
-« URL versionnée non devinable + noindex lisible », et le dossier de lancement le dit en
-toutes lettres.
+**Option nommée pour arbitrage propriétaire — recommandée par la contre-revue (v3)** :
+l'invisibilité GARANTIE (personne n'atteint la préversion sans s'authentifier) existe —
+Cloudflare Access sur les préversions Pages, dont les URL sont publiques par défaut (même si
+Pages leur ajoute automatiquement `X-Robots-Tag: noindex`). Codex recommande de l'activer
+pour les dernières previews. Coût : une authentification pour chaque contre-test navigateur
+(Philippe, et Codex via Philippe). La porte fonctionne dans les deux cas ; sans Access, la
+protection réelle reste « URL versionnée non devinable + noindex lisible », et le dossier de
+lancement le dit en toutes lettres.
 
 ## 4. Le volet GEO — utile et sobre, rien de plus
 
@@ -214,7 +260,7 @@ Conformément à l'arbitrage : **la porte vérifie, elle n'ajoute jamais de cont
   mot-clé, aucun texte additionnel ; ce point est une clause de conception, pas un contrôle
   exécutable, et il est écrit pour qu'on ne puisse pas l'ajouter « en passant ».
 
-## 5. Les onze contre-épreuves de la porte (exigées avant tout feu vert)
+## 5. Les quatorze contre-épreuves de la porte (exigées avant tout feu vert)
 
 Sur le modèle des harnais du dépôt : chaque garantie doit avoir été **vue rougir pour sa
 cause**, par mutation d'une copie de `dist/` (jamais du dépôt), en exerçant la vraie porte :
@@ -228,50 +274,70 @@ cause**, par mutation d'une copie de `dist/` (jamais du dépôt), en exerçant l
 7. une question ajoutée au JSON-LD FAQ sans texte visible → P8 rougit ;
 8. le même `dist/` de production jugé en `--attendu=preview` → V1 rougit (les deux modes ne
    peuvent pas être verts sur le même artefact — c'est la preuve que la porte distingue) ;
-9. **(v2)** une source modifiée APRÈS le build (SHA de HEAD ≠ SHA de la provenance) → le
-   scellement rougit ;
-10. **(v2)** un fichier du `dist/` modifié APRÈS le passage de la porte → la revérification
+9. **(v3)** une source modifiée NON COMMITÉE après le build → refus — HEAD n'a pas bougé,
+   c'est la propreté de l'arbre et les empreintes d'ENTRÉES de `verifierProvenance` qui
+   rougissent (le module échoue FERMÉ, jamais « propre faute d'avoir pu lire ») ;
+10. **(v3)** un NOUVEAU COMMIT après le build → refus — le SHA de la provenance n'est plus
+    le SHA courant demandé au déploiement ;
+11. un fichier du `dist/` modifié APRÈS le passage de la porte → la revérification
     d'empreinte de la commande de déploiement rougit — le verdict ne se transfère pas à
     d'autres octets ;
-11. **(v2)** un ancien `dist/` complet, provenant d'un autre SHA, présenté à la porte → le
-    scellement rougit (provenance d'un autre commit, empreinte cohérente mais SHA étranger).
+12. un ancien `dist/` complet et COHÉRENT (provenance intacte) mais provenant d'un autre
+    SHA → refus (empreinte juste, SHA étranger) ;
+13. **(v3)** un `Disallow: /` introduit dans le `robots.txt` d'un dist de préversion →
+    V2 rougit — le défaut qui rendait le `noindex` illisible ne peut pas revenir en silence ;
+14. **(v3)** une ligne `Sitemap:` introduite dans le `robots.txt` de préversion → V3 rougit.
 
 ## 6. Câblage — où la porte tourne, et sur quoi
 
 - **CI, job « Site entier »** : le build actuel est un build de préversion (pas de
   `PUBLIC_SITE_ENV`) → la porte y tourne en `--attendu=preview` sur le dist existant (coût
   nul), ET un **second build en mode production** (`PUBLIC_SITE_ENV=production`, jamais
-  déployé, `API_BASE` factice versionné) est jugé en `--attendu=production`. Coût estimé :
-  ~8 min de job en plus — c'est le prix de ne jamais découvrir un `noindex` le jour du
-  lancement. Alternative si le coût est refusé à la contre-revue : le build production + porte
-  ne tournent que sur `workflow_dispatch` et avant release — nommée ici pour l'arbitrage.
-- **Commande atomique de lancement (v2)** : `deployer-production.mjs` — un seul processus qui
-  (a) vérifie la provenance et l'empreinte du `dist/` (§ 2 bis), (b) exécute la porte
-  `--attendu=production` ET les prérequis P9 (audit + liens) sur ce même `dist/`, (c) SANS
-  AUCUNE RECONSTRUCTION, déploie ce répertoire tel quel : `wrangler pages deploy <dist>
-  --commit-hash=<sha de la provenance>` (Cloudflare Pages accepte un dossier préconstruit et
-  ce drapeau — Direct Upload). Toute étape rouge arrête tout ; `npm run release`, qui
-  reconstruit, est remplacé par cette commande — changement nommé pour arbitrage.
-- **Contre-test HTTP post-déploiement (v2 — exhaustif, pas un échantillon)** : une règle
-  Cloudflare peut être conditionnée par chemin, un échantillon peut donc passer À CÔTÉ du
-  chemin transformé. Le contre-test rejoue en ligne, sur la production servie : TOUTES les
-  URL des sitemaps (meta robots + `X-Robots-Tag` reçus + canonique + statut 200), toutes les
-  pages volontairement `noindex` de la liste admise, `robots.txt`, et chaque redirection
-  vérifiée (statut + cible). **Au premier écart : la soumission Search Console est BLOQUÉE et
-  la procédure de rollback du dossier de lancement est déclenchée** (sur ordre propriétaire,
-  conformément aux limites d'autorité en vigueur). Puis seulement : soumission du sitemap en
-  Search Console, sur ordre propriétaire uniquement.
+  déployé, `PUBLIC_API_BASE` sentinelle versionnée — en CI le bundle ne peut pas être
+  same-origin testable, la sentinelle est inscrite sur la provenance et P10 l'admet
+  explicitement en mode CI) est jugé en `--attendu=production`. Coût estimé : ~8 min de job
+  en plus — c'est le prix de ne jamais découvrir un `noindex` le jour du lancement.
+  Alternative si le coût est refusé à la contre-revue : le build production + porte ne
+  tournent que sur `workflow_dispatch` et avant release — nommée ici pour l'arbitrage.
+- **Commande atomique de lancement (v3 — TOUT le cycle, rollback compris)** :
+  `deployer-production.mjs` — un seul processus, lancé UNIQUEMENT sur ordre explicite du
+  propriétaire, et cet ordre couvre le cycle entier, rollback automatique inclus (une seule
+  décision, pas deux) :
+  1. mémorise l'identifiant du déploiement production précédent (l'API Cloudflare Pages
+     liste les déploiements du projet) — sans ce point de retour vérifié, refus de déployer ;
+  2. vérifie la provenance et l'empreinte du `dist/` (§ 2 bis) — SHA courant exactement égal
+     au SHA demandé ;
+  3. exécute la porte `--attendu=production` ET les prérequis P9 (audit + liens) sur ce même
+     `dist/` ;
+  4. SANS AUCUNE RECONSTRUCTION, déploie ce répertoire tel quel : `wrangler pages deploy
+     <dist> --commit-hash=<sha de la provenance>` (Pages accepte un dossier préconstruit et
+     ce drapeau — Direct Upload) ;
+  5. exécute IMMÉDIATEMENT le contre-test HTTP exhaustif sur la production servie — une
+     règle Cloudflare pouvant être conditionnée par chemin, un échantillon passerait à côté :
+     TOUTES les URL des sitemaps (meta robots + `X-Robots-Tag` reçus + canonique + statut
+     200), toutes les pages volontairement `noindex` de la liste admise, `robots.txt`, et
+     chaque redirection (statut + cible) ;
+  6. **au premier défaut : appelle lui-même le rollback** vers le déploiement mémorisé en 1
+     (endpoint de rollback Cloudflare Pages vers un déploiement production antérieur réussi),
+     puis VÉRIFIE que le rollback a réellement abouti (relecture du déploiement actif + santé
+     sur les URL témoins) — jamais « rollback demandé », toujours « rollback constaté » ;
+  7. la **Search Console est interdite dans TOUS les cas d'échec** — écart HTTP, rollback
+     réussi ou rollback lui-même en échec ; elle n'est permise qu'après un cycle
+     intégralement vert, et reste un geste séparé sur ordre propriétaire.
+  `npm run release`, qui reconstruit, est remplacé par cette commande — changement nommé
+  pour arbitrage.
 
 ## 7. Ce que cette porte ne fait pas
 
 Pas de SEO de contenu, pas de mots-clés, pas de refonte : hors périmètre par arbitrage. Pas
-d'appel réseau en CI (le contre-test HTTP est post-déploiement, manuel dans la séquence). Pas
+d'appel réseau en CI (le contre-test HTTP appartient à `deployer-production.mjs`, § 6). Pas
 de soumission Search Console automatisée. Pas de double des contrôles existants (liens,
-clôture chaleur, annonce du site) : elle les cite et s'y adosse.
+clôture chaleur, annonce du site) ni du contrat de provenance : elle les cite et s'y adosse.
 
 ---
 
-*Prochaine étape : contre-revue de cette conception RÉVISÉE (v2) par Codex. Le code de la
-porte, sa liste `porte-noindex-admis.json`, le wrapper de provenance, la commande
-`deployer-production.mjs`, le changement de `robots.txt.ts` en préversion et les onze
-contre-épreuves ne s'écrivent qu'après son feu vert.*
+*Prochaine étape : contre-revue de cette conception RÉVISÉE (v3) par Codex. Le code de la
+porte, sa liste `porte-noindex-admis.json`, le wrapper de build production adossé à
+`provenance.mjs`, la commande `deployer-production.mjs` (cycle complet, rollback vérifié
+compris), le changement de `robots.txt.ts` en préversion et les quatorze contre-épreuves ne
+s'écrivent qu'après son feu vert.*
