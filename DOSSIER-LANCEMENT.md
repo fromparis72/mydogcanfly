@@ -118,9 +118,30 @@ V1–V3, G1–G5 avec son verdict et ses preuves.
 
 ## 6. Rapport navigateur
 
-`[EN ATTENTE]` de la préversion immuable (section 4). Le rapport sera l'exécution, langue
-par langue, du protocole ci-dessous — écrit à l'avance pour que le contre-test soit
-reproductible et complet, pas improvisé.
+**EXÉCUTÉ le 28/08/2026** par Philippe sur l'URL immuable
+`https://c069856d.mydogcanfly-v2-preview.pages.dev` — **verdict global : OK** (attesté en
+session ; verdict d'ensemble, pas une grille remplie point par point — l'attestation est
+consignée pour ce qu'elle est). Deux observations de parcours, toutes deux résolues :
+1. citations de sources non traduites (ex. la citation IAG en anglais sur les pages FR/ES/PT)
+   — **voulu et contractuel** : une citation verbatim reste dans la langue de la source pour
+   rester vérifiable ; l'explication qui l'entoure est traduite. Option d'affichage
+   (traduction à côté, jamais à la place) notée pour arbitrage post-lancement, lot D ;
+2. la page `/tools/` ne montrait « pas de changement » — c'était le protocole qui était faux
+   (critère du fichier v1 transposé à tort), corrigé en `b891d05` ; la page v2 est conforme.
+
+**Contre-vérification Codex (28/08/2026), chiffrée** : préversion fonctionnelle et
+immuable, contrôles métier quadrilingues verts ; **2 536 URL des sitemaps : HTTP 200 et
+`noindex, nofollow`** ; Worker correctement épinglé ; alias partagé inchangé ; aucun
+déploiement de production ni Search Console. **Promotion de l'alias : NON autorisée pour
+l'instant.** Blocage restant nommé par Codex : (1) le `robots.txt` de préversion contient
+encore `Disallow: /` — ce qui peut empêcher Google de lire les `noindex` ; c'est le
+changement de code déjà nommé à la conception porte (v3), à livrer AVEC le code de la
+porte ; (2) la conception v4 doit fermer trois trous de P7 bis (v5 en cours). Les anciens
+déploiements « Production main » restent une observation sans action, à contrôler par les
+quatre concordances avant tout futur déploiement.
+
+Le protocole ci-dessous reste la référence pour tout contre-test futur (nouvelle préversion,
+production) — écrit à l'avance pour être reproductible, pas improvisé.
 
 ### Protocole de contre-test navigateur (à dérouler sur l'URL VERSIONNÉE de la préversion)
 
