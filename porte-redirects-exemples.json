@@ -1,0 +1,16 @@
+{
+  "schema": 1,
+  "_commentaire": "Instances CONCRÈTES des règles dynamiques de _redirects (conception porte, v3 : une règle dynamique sans exemple versionné est non prouvable, donc non prouvée). La porte (P7) résout chaque exemple par substitution du :splat et vérifie que la cible existe dans le dist. Sources réelles du site v1.",
+  "exemples": [
+    {
+      "regle": "/dog-heat-safety/*",
+      "source": "/dog-heat-safety/pug/",
+      "cible": "/breeds/pug/"
+    },
+    {
+      "regle": "/categories/*",
+      "source": "/categories/airlines/",
+      "cible": "/travel-hub/"
+    }
+  ]
+}

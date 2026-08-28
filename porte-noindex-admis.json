@@ -1,0 +1,31 @@
+{
+  "schema": 1,
+  "_commentaire": "Les pages VOLONTAIREMENT non indexables du site de production — la liste que la porte lit (P1, P3) au lieu de deviner. CONTRAT EXTERNE BIDIRECTIONNEL (conception porte, v2→v6) : Base.astro ne consulte pas ce fichier — les noindex volontaires se décident page par page dans les gabarits — donc la porte vérifie l'inclusion DANS LES DEUX SENS : toute page noindex du dist doit correspondre à un motif, et tout motif doit correspondre à au moins une page noindex (motif mort = motif faux). Mesuré le 28/08/2026 sur le build production scellé de 5b8257e : 585 pages en « noindex, follow ». Tout mouvement = édition ici, dans la même PR que le gabarit qui change, revue par son diff.",
+  "motifs": [
+    {
+      "motif": "^/(?:(?:fr|es|pt)/)?404(?:/index)?\\.html$",
+      "raison": "Pages d'erreur : la route Astro (404/index.html, langues) et les copies déposées par fix-404 (404.html) — servies en 404, jamais destinées à l'index."
+    },
+    {
+      "motif": "^/(?:(?:fr|es|pt)/)?airports/[a-z0-9-]+/index\\.html$",
+      "conditionnel": true,
+      "raison": "Fiches aéroports : noindex CONDITIONNEL aux données — [slug].astro pose noindex={!reliefIndexable(a)} : un aéroport à zone de besoins vérifiée est indexable, un aéroport sans donnée vérifiée ne promet rien (mesuré : 270 aéroports par langue, 141 noindex / 129 indexables). La porte n'exige donc pas que TOUTE page de ce motif soit noindex — figer le partage ici figerait des DONNÉES au mauvais étage, elles bougent par leurs propres registres scellés. L'invariant qui compte reste tenu par P3 : une page noindex n'entre dans aucun sitemap, une page indexable y est exactement."
+    },
+    {
+      "motif": "^/(?:(?:fr|es|pt)/)?tools/(?:fiche|timeline)/index\\.html$",
+      "raison": "Outils internes (fiche imprimable, frise) : noindex posé par leurs gabarits."
+    },
+    {
+      "motif": "^/lab/[a-z0-9-]+/index\\.html$",
+      "raison": "Laboratoire : noindex par gabarit, et robots.txt le Disallow en plus."
+    },
+    {
+      "motif": "^/button-lab\\.html$",
+      "raison": "Page statique d'essais de boutons : jamais destinée à l'index."
+    },
+    {
+      "motif": "^/presskit/press-kit-(?:en|fr|es|pt)\\.html$",
+      "raison": "Kits presse HTML : distribués par lien direct, hors index."
+    }
+  ]
+}

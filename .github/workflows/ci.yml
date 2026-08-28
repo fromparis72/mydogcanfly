@@ -255,7 +255,7 @@ jobs:
   site-complet:
     name: Site entier (build complet + contrôles du site)
     runs-on: ubuntu-latest
-    timeout-minutes: 90
+    timeout-minutes: 150
 
     steps:
       # LES MÊMES ÉPINGLES QUE LE JOB RAPIDE. Ce lot apporte la migration Node 20 → 22 des actions,
@@ -332,3 +332,40 @@ jobs:
       # éprouvées, ce qui est exactement ce que ce catalogue existe pour interdire.
       - name: Contre-épreuves du site complet (sans reconstruire)
         run: npm run contre-epreuves -- --dist-complet
+
+      # ────────────────────────────────────────────────────────────────────────────────────────
+      # LA PORTE DE LANCEMENT, DANS SES DEUX MODES, ET SES VINGT ET UNE CONTRE-ÉPREUVES.
+      #
+      # Pourquoi ici et pas dans le job rapide : la porte juge un SITE ENTIER scellé — elle refuse
+      # tout dist sans carte de provenance valide, et un build réduit n'en est pas un. Elle ne
+      # reconstruit rien pour le mode préversion : elle juge le dist que ce job vient de produire.
+      #
+      # L'ordre est celui du contrat : préversion d'abord (le dist existe déjà), puis le build de
+      # production scellé, puis les contre-épreuves — qui exigent LES DEUX artefacts, parce que
+      # deux d'entre elles (13 et 14) jugent un robots.txt de préversion. Les copies mises de côté
+      # servent au harnais : il mute des octets, et jamais ceux d'un dist qu'un autre contrôle lit.
+      - name: Porte de lancement — mode préversion, sur le dist complet déjà construit
+        run: npm run porte -- --dist=packages/ui/dist --attendu=preview
+
+      - name: Le dist de préversion est mis de côté pour les contre-épreuves
+        run: cp -r packages/ui/dist "$RUNNER_TEMP/dist-preview"
+
+      # Le wrapper scellé : il EXIGE --same-origin ou --sentinelle, fixe PUBLIC_SITE_ENV=production
+      # et dépose la carte de provenance. En CI c'est la sentinelle — aucun secret n'est requis, et
+      # P10 de la porte admet cette adresse-là et elle seule.
+      - name: Build de production scellé (sentinelle versionnée)
+        run: npm run build:production -- --sentinelle
+
+      - name: Porte de lancement — mode production, sur le dist scellé
+        run: npm run porte -- --dist=packages/ui/dist --attendu=production
+
+      - name: Le dist de production est mis de côté pour les contre-épreuves
+        run: cp -r packages/ui/dist "$RUNNER_TEMP/dist-prod"
+
+      # CHAQUE GARANTIE DE LA PORTE DOIT AVOIR ÉTÉ VUE ROUGIR POUR SA CAUSE. Le harnais mute des
+      # copies, relance la VRAIE porte dans un processus neuf, exige le code 1 ET le diagnostic
+      # attendu, restaure, et redemande un verdict vert sur les deux artefacts pour prouver que
+      # les restaurations ont restauré.
+      - name: Les 21 contre-épreuves de la porte
+        run: npm run test:porte -- --dist-production="$RUNNER_TEMP/dist-prod" --dist-preview="$RUNNER_TEMP/dist-preview"
+
