@@ -864,10 +864,10 @@
    "airline_china_eastern | conn | connection_documented | st:denied/confirmation_required/confirmation_required | cabin:denied hold:confirmation_required[breed_policy_unreviewed:airline_china_eastern#hold] cargo:confirmation_required[breed_policy_unreviewed:airline_china_eastern#cargo,legacy_unreviewed:airline_china_eastern#cargo] | bool:000 | confirm:hold+cargo | pets:true/true | deny:- | label:Policy to confirm with the airline | fee:- | heat:00",
    "airline_eva_air | conn | connection_documented | st:denied/confirmation_required/confirmation_required | cabin:denied hold:confirmation_required[breed_policy_unreviewed:airline_eva_air#hold] cargo:confirmation_required[breed_policy_unreviewed:airline_eva_air#cargo,legacy_unreviewed:airline_eva_air#cargo] | bool:000 | confirm:hold+cargo | pets:true/true | deny:- | label:Policy to confirm with the airline | fee:- | heat:00",
    "airline_korean_air | conn | connection_documented | st:denied/confirmation_required/confirmation_required | cabin:denied hold:confirmation_required[breed_policy_unreviewed:airline_korean_air#hold] cargo:confirmation_required[breed_policy_unreviewed:airline_korean_air#cargo,legacy_unreviewed:airline_korean_air#cargo] | bool:000 | confirm:hold+cargo | pets:true/true | deny:- | label:Policy to confirm with the airline | fee:- | heat:00",
-   "airline_british_airways | conn | connection_unverified | st:denied/denied/confirmation_required | cabin:denied hold:denied cargo:confirmation_required[breed_policy_unreviewed:airline_british_airways#cargo] | bool:000 | confirm:cargo | pets:true/true | deny:- | label:Policy to confirm with the airline | fee:- | heat:00",
    "airline_gulf_air | conn | connection_unverified | st:denied/denied/confirmation_required | cabin:denied hold:denied cargo:confirmation_required[breed_policy_unreviewed:airline_gulf_air#cargo,legacy_unreviewed:airline_gulf_air#cargo] | bool:000 | confirm:cargo | pets:true/true | deny:- | label:Policy to confirm with the airline | fee:- | heat:00",
    "airline_qatar_airways | conn | connection_unverified | st:denied/confirmation_required/confirmation_required | cabin:denied hold:confirmation_required[breed_policy_unreviewed:airline_qatar_airways#hold] cargo:confirmation_required[breed_policy_unreviewed:airline_qatar_airways#cargo,legacy_unreviewed:airline_qatar_airways#cargo] | bool:000 | confirm:hold+cargo | pets:true/true | deny:- | label:Policy to confirm with the airline | fee:- | heat:00",
-   "airline_kenya_airways | conn | connection_unverified | st:denied/denied/confirmation_required | cabin:denied hold:denied cargo:confirmation_required[breed_policy_unreviewed:airline_kenya_airways#cargo,legacy_unreviewed:airline_kenya_airways#cargo] | bool:000 | confirm:cargo | pets:true/true | deny:- | label:Policy to confirm with the airline | fee:- | heat:00"
+   "airline_kenya_airways | conn | connection_unverified | st:denied/denied/confirmation_required | cabin:denied hold:denied cargo:confirmation_required[breed_policy_unreviewed:airline_kenya_airways#cargo,legacy_unreviewed:airline_kenya_airways#cargo] | bool:000 | confirm:cargo | pets:true/true | deny:- | label:Policy to confirm with the airline | fee:- | heat:00",
+   "airline_british_airways | conn | connection_unverified | st:denied/denied/denied | cabin:denied hold:denied cargo:denied | bool:000 | confirm:- | pets:true/true | deny:breed_restricted+cabin_unavailable+hold_unavailable | label:Not compatible: breed not accepted, cabin not offered and hold not offered | fee:- | heat:00"
   ],
   "alternatives": [],
   "climate": {
@@ -976,7 +976,6 @@
   ],
   "risks": [],
   "safety_advisories": [
-   "brest_ba_iag_snub_nose_case_by_case|airline_british_airways|hold+cargo|https://www.iagcargo.com/en/products/pets/|Some dangerous dog breeds and snub nosed breeds of cats and dogs may not be accepted.",
    "brest_iata_snub_nose_hot_season|global|cabin+hold+cargo|https://www.iata.org/en/programs/cargo/live-animals/pets/|Transport of snub nose dogs, such as boxers, pugs, bulldogs and Pekinese, in hot season is not recommended."
   ],
   "score": 52,
@@ -1029,9 +1028,9 @@
    "airline_etihad | conn | connection_documented | st:allowed/denied/confirmation_required | cabin:allowed hold:denied cargo:confirmation_required[breed_policy_unreviewed:airline_etihad#cargo,legacy_unreviewed:airline_etihad#cargo] | bool:100 | confirm:cargo | pets:true/true | deny:- | label:Cabin OK | fee:$430–1650 | heat:00",
    "airline_aircalin | direct | direct_documented | st:denied/denied/confirmation_required | cabin:denied hold:denied cargo:confirmation_required[breed_policy_unreviewed:airline_aircalin#cargo,legacy_unreviewed:airline_aircalin#cargo] | bool:000 | confirm:cargo | pets:true/true | deny:- | label:Policy to confirm with the airline | fee:- | heat:00",
    "airline_cathay_pacific | conn | connection_documented | st:denied/denied/confirmation_required | cabin:denied hold:denied cargo:confirmation_required[breed_policy_unreviewed:airline_cathay_pacific#cargo,legacy_unreviewed:airline_cathay_pacific#cargo] | bool:000 | confirm:cargo | pets:true/true | deny:- | label:Policy to confirm with the airline | fee:- | heat:00",
-   "airline_british_airways | conn | connection_unverified | st:denied/denied/confirmation_required | cabin:denied hold:denied cargo:confirmation_required[breed_policy_unreviewed:airline_british_airways#cargo] | bool:000 | confirm:cargo | pets:true/true | deny:- | label:Policy to confirm with the airline | fee:- | heat:00",
    "airline_gulf_air | conn | connection_unverified | st:denied/denied/confirmation_required | cabin:denied hold:denied cargo:confirmation_required[breed_policy_unreviewed:airline_gulf_air#cargo,legacy_unreviewed:airline_gulf_air#cargo] | bool:000 | confirm:cargo | pets:true/true | deny:- | label:Policy to confirm with the airline | fee:- | heat:00",
-   "airline_kenya_airways | conn | connection_unverified | st:denied/denied/confirmation_required | cabin:denied hold:denied cargo:confirmation_required[breed_policy_unreviewed:airline_kenya_airways#cargo,legacy_unreviewed:airline_kenya_airways#cargo] | bool:000 | confirm:cargo | pets:true/true | deny:- | label:Policy to confirm with the airline | fee:- | heat:00"
+   "airline_kenya_airways | conn | connection_unverified | st:denied/denied/confirmation_required | cabin:denied hold:denied cargo:confirmation_required[breed_policy_unreviewed:airline_kenya_airways#cargo,legacy_unreviewed:airline_kenya_airways#cargo] | bool:000 | confirm:cargo | pets:true/true | deny:- | label:Policy to confirm with the airline | fee:- | heat:00",
+   "airline_british_airways | conn | connection_unverified | st:denied/denied/denied | cabin:denied hold:denied cargo:denied | bool:000 | confirm:- | pets:true/true | deny:breed_restricted+cabin_unavailable+hold_unavailable | label:Not compatible: breed not accepted, cabin not offered and hold not offered | fee:- | heat:00"
   ],
   "alternatives": [],
   "climate": {
@@ -1071,7 +1070,6 @@
   ],
   "risks": [],
   "safety_advisories": [
-   "brest_ba_iag_snub_nose_case_by_case|airline_british_airways|hold+cargo|https://www.iagcargo.com/en/products/pets/|Some dangerous dog breeds and snub nosed breeds of cats and dogs may not be accepted.",
    "brest_iata_snub_nose_hot_season|global|cabin+hold+cargo|https://www.iata.org/en/programs/cargo/live-animals/pets/|Transport of snub nose dogs, such as boxers, pugs, bulldogs and Pekinese, in hot season is not recommended."
   ],
   "score": 7,
@@ -1123,10 +1121,10 @@
    "airline_china_eastern | conn | connection_documented | st:denied/confirmation_required/confirmation_required | cabin:denied hold:confirmation_required[breed_policy_unreviewed:airline_china_eastern#hold] cargo:confirmation_required[breed_policy_unreviewed:airline_china_eastern#cargo,legacy_unreviewed:airline_china_eastern#cargo] | bool:000 | confirm:hold+cargo | pets:true/true | deny:- | label:Policy to confirm with the airline | fee:- | heat:00",
    "airline_eva_air | conn | connection_documented | st:denied/confirmation_required/confirmation_required | cabin:denied hold:confirmation_required[breed_policy_unreviewed:airline_eva_air#hold] cargo:confirmation_required[breed_policy_unreviewed:airline_eva_air#cargo,legacy_unreviewed:airline_eva_air#cargo] | bool:000 | confirm:hold+cargo | pets:true/true | deny:- | label:Policy to confirm with the airline | fee:- | heat:00",
    "airline_korean_air | conn | connection_documented | st:denied/confirmation_required/confirmation_required | cabin:denied hold:confirmation_required[breed_policy_unreviewed:airline_korean_air#hold] cargo:confirmation_required[breed_policy_unreviewed:airline_korean_air#cargo,legacy_unreviewed:airline_korean_air#cargo] | bool:000 | confirm:hold+cargo | pets:true/true | deny:- | label:Policy to confirm with the airline | fee:- | heat:00",
-   "airline_british_airways | conn | connection_unverified | st:denied/denied/confirmation_required | cabin:denied hold:denied cargo:confirmation_required[breed_policy_unreviewed:airline_british_airways#cargo] | bool:000 | confirm:cargo | pets:true/true | deny:- | label:Policy to confirm with the airline | fee:- | heat:00",
    "airline_gulf_air | conn | connection_unverified | st:denied/denied/confirmation_required | cabin:denied hold:denied cargo:confirmation_required[breed_policy_unreviewed:airline_gulf_air#cargo,legacy_unreviewed:airline_gulf_air#cargo] | bool:000 | confirm:cargo | pets:true/true | deny:- | label:Policy to confirm with the airline | fee:- | heat:00",
    "airline_qatar_airways | conn | connection_unverified | st:denied/confirmation_required/confirmation_required | cabin:denied hold:confirmation_required[breed_policy_unreviewed:airline_qatar_airways#hold] cargo:confirmation_required[breed_policy_unreviewed:airline_qatar_airways#cargo,legacy_unreviewed:airline_qatar_airways#cargo] | bool:000 | confirm:hold+cargo | pets:true/true | deny:- | label:Policy to confirm with the airline | fee:- | heat:00",
-   "airline_kenya_airways | conn | connection_unverified | st:denied/denied/confirmation_required | cabin:denied hold:denied cargo:confirmation_required[breed_policy_unreviewed:airline_kenya_airways#cargo,legacy_unreviewed:airline_kenya_airways#cargo] | bool:000 | confirm:cargo | pets:true/true | deny:- | label:Policy to confirm with the airline | fee:- | heat:00"
+   "airline_kenya_airways | conn | connection_unverified | st:denied/denied/confirmation_required | cabin:denied hold:denied cargo:confirmation_required[breed_policy_unreviewed:airline_kenya_airways#cargo,legacy_unreviewed:airline_kenya_airways#cargo] | bool:000 | confirm:cargo | pets:true/true | deny:- | label:Policy to confirm with the airline | fee:- | heat:00",
+   "airline_british_airways | conn | connection_unverified | st:denied/denied/denied | cabin:denied hold:denied cargo:denied | bool:000 | confirm:- | pets:true/true | deny:breed_restricted+cabin_unavailable+hold_unavailable | label:Not compatible: breed not accepted, cabin not offered and hold not offered | fee:- | heat:00"
   ],
   "alternatives": [],
   "climate": {
@@ -1235,7 +1233,6 @@
   ],
   "risks": [],
   "safety_advisories": [
-   "brest_ba_iag_snub_nose_case_by_case|airline_british_airways|hold+cargo|https://www.iagcargo.com/en/products/pets/|Some dangerous dog breeds and snub nosed breeds of cats and dogs may not be accepted.",
    "brest_iata_snub_nose_hot_season|global|cabin+hold+cargo|https://www.iata.org/en/programs/cargo/live-animals/pets/|Transport of snub nose dogs, such as boxers, pugs, bulldogs and Pekinese, in hot season is not recommended."
   ],
   "score": 52,
@@ -1288,9 +1285,9 @@
    "airline_etihad | conn | connection_documented | st:allowed/denied/confirmation_required | cabin:allowed hold:denied cargo:confirmation_required[breed_policy_unreviewed:airline_etihad#cargo,legacy_unreviewed:airline_etihad#cargo] | bool:100 | confirm:cargo | pets:true/true | deny:- | label:Cabin OK | fee:$430–1650 | heat:00",
    "airline_aircalin | direct | direct_documented | st:denied/denied/confirmation_required | cabin:denied hold:denied cargo:confirmation_required[breed_policy_unreviewed:airline_aircalin#cargo,legacy_unreviewed:airline_aircalin#cargo] | bool:000 | confirm:cargo | pets:true/true | deny:- | label:Policy to confirm with the airline | fee:- | heat:00",
    "airline_cathay_pacific | conn | connection_documented | st:denied/denied/confirmation_required | cabin:denied hold:denied cargo:confirmation_required[breed_policy_unreviewed:airline_cathay_pacific#cargo,legacy_unreviewed:airline_cathay_pacific#cargo] | bool:000 | confirm:cargo | pets:true/true | deny:- | label:Policy to confirm with the airline | fee:- | heat:00",
-   "airline_british_airways | conn | connection_unverified | st:denied/denied/confirmation_required | cabin:denied hold:denied cargo:confirmation_required[breed_policy_unreviewed:airline_british_airways#cargo] | bool:000 | confirm:cargo | pets:true/true | deny:- | label:Policy to confirm with the airline | fee:- | heat:00",
    "airline_gulf_air | conn | connection_unverified | st:denied/denied/confirmation_required | cabin:denied hold:denied cargo:confirmation_required[breed_policy_unreviewed:airline_gulf_air#cargo,legacy_unreviewed:airline_gulf_air#cargo] | bool:000 | confirm:cargo | pets:true/true | deny:- | label:Policy to confirm with the airline | fee:- | heat:00",
-   "airline_kenya_airways | conn | connection_unverified | st:denied/denied/confirmation_required | cabin:denied hold:denied cargo:confirmation_required[breed_policy_unreviewed:airline_kenya_airways#cargo,legacy_unreviewed:airline_kenya_airways#cargo] | bool:000 | confirm:cargo | pets:true/true | deny:- | label:Policy to confirm with the airline | fee:- | heat:00"
+   "airline_kenya_airways | conn | connection_unverified | st:denied/denied/confirmation_required | cabin:denied hold:denied cargo:confirmation_required[breed_policy_unreviewed:airline_kenya_airways#cargo,legacy_unreviewed:airline_kenya_airways#cargo] | bool:000 | confirm:cargo | pets:true/true | deny:- | label:Policy to confirm with the airline | fee:- | heat:00",
+   "airline_british_airways | conn | connection_unverified | st:denied/denied/denied | cabin:denied hold:denied cargo:denied | bool:000 | confirm:- | pets:true/true | deny:breed_restricted+cabin_unavailable+hold_unavailable | label:Not compatible: breed not accepted, cabin not offered and hold not offered | fee:- | heat:00"
   ],
   "alternatives": [],
   "climate": {
@@ -1330,7 +1327,6 @@
   ],
   "risks": [],
   "safety_advisories": [
-   "brest_ba_iag_snub_nose_case_by_case|airline_british_airways|hold+cargo|https://www.iagcargo.com/en/products/pets/|Some dangerous dog breeds and snub nosed breeds of cats and dogs may not be accepted.",
    "brest_iata_snub_nose_hot_season|global|cabin+hold+cargo|https://www.iata.org/en/programs/cargo/live-animals/pets/|Transport of snub nose dogs, such as boxers, pugs, bulldogs and Pekinese, in hot season is not recommended."
   ],
   "score": 7,
@@ -1974,8 +1970,8 @@
    "airline_air_serbia | conn | connection_documented | st:allowed/denied/denied | cabin:allowed hold:denied cargo:denied | bool:100 | confirm:- | pets:true/true | deny:- | label:Cabin OK | fee:- | heat:00",
    "airline_air_canada | conn | connection_unverified | st:allowed/denied/denied | cabin:allowed hold:denied cargo:denied | bool:100 | confirm:- | pets:true/true | deny:- | label:Cabin OK | fee:CA/US $50–$60 one-way (higher international) | heat:00",
    "airline_westjet | conn | connection_unverified | st:allowed/confirmation_required/confirmation_required | cabin:allowed hold:confirmation_required[breed_policy_unreviewed:airline_westjet#hold] cargo:confirmation_required[breed_policy_unreviewed:airline_westjet#cargo] | bool:100 | confirm:hold+cargo | pets:true/true | deny:- | label:Cabin OK | fee:$40–90 | heat:00",
-   "airline_british_airways | conn | connection_documented | st:denied/denied/confirmation_required | cabin:denied hold:denied cargo:confirmation_required[breed_policy_unreviewed:airline_british_airways#cargo] | bool:000 | confirm:cargo | pets:true/true | deny:- | label:Policy to confirm with the airline | fee:- | heat:00",
    "airline_aer_lingus | conn | connection_documented | st:denied/denied/confirmation_required | cabin:denied hold:denied cargo:confirmation_required[breed_policy_unreviewed:airline_aer_lingus#cargo,legacy_unreviewed:airline_aer_lingus#cargo] | bool:000 | confirm:cargo | pets:true/true | deny:- | label:Policy to confirm with the airline | fee:- | heat:00",
+   "airline_british_airways | conn | connection_documented | st:denied/denied/denied | cabin:denied hold:denied cargo:denied | bool:000 | confirm:- | pets:true/true | deny:breed_restricted+cabin_unavailable+hold_unavailable | label:Not compatible: breed not accepted, cabin not offered and hold not offered | fee:- | heat:00",
    "airline_icelandair | conn | connection_documented | st:denied/denied/denied | cabin:denied hold:denied cargo:denied | bool:000 | confirm:- | pets:false/false | deny:cabin_unavailable+hold_unavailable+cargo_unavailable | label:No pets | fee:- | heat:00"
   ],
   "alternatives": [],
@@ -2093,7 +2089,6 @@
   ],
   "risks": [],
   "safety_advisories": [
-   "brest_ba_iag_snub_nose_case_by_case|airline_british_airways|hold+cargo|https://www.iagcargo.com/en/products/pets/|Some dangerous dog breeds and snub nosed breeds of cats and dogs may not be accepted.",
    "brest_iata_snub_nose_hot_season|global|cabin+hold+cargo|https://www.iata.org/en/programs/cargo/live-animals/pets/|Transport of snub nose dogs, such as boxers, pugs, bulldogs and Pekinese, in hot season is not recommended."
   ],
   "score": 74,
@@ -2134,8 +2129,8 @@
    "airline_lufthansa | conn | connection_documented | st:allowed/denied/denied | cabin:allowed hold:denied cargo:denied | bool:100 | confirm:- | pets:true/true | deny:- | label:Cabin OK | fee:$60–132 | heat:00",
    "airline_air_serbia | conn | connection_documented | st:allowed/denied/denied | cabin:allowed hold:denied cargo:denied | bool:100 | confirm:- | pets:true/true | deny:- | label:Cabin OK | fee:- | heat:00",
    "airline_air_canada | conn | connection_unverified | st:allowed/denied/denied | cabin:allowed hold:denied cargo:denied | bool:100 | confirm:- | pets:true/true | deny:- | label:Cabin OK | fee:CA/US $50–$60 one-way (higher international) | heat:00",
-   "airline_british_airways | conn | connection_documented | st:denied/denied/confirmation_required | cabin:denied hold:denied cargo:confirmation_required[breed_policy_unreviewed:airline_british_airways#cargo] | bool:000 | confirm:cargo | pets:true/true | deny:- | label:Policy to confirm with the airline | fee:- | heat:00",
    "airline_aer_lingus | conn | connection_documented | st:denied/denied/confirmation_required | cabin:denied hold:denied cargo:confirmation_required[breed_policy_unreviewed:airline_aer_lingus#cargo,legacy_unreviewed:airline_aer_lingus#cargo] | bool:000 | confirm:cargo | pets:true/true | deny:- | label:Policy to confirm with the airline | fee:- | heat:00",
+   "airline_british_airways | conn | connection_documented | st:denied/denied/denied | cabin:denied hold:denied cargo:denied | bool:000 | confirm:- | pets:true/true | deny:breed_restricted+cabin_unavailable+hold_unavailable | label:Not compatible: breed not accepted, cabin not offered and hold not offered | fee:- | heat:00",
    "airline_icelandair | conn | connection_documented | st:denied/denied/denied | cabin:denied hold:denied cargo:denied | bool:000 | confirm:- | pets:false/false | deny:cabin_unavailable+hold_unavailable+cargo_unavailable | label:No pets | fee:- | heat:00"
   ],
   "alternatives": [],
@@ -2176,7 +2171,6 @@
   ],
   "risks": [],
   "safety_advisories": [
-   "brest_ba_iag_snub_nose_case_by_case|airline_british_airways|hold+cargo|https://www.iagcargo.com/en/products/pets/|Some dangerous dog breeds and snub nosed breeds of cats and dogs may not be accepted.",
    "brest_iata_snub_nose_hot_season|global|cabin+hold+cargo|https://www.iata.org/en/programs/cargo/live-animals/pets/|Transport of snub nose dogs, such as boxers, pugs, bulldogs and Pekinese, in hot season is not recommended."
   ],
   "score": 10,
@@ -2217,8 +2211,8 @@
    "airline_air_serbia | conn | connection_documented | st:allowed/denied/denied | cabin:allowed hold:denied cargo:denied | bool:100 | confirm:- | pets:true/true | deny:- | label:Cabin OK | fee:- | heat:00",
    "airline_air_canada | conn | connection_unverified | st:allowed/denied/denied | cabin:allowed hold:denied cargo:denied | bool:100 | confirm:- | pets:true/true | deny:- | label:Cabin OK | fee:CA/US $50–$60 one-way (higher international) | heat:00",
    "airline_westjet | conn | connection_unverified | st:allowed/confirmation_required/confirmation_required | cabin:allowed hold:confirmation_required[breed_policy_unreviewed:airline_westjet#hold] cargo:confirmation_required[breed_policy_unreviewed:airline_westjet#cargo] | bool:100 | confirm:hold+cargo | pets:true/true | deny:- | label:Cabin OK | fee:$40–90 | heat:00",
-   "airline_british_airways | conn | connection_documented | st:denied/denied/confirmation_required | cabin:denied hold:denied cargo:confirmation_required[breed_policy_unreviewed:airline_british_airways#cargo] | bool:000 | confirm:cargo | pets:true/true | deny:- | label:Policy to confirm with the airline | fee:- | heat:00",
    "airline_aer_lingus | conn | connection_documented | st:denied/denied/confirmation_required | cabin:denied hold:denied cargo:confirmation_required[breed_policy_unreviewed:airline_aer_lingus#cargo,legacy_unreviewed:airline_aer_lingus#cargo] | bool:000 | confirm:cargo | pets:true/true | deny:- | label:Policy to confirm with the airline | fee:- | heat:00",
+   "airline_british_airways | conn | connection_documented | st:denied/denied/denied | cabin:denied hold:denied cargo:denied | bool:000 | confirm:- | pets:true/true | deny:breed_restricted+cabin_unavailable+hold_unavailable | label:Not compatible: breed not accepted, cabin not offered and hold not offered | fee:- | heat:00",
    "airline_icelandair | conn | connection_documented | st:denied/denied/denied | cabin:denied hold:denied cargo:denied | bool:000 | confirm:- | pets:false/false | deny:cabin_unavailable+hold_unavailable+cargo_unavailable | label:No pets | fee:- | heat:00"
   ],
   "alternatives": [],
@@ -2336,7 +2330,6 @@
   ],
   "risks": [],
   "safety_advisories": [
-   "brest_ba_iag_snub_nose_case_by_case|airline_british_airways|hold+cargo|https://www.iagcargo.com/en/products/pets/|Some dangerous dog breeds and snub nosed breeds of cats and dogs may not be accepted.",
    "brest_iata_snub_nose_hot_season|global|cabin+hold+cargo|https://www.iata.org/en/programs/cargo/live-animals/pets/|Transport of snub nose dogs, such as boxers, pugs, bulldogs and Pekinese, in hot season is not recommended."
   ],
   "score": 74,
@@ -2377,8 +2370,8 @@
    "airline_lufthansa | conn | connection_documented | st:allowed/denied/denied | cabin:allowed hold:denied cargo:denied | bool:100 | confirm:- | pets:true/true | deny:- | label:Cabin OK | fee:$60–132 | heat:00",
    "airline_air_serbia | conn | connection_documented | st:allowed/denied/denied | cabin:allowed hold:denied cargo:denied | bool:100 | confirm:- | pets:true/true | deny:- | label:Cabin OK | fee:- | heat:00",
    "airline_air_canada | conn | connection_unverified | st:allowed/denied/denied | cabin:allowed hold:denied cargo:denied | bool:100 | confirm:- | pets:true/true | deny:- | label:Cabin OK | fee:CA/US $50–$60 one-way (higher international) | heat:00",
-   "airline_british_airways | conn | connection_documented | st:denied/denied/confirmation_required | cabin:denied hold:denied cargo:confirmation_required[breed_policy_unreviewed:airline_british_airways#cargo] | bool:000 | confirm:cargo | pets:true/true | deny:- | label:Policy to confirm with the airline | fee:- | heat:00",
    "airline_aer_lingus | conn | connection_documented | st:denied/denied/confirmation_required | cabin:denied hold:denied cargo:confirmation_required[breed_policy_unreviewed:airline_aer_lingus#cargo,legacy_unreviewed:airline_aer_lingus#cargo] | bool:000 | confirm:cargo | pets:true/true | deny:- | label:Policy to confirm with the airline | fee:- | heat:00",
+   "airline_british_airways | conn | connection_documented | st:denied/denied/denied | cabin:denied hold:denied cargo:denied | bool:000 | confirm:- | pets:true/true | deny:breed_restricted+cabin_unavailable+hold_unavailable | label:Not compatible: breed not accepted, cabin not offered and hold not offered | fee:- | heat:00",
    "airline_icelandair | conn | connection_documented | st:denied/denied/denied | cabin:denied hold:denied cargo:denied | bool:000 | confirm:- | pets:false/false | deny:cabin_unavailable+hold_unavailable+cargo_unavailable | label:No pets | fee:- | heat:00"
   ],
   "alternatives": [],
@@ -2419,7 +2412,6 @@
   ],
   "risks": [],
   "safety_advisories": [
-   "brest_ba_iag_snub_nose_case_by_case|airline_british_airways|hold+cargo|https://www.iagcargo.com/en/products/pets/|Some dangerous dog breeds and snub nosed breeds of cats and dogs may not be accepted.",
    "brest_iata_snub_nose_hot_season|global|cabin+hold+cargo|https://www.iata.org/en/programs/cargo/live-animals/pets/|Transport of snub nose dogs, such as boxers, pugs, bulldogs and Pekinese, in hot season is not recommended."
   ],
   "score": 10,
@@ -3107,8 +3099,8 @@
    "airline_qatar_airways | conn | connection_documented | st:denied/confirmation_required/confirmation_required | cabin:denied hold:confirmation_required[breed_policy_unreviewed:airline_qatar_airways#hold] cargo:confirmation_required[breed_policy_unreviewed:airline_qatar_airways#cargo,legacy_unreviewed:airline_qatar_airways#cargo] | bool:000 | confirm:hold+cargo | pets:true/true | deny:- | label:Policy to confirm with the airline | fee:- | heat:00",
    "airline_royal_jordanian | conn | connection_documented | st:confirmation_required/confirmation_required/confirmation_required | cabin:confirmation_required[legacy_unreviewed:airline_royal_jordanian#cabin] hold:confirmation_required[breed_policy_unreviewed:airline_royal_jordanian#hold] cargo:confirmation_required[breed_policy_unreviewed:airline_royal_jordanian#cargo,legacy_unreviewed:airline_royal_jordanian#cargo] | bool:000 | confirm:cabin+hold+cargo | pets:true/true | deny:- | label:Policy to confirm with the airline | fee:- | heat:00",
    "airline_saudia | conn | connection_documented | st:denied/confirmation_required/confirmation_required | cabin:denied hold:confirmation_required[breed_policy_unreviewed:airline_saudia#hold] cargo:confirmation_required[breed_policy_unreviewed:airline_saudia#cargo,legacy_unreviewed:airline_saudia#cargo] | bool:000 | confirm:hold+cargo | pets:true/true | deny:- | label:Policy to confirm with the airline | fee:- | heat:00",
-   "airline_british_airways | conn | connection_unverified | st:denied/denied/confirmation_required | cabin:denied hold:denied cargo:confirmation_required[breed_policy_unreviewed:airline_british_airways#cargo] | bool:000 | confirm:cargo | pets:true/true | deny:- | label:Policy to confirm with the airline | fee:- | heat:00",
-   "airline_air_algerie | conn | connection_unverified | st:denied/confirmation_required/confirmation_required | cabin:denied hold:confirmation_required[breed_policy_unreviewed:airline_air_algerie#hold] cargo:confirmation_required[breed_policy_unreviewed:airline_air_algerie#cargo,legacy_unreviewed:airline_air_algerie#cargo] | bool:000 | confirm:hold+cargo | pets:true/true | deny:- | label:Policy to confirm with the airline | fee:- | heat:00"
+   "airline_air_algerie | conn | connection_unverified | st:denied/confirmation_required/confirmation_required | cabin:denied hold:confirmation_required[breed_policy_unreviewed:airline_air_algerie#hold] cargo:confirmation_required[breed_policy_unreviewed:airline_air_algerie#cargo,legacy_unreviewed:airline_air_algerie#cargo] | bool:000 | confirm:hold+cargo | pets:true/true | deny:- | label:Policy to confirm with the airline | fee:- | heat:00",
+   "airline_british_airways | conn | connection_unverified | st:denied/denied/denied | cabin:denied hold:denied cargo:denied | bool:000 | confirm:- | pets:true/true | deny:breed_restricted+cabin_unavailable+hold_unavailable | label:Not compatible: breed not accepted, cabin not offered and hold not offered | fee:- | heat:00"
   ],
   "alternatives": [],
   "climate": {
@@ -3217,7 +3209,6 @@
   ],
   "risks": [],
   "safety_advisories": [
-   "brest_ba_iag_snub_nose_case_by_case|airline_british_airways|hold+cargo|https://www.iagcargo.com/en/products/pets/|Some dangerous dog breeds and snub nosed breeds of cats and dogs may not be accepted.",
    "brest_iata_snub_nose_hot_season|global|cabin+hold+cargo|https://www.iata.org/en/programs/cargo/live-animals/pets/|Transport of snub nose dogs, such as boxers, pugs, bulldogs and Pekinese, in hot season is not recommended."
   ],
   "score": 56,
@@ -3258,7 +3249,7 @@
    "airline_lufthansa | conn | connection_unverified | st:allowed/denied/denied | cabin:allowed hold:denied cargo:denied | bool:100 | confirm:- | pets:true/true | deny:- | label:Cabin OK | fee:$60–132 | heat:00",
    "airline_klm | conn | connection_unverified | st:allowed/denied/denied | cabin:allowed hold:denied cargo:denied | bool:100 | confirm:- | pets:true/true | deny:- | label:Cabin OK | fee:€70 to €500 per one-way flight | heat:00",
    "airline_gulf_air | conn | connection_documented | st:denied/denied/confirmation_required | cabin:denied hold:denied cargo:confirmation_required[breed_policy_unreviewed:airline_gulf_air#cargo,legacy_unreviewed:airline_gulf_air#cargo] | bool:000 | confirm:cargo | pets:true/true | deny:- | label:Policy to confirm with the airline | fee:- | heat:00",
-   "airline_british_airways | conn | connection_unverified | st:denied/denied/confirmation_required | cabin:denied hold:denied cargo:confirmation_required[breed_policy_unreviewed:airline_british_airways#cargo] | bool:000 | confirm:cargo | pets:true/true | deny:- | label:Policy to confirm with the airline | fee:- | heat:00"
+   "airline_british_airways | conn | connection_unverified | st:denied/denied/denied | cabin:denied hold:denied cargo:denied | bool:000 | confirm:- | pets:true/true | deny:breed_restricted+cabin_unavailable+hold_unavailable | label:Not compatible: breed not accepted, cabin not offered and hold not offered | fee:- | heat:00"
   ],
   "alternatives": [],
   "climate": {
@@ -3298,7 +3289,6 @@
   ],
   "risks": [],
   "safety_advisories": [
-   "brest_ba_iag_snub_nose_case_by_case|airline_british_airways|hold+cargo|https://www.iagcargo.com/en/products/pets/|Some dangerous dog breeds and snub nosed breeds of cats and dogs may not be accepted.",
    "brest_iata_snub_nose_hot_season|global|cabin+hold+cargo|https://www.iata.org/en/programs/cargo/live-animals/pets/|Transport of snub nose dogs, such as boxers, pugs, bulldogs and Pekinese, in hot season is not recommended."
   ],
   "score": 7,
@@ -3338,8 +3328,8 @@
    "airline_qatar_airways | conn | connection_documented | st:denied/confirmation_required/confirmation_required | cabin:denied hold:confirmation_required[breed_policy_unreviewed:airline_qatar_airways#hold] cargo:confirmation_required[breed_policy_unreviewed:airline_qatar_airways#cargo,legacy_unreviewed:airline_qatar_airways#cargo] | bool:000 | confirm:hold+cargo | pets:true/true | deny:- | label:Policy to confirm with the airline | fee:- | heat:00",
    "airline_royal_jordanian | conn | connection_documented | st:confirmation_required/confirmation_required/confirmation_required | cabin:confirmation_required[legacy_unreviewed:airline_royal_jordanian#cabin] hold:confirmation_required[breed_policy_unreviewed:airline_royal_jordanian#hold] cargo:confirmation_required[breed_policy_unreviewed:airline_royal_jordanian#cargo,legacy_unreviewed:airline_royal_jordanian#cargo] | bool:000 | confirm:cabin+hold+cargo | pets:true/true | deny:- | label:Policy to confirm with the airline | fee:- | heat:00",
    "airline_saudia | conn | connection_documented | st:denied/confirmation_required/confirmation_required | cabin:denied hold:confirmation_required[breed_policy_unreviewed:airline_saudia#hold] cargo:confirmation_required[breed_policy_unreviewed:airline_saudia#cargo,legacy_unreviewed:airline_saudia#cargo] | bool:000 | confirm:hold+cargo | pets:true/true | deny:- | label:Policy to confirm with the airline | fee:- | heat:00",
-   "airline_british_airways | conn | connection_unverified | st:denied/denied/confirmation_required | cabin:denied hold:denied cargo:confirmation_required[breed_policy_unreviewed:airline_british_airways#cargo] | bool:000 | confirm:cargo | pets:true/true | deny:- | label:Policy to confirm with the airline | fee:- | heat:00",
-   "airline_air_algerie | conn | connection_unverified | st:denied/confirmation_required/confirmation_required | cabin:denied hold:confirmation_required[breed_policy_unreviewed:airline_air_algerie#hold] cargo:confirmation_required[breed_policy_unreviewed:airline_air_algerie#cargo,legacy_unreviewed:airline_air_algerie#cargo] | bool:000 | confirm:hold+cargo | pets:true/true | deny:- | label:Policy to confirm with the airline | fee:- | heat:00"
+   "airline_air_algerie | conn | connection_unverified | st:denied/confirmation_required/confirmation_required | cabin:denied hold:confirmation_required[breed_policy_unreviewed:airline_air_algerie#hold] cargo:confirmation_required[breed_policy_unreviewed:airline_air_algerie#cargo,legacy_unreviewed:airline_air_algerie#cargo] | bool:000 | confirm:hold+cargo | pets:true/true | deny:- | label:Policy to confirm with the airline | fee:- | heat:00",
+   "airline_british_airways | conn | connection_unverified | st:denied/denied/denied | cabin:denied hold:denied cargo:denied | bool:000 | confirm:- | pets:true/true | deny:breed_restricted+cabin_unavailable+hold_unavailable | label:Not compatible: breed not accepted, cabin not offered and hold not offered | fee:- | heat:00"
   ],
   "alternatives": [],
   "climate": {
@@ -3448,7 +3438,6 @@
   ],
   "risks": [],
   "safety_advisories": [
-   "brest_ba_iag_snub_nose_case_by_case|airline_british_airways|hold+cargo|https://www.iagcargo.com/en/products/pets/|Some dangerous dog breeds and snub nosed breeds of cats and dogs may not be accepted.",
    "brest_iata_snub_nose_hot_season|global|cabin+hold+cargo|https://www.iata.org/en/programs/cargo/live-animals/pets/|Transport of snub nose dogs, such as boxers, pugs, bulldogs and Pekinese, in hot season is not recommended."
   ],
   "score": 56,
@@ -3489,7 +3478,7 @@
    "airline_lufthansa | conn | connection_unverified | st:allowed/denied/denied | cabin:allowed hold:denied cargo:denied | bool:100 | confirm:- | pets:true/true | deny:- | label:Cabin OK | fee:$60–132 | heat:00",
    "airline_klm | conn | connection_unverified | st:allowed/denied/denied | cabin:allowed hold:denied cargo:denied | bool:100 | confirm:- | pets:true/true | deny:- | label:Cabin OK | fee:€70 to €500 per one-way flight | heat:00",
    "airline_gulf_air | conn | connection_documented | st:denied/denied/confirmation_required | cabin:denied hold:denied cargo:confirmation_required[breed_policy_unreviewed:airline_gulf_air#cargo,legacy_unreviewed:airline_gulf_air#cargo] | bool:000 | confirm:cargo | pets:true/true | deny:- | label:Policy to confirm with the airline | fee:- | heat:00",
-   "airline_british_airways | conn | connection_unverified | st:denied/denied/confirmation_required | cabin:denied hold:denied cargo:confirmation_required[breed_policy_unreviewed:airline_british_airways#cargo] | bool:000 | confirm:cargo | pets:true/true | deny:- | label:Policy to confirm with the airline | fee:- | heat:00"
+   "airline_british_airways | conn | connection_unverified | st:denied/denied/denied | cabin:denied hold:denied cargo:denied | bool:000 | confirm:- | pets:true/true | deny:breed_restricted+cabin_unavailable+hold_unavailable | label:Not compatible: breed not accepted, cabin not offered and hold not offered | fee:- | heat:00"
   ],
   "alternatives": [],
   "climate": {
@@ -3529,7 +3518,6 @@
   ],
   "risks": [],
   "safety_advisories": [
-   "brest_ba_iag_snub_nose_case_by_case|airline_british_airways|hold+cargo|https://www.iagcargo.com/en/products/pets/|Some dangerous dog breeds and snub nosed breeds of cats and dogs may not be accepted.",
    "brest_iata_snub_nose_hot_season|global|cabin+hold+cargo|https://www.iata.org/en/programs/cargo/live-animals/pets/|Transport of snub nose dogs, such as boxers, pugs, bulldogs and Pekinese, in hot season is not recommended."
   ],
   "score": 7,
@@ -4119,9 +4107,9 @@
    "airline_sas | conn | connection_unverified | st:allowed/confirmation_required/confirmation_required | cabin:allowed hold:confirmation_required[breed_policy_unreviewed:airline_sas#hold] cargo:confirmation_required[breed_policy_unreviewed:airline_sas#cargo,legacy_unreviewed:airline_sas#cargo] | bool:100 | confirm:hold+cargo | pets:true/true | deny:- | label:Cabin OK | fee:€55–99 | heat:00",
    "airline_finnair | conn | connection_unverified | st:allowed/confirmation_required/confirmation_required | cabin:allowed hold:confirmation_required[breed_policy_unreviewed:airline_finnair#hold] cargo:confirmation_required[breed_policy_unreviewed:airline_finnair#cargo,legacy_unreviewed:airline_finnair#cargo] | bool:100 | confirm:hold+cargo | pets:true/true | deny:- | label:Cabin OK | fee:€60–130 | heat:00",
    "airline_aeromexico | conn | connection_unverified | st:allowed/confirmation_required/confirmation_required | cabin:allowed hold:confirmation_required[breed_policy_unreviewed:airline_aeromexico#hold] cargo:confirmation_required[breed_policy_unreviewed:airline_aeromexico#cargo,legacy_unreviewed:airline_aeromexico#cargo] | bool:100 | confirm:hold+cargo | pets:true/true | deny:- | label:Cabin OK | fee:$182–189 | heat:00",
-   "airline_british_airways | direct | direct_documented | st:denied/denied/confirmation_required | cabin:denied hold:denied cargo:confirmation_required[breed_policy_unreviewed:airline_british_airways#cargo] | bool:000 | confirm:cargo | pets:true/true | deny:- | label:Policy to confirm with the airline | fee:- | heat:00",
    "airline_virgin_atlantic | direct | direct_documented | st:denied/denied/confirmation_required | cabin:denied hold:denied cargo:confirmation_required[breed_policy_unreviewed:airline_virgin_atlantic#cargo,legacy_unreviewed:airline_virgin_atlantic#cargo] | bool:000 | confirm:cargo | pets:true/true | deny:- | label:Policy to confirm with the airline | fee:- | heat:00",
    "airline_aer_lingus | conn | connection_unverified | st:denied/denied/confirmation_required | cabin:denied hold:denied cargo:confirmation_required[breed_policy_unreviewed:airline_aer_lingus#cargo,legacy_unreviewed:airline_aer_lingus#cargo] | bool:000 | confirm:cargo | pets:true/true | deny:- | label:Policy to confirm with the airline | fee:- | heat:00",
+   "airline_british_airways | direct | direct_documented | st:denied/denied/denied | cabin:denied hold:denied cargo:denied | bool:000 | confirm:- | pets:true/true | deny:breed_restricted+cabin_unavailable+hold_unavailable | label:Not compatible: breed not accepted, cabin not offered and hold not offered | fee:- | heat:00",
    "airline_icelandair | conn | connection_unverified | st:denied/denied/denied | cabin:denied hold:denied cargo:denied | bool:000 | confirm:- | pets:false/false | deny:cabin_unavailable+hold_unavailable+cargo_unavailable | label:No pets | fee:- | heat:00"
   ],
   "alternatives": [],
@@ -4227,7 +4215,6 @@
   ],
   "risks": [],
   "safety_advisories": [
-   "brest_ba_iag_snub_nose_case_by_case|airline_british_airways|hold+cargo|https://www.iagcargo.com/en/products/pets/|Some dangerous dog breeds and snub nosed breeds of cats and dogs may not be accepted.",
    "brest_iata_snub_nose_hot_season|global|cabin+hold+cargo|https://www.iata.org/en/programs/cargo/live-animals/pets/|Transport of snub nose dogs, such as boxers, pugs, bulldogs and Pekinese, in hot season is not recommended."
   ],
   "score": 69,
@@ -4265,9 +4252,9 @@
    "airline_air_france | conn | connection_documented | st:allowed/denied/denied | cabin:allowed hold:denied cargo:denied | bool:100 | confirm:- | pets:true/true | deny:- | label:Cabin OK | fee:€70 (within France) to €200 (US/Canada–Europe) | heat:00",
    "airline_klm | conn | connection_documented | st:allowed/denied/denied | cabin:allowed hold:denied cargo:denied | bool:100 | confirm:- | pets:true/true | deny:- | label:Cabin OK | fee:€70 to €500 per one-way flight | heat:00",
    "airline_lufthansa | conn | connection_documented | st:allowed/denied/denied | cabin:allowed hold:denied cargo:denied | bool:100 | confirm:- | pets:true/true | deny:- | label:Cabin OK | fee:$60–132 | heat:00",
-   "airline_british_airways | direct | direct_documented | st:denied/denied/confirmation_required | cabin:denied hold:denied cargo:confirmation_required[breed_policy_unreviewed:airline_british_airways#cargo] | bool:000 | confirm:cargo | pets:true/true | deny:- | label:Policy to confirm with the airline | fee:- | heat:00",
    "airline_virgin_atlantic | direct | direct_documented | st:denied/denied/confirmation_required | cabin:denied hold:denied cargo:confirmation_required[breed_policy_unreviewed:airline_virgin_atlantic#cargo,legacy_unreviewed:airline_virgin_atlantic#cargo] | bool:000 | confirm:cargo | pets:true/true | deny:- | label:Policy to confirm with the airline | fee:- | heat:00",
    "airline_aer_lingus | conn | connection_unverified | st:denied/denied/confirmation_required | cabin:denied hold:denied cargo:confirmation_required[breed_policy_unreviewed:airline_aer_lingus#cargo,legacy_unreviewed:airline_aer_lingus#cargo] | bool:000 | confirm:cargo | pets:true/true | deny:- | label:Policy to confirm with the airline | fee:- | heat:00",
+   "airline_british_airways | direct | direct_documented | st:denied/denied/denied | cabin:denied hold:denied cargo:denied | bool:000 | confirm:- | pets:true/true | deny:breed_restricted+cabin_unavailable+hold_unavailable | label:Not compatible: breed not accepted, cabin not offered and hold not offered | fee:- | heat:00",
    "airline_icelandair | conn | connection_unverified | st:denied/denied/denied | cabin:denied hold:denied cargo:denied | bool:000 | confirm:- | pets:false/false | deny:cabin_unavailable+hold_unavailable+cargo_unavailable | label:No pets | fee:- | heat:00"
   ],
   "alternatives": [],
@@ -4308,7 +4295,6 @@
   ],
   "risks": [],
   "safety_advisories": [
-   "brest_ba_iag_snub_nose_case_by_case|airline_british_airways|hold+cargo|https://www.iagcargo.com/en/products/pets/|Some dangerous dog breeds and snub nosed breeds of cats and dogs may not be accepted.",
    "brest_iata_snub_nose_hot_season|global|cabin+hold+cargo|https://www.iata.org/en/programs/cargo/live-animals/pets/|Transport of snub nose dogs, such as boxers, pugs, bulldogs and Pekinese, in hot season is not recommended."
   ],
   "score": 10,
@@ -4346,9 +4332,9 @@
    "airline_sas | conn | connection_unverified | st:allowed/confirmation_required/confirmation_required | cabin:allowed hold:confirmation_required[breed_policy_unreviewed:airline_sas#hold] cargo:confirmation_required[breed_policy_unreviewed:airline_sas#cargo,legacy_unreviewed:airline_sas#cargo] | bool:100 | confirm:hold+cargo | pets:true/true | deny:- | label:Cabin OK | fee:€55–99 | heat:00",
    "airline_finnair | conn | connection_unverified | st:allowed/confirmation_required/confirmation_required | cabin:allowed hold:confirmation_required[breed_policy_unreviewed:airline_finnair#hold] cargo:confirmation_required[breed_policy_unreviewed:airline_finnair#cargo,legacy_unreviewed:airline_finnair#cargo] | bool:100 | confirm:hold+cargo | pets:true/true | deny:- | label:Cabin OK | fee:€60–130 | heat:00",
    "airline_aeromexico | conn | connection_unverified | st:allowed/confirmation_required/confirmation_required | cabin:allowed hold:confirmation_required[breed_policy_unreviewed:airline_aeromexico#hold] cargo:confirmation_required[breed_policy_unreviewed:airline_aeromexico#cargo,legacy_unreviewed:airline_aeromexico#cargo] | bool:100 | confirm:hold+cargo | pets:true/true | deny:- | label:Cabin OK | fee:$182–189 | heat:00",
-   "airline_british_airways | direct | direct_documented | st:denied/denied/confirmation_required | cabin:denied hold:denied cargo:confirmation_required[breed_policy_unreviewed:airline_british_airways#cargo] | bool:000 | confirm:cargo | pets:true/true | deny:- | label:Policy to confirm with the airline | fee:- | heat:00",
    "airline_virgin_atlantic | direct | direct_documented | st:denied/denied/confirmation_required | cabin:denied hold:denied cargo:confirmation_required[breed_policy_unreviewed:airline_virgin_atlantic#cargo,legacy_unreviewed:airline_virgin_atlantic#cargo] | bool:000 | confirm:cargo | pets:true/true | deny:- | label:Policy to confirm with the airline | fee:- | heat:00",
    "airline_aer_lingus | conn | connection_unverified | st:denied/denied/confirmation_required | cabin:denied hold:denied cargo:confirmation_required[breed_policy_unreviewed:airline_aer_lingus#cargo,legacy_unreviewed:airline_aer_lingus#cargo] | bool:000 | confirm:cargo | pets:true/true | deny:- | label:Policy to confirm with the airline | fee:- | heat:00",
+   "airline_british_airways | direct | direct_documented | st:denied/denied/denied | cabin:denied hold:denied cargo:denied | bool:000 | confirm:- | pets:true/true | deny:breed_restricted+cabin_unavailable+hold_unavailable | label:Not compatible: breed not accepted, cabin not offered and hold not offered | fee:- | heat:00",
    "airline_icelandair | conn | connection_unverified | st:denied/denied/denied | cabin:denied hold:denied cargo:denied | bool:000 | confirm:- | pets:false/false | deny:cabin_unavailable+hold_unavailable+cargo_unavailable | label:No pets | fee:- | heat:00"
   ],
   "alternatives": [],
@@ -4454,7 +4440,6 @@
   ],
   "risks": [],
   "safety_advisories": [
-   "brest_ba_iag_snub_nose_case_by_case|airline_british_airways|hold+cargo|https://www.iagcargo.com/en/products/pets/|Some dangerous dog breeds and snub nosed breeds of cats and dogs may not be accepted.",
    "brest_iata_snub_nose_hot_season|global|cabin+hold+cargo|https://www.iata.org/en/programs/cargo/live-animals/pets/|Transport of snub nose dogs, such as boxers, pugs, bulldogs and Pekinese, in hot season is not recommended."
   ],
   "score": 69,
@@ -4492,9 +4477,9 @@
    "airline_air_france | conn | connection_documented | st:allowed/denied/denied | cabin:allowed hold:denied cargo:denied | bool:100 | confirm:- | pets:true/true | deny:- | label:Cabin OK | fee:€70 (within France) to €200 (US/Canada–Europe) | heat:00",
    "airline_klm | conn | connection_documented | st:allowed/denied/denied | cabin:allowed hold:denied cargo:denied | bool:100 | confirm:- | pets:true/true | deny:- | label:Cabin OK | fee:€70 to €500 per one-way flight | heat:00",
    "airline_lufthansa | conn | connection_documented | st:allowed/denied/denied | cabin:allowed hold:denied cargo:denied | bool:100 | confirm:- | pets:true/true | deny:- | label:Cabin OK | fee:$60–132 | heat:00",
-   "airline_british_airways | direct | direct_documented | st:denied/denied/confirmation_required | cabin:denied hold:denied cargo:confirmation_required[breed_policy_unreviewed:airline_british_airways#cargo] | bool:000 | confirm:cargo | pets:true/true | deny:- | label:Policy to confirm with the airline | fee:- | heat:00",
    "airline_virgin_atlantic | direct | direct_documented | st:denied/denied/confirmation_required | cabin:denied hold:denied cargo:confirmation_required[breed_policy_unreviewed:airline_virgin_atlantic#cargo,legacy_unreviewed:airline_virgin_atlantic#cargo] | bool:000 | confirm:cargo | pets:true/true | deny:- | label:Policy to confirm with the airline | fee:- | heat:00",
    "airline_aer_lingus | conn | connection_unverified | st:denied/denied/confirmation_required | cabin:denied hold:denied cargo:confirmation_required[breed_policy_unreviewed:airline_aer_lingus#cargo,legacy_unreviewed:airline_aer_lingus#cargo] | bool:000 | confirm:cargo | pets:true/true | deny:- | label:Policy to confirm with the airline | fee:- | heat:00",
+   "airline_british_airways | direct | direct_documented | st:denied/denied/denied | cabin:denied hold:denied cargo:denied | bool:000 | confirm:- | pets:true/true | deny:breed_restricted+cabin_unavailable+hold_unavailable | label:Not compatible: breed not accepted, cabin not offered and hold not offered | fee:- | heat:00",
    "airline_icelandair | conn | connection_unverified | st:denied/denied/denied | cabin:denied hold:denied cargo:denied | bool:000 | confirm:- | pets:false/false | deny:cabin_unavailable+hold_unavailable+cargo_unavailable | label:No pets | fee:- | heat:00"
   ],
   "alternatives": [],
@@ -4535,7 +4520,6 @@
   ],
   "risks": [],
   "safety_advisories": [
-   "brest_ba_iag_snub_nose_case_by_case|airline_british_airways|hold+cargo|https://www.iagcargo.com/en/products/pets/|Some dangerous dog breeds and snub nosed breeds of cats and dogs may not be accepted.",
    "brest_iata_snub_nose_hot_season|global|cabin+hold+cargo|https://www.iata.org/en/programs/cargo/live-animals/pets/|Transport of snub nose dogs, such as boxers, pugs, bulldogs and Pekinese, in hot season is not recommended."
   ],
   "score": 10,
@@ -5253,7 +5237,6 @@
    "airline_vietnam_airlines | conn | connection_documented | st:denied/confirmation_required/confirmation_required | cabin:denied hold:confirmation_required[breed_policy_unreviewed:airline_vietnam_airlines#hold] cargo:confirmation_required[breed_policy_unreviewed:airline_vietnam_airlines#cargo,legacy_unreviewed:airline_vietnam_airlines#cargo] | bool:000 | confirm:hold+cargo | pets:true/true | deny:- | label:Policy to confirm with the airline | fee:- | heat:00",
    "airline_qatar_airways | conn | connection_documented | st:denied/confirmation_required/confirmation_required | cabin:denied hold:confirmation_required[breed_policy_unreviewed:airline_qatar_airways#hold] cargo:confirmation_required[breed_policy_unreviewed:airline_qatar_airways#cargo,legacy_unreviewed:airline_qatar_airways#cargo] | bool:000 | confirm:hold+cargo | pets:true/true | deny:- | label:Policy to confirm with the airline | fee:- | heat:00",
    "airline_saudia | conn | connection_documented | st:denied/confirmation_required/confirmation_required | cabin:denied hold:confirmation_required[breed_policy_unreviewed:airline_saudia#hold] cargo:confirmation_required[breed_policy_unreviewed:airline_saudia#cargo,legacy_unreviewed:airline_saudia#cargo] | bool:000 | confirm:hold+cargo | pets:true/true | deny:- | label:Policy to confirm with the airline | fee:- | heat:00",
-   "airline_british_airways | conn | connection_documented | st:denied/denied/confirmation_required | cabin:denied hold:denied cargo:confirmation_required[breed_policy_unreviewed:airline_british_airways#cargo] | bool:000 | confirm:cargo | pets:true/true | deny:- | label:Policy to confirm with the airline | fee:- | heat:00",
    "airline_china_southern | conn | connection_documented | st:denied/confirmation_required/confirmation_required | cabin:denied hold:confirmation_required[breed_policy_unreviewed:airline_china_southern#hold] cargo:confirmation_required[breed_policy_unreviewed:airline_china_southern#cargo,legacy_unreviewed:airline_china_southern#cargo] | bool:000 | confirm:hold+cargo | pets:true/true | deny:- | label:Policy to confirm with the airline | fee:- | heat:00",
    "airline_cathay_pacific | conn | connection_documented | st:denied/denied/confirmation_required | cabin:denied hold:denied cargo:confirmation_required[breed_policy_unreviewed:airline_cathay_pacific#cargo,legacy_unreviewed:airline_cathay_pacific#cargo] | bool:000 | confirm:cargo | pets:true/true | deny:- | label:Policy to confirm with the airline | fee:- | heat:00",
    "airline_air_china | conn | connection_documented | st:denied/confirmation_required/confirmation_required | cabin:denied hold:confirmation_required[breed_policy_unreviewed:airline_air_china#hold] cargo:confirmation_required[breed_policy_unreviewed:airline_air_china#cargo,legacy_unreviewed:airline_air_china#cargo] | bool:000 | confirm:hold+cargo | pets:true/true | deny:- | label:Policy to confirm with the airline | fee:- | heat:00",
@@ -5262,7 +5245,8 @@
    "airline_korean_air | conn | connection_documented | st:denied/confirmation_required/confirmation_required | cabin:denied hold:confirmation_required[breed_policy_unreviewed:airline_korean_air#hold] cargo:confirmation_required[breed_policy_unreviewed:airline_korean_air#cargo,legacy_unreviewed:airline_korean_air#cargo] | bool:000 | confirm:hold+cargo | pets:true/true | deny:- | label:Policy to confirm with the airline | fee:- | heat:00",
    "airline_ana | conn | connection_documented | st:denied/confirmation_required/confirmation_required | cabin:denied hold:confirmation_required[breed_policy_unreviewed:airline_ana#hold] cargo:confirmation_required[breed_policy_unreviewed:airline_ana#cargo,legacy_unreviewed:airline_ana#cargo] | bool:000 | confirm:hold+cargo | pets:true/true | deny:- | label:Policy to confirm with the airline | fee:- | heat:00",
    "airline_jal | conn | connection_documented | st:denied/confirmation_required/confirmation_required | cabin:denied hold:confirmation_required[breed_policy_unreviewed:airline_jal#hold] cargo:confirmation_required[breed_policy_unreviewed:airline_jal#cargo,legacy_unreviewed:airline_jal#cargo] | bool:000 | confirm:hold+cargo | pets:true/true | deny:- | label:Policy to confirm with the airline | fee:- | heat:00",
-   "airline_gulf_air | conn | connection_unverified | st:denied/denied/confirmation_required | cabin:denied hold:denied cargo:confirmation_required[breed_policy_unreviewed:airline_gulf_air#cargo,legacy_unreviewed:airline_gulf_air#cargo] | bool:000 | confirm:cargo | pets:true/true | deny:- | label:Policy to confirm with the airline | fee:- | heat:00"
+   "airline_gulf_air | conn | connection_unverified | st:denied/denied/confirmation_required | cabin:denied hold:denied cargo:confirmation_required[breed_policy_unreviewed:airline_gulf_air#cargo,legacy_unreviewed:airline_gulf_air#cargo] | bool:000 | confirm:cargo | pets:true/true | deny:- | label:Policy to confirm with the airline | fee:- | heat:00",
+   "airline_british_airways | conn | connection_documented | st:denied/denied/denied | cabin:denied hold:denied cargo:denied | bool:000 | confirm:- | pets:true/true | deny:breed_restricted+cabin_unavailable+hold_unavailable | label:Not compatible: breed not accepted, cabin not offered and hold not offered | fee:- | heat:00"
   ],
   "alternatives": [],
   "climate": {
@@ -5343,7 +5327,6 @@
   ],
   "risks": [],
   "safety_advisories": [
-   "brest_ba_iag_snub_nose_case_by_case|airline_british_airways|hold+cargo|https://www.iagcargo.com/en/products/pets/|Some dangerous dog breeds and snub nosed breeds of cats and dogs may not be accepted.",
    "brest_iata_snub_nose_hot_season|global|cabin+hold+cargo|https://www.iata.org/en/programs/cargo/live-animals/pets/|Transport of snub nose dogs, such as boxers, pugs, bulldogs and Pekinese, in hot season is not recommended."
   ],
   "score": 46,
@@ -5385,9 +5368,9 @@
    "airline_etihad | conn | connection_documented | st:allowed/denied/confirmation_required | cabin:allowed hold:denied cargo:confirmation_required[breed_policy_unreviewed:airline_etihad#cargo,legacy_unreviewed:airline_etihad#cargo] | bool:100 | confirm:cargo | pets:true/true | deny:- | label:Cabin OK | fee:$430–1650 | heat:00",
    "airline_klm | conn | connection_documented | st:allowed/denied/denied | cabin:allowed hold:denied cargo:denied | bool:100 | confirm:- | pets:true/true | deny:- | label:Cabin OK | fee:€70 to €500 per one-way flight | heat:00",
    "airline_air_france | conn | connection_documented | st:allowed/denied/denied | cabin:allowed hold:denied cargo:denied | bool:100 | confirm:- | pets:true/true | deny:- | label:Cabin OK | fee:€70 (within France) to €200 (US/Canada–Europe) | heat:00",
-   "airline_british_airways | conn | connection_documented | st:denied/denied/confirmation_required | cabin:denied hold:denied cargo:confirmation_required[breed_policy_unreviewed:airline_british_airways#cargo] | bool:000 | confirm:cargo | pets:true/true | deny:- | label:Policy to confirm with the airline | fee:- | heat:00",
    "airline_cathay_pacific | conn | connection_documented | st:denied/denied/confirmation_required | cabin:denied hold:denied cargo:confirmation_required[breed_policy_unreviewed:airline_cathay_pacific#cargo,legacy_unreviewed:airline_cathay_pacific#cargo] | bool:000 | confirm:cargo | pets:true/true | deny:- | label:Policy to confirm with the airline | fee:- | heat:00",
-   "airline_gulf_air | conn | connection_unverified | st:denied/denied/confirmation_required | cabin:denied hold:denied cargo:confirmation_required[breed_policy_unreviewed:airline_gulf_air#cargo,legacy_unreviewed:airline_gulf_air#cargo] | bool:000 | confirm:cargo | pets:true/true | deny:- | label:Policy to confirm with the airline | fee:- | heat:00"
+   "airline_gulf_air | conn | connection_unverified | st:denied/denied/confirmation_required | cabin:denied hold:denied cargo:confirmation_required[breed_policy_unreviewed:airline_gulf_air#cargo,legacy_unreviewed:airline_gulf_air#cargo] | bool:000 | confirm:cargo | pets:true/true | deny:- | label:Policy to confirm with the airline | fee:- | heat:00",
+   "airline_british_airways | conn | connection_documented | st:denied/denied/denied | cabin:denied hold:denied cargo:denied | bool:000 | confirm:- | pets:true/true | deny:breed_restricted+cabin_unavailable+hold_unavailable | label:Not compatible: breed not accepted, cabin not offered and hold not offered | fee:- | heat:00"
   ],
   "alternatives": [],
   "climate": {
@@ -5427,7 +5410,6 @@
   ],
   "risks": [],
   "safety_advisories": [
-   "brest_ba_iag_snub_nose_case_by_case|airline_british_airways|hold+cargo|https://www.iagcargo.com/en/products/pets/|Some dangerous dog breeds and snub nosed breeds of cats and dogs may not be accepted.",
    "brest_iata_snub_nose_hot_season|global|cabin+hold+cargo|https://www.iata.org/en/programs/cargo/live-animals/pets/|Transport of snub nose dogs, such as boxers, pugs, bulldogs and Pekinese, in hot season is not recommended."
   ],
   "score": 4,
@@ -5462,7 +5444,6 @@
    "airline_vietnam_airlines | conn | connection_documented | st:denied/confirmation_required/confirmation_required | cabin:denied hold:confirmation_required[breed_policy_unreviewed:airline_vietnam_airlines#hold] cargo:confirmation_required[breed_policy_unreviewed:airline_vietnam_airlines#cargo,legacy_unreviewed:airline_vietnam_airlines#cargo] | bool:000 | confirm:hold+cargo | pets:true/true | deny:- | label:Policy to confirm with the airline | fee:- | heat:00",
    "airline_qatar_airways | conn | connection_documented | st:denied/confirmation_required/confirmation_required | cabin:denied hold:confirmation_required[breed_policy_unreviewed:airline_qatar_airways#hold] cargo:confirmation_required[breed_policy_unreviewed:airline_qatar_airways#cargo,legacy_unreviewed:airline_qatar_airways#cargo] | bool:000 | confirm:hold+cargo | pets:true/true | deny:- | label:Policy to confirm with the airline | fee:- | heat:00",
    "airline_saudia | conn | connection_documented | st:denied/confirmation_required/confirmation_required | cabin:denied hold:confirmation_required[breed_policy_unreviewed:airline_saudia#hold] cargo:confirmation_required[breed_policy_unreviewed:airline_saudia#cargo,legacy_unreviewed:airline_saudia#cargo] | bool:000 | confirm:hold+cargo | pets:true/true | deny:- | label:Policy to confirm with the airline | fee:- | heat:00",
-   "airline_british_airways | conn | connection_documented | st:denied/denied/confirmation_required | cabin:denied hold:denied cargo:confirmation_required[breed_policy_unreviewed:airline_british_airways#cargo] | bool:000 | confirm:cargo | pets:true/true | deny:- | label:Policy to confirm with the airline | fee:- | heat:00",
    "airline_china_southern | conn | connection_documented | st:denied/confirmation_required/confirmation_required | cabin:denied hold:confirmation_required[breed_policy_unreviewed:airline_china_southern#hold] cargo:confirmation_required[breed_policy_unreviewed:airline_china_southern#cargo,legacy_unreviewed:airline_china_southern#cargo] | bool:000 | confirm:hold+cargo | pets:true/true | deny:- | label:Policy to confirm with the airline | fee:- | heat:00",
    "airline_cathay_pacific | conn | connection_documented | st:denied/denied/confirmation_required | cabin:denied hold:denied cargo:confirmation_required[breed_policy_unreviewed:airline_cathay_pacific#cargo,legacy_unreviewed:airline_cathay_pacific#cargo] | bool:000 | confirm:cargo | pets:true/true | deny:- | label:Policy to confirm with the airline | fee:- | heat:00",
    "airline_air_china | conn | connection_documented | st:denied/confirmation_required/confirmation_required | cabin:denied hold:confirmation_required[breed_policy_unreviewed:airline_air_china#hold] cargo:confirmation_required[breed_policy_unreviewed:airline_air_china#cargo,legacy_unreviewed:airline_air_china#cargo] | bool:000 | confirm:hold+cargo | pets:true/true | deny:- | label:Policy to confirm with the airline | fee:- | heat:00",
@@ -5471,7 +5452,8 @@
    "airline_korean_air | conn | connection_documented | st:denied/confirmation_required/confirmation_required | cabin:denied hold:confirmation_required[breed_policy_unreviewed:airline_korean_air#hold] cargo:confirmation_required[breed_policy_unreviewed:airline_korean_air#cargo,legacy_unreviewed:airline_korean_air#cargo] | bool:000 | confirm:hold+cargo | pets:true/true | deny:- | label:Policy to confirm with the airline | fee:- | heat:00",
    "airline_ana | conn | connection_documented | st:denied/confirmation_required/confirmation_required | cabin:denied hold:confirmation_required[breed_policy_unreviewed:airline_ana#hold] cargo:confirmation_required[breed_policy_unreviewed:airline_ana#cargo,legacy_unreviewed:airline_ana#cargo] | bool:000 | confirm:hold+cargo | pets:true/true | deny:- | label:Policy to confirm with the airline | fee:- | heat:00",
    "airline_jal | conn | connection_documented | st:denied/confirmation_required/confirmation_required | cabin:denied hold:confirmation_required[breed_policy_unreviewed:airline_jal#hold] cargo:confirmation_required[breed_policy_unreviewed:airline_jal#cargo,legacy_unreviewed:airline_jal#cargo] | bool:000 | confirm:hold+cargo | pets:true/true | deny:- | label:Policy to confirm with the airline | fee:- | heat:00",
-   "airline_gulf_air | conn | connection_unverified | st:denied/denied/confirmation_required | cabin:denied hold:denied cargo:confirmation_required[breed_policy_unreviewed:airline_gulf_air#cargo,legacy_unreviewed:airline_gulf_air#cargo] | bool:000 | confirm:cargo | pets:true/true | deny:- | label:Policy to confirm with the airline | fee:- | heat:00"
+   "airline_gulf_air | conn | connection_unverified | st:denied/denied/confirmation_required | cabin:denied hold:denied cargo:confirmation_required[breed_policy_unreviewed:airline_gulf_air#cargo,legacy_unreviewed:airline_gulf_air#cargo] | bool:000 | confirm:cargo | pets:true/true | deny:- | label:Policy to confirm with the airline | fee:- | heat:00",
+   "airline_british_airways | conn | connection_documented | st:denied/denied/denied | cabin:denied hold:denied cargo:denied | bool:000 | confirm:- | pets:true/true | deny:breed_restricted+cabin_unavailable+hold_unavailable | label:Not compatible: breed not accepted, cabin not offered and hold not offered | fee:- | heat:00"
   ],
   "alternatives": [],
   "climate": {
@@ -5552,7 +5534,6 @@
   ],
   "risks": [],
   "safety_advisories": [
-   "brest_ba_iag_snub_nose_case_by_case|airline_british_airways|hold+cargo|https://www.iagcargo.com/en/products/pets/|Some dangerous dog breeds and snub nosed breeds of cats and dogs may not be accepted.",
    "brest_iata_snub_nose_hot_season|global|cabin+hold+cargo|https://www.iata.org/en/programs/cargo/live-animals/pets/|Transport of snub nose dogs, such as boxers, pugs, bulldogs and Pekinese, in hot season is not recommended."
   ],
   "score": 46,
@@ -5594,9 +5575,9 @@
    "airline_etihad | conn | connection_documented | st:allowed/denied/confirmation_required | cabin:allowed hold:denied cargo:confirmation_required[breed_policy_unreviewed:airline_etihad#cargo,legacy_unreviewed:airline_etihad#cargo] | bool:100 | confirm:cargo | pets:true/true | deny:- | label:Cabin OK | fee:$430–1650 | heat:00",
    "airline_klm | conn | connection_documented | st:allowed/denied/denied | cabin:allowed hold:denied cargo:denied | bool:100 | confirm:- | pets:true/true | deny:- | label:Cabin OK | fee:€70 to €500 per one-way flight | heat:00",
    "airline_air_france | conn | connection_documented | st:allowed/denied/denied | cabin:allowed hold:denied cargo:denied | bool:100 | confirm:- | pets:true/true | deny:- | label:Cabin OK | fee:€70 (within France) to €200 (US/Canada–Europe) | heat:00",
-   "airline_british_airways | conn | connection_documented | st:denied/denied/confirmation_required | cabin:denied hold:denied cargo:confirmation_required[breed_policy_unreviewed:airline_british_airways#cargo] | bool:000 | confirm:cargo | pets:true/true | deny:- | label:Policy to confirm with the airline | fee:- | heat:00",
    "airline_cathay_pacific | conn | connection_documented | st:denied/denied/confirmation_required | cabin:denied hold:denied cargo:confirmation_required[breed_policy_unreviewed:airline_cathay_pacific#cargo,legacy_unreviewed:airline_cathay_pacific#cargo] | bool:000 | confirm:cargo | pets:true/true | deny:- | label:Policy to confirm with the airline | fee:- | heat:00",
-   "airline_gulf_air | conn | connection_unverified | st:denied/denied/confirmation_required | cabin:denied hold:denied cargo:confirmation_required[breed_policy_unreviewed:airline_gulf_air#cargo,legacy_unreviewed:airline_gulf_air#cargo] | bool:000 | confirm:cargo | pets:true/true | deny:- | label:Policy to confirm with the airline | fee:- | heat:00"
+   "airline_gulf_air | conn | connection_unverified | st:denied/denied/confirmation_required | cabin:denied hold:denied cargo:confirmation_required[breed_policy_unreviewed:airline_gulf_air#cargo,legacy_unreviewed:airline_gulf_air#cargo] | bool:000 | confirm:cargo | pets:true/true | deny:- | label:Policy to confirm with the airline | fee:- | heat:00",
+   "airline_british_airways | conn | connection_documented | st:denied/denied/denied | cabin:denied hold:denied cargo:denied | bool:000 | confirm:- | pets:true/true | deny:breed_restricted+cabin_unavailable+hold_unavailable | label:Not compatible: breed not accepted, cabin not offered and hold not offered | fee:- | heat:00"
   ],
   "alternatives": [],
   "climate": {
@@ -5636,7 +5617,6 @@
   ],
   "risks": [],
   "safety_advisories": [
-   "brest_ba_iag_snub_nose_case_by_case|airline_british_airways|hold+cargo|https://www.iagcargo.com/en/products/pets/|Some dangerous dog breeds and snub nosed breeds of cats and dogs may not be accepted.",
    "brest_iata_snub_nose_hot_season|global|cabin+hold+cargo|https://www.iata.org/en/programs/cargo/live-animals/pets/|Transport of snub nose dogs, such as boxers, pugs, bulldogs and Pekinese, in hot season is not recommended."
   ],
   "score": 3,
@@ -6134,8 +6114,8 @@
    "airline_lufthansa | conn | connection_documented | st:allowed/denied/denied | cabin:allowed hold:denied cargo:denied | bool:100 | confirm:- | pets:true/true | deny:- | label:Cabin OK | fee:$60–132 | heat:00",
    "airline_avianca | conn | connection_documented | st:allowed/confirmation_required/confirmation_required | cabin:allowed hold:confirmation_required[breed_policy_unreviewed:airline_avianca#hold] cargo:confirmation_required[breed_policy_unreviewed:airline_avianca#cargo,legacy_unreviewed:airline_avianca#cargo] | bool:100 | confirm:hold+cargo | pets:true/true | deny:- | label:Cabin OK | fee:$45–230 | heat:00",
    "airline_westjet | conn | connection_unverified | st:allowed/confirmation_required/confirmation_required | cabin:allowed hold:confirmation_required[breed_policy_unreviewed:airline_westjet#hold] cargo:confirmation_required[breed_policy_unreviewed:airline_westjet#cargo] | bool:100 | confirm:hold+cargo | pets:true/true | deny:- | label:Cabin OK | fee:$40–90 | heat:00",
-   "airline_british_airways | conn | connection_documented | st:denied/denied/confirmation_required | cabin:denied hold:denied cargo:confirmation_required[breed_policy_unreviewed:airline_british_airways#cargo] | bool:000 | confirm:cargo | pets:true/true | deny:- | label:Policy to confirm with the airline | fee:- | heat:00",
-   "airline_latam | conn | connection_unverified | st:denied/confirmation_required/confirmation_required | cabin:denied hold:confirmation_required[breed_policy_unreviewed:airline_latam#hold] cargo:confirmation_required[breed_policy_unreviewed:airline_latam#cargo,legacy_unreviewed:airline_latam#cargo] | bool:000 | confirm:hold+cargo | pets:true/true | deny:- | label:Policy to confirm with the airline | fee:- | heat:00"
+   "airline_latam | conn | connection_unverified | st:denied/confirmation_required/confirmation_required | cabin:denied hold:confirmation_required[breed_policy_unreviewed:airline_latam#hold] cargo:confirmation_required[breed_policy_unreviewed:airline_latam#cargo,legacy_unreviewed:airline_latam#cargo] | bool:000 | confirm:hold+cargo | pets:true/true | deny:- | label:Policy to confirm with the airline | fee:- | heat:00",
+   "airline_british_airways | conn | connection_documented | st:denied/denied/denied | cabin:denied hold:denied cargo:denied | bool:000 | confirm:- | pets:true/true | deny:breed_restricted+cabin_unavailable+hold_unavailable | label:Not compatible: breed not accepted, cabin not offered and hold not offered | fee:- | heat:00"
   ],
   "alternatives": [],
   "climate": {
@@ -6220,7 +6200,6 @@
   ],
   "risks": [],
   "safety_advisories": [
-   "brest_ba_iag_snub_nose_case_by_case|airline_british_airways|hold+cargo|https://www.iagcargo.com/en/products/pets/|Some dangerous dog breeds and snub nosed breeds of cats and dogs may not be accepted.",
    "brest_iata_snub_nose_hot_season|global|cabin+hold+cargo|https://www.iata.org/en/programs/cargo/live-animals/pets/|Transport of snub nose dogs, such as boxers, pugs, bulldogs and Pekinese, in hot season is not recommended."
   ],
   "score": 70,
@@ -6255,7 +6234,7 @@
    "airline_air_france | conn | connection_documented | st:allowed/denied/denied | cabin:allowed hold:denied cargo:denied | bool:100 | confirm:- | pets:true/true | deny:- | label:Cabin OK | fee:€70 (within France) to €200 (US/Canada–Europe) | heat:00",
    "airline_klm | conn | connection_documented | st:allowed/denied/denied | cabin:allowed hold:denied cargo:denied | bool:100 | confirm:- | pets:true/true | deny:- | label:Cabin OK | fee:€70 to €500 per one-way flight | heat:00",
    "airline_lufthansa | conn | connection_documented | st:allowed/denied/denied | cabin:allowed hold:denied cargo:denied | bool:100 | confirm:- | pets:true/true | deny:- | label:Cabin OK | fee:$60–132 | heat:00",
-   "airline_british_airways | conn | connection_documented | st:denied/denied/confirmation_required | cabin:denied hold:denied cargo:confirmation_required[breed_policy_unreviewed:airline_british_airways#cargo] | bool:000 | confirm:cargo | pets:true/true | deny:- | label:Policy to confirm with the airline | fee:- | heat:00"
+   "airline_british_airways | conn | connection_documented | st:denied/denied/denied | cabin:denied hold:denied cargo:denied | bool:000 | confirm:- | pets:true/true | deny:breed_restricted+cabin_unavailable+hold_unavailable | label:Not compatible: breed not accepted, cabin not offered and hold not offered | fee:- | heat:00"
   ],
   "alternatives": [],
   "climate": {
@@ -6295,7 +6274,6 @@
   ],
   "risks": [],
   "safety_advisories": [
-   "brest_ba_iag_snub_nose_case_by_case|airline_british_airways|hold+cargo|https://www.iagcargo.com/en/products/pets/|Some dangerous dog breeds and snub nosed breeds of cats and dogs may not be accepted.",
    "brest_iata_snub_nose_hot_season|global|cabin+hold+cargo|https://www.iata.org/en/programs/cargo/live-animals/pets/|Transport of snub nose dogs, such as boxers, pugs, bulldogs and Pekinese, in hot season is not recommended."
   ],
   "score": 7,
@@ -6329,8 +6307,8 @@
    "airline_lufthansa | conn | connection_documented | st:allowed/denied/denied | cabin:allowed hold:denied cargo:denied | bool:100 | confirm:- | pets:true/true | deny:- | label:Cabin OK | fee:$60–132 | heat:00",
    "airline_avianca | conn | connection_documented | st:allowed/confirmation_required/confirmation_required | cabin:allowed hold:confirmation_required[breed_policy_unreviewed:airline_avianca#hold] cargo:confirmation_required[breed_policy_unreviewed:airline_avianca#cargo,legacy_unreviewed:airline_avianca#cargo] | bool:100 | confirm:hold+cargo | pets:true/true | deny:- | label:Cabin OK | fee:$45–230 | heat:00",
    "airline_westjet | conn | connection_unverified | st:allowed/confirmation_required/confirmation_required | cabin:allowed hold:confirmation_required[breed_policy_unreviewed:airline_westjet#hold] cargo:confirmation_required[breed_policy_unreviewed:airline_westjet#cargo] | bool:100 | confirm:hold+cargo | pets:true/true | deny:- | label:Cabin OK | fee:$40–90 | heat:00",
-   "airline_british_airways | conn | connection_documented | st:denied/denied/confirmation_required | cabin:denied hold:denied cargo:confirmation_required[breed_policy_unreviewed:airline_british_airways#cargo] | bool:000 | confirm:cargo | pets:true/true | deny:- | label:Policy to confirm with the airline | fee:- | heat:00",
-   "airline_latam | conn | connection_unverified | st:denied/confirmation_required/confirmation_required | cabin:denied hold:confirmation_required[breed_policy_unreviewed:airline_latam#hold] cargo:confirmation_required[breed_policy_unreviewed:airline_latam#cargo,legacy_unreviewed:airline_latam#cargo] | bool:000 | confirm:hold+cargo | pets:true/true | deny:- | label:Policy to confirm with the airline | fee:- | heat:00"
+   "airline_latam | conn | connection_unverified | st:denied/confirmation_required/confirmation_required | cabin:denied hold:confirmation_required[breed_policy_unreviewed:airline_latam#hold] cargo:confirmation_required[breed_policy_unreviewed:airline_latam#cargo,legacy_unreviewed:airline_latam#cargo] | bool:000 | confirm:hold+cargo | pets:true/true | deny:- | label:Policy to confirm with the airline | fee:- | heat:00",
+   "airline_british_airways | conn | connection_documented | st:denied/denied/denied | cabin:denied hold:denied cargo:denied | bool:000 | confirm:- | pets:true/true | deny:breed_restricted+cabin_unavailable+hold_unavailable | label:Not compatible: breed not accepted, cabin not offered and hold not offered | fee:- | heat:00"
   ],
   "alternatives": [],
   "climate": {
@@ -6415,7 +6393,6 @@
   ],
   "risks": [],
   "safety_advisories": [
-   "brest_ba_iag_snub_nose_case_by_case|airline_british_airways|hold+cargo|https://www.iagcargo.com/en/products/pets/|Some dangerous dog breeds and snub nosed breeds of cats and dogs may not be accepted.",
    "brest_iata_snub_nose_hot_season|global|cabin+hold+cargo|https://www.iata.org/en/programs/cargo/live-animals/pets/|Transport of snub nose dogs, such as boxers, pugs, bulldogs and Pekinese, in hot season is not recommended."
   ],
   "score": 70,
@@ -6450,7 +6427,7 @@
    "airline_air_france | conn | connection_documented | st:allowed/denied/denied | cabin:allowed hold:denied cargo:denied | bool:100 | confirm:- | pets:true/true | deny:- | label:Cabin OK | fee:€70 (within France) to €200 (US/Canada–Europe) | heat:00",
    "airline_klm | conn | connection_documented | st:allowed/denied/denied | cabin:allowed hold:denied cargo:denied | bool:100 | confirm:- | pets:true/true | deny:- | label:Cabin OK | fee:€70 to €500 per one-way flight | heat:00",
    "airline_lufthansa | conn | connection_documented | st:allowed/denied/denied | cabin:allowed hold:denied cargo:denied | bool:100 | confirm:- | pets:true/true | deny:- | label:Cabin OK | fee:$60–132 | heat:00",
-   "airline_british_airways | conn | connection_documented | st:denied/denied/confirmation_required | cabin:denied hold:denied cargo:confirmation_required[breed_policy_unreviewed:airline_british_airways#cargo] | bool:000 | confirm:cargo | pets:true/true | deny:- | label:Policy to confirm with the airline | fee:- | heat:00"
+   "airline_british_airways | conn | connection_documented | st:denied/denied/denied | cabin:denied hold:denied cargo:denied | bool:000 | confirm:- | pets:true/true | deny:breed_restricted+cabin_unavailable+hold_unavailable | label:Not compatible: breed not accepted, cabin not offered and hold not offered | fee:- | heat:00"
   ],
   "alternatives": [],
   "climate": {
@@ -6490,7 +6467,6 @@
   ],
   "risks": [],
   "safety_advisories": [
-   "brest_ba_iag_snub_nose_case_by_case|airline_british_airways|hold+cargo|https://www.iagcargo.com/en/products/pets/|Some dangerous dog breeds and snub nosed breeds of cats and dogs may not be accepted.",
    "brest_iata_snub_nose_hot_season|global|cabin+hold+cargo|https://www.iata.org/en/programs/cargo/live-animals/pets/|Transport of snub nose dogs, such as boxers, pugs, bulldogs and Pekinese, in hot season is not recommended."
   ],
   "score": 7,
@@ -6837,11 +6813,11 @@
  },
  "cdg-lhr|pug|01-15|any": {
   "airlines": [
-   "airline_british_airways | direct | direct_documented | st:denied/denied/confirmation_required | cabin:denied hold:denied cargo:confirmation_required[breed_policy_unreviewed:airline_british_airways#cargo] | bool:000 | confirm:cargo | pets:true/true | deny:- | label:Policy to confirm with the airline | fee:- | heat:00",
    "airline_brussels | conn | connection_documented | st:denied/denied/confirmation_required | cabin:denied hold:denied cargo:confirmation_required[breed_policy_unreviewed:airline_brussels#cargo,legacy_unreviewed:airline_brussels#cargo] | bool:000 | confirm:cargo | pets:true/true | deny:- | label:Policy to confirm with the airline | fee:- | heat:00",
    "airline_aer_lingus | conn | connection_documented | st:denied/denied/confirmation_required | cabin:denied hold:denied cargo:confirmation_required[breed_policy_unreviewed:airline_aer_lingus#cargo,legacy_unreviewed:airline_aer_lingus#cargo] | bool:000 | confirm:cargo | pets:true/true | deny:- | label:Policy to confirm with the airline | fee:- | heat:00",
    "airline_swiss | conn | connection_documented | st:denied/confirmation_required/confirmation_required | cabin:denied hold:confirmation_required[breed_policy_unreviewed:airline_swiss#hold] cargo:confirmation_required[breed_policy_unreviewed:airline_swiss#cargo,legacy_unreviewed:airline_swiss#cargo] | bool:000 | confirm:hold+cargo | pets:true/true | deny:- | label:Policy to confirm with the airline | fee:- | heat:00",
    "airline_air_france | direct | direct_documented | st:denied/denied/denied | cabin:denied hold:denied cargo:denied | bool:000 | confirm:- | pets:true/true | deny:breed_restricted+cabin_unavailable | label:Not compatible: breed not accepted and cabin not offered | fee:- | heat:00",
+   "airline_british_airways | direct | direct_documented | st:denied/denied/denied | cabin:denied hold:denied cargo:denied | bool:000 | confirm:- | pets:true/true | deny:breed_restricted+cabin_unavailable+hold_unavailable | label:Not compatible: breed not accepted, cabin not offered and hold not offered | fee:- | heat:00",
    "airline_klm | conn | connection_documented | st:denied/denied/denied | cabin:denied hold:denied cargo:denied | bool:000 | confirm:- | pets:true/true | deny:breed_restricted+cabin_unavailable | label:Not compatible: breed not accepted and cabin not offered | fee:- | heat:00",
    "airline_lufthansa | conn | connection_documented | st:denied/denied/denied | cabin:denied hold:denied cargo:denied | bool:000 | confirm:- | pets:true/true | deny:breed_restricted+cabin_unavailable | label:Not compatible: breed not accepted and cabin not offered | fee:- | heat:00",
    "airline_eurowings | conn | connection_documented | st:denied/denied/denied | cabin:denied hold:denied cargo:denied | bool:000 | confirm:- | pets:true/true | deny:cabin_unavailable+hold_unavailable+cargo_unavailable | label:Not compatible: cabin not offered, hold not offered and cargo not offered | fee:- | heat:00",
@@ -6886,7 +6862,6 @@
   ],
   "risks": [],
   "safety_advisories": [
-   "brest_ba_iag_snub_nose_case_by_case|airline_british_airways|hold+cargo|https://www.iagcargo.com/en/products/pets/|Some dangerous dog breeds and snub nosed breeds of cats and dogs may not be accepted.",
    "brest_iata_snub_nose_hot_season|global|cabin+hold+cargo|https://www.iata.org/en/programs/cargo/live-animals/pets/|Transport of snub nose dogs, such as boxers, pugs, bulldogs and Pekinese, in hot season is not recommended."
   ],
   "score": 14,
@@ -6903,10 +6878,10 @@
  "cdg-lhr|pug|01-15|hold": {
   "airlines": [
    "airline_swiss | conn | connection_documented | st:denied/confirmation_required/confirmation_required | cabin:denied hold:confirmation_required[breed_policy_unreviewed:airline_swiss#hold] cargo:confirmation_required[breed_policy_unreviewed:airline_swiss#cargo,legacy_unreviewed:airline_swiss#cargo] | bool:000 | confirm:hold+cargo | pets:true/true | deny:- | label:Policy to confirm with the airline | fee:- | heat:00",
-   "airline_british_airways | direct | direct_documented | st:denied/denied/confirmation_required | cabin:denied hold:denied cargo:confirmation_required[breed_policy_unreviewed:airline_british_airways#cargo] | bool:000 | confirm:cargo | pets:true/true | deny:- | label:Policy to confirm with the airline | fee:- | heat:00",
    "airline_brussels | conn | connection_documented | st:denied/denied/confirmation_required | cabin:denied hold:denied cargo:confirmation_required[breed_policy_unreviewed:airline_brussels#cargo,legacy_unreviewed:airline_brussels#cargo] | bool:000 | confirm:cargo | pets:true/true | deny:- | label:Policy to confirm with the airline | fee:- | heat:00",
    "airline_aer_lingus | conn | connection_documented | st:denied/denied/confirmation_required | cabin:denied hold:denied cargo:confirmation_required[breed_policy_unreviewed:airline_aer_lingus#cargo,legacy_unreviewed:airline_aer_lingus#cargo] | bool:000 | confirm:cargo | pets:true/true | deny:- | label:Policy to confirm with the airline | fee:- | heat:00",
    "airline_air_france | direct | direct_documented | st:denied/denied/denied | cabin:denied hold:denied cargo:denied | bool:000 | confirm:- | pets:true/true | deny:breed_restricted+cabin_unavailable | label:Not compatible: breed not accepted and cabin not offered | fee:- | heat:00",
+   "airline_british_airways | direct | direct_documented | st:denied/denied/denied | cabin:denied hold:denied cargo:denied | bool:000 | confirm:- | pets:true/true | deny:breed_restricted+cabin_unavailable+hold_unavailable | label:Not compatible: breed not accepted, cabin not offered and hold not offered | fee:- | heat:00",
    "airline_klm | conn | connection_documented | st:denied/denied/denied | cabin:denied hold:denied cargo:denied | bool:000 | confirm:- | pets:true/true | deny:breed_restricted+cabin_unavailable | label:Not compatible: breed not accepted and cabin not offered | fee:- | heat:00",
    "airline_lufthansa | conn | connection_documented | st:denied/denied/denied | cabin:denied hold:denied cargo:denied | bool:000 | confirm:- | pets:true/true | deny:breed_restricted+cabin_unavailable | label:Not compatible: breed not accepted and cabin not offered | fee:- | heat:00",
    "airline_eurowings | conn | connection_documented | st:denied/denied/denied | cabin:denied hold:denied cargo:denied | bool:000 | confirm:- | pets:true/true | deny:cabin_unavailable+hold_unavailable+cargo_unavailable | label:Not compatible: cabin not offered, hold not offered and cargo not offered | fee:- | heat:00",
@@ -6951,7 +6926,6 @@
   ],
   "risks": [],
   "safety_advisories": [
-   "brest_ba_iag_snub_nose_case_by_case|airline_british_airways|hold+cargo|https://www.iagcargo.com/en/products/pets/|Some dangerous dog breeds and snub nosed breeds of cats and dogs may not be accepted.",
    "brest_iata_snub_nose_hot_season|global|cabin+hold+cargo|https://www.iata.org/en/programs/cargo/live-animals/pets/|Transport of snub nose dogs, such as boxers, pugs, bulldogs and Pekinese, in hot season is not recommended."
   ],
   "score": 14,
@@ -6967,11 +6941,11 @@
  },
  "cdg-lhr|pug|07-15|any": {
   "airlines": [
-   "airline_british_airways | direct | direct_documented | st:denied/denied/confirmation_required | cabin:denied hold:denied cargo:confirmation_required[breed_policy_unreviewed:airline_british_airways#cargo] | bool:000 | confirm:cargo | pets:true/true | deny:- | label:Policy to confirm with the airline | fee:- | heat:00",
    "airline_brussels | conn | connection_documented | st:denied/denied/confirmation_required | cabin:denied hold:denied cargo:confirmation_required[breed_policy_unreviewed:airline_brussels#cargo,legacy_unreviewed:airline_brussels#cargo] | bool:000 | confirm:cargo | pets:true/true | deny:- | label:Policy to confirm with the airline | fee:- | heat:00",
    "airline_aer_lingus | conn | connection_documented | st:denied/denied/confirmation_required | cabin:denied hold:denied cargo:confirmation_required[breed_policy_unreviewed:airline_aer_lingus#cargo,legacy_unreviewed:airline_aer_lingus#cargo] | bool:000 | confirm:cargo | pets:true/true | deny:- | label:Policy to confirm with the airline | fee:- | heat:00",
    "airline_swiss | conn | connection_documented | st:denied/confirmation_required/confirmation_required | cabin:denied hold:confirmation_required[breed_policy_unreviewed:airline_swiss#hold] cargo:confirmation_required[breed_policy_unreviewed:airline_swiss#cargo,legacy_unreviewed:airline_swiss#cargo] | bool:000 | confirm:hold+cargo | pets:true/true | deny:- | label:Policy to confirm with the airline | fee:- | heat:00",
    "airline_air_france | direct | direct_documented | st:denied/denied/denied | cabin:denied hold:denied cargo:denied | bool:000 | confirm:- | pets:true/true | deny:breed_restricted+cabin_unavailable | label:Not compatible: breed not accepted and cabin not offered | fee:- | heat:00",
+   "airline_british_airways | direct | direct_documented | st:denied/denied/denied | cabin:denied hold:denied cargo:denied | bool:000 | confirm:- | pets:true/true | deny:breed_restricted+cabin_unavailable+hold_unavailable | label:Not compatible: breed not accepted, cabin not offered and hold not offered | fee:- | heat:00",
    "airline_klm | conn | connection_documented | st:denied/denied/denied | cabin:denied hold:denied cargo:denied | bool:000 | confirm:- | pets:true/true | deny:breed_restricted+cabin_unavailable | label:Not compatible: breed not accepted and cabin not offered | fee:- | heat:00",
    "airline_lufthansa | conn | connection_documented | st:denied/denied/denied | cabin:denied hold:denied cargo:denied | bool:000 | confirm:- | pets:true/true | deny:breed_restricted+cabin_unavailable | label:Not compatible: breed not accepted and cabin not offered | fee:- | heat:00",
    "airline_eurowings | conn | connection_documented | st:denied/denied/denied | cabin:denied hold:denied cargo:denied | bool:000 | confirm:- | pets:true/true | deny:cabin_unavailable+hold_unavailable+cargo_unavailable | label:Not compatible: cabin not offered, hold not offered and cargo not offered | fee:- | heat:00",
@@ -7016,7 +6990,6 @@
   ],
   "risks": [],
   "safety_advisories": [
-   "brest_ba_iag_snub_nose_case_by_case|airline_british_airways|hold+cargo|https://www.iagcargo.com/en/products/pets/|Some dangerous dog breeds and snub nosed breeds of cats and dogs may not be accepted.",
    "brest_iata_snub_nose_hot_season|global|cabin+hold+cargo|https://www.iata.org/en/programs/cargo/live-animals/pets/|Transport of snub nose dogs, such as boxers, pugs, bulldogs and Pekinese, in hot season is not recommended."
   ],
   "score": 14,
@@ -7033,10 +7006,10 @@
  "cdg-lhr|pug|07-15|hold": {
   "airlines": [
    "airline_swiss | conn | connection_documented | st:denied/confirmation_required/confirmation_required | cabin:denied hold:confirmation_required[breed_policy_unreviewed:airline_swiss#hold] cargo:confirmation_required[breed_policy_unreviewed:airline_swiss#cargo,legacy_unreviewed:airline_swiss#cargo] | bool:000 | confirm:hold+cargo | pets:true/true | deny:- | label:Policy to confirm with the airline | fee:- | heat:00",
-   "airline_british_airways | direct | direct_documented | st:denied/denied/confirmation_required | cabin:denied hold:denied cargo:confirmation_required[breed_policy_unreviewed:airline_british_airways#cargo] | bool:000 | confirm:cargo | pets:true/true | deny:- | label:Policy to confirm with the airline | fee:- | heat:00",
    "airline_brussels | conn | connection_documented | st:denied/denied/confirmation_required | cabin:denied hold:denied cargo:confirmation_required[breed_policy_unreviewed:airline_brussels#cargo,legacy_unreviewed:airline_brussels#cargo] | bool:000 | confirm:cargo | pets:true/true | deny:- | label:Policy to confirm with the airline | fee:- | heat:00",
    "airline_aer_lingus | conn | connection_documented | st:denied/denied/confirmation_required | cabin:denied hold:denied cargo:confirmation_required[breed_policy_unreviewed:airline_aer_lingus#cargo,legacy_unreviewed:airline_aer_lingus#cargo] | bool:000 | confirm:cargo | pets:true/true | deny:- | label:Policy to confirm with the airline | fee:- | heat:00",
    "airline_air_france | direct | direct_documented | st:denied/denied/denied | cabin:denied hold:denied cargo:denied | bool:000 | confirm:- | pets:true/true | deny:breed_restricted+cabin_unavailable | label:Not compatible: breed not accepted and cabin not offered | fee:- | heat:00",
+   "airline_british_airways | direct | direct_documented | st:denied/denied/denied | cabin:denied hold:denied cargo:denied | bool:000 | confirm:- | pets:true/true | deny:breed_restricted+cabin_unavailable+hold_unavailable | label:Not compatible: breed not accepted, cabin not offered and hold not offered | fee:- | heat:00",
    "airline_klm | conn | connection_documented | st:denied/denied/denied | cabin:denied hold:denied cargo:denied | bool:000 | confirm:- | pets:true/true | deny:breed_restricted+cabin_unavailable | label:Not compatible: breed not accepted and cabin not offered | fee:- | heat:00",
    "airline_lufthansa | conn | connection_documented | st:denied/denied/denied | cabin:denied hold:denied cargo:denied | bool:000 | confirm:- | pets:true/true | deny:breed_restricted+cabin_unavailable | label:Not compatible: breed not accepted and cabin not offered | fee:- | heat:00",
    "airline_eurowings | conn | connection_documented | st:denied/denied/denied | cabin:denied hold:denied cargo:denied | bool:000 | confirm:- | pets:true/true | deny:cabin_unavailable+hold_unavailable+cargo_unavailable | label:Not compatible: cabin not offered, hold not offered and cargo not offered | fee:- | heat:00",
@@ -7081,7 +7054,6 @@
   ],
   "risks": [],
   "safety_advisories": [
-   "brest_ba_iag_snub_nose_case_by_case|airline_british_airways|hold+cargo|https://www.iagcargo.com/en/products/pets/|Some dangerous dog breeds and snub nosed breeds of cats and dogs may not be accepted.",
    "brest_iata_snub_nose_hot_season|global|cabin+hold+cargo|https://www.iata.org/en/programs/cargo/live-animals/pets/|Transport of snub nose dogs, such as boxers, pugs, bulldogs and Pekinese, in hot season is not recommended."
   ],
   "score": 14,
@@ -7724,8 +7696,8 @@
    "airline_air_serbia | conn | connection_documented | st:allowed/denied/denied | cabin:allowed hold:denied cargo:denied | bool:100 | confirm:- | pets:true/true | deny:- | label:Cabin OK | fee:- | heat:00",
    "airline_air_canada | conn | connection_unverified | st:allowed/denied/denied | cabin:allowed hold:denied cargo:denied | bool:100 | confirm:- | pets:true/true | deny:- | label:Cabin OK | fee:CA/US $50–$60 one-way (higher international) | heat:00",
    "airline_westjet | conn | connection_unverified | st:allowed/confirmation_required/confirmation_required | cabin:allowed hold:confirmation_required[breed_policy_unreviewed:airline_westjet#hold] cargo:confirmation_required[breed_policy_unreviewed:airline_westjet#cargo] | bool:100 | confirm:hold+cargo | pets:true/true | deny:- | label:Cabin OK | fee:$40–90 | heat:00",
-   "airline_british_airways | conn | connection_documented | st:denied/denied/confirmation_required | cabin:denied hold:denied cargo:confirmation_required[breed_policy_unreviewed:airline_british_airways#cargo] | bool:000 | confirm:cargo | pets:true/true | deny:- | label:Policy to confirm with the airline | fee:- | heat:00",
    "airline_aer_lingus | conn | connection_documented | st:denied/denied/confirmation_required | cabin:denied hold:denied cargo:confirmation_required[breed_policy_unreviewed:airline_aer_lingus#cargo,legacy_unreviewed:airline_aer_lingus#cargo] | bool:000 | confirm:cargo | pets:true/true | deny:- | label:Policy to confirm with the airline | fee:- | heat:00",
+   "airline_british_airways | conn | connection_documented | st:denied/denied/denied | cabin:denied hold:denied cargo:denied | bool:000 | confirm:- | pets:true/true | deny:breed_restricted+cabin_unavailable+hold_unavailable | label:Not compatible: breed not accepted, cabin not offered and hold not offered | fee:- | heat:00",
    "airline_icelandair | conn | connection_documented | st:denied/denied/denied | cabin:denied hold:denied cargo:denied | bool:000 | confirm:- | pets:false/false | deny:cabin_unavailable+hold_unavailable+cargo_unavailable | label:No pets | fee:- | heat:00"
   ],
   "alternatives": [],
@@ -7844,7 +7816,6 @@
   ],
   "risks": [],
   "safety_advisories": [
-   "brest_ba_iag_snub_nose_case_by_case|airline_british_airways|hold+cargo|https://www.iagcargo.com/en/products/pets/|Some dangerous dog breeds and snub nosed breeds of cats and dogs may not be accepted.",
    "brest_iata_snub_nose_hot_season|global|cabin+hold+cargo|https://www.iata.org/en/programs/cargo/live-animals/pets/|Transport of snub nose dogs, such as boxers, pugs, bulldogs and Pekinese, in hot season is not recommended."
   ],
   "score": 69,
@@ -7885,8 +7856,8 @@
    "airline_lufthansa | conn | connection_documented | st:allowed/denied/denied | cabin:allowed hold:denied cargo:denied | bool:100 | confirm:- | pets:true/true | deny:- | label:Cabin OK | fee:$60–132 | heat:00",
    "airline_air_serbia | conn | connection_documented | st:allowed/denied/denied | cabin:allowed hold:denied cargo:denied | bool:100 | confirm:- | pets:true/true | deny:- | label:Cabin OK | fee:- | heat:00",
    "airline_air_canada | conn | connection_unverified | st:allowed/denied/denied | cabin:allowed hold:denied cargo:denied | bool:100 | confirm:- | pets:true/true | deny:- | label:Cabin OK | fee:CA/US $50–$60 one-way (higher international) | heat:00",
-   "airline_british_airways | conn | connection_documented | st:denied/denied/confirmation_required | cabin:denied hold:denied cargo:confirmation_required[breed_policy_unreviewed:airline_british_airways#cargo] | bool:000 | confirm:cargo | pets:true/true | deny:- | label:Policy to confirm with the airline | fee:- | heat:00",
    "airline_aer_lingus | conn | connection_documented | st:denied/denied/confirmation_required | cabin:denied hold:denied cargo:confirmation_required[breed_policy_unreviewed:airline_aer_lingus#cargo,legacy_unreviewed:airline_aer_lingus#cargo] | bool:000 | confirm:cargo | pets:true/true | deny:- | label:Policy to confirm with the airline | fee:- | heat:00",
+   "airline_british_airways | conn | connection_documented | st:denied/denied/denied | cabin:denied hold:denied cargo:denied | bool:000 | confirm:- | pets:true/true | deny:breed_restricted+cabin_unavailable+hold_unavailable | label:Not compatible: breed not accepted, cabin not offered and hold not offered | fee:- | heat:00",
    "airline_icelandair | conn | connection_documented | st:denied/denied/denied | cabin:denied hold:denied cargo:denied | bool:000 | confirm:- | pets:false/false | deny:cabin_unavailable+hold_unavailable+cargo_unavailable | label:No pets | fee:- | heat:00"
   ],
   "alternatives": [],
@@ -7928,7 +7899,6 @@
   ],
   "risks": [],
   "safety_advisories": [
-   "brest_ba_iag_snub_nose_case_by_case|airline_british_airways|hold+cargo|https://www.iagcargo.com/en/products/pets/|Some dangerous dog breeds and snub nosed breeds of cats and dogs may not be accepted.",
    "brest_iata_snub_nose_hot_season|global|cabin+hold+cargo|https://www.iata.org/en/programs/cargo/live-animals/pets/|Transport of snub nose dogs, such as boxers, pugs, bulldogs and Pekinese, in hot season is not recommended."
   ],
   "score": 4,
@@ -7969,8 +7939,8 @@
    "airline_air_serbia | conn | connection_documented | st:allowed/denied/denied | cabin:allowed hold:denied cargo:denied | bool:100 | confirm:- | pets:true/true | deny:- | label:Cabin OK | fee:- | heat:00",
    "airline_air_canada | conn | connection_unverified | st:allowed/denied/denied | cabin:allowed hold:denied cargo:denied | bool:100 | confirm:- | pets:true/true | deny:- | label:Cabin OK | fee:CA/US $50–$60 one-way (higher international) | heat:00",
    "airline_westjet | conn | connection_unverified | st:allowed/confirmation_required/confirmation_required | cabin:allowed hold:confirmation_required[breed_policy_unreviewed:airline_westjet#hold] cargo:confirmation_required[breed_policy_unreviewed:airline_westjet#cargo] | bool:100 | confirm:hold+cargo | pets:true/true | deny:- | label:Cabin OK | fee:$40–90 | heat:00",
-   "airline_british_airways | conn | connection_documented | st:denied/denied/confirmation_required | cabin:denied hold:denied cargo:confirmation_required[breed_policy_unreviewed:airline_british_airways#cargo] | bool:000 | confirm:cargo | pets:true/true | deny:- | label:Policy to confirm with the airline | fee:- | heat:00",
    "airline_aer_lingus | conn | connection_documented | st:denied/denied/confirmation_required | cabin:denied hold:denied cargo:confirmation_required[breed_policy_unreviewed:airline_aer_lingus#cargo,legacy_unreviewed:airline_aer_lingus#cargo] | bool:000 | confirm:cargo | pets:true/true | deny:- | label:Policy to confirm with the airline | fee:- | heat:00",
+   "airline_british_airways | conn | connection_documented | st:denied/denied/denied | cabin:denied hold:denied cargo:denied | bool:000 | confirm:- | pets:true/true | deny:breed_restricted+cabin_unavailable+hold_unavailable | label:Not compatible: breed not accepted, cabin not offered and hold not offered | fee:- | heat:00",
    "airline_icelandair | conn | connection_documented | st:denied/denied/denied | cabin:denied hold:denied cargo:denied | bool:000 | confirm:- | pets:false/false | deny:cabin_unavailable+hold_unavailable+cargo_unavailable | label:No pets | fee:- | heat:00"
   ],
   "alternatives": [],
@@ -8089,7 +8059,6 @@
   ],
   "risks": [],
   "safety_advisories": [
-   "brest_ba_iag_snub_nose_case_by_case|airline_british_airways|hold+cargo|https://www.iagcargo.com/en/products/pets/|Some dangerous dog breeds and snub nosed breeds of cats and dogs may not be accepted.",
    "brest_iata_snub_nose_hot_season|global|cabin+hold+cargo|https://www.iata.org/en/programs/cargo/live-animals/pets/|Transport of snub nose dogs, such as boxers, pugs, bulldogs and Pekinese, in hot season is not recommended."
   ],
   "score": 69,
@@ -8130,8 +8099,8 @@
    "airline_lufthansa | conn | connection_documented | st:allowed/denied/denied | cabin:allowed hold:denied cargo:denied | bool:100 | confirm:- | pets:true/true | deny:- | label:Cabin OK | fee:$60–132 | heat:00",
    "airline_air_serbia | conn | connection_documented | st:allowed/denied/denied | cabin:allowed hold:denied cargo:denied | bool:100 | confirm:- | pets:true/true | deny:- | label:Cabin OK | fee:- | heat:00",
    "airline_air_canada | conn | connection_unverified | st:allowed/denied/denied | cabin:allowed hold:denied cargo:denied | bool:100 | confirm:- | pets:true/true | deny:- | label:Cabin OK | fee:CA/US $50–$60 one-way (higher international) | heat:00",
-   "airline_british_airways | conn | connection_documented | st:denied/denied/confirmation_required | cabin:denied hold:denied cargo:confirmation_required[breed_policy_unreviewed:airline_british_airways#cargo] | bool:000 | confirm:cargo | pets:true/true | deny:- | label:Policy to confirm with the airline | fee:- | heat:00",
    "airline_aer_lingus | conn | connection_documented | st:denied/denied/confirmation_required | cabin:denied hold:denied cargo:confirmation_required[breed_policy_unreviewed:airline_aer_lingus#cargo,legacy_unreviewed:airline_aer_lingus#cargo] | bool:000 | confirm:cargo | pets:true/true | deny:- | label:Policy to confirm with the airline | fee:- | heat:00",
+   "airline_british_airways | conn | connection_documented | st:denied/denied/denied | cabin:denied hold:denied cargo:denied | bool:000 | confirm:- | pets:true/true | deny:breed_restricted+cabin_unavailable+hold_unavailable | label:Not compatible: breed not accepted, cabin not offered and hold not offered | fee:- | heat:00",
    "airline_icelandair | conn | connection_documented | st:denied/denied/denied | cabin:denied hold:denied cargo:denied | bool:000 | confirm:- | pets:false/false | deny:cabin_unavailable+hold_unavailable+cargo_unavailable | label:No pets | fee:- | heat:00"
   ],
   "alternatives": [],
@@ -8173,7 +8142,6 @@
   ],
   "risks": [],
   "safety_advisories": [
-   "brest_ba_iag_snub_nose_case_by_case|airline_british_airways|hold+cargo|https://www.iagcargo.com/en/products/pets/|Some dangerous dog breeds and snub nosed breeds of cats and dogs may not be accepted.",
    "brest_iata_snub_nose_hot_season|global|cabin+hold+cargo|https://www.iata.org/en/programs/cargo/live-animals/pets/|Transport of snub nose dogs, such as boxers, pugs, bulldogs and Pekinese, in hot season is not recommended."
   ],
   "score": 4,
@@ -8831,8 +8799,8 @@
    "airline_air_canada | conn | connection_unverified | st:allowed/denied/denied | cabin:allowed hold:denied cargo:denied | bool:100 | confirm:- | pets:true/true | deny:- | label:Cabin OK | fee:CA/US $50–$60 one-way (higher international) | heat:00",
    "airline_austrian | conn | connection_unverified | st:allowed/confirmation_required/confirmation_required | cabin:allowed hold:confirmation_required[breed_policy_unreviewed:airline_austrian#hold] cargo:confirmation_required[breed_policy_unreviewed:airline_austrian#cargo,legacy_unreviewed:airline_austrian#cargo] | bool:100 | confirm:hold+cargo | pets:true/true | deny:- | label:Cabin OK | fee:€65–125 | heat:00",
    "airline_emirates | direct | direct_documented | st:denied/confirmation_required/confirmation_required | cabin:denied hold:confirmation_required[breed_policy_unreviewed:airline_emirates#hold] cargo:confirmation_required[breed_policy_unreviewed:airline_emirates#cargo,legacy_unreviewed:airline_emirates#cargo] | bool:000 | confirm:hold+cargo | pets:true/true | deny:- | label:Policy to confirm with the airline | fee:- | heat:00",
-   "airline_british_airways | conn | connection_documented | st:denied/denied/confirmation_required | cabin:denied hold:denied cargo:confirmation_required[breed_policy_unreviewed:airline_british_airways#cargo] | bool:000 | confirm:cargo | pets:true/true | deny:- | label:Policy to confirm with the airline | fee:- | heat:00",
    "airline_aer_lingus | conn | connection_documented | st:denied/denied/confirmation_required | cabin:denied hold:denied cargo:confirmation_required[breed_policy_unreviewed:airline_aer_lingus#cargo,legacy_unreviewed:airline_aer_lingus#cargo] | bool:000 | confirm:cargo | pets:true/true | deny:- | label:Policy to confirm with the airline | fee:- | heat:00",
+   "airline_british_airways | conn | connection_documented | st:denied/denied/denied | cabin:denied hold:denied cargo:denied | bool:000 | confirm:- | pets:true/true | deny:breed_restricted+cabin_unavailable+hold_unavailable | label:Not compatible: breed not accepted, cabin not offered and hold not offered | fee:- | heat:00",
    "airline_icelandair | conn | connection_documented | st:denied/denied/denied | cabin:denied hold:denied cargo:denied | bool:000 | confirm:- | pets:false/false | deny:cabin_unavailable+hold_unavailable+cargo_unavailable | label:No pets | fee:- | heat:00"
   ],
   "alternatives": [],
@@ -8950,10 +8918,9 @@
   ],
   "risks": [],
   "safety_advisories": [
-   "brest_ba_iag_snub_nose_case_by_case|airline_british_airways|hold+cargo|https://www.iagcargo.com/en/products/pets/|Some dangerous dog breeds and snub nosed breeds of cats and dogs may not be accepted.",
    "brest_iata_snub_nose_hot_season|global|cabin+hold+cargo|https://www.iata.org/en/programs/cargo/live-animals/pets/|Transport of snub nose dogs, such as boxers, pugs, bulldogs and Pekinese, in hot season is not recommended."
   ],
-  "score": 72,
+  "score": 71,
   "sources": [
    "https://www.aa.com/i18n/travel-info/special-assistance/pets.jsp",
    "https://www.aircanada.com/ca/en/aco/home/plan/special-assistance/pets.html",
@@ -8990,8 +8957,8 @@
    "airline_air_serbia | conn | connection_documented | st:allowed/denied/denied | cabin:allowed hold:denied cargo:denied | bool:100 | confirm:- | pets:true/true | deny:- | label:Cabin OK | fee:- | heat:00",
    "airline_jetblue | conn | connection_unverified | st:allowed/denied/denied | cabin:allowed hold:denied cargo:denied | bool:100 | confirm:- | pets:true/true | deny:- | label:Cabin OK | fee:$125 | heat:00",
    "airline_air_canada | conn | connection_unverified | st:allowed/denied/denied | cabin:allowed hold:denied cargo:denied | bool:100 | confirm:- | pets:true/true | deny:- | label:Cabin OK | fee:CA/US $50–$60 one-way (higher international) | heat:00",
-   "airline_british_airways | conn | connection_documented | st:denied/denied/confirmation_required | cabin:denied hold:denied cargo:confirmation_required[breed_policy_unreviewed:airline_british_airways#cargo] | bool:000 | confirm:cargo | pets:true/true | deny:- | label:Policy to confirm with the airline | fee:- | heat:00",
    "airline_aer_lingus | conn | connection_documented | st:denied/denied/confirmation_required | cabin:denied hold:denied cargo:confirmation_required[breed_policy_unreviewed:airline_aer_lingus#cargo,legacy_unreviewed:airline_aer_lingus#cargo] | bool:000 | confirm:cargo | pets:true/true | deny:- | label:Policy to confirm with the airline | fee:- | heat:00",
+   "airline_british_airways | conn | connection_documented | st:denied/denied/denied | cabin:denied hold:denied cargo:denied | bool:000 | confirm:- | pets:true/true | deny:breed_restricted+cabin_unavailable+hold_unavailable | label:Not compatible: breed not accepted, cabin not offered and hold not offered | fee:- | heat:00",
    "airline_icelandair | conn | connection_documented | st:denied/denied/denied | cabin:denied hold:denied cargo:denied | bool:000 | confirm:- | pets:false/false | deny:cabin_unavailable+hold_unavailable+cargo_unavailable | label:No pets | fee:- | heat:00"
   ],
   "alternatives": [],
@@ -9032,7 +8999,6 @@
   ],
   "risks": [],
   "safety_advisories": [
-   "brest_ba_iag_snub_nose_case_by_case|airline_british_airways|hold+cargo|https://www.iagcargo.com/en/products/pets/|Some dangerous dog breeds and snub nosed breeds of cats and dogs may not be accepted.",
    "brest_iata_snub_nose_hot_season|global|cabin+hold+cargo|https://www.iata.org/en/programs/cargo/live-animals/pets/|Transport of snub nose dogs, such as boxers, pugs, bulldogs and Pekinese, in hot season is not recommended."
   ],
   "score": 10,
@@ -9072,8 +9038,8 @@
    "airline_air_canada | conn | connection_unverified | st:allowed/denied/denied | cabin:allowed hold:denied cargo:denied | bool:100 | confirm:- | pets:true/true | deny:- | label:Cabin OK | fee:CA/US $50–$60 one-way (higher international) | heat:00",
    "airline_austrian | conn | connection_unverified | st:allowed/confirmation_required/confirmation_required | cabin:allowed hold:confirmation_required[breed_policy_unreviewed:airline_austrian#hold] cargo:confirmation_required[breed_policy_unreviewed:airline_austrian#cargo,legacy_unreviewed:airline_austrian#cargo] | bool:100 | confirm:hold+cargo | pets:true/true | deny:- | label:Cabin OK | fee:€65–125 | heat:00",
    "airline_emirates | direct | direct_documented | st:denied/confirmation_required/confirmation_required | cabin:denied hold:confirmation_required[breed_policy_unreviewed:airline_emirates#hold] cargo:confirmation_required[breed_policy_unreviewed:airline_emirates#cargo,legacy_unreviewed:airline_emirates#cargo] | bool:000 | confirm:hold+cargo | pets:true/true | deny:- | label:Policy to confirm with the airline | fee:- | heat:00",
-   "airline_british_airways | conn | connection_documented | st:denied/denied/confirmation_required | cabin:denied hold:denied cargo:confirmation_required[breed_policy_unreviewed:airline_british_airways#cargo] | bool:000 | confirm:cargo | pets:true/true | deny:- | label:Policy to confirm with the airline | fee:- | heat:00",
    "airline_aer_lingus | conn | connection_documented | st:denied/denied/confirmation_required | cabin:denied hold:denied cargo:confirmation_required[breed_policy_unreviewed:airline_aer_lingus#cargo,legacy_unreviewed:airline_aer_lingus#cargo] | bool:000 | confirm:cargo | pets:true/true | deny:- | label:Policy to confirm with the airline | fee:- | heat:00",
+   "airline_british_airways | conn | connection_documented | st:denied/denied/denied | cabin:denied hold:denied cargo:denied | bool:000 | confirm:- | pets:true/true | deny:breed_restricted+cabin_unavailable+hold_unavailable | label:Not compatible: breed not accepted, cabin not offered and hold not offered | fee:- | heat:00",
    "airline_icelandair | conn | connection_documented | st:denied/denied/denied | cabin:denied hold:denied cargo:denied | bool:000 | confirm:- | pets:false/false | deny:cabin_unavailable+hold_unavailable+cargo_unavailable | label:No pets | fee:- | heat:00"
   ],
   "alternatives": [],
@@ -9191,10 +9157,9 @@
   ],
   "risks": [],
   "safety_advisories": [
-   "brest_ba_iag_snub_nose_case_by_case|airline_british_airways|hold+cargo|https://www.iagcargo.com/en/products/pets/|Some dangerous dog breeds and snub nosed breeds of cats and dogs may not be accepted.",
    "brest_iata_snub_nose_hot_season|global|cabin+hold+cargo|https://www.iata.org/en/programs/cargo/live-animals/pets/|Transport of snub nose dogs, such as boxers, pugs, bulldogs and Pekinese, in hot season is not recommended."
   ],
-  "score": 72,
+  "score": 71,
   "sources": [
    "https://www.aa.com/i18n/travel-info/special-assistance/pets.jsp",
    "https://www.aircanada.com/ca/en/aco/home/plan/special-assistance/pets.html",
@@ -9231,8 +9196,8 @@
    "airline_air_serbia | conn | connection_documented | st:allowed/denied/denied | cabin:allowed hold:denied cargo:denied | bool:100 | confirm:- | pets:true/true | deny:- | label:Cabin OK | fee:- | heat:00",
    "airline_jetblue | conn | connection_unverified | st:allowed/denied/denied | cabin:allowed hold:denied cargo:denied | bool:100 | confirm:- | pets:true/true | deny:- | label:Cabin OK | fee:$125 | heat:00",
    "airline_air_canada | conn | connection_unverified | st:allowed/denied/denied | cabin:allowed hold:denied cargo:denied | bool:100 | confirm:- | pets:true/true | deny:- | label:Cabin OK | fee:CA/US $50–$60 one-way (higher international) | heat:00",
-   "airline_british_airways | conn | connection_documented | st:denied/denied/confirmation_required | cabin:denied hold:denied cargo:confirmation_required[breed_policy_unreviewed:airline_british_airways#cargo] | bool:000 | confirm:cargo | pets:true/true | deny:- | label:Policy to confirm with the airline | fee:- | heat:00",
    "airline_aer_lingus | conn | connection_documented | st:denied/denied/confirmation_required | cabin:denied hold:denied cargo:confirmation_required[breed_policy_unreviewed:airline_aer_lingus#cargo,legacy_unreviewed:airline_aer_lingus#cargo] | bool:000 | confirm:cargo | pets:true/true | deny:- | label:Policy to confirm with the airline | fee:- | heat:00",
+   "airline_british_airways | conn | connection_documented | st:denied/denied/denied | cabin:denied hold:denied cargo:denied | bool:000 | confirm:- | pets:true/true | deny:breed_restricted+cabin_unavailable+hold_unavailable | label:Not compatible: breed not accepted, cabin not offered and hold not offered | fee:- | heat:00",
    "airline_icelandair | conn | connection_documented | st:denied/denied/denied | cabin:denied hold:denied cargo:denied | bool:000 | confirm:- | pets:false/false | deny:cabin_unavailable+hold_unavailable+cargo_unavailable | label:No pets | fee:- | heat:00"
   ],
   "alternatives": [],
@@ -9273,7 +9238,6 @@
   ],
   "risks": [],
   "safety_advisories": [
-   "brest_ba_iag_snub_nose_case_by_case|airline_british_airways|hold+cargo|https://www.iagcargo.com/en/products/pets/|Some dangerous dog breeds and snub nosed breeds of cats and dogs may not be accepted.",
    "brest_iata_snub_nose_hot_season|global|cabin+hold+cargo|https://www.iata.org/en/programs/cargo/live-animals/pets/|Transport of snub nose dogs, such as boxers, pugs, bulldogs and Pekinese, in hot season is not recommended."
   ],
   "score": 10,

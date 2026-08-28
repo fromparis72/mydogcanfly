@@ -50,6 +50,55 @@ const STALE_VERSES = new Set([
   "airline_norwegian|cargo", "airline_qantas|cargo", "airline_qantas|hold",
   "airline_virgin_australia|hold",
 ]);
+/* Décisions POST-MIGRATION arbitrées, scellées par IDENTITÉ — jamais par cardinal.
+ *
+ * Le manifeste fige la MIGRATION T0-B2 ; il ne gèle pas l'éditorial pour toujours. Mais toute
+ * bascule ultérieure vers une forme migrée (`case_by_case`, `undocumented`, `review_state`)
+ * doit être NOMMÉE ici avec sa décision, sinon elle rougit — c'est la même discipline que les
+ * dix POLICY_STALE ci-dessus.
+ *
+ *  · airline_virgin_australia|cabin (28/08/2026, arbitrage propriétaire + Codex, option
+ *    A-bis) : « offered » → « case_by_case ». « Pets in Cabin » existe (≤ 8 kg animal + sac)
+ *    mais seulement sur routes/dates domestiques éligibles, service encadré comme une
+ *    expérimentation — ni refus absolu (la règle no_cabin est supprimée), ni oui universel.
+ *    Contre-épreuves : test-virgin-australia-cabine.mjs.
+ *  · airline_garuda_indonesia|cabin (28/08/2026, 2e passe de contre-revue Codex) :
+ *    « not_offered » → « review_state: legacy_unreviewed ». La lecture directe n'a trouvé
+ *    aucune page passager officielle lisible établissant l'interdiction cabine — la page
+ *    Cargo ne la prouve pas. « Refusé » affirmait un fait non prouvé : la décision rejoint
+ *    l'héritage non re-vérifié, comme la soute et le fret de la même fiche.
+ *    Contre-épreuves : test-fiches-affirmations-retirees.mjs. */
+const DECISIONS_POST_MIGRATION = new Set([
+  "airline_virgin_australia|cabin",
+  "airline_garuda_indonesia|cabin",
+]);
+/* Éditions POST-MIGRATION d'un bloc AUDITÉ, nommées avec leur nouvelle empreinte.
+ *
+ * L'observation de migration reste INTACTE dans la baseline — elle prouve toujours qu'aucun
+ * bloc n'a bougé PENDANT la migration. Mais l'éditorial vit : quand une contre-revue impose
+ * de corriger un bloc audité, la correction est admise ici par identité, avec l'empreinte du
+ * bloc corrigé — le YAML relu doit correspondre soit à l'observation d'origine, soit à
+ * l'édition nommée. Toute autre divergence rougit toujours.
+ *
+ *  · airline_virgin_australia/cargo (28/08/2026, contre-revue Codex) : « les animaux non
+ *    éligibles à la cabine VOYAGENT en soute via Cargo » recréait le « soute sinon » refusé
+ *    par l'arbitrage A-bis — le détail devient conditionnel (« peuvent éventuellement être
+ *    transportés … sous réserve de l'itinéraire, de l'appareil, du partenaire de transport
+ *    et de l'acceptation préalable »), dans les quatre langues.
+ *  · airline_alaska/cargo (28/08/2026, 2e passe de contre-revue Codex) : « ou de plus de
+ *    150 lb » transposait le seuil Pet Connect (fret) au bagage accompagné — le détail dit
+ *    désormais que Pet Connect applique SES règles et seuils, sans chiffre, quatre langues.
+ *  · airline_garuda_indonesia/hold (id.) : « ≤ 32 kg avec la caisse » n'est prouvé par
+ *    aucune source lisible — le détail dit « aucune limite de poids vérifiée ; à confirmer »,
+ *    quatre langues.
+ *  · airline_garuda_indonesia/cargo (id.) : « au-delà de 32 kg » disparaît pour la même
+ *    raison — « animaux plus grands », sans seuil, quatre langues. */
+const EDITIONS_POST_MIGRATION = new Map([
+  ["airline_virgin_australia/cargo", "4398ecf181f18a61f2c1a0f99d4905f6bb9086c80cfd0a50e99a507c5f566fef"],
+  ["airline_alaska/cargo", "faee91262c08431b11bc9e3b8f6dc3739dd4131cf3af0484fa6410ad8ca28c2a"],
+  ["airline_garuda_indonesia/hold", "2d72e7da86ada5c91cd319398dde07aa8b5d6669a04f88dda5f1da0662bc6812"],
+  ["airline_garuda_indonesia/cargo", "63a75a5b654ce0e1fc3f107d9ad1422840e35ca49920db352e822c291b7c302b"],
+]);
 /** Décision runtime visée par une ligne du manifeste, sous forme d'auteur. */
 const attenduPour = (r) => r.decision.state === "legacy_unreviewed"
   ? { review_state: "legacy_unreviewed" }
@@ -65,7 +114,7 @@ for (const a of objects.airlines) {
 }
 for (const k of formeHeritee) err(`forme d'auteur héritée réintroduite: ${k}`);
 for (const k of migrees) {
-  if (ids.includes(k) || STALE_VERSES.has(k)) continue;
+  if (ids.includes(k) || STALE_VERSES.has(k) || DECISIONS_POST_MIGRATION.has(k)) continue;
   err(`politique migrée hors manifeste et hors dette scellée: ${k}`);
 }
 for (const k of STALE_VERSES) if (!migrees.has(k)) err(`POLICY_STALE versé non migré: ${k}`);
@@ -92,9 +141,13 @@ for (const r of rows) {
   const ch = (doc.channels || [])[parseInt(m[1], 10)];
   const fromYaml = {};
   for (const k of FIELDS) if (k in ch) fromYaml[k] = ch[k];
-  if (hash(fromYaml) !== obs.fingerprint) err(`${who}: empreinte ≠ YAML relu`);
+  /* Une édition post-migration NOMMÉE est admise : le YAML relu doit alors porter exactement
+     l'empreinte de l'édition — l'observation d'origine, elle, reste vérifiée telle quelle. */
+  const edition = EDITIONS_POST_MIGRATION.get(who);
+  const yamlAttendu = edition && hash(fromYaml) === edition ? edition : obs.fingerprint;
+  if (hash(fromYaml) !== yamlAttendu) err(`${who}: empreinte ≠ YAML relu`);
   if (hash(obs.block) !== obs.fingerprint) err(`${who}: empreinte ≠ bloc STOCKÉ (bloc falsifié ?)`);
-  if (cjson(obs.block) !== cjson(fromYaml)) err(`${who}: bloc stocké ≠ YAML relu`);
+  if (yamlAttendu === obs.fingerprint && cjson(obs.block) !== cjson(fromYaml)) err(`${who}: bloc stocké ≠ YAML relu`);
 }
 console.log(`${rows.length} lignes vérifiées, ${bad} écart(s)`);
 process.exit(bad ? 1 : 0);

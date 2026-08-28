@@ -160,8 +160,14 @@ console.log("\n=== 5. Dominance : denied > confirmation_required — interaction
     (p.confirmation_causes ?? []).some((c) => c.code === "breed_policy_unreviewed")).length;
   check("carlin : ZÉRO confirmation de cause CLIMATIQUE sur cette route (28 °C estimés, sous le seuil)",
     climatiques === 0, `${climatiques} confirmation(s) climatique(s)`);
-  check("carlin : les confirmations qui existent ont pour cause la RACE, et elles sont 24",
-    race === 24 && confirmations.length === 24,
+  /* 28/08/2026 — lecture directe Codex sur IAG Cargo : « Some dangerous dog breeds and snub
+   * nosed breeds … MAY not be accepted », au cas par cas via l'agent animalier. Le refus
+   * catégorique rule_ba_brachy_hold était donc faux : supprimé, remplacé par un avis warn
+   * sourcé (brest_ba_iag_snub_nose_case_by_case). Le cargo BA d'un brachycéphale passe de
+   * « denied » à « confirmation_required[breed_policy_unreviewed] » : 24 → 25. Compte figé,
+   * mouvement nommé — toute bascule non documentée doit toujours rougir. */
+  check("carlin : les confirmations qui existent ont pour cause la RACE, et elles sont 25",
+    race === 25 && confirmations.length === 25,
     `${confirmations.length} confirmation(s), dont ${race} de race, sur ${tousLesCanaux.length} canaux`);
 }
 

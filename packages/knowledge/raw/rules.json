@@ -433,7 +433,7 @@
       "fr": "Les chiens ne sont pas acceptés en cabine (chiens d'assistance exceptés) ; les animaux voyagent en soute ou en fret."
     },
     "source": {
-      "url": "https://www.aerlingus.com/support/baggage/special-and-sports-items/",
+      "url": "https://www.aerlingus.com/prepare/bags/travelling-with-pets/",
       "source_type": "official_website",
       "verified_date": "2026-07-10",
       "review_due": "2026-10-08",
@@ -444,6 +444,16 @@
           "date": "2026-07-10",
           "reviewer": "research",
           "note": "Wave-1 airline import — verified from the airline's official pet policy."
+        },
+        {
+          "date": "2026-08-27",
+          "reviewer": "MyDogCanFly Data Team",
+          "note": "URL de la source remplacée : l ancienne adresse répond HTTP 404 (constaté aux deux runs de fraîcheur, 26 et 27/08/2026). Nouvelle adresse officielle à vérification humaine avant fusion. Ancienne URL : https://www.aerlingus.com/support/baggage/special-and-sports-items/"
+        },
+        {
+          "date": "2026-08-28",
+          "reviewer": "MyDogCanFly Data Team",
+          "note": "URL corrigée après vérification (28/08/2026) : le chemin /travel-information/ venait d un hôte de préproduction indexé ; le chemin canonique est /prepare/bags/. Citation vérifiée : « Pets must be booked for carriage in the aircraft hold via a pet agent at IAG Cargo… Pets brought with you to an Aer Lingus check in desk will not be accepted under any circumstances. »"
         }
       ]
     }
@@ -477,7 +487,7 @@
       "fr": "Les chiens ne sont pas acceptés en bagage accompagné en soute ; ils voyagent en fret."
     },
     "source": {
-      "url": "https://www.aerlingus.com/support/baggage/special-and-sports-items/",
+      "url": "https://www.aerlingus.com/prepare/bags/travelling-with-pets/",
       "source_type": "official_website",
       "verified_date": "2026-07-10",
       "review_due": "2026-10-08",
@@ -488,6 +498,16 @@
           "date": "2026-07-10",
           "reviewer": "research",
           "note": "Wave-1 airline import — verified from the airline's official pet policy."
+        },
+        {
+          "date": "2026-08-27",
+          "reviewer": "MyDogCanFly Data Team",
+          "note": "URL de la source remplacée : l ancienne adresse répond HTTP 404 (constaté aux deux runs de fraîcheur, 26 et 27/08/2026). Nouvelle adresse officielle à vérification humaine avant fusion. Ancienne URL : https://www.aerlingus.com/support/baggage/special-and-sports-items/"
+        },
+        {
+          "date": "2026-08-28",
+          "reviewer": "MyDogCanFly Data Team",
+          "note": "URL corrigée après vérification (28/08/2026), même page et même citation que rule_aer_lingus_no_cabin."
         }
       ]
     }
@@ -1733,7 +1753,7 @@
       "fr": "En bagage accompagné, l'ensemble chien + caisse ne doit pas dépasser environ 60 kg ; au-delà, transport en fret."
     },
     "source": {
-      "url": "https://www.airnewzealand.com/pets-in-the-cabin",
+      "url": "https://www.airnewzealand.com/en-nz/travel-info/accessibility-and-assistance/travelling-with-pets",
       "source_type": "official_website",
       "verified_date": "2026-07-10",
       "review_due": "2026-10-08",
@@ -1744,6 +1764,11 @@
           "date": "2026-07-10",
           "reviewer": "research",
           "note": "Wave-1 airline import — verified from the airline's official pet policy."
+        },
+        {
+          "date": "2026-08-27",
+          "reviewer": "MyDogCanFly Data Team",
+          "note": "URL de la source remplacée : l ancienne adresse répond HTTP 404 (constaté aux deux runs de fraîcheur, 26 et 27/08/2026). Nouvelle adresse officielle à vérification humaine avant fusion. Ancienne URL : https://www.airnewzealand.com/pets-in-the-cabin"
         }
       ]
     }
@@ -1777,7 +1802,7 @@
       "fr": "Les chiens ne sont pas acceptés en cabine (chiens d'assistance exceptés) ; les animaux voyagent en soute ou en fret."
     },
     "source": {
-      "url": "https://www.airnewzealand.com/pets-in-the-cabin",
+      "url": "https://www.airnewzealand.com/en-nz/travel-info/accessibility-and-assistance/travelling-with-pets",
       "source_type": "official_website",
       "verified_date": "2026-07-10",
       "review_due": "2026-10-08",
@@ -1788,6 +1813,11 @@
           "date": "2026-07-10",
           "reviewer": "research",
           "note": "Wave-1 airline import — verified from the airline's official pet policy."
+        },
+        {
+          "date": "2026-08-27",
+          "reviewer": "MyDogCanFly Data Team",
+          "note": "URL de la source remplacée : l ancienne adresse répond HTTP 404 (constaté aux deux runs de fraîcheur, 26 et 27/08/2026). Nouvelle adresse officielle à vérification humaine avant fusion. Ancienne URL : https://www.airnewzealand.com/pets-in-the-cabin"
         }
       ]
     }
@@ -2211,112 +2241,6 @@
     },
     "rationale_i18n": {
       "fr": "Préparation : 4 à 6 semaines. Exigences : puce ISO, vaccination antirabique, certificat de santé, traitement antiparasitaire."
-    }
-  },
-  {
-    "id": "rule_alaska_cabin_weight",
-    "scope": {
-      "type": "airline",
-      "id": "airline_alaska"
-    },
-    "category": "cabin_weight",
-    "criticality": "high",
-    "applies_when": {
-      "all": [
-        {
-          "fact": "placement",
-          "op": "eq",
-          "value": "cabin"
-        },
-        {
-          "fact": "dog.weight_kg",
-          "op": "gt",
-          "value": 9
-        }
-      ]
-    },
-    "effect": {
-      "action": "deny",
-      "placement": [
-        "cabin"
-      ]
-    },
-    "params": {
-      "max_weight_kg": 9
-    },
-    "rationale": "In-cabin carriage is limited to about 9 kg including the carrier; heavier dogs are not accepted in the cabin.",
-    "rationale_i18n": {
-      "fr": "Le transport en cabine est limité à environ 9 kg, caisse comprise ; les chiens plus lourds ne sont pas acceptés en cabine."
-    },
-    "source": {
-      "url": "https://mydogcanfly.com/alaska-dog-policy/",
-      "source_type": "other",
-      "verified_date": "2026-06-30",
-      "review_due": "2026-09-28",
-      "confidence": 3,
-      "reviewer": "MyDogCanFly Data Team",
-      "history": [
-        {
-          "date": "2026-07-09",
-          "reviewer": "MyDogCanFly Data Team",
-          "note": "Imported from the MyDogCanFly airline comparison (verified June 2026)."
-        }
-      ]
-    }
-  },
-  {
-    "id": "rule_alaska_hold_weight",
-    "scope": {
-      "type": "airline",
-      "id": "airline_alaska"
-    },
-    "category": "hold_weight",
-    "criticality": "medium",
-    "applies_when": {
-      "all": [
-        {
-          "fact": "placement",
-          "op": "in",
-          "value": [
-            "hold",
-            "cargo"
-          ]
-        },
-        {
-          "fact": "dog.weight_kg",
-          "op": "gt",
-          "value": 68
-        }
-      ]
-    },
-    "effect": {
-      "action": "deny",
-      "placement": [
-        "hold",
-        "cargo"
-      ]
-    },
-    "params": {
-      "max_weight_kg": 68
-    },
-    "rationale": "As accompanied baggage the combined dog + crate must not exceed about 68 kg; heavier dogs travel via cargo.",
-    "rationale_i18n": {
-      "fr": "En bagage accompagné, l'ensemble chien + caisse ne doit pas dépasser environ 68 kg ; au-delà, transport en fret."
-    },
-    "source": {
-      "url": "https://mydogcanfly.com/alaska-dog-policy/",
-      "source_type": "other",
-      "verified_date": "2026-06-30",
-      "review_due": "2026-09-28",
-      "confidence": 3,
-      "reviewer": "MyDogCanFly Data Team",
-      "history": [
-        {
-          "date": "2026-07-09",
-          "reviewer": "MyDogCanFly Data Team",
-          "note": "Imported from the MyDogCanFly airline comparison (verified June 2026)."
-        }
-      ]
     }
   },
   {
@@ -3405,59 +3329,6 @@
           "note": "Baseline entry added to expand coverage; detailed requirements pending official verification."
         }
       ]
-    }
-  },
-  {
-    "id": "rule_ba_brachy_hold",
-    "scope": {
-      "type": "airline",
-      "id": "airline_british_airways"
-    },
-    "category": "breed_ban",
-    "criticality": "critical",
-    "applies_when": {
-      "all": [
-        {
-          "fact": "dog.brachycephalic",
-          "op": "eq",
-          "value": true
-        },
-        {
-          "fact": "placement",
-          "op": "in",
-          "value": [
-            "hold",
-            "cargo"
-          ]
-        }
-      ]
-    },
-    "effect": {
-      "action": "deny",
-      "placement": [
-        "hold",
-        "cargo"
-      ]
-    },
-    "params": {},
-    "rationale": "Brachycephalic (snub-nosed) breeds are not accepted in the hold or cargo, due to the elevated risk of breathing difficulty.",
-    "source": {
-      "url": "https://www.britishairways.com/en-gb/information/travel-assistance/travelling-with-pets",
-      "source_type": "official_website",
-      "verified_date": "2026-07-08",
-      "review_due": "2026-10-06",
-      "confidence": 3,
-      "reviewer": "MyDogCanFly Data Team",
-      "history": [
-        {
-          "date": "2026-07-08",
-          "reviewer": "MyDogCanFly Data Team",
-          "note": "Initial import — pending live re-verification."
-        }
-      ]
-    },
-    "rationale_i18n": {
-      "fr": "Les races brachycéphales (au museau écrasé) ne sont pas acceptées en soute ni en fret, en raison du risque accru de difficultés respiratoires."
     }
   },
   {
@@ -5726,7 +5597,7 @@
       "fr": "En bagage accompagné, l'ensemble chien + caisse ne doit pas dépasser environ 32 kg ; au-delà, transport en fret."
     },
     "source": {
-      "url": "https://www.csair.com/en/tourguide/faq/baggage/dongwu.shtml",
+      "url": "https://www.csair.com/newh5/en/tourguide/luggage_service/pets/",
       "source_type": "official_website",
       "verified_date": "2026-07-10",
       "review_due": "2026-10-08",
@@ -5737,6 +5608,16 @@
           "date": "2026-07-10",
           "reviewer": "research",
           "note": "Wave-1 airline import — verified from the airline's official pet policy."
+        },
+        {
+          "date": "2026-08-27",
+          "reviewer": "MyDogCanFly Data Team",
+          "note": "URL de la source remplacée : l ancienne adresse répond HTTP 404 (constaté aux deux runs de fraîcheur, 26 et 27/08/2026). Nouvelle adresse officielle à vérification humaine avant fusion. Ancienne URL : https://www.csair.com/en/tourguide/faq/baggage/dongwu.shtml"
+        },
+        {
+          "date": "2026-08-28",
+          "reviewer": "MyDogCanFly Data Team",
+          "note": "URL corrigée après vérification (28/08/2026) : la page vivante est sous /newh5/. Citation vérifiée : « The maximum weight for small animals should not exceed 32kg. »"
         }
       ]
     }
@@ -5770,7 +5651,7 @@
       "fr": "Les chiens ne sont pas acceptés en cabine (chiens d'assistance exceptés) ; les animaux voyagent en soute ou en fret."
     },
     "source": {
-      "url": "https://www.csair.com/en/tourguide/faq/baggage/dongwu.shtml",
+      "url": "https://www.csair.com/newh5/en/tourguide/luggage_service/pets/",
       "source_type": "official_website",
       "verified_date": "2026-07-10",
       "review_due": "2026-10-08",
@@ -5781,6 +5662,21 @@
           "date": "2026-07-10",
           "reviewer": "research",
           "note": "Wave-1 airline import — verified from the airline's official pet policy."
+        },
+        {
+          "date": "2026-08-27",
+          "reviewer": "MyDogCanFly Data Team",
+          "note": "URL de la source remplacée : l ancienne adresse répond HTTP 404 (constaté aux deux runs de fraîcheur, 26 et 27/08/2026). Nouvelle adresse officielle à vérification humaine avant fusion. Ancienne URL : https://www.csair.com/en/tourguide/faq/baggage/dongwu.shtml"
+        },
+        {
+          "date": "2026-08-28",
+          "reviewer": "MyDogCanFly Data Team",
+          "note": "URL corrigée après vérification (28/08/2026). Citation vérifiée : « No animals, except the guide dogs, can be brought into the passenger cabin. »"
+        },
+        {
+          "date": "2026-08-28",
+          "reviewer": "MyDogCanFly Data Team",
+          "note": "Correction de note (lecture directe Codex 28/08/2026) : la note précédente citait « No animals, except the guide dogs… » comme vérifiée — cette phrase ne figure PAS sur la page vivante (elle venait de l'index de l'ancienne page). La page /newh5/ n'explicite que l'exception (« service dogs may be brought into the cabin ») ; l'interdiction générale est implicite. La règle est conservée : son modèle traite le chien d'assistance comme l'unique exception, ce que la page établit."
         }
       ]
     }
@@ -9099,7 +8995,7 @@
       "fr": "Emirates ne transporte pas les chiens en cabine ; les animaux voyagent uniquement en soute ou en fret. Chiens d'assistance exceptés."
     },
     "source": {
-      "url": "https://www.emirates.com/english/before-you-fly/travel/travelling-with-animals/",
+      "url": "https://www.emirates.com/us/english/help/faqs/what-are-the-rules-and-charges-for-travelling-with-animals/",
       "source_type": "official_website",
       "verified_date": "2026-07-08",
       "review_due": "2026-10-06",
@@ -9110,6 +9006,11 @@
           "date": "2026-07-08",
           "reviewer": "MyDogCanFly Data Team",
           "note": "Cabin-policy audit — verified airlines do not carry dogs in the passenger cabin."
+        },
+        {
+          "date": "2026-08-27",
+          "reviewer": "MyDogCanFly Data Team",
+          "note": "URL de la source remplacée : l ancienne adresse répond HTTP 404 (constaté aux deux runs de fraîcheur, 26 et 27/08/2026). Nouvelle adresse officielle à vérification humaine avant fusion. Ancienne URL : https://www.emirates.com/english/before-you-fly/travel/travelling-with-animals/"
         }
       ]
     }
@@ -10978,101 +10879,6 @@
           "date": "2026-08-08",
           "reviewer": "MyDogCanFly Data Team",
           "note": "Vérifié ligne à ligne contre la table APHA (compagnies commerciales) — voir add-gb-approved-carriers-rules.mjs pour la méthode."
-        }
-      ]
-    }
-  },
-  {
-    "id": "rule_garuda_indonesia_hold_weight",
-    "scope": {
-      "type": "airline",
-      "id": "airline_garuda_indonesia"
-    },
-    "category": "hold_weight",
-    "criticality": "medium",
-    "applies_when": {
-      "all": [
-        {
-          "fact": "placement",
-          "op": "eq",
-          "value": "hold"
-        },
-        {
-          "fact": "dog.weight_kg",
-          "op": "gt",
-          "value": 32
-        }
-      ]
-    },
-    "effect": {
-      "action": "deny",
-      "placement": [
-        "hold"
-      ]
-    },
-    "params": {
-      "max_weight_kg": 32
-    },
-    "rationale": "As accompanied baggage the combined dog + crate must not exceed about 32 kg; heavier dogs travel via cargo.",
-    "rationale_i18n": {
-      "fr": "En bagage accompagné, l'ensemble chien + caisse ne doit pas dépasser environ 32 kg ; au-delà, transport en fret."
-    },
-    "source": {
-      "url": "https://cargo.garuda-indonesia.com/product/pet-and-animals",
-      "source_type": "official_website",
-      "verified_date": "2026-07-10",
-      "review_due": "2026-10-08",
-      "confidence": 3,
-      "reviewer": "research",
-      "history": [
-        {
-          "date": "2026-07-10",
-          "reviewer": "research",
-          "note": "Wave-1 airline import — verified from the airline's official pet policy."
-        }
-      ]
-    }
-  },
-  {
-    "id": "rule_garuda_indonesia_no_cabin",
-    "scope": {
-      "type": "airline",
-      "id": "airline_garuda_indonesia"
-    },
-    "category": "placement",
-    "criticality": "high",
-    "applies_when": {
-      "any": [
-        {
-          "fact": "placement",
-          "op": "eq",
-          "value": "cabin"
-        }
-      ]
-    },
-    "effect": {
-      "action": "deny",
-      "placement": [
-        "cabin"
-      ]
-    },
-    "params": {},
-    "rationale": "Dogs are not accepted in the passenger cabin (recognised assistance dogs excepted); pets travel in the hold or as cargo.",
-    "rationale_i18n": {
-      "fr": "Les chiens ne sont pas acceptés en cabine (chiens d'assistance exceptés) ; les animaux voyagent en soute ou en fret."
-    },
-    "source": {
-      "url": "https://cargo.garuda-indonesia.com/product/pet-and-animals",
-      "source_type": "official_website",
-      "verified_date": "2026-07-10",
-      "review_due": "2026-10-08",
-      "confidence": 3,
-      "reviewer": "research",
-      "history": [
-        {
-          "date": "2026-07-10",
-          "reviewer": "research",
-          "note": "Wave-1 airline import — verified from the airline's official pet policy."
         }
       ]
     }
@@ -17126,7 +16932,7 @@
       "fr": "Les chiens ne sont pas acceptés en cabine (chiens d'assistance exceptés) ; les animaux voyagent en soute ou en fret."
     },
     "source": {
-      "url": "https://www.malaysiaairlines.com/my/en/plan/baggage/carriage-of-animals.html",
+      "url": "https://www.askmh.malaysiaairlines.com/faq/s/article/Can-I-carry-domestic-pets-in-the-cabin",
       "source_type": "official_website",
       "verified_date": "2026-07-10",
       "review_due": "2026-10-08",
@@ -17137,6 +16943,21 @@
           "date": "2026-07-10",
           "reviewer": "research",
           "note": "Wave-1 airline import — verified from the airline's official pet policy."
+        },
+        {
+          "date": "2026-08-27",
+          "reviewer": "MyDogCanFly Data Team",
+          "note": "URL de la source remplacée : l ancienne adresse répond HTTP 404 (constaté aux deux runs de fraîcheur, 26 et 27/08/2026). Nouvelle adresse officielle à vérification humaine avant fusion. Ancienne URL : https://www.malaysiaairlines.com/my/en/plan/baggage/carriage-of-animals.html"
+        },
+        {
+          "date": "2026-08-28",
+          "reviewer": "MyDogCanFly Data Team",
+          "note": "URL corrigée après vérification (28/08/2026) : la variante /my/en/…carriage-of-animals a disparu et la /us/en n était pas confirmée ; la FAQ officielle askmh porte le fait. Citation vérifiée : « The carriage of domestic pets in the aircraft cabin is not permitted. »"
+        },
+        {
+          "date": "2026-08-28",
+          "reviewer": "MyDogCanFly Data Team",
+          "note": "Citation exacte de la lecture directe (Codex, 28/08/2026, section « Answer ») : « Malaysia Airlines does not allow the carriage of domestic pets in the cabin. » — remplace la variante approchante de la note précédente, issue de l'index."
         }
       ]
     }
@@ -22399,10 +22220,10 @@
       "fr": "Smartwings limite le transport en cabine à 8 kg, sac compris (max 43 × 30 × 27 cm) ; les chiens plus lourds voyagent en soute."
     },
     "source": {
-      "url": "https://www.smartwings.com/en/can-i-fly-with-my-pet",
+      "url": "https://www.smartwings.com/en/fees-and-charges",
       "source_type": "official_website",
-      "verified_date": "2026-07-09",
-      "review_due": "2026-10-07",
+      "verified_date": "2026-08-28",
+      "review_due": "2026-11-26",
       "confidence": 3,
       "reviewer": "MyDogCanFly Data Team",
       "history": [
@@ -22410,6 +22231,21 @@
           "date": "2026-07-09",
           "reviewer": "MyDogCanFly Data Team",
           "note": "Added from Smartwings official pet page (leisure carrier, PRG hub)."
+        },
+        {
+          "date": "2026-08-27",
+          "reviewer": "MyDogCanFly Data Team",
+          "note": "La page « Can I fly with my pet » ne porte aucun chiffre de poids (vérification humaine du 26/08/2026) : source remplacée par la page officielle des frais, qui énonce la limite de 8 kg sac compris. Ancienne URL : https://www.smartwings.com/en/can-i-fly-with-my-pet"
+        },
+        {
+          "date": "2026-08-28",
+          "reviewer": "MyDogCanFly Data Team",
+          "note": "Substitution vers /en/fees-and-charges RETIRÉE (28/08/2026) : non prouvée — aucune page officielle smartwings.com indexée ne porte le 8 kg (agrégateurs seulement). Retour à la page animaux officielle ; la VALEUR de 8 kg reste sans source officielle établie — signalée à l arbitrage."
+        },
+        {
+          "date": "2026-08-28",
+          "reviewer": "MyDogCanFly Data Team",
+          "note": "Substitution RÉTABLIE après lecture directe (Codex, 28/08/2026) : la page officielle des frais porte le 8 kg — section « Price list of additional services », citation « Pet in cabin (1 piece up to 8 kg / leg) », la note précisant que le poids total caisse comprise ne doit pas dépasser 8 kg. curl reçoit 403 (challenge Cloudflare) mais le navigateur rend la page : la veille de fraîcheur la verra « inaccessible », ce qui est nommé ici et n'est pas un défaut de la source."
         }
       ]
     }
@@ -24409,50 +24245,6 @@
           "date": "2026-08-08",
           "reviewer": "MyDogCanFly Data Team",
           "note": "Vérifié ligne à ligne contre la table APHA (compagnies commerciales) — voir add-gb-approved-carriers-rules.mjs pour la méthode."
-        }
-      ]
-    }
-  },
-  {
-    "id": "rule_virgin_australia_no_cabin",
-    "scope": {
-      "type": "airline",
-      "id": "airline_virgin_australia"
-    },
-    "category": "placement",
-    "criticality": "high",
-    "applies_when": {
-      "all": [
-        {
-          "fact": "placement",
-          "op": "eq",
-          "value": "cabin"
-        }
-      ]
-    },
-    "effect": {
-      "action": "deny",
-      "placement": [
-        "cabin"
-      ]
-    },
-    "params": {},
-    "rationale": "Virgin Australia does not carry pets in the passenger cabin; only accredited assistance dogs are permitted. Dogs travel in the hold or via Virgin Australia Cargo.",
-    "rationale_i18n": {
-      "fr": "Virgin Australia ne transporte pas les animaux en cabine (seuls les chiens d’assistance reconnus sont admis). Les chiens voyagent en soute ou via Virgin Australia Cargo."
-    },
-    "source": {
-      "url": "https://www.virginaustralia.com/au/en/travel-info/specific-travel/travelling-with-pets/",
-      "source_type": "official_website",
-      "verified_date": "2026-07-09",
-      "review_due": "2026-10-07",
-      "confidence": 4,
-      "reviewer": "MyDogCanFly Data Team",
-      "history": [
-        {
-          "date": "2026-07-09",
-          "reviewer": "MyDogCanFly Data Team",
-          "note": "Added from Virgin Australia official pet page (no cabin; hold/cargo only)."
         }
       ]
     }

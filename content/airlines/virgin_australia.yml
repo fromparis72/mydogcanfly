@@ -33,10 +33,10 @@ verdict:
     es: Moderado
     pt: "Moderada"
 verdictNote:
-  en: Pets now fly in the cabin on select domestic routes (trial), plus nationwide cargo — both booked by phone.
-  fr: Les animaux volent désormais en cabine sur certaines routes domestiques (test), plus le cargo national — les deux se réservent par téléphone.
-  es: Las mascotas ya vuelan en cabina en rutas nacionales seleccionadas (prueba), además de la carga en todo el país; ambas se reservan por teléfono.
-  pt: "Os animais agora voam na cabine em rotas domésticas selecionadas (teste), além da carga em todo o país — ambos reservados por telefone."
+  en: Pets now fly in the cabin on select domestic routes (trial); other animals may possibly travel via Virgin Australia Cargo, subject to route, aircraft, transport partner and prior acceptance.
+  fr: Les animaux volent désormais en cabine sur certaines routes domestiques (test) ; les autres peuvent éventuellement voyager via Virgin Australia Cargo, sous réserve de l'itinéraire, de l'appareil, du partenaire de transport et de l'acceptation préalable.
+  es: Las mascotas ya vuelan en cabina en rutas nacionales seleccionadas (prueba); los demás animales pueden eventualmente viajar vía Virgin Australia Cargo, sujeto a la ruta, el avión, el socio de transporte y la aceptación previa.
+  pt: "Os animais agora voam na cabine em rotas domésticas selecionadas (teste); os demais animais podem eventualmente viajar via Virgin Australia Cargo, sujeito à rota, à aeronave, ao parceiro de transporte e à aceitação prévia."
 ladder:
   - flex: 20
     color: "#16794f"
@@ -60,7 +60,32 @@ ladder:
     sub: ≤ 65 kg
 policies:
   cabin:
-    availability: offered
+    # Arbitrage propriétaire + Codex (28/08/2026, option A-bis) : « Pets in Cabin » existe
+    # (petits chiens/chats, animal + sac ≤ 8 kg) mais UNIQUEMENT sur certains vols domestiques,
+    # routes et dates éligibles — un service encadré comme une expérimentation. `offered`
+    # affirmait un oui universel que la politique ne donne pas ; `case_by_case` projette
+    # `confirmation_required` (cause airline_approval), ce que le moteur sait déjà dire.
+    availability: case_by_case
+    conditions:
+      en: "Small dog or cat only; combined weight of pet and carrier no more than 8 kg; domestic flights on eligible routes and dates only (trial service); phone booking and airline confirmation required."
+      fr: "Petit chien ou chat uniquement ; poids combiné animal + sac ≤ 8 kg ; vols domestiques sur routes et dates éligibles uniquement (service en test) ; réservation par téléphone et confirmation de la compagnie obligatoires."
+      es: "Solo perros o gatos pequeños; peso combinado de mascota y transportín ≤ 8 kg; únicamente vuelos nacionales en rutas y fechas elegibles (servicio en prueba); reserva telefónica y confirmación de la aerolínea obligatorias."
+      pt: "Apenas cães ou gatos pequenos; peso combinado do animal e da bolsa ≤ 8 kg; somente voos domésticos em rotas e datas elegíveis (serviço em teste); reserva por telefone e confirmação da companhia obrigatórias."
+    # Source AUDITÉE (contrat T0bAuditSource) — vérification humaine de Philippe le 28/08/2026
+    # sur la page officielle « Pets in cabin » ; la citation fonde le fait des 8 kg. La cadence
+    # de 90 jours est contractuelle (review_due = verified_date + 90) ; l'alerte opérationnelle
+    # du 30/09/2026 — fin annoncée de la majorité des routes du test — vit sur la source
+    # générale de la fiche, et le contrôle du 30/09 devra réexaminer les deux.
+    source:
+      url: "https://www.virginaustralia.com/au/en/travel-info/specific-travel/pets/pets-in-cabin/"
+      source_type: official_website
+      verified_date: "2026-08-28"
+      review_due: "2026-11-26"
+      confidence: 4
+      reviewer: "Philippe (vérification humaine du 28/08/2026)"
+      quote: "Be a small cat or dog, with a combined weight (pet + carrier) of no more than 8kg"
+      quote_language: en-AU
+      locator: "section « Pet requirements »"
   hold:
     review_state: legacy_unreviewed
     # dette éditoriale scellée (T0-B2) : aucun canal visible ne décrit ce placement
@@ -104,10 +129,10 @@ channels:
       es: Vía carga
       pt: "Via carga"
     detail:
-      en: Pets not eligible for the cabin travel in the cargo hold (pet + container ≤ 65 kg) via Virgin Australia Cargo, through a transport partner. Not on A320/Saab 340.
-      fr: Les animaux non éligibles à la cabine voyagent en soute (animal + contenant ≤ 65 kg) via Virgin Australia Cargo, par un partenaire de transport. Pas sur A320/Saab 340.
-      es: Las mascotas que no reúnen los requisitos para la cabina viajan en la bodega de carga (mascota + jaula ≤ 65 kg) a través de Virgin Australia Cargo, mediante un socio de transporte. No en A320/Saab 340.
-      pt: "Os animais que não são elegíveis para a cabine viajam no porão de carga (animal + recipiente ≤ 65 kg) via Virgin Australia Cargo, por meio de um parceiro de transporte. Não disponível em A320/Saab 340."
+      en: Pets not eligible for the cabin may possibly be transported in the cargo hold (pet + container ≤ 65 kg) via Virgin Australia Cargo, subject to route, aircraft, transport partner and prior acceptance. Not on A320/Saab 340.
+      fr: Les animaux non éligibles à la cabine peuvent éventuellement être transportés en soute (animal + contenant ≤ 65 kg) via Virgin Australia Cargo, sous réserve de l'itinéraire, de l'appareil, du partenaire de transport et de l'acceptation préalable. Pas sur A320/Saab 340.
+      es: Las mascotas que no reúnen los requisitos para la cabina pueden eventualmente ser transportadas en la bodega de carga (mascota + jaula ≤ 65 kg) vía Virgin Australia Cargo, sujeto a la ruta, el avión, el socio de transporte y la aceptación previa. No en A320/Saab 340.
+      pt: "Os animais que não são elegíveis para a cabine podem eventualmente ser transportados no porão de carga (animal + recipiente ≤ 65 kg) via Virgin Australia Cargo, sujeito à rota, à aeronave, ao parceiro de transporte e à aceitação prévia. Não disponível em A320/Saab 340."
     fee:
       en: Quote
       fr: Devis

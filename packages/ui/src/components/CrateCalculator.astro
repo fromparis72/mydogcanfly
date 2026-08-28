@@ -26,21 +26,26 @@ const breeds = [...kb.breeds.values()]
   .sort((x, y) => x.label.localeCompare(y.label));
 
 // Airlines with their real cabin carrier limits (where published) + hold/cargo availability.
-type Pol = { allowed?: boolean; max_weight_kg?: number; carrier_dims_cm?: { l: number; w: number; h: number } };
+type Pol = { allowed?: boolean; status?: string; max_weight_kg?: number; carrier_dims_cm?: { l: number; w: number; h: number } };
 const airlines = [...kb.airlines.values()].map((a) => {
   const pol = (a as { premium?: { policy?: Record<string, Pol> } }).premium?.policy ?? {};
   const cab = pol.cabin;
-  // Tri-state so a MISSING policy (many airlines have no structured premium block in the normalized KB)
-  // is treated as "unknown" — never as an explicit refusal.
-  const hold: "yes" | "no" | "unknown" = pol.hold?.allowed === true ? "yes" : pol.hold?.allowed === false ? "no" : "unknown";
-  const cargoAllowed = !!pol.cargo?.allowed;
-  const cabinObj = cab?.allowed ? { maxKg: cab.max_weight_kg ?? null, dims: cab.carrier_dims_cm ?? null } : null;
+  // Tri-state par STATUT runtime (28/08/2026) — plus jamais par le booléen `allowed` seul.
+  // `allowed === false` recouvre DEUX réalités que T0-A a séparées : le refus explicite
+  // (`denied`) et l'incertitude à confirmer (`confirmation_required`, dont les canaux
+  // `legacy_unreviewed`). Les confondre faisait afficher « ne transporte pas les chiens »
+  // pour Qantas ou Cathay, dont la soute est simplement non revérifiée — et a fait basculer
+  // Virgin Australia en « aucun animal » le jour où sa cabine est devenue conditionnelle
+  // (arbitrage A-bis). Un statut absent ou à confirmer est « unknown », jamais un refus.
+  const hold: "yes" | "no" | "unknown" = pol.hold?.status === "allowed" ? "yes" : pol.hold?.status === "denied" ? "no" : "unknown";
+  const cargoAllowed = pol.cargo?.status === "allowed";
+  const cabinObj = cab?.status === "allowed" ? { maxKg: cab.max_weight_kg ?? null, dims: cab.carrier_dims_cm ?? null } : null;
   // Retest du 09/08/2026 : Ryanair affichait « n'accepte pas ce chien en soute » sans jamais dire
   // que la cabine ET le fret sont AUSSI refusés — ça laissait croire que la cabine restait possible.
-  // 7 compagnies du référentiel refusent explicitement les trois placements (cabine/soute/fret) :
+  // 7 compagnies du référentiel refusent EXPLICITEMENT les trois placements (cabine/soute/fret) :
   // Ryanair, easyJet, Wizz Air, Icelandair, IndiGo, Batik Air Indonésie, Batik Air Malaisie. Pour
   // celles-là seulement, un message dédié et sans ambiguïté remplace les messages cabine/soute.
-  const noPets = !cabinObj && hold === "no" && !cargoAllowed;
+  const noPets = pol.cabin?.status === "denied" && pol.hold?.status === "denied" && pol.cargo?.status === "denied";
   return {
     id: a.id,
     name: (a as { name?: string }).name ?? a.id,
