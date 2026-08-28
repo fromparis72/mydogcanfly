@@ -9,12 +9,12 @@ attendent chacun un ordre explicite du propriétaire.
 
 ---
 
-## 1. État des PR au 28/08/2026 (02:45 UTC)
+## 1. État des PR au 28/08/2026 (04:30 UTC)
 
 | PR | Objet | Branche | Tête | Jobs requis | Mergeable | Fusion |
 |---|---|---|---|---|---|---|
-| #26 | Lot F clos : outil chaleur jamais construit, adresse morte partout, garde opposable | `claude/lot-f-cloture` | `d2cbd2c` | verts (les deux) | clean | **attend l'ordre propriétaire** |
-| #27 | RC — corrections de lancement (sources vérifiées, VA conditionnelle, mention transporteur) | `claude/rc-corrections` | `1649836` | verts (run 75) | clean | **attend l'ordre propriétaire** |
+| #26 | Lot F clos : outil chaleur jamais construit, adresse morte partout, garde opposable | `claude/lot-f-cloture` | `6cf18b6` | verts (les deux) | clean | **attend l'ordre propriétaire** |
+| #27 | RC — corrections de lancement (sources vérifiées, VA conditionnelle, mention transporteur, 2ᵉ passe Codex intégrée) | `claude/rc-corrections` | `806064f` | CI en cours (tout vert en local, dont entities:complet 128 OK) | clean | **attend l'ordre propriétaire** |
 
 Historique CI de la PR #27 : trois pannes successives, chacune nommée dans le corps
 de la PR et dans les messages de commit (sentinelle caisse corrigée à la dérivation ;
@@ -22,7 +22,12 @@ registre des contradictions 78 → 79 par mouvement nommé ; contre-épreuve mue
 reformatage — le format d'un fichier visé par une mutation est porteur).
 
 - Base commune : `main` = `b500168` (première référence de fraîcheur China Eastern, PR #25).
-- Contre-revue Codex : `[EN ATTENTE]` sur les têtes `d2cbd2c` (PR #26) et `1649836` (PR #27).
+- **Contre-revue Codex, 1ʳᵉ passe reçue le 28/08 (12:43)** : PR #26 corrigée (promesses
+  fonctionnelles de `/tools/` alignées sur trois outils + contrôle de cardinalité, tête
+  `6cf18b6`, jobs verts) ; PR #27 corrigée (P0 Alaska 150 lb, P0 Garuda toutes surfaces,
+  P1 Smartwings review_due, garde `test-fiches-affirmations-retirees.mjs`, tête `806064f`).
+  Selon la consigne Codex : #26 « pourra être revérifiée rapidement », #27 « devra être
+  reconstruite et rejouée entièrement » — revérification `[EN ATTENTE]`.
 
 ## 2. SHA de la release candidate
 
@@ -33,7 +38,17 @@ vert de `main`.
 ## 3. Porte SEO/GEO
 
 - Conception livrée : `DOSSIER-PORTE-LANCEMENT.md`, branche `claude/porte-seo-geo`,
-  tête `be8772c`. Contre-revue Codex `[EN ATTENTE]` — **aucun code avant son feu vert**.
+  tête `be8772c`. **Contre-revue Codex reçue (28/08)** : direction bonne, quatre points à
+  corriger AVANT le code — (P0) l'invisibilité de la preview ne peut pas être promise avec
+  `Disallow: /` + `noindex` (robots bloqué ⇒ noindex illisible ; Cloudflare Access ou promesse
+  réduite) ; (P0) la porte doit sceller l'ARTEFACT exact (provenance de build, trois
+  contre-épreuves, vérifier-puis-déployer atomique sans reconstruction, `--commit-hash`) ;
+  (P0) l'absence de `_headers` ne prouve pas l'absence de `X-Robots-Tag` (transform rules) —
+  le contrôle hors ligne conclut sur l'artefact, l'autorité finale est la réponse HTTP servie,
+  contre-test post-déploiement sur TOUTES les URL du sitemap ; (P1) quatre contrats à rendre
+  exécutables (porte-noindex-admis consommé réellement, P9 orchestré, P7 redirections
+  dynamiques, P8 « texte visible » défini). Conception révisée `[EN COURS]` — **aucun code
+  avant le feu vert Codex sur la conception révisée**.
 - Après feu vert : `porte-lancement.mjs` + `porte-noindex-admis.json` + 8 contre-épreuves
   + câblage CI (mode preview sur le build existant ; second build en mode production).
 - Rapport d'exécution de la porte : `[EN ATTENTE]` (dépend du codage post-feu-vert).
@@ -81,8 +96,8 @@ langue (en/fr/es/pt) : rendu des surfaces, console, réseau, santé Worker.
 
 | # | Défaut | Origine | Impact | Suite |
 |---|---|---|---|---|
-| 1 | La fiche Alaska affiche encore « Hold ≤ 150 lb » | Le seuil vient de Pet Connect (service CARGO d'Alaska), non transposable au bagage accompagné — lecture directe Codex du 28/08/2026. Les deux règles de poids inventées ont été supprimées de `rules.json` (PR #27), mais l'affichage de la fiche n'est pas encore corrigé. | Un lecteur peut croire ce seuil applicable à la soute accompagnée. | Correction post-lancement (campagne lot D) ou micro-correctif si le propriétaire l'ordonne. |
-| 2 | Garuda Indonesia : aucun seuil soute publié | Les règles 32 kg et no_cabin retirées faute de source prouvable (la page Cargo ne prouve pas la politique passager) ; la fiche porte `cabin=not_offered`. | Couverture réduite mais honnête : aucun chiffre inventé ne subsiste. | Reprise quand une page passager officielle lisible existera. |
+| 1 | ~~La fiche Alaska affiche « Hold ≤ 150 lb »~~ **CORRIGÉ** (tête `806064f`, PR #27) | Le seuil Pet Connect (CARGO) était transposé au bagage accompagné. Retiré de l'échelle et des détails, quatre langues ; garde `test-fiches-affirmations-retirees.mjs` : toute réinsertion rougit. | — | Clos, sous garde. |
+| 2 | ~~Garuda « sans seuil »~~ **REQUALIFIÉ** (tête `806064f`, PR #27) | Le rapport antérieur « aucun chiffre inventé ne subsiste » était FAUX (2ᵉ passe Codex) : la fiche affirmait encore l'interdiction cabine, ≤ 32 kg et > 32 kg. Décision cabine → héritage non re-vérifié (« à confirmer ») ; seuils et refus catégorique retirés de la fiche, des guides en/fr et des données générées, sous la même garde. | La fiche est honnête : trois canaux « à confirmer », aucun fait non prouvé. | Reprise quand une page passager officielle lisible existera. |
 | 3 | 79 dettes éditoriales scellées | Registre des contradictions éditoriales (`test-entity-pages-harness.mjs`) : l'éditorial d'époque contredit la décision canonique sur 79 canaux · 71 fiches ; la page rend toujours la pastille canonique, vérifiée bloc par bloc. | Aucun sur la décision affichée ; texte d'époque parfois daté. | Résorption progressive post-lancement, compte figé avancé par mouvements nommés. |
 | 4 | Fraîcheur : une seule référence promue | Registre scellé de 1 503 entrées, une référence humainement confirmée (China Eastern, PR #25). Les 81 URL inaccessibles au contrôleur et les états `sans_reference` sont normaux à ce stade (contrat lot B). | Le contrôle hebdomadaire (lundi 05:17 UTC) signale sans bloquer. | Promotion de références au fil des PR humaines, une à une. |
 
