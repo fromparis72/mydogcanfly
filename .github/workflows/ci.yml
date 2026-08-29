@@ -329,6 +329,12 @@ jobs:
       - name: La FAQ des fiches races nomme les compagnies compatibles (site complet)
         run: node --import tsx test-faq-races.mjs --dist=packages/ui/dist
 
+      # AUCUN MONTANT HÉRITÉ NE DOIT ÊTRE SERVI. Le harnais tarifaire juge ici le DOM CONSTRUIT :
+      # les 100 chaînes tarifaires héritées vivent toujours dans les données — c est la dette,
+      # assumée — mais aucune ne doit apparaître dans les fiches compagnies rendues.
+      - name: Aucun tarif hérité servi dans le HTML (site complet)
+        run: node --import tsx test-tarifs.mjs --dist=packages/ui/dist
+
       - name: Les affirmations retirées ne reviennent pas (dist complet)
         run: node test-fiches-affirmations-retirees.mjs --dist-complet
 

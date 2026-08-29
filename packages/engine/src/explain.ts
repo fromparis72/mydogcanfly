@@ -98,36 +98,16 @@ function joinList(arr: string[], locale: string): string {
   return `${arr.slice(0, -1).join(", ")} ${AND[locale] ?? "and"} ${arr[arr.length - 1]}`;
 }
 
-/** Published fees are stored as-is (English). French display strings for the ones that contain words. */
-const FEE_FR: Record<string, string> = {
-  "€70 (within France) to €200 (US/Canada–Europe)": "€70 (en France) à €200 (États-Unis/Canada–Europe)",
-  "€100 to €600": "€100 à €600",
-  "€70 to €500 per one-way flight": "€70 à €500 par vol aller simple",
-  "€70 to €500": "€70 à €500",
-  "via IAG Cargo (quote)": "via IAG Cargo (sur devis)",
-  "$150 (US/Canada/PR/USVI) or $200 international, for tickets issued on/after 8 Apr 2025": "$150 (États-Unis/Canada/Porto Rico) ou $200 à l'international, pour les billets émis à partir du 8 avril 2025",
-  "via Delta Cargo (quote)": "via Delta Cargo (sur devis)",
-  "$150 each way": "$150 par trajet",
-  "via PetSafe cargo (quote)": "via le fret PetSafe (sur devis)",
-  "$150 per carrier": "$150 par contenant",
-  "via cargo (quote)": "via fret (sur devis)",
-  "CA/US $50–$60 one-way (higher international)": "CA/US $50–$60 aller simple (plus élevé à l'international)",
-  "CA/US $105–$126 (Canada/US); $270–$324 international": "CA/US $105–$126 (Canada/États-Unis) ; $270–$324 à l'international",
-  "from €40/$50 (Spain) to €180/$215 (America/Asia) per segment": "de €40/$50 (Espagne) à €180/$215 (Amérique/Asie) par segment",
-  "via Etihad Cargo (quote)": "via Etihad Cargo (sur devis)",
-  "from €60": "à partir de €60",
-  "excess-baggage rate": "tarif d'excédent de bagages",
-  "via Copa Pets cargo (quote)": "via le fret Copa Pets (sur devis)",
-  "via Virgin Atlantic Cargo (quote)": "via Virgin Atlantic Cargo (sur devis)",
-  "via Qantas Freight (quote on request)": "via Qantas Freight (devis sur demande)",
-  "via American PetEmbark (quote)": "via American PetEmbark (sur devis)",
-  "via Cathay Cargo (quote)": "via Cathay Cargo (sur devis)",
-};
-/** Localize a published fee string for display (FR only; falls back to a safe "to"→"à" for plain ranges). */
-function localizeFee(fee: string, locale: string): string {
-  if (locale !== "fr") return fee;
-  return FEE_FR[fee] ?? fee.replace(/ to /g, " à ");
-}
+/* LA TABLE `FEE_FR` ET `localizeFee` ONT ÉTÉ SUPPRIMÉES — micro-lot Tarifs, 29/08/2026.
+ *
+ * Elles traduisaient en français vingt-trois chaînes tarifaires héritées (« €100 to €600 » →
+ * « €100 à €600 », « via IAG Cargo (quote) » → « … sur devis »), avec un repli qui remplaçait
+ * « to » par « à » pour tout le reste. Un soin de présentation appliqué à des données qu'on ne
+ * publie plus : bien traduire un chiffre faux ne le rend pas vrai, et laisser la fonction en
+ * place invitait à s'en resservir. Aucun tarif hérité n'est affiché ; quand une table tarifaire
+ * structurée existera, ses montants seront formatés depuis `Money` — montant et devise séparés —
+ * et non depuis des phrases. */
+
 
 /**
  * Explanation Engine (ADR-0013): turns a raw Decision into the Decision Report.
@@ -208,11 +188,27 @@ export function explain(decision: Decision, locale = "en"): DecisionReport {
         : L("air.not_accepted");
     const label = cabin ? L("air.cabin_ok") : hold ? L("air.hold_only") : cargo ? L("air.cargo_only")
       : to_confirm.length ? L("air.to_confirm") : notAccepted;
-    /* Fret : un montant n'est affiché que s'il est publié POUR LE FRET. Sinon « sur devis » — un
-       envoi fret se chiffre chez le transitaire, et laisser croire à un tarif serait une invention. */
-    const cargoOnly = !cabin && !hold && cargo;
-    const feeShown = a.fee ? localizeFee(a.fee, locale) : undefined;
-    const fee_quote_only = cargoOnly && !feeShown;
+    /* LES STATUTS TARIFAIRES, DÉRIVÉS DU CANAL — et de rien d'autre.
+     *
+     * Ce bloc calculait naguère un montant : `localizeFee(a.fee)`, avec « sur devis » pour le
+     * fret seul. Le champ `fee` n'existe plus (voir evaluate.ts) : 91 des 101 valeurs venaient
+     * d'un champ libre hérité, et aucune ne se rapportait au trajet demandé.
+     *
+     * Ce qui les remplace ne prétend rien de plus que ce qu'on sait : la cabine et la soute se
+     * confirment auprès de la compagnie, le fret se chiffre auprès de son service cargo. Un
+     * statut PAR COMPAGNIE — « variable selon le trajet et le poids total » pour telle ou telle —
+     * exigerait un registre sourcé ; il n'en existe pas encore, et un statut sans registre n'est
+     * pas meilleur qu'un montant sans source. */
+    const statuts_tarifaires = ([
+      ["cabin", cabin || cabin_status === "confirmation_required"],
+      ["hold", hold || hold_status === "confirmation_required"],
+      ["cargo", cargo || cargo_status === "confirmation_required"],
+    ] as const)
+      .filter(([, ouvert]) => ouvert)
+      .map(([placement]) => ({
+        placement,
+        statut: L(placement === "cargo" ? "tarif.devis_cargo" : "tarif.a_confirmer"),
+      }));
     /* Heat embargo : une règle saisonnière (température) suspend la soute/le fret pour cette date —
      * MAIS SEULEMENT si c'est la SEULE raison du refus. BUG corrigé (audit du 09/08/2026) : avant,
      * `heat_embargo` passait à `true` dès qu'une règle `summer_embargo` s'était déclenchée N'IMPORTE
@@ -340,7 +336,7 @@ export function explain(decision: Decision, locale = "en"): DecisionReport {
         }
       }
     }
-    return { airline_id: a.airline_id, name: a.airline_name, direct: a.direct, itinerary_confidence: a.itinerary_confidence, deny_reasons: (cabin || hold || cargo || to_confirm.length > 0) ? undefined : reasons, connect_airport_id: a.connect_airport_id, detour_km: a.detour_km, cabin, hold, cargo, cabin_status, hold_status, cargo_status, to_confirm: to_confirm.length ? to_confirm : undefined, placement_decisions, offers_pet_transport: a.offers_pet_transport, carries_pets: a.carries_pets, label, fee: fee_quote_only ? L("air.fee_cargo_quote") : feeShown, fee_quote_only, heat_embargo, heat_confirmation_required, carrier_of_origin, carrier_of_destination, origin_airport_id: a.origin_airport_id, destination_airport_id: a.destination_airport_id };
+    return { airline_id: a.airline_id, name: a.airline_name, direct: a.direct, itinerary_confidence: a.itinerary_confidence, deny_reasons: (cabin || hold || cargo || to_confirm.length > 0) ? undefined : reasons, connect_airport_id: a.connect_airport_id, detour_km: a.detour_km, cabin, hold, cargo, cabin_status, hold_status, cargo_status, to_confirm: to_confirm.length ? to_confirm : undefined, placement_decisions, offers_pet_transport: a.offers_pet_transport, carries_pets: a.carries_pets, label, statuts_tarifaires, heat_embargo, heat_confirmation_required, carrier_of_origin, carrier_of_destination, origin_airport_id: a.origin_airport_id, destination_airport_id: a.destination_airport_id };
   });
   /* Le placement demandé, AVANT le tri (contre-revue v4 : le classement l'ignorait — quatre
      « soute à confirmer » précédaient des soutes réellement autorisées sur une recherche soute). */

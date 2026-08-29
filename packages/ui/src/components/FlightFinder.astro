@@ -645,7 +645,18 @@ const labels = {
                     if (fams.has("missing")) lines.push(`<div class="acard__confirmwhy">? ${esc(L.confirmMissing)}</div>`);
                     return lines.join("");
                   })()}
-                  ${a.fee ? `<div class="acard__fee">${esc(a.fee)}</div>` : ""}
+                  ${/* LE MONTANT NU A DISPARU. Cette ligne rendait le champ « fee » — un montant
+                       unique, attribué au premier canal accepté et affiché SANS dire duquel il
+                       venait, dont 91 valeurs sur 101 sortaient d'un champ libre hérité du site
+                       v1. Une fourchette générique y prenait l'apparence d'un prix calculé pour le
+                       trajet demandé. Ce qui la remplace nomme son canal et ne promet rien de plus
+                       que ce qu'on sait. */ ""}
+                  ${(a.statuts_tarifaires ?? []).length
+                    ? `<div class="acard__fee">${a.statuts_tarifaires.map((s) => {
+                        const cap = s.placement === "cabin" ? L.cabinShort : s.placement === "hold" ? L.holdShort : L.cargoShort;
+                        return `<span class="acard__tarif" data-placement="${esc(s.placement)}">${esc(cap)} — ${esc(s.statut)}</span>`;
+                      }).join("")}</div>`
+                    : ""}
                 </div>
                 <div class="acard__mid">${(() => {
                   // One decisive action per airline: open the bespoke "Bible" sheet, carrying the whole

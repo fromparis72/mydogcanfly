@@ -193,7 +193,12 @@ const jsonLd = faqItems.length ? [webpageLd, faqJsonLd(faqItems)] : [webpageLd];
             <div class="mini" data-placement={c.placement} data-status={statut}>
               <div class="t">{c.icon} {t(c.name)}<span class={`pill ${classeStatut(statut)} ml`}>{tt(locale, cleLibelleStatut(statut))}</span></div>
               <div class="k" set:html={chiffresEnGras(t(c.detail))} />
-              <div class="amt">{t(c.fee)}</div>
+              {/* LE MONTANT A ÉTÉ RETIRÉ (micro-lot Tarifs, 29/08/2026). Il venait de
+                  premium.policy[canal].fee — une chaîne libre, sans devise séparée, sans route,
+                  sans date d'applicabilité : lisible, mais impossible à rapporter à un trajet.
+                  Le statut du canal suffit tant qu'aucune table tarifaire structurée et sourcée
+                  n'existe. */}
+              <div class="amt">{tt(locale, c.placement === "cargo" ? "tarif.devis_cargo" : "tarif.a_confirmer")}</div>
               {/* La CAUSE de l'incertitude, dite pour ce qu'elle est : la nôtre (donnée non
                 * revérifiée) ou celle de la compagnie (rien de publié, accord au cas par cas).
                 * Les confondre attribuerait à la compagnie un doute qui vient de nous. */}

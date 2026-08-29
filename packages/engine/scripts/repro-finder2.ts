@@ -28,7 +28,8 @@ function show(title: string, req: Parameters<typeof FinderRequest.parse>[0]) {
         mode.padEnd(16),
         `carries_pets=${a.carries_pets}`.padEnd(20),
         `label="${a.label}"`.padEnd(46),
-        `fee=${a.fee ?? "—"}`,
+        /* `fee` n'existe plus : le rapport porte des statuts PAR CANAL, jamais un montant. */
+        `tarifs=${(a.statuts_tarifaires ?? []).map((s) => `${s.placement}:${s.statut}`).join(" · ") || "—"}`,
       ].join(" | "),
     );
   }

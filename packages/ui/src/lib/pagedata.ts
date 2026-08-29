@@ -14,8 +14,10 @@ function iso2Flag(iso2?: string): string {
 interface Fact { label: string; value: string }
 interface SrcView { host: string; url: string; date: string; confidence: number }
 interface PolicyView {
+  /** `key` EST le canal : « cabin », « hold » ou « cargo ». */
   key: string; label: string; allowed: boolean;
-  maxWeight?: string; dims?: string; fee?: string; conditions?: string; src: SrcView;
+  /* `fee` retiré du type : laisser la place, c est laisser revenir la valeur. */
+  maxWeight?: string; dims?: string; conditions?: string; src: SrcView;
 }
 export interface PremiumView {
   summary?: string;
@@ -204,7 +206,10 @@ function premiumView(a: { premium?: unknown }, locale: string): PremiumView | un
       key, label: t(locale, `placement.${key}`), allowed: p.allowed,
       maxWeight: p.max_weight_kg ? `${p.max_weight_kg} kg` : undefined,
       dims: p.carrier_dims_cm ? `${p.carrier_dims_cm.l}×${p.carrier_dims_cm.w}×${p.carrier_dims_cm.h} cm` : undefined,
-      fee: p.fee, conditions: pick(p.conditions, locale), src: srcView(p.source),
+      /* `fee` NE DESCEND PLUS JUSQU'À LA VUE (micro-lot Tarifs, 29/08/2026) : la chaîne de
+         `premium.policy[canal].fee` est libre, sans devise séparée, sans route ni date
+         d'applicabilité — impossible à rapporter à un trajet. La page rend le statut du canal. */
+      conditions: pick(p.conditions, locale), src: srcView(p.source),
     };
   };
 
