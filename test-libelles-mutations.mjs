@@ -96,5 +96,16 @@ else {
 mutation("6 le nom interne « IATA Pet Crates » remis dans le libellé", page("fr"),
   "Quelle taille de cage de transport pour mon chien ?", "IATA Pet Crates");
 
+/* 7 et 8 — LES DEUX RAISONS, SOUTE ET FRET, altérées à la source. Elles ne vivent pas dans le
+   dist : le moteur les lit dans les traductions au moment du rendu. C'est exactement la fuite
+   que l'ancienne preuve ne pouvait pas voir, puisqu'elle s'injectait sa propre réponse. */
+const STRINGS_FR = "packages/knowledge/translations/fr/strings.json";
+mutation("7 la raison SOUTE altérée dans les traductions", STRINGS_FR,
+  "Le voyage en soute exige une cage adaptée à ton chien",
+  "Le voyage en soute exige une caisse conforme IATA");
+mutation("8 la raison FRET altérée dans les traductions", STRINGS_FR,
+  "avec une cage adaptée à ton chien et acceptée pour l’expédition.",
+  "avec une caisse homologuée IATA.");
+
 if (defauts) { console.error(`\n[libellés] ÉCHEC — ${defauts} contre-épreuve(s) en défaut`); process.exit(1); }
 console.log("\n[libellés] chaque garde a été vue rougir sur sa propre cause.");

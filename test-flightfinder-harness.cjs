@@ -711,11 +711,27 @@ const CRATE_NAME = {
   es: "¿Qué tamaño de transportín necesita mi perro?",
   pt: "Qual é o tamanho da caixa de transporte para o meu cachorro?",
 };
+/* LES RAISONS ATTENDUES, soute ET fret. Elles ne sont plus qu'une ATTENTE : la fixture reçoit
+   désormais le `PartnerRef` réellement produit par `selectPartners`, obtenu en exécutant
+   `test-partenaire-caisse.mjs --json`. Faute fermée, nommée : la version précédente injectait
+   `reason: CRATE_REASON[loc]` puis exigeait `bloc.includes(CRATE_REASON[loc])` — modifier la
+   traduction ou casser la sélection dans le moteur l'aurait laissée verte, et la branche fret
+   n'était jamais exécutée alors que le lot portait sur huit textes. */
+const MOTEUR = JSON.parse(require("child_process").execFileSync(
+  "node", ["--import", "tsx", "test-partenaire-caisse.mjs", "--json"], { encoding: "utf8", maxBuffer: 4 << 20 }));
 const CRATE_REASON = {
-  en: "Hold travel requires a crate suited to your dog and accepted by the airline operating the flight.",
-  fr: "Le voyage en soute exige une cage adaptée à ton chien et acceptée par la compagnie qui opère le vol.",
-  es: "El viaje en bodega exige un transportín adecuado a su perro y aceptado por la aerolínea que opera el vuelo.",
-  pt: "Viajar no porão exige uma caixa de transporte adequada ao seu cachorro e aceita pela companhia que opera o voo.",
+  hold: {
+    en: "Hold travel requires a crate suited to your dog and accepted by the airline operating the flight.",
+    fr: "Le voyage en soute exige une cage adaptée à ton chien et acceptée par la compagnie qui opère le vol.",
+    es: "El viaje en bodega exige un transportín adecuado a tu perro y aceptado por la aerolínea que opera el vuelo.",
+    pt: "Viajar no porão exige uma caixa de transporte adequada ao seu cachorro e aceita pela companhia que opera o voo.",
+  },
+  cargo: {
+    en: "Cargo is booked with a freight agent, not at check-in: quote, drop-off and pick-up at the cargo terminal, and a crate suited to your dog, accepted by the agent and by the airline operating the flight.",
+    fr: "En fret, la réservation se fait auprès d’un transitaire, pas au comptoir : devis, dépôt et retrait au terminal fret, avec une cage adaptée à ton chien et acceptée pour l’expédition.",
+    es: "En carga la reserva se hace con un agente de carga, no en el mostrador: presupuesto, entrega y recogida en la terminal de carga, con un transportín adecuado a tu perro, aceptado por el agente y por la aerolínea que opera el vuelo.",
+    pt: "No transporte como carga, a reserva é feita com um agente de carga, não no balcão: cotação, entrega e retirada no terminal de carga, com uma caixa adequada ao seu cachorro e aceita para o envio.",
+  },
 };
 const CTA_STEPS = {
   en: "See the different steps",
@@ -749,9 +765,20 @@ async function libellesPass() {
     const aveugle = IATA_ANCIENS.filter((t) => !IATA_INTERDIT.test(t));
     check(`le motif reconnaît les ${IATA_ANCIENS.length} anciens textes d'homologation`,
       aveugle.length === 0, JSON.stringify(aveugle[0] || "").slice(0, 140));
-    const fauxPositifs = Object.values(CRATE_REASON).filter((t) => IATA_INTERDIT.test(t));
-    check("le motif n'accuse aucun des quatre nouveaux textes",
+    const nouveaux = [...Object.values(CRATE_REASON.hold), ...Object.values(CRATE_REASON.cargo)];
+    const fauxPositifs = nouveaux.filter((t) => IATA_INTERDIT.test(t));
+    check(`le motif n'accuse aucun des ${nouveaux.length} nouveaux textes`,
       fauxPositifs.length === 0, JSON.stringify(fauxPositifs[0] || "").slice(0, 140));
+    /* LE MOTEUR ET LE DOM PARLENT DU MÊME TEXTE. Sans ce lien explicite, la preuve moteur et la
+       preuve DOM resteraient deux affirmations côte à côte. */
+    const desaccords = [];
+    for (const mode of ["hold", "cargo"]) for (const l of ["en", "fr", "es", "pt"]) {
+      if ((MOTEUR[`${l}/${mode}`] || {}).reason !== CRATE_REASON[mode][l]) desaccords.push(`${l}/${mode}`);
+    }
+    check("les 8 raisons du moteur sont exactement celles que le DOM exigera",
+      desaccords.length === 0, desaccords.join(", "));
+    check("le moteur conserve le nom interne brut dans le PartnerRef",
+      Object.values(MOTEUR).every((p) => p.name === "IATA Pet Crates"));
   }
   for (const loc of BADGE_LOCALES) {
     console.log(`\n— Libellés publics du Finder (${loc.code}) —`);
@@ -816,14 +843,18 @@ async function libellesPass() {
       }
     }
 
-    /* LE LIEN CAISSE, RENDU. On soumet réellement le formulaire avec une race choisie, et on lit
-       le <li> produit — pas la configuration. */
+    /* LE LIEN CAISSE, RENDU — SOUTE PUIS FRET. On soumet réellement le formulaire avec une race
+       choisie, et on lit le <li> produit. La fixture ne fabrique plus son partenaire : elle
+       transmet le `PartnerRef` que `selectPartners` a réellement produit, nom interne brut
+       compris. La branche fret, jamais exécutée jusqu'ici, l'est maintenant aussi. */
+    for (const mode of ["hold", "cargo"]) {
     let dom;
     try {
+      const partenaire = MOTEUR[`${loc.code}/${mode}`];
+      if (!partenaire) { check(`${loc.code}/${mode} : le moteur a produit un partenaire caisse`, false, "absent"); continue; }
       const fetchMock = async (url, opts) => {
         if (String(url).includes("/nearest-airport")) return { ok: false };
-        /* LA FIXTURE GARDE LE NOM INTERNE, exprès. */
-        const rep = { ...FAKE_REPORT, partners: [{ partner_id: "p_crates", vertical: "equipment", name: "IATA Pet Crates", url: "", sponsored: false, reason: CRATE_REASON[loc.code] }] };
+        const rep = { ...FAKE_REPORT, partners: [partenaire] };
         if (opts && opts.method === "POST") return { ok: true, json: async () => rep };
         throw new Error("unexpected fetch: " + url);
       };
@@ -843,27 +874,28 @@ async function libellesPass() {
       await flush();
 
       const liens = [...window.document.querySelectorAll("li a")].filter((a) => /tools\/crate\//.test(a.getAttribute("href") || ""));
-      check(`${loc.code} : le lien caisse est rendu et UNIQUE`, liens.length === 1, `${liens.length} lien(s)`);
+      check(`${loc.code}/${mode} : le lien caisse est rendu et UNIQUE`, liens.length === 1, `${liens.length} lien(s)`);
       const lien = liens[0];
-      check(`${loc.code} : TEXTE du lien caisse exact = ${JSON.stringify(CRATE_NAME[loc.code])}`,
+      check(`${loc.code}/${mode} : TEXTE du lien caisse exact = ${JSON.stringify(CRATE_NAME[loc.code])}`,
         !!lien && lien.textContent.trim() === CRATE_NAME[loc.code], JSON.stringify(lien && lien.textContent.trim()));
       const attendu = loc.dir ? `/${loc.dir.replace(/\/+$/, "")}/tools/crate/` : "/tools/crate/";
       const href = (lien && lien.getAttribute("href")) || "";
-      check(`${loc.code} : CHEMIN localisé exact = ${attendu}`, href.split("#")[0] === attendu, JSON.stringify(href));
-      check(`${loc.code} : l'ancre de race est conservée`, href.includes(`#breed=${breedId}`), JSON.stringify(href));
+      check(`${loc.code}/${mode} : CHEMIN localisé exact = ${attendu}`, href.split("#")[0] === attendu, JSON.stringify(href));
+      check(`${loc.code}/${mode} : l'ancre de race est conservée`, href.includes(`#breed=${breedId}`), JSON.stringify(href));
 
       /* LE NOM INTERNE NE SORT NULLE PART dans le DOM public. */
-      check(`${loc.code} : « IATA Pet Crates » absent du DOM`,
+      check(`${loc.code}/${mode} : « IATA Pet Crates » absent du DOM`,
         !window.document.documentElement.outerHTML.includes("IATA Pet Crates"));
 
       /* AUCUNE AFFIRMATION D'HOMOLOGATION dans le bloc, ni dans le libellé ni dans la raison. */
       const bloc = lien ? (lien.closest("li").textContent || "") : "";
-      check(`${loc.code} : la raison affichée est celle attendue`,
-        bloc.includes(CRATE_REASON[loc.code]), JSON.stringify(bloc.slice(0, 180)));
-      check(`${loc.code} : aucune conformité ni homologation IATA dans ce bloc`,
+      check(`${loc.code}/${mode} : la raison affichée est celle attendue`,
+        bloc.includes(CRATE_REASON[mode][loc.code]), JSON.stringify(bloc.slice(0, 180)));
+      check(`${loc.code}/${mode} : aucune conformité ni homologation IATA dans ce bloc`,
         !IATA_INTERDIT.test(bloc), JSON.stringify(bloc.slice(0, 180)));
     } catch (e) {
-      check(`${loc.code} : rendu du lien caisse`, false, e.message || String(e));
+      check(`${loc.code}/${mode} : rendu du lien caisse`, false, e.message || String(e));
+    }
     }
   }
 }
