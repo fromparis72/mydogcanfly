@@ -503,9 +503,45 @@ console.log("=== Preuve T0-B2-UI (deux baselines FIGÉES — permanente) ===");
        brachycéphale catégorique de BA — et avis IAG « acceptation non garantie » à la place.
        36 scénarios carlin bougent, AUCUN statut ne change (le mouvement est dans les avis de
        sécurité publiés) ; les figées de T0-A, T0-B2-UI et T0-B3-b restent intouchables. */
-    check("la baseline vivante est identique à la baseline figée la plus récente (RC)",
+    /* LA PLUS RÉCENTE EST DÉSORMAIS CELLE DU MICRO-LOT TARIFS (29/08/2026). La RC n'est PAS
+       écrasée : elle reste intacte à côté, et la preuve permanente ci-dessous établit ce qui les
+       sépare — le segment tarifaire, et lui seul. */
+    check("la baseline vivante est identique à la baseline figée la plus récente (Tarifs)",
       readFileSync("test-baselines/t0a-finder-baseline.json", "utf8")
-        === readFileSync("test-baselines/rc-finder-baseline-apres.json", "utf8"));
+        === readFileSync("test-baselines/tarifs-finder-baseline-apres.json", "utf8"));
+
+    /* PREUVE PERMANENTE RC → TARIFS. Le lot supprime le champ « fee » du rapport et lui substitue
+       les statuts par canal. Ce qui doit rester vrai, et qu'on exige ici pour toujours : la même
+       bijection de scénarios et de cartes, TOUS les autres segments identiques, et SEUL le
+       segment tarifaire remplacé. Sans cette preuve, « la baseline a bougé » ne dirait pas de
+       combien ni où — et un mouvement de statut pourrait se glisser sous un mouvement de tarif. */
+    {
+      const rc = JSON.parse(readFileSync("test-baselines/rc-finder-baseline-apres.json", "utf8"));
+      const tarifs = JSON.parse(readFileSync("test-baselines/tarifs-finder-baseline-apres.json", "utf8"));
+      const scenarios = Object.keys(rc);
+      check(`RC → Tarifs : les ${scenarios.length} scénarios sont les mêmes`,
+        scenarios.length === 72 && JSON.stringify(scenarios.sort()) === JSON.stringify(Object.keys(tarifs).sort()));
+      let cartes = 0, autresSegments = 0, tarifRemplace = 0;
+      for (const s of scenarios) {
+        const a = rc[s]?.airlines ?? [], b = tarifs[s]?.airlines ?? [];
+        if (a.length !== b.length) { autresSegments++; continue; }
+        for (let i = 0; i < a.length; i++) {
+          cartes++;
+          const sa = String(a[i]).split(" | "), sb = String(b[i]).split(" | ");
+          if (sa.length !== sb.length) { autresSegments++; continue; }
+          for (let k = 0; k < sa.length; k++) {
+            if (sa[k] === sb[k]) continue;
+            /* La seule divergence tolérée : un segment « fee:… » devenu « tarifs:… ». */
+            if (sa[k].startsWith("fee:") && sb[k].startsWith("tarifs:")) tarifRemplace++;
+            else autresSegments++;
+          }
+        }
+      }
+      check(`RC → Tarifs : ${cartes} cartes comparées`, cartes === 1560);
+      check(`RC → Tarifs : ${tarifRemplace} segments tarifaires remplacés, et RIEN d'autre`,
+        tarifRemplace === 1560 && autresSegments === 0,
+        `segments hors tarif divergents : ${autresSegments}`);
+    }
   }
 }
 

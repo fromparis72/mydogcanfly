@@ -31,7 +31,7 @@ const preuve = (quote, extra = {}) => ({
   verified_date: VERIF, review_due: reviewDueFrom(VERIF, "equipment"),
   confidence: 4, reviewer: "MyDogCanFly Data Team", history: [], ...extra,
 });
-const QUOTE = "Dimensions 100 x 60 x 70 cm — net weight 10 kg";
+const QUOTE = "Dimensions 100 x 60 x 70 cm — net weight 10 kg — shipping weight 66 kg";
 
 /** Un modèle TÉMOIN, fictif et nommé comme tel — 100 × 60 × 70 cm, 10 kg. */
 const temoin = (over = {}) => ({
@@ -43,8 +43,8 @@ const temoin = (over = {}) => ({
     valeurs_originales: { unite_longueur: "cm", unite_masse: "kg", l: 100, w: 60, h: 70, poids_a_vide: 10 },
     normalisees_cm_kg: { l: 100, w: 60, h: 70, poids_a_vide_kg: 10,
                          derive_de: "conversion mécanique depuis valeurs_originales" },
-    preuve_dimensions: { valeur_textuelle: "100 x 60 x 70 cm", citation: preuve(QUOTE) },
-    preuve_poids: { valeur_textuelle: "10 kg", champ_source: "net weight", citation: preuve(QUOTE) },
+    preuve_dimensions: { fragment_source: "100 x 60 x 70 cm", citation: preuve(QUOTE) },
+    preuve_poids: { fragment_source: "net weight 10 kg", citation: preuve(QUOTE) },
   },
   ...over,
 });
@@ -84,18 +84,18 @@ refus("1 chiffres changés ensemble, citation intacte", (m) => {
                                          derive_de: "conversion mécanique depuis valeurs_originales" };
   m.specifications.preuve_poids.champ_source = "shipping weight";
   return true;
-}, "preuve_dimensions.valeur_textuelle");
+}, "preuve_dimensions.fragment_source");
 /* 1 bis — le poids seul, citation intacte : l'ancrage doit mordre là aussi. */
 refus("1bis poids seul modifié, citation intacte", (m) => {
   m.specifications.valeurs_originales.poids_a_vide = 11;
   m.specifications.normalisees_cm_kg.poids_a_vide_kg = 11;
   return true;
-}, "preuve_poids.valeur_textuelle");
+}, "preuve_poids.fragment_source");
 /* 1 ter — un fragment cité qui n'est PAS dans la citation. */
 refus("1ter fragment absent de la citation", (m) => {
-  m.specifications.preuve_dimensions.valeur_textuelle = "100 x 60 x 71 cm";
+  m.specifications.preuve_dimensions.fragment_source = "100 x 60 x 71 cm";
   return true;
-}, "preuve_dimensions.valeur_textuelle");
+}, "preuve_dimensions.fragment_source");
 
 /* 2 — une normalisée qui n'est pas la conversion de son originale. */
 refus("2 valeur normalisée ≠ conversion de l'originale", (m) => {
@@ -107,7 +107,7 @@ refus("2 valeur normalisée ≠ conversion de l'originale", (m) => {
 refus("2bis unité changée alors que la citation dit « cm »", (m) => {
   m.specifications.valeurs_originales.unite_longueur = "in";
   return true;
-}, "preuve_dimensions.valeur_textuelle");
+}, "preuve_dimensions.fragment_source");
 
 /* 3 — un poids tiré d'un champ commercial générique plutôt que du poids net.
    LA LISTE DES LIBELLÉS ADMIS VIT EN PRODUCTION (`estLibellePoidsNet`) : la première rédaction
@@ -120,11 +120,27 @@ refus("2bis unité changée alors que la citation dit « cm »", (m) => {
     echec("3 libellés admis", "un vrai libellé de poids net est refusé par la production");
   } else ok("3 la production distingue « net weight » de « shipping weight » — la liste n'est plus dans le test");
 }
-/* 3 bis — le champ_source doit AUSSI figurer dans la citation : c'est la page qui nomme. */
-refus("3bis champ_source absent de la citation", (m) => {
-  m.specifications.preuve_poids.champ_source = "peso netto";
+/* 3 bis — L'ATTAQUE DU 29/08 (2) : le libellé et la valeur sont tous deux dans la citation, mais
+   la valeur retenue est celle du POIDS D'EXPÉDITION. Le fragment probatoire doit porter le
+   libellé ET sa valeur ensemble — « net weight 10 kg — shipping weight 66 kg » avec 66 inscrit
+   ne prouve pas que 66 est le poids net. */
+refus("3bis le poids d'expédition passé pour le poids net", (m) => {
+  m.specifications.valeurs_originales.poids_a_vide = 66;
+  m.specifications.normalisees_cm_kg.poids_a_vide_kg = 66;
+  m.specifications.preuve_poids.fragment_source = "net weight 10 kg — shipping weight 66 kg";
   return true;
-}, "preuve_poids.champ_source");
+}, "preuve_poids.fragment_source");
+/* 3 ter — un fragment qui ne porte QUE le poids d'expédition n'est pas une preuve de poids net. */
+refus("3ter fragment « shipping weight » seul", (m) => {
+  m.specifications.preuve_poids.fragment_source = "shipping weight 66 kg";
+  m.specifications.preuve_poids.citation.quote += " shipping weight 66 kg";
+  return true;
+}, "preuve_poids.fragment_source");
+/* 3 quater — L'ATTAQUE DU 29/08 (3) : l'unité absente du fragment ne vaut pas « centimètres ». */
+refus("3quater unité absente du fragment de dimensions", (m) => {
+  m.specifications.preuve_dimensions.fragment_source = "100 x 60 x 70";
+  return true;
+}, "preuve_dimensions.fragment_source");
 
 /* 4 — un champ supplémentaire glissé dans la citation. */
 refus("4 champ supplémentaire dans la preuve", (m) => {
@@ -318,8 +334,8 @@ refus("7 review_due tapée à la main", (m) => {
   const b = temoin({ id: "fabricant_temoin_b", fabricant: "Fabricant Témoin B" });
   b.specifications.valeurs_originales.poids_a_vide = 13;
   b.specifications.normalisees_cm_kg.poids_a_vide_kg = 13;
-  b.specifications.preuve_dimensions.valeur_textuelle = "100 x 60 x 70 cm";
-  b.specifications.preuve_poids.valeur_textuelle = "13 kg";
+  b.specifications.preuve_dimensions.fragment_source = "100 x 60 x 70 cm";
+  b.specifications.preuve_poids.fragment_source = "13 kg";
   b.specifications.preuve_poids.citation = preuve("Dimensions 100 x 60 x 70 cm — net weight 13 kg");
   const profilFaux = { id: "rigide_xl", modeles: [modele.id, b.id], publiable: true,
     poids_kg: { min: 10, max: 99, arrondi: [10, 99], derive_de: "min/max des poids à vide normalisés des modèles cités" } };

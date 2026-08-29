@@ -81,6 +81,11 @@ const proche = (a: number, b: number) => Math.abs(a - b) < 0.005;
  */
 export const LIBELLES_POIDS_NET = [
   "net weight", "poids net", "peso netto", "peso neto", "peso líquido", "nettogewicht",
+  /* « Product Weight » — ÉLARGISSEMENT NOMMÉ du 29/08/2026. Petmate libelle ainsi le poids de
+     ses caisses ; sans lui, aucun de ses modèles ne serait collectable. Il désigne bien le poids
+     de l objet vendu, et se distingue de « shipping weight » (emballage compris) comme du poids
+     affiché par une plateforme marchande — que la liste continue de refuser. */
+  "product weight",
 ] as const;
 
 const norm = (s: string) => s.normalize("NFKD").replace(/[̀-ͯ]/g, "").toLowerCase();
@@ -90,31 +95,53 @@ export function estLibellePoidsNet(champ: string): boolean {
 }
 
 /**
- * LES PARSEURS — la seule façon dont un chiffre entre au registre.
+ * LES PARSEURS — la seule façon dont un chiffre entre au registre, et ils lisent UN SEUL fragment.
  *
- * `valeur_textuelle` est le fragment EXACT de la page ; les valeurs originales en sont dérivées
- * mécaniquement, et le schéma exige l'égalité. Sans cela, la citation et les chiffres pouvaient
- * vivre côte à côte sans se parler : l'attaque du 29/08/2026 conservait la citation
- * « 100 x 60 x 70 cm — net weight 10 kg » et inscrivait 999 × 888 × 777 / 66 kg — acceptés.
+ * Deux attaques ont fermé ce contrat, l'une après l'autre :
+ *
+ * · 29/08 (1) — citation et chiffres vivaient côte à côte sans se parler : la citation disait
+ *   « 100 x 60 x 70 cm — net weight 10 kg », le registre inscrivait 999 × 888 × 777 / 66 kg.
+ * · 29/08 (2) — le lien restait trop lâche. Une citation « net weight 10 kg — shipping weight
+ *   66 kg » avec `champ_source: "net weight"` et la valeur « 66 kg » passait : le libellé et la
+ *   valeur étaient tous deux DANS la citation, mais rien n'exigeait que la valeur soit CELLE du
+ *   libellé. Et « Dimensions listed in inches: 40 x 27 x 30 » passait en centimètres, parce que
+ *   le parseur mettait « cm » quand l'unité manquait.
+ *
+ * D'où la forme actuelle : UNE UNITÉ PROBATOIRE, le `fragment_source`, qui doit contenir ENSEMBLE
+ * ce qu'on veut prouver — le libellé et sa valeur pour un poids, les trois nombres et leur unité
+ * pour des dimensions. Les parseurs lisent ce fragment et rien d'autre ; un défaut d'unité est un
+ * refus, jamais une supposition.
  */
 const nombre = (s: string) => Number(s.replace(",", "."));
 
-export function parserDimensions(texte: string): { l: number; w: number; h: number; unite: "cm" | "in" } | null {
-  const t = texte.replace(/\s+/g, " ").trim();
-  const m = /(\d+(?:[.,]\d+)?)\s*[x×]\s*(\d+(?:[.,]\d+)?)\s*[x×]\s*(\d+(?:[.,]\d+)?)\s*(cm|mm|in|inches|")?/i.exec(t);
+/**
+ * Les dimensions d'un fragment. L'UNITÉ EST OBLIGATOIRE et doit s'y trouver — « 40 x 27 x 30 »
+ * seul est refusé, parce que rien n'y dit des centimètres plutôt que des pouces.
+ */
+export function parserDimensions(fragment: string): { l: number; w: number; h: number; unite: "cm" | "in" } | null {
+  const t = fragment.replace(/\s+/g, " ").trim();
+  const m = /(\d+(?:[.,]\d+)?)\s*[x×]\s*(\d+(?:[.,]\d+)?)\s*[x×]\s*(\d+(?:[.,]\d+)?)/i.exec(t);
   if (!m) return null;
-  const u = (m[4] ?? "").toLowerCase();
-  const unite = u === "in" || u === "inches" || u === '"' ? "in" : u === "cm" || u === "" ? "cm" : null;
-  if (!unite) return null;
-  return { l: nombre(m[1]), w: nombre(m[2]), h: nombre(m[3]), unite };
+  /* L'unité se lit dans le fragment, avant ou après les nombres — jamais par défaut. */
+  const cm = /\b(cm|centimet|centímet|centimèt)/i.test(t);
+  const inch = /\b(in|inch|inches|pouces)\b|"/i.test(t);
+  if (cm === inch) return null;                       // ni les deux, ni aucune
+  return { l: nombre(m[1]), w: nombre(m[2]), h: nombre(m[3]), unite: cm ? "cm" : "in" };
 }
 
-export function parserPoids(texte: string): { valeur: number; unite: "kg" | "lb" } | null {
-  const t = texte.replace(/\s+/g, " ").trim();
-  const m = /(\d+(?:[.,]\d+)?)\s*(kg|kgs|lb|lbs|pounds)\b/i.exec(t);
-  if (!m) return null;
-  const u = m[2].toLowerCase();
-  return { valeur: nombre(m[1]), unite: u.startsWith("kg") ? "kg" : "lb" };
+/**
+ * Le poids d'un fragment, ET SON LIBELLÉ. Le fragment doit porter le libellé PUIS sa valeur :
+ * c'est ce qui distingue « net weight 10 kg » de « net weight 10 kg — shipping weight 66 kg »
+ * dont on voudrait extraire 66.
+ */
+export function parserPoids(fragment: string): { libelle: string; valeur: number; unite: "kg" | "lb" } | null {
+  const t = fragment.replace(/\s+/g, " ").trim();
+  for (const libelle of LIBELLES_POIDS_NET) {
+    const re = new RegExp(libelle + "\\s*:?\\s*(\\d+(?:[.,]\\d+)?)\\s*(kg|kgs|lb|lbs|pounds)\\b", "i");
+    const m = re.exec(t);
+    if (m) return { libelle, valeur: nombre(m[1]), unite: m[2].toLowerCase().startsWith("kg") ? "kg" : "lb" };
+  }
+  return null;
 }
 
 /**
@@ -122,32 +149,39 @@ export function parserPoids(texte: string): { valeur: number; unite: "kg" | "lb"
  * Les deux sont exigés ENSEMBLE — c'est ce lien qui manquait.
  */
 export const SpecificationChiffree = z.object({
-  /** Le fragment EXACT de la page qui porte le chiffre. */
-  valeur_textuelle: z.string().min(1),
+  /** LE FRAGMENT PROBATOIRE : il doit porter À LUI SEUL ce qu'on prétend prouver. */
+  fragment_source: z.string().min(1),
   citation: PreuveChiffree,
-}).strict().refine((s) => s.citation.quote.includes(s.valeur_textuelle), {
-  message: "`valeur_textuelle` doit apparaître MOT POUR MOT dans la citation — sinon le chiffre n'est rattaché à rien",
-  path: ["valeur_textuelle"],
-});
+}).strict()
+  .refine((s) => s.citation.quote.includes(s.fragment_source), {
+    message: "`fragment_source` doit apparaître MOT POUR MOT dans la citation",
+    path: ["fragment_source"],
+  })
+  .refine((s) => parserDimensions(s.fragment_source) != null, {
+    message: "le fragment ne porte pas trois dimensions AVEC leur unité — « 40 x 27 x 30 » sans unité ne dit pas des centimètres plutôt que des pouces",
+    path: ["fragment_source"],
+  });
 
 /** La spécification de poids porte en plus le libellé du champ, qui doit être dans la citation. */
 export const SpecificationPoids = z.object({
-  valeur_textuelle: z.string().min(1),
-  /** Le nom du champ, tel que la page le libelle — et il doit y être. */
-  champ_source: z.string().min(1),
+  /**
+   * LE FRAGMENT PROBATOIRE DU POIDS : il porte ENSEMBLE le libellé et sa valeur.
+   *
+   * C'est ce qui manquait. Un libellé « net weight » et une valeur « 66 kg » présents tous deux
+   * dans une même citation ne prouvent pas que 66 kg EST le poids net : la citation
+   * « net weight 10 kg — shipping weight 66 kg » les contient l'un et l'autre. Le fragment doit
+   * donc se lire seul : « net weight 10 kg ».
+   */
+  fragment_source: z.string().min(1),
   citation: PreuveChiffree,
 }).strict()
-  .refine((s) => s.citation.quote.includes(s.valeur_textuelle), {
-    message: "`valeur_textuelle` doit apparaître MOT POUR MOT dans la citation",
-    path: ["valeur_textuelle"],
+  .refine((s) => s.citation.quote.includes(s.fragment_source), {
+    message: "`fragment_source` doit apparaître MOT POUR MOT dans la citation",
+    path: ["fragment_source"],
   })
-  .refine((s) => norm(s.citation.quote).includes(norm(s.champ_source)), {
-    message: "`champ_source` doit apparaître dans la citation : c'est la page qui nomme le champ, pas nous",
-    path: ["champ_source"],
-  })
-  .refine((s) => estLibellePoidsNet(s.champ_source), {
-    message: `le poids doit venir d'un champ de POIDS NET (${LIBELLES_POIDS_NET.join(", ")}) — un poids d'expédition ou de plateforme marchande n'est pas le poids de l'objet`,
-    path: ["champ_source"],
+  .refine((s) => parserPoids(s.fragment_source) != null, {
+    message: `le fragment doit porter un libellé de POIDS NET SUIVI de sa valeur (${LIBELLES_POIDS_NET.join(", ")}) — un poids d'expédition ou de plateforme marchande n'est pas le poids de l'objet`,
+    path: ["fragment_source"],
   });
 
 export const ValeursOriginales = z.object({
@@ -207,15 +241,15 @@ export const ModeleCaisse = z.object({
      parseur tire du fragment cité. Une citation intacte et des chiffres changés se refusent
      désormais au chemin de la preuve, et non plus par un effet de bord de la conversion. */
   .refine((m) => {
-    const d = parserDimensions(m.specifications.preuve_dimensions.valeur_textuelle);
+    const d = parserDimensions(m.specifications.preuve_dimensions.fragment_source);
     const o = m.specifications.valeurs_originales;
     return d != null && proche(d.l, o.l) && proche(d.w, o.w) && proche(d.h, o.h) && d.unite === o.unite_longueur;
-  }, { message: "les dimensions inscrites ne sont pas celles que porte la citation", path: ["specifications", "preuve_dimensions", "valeur_textuelle"] })
+  }, { message: "les dimensions ou l'unité inscrites ne sont pas celles que porte le fragment probatoire", path: ["specifications", "preuve_dimensions", "fragment_source"] })
   .refine((m) => {
-    const p = parserPoids(m.specifications.preuve_poids.valeur_textuelle);
+    const p = parserPoids(m.specifications.preuve_poids.fragment_source);
     const o = m.specifications.valeurs_originales;
     return p != null && proche(p.valeur, o.poids_a_vide) && p.unite === o.unite_masse;
-  }, { message: "le poids inscrit n'est pas celui que porte la citation", path: ["specifications", "preuve_poids", "valeur_textuelle"] })
+  }, { message: "le poids inscrit n'est pas la valeur que le fragment attache au libellé de poids net", path: ["specifications", "preuve_poids", "fragment_source"] })
   /* LA CONVERSION, ensuite : normalisées = conversion mécanique des originales. */
   .refine((m) => {
     const o = m.specifications.valeurs_originales, n = m.specifications.normalisees_cm_kg;

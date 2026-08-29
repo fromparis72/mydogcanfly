@@ -132,6 +132,29 @@ if (DIST) {
     }
   })(DIST);
 
+  const { loadKB } = await import("./packages/knowledge/src/index.ts");
+  const kb = loadKB();
+  /** Le statut CANONIQUE d'un canal, lu dans la base normalisée — jamais deviné d'un booléen. */
+  const statutDe = (slug, canal) => {
+    const air = [...kb.airlines.values()].find((x) => x.id === `airline_${slug.replace(/-/g, "_")}`);
+    const p = air?.premium?.policy?.[canal];
+    return p ? (p.status ?? (p.allowed ? "allowed" : "denied")) : null;
+  };
+  /**
+   * LE BLOC D'UN CANAL S'ARRÊTE AU CANAL SUIVANT. Une première rédaction cherchait
+   * « </div></div> », qui tombait au-delà du bloc voisin : un canal REFUSÉ paraissait alors
+   * porter la ligne tarifaire de la soute qui le suivait. Faux positif de contrôle, pas défaut du
+   * site — la faute est nommée pour qu'on ne « corrige » pas le site sur un mauvais relevé.
+   */
+  const blocDuCanal = (html, canal) => {
+    const i = html.indexOf(`data-placement="${canal}"`);
+    if (i < 0) return null;
+    const debut = html.lastIndexOf("<div", i);
+    const suivant = html.indexOf("data-placement=", i + 1);
+    const fin = suivant < 0 ? html.length : html.lastIndexOf("<div", suivant);
+    return debut < 0 ? null : html.slice(debut, fin);
+  };
+
   const objets = JSON.parse(readFileSync("packages/knowledge/raw/objects.json", "utf8"));
   const heritees = [];
   for (const a of objets.airlines) {
@@ -141,9 +164,8 @@ if (DIST) {
   const uniques = [...new Set(heritees)];
   const trouvees = new Map();
   const fiches = pages.filter((p) => /\/airlines\/[^/]+\/index\.html$/.test(p));
-  /* Pas de seuil arbitraire : un build réduit porte trois compagnies, et le contrôle y est aussi
-     valable. Ce qui doit être exigé est plus bas — les deux cas de statut doivent être TROUVÉS,
-     sans quoi le contrôle serait vert faute de matière. */
+  /* Pas de seuil arbitraire : un build réduit porte trois compagnies et reste un terrain valable.
+     Ce qui est exigé plus bas, c'est que les trois ÉTATS soient rencontrés. */
   if (!fiches.length) echec("5 dist", "aucune fiche compagnie dans le dist");
   for (const p of fiches) {
     const html = readFileSync(join(DIST, p), "utf8");
@@ -154,75 +176,74 @@ if (DIST) {
     echec("5 DOM", `${trouvees.size} valeur(s) héritée(s) servies dans le HTML : ${ex}`);
   } else ok(`5 DOM : aucune des ${uniques.length} valeurs héritées n'apparaît dans les ${fiches.length} fiches construites`);
 
-  /* ON NE TARIFE PAS UN CANAL QU'ON REFUSE — et cela se juge dans le HTML SERVI, pas dans le
-     code. La première rédaction rendait le statut sans regarder le statut du canal : une soute
-     « denied » recevait « Tarif à confirmer », ce qui laisse croire qu'un tarif existe pour un
-     canal fermé. Les deux cas sont mesurés sur la base normalisée, jamais devinés. */
+  /* ON NE TARIFE PAS UN CANAL QU'ON REFUSE — jugé dans le HTML SERVI, pas dans le code. Les
+     témoins se choisissent parmi les fiches réellement construites : un slug codé en dur devient
+     faux au premier build réduit. */
   {
-    const { loadKB } = await import("./packages/knowledge/src/index.ts");
-    const kb = loadKB();
-    const statutDe = (slug, canal) => {
-      const air = [...kb.airlines.values()].find((x) => x.id === `airline_${slug.replace(/-/g, "_")}`);
-      const p = air?.premium?.policy?.[canal];
-      return p ? (p.status ?? (p.allowed ? "allowed" : "denied")) : null;
-    };
-    /* LES TÉMOINS SE CHOISISSENT DANS CE QUE LE DIST CONTIENT, jamais dans une liste écrite à
-       la main : un slug codé en dur devient faux au premier build réduit, ou au premier
-       mouvement de donnée. On cherche donc, parmi les fiches réellement construites, un canal
-       refusé et un canal à confirmer. */
-    const fichesDuDist = pages
-      .filter((p) => /^\/airlines\/[^/]+\/index\.html$/.test(p))
-      .map((p) => p.split("/")[2]);
+    const slugs = fiches.map((p) => p.split("/")[2]);
     const chercher = (voulu) => {
-      for (const slug of fichesDuDist) {
-        for (const canal of ["cabin", "hold", "cargo"]) {
-          if (statutDe(slug, canal) === voulu) return [slug, canal];
-        }
+      for (const slug of slugs) for (const canal of ["cabin", "hold", "cargo"]) {
+        if (statutDe(slug, canal) === voulu) return [slug, canal];
       }
       return null;
     };
     const refuse = chercher("denied");
     const aConfirmer = chercher("confirmation_required");
-    if (!refuse) echec("5ter canal refusé", `aucun canal « denied » parmi les ${fichesDuDist.length} fiches du dist — le contrôle ne prouverait rien`);
-    if (!aConfirmer) echec("5ter canal à confirmer", `aucun canal « confirmation_required » parmi les ${fichesDuDist.length} fiches du dist`);
-
-    /* Le bloc d'un canal porte data-placement et data-status : on lit CE bloc, pas la page. */
-    /* LE BLOC D'UN CANAL S'ARRÊTE AU CANAL SUIVANT. La première rédaction cherchait
-       « </div></div> », qui tombait au-delà du bloc voisin : un canal REFUSÉ paraissait alors
-       porter la ligne tarifaire de la soute qui le suivait. Faux positif de contrôle, pas défaut
-       du site — la faute est nommée pour qu'on ne « corrige » pas le site sur un mauvais relevé. */
-    const blocDuCanal = (html, canal) => {
-      const i = html.indexOf(`data-placement="${canal}"`);
-      if (i < 0) return null;
-      const debut = html.lastIndexOf("<div", i);
-      const suivant = html.indexOf("data-placement=", i + 1);
-      const fin = suivant < 0 ? html.length : html.lastIndexOf("<div", suivant);
-      return debut < 0 ? null : html.slice(debut, fin);
-    };
+    if (!refuse) echec("5ter canal refusé", `aucun canal « denied » parmi les ${slugs.length} fiches du dist`);
+    if (!aConfirmer) echec("5ter canal à confirmer", `aucun canal « confirmation_required » parmi les ${slugs.length} fiches du dist`);
     const STATUTS = ["Fee to confirm", "Fee to request"];
-    for (const [cas, canal, doitTarifer] of [[refuse, refuse?.[1], false], [aConfirmer, aConfirmer?.[1], true]]) {
+    for (const [cas, doitTarifer] of [[refuse, false], [aConfirmer, true]]) {
       if (!cas) continue;
-      const p = `/airlines/${cas[0]}/index.html`;
-      if (!existsSync(join(DIST, p))) { echec("5ter fiche", `${p} absente du dist`); continue; }
-      const html = readFileSync(join(DIST, p), "utf8");
+      const [slug, canal] = cas;
+      const html = readFileSync(join(DIST, `/airlines/${slug}/index.html`), "utf8");
       const bloc = blocDuCanal(html, canal);
-      if (!bloc) { echec("5ter bloc", `${p} : aucun bloc « ${canal} » — la fiche a changé de forme`); continue; }
+      if (!bloc) { echec("5ter bloc", `${slug} : aucun bloc « ${canal} » — la fiche a changé de forme`); continue; }
       const tarife = STATUTS.some((s) => bloc.includes(s));
-      if (doitTarifer && !tarife) echec("5ter canal à confirmer", `${p} / ${canal} : un canal « à confirmer » doit porter son statut tarifaire prudent`);
-      else if (!doitTarifer && tarife) echec("5ter canal refusé", `${p} / ${canal} : un canal REFUSÉ porte une ligne tarifaire`);
-      else ok(`5ter ${cas[0]} / ${canal} (${doitTarifer ? "à confirmer" : "refusé"}) : ${tarife ? "statut présent" : "aucune ligne tarifaire"} — conforme`);
+      if (doitTarifer && !tarife) echec("5ter canal à confirmer", `${slug}/${canal} : un canal « à confirmer » doit porter son statut tarifaire prudent`);
+      else if (!doitTarifer && tarife) echec("5ter canal refusé", `${slug}/${canal} : un canal REFUSÉ porte une ligne tarifaire`);
+      else ok(`5ter ${slug} / ${canal} (${doitTarifer ? "à confirmer" : "refusé"}) : ${tarife ? "statut présent" : "aucune ligne tarifaire"} — conforme`);
     }
+  }
+
+  /* LA PASTILLE DIT LES TROIS ÉTATS. Elle se lisait sur le seul booléen `allowed` : une politique
+     « à confirmer » porte allowed=false, la page annonçait donc « non accepté » puis affichait
+     juste dessous « Tarif à confirmer ». Contradiction publique, née d'un booléen là où la donnée
+     en dit trois. */
+  {
+    /* LES LIBELLÉS CANONIQUES, ceux que `cleLibelleStatut` publie — pas une liste réécrite ici :
+       le contrôle doit lire ce que la production dit, sinon il juge autre chose. */
+    const LIBELLES = { allowed: "Accepted", confirmation_required: "Policy to confirm with the airline", denied: "Not accepted" };
+    const vus = new Set();
+    for (const p of fiches) {
+      const slug = p.split("/")[2];
+      const html = readFileSync(join(DIST, p), "utf8");
+      for (const canal of ["cabin", "hold", "cargo"]) {
+        const st = statutDe(slug, canal);
+        if (!st || !LIBELLES[st]) continue;
+        const bloc = blocDuCanal(html, canal);
+        if (!bloc) continue;
+        const attendu = LIBELLES[st];
+        if (!bloc.includes(attendu)) { echec("5quater pastille", `${slug}/${canal} (${st}) : le libellé « ${attendu} » est absent de son bloc`); continue; }
+        const intrus = Object.entries(LIBELLES).filter(([k, v]) => k !== st && v !== attendu && !attendu.includes(v) && bloc.includes(v));
+        if (intrus.length) echec("5quater pastille", `${slug}/${canal} (${st}) : le bloc porte AUSSI « ${intrus[0][1]} »`);
+        else vus.add(st);
+      }
+    }
+    const manquants = Object.keys(LIBELLES).filter((s) => !vus.has(s));
+    if (manquants.length) echec("5quater couverture", `états jamais rencontrés : ${manquants.join(", ")} — le contrôle serait vert faute de matière`);
+    else ok("5quater la pastille dit les trois états, chacun rencontré dans le HTML construit");
   }
 
   /* Les quatre langues portent bien un statut, et pas un mot anglais laissé là. */
   const ATTENDU = { "": "to confirm", "/fr": "à confirmer", "/es": "por confirmar", "/pt": "a confirmar" };
+  let langues = 0;
   for (const [prefixe, fragment] of Object.entries(ATTENDU)) {
-    const p = `${prefixe}/airlines/air-france/index.html`;
+    const p = `${prefixe}/airlines/aegean/index.html`;
     if (!existsSync(join(DIST, p))) { echec("5bis langues", `${p} absente du dist`); continue; }
-    const html = readFileSync(join(DIST, p), "utf8").toLowerCase();
-    if (!html.includes(fragment)) echec("5bis langues", `${p} ne porte pas « ${fragment} »`);
+    if (!readFileSync(join(DIST, p), "utf8").toLowerCase().includes(fragment)) echec("5bis langues", `${p} ne porte pas « ${fragment} »`);
+    else langues++;
   }
-  if (defauts === 0 || !Object.keys(ATTENDU).some((k) => false)) ok("5bis les quatre langues portent leur statut tarifaire traduit");
+  if (langues === 4) ok("5bis les quatre langues portent leur statut tarifaire traduit");
 } else {
   console.log("  · 5 contrôle du DOM non joué (aucun --dist=) — il l'est en CI sur le site complet");
 }

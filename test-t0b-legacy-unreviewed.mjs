@@ -485,8 +485,15 @@ console.log("=== 8. Baseline FIGÉE : le point de comparaison de T0-B2 est scell
    * Codex : cinq règles non prouvées supprimées, avis IAG conditionnel à la place ; 36
    * scénarios carlin bougent par leurs avis publiés, aucun statut ne change). La figée
    * T0-B3-b reste intouchable et comparée ci-dessus — c'est le principe roulant. */
-  check("RC : la baseline vivante est identique à la figée la plus récente",
-    vivante.equals(readFileSync("test-baselines/rc-finder-baseline-apres.json")));
+  /* 29/08/2026 — LA PLUS RÉCENTE EST CELLE DU MICRO-LOT TARIFS. Le principe roulant est le même
+   * qu'au-dessus : la figée précédente (RC) n'est pas écrasée, elle reste comparable, et la preuve
+   * permanente RC → Tarifs de test-t0a-baseline.mjs établit que SEUL le segment tarifaire les
+   * sépare — 72 scénarios, 1 560 cartes, 1 560 segments remplacés, zéro divergence ailleurs. */
+  check("Tarifs : la baseline vivante est identique à la figée la plus récente",
+    vivante.equals(readFileSync("test-baselines/tarifs-finder-baseline-apres.json")));
+  check("Tarifs : la figée RC reste intacte à côté (elle n'a pas été écrasée)",
+    !readFileSync("test-baselines/rc-finder-baseline-apres.json")
+      .equals(readFileSync("test-baselines/tarifs-finder-baseline-apres.json")));
   check("T0-B3-b : la figée APRÈS diffère de celle de T0-B2-UI (le retrait des 42 a bien déplacé le métier)",
     !readFileSync("test-baselines/t0b3b-finder-baseline-apres.json")
       .equals(readFileSync("test-baselines/t0b2ui-finder-baseline-apres.json")));
