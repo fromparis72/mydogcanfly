@@ -13,7 +13,7 @@
  */
 import { readFileSync, existsSync } from "node:fs";
 import { join } from "node:path";
-import { computeBreedTravel } from "./packages/ui/src/lib/breedTravel.ts";
+import { computeBreedTravel, faqCompagnies } from "./packages/ui/src/lib/breedTravel.ts";
 import { loadKB } from "./packages/knowledge/src/index.ts";
 
 const DIST = process.argv.slice(2).find((a) => a.startsWith("--dist="))?.slice(7);
@@ -21,9 +21,26 @@ let defauts = 0;
 const echec = (nom, detail) => { defauts++; console.error(`  ✗ ${nom} — ${detail}`); };
 const ok = (nom) => console.log(`  ✓ ${nom}`);
 
-const BRACHY = /brachyc|museau court|hocico chato|focinho achatado|snub-nosed/i;
+/* LE VOCABULAIRE BRACHYCÉPHALE, DANS LES QUATRE LANGUES ET SYMÉTRIQUE. Première rédaction
+   fautive, nommée : elle ignorait « flat-faced », le mot exact de la version anglaise, si bien
+   qu'elle ne pouvait rougir qu'en portugais — la seule langue dont le mot y figurait par
+   hasard. Une garde asymétrique donne l'illusion d'une couverture quadrilingue. */
+const BRACHY = /brachyc|braquic|museau (court|plat)|face plate|hocico chato|cara chata|focinho achatado|focinho curto|snub-nosed|flat-faced/i;
 const RENVOIS = /ci-dessous|ci-dessus|below|above|más abajo|mais abaixo|arriba|acima/i;
 const LANGUES = ["en", "fr", "es", "pt"];
+
+/* LA GARDE DE LA GARDE. Le vocabulaire ci-dessus doit reconnaître le mot RÉEL de chaque langue,
+   lu dans les fichiers de traduction et non retapé ici : c'est exactement ce qui manquait — la
+   pastille dit « Flat-faced breed » en anglais et « museau plat » en français, deux formes
+   qu'aucune version antérieure du motif ne voyait. */
+{
+  const aveugles = LANGUES.filter((l) => {
+    const badge = JSON.parse(readFileSync(`packages/knowledge/translations/${l}/strings.json`, "utf8"))["breed.brachy_badge"];
+    return !badge || !BRACHY.test(badge);
+  });
+  if (aveugles.length) echec("0 vocabulaire brachycéphale", `le motif ne reconnaît pas la pastille réelle en ${aveugles.join(", ")}`);
+  else ok("0 le motif brachycéphale reconnaît la pastille réelle dans les quatre langues");
+}
 
 const golden = computeBreedTravel("breed_golden_retriever");
 if (!golden) { console.error("[faq-races] le golden retriever est introuvable — rien ne peut être prouvé"); process.exit(1); }
@@ -127,20 +144,61 @@ if (!golden) { console.error("[faq-races] le golden retriever est introuvable �
 }
 
 /* ---- 7. Une race sans compagnie compatible répond honnêtement ------------------------------- */
+/* PREMIÈRE RÉDACTION FAUTIVE, NOMMÉE : elle construisait `vide` puis ne s'en servait pas — un
+   `void vide;` en fin de bloc —, et jugeait la SOURCE au lieu de l'exécution. Elle serait restée
+   verte si la branche vide rendait une phrase fausse. La fonction est désormais exportée et
+   RÉELLEMENT APPELÉE, et le bloc suivant la voit rougir si on la mute. */
 {
-  /* On ne fabrique pas une race : on appelle la MÊME fonction de réponse avec une liste vide,
-     par le seul chemin public — le profil d'une race, dont on vide les compatibles. */
-  const vide = { ...golden, bestAirlines: [] };
-  const { computeBreedTravel: _ } = { computeBreedTravel };
-  /* La réponse se reconstruit depuis la liste vide : on relit la FAQ d'un profil dont la liste
-     est vide en passant par la fonction exportée si elle l'est, sinon on juge la phrase type. */
-  const AUCUNE = { en: "No compatible airline", fr: "Aucune compagnie compatible", es: "Ninguna aerolínea compatible", pt: "Nenhuma companhia compatível" };
-  const source = readFileSync("packages/ui/src/lib/breedTravel.ts", "utf8");
-  const toutes = LANGUES.every((l) => source.includes(AUCUNE[l]));
-  if (!toutes) echec("7 aucune compagnie", "la réponse « aucune compagnie compatible » n'existe pas dans les quatre langues");
-  else if (!/cites\.length === 0 \? AUCUNE\[lang\]/.test(source)) echec("7 aucune compagnie", "la réponse honnête n'est pas branchée sur une liste vide");
-  else ok("7 une race sans compagnie compatible reçoit une réponse honnête, dans les quatre langues");
-  void vide;
+  const vide = faqCompagnies({ ...golden, bestAirlines: [] });
+  const ATTENDU = {
+    en: "No compatible airline is currently established in our verified data for this breed.",
+    fr: "Aucune compagnie compatible n'est actuellement établie dans les données vérifiées.",
+    es: "Ninguna aerolínea compatible está actualmente establecida en los datos verificados.",
+    pt: "Nenhuma companhia compatível está atualmente estabelecida nos dados verificados.",
+  };
+  if (vide.length !== 1) echec("7 aucune compagnie", `la FAQ compagnies rend ${vide.length} entrée(s)`);
+  else {
+    const ecarts = LANGUES.filter((l) => vide[0].a[l] !== ATTENDU[l]);
+    if (ecarts.length) echec("7 aucune compagnie", `réponse inattendue en ${ecarts.join(", ")} : ${JSON.stringify(vide[0].a[ecarts[0]])}`);
+    else if (LANGUES.some((l) => RENVOIS.test(vide[0].a[l]))) echec("7 aucune compagnie", "la réponse renvoie ailleurs dans la page");
+    else ok("7 exécutée sur une liste vide : les quatre réponses exactes, sans renvoi");
+  }
+}
+
+/* ---- 7 bis. LES CANAUX MIXTES sont dits, pas tus ------------------------------------------- */
+/* La première rédaction ne nommait le canal que si les quatre compagnies le partageaient : dès
+   qu'elles étaient mixtes, `canal()` rendait "" et la page perdait l'information. */
+{
+  const mixte = faqCompagnies({
+    ...golden,
+    bestAirlines: [
+      { name: "Alpha", channel: "cabin" }, { name: "Bravo", channel: "cabin" },
+      { name: "Charlie", channel: "hold" }, { name: "Delta", channel: "cargo" },
+    ],
+  });
+  const ATTENDU = {
+    en: "According to published policies, Alpha and Bravo in the cabin ; Charlie in the hold ; Delta as cargo.",
+    fr: "Selon les politiques publiées, Alpha et Bravo en cabine ; Charlie en soute ; Delta en fret.",
+    es: "Según las políticas publicadas, Alpha y Bravo en cabina ; Charlie en bodega ; Delta como carga.",
+    pt: "Segundo as políticas publicadas, Alpha e Bravo na cabine ; Charlie no porão ; Delta como carga.",
+  };
+  const ecarts = LANGUES.filter((l) => !mixte[0].a[l].startsWith(ATTENDU[l]));
+  if (ecarts.length) echec("7bis canaux mixtes", `en ${ecarts.join(", ")} : ${JSON.stringify(mixte[0].a[ecarts[0]])}`);
+  else ok("7bis quatre compagnies sur trois canaux : chaque groupe nomme le sien");
+}
+
+/* ---- 7 ter. LA MÊME FONCTION, VUE RENDRE AUTRE CHOSE ---------------------------------------- */
+/* Une contre-épreuve qu'on n'a jamais vue distinguer deux cas ne distingue rien : la réponse
+   « aucune compagnie » et la réponse nominative doivent être différentes, et ne pas se
+   confondre. */
+{
+  const vide = faqCompagnies({ ...golden, bestAirlines: [] })[0].a;
+  const plein = faqCompagnies({ ...golden, bestAirlines: [{ name: "Alpha", channel: "cabin" }] })[0].a;
+  const memes = LANGUES.filter((l) => vide[l] === plein[l]);
+  const nomme = LANGUES.every((l) => plein[l].includes("Alpha"));
+  if (memes.length) echec("7ter", `la réponse est la même avec et sans compagnie en ${memes.join(", ")}`);
+  else if (!nomme) echec("7ter", "la réponse nominative ne nomme pas la compagnie citée");
+  else ok("7ter la branche vide et la branche nominative rendent bien deux réponses distinctes");
 }
 
 /* ---- 8. LE HTML CONSTRUIT ------------------------------------------------------------------- */
@@ -152,7 +210,14 @@ if (DIST) {
     if (!existsSync(f)) continue;
     vues++;
     const html = readFileSync(f, "utf8");
-    if (BRACHY.test(html)) echec("8 DOM brachycéphale", `${p} porte du vocabulaire brachycéphale sur une race qui ne l'est pas`);
+    /* LE CONTENU DE LA PAGE, PAS SA NAVIGATION. Deuxième faute nommée de ce même contrôle : il
+       lisait tout le fichier, donc aussi le sélecteur de races de l'en-tête, où l'Affenpinscher
+       et le Boston Terrier portent LÉGITIMEMENT leur pastille museau court. Il rougissait sur
+       une navigation correcte, ce qui est un faux positif — et aurait masqué la vraie question,
+       qui est ce que la page DIT du golden retriever. */
+    const corps = /<main\b[^>]*>[\s\S]*?<\/main>/i.exec(html)?.[0];
+    if (!corps) { echec("8 DOM", `${p} : aucun <main> — le contrôle ne saurait pas ce qu'il lit`); continue; }
+    if (BRACHY.test(corps)) echec("8 DOM brachycéphale", `${p} porte du vocabulaire brachycéphale sur une race qui ne l'est pas`);
     if (!html.includes('id="compagnies-compatibles"')) echec("8 DOM ancre", `${p} : l'ancre #compagnies-compatibles est absente`);
     /* La réponse de la FAQ, dans le JSON-LD comme dans le texte, ne renvoie nulle part. */
     for (const m of html.matchAll(/"acceptedAnswer":\{"@type":"Answer","text":"([^"]+)"/g)) {
@@ -161,6 +226,31 @@ if (DIST) {
   }
   if (!vues) echec("8 DOM", "aucune fiche golden retriever dans le dist");
   else if (defauts === 0) ok(`8 les ${vues} fiches construites : aucune mention brachycéphale, ancre présente, aucune réponse qui renvoie`);
+
+  /* 8 BIS — LA PAGE PORTUGAISE, mot pour mot. Les deux phrases ajoutées au lot manquaient de
+     `translations/pt/inline.json` : `inlineT("pt")` repliait sur l'anglais, et la page portugaise
+     publiait deux phrases anglaises sans que rien ne le dise. On exige ici le portugais, ET
+     l'absence de la version anglaise — sans quoi un repli passerait inaperçu. */
+  {
+    const f = join(DIST, "/pt/breeds/golden-retriever/index.html");
+    if (!existsSync(f)) echec("8bis DOM portugais", "la fiche portugaise est absente du dist");
+    else {
+      const html = readFileSync(f, "utf8");
+      const PAIRES = [
+        ["Classificação obtida das políticas publicadas (limites de peso em cabine, disponibilidade de porão e carga).",
+         "Ranking derived from published policies (cabin weight limits, hold and cargo availability)"],
+        ["Com base na dificuldade global, no peso, nos canais disponíveis e nas políticas publicadas.",
+         "Based on overall difficulty, weight, available channels and published policies."],
+      ];
+      let bon = 0;
+      for (const [pt, en] of PAIRES) {
+        if (!html.includes(pt)) echec("8bis DOM portugais", `la phrase portugaise est absente : « ${pt.slice(0, 50)}… »`);
+        else if (html.includes(en)) echec("8bis DOM portugais", `la version ANGLAISE subsiste sur la page portugaise : « ${en.slice(0, 50)}… »`);
+        else bon++;
+      }
+      if (bon === PAIRES.length) ok("8bis la fiche portugaise porte les deux phrases en portugais, sans repli anglais");
+    }
+  }
 } else {
   console.log("  · 8 contrôle du DOM non joué (aucun --dist=) — il l'est en CI sur le site complet");
 }

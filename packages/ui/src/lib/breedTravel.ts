@@ -428,22 +428,30 @@ function airlineRank(a: { name: string; slug: string; channel: "cabin" | "hold" 
  *
  * Sans compagnie compatible, on le DIT. Une liste inventée serait pire que l'absence.
  */
-function faqCompagnies(x: any): { q: Bi; a: Bi }[] {
+export function faqCompagnies(x: any): { q: Bi; a: Bi }[] {
   const cites: AirlineRank[] = (x.bestAirlines ?? []).slice(0, 4);
-  const enumerer = (et: string) => {
-    const noms = cites.map((a) => a.name);
-    return noms.length <= 1 ? (noms[0] ?? "") : `${noms.slice(0, -1).join(", ")} ${et} ${noms[noms.length - 1]}`;
-  };
-  /* Le canal RÉEL des compagnies citées. S'il diffère de l'une à l'autre, on ne prétend pas
-     qu'elles partagent le même — la phrase se tait plutôt que d'uniformiser. */
+  /* LE CANAL RÉEL DE CHAQUE COMPAGNIE. La première rédaction ne nommait le canal que si les
+     quatre compagnies le partageaient — dès qu'elles étaient mixtes, la phrase perdait
+     l'information la plus utile de la page. Les noms sont désormais GROUPÉS PAR CANAL : « A et B
+     en cabine ; C en soute ; D en fret ». Aucun canal n'est uniformisé, aucun n'est tu. */
   const CANAUX: Record<string, Record<string, string>> = {
     cabin: { en: " in the cabin", fr: " en cabine", es: " en cabina", pt: " na cabine" },
     hold: { en: " in the hold", fr: " en soute", es: " en bodega", pt: " no porão" },
     cargo: { en: " as cargo", fr: " en fret", es: " como carga", pt: " como carga" },
   };
-  const canal = (lang: string) => {
-    const distincts = new Set(cites.map((a) => a.channel));
-    return distincts.size === 1 ? (CANAUX[[...distincts][0]]?.[lang] ?? "") : "";
+  /* Ordre STABLE : cabine, soute, fret — jamais l'ordre d'arrivée, qui rendrait la phrase
+     dépendante du classement et donc instable d'une race à l'autre. */
+  const ORDRE = ["cabin", "hold", "cargo"];
+  const enumerer = (noms: string[], et: string) =>
+    noms.length <= 1 ? (noms[0] ?? "") : `${noms.slice(0, -1).join(", ")} ${et} ${noms[noms.length - 1]}`;
+  const groupes = (lang: string, et: string) => {
+    const vus = ORDRE.filter((c) => cites.some((a) => a.channel === c));
+    /* Un canal inconnu du tableau ne se traduit pas : on le nomme sans suffixe plutôt que
+       d'inventer un mot. */
+    const inconnus = [...new Set(cites.map((a) => a.channel))].filter((c) => !ORDRE.includes(c));
+    return [...vus, ...inconnus]
+      .map((c) => `${enumerer(cites.filter((a) => a.channel === c).map((a) => a.name), et)}${CANAUX[c]?.[lang] ?? ""}`)
+      .join(" ; ");
   };
   const RESERVE: Record<string, string> = {
     en: " Final acceptance depends on the route, the aircraft, the season and the crate.",
@@ -458,7 +466,7 @@ function faqCompagnies(x: any): { q: Bi; a: Bi }[] {
     pt: "Nenhuma companhia compatível está atualmente estabelecida nos dados verificados.",
   };
   const rep = (lang: string, debut: string, et: string) =>
-    cites.length === 0 ? AUCUNE[lang] : `${debut}${enumerer(et)}${canal(lang)}.${RESERVE[lang]}`;
+    cites.length === 0 ? AUCUNE[lang] : `${debut}${groupes(lang, et)}.${RESERVE[lang]}`;
   return [{
     q: { en: "Which airlines generally accept this breed?", fr: "Quelles compagnies acceptent généralement cette race ?",
          es: "¿Qué aerolíneas suelen aceptar esta raza?", pt: "Quais companhias aéreas costumam aceitar esta raça?" },
