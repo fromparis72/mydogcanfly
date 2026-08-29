@@ -21,7 +21,7 @@
     "test:mel": "tsx test-mel-import.mjs",
     "test:breed": "tsx test-breed-restrictions.mjs",
     "test:date": "tsx test-worker-date.mjs && tsx test-tristate-climat.mjs",
-    "test:built-ui": "node test-fiche-harness.cjs && node test-flightfinder-harness.cjs && node test-heat-harness.cjs && node test-destinations-harness.cjs && node test-t0b3a-avis-dom.cjs && node test-crate-harness.cjs && node test-pet-relief-harness.cjs && node test-cloture-outil-chaleur.mjs && node test-fiches-affirmations-retirees.mjs",
+    "test:built-ui": "node test-fiche-harness.cjs && node test-flightfinder-harness.cjs && node test-libelles-mutations.mjs && node test-heat-harness.cjs && node test-destinations-harness.cjs && node test-t0b3a-avis-dom.cjs && node test-crate-harness.cjs && node test-pet-relief-harness.cjs && node test-cloture-outil-chaleur.mjs && node test-fiches-affirmations-retirees.mjs",
     "test:annonce": "node test-annonce-du-site.mjs",
     "test:liens": "node test-liens-internes.mjs",
     "test:guide-page": "node test-page-guide.mjs",

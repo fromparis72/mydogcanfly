@@ -729,7 +729,30 @@ const IATA_INTERDIT = /iata[- ]?(compliant|approved|certified)|conforme[s]? (?:�
 /* Aucun décompte dans le CTA des formalités : ni « 4 étapes », ni un autre nombre. */
 const CTA_DECOMPTE = /\b\d+\s*(steps|étapes|etapes|pasos|etapas)\b/i;
 
+/* LES HUIT TEXTES QUE CE LOT REMPLACE, tels qu'ils étaient publiés — la matière historique du
+   défaut. Le motif d'interdiction doit les reconnaître TOUS : un motif qui ne verrait pas la
+   formulation d'origine ne protégerait de rien. */
+const IATA_ANCIENS = [
+  "Hold travel requires an IATA-compliant crate.",
+  "Cargo is booked with a freight agent, not at check-in: quote, drop-off and pick-up at the cargo terminal, and an IATA-compliant crate they approve.",
+  "Le voyage en soute exige une caisse conforme IATA.",
+  "En fret, tu réserves auprès d'un transitaire et non au comptoir : devis, dépôt et retrait au terminal fret, et une caisse conforme IATA qu'il valide.",
+  "El viaje en bodega requiere una jaula conforme a la IATA.",
+  "En carga reservas con un agente de carga, no en el mostrador: presupuesto, entrega y recogida en la terminal de carga, y una jaula conforme a la IATA que él valide.",
+  "Viajar no porão exige uma caixa de transporte conforme a norma IATA.",
+  "Na carga você reserva com um agente de carga, não no balcão: cotação, entrega e retirada no terminal de carga, e uma caixa conforme a norma IATA aprovada por ele.",
+];
+
 async function libellesPass() {
+  console.log("\n— Le motif d'interdiction, vu reconnaître ce qu'il remplace —");
+  {
+    const aveugle = IATA_ANCIENS.filter((t) => !IATA_INTERDIT.test(t));
+    check(`le motif reconnaît les ${IATA_ANCIENS.length} anciens textes d'homologation`,
+      aveugle.length === 0, JSON.stringify(aveugle[0] || "").slice(0, 140));
+    const fauxPositifs = Object.values(CRATE_REASON).filter((t) => IATA_INTERDIT.test(t));
+    check("le motif n'accuse aucun des quatre nouveaux textes",
+      fauxPositifs.length === 0, JSON.stringify(fauxPositifs[0] || "").slice(0, 140));
+  }
   for (const loc of BADGE_LOCALES) {
     console.log(`\n— Libellés publics du Finder (${loc.code}) —`);
     const parts = loadHomeParts(loc.dir);
@@ -776,11 +799,18 @@ async function libellesPass() {
           const texte = a.textContent.trim();
           check(`${loc.code} : le CTA rendu porte le libellé sans décompte`,
             texte.startsWith(CTA_STEPS[loc.code]) && !CTA_DECOMPTE.test(texte), JSON.stringify(texte));
-          check(`${loc.code} : le nom du pays reste accolé au CTA`,
-            texte.includes(` · ${attenduPays.name}`), JSON.stringify(texte));
+          /* CONTRÔLE NON CIRCULAIRE. Première rédaction fautive, nommée : elle comparait le
+             texte rendu à `attenduPays.name` lu dans LES MÊMES données — vider le nom vidait
+             aussi l'attendu, et la garde restait verte sur un bandeau sans pays. On exige
+             maintenant une forme : un nom NON VIDE après le séparateur, et il doit être celui
+             du pays. Idem pour le lien : un slug non vide dans un chemin de fiche pays. */
+          const apres = texte.split(" · ").slice(1).join(" · ").replace(/\s*→\s*$/, "").trim();
+          check(`${loc.code} : le nom du pays reste accolé au CTA, et il n'est pas vide`,
+            apres.length >= 2 && apres === attenduPays.name, JSON.stringify(texte));
           const href = a.getAttribute("href") || "";
-          check(`${loc.code} : le lien du CTA mène à la fiche pays`,
-            href.endsWith(`/${attenduPays.slug}/`) && href.length > `/${attenduPays.slug}/`.length, JSON.stringify(href));
+          check(`${loc.code} : le lien du CTA mène à la fiche d'un pays nommé`,
+            /^(\/(?:fr|es|pt))?\/countries\/[a-z0-9-]+\/$/.test(href) && href.endsWith(`/${attenduPays.slug}/`),
+            JSON.stringify(href));
         }
         void origIds;
       }
