@@ -204,7 +204,12 @@ const labels = {
     bodyIsland: T("Entry requires an import permit and quarantine — plan several months ahead.", "L'entrée impose un permis d'importation et une quarantaine — compte plusieurs mois d'anticipation.", "La entrada exige un permiso de importación y cuarentena — cuenta con varios meses de antelación."),
     bodyWarn: T("Leaving the destination needs official steps arranged on site; the return isn't automatic.", "Sortir du pays de destination demande des démarches officielles à préparer sur place ; le retour n'est pas automatique.", "Salir del país de destino exige trámites oficiales que se preparan in situ; la vuelta no es automática."),
     bodyInfo: T("Formalities apply on entry and on return — plan a vet certificate each way.", "Des formalités s'appliquent à l'entrée et au retour — prévois un certificat vétérinaire dans chaque sens.", "Se aplican trámites a la entrada y a la vuelta — prevé un certificado veterinario en cada sentido."),
-    cta: T("See the 4 steps", "Voir les 4 étapes", "Ver los 4 pasos"),
+    /* AUCUN DÉCOMPTE. Le CTA annonçait « les 4 étapes », un 4 codé en dur, alors que la page
+       visée en montre un nombre variable selon le pays et les données disponibles : le libellé
+       était faux dès que le contenu différait, et le serait redevenu à chaque évolution. On ne
+       recalcule pas non plus le décompte — un libellé qui reste vrai sans compter vaut mieux
+       qu'un compteur juste aujourd'hui. */
+    cta: T("See the different steps", "Voir les différentes étapes", "Ver las distintas etapas"),
   },
   // Per-airline links for the result cards: our airline page + the official website (booking).
   airlineHref: Object.fromEntries([...kb.airlines.values()].map((a) => [a.id, hrefFor(a.id, locale)])),
@@ -218,6 +223,7 @@ const labels = {
   actBook: t(locale, "air.act_book"),
   crateBase: locale === "en" ? "/tools/crate/" : `/${locale}/tools/crate/`,
   heatBase: locale === "en" ? "/tools/heat/" : `/${locale}/tools/heat/`,
+  crateToolName: T("What size travel crate does my dog need?", "Quelle taille de cage de transport pour mon chien ?", "¿Qué tamaño de transportín necesita mi perro?"),
   heatToolName: T("Heat risk calculator", "Calculateur de risque chaleur", "Calculadora de riesgo de calor"),
   /* P1 texte chaleur (14/08/2026, brief Codex) : l'ancienne phrase AFFIRMAIT une suspension
      universelle et certaine (« sont suspendus au-delà du seuil ») — aucune règle universelle
@@ -734,6 +740,11 @@ const labels = {
         ${(() => {
           // Only the crate recommendation is surfaced, and it points to our own crate calculator
           // (internal tool, breed carried over) rather than any outbound partner link.
+          /* LE NOM INTERNE DU PARTENAIRE NE S'AFFICHE PAS. `crate.name` vaut « IATA Pet Crates »,
+             un identifiant de programme d'affiliation encore au statut « placeholder » : il
+             paraissait tel quel sur les pages françaises, espagnoles et portugaises, et
+             suggérait de surcroît une homologation IATA que personne ne délivre. Le lien porte
+             désormais un libellé localisé qui dit ce que fait l'outil. */
           const crate = (r.partners ?? []).find((p) => (p as { vertical?: string }).vertical === "equipment");
           if (!crate) return "";
           const crateLink = L.crateBase + (lastBreedId ? "#breed=" + lastBreedId : "");
@@ -752,7 +763,7 @@ const labels = {
              après un clic, mais ils sont partageables — et une URL partagée finit indexée. */
           const heatLink = L.heatBase + (hq ? "#" + hq : "");
           const heatLi = `<li><a href="${esc(heatLink)}">${esc(L.heatToolName)}</a> — ${esc(L.heatToolWhy)}</li>`;
-          return `<div class="report__sec"><h4>${esc(L.partners)}</h4><ul class="report__partners"><li><a href="${esc(crateLink)}">${esc(crate.name)}</a> — ${esc(crate.reason)}</li>${heatLi}</ul></div>`;
+          return `<div class="report__sec"><h4>${esc(L.partners)}</h4><ul class="report__partners"><li><a href="${esc(crateLink)}">${esc(L.crateToolName)}</a> — ${esc(crate.reason)}</li>${heatLi}</ul></div>`;
         })()}
         <details class="report__sources"><summary>${esc(L.sources)} · ${esc(L.confidence)} ${stars}</summary>
           <ul>${r.sources.map((s) => `<li><a href="${esc(s.url)}" rel="nofollow noopener" target="_blank">${esc(s.url)}</a></li>`).join("")}</ul>
