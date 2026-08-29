@@ -709,13 +709,13 @@ const CRATE_NAME = {
   en: "What size travel crate does my dog need?",
   fr: "Quelle taille de cage de transport pour mon chien ?",
   es: "¿Qué tamaño de transportín necesita mi perro?",
-  pt: "De que tamanho de caixa de transporte o meu cão precisa?",
+  pt: "Qual é o tamanho da caixa de transporte para o meu cachorro?",
 };
 const CRATE_REASON = {
   en: "Hold travel requires a crate suited to your dog and accepted by the airline operating the flight.",
-  fr: "Le voyage en soute exige une cage adaptée à votre chien et acceptée par la compagnie qui opère le vol.",
+  fr: "Le voyage en soute exige une cage adaptée à ton chien et acceptée par la compagnie qui opère le vol.",
   es: "El viaje en bodega exige un transportín adecuado a su perro y aceptado por la aerolínea que opera el vuelo.",
-  pt: "Viajar no porão exige uma caixa de transporte adequada ao seu cão e aceite pela companhia que opera o voo.",
+  pt: "Viajar no porão exige uma caixa de transporte adequada ao seu cachorro e aceita pela companhia que opera o voo.",
 };
 const CTA_STEPS = {
   en: "See the different steps",
