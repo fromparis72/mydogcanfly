@@ -141,7 +141,10 @@ if (DIST) {
   const uniques = [...new Set(heritees)];
   const trouvees = new Map();
   const fiches = pages.filter((p) => /\/airlines\/[^/]+\/index\.html$/.test(p));
-  if (fiches.length < 100) echec("5 dist", `${fiches.length} fiches compagnies dans le dist — le contrôle porterait sur trop peu`);
+  /* Pas de seuil arbitraire : un build réduit porte trois compagnies, et le contrôle y est aussi
+     valable. Ce qui doit être exigé est plus bas — les deux cas de statut doivent être TROUVÉS,
+     sans quoi le contrôle serait vert faute de matière. */
+  if (!fiches.length) echec("5 dist", "aucune fiche compagnie dans le dist");
   for (const p of fiches) {
     const html = readFileSync(join(DIST, p), "utf8");
     for (const v of uniques) if (html.includes(v)) trouvees.set(v, (trouvees.get(v) ?? 0) + 1);
@@ -150,6 +153,66 @@ if (DIST) {
     const ex = [...trouvees].slice(0, 3).map(([v, n]) => `« ${v} » sur ${n} page(s)`).join(" ; ");
     echec("5 DOM", `${trouvees.size} valeur(s) héritée(s) servies dans le HTML : ${ex}`);
   } else ok(`5 DOM : aucune des ${uniques.length} valeurs héritées n'apparaît dans les ${fiches.length} fiches construites`);
+
+  /* ON NE TARIFE PAS UN CANAL QU'ON REFUSE — et cela se juge dans le HTML SERVI, pas dans le
+     code. La première rédaction rendait le statut sans regarder le statut du canal : une soute
+     « denied » recevait « Tarif à confirmer », ce qui laisse croire qu'un tarif existe pour un
+     canal fermé. Les deux cas sont mesurés sur la base normalisée, jamais devinés. */
+  {
+    const { loadKB } = await import("./packages/knowledge/src/index.ts");
+    const kb = loadKB();
+    const statutDe = (slug, canal) => {
+      const air = [...kb.airlines.values()].find((x) => x.id === `airline_${slug.replace(/-/g, "_")}`);
+      const p = air?.premium?.policy?.[canal];
+      return p ? (p.status ?? (p.allowed ? "allowed" : "denied")) : null;
+    };
+    /* LES TÉMOINS SE CHOISISSENT DANS CE QUE LE DIST CONTIENT, jamais dans une liste écrite à
+       la main : un slug codé en dur devient faux au premier build réduit, ou au premier
+       mouvement de donnée. On cherche donc, parmi les fiches réellement construites, un canal
+       refusé et un canal à confirmer. */
+    const fichesDuDist = pages
+      .filter((p) => /^\/airlines\/[^/]+\/index\.html$/.test(p))
+      .map((p) => p.split("/")[2]);
+    const chercher = (voulu) => {
+      for (const slug of fichesDuDist) {
+        for (const canal of ["cabin", "hold", "cargo"]) {
+          if (statutDe(slug, canal) === voulu) return [slug, canal];
+        }
+      }
+      return null;
+    };
+    const refuse = chercher("denied");
+    const aConfirmer = chercher("confirmation_required");
+    if (!refuse) echec("5ter canal refusé", `aucun canal « denied » parmi les ${fichesDuDist.length} fiches du dist — le contrôle ne prouverait rien`);
+    if (!aConfirmer) echec("5ter canal à confirmer", `aucun canal « confirmation_required » parmi les ${fichesDuDist.length} fiches du dist`);
+
+    /* Le bloc d'un canal porte data-placement et data-status : on lit CE bloc, pas la page. */
+    /* LE BLOC D'UN CANAL S'ARRÊTE AU CANAL SUIVANT. La première rédaction cherchait
+       « </div></div> », qui tombait au-delà du bloc voisin : un canal REFUSÉ paraissait alors
+       porter la ligne tarifaire de la soute qui le suivait. Faux positif de contrôle, pas défaut
+       du site — la faute est nommée pour qu'on ne « corrige » pas le site sur un mauvais relevé. */
+    const blocDuCanal = (html, canal) => {
+      const i = html.indexOf(`data-placement="${canal}"`);
+      if (i < 0) return null;
+      const debut = html.lastIndexOf("<div", i);
+      const suivant = html.indexOf("data-placement=", i + 1);
+      const fin = suivant < 0 ? html.length : html.lastIndexOf("<div", suivant);
+      return debut < 0 ? null : html.slice(debut, fin);
+    };
+    const STATUTS = ["Fee to confirm", "Fee to request"];
+    for (const [cas, canal, doitTarifer] of [[refuse, refuse?.[1], false], [aConfirmer, aConfirmer?.[1], true]]) {
+      if (!cas) continue;
+      const p = `/airlines/${cas[0]}/index.html`;
+      if (!existsSync(join(DIST, p))) { echec("5ter fiche", `${p} absente du dist`); continue; }
+      const html = readFileSync(join(DIST, p), "utf8");
+      const bloc = blocDuCanal(html, canal);
+      if (!bloc) { echec("5ter bloc", `${p} : aucun bloc « ${canal} » — la fiche a changé de forme`); continue; }
+      const tarife = STATUTS.some((s) => bloc.includes(s));
+      if (doitTarifer && !tarife) echec("5ter canal à confirmer", `${p} / ${canal} : un canal « à confirmer » doit porter son statut tarifaire prudent`);
+      else if (!doitTarifer && tarife) echec("5ter canal refusé", `${p} / ${canal} : un canal REFUSÉ porte une ligne tarifaire`);
+      else ok(`5ter ${cas[0]} / ${canal} (${doitTarifer ? "à confirmer" : "refusé"}) : ${tarife ? "statut présent" : "aucune ligne tarifaire"} — conforme`);
+    }
+  }
 
   /* Les quatre langues portent bien un statut, et pas un mot anglais laissé là. */
   const ATTENDU = { "": "to confirm", "/fr": "à confirmer", "/es": "por confirmar", "/pt": "a confirmar" };

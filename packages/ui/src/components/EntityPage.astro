@@ -365,7 +365,9 @@ const initials = title.split(/\s+/).map((w) => w[0] ?? "").slice(0, 2).join("").
                 {/* Le montant de premium.policy[canal].fee n'est plus rendu : chaîne libre, sans
                     devise séparée ni route, impossible à rapporter à un trajet. Voir
                     DOSSIER-TARIFS-PRELANCEMENT.md. */}
-                <div><dt>{t(locale, "premium.fee")}</dt><dd>{t(locale, pl.key === "cargo" ? "tarif.devis_cargo" : "tarif.a_confirmer")}</dd></div>
+                {pl.status !== "denied" && (
+                  <div><dt>{t(locale, "premium.fee")}</dt><dd>{t(locale, pl.key === "cargo" ? "tarif.devis_cargo" : "tarif.a_confirmer")}</dd></div>
+                )}
               </dl>
               {pl.conditions && <p class="ep__polcond">{pl.conditions}</p>}
               <p class="ep__src">

@@ -78,7 +78,12 @@ function canonical(body) {
     `confirm:${(a.to_confirm ?? []).join("+") || "-"}`,
     `pets:${a.carries_pets ?? "-"}/${a.offers_pet_transport ?? "-"}`,
     `deny:${(a.deny_reasons ?? []).join("+") || "-"}`,
-    `label:${a.label}`, `fee:${a.fee ?? "-"}${a.fee_quote_only ? "(devis)" : ""}`,
+    /* LE CHAMP « fee » N'EXISTE PLUS (micro-lot Tarifs, 29/08/2026). Laisser « fee:${a.fee ?? "-"} »
+       rendrait « fee:- » partout : la baseline cesserait de contrôler quoi que ce soit de
+       tarifaire, en silence. Elle porte désormais les STATUTS PAR CANAL, qui sont ce que le
+       rapport dit maintenant — le mouvement de baseline est donc un mouvement NOMMÉ, et son diff
+       montre ligne à ligne ce qui a remplacé quoi. */
+    `label:${a.label}`, `tarifs:${(a.statuts_tarifaires ?? []).map((s) => s.placement).join("+") || "-"}`,
     `heat:${Number(a.heat_embargo)}${Number(a.heat_confirmation_required)}`,
   ].join(" | ");
   return walk({

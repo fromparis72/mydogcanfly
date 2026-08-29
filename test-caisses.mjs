@@ -17,6 +17,7 @@ import {
   ModeleCaisse, ProfilCaisse, CorrespondanceRace,
   RegistreModeles, RegistreProfils, RegistreCorrespondances,
   deriverProfil, intervalleTotal, trancheUnique, reviewDueFrom,
+  verifierRegistresCaisses, estLibellePoidsNet, parserDimensions, parserPoids,
 } from "@mydogcanfly/knowledge";
 
 let defauts = 0;
@@ -30,6 +31,7 @@ const preuve = (quote, extra = {}) => ({
   verified_date: VERIF, review_due: reviewDueFrom(VERIF, "equipment"),
   confidence: 4, reviewer: "MyDogCanFly Data Team", history: [], ...extra,
 });
+const QUOTE = "Dimensions 100 x 60 x 70 cm — net weight 10 kg";
 
 /** Un modèle TÉMOIN, fictif et nommé comme tel — 100 × 60 × 70 cm, 10 kg. */
 const temoin = (over = {}) => ({
@@ -38,11 +40,11 @@ const temoin = (over = {}) => ({
   modele: "Modèle d'épreuve (fictif)",
   type: "rigide",
   specifications: {
-    valeurs_originales: { unite_longueur: "cm", unite_masse: "kg", l: 100, w: 60, h: 70,
-                          poids_a_vide: 10, champ_source: "poids net" },
+    valeurs_originales: { unite_longueur: "cm", unite_masse: "kg", l: 100, w: 60, h: 70, poids_a_vide: 10 },
     normalisees_cm_kg: { l: 100, w: 60, h: 70, poids_a_vide_kg: 10,
                          derive_de: "conversion mécanique depuis valeurs_originales" },
-    preuve: preuve("Dimensions 100 x 60 x 70 cm — net weight 10 kg"),
+    preuve_dimensions: { valeur_textuelle: "100 x 60 x 70 cm", citation: preuve(QUOTE) },
+    preuve_poids: { valeur_textuelle: "10 kg", champ_source: "net weight", citation: preuve(QUOTE) },
   },
   ...over,
 });
@@ -72,11 +74,28 @@ function refus(nom, muter, cheminAttendu) {
   ok("départ : le modèle témoin est valide");
 }
 
-/* 1 — le poids change, la citation et la source ne changent pas. */
-refus("1 poids modifié, citation et source inchangées", (m) => {
-  m.specifications.valeurs_originales.poids_a_vide = 11;
+/* 1 — L'ATTAQUE DE LA CONTRE-REVUE DU 29/08/2026, reproduite puis fermée : les valeurs
+   originales, les normalisées ET le libellé du champ changent ENSEMBLE, la citation reste
+   intacte. La première rédaction ne mutait que l'originale et rougissait par la conversion —
+   elle ne prouvait donc rien de l'ancrage. */
+refus("1 chiffres changés ensemble, citation intacte", (m) => {
+  m.specifications.valeurs_originales = { unite_longueur: "cm", unite_masse: "kg", l: 999, w: 888, h: 777, poids_a_vide: 66 };
+  m.specifications.normalisees_cm_kg = { l: 999, w: 888, h: 777, poids_a_vide_kg: 66,
+                                         derive_de: "conversion mécanique depuis valeurs_originales" };
+  m.specifications.preuve_poids.champ_source = "shipping weight";
   return true;
-}, "normalisees_cm_kg");
+}, "preuve_dimensions.valeur_textuelle");
+/* 1 bis — le poids seul, citation intacte : l'ancrage doit mordre là aussi. */
+refus("1bis poids seul modifié, citation intacte", (m) => {
+  m.specifications.valeurs_originales.poids_a_vide = 11;
+  m.specifications.normalisees_cm_kg.poids_a_vide_kg = 11;
+  return true;
+}, "preuve_poids.valeur_textuelle");
+/* 1 ter — un fragment cité qui n'est PAS dans la citation. */
+refus("1ter fragment absent de la citation", (m) => {
+  m.specifications.preuve_dimensions.valeur_textuelle = "100 x 60 x 71 cm";
+  return true;
+}, "preuve_dimensions.valeur_textuelle");
 
 /* 2 — une normalisée qui n'est pas la conversion de son originale. */
 refus("2 valeur normalisée ≠ conversion de l'originale", (m) => {
@@ -85,41 +104,45 @@ refus("2 valeur normalisée ≠ conversion de l'originale", (m) => {
 }, "normalisees_cm_kg");
 
 /* 2 bis — la conversion pouce → cm doit être faite, pas recopiée. */
-refus("2bis pouces recopiés en centimètres", (m) => {
+refus("2bis unité changée alors que la citation dit « cm »", (m) => {
   m.specifications.valeurs_originales.unite_longueur = "in";
   return true;
-}, "normalisees_cm_kg");
+}, "preuve_dimensions.valeur_textuelle");
 
-/* 3 — un poids tiré d'un champ commercial générique plutôt que du poids net. */
+/* 3 — un poids tiré d'un champ commercial générique plutôt que du poids net.
+   LA LISTE DES LIBELLÉS ADMIS VIT EN PRODUCTION (`estLibellePoidsNet`) : la première rédaction
+   la redéclarait ici, si bien que le test se donnait lui-même la réponse et qu'aucun registre
+   n'était réellement gardé. */
 {
-  const m = temoin();
-  m.specifications.valeurs_originales.champ_source = "weight";
-  const r = ModeleCaisse.safeParse(m);
-  /* Le schéma ne peut pas savoir ce que « weight » désigne : c'est la GARDE DE REGISTRE qui
-     l'exige. On éprouve donc ici la garde, pas le schéma. */
-  const CHAMPS_ADMIS = ["poids net", "net weight", "peso netto"];
-  const admis = CHAMPS_ADMIS.some((c) => m.specifications.valeurs_originales.champ_source.toLowerCase().includes(c));
-  if (r.success && !admis) ok("3 un champ « weight » générique n'est pas un poids net — la garde de registre le refuse");
-  else echec("3 champ de poids générique", admis ? "« weight » a été admis comme poids net" : "le schéma a refusé pour une autre raison");
+  if (estLibellePoidsNet("shipping weight") || estLibellePoidsNet("weight")) {
+    echec("3 libellés admis", "« shipping weight » ou « weight » est admis comme poids net par la production");
+  } else if (!estLibellePoidsNet("net weight") || !estLibellePoidsNet("Poids net")) {
+    echec("3 libellés admis", "un vrai libellé de poids net est refusé par la production");
+  } else ok("3 la production distingue « net weight » de « shipping weight » — la liste n'est plus dans le test");
 }
+/* 3 bis — le champ_source doit AUSSI figurer dans la citation : c'est la page qui nomme. */
+refus("3bis champ_source absent de la citation", (m) => {
+  m.specifications.preuve_poids.champ_source = "peso netto";
+  return true;
+}, "preuve_poids.champ_source");
 
 /* 4 — un champ supplémentaire glissé dans la citation. */
 refus("4 champ supplémentaire dans la preuve", (m) => {
-  m.specifications.preuve.attribution = "fabricant";
+  m.specifications.preuve_poids.citation.attribution = "fabricant";
   return true;
-}, "specifications.preuve");
+}, "preuve_poids.citation");
 
 /* 5 — un zéro de gabarit dans une donnée de production. */
 refus("5 zéro de gabarit", (m) => { m.specifications.valeurs_originales.l = 0; return true; },
   "valeurs_originales.l");
 
 /* 6 — une preuve sans locator. */
-refus("6 preuve sans locator", (m) => { delete m.specifications.preuve.locator; return true; },
+refus("6 preuve sans locator", (m) => { delete m.specifications.preuve_poids.citation.locator; return true; },
   "locator");
 
 /* 7 — une review_due qui n'est pas dérivée de la cadence « equipment ». */
 refus("7 review_due tapée à la main", (m) => {
-  m.specifications.preuve.review_due = "2026-12-31";
+  m.specifications.preuve_poids.citation.review_due = "2026-12-31";
   return true;
 }, "review_due");
 
@@ -145,6 +168,19 @@ refus("7 review_due tapée à la main", (m) => {
   const r = ModeleCaisse.safeParse(m);
   if (r.success) ok("8bis une condition citée mot pour mot est acceptée");
   else echec("8bis condition citée", JSON.stringify(r.error.issues[0]));
+}
+
+/* 8 ter — la cadence vaut aussi pour la citation de la DÉCLARATION du fabricant : une réserve de
+   conformité vieillit comme un chiffre. */
+{
+  const m = temoin({ declaration_fabricant: {
+    attribution: "déclaration du fabricant — MyDogCanFly ne l'a pas vérifiée",
+    citation: preuve("This carrier meets airline requirements.", { review_due: "2026-12-31" }),
+  } });
+  const r = ModeleCaisse.safeParse(m);
+  if (!r.success && r.error.issues.some((i) => i.message.includes("review_due"))) {
+    ok("8ter la cadence « equipment » vaut aussi pour la déclaration du fabricant");
+  } else echec("8ter cadence déclaration", r.success ? "acceptée" : "refusée pour un autre motif");
 }
 
 /* 9 — un profil qui publie avec un seul fabricant. */
@@ -255,22 +291,41 @@ refus("7 review_due tapée à la main", (m) => {
   } else {
     const publiables = p.data.profils.filter((x) => x.publiable).length;
     ok(`15 registres valides : ${m.data.modeles.length} modèle(s), ${p.data.profils.length} profil(s) dont ${publiables} publiable(s), ${c.data.correspondances.length} correspondance(s)`);
-    /* JAMAIS VERT FAUTE DE MATIÈRE — le jour où les registres se remplissent, ce contrôle-ci
-       exige que chaque profil publiable soit RÉELLEMENT dérivable de modèles présents. */
-    for (const profil of p.data.profils.filter((x) => x.publiable)) {
-      const modeles = profil.modeles.map((id) => m.data.modeles.find((x) => x.id === id)).filter(Boolean);
-      const r = deriverProfil(profil.id, modeles);
-      if ("refus" in r) { echec("15 profil publiable non dérivable", `${profil.id} : ${r.refus}`); continue; }
-      if (JSON.stringify(r.profil.poids_kg) !== JSON.stringify(profil.poids_kg)) {
-        echec("15 intervalle non dérivé", `${profil.id} : inscrit ${JSON.stringify(profil.poids_kg)}, dérivé ${JSON.stringify(r.profil.poids_kg)}`);
-      }
-    }
-    for (const corr of c.data.correspondances) {
-      for (const id of corr.profils_probables) {
-        if (!p.data.profils.some((x) => x.id === id)) echec("15 profil inexistant", `${corr.breed_id} → « ${id} » n'est pas au registre des profils`);
-      }
+    /* LE VALIDATEUR DE PRODUCTION, PAS DES BOUCLES DE TEST. Les boucles écrites ici ne
+       tournaient que dans ce fichier ; `verifierRegistresCaisses` vit à côté des schémas et
+       s'appelle depuis la CI comme depuis les consommateurs — unicité des identifiants,
+       références croisées, et intervalles réellement dérivés de leurs modèles. */
+    for (const e of verifierRegistresCaisses(m.data.modeles, p.data.profils, c.data.correspondances)) {
+      echec("15 registres", e);
     }
   }
+}
+
+/* 16 — LE VALIDATEUR LUI-MÊME, vu rougir sur chacune de ses causes. */
+{
+  const modele = temoin();
+  const cas = [
+    ["identifiant en double", [modele, { ...modele }], [], [], "en double"],
+    ["profil citant un modèle absent", [], [{ id: "rigide_xl", modeles: ["fantome"], publiable: false }], [], "absent du registre des modèles"],
+    ["correspondance citant un profil absent", [], [], [{ breed_id: "breed_x", profils_probables: ["fantome"], methode: "…", confiance: 3, nature: "hypothèse MyDogCanFly — les mesures réelles du chien priment" }], "absent du registre des profils"],
+  ];
+  for (const [nom, mods, profs, corrs, attendu] of cas) {
+    const ecarts = verifierRegistresCaisses(mods, profs, corrs);
+    if (ecarts.some((e) => e.includes(attendu))) ok(`16 validateur : ${nom}`);
+    else echec(`16 validateur : ${nom}`, `attendu « ${attendu} » ; vu : ${ecarts.join(" | ") || "(aucun écart)"}`);
+  }
+  /* Et l'intervalle qui ne suit plus ses modèles — la propagation vue par le validateur. */
+  const b = temoin({ id: "fabricant_temoin_b", fabricant: "Fabricant Témoin B" });
+  b.specifications.valeurs_originales.poids_a_vide = 13;
+  b.specifications.normalisees_cm_kg.poids_a_vide_kg = 13;
+  b.specifications.preuve_dimensions.valeur_textuelle = "100 x 60 x 70 cm";
+  b.specifications.preuve_poids.valeur_textuelle = "13 kg";
+  b.specifications.preuve_poids.citation = preuve("Dimensions 100 x 60 x 70 cm — net weight 13 kg");
+  const profilFaux = { id: "rigide_xl", modeles: [modele.id, b.id], publiable: true,
+    poids_kg: { min: 10, max: 99, arrondi: [10, 99], derive_de: "min/max des poids à vide normalisés des modèles cités" } };
+  const ecarts = verifierRegistresCaisses([modele, b], [profilFaux], []);
+  if (ecarts.some((e) => e.includes("ne suit pas ses modèles"))) ok("16bis validateur : un intervalle qui ne suit plus ses modèles est vu");
+  else echec("16bis validateur", `attendu « ne suit pas ses modèles » ; vu : ${ecarts.join(" | ") || "(aucun écart)"}`);
 }
 
 if (defauts) { console.error(`\n[caisses] ÉCHEC — ${defauts} contre-épreuve(s) en défaut`); process.exit(1); }

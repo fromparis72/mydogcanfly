@@ -16,6 +16,9 @@ interface SrcView { host: string; url: string; date: string; confidence: number 
 interface PolicyView {
   /** `key` EST le canal : « cabin », « hold » ou « cargo ». */
   key: string; label: string; allowed: boolean;
+  /** LE STATUT CANONIQUE — `allowed` seul ne distingue pas un refus d'une confirmation requise,
+   *  et cette nuance décide si la page tarifie le canal ou se tait. */
+  status: "allowed" | "confirmation_required" | "denied";
   /* `fee` retiré du type : laisser la place, c est laisser revenir la valeur. */
   maxWeight?: string; dims?: string; conditions?: string; src: SrcView;
 }
@@ -204,6 +207,11 @@ function premiumView(a: { premium?: unknown }, locale: string): PremiumView | un
     if (!p) return null;
     return {
       key, label: t(locale, `placement.${key}`), allowed: p.allowed,
+      /* Le statut vient de la politique quand elle le porte ; sinon il se déduit du booléen —
+         un ancien enregistrement sans statut vaut « allowed » ou « denied », jamais un doute
+         qu'on lui prêterait. */
+      status: (p as { status?: "allowed" | "confirmation_required" | "denied" }).status
+        ?? (p.allowed ? "allowed" : "denied"),
       maxWeight: p.max_weight_kg ? `${p.max_weight_kg} kg` : undefined,
       dims: p.carrier_dims_cm ? `${p.carrier_dims_cm.l}×${p.carrier_dims_cm.w}×${p.carrier_dims_cm.h} cm` : undefined,
       /* `fee` NE DESCEND PLUS JUSQU'À LA VUE (micro-lot Tarifs, 29/08/2026) : la chaîne de

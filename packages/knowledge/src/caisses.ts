@@ -68,13 +68,95 @@ export function versKg(valeur: number, unite: z.infer<typeof UniteMasse>): numbe
 /** Tolérance de comparaison : deux décimales suffisent, et une conversion exacte les tient. */
 const proche = (a: number, b: number) => Math.abs(a - b) < 0.005;
 
+/**
+ * LES LIBELLÉS DE POIDS ADMIS — EN PRODUCTION, jamais dans un harnais.
+ *
+ * La première version laissait cette liste dans le fichier de test : la contre-épreuve se donnait
+ * donc elle-même la réponse, et rien n'empêchait un registre d'inscrire « shipping weight ».
+ * Une garde qui ne vit que dans son test ne garde rien.
+ *
+ * Ce qui est admis : le poids de l'objet vendu, tel que la page le nomme. Ce qui ne l'est pas :
+ * un poids d'expédition (emballage compris) ou un poids de plateforme marchande, souvent affiché
+ * à côté et souvent différent.
+ */
+export const LIBELLES_POIDS_NET = [
+  "net weight", "poids net", "peso netto", "peso neto", "peso líquido", "nettogewicht",
+] as const;
+
+const norm = (s: string) => s.normalize("NFKD").replace(/[̀-ͯ]/g, "").toLowerCase();
+export function estLibellePoidsNet(champ: string): boolean {
+  const c = norm(champ);
+  return LIBELLES_POIDS_NET.some((l) => c.includes(norm(l)));
+}
+
+/**
+ * LES PARSEURS — la seule façon dont un chiffre entre au registre.
+ *
+ * `valeur_textuelle` est le fragment EXACT de la page ; les valeurs originales en sont dérivées
+ * mécaniquement, et le schéma exige l'égalité. Sans cela, la citation et les chiffres pouvaient
+ * vivre côte à côte sans se parler : l'attaque du 29/08/2026 conservait la citation
+ * « 100 x 60 x 70 cm — net weight 10 kg » et inscrivait 999 × 888 × 777 / 66 kg — acceptés.
+ */
+const nombre = (s: string) => Number(s.replace(",", "."));
+
+export function parserDimensions(texte: string): { l: number; w: number; h: number; unite: "cm" | "in" } | null {
+  const t = texte.replace(/\s+/g, " ").trim();
+  const m = /(\d+(?:[.,]\d+)?)\s*[x×]\s*(\d+(?:[.,]\d+)?)\s*[x×]\s*(\d+(?:[.,]\d+)?)\s*(cm|mm|in|inches|")?/i.exec(t);
+  if (!m) return null;
+  const u = (m[4] ?? "").toLowerCase();
+  const unite = u === "in" || u === "inches" || u === '"' ? "in" : u === "cm" || u === "" ? "cm" : null;
+  if (!unite) return null;
+  return { l: nombre(m[1]), w: nombre(m[2]), h: nombre(m[3]), unite };
+}
+
+export function parserPoids(texte: string): { valeur: number; unite: "kg" | "lb" } | null {
+  const t = texte.replace(/\s+/g, " ").trim();
+  const m = /(\d+(?:[.,]\d+)?)\s*(kg|kgs|lb|lbs|pounds)\b/i.exec(t);
+  if (!m) return null;
+  const u = m[2].toLowerCase();
+  return { valeur: nombre(m[1]), unite: u.startsWith("kg") ? "kg" : "lb" };
+}
+
+/**
+ * Une spécification chiffrée : le fragment de page, et la citation qui le contient.
+ * Les deux sont exigés ENSEMBLE — c'est ce lien qui manquait.
+ */
+export const SpecificationChiffree = z.object({
+  /** Le fragment EXACT de la page qui porte le chiffre. */
+  valeur_textuelle: z.string().min(1),
+  citation: PreuveChiffree,
+}).strict().refine((s) => s.citation.quote.includes(s.valeur_textuelle), {
+  message: "`valeur_textuelle` doit apparaître MOT POUR MOT dans la citation — sinon le chiffre n'est rattaché à rien",
+  path: ["valeur_textuelle"],
+});
+
+/** La spécification de poids porte en plus le libellé du champ, qui doit être dans la citation. */
+export const SpecificationPoids = z.object({
+  valeur_textuelle: z.string().min(1),
+  /** Le nom du champ, tel que la page le libelle — et il doit y être. */
+  champ_source: z.string().min(1),
+  citation: PreuveChiffree,
+}).strict()
+  .refine((s) => s.citation.quote.includes(s.valeur_textuelle), {
+    message: "`valeur_textuelle` doit apparaître MOT POUR MOT dans la citation",
+    path: ["valeur_textuelle"],
+  })
+  .refine((s) => norm(s.citation.quote).includes(norm(s.champ_source)), {
+    message: "`champ_source` doit apparaître dans la citation : c'est la page qui nomme le champ, pas nous",
+    path: ["champ_source"],
+  })
+  .refine((s) => estLibellePoidsNet(s.champ_source), {
+    message: `le poids doit venir d'un champ de POIDS NET (${LIBELLES_POIDS_NET.join(", ")}) — un poids d'expédition ou de plateforme marchande n'est pas le poids de l'objet`,
+    path: ["champ_source"],
+  });
+
 export const ValeursOriginales = z.object({
   unite_longueur: UniteLongueur,
   unite_masse: UniteMasse,
   l: positif, w: positif, h: positif,
   poids_a_vide: positif,
-  /** Le nom EXACT du champ d'où le poids est tiré, tel que la page le libelle. */
-  champ_source: z.string().min(1),
+  /* `champ_source` a DÉMÉNAGÉ sur la preuve de poids : il doit être confronté à la citation,
+     et un champ ne peut pas se confronter à une phrase qu'il ne côtoie pas. */
 }).strict();
 
 export const ValeursNormalisees = z.object({
@@ -110,21 +192,46 @@ export const ModeleCaisse = z.object({
   specifications: z.object({
     valeurs_originales: ValeursOriginales,
     normalisees_cm_kg: ValeursNormalisees,
-    preuve: PreuveChiffree,
+    /* DEUX PREUVES, PAS UNE. Dimensions et poids ne se lisent pas au même endroit d'une page, et
+       une preuve unique laissait l'une des deux sans ancrage — c'est par là que l'attaque du
+       29/08/2026 est passée. */
+    preuve_dimensions: SpecificationChiffree,
+    preuve_poids: SpecificationPoids,
   }).strict(),
   declaration_fabricant: DeclarationFabricant.optional(),
 }).strict()
   /* LA CONVERSION EST VÉRIFIÉE ICI, pas seulement produite ailleurs : un registre édité à la main
      ne peut pas porter une normalisée qui ne découle pas de son originale. */
+  /* LES CHIFFRES SONT CEUX DE LA CITATION — le lien qui manquait.
+     `valeurs_originales` n'est plus une saisie libre : elle doit être exactement ce que le
+     parseur tire du fragment cité. Une citation intacte et des chiffres changés se refusent
+     désormais au chemin de la preuve, et non plus par un effet de bord de la conversion. */
+  .refine((m) => {
+    const d = parserDimensions(m.specifications.preuve_dimensions.valeur_textuelle);
+    const o = m.specifications.valeurs_originales;
+    return d != null && proche(d.l, o.l) && proche(d.w, o.w) && proche(d.h, o.h) && d.unite === o.unite_longueur;
+  }, { message: "les dimensions inscrites ne sont pas celles que porte la citation", path: ["specifications", "preuve_dimensions", "valeur_textuelle"] })
+  .refine((m) => {
+    const p = parserPoids(m.specifications.preuve_poids.valeur_textuelle);
+    const o = m.specifications.valeurs_originales;
+    return p != null && proche(p.valeur, o.poids_a_vide) && p.unite === o.unite_masse;
+  }, { message: "le poids inscrit n'est pas celui que porte la citation", path: ["specifications", "preuve_poids", "valeur_textuelle"] })
+  /* LA CONVERSION, ensuite : normalisées = conversion mécanique des originales. */
   .refine((m) => {
     const o = m.specifications.valeurs_originales, n = m.specifications.normalisees_cm_kg;
     return proche(n.l, versCm(o.l, o.unite_longueur)) && proche(n.w, versCm(o.w, o.unite_longueur))
       && proche(n.h, versCm(o.h, o.unite_longueur))
       && proche(n.poids_a_vide_kg, versKg(o.poids_a_vide, o.unite_masse));
   }, { message: "les valeurs normalisées ne sont pas la conversion des valeurs originales", path: ["specifications", "normalisees_cm_kg"] })
-  /* `review_due` est DÉRIVÉE de la cadence « equipment » (365 j), jamais tapée à la main. */
-  .refine((m) => m.specifications.preuve.review_due === reviewDueFrom(m.specifications.preuve.verified_date, "equipment"), {
-    message: "`review_due` doit être reviewDueFrom(verified_date, « equipment »)", path: ["specifications", "preuve", "review_due"],
+  /* `review_due` est DÉRIVÉE de la cadence « equipment » (365 j) — sur LES TROIS citations, la
+     déclaration du fabricant comprise : une réserve de conformité vieillit comme un chiffre. */
+  .refine((m) => [
+    m.specifications.preuve_dimensions.citation,
+    m.specifications.preuve_poids.citation,
+    ...(m.declaration_fabricant ? [m.declaration_fabricant.citation] : []),
+  ].every((c) => c.review_due === reviewDueFrom(c.verified_date, "equipment")), {
+    message: "`review_due` doit être reviewDueFrom(verified_date, « equipment ») sur CHAQUE citation, déclaration du fabricant comprise",
+    path: ["specifications", "preuve_poids", "citation", "review_due"],
   });
 export type ModeleCaisse = z.infer<typeof ModeleCaisse>;
 
@@ -233,3 +340,46 @@ export function trancheUnique(total: [number, number], limites: number[]): { cou
 
 /** Le contrat de provenance réutilisé, ré-exporté pour que les registres n'en inventent pas d'autre. */
 export { Source, SourcedQuote };
+
+/**
+ * LE VALIDATEUR DES TROIS REGISTRES — en production, appelé par la CI ET par les consommateurs.
+ *
+ * Les boucles d'un harnais ne remplacent pas un validateur : elles ne tournent que là où on a
+ * pensé à les écrire. Ce qui suit vit à côté des schémas, et tout ce qui lit les registres passe
+ * par lui — un identifiant en double ou une référence morte n'a alors nulle part où se cacher.
+ *
+ * Rend la liste des écarts, chacun nommé. Vide = les trois registres se tiennent.
+ */
+export function verifierRegistresCaisses(
+  modeles: ModeleCaisse[],
+  profils: ProfilCaisse[],
+  correspondances: CorrespondanceRace[],
+): string[] {
+  const ecarts: string[] = [];
+
+  const doublons = (liste: string[], quoi: string) => {
+    const vus = new Set<string>(), deja = new Set<string>();
+    for (const id of liste) { if (vus.has(id) && !deja.has(id)) { deja.add(id); ecarts.push(`${quoi} : identifiant « ${id} » en double`); } vus.add(id); }
+    return vus;
+  };
+  const idsModeles = doublons(modeles.map((m) => m.id), "modèles");
+  const idsProfils = doublons(profils.map((p) => p.id), "profils");
+  doublons(correspondances.map((c) => c.breed_id), "correspondances");
+
+  /* Les références croisées, dans le sens qui compte : un profil qui cite un modèle absent
+     publierait un intervalle tiré de rien. */
+  for (const p of profils) {
+    for (const id of p.modeles) if (!idsModeles.has(id)) ecarts.push(`profil « ${p.id} » : modèle « ${id} » absent du registre des modèles`);
+    if (!p.publiable) continue;
+    const siens = p.modeles.map((id) => modeles.find((m) => m.id === id)).filter((m): m is ModeleCaisse => m != null);
+    const derive = deriverProfil(p.id, siens);
+    if ("refus" in derive) { ecarts.push(`profil « ${p.id} » publiable mais non dérivable — ${derive.refus}`); continue; }
+    if (JSON.stringify(derive.profil.poids_kg) !== JSON.stringify(p.poids_kg)) {
+      ecarts.push(`profil « ${p.id} » : intervalle inscrit ${JSON.stringify(p.poids_kg)}, intervalle DÉRIVÉ ${JSON.stringify(derive.profil.poids_kg)} — le registre ne suit pas ses modèles`);
+    }
+  }
+  for (const c of correspondances) {
+    for (const id of c.profils_probables) if (!idsProfils.has(id)) ecarts.push(`correspondance « ${c.breed_id} » : profil « ${id} » absent du registre des profils`);
+  }
+  return ecarts;
+}

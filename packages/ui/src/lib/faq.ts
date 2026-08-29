@@ -54,8 +54,11 @@ export function airlineFaq(d: any, locale: string): FaqItem[] {
       F("Can my dog travel in the cabin on {0}?",
         "Mon chien peut-il voyager en cabine sur {0} ?",
         "¿Mi perro puede viajar en cabina en {0}?", name),
-      join([`${name} — ${t(cabin.statusLabel)}.`, t(cabin.detail),
-            cabin.fee ? F("Fare: {0}.", "Tarif : {0}.", "Tarifa: {0}.", t(cabin.fee)) : ""]),
+      /* LA PHRASE « Fare: … » A ÉTÉ RETIRÉE (micro-lot Tarifs, 29/08/2026). Elle publiait
+         `cabin.fee` — une chaîne libre héritée — DEUX fois : dans le texte visible de la FAQ et
+         dans le JSON-LD FAQPage. C'est le contrôle du DOM construit qui l'a trouvée : les trois
+         surfaces corrigées à la main ne suffisaient pas, et une relecture ne l'aurait pas vue. */
+      join([`${name} — ${t(cabin.statusLabel)}.`, t(cabin.detail)]),
     );
   }
 
@@ -73,25 +76,11 @@ export function airlineFaq(d: any, locale: string): FaqItem[] {
     );
   }
 
-  // 3 — prix
-  const rows = d.fareGrid?.rows ?? [];
-  if (rows.length) {
-    const line = rows.slice(0, 3)
-      .map((r: any) => `${t(r.zone)}${colonOf(locale)}${[r.cabin, r.hold].filter(Boolean).join(" / ")}`)
-      .join(" · ");
-    push(
-      F("How much does it cost to fly a dog on {0}?",
-        "Combien coûte le transport d'un chien sur {0} ?",
-        "¿Cuánto cuesta viajar con un perro en {0}?", name),
-      join([
-        F("{0} publishes these fares (cabin / hold):",
-          "{0} publie ces tarifs (cabine / soute) :",
-          "{0} publica estas tarifas (cabina / bodega):", name),
-        line + ".",
-        d.fareGrid?.note ? t(d.fareGrid.note) : "",
-      ]),
-    );
-  }
+  /* 3 — LA QUESTION « COMBIEN ÇA COÛTE » A ÉTÉ RETIRÉE (micro-lot Tarifs, 29/08/2026).
+     Elle recopiait la grille par zone dans la FAQ — donc dans le texte visible ET dans le
+     JSON-LD FAQPage, où un moteur la lit comme une réponse. Une réponse chiffrée à une question
+     de prix est exactement ce que ce lot interdit tant qu'aucune table structurée ne la fonde.
+     La question reviendra avec sa table, et elle répondra alors pour un trajet, pas en général. */
 
   // 4 — brachycéphales : la question la plus posée
   const brachy = (d.restrictions ?? []).find((r: any) =>
