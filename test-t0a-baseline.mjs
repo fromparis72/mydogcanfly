@@ -25,6 +25,12 @@ import { loadKB, preuveAuditee } from "./packages/knowledge/src/index.ts";
 import { evaluate } from "./packages/engine/src/evaluate.ts";
 import { explain } from "./packages/engine/src/explain.ts";
 
+/* Sentinelles de forme des cartes de baseline : douze segments, le tarif au onzième rang (index
+   10). Mesurées sur les 1 560 cartes ; elles ne bougent que par un mouvement nommé. */
+const SEGMENTS_PAR_CARTE = 12;
+const RANG_TARIF = 10;
+
+
 const WRITE = process.argv.includes("--write");
 const FILE = "test-baselines/t0a-finder-baseline.json";
 let pass = 0, fail = 0;
@@ -512,35 +518,107 @@ console.log("=== Preuve T0-B2-UI (deux baselines FIGÉES — permanente) ===");
 
     /* PREUVE PERMANENTE RC → TARIFS. Le lot supprime le champ « fee » du rapport et lui substitue
        les statuts par canal. Ce qui doit rester vrai, et qu'on exige ici pour toujours : la même
-       bijection de scénarios et de cartes, TOUS les autres segments identiques, et SEUL le
-       segment tarifaire remplacé. Sans cette preuve, « la baseline a bougé » ne dirait pas de
-       combien ni où — et un mouvement de statut pourrait se glisser sous un mouvement de tarif. */
+       bijection de scénarios et de cartes, TOUS les autres champs identiques, et SEUL le segment
+       tarifaire remplacé.
+
+       PREMIÈRE RÉDACTION FAUTIVE, NOMMÉE : elle ne lisait que « airlines ». La contre-revue du
+       29/08/2026 l'a montré en modifiant un `verdict` dans la figée Tarifs — et à l'identique
+       dans la vivante, pour que le garde-fou roulant reste vert par égalité de fichiers. La
+       preuve répondait alors `cartes: 1560, tarifRemplace: 1560, autresSegments: 0`, donc
+       VERTE sur un rapport saboté. Elle exige désormais l'égalité canonique des quatorze autres
+       champs, et par carte : la même identité au même rang, le même nombre de segments, UNE
+       divergence et une seule, à la place du tarif, de « fee: » vers « tarifs: ». */
     {
       const rc = JSON.parse(readFileSync("test-baselines/rc-finder-baseline-apres.json", "utf8"));
       const tarifs = JSON.parse(readFileSync("test-baselines/tarifs-finder-baseline-apres.json", "utf8"));
-      const scenarios = Object.keys(rc);
-      check(`RC → Tarifs : les ${scenarios.length} scénarios sont les mêmes`,
-        scenarios.length === 72 && JSON.stringify(scenarios.sort()) === JSON.stringify(Object.keys(tarifs).sort()));
-      let cartes = 0, autresSegments = 0, tarifRemplace = 0;
-      for (const s of scenarios) {
-        const a = rc[s]?.airlines ?? [], b = tarifs[s]?.airlines ?? [];
-        if (a.length !== b.length) { autresSegments++; continue; }
-        for (let i = 0; i < a.length; i++) {
-          cartes++;
-          const sa = String(a[i]).split(" | "), sb = String(b[i]).split(" | ");
-          if (sa.length !== sb.length) { autresSegments++; continue; }
-          for (let k = 0; k < sa.length; k++) {
-            if (sa[k] === sb[k]) continue;
-            /* La seule divergence tolérée : un segment « fee:… » devenu « tarifs:… ». */
-            if (sa[k].startsWith("fee:") && sb[k].startsWith("tarifs:")) tarifRemplace++;
-            else autresSegments++;
+
+      /* La comparaison est une FONCTION, pour être rejouée sur des copies sabotées juste après :
+         une preuve qu'on n'a jamais vue rougir ne prouve rien. */
+      const comparer = (avant, apres) => {
+        const scenarios = Object.keys(avant).sort();
+        const anomalies = [];
+        if (JSON.stringify(scenarios) !== JSON.stringify(Object.keys(apres).sort())) {
+          anomalies.push("les scénarios ne sont pas les mêmes");
+          return { scenarios: scenarios.length, champs: 0, cartes: 0, remplacements: 0, rangs: [], anomalies };
+        }
+        let champs = 0, cartes = 0, remplacements = 0;
+        const rangs = new Set();
+        for (const s of scenarios) {
+          /* 1 — TOUT LE RESTE DU RAPPORT, champ par champ : verdict, score, conditions, risques,
+             sources, avis de sécurité, alternatives, climat… un mouvement de statut ne peut plus
+             se glisser sous un mouvement de tarif. */
+          for (const c of new Set([...Object.keys(avant[s]), ...Object.keys(apres[s])])) {
+            if (c === "airlines") continue;
+            champs++;
+            if (JSON.stringify(avant[s][c]) !== JSON.stringify(apres[s][c])) anomalies.push(`${s}.${c} a bougé`);
+          }
+          /* 2 — LES CARTES, rang par rang. */
+          const a = avant[s].airlines ?? [], b = apres[s].airlines ?? [];
+          if (a.length !== b.length) { anomalies.push(`${s} : ${a.length} cartes contre ${b.length}`); continue; }
+          for (let i = 0; i < a.length; i++) {
+            cartes++;
+            const sa = String(a[i]).split(" | "), sb = String(b[i]).split(" | ");
+            if (sa.length !== SEGMENTS_PAR_CARTE || sb.length !== SEGMENTS_PAR_CARTE) {
+              anomalies.push(`${s}#${i} : ${sa.length} segments contre ${sb.length} (attendu ${SEGMENTS_PAR_CARTE})`); continue;
+            }
+            if (sa[0] !== sb[0]) { anomalies.push(`${s}#${i} : identité ${sa[0]} devenue ${sb[0]}`); continue; }
+            const divergents = sa.map((x, k) => (x === sb[k] ? -1 : k)).filter((k) => k >= 0);
+            if (divergents.length !== 1) {
+              anomalies.push(`${s}#${i} : ${divergents.length} segments divergents (${divergents.join(",")}), attendu 1`); continue;
+            }
+            const k = divergents[0];
+            if (!sa[k].startsWith("fee:") || !sb[k].startsWith("tarifs:")) {
+              anomalies.push(`${s}#${i} : divergence au segment ${k} « ${sa[k]} » → « ${sb[k]} », qui n'est pas un remplacement tarifaire`); continue;
+            }
+            rangs.add(k);
+            remplacements++;
           }
         }
+        return { scenarios: scenarios.length, champs, cartes, remplacements, rangs: [...rangs], anomalies };
+      };
+
+      const r = comparer(rc, tarifs);
+      check(`RC → Tarifs : les ${r.scenarios} scénarios sont les mêmes`, r.scenarios === 72);
+      check(`RC → Tarifs : ${r.champs} champs hors « airlines » comparés un à un`, r.champs === 1008);
+      check(`RC → Tarifs : ${r.cartes} cartes comparées`, r.cartes === 1560);
+      check(`RC → Tarifs : ${r.remplacements} remplacements tarifaires, tous au même rang ${JSON.stringify(r.rangs)}`,
+        r.remplacements === 1560 && JSON.stringify(r.rangs) === JSON.stringify([RANG_TARIF]));
+      check("RC → Tarifs : aucune autre divergence, nulle part",
+        r.anomalies.length === 0, r.anomalies.slice(0, 5).join(" ; "));
+
+      /* LA PREUVE VUE ROUGIR, sur les trois sabotages qu'elle a laissé passer ou qu'elle doit
+         attraper. Sans ceci, elle resterait une affirmation. */
+      const copie = () => JSON.parse(JSON.stringify(tarifs));
+      const premier = Object.keys(tarifs)[0];
+      const sabotages = [
+        ["un verdict modifié — L'ATTAQUE DU 29/08", (t) => { t[premier].verdict = "SABOTÉ"; }],
+        ["un avis de sécurité retiré", (t) => {
+          /* Sur un scénario qui EN PORTE : vider un champ déjà vide ne prouverait rien. */
+          const s = Object.keys(t).find((k) => (t[k].safety_advisories ?? []).length > 0);
+          if (!s) return false;
+          t[s].safety_advisories = [];
+          return true;
+        }],
+        ["un statut de carte modifié hors segment tarifaire", (t) => {
+          const c = t[premier].airlines[0].split(" | ");
+          c[3] = "st:denied/denied/denied";
+          t[premier].airlines[0] = c.join(" | ");
+        }],
+        ["une carte déplacée dans l'ordre", (t) => {
+          const l = t[premier].airlines;
+          [l[0], l[1]] = [l[1], l[0]];
+        }],
+      ];
+      for (const [nom, saboter] of sabotages) {
+        const t = copie();
+        /* UNE MUTATION QUI NE S'APPLIQUE PAS NE PROUVE RIEN — la première rédaction vidait
+           `safety_advisories` sur un scénario où il était DÉJÀ vide, et rougissait pour ça. */
+        if (saboter(t) === false) { check(`RC → Tarifs : sabotage « ${nom} » applicable`, false, "la mutation ne change rien"); continue; }
+        if (JSON.stringify(t) === JSON.stringify(tarifs)) { check(`RC → Tarifs : sabotage « ${nom} » applicable`, false, "la copie sabotée est identique à l'originale"); continue; }
+        const vu = comparer(rc, t);
+        check(`RC → Tarifs : la preuve rougit sur ${nom}`, vu.anomalies.length > 0,
+          "la preuve est restée verte sur un rapport saboté");
       }
-      check(`RC → Tarifs : ${cartes} cartes comparées`, cartes === 1560);
-      check(`RC → Tarifs : ${tarifRemplace} segments tarifaires remplacés, et RIEN d'autre`,
-        tarifRemplace === 1560 && autresSegments === 0,
-        `segments hors tarif divergents : ${autresSegments}`);
     }
   }
 }

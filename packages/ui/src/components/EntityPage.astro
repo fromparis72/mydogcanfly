@@ -356,10 +356,6 @@ const initials = title.split(/\s+/).map((w) => w[0] ?? "").slice(0, 2).join("").
               <div class="ep__polhead">
                 <span class="ep__polic"><Icon name={pl.key} size={18} /></span>
                 <b>{pl.label}</b>
-                {/* TROIS ÉTATS, PAS DEUX. La pastille se lisait sur `allowed`, or une politique
-                    « à confirmer » porte allowed=false : la page annonçait donc « non accepté »,
-                    puis affichait juste dessous « Tarif à confirmer ». Une contradiction publique,
-                    née d'un booléen là où la donnée en dit trois. */}
                 {/* TROIS ÉTATS, PAR LES FONCTIONS CANONIQUES. La pastille se lisait sur `allowed`,
                     or une politique « à confirmer » porte allowed=false : la page annonçait « non
                     accepté » puis affichait juste dessous « Tarif à confirmer ». Le libellé et la
@@ -603,8 +599,6 @@ const initials = title.split(/\s+/).map((w) => w[0] ?? "").slice(0, 2).join("").
   .ep__pill { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: .03em; padding: 2px 8px; border-radius: 999px; white-space: nowrap; }
   .ep__pill--ok { color: #065f46; background: #d1fae5; }
   .ep__pill--no { color: #991b1b; background: #fee2e2; }
-  /* Le troisième état a sa couleur : sans elle, « à confirmer » se lirait comme un accord. */
-  .ep__pill--warn { color: #92400e; background: #fef3c7; }
   /* Le troisième état a sa couleur : sans elle, « à confirmer » se lirait comme un accord. */
   .ep__pill--warn { color: #92400e; background: #fef3c7; }
   .ep__specs { margin: 0; display: grid; gap: 4px; }

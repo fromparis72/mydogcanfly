@@ -31,7 +31,7 @@ const preuve = (quote, extra = {}) => ({
   verified_date: VERIF, review_due: reviewDueFrom(VERIF, "equipment"),
   confidence: 4, reviewer: "MyDogCanFly Data Team", history: [], ...extra,
 });
-const QUOTE = "Dimensions 100 x 60 x 70 cm — net weight 10 kg — shipping weight 66 kg";
+const QUOTE = "Dimensions (L x W x H) 100 x 60 x 70 cm — net weight 10 kg — shipping weight 66 kg";
 
 /** Un modèle TÉMOIN, fictif et nommé comme tel — 100 × 60 × 70 cm, 10 kg. */
 const temoin = (over = {}) => ({
@@ -43,7 +43,7 @@ const temoin = (over = {}) => ({
     valeurs_originales: { unite_longueur: "cm", unite_masse: "kg", l: 100, w: 60, h: 70, poids_a_vide: 10 },
     normalisees_cm_kg: { l: 100, w: 60, h: 70, poids_a_vide_kg: 10,
                          derive_de: "conversion mécanique depuis valeurs_originales" },
-    preuve_dimensions: { fragment_source: "100 x 60 x 70 cm", citation: preuve(QUOTE) },
+    preuve_dimensions: { fragment_source: "(L x W x H) 100 x 60 x 70 cm", citation: preuve(QUOTE) },
     preuve_poids: { fragment_source: "net weight 10 kg", citation: preuve(QUOTE) },
   },
   ...over,
@@ -93,7 +93,7 @@ refus("1bis poids seul modifié, citation intacte", (m) => {
 }, "preuve_poids.fragment_source");
 /* 1 ter — un fragment cité qui n'est PAS dans la citation. */
 refus("1ter fragment absent de la citation", (m) => {
-  m.specifications.preuve_dimensions.fragment_source = "100 x 60 x 71 cm";
+  m.specifications.preuve_dimensions.fragment_source = "(L x W x H) 100 x 60 x 71 cm";
   return true;
 }, "preuve_dimensions.fragment_source");
 
@@ -138,9 +138,73 @@ refus("3ter fragment « shipping weight » seul", (m) => {
 }, "preuve_poids.fragment_source");
 /* 3 quater — L'ATTAQUE DU 29/08 (3) : l'unité absente du fragment ne vaut pas « centimètres ». */
 refus("3quater unité absente du fragment de dimensions", (m) => {
-  m.specifications.preuve_dimensions.fragment_source = "100 x 60 x 70";
+  m.specifications.preuve_dimensions.fragment_source = "(L x W x H) 100 x 60 x 70";
   return true;
 }, "preuve_dimensions.fragment_source");
+
+/* 3 quinquies — L'ATTAQUE DE LA CONTRE-REVUE DU 29/08 (4), reproduite mot pour mot puis fermée :
+   le fragment ne porte AUCUNE unité sur ses dimensions, mais en contient une AILLEURS — celle de
+   la porte. L'ancienne rédaction balayait tout le fragment et empruntait ces centimètres ; ce
+   modèle passait, `success === true`. L'unité doit désormais se lire DANS l'expression des trois
+   nombres, jamais dans le reste de la phrase. */
+refus("3quinquies l'unité empruntée à une autre mesure du fragment", (m) => {
+  const frag = "Door clearance 10 cm; dimensions 40 x 27 x 30";
+  m.specifications.valeurs_originales.l = 40;
+  m.specifications.valeurs_originales.w = 27;
+  m.specifications.valeurs_originales.h = 30;
+  m.specifications.normalisees_cm_kg.l = 40;
+  m.specifications.normalisees_cm_kg.w = 27;
+  m.specifications.normalisees_cm_kg.h = 30;
+  m.specifications.preuve_dimensions.fragment_source = frag;
+  m.specifications.preuve_dimensions.citation.quote = `${frag} — net weight 10 kg`;
+  m.specifications.preuve_poids.citation.quote = `${frag} — net weight 10 kg`;
+  return true;
+}, "preuve_dimensions.fragment_source");
+/* 3 sexies — trois nombres et leur unité, mais AUCUN AXE ÉCRIT : rien ne dit lequel est la
+   longueur. La position ne prouve pas l'ordre. */
+refus("3sexies l'ordre des axes n'est pas écrit dans le fragment", (m) => {
+  m.specifications.preuve_dimensions.fragment_source = "100 x 60 x 70 cm";
+  m.specifications.preuve_dimensions.citation.quote =
+    "Dimensions 100 x 60 x 70 cm — net weight 10 kg — shipping weight 66 kg";
+  m.specifications.preuve_poids.citation.quote =
+    "Dimensions 100 x 60 x 70 cm — net weight 10 kg — shipping weight 66 kg";
+  return true;
+}, "preuve_dimensions.fragment_source");
+/* 3 septies — DEUX séries dans le même fragment : l'intérieur et l'extérieur ne disent pas
+   laquelle est citée. */
+refus("3septies deux expressions de dimensions dans un même fragment", (m) => {
+  const frag = "Interior L 100 x W 60 x H 70 cm; Exterior L 110 x W 65 x H 75 cm";
+  m.specifications.preuve_dimensions.fragment_source = frag;
+  m.specifications.preuve_dimensions.citation.quote = `${frag} — net weight 10 kg`;
+  m.specifications.preuve_poids.citation.quote = `${frag} — net weight 10 kg`;
+  return true;
+}, "preuve_dimensions.fragment_source");
+/* 3 octies — deux unités qui se contredisent DANS l'expression : on refuse, on n'en choisit pas
+   une. */
+refus("3octies deux unités contradictoires dans l'expression", (m) => {
+  const frag = "L 100 x W 60 x H 70 in cm";
+  m.specifications.preuve_dimensions.fragment_source = frag;
+  m.specifications.preuve_dimensions.citation.quote = `${frag} — net weight 10 kg`;
+  m.specifications.preuve_poids.citation.quote = `${frag} — net weight 10 kg`;
+  return true;
+}, "preuve_dimensions.fragment_source");
+/* 3 nonies — LE PARSEUR LUI-MÊME, sur les formes que publient réellement les fabricants, et sur
+   la preuve que l'ORDRE EST LU : « H 70 x L 100 x W 60 » doit rendre l = 100, pas 70. */
+{
+  const meme = (a, b) => JSON.stringify(a) === JSON.stringify(b);
+  const cas = [
+    ['40.7" L X 26.9" W X 30.4" H', { l: 40.7, w: 26.9, h: 30.4, unite: "in" }],
+    ["Length 48 x Width 72.5 x Height 51 cm", { l: 48, w: 72.5, h: 51, unite: "cm" }],
+    ["Dimensions (L x W x H) in inches: 40 x 27 x 30", { l: 40, w: 27, h: 30, unite: "in" }],
+    ["H 70 x L 100 x W 60 cm", { l: 100, w: 60, h: 70, unite: "cm" }],
+    ["longueur 100 x largeur 60 x hauteur 70 cm", { l: 100, w: 60, h: 70, unite: "cm" }],
+    ["L 100 x L 60 x H 70 cm", null],
+    ["Dimensions in 40 x 27 x 30", null],
+  ];
+  const rates = cas.filter(([f, att]) => !meme(parserDimensions(f), att));
+  if (rates.length) echec("3nonies formes réelles", rates.map(([f]) => JSON.stringify(f)).join(" | "));
+  else ok(`3nonies le parseur lit ${cas.length} formes, dont l'ordre des axes quand il est inversé`);
+}
 
 /* 4 — un champ supplémentaire glissé dans la citation. */
 refus("4 champ supplémentaire dans la preuve", (m) => {
@@ -334,9 +398,9 @@ refus("7 review_due tapée à la main", (m) => {
   const b = temoin({ id: "fabricant_temoin_b", fabricant: "Fabricant Témoin B" });
   b.specifications.valeurs_originales.poids_a_vide = 13;
   b.specifications.normalisees_cm_kg.poids_a_vide_kg = 13;
-  b.specifications.preuve_dimensions.fragment_source = "100 x 60 x 70 cm";
+  b.specifications.preuve_dimensions.fragment_source = "(L x W x H) 100 x 60 x 70 cm";
   b.specifications.preuve_poids.fragment_source = "13 kg";
-  b.specifications.preuve_poids.citation = preuve("Dimensions 100 x 60 x 70 cm — net weight 13 kg");
+  b.specifications.preuve_poids.citation = preuve("Dimensions (L x W x H) 100 x 60 x 70 cm — net weight 13 kg");
   const profilFaux = { id: "rigide_xl", modeles: [modele.id, b.id], publiable: true,
     poids_kg: { min: 10, max: 99, arrondi: [10, 99], derive_de: "min/max des poids à vide normalisés des modèles cités" } };
   const ecarts = verifierRegistresCaisses([modele, b], [profilFaux], []);

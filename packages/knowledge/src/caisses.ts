@@ -114,19 +114,106 @@ export function estLibellePoidsNet(champ: string): boolean {
  */
 const nombre = (s: string) => Number(s.replace(",", "."));
 
+/* LES AXES, tels qu'une page les écrit. La liste est VOLONTAIREMENT ÉTROITE — anglais et
+   français, les langues des pages fabricants effectivement citées. L'élargir est un mouvement
+   nommé, comme l'a été « product weight » côté poids : inventer ici la correspondance d'un mot
+   espagnol ou portugais jamais lu sur une page réelle reviendrait à supposer un ordre. */
+const AXES: Record<string, "l" | "w" | "h"> = {
+  l: "l", length: "l", longueur: "l",
+  w: "w", width: "w", largeur: "w",
+  h: "h", height: "h", hauteur: "h",
+};
+const AXE = "(?:length|longueur|width|largeur|height|hauteur|L|W|H)";
+const NB = "\\d+(?:[.,]\\d+)?";
+const FOIS = "\\s*[x×]\\s*";
+/* L'unité APRÈS un nombre peut être abrégée : « 40 x 27 x 30 cm », « 40.7" L ». L'unité AVANT ne
+   peut PAS l'être : dans « Dimensions in 40 x 27 x 30 », « in » est une préposition bien plus
+   souvent qu'un pouce. Refuser l'abrégé en tête ferme cette ambiguïté ; « in inches » et « in
+   cm » restent lisibles grâce au connecteur optionnel. */
+const U_AVANT = "(?:centimet(?:er|re)s?|centimètres?|centímetros?|cm|inches|inch|pouces)";
+const U_APRES = "(?:centimet(?:er|re)s?|centimètres?|centímetros?|cm|inches|inch|pouces|in|\")";
+/* Un nombre PORTANT SON AXE, dans un sens ou dans l'autre : « L 100 », « 100 (L) », « 40.7" L ». */
+const terme = (n: number) =>
+  `(?:\\b(?<axeAvant${n}>${AXE})\\b\\s*[:=]?\\s*(?<nbA${n}>${NB})` +
+  `|(?<nbB${n}>${NB})\\s*(?<uT${n}>${U_APRES})?\\s*\\(?\\s*\\b(?<axeApres${n}>${AXE})\\b\\s*\\)?)`;
+/* Deux emplacements d'unité finale, pour VOIR une contradiction (« 70 in cm ») plutôt que d'en
+   choisir une au hasard. */
+const QUEUE = `(?:\\s*(?<uApres>${U_APRES}))?(?:\\s*(?<uApres2>${U_APRES}))?`;
+const TETE = `(?:(?:(?:in|en)\\s+)?(?<uAvant>${U_AVANT})\\s*[:=]?\\s*)?`;
+
+/* FORME A — chaque nombre porte son axe : « L 100 x W 60 x H 70 cm », « 40.7" L X 26.9" W X 30.4" H ». */
+const FORME_A = new RegExp(`${TETE}${terme(1)}${FOIS}${terme(2)}${FOIS}${terme(3)}${QUEUE}`, "i");
+/* FORME B — l'ordre est DÉCLARÉ juste avant les trois nombres : « (L x W x H) 100 x 60 x 70 cm ».
+   La déclaration doit être collée au triplet : rien ne s'intercale entre elle et le premier
+   nombre, sinon elle pourrait décrire une AUTRE série de la même page. */
+const FORME_B = new RegExp(
+  `\\(?\\s*\\b(?<b1>${AXE})\\b${FOIS}\\b(?<b2>${AXE})\\b${FOIS}\\b(?<b3>${AXE})\\b\\s*\\)?\\s*[:=]?\\s*` +
+  `${TETE}(?<n1>${NB})${FOIS}(?<n2>${NB})${FOIS}(?<n3>${NB})${QUEUE}`,
+  "i",
+);
+/* Les mêmes formes, en balayage — UNIQUEMENT pour élargir le refus (voir plus bas), jamais pour
+   accorder quoi que ce soit. */
+const FORME_A_G = new RegExp(FORME_A.source, "gi");
+const FORME_B_G = new RegExp(FORME_B.source, "gi");
+
 /**
- * Les dimensions d'un fragment. L'UNITÉ EST OBLIGATOIRE et doit s'y trouver — « 40 x 27 x 30 »
- * seul est refusé, parce que rien n'y dit des centimètres plutôt que des pouces.
+ * Les dimensions d'un fragment. Trois exigences, et un refus dès que l'une manque :
+ *
+ *   1. L'UNITÉ est capturée DANS LA MÊME EXPRESSION que les trois nombres, immédiatement avant
+ *      ou immédiatement après eux — et toutes les unités de l'expression doivent dire la même
+ *      chose. Aucune recherche globale : « Door clearance 10 cm; dimensions 40 x 27 x 30 »
+ *      empruntait ses centimètres à la porte, et passait.
+ *   2. L'ORDRE des axes est LU dans le fragment — soit chaque nombre porte son axe, soit l'ordre
+ *      est déclaré juste avant le triplet. Trois nombres nus ne disent pas lequel est la
+ *      longueur : la position ne prouve rien.
+ *   3. Le fragment ne porte QU'UNE SEULE expression de dimensions. Deux séries (intérieur et
+ *      extérieur, par exemple) ne disent pas laquelle est citée.
  */
 export function parserDimensions(fragment: string): { l: number; w: number; h: number; unite: "cm" | "in" } | null {
   const t = fragment.replace(/\s+/g, " ").trim();
-  const m = /(\d+(?:[.,]\d+)?)\s*[x×]\s*(\d+(?:[.,]\d+)?)\s*[x×]\s*(\d+(?:[.,]\d+)?)/i.exec(t);
-  if (!m) return null;
-  /* L'unité se lit dans le fragment, avant ou après les nombres — jamais par défaut. */
-  const cm = /\b(cm|centimet|centímet|centimèt)/i.test(t);
-  const inch = /\b(in|inch|inches|pouces)\b|"/i.test(t);
-  if (cm === inch) return null;                       // ni les deux, ni aucune
-  return { l: nombre(m[1]), w: nombre(m[2]), h: nombre(m[3]), unite: cm ? "cm" : "in" };
+
+  /* Le seul balayage global du fichier, et il ne sert QU'À REFUSER. */
+  if ((t.match(FORME_A_G) ?? []).length + (t.match(FORME_B_G) ?? []).length !== 1) return null;
+
+  const a = FORME_A.exec(t);
+  if (a?.groups) {
+    const g = a.groups;
+    const termes = [1, 2, 3].map((n) => {
+      const axe = AXES[(g[`axeAvant${n}`] ?? g[`axeApres${n}`] ?? "").toLowerCase()];
+      const val = g[`nbA${n}`] ?? g[`nbB${n}`];
+      return axe && val ? { axe, val: nombre(val) } : null;
+    });
+    return assembler(termes, [g.uAvant, g.uT1, g.uT2, g.uT3, g.uApres, g.uApres2]);
+  }
+
+  const b = FORME_B.exec(t);
+  if (b?.groups) {
+    const g = b.groups;
+    const termes = [1, 2, 3].map((n) => {
+      const axe = AXES[(g[`b${n}`] ?? "").toLowerCase()];
+      return axe ? { axe, val: nombre(g[`n${n}`]!) } : null;
+    });
+    return assembler(termes, [g.uAvant, g.uApres, g.uApres2]);
+  }
+
+  return null;
+}
+
+/**
+ * Les trois axes doivent être L, W et H — chacun une fois, sinon l'ordre reste indéterminé — et
+ * l'expression doit porter UNE unité, une seule, jamais deux qui se contredisent.
+ */
+function assembler(
+  termes: ({ axe: "l" | "w" | "h"; val: number } | null)[],
+  unites: (string | undefined)[],
+): { l: number; w: number; h: number; unite: "cm" | "in" } | null {
+  if (termes.some((x) => x == null)) return null;
+  const vus = termes.map((x) => x!.axe);
+  if (new Set(vus).size !== 3) return null;
+  const lues = new Set(unites.filter(Boolean).map((u) => (/^c/i.test(u!) ? "cm" : "in")));
+  if (lues.size !== 1) return null;
+  const par = (axe: "l" | "w" | "h") => termes.find((x) => x!.axe === axe)!.val;
+  return { l: par("l"), w: par("w"), h: par("h"), unite: [...lues][0] as "cm" | "in" };
 }
 
 /**
@@ -158,7 +245,7 @@ export const SpecificationChiffree = z.object({
     path: ["fragment_source"],
   })
   .refine((s) => parserDimensions(s.fragment_source) != null, {
-    message: "le fragment ne porte pas trois dimensions AVEC leur unité — « 40 x 27 x 30 » sans unité ne dit pas des centimètres plutôt que des pouces",
+    message: "le fragment ne porte pas UNE expression de dimensions complète — il faut les trois nombres, leur unité dans la même expression, et l'ordre des axes écrit : « 40 x 27 x 30 » ne dit ni centimètres plutôt que pouces, ni lequel des trois est la longueur",
     path: ["fragment_source"],
   });
 
