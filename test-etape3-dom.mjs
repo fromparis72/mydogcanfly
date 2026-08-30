@@ -17,7 +17,7 @@
  * exactement la faute qui a fait tomber la preuve DOM de l'inventaire, sautée à chaque exécution
  * parce qu'elle tournait avant le build.
  */
-import { readFileSync, readdirSync, statSync, existsSync } from "node:fs";
+import { readFileSync, writeFileSync, readdirSync, statSync, existsSync } from "node:fs";
 import { join } from "node:path";
 
 const DIST = process.argv.slice(2).find((a) => a.startsWith("--dist="))?.slice(7);
@@ -62,7 +62,7 @@ const INTERDIT = /IATA[- ]?(?:approved|compliant|certified)|homologu[\wÀ-ÿ]*\s
      fenêtrage sur du HTML rendu est fragile par nature : les entités, les espaces insécables et
      les découpes de balises la mettent en défaut, et j'aurais pu la raffiner longtemps sans
      jamais pouvoir m'y fier.
- 
+
      LA GARANTIE RÉELLE EST AILLEURS, et elle ne demande aucune heuristique. L'inventaire prouve
      que les surfaces APPLICATIVES — traductions, composants, pages, lib, moteur, workers — ne
      portent plus AUCUNE affirmation interdite : c'est le contrat de l'étape 3, mesuré à 0. Il
@@ -70,7 +70,7 @@ const INTERDIT = /IATA[- ]?(?:approved|compliant|certified)|homologu[\wÀ-ÿ]*\s
      générées et du contenu éditorial, c'est-à-dire du micro-lot suivant. Vérifié à la main sur
      trois cas — Icelandair, airBaltic, Air Caraïbes — : leurs phrases vivent dans
      `content/airlines/*.yml`, d'où les générateurs les portent jusqu'aux fiches.
- 
+
      On exige donc les deux choses qu'on peut établir sans deviner : ZÉRO dans les sources
      applicatives, et un COMPTE FIGÉ de la dette encore publiée, qui ne peut plus grandir en
      silence. */
@@ -83,54 +83,162 @@ const INTERDIT = /IATA[- ]?(?:approved|compliant|certified)|homologu[\wÀ-ÿ]*\s
   if (applicatives.length) echec("1 sources applicatives", `${applicatives.length} affirmation(s) subsiste(nt), dont ${applicatives[0].fichier}:${applicatives[0].ligne}`);
   else ok("1 aucune affirmation interdite ne subsiste dans les sources applicatives");
 
-  const publiantes = pages.filter((p) => INTERDIT.test(readFileSync(p, "utf8")));
-  /* SENTINELLE DE LA DETTE ÉDITORIALE. Mesurée le 30/08/2026 sur le dist complet. Elle ne peut
-     que DESCENDRE : le micro-lot éditorial la ramènera à zéro. Toute hausse est une régression,
-     et fait rougir ici. */
-  const DETTE_MESUREE = 52;
-  if (publiantes.length > DETTE_MESUREE)
-    echec("1bis dette éditorale", `${publiantes.length} pages publient une homologation, contre ${DETTE_MESUREE} mesurées — la dette a GRANDI`);
-  else if (publiantes.length < DETTE_MESUREE)
-    echec("1bis dette éditoriale", `${publiantes.length} pages au lieu de ${DETTE_MESUREE} : la dette a baissé, il faut déplacer la sentinelle par un mouvement nommé`);
-  else ok(`1bis ${publiantes.length} pages publient encore une homologation venue des DONNÉES et du contenu — dette du micro-lot éditorial, figée et non aggravée`);
+  /* LE REGISTRE EXACT, COMPARÉ DANS LES DEUX SENS. Première rédaction fautive, nommée : elle
+     n'exigeait que `publiantes.length === 52`. Attaque reproduite sur le contrôle réel — corriger
+     une page fautive ET salir une page saine laisse le total à 52, donc VERT, avec un message
+     mensonger « dette figée et non aggravée » ; ajouter une seconde affirmation sur une page
+     DÉJÀ comptée passait de même. Un total ne fige rien : il fige une somme.
+     Le registre porte donc, par CHEMIN PUBLIC, chaque formulation normalisée ET sa multiplicité,
+     et la comparaison est bidirectionnelle. */
+  const REGISTRE = "dette-iata-publiee.json";
+  const registre = JSON.parse(readFileSync(REGISTRE, "utf8")).pages;
+  const MOTIF_G = new RegExp(INTERDIT.source, "gi");
+  const vu = {};
+  for (const p of pages) {
+    const url = p.slice(DIST.length).replace(/\/index\.html$/, "/");
+    const html = readFileSync(p, "utf8");
+    MOTIF_G.lastIndex = 0;
+    const par = {};
+    for (const m of html.matchAll(MOTIF_G)) {
+      const f = m[0].toLowerCase().replace(/\s+/g, " ").trim();
+      par[f] = (par[f] || 0) + 1;
+    }
+    if (Object.keys(par).length) vu[url] = par;
+  }
+
+  const comparer = (attendu, constate) => {
+    const ecarts = [];
+    for (const [url, formes] of Object.entries(attendu)) {
+      if (!constate[url]) { ecarts.push(`page corrigée mais toujours au registre : ${url}`); continue; }
+      for (const [f, n] of Object.entries(formes)) {
+        const m = constate[url][f] ?? 0;
+        if (m !== n) ecarts.push(`${url} « ${f} » : ${m} occurrence(s) contre ${n} au registre`);
+      }
+      for (const f of Object.keys(constate[url])) {
+        if (!(f in formes)) ecarts.push(`${url} : formulation NON enregistrée « ${f} »`);
+      }
+    }
+    for (const url of Object.keys(constate)) {
+      if (!attendu[url]) ecarts.push(`page fautive ABSENTE du registre : ${url}`);
+    }
+    return ecarts;
+  };
+
+  const total = Object.values(vu).reduce((n, o) => n + Object.values(o).reduce((a, b) => a + b, 0), 0);
+  /* `--ecrire-registre` déplace la sentinelle. Il n'est PAS appelé par la CI : le registre ne
+     bouge que par un geste délibéré, et le lot éditorial s'en servira pour le ramener vers zéro.
+     Sans cette option, l'avancement dépendrait d'un script de brouillon hors du dépôt. */
+  if (process.argv.includes("--ecrire-registre")) {
+    const trie = Object.fromEntries(Object.keys(vu).sort().map((k) => [k, Object.fromEntries(Object.entries(vu[k]).sort())]));
+    const ancien = JSON.parse(readFileSync(REGISTRE, "utf8"));
+    writeFileSync(REGISTRE, JSON.stringify({ ...ancien, _mesure: { pages: Object.keys(trie).length, occurrences: total, dist_pages_html: pages.length }, pages: trie }, null, 2) + "\n");
+    console.log(`  · registre RÉÉCRIT : ${Object.keys(trie).length} pages, ${total} occurrences`);
+  }
+  const ecarts = comparer(registre, vu);
+  if (ecarts.length) echec(`1bis registre de la dette (${ecarts.length} écart(s))`, ecarts.slice(0, 4).join(" · "));
+  else ok(`1bis la dette publiée correspond EXACTEMENT au registre : ${Object.keys(vu).length} pages, ${total} occurrences`);
+
+  /* LES DEUX ATTAQUES QUE LE TOTAL SEUL LAISSAIT PASSER, jouées sur des copies du constat. */
+  {
+    const urls = Object.keys(registre);
+    const deplace = JSON.parse(JSON.stringify(vu));
+    const premiere = urls[0], forme = Object.keys(registre[premiere])[0];
+    delete deplace[premiere];                                  // une page corrigée…
+    deplace["/une-page-jusque-la-saine/"] = { [forme]: 1 };     // …et une autre salie : total constant
+    const vuDeplace = comparer(registre, deplace);
+    if (!vuDeplace.length) echec("1ter défaut déplacé", "un défaut déplacé à effectif constant est accepté");
+    else ok(`1ter un défaut déplacé à effectif constant est vu (${vuDeplace.length} écart(s))`);
+
+    const enPlus = JSON.parse(JSON.stringify(vu));
+    enPlus[premiere][forme] += 1;                               // une occurrence de plus, même page
+    const vuEnPlus = comparer(registre, enPlus);
+    if (!vuEnPlus.length) echec("1quater occurrence supplémentaire", "une occurrence de plus sur une page déjà comptée est acceptée");
+    else ok("1quater une occurrence supplémentaire sur une page déjà enregistrée est vue");
+  }
 }
 
-/* ---- 2. LES LIBELLÉS COMBINÉS, DANS LE RAPPORT RÉELLEMENT RENDU ---------------------------- */
-/* PREMIÈRE RÉDACTION FAUTIVE, NOMMÉE : elle cherchait les libellés dans le HTML des pages
-   d'accueil. Ils n'y sont pas, et ne peuvent pas y être — mesuré : « Cabin OK » n'apparaît dans
-   AUCUNE des 3 121 pages. Les libellés de canal naissent dans le rapport du moteur, servi après
-   une recherche ; le HTML statique ne les porte jamais. Le contrôle prend donc le chemin réel :
-   on demande au MOTEUR un rapport pour un vrai trajet, on y cherche une compagnie à deux canaux
-   ouverts, et on exige que le libellé qu'il produit soit le libellé combiné de sa langue. */
+/* ---- 2. LA BIJECTION COMBINAISON → LIBELLÉ, DANS LES QUATRE LANGUES ------------------------ */
+/* DEUX RÉDACTIONS FAUTIVES DE CE CONTRÔLE, NOMMÉES.
+ *
+ *   a. La première cherchait les libellés dans le HTML des pages d'accueil. Ils n'y sont pas et ne
+ *      peuvent pas y être : mesuré, « Cabin OK » n'apparaît dans AUCUNE page. Les libellés de
+ *      canal naissent dans le rapport du moteur, servi après une recherche.
+ *   b. La seconde n'exerçait qu'un trajet, CDG→BKK. Mesuré : ses cinq cartes multicanales sont
+ *      TOUTES en `011`. Les combinaisons `110`, `101` et `111` n'étaient donc jamais exécutées —
+ *      les trois quarts de ce que l'étape 3 corrige n'étaient pas prouvés. Et le contrôle se
+ *      contentait d'exiger que le libellé APPARTIENNE à la liste des quatre : une permutation de
+ *      deux d'entre eux serait passée.
+ *
+ * On exige donc la BIJECTION exacte, combinaison par combinaison, et la COUVERTURE des quatre —
+ * une preuve qui n'exercerait que ce qui existe déjà ne prouve rien de ce qu'on a changé. */
 {
   const { loadKB } = await import("./packages/knowledge/src/index.ts");
   const { FinderRequest, runFinder } = await import("./packages/engine/src/index.ts");
   const kb = loadKB();
-  const COMBINES = {
-    en: ["Cabin and hold", "Cabin and cargo", "Hold and cargo", "Cabin, hold and cargo"],
-    fr: ["Cabine et soute", "Cabine et fret", "Soute et fret", "Cabine, soute et fret"],
-    es: ["Cabina y bodega", "Cabina y carga", "Bodega y carga", "Cabina, bodega y carga"],
-    pt: ["Cabine e porão", "Cabine e carga", "Porão e carga", "Cabine, porão e carga"],
+
+  /* LE LIBELLÉ ATTENDU DE CHAQUE COMBINAISON, écrit en toutes lettres et par langue. Il n'est PAS
+     relu des fichiers de traduction : le relire reviendrait à comparer la production à elle-même,
+     la garde circulaire déjà nommée trois fois dans ce lot. */
+  const ATTENDU = {
+    "110": { en: "Cabin and hold",  fr: "Cabine et soute", es: "Cabina y bodega", pt: "Cabine e porão" },
+    "101": { en: "Cabin and cargo", fr: "Cabine et fret",  es: "Cabina y carga",  pt: "Cabine e carga" },
+    "011": { en: "Hold and cargo",  fr: "Soute et fret",   es: "Bodega y carga",  pt: "Porão e carga" },
+    "111": { en: "Cabin, hold and cargo", fr: "Cabine, soute et fret", es: "Cabina, bodega y carga", pt: "Cabine, porão e carga" },
   };
-  const EXCLUSIFS = /\b(only|uniquement|solo|somente)\b/i;
-  let bons = 0, multi = 0;
-  for (const [loc, attendus] of Object.entries(COMBINES)) {
-    const rapport = runFinder(kb, FinderRequest.parse({
-      origin: "airport_cdg", destination: "airport_bkk",
-      dog: { breed_id: "breed_golden_retriever", weight_kg: 30 },
-      date: "2027-01-15", locale: loc,
-    }));
-    /* Les compagnies à DEUX canaux ouverts au moins : ce sont elles que la cascade trahissait. */
-    const cartes = rapport.airlines.filter((a) => [a.cabin, a.hold, a.cargo].filter(Boolean).length >= 2);
-    if (!cartes.length) { echec(`2 libellés combinés (${loc})`, "aucune compagnie à deux canaux dans ce rapport"); continue; }
-    multi = cartes.length;
-    const horsListe = cartes.filter((a) => !attendus.includes(a.label));
-    const menteuses = cartes.filter((a) => EXCLUSIFS.test(a.label));
-    if (horsListe.length) echec(`2 libellés combinés (${loc})`, `${horsListe.length} carte(s) hors des quatre libellés, dont « ${horsListe[0].label} »`);
-    else if (menteuses.length) echec(`2 libellés combinés (${loc})`, `« ${menteuses[0].label} » sur une carte à deux canaux`);
-    else bons++;
+  /* Les cas de contrôle qui atteignent les quatre combinaisons — mesurés, pas supposés : un
+     golden de 30 kg ne passe jamais en cabine, d'où le `011` exclusif du premier trajet. */
+  const CAS = [
+    { origin: "airport_cdg", destination: "airport_bkk", breed_id: "breed_golden_retriever", weight_kg: 30 },
+    { origin: "airport_cdg", destination: "airport_bkk", breed_id: "breed_bichon_frise", weight_kg: 6 },
+    { origin: "airport_cdg", destination: "airport_jfk", breed_id: "breed_bichon_frise", weight_kg: 6 },
+    { origin: "airport_lhr", destination: "airport_lax", breed_id: "breed_bichon_frise", weight_kg: 6 },
+  ];
+  const LANGUES = ["en", "fr", "es", "pt"];
+  const vues = new Set();
+  const ecarts = [];
+  let cartes = 0;
+  for (const loc of LANGUES) {
+    for (const c of CAS) {
+      const r = runFinder(kb, FinderRequest.parse({
+        origin: c.origin, destination: c.destination,
+        dog: { breed_id: c.breed_id, weight_kg: c.weight_kg }, date: "2027-01-15", locale: loc,
+      }));
+      for (const a of r.airlines) {
+        const combo = `${+a.cabin}${+a.hold}${+a.cargo}`;
+        if ((combo.match(/1/g) ?? []).length < 2) continue;
+        cartes++;
+        vues.add(combo);
+        if (a.label !== ATTENDU[combo][loc]) {
+          ecarts.push(`${loc}/${combo} : « ${a.label} » au lieu de « ${ATTENDU[combo][loc]} »`);
+        }
+      }
+    }
   }
-  if (bons === 4) ok(`2 les ${multi} cartes multicanales portent un libellé combiné, dans les quatre langues`);
+  const manquantes = Object.keys(ATTENDU).filter((k) => !vues.has(k));
+  if (manquantes.length) echec("2 couverture des combinaisons", `jamais exercée(s) : ${manquantes.join(", ")}`);
+  else if (ecarts.length) echec("2 bijection combinaison → libellé", `${ecarts.length} écart(s), dont ${ecarts[0]}`);
+  else ok(`2 bijection exacte sur ${cartes} cartes multicanales, les 4 combinaisons exercées dans les 4 langues`);
+
+  /* LA PREUVE VUE ROUGIR : une permutation de deux libellés doit être détectée. Sans cela, la
+     bijection ne serait qu'une appartenance à une liste. */
+  {
+    const permute = JSON.parse(JSON.stringify(ATTENDU));
+    [permute["110"].fr, permute["101"].fr] = [permute["101"].fr, permute["110"].fr];
+    let vu = 0;
+    for (const c of CAS) {
+      const r = runFinder(kb, FinderRequest.parse({
+        origin: c.origin, destination: c.destination,
+        dog: { breed_id: c.breed_id, weight_kg: c.weight_kg }, date: "2027-01-15", locale: "fr",
+      }));
+      for (const a of r.airlines) {
+        const combo = `${+a.cabin}${+a.hold}${+a.cargo}`;
+        if ((combo.match(/1/g) ?? []).length < 2) continue;
+        if (a.label !== permute[combo].fr) vu++;
+      }
+    }
+    if (!vu) echec("2bis permutation", "échanger « Cabine et soute » et « Cabine et fret » ne change rien");
+    else ok(`2bis une permutation de deux libellés est vue (${vu} carte(s) en désaccord)`);
+  }
 }
 
 /* ---- 3. AUCUN LIBELLÉ EXCLUSIF DANS LE DOM STATIQUE ---------------------------------------- */
