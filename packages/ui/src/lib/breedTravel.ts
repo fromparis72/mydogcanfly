@@ -77,30 +77,54 @@ export function computeBreedTravel(breedId: string): BreedTravelProfile | null {
   let cabinWithin = 0, cabinOver = 0, cabinUnkLimit = 0, cabinNo = 0;
   let holdYes = 0, holdNo = 0, holdUnk = 0, brachyHoldBans = 0;
   let cargoYes = 0, cargoNo = 0, cargoUnk = 0;
+  /**
+   * LES TROIS ÉTATS D'UNE POLITIQUE, ET POURQUOI LES CONFONDRE EST UNE FAUTE.
+   *
+   * La base normalisée porte `status` : « allowed », « confirmation_required », « denied ».
+   * Ce fichier ne lisait que le booléen `allowed` — or une politique à confirmer porte
+   * `allowed: false`. Une compagnie dont la politique demande confirmation était donc comptée
+   * comme un REFUS, et pouvait apparaître barrée sur la fiche de race.
+   *
+   * Un doute n'est pas un non. `statutDu` rend les trois états ; seul « allowed » rend une
+   * compagnie éligible, et « confirmation_required » ne compte ni dans les oui ni dans les non.
+   */
+  const statutDu = (p: any): "allowed" | "confirmation_required" | "denied" | "inconnu" => {
+    if (!p) return "inconnu";
+    if (p.status === "allowed" || p.status === "confirmation_required" || p.status === "denied") return p.status;
+    if (p.allowed === undefined) return "inconnu";
+    return p.allowed ? "allowed" : "denied";
+  };
+  let holdAConfirmer = 0, cargoAConfirmer = 0, cabinAConfirmer = 0;
   const perAirline: { name: string; slug: string; channel: "cabin" | "hold" | "cargo" | "none"; max?: number }[] = [];
   for (const a of kb.airlines.values() as Iterable<any>) {
     const p = a.premium?.policy || {};
     const c = p.cabin, h = p.hold, g = p.cargo;
     // cabin
     let cabinEligible = false, cabinReasonMax: number | undefined;
-    if (c && c.allowed !== undefined) {
-      if (!c.allowed) cabinNo++;
+    const stCabin = statutDu(c);
+    if (stCabin === "confirmation_required") cabinAConfirmer++;
+    else if (stCabin !== "inconnu") {
+      if (stCabin === "denied") cabinNo++;
       else if (c.max_weight_kg == null) { cabinUnkLimit++; if (w <= 8) { cabinEligible = true; } }
       else if (w <= c.max_weight_kg) { cabinWithin++; cabinEligible = true; cabinReasonMax = c.max_weight_kg; }
       else cabinOver++;
     }
     // hold
     let holdEligible = false;
-    if (h && h.allowed !== undefined) {
-      if (!h.allowed) holdNo++;
-      else if (brachy && h.brachy_allowed === false) { holdNo++; brachyHoldBans++; }
+    const stHold = statutDu(h);
+    if (stHold === "confirmation_required") holdAConfirmer++;
+    else if (stHold === "denied") holdNo++;
+    else if (stHold === "allowed") {
+      if (brachy && h.brachy_allowed === false) { holdNo++; brachyHoldBans++; }
       else { holdYes++; holdEligible = true; }
     } else holdUnk++;
     // cargo
     let cargoEligible = false;
-    if (g && g.allowed !== undefined) {
-      if (!g.allowed) cargoNo++;
-      else if (brachy && g.brachy_allowed === false) cargoNo++;
+    const stCargo = statutDu(g);
+    if (stCargo === "confirmation_required") cargoAConfirmer++;
+    else if (stCargo === "denied") cargoNo++;
+    else if (stCargo === "allowed") {
+      if (brachy && g.brachy_allowed === false) cargoNo++;
       else { cargoYes++; cargoEligible = true; }
     } else cargoUnk++;
     const channel = cabinEligible ? "cabin" : holdEligible ? "hold" : cargoEligible ? "cargo" : "none";
@@ -186,13 +210,18 @@ export function computeBreedTravel(breedId: string): BreedTravelProfile | null {
 
   // ---- Best airlines ranking ----
   const rank = { cabin: 0, hold: 1, cargo: 2, none: 3 } as const;
+  /* LA FICHE MET EN AVANT CE QUI EST POSSIBLE, pas ce qui est refusé — arbitrage du 29/08/2026.
+     Les compagnies sans canal ouvert (`channel: "none"`) sortent de ce classement : elles y
+     entraient avec un ❌, et la liste répondait alors à une autre question que celle qu'on pose.
+     Une politique à confirmer n'y entre pas non plus : elle n'est ni un oui ni un non. */
   const bestAirlines: AirlineRank[] = perAirline
+    .filter((a) => a.channel !== "none")
     .sort((x, y) => rank[x.channel] - rank[y.channel] || x.name.localeCompare(y.name))
     .slice(0, 10)
     .map((a) => airlineRank(a, brachy));
 
   // ---- FAQ (concrete, derived) ----
-  const faq = buildFaq({ name: b.name, nameFr: b.name_i18n?.fr || b.name, nameEs: b.name_i18n?.es || b.name, namePt: b.name_i18n?.pt || b.name, brachy, cabin, hold, cargo, heat, embargo, longHaul, bestSeason });
+  const faq = buildFaq({ name: b.name, nameFr: b.name_i18n?.fr || b.name, nameEs: b.name_i18n?.es || b.name, namePt: b.name_i18n?.pt || b.name, brachy, cabin, hold, cargo, heat, embargo, longHaul, bestSeason, bestAirlines });
 
   const src = tr.source ? { url: tr.source.url, date: tr.source.verified_date, confidence: tr.source.confidence } : undefined;
 
@@ -385,6 +414,69 @@ function airlineRank(a: { name: string; slug: string; channel: "cabin" | "hold" 
   return { name: a.name, slug: a.slug, tone: "no", badge: "❌", channel: "none", reason: { en: "Not accepted for this breed", fr: "Non accepté pour cette race", es: "No aceptado para esta raza", pt: "Não aceito para esta raça" } };
 }
 
+/**
+ * « QUELLES COMPAGNIES ACCEPTENT CETTE RACE » — la réponse NOMME, elle ne renvoie pas.
+ *
+ * Arbitrage du 29/08/2026. La question demandait naguère quelles compagnies REFUSENT la race, et
+ * répondait « voir le classement ci-dessous » — or la section visée ne montre que les compagnies
+ * qui ACCEPTENT : la réponse renvoyait donc à autre chose qu'elle-même, et la fiche mettait en
+ * avant le refus là où elle doit montrer le possible.
+ *
+ * « Ci-dessus » et « ci-dessous » disparaissent de toute réponse : hors de la page — dans un
+ * extrait de recherche, dans les données structurées FAQ, pour un lecteur d'écran — ils ne
+ * désignent rien, et une mise en page qui bouge les rendrait faux sans que personne ne le voie.
+ *
+ * Sans compagnie compatible, on le DIT. Une liste inventée serait pire que l'absence.
+ */
+export function faqCompagnies(x: any): { q: Bi; a: Bi }[] {
+  const cites: AirlineRank[] = (x.bestAirlines ?? []).slice(0, 4);
+  /* LE CANAL RÉEL DE CHAQUE COMPAGNIE. La première rédaction ne nommait le canal que si les
+     quatre compagnies le partageaient — dès qu'elles étaient mixtes, la phrase perdait
+     l'information la plus utile de la page. Les noms sont désormais GROUPÉS PAR CANAL : « A et B
+     en cabine ; C en soute ; D en fret ». Aucun canal n'est uniformisé, aucun n'est tu. */
+  const CANAUX: Record<string, Record<string, string>> = {
+    cabin: { en: " in the cabin", fr: " en cabine", es: " en cabina", pt: " na cabine" },
+    hold: { en: " in the hold", fr: " en soute", es: " en bodega", pt: " no porão" },
+    cargo: { en: " as cargo", fr: " en fret", es: " como carga", pt: " como carga" },
+  };
+  /* Ordre STABLE : cabine, soute, fret — jamais l'ordre d'arrivée, qui rendrait la phrase
+     dépendante du classement et donc instable d'une race à l'autre. */
+  const ORDRE = ["cabin", "hold", "cargo"];
+  const enumerer = (noms: string[], et: string) =>
+    noms.length <= 1 ? (noms[0] ?? "") : `${noms.slice(0, -1).join(", ")} ${et} ${noms[noms.length - 1]}`;
+  const groupes = (lang: string, et: string) => {
+    const vus = ORDRE.filter((c) => cites.some((a) => a.channel === c));
+    /* Un canal inconnu du tableau ne se traduit pas : on le nomme sans suffixe plutôt que
+       d'inventer un mot. */
+    const inconnus = [...new Set(cites.map((a) => a.channel))].filter((c) => !ORDRE.includes(c));
+    return [...vus, ...inconnus]
+      .map((c) => `${enumerer(cites.filter((a) => a.channel === c).map((a) => a.name), et)}${CANAUX[c]?.[lang] ?? ""}`)
+      .join(" ; ");
+  };
+  const RESERVE: Record<string, string> = {
+    en: " Final acceptance depends on the route, the aircraft, the season and the crate.",
+    fr: " L'acceptation finale dépend du trajet, de l'appareil, de la saison et des caractéristiques de la caisse.",
+    es: " La aceptación final depende de la ruta, el avión, la temporada y las características del transportín.",
+    pt: " A aceitação final depende do trajeto, da aeronave, da estação e das características da caixa.",
+  };
+  const AUCUNE: Record<string, string> = {
+    en: "No compatible airline is currently established in our verified data for this breed.",
+    fr: "Aucune compagnie compatible n'est actuellement établie dans les données vérifiées.",
+    es: "Ninguna aerolínea compatible está actualmente establecida en los datos verificados.",
+    pt: "Nenhuma companhia compatível está atualmente estabelecida nos dados verificados.",
+  };
+  const rep = (lang: string, debut: string, et: string) =>
+    cites.length === 0 ? AUCUNE[lang] : `${debut}${groupes(lang, et)}.${RESERVE[lang]}`;
+  return [{
+    q: { en: "Which airlines generally accept this breed?", fr: "Quelles compagnies acceptent généralement cette race ?",
+         es: "¿Qué aerolíneas suelen aceptar esta raza?", pt: "Quais companhias aéreas costumam aceitar esta raça?" },
+    a: { en: rep("en", "According to published policies, ", "and"),
+         fr: rep("fr", "Selon les politiques publiées, ", "et"),
+         es: rep("es", "Según las políticas publicadas, ", "y"),
+         pt: rep("pt", "Segundo as políticas publicadas, ", "e") },
+  }];
+}
+
 function buildFaq(x: any): { q: Bi; a: Bi }[] {
   const yn = (t: Tone) => t === "ok";
   return [
@@ -395,11 +487,7 @@ function buildFaq(x: any): { q: Bi; a: Bi }[] {
            fr: `Soute : ${x.hold.level.fr.toLowerCase()}. Cargo : ${x.cargo.level.fr.toLowerCase()}. ${x.hold.detail.fr}`,
            es: `Bodega: ${x.hold.level.es.toLowerCase()}. Carga: ${x.cargo.level.es.toLowerCase()}. ${x.hold.detail.es}`,
            pt: `Porão: ${x.hold.level.pt.toLowerCase()}. Carga: ${x.cargo.level.pt.toLowerCase()}. ${x.hold.detail.pt}` } },
-    { q: { en: `Which airlines refuse this breed?`, fr: `Quelles compagnies refusent cette race ?`, es: `¿Qué aerolíneas rechazan esta raza?`, pt: `Quais companhias aéreas recusam esta raça?` },
-      a: { en: `See the ranked airline list below — refusals are marked ❌ and are driven by weight and snub-nosed hold bans.`,
-           fr: `Voir le classement des compagnies ci-dessous — les refus sont marqués ❌, liés au poids et aux interdictions de museau court en soute.`,
-           es: `Consulta la lista clasificada de aerolíneas más abajo — los rechazos se marcan con ❌ y se deben al peso y a las prohibiciones de hocico chato en bodega.`,
-           pt: `Veja a lista de companhias aéreas classificada logo abaixo — as recusas são marcadas com ❌ e se devem ao peso e às proibições de focinho achatado no porão.` } },
+    ...faqCompagnies(x),
     { q: { en: `Can a ${x.name} fly in summer?`, fr: `Un ${x.nameFr} peut-il voyager en été ?`, es: `¿Puede un ${x.nameEs} viajar en verano?`, pt: `Um ${x.namePt} pode viajar no verão?` },
       a: { en: `Heat risk is ${x.heat.en.toLowerCase()} and climate-embargo risk is ${x.embargo.en.toLowerCase()}. Best season: ${x.bestSeason.en}.`,
            fr: `Le risque chaleur est ${x.heat.fr.toLowerCase()} et le risque d'embargo climatique ${x.embargo.fr.toLowerCase()}. Meilleure saison : ${x.bestSeason.fr}.`,

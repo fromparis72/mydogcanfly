@@ -322,6 +322,13 @@ jobs:
       # Contre-revue Codex du 28/08/2026 (2e passe) : les affirmations non prouvées retirées des
       # fiches Alaska et Garuda (150 lb transposé, 32 kg, refus cabine catégorique) ne doivent pas
       # revenir — et sur le SITE ENTIER, l'absence des pages serait elle-même un défaut.
+      # LA FICHE DE RACE MET EN AVANT CE QUI EST POSSIBLE. Jugé sur le HTML CONSTRUIT : la réponse
+      # de la FAQ nomme des compagnies réellement compatibles, elle se comprend seule (ni
+      # « ci-dessus » ni « ci-dessous », y compris dans le JSON-LD), et le vocabulaire
+      # brachycéphale ne paraît que sur une race qui l est.
+      - name: La FAQ des fiches races nomme les compagnies compatibles (site complet)
+        run: node --import tsx test-faq-races.mjs --dist=packages/ui/dist
+
       - name: Les affirmations retirées ne reviennent pas (dist complet)
         run: node test-fiches-affirmations-retirees.mjs --dist-complet
 

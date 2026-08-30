@@ -134,7 +134,10 @@ const indicators: [string, string, Level][] = [
 
   <!-- BEST AIRLINES -->
   <section class="bt2-card">
-    <h2 class="bt2-h2">{T("Best airlines for this breed", "Meilleures compagnies pour cette race", "Mejores aerolíneas para esta raza")}</h2>
+    {/* ANCRE STABLE : la réponse de la FAQ nomme les compagnies, mais un lien vers cette section
+        reste utile — et une ancre nommée survit à un changement de mise en page, contrairement à
+        un « ci-dessous ». */}
+    <h2 class="bt2-h2" id="compagnies-compatibles">{T("Best airlines for this breed", "Meilleures compagnies pour cette race", "Mejores aerolíneas para esta raza")}</h2>
     <div class="bt2-airlines">
       {p.bestAirlines.map((a) => (
         <a class={`bt2-air tone-${a.tone}`} href={`${base}/airlines/${a.slug}/`} data-carry="breed">
@@ -144,7 +147,13 @@ const indicators: [string, string, Level][] = [
         </a>
       ))}
     </div>
-    <p class="bt2-note">{T("Ranking derived from published policies (cabin weight, snub-nosed hold bans). ⚠ = to confirm, never a fabricated refusal.", "Classement dérivé des politiques publiées (poids cabine, interdictions soute museau court). ⚠ = à confirmer, jamais un refus inventé.", "Clasificación derivada de las políticas publicadas (peso en cabina, prohibiciones de hocico chato en bodega). ⚠ = por confirmar, nunca un rechazo inventado.")}</p>
+    {/* LA MENTION BRACHYCÉPHALE EST CONDITIONNELLE — arbitrage du 29/08/2026. Cette note la
+        portait pour TOUTES les races : la fiche d'un golden retriever expliquait son classement
+        par des interdictions de museau court qui ne le concernent pas. Une explication qui ne
+        s'applique pas au cas lu est une erreur, même quand elle est vraie ailleurs. */}
+    <p class="bt2-note">{p.brachy
+      ? T("Ranking derived from published policies (cabin weight, snub-nosed hold bans). ⚠ = to confirm, never a fabricated refusal.", "Classement dérivé des politiques publiées (poids cabine, interdictions soute museau court). ⚠ = à confirmer, jamais un refus inventé.", "Clasificación derivada de las políticas publicadas (peso en cabina, prohibiciones de hocico chato en bodega). ⚠ = por confirmar, nunca un rechazo inventado.")
+      : T("Ranking derived from published policies (cabin weight limits, hold and cargo availability). ⚠ = to confirm, never a fabricated refusal.", "Classement dérivé des politiques publiées (limites de poids cabine, disponibilité soute et fret). ⚠ = à confirmer, jamais un refus inventé.", "Clasificación derivada de las políticas publicadas (límites de peso en cabina, disponibilidad de bodega y carga). ⚠ = por confirmar, nunca un rechazo inventado.")}</p>
   </section>
 
   <!-- INDICATORS -->
@@ -210,7 +219,9 @@ const indicators: [string, string, Level][] = [
     <div>
       <h2 class="bt2-h2">🎓 {T("Recommended experience", "Niveau recommandé", "Experiencia recomendada")}</h2>
       <span class={`bt2-pill tone-${p.experience.tone}`}>{t(p.experience)}</span>
-      <p class="bt2-chandet">{T("Based on overall difficulty and snub-nosed status.", "Basé sur la difficulté globale et le caractère brachycéphale.", "Según la dificultad global y la condición de hocico chato.")}</p>
+      {/* Formulation NEUTRE : le caractère brachycéphale n'entre dans ce niveau que pour les
+          races qui le sont, et le nommer partout le laissait croire universel. */}
+      <p class="bt2-chandet">{T("Based on overall difficulty, weight, available channels and published policies.", "Basé sur la difficulté globale, le poids, les canaux disponibles et les politiques publiées.", "Según la dificultad global, el peso, los canales disponibles y las políticas publicadas.")}</p>
     </div>
   </section>
 
