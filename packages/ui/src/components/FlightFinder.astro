@@ -754,7 +754,7 @@ const labels = {
           /* LE NOM INTERNE DU PARTENAIRE NE S'AFFICHE PAS. `crate.name` vaut « IATA Pet Crates »,
              un identifiant de programme d'affiliation encore au statut « placeholder » : il
              paraissait tel quel sur les pages françaises, espagnoles et portugaises, et
-             suggérait de surcroît une homologation IATA que personne ne délivre. Le lien porte
+             laissait de surcroît croire à une approbation que l'IATA ne délivre pas. Le lien porte
              désormais un libellé localisé qui dit ce que fait l'outil. */
           const crate = (r.partners ?? []).find((p) => (p as { vertical?: string }).vertical === "equipment");
           if (!crate) return "";
