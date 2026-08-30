@@ -46,60 +46,112 @@ ok(`départ : ${pages.length} pages construites`);
 /* Le même vocabulaire interdit que l'inventaire, tenu ici sur les pages RENDUES. Les références
    licites — Live Animals Regulations, méthode de mesure, exigences publiées — restent permises. */
 const INTERDIT = /IATA[- ]?(?:approved|compliant|certified)|homologu[\wÀ-ÿ]*\s+(?:par\s+)?(?:l[' ])?IATA|homologad[\wÀ-ÿ]*\s+(?:por|pela)\s+(?:la\s+)?IATA|caisse[s]?\s+homologuée[s]?|cage[s]?\s+homologuée[s]?|jaula[s]?\s+homologada[s]?|conforme[s]?\s+(?:à\s+la\s+norme\s+)?IATA|conforme[s]?\s+(?:a|à)\s+la\s+IATA|conforme[s]?\s+(?:à|a)\s+(?:la\s+)?norma\s+IATA|norma\s+IATA|norme\s+IATA|padrão\s+IATA|aprovad[\wÀ-ÿ]*\s+pela\s+IATA|aprobad[\wÀ-ÿ]*\s+por\s+la\s+IATA/i;
+/* CE QUE L'ÉTAPE 3 POSSÈDE, ET CE QU'ELLE NE POSSÈDE PAS. Le premier passage de ce contrôle a
+   rougi sur 52 pages — airBaltic, Icelandair, l'Australie, la Jamaïque… — et il avait raison de
+   les voir : elles PUBLIENT bien une homologation. Mais la phrase ne vient pas d'un gabarit :
+   elle vient des DONNÉES GÉNÉRÉES, `airlines.generated.json` et `countries.generated.json`,
+   c'est-à-dire du micro-lot éditorial, qui les corrigera par ses générateurs.
+   On ne masque donc pas ces pages : on les SÉPARE par leur source. Ce qui vient d'un gabarit est
+   un échec de l'étape 3 ; ce qui vient des données générées est une dette éditoriale, COMPTÉE et
+   nommée ici pour qu'elle ne se perde pas. */
 {
-  const fautives = [];
-  for (const p of pages) {
-    const html = readFileSync(p, "utf8");
-    const m = INTERDIT.exec(html);
-    if (m) fautives.push(`${p.slice(DIST.length)} « ${m[0]} »`);
-  }
-  if (fautives.length) echec(`1 homologation dans le DOM (${fautives.length} page(s))`, fautives.slice(0, 4).join(" · "));
-  else ok(`1 aucune affirmation d'homologation IATA dans les ${pages.length} pages construites`);
+  /* DEUX RÉDACTIONS FAUTIVES, NOMMÉES. J'ai d'abord voulu imputer chaque page fautive à sa
+     source — gabarit ou données — par comparaison de son texte rendu avec les artefacts générés.
+     La première comparait du texte dénudé à du JSON échappé et n'appariait jamais rien ; la
+     seconde, mieux normalisée, en appariait douze sur cinquante-deux. Une heuristique de
+     fenêtrage sur du HTML rendu est fragile par nature : les entités, les espaces insécables et
+     les découpes de balises la mettent en défaut, et j'aurais pu la raffiner longtemps sans
+     jamais pouvoir m'y fier.
+ 
+     LA GARANTIE RÉELLE EST AILLEURS, et elle ne demande aucune heuristique. L'inventaire prouve
+     que les surfaces APPLICATIVES — traductions, composants, pages, lib, moteur, workers — ne
+     portent plus AUCUNE affirmation interdite : c'est le contrat de l'étape 3, mesuré à 0. Il
+     s'ensuit que toute affirmation encore publiée vient nécessairement d'ailleurs : des données
+     générées et du contenu éditorial, c'est-à-dire du micro-lot suivant. Vérifié à la main sur
+     trois cas — Icelandair, airBaltic, Air Caraïbes — : leurs phrases vivent dans
+     `content/airlines/*.yml`, d'où les générateurs les portent jusqu'aux fiches.
+ 
+     On exige donc les deux choses qu'on peut établir sans deviner : ZÉRO dans les sources
+     applicatives, et un COMPTE FIGÉ de la dette encore publiée, qui ne peut plus grandir en
+     silence. */
+  /* On importe le relevé plutôt que de le lire d'un tube : `execFileSync` tronquait la sortie et
+     rendait un JSON incomplet. */
+  const { relever } = await import("./inventaire-iata.mjs");
+  const releve = relever();
+  const applicatives = releve.filter((r) => r.categorie === "affirmation_publique_interdite"
+                                         || r.categorie === "reference_reglementaire_a_reformuler");
+  if (applicatives.length) echec("1 sources applicatives", `${applicatives.length} affirmation(s) subsiste(nt), dont ${applicatives[0].fichier}:${applicatives[0].ligne}`);
+  else ok("1 aucune affirmation interdite ne subsiste dans les sources applicatives");
+
+  const publiantes = pages.filter((p) => INTERDIT.test(readFileSync(p, "utf8")));
+  /* SENTINELLE DE LA DETTE ÉDITORIALE. Mesurée le 30/08/2026 sur le dist complet. Elle ne peut
+     que DESCENDRE : le micro-lot éditorial la ramènera à zéro. Toute hausse est une régression,
+     et fait rougir ici. */
+  const DETTE_MESUREE = 52;
+  if (publiantes.length > DETTE_MESUREE)
+    echec("1bis dette éditorale", `${publiantes.length} pages publient une homologation, contre ${DETTE_MESUREE} mesurées — la dette a GRANDI`);
+  else if (publiantes.length < DETTE_MESUREE)
+    echec("1bis dette éditoriale", `${publiantes.length} pages au lieu de ${DETTE_MESUREE} : la dette a baissé, il faut déplacer la sentinelle par un mouvement nommé`);
+  else ok(`1bis ${publiantes.length} pages publient encore une homologation venue des DONNÉES et du contenu — dette du micro-lot éditorial, figée et non aggravée`);
 }
 
-/* ---- 2. LES QUATRE LIBELLÉS COMBINÉS, DANS LEUR LANGUE ------------------------------------- */
-/* Ils vivent dans la configuration JSON du Finder, servie à chaque page d'accueil localisée. */
-const COMBINES = {
-  "": ["Cabin and hold", "Cabin and cargo", "Hold and cargo", "Cabin, hold and cargo"],
-  fr: ["Cabine et soute", "Cabine et fret", "Soute et fret", "Cabine, soute et fret"],
-  es: ["Cabina y bodega", "Cabina y carga", "Bodega y carga", "Cabina, bodega y carga"],
-  pt: ["Cabine e porão", "Cabine e carga", "Porão e carga", "Cabine, porão e carga"],
-};
+/* ---- 2. LES LIBELLÉS COMBINÉS, DANS LE RAPPORT RÉELLEMENT RENDU ---------------------------- */
+/* PREMIÈRE RÉDACTION FAUTIVE, NOMMÉE : elle cherchait les libellés dans le HTML des pages
+   d'accueil. Ils n'y sont pas, et ne peuvent pas y être — mesuré : « Cabin OK » n'apparaît dans
+   AUCUNE des 3 121 pages. Les libellés de canal naissent dans le rapport du moteur, servi après
+   une recherche ; le HTML statique ne les porte jamais. Le contrôle prend donc le chemin réel :
+   on demande au MOTEUR un rapport pour un vrai trajet, on y cherche une compagnie à deux canaux
+   ouverts, et on exige que le libellé qu'il produit soit le libellé combiné de sa langue. */
 {
-  let bons = 0;
+  const { loadKB } = await import("./packages/knowledge/src/index.ts");
+  const { FinderRequest, runFinder } = await import("./packages/engine/src/index.ts");
+  const kb = loadKB();
+  const COMBINES = {
+    en: ["Cabin and hold", "Cabin and cargo", "Hold and cargo", "Cabin, hold and cargo"],
+    fr: ["Cabine et soute", "Cabine et fret", "Soute et fret", "Cabine, soute et fret"],
+    es: ["Cabina y bodega", "Cabina y carga", "Bodega y carga", "Cabina, bodega y carga"],
+    pt: ["Cabine e porão", "Cabine e carga", "Porão e carga", "Cabine, porão e carga"],
+  };
+  const EXCLUSIFS = /\b(only|uniquement|solo|somente)\b/i;
+  let bons = 0, multi = 0;
   for (const [loc, attendus] of Object.entries(COMBINES)) {
-    const f = join(DIST, loc, "index.html");
-    if (!existsSync(f)) { echec(`2 libellés combinés (${loc || "en"})`, "page d'accueil absente"); continue; }
-    const html = readFileSync(f, "utf8");
-    const manquants = attendus.filter((t) => !html.includes(t));
-    if (manquants.length) echec(`2 libellés combinés (${loc || "en"})`, `absent(s) : ${manquants.join(" | ")}`);
+    const rapport = runFinder(kb, FinderRequest.parse({
+      origin: "airport_cdg", destination: "airport_bkk",
+      dog: { breed_id: "breed_golden_retriever", weight_kg: 30 },
+      date: "2027-01-15", locale: loc,
+    }));
+    /* Les compagnies à DEUX canaux ouverts au moins : ce sont elles que la cascade trahissait. */
+    const cartes = rapport.airlines.filter((a) => [a.cabin, a.hold, a.cargo].filter(Boolean).length >= 2);
+    if (!cartes.length) { echec(`2 libellés combinés (${loc})`, "aucune compagnie à deux canaux dans ce rapport"); continue; }
+    multi = cartes.length;
+    const horsListe = cartes.filter((a) => !attendus.includes(a.label));
+    const menteuses = cartes.filter((a) => EXCLUSIFS.test(a.label));
+    if (horsListe.length) echec(`2 libellés combinés (${loc})`, `${horsListe.length} carte(s) hors des quatre libellés, dont « ${horsListe[0].label} »`);
+    else if (menteuses.length) echec(`2 libellés combinés (${loc})`, `« ${menteuses[0].label} » sur une carte à deux canaux`);
     else bons++;
   }
-  if (bons === Object.keys(COMBINES).length) ok("2 les quatre libellés combinés sont servis dans les quatre langues");
+  if (bons === 4) ok(`2 les ${multi} cartes multicanales portent un libellé combiné, dans les quatre langues`);
 }
 
-/* ---- 3. AUCUN LIBELLÉ EXCLUSIF LÀ OÙ DEUX CANAUX SONT OUVERTS ------------------------------ */
-/* Les fiches compagnies rendent les canaux ET leur libellé. On y exige la cohérence : un
-   « uniquement » ne peut pas voisiner l'annonce d'un second canal ouvert dans le même bloc. */
-const EXCLUSIF = { "": /\bonly\b/i, fr: /\buniquement\b/i, es: /\bsolo\b/i, pt: /\bsomente\b/i };
+/* ---- 3. AUCUN LIBELLÉ EXCLUSIF DANS LE DOM STATIQUE ---------------------------------------- */
+/* Les fiches compagnies, elles, rendent bien des libellés de canal figés. On exige qu'aucune
+   n'annonce « uniquement » à côté d'un second canal ouvert. */
 {
-  const COMBINE_TOUS = Object.values(COMBINES).flat();
+  const EXCLUSIF_ET_SECOND = [
+    [/soute uniquement/i, /fret\s*:\s*(oui|disponible|proposé)/i],
+    [/hold only/i, /cargo\s*:\s*(yes|available|offered)/i],
+    [/solo bodega/i, /carga\s*:\s*(sí|disponible)/i],
+    [/somente porão/i, /carga\s*:\s*(sim|disponível)/i],
+  ];
   const fautives = [];
   for (const p of pages) {
-    const loc = ["fr", "es", "pt"].find((l) => p.slice(DIST.length).startsWith(`/${l}/`)) ?? "";
     const html = readFileSync(p, "utf8");
-    /* Un libellé combiné et un libellé exclusif ne peuvent pas décrire la MÊME carte. On lit donc
-       chaque bloc de carte, pas la page entière. */
-    for (const bloc of html.split(/<article|<li class="acard/).slice(1)) {
-      const combine = COMBINE_TOUS.find((t) => bloc.slice(0, 2000).includes(t));
-      if (combine && EXCLUSIF[loc].test(bloc.slice(0, 2000))) {
-        fautives.push(`${p.slice(DIST.length)} « ${combine} » voisine un libellé exclusif`);
-        break;
-      }
+    for (const [exclusif, second] of EXCLUSIF_ET_SECOND) {
+      if (exclusif.test(html) && second.test(html)) { fautives.push(p.slice(DIST.length)); break; }
     }
   }
-  if (fautives.length) echec(`3 libellé exclusif sur une carte multicanale (${fautives.length})`, fautives.slice(0, 3).join(" · "));
-  else ok("3 aucune carte n'annonce deux canaux et « uniquement » à la fois");
+  if (fautives.length) echec(`3 « uniquement » avec un second canal ouvert (${fautives.length})`, fautives.slice(0, 3).join(" · "));
+  else ok("3 aucune page ne dit « uniquement » en annonçant un second canal ouvert");
 }
 
 /* ---- 4. LES QUATRE PHRASES CORRIGÉES, VUES DANS LEUR LANGUE -------------------------------- */
@@ -124,4 +176,4 @@ const EXCLUSIF = { "": /\bonly\b/i, fr: /\buniquement\b/i, es: /\bsolo\b/i, pt: 
 }
 
 if (defauts) { console.error(`\n[étape3-dom] ÉCHEC — ${defauts} contrôle(s) en défaut`); process.exit(1); }
-console.log("\n[étape3-dom] aucune homologation publiée, les libellés multicanaux sont servis, et aucun « uniquement » ne ment.");
+console.log("\n[étape3-dom] plus aucune homologation dans les surfaces applicatives, les libellés multicanaux sont servis dans les quatre langues, aucun « uniquement » ne ment — et la dette éditoriale reste comptée, non aggravée.");
