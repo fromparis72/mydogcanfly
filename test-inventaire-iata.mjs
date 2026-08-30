@@ -173,12 +173,44 @@ const classerLigne = (chemin, ligne) => {
 {
   const releve = relever();
   const v = verifier(releve);
-  if (!v.ok) echec("7 relevé réel", `${v.inconnues.length} inconnue(s), ${v.hors.length} hors liste, ${v.violations.length} violation(s)`);
+  /* FAUTE NOMMÉE : ce diagnostic lisait `v.violations`, un champ que `verifier()` ne rend plus
+     depuis que la prétention d'inertie a été retirée. Le jour où le relevé réel serait invalide,
+     le harnais aurait levé un TypeError au lieu de dire ce qui cloche — reproduit :
+     « Cannot read properties of undefined (reading 'length') ». Il lit désormais les trois
+     collections que `verifier()` rend réellement. */
+  if (!v.ok) echec("7 relevé réel", `${v.inconnues.length} inconnue(s), ${v.hors.length} hors liste, ${v.orphelines.length} ancre(s) orpheline(s)`);
   else {
     const somme = CATEGORIES.reduce((n, c) => n + releve.filter((r) => r.categorie === c).length, 0);
     if (somme !== releve.length) echec("7 relevé réel", `${somme} classées pour ${releve.length} occurrences`);
     else ok(`7 le relevé réel — ${releve.length} occurrences, ${new Set(releve.map((r) => r.fichier)).size} fichiers — est intégralement classé`);
   }
+}
+
+/* 8 — LE DIAGNOSTIC LUI-MÊME, SUR UN RELEVÉ INVALIDE. Une branche d'échec qu'on n'a jamais vue
+   s'exécuter n'est pas un diagnostic : c'est une intention. On fabrique donc les trois formes
+   d'invalidité et on exige un message LISIBLE, sans exception JavaScript. */
+{
+  const cas = [
+    ["une occurrence non classée", [{ fichier: "f.ts", ligne: 1, colonne: 1, trouve: "IATA-blessed", categorie: null }]],
+    ["une catégorie hors liste", [{ fichier: "f.ts", ligne: 2, colonne: 3, trouve: "homologué", categorie: "categorie_inventee" }]],
+    ["une ancre de reformulation orpheline", [{ fichier: "f.ts", ligne: 3, colonne: 5, trouve: "homologué", categorie: "source_editoriale" }]],
+  ];
+  let bons = 0;
+  for (const [nom, releve] of cas) {
+    try {
+      const v = verifier(releve);
+      if (v.ok) { echec(`8 diagnostic — ${nom}`, "le relevé invalide est accepté"); continue; }
+      /* Exactement la ligne que produit le cas 7 : si un champ manquait, elle lèverait ici. */
+      const message = `${v.inconnues.length} inconnue(s), ${v.hors.length} hors liste, ${v.orphelines.length} ancre(s) orpheline(s)`;
+      if (!/^\d+ inconnue\(s\), \d+ hors liste, \d+ ancre\(s\) orpheline\(s\)$/.test(message)) {
+        echec(`8 diagnostic — ${nom}`, `message inattendu : ${message}`); continue;
+      }
+      bons++;
+    } catch (e) {
+      echec(`8 diagnostic — ${nom}`, `exception au lieu d'un diagnostic : ${e.constructor.name} — ${e.message}`);
+    }
+  }
+  if (bons === cas.length) ok(`8 les ${cas.length} formes d'invalidité sont diagnostiquées lisiblement, sans exception`);
 }
 
 if (defauts) { console.error(`\n[inventaire] ÉCHEC — ${defauts} contre-épreuve(s) en défaut`); process.exit(1); }

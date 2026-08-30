@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 /**
- * L'INVENTAIRE DU VOCABULAIRE IATA — UN SEUL RELEVÉ, QUI FAIT FOI. Version 2.
+ * L'INVENTAIRE DU VOCABULAIRE IATA — UN SEUL RELEVÉ, QUI FAIT FOI. Version 3.
  *
  *   node inventaire-iata.mjs              le tableau de synthèse
  *   node inventaire-iata.mjs --json       le relevé complet, une ligne par occurrence
@@ -9,33 +9,64 @@
  * POURQUOI CE FICHIER EXISTE. J'ai annoncé « 270 occurrences dans 41 fichiers », puis « environ
  * 340 dans 71 ». Les deux relevés étaient bricolés à la main, avec des motifs et des périmètres
  * différents, et aucun n'était rejouable. Un chiffre qu'on ne peut pas rejouer n'est pas une
- * mesure.
+ * mesure. Cet instrument sert de CONTRAT à deux lots : il dit combien d'affirmations sont à
+ * corriger, et qui les corrige.
  *
- * CE QUE LA V1 FAISAIT ENCORE MAL, et qui est fermé ici (contre-revue du 30/08/2026) :
+ * SON HISTOIRE, PARCE QU'ELLE EXPLIQUE SA FORME. Trois versions, chacune corrigeant une faute
+ * que la précédente ne voyait pas.
  *
- *   1. Elle classait `content/hub/drafts/airline_guide` — 349 occurrences dans 132 fichiers —
- *      comme héritage inerte, alors que `gen-wave1-guides.mjs` le LIT. Une régénération les
- *      ramènerait dans le site. L'inertie n'est plus déclarée : elle est PROUVÉE, répertoire par
- *      répertoire, contre les entrées réellement citées par les scripts du dépôt.
- *   2. Elle décidait PAR LIGNE. Sur « IATA LAR ; IATA-approved crate », les deux occurrences
- *      recevaient la même catégorie — mesuré : « interdit » pour les deux, donc la référence
- *      légitime disparaissait. Même défaut sur `citation_attribuee` : un `"quote":` n'importe où
- *      sur la ligne absorbait une occurrence extérieure à la citation. La décision porte
- *      désormais sur L'OCCURRENCE et sa position ; la ligne n'est plus que du contexte.
- *   3. Son contrôle « aucune occurrence non classée » était tautologique : `classer()` se
- *      terminait par `return "reference_reglementaire_legitime"`, si bien qu'une forme inconnue
- *      était automatiquement bénie légitime. Le repli est supprimé ; une occurrence que nulle
- *      règle ne reconnaît rend `null` et FAIT ÉCHOUER le relevé, en nommant fichier, ligne,
- *      colonne et texte.
- *   4. `readdirSync()` n'est pas trié par contrat. L'énumération et le relevé final le sont
- *      maintenant, et une contre-épreuve rejoue tout avec un ordre d'énumération inversé.
+ *   V1 — classait par LIGNE, avec un repli complaisant, et déclarait l'héritage inerte sans rien
+ *        vérifier.
+ *
+ *   V2 — a fermé trois de ces défauts.
+ *        · La décision porte désormais sur L'OCCURRENCE et sa position ; la ligne n'est plus que
+ *          du contexte, et la colonne est enregistrée. Sur « IATA LAR ; IATA-approved crate »,
+ *          la v1 donnait « interdit » aux DEUX occurrences — la référence licite disparaissait
+ *          du compte. Même défaut sur les citations : un `"quote":` n'importe où sur la ligne
+ *          absorbait une occurrence extérieure à la citation.
+ *        · Le repli final `return "reference_reglementaire_legitime"` est supprimé : il bénissait
+ *          toute forme inconnue, si bien que le contrôle « aucune occurrence non classée » ne
+ *          pouvait pas rougir. Une occurrence que nulle règle ne reconnaît rend `null` et FAIT
+ *          ÉCHOUER le relevé, en nommant fichier, ligne, colonne et texte.
+ *        · `readdirSync()` n'est pas trié par contrat : l'énumération et le relevé final le sont,
+ *          et une contre-épreuve rejoue tout avec un ordre d'énumération inversé.
+ *        Mais la v2 a cru pouvoir PROUVER l'inertie de l'héritage v1, en cherchant le chemin
+ *        littéral `"static/…"` dans les scripts du dépôt. Cette preuve n'en était pas une : un
+ *        générateur écrivant `join(ROOT, "static", f)` y échappait, et ajouter des motifs n'aurait
+ *        fait que déplacer le trou. Aucune analyse textuelle ne démontre qu'aucun code ne
+ *        construit un chemin dynamiquement.
+ *
+ *   V3 — RETIRE cette prétention plutôt que de la rafistoler. `heritage_v1_non_publie` devient
+ *        `heritage_a_corriger_ou_supprimer` : ces 18 occurrences ne sont plus protégées par une
+ *        preuve impossible, elles entrent au micro-lot éditorial, et leur suppression éventuelle
+ *        sera une décision séparée et explicite. Ce qui cite ces répertoires reste rapporté, mais
+ *        comme un CONSTAT indicatif qui ne conclut rien.
+ *        La v3 ajoute aussi `reference_reglementaire_a_reformuler`, sans quoi deux modifications
+ *        approuvées manquaient au contrat : « IATA standard » et « norme IATA » sont licites
+ *        prises seules, « norma IATA » ne l'est pas, et les trois appartiennent au MÊME titre,
+ *        remplacé en entier. L'ancre est un fragment de TEXTE, jamais un numéro de ligne — une
+ *        ligne se déplace, un texte non — et une ancre qui ne trouve rien fait refuser le relevé.
  *
  * L'ORDRE DES CATÉGORIES EST LE CONTRAT — le changer change les agrégats, et doit donc être un
- * mouvement nommé. Il a changé en v2, et voici pourquoi : les trois premières disent « il n'y a
- * RIEN à corriger » (un identifiant d'URL, une citation reproduite, une référence licite) ; les
- * suivantes ne contiennent QUE des affirmations interdites et disent QUI les corrige. En v1
- * l'ordre était inverse, si bien qu'une référence licite vivant dans un artefact généré était
- * comptée « artefact généré » — donc rangée parmi les choses à traiter alors qu'elle est juste.
+ * mouvement nommé. Il se lit en deux temps :
+ *
+ *   1. `slug_conserve` — l'occurrence EST un identifiant d'URL conservé par arbitrage. Rien à
+ *      corriger : ce n'est pas une phrase, c'est une adresse.
+ *   2. `citation_attribuee` — l'occurrence est À L'INTÉRIEUR d'une citation qui reproduit une
+ *      source identifiée. On ne réécrit pas une source : on la garde ou on la retire.
+ *   3. `reference_reglementaire_a_reformuler` — l'occurrence peut être licite prise seule, mais
+ *      la PHRASE qui la porte est arbitrée à remplacer. Le contexte prime ici sur le mot, parce
+ *      que c'est le titre entier qui change. À CORRIGER, dans l'étape 3.
+ *   4. `reference_reglementaire_legitime` — le règlement, la méthode de mesure, les exigences de
+ *      contenant réellement publiées. Rien à corriger, où que l'occurrence vive.
+ *
+ * À partir de là, l'occurrence EST une affirmation interdite, et sa catégorie ne dit plus quoi
+ * mais QUI : un harnais qui décrit le défaut, un artefact à régénérer, une source qui alimente
+ * un générateur, l'héritage v1, une surface applicative, ou un guide éditorial.
+ *
+ * En v1 cet ordre était inverse, si bien qu'une référence licite vivant dans un artefact généré
+ * était comptée « artefact généré » — donc rangée parmi les choses à traiter alors qu'elle est
+ * juste.
  */
 import { readFileSync, readdirSync, statSync, existsSync } from "node:fs";
 import { join, relative, extname } from "node:path";
