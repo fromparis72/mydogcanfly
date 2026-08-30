@@ -509,12 +509,13 @@ console.log("=== Preuve T0-B2-UI (deux baselines FIGÉES — permanente) ===");
        brachycéphale catégorique de BA — et avis IAG « acceptation non garantie » à la place.
        36 scénarios carlin bougent, AUCUN statut ne change (le mouvement est dans les avis de
        sécurité publiés) ; les figées de T0-A, T0-B2-UI et T0-B3-b restent intouchables. */
-    /* LA PLUS RÉCENTE EST DÉSORMAIS CELLE DU MICRO-LOT TARIFS (29/08/2026). La RC n'est PAS
-       écrasée : elle reste intacte à côté, et la preuve permanente ci-dessous établit ce qui les
-       sépare — le segment tarifaire, et lui seul. */
-    check("la baseline vivante est identique à la baseline figée la plus récente (Tarifs)",
+    /* LA PLUS RÉCENTE EST DÉSORMAIS CELLE DE L'ÉTAPE 3 DU MICRO-LOT TARIFS (30/08/2026). Ni la
+       RC ni l'étape 2 ne sont écrasées : elles restent intactes à côté, et DEUX preuves
+       permanentes établissent ce qui sépare chaque paire — le segment tarifaire pour la première,
+       le seul libellé de canal pour la seconde. */
+    check("la baseline vivante est identique à la baseline figée la plus récente (Tarifs étape 3)",
       readFileSync("test-baselines/t0a-finder-baseline.json", "utf8")
-        === readFileSync("test-baselines/tarifs-finder-baseline-apres.json", "utf8"));
+        === readFileSync("test-baselines/tarifs-etape3-finder-baseline-apres.json", "utf8"));
 
     /* PREUVE PERMANENTE RC → TARIFS. Le lot supprime le champ « fee » du rapport et lui substitue
        les statuts par canal. Ce qui doit rester vrai, et qu'on exige ici pour toujours : la même
@@ -617,6 +618,112 @@ console.log("=== Preuve T0-B2-UI (deux baselines FIGÉES — permanente) ===");
         if (JSON.stringify(t) === JSON.stringify(tarifs)) { check(`RC → Tarifs : sabotage « ${nom} » applicable`, false, "la copie sabotée est identique à l'originale"); continue; }
         const vu = comparer(rc, t);
         check(`RC → Tarifs : la preuve rougit sur ${nom}`, vu.anomalies.length > 0,
+          "la preuve est restée verte sur un rapport saboté");
+      }
+    }
+
+    /* PREUVE PERMANENTE TARIFS ÉTAPE 2 → ÉTAPE 3. L'étape 3 remplace la cascade de libellés par
+       une construction depuis l'ensemble RÉEL des canaux ouverts. Ce qui doit rester vrai pour
+       toujours : SEUL le libellé bouge, sur EXACTEMENT 430 cartes, et pour les seules
+       combinaisons multicanales — les 1 130 autres ne changent pas d'un octet.
+
+       Ce que l'ancienne cascade disait, mesuré avant correction :
+         011 ×  12  « Soute uniquement » alors que le fret est ouvert — FAUX ;
+         110 × 264  « Cabine OK »        la soute est tue ;
+         111 × 134  « Cabine OK »        la soute et le fret sont tus ;
+         101 ×  20  « Cabine OK »        le fret est tu.
+       Douze cartes affirmaient donc quelque chose de faux, et 418 taisaient un canal ouvert. */
+    {
+      const etape2 = JSON.parse(readFileSync("test-baselines/tarifs-finder-baseline-apres.json", "utf8"));
+      const etape3 = JSON.parse(readFileSync("test-baselines/tarifs-etape3-finder-baseline-apres.json", "utf8"));
+      const seg = (c, p) => (String(c).split(" | ").find((x) => x.startsWith(p)) || "").slice(p.length);
+      const sansLibelle = (c) => String(c).split(" | ").filter((x) => !x.startsWith("label:")).join(" | ");
+
+      const comparerLibelles = (avant, apres) => {
+        const anomalies = [], parCombo = {};
+        let cartes = 0, changes = 0;
+        const scenarios = Object.keys(avant).sort();
+        if (JSON.stringify(scenarios) !== JSON.stringify(Object.keys(apres).sort())) {
+          return { cartes: 0, changes: 0, parCombo, anomalies: ["les scénarios ne sont pas les mêmes"] };
+        }
+        for (const s of scenarios) {
+          /* Tout le reste du rapport — verdict, score, conditions, avis — doit être identique. */
+          for (const c of new Set([...Object.keys(avant[s]), ...Object.keys(apres[s])])) {
+            if (c === "airlines") continue;
+            if (JSON.stringify(avant[s][c]) !== JSON.stringify(apres[s][c])) anomalies.push(`${s}.${c} a bougé`);
+          }
+          const a = avant[s].airlines ?? [], b = apres[s].airlines ?? [];
+          if (a.length !== b.length) { anomalies.push(`${s} : ${a.length} cartes contre ${b.length}`); continue; }
+          for (let i = 0; i < a.length; i++) {
+            cartes++;
+            /* HORS LIBELLÉ, la carte doit être identique à l'octet près. */
+            if (sansLibelle(a[i]) !== sansLibelle(b[i])) { anomalies.push(`${s}#${i} : un segment hors libellé a bougé`); continue; }
+            const la = seg(a[i], "label:"), lb = seg(b[i], "label:");
+            if (la === lb) continue;
+            changes++;
+            const bools = seg(a[i], "bool:");
+            /* Un libellé ne peut changer QUE sur une combinaison multicanale : deux « 1 » ou plus. */
+            if ((bools.match(/1/g) ?? []).length < 2) {
+              anomalies.push(`${s}#${i} : libellé changé sur ${bools}, qui n'ouvre pas deux canaux`);
+              continue;
+            }
+            parCombo[bools] = (parCombo[bools] || 0) + 1;
+          }
+        }
+        return { cartes, changes, parCombo, anomalies };
+      };
+
+      const r = comparerLibelles(etape2, etape3);
+      check(`étape 2 → 3 : ${r.cartes} cartes comparées`, r.cartes === 1560);
+      check(`étape 2 → 3 : ${r.changes} libellés changés, ${r.cartes - r.changes} inchangés`,
+        r.changes === 430 && r.cartes - r.changes === 1130);
+      /* Comparaison EXPLICITE, triée. La première rédaction comparait deux `JSON.stringify`
+         d'objets : elle ne passait que parce que JavaScript réordonne les clés ressemblant à des
+         index entiers — « 101 » avant « 011 ». Une égalité qui tient par une règle d'ordonnancement
+         du langage est une égalité qu'on ne contrôle pas. */
+      const ATTENDU_PAR_COMBO = [["011", 12], ["101", 20], ["110", 264], ["111", 134]];
+      const vuParCombo = Object.entries(r.parCombo).sort(([a], [b]) => a.localeCompare(b));
+      check(`étape 2 → 3 : les changements par combinaison ${JSON.stringify(vuParCombo)}`,
+        JSON.stringify(vuParCombo) === JSON.stringify(ATTENDU_PAR_COMBO));
+      check("étape 2 → 3 : rien d'autre n'a bougé, nulle part",
+        r.anomalies.length === 0, r.anomalies.slice(0, 5).join(" ; "));
+
+      /* AUCUN « UNIQUEMENT » QUAND UN SECOND CANAL EST OUVERT — dans les quatre langues, sur la
+         baseline vivante comme sur la figée. C'est l'affirmation fausse que l'étape 3 ferme. */
+      const EXCLUSIF = /\b(only|uniquement|solo|somente)\b/i;
+      let fautifs = 0;
+      for (const s of Object.keys(etape3)) {
+        for (const c of etape3[s].airlines) {
+          const bools = seg(c, "bool:");
+          if ((bools.match(/1/g) ?? []).length >= 2 && EXCLUSIF.test(seg(c, "label:"))) fautifs++;
+        }
+      }
+      check(`étape 2 → 3 : aucun libellé exclusif sur une carte à deux canaux ouverts (${fautifs})`, fautifs === 0);
+
+      /* LA PREUVE VUE ROUGIR. Une preuve qu'on n'a jamais vue distinguer ne distingue rien. */
+      const copie = () => JSON.parse(JSON.stringify(etape3));
+      const premier = Object.keys(etape3)[0];
+      const sabotages = [
+        ["un libellé changé sur une carte à canal unique", (t) => {
+          const s = Object.keys(t).find((k) => t[k].airlines.some((c) => (seg(c, "bool:").match(/1/g) ?? []).length === 1));
+          if (!s) return false;
+          const i = t[s].airlines.findIndex((c) => (seg(c, "bool:").match(/1/g) ?? []).length === 1);
+          t[s].airlines[i] = t[s].airlines[i].replace(/label:[^|]*/, "label:SABOTÉ ");
+          return true;
+        }],
+        ["un segment hors libellé modifié", (t) => {
+          const c = t[premier].airlines[0].split(" | ");
+          c[3] = "st:denied/denied/denied";
+          t[premier].airlines[0] = c.join(" | ");
+          return true;
+        }],
+        ["un verdict modifié", (t) => { t[premier].verdict = "SABOTÉ"; return true; }],
+      ];
+      for (const [nom, saboter] of sabotages) {
+        const t = copie();
+        if (saboter(t) === false) { check(`étape 2 → 3 : sabotage « ${nom} » applicable`, false, "la mutation ne change rien"); continue; }
+        const vu = comparerLibelles(etape2, t);
+        check(`étape 2 → 3 : la preuve rougit sur ${nom}`, vu.anomalies.length > 0,
           "la preuve est restée verte sur un rapport saboté");
       }
     }

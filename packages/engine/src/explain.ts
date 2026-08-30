@@ -186,8 +186,32 @@ export function explain(decision: Decision, locale = "en"): DecisionReport {
       : reasons.length
         ? L("air.not_accepted_because").replace("{reasons}", joinList(reasons.map((c) => L(`air.reason.${c}`)), locale))
         : L("air.not_accepted");
-    const label = cabin ? L("air.cabin_ok") : hold ? L("air.hold_only") : cargo ? L("air.cargo_only")
-      : to_confirm.length ? L("air.to_confirm") : notAccepted;
+    /* LE LIBELLÉ SE CONSTRUIT DEPUIS L'ENSEMBLE RÉEL DES CANAUX OUVERTS, jamais par cascade.
+     *
+     * L'ancienne rédaction était `cabin ? cabin_ok : hold ? hold_only : cargo ? cargo_only`, et
+     * elle mentait. Mesuré sur les 1 560 cartes de la baseline :
+     *
+     *     011  ×  12  →  « Soute uniquement »  alors que le FRET est ouvert. FAUX.
+     *     110  × 264  →  « Cabine OK »         la soute est ouverte, et tue.
+     *     111  × 134  →  « Cabine OK »         la soute et le fret sont ouverts, et tus.
+     *     101  ×  20  →  « Cabine OK »         le fret est ouvert, et tu.
+     *
+     * Douze cartes affirmaient donc quelque chose de faux — « uniquement » quand un second canal
+     * est ouvert —, et 418 taisaient un canal disponible, c'est-à-dire la réponse même que le
+     * visiteur est venu chercher. Les 430 changent ; les 1 130 autres ne bougent pas.
+     *
+     * Les libellés d'un seul canal restent ceux d'avant : « Cabine OK », « Soute uniquement »,
+     * « Fret uniquement » sont exacts quand ce canal est bien le seul. */
+    const ouverts = [cabin && "cabin", hold && "hold", cargo && "cargo"].filter(Boolean) as string[];
+    const CLE_MULTI: Record<string, string> = {
+      "cabin,hold": "air.cabin_hold", "cabin,cargo": "air.cabin_cargo",
+      "hold,cargo": "air.hold_cargo", "cabin,hold,cargo": "air.cabin_hold_cargo",
+    };
+    const label = ouverts.length > 1
+      ? L(CLE_MULTI[ouverts.join(",")])
+      : ouverts.length === 1
+        ? L(ouverts[0] === "cabin" ? "air.cabin_ok" : ouverts[0] === "hold" ? "air.hold_only" : "air.cargo_only")
+        : to_confirm.length ? L("air.to_confirm") : notAccepted;
     /* LES STATUTS TARIFAIRES, DÉRIVÉS DU CANAL — et de rien d'autre.
      *
      * Ce bloc calculait naguère un montant : `localizeFee(a.fee)`, avec « sur devis » pour le

@@ -308,7 +308,7 @@ const jsonLd = faqItems.length ? [webpageLd, faqJsonLd(faqItems)] : [webpageLd];
 
     {d.crate && (
       <div class="card">
-        <h2>📦 {T("The hold crate (IATA standard)", "La caisse soute (norme IATA)", "La jaula de bodega (norma IATA)")}</h2>
+        <h2>📦 {T("The travel crate for the hold", "La cage de transport en soute", "El transportín para viajar en bodega")}</h2>
         <div class="cols">
           {d.crate.map((c) => (<div class="chk"><span class="ci ok">✓</span> {t(c)}</div>))}
         </div>

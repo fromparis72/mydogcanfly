@@ -141,9 +141,11 @@ const HERITAGE_V1 = ["static/", "layouts/", "deploy/", "themes/", "SLUG-MAP.md"]
    L'ancre est un fragment de texte, jamais un numéro de ligne : une ligne se déplace, un texte
    non. Une ancre qui ne trouve rien FAIT REFUSER le relevé — une déclaration qui ne s'applique
    pas est un mensonge, pas une exception. */
-const A_REFORMULER = [
-  { fichier: "packages/ui/src/components/AirlinePremiumPage.astro", ancre: "The hold crate (IATA standard)" },
-];
+/* La liste est VIDE depuis l'étape 3 du 30/08/2026 : le seul titre qu'elle contenait — « The hold
+   crate (IATA standard) / La caisse soute (norme IATA) / La jaula de bodega (norma IATA) » — a été
+   reformulé. La garde d'ancre a rougi d'elle-même au moment de la correction, ce pour quoi elle
+   existe : une déclaration qui ne s'applique plus à rien ne doit pas survivre à son objet. */
+const A_REFORMULER = [];
 
 /* UNE EXCEPTION DE COMMENTAIRE A EXISTÉ ICI, ET ELLE EST SUPPRIMÉE. Elle classait à part une
    occurrence vivant dans un commentaire de code — non publiée, donc ni une affirmation ni un
@@ -277,8 +279,8 @@ export function citationsDeLHeritage() {
 
 /* Les ancres de reformulation doivent toutes MORDRE : une déclaration qui ne s'applique à rien
    ne protège rien, et masquerait une modification approuvée qu'on croirait couverte. */
-export function ancresOrphelines(releve) {
-  return A_REFORMULER.filter((r) => !releve.some((o) => o.fichier === r.fichier && o.categorie === "reference_reglementaire_a_reformuler"));
+export function ancresOrphelines(releve, declarations = A_REFORMULER) {
+  return declarations.filter((r) => !releve.some((o) => o.fichier === r.fichier && o.categorie === "reference_reglementaire_a_reformuler"));
 }
 
 /* ---- LE PARCOURS, DÉTERMINISTE ------------------------------------------------------------- */
@@ -329,10 +331,10 @@ export function relever({ inverse = false, racine = RACINE } = {}) {
  * Ce qui fait ÉCHOUER un relevé. Extraite pour être éprouvée : la CLI l'appelle, le harnais
  * aussi, avec un relevé délibérément corrompu.
  */
-export function verifier(releve) {
+export function verifier(releve, declarations = A_REFORMULER) {
   const inconnues = releve.filter((r) => r.categorie === null || r.categorie === undefined);
   const hors = releve.filter((r) => r.categorie != null && !CATEGORIES.includes(r.categorie));
-  const orphelines = ancresOrphelines(releve);
+  const orphelines = ancresOrphelines(releve, declarations);
   return { inconnues, hors, orphelines, ok: inconnues.length === 0 && hors.length === 0 && orphelines.length === 0 };
 }
 

@@ -342,8 +342,8 @@ function breedTravelView(kb: NormalizedKB, b: {
   const hold = brachy
     ? L(`As a snub-nosed breed, hold and cargo carriage is restricted or refused by many airlines, and a global heat/breathing risk applies. Where accepted, avoid warm-weather flights and use a roomy, well-ventilated IATA crate.`,
         `Race brachycéphale : le transport en soute et en fret est limité ou refusé par de nombreuses compagnies, avec un risque chaleur/respiration global. Lorsqu'il est accepté, évitez les vols par temps chaud et utilisez une caisse IATA spacieuse et bien ventilée.`)
-    : L(`Travels in the pressurised, temperature-controlled hold in an IATA-compliant crate when above cabin limits. Book early and prefer cooler times of day.`,
-        `Voyage dans la soute pressurisée et climatisée, dans une caisse conforme IATA au-dessus des limites cabine. Réserve tôt et privilégiez les heures fraîches.`);
+    : L(`Travels in the pressurised, temperature-controlled hold in a crate meeting the airline's requirements when above cabin limits. Book early and prefer cooler times of day.`,
+        `Voyage dans la soute pressurisée et climatisée, dans une cage conforme aux exigences de la compagnie au-dessus des limites cabine. Réserve tôt et privilégie les heures fraîches.`);
 
   const climate = heatTol <= 2
     ? L(`Best suited to cool and temperate climates. Hot and tropical destinations — and summer departures — are risky and often blocked by seasonal heat embargoes.`,

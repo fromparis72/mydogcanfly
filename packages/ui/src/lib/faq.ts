@@ -103,9 +103,9 @@ export function airlineFaq(d: any, locale: string): FaqItem[] {
         "Quelle caisse {0} exige-t-elle ?",
         "¿Qué tipo de jaula exige {0}?", name),
       join([
-        F("{0} requires an IATA-compliant crate:",
-          "{0} exige une caisse conforme IATA :",
-          "{0} exige una jaula conforme a la IATA:", name),
+        F("{0} requires a crate meeting the applicable container requirements, and that it accepts:",
+          "{0} exige une cage conforme aux exigences applicables, et qu'elle accepte :",
+          "{0} exige una jaula que cumpla los requisitos aplicables y que acepte:", name),
         crate.slice(0, 4).map((c: any) => t(c)).join(" ; ") + ".",
       ]),
     );

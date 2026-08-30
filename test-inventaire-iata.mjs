@@ -9,6 +9,7 @@
  * contrat. On éprouve donc ici les quatre faux-verts trouvés par la contre-revue du 30/08/2026,
  * chacun sur sa propre cause.
  */
+import { readFileSync } from "node:fs";
 import { classer, relever, verifier, citationsDeLHeritage, ancresOrphelines, MOTIF, ALTERNATIVES, CATEGORIES } from "./inventaire-iata.mjs";
 
 let defauts = 0;
@@ -127,23 +128,22 @@ const classerLigne = (chemin, ligne) => {
   }
 }
 
-/* 6 bis — LA PHRASE PORTEUSE PRIME SUR L'OCCURRENCE. « IATA standard » et « norme IATA » sont
-   licites prises seules ; « norma IATA » ne l'est pas ; et les trois appartiennent au MÊME titre,
-   remplacé en entier. Sans cette catégorie, deux des trois modifications approuvées manqueraient
-   au contrat de l'étape 3 — le relevé annonçait 33 applicatives là où il en faut 35. */
+/* 6 bis — LE TITRE ARBITRÉ EST RÉELLEMENT REFORMULÉ, dans les quatre langues. Cette
+   contre-épreuve exigeait naguère les TROIS occurrences du titre d'origine ; l'étape 3 les a
+   supprimées, et elle exige donc maintenant le résultat plutôt que le reste à faire. */
 {
-  const releve = relever();
-  const ref = releve.filter((r) => r.categorie === "reference_reglementaire_a_reformuler");
-  const fichiers = new Set(ref.map((r) => r.fichier));
-  const lignes = new Set(ref.map((r) => r.ligne));
-  const textes = ref.map((r) => r.trouve.toLowerCase()).sort();
-  if (ref.length !== 3) echec("6bis à reformuler", `${ref.length} occurrence(s) au lieu de 3`);
-  else if (fichiers.size !== 1 || !/AirlinePremiumPage\.astro$/.test([...fichiers][0]))
-    echec("6bis à reformuler", `fichier(s) : ${[...fichiers].join(", ")}`);
-  else if (lignes.size !== 1) echec("6bis à reformuler", `réparties sur ${lignes.size} lignes`);
-  else if (JSON.stringify(textes) !== JSON.stringify(["iata standard", "norma iata", "norme iata"]))
-    echec("6bis à reformuler", `textes : ${JSON.stringify(textes)}`);
-  else ok(`6bis les trois occurrences du même titre sont à reformuler ensemble (ligne ${[...lignes][0]})`);
+  const source = readFileSync("packages/ui/src/components/AirlinePremiumPage.astro", "utf8");
+  const ATTENDUS = ["The travel crate for the hold", "La cage de transport en soute",
+                    "El transportín para viajar en bodega"];
+  const ANCIENS = ["The hold crate (IATA standard)", "La caisse soute (norme IATA)", "La jaula de bodega (norma IATA)"];
+  const manquants = ATTENDUS.filter((t) => !source.includes(t));
+  const survivants = ANCIENS.filter((t) => source.includes(t));
+  const ptOk = JSON.parse(readFileSync("packages/knowledge/translations/pt/inline.json", "utf8"))["The travel crate for the hold"];
+  if (manquants.length) echec("6bis titre reformulé", `absent(s) : ${manquants.join(" | ")}`);
+  else if (survivants.length) echec("6bis titre reformulé", `l'ancien titre subsiste : ${survivants.join(" | ")}`);
+  else if (ptOk !== "A caixa de transporte para viagem no porão")
+    echec("6bis titre reformulé", `portugais : ${JSON.stringify(ptOk)}`);
+  else ok("6bis le titre de section est reformulé dans les quatre langues, et l'ancien a disparu");
 }
 
 /* 6 ter — LE CONTRAT CHIFFRÉ DE L'ÉTAPE 3. Un contrat sans chiffre exigé n'engage à rien.
@@ -157,7 +157,11 @@ const classerLigne = (chemin, ligne) => {
  *        attrapait ;
  *   −1   cette ligne a été REFORMULÉE : elle dit la même chose sans la forme suivie qui
  *        déclenchait le motif.
- *   24   affirmations publiques interdites.
+ *   24   affirmations publiques interdites ;
+ *   −24  corrigées par l'étape 3 elle-même, le 30/08/2026 ;
+ *    −3  le titre `AirlinePremiumPage` reformulé, et son ancre retirée puisqu'elle ne
+ *        s'appliquait plus — la garde d'ancre a rougi d'elle-même au moment de la correction.
+ *    0   il ne reste RIEN dans les surfaces applicatives.
  *
  * La reformulation a remplacé une exception de classement que j'avais d'abord écrite, et que la
  * contre-revue a mise à terre : elle reposait sur une regex `/\*…\*\/` incapable de distinguer un
@@ -169,20 +173,30 @@ const classerLigne = (chemin, ligne) => {
   const releve = relever();
   const interdites = releve.filter((r) => r.categorie === "affirmation_publique_interdite").length;
   const aRef = releve.filter((r) => r.categorie === "reference_reglementaire_a_reformuler").length;
-  if (interdites !== 24 || aRef !== 3)
-    echec("6ter contrat de l'étape 3", `${interdites} interdites et ${aRef} à reformuler, attendu 24 et 3`);
-  else ok(`6ter contrat de l'étape 3 : ${interdites} + ${aRef} = ${interdites + aRef} modifications publiques`);
+  /* MOUVEMENT FINAL DE L'ÉTAPE 3 : 24 + 3 → 0 + 0. Les 27 modifications sont FAITES. La
+     sentinelle devient donc « aucune affirmation publique ne subsiste dans les surfaces
+     applicatives », et c'est elle qui empêchera désormais une régression d'y revenir. Le reste à
+     faire — 592 occurrences éditoriales et 229 artefacts à régénérer — est un autre lot, et il
+     garde ses propres chiffres. */
+  if (interdites !== 0 || aRef !== 0)
+    echec("6ter l'étape 3 est faite", `il reste ${interdites} affirmation(s) publique(s) et ${aRef} référence(s) à reformuler dans les surfaces applicatives`);
+  else ok("6ter aucune affirmation publique interdite ne subsiste dans les surfaces applicatives");
 }
 
 /* 6 quater — UNE ANCRE DE REFORMULATION QUI NE TROUVE RIEN FAIT REFUSER LE RELEVÉ. Une
    déclaration qui ne s'applique à rien ne protège rien, et masquerait une modification approuvée
    qu'on croirait couverte. */
 {
-  const bidon = [{ fichier: "packages/ui/src/components/AirlinePremiumPage.astro", ligne: 1, colonne: 1,
+  /* LA LISTE RÉELLE EST VIDE depuis l'étape 3 — le seul titre déclaré a été reformulé. Le
+     MÉCANISME doit rester prouvé pour autant : on l'éprouve donc sur une déclaration synthétique,
+     et non sur la liste de production. Une garde qu'on ne peut plus éprouver parce que son objet
+     a disparu cesse silencieusement de protéger. */
+  const declarationSynthetique = [{ fichier: "packages/ui/src/components/Inexistant.astro", ancre: "un titre qui n'existe pas" }];
+  const bidon = [{ fichier: "packages/ui/src/components/Inexistant.astro", ligne: 1, colonne: 1,
                    trouve: "norma IATA", categorie: "affirmation_publique_interdite" }];
-  const v = verifier(bidon);
+  const v = verifier(bidon, declarationSynthetique);
   if (v.ok || !v.orphelines.length) echec("6quater ancre orpheline", "un relevé où l'ancre ne mord pas est accepté");
-  else if (ancresOrphelines(relever()).length) echec("6quater ancre orpheline", "l'ancre réelle ne mord pas non plus");
+  else if (ancresOrphelines(relever()).length) echec("6quater ancre orpheline", "une ancre de production ne mord pas");
   else ok("6quater une ancre de reformulation qui ne trouve rien fait REFUSER le relevé");
 }
 
@@ -210,12 +224,13 @@ const classerLigne = (chemin, ligne) => {
   const cas = [
     ["une occurrence non classée", [{ fichier: "f.ts", ligne: 1, colonne: 1, trouve: "IATA-blessed", categorie: null }]],
     ["une catégorie hors liste", [{ fichier: "f.ts", ligne: 2, colonne: 3, trouve: "homologué", categorie: "categorie_inventee" }]],
-    ["une ancre de reformulation orpheline", [{ fichier: "f.ts", ligne: 3, colonne: 5, trouve: "homologué", categorie: "source_editoriale" }]],
+    ["une ancre de reformulation orpheline", [{ fichier: "f.ts", ligne: 3, colonne: 5, trouve: "homologué", categorie: "source_editoriale" }],
+     [{ fichier: "f.ts", ancre: "un titre absent" }]],
   ];
   let bons = 0;
-  for (const [nom, releve] of cas) {
+  for (const [nom, releve, declarations] of cas) {
     try {
-      const v = verifier(releve);
+      const v = verifier(releve, declarations);
       if (v.ok) { echec(`8 diagnostic — ${nom}`, "le relevé invalide est accepté"); continue; }
       /* Exactement la ligne que produit le cas 7 : si un champ manquait, elle lèverait ici. */
       const message = `${v.inconnues.length} inconnue(s), ${v.hors.length} hors liste, ${v.orphelines.length} ancre(s) orpheline(s)`;
