@@ -42,7 +42,7 @@ const pages = [];
 if (pages.length < 1000) { echec("départ", `${pages.length} pages seulement — ce n'est pas le site complet`); process.exit(1); }
 ok(`départ : ${pages.length} pages construites`);
 
-/* ---- 1. AUCUNE AFFIRMATION D'HOMOLOGATION DANS LE DOM PUBLIC -------------------------------- */
+/* ---- 1. LE VOCABULAIRE D'HOMOLOGATION, DANS LES SOURCES ET DANS LE DOM --------------------- */
 /* Le même vocabulaire interdit que l'inventaire, tenu ici sur les pages RENDUES. Les références
    licites — Live Animals Regulations, méthode de mesure, exigences publiées — restent permises. */
 const INTERDIT = /IATA[- ]?(?:approved|compliant|certified)|homologu[\wÀ-ÿ]*\s+(?:par\s+)?(?:l[' ])?IATA|homologad[\wÀ-ÿ]*\s+(?:por|pela)\s+(?:la\s+)?IATA|caisse[s]?\s+homologuée[s]?|cage[s]?\s+homologuée[s]?|jaula[s]?\s+homologada[s]?|conforme[s]?\s+(?:à\s+la\s+norme\s+)?IATA|conforme[s]?\s+(?:a|à)\s+la\s+IATA|conforme[s]?\s+(?:à|a)\s+(?:la\s+)?norma\s+IATA|norma\s+IATA|norme\s+IATA|padrão\s+IATA|aprovad[\wÀ-ÿ]*\s+pela\s+IATA|aprobad[\wÀ-ÿ]*\s+por\s+la\s+IATA/i;
@@ -65,14 +65,18 @@ const INTERDIT = /IATA[- ]?(?:approved|compliant|certified)|homologu[\wÀ-ÿ]*\s
 
      LA GARANTIE RÉELLE EST AILLEURS, et elle ne demande aucune heuristique. L'inventaire prouve
      que les surfaces APPLICATIVES — traductions, composants, pages, lib, moteur, workers — ne
-     portent plus AUCUNE affirmation interdite : c'est le contrat de l'étape 3, mesuré à 0. Il
-     s'ensuit que toute affirmation encore publiée vient nécessairement d'ailleurs : des données
-     générées et du contenu éditorial, c'est-à-dire du micro-lot suivant. Vérifié à la main sur
-     trois cas — Icelandair, airBaltic, Air Caraïbes — : leurs phrases vivent dans
-     `content/airlines/*.yml`, d'où les générateurs les portent jusqu'aux fiches.
+     portent plus AUCUNE affirmation interdite : c'est le contrat de l'étape 3, mesuré à 0.
+
+     CE QUI RESTE PUBLIÉ EST NOMMÉ « DETTE PUBLIQUE RESTANTE », SANS PROVENANCE ATTRIBUÉE. Je n'ai
+     relié mécaniquement aucune de ces 52 pages à sa source ; j'ai seulement vérifié trois cas à
+     la main — Icelandair, airBaltic, Air Caraïbes —, ce qui ne fonde aucune règle. Écrire qu'elles
+     « viennent nécessairement des données générées » serait une déduction que rien n'établit :
+     l'inventaire dit où le vocabulaire vit dans les SOURCES, il ne dit pas quelle source a produit
+     telle ligne d'une page. Le micro-lot éditorial ramènera ce registre à zéro, et c'est lui qui
+     établira les provenances, une par une.
 
      On exige donc les deux choses qu'on peut établir sans deviner : ZÉRO dans les sources
-     applicatives, et un COMPTE FIGÉ de la dette encore publiée, qui ne peut plus grandir en
+     applicatives, et un REGISTRE EXACT de la dette encore publiée, qui ne peut plus bouger en
      silence. */
   /* On importe le relevé plutôt que de le lire d'un tube : `execFileSync` tronquait la sortie et
      rendait un JSON incomplet. */
@@ -91,7 +95,8 @@ const INTERDIT = /IATA[- ]?(?:approved|compliant|certified)|homologu[\wÀ-ÿ]*\s
      Le registre porte donc, par CHEMIN PUBLIC, chaque formulation normalisée ET sa multiplicité,
      et la comparaison est bidirectionnelle. */
   const REGISTRE = "dette-iata-publiee.json";
-  const registre = JSON.parse(readFileSync(REGISTRE, "utf8")).pages;
+  const registreBrut = JSON.parse(readFileSync(REGISTRE, "utf8"));
+  const registre = registreBrut.pages;
   const MOTIF_G = new RegExp(INTERDIT.source, "gi");
   const vu = {};
   for (const p of pages) {
@@ -134,6 +139,25 @@ const INTERDIT = /IATA[- ]?(?:approved|compliant|certified)|homologu[\wÀ-ÿ]*\s
     writeFileSync(REGISTRE, JSON.stringify({ ...ancien, _mesure: { pages: Object.keys(trie).length, occurrences: total, dist_pages_html: pages.length }, pages: trie }, null, 2) + "\n");
     console.log(`  · registre RÉÉCRIT : ${Object.keys(trie).length} pages, ${total} occurrences`);
   }
+  /* `_mesure` ÉTAIT DÉCORATIF : le contrôle ne lisait que `pages`, si bien qu'un total saboté ou
+     un champ inconnu glissé à la racine ne changeaient rien. Les trois chiffres sont désormais
+     confrontés au réel, et la forme racine est STRICTE — un champ qu'on n'attend pas est un
+     champ que personne ne relit. */
+  {
+    const m = registreBrut._mesure ?? {};
+    const attendues = ["_commentaire", "_mesure", "pages"];
+    const inconnues = Object.keys(registreBrut).filter((k) => !attendues.includes(k));
+    const manquantes = attendues.filter((k) => !(k in registreBrut));
+    const ecartsMesure = [];
+    if (m.pages !== Object.keys(vu).length) ecartsMesure.push(`_mesure.pages = ${m.pages} contre ${Object.keys(vu).length} réelles`);
+    if (m.occurrences !== total) ecartsMesure.push(`_mesure.occurrences = ${m.occurrences} contre ${total} réelles`);
+    if (m.dist_pages_html !== pages.length) ecartsMesure.push(`_mesure.dist_pages_html = ${m.dist_pages_html} contre ${pages.length} réelles`);
+    if (inconnues.length) ecartsMesure.push(`champ(s) inconnu(s) à la racine : ${inconnues.join(", ")}`);
+    if (manquantes.length) ecartsMesure.push(`champ(s) absent(s) : ${manquantes.join(", ")}`);
+    if (ecartsMesure.length) echec("1bis-forme registre", ecartsMesure.join(" · "));
+    else ok(`1bis-forme le registre déclare exactement ce qu'il mesure (${m.pages} pages, ${m.occurrences} occurrences, ${m.dist_pages_html} pages HTML)`);
+  }
+
   const ecarts = comparer(registre, vu);
   if (ecarts.length) echec(`1bis registre de la dette (${ecarts.length} écart(s))`, ecarts.slice(0, 4).join(" · "));
   else ok(`1bis la dette publiée correspond EXACTEMENT au registre : ${Object.keys(vu).length} pages, ${total} occurrences`);
@@ -194,7 +218,12 @@ const INTERDIT = /IATA[- ]?(?:approved|compliant|certified)|homologu[\wÀ-ÿ]*\s
     { origin: "airport_lhr", destination: "airport_lax", breed_id: "breed_bichon_frise", weight_kg: 6 },
   ];
   const LANGUES = ["en", "fr", "es", "pt"];
-  const vues = new Set();
+  /* LA COUVERTURE EST PAR LANGUE, PAS GLOBALE. Première rédaction fautive, nommée : elle
+     accumulait les combinaisons vues dans UN SEUL ensemble, si bien qu'une combinaison observée
+     en anglais couvrait les quatre langues. Une traduction qui disparaîtrait d'une seule langue
+     serait passée — or c'est exactement le genre de repli silencieux que ce lot a déjà rencontré
+     trois fois côté portugais. */
+  const vuesPar = Object.fromEntries(LANGUES.map((l) => [l, new Set()]));
   const ecarts = [];
   let cartes = 0;
   for (const loc of LANGUES) {
@@ -207,17 +236,30 @@ const INTERDIT = /IATA[- ]?(?:approved|compliant|certified)|homologu[\wÀ-ÿ]*\s
         const combo = `${+a.cabin}${+a.hold}${+a.cargo}`;
         if ((combo.match(/1/g) ?? []).length < 2) continue;
         cartes++;
-        vues.add(combo);
+        vuesPar[loc].add(combo);
         if (a.label !== ATTENDU[combo][loc]) {
           ecarts.push(`${loc}/${combo} : « ${a.label} » au lieu de « ${ATTENDU[combo][loc]} »`);
         }
       }
     }
   }
-  const manquantes = Object.keys(ATTENDU).filter((k) => !vues.has(k));
-  if (manquantes.length) echec("2 couverture des combinaisons", `jamais exercée(s) : ${manquantes.join(", ")}`);
+  const trous = LANGUES.flatMap((l) => Object.keys(ATTENDU).filter((k) => !vuesPar[l].has(k)).map((k) => `${l}/${k}`));
+  if (trous.length) echec("2 couverture des combinaisons", `jamais exercée(s) : ${trous.join(", ")}`);
   else if (ecarts.length) echec("2 bijection combinaison → libellé", `${ecarts.length} écart(s), dont ${ecarts[0]}`);
-  else ok(`2 bijection exacte sur ${cartes} cartes multicanales, les 4 combinaisons exercées dans les 4 langues`);
+  else {
+    const detail = LANGUES.map((l) => `${l}:${[...vuesPar[l]].sort().join("+")}`).join(" ");
+    ok(`2 bijection exacte sur ${cartes} cartes, les 4 combinaisons exercées DANS CHAQUE langue (${detail})`);
+  }
+
+  /* LA COUVERTURE PAR LANGUE, VUE ROUGIR : si une combinaison manquait à une seule langue, le
+     contrôle doit le dire. On le vérifie en retirant une combinaison d'une langue. */
+  {
+    const ampute = Object.fromEntries(LANGUES.map((l) => [l, new Set(vuesPar[l])]));
+    ampute.pt.delete("111");
+    const vus = LANGUES.flatMap((l) => Object.keys(ATTENDU).filter((k) => !ampute[l].has(k)).map((k) => `${l}/${k}`));
+    if (!vus.length) echec("2ter couverture par langue", "une combinaison retirée d'une langue passe inaperçue");
+    else ok(`2ter une combinaison absente d'UNE SEULE langue est vue (${vus.join(", ")})`);
+  }
 
   /* LA PREUVE VUE ROUGIR : une permutation de deux libellés doit être détectée. Sans cela, la
      bijection ne serait qu'une appartenance à une liste. */
