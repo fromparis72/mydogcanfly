@@ -9,7 +9,9 @@
  * contrat. On éprouve donc ici les quatre faux-verts trouvés par la contre-revue du 30/08/2026,
  * chacun sur sa propre cause.
  */
-import { classer, relever, verifier, citationsDeLHeritage, ancresOrphelines, MOTIF, ALTERNATIVES, CATEGORIES } from "./inventaire-iata.mjs";
+import { existsSync, readdirSync, readFileSync, statSync } from "node:fs";
+import { join } from "node:path";
+import { classer, relever, verifier, citationsDeLHeritage, ancresOrphelines, contexteCommentaires, MOTIF, ALTERNATIVES, CATEGORIES } from "./inventaire-iata.mjs";
 
 let defauts = 0;
 const echec = (nom, detail) => { defauts++; console.error(`  ✗ ${nom} — ${detail}`); };
@@ -146,11 +148,83 @@ const classerLigne = (chemin, ligne) => {
   else ok(`6bis les trois occurrences du même titre sont à reformuler ensemble (ligne ${[...lignes][0]})`);
 }
 
+/* 6 quinquies — LE COMMENTAIRE DE CODE N'EST PAS UNE AFFIRMATION PUBLIQUE, et sa preuve tient à
+   trois conditions, chacune vue rougir. Arbitrage du 30/08/2026 : classer `FlightFinder.astro:757`
+   parmi les affirmations publiques rendait le nom ET le compte faux — ce commentaire explique
+   justement pourquoi la fuite a été retirée, et n'est publié nulle part. */
+{
+  const releve = relever();
+  const com = releve.filter((r) => r.categorie === "commentaire_code_non_publie");
+  if (com.length !== 1) echec("6quinquies commentaire", `${com.length} occurrence(s) au lieu de 1`);
+  else if (!/FlightFinder\.astro$/.test(com[0].fichier)) echec("6quinquies commentaire", com[0].fichier);
+  else ok(`6quinquies le commentaire de code est classé à part (${com[0].fichier.split("/").pop()}:${com[0].ligne})`);
+
+  /* La preuve d'ancrage, vue rougir sur ses TROIS causes : fragment absent, fragment dupliqué,
+     fragment hors des bornes d'un bloc. Sans elles, la catégorie serait une porte de sortie. */
+  const FICHIER = "packages/ui/src/components/FlightFinder.astro";
+  const FRAGMENT = "suggérait de surcroît une homologation IATA que personne ne délivre";
+  const cas = [
+    ["fragment absent", "/* rien ici */"],
+    ["fragment dupliqué", `/* ${FRAGMENT} */\n/* ${FRAGMENT} */`],
+    ["fragment hors d'un bloc de commentaire", `const t = "${FRAGMENT}";`],
+  ];
+  let rouges = 0;
+  for (const [nom, contenu] of cas) {
+    const { zones, problemes } = contexteCommentaires(FICHIER, contenu);
+    if (problemes.length && zones.length === 0) rouges++;
+    else echec(`6quinquies ancrage — ${nom}`, `zones=${zones.length} problemes=${problemes.length}`);
+  }
+  /* Et le cas honnête passe. */
+  const bon = contexteCommentaires(FICHIER, `/* ${FRAGMENT} */`);
+  if (bon.problemes.length || bon.zones.length !== 1) echec("6quinquies ancrage — cas valide", JSON.stringify(bon.problemes));
+  else if (rouges === cas.length) ok(`6quinquies l'ancrage rougit sur ses ${cas.length} causes et accepte le cas valide`);
+
+  /* LE MÊME VOCABULAIRE AILLEURS DANS LE FICHIER reste une affirmation publique : la catégorie ne
+     blanchit pas un fichier, elle borne une zone. */
+  const dehors = classer(FICHIER, 'const s = "IATA-approved";', "IATA-approved", 12, 25, 999999, [[0, 50]]);
+  if (dehors !== "affirmation_publique_interdite")
+    echec("6quinquies hors zone", `une occurrence hors des bornes est classée « ${dehors} »`);
+  else ok("6quinquies le même vocabulaire hors de la zone reste une affirmation publique");
+
+  /* LE FRAGMENT NE DOIT PARAÎTRE NULLE PART DANS LE DOM CONSTRUIT. Dire « c'est un commentaire,
+     il n'est pas publié » est une affirmation tant qu'on ne l'a pas vérifiée sur l'artefact :
+     un gabarit peut très bien recracher un commentaire dans la page. Ce contrôle ne se joue que
+     si un dist existe — en CI, il en existe toujours un. */
+  {
+    const dist = "packages/ui/dist";
+    if (!existsSync(dist)) console.log("  · 6quinquies DOM non joué (aucun dist) — il l'est en CI sur le site complet");
+    else {
+      const fautifs = [];
+      const parcourir = (d) => {
+        for (const e of readdirSync(d)) {
+          const chemin = join(d, e);
+          if (statSync(chemin).isDirectory()) parcourir(chemin);
+          else if (e.endsWith(".html") && readFileSync(chemin, "utf8").includes(FRAGMENT)) fautifs.push(chemin);
+        }
+      };
+      parcourir(dist);
+      if (fautifs.length) echec("6quinquies DOM", `le fragment de commentaire paraît dans ${fautifs.length} page(s), dont ${fautifs[0]}`);
+      else ok("6quinquies le fragment de commentaire est absent du DOM construit");
+    }
+  }
+
+  /* Un problème d'ancrage fait REFUSER le relevé. */
+  const faux = []; faux.problemesDAncrage = ["ancre absente"];
+  const v = verifier(faux);
+  if (v.ok || !v.ancrages.length) echec("6quinquies refus", "un relevé au fragment non ancré est accepté");
+  else ok("6quinquies un fragment non ancré fait REFUSER le relevé");
+}
+
 /* 6 ter — LE CONTRAT CHIFFRÉ DE L'ÉTAPE 3. Un contrat sans chiffre exigé n'engage à rien.
  *
  * MOUVEMENT NOMMÉ, du 30/08/2026 : le compte passe de 32 à 25 après la fusion de la PR #29 et la
  * resynchronisation de cette branche. La garde a rougi d'elle-même, ce pour quoi elle existe.
  * Deux causes, et une seule est une correction :
+ *
+ * SECOND MOUVEMENT, du même jour, sur arbitrage : 25 → 24. `FlightFinder.astro:757` est un
+ * COMMENTAIRE de code ; le compter parmi les affirmations publiques rendait le nom et le compte
+ * faux. Il a sa catégorie, bornée par chemin et fragment exact, et prouvée : le fragment existe
+ * une seule fois et tombe entre les bornes d'un bloc.
  *
  *   −8  les huit `partner.equipment.reason` et `reason_cargo` des quatre traductions, réécrits
  *       par la PR #29 sur l'acceptation par la compagnie qui opère le vol. Elles sont FAITES.
@@ -169,9 +243,10 @@ const classerLigne = (chemin, ligne) => {
   const releve = relever();
   const interdites = releve.filter((r) => r.categorie === "affirmation_publique_interdite").length;
   const aRef = releve.filter((r) => r.categorie === "reference_reglementaire_a_reformuler").length;
-  if (interdites !== 25 || aRef !== 3)
-    echec("6ter contrat de l'étape 3", `${interdites} interdites et ${aRef} à reformuler, attendu 25 et 3`);
-  else ok(`6ter contrat de l'étape 3 : ${interdites} + ${aRef} = ${interdites + aRef} modifications applicatives`);
+  const commentaires = releve.filter((r) => r.categorie === "commentaire_code_non_publie").length;
+  if (interdites !== 24 || aRef !== 3 || commentaires !== 1)
+    echec("6ter contrat de l'étape 3", `${interdites} interdites, ${aRef} à reformuler, ${commentaires} commentaire(s) — attendu 24, 3 et 1`);
+  else ok(`6ter contrat de l'étape 3 : ${interdites} + ${aRef} = ${interdites + aRef} modifications PUBLIQUES, plus ${commentaires} commentaire non publié`);
 }
 
 /* 6 quater — UNE ANCRE DE REFORMULATION QUI NE TROUVE RIEN FAIT REFUSER LE RELEVÉ. Une

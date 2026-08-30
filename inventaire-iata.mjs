@@ -144,6 +144,21 @@ const HERITAGE_V1 = ["static/", "layouts/", "deploy/", "themes/", "SLUG-MAP.md"]
 const A_REFORMULER = [
   { fichier: "packages/ui/src/components/AirlinePremiumPage.astro", ancre: "The hold crate (IATA standard)" },
 ];
+
+/* LES COMMENTAIRES DE CODE QUI CITENT LE VOCABULAIRE POUR L'EXPLIQUER. Un commentaire n'est
+   publié nulle part : le compter comme une affirmation publique rend le nom ET le compte faux —
+   il gonflerait le reste à faire d'une ligne qui, elle, doit rester telle quelle, puisqu'elle
+   explique justement pourquoi la fuite a été retirée.
+   La catégorie est VOLONTAIREMENT BORNÉE à des occurrences connues, par chemin ET par fragment
+   exact. Elle ne reconnaît pas « un commentaire » en général : une heuristique de commentaire
+   deviendrait une porte de sortie, et il suffirait d'écrire une affirmation dans un `//` pour la
+   soustraire au compte. Trois conditions doivent tenir, sinon le relevé est REFUSÉ : le fragment
+   existe, il existe UNE SEULE fois, et l'occurrence tombe RÉELLEMENT entre les bornes d'un bloc
+   `/* … *\/`. Le même vocabulaire ailleurs dans le fichier reste une affirmation publique. */
+const COMMENTAIRES_CONNUS = [
+  { fichier: "packages/ui/src/components/FlightFinder.astro",
+    fragment: "suggérait de surcroît une homologation IATA que personne ne délivre" },
+];
 /* Les répertoires qui alimentent un générateur — leur contenu peut revenir dans le site. */
 const GENERATRICES_DECLAREES = ["content/"];
 
@@ -153,6 +168,7 @@ export const CATEGORIES = [
   "citation_attribuee",
   "reference_reglementaire_a_reformuler",
   "reference_reglementaire_legitime",
+  "commentaire_code_non_publie",
   /* — une affirmation interdite ; la catégorie dit QUI la corrige — */
   "test_commentaire_historique",
   "artefact_genere",
@@ -161,6 +177,39 @@ export const CATEGORIES = [
   "affirmation_publique_interdite",
   "source_editoriale",
 ];
+
+/** Les bornes de chaque bloc `/* … *\/` du fichier, en offsets absolus. */
+function blocsCommentaires(contenu) {
+  const out = [];
+  const re = /\/\*[\s\S]*?\*\//g;
+  let m;
+  while ((m = re.exec(contenu))) out.push([m.index, m.index + m[0].length]);
+  return out;
+}
+
+/**
+ * Le contexte d'un fichier pour les commentaires DÉCLARÉS : où se trouve exactement le fragment,
+ * et se trouve-t-il bien dans un bloc de commentaire. Rend aussi les PROBLÈMES, qui font refuser
+ * le relevé — une ancre absente, dupliquée, ou qui n'est pas dans un commentaire ne prouve rien.
+ */
+export function contexteCommentaires(chemin, contenu) {
+  const zones = [], problemes = [];
+  for (const d of COMMENTAIRES_CONNUS.filter((c) => c.fichier === chemin)) {
+    const occ = [];
+    let i = contenu.indexOf(d.fragment);
+    while (i !== -1) { occ.push(i); i = contenu.indexOf(d.fragment, i + 1); }
+    if (occ.length === 0) { problemes.push(`${chemin} : le fragment déclaré est ABSENT — « ${d.fragment.slice(0, 60)}… »`); continue; }
+    if (occ.length > 1) { problemes.push(`${chemin} : le fragment déclaré apparaît ${occ.length} fois — l'ancre ne désigne plus une occurrence unique`); continue; }
+    const debut = occ[0], fin = debut + d.fragment.length;
+    const blocs = blocsCommentaires(contenu);
+    if (!blocs.some(([a, b]) => debut >= a && fin <= b)) {
+      problemes.push(`${chemin} : le fragment déclaré n'est PAS dans un bloc de commentaire — il serait donc publié`);
+      continue;
+    }
+    zones.push([debut, fin]);
+  }
+  return { zones, problemes };
+}
 
 /** Les portées d'une citation attribuée DANS une ligne : `"quote": "…"`, `citation: '…'`. */
 function portéesDeCitation(ligne) {
@@ -185,7 +234,7 @@ function portéesDeCitation(ligne) {
  * et sur sa position [debut, fin). Rend `null` quand aucune règle ne reconnaît l'occurrence —
  * jamais un repli complaisant.
  */
-export function classer(chemin, ligne, trouve, debut, fin) {
+export function classer(chemin, ligne, trouve, debut, fin, absolu = null, zones = []) {
   /* 1 — L'occurrence EST à l'intérieur d'un slug conservé : un identifiant, pas une phrase. */
   for (const sl of SLUGS_CONSERVES) {
     let i = ligne.indexOf(sl);
@@ -197,11 +246,17 @@ export function classer(chemin, ligne, trouve, debut, fin) {
   /* 2 — L'occurrence est À L'INTÉRIEUR d'une citation attribuée : on ne réécrit pas une source. */
   for (const [a, b] of portéesDeCitation(ligne)) if (debut >= a && fin <= b) return "citation_attribuee";
 
-  /* 3 — La PHRASE porteuse est arbitrée « à reformuler » : elle prime sur le jugement porté sur
+  /* 3 — L'occurrence tombe DANS un fragment de commentaire déclaré, dont on a prouvé plus haut
+     qu'il existe une seule fois et qu'il est bien entre les bornes d'un bloc. Rien n'est publié :
+     ce n'est pas une affirmation. Le même vocabulaire AILLEURS dans le fichier — une chaîne
+     rendue, par exemple — reste une affirmation publique, puisqu'il tombe hors de ces zones. */
+  if (absolu != null && zones.some(([a, b]) => absolu >= a && absolu + trouve.length <= b)) return "commentaire_code_non_publie";
+
+  /* 4 — La PHRASE porteuse est arbitrée « à reformuler » : elle prime sur le jugement porté sur
      l'occurrence seule, licite ou non, car c'est le titre entier qui est remplacé. */
   if (A_REFORMULER.some((r) => r.fichier === chemin && ligne.includes(r.ancre))) return "reference_reglementaire_a_reformuler";
 
-  /* 4 — L'occurrence elle-même est une référence licite : le règlement, la méthode de mesure,
+  /* 5 — L'occurrence elle-même est une référence licite : le règlement, la méthode de mesure,
      les exigences de contenant. Rien à corriger, où qu'elle vive. */
   if (OCC_LEGITIME.test(trouve)) return "reference_reglementaire_legitime";
 
@@ -284,22 +339,32 @@ export function* parcourir(dir, inverse = false) {
 /** Le relevé complet, TRIÉ — l'ordre ne dépend d'aucun système de fichiers. */
 export function relever({ inverse = false, racine = RACINE } = {}) {
   const out = [];
+  const problemes = [];
   for (const p of parcourir(racine, inverse)) {
     const chemin = relative(racine, p);
     let contenu;
     try { contenu = readFileSync(p, "utf8"); } catch { continue; }
     if (!/IATA|homolog/i.test(contenu)) continue;
+    /* Les zones de commentaire DÉCLARÉES et prouvées, en offsets absolus : c'est ce qui permet
+       de dire qu'une occurrence est dans un commentaire sans jamais reconnaître « un commentaire »
+       en général — une heuristique deviendrait une porte de sortie. */
+    const ctx = contexteCommentaires(chemin, contenu);
+    problemes.push(...ctx.problemes);
     const lignes = contenu.split("\n");
+    let offset = 0;
     for (let i = 0; i < lignes.length; i++) {
       MOTIF.lastIndex = 0;
       for (const m of lignes[i].matchAll(MOTIF)) {
         out.push({
           fichier: chemin, ligne: i + 1, colonne: m.index + 1, trouve: m[0],
-          categorie: classer(chemin, lignes[i], m[0], m.index, m.index + m[0].length),
+          categorie: classer(chemin, lignes[i], m[0], m.index, m.index + m[0].length,
+                             offset + m.index, ctx.zones),
         });
       }
+      offset += lignes[i].length + 1;
     }
   }
+  out.problemesDAncrage = problemes;
   return out.sort((a, b) =>
     a.fichier.localeCompare(b.fichier) || a.ligne - b.ligne || a.colonne - b.colonne || a.trouve.localeCompare(b.trouve));
 }
@@ -312,7 +377,11 @@ export function verifier(releve) {
   const inconnues = releve.filter((r) => r.categorie === null || r.categorie === undefined);
   const hors = releve.filter((r) => r.categorie != null && !CATEGORIES.includes(r.categorie));
   const orphelines = ancresOrphelines(releve);
-  return { inconnues, hors, orphelines, ok: inconnues.length === 0 && hors.length === 0 && orphelines.length === 0 };
+  /* Une ancre de commentaire absente, dupliquée, ou hors des bornes d'un bloc fait REFUSER le
+     relevé : sans elle, une affirmation redeviendrait invisible sans que personne ne le voie. */
+  const ancrages = releve.problemesDAncrage ?? [];
+  return { inconnues, hors, orphelines, ancrages,
+           ok: inconnues.length === 0 && hors.length === 0 && orphelines.length === 0 && ancrages.length === 0 };
 }
 
 /* ---- SORTIE -------------------------------------------------------------------------------- */
@@ -327,6 +396,7 @@ if (import.meta.url === `file://${process.argv[1]}`) {
     for (const r of v.inconnues.slice(0, 20)) console.error(`  occurrence qu'aucune règle ne reconnaît : ${r.fichier}:${r.ligne}:${r.colonne}  « ${r.trouve} »`);
     for (const r of v.hors.slice(0, 20)) console.error(`  catégorie hors liste : ${r.fichier}:${r.ligne}:${r.colonne}  « ${r.categorie} »`);
     for (const r of v.orphelines) console.error(`  ancre de reformulation qui ne trouve rien : ${r.fichier} « ${r.ancre} »`);
+    for (const x of v.ancrages) console.error(`  ancrage de commentaire : ${x}`);
     process.exit(1);
   }
 
@@ -344,6 +414,7 @@ if (import.meta.url === `file://${process.argv[1]}`) {
   for (const c of CATEGORIES) {
     if (c === "reference_reglementaire_a_reformuler") console.log("  — licite à l'occurrence, mais la phrase porteuse est arbitrée à reformuler —");
     if (c === "reference_reglementaire_legitime") console.log("  — rien à corriger (suite) —");
+    if (c === "commentaire_code_non_publie") console.log("  — cité pour l'expliquer, jamais publié —");
     if (c === "test_commentaire_historique") console.log("  — une affirmation interdite ; la catégorie dit qui la corrige —");
     const sel = releve.filter((r) => r.categorie === c);
     console.log(`${String(sel.length).padStart(5)}  ${c.padEnd(34)} ${String(new Set(sel.map((r) => r.fichier)).size).padStart(3)} fichier(s)`);
