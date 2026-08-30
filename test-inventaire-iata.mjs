@@ -146,14 +146,31 @@ const classerLigne = (chemin, ligne) => {
   else ok(`6bis les trois occurrences du même titre sont à reformuler ensemble (ligne ${[...lignes][0]})`);
 }
 
-/* 6 ter — LE CONTRAT CHIFFRÉ DE L'ÉTAPE 3 : 32 affirmations interdites, 3 références à
-   reformuler, 35 modifications applicatives. Un contrat sans chiffre exigé n'engage à rien. */
+/* 6 ter — LE CONTRAT CHIFFRÉ DE L'ÉTAPE 3. Un contrat sans chiffre exigé n'engage à rien.
+ *
+ * MOUVEMENT NOMMÉ, du 30/08/2026 : le compte passe de 32 à 25 après la fusion de la PR #29 et la
+ * resynchronisation de cette branche. La garde a rougi d'elle-même, ce pour quoi elle existe.
+ * Deux causes, et une seule est une correction :
+ *
+ *   −8  les huit `partner.equipment.reason` et `reason_cargo` des quatre traductions, réécrits
+ *       par la PR #29 sur l'acceptation par la compagnie qui opère le vol. Elles sont FAITES.
+ *   +1  `FlightFinder.astro:757` : un COMMENTAIRE de code — le mien —, qui explique justement
+ *       pourquoi la fuite a été retirée (« suggérait de surcroît une homologation IATA que
+ *       personne ne délivre »). Il n'est publié nulle part.
+ *
+ * Le classificateur ne sait pas encore distinguer un commentaire de code d'une affirmation
+ * publique : `test_commentaire_historique` ne couvre que des CHEMINS de harnais, pas des
+ * commentaires vivant dans un fichier de production. Ce point est SIGNALÉ pour arbitrage plutôt
+ * que corrigé unilatéralement — ajouter une catégorie rouvrirait le classificateur, que la
+ * contre-revue vient de clore. En attendant, le chiffre exigé est celui que l'instrument mesure
+ * réellement, commentaire compris : 25. Sur ces 25, 24 sont de vraies affirmations publiques.
+ */
 {
   const releve = relever();
   const interdites = releve.filter((r) => r.categorie === "affirmation_publique_interdite").length;
   const aRef = releve.filter((r) => r.categorie === "reference_reglementaire_a_reformuler").length;
-  if (interdites !== 32 || aRef !== 3)
-    echec("6ter contrat de l'étape 3", `${interdites} interdites et ${aRef} à reformuler, attendu 32 et 3`);
+  if (interdites !== 25 || aRef !== 3)
+    echec("6ter contrat de l'étape 3", `${interdites} interdites et ${aRef} à reformuler, attendu 25 et 3`);
   else ok(`6ter contrat de l'étape 3 : ${interdites} + ${aRef} = ${interdites + aRef} modifications applicatives`);
 }
 
