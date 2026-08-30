@@ -120,6 +120,18 @@ const APPLICATIF = [
   /^packages\/workers\//,
 ];
 const GENERES = [/^packages\/knowledge\/raw\/guides\.json$/, /\.generated\.json$/, /^packages\/ui\/\.astro\//];
+
+/* LE REGISTRE DE PREUVE, ET LUI SEUL. `dette-iata-publiee.json` énumère les formulations encore
+   PUBLIÉES par le site : il est dérivé du DOM construit, il n'est servi à personne, et le
+   corriger à la main serait exactement le mauvais geste — les contenus se corrigent, le site se
+   reconstruit, PUIS le registre se régénère.
+   Sans cette catégorie, l'instrument comptait sa propre pièce de preuve comme dette à corriger :
+   mesuré au 30/08/2026, il apportait 59 occurrences, dont 56 en `source_editoriale`, gonflait le
+   micro-lot éditorial de 592 à 649 et se plaçait EN TÊTE des fichiers à corriger. Une mesure qui
+   se compte elle-même n'est plus une mesure.
+   Le chemin est EXACT et unique : aucun autre fichier ne peut prendre cette catégorie, et la même
+   formulation écrite dans une vraie source éditoriale y reste comptée. */
+const REGISTRE_PREUVE = "dette-iata-publiee.json";
 const TESTS = [/^test-/, /^mesures\//, /^test-baselines\//, /^test-lib\//, /^DOSSIER-/, /^docs\//, /^ADR/, /\.test\.[tj]s$/];
 
 /* L'HÉRITAGE V1. La v2 prétendait PROUVER qu'il est inerte, en cherchant `"static/…"` dans les
@@ -177,6 +189,7 @@ export const CATEGORIES = [
   "reference_reglementaire_a_reformuler",
   "reference_reglementaire_legitime",
   /* — une affirmation interdite ; la catégorie dit QUI la corrige — */
+  "registre_preuve_non_public",
   "test_commentaire_historique",
   "artefact_genere",
   "source_generatrice_active",
@@ -232,6 +245,9 @@ export function classer(chemin, ligne, trouve, debut, fin) {
      que c'est, et on le dit. */
   if (!OCC_INTERDITE.test(trouve)) return null;
 
+  /* Le registre de preuve prime sur tout classement de contenu : c'est un artefact de mesure,
+     pas une surface. La comparaison est une ÉGALITÉ de chemin, jamais un préfixe ni un motif. */
+  if (chemin === REGISTRE_PREUVE) return "registre_preuve_non_public";
   if (TESTS.some((r) => r.test(chemin))) return "test_commentaire_historique";
   if (GENERES.some((r) => r.test(chemin))) return "artefact_genere";
   if (GENERATRICES_DECLAREES.some((p) => chemin.startsWith(p))) return "source_generatrice_active";
@@ -367,6 +383,7 @@ if (import.meta.url === `file://${process.argv[1]}`) {
   for (const c of CATEGORIES) {
     if (c === "reference_reglementaire_a_reformuler") console.log("  — licite à l'occurrence, mais la phrase porteuse est arbitrée à reformuler —");
     if (c === "reference_reglementaire_legitime") console.log("  — rien à corriger (suite) —");
+    if (c === "registre_preuve_non_public") console.log("  — pièce de preuve dérivée du DOM, jamais servie, jamais corrigée à la main —");
     if (c === "test_commentaire_historique") console.log("  — une affirmation interdite ; la catégorie dit qui la corrige —");
     const sel = releve.filter((r) => r.categorie === c);
     console.log(`${String(sel.length).padStart(5)}  ${c.padEnd(34)} ${String(new Set(sel.map((r) => r.fichier)).size).padStart(3)} fichier(s)`);
@@ -378,6 +395,8 @@ if (import.meta.url === `file://${process.argv[1]}`) {
   }
 
   const applic = releve.filter((r) => ["affirmation_publique_interdite", "reference_reglementaire_a_reformuler"].includes(r.categorie)).length;
+  /* Le registre de preuve est VISIBLE dans le total général — on ne cache pas ce qu'on mesure —
+     mais EXCLU du micro-lot éditorial : personne n'ira le corriger à la main. */
   const edito = releve.filter((r) => ["source_editoriale", "source_generatrice_active", "heritage_a_corriger_ou_supprimer"].includes(r.categorie)).length;
   console.log(`\nÉTAPE 3 APPLICATIVE : ${applic} modification(s)   ·   MICRO-LOT ÉDITORIAL : ${edito}   ·   À RÉGÉNÉRER : ${releve.filter((r) => r.categorie === "artefact_genere").length}`);
 

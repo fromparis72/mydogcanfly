@@ -146,6 +146,47 @@ const classerLigne = (chemin, ligne) => {
   else ok("6bis le titre de section est reformulé dans les quatre langues, et l'ancien a disparu");
 }
 
+/* 6 sexies — LE REGISTRE DE PREUVE NE SE COMPTE PAS LUI-MÊME. Auto-contamination reproduite le
+   30/08/2026 : `dette-iata-publiee.json`, créé pour figer la dette encore publiée, apportait
+   59 occurrences à l'inventaire — dont 56 classées `source_editoriale` —, gonflait le micro-lot
+   de 592 à 649 et se plaçait EN TÊTE des fichiers à corriger. Une mesure qui se compte elle-même
+   n'est plus une mesure ; et corriger ce registre à la main serait le mauvais geste, puisqu'il se
+   régénère depuis le DOM après correction des contenus. */
+{
+  const releve = relever();
+  const reg = releve.filter((r) => r.categorie === "registre_preuve_non_public");
+  const fichiers = [...new Set(reg.map((r) => r.fichier))];
+  const edito = ["source_editoriale", "source_generatrice_active", "heritage_a_corriger_ou_supprimer"];
+  const contamine = releve.filter((r) => r.fichier === "dette-iata-publiee.json" && edito.includes(r.categorie));
+
+  if (!reg.length) echec("6sexies registre de preuve", "la catégorie ne contient rien — elle ne prouve rien");
+  else if (fichiers.length !== 1 || fichiers[0] !== "dette-iata-publiee.json")
+    echec("6sexies registre de preuve", `catégorie utilisée par : ${fichiers.join(", ")}`);
+  else if (contamine.length)
+    echec("6sexies registre de preuve", `${contamine.length} occurrence(s) du registre comptée(s) au micro-lot éditorial`);
+  else ok(`6sexies le registre de preuve porte ${reg.length} occurrences, dans son seul fichier, et zéro n'entre au micro-lot éditorial`);
+}
+
+/* 6 septies — LA CATÉGORIE EST BORNÉE À UN CHEMIN EXACT. La même formulation écrite dans une
+   VRAIE source éditoriale reste une dette éditoriale : sans cela, la catégorie deviendrait une
+   porte de sortie, et il suffirait de nommer un fichier « registre » pour s'y soustraire. */
+{
+  const cas = [
+    ["une vraie source éditoriale", "packages/ui/src/content/guides/fr/materiel-voyage-chien.md", "source_editoriale"],
+    ["un fichier au nom voisin", "dette-iata-publiee.backup.json", "source_editoriale"],
+    ["le même nom dans un sous-dossier", "docs/dette-iata-publiee.json", "test_commentaire_historique"],
+    ["le registre lui-même", "dette-iata-publiee.json", "registre_preuve_non_public"],
+  ];
+  const ecarts = [];
+  for (const [nom, chemin, attendu] of cas) {
+    const ligne = '  "/airlines/x/": { "iata-approved": 1 },';
+    const vu = classer(chemin, ligne, "iata-approved", ligne.indexOf("iata-approved"), ligne.indexOf("iata-approved") + 13);
+    if (vu !== attendu) ecarts.push(`${nom} → « ${vu} » au lieu de « ${attendu} »`);
+  }
+  if (ecarts.length) echec("6septies bornage du registre", ecarts.join(" · "));
+  else ok(`6septies la catégorie ne s'applique qu'au chemin exact — ${cas.length} cas éprouvés`);
+}
+
 /* 6 ter — LE CONTRAT CHIFFRÉ DE L'ÉTAPE 3. Un contrat sans chiffre exigé n'engage à rien.
  *
  * SON TRAJET, ENTIÈREMENT NOMMÉ. Il a bougé trois fois le 30/08/2026, et jamais en silence :

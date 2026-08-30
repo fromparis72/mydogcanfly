@@ -336,7 +336,7 @@ jobs:
         run: node --import tsx test-tarifs.mjs --dist=packages/ui/dist
 
       # ÉTAPE 3 : les libellés disent TOUS les canaux ouverts, et les surfaces applicatives
-      # n'affirment plus d'homologation IATA. Ce contrôle EXIGE `--dist` et refuse son absence —
+      # ne présentent plus un modèle comme certifié par l'IATA. Ce contrôle EXIGE `--dist` et refuse son absence —
       # une garde qui se saute faute d'artefact ne garde rien.
       - name: Libellés multicanaux et vocabulaire IATA (site complet)
         run: node --import tsx test-etape3-dom.mjs --dist=packages/ui/dist
