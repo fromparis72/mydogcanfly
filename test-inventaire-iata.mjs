@@ -9,7 +9,7 @@
  * contrat. On éprouve donc ici les quatre faux-verts trouvés par la contre-revue du 30/08/2026,
  * chacun sur sa propre cause.
  */
-import { classer, relever, verifier, prouverInertie, MOTIF, ALTERNATIVES, CATEGORIES } from "./inventaire-iata.mjs";
+import { classer, relever, verifier, citationsDeLHeritage, ancresOrphelines, MOTIF, ALTERNATIVES, CATEGORIES } from "./inventaire-iata.mjs";
 
 let defauts = 0;
 const echec = (nom, detail) => { defauts++; console.error(`  ✗ ${nom} — ${detail}`); };
@@ -111,12 +111,62 @@ const classerLigne = (chemin, ligne) => {
   } else ok(`5 le relevé est identique à l'octet près, énumération inversée comprise (${JSON.parse(a).length} occurrences)`);
 }
 
-/* 6 — L'INERTIE EST PROUVÉE, PAS DÉCLARÉE. Aucun répertoire dit inerte ne doit être lu par un
-   générateur actif. Les harnais qui le CITENT pour constater une absence sont à part. */
+/* 6 — PLUS AUCUNE PRÉTENTION D'INERTIE. La v2 affirmait prouver que l'héritage v1 n'est lu par
+   personne, en cherchant `"static/…"` dans les scripts. C'était indémontrable : `join(ROOT,
+   "static", f)` y échappait, et ajouter des motifs n'aurait fait que déplacer le trou. La
+   catégorie ne protège donc plus rien : elle DIT qu'il y a 18 affirmations à corriger ou à
+   supprimer, et elles entrent au micro-lot éditorial. */
 {
-  const { violations, constats } = prouverInertie();
-  if (violations.length) echec("6 inertie", violations.map((v) => `${v.prefixe} ← ${v.lu_par}`).join(" ; "));
-  else ok(`6 aucun répertoire déclaré inerte n'est lu par un générateur (${constats.length} citation(s) par des harnais, hors entrée)`);
+  const releve = relever();
+  const her = releve.filter((r) => r.categorie === "heritage_a_corriger_ou_supprimer");
+  if (CATEGORIES.includes("heritage_v1_non_publie")) echec("6 inertie", "la catégorie « non publié » subsiste, avec sa prétention");
+  else if (!her.length) echec("6 héritage", "aucune occurrence d'héritage — la catégorie ne peut rien prouver");
+  else {
+    const constats = citationsDeLHeritage();
+    ok(`6 l'héritage v1 ne prétend plus être inerte : ${her.length} occurrence(s) à corriger ou supprimer, ${constats.length} citation(s) rapportée(s) sans conclusion`);
+  }
+}
+
+/* 6 bis — LA PHRASE PORTEUSE PRIME SUR L'OCCURRENCE. « IATA standard » et « norme IATA » sont
+   licites prises seules ; « norma IATA » ne l'est pas ; et les trois appartiennent au MÊME titre,
+   remplacé en entier. Sans cette catégorie, deux des trois modifications approuvées manqueraient
+   au contrat de l'étape 3 — le relevé annonçait 33 applicatives là où il en faut 35. */
+{
+  const releve = relever();
+  const ref = releve.filter((r) => r.categorie === "reference_reglementaire_a_reformuler");
+  const fichiers = new Set(ref.map((r) => r.fichier));
+  const lignes = new Set(ref.map((r) => r.ligne));
+  const textes = ref.map((r) => r.trouve.toLowerCase()).sort();
+  if (ref.length !== 3) echec("6bis à reformuler", `${ref.length} occurrence(s) au lieu de 3`);
+  else if (fichiers.size !== 1 || !/AirlinePremiumPage\.astro$/.test([...fichiers][0]))
+    echec("6bis à reformuler", `fichier(s) : ${[...fichiers].join(", ")}`);
+  else if (lignes.size !== 1) echec("6bis à reformuler", `réparties sur ${lignes.size} lignes`);
+  else if (JSON.stringify(textes) !== JSON.stringify(["iata standard", "norma iata", "norme iata"]))
+    echec("6bis à reformuler", `textes : ${JSON.stringify(textes)}`);
+  else ok(`6bis les trois occurrences du même titre sont à reformuler ensemble (ligne ${[...lignes][0]})`);
+}
+
+/* 6 ter — LE CONTRAT CHIFFRÉ DE L'ÉTAPE 3 : 32 affirmations interdites, 3 références à
+   reformuler, 35 modifications applicatives. Un contrat sans chiffre exigé n'engage à rien. */
+{
+  const releve = relever();
+  const interdites = releve.filter((r) => r.categorie === "affirmation_publique_interdite").length;
+  const aRef = releve.filter((r) => r.categorie === "reference_reglementaire_a_reformuler").length;
+  if (interdites !== 32 || aRef !== 3)
+    echec("6ter contrat de l'étape 3", `${interdites} interdites et ${aRef} à reformuler, attendu 32 et 3`);
+  else ok(`6ter contrat de l'étape 3 : ${interdites} + ${aRef} = ${interdites + aRef} modifications applicatives`);
+}
+
+/* 6 quater — UNE ANCRE DE REFORMULATION QUI NE TROUVE RIEN FAIT REFUSER LE RELEVÉ. Une
+   déclaration qui ne s'applique à rien ne protège rien, et masquerait une modification approuvée
+   qu'on croirait couverte. */
+{
+  const bidon = [{ fichier: "packages/ui/src/components/AirlinePremiumPage.astro", ligne: 1, colonne: 1,
+                   trouve: "norma IATA", categorie: "affirmation_publique_interdite" }];
+  const v = verifier(bidon);
+  if (v.ok || !v.orphelines.length) echec("6quater ancre orpheline", "un relevé où l'ancre ne mord pas est accepté");
+  else if (ancresOrphelines(relever()).length) echec("6quater ancre orpheline", "l'ancre réelle ne mord pas non plus");
+  else ok("6quater une ancre de reformulation qui ne trouve rien fait REFUSER le relevé");
 }
 
 /* 7 — LE RELEVÉ RÉEL PASSE SA PROPRE VÉRIFICATION, et tout est classé. */
@@ -132,4 +182,4 @@ const classerLigne = (chemin, ligne) => {
 }
 
 if (defauts) { console.error(`\n[inventaire] ÉCHEC — ${defauts} contre-épreuve(s) en défaut`); process.exit(1); }
-console.log("\n[inventaire] la décision porte sur l'occurrence, le refus existe, l'inertie est prouvée, l'ordre ne compte pas.");
+console.log("\n[inventaire] la décision porte sur l'occurrence, le refus existe, rien ne se cache derrière une inertie invérifiable, l'ordre ne compte pas.");

@@ -91,9 +91,28 @@ const APPLICATIF = [
 const GENERES = [/^packages\/knowledge\/raw\/guides\.json$/, /\.generated\.json$/, /^packages\/ui\/\.astro\//];
 const TESTS = [/^test-/, /^mesures\//, /^test-baselines\//, /^test-lib\//, /^DOSSIER-/, /^docs\//, /^ADR/, /\.test\.[tj]s$/];
 
-/* Les répertoires DÉCLARÉS inertes. La déclaration ne suffit pas : `prouverInertie()` exige que
-   plus bas aucun script du dépôt ne les cite. */
-const INERTES_DECLARES = ["static/", "layouts/", "deploy/", "themes/", "SLUG-MAP.md"];
+/* L'HÉRITAGE V1. La v2 prétendait PROUVER qu'il est inerte, en cherchant `"static/…"` dans les
+   scripts. Cette preuve est impossible : un générateur écrivant `join(ROOT, "static", f)` ou
+   `resolve(ROOT, "static", f)` y échapperait, et ajouter des motifs ne ferait que déplacer le
+   trou — aucune analyse textuelle ne démontre qu'aucun code ne construit un chemin dynamiquement.
+   La prétention est donc RETIRÉE. Ces répertoires ne sont plus « non publiés » : ils sont
+   « à corriger ou à supprimer », et leurs 18 occurrences rejoignent le micro-lot éditorial. Leur
+   suppression éventuelle sera une décision séparée et explicite, pas un effet de bord d'un
+   classement. */
+const HERITAGE_V1 = ["static/", "layouts/", "deploy/", "themes/", "SLUG-MAP.md"];
+
+/* LES RÉFÉRENCES CONTEXTUELLEMENT À REFORMULER. Une occurrence peut être licite prise seule et
+   devoir pourtant changer, parce que la PHRASE qui la porte présente l'IATA trop vaguement comme
+   une « norme ». Le titre de section ci-dessous en est le cas arbitré : « IATA standard » et
+   « norme IATA » sont licites à l'occurrence, « norma IATA » ne l'est pas, et les trois
+   appartiennent au même titre — qui est remplacé en entier. Sans cette catégorie, deux des trois
+   modifications approuvées manqueraient au contrat de l'étape 3.
+   L'ancre est un fragment de texte, jamais un numéro de ligne : une ligne se déplace, un texte
+   non. Une ancre qui ne trouve rien FAIT REFUSER le relevé — une déclaration qui ne s'applique
+   pas est un mensonge, pas une exception. */
+const A_REFORMULER = [
+  { fichier: "packages/ui/src/components/AirlinePremiumPage.astro", ancre: "The hold crate (IATA standard)" },
+];
 /* Les répertoires qui alimentent un générateur — leur contenu peut revenir dans le site. */
 const GENERATRICES_DECLAREES = ["content/"];
 
@@ -101,12 +120,13 @@ export const CATEGORIES = [
   /* — rien à corriger — */
   "slug_conserve",
   "citation_attribuee",
+  "reference_reglementaire_a_reformuler",
   "reference_reglementaire_legitime",
   /* — une affirmation interdite ; la catégorie dit QUI la corrige — */
   "test_commentaire_historique",
   "artefact_genere",
   "source_generatrice_active",
-  "heritage_v1_non_publie",
+  "heritage_a_corriger_ou_supprimer",
   "affirmation_publique_interdite",
   "source_editoriale",
 ];
@@ -146,7 +166,11 @@ export function classer(chemin, ligne, trouve, debut, fin) {
   /* 2 — L'occurrence est À L'INTÉRIEUR d'une citation attribuée : on ne réécrit pas une source. */
   for (const [a, b] of portéesDeCitation(ligne)) if (debut >= a && fin <= b) return "citation_attribuee";
 
-  /* 3 — L'occurrence elle-même est une référence licite : le règlement, la méthode de mesure,
+  /* 3 — La PHRASE porteuse est arbitrée « à reformuler » : elle prime sur le jugement porté sur
+     l'occurrence seule, licite ou non, car c'est le titre entier qui est remplacé. */
+  if (A_REFORMULER.some((r) => r.fichier === chemin && ligne.includes(r.ancre))) return "reference_reglementaire_a_reformuler";
+
+  /* 4 — L'occurrence elle-même est une référence licite : le règlement, la méthode de mesure,
      les exigences de contenant. Rien à corriger, où qu'elle vive. */
   if (OCC_LEGITIME.test(trouve)) return "reference_reglementaire_legitime";
 
@@ -157,50 +181,52 @@ export function classer(chemin, ligne, trouve, debut, fin) {
   if (TESTS.some((r) => r.test(chemin))) return "test_commentaire_historique";
   if (GENERES.some((r) => r.test(chemin))) return "artefact_genere";
   if (GENERATRICES_DECLAREES.some((p) => chemin.startsWith(p))) return "source_generatrice_active";
-  if (INERTES_DECLARES.some((p) => chemin === p || chemin.startsWith(p))) return "heritage_v1_non_publie";
+  if (HERITAGE_V1.some((p) => chemin === p || chemin.startsWith(p))) return "heritage_a_corriger_ou_supprimer";
   if (APPLICATIF.some((r) => r.test(chemin))) return "affirmation_publique_interdite";
   return "source_editoriale";
 }
 
-/* ---- LA PREUVE D'INERTIE -------------------------------------------------------------------
-   Un répertoire n'est inerte que si AUCUN script du dépôt ne le cite en entrée. Déclarer sans
-   prouver est exactement la faute que la contre-revue a trouvée. */
-export function prouverInertie() {
+/* ---- LES CITATIONS DE L'HÉRITAGE, RAPPORTÉES SANS RIEN PRÉTENDRE ---------------------------
+   On ne prouve plus l'inertie : c'est indémontrable statiquement. On se contente de DIRE qui
+   cite ces répertoires, pour que la décision de les corriger ou de les supprimer se prenne en
+   connaissance de cause. Aucun de ces constats ne fait échouer le relevé. */
+export function citationsDeLHeritage() {
   const scripts = [];
   const chercher = (d) => {
     if (!existsSync(d)) return;
     for (const e of [...readdirSync(d)].sort()) {
       const p = join(d, e);
-      const st = statSync(p);
+      let st; try { st = statSync(p); } catch { continue; }
       if (st.isDirectory()) { if (!["node_modules", ".git", "dist"].includes(e)) chercher(p); }
       else if ([".mjs", ".ts", ".js", ".cjs", ".json"].includes(extname(e)) && e !== "package-lock.json") scripts.push(p);
     }
   };
-  chercher(join(RACINE, "packages"));
+  for (const d of ["packages", "worker", "workers", "scripts"]) chercher(join(RACINE, d));
   for (const e of [...readdirSync(RACINE)].sort()) {
     if ([".mjs", ".cjs", ".js"].includes(extname(e))) scripts.push(join(RACINE, e));
   }
-  /* DEUX FAUTES DE CETTE GARDE, NOMMÉES. La première rédaction acceptait la cible NUE entre
-     guillemets : elle rougissait sur `output: "static"` — une valeur de configuration Astro —
-     et sur `"deploy"`, un nom de script npm. Ni l'un ni l'autre n'est un chemin. La barre
-     oblique est désormais obligatoire. La seconde confondait un GÉNÉRATEUR et un HARNAIS :
-     `test-cloture-outil-chaleur.mjs` cite `static/tools/…` précisément pour prouver que cet
-     outil v1 n'est PAS publié. Constater n'est pas alimenter ; les harnais sont rapportés à
-     part, et ne font pas échouer le relevé. */
-  const violations = [], constats = [];
-  for (const prefixe of INERTES_DECLARES) {
+  const constats = [];
+  for (const prefixe of HERITAGE_V1) {
     const cible = prefixe.replace(/\/$/, "");
-    for (const s of scripts) {
-      const rel = relative(RACINE, s);
+    for (const f of scripts) {
+      const rel = relative(RACINE, f);
       if (rel.startsWith("inventaire-iata") || rel.startsWith("test-inventaire-iata")) continue;
-      let c;
-      try { c = readFileSync(s, "utf8"); } catch { continue; }
-      if (!new RegExp(`["'\`]${cible}/`).test(c)) continue;
-      const estHarnais = /(^|\/)test-|(^|\/)mesures\//.test(rel);
-      (estHarnais ? constats : violations).push({ prefixe, lu_par: rel });
+      let c; try { c = readFileSync(f, "utf8"); } catch { continue; }
+      /* Le chemin littéral, ou construit par morceaux : `join(ROOT, "static", …)`. Ce relevé
+         SUR-RAPPORTE volontairement — `output: "static"` d'Astro y figure, et c'est une valeur de
+         configuration, pas un chemin. Il reste néanmoins incomplet : un chemin calculé lui
+         échapperait. C'est précisément pourquoi on n'en tire plus aucune conclusion d'inertie ;
+         il informe une décision humaine, il ne conclut rien. */
+      if (new RegExp(`["'\`]${cible}/|["'\`]${cible}["'\`]\\s*,`).test(c)) constats.push({ prefixe, cite_par: rel });
     }
   }
-  return { violations, constats };
+  return constats;
+}
+
+/* Les ancres de reformulation doivent toutes MORDRE : une déclaration qui ne s'applique à rien
+   ne protège rien, et masquerait une modification approuvée qu'on croirait couverte. */
+export function ancresOrphelines(releve) {
+  return A_REFORMULER.filter((r) => !releve.some((o) => o.fichier === r.fichier && o.categorie === "reference_reglementaire_a_reformuler"));
 }
 
 /* ---- LE PARCOURS, DÉTERMINISTE ------------------------------------------------------------- */
@@ -252,10 +278,10 @@ export function relever({ inverse = false, racine = RACINE } = {}) {
  * aussi, avec un relevé délibérément corrompu.
  */
 export function verifier(releve) {
-  const { violations } = prouverInertie();
   const inconnues = releve.filter((r) => r.categorie === null || r.categorie === undefined);
   const hors = releve.filter((r) => r.categorie != null && !CATEGORIES.includes(r.categorie));
-  return { violations, inconnues, hors, ok: violations.length === 0 && inconnues.length === 0 && hors.length === 0 };
+  const orphelines = ancresOrphelines(releve);
+  return { inconnues, hors, orphelines, ok: inconnues.length === 0 && hors.length === 0 && orphelines.length === 0 };
 }
 
 /* ---- SORTIE -------------------------------------------------------------------------------- */
@@ -263,13 +289,13 @@ if (import.meta.url === `file://${process.argv[1]}`) {
   const ARGS = process.argv.slice(2);
   const releve = relever();
 
-  const { constats } = prouverInertie();
+  const constats = citationsDeLHeritage();
   const v = verifier(releve);
   if (!v.ok) {
     console.error("RELEVÉ REFUSÉ.");
-    for (const x of v.violations) console.error(`  répertoire déclaré inerte lu par un générateur actif : ${x.prefixe} ← ${x.lu_par}`);
     for (const r of v.inconnues.slice(0, 20)) console.error(`  occurrence qu'aucune règle ne reconnaît : ${r.fichier}:${r.ligne}:${r.colonne}  « ${r.trouve} »`);
     for (const r of v.hors.slice(0, 20)) console.error(`  catégorie hors liste : ${r.fichier}:${r.ligne}:${r.colonne}  « ${r.categorie} »`);
+    for (const r of v.orphelines) console.error(`  ancre de reformulation qui ne trouve rien : ${r.fichier} « ${r.ancre} »`);
     process.exit(1);
   }
 
@@ -285,19 +311,27 @@ if (import.meta.url === `file://${process.argv[1]}`) {
   console.log(`INVENTAIRE DU VOCABULAIRE IATA — ${releve.length} occurrences, ${new Set(releve.map((r) => r.fichier)).size} fichiers\n`);
   console.log("  — rien à corriger —");
   for (const c of CATEGORIES) {
+    if (c === "reference_reglementaire_a_reformuler") console.log("  — licite à l'occurrence, mais la phrase porteuse est arbitrée à reformuler —");
+    if (c === "reference_reglementaire_legitime") console.log("  — rien à corriger (suite) —");
     if (c === "test_commentaire_historique") console.log("  — une affirmation interdite ; la catégorie dit qui la corrige —");
     const sel = releve.filter((r) => r.categorie === c);
     console.log(`${String(sel.length).padStart(5)}  ${c.padEnd(34)} ${String(new Set(sel.map((r) => r.fichier)).size).padStart(3)} fichier(s)`);
   }
   console.log(`${String(releve.length).padStart(5)}  ${"TOTAL".padEnd(34)}`);
   if (constats.length) {
-    console.log("\n— répertoires inertes cités par un HARNAIS (constat, pas une entrée de générateur) —");
-    for (const c of constats) console.log(`       ${c.prefixe} cité par ${c.lu_par}`);
+    console.log("\n— l'héritage v1, et qui le cite (constat indicatif : l'inertie n'est PAS prouvable statiquement) —");
+    for (const c of constats) console.log(`       ${c.prefixe} cité par ${c.cite_par}`);
   }
 
-  for (const [titre, cat] of [["ÉTAPE 3 (applicatif)", "affirmation_publique_interdite"],
+  const applic = releve.filter((r) => ["affirmation_publique_interdite", "reference_reglementaire_a_reformuler"].includes(r.categorie)).length;
+  const edito = releve.filter((r) => ["source_editoriale", "source_generatrice_active", "heritage_a_corriger_ou_supprimer"].includes(r.categorie)).length;
+  console.log(`\nÉTAPE 3 APPLICATIVE : ${applic} modification(s)   ·   MICRO-LOT ÉDITORIAL : ${edito}   ·   À RÉGÉNÉRER : ${releve.filter((r) => r.categorie === "artefact_genere").length}`);
+
+  for (const [titre, cat] of [["ÉTAPE 3 — affirmations interdites", "affirmation_publique_interdite"],
+                              ["ÉTAPE 3 — références à reformuler", "reference_reglementaire_a_reformuler"],
                               ["MICRO-LOT ÉDITORIAL — sources", "source_editoriale"],
-                              ["MICRO-LOT ÉDITORIAL — sources génératrices", "source_generatrice_active"]]) {
+                              ["MICRO-LOT ÉDITORIAL — sources génératrices", "source_generatrice_active"],
+                              ["MICRO-LOT ÉDITORIAL — héritage v1", "heritage_a_corriger_ou_supprimer"]]) {
     const par = releve.filter((r) => r.categorie === cat)
       .reduce((a, r) => ((a[r.fichier] = (a[r.fichier] || 0) + 1), a), {});
     const n = Object.values(par).reduce((a, b) => a + b, 0);
