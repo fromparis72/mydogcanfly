@@ -690,7 +690,217 @@ async function destinationsDatePass() {
   }
 }
 
-main().then(() => badgesPass()).then(() => t0aPass()).then(() => heatWhyPass()).then(() => datePass()).then(() => destinationsDatePass()).then(() => {
+
+/* ---------------------------------------------------------------------------------------------
+ * MICRO-LOT PRÉLANCEMENT : les deux libellés publics du Finder.
+ *
+ *   1. Le lien vers le calculateur de caisse affichait `crate.name`, soit « IATA Pet Crates » —
+ *      un identifiant interne de programme d'affiliation, encore au statut « placeholder »,
+ *      publié tel quel en français, en espagnol et en portugais. Il suggérait de surcroît une
+ *      homologation IATA que personne ne délivre : IATA publie des exigences de contenant et
+ *      déclare ne certifier, n'approuver ni ne recommander aucun modèle.
+ *   2. Le CTA des formalités annonçait « les 4 étapes », un 4 codé en dur, alors que la page
+ *      visée en montre un nombre variable selon le pays et les données disponibles.
+ *
+ * La fixture GARDE `name: "IATA Pet Crates"` : sans cela le contrôle ne reproduirait pas la
+ * fuite et ne prouverait rien.
+ * ------------------------------------------------------------------------------------------- */
+const CRATE_NAME = {
+  en: "What size travel crate does my dog need?",
+  fr: "Quelle taille de cage de transport pour mon chien ?",
+  es: "¿Qué tamaño de transportín necesita mi perro?",
+  pt: "Qual é o tamanho da caixa de transporte para o meu cachorro?",
+};
+/* LES RAISONS ATTENDUES, soute ET fret. Elles ne sont plus qu'une ATTENTE : la fixture reçoit
+   désormais le `PartnerRef` réellement produit par `selectPartners`, obtenu en exécutant
+   `test-partenaire-caisse.mjs --json`. Faute fermée, nommée : la version précédente injectait
+   `reason: CRATE_REASON[loc]` puis exigeait `bloc.includes(CRATE_REASON[loc])` — modifier la
+   traduction ou casser la sélection dans le moteur l'aurait laissée verte, et la branche fret
+   n'était jamais exécutée alors que le lot portait sur huit textes. */
+const MOTEUR = JSON.parse(require("child_process").execFileSync(
+  "node", ["--import", "tsx", "test-partenaire-caisse.mjs", "--json"], { encoding: "utf8", maxBuffer: 4 << 20 }));
+const CRATE_REASON = {
+  hold: {
+    en: "Hold travel requires a crate suited to your dog and accepted by the airline operating the flight.",
+    fr: "Le voyage en soute exige une cage adaptée à ton chien et acceptée par la compagnie qui opère le vol.",
+    es: "El viaje en bodega exige un transportín adecuado a tu perro y aceptado por la aerolínea que opera el vuelo.",
+    pt: "Viajar no porão exige uma caixa de transporte adequada ao seu cachorro e aceita pela companhia que opera o voo.",
+  },
+  cargo: {
+    en: "Cargo is booked with a freight agent, not at check-in: quote, drop-off and pick-up at the cargo terminal, and a crate suited to your dog, accepted by the agent and by the airline operating the flight.",
+    fr: "En fret, la réservation se fait auprès d’un transitaire, pas au comptoir : devis, dépôt et retrait au terminal fret, avec une cage adaptée à ton chien et acceptée pour l’expédition.",
+    es: "En carga la reserva se hace con un agente de carga, no en el mostrador: presupuesto, entrega y recogida en la terminal de carga, con un transportín adecuado a tu perro, aceptado por el agente y por la aerolínea que opera el vuelo.",
+    pt: "No transporte como carga, a reserva é feita com um agente de carga, não no balcão: cotação, entrega e retirada no terminal de carga, com uma caixa adequada ao seu cachorro e aceita para o envio.",
+  },
+};
+const CTA_STEPS = {
+  en: "See the different steps",
+  fr: "Voir les différentes étapes",
+  es: "Ver las distintas etapas",
+  pt: "Ver as diferentes etapas",
+};
+/* Toute homologation, conformité ou approbation IATA est interdite dans ce bloc — dans les
+   quatre langues, et quelle que soit la tournure. */
+const IATA_INTERDIT = /iata[- ]?(compliant|approved|certified)|conforme[s]? (?:à la norme )?iata|homologu|approuvée? par (?:l')?iata|conforme a la iata|norma iata|certificad[oa] iata/i;
+/* Aucun décompte dans le CTA des formalités : ni « 4 étapes », ni un autre nombre. */
+const CTA_DECOMPTE = /\b\d+\s*(steps|étapes|etapes|pasos|etapas)\b/i;
+
+/* LES HUIT TEXTES QUE CE LOT REMPLACE, tels qu'ils étaient publiés — la matière historique du
+   défaut. Le motif d'interdiction doit les reconnaître TOUS : un motif qui ne verrait pas la
+   formulation d'origine ne protégerait de rien. */
+const IATA_ANCIENS = [
+  "Hold travel requires an IATA-compliant crate.",
+  "Cargo is booked with a freight agent, not at check-in: quote, drop-off and pick-up at the cargo terminal, and an IATA-compliant crate they approve.",
+  "Le voyage en soute exige une caisse conforme IATA.",
+  "En fret, tu réserves auprès d'un transitaire et non au comptoir : devis, dépôt et retrait au terminal fret, et une caisse conforme IATA qu'il valide.",
+  "El viaje en bodega requiere una jaula conforme a la IATA.",
+  "En carga reservas con un agente de carga, no en el mostrador: presupuesto, entrega y recogida en la terminal de carga, y una jaula conforme a la IATA que él valide.",
+  "Viajar no porão exige uma caixa de transporte conforme a norma IATA.",
+  "Na carga você reserva com um agente de carga, não no balcão: cotação, entrega e retirada no terminal de carga, e uma caixa conforme a norma IATA aprovada por ele.",
+];
+
+async function libellesPass() {
+  console.log("\n— Le motif d'interdiction, vu reconnaître ce qu'il remplace —");
+  {
+    const aveugle = IATA_ANCIENS.filter((t) => !IATA_INTERDIT.test(t));
+    check(`le motif reconnaît les ${IATA_ANCIENS.length} anciens textes d'homologation`,
+      aveugle.length === 0, JSON.stringify(aveugle[0] || "").slice(0, 140));
+    const nouveaux = [...Object.values(CRATE_REASON.hold), ...Object.values(CRATE_REASON.cargo)];
+    const fauxPositifs = nouveaux.filter((t) => IATA_INTERDIT.test(t));
+    check(`le motif n'accuse aucun des ${nouveaux.length} nouveaux textes`,
+      fauxPositifs.length === 0, JSON.stringify(fauxPositifs[0] || "").slice(0, 140));
+    /* LE MOTEUR ET LE DOM PARLENT DU MÊME TEXTE. Sans ce lien explicite, la preuve moteur et la
+       preuve DOM resteraient deux affirmations côte à côte. */
+    const desaccords = [];
+    for (const mode of ["hold", "cargo"]) for (const l of ["en", "fr", "es", "pt"]) {
+      if ((MOTEUR[`${l}/${mode}`] || {}).reason !== CRATE_REASON[mode][l]) desaccords.push(`${l}/${mode}`);
+    }
+    check("les 8 raisons du moteur sont exactement celles que le DOM exigera",
+      desaccords.length === 0, desaccords.join(", "));
+    check("le moteur conserve le nom interne brut dans le PartnerRef",
+      Object.values(MOTEUR).every((p) => p.name === "IATA Pet Crates"));
+  }
+  for (const loc of BADGE_LOCALES) {
+    console.log(`\n— Libellés publics du Finder (${loc.code}) —`);
+    const parts = loadHomeParts(loc.dir);
+
+    /* LE CTA DES FORMALITÉS : texte exact, aucun décompte, et le portugais réellement portugais. */
+    const cta = (parts.labels.rt || {}).cta;
+    check(`${loc.code} : CTA formalités EXACT = ${JSON.stringify(CTA_STEPS[loc.code])}`,
+      cta === CTA_STEPS[loc.code], JSON.stringify(cta));
+    check(`${loc.code} : le CTA ne porte aucun décompte`, !CTA_DECOMPTE.test(cta || ""), JSON.stringify(cta));
+    if (loc.code === "pt") {
+      check("pt : le CTA n'est pas le repli anglais", cta !== CTA_STEPS.en && /etapas/.test(cta || ""), JSON.stringify(cta));
+    }
+    /* LE BANDEAU DES FORMALITÉS, RENDU. Lire le gabarit ne prouverait rien : le bundle client est
+       minifié, et une vérification de source aurait été verte même sans rendu. On choisit donc
+       une destination dont le pays PORTE des formalités aller-retour, on soumet, et on lit le
+       CTA produit — texte, nom du pays accolé, et lien réel. */
+    {
+      const rt = parts.labels.countryRT || {};
+      const paysDe = parts.labels.airportCountry || {};
+      const origIds = resolveEndpointFrom(parts.labels, "").ids;
+      let etiquette = null, attenduPays = null;
+      for (const [lib, id] of Object.entries(parts.labels.airMap || {})) {
+        const iso = paysDe[id];
+        if (!iso || !rt[iso]) continue;
+        etiquette = lib; attenduPays = rt[iso]; break;
+      }
+      if (!etiquette) check(`${loc.code} : une destination à formalités aller-retour existe`, false, "aucune");
+      else {
+        const fetchMock = async (url, opts) => {
+          if (String(url).includes("/nearest-airport")) return { ok: false };
+          if (opts && opts.method === "POST") return { ok: true, json: async () => FAKE_REPORT };
+          throw new Error("unexpected fetch: " + url);
+        };
+        const d = buildDom(parts, fetchMock);
+        d.window.document.getElementById("f-dest").value = etiquette;
+        d.window.document.getElementById("f-weight").value = "8";
+        d.window.document.getElementById("mdcf-finder").dispatchEvent(
+          new d.window.Event("submit", { bubbles: true, cancelable: true }));
+        await flush(2);
+        await flush();
+        const a = d.window.document.querySelector(".rtflag__cta");
+        check(`${loc.code} : le bandeau formalités est rendu`, !!a, "aucun .rtflag__cta");
+        if (a) {
+          const texte = a.textContent.trim();
+          check(`${loc.code} : le CTA rendu porte le libellé sans décompte`,
+            texte.startsWith(CTA_STEPS[loc.code]) && !CTA_DECOMPTE.test(texte), JSON.stringify(texte));
+          /* CONTRÔLE NON CIRCULAIRE. Première rédaction fautive, nommée : elle comparait le
+             texte rendu à `attenduPays.name` lu dans LES MÊMES données — vider le nom vidait
+             aussi l'attendu, et la garde restait verte sur un bandeau sans pays. On exige
+             maintenant une forme : un nom NON VIDE après le séparateur, et il doit être celui
+             du pays. Idem pour le lien : un slug non vide dans un chemin de fiche pays. */
+          const apres = texte.split(" · ").slice(1).join(" · ").replace(/\s*→\s*$/, "").trim();
+          check(`${loc.code} : le nom du pays reste accolé au CTA, et il n'est pas vide`,
+            apres.length >= 2 && apres === attenduPays.name, JSON.stringify(texte));
+          const href = a.getAttribute("href") || "";
+          check(`${loc.code} : le lien du CTA mène à la fiche d'un pays nommé`,
+            /^(\/(?:fr|es|pt))?\/countries\/[a-z0-9-]+\/$/.test(href) && href.endsWith(`/${attenduPays.slug}/`),
+            JSON.stringify(href));
+        }
+        void origIds;
+      }
+    }
+
+    /* LE LIEN CAISSE, RENDU — SOUTE PUIS FRET. On soumet réellement le formulaire avec une race
+       choisie, et on lit le <li> produit. La fixture ne fabrique plus son partenaire : elle
+       transmet le `PartnerRef` que `selectPartners` a réellement produit, nom interne brut
+       compris. La branche fret, jamais exécutée jusqu'ici, l'est maintenant aussi. */
+    for (const mode of ["hold", "cargo"]) {
+    let dom;
+    try {
+      const partenaire = MOTEUR[`${loc.code}/${mode}`];
+      if (!partenaire) { check(`${loc.code}/${mode} : le moteur a produit un partenaire caisse`, false, "absent"); continue; }
+      const fetchMock = async (url, opts) => {
+        if (String(url).includes("/nearest-airport")) return { ok: false };
+        const rep = { ...FAKE_REPORT, partners: [partenaire] };
+        if (opts && opts.method === "POST") return { ok: true, json: async () => rep };
+        throw new Error("unexpected fetch: " + url);
+      };
+      dom = buildDom(parts, fetchMock);
+      const { window } = dom;
+      const originEl = window.document.getElementById("f-origin");
+      const destEl = window.document.getElementById("f-dest");
+      const originIds = resolveEndpointFrom(parts.labels, originEl.value).ids;
+      destEl.value = pickDestinationLabel(parts.labels, originIds);
+      const breedEntries = Object.entries(parts.labels.breedById || {});
+      const [[breedId, breedLabel]] = breedEntries;
+      window.document.getElementById("f-breed").value = breedLabel;
+      window.document.getElementById("f-weight").value = "40";
+      window.document.getElementById("mdcf-finder").dispatchEvent(
+        new window.Event("submit", { bubbles: true, cancelable: true }));
+      await flush(2);
+      await flush();
+
+      const liens = [...window.document.querySelectorAll("li a")].filter((a) => /tools\/crate\//.test(a.getAttribute("href") || ""));
+      check(`${loc.code}/${mode} : le lien caisse est rendu et UNIQUE`, liens.length === 1, `${liens.length} lien(s)`);
+      const lien = liens[0];
+      check(`${loc.code}/${mode} : TEXTE du lien caisse exact = ${JSON.stringify(CRATE_NAME[loc.code])}`,
+        !!lien && lien.textContent.trim() === CRATE_NAME[loc.code], JSON.stringify(lien && lien.textContent.trim()));
+      const attendu = loc.dir ? `/${loc.dir.replace(/\/+$/, "")}/tools/crate/` : "/tools/crate/";
+      const href = (lien && lien.getAttribute("href")) || "";
+      check(`${loc.code}/${mode} : CHEMIN localisé exact = ${attendu}`, href.split("#")[0] === attendu, JSON.stringify(href));
+      check(`${loc.code}/${mode} : l'ancre de race est conservée`, href.includes(`#breed=${breedId}`), JSON.stringify(href));
+
+      /* LE NOM INTERNE NE SORT NULLE PART dans le DOM public. */
+      check(`${loc.code}/${mode} : « IATA Pet Crates » absent du DOM`,
+        !window.document.documentElement.outerHTML.includes("IATA Pet Crates"));
+
+      /* AUCUNE AFFIRMATION D'HOMOLOGATION dans le bloc, ni dans le libellé ni dans la raison. */
+      const bloc = lien ? (lien.closest("li").textContent || "") : "";
+      check(`${loc.code}/${mode} : la raison affichée est celle attendue`,
+        bloc.includes(CRATE_REASON[mode][loc.code]), JSON.stringify(bloc.slice(0, 180)));
+      check(`${loc.code}/${mode} : aucune conformité ni homologation IATA dans ce bloc`,
+        !IATA_INTERDIT.test(bloc), JSON.stringify(bloc.slice(0, 180)));
+    } catch (e) {
+      check(`${loc.code}/${mode} : rendu du lien caisse`, false, e.message || String(e));
+    }
+    }
+  }
+}
+
+main().then(() => badgesPass()).then(() => t0aPass()).then(() => heatWhyPass()).then(() => datePass()).then(() => destinationsDatePass()).then(() => libellesPass()).then(() => {
   console.log("\n=== SUMMARY ===");
   console.log(failures === 0 ? "ALL CHECKS PASSED" : failures + " CHECK(S) FAILED");
   process.exit(failures === 0 ? 0 : 1);
