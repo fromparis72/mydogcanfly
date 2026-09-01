@@ -106,7 +106,10 @@ function ecartsDeParite(html, langue, slug) {
   const cle = `airline_${slug.replace(/-/g, "_")}`;
   const d = donnees[cle];
   if (!d) return { ecarts: [`${langue}/${slug} : aucune entrée « ${cle} » dans l'artefact`], comparees: 0 };
-  const doc = new JSDOM(html).window.document;
+  /* La fenêtre est fermée en fin de fonction : 408 arbres jsdom vivants font mourir le contrôle
+   * d'un dépassement de tas sur un coureur de CI, et cette fonction ne rend que des chaînes. */
+  const dom = new JSDOM(html);
+  const doc = dom.window.document;
   const ecarts = [];
   let comparees = 0;
   const ici = (quoi) => `${langue}/${slug} : ${quoi}`;
@@ -173,6 +176,7 @@ function ecartsDeParite(html, langue, slug) {
     }
   }
 
+  dom.window.close();
   return { ecarts, comparees };
 }
 

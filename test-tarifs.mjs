@@ -253,7 +253,12 @@ if (DIST) {
     let absencesLegitimes = 0;
     for (const p of fiches) {
       const slug = p.split("/")[2];
-      const doc = new JSDOM(readFileSync(join(DIST, p), "utf8")).window.document;
+      /* LA FENÊTRE EST FERMÉE EN FIN DE TOUR (voir plus bas). Sans cela, 408 arbres jsdom
+         restent vivants et ce contrôle meurt d'un dépassement de tas sur un coureur de CI —
+         il l'a fait, avec un `core dumped`, et ma machine avait assez de mémoire pour me le
+         cacher. */
+      const dom = new JSDOM(readFileSync(join(DIST, p), "utf8"));
+      const doc = dom.window.document;
       for (const canal of ["cabin", "hold", "cargo"]) {
         const st = statutDe(slug, canal);
         if (!st || !LIBELLES[st]) continue;
@@ -286,6 +291,7 @@ if (DIST) {
         }
         vus.add(st);
       }
+      dom.window.close();
     }
     const manquants = Object.keys(LIBELLES).filter((s) => !vus.has(s));
     if (manquants.length) echec("5quater couverture", `états jamais rencontrés : ${manquants.join(", ")} — le contrôle serait vert faute de matière`);

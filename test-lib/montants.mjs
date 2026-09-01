@@ -166,7 +166,12 @@ export function trouver(texte) {
  * n'est PAS une zone vide : c'est une zone dont on ne sait rien, et l'appelant doit le savoir.
  */
 export function zonesDe(html) {
-  const doc = new JSDOM(html).window.document;
+  /* LA FENÊTRE EST FERMÉE AVANT DE RENDRE LA MAIN. Une page du site pèse ~190 ko et son arbre
+   * jsdom bien davantage ; sans `close()`, les 408 fiches gardent 408 réalités JavaScript vivantes
+   * et le contrôle meurt d'un dépassement de tas sur un coureur de CI. Cette fonction ne rend que
+   * des CHAÎNES : rien n'a besoin de survivre à son retour. */
+  const dom = new JSDOM(html);
+  const doc = dom.window.document;
 
   const titre = doc.querySelector("title")?.textContent ?? "";
 
@@ -198,5 +203,6 @@ export function zonesDe(html) {
   for (const n of doc.querySelectorAll("script, style, template")) n.remove();
   const corps = doc.body?.textContent ?? "";
 
+  dom.window.close();
   return { titre, corps, metas, jsonLd, jsonLdInvalide };
 }
