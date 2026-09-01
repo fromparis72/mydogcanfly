@@ -10,7 +10,7 @@ import { JSDOM } from "jsdom";
  * ignorait `og:description`, `twitter:description` et le JSON-LD, où la même phrase est recopiée.
  *
  * CE QU'IL RECONNAÎT — la devise AVANT ou APRÈS le nombre, en symbole, en alias de symbole ou en
- * code ISO 4217 (la liste entière, en capitales), avec la virgule ou le point pour décimale, et les espaces d'usage typographique (fine,
+ * code ISO 4217 (la liste entière, quelle qu'en soit la casse), avec la virgule ou le point pour décimale, et les espaces d'usage typographique (fine,
  * insécable) comme séparateurs de milliers. Mesuré sur les fiches : China Southern écrit le même
  * prix sous quatre formes selon la langue — `¥5,000`, `¥5.000`, `5 000 ¥`, `5000 ¥` — et un
  * détecteur qui n'en verrait qu'une laisserait passer les trois autres.
@@ -34,19 +34,29 @@ const SYMBOLES = "US\\$|A\\$|C\\$|R\\$|NZ\\$|HK\\$|S\\$|NT\\$|\\$|€|£|¥|₩|
  * Ils gardent leur RÈGLE PROPRE, insensible à la casse : « Rp », « RP » et « rp » s'écrivent tous. */
 const ALIAS = "RMB|RM|Rp|Rs";
 
-/* LES CODES ISO 4217 — LA LISTE ENTIÈRE, ET SENSIBLE À LA CASSE.
+/* LES CODES ISO 4217 — LA LISTE ENTIÈRE, ET SANS CONDITION DE CASSE.
  *
- * LA FAUTE QUE CETTE VERSION CORRIGE (contre-revue du 01/09/2026). La rédaction précédente
- * ÉCARTAIT une douzaine de codes — ALL, CUP, TOP, GEL, SOS, BSD — parce qu'ils s'écrivent comme
- * des mots ordinaires, et elle le disait dans son propre commentaire : « ALL 4 000 » n'était pas
- * détecté. Une `metaDesc` portant ce montant serait donc restée verte dans la source ET dans le
- * dist, ce qui rendait fausse la garantie « aucun montant numérique publié ». Supprimer une devise
- * du monde entier pour éviter une collision de mots n'est pas une exclusion bornée : c'est un trou.
+ * DEUX FAUTES SUCCESSIVES, TOUTES DEUX DES FAUX NÉGATIFS TARIFAIRES.
+ *   · La première ÉCARTAIT six codes — ALL, CUP, TOP, GEL, SOS, BSD — parce qu'ils s'écrivent
+ *     comme des mots ordinaires. « ALL 4 000 » n'était donc pas détecté : supprimer une devise du
+ *     monde entier pour éviter une collision de mots n'est pas une exclusion bornée, c'est un trou.
+ *   · La seconde a rétabli les 179 codes mais les a exigés EN CAPITALES, ce qui écartait toutes
+ *     leurs autres écritures : « Usd 100 », « usd 100 », « Eur 99 », « eur 99 », « cad 200 » ne
+ *     valaient rien. La capitale évitait bien « Top 10 » et « World Cup 2026 », mais au prix de
+ *     tarifs plausibles rendus invisibles — et l'affirmation « plus aucune devise n'est écartée »
+ *     était fausse une seconde fois.
  *
- * CE QUI SÉPARE LE CODE DU MOT EST LA CASSE, ET RIEN D'AUTRE. Un code monétaire s'écrit en
- * capitales ; « World Cup 2026 », « Top 10 », « gel 100 ml » et « All 4 dogs » ne portent pas de
- * capitales sur le mot en cause. La liste est donc COMPLÈTE, et c'est ce motif-ci — et lui seul —
- * qui est appliqué sans le drapeau « i ». */
+ * LE PRINCIPE EST CELUI DÉJÀ RETENU POUR « SOS 24/7 » : ON DÉTECTE, PUIS ON MESURE. Les 179 codes
+ * sont reconnus quelle que soit leur casse, et le corpus a été balayé — 103 fiches sources et 408
+ * fiches construites, dans les quatre zones publiques — pour savoir ce que cet élargissement
+ * attrape RÉELLEMENT. Aucune exception n'est créée par anticipation. Une collision qui existerait
+ * vraiment serait nommée et bornée AU CONTRÔLE APPELANT, par chemin et fragment exact — jamais en
+ * retirant une devise, ni en interdisant ses minuscules.
+ *
+ * CE QUE CELA COÛTE, DÉCLARÉ : « Top 10 », « World Cup 2026 », « gel 100 ml » et « All 4 dogs »
+ * deviennent des montants aux yeux du détecteur. Ce sont des faux positifs THÉORIQUES — aucun ne
+ * paraît dans le corpus —, ils sont consignés avec « SOS 24/7 » dans la liste que le contrôle 5
+ * vérifie, et ils se voient. Un tarif invisible, lui, ne se voit pas. */
 const CODES = [
   "AED","AFN","ALL","AMD","ANG","AOA","ARS","AUD","AWG","AZN","BAM","BBD","BDT","BGN","BHD","BIF",
   "BMD","BND","BOB","BOV","BRL","BSD","BTN","BWP","BYN","BZD","CAD","CDF","CHE","CHF","CHW","CLF",
@@ -65,8 +75,9 @@ const CODES = [
    décimales. Il doit COMMENCER et FINIR par un chiffre. */
 const NOMBRE = "\\d(?:[\\d.,\\u00a0\\u202f\\u2009 ]*\\d)?";
 
-/* DEUX MOTIFS, PARCE QUE LA CASSE NE SE RÈGLE PAS PAR BRANCHE. JavaScript n'a pas de drapeau
- * local : symboles et alias tolèrent toutes les casses, les codes ISO n'en tolèrent qu'une. */
+/* DEUX MOTIFS, PARCE QUE LEURS RÉSULTATS DOIVENT ÊTRE FUSIONNÉS SANS RECOUVRIR. « $50 CAD » porte
+ * un symbole ET un code sur le même montant : les deux motifs le voient, et il n'en faut compter
+ * qu'un. Le premier en position gagne. */
 export const MOTIF_SYMBOLES = new RegExp(
   `(?:${SYMBOLES})\\s?${NOMBRE}`                    // €200, US$ 500, ¥5,000, ₱300
   + `|${NOMBRE}\\s?(?:${SYMBOLES})`                 // 200 €, 89,99 €
@@ -75,9 +86,9 @@ export const MOTIF_SYMBOLES = new RegExp(
   "gi",
 );
 export const MOTIF_CODES = new RegExp(
-  `\\b(?:${CODES})\\s?${NOMBRE}`                    // ZAR 300, CHF 90, ALL 4 000
-  + `|\\b${NOMBRE}\\s?(?:${CODES})\\b`,             // 300 ZAR, 90 CHF
-  "g",
+  `\\b(?:${CODES})\\s?${NOMBRE}`                    // ZAR 300, CHF 90, ALL 4 000, eur 99
+  + `|\\b${NOMBRE}\\s?(?:${CODES})\\b`,             // 300 ZAR, 90 CHF, 200 cad
+  "gi",
 );
 
 /* PAS DE RÈGLE DU RAPPORT — ET C'EST UN RENONCEMENT MESURÉ, PAS UN OUBLI.

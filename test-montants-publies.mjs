@@ -264,21 +264,32 @@ function montantsDe(html) {
        rapport », destinée à écarter « SOS 24/7 », ont rendu ces trois formes invisibles. Elles
        sont ordinaires, et un faux négatif tarifaire est précisément ce que ce lot interdit. */
     "€100/2 personnes", "USD 100/2 passengers", "SOS 500/2 trajets", "€200/trajet",
-    "1000/1100 TRY"];
+    "1000/1100 TRY",
+    /* LA CASSE N'EST PAS UNE CONDITION. Exiger la capitale évitait « Top 10 », mais rendait
+       invisibles « Usd 100 », « eur 99 » et « cad 200 » — des écritures tarifaires plausibles.
+       Les trois casses de chaque code sont exercées, avant ET après le nombre. */
+    "USD 100", "Usd 100", "usd 100", "EUR 99", "Eur 99", "eur 99", "CAD 200", "cad 200",
+    "100 usd", "99 Eur"];
   const REFUSES = ["8 kg", "55 × 35 × 25 cm", "2026-07-11", "10 h 30", "100 %", "Boeing 737",
     "limite 32 kg", "1 500 g", "score 50/100", "quatre animaux par vol", "3 mois", "23 kg",
-    /* LA MOITIÉ QUI TIENT L'AUTRE. Admettre TOUS les codes ISO n'a de sens que si le mot
-       ordinaire reste ignoré : c'est la capitale qui décide. */
-    "All 4 dogs", "World Cup 2026", "Top 10", "gel 100 ml", "ouvert 24/7",
-    "BSD-3-Clause", "note 4/5", "score 50/100"];
-  /* LE FAUX POSITIF ASSUMÉ, CONSIGNÉ ICI POUR QU'IL NE SE DÉCOUVRE PAS UN JOUR PAR SURPRISE.
-     « SOS 24/7 » porte le code du shilling somalien devant un nombre : le détecteur le voit, et
-     ce n'est pas un prix. Aucune fiche ne l'écrit — mesuré sur les 103 sources et les 408 pages
-     construites, dans les quatre zones —, et le border coûterait les trois formes tarifaires
-     ci-dessus. Si une fiche vient à l'écrire, la garde rougira et il faudra trancher par une
-     exception bornée à un chemin et à un fragment exact. Un faux positif se voit ; un faux
-     négatif tarifaire, non. */
-  const FAUX_POSITIFS_ASSUMES = ["SOS 24/7"];
+    /* CE QUE LE DÉTECTEUR NE PEUT PAS CONFONDRE, ET PAR STRUCTURE : sans marqueur de devise
+       adjacent, aucun nombre n'est un montant, si gros soit-il. */
+    "ouvert 24/7", "BSD-3-Clause", "note 4/5", "score 50/100"];
+  /* LES FAUX POSITIFS ASSUMÉS, CONSIGNÉS ICI POUR QU'AUCUN NE SE DÉCOUVRE UN JOUR PAR SURPRISE.
+     Cinq expressions ordinaires portent, par accident, un code ISO devant ou derrière un nombre :
+     ALL, CUP, TOP, GEL et SOS. Le détecteur les voit, et ce ne sont pas des prix.
+
+     AUCUNE N'EST BORDÉE, ET C'EST MESURÉ, PAS SUPPOSÉ. Balayage des 103 fiches sources et des 408
+     fiches construites, dans les quatre zones publiques : zéro occurrence de l'une d'elles. Les
+     border coûterait, selon la borne choisie, six devises ou toutes leurs écritures minuscules —
+     c'est-à-dire des tarifs invisibles, ce que ce lot interdit. Le jour où une fiche en écrira
+     une, la garde rougira et il faudra trancher par une exception bornée à un chemin et à un
+     fragment exact, AU CONTRÔLE APPELANT, jamais dans le détecteur. Un faux positif se voit et se
+     discute ; un faux négatif tarifaire, non.
+
+     Le contrôle ci-dessous exige que chacune soit RÉELLEMENT vue : si le détecteur cessait de les
+     voir, ce commentaire mentirait, et il rougirait pour le dire. */
+  const FAUX_POSITIFS_ASSUMES = ["SOS 24/7", "All 4 dogs", "World Cup 2026", "Top 10", "gel 100 ml"];
   const rates = VUS.filter((t) => compter(t) !== 1);
   const faux = REFUSES.filter((t) => compter(t) !== 0);
   const dementis = FAUX_POSITIFS_ASSUMES.filter((t) => compter(t) === 0);
@@ -286,7 +297,7 @@ function montantsDe(html) {
   else if (faux.length) echec("5 détecteur", `pris pour des montants : ${faux.join(", ")}`);
   else if (dementis.length) echec("5 détecteur", `faux positif déclaré mais inexistant : ${dementis.join(", ")} — le commentaire ment`);
   else ok(`5 détecteur — ${VUS.length} formes vues, ${REFUSES.length} pièges refusés, `
-    + `${FAUX_POSITIFS_ASSUMES.length} faux positif assumé et déclaré (${FAUX_POSITIFS_ASSUMES.join(", ")})`);
+    + `${FAUX_POSITIFS_ASSUMES.length} faux positifs assumés et déclarés (${FAUX_POSITIFS_ASSUMES.join(" · ")})`);
 }
 
 console.log(defauts === 0
