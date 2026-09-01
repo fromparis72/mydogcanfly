@@ -12,6 +12,7 @@
 import { JSDOM } from "jsdom";
 import { readFileSync, existsSync, readdirSync } from "node:fs";
 import { join } from "node:path";
+import { compter } from "./test-lib/montants.mjs";
 
 let defauts = 0;
 const echec = (nom, detail) => { defauts++; console.error(`  ✗ ${nom} — ${detail}`); };
@@ -165,7 +166,23 @@ if (DIST) {
     for (const v of Object.values(a.fees ?? {})) if (v && String(v).trim().length > 3) heritees.push(String(v).trim());
     for (const p of Object.values(a.premium?.policy ?? {})) if (p?.fee && String(p.fee).trim().length > 3) heritees.push(String(p.fee).trim());
   }
-  const uniques = [...new Set(heritees)];
+  /* UNE VALEUR HÉRITÉE N'EST PAS FORCÉMENT UN PRIX, ET LA PREMIÈRE RÉDACTION LE SUPPOSAIT.
+   * Ce contrôle cherchait dans le HTML la CHAÎNE de chaque champ `fee` hérité, quelle qu'elle
+   * soit. Or onze de ces champs ne portent aucun chiffre : « via Virgin Australia Cargo »,
+   * « excess-baggage rate », « via IAG Cargo (quote) »… Ce sont des faits de transport, écrits
+   * ailleurs dans la fiche parce qu'ils y sont vrais et utiles. Le contrôle les comptait comme
+   * des prix servis et rougissait sur deux d'entre eux — un faux positif de contrôle, pas un
+   * défaut du site, et l'arbitrage du 31/08/2026 a tranché : la phrase de Virgin Australia reste.
+   *
+   * ON REMPLACE DONC LE SUBSTITUT PAR LA CHOSE MESURÉE. Ce qui est interdit, c'est un PRIX ; on
+   * ne garde ici que les valeurs héritées qui en portent un, au sens du détecteur partagé. Les
+   * autres sont mises de côté, comptées et nommées ci-dessous plutôt que tues. La garantie au
+   * niveau du chiffre — quelle que soit la formulation, connue ou non — n'est pas perdue pour
+   * autant : elle est tenue par `test-montants-publies.mjs`, qui juge la FORME sur les quatre
+   * zones publiques de chaque fiche, et non l'identité d'une chaîne. */
+  const toutes = [...new Set(heritees)];
+  const uniques = toutes.filter((v) => compter(v) > 0);
+  const qualitatives = toutes.filter((v) => compter(v) === 0);
   const trouvees = new Map();
   const fiches = pages.filter((p) => /\/airlines\/[^/]+\/index\.html$/.test(p));
   /* Pas de seuil arbitraire : un build réduit porte trois compagnies et reste un terrain valable.
@@ -178,7 +195,9 @@ if (DIST) {
   if (trouvees.size) {
     const ex = [...trouvees].slice(0, 3).map(([v, n]) => `« ${v} » sur ${n} page(s)`).join(" ; ");
     echec("5 DOM", `${trouvees.size} valeur(s) héritée(s) servies dans le HTML : ${ex}`);
-  } else ok(`5 DOM : aucune des ${uniques.length} valeurs héritées n'apparaît dans les ${fiches.length} fiches construites`);
+  } else ok(`5 DOM : aucune des ${uniques.length} valeurs héritées CHIFFRÉES n'apparaît dans les `
+    + `${fiches.length} fiches construites (${qualitatives.length} valeurs héritées sans chiffre écartées : `
+    + `${qualitatives.slice(0, 3).map((v) => `« ${v} »`).join(", ")}…)`);
 
   /* ON NE TARIFE PAS UN CANAL QU'ON REFUSE — jugé dans le HTML SERVI, pas dans le code. Les
      témoins se choisissent parmi les fiches réellement construites : un slug codé en dur devient
