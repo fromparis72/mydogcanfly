@@ -259,20 +259,34 @@ function montantsDe(html) {
     "₱300", "300 PHP", "PKR 5 000", "1 200 MYR",
     /* LES SIX CODES QUI ÉTAIENT ÉCARTÉS DU MONDE ENTIER parce qu'ils s'écrivent comme des mots.
        Ils sont maintenant vus : c'est la CASSE qui sépare le code du mot, pas une liste noire. */
-    "ALL 4 000", "CUP 500", "TOP 100", "GEL 100", "SOS 500", "BSD 300"];
+    "ALL 4 000", "CUP 500", "TOP 100", "GEL 100", "SOS 500", "BSD 300",
+    /* UN PRIX RAPPORTÉ À UN NOMBRE DE PERSONNES RESTE UN PRIX. Deux rédactions d'une « règle du
+       rapport », destinée à écarter « SOS 24/7 », ont rendu ces trois formes invisibles. Elles
+       sont ordinaires, et un faux négatif tarifaire est précisément ce que ce lot interdit. */
+    "€100/2 personnes", "USD 100/2 passengers", "SOS 500/2 trajets", "€200/trajet",
+    "1000/1100 TRY"];
   const REFUSES = ["8 kg", "55 × 35 × 25 cm", "2026-07-11", "10 h 30", "100 %", "Boeing 737",
     "limite 32 kg", "1 500 g", "score 50/100", "quatre animaux par vol", "3 mois", "23 kg",
     /* LA MOITIÉ QUI TIENT L'AUTRE. Admettre TOUS les codes ISO n'a de sens que si le mot
-       ordinaire reste ignoré : c'est la capitale qui décide. Et « SOS 24/7 » n'est pas écarté
-       par son orthographe — il l'est par sa STRUCTURE : un montant n'est pas la moitié d'un
-       rapport de deux nombres. */
-    "All 4 dogs", "World Cup 2026", "Top 10", "gel 100 ml", "SOS 24/7", "ouvert 24/7",
-    "BSD-3-Clause", "note 4/5"];
+       ordinaire reste ignoré : c'est la capitale qui décide. */
+    "All 4 dogs", "World Cup 2026", "Top 10", "gel 100 ml", "ouvert 24/7",
+    "BSD-3-Clause", "note 4/5", "score 50/100"];
+  /* LE FAUX POSITIF ASSUMÉ, CONSIGNÉ ICI POUR QU'IL NE SE DÉCOUVRE PAS UN JOUR PAR SURPRISE.
+     « SOS 24/7 » porte le code du shilling somalien devant un nombre : le détecteur le voit, et
+     ce n'est pas un prix. Aucune fiche ne l'écrit — mesuré sur les 103 sources et les 408 pages
+     construites, dans les quatre zones —, et le border coûterait les trois formes tarifaires
+     ci-dessus. Si une fiche vient à l'écrire, la garde rougira et il faudra trancher par une
+     exception bornée à un chemin et à un fragment exact. Un faux positif se voit ; un faux
+     négatif tarifaire, non. */
+  const FAUX_POSITIFS_ASSUMES = ["SOS 24/7"];
   const rates = VUS.filter((t) => compter(t) !== 1);
   const faux = REFUSES.filter((t) => compter(t) !== 0);
+  const dementis = FAUX_POSITIFS_ASSUMES.filter((t) => compter(t) === 0);
   if (rates.length) echec("5 détecteur", `formes non vues : ${rates.join(", ")}`);
   else if (faux.length) echec("5 détecteur", `pris pour des montants : ${faux.join(", ")}`);
-  else ok(`5 détecteur — ${VUS.length} formes vues, ${REFUSES.length} pièges refusés`);
+  else if (dementis.length) echec("5 détecteur", `faux positif déclaré mais inexistant : ${dementis.join(", ")} — le commentaire ment`);
+  else ok(`5 détecteur — ${VUS.length} formes vues, ${REFUSES.length} pièges refusés, `
+    + `${FAUX_POSITIFS_ASSUMES.length} faux positif assumé et déclaré (${FAUX_POSITIFS_ASSUMES.join(", ")})`);
 }
 
 console.log(defauts === 0

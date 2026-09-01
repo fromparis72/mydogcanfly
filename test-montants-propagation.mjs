@@ -21,8 +21,10 @@
  *   2. ARTEFACT → DIST. Les phrases de l'artefact — `verdictNote` et `metaDesc`, dans les quatre
  *      langues, sur toutes les fiches — sont bien celles que porte le HTML construit, À L'ÉGALITÉ
  *      ET SUR DES CIBLES NOMMÉES : le paragraphe du bloc verdict, les trois balises de description
- *      une à une, et la description du WebPage dans le JSON-LD. Si le gabarit cessait de les
- *      consommer, ou les écrivait en dur, cette parité tomberait.
+ *      une à une, et la description de L'UNIQUE nœud « WebPage » du JSON-LD — les nœuds y sont
+ *      collectés récursivement, « @graph » compris, et leur cardinal est exigé avant toute
+ *      comparaison. Si le gabarit cessait de les consommer, ou les écrivait en dur, cette parité
+ *      tomberait.
  *
  * CE QUI RESTE HORS DE PORTÉE DE CE FICHIER, ET QUI EST DIT : il ne reconstruit rien. Le maillon 2
  * juge le `dist` que la CI vient de produire ; c'est ce build-là, et lui seul, qui relie
@@ -99,7 +101,7 @@ const donnees = JSON.parse(readFileSync(GENERE, "utf8"));
  *    · une seule méta garde la bonne description pendant qu'`og:description` ou `twitter:description`
  *      divergent — l'agrégat contient bien la phrase, et deux aperçus de partage sur trois mentent.
  *  Chaque champ est donc comparé à SA cible, et à l'ÉGALITÉ : le paragraphe du verdict, les trois
- *  métas une à une, et la description du WebPage dans le JSON-LD. Cinq comparaisons par page. */
+ *  métas une à une, et la description de l'unique « WebPage ». Cinq comparaisons par page. */
 function ecartsDeParite(html, langue, slug) {
   const cle = `airline_${slug.replace(/-/g, "_")}`;
   const d = donnees[cle];
@@ -140,21 +142,34 @@ function ecartsDeParite(html, langue, slug) {
     }
   }
 
-  /* 3. LA DESCRIPTION DU WEBPAGE, dans le JSON-LD — la quatrième copie publique de la même phrase. */
+  /* 3. LA DESCRIPTION DU WEBPAGE, dans le JSON-LD — la quatrième copie publique de la même phrase.
+   *
+   * ON COMPTE LES NŒUDS AVANT DE LES LIRE (contre-revue du 01/09/2026). Ma rédaction précédente
+   * parcourait les nœuds de premier niveau et gardait SILENCIEUSEMENT le dernier « WebPage »
+   * rencontré : deux nœuds, l'un périmé et l'autre juste, seraient passés au vert, et le moteur,
+   * lui, aurait lu les deux. Un « WebPage » rangé dans « @graph » n'était pas vu du tout.
+   * On les collecte donc RÉCURSIVEMENT, « @graph » compris, et l'on exige le cardinal attendu —
+   * un seul — avant toute comparaison. */
   {
     const attendu = d.metaDesc?.[langue];
-    let webpage = null, illisible = 0;
+    const trouves = [];
+    let illisible = 0;
+    const collecter = (v) => {
+      if (Array.isArray(v)) { v.forEach(collecter); return; }
+      if (!v || typeof v !== "object") return;
+      const type = Array.isArray(v["@type"]) ? v["@type"] : [v["@type"]];
+      if (type.includes("WebPage")) trouves.push(v);
+      for (const x of Object.values(v)) collecter(x);
+    };
     for (const sc of doc.querySelectorAll('script[type="application/ld+json"]')) {
-      let objet;
-      try { objet = JSON.parse(sc.textContent ?? ""); } catch { illisible++; continue; }
-      for (const n of Array.isArray(objet) ? objet : [objet]) if (n && n["@type"] === "WebPage") webpage = n;
+      try { collecter(JSON.parse(sc.textContent ?? "")); } catch { illisible++; }
     }
     if (illisible) ecarts.push(ici(`${illisible} bloc(s) JSON-LD illisible(s)`));
-    else if (!webpage) ecarts.push(ici("aucun nœud « WebPage » dans le JSON-LD"));
+    else if (trouves.length !== 1) ecarts.push(ici(`${trouves.length} nœud(s) « WebPage » dans le JSON-LD au lieu d'un seul`));
     else if (typeof attendu === "string" && attendu) {
       comparees++;
-      if (webpage.description !== attendu)
-        ecarts.push(ici(`WebPage.description ≠ metaDesc de l'artefact — servi « ${String(webpage.description).slice(0, 60)}… »`));
+      if (trouves[0].description !== attendu)
+        ecarts.push(ici(`WebPage.description ≠ metaDesc de l'artefact — servi « ${String(trouves[0].description).slice(0, 60)}… »`));
     }
   }
 
@@ -190,7 +205,9 @@ const fiches = [];
     echec("2 artefact → dist", `${ecarts.length} phrase(s) de l'artefact absente(s) du HTML construit`);
     for (const l of ecarts.slice(0, 10)) console.error(`      ${l}`);
     if (ecarts.length > 10) console.error(`      … et ${ecarts.length - 10} autres`);
-  } else ok(`2 artefact → dist — les ${comparees} phrases de l'artefact (verdictNote + metaDesc × 4 langues) sont bien celles du HTML`);
+  } else ok(`2 artefact → dist — ${comparees} comparaisons à l'égalité sur ${fiches.length} fiches : `
+    + `« .hero-verdict p », les trois métas de description et l'unique WebPage.description portent `
+    + `exactement ce que dit l'artefact`);
 }
 
 /* ---- 2bis ET 2ter. LES DEUX FAUX VERTS QUE LA PARITÉ « QUELQUE PART » LAISSAIT PASSER -------- */
@@ -241,6 +258,30 @@ const fiches = [];
         const r = ecartsDeParite(dom.serialize(), f.langue, f.slug).ecarts;
         if (r.length !== 1 || !r[0].includes("og:description")) echec("2ter", `la mutation produit ${JSON.stringify(r)} au lieu du seul écart sur og:description`);
         else ok("2ter — une seule méta qui diverge est vue, les deux autres et le JSON-LD restant justes");
+      }
+    }
+    /* 2quater — UN SECOND « WebPage » PÉRIMÉ, glissé dans le JSON-LD. Le nœud juste est toujours
+     * là ; un contrôle qui garde « le dernier rencontré » resterait vert, et le moteur lirait
+     * pourtant les deux descriptions. Il est placé dans « @graph » : c'est aussi la profondeur que
+     * la rédaction précédente ne parcourait pas. */
+    {
+      const dom = new JSDOM(html);
+      const doc = dom.window.document;
+      const sc = doc.querySelector('script[type="application/ld+json"]');
+      if (!sc) echec("2quater", "pas de bloc ld+json sur la page témoin");
+      else {
+        let objet;
+        try { objet = JSON.parse(sc.textContent ?? ""); } catch { objet = null; }
+        if (!objet) echec("2quater", "le bloc ld+json de la page témoin ne se parse pas");
+        else {
+          const perime = { "@type": "WebPage", description: "Une description périmée que l'artefact a cessé d'écrire." };
+          const noeuds = Array.isArray(objet) ? objet : [objet];
+          sc.textContent = JSON.stringify([...noeuds, { "@graph": [perime] }]);
+          const r = ecartsDeParite(dom.serialize(), f.langue, f.slug).ecarts;
+          if (r.length !== 1 || !r[0].includes("2 nœud(s) « WebPage »"))
+            echec("2quater", `la mutation produit ${JSON.stringify(r)} au lieu du seul écart de cardinal`);
+          else ok("2quater — un second « WebPage » périmé, jusque dans « @graph », est vu");
+        }
       }
     }
   }

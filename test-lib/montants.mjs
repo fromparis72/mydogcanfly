@@ -80,22 +80,28 @@ export const MOTIF_CODES = new RegExp(
   "g",
 );
 
-/* CE QUI N'EST PAS UN MONTANT MÊME AVEC UN MARQUEUR : UN RAPPORT DE DEUX NOMBRES.
- * « SOS 24/7 » porte le code du shilling somalien suivi d'un nombre, et n'est pourtant pas un
- * prix — c'est une disponibilité. La distinction est STRUCTURELLE, pas une liste d'exemples.
+/* PAS DE RÈGLE DU RAPPORT — ET C'EST UN RENONCEMENT MESURÉ, PAS UN OUBLI.
  *
- * LA RÈGLE NE VAUT QUE POUR LE MARQUEUR EN TÊTE, et cette restriction n'est pas une précaution
- * théorique : ma première rédaction regardait aussi ce qui PRÉCÈDE le montant, et elle a effacé
- * huit montants bien réels des fiches — « £110 » dans « $150 (€120/£110) », précédé de « 0/ », et
- * « 1100 TRY » dans « 1000/1100 TRY », de même. La barre oblique sépare bien plus souvent deux
- * prix qu'elle ne forme un rapport. On ne retient donc que le cas où le marqueur ouvre le motif
- * et où un nombre nu suit immédiatement la barre : « SOS 24/7 ». « €200/trajet » reste un montant
- * — ce qui suit la barre n'est pas un nombre —, et « 120 €/110 £ » en compte deux, le marqueur y
- * étant en queue. Le prix de la règle est nommé : « €100/2 personnes » ne serait pas vu. */
-function estRapport(texte, debut, longueur, forme) {
-  if (!/^\D/.test(forme)) return false;                    // marqueur en queue : la règle ne s'applique pas
-  return /^\/\d/.test(texte.slice(debut + longueur, debut + longueur + 2));
-}
+ * Deux rédactions successives ont voulu écarter « SOS 24/7 », où le code du shilling somalien est
+ * suivi d'un nombre sans qu'il s'agisse d'un prix. La première regardait aussi ce qui PRÉCÈDE le
+ * montant et a effacé huit prix bien réels des fiches — « £110 » dans « $150 (€120/£110) »,
+ * « 1100 TRY » dans « 1000/1100 TRY ». La seconde, restreinte au marqueur en tête, effaçait encore
+ * « €100/2 personnes », « USD 100/2 passengers », « SOS 500/2 trajets » : trois FORMES TARIFAIRES
+ * ORDINAIRES, un prix rapporté à un nombre de personnes. Le commentaire l'avouait, ce qui rendait
+ * fausse la garantie « aucun montant numérique publié ».
+ *
+ * LA MESURE A TRANCHÉ. Balayage des 103 fiches sources et des 408 fiches construites, dans les
+ * quatre zones publiques : ZÉRO occurrence de la forme « marqueur en tête + nombre / chiffre ».
+ * La règle ne neutralisait donc rien de réel, et coûtait un faux négatif tarifaire. Elle est
+ * retirée entièrement, et AUCUNE exception n'est créée par anticipation : on ne borde pas
+ * aujourd'hui, au prix d'un prix invisible, un idiome que rien ne publie.
+ *
+ * CE QUE CE CHOIX COÛTE, DIT PLUTÔT QUE TU : « SOS 24/7 » est désormais VU comme un montant. C'est
+ * un faux positif, il est assumé, et une contre-épreuve le consigne pour qu'il ne se découvre pas
+ * un jour par surprise. Le jour où une fiche écrira réellement cette expression, la garde rougira
+ * et il faudra trancher — par une exception bornée à un chemin et à un fragment exact, jamais par
+ * une règle générale. Un faux positif se voit et se discute ; un faux négatif tarifaire, non.
+ * « ouvert 24/7 » reste ignoré : il ne porte aucun marqueur de devise. */
 
 /** Les montants d'un texte, les deux motifs fusionnés, sans recouvrement. */
 function reperer(texte) {
@@ -110,7 +116,6 @@ function reperer(texte) {
   let finPrecedente = -1;
   for (const m of bruts) {
     if (m.index < finPrecedente) continue;                     // recouvrement : le premier gagne
-    if (estRapport(t, m.index, m.texte.length, m.texte)) continue;
     gardes.push(m);
     finPrecedente = m.index + m.texte.length;
   }
