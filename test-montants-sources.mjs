@@ -95,7 +95,9 @@ if (FIGER) {
   writeFileSync(REGISTRE, JSON.stringify({
     _lot: "Tarifs — prélancement",
     _regle: "Occurrences de montants restant dans les champs NON rendus des fiches compagnies. "
-      + "Une occurrence de source = une occurrence, jamais multipliée par ses exemplaires HTML.",
+      + "Une occurrence de source = une occurrence, jamais multipliée par ses exemplaires HTML. "
+      + "Une occurrence est un MARQUEUR DE DEVISE adjacent à un nombre : « ₱1 000–10 000 » en "
+      + "compte une, pas deux, parce qu'une fourchette partage son marqueur.",
     _mesure: mesure,
     fiches: Object.fromEntries(Object.entries(dormantes).sort(([a], [b]) => a.localeCompare(b))),
   }, null, 2) + "\n");

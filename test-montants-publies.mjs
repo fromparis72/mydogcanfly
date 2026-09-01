@@ -9,11 +9,17 @@
  * la page, dans une note « bon à savoir », dans le détail d'un canal. Une relecture cherche là où
  * elle pense à regarder ; un contrôle qui lit le HTML rendu cherche partout.
  *
- * POURQUOI LES QUATRE ZONES, SÉPARÉMENT. Une même phrase source — `metaDesc` — est recopiée par le
+ * POURQUOI PLUSIEURS ZONES, SÉPARÉMENT. Une même phrase source — `metaDesc` — est recopiée par le
  * gabarit en QUATRE exemplaires publics par page : `<meta name="description">`, `og:description`,
  * `twitter:description` et la description du JSON-LD. Un contrôle qui ne regarderait que le corps
  * visible les manquerait tous les quatre, et ce sont précisément ceux que lisent les moteurs et
- * les aperçus de partage.
+ * les aperçus de partage. Le `<title>` est une cinquième surface, ajoutée à la contre-revue du
+ * 01/09/2026 : elle n'était contrôlée nulle part.
+ *
+ * ET POURQUOI LE TEXTE EST LU DÉCODÉ. `zonesDe` parse le document au lieu de le découper à
+ * l'expression régulière : « 199 &euro; » s'affiche « 199 € » chez le lecteur, et un montant écrit
+ * « \u20ac199 » dans le JSON-LD est lu « €199 » par le moteur. Les contre-épreuves 6, 7 et 8
+ * exercent exactement ces trois formes.
  *
  * CE QUE LA GARDE N'INTERDIT PAS. Elle ne demande pas le silence sur les tarifs : elle interdit le
  * CHIFFRE. Une phrase qualitative — « d'autres animaux peuvent voyager via Virgin Australia Cargo,
@@ -67,26 +73,33 @@ else ok(`départ : ${fiches.length} fiches, ${slugs.size} compagnies × ${langue
  *  fonction, pas une copie : une mutation qui rougirait ici sans rougir là ne prouverait rien. */
 function montantsDe(html) {
   const z = zonesDe(html);
-  return { corps: trouver(z.corps), metas: trouver(z.metas), jsonLd: trouver(z.jsonLd) };
+  return {
+    titre: trouver(z.titre), corps: trouver(z.corps), metas: trouver(z.metas),
+    jsonLd: trouver(z.jsonLd), jsonLdInvalide: z.jsonLdInvalide,
+  };
 }
 
 {
   const fautives = [];
-  let total = 0;
+  let total = 0, illisibles = 0;
   for (const f of fiches) {
     const m = montantsDe(readFileSync(f.chemin, "utf8"));
-    const n = m.corps.length + m.metas.length + m.jsonLd.length;
+    illisibles += m.jsonLdInvalide;
+    const n = m.titre.length + m.corps.length + m.metas.length + m.jsonLd.length;
     if (!n) continue;
     total += n;
     fautives.push(`${f.langue}/${f.slug} : `
-      + [["corps", m.corps], ["meta", m.metas], ["json-ld", m.jsonLd]]
+      + [["titre", m.titre], ["corps", m.corps], ["meta", m.metas], ["json-ld", m.jsonLd]]
         .filter(([, v]) => v.length).map(([z, v]) => `${z} [${v.map((x) => x.texte).join(", ")}]`).join(" ; "));
   }
+  /* UN JSON-LD ILLISIBLE N'EST PAS UN JSON-LD VIDE. S'il ne se parse pas, on ne sait rien de son
+   * contenu : le taire reviendrait à compter zéro montant dans une zone jamais regardée. */
+  if (illisibles) echec("1 aucun montant publié", `${illisibles} bloc(s) JSON-LD illisible(s) : leur contenu n'a pas pu être jugé`);
   if (fautives.length) {
     echec("1 aucun montant publié", `${total} occurrence(s) sur ${fautives.length} fiche(s)`);
     for (const l of fautives.slice(0, 40)) console.error(`      ${l}`);
     if (fautives.length > 40) console.error(`      … et ${fautives.length - 40} autres`);
-  } else ok(`1 aucun montant publié — 0 occurrence sur ${fiches.length} fiches, corps + métas + JSON-LD`);
+  } else if (!illisibles) ok(`1 aucun montant publié — 0 occurrence sur ${fiches.length} fiches, titre + corps + métas + JSON-LD`);
 }
 
 /* ---- 2. CONTRE-ÉPREUVE : UNE MUTATION DU CORPS VISIBLE DOIT ROUGIR -------------------------- */
@@ -168,14 +181,87 @@ function montantsDe(html) {
   }
 }
 
+/* ---- 6, 7, 8. LES TROIS FORMES QUI TRAVERSAIENT LA GARDE ------------------------------------ */
+/* Elles viennent de la contre-revue du 01/09/2026 et ne sont pas théoriques : chacune a été
+ * reproduite sur la garde précédente, qui restait VERTE. Elles muent une vraie page construite,
+ * là où le gabarit écrit vraiment, et exigent que la zone concernée — et elle seule — bouge. */
+{
+  const f = fiches.find((x) => x.langue === "fr") ?? fiches[0];
+  const html = readFileSync(f.chemin, "utf8");
+  const avant = montantsDe(html);
+  const ecart = (mute, zone) => {
+    const apres = montantsDe(mute);
+    const bouge = ["titre", "corps", "metas", "jsonLd"].filter((z) => apres[z].length !== avant[z].length);
+    return { delta: apres[zone].length - avant[zone].length, bouge, textes: apres[zone].map((x) => x.texte) };
+  };
+
+  /* 6. L'ENTITÉ HTML. « 199 &euro; » s'affiche « 199 € » : le lecteur voit un prix, la garde
+   *    précédente ne voyait qu'une suite de lettres. Les trois écritures sont exercées. */
+  {
+    const ancre = html.match(/<div class="k"[^>]*>/);
+    const formes = { "&euro;": "199 &euro;", "&#8364;": "199 &#8364;", "&#x20AC;": "199 &#x20AC;" };
+    const rates = [];
+    for (const [nom, injecte] of Object.entries(formes)) {
+      if (!ancre) { rates.push(`${nom} : aucune ancre « .k »`); continue; }
+      const r = ecart(html.replace(ancre[0], `${ancre[0]}${injecte} `), "corps");
+      if (r.delta !== 1 || r.bouge.join() !== "corps") rates.push(`${nom} : delta ${r.delta}, zones ${r.bouge.join("+") || "aucune"}`);
+    }
+    if (rates.length) echec("6 entité HTML dans le corps", rates.join(" ; "));
+    else ok(`6 entité HTML dans le corps — « &euro; », « &#8364; » et « &#x20AC; » sont lus comme « € » sur ${f.langue}/${f.slug}`);
+  }
+
+  /* 7. LE TITRE. Il n'entrait dans aucune zone : un prix y était publiquement affiché, en tête de
+   *    l'onglet et du résultat de recherche, sans que rien ne rougisse. */
+  {
+    const t = html.match(/<title[^>]*>([\s\S]*?)<\/title>/i);
+    if (!t) echec("7 montant dans le titre", `pas de <title> sur ${f.langue}/${f.slug}`);
+    else {
+      const r = ecart(html.replace(t[0], `<title>${t[1]} — 199 €</title>`), "titre");
+      if (r.delta !== 1 || r.bouge.join() !== "titre") echec("7 montant dans le titre", `delta ${r.delta}, zones ${r.bouge.join("+") || "aucune"}`);
+      else ok(`7 montant dans le titre — « 199 € » ajouté au <title> de ${f.langue}/${f.slug} est vu, et là seulement`);
+    }
+  }
+
+  /* 8. LA DEVISE ÉCHAPPÉE DU JSON-LD. JSON écrit « \u20ac » là où le moteur lit « € » ; comparer
+   *    le texte brut du bloc revenait à chercher un caractère qui n'y figure jamais. */
+  {
+    const bloc = html.match(/<script[^>]+application\/ld\+json[^>]*>([\s\S]*?)<\/script>/i);
+    if (!bloc) echec("8 devise échappée dans le JSON-LD", `pas de bloc ld+json sur ${f.langue}/${f.slug}`);
+    else {
+      let objet;
+      try { objet = JSON.parse(bloc[1]); } catch { objet = null; }
+      if (!objet) echec("8 devise échappée dans le JSON-LD", "le bloc ld+json de la page ne se parse pas");
+      else {
+        const sali = Array.isArray(objet) ? [{ ...objet[0], description: `${objet[0].description ?? ""} \u20ac199` }, ...objet.slice(1)]
+          : { ...objet, description: `${objet.description ?? ""} \u20ac199` };
+        /* On réécrit le bloc avec les échappements JSON — c'est bien la forme servie. */
+        const brut = JSON.stringify(sali).replace(/[\u0080-\uffff]/g, (c) => "\\u" + c.charCodeAt(0).toString(16).padStart(4, "0"));
+        if (brut.includes("\\u20ac") === false) echec("8 devise échappée dans le JSON-LD", "la mutation n'a pas produit d'échappement");
+        else {
+          const r = ecart(html.replace(bloc[0], bloc[0].replace(bloc[1], brut)), "jsonLd");
+          if (r.delta !== 1 || r.bouge.join() !== "jsonLd") echec("8 devise échappée dans le JSON-LD", `delta ${r.delta}, zones ${r.bouge.join("+") || "aucune"}`);
+          else ok(`8 devise échappée dans le JSON-LD — « \\u20ac199 » est lu « €199 » sur ${f.langue}/${f.slug}`);
+        }
+      }
+    }
+  }
+}
+
 /* ---- 5. LE DÉTECTEUR NE CONFOND PAS UN CHIFFRE AVEC UN PRIX --------------------------------- */
 /* Sans ce contrôle, la garde pourrait passer au vert en devenant aveugle — ou rougir sur les
  * poids et les dimensions, ce qui obligerait à les retirer des fiches. Les deux sens sont tenus. */
 {
   const VUS = ["$150", "150 $", "€200", "200 €", "ZAR 300", "300 ZAR", "€89.99", "89,99 €", "CHF 90",
-    "90 CHF", "¥5,000", "¥5.000", "5 000 ¥", "US$ 500", "€8", "180 THB", "385 AED"];
+    "90 CHF", "¥5,000", "¥5.000", "5 000 ¥", "US$ 500", "€8", "180 THB", "385 AED",
+    /* Alias de symbole, ajoutés à la contre-revue du 01/09/2026 — ils traversaient les DEUX
+       contrôles, celui des sources comme celui du rendu. Exercés avant ET après le nombre. */
+    "RMB 500", "500 RMB", "RM 500", "500 RM", "Rp 500", "500 Rp", "Rs 500", "500 Rs", "Rs. 500",
+    "₱300", "300 PHP", "PKR 5 000", "1 200 MYR"];
   const REFUSES = ["8 kg", "55 × 35 × 25 cm", "2026-07-11", "10 h 30", "100 %", "Boeing 737",
-    "limite 32 kg", "1 500 g", "score 50/100", "quatre animaux par vol", "3 mois", "23 kg"];
+    "limite 32 kg", "1 500 g", "score 50/100", "quatre animaux par vol", "3 mois", "23 kg",
+    /* LES CODES ISO DÉLIBÉRÉMENT ÉCARTÉS parce qu'ils sont aussi des mots ordinaires. Sans cette
+       moitié-là, élargir le détecteur aurait transformé « World Cup 2026 » en montant. */
+    "ALL 4 dogs", "World Cup 2026", "Top 10", "gel 100 ml", "SOS 24/7", "BSD 3"];
   const rates = VUS.filter((t) => compter(t) !== 1);
   const faux = REFUSES.filter((t) => compter(t) !== 0);
   if (rates.length) echec("5 détecteur", `formes non vues : ${rates.join(", ")}`);

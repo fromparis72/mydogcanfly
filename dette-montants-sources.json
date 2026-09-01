@@ -1,10 +1,10 @@
 {
   "_lot": "Tarifs — prélancement",
-  "_regle": "Occurrences de montants restant dans les champs NON rendus des fiches compagnies. Une occurrence de source = une occurrence, jamais multipliée par ses exemplaires HTML.",
+  "_regle": "Occurrences de montants restant dans les champs NON rendus des fiches compagnies. Une occurrence de source = une occurrence, jamais multipliée par ses exemplaires HTML. Une occurrence est un MARQUEUR DE DEVISE adjacent à un nombre : « ₱1 000–10 000 » en compte une, pas deux, parce qu'une fourchette partage son marqueur.",
   "_mesure": {
     "fiches": 73,
-    "occurrences": 1547,
-    "occurrences_sources_totales": 1547
+    "occurrences": 1563,
+    "occurrences_sources_totales": 1563
   },
   "fiches": {
     "aegean.yml": {
@@ -220,8 +220,8 @@
       "channels.fee": 24
     },
     "philippine.yml": {
-      "channels.fee": 4,
-      "fareList.rows.value": 4
+      "channels.fee": 12,
+      "fareList.rows.value": 12
     },
     "qatar_airways.yml": {
       "channels.fee": 4,
