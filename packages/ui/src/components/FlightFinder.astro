@@ -325,7 +325,7 @@ const labels = {
 </section>
 
 <script>
-  import type { DecisionReport, ReportItem, FinderRequest } from "@mydogcanfly/engine";
+  import type { DecisionReport, ReportItem, FinderRequest, AirlineResult } from "@mydogcanfly/engine";
   import { API_BASE } from "../lib/env";
   import { attachCombobox, type ComboItem } from "../lib/combobox";
   import { travelDateBoundsClient } from "../lib/travel-date-bounds";
@@ -652,7 +652,11 @@ const labels = {
                        trajet demandé. Ce qui la remplace nomme son canal et ne promet rien de plus
                        que ce qu'on sait. */ ""}
                   ${(a.statuts_tarifaires ?? []).length
-                    ? `<div class="acard__fee">${a.statuts_tarifaires.map((s) => {
+                    ? `<div class="acard__fee">${a.statuts_tarifaires.map(/* `a` est `any` ici : le paramètre serait donc implicitement `any` lui aussi, et
+                          c'est l'erreur ts(7006) que ce lot a ajoutée à la dette Astro. On le type PAR LE
+                          CONTRAT lui-même plutôt qu'en recopiant sa forme : une copie dériverait le jour où
+                          `AirlineResult.statuts_tarifaires` changerait, celle-ci ne le peut pas. */
+                      (s: NonNullable<AirlineResult["statuts_tarifaires"]>[number]) => {
                         const cap = s.placement === "cabin" ? L.cabinShort : s.placement === "hold" ? L.holdShort : L.cargoShort;
                         return `<span class="acard__tarif" data-placement="${esc(s.placement)}">${esc(cap)} — ${esc(s.statut)}</span>`;
                       }).join("")}</div>`
