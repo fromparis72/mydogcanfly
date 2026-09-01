@@ -9,6 +9,7 @@
  * publiée, et chaque statut affiché nomme SON canal. Les mutations portent sur les données
  * d'entrée et sur le code lui-même — un repli réintroduit doit faire rougir, pas passer.
  */
+import { JSDOM } from "jsdom";
 import { readFileSync, existsSync, readdirSync } from "node:fs";
 import { join } from "node:path";
 
@@ -135,9 +136,12 @@ if (DIST) {
   const { loadKB } = await import("./packages/knowledge/src/index.ts");
   const kb = loadKB();
   /** Le statut CANONIQUE d'un canal, lu dans la base normalisée — jamais deviné d'un booléen. */
-  const statutDe = (slug, canal) => {
+  const politiqueDe = (slug, canal) => {
     const air = [...kb.airlines.values()].find((x) => x.id === `airline_${slug.replace(/-/g, "_")}`);
-    const p = air?.premium?.policy?.[canal];
+    return air?.premium?.policy?.[canal] ?? null;
+  };
+  const statutDe = (slug, canal) => {
+    const p = politiqueDe(slug, canal);
     return p ? (p.status ?? (p.allowed ? "allowed" : "denied")) : null;
   };
   /**
@@ -212,26 +216,61 @@ if (DIST) {
   {
     /* LES LIBELLÉS CANONIQUES, ceux que `cleLibelleStatut` publie — pas une liste réécrite ici :
        le contrôle doit lire ce que la production dit, sinon il juge autre chose. */
+    /* LA PASTILLE, ET ELLE SEULE — PARSÉE, JAMAIS DÉCOUPÉE AU TEXTE.
+     *
+     * PREMIÈRE RÉDACTION FAUTIVE, NOMMÉE, et découverte par la CI et non par moi : elle cherchait
+     * les trois libellés d'état dans TOUT le bloc du canal, conditions comprises. Dix-huit
+     * contre-épreuves rougissaient donc sur des pages parfaitement correctes. Vérifié à la main
+     * sur le dist : Turkish cargo porte `data-status="allowed"` et une pastille « Accepted » ;
+     * son « Not accepted » vit dans les conditions de races, où il est parfaitement légitime.
+     * Virgin Australia cabine porte « Policy to confirm… » et emploie « Accepted » dans son texte
+     * explicatif. Aucun défaut public : un défaut de MON contrôle, qui confondait la pastille
+     * avec la prose qui l'entoure.
+     *
+     * Le gabarit isole pourtant la pastille exactement — `.mini[data-placement][data-status]`,
+     * puis `.t .pill`. On la sélectionne donc, au lieu de deviner ses bornes. */
     const LIBELLES = { allowed: "Accepted", confirmation_required: "Policy to confirm with the airline", denied: "Not accepted" };
     const vus = new Set();
+    let absencesLegitimes = 0;
     for (const p of fiches) {
       const slug = p.split("/")[2];
-      const html = readFileSync(join(DIST, p), "utf8");
+      const doc = new JSDOM(readFileSync(join(DIST, p), "utf8")).window.document;
       for (const canal of ["cabin", "hold", "cargo"]) {
         const st = statutDe(slug, canal);
         if (!st || !LIBELLES[st]) continue;
-        const bloc = blocDuCanal(html, canal);
-        if (!bloc) continue;
-        const attendu = LIBELLES[st];
-        if (!bloc.includes(attendu)) { echec("5quater pastille", `${slug}/${canal} (${st}) : le libellé « ${attendu} » est absent de son bloc`); continue; }
-        const intrus = Object.entries(LIBELLES).filter(([k, v]) => k !== st && v !== attendu && !attendu.includes(v) && bloc.includes(v));
-        if (intrus.length) echec("5quater pastille", `${slug}/${canal} (${st}) : le bloc porte AUSSI « ${intrus[0][1]} »`);
-        else vus.add(st);
+        const minis = doc.querySelectorAll(`.mini[data-placement="${canal}"]`);
+        /* UN CANAL PEUT LÉGITIMEMENT N'AVOIR AUCUN BLOC — mais à une seule condition. La fiche ne
+           publie que ses propres canaux ; ceux dont la politique est HÉRITÉE ET NON REVÉRIFIÉE
+           (`legacy_unreviewed`) n'y figurent pas, conformément à l'arbitrage : une donnée héritée
+           non revérifiée ne devient pas une affirmation publique. Ma rédaction précédente exigeait
+           un bloc pour CHAQUE canal de la base, et rougissait donc sur quatre absences correctes.
+           L'absence reste interdite pour toute autre cause : un canal réellement publié qui
+           disparaîtrait ferait toujours rougir. */
+        if (minis.length === 0) {
+          const cause = politiqueDe(slug, canal)?.status_cause;
+          if (cause === "legacy_unreviewed") { absencesLegitimes++; continue; }
+          echec("5quater pastille", `${slug}/${canal} (${st}) : aucun bloc, et la cause est « ${cause ?? "aucune"} », pas « legacy_unreviewed »`);
+          continue;
+        }
+        if (minis.length !== 1) { echec("5quater pastille", `${slug}/${canal} : ${minis.length} blocs au lieu d'un`); continue; }
+        const mini = minis[0];
+        /* Le statut CANONIQUE est porté par le DOM : la page ne peut pas dire autre chose que
+           ce que la donnée décide. */
+        if (mini.getAttribute("data-status") !== st) {
+          echec("5quater pastille", `${slug}/${canal} : data-status « ${mini.getAttribute("data-status")} » au lieu de « ${st} »`); continue;
+        }
+        const pills = mini.querySelectorAll(".t .pill");
+        if (pills.length !== 1) { echec("5quater pastille", `${slug}/${canal} : ${pills.length} pastille(s) au lieu d'une`); continue; }
+        const texte = pills[0].textContent.trim();
+        if (texte !== LIBELLES[st]) {
+          echec("5quater pastille", `${slug}/${canal} (${st}) : la pastille dit « ${texte} » au lieu de « ${LIBELLES[st]} »`); continue;
+        }
+        vus.add(st);
       }
     }
     const manquants = Object.keys(LIBELLES).filter((s) => !vus.has(s));
     if (manquants.length) echec("5quater couverture", `états jamais rencontrés : ${manquants.join(", ")} — le contrôle serait vert faute de matière`);
-    else ok("5quater la pastille dit les trois états, chacun rencontré dans le HTML construit");
+    else ok(`5quater la pastille dit les trois états, chacun rencontré dans le HTML construit (${absencesLegitimes} canal/canaux hérités non revérifiés, légitimement absents)`);
   }
 
   /* Les quatre langues portent bien un statut, et pas un mot anglais laissé là. */
