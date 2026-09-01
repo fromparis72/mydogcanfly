@@ -256,12 +256,18 @@ function montantsDe(html) {
     /* Alias de symbole, ajoutés à la contre-revue du 01/09/2026 — ils traversaient les DEUX
        contrôles, celui des sources comme celui du rendu. Exercés avant ET après le nombre. */
     "RMB 500", "500 RMB", "RM 500", "500 RM", "Rp 500", "500 Rp", "Rs 500", "500 Rs", "Rs. 500",
-    "₱300", "300 PHP", "PKR 5 000", "1 200 MYR"];
+    "₱300", "300 PHP", "PKR 5 000", "1 200 MYR",
+    /* LES SIX CODES QUI ÉTAIENT ÉCARTÉS DU MONDE ENTIER parce qu'ils s'écrivent comme des mots.
+       Ils sont maintenant vus : c'est la CASSE qui sépare le code du mot, pas une liste noire. */
+    "ALL 4 000", "CUP 500", "TOP 100", "GEL 100", "SOS 500", "BSD 300"];
   const REFUSES = ["8 kg", "55 × 35 × 25 cm", "2026-07-11", "10 h 30", "100 %", "Boeing 737",
     "limite 32 kg", "1 500 g", "score 50/100", "quatre animaux par vol", "3 mois", "23 kg",
-    /* LES CODES ISO DÉLIBÉRÉMENT ÉCARTÉS parce qu'ils sont aussi des mots ordinaires. Sans cette
-       moitié-là, élargir le détecteur aurait transformé « World Cup 2026 » en montant. */
-    "ALL 4 dogs", "World Cup 2026", "Top 10", "gel 100 ml", "SOS 24/7", "BSD 3"];
+    /* LA MOITIÉ QUI TIENT L'AUTRE. Admettre TOUS les codes ISO n'a de sens que si le mot
+       ordinaire reste ignoré : c'est la capitale qui décide. Et « SOS 24/7 » n'est pas écarté
+       par son orthographe — il l'est par sa STRUCTURE : un montant n'est pas la moitié d'un
+       rapport de deux nombres. */
+    "All 4 dogs", "World Cup 2026", "Top 10", "gel 100 ml", "SOS 24/7", "ouvert 24/7",
+    "BSD-3-Clause", "note 4/5"];
   const rates = VUS.filter((t) => compter(t) !== 1);
   const faux = REFUSES.filter((t) => compter(t) !== 0);
   if (rates.length) echec("5 détecteur", `formes non vues : ${rates.join(", ")}`);

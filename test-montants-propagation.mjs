@@ -19,8 +19,10 @@
  *   1. SOURCE → ARTEFACT. Un montant écrit dans une fiche traverse le VRAI générateur et se
  *      retrouve dans `airlines.generated.json`. Mutation réelle, restauration vérifiée.
  *   2. ARTEFACT → DIST. Les phrases de l'artefact — `verdictNote` et `metaDesc`, dans les quatre
- *      langues, sur toutes les fiches — sont bien celles que porte le HTML construit. Si le
- *      gabarit cessait de les consommer, ou les écrivait en dur, cette parité tomberait.
+ *      langues, sur toutes les fiches — sont bien celles que porte le HTML construit, À L'ÉGALITÉ
+ *      ET SUR DES CIBLES NOMMÉES : le paragraphe du bloc verdict, les trois balises de description
+ *      une à une, et la description du WebPage dans le JSON-LD. Si le gabarit cessait de les
+ *      consommer, ou les écrivait en dur, cette parité tomberait.
  *
  * CE QUI RESTE HORS DE PORTÉE DE CE FICHIER, ET QUI EST DIT : il ne reconstruit rien. Le maillon 2
  * juge le `dist` que la CI vient de produire ; c'est ce build-là, et lui seul, qui relie
@@ -81,31 +83,81 @@ const GENERE = "packages/ui/src/data/airlines.generated.json";
  * fiches construites. C'est ce qui interdit au gabarit d'écrire la phrase en dur. */
 const donnees = JSON.parse(readFileSync(GENERE, "utf8"));
 
-/** Les écarts de parité d'UNE page. La contre-épreuve 2bis appelle CETTE fonction, pas une copie :
- *  une parité qui rougirait ici sans rougir là ne prouverait rien.
+/** Les écarts de parité d'UNE page, SUR DES CIBLES EXACTES. La contre-épreuve 2bis appelle CETTE
+ *  fonction, pas une copie : une parité qui rougirait ici sans rougir là ne prouverait rien.
  *
  *  ON COMPARE DU TEXTE DÉCODÉ, PAS DU HTML. Ma première rédaction cherchait la phrase dans le HTML
  *  brut après avoir échappé « & », « < » et « > » à la main. Elle rougissait sur 65 fiches : Astro
  *  écrit aussi l'apostrophe en « &#39; », et « isn't » ne se trouvait donc jamais. Refaire à la
- *  main le travail du parseur est précisément la faute que la contre-revue du 01/09/2026 a relevée
- *  dans `zonesDe` ; on emploie donc `zonesDe`, qui rend le texte tel que le lecteur le voit.
- *  CHAQUE CHAMP EST CHERCHÉ DANS SA ZONE : le résumé dans le corps, la description dans les métas.
- *  C'est plus exigeant qu'un « quelque part dans la page » — cela dit AUSSI où la phrase paraît. */
+ *  main le travail du parseur est précisément la faute relevée dans `zonesDe`.
+ *
+ *  ET ON NE CHERCHE PLUS « QUELQUE PART » (contre-revue du 01/09/2026). La deuxième rédaction
+ *  demandait que le résumé figure dans LE CORPS et la description dans L'AGRÉGAT des métas. Deux
+ *  faux verts restaient possibles, et ils ne sont pas théoriques :
+ *    · le résumé attendu subsiste dans un élément caché pendant que `.hero-verdict p` affiche une
+ *      phrase écrite en dur — le corps contient bien la phrase, et la page ment quand même ;
+ *    · une seule méta garde la bonne description pendant qu'`og:description` ou `twitter:description`
+ *      divergent — l'agrégat contient bien la phrase, et deux aperçus de partage sur trois mentent.
+ *  Chaque champ est donc comparé à SA cible, et à l'ÉGALITÉ : le paragraphe du verdict, les trois
+ *  métas une à une, et la description du WebPage dans le JSON-LD. Cinq comparaisons par page. */
 function ecartsDeParite(html, langue, slug) {
   const cle = `airline_${slug.replace(/-/g, "_")}`;
   const d = donnees[cle];
   if (!d) return { ecarts: [`${langue}/${slug} : aucune entrée « ${cle} » dans l'artefact`], comparees: 0 };
-  const z = zonesDe(html);
-  const ZONE = { verdictNote: ["corps", z.corps], metaDesc: ["métas", z.metas] };
+  const doc = new JSDOM(html).window.document;
   const ecarts = [];
   let comparees = 0;
-  for (const champ of ["verdictNote", "metaDesc"]) {
-    const attendu = d[champ]?.[langue];
-    if (typeof attendu !== "string" || !attendu) { ecarts.push(`${langue}/${slug} : ${champ} absent de l'artefact`); continue; }
-    comparees++;
-    const [nomZone, texte] = ZONE[champ];
-    if (!texte.includes(attendu)) ecarts.push(`${langue}/${slug} : ${champ} de l'artefact absent du ${nomZone} de la page`);
+  const ici = (quoi) => `${langue}/${slug} : ${quoi}`;
+
+  /* 1. LE RÉSUMÉ — le paragraphe du bloc verdict, et lui seul. */
+  {
+    const attendu = d.verdictNote?.[langue];
+    const cibles = doc.querySelectorAll(".hero-verdict p");
+    if (typeof attendu !== "string" || !attendu) ecarts.push(ici("verdictNote absent de l'artefact"));
+    else if (cibles.length !== 1) ecarts.push(ici(`${cibles.length} paragraphe(s) « .hero-verdict p » au lieu d'un seul`));
+    else {
+      comparees++;
+      const servi = cibles[0].textContent?.trim() ?? "";
+      if (servi !== attendu.trim()) ecarts.push(ici(`« .hero-verdict p » ≠ verdictNote de l'artefact — servi « ${servi.slice(0, 60)}… »`));
+    }
   }
+
+  /* 2. LA DESCRIPTION — les trois métas, une à une. */
+  {
+    const attendu = d.metaDesc?.[langue];
+    const METAS = [
+      ["description", 'meta[name="description"]'],
+      ["og:description", 'meta[property="og:description"]'],
+      ["twitter:description", 'meta[name="twitter:description"]'],
+    ];
+    if (typeof attendu !== "string" || !attendu) ecarts.push(ici("metaDesc absent de l'artefact"));
+    else for (const [nom, sel] of METAS) {
+      const els = doc.querySelectorAll(sel);
+      if (els.length !== 1) { ecarts.push(ici(`${els.length} balise(s) « ${nom} » au lieu d'une seule`)); continue; }
+      comparees++;
+      const servi = els[0].getAttribute("content") ?? "";
+      if (servi !== attendu) ecarts.push(ici(`« ${nom} » ≠ metaDesc de l'artefact — servi « ${servi.slice(0, 60)}… »`));
+    }
+  }
+
+  /* 3. LA DESCRIPTION DU WEBPAGE, dans le JSON-LD — la quatrième copie publique de la même phrase. */
+  {
+    const attendu = d.metaDesc?.[langue];
+    let webpage = null, illisible = 0;
+    for (const sc of doc.querySelectorAll('script[type="application/ld+json"]')) {
+      let objet;
+      try { objet = JSON.parse(sc.textContent ?? ""); } catch { illisible++; continue; }
+      for (const n of Array.isArray(objet) ? objet : [objet]) if (n && n["@type"] === "WebPage") webpage = n;
+    }
+    if (illisible) ecarts.push(ici(`${illisible} bloc(s) JSON-LD illisible(s)`));
+    else if (!webpage) ecarts.push(ici("aucun nœud « WebPage » dans le JSON-LD"));
+    else if (typeof attendu === "string" && attendu) {
+      comparees++;
+      if (webpage.description !== attendu)
+        ecarts.push(ici(`WebPage.description ≠ metaDesc de l'artefact — servi « ${String(webpage.description).slice(0, 60)}… »`));
+    }
+  }
+
   return { ecarts, comparees };
 }
 
@@ -141,31 +193,55 @@ const fiches = [];
   } else ok(`2 artefact → dist — les ${comparees} phrases de l'artefact (verdictNote + metaDesc × 4 langues) sont bien celles du HTML`);
 }
 
-/* ---- 2bis. UNE PARITÉ QUI NE SAIT PAS ROUGIR NE PROUVE RIEN --------------------------------- */
-/* L'attaque exacte que le maillon 2 doit voir : le gabarit cesse de consommer l'artefact et écrit
- * sa propre phrase. On la simule sur une page réelle et on exige que LA MÊME fonction la voie. */
+/* ---- 2bis ET 2ter. LES DEUX FAUX VERTS QUE LA PARITÉ « QUELQUE PART » LAISSAIT PASSER -------- */
+/* Ils viennent de la contre-revue du 01/09/2026, et chacun mute une page réelle. Les deux
+ * exigent que LA MÊME fonction de parité voie l'écart — et un seul écart, celui qu'on a créé. */
 {
   const f = fiches.find((x) => x.slug === "jetblue" && x.langue === "en") ?? fiches[0];
   const html = readFileSync(f.chemin, "utf8");
-  const attendu = donnees[`airline_${f.slug.replace(/-/g, "_")}`]?.verdictNote?.[f.langue];
-  if (!attendu) { echec("2bis", `verdictNote absent de l'artefact pour ${f.langue}/${f.slug}`); }
-  else {
-    /* LA MUTATION SE FAIT DANS L'ARBRE, PAS SUR LA CHAÎNE. Réécrire le nœud de texte produit
-     * exactement le HTML qu'un gabarit modifié aurait servi, échappements compris. */
-    const dom = new JSDOM(html);
-    const doc = dom.window.document;
-    const marcheur = doc.createTreeWalker(doc.body, dom.window.NodeFilter.SHOW_TEXT);
-    let touche = 0;
-    for (let n = marcheur.nextNode(); n; n = marcheur.nextNode()) {
-      if (n.nodeValue?.includes(attendu)) { n.nodeValue = "Le gabarit écrit désormais sa propre phrase."; touche++; }
+  const propre = ecartsDeParite(html, f.langue, f.slug);
+  if (propre.ecarts.length) {
+    echec("2bis/2ter", `la page témoin ${f.langue}/${f.slug} porte déjà ${propre.ecarts.length} écart(s) : les contre-épreuves ne prouveraient rien`);
+  } else {
+    /* 2bis — LE TÉMOIN DÉPLACÉ DANS UN ÉLÉMENT CACHÉ. Le gabarit écrit sa propre phrase dans le
+     * bloc verdict ; la phrase de l'artefact, elle, subsiste ailleurs, invisible. Une parité qui
+     * cherche « quelque part dans le corps » reste verte. La parité exacte doit rougir. */
+    {
+      const dom = new JSDOM(html);
+      const doc = dom.window.document;
+      const attendu = donnees[`airline_${f.slug.replace(/-/g, "_")}`]?.verdictNote?.[f.langue];
+      const cible = doc.querySelector(".hero-verdict p");
+      if (!attendu || !cible) echec("2bis", "verdictNote ou « .hero-verdict p » introuvable sur la page témoin");
+      else {
+        cible.textContent = "Le gabarit écrit désormais sa propre phrase.";
+        const cache = doc.createElement("div");
+        cache.hidden = true;
+        cache.textContent = attendu;                       // le témoin survit, mais caché
+        doc.body.appendChild(cache);
+        const mute = dom.serialize();
+        if (!zonesDe(mute).corps.includes(attendu))
+          echec("2bis", "le témoin caché n'est pas dans le corps : l'attaque n'est pas celle qu'on croit reproduire");
+        else {
+          const r = ecartsDeParite(mute, f.langue, f.slug).ecarts;
+          if (r.length !== 1 || !r[0].includes("hero-verdict")) echec("2bis", `la mutation produit ${JSON.stringify(r)} au lieu du seul écart sur « .hero-verdict p »`);
+          else ok("2bis — un résumé écrit en dur est vu, même si la phrase de l'artefact survit dans un élément caché");
+        }
+      }
     }
-    if (!touche) echec("2bis", "la phrase de l'artefact n'était dans aucun nœud de texte : le maillon 2 était vide");
-    else {
-      const avant = ecartsDeParite(html, f.langue, f.slug).ecarts;
-      const apres = ecartsDeParite(dom.serialize(), f.langue, f.slug).ecarts;
-      if (avant.length !== 0) echec("2bis", `la page non mutée portait déjà ${avant.length} écart(s) : la contre-épreuve ne prouverait rien`);
-      else if (apres.length !== 1 || !apres[0].includes("verdictNote")) echec("2bis", `la mutation produit ${JSON.stringify(apres)} au lieu du seul écart sur verdictNote`);
-      else ok(`2bis — un gabarit qui cesserait de consommer verdictNote est vu (${f.langue}/${f.slug}, ${touche} nœud(s) réécrit(s))`);
+
+    /* 2ter — UN SEUL EXEMPLAIRE DE LA DESCRIPTION QUI DIVERGE. `og:description` ment, les deux
+     * autres disent vrai : l'agrégat des métas contient toujours la bonne phrase. */
+    {
+      const dom = new JSDOM(html);
+      const doc = dom.window.document;
+      const og = doc.querySelector('meta[property="og:description"]');
+      if (!og) echec("2ter", "pas d'og:description sur la page témoin");
+      else {
+        og.setAttribute("content", "Une description que l'artefact n'a jamais écrite.");
+        const r = ecartsDeParite(dom.serialize(), f.langue, f.slug).ecarts;
+        if (r.length !== 1 || !r[0].includes("og:description")) echec("2ter", `la mutation produit ${JSON.stringify(r)} au lieu du seul écart sur og:description`);
+        else ok("2ter — une seule méta qui diverge est vue, les deux autres et le JSON-LD restant justes");
+      }
     }
   }
 }

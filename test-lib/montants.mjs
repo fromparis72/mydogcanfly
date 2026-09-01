@@ -10,7 +10,7 @@ import { JSDOM } from "jsdom";
  * ignorait `og:description`, `twitter:description` et le JSON-LD, où la même phrase est recopiée.
  *
  * CE QU'IL RECONNAÎT — la devise AVANT ou APRÈS le nombre, en symbole, en alias de symbole ou en
- * code ISO, avec la virgule ou le point pour décimale, et les espaces d'usage typographique (fine,
+ * code ISO 4217 (la liste entière, en capitales), avec la virgule ou le point pour décimale, et les espaces d'usage typographique (fine,
  * insécable) comme séparateurs de milliers. Mesuré sur les fiches : China Southern écrit le même
  * prix sous quatre formes selon la langue — `¥5,000`, `¥5.000`, `5 000 ¥`, `5000 ¥` — et un
  * détecteur qui n'en verrait qu'une laisserait passer les trois autres.
@@ -30,50 +30,101 @@ const SYMBOLES = "US\\$|A\\$|C\\$|R\\$|NZ\\$|HK\\$|S\\$|NT\\$|\\$|€|£|¥|₩|
  * souvent suivies d'un point. Les compagnies les écrivent bien plus souvent que le code ISO :
  * « RM 500 » (Malaisie), « Rp 500 » (Indonésie), « Rs 500 » (sous-continent indien), « RMB 500 »
  * (Chine). Aucun de ces quatre n'était vu avant la contre-revue du 01/09/2026, et une `metaDesc`
- * portant « RMB 500 » traversait donc les DEUX contrôles, celui des sources comme celui du rendu. */
+ * portant « RMB 500 » traversait donc les DEUX contrôles, celui des sources comme celui du rendu.
+ * Ils gardent leur RÈGLE PROPRE, insensible à la casse : « Rp », « RP » et « rp » s'écrivent tous. */
 const ALIAS = "RMB|RM|Rp|Rs";
 
-/* LES CODES ISO. La liste est délibérément INCOMPLÈTE, et c'est le point délicat de ce fichier :
- * une douzaine de codes ISO sont aussi des mots ordinaires dans les quatre langues du site, et les
- * admettre transformerait des phrases parfaitement innocentes en montants —
- *     « ALL 4 dogs »        (ALL, lek albanais)      « World Cup 2026 »  (CUP, peso cubain)
- *     « Top 10 »            (TOP, paʻanga tongan)    « gel 100 ml »      (GEL, lari géorgien)
- *     « SOS 24/7 »          (SOS, shilling somalien) « BSD 3 »           (BSD, dollar bahaméen)
- * Ces codes-là sont ÉCARTÉS, nommément, et une contre-épreuve exige qu'ils le restent. Le prix de
- * cette exclusion est nommé lui aussi : un prix écrit « ALL 4 000 » ne serait pas vu. Aucune de ces
- * devises n'apparaît sur les fiches, et le jour où l'une d'elles y entrerait, il faudra la traiter
- * autrement que par le code seul — par le symbole, ou par un champ tarifaire structuré. */
-const CODES = "EUR|USD|GBP|CHF|ZAR|AUD|NZD|CAD|SEK|NOK|DKK|ISK|PLN|CZK|HUF|RON|RSD|BGN|HRK|TRY"
-  + "|MAD|TND|EGP|XPF|XOF|XAF|JPY|CNY|CNH|KRW|INR|THB|VND|IDR|MYR|SGD|PHP|TWD|HKD|BRL|MXN|ARS|CLP"
-  + "|COP|PEN|UYU|AED|SAR|QAR|KWD|OMR|BHD|JOD|ILS|KES|MUR|NGN|GHS|RUB|UAH"
-  /* Ajoutées à la contre-revue du 01/09/2026 — aucune n'est un mot dans les quatre langues. */
-  + "|PKR|LKR|NPR|BDT|MVR|BND|KHR|MMK|KZT|UZS|AZN|MNT|DZD|LYD|SDG|ETB|TZS|UGX|ZMW|BWP|NAD|MZN"
-  + "|AOA|CVE|JMD|TTD|DOP|GTQ|CRC|HNL|NIO|PYG|VES|FJD|PGK|MDL|RWF|XCD";
+/* LES CODES ISO 4217 — LA LISTE ENTIÈRE, ET SENSIBLE À LA CASSE.
+ *
+ * LA FAUTE QUE CETTE VERSION CORRIGE (contre-revue du 01/09/2026). La rédaction précédente
+ * ÉCARTAIT une douzaine de codes — ALL, CUP, TOP, GEL, SOS, BSD — parce qu'ils s'écrivent comme
+ * des mots ordinaires, et elle le disait dans son propre commentaire : « ALL 4 000 » n'était pas
+ * détecté. Une `metaDesc` portant ce montant serait donc restée verte dans la source ET dans le
+ * dist, ce qui rendait fausse la garantie « aucun montant numérique publié ». Supprimer une devise
+ * du monde entier pour éviter une collision de mots n'est pas une exclusion bornée : c'est un trou.
+ *
+ * CE QUI SÉPARE LE CODE DU MOT EST LA CASSE, ET RIEN D'AUTRE. Un code monétaire s'écrit en
+ * capitales ; « World Cup 2026 », « Top 10 », « gel 100 ml » et « All 4 dogs » ne portent pas de
+ * capitales sur le mot en cause. La liste est donc COMPLÈTE, et c'est ce motif-ci — et lui seul —
+ * qui est appliqué sans le drapeau « i ». */
+const CODES = [
+  "AED","AFN","ALL","AMD","ANG","AOA","ARS","AUD","AWG","AZN","BAM","BBD","BDT","BGN","BHD","BIF",
+  "BMD","BND","BOB","BOV","BRL","BSD","BTN","BWP","BYN","BZD","CAD","CDF","CHE","CHF","CHW","CLF",
+  "CLP","CNH","CNY","COP","COU","CRC","CUP","CVE","CZK","DJF","DKK","DOP","DZD","EGP","ERN","ETB",
+  "EUR","FJD","FKP","GBP","GEL","GHS","GIP","GMD","GNF","GTQ","GYD","HKD","HNL","HTG","HUF","IDR",
+  "ILS","INR","IQD","IRR","ISK","JMD","JOD","JPY","KES","KGS","KHR","KMF","KPW","KRW","KWD","KYD",
+  "KZT","LAK","LBP","LKR","LRD","LSL","LYD","MAD","MDL","MGA","MKD","MMK","MNT","MOP","MRU","MUR",
+  "MVR","MWK","MXN","MYR","MZN","NAD","NGN","NIO","NOK","NPR","NZD","OMR","PAB","PEN","PGK","PHP",
+  "PKR","PLN","PYG","QAR","RON","RSD","RUB","RWF","SAR","SBD","SCR","SDG","SEK","SGD","SHP","SLE",
+  "SOS","SRD","SSP","STN","SVC","SYP","SZL","THB","TJS","TMT","TND","TOP","TRY","TTD","TWD","TZS",
+  "UAH","UGX","USD","UYU","UZS","VED","VES","VND","VUV","WST","XAF","XCD","XCG","XOF","XPF","YER",
+  "ZAR","ZMW","ZWG",
+].join("|");
 
 /* Le nombre : chiffres, séparateurs de milliers (virgule, point, espace fine ou insécable),
    décimales. Il doit COMMENCER et FINIR par un chiffre. */
 const NOMBRE = "\\d(?:[\\d.,\\u00a0\\u202f\\u2009 ]*\\d)?";
 
-export const MOTIF_MONTANT = new RegExp(
+/* DEUX MOTIFS, PARCE QUE LA CASSE NE SE RÈGLE PAS PAR BRANCHE. JavaScript n'a pas de drapeau
+ * local : symboles et alias tolèrent toutes les casses, les codes ISO n'en tolèrent qu'une. */
+export const MOTIF_SYMBOLES = new RegExp(
   `(?:${SYMBOLES})\\s?${NOMBRE}`                    // €200, US$ 500, ¥5,000, ₱300
   + `|${NOMBRE}\\s?(?:${SYMBOLES})`                 // 200 €, 89,99 €
   + `|\\b(?:${ALIAS})\\.?\\s?${NOMBRE}`             // RM 500, Rp500, Rs. 500, RMB 500
-  + `|\\b${NOMBRE}\\s?(?:${ALIAS})\\b`              // 500 RM, 500 Rs
-  + `|\\b(?:${CODES})\\s?${NOMBRE}`                 // ZAR 300, CHF 90
-  + `|\\b${NOMBRE}\\s?(?:${CODES})\\b`,             // 300 ZAR, 90 CHF
+  + `|\\b${NOMBRE}\\s?(?:${ALIAS})\\b`,             // 500 RM, 500 Rs
   "gi",
 );
+export const MOTIF_CODES = new RegExp(
+  `\\b(?:${CODES})\\s?${NOMBRE}`                    // ZAR 300, CHF 90, ALL 4 000
+  + `|\\b${NOMBRE}\\s?(?:${CODES})\\b`,             // 300 ZAR, 90 CHF
+  "g",
+);
+
+/* CE QUI N'EST PAS UN MONTANT MÊME AVEC UN MARQUEUR : UN RAPPORT DE DEUX NOMBRES.
+ * « SOS 24/7 » porte le code du shilling somalien suivi d'un nombre, et n'est pourtant pas un
+ * prix — c'est une disponibilité. La distinction est STRUCTURELLE, pas une liste d'exemples.
+ *
+ * LA RÈGLE NE VAUT QUE POUR LE MARQUEUR EN TÊTE, et cette restriction n'est pas une précaution
+ * théorique : ma première rédaction regardait aussi ce qui PRÉCÈDE le montant, et elle a effacé
+ * huit montants bien réels des fiches — « £110 » dans « $150 (€120/£110) », précédé de « 0/ », et
+ * « 1100 TRY » dans « 1000/1100 TRY », de même. La barre oblique sépare bien plus souvent deux
+ * prix qu'elle ne forme un rapport. On ne retient donc que le cas où le marqueur ouvre le motif
+ * et où un nombre nu suit immédiatement la barre : « SOS 24/7 ». « €200/trajet » reste un montant
+ * — ce qui suit la barre n'est pas un nombre —, et « 120 €/110 £ » en compte deux, le marqueur y
+ * étant en queue. Le prix de la règle est nommé : « €100/2 personnes » ne serait pas vu. */
+function estRapport(texte, debut, longueur, forme) {
+  if (!/^\D/.test(forme)) return false;                    // marqueur en queue : la règle ne s'applique pas
+  return /^\/\d/.test(texte.slice(debut + longueur, debut + longueur + 2));
+}
+
+/** Les montants d'un texte, les deux motifs fusionnés, sans recouvrement. */
+function reperer(texte) {
+  const t = String(texte ?? "");
+  const bruts = [];
+  for (const motif of [MOTIF_SYMBOLES, MOTIF_CODES]) {
+    motif.lastIndex = 0;
+    for (const m of t.matchAll(motif)) bruts.push({ texte: m[0], index: m.index });
+  }
+  bruts.sort((a, b) => a.index - b.index || b.texte.length - a.texte.length);
+  const gardes = [];
+  let finPrecedente = -1;
+  for (const m of bruts) {
+    if (m.index < finPrecedente) continue;                     // recouvrement : le premier gagne
+    if (estRapport(t, m.index, m.texte.length, m.texte)) continue;
+    gardes.push(m);
+    finPrecedente = m.index + m.texte.length;
+  }
+  return gardes;
+}
 
 /** Combien de montants dans ce texte. */
 export function compter(texte) {
-  MOTIF_MONTANT.lastIndex = 0;
-  return (String(texte ?? "").match(MOTIF_MONTANT) ?? []).length;
+  return reperer(texte).length;
 }
 
 /** Les montants trouvés, dans l'ordre. */
 export function trouver(texte) {
-  MOTIF_MONTANT.lastIndex = 0;
-  return [...String(texte ?? "").matchAll(MOTIF_MONTANT)].map((m) => ({ texte: m[0], index: m.index }));
+  return reperer(texte);
 }
 
 /**
