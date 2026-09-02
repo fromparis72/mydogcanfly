@@ -10,7 +10,7 @@
  * chacun sur sa propre cause.
  */
 import { readFileSync } from "node:fs";
-import { classer, relever, verifier, citationsDeLHeritage, ancresOrphelines, MOTIF, ALTERNATIVES, CATEGORIES } from "./inventaire-iata.mjs";
+import { classer, relever, verifier, citationsDeLHeritage, ancresOrphelines, MOTIF, MOTIF_HERITE, ALTERNATIVES, FAMILLE_CONTENANT, CATEGORIES } from "./inventaire-iata.mjs";
 
 let defauts = 0;
 const echec = (nom, detail) => { defauts++; console.error(`  ✗ ${nom} — ${detail}`); };
@@ -284,6 +284,58 @@ const classerLigne = (chemin, ligne) => {
     }
   }
   if (bons === cas.length) ok(`8 les ${cas.length} formes d'invalidité sont diagnostiquées lisiblement, sans exception`);
+}
+
+/* ---- 9. L'EXTENSION DU 02/09/2026 EST UN AJOUT, PAS UNE RÉÉCRITURE ------------------------- */
+/* La famille « contenant + IATA » — « caisse IATA », « IATA crate », « Caisse IATA type » — a été
+ * ajoutée au relevé après un contre-test navigateur : ces formes n'étaient pas mal classées, elles
+ * étaient INVISIBLES, aucune alternative ne produisant un « IATA » nu.
+ *
+ * LE RISQUE D'UN TEL ÉLARGISSEMENT N'EST PAS D'EN VOIR TROP, C'EST D'EN DÉPLACER. Dans une
+ * alternance, une branche nouvelle qui accroche plus tôt CONSOMME le texte qu'une branche légitime
+ * attendait : « crate IATA standards » pourrait faire disparaître « IATA standards » du compte des
+ * références licites, sans que le total le montre. On rejoue donc le relevé avec le motif HÉRITÉ et
+ * on exige que chacune de ses occurrences soit encore là — même fichier, même ligne, même colonne,
+ * même texte, MÊME CATÉGORIE. */
+{
+  const avant = relever({ motif: MOTIF_HERITE });
+  const apres = relever();
+  const cle = (r) => `${r.fichier}:${r.ligne}:${r.colonne}:${r.trouve}`;
+  const carte = new Map(apres.map((r) => [cle(r), r]));
+  const disparues = avant.filter((r) => !carte.has(cle(r)));
+  const deplacees = avant.filter((r) => carte.has(cle(r)) && carte.get(cle(r)).categorie !== r.categorie);
+  if (!avant.length) echec("9 additivité", "le relevé hérité est vide — la contre-épreuve ne prouverait rien");
+  else if (disparues.length) {
+    echec("9 additivité", `${disparues.length} occurrence(s) du relevé hérité ont disparu`);
+    for (const d of disparues.slice(0, 5)) console.error(`      ${d.fichier}:${d.ligne}:${d.colonne} « ${d.trouve} » (${d.categorie})`);
+  } else if (deplacees.length) {
+    echec("9 additivité", `${deplacees.length} occurrence(s) ont changé de catégorie`);
+    for (const d of deplacees.slice(0, 5)) console.error(`      ${d.fichier}:${d.ligne} « ${d.trouve} » ${d.categorie} → ${carte.get(cle(d)).categorie}`);
+  } else if (apres.length <= avant.length) {
+    echec("9 additivité", `l'extension n'ajoute rien (${avant.length} → ${apres.length}) : la famille n'est pas relevée`);
+  } else ok(`9 additivité — les ${avant.length} occurrences héritées sont intactes, catégorie comprise, et l'extension en ajoute ${apres.length - avant.length}`);
+}
+
+/* ---- 10. LA FAMILLE VOIT CE QU'ELLE DOIT VOIR, ET RIEN DE PLUS ----------------------------- */
+/* Les deux sens, comme pour le détecteur de montants : les formes attribuant un contenant à l'IATA
+ * doivent être vues ; les références réglementaires licites doivent rester licites. Sans la seconde
+ * moitié, on pourrait faire tomber le compteur en emportant de l'information vraie. */
+{
+  const VUES = ["caisse IATA", "caisses IATA", "Caisse IATA type", "Jaula IATA típica", "IATA crate",
+    "IATA kennel", "IATA carrier", "caixa IATA", "transportín IATA", "sac IATA", "type IATA", "tipo IATA"];
+  /* « norma IATA » N'EST PAS DANS CETTE LISTE, ET C'EST UN CONSTAT, PAS UN OUBLI. L'espagnol
+     « norma IATA » est classé INTERDIT par un arbitrage antérieur, alors que le français
+     « norme(s) IATA » est classé LICITE. Les deux disent pourtant la même chose. L'incohérence
+     est ANTÉRIEURE à cette extension — elle ne vient pas d'elle et n'est pas corrigée ici — mais
+     elle est nommée pour arbitrage plutôt que gommée en l'inscrivant du côté qui m'arrange. */
+  const LICITES = ["normes IATA", "norme IATA", "exigences IATA", "IATA LAR",
+    "Live Animals Regulations", "IATA method", "IATA requirements", "IATA standards"];
+  const rates = VUES.filter((t) => { MOTIF.lastIndex = 0; const m = t.match(MOTIF); return !m || m[0] !== t; });
+  const perdues = LICITES.filter((t) => classer("x.md", t, (() => { MOTIF.lastIndex = 0; return (t.match(MOTIF) ?? [""])[0]; })(),
+    0, ((t.match(MOTIF) ?? [""])[0]).length) !== "reference_reglementaire_legitime");
+  if (rates.length) echec("10 famille", `formes non vues en entier : ${rates.join(", ")}`);
+  else if (perdues.length) echec("10 famille", `références licites devenues autre chose : ${perdues.join(", ")}`);
+  else ok(`10 famille — ${VUES.length} formes attribuant un contenant à l'IATA sont vues, ${LICITES.length} références licites le restent`);
 }
 
 if (defauts) { console.error(`\n[inventaire] ÉCHEC — ${defauts} contre-épreuve(s) en défaut`); process.exit(1); }

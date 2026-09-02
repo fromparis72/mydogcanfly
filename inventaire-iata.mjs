@@ -95,11 +95,55 @@ export const ALTERNATIVES = [
   `aprobad${SUITE}\\s+por\\s+la\\s+IATA`,
   `aprovad${SUITE}\\s+pela\\s+IATA`,
 ];
+
+/* ---- LA FAMILLE « CONTENANT + IATA », AJOUTÉE LE 02/09/2026 ---------------------------------
+ *
+ * CE QUI L'A RÉVÉLÉE : un contre-test navigateur, pas ce fichier. Deux libellés publiés —
+ * « Choisir une caisse IATA » sur l'accueil, « Caisse IATA type » sur les fiches de race — ne
+ * figuraient dans AUCUNE des huit catégories. Ils n'étaient pas mal classés : ils étaient
+ * INVISIBLES. Aucune alternative ci-dessus ne produit un « IATA » nu, si bien qu'un nom de
+ * contenant collé à « IATA » ne déclenchait rien du tout.
+ *
+ * POURQUOI C'EST UNE AFFIRMATION INTERDITE. « Caisse IATA » ne dit pas « homologuée », mais il
+ * attribue le contenant à l'IATA — qui publie des EXIGENCES de contenant et déclare ne certifier,
+ * n'approuver ni ne recommander aucun modèle. La forme « Caisse IATA type — 500 XL » allait plus
+ * loin encore : elle laissait lire une nomenclature de fabricant comme une classification IATA.
+ *
+ * CE QUI RESTE LICITE, ET QUE CETTE FAMILLE NE TOUCHE PAS : « normes IATA », « exigences IATA »,
+ * « IATA LAR », « méthode de mesure IATA », « Live Animals Regulations ». Aucune ne comporte de
+ * nom de contenant ; les alternatives ci-dessus les captent AVANT celles-ci, et une contre-épreuve
+ * exige qu'elles restent classées légitimes.
+ *
+ * LE MOTIF EST ÉCRIT UNE SEULE FOIS et sert AUX DEUX étages — le relevé et le jugement. Les
+ * définir séparément, c'est les laisser diverger : ce lot en a fait deux fois l'expérience avec le
+ * détecteur de montants. */
+const CONTENANT = "caisses?|cages?|crates?|kennels?|carriers?|sacs?|bags?|jaulas?"
+  + "|transport[íi]n(?:es)?|caixas?|bolsas?|conteneurs?";
+const QUALIF = "(?:de\\s+)?(?:type|typical|tipo|t[íi]pic[ao]s?)";
+/* L'ORDRE COMPTE : dans une alternance, la première branche qui accroche gagne. La forme à
+ * qualificatif SUIVANT — « Caisse IATA type » — doit donc précéder la forme nue, sans quoi celle-ci
+ * s'arrêterait à « Caisse IATA » et le relevé montrerait une phrase tronquée. */
+export const FAMILLE_CONTENANT = [
+  `\\b(?:${CONTENANT})\\s+IATA\\s+(?:${QUALIF})\\b`,     // Caisse IATA type · Jaula IATA típica
+  `\\b(?:${CONTENANT})\\s+(?:${QUALIF}\\s+)?IATA\\b`,   // caisse IATA · caisse de type IATA
+  `\\bIATA\\s+(?:${QUALIF}\\s+)?(?:${CONTENANT})\\b`,    // IATA crate · IATA typical kennel
+  `\\b(?:type|tipo)\\s+IATA\\b`,                        // « type IATA rigide »
+];
+
+/* LE MOTIF HÉRITÉ, GARDÉ POUR PROUVER QUE L'EXTENSION N'EST QU'UN AJOUT. La contre-épreuve rejoue
+ * le relevé avec lui et exige que CHAQUE occurrence d'alors soit encore là, à la même place et
+ * dans la même catégorie : une extension qui déplacerait un classement existant serait une
+ * réécriture déguisée du contrat, pas un élargissement. */
+export const ALTERNATIVES_HERITEES = [...ALTERNATIVES];
+ALTERNATIVES.push(...FAMILLE_CONTENANT);
+
 export const MOTIF = new RegExp(ALTERNATIVES.join("|"), "gi");
+export const MOTIF_HERITE = new RegExp(ALTERNATIVES_HERITEES.join("|"), "gi");
 
 /* ---- LES DEUX JUGEMENTS, PORTÉS SUR LE TEXTE TROUVÉ SEUL -----------------------------------
    Pas sur la ligne : c'est toute la correction du P0-2. Chacun ne voit que l'occurrence. */
 const OCC_LEGITIME = /^(?:Live Animals Regulations|IATA[- ]?(?:LAR|formula|method|requirements?|standards?|guidelines?)|normes?\s+IATA|exigences\s+IATA)$/i;
+const OCC_INTERDITE_FAMILLE = new RegExp(`^(?:${FAMILLE_CONTENANT.join("|")})$`, "i");
 const OCC_INTERDITE = /^(?:IATA[- ]?(?:approved|compliant|certified|accredited)|homologu[\wÀ-ÿ]*|homologad[\wÀ-ÿ]*|homologa[\wÀ-ÿ]*|conforme[s]?\s+(?:à\s+la\s+norme\s+)?IATA|conforme[s]?\s+(?:a|à)\s+la\s+IATA|conforme[s]?\s+(?:à|a)\s+(?:la\s+)?norma\s+IATA|norma\s+IATA|certifi[\wÀ-ÿ]*\s+IATA|approuv[\wÀ-ÿ]*\s+par\s+(?:l')?IATA|aprobad[\wÀ-ÿ]*\s+por\s+la\s+IATA|aprovad[\wÀ-ÿ]*\s+pela\s+IATA)$/i;
 
 /* Les quatre slugs que l'arbitrage conserve : identifiants historiques stables, jamais du
@@ -243,7 +287,7 @@ export function classer(chemin, ligne, trouve, debut, fin) {
 
   /* À partir d'ici, l'occurrence DOIT être une affirmation interdite. Sinon on ne sait pas ce
      que c'est, et on le dit. */
-  if (!OCC_INTERDITE.test(trouve)) return null;
+  if (!OCC_INTERDITE.test(trouve) && !OCC_INTERDITE_FAMILLE.test(trouve)) return null;
 
   /* Le registre de preuve prime sur tout classement de contenu : c'est un artefact de mesure,
      pas une surface. La comparaison est une ÉGALITÉ de chemin, jamais un préfixe ni un motif. */
@@ -321,7 +365,7 @@ export function* parcourir(dir, inverse = false) {
 }
 
 /** Le relevé complet, TRIÉ — l'ordre ne dépend d'aucun système de fichiers. */
-export function relever({ inverse = false, racine = RACINE } = {}) {
+export function relever({ inverse = false, racine = RACINE, motif = MOTIF } = {}) {
   const out = [];
   for (const p of parcourir(racine, inverse)) {
     const chemin = relative(racine, p);
@@ -330,8 +374,8 @@ export function relever({ inverse = false, racine = RACINE } = {}) {
     if (!/IATA|homolog/i.test(contenu)) continue;
     const lignes = contenu.split("\n");
     for (let i = 0; i < lignes.length; i++) {
-      MOTIF.lastIndex = 0;
-      for (const m of lignes[i].matchAll(MOTIF)) {
+      motif.lastIndex = 0;
+      for (const m of lignes[i].matchAll(motif)) {
         out.push({
           fichier: chemin, ligne: i + 1, colonne: m.index + 1, trouve: m[0],
           categorie: classer(chemin, lignes[i], m[0], m.index, m.index + m[0].length),
