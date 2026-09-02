@@ -211,10 +211,20 @@ const indicators: [string, string, Level][] = [
   <!-- CRATE + EXPERIENCE -->
   <section class="bt2-card bt2-two">
     <div>
-      <h2 class="bt2-h2">📦 {T("Typical IATA crate", "Caisse IATA type", "Jaula IATA típica")}</h2>
-      <div class="bt2-crate"><b>{p.crate.code}</b> <small>{p.crate.sizeLabel}</small></div>
-      <p class="bt2-chandet">{p.crate.dims}</p>
-      <a class="bt2-link" href={crateHref}>→ {T("Check the exact size with the calculator", "Vérifier la taille exacte avec le calculateur", "Comprueba el tamaño exacto con la calculadora")}</a>
+      {/* LA TAILLE DE CAISSE N'EST PLUS ANNONCÉE ICI (02/09/2026). Ce bloc publiait « 500 · XL ·
+          94×64×68 cm » sous un titre « Caisse IATA type » : un code de série COMMERCIAL présenté
+          comme une nomenclature de l'IATA, et des dimensions déduites du seul poids de la race par
+          une table écrite en dur, sourcée nulle part. Renommer le titre n'aurait rien fermé — c'est
+          l'ESTIMATION elle-même qui n'est pas publiable tant que les registres canoniques de
+          modèles et de profils sont vides. Le profil ne porte donc plus de champ `crate` du tout.
+          Ce qui reste est ce qui est vrai : un lien vers le calculateur, qui part des mesures de
+          l'animal saisies par son maître. */}
+      <h2 class="bt2-h2">📦 {T("Travel crate", "Cage de transport", "Transportín")}</h2>
+      <p class="bt2-chandet">{T(
+        "The right size depends on your dog's own measurements, not on its breed alone.",
+        "La bonne taille dépend des mesures de ton chien, pas de sa race seule.",
+        "El tamaño correcto depende de las medidas de tu perro, no solo de su raza.")}</p>
+      <a class="bt2-link" href={crateHref}>→ {T("What size travel crate does my dog need?", "Quelle taille de cage de transport pour mon chien ?", "¿Qué tamaño de transportín necesita mi perro?")}</a>
     </div>
     <div>
       <h2 class="bt2-h2">🎓 {T("Recommended experience", "Niveau recommandé", "Experiencia recomendada")}</h2>

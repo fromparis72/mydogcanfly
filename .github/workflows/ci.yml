@@ -349,6 +349,14 @@ jobs:
       - name: Un montant remis à la source ressort et fait rougir la garde (site complet)
         run: node test-montants-propagation.mjs --dist=packages/ui/dist
 
+      # AUCUNE TAILLE DE CAISSE NON SOURCÉE N'EST PUBLIÉE. Les fiches de race annonçaient
+      # « 500 · XL · 94×64×68 cm » et le calculateur « 500 / XL », tous deux lus dans une table
+      # 100/200/…/700 écrite en dur : une nomenclature de FABRICANT, que l'IATA ne publie pas, aux
+      # dimensions sourcées nulle part. Ce contrôle tient l'absence ET la présence — le minimum
+      # calculé depuis les mesures saisies, lui, doit toujours paraître, dans les quatre langues.
+      - name: Aucune taille de caisse non sourcée publiée (site complet)
+        run: node test-caisses-non-sourcees.mjs --dist=packages/ui/dist
+
       # ÉTAPE 3 : les libellés disent TOUS les canaux ouverts, et les surfaces applicatives
       # ne présentent plus un modèle comme certifié par l'IATA. Ce contrôle EXIGE `--dist` et refuse son absence —
       # une garde qui se saute faute d'artefact ne garde rien.

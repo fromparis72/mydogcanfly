@@ -1,12 +1,20 @@
 ---
-/* Crate size calculator — pick the right IATA travel crate for your dog.
-   Method (IATA LAR, official): measure the dog standing — A nose→tail base, B floor→elbow,
-   C shoulder width, D floor→top of head/ears. Required interior: L = A + ½B, W = C × 2, H = D.
-   Snub-nosed (brachycephalic) breeds: +10% (one size up, MyDogCanFly's own comfort margin — not
-   an IATA-mandated figure). The user only measures A and D; B (elbow height) and C (shoulder width)
-   are ESTIMATED (from D and from breed weight) — so the computed minimum is an estimate, not an
-   "exact IATA requirement", and the standard size (a real, buyable crate) is shown as the primary,
-   more usable result — the calculated minimum stays visible underneath as the reference figure.
+/* Calculateur de dimensions intérieures minimales, à partir des mesures de l'animal.
+   Méthode de dimensionnement publiée par l'IATA (LAR) : mesurer le chien debout — A museau→base de
+   la queue, B sol→coude, C largeur d'épaules, D sol→sommet de la tête/des oreilles. Intérieur
+   requis : L = A + ½B, l = C × 2, H = D. Races brachycéphales : +10 %, marge de confort
+   MyDogCanFly, PAS un chiffre imposé par l'IATA. L'utilisateur ne mesure que A et D ; B et C sont
+   ESTIMÉS (depuis D et depuis le poids de la race) — le minimum affiché est donc une estimation,
+   jamais une « exigence IATA exacte ».
+
+   LA CORRESPONDANCE VERS UNE SÉRIE COMMERCIALE A ÉTÉ RETIRÉE (02/09/2026). Le résultat principal
+   était « 500 / XL ≈ 94 × 64 × 68 cm », lu dans une table 100/200/…/700 écrite en dur et dupliquée
+   dans `breedTravel.ts`. Cette série est une nomenclature de FABRICANT — l'IATA ne la publie pas —
+   et ses dimensions n'étaient sourcées nulle part ; les registres canoniques de modèles et de
+   profils sont vides. Un résultat non publiable ne devient pas publiable parce qu'il est utile.
+   Ce qui reste est ce qui est établi : le minimum calculé depuis les mesures SAISIES, et la
+   méthode dont il découle. La perte est nommée : l'avertissement « plus grand qu'une 700 standard »
+   disparaît avec la table, faute de pouvoir dire à partir de quoi il serait vrai.
    Airline cabin fit uses the real per-airline carrier dimensions from the KB where available; an
    airline that refuses cabin AND hold AND cargo (retest 09/08/2026: Ryanair, easyJet, Wizz Air,
    Icelandair, IndiGo, Batik Air Indonesia/Malaysia) gets one unambiguous "no pets at all" message
@@ -60,17 +68,6 @@ const airlines = [...kb.airlines.values()].map((a) => {
 const bestCratesHref = locale === "en" ? "/tools/best-crates/" : `/${locale}/tools/best-crates/`;
 const bestCarriersHref = locale === "en" ? "/tools/best-carriers/" : `/${locale}/tools/best-carriers/`;
 
-// Standard airline kennel series — TYPICAL interior dimensions (cm). Indicative only: real crates vary,
-// so the tool always shows the exact computed minimum and tells the user to verify the model's interior.
-const SIZES = [
-  { n: "100", tag: "XS", l: 48, w: 33, h: 33 },
-  { n: "200", tag: "S", l: 63, w: 43, h: 45 },
-  { n: "300", tag: "M", l: 73, w: 48, h: 55 },
-  { n: "400", tag: "L", l: 84, w: 57, h: 60 },
-  { n: "500", tag: "XL", l: 94, w: 64, h: 68 },
-  { n: "700", tag: "XXL", l: 112, w: 76, h: 82 },
-];
-
 const L = {
   locale, apiBase: API_BASE,
   bestCratesHref, bestCarriersHref,
@@ -80,17 +77,21 @@ const L = {
   breedById: Object.fromEntries(breeds.map((b) => [b.id, b.label])),
   airlines: Object.fromEntries(airlines.map((a) => [a.id, a])),
   airlineList: airlines.map((a) => ({ id: a.id, name: a.name })),
-  sizes: SIZES,
   s: {
     loading: T("Calculating…", "Calcul en cours…", "Calculando…"),
     fillHint: T("Enter your dog's length, height and weight (or pick a breed to pre-fill an estimate).", "Saisis la longueur, la hauteur et le poids de ton chien (ou choisis une race pour pré-remplir une estimation).", "Introduce la longitud, la altura y el peso de tu perro (o elige una raza para prerrellenar una estimación)."),
     estBadge: T("Estimate from breed — replace the dimensions and the weight with your dog's real values.", "Estimation d'après la race — remplacez les dimensions et le poids par les valeurs réelles de ton chien.", "Estimación a partir de la raza: sustituye las dimensiones y el peso por los valores reales de tu perro."),
-    reqTitle: T("Calculated minimum", "Minimum calculé", "Mínimo calculado"),
+    reqTitle: T("Minimum interior dimensions calculated from your measurements",
+      "Dimensions intérieures minimales calculées à partir des mesures saisies",
+      "Dimensiones interiores mínimas calculadas a partir de las medidas introducidas"),
     reqNote: T("Estimated minimum interior dimensions from your measurements. Elbow height and shoulder width are estimated — check that your dog can stand up, turn around and lie down comfortably.", "Estimation des dimensions intérieures minimales à partir de tes mesures. La hauteur du coude et la largeur des épaules sont estimées ; vérifie que ton chien peut se tenir debout, se retourner et s'allonger confortablement.", "Estimación de las dimensiones interiores mínimas a partir de tus medidas. La altura del codo y el ancho de los hombros son estimados: comprueba que tu perro pueda ponerse de pie, darse la vuelta y tumbarse cómodamente."),
     brachyNote: T("Snub-nosed breed: MyDogCanFly adds a +10% comfort margin for breathing ease — this is our own margin, not a universal IATA formula.", "Race brachycéphale : marge de confort MyDogCanFly de +10 % pour le confort respiratoire — ce n'est pas une formule IATA universelle.", "Raza de hocico chato: MyDogCanFly añade un margen de confort de +10 % para facilitar la respiración; no es una fórmula IATA universal."),
-    sizeTitle: T("Recommended size", "Taille conseillée", "Talla recomendada"),
-    sizeNote: T("Indicative series — always check the real crate's interior dimensions.", "Série indicative — vérifie toujours les dimensions intérieures réelles de la cage.", "Serie orientativa: comprueba siempre las dimensiones interiores reales de la jaula."),
-    sizeOver: T("Larger than a standard 700 — a custom/XXL crate is needed.", "Plus grand qu'une 700 standard — une cage sur mesure/XXL est nécessaire.", "Más grande que una 700 estándar: se necesita una jaula a medida/XXL."),
+    /* L'EXPLICATION LÉGITIME, GARDÉE À PART DU CHIFFRE. Citer la méthode de dimensionnement
+       publiée par l'IATA est exact ; en déduire qu'une caisse serait « IATA » ne l'est pas. Et le
+       dernier mot revient à la compagnie qui opère le vol, jamais à ce calculateur. */
+    methodNote: T("Calculated using the sizing method published by IATA. Final acceptance is decided by the operating airline.",
+      "Calcul effectué selon la méthode de dimensionnement publiée par l'IATA. L'acceptation finale revient à la compagnie qui opère le vol.",
+      "Cálculo realizado según el método de dimensionamiento publicado por la IATA. La aceptación final corresponde a la aerolínea que opera el vuelo."),
     cabinTitle: T("Cabin or hold?", "Cabine ou soute ?", "¿Cabina o bodega?"),
     cabinFits: T("Cabin-eligible", "Éligible cabine", "Apto para cabina"),
     cabinByWeight: T("Cabin-eligible by weight", "Éligible cabine (par le poids)", "Apto para cabina (por el peso)"),
@@ -135,7 +136,7 @@ const L = {
     submit: T("Calculate crate size", "Calculer la taille de cage", "Calcular la talla de la jaula"),
     mA: T("Length — nose to base of tail", "Longueur — nez à la base de la queue", "Longitud: del hocico a la base de la cola"),
     mD: T("Height — floor to top of head/ears (standing)", "Hauteur — sol au sommet de la tête/oreilles (debout)", "Altura: del suelo a lo alto de la cabeza/orejas (de pie)"),
-    measureTitle: T("How to measure your dog for its IATA travel crate", "Comment mesurer ton chien pour sa caisse de transport IATA", "Cómo medir a tu perro para su jaula de transporte IATA"),
+    measureTitle: T("How to measure your dog for its travel crate", "Comment mesurer ton chien pour sa cage de transport", "Cómo medir a tu perro para su jaula de transporte"),
     onwardTitle: T("What's next?", "Et ensuite ?", "¿Y ahora qué?"),
     bestCrates: T("Best travel crates 2026", "Classement des meilleures cages 2026", "Mejores jaulas de viaje 2026"),
     bestCarriers: T("Best cabin carriers 2026", "Classement des meilleurs sacs cabine 2026", "Mejores bolsos de cabina 2026"),
@@ -203,7 +204,6 @@ const L = {
 
   const BREEDS: Record<string, { id: string; w: number; br: boolean; size: string }> = reKey(L.breeds ?? {});
   const AIR: Record<string, { name: string; cabin: { maxKg: number | null; dims: { l: number; w: number; h: number } | null } | null; hold: "yes" | "no" | "unknown"; cargo: boolean; noPets: boolean; site: string; fiche: string }> = L.airlines ?? {};
-  const SIZES: { n: string; tag: string; l: number; w: number; h: number }[] = L.sizes ?? [];
 
   let unit: "cm" | "in" = "cm";
   const IN = 2.54;      // cm per inch
@@ -321,9 +321,6 @@ const L = {
     // IATA formula (interior minimums), +10% for snub-nosed. L = A + ½B, W = C × 2, H = D.
     const Lc = (a + bEst / 2) * k, Wc = (c * 2) * k, Hc = d * k;
 
-    // Standard size mapping (indicative).
-    const size = SIZES.find((s) => s.l >= Lc && s.w >= Wc && s.h >= Hc);
-
     // Airline cabin/hold verdict. Cabin is soft-bag (dog lies down): decided by WEIGHT + footprint
     // (length A, shoulder width C) vs the carrier — NOT the standing-height hold formula.
     const airId = gv("crx-airline");
@@ -385,14 +382,10 @@ const L = {
     out.hidden = false;
     out.innerHTML = `
       <div class="crx-card">
-        <h3>${esc(S.sizeTitle)}</h3>
-        ${size ? `<div class="crx-size"><span class="crx-size__code">${size.n} / ${size.tag}</span><span class="crx-size__d">≈ ${fmt3(size.l, size.w, size.h)}</span></div>` : `<div class="crx-line crx-line--warn">⚠️ ${esc(S.sizeOver)}</div>`}
-        <p class="crx-sub">${esc(S.sizeNote)}</p>
-      </div>
-      <div class="crx-card">
         <h3>${esc(S.reqTitle)}</h3>
         <div class="crx-dims"><span><b>${fmt(Lc)}</b><i>L</i></span><span><b>${fmt(Wc)}</b><i>${uLabel() === "cm" ? "l" : "W"}</i></span><span><b>${fmt(Hc)}</b><i>H</i></span></div>
         <p class="crx-sub">${esc(S.reqNote)}${brachy ? " " + esc(S.brachyNote) : ""}</p>
+        <p class="crx-sub">${esc(S.methodNote)}</p>
       </div>
       <div class="crx-card">
         <h3>${esc(S.cabinTitle)}</h3>
