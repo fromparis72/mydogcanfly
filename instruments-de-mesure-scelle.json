@@ -1,0 +1,10 @@
+{
+  "_commentaire": "LES INSTRUMENTS DE MESURE DU VOCABULAIRE IATA, SCELLÉS. Ces fichiers portent le relevé et ses vecteurs de contre-épreuve, jamais une affirmation servie : leurs occurrences sont comptées à part et n'entrent dans aucun lot à corriger. Une liste confrontée à elle-même ne prouve pas la légitimité de ses membres — ce scellé est le second témoin. Ajouter ou retirer un instrument exige le rescellement dans la même pull request, par « node inventaire-iata.mjs --sceller ».",
+  "chemins": [
+    "dette-iata-publiee.json",
+    "inventaire-iata.mjs",
+    "test-etape3-dom.mjs",
+    "test-inventaire-iata.mjs"
+  ],
+  "empreinte": "1877f75eea7c8df91fc529fe8784b52baf3432c7574b96c84420c6aa1276f7be"
+}

@@ -68,8 +68,9 @@
  * était comptée « artefact généré » — donc rangée parmi les choses à traiter alors qu'elle est
  * juste.
  */
-import { readFileSync, readdirSync, statSync, existsSync } from "node:fs";
+import { readFileSync, writeFileSync, readdirSync, statSync, existsSync } from "node:fs";
 import { join, relative, extname } from "node:path";
+import { createHash } from "node:crypto";
 
 const RACINE = process.cwd();
 
@@ -223,6 +224,61 @@ const GENERES = [/^packages\/knowledge\/raw\/guides\.json$/, /\.generated\.json$
  * `docs/dette-iata-publiee.json`, `test-etape3-dom.backup.mjs` et une vraie source éditoriale ne
  * bénéficient pas de cette priorité — la même formulation y reste comptée. */
 export const INSTRUMENTS_DE_MESURE = ["dette-iata-publiee.json", "inventaire-iata.mjs", "test-etape3-dom.mjs", "test-inventaire-iata.mjs"];
+
+/* ---- LE SCELLÉ DES INSTRUMENTS -------------------------------------------------------------
+ *
+ * ATTAQUE REPRODUITE PAR LA CONTRE-REVUE DU 02/09/2026, sur le vrai harnais. Ajouter
+ * `packages/ui/src/content/guides/fr/voyager-avion-avec-chien.md` — une VRAIE source éditoriale,
+ * onze occurrences — à la liste ci-dessus, sans rien changer d'autre : sortie 0, tout vert. Le
+ * harnais annonçait cinq instruments et retirait onze occurrences du micro-lot éditorial sans
+ * qu'aucun contrôle ne bronche.
+ *
+ * POURQUOI LES CONTRE-ÉPREUVES NE LE VOYAIENT PAS. Elles importaient cette même liste au lieu de
+ * la recopier — ce qui était la bonne décision contre la divergence, et reste la bonne. Mais une
+ * liste confrontée à elle-même ne prouve que son APPLICATION et son BORNAGE par chemin, jamais la
+ * LÉGITIMITÉ de ses membres. Il fallait un second témoin, versionné, extérieur au code.
+ *
+ * LE CONTRAT, repris du scellé de curation du lot B : la liste canonique reste unique, et elle
+ * est confrontée à `instruments-de-mesure-scelle.json`. Ajouter un instrument exige donc DEUX
+ * gestes dans la même pull request — l'ajout, puis `node inventaire-iata.mjs --sceller` — et le
+ * diff du scellé rend l'ajout visible et relisible. Le mode par défaut ne sait qu'échouer, en
+ * NOMMANT le chemin ajouté ou retiré. */
+export const CHEMIN_SCELLE_INSTRUMENTS = "instruments-de-mesure-scelle.json";
+
+const empreinteDe = (chemins) => createHash("sha256").update(JSON.stringify([...chemins].sort())).digest("hex");
+
+/** Les écarts entre la liste canonique et son scellé versionné. Vide = scellé tenu. */
+export function verifierScelleInstruments(liste = INSTRUMENTS_DE_MESURE, chemin = CHEMIN_SCELLE_INSTRUMENTS) {
+  const ecarts = [];
+  let scelle;
+  try { scelle = JSON.parse(readFileSync(chemin, "utf8")); }
+  catch (e) { return [`scellé illisible (${chemin}) : ${e.message}`]; }
+
+  const attendus = Array.isArray(scelle?.chemins) ? scelle.chemins : null;
+  if (!attendus) return [`scellé sans liste « chemins » : ${chemin}`];
+
+  /* L'EMPREINTE EST CONFRONTÉE, PAS SEULEMENT DÉCLARÉE — sans quoi il suffirait d'éditer la liste
+     du scellé en laissant l'empreinte, et le scellé mentirait sur lui-même. */
+  if (scelle.empreinte !== empreinteDe(attendus)) ecarts.push("l'empreinte du scellé ne correspond pas à sa propre liste — le scellé a été édité à la main");
+
+  const vus = new Set(liste), fige = new Set(attendus);
+  for (const c of [...vus].sort()) if (!fige.has(c)) ecarts.push(`instrument AJOUTÉ sans rescellement : ${c}`);
+  for (const c of [...fige].sort()) if (!vus.has(c)) ecarts.push(`instrument RETIRÉ sans rescellement : ${c}`);
+  /* Un doublon ne change ni l'ensemble ni l'empreinte : il est nommé pour lui-même. */
+  if (liste.length !== vus.size) ecarts.push(`la liste canonique porte ${liste.length} entrées pour ${vus.size} chemins distincts`);
+  return ecarts;
+}
+
+/** Réécrit le scellé. Geste EXPLICITE : `node inventaire-iata.mjs --sceller`. */
+export function scellerInstruments(liste = INSTRUMENTS_DE_MESURE, chemin = CHEMIN_SCELLE_INSTRUMENTS) {
+  const chemins = [...new Set(liste)].sort();
+  writeFileSync(chemin, JSON.stringify({
+    _commentaire: "LES INSTRUMENTS DE MESURE DU VOCABULAIRE IATA, SCELLÉS. Ces fichiers portent le relevé et ses vecteurs de contre-épreuve, jamais une affirmation servie : leurs occurrences sont comptées à part et n'entrent dans aucun lot à corriger. Une liste confrontée à elle-même ne prouve pas la légitimité de ses membres — ce scellé est le second témoin. Ajouter ou retirer un instrument exige le rescellement dans la même pull request, par « node inventaire-iata.mjs --sceller ».",
+    chemins,
+    empreinte: empreinteDe(chemins),
+  }, null, 2) + "\n");
+  return chemins;
+}
 const TESTS = [/^test-/, /^mesures\//, /^test-baselines\//, /^test-lib\//, /^DOSSIER-/, /^docs\//, /^ADR/, /\.test\.[tj]s$/];
 
 /* L'HÉRITAGE V1. La v2 prétendait PROUVER qu'il est inerte, en cherchant `"static/…"` dans les
@@ -430,6 +486,10 @@ const IGNORE = new Set(["node_modules", ".git", "dist", ".astro", "coverage", ".
    1172, héritage v1 29, références licites 586, slugs 30, commentaires de test 55, artefacts à
    régénérer 816, affirmations publiques interdites 0. Rien à corriger n'est apparu ni disparu :
    seul l'invisible est devenu lisible.
+   (Ces nombres décrivent CE MOUVEMENT-LÀ, à sa date. Le total a bougé depuis, et pour une autre
+   raison, nommée elle aussi : `test-zones-publiques.mjs`, la contre-épreuve du lecteur de zones,
+   a porté 31 occurrences de plus en `test_commentaire_historique` — 3431 → 3462, 588 → 590
+   fichiers. Le tableau de synthèse, lui, dit toujours l'état du jour.)
    `package-lock.json` reste hors périmètre : ce n'est pas un instrument, c'est un fichier généré
    que personne ne relit. */
 const FICHIERS_IGNORES = new Set(["package-lock.json"]);
@@ -480,12 +540,25 @@ export function verifier(releve, declarations = A_REFORMULER) {
   const inconnues = releve.filter((r) => r.categorie === null || r.categorie === undefined);
   const hors = releve.filter((r) => r.categorie != null && !CATEGORIES.includes(r.categorie));
   const orphelines = ancresOrphelines(releve, declarations);
-  return { inconnues, hors, orphelines, ok: inconnues.length === 0 && hors.length === 0 && orphelines.length === 0 };
+  /* LE SCELLÉ EST VÉRIFIÉ ICI, avec les autres refus, et pas seulement dans le harnais : un
+     instrument ajouté en douce retire des occurrences du compte, ce qui EST une falsification du
+     relevé — pas un détail de test. */
+  const scelle = verifierScelleInstruments();
+  return {
+    inconnues, hors, orphelines, scelle,
+    ok: inconnues.length === 0 && hors.length === 0 && orphelines.length === 0 && scelle.length === 0,
+  };
 }
 
 /* ---- SORTIE -------------------------------------------------------------------------------- */
 if (import.meta.url === `file://${process.argv[1]}`) {
   const ARGS = process.argv.slice(2);
+  if (ARGS.includes("--sceller")) {
+    const chemins = scellerInstruments();
+    console.log(`scellé RÉÉCRIT : ${chemins.length} instrument(s)`);
+    for (const c of chemins) console.log(`  · ${c}`);
+    process.exit(0);
+  }
   const releve = relever();
 
   const constats = citationsDeLHeritage();
@@ -495,6 +568,7 @@ if (import.meta.url === `file://${process.argv[1]}`) {
     for (const r of v.inconnues.slice(0, 20)) console.error(`  occurrence qu'aucune règle ne reconnaît : ${r.fichier}:${r.ligne}:${r.colonne}  « ${r.trouve} »`);
     for (const r of v.hors.slice(0, 20)) console.error(`  catégorie hors liste : ${r.fichier}:${r.ligne}:${r.colonne}  « ${r.categorie} »`);
     for (const r of v.orphelines) console.error(`  ancre de reformulation qui ne trouve rien : ${r.fichier} « ${r.ancre} »`);
+    for (const e of v.scelle) console.error(`  scellé des instruments : ${e}`);
     process.exit(1);
   }
 

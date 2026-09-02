@@ -9,8 +9,10 @@
  * contrat. On éprouve donc ici les quatre faux-verts trouvés par la contre-revue du 30/08/2026,
  * chacun sur sa propre cause.
  */
-import { readFileSync } from "node:fs";
-import { classer, relever, verifier, citationsDeLHeritage, ancresOrphelines, MOTIF, MOTIF_HERITE, ALTERNATIVES, FAMILLE_CONTENANT, FORMES_BORNEES, CATEGORIES, INSTRUMENTS_DE_MESURE } from "./inventaire-iata.mjs";
+import { readFileSync, writeFileSync, mkdtempSync, rmSync } from "node:fs";
+import { join, dirname } from "node:path";
+import { tmpdir } from "node:os";
+import { classer, relever, verifier, citationsDeLHeritage, ancresOrphelines, MOTIF, MOTIF_HERITE, ALTERNATIVES, FAMILLE_CONTENANT, FORMES_BORNEES, CATEGORIES, INSTRUMENTS_DE_MESURE, CHEMIN_SCELLE_INSTRUMENTS, verifierScelleInstruments } from "./inventaire-iata.mjs";
 
 let defauts = 0;
 const echec = (nom, detail) => { defauts++; console.error(`  ✗ ${nom} — ${detail}`); };
@@ -185,6 +187,46 @@ const classerLigne = (chemin, ligne) => {
   else ok(`6sexies les ${attendus.length} instruments de mesure se retirent du compte — ${parFichier.join(" · ")} —, et zéro n'entre au micro-lot éditorial`);
 }
 
+/* 6 octies — LA LISTE DES INSTRUMENTS EST SCELLÉE, PAS SEULEMENT CENTRALISÉE.
+ *
+ * ATTAQUE DE LA CONTRE-REVUE DU 02/09/2026, rejouée ici. Ajouter
+ * `packages/ui/src/content/guides/fr/voyager-avion-avec-chien.md` — une vraie source éditoriale,
+ * onze occurrences — à `INSTRUMENTS_DE_MESURE` : le harnais sortait en 0, entièrement vert, en
+ * annonçant cinq instruments et en retirant ces onze occurrences du micro-lot éditorial.
+ *
+ * POURQUOI 6sexies ET 6septies NE POUVAIENT PAS LE VOIR, et pourquoi ils restent justes malgré
+ * cela : ils IMPORTENT la liste au lieu de la recopier — la bonne décision contre la divergence.
+ * Mais une liste confrontée à elle-même ne prouve que son application et son bornage par chemin ;
+ * elle ne peut rien dire de la LÉGITIMITÉ de ses membres. Il faut un témoin extérieur, versionné.
+ *
+ * ON ÉPROUVE LES DEUX SENS : la liste réelle tient son scellé, et une liste enrichie de cette
+ * source précise est refusée EN LA NOMMANT. On éprouve aussi le scellé contre lui-même : une
+ * liste éditée à la main sans recalcul de l'empreinte est vue. */
+{
+  const ecarts = [];
+  const reel = verifierScelleInstruments();
+  if (reel.length) ecarts.push(`la liste réelle ne tient pas son scellé : ${reel.join(" · ")}`);
+
+  const INTRUS = "packages/ui/src/content/guides/fr/voyager-avion-avec-chien.md";
+  const vus = verifierScelleInstruments([...INSTRUMENTS_DE_MESURE, INTRUS]);
+  if (!vus.length) ecarts.push("une vraie source éditoriale ajoutée à la liste passe le scellé");
+  else if (!vus.some((e) => e.includes(INTRUS))) ecarts.push(`l'ajout est refusé mais le chemin n'est pas nommé : ${vus.join(" · ")}`);
+
+  const retire = verifierScelleInstruments(INSTRUMENTS_DE_MESURE.filter((c) => c !== "test-etape3-dom.mjs"));
+  if (!retire.some((e) => e.includes("test-etape3-dom.mjs"))) ecarts.push(`un instrument RETIRÉ n'est pas nommé : ${retire.join(" · ")}`);
+
+  /* Le scellé ne doit pas pouvoir mentir sur lui-même : on lui donne une liste et une empreinte
+     qui ne se correspondent pas, par un fichier temporaire — le scellé du dépôt n'est pas touché. */
+  const faux = join(mkdtempSync(join(tmpdir(), "scelle-")), "scelle.json");
+  writeFileSync(faux, JSON.stringify({ chemins: [...INSTRUMENTS_DE_MESURE, "packages/ui/src/pages/index.astro"], empreinte: "0".repeat(64) }));
+  const menteur = verifierScelleInstruments([...INSTRUMENTS_DE_MESURE, "packages/ui/src/pages/index.astro"], faux);
+  if (!menteur.some((e) => e.includes("empreinte"))) ecarts.push(`un scellé édité à la main n'est pas vu : ${menteur.join(" · ")}`);
+  rmSync(dirname(faux), { recursive: true, force: true });
+
+  if (ecarts.length) echec("6octies scellé des instruments", ecarts.join(" · "));
+  else ok(`6octies la liste des instruments tient son scellé versionné (${CHEMIN_SCELLE_INSTRUMENTS}) ; un ajout, un retrait et un scellé falsifié sont refusés en nommant le chemin`);
+}
+
 /* 6 septies — LA CATÉGORIE EST BORNÉE À UN CHEMIN EXACT. La même formulation écrite dans une
    VRAIE source éditoriale reste une dette éditoriale : sans cela, la catégorie deviendrait une
    porte de sortie, et il suffirait de nommer un fichier « registre » pour s'y soustraire. */
@@ -277,7 +319,11 @@ const classerLigne = (chemin, ligne) => {
      le harnais aurait levé un TypeError au lieu de dire ce qui cloche — reproduit :
      « Cannot read properties of undefined (reading 'length') ». Il lit désormais les trois
      collections que `verifier()` rend réellement. */
-  if (!v.ok) echec("7 relevé réel", `${v.inconnues.length} inconnue(s), ${v.hors.length} hors liste, ${v.orphelines.length} ancre(s) orpheline(s)`);
+  /* Et le scellé des instruments EST une cause de refus depuis le 02/09/2026 : sans lui dans ce
+     message, l'attaque de la contre-revue faisait rougir un contrôle qui n'en disait pas la
+     raison — « 0 inconnue, 0 hors liste, 0 orpheline », donc rouge sans motif lisible. */
+  if (!v.ok) echec("7 relevé réel", `${v.inconnues.length} inconnue(s), ${v.hors.length} hors liste, ${v.orphelines.length} ancre(s) orpheline(s)`
+    + (v.scelle.length ? ` · scellé des instruments : ${v.scelle.join(" · ")}` : ""));
   else {
     const somme = CATEGORIES.reduce((n, c) => n + releve.filter((r) => r.categorie === c).length, 0);
     if (somme !== releve.length) echec("7 relevé réel", `${somme} classées pour ${releve.length} occurrences`);
