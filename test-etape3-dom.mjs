@@ -10,14 +10,15 @@
  *      « somente » — ne doit paraître dans une page qui annonce deux canaux ouverts. C'est
  *      l'affirmation FAUSSE que l'étape 3 ferme : douze cartes disaient « Soute uniquement »
  *      alors que le fret était ouvert.
- *   2. LE VOCABULAIRE D'HOMOLOGATION. Les 27 corrections applicatives doivent se voir dans les
+ *   2. LE VOCABULAIRE D'HOMOLOGATION. Les corrections applicatives doivent se voir dans les
  *      pages rendues, et les quatre libellés combinés doivent y être présents dans leur langue.
  *
  * `--dist` est OBLIGATOIRE. Une garde qui se saute quand l'artefact manque ne garde rien : c'est
  * exactement la faute qui a fait tomber la preuve DOM de l'inventaire, sautée à chaque exécution
  * parce qu'elle tournait avant le build.
  */
-import { readFileSync, writeFileSync, readdirSync, statSync, existsSync } from "node:fs";
+import { readFileSync, writeFileSync, readdirSync, statSync, existsSync, mkdtempSync, mkdirSync, rmSync } from "node:fs";
+import { tmpdir } from "node:os";
 import { join } from "node:path";
 import { MOTIF, jugerOccurrence } from "./inventaire-iata.mjs";
 import { zonesDe } from "./test-lib/zones-publiques.mjs";
@@ -53,14 +54,11 @@ ok(`départ : ${pages.length} pages construites`);
    IATA-approved/compliant/certified, homologué·e par l'IATA, caisse/cage homologuée, conforme
    IATA, norma/norme IATA, padrão IATA, aprovada pela IATA, aprobada por la IATA.
    Elle ne connaissait pas la famille « contenant + IATA », ni le pluriel « normas ». */
-/* CE QUE L'ÉTAPE 3 POSSÈDE, ET CE QU'ELLE NE POSSÈDE PAS. Le premier passage de ce contrôle a
-   rougi sur 52 pages — airBaltic, Icelandair, l'Australie, la Jamaïque… — et il avait raison de
-   les voir : elles PUBLIENT bien une homologation. Mais la phrase ne vient pas d'un gabarit :
-   elle vient des DONNÉES GÉNÉRÉES, `airlines.generated.json` et `countries.generated.json`,
-   c'est-à-dire du micro-lot éditorial, qui les corrigera par ses générateurs.
-   On ne masque donc pas ces pages : on les SÉPARE par leur source. Ce qui vient d'un gabarit est
-   un échec de l'étape 3 ; ce qui vient des données générées est une dette éditoriale, COMPTÉE et
-   nommée ici pour qu'elle ne se perde pas. */
+/* CE QUE L'ÉTAPE 3 POSSÈDE, ET CE QU'ELLE NE POSSÈDE PAS. Ce contrôle rougit sur les pages qui
+   PUBLIENT encore une affirmation interdite. On ne les masque pas et on ne leur attribue pas de
+   provenance : ce qui est mesurable sans deviner, c'est ZÉRO dans les surfaces applicatives, et un
+   REGISTRE EXACT de ce qui reste publié. Le micro-lot éditorial le ramènera à zéro par ses
+   générateurs, et c'est lui qui établira les provenances, une par une. */
 {
   /* DEUX RÉDACTIONS FAUTIVES, NOMMÉES. J'ai d'abord voulu imputer chaque page fautive à sa
      source — gabarit ou données — par comparaison de son texte rendu avec les artefacts générés.
@@ -75,7 +73,7 @@ ok(`départ : ${pages.length} pages construites`);
      portent plus AUCUNE affirmation interdite : c'est le contrat de l'étape 3, mesuré à 0.
 
      CE QUI RESTE PUBLIÉ EST NOMMÉ « DETTE PUBLIQUE RESTANTE », SANS PROVENANCE ATTRIBUÉE. Je n'ai
-     relié mécaniquement aucune de ces 52 pages à sa source ; j'ai seulement vérifié trois cas à
+     relié mécaniquement aucune de ces pages à sa source ; j'ai seulement vérifié trois cas à
      la main — Icelandair, airBaltic, Air Caraïbes —, ce qui ne fonde aucune règle. Écrire qu'elles
      « viennent nécessairement des données générées » serait une déduction que rien n'établit :
      l'inventaire dit où le vocabulaire vit dans les SOURCES, il ne dit pas quelle source a produit
@@ -111,26 +109,34 @@ ok(`départ : ${pages.length} pages construites`);
      lit la page par ses ZONES PUBLIQUES DÉCODÉES, comme la garde des montants.
      LA ZONE EST SCELLÉE AVEC L'URL ET LA FORMULATION : sans elle, un défaut déplacé du corps vers
      une métadonnée passerait à total constant. */
-  const vu = {};
-  let jsonLdIllisibles = 0;
-  for (const p of pages) {
-    const url = p.slice(DIST.length).replace(/\/index\.html$/, "/");
-    const html = readFileSync(p, "utf8");
-    if (!/IATA|homolog/i.test(html)) continue;
-    const z = zonesDe(html);
-    jsonLdIllisibles += z.jsonLdInvalide;
-    if (z.jsonLdInvalide) echec("1bis lecture", `${url} : ${z.jsonLdInvalide} bloc(s) JSON-LD illisible(s) — leur contenu n'a pas pu être jugé`);
-    const par = {};
-    for (const [zone, texte] of [["titre", z.titre], ["corps", z.corps], ["metas", z.metas], ["json-ld", z.jsonLd]]) {
-      MOTIF.lastIndex = 0;
-      for (const m of String(texte).matchAll(MOTIF)) {
-        if (jugerOccurrence(m[0]) !== "interdite") continue;
-        const f = `${zone} · ${m[0].toLowerCase().replace(/\s+/g, " ").trim()}`;
-        par[f] = (par[f] || 0) + 1;
+  /* LE PRÉFILTRE SUR LE HTML BRUT A ÉTÉ SUPPRIMÉ (contre-revue du 02/09/2026), et c'était un faux
+     vert de la pire espèce : il décidait de NE PAS LIRE une page avant de l'avoir décodée. Une
+     affirmation écrite « \u0049ATA crate » dans le JSON-LD, ou « I&#65;TA crate » en entité HTML
+     dans le corps, ne contient aucune suite brute « IATA » — la page était donc écartée sans
+     jamais passer par le lecteur de zones, qui l'aurait pourtant rendue lisible. Un filtre posé
+     AVANT le décodage annule le décodage. Les 3 121 pages sont désormais toutes parsées. */
+  const relevePublie = (racine, listePages) => {
+    const vu = {};
+    let illisibles = 0;
+    for (const p of listePages) {
+      const url = p.slice(racine.length).replace(/\/index\.html$/, "/");
+      const z = zonesDe(readFileSync(p, "utf8"));
+      illisibles += z.jsonLdInvalide;
+      if (z.jsonLdInvalide) echec("1bis lecture", `${url} : ${z.jsonLdInvalide} bloc(s) JSON-LD illisible(s) — leur contenu n'a pas pu être jugé`);
+      const par = {};
+      for (const [zone, texte] of [["titre", z.titre], ["corps", z.corps], ["metas", z.metas], ["json-ld", z.jsonLd]]) {
+        MOTIF.lastIndex = 0;
+        for (const m of String(texte).matchAll(MOTIF)) {
+          if (jugerOccurrence(m[0]) !== "interdite") continue;
+          const f = `${zone} · ${m[0].toLowerCase().replace(/\s+/g, " ").trim()}`;
+          par[f] = (par[f] || 0) + 1;
+        }
       }
+      if (Object.keys(par).length) vu[url] = par;
     }
-    if (Object.keys(par).length) vu[url] = par;
-  }
+    return { vu, illisibles };
+  };
+  const { vu } = relevePublie(DIST, pages);
 
   const comparer = (attendu, constate) => {
     const ecarts = [];
@@ -151,6 +157,38 @@ ok(`départ : ${pages.length} pages construites`);
   };
 
   const total = Object.values(vu).reduce((n, o) => n + Object.values(o).reduce((a, b) => a + b, 0), 0);
+  /* ---- 1sexies. UNE PAGE SANS AUCUN « IATA » BRUT DOIT QUAND MÊME ÊTRE LUE -------------------
+   * Les deux formes qui traversaient l'ancien préfiltre, éprouvées PAR LA BOUCLE RÉELLE — la
+   * même fonction que celle qui bâtit le registre —, sur deux pages écrites pour l'occasion et
+   * ne contenant aucune suite brute « IATA » ni « homolog ». Une contre-épreuve qui n'appellerait
+   * qu'une fonction locale ne prouverait pas que la boucle du registre les voit. */
+  {
+    const racine = mkdtempSync(join(tmpdir(), "iata-zones-"));
+    const ecrire = (nom, html) => {
+      const d = join(racine, nom); mkdirSync(d, { recursive: true });
+      const f = join(d, "index.html"); writeFileSync(f, html); return f;
+    };
+    const echappe = ecrire("json-ld-echappe",
+      '<html><head><title>Sans forme brute</title>'
+      + '<script type="application/ld+json">{"d":"\u005cu0049ATA crate"}</scr' + 'ipt>'
+      + "</head><body><p>rien de plus</p></body></html>");
+    const entite = ecrire("entite-html",
+      "<html><head><title>Sans forme brute</title></head><body><p>I&#65;TA crate</p></body></html>");
+    const brut = [echappe, entite].map((f) => readFileSync(f, "utf8"));
+    const ratés = [];
+    /* On établit d'abord CE QU'ON PRÉTEND REPRODUIRE : aucune des deux pages ne porte la suite
+       brute que l'ancien préfiltre cherchait. Sans cela, la contre-épreuve serait décorative. */
+    for (const [i, h] of brut.entries()) if (/IATA|homolog/i.test(h)) ratés.push(`la page ${i} porte une forme brute : elle ne reproduit pas l'attaque`);
+    const { vu } = relevePublie(racine, [echappe, entite]);
+    const zones = Object.values(vu).flatMap((o) => Object.keys(o));
+    if (!zones.some((z) => z.startsWith("json-ld · iata crate"))) ratés.push("« \\u0049ATA crate » du JSON-LD n'est pas relevé");
+    if (!zones.some((z) => z.startsWith("corps · iata crate"))) ratés.push("« I&#65;TA crate » du corps n'est pas relevé");
+    rmSync(racine, { recursive: true, force: true });
+    if (ratés.length) { echec("1sexies préfiltre", `${ratés.length} écart(s)`); for (const r of ratés) console.error(`      ${r}`); }
+    else ok("1sexies préfiltre — deux pages sans aucune suite brute « IATA » sont lues et relevées : "
+      + "« \\u0049ATA crate » en JSON-LD, « I&#65;TA crate » en entité HTML");
+  }
+
   /* ---- 1quinquies. LE PIPELINE VOIT CHAQUE ZONE, ET NE CONFOND PAS LICITE ET INTERDIT -------
    * Six mutations sur une PAGE RÉELLE, chacune exigeant son résultat exact. Sans elles, « un seul
    * contrat » resterait une intention : rien ne prouverait que les métadonnées et le JSON-LD sont

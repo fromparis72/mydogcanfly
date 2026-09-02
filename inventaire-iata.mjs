@@ -189,17 +189,40 @@ const APPLICATIF = [
 ];
 const GENERES = [/^packages\/knowledge\/raw\/guides\.json$/, /\.generated\.json$/, /^packages\/ui\/\.astro\//];
 
-/* LE REGISTRE DE PREUVE, ET LUI SEUL. `dette-iata-publiee.json` énumère les formulations encore
-   PUBLIÉES par le site : il est dérivé du DOM construit, il n'est servi à personne, et le
-   corriger à la main serait exactement le mauvais geste — les contenus se corrigent, le site se
-   reconstruit, PUIS le registre se régénère.
-   Sans cette catégorie, l'instrument comptait sa propre pièce de preuve comme dette à corriger :
-   mesuré au 30/08/2026, il apportait 59 occurrences, dont 56 en `source_editoriale`, gonflait le
-   micro-lot éditorial de 592 à 649 et se plaçait EN TÊTE des fichiers à corriger. Une mesure qui
-   se compte elle-même n'est plus une mesure.
-   Le chemin est EXACT et unique : aucun autre fichier ne peut prendre cette catégorie, et la même
-   formulation écrite dans une vraie source éditoriale y reste comptée. */
-const REGISTRE_PREUVE = "dette-iata-publiee.json";
+/* LES INSTRUMENTS DE MESURE, PAR ÉGALITÉ EXACTE DE CHEMIN — jamais un préfixe, jamais un motif.
+ *
+ * CE QU'ILS SONT. Deux fichiers ne PORTENT pas d'affirmations : ils portent le RELEVÉ des
+ * affirmations des autres, et les vecteurs qui servent à l'éprouver.
+ *   · `dette-iata-publiee.json` énumère les formulations encore PUBLIÉES par le site. Il est
+ *     dérivé du DOM construit, il n'est servi à personne, et le corriger à la main serait
+ *     exactement le mauvais geste : les contenus se corrigent, le site se reconstruit, PUIS le
+ *     registre se régénère.
+ *   · `test-etape3-dom.mjs` porte depuis le 02/09/2026 les vecteurs de la contre-épreuve du
+ *     relevé public — « caisse IATA », « IATA crate », « conforme à la norme IATA »,
+ *     « IATA requirements », « \u0049ATA crate », « I&#65;TA crate ». Ce sont des mutations
+ *     écrites pour être VUES par la garde, pas des affirmations servies.
+ *
+ * DEUX AUTO-CONTAMINATIONS, TOUTES DEUX MESURÉES, AUCUNE EFFACÉE.
+ *   · 30/08/2026 — sans cette catégorie, l'instrument comptait sa propre pièce de preuve comme
+ *     dette à corriger : 59 occurrences apportées, dont 56 en `source_editoriale`, micro-lot
+ *     éditorial gonflé de 592 à 649, et le registre EN TÊTE des fichiers à corriger.
+ *   · 02/09/2026 — le registre était déjà excepté, mais son test arrivait APRÈS celui des slugs
+ *     conservés et après le jugement lexical. Trois de ses URL étaient donc comptées
+ *     « slug_conserve » et les vecteurs licites gonflaient les références réglementaires :
+ *     33 slugs au lieu de 30, 589 légitimes au lieu de 586 — et le commentaire du code affirmait
+ *     pourtant que le registre « prime sur tout classement ». Une exception qui n'est pas la
+ *     PREMIÈRE règle appliquée n'est pas une exception.
+ * Une mesure qui se compte elle-même n'est plus une mesure.
+ *
+ * LES QUATRE, ET POURQUOI ILS SONT QUATRE. `inventaire-iata.mjs` et `test-inventaire-iata.mjs`
+ * citent tout le champ lexical pour le DÉFINIR et l'ÉPROUVER ; les compter comme dette
+ * reviendrait à mesurer sa propre règle. Ils sortaient jusqu'ici du périmètre de lecture, donc
+ * en silence ; ils sortent désormais par cette liste, donc à découvert. Voir `FICHIERS_IGNORES`.
+ *
+ * L'ÉGALITÉ EST EXACTE, ET UNE CONTRE-ÉPREUVE L'EXIGE : `dette-iata-publiee.backup.json`,
+ * `docs/dette-iata-publiee.json`, `test-etape3-dom.backup.mjs` et une vraie source éditoriale ne
+ * bénéficient pas de cette priorité — la même formulation y reste comptée. */
+export const INSTRUMENTS_DE_MESURE = ["dette-iata-publiee.json", "inventaire-iata.mjs", "test-etape3-dom.mjs", "test-inventaire-iata.mjs"];
 const TESTS = [/^test-/, /^mesures\//, /^test-baselines\//, /^test-lib\//, /^DOSSIER-/, /^docs\//, /^ADR/, /\.test\.[tj]s$/];
 
 /* L'HÉRITAGE V1. La v2 prétendait PROUVER qu'il est inerte, en cherchant `"static/…"` dans les
@@ -310,6 +333,12 @@ export function jugerOccurrence(trouve) {
 }
 
 export function classer(chemin, ligne, trouve, debut, fin) {
+  /* 0 — UN INSTRUMENT DE MESURE NE SE MESURE PAS LUI-MÊME. Cette règle passe AVANT toutes les
+     autres, y compris avant les slugs et avant le jugement lexical : sinon une URL du registre est
+     comptée comme slug conservé, et ses vecteurs de contre-épreuve comme de vraies références
+     licites. C'est exactement ce qui se produisait. */
+  if (INSTRUMENTS_DE_MESURE.includes(chemin)) return "registre_preuve_non_public";
+
   /* 1 — L'occurrence EST à l'intérieur d'un slug conservé : un identifiant, pas une phrase. */
   for (const sl of SLUGS_CONSERVES) {
     let i = ligne.indexOf(sl);
@@ -334,9 +363,6 @@ export function classer(chemin, ligne, trouve, debut, fin) {
      que c'est, et on le dit. */
   if (jugement !== "interdite") return null;
 
-  /* Le registre de preuve prime sur tout classement de contenu : c'est un artefact de mesure,
-     pas une surface. La comparaison est une ÉGALITÉ de chemin, jamais un préfixe ni un motif. */
-  if (chemin === REGISTRE_PREUVE) return "registre_preuve_non_public";
   if (TESTS.some((r) => r.test(chemin))) return "test_commentaire_historique";
   if (GENERES.some((r) => r.test(chemin))) return "artefact_genere";
   if (GENERATRICES_DECLAREES.some((p) => chemin.startsWith(p))) return "source_generatrice_active";
@@ -390,9 +416,23 @@ export function ancresOrphelines(releve, declarations = A_REFORMULER) {
 
 /* ---- LE PARCOURS, DÉTERMINISTE ------------------------------------------------------------- */
 const IGNORE = new Set(["node_modules", ".git", "dist", ".astro", "coverage", ".wrangler"]);
-/* L'outil et son harnais citent tout le champ lexical pour le définir et l'éprouver : les
-   compter reviendrait à mesurer sa propre règle. Ils sortent du périmètre, et on le nomme. */
-const FICHIERS_IGNORES = new Set(["package-lock.json", "inventaire-iata.mjs", "test-inventaire-iata.mjs"]);
+/* IL N'Y A PLUS QU'UNE SEULE FAÇON POUR UN INSTRUMENT DE NE PAS SE MESURER LUI-MÊME
+   (02/09/2026). Il y en avait DEUX, et c'est la faute récurrente de ce chantier : deux
+   définitions de la même chose. `inventaire-iata.mjs` et `test-inventaire-iata.mjs` sortaient
+   ICI, du PÉRIMÈTRE, donc en silence — elles n'apparaissaient dans aucun compte, et personne ne
+   pouvait relire ce qu'elles contenaient ; `dette-iata-publiee.json` et `test-etape3-dom.mjs`
+   sortaient plus bas, par CATÉGORIE, donc visiblement. Les deux auto-contaminations de ce projet
+   ont été trouvées parce que les occurrences étaient VISIBLES. Les quatre passent donc par
+   `INSTRUMENTS_DE_MESURE` : elles sont lues, comptées, et rangées dans une catégorie qui n'entre
+   pas au micro-lot éditorial.
+   LE MOUVEMENT EXACT, mesuré : total 3297 → 3431, fichiers 586 → 588, catégorie 342 → 476.
+   Toutes les autres catégories sont INCHANGÉES — source éditoriale 267, sources génératrices
+   1172, héritage v1 29, références licites 586, slugs 30, commentaires de test 55, artefacts à
+   régénérer 816, affirmations publiques interdites 0. Rien à corriger n'est apparu ni disparu :
+   seul l'invisible est devenu lisible.
+   `package-lock.json` reste hors périmètre : ce n'est pas un instrument, c'est un fichier généré
+   que personne ne relit. */
+const FICHIERS_IGNORES = new Set(["package-lock.json"]);
 const EXT_TEXTE = new Set([".json", ".ts", ".tsx", ".js", ".mjs", ".cjs", ".astro", ".md", ".mdx", ".yml", ".yaml", ".html", ".txt", ""]);
 
 export function* parcourir(dir, inverse = false) {
@@ -472,7 +512,7 @@ if (import.meta.url === `file://${process.argv[1]}`) {
   for (const c of CATEGORIES) {
     if (c === "reference_reglementaire_a_reformuler") console.log("  — licite à l'occurrence, mais la phrase porteuse est arbitrée à reformuler —");
     if (c === "reference_reglementaire_legitime") console.log("  — rien à corriger (suite) —");
-    if (c === "registre_preuve_non_public") console.log("  — pièce de preuve dérivée du DOM, jamais servie, jamais corrigée à la main —");
+    if (c === "registre_preuve_non_public") console.log("  — instrument de mesure : il porte le relevé et les vecteurs, jamais une affirmation servie —");
     if (c === "test_commentaire_historique") console.log("  — une affirmation interdite ; la catégorie dit qui la corrige —");
     const sel = releve.filter((r) => r.categorie === c);
     console.log(`${String(sel.length).padStart(5)}  ${c.padEnd(34)} ${String(new Set(sel.map((r) => r.fichier)).size).padStart(3)} fichier(s)`);

@@ -10,7 +10,7 @@
  * chacun sur sa propre cause.
  */
 import { readFileSync } from "node:fs";
-import { classer, relever, verifier, citationsDeLHeritage, ancresOrphelines, MOTIF, MOTIF_HERITE, ALTERNATIVES, FAMILLE_CONTENANT, FORMES_BORNEES, CATEGORIES } from "./inventaire-iata.mjs";
+import { classer, relever, verifier, citationsDeLHeritage, ancresOrphelines, MOTIF, MOTIF_HERITE, ALTERNATIVES, FAMILLE_CONTENANT, FORMES_BORNEES, CATEGORIES, INSTRUMENTS_DE_MESURE } from "./inventaire-iata.mjs";
 
 let defauts = 0;
 const echec = (nom, detail) => { defauts++; console.error(`  ✗ ${nom} — ${detail}`); };
@@ -151,25 +151,38 @@ const classerLigne = (chemin, ligne) => {
   else ok("6bis le titre de section est reformulé dans les quatre langues, et l'ancien a disparu");
 }
 
-/* 6 sexies — LE REGISTRE DE PREUVE NE SE COMPTE PAS LUI-MÊME. Auto-contamination reproduite le
-   30/08/2026 : `dette-iata-publiee.json`, créé pour figer la dette encore publiée, apportait
-   59 occurrences à l'inventaire — dont 56 classées `source_editoriale` —, gonflait le micro-lot
-   de 592 à 649 et se plaçait EN TÊTE des fichiers à corriger. Une mesure qui se compte elle-même
-   n'est plus une mesure ; et corriger ce registre à la main serait le mauvais geste, puisqu'il se
-   régénère depuis le DOM après correction des contenus. */
+/* 6 sexies — UN INSTRUMENT DE MESURE NE SE MESURE PAS LUI-MÊME. Auto-contamination reproduite
+   DEUX fois, et la seconde n'a été vue que parce que la première avait laissé une contre-épreuve.
+     · 30/08/2026 — `dette-iata-publiee.json`, créé pour figer la dette encore publiée, apportait
+       59 occurrences à l'inventaire — dont 56 classées `source_editoriale` —, gonflait le
+       micro-lot de 592 à 649 et se plaçait EN TÊTE des fichiers à corriger.
+     · 02/09/2026 — `test-etape3-dom.mjs`, devenu porteur des VECTEURS de contre-épreuve du
+       relevé public (`\u0049ATA crate`, `I&#65;TA crate`, les six mutations de zone), faisait
+       compter ces vecteurs comme de vraies occurrences : 33 slugs au lieu de 30, 589 références
+       licites au lieu de 586.
+   Une mesure qui se compte elle-même n'est plus une mesure ; et corriger ces fichiers à la main
+   serait le mauvais geste, puisque l'un se régénère depuis le DOM et que les autres décrivent
+   précisément le défaut qu'ils éprouvent.
+
+   LA LISTE N'EST PAS RECOPIÉE ICI. Elle est importée de l'instrument : deux définitions de la
+   même chose finissent toujours par diverger — c'est la faute récurrente de ce chantier. Et
+   CHAQUE nom de la liste doit porter des occurrences réelles, sans quoi il suffirait d'y inscrire
+   un fichier quelconque pour l'exempter sans que rien ne le signale. */
 {
   const releve = relever();
   const reg = releve.filter((r) => r.categorie === "registre_preuve_non_public");
-  const fichiers = [...new Set(reg.map((r) => r.fichier))];
+  const fichiers = [...new Set(reg.map((r) => r.fichier))].sort();
+  const attendus = [...INSTRUMENTS_DE_MESURE].sort();
   const edito = ["source_editoriale", "source_generatrice_active", "heritage_a_corriger_ou_supprimer"];
-  const contamine = releve.filter((r) => r.fichier === "dette-iata-publiee.json" && edito.includes(r.categorie));
+  const contamine = releve.filter((r) => INSTRUMENTS_DE_MESURE.includes(r.fichier) && edito.includes(r.categorie));
+  const parFichier = attendus.map((f) => `${f} : ${reg.filter((r) => r.fichier === f).length}`);
 
-  if (!reg.length) echec("6sexies registre de preuve", "la catégorie ne contient rien — elle ne prouve rien");
-  else if (fichiers.length !== 1 || fichiers[0] !== "dette-iata-publiee.json")
-    echec("6sexies registre de preuve", `catégorie utilisée par : ${fichiers.join(", ")}`);
+  if (!reg.length) echec("6sexies instruments de mesure", "la catégorie ne contient rien — elle ne prouve rien");
+  else if (fichiers.join("|") !== attendus.join("|"))
+    echec("6sexies instruments de mesure", `catégorie portée par ${fichiers.join(", ") || "aucun fichier"} — attendu exactement ${attendus.join(", ")}`);
   else if (contamine.length)
-    echec("6sexies registre de preuve", `${contamine.length} occurrence(s) du registre comptée(s) au micro-lot éditorial`);
-  else ok(`6sexies le registre de preuve porte ${reg.length} occurrences, dans son seul fichier, et zéro n'entre au micro-lot éditorial`);
+    echec("6sexies instruments de mesure", `${contamine.length} occurrence(s) d'un instrument comptée(s) au micro-lot éditorial`);
+  else ok(`6sexies les ${attendus.length} instruments de mesure se retirent du compte — ${parFichier.join(" · ")} —, et zéro n'entre au micro-lot éditorial`);
 }
 
 /* 6 septies — LA CATÉGORIE EST BORNÉE À UN CHEMIN EXACT. La même formulation écrite dans une
@@ -181,6 +194,15 @@ const classerLigne = (chemin, ligne) => {
     ["un fichier au nom voisin", "dette-iata-publiee.backup.json", "source_editoriale"],
     ["le même nom dans un sous-dossier", "docs/dette-iata-publiee.json", "test_commentaire_historique"],
     ["le registre lui-même", "dette-iata-publiee.json", "registre_preuve_non_public"],
+    /* Le second instrument vit dans un répertoire — la racine — dont TOUS les autres `test-*`
+       sont déjà classés « commentaire historique ». Le voisin le prouve : le bénéfice tient au
+       chemin exact, pas au préfixe, et un fichier ne s'exempte pas en se faisant appeler test. */
+    ["un test voisin du second instrument", "test-etape3-dom.backup.mjs", "test_commentaire_historique"],
+    ["le second instrument lui-même", "test-etape3-dom.mjs", "registre_preuve_non_public"],
+    ["un voisin de l'instrument lui-même", "inventaire-iata.backup.mjs", "source_editoriale"],
+    ["l'instrument lui-même", "inventaire-iata.mjs", "registre_preuve_non_public"],
+    ["un voisin du harnais de l'instrument", "test-inventaire-iata.backup.mjs", "test_commentaire_historique"],
+    ["le harnais de l'instrument", "test-inventaire-iata.mjs", "registre_preuve_non_public"],
   ];
   const ecarts = [];
   for (const [nom, chemin, attendu] of cas) {
@@ -301,10 +323,20 @@ const classerLigne = (chemin, ligne) => {
  * attendait : « crate IATA standards » pourrait faire disparaître « IATA standards » du compte des
  * références licites, sans que le total le montre. On rejoue donc le relevé avec le motif HÉRITÉ et
  * on exige que chacune de ses occurrences soit encore là — même fichier, même ligne, même colonne,
- * même texte, MÊME CATÉGORIE. */
+ * même texte, MÊME CATÉGORIE.
+ *
+ * LES INSTRUMENTS SONT ÉCARTÉS DE CETTE PREUVE, ET LA PHRASE CI-DESSUS DIT POURQUOI. Elle écrit
+ * « crate IATA standards » pour NOMMER le risque : la famille y accroche « crate IATA » et
+ * consomme le « IATA standards » que le motif hérité voyait. C'est un déplacement RÉEL, mais dans
+ * un texte écrit exprès pour décrire le défaut — pas dans un contenu servi. Le mesurer ici ferait
+ * rougir la preuve pour la prose de la preuve elle-même. L'écart se prend donc sur la catégorie
+ * `registre_preuve_non_public`, c'est-à-dire sur le MÊME jugement que partout ailleurs : un
+ * instrument ne se mesure pas lui-même. Constaté le 02/09/2026, en unifiant les deux mécanismes
+ * d'exclusion : la contre-épreuve a désigné exactement cette ligne. */
 {
-  const avant = relever({ motif: MOTIF_HERITE });
-  const apres = relever();
+  const instrument = (r) => r.categorie === "registre_preuve_non_public";
+  const avant = relever({ motif: MOTIF_HERITE }).filter((r) => !instrument(r));
+  const apres = relever().filter((r) => !instrument(r));
   const cle = (r) => `${r.fichier}:${r.ligne}:${r.colonne}:${r.trouve}`;
   const carte = new Map(apres.map((r) => [cle(r), r]));
   const disparues = avant.filter((r) => !carte.has(cle(r)));
