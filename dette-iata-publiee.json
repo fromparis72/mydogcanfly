@@ -1,8 +1,8 @@
 {
-  "_commentaire": "LE REGISTRE EXACT DE LA DETTE IATA ENCORE PUBLIÉE. Chaque page publique y porte, PAR ZONE, les formulations normalisées qu'elle sert et LEUR MULTIPLICITÉ. Le contrôle le compare BIDIRECTIONNELLEMENT au site construit : une page qui disparaît, une qui s'ajoute, une formulation qui change, une occurrence de plus sur une page déjà inscrite, un défaut déplacé d'une zone à l'autre — chacun rougit. Un total seul ne suffisait pas. SES NOMBRES ONT CHANGÉ DEUX FOIS SANS QU'UNE SEULE PAGE NOUVELLE SOIT FAUTIVE, et les deux mouvements sont des corrections de l'INSTRUMENT, jamais du contenu. (1) 52 pages / 108 occurrences → 159 / 538 : le contrôle portait sa propre expression du vocabulaire, ignorait la famille « contenant + IATA », le pluriel « normas », les métadonnées et le JSON-LD, et lisait le HTML brut. (2) 159 / 538 → 162 / 543 : le lecteur de zones recollait bout à bout le texte de tous les nœuds, si bien que deux textes affichés sur deux lignes formaient un seul mot et que l'affirmation collée à la précédente cessait d'être reconnue. Cinq occurrences réellement publiées manquaient — deux guides « équipement », les trois press kits. Le texte est désormais lu comme il est RENDU : les blocs séparent, les éléments en ligne ne séparent pas. Le micro-lot éditorial ramènera ce registre à zéro avant la production ; toute réduction se fera par un mouvement nommé.",
+  "_commentaire": "LE REGISTRE EXACT DE LA DETTE IATA ENCORE PUBLIÉE. Chaque page publique y porte, PAR ZONE, les formulations normalisées qu'elle sert et LEUR MULTIPLICITÉ. Les zones scellées sont : titre, corps, metas, json-ld et attributs-accessibles. Le contrôle compare le registre BIDIRECTIONNELLEMENT au site construit : une page qui disparaît, une qui s'ajoute, une formulation qui change, une occurrence de plus sur une page déjà inscrite, un défaut déplacé d'une zone à l'autre — chacun rougit. Un total seul ne suffisait pas. SES NOMBRES ONT CHANGÉ TROIS FOIS SANS QU'UNE SEULE PAGE NOUVELLE SOIT FAUTIVE : les trois mouvements corrigent l'INSTRUMENT, jamais le contenu. (1) 52 pages / 108 occurrences → 159 / 538 : le contrôle portait sa propre expression du vocabulaire, ignorait la famille « contenant + IATA », le pluriel « normas », les métadonnées et le JSON-LD, et lisait le HTML brut. (2) 159 / 538 → 162 / 543 : le lecteur recollait bout à bout le texte de tous les nœuds, si bien que deux textes affichés sur deux lignes formaient un seul mot ; cinq occurrences publiées manquaient. Le texte est désormais lu comme il est RENDU. (3) 162 / 543 → 162 / 545 : le lecteur ne voyait aucun texte accessible porté par un ATTRIBUT. Deux affirmations réellement publiées manquaient — alt=\"Bailey junto a su transportín IATA\" sur le press kit espagnol, et un attribut du guide des caisses. Un texte lu à voix haute ou affiché au survol est publié, qu'il vive dans un nœud de texte ou dans un attribut ; il a sa propre zone, pour qu'un défaut déplacé du corps vers un alt ne passe pas à total constant. Le micro-lot éditorial ramènera ce registre à zéro avant la production ; toute réduction se fera par un mouvement nommé.",
   "_mesure": {
     "pages": 162,
-    "occurrences": 543,
+    "occurrences": 545,
     "dist_pages_html": 3121
   },
   "pages": {
@@ -487,6 +487,7 @@
       "corps · iata crate": 1
     },
     "/presskit/press-kit-es.html": {
+      "attributs-accessibles · transportín iata": 1,
       "corps · transportín iata": 1
     },
     "/presskit/press-kit-fr.html": {
@@ -612,6 +613,7 @@
       "corps · iata-compliant": 1
     },
     "/travel-hub/airline-approved-dog-crate/": {
+      "attributs-accessibles · iata-compliant": 1,
       "corps · iata crate": 1,
       "corps · iata-compliant": 6,
       "json-ld · iata-compliant": 3
@@ -657,5 +659,5 @@
       "json-ld · iata crate": 2
     }
   },
-  "_regle": "Dette IATA encore PUBLIÉE sur le site construit. Mesurée par un seul contrat : le jugement lexical canonique de `inventaire-iata.mjs` (`jugerOccurrence`), appliqué aux ZONES PUBLIQUES DÉCODÉES de chaque page (`test-lib/zones-publiques.mjs`) — titre, corps sans scripts ni styles ni templates, balises de description, et chaînes du JSON-LD parcourues récursivement. Chaque entrée scelle l'URL, LA ZONE et la formulation : un défaut déplacé du corps vers une métadonnée ne peut donc pas passer à total constant. Un bloc JSON-LD illisible fait rougir le contrôle au lieu d'être compté zéro."
+  "_regle": "Dette IATA encore PUBLIÉE sur le site construit. Mesurée par un seul contrat : le jugement lexical canonique de `inventaire-iata.mjs` (`jugerOccurrence`), appliqué aux ZONES PUBLIQUES DÉCODÉES de chaque page (`test-lib/zones-publiques.mjs`) — le titre du document (celui de l'espace de noms HTML, jamais celui d'un SVG) ; le corps, lu comme il est RENDU (les blocs séparent, les éléments en ligne ne séparent pas), sans scripts, styles ni templates ; les balises de description ; les chaînes du JSON-LD parcourues récursivement ; et les textes accessibles portés par des attributs — alt, aria-label, aria-description, title, placeholder, aria-placeholder, et la valeur d'un bouton. Ne sont PAS lus : aria-labelledby et aria-describedby (des identifiants, dont le texte est déjà dans le corps), les adresses, et la valeur d'un champ de saisie. Chaque entrée scelle l'URL, LA ZONE et la formulation : un défaut déplacé du corps vers une métadonnée ou vers un attribut ne peut donc pas passer à total constant. Un bloc JSON-LD illisible fait rougir le contrôle au lieu d'être compté zéro."
 }

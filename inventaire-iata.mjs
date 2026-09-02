@@ -486,10 +486,16 @@ const IGNORE = new Set(["node_modules", ".git", "dist", ".astro", "coverage", ".
    1172, héritage v1 29, références licites 586, slugs 30, commentaires de test 55, artefacts à
    régénérer 816, affirmations publiques interdites 0. Rien à corriger n'est apparu ni disparu :
    seul l'invisible est devenu lisible.
-   (Ces nombres décrivent CE MOUVEMENT-LÀ, à sa date. Le total a bougé depuis, et pour une autre
-   raison, nommée elle aussi : `test-zones-publiques.mjs`, la contre-épreuve du lecteur de zones,
-   a porté 31 occurrences de plus en `test_commentaire_historique` — 3431 → 3462, 588 → 590
-   fichiers. Le tableau de synthèse, lui, dit toujours l'état du jour.)
+   (Ces nombres décrivent CE MOUVEMENT-LÀ, à sa date, et rien d'autre.)
+
+   AUCUN TOTAL COURANT N'EST ÉCRIT DANS CE COMMENTAIRE, ET C'EST DÉLIBÉRÉ. J'ai rapporté « 3 462 »
+   quand l'instrument en mesurait 3 467 : le chiffre avait été relevé AVANT la régénération du
+   registre, que l'inventaire recompte ensuite dans la catégorie instrumentale. Un total écrit ici
+   est de surcroît périmé par sa propre écriture — les instruments et leurs contre-épreuves se
+   comptent eux-mêmes, si bien que toute contre-épreuve ajoutée le déplace. Le seul nombre
+   citable est donc celui que la mesure IMPRIME au moment où on la rejoue : le tableau de synthèse
+   de ce fichier, et la ligne « 7 relevé réel » de `test-inventaire-iata.mjs`. Ce sont eux qui
+   font foi, jamais un commentaire.
    `package-lock.json` reste hors périmètre : ce n'est pas un instrument, c'est un fichier généré
    que personne ne relit. */
 const FICHIERS_IGNORES = new Set(["package-lock.json"]);

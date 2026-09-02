@@ -190,7 +190,54 @@ const interdites = (texte) => {
   else ok("10 « Category 1 » et « All breeds » ne se soudent plus en un faux montant");
 }
 
+/* ---- 11. LES TEXTES ACCESSIBLES PORTÉS PAR DES ATTRIBUTS ---------------------------------- */
+/* LE MÊME RAISONNEMENT QUE LE TITRE SVG, POUSSÉ JUSQU'AU BOUT (contre-revue du 02/09/2026). Un
+   texte lu à voix haute ou affiché au survol est publié, qu'il vive dans un nœud de texte ou dans
+   un attribut. Ce n'était pas théorique : `press-kit-es.html` publiait
+   `alt="Bailey junto a su transportín IATA"`, que le registre ne portait pas. */
+{
+  const z = zonesDe('<html><body>'
+    + '<img alt="IATA crate" src="/x.png">'
+    + '<button aria-label="USD 250">?</button>'
+    + '<span title="caisse IATA">i</span>'
+    + '<input type="text" placeholder="conforme à la norme IATA">'
+    + '<input type="submit" value="EUR 99">'
+    + '</body></html>');
+  const vusIata = interdites(z.attributs);
+  const vusArgent = trouver(z.attributs).map((m) => m.texte ?? m);
+  const ecarts = [];
+  for (const attendu of ["IATA crate", "caisse IATA", "conforme à la norme IATA"]) {
+    if (!vusIata.includes(attendu)) ecarts.push(`la garde IATA ne voit pas « ${attendu} » : ${JSON.stringify(vusIata)}`);
+  }
+  for (const attendu of ["USD 250", "EUR 99"]) {
+    if (!vusArgent.some((v) => v.includes(attendu.split(" ")[1]))) ecarts.push(`la garde tarifaire ne voit pas « ${attendu} » : ${JSON.stringify(vusArgent)}`);
+  }
+  /* La zone est DISTINCTE : sans cela, un défaut déplacé du corps vers un attribut passerait au
+     registre à total constant, et le sceau de zone ne servirait à rien. */
+  if (interdites(z.corps).length) ecarts.push(`les attributs sont comptés AUSSI dans le corps : ${JSON.stringify(z.corps)}`);
+  if (ecarts.length) echec("11 attributs accessibles", ecarts.join(" · "));
+  else ok("11 alt, aria-label, title, placeholder et la valeur d'un bouton sont lus dans leur propre zone, par les deux gardes");
+}
+
+/* ---- 12. …MAIS PAS CE QUI N'EST PAS UN TEXTE ---------------------------------------------- */
+/* L'autre sens, sans lequel le contrôle 11 serait un blanc-seing pour tout lire.
+   `aria-labelledby` porte un IDENTIFIANT renvoyant à un élément dont le texte est déjà dans le
+   corps : le lire compterait deux fois la même affirmation. `value` d'un champ de SAISIE est une
+   donnée, pas un libellé. Et un attribut porté par un élément non public ne l'est pas non plus. */
+{
+  const z = zonesDe('<html><body>'
+    + '<button aria-labelledby="caisse-iata-titre" aria-describedby="iata-crate-aide">?</button>'
+    + '<a href="/tools/iata-dog-crate-calculator/">lien</a>'
+    + '<input type="text" value="caisse IATA">'
+    + '<template><img alt="IATA crate" src="/x.png"></template>'
+    + '<span data-note="caisse IATA">x</span>'
+    + '</body></html>');
+  const vus = interdites(z.attributs);
+  if (vus.length) echec("12 ce qui n'est pas un texte", `${vus.length} occurrence(s) lue(s) hors des attributs de texte : ${JSON.stringify(vus)} — ${JSON.stringify(z.attributs)}`);
+  else ok("12 identifiants aria, adresses, valeur de champ de saisie et attributs d'un élément non public restent hors de la zone");
+}
+
 console.log(defauts
   ? `\n[zones] ÉCHEC — ${defauts} contre-épreuve(s) en défaut`
-  : "\n[zones] un seul lecteur : le titre reste dans sa zone, les titres SVG dans le corps, le texte est lu comme il est rendu, et les deux gardes voient la même page.");
+  : "\n[zones] un seul lecteur : le titre reste dans sa zone, les titres SVG dans le corps, le texte est lu comme il est rendu, les textes accessibles des attributs ont leur zone, et les deux gardes voient la même page.");
 process.exit(defauts ? 1 : 0);

@@ -98,6 +98,58 @@ const BLOCS = new Set([
    voisin fabriquerait un mot qui n'existe nulle part. `text` sépare pour la même raison. */
 const SEPARENT_SVG = new Set(["title", "desc", "text"]);
 
+/* ---- LES TEXTES ACCESSIBLES PORTÉS PAR DES ATTRIBUTS -----------------------------------------
+ *
+ * POURQUOI CETTE ZONE EXISTE (contre-revue du 02/09/2026). Le raisonnement qui a réintégré
+ * `<svg><title>` ne s'arrêtait pas au SVG : un texte lu à voix haute, ou affiché au survol, EST
+ * publié, qu'il vive dans un nœud de texte ou dans un attribut. Le lecteur n'en voyait aucun.
+ *
+ * CE N'ÉTAIT PAS THÉORIQUE. `presskit/press-kit-es.html` publie
+ * `alt="Bailey junto a su transportín IATA"` — une affirmation que le motif canonique interdit,
+ * absente du registre. La dette annoncée à 162 pages / 543 occurrences n'était donc pas
+ * exhaustive, et un défaut déplacé du corps vers un `alt` serait passé inaperçu.
+ *
+ * CE QUE LA ZONE LIT, ET POURQUOI CHACUN.
+ *   `alt`               le texte de remplacement d'une image : lu à voix haute, affiché si
+ *                       l'image manque. C'est le cas du press kit.
+ *   `aria-label`        le nom accessible d'un contrôle sans texte visible.
+ *   `aria-description`  sa description accessible.
+ *   `title`             l'ATTRIBUT, à ne pas confondre avec l'élément : l'infobulle au survol,
+ *                       visible pour tout le monde.
+ *   `placeholder`       le texte affiché dans un champ vide. Il est vu à l'écran.
+ *   `aria-placeholder`  son équivalent pour un contrôle qui n'est pas un `<input>`.
+ *   `value`             UNIQUEMENT sur un bouton (`button`, `submit`, `reset`) : c'est alors son
+ *                       libellé visible. Sur un champ de saisie, `value` est une donnée, pas un
+ *                       libellé — la lire ferait entrer dans la dette ce que l'utilisateur tape.
+ *
+ * CE QU'ELLE NE LIT PAS, ET POURQUOI. `aria-labelledby` et `aria-describedby` ne portent pas de
+ * texte : ils portent des IDENTIFIANTS renvoyant à des éléments dont le texte est DÉJÀ dans le
+ * corps. Les lire compterait deux fois la même affirmation, et compterait des identifiants comme
+ * du contenu. Même raison pour `href`, `src` et `data-*` : ce sont des adresses et des données,
+ * pas des textes publiés — un slug d'URL est d'ailleurs déjà arbitré ailleurs.
+ *
+ * LES ATTRIBUTS SONT LUS APRÈS LE RETRAIT DES ÉLÉMENTS NON PUBLICS : un `title` porté par un
+ * `<template>` ou par un `<link>` de tête n'est pas du contenu servi. */
+const ATTRIBUTS_ACCESSIBLES = ["alt", "aria-label", "aria-description", "title", "placeholder", "aria-placeholder"];
+const VALEUR_EST_UN_LIBELLE = new Set(["button", "submit", "reset"]);
+
+/** Les textes accessibles du fragment, un par ligne, dans l'ordre du document. */
+function attributsAccessibles(racine) {
+  const out = [];
+  for (const n of racine.querySelectorAll("*")) {
+    for (const a of ATTRIBUTS_ACCESSIBLES) {
+      const v = n.getAttribute?.(a);
+      if (v) out.push(v);
+    }
+    if (n.namespaceURI === XHTML && n.localName === "input"
+      && VALEUR_EST_UN_LIBELLE.has((n.getAttribute("type") ?? "").toLowerCase())) {
+      const v = n.getAttribute("value");
+      if (v) out.push(v);
+    }
+  }
+  return out.join("\n");
+}
+
 /** Le texte tel qu'il se lit : les blocs séparent, les éléments en ligne ne séparent pas. */
 function texteRendu(noeud, sortie) {
   for (let n = noeud.firstChild; n; n = n.nextSibling) {
@@ -161,7 +213,8 @@ export function zonesDe(html) {
     if (JAMAIS_PUBLIC.has(nom) || (n.namespaceURI === XHTML && TETE_HTML.has(nom))) n.remove();
   }
   const corps = texteRendu(racine, []).join("");
+  const attributs = attributsAccessibles(racine);
 
   racine.innerHTML = "";            // on ne garde rien d'une page à l'autre
-  return { titre, corps, metas, jsonLd, jsonLdInvalide };
+  return { titre, corps, metas, jsonLd, attributs, jsonLdInvalide };
 }

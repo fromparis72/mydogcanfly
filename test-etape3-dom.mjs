@@ -99,6 +99,12 @@ ok(`départ : ${pages.length} pages construites`);
      DÉJÀ comptée passait de même. Un total ne fige rien : il fige une somme.
      Le registre porte donc, par CHEMIN PUBLIC, chaque formulation normalisée ET sa multiplicité,
      et la comparaison est bidirectionnelle. */
+  /* LES ZONES SCELLÉES, ÉNUMÉRÉES UNE SEULE FOIS. Le relevé réel et la contre-épreuve 1quinquies
+     lisaient chacun leur propre liste : ajouter une zone à l'un sans l'autre était possible, et
+     c'est exactement la divergence que ce chantier corrige partout ailleurs. Une seule liste. */
+  const ZONES = (z) => [["titre", z.titre], ["corps", z.corps], ["metas", z.metas],
+    ["json-ld", z.jsonLd], ["attributs-accessibles", z.attributs]];
+
   const REGISTRE = "dette-iata-publiee.json";
   const registreBrut = JSON.parse(readFileSync(REGISTRE, "utf8"));
   const registre = registreBrut.pages;
@@ -124,7 +130,7 @@ ok(`départ : ${pages.length} pages construites`);
       illisibles += z.jsonLdInvalide;
       if (z.jsonLdInvalide) echec("1bis lecture", `${url} : ${z.jsonLdInvalide} bloc(s) JSON-LD illisible(s) — leur contenu n'a pas pu être jugé`);
       const par = {};
-      for (const [zone, texte] of [["titre", z.titre], ["corps", z.corps], ["metas", z.metas], ["json-ld", z.jsonLd]]) {
+      for (const [zone, texte] of ZONES(z)) {
         MOTIF.lastIndex = 0;
         for (const m of String(texte).matchAll(MOTIF)) {
           if (jugerOccurrence(m[0]) !== "interdite") continue;
@@ -199,7 +205,7 @@ ok(`départ : ${pages.length} pages construites`);
     const compter = (html) => {
       const z = zonesDe(html);
       const par = {};
-      for (const [zone, texte] of [["titre", z.titre], ["corps", z.corps], ["metas", z.metas], ["json-ld", z.jsonLd]]) {
+      for (const [zone, texte] of ZONES(z)) {
         MOTIF.lastIndex = 0;
         for (const m of String(texte).matchAll(MOTIF)) {
           if (jugerOccurrence(m[0]) !== "interdite") continue;
@@ -216,6 +222,16 @@ ok(`départ : ${pages.length} pages construites`);
         ["metas", brut.replace("</head>", '<meta name="twitter:description" content="IATA crate"></head>'), { metas: 1 }],
         ["json-ld", brut.replace("</head>", '<script type="application/ld+json">{"d":"conforme à la norme IATA"}</scr' + 'ipt></head>'), { "json-ld": 1 }],
         ["licite", brut.replace(/(<body[^>]*>)/, "$1<p>IATA requirements</p>"), {}],
+        /* LA ZONE DES ATTRIBUTS ACCESSIBLES (contre-revue du 02/09/2026). Un `alt` est publié :
+           lu à voix haute, affiché si l'image manque. `press-kit-es.html` en portait un —
+           « transportín IATA » — qui n'entrait dans aucune zone. */
+        ["alt", brut.replace(/(<body[^>]*>)/, '$1<img alt="IATA crate" src="/x.png">'), { "attributs-accessibles": 1 }],
+        ["aria-label", brut.replace(/(<body[^>]*>)/, '$1<button aria-label="caisse IATA">?</button>'), { "attributs-accessibles": 1 }],
+        /* L'ATTRIBUT `title`, à ne pas confondre avec l'élément : l'infobulle est vue de tous. */
+        ["attribut title", brut.replace(/(<body[^>]*>)/, '$1<span title="conforme à la norme IATA">i</span>'), { "attributs-accessibles": 1 }],
+        /* `aria-labelledby` ne porte pas de texte mais un identifiant : le lire compterait deux
+           fois l'affirmation qui vit déjà dans le corps, et compterait un identifiant. */
+        ["aria-labelledby", brut.replace(/(<body[^>]*>)/, '$1<button aria-labelledby="caisse-iata-titre">?</button>'), {}],
       ];
       const ratés = [];
       for (const [nom, html, attendu] of cas) {
@@ -228,17 +244,26 @@ ok(`départ : ${pages.length} pages construites`);
       /* Un JSON-LD illisible n'est PAS un JSON-LD vide : c'est une zone dont on ne sait rien. */
       const casse = compter(brut.replace("</head>", '<script type="application/ld+json">{ ceci n\'est pas du JSON </scr' + 'ipt></head>'));
       if (casse.illisibles !== base.illisibles + 1) ratés.push(`json-ld illisible : ${casse.illisibles} signalé(s), attendu ${base.illisibles + 1}`);
-      /* Un défaut DÉPLACÉ d'une zone à l'autre : total constant, zones différentes. */
+      /* Un défaut DÉPLACÉ d'une zone à l'autre : total constant, zones différentes. Éprouvé sur
+         les DEUX déplacements qui comptent — corps → métadonnée, et corps → attribut accessible.
+         Sans le second, une affirmation transportée du texte vers un `alt` passerait à total
+         constant, ce qui est précisément le trou fermé le 02/09/2026. */
       const dansCorps = compter(brut.replace(/(<body[^>]*>)/, "$1<p>caisse IATA</p>")).par;
-      const dansMeta = compter(brut.replace("</head>", '<meta name="description" content="caisse IATA"></head>')).par;
       const totC = Object.values(dansCorps).reduce((a, b) => a + b, 0);
-      const totM = Object.values(dansMeta).reduce((a, b) => a + b, 0);
-      if (totC !== totM) ratés.push(`déplacement : totaux ${totC} et ${totM} — la contre-épreuve n'est pas à effectif constant`);
-      else if ((dansCorps.corps ?? 0) === (dansMeta.corps ?? 0)) ratés.push("déplacement : la zone ne change pas, le sceau de zone ne sert à rien");
+      const ailleurs = [
+        ["metas", compter(brut.replace("</head>", '<meta name="description" content="caisse IATA"></head>')).par],
+        ["attributs-accessibles", compter(brut.replace(/(<body[^>]*>)/, '$1<img alt="caisse IATA" src="/x.png">')).par],
+      ];
+      for (const [zone, par] of ailleurs) {
+        const tot = Object.values(par).reduce((a, b) => a + b, 0);
+        if (totC !== tot) ratés.push(`déplacement vers « ${zone} » : totaux ${totC} et ${tot} — la contre-épreuve n'est pas à effectif constant`);
+        else if ((dansCorps.corps ?? 0) === (par.corps ?? 0)) ratés.push(`déplacement vers « ${zone} » : la zone ne change pas, le sceau de zone ne sert à rien`);
+      }
 
       if (ratés.length) { echec("1quinquies zones", `${ratés.length} écart(s)`); for (const r of ratés.slice(0, 6)) console.error(`      ${r}`); }
-      else ok("1quinquies zones — corps, métas et JSON-LD sont lus séparément ; une référence licite ne compte pas ; "
-        + "un JSON-LD illisible rougit ; un défaut déplacé change de zone à total constant");
+      else ok("1quinquies zones — corps, métas, JSON-LD et textes accessibles des attributs sont lus séparément ; "
+        + "un identifiant aria n'est pas un texte ; une référence licite ne compte pas ; un JSON-LD illisible rougit ; "
+        + "un défaut déplacé vers une métadonnée OU vers un attribut change de zone à total constant");
     }
   }
 
