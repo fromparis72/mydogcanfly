@@ -1,0 +1,5 @@
+{
+  "schema": 1,
+  "_commentaire": "LES PROFILS INTERNES — un profil regroupe les modèles qui jouent le même rôle, et son intervalle de POIDS À VIDE est DÉRIVÉ de ses modèles par deriverProfil(), jamais saisi. Un profil ne publie un poids qu'avec deux à quatre modèles dont AU MOINS DEUX FABRICANTS DISTINCTS : un seul fabricant décrit sa gamme, pas le marché, et un champ de confiance ne remplace pas des observations manquantes. Sans cette matière, publiable vaut false et le profil ne porte AUCUN intervalle — un intervalle présent finirait par être affiché. AUCUNE ENVELOPPE DE DIMENSIONS : prendre séparément les min et max de longueur, largeur et hauteur fabriquerait une caisse composite qu'aucun fabricant ne vend ; les dimensions restent par modèle et l'adéquation d'un chien s'éprouve contre chaque modèle réel. Vide au 29/08/2026, en attente de la collecte.",
+  "profils": []
+}

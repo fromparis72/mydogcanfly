@@ -187,6 +187,13 @@ titre("2 · Le périmètre couvre TOUT ce qui construit le site");
     "packages/ui/tsconfig.json",
     "packages/ui/astro.config.mjs",
     "packages/ui/package.json",
+    /* Ajoutés le 01/09/2026 : le micro-lot Tarifs a créé ces trois registres dans un paquet
+       scellé. Les classer « hors scrutation » dit qu'ils ne LISENT pas d'environnement ; il
+       fallait aussi prouver qu'ils PÈSENT sur l'empreinte, sans quoi un classement les aurait
+       sortis du périmètre au lieu de les y ranger. */
+    "packages/knowledge/tarifs/modeles-caisses.json",
+    "packages/knowledge/tarifs/profils-caisses.json",
+    "packages/knowledge/tarifs/caisses-par-race.json",
   ];
   for (const chemin of CRITIQUES) {
     const e = couvre(chemin);

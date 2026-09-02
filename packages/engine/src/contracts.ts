@@ -488,7 +488,11 @@ export interface AirlineDecision {
      d'une politique. La preuve descend maintenant AVEC la décision : `PlacementDecision.source`.
      Ne pas la réintroduire « juste pour le lien » : l'absence du champ est ce qui garantit
      qu'aucune surface ne peut la rendre. */
-  fee?: string;               // published fee for the accepted placement, as-is (e.g. "€100 to €600")
+  /* `fee` SUPPRIMÉ (micro-lot Tarifs, 29/08/2026) — comme `source_url` avant lui, et pour la
+     même raison : tant que le champ existe, une surface finit par le rendre. Il portait un montant
+     unique, attribué au premier canal accepté et affiché sans canal ; 91 des 101 valeurs venaient
+     de l'ancien champ libre `fees`. Le statut tarifaire vit maintenant par CANAL, dans le
+     rapport. Ne pas le réintroduire « juste pour l'information ». */
   origin_airport_id?: string;      // the origin airport this airline actually uses, when it differs from the representative origin (city search)
   destination_airport_id?: string; // idem for the destination
   /* `status` est la vérité ; `allowed` est le booléen de transition, vrai UNIQUEMENT pour
@@ -582,9 +586,12 @@ export interface AirlineResult {
   /** Nature de l'itinéraire — voir AirlineDecision.itinerary_confidence. */
   itinerary_confidence?: "direct_documented" | "direct_assumed" | "connection_documented" | "connection_unverified";
   label: string;        // localized one-line verdict (e.g. "Cabin OK", "Hold only", "Not accepted")
-  fee?: string;         // published fee for the accepted placement, when known
-  /** Fret sans tarif publié POUR LE FRET : `fee` porte alors « sur devis », pas un montant repris d'ailleurs. */
-  fee_quote_only?: boolean;
+  /** LE STATUT TARIFAIRE, PAR CANAL — jamais un montant, jamais un statut par compagnie.
+   *  Dans ce lot il est DÉRIVÉ DU CANAL et de rien d'autre : « à confirmer » en cabine et en
+   *  soute, « à demander au service cargo » pour le fret. Un statut par compagnie exigerait un
+   *  registre tarifaire sourcé — il n'en existe pas encore, et un statut sans registre n'est pas
+   *  meilleur qu'un montant sans source : il est seulement moins visible. */
+  statuts_tarifaires?: { placement: Placement; statut: string }[];
   /* `source_url` SUPPRIMÉE — voir `AirlineDecision`. Une carte ne porte plus de source de fiche,
      même officielle : elle porte les sources de ses CANAUX (`placement_decisions[].source`), ou
      aucune. Le site de la compagnie reste accessible d'un clic, depuis la fiche compagnie. */

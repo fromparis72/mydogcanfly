@@ -14,9 +14,9 @@ const T = inlineT(locale);
 const fr = locale === "fr";
 const es = locale === "es";
 const title = T("The best travel crates 2026", "Les meilleures cages de transport 2026", "Los mejores jaulas de viaje 2026");
-const blurb = T("Our ranking of the best IATA-compliant travel crates is coming soon: a selection based on safety, ventilation, sturdiness and airline compliance — with verified sources.", "Notre classement des meilleures cages de transport conformes IATA arrive bientôt : sélection basée sur des critères de sécurité, ventilation, solidité et conformité compagnie — avec sources vérifiées.", "Nuestra clasificación de los mejores jaulas de viaje conformes con la IATA llegará pronto: una selección basada en criterios de seguridad, ventilación, solidez y aceptación de las aerolíneas — con fuentes verificadas.");
+const blurb = T("Our ranking of the best travel crates is coming soon: a selection based on safety, ventilation, sturdiness and acceptance by airlines — with verified sources.", "Notre classement des meilleures cages de transport arrive bientôt : sélection basée sur des critères de sécurité, ventilation, solidité et acceptation par les compagnies — avec sources vérifiées.", "Nuestra clasificación de las mejores jaulas de viaje llegará pronto: una selección basada en criterios de seguridad, ventilación, solidez y aceptación de las aerolíneas — con fuentes verificadas.");
 const crateHref = (locale === "en" ? "" : `/${locale}`) + "/tools/crate/";
-const metaDesc = T("The best IATA-compliant dog travel crates: safety, ventilation, sturdiness and airline compliance. Ranking coming soon.", "Les meilleures caisses de transport conformes IATA : sécurité, ventilation, solidité et conformité aux exigences des compagnies.", "Las mejores jaulas de viaje conformes con la IATA: seguridad, ventilación, solidez y cumplimiento de las exigencias de las aerolíneas.");
+const metaDesc = T("The best dog travel crates: safety, ventilation, sturdiness and acceptance by airlines. Ranking coming soon.", "Les meilleures cages de transport pour chien : sécurité, ventilation, solidité et acceptation par les compagnies.", "Las mejores jaulas de viaje para perro: seguridad, ventilación, solidez y aceptación de las aerolíneas.");
 ---
 <Base locale={locale} title={`${title}`} description={metaDesc}>
   <section class="mdcf-section">

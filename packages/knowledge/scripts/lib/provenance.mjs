@@ -171,6 +171,14 @@ export const HORS_SCRUTATION = {
   "packages/knowledge/quality": "contrôles de la base de connaissances, hors construction de pages",
   "packages/knowledge/raw": "données brutes : elles sont LUES par le code, elles ne lisent rien",
   "packages/knowledge/translations": "données de traduction : lues, ne lisent rien",
+  /* Ajouté le 01/09/2026, après que le RÉSIDU a nommé ces trois fichiers. Le micro-lot Tarifs les
+     a créés dans un paquet scellé sans les classer : ils PÈSENT donc sur l'empreinte — `ENTREES`
+     couvre tout `packages/knowledge` —, mais ils échappaient au relevé des lectures
+     d'environnement, ni scrutés ni déclarés. C'est exactement le trou que le résidu existe pour
+     refermer, et il l'a refermé. Le répertoire ne contient que des JSON : aucun exécutable, donc
+     aucun classement par répertoire qui masquerait du code. */
+  "packages/knowledge/tarifs": "registres de caisses : données JSON non exécutables, lues par le "
+    + "contrat des caisses, elles ne lisent aucune variable d'environnement",
   "packages/engine/README.md": "documentation, aucun code exécuté au build",
   "packages/engine/package.json": "manifeste npm : dépendances et scripts, aucune lecture d'environnement",
   "packages/engine/tsconfig.json": "configuration TypeScript déclarative",

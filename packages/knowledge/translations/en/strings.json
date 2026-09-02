@@ -92,6 +92,10 @@
   "air.cabin_ok": "Cabin OK",
   "air.hold_only": "Hold only",
   "air.cargo_only": "Cargo only",
+  "air.cabin_hold": "Cabin and hold",
+  "air.cabin_cargo": "Cabin and cargo",
+  "air.hold_cargo": "Hold and cargo",
+  "air.cabin_hold_cargo": "Cabin, hold and cargo",
   "air.to_confirm": "Policy to confirm with the airline",
   "air.not_accepted": "Not compatible with this dog or this route",
   "air.not_accepted_because": "Not compatible: {reasons}",
@@ -321,5 +325,7 @@
   "travel_hub.category.travel": "Travel",
   "travel_hub.category.health": "Health",
   "travel_hub.category.destinations": "Destinations",
-  "codeshare.notice": "On a codeshare flight, the airline selling the ticket may be different from the airline operating the flight. Your dog’s travel conditions may therefore depend on the operating carrier. Always check the “operated by” notice before booking."
+  "codeshare.notice": "On a codeshare flight, the airline selling the ticket may be different from the airline operating the flight. Your dog’s travel conditions may therefore depend on the operating carrier. Always check the “operated by” notice before booking.",
+  "tarif.a_confirmer": "Fee to confirm with the airline",
+  "tarif.devis_cargo": "Fee to request from the cargo service"
 }

@@ -92,6 +92,10 @@
   "air.cabin_ok": "Cabine liberada",
   "air.hold_only": "Somente porão",
   "air.cargo_only": "Somente carga",
+  "air.cabin_hold": "Cabine e porão",
+  "air.cabin_cargo": "Cabine e carga",
+  "air.hold_cargo": "Porão e carga",
+  "air.cabin_hold_cargo": "Cabine, porão e carga",
   "air.to_confirm": "Política a confirmar com a companhia",
   "air.not_accepted": "Não compatível com este cachorro ou este itinerário",
   "air.not_accepted_because": "Não compatível: {reasons}",
@@ -321,5 +325,7 @@
   "travel_hub.category.travel": "Viajar",
   "travel_hub.category.health": "Saúde",
   "travel_hub.category.destinations": "Destinos",
-  "codeshare.notice": "Num voo em codeshare, a companhia que vende o bilhete pode ser diferente da que opera o voo. Por isso, as condições de transporte do seu cão podem depender da transportadora efetiva. Verifique sempre a indicação « operado por » antes de reservar."
+  "codeshare.notice": "Num voo em codeshare, a companhia que vende o bilhete pode ser diferente da que opera o voo. Por isso, as condições de transporte do seu cão podem depender da transportadora efetiva. Verifique sempre a indicação « operado por » antes de reservar.",
+  "tarif.a_confirmer": "Tarifa a confirmar com a companhia",
+  "tarif.devis_cargo": "Tarifa a solicitar ao serviço de carga"
 }

@@ -685,11 +685,24 @@ export function evaluate(kb: NormalizedKB, req: FinderRequest, opts?: { weatherP
       }
     }
     const fired = dedupe(perPlacement.flatMap((x) => x.fires.map((r) => toFired(r, req.locale))));
-    // Published fee for the primary accepted placement (cabin > hold > cargo), when the airline states one.
-    // (`policy` was already computed above, before perPlacement — reused here, not redeclared.)
-    const fees = (a as { fees?: Record<string, string | undefined> }).fees;
-    const okPlacement = placementDecisions.find((x) => x.allowed)?.placement;
-    const fee = okPlacement ? (policy?.[okPlacement]?.fee ?? fees?.[okPlacement]) : undefined;
+    /* AUCUN TARIF NE SORT DU MOTEUR — micro-lot Tarifs, 29/08/2026.
+     *
+     * Trois lignes calculaient ici un champ `fee` unique :
+     *
+     *     const fees = (a as { fees?: … }).fees;
+     *     const okPlacement = placementDecisions.find((x) => x.allowed)?.placement;
+     *     const fee = okPlacement ? (policy?.[okPlacement]?.fee ?? fees?.[okPlacement]) : undefined;
+     *
+     * Trois fautes en deux lignes. Le REPLI vers `fees` — champ libre hérité du site v1, sans
+     * structure ni source — alimentait une carte. UN SEUL CANAL était retenu, le premier accepté
+     * dans l'ordre cabine > soute > fret, et le montant s'affichait ensuite sans dire duquel il
+     * venait. Et rien ne le QUALIFIAIT : la carte rendait la chaîne nue, si bien qu'une fourchette
+     * générique prenait l'apparence d'un prix calculé pour le trajet demandé.
+     *
+     * Mesuré : sur 101 champs tarifaires, 91 venaient de cet ancien `fees`. Aucun n'est publié
+     * désormais. Le statut tarifaire est DÉRIVÉ DU CANAL, dans explain.ts ; un montant ne
+     * reviendra que porté par une table structurée et sourcée — canal, route, devise, poids
+     * combiné, date d'applicabilité. Voir DOSSIER-TARIFS-PRELANCEMENT.md. */
     return {
       airline_id: a.id,
       airline_name: (a as { name?: string }).name ?? a.id,
@@ -707,7 +720,6 @@ export function evaluate(kb: NormalizedKB, req: FinderRequest, opts?: { weatherP
         placement: x.decision.placement, fires: x.fires, breedDeny: x.breedDeny }))),
       connect_airport_id,
       detour_km,
-      fee,
       origin_airport_id,
       destination_airport_id,
       placements: placementDecisions,

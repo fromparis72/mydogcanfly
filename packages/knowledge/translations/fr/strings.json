@@ -92,6 +92,10 @@
   "air.cabin_ok": "Cabine OK",
   "air.hold_only": "Soute uniquement",
   "air.cargo_only": "Fret uniquement",
+  "air.cabin_hold": "Cabine et soute",
+  "air.cabin_cargo": "Cabine et fret",
+  "air.hold_cargo": "Soute et fret",
+  "air.cabin_hold_cargo": "Cabine, soute et fret",
   "air.to_confirm": "Politique à confirmer auprès de la compagnie",
   "air.not_accepted": "Non compatible avec ce chien ou cet itinéraire",
   "air.not_accepted_because": "Non compatible : {reasons}",
@@ -321,5 +325,7 @@
   "travel_hub.category.travel": "Voyager",
   "travel_hub.category.health": "Santé",
   "travel_hub.category.destinations": "Destinations",
-  "codeshare.notice": "En partage de code, la compagnie qui vend le billet peut être différente de celle qui opère le vol. Les conditions de transport de votre chien peuvent alors dépendre du transporteur effectif. Vérifiez toujours la mention « opéré par » avant de réserver."
+  "codeshare.notice": "En partage de code, la compagnie qui vend le billet peut être différente de celle qui opère le vol. Les conditions de transport de votre chien peuvent alors dépendre du transporteur effectif. Vérifiez toujours la mention « opéré par » avant de réserver.",
+  "tarif.a_confirmer": "Tarif à confirmer auprès de la compagnie",
+  "tarif.devis_cargo": "Tarif à demander au service cargo"
 }

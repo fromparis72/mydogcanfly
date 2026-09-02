@@ -1,0 +1,308 @@
+{
+  "_lot": "Tarifs — prélancement",
+  "_regle": "Occurrences de montants restant dans les champs NON rendus des fiches compagnies. Une occurrence de source = une occurrence, jamais multipliée par ses exemplaires HTML. Une occurrence est un MARQUEUR DE DEVISE adjacent à un nombre : « ₱1 000–10 000 » en compte une, pas deux, parce qu'une fourchette partage son marqueur.",
+  "_mesure": {
+    "fiches": 73,
+    "occurrences": 1563,
+    "occurrences_sources_totales": 1563
+  },
+  "fiches": {
+    "aegean.yml": {
+      "channels.fee": 8,
+      "fareList.rows.value": 16
+    },
+    "aerolineas_argentinas.yml": {
+      "channels.fee": 16,
+      "fareList.rows.value": 44
+    },
+    "aeromexico.yml": {
+      "channels.fee": 8,
+      "fareList.rows.value": 8
+    },
+    "air_austral.yml": {
+      "channels.fee": 8,
+      "fareList.rows.value": 8
+    },
+    "air_canada.yml": {
+      "channels.fee": 8,
+      "fareList.rows.value": 16
+    },
+    "air_caraibes.yml": {
+      "channels.fee": 8,
+      "fareList.rows.value": 16
+    },
+    "air_europa.yml": {
+      "channels.fee": 8,
+      "fareList.rows.value": 16
+    },
+    "air_france.yml": {
+      "channels.fee": 8,
+      "fareGrid.rows.cabin": 5,
+      "fareGrid.rows.hold": 5
+    },
+    "air_india.yml": {
+      "channels.fee": 16,
+      "fareList.rows.value": 16
+    },
+    "air_new_zealand.yml": {
+      "channels.fee": 4,
+      "fareList.rows.value": 4,
+      "fareList.note": 4
+    },
+    "air_serbia.yml": {
+      "channels.fee": 4,
+      "fareList.rows.value": 16
+    },
+    "air_tahiti_nui.yml": {
+      "channels.fee": 8,
+      "fareList.rows.value": 12
+    },
+    "air_transat.yml": {
+      "channels.fee": 12,
+      "fareList.rows.value": 18
+    },
+    "airbaltic.yml": {
+      "channels.fee": 12,
+      "fareList.rows.value": 12
+    },
+    "alaska.yml": {
+      "channels.fee": 8,
+      "fareList.rows.value": 16,
+      "fareList.note": 4
+    },
+    "american.yml": {
+      "channels.fee": 12,
+      "fareList.rows.value": 12
+    },
+    "ana.yml": {
+      "channels.fee": 8,
+      "fareList.rows.value": 20,
+      "fareList.note": 8
+    },
+    "asiana.yml": {
+      "channels.fee": 8,
+      "fareList.rows.value": 20
+    },
+    "austrian.yml": {
+      "channels.fee": 8,
+      "fareList.rows.value": 20
+    },
+    "avianca.yml": {
+      "channels.fee": 8,
+      "fareList.rows.value": 8
+    },
+    "bangkok_airways.yml": {
+      "channels.fee": 4,
+      "fareList.rows.value": 4
+    },
+    "brussels.yml": {
+      "channels.fee": 8,
+      "fareList.rows.value": 12
+    },
+    "china_southern.yml": {
+      "channels.fee": 4,
+      "fareList.rows.value": 28,
+      "fareList.note": 4
+    },
+    "condor.yml": {
+      "channels.fee": 8,
+      "fareList.rows.value": 12,
+      "fareList.note": 4
+    },
+    "copa.yml": {
+      "channels.fee": 8,
+      "fareList.rows.value": 8
+    },
+    "corsair.yml": {
+      "channels.fee": 8,
+      "fareList.rows.value": 16,
+      "fareList.note": 4
+    },
+    "croatia_airlines.yml": {
+      "channels.fee": 24
+    },
+    "delta.yml": {
+      "channels.fee": 8,
+      "fareList.rows.value": 12,
+      "fareList.note": 8
+    },
+    "edelweiss.yml": {
+      "channels.fee": 16
+    },
+    "el_al.yml": {
+      "channels.fee": 8,
+      "fareList.rows.value": 12
+    },
+    "emirates.yml": {
+      "channels.fee": 4,
+      "fareList.rows.value": 12
+    },
+    "ethiopian.yml": {
+      "channels.fee": 8,
+      "fareList.rows.value": 20
+    },
+    "etihad.yml": {
+      "channels.fee": 4,
+      "fareList.rows.value": 12
+    },
+    "eurowings.yml": {
+      "channels.fee": 4,
+      "fareList.rows.value": 12
+    },
+    "finnair.yml": {
+      "channels.fee": 8,
+      "fareList.rows.value": 20
+    },
+    "french_bee.yml": {
+      "channels.fee": 16,
+      "fareList.rows.value": 16
+    },
+    "iberia_express.yml": {
+      "channels.fee": 8,
+      "fareList.rows.value": 16
+    },
+    "iberia.yml": {
+      "channels.fee": 8,
+      "fareList.rows.value": 16
+    },
+    "ita_airways.yml": {
+      "channels.fee": 8,
+      "fareList.rows.value": 16
+    },
+    "jal.yml": {
+      "channels.fee": 4,
+      "fareList.rows.value": 4
+    },
+    "jetblue.yml": {
+      "channels.fee": 4,
+      "fareList.rows.value": 4
+    },
+    "klm.yml": {
+      "channels.fee": 8,
+      "fareList.rows.value": 8
+    },
+    "km_malta.yml": {
+      "channels.fee": 12,
+      "fareList.rows.value": 20
+    },
+    "korean_air.yml": {
+      "channels.fee": 8,
+      "fareList.rows.value": 12,
+      "fareList.note": 4
+    },
+    "la_compagnie.yml": {
+      "channels.fee": 4,
+      "fareList.rows.value": 8
+    },
+    "latam.yml": {
+      "channels.fee": 8,
+      "fareList.rows.value": 8
+    },
+    "lot.yml": {
+      "channels.fee": 8,
+      "fareList.rows.value": 8
+    },
+    "lufthansa.yml": {
+      "fareList.rows.value": 8
+    },
+    "luxair.yml": {
+      "channels.fee": 8,
+      "fareList.rows.value": 8
+    },
+    "neos.yml": {
+      "channels.fee": 8
+    },
+    "norwegian.yml": {
+      "channels.fee": 8,
+      "fareList.rows.value": 8
+    },
+    "pegasus.yml": {
+      "channels.fee": 24
+    },
+    "philippine.yml": {
+      "channels.fee": 12,
+      "fareList.rows.value": 12
+    },
+    "qatar_airways.yml": {
+      "channels.fee": 4,
+      "fareList.rows.value": 16
+    },
+    "royal_air_maroc.yml": {
+      "channels.fee": 8,
+      "fareList.rows.value": 24
+    },
+    "royal_jordanian.yml": {
+      "channels.fee": 8,
+      "fareList.rows.value": 28
+    },
+    "sas.yml": {
+      "channels.fee": 8,
+      "fareList.rows.value": 8
+    },
+    "saudia.yml": {
+      "channels.fee": 8,
+      "fareList.rows.value": 8
+    },
+    "sky_express.yml": {
+      "channels.fee": 12
+    },
+    "smartwings.yml": {
+      "channels.fee": 8,
+      "fareList.rows.value": 8
+    },
+    "south_african_airways.yml": {
+      "channels.fee": 4,
+      "fareList.rows.value": 4,
+      "fareList.note": 4
+    },
+    "sunexpress.yml": {
+      "channels.fee": 16
+    },
+    "swiss.yml": {
+      "channels.fee": 8,
+      "fareList.rows.value": 16
+    },
+    "tap.yml": {
+      "channels.fee": 8,
+      "fareList.rows.value": 12
+    },
+    "tarom.yml": {
+      "channels.fee": 24,
+      "fareGrid.rows.cabin": 3,
+      "fareGrid.rows.hold": 3
+    },
+    "thai_airways.yml": {
+      "channels.fee": 4,
+      "fareList.rows.value": 12
+    },
+    "transavia.yml": {
+      "channels.fee": 8,
+      "fareList.rows.value": 8,
+      "fareList.note": 16
+    },
+    "tunisair.yml": {
+      "channels.fee": 16,
+      "fareList.rows.value": 20
+    },
+    "united.yml": {
+      "channels.fee": 4,
+      "fareList.rows.value": 4
+    },
+    "vietnam_airlines.yml": {
+      "channels.fee": 8,
+      "fareList.rows.value": 13
+    },
+    "virgin_australia.yml": {
+      "channels.fee": 4,
+      "fareList.rows.value": 4
+    },
+    "volotea.yml": {
+      "channels.fee": 4,
+      "fareList.rows.value": 8
+    },
+    "westjet.yml": {
+      "channels.fee": 10,
+      "fareList.rows.value": 10
+    }
+  }
+}

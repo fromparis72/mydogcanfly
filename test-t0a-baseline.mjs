@@ -25,6 +25,12 @@ import { loadKB, preuveAuditee } from "./packages/knowledge/src/index.ts";
 import { evaluate } from "./packages/engine/src/evaluate.ts";
 import { explain } from "./packages/engine/src/explain.ts";
 
+/* Sentinelles de forme des cartes de baseline : douze segments, le tarif au onzième rang (index
+   10). Mesurées sur les 1 560 cartes ; elles ne bougent que par un mouvement nommé. */
+const SEGMENTS_PAR_CARTE = 12;
+const RANG_TARIF = 10;
+
+
 const WRITE = process.argv.includes("--write");
 const FILE = "test-baselines/t0a-finder-baseline.json";
 let pass = 0, fail = 0;
@@ -78,7 +84,12 @@ function canonical(body) {
     `confirm:${(a.to_confirm ?? []).join("+") || "-"}`,
     `pets:${a.carries_pets ?? "-"}/${a.offers_pet_transport ?? "-"}`,
     `deny:${(a.deny_reasons ?? []).join("+") || "-"}`,
-    `label:${a.label}`, `fee:${a.fee ?? "-"}${a.fee_quote_only ? "(devis)" : ""}`,
+    /* LE CHAMP « fee » N'EXISTE PLUS (micro-lot Tarifs, 29/08/2026). Laisser « fee:${a.fee ?? "-"} »
+       rendrait « fee:- » partout : la baseline cesserait de contrôler quoi que ce soit de
+       tarifaire, en silence. Elle porte désormais les STATUTS PAR CANAL, qui sont ce que le
+       rapport dit maintenant — le mouvement de baseline est donc un mouvement NOMMÉ, et son diff
+       montre ligne à ligne ce qui a remplacé quoi. */
+    `label:${a.label}`, `tarifs:${(a.statuts_tarifaires ?? []).map((s) => s.placement).join("+") || "-"}`,
     `heat:${Number(a.heat_embargo)}${Number(a.heat_confirmation_required)}`,
   ].join(" | ");
   return walk({
@@ -498,9 +509,224 @@ console.log("=== Preuve T0-B2-UI (deux baselines FIGÉES — permanente) ===");
        brachycéphale catégorique de BA — et avis IAG « acceptation non garantie » à la place.
        36 scénarios carlin bougent, AUCUN statut ne change (le mouvement est dans les avis de
        sécurité publiés) ; les figées de T0-A, T0-B2-UI et T0-B3-b restent intouchables. */
-    check("la baseline vivante est identique à la baseline figée la plus récente (RC)",
+    /* LA PLUS RÉCENTE EST DÉSORMAIS CELLE DE L'ÉTAPE 3 DU MICRO-LOT TARIFS (30/08/2026). Ni la
+       RC ni l'étape 2 ne sont écrasées : elles restent intactes à côté, et DEUX preuves
+       permanentes établissent ce qui sépare chaque paire — le segment tarifaire pour la première,
+       le seul libellé de canal pour la seconde. */
+    check("la baseline vivante est identique à la baseline figée la plus récente (Tarifs étape 3)",
       readFileSync("test-baselines/t0a-finder-baseline.json", "utf8")
-        === readFileSync("test-baselines/rc-finder-baseline-apres.json", "utf8"));
+        === readFileSync("test-baselines/tarifs-etape3-finder-baseline-apres.json", "utf8"));
+
+    /* PREUVE PERMANENTE RC → TARIFS. Le lot supprime le champ « fee » du rapport et lui substitue
+       les statuts par canal. Ce qui doit rester vrai, et qu'on exige ici pour toujours : la même
+       bijection de scénarios et de cartes, TOUS les autres champs identiques, et SEUL le segment
+       tarifaire remplacé.
+
+       PREMIÈRE RÉDACTION FAUTIVE, NOMMÉE : elle ne lisait que « airlines ». La contre-revue du
+       29/08/2026 l'a montré en modifiant un `verdict` dans la figée Tarifs — et à l'identique
+       dans la vivante, pour que le garde-fou roulant reste vert par égalité de fichiers. La
+       preuve répondait alors `cartes: 1560, tarifRemplace: 1560, autresSegments: 0`, donc
+       VERTE sur un rapport saboté. Elle exige désormais l'égalité canonique des quatorze autres
+       champs, et par carte : la même identité au même rang, le même nombre de segments, UNE
+       divergence et une seule, à la place du tarif, de « fee: » vers « tarifs: ». */
+    {
+      const rc = JSON.parse(readFileSync("test-baselines/rc-finder-baseline-apres.json", "utf8"));
+      const tarifs = JSON.parse(readFileSync("test-baselines/tarifs-finder-baseline-apres.json", "utf8"));
+
+      /* La comparaison est une FONCTION, pour être rejouée sur des copies sabotées juste après :
+         une preuve qu'on n'a jamais vue rougir ne prouve rien. */
+      const comparer = (avant, apres) => {
+        const scenarios = Object.keys(avant).sort();
+        const anomalies = [];
+        if (JSON.stringify(scenarios) !== JSON.stringify(Object.keys(apres).sort())) {
+          anomalies.push("les scénarios ne sont pas les mêmes");
+          return { scenarios: scenarios.length, champs: 0, cartes: 0, remplacements: 0, rangs: [], anomalies };
+        }
+        let champs = 0, cartes = 0, remplacements = 0;
+        const rangs = new Set();
+        for (const s of scenarios) {
+          /* 1 — TOUT LE RESTE DU RAPPORT, champ par champ : verdict, score, conditions, risques,
+             sources, avis de sécurité, alternatives, climat… un mouvement de statut ne peut plus
+             se glisser sous un mouvement de tarif. */
+          for (const c of new Set([...Object.keys(avant[s]), ...Object.keys(apres[s])])) {
+            if (c === "airlines") continue;
+            champs++;
+            if (JSON.stringify(avant[s][c]) !== JSON.stringify(apres[s][c])) anomalies.push(`${s}.${c} a bougé`);
+          }
+          /* 2 — LES CARTES, rang par rang. */
+          const a = avant[s].airlines ?? [], b = apres[s].airlines ?? [];
+          if (a.length !== b.length) { anomalies.push(`${s} : ${a.length} cartes contre ${b.length}`); continue; }
+          for (let i = 0; i < a.length; i++) {
+            cartes++;
+            const sa = String(a[i]).split(" | "), sb = String(b[i]).split(" | ");
+            if (sa.length !== SEGMENTS_PAR_CARTE || sb.length !== SEGMENTS_PAR_CARTE) {
+              anomalies.push(`${s}#${i} : ${sa.length} segments contre ${sb.length} (attendu ${SEGMENTS_PAR_CARTE})`); continue;
+            }
+            if (sa[0] !== sb[0]) { anomalies.push(`${s}#${i} : identité ${sa[0]} devenue ${sb[0]}`); continue; }
+            const divergents = sa.map((x, k) => (x === sb[k] ? -1 : k)).filter((k) => k >= 0);
+            if (divergents.length !== 1) {
+              anomalies.push(`${s}#${i} : ${divergents.length} segments divergents (${divergents.join(",")}), attendu 1`); continue;
+            }
+            const k = divergents[0];
+            if (!sa[k].startsWith("fee:") || !sb[k].startsWith("tarifs:")) {
+              anomalies.push(`${s}#${i} : divergence au segment ${k} « ${sa[k]} » → « ${sb[k]} », qui n'est pas un remplacement tarifaire`); continue;
+            }
+            rangs.add(k);
+            remplacements++;
+          }
+        }
+        return { scenarios: scenarios.length, champs, cartes, remplacements, rangs: [...rangs], anomalies };
+      };
+
+      const r = comparer(rc, tarifs);
+      check(`RC → Tarifs : les ${r.scenarios} scénarios sont les mêmes`, r.scenarios === 72);
+      check(`RC → Tarifs : ${r.champs} champs hors « airlines » comparés un à un`, r.champs === 1008);
+      check(`RC → Tarifs : ${r.cartes} cartes comparées`, r.cartes === 1560);
+      check(`RC → Tarifs : ${r.remplacements} remplacements tarifaires, tous au même rang ${JSON.stringify(r.rangs)}`,
+        r.remplacements === 1560 && JSON.stringify(r.rangs) === JSON.stringify([RANG_TARIF]));
+      check("RC → Tarifs : aucune autre divergence, nulle part",
+        r.anomalies.length === 0, r.anomalies.slice(0, 5).join(" ; "));
+
+      /* LA PREUVE VUE ROUGIR, sur les trois sabotages qu'elle a laissé passer ou qu'elle doit
+         attraper. Sans ceci, elle resterait une affirmation. */
+      const copie = () => JSON.parse(JSON.stringify(tarifs));
+      const premier = Object.keys(tarifs)[0];
+      const sabotages = [
+        ["un verdict modifié — L'ATTAQUE DU 29/08", (t) => { t[premier].verdict = "SABOTÉ"; }],
+        ["un avis de sécurité retiré", (t) => {
+          /* Sur un scénario qui EN PORTE : vider un champ déjà vide ne prouverait rien. */
+          const s = Object.keys(t).find((k) => (t[k].safety_advisories ?? []).length > 0);
+          if (!s) return false;
+          t[s].safety_advisories = [];
+          return true;
+        }],
+        ["un statut de carte modifié hors segment tarifaire", (t) => {
+          const c = t[premier].airlines[0].split(" | ");
+          c[3] = "st:denied/denied/denied";
+          t[premier].airlines[0] = c.join(" | ");
+        }],
+        ["une carte déplacée dans l'ordre", (t) => {
+          const l = t[premier].airlines;
+          [l[0], l[1]] = [l[1], l[0]];
+        }],
+      ];
+      for (const [nom, saboter] of sabotages) {
+        const t = copie();
+        /* UNE MUTATION QUI NE S'APPLIQUE PAS NE PROUVE RIEN — la première rédaction vidait
+           `safety_advisories` sur un scénario où il était DÉJÀ vide, et rougissait pour ça. */
+        if (saboter(t) === false) { check(`RC → Tarifs : sabotage « ${nom} » applicable`, false, "la mutation ne change rien"); continue; }
+        if (JSON.stringify(t) === JSON.stringify(tarifs)) { check(`RC → Tarifs : sabotage « ${nom} » applicable`, false, "la copie sabotée est identique à l'originale"); continue; }
+        const vu = comparer(rc, t);
+        check(`RC → Tarifs : la preuve rougit sur ${nom}`, vu.anomalies.length > 0,
+          "la preuve est restée verte sur un rapport saboté");
+      }
+    }
+
+    /* PREUVE PERMANENTE TARIFS ÉTAPE 2 → ÉTAPE 3. L'étape 3 remplace la cascade de libellés par
+       une construction depuis l'ensemble RÉEL des canaux ouverts. Ce qui doit rester vrai pour
+       toujours : SEUL le libellé bouge, sur EXACTEMENT 430 cartes, et pour les seules
+       combinaisons multicanales — les 1 130 autres ne changent pas d'un octet.
+
+       Ce que l'ancienne cascade disait, mesuré avant correction :
+         011 ×  12  « Soute uniquement » alors que le fret est ouvert — FAUX ;
+         110 × 264  « Cabine OK »        la soute est tue ;
+         111 × 134  « Cabine OK »        la soute et le fret sont tus ;
+         101 ×  20  « Cabine OK »        le fret est tu.
+       Douze cartes affirmaient donc quelque chose de faux, et 418 taisaient un canal ouvert. */
+    {
+      const etape2 = JSON.parse(readFileSync("test-baselines/tarifs-finder-baseline-apres.json", "utf8"));
+      const etape3 = JSON.parse(readFileSync("test-baselines/tarifs-etape3-finder-baseline-apres.json", "utf8"));
+      const seg = (c, p) => (String(c).split(" | ").find((x) => x.startsWith(p)) || "").slice(p.length);
+      const sansLibelle = (c) => String(c).split(" | ").filter((x) => !x.startsWith("label:")).join(" | ");
+
+      const comparerLibelles = (avant, apres) => {
+        const anomalies = [], parCombo = {};
+        let cartes = 0, changes = 0;
+        const scenarios = Object.keys(avant).sort();
+        if (JSON.stringify(scenarios) !== JSON.stringify(Object.keys(apres).sort())) {
+          return { cartes: 0, changes: 0, parCombo, anomalies: ["les scénarios ne sont pas les mêmes"] };
+        }
+        for (const s of scenarios) {
+          /* Tout le reste du rapport — verdict, score, conditions, avis — doit être identique. */
+          for (const c of new Set([...Object.keys(avant[s]), ...Object.keys(apres[s])])) {
+            if (c === "airlines") continue;
+            if (JSON.stringify(avant[s][c]) !== JSON.stringify(apres[s][c])) anomalies.push(`${s}.${c} a bougé`);
+          }
+          const a = avant[s].airlines ?? [], b = apres[s].airlines ?? [];
+          if (a.length !== b.length) { anomalies.push(`${s} : ${a.length} cartes contre ${b.length}`); continue; }
+          for (let i = 0; i < a.length; i++) {
+            cartes++;
+            /* HORS LIBELLÉ, la carte doit être identique à l'octet près. */
+            if (sansLibelle(a[i]) !== sansLibelle(b[i])) { anomalies.push(`${s}#${i} : un segment hors libellé a bougé`); continue; }
+            const la = seg(a[i], "label:"), lb = seg(b[i], "label:");
+            if (la === lb) continue;
+            changes++;
+            const bools = seg(a[i], "bool:");
+            /* Un libellé ne peut changer QUE sur une combinaison multicanale : deux « 1 » ou plus. */
+            if ((bools.match(/1/g) ?? []).length < 2) {
+              anomalies.push(`${s}#${i} : libellé changé sur ${bools}, qui n'ouvre pas deux canaux`);
+              continue;
+            }
+            parCombo[bools] = (parCombo[bools] || 0) + 1;
+          }
+        }
+        return { cartes, changes, parCombo, anomalies };
+      };
+
+      const r = comparerLibelles(etape2, etape3);
+      check(`étape 2 → 3 : ${r.cartes} cartes comparées`, r.cartes === 1560);
+      check(`étape 2 → 3 : ${r.changes} libellés changés, ${r.cartes - r.changes} inchangés`,
+        r.changes === 430 && r.cartes - r.changes === 1130);
+      /* Comparaison EXPLICITE, triée. La première rédaction comparait deux `JSON.stringify`
+         d'objets : elle ne passait que parce que JavaScript réordonne les clés ressemblant à des
+         index entiers — « 101 » avant « 011 ». Une égalité qui tient par une règle d'ordonnancement
+         du langage est une égalité qu'on ne contrôle pas. */
+      const ATTENDU_PAR_COMBO = [["011", 12], ["101", 20], ["110", 264], ["111", 134]];
+      const vuParCombo = Object.entries(r.parCombo).sort(([a], [b]) => a.localeCompare(b));
+      check(`étape 2 → 3 : les changements par combinaison ${JSON.stringify(vuParCombo)}`,
+        JSON.stringify(vuParCombo) === JSON.stringify(ATTENDU_PAR_COMBO));
+      check("étape 2 → 3 : rien d'autre n'a bougé, nulle part",
+        r.anomalies.length === 0, r.anomalies.slice(0, 5).join(" ; "));
+
+      /* AUCUN « UNIQUEMENT » QUAND UN SECOND CANAL EST OUVERT — dans les quatre langues, sur la
+         baseline vivante comme sur la figée. C'est l'affirmation fausse que l'étape 3 ferme. */
+      const EXCLUSIF = /\b(only|uniquement|solo|somente)\b/i;
+      let fautifs = 0;
+      for (const s of Object.keys(etape3)) {
+        for (const c of etape3[s].airlines) {
+          const bools = seg(c, "bool:");
+          if ((bools.match(/1/g) ?? []).length >= 2 && EXCLUSIF.test(seg(c, "label:"))) fautifs++;
+        }
+      }
+      check(`étape 2 → 3 : aucun libellé exclusif sur une carte à deux canaux ouverts (${fautifs})`, fautifs === 0);
+
+      /* LA PREUVE VUE ROUGIR. Une preuve qu'on n'a jamais vue distinguer ne distingue rien. */
+      const copie = () => JSON.parse(JSON.stringify(etape3));
+      const premier = Object.keys(etape3)[0];
+      const sabotages = [
+        ["un libellé changé sur une carte à canal unique", (t) => {
+          const s = Object.keys(t).find((k) => t[k].airlines.some((c) => (seg(c, "bool:").match(/1/g) ?? []).length === 1));
+          if (!s) return false;
+          const i = t[s].airlines.findIndex((c) => (seg(c, "bool:").match(/1/g) ?? []).length === 1);
+          t[s].airlines[i] = t[s].airlines[i].replace(/label:[^|]*/, "label:SABOTÉ ");
+          return true;
+        }],
+        ["un segment hors libellé modifié", (t) => {
+          const c = t[premier].airlines[0].split(" | ");
+          c[3] = "st:denied/denied/denied";
+          t[premier].airlines[0] = c.join(" | ");
+          return true;
+        }],
+        ["un verdict modifié", (t) => { t[premier].verdict = "SABOTÉ"; return true; }],
+      ];
+      for (const [nom, saboter] of sabotages) {
+        const t = copie();
+        if (saboter(t) === false) { check(`étape 2 → 3 : sabotage « ${nom} » applicable`, false, "la mutation ne change rien"); continue; }
+        const vu = comparerLibelles(etape2, t);
+        check(`étape 2 → 3 : la preuve rougit sur ${nom}`, vu.anomalies.length > 0,
+          "la preuve est restée verte sur un rapport saboté");
+      }
+    }
   }
 }
 

@@ -14,8 +14,13 @@ function iso2Flag(iso2?: string): string {
 interface Fact { label: string; value: string }
 interface SrcView { host: string; url: string; date: string; confidence: number }
 interface PolicyView {
+  /** `key` EST le canal : « cabin », « hold » ou « cargo ». */
   key: string; label: string; allowed: boolean;
-  maxWeight?: string; dims?: string; fee?: string; conditions?: string; src: SrcView;
+  /** LE STATUT CANONIQUE — `allowed` seul ne distingue pas un refus d'une confirmation requise,
+   *  et cette nuance décide si la page tarifie le canal ou se tait. */
+  status: "allowed" | "confirmation_required" | "denied";
+  /* `fee` retiré du type : laisser la place, c est laisser revenir la valeur. */
+  maxWeight?: string; dims?: string; conditions?: string; src: SrcView;
 }
 export interface PremiumView {
   summary?: string;
@@ -202,9 +207,17 @@ function premiumView(a: { premium?: unknown }, locale: string): PremiumView | un
     if (!p) return null;
     return {
       key, label: t(locale, `placement.${key}`), allowed: p.allowed,
+      /* Le statut vient de la politique quand elle le porte ; sinon il se déduit du booléen —
+         un ancien enregistrement sans statut vaut « allowed » ou « denied », jamais un doute
+         qu'on lui prêterait. */
+      status: (p as { status?: "allowed" | "confirmation_required" | "denied" }).status
+        ?? (p.allowed ? "allowed" : "denied"),
       maxWeight: p.max_weight_kg ? `${p.max_weight_kg} kg` : undefined,
       dims: p.carrier_dims_cm ? `${p.carrier_dims_cm.l}×${p.carrier_dims_cm.w}×${p.carrier_dims_cm.h} cm` : undefined,
-      fee: p.fee, conditions: pick(p.conditions, locale), src: srcView(p.source),
+      /* `fee` NE DESCEND PLUS JUSQU'À LA VUE (micro-lot Tarifs, 29/08/2026) : la chaîne de
+         `premium.policy[canal].fee` est libre, sans devise séparée, sans route ni date
+         d'applicabilité — impossible à rapporter à un trajet. La page rend le statut du canal. */
+      conditions: pick(p.conditions, locale), src: srcView(p.source),
     };
   };
 
@@ -329,8 +342,8 @@ function breedTravelView(kb: NormalizedKB, b: {
   const hold = brachy
     ? L(`As a snub-nosed breed, hold and cargo carriage is restricted or refused by many airlines, and a global heat/breathing risk applies. Where accepted, avoid warm-weather flights and use a roomy, well-ventilated IATA crate.`,
         `Race brachycéphale : le transport en soute et en fret est limité ou refusé par de nombreuses compagnies, avec un risque chaleur/respiration global. Lorsqu'il est accepté, évitez les vols par temps chaud et utilisez une caisse IATA spacieuse et bien ventilée.`)
-    : L(`Travels in the pressurised, temperature-controlled hold in an IATA-compliant crate when above cabin limits. Book early and prefer cooler times of day.`,
-        `Voyage dans la soute pressurisée et climatisée, dans une caisse conforme IATA au-dessus des limites cabine. Réserve tôt et privilégiez les heures fraîches.`);
+    : L(`Travels in the pressurised, temperature-controlled hold in a crate meeting the airline's requirements when above cabin limits. Book early and prefer cooler times of day.`,
+        `Voyage dans la soute pressurisée et climatisée, dans une cage conforme aux exigences de la compagnie au-dessus des limites cabine. Réserve tôt et privilégie les heures fraîches.`);
 
   const climate = heatTol <= 2
     ? L(`Best suited to cool and temperate climates. Hot and tropical destinations — and summer departures — are risky and often blocked by seasonal heat embargoes.`,

@@ -92,6 +92,10 @@
   "air.cabin_ok": "Cabina OK",
   "air.hold_only": "Solo bodega",
   "air.cargo_only": "Solo carga",
+  "air.cabin_hold": "Cabina y bodega",
+  "air.cabin_cargo": "Cabina y carga",
+  "air.hold_cargo": "Bodega y carga",
+  "air.cabin_hold_cargo": "Cabina, bodega y carga",
   "air.to_confirm": "Política a confirmar con la aerolínea",
   "air.not_accepted": "No compatible con este perro o este itinerario",
   "air.not_accepted_because": "No compatible: {reasons}",
@@ -321,5 +325,7 @@
   "travel_hub.category.travel": "Viajar",
   "travel_hub.category.health": "Salud",
   "travel_hub.category.destinations": "Destinos",
-  "codeshare.notice": "En un vuelo de código compartido, la aerolínea que vende el billete puede ser distinta de la que opera el vuelo. Por tanto, las condiciones de transporte de tu perro pueden depender del operador efectivo. Comprueba siempre la indicación « operado por » antes de reservar."
+  "codeshare.notice": "En un vuelo de código compartido, la aerolínea que vende el billete puede ser distinta de la que opera el vuelo. Por tanto, las condiciones de transporte de tu perro pueden depender del operador efectivo. Comprueba siempre la indicación « operado por » antes de reservar.",
+  "tarif.a_confirmer": "Tarifa por confirmar con la aerolínea",
+  "tarif.devis_cargo": "Tarifa por solicitar al servicio de carga"
 }

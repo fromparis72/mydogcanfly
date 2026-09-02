@@ -329,6 +329,32 @@ jobs:
       - name: La FAQ des fiches races nomme les compagnies compatibles (site complet)
         run: node --import tsx test-faq-races.mjs --dist=packages/ui/dist
 
+      # AUCUN MONTANT HÉRITÉ NE DOIT ÊTRE SERVI. Le harnais tarifaire juge ici le DOM CONSTRUIT :
+      # les 100 chaînes tarifaires héritées vivent toujours dans les données — c est la dette,
+      # assumée — mais aucune ne doit apparaître dans les fiches compagnies rendues.
+      - name: Aucun tarif hérité servi dans le HTML (site complet)
+        run: node --import tsx test-tarifs.mjs --dist=packages/ui/dist
+
+      # AUCUN MONTANT NUMÉRIQUE PUBLIÉ. Le contrôle précédent juge les chaînes tarifaires HÉRITÉES,
+      # celui-ci juge la FORME : un nombre bordé d'un marqueur de devise, où qu'il soit écrit. Il
+      # lit les quatre exemplaires publics de chaque fiche — corps visible, les trois balises
+      # <meta> de description et le JSON-LD — parce que la même phrase source y est recopiée, et
+      # que trois corrections successives de ce lot n'avaient regardé que la première.
+      - name: Aucun montant numérique publié sur les fiches compagnies (site complet)
+        run: node test-montants-publies.mjs --dist=packages/ui/dist
+
+      # ET LA CORRECTION VIT BIEN À LA SOURCE. Un montant réécrit dans une fiche YAML doit
+      # traverser le générateur et faire rougir la garde ci-dessus. Sans cette contre-épreuve,
+      # rien ne relierait les deux : on pourrait corriger les sources sans que la page change.
+      - name: Un montant remis à la source ressort et fait rougir la garde (site complet)
+        run: node test-montants-propagation.mjs --dist=packages/ui/dist
+
+      # ÉTAPE 3 : les libellés disent TOUS les canaux ouverts, et les surfaces applicatives
+      # ne présentent plus un modèle comme certifié par l'IATA. Ce contrôle EXIGE `--dist` et refuse son absence —
+      # une garde qui se saute faute d'artefact ne garde rien.
+      - name: Libellés multicanaux et vocabulaire IATA (site complet)
+        run: node --import tsx test-etape3-dom.mjs --dist=packages/ui/dist
+
       - name: Les affirmations retirées ne reviennent pas (dist complet)
         run: node test-fiches-affirmations-retirees.mjs --dist-complet
 

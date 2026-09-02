@@ -193,7 +193,18 @@ const jsonLd = faqItems.length ? [webpageLd, faqJsonLd(faqItems)] : [webpageLd];
             <div class="mini" data-placement={c.placement} data-status={statut}>
               <div class="t">{c.icon} {t(c.name)}<span class={`pill ${classeStatut(statut)} ml`}>{tt(locale, cleLibelleStatut(statut))}</span></div>
               <div class="k" set:html={chiffresEnGras(t(c.detail))} />
-              <div class="amt">{t(c.fee)}</div>
+              {/* LE MONTANT A ÉTÉ RETIRÉ (micro-lot Tarifs, 29/08/2026). Il venait de
+                  premium.policy[canal].fee — une chaîne libre, sans devise séparée, sans route,
+                  sans date d'applicabilité : lisible, mais impossible à rapporter à un trajet.
+                  Le statut du canal suffit tant qu'aucune table tarifaire structurée et sourcée
+                  n'existe. */}
+              {/* ON NE TARIFE PAS UN CANAL QU'ON REFUSE. La première rédaction rendait le statut
+                  tarifaire sans regarder le statut du canal : une soute « denied » recevait donc
+                  « Tarif à confirmer », ce qui laisse croire qu'un tarif existe pour un canal
+                  fermé. Le statut ne paraît que pour « allowed » et « confirmation_required ». */}
+              {statut !== "denied" && (
+                <div class="amt">{tt(locale, c.placement === "cargo" ? "tarif.devis_cargo" : "tarif.a_confirmer")}</div>
+              )}
               {/* La CAUSE de l'incertitude, dite pour ce qu'elle est : la nôtre (donnée non
                 * revérifiée) ou celle de la compagnie (rien de publié, accord au cas par cas).
                 * Les confondre attribuerait à la compagnie un doute qui vient de nous. */}
@@ -219,30 +230,24 @@ const jsonLd = faqItems.length ? [webpageLd, faqJsonLd(faqItems)] : [webpageLd];
       </div>
     </div>
 
-    {d.fareGrid && (
-      <div class="card">
-        <h2>💶 {T("Fares by zone", "Tarifs par zone", "Tarifas por zona")}</h2>
-        <table class="fare">
-          <thead><tr><th>{T("Zone", "Zone", "Zona")}</th><th class="r">{t(d.fareGrid.headCabin)}</th><th class="r">{t(d.fareGrid.headHold)}</th></tr></thead>
-          <tbody>
-            {d.fareGrid.rows.map((f) => (<tr><td>{t(f.zone)}</td><td class="r">{f.cabin}</td><td class="r">{f.hold}</td></tr>))}
-          </tbody>
-        </table>
-        <p class="muted mt8">{t(d.fareGrid.note)} <span class="pill ok sm">✓ {T("Official source", "Source officielle", "Fuente oficial")}</span></p>
-      </div>
-    )}
+    {/* LA GRILLE « TARIFS PAR ZONE » N'EST PLUS RENDUE (micro-lot Tarifs, 29/08/2026), et c'est
+        une perte assumée, pas un oubli. Deux fiches la portaient — Air France et TAROM —, avec des
+        montants par zone et une note d'applicabilité : la donnée tarifaire la mieux formée du
+        site. Elle reste hors du nouveau contrat (ni montant et devise séparés, ni preuve citée
+        avec locator, ni date d'applicabilité structurée), et la règle du lot ne souffre pas
+        d'exception : aucun montant tant qu'une table structurée et sourcée ne permet pas de le
+        calculer. CES DEUX GRILLES SONT LES PREMIÈRES CANDIDATES à la migration. */}
 
-    {d.fareList && (
-      <div class="card">
-        <h2>💶 {T("Fares", "Tarifs", "Tarifas")}</h2>
-        <table class="fare">
-          <tbody>
-            {d.fareList.rows.map((f) => (<tr><td>{t(f.label)}</td><td class="r">{t(f.value)}</td></tr>))}
-          </tbody>
-        </table>
-        <p class="muted mt8">{t(d.fareList.note)} <span class="pill ok sm">✓ {T("Official source", "Source officielle", "Fuente oficial")}</span></p>
-      </div>
-    )}
+    {/* LE TABLEAU « TARIFS » N'EST PLUS RENDU (micro-lot Tarifs, 29/08/2026) — et c'était la
+        surface la plus LARGE : 90 fiches sur 102. J'avais corrigé trois surfaces à la main ;
+        c'est le contrôle du DOM CONSTRUIT qui a trouvé les trois autres — la FAQ, la grille par
+        zone, puis ce tableau. Une relecture, si attentive soit-elle, cherche là où elle pense à
+        regarder ; un contrôle qui lit le HTML servi cherche partout.
+
+        Ces lignes portent un libellé et une valeur libres, sans devise séparée, sans route, sans
+        date d'applicabilité — impossibles à rapporter au trajet demandé. Elles reviendront quand
+        une table structurée et sourcée permettra de calculer, et elles répondront alors POUR UN
+        TRAJET, pas en général. */}
 
     <div class="card danger">
       <h2>⚠️ {T("Key restrictions", "Restrictions importantes", "Restricciones importantes")}</h2>
@@ -303,7 +308,7 @@ const jsonLd = faqItems.length ? [webpageLd, faqJsonLd(faqItems)] : [webpageLd];
 
     {d.crate && (
       <div class="card">
-        <h2>📦 {T("The hold crate (IATA standard)", "La caisse soute (norme IATA)", "La jaula de bodega (norma IATA)")}</h2>
+        <h2>📦 {T("The travel crate for the hold", "La cage de transport en soute", "El transportín para viajar en bodega")}</h2>
         <div class="cols">
           {d.crate.map((c) => (<div class="chk"><span class="ci ok">✓</span> {t(c)}</div>))}
         </div>
