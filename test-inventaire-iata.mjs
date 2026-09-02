@@ -10,7 +10,7 @@
  * chacun sur sa propre cause.
  */
 import { readFileSync } from "node:fs";
-import { classer, relever, verifier, citationsDeLHeritage, ancresOrphelines, MOTIF, MOTIF_HERITE, ALTERNATIVES, FAMILLE_CONTENANT, CATEGORIES } from "./inventaire-iata.mjs";
+import { classer, relever, verifier, citationsDeLHeritage, ancresOrphelines, MOTIF, MOTIF_HERITE, ALTERNATIVES, FAMILLE_CONTENANT, FORMES_BORNEES, CATEGORIES } from "./inventaire-iata.mjs";
 
 let defauts = 0;
 const echec = (nom, detail) => { defauts++; console.error(`  ✗ ${nom} — ${detail}`); };
@@ -86,6 +86,11 @@ const classerLigne = (chemin, ligne) => {
     "conforme IATA", "conforme a la IATA", "conforme à norma IATA",
     "norma IATA", "norme IATA", "exigences IATA",
     "certifiée IATA", "approuvée par l'IATA", "aprobado por la IATA", "aprovada pela IATA",
+    /* LES SIX AJOUTS DU 02/09/2026. Leur absence ici a fait rougir ce contrôle, et je ne l'avais
+       pas rapporté : j'avais lu la fin de la sortie du harnais, pas la totalité. Une alternative
+       sans échantillon n'est pas éprouvée — c'est exactement ce que ce contrôle existe pour dire. */
+    "Caisse IATA type", "caisse IATA", "IATA crate",
+    "rigid IATA type", "type IATA rigide", "tipo IATA rígida",
   ];
   if (ECHANTILLONS.length !== ALTERNATIVES.length) {
     echec("4 couverture du motif", `${ALTERNATIVES.length} alternative(s) au motif pour ${ECHANTILLONS.length} échantillon(s) — l'une d'elles n'est pas éprouvée`);
@@ -322,20 +327,39 @@ const classerLigne = (chemin, ligne) => {
  * moitié, on pourrait faire tomber le compteur en emportant de l'information vraie. */
 {
   const VUES = ["caisse IATA", "caisses IATA", "Caisse IATA type", "Jaula IATA típica", "IATA crate",
-    "IATA kennel", "IATA carrier", "caixa IATA", "transportín IATA", "sac IATA", "type IATA", "tipo IATA"];
+    "IATA kennel", "IATA carrier", "caixa IATA", "transportín IATA", "sac IATA",
+    /* les trois formes BORNÉES, sans contenant adjacent, relevées sur la fiche Luxair */
+    "rigid IATA type", "type IATA rigide", "tipo IATA rígida"];
   /* « norma IATA » N'EST PAS DANS CETTE LISTE, ET C'EST UN CONSTAT, PAS UN OUBLI. L'espagnol
      « norma IATA » est classé INTERDIT par un arbitrage antérieur, alors que le français
      « norme(s) IATA » est classé LICITE. Les deux disent pourtant la même chose. L'incohérence
      est ANTÉRIEURE à cette extension — elle ne vient pas d'elle et n'est pas corrigée ici — mais
      elle est nommée pour arbitrage plutôt que gommée en l'inscrivant du côté qui m'arrange. */
-  const LICITES = ["normes IATA", "norme IATA", "exigences IATA", "IATA LAR",
-    "Live Animals Regulations", "IATA method", "IATA requirements", "IATA standards"];
+  /* LA SYMÉTRIE, ÉPROUVÉE DANS LES DEUX LANGUES. « norme(s) IATA » et « norma(s) IATA » nomment
+     le même référentiel ; les traiter différemment était une incohérence, pas une règle. */
+  const LICITES = ["normes IATA", "norme IATA", "normas IATA", "norma IATA", "exigences IATA",
+    "IATA LAR", "Live Animals Regulations", "IATA method", "IATA requirements", "IATA standards"];
+  /* LES AFFIRMATIONS COMPLÈTES RESTENT INTERDITES : ce n'est pas le mot « norme » qui trompe,
+     c'est la phrase qui attribue le contenant au référentiel. */
+  const INTERDITES = ["conforme à la norme IATA", "conforme a la norma IATA", "homologada IATA",
+    "IATA-approved", "certifiée IATA"];
+  /* ET « ET RIEN DE PLUS » A ENFIN DES CAS NÉGATIFS. Sans eux, l'intitulé du contrôle promettait
+     une garantie que rien ne vérifiait. « type IATA » nu a d'ailleurs été RETIRÉ du motif pour
+     cette raison : il attrapait un type de document et un code d'aéroport. */
+  const IGNOREES = ["type IATA", "tipo IATA", "IATA airport code", "IATA document type",
+    "code IATA", "agent IATA"];
   const rates = VUES.filter((t) => { MOTIF.lastIndex = 0; const m = t.match(MOTIF); return !m || m[0] !== t; });
   const perdues = LICITES.filter((t) => classer("x.md", t, (() => { MOTIF.lastIndex = 0; return (t.match(MOTIF) ?? [""])[0]; })(),
     0, ((t.match(MOTIF) ?? [""])[0]).length) !== "reference_reglementaire_legitime");
+  const laxistes = INTERDITES.filter((t) => { MOTIF.lastIndex = 0; const m = (t.match(MOTIF) ?? [""])[0];
+    return classer("x.md", t, m, 0, m.length) === "reference_reglementaire_legitime"; });
+  const trop = IGNOREES.filter((t) => { MOTIF.lastIndex = 0; return MOTIF.test(t); });
   if (rates.length) echec("10 famille", `formes non vues en entier : ${rates.join(", ")}`);
   else if (perdues.length) echec("10 famille", `références licites devenues autre chose : ${perdues.join(", ")}`);
-  else ok(`10 famille — ${VUES.length} formes attribuant un contenant à l'IATA sont vues, ${LICITES.length} références licites le restent`);
+  else if (laxistes.length) echec("10 famille", `affirmations complètes devenues licites : ${laxistes.join(", ")}`);
+  else if (trop.length) echec("10 famille", `vues alors qu'elles ne disent rien d'un contenant : ${trop.join(", ")}`);
+  else ok(`10 famille — ${VUES.length} formes vues, ${LICITES.length} références licites préservées, `
+    + `${INTERDITES.length} affirmations complètes toujours interdites, ${IGNOREES.length} formes sans contenant ignorées`);
 }
 
 if (defauts) { console.error(`\n[inventaire] ÉCHEC — ${defauts} contre-épreuve(s) en défaut`); process.exit(1); }

@@ -89,7 +89,13 @@ export const ALTERNATIVES = [
   "conforme[s]?\\s+(?:à\\s+la\\s+norme\\s+)?IATA",
   "conforme[s]?\\s+(?:a|à)\\s+la\\s+IATA",
   "conforme[s]?\\s+(?:à|a)\\s+(?:la\\s+)?norma\\s+IATA",
-  "norma\\s+IATA", "normes?\\s+IATA", "exigences\\s+IATA",
+  /* SYMÉTRIE LINGUISTIQUE (arbitrage du 02/09/2026). « norme(s) IATA » était licite et
+     « norma IATA » interdit, alors que les deux nomment le même référentiel — une incohérence
+     entre langues, pas une règle. Les deux sont désormais licites À L'OCCURRENCE. Les
+     AFFIRMATIONS COMPLÈTES restent interdites, et les alternatives qui les portent — « conforme
+     à la norme IATA », « conforme a la norma IATA » — sont placées AVANT celles-ci, donc elles
+     accrochent les premières. */
+  "normas?\\s+IATA", "normes?\\s+IATA", "exigences\\s+IATA",
   `certifi${SUITE}\\s+IATA`,
   `approuv${SUITE}\\s+par\\s+(?:l')?IATA`,
   `aprobad${SUITE}\\s+por\\s+la\\s+IATA`,
@@ -127,7 +133,25 @@ export const FAMILLE_CONTENANT = [
   `\\b(?:${CONTENANT})\\s+IATA\\s+(?:${QUALIF})\\b`,     // Caisse IATA type · Jaula IATA típica
   `\\b(?:${CONTENANT})\\s+(?:${QUALIF}\\s+)?IATA\\b`,   // caisse IATA · caisse de type IATA
   `\\bIATA\\s+(?:${QUALIF}\\s+)?(?:${CONTENANT})\\b`,    // IATA crate · IATA typical kennel
-  `\\b(?:type|tipo)\\s+IATA\\b`,                        // « type IATA rigide »
+];
+
+/* LES FORMES SANS CONTENANT ADJACENT, BORNÉES UNE PAR UNE.
+ *
+ * UNE PREMIÈRE RÉDACTION AVAIT AJOUTÉ « type|tipo IATA » TOUT NU à la famille, ce qui la
+ * contredisait : la famille s'appelle « contenant + IATA », et ce motif-là n'en contient aucun. Il
+ * aurait attrapé « IATA document type » et « IATA airport code », qui ne disent rien d'un
+ * contenant. La contre-épreuve « et rien de plus » n'avait alors aucun cas négatif pour le voir.
+ *
+ * CE QU'IL FALLAIT COUVRIR est réel mais étroit : la fiche Luxair décrit une caisse dont le
+ * contenant est nommé PLUS TÔT dans la phrase — « caisse de 115 × 60 × 85 cm maximum, type IATA
+ * rigide » —, hors de portée d'une règle d'adjacence. On les borne donc EXACTEMENT, dans les
+ * quatre langues réellement écrites, plutôt que d'élargir le motif au risque de tout attraper.
+ * LA LIMITE EST NOMMÉE : une cinquième formulation de ce genre serait invisible jusqu'à ce qu'on
+ * l'ajoute ici — c'est le prix d'un bornage exact, et il est préférable au prix inverse. */
+export const FORMES_BORNEES = [
+  "\\brigid\\s+IATA\\s+type\\b",            // en — « rigid IATA type with two-point locking »
+  "\\btype\\s+IATA\\s+rigide\\b",           // fr — « type IATA rigide avec verrouillage »
+  "\\btipo\\s+IATA\\s+r[íi]gid[ao]\\b",     // es/pt — « tipo IATA rígida con cierre »
 ];
 
 /* LE MOTIF HÉRITÉ, GARDÉ POUR PROUVER QUE L'EXTENSION N'EST QU'UN AJOUT. La contre-épreuve rejoue
@@ -135,16 +159,16 @@ export const FAMILLE_CONTENANT = [
  * dans la même catégorie : une extension qui déplacerait un classement existant serait une
  * réécriture déguisée du contrat, pas un élargissement. */
 export const ALTERNATIVES_HERITEES = [...ALTERNATIVES];
-ALTERNATIVES.push(...FAMILLE_CONTENANT);
+ALTERNATIVES.push(...FAMILLE_CONTENANT, ...FORMES_BORNEES);
 
 export const MOTIF = new RegExp(ALTERNATIVES.join("|"), "gi");
 export const MOTIF_HERITE = new RegExp(ALTERNATIVES_HERITEES.join("|"), "gi");
 
 /* ---- LES DEUX JUGEMENTS, PORTÉS SUR LE TEXTE TROUVÉ SEUL -----------------------------------
    Pas sur la ligne : c'est toute la correction du P0-2. Chacun ne voit que l'occurrence. */
-const OCC_LEGITIME = /^(?:Live Animals Regulations|IATA[- ]?(?:LAR|formula|method|requirements?|standards?|guidelines?)|normes?\s+IATA|exigences\s+IATA)$/i;
-const OCC_INTERDITE_FAMILLE = new RegExp(`^(?:${FAMILLE_CONTENANT.join("|")})$`, "i");
-const OCC_INTERDITE = /^(?:IATA[- ]?(?:approved|compliant|certified|accredited)|homologu[\wÀ-ÿ]*|homologad[\wÀ-ÿ]*|homologa[\wÀ-ÿ]*|conforme[s]?\s+(?:à\s+la\s+norme\s+)?IATA|conforme[s]?\s+(?:a|à)\s+la\s+IATA|conforme[s]?\s+(?:à|a)\s+(?:la\s+)?norma\s+IATA|norma\s+IATA|certifi[\wÀ-ÿ]*\s+IATA|approuv[\wÀ-ÿ]*\s+par\s+(?:l')?IATA|aprobad[\wÀ-ÿ]*\s+por\s+la\s+IATA|aprovad[\wÀ-ÿ]*\s+pela\s+IATA)$/i;
+const OCC_LEGITIME = /^(?:Live Animals Regulations|IATA[- ]?(?:LAR|formula|method|requirements?|standards?|guidelines?)|normes?\s+IATA|normas?\s+IATA|exigences\s+IATA)$/i;
+const OCC_INTERDITE_FAMILLE = new RegExp(`^(?:${[...FAMILLE_CONTENANT, ...FORMES_BORNEES].join("|")})$`, "i");
+const OCC_INTERDITE = /^(?:IATA[- ]?(?:approved|compliant|certified|accredited)|homologu[\wÀ-ÿ]*|homologad[\wÀ-ÿ]*|homologa[\wÀ-ÿ]*|conforme[s]?\s+(?:à\s+la\s+norme\s+)?IATA|conforme[s]?\s+(?:a|à)\s+la\s+IATA|conforme[s]?\s+(?:à|a)\s+(?:la\s+)?norma\s+IATA|certifi[\wÀ-ÿ]*\s+IATA|approuv[\wÀ-ÿ]*\s+par\s+(?:l')?IATA|aprobad[\wÀ-ÿ]*\s+por\s+la\s+IATA|aprovad[\wÀ-ÿ]*\s+pela\s+IATA)$/i;
 
 /* Les quatre slugs que l'arbitrage conserve : identifiants historiques stables, jamais du
    contenu éditorial à reproduire dans un titre ou un texte. */
