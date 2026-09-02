@@ -19,6 +19,8 @@
  */
 import { readFileSync, writeFileSync, readdirSync, statSync, existsSync } from "node:fs";
 import { join } from "node:path";
+import { MOTIF, jugerOccurrence } from "./inventaire-iata.mjs";
+import { zonesDe } from "./test-lib/zones-publiques.mjs";
 
 const DIST = process.argv.slice(2).find((a) => a.startsWith("--dist="))?.slice(7);
 if (!DIST || !existsSync(DIST)) {
@@ -45,7 +47,12 @@ ok(`départ : ${pages.length} pages construites`);
 /* ---- 1. LE VOCABULAIRE D'HOMOLOGATION, DANS LES SOURCES ET DANS LE DOM --------------------- */
 /* Le même vocabulaire interdit que l'inventaire, tenu ici sur les pages RENDUES. Les références
    licites — Live Animals Regulations, méthode de mesure, exigences publiées — restent permises. */
-const INTERDIT = /IATA[- ]?(?:approved|compliant|certified)|homologu[\wÀ-ÿ]*\s+(?:par\s+)?(?:l[' ])?IATA|homologad[\wÀ-ÿ]*\s+(?:por|pela)\s+(?:la\s+)?IATA|caisse[s]?\s+homologuée[s]?|cage[s]?\s+homologuée[s]?|jaula[s]?\s+homologada[s]?|conforme[s]?\s+(?:à\s+la\s+norme\s+)?IATA|conforme[s]?\s+(?:a|à)\s+la\s+IATA|conforme[s]?\s+(?:à|a)\s+(?:la\s+)?norma\s+IATA|norma\s+IATA|norme\s+IATA|padrão\s+IATA|aprovad[\wÀ-ÿ]*\s+pela\s+IATA|aprobad[\wÀ-ÿ]*\s+por\s+la\s+IATA/i;
+/* L'ANCIENNE EXPRESSION LOCALE A ÉTÉ RETIRÉE : elle vit maintenant dans l'instrument canonique,
+   et c'est `jugerOccurrence()` qui tranche. Elle est conservée ici en commentaire d'histoire, non
+   comme code, pour que la comparaison des chiffres d'avant et d'après reste lisible :
+   IATA-approved/compliant/certified, homologué·e par l'IATA, caisse/cage homologuée, conforme
+   IATA, norma/norme IATA, padrão IATA, aprovada pela IATA, aprobada por la IATA.
+   Elle ne connaissait pas la famille « contenant + IATA », ni le pluriel « normas ». */
 /* CE QUE L'ÉTAPE 3 POSSÈDE, ET CE QU'ELLE NE POSSÈDE PAS. Le premier passage de ce contrôle a
    rougi sur 52 pages — airBaltic, Icelandair, l'Australie, la Jamaïque… — et il avait raison de
    les voir : elles PUBLIENT bien une homologation. Mais la phrase ne vient pas d'un gabarit :
@@ -97,16 +104,30 @@ const INTERDIT = /IATA[- ]?(?:approved|compliant|certified)|homologu[\wÀ-ÿ]*\s
   const REGISTRE = "dette-iata-publiee.json";
   const registreBrut = JSON.parse(readFileSync(REGISTRE, "utf8"));
   const registre = registreBrut.pages;
-  const MOTIF_G = new RegExp(INTERDIT.source, "gi");
+  /* UN SEUL CONTRAT MESURE LA DETTE PUBLIQUE (contre-revue du 02/09/2026). Ce contrôle portait
+     SA PROPRE expression du vocabulaire interdit et lisait le HTML BRUT : deux définitions et
+     deux lectures pour la même question, donc deux nombres — et le verrou de lancement reposait
+     sur le plus étroit. Il consulte désormais le jugement lexical de l'instrument canonique, et
+     lit la page par ses ZONES PUBLIQUES DÉCODÉES, comme la garde des montants.
+     LA ZONE EST SCELLÉE AVEC L'URL ET LA FORMULATION : sans elle, un défaut déplacé du corps vers
+     une métadonnée passerait à total constant. */
   const vu = {};
+  let jsonLdIllisibles = 0;
   for (const p of pages) {
     const url = p.slice(DIST.length).replace(/\/index\.html$/, "/");
     const html = readFileSync(p, "utf8");
-    MOTIF_G.lastIndex = 0;
+    if (!/IATA|homolog/i.test(html)) continue;
+    const z = zonesDe(html);
+    jsonLdIllisibles += z.jsonLdInvalide;
+    if (z.jsonLdInvalide) echec("1bis lecture", `${url} : ${z.jsonLdInvalide} bloc(s) JSON-LD illisible(s) — leur contenu n'a pas pu être jugé`);
     const par = {};
-    for (const m of html.matchAll(MOTIF_G)) {
-      const f = m[0].toLowerCase().replace(/\s+/g, " ").trim();
-      par[f] = (par[f] || 0) + 1;
+    for (const [zone, texte] of [["titre", z.titre], ["corps", z.corps], ["metas", z.metas], ["json-ld", z.jsonLd]]) {
+      MOTIF.lastIndex = 0;
+      for (const m of String(texte).matchAll(MOTIF)) {
+        if (jugerOccurrence(m[0]) !== "interdite") continue;
+        const f = `${zone} · ${m[0].toLowerCase().replace(/\s+/g, " ").trim()}`;
+        par[f] = (par[f] || 0) + 1;
+      }
     }
     if (Object.keys(par).length) vu[url] = par;
   }
@@ -130,6 +151,59 @@ const INTERDIT = /IATA[- ]?(?:approved|compliant|certified)|homologu[\wÀ-ÿ]*\s
   };
 
   const total = Object.values(vu).reduce((n, o) => n + Object.values(o).reduce((a, b) => a + b, 0), 0);
+  /* ---- 1quinquies. LE PIPELINE VOIT CHAQUE ZONE, ET NE CONFOND PAS LICITE ET INTERDIT -------
+   * Six mutations sur une PAGE RÉELLE, chacune exigeant son résultat exact. Sans elles, « un seul
+   * contrat » resterait une intention : rien ne prouverait que les métadonnées et le JSON-LD sont
+   * réellement lus, ni qu'un JSON-LD illisible rougit au lieu d'être compté zéro. */
+  {
+    const temoin = pages.find((p) => /\/airlines\/[^/]+\/index\.html$/.test(p.slice(DIST.length)));
+    const brut = temoin ? readFileSync(temoin, "utf8") : "";
+    const compter = (html) => {
+      const z = zonesDe(html);
+      const par = {};
+      for (const [zone, texte] of [["titre", z.titre], ["corps", z.corps], ["metas", z.metas], ["json-ld", z.jsonLd]]) {
+        MOTIF.lastIndex = 0;
+        for (const m of String(texte).matchAll(MOTIF)) {
+          if (jugerOccurrence(m[0]) !== "interdite") continue;
+          par[zone] = (par[zone] ?? 0) + 1;
+        }
+      }
+      return { par, illisibles: z.jsonLdInvalide };
+    };
+    if (!temoin) echec("1quinquies", "aucune fiche compagnie dans le dist : les mutations ne prouveraient rien");
+    else {
+      const base = compter(brut);
+      const cas = [
+        ["corps", brut.replace("<body", "<body data-x=\"1\"").replace(/(<body[^>]*>)/, "$1<p>caisse IATA</p>"), { corps: 1 }],
+        ["metas", brut.replace("</head>", '<meta name="twitter:description" content="IATA crate"></head>'), { metas: 1 }],
+        ["json-ld", brut.replace("</head>", '<script type="application/ld+json">{"d":"conforme à la norme IATA"}</scr' + 'ipt></head>'), { "json-ld": 1 }],
+        ["licite", brut.replace(/(<body[^>]*>)/, "$1<p>IATA requirements</p>"), {}],
+      ];
+      const ratés = [];
+      for (const [nom, html, attendu] of cas) {
+        const { par } = compter(html);
+        for (const z of ["titre", "corps", "metas", "json-ld"]) {
+          const delta = (par[z] ?? 0) - (base.par[z] ?? 0);
+          if (delta !== (attendu[z] ?? 0)) ratés.push(`${nom} : zone « ${z} » varie de ${delta}, attendu ${attendu[z] ?? 0}`);
+        }
+      }
+      /* Un JSON-LD illisible n'est PAS un JSON-LD vide : c'est une zone dont on ne sait rien. */
+      const casse = compter(brut.replace("</head>", '<script type="application/ld+json">{ ceci n\'est pas du JSON </scr' + 'ipt></head>'));
+      if (casse.illisibles !== base.illisibles + 1) ratés.push(`json-ld illisible : ${casse.illisibles} signalé(s), attendu ${base.illisibles + 1}`);
+      /* Un défaut DÉPLACÉ d'une zone à l'autre : total constant, zones différentes. */
+      const dansCorps = compter(brut.replace(/(<body[^>]*>)/, "$1<p>caisse IATA</p>")).par;
+      const dansMeta = compter(brut.replace("</head>", '<meta name="description" content="caisse IATA"></head>')).par;
+      const totC = Object.values(dansCorps).reduce((a, b) => a + b, 0);
+      const totM = Object.values(dansMeta).reduce((a, b) => a + b, 0);
+      if (totC !== totM) ratés.push(`déplacement : totaux ${totC} et ${totM} — la contre-épreuve n'est pas à effectif constant`);
+      else if ((dansCorps.corps ?? 0) === (dansMeta.corps ?? 0)) ratés.push("déplacement : la zone ne change pas, le sceau de zone ne sert à rien");
+
+      if (ratés.length) { echec("1quinquies zones", `${ratés.length} écart(s)`); for (const r of ratés.slice(0, 6)) console.error(`      ${r}`); }
+      else ok("1quinquies zones — corps, métas et JSON-LD sont lus séparément ; une référence licite ne compte pas ; "
+        + "un JSON-LD illisible rougit ; un défaut déplacé change de zone à total constant");
+    }
+  }
+
   /* `--ecrire-registre` déplace la sentinelle. Il n'est PAS appelé par la CI : le registre ne
      bouge que par un geste délibéré, et le lot éditorial s'en servira pour le ramener vers zéro.
      Sans cette option, l'avancement dépendrait d'un script de brouillon hors du dépôt. */
@@ -145,7 +219,10 @@ const INTERDIT = /IATA[- ]?(?:approved|compliant|certified)|homologu[\wÀ-ÿ]*\s
      champ que personne ne relit. */
   {
     const m = registreBrut._mesure ?? {};
-    const attendues = ["_commentaire", "_mesure", "pages"];
+    /* `_regle` est EXIGÉE, pas seulement tolérée : un registre qui ne dit pas COMMENT il a été
+       mesuré laisse croire que son nombre est absolu. Celui-ci a changé de 108 à 538 sans qu'une
+       seule page nouvelle soit fautive — c'est l'instrument qui a cessé d'être borgne. */
+    const attendues = ["_commentaire", "_regle", "_mesure", "pages"];
     const inconnues = Object.keys(registreBrut).filter((k) => !attendues.includes(k));
     const manquantes = attendues.filter((k) => !(k in registreBrut));
     const ecartsMesure = [];

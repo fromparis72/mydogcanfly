@@ -59,7 +59,11 @@ const CODES = ["100", "200", "300", "400", "500", "700"];
  * « 100 (XS) » sont la même chose. Une première rédaction rendait tout le séparateur facultatif
  * d'un bloc, ce qui faisait perdre « 500 XL » — la forme la plus simple. */
 const SEP = "\\s*[/·—–:(-]?\\s*";
-const SEP_STRICT = "\\s*[/·—–:(]\\s*";
+/* LE TIRET ASCII AVAIT DISPARU D'ICI, et c'est une régression que j'ai introduite en réécrivant
+ * ce motif : « 500-L » et « L-500 » n'étaient plus vus alors que « 500/L » l'était. La classe des
+ * séparateurs STRICTS doit contenir exactement les mêmes signes que la souple, le tiret compris ;
+ * seule leur OBLIGATION diffère. Le tiret est placé en dernier pour rester littéral. */
+const SEP_STRICT = "\\s*[/·—–:(-]\\s*";
 const MOTIF_SERIE = new RegExp(
   `\\b(?:${CODES.join("|")})${SEP}(?:XS|XL|XXL)\\b`
   + `|\\b(?:XS|XL|XXL)${SEP}(?:${CODES.join("|")})\\b`
@@ -207,17 +211,22 @@ ok(`départ : ${fiches.length} fiches de race et ${outils.length} pages du calcu
     ["4 mutation fiche de race", fiches[0], (doc) => {
       const d = doc.createElement("div"); d.textContent = "500 / XL — 94×64×68 cm";
       doc.body.appendChild(d);
-    }],
+    }, 1],
     ["4bis mutation calculateur", outils[0], (doc) => {
       const d = doc.createElement("div"); d.textContent = "500 / XL ≈ 94 × 64 × 68 cm";
       doc.body.appendChild(d);
-    }],
+    }, 1],
     ["4ter mutation parenthésée", outils[0], (doc) => {
       const d = doc.createElement("div"); d.textContent = "du n° 100 (XS) au n° 700 (XXL)";
       doc.body.appendChild(d);
-    }],
+    }, 2],
+    /* Le tiret ASCII, dans les DEUX SENS : c'est la forme que ma réécriture avait perdue. */
+    ["4quater mutation au tiret", fiches[0], (doc) => {
+      const d = doc.createElement("div"); d.textContent = "taille 500-L puis L-500";
+      doc.body.appendChild(d);
+    }, 2],
   ];
-  for (const [nom, page, muter] of cas) {
+  for (const [nom, page, muter, attendu] of cas) {
     const html = readFileSync(page, "utf8");
     const avant = serieDans(texteDe(html).corps).length;
     if (avant !== 0) { echec(nom, `la page témoin porte déjà ${avant} couple(s) : la contre-épreuve ne prouverait rien`); continue; }
@@ -225,8 +234,10 @@ ok(`départ : ${fiches.length} fiches de race et ${outils.length} pages du calcu
     muter(dom.window.document);
     const apres = serieDans(texteDe(dom.serialize()).corps);
     dom.window.close();
-    if (!apres.length) echec(nom, "la mutation n'ajoute aucun couple : la garde ne la voit pas");
-    else ok(`${nom} — ${apres.map((x) => `« ${x} »`).join(", ")} réintroduit dans ${rel(page)} est vu`);
+    /* CHAQUE MUTATION EXIGE SON COMPTE EXACT. « au moins un » laisserait passer une garde qui
+       verrait la moitié d'un couple, ou qui en inventerait un troisième. */
+    if (apres.length !== attendu) echec(nom, `${apres.length} couple(s) vu(s) au lieu de ${attendu} : ${JSON.stringify(apres)}`);
+    else ok(`${nom} — ${apres.map((x) => `« ${x} »`).join(", ")} dans ${rel(page)}`);
   }
 }
 

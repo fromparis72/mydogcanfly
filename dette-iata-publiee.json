@@ -1,172 +1,650 @@
 {
   "_commentaire": "LE REGISTRE EXACT DE LA DETTE IATA ENCORE PUBLIÉE, au 30/08/2026. Chaque page publique y porte les formulations normalisées qu'elle sert et LEUR MULTIPLICITÉ. Le contrôle le compare BIDIRECTIONNELLEMENT au site construit : une page qui disparaît, une qui s'ajoute, une formulation qui change, une occurrence de plus sur une page déjà inscrite — chacune rougit. Un total seul ne suffisait pas : déplacer un défaut à effectif constant passait. Le micro-lot éditorial ramènera ce registre à zéro avant la production ; toute réduction se fera par un mouvement nommé.",
   "_mesure": {
-    "pages": 52,
-    "occurrences": 108,
+    "pages": 159,
+    "occurrences": 538,
     "dist_pages_html": 3121
   },
   "pages": {
+    "/airlines/air-caraibes/": {
+      "corps · iata crate": 2,
+      "json-ld · iata crate": 1
+    },
+    "/airlines/air-europa/": {
+      "corps · iata crate": 1,
+      "corps · iata kennel": 2,
+      "json-ld · iata kennel": 1
+    },
+    "/airlines/air-india/": {
+      "corps · iata crate": 2,
+      "json-ld · iata crate": 1
+    },
+    "/airlines/air-tahiti-nui/": {
+      "corps · iata cage": 1
+    },
     "/airlines/airbaltic/": {
-      "iata-certified": 1
+      "corps · iata-certified": 1
+    },
+    "/airlines/austrian/": {
+      "corps · iata crate": 2,
+      "corps · iata crates": 1,
+      "json-ld · iata crate": 1
+    },
+    "/airlines/brussels/": {
+      "corps · iata crate": 2,
+      "json-ld · iata crate": 1
+    },
+    "/airlines/cathay-pacific/": {
+      "corps · iata-accredited": 1
+    },
+    "/airlines/condor/": {
+      "corps · iata carrier": 2,
+      "corps · iata crate": 2,
+      "json-ld · iata carrier": 1,
+      "json-ld · iata crate": 1
+    },
+    "/airlines/corsair/": {
+      "corps · iata crate": 3,
+      "json-ld · iata crate": 1
     },
     "/airlines/icelandair/": {
-      "iata-approved": 1
+      "corps · iata-approved": 1
+    },
+    "/airlines/jal/": {
+      "corps · iata crate": 2,
+      "json-ld · iata crate": 1
+    },
+    "/airlines/km-malta/": {
+      "corps · iata crate": 1
+    },
+    "/airlines/lot/": {
+      "corps · iata crate": 2,
+      "json-ld · iata crate": 1
+    },
+    "/airlines/lufthansa/": {
+      "corps · iata crate": 2,
+      "json-ld · iata crate": 1
+    },
+    "/airlines/luxair/": {
+      "corps · rigid iata type": 2,
+      "json-ld · rigid iata type": 1
+    },
+    "/airlines/malaysia-airlines/": {
+      "corps · iata crate": 1
+    },
+    "/airlines/norwegian/": {
+      "corps · iata crate": 2,
+      "json-ld · iata crate": 1
+    },
+    "/airlines/qantas/": {
+      "corps · iata crate": 1
+    },
+    "/airlines/sas/": {
+      "corps · iata crate": 2,
+      "json-ld · iata crate": 1
+    },
+    "/airlines/swiss/": {
+      "corps · iata crate": 2,
+      "json-ld · iata crate": 1
+    },
+    "/airlines/transavia/": {
+      "corps · iata crate": 2,
+      "json-ld · iata crate": 1
+    },
+    "/airlines/virgin-atlantic/": {
+      "corps · iata kennel": 1
     },
     "/countries/au/": {
-      "iata-approved": 1
+      "corps · iata-approved": 1
     },
     "/countries/jm/": {
-      "iata-approved": 1
+      "corps · iata crate": 1,
+      "corps · iata-approved": 1
     },
     "/countries/sc/": {
-      "iata-compliant": 2
+      "corps · iata-compliant": 2
+    },
+    "/es/airlines/air-austral/": {
+      "corps · homologadas": 2,
+      "json-ld · homologadas": 1
     },
     "/es/airlines/air-caraibes/": {
-      "conforme a la iata": 3
+      "corps · conforme a la iata": 2,
+      "json-ld · conforme a la iata": 1
     },
     "/es/airlines/air-europa/": {
-      "conforme a la iata": 4
+      "corps · conforme a la iata": 3,
+      "json-ld · conforme a la iata": 1
     },
     "/es/airlines/air-france/": {
-      "jaula homologada": 1
+      "corps · homologada": 1
     },
     "/es/airlines/air-india/": {
-      "conforme a la iata": 3
+      "corps · conforme a la iata": 2,
+      "json-ld · conforme a la iata": 1
     },
     "/es/airlines/air-tahiti-nui/": {
-      "conforme a la iata": 1
+      "corps · conforme a la iata": 1
+    },
+    "/es/airlines/airbaltic/": {
+      "corps · certificadas iata": 1
+    },
+    "/es/airlines/austrian/": {
+      "corps · jaula iata": 2,
+      "corps · jaulas iata": 1,
+      "json-ld · jaula iata": 1
+    },
+    "/es/airlines/brussels/": {
+      "corps · jaula iata": 2,
+      "json-ld · jaula iata": 1
+    },
+    "/es/airlines/condor/": {
+      "corps · jaula iata": 4,
+      "json-ld · jaula iata": 2
+    },
+    "/es/airlines/corsair/": {
+      "corps · jaula iata": 3,
+      "json-ld · jaula iata": 1
     },
     "/es/airlines/icelandair/": {
-      "jaula homologada": 1
+      "corps · homologada": 1
+    },
+    "/es/airlines/jal/": {
+      "corps · jaula iata": 2,
+      "json-ld · jaula iata": 1
     },
     "/es/airlines/jetblue/": {
-      "jaula homologada": 3
+      "corps · homologada": 2,
+      "json-ld · homologada": 1
+    },
+    "/es/airlines/km-malta/": {
+      "corps · jaula iata": 1
+    },
+    "/es/airlines/lot/": {
+      "corps · jaula iata": 2,
+      "json-ld · jaula iata": 1
+    },
+    "/es/airlines/lufthansa/": {
+      "corps · jaula iata": 2,
+      "json-ld · jaula iata": 1
+    },
+    "/es/airlines/luxair/": {
+      "corps · tipo iata rígida": 2,
+      "json-ld · tipo iata rígida": 1
+    },
+    "/es/airlines/malaysia-airlines/": {
+      "corps · jaula iata": 1
+    },
+    "/es/airlines/norwegian/": {
+      "corps · jaula iata": 2,
+      "json-ld · jaula iata": 1
+    },
+    "/es/airlines/qantas/": {
+      "corps · jaula iata": 1
+    },
+    "/es/airlines/sas/": {
+      "corps · jaula iata": 2,
+      "json-ld · jaula iata": 1
+    },
+    "/es/airlines/swiss/": {
+      "corps · jaula iata": 2,
+      "json-ld · jaula iata": 1
+    },
+    "/es/airlines/thai-airways/": {
+      "corps · jaula iata": 2
+    },
+    "/es/airlines/transavia/": {
+      "corps · jaula iata": 2,
+      "json-ld · jaula iata": 1
+    },
+    "/es/airlines/virgin-atlantic/": {
+      "corps · jaula iata": 1
     },
     "/es/countries/au/": {
-      "aprobada por la iata": 1
+      "corps · aprobada por la iata": 1
     },
     "/es/countries/jm/": {
-      "aprobada por la iata": 1
+      "corps · aprobada por la iata": 1,
+      "corps · jaula iata": 1
     },
     "/es/countries/sc/": {
-      "conforme a la iata": 2
+      "corps · conforme a la iata": 2
     },
-    "/es/tools/fiche/": {
-      "aprobada por la iata": 2,
-      "conforme a la iata": 2
+    "/es/travel-hub/": {
+      "corps · homologado": 3,
+      "corps · transportín iata": 2
     },
     "/es/travel-hub/accesorios-imprescindibles-de-viaje/": {
-      "conforme a la iata": 1
+      "corps · conforme a la iata": 1,
+      "corps · homologado": 4,
+      "corps · homologados": 1,
+      "json-ld · homologado": 1,
+      "json-ld · homologados": 1
+    },
+    "/es/travel-hub/arnes-antitiron-para-perro/": {
+      "corps · homologado": 1,
+      "json-ld · homologado": 1
+    },
+    "/es/travel-hub/arnes-de-coche-para-perro/": {
+      "corps · homologado": 1
+    },
+    "/es/travel-hub/avion-con-perro-cabina-bodega-carga/": {
+      "corps · homologado": 3,
+      "corps · transportín iata": 3,
+      "json-ld · transportín iata": 1
+    },
+    "/es/travel-hub/bolsos-para-perros-pequenos/": {
+      "corps · homologado": 1,
+      "json-ld · homologado": 1
+    },
+    "/es/travel-hub/bolsos-y-transportines-para-perro/": {
+      "corps · homologado": 1
     },
     "/es/travel-hub/cabina-equipaje-adicional-o-carga/": {
-      "conforme a la iata": 1
+      "corps · conforme a la iata": 1,
+      "corps · homologado": 2
+    },
+    "/es/travel-hub/equipamiento-de-coche-para-perro/": {
+      "corps · homologada": 1,
+      "corps · homologado": 6,
+      "json-ld · homologado": 1
+    },
+    "/es/travel-hub/equipamiento-de-viaje-para-perro/": {
+      "corps · homologado": 4,
+      "json-ld · homologado": 1
+    },
+    "/es/travel-hub/mareo-del-perro-en-el-coche/": {
+      "corps · homologados": 1
+    },
+    "/es/travel-hub/medir-a-tu-perro-para-un-transportin-iata/": {
+      "corps · homologado": 1,
+      "corps · transportín iata": 3,
+      "json-ld · transportín iata": 2,
+      "metas · transportín iata": 2,
+      "titre · transportín iata": 1
+    },
+    "/es/travel-hub/politicas-de-mascotas-que-cambian/": {
+      "corps · transportín iata": 1
+    },
+    "/es/travel-hub/reservar-un-vuelo-con-tu-perro/": {
+      "corps · transportín iata": 1
+    },
+    "/es/travel-hub/transportin-homologado-iata-perro/": {
+      "corps · homologado": 3,
+      "json-ld · homologado": 3,
+      "metas · transportín iata": 2,
+      "titre · transportín iata": 1
+    },
+    "/es/travel-hub/viajar-al-extranjero-con-perro/": {
+      "corps · homologado": 1
+    },
+    "/es/travel-hub/viajar-en-avion-con-perro/": {
+      "corps · homologado": 2,
+      "corps · transportín iata": 6,
+      "json-ld · transportín iata": 2,
+      "metas · transportín iata": 3
+    },
+    "/es/travel-hub/viajar-en-coche-con-perro/": {
+      "corps · homologada": 1,
+      "corps · homologadas": 1,
+      "json-ld · homologada": 1
+    },
+    "/es/travel-hub/viajar-en-tren-con-perro/": {
+      "corps · homologado": 2,
+      "json-ld · homologado": 1
+    },
+    "/fr/airlines/air-caraibes/": {
+      "corps · caisse iata": 2,
+      "json-ld · caisse iata": 1
+    },
+    "/fr/airlines/air-europa/": {
+      "corps · caisse iata": 3,
+      "json-ld · caisse iata": 1
     },
     "/fr/airlines/air-france/": {
-      "cage homologuée": 1
+      "corps · homologuée": 1
+    },
+    "/fr/airlines/air-india/": {
+      "corps · caisse iata": 2,
+      "json-ld · caisse iata": 1
+    },
+    "/fr/airlines/air-tahiti-nui/": {
+      "corps · cage iata": 1
+    },
+    "/fr/airlines/airbaltic/": {
+      "corps · certifiées iata": 1
+    },
+    "/fr/airlines/austrian/": {
+      "corps · caisse iata": 2,
+      "corps · caisses iata": 1,
+      "json-ld · caisse iata": 1
+    },
+    "/fr/airlines/brussels/": {
+      "corps · caisse iata": 2,
+      "json-ld · caisse iata": 1
+    },
+    "/fr/airlines/condor/": {
+      "corps · caisse iata": 2,
+      "corps · sac iata": 2,
+      "json-ld · caisse iata": 1,
+      "json-ld · sac iata": 1
+    },
+    "/fr/airlines/corsair/": {
+      "corps · caisse iata": 3,
+      "json-ld · caisse iata": 1
+    },
+    "/fr/airlines/jal/": {
+      "corps · caisse iata": 2,
+      "json-ld · caisse iata": 1
+    },
+    "/fr/airlines/km-malta/": {
+      "corps · caisse iata": 1
+    },
+    "/fr/airlines/lot/": {
+      "corps · caisse iata": 2,
+      "json-ld · caisse iata": 1
+    },
+    "/fr/airlines/lufthansa/": {
+      "corps · caisse iata": 2,
+      "json-ld · caisse iata": 1
+    },
+    "/fr/airlines/luxair/": {
+      "corps · type iata rigide": 2,
+      "json-ld · type iata rigide": 1
+    },
+    "/fr/airlines/malaysia-airlines/": {
+      "corps · caisse iata": 1
+    },
+    "/fr/airlines/norwegian/": {
+      "corps · caisse iata": 2,
+      "json-ld · caisse iata": 1
+    },
+    "/fr/airlines/qantas/": {
+      "corps · caisse iata": 1
+    },
+    "/fr/airlines/sas/": {
+      "corps · caisse iata": 2,
+      "json-ld · caisse iata": 1
+    },
+    "/fr/airlines/swiss/": {
+      "corps · caisse iata": 2,
+      "json-ld · caisse iata": 1
+    },
+    "/fr/airlines/transavia/": {
+      "corps · caisse iata": 2,
+      "json-ld · caisse iata": 1
+    },
+    "/fr/airlines/virgin-atlantic/": {
+      "corps · caisse iata": 1
+    },
+    "/fr/countries/au/": {
+      "corps · caisse iata": 1
     },
     "/fr/countries/jm/": {
-      "conforme iata": 1
+      "corps · caisse iata": 1,
+      "corps · conforme iata": 1
+    },
+    "/fr/countries/nz/": {
+      "corps · homologués": 1
     },
     "/fr/countries/sc/": {
-      "conforme iata": 2
+      "corps · conforme iata": 2
     },
-    "/fr/tools/fiche/": {
-      "conforme iata": 3
+    "/fr/travel-hub/": {
+      "corps · caisse iata": 2,
+      "corps · homologué": 3,
+      "corps · homologuée": 2,
+      "corps · homologués": 1
     },
     "/fr/travel-hub/accessoires-indispensables-voyage-chien/": {
-      "caisse homologuée": 5,
-      "homologuée iata": 1
+      "corps · homologué": 4,
+      "corps · homologuée": 4,
+      "json-ld · homologuée": 2
     },
     "/fr/travel-hub/cabine-bagage-excedentaire-ou-fret/": {
-      "caisse homologuée": 1
+      "corps · homologué": 1,
+      "corps · homologuée": 1
     },
     "/fr/travel-hub/caisse-transport-avion-homologuee-chien/": {
-      "caisse homologuée": 2,
-      "homologuée iata": 2
+      "corps · conforme iata": 1,
+      "corps · homologation": 1,
+      "corps · homologué": 1,
+      "corps · homologuée": 5,
+      "json-ld · homologuee": 1,
+      "json-ld · homologuée": 3,
+      "json-ld · homologués": 1,
+      "metas · homologuée": 2,
+      "metas · homologués": 3,
+      "titre · homologuée": 1
+    },
+    "/fr/travel-hub/harnais-chien-qui-tire/": {
+      "corps · homologuée": 1,
+      "json-ld · homologuée": 1
     },
     "/fr/travel-hub/harnais-securite-voiture-chien/": {
-      "caisse homologuée": 1
+      "corps · homologué": 3,
+      "corps · homologuée": 1,
+      "json-ld · homologué": 2
+    },
+    "/fr/travel-hub/mal-des-transports-chien/": {
+      "corps · homologués": 1
     },
     "/fr/travel-hub/materiel-voyage-chien/": {
-      "homologuée iata": 2,
-      "norme iata": 1
+      "corps · homologation": 1,
+      "corps · homologué": 5,
+      "corps · homologuée": 1,
+      "json-ld · homologué": 1,
+      "json-ld · homologuée": 1
     },
     "/fr/travel-hub/mesurer-son-chien-pour-une-caisse-iata/": {
-      "caisse homologuée": 1
+      "corps · caisse iata": 3,
+      "corps · homologuée": 1,
+      "json-ld · caisse iata": 2
+    },
+    "/fr/travel-hub/politiques-animaux-des-compagnies-qui-changent/": {
+      "corps · caisse iata": 1
+    },
+    "/fr/travel-hub/reserver-un-vol-avec-son-chien/": {
+      "corps · caisse iata": 1
     },
     "/fr/travel-hub/sac-caisse-transport-chien/": {
-      "homologuée iata": 2
+      "corps · homologuée": 2,
+      "json-ld · homologuée": 1
+    },
+    "/fr/travel-hub/sacs-transport-petits-chiens/": {
+      "corps · homologuée": 1,
+      "json-ld · homologuée": 1
     },
     "/fr/travel-hub/voyager-avion-avec-chien/": {
-      "homologuée iata": 2
+      "corps · caisse iata": 6,
+      "corps · homologuée": 2,
+      "json-ld · caisse iata": 2,
+      "metas · caisse iata": 3
     },
     "/fr/travel-hub/voyager-avion-chien-options/": {
-      "caisse homologuée": 1,
-      "homologuée iata": 2
+      "corps · caisse iata": 3,
+      "corps · homologuée": 3,
+      "json-ld · caisse iata": 1
     },
     "/fr/travel-hub/voyager-etranger-avec-chien/": {
-      "homologuée iata": 1
+      "corps · homologuée": 1
+    },
+    "/fr/travel-hub/voyager-voiture-avec-chien/": {
+      "corps · homologué": 4,
+      "corps · homologuée": 1,
+      "corps · homologuées": 1,
+      "json-ld · homologué": 1,
+      "json-ld · homologuée": 2,
+      "metas · homologuée": 3
+    },
+    "/fr/travel-hub/voyager-voiture-chien-equipements/": {
+      "corps · homologué": 6,
+      "corps · homologuée": 1,
+      "json-ld · homologué": 1
+    },
+    "/presskit/press-kit-en.html": {
+      "corps · iata crate": 1
+    },
+    "/pt/airlines/air-europa/": {
+      "corps · caixa iata": 1
+    },
+    "/pt/airlines/air-france/": {
+      "corps · homologada": 1
+    },
+    "/pt/airlines/austrian/": {
+      "corps · caixas iata": 1
     },
     "/pt/airlines/icelandair/": {
-      "homologada pela iata": 1
+      "corps · homologada": 1
     },
-    "/pt/airlines/neos/": {
-      "padrão iata": 3
+    "/pt/airlines/jal/": {
+      "corps · caixa iata": 2,
+      "json-ld · caixa iata": 1
+    },
+    "/pt/airlines/jetblue/": {
+      "corps · homologada": 2,
+      "json-ld · homologada": 1
+    },
+    "/pt/airlines/luxair/": {
+      "corps · tipo iata rígida": 2,
+      "json-ld · tipo iata rígida": 1
     },
     "/pt/countries/au/": {
-      "aprovada pela iata": 1
+      "corps · aprovada pela iata": 1
     },
     "/pt/countries/jm/": {
-      "aprovada pela iata": 1
-    },
-    "/pt/tools/fiche/": {
-      "aprovada pela iata": 2
+      "corps · aprovada pela iata": 1
     },
     "/pt/travel-hub/": {
-      "homologada pela iata": 1
+      "corps · caixa iata": 2,
+      "corps · homologada": 2,
+      "corps · homologado": 1
+    },
+    "/pt/travel-hub/acessorios-indispensaveis-de-viagem/": {
+      "corps · homologada": 3,
+      "corps · homologadas": 1,
+      "corps · homologado": 1,
+      "json-ld · homologada": 1,
+      "json-ld · homologadas": 1
     },
     "/pt/travel-hub/aviao-com-cachorro-cabine-porao-carga/": {
-      "homologada pela iata": 2
+      "corps · caixa iata": 3,
+      "corps · homologada": 3,
+      "json-ld · caixa iata": 1
+    },
+    "/pt/travel-hub/bolsas-e-caixas-de-transporte/": {
+      "corps · homologada": 1
+    },
+    "/pt/travel-hub/bolsas-para-caes-pequenos/": {
+      "corps · homologada": 1,
+      "json-ld · homologada": 1
+    },
+    "/pt/travel-hub/cabine-bagagem-extra-ou-carga/": {
+      "corps · homologada": 2
     },
     "/pt/travel-hub/caixa-de-transporte-homologada-iata/": {
-      "homologada pela iata": 4
+      "corps · homologada": 3,
+      "json-ld · homologada": 3,
+      "metas · caixa iata": 2,
+      "titre · caixa iata": 1
+    },
+    "/pt/travel-hub/enjoo-do-cachorro-no-carro/": {
+      "corps · homologados": 1
+    },
+    "/pt/travel-hub/equipamento-de-carro-para-cachorro/": {
+      "corps · homologada": 1,
+      "corps · homologado": 6,
+      "json-ld · homologado": 1
+    },
+    "/pt/travel-hub/equipamento-de-viagem-para-cachorro/": {
+      "corps · homologado": 4,
+      "json-ld · homologado": 1
+    },
+    "/pt/travel-hub/medir-o-cachorro-para-uma-caixa-iata/": {
+      "corps · caixa iata": 3,
+      "corps · homologada": 1,
+      "json-ld · caixa iata": 2
+    },
+    "/pt/travel-hub/peitoral-antipuxao-para-cachorro/": {
+      "corps · homologada": 1,
+      "json-ld · homologada": 1
+    },
+    "/pt/travel-hub/peitoral-de-carro-para-cachorro/": {
+      "corps · homologada": 1
+    },
+    "/pt/travel-hub/politicas-de-animais-que-mudam/": {
+      "corps · caixa iata": 1
+    },
+    "/pt/travel-hub/reservar-um-voo-com-seu-cachorro/": {
+      "corps · caixa iata": 1
     },
     "/pt/travel-hub/viajar-ao-exterior-com-cachorro/": {
-      "homologada pela iata": 1
+      "corps · homologada": 1
     },
     "/pt/travel-hub/viajar-de-aviao-com-cachorro/": {
-      "homologada pela iata": 2
+      "corps · caixa iata": 6,
+      "corps · homologada": 2,
+      "json-ld · caixa iata": 2,
+      "metas · caixa iata": 3
     },
-    "/tools/fiche/": {
-      "iata-approved": 2,
-      "iata-compliant": 2
+    "/pt/travel-hub/viajar-de-carro-com-cachorro/": {
+      "corps · homologada": 1,
+      "corps · homologadas": 1,
+      "json-ld · homologada": 1
+    },
+    "/pt/travel-hub/viajar-de-trem-com-cachorro/": {
+      "corps · homologada": 2,
+      "json-ld · homologada": 1
     },
     "/travel-hub/": {
-      "iata-compliant": 1
+      "corps · iata crate": 2,
+      "corps · iata-compliant": 1
     },
     "/travel-hub/airline-approved-dog-crate/": {
-      "iata-compliant": 10
+      "corps · iata crate": 1,
+      "corps · iata-compliant": 6,
+      "json-ld · iata-compliant": 3
+    },
+    "/travel-hub/airline-pet-policy-changes/": {
+      "corps · iata crate": 1
+    },
+    "/travel-hub/booking-a-pet-flight/": {
+      "corps · iata crate": 1
     },
     "/travel-hub/cargo-vs-excess-baggage/": {
-      "iata-compliant": 1
+      "corps · iata-compliant": 1
     },
     "/travel-hub/dog-carriers-and-crates/": {
-      "iata-compliant": 2
+      "corps · iata-compliant": 1,
+      "json-ld · iata-compliant": 1
     },
     "/travel-hub/dog-travel-accessories/": {
-      "iata-compliant": 1
+      "corps · iata-compliant": 1
     },
     "/travel-hub/dog-travel-gear/": {
-      "iata-compliant": 3
+      "corps · iata crate": 2,
+      "corps · iata-compliant": 2,
+      "json-ld · iata crate": 1,
+      "json-ld · iata-compliant": 1
     },
     "/travel-hub/flying-with-a-dog-cabin-hold-cargo/": {
-      "iata-approved": 2
+      "corps · iata crate": 3,
+      "corps · iata-approved": 2,
+      "json-ld · iata crate": 1
     },
     "/travel-hub/flying-with-a-dog/": {
-      "iata-approved": 2
+      "corps · iata crate": 6,
+      "corps · iata-approved": 2,
+      "json-ld · iata crate": 2,
+      "metas · iata crate": 3
     },
     "/travel-hub/international-travel-with-a-dog/": {
-      "iata-approved": 1
+      "corps · iata-approved": 1
+    },
+    "/travel-hub/measuring-your-dog-for-a-crate/": {
+      "corps · iata crate": 3,
+      "json-ld · iata crate": 2
     }
-  }
+  },
+  "_regle": "Dette IATA encore PUBLIÉE sur le site construit. Mesurée par un seul contrat : le jugement lexical canonique de `inventaire-iata.mjs` (`jugerOccurrence`), appliqué aux ZONES PUBLIQUES DÉCODÉES de chaque page (`test-lib/zones-publiques.mjs`) — titre, corps sans scripts ni styles ni templates, balises de description, et chaînes du JSON-LD parcourues récursivement. Chaque entrée scelle l'URL, LA ZONE et la formulation : un défaut déplacé du corps vers une métadonnée ne peut donc pas passer à total constant. Un bloc JSON-LD illisible fait rougir le contrôle au lieu d'être compté zéro."
 }

@@ -289,6 +289,26 @@ function portéesDeCitation(ligne) {
  * et sur sa position [debut, fin). Rend `null` quand aucune règle ne reconnaît l'occurrence —
  * jamais un repli complaisant.
  */
+/**
+ * LE JUGEMENT LEXICAL, SEUL ET UNIQUE — « legitime », « interdite » ou « inconnue ».
+ *
+ * POURQUOI IL EST EXTRAIT (contre-revue du 02/09/2026). `test-etape3-dom.mjs` portait SA PROPRE
+ * expression du vocabulaire interdit et bâtissait le registre de dette publique avec elle : deux
+ * définitions de la même chose, donc deux nombres, et un verrou de lancement mesuré au motif le
+ * plus étroit. Le contrat est désormais ici, et là seulement ; `classer()` le consulte, le
+ * contrôle du DOM aussi.
+ *
+ * IL NE JUGE QUE LE TEXTE TROUVÉ. Ce qui dépend du FICHIER — slug conservé, citation attribuée,
+ * phrase arbitrée à reformuler, qui corrige quoi — reste dans `classer()`, parce que cela ne se
+ * décide pas sur l'occurrence seule. Un contrôle qui lit des pages construites n'a pas de fichier
+ * source à consulter : il lui faut exactement ce jugement-ci, et rien de plus.
+ */
+export function jugerOccurrence(trouve) {
+  if (OCC_LEGITIME.test(trouve)) return "legitime";
+  if (OCC_INTERDITE.test(trouve) || OCC_INTERDITE_FAMILLE.test(trouve)) return "interdite";
+  return "inconnue";
+}
+
 export function classer(chemin, ligne, trouve, debut, fin) {
   /* 1 — L'occurrence EST à l'intérieur d'un slug conservé : un identifiant, pas une phrase. */
   for (const sl of SLUGS_CONSERVES) {
@@ -307,11 +327,12 @@ export function classer(chemin, ligne, trouve, debut, fin) {
 
   /* 4 — L'occurrence elle-même est une référence licite : le règlement, la méthode de mesure,
      les exigences de contenant. Rien à corriger, où qu'elle vive. */
-  if (OCC_LEGITIME.test(trouve)) return "reference_reglementaire_legitime";
+  const jugement = jugerOccurrence(trouve);
+  if (jugement === "legitime") return "reference_reglementaire_legitime";
 
   /* À partir d'ici, l'occurrence DOIT être une affirmation interdite. Sinon on ne sait pas ce
      que c'est, et on le dit. */
-  if (!OCC_INTERDITE.test(trouve) && !OCC_INTERDITE_FAMILLE.test(trouve)) return null;
+  if (jugement !== "interdite") return null;
 
   /* Le registre de preuve prime sur tout classement de contenu : c'est un artefact de mesure,
      pas une surface. La comparaison est une ÉGALITÉ de chemin, jamais un préfixe ni un motif. */
