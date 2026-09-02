@@ -35,7 +35,6 @@ export interface BreedTravelProfile {
   season: SeasonStars; bestSeason: Bi;
   climates: { recommended: ClimateBadge[]; avoid: ClimateBadge[]; basis: Bi };
   longHaul: Level; embargo: Level;
-  crate: { code: string; sizeLabel: string; dims: string };
   prep: Level; experience: Level;
   bestAirlines: AirlineRank[];
   counts: { cabinWithin: number; cabinStated: number; holdYes: number; holdNo: number; cargoYes: number; airlinesTotal: number; brachyHoldBans: number };
@@ -44,15 +43,27 @@ export interface BreedTravelProfile {
 }
 
 const HEAT_EMBARGO_C = 30;
-// IATA crate interior series (indicative cm) — mirrors CrateCalculator.astro
-const SIZES = [
-  { code: "100", label: "XS", l: 48, w: 33, h: 33 },
-  { code: "200", label: "S", l: 63, w: 43, h: 45 },
-  { code: "300", label: "M", l: 73, w: 48, h: 55 },
-  { code: "400", label: "L", l: 84, w: 57, h: 60 },
-  { code: "500", label: "XL", l: 94, w: 64, h: 68 },
-  { code: "700", label: "XXL", l: 112, w: 76, h: 82 },
-];
+/* LA SÉRIE DE CAISSES A ÉTÉ RETIRÉE D'ICI (02/09/2026), ET CE N'EST PAS UN DÉPLACEMENT.
+ *
+ * CE QUE LA FICHE DE RACE PUBLIAIT. Un bloc « Caisse IATA type » donnant « 500 · XL ·
+ * 94×64×68 cm », calculé à partir du seul POIDS DE LA RACE par une formule allométrique, puis
+ * arrondi sur une table 100/200/…/700 écrite en dur — table dupliquée dans
+ * `CrateCalculator.astro`, et que le commentaire de ce fichier appelait « IATA crate interior
+ * series ». Deux affirmations fausses en une : la série 100–700 est une nomenclature de
+ * FABRICANT, que l'IATA ne publie pas ; et les dimensions n'étaient sourcées nulle part.
+ *
+ * POURQUOI RENOMMER N'AURAIT PAS SUFFI. Retirer le mot « IATA » du titre aurait laissé publier
+ * une classification commerciale et des dimensions non établies, présentées comme la taille
+ * adaptée à la race. L'arbitrage en vigueur est plus exigeant que le vocabulaire : un profil non
+ * publiable ne produit AUCUNE estimation publique. Les trois registres canoniques
+ * (`packages/knowledge/tarifs/{modeles,profils,caisses-par-race}-caisses.json`) sont vides —
+ * mesuré : 0 modèle, 0 profil, 0 correspondance.
+ *
+ * CE QUI RESTE À L'UTILISATEUR, et qui vaut mieux : le calculateur, qui part de SES mesures.
+ * La fiche de race n'affiche plus qu'un lien vers lui.
+ *
+ * QUAND CELA REVIENDRA : depuis les registres sourcés une fois `publiable: true`, ou depuis les
+ * mesures réelles saisies — jamais depuis une table écrite en dur. */
 // Region → coarse summer high (°C) — mirrors engine evaluate.ts CLIMATE
 const REGION_SUMMER: Record<string, number> = {
   "Middle East": 42, "Africa": 35, "Asia": 34, "Central America": 33,
@@ -176,16 +187,6 @@ export function computeBreedTravel(breedId: string): BreedTravelProfile | null {
       ? L("Moderate", "Modéré", "Moderado", "Moderado", "warn")
       : L("Low", "Faible", "Bajo", "Baixo", "ok");
 
-  // ---- IATA crate ----
-  const A = Math.round(22 * Math.pow(w, 0.34));
-  const D = Math.round(23 * Math.pow(w, 0.31));
-  const k = brachy ? 1.1 : 1;
-  const Lc = (A + (0.4 * D) / 2) * k, Wc = 6.5 * Math.pow(w, 0.33) * 2 * k, Hc = D * k;
-  const sz = SIZES.find((s) => s.l >= Lc && s.w >= Wc && s.h >= Hc);
-  const crate = sz
-    ? { code: sz.code, sizeLabel: sz.label, dims: `${sz.l}×${sz.w}×${sz.h} cm` }
-    : { code: "700+", sizeLabel: "> XXL", dims: "> 112×76×82 cm" };
-
   // ---- Prep + experience ----
   const prep = brachy ? L("Complex", "Complexe", "Compleja", "Complexa", "no")
     : cabin.level.tone === "ok" ? L("Simple", "Simple", "Sencilla", "Simples", "ok")
@@ -229,7 +230,7 @@ export function computeBreedTravel(breedId: string): BreedTravelProfile | null {
     id: b.id, slug: slugFor(b.id), name: b.name, nameFr: b.name_i18n?.fr || b.name, nameEs: b.name_i18n?.es || b.name, namePt: b.name_i18n?.pt || b.name,
     size: b.size, weightKg: w, brachy, coat: b.coat,
     difficulty: { ...diff }, dna, cabin, hold, cargo, airlineHeadline,
-    heat, respiratory, cold, season, bestSeason, climates, longHaul, embargo, crate, prep, experience,
+    heat, respiratory, cold, season, bestSeason, climates, longHaul, embargo, prep, experience,
     bestAirlines,
     counts: { cabinWithin, cabinStated, holdYes, holdNo, cargoYes, airlinesTotal, brachyHoldBans },
     faq, source: src,
