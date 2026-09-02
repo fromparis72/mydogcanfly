@@ -19,7 +19,7 @@ export function selectPartners(kb: NormalizedKB, req: FinderRequest, report: Dec
   const feasible = report.verdict !== "incompatible";
   const hasImportReqs = report.conditions.length > 0;
   /* La recommandation doit suivre le MODE RÉELLEMENT RETENU. Auparavant, soute et fret
-     déclenchaient la même phrase (« le voyage en soute exige une caisse IATA ») : sur un trajet
+     déclenchaient la même phrase — celle qui exigeait une cage de transport en soute : sur un trajet
      annoncé « fret uniquement », on envoyait donc le voyageur préparer une soute accompagnée —
      ni le même produit, ni la même procédure, ni le même interlocuteur. La soute prime quand elle
      existe (c'est aussi l'ordre du verdict : cabine > soute > fret) ; à défaut, le texte fret. */

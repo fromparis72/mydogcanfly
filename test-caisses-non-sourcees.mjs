@@ -50,11 +50,21 @@ const CODES = ["100", "200", "300", "400", "500", "700"];
  * « · », « — » — que le bloc de dimensions n'emploie jamais. La limite est nommée : « 500 L »
  * écrit sans séparateur ne serait pas vu.
  */
+/* LA PARENTHÈSE ÉTAIT UN TROU, ET C'EST UNE PAGE PUBLIÉE QUI L'A RÉVÉLÉ. La FAQ du calculateur
+ * écrivait « du n° 100 (XS) au n° 700 (XXL) » : le couple y est séparé par une parenthèse, que ce
+ * motif ne prévoyait pas. La garde est donc restée verte sur quatre réponses — une par langue —
+ * qui publiaient la série commerciale ET affirmaient que l'outil l'affichait, ce qui était devenu
+ * faux. Le séparateur admet désormais les parenthèses et les deux-points. */
+/* La ponctuation est FACULTATIVE, les espaces aussi : « 500 XL », « 500XL », « 500 / XL » et
+ * « 100 (XS) » sont la même chose. Une première rédaction rendait tout le séparateur facultatif
+ * d'un bloc, ce qui faisait perdre « 500 XL » — la forme la plus simple. */
+const SEP = "\\s*[/·—–:(-]?\\s*";
+const SEP_STRICT = "\\s*[/·—–:(]\\s*";
 const MOTIF_SERIE = new RegExp(
-  `\\b(?:${CODES.join("|")})\\s*(?:[/·—–-]\\s*)?(?:XS|XL|XXL)\\b`
-  + `|\\b(?:XS|XL|XXL)\\s*(?:[/·—–-]\\s*)?(?:${CODES.join("|")})\\b`
-  + `|\\b(?:${CODES.join("|")})\\s*[/·—–]\\s*[SML]\\b`
-  + `|\\b[SML]\\s*[/·—–]\\s*(?:${CODES.join("|")})\\b`,
+  `\\b(?:${CODES.join("|")})${SEP}(?:XS|XL|XXL)\\b`
+  + `|\\b(?:XS|XL|XXL)${SEP}(?:${CODES.join("|")})\\b`
+  + `|\\b(?:${CODES.join("|")})${SEP_STRICT}[SML]\\b`
+  + `|\\b[SML]${SEP_STRICT}(?:${CODES.join("|")})\\b`,
   "g",
 );
 /** Les couples trouvés dans un texte décodé. Les contrôles 2 et 4 appellent CETTE fonction. */
@@ -186,6 +196,9 @@ ok(`départ : ${fiches.length} fiches de race et ${outils.length} pages du calcu
 /* ---- 4. LES DEUX MUTATIONS, SUR DES PAGES RÉELLES -------------------------------------------- */
 /* Chacune remet « 500 / XL » là où il vivait, et exige que LA MÊME fonction le voie. */
 {
+  /* La forme PARENTHÉSÉE est éprouvée elle aussi : c'est celle qui avait échappé à la garde, sur
+     une page publiée, dans les quatre langues. Une correction de motif sans contre-épreuve serait
+     une promesse, pas une garantie. */
   const cas = [
     /* LA MUTATION S'INSÈRE DANS LE CORPS, PAS APRÈS UNE ANCRE. Ma première rédaction faisait
        `ancre.after(noeud)` avec un repli sur `document.body` : quand le repli servait, le nœud
@@ -199,6 +212,10 @@ ok(`départ : ${fiches.length} fiches de race et ${outils.length} pages du calcu
       const d = doc.createElement("div"); d.textContent = "500 / XL ≈ 94 × 64 × 68 cm";
       doc.body.appendChild(d);
     }],
+    ["4ter mutation parenthésée", outils[0], (doc) => {
+      const d = doc.createElement("div"); d.textContent = "du n° 100 (XS) au n° 700 (XXL)";
+      doc.body.appendChild(d);
+    }],
   ];
   for (const [nom, page, muter] of cas) {
     const html = readFileSync(page, "utf8");
@@ -208,8 +225,8 @@ ok(`départ : ${fiches.length} fiches de race et ${outils.length} pages du calcu
     muter(dom.window.document);
     const apres = serieDans(texteDe(dom.serialize()).corps);
     dom.window.close();
-    if (apres.length !== 1 || !apres[0].startsWith("500")) echec(nom, `la mutation produit ${JSON.stringify(apres)} au lieu du seul « 500 / XL »`);
-    else ok(`${nom} — « 500 / XL » réintroduit dans ${rel(page)} est vu`);
+    if (!apres.length) echec(nom, "la mutation n'ajoute aucun couple : la garde ne la voit pas");
+    else ok(`${nom} — ${apres.map((x) => `« ${x} »`).join(", ")} réintroduit dans ${rel(page)} est vu`);
   }
 }
 
