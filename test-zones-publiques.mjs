@@ -196,27 +196,36 @@ const interdites = (texte) => {
    un attribut. Ce n'était pas théorique : `press-kit-es.html` publiait
    `alt="Bailey junto a su transportín IATA"`, que le registre ne portait pas. */
 {
+  /* CHAQUE ATTRIBUT DU CONTRAT PORTE SON PROPRE VECTEUR, ET UNE VALEUR DISTINCTE. Faute nommée
+     par la contre-revue du 03/09/2026 : `aria-description` et `aria-placeholder` étaient déclarés
+     par le lecteur mais aucun témoin ne les exerçait — les deux branches pouvaient disparaître
+     sans faire rougir quoi que ce soit. Une valeur par attribut, pour qu'un manque désigne son
+     attribut au lieu de se fondre dans le total. */
   const z = zonesDe('<html><body>'
     + '<img alt="IATA crate" src="/x.png">'
     + '<button aria-label="USD 250">?</button>'
+    + '<span aria-description="IATA-approved">d</span>'
     + '<span title="caisse IATA">i</span>'
     + '<input type="text" placeholder="conforme à la norme IATA">'
+    + '<div role="textbox" aria-placeholder="GBP 120"></div>'
     + '<input type="submit" value="EUR 99">'
     + '</body></html>');
   const vusIata = interdites(z.attributs);
   const vusArgent = trouver(z.attributs).map((m) => m.texte ?? m);
   const ecarts = [];
-  for (const attendu of ["IATA crate", "caisse IATA", "conforme à la norme IATA"]) {
-    if (!vusIata.includes(attendu)) ecarts.push(`la garde IATA ne voit pas « ${attendu} » : ${JSON.stringify(vusIata)}`);
+  for (const [attribut, attendu] of [["alt", "IATA crate"], ["aria-description", "IATA-approved"],
+    ["title", "caisse IATA"], ["placeholder", "conforme à la norme IATA"]]) {
+    if (!vusIata.includes(attendu)) ecarts.push(`« ${attribut} » : la garde IATA ne voit pas « ${attendu} » — ${JSON.stringify(vusIata)}`);
   }
-  for (const attendu of ["USD 250", "EUR 99"]) {
-    if (!vusArgent.some((v) => v.includes(attendu.split(" ")[1]))) ecarts.push(`la garde tarifaire ne voit pas « ${attendu} » : ${JSON.stringify(vusArgent)}`);
+  for (const [attribut, attendu] of [["aria-label", "USD 250"], ["aria-placeholder", "GBP 120"],
+    ["value d'un bouton", "EUR 99"]]) {
+    if (!vusArgent.some((v) => v.includes(attendu))) ecarts.push(`« ${attribut} » : la garde tarifaire ne voit pas « ${attendu} » — ${JSON.stringify(vusArgent)}`);
   }
   /* La zone est DISTINCTE : sans cela, un défaut déplacé du corps vers un attribut passerait au
      registre à total constant, et le sceau de zone ne servirait à rien. */
   if (interdites(z.corps).length) ecarts.push(`les attributs sont comptés AUSSI dans le corps : ${JSON.stringify(z.corps)}`);
   if (ecarts.length) echec("11 attributs accessibles", ecarts.join(" · "));
-  else ok("11 alt, aria-label, title, placeholder et la valeur d'un bouton sont lus dans leur propre zone, par les deux gardes");
+  else ok("11 les six attributs du contrat — alt, aria-label, aria-description, title, placeholder, aria-placeholder — et la valeur d'un bouton sont lus dans leur propre zone, chacun par son vecteur, par les deux gardes");
 }
 
 /* ---- 12. …MAIS PAS CE QUI N'EST PAS UN TEXTE ---------------------------------------------- */
