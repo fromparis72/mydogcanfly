@@ -1,7 +1,7 @@
 ---
 key: "airline-approved-dog-crate"
-title: "Escolher uma caixa de transporte homologada pela IATA"
-seoTitle: "Caixa IATA para cachorro: regras e medidas"
+title: "Escolher uma caixa de transporte"
+seoTitle: "Caixa de transporte para cachorro: regras e medidas"
 description: "Guia da caixa de avião para cachorro: exigências da IATA, método de medição, materiais, modelos em conformidade. O guia completo para voar com tranquilidade."
 summary: "Guia da caixa de avião para cachorro: exigências da IATA, método de medição, materiais, modelos em conformidade. O guia completo para voar com tranquilidade."
 date: "2026-06-22T09:00:00+02:00"
@@ -123,7 +123,7 @@ Se o seu cachorro demonstrar ansiedade acentuada, converse com o veterinário be
 
 ## Caixa de porão ou bolsa de cabine: como decidir?
 
-Tudo depende do porte do seu cachorro e da política da companhia. Cães pequenos viajam com frequência na cabine, em uma bolsa flexível homologada que desliza embaixo do assento, enquanto os maiores vão no porão em uma caixa rígida IATA. Nem as restrições nem o material são os mesmos. Se você está pesando as duas opções, a nossa comparação de [bolsas e caixas de transporte para cachorro](/pt/travel-hub/bolsas-e-caixas-de-transporte/) ajuda a escolher conforme o porte do animal, a duração do voo e as regras da companhia.
+Tudo depende do porte do seu cachorro e da política da companhia. Cães pequenos viajam com frequência na cabine, em uma bolsa flexível em conformidade com os requisitos aplicáveis que desliza embaixo do assento, enquanto os maiores vão no porão em uma caixa rígida IATA. Nem as restrições nem o material são os mesmos. Se você está pesando as duas opções, a nossa comparação de [bolsas e caixas de transporte para cachorro](/pt/travel-hub/bolsas-e-caixas-de-transporte/) ajuda a escolher conforme o porte do animal, a duração do voo e as regras da companhia.
 
 <ol class="gd-etapes"><li><a href="/pt/airlines/">Confira as condições de porão da sua companhia</a></li><li><a href="/pt/tools/crate/">Calcule o tamanho da caixa com a calculadora IATA</a></li><li><a href="/pt/travel-hub/ansiedade-do-cachorro-em-viagem/">Acostume o seu cachorro à caixa e gerencie o estresse do voo</a></li></ol>
 

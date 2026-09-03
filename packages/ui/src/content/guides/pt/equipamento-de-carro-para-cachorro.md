@@ -10,7 +10,7 @@ author: "Camille Roussel"
 category: "gear"
 tags: ["cachorro", "carro", "segurança", "equipamento"]
 enbref:
-  - "🔗 Indispensável: um **sistema de contenção** (peitoral homologado + cinto)"
+  - "🔗 Indispensável: um **sistema de contenção** (peitoral em conformidade com os requisitos aplicáveis + cinto)"
   - "📦 Ou então uma **caixa ancorada**, ou uma **grade** de porta-malas"
   - "🛋️ O resto (capa, hidratação, organização) = **conforto**"
   - "🛡️ Escolha primeiro a **segurança**, conforme o porte do cachorro e o veículo"
@@ -22,7 +22,7 @@ faq:
   - q: "É obrigatório por lei prender o cachorro no carro?"
     a: "Em muitos países, as normas de trânsito exigem que nada atrapalhe o controle do veículo pelo motorista, o que na prática descarta um cachorro solto e agitado. Além do aspecto legal, um sistema de contenção é sobretudo uma medida de segurança indispensável para o animal e para os ocupantes em caso de colisão."
   - q: "Dá para prender o cachorro pela coleira no carro?"
-    a: "Não, nunca. Em uma freada brusca ou uma colisão, o tranco sobre a coleira pode provocar lesões cervicais graves. Use sempre um peitoral homologado que distribua a força pelo peito, ligado ao cinto por uma tira curta."
+    a: "Não, nunca. Em uma freada brusca ou uma colisão, o tranco sobre a coleira pode provocar lesões cervicais graves. Use sempre um peitoral em conformidade com os requisitos aplicáveis que distribua a força pelo peito, ligado ao cinto por uma tira curta."
   - q: "Caixa ou peitoral: o que protege melhor?"
     a: "Uma caixa rígida, resistente e bem ancorada em geral oferece a melhor proteção em caso de colisão, sobretudo para cães grandes. Um peitoral crash-test continua sendo uma excelente solução no banco traseiro para cães pequenos e médios, e é mais prático no dia a dia."
   - q: "Como cuido da hidratação em um trajeto longo?"
@@ -47,7 +47,7 @@ Três famílias de soluções permitem conter um cachorro:
 
 A escolha certa depende do porte do cachorro, do tipo de veículo e da frequência dos trajetos. Nenhum desses dispositivos substitui o aprendizado: um cachorro acostumado aos poucos viaja muito mais tranquilo.
 
-## Como escolher um sistema de contenção homologado?
+## Como escolher um sistema de contenção em conformidade com os requisitos aplicáveis?
 
 Este é o ponto em que não convém abrir mão. Nem todos os peitorais «de carro» são iguais: muitos são vendidos para o carro sem nunca terem passado por um crash test. Os critérios que importam:
 
@@ -58,7 +58,7 @@ Este é o ponto em que não convém abrir mão. Nem todos os peitorais «de carr
 
 | Critério | O que priorizar |
 | --- | --- |
-| Tipo de fixação | Peitoral homologado, nunca a coleira |
+| Tipo de fixação | Peitoral em conformidade com os requisitos aplicáveis, nunca a coleira |
 | Validação | Sistema crash-test com protocolo reconhecido |
 | Ajuste | Justo no peito, dois dedos de folga |
 | Comprimento da tira | Curto, para reduzir a distância de projeção |
@@ -70,7 +70,7 @@ Para um panorama detalhado dos modelos e das normas, veja o nosso guia dedicado 
 
 Cada solução tem os seus casos de uso. Veja como decidir conforme o perfil:
 
-- **Cachorro pequeno ou médio, trajetos ocasionais**: um cinto preso a um peitoral homologado basta e não atrapalha.
+- **Cachorro pequeno ou médio, trajetos ocasionais**: um cinto preso a um peitoral em conformidade com os requisitos aplicáveis basta e não atrapalha.
 - **Cachorro grande, perua ou SUV**: uma caixa de transporte rígida e ancorada oferece a melhor proteção, desde que esteja calçada para não deslizar.
 - **Cachorro ansioso ou destruidor**: a caixa tranquiliza e limita os danos, mas exige uma habituação gradual.
 - **Vários cães**: uma grade separadora organiza o porta-malas, de preferência com tiras individuais como complemento.
@@ -109,9 +109,9 @@ Para uma visão de conjunto da organização de uma viagem inteira, da partida �
 
 Em resumo, estas são as prioridades conforme a situação:
 
-- **Trajetos ocasionais, cachorro pequeno**: peitoral homologado + cinto + capa de banco. Isso basta.
+- **Trajetos ocasionais, cachorro pequeno**: peitoral em conformidade com os requisitos aplicáveis + cinto + capa de banco. Isso basta.
 - **Cachorro grande, trajetos longos frequentes**: caixa ancorada ou peitoral crash-test, tapete de porta-malas, vasilha de viagem, organizador.
-- **Orçamento apertado**: invista primeiro na contenção homologada; a proteção dos bancos pode esperar.
+- **Orçamento apertado**: invista primeiro na contenção em conformidade com os requisitos aplicáveis; a proteção dos bancos pode esperar.
 - **Cachorro ansioso**: caixa + habituação gradual, e trajetos curtos no começo.
 
 A regra de ouro: a segurança primeiro, o conforto depois. Um material caro mas mal ajustado não protege melhor que um dispositivo simples corretamente instalado.

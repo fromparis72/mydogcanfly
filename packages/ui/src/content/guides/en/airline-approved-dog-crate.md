@@ -1,6 +1,6 @@
 ---
 key: "airline-approved-dog-crate"
-title: "Choosing an Airline-Approved Dog Crate (IATA-Compliant)"
+title: "Choosing an Airline-Approved Dog Crate (meeting the applicable requirements)"
 seoTitle: "Airline-Approved Dog Crate: IATA Rules and Sizing"
 description: "Airline dog crate guide: IATA requirements, sizing method, materials, compliant models. The complete guide to flying with peace of mind."
 summary: "Airline dog crate guide: IATA requirements, sizing method, materials, compliant models. The complete guide to flying with peace of mind."
@@ -19,10 +19,10 @@ enbref:
   - "🗓️ **Crate-train your dog** several weeks in advance"
 cover:
   image: "/travel-hub/airline-approved-dog-crate.webp"
-  alt: "A traveller and his dog beside an IATA-compliant travel crate at the airport"
-  credit: "Rigid IATA-compliant travel crate."
+  alt: "A traveller and his dog beside a travel crate that meets the applicable requirements at the airport"
+  credit: "Rigid travel crate that meets the applicable requirements."
 faq:
-  - q: "What exactly is an IATA-compliant crate?"
+  - q: "What exactly is a crate that meets the applicable requirements?"
     a: "It's a rigid crate that meets the IATA *Live Animals Regulations*: the animal must be able to stand without touching the ceiling, turn around and lie down; ventilation is distributed over several sides; and the two shell halves are joined with metal fasteners. It's not a paid label but a set of requirements checked at check-in, which each airline may supplement."
   - q: "How do I know the right crate size for my dog?"
     a: "Measure the dog standing: length from nose to base of tail, height from floor to elbow, width at the shoulders, and total height to the head or ears. The crate's interior length must be at least the dog's length plus half the leg height, the width about twice the dog's width, and the height their standing height with a margin. Then pick the next manufacturer size up."
@@ -38,7 +38,7 @@ When you're preparing a flight with your dog in the hold, the travel crate isn't
 
 I mention a few well-known models as reference points — crates like the Petmate Sky Kennel or Vari Kennel come up often in traveler feedback — without inventing dimensions or prices: exact specifications are on the manufacturers' spec sheets and must always be cross-checked against your airline's requirements. Before booking, also read our general guide to [flying with a dog](/travel-hub/flying-with-a-dog/), which covers cabin, hold and the paperwork.
 
-## What is an "IATA-compliant" crate?
+## What is an "meeting the applicable requirements" crate?
 
 IATA (the International Air Transport Association) publishes the *Live Animals Regulations*, the reference framework nearly all airlines use to govern animal transport in the hold. For dogs and cats, you'll often see "Container Requirement 82" (CR82). It's not a certification in the sense of a paid label: it's a set of requirements the crate must meet, verified at check-in.
 
@@ -124,7 +124,7 @@ If your dog shows marked anxiety, talk to your veterinarian well before departur
 
 ## Hold crate or cabin carrier: how to decide?
 
-It all depends on your dog's size and the airline's policy. Small dogs often travel in the cabin in an approved soft-sided carrier slid under the seat, while larger dogs go in the hold in a rigid IATA crate. The constraints and the gear are not the same. If you're weighing the two options, our comparison of [dog carriers and crates](/travel-hub/dog-carriers-and-crates/) helps you choose based on the animal's size, flight duration and the carrier's rules.
+It all depends on your dog's size and the airline's policy. Small dogs often travel in the cabin in an approved soft-sided carrier slid under the seat, while larger dogs go in the hold in a rigid travel crate. The constraints and the gear are not the same. If you're weighing the two options, our comparison of [dog carriers and crates](/travel-hub/dog-carriers-and-crates/) helps you choose based on the animal's size, flight duration and the carrier's rules.
 
 <ol class="gd-etapes"><li><a href="/airlines/">Check your airline's hold conditions</a></li><li><a href="/tools/crate/">Size the crate with the IATA calculator</a></li><li><a href="/travel-hub/dog-travel-anxiety/">Crate-train your dog and manage flight stress</a></li></ol>
 

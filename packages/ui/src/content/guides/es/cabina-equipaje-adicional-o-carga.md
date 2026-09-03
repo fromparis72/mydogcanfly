@@ -35,7 +35,7 @@ Emplear el vocabulario correcto importa, porque pedir el equivocado hace perder 
 
 ## Cabina: una tarifa en tu propia reserva
 
-El animal viaja en un bolso homologado bajo el asiento de delante. Comercialmente es lo más sencillo: normalmente una tarifa plana añadida a tu reserva, un cupo de animales por vuelo y un límite estricto de tamaño y peso que cubre **perro más bolso**.
+El animal viaja en un bolso conforme a los requisitos aplicables bajo el asiento de delante. Comercialmente es lo más sencillo: normalmente una tarifa plana añadida a tu reserva, un cupo de animales por vuelo y un límite estricto de tamaño y peso que cubre **perro más bolso**.
 
 Lo que ganas no es solo comodidad. Ves al animal en todo momento, la temperatura está regulada para personas durante todo el trayecto y los embargos estacionales prácticamente no se aplican, un punto desarrollado en [los embargos por calor en bodega](/es/travel-hub/embargos-por-calor-en-bodega/).
 
@@ -49,7 +49,7 @@ Características prácticas:
 
 - Facturación en la terminal de pasajeros, normalmente en un mostrador específico y antes que el equipaje corriente.
 - Tarificado como tasa por animal o como exceso de equipaje, según la aerolínea.
-- Exige un transportín rígido conforme a la IATA: consulta [elegir un transportín homologado](/es/travel-hub/transportin-homologado-iata-perro/) y dimensiónalo con nuestra [calculadora de transportín](/es/tools/crate/).
+- Exige un transportín rígido conforme a los requisitos aplicables: consulta [elegir un transportín conforme a los requisitos aplicables](/es/travel-hub/transportin-homologado-iata-perro/) y dimensiónalo con nuestra [calculadora de transportín](/es/tools/crate/).
 - Sujeto a los embargos de temperatura y a las restricciones de raza, en especial para las [razas braquicéfalas](/es/travel-hub/razas-braquicefalas-y-avion/).
 
 No todas las aerolíneas lo ofrecen en todas las rutas, y varias lo han retirado por completo. Es una de las cosas que se mueven: consulta [por qué cambian las políticas de animales](/es/travel-hub/politicas-de-mascotas-que-cambian/).

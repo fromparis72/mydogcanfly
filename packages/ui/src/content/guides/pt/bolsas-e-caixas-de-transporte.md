@@ -3,7 +3,7 @@ key: "dog-carriers-and-crates"
 title: "Bolsa ou caixa rígida: qual escolher para o seu cachorro"
 seoTitle: "Bolsa ou caixa para cachorro: como escolher"
 description: "Bolsa flexível, caixa rígida ou gaiola: como escolher conforme o porte do seu cachorro e o meio de transporte, as normas aéreas e as dicas de habituação."
-summary: "O contêiner certo depende do porte do seu cachorro e de como você viaja: bolsa flexível para cães pequenos na cabine, caixa rígida homologada para carro, avião ou trem. A habituação gradual é a chave da aceitação."
+summary: "O contêiner certo depende do porte do seu cachorro e de como você viaja: bolsa flexível para cães pequenos na cabine, caixa rígida em conformidade com os requisitos aplicáveis para carro, avião ou trem. A habituação gradual é a chave da aceitação."
 date: "2026-07-04T08:00:00+02:00"
 lastmod: "2026-07-04T08:00:00+02:00"
 author: "Camille Roussel"
@@ -11,7 +11,7 @@ category: "gear"
 tags: ["cachorro", "caixa de transporte", "bolsa", "equipamento"]
 enbref:
   - "👜 **Bolsa flexível**: cães pequenos na cabine"
-  - "📦 **Caixa rígida homologada**: carro, avião, trem"
+  - "📦 **Caixa rígida em conformidade com os requisitos aplicáveis**: carro, avião, trem"
   - "📐 Tamanho = **ficar de pé, virar-se, deitar-se**"
   - "🐾 A **habituação gradual** faz toda a diferença"
 cover:

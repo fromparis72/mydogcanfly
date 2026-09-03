@@ -10,7 +10,7 @@ category: "gear"
 tags: ["chien", "voiture", "sécurité", "équipement"]
 sourceUrl: "/voyager-voiture-chien-equipements/"
 enbref:
-  - "🔗 Indispensable : **système de retenue** (harnais homologué + ceinture)"
+  - "🔗 Indispensable : **système de retenue** (harnais de sécurité automobile pour chien + ceinture)"
   - "📦 Ou **caisse arrimée**, ou **grille de séparation** de coffre"
   - "🛋️ Le reste (housse, hydratation, rangement) = **confort**"
   - "🛡️ Choisir d'abord la **sécurité** selon gabarit + véhicule"
@@ -22,7 +22,7 @@ faq:
   - q: "Est-il obligatoire d'attacher son chien en voiture ?"
     a: "Le Code de la route impose que rien n'entrave la conduite, ce qui interdit de fait un chien libre qui s'agite. Au-delà de l'aspect légal, un dispositif de retenue est avant tout une mesure de sécurité indispensable pour l'animal et les passagers en cas de choc."
   - q: "Peut-on attacher un chien par son collier en voiture ?"
-    a: "Non, jamais. En cas de freinage brusque ou de collision, la traction sur le collier peut provoquer de graves lésions cervicales. On utilise toujours un harnais homologué qui répartit l'effort sur le poitrail, relié à la ceinture par une attache courte."
+    a: "Non, jamais. En cas de freinage brusque ou de collision, la traction sur le collier peut provoquer de graves lésions cervicales. On utilise toujours un harnais de sécurité automobile pour chien qui répartit l'effort sur le poitrail, relié à la ceinture par une attache courte."
   - q: "Caisse de transport ou harnais : qu'est-ce qui protège le mieux ?"
     a: "Une caisse rigide, solide et correctement arrimée offre généralement la meilleure protection en cas de choc, notamment pour les grands chiens. Le harnais crash-testé reste une excellente solution sur banquette pour les petits et moyens chiens, plus pratique au quotidien."
   - q: "Comment gérer l'hydratation pendant un long trajet ?"
@@ -47,7 +47,7 @@ Trois familles de solutions permettent de retenir un chien :
 
 Le bon choix dépend de la taille du chien, du type de véhicule et de la fréquence des trajets. Aucun de ces dispositifs ne dispense de l'éducation : un chien habitué progressivement voyage bien plus sereinement.
 
-## Comment choisir un système d'attache homologué ?
+## Comment choisir un dispositif de retenue adapté au chien et au véhicule ?
 
 C'est le point sur lequel il ne faut pas transiger. Tous les harnais « voiture » ne se valent pas : beaucoup sont vendus pour la voiture mais n'ont jamais été testés en conditions de crash. Les critères qui comptent :
 
@@ -58,7 +58,7 @@ C'est le point sur lequel il ne faut pas transiger. Tous les harnais « voiture 
 
 | Critère | À privilégier |
 | --- | --- |
-| Type de fixation | Harnais homologué, jamais le collier |
+| Type de fixation | Harnais de sécurité automobile pour chien, jamais le collier |
 | Validation | Système crash-testé selon un protocole reconnu |
 | Réglage | Ajusté au poitrail, deux doigts d'aisance |
 | Longueur d'attache | Courte, pour réduire la distance de projection |
@@ -70,7 +70,7 @@ Pour entrer dans le détail des modèles et des normes, consultez notre guide d�
 
 Chaque solution a ses cas d'usage. Voici comment les départager selon le profil :
 
-- **Petit ou moyen chien, trajets occasionnels** : une ceinture clipsée à un harnais homologué suffit et reste discrète.
+- **Petit ou moyen chien, trajets occasionnels** : une ceinture clipsée à un harnais de sécurité automobile pour chien suffit et reste discrète.
 - **Grand chien, break ou SUV** : une caisse de transport rigide et arrimée offre la meilleure protection, à condition qu'elle soit calée pour ne pas glisser.
 - **Chien anxieux ou destructeur** : la caisse rassure et limite les dégâts, mais demande une habituation progressive.
 - **Plusieurs chiens** : une grille de séparation organise le coffre, complétée idéalement par des attaches individuelles.
@@ -109,9 +109,9 @@ Pour une vue d'ensemble de l'organisation d'un trajet, du départ à l'arrivée,
 
 Pour synthétiser, voici les priorités selon votre situation :
 
-- **Trajet occasionnel, petit chien** : harnais homologué + ceinture + housse de banquette. C'est suffisant.
+- **Trajet occasionnel, petit chien** : harnais de sécurité automobile pour chien + ceinture + housse de banquette. C'est suffisant.
 - **Grand chien, longs trajets fréquents** : caisse arrimée ou harnais crash-testé, tapis de coffre, gamelle nomade, organisateur.
-- **Budget serré** : investissez en priorité dans l'attache homologuée ; la protection des sièges peut attendre.
+- **Budget serré** : investissez en priorité dans l'attache adaptée au chien et au véhicule ; la protection des sièges peut attendre.
 - **Chien anxieux** : caisse + habituation progressive, et trajets courts au début.
 
 La règle d'or : la sécurité d'abord, le confort ensuite. Un équipement coûteux mais mal réglé ne protège pas mieux qu'un dispositif simple correctement installé.

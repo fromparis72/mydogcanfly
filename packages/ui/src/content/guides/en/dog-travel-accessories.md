@@ -44,7 +44,7 @@ To choose, read our guide on [which car travel gear is actually useful](/travel-
 
 ## Which crate or carrier should you choose?
 
-The container depends on your dog's size and your mode of transport. For a **small dog**, a ventilated soft carrier is often enough and is accepted in the cabin on planes and trains — see [the most comfortable carriers for small dogs](/travel-hub/small-dog-carriers/). For a **medium to large dog**, or for air travel in the hold, you need a properly sized, **IATA-compliant rigid crate**.
+The container depends on your dog's size and your mode of transport. For a **small dog**, a ventilated soft carrier is often enough and is accepted in the cabin on planes and trains — see [the most comfortable carriers for small dogs](/travel-hub/small-dog-carriers/). For a **medium to large dog**, or for air travel in the hold, you need a properly sized, **rigid crate that meets the applicable requirements**.
 
 Three resources to get it right: the [carrier vs. crate comparison](/travel-hub/dog-carriers-and-crates/), our guide on [choosing an airline-approved crate](/travel-hub/airline-approved-dog-crate/), and the complete article on [flying with a dog](/travel-hub/flying-with-a-dog/) for the paperwork.
 

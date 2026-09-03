@@ -10,7 +10,7 @@ author: "Camille Roussel"
 category: "gear"
 tags: ["perro", "coche", "seguridad", "equipamiento"]
 enbref:
-  - "🔗 Imprescindible: un **sistema de sujeción** (arnés homologado + cinturón)"
+  - "🔗 Imprescindible: un **sistema de sujeción** (arnés conforme a los requisitos aplicables + cinturón)"
   - "📦 O bien un **transportín anclado**, o una **rejilla** de maletero"
   - "🛋️ El resto (funda, hidratación, organización) = **comodidad**"
   - "🛡️ Elige primero la **seguridad**, según el tamaño del perro y el vehículo"
@@ -22,7 +22,7 @@ faq:
   - q: "¿Es obligatorio por ley sujetar al perro en el coche?"
     a: "En muchos países, la normativa de tráfico exige que nada estorbe el control del vehículo por parte del conductor, lo que descarta de hecho a un perro suelto e inquieto. Más allá del aspecto legal, un sistema de sujeción es sobre todo una medida de seguridad imprescindible para el animal y para los ocupantes en caso de choque."
   - q: "¿Se puede atar al perro por el collar en el coche?"
-    a: "No, nunca. En una frenada brusca o una colisión, el tirón sobre el collar puede provocar lesiones cervicales graves. Utiliza siempre un arnés homologado que reparta la fuerza sobre el pecho, unido al cinturón por una correa corta."
+    a: "No, nunca. En una frenada brusca o una colisión, el tirón sobre el collar puede provocar lesiones cervicales graves. Utiliza siempre un arnés conforme a los requisitos aplicables que reparta la fuerza sobre el pecho, unido al cinturón por una correa corta."
   - q: "Transportín o arnés: ¿qué protege mejor?"
     a: "Un transportín rígido, sólido y bien anclado ofrece por lo general la mejor protección en caso de choque, sobre todo en perros grandes. Un arnés crash-test sigue siendo una excelente solución en el asiento trasero para perros pequeños y medianos, y resulta más práctico en el día a día."
   - q: "¿Cómo gestiono la hidratación en un trayecto largo?"
@@ -47,7 +47,7 @@ Tres familias de soluciones permiten sujetar a un perro:
 
 La elección correcta depende del tamaño del perro, del tipo de vehículo y de la frecuencia de los trayectos. Ninguno de estos dispositivos sustituye al aprendizaje: un perro acostumbrado poco a poco viaja mucho más tranquilo.
 
-## ¿Cómo elegir un sistema de sujeción homologado?
+## ¿Cómo elegir un sistema de sujeción conforme a los requisitos aplicables?
 
 Este es el punto en el que no conviene transigir. No todos los arneses «de coche» son iguales: muchos se venden para el coche sin haber pasado nunca un crash test. Los criterios que importan:
 
@@ -58,7 +58,7 @@ Este es el punto en el que no conviene transigir. No todos los arneses «de coch
 
 | Criterio | Qué priorizar |
 | --- | --- |
-| Tipo de enganche | Arnés homologado, nunca el collar |
+| Tipo de enganche | Arnés conforme a los requisitos aplicables, nunca el collar |
 | Validación | Sistema crash-test con protocolo reconocido |
 | Ajuste | Ceñido al pecho, dos dedos de holgura |
 | Longitud de la correa | Corta, para reducir la distancia de proyección |
@@ -70,7 +70,7 @@ Para un repaso detallado de los modelos y las normas, consulta nuestra guía ded
 
 Cada solución tiene sus casos de uso. Así puedes decidir según el perfil:
 
-- **Perro pequeño o mediano, trayectos ocasionales**: un cinturón enganchado a un arnés homologado basta y no estorba.
+- **Perro pequeño o mediano, trayectos ocasionales**: un cinturón enganchado a un arnés conforme a los requisitos aplicables basta y no estorba.
 - **Perro grande, familiar o SUV**: un transportín de viaje rígido y anclado ofrece la mejor protección, siempre que esté calzado para que no deslice.
 - **Perro ansioso o destructor**: el transportín tranquiliza y limita los daños, pero exige una habituación progresiva.
 - **Varios perros**: una rejilla separadora organiza el maletero, idealmente con correas individuales como complemento.
@@ -109,9 +109,9 @@ Para una visión de conjunto de la organización de todo un viaje, de la salida 
 
 En resumen, estas son las prioridades según la situación:
 
-- **Trayectos ocasionales, perro pequeño**: arnés homologado + cinturón + funda de asiento. Con eso basta.
+- **Trayectos ocasionales, perro pequeño**: arnés conforme a los requisitos aplicables + cinturón + funda de asiento. Con eso basta.
 - **Perro grande, trayectos largos frecuentes**: transportín anclado o arnés crash-test, alfombrilla de maletero, bol de viaje, organizador.
-- **Presupuesto ajustado**: invierte primero en la sujeción homologada; la protección de los asientos puede esperar.
+- **Presupuesto ajustado**: invierte primero en la sujeción conforme a los requisitos aplicables; la protección de los asientos puede esperar.
 - **Perro ansioso**: transportín + habituación progresiva, y trayectos cortos al principio.
 
 La regla de oro: la seguridad primero, la comodidad después. Un material caro pero mal ajustado no protege mejor que un dispositivo sencillo correctamente instalado.

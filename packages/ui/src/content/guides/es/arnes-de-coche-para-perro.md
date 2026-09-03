@@ -14,7 +14,7 @@ enbref:
   - "📏 Debe estar **perfectamente ajustado** a la complexión de tu perro"
   - "🔗 Conectado al **cinturón** con una **atadura corta**"
   - "❌ Un **arnés de paseo** no ofrece ninguna garantía"
-  - "✅ Con el transportín homologado: uno de los **2 únicos sistemas fiables**"
+  - "✅ Con el transportín conforme a los requisitos aplicables: uno de los **2 únicos sistemas fiables**"
 cover:
   image: "/travel-hub/dog-car-harness.webp"
   alt: "cachorro de carlino negro en el asiento del coche"

@@ -55,7 +55,7 @@ Have these to hand before you call. The questions are the same almost everywhere
 - **The breed** — some are restricted or refused in the hold, a point we cover in our guide to [snub-nosed breeds and flying](/travel-hub/snub-nosed-breeds-and-flying/).
 - **The route and the aircraft**, because a connection may put your pet under two different sets of rules.
 
-If you do not yet know the crate size you need, size it before you call rather than guessing: our [IATA crate calculator](/tools/crate/) and the guide to [measuring your dog for a crate](/travel-hub/measuring-your-dog-for-a-crate/) give you a figure you can quote.
+If you do not yet know the crate size you need, size it before you call rather than guessing: our [travel crate calculator](/tools/crate/) and the guide to [measuring your dog for a crate](/travel-hub/measuring-your-dog-for-a-crate/) give you a figure you can quote.
 
 ## Cabin, hold or cargo: decide before you call
 

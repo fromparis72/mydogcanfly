@@ -87,7 +87,7 @@ Vários gestos simples limitam a náusea:
 | Posicionar o cachorro voltado para a frente | Olhar no sentido do movimento alivia o enjoo |
 | Fazer paradas regulares | O descanso e a hidratação acalmam o cachorro |
 
-Um bom equipamento de contenção é decisivo: veja as nossas recomendações para [escolher o equipamento de viagem do seu cachorro](/pt/travel-hub/equipamento-de-viagem-para-cachorro/), em especial caixas e peitorais homologados.
+Um bom equipamento de contenção é decisivo: veja as nossas recomendações para [escolher o equipamento de viagem do seu cachorro](/pt/travel-hub/equipamento-de-viagem-para-cachorro/), em especial caixas e peitorais em conformidade com os requisitos aplicáveis.
 
 Em trajetos longos, marque um ritmo regular: uma parada a cada **2 horas**, aproximadamente, tal como para um motorista humano. Aproveite para oferecer um pouco de água (em pequenas quantidades), um passeio curto na guia e uma parada para as necessidades. Mantenha o habitáculo em temperatura moderada, de 20 a 22 °C, e entreabra um vidro para renovar o ar. Evite encarar o seu cachorro ou vigiá-lo com ansiedade pelo retrovisor: a sua própria tensão se transmite e alimenta o mal-estar dele. Uma voz calma e algumas palavras tranquilizadoras espaçadas bastam.
 

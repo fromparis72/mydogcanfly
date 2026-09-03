@@ -55,7 +55,7 @@ Ten estos datos a mano antes de llamar. Las preguntas son casi siempre las misma
 - **La raza**: algunas están restringidas o no se admiten en bodega, un punto que tratamos en nuestra guía sobre [las razas braquicéfalas y el avión](/es/travel-hub/razas-braquicefalas-y-avion/).
 - **La ruta y el aparato**, porque una conexión puede someter a tu animal a dos juegos de normas distintos.
 
-Si aún no sabes qué tamaño de transportín necesitas, dimensiónalo antes de llamar en lugar de estimarlo: nuestra [calculadora de transportín IATA](/es/tools/crate/) y la guía para [medir a tu perro para un transportín](/es/travel-hub/medir-a-tu-perro-para-un-transportin-iata/) te dan una cifra que podrás citar.
+Si aún no sabes qué tamaño de transportín necesitas, dimensiónalo antes de llamar en lugar de estimarlo: nuestra [calculadora de transportín](/es/tools/crate/) y la guía para [medir a tu perro para un transportín](/es/travel-hub/medir-a-tu-perro-para-un-transportin-iata/) te dan una cifra que podrás citar.
 
 ## Cabina, bodega o carga: decide antes de llamar
 

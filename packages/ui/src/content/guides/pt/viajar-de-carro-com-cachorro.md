@@ -28,7 +28,7 @@ faq:
   - q: "Posso deixar meu cachorro sozinho no carro?"
     a: "Nunca, e menos ainda no calor. A temperatura dentro de um carro estacionado sobe muito depressa e pode provocar uma insolação fatal em poucos minutos."
   - q: "Meu cachorro pode ir no porta-malas de uma perua ou SUV?"
-    a: "Pode, desde que o porta-malas esteja separado do habitáculo por uma grade homologada e o cachorro esteja preso ali, idealmente em uma caixa amarrada. O porta-malas sozinho, sem grade nem caixa, não protege o cachorro de ser arremessado para a frente e não cumpre a exigência de não atrapalhar a direção."
+    a: "Pode, desde que o porta-malas esteja separado do habitáculo por uma grade em conformidade com os requisitos aplicáveis e o cachorro esteja preso ali, idealmente em uma caixa amarrada. O porta-malas sozinho, sem grade nem caixa, não protege o cachorro de ser arremessado para a frente e não cumpre a exigência de não atrapalhar a direção."
 ---
 
 O carro continua sendo a forma mais simples de viajar com um cachorro: você controla os horários, as paradas e o clima a bordo. Mas é preciso organização, porque um cachorro solto coloca em risco todos os ocupantes do veículo e pode render uma multa. Aqui está o método completo, passo a passo.
@@ -47,7 +47,7 @@ Três opções principais, conforme o seu veículo e o porte do seu cachorro:
 - **O peitoral de segurança com crash test**: prende ao cinto traseiro. Prático para cães já acostumados, desde que tenha passado por crash test e esteja bem ajustado.
 - **A grade ou rede separadora**: impede o cachorro de passar para a frente, mas não o retém em uma colisão. O ideal é combiná-la com um peitoral.
 
-Evite amarras baratas e não homologadas, que cedem na primeira freada forte.
+Evite amarras baratas e não em conformidade com os requisitos aplicáveis, que cedem na primeira freada forte.
 
 ## Como escolher o sistema certo para o seu cachorro e o seu carro?
 

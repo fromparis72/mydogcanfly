@@ -117,9 +117,9 @@ channels:
       es: Permitido
       pt: "Permitido"
     detail:
-      en: Cats & dogs (pet + kennel ≤ 50 kg) in a rigid IATA kennel with a metal door; two similar pets ≤ 14 kg each may share.
-      fr: Chats et chiens (animal + caisse ≤ 50 kg) en caisse IATA rigide à porte métallique ; deux animaux similaires ≤ 14 kg chacun peuvent partager.
-      es: Gatos y perros (mascota + jaula ≤ 50 kg) en una jaula rígida conforme a la IATA con puerta metálica; dos mascotas similares de ≤ 14 kg cada una pueden compartir.
+      en: Cats & dogs (pet + kennel ≤ 50 kg) in a rigid kennel with a metal door; two similar pets ≤ 14 kg each may share.
+      fr: Chats et chiens (animal + caisse ≤ 50 kg) en caisse de transport rigide à porte métallique ; deux animaux similaires ≤ 14 kg chacun peuvent partager.
+      es: Gatos y perros (mascota + jaula ≤ 50 kg) en una jaula rígida de transporte con puerta metálica; dos mascotas similares de ≤ 14 kg cada una pueden compartir.
       pt: "Gatos e cachorros (animal + caixa ≤ 50 kg) em uma caixa rígida IATA com porta de metal; dois animais semelhantes ≤ 14 kg cada podem compartilhar a mesma caixa."
     fee:
       en: €90–350
@@ -251,10 +251,10 @@ restrictions:
           es: Bozal obligatorio
           pt: "Focinheira obrigatória"
     note:
-      en: Potentially dangerous dogs (pit bull, American Staffordshire, Rottweiler, Dogo Argentino, Fila, Tosa, Akita) need a muzzle and a reinforced IATA crate. Sedation only on vet prescription.
-      fr: Les chiens potentiellement dangereux (pit-bull, American Staffordshire, Rottweiler, Dogo Argentino, Fila, Tosa, Akita) nécessitent une muselière et une caisse IATA renforcée. Sédation uniquement sur prescription vétérinaire.
-      es: Los perros potencialmente peligrosos (pit bull, American Staffordshire, Rottweiler, Dogo Argentino, Fila, Tosa, Akita) necesitan bozal y una jaula conforme a la IATA reforzada. Sedación solo con prescripción veterinaria.
-      pt: "Cachorros potencialmente perigosos (pit bull, American Staffordshire, Rottweiler, Dogo Argentino, Fila, Tosa, Akita) precisam de focinheira e de uma caixa IATA reforçada. Sedação somente com prescrição veterinária."
+      en: Potentially dangerous dogs (pit bull, American Staffordshire, Rottweiler, Dogo Argentino, Fila, Tosa, Akita) need a muzzle and a reinforced travel crate. Sedation only on vet prescription.
+      fr: Les chiens potentiellement dangereux (pit-bull, American Staffordshire, Rottweiler, Dogo Argentino, Fila, Tosa, Akita) nécessitent une muselière et une caisse de transport renforcée. Sédation uniquement sur prescription vétérinaire.
+      es: Los perros potencialmente peligrosos (pit bull, American Staffordshire, Rottweiler, Dogo Argentino, Fila, Tosa, Akita) necesitan bozal y una jaula de transporte reforzada. Sedación solo con prescripción veterinaria.
+      pt: "Cachorros potencialmente perigosos (pit bull, American Staffordshire, Rottweiler, Dogo Argentino, Fila, Tosa, Akita) precisam de focinheira e de uma caixa de transporte reforçada. Sedação somente com prescrição veterinária."
 temperature:
   pills:
     - cls: no

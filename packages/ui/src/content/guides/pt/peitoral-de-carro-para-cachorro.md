@@ -14,7 +14,7 @@ enbref:
   - "📏 Precisa estar **perfeitamente ajustado** à compleição do seu cachorro"
   - "🔗 Conectado ao **cinto** com uma **amarra curta**"
   - "❌ Um **peitoral de passeio** não oferece nenhuma garantia"
-  - "✅ Com a caixa homologada: um dos **2 únicos sistemas confiáveis**"
+  - "✅ Com a caixa em conformidade com os requisitos aplicáveis: um dos **2 únicos sistemas confiáveis**"
 cover:
   image: "/travel-hub/dog-car-harness.webp"
   alt: "filhote de pug preto no banco do carro"

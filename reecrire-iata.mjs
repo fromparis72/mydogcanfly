@@ -1,271 +1,448 @@
 #!/usr/bin/env node
 /**
- * LA RÉÉCRITURE DU VOCABULAIRE IATA DANS LES SOURCES DE VÉRITÉ ACTIVES.
+ * LA RÉÉCRITURE DU VOCABULAIRE IATA, PAR PORTÉES DE LANGUE.
  *
  *   node reecrire-iata.mjs            n'écrit rien : compte, et NOMME ce qu'il ne sait pas traiter
  *   node reecrire-iata.mjs --ecrire   applique
  *
- * POURQUOI UN SCRIPT PLUTÔT QU'UNE MAIN. 799 occurrences dans 302 fichiers : à la main, le geste
- * n'est ni rejouable ni relisible, et une substitution manquée ne se voit pas. Ici la table est
- * le contrat, elle se relit d'un coup d'œil, et le relevé canonique dit après coup s'il reste
- * quoi que ce soit.
+ * POURQUOI CETTE VERSION EXISTE, ET CE QUE LA PRÉCÉDENTE A CASSÉ. La v1 portait UNE table, rendue
+ * insensible à la casse, appliquée au fichier ENTIER. Deux dégâts mesurés sur 1799325 :
  *
- * LES DEUX RÈGLES DE FOND, ARBITRÉES.
- *   1. LE CONTENANT RÉEL EST PRÉSERVÉ. Une caisse reste une caisse, un sac reste un sac, un
- *      « transportín » reste un « transportín ». On retire l'ATTRIBUTION à l'IATA, pas l'objet.
- *      Remplacer mécaniquement tout contenant par « cage » a été explicitement refusé.
- *   2. LES RÉFÉRENCES RÉGLEMENTAIRES LICITES NE BOUGENT PAS — « normes IATA », « exigences
- *      IATA », « IATA requirements », « IATA LAR », « Live Animals Regulations ». Elles disent
- *      vrai : l'IATA publie bien des exigences. Ce qu'elle ne fait pas, c'est approuver,
- *      certifier ou homologuer un modèle.
+ *   · 52 FRAGMENTS ESPAGNOLS DANS DU PORTUGAIS. `homologado` et `homologada` s'écrivent pareil
+ *     dans les deux langues ; les règles espagnoles accrochaient donc les valeurs portugaises.
+ *     « Equipamento conforme a los requisitos aplicables », publié tel quel.
+ *   · 15 CONSTRUCTIONS ANGLAISES CASSÉES. Le remplacement portait sur l'ADJECTIF seul, sans
+ *     toucher l'article : « an compliant with the applicable requirements crate ».
  *
- * CE QU'IL NE FAIT PAS. Il ne touche AUCUN artefact généré : ceux-là se régénèrent depuis leurs
- * sources. Il ne touche pas l'héritage Hugo v1, ni `content/hub`, ni `content/posts` — 669
- * occurrences qui ne publient plus, dette déclarée et arbitrée hors de ce lot.
+ * ET CE QUE CELA DIT DE LA MESURE. L'instrument démontrait que le motif interdit avait disparu.
+ * Il ne dit rien de la LANGUE ni de la GRAMMAIRE de ce qui le remplace. Une réécriture ne se
+ * valide pas au compteur : elle se valide sur la phrase produite.
  *
- * CE QU'IL SIGNALE. Toute occurrence interdite qu'aucune règle ne reconnaît est IMPRIMÉE avec son
- * contexte, et le script sort en 1. Une réécriture qui laisse passer en silence ne vaut rien.
+ * LE MÉCANISME, EN TROIS TEMPS.
+ *   1. TRANSFORMER STRUCTURELLEMENT. La langue d'un texte vient de la STRUCTURE, jamais de son
+ *      apparence : `yaml.visit()` donne la plage source exacte de chaque scalaire et la clé qui
+ *      le porte — `en:`, `- en:`, `{ en: … }`, un bloc `|` ou `>`, une chaîne citée contenant des
+ *      deux-points. Les glossaires `_pt/*.json` sont le cas limite : la CLÉ est anglaise et la
+ *      VALEUR portugaise, sur la même ligne ; ce sont deux portées, deux tables.
+ *   2. APPLIQUER TEXTUELLEMENT, de droite à gauche, pour préserver le format à l'octet près.
+ *   3. VÉRIFIER PAR REPARSE. Le fichier réécrit est reparsé et comparé à la structure voulue.
+ *      C'est la VÉRIFICATION qui garantit, pas la façon d'appliquer : une clé perdue, un scalaire
+ *      abîmé, un JSON invalide font échouer le script au lieu d'être écrits.
  */
 import { readFileSync, writeFileSync } from "node:fs";
 import { execSync } from "node:child_process";
+import YAML from "yaml";
 import { classer, MOTIF, SLUGS_CONSERVES } from "./inventaire-iata.mjs";
 
 const ECRIRE = process.argv.includes("--ecrire");
+const LANGUES = ["en", "fr", "es", "pt"];
 
-/* LES SOURCES DE VÉRITÉ ACTIVES, ET ELLES SEULES. */
-const SURFACES = [
-  "content/airlines/", "content/countries/",
-  "packages/ui/src/content/guides/", "packages/ui/public/presskit/",
+/* ---- LES TABLES, UNE PAR LANGUE -------------------------------------------------------------
+ *
+ * AUCUNE RÈGLE N'EST PARTAGÉE ENTRE DEUX LANGUES, même quand le motif s'écrit pareil. C'est la
+ * cause exacte de la contamination : `homologado` existe en espagnol ET en portugais.
+ *
+ * L'ORDRE COMPTE : le plus spécifique d'abord, et l'ARTICLE fait partie du motif quand il change.
+ *
+ * CE QUE CHAQUE FORMULATION AFFIRME — arbitrage du 03/09/2026. Le motif qui disparaît ne suffit
+ * pas : la phrase produite doit être vraie de son SUJET.
+ *   · Énoncé GÉNÉRAL sur ce qu'exige le transport aérien → « conforme aux exigences applicables ».
+ *   · Produit ou modèle PRÉCIS, sans preuve propre → on décrit le contenant, on ne le certifie pas.
+ *   · Harnais automobile → aucun régime d'homologation publique n'existe pour les harnais canins :
+ *     l'article R412-6 impose au conducteur de conserver ses manœuvres, le règlement ONU n° 16
+ *     vise les occupants humains, et le règlement UE 2023/988 est une obligation générale de
+ *     sécurité des produits. Formulation neutre, jamais « homologué ».
+ */
+/* ---- LES LIMITES DE MOT, ET POURQUOI ELLES NE SONT PAS `\b` ---------------------------------
+ *
+ * DÉFAUT MESURÉ LE 03/09/2026 : en JavaScript, `\w` vaut `[A-Za-z0-9_]` et n'inclut PAS les
+ * lettres accentuées. `homologué\b` ne peut donc JAMAIS correspondre : après le `é`, qui n'est
+ * pas un caractère de mot, il n'y a aucune limite à franchir. Toutes les règles françaises,
+ * espagnoles et portugaises à terminaison accentuée étaient mortes, et le réécriveur les comptait
+ * pour zéro sans rien signaler. C'est le même piège que `\w*` sur les terminaisons accentuées,
+ * déjà nommé dans l'instrument.
+ *
+ * On borne donc sur `[\wÀ-ÿ]`, qui couvre les alphabets des quatre langues. */
+const D = "(?<![\\wÀ-ÿ])";      // limite gauche
+const F = "(?![\\wÀ-ÿ])";       // limite droite
+const re = (source, drapeaux = "gi") => new RegExp(D + source + F, drapeaux);
+
+const EN = [
+  /* L'ARTICLE FAIT PARTIE DU MOTIF : « an IATA-approved crate » ne devient jamais
+     « an compliant with… crate », mais une phrase qu'on peut lire à voix haute. */
+  [re("an\\s+IATA[- ](?:approved|compliant|certified|accredited)\\s+(travel\\s+|rigid\\s+|hard\\s+)?(crate|kennel|carrier|cage|container|box)", "gi"),
+    (_m, adj, nom) => `a ${adj ?? ""}${nom} that meets the applicable requirements`],
+  [re("IATA[- ](?:approved|compliant|certified|accredited)\\s+(travel\\s+|rigid\\s+|hard\\s+)?(crates|kennels|carriers|cages|containers|boxes)", "gi"),
+    (_m, adj, nom) => `${adj ?? ""}${nom} that meet the applicable requirements`],
+  [re("IATA[- ](?:approved|compliant|certified|accredited)\\s+(travel\\s+|rigid\\s+|hard\\s+)?(crate|kennel|carrier|cage|container|box)", "gi"),
+    (_m, adj, nom) => `${adj ?? ""}${nom} that meets the applicable requirements`],
+  /* Adjectif détaché — « Rigid double-shell crate, IATA-compliant (CR82) ». */
+  [re("IATA[- ](?:approved|compliant|certified|accredited)", "gi"), "meeting the applicable requirements"],
+  /* Le contenant garde son nom ; seule l'attribution part. L'article suit. */
+  [re("an\\s+IATA\\s+crate", "gi"), "a travel crate"],
+  [re("an\\s+IATA\\s+kennel", "gi"), "a kennel"],
+  [re("an\\s+IATA\\s+(carrier|cage)", "gi"), (_m, n) => `a travel ${n}`],
+  [re("IATA\\s+crates", "gi"), "travel crates"],
+  [re("IATA\\s+crate", "gi"), "travel crate"],
+  [re("IATA\\s+kennels", "gi"), "kennels"],
+  [re("IATA\\s+kennel", "gi"), "kennel"],
+  [re("IATA\\s+carriers", "gi"), "travel carriers"],
+  [re("IATA\\s+carrier", "gi"), "travel carrier"],
+  [re("IATA\\s+cages", "gi"), "travel cages"],
+  [re("IATA\\s+cage", "gi"), "travel cage"],
+  [re("rigid\\s+IATA\\s+type", "gi"), "rigid travel"],
 ];
 
-/* ---- LA TABLE ------------------------------------------------------------------------------
- * L'ORDRE COMPTE : le plus spécifique d'abord. « jaula rígida conforme a la IATA » doit être vu
- * avant « conforme a la IATA », sinon la seconde règle coupe la phrase en deux et laisse un
- * « jaula rígida » orphelin de son sens. Même raison pour « caixa de transporte IATA », qui doit
- * passer avant « caixa IATA ».
- *
- * TOUTES LES RÈGLES SONT INSENSIBLES À LA CASSE. Première rédaction fautive, mesurée : elles ne
- * l'étaient pas, et 117 occurrences restaient — presque toutes en tête de phrase, « Caisse IATA »,
- * « Jaula IATA », « Caixa IATA ». Une règle sensible à la casse ne voit pas le début des phrases,
- * c'est-à-dire l'endroit le plus visible d'un texte.
- *
- * LA MAJUSCULE SE DÉCIDE SUR LA POSITION, PAS SUR LA CASSE DU TEXTE TROUVÉ. Seconde faute,
- * trouvée sur les échantillons : la règle capitalisait dès que le texte trouvé commençait par une
- * majuscule — or « IATA » est un acronyme, il en porte TOUJOURS une. « a rigid IATA crate »
- * devenait donc « a rigid Travel crate », une capitale au milieu d'une phrase. On regarde
- * désormais ce qui PRÉCÈDE l'occurrence : début de texte, de ligne, ou fin de phrase. */
-const TABLE = [
-  /* — ANGLAIS — le contenant garde son nom, l'attribution part. */
-  [/\bIATA[- ]approved\b/g, "compliant with the applicable requirements"],
-  [/\bIATA[- ]compliant\b/g, "compliant with the applicable requirements"],
-  [/\bIATA[- ]certified\b/g, "compliant with the applicable requirements"],
-  [/\bIATA[- ]accredited\b/g, "compliant with the applicable requirements"],
-  [/\brigid IATA type\b/g, "rigid travel"],
-  [/\bIATA crates\b/g, "travel crates"],
-  [/\bIATA crate\b/g, "travel crate"],
-  [/\bIATA kennel\b/g, "kennel"],
-  [/\bIATA carrier\b/g, "travel carrier"],
-  [/\bIATA cage\b/g, "travel cage"],
-
-  /* — FRANÇAIS — */
-  [/\btype IATA rigide\b/g, "de transport rigide"],
-  /* « contenant IATA » : l'instrument canonique ne le voit PAS — « contenant » ne figure pas dans
-     sa famille de contenants, qui connaît « conteneur ». C'est un trou signalé à l'arbitrage ;
-     en attendant, la formulation est réécrite ici, parce qu'elle attribue bien un contenant à
-     l'IATA et qu'elle est publiée sur la fiche Thai Airways. */
-  [/\bcontenants?\s+IATA\b/g, "contenant de transport"],
-  [/\bconformes?\s+(?:à\s+la\s+norme\s+)?IATA\b/g, "conforme aux exigences applicables"],
-  [/\bcertifiées\s+IATA\b/g, "conformes aux exigences applicables"],
-  [/\bcaisses\s+IATA\b/g, "caisses de transport"],
-  [/\bcaisse\s+IATA\b/g, "caisse de transport"],
-  [/\bcage\s+IATA\b/g, "cage de transport"],
-  [/\bsac\s+IATA\b/g, "sac de transport"],
-
-  /* — ESPAGNOL — « transportín » se suffit à lui-même : rien à lui ajouter. */
-  [/\bjaulas?\s+rígidas?\s+conformes?\s+a\s+la\s+IATA\b/g, (m) => m.replace(/\s*conformes?\s+a\s+la\s+IATA/, " de transporte")],
-  [/\bjaulas?\s+conformes?\s+a\s+la\s+IATA\b/g, (m) => m.replace(/\s*conformes?\s+a\s+la\s+IATA/, " de transporte")],
-  [/\bconformes?\s+a\s+la\s+IATA\b/g, "conforme a los requisitos aplicables"],
-  [/\bcertificadas\s+IATA\b/g, "conformes a los requisitos aplicables"],
-  [/\btipo\s+IATA\s+rígida\b/g, "rígida de transporte"],
-  [/\bjaulas\s+IATA\b/g, "jaulas de transporte"],
-  [/\bjaula\s+IATA\b/g, "jaula de transporte"],
-  [/\btransportín\s+IATA\b/g, "transportín"],
-  [/\btransportines\s+IATA\b/g, "transportines"],
-
-  /* — PORTUGAIS — « caixa de transporte IATA » dit déjà le contenant : il ne reste qu'à retirer
-     l'attribution, sans quoi on écrirait « caixa de transporte de transporte ». */
-  [/\bcaixas\s+de\s+transporte\s+IATA\b/g, "caixas de transporte"],
-  [/\bcaixa\s+de\s+transporte\s+IATA\b/g, "caixa de transporte"],
-  [/\bcaixas\s+IATA\b/g, "caixas de transporte"],
-  [/\bcaixa\s+IATA\b/g, "caixa de transporte"],
+const FR = [
+  /* « caisse homologuée IATA » est UNE affirmation : on la remplace entière, jamais l'adjectif
+     seul — sans quoi il reste un « IATA » orphelin qui remet la phrase à parler de l'IATA. */
+  [re("caisses\\s+homologuées\\s+IATA", "gi"), "caisses conformes aux exigences applicables"],
+  [re("caisse\\s+homologuée\\s+IATA", "gi"), "caisse conforme aux exigences applicables"],
+  [re("homologuées\\s+IATA", "gi"), "conformes aux exigences applicables"],
+  [re("homologués\\s+IATA", "gi"), "conformes aux exigences applicables"],
+  [re("homologuée\\s+IATA", "gi"), "conforme aux exigences applicables"],
+  [re("homologué\\s+IATA", "gi"), "conforme aux exigences applicables"],
+  [re("conformes?\\s+(?:à\\s+la\\s+norme\\s+)?IATA", "gi"), "conforme aux exigences applicables"],
+  [re("certifiées\\s+IATA", "gi"), "conformes aux exigences applicables"],
+  [re("certifiée\\s+IATA", "gi"), "conforme aux exigences applicables"],
+  [re("type\\s+IATA\\s+rigide", "gi"), "de transport rigide"],
+  [re("caisses\\s+IATA", "gi"), "caisses de transport"],
+  [re("caisse\\s+IATA", "gi"), "caisse de transport"],
+  [re("cages\\s+IATA", "gi"), "cages de transport"],
+  [re("cage\\s+IATA", "gi"), "cage de transport"],
+  [re("sacs\\s+IATA", "gi"), "sacs de transport"],
+  [re("sac\\s+IATA", "gi"), "sac de transport"],
+  [re("contenants\\s+IATA", "gi"), "contenants de transport"],
+  [re("contenant\\s+IATA", "gi"), "contenant de transport"],
+  /* LE CONTENANT AÉRIEN EST DÉCRIT, JAMAIS CERTIFIÉ. Un modèle précis n'a pas de preuve propre :
+     « conforme aux exigences applicables » est la formulation arbitrée pour ce cas. */
+  [re("caisses\\s+rigides\\s+homologuées"), "caisses rigides conformes aux exigences applicables"],
+  [re("caisse\\s+rigide\\s+homologuée"), "caisse rigide conforme aux exigences applicables"],
+  [re("caisses\\s+de\\s+transport\\s+homologuées"), "caisses de transport conformes aux exigences applicables"],
+  [re("caisse\\s+de\\s+transport\\s+homologuée"), "caisse de transport conforme aux exigences applicables"],
+  [re("caisses\\s+homologuées"), "caisses conformes aux exigences applicables"],
+  [re("caisse\\s+homologuée"), "caisse conforme aux exigences applicables"],
+  /* LES PRODUITS ANTIPARASITAIRES SONT RÉELLEMENT AUTORISÉS — mais « homologué » n'est pas le
+     terme d'un médicament vétérinaire, qui reçoit une autorisation de mise sur le marché. On
+     écrit « autorisés » : c'est vrai, et cela n'emprunte rien à l'IATA. */
+  [re("produits\\s+homologués"), "produits autorisés"],
+  /* HARNAIS ET RETENUE AUTOMOBILE — aucune homologation publique n'existe. Voir l'arbitrage. */
+  [re("ceintures\\s+bas\\s+de\\s+gamme\\s+non\\s+homologuées"), "ceintures bas de gamme sans essai de choc publié"],
+  /* LE GENRE SUIT LE NOM CONSERVÉ : « l'attache homologuée » ne peut pas devenir « l' dispositif ».
+     On garde le nom féminin et on change seulement ce qui affirme une homologation. */
+  [re("attaches?\\s+homologuées?"), "attache adaptée au chien et au véhicule"],
+  [re("grilles?\\s+homologuées?"), "grille de séparation adaptée au véhicule"],
+  [re("harnais\\s+de\\s+sécurité\\s+(?:voiture|automobile)\\s+homologué", "gi"), "harnais de sécurité automobile pour chien"],
+  [re("harnais\\s+(?:voiture|automobile)\\s+homologué", "gi"), "harnais de sécurité automobile pour chien"],
+  [re("harnais\\s+de\\s+sécurité\\s+homologué", "gi"), "harnais de sécurité automobile pour chien"],
+  [re("harnais\\s+homologués", "gi"), "harnais de sécurité automobile pour chien"],
+  [re("harnais\\s+homologué", "gi"), "harnais de sécurité automobile pour chien"],
+  [re("harnais\\s+non\\s+homologué", "gi"), "harnais inadapté"],
+  [re("système\\s+d'attache\\s+homologué", "gi"), "dispositif de retenue adapté au chien et au véhicule"],
+  [re("systèmes?\\s+homologués?", "gi"), "dispositif de retenue adapté au chien et au véhicule"],
+  [re("(?:matériel|équipement)\\s+(?:durable\\s+et\\s+)?homologué", "gi"), "matériel adapté au mode de transport"],
+  /* Les dernières formes, chacune vue dans le dépôt et nommée par la passe à blanc. */
+  [re("cages?\\s+homologuées?"), "cage de transport"],
+  [re("modèles\\s+homologués"), "modèles conformes aux exigences applicables"],
+  [re("modèle\\s+homologué"), "modèle conforme aux exigences applicables"],
+  /* L'EMPHASE MARKDOWN NE COUPE PAS UNE PHRASE : « Le matériel **homologué** » se lit d'un trait
+     à l'écran, mais les étoiles cassent l'expression régulière. L'emphase est reportée sur le
+     terme qui porte désormais le sens, jamais supprimée — c'est du style. */
+  [re("(?:matériel|équipement)\\s+\\*\\*homologué\\*\\*"), "**matériel adapté au mode de transport**"],
+  /* Groupe C — le sac souple de cabine : on préserve le CONTENANT et on attribue la décision. */
+  [re("sacs?\\s+homologués?"), "sac accepté par la compagnie, sous réserve de ses dimensions et conditions"],
+  [re("sac\\s+souple\\s+homologué", "gi"), "sac souple accepté par la compagnie, sous réserve de ses dimensions et conditions"],
+  [re("caisse\\/sac\\s+homologué", "gi"), "caisse ou sac accepté par la compagnie"],
+  [re("homologation", "gi"), "conformité aux exigences applicables"],
 ];
 
-/* LES AFFIRMATIONS D'HOMOLOGATION, traitées à part parce qu'elles s'accordent. La forme est
-   « homologué·e·s / homologado·a·s », et elle ne qualifie pas toujours le même mot : la règle
-   remplace donc l'ADJECTIF par la formulation arbitrée, accordée elle aussi. */
-const HOMOLOGATION = [
-  /* « homologuée IATA » EST UNE SEULE AFFIRMATION, ET ELLE SE REMPLACE ENTIÈRE. Faute mesurée le
-     03/09/2026 : la première table ne remplaçait que l'ADJECTIF, laissant un « IATA » orphelin —
-     « caisse de transport rigide conforme aux exigences applicables IATA. », dix-sept fois. C'était
-     à la fois bancal et trompeur, puisque la phrase se remettait à parler de l'IATA.
-     La bonne cible existait déjà : « exigences IATA » est une référence LICITE, et elle dit
-     exactement le vrai — l'IATA publie des exigences, elle n'homologue rien. Ces règles passent
-     donc AVANT celles qui traitent l'adjectif seul. */
-  [/\bhomologuées\s+IATA\b/g, "conformes aux exigences IATA"],
-  [/\bhomologués\s+IATA\b/g, "conformes aux exigences IATA"],
-  [/\bhomologuée\s+IATA\b/g, "conforme aux exigences IATA"],
-  [/\bhomologué\s+IATA\b/g, "conforme aux exigences IATA"],
-  [/\bhomologadas\s+IATA\b/g, "conformes a los requisitos IATA"],
-  [/\bhomologados\s+IATA\b/g, "conformes a los requisitos IATA"],
-  [/\bhomologada\s+(?:pela\s+)?IATA\b/g, "em conformidade com os requisitos da IATA"],
-  [/\bhomologado\s+IATA\b/g, "conforme a los requisitos IATA"],
-
-  [/\bhomologuées\b/g, "conformes aux exigences applicables"],
-  [/\bhomologués\b/g, "conformes aux exigences applicables"],
-  [/\bhomologuée\b/g, "conforme aux exigences applicables"],
-  [/\bhomologué\b/g, "conforme aux exigences applicables"],
-  [/\bhomologadas\b/g, "conformes a los requisitos aplicables"],
-  [/\bhomologados\b/g, "conformes a los requisitos aplicables"],
-  [/\bhomologada\b/g, "conforme a los requisitos aplicables"],
-  [/\bhomologado\b/g, "conforme a los requisitos aplicables"],
-  [/\baprovadas\s+pela\s+IATA\b/g, "em conformidade com os requisitos aplicáveis"],
-  [/\baprovada\s+pela\s+IATA\b/g, "em conformidade com os requisitos aplicáveis"],
-  [/\baprobadas\s+por\s+la\s+IATA\b/g, "conformes a los requisitos aplicables"],
-  [/\baprobada\s+por\s+la\s+IATA\b/g, "conforme a los requisitos aplicables"],
-  [/\bhomologation\b/g, "conformité aux exigences applicables"],
+const ES = [
+  [re("jaulas?\\s+rígidas?\\s+conformes?\\s+a\\s+la\\s+IATA", "gi"), (m) => m.replace(/\s*conformes?\s+a\s+la\s+IATA/i, " de transporte")],
+  [re("jaulas?\\s+conformes?\\s+a\\s+la\\s+IATA", "gi"), (m) => m.replace(/\s*conformes?\s+a\s+la\s+IATA/i, " de transporte")],
+  [re("homologadas\\s+(?:por\\s+la\\s+)?IATA", "gi"), "conformes a los requisitos aplicables"],
+  [re("homologados\\s+(?:por\\s+la\\s+)?IATA", "gi"), "conformes a los requisitos aplicables"],
+  [re("homologada\\s+(?:por\\s+la\\s+)?IATA", "gi"), "conforme a los requisitos aplicables"],
+  [re("homologado\\s+(?:por\\s+la\\s+)?IATA", "gi"), "conforme a los requisitos aplicables"],
+  [re("aprobadas\\s+por\\s+la\\s+IATA", "gi"), "conformes a los requisitos aplicables"],
+  [re("aprobada\\s+por\\s+la\\s+IATA", "gi"), "conforme a los requisitos aplicables"],
+  [re("conformes?\\s+a\\s+la\\s+IATA", "gi"), "conforme a los requisitos aplicables"],
+  [re("certificadas\\s+IATA", "gi"), "conformes a los requisitos aplicables"],
+  [re("tipo\\s+IATA\\s+rígida", "gi"), "rígida de transporte"],
+  [re("jaulas\\s+IATA", "gi"), "jaulas de transporte"],
+  [re("jaula\\s+IATA", "gi"), "jaula de transporte"],
+  [re("transportines\\s+IATA", "gi"), "transportines"],
+  [re("transportín\\s+IATA", "gi"), "transportín"],
+  [re("homologadas", "gi"), "conformes a los requisitos aplicables"],
+  [re("homologados", "gi"), "conformes a los requisitos aplicables"],
+  [re("homologada", "gi"), "conforme a los requisitos aplicables"],
+  [re("homologado", "gi"), "conforme a los requisitos aplicables"],
 ];
 
-const REGLES = [...TABLE, ...HOMOLOGATION];
-
-/* ---- L'EMPHASE MARKDOWN NE COUPE PAS UNE PHRASE --------------------------------------------
- *
- * FAUTE MESURÉE : les guides écrivent « conforme **IATA** (CR82) » et « **IATA**-compliant ».
- * Les étoiles ne se voient pas à l'écran — le lecteur lit bien « conforme IATA » —, mais elles
- * cassent chacune de mes expressions régulières. Deux affirmations survivaient donc à la
- * réécriture ET étaient publiées.
- *
- * ON NE RETIRE PAS L'EMPHASE : elle est du style, et la supprimer changerait la page. On la MET
- * DE CÔTÉ le temps de la substitution, comme les slugs, puis on la restitue — sur le mot qui
- * porte désormais le sens. Ici, l'emphase enveloppait « IATA » ; après réécriture elle enveloppe
- * le terme qui l'a remplacé. */
-const EMPHASE = [
-  [/\bconforme\s+\*\*IATA\*\*/g, "conforme aux **exigences IATA**"],
-  [/\bconformes\s+\*\*IATA\*\*/g, "conformes aux **exigences IATA**"],
-  [/\*\*IATA\*\*-compliant\b/g, "compliant with the **applicable requirements**"],
-  [/\*\*IATA\*\*-approved\b/g, "compliant with the **applicable requirements**"],
-  [/\*\*caisse\s+IATA\*\*/gi, "**caisse de transport**"],
-  [/\*\*IATA\s+crate\*\*/gi, "**travel crate**"],
+const PT = [
+  [re("caixas\\s+de\\s+transporte\\s+(?:aprovadas\\s+pela\\s+|homologadas\\s+pela\\s+|adequadas\\s+à\\s+)?IATA", "gi"), "caixas de transporte"],
+  [re("caixa\\s+de\\s+transporte\\s+(?:aprovada\\s+pela\\s+|homologada\\s+pela\\s+|adequada\\s+à\\s+)?IATA", "gi"), "caixa de transporte"],
+  [re("caixas\\s+IATA", "gi"), "caixas de transporte"],
+  [re("caixa\\s+IATA", "gi"), "caixa de transporte"],
+  [re("bolsas\\s+IATA", "gi"), "bolsas de transporte"],
+  [re("bolsa\\s+IATA", "gi"), "bolsa de transporte"],
+  [re("aprovadas\\s+pela\\s+IATA", "gi"), "em conformidade com os requisitos aplicáveis"],
+  [re("aprovada\\s+pela\\s+IATA", "gi"), "em conformidade com os requisitos aplicáveis"],
+  [re("homologadas\\s+(?:pela\\s+)?IATA", "gi"), "em conformidade com os requisitos aplicáveis"],
+  [re("homologados\\s+(?:pela\\s+)?IATA", "gi"), "em conformidade com os requisitos aplicáveis"],
+  [re("homologada\\s+(?:pela\\s+)?IATA", "gi"), "em conformidade com os requisitos aplicáveis"],
+  [re("homologado\\s+(?:pela\\s+)?IATA", "gi"), "em conformidade com os requisitos aplicáveis"],
+  [re("adequadas\\s+à\\s+IATA", "gi"), "em conformidade com os requisitos aplicáveis"],
+  [re("adequada\\s+à\\s+IATA", "gi"), "em conformidade com os requisitos aplicáveis"],
+  [re("conformes?\\s+(?:à\\s+|com\\s+a\\s+)?IATA", "gi"), "em conformidade com os requisitos aplicáveis"],
+  [re("tipo\\s+IATA\\s+rígida", "gi"), "rígida de transporte"],
+  [re("tipo\\s+IATA\\s+rígido", "gi"), "rígido de transporte"],
+  [re("homologadas", "gi"), "em conformidade com os requisitos aplicáveis"],
+  [re("homologados", "gi"), "em conformidade com os requisitos aplicáveis"],
+  [re("homologada", "gi"), "em conformidade com os requisitos aplicáveis"],
+  [re("homologado", "gi"), "em conformidade com os requisitos aplicáveis"],
 ];
-REGLES.unshift(...EMPHASE);
 
-const fichiers = execSync("git ls-files " + SURFACES.map((s) => `'${s}'`).join(" "), { encoding: "utf8" })
-  .split("\n").filter(Boolean);
+export const TABLES = { en: EN, fr: FR, es: ES, pt: PT };
 
-/* LES CATÉGORIES QUI FORMENT LE MICRO-LOT ÉDITORIAL, et elles seules. */
+/* ---- LES FRAGMENTS ATTRIBUÉS, PAR CHEMIN EXACT ----------------------------------------------
+ *
+ * L'IATA ACCRÉDITE RÉELLEMENT DES ENTREPRISES DE FRET — « IATA Cargo Agency Accreditation »,
+ * « IATA Accredited Freight Forwarder ». Ce n'est NI l'homologation d'une caisse, NI une
+ * certification générique d'un agent quelconque. Aucune permission lexicale générale n'est donc
+ * ouverte sur `IATA-accredited`, `IATA-certified` ou le mot « agent » : ces deux phrases sont
+ * réécrites À LEUR CHEMIN EXACT, d'après la page officielle de la compagnie, et rien d'autre dans
+ * le dépôt n'en bénéficie.
+ *
+ *   · Cathay Pacific — la page officielle nomme TROIS catégories (membre IPATA ou ATA, IATA
+ *     Accredited Freight Forwarder, titulaire d'un certificat de formation IATA LAR valide). La
+ *     formulation actuelle en omet deux et transforme « freight forwarder » en « agent ».
+ *   · airBaltic — la page ne dit pas que les agents sont « IATA-certified » : elle recommande des
+ *     agents TITULAIRES d'un certificat de formation IATA LAR. L'un qualifie une entreprise,
+ *     l'autre la formation d'une personne.
+ */
+export const ATTRIBUES = [
+  { fichier: "content/airlines/cathay_pacific.yml",
+    de: re("IPATA\\s*\\/\\s*IATA[- ]accredited\\s+agents", "gi"),
+    vers: "IPATA or ATA members, IATA Accredited Freight Forwarders, or holders of a valid IATA Live Animals Regulations training certificate",
+    source: "https://www.cathaypacific.com/cx/en_IN/prepare-trip/help-for-passengers/travelling-with-animals/overview-cargo.html" },
+  { fichier: "content/airlines/air_baltic.yml",
+    de: re("IATA[- ]certified\\s+cargo\\s+agents", "gi"),
+    vers: "cargo agents holding a valid IATA Live Animals Regulations training certificate",
+    source: "https://www.airbaltic.com/en/cargo/shipping-animals-cargo" },
+];
+
+/* ---- LA LANGUE D'UN FICHIER ENTIER ---------------------------------------------------------- */
+export function langueDeFichier(chemin) {
+  const g = /\/content\/guides\/(en|fr|es|pt)\//.exec(chemin);
+  if (g) return g[1];
+  const p = /press-kit-(en|fr|es|pt)\.html$/.exec(chemin);
+  if (p) return p[1];
+  return null;
+}
+
+/* ---- LES PORTÉES D'UN YAML, PAR LE PARSEUR ET NON PAR L'APPARENCE ---------------------------
+   `yaml.visit()` rend la plage source de chaque scalaire ET la clé qui le porte. Cela couvre sans
+   règle supplémentaire les quatre formes du dépôt : `en:`, `- en:`, `{ en: …, fr: … }` sur une
+   seule ligne, et les blocs `|` / `>`. Une expression régulière qui reconnaîtrait l'APPARENCE du
+   YAML se tromperait sur au moins la troisième. */
+export function plagesYaml(texte) {
+  const doc = YAML.parseDocument(texte);
+  const plages = [];
+  YAML.visit(doc, {
+    Pair(_i, pair) {
+      if (!LANGUES.includes(pair.key?.value)) return;
+      const v = pair.value;
+      if (!v || typeof v.value !== "string" || !v.range) return;
+      plages.push({ langue: pair.key.value, debut: v.range[0], fin: v.range[1] });
+    },
+  });
+  return plages;
+}
+
+/* ---- LES SLUGS CONSERVÉS SONT INTOUCHABLES --------------------------------------------------
+   Détecter avec une règle et agir avec une autre, c'est n'en avoir aucune : la v1 exemptait les
+   slugs à la DÉTECTION mais les écrasait au REMPLACEMENT — `\bhomologado\b` accroche au milieu de
+   `transportin-homologado-iata-perro`, et deux slugs disparaissaient de six fichiers chacun. */
+const masquer = (t) => {
+  const gardes = [];
+  let out = t;
+  for (const sl of SLUGS_CONSERVES) {
+    if (!out.includes(sl)) continue;
+    out = out.split(sl).join(` S${gardes.length} `);
+    gardes.push(sl);
+  }
+  return { texte: out, gardes };
+};
+const restituer = (t, g) => g.reduce((x, sl, i) => x.split(` S${i} `).join(sl), t);
+
+/** Applique la table d'UNE langue à UN fragment, et rien d'autre. */
+export function appliquer(fragment, langue, compteur = new Map(), tables = TABLES) {
+  const { texte: masque, gardes } = masquer(fragment);
+  let out = masque;
+  for (const [motif, rep] of tables[langue]) {
+    const avant = out;
+    /* LA CAPITALE DU MOT REMPLACÉ EST RENDUE — mais jamais celle d'un ACRONYME. « Harnais
+       homologué » doit rester « Harnais… » ; « IATA crate » ne doit PAS donner « Travel crate »,
+       parce qu'« IATA » porte toujours une majuscule sans être un début de phrase. Les deux
+       fautes ont été mesurées, chacune dans son sens. */
+    out = out.replace(motif, (...args) => {
+      const m = args[0];
+      const sortie = typeof rep === "function" ? rep(...args) : rep;
+      const premier = /^[\wÀ-ÿ]+/.exec(m)?.[0] ?? "";
+      const acronyme = premier.length > 1 && premier === premier.toUpperCase();
+      return !acronyme && /^\p{Lu}/u.test(m) ? sortie.charAt(0).toUpperCase() + sortie.slice(1) : sortie;
+    });
+    if (out !== avant) {
+      const n = (avant.match(motif) ?? []).length;
+      compteur.set(`${langue}  ${motif}`, (compteur.get(`${langue}  ${motif}`) ?? 0) + n);
+    }
+  }
+  return restituer(out, gardes);
+}
+
+/* ---- LE JUGEMENT EST CELUI DE L'INSTRUMENT CANONIQUE, ENTIER -------------------------------- */
 const A_REECRIRE = new Set(["source_editoriale", "source_generatrice_active"]);
-
-/* LE JUGEMENT EST CELUI DE L'INSTRUMENT CANONIQUE, ENTIER — `classer()`, pas `jugerOccurrence()`.
- * Faute nommée le 03/09/2026 : la première rédaction n'appelait que le jugement LEXICAL, si bien
- * qu'elle voulait réécrire 22 occurrences que l'instrument exempte déjà — 9 vivant à l'intérieur
- * du slug conservé `caisse-transport-avion-homologuee-chien`, arbitré comme une ADRESSE et non
- * comme une phrase. Un réécriveur qui juge autrement que la mesure est une seconde définition de
- * la même chose : exactement la faute que ce chantier corrige partout ailleurs. */
-const interdites = (chemin, t) => {
-  const lignes = t.split("\n");
+function interdites(chemin, texte) {
   const out = [];
   let base = 0;
-  for (const ligne of lignes) {
+  for (const ligne of texte.split("\n")) {
     MOTIF.lastIndex = 0;
     for (const m of ligne.matchAll(MOTIF)) {
-      const cat = classer(chemin, ligne, m[0], m.index, m.index + m[0].length);
-      if (A_REECRIRE.has(cat)) out.push({ 0: m[0], index: base + m.index, categorie: cat });
+      if (A_REECRIRE.has(classer(chemin, ligne, m[0], m.index, m.index + m[0].length))) {
+        out.push({ texte: m[0], index: base + m.index });
+      }
     }
     base += ligne.length + 1;
   }
   return out;
+}
+
+/* ---- LA VÉRIFICATION PAR REPARSE ------------------------------------------------------------ */
+const formeDe = (o, p = "") => {
+  if (Array.isArray(o)) return o.flatMap((v, i) => formeDe(v, `${p}[${i}]`));
+  if (o && typeof o === "object") return Object.entries(o).flatMap(([k, v]) => formeDe(v, `${p}.${k}`));
+  return [p];
 };
 
-/* ---- LES SLUGS CONSERVÉS SONT INTOUCHABLES -------------------------------------------------
- *
- * FAUTE MESURÉE LE 03/09/2026, ET ELLE CASSAIT DES URL. Le réécriveur DÉTECTAIT par `classer()`,
- * qui exempte correctement les occurrences vivant à l'intérieur d'un slug conservé — mais il
- * REMPLAÇAIT par une expression régulière appliquée au fichier ENTIER. `\bhomologado\b` accroche
- * donc au milieu de `/es/travel-hub/transportin-homologado-iata-perro/`, parce qu'un tiret est
- * une limite de mot. Résultat : `transportin-homologado-iata-perro` et
- * `caixa-de-transporte-homologada-iata` disparaissaient de six fichiers chacun — liens internes
- * rompus, redirections caduques.
- *
- * DÉTECTER AVEC UNE RÈGLE ET AGIR AVEC UNE AUTRE, C'EST N'EN AVOIR AUCUNE. Les slugs sont donc
- * MASQUÉS avant la réécriture et restitués après, à l'octet près. La liste vient de l'instrument
- * canonique : elle n'est pas recopiée ici. */
-const masquer = (texte) => {
-  const gardes = [];
-  let out = texte;
-  for (const sl of SLUGS_CONSERVES) {
-    if (!out.includes(sl)) continue;
-    const jeton = `\u0000SLUG${gardes.length}\u0000`;
-    gardes.push(sl);
-    out = out.split(sl).join(jeton);
-  }
-  return { texte: out, gardes };
-};
-const restituer = (texte, gardes) =>
-  gardes.reduce((t, sl, i) => t.split(`\u0000SLUG${i}\u0000`).join(sl), texte);
+function verifierYaml(avant, apres) {
+  let da, db;
+  try { da = YAML.parse(avant); } catch (e) { return `YAML illisible AVANT : ${e.message}`; }
+  try { db = YAML.parse(apres); } catch (e) { return `YAML invalide APRÈS réécriture : ${e.message}`; }
+  const a = plagesYaml(avant).length, b = plagesYaml(apres).length;
+  if (a !== b) return `scalaires de langue : ${a} → ${b}`;
+  const fa = formeDe(da).join("|"), fb = formeDe(db).join("|");
+  return fa === fb ? null : "la forme de l'arbre a changé";
+}
 
-let avant = 0, apres = 0, touches = 0;
-const parRegle = new Map();
-const restes = [];
+/* ---- LE PROGRAMME -----------------------------------------------------------------------
+   Le corps principal est protégé : les contre-épreuves importent `appliquer`, `plagesYaml` et
+   `langueDeFichier` sans que le dépôt entier soit parcouru. */
+if (import.meta.url === `file://${process.argv[1]}`) {
+  /* ---- LES FICHIERS ---------------------------------------------------------------------------- */
+  const SURFACES = ["content/airlines/", "content/countries/",
+    "packages/ui/src/content/guides/", "packages/ui/public/presskit/"];
+  const fichiers = execSync("git ls-files " + SURFACES.map((s) => `'${s}'`).join(" "), { encoding: "utf8" })
+    .split("\n").filter(Boolean);
 
-for (const f of fichiers) {
-  const orig = readFileSync(f, "utf8");
-  const n0 = interdites(f, orig).length;
-  if (!n0) continue;
-  avant += n0;
-  const { texte: masque, gardes } = masquer(orig);
-  let texte = masque;
-  for (const [re, rep] of REGLES) {
-    const avantR = texte;
-    const insensible = new RegExp(re.source, re.flags.includes("i") ? re.flags : re.flags + "i");
-    texte = texte.replace(insensible, (...args) => {
-      const m = args[0];
-      const sortie = typeof rep === "function" ? rep(m) : rep;
-      /* LA POSITION DÉCIDE. `args` finit par (offset, chaîne entière) ; on lit ce qui précède. */
-      const decalage = args[args.length - 2];
-      const chaine = args[args.length - 1];
-      const avantTexte = chaine.slice(0, decalage);
-      /* UN GUILLEMET OUVRANT N'EST PAS UN DÉBUT DE PHRASE À LUI SEUL. Faute mesurée : le titre
-         « Qu'est-ce qu'une caisse « Conforme aux exigences IATA » ? » recevait une capitale au
-         milieu d'une phrase, parce que le `«` précédait. Une ouverture ne compte que si elle est
-         elle-même en tête de ligne ou après une ponctuation de fin. */
-      const finDeLigne = /(^|[\n\r])[^\n\r]*$/u.exec(avantTexte)?.[0].replace(/^[\n\r]/, "") ?? "";
-      const debutDePhrase = avantTexte.trim() === ""
-        || /[\n\r]\s*$/u.test(avantTexte)
-        || /[.!?][\s"'»)\]]*$/u.test(avantTexte)
-        || /^\s*["'«(\[>|-]+\s*$/u.test(finDeLigne);
-      return debutDePhrase ? sortie.charAt(0).toUpperCase() + sortie.slice(1) : sortie;
-    });
-    if (texte !== avantR) {
-      const d = (avantR.match(insensible) ?? []).length;
-      parRegle.set(String(re), (parRegle.get(String(re)) ?? 0) + d);
+  let avant = 0, apres = 0, touches = 0;
+  const compteur = new Map();
+  const restes = [], defauts = [], sansPortee = [];
+
+  for (const f of fichiers) {
+    const orig = readFileSync(f, "utf8");
+    const n0 = interdites(f, orig).length;
+    if (!n0) continue;
+    avant += n0;
+    let texte = orig;
+
+    const langueEntiere = langueDeFichier(f);
+
+    if (langueEntiere) {
+      /* Guides et press kits : le fichier ENTIER est d'une seule langue. Aucun mélange possible. */
+      texte = appliquer(orig, langueEntiere, compteur);
+
+    } else if (f.endsWith(".json")) {
+      /* GLOSSAIRES `_pt` : la CLÉ est anglaise, la VALEUR portugaise — deux portées, deux tables.
+         On transforme l'OBJET, puis on remplace chaque littéral par le sien dans le texte d'origine,
+         ce qui préserve le format ; la garantie vient du REPARSE, pas de la substitution. */
+      let obj;
+      try { obj = JSON.parse(orig); } catch (e) { defauts.push(`${f} : JSON illisible — ${e.message}`); continue; }
+      const collision = [];
+      const muter = (n) => {
+        if (typeof n === "string") return n;
+        if (Array.isArray(n)) return n.map(muter);
+        if (n && typeof n === "object") {
+          const out = {};
+          for (const [k, v] of Object.entries(n)) {
+            const nk = appliquer(k, "en", compteur);
+            if (nk in out) collision.push(nk);
+            out[nk] = typeof v === "string" ? appliquer(v, "pt", compteur) : muter(v);
+          }
+          return out;
+        }
+        return n;
+      };
+      const nouveau = muter(obj);
+      if (collision.length) { defauts.push(`${f} : collision de clés après réécriture — ${collision[0]}`); continue; }
+      if (formeDe(obj).length !== formeDe(nouveau).length) { defauts.push(`${f} : cardinalité changée`); continue; }
+      const paires = [];
+      (function collecter(a, b) {
+        if (typeof a === "string") { if (a !== b) paires.push([a, b]); return; }
+        if (Array.isArray(a)) return a.forEach((x, i) => collecter(x, b[i]));
+        if (a && typeof a === "object") {
+          const ea = Object.entries(a), eb = Object.entries(b);
+          ea.forEach(([k, v], i) => { if (k !== eb[i][0]) paires.push([k, eb[i][0]]); collecter(v, eb[i][1]); });
+        }
+      })(obj, nouveau);
+      for (const [de, vers] of paires) texte = texte.split(JSON.stringify(de)).join(JSON.stringify(vers));
+      let relu;
+      try { relu = JSON.parse(texte); } catch (e) { defauts.push(`${f} : JSON invalide APRÈS — ${e.message}`); continue; }
+      if (JSON.stringify(relu) !== JSON.stringify(nouveau)) { defauts.push(`${f} : le reparse ne rend pas la structure voulue`); continue; }
+
+    } else if (f.endsWith(".yml") || f.endsWith(".yaml")) {
+      const plages = plagesYaml(orig);
+      /* DE DROITE À GAUCHE : les décalages des plages restantes restent valides. */
+      for (const p of [...plages].sort((a, b) => b.debut - a.debut)) {
+        const frag = orig.slice(p.debut, p.fin);
+        const neuf = appliquer(frag, p.langue, compteur);
+        if (neuf !== frag) texte = texte.slice(0, p.debut) + neuf + texte.slice(p.fin);
+      }
+      const ecart = verifierYaml(orig, texte);
+      if (ecart) { defauts.push(`${f} : ${ecart}`); continue; }
+      /* Ce qui reste interdit HORS d'une plage de langue est NOMMÉ, jamais réécrit à l'aveugle. */
+      const couvert = (i) => plages.some((p) => i >= p.debut && i < p.fin);
+      for (const o of interdites(f, texte)) if (!couvert(o.index)) sansPortee.push(`${f} · « ${o.texte} »`);
+
+    } else {
+      defauts.push(`${f} : aucune portée de langue connue pour ce format`);
+      continue;
     }
-  }
-  texte = restituer(texte, gardes);
-  const reste = interdites(f, texte);
-  apres += reste.length;
-  for (const m of reste) {
-    const i = m.index;
-    restes.push(`${f} · « ${m[0]} » — …${texte.slice(Math.max(0, i - 60), i + m[0].length + 60).replace(/\s+/g, " ")}…`);
-  }
-  if (texte !== orig) { touches++; if (ECRIRE) writeFileSync(f, texte); }
-}
 
-console.log(`${fichiers.length} fichier(s) de source de vérité lus`);
-console.log(`${avant} occurrence(s) interdite(s) au départ · ${apres} après réécriture · ${touches} fichier(s) modifié(s)${ECRIRE ? "" : " (RIEN N'A ÉTÉ ÉCRIT)"}`);
-console.log("\n— ce que chaque règle a traité —");
-for (const [re, n] of [...parRegle].sort((a, b) => b[1] - a[1])) console.log(`  ${String(n).padStart(4)}  ${re}`);
-if (restes.length) {
-  console.log(`\n— ${restes.length} OCCURRENCE(S) QU'AUCUNE RÈGLE NE RECONNAÎT —`);
-  for (const l of restes.slice(0, 40)) console.log("  " + l);
-  process.exit(1);
+    for (const a of ATTRIBUES) if (a.fichier === f) texte = texte.replace(a.de, a.vers);
+
+    const reste = interdites(f, texte);
+    apres += reste.length;
+    for (const m of reste) {
+      restes.push(`${f} · « ${m.texte} » — …${texte.slice(Math.max(0, m.index - 55), m.index + m.texte.length + 55).replace(/\s+/g, " ")}…`);
+    }
+    if (texte !== orig) { touches++; if (ECRIRE) writeFileSync(f, texte); }
+  }
+
+  console.log(`${fichiers.length} fichier(s) lus`);
+  console.log(`${avant} occurrence(s) interdite(s) au départ · ${apres} après · ${touches} fichier(s) modifié(s)${ECRIRE ? "" : "  (RIEN N'A ÉTÉ ÉCRIT)"}`);
+  console.log("\n— ce que chaque règle a traité, par langue —");
+  for (const [k, n] of [...compteur].sort((a, b) => b[1] - a[1]).slice(0, 28)) console.log(`  ${String(n).padStart(4)}  ${k}`);
+  if (sansPortee.length) {
+    console.log(`\n— ${sansPortee.length} occurrence(s) HORS de toute portée de langue —`);
+    for (const l of sansPortee.slice(0, 15)) console.log("  " + l);
+  }
+  if (defauts.length) {
+    console.log(`\n— ${defauts.length} FICHIER(S) EN DÉFAUT —`);
+    for (const l of defauts.slice(0, 15)) console.log("  " + l);
+  }
+  if (restes.length) {
+    console.log(`\n— ${restes.length} OCCURRENCE(S) QU'AUCUNE RÈGLE NE RECONNAÎT —`);
+    for (const l of restes) console.log("  " + l);
+  }
+  process.exit(restes.length || defauts.length || sansPortee.length ? 1 : 0);
 }
-console.log("\naucune affirmation interdite ne subsiste dans les sources de vérité actives.");

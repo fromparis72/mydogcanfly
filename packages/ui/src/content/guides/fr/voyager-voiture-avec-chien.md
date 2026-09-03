@@ -1,8 +1,8 @@
 ---
 key: "traveling-by-car-with-a-dog"
 title: "Voyager en voiture avec son chien : le guide complet"
-description: "Voyager en voiture avec son chien en sécurité : attache homologuée, étapes, hydratation et préparation. Le guide complet pour des trajets sereins."
-summary: "En voiture, le chien doit être attaché ou contenu pour la sécurité de tous. Caisse, harnais homologué ou grille, pauses régulières et préparation font la réussite du trajet."
+description: "Voyager en voiture avec son chien en sécurité : attache adaptée au chien et au véhicule, étapes, hydratation et préparation. Le guide complet pour des trajets sereins."
+summary: "En voiture, le chien doit être attaché ou contenu pour la sécurité de tous. Caisse, harnais de sécurité automobile pour chien ou grille, pauses régulières et préparation font la réussite du trajet."
 date: "2026-06-26T10:00:00+02:00"
 lastmod: "2026-06-26T10:00:00+02:00"
 author: "Camille Roussel"
@@ -10,7 +10,7 @@ category: "travel"
 tags: ["chien", "voiture", "sécurité routière", "voyage"]
 sourceUrl: "/voyager-voiture-avec-chien/"
 enbref:
-  - "🔗 Maintenu : **caisse arrimée**, **harnais homologué** + ceinture, ou **grille**"
+  - "🔗 Maintenu : **caisse arrimée**, **harnais de sécurité automobile pour chien** + ceinture, ou **grille**"
   - "⏸️ Pause **toutes les 2 heures**"
   - "💧 **Eau** à disposition"
   - "🔄 **Habituer** l'animal avant un long trajet"
@@ -22,13 +22,13 @@ faq:
   - q: "Suis-je obligé d'attacher mon chien en voiture ?"
     a: "Le Code de la route interdit que l'animal gêne la conduite ou la visibilité. En pratique, un chien non maintenu peut entraîner une amende et, surtout, un grave danger en cas d'accident."
   - q: "Quel est le système le plus sûr ?"
-    a: "La caisse de transport rigide et arrimée offre la meilleure protection. Le harnais homologué relié à la ceinture est une bonne alternative pour les chiens habitués."
+    a: "La caisse de transport rigide et arrimée offre la meilleure protection. Le harnais de sécurité automobile pour chien relié à la ceinture est une bonne alternative pour les chiens habitués."
   - q: "Tous les combien faut-il faire une pause ?"
     a: "Comptez une pause toutes les 2 heures environ pour boire, se dégourdir les pattes et faire ses besoins. Adaptez selon l'âge et le confort du chien."
   - q: "Puis-je laisser mon chien seul dans la voiture ?"
     a: "Jamais, surtout par temps chaud. La température dans un habitacle grimpe très vite et peut provoquer un coup de chaleur mortel en quelques minutes."
   - q: "Mon chien peut-il voyager dans le coffre d'un break ?"
-    a: "Oui, à condition que le coffre soit séparé de l'habitacle par une grille homologuée et que le chien y soit maintenu, idéalement dans une caisse arrimée. Le coffre seul, sans grille ni caisse, ne protège pas le chien d'une projection et ne respecte pas l'obligation de ne pas gêner la conduite."
+    a: "Oui, à condition que le coffre soit séparé de l'habitacle par une grille de séparation adaptée au véhicule et que le chien y soit maintenu, idéalement dans une caisse arrimée. Le coffre seul, sans grille ni caisse, ne protège pas le chien d'une projection et ne respecte pas l'obligation de ne pas gêner la conduite."
 ---
 
 La voiture reste le moyen le plus simple de partir avec son chien : on contrôle les horaires, les pauses et l'ambiance. Encore faut-il bien s'organiser, car un chien non attaché met en danger tout le véhicule et peut vous coûter une amende. Voici la méthode complète, étape par étape.
@@ -44,10 +44,10 @@ Sécuriser l'animal, c'est donc protéger tout le monde, lui le premier.
 Trois solutions principales, à choisir selon votre véhicule et la taille du chien :
 
 - **La caisse de transport** : la plus sûre. Rigide, arrimée dans le coffre, elle protège le chien comme un cocon. Idéale pour les longs trajets.
-- **Le harnais de sécurité homologué** : se clipse à la ceinture arrière. Pratique pour les chiens habitués, à condition qu'il soit testé crash et bien ajusté.
+- **Le harnais de sécurité automobile pour chien** : se clipse à la ceinture arrière. Pratique pour les chiens habitués, à condition qu'il soit testé crash et bien ajusté.
 - **La grille ou le filet de séparation** : empêche le chien de passer à l'avant, mais ne le retient pas en cas de choc. À compléter idéalement par un harnais.
 
-Évitez les ceintures bas de gamme non homologuées, qui cèdent au premier freinage appuyé.
+Évitez les ceintures bas de gamme sans essai de choc publié, qui cèdent au premier freinage appuyé.
 
 ## Comment choisir le bon système selon son chien et sa voiture ?
 
@@ -56,7 +56,7 @@ Le meilleur système n'est pas le même pour un petit chien dans une citadine et
 | Profil | Système conseillé | Pourquoi |
 |---|---|---|
 | Petit chien (moins de 10 kg) | Caisse rigide sur la banquette, sanglée par la ceinture | Confinement rassurant, protection en cas de choc |
-| Chien moyen, voiture avec coffre | Harnais homologué sur la banquette | Bon compromis sécurité/place |
+| Chien moyen, voiture avec coffre | Harnais de sécurité automobile pour chien sur la banquette | Bon compromis sécurité/place |
 | Grand chien, break ou SUV | Caisse arrimée dans le coffre + grille | Protège le chien et les passagers |
 | Plusieurs chiens | Caisses séparées ou harnais individuels | Évite les conflits et les projections croisées |
 

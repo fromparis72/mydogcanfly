@@ -247,7 +247,7 @@ const GENERES = [/^packages\/knowledge\/raw\/guides\.json$/, /\.generated\.json$
  * L'ÉGALITÉ EST EXACTE, ET UNE CONTRE-ÉPREUVE L'EXIGE : `dette-iata-publiee.backup.json`,
  * `docs/dette-iata-publiee.json`, `test-etape3-dom.backup.mjs` et une vraie source éditoriale ne
  * bénéficient pas de cette priorité — la même formulation y reste comptée. */
-export const INSTRUMENTS_DE_MESURE = ["dette-iata-publiee.json", "inventaire-iata.mjs", "reecrire-iata.mjs", "test-etape3-dom.mjs", "test-inventaire-iata.mjs"];
+export const INSTRUMENTS_DE_MESURE = ["dette-iata-publiee.json", "inventaire-iata.mjs", "reecrire-iata.mjs", "test-etape3-dom.mjs", "test-inventaire-iata.mjs", "test-reecriture-iata.mjs"];
 
 /* ---- LE SCELLÉ DES INSTRUMENTS -------------------------------------------------------------
  *

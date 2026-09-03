@@ -1,6 +1,6 @@
 ---
 key: "measuring-your-dog-for-a-crate"
-title: "Measuring Your Dog for an IATA Crate, Without Guessing"
+title: "Measuring Your Dog for a travel crate, Without Guessing"
 seoTitle: "Measuring a Dog for an IATA Travel Crate"
 description: "The four measurements airlines actually check, how to take them properly, and why sizing up is not always the safe answer."
 summary: "Four measurements decide the crate: length, height at the shoulder, height standing with the head up, and width. Take them on a standing dog, add the margins, then check the result against the airline."
@@ -50,7 +50,7 @@ Take them on a **standing** dog, on a flat surface, with a soft tape measure.
 
 Then the usual margins: the crate length is normally **A + half of B**, the internal height at least **C plus a few centimetres**, and the internal width at least **twice D** so the dog can turn.
 
-Rather than doing that arithmetic by hand, put your measurements into our [IATA crate calculator](/tools/crate/) — it returns the internal dimensions to look for, which is the figure to quote when you contact the airline.
+Rather than doing that arithmetic by hand, put your measurements into our [travel crate calculator](/tools/crate/) — it returns the internal dimensions to look for, which is the figure to quote when you contact the airline.
 
 ## Why bigger is not safer
 

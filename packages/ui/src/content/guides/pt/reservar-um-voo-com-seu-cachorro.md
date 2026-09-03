@@ -55,7 +55,7 @@ Tenha estes dados à mão antes de ligar. As perguntas são quase sempre as mesm
 - **A raça** — algumas são restritas ou recusadas no porão, um ponto tratado no nosso guia sobre [as raças braquicefálicas e o avião](/pt/travel-hub/racas-braquicefalicas-e-aviao/).
 - **A rota e a aeronave**, porque uma conexão pode submeter o seu animal a dois conjuntos de regras diferentes.
 
-Se você ainda não sabe de que tamanho de caixa precisa, dimensione-a antes de ligar em vez de estimar: a nossa [calculadora de caixa IATA](/pt/tools/crate/) e o guia para [medir o cachorro para uma caixa](/pt/travel-hub/medir-o-cachorro-para-uma-caixa-iata/) dão um número que você poderá citar.
+Se você ainda não sabe de que tamanho de caixa precisa, dimensione-a antes de ligar em vez de estimar: a nossa [calculadora de caixa de transporte](/pt/tools/crate/) e o guia para [medir o cachorro para uma caixa](/pt/travel-hub/medir-o-cachorro-para-uma-caixa-iata/) dão um número que você poderá citar.
 
 ## Cabine, porão ou carga: decida antes de ligar
 

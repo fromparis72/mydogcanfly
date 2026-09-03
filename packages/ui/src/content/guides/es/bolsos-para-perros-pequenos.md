@@ -23,7 +23,7 @@ faq:
   - q: "¿Cuál es el peso máximo de un perro en un bolso de cabina?"
     a: "Depende por completo de la aerolínea. Muchas limitan el peso total (perro + bolso) a unos pocos kilos, a menudo alrededor de 8 kg, pero esa cifra varía. Consulta siempre la página oficial de tu aerolínea antes de comprar un bolso o de reservar, porque por encima del límite el perro viaja en bodega o no viaja."
   - q: "¿Bolso blando o transportín rígido para viajar?"
-    a: "Para la cabina del avión se prefieren por lo general los bolsos blandos, porque se comprimen bajo el asiento. Para la bodega, el coche o los perros grandes, un transportín rígido homologado es más seguro. La elección depende del tamaño de tu perro, del medio de transporte y de la duración del viaje."
+    a: "Para la cabina del avión se prefieren por lo general los bolsos blandos, porque se comprimen bajo el asiento. Para la bodega, el coche o los perros grandes, un transportín rígido conforme a los requisitos aplicables es más seguro. La elección depende del tamaño de tu perro, del medio de transporte y de la duración del viaje."
   - q: "¿Cómo acostumbro a mi perro a su bolso?"
     a: "Deja el bolso abierto y accesible en casa durante varios días, con una manta familiar dentro. Recompensa cada entrada voluntaria, ciérralo después unos segundos, llévalo distancias cortas y alarga poco a poco. El objetivo es que el bolso se convierta en un refugio asociado a cosas positivas antes del primer viaje de verdad."
   - q: "Mi bolso se vende como «apto para cabina», ¿basta con eso?"

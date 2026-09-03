@@ -54,7 +54,7 @@ Antes de considerar uma reserva segura, confirme estes pontos na documentação 
 
 1. **A companhia operadora.** Em code-share valem as regras de quem opera a aeronave, não as de quem vendeu a passagem.
 2. **O modo de transporte que lhe foi vendido.** Cabine, porão como bagagem acompanhada e carga manifestada são três contratos diferentes — veja [cabine, bagagem extra ou carga manifestada](/pt/travel-hub/cabine-bagagem-extra-ou-carga/).
-3. **As dimensões e o peso total** aceitos para o seu animal, por escrito. A nossa [calculadora de caixa IATA](/pt/tools/crate/) dá o número com que comparar.
+3. **As dimensões e o peso total** aceitos para o seu animal, por escrito. A nossa [calculadora de caixa de transporte](/pt/tools/crate/) dá o número com que comparar.
 4. **As restrições sazonais** em vigor nas suas datas, em cada aeroporto do itinerário — escala incluída, que costuma ser a restrição determinante. Veja [escalas e conexões com cachorro](/pt/travel-hub/escalas-e-conexoes-com-cachorro/).
 
 E repita a conferência n.º 4 alguns dias antes de voar.
