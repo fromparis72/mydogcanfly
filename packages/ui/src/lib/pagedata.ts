@@ -340,8 +340,8 @@ function breedTravelView(kb: NormalizedKB, b: {
         `Les adultes dépassent généralement la limite cabine de ~8 kg ; seuls les plus petits sujets ou les chiots peuvent y prétendre, et uniquement sur les compagnies qui l'autorisent.`);
 
   const hold = brachy
-    ? L(`As a snub-nosed breed, hold and cargo carriage is restricted or refused by many airlines, and a global heat/breathing risk applies. Where accepted, avoid warm-weather flights and use a roomy, well-ventilated IATA crate.`,
-        `Race brachycéphale : le transport en soute et en fret est limité ou refusé par de nombreuses compagnies, avec un risque chaleur/respiration global. Lorsqu'il est accepté, évitez les vols par temps chaud et utilisez une caisse IATA spacieuse et bien ventilée.`)
+    ? L(`As a snub-nosed breed, hold and cargo carriage is restricted or refused by many airlines, and a global heat/breathing risk applies. Where accepted, avoid warm-weather flights and use a roomy, well-ventilated travel crate that meets the applicable container requirements.`,
+        `Race brachycéphale : le transport en soute et en fret est limité ou refusé par de nombreuses compagnies, avec un risque chaleur/respiration global. Lorsqu'il est accepté, évitez les vols par temps chaud et utilisez une cage de transport spacieuse et bien ventilée, conforme aux exigences applicables.`)
     : L(`Travels in the pressurised, temperature-controlled hold in a crate meeting the airline's requirements when above cabin limits. Book early and prefer cooler times of day.`,
         `Voyage dans la soute pressurisée et climatisée, dans une cage conforme aux exigences de la compagnie au-dessus des limites cabine. Réserve tôt et privilégie les heures fraîches.`);
 

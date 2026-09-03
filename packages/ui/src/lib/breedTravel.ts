@@ -45,11 +45,11 @@ export interface BreedTravelProfile {
 const HEAT_EMBARGO_C = 30;
 /* LA SÉRIE DE CAISSES A ÉTÉ RETIRÉE D'ICI (02/09/2026), ET CE N'EST PAS UN DÉPLACEMENT.
  *
- * CE QUE LA FICHE DE RACE PUBLIAIT. Un bloc « Caisse IATA type » donnant « 500 · XL ·
- * 94×64×68 cm », calculé à partir du seul POIDS DE LA RACE par une formule allométrique, puis
- * arrondi sur une table 100/200/…/700 écrite en dur — table dupliquée dans
- * `CrateCalculator.astro`, et que le commentaire de ce fichier appelait « IATA crate interior
- * series ». Deux affirmations fausses en une : la série 100–700 est une nomenclature de
+ * CE QUE LA FICHE DE RACE PUBLIAIT. Un bloc dont le titre attribuait la caisse à l'IATA, donnant
+ * « 500 · XL · 94×64×68 cm », calculé à partir du seul POIDS DE LA RACE par une formule
+ * allométrique, puis arrondi sur une table 100/200/…/700 écrite en dur — table dupliquée dans
+ * `CrateCalculator.astro`, et que le commentaire de ce fichier présentait à tort comme une série
+ * réglementaire. Deux affirmations fausses en une : la série 100–700 est une nomenclature de
  * FABRICANT, que l'IATA ne publie pas ; et les dimensions n'étaient sourcées nulle part.
  *
  * POURQUOI RENOMMER N'AURAIT PAS SUFFI. Retirer le mot « IATA » du titre aurait laissé publier

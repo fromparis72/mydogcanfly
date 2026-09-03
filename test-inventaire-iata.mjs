@@ -9,8 +9,10 @@
  * contrat. On éprouve donc ici les quatre faux-verts trouvés par la contre-revue du 30/08/2026,
  * chacun sur sa propre cause.
  */
-import { readFileSync } from "node:fs";
-import { classer, relever, verifier, citationsDeLHeritage, ancresOrphelines, MOTIF, ALTERNATIVES, CATEGORIES } from "./inventaire-iata.mjs";
+import { readFileSync, writeFileSync, mkdtempSync, rmSync } from "node:fs";
+import { join, dirname } from "node:path";
+import { tmpdir } from "node:os";
+import { classer, relever, verifier, citationsDeLHeritage, ancresOrphelines, MOTIF, MOTIF_HERITE, ALTERNATIVES, FAMILLE_CONTENANT, FORMES_BORNEES, CATEGORIES, INSTRUMENTS_DE_MESURE, CHEMIN_SCELLE_INSTRUMENTS, verifierScelleInstruments } from "./inventaire-iata.mjs";
 
 let defauts = 0;
 const echec = (nom, detail) => { defauts++; console.error(`  ✗ ${nom} — ${detail}`); };
@@ -86,6 +88,11 @@ const classerLigne = (chemin, ligne) => {
     "conforme IATA", "conforme a la IATA", "conforme à norma IATA",
     "norma IATA", "norme IATA", "exigences IATA",
     "certifiée IATA", "approuvée par l'IATA", "aprobado por la IATA", "aprovada pela IATA",
+    /* LES SIX AJOUTS DU 02/09/2026. Leur absence ici a fait rougir ce contrôle, et je ne l'avais
+       pas rapporté : j'avais lu la fin de la sortie du harnais, pas la totalité. Une alternative
+       sans échantillon n'est pas éprouvée — c'est exactement ce que ce contrôle existe pour dire. */
+    "Caisse IATA type", "caisse IATA", "IATA crate",
+    "rigid IATA type", "type IATA rigide", "tipo IATA rígida",
   ];
   if (ECHANTILLONS.length !== ALTERNATIVES.length) {
     echec("4 couverture du motif", `${ALTERNATIVES.length} alternative(s) au motif pour ${ECHANTILLONS.length} échantillon(s) — l'une d'elles n'est pas éprouvée`);
@@ -146,25 +153,78 @@ const classerLigne = (chemin, ligne) => {
   else ok("6bis le titre de section est reformulé dans les quatre langues, et l'ancien a disparu");
 }
 
-/* 6 sexies — LE REGISTRE DE PREUVE NE SE COMPTE PAS LUI-MÊME. Auto-contamination reproduite le
-   30/08/2026 : `dette-iata-publiee.json`, créé pour figer la dette encore publiée, apportait
-   59 occurrences à l'inventaire — dont 56 classées `source_editoriale` —, gonflait le micro-lot
-   de 592 à 649 et se plaçait EN TÊTE des fichiers à corriger. Une mesure qui se compte elle-même
-   n'est plus une mesure ; et corriger ce registre à la main serait le mauvais geste, puisqu'il se
-   régénère depuis le DOM après correction des contenus. */
+/* 6 sexies — UN INSTRUMENT DE MESURE NE SE MESURE PAS LUI-MÊME. Auto-contamination reproduite
+   DEUX fois, et la seconde n'a été vue que parce que la première avait laissé une contre-épreuve.
+     · 30/08/2026 — `dette-iata-publiee.json`, créé pour figer la dette encore publiée, apportait
+       59 occurrences à l'inventaire — dont 56 classées `source_editoriale` —, gonflait le
+       micro-lot de 592 à 649 et se plaçait EN TÊTE des fichiers à corriger.
+     · 02/09/2026 — `test-etape3-dom.mjs`, devenu porteur des VECTEURS de contre-épreuve du
+       relevé public (`\u0049ATA crate`, `I&#65;TA crate`, les six mutations de zone), faisait
+       compter ces vecteurs comme de vraies occurrences : 33 slugs au lieu de 30, 589 références
+       licites au lieu de 586.
+   Une mesure qui se compte elle-même n'est plus une mesure ; et corriger ces fichiers à la main
+   serait le mauvais geste, puisque l'un se régénère depuis le DOM et que les autres décrivent
+   précisément le défaut qu'ils éprouvent.
+
+   LA LISTE N'EST PAS RECOPIÉE ICI. Elle est importée de l'instrument : deux définitions de la
+   même chose finissent toujours par diverger — c'est la faute récurrente de ce chantier. Et
+   CHAQUE nom de la liste doit porter des occurrences réelles, sans quoi il suffirait d'y inscrire
+   un fichier quelconque pour l'exempter sans que rien ne le signale. */
 {
   const releve = relever();
   const reg = releve.filter((r) => r.categorie === "registre_preuve_non_public");
-  const fichiers = [...new Set(reg.map((r) => r.fichier))];
+  const fichiers = [...new Set(reg.map((r) => r.fichier))].sort();
+  const attendus = [...INSTRUMENTS_DE_MESURE].sort();
   const edito = ["source_editoriale", "source_generatrice_active", "heritage_a_corriger_ou_supprimer"];
-  const contamine = releve.filter((r) => r.fichier === "dette-iata-publiee.json" && edito.includes(r.categorie));
+  const contamine = releve.filter((r) => INSTRUMENTS_DE_MESURE.includes(r.fichier) && edito.includes(r.categorie));
+  const parFichier = attendus.map((f) => `${f} : ${reg.filter((r) => r.fichier === f).length}`);
 
-  if (!reg.length) echec("6sexies registre de preuve", "la catégorie ne contient rien — elle ne prouve rien");
-  else if (fichiers.length !== 1 || fichiers[0] !== "dette-iata-publiee.json")
-    echec("6sexies registre de preuve", `catégorie utilisée par : ${fichiers.join(", ")}`);
+  if (!reg.length) echec("6sexies instruments de mesure", "la catégorie ne contient rien — elle ne prouve rien");
+  else if (fichiers.join("|") !== attendus.join("|"))
+    echec("6sexies instruments de mesure", `catégorie portée par ${fichiers.join(", ") || "aucun fichier"} — attendu exactement ${attendus.join(", ")}`);
   else if (contamine.length)
-    echec("6sexies registre de preuve", `${contamine.length} occurrence(s) du registre comptée(s) au micro-lot éditorial`);
-  else ok(`6sexies le registre de preuve porte ${reg.length} occurrences, dans son seul fichier, et zéro n'entre au micro-lot éditorial`);
+    echec("6sexies instruments de mesure", `${contamine.length} occurrence(s) d'un instrument comptée(s) au micro-lot éditorial`);
+  else ok(`6sexies les ${attendus.length} instruments de mesure se retirent du compte — ${parFichier.join(" · ")} —, et zéro n'entre au micro-lot éditorial`);
+}
+
+/* 6 octies — LA LISTE DES INSTRUMENTS EST SCELLÉE, PAS SEULEMENT CENTRALISÉE.
+ *
+ * ATTAQUE DE LA CONTRE-REVUE DU 02/09/2026, rejouée ici. Ajouter
+ * `packages/ui/src/content/guides/fr/voyager-avion-avec-chien.md` — une vraie source éditoriale,
+ * onze occurrences — à `INSTRUMENTS_DE_MESURE` : le harnais sortait en 0, entièrement vert, en
+ * annonçant cinq instruments et en retirant ces onze occurrences du micro-lot éditorial.
+ *
+ * POURQUOI 6sexies ET 6septies NE POUVAIENT PAS LE VOIR, et pourquoi ils restent justes malgré
+ * cela : ils IMPORTENT la liste au lieu de la recopier — la bonne décision contre la divergence.
+ * Mais une liste confrontée à elle-même ne prouve que son application et son bornage par chemin ;
+ * elle ne peut rien dire de la LÉGITIMITÉ de ses membres. Il faut un témoin extérieur, versionné.
+ *
+ * ON ÉPROUVE LES DEUX SENS : la liste réelle tient son scellé, et une liste enrichie de cette
+ * source précise est refusée EN LA NOMMANT. On éprouve aussi le scellé contre lui-même : une
+ * liste éditée à la main sans recalcul de l'empreinte est vue. */
+{
+  const ecarts = [];
+  const reel = verifierScelleInstruments();
+  if (reel.length) ecarts.push(`la liste réelle ne tient pas son scellé : ${reel.join(" · ")}`);
+
+  const INTRUS = "packages/ui/src/content/guides/fr/voyager-avion-avec-chien.md";
+  const vus = verifierScelleInstruments([...INSTRUMENTS_DE_MESURE, INTRUS]);
+  if (!vus.length) ecarts.push("une vraie source éditoriale ajoutée à la liste passe le scellé");
+  else if (!vus.some((e) => e.includes(INTRUS))) ecarts.push(`l'ajout est refusé mais le chemin n'est pas nommé : ${vus.join(" · ")}`);
+
+  const retire = verifierScelleInstruments(INSTRUMENTS_DE_MESURE.filter((c) => c !== "test-etape3-dom.mjs"));
+  if (!retire.some((e) => e.includes("test-etape3-dom.mjs"))) ecarts.push(`un instrument RETIRÉ n'est pas nommé : ${retire.join(" · ")}`);
+
+  /* Le scellé ne doit pas pouvoir mentir sur lui-même : on lui donne une liste et une empreinte
+     qui ne se correspondent pas, par un fichier temporaire — le scellé du dépôt n'est pas touché. */
+  const faux = join(mkdtempSync(join(tmpdir(), "scelle-")), "scelle.json");
+  writeFileSync(faux, JSON.stringify({ chemins: [...INSTRUMENTS_DE_MESURE, "packages/ui/src/pages/index.astro"], empreinte: "0".repeat(64) }));
+  const menteur = verifierScelleInstruments([...INSTRUMENTS_DE_MESURE, "packages/ui/src/pages/index.astro"], faux);
+  if (!menteur.some((e) => e.includes("empreinte"))) ecarts.push(`un scellé édité à la main n'est pas vu : ${menteur.join(" · ")}`);
+  rmSync(dirname(faux), { recursive: true, force: true });
+
+  if (ecarts.length) echec("6octies scellé des instruments", ecarts.join(" · "));
+  else ok(`6octies la liste des instruments tient son scellé versionné (${CHEMIN_SCELLE_INSTRUMENTS}) ; un ajout, un retrait et un scellé falsifié sont refusés en nommant le chemin`);
 }
 
 /* 6 septies — LA CATÉGORIE EST BORNÉE À UN CHEMIN EXACT. La même formulation écrite dans une
@@ -176,6 +236,15 @@ const classerLigne = (chemin, ligne) => {
     ["un fichier au nom voisin", "dette-iata-publiee.backup.json", "source_editoriale"],
     ["le même nom dans un sous-dossier", "docs/dette-iata-publiee.json", "test_commentaire_historique"],
     ["le registre lui-même", "dette-iata-publiee.json", "registre_preuve_non_public"],
+    /* Le second instrument vit dans un répertoire — la racine — dont TOUS les autres `test-*`
+       sont déjà classés « commentaire historique ». Le voisin le prouve : le bénéfice tient au
+       chemin exact, pas au préfixe, et un fichier ne s'exempte pas en se faisant appeler test. */
+    ["un test voisin du second instrument", "test-etape3-dom.backup.mjs", "test_commentaire_historique"],
+    ["le second instrument lui-même", "test-etape3-dom.mjs", "registre_preuve_non_public"],
+    ["un voisin de l'instrument lui-même", "inventaire-iata.backup.mjs", "source_editoriale"],
+    ["l'instrument lui-même", "inventaire-iata.mjs", "registre_preuve_non_public"],
+    ["un voisin du harnais de l'instrument", "test-inventaire-iata.backup.mjs", "test_commentaire_historique"],
+    ["le harnais de l'instrument", "test-inventaire-iata.mjs", "registre_preuve_non_public"],
   ];
   const ecarts = [];
   for (const [nom, chemin, attendu] of cas) {
@@ -250,7 +319,11 @@ const classerLigne = (chemin, ligne) => {
      le harnais aurait levé un TypeError au lieu de dire ce qui cloche — reproduit :
      « Cannot read properties of undefined (reading 'length') ». Il lit désormais les trois
      collections que `verifier()` rend réellement. */
-  if (!v.ok) echec("7 relevé réel", `${v.inconnues.length} inconnue(s), ${v.hors.length} hors liste, ${v.orphelines.length} ancre(s) orpheline(s)`);
+  /* Et le scellé des instruments EST une cause de refus depuis le 02/09/2026 : sans lui dans ce
+     message, l'attaque de la contre-revue faisait rougir un contrôle qui n'en disait pas la
+     raison — « 0 inconnue, 0 hors liste, 0 orpheline », donc rouge sans motif lisible. */
+  if (!v.ok) echec("7 relevé réel", `${v.inconnues.length} inconnue(s), ${v.hors.length} hors liste, ${v.orphelines.length} ancre(s) orpheline(s)`
+    + (v.scelle.length ? ` · scellé des instruments : ${v.scelle.join(" · ")}` : ""));
   else {
     const somme = CATEGORIES.reduce((n, c) => n + releve.filter((r) => r.categorie === c).length, 0);
     if (somme !== releve.length) echec("7 relevé réel", `${somme} classées pour ${releve.length} occurrences`);
@@ -284,6 +357,87 @@ const classerLigne = (chemin, ligne) => {
     }
   }
   if (bons === cas.length) ok(`8 les ${cas.length} formes d'invalidité sont diagnostiquées lisiblement, sans exception`);
+}
+
+/* ---- 9. L'EXTENSION DU 02/09/2026 EST UN AJOUT, PAS UNE RÉÉCRITURE ------------------------- */
+/* La famille « contenant + IATA » — « caisse IATA », « IATA crate », « Caisse IATA type » — a été
+ * ajoutée au relevé après un contre-test navigateur : ces formes n'étaient pas mal classées, elles
+ * étaient INVISIBLES, aucune alternative ne produisant un « IATA » nu.
+ *
+ * LE RISQUE D'UN TEL ÉLARGISSEMENT N'EST PAS D'EN VOIR TROP, C'EST D'EN DÉPLACER. Dans une
+ * alternance, une branche nouvelle qui accroche plus tôt CONSOMME le texte qu'une branche légitime
+ * attendait : « crate IATA standards » pourrait faire disparaître « IATA standards » du compte des
+ * références licites, sans que le total le montre. On rejoue donc le relevé avec le motif HÉRITÉ et
+ * on exige que chacune de ses occurrences soit encore là — même fichier, même ligne, même colonne,
+ * même texte, MÊME CATÉGORIE.
+ *
+ * LES INSTRUMENTS SONT ÉCARTÉS DE CETTE PREUVE, ET LA PHRASE CI-DESSUS DIT POURQUOI. Elle écrit
+ * « crate IATA standards » pour NOMMER le risque : la famille y accroche « crate IATA » et
+ * consomme le « IATA standards » que le motif hérité voyait. C'est un déplacement RÉEL, mais dans
+ * un texte écrit exprès pour décrire le défaut — pas dans un contenu servi. Le mesurer ici ferait
+ * rougir la preuve pour la prose de la preuve elle-même. L'écart se prend donc sur la catégorie
+ * `registre_preuve_non_public`, c'est-à-dire sur le MÊME jugement que partout ailleurs : un
+ * instrument ne se mesure pas lui-même. Constaté le 02/09/2026, en unifiant les deux mécanismes
+ * d'exclusion : la contre-épreuve a désigné exactement cette ligne. */
+{
+  const instrument = (r) => r.categorie === "registre_preuve_non_public";
+  const avant = relever({ motif: MOTIF_HERITE }).filter((r) => !instrument(r));
+  const apres = relever().filter((r) => !instrument(r));
+  const cle = (r) => `${r.fichier}:${r.ligne}:${r.colonne}:${r.trouve}`;
+  const carte = new Map(apres.map((r) => [cle(r), r]));
+  const disparues = avant.filter((r) => !carte.has(cle(r)));
+  const deplacees = avant.filter((r) => carte.has(cle(r)) && carte.get(cle(r)).categorie !== r.categorie);
+  if (!avant.length) echec("9 additivité", "le relevé hérité est vide — la contre-épreuve ne prouverait rien");
+  else if (disparues.length) {
+    echec("9 additivité", `${disparues.length} occurrence(s) du relevé hérité ont disparu`);
+    for (const d of disparues.slice(0, 5)) console.error(`      ${d.fichier}:${d.ligne}:${d.colonne} « ${d.trouve} » (${d.categorie})`);
+  } else if (deplacees.length) {
+    echec("9 additivité", `${deplacees.length} occurrence(s) ont changé de catégorie`);
+    for (const d of deplacees.slice(0, 5)) console.error(`      ${d.fichier}:${d.ligne} « ${d.trouve} » ${d.categorie} → ${carte.get(cle(d)).categorie}`);
+  } else if (apres.length <= avant.length) {
+    echec("9 additivité", `l'extension n'ajoute rien (${avant.length} → ${apres.length}) : la famille n'est pas relevée`);
+  } else ok(`9 additivité — les ${avant.length} occurrences héritées sont intactes, catégorie comprise, et l'extension en ajoute ${apres.length - avant.length}`);
+}
+
+/* ---- 10. LA FAMILLE VOIT CE QU'ELLE DOIT VOIR, ET RIEN DE PLUS ----------------------------- */
+/* Les deux sens, comme pour le détecteur de montants : les formes attribuant un contenant à l'IATA
+ * doivent être vues ; les références réglementaires licites doivent rester licites. Sans la seconde
+ * moitié, on pourrait faire tomber le compteur en emportant de l'information vraie. */
+{
+  const VUES = ["caisse IATA", "caisses IATA", "Caisse IATA type", "Jaula IATA típica", "IATA crate",
+    "IATA kennel", "IATA carrier", "caixa IATA", "transportín IATA", "sac IATA",
+    /* les trois formes BORNÉES, sans contenant adjacent, relevées sur la fiche Luxair */
+    "rigid IATA type", "type IATA rigide", "tipo IATA rígida"];
+  /* « norma IATA » N'EST PAS DANS CETTE LISTE, ET C'EST UN CONSTAT, PAS UN OUBLI. L'espagnol
+     « norma IATA » est classé INTERDIT par un arbitrage antérieur, alors que le français
+     « norme(s) IATA » est classé LICITE. Les deux disent pourtant la même chose. L'incohérence
+     est ANTÉRIEURE à cette extension — elle ne vient pas d'elle et n'est pas corrigée ici — mais
+     elle est nommée pour arbitrage plutôt que gommée en l'inscrivant du côté qui m'arrange. */
+  /* LA SYMÉTRIE, ÉPROUVÉE DANS LES DEUX LANGUES. « norme(s) IATA » et « norma(s) IATA » nomment
+     le même référentiel ; les traiter différemment était une incohérence, pas une règle. */
+  const LICITES = ["normes IATA", "norme IATA", "normas IATA", "norma IATA", "exigences IATA",
+    "IATA LAR", "Live Animals Regulations", "IATA method", "IATA requirements", "IATA standards"];
+  /* LES AFFIRMATIONS COMPLÈTES RESTENT INTERDITES : ce n'est pas le mot « norme » qui trompe,
+     c'est la phrase qui attribue le contenant au référentiel. */
+  const INTERDITES = ["conforme à la norme IATA", "conforme a la norma IATA", "homologada IATA",
+    "IATA-approved", "certifiée IATA"];
+  /* ET « ET RIEN DE PLUS » A ENFIN DES CAS NÉGATIFS. Sans eux, l'intitulé du contrôle promettait
+     une garantie que rien ne vérifiait. « type IATA » nu a d'ailleurs été RETIRÉ du motif pour
+     cette raison : il attrapait un type de document et un code d'aéroport. */
+  const IGNOREES = ["type IATA", "tipo IATA", "IATA airport code", "IATA document type",
+    "code IATA", "agent IATA"];
+  const rates = VUES.filter((t) => { MOTIF.lastIndex = 0; const m = t.match(MOTIF); return !m || m[0] !== t; });
+  const perdues = LICITES.filter((t) => classer("x.md", t, (() => { MOTIF.lastIndex = 0; return (t.match(MOTIF) ?? [""])[0]; })(),
+    0, ((t.match(MOTIF) ?? [""])[0]).length) !== "reference_reglementaire_legitime");
+  const laxistes = INTERDITES.filter((t) => { MOTIF.lastIndex = 0; const m = (t.match(MOTIF) ?? [""])[0];
+    return classer("x.md", t, m, 0, m.length) === "reference_reglementaire_legitime"; });
+  const trop = IGNOREES.filter((t) => { MOTIF.lastIndex = 0; return MOTIF.test(t); });
+  if (rates.length) echec("10 famille", `formes non vues en entier : ${rates.join(", ")}`);
+  else if (perdues.length) echec("10 famille", `références licites devenues autre chose : ${perdues.join(", ")}`);
+  else if (laxistes.length) echec("10 famille", `affirmations complètes devenues licites : ${laxistes.join(", ")}`);
+  else if (trop.length) echec("10 famille", `vues alors qu'elles ne disent rien d'un contenant : ${trop.join(", ")}`);
+  else ok(`10 famille — ${VUES.length} formes vues, ${LICITES.length} références licites préservées, `
+    + `${INTERDITES.length} affirmations complètes toujours interdites, ${IGNOREES.length} formes sans contenant ignorées`);
 }
 
 if (defauts) { console.error(`\n[inventaire] ÉCHEC — ${defauts} contre-épreuve(s) en défaut`); process.exit(1); }

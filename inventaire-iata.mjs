@@ -68,8 +68,9 @@
  * était comptée « artefact généré » — donc rangée parmi les choses à traiter alors qu'elle est
  * juste.
  */
-import { readFileSync, readdirSync, statSync, existsSync } from "node:fs";
+import { readFileSync, writeFileSync, readdirSync, statSync, existsSync } from "node:fs";
 import { join, relative, extname } from "node:path";
+import { createHash } from "node:crypto";
 
 const RACINE = process.cwd();
 
@@ -89,18 +90,86 @@ export const ALTERNATIVES = [
   "conforme[s]?\\s+(?:à\\s+la\\s+norme\\s+)?IATA",
   "conforme[s]?\\s+(?:a|à)\\s+la\\s+IATA",
   "conforme[s]?\\s+(?:à|a)\\s+(?:la\\s+)?norma\\s+IATA",
-  "norma\\s+IATA", "normes?\\s+IATA", "exigences\\s+IATA",
+  /* SYMÉTRIE LINGUISTIQUE (arbitrage du 02/09/2026). « norme(s) IATA » était licite et
+     « norma IATA » interdit, alors que les deux nomment le même référentiel — une incohérence
+     entre langues, pas une règle. Les deux sont désormais licites À L'OCCURRENCE. Les
+     AFFIRMATIONS COMPLÈTES restent interdites, et les alternatives qui les portent — « conforme
+     à la norme IATA », « conforme a la norma IATA » — sont placées AVANT celles-ci, donc elles
+     accrochent les premières. */
+  "normas?\\s+IATA", "normes?\\s+IATA", "exigences\\s+IATA",
   `certifi${SUITE}\\s+IATA`,
   `approuv${SUITE}\\s+par\\s+(?:l')?IATA`,
   `aprobad${SUITE}\\s+por\\s+la\\s+IATA`,
   `aprovad${SUITE}\\s+pela\\s+IATA`,
 ];
+
+/* ---- LA FAMILLE « CONTENANT + IATA », AJOUTÉE LE 02/09/2026 ---------------------------------
+ *
+ * CE QUI L'A RÉVÉLÉE : un contre-test navigateur, pas ce fichier. Deux libellés publiés —
+ * « Choisir une caisse IATA » sur l'accueil, « Caisse IATA type » sur les fiches de race — ne
+ * figuraient dans AUCUNE des huit catégories. Ils n'étaient pas mal classés : ils étaient
+ * INVISIBLES. Aucune alternative ci-dessus ne produit un « IATA » nu, si bien qu'un nom de
+ * contenant collé à « IATA » ne déclenchait rien du tout.
+ *
+ * POURQUOI C'EST UNE AFFIRMATION INTERDITE. « Caisse IATA » ne dit pas « homologuée », mais il
+ * attribue le contenant à l'IATA — qui publie des EXIGENCES de contenant et déclare ne certifier,
+ * n'approuver ni ne recommander aucun modèle. La forme « Caisse IATA type — 500 XL » allait plus
+ * loin encore : elle laissait lire une nomenclature de fabricant comme une classification IATA.
+ *
+ * CE QUI RESTE LICITE, ET QUE CETTE FAMILLE NE TOUCHE PAS : « normes IATA », « exigences IATA »,
+ * « IATA LAR », « méthode de mesure IATA », « Live Animals Regulations ». Aucune ne comporte de
+ * nom de contenant ; les alternatives ci-dessus les captent AVANT celles-ci, et une contre-épreuve
+ * exige qu'elles restent classées légitimes.
+ *
+ * LE MOTIF EST ÉCRIT UNE SEULE FOIS et sert AUX DEUX étages — le relevé et le jugement. Les
+ * définir séparément, c'est les laisser diverger : ce lot en a fait deux fois l'expérience avec le
+ * détecteur de montants. */
+const CONTENANT = "caisses?|cages?|crates?|kennels?|carriers?|sacs?|bags?|jaulas?"
+  + "|transport[íi]n(?:es)?|caixas?|bolsas?|conteneurs?";
+const QUALIF = "(?:de\\s+)?(?:type|typical|tipo|t[íi]pic[ao]s?)";
+/* L'ORDRE COMPTE : dans une alternance, la première branche qui accroche gagne. La forme à
+ * qualificatif SUIVANT — « Caisse IATA type » — doit donc précéder la forme nue, sans quoi celle-ci
+ * s'arrêterait à « Caisse IATA » et le relevé montrerait une phrase tronquée. */
+export const FAMILLE_CONTENANT = [
+  `\\b(?:${CONTENANT})\\s+IATA\\s+(?:${QUALIF})\\b`,     // Caisse IATA type · Jaula IATA típica
+  `\\b(?:${CONTENANT})\\s+(?:${QUALIF}\\s+)?IATA\\b`,   // caisse IATA · caisse de type IATA
+  `\\bIATA\\s+(?:${QUALIF}\\s+)?(?:${CONTENANT})\\b`,    // IATA crate · IATA typical kennel
+];
+
+/* LES FORMES SANS CONTENANT ADJACENT, BORNÉES UNE PAR UNE.
+ *
+ * UNE PREMIÈRE RÉDACTION AVAIT AJOUTÉ « type|tipo IATA » TOUT NU à la famille, ce qui la
+ * contredisait : la famille s'appelle « contenant + IATA », et ce motif-là n'en contient aucun. Il
+ * aurait attrapé « IATA document type » et « IATA airport code », qui ne disent rien d'un
+ * contenant. La contre-épreuve « et rien de plus » n'avait alors aucun cas négatif pour le voir.
+ *
+ * CE QU'IL FALLAIT COUVRIR est réel mais étroit : la fiche Luxair décrit une caisse dont le
+ * contenant est nommé PLUS TÔT dans la phrase — « caisse de 115 × 60 × 85 cm maximum, type IATA
+ * rigide » —, hors de portée d'une règle d'adjacence. On les borne donc EXACTEMENT, dans les
+ * quatre langues réellement écrites, plutôt que d'élargir le motif au risque de tout attraper.
+ * LA LIMITE EST NOMMÉE : une cinquième formulation de ce genre serait invisible jusqu'à ce qu'on
+ * l'ajoute ici — c'est le prix d'un bornage exact, et il est préférable au prix inverse. */
+export const FORMES_BORNEES = [
+  "\\brigid\\s+IATA\\s+type\\b",            // en — « rigid IATA type with two-point locking »
+  "\\btype\\s+IATA\\s+rigide\\b",           // fr — « type IATA rigide avec verrouillage »
+  "\\btipo\\s+IATA\\s+r[íi]gid[ao]\\b",     // es/pt — « tipo IATA rígida con cierre »
+];
+
+/* LE MOTIF HÉRITÉ, GARDÉ POUR PROUVER QUE L'EXTENSION N'EST QU'UN AJOUT. La contre-épreuve rejoue
+ * le relevé avec lui et exige que CHAQUE occurrence d'alors soit encore là, à la même place et
+ * dans la même catégorie : une extension qui déplacerait un classement existant serait une
+ * réécriture déguisée du contrat, pas un élargissement. */
+export const ALTERNATIVES_HERITEES = [...ALTERNATIVES];
+ALTERNATIVES.push(...FAMILLE_CONTENANT, ...FORMES_BORNEES);
+
 export const MOTIF = new RegExp(ALTERNATIVES.join("|"), "gi");
+export const MOTIF_HERITE = new RegExp(ALTERNATIVES_HERITEES.join("|"), "gi");
 
 /* ---- LES DEUX JUGEMENTS, PORTÉS SUR LE TEXTE TROUVÉ SEUL -----------------------------------
    Pas sur la ligne : c'est toute la correction du P0-2. Chacun ne voit que l'occurrence. */
-const OCC_LEGITIME = /^(?:Live Animals Regulations|IATA[- ]?(?:LAR|formula|method|requirements?|standards?|guidelines?)|normes?\s+IATA|exigences\s+IATA)$/i;
-const OCC_INTERDITE = /^(?:IATA[- ]?(?:approved|compliant|certified|accredited)|homologu[\wÀ-ÿ]*|homologad[\wÀ-ÿ]*|homologa[\wÀ-ÿ]*|conforme[s]?\s+(?:à\s+la\s+norme\s+)?IATA|conforme[s]?\s+(?:a|à)\s+la\s+IATA|conforme[s]?\s+(?:à|a)\s+(?:la\s+)?norma\s+IATA|norma\s+IATA|certifi[\wÀ-ÿ]*\s+IATA|approuv[\wÀ-ÿ]*\s+par\s+(?:l')?IATA|aprobad[\wÀ-ÿ]*\s+por\s+la\s+IATA|aprovad[\wÀ-ÿ]*\s+pela\s+IATA)$/i;
+const OCC_LEGITIME = /^(?:Live Animals Regulations|IATA[- ]?(?:LAR|formula|method|requirements?|standards?|guidelines?)|normes?\s+IATA|normas?\s+IATA|exigences\s+IATA)$/i;
+const OCC_INTERDITE_FAMILLE = new RegExp(`^(?:${[...FAMILLE_CONTENANT, ...FORMES_BORNEES].join("|")})$`, "i");
+const OCC_INTERDITE = /^(?:IATA[- ]?(?:approved|compliant|certified|accredited)|homologu[\wÀ-ÿ]*|homologad[\wÀ-ÿ]*|homologa[\wÀ-ÿ]*|conforme[s]?\s+(?:à\s+la\s+norme\s+)?IATA|conforme[s]?\s+(?:a|à)\s+la\s+IATA|conforme[s]?\s+(?:à|a)\s+(?:la\s+)?norma\s+IATA|certifi[\wÀ-ÿ]*\s+IATA|approuv[\wÀ-ÿ]*\s+par\s+(?:l')?IATA|aprobad[\wÀ-ÿ]*\s+por\s+la\s+IATA|aprovad[\wÀ-ÿ]*\s+pela\s+IATA)$/i;
 
 /* Les quatre slugs que l'arbitrage conserve : identifiants historiques stables, jamais du
    contenu éditorial à reproduire dans un titre ou un texte. */
@@ -121,17 +190,95 @@ const APPLICATIF = [
 ];
 const GENERES = [/^packages\/knowledge\/raw\/guides\.json$/, /\.generated\.json$/, /^packages\/ui\/\.astro\//];
 
-/* LE REGISTRE DE PREUVE, ET LUI SEUL. `dette-iata-publiee.json` énumère les formulations encore
-   PUBLIÉES par le site : il est dérivé du DOM construit, il n'est servi à personne, et le
-   corriger à la main serait exactement le mauvais geste — les contenus se corrigent, le site se
-   reconstruit, PUIS le registre se régénère.
-   Sans cette catégorie, l'instrument comptait sa propre pièce de preuve comme dette à corriger :
-   mesuré au 30/08/2026, il apportait 59 occurrences, dont 56 en `source_editoriale`, gonflait le
-   micro-lot éditorial de 592 à 649 et se plaçait EN TÊTE des fichiers à corriger. Une mesure qui
-   se compte elle-même n'est plus une mesure.
-   Le chemin est EXACT et unique : aucun autre fichier ne peut prendre cette catégorie, et la même
-   formulation écrite dans une vraie source éditoriale y reste comptée. */
-const REGISTRE_PREUVE = "dette-iata-publiee.json";
+/* LES INSTRUMENTS DE MESURE, PAR ÉGALITÉ EXACTE DE CHEMIN — jamais un préfixe, jamais un motif.
+ *
+ * CE QU'ILS SONT. Deux fichiers ne PORTENT pas d'affirmations : ils portent le RELEVÉ des
+ * affirmations des autres, et les vecteurs qui servent à l'éprouver.
+ *   · `dette-iata-publiee.json` énumère les formulations encore PUBLIÉES par le site. Il est
+ *     dérivé du DOM construit, il n'est servi à personne, et le corriger à la main serait
+ *     exactement le mauvais geste : les contenus se corrigent, le site se reconstruit, PUIS le
+ *     registre se régénère.
+ *   · `test-etape3-dom.mjs` porte depuis le 02/09/2026 les vecteurs de la contre-épreuve du
+ *     relevé public — « caisse IATA », « IATA crate », « conforme à la norme IATA »,
+ *     « IATA requirements », « \u0049ATA crate », « I&#65;TA crate ». Ce sont des mutations
+ *     écrites pour être VUES par la garde, pas des affirmations servies.
+ *
+ * DEUX AUTO-CONTAMINATIONS, TOUTES DEUX MESURÉES, AUCUNE EFFACÉE.
+ *   · 30/08/2026 — sans cette catégorie, l'instrument comptait sa propre pièce de preuve comme
+ *     dette à corriger : 59 occurrences apportées, dont 56 en `source_editoriale`, micro-lot
+ *     éditorial gonflé de 592 à 649, et le registre EN TÊTE des fichiers à corriger.
+ *   · 02/09/2026 — le registre était déjà excepté, mais son test arrivait APRÈS celui des slugs
+ *     conservés et après le jugement lexical. Trois de ses URL étaient donc comptées
+ *     « slug_conserve » et les vecteurs licites gonflaient les références réglementaires :
+ *     33 slugs au lieu de 30, 589 légitimes au lieu de 586 — et le commentaire du code affirmait
+ *     pourtant que le registre « prime sur tout classement ». Une exception qui n'est pas la
+ *     PREMIÈRE règle appliquée n'est pas une exception.
+ * Une mesure qui se compte elle-même n'est plus une mesure.
+ *
+ * LES QUATRE, ET POURQUOI ILS SONT QUATRE. `inventaire-iata.mjs` et `test-inventaire-iata.mjs`
+ * citent tout le champ lexical pour le DÉFINIR et l'ÉPROUVER ; les compter comme dette
+ * reviendrait à mesurer sa propre règle. Ils sortaient jusqu'ici du périmètre de lecture, donc
+ * en silence ; ils sortent désormais par cette liste, donc à découvert. Voir `FICHIERS_IGNORES`.
+ *
+ * L'ÉGALITÉ EST EXACTE, ET UNE CONTRE-ÉPREUVE L'EXIGE : `dette-iata-publiee.backup.json`,
+ * `docs/dette-iata-publiee.json`, `test-etape3-dom.backup.mjs` et une vraie source éditoriale ne
+ * bénéficient pas de cette priorité — la même formulation y reste comptée. */
+export const INSTRUMENTS_DE_MESURE = ["dette-iata-publiee.json", "inventaire-iata.mjs", "test-etape3-dom.mjs", "test-inventaire-iata.mjs"];
+
+/* ---- LE SCELLÉ DES INSTRUMENTS -------------------------------------------------------------
+ *
+ * ATTAQUE REPRODUITE PAR LA CONTRE-REVUE DU 02/09/2026, sur le vrai harnais. Ajouter
+ * `packages/ui/src/content/guides/fr/voyager-avion-avec-chien.md` — une VRAIE source éditoriale,
+ * onze occurrences — à la liste ci-dessus, sans rien changer d'autre : sortie 0, tout vert. Le
+ * harnais annonçait cinq instruments et retirait onze occurrences du micro-lot éditorial sans
+ * qu'aucun contrôle ne bronche.
+ *
+ * POURQUOI LES CONTRE-ÉPREUVES NE LE VOYAIENT PAS. Elles importaient cette même liste au lieu de
+ * la recopier — ce qui était la bonne décision contre la divergence, et reste la bonne. Mais une
+ * liste confrontée à elle-même ne prouve que son APPLICATION et son BORNAGE par chemin, jamais la
+ * LÉGITIMITÉ de ses membres. Il fallait un second témoin, versionné, extérieur au code.
+ *
+ * LE CONTRAT, repris du scellé de curation du lot B : la liste canonique reste unique, et elle
+ * est confrontée à `instruments-de-mesure-scelle.json`. Ajouter un instrument exige donc DEUX
+ * gestes dans la même pull request — l'ajout, puis `node inventaire-iata.mjs --sceller` — et le
+ * diff du scellé rend l'ajout visible et relisible. Le mode par défaut ne sait qu'échouer, en
+ * NOMMANT le chemin ajouté ou retiré. */
+export const CHEMIN_SCELLE_INSTRUMENTS = "instruments-de-mesure-scelle.json";
+
+const empreinteDe = (chemins) => createHash("sha256").update(JSON.stringify([...chemins].sort())).digest("hex");
+
+/** Les écarts entre la liste canonique et son scellé versionné. Vide = scellé tenu. */
+export function verifierScelleInstruments(liste = INSTRUMENTS_DE_MESURE, chemin = CHEMIN_SCELLE_INSTRUMENTS) {
+  const ecarts = [];
+  let scelle;
+  try { scelle = JSON.parse(readFileSync(chemin, "utf8")); }
+  catch (e) { return [`scellé illisible (${chemin}) : ${e.message}`]; }
+
+  const attendus = Array.isArray(scelle?.chemins) ? scelle.chemins : null;
+  if (!attendus) return [`scellé sans liste « chemins » : ${chemin}`];
+
+  /* L'EMPREINTE EST CONFRONTÉE, PAS SEULEMENT DÉCLARÉE — sans quoi il suffirait d'éditer la liste
+     du scellé en laissant l'empreinte, et le scellé mentirait sur lui-même. */
+  if (scelle.empreinte !== empreinteDe(attendus)) ecarts.push("l'empreinte du scellé ne correspond pas à sa propre liste — le scellé a été édité à la main");
+
+  const vus = new Set(liste), fige = new Set(attendus);
+  for (const c of [...vus].sort()) if (!fige.has(c)) ecarts.push(`instrument AJOUTÉ sans rescellement : ${c}`);
+  for (const c of [...fige].sort()) if (!vus.has(c)) ecarts.push(`instrument RETIRÉ sans rescellement : ${c}`);
+  /* Un doublon ne change ni l'ensemble ni l'empreinte : il est nommé pour lui-même. */
+  if (liste.length !== vus.size) ecarts.push(`la liste canonique porte ${liste.length} entrées pour ${vus.size} chemins distincts`);
+  return ecarts;
+}
+
+/** Réécrit le scellé. Geste EXPLICITE : `node inventaire-iata.mjs --sceller`. */
+export function scellerInstruments(liste = INSTRUMENTS_DE_MESURE, chemin = CHEMIN_SCELLE_INSTRUMENTS) {
+  const chemins = [...new Set(liste)].sort();
+  writeFileSync(chemin, JSON.stringify({
+    _commentaire: "LES INSTRUMENTS DE MESURE DU VOCABULAIRE IATA, SCELLÉS. Ces fichiers portent le relevé et ses vecteurs de contre-épreuve, jamais une affirmation servie : leurs occurrences sont comptées à part et n'entrent dans aucun lot à corriger. Une liste confrontée à elle-même ne prouve pas la légitimité de ses membres — ce scellé est le second témoin. Ajouter ou retirer un instrument exige le rescellement dans la même pull request, par « node inventaire-iata.mjs --sceller ».",
+    chemins,
+    empreinte: empreinteDe(chemins),
+  }, null, 2) + "\n");
+  return chemins;
+}
 const TESTS = [/^test-/, /^mesures\//, /^test-baselines\//, /^test-lib\//, /^DOSSIER-/, /^docs\//, /^ADR/, /\.test\.[tj]s$/];
 
 /* L'HÉRITAGE V1. La v2 prétendait PROUVER qu'il est inerte, en cherchant `"static/…"` dans les
@@ -221,7 +368,33 @@ function portéesDeCitation(ligne) {
  * et sur sa position [debut, fin). Rend `null` quand aucune règle ne reconnaît l'occurrence —
  * jamais un repli complaisant.
  */
+/**
+ * LE JUGEMENT LEXICAL, SEUL ET UNIQUE — « legitime », « interdite » ou « inconnue ».
+ *
+ * POURQUOI IL EST EXTRAIT (contre-revue du 02/09/2026). `test-etape3-dom.mjs` portait SA PROPRE
+ * expression du vocabulaire interdit et bâtissait le registre de dette publique avec elle : deux
+ * définitions de la même chose, donc deux nombres, et un verrou de lancement mesuré au motif le
+ * plus étroit. Le contrat est désormais ici, et là seulement ; `classer()` le consulte, le
+ * contrôle du DOM aussi.
+ *
+ * IL NE JUGE QUE LE TEXTE TROUVÉ. Ce qui dépend du FICHIER — slug conservé, citation attribuée,
+ * phrase arbitrée à reformuler, qui corrige quoi — reste dans `classer()`, parce que cela ne se
+ * décide pas sur l'occurrence seule. Un contrôle qui lit des pages construites n'a pas de fichier
+ * source à consulter : il lui faut exactement ce jugement-ci, et rien de plus.
+ */
+export function jugerOccurrence(trouve) {
+  if (OCC_LEGITIME.test(trouve)) return "legitime";
+  if (OCC_INTERDITE.test(trouve) || OCC_INTERDITE_FAMILLE.test(trouve)) return "interdite";
+  return "inconnue";
+}
+
 export function classer(chemin, ligne, trouve, debut, fin) {
+  /* 0 — UN INSTRUMENT DE MESURE NE SE MESURE PAS LUI-MÊME. Cette règle passe AVANT toutes les
+     autres, y compris avant les slugs et avant le jugement lexical : sinon une URL du registre est
+     comptée comme slug conservé, et ses vecteurs de contre-épreuve comme de vraies références
+     licites. C'est exactement ce qui se produisait. */
+  if (INSTRUMENTS_DE_MESURE.includes(chemin)) return "registre_preuve_non_public";
+
   /* 1 — L'occurrence EST à l'intérieur d'un slug conservé : un identifiant, pas une phrase. */
   for (const sl of SLUGS_CONSERVES) {
     let i = ligne.indexOf(sl);
@@ -239,15 +412,13 @@ export function classer(chemin, ligne, trouve, debut, fin) {
 
   /* 4 — L'occurrence elle-même est une référence licite : le règlement, la méthode de mesure,
      les exigences de contenant. Rien à corriger, où qu'elle vive. */
-  if (OCC_LEGITIME.test(trouve)) return "reference_reglementaire_legitime";
+  const jugement = jugerOccurrence(trouve);
+  if (jugement === "legitime") return "reference_reglementaire_legitime";
 
   /* À partir d'ici, l'occurrence DOIT être une affirmation interdite. Sinon on ne sait pas ce
      que c'est, et on le dit. */
-  if (!OCC_INTERDITE.test(trouve)) return null;
+  if (jugement !== "interdite") return null;
 
-  /* Le registre de preuve prime sur tout classement de contenu : c'est un artefact de mesure,
-     pas une surface. La comparaison est une ÉGALITÉ de chemin, jamais un préfixe ni un motif. */
-  if (chemin === REGISTRE_PREUVE) return "registre_preuve_non_public";
   if (TESTS.some((r) => r.test(chemin))) return "test_commentaire_historique";
   if (GENERES.some((r) => r.test(chemin))) return "artefact_genere";
   if (GENERATRICES_DECLAREES.some((p) => chemin.startsWith(p))) return "source_generatrice_active";
@@ -301,9 +472,33 @@ export function ancresOrphelines(releve, declarations = A_REFORMULER) {
 
 /* ---- LE PARCOURS, DÉTERMINISTE ------------------------------------------------------------- */
 const IGNORE = new Set(["node_modules", ".git", "dist", ".astro", "coverage", ".wrangler"]);
-/* L'outil et son harnais citent tout le champ lexical pour le définir et l'éprouver : les
-   compter reviendrait à mesurer sa propre règle. Ils sortent du périmètre, et on le nomme. */
-const FICHIERS_IGNORES = new Set(["package-lock.json", "inventaire-iata.mjs", "test-inventaire-iata.mjs"]);
+/* IL N'Y A PLUS QU'UNE SEULE FAÇON POUR UN INSTRUMENT DE NE PAS SE MESURER LUI-MÊME
+   (02/09/2026). Il y en avait DEUX, et c'est la faute récurrente de ce chantier : deux
+   définitions de la même chose. `inventaire-iata.mjs` et `test-inventaire-iata.mjs` sortaient
+   ICI, du PÉRIMÈTRE, donc en silence — elles n'apparaissaient dans aucun compte, et personne ne
+   pouvait relire ce qu'elles contenaient ; `dette-iata-publiee.json` et `test-etape3-dom.mjs`
+   sortaient plus bas, par CATÉGORIE, donc visiblement. Les deux auto-contaminations de ce projet
+   ont été trouvées parce que les occurrences étaient VISIBLES. Les quatre passent donc par
+   `INSTRUMENTS_DE_MESURE` : elles sont lues, comptées, et rangées dans une catégorie qui n'entre
+   pas au micro-lot éditorial.
+   LE MOUVEMENT EXACT, mesuré : total 3297 → 3431, fichiers 586 → 588, catégorie 342 → 476.
+   Toutes les autres catégories sont INCHANGÉES — source éditoriale 267, sources génératrices
+   1172, héritage v1 29, références licites 586, slugs 30, commentaires de test 55, artefacts à
+   régénérer 816, affirmations publiques interdites 0. Rien à corriger n'est apparu ni disparu :
+   seul l'invisible est devenu lisible.
+   (Ces nombres décrivent CE MOUVEMENT-LÀ, à sa date, et rien d'autre.)
+
+   AUCUN TOTAL COURANT N'EST ÉCRIT DANS CE COMMENTAIRE, ET C'EST DÉLIBÉRÉ. J'ai rapporté « 3 462 »
+   quand l'instrument en mesurait 3 467 : le chiffre avait été relevé AVANT la régénération du
+   registre, que l'inventaire recompte ensuite dans la catégorie instrumentale. Un total écrit ici
+   est de surcroît périmé par sa propre écriture — les instruments et leurs contre-épreuves se
+   comptent eux-mêmes, si bien que toute contre-épreuve ajoutée le déplace. Le seul nombre
+   citable est donc celui que la mesure IMPRIME au moment où on la rejoue : le tableau de synthèse
+   de ce fichier, et la ligne « 7 relevé réel » de `test-inventaire-iata.mjs`. Ce sont eux qui
+   font foi, jamais un commentaire.
+   `package-lock.json` reste hors périmètre : ce n'est pas un instrument, c'est un fichier généré
+   que personne ne relit. */
+const FICHIERS_IGNORES = new Set(["package-lock.json"]);
 const EXT_TEXTE = new Set([".json", ".ts", ".tsx", ".js", ".mjs", ".cjs", ".astro", ".md", ".mdx", ".yml", ".yaml", ".html", ".txt", ""]);
 
 export function* parcourir(dir, inverse = false) {
@@ -321,7 +516,7 @@ export function* parcourir(dir, inverse = false) {
 }
 
 /** Le relevé complet, TRIÉ — l'ordre ne dépend d'aucun système de fichiers. */
-export function relever({ inverse = false, racine = RACINE } = {}) {
+export function relever({ inverse = false, racine = RACINE, motif = MOTIF } = {}) {
   const out = [];
   for (const p of parcourir(racine, inverse)) {
     const chemin = relative(racine, p);
@@ -330,8 +525,8 @@ export function relever({ inverse = false, racine = RACINE } = {}) {
     if (!/IATA|homolog/i.test(contenu)) continue;
     const lignes = contenu.split("\n");
     for (let i = 0; i < lignes.length; i++) {
-      MOTIF.lastIndex = 0;
-      for (const m of lignes[i].matchAll(MOTIF)) {
+      motif.lastIndex = 0;
+      for (const m of lignes[i].matchAll(motif)) {
         out.push({
           fichier: chemin, ligne: i + 1, colonne: m.index + 1, trouve: m[0],
           categorie: classer(chemin, lignes[i], m[0], m.index, m.index + m[0].length),
@@ -351,12 +546,25 @@ export function verifier(releve, declarations = A_REFORMULER) {
   const inconnues = releve.filter((r) => r.categorie === null || r.categorie === undefined);
   const hors = releve.filter((r) => r.categorie != null && !CATEGORIES.includes(r.categorie));
   const orphelines = ancresOrphelines(releve, declarations);
-  return { inconnues, hors, orphelines, ok: inconnues.length === 0 && hors.length === 0 && orphelines.length === 0 };
+  /* LE SCELLÉ EST VÉRIFIÉ ICI, avec les autres refus, et pas seulement dans le harnais : un
+     instrument ajouté en douce retire des occurrences du compte, ce qui EST une falsification du
+     relevé — pas un détail de test. */
+  const scelle = verifierScelleInstruments();
+  return {
+    inconnues, hors, orphelines, scelle,
+    ok: inconnues.length === 0 && hors.length === 0 && orphelines.length === 0 && scelle.length === 0,
+  };
 }
 
 /* ---- SORTIE -------------------------------------------------------------------------------- */
 if (import.meta.url === `file://${process.argv[1]}`) {
   const ARGS = process.argv.slice(2);
+  if (ARGS.includes("--sceller")) {
+    const chemins = scellerInstruments();
+    console.log(`scellé RÉÉCRIT : ${chemins.length} instrument(s)`);
+    for (const c of chemins) console.log(`  · ${c}`);
+    process.exit(0);
+  }
   const releve = relever();
 
   const constats = citationsDeLHeritage();
@@ -366,6 +574,7 @@ if (import.meta.url === `file://${process.argv[1]}`) {
     for (const r of v.inconnues.slice(0, 20)) console.error(`  occurrence qu'aucune règle ne reconnaît : ${r.fichier}:${r.ligne}:${r.colonne}  « ${r.trouve} »`);
     for (const r of v.hors.slice(0, 20)) console.error(`  catégorie hors liste : ${r.fichier}:${r.ligne}:${r.colonne}  « ${r.categorie} »`);
     for (const r of v.orphelines) console.error(`  ancre de reformulation qui ne trouve rien : ${r.fichier} « ${r.ancre} »`);
+    for (const e of v.scelle) console.error(`  scellé des instruments : ${e}`);
     process.exit(1);
   }
 
@@ -383,7 +592,7 @@ if (import.meta.url === `file://${process.argv[1]}`) {
   for (const c of CATEGORIES) {
     if (c === "reference_reglementaire_a_reformuler") console.log("  — licite à l'occurrence, mais la phrase porteuse est arbitrée à reformuler —");
     if (c === "reference_reglementaire_legitime") console.log("  — rien à corriger (suite) —");
-    if (c === "registre_preuve_non_public") console.log("  — pièce de preuve dérivée du DOM, jamais servie, jamais corrigée à la main —");
+    if (c === "registre_preuve_non_public") console.log("  — instrument de mesure : il porte le relevé et les vecteurs, jamais une affirmation servie —");
     if (c === "test_commentaire_historique") console.log("  — une affirmation interdite ; la catégorie dit qui la corrige —");
     const sel = releve.filter((r) => r.categorie === c);
     console.log(`${String(sel.length).padStart(5)}  ${c.padEnd(34)} ${String(new Set(sel.map((r) => r.fichier)).size).padStart(3)} fichier(s)`);

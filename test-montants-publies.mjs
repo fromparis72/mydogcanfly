@@ -75,7 +75,7 @@ function montantsDe(html) {
   const z = zonesDe(html);
   return {
     titre: trouver(z.titre), corps: trouver(z.corps), metas: trouver(z.metas),
-    jsonLd: trouver(z.jsonLd), jsonLdInvalide: z.jsonLdInvalide,
+    jsonLd: trouver(z.jsonLd), attributs: trouver(z.attributs), jsonLdInvalide: z.jsonLdInvalide,
   };
 }
 
@@ -85,11 +85,11 @@ function montantsDe(html) {
   for (const f of fiches) {
     const m = montantsDe(readFileSync(f.chemin, "utf8"));
     illisibles += m.jsonLdInvalide;
-    const n = m.titre.length + m.corps.length + m.metas.length + m.jsonLd.length;
+    const n = m.titre.length + m.corps.length + m.metas.length + m.jsonLd.length + m.attributs.length;
     if (!n) continue;
     total += n;
     fautives.push(`${f.langue}/${f.slug} : `
-      + [["titre", m.titre], ["corps", m.corps], ["meta", m.metas], ["json-ld", m.jsonLd]]
+      + [["titre", m.titre], ["corps", m.corps], ["meta", m.metas], ["json-ld", m.jsonLd], ["attributs-accessibles", m.attributs]]
         .filter(([, v]) => v.length).map(([z, v]) => `${z} [${v.map((x) => x.texte).join(", ")}]`).join(" ; "));
   }
   /* UN JSON-LD ILLISIBLE N'EST PAS UN JSON-LD VIDE. S'il ne se parse pas, on ne sait rien de son

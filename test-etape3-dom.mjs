@@ -10,15 +10,18 @@
  *      « somente » — ne doit paraître dans une page qui annonce deux canaux ouverts. C'est
  *      l'affirmation FAUSSE que l'étape 3 ferme : douze cartes disaient « Soute uniquement »
  *      alors que le fret était ouvert.
- *   2. LE VOCABULAIRE D'HOMOLOGATION. Les 27 corrections applicatives doivent se voir dans les
+ *   2. LE VOCABULAIRE D'HOMOLOGATION. Les corrections applicatives doivent se voir dans les
  *      pages rendues, et les quatre libellés combinés doivent y être présents dans leur langue.
  *
  * `--dist` est OBLIGATOIRE. Une garde qui se saute quand l'artefact manque ne garde rien : c'est
  * exactement la faute qui a fait tomber la preuve DOM de l'inventaire, sautée à chaque exécution
  * parce qu'elle tournait avant le build.
  */
-import { readFileSync, writeFileSync, readdirSync, statSync, existsSync } from "node:fs";
+import { readFileSync, writeFileSync, readdirSync, statSync, existsSync, mkdtempSync, mkdirSync, rmSync } from "node:fs";
+import { tmpdir } from "node:os";
 import { join } from "node:path";
+import { MOTIF, jugerOccurrence } from "./inventaire-iata.mjs";
+import { zonesDe } from "./test-lib/zones-publiques.mjs";
 
 const DIST = process.argv.slice(2).find((a) => a.startsWith("--dist="))?.slice(7);
 if (!DIST || !existsSync(DIST)) {
@@ -45,15 +48,17 @@ ok(`départ : ${pages.length} pages construites`);
 /* ---- 1. LE VOCABULAIRE D'HOMOLOGATION, DANS LES SOURCES ET DANS LE DOM --------------------- */
 /* Le même vocabulaire interdit que l'inventaire, tenu ici sur les pages RENDUES. Les références
    licites — Live Animals Regulations, méthode de mesure, exigences publiées — restent permises. */
-const INTERDIT = /IATA[- ]?(?:approved|compliant|certified)|homologu[\wÀ-ÿ]*\s+(?:par\s+)?(?:l[' ])?IATA|homologad[\wÀ-ÿ]*\s+(?:por|pela)\s+(?:la\s+)?IATA|caisse[s]?\s+homologuée[s]?|cage[s]?\s+homologuée[s]?|jaula[s]?\s+homologada[s]?|conforme[s]?\s+(?:à\s+la\s+norme\s+)?IATA|conforme[s]?\s+(?:a|à)\s+la\s+IATA|conforme[s]?\s+(?:à|a)\s+(?:la\s+)?norma\s+IATA|norma\s+IATA|norme\s+IATA|padrão\s+IATA|aprovad[\wÀ-ÿ]*\s+pela\s+IATA|aprobad[\wÀ-ÿ]*\s+por\s+la\s+IATA/i;
-/* CE QUE L'ÉTAPE 3 POSSÈDE, ET CE QU'ELLE NE POSSÈDE PAS. Le premier passage de ce contrôle a
-   rougi sur 52 pages — airBaltic, Icelandair, l'Australie, la Jamaïque… — et il avait raison de
-   les voir : elles PUBLIENT bien une homologation. Mais la phrase ne vient pas d'un gabarit :
-   elle vient des DONNÉES GÉNÉRÉES, `airlines.generated.json` et `countries.generated.json`,
-   c'est-à-dire du micro-lot éditorial, qui les corrigera par ses générateurs.
-   On ne masque donc pas ces pages : on les SÉPARE par leur source. Ce qui vient d'un gabarit est
-   un échec de l'étape 3 ; ce qui vient des données générées est une dette éditoriale, COMPTÉE et
-   nommée ici pour qu'elle ne se perde pas. */
+/* L'ANCIENNE EXPRESSION LOCALE A ÉTÉ RETIRÉE : elle vit maintenant dans l'instrument canonique,
+   et c'est `jugerOccurrence()` qui tranche. Elle est conservée ici en commentaire d'histoire, non
+   comme code, pour que la comparaison des chiffres d'avant et d'après reste lisible :
+   IATA-approved/compliant/certified, homologué·e par l'IATA, caisse/cage homologuée, conforme
+   IATA, norma/norme IATA, padrão IATA, aprovada pela IATA, aprobada por la IATA.
+   Elle ne connaissait pas la famille « contenant + IATA », ni le pluriel « normas ». */
+/* CE QUE L'ÉTAPE 3 POSSÈDE, ET CE QU'ELLE NE POSSÈDE PAS. Ce contrôle rougit sur les pages qui
+   PUBLIENT encore une affirmation interdite. On ne les masque pas et on ne leur attribue pas de
+   provenance : ce qui est mesurable sans deviner, c'est ZÉRO dans les surfaces applicatives, et un
+   REGISTRE EXACT de ce qui reste publié. Le micro-lot éditorial le ramènera à zéro par ses
+   générateurs, et c'est lui qui établira les provenances, une par une. */
 {
   /* DEUX RÉDACTIONS FAUTIVES, NOMMÉES. J'ai d'abord voulu imputer chaque page fautive à sa
      source — gabarit ou données — par comparaison de son texte rendu avec les artefacts générés.
@@ -68,7 +73,7 @@ const INTERDIT = /IATA[- ]?(?:approved|compliant|certified)|homologu[\wÀ-ÿ]*\s
      portent plus AUCUNE affirmation interdite : c'est le contrat de l'étape 3, mesuré à 0.
 
      CE QUI RESTE PUBLIÉ EST NOMMÉ « DETTE PUBLIQUE RESTANTE », SANS PROVENANCE ATTRIBUÉE. Je n'ai
-     relié mécaniquement aucune de ces 52 pages à sa source ; j'ai seulement vérifié trois cas à
+     relié mécaniquement aucune de ces pages à sa source ; j'ai seulement vérifié trois cas à
      la main — Icelandair, airBaltic, Air Caraïbes —, ce qui ne fonde aucune règle. Écrire qu'elles
      « viennent nécessairement des données générées » serait une déduction que rien n'établit :
      l'inventaire dit où le vocabulaire vit dans les SOURCES, il ne dit pas quelle source a produit
@@ -94,22 +99,50 @@ const INTERDIT = /IATA[- ]?(?:approved|compliant|certified)|homologu[\wÀ-ÿ]*\s
      DÉJÀ comptée passait de même. Un total ne fige rien : il fige une somme.
      Le registre porte donc, par CHEMIN PUBLIC, chaque formulation normalisée ET sa multiplicité,
      et la comparaison est bidirectionnelle. */
+  /* LES ZONES SCELLÉES, ÉNUMÉRÉES UNE SEULE FOIS. Le relevé réel et la contre-épreuve 1quinquies
+     lisaient chacun leur propre liste : ajouter une zone à l'un sans l'autre était possible, et
+     c'est exactement la divergence que ce chantier corrige partout ailleurs. Une seule liste. */
+  const ZONES = (z) => [["titre", z.titre], ["corps", z.corps], ["metas", z.metas],
+    ["json-ld", z.jsonLd], ["attributs-accessibles", z.attributs]];
+
   const REGISTRE = "dette-iata-publiee.json";
   const registreBrut = JSON.parse(readFileSync(REGISTRE, "utf8"));
   const registre = registreBrut.pages;
-  const MOTIF_G = new RegExp(INTERDIT.source, "gi");
-  const vu = {};
-  for (const p of pages) {
-    const url = p.slice(DIST.length).replace(/\/index\.html$/, "/");
-    const html = readFileSync(p, "utf8");
-    MOTIF_G.lastIndex = 0;
-    const par = {};
-    for (const m of html.matchAll(MOTIF_G)) {
-      const f = m[0].toLowerCase().replace(/\s+/g, " ").trim();
-      par[f] = (par[f] || 0) + 1;
+  /* UN SEUL CONTRAT MESURE LA DETTE PUBLIQUE (contre-revue du 02/09/2026). Ce contrôle portait
+     SA PROPRE expression du vocabulaire interdit et lisait le HTML BRUT : deux définitions et
+     deux lectures pour la même question, donc deux nombres — et le verrou de lancement reposait
+     sur le plus étroit. Il consulte désormais le jugement lexical de l'instrument canonique, et
+     lit la page par ses ZONES PUBLIQUES DÉCODÉES, comme la garde des montants.
+     LA ZONE EST SCELLÉE AVEC L'URL ET LA FORMULATION : sans elle, un défaut déplacé du corps vers
+     une métadonnée passerait à total constant. */
+  /* LE PRÉFILTRE SUR LE HTML BRUT A ÉTÉ SUPPRIMÉ (contre-revue du 02/09/2026), et c'était un faux
+     vert de la pire espèce : il décidait de NE PAS LIRE une page avant de l'avoir décodée. Une
+     affirmation écrite « \u0049ATA crate » dans le JSON-LD, ou « I&#65;TA crate » en entité HTML
+     dans le corps, ne contient aucune suite brute « IATA » — la page était donc écartée sans
+     jamais passer par le lecteur de zones, qui l'aurait pourtant rendue lisible. Un filtre posé
+     AVANT le décodage annule le décodage. Les 3 121 pages sont désormais toutes parsées. */
+  const relevePublie = (racine, listePages) => {
+    const vu = {};
+    let illisibles = 0;
+    for (const p of listePages) {
+      const url = p.slice(racine.length).replace(/\/index\.html$/, "/");
+      const z = zonesDe(readFileSync(p, "utf8"));
+      illisibles += z.jsonLdInvalide;
+      if (z.jsonLdInvalide) echec("1bis lecture", `${url} : ${z.jsonLdInvalide} bloc(s) JSON-LD illisible(s) — leur contenu n'a pas pu être jugé`);
+      const par = {};
+      for (const [zone, texte] of ZONES(z)) {
+        MOTIF.lastIndex = 0;
+        for (const m of String(texte).matchAll(MOTIF)) {
+          if (jugerOccurrence(m[0]) !== "interdite") continue;
+          const f = `${zone} · ${m[0].toLowerCase().replace(/\s+/g, " ").trim()}`;
+          par[f] = (par[f] || 0) + 1;
+        }
+      }
+      if (Object.keys(par).length) vu[url] = par;
     }
-    if (Object.keys(par).length) vu[url] = par;
-  }
+    return { vu, illisibles };
+  };
+  const { vu } = relevePublie(DIST, pages);
 
   const comparer = (attendu, constate) => {
     const ecarts = [];
@@ -130,6 +163,110 @@ const INTERDIT = /IATA[- ]?(?:approved|compliant|certified)|homologu[\wÀ-ÿ]*\s
   };
 
   const total = Object.values(vu).reduce((n, o) => n + Object.values(o).reduce((a, b) => a + b, 0), 0);
+  /* ---- 1sexies. UNE PAGE SANS AUCUN « IATA » BRUT DOIT QUAND MÊME ÊTRE LUE -------------------
+   * Les deux formes qui traversaient l'ancien préfiltre, éprouvées PAR LA BOUCLE RÉELLE — la
+   * même fonction que celle qui bâtit le registre —, sur deux pages écrites pour l'occasion et
+   * ne contenant aucune suite brute « IATA » ni « homolog ». Une contre-épreuve qui n'appellerait
+   * qu'une fonction locale ne prouverait pas que la boucle du registre les voit. */
+  {
+    const racine = mkdtempSync(join(tmpdir(), "iata-zones-"));
+    const ecrire = (nom, html) => {
+      const d = join(racine, nom); mkdirSync(d, { recursive: true });
+      const f = join(d, "index.html"); writeFileSync(f, html); return f;
+    };
+    const echappe = ecrire("json-ld-echappe",
+      '<html><head><title>Sans forme brute</title>'
+      + '<script type="application/ld+json">{"d":"\u005cu0049ATA crate"}</scr' + 'ipt>'
+      + "</head><body><p>rien de plus</p></body></html>");
+    const entite = ecrire("entite-html",
+      "<html><head><title>Sans forme brute</title></head><body><p>I&#65;TA crate</p></body></html>");
+    const brut = [echappe, entite].map((f) => readFileSync(f, "utf8"));
+    const ratés = [];
+    /* On établit d'abord CE QU'ON PRÉTEND REPRODUIRE : aucune des deux pages ne porte la suite
+       brute que l'ancien préfiltre cherchait. Sans cela, la contre-épreuve serait décorative. */
+    for (const [i, h] of brut.entries()) if (/IATA|homolog/i.test(h)) ratés.push(`la page ${i} porte une forme brute : elle ne reproduit pas l'attaque`);
+    const { vu } = relevePublie(racine, [echappe, entite]);
+    const zones = Object.values(vu).flatMap((o) => Object.keys(o));
+    if (!zones.some((z) => z.startsWith("json-ld · iata crate"))) ratés.push("« \\u0049ATA crate » du JSON-LD n'est pas relevé");
+    if (!zones.some((z) => z.startsWith("corps · iata crate"))) ratés.push("« I&#65;TA crate » du corps n'est pas relevé");
+    rmSync(racine, { recursive: true, force: true });
+    if (ratés.length) { echec("1sexies préfiltre", `${ratés.length} écart(s)`); for (const r of ratés) console.error(`      ${r}`); }
+    else ok("1sexies préfiltre — deux pages sans aucune suite brute « IATA » sont lues et relevées : "
+      + "« \\u0049ATA crate » en JSON-LD, « I&#65;TA crate » en entité HTML");
+  }
+
+  /* ---- 1quinquies. LE PIPELINE VOIT CHAQUE ZONE, ET NE CONFOND PAS LICITE ET INTERDIT -------
+   * Six mutations sur une PAGE RÉELLE, chacune exigeant son résultat exact. Sans elles, « un seul
+   * contrat » resterait une intention : rien ne prouverait que les métadonnées et le JSON-LD sont
+   * réellement lus, ni qu'un JSON-LD illisible rougit au lieu d'être compté zéro. */
+  {
+    const temoin = pages.find((p) => /\/airlines\/[^/]+\/index\.html$/.test(p.slice(DIST.length)));
+    const brut = temoin ? readFileSync(temoin, "utf8") : "";
+    const compter = (html) => {
+      const z = zonesDe(html);
+      const par = {};
+      for (const [zone, texte] of ZONES(z)) {
+        MOTIF.lastIndex = 0;
+        for (const m of String(texte).matchAll(MOTIF)) {
+          if (jugerOccurrence(m[0]) !== "interdite") continue;
+          par[zone] = (par[zone] ?? 0) + 1;
+        }
+      }
+      return { par, illisibles: z.jsonLdInvalide };
+    };
+    if (!temoin) echec("1quinquies", "aucune fiche compagnie dans le dist : les mutations ne prouveraient rien");
+    else {
+      const base = compter(brut);
+      const cas = [
+        ["corps", brut.replace("<body", "<body data-x=\"1\"").replace(/(<body[^>]*>)/, "$1<p>caisse IATA</p>"), { corps: 1 }],
+        ["metas", brut.replace("</head>", '<meta name="twitter:description" content="IATA crate"></head>'), { metas: 1 }],
+        ["json-ld", brut.replace("</head>", '<script type="application/ld+json">{"d":"conforme à la norme IATA"}</scr' + 'ipt></head>'), { "json-ld": 1 }],
+        ["licite", brut.replace(/(<body[^>]*>)/, "$1<p>IATA requirements</p>"), {}],
+        /* LA ZONE DES ATTRIBUTS ACCESSIBLES (contre-revue du 02/09/2026). Un `alt` est publié :
+           lu à voix haute, affiché si l'image manque. `press-kit-es.html` en portait un —
+           « transportín IATA » — qui n'entrait dans aucune zone. */
+        ["alt", brut.replace(/(<body[^>]*>)/, '$1<img alt="IATA crate" src="/x.png">'), { "attributs-accessibles": 1 }],
+        ["aria-label", brut.replace(/(<body[^>]*>)/, '$1<button aria-label="caisse IATA">?</button>'), { "attributs-accessibles": 1 }],
+        /* L'ATTRIBUT `title`, à ne pas confondre avec l'élément : l'infobulle est vue de tous. */
+        ["attribut title", brut.replace(/(<body[^>]*>)/, '$1<span title="conforme à la norme IATA">i</span>'), { "attributs-accessibles": 1 }],
+        /* `aria-labelledby` ne porte pas de texte mais un identifiant : le lire compterait deux
+           fois l'affirmation qui vit déjà dans le corps, et compterait un identifiant. */
+        ["aria-labelledby", brut.replace(/(<body[^>]*>)/, '$1<button aria-labelledby="caisse-iata-titre">?</button>'), {}],
+      ];
+      const ratés = [];
+      for (const [nom, html, attendu] of cas) {
+        const { par } = compter(html);
+        for (const z of ["titre", "corps", "metas", "json-ld"]) {
+          const delta = (par[z] ?? 0) - (base.par[z] ?? 0);
+          if (delta !== (attendu[z] ?? 0)) ratés.push(`${nom} : zone « ${z} » varie de ${delta}, attendu ${attendu[z] ?? 0}`);
+        }
+      }
+      /* Un JSON-LD illisible n'est PAS un JSON-LD vide : c'est une zone dont on ne sait rien. */
+      const casse = compter(brut.replace("</head>", '<script type="application/ld+json">{ ceci n\'est pas du JSON </scr' + 'ipt></head>'));
+      if (casse.illisibles !== base.illisibles + 1) ratés.push(`json-ld illisible : ${casse.illisibles} signalé(s), attendu ${base.illisibles + 1}`);
+      /* Un défaut DÉPLACÉ d'une zone à l'autre : total constant, zones différentes. Éprouvé sur
+         les DEUX déplacements qui comptent — corps → métadonnée, et corps → attribut accessible.
+         Sans le second, une affirmation transportée du texte vers un `alt` passerait à total
+         constant, ce qui est précisément le trou fermé le 02/09/2026. */
+      const dansCorps = compter(brut.replace(/(<body[^>]*>)/, "$1<p>caisse IATA</p>")).par;
+      const totC = Object.values(dansCorps).reduce((a, b) => a + b, 0);
+      const ailleurs = [
+        ["metas", compter(brut.replace("</head>", '<meta name="description" content="caisse IATA"></head>')).par],
+        ["attributs-accessibles", compter(brut.replace(/(<body[^>]*>)/, '$1<img alt="caisse IATA" src="/x.png">')).par],
+      ];
+      for (const [zone, par] of ailleurs) {
+        const tot = Object.values(par).reduce((a, b) => a + b, 0);
+        if (totC !== tot) ratés.push(`déplacement vers « ${zone} » : totaux ${totC} et ${tot} — la contre-épreuve n'est pas à effectif constant`);
+        else if ((dansCorps.corps ?? 0) === (par.corps ?? 0)) ratés.push(`déplacement vers « ${zone} » : la zone ne change pas, le sceau de zone ne sert à rien`);
+      }
+
+      if (ratés.length) { echec("1quinquies zones", `${ratés.length} écart(s)`); for (const r of ratés.slice(0, 6)) console.error(`      ${r}`); }
+      else ok("1quinquies zones — corps, métas, JSON-LD et textes accessibles des attributs sont lus séparément ; "
+        + "un identifiant aria n'est pas un texte ; une référence licite ne compte pas ; un JSON-LD illisible rougit ; "
+        + "un défaut déplacé vers une métadonnée OU vers un attribut change de zone à total constant");
+    }
+  }
+
   /* `--ecrire-registre` déplace la sentinelle. Il n'est PAS appelé par la CI : le registre ne
      bouge que par un geste délibéré, et le lot éditorial s'en servira pour le ramener vers zéro.
      Sans cette option, l'avancement dépendrait d'un script de brouillon hors du dépôt. */
@@ -145,7 +282,10 @@ const INTERDIT = /IATA[- ]?(?:approved|compliant|certified)|homologu[\wÀ-ÿ]*\s
      champ que personne ne relit. */
   {
     const m = registreBrut._mesure ?? {};
-    const attendues = ["_commentaire", "_mesure", "pages"];
+    /* `_regle` est EXIGÉE, pas seulement tolérée : un registre qui ne dit pas COMMENT il a été
+       mesuré laisse croire que son nombre est absolu. Celui-ci a changé de 108 à 538 sans qu'une
+       seule page nouvelle soit fautive — c'est l'instrument qui a cessé d'être borgne. */
+    const attendues = ["_commentaire", "_regle", "_mesure", "pages"];
     const inconnues = Object.keys(registreBrut).filter((k) => !attendues.includes(k));
     const manquantes = attendues.filter((k) => !(k in registreBrut));
     const ecartsMesure = [];

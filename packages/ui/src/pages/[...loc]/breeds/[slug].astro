@@ -72,14 +72,17 @@ const cabinQ = cabinOK
   ? T("and can it travel in the cabin", "et peut-il voyager en cabine", "y puede viajar en cabina")
   : T("and where does it travel on board", "et où voyage-t-il à bord", "y dónde viaja a bordo");
 const descLong = F(
-  "Can {1} {0} fly, {2}? Hot-weather temperature limits, hold, IATA crate size and the airlines that accept it.",
-  "Le {0} supporte-t-il la chaleur en avion, {2} ? Seuils de température, soute, caisse IATA et compagnies qui l'acceptent.",
-  "¿El {0} tolera el calor en avión {2}? Umbrales de temperatura, bodega, jaula IATA y aerolíneas que lo aceptan.",
+  /* La promesse d'une taille de caisse attribuée à l'IATA était fausse deux fois : la série n'est pas de
+     l'IATA, et depuis le 02/09/2026 cette page n'annonce plus AUCUNE taille — elle renvoie au
+     calculateur, qui part des mesures de l'animal. La description dit donc ce que la page montre. */
+  "Can {1} {0} fly, {2}? Hot-weather temperature limits, hold, and the airlines that accept it.",
+  "Le {0} supporte-t-il la chaleur en avion, {2} ? Seuils de température, soute et compagnies qui l'acceptent.",
+  "¿El {0} tolera el calor en avión {2}? Umbrales de temperatura, bodega y aerolíneas que lo aceptan.",
   bName, art(bName), cabinQ);
 const descShort = F(
-  "Can {1} {0} fly in hot weather? Temperature limits, cabin, hold and IATA crate size.",
-  "Le {0} supporte-t-il la chaleur en avion ? Seuils de température, cabine, soute et caisse IATA.",
-  "¿El {0} tolera el calor en avión? Umbrales de temperatura, cabina, bodega y jaula IATA.",
+  "Can {1} {0} fly in hot weather? Temperature limits, cabin and hold.",
+  "Le {0} supporte-t-il la chaleur en avion ? Seuils de température, cabine et soute.",
+  "¿El {0} tolera el calor en avión? Umbrales de temperatura, cabina y bodega.",
   bName, art(bName));
 const desc = descLong.length <= 165 ? descLong : descShort;
 // FAQPage from the breed's derived Q&A (rich results + AI answer grounding).
