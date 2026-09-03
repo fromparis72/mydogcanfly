@@ -43,7 +43,7 @@ Para escolher, leia o nosso guia sobre [que equipamento de carro serve de verdad
 
 ## Que caixa ou bolsa escolher?
 
-O contêiner depende do porte do seu cachorro e do seu meio de transporte. Para um **cachorro pequeno**, uma bolsa macia bem ventilada costuma bastar e é aceita na cabine em avião e em trem: veja [as bolsas mais confortáveis para cães pequenos](/pt/travel-hub/bolsas-para-caes-pequenos/). Para um **cachorro médio ou grande**, ou para viajar no porão, é preciso uma **caixa rígida conforme a IATA** e bem dimensionada.
+O contêiner depende do porte do seu cachorro e do seu meio de transporte. Para um **cachorro pequeno**, uma bolsa macia bem ventilada costuma bastar e é aceita na cabine em avião e em trem: veja [as bolsas mais confortáveis para cães pequenos](/pt/travel-hub/bolsas-para-caes-pequenos/). Para um **cachorro médio ou grande**, ou para viajar no porão, é preciso uma **caixa rígida em conformidade com os requisitos aplicáveis** e bem dimensionada.
 
 Três recursos para acertar: o [comparativo entre bolsa e caixa](/pt/travel-hub/bolsas-e-caixas-de-transporte/), o nosso guia sobre [escolher uma caixa em conformidade com os requisitos aplicáveis](/pt/travel-hub/caixa-de-transporte-homologada-iata/) e o artigo completo sobre [viajar de avião com cachorro](/pt/travel-hub/viajar-de-aviao-com-cachorro/) para a papelada.
 

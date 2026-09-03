@@ -32,7 +32,7 @@
 import { readFileSync, writeFileSync } from "node:fs";
 import { execSync } from "node:child_process";
 import YAML from "yaml";
-import { classer, MOTIF, SLUGS_CONSERVES } from "./inventaire-iata.mjs";
+import { classer, MOTIF, SLUGS_CONSERVES, FRAGMENTS_ATTRIBUES } from "./inventaire-iata.mjs";
 
 const ECRIRE = process.argv.includes("--ecrire");
 const LANGUES = ["en", "fr", "es", "pt"];
@@ -171,6 +171,18 @@ const ES = [
   [re("homologado\\s+(?:por\\s+la\\s+)?IATA", "gi"), "conforme a los requisitos aplicables"],
   [re("aprobadas\\s+por\\s+la\\s+IATA", "gi"), "conformes a los requisitos aplicables"],
   [re("aprobada\\s+por\\s+la\\s+IATA", "gi"), "conforme a los requisitos aplicables"],
+  /* LA CONFORMITÉ AFFIRMÉE D'UN OBJET À L'ORGANISATION ELLE-MÊME (03/09/2026). « jaula conforme
+     a IATA » ne veut rien dire : l'IATA publie des exigences, elle ne valide pas un objet. Le
+     contenant garde son nom ; l'affirmation devient ce qu'elle peut être — une conformité aux
+     exigences applicables, sans certificateur. */
+  [re("jaulas\\s+conformes\\s+a\\s+IATA", "gi"), "jaulas de transporte conformes a los requisitos aplicables"],
+  [re("jaula\\s+conforme\\s+a\\s+IATA", "gi"), "jaula de transporte conforme a los requisitos aplicables"],
+  [re("transportines\\s+conformes\\s+a\\s+IATA", "gi"), "transportines conformes a los requisitos aplicables"],
+  [re("transportín\\s+conforme\\s+a\\s+IATA", "gi"), "transportín conforme a los requisitos aplicables"],
+  [re("compatibles\\s+con\\s+la\\s+IATA", "gi"), "conformes a los requisitos aplicables"],
+  [re("compatible\\s+con\\s+la\\s+IATA", "gi"), "conforme a los requisitos aplicables"],
+  [re("conformes\\s+a\\s+IATA", "gi"), "conformes a los requisitos aplicables"],
+  [re("conforme\\s+a\\s+IATA", "gi"), "conforme a los requisitos aplicables"],
   [re("conformes?\\s+a\\s+la\\s+IATA", "gi"), "conforme a los requisitos aplicables"],
   [re("certificadas\\s+IATA", "gi"), "conformes a los requisitos aplicables"],
   [re("tipo\\s+IATA\\s+rígida", "gi"), "rígida de transporte"],
@@ -199,6 +211,19 @@ const PT = [
   [re("homologado\\s+(?:pela\\s+)?IATA", "gi"), "em conformidade com os requisitos aplicáveis"],
   [re("adequadas\\s+à\\s+IATA", "gi"), "em conformidade com os requisitos aplicáveis"],
   [re("adequada\\s+à\\s+IATA", "gi"), "em conformidade com os requisitos aplicáveis"],
+  /* Idem en portugais : « caixa de transporte em conformidade com a IATA » affirme que
+     l'organisation valide la caisse. On nomme ce qui est vrai — les exigences applicables. */
+  [re("caixas\\s+de\\s+transporte\\s+em\\s+conformidade\\s+com\\s+a\\s+IATA", "gi"), "caixas de transporte em conformidade com os requisitos aplicáveis"],
+  [re("caixa\\s+de\\s+transporte\\s+em\\s+conformidade\\s+com\\s+a\\s+IATA", "gi"), "caixa de transporte em conformidade com os requisitos aplicáveis"],
+  [re("caixas\\s+de\\s+transporte\\s+conformes\\s+a\\s+IATA", "gi"), "caixas de transporte em conformidade com os requisitos aplicáveis"],
+  [re("caixa\\s+de\\s+transporte\\s+conforme\\s+a\\s+IATA", "gi"), "caixa de transporte em conformidade com os requisitos aplicáveis"],
+  [re("cont[êe]ineres\\s+compat[íi]veis\\s+com\\s+a\\s+IATA", "gi"), "contêineres em conformidade com os requisitos aplicáveis"],
+  [re("cont[êe]iner\\s+compat[íi]vel\\s+com\\s+a\\s+IATA", "gi"), "contêiner em conformidade com os requisitos aplicáveis"],
+  [re("compat[íi]veis\\s+com\\s+a\\s+IATA", "gi"), "em conformidade com os requisitos aplicáveis"],
+  [re("compat[íi]vel\\s+com\\s+a\\s+IATA", "gi"), "em conformidade com os requisitos aplicáveis"],
+  [re("em\\s+conformidade\\s+com\\s+a\\s+IATA", "gi"), "em conformidade com os requisitos aplicáveis"],
+  [re("conformes\\s+a\\s+IATA", "gi"), "em conformidade com os requisitos aplicáveis"],
+  [re("conforme\\s+a\\s+IATA", "gi"), "em conformidade com os requisitos aplicáveis"],
   [re("conformes?\\s+(?:à\\s+|com\\s+a\\s+)?IATA", "gi"), "em conformidade com os requisitos aplicáveis"],
   [re("tipo\\s+IATA\\s+rígida", "gi"), "rígida de transporte"],
   [re("tipo\\s+IATA\\s+rígido", "gi"), "rígido de transporte"],
@@ -227,14 +252,38 @@ export const TABLES = { en: EN, fr: FR, es: ES, pt: PT };
  *     l'autre la formation d'une personne.
  */
 export const ATTRIBUES = [
-  { fichier: "content/airlines/cathay_pacific.yml",
-    de: re("IPATA\\s*\\/\\s*IATA[- ]accredited\\s+agents", "gi"),
-    vers: "IPATA or ATA members, IATA Accredited Freight Forwarders, or holders of a valid IATA Live Animals Regulations training certificate",
+  { fichier: "content/airlines/cathay_pacific.yml", langue: "en",
+    de: /\bIPATA\s*\/\s*IATA[- ]accredited\s+agents\b/gi,
+    vers: "IPATA or ATA members, IATA Accredited Freight Forwarders, or holders of a valid IATA Live Animals Regulations certificate (from Hong Kong, any agent may book)",
     source: "https://www.cathaypacific.com/cx/en_IN/prepare-trip/help-for-passengers/travelling-with-animals/overview-cargo.html" },
-  { fichier: "content/airlines/air_baltic.yml",
-    de: re("IATA[- ]certified\\s+cargo\\s+agents", "gi"),
-    vers: "cargo agents holding a valid IATA Live Animals Regulations training certificate",
+  { fichier: "content/airlines/cathay_pacific.yml", langue: "fr",
+    de: /\bIPATA\s*\/\s*accrédités\s+IATA\b/gi,
+    vers: "membres IPATA ou ATA, transitaires titulaires de l'accréditation IATA Cargo Agency (IATA Accredited Freight Forwarder), ou titulaires d'un certificat IATA Live Animals Regulations valide ; au départ de Hong Kong, n'importe quel agent peut réserver",
+    source: "idem" },
+  { fichier: "content/airlines/cathay_pacific.yml", langue: "es",
+    de: /\bagentes\s+IPATA\s*\/\s*acreditados\s+por\s+IATA\b/gi,
+    vers: "miembros de IPATA o ATA, transitarios con la acreditación IATA Cargo Agency (IATA Accredited Freight Forwarder), o titulares de un certificado IATA Live Animals Regulations en vigor; desde Hong Kong, cualquier agente puede reservar",
+    source: "idem" },
+  { fichier: "content/airlines/cathay_pacific.yml", langue: "pt",
+    de: /\bagentes\s+credenciados\s+pela\s+IPATA\s*\/\s*IATA\b/gi,
+    vers: "membros da IPATA ou da ATA, agentes de carga com a acreditação IATA Cargo Agency (IATA Accredited Freight Forwarder), ou titulares de um certificado IATA Live Animals Regulations válido; a partir de Hong Kong, qualquer agente pode reservar",
+    source: "idem" },
+  /* LE CHEMIN EST `airbaltic.yml`, PAS `air_baltic.yml`. Faute mesurée le 03/09/2026 : le fichier
+     déclaré n'existait pas, l'exception ne s'appliquait donc jamais — et la contre-épreuve, qui ne
+     relisait que la TABLE, restait verte pendant que la donnée restait fausse. */
+  { fichier: "content/airlines/airbaltic.yml", langue: "en",
+    de: /\bthird-party\s+IATA[- ]certified\s+cargo\s+agents\b/gi,
+    vers: "third-party cargo agents holding a valid IATA Live Animals Regulations training certificate",
     source: "https://www.airbaltic.com/en/cargo/shipping-animals-cargo" },
+  { fichier: "content/airlines/airbaltic.yml", langue: "fr",
+    de: /agences\s+fret\s+certifiées\s+IATA\s+tierces/gi,
+    vers: "agences de fret tierces titulaires d'un certificat de formation IATA Live Animals Regulations valide", source: "idem" },
+  { fichier: "content/airlines/airbaltic.yml", langue: "es",
+    de: /agencias\s+de\s+carga\s+certificadas\s+IATA\s+externas/gi,
+    vers: "agencias de carga externas con un certificado de formación IATA Live Animals Regulations en vigor", source: "idem" },
+  { fichier: "content/airlines/airbaltic.yml", langue: "pt",
+    de: /agências\s+de\s+carga\s+terceirizadas\s+certificadas\s+pela\s+IATA/gi,
+    vers: "agências de carga terceirizadas com certificado de formação IATA Live Animals Regulations válido", source: "idem" },
 ];
 
 /* ---- LA LANGUE D'UN FICHIER ENTIER ---------------------------------------------------------- */
@@ -282,9 +331,40 @@ const masquer = (t) => {
 const restituer = (t, g) => g.reduce((x, sl, i) => x.split(` S${i} `).join(sl), t);
 
 /** Applique la table d'UNE langue à UN fragment, et rien d'autre. */
-export function appliquer(fragment, langue, compteur = new Map(), tables = TABLES) {
+export function appliquer(fragment, langue, compteur = new Map(), tables = TABLES, fichier = null) {
   const { texte: masque, gardes } = masquer(fragment);
   let out = masque;
+  /* LES EXCEPTIONS ATTRIBUÉES PASSENT EN PREMIER, ET C'EST UNE FAUTE MESURÉE QUI L'IMPOSE. Elles
+     s'appliquaient APRÈS les règles génériques : « IPATA / IATA-accredited agents » était donc
+     déjà devenu « IPATA / meeting the applicable requirements agents » quand son motif exact était
+     cherché, et l'exception ne trouvait plus rien. Une exception qui passe après la règle qu'elle
+     excepte n'est pas une exception. */
+  /* ET LEUR SORTIE EST PROTÉGÉE DES RÈGLES GÉNÉRIQUES QUI SUIVENT. Faute mesurée le 03/09/2026 :
+     l'exception écrivait bien « IATA Accredited Freight Forwarder », puis la table anglaise
+     repassait dessus et rendait « meeting the applicable requirements Freight Forwarders ». Une
+     exception défaite par la règle qu'elle excepte n'est pas une exception. Sa sortie est donc
+     masquée le temps de la passe générique, exactement comme un slug conservé. */
+  const attribues = [];
+  if (fichier) {
+    /* IDEMPOTENCE : un fragment attribué DÉJÀ écrit est masqué lui aussi, sinon la seconde passe
+       le mange — l'exception ne trouve plus rien à remplacer, et la règle générique voit
+       « IATA Accredited » à nu. Mesuré : le second passage à blanc annonçait encore un fichier
+       modifié. La liste vient de l'instrument, pas d'une copie. */
+    for (const f of FRAGMENTS_ATTRIBUES) {
+      if (f.chemin !== fichier || !out.includes(f.fragment)) continue;
+      out = out.split(f.fragment).join(` A${attribues.length} `);
+      attribues.push(f.fragment);
+    }
+    for (const a of ATTRIBUES) {
+      if (a.fichier !== fichier || a.langue !== langue) continue;
+      const avant = out;
+      out = out.replace(a.de, () => {
+        attribues.push(a.vers);
+        return ` A${attribues.length - 1} `;
+      });
+      if (out !== avant) compteur.set(`attribué  ${fichier} [${langue}]`, (compteur.get(`attribué  ${fichier} [${langue}]`) ?? 0) + 1);
+    }
+  }
   for (const [motif, rep] of tables[langue]) {
     const avant = out;
     /* LA CAPITALE DU MOT REMPLACÉ EST RENDUE — mais jamais celle d'un ACRONYME. « Harnais
@@ -303,6 +383,7 @@ export function appliquer(fragment, langue, compteur = new Map(), tables = TABLE
       compteur.set(`${langue}  ${motif}`, (compteur.get(`${langue}  ${motif}`) ?? 0) + n);
     }
   }
+  out = attribues.reduce((t, v, i) => t.split(` A${i} `).join(v), out);
   return restituer(out, gardes);
 }
 
@@ -330,14 +411,56 @@ const formeDe = (o, p = "") => {
   return [p];
 };
 
-function verifierYaml(avant, apres) {
+/* LA VÉRIFICATION COMPARE LES VALEURS DÉCODÉES, PAS SEULEMENT LA FORME DE L'ARBRE.
+ *
+ * FAUTE MESURÉE LE 03/09/2026, ET C'ÉTAIT UN FAUX RAPPORT DE MA PART. Cette fonction ne
+ * confrontait que le NOMBRE de plages de langue et la LISTE DES CHEMINS de l'arbre. J'ai
+ * pourtant annoncé « reparse et comparaison profonde » : c'était faux. Une substitution pouvait
+ * altérer la valeur décodée d'un scalaire — une séquence d'échappement abîmée, un guillemet
+ * avalé, une chaîne coupée — en laissant la forme de l'arbre RIGOUREUSEMENT identique, et rien
+ * ne l'aurait vu.
+ *
+ * LA VÉRIFICATION EST DONC UNE ÉGALITÉ DE VALEURS, en deux exigences séparées :
+ *   1. chaque scalaire CIBLÉ vaut exactement ce que la table produit sur sa valeur DÉCODÉE ;
+ *   2. tout le reste — clés comprises — est identique au bit près.
+ * L'objet attendu est construit en mémoire depuis l'état initial : on ne compare donc pas le
+ * résultat à lui-même, mais à ce qu'il aurait DÛ être. */
+function valeursDe(o, p = "") {
+  if (Array.isArray(o)) return o.flatMap((v, i) => valeursDe(v, `${p}[${i}]`));
+  if (o && typeof o === "object") return Object.entries(o).flatMap(([k, v]) => valeursDe(v, `${p}.${k}`));
+  return [[p, o]];
+}
+
+export function verifierYaml(avant, apres, fichier) {
   let da, db;
   try { da = YAML.parse(avant); } catch (e) { return `YAML illisible AVANT : ${e.message}`; }
   try { db = YAML.parse(apres); } catch (e) { return `YAML invalide APRÈS réécriture : ${e.message}`; }
   const a = plagesYaml(avant).length, b = plagesYaml(apres).length;
   if (a !== b) return `scalaires de langue : ${a} → ${b}`;
-  const fa = formeDe(da).join("|"), fb = formeDe(db).join("|");
-  return fa === fb ? null : "la forme de l'arbre a changé";
+
+  /* L'ATTENDU, construit depuis l'état initial : la table appliquée à chaque valeur DÉCODÉE,
+     sous la langue de sa propre clé. Le compteur est muet ici — on ne compte pas deux fois. */
+  const muet = new Map();
+  const attendu = (function muter(n, langue) {
+    if (typeof n === "string") return langue ? appliquer(n, langue, muet, TABLES, fichier) : n;
+    if (Array.isArray(n)) return n.map((v) => muter(v, langue));
+    if (n && typeof n === "object") {
+      return Object.fromEntries(Object.entries(n).map(([k, v]) =>
+        [k, muter(v, LANGUES.includes(k) ? k : langue)]));
+    }
+    return n;
+  })(da, null);
+
+  const va = valeursDe(attendu), vb = valeursDe(db);
+  if (va.length !== vb.length) return `nombre de valeurs : ${va.length} → ${vb.length}`;
+  for (let i = 0; i < va.length; i++) {
+    if (va[i][0] !== vb[i][0]) return `chemin ${vb[i][0]} au lieu de ${va[i][0]}`;
+    if (va[i][1] !== vb[i][1]) {
+      return `valeur décodée ≠ attendu en ${va[i][0]} : ${JSON.stringify(String(vb[i][1]).slice(0, 70))}`
+        + ` au lieu de ${JSON.stringify(String(va[i][1]).slice(0, 70))}`;
+    }
+  }
+  return null;
 }
 
 /* ---- LE PROGRAMME -----------------------------------------------------------------------
@@ -369,7 +492,7 @@ if (import.meta.url === `file://${process.argv[1]}`) {
 
     if (langueEntiere) {
       /* Guides et press kits : le fichier ENTIER est d'une seule langue. Aucun mélange possible. */
-      texte = appliquer(orig, langueEntiere, compteur);
+      texte = appliquer(orig, langueEntiere, compteur, TABLES, f);
 
     } else if (f.endsWith(".json")) {
       /* GLOSSAIRES `_pt` : la CLÉ est anglaise, la VALEUR portugaise — deux portées, deux tables.
@@ -414,10 +537,10 @@ if (import.meta.url === `file://${process.argv[1]}`) {
       /* DE DROITE À GAUCHE : les décalages des plages restantes restent valides. */
       for (const p of [...plages].sort((a, b) => b.debut - a.debut)) {
         const frag = orig.slice(p.debut, p.fin);
-        const neuf = appliquer(frag, p.langue, compteur);
+        const neuf = appliquer(frag, p.langue, compteur, TABLES, f);
         if (neuf !== frag) texte = texte.slice(0, p.debut) + neuf + texte.slice(p.fin);
       }
-      const ecart = verifierYaml(orig, texte);
+      const ecart = verifierYaml(orig, texte, f);
       if (ecart) { defauts.push(`${f} : ${ecart}`); continue; }
       /* Ce qui reste interdit HORS d'une plage de langue est NOMMÉ, jamais réécrit à l'aveugle. */
       const couvert = (i) => plages.some((p) => i >= p.debut && i < p.fin);
@@ -427,8 +550,6 @@ if (import.meta.url === `file://${process.argv[1]}`) {
       defauts.push(`${f} : aucune portée de langue connue pour ce format`);
       continue;
     }
-
-    for (const a of ATTRIBUES) if (a.fichier === f) texte = texte.replace(a.de, a.vers);
 
     const reste = interdites(f, texte);
     apres += reste.length;

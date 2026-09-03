@@ -104,9 +104,29 @@ export const ALTERNATIVES = [
   "IATA[- ]?(?:LAR|formula|method|requirements?|standards?|guidelines?)",
   "Live Animals Regulations",
   `homologu${SUITE}`, `homologad${SUITE}`, `homologa${SUITE}`,
+  /* ---- LA CONFORMITÉ AFFIRMÉE D'UN OBJET, EN ESPAGNOL ET EN PORTUGAIS -----------------------
+   *
+   * TROU MESURÉ LE 03/09/2026, ET C'ÉTAIT UNE DETTE PRÉEXISTANTE — 37 occurrences dans 24
+   * fichiers actifs, dont des guides espagnols et portugais RÉELLEMENT PUBLIÉS :
+   * « caixa de transporte em conformidade com a IATA », « transportín conforme a IATA »,
+   * « contêiner compatível com a IATA ». Le motif ne connaissait que les formes AVEC article —
+   * « conforme a LA IATA » — et ces phrases-là n'en portent pas. Le registre a donc pu annoncer
+   * zéro alors que la dette publiée ne l'était pas : un zéro LEXICAL, jamais un zéro réel.
+   *
+   * LA DISTINCTION EST DANS L'ORDRE. Se conformer aux EXIGENCES publiées par l'IATA est vrai et
+   * licite ; être conforme à L'IATA ne veut rien dire, sinon prétendre que l'organisation valide
+   * l'objet. Les formes qui nomment les exigences sont donc écrites AVANT, et accrochent les
+   * premières. */
+  `em${ESP}conformidade${ESP}com${ESP}(?:os${ESP})?requisitos(?:${ESP}d[ao]s?)?${ESP}IATA`,
+  `conformes?${ESP}aos${ESP}requisitos(?:${ESP}d[ao]s?)?${ESP}IATA`,
+  `requisitos${ESP}(?:d[ao]s?${ESP})?IATA`,
+  `em${ESP}conformidade${ESP}com${ESP}a${ESP}IATA`,
+  `compat[íi]ve(?:l|is)${ESP}com${ESP}a${ESP}IATA`,
+  `compatibles?${ESP}con${ESP}la${ESP}IATA`,
   `conforme[s]?${ESP}(?:à${ESP}la${ESP}norme${ESP})?IATA`,
   `conforme[s]?${ESP}(?:a|à)${ESP}la${ESP}IATA`,
   `conforme[s]?${ESP}(?:à|a)${ESP}(?:la${ESP})?norma${ESP}IATA`,
+  `conformes?${ESP}(?:a|à)${ESP}IATA`,
   /* SYMÉTRIE LINGUISTIQUE (arbitrage du 02/09/2026). « norme(s) IATA » était licite et
      « norma IATA » interdit, alors que les deux nomment le même référentiel — une incohérence
      entre langues, pas une règle. Les deux sont désormais licites À L'OCCURRENCE. Les
@@ -184,9 +204,9 @@ export const MOTIF_HERITE = new RegExp(ALTERNATIVES_HERITEES.join("|"), "gi");
 
 /* ---- LES DEUX JUGEMENTS, PORTÉS SUR LE TEXTE TROUVÉ SEUL -----------------------------------
    Pas sur la ligne : c'est toute la correction du P0-2. Chacun ne voit que l'occurrence. */
-const OCC_LEGITIME = /^(?:Live Animals Regulations|IATA[- ]?(?:LAR|formula|method|requirements?|standards?|guidelines?)|normes?\s+IATA|normas?\s+IATA|exigences\s+IATA)$/i;
+const OCC_LEGITIME = /^(?:Live Animals Regulations|IATA[- ]?(?:LAR|formula|method|requirements?|standards?|guidelines?)|normes?\s+IATA|normas?\s+IATA|exigences\s+IATA|requisitos\s+(?:d[ao]s?\s+)?IATA|em\s+conformidade\s+com\s+(?:os\s+)?requisitos(?:\s+d[ao]s?)?\s+IATA|conformes?\s+aos\s+requisitos(?:\s+d[ao]s?)?\s+IATA)$/i;
 const OCC_INTERDITE_FAMILLE = new RegExp(`^(?:${[...FAMILLE_CONTENANT, ...FORMES_BORNEES].join("|")})$`, "i");
-const OCC_INTERDITE = /^(?:IATA[- ]?(?:approved|compliant|certified|accredited)|homologu[\wÀ-ÿ]*|homologad[\wÀ-ÿ]*|homologa[\wÀ-ÿ]*|conforme[s]?\s+(?:à\s+la\s+norme\s+)?IATA|conforme[s]?\s+(?:a|à)\s+la\s+IATA|conforme[s]?\s+(?:à|a)\s+(?:la\s+)?norma\s+IATA|certifi[\wÀ-ÿ]*\s+IATA|approuv[\wÀ-ÿ]*\s+par\s+(?:l')?IATA|aprobad[\wÀ-ÿ]*\s+por\s+la\s+IATA|aprovad[\wÀ-ÿ]*\s+pela\s+IATA)$/i;
+const OCC_INTERDITE = /^(?:IATA[- ]?(?:approved|compliant|certified|accredited)|homologu[\wÀ-ÿ]*|homologad[\wÀ-ÿ]*|homologa[\wÀ-ÿ]*|conforme[s]?\s+(?:à\s+la\s+norme\s+)?IATA|conforme[s]?\s+(?:a|à)\s+la\s+IATA|conforme[s]?\s+(?:à|a)\s+(?:la\s+)?norma\s+IATA|certifi[\wÀ-ÿ]*\s+IATA|approuv[\wÀ-ÿ]*\s+par\s+(?:l')?IATA|aprobad[\wÀ-ÿ]*\s+por\s+la\s+IATA|aprovad[\wÀ-ÿ]*\s+pela\s+IATA|em\s+conformidade\s+com\s+a\s+IATA|compat[íi]ve(?:l|is)\s+com\s+a\s+IATA|compatibles?\s+con\s+la\s+IATA|conformes?\s+(?:a|à)\s+IATA)$/i;
 
 /* Les quatre slugs que l'arbitrage conserve : identifiants historiques stables, jamais du
    contenu éditorial à reproduire dans un titre ou un texte. */
@@ -436,6 +456,60 @@ export function dansUnSlugConserve(texte, debut, fin) {
   return false;
 }
 
+/* ---- LES FRAGMENTS ATTRIBUÉS, PAR CHEMIN EXACT ET TEXTE EXACT --------------------------------
+ *
+ * L'IATA ACCRÉDITE RÉELLEMENT DES ENTREPRISES DE FRET — le programme « IATA Cargo Agency
+ * Accreditation » existe, et « IATA Accredited Freight Forwarder » est sa désignation officielle.
+ * Elle délivre par ailleurs un certificat de formation « IATA Live Animals Regulations » à des
+ * PERSONNES. Ce sont deux choses différentes, et aucune des deux n'est l'homologation d'une caisse.
+ *
+ * AUCUNE PERMISSION LEXICALE GÉNÉRALE N'EST OUVERTE, et c'est l'arbitrage du 03/09/2026 :
+ * `IATA-accredited`, `IATA-certified` et le mot « agent » restent interdits partout. Ne sont
+ * licites que ces FRAGMENTS EXACTS, à ces CHEMINS EXACTS, chacun avec la page qui l'établit. Un
+ * mot déplacé, une lettre changée, un autre fichier : rien n'est exempté.
+ *
+ * L'occurrence doit vivre ENTIÈREMENT à l'intérieur du fragment déclaré — comme pour les slugs.
+ * Les mêmes mots écrits ailleurs dans la même ligne restent interdits. */
+export const FRAGMENTS_ATTRIBUES = [
+  { chemin: "content/airlines/cathay_pacific.yml",
+    fragment: "IATA Accredited Freight Forwarder",
+    source: "https://www.cathaypacific.com/cx/en_IN/prepare-trip/help-for-passengers/travelling-with-animals/overview-cargo.html" },
+  { chemin: "content/airlines/cathay_pacific.yml",
+    fragment: "certificat IATA Live Animals Regulations",
+    source: "idem — la page nomme le certificat de formation LAR comme troisième catégorie admise" },
+  { chemin: "content/airlines/cathay_pacific.yml",
+    fragment: "IATA Live Animals Regulations certificate",
+    source: "idem" },
+  { chemin: "content/airlines/cathay_pacific.yml",
+    fragment: "certificado IATA Live Animals Regulations",
+    source: "idem — la désignation officielle du certificat, en espagnol comme en portugais" },
+  { chemin: "content/airlines/airbaltic.yml",
+    fragment: "IATA Live Animals Regulations training certificate",
+    source: "https://www.airbaltic.com/en/cargo/shipping-animals-cargo" },
+  { chemin: "content/airlines/airbaltic.yml",
+    fragment: "certificat de formation IATA Live Animals Regulations",
+    source: "idem" },
+  { chemin: "content/airlines/airbaltic.yml",
+    fragment: "certificado de formación IATA Live Animals Regulations",
+    source: "idem" },
+  { chemin: "content/airlines/airbaltic.yml",
+    fragment: "certificado de formação IATA Live Animals Regulations",
+    source: "idem" },
+];
+
+/** Vrai si l'occurrence vit ENTIÈREMENT dans un fragment attribué déclaré POUR CE CHEMIN. */
+export function dansUnFragmentAttribue(chemin, ligne, debut, fin) {
+  for (const f of FRAGMENTS_ATTRIBUES) {
+    if (f.chemin !== chemin) continue;
+    let i = ligne.indexOf(f.fragment);
+    while (i !== -1) {
+      if (debut >= i && fin <= i + f.fragment.length) return true;
+      i = ligne.indexOf(f.fragment, i + 1);
+    }
+  }
+  return false;
+}
+
 export function classer(chemin, ligne, trouve, debut, fin) {
   /* 0 — UN INSTRUMENT DE MESURE NE SE MESURE PAS LUI-MÊME. Cette règle passe AVANT toutes les
      autres, y compris avant les slugs et avant le jugement lexical : sinon une URL du registre est
@@ -445,6 +519,10 @@ export function classer(chemin, ligne, trouve, debut, fin) {
 
   /* 1 — L'occurrence EST à l'intérieur d'un slug conservé : un identifiant, pas une phrase. */
   if (dansUnSlugConserve(ligne, debut, fin)) return "slug_conserve";
+
+  /* 1 bis — L'occurrence vit dans un FRAGMENT ATTRIBUÉ, déclaré pour CE chemin et sourcé : une
+     désignation officielle de l'IATA, qui existe vraiment. Voir `FRAGMENTS_ATTRIBUES`. */
+  if (dansUnFragmentAttribue(chemin, ligne, debut, fin)) return "reference_reglementaire_legitime";
   /* 2 — L'occurrence est À L'INTÉRIEUR d'une citation attribuée : on ne réécrit pas une source. */
   for (const [a, b] of portéesDeCitation(ligne)) if (debut >= a && fin <= b) return "citation_attribuee";
 

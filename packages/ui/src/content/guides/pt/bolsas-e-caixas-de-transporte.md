@@ -23,7 +23,7 @@ faq:
     a: "Escolha uma caixa em que o seu cachorro consiga ficar de pé sem abaixar a cabeça, virar-se por completo e deitar-se com as patas esticadas. Meça o comprimento do focinho até a base da cauda e a altura dele de pé, e acrescente uma margem. Nem pequena demais, nem excessivamente grande."
   - q: "Uma bolsa flexível é aceita na cabine do avião?"
     a: "Muitas vezes sim, para cães pequenos, mas cada companhia define os próprios limites de tamanho e peso. A bolsa precisa ser ventilada, bem fechada e caber embaixo do assento da frente. Confirme sempre as condições exatas com a companhia antes de reservar."
-  - q: "É preciso uma caixa rígida em conformidade com a IATA para o porão?"
+  - q: "É preciso uma caixa rígida em conformidade com os requisitos aplicáveis para o porão?"
     a: "Sim, viajar no porão exige uma caixa rígida que atenda às exigências da IATA: solidez, ventilação em vários lados, travas seguras e piso estanque. As companhias podem acrescentar critérios próprios, então confirme o modelo esperado antes da viagem."
   - q: "Como evito que o meu cachorro se estresse na caixa?"
     a: "Com uma habituação gradual, associando a caixa a experiências positivas: petiscos, uma manta familiar, sessões curtas que aumentam aos poucos. Nunca o tranque de repente e nunca use a caixa como castigo, sob risco de criar uma aversão duradoura."

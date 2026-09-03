@@ -49,7 +49,7 @@ Características práticas:
 
 - Despacho no terminal de passageiros, em geral em um balcão específico e mais cedo que a bagagem comum.
 - Tarifado como taxa por animal ou como excesso de bagagem, conforme a companhia.
-- Exige uma caixa rígida conforme a IATA — veja [escolher uma caixa em conformidade com os requisitos aplicáveis](/pt/travel-hub/caixa-de-transporte-homologada-iata/) e dimensione-a com a nossa [calculadora de caixa](/pt/tools/crate/).
+- Exige uma caixa rígida em conformidade com os requisitos aplicáveis — veja [escolher uma caixa em conformidade com os requisitos aplicáveis](/pt/travel-hub/caixa-de-transporte-homologada-iata/) e dimensione-a com a nossa [calculadora de caixa](/pt/tools/crate/).
 - Sujeito aos embargos de temperatura e às restrições de raça, em especial para as [raças braquicefálicas](/pt/travel-hub/racas-braquicefalicas-e-aviao/).
 
 Nem todas as companhias oferecem isso em todas as rotas, e várias o retiraram por completo. É uma das coisas que se movem: veja [por que as políticas de animais mudam](/pt/travel-hub/politicas-de-animais-que-mudam/).

@@ -23,7 +23,7 @@ faq:
   - q: "É obrigatório prender o meu cachorro no carro?"
     a: "Sim. Na maioria dos países, as regras de trânsito exigem que nada atrapalhe o motorista: um cachorro solto é um perigo. Um peitoral com crash test preso ao cinto, uma caixa de transporte ou uma grade separadora são as soluções seguras e em conformidade."
   - q: "Uma caixa flexível serve para o avião?"
-    a: "Para a cabine, algumas bolsas flexíveis em conformidade são aceitas para cães pequenos. Para o porão, porém, só é admitida uma caixa rígida em conformidade com a IATA, porque protege o animal e resiste ao manuseio."
+    a: "Para a cabine, algumas bolsas flexíveis em conformidade são aceitas para cães pequenos. Para o porão, porém, só é admitida uma caixa rígida em conformidade com os requisitos aplicáveis, porque protege o animal e resiste ao manuseio."
   - q: "Como acerto o tamanho da caixa?"
     a: "Meça a altura do seu cachorro na cernelha (com as orelhas eretas) e o comprimento do focinho até a base da cauda, e acrescente alguns centímetros. O cachorro precisa poder ficar de pé, virar-se e deitar-se sem aperto."
   - q: "Que orçamento prever para equipar bem o cachorro?"
@@ -40,7 +40,7 @@ Cada dispositivo cumpre uma função precisa. Aqui está uma comparação para o
 
 | Equipamento | Para quem | Meio de transporte | Vantagem principal |
 |---|---|---|---|
-| Caixa rígida | Todos os portes | Carro, avião | Segurança máxima, opções em conformidade com a IATA |
+| Caixa rígida | Todos os portes | Carro, avião | Segurança máxima, opções em conformidade com os requisitos aplicáveis |
 | Caixa flexível | Cães pequenos e médios | Carro, trem | Leve e dobrável |
 | Peitoral de segurança | Cães médios e grandes | Carro | Liberdade de movimento, prende ao cinto |
 | Bolsa de transporte | Cães pequenos (< 8 kg) | Trem, cabine de avião | Compacta, mantém o cachorro perto de você |

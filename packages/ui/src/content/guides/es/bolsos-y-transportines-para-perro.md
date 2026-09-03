@@ -23,7 +23,7 @@ faq:
     a: "Elige un transportín en el que tu perro pueda ponerse de pie sin bajar la cabeza, darse la vuelta por completo y tumbarse con las patas estiradas. Mide su longitud del hocico a la base de la cola y su altura de pie, y añade un margen. Ni demasiado pequeño ni excesivamente grande."
   - q: "¿Se acepta un bolso flexible en la cabina del avión?"
     a: "A menudo sí para perros pequeños, pero cada aerolínea fija sus propios límites de tamaño y peso. El bolso debe estar ventilado, bien cerrado y caber bajo el asiento de delante. Comprueba siempre las condiciones exactas con la compañía antes de reservar."
-  - q: "¿Hace falta un transportín rígido conforme a IATA para la bodega?"
+  - q: "¿Hace falta un transportín rígido conforme a los requisitos aplicables para la bodega?"
     a: "Sí, viajar en bodega exige un transportín rígido que cumpla los requisitos de la IATA: solidez, ventilación en varios lados, cierres seguros y suelo estanco. Las aerolíneas pueden añadir sus propios criterios, así que confirma el modelo esperado antes de salir."
   - q: "¿Cómo evito que mi perro se estrese en su transportín?"
     a: "Con una habituación progresiva, asociando el transportín a experiencias positivas: premios, una manta familiar, sesiones cortas que se alargan poco a poco. No lo encierres nunca de golpe ni uses el transportín como castigo, o corres el riesgo de crear un rechazo duradero."

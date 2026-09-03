@@ -87,6 +87,12 @@ const classerLigne = (chemin, ligne) => {
     "homologué", "homologada", "homologação",
     "conforme IATA", "conforme a la IATA", "conforme à norma IATA",
     "norma IATA", "norme IATA", "exigences IATA",
+    /* Les sept formes ES/PT ajoutées le 03/09/2026 : les trois premières NOMMENT les exigences
+       publiées — c'est licite —, les quatre suivantes affirment qu'un OBJET est conforme à
+       l'organisation elle-même, ce qui ne veut rien dire. La contre-épreuve 4 exige un
+       échantillon par alternative, donc chacune est éprouvée pour elle-même. */
+    "em conformidade com os requisitos da IATA", "conforme aos requisitos da IATA", "requisitos da IATA",
+    "em conformidade com a IATA", "compatível com a IATA", "compatible con la IATA", "conforme a IATA",
     "certifiée IATA", "approuvée par l'IATA", "aprobado por la IATA", "aprovada pela IATA",
     /* LES SIX AJOUTS DU 02/09/2026. Leur absence ici a fait rougir ce contrôle, et je ne l'avais
        pas rapporté : j'avais lu la fin de la sortie du harnais, pas la totalité. Une alternative

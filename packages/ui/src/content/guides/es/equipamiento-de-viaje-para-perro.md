@@ -23,7 +23,7 @@ faq:
   - q: "¿Es obligatorio sujetar a mi perro en el coche?"
     a: "Sí. En la mayoría de los países, las normas de circulación exigen que nada estorbe al conductor: un perro suelto es un peligro. Un arnés con crash test enganchado al cinturón, un transportín o una reja separadora son las soluciones conformes y seguras."
   - q: "¿Vale un transportín flexible para el avión?"
-    a: "Para la cabina, algunos bolsos flexibles conformes se aceptan para perros pequeños. Para la bodega, en cambio, solo se admite un transportín rígido conforme a IATA, porque protege al animal y resiste la manipulación."
+    a: "Para la cabina, algunos bolsos flexibles conformes se aceptan para perros pequeños. Para la bodega, en cambio, solo se admite un transportín rígido conforme a los requisitos aplicables, porque protege al animal y resiste la manipulación."
   - q: "¿Cómo acierto con el tamaño del transportín?"
     a: "Mide la altura de tu perro a la cruz (con las orejas erguidas) y su longitud del hocico a la base de la cola, y añade unos centímetros. El perro debe poder ponerse de pie, darse la vuelta y tumbarse sin agobio."
   - q: "¿Qué presupuesto hay que prever para equipar bien al perro?"
@@ -40,7 +40,7 @@ Cada dispositivo cumple una función precisa. Aquí tienes una comparativa para 
 
 | Equipamiento | Para quién | Medio de transporte | Ventaja principal |
 |---|---|---|---|
-| Transportín rígido | Todos los tamaños | Coche, avión | Seguridad máxima, opciones conformes a IATA |
+| Transportín rígido | Todos los tamaños | Coche, avión | Seguridad máxima, opciones conformes a los requisitos aplicables |
 | Transportín flexible | Perros pequeños y medianos | Coche, tren | Ligero y plegable |
 | Arnés de seguridad | Perros medianos y grandes | Coche | Libertad de movimiento, se engancha al cinturón |
 | Bolso de transporte | Perros pequeños (< 8 kg) | Tren, cabina de avión | Compacto, mantiene al perro cerca de ti |
