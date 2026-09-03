@@ -35,7 +35,7 @@ Emplear el vocabulario correcto importa, porque pedir el equivocado hace perder 
 
 ## Cabina: una tarifa en tu propia reserva
 
-El animal viaja en un bolso conforme a los requisitos aplicables bajo el asiento de delante. Comercialmente es lo más sencillo: normalmente una tarifa plana añadida a tu reserva, un cupo de animales por vuelo y un límite estricto de tamaño y peso que cubre **perro más bolso**.
+El animal viaja en un bolso admitido en cabina bajo el asiento de delante. Comercialmente es lo más sencillo: normalmente una tarifa plana añadida a tu reserva, un cupo de animales por vuelo y un límite estricto de tamaño y peso que cubre **perro más bolso**.
 
 Lo que ganas no es solo comodidad. Ves al animal en todo momento, la temperatura está regulada para personas durante todo el trayecto y los embargos estacionales prácticamente no se aplican, un punto desarrollado en [los embargos por calor en bodega](/es/travel-hub/embargos-por-calor-en-bodega/).
 

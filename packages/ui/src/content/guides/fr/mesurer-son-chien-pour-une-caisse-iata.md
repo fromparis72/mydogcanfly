@@ -1,7 +1,7 @@
 ---
 key: "measuring-your-dog-for-a-crate"
 title: "Mesurer son chien pour une caisse de transport, sans deviner"
-seoTitle: "Mesurer un chien pour une caisse de transport IATA"
+seoTitle: "Mesurer un chien pour une caisse de transport"
 description: "Les quatre mesures que les compagnies vérifient réellement, comment les prendre correctement, et pourquoi voir trop grand n'est pas la solution de sécurité."
 summary: "Quatre mesures décident de la caisse : longueur, hauteur au garrot, hauteur debout tête levée, et largeur. Prenez-les sur un chien debout, ajoutez les marges, puis confrontez le résultat à la compagnie."
 date: "2026-08-17T09:00:00+02:00"

@@ -163,14 +163,35 @@ export const ALTERNATIVES = [
  * détecteur de montants. */
 const CONTENANT = "caisses?|cages?|crates?|kennels?|carriers?|sacs?|bags?|jaulas?"
   + "|transport[íi]n(?:es)?|caixas?|bolsas?|conteneurs?";
-const QUALIF = `(?:de${ESP})?(?:type|typical|tipo|t[íi]pic[ao]s?)`;
+/* LE QUALIFICATIF INTERCALÉ, ET C'EST UNE FAUTE MESURÉE QUI L'AJOUTE (contre-revue du 03/09/2026).
+ * La famille ne reconnaissait que le contenant DIRECTEMENT ADJACENT à `IATA`, plus le seul axe
+ * « type / tipo ». Un mot glissé entre les deux la rendait aveugle : « caisse rigide IATA »,
+ * « transportín rígido IATA », « caixa rígida IATA », « Caisse de transport IATA », « IATA travel
+ * crate » n'étaient comptés nulle part. Le registre publié affichait donc 0 / 0 pendant que la
+ * faute restait à l'écran — un zéro lexical, pas un zéro de vérité. Une famille qui ne voit que
+ * l'adjacence ne mesure pas la famille : elle mesure une de ses formes.
+ *
+ * DEUX AXES, ET DEUX SEULEMENT, parce que ce sont les deux que le dépôt écrit :
+ *   · LA MATIÈRE — la rigidité du contenant : `rigide`, `rígido`, `rígida` sont les formes
+ *     relevées ; les quatre langues sont complétées sur le même axe, pas au-delà ;
+ *   · L'USAGE — ce à quoi le contenant sert : `de transport`, `de transporte`, `de viaje`,
+ *     `travel`, `dog`, `pet`, `rental`, toutes relevées telles quelles.
+ * LA BORNE EST NOMMÉE : un troisième axe — une couleur, une marque, une dimension — resterait
+ * invisible jusqu'à ce qu'on l'écrive ici. C'est le prix d'un bornage exact, et il est préférable
+ * au prix inverse : `[\wÀ-ÿ]+` attraperait « exigences IATA de contenant » et rendrait interdite
+ * une référence licite. */
+const MATIERE = "rigid|hard(?:-sided)?|soft(?:-sided)?"          // en
+  + "|rigides?|souples?"                                          // fr
+  + "|r[íi]gid[oa]s?|flexibles?|flex[íi]ve(?:l|is)|bland[oa]s?";   // es/pt
+const USAGE = `de${ESP}transporte?|de${ESP}via(?:je|gem)|de${ESP}voyage|travel|dog|pet|rental`;
+const QUALIF = `(?:de${ESP})?(?:type|typical|tipo|t[íi]pic[ao]s?)|${MATIERE}|${USAGE}`;
 /* L'ORDRE COMPTE : dans une alternance, la première branche qui accroche gagne. La forme à
  * qualificatif SUIVANT — « Caisse IATA type » — doit donc précéder la forme nue, sans quoi celle-ci
  * s'arrêterait à « Caisse IATA » et le relevé montrerait une phrase tronquée. */
 export const FAMILLE_CONTENANT = [
-  `\\b(?:${CONTENANT})${ESP}IATA${ESP}(?:${QUALIF})\\b`,     // Caisse IATA type · Jaula IATA típica
-  `\\b(?:${CONTENANT})${ESP}(?:${QUALIF}${ESP})?IATA\\b`,   // caisse IATA · caisse de type IATA
-  `\\bIATA${ESP}(?:${QUALIF}${ESP})?(?:${CONTENANT})\\b`,    // IATA crate · IATA typical kennel
+  `\\b(?:${CONTENANT})${ESP}IATA${ESP}(?:${QUALIF})\\b`,          // Caisse IATA type · Jaula IATA típica
+  `\\b(?:${CONTENANT})${ESP}(?:(?:${QUALIF})${ESP})?IATA\\b`,     // caisse IATA · caisse rigide IATA
+  `\\bIATA${ESP}(?:(?:${QUALIF})${ESP})?(?:${CONTENANT})\\b`,     // IATA crate · IATA travel crate
 ];
 
 /* LES FORMES SANS CONTENANT ADJACENT, BORNÉES UNE PAR UNE.
@@ -472,31 +493,87 @@ export function dansUnSlugConserve(texte, debut, fin) {
  * Les mêmes mots écrits ailleurs dans la même ligne restent interdits. */
 const PAGES_CATHAY = ["/airlines/cathay-pacific/", "/fr/airlines/cathay-pacific/", "/es/airlines/cathay-pacific/", "/pt/airlines/cathay-pacific/"];
 const PAGES_AIRBALTIC = ["/airlines/airbaltic/", "/fr/airlines/airbaltic/", "/es/airlines/airbaltic/", "/pt/airlines/airbaltic/"];
+/** L'artefact que l'ingesteur écrit à partir des fiches compagnies, mot pour mot. */
+const DERIVE_AIRLINES = "packages/ui/src/data/airlines.generated.json";
+/* ---- LES CORRECTIONS CARGO, SCELLÉES DANS L'ÉTAT COURANT ------------------------------------
+ *
+ * POURQUOI UN SCELLÉ, ET PAS SEULEMENT UNE RÈGLE (contre-revue du 03/09/2026). Une contre-épreuve
+ * existait déjà : elle rejouait le réécriveur sur le texte ANTÉRIEUR et exigeait qu'aucune sortie
+ * fautive n'en sorte. Elle éprouvait donc la RÈGLE — et rien d'autre. Elle serait restée verte si
+ * quelqu'un avait ensuite modifié la fiche à la main, ou si le rendu de la page avait cessé de
+ * porter la phrase : la règle produit toujours la bonne sortie, mais ce n'est plus elle qui est
+ * publiée. Ce qu'il faut sceller, c'est le RÉSULTAT.
+ *
+ * CE QUE CES HUIT VALEURS DISENT, ET POURQUOI CHAQUE MOT COMPTE. Deux affirmations avaient été
+ * corrigées après vérification des pages officielles :
+ *   · Cathay Pacific — l'IATA accrédite réellement des transitaires (« IATA Accredited Freight
+ *     Forwarder », programme IATA Cargo Agency) et délivre réellement un certificat de formation
+ *     Live Animals Regulations. Le raccourci « agents accrédités IATA » fondait les deux en une
+ *     qualité unique qui n'existe pas ; les trois canaux sont donc nommés séparément.
+ *   · airBaltic — « certified cargo agents » était faux : l'IATA ne certifie pas un agent de fret.
+ *     Ce qui existe est le CERTIFICAT DE FORMATION Live Animals Regulations que détient l'agent.
+ *
+ * LE SCELLÉ EST ÉCRIT UNE SEULE FOIS et sert AUX DEUX ÉTAGES — la valeur à la source, et son rendu
+ * dans la page publiée. Les définir séparément, ce serait les laisser diverger : c'est la faute
+ * que ce lot a déjà commise deux fois. */
+export const CORRECTIONS_CARGO = [
+  { fichier: "content/airlines/cathay_pacific.yml", langue: "en", page: "/airlines/cathay-pacific/",
+    source: "https://www.cathaypacific.com/cx/en_IN/prepare-trip/help-for-passengers/travelling-with-animals/overview-cargo.html",
+    valeur: "All pets travel via Cathay Cargo (Cathay Live Animal). Since Sep 2025, bookings only through IPATA or ATA members, IATA Accredited Freight Forwarders, or holders of a valid IATA Live Animals Regulations certificate (from Hong Kong, any agent may book)." },
+  { fichier: "content/airlines/cathay_pacific.yml", langue: "fr", page: "/fr/airlines/cathay-pacific/",
+    source: "https://www.cathaypacific.com/cx/en_IN/prepare-trip/help-for-passengers/travelling-with-animals/overview-cargo.html",
+    valeur: "Tous les animaux voyagent via Cathay Cargo (Cathay Live Animal). Depuis sept. 2025, réservation uniquement via des agents membres IPATA ou ATA, transitaires titulaires de l'accréditation IATA Cargo Agency (IATA Accredited Freight Forwarder), ou titulaires d'un certificat IATA Live Animals Regulations valide ; au départ de Hong Kong, n'importe quel agent peut réserver." },
+  { fichier: "content/airlines/cathay_pacific.yml", langue: "es", page: "/es/airlines/cathay-pacific/",
+    source: "https://www.cathaypacific.com/cx/en_IN/prepare-trip/help-for-passengers/travelling-with-animals/overview-cargo.html",
+    valeur: "Todas las mascotas viajan mediante Cathay Cargo (Cathay Live Animal). Desde sep 2025, las reservas solo se hacen a través de miembros de IPATA o ATA, transitarios con la acreditación IATA Cargo Agency (IATA Accredited Freight Forwarder), o titulares de un certificado IATA Live Animals Regulations en vigor; desde Hong Kong, cualquier agente puede reservar." },
+  { fichier: "content/airlines/cathay_pacific.yml", langue: "pt", page: "/pt/airlines/cathay-pacific/",
+    source: "https://www.cathaypacific.com/cx/en_IN/prepare-trip/help-for-passengers/travelling-with-animals/overview-cargo.html",
+    valeur: "Todos os animais viajam pela Cathay Cargo (Cathay Live Animal). Desde set. de 2025, as reservas são feitas somente por membros da IPATA ou da ATA, agentes de carga com a acreditação IATA Cargo Agency (IATA Accredited Freight Forwarder), ou titulares de um certificado IATA Live Animals Regulations válido; a partir de Hong Kong, qualquer agente pode reservar." },
+  { fichier: "content/airlines/airbaltic.yml", langue: "en", page: "/airlines/airbaltic/",
+    source: "https://www.airbaltic.com/en/cargo/shipping-animals-cargo",
+    valeur: "For animals over 75 kg or shipped without their owner. airBaltic is an EU-authorised animal carrier, but pricing and crate specifics are handled entirely by third-party cargo agents holding a valid IATA Live Animals Regulations training certificate, not published on airBaltic's own site." },
+  { fichier: "content/airlines/airbaltic.yml", langue: "fr", page: "/fr/airlines/airbaltic/",
+    source: "https://www.airbaltic.com/en/cargo/shipping-animals-cargo",
+    valeur: "Pour les animaux de plus de 75 kg ou expédiés sans leur propriétaire. airBaltic est un transporteur animalier agréé UE, mais tarifs et gabarits de caisse sont entièrement gérés par des agences de fret tierces titulaires d'un certificat de formation IATA Live Animals Regulations valide, non publiés sur le site d'airBaltic." },
+  { fichier: "content/airlines/airbaltic.yml", langue: "es", page: "/es/airlines/airbaltic/",
+    source: "https://www.airbaltic.com/en/cargo/shipping-animals-cargo",
+    valeur: "Para animales de más de 75 kg o enviados sin su propietario. airBaltic es un transportista animal autorizado por la UE, pero las tarifas y las especificaciones de la jaula las gestionan por completo agencias de carga externas con un certificado de formación IATA Live Animals Regulations en vigor, no publicadas en el sitio de airBaltic." },
+  { fichier: "content/airlines/airbaltic.yml", langue: "pt", page: "/pt/airlines/airbaltic/",
+    source: "https://www.airbaltic.com/en/cargo/shipping-animals-cargo",
+    valeur: "Para animais com mais de 75 kg ou enviados sem o dono. A airBaltic é uma transportadora de animais autorizada pela UE, mas tarifas e especificações de caixa são geridas inteiramente por agências de carga terceirizadas com certificado de formação IATA Live Animals Regulations válido, não publicadas no site da airBaltic." },
+];
+
 export const FRAGMENTS_ATTRIBUES = [
   /* `pages` : les URL PUBLIÉES où le fragment peut paraître — la garde du DOM n'exempte que là,
-     et que le texte exact. Une page de plus, un mot de moins : rien n'est exempté. */
-  { chemin: "content/airlines/cathay_pacific.yml", pages: PAGES_CATHAY,
+     et que le texte exact. Une page de plus, un mot de moins : rien n'est exempté.
+     `chemins` : LA SOURCE DE VÉRITÉ ET SES COPIES DÉRIVÉES. Faute mesurée le 03/09/2026 : le
+     fragment n'était déclaré qu'au fichier YAML, si bien qu'une fois recopié par l'ingesteur dans
+     `airlines.generated.json` il redevenait une affirmation interdite « à régénérer » — alors que
+     la régénération le reproduit à l'identique, puisqu'il est licite. Une référence licite ne
+     devient pas illicite en changeant de fichier : elle l'est là où elle est LÉGITIMEMENT
+     recopiée, et nulle part ailleurs. Les chemins dérivés sont donc nommés, un par un. */
+  { chemins: ["content/airlines/cathay_pacific.yml", DERIVE_AIRLINES], pages: PAGES_CATHAY,
     fragment: "IATA Accredited Freight Forwarder",
     source: "https://www.cathaypacific.com/cx/en_IN/prepare-trip/help-for-passengers/travelling-with-animals/overview-cargo.html" },
-  { chemin: "content/airlines/cathay_pacific.yml", pages: PAGES_CATHAY,
+  { chemins: ["content/airlines/cathay_pacific.yml", DERIVE_AIRLINES], pages: PAGES_CATHAY,
     fragment: "certificat IATA Live Animals Regulations",
     source: "idem — la page nomme le certificat de formation LAR comme troisième catégorie admise" },
-  { chemin: "content/airlines/cathay_pacific.yml", pages: PAGES_CATHAY,
+  { chemins: ["content/airlines/cathay_pacific.yml", DERIVE_AIRLINES], pages: PAGES_CATHAY,
     fragment: "IATA Live Animals Regulations certificate",
     source: "idem" },
-  { chemin: "content/airlines/cathay_pacific.yml", pages: PAGES_CATHAY,
+  { chemins: ["content/airlines/cathay_pacific.yml", DERIVE_AIRLINES], pages: PAGES_CATHAY,
     fragment: "certificado IATA Live Animals Regulations",
     source: "idem — la désignation officielle du certificat, en espagnol comme en portugais" },
-  { chemin: "content/airlines/airbaltic.yml", pages: PAGES_AIRBALTIC,
+  { chemins: ["content/airlines/airbaltic.yml", DERIVE_AIRLINES], pages: PAGES_AIRBALTIC,
     fragment: "IATA Live Animals Regulations training certificate",
     source: "https://www.airbaltic.com/en/cargo/shipping-animals-cargo" },
-  { chemin: "content/airlines/airbaltic.yml", pages: PAGES_AIRBALTIC,
+  { chemins: ["content/airlines/airbaltic.yml", DERIVE_AIRLINES], pages: PAGES_AIRBALTIC,
     fragment: "certificat de formation IATA Live Animals Regulations",
     source: "idem" },
-  { chemin: "content/airlines/airbaltic.yml", pages: PAGES_AIRBALTIC,
+  { chemins: ["content/airlines/airbaltic.yml", DERIVE_AIRLINES], pages: PAGES_AIRBALTIC,
     fragment: "certificado de formación IATA Live Animals Regulations",
     source: "idem" },
-  { chemin: "content/airlines/airbaltic.yml", pages: PAGES_AIRBALTIC,
+  { chemins: ["content/airlines/airbaltic.yml", DERIVE_AIRLINES], pages: PAGES_AIRBALTIC,
     fragment: "certificado de formação IATA Live Animals Regulations",
     source: "idem" },
 ];
@@ -504,7 +581,7 @@ export const FRAGMENTS_ATTRIBUES = [
 /** Vrai si l'occurrence vit ENTIÈREMENT dans un fragment attribué déclaré POUR CE CHEMIN. */
 export function dansUnFragmentAttribue(chemin, ligne, debut, fin) {
   for (const f of FRAGMENTS_ATTRIBUES) {
-    if (f.chemin !== chemin) continue;
+    if (!f.chemins.includes(chemin)) continue;
     let i = ligne.indexOf(f.fragment);
     while (i !== -1) {
       if (debut >= i && fin <= i + f.fragment.length) return true;

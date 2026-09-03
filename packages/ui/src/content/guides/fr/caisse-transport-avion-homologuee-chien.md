@@ -18,7 +18,7 @@ enbref:
   - "🗓️ **Habituez le chien** à la caisse plusieurs semaines avant"
 cover:
   image: "/travel-hub/airline-approved-dog-crate.webp"
-  alt: "Un maître et son chien devant une caisse de transport IATA, à l'aéroport"
+  alt: "Un maître et son chien devant une caisse de transport, à l'aéroport"
   credit: "Caisse de transport rigide conforme aux exigences applicables."
 faq:
   - q: "Qu'est-ce qu'une caisse conforme aux exigences applicables exactement ?"
@@ -39,7 +39,7 @@ Je cite quelques modèles connus comme repères — les caisses de type Petmate 
 
 ## Qu'est-ce qu'une caisse « conforme aux exigences applicables » ?
 
-L'IATA (International Air Transport Association) publie les *Live Animals Regulations*, le référentiel que la quasi-totalité des compagnies utilisent pour encadrer le transport d'animaux en soute. On parle souvent du « Container Requirement 82 » (CR82) pour les chiens et chats. Ce n'est pas une conformité aux exigences applicables au sens d'un label payant : c'est un ensemble d'exigences que la caisse doit respecter, vérifiées à l'enregistrement.
+L'IATA (International Air Transport Association) publie les *Live Animals Regulations*, le référentiel que la quasi-totalité des compagnies utilisent pour encadrer le transport d'animaux en soute. On parle souvent du « Container Requirement 82 » (CR82) pour les chiens et chats. Ce n'est pas une certification au sens d'un label payant : c'est un ensemble d'exigences que la caisse doit respecter, vérifiées à l'enregistrement.
 
 Les grands principes, tels que formulés par l'IATA :
 
@@ -123,7 +123,7 @@ Si votre chien montre une anxiété marquée, parlez-en à votre vétérinaire b
 
 ## Caisse de soute ou sac de cabine : comment trancher ?
 
-Tout dépend du gabarit de votre chien et de la politique de la compagnie. Les petits chiens voyagent souvent en cabine dans un sac souple accepté par la compagnie, sous réserve de ses dimensions et conditions glissé sous le siège, tandis que les chiens plus grands passent en soute dans une caisse rigide IATA. Ce ne sont pas les mêmes contraintes ni le même matériel. Si vous hésitez entre les deux options, notre comparatif [sac ou caisse de transport pour chien](/fr/travel-hub/sac-caisse-transport-chien/) vous aide à choisir selon la taille de l'animal, la durée du vol et le règlement du transporteur.
+Tout dépend du gabarit de votre chien et de la politique de la compagnie. Les petits chiens voyagent souvent en cabine dans un sac souple aux dimensions admises glissé sous le siège, tandis que les chiens plus grands passent en soute dans une caisse de transport rigide. Ce ne sont pas les mêmes contraintes ni le même matériel. Si vous hésitez entre les deux options, notre comparatif [sac ou caisse de transport pour chien](/fr/travel-hub/sac-caisse-transport-chien/) vous aide à choisir selon la taille de l'animal, la durée du vol et le règlement du transporteur.
 
 <ol class="gd-etapes"><li><a href="/fr/airlines/">Vérifier les conditions de soute de votre compagnie</a></li><li><a href="/fr/tools/crate/">Dimensionner la caisse avec le calculateur IATA</a></li><li><a href="/fr/travel-hub/anxiete-chien-transport/">Habituer le chien et gérer le stress du vol</a></li></ol>
 

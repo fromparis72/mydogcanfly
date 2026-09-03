@@ -52,7 +52,7 @@ ${link("All breeds", "/breeds/", `${nBrd} breeds, including brachycephalic and r
 ## Tools
 
 ${link("Tools index", "/tools/")}
-${link("IATA crate size calculator", "/tools/crate/", "the crate size an airline will accept for a given dog")}
+${link("Crate size calculator", "/tools/crate/", "the crate size an airline will accept for a given dog")}
 ${link("Heat risk calculator", "/tools/heat/", "whether it is too hot to fly a dog on a given route and date")}
 ${link("Pet relief areas", "/tools/pet-relief/", "where a dog can relieve itself in an airport, landside and airside")}
 ${link("Destination finder", "/tools/destinations/", "where a dog can realistically travel from a given airport")}

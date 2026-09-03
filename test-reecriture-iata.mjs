@@ -20,7 +20,7 @@
 import { readFileSync, existsSync } from "node:fs";
 import { execSync } from "node:child_process";
 import { appliquer, plagesYaml, langueDeFichier, verifierYaml, TABLES, ATTRIBUES } from "./reecrire-iata.mjs";
-import { dansUnFragmentAttribue, FRAGMENTS_ATTRIBUES, MOTIF, jugerOccurrence } from "./inventaire-iata.mjs";
+import { dansUnFragmentAttribue, FRAGMENTS_ATTRIBUES, CORRECTIONS_CARGO, MOTIF, jugerOccurrence } from "./inventaire-iata.mjs";
 import YAML from "yaml";
 
 let defauts = 0;
@@ -28,17 +28,27 @@ const echec = (nom, detail) => { defauts++; console.error(`  ✗ ${nom} — ${de
 const ok = (nom) => console.log(`  ✓ ${nom}`);
 
 /* ---- 1. LE MÊME MOT DANS DEUX LANGUES DONNE DEUX SORTIES, CHACUNE DANS LA SIENNE ----------- */
-/* La cause EXACTE de la contamination : `homologado` est espagnol ET portugais. */
+/* La cause EXACTE de la contamination : `homologada` est espagnol ET portugais.
+ *
+ * LE TÉMOIN A CHANGÉ LE 03/09/2026, ET C'EST LE CONTRAT QUI A CHANGÉ, PAS LE CONTRÔLE. Il portait
+ * « una jaula homologado » / « uma caixa homologado » — le mot NU, sans sujet et au mauvais genre
+ * —, parce qu'un repli général réécrivait alors `homologad*` partout. Ce repli est retiré : il
+ * écrivait la formulation du contenant aérien sur des harnais automobiles. Le témoin est donc
+ * désormais une phrase RÉELLE de chaque langue, au bon genre, avec son sujet. Ce qu'il éprouve
+ * n'a pas bougé d'un pouce : le même mot, dans deux langues, doit rendre deux sorties, chacune
+ * dans la sienne, et aucun fragment de l'une ne doit apparaître dans l'autre. */
 {
-  const es = appliquer("una jaula homologado", "es");
-  const pt = appliquer("uma caixa homologado", "pt");
+  const es = appliquer("una jaula homologada", "es");
+  const pt = appliquer("uma caixa homologada", "pt");
   const ecarts = [];
-  if (!/requisitos aplicables/.test(es)) ecarts.push(`ES ne rend pas de l'espagnol : ${JSON.stringify(es)}`);
+  if (!/jaula de transporte/.test(es)) ecarts.push(`ES ne rend pas de l'espagnol : ${JSON.stringify(es)}`);
   if (!/requisitos aplicáveis/.test(pt)) ecarts.push(`PT ne rend pas du portugais : ${JSON.stringify(pt)}`);
-  if (/aplicables/.test(pt)) ecarts.push(`FRAGMENT ESPAGNOL dans la sortie portugaise : ${JSON.stringify(pt)}`);
-  if (/aplicáveis/.test(es)) ecarts.push(`fragment portugais dans la sortie espagnole : ${JSON.stringify(es)}`);
+  if (/aplicables|de transporte(?! rígida)/.test(pt) && !/em conformidade/.test(pt)) ecarts.push(`FRAGMENT ESPAGNOL dans la sortie portugaise : ${JSON.stringify(pt)}`);
+  if (/aplicáveis|conformidade/.test(es)) ecarts.push(`fragment portugais dans la sortie espagnole : ${JSON.stringify(es)}`);
+  if (es === "una jaula homologada") ecarts.push("l'espagnol n'a rien réécrit : le témoin ne prouve rien");
+  if (pt === "uma caixa homologada") ecarts.push("le portugais n'a rien réécrit : le témoin ne prouve rien");
   if (ecarts.length) echec("1 même mot, deux langues", ecarts.join(" · "));
-  else ok(`1 « homologado » rend « ${es.split(" ").slice(-2).join(" ")} » en espagnol et « ${pt.split(" ").slice(-2).join(" ")} » en portugais`);
+  else ok(`1 « homologada » rend « ${es} » en espagnol et « ${pt} » en portugais — deux tables, deux sorties, aucun fragment croisé`);
 }
 
 /* ---- 2. UNE RÈGLE D'UNE LANGUE NE TOUCHE JAMAIS UNE AUTRE LANGUE --------------------------- */
@@ -151,7 +161,11 @@ const ok = (nom) => console.log(`  ✓ ${nom}`);
 /* `\b` ne franchit pas un « é » : `homologué\b` ne peut jamais correspondre en JavaScript. Toutes
    les règles FR/ES/PT à terminaison accentuée étaient mortes, et comptées pour zéro en silence. */
 {
-  const cas = [["un harnais homologué", "fr", /automobile/], ["una jaula homologada", "es", /aplicables/],
+  /* L'ATTENDU ESPAGNOL A SUIVI LE CONTRAT, pas l'inverse : depuis le retrait du repli général,
+     « jaula homologada » rend « jaula de transporte » — la formulation du français de la même
+     fiche — et non plus la formulation du contenant aérien. La propriété éprouvée ne change pas :
+     la forme à terminaison accentuée doit être VUE. */
+  const cas = [["un harnais homologué", "fr", /automobile/], ["una jaula homologada", "es", /jaula de transporte/],
     ["uma caixa homologada", "pt", /aplicáveis/]];
   const ecarts = [];
   for (const [de, l, attendu] of cas) {
@@ -217,7 +231,7 @@ const ok = (nom) => console.log(`  ✓ ${nom}`);
   const url = "voir /es/travel-hub/transportin-homologado-iata-perro/ et une jaula homologada";
   const vu = appliquer(url, "es");
   if (!vu.includes("transportin-homologado-iata-perro")) ecarts.push(`le slug a été réécrit : ${JSON.stringify(vu)}`);
-  if (!/jaula conforme a los requisitos aplicables/.test(vu)) ecarts.push(`la prose voisine n'a PAS été réécrite : ${JSON.stringify(vu)}`);
+  if (!/jaula de transporte/.test(vu)) ecarts.push(`la prose voisine n'a PAS été réécrite : ${JSON.stringify(vu)}`);
   for (const sl of ["caisse-transport-avion-homologuee-chien", "transportin-homologado-iata-perro", "caixa-de-transporte-homologada-iata"]) {
     const n = execSync(`git grep -l -- '${sl}' -- content packages/ui | wc -l`, { encoding: "utf8" }).trim();
     if (n === "0") ecarts.push(`le slug conservé « ${sl} » a disparu du dépôt`);
@@ -296,7 +310,7 @@ const ok = (nom) => console.log(`  ✓ ${nom}`);
   const ecarts = [];
   const ligne = `bookings via an ${f.fragment} only`;
   const i = ligne.indexOf("IATA");
-  if (!dansUnFragmentAttribue(f.chemin, ligne, i, i + "IATA Accredited".length))
+  if (!dansUnFragmentAttribue(f.chemins[0], ligne, i, i + "IATA Accredited".length))
     ecarts.push("le fragment EXACT, à son chemin, n'est pas exempté");
   if (dansUnFragmentAttribue("content/airlines/lufthansa.yml", ligne, i, i + "IATA Accredited".length))
     ecarts.push("le même fragment à un AUTRE chemin est exempté — la permission fuit");
@@ -304,13 +318,13 @@ const ok = (nom) => console.log(`  ✓ ${nom}`);
      intact comme préfixe, et l'exemption tient à juste titre. On change donc un mot au milieu. */
   const proche = ligne.replace("Accredited Freight", "Accredited Cargo");
   const j = proche.indexOf("IATA");
-  if (dansUnFragmentAttribue(f.chemin, proche, j, j + "IATA Accredited".length))
+  if (dansUnFragmentAttribue(f.chemins[0], proche, j, j + "IATA Accredited".length))
     ecarts.push("un fragment ALTÉRÉ en son milieu est exempté");
   const ailleurs = "third-party IATA-accredited agents";
   const k = ailleurs.indexOf("IATA");
-  if (dansUnFragmentAttribue(f.chemin, ailleurs, k, k + "IATA-accredited".length))
+  if (dansUnFragmentAttribue(f.chemins[0], ailleurs, k, k + "IATA-accredited".length))
     ecarts.push("les mêmes mots hors du fragment déclaré sont exemptés");
-  for (const x of FRAGMENTS_ATTRIBUES) if (!x.source) ecarts.push(`${x.chemin} : fragment sans source`);
+  for (const x of FRAGMENTS_ATTRIBUES) if (!x.source) ecarts.push(`${x.chemins[0]} : fragment sans source`);
   if (ecarts.length) echec("13 fragments attribués", ecarts.join(" · "));
   else ok(`13 les ${FRAGMENTS_ATTRIBUES.length} fragments attribués sont licites à leur chemin exact et à leur texte exact — ailleurs, altérés, ou hors de leur portée, ils restent interdits`);
 }
@@ -382,6 +396,113 @@ const ok = (nom) => console.log(`  ✓ ${nom}`);
 
   if (ecarts.length) echec("15 vérification par valeurs", ecarts.join(" · "));
   else ok("15 la vérification compare les valeurs DÉCODÉES : une réécriture correcte passe, un échappement abîmé et un scalaire vidé sont refusés en nommant le chemin");
+}
+
+/* ---- 16. LES TROIS DÉGÂTS NOMMÉS PAR LA CONTRE-REVUE DU 03/09/2026 ------------------------ */
+/* CE QUE CES SENTINELLES GARDENT, ET POURQUOI ELLES SONT ÉCRITES AINSI. Le réécriveur avait fait
+ * TOMBER le compteur à zéro en écrivant des phrases fausses : le motif interdit avait bien
+ * disparu, mais ce qui le remplaçait ne disait plus la vérité de son sujet. Un compteur ne relit
+ * pas ; ces trois épreuves relisent.
+ *
+ * Elles partent du TEXTE ANTÉRIEUR, tiré du dépôt à `d9f4d53`, et exigent la sortie EXACTE. Un
+ * contrôle qui se contenterait de chercher la chaîne fautive dans l'arbre courant passerait au
+ * vert le jour où quelqu'un corrigerait la phrase à la main sans corriger la RÈGLE : la faute
+ * reviendrait au passage suivant. On éprouve donc la règle, sur son entrée réelle. */
+{
+  const BASE = "d9f4d53";
+  const ecarts = [];
+  /* [entrée réelle, langue, fichier, sortie exacte attendue, ce que la faute avait écrit] */
+  const CAS = [
+    /* 1 — LE HARNAIS AUTOMOBILE N'EST PAS UNE CAISSE. Le repli général `homologad*` avait écrit la
+       formulation du CONTENANT AÉRIEN sur dix-neuf passages de retenue automobile : « arnés
+       conforme a los requisitos aplicables » affirme une conformité qu'aucun texte ne publie pour
+       un harnais canin. Éprouvé dans les DEUX langues qui portaient le repli. */
+    ["Utiliza siempre un arnés homologado que reparta la fuerza sobre el pecho.", "es",
+     "packages/ui/src/content/guides/es/equipamiento-de-coche-para-perro.md",
+     "Utiliza siempre un arnés de seguridad de coche para perro que reparta la fuerza sobre el pecho.",
+     /arn[ée]s\s+conforme\s+a\s+los\s+requisitos/i],
+    ["Use sempre um peitoral homologado que distribua a força pelo peito.", "pt",
+     "packages/ui/src/content/guides/pt/equipamento-de-carro-para-cachorro.md",
+     "Use sempre um peitoral de segurança de carro para cachorro que distribua a força pelo peito.",
+     /peitoral\s+em\s+conformidade\s+com\s+os\s+requisitos/i],
+    /* 2 — UNE MARQUE N'EST PAS UN MODÈLE. La fiche Air Austral déclarait quatre marques
+       « conformes aux exigences applicables » : ce qui se vérifie d'un MODÈLE ne se déclare pas
+       d'une MARQUE, et la compagnie publie seulement qu'elle les accepte. */
+    ["Marcas homologadas citadas: Sky Kennel, Vari Kennel, Gulliver, Gateway", "es",
+     "content/airlines/air_austral.yml",
+     "Marcas aprobadas citadas: Sky Kennel, Vari Kennel, Gulliver, Gateway",
+     /Marcas\s+conformes\s+a\s+los\s+requisitos/i],
+    /* 3 — CE QUI REMPLACE UN ADJECTIF DOIT RESTER UN ADJECTIF. Une proposition insérée devant un
+       participe avait produit « sous réserve de ses dimensions et conditions glissé sous le
+       siège » — une phrase que personne ne peut lire à voix haute. */
+    ["Les petits chiens voyagent souvent en cabine dans un sac souple homologué glissé sous le siège.", "fr",
+     "packages/ui/src/content/guides/fr/caisse-transport-avion-homologuee-chien.md",
+     "Les petits chiens voyagent souvent en cabine dans un sac souple aux dimensions admises glissé sous le siège.",
+     /conditions\s+glissé/i],
+    /* ET LA PHRASE QUI NIE L'HOMOLOGATION, qui explique le régime réel du CR82 : le repli général
+       l'avait rendue absurde. Elle doit garder sa négation entière. */
+    ["Ce n'est pas une homologation au sens d'un label payant : c'est un ensemble d'exigences.", "fr",
+     "packages/ui/src/content/guides/fr/caisse-transport-avion-homologuee-chien.md",
+     "Ce n'est pas une certification au sens d'un label payant : c'est un ensemble d'exigences.",
+     /pas\s+une\s+conformité\s+aux\s+exigences\s+applicables\s+au\s+sens/i],
+  ];
+  for (const [entree, langue, fichier, attendu, fautif] of CAS) {
+    const sortie = appliquer(entree, langue, new Map(), TABLES, fichier);
+    if (sortie !== attendu) ecarts.push(`[${langue}] « ${sortie} » au lieu de « ${attendu} »`);
+    if (fautif.test(sortie)) ecarts.push(`[${langue}] la sortie porte encore le dégât nommé : ${sortie.match(fautif)[0]}`);
+  }
+  /* ET LES REPLIS GÉNÉRAUX SONT BIEN PARTIS, éprouvé sur la TABLE et non sur un souvenir : un
+     motif qui remplace `homologado` tout nu, sans regarder le sujet, ne doit plus exister. */
+  /* UN REPLI GÉNÉRAL, C'EST LE MOT SEUL — rien avant, rien après que la limite de mot. Les règles
+     qui NOMMENT l'IATA (« homologada pela IATA ») ne sont pas des replis : elles visent
+     exactement l'affirmation interdite. Une première rédaction de cette sentinelle les comptait
+     comme telles et rougissait à tort ; le motif est donc l'ÉGALITÉ au motif nu, pas un préfixe. */
+  const nu = (mot) => `(?<![\\wÀ-ÿ])${mot}(?![\\wÀ-ÿ])`;
+  for (const langue of ["es", "pt"]) {
+    const nus = TABLES[langue].filter(([m]) => ["homologado", "homologada", "homologados", "homologadas"].some((x) => m.source === nu(x)));
+    if (nus.length) ecarts.push(`[${langue}] ${nus.length} repli(s) général(aux) « homologad* » subsiste(nt) : ${nus[0][0].source}`);
+  }
+  if (TABLES.fr.some(([m]) => m.source === nu("homologation")))
+    ecarts.push("[fr] le repli général « homologation » subsiste");
+  /* ET LA SENTINELLE N'EST PAS DÉCORATIVE : on vérifie qu'elle SAURAIT voir un repli. */
+  if (![[new RegExp(nu("homologado"), "gi"), "x"]].some(([m]) => m.source === nu("homologado")))
+    ecarts.push("la sentinelle des replis ne reconnaît pas un repli fabriqué : elle ne garde rien");
+  if (ecarts.length) { echec("16 dégâts nommés", `${ecarts.length} écart(s)`); for (const e of ecarts.slice(0, 6)) console.error(`      ${e}`); }
+  else ok(`16 les ${CAS.length} dégâts nommés par la contre-revue sont éprouvés sur leur texte antérieur : chaque sortie est exacte, et les replis généraux qui les avaient causés n'existent plus`);
+}
+
+/* ---- 17. LES CORRECTIONS CARGO SONT SCELLÉES DANS L'ÉTAT COURANT -------------------------- */
+/* La contre-épreuve 12 éprouve la RÈGLE, sur le texte antérieur. Celle-ci éprouve le RÉSULTAT :
+ * les huit valeurs vivantes des deux fiches, comparées au scellé, une par une. Une modification
+ * manuelle, une traduction reperdue, un mot retiré : le scellé le nomme. */
+{
+  const ecarts = [];
+  for (const c of CORRECTIONS_CARGO) {
+    let doc;
+    try { doc = YAML.parse(readFileSync(c.fichier, "utf8")); }
+    catch (e) { ecarts.push(`${c.fichier} : illisible — ${e.message}`); continue; }
+    let trouve = false;
+    (function marche(n) {
+      if (trouve) return;
+      if (Array.isArray(n)) return n.forEach(marche);
+      if (!n || typeof n !== "object") return;
+      if (typeof n[c.langue] === "string" && n[c.langue].trim() === c.valeur) { trouve = true; return; }
+      for (const k of Object.keys(n)) marche(n[k]);
+    })(doc);
+    if (!trouve) ecarts.push(`${c.fichier} [${c.langue}] : la valeur scellée n'est plus dans la fiche`);
+    /* ET LES FORMULATIONS D'AVANT LA CORRECTION SONT INTERDITES, nommément : sans cela, le scellé
+       dirait seulement « quelque chose a changé », pas « la faute est revenue ». */
+    for (const mauvais of [/agents?\s+accr[ée]dit[ée]s?\s+IATA/i, /agentes\s+credenciados\s+pela\s+IPATA\s*\/\s*IATA/i,
+                           /IATA[- ]certified\s+cargo\s+agents?/i, /agences\s+de\s+fret\s+certifi[ée]es\s+IATA/i,
+                           /agencias\s+de\s+carga\s+certificadas\s+IATA/i, /ag[êe]ncias\s+de\s+carga\s+certificadas\s+pela\s+IATA/i]) {
+      if (mauvais.test(readFileSync(c.fichier, "utf8"))) ecarts.push(`${c.fichier} : la formulation d'avant la correction est revenue — ${mauvais}`);
+    }
+  }
+  const langues = new Set(CORRECTIONS_CARGO.map((c) => `${c.fichier}|${c.langue}`));
+  if (langues.size !== 8) ecarts.push(`le scellé porte ${langues.size} couples fiche/langue au lieu de 8`);
+  if (CORRECTIONS_CARGO.some((c) => !c.source || !c.page)) ecarts.push("une correction scellée sans source ou sans page publiée");
+  if (ecarts.length) { echec("17 corrections cargo scellées", `${ecarts.length} écart(s)`); for (const e of ecarts.slice(0, 6)) console.error(`      ${e}`); }
+  else ok(`17 les ${CORRECTIONS_CARGO.length} valeurs cargo corrigées sont scellées dans l'état courant, chacune à son texte exact, et aucune formulation d'avant la correction n'est revenue`);
 }
 
 console.log(defauts

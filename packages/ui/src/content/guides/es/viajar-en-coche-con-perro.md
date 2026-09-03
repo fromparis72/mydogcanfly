@@ -28,7 +28,7 @@ faq:
   - q: "¿Puedo dejar a mi perro solo en el coche?"
     a: "Nunca, y menos aún con calor. La temperatura dentro de un coche aparcado sube muy deprisa y puede provocar un golpe de calor mortal en pocos minutos."
   - q: "¿Puede mi perro ir en el maletero de un familiar o un SUV?"
-    a: "Sí, siempre que el maletero esté separado del habitáculo por una reja conforme a los requisitos aplicables y el perro vaya sujeto allí, idealmente en un transportín amarrado. El maletero solo, sin reja ni transportín, no protege al perro de salir despedido hacia delante y no cumple la exigencia de no estorbar la conducción."
+    a: "Sí, siempre que el maletero esté separado del habitáculo por una reja de separación adecuada al vehículo y el perro vaya sujeto allí, idealmente en un transportín amarrado. El maletero solo, sin reja ni transportín, no protege al perro de salir despedido hacia delante y no cumple la exigencia de no estorbar la conducción."
 ---
 
 El coche sigue siendo la forma más sencilla de viajar con un perro: controlas los horarios, las paradas y el ambiente. Pero hay que organizarse, porque un perro suelto pone en peligro a todos los ocupantes del vehículo y puede costarte una multa. Aquí tienes el método completo, paso a paso.
@@ -47,7 +47,7 @@ Tres opciones principales, según tu vehículo y el tamaño de tu perro:
 - **El arnés de seguridad con crash test**: se engancha al cinturón trasero. Práctico para perros ya acostumbrados, siempre que esté sometido a crash test y bien ajustado.
 - **La reja o red separadora**: impide que el perro pase delante, pero no lo retiene en un choque. Idealmente, combínala con un arnés.
 
-Evita las ataduras baratas y no conformes a los requisitos aplicables, que ceden a la primera frenada fuerte.
+Evita las ataduras baratas y sin ensayo de choque publicado, que ceden a la primera frenada fuerte.
 
 ## ¿Cómo elegir el sistema adecuado para tu perro y tu coche?
 

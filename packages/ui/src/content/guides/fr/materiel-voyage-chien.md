@@ -28,7 +28,7 @@ faq:
   - q: "Comment connaître la bonne taille de caisse ?"
     a: "Mesurez la hauteur de votre chien au garrot (oreilles dressées) et sa longueur du museau à la base de la queue, puis ajoutez quelques centimètres. Le chien doit pouvoir se tenir debout, se retourner et s'allonger sans contrainte."
   - q: "Quel budget prévoir pour bien équiper son chien ?"
-    a: "Comptez environ 30 à 80 € pour un harnais crash-test, 25 à 60 € pour une caisse souple, 50 à 150 € pour une caisse rigide IATA et 30 à 90 € pour un sac cabine. Un matériel adapté au mode de transport et durable revient moins cher à long terme qu'un modèle bas de gamme à remplacer."
+    a: "Comptez environ 30 à 80 € pour un harnais crash-test, 25 à 60 € pour une caisse souple, 50 à 150 € pour une caisse de transport rigide et 30 à 90 € pour un sac cabine. Un matériel adapté au mode de transport et durable revient moins cher à long terme qu'un modèle bas de gamme à remplacer."
   - q: "Le harnais de voiture sert-il aussi à promener ?"
     a: "Certains modèles sont polyvalents, mais un harnais de sécurité crash-test est avant tout conçu pour la voiture. Pour les longues balades, un harnais de marche dédié, mieux rembourré, sera plus confortable au quotidien."
 ---
@@ -82,7 +82,7 @@ Mesurez toujours votre chien plutôt que de vous fier à la seule fourchette de 
 
 En voiture, un chien non attaché est un projectile en cas de freinage. Le harnais de sécurité s'attache à la ceinture et constitue la solution la plus confortable pour les trajets fréquents. Les critères essentiels :
 
-- **L'conformité aux exigences applicables crash-test** : privilégiez les harnais testés selon des normes reconnues.
+- **L'essai de choc** : privilégiez les harnais testés selon des normes reconnues.
 - **Les points d'attache multiples** et un rembourrage large pour répartir la pression.
 - **Le bon ajustement** : ni trop lâche, ni trop serré, adapté au tour de poitrine.
 - **La compatibilité** avec la ceinture ou un ancrage Isofix.
@@ -114,7 +114,7 @@ Côté budget, voici des ordres de grandeur réalistes pour s'équiper sans mauv
 |---|---|---|
 | Harnais sécurité crash-test | 30 à 80 € | Plusieurs années |
 | Caisse souple | 25 à 60 € | 2 à 5 ans |
-| Caisse rigide IATA | 50 à 150 € | Plusieurs années |
+| Caisse de transport rigide | 50 à 150 € | Plusieurs années |
 | Sac de transport cabine | 30 à 90 € | Plusieurs années |
 
 Investir dans un matériel adapté au mode de transport revient moins cher à long terme que de remplacer un modèle bas de gamme et, surtout, protège réellement l'animal.

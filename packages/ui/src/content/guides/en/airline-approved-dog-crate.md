@@ -1,6 +1,6 @@
 ---
 key: "airline-approved-dog-crate"
-title: "Choosing an Airline-Approved Dog Crate (meeting the applicable requirements)"
+title: "Choosing an Airline-Approved Dog Crate (Meeting the Applicable Requirements)"
 seoTitle: "Airline-Approved Dog Crate: IATA Rules and Sizing"
 description: "Airline dog crate guide: IATA requirements, sizing method, materials, compliant models. The complete guide to flying with peace of mind."
 summary: "Airline dog crate guide: IATA requirements, sizing method, materials, compliant models. The complete guide to flying with peace of mind."
@@ -38,7 +38,7 @@ When you're preparing a flight with your dog in the hold, the travel crate isn't
 
 I mention a few well-known models as reference points — crates like the Petmate Sky Kennel or Vari Kennel come up often in traveler feedback — without inventing dimensions or prices: exact specifications are on the manufacturers' spec sheets and must always be cross-checked against your airline's requirements. Before booking, also read our general guide to [flying with a dog](/travel-hub/flying-with-a-dog/), which covers cabin, hold and the paperwork.
 
-## What is an "meeting the applicable requirements" crate?
+## What is a crate that meets the applicable requirements?
 
 IATA (the International Air Transport Association) publishes the *Live Animals Regulations*, the reference framework nearly all airlines use to govern animal transport in the hold. For dogs and cats, you'll often see "Container Requirement 82" (CR82). It's not a certification in the sense of a paid label: it's a set of requirements the crate must meet, verified at check-in.
 

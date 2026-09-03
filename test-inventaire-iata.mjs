@@ -483,7 +483,34 @@ const classerLigne = (chemin, ligne) => {
   const VUES = ["caisse IATA", "caisses IATA", "Caisse IATA type", "Jaula IATA típica", "IATA crate",
     "IATA kennel", "IATA carrier", "caixa IATA", "transportín IATA", "sac IATA",
     /* les trois formes BORNÉES, sans contenant adjacent, relevées sur la fiche Luxair */
-    "rigid IATA type", "type IATA rigide", "tipo IATA rígida"];
+    "rigid IATA type", "type IATA rigide", "tipo IATA rígida",
+    /* ---- LE QUALIFICATIF INTERCALÉ, contre-revue du 03/09/2026 ----------------------------
+       La famille ne voyait que le contenant COLLÉ à `IATA`. Ces formes-là étaient publiées et
+       comptées nulle part : le registre affichait 0 / 0 pendant qu'elles restaient à l'écran.
+       LES DEUX AXES bornés — la matière et l'usage — sont éprouvés dans les quatre langues et
+       dans les DEUX SENS, contenant→IATA et IATA→contenant. */
+    "caisse rigide IATA", "caisses rigides IATA", "caisse souple IATA",
+    "transportín rígido IATA", "jaula rígida IATA", "transportín flexible IATA",
+    "caixa rígida IATA", "caixa flexível IATA", "bolsa flexível IATA",
+    "caisse de transport IATA", "caixa de transporte IATA", "bolsa de transporte IATA",
+    "jaula de viaje IATA", "caixa de viagem IATA", "sac de voyage IATA",
+    "IATA travel crate", "IATA dog crate", "IATA pet crate", "IATA rental crates"];
+  /* CE QUE LA FAMILLE VOIT EN PARTIE, ET POURQUOI C'EST SUFFISANT ICI. Dans « rigid IATA crate »
+     l'adjectif précède le tout : le motif accroche « IATA crate » et laisse « rigid » dehors. Ce
+     n'est pas un trou — l'affirmation interdite EST « IATA crate », et le réécriveur rend « rigid
+     travel crate », adjectif conservé. On exige donc ici la seule chose qui compte : qu'une
+     occurrence soit vue ET jugée interdite. Exiger l'égalité au texte entier ferait échouer un
+     contrôle sur une propriété qu'on ne cherche pas. */
+  const VUES_EN_PARTIE = ["rigid IATA crate", "soft-sided IATA carrier", "hard IATA kennel",
+    "una jaula rígida IATA de gran tamaño"];
+  /* ---- LA LIMITE DU BORNAGE, MESURÉE PLUTÔT QU'AFFIRMÉE ------------------------------------
+     La famille admet UN qualificatif intercalé, pas deux. « caisse rigide double coque IATA »
+     serait donc invisible — et c'est un CONSTAT, pas une garantie. Aucune forme à deux
+     qualificatifs n'existe dans le dépôt : le relevé des mots réellement intercalés, refait pour
+     cette extension, n'en montre aucune. On ne s'élargit donc pas sur une hypothèse, mais on
+     n'enterre pas non plus la limite dans un commentaire : elle est ÉPROUVÉE. Le jour où l'on
+     ajoute le second cran, ce contrôle rougira et forcera à le dire. */
+  const LIMITE_NOMMEE = ["caisse rigide double coque IATA", "IATA soft-sided travel carrier"];
   /* « norma IATA » N'EST PAS DANS CETTE LISTE, ET C'EST UN CONSTAT, PAS UN OUBLI. L'espagnol
      « norma IATA » est classé INTERDIT par un arbitrage antérieur, alors que le français
      « norme(s) IATA » est classé LICITE. Les deux disent pourtant la même chose. L'incohérence
@@ -501,18 +528,32 @@ const classerLigne = (chemin, ligne) => {
      une garantie que rien ne vérifiait. « type IATA » nu a d'ailleurs été RETIRÉ du motif pour
      cette raison : il attrapait un type de document et un code d'aéroport. */
   const IGNOREES = ["type IATA", "tipo IATA", "IATA airport code", "IATA document type",
-    "code IATA", "agent IATA"];
+    "code IATA", "agent IATA",
+    /* ET L'ÉLARGISSEMENT N'A PAS DÉBORDÉ. Chacune de ces formes contient un mot de l'un des deux
+       axes — « transport », « travel », « rigide » — SANS nommer de contenant : la famille ne
+       doit toujours rien y voir. Sans ces cas, « bornée » ne serait qu'une intention. */
+    "règles de transport IATA", "IATA travel documents", "IATA travel agent",
+    "normes de transport IATA", "structure rigide IATA", "IATA pet travel requirements"];
   const rates = VUES.filter((t) => { MOTIF.lastIndex = 0; const m = t.match(MOTIF); return !m || m[0] !== t; });
+  const aveugles = VUES_EN_PARTIE.filter((t) => {
+    MOTIF.lastIndex = 0;
+    const m = t.match(MOTIF);
+    if (!m) return true;
+    return !m.some((x) => classer("x.md", t, x, t.indexOf(x), t.indexOf(x) + x.length) === "source_editoriale");
+  });
   const perdues = LICITES.filter((t) => classer("x.md", t, (() => { MOTIF.lastIndex = 0; return (t.match(MOTIF) ?? [""])[0]; })(),
     0, ((t.match(MOTIF) ?? [""])[0]).length) !== "reference_reglementaire_legitime");
   const laxistes = INTERDITES.filter((t) => { MOTIF.lastIndex = 0; const m = (t.match(MOTIF) ?? [""])[0];
     return classer("x.md", t, m, 0, m.length) === "reference_reglementaire_legitime"; });
   const trop = IGNOREES.filter((t) => { MOTIF.lastIndex = 0; return MOTIF.test(t); });
+  const limiteDeplacee = LIMITE_NOMMEE.filter((t) => { MOTIF.lastIndex = 0; const m = t.match(MOTIF); return m && m[0] === t; });
   if (rates.length) echec("10 famille", `formes non vues en entier : ${rates.join(", ")}`);
+  else if (aveugles.length) echec("10 famille", `formes dont aucune part n'est vue ni jugée interdite : ${aveugles.join(", ")}`);
   else if (perdues.length) echec("10 famille", `références licites devenues autre chose : ${perdues.join(", ")}`);
   else if (laxistes.length) echec("10 famille", `affirmations complètes devenues licites : ${laxistes.join(", ")}`);
   else if (trop.length) echec("10 famille", `vues alors qu'elles ne disent rien d'un contenant : ${trop.join(", ")}`);
-  else ok(`10 famille — ${VUES.length} formes vues, ${LICITES.length} références licites préservées, `
+  else if (limiteDeplacee.length) echec("10 famille", `la limite du bornage a bougé sans être nommée : ${limiteDeplacee.join(", ")} — deux qualificatifs sont désormais vus, il faut le dire ici`);
+  else ok(`10 famille — ${VUES.length} formes vues en entier, ${VUES_EN_PARTIE.length} vues en partie et jugées interdites, ${LIMITE_NOMMEE.length} formes à deux qualificatifs hors bornage (limite nommée), ${LICITES.length} références licites préservées, `
     + `${INTERDITES.length} affirmations complètes toujours interdites, ${IGNOREES.length} formes sans contenant ignorées`);
 }
 

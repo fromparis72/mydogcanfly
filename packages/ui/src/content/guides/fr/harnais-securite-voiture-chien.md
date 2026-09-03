@@ -1,6 +1,6 @@
 ---
 key: "dog-car-harness"
-title: "Choisir un harnais de sécurité automobile pour chien pour son chien"
+title: "Choisir un harnais de sécurité automobile pour son chien"
 seoTitle: "Harnais de sécurité voiture pour chien : bien choisir"
 description: "Choisir un harnais de sécurité voiture pour son chien : normes et crash-tests, taille, attache à la ceinture et installation correcte."
 summary: "Un harnais de voiture doit être crash-testé, à la bonne taille et relié à la ceinture par une attache courte. C'est, avec la caisse de transport, la seule manière de sécuriser un chien en voiture et de respecter le Code de la route."

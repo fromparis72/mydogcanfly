@@ -68,6 +68,12 @@ const F = "(?![\\wÀ-ÿ])";       // limite droite
 const re = (source, drapeaux = "gi") => new RegExp(D + source + F, drapeaux);
 
 const EN = [
+  /* LE TERME ENTRE GUILLEMETS ÉTAIT UNE ÉTIQUETTE, et l'étiquette disparaît avec le terme.
+     « What is an "IATA-compliant" crate ? » remplacé mot à mot donnait « What is an "meeting the
+     applicable requirements" crate ? » — article faux, et des guillemets qui ne citent plus rien.
+     On réécrit la question entière, qui est d'ailleurs celle que la FAQ pose déjà. */
+  [/(?<![\wÀ-ÿ])an\s+"IATA[- ]compliant"\s+crate(?![\wÀ-ÿ])/gi, "a crate that meets the applicable requirements"],
+  [/\(IATA-Compliant\)/g, "(Meeting the Applicable Requirements)"],
   /* L'ARTICLE FAIT PARTIE DU MOTIF : « an IATA-approved crate » ne devient jamais
      « an compliant with… crate », mais une phrase qu'on peut lire à voix haute. */
   [re("an\\s+IATA[- ](?:approved|compliant|certified|accredited)\\s+(travel\\s+|rigid\\s+|hard\\s+)?(crate|kennel|carrier|cage|container|box)", "gi"),
@@ -84,6 +90,10 @@ const EN = [
      terme qui porte désormais le sens — jamais supprimée, c'est du style. */
   [/\*\*IATA\*\*-(?:approved|compliant|certified|accredited)\b/gi, "meeting the **applicable requirements**"],
   /* Le contenant garde son nom ; seule l'attribution part. L'article suit. */
+  /* LA CASSE DU TITRE EST DU SENS, elle aussi. « Measuring Your Dog for an IATA Crate » est en
+     capitales de titre : rendre « a travel crate » y écrit une minuscule au milieu d'un titre.
+     La variante sensible à la casse passe donc AVANT la variante générale. */
+  [/(?<![\wÀ-ÿ])an\s+IATA\s+Crate(?![\wÀ-ÿ])/g, "a Travel Crate"],
   [re("an\\s+IATA\\s+crate", "gi"), "a travel crate"],
   [re("an\\s+IATA\\s+kennel", "gi"), "a kennel"],
   [re("an\\s+IATA\\s+(carrier|cage)", "gi"), (_m, n) => `a travel ${n}`],
@@ -96,6 +106,16 @@ const EN = [
   [re("IATA\\s+cages", "gi"), "travel cages"],
   [re("IATA\\s+cage", "gi"), "travel cage"],
   [re("rigid\\s+IATA\\s+type", "gi"), "rigid travel"],
+  /* LE QUALIFICATIF INTERCALÉ — même extension que dans l'instrument. « IATA travel crate »
+     attribue la caisse à l'IATA aussi sûrement que « IATA crate » ; seul un mot les séparait.
+     L'ARTICLE FAIT PARTIE DU MOTIF quand l'initiale change : « for an IATA Travel Crate » ne
+     peut pas devenir « for an Travel Crate ». */
+  [re("an\\s+IATA\\s+Travel\\s+Crate", "gi"), "a Travel Crate"],
+  [re("IATA\\s+travel\\s+crates", "gi"), "travel crates"],
+  [re("IATA\\s+travel\\s+crate", "gi"), "travel crate"],
+  /* JAL LOUE des caisses. Ce qui est vrai, c'est qu'elles répondent aux exigences applicables —
+     pas que l'IATA les loue ni qu'elle les délivre. */
+  [re("IATA\\s+rental\\s+crates", "gi"), "rental crates that meet the applicable requirements"],
 ];
 
 const FR = [
@@ -120,6 +140,14 @@ const FR = [
   [re("sac\\s+IATA", "gi"), "sac de transport"],
   [re("contenants\\s+IATA", "gi"), "contenants de transport"],
   [re("contenant\\s+IATA", "gi"), "contenant de transport"],
+  /* LE QUALIFICATIF INTERCALÉ. « caisse rigide IATA » et « caisse de transport IATA » attribuent
+     le contenant à l'IATA exactement comme « caisse IATA » : l'adjectif ne change rien à
+     l'affirmation, il la cachait seulement au motif. On garde l'adjectif, on retire
+     l'attribution. */
+  [re("caisses\\s+rigides\\s+IATA", "gi"), "caisses de transport rigides"],
+  [re("caisse\\s+rigide\\s+IATA", "gi"), "caisse de transport rigide"],
+  [re("caisses\\s+de\\s+transport\\s+IATA", "gi"), "caisses de transport"],
+  [re("caisse\\s+de\\s+transport\\s+IATA", "gi"), "caisse de transport"],
   /* LE CONTENANT AÉRIEN EST DÉCRIT, JAMAIS CERTIFIÉ. Un modèle précis n'a pas de preuve propre :
      « conforme aux exigences applicables » est la formulation arbitrée pour ce cas. */
   [re("caisses\\s+rigides\\s+homologuées"), "caisses rigides conformes aux exigences applicables"],
@@ -138,6 +166,11 @@ const FR = [
      On garde le nom féminin et on change seulement ce qui affirme une homologation. */
   [re("attaches?\\s+homologuées?"), "attache adaptée au chien et au véhicule"],
   [re("grilles?\\s+homologuées?"), "grille de séparation adaptée au véhicule"],
+  /* ON N'AJOUTE PAS « pour chien » QUAND LA PHRASE LE DIT DÉJÀ. Le titre du guide était
+     « Choisir un harnais de sécurité voiture homologué pour son chien » : la formulation neutre
+     y écrivait « harnais de sécurité automobile pour chien pour son chien ». La règle regarde
+     donc ce qui SUIT, sans le consommer. */
+  [re("harnais\\s+de\\s+sécurité\\s+(?:voiture|automobile)\\s+homologué(?=\\s+pour\\s+(?:son\\s+)?chien)", "gi"), "harnais de sécurité automobile"],
   [re("harnais\\s+de\\s+sécurité\\s+(?:voiture|automobile)\\s+homologué", "gi"), "harnais de sécurité automobile pour chien"],
   [re("harnais\\s+(?:voiture|automobile)\\s+homologué", "gi"), "harnais de sécurité automobile pour chien"],
   [re("harnais\\s+de\\s+sécurité\\s+homologué", "gi"), "harnais de sécurité automobile pour chien"],
@@ -154,12 +187,45 @@ const FR = [
   /* L'EMPHASE MARKDOWN NE COUPE PAS UNE PHRASE : « Le matériel **homologué** » se lit d'un trait
      à l'écran, mais les étoiles cassent l'expression régulière. L'emphase est reportée sur le
      terme qui porte désormais le sens, jamais supprimée — c'est du style. */
-  [re("(?:matériel|équipement)\\s+\\*\\*homologué\\*\\*"), "**matériel adapté au mode de transport**"],
-  /* Groupe C — le sac souple de cabine : on préserve le CONTENANT et on attribue la décision. */
-  [re("sacs?\\s+homologués?"), "sac accepté par la compagnie, sous réserve de ses dimensions et conditions"],
-  [re("sac\\s+souple\\s+homologué", "gi"), "sac souple accepté par la compagnie, sous réserve de ses dimensions et conditions"],
+  /* L'emphase porte le TITRE de la ligne, pas la phrase entière : « Le **matériel homologué**
+     selon le mode de transport » ne peut pas devenir « Le **matériel adapté au mode de
+     transport** selon le mode de transport ». La règle générale dit le mode de transport
+     parce que rien d'autre ne le dit ; ici la ligne le dit déjà. */
+  [re("(?:matériel|équipement)\\s+\\*\\*homologué\\*\\*"), "**matériel adapté**"],
+  /* (4) LA REDONDANCE, vue en RELISANT la phrase produite et non en lisant le compteur. « admis en
+         cabine » était juste, mais la phrase porteuse dit déjà « voyagent souvent EN CABINE » :
+         « en cabine dans un sac souple admis en cabine » se lit deux fois. Les trois langues
+         portaient la même phrase, donc la même redondance. Ce qui contraint réellement le sac,
+         c'est sa DIMENSION : on le dit, et on ne redit pas la cabine.
+     Groupe C — le sac de cabine. TROIS FAUTES MESURÉES ICI, nommées par la contre-revue du
+     03/09/2026 et conservées comme telles.
+     (1) L'ORDRE. Les deux formes précises étaient placées APRÈS la forme générale : « caisse/sac
+         homologué » et « sac souple homologué » étaient mangés par « sac homologué » avant d'être
+         cherchés. Une règle précise placée après la règle qu'elle précise ne s'exécute jamais.
+     (2) LA CATÉGORIE GRAMMATICALE. « sac accepté par la compagnie, sous réserve de ses dimensions
+         et conditions » est une proposition, pas un adjectif. Insérée devant un participe, elle a
+         produit « sous réserve de ses dimensions et conditions glissé sous le siège ». Ce qui
+         remplace un adjectif doit rester un adjectif : « admis en cabine » dit la même vérité —
+         la compagnie admet, elle ne certifie pas — et tient dans la phrase.
+     (3) LE NOMBRE. Un motif `sacs?` qui rend un singulier fabrique une faute d'accord muette.
+         Le pluriel est écrit à part ; toute autre forme sortira au rapport des résidus. */
   [re("caisse\\/sac\\s+homologué", "gi"), "caisse ou sac accepté par la compagnie"],
-  [re("homologation", "gi"), "conformité aux exigences applicables"],
+  [re("sac\\s+souple\\s+homologué", "gi"), "sac souple aux dimensions admises"],
+  [re("sacs\\s+homologués", "gi"), "sacs admis en cabine"],
+  [re("sac\\s+homologué", "gi"), "sac admis en cabine"],
+  /* « HOMOLOGATION » N'A PLUS DE REPLI GÉNÉRAL, ET C'EST UNE FAUTE MESURÉE QUI LE RETIRE. Le repli
+     a détruit la seule phrase du site qui dise la vérité sur le sujet : « Ce n'est pas une
+     homologation au sens d'un label payant » est devenu « Ce n'est pas une conformité aux
+     exigences applicables au sens d'un label payant ». Cette phrase n'affirme aucune homologation
+     — elle en NIE une, et explique le régime réel. Elle reste intacte. Une seule forme du dépôt
+     affirme réellement une homologation qui n'existe pas, et elle est nommée ici. */
+  [re("homologation\\s+crash-test", "gi"), "essai de choc"],
+  /* LA PHRASE QUI NIE L'HOMOLOGATION EST LA PLUS JUSTE DU SITE, et le repli général l'avait
+     rendue absurde. Elle explique le régime réel du CR82 : ce n'est pas un label payant, c'est un
+     jeu d'exigences vérifiées à l'enregistrement. Elle N'AFFIRME aucune homologation — elle en
+     NIE une. On ne la supprime donc pas : on remplace le seul mot que le motif interdit par
+     celui qui dit la même chose, et la négation reste entière. */
+  [re("homologation\\s+au\\s+sens\\s+d['’]un\\s+label\\s+payant", "gi"), "certification au sens d'un label payant"],
 ];
 
 const ES = [
@@ -194,19 +260,91 @@ const ES = [
   [re("jaula\\s+IATA", "gi"), "jaula de transporte"],
   [re("transportines\\s+IATA", "gi"), "transportines"],
   [re("transportín\\s+IATA", "gi"), "transportín"],
-  [re("homologadas", "gi"), "conformes a los requisitos aplicables"],
-  [re("homologados", "gi"), "conformes a los requisitos aplicables"],
-  [re("homologada", "gi"), "conforme a los requisitos aplicables"],
-  [re("homologado", "gi"), "conforme a los requisitos aplicables"],
+  /* Le qualificatif intercalé, en espagnol. */
+  [re("transportines\\s+r[íi]gidos\\s+IATA", "gi"), "transportines rígidos"],
+  [re("transport[íi]n\\s+r[íi]gido\\s+IATA", "gi"), "transportín rígido"],
+  [re("jaulas\\s+r[íi]gidas\\s+IATA", "gi"), "jaulas de transporte rígidas"],
+  [re("jaula\\s+r[íi]gida\\s+IATA", "gi"), "jaula de transporte rígida"],
+  [re("jaulas\\s+de\\s+viaje\\s+IATA", "gi"), "jaulas de viaje"],
+  [re("jaula\\s+de\\s+viaje\\s+IATA", "gi"), "jaula de viaje"],
+  /* LA FAA N'HOMOLOGUE PAS DE CONTENANT POUR ANIMAL. L'anglais et le français de la même fiche
+     JetBlue disent « FAA carrier » et « sac FAA » ; l'espagnol et le portugais affirmaient une
+     homologation par un régulateur qui n'en délivre pas. Ce qui est vrai et publié : la
+     compagnie l'accepte, aux dimensions données juste après dans la même phrase. */
+  [re("jaula\\s+homologada\\s+por\\s+la\\s+FAA", "gi"), "jaula aceptada por la compañía"],
+  /* AIR FRANCE EXIGE UNE CAGE — elle n'en homologue aucune. Le français de la même fiche dit
+     « cage de transport » ; l'espagnol dit la même chose, sinon les deux divergent. */
+  [re("jaula\\s+homologada", "gi"), "jaula de transporte"],
+  /* LES QUATRE MARQUES CITÉES PAR AIR AUSTRAL, et c'est le deuxième dégât nommé par la
+     contre-revue. Ce qui est publié, c'est que la compagnie les ACCEPTE — pas qu'un organisme les
+     homologue, et surtout pas modèle par modèle. L'anglais dit « approved brands cited », le
+     portugais « marcas aprovadas citadas » : l'espagnol dit désormais la même chose, et non plus
+     « conformes a los requisitos aplicables », qui affirmait d'une MARQUE ce qui ne se vérifie
+     que d'un MODÈLE. */
+  [re("Marcas\\s+homologadas\\s+citadas", "g"), "Marcas aprobadas citadas"],
+  /* ---- LES REPLIS GÉNÉRAUX `homologad*` SONT RETIRÉS, ET C'EST UNE FAUTE MESURÉE QUI LES RETIRE.
+     Quatre lignes — `homologadas`, `homologados`, `homologada`, `homologado` — remplaçaient le mot
+     PARTOUT, sans regarder de quoi la phrase parlait. Elles ont écrit la formulation du CONTENANT
+     AÉRIEN sur des sujets qui n'ont rien à voir : dix-neuf passages sur les harnais automobiles
+     ont affirmé une conformité « aux exigences applicables » qu'aucun texte ne publie, et une
+     fiche compagnie a déclaré quatre marques conformes sans preuve par modèle. Un compteur qui
+     tombe à zéro ne dit rien de la phrase produite : il dit seulement que le mot a disparu.
+     Chaque forme est donc reprise ici PAR SUJET RÉEL, dans la langue, avec la même vérité que le
+     français, et rien n'est écrit qui ne soit vérifiable :
+       · harnais et retenue automobile → aucun régime d'homologation publique n'existe. On nomme
+         l'objet et son usage, jamais une conformité ;
+       · contenant aérien → l'exigence existe et elle est publiée : « conforme aux exigences
+         applicables » est la formulation arbitrée ;
+       · sac de cabine → la compagnie ADMET, sous condition de dimensions. Elle ne certifie pas ;
+       · matériel générique → adapté au mode de transport, ce qui est le sens visé ;
+       · marque ou modèle précis → aucune conformité affirmée.
+     Toute forme non nommée ici sortira au rapport des résidus au lieu d'être écrasée en silence. */
+  /* Retenue automobile — le sujet est un harnais, pas une caisse. */
+  [re("arn[ée]s\\s+de\\s+seguridad\\s+homologado", "gi"), "arnés de seguridad de coche para perro"],
+  [re("arneses\\s+homologados", "gi"), "arneses de seguridad de coche para perro"],
+  [re("arn[ée]s\\s+no\\s+homologado", "gi"), "arnés inadecuado"],
+  [re("arn[ée]s\\s+homologado", "gi"), "arnés de seguridad de coche para perro"],
+  [re("sistema\\s+de\\s+sujeci[óo]n\\s+homologado", "gi"), "sistema de sujeción adecuado al perro y al vehículo"],
+  [re("sujeci[óo]n\\s+homologada", "gi"), "sujeción adecuada al perro y al vehículo"],
+  [re("reja\\s+homologada", "gi"), "reja de separación adecuada al vehículo"],
+  [re("ataduras\\s+baratas\\s+y\\s+no\\s+homologadas", "gi"), "ataduras baratas y sin ensayo de choque publicado"],
+  /* Contenant aérien — l'exigence existe et elle est publiée. */
+  [re("transport[íi]n\\s+o\\s+bolso\\s+homologado", "gi"), "transportín o bolso aceptado por la compañía"],
+  [re("transport[íi]n\\s+r[íi]gido\\s+homologado", "gi"), "transportín rígido conforme a los requisitos aplicables"],
+  [re("transportines\\s+homologados", "gi"), "transportines conformes a los requisitos aplicables"],
+  [re("transport[íi]n\\s+homologado", "gi"), "transportín conforme a los requisitos aplicables"],
+  /* Sac de cabine — la compagnie admet sous condition de dimensions, elle ne certifie pas. */
+  [re("bolso\\s+flexible\\s+homologado", "gi"), "bolso flexible con las dimensiones admitidas"],
+  [re("bolso\\s+homologado", "gi"), "bolso admitido en cabina"],
+  /* Matériel générique — la ligne à emphase dit déjà le mode de transport, elle ne le redit pas. */
+  [/\*\*Equipamiento\s+homologado\*\*/g, "**Equipamiento adecuado**"],
+  [re("equipamiento\\s+homologado\\s+y\\s+duradero", "gi"), "equipamiento duradero y adecuado al medio de transporte"],
+  [re("material\\s+duradero\\s+y\\s+homologado", "gi"), "material duradero y adecuado al medio de transporte"],
+  [re("equipamiento\\s+homologado", "gi"), "equipamiento adecuado al medio de transporte"],
 ];
 
 const PT = [
-  [re("caixas\\s+de\\s+transporte\\s+(?:aprovadas\\s+pela\\s+|homologadas\\s+pela\\s+|adequadas\\s+à\\s+)?IATA", "gi"), "caixas de transporte"],
-  [re("caixa\\s+de\\s+transporte\\s+(?:aprovada\\s+pela\\s+|homologada\\s+pela\\s+|adequada\\s+à\\s+)?IATA", "gi"), "caixa de transporte"],
+  /* « ADEQUADA » N'EST PAS L'AFFIRMATION INTERDITE, ET ON NE LA JETTE PAS AVEC ELLE. La branche
+     `adequada à IATA` avalait l'adjectif : « Caixa de transporte adequada à IATA em caso de
+     viagem no porão » devenait « Caixa de transporte em caso de viagem no porão », alors que
+     l'anglais de la même fiche garde « Suitable travel crate if travelling in the hold ». Ce
+     n'est pas l'IATA qui rend la caisse adéquate — mais la caisse doit bien être adéquate. 76
+     occurrences perdaient ce mot en silence ; il est rendu, et l'attribution seule s'en va. */
+  [re("caixas\\s+de\\s+transporte\\s+adequadas\\s+à\\s+IATA", "gi"), "caixas de transporte adequadas"],
+  [re("caixa\\s+de\\s+transporte\\s+adequada\\s+à\\s+IATA", "gi"), "caixa de transporte adequada"],
+  [re("caixas\\s+de\\s+transporte\\s+(?:aprovadas\\s+pela\\s+|homologadas\\s+pela\\s+)?IATA", "gi"), "caixas de transporte"],
+  [re("caixa\\s+de\\s+transporte\\s+(?:aprovada\\s+pela\\s+|homologada\\s+pela\\s+)?IATA", "gi"), "caixa de transporte"],
   [re("caixas\\s+IATA", "gi"), "caixas de transporte"],
   [re("caixa\\s+IATA", "gi"), "caixa de transporte"],
   [re("bolsas\\s+IATA", "gi"), "bolsas de transporte"],
   [re("bolsa\\s+IATA", "gi"), "bolsa de transporte"],
+  /* Le qualificatif intercalé, en portugais. */
+  [re("caixas\\s+r[íi]gidas\\s+IATA", "gi"), "caixas de transporte rígidas"],
+  [re("caixa\\s+r[íi]gida\\s+IATA", "gi"), "caixa de transporte rígida"],
+  [re("bolsas\\s+de\\s+transporte\\s+IATA", "gi"), "bolsas de transporte"],
+  [re("bolsa\\s+de\\s+transporte\\s+IATA", "gi"), "bolsa de transporte"],
+  /* JetBlue, en portugais : voir la note espagnole. La FAA n'homologue pas de sac pour animal. */
+  [re("bolsa\\s+de\\s+transporte\\s+homologada\\s+pela\\s+FAA", "gi"), "bolsa de transporte aceita pela companhia"],
   [re("aprovadas\\s+pela\\s+IATA", "gi"), "em conformidade com os requisitos aplicáveis"],
   [re("aprovada\\s+pela\\s+IATA", "gi"), "em conformidade com os requisitos aplicáveis"],
   [re("homologadas\\s+(?:pela\\s+)?IATA", "gi"), "em conformidade com os requisitos aplicáveis"],
@@ -233,10 +371,45 @@ const PT = [
   [re("conformes?\\s+(?:à\\s+|com\\s+a\\s+)?IATA", "gi"), "em conformidade com os requisitos aplicáveis"],
   [re("tipo\\s+IATA\\s+rígida", "gi"), "rígida de transporte"],
   [re("tipo\\s+IATA\\s+rígido", "gi"), "rígido de transporte"],
-  [re("homologadas", "gi"), "em conformidade com os requisitos aplicáveis"],
-  [re("homologados", "gi"), "em conformidade com os requisitos aplicáveis"],
-  [re("homologada", "gi"), "em conformidade com os requisitos aplicáveis"],
-  [re("homologado", "gi"), "em conformidade com os requisitos aplicáveis"],
+  /* ---- LES REPLIS GÉNÉRAUX `homologad*` SONT RETIRÉS, ET C'EST UNE FAUTE MESURÉE QUI LES RETIRE.
+     Quatre lignes — `homologadas`, `homologados`, `homologada`, `homologado` — remplaçaient le mot
+     PARTOUT, sans regarder de quoi la phrase parlait. Elles ont écrit la formulation du CONTENANT
+     AÉRIEN sur des sujets qui n'ont rien à voir : dix-neuf passages sur les harnais automobiles
+     ont affirmé une conformité « aux exigences applicables » qu'aucun texte ne publie, et une
+     fiche compagnie a déclaré quatre marques conformes sans preuve par modèle. Un compteur qui
+     tombe à zéro ne dit rien de la phrase produite : il dit seulement que le mot a disparu.
+     Chaque forme est donc reprise ici PAR SUJET RÉEL, dans la langue, avec la même vérité que le
+     français, et rien n'est écrit qui ne soit vérifiable :
+       · harnais et retenue automobile → aucun régime d'homologation publique n'existe. On nomme
+         l'objet et son usage, jamais une conformité ;
+       · contenant aérien → l'exigence existe et elle est publiée : « conforme aux exigences
+         applicables » est la formulation arbitrée ;
+       · sac de cabine → la compagnie ADMET, sous condition de dimensions. Elle ne certifie pas ;
+       · matériel générique → adapté au mode de transport, ce qui est le sens visé ;
+       · marque ou modèle précis → aucune conformité affirmée.
+     Toute forme non nommée ici sortira au rapport des résidus au lieu d'être écrasée en silence. */
+  /* Retenue automobile — le sujet est un peitoral, pas une caisse. */
+  [re("peitoral\\s+de\\s+seguran[çc]a\\s+homologado", "gi"), "peitoral de segurança de carro para cachorro"],
+  [re("peitorais\\s+homologados", "gi"), "peitorais de segurança de carro para cachorro"],
+  [re("peitoral\\s+n[ãa]o\\s+homologado", "gi"), "peitoral inadequado"],
+  [re("peitoral\\s+homologado", "gi"), "peitoral de segurança de carro para cachorro"],
+  [re("sistema\\s+de\\s+conten[çc][ãa]o\\s+homologado", "gi"), "sistema de contenção adequado ao cachorro e ao veículo"],
+  [re("conten[çc][ãa]o\\s+homologada", "gi"), "contenção adequada ao cachorro e ao veículo"],
+  [re("grade\\s+homologada", "gi"), "grade de separação adequada ao veículo"],
+  [re("amarras\\s+baratas\\s+e\\s+n[ãa]o\\s+homologadas", "gi"), "amarras baratas e sem ensaio de impacto publicado"],
+  /* Contenant aérien — l'exigence existe et elle est publiée. */
+  [re("caixa\\s+ou\\s+bolsa\\s+homologada", "gi"), "caixa ou bolsa aceita pela companhia"],
+  [re("caixa\\s+r[íi]gida\\s+homologada", "gi"), "caixa rígida em conformidade com os requisitos aplicáveis"],
+  [re("caixas\\s+homologadas", "gi"), "caixas em conformidade com os requisitos aplicáveis"],
+  [re("caixa\\s+homologada", "gi"), "caixa em conformidade com os requisitos aplicáveis"],
+  /* Sac de cabine — la compagnie admet sous condition de dimensions, elle ne certifie pas. */
+  [re("bolsa\\s+flex[íi]vel\\s+homologada", "gi"), "bolsa flexível com as dimensões admitidas"],
+  [re("bolsa\\s+homologada", "gi"), "bolsa admitida na cabine"],
+  /* Matériel générique — la ligne à emphase dit déjà le mode de transport, elle ne le redit pas. */
+  [/\*\*Equipamento\s+homologado\*\*/g, "**Equipamento adequado**"],
+  [re("equipamento\\s+homologado\\s+e\\s+dur[áa]vel", "gi"), "equipamento durável e adequado ao meio de transporte"],
+  [re("material\\s+dur[áa]vel\\s+e\\s+homologado", "gi"), "material durável e adequado ao meio de transporte"],
+  [re("equipamento\\s+homologado", "gi"), "equipamento adequado ao meio de transporte"],
 ];
 
 export const TABLES = { en: EN, fr: FR, es: ES, pt: PT };
@@ -357,7 +530,7 @@ export function appliquer(fragment, langue, compteur = new Map(), tables = TABLE
        « IATA Accredited » à nu. Mesuré : le second passage à blanc annonçait encore un fichier
        modifié. La liste vient de l'instrument, pas d'une copie. */
     for (const f of FRAGMENTS_ATTRIBUES) {
-      if (f.chemin !== fichier || !out.includes(f.fragment)) continue;
+      if (!f.chemins.includes(fichier) || !out.includes(f.fragment)) continue;
       out = out.split(f.fragment).join(` A${attribues.length} `);
       attribues.push(f.fragment);
     }
@@ -552,8 +725,17 @@ if (import.meta.url === `file://${process.argv[1]}`) {
       const couvert = (i) => plages.some((p) => i >= p.debut && i < p.fin);
       for (const o of interdites(f, texte)) if (!couvert(o.index)) sansPortee.push(`${f} · « ${o.texte} »`);
 
+    } else if (n0 === 0) {
+      /* RIEN À RÉÉCRIRE, DONC AUCUNE PORTÉE À CONNAÎTRE. Le press kit embarque ses images, ses
+         PDF et ses archives : 143 fichiers étaient déclarés « en défaut » à chaque passage, et ce
+         bruit-là masque le seul défaut qui compte — un fichier qui PORTE une affirmation sans que
+         l'on sache dans quelle langue la corriger. Le tri ne se fait donc pas sur l'extension,
+         qui laisserait passer un `.svg` ou un `.js` porteur, mais sur le contenu : un fichier qui
+         ne contient aucune occupation du vocabulaire n'a rien à dire et rien à cacher. Dès qu'il
+         en contient une, la ligne suivante le nomme et fait échouer le passage. */
+      continue;
     } else {
-      defauts.push(`${f} : aucune portée de langue connue pour ce format`);
+      defauts.push(`${f} : ${n0} occurrence(s) mais aucune portée de langue connue pour ce format`);
       continue;
     }
 

@@ -1,7 +1,7 @@
 ---
 key: "measuring-your-dog-for-a-crate"
-title: "Measuring Your Dog for a travel crate, Without Guessing"
-seoTitle: "Measuring a Dog for an IATA Travel Crate"
+title: "Measuring Your Dog for a Travel Crate, Without Guessing"
+seoTitle: "Measuring a Dog for a Travel Crate"
 description: "The four measurements airlines actually check, how to take them properly, and why sizing up is not always the safe answer."
 summary: "Four measurements decide the crate: length, height at the shoulder, height standing with the head up, and width. Take them on a standing dog, add the margins, then check the result against the airline."
 date: "2026-08-17T09:00:00+02:00"

@@ -15,7 +15,7 @@ enbref:
   - "📍 Com que **localizá-lo** (rastreador GPS)"
   - "🧥 **Material de conforto** compatível com o tempo"
   - "🩹 Um **kit de primeiros socorros**"
-  - "✅ **Equipamento em conformidade com os requisitos aplicáveis** para o seu meio de transporte"
+  - "✅ **Equipamento adequado** para o seu meio de transporte"
 cover:
   image: "/travel-hub/dog-travel-accessories.webp"
   alt: "Cachorro pronto para viajar, sentado no banco traseiro de um carro"
@@ -76,7 +76,7 @@ Os nossos guias: [a ansiedade do cachorro em viagem](/pt/travel-hub/ansiedade-do
 Para partir tranquilo, garanta que você tem:
 
 - um **sistema de transporte seguro**: peitoral de carro crash-test ou caixa ancorada;
-- uma **caixa ou bolsa em conformidade com os requisitos aplicáveis** se for de avião, de trem ou de balsa;
+- uma **caixa ou bolsa aceita pela companhia** se for de avião, de trem ou de balsa;
 - uma **garrafa + uma vasilha dobrável** e a comida habitual do seu cachorro;
 - um **rastreador GPS** e uma plaquinha com os seus contatos;
 - **material conforme o tempo**: tapete refrescante no verão, casaco e botinhas no inverno;

@@ -35,7 +35,7 @@ Employer le bon vocabulaire compte, parce que demander le mauvais fait perdre de
 
 ## Cabine : des frais sur votre propre dossier
 
-L'animal voyage dans un sac accepté par la compagnie, sous réserve de ses dimensions et conditions sous le siège devant vous. Commercialement, c'est le plus simple : en général un forfait ajouté à votre réservation, un quota d'animaux par vol, et une limite stricte de taille et de poids portant sur **le chien et le sac réunis**.
+L'animal voyage dans un sac admis en cabine sous le siège devant vous. Commercialement, c'est le plus simple : en général un forfait ajouté à votre réservation, un quota d'animaux par vol, et une limite stricte de taille et de poids portant sur **le chien et le sac réunis**.
 
 Ce que vous y gagnez n'est pas seulement du confort. Vous voyez l'animal en permanence, la température est régulée pour des humains tout du long, et les embargos saisonniers ne s'appliquent pour ainsi dire pas — point développé dans [les embargos chaleur en soute](/fr/travel-hub/embargos-chaleur-en-soute/).
 

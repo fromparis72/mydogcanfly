@@ -20,7 +20,7 @@
 import { readFileSync, writeFileSync, readdirSync, statSync, existsSync, mkdtempSync, mkdirSync, rmSync } from "node:fs";
 import { tmpdir } from "node:os";
 import { join } from "node:path";
-import { MOTIF, jugerOccurrence, dansUnSlugConserve, dansUnFragmentAttribuePublie } from "./inventaire-iata.mjs";
+import { MOTIF, jugerOccurrence, dansUnSlugConserve, dansUnFragmentAttribuePublie , CORRECTIONS_CARGO } from "./inventaire-iata.mjs";
 import { zonesDe } from "./test-lib/zones-publiques.mjs";
 
 const DIST = process.argv.slice(2).find((a) => a.startsWith("--dist="))?.slice(7);
@@ -271,11 +271,75 @@ ok(`départ : ${pages.length} pages construites`);
         else if ((dansCorps.corps ?? 0) === (par.corps ?? 0)) ratés.push(`déplacement vers « ${zone} » : la zone ne change pas, le sceau de zone ne sert à rien`);
       }
 
+      /* ---- LE QUALIFICATIF INTERCALÉ, SUR LE DOM RÉEL (contre-revue du 03/09/2026) -----------
+       * Le registre affichait 0 / 0 alors que « caisse rigide IATA », « transportín rígido IATA »
+       * et « caixa rígida IATA » étaient publiés : la famille canonique ne voyait que le contenant
+       * COLLÉ à `IATA`, et un adjectif suffisait à l'aveugler. Un zéro obtenu avec un motif borgne
+       * n'est pas un zéro, c'est un silence.
+       * Chaque forme est donc injectée DANS UNE PAGE RÉELLE — corps, métadonnée, JSON-LD et
+       * attribut accessible tour à tour — et doit ressortir du pipeline entier : lecture des
+       * zones, motif, jugement lexical. Les vérifier sur une chaîne en mémoire ne prouverait que
+       * l'expression régulière ; ici on éprouve la chaîne complète, celle qui produit le registre. */
+      const QUALIFIEES = ["caisse rigide IATA", "transportín rígido IATA", "caixa rígida IATA",
+        "caisse de transport IATA", "IATA travel crate", "jaula de viaje IATA",
+        "bolsa de transporte IATA", "IATA rental crates"];
+      for (const forme of QUALIFIEES) {
+        const zones = [
+          ["corps", brut.replace(/(<body[^>]*>)/, `$1<p>${forme}</p>`), "corps"],
+          ["metas", brut.replace("</head>", `<meta name="description" content="${forme}"></head>`), "metas"],
+          ["json-ld", brut.replace("</head>", `<script type="application/ld+json">{"d":"${forme}"}</scr` + 'ipt></head>'), "json-ld"],
+          ["alt", brut.replace(/(<body[^>]*>)/, `$1<img alt="${forme}" src="/x.png">`), "attributs-accessibles"],
+        ];
+        for (const [nom, html, zone] of zones) {
+          const delta = (compter(html).par[zone] ?? 0) - (base.par[zone] ?? 0);
+          if (delta < 1) ratés.push(`« ${forme} » injectée en ${nom} : la zone « ${zone} » ne bouge pas — la forme reste invisible au registre`);
+        }
+      }
+      /* ET L'INVERSE, sans quoi on pourrait faire bouger le compteur en emportant du vrai : une
+         référence réglementaire licite injectée de la même façon ne doit RIEN ajouter. */
+      for (const licite of ["IATA requirements", "normes IATA", "Live Animals Regulations"]) {
+        const delta = (compter(brut.replace(/(<body[^>]*>)/, `$1<p>${licite}</p>`)).par.corps ?? 0) - (base.par.corps ?? 0);
+        if (delta !== 0) ratés.push(`« ${licite} » injectée dans le corps ajoute ${delta} au registre : une référence licite est comptée comme dette`);
+      }
+
       if (ratés.length) { echec("1quinquies zones", `${ratés.length} écart(s)`); for (const r of ratés.slice(0, 6)) console.error(`      ${r}`); }
       else ok("1quinquies zones — corps, métas, JSON-LD et textes accessibles des attributs sont lus séparément ; "
         + "un identifiant aria n'est pas un texte ; une référence licite ne compte pas ; un JSON-LD illisible rougit ; "
-        + "un défaut déplacé vers une métadonnée OU vers un attribut change de zone à total constant");
+        + "un défaut déplacé vers une métadonnée OU vers un attribut change de zone à total constant ; "
+        + `et les ${QUALIFIEES.length} formes à qualificatif intercalé sont vues dans chacune des quatre zones d'une page réelle, sans qu'aucune référence licite ne le devienne`);
     }
+  }
+
+  /* ---- 1octies. LES CORRECTIONS CARGO SONT SERVIES, DANS LES HUIT PAGES ---------------------
+   * Le scellé de `test:unit` garde la valeur À LA SOURCE. Il ne dit rien de ce que le lecteur
+   * reçoit : une fiche juste peut ne pas être rendue, être tronquée, ou rester servie dans une
+   * version antérieure du dist. Les huit pages linguistiques sont donc relues ici, et chacune
+   * doit porter sa phrase AU MOT PRÈS. La liste vient de l'instrument — jamais d'une copie. */
+  {
+    const ecarts = [];
+    for (const c of CORRECTIONS_CARGO) {
+      const chemin = join(DIST, c.page, "index.html");
+      if (!existsSync(chemin)) { ecarts.push(`${c.page} : page absente du dist`); continue; }
+      const z = zonesDe(readFileSync(chemin, "utf8"));
+      const tout = [z.titre, z.corps, ...Object.values(z.metas ?? {}), JSON.stringify(z.jsonLd ?? "")].join("\n");
+      if (!tout.includes(c.valeur)) {
+        const bout = c.valeur.slice(0, 60);
+        ecarts.push(`${c.page} [${c.langue}] : la phrase scellée n'est pas servie — attendu « ${bout}… »`);
+      }
+    }
+    /* ET LA CONTRE-ÉPREUVE NÉGATIVE : une phrase altérée d'un seul mot ne doit PAS passer, sans
+       quoi ce contrôle prouverait seulement que la page contient du texte. */
+    if (CORRECTIONS_CARGO.length) {
+      const c = CORRECTIONS_CARGO[0];
+      const chemin = join(DIST, c.page, "index.html");
+      if (existsSync(chemin)) {
+        const z = zonesDe(readFileSync(chemin, "utf8"));
+        const tout = [z.titre, z.corps, ...Object.values(z.metas ?? {}), JSON.stringify(z.jsonLd ?? "")].join("\n");
+        if (tout.includes(c.valeur.replace("Accredited", "accredited-"))) ecarts.push("une phrase altérée est acceptée : le contrôle ne compare pas au mot près");
+      }
+    }
+    if (ecarts.length) { echec("1octies corrections cargo publiées", `${ecarts.length} écart(s)`); for (const e of ecarts.slice(0, 8)) console.error(`      ${e}`); }
+    else ok(`1octies les ${CORRECTIONS_CARGO.length} corrections cargo sont servies au mot près dans leurs ${new Set(CORRECTIONS_CARGO.map((c) => c.page)).size} pages linguistiques — une phrase altérée d'un mot ne passe pas`);
   }
 
   /* `--ecrire-registre` déplace la sentinelle. Il n'est PAS appelé par la CI : le registre ne

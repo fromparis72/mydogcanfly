@@ -35,7 +35,7 @@ Usar o vocabulário certo importa, porque pedir o errado faz perder semanas. A v
 
 ## Cabine: uma taxa na sua própria reserva
 
-O animal viaja em uma bolsa em conformidade com os requisitos aplicáveis embaixo do assento da frente. Comercialmente é o mais simples: em geral uma taxa fixa acrescentada à sua reserva, uma cota de animais por voo e um limite estrito de porte e peso que cobre **cachorro mais bolsa**.
+O animal viaja em uma bolsa admitida na cabine embaixo do assento da frente. Comercialmente é o mais simples: em geral uma taxa fixa acrescentada à sua reserva, uma cota de animais por voo e um limite estrito de porte e peso que cobre **cachorro mais bolsa**.
 
 O que você ganha não é só conforto. Você vê o animal o tempo todo, a temperatura é regulada para pessoas durante todo o trajeto e os embargos sazonais praticamente não se aplicam — ponto desenvolvido em [os embargos por calor no porão](/pt/travel-hub/embargos-por-calor-no-porao/).
 

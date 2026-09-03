@@ -16,7 +16,7 @@ enbref:
   - "📍 Un moyen de le **repérer** (GPS)"
   - "🧥 Des équipements de **confort** adaptés à la météo"
   - "🩹 Une **trousse santé**"
-  - "✅ Le **matériel adapté au mode de transport** selon le mode de transport"
+  - "✅ Le **matériel adapté** selon le mode de transport"
 cover:
   image: "/travel-hub/dog-travel-accessories.webp"
   alt: "Un chien couché à côté d'une valise et d'accessoires de voyage"
@@ -77,7 +77,7 @@ Nos guides : [l'anxiété du chien en transport](/fr/travel-hub/anxiete-chien-tr
 Pour partir l'esprit tranquille, vérifiez d'avoir :
 
 - un **système de transport sécurisé** : harnais de sécurité automobile pour chien ou caisse arrimée ;
-- une **caisse/sac accepté par la compagnie, sous réserve de ses dimensions et conditions** si avion, train ou ferry ;
+- une **caisse ou sac accepté par la compagnie** si avion, train ou ferry ;
 - une **gourde + gamelle pliable** et l'alimentation habituelle ;
 - un **traceur GPS** et la médaille avec vos coordonnées ;
 - les **équipements météo** : tapis rafraîchissant l'été, manteau/bottines l'hiver ;

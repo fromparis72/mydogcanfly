@@ -51,7 +51,8 @@
  *
  *   node preuve-migration-categories.mjs
  */
-import { readFileSync, readdirSync, mkdtempSync, rmSync } from "node:fs";
+import { readFileSync, writeFileSync, readdirSync, mkdtempSync, rmSync } from "node:fs";
+import { createHash } from "node:crypto";
 import { tmpdir } from "node:os";
 import { spawnSync } from "node:child_process";
 import { join } from "node:path";
@@ -60,6 +61,12 @@ import { join } from "node:path";
 const BASE = "7ac07e572712cf51c17ed6bd759c0f2c34131504";
 /** L'état APRÈS migration : le commit où elle a atterri. Jamais HEAD, jamais l'arbre courant. */
 const RESULTAT = "c867628f554c432a3bf9a1fa79454b9fe5f03eca";
+/* LE MIGRATEUR DE LA PREUVE, NOMMÉ PAR SON COMMIT ET PAR SON EMPREINTE. C'est la version corrigée
+   et atomique arbitrée le 03/09/2026 ; l'empreinte est relevée sur ces octets-là, si bien qu'un
+   commit réécrit ou une extraction silencieusement différente ne passeraient pas. */
+const MIGRATEUR_COMMIT = "c2c3fe90ef02cedf5c743816638c6d53a4074ee5";
+const MIGRATEUR_CHEMIN = "packages/knowledge/scripts/migrer-categories.mjs";
+const MIGRATEUR_EMPREINTE = "7eefee1eb704c3492c8f3980fd947c97acc3b0a776b417e9f2fd6e2491a24333";
 
 const RACINE = "packages/ui/src/content/guides";
 const LANGUES = ["en", "fr", "es", "pt"];
@@ -201,16 +208,39 @@ for (const [chemin, valeur] of abandonsVus) {
   const arbre = join(base, "wt");
   const g = (...a) => spawnSync("git", a, { encoding: "utf-8" });
   /* Détaché sur RESULTAT, pas sur HEAD : l'idempotence se prouve sur l'état que la migration a
-     produit. Le migrateur exécuté est celui du dépôt courant, identique à celui de c2c3fe90 — la
-     version corrigée, atomique — vérifié par `git diff` avant ce rescopage. */
+     produit.
+     ET LE MIGRATEUR EXÉCUTÉ EST CELUI DE `c2c3fe90`, TIRÉ DU DÉPÔT — pas le fichier de l'arbre
+     courant. FAUTE MESURÉE PAR LA CONTRE-REVUE DU 03/09/2026 : cette preuve est DATÉE, elle porte
+     sur deux commits immuables, et elle exécutait pourtant la version VIVANTE du migrateur. Le
+     commentaire s'en défendait en disant les deux fichiers identiques « vérifié par git diff » —
+     ce qui était vrai ce jour-là et ne prouve rien du lendemain. Une preuve historique dont un
+     ingrédient bouge avec l'arbre de travail n'est plus une preuve historique : elle mesurerait
+     l'idempotence d'un migrateur que la migration n'a jamais utilisé.
+     Les octets sont donc EXTRAITS du commit, leur empreinte est vérifiée, et c'est ce fichier-là
+     qui s'exécute. Il est écrit DANS le worktree, à côté de ses propres dépendances, parce qu'il
+     importe `./lib/categories-guides.mjs` relativement — et retiré avant le contrôle de propreté,
+     pour qu'il ne compte pas lui-même comme une modification. */
   const ajout = g("worktree", "add", "--detach", "--quiet", arbre, RESULTAT);
   if (ajout.status !== 0) {
     echec(`5. worktree jetable impossible : ${(ajout.stderr || "").trim()}`);
   } else {
-    const rejeu = spawnSync("node",
-      ["packages/knowledge/scripts/migrer-categories.mjs", `--racine=${join(arbre, RACINE)}`],
-      { encoding: "utf-8" });
-    const etat = g("-C", arbre, "status", "--porcelain", "-uall");
+    const octets = spawnSync("git", ["show", `${MIGRATEUR_COMMIT}:${MIGRATEUR_CHEMIN}`],
+      { encoding: "buffer", maxBuffer: 1 << 26 });
+    let rejeu = { status: 1, stdout: "", stderr: "octets du migrateur historique non extraits" };
+    let etat = { stdout: "" };
+    if (octets.status !== 0) {
+      echec(`5. les octets du migrateur à ${MIGRATEUR_COMMIT.slice(0, 8)} sont introuvables`);
+    } else {
+      const empreinte = createHash("sha256").update(octets.stdout).digest("hex");
+      if (empreinte !== MIGRATEUR_EMPREINTE) {
+        echec(`5. le migrateur historique ne porte pas l'empreinte attendue : ${empreinte} au lieu de ${MIGRATEUR_EMPREINTE}`);
+      }
+      const cible = join(arbre, "packages/knowledge/scripts", `migrer-categories.${MIGRATEUR_COMMIT.slice(0, 8)}.mjs`);
+      writeFileSync(cible, octets.stdout);
+      rejeu = spawnSync("node", [cible, `--racine=${join(arbre, RACINE)}`], { encoding: "utf-8" });
+      rmSync(cible, { force: true });
+      etat = g("-C", arbre, "status", "--porcelain", "-uall");
+    }
     if (rejeu.status !== 0) {
       echec(`5. le rejeu RÉEL de la migration échoue (code ${rejeu.status}) : ${(rejeu.stderr || "").trim().split("\n")[0]}`);
     }

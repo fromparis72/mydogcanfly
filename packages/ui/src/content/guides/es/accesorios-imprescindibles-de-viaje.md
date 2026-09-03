@@ -15,7 +15,7 @@ enbref:
   - "📍 Con qué **localizarlo** (localizador GPS)"
   - "🧥 **Material de confort** acorde con el tiempo"
   - "🩹 Un **botiquín de primeros auxilios**"
-  - "✅ **Equipamiento conforme a los requisitos aplicables** para tu medio de transporte"
+  - "✅ **Equipamiento adecuado** para tu medio de transporte"
 cover:
   image: "/travel-hub/dog-travel-accessories.webp"
   alt: "Perro listo para salir de viaje, sentado en el asiento trasero de un coche"
@@ -76,7 +76,7 @@ Nuestras guías: [la ansiedad del perro en los viajes](/es/travel-hub/ansiedad-d
 Para salir con tranquilidad, asegúrate de tener:
 
 - un **sistema de transporte seguro**: arnés de coche crash-test o transportín anclado;
-- un **transportín o bolso conforme a los requisitos aplicables** si vas en avión, en tren o en ferry;
+- un **transportín o bolso aceptado por la compañía** si vas en avión, en tren o en ferry;
 - una **botella + un bol plegable** y la comida habitual de tu perro;
 - un **localizador GPS** y una chapa con tus datos;
 - **material según el tiempo**: alfombrilla refrescante en verano, abrigo y botitas en invierno;
