@@ -9,7 +9,7 @@
  * contrat. On éprouve donc ici les quatre faux-verts trouvés par la contre-revue du 30/08/2026,
  * chacun sur sa propre cause.
  */
-import { readFileSync, writeFileSync, mkdtempSync, rmSync } from "node:fs";
+import { readFileSync, writeFileSync, mkdtempSync, rmSync, existsSync } from "node:fs";
 import { join, dirname } from "node:path";
 import { tmpdir } from "node:os";
 import { dansUnSlugConserve, classer, relever, verifier, citationsDeLHeritage, ancresOrphelines, MOTIF, MOTIF_HERITE, ALTERNATIVES, FAMILLE_CONTENANT, FORMES_BORNEES, CATEGORIES, INSTRUMENTS_DE_MESURE, CHEMIN_SCELLE_INSTRUMENTS, verifierScelleInstruments } from "./inventaire-iata.mjs";
@@ -179,12 +179,24 @@ const classerLigne = (chemin, ligne) => {
   const contamine = releve.filter((r) => INSTRUMENTS_DE_MESURE.includes(r.fichier) && edito.includes(r.categorie));
   const parFichier = attendus.map((f) => `${f} : ${reg.filter((r) => r.fichier === f).length}`);
 
-  if (!reg.length) echec("6sexies instruments de mesure", "la catégorie ne contient rien — elle ne prouve rien");
-  else if (fichiers.join("|") !== attendus.join("|"))
-    echec("6sexies instruments de mesure", `catégorie portée par ${fichiers.join(", ") || "aucun fichier"} — attendu exactement ${attendus.join(", ")}`);
+  /* UN INSTRUMENT VIDÉ RESTE UN INSTRUMENT (03/09/2026). La règle exigeait que CHAQUE nom de la
+     liste porte des occurrences réelles — bonne règle contre un nom ajouté pour exempter en
+     silence, mais elle est devenue fausse le jour où le micro-lot a ramené la dette publiée à
+     zéro : `dette-iata-publiee.json` ne porte plus rien, précisément parce qu'il a réussi.
+     La règle devient donc : aucun fichier ne porte la catégorie sans être dans la liste — c'est
+     l'étanchéité, et c'est ce qui compte —, chaque nom de la liste EXISTE bien dans le dépôt, et
+     la catégorie n'est pas vide dans son ensemble. La légitimité des membres, elle, est prouvée
+     ailleurs, par le scellé versionné du contrôle 6octies. */
+  const absents = attendus.filter((c) => !existsSync(c));
+  const horsListe = fichiers.filter((f) => !attendus.includes(f));
+  if (!reg.length) echec("6sexies instruments de mesure", "la catégorie ne contient rien du tout — elle ne prouve rien");
+  else if (horsListe.length)
+    echec("6sexies instruments de mesure", `catégorie portée hors liste par : ${horsListe.join(", ")}`);
+  else if (absents.length)
+    echec("6sexies instruments de mesure", `nom scellé sans fichier dans le dépôt : ${absents.join(", ")}`);
   else if (contamine.length)
     echec("6sexies instruments de mesure", `${contamine.length} occurrence(s) d'un instrument comptée(s) au micro-lot éditorial`);
-  else ok(`6sexies les ${attendus.length} instruments de mesure se retirent du compte — ${parFichier.join(" · ")} —, et zéro n'entre au micro-lot éditorial`);
+  else ok(`6sexies les ${attendus.length} instruments de mesure se retirent du compte — ${parFichier.join(" · ")} —, aucun autre fichier ne porte la catégorie, et zéro n'entre au micro-lot éditorial`);
 }
 
 /* 6 octies — LA LISTE DES INSTRUMENTS EST SCELLÉE, PAS SEULEMENT CENTRALISÉE.
