@@ -11,7 +11,7 @@ category: "gear"
 tags: ["dog", "travel crate", "airplane", "IATA"]
 sourceUrl: "/airline-approved-dog-crate/"
 enbref:
-  - "📏 **Rigid double-shell** crate, **IATA**-compliant (CR82)"
+  - "📏 **Rigid double-shell** crate, meeting the **applicable requirements** (CR82)"
   - "🐕 The animal must be able to **stand, turn around, lie down**"
   - "🔩 **Metal fasteners** (bolts/nuts), no plastic clips"
   - "💨 **Ventilation** distributed over 3 to 4 sides"

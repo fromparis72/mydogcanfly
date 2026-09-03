@@ -10,7 +10,7 @@ category: "gear"
 tags: ["chien", "caisse de transport", "avion", "IATA"]
 sourceUrl: "/caisse-transport-avion-homologuee-chien/"
 enbref:
-  - "📏 Caisse **rigide double coque**, conforme **IATA** (CR82)"
+  - "📏 Caisse **rigide double coque**, conforme aux **exigences applicables** (CR82)"
   - "🐕 L'animal doit pouvoir **se tenir debout, se retourner, s'allonger**"
   - "🔩 **Fixations métalliques** (boulons/écrous), pas de clips plastique"
   - "💨 **Ventilation** répartie sur 3 à 4 côtés"

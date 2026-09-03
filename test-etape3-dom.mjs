@@ -20,7 +20,7 @@
 import { readFileSync, writeFileSync, readdirSync, statSync, existsSync, mkdtempSync, mkdirSync, rmSync } from "node:fs";
 import { tmpdir } from "node:os";
 import { join } from "node:path";
-import { MOTIF, jugerOccurrence } from "./inventaire-iata.mjs";
+import { MOTIF, jugerOccurrence, dansUnSlugConserve } from "./inventaire-iata.mjs";
 import { zonesDe } from "./test-lib/zones-publiques.mjs";
 
 const DIST = process.argv.slice(2).find((a) => a.startsWith("--dist="))?.slice(7);
@@ -134,6 +134,13 @@ ok(`départ : ${pages.length} pages construites`);
         MOTIF.lastIndex = 0;
         for (const m of String(texte).matchAll(MOTIF)) {
           if (jugerOccurrence(m[0]) !== "interdite") continue;
+          /* L'EXEMPTION DE SLUG EST LA MÊME QUE CELLE DES SOURCES, et elle vient de l'instrument.
+             Trois slugs arbitrés comme CONSERVÉS paraissent dans les URL du JSON-LD des pages
+             qu'ils nomment. `classer()` les exempte depuis toujours ; cette garde ne le faisait
+             pas. Deux règles pour la même question, donc deux réponses : tant que ces slugs
+             existent, le registre ne pouvait STRUCTURELLEMENT pas atteindre zéro. L'exemption est
+             bornée à la POSITION exacte : les mêmes mots dans la prose restent interdits. */
+          if (dansUnSlugConserve(String(texte), m.index, m.index + m[0].length)) continue;
           const f = `${zone} · ${m[0].toLowerCase().replace(/\s+/g, " ").trim()}`;
           par[f] = (par[f] || 0) + 1;
         }
@@ -209,6 +216,7 @@ ok(`départ : ${pages.length} pages construites`);
         MOTIF.lastIndex = 0;
         for (const m of String(texte).matchAll(MOTIF)) {
           if (jugerOccurrence(m[0]) !== "interdite") continue;
+          if (dansUnSlugConserve(String(texte), m.index, m.index + m[0].length)) continue;
           par[zone] = (par[zone] ?? 0) + 1;
         }
       }
@@ -302,22 +310,44 @@ ok(`départ : ${pages.length} pages construites`);
   if (ecarts.length) echec(`1bis registre de la dette (${ecarts.length} écart(s))`, ecarts.slice(0, 4).join(" · "));
   else ok(`1bis la dette publiée correspond EXACTEMENT au registre : ${Object.keys(vu).length} pages, ${total} occurrences`);
 
-  /* LES DEUX ATTAQUES QUE LE TOTAL SEUL LAISSAIT PASSER, jouées sur des copies du constat. */
+  /* LES DEUX ATTAQUES QUE LE TOTAL SEUL LAISSAIT PASSER, jouées sur des copies du constat.
+   *
+   * ELLES DOIVENT TENIR QUAND LE REGISTRE EST VIDE, et c'est le cas depuis le 03/09/2026. Faute
+   * mesurée le jour même : la première rédaction prenait `urls[0]` et la première formulation du
+   * registre. À zéro page, elle levait un TypeError — autrement dit, la garde cessait de garder
+   * À L'INSTANT PRÉCIS où la dette était fermée, c'est-à-dire quand elle devient le seul rempart
+   * contre une réapparition. Un registre vide est un verrou, pas un blanc-seing.
+   *
+   * On travaille donc sur un COUPLE TÉMOIN : le registre réel s'il porte quelque chose, sinon un
+   * registre fabriqué d'une page et d'une formulation. Le comparateur est le même dans les deux
+   * cas — c'est LUI qu'on éprouve, pas le contenu du registre. */
   {
-    const urls = Object.keys(registre);
-    const deplace = JSON.parse(JSON.stringify(vu));
-    const premiere = urls[0], forme = Object.keys(registre[premiere])[0];
-    delete deplace[premiere];                                  // une page corrigée…
-    deplace["/une-page-jusque-la-saine/"] = { [forme]: 1 };     // …et une autre salie : total constant
-    const vuDeplace = comparer(registre, deplace);
-    if (!vuDeplace.length) echec("1ter défaut déplacé", "un défaut déplacé à effectif constant est accepté");
-    else ok(`1ter un défaut déplacé à effectif constant est vu (${vuDeplace.length} écart(s))`);
+    const vide = Object.keys(registre).length === 0;
+    const PAGE = vide ? "/temoin-de-contre-epreuve/" : Object.keys(registre)[0];
+    const FORME = vide ? "corps · caisse iata" : Object.keys(registre[PAGE])[0];
+    const base = vide ? { [PAGE]: { [FORME]: 1 } } : registre;
+    const constat = vide ? { [PAGE]: { [FORME]: 1 } } : JSON.parse(JSON.stringify(vu));
 
-    const enPlus = JSON.parse(JSON.stringify(vu));
-    enPlus[premiere][forme] += 1;                               // une occurrence de plus, même page
-    const vuEnPlus = comparer(registre, enPlus);
+    const deplace = JSON.parse(JSON.stringify(constat));
+    delete deplace[PAGE];                                      // une page corrigée…
+    deplace["/une-page-jusque-la-saine/"] = { [FORME]: 1 };     // …et une autre salie : total constant
+    const vuDeplace = comparer(base, deplace);
+    if (!vuDeplace.length) echec("1ter défaut déplacé", "un défaut déplacé à effectif constant est accepté");
+    else ok(`1ter un défaut déplacé à effectif constant est vu (${vuDeplace.length} écart(s))${vide ? " — sur un couple témoin, le registre réel étant vide" : ""}`);
+
+    const enPlus = JSON.parse(JSON.stringify(constat));
+    enPlus[PAGE][FORME] += 1;                                   // une occurrence de plus, même page
+    const vuEnPlus = comparer(base, enPlus);
     if (!vuEnPlus.length) echec("1quater occurrence supplémentaire", "une occurrence de plus sur une page déjà comptée est acceptée");
     else ok("1quater une occurrence supplémentaire sur une page déjà enregistrée est vue");
+
+    /* ET LA CONTRE-ÉPREUVE PROPRE AU REGISTRE VIDE : une page qui REDEVIENT fautive doit rougir.
+       Sans elle, « zéro » ne prouverait rien — un comparateur qui accepte tout rend zéro aussi. */
+    if (vide) {
+      const reapparition = comparer(registre, { "/une-page-qui-redevient-fautive/": { "corps · caisse iata": 1 } });
+      if (!reapparition.length) echec("1quinquies-zero réapparition", "une page redevenue fautive est acceptée par un registre vide");
+      else ok("1quinquies-zero une affirmation qui réapparaît fait rougir le registre vide — zéro est un verrou, pas un blanc-seing");
+    }
   }
 }
 

@@ -412,6 +412,30 @@ export function jugerOccurrence(trouve) {
   return "inconnue";
 }
 
+/* ---- L'EXEMPTION DE SLUG, CANONIQUE ET PARTAGÉE ---------------------------------------------
+ *
+ * POURQUOI ELLE SORT DE `classer()` (03/09/2026). Trois slugs arbitrés comme CONSERVÉS —
+ * `caisse-transport-avion-homologuee-chien`, `transportin-homologado-iata-perro`,
+ * `caixa-de-transporte-homologada-iata` — apparaissent dans les URL du JSON-LD des pages qu'ils
+ * nomment. La garde de la dette PUBLIÉE les comptait comme des affirmations, alors que `classer()`
+ * les exempte depuis toujours dans les sources. Deux règles pour la même question, donc deux
+ * réponses : tant que ces slugs existent, le registre ne pouvait STRUCTURELLEMENT pas atteindre
+ * zéro. Une seule définition, ici, consommée par les deux.
+ *
+ * ELLE EST BORNÉE À LA POSITION EXACTE DU SLUG, ET C'EST TOUT L'ENJEU : l'occurrence doit vivre
+ * ENTIÈREMENT à l'intérieur du slug. Les mêmes mots écrits dans la prose voisine restent
+ * interdits, et un slug altéré d'un seul caractère ne bénéficie de rien. */
+export function dansUnSlugConserve(texte, debut, fin) {
+  for (const sl of SLUGS_CONSERVES) {
+    let i = texte.indexOf(sl);
+    while (i !== -1) {
+      if (debut >= i && fin <= i + sl.length) return true;
+      i = texte.indexOf(sl, i + 1);
+    }
+  }
+  return false;
+}
+
 export function classer(chemin, ligne, trouve, debut, fin) {
   /* 0 — UN INSTRUMENT DE MESURE NE SE MESURE PAS LUI-MÊME. Cette règle passe AVANT toutes les
      autres, y compris avant les slugs et avant le jugement lexical : sinon une URL du registre est
@@ -420,13 +444,7 @@ export function classer(chemin, ligne, trouve, debut, fin) {
   if (INSTRUMENTS_DE_MESURE.includes(chemin)) return "registre_preuve_non_public";
 
   /* 1 — L'occurrence EST à l'intérieur d'un slug conservé : un identifiant, pas une phrase. */
-  for (const sl of SLUGS_CONSERVES) {
-    let i = ligne.indexOf(sl);
-    while (i !== -1) {
-      if (debut >= i && fin <= i + sl.length) return "slug_conserve";
-      i = ligne.indexOf(sl, i + 1);
-    }
-  }
+  if (dansUnSlugConserve(ligne, debut, fin)) return "slug_conserve";
   /* 2 — L'occurrence est À L'INTÉRIEUR d'une citation attribuée : on ne réécrit pas une source. */
   for (const [a, b] of portéesDeCitation(ligne)) if (debut >= a && fin <= b) return "citation_attribuee";
 

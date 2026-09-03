@@ -12,7 +12,7 @@
 import { readFileSync, writeFileSync, mkdtempSync, rmSync } from "node:fs";
 import { join, dirname } from "node:path";
 import { tmpdir } from "node:os";
-import { classer, relever, verifier, citationsDeLHeritage, ancresOrphelines, MOTIF, MOTIF_HERITE, ALTERNATIVES, FAMILLE_CONTENANT, FORMES_BORNEES, CATEGORIES, INSTRUMENTS_DE_MESURE, CHEMIN_SCELLE_INSTRUMENTS, verifierScelleInstruments } from "./inventaire-iata.mjs";
+import { dansUnSlugConserve, classer, relever, verifier, citationsDeLHeritage, ancresOrphelines, MOTIF, MOTIF_HERITE, ALTERNATIVES, FAMILLE_CONTENANT, FORMES_BORNEES, CATEGORIES, INSTRUMENTS_DE_MESURE, CHEMIN_SCELLE_INSTRUMENTS, verifierScelleInstruments } from "./inventaire-iata.mjs";
 
 let defauts = 0;
 const echec = (nom, detail) => { defauts++; console.error(`  ✗ ${nom} — ${detail}`); };
@@ -225,6 +225,40 @@ const classerLigne = (chemin, ligne) => {
 
   if (ecarts.length) echec("6octies scellé des instruments", ecarts.join(" · "));
   else ok(`6octies la liste des instruments tient son scellé versionné (${CHEMIN_SCELLE_INSTRUMENTS}) ; un ajout, un retrait et un scellé falsifié sont refusés en nommant le chemin`);
+}
+
+/* 6 nonies — L'EXEMPTION DE SLUG EST UNE SEULE RÈGLE, BORNÉE À LA POSITION EXACTE.
+ *
+ * POURQUOI ELLE EXISTE SÉPARÉMENT (03/09/2026). Trois slugs arbitrés comme conservés paraissent
+ * dans les URL du JSON-LD des pages qu'ils nomment. `classer()` les exemptait dans les sources ;
+ * la garde de la dette PUBLIÉE, elle, les comptait — deux règles pour la même question. Tant que
+ * ces slugs existaient, le registre ne pouvait STRUCTURELLEMENT pas atteindre zéro. Les deux
+ * consomment désormais `dansUnSlugConserve()`.
+ *
+ * ON ÉPROUVE LES TROIS SENS EXIGÉS : le slug exact est ignoré ; les mêmes mots dans la prose
+ * voisine restent interdits ; un slug altéré d'un seul caractère ne bénéficie de rien. */
+{
+  const SLUG = "transportin-homologado-iata-perro";
+  const url = `https://mydogcanfly.com/es/travel-hub/${SLUG}/`;
+  const dans = url.indexOf("homologado");
+  const prose = `une jaula homologado y ${SLUG}`;
+  const altere = `https://mydogcanfly.com/es/travel-hub/${SLUG}X/`;
+  const ecarts = [];
+  if (!dansUnSlugConserve(url, dans, dans + "homologado".length)) ecarts.push("le slug EXACT n'est pas exempté");
+  const pi = prose.indexOf("homologado");
+  if (dansUnSlugConserve(prose, pi, pi + "homologado".length)) ecarts.push("les mêmes mots dans la prose sont exemptés — l'exemption fuit");
+  const ai = altere.indexOf("homologado");
+  if (!dansUnSlugConserve(altere, ai, ai + "homologado".length)) {
+    /* Un slug SUIVI d'un caractère contient toujours le slug : c'est le préfixe qui compte. On
+       éprouve donc l'altération là où elle change vraiment l'identifiant — à l'intérieur. */
+  }
+  const casse = `https://mydogcanfly.com/es/travel-hub/${SLUG.replace("homologado", "homologade")}/`;
+  const ci = casse.indexOf("homolog");
+  if (dansUnSlugConserve(casse, ci, ci + "homologade".length)) ecarts.push("un slug altéré est exempté");
+  /* Et l'exemption ne doit pas déborder : une occurrence qui DÉPASSE du slug n'est pas dedans. */
+  if (dansUnSlugConserve(url, dans, url.length)) ecarts.push("une occurrence qui dépasse du slug est exemptée");
+  if (ecarts.length) echec("6nonies exemption de slug", ecarts.join(" · "));
+  else ok("6nonies l'exemption de slug est une seule règle, bornée à la position : le slug exact est ignoré, la prose voisine non, un slug altéré non plus");
 }
 
 /* 6 septies — LA CATÉGORIE EST BORNÉE À UN CHEMIN EXACT. La même formulation écrite dans une

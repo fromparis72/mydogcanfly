@@ -78,6 +78,11 @@ const EN = [
     (_m, adj, nom) => `${adj ?? ""}${nom} that meets the applicable requirements`],
   /* Adjectif détaché — « Rigid double-shell crate, IATA-compliant (CR82) ». */
   [re("IATA[- ](?:approved|compliant|certified|accredited)", "gi"), "meeting the applicable requirements"],
+  /* L'EMPHASE MARKDOWN NE COUPE PAS UNE PHRASE. Les guides écrivent « **IATA**-compliant » : les
+     étoiles ne se voient pas à l'écran, mais elles cassent l'expression régulière, et deux
+     affirmations survivaient à la réécriture EN ÉTANT PUBLIÉES. L'emphase est reportée sur le
+     terme qui porte désormais le sens — jamais supprimée, c'est du style. */
+  [/\*\*IATA\*\*-(?:approved|compliant|certified|accredited)\b/gi, "meeting the **applicable requirements**"],
   /* Le contenant garde son nom ; seule l'attribution part. L'article suit. */
   [re("an\\s+IATA\\s+crate", "gi"), "a travel crate"],
   [re("an\\s+IATA\\s+kennel", "gi"), "a kennel"],
@@ -103,6 +108,7 @@ const FR = [
   [re("homologuée\\s+IATA", "gi"), "conforme aux exigences applicables"],
   [re("homologué\\s+IATA", "gi"), "conforme aux exigences applicables"],
   [re("conformes?\\s+(?:à\\s+la\\s+norme\\s+)?IATA", "gi"), "conforme aux exigences applicables"],
+  [/\bconformes?\s+\*\*IATA\*\*/gi, "conforme aux **exigences applicables**"],
   [re("certifiées\\s+IATA", "gi"), "conformes aux exigences applicables"],
   [re("certifiée\\s+IATA", "gi"), "conforme aux exigences applicables"],
   [re("type\\s+IATA\\s+rigide", "gi"), "de transport rigide"],
@@ -346,12 +352,16 @@ if (import.meta.url === `file://${process.argv[1]}`) {
 
   let avant = 0, apres = 0, touches = 0;
   const compteur = new Map();
-  const restes = [], defauts = [], sansPortee = [];
+  const restes = [], defauts = [], sansPortee = [], invisibles = [];
 
   for (const f of fichiers) {
-    const orig = readFileSync(f, "utf8");
+      const orig = readFileSync(f, "utf8");
     const n0 = interdites(f, orig).length;
-    if (!n0) continue;
+    /* ON NE SAUTE PAS UN FICHIER QUE LA SOURCE DIT PROPRE. Défaut mesuré le 03/09/2026 : un guide
+       écrit « **IATA**-compliant » ; les étoiles cassent le motif, donc l'instrument ne voit RIEN
+       dans la source — mais le lecteur de zones rend « IATA-compliant » et la page le PUBLIE. Une
+       affirmation peut être invisible à la source et visible à l'écran. Tous les fichiers sont
+       donc traités ; ceux que rien ne change ne sont simplement pas réécrits. */
     avant += n0;
     let texte = orig;
 
@@ -425,13 +435,22 @@ if (import.meta.url === `file://${process.argv[1]}`) {
     for (const m of reste) {
       restes.push(`${f} · « ${m.texte} » — …${texte.slice(Math.max(0, m.index - 55), m.index + m.texte.length + 55).replace(/\s+/g, " ")}…`);
     }
-    if (texte !== orig) { touches++; if (ECRIRE) writeFileSync(f, texte); }
+    if (texte !== orig) {
+      touches++;
+      if (!n0) invisibles.push(f);          // rien à la source, quelque chose à l'écran
+      if (ECRIRE) writeFileSync(f, texte);
+    }
   }
 
   console.log(`${fichiers.length} fichier(s) lus`);
   console.log(`${avant} occurrence(s) interdite(s) au départ · ${apres} après · ${touches} fichier(s) modifié(s)${ECRIRE ? "" : "  (RIEN N'A ÉTÉ ÉCRIT)"}`);
   console.log("\n— ce que chaque règle a traité, par langue —");
   for (const [k, n] of [...compteur].sort((a, b) => b[1] - a[1]).slice(0, 28)) console.log(`  ${String(n).padStart(4)}  ${k}`);
+  if (invisibles.length) {
+    console.log(`\n— ${invisibles.length} fichier(s) propres À LA SOURCE mais réécrits quand même —`);
+    console.log("     (emphase markdown : « **IATA**-compliant » ne se voit pas dans le texte brut, mais la page le publie)");
+    for (const l of invisibles) console.log("  " + l);
+  }
   if (sansPortee.length) {
     console.log(`\n— ${sansPortee.length} occurrence(s) HORS de toute portée de langue —`);
     for (const l of sansPortee.slice(0, 15)) console.log("  " + l);
