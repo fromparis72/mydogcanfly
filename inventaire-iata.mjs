@@ -470,29 +470,33 @@ export function dansUnSlugConserve(texte, debut, fin) {
  *
  * L'occurrence doit vivre ENTIÈREMENT à l'intérieur du fragment déclaré — comme pour les slugs.
  * Les mêmes mots écrits ailleurs dans la même ligne restent interdits. */
+const PAGES_CATHAY = ["/airlines/cathay-pacific/", "/fr/airlines/cathay-pacific/", "/es/airlines/cathay-pacific/", "/pt/airlines/cathay-pacific/"];
+const PAGES_AIRBALTIC = ["/airlines/airbaltic/", "/fr/airlines/airbaltic/", "/es/airlines/airbaltic/", "/pt/airlines/airbaltic/"];
 export const FRAGMENTS_ATTRIBUES = [
-  { chemin: "content/airlines/cathay_pacific.yml",
+  /* `pages` : les URL PUBLIÉES où le fragment peut paraître — la garde du DOM n'exempte que là,
+     et que le texte exact. Une page de plus, un mot de moins : rien n'est exempté. */
+  { chemin: "content/airlines/cathay_pacific.yml", pages: PAGES_CATHAY,
     fragment: "IATA Accredited Freight Forwarder",
     source: "https://www.cathaypacific.com/cx/en_IN/prepare-trip/help-for-passengers/travelling-with-animals/overview-cargo.html" },
-  { chemin: "content/airlines/cathay_pacific.yml",
+  { chemin: "content/airlines/cathay_pacific.yml", pages: PAGES_CATHAY,
     fragment: "certificat IATA Live Animals Regulations",
     source: "idem — la page nomme le certificat de formation LAR comme troisième catégorie admise" },
-  { chemin: "content/airlines/cathay_pacific.yml",
+  { chemin: "content/airlines/cathay_pacific.yml", pages: PAGES_CATHAY,
     fragment: "IATA Live Animals Regulations certificate",
     source: "idem" },
-  { chemin: "content/airlines/cathay_pacific.yml",
+  { chemin: "content/airlines/cathay_pacific.yml", pages: PAGES_CATHAY,
     fragment: "certificado IATA Live Animals Regulations",
     source: "idem — la désignation officielle du certificat, en espagnol comme en portugais" },
-  { chemin: "content/airlines/airbaltic.yml",
+  { chemin: "content/airlines/airbaltic.yml", pages: PAGES_AIRBALTIC,
     fragment: "IATA Live Animals Regulations training certificate",
     source: "https://www.airbaltic.com/en/cargo/shipping-animals-cargo" },
-  { chemin: "content/airlines/airbaltic.yml",
+  { chemin: "content/airlines/airbaltic.yml", pages: PAGES_AIRBALTIC,
     fragment: "certificat de formation IATA Live Animals Regulations",
     source: "idem" },
-  { chemin: "content/airlines/airbaltic.yml",
+  { chemin: "content/airlines/airbaltic.yml", pages: PAGES_AIRBALTIC,
     fragment: "certificado de formación IATA Live Animals Regulations",
     source: "idem" },
-  { chemin: "content/airlines/airbaltic.yml",
+  { chemin: "content/airlines/airbaltic.yml", pages: PAGES_AIRBALTIC,
     fragment: "certificado de formação IATA Live Animals Regulations",
     source: "idem" },
 ];
@@ -505,6 +509,19 @@ export function dansUnFragmentAttribue(chemin, ligne, debut, fin) {
     while (i !== -1) {
       if (debut >= i && fin <= i + f.fragment.length) return true;
       i = ligne.indexOf(f.fragment, i + 1);
+    }
+  }
+  return false;
+}
+
+/** Côté PUBLIÉ : vrai si l'occurrence vit entièrement dans un fragment déclaré POUR CETTE URL. */
+export function dansUnFragmentAttribuePublie(url, texte, debut, fin) {
+  for (const f of FRAGMENTS_ATTRIBUES) {
+    if (!f.pages?.includes(url)) continue;
+    let i = texte.indexOf(f.fragment);
+    while (i !== -1) {
+      if (debut >= i && fin <= i + f.fragment.length) return true;
+      i = texte.indexOf(f.fragment, i + 1);
     }
   }
   return false;

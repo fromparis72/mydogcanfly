@@ -10,7 +10,7 @@ author: "Camille Roussel"
 category: "gear"
 tags: ["cachorro", "caixa de transporte", "avião", "IATA"]
 enbref:
-  - "📏 Caixa **rígida de casco duplo**, em conformidade com a **IATA** (CR82)"
+  - "📏 Caixa **rígida de casco duplo**, em conformidade com os **requisitos aplicáveis** (CR82)"
   - "🐕 O animal precisa poder **ficar de pé, virar-se e deitar-se**"
   - "🔩 **Ferragens de metal** (parafusos e porcas), sem travas de plástico"
   - "💨 **Ventilação** distribuída em 3 ou 4 lados"

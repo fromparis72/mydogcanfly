@@ -20,7 +20,7 @@
 import { readFileSync, writeFileSync, readdirSync, statSync, existsSync, mkdtempSync, mkdirSync, rmSync } from "node:fs";
 import { tmpdir } from "node:os";
 import { join } from "node:path";
-import { MOTIF, jugerOccurrence, dansUnSlugConserve } from "./inventaire-iata.mjs";
+import { MOTIF, jugerOccurrence, dansUnSlugConserve, dansUnFragmentAttribuePublie } from "./inventaire-iata.mjs";
 import { zonesDe } from "./test-lib/zones-publiques.mjs";
 
 const DIST = process.argv.slice(2).find((a) => a.startsWith("--dist="))?.slice(7);
@@ -141,6 +141,9 @@ ok(`départ : ${pages.length} pages construites`);
              existent, le registre ne pouvait STRUCTURELLEMENT pas atteindre zéro. L'exemption est
              bornée à la POSITION exacte : les mêmes mots dans la prose restent interdits. */
           if (dansUnSlugConserve(String(texte), m.index, m.index + m[0].length)) continue;
+          /* Et les fragments attribués, par URL exacte et texte exact — la même liste que celle
+             que `classer()` consulte à la source, jamais une permission lexicale. */
+          if (dansUnFragmentAttribuePublie(url, String(texte), m.index, m.index + m[0].length)) continue;
           const f = `${zone} · ${m[0].toLowerCase().replace(/\s+/g, " ").trim()}`;
           par[f] = (par[f] || 0) + 1;
         }

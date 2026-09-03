@@ -184,6 +184,10 @@ const ES = [
   [re("conformes\\s+a\\s+IATA", "gi"), "conformes a los requisitos aplicables"],
   [re("conforme\\s+a\\s+IATA", "gi"), "conforme a los requisitos aplicables"],
   [re("conformes?\\s+a\\s+la\\s+IATA", "gi"), "conforme a los requisitos aplicables"],
+  /* L'emphase markdown, comme en anglais et en français : « conforme a **IATA** » se lit d'un
+     trait à l'écran. Mesuré publié sur le guide espagnol des transportines. */
+  [/\bconformes\s+a\s+\*\*IATA\*\*/gi, "conformes a los **requisitos aplicables**"],
+  [/\bconforme\s+a\s+\*\*IATA\*\*/gi, "conforme a los **requisitos aplicables**"],
   [re("certificadas\\s+IATA", "gi"), "conformes a los requisitos aplicables"],
   [re("tipo\\s+IATA\\s+rígida", "gi"), "rígida de transporte"],
   [re("jaulas\\s+IATA", "gi"), "jaulas de transporte"],
@@ -222,6 +226,8 @@ const PT = [
   [re("compat[íi]veis\\s+com\\s+a\\s+IATA", "gi"), "em conformidade com os requisitos aplicáveis"],
   [re("compat[íi]vel\\s+com\\s+a\\s+IATA", "gi"), "em conformidade com os requisitos aplicáveis"],
   [re("em\\s+conformidade\\s+com\\s+a\\s+IATA", "gi"), "em conformidade com os requisitos aplicáveis"],
+  [/\bem\s+conformidade\s+com\s+a\s+\*\*IATA\*\*/gi, "em conformidade com os **requisitos aplicáveis**"],
+  [/\bconforme\s+a\s+\*\*IATA\*\*/gi, "em conformidade com os **requisitos aplicáveis**"],
   [re("conformes\\s+a\\s+IATA", "gi"), "em conformidade com os requisitos aplicáveis"],
   [re("conforme\\s+a\\s+IATA", "gi"), "em conformidade com os requisitos aplicáveis"],
   [re("conformes?\\s+(?:à\\s+|com\\s+a\\s+)?IATA", "gi"), "em conformidade com os requisitos aplicáveis"],

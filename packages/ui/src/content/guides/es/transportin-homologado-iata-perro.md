@@ -10,7 +10,7 @@ author: "Camille Roussel"
 category: "gear"
 tags: ["perro", "transportín de viaje", "avión", "IATA"]
 enbref:
-  - "📏 Transportín **rígido de doble casco**, conforme a **IATA** (CR82)"
+  - "📏 Transportín **rígido de doble casco**, conforme a los **requisitos aplicables** (CR82)"
   - "🐕 El animal debe poder **ponerse de pie, darse la vuelta y tumbarse**"
   - "🔩 **Herrajes metálicos** (tornillos y tuercas), sin clips de plástico"
   - "💨 **Ventilación** repartida en 3 o 4 lados"

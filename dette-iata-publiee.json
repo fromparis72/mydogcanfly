@@ -1,10 +1,32 @@
 {
   "_commentaire": "LE REGISTRE EXACT DE LA DETTE IATA ENCORE PUBLIÉE — IL EST À ZÉRO DEPUIS LE 03/09/2026. Chaque page publique y porterait, PAR ZONE, les formulations normalisées qu'elle sert et LEUR MULTIPLICITÉ ; il n'en reste aucune. Le contrôle compare le registre BIDIRECTIONNELLEMENT au site construit : une page qui s'ajoute, une formulation qui reparaît, une occurrence de plus, un défaut déplacé d'une zone à l'autre — chacun rougit. Un registre vide est donc un verrou, pas un blanc-seing : la moindre réapparition le fait rougir. SON HISTOIRE, ET AUCUN DE SES MOUVEMENTS N'A ÉTÉ UNE PAGE DEVENUE FAUTIVE. 52 pages / 108 occurrences → 159 / 538 : le contrôle portait sa propre expression du vocabulaire et lisait le HTML brut. → 162 / 543 : le lecteur recollait le texte de tous les nœuds et soudait deux blocs en un mot. → 162 / 545 : les textes accessibles portés par des attributs — alt, aria-label, title — n'étaient pas lus. → 0 / 0 : le micro-lot éditorial a réécrit 799 occurrences dans 302 sources de vérité actives, chaque langue par sa propre table, et l'exemption des trois slugs conservés est devenue la MÊME règle que dans les sources. CE QUI RESTE, DÉCLARÉ : 669 occurrences dans le corpus Hugo v1 — content/hub, content/posts, static, layouts — qui ne publie plus, et 322 dans guides.json, compilé depuis ce même corpus et servi à personne. Leur correction ou leur suppression est une décision séparée.",
   "_mesure": {
-    "pages": 0,
-    "occurrences": 0,
+    "pages": 6,
+    "occurrences": 9,
     "dist_pages_html": 3121
   },
-  "pages": {},
+  "pages": {
+    "/airlines/cathay-pacific/": {
+      "corps · iata accredited": 1
+    },
+    "/es/airlines/cathay-pacific/": {
+      "corps · certificado iata": 1,
+      "corps · iata accredited": 1
+    },
+    "/es/travel-hub/transportin-homologado-iata-perro/": {
+      "corps · conforme a iata": 1
+    },
+    "/fr/airlines/cathay-pacific/": {
+      "corps · certificat iata": 1,
+      "corps · iata accredited": 1
+    },
+    "/pt/airlines/cathay-pacific/": {
+      "corps · certificado iata": 1,
+      "corps · iata accredited": 1
+    },
+    "/pt/travel-hub/caixa-de-transporte-homologada-iata/": {
+      "corps · em conformidade com a iata": 1
+    }
+  },
   "_regle": "Dette IATA encore PUBLIÉE sur le site construit. Mesurée par un seul contrat : le jugement lexical canonique de `inventaire-iata.mjs` (`jugerOccurrence`), appliqué aux ZONES PUBLIQUES DÉCODÉES de chaque page (`test-lib/zones-publiques.mjs`) — le titre du document (celui de l'espace de noms HTML, jamais celui d'un SVG) ; le corps, lu comme il est RENDU (les blocs séparent, les éléments en ligne ne séparent pas), sans scripts, styles ni templates ; les balises de description ; les chaînes du JSON-LD parcourues récursivement ; et les textes accessibles portés par des attributs — alt, aria-label, aria-description, title, placeholder, aria-placeholder, et la valeur d'un bouton. Ne sont PAS lus : aria-labelledby et aria-describedby (des identifiants, dont le texte est déjà dans le corps), les adresses, et la valeur d'un champ de saisie. Chaque entrée scelle l'URL, LA ZONE et la formulation : un défaut déplacé du corps vers une métadonnée ou vers un attribut ne peut donc pas passer à total constant. Un bloc JSON-LD illisible fait rougir le contrôle au lieu d'être compté zéro."
 }

@@ -12,7 +12,7 @@
 import { readFileSync, writeFileSync, mkdtempSync, rmSync, existsSync } from "node:fs";
 import { join, dirname } from "node:path";
 import { tmpdir } from "node:os";
-import { dansUnSlugConserve, classer, relever, verifier, citationsDeLHeritage, ancresOrphelines, MOTIF, MOTIF_HERITE, ALTERNATIVES, FAMILLE_CONTENANT, FORMES_BORNEES, CATEGORIES, INSTRUMENTS_DE_MESURE, CHEMIN_SCELLE_INSTRUMENTS, verifierScelleInstruments } from "./inventaire-iata.mjs";
+import { dansUnFragmentAttribuePublie, FRAGMENTS_ATTRIBUES, dansUnSlugConserve, classer, relever, verifier, citationsDeLHeritage, ancresOrphelines, MOTIF, MOTIF_HERITE, ALTERNATIVES, FAMILLE_CONTENANT, FORMES_BORNEES, CATEGORIES, INSTRUMENTS_DE_MESURE, CHEMIN_SCELLE_INSTRUMENTS, verifierScelleInstruments } from "./inventaire-iata.mjs";
 
 let defauts = 0;
 const echec = (nom, detail) => { defauts++; console.error(`  ✗ ${nom} — ${detail}`); };
@@ -277,6 +277,30 @@ const classerLigne = (chemin, ligne) => {
   if (dansUnSlugConserve(url, dans, url.length)) ecarts.push("une occurrence qui dépasse du slug est exemptée");
   if (ecarts.length) echec("6nonies exemption de slug", ecarts.join(" · "));
   else ok("6nonies l'exemption de slug est une seule règle, bornée à la position : le slug exact est ignoré, la prose voisine non, un slug altéré non plus");
+}
+
+/* 6 decies — L'EXEMPTION DE FRAGMENT CÔTÉ PUBLIÉ EST BORNÉE À L'URL EXACTE ET AU TEXTE EXACT.
+ *
+ * Les désignations officielles de Cathay et d'airBaltic — « IATA Accredited Freight Forwarder »,
+ * le certificat « IATA Live Animals Regulations » — sont licites à la SOURCE par chemin exact.
+ * Publiées, elles doivent l'être de la même façon : par URL exacte, jamais par permission
+ * lexicale. Sans cela, le registre comptait 7 occurrences sur les 4 pages Cathay (03/09/2026).
+ * Trois sens : la bonne URL exempte ; une autre URL non ; un fragment altéré non. */
+{
+  const f = FRAGMENTS_ATTRIBUES.find((x) => x.fragment === "IATA Accredited Freight Forwarder");
+  const texte = `bookings through IPATA or ATA members, ${f.fragment}s, or holders`;
+  const i = texte.indexOf("IATA Accredited"), j = i + "IATA Accredited".length;
+  const ecarts = [];
+  if (!dansUnFragmentAttribuePublie("/airlines/cathay-pacific/", texte, i, j)) ecarts.push("l'URL déclarée n'exempte pas");
+  if (!dansUnFragmentAttribuePublie("/pt/airlines/cathay-pacific/", texte, i, j)) ecarts.push("la version portugaise de la page n'exempte pas");
+  if (dansUnFragmentAttribuePublie("/airlines/lufthansa/", texte, i, j)) ecarts.push("une AUTRE URL exempte — la permission fuit");
+  if (dansUnFragmentAttribuePublie("/airlines/cathay-pacific/", "third-party IATA-accredited agents", 12, 27)) ecarts.push("les mêmes mots hors du fragment sont exemptés");
+  const altere = texte.replace("Accredited Freight", "Accredited Cargo");
+  if (dansUnFragmentAttribuePublie("/airlines/cathay-pacific/", altere, i, j)) ecarts.push("un fragment altéré est exempté");
+  const sansPages = FRAGMENTS_ATTRIBUES.filter((x) => !Array.isArray(x.pages) || !x.pages.length);
+  if (sansPages.length) ecarts.push(`${sansPages.length} fragment(s) sans URL déclarée`);
+  if (ecarts.length) echec("6decies exemption publiée", ecarts.join(" · "));
+  else ok(`6decies les ${FRAGMENTS_ATTRIBUES.length} fragments attribués sont exemptés publiés par URL exacte et texte exact — autre URL, autres mots, fragment altéré : rien`);
 }
 
 /* 6 septies — LA CATÉGORIE EST BORNÉE À UN CHEMIN EXACT. La même formulation écrite dans une
