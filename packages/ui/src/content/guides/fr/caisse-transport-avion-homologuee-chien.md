@@ -1,8 +1,8 @@
 ---
 key: "airline-approved-dog-crate"
-title: "Choisir une caisse de transport homologuée (avion)"
-description: "Caisse de transport avion pour chien : normes IATA, dimensionnement, matériaux, modèles homologués. Le guide complet pour voyager sereinement."
-summary: "Caisse de transport avion pour chien : normes IATA, dimensionnement, matériaux, modèles homologués. Le guide complet pour voyager sereinement."
+title: "Choisir une caisse de transport conforme aux exigences applicables (avion)"
+description: "Caisse de transport avion pour chien : normes IATA, dimensionnement, matériaux, modèles conformes aux exigences applicables. Le guide complet pour voyager sereinement."
+summary: "Caisse de transport avion pour chien : normes IATA, dimensionnement, matériaux, modèles conformes aux exigences applicables. Le guide complet pour voyager sereinement."
 date: "2026-06-22T09:00:00+02:00"
 lastmod: "2026-06-22T09:00:00+02:00"
 author: "Camille Roussel"
@@ -19,9 +19,9 @@ enbref:
 cover:
   image: "/travel-hub/airline-approved-dog-crate.webp"
   alt: "Un maître et son chien devant une caisse de transport IATA, à l'aéroport"
-  credit: "Caisse de transport rigide homologuée IATA."
+  credit: "Caisse de transport rigide conforme aux exigences applicables IATA."
 faq:
-  - q: "Qu'est-ce qu'une caisse homologuée IATA exactement ?"
+  - q: "Qu'est-ce qu'une caisse conforme aux exigences applicables IATA exactement ?"
     a: "C'est une caisse rigide conforme aux *Live Animals Regulations* de l'IATA : l'animal doit pouvoir s'y tenir debout sans toucher le plafond, se retourner et s'allonger ; la ventilation est répartie sur plusieurs côtés ; et les deux demi-coques sont reliées par des fixations métalliques. Il ne s'agit pas d'un label payant mais d'exigences vérifiées à l'enregistrement, que chaque compagnie peut compléter."
   - q: "Comment connaître la bonne taille de caisse pour mon chien ?"
     a: "On mesure le chien debout : longueur du nez à la base de la queue, hauteur du sol au coude, largeur aux épaules et hauteur totale jusqu'à la tête ou aux oreilles. La longueur intérieure de la caisse doit être au moins égale à la longueur du chien plus la moitié de la hauteur des pattes, la largeur à environ deux fois la largeur du chien, et la hauteur à sa hauteur debout avec une marge. On choisit ensuite la taille fabricant immédiatement supérieure."
@@ -37,9 +37,9 @@ Quand on prépare un vol avec son chien en soute, la caisse de transport n'est p
 
 Je cite quelques modèles connus comme repères — les caisses de type Petmate Sky Kennel ou Vari Kennel reviennent souvent dans les retours de voyageurs — sans inventer de dimensions ni de prix : les spécifications exactes figurent sur les fiches fabricants et doivent toujours être recoupées avec les exigences de votre compagnie. Avant de réserver, lisez aussi notre guide général pour [voyager en avion avec son chien](/fr/travel-hub/voyager-avion-avec-chien/), qui détaille cabine, soute et démarches.
 
-## Qu'est-ce qu'une caisse « homologuée IATA » ?
+## Qu'est-ce qu'une caisse « Conforme aux exigences applicables IATA » ?
 
-L'IATA (International Air Transport Association) publie les *Live Animals Regulations*, le référentiel que la quasi-totalité des compagnies utilisent pour encadrer le transport d'animaux en soute. On parle souvent du « Container Requirement 82 » (CR82) pour les chiens et chats. Ce n'est pas une homologation au sens d'un label payant : c'est un ensemble d'exigences que la caisse doit respecter, vérifiées à l'enregistrement.
+L'IATA (International Air Transport Association) publie les *Live Animals Regulations*, le référentiel que la quasi-totalité des compagnies utilisent pour encadrer le transport d'animaux en soute. On parle souvent du « Container Requirement 82 » (CR82) pour les chiens et chats. Ce n'est pas une conformité aux exigences applicables au sens d'un label payant : c'est un ensemble d'exigences que la caisse doit respecter, vérifiées à l'enregistrement.
 
 Les grands principes, tels que formulés par l'IATA :
 

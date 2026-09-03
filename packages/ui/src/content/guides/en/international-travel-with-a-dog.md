@@ -100,4 +100,4 @@ A few useful habits on site:
 
 Compare requirements by destination with our **[dog entry requirements checker by country](/countries/)**.
 
-<ol class="gd-etapes"><li><a href="/travel-hub/international-travel-with-a-dog/">Check the health requirements</a></li><li><a href="/travel-hub/airline-approved-dog-crate/">Choose an IATA-approved travel crate</a></li><li><a href="/travel-hub/dog-travel-anxiety/">Prepare your dog for the stress of the flight</a></li><li><a href="/airlines/">Compare all 62 airlines</a></li></ol>
+<ol class="gd-etapes"><li><a href="/travel-hub/international-travel-with-a-dog/">Check the health requirements</a></li><li><a href="/travel-hub/airline-approved-dog-crate/">Choose an compliant with the applicable requirements travel crate</a></li><li><a href="/travel-hub/dog-travel-anxiety/">Prepare your dog for the stress of the flight</a></li><li><a href="/airlines/">Compare all 62 airlines</a></li></ol>

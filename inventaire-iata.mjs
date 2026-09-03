@@ -173,7 +173,7 @@ const OCC_INTERDITE = /^(?:IATA[- ]?(?:approved|compliant|certified|accredited)|
 
 /* Les quatre slugs que l'arbitrage conserve : identifiants historiques stables, jamais du
    contenu éditorial à reproduire dans un titre ou un texte. */
-const SLUGS_CONSERVES = [
+export const SLUGS_CONSERVES = [
   "airline-approved-dog-crate",
   "caisse-transport-avion-homologuee-chien",
   "transportin-homologado-iata-perro",
@@ -215,7 +215,14 @@ const GENERES = [/^packages\/knowledge\/raw\/guides\.json$/, /\.generated\.json$
  *     PREMIÈRE règle appliquée n'est pas une exception.
  * Une mesure qui se compte elle-même n'est plus une mesure.
  *
- * LES QUATRE, ET POURQUOI ILS SONT QUATRE. `inventaire-iata.mjs` et `test-inventaire-iata.mjs`
+ * LE CINQUIÈME, AJOUTÉ LE 03/09/2026 : `reecrire-iata.mjs`. Il porte la TABLE de réécriture,
+ * c'est-à-dire le vocabulaire interdit en toutes lettres et sa contrepartie licite — il le porte
+ * pour la même raison que l'instrument le porte, définir le geste. Sans cette entrée il gonflait
+ * de quatre les slugs conservés et de quatre les références licites, dès sa première exécution.
+ * C'est le SCELLÉ qui l'a désigné : la mesure a rougi avant que le chiffre n'entre dans un
+ * rapport. C'est exactement ce pour quoi il a été écrit.
+ *
+ * LES PREMIERS, ET POURQUOI. `inventaire-iata.mjs` et `test-inventaire-iata.mjs`
  * citent tout le champ lexical pour le DÉFINIR et l'ÉPROUVER ; les compter comme dette
  * reviendrait à mesurer sa propre règle. Ils sortaient jusqu'ici du périmètre de lecture, donc
  * en silence ; ils sortent désormais par cette liste, donc à découvert. Voir `FICHIERS_IGNORES`.
@@ -223,7 +230,7 @@ const GENERES = [/^packages\/knowledge\/raw\/guides\.json$/, /\.generated\.json$
  * L'ÉGALITÉ EST EXACTE, ET UNE CONTRE-ÉPREUVE L'EXIGE : `dette-iata-publiee.backup.json`,
  * `docs/dette-iata-publiee.json`, `test-etape3-dom.backup.mjs` et une vraie source éditoriale ne
  * bénéficient pas de cette priorité — la même formulation y reste comptée. */
-export const INSTRUMENTS_DE_MESURE = ["dette-iata-publiee.json", "inventaire-iata.mjs", "test-etape3-dom.mjs", "test-inventaire-iata.mjs"];
+export const INSTRUMENTS_DE_MESURE = ["dette-iata-publiee.json", "inventaire-iata.mjs", "reecrire-iata.mjs", "test-etape3-dom.mjs", "test-inventaire-iata.mjs"];
 
 /* ---- LE SCELLÉ DES INSTRUMENTS -------------------------------------------------------------
  *

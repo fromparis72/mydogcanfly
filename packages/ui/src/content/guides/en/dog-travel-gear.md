@@ -24,11 +24,11 @@ faq:
   - q: "Does my dog have to be restrained in the car?"
     a: "Yes. In most countries, traffic rules require that nothing interfere with the driver — a loose dog is a hazard. A crash-tested harness clipped to the seat belt, a crate or a barrier net are the compliant, safe solutions."
   - q: "Is a soft-sided crate OK for flying?"
-    a: "For the cabin, some compliant soft carriers are accepted for small dogs. For the hold, however, only a rigid IATA-compliant crate is allowed, because it protects the animal and withstands handling."
+    a: "For the cabin, some compliant soft carriers are accepted for small dogs. For the hold, however, only a rigid compliant with the applicable requirements crate is allowed, because it protects the animal and withstands handling."
   - q: "How do I find the right crate size?"
     a: "Measure your dog's height at the withers (ears up) and their length from nose to tail base, then add a few centimeters (an inch or two). The dog must be able to stand, turn around and lie down without constraint."
   - q: "What budget should I plan to equip my dog properly?"
-    a: "Plan on roughly €30–80 (~$35–90) for a crash-tested harness, €25–60 (~$30–70) for a soft crate, €50–150 (~$55–170) for a rigid IATA crate and €30–90 (~$35–100) for a cabin carrier. Certified, durable gear costs less in the long run than a cheap model you'll have to replace."
+    a: "Plan on roughly €30–80 (~$35–90) for a crash-tested harness, €25–60 (~$30–70) for a soft crate, €50–150 (~$55–170) for a rigid travel crate and €30–90 (~$35–100) for a cabin carrier. Certified, durable gear costs less in the long run than a cheap model you'll have to replace."
   - q: "Can a car harness double as a walking harness?"
     a: "Some models are versatile, but a crash-tested safety harness is designed first and foremost for the car. For long walks, a dedicated, better-padded walking harness will be more comfortable day to day."
 ---
@@ -41,7 +41,7 @@ Each device serves a specific purpose. Here's a comparison to point you in the r
 
 | Gear | For whom | Mode of transport | Main advantage |
 |---|---|---|---|
-| Rigid crate | All sizes | Car, plane | Maximum safety, IATA-compliant options |
+| Rigid crate | All sizes | Car, plane | Maximum safety, compliant with the applicable requirements options |
 | Soft crate | Small and medium dogs | Car, train | Light and foldable |
 | Safety harness | Medium and large dogs | Car | Freedom of movement, clips to seat belt |
 | Carrier bag | Small dogs (< 8 kg / 18 lb) | Train, plane cabin | Compact, keeps the dog close to you |
@@ -114,7 +114,7 @@ Budget-wise, here are realistic ballpark figures to get equipped without nasty s
 |---|---|---|
 | Crash-tested safety harness | €30–80 (~$35–90) | Several years |
 | Soft crate | €25–60 (~$30–70) | 2 to 5 years |
-| Rigid IATA crate | €50–150 (~$55–170) | Several years |
+| Rigid travel crate | €50–150 (~$55–170) | Several years |
 | Cabin carrier | €30–90 (~$35–100) | Several years |
 
 Investing in durable, certified gear costs less over time than replacing a low-end model — and above all, it actually protects your dog.

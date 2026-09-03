@@ -111,7 +111,7 @@ Pour synthétiser, voici les priorités selon votre situation :
 
 - **Trajet occasionnel, petit chien** : harnais homologué + ceinture + housse de banquette. C'est suffisant.
 - **Grand chien, longs trajets fréquents** : caisse arrimée ou harnais crash-testé, tapis de coffre, gamelle nomade, organisateur.
-- **Budget serré** : investissez en priorité dans l'attache homologuée ; la protection des sièges peut attendre.
+- **Budget serré** : investissez en priorité dans l'attache conforme aux exigences applicables ; la protection des sièges peut attendre.
 - **Chien anxieux** : caisse + habituation progressive, et trajets courts au début.
 
 La règle d'or : la sécurité d'abord, le confort ensuite. Un équipement coûteux mais mal réglé ne protège pas mieux qu'un dispositif simple correctement installé.

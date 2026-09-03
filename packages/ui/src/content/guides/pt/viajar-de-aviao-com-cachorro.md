@@ -2,8 +2,8 @@
 key: "flying-with-a-dog"
 title: "Viajar de avião com cachorro: cabine, porão e documentos"
 seoTitle: "Viajar de avião com cachorro: cabine, porão e documentos"
-description: "Viajar de avião com cachorro: regras de cabine ou porão, limites de peso, a caixa IATA e a documentação sanitária, explicados passo a passo."
-summary: "Viajar de avião com cachorro exige uma caixa IATA, um peso dentro do limite da companhia e a documentação sanitária iniciada várias semanas antes da viagem."
+description: "Viajar de avião com cachorro: regras de cabine ou porão, limites de peso, a caixa de transporte e a documentação sanitária, explicados passo a passo."
+summary: "Viajar de avião com cachorro exige uma caixa de transporte, um peso dentro do limite da companhia e a documentação sanitária iniciada várias semanas antes da viagem."
 date: "2026-06-25T11:00:00+02:00"
 lastmod: "2026-06-25T11:00:00+02:00"
 author: "Camille Roussel"
@@ -11,7 +11,7 @@ category: "travel"
 tags: ["cachorro", "avião", "viagem internacional"]
 enbref:
   - "🧳 **Cabine** para cães pequenos (muitas vezes ≤ 8 kg, caixa incluída)"
-  - "📦 **Porão** para cães maiores, em uma **caixa IATA**"
+  - "📦 **Porão** para cães maiores, em uma **caixa de transporte**"
   - "📄 Documentação sanitária: microchip, vacina antirrábica, documento de viagem e, às vezes, teste sorológico de raiva"
   - "⏳ **Comece várias semanas** antes da viagem"
 cover:
@@ -20,7 +20,7 @@ cover:
   credit: "Foto: [Jeswin Thomas](https://unsplash.com/@jeswinthomas?utm_source=mydogcanfly&utm_medium=referral) no [Unsplash](https://unsplash.com/?utm_source=mydogcanfly&utm_medium=referral)"
 faq:
   - q: "Qual é o peso máximo para voar na cabine?"
-    a: "O limite costuma ficar entre 6 e 8 kg, caixa de transporte incluída, mas varia conforme a companhia aérea. Acima disso, o cachorro viaja no porão, em uma caixa IATA. Confirme sempre o limite exato da sua companhia."
+    a: "O limite costuma ficar entre 6 e 8 kg, caixa de transporte incluída, mas varia conforme a companhia aérea. Acima disso, o cachorro viaja no porão, em uma caixa de transporte. Confirme sempre o limite exato da sua companhia."
   - q: "Meu cachorro pode viajar no porão sem mim?"
     a: "Pode. Algumas companhias transportam o cachorro como carga, sem o tutor a bordo, mas as condições são rigorosas e caras. A maioria dos viajantes prefere acompanhar o animal no mesmo voo."
   - q: "Raças de focinho curto podem voar?"
@@ -38,14 +38,14 @@ O avião abre as portas para viagens distantes com o seu cachorro, mas é també
 O lugar em que o seu cachorro viaja depende sobretudo do peso e da companhia aérea.
 
 - **Na cabine**: reservada a cães pequenos, em geral até 6 a 8 kg incluindo a caixa de transporte. A caixa precisa caber embaixo do assento da frente. É a opção mais tranquilizadora, porque o cachorro fica com você.
-- **No porão**: para cães mais pesados, que viajam em uma caixa rígida homologada pela IATA, em um compartimento pressurizado e aquecido.
+- **No porão**: para cães mais pesados, que viajam em uma caixa rígida conforme a los requisitos aplicables pela IATA, em um compartimento pressurizado e aquecido.
 - **Recusa possível**: algumas companhias não aceitam raças braquicefálicas (bulldogues, pugs) no porão, por causa do risco respiratório.
 
 Confirme sempre as condições exatas com a sua companhia aérea antes de reservar.
 
-## O que é uma caixa IATA e como escolher?
+## O que é uma caixa de transporte e como escolher?
 
-A caixa IATA é a norma internacional para o transporte aéreo de animais. Ela precisa ser rígida, bem ventilada em pelo menos três lados, com uma porta que trave com segurança e um piso estanque. O seu cachorro tem de conseguir ficar de pé, virar-se e deitar-se confortavelmente lá dentro.
+A caixa de transporte é a norma internacional para o transporte aéreo de animais. Ela precisa ser rígida, bem ventilada em pelo menos três lados, com uma porta que trave com segurança e um piso estanque. O seu cachorro tem de conseguir ficar de pé, virar-se e deitar-se confortavelmente lá dentro.
 
 Acostume o seu cachorro à caixa várias semanas antes do voo. Para escolher a certa, consulte o nosso guia sobre [o equipamento de viagem do cachorro](/pt/travel-hub/equipamento-de-viagem-para-cachorro/), que detalha dimensões e critérios de segurança.
 
@@ -69,7 +69,7 @@ Esta é a ordem a seguir para que nada seja esquecido:
 3. **Obtenha o documento de viagem**: o passaporte europeu para animais de companhia emitido pelo seu veterinário, se o cachorro residir na UE, ou os certificados sanitários exigidos pelo país de destino.
 4. **Verifique as exigências do país de chegada**: alguns exigem teste sorológico de raiva, quarentena ou tratamentos antiparasitários.
 5. **Entre em contato com a companhia aérea** para reservar o lugar do seu animal e confirmar o peso permitido e o tipo de caixa.
-6. **Providencie uma caixa IATA em conformidade** e acostume o seu cachorro a usá-la.
+6. **Providencie uma caixa de transporte em conformidade** e acostume o seu cachorro a usá-la.
 7. **Prepare o grande dia**: exercício antes de sair, refeição leve 4 horas antes, um bebedouro preso à caixa e uma etiqueta de «animal vivo».
 
 ## Com quanta antecedência é preciso começar?
@@ -91,7 +91,7 @@ Em seguida, aumente a duração e acrescente movimento: carregue a caixa, coloqu
 
 ## Que orçamento prever para voar com um cachorro?
 
-O custo depende da companhia aérea, da distância e da forma como o cachorro viaja. A título indicativo, conte com 50 a 125 € para um cachorro pequeno na cabine em um voo dentro da Europa, e com 100 a 400 € para o transporte no porão, conforme a distância. Depois vêm os extras, muitas vezes subestimados: uma caixa IATA em conformidade (de 40 a mais de 150 €, conforme o tamanho), a consulta veterinária e o documento de viagem, a vacina antirrábica e um eventual teste sorológico de raiva (na ordem de 70 a 120 € em um laboratório autorizado). Alguns destinos exigem ainda tratamentos antiparasitários datados ou certificados traduzidos, às vezes pagos. Defina um orçamento global e antecipe-se: os lugares para animais são limitados em cada voo e se esgotam rápido, sobretudo na alta temporada.
+O custo depende da companhia aérea, da distância e da forma como o cachorro viaja. A título indicativo, conte com 50 a 125 € para um cachorro pequeno na cabine em um voo dentro da Europa, e com 100 a 400 € para o transporte no porão, conforme a distância. Depois vêm os extras, muitas vezes subestimados: uma caixa de transporte em conformidade (de 40 a mais de 150 €, conforme o tamanho), a consulta veterinária e o documento de viagem, a vacina antirrábica e um eventual teste sorológico de raiva (na ordem de 70 a 120 € em um laboratório autorizado). Alguns destinos exigem ainda tratamentos antiparasitários datados ou certificados traduzidos, às vezes pagos. Defina um orçamento global e antecipe-se: os lugares para animais são limitados em cada voo e se esgotam rápido, sobretudo na alta temporada.
 
 ## Trem ou avião: o que escolher?
 
@@ -104,4 +104,4 @@ Para deslocamentos dentro da Europa continental, o trem costuma ser mais simples
 - [Service-public.fr — animais de companhia e viagens](https://www.service-public.fr)
 - [Comissão Europeia — viajar com animais de companhia](https://europa.eu)
 
-<ol class="gd-etapes"><li><a href="/pt/travel-hub/viajar-ao-exterior-com-cachorro/">Verifique as exigências sanitárias</a></li><li><a href="/pt/travel-hub/caixa-de-transporte-homologada-iata/">Escolha uma caixa homologada pela IATA</a></li><li><a href="/pt/travel-hub/ansiedade-do-cachorro-em-viagem/">Prepare o seu cachorro para o estresse do voo</a></li><li><a href="/pt/airlines/">Compare as 62 companhias aéreas</a></li></ol>
+<ol class="gd-etapes"><li><a href="/pt/travel-hub/viajar-ao-exterior-com-cachorro/">Verifique as exigências sanitárias</a></li><li><a href="/pt/travel-hub/caixa-de-transporte-homologada-iata/">Escolha uma caixa conforme a los requisitos aplicables pela IATA</a></li><li><a href="/pt/travel-hub/ansiedade-do-cachorro-em-viagem/">Prepare o seu cachorro para o estresse do voo</a></li><li><a href="/pt/airlines/">Compare as 62 companhias aéreas</a></li></ol>

@@ -15,7 +15,7 @@ enbref:
   - "📍 Com que **localizá-lo** (rastreador GPS)"
   - "🧥 **Material de conforto** compatível com o tempo"
   - "🩹 Um **kit de primeiros socorros**"
-  - "✅ **Equipamento homologado** para o seu meio de transporte"
+  - "✅ **Equipamento conforme a los requisitos aplicables** para o seu meio de transporte"
 cover:
   image: "/travel-hub/dog-travel-accessories.webp"
   alt: "Cachorro pronto para viajar, sentado no banco traseiro de um carro"
@@ -23,8 +23,8 @@ cover:
 faq:
   - q: "Que acessórios são de fato indispensáveis para viajar com um cachorro?"
     a: "O indispensável é um sistema de transporte seguro (peitoral de carro ou caixa), água e uma vasilha dobrável, com que identificar e localizar o seu cachorro (plaquinha + rastreador GPS), um kit de primeiros socorros e material de conforto compatível com a estação. Todo o resto depende do seu meio de transporte e do seu destino."
-  - q: "Preciso de uma caixa homologada para voar com o meu cachorro?"
-    a: "Precisa: no porão, a maioria das companhias exige uma caixa rígida conforme as normas da IATA, na qual o cachorro consiga ficar de pé, virar-se e deitar-se. Na cabine (cães pequenos), é preciso uma bolsa macia compatível com as dimensões da companhia. Veja o nosso guia dedicado às caixas homologadas."
+  - q: "Preciso de uma caixa conforme a los requisitos aplicables para voar com o meu cachorro?"
+    a: "Precisa: no porão, a maioria das companhias exige uma caixa rígida conforme as normas da IATA, na qual o cachorro consiga ficar de pé, virar-se e deitar-se. Na cabine (cães pequenos), é preciso uma bolsa macia compatível com as dimensões da companhia. Veja o nosso guia dedicado às caixas conformes a los requisitos aplicables."
   - q: "Peitoral ou caixa para o carro?"
     a: "Os dois servem, desde que estejam bem ancorados. Um peitoral de segurança crash-test preso ao cinto convém a cães calmos e acostumados; uma caixa ancorada oferece a proteção máxima e tranquiliza os cães ansiosos. O que conta é que o cachorro esteja contido e não possa atrapalhar o motorista."
   - q: "Um rastreador GPS substitui o microchip?"
@@ -45,7 +45,7 @@ Para escolher, leia o nosso guia sobre [que equipamento de carro serve de verdad
 
 O contêiner depende do porte do seu cachorro e do seu meio de transporte. Para um **cachorro pequeno**, uma bolsa macia bem ventilada costuma bastar e é aceita na cabine em avião e em trem: veja [as bolsas mais confortáveis para cães pequenos](/pt/travel-hub/bolsas-para-caes-pequenos/). Para um **cachorro médio ou grande**, ou para viajar no porão, é preciso uma **caixa rígida conforme a IATA** e bem dimensionada.
 
-Três recursos para acertar: o [comparativo entre bolsa e caixa](/pt/travel-hub/bolsas-e-caixas-de-transporte/), o nosso guia sobre [escolher uma caixa homologada](/pt/travel-hub/caixa-de-transporte-homologada-iata/) e o artigo completo sobre [viajar de avião com cachorro](/pt/travel-hub/viajar-de-aviao-com-cachorro/) para a papelada.
+Três recursos para acertar: o [comparativo entre bolsa e caixa](/pt/travel-hub/bolsas-e-caixas-de-transporte/), o nosso guia sobre [escolher uma caixa conforme a los requisitos aplicables](/pt/travel-hub/caixa-de-transporte-homologada-iata/) e o artigo completo sobre [viajar de avião com cachorro](/pt/travel-hub/viajar-de-aviao-com-cachorro/) para a papelada.
 
 ## Como hidratar e alimentar o seu cachorro na estrada?
 
@@ -76,7 +76,7 @@ Os nossos guias: [a ansiedade do cachorro em viagem](/pt/travel-hub/ansiedade-do
 Para partir tranquilo, garanta que você tem:
 
 - um **sistema de transporte seguro**: peitoral de carro crash-test ou caixa ancorada;
-- uma **caixa ou bolsa homologada** se for de avião, de trem ou de balsa;
+- uma **caixa ou bolsa conforme a los requisitos aplicables** se for de avião, de trem ou de balsa;
 - uma **garrafa + uma vasilha dobrável** e a comida habitual do seu cachorro;
 - um **rastreador GPS** e uma plaquinha com os seus contatos;
 - **material conforme o tempo**: tapete refrescante no verão, casaco e botinhas no inverno;

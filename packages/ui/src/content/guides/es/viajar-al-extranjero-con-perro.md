@@ -99,4 +99,4 @@ Algunos hábitos útiles sobre el terreno:
 
 Compara los requisitos por destino con nuestras **[formalidades de entrada por país](/es/countries/)**.
 
-<ol class="gd-etapes"><li><a href="/es/travel-hub/viajar-al-extranjero-con-perro/">Comprueba los requisitos sanitarios</a></li><li><a href="/es/travel-hub/transportin-homologado-iata-perro/">Elige un transportín homologado IATA</a></li><li><a href="/es/travel-hub/ansiedad-del-perro-en-los-viajes/">Prepara a tu perro para el estrés del vuelo</a></li><li><a href="/es/airlines/">Compara las 62 aerolíneas</a></li></ol>
+<ol class="gd-etapes"><li><a href="/es/travel-hub/viajar-al-extranjero-con-perro/">Comprueba los requisitos sanitarios</a></li><li><a href="/es/travel-hub/transportin-homologado-iata-perro/">Elige un transportín conforme a los requisitos aplicables IATA</a></li><li><a href="/es/travel-hub/ansiedad-del-perro-en-los-viajes/">Prepara a tu perro para el estrés del vuelo</a></li><li><a href="/es/airlines/">Compara las 62 aerolíneas</a></li></ol>

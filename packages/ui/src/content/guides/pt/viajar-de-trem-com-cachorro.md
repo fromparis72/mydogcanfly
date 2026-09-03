@@ -25,7 +25,7 @@ faq:
   - q: "Meu cachorro pode viajar de graça no trem?"
     a: "Cães-guia e de assistência viajam de graça em praticamente todas as redes, com a documentação. Para animais de companhia, varia: na Grã-Bretanha os cães viajam de graça (até dois por passageiro, na guia), enquanto operadoras como a SNCF exigem passagem paga para cada cachorro, mesmo o menor."
   - q: "A Amtrak aceita cães nos Estados Unidos?"
-    a: "Sim, mas apenas animais pequenos: a Amtrak aceita cães de até 9 kg incluindo a caixa, em caixa homologada, em trajetos de 7 horas ou menos. Animais de assistência viajam de graça e sem esses limites."
+    a: "Sim, mas apenas animais pequenos: a Amtrak aceita cães de até 9 kg incluindo a caixa, em caixa conforme a los requisitos aplicables, em trajetos de 7 horas ou menos. Animais de assistência viajam de graça e sem esses limites."
   - q: "Posso comprar a passagem do meu cachorro a bordo?"
     a: "Em algumas redes é possível comprar com o condutor, mas é arriscado: certos trens limitam o número de animais a bordo e você pode ser recusado. É sempre mais seguro reservar a passagem do animal com antecedência, junto com a sua."
   - q: "Como acostumo meu cachorro à focinheira antes da viagem?"
@@ -70,7 +70,7 @@ Tarifas e condições evoluem, e os trens regionais costumam ter regras própria
 
 ## E os trens nos Estados Unidos?
 
-A **Amtrak** aceita animais de companhia, mas com limites bem mais rígidos que as redes europeias: cães (e gatos) de até **9 kg incluindo a caixa**, em caixa homologada que fique embaixo do seu assento, em trajetos de **7 horas ou menos**, mediante taxa por animal. Cães maiores não são aceitos em hipótese alguma, qualquer que seja a rota. Animais de assistência, conforme define a lei norte-americana, viajam de graça e sem essas restrições.
+A **Amtrak** aceita animais de companhia, mas com limites bem mais rígidos que as redes europeias: cães (e gatos) de até **9 kg incluindo a caixa**, em caixa conforme a los requisitos aplicables que fique embaixo do seu assento, em trajetos de **7 horas ou menos**, mediante taxa por animal. Cães maiores não são aceitos em hipótese alguma, qualquer que seja a rota. Animais de assistência, conforme define a lei norte-americana, viajam de graça e sem essas restrições.
 
 Na prática, isso faz do trem uma opção real nos Estados Unidos apenas para cães pequenos em trajetos curtos e médios; para um cachorro maior, o habitual é optar por uma [viagem de carro](/pt/travel-hub/road-trip-com-cachorro/).
 

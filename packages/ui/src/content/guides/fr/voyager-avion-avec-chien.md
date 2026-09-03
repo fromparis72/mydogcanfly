@@ -1,8 +1,8 @@
 ---
 key: "flying-with-a-dog"
 title: "Voyager en avion avec son chien : cabine, soute, démarches"
-description: "Voyager en avion avec son chien : conditions en cabine ou en soute, poids autorisé, caisse IATA et démarches administratives expliquées étape par étape."
-summary: "Voyager en avion avec son chien suppose une caisse IATA, un poids conforme à la compagnie et des démarches sanitaires anticipées plusieurs semaines à l'avance."
+description: "Voyager en avion avec son chien : conditions en cabine ou en soute, poids autorisé, caisse de transport et démarches administratives expliquées étape par étape."
+summary: "Voyager en avion avec son chien suppose une caisse de transport, un poids conforme à la compagnie et des démarches sanitaires anticipées plusieurs semaines à l'avance."
 date: "2026-06-25T11:00:00+02:00"
 lastmod: "2026-06-25T11:00:00+02:00"
 author: "Camille Roussel"
@@ -11,7 +11,7 @@ tags: ["chien", "avion", "voyage international"]
 sourceUrl: "/voyager-avion-avec-chien/"
 enbref:
   - "🧳 **Cabine** pour les petits gabarits (souvent ≤ 8 kg, sac inclus)"
-  - "📦 **Soute** pour les plus grands, en **caisse IATA**"
+  - "📦 **Soute** pour les plus grands, en **caisse de transport**"
   - "📄 Démarches sanitaires : puce, vaccin, passeport, parfois titrage antirabique"
   - "⏳ À **anticiper plusieurs semaines** avant le départ"
 cover:
@@ -20,7 +20,7 @@ cover:
   credit: "Photo : [Dex Ezekiel](https://unsplash.com/@dexezekiel?utm_source=mydogcanfly&utm_medium=referral) sur [Unsplash](https://unsplash.com/?utm_source=mydogcanfly&utm_medium=referral)"
 faq:
   - q: "Quel poids maximal pour voyager en cabine ?"
-    a: "La limite se situe généralement entre 6 et 8 kg, sac de transport inclus, mais elle varie selon les compagnies. Au-delà, le chien voyage en soute dans une caisse IATA. Vérifiez toujours le seuil exact de votre compagnie."
+    a: "La limite se situe généralement entre 6 et 8 kg, sac de transport inclus, mais elle varie selon les compagnies. Au-delà, le chien voyage en soute dans une caisse de transport. Vérifiez toujours le seuil exact de votre compagnie."
   - q: "Mon chien peut-il voyager sans moi en soute ?"
     a: "Oui, certaines compagnies acceptent le transport d'un chien en tant que fret, sans son maître à bord, mais les conditions sont strictes et coûteuses. La plupart des voyageurs préfèrent accompagner leur animal sur le même vol."
   - q: "Les races à museau court peuvent-elles prendre l'avion ?"
@@ -38,14 +38,14 @@ L'avion ouvre les portes des voyages lointains avec son chien, mais c'est aussi 
 Le placement dépend essentiellement du poids et de la compagnie aérienne.
 
 - **En cabine** : réservé aux petits chiens, généralement jusqu'à 6 à 8 kg sac de transport inclus. Le sac doit tenir sous le siège avant. C'est l'option la plus rassurante car le chien reste avec vous.
-- **En soute** : pour les chiens plus lourds, voyageant dans une caisse rigide homologuée IATA, dans un compartiment pressurisé et chauffé.
+- **En soute** : pour les chiens plus lourds, voyageant dans une caisse rigide conforme aux exigences applicables IATA, dans un compartiment pressurisé et chauffé.
 - **Refus possible** : certaines compagnies n'acceptent pas les races brachycéphales (bouledogues, carlins) en soute, en raison du risque respiratoire.
 
 Vérifiez toujours les conditions exactes auprès de votre compagnie avant de réserver.
 
-## Qu'est-ce qu'une caisse IATA et comment la choisir ?
+## Qu'est-ce qu'une caisse de transport et comment la choisir ?
 
-La caisse IATA est la norme internationale de transport aérien pour les animaux. Elle doit être rigide, bien ventilée sur au moins trois côtés, équipée d'une porte verrouillable et d'un fond étanche. Votre chien doit pouvoir s'y tenir debout, se retourner et se coucher confortablement.
+La caisse de transport est la norme internationale de transport aérien pour les animaux. Elle doit être rigide, bien ventilée sur au moins trois côtés, équipée d'une porte verrouillable et d'un fond étanche. Votre chien doit pouvoir s'y tenir debout, se retourner et se coucher confortablement.
 
 Habituez-le à sa caisse plusieurs semaines avant le vol. Pour bien la choisir, consultez notre guide pour [sélectionner le matériel de voyage de votre chien](/fr/travel-hub/materiel-voyage-chien/), qui détaille les dimensions et critères de sécurité.
 
@@ -69,7 +69,7 @@ Voici la marche à suivre pour ne rien oublier :
 3. **Obtenez le passeport européen** auprès de votre vétérinaire (pour l'UE) ou les certificats sanitaires exigés par le pays de destination.
 4. **Vérifiez les exigences du pays d'arrivée** : certains imposent un titrage des anticorps antirabiques, une quarantaine ou des traitements antiparasitaires.
 5. **Contactez la compagnie aérienne** pour réserver la place de l'animal et confirmer le poids et le type de caisse autorisés.
-6. **Procurez-vous une caisse IATA conforme** et habituez-y votre chien.
+6. **Procurez-vous une caisse de transport conforme** et habituez-y votre chien.
 7. **Préparez le jour J** : exercice avant le départ, repas léger 4 h avant, gamelle d'eau fixée à la caisse, étiquette « animal vivant ».
 
 ## Combien de temps avant faut-il s'y prendre ?
@@ -91,7 +91,7 @@ Augmentez ensuite la durée et ajoutez du mouvement : portez la caisse, posez-la
 
 ## Quel budget prévoir pour faire voyager son chien en avion ?
 
-Le coût dépend de la compagnie, de la distance et du mode de transport. À titre indicatif, comptez de 50 à 125 € pour un petit chien en cabine sur un vol européen, et de 100 à 400 € pour un transport en soute selon la distance. À cela s'ajoutent les frais souvent sous-estimés : caisse IATA conforme (de 40 à plus de 150 € selon la taille), consultation vétérinaire et passeport, vaccin antirabique, et éventuel titrage antirabique sérologique (de l'ordre de 70 à 120 € dans un laboratoire agréé). Pour les destinations hors UE, certains pays imposent aussi des traitements antiparasitaires datés ou des certificats traduits, parfois payants. Prévoyez une enveloppe globale et anticipez : les places pour animaux sont limitées par vol et se réservent vite, surtout en haute saison.
+Le coût dépend de la compagnie, de la distance et du mode de transport. À titre indicatif, comptez de 50 à 125 € pour un petit chien en cabine sur un vol européen, et de 100 à 400 € pour un transport en soute selon la distance. À cela s'ajoutent les frais souvent sous-estimés : Caisse de transport conforme (de 40 à plus de 150 € selon la taille), consultation vétérinaire et passeport, vaccin antirabique, et éventuel titrage antirabique sérologique (de l'ordre de 70 à 120 € dans un laboratoire agréé). Pour les destinations hors UE, certains pays imposent aussi des traitements antiparasitaires datés ou des certificats traduits, parfois payants. Prévoyez une enveloppe globale et anticipez : les places pour animaux sont limitées par vol et se réservent vite, surtout en haute saison.
 
 ## Train ou avion : quel mode privilégier ?
 
@@ -104,4 +104,4 @@ Pour les trajets en Europe continentale, le train reste souvent plus simple et m
 - [Service-public.fr — animaux et voyages](https://www.service-public.fr)
 - [Commission européenne — voyager avec animaux de compagnie](https://europa.eu)
 
-<ol class="gd-etapes"><li><a href="/fr/travel-hub/voyager-etranger-avec-chien/">Vérifier les formalités sanitaires</a></li><li><a href="/fr/travel-hub/caisse-transport-avion-homologuee-chien/">Choisir une caisse de transport homologuée IATA</a></li><li><a href="/fr/travel-hub/anxiete-chien-transport/">Préparer votre chien au stress du vol</a></li><li><a href="/fr/airlines/">Comparer les 62 compagnies</a></li></ol>
+<ol class="gd-etapes"><li><a href="/fr/travel-hub/voyager-etranger-avec-chien/">Vérifier les formalités sanitaires</a></li><li><a href="/fr/travel-hub/caisse-transport-avion-homologuee-chien/">Choisir une caisse de transport conforme aux exigences applicables IATA</a></li><li><a href="/fr/travel-hub/anxiete-chien-transport/">Préparer votre chien au stress du vol</a></li><li><a href="/fr/airlines/">Comparer les 62 compagnies</a></li></ol>

@@ -15,7 +15,7 @@ enbref:
   - "📏 Doit être **parfaitement ajusté** au gabarit"
   - "🔗 Relié à la **ceinture** par une **attache courte**"
   - "❌ Un harnais de **promenade** n'offre aucune garantie"
-  - "✅ Avec la caisse homologuée : l'un des **2 seuls dispositifs fiables**"
+  - "✅ Avec la caisse conforme aux exigences applicables : l'un des **2 seuls dispositifs fiables**"
 cover:
   image: "/travel-hub/dog-car-harness.webp"
   alt: "Un chiot carlin noir installé sur un siège de voiture"

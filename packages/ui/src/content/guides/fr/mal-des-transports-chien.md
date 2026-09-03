@@ -87,7 +87,7 @@ Plusieurs gestes simples limitent les nausées :
 | Orienter le chien vers l'avant | Regarder dans le sens de la marche atténue la cinétose |
 | Faire des pauses régulières | Repos et hydratation apaisent le chien |
 
-Un bon équipement de contention joue un rôle clé : retrouvez nos recommandations pour [choisir le matériel de voyage de votre chien](/fr/travel-hub/materiel-voyage-chien/), notamment les caisses et harnais homologués.
+Un bon équipement de contention joue un rôle clé : retrouvez nos recommandations pour [choisir le matériel de voyage de votre chien](/fr/travel-hub/materiel-voyage-chien/), notamment les caisses et harnais conformes aux exigences applicables.
 
 Sur les longs trajets, instaurez un rythme régulier : une pause toutes les **2 heures** environ, comme pour un conducteur humain. Profitez-en pour proposer un peu d'eau (par petites quantités), une courte marche en laisse et une sortie hygiénique. Maintenez une température d'habitacle modérée, autour de 20 à 22 °C, et entrouvrez une fenêtre pour renouveler l'air. Évitez de fixer votre chien ou de le surveiller anxieusement dans le rétroviseur : votre propre tension se transmet et entretient son malaise. Une voix calme et quelques mots rassurants à intervalles espacés suffisent.
 

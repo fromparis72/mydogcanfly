@@ -29,7 +29,7 @@ faq:
   - q: "Os peitorais que apertam quando o cachorro puxa são recomendados?"
     a: "Eles funcionam pelo desconforto — às vezes por beliscão sob as axilas — e trazem risco de lesão e de o seu cachorro associar o passeio a algo negativo. A maioria dos adestradores de reforço positivo prefere um peitoral de argola dianteira, que redireciona sem punir. Evite-os para o uso diário."
   - q: "Posso usar o mesmo peitoral no carro?"
-    a: "Não. Um peitoral de passeio não foi projetado nem submetido a crash test para resistir a um impacto no carro. Para o carro é preciso um peitoral de segurança específico preso ao cinto, ou uma caixa homologada. São dois equipamentos distintos com funções distintas."
+    a: "Não. Um peitoral de passeio não foi projetado nem submetido a crash test para resistir a um impacto no carro. Para o carro é preciso um peitoral de segurança específico preso ao cinto, ou uma caixa conforme a los requisitos aplicables. São dois equipamentos distintos com funções distintas."
 ---
 
 Se o seu cachorro transforma cada passeio em uma sessão de puxar trenó, você não está sozinho. Os puxões na guia são um dos motivos mais frequentes para chamar um adestrador. Muitos esperam que um acessório resolva o problema em uma única saída, e é aí que aparece a decepção ou, pior, a compra inadequada que machuca o cachorro.

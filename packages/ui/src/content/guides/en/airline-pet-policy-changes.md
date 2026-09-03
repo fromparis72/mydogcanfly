@@ -54,7 +54,7 @@ Before you consider a booking safe, confirm these on the airline's own material:
 
 1. **The operating carrier.** On a codeshare, the aircraft operator's rules apply, not the ticket seller's.
 2. **The travel mode you were sold.** Cabin, accompanied hold baggage and manifest cargo are three different contracts — see [cabin, excess baggage or manifest cargo](/travel-hub/cargo-vs-excess-baggage/).
-3. **The dimensions and total weight** accepted for your animal, in writing. Our [IATA crate calculator](/tools/crate/) gives you the figure to check against.
+3. **The dimensions and total weight** accepted for your animal, in writing. Our [Travel crate calculator](/tools/crate/) gives you the figure to check against.
 4. **The seasonal restrictions** in force on your dates, at every airport on the itinerary — including the connection, which is often the binding constraint. See [layovers and connections with a pet](/travel-hub/layovers-with-a-pet/).
 
 Then repeat check 4 a few days before you fly.

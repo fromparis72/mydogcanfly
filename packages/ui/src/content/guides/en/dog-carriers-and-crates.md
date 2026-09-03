@@ -24,7 +24,7 @@ faq:
     a: "Choose a crate in which your dog can stand without lowering their head, turn around completely, and lie down with legs extended. Measure their length from nose to base of tail and their standing height, then add a margin. Neither too small nor excessively large."
   - q: "Is a soft carrier accepted in the airplane cabin?"
     a: "Often yes for small dogs, but each airline sets its own size and weight limits. The carrier must be ventilated, securely closed, and fit under the seat in front of you. Always check the exact conditions with the airline before booking."
-  - q: "Do I need an IATA-compliant hard crate for the hold?"
+  - q: "Do I need an compliant with the applicable requirements hard crate for the hold?"
     a: "Yes, travel in the hold requires a hard crate meeting IATA requirements: sturdiness, ventilation on several sides, secure closures, and a leakproof floor. Airlines can add their own criteria, so confirm the expected model before departure."
   - q: "How do I keep my dog from stressing in their crate?"
     a: "Use gradual habituation, associating the crate with positive experiences: treats, a familiar blanket, short sessions that get progressively longer. Never shut them in abruptly and never use the crate as punishment, or you risk creating a lasting aversion."
