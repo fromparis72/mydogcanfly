@@ -38,7 +38,7 @@ El avión abre la puerta a viajes lejanos con tu perro, pero es también el medi
 El lugar donde viaja tu perro depende sobre todo del peso y de la aerolínea.
 
 - **En cabina**: reservada a perros pequeños, por lo general hasta 6 u 8 kg incluido el transportín. El transportín debe caber bajo el asiento de delante. Es la opción más tranquilizadora, porque tu perro se queda contigo.
-- **En bodega**: para perros más pesados, que viajan en un transportín rígido conforme a los requisitos aplicables IATA, en un compartimento presurizado y con calefacción.
+- **En bodega**: para perros más pesados, que viajan en un transportín rígido conforme a los requisitos IATA, en un compartimento presurizado y con calefacción.
 - **Posible negativa**: algunas aerolíneas no aceptan razas braquicéfalas (bulldogs, carlinos) en bodega, por el riesgo respiratorio.
 
 Comprueba siempre las condiciones exactas con tu aerolínea antes de reservar.
@@ -104,4 +104,4 @@ Para desplazamientos dentro de la Europa continental, el tren suele ser más sen
 - [Service-public.fr — animales de compañía y viajes](https://www.service-public.fr)
 - [Comisión Europea — viajar con animales de compañía](https://europa.eu)
 
-<ol class="gd-etapes"><li><a href="/es/travel-hub/viajar-al-extranjero-con-perro/">Comprueba los requisitos sanitarios</a></li><li><a href="/es/travel-hub/transportin-homologado-iata-perro/">Elige un transportín conforme a los requisitos aplicables IATA</a></li><li><a href="/es/travel-hub/ansiedad-del-perro-en-los-viajes/">Prepara a tu perro para el estrés del vuelo</a></li><li><a href="/es/airlines/">Compara las 62 aerolíneas</a></li></ol>
+<ol class="gd-etapes"><li><a href="/es/travel-hub/viajar-al-extranjero-con-perro/">Comprueba los requisitos sanitarios</a></li><li><a href="/es/travel-hub/transportin-homologado-iata-perro/">Elige un transportín conforme a los requisitos IATA</a></li><li><a href="/es/travel-hub/ansiedad-del-perro-en-los-viajes/">Prepara a tu perro para el estrés del vuelo</a></li><li><a href="/es/airlines/">Compara las 62 aerolíneas</a></li></ol>

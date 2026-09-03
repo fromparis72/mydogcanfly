@@ -23,7 +23,7 @@ faq:
     a: "Choisissez une caisse dans laquelle votre chien peut se tenir debout sans courber la tête, se retourner complètement et se coucher en allongeant les pattes. Mesurez sa longueur du nez à la base de la queue et sa hauteur en position debout, puis ajoutez une marge. Ni trop petite, ni excessivement grande."
   - q: "Un sac souple est-il accepté en cabine d'avion ?"
     a: "Souvent oui pour les petits chiens, mais chaque compagnie fixe ses propres limites de dimensions et de poids. Le sac doit être ventilé, fermé de façon sécurisée et tenir sous le siège avant. Vérifiez toujours les conditions exactes auprès de la compagnie avant de réserver."
-  - q: "Faut-il une caisse rigide conforme aux exigences applicables IATA pour la soute ?"
+  - q: "Faut-il une caisse rigide conforme aux exigences IATA pour la soute ?"
     a: "Oui, le transport en soute exige une caisse rigide conforme aux exigences IATA : solidité, ventilation sur plusieurs faces, fermetures sécurisées et fond étanche. Les compagnies peuvent ajouter leurs propres critères, donc confirmez le modèle attendu avant le départ."
   - q: "Comment éviter que mon chien stresse dans sa caisse ?"
     a: "Procédez par habituation progressive en associant la caisse à des expériences positives : friandises, couverture familière, séances courtes puis de plus en plus longues. Ne l'enfermez jamais brutalement et n'utilisez jamais la caisse comme punition, sous peine de créer une aversion durable."

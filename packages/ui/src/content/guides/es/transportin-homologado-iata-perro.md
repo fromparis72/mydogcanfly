@@ -1,7 +1,7 @@
 ---
 key: "airline-approved-dog-crate"
-title: "Elegir un transportín conforme a los requisitos aplicables IATA para perro"
-seoTitle: "Transportín para perro: normas y medidas"
+title: "Elegir un transportín conforme a los requisitos IATA para perro"
+seoTitle: "transportín para perro: normas y medidas"
 description: "Guía del transportín de avión para perro: requisitos IATA, método de medición, materiales, modelos conformes. La guía completa para volar con tranquilidad."
 summary: "Guía del transportín de avión para perro: requisitos IATA, método de medición, materiales, modelos conformes. La guía completa para volar con tranquilidad."
 date: "2026-06-22T09:00:00+02:00"

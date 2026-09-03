@@ -99,4 +99,4 @@ Alguns hábitos úteis no destino:
 
 Compare as exigências por destino com as nossas **[formalidades de entrada por país](/pt/countries/)**.
 
-<ol class="gd-etapes"><li><a href="/pt/travel-hub/viajar-ao-exterior-com-cachorro/">Verifique as exigências sanitárias</a></li><li><a href="/pt/travel-hub/caixa-de-transporte-homologada-iata/">Escolha uma caixa conforme a los requisitos aplicables pela IATA</a></li><li><a href="/pt/travel-hub/ansiedade-do-cachorro-em-viagem/">Prepare o seu cachorro para o estresse do voo</a></li><li><a href="/pt/airlines/">Compare as 62 companhias aéreas</a></li></ol>
+<ol class="gd-etapes"><li><a href="/pt/travel-hub/viajar-ao-exterior-com-cachorro/">Verifique as exigências sanitárias</a></li><li><a href="/pt/travel-hub/caixa-de-transporte-homologada-iata/">Escolha uma caixa em conformidade com os requisitos da IATA</a></li><li><a href="/pt/travel-hub/ansiedade-do-cachorro-em-viagem/">Prepare o seu cachorro para o estresse do voo</a></li><li><a href="/pt/airlines/">Compare as 62 companhias aéreas</a></li></ol>

@@ -43,7 +43,7 @@ It's the most reassuring formula: your dog stays with you, at normal temperature
 
 Above the cabin weight limit, the dog travels in the **hold**, in a **pressurized, heated compartment** designed for live animals (code AVIH in airline jargon: *Animal in Hold*). This is always **accompanied baggage**: your dog travels on **the same flight as you**, under your ticket.
 
-The conditions: a **rigid compliant with the applicable requirements crate** (sturdy, ventilated on several sides, with a leak-proof floor and metal hardware), a maximum combined weight for dog + crate (often up to 45 or 75 kg / 99 or 165 lb depending on the airline), and an advance reservation. Crucial point: most airlines **ban brachycephalic breeds from the hold** (bulldogs, pugs, boxers…) for respiratory health reasons. Size the crate with our [Travel crate calculator](/tools/crate/) and read our guide to [choosing an airline-approved crate](/travel-hub/airline-approved-dog-crate/).
+The conditions: a **rigid compliant with the applicable requirements crate** (sturdy, ventilated on several sides, with a leak-proof floor and metal hardware), a maximum combined weight for dog + crate (often up to 45 or 75 kg / 99 or 165 lb depending on the airline), and an advance reservation. Crucial point: most airlines **ban brachycephalic breeds from the hold** (bulldogs, pugs, boxers…) for respiratory health reasons. Size the crate with our [travel crate calculator](/tools/crate/) and read our guide to [choosing an airline-approved crate](/travel-hub/airline-approved-dog-crate/).
 
 ## 3. As cargo: not to be confused with the hold
 

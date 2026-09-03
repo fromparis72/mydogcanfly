@@ -81,26 +81,43 @@ const RACINE = process.cwd();
 /* LES TERMINAISONS ACCENTUÉES. Faute trouvée par la contre-épreuve 4 : `\\w*` ne contient PAS les
    lettres accentuées en JavaScript, si bien que « certifiée IATA » et « approuvée par l'IATA »
    n'étaient jamais vues — deux formes françaises entières manquaient au relevé. */
+/* ---- L'ESPACE À L'INTÉRIEUR D'UNE PHRASE ---------------------------------------------------
+ *
+ * DÉFAUT MESURÉ LE 03/09/2026, ET IL INVENTAIT DES AFFIRMATIONS. Depuis que le lecteur de zones
+ * rend le texte comme il est AFFICHÉ, une frontière de bloc devient une ligne vide. Or `\s+`
+ * traverse les lignes vides : la fin d'une cellule de tableau se soudait donc au début de la
+ * suivante. Sur la page espagnole « equipamiento de viaje », une cellule finit par « …opciones
+ * conformes a IATA » — une référence LICITE — et la suivante commence par « Transportín
+ * flexible » ; le motif y lisait « IATA Transportín », une attribution de contenant qui n'est
+ * écrite nulle part. Deux occurrences fantômes au registre public, plus deux autres du même
+ * mécanisme sur d'autres pages.
+ *
+ * UNE PHRASE NE TRAVERSE PAS UNE LIGNE VIDE. L'espace intra-phrase autorise donc les espaces, les
+ * tabulations et UN retour à la ligne — un paragraphe peut être replié par l'éditeur — mais
+ * jamais deux, qui signent un changement de bloc. C'est le lecteur qui a rendu ce défaut visible :
+ * avant lui, tout était collé et le motif ne pouvait pas franchir ce qu'il ne voyait pas. */
+const ESP = "(?:[^\\S\\n]|\\n(?!\\s*\\n))+";
+
 const SUITE = "[\\wÀ-ÿ]*";
 export const ALTERNATIVES = [
   "IATA[- ]?(?:approved|compliant|certified|accredited)",
   "IATA[- ]?(?:LAR|formula|method|requirements?|standards?|guidelines?)",
   "Live Animals Regulations",
   `homologu${SUITE}`, `homologad${SUITE}`, `homologa${SUITE}`,
-  "conforme[s]?\\s+(?:à\\s+la\\s+norme\\s+)?IATA",
-  "conforme[s]?\\s+(?:a|à)\\s+la\\s+IATA",
-  "conforme[s]?\\s+(?:à|a)\\s+(?:la\\s+)?norma\\s+IATA",
+  `conforme[s]?${ESP}(?:à${ESP}la${ESP}norme${ESP})?IATA`,
+  `conforme[s]?${ESP}(?:a|à)${ESP}la${ESP}IATA`,
+  `conforme[s]?${ESP}(?:à|a)${ESP}(?:la${ESP})?norma${ESP}IATA`,
   /* SYMÉTRIE LINGUISTIQUE (arbitrage du 02/09/2026). « norme(s) IATA » était licite et
      « norma IATA » interdit, alors que les deux nomment le même référentiel — une incohérence
      entre langues, pas une règle. Les deux sont désormais licites À L'OCCURRENCE. Les
      AFFIRMATIONS COMPLÈTES restent interdites, et les alternatives qui les portent — « conforme
      à la norme IATA », « conforme a la norma IATA » — sont placées AVANT celles-ci, donc elles
      accrochent les premières. */
-  "normas?\\s+IATA", "normes?\\s+IATA", "exigences\\s+IATA",
-  `certifi${SUITE}\\s+IATA`,
-  `approuv${SUITE}\\s+par\\s+(?:l')?IATA`,
-  `aprobad${SUITE}\\s+por\\s+la\\s+IATA`,
-  `aprovad${SUITE}\\s+pela\\s+IATA`,
+  `normas?${ESP}IATA`, `normes?${ESP}IATA`, `exigences${ESP}IATA`,
+  `certifi${SUITE}${ESP}IATA`,
+  `approuv${SUITE}${ESP}par${ESP}(?:l')?IATA`,
+  `aprobad${SUITE}${ESP}por${ESP}la${ESP}IATA`,
+  `aprovad${SUITE}${ESP}pela${ESP}IATA`,
 ];
 
 /* ---- LA FAMILLE « CONTENANT + IATA », AJOUTÉE LE 02/09/2026 ---------------------------------
@@ -126,14 +143,14 @@ export const ALTERNATIVES = [
  * détecteur de montants. */
 const CONTENANT = "caisses?|cages?|crates?|kennels?|carriers?|sacs?|bags?|jaulas?"
   + "|transport[íi]n(?:es)?|caixas?|bolsas?|conteneurs?";
-const QUALIF = "(?:de\\s+)?(?:type|typical|tipo|t[íi]pic[ao]s?)";
+const QUALIF = `(?:de${ESP})?(?:type|typical|tipo|t[íi]pic[ao]s?)`;
 /* L'ORDRE COMPTE : dans une alternance, la première branche qui accroche gagne. La forme à
  * qualificatif SUIVANT — « Caisse IATA type » — doit donc précéder la forme nue, sans quoi celle-ci
  * s'arrêterait à « Caisse IATA » et le relevé montrerait une phrase tronquée. */
 export const FAMILLE_CONTENANT = [
-  `\\b(?:${CONTENANT})\\s+IATA\\s+(?:${QUALIF})\\b`,     // Caisse IATA type · Jaula IATA típica
-  `\\b(?:${CONTENANT})\\s+(?:${QUALIF}\\s+)?IATA\\b`,   // caisse IATA · caisse de type IATA
-  `\\bIATA\\s+(?:${QUALIF}\\s+)?(?:${CONTENANT})\\b`,    // IATA crate · IATA typical kennel
+  `\\b(?:${CONTENANT})${ESP}IATA${ESP}(?:${QUALIF})\\b`,     // Caisse IATA type · Jaula IATA típica
+  `\\b(?:${CONTENANT})${ESP}(?:${QUALIF}${ESP})?IATA\\b`,   // caisse IATA · caisse de type IATA
+  `\\bIATA${ESP}(?:${QUALIF}${ESP})?(?:${CONTENANT})\\b`,    // IATA crate · IATA typical kennel
 ];
 
 /* LES FORMES SANS CONTENANT ADJACENT, BORNÉES UNE PAR UNE.
@@ -150,9 +167,9 @@ export const FAMILLE_CONTENANT = [
  * LA LIMITE EST NOMMÉE : une cinquième formulation de ce genre serait invisible jusqu'à ce qu'on
  * l'ajoute ici — c'est le prix d'un bornage exact, et il est préférable au prix inverse. */
 export const FORMES_BORNEES = [
-  "\\brigid\\s+IATA\\s+type\\b",            // en — « rigid IATA type with two-point locking »
-  "\\btype\\s+IATA\\s+rigide\\b",           // fr — « type IATA rigide avec verrouillage »
-  "\\btipo\\s+IATA\\s+r[íi]gid[ao]\\b",     // es/pt — « tipo IATA rígida con cierre »
+  `\\brigid${ESP}IATA${ESP}type\\b`,            // en — « rigid IATA type with two-point locking »
+  `\\btype${ESP}IATA${ESP}rigide\\b`,           // fr — « type IATA rigide avec verrouillage »
+  `\\btipo${ESP}IATA${ESP}r[íi]gid[ao]\\b`,     // es/pt — « tipo IATA rígida con cierre »
 ];
 
 /* LE MOTIF HÉRITÉ, GARDÉ POUR PROUVER QUE L'EXTENSION N'EST QU'UN AJOUT. La contre-épreuve rejoue

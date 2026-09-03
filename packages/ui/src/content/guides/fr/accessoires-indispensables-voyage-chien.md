@@ -44,7 +44,7 @@ Pour choisir, lisez notre guide [quels équipements voiture sont vraiment utiles
 
 ## Quelle caisse ou quel sac de transport choisir ?
 
-Le contenant dépend du gabarit et du mode de transport. Pour un **petit chien**, un sac souple ventilé suffit souvent et passe en cabine en avion ou en train — voyez [les sacs de transport les plus confortables pour petits chiens](/fr/travel-hub/sacs-transport-petits-chiens/). Pour un **chien moyen à grand**, ou un voyage en avion en soute, il faut une **caisse rigide conforme aux exigences applicables IATA**, correctement dimensionnée.
+Le contenant dépend du gabarit et du mode de transport. Pour un **petit chien**, un sac souple ventilé suffit souvent et passe en cabine en avion ou en train — voyez [les sacs de transport les plus confortables pour petits chiens](/fr/travel-hub/sacs-transport-petits-chiens/). Pour un **chien moyen à grand**, ou un voyage en avion en soute, il faut une **caisse rigide conforme aux exigences IATA**, correctement dimensionnée.
 
 Trois ressources pour ne pas se tromper : le comparatif [sac ou caisse de transport](/fr/travel-hub/sac-caisse-transport-chien/), notre guide [comment choisir une caisse conforme aux exigences applicables pour l'avion](/fr/travel-hub/caisse-transport-avion-homologuee-chien/), et l'article complet [voyager en avion avec son chien](/fr/travel-hub/voyager-avion-avec-chien/) pour les démarches.
 

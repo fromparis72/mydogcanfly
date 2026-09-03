@@ -1,7 +1,7 @@
 ---
 key: "airline-approved-dog-crate"
-title: "Escolher uma caixa de transporte conforme a los requisitos aplicables pela IATA"
-seoTitle: "Caixa de transporte para cachorro: regras e medidas"
+title: "Escolher uma caixa de transporte em conformidade com os requisitos da IATA"
+seoTitle: "caixa de transporte para cachorro: regras e medidas"
 description: "Guia da caixa de avião para cachorro: exigências da IATA, método de medição, materiais, modelos em conformidade. O guia completo para voar com tranquilidade."
 summary: "Guia da caixa de avião para cachorro: exigências da IATA, método de medição, materiais, modelos em conformidade. O guia completo para voar com tranquilidade."
 date: "2026-06-22T09:00:00+02:00"

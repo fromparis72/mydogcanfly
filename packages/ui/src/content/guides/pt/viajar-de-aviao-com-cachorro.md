@@ -38,7 +38,7 @@ O avião abre as portas para viagens distantes com o seu cachorro, mas é també
 O lugar em que o seu cachorro viaja depende sobretudo do peso e da companhia aérea.
 
 - **Na cabine**: reservada a cães pequenos, em geral até 6 a 8 kg incluindo a caixa de transporte. A caixa precisa caber embaixo do assento da frente. É a opção mais tranquilizadora, porque o cachorro fica com você.
-- **No porão**: para cães mais pesados, que viajam em uma caixa rígida conforme a los requisitos aplicables pela IATA, em um compartimento pressurizado e aquecido.
+- **No porão**: para cães mais pesados, que viajam em uma caixa rígida em conformidade com os requisitos da IATA, em um compartimento pressurizado e aquecido.
 - **Recusa possível**: algumas companhias não aceitam raças braquicefálicas (bulldogues, pugs) no porão, por causa do risco respiratório.
 
 Confirme sempre as condições exatas com a sua companhia aérea antes de reservar.
@@ -104,4 +104,4 @@ Para deslocamentos dentro da Europa continental, o trem costuma ser mais simples
 - [Service-public.fr — animais de companhia e viagens](https://www.service-public.fr)
 - [Comissão Europeia — viajar com animais de companhia](https://europa.eu)
 
-<ol class="gd-etapes"><li><a href="/pt/travel-hub/viajar-ao-exterior-com-cachorro/">Verifique as exigências sanitárias</a></li><li><a href="/pt/travel-hub/caixa-de-transporte-homologada-iata/">Escolha uma caixa conforme a los requisitos aplicables pela IATA</a></li><li><a href="/pt/travel-hub/ansiedade-do-cachorro-em-viagem/">Prepare o seu cachorro para o estresse do voo</a></li><li><a href="/pt/airlines/">Compare as 62 companhias aéreas</a></li></ol>
+<ol class="gd-etapes"><li><a href="/pt/travel-hub/viajar-ao-exterior-com-cachorro/">Verifique as exigências sanitárias</a></li><li><a href="/pt/travel-hub/caixa-de-transporte-homologada-iata/">Escolha uma caixa em conformidade com os requisitos da IATA</a></li><li><a href="/pt/travel-hub/ansiedade-do-cachorro-em-viagem/">Prepare o seu cachorro para o estresse do voo</a></li><li><a href="/pt/airlines/">Compare as 62 companhias aéreas</a></li></ol>

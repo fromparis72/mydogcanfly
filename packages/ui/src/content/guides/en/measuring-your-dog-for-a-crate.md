@@ -50,7 +50,7 @@ Take them on a **standing** dog, on a flat surface, with a soft tape measure.
 
 Then the usual margins: the crate length is normally **A + half of B**, the internal height at least **C plus a few centimetres**, and the internal width at least **twice D** so the dog can turn.
 
-Rather than doing that arithmetic by hand, put your measurements into our [Travel crate calculator](/tools/crate/) — it returns the internal dimensions to look for, which is the figure to quote when you contact the airline.
+Rather than doing that arithmetic by hand, put your measurements into our [travel crate calculator](/tools/crate/) — it returns the internal dimensions to look for, which is the figure to quote when you contact the airline.
 
 ## Why bigger is not safer
 

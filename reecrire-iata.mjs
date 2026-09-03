@@ -104,6 +104,22 @@ const TABLE = [
    « homologué·e·s / homologado·a·s », et elle ne qualifie pas toujours le même mot : la règle
    remplace donc l'ADJECTIF par la formulation arbitrée, accordée elle aussi. */
 const HOMOLOGATION = [
+  /* « homologuée IATA » EST UNE SEULE AFFIRMATION, ET ELLE SE REMPLACE ENTIÈRE. Faute mesurée le
+     03/09/2026 : la première table ne remplaçait que l'ADJECTIF, laissant un « IATA » orphelin —
+     « caisse de transport rigide conforme aux exigences applicables IATA. », dix-sept fois. C'était
+     à la fois bancal et trompeur, puisque la phrase se remettait à parler de l'IATA.
+     La bonne cible existait déjà : « exigences IATA » est une référence LICITE, et elle dit
+     exactement le vrai — l'IATA publie des exigences, elle n'homologue rien. Ces règles passent
+     donc AVANT celles qui traitent l'adjectif seul. */
+  [/\bhomologuées\s+IATA\b/g, "conformes aux exigences IATA"],
+  [/\bhomologués\s+IATA\b/g, "conformes aux exigences IATA"],
+  [/\bhomologuée\s+IATA\b/g, "conforme aux exigences IATA"],
+  [/\bhomologué\s+IATA\b/g, "conforme aux exigences IATA"],
+  [/\bhomologadas\s+IATA\b/g, "conformes a los requisitos IATA"],
+  [/\bhomologados\s+IATA\b/g, "conformes a los requisitos IATA"],
+  [/\bhomologada\s+(?:pela\s+)?IATA\b/g, "em conformidade com os requisitos da IATA"],
+  [/\bhomologado\s+IATA\b/g, "conforme a los requisitos IATA"],
+
   [/\bhomologuées\b/g, "conformes aux exigences applicables"],
   [/\bhomologués\b/g, "conformes aux exigences applicables"],
   [/\bhomologuée\b/g, "conforme aux exigences applicables"],
@@ -120,6 +136,27 @@ const HOMOLOGATION = [
 ];
 
 const REGLES = [...TABLE, ...HOMOLOGATION];
+
+/* ---- L'EMPHASE MARKDOWN NE COUPE PAS UNE PHRASE --------------------------------------------
+ *
+ * FAUTE MESURÉE : les guides écrivent « conforme **IATA** (CR82) » et « **IATA**-compliant ».
+ * Les étoiles ne se voient pas à l'écran — le lecteur lit bien « conforme IATA » —, mais elles
+ * cassent chacune de mes expressions régulières. Deux affirmations survivaient donc à la
+ * réécriture ET étaient publiées.
+ *
+ * ON NE RETIRE PAS L'EMPHASE : elle est du style, et la supprimer changerait la page. On la MET
+ * DE CÔTÉ le temps de la substitution, comme les slugs, puis on la restitue — sur le mot qui
+ * porte désormais le sens. Ici, l'emphase enveloppait « IATA » ; après réécriture elle enveloppe
+ * le terme qui l'a remplacé. */
+const EMPHASE = [
+  [/\bconforme\s+\*\*IATA\*\*/g, "conforme aux **exigences IATA**"],
+  [/\bconformes\s+\*\*IATA\*\*/g, "conformes aux **exigences IATA**"],
+  [/\*\*IATA\*\*-compliant\b/g, "compliant with the **applicable requirements**"],
+  [/\*\*IATA\*\*-approved\b/g, "compliant with the **applicable requirements**"],
+  [/\*\*caisse\s+IATA\*\*/gi, "**caisse de transport**"],
+  [/\*\*IATA\s+crate\*\*/gi, "**travel crate**"],
+];
+REGLES.unshift(...EMPHASE);
 
 const fichiers = execSync("git ls-files " + SURFACES.map((s) => `'${s}'`).join(" "), { encoding: "utf8" })
   .split("\n").filter(Boolean);
@@ -196,7 +233,15 @@ for (const f of fichiers) {
       const decalage = args[args.length - 2];
       const chaine = args[args.length - 1];
       const avantTexte = chaine.slice(0, decalage);
-      const debutDePhrase = /(^|[\n\r]|[.!?:;]["'»)\]]?\s|["'«(\[>|-]\s?)\s*$/u.test(avantTexte) || avantTexte.trim() === "";
+      /* UN GUILLEMET OUVRANT N'EST PAS UN DÉBUT DE PHRASE À LUI SEUL. Faute mesurée : le titre
+         « Qu'est-ce qu'une caisse « Conforme aux exigences IATA » ? » recevait une capitale au
+         milieu d'une phrase, parce que le `«` précédait. Une ouverture ne compte que si elle est
+         elle-même en tête de ligne ou après une ponctuation de fin. */
+      const finDeLigne = /(^|[\n\r])[^\n\r]*$/u.exec(avantTexte)?.[0].replace(/^[\n\r]/, "") ?? "";
+      const debutDePhrase = avantTexte.trim() === ""
+        || /[\n\r]\s*$/u.test(avantTexte)
+        || /[.!?][\s"'»)\]]*$/u.test(avantTexte)
+        || /^\s*["'«(\[>|-]+\s*$/u.test(finDeLigne);
       return debutDePhrase ? sortie.charAt(0).toUpperCase() + sortie.slice(1) : sortie;
     });
     if (texte !== avantR) {

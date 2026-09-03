@@ -38,7 +38,7 @@ L'avion ouvre les portes des voyages lointains avec son chien, mais c'est aussi 
 Le placement dépend essentiellement du poids et de la compagnie aérienne.
 
 - **En cabine** : réservé aux petits chiens, généralement jusqu'à 6 à 8 kg sac de transport inclus. Le sac doit tenir sous le siège avant. C'est l'option la plus rassurante car le chien reste avec vous.
-- **En soute** : pour les chiens plus lourds, voyageant dans une caisse rigide conforme aux exigences applicables IATA, dans un compartiment pressurisé et chauffé.
+- **En soute** : pour les chiens plus lourds, voyageant dans une caisse rigide conforme aux exigences IATA, dans un compartiment pressurisé et chauffé.
 - **Refus possible** : certaines compagnies n'acceptent pas les races brachycéphales (bouledogues, carlins) en soute, en raison du risque respiratoire.
 
 Vérifiez toujours les conditions exactes auprès de votre compagnie avant de réserver.
@@ -91,7 +91,7 @@ Augmentez ensuite la durée et ajoutez du mouvement : portez la caisse, posez-la
 
 ## Quel budget prévoir pour faire voyager son chien en avion ?
 
-Le coût dépend de la compagnie, de la distance et du mode de transport. À titre indicatif, comptez de 50 à 125 € pour un petit chien en cabine sur un vol européen, et de 100 à 400 € pour un transport en soute selon la distance. À cela s'ajoutent les frais souvent sous-estimés : Caisse de transport conforme (de 40 à plus de 150 € selon la taille), consultation vétérinaire et passeport, vaccin antirabique, et éventuel titrage antirabique sérologique (de l'ordre de 70 à 120 € dans un laboratoire agréé). Pour les destinations hors UE, certains pays imposent aussi des traitements antiparasitaires datés ou des certificats traduits, parfois payants. Prévoyez une enveloppe globale et anticipez : les places pour animaux sont limitées par vol et se réservent vite, surtout en haute saison.
+Le coût dépend de la compagnie, de la distance et du mode de transport. À titre indicatif, comptez de 50 à 125 € pour un petit chien en cabine sur un vol européen, et de 100 à 400 € pour un transport en soute selon la distance. À cela s'ajoutent les frais souvent sous-estimés : caisse de transport conforme (de 40 à plus de 150 € selon la taille), consultation vétérinaire et passeport, vaccin antirabique, et éventuel titrage antirabique sérologique (de l'ordre de 70 à 120 € dans un laboratoire agréé). Pour les destinations hors UE, certains pays imposent aussi des traitements antiparasitaires datés ou des certificats traduits, parfois payants. Prévoyez une enveloppe globale et anticipez : les places pour animaux sont limitées par vol et se réservent vite, surtout en haute saison.
 
 ## Train ou avion : quel mode privilégier ?
 
@@ -104,4 +104,4 @@ Pour les trajets en Europe continentale, le train reste souvent plus simple et m
 - [Service-public.fr — animaux et voyages](https://www.service-public.fr)
 - [Commission européenne — voyager avec animaux de compagnie](https://europa.eu)
 
-<ol class="gd-etapes"><li><a href="/fr/travel-hub/voyager-etranger-avec-chien/">Vérifier les formalités sanitaires</a></li><li><a href="/fr/travel-hub/caisse-transport-avion-homologuee-chien/">Choisir une caisse de transport conforme aux exigences applicables IATA</a></li><li><a href="/fr/travel-hub/anxiete-chien-transport/">Préparer votre chien au stress du vol</a></li><li><a href="/fr/airlines/">Comparer les 62 compagnies</a></li></ol>
+<ol class="gd-etapes"><li><a href="/fr/travel-hub/voyager-etranger-avec-chien/">Vérifier les formalités sanitaires</a></li><li><a href="/fr/travel-hub/caisse-transport-avion-homologuee-chien/">Choisir une caisse de transport conforme aux exigences IATA</a></li><li><a href="/fr/travel-hub/anxiete-chien-transport/">Préparer votre chien au stress du vol</a></li><li><a href="/fr/airlines/">Comparer les 62 compagnies</a></li></ol>
