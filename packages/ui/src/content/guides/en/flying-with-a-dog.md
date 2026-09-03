@@ -2,8 +2,8 @@
 key: "flying-with-a-dog"
 title: "Flying with a Dog: Cabin, Cargo Hold and Paperwork"
 seoTitle: "Flying with a Dog: Cabin, Hold & Paperwork"
-description: "Flying with a dog: cabin or cargo hold rules, weight limits, the travel crate and the health paperwork, explained step by step."
-summary: "Flying with a dog means an travel crate, a weight within your airline's limit and health paperwork started several weeks before departure."
+description: "Flying with a dog: cabin or cargo hold rules, weight limits, the IATA crate and the health paperwork, explained step by step."
+summary: "Flying with a dog means an IATA crate, a weight within your airline's limit and health paperwork started several weeks before departure."
 date: "2026-06-25T11:00:00+02:00"
 lastmod: "2026-06-25T11:00:00+02:00"
 author: "Camille Roussel"
@@ -12,7 +12,7 @@ tags: ["dog", "airplane", "international travel"]
 sourceUrl: "/flying-with-a-dog/"
 enbref:
   - "🧳 **Cabin** for small dogs (often ≤ 8 kg / 18 lb, carrier included)"
-  - "📦 **Hold** for bigger dogs, in an **travel crate**"
+  - "📦 **Hold** for bigger dogs, in an **IATA crate**"
   - "📄 Health paperwork: microchip, rabies vaccine, travel document, sometimes a rabies titer test"
   - "⏳ **Start several weeks** before departure"
 cover:
@@ -21,7 +21,7 @@ cover:
   credit: "Photo: [Jeswin Thomas](https://unsplash.com/@jeswinthomas?utm_source=mydogcanfly&utm_medium=referral) on [Unsplash](https://unsplash.com/?utm_source=mydogcanfly&utm_medium=referral)"
 faq:
   - q: "What is the maximum weight for flying in the cabin?"
-    a: "The limit generally falls between 6 and 8 kg (13 and 18 lb), travel carrier included, but it varies by airline. Above that, the dog travels in the hold in an travel crate. Always check your airline's exact threshold."
+    a: "The limit generally falls between 6 and 8 kg (13 and 18 lb), travel carrier included, but it varies by airline. Above that, the dog travels in the hold in an IATA crate. Always check your airline's exact threshold."
   - q: "Can my dog travel in the hold without me?"
     a: "Yes, some airlines will transport a dog as cargo, without its owner on board, but the conditions are strict and expensive. Most travelers prefer to accompany their pet on the same flight."
   - q: "Can short-nosed breeds fly?"
@@ -39,14 +39,14 @@ Flying opens the door to far-away trips with your dog, but it's also the most he
 Where your dog rides depends mostly on weight and on the airline.
 
 - **In the cabin**: reserved for small dogs, generally up to 6 to 8 kg (13 to 18 lb) including the travel carrier. The carrier must fit under the seat in front of you. It's the most reassuring option because your dog stays with you.
-- **In the hold**: for heavier dogs, traveling in a rigid compliant with the applicable requirements crate, in a pressurized, heated compartment.
+- **In the hold**: for heavier dogs, traveling in a rigid IATA-approved crate, in a pressurized, heated compartment.
 - **Possible refusal**: some airlines do not accept brachycephalic breeds (bulldogs, pugs) in the hold, because of the respiratory risk.
 
 Always check the exact conditions with your airline before booking.
 
-## What is an travel crate and how do you choose one?
+## What is an IATA crate and how do you choose one?
 
-The travel crate is the international standard for transporting animals by air. It must be rigid, well ventilated on at least three sides, fitted with a lockable door and a leak-proof floor. Your dog must be able to stand up, turn around and lie down comfortably inside.
+The IATA crate is the international standard for transporting animals by air. It must be rigid, well ventilated on at least three sides, fitted with a lockable door and a leak-proof floor. Your dog must be able to stand up, turn around and lie down comfortably inside.
 
 Get your dog used to the crate several weeks before the flight. To pick the right one, see our guide to [choosing your dog's travel gear](/travel-hub/dog-travel-gear/), which covers dimensions and safety criteria in detail.
 
@@ -70,7 +70,7 @@ Here is the sequence to follow so nothing gets forgotten:
 3. **Get the travel document**: the EU pet passport from your veterinarian if your dog is living in the EU, or the health certificates required by your destination country.
 4. **Check the arrival country's requirements**: some require a rabies titer test, a quarantine or parasite treatments.
 5. **Contact the airline** to reserve your pet's spot and confirm the permitted weight and crate type.
-6. **Get a compliant travel crate** and train your dog to use it.
+6. **Get a compliant IATA crate** and train your dog to use it.
 7. **Prepare for the big day**: exercise before departure, a light meal 4 hours before, a water bowl attached to the crate, a "live animal" label.
 
 ## How far ahead do you need to start?
@@ -92,7 +92,7 @@ Then increase the duration and add movement: carry the crate, put it in the car,
 
 ## What budget should you plan for flying with a dog?
 
-The cost depends on the airline, the distance and how the dog travels. As a guide, expect €50 to €125 (~$60–145) for a small dog in the cabin on a flight within Europe, and €100 to €400 (~$115–460) for hold transport depending on distance. Then come the often underestimated extras: a compliant travel crate (€40 to over €150 / ~$45–170 depending on size), the veterinary consultation and travel document, the rabies vaccine, and a possible rabies titer test (on the order of €70 to €120 / ~$80–140 at an approved laboratory). For some destinations, dated parasite treatments or translated certificates are also required, sometimes at a cost. Set an overall budget and plan ahead: pet spots are limited per flight and fill up fast, especially in high season.
+The cost depends on the airline, the distance and how the dog travels. As a guide, expect €50 to €125 (~$60–145) for a small dog in the cabin on a flight within Europe, and €100 to €400 (~$115–460) for hold transport depending on distance. Then come the often underestimated extras: a compliant IATA crate (€40 to over €150 / ~$45–170 depending on size), the veterinary consultation and travel document, the rabies vaccine, and a possible rabies titer test (on the order of €70 to €120 / ~$80–140 at an approved laboratory). For some destinations, dated parasite treatments or translated certificates are also required, sometimes at a cost. Set an overall budget and plan ahead: pet spots are limited per flight and fill up fast, especially in high season.
 
 ## Train or plane: which should you choose?
 
@@ -105,4 +105,4 @@ For trips within continental Europe, the train is often simpler and less stressf
 - [Service-public.fr — pets and travel](https://www.service-public.fr)
 - [European Commission — traveling with pets](https://europa.eu)
 
-<ol class="gd-etapes"><li><a href="/travel-hub/international-travel-with-a-dog/">Check the health requirements</a></li><li><a href="/travel-hub/airline-approved-dog-crate/">Choose an compliant with the applicable requirements travel crate</a></li><li><a href="/travel-hub/dog-travel-anxiety/">Prepare your dog for the stress of the flight</a></li><li><a href="/airlines/">Compare all 62 airlines</a></li></ol>
+<ol class="gd-etapes"><li><a href="/travel-hub/international-travel-with-a-dog/">Check the health requirements</a></li><li><a href="/travel-hub/airline-approved-dog-crate/">Choose an IATA-approved travel crate</a></li><li><a href="/travel-hub/dog-travel-anxiety/">Prepare your dog for the stress of the flight</a></li><li><a href="/airlines/">Compare all 62 airlines</a></li></ol>

@@ -25,7 +25,7 @@ faq:
   - q: "¿Puede mi perro viajar gratis en tren?"
     a: "Los perros guía y de asistencia viajan gratis en prácticamente todas las redes, con su documentación. Para los animales de compañía varía: en Gran Bretaña los perros viajan gratis (hasta dos por pasajero, con correa), mientras que operadores como la SNCF exigen un billete de pago para cada perro, incluso el más pequeño."
   - q: "¿Se admiten perros en Amtrak, en Estados Unidos?"
-    a: "Sí, pero solo animales pequeños: Amtrak admite perros de hasta 9 kg incluido el transportín, en un transportín conforme a los requisitos aplicables, en trayectos de 7 horas o menos. Los animales de asistencia viajan gratis y sin esos límites."
+    a: "Sí, pero solo animales pequeños: Amtrak admite perros de hasta 9 kg incluido el transportín, en un transportín homologado, en trayectos de 7 horas o menos. Los animales de asistencia viajan gratis y sin esos límites."
   - q: "¿Puedo comprar el billete de mi perro a bordo?"
     a: "En algunas redes puedes comprarlo al revisor, pero es arriesgado: ciertos trenes limitan el número de animales a bordo y podrían rechazarte. Siempre es más seguro reservar el billete del animal por adelantado junto con el tuyo."
   - q: "¿Cómo acostumbro a mi perro al bozal antes del viaje?"
@@ -70,7 +70,7 @@ Las tarifas y condiciones evolucionan, y los trenes regionales tienen a menudo s
 
 ## ¿Y los trenes en Estados Unidos?
 
-**Amtrak** admite animales de compañía, pero con límites mucho más estrictos que las redes europeas: perros (y gatos) de hasta **9 kg incluido el transportín**, en un transportín conforme a los requisitos aplicables que quepa bajo tu asiento, en trayectos de **7 horas o menos**, con una tarifa por animal. Los perros más grandes no se aceptan en ningún caso, sea cual sea la ruta. Los animales de asistencia, tal como los define la ley estadounidense, viajan gratis y sin esas restricciones.
+**Amtrak** admite animales de compañía, pero con límites mucho más estrictos que las redes europeas: perros (y gatos) de hasta **9 kg incluido el transportín**, en un transportín homologado que quepa bajo tu asiento, en trayectos de **7 horas o menos**, con una tarifa por animal. Los perros más grandes no se aceptan en ningún caso, sea cual sea la ruta. Los animales de asistencia, tal como los define la ley estadounidense, viajan gratis y sin esas restricciones.
 
 En la práctica, eso convierte al tren en una opción real en Estados Unidos solo para perros pequeños en trayectos cortos y medios; para un perro más grande, lo habitual es optar por un [viaje por carretera](/es/travel-hub/road-trip-con-perro/).
 

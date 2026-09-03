@@ -24,7 +24,7 @@ faq:
   - q: "Faut-il obligatoirement attacher son chien en voiture ?"
     a: "Oui. Le Code de la route impose que rien ne gêne la conduite ; un chien libre est un danger. Le harnais de sécurité attaché à la ceinture, la caisse ou le filet de séparation sont les solutions conformes et sécurisantes."
   - q: "Une caisse souple convient-elle pour l'avion ?"
-    a: "Pour la cabine, certains sacs souples conformes sont acceptés pour les petits chiens. Pour la soute, en revanche, seule une caisse rigide conforme aux exigences IATA est autorisée, car elle protège l'animal et résiste aux manipulations."
+    a: "Pour la cabine, certains sacs souples conformes sont acceptés pour les petits chiens. Pour la soute, en revanche, seule une caisse rigide homologuée IATA est autorisée, car elle protège l'animal et résiste aux manipulations."
   - q: "Comment connaître la bonne taille de caisse ?"
     a: "Mesurez la hauteur de votre chien au garrot (oreilles dressées) et sa longueur du museau à la base de la queue, puis ajoutez quelques centimètres. Le chien doit pouvoir se tenir debout, se retourner et s'allonger sans contrainte."
   - q: "Quel budget prévoir pour bien équiper son chien ?"
@@ -82,7 +82,7 @@ Mesurez toujours votre chien plutôt que de vous fier à la seule fourchette de 
 
 En voiture, un chien non attaché est un projectile en cas de freinage. Le harnais de sécurité s'attache à la ceinture et constitue la solution la plus confortable pour les trajets fréquents. Les critères essentiels :
 
-- **L'conformité aux exigences applicables crash-test** : privilégiez les harnais testés selon des normes reconnues.
+- **L'homologation crash-test** : privilégiez les harnais testés selon des normes reconnues.
 - **Les points d'attache multiples** et un rembourrage large pour répartir la pression.
 - **Le bon ajustement** : ni trop lâche, ni trop serré, adapté au tour de poitrine.
 - **La compatibilité** avec la ceinture ou un ancrage Isofix.

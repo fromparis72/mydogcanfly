@@ -12,7 +12,7 @@ tags: ["chien", "avion", "cabine", "soute", "fret", "chien d'assistance"]
 sourceUrl: "/voyager-avion-chien-options/"
 enbref:
   - "🧳 **Cabine** (petits gabarits, sac sous le siège)"
-  - "📦 **Soute** (bagage accompagné, caisse de transport)"
+  - "📦 **Soute** (bagage accompagné, caisse IATA)"
   - "🚚 **Fret** (cargo, sur devis)"
   - "🦺 **Chien d'assistance** (gratuit en cabine)"
   - "💙 **Soutien émotionnel** (règles très restreintes)"
@@ -22,7 +22,7 @@ cover:
   alt: "Un chien dans sa caisse de transport, chargé en soute sur le tapis roulant d'un avion"
 faq:
   - q: "Quelle est la différence entre la soute et le fret ?"
-    a: "En **soute** (bagage accompagné, AVIH), le chien voyage sur votre vol, sous votre billet, dans une caisse de transport. En **fret** (cargo), il est transporté comme une marchandise, parfois sur un autre vol, sur devis et avec des formalités renforcées."
+    a: "En **soute** (bagage accompagné, AVIH), le chien voyage sur votre vol, sous votre billet, dans une caisse IATA. En **fret** (cargo), il est transporté comme une marchandise, parfois sur un autre vol, sur devis et avec des formalités renforcées."
   - q: "Un chien de soutien émotionnel voyage-t-il gratuitement en cabine ?"
     a: "Non, plus dans la plupart des cas. Depuis 2021, les compagnies américaines ne sont plus tenues de les accepter comme chiens d'assistance ; ils voyagent comme animaux de compagnie (payants, en sac). En Europe, ce statut n'est pas reconnu."
   - q: "Un chien guide d'aveugle paie-t-il son billet ?"
@@ -43,7 +43,7 @@ C'est la formule la plus rassurante : votre chien reste avec vous, à températu
 
 Au-delà du poids autorisé en cabine, le chien voyage en **soute**, dans un **compartiment pressurisé et chauffé** prévu pour les animaux vivants (code AVIH dans le jargon aérien : *Animal in Hold*). Il s'agit toujours d'un **bagage accompagné** : votre chien voyage sur **le même vol que vous**, sous votre billet.
 
-Les conditions : une **caisse rigide conforme aux exigences IATA** (solide, ventilée sur plusieurs côtés, avec fond étanche et fixations métalliques), un poids maximal de l'ensemble chien + caisse (souvent jusqu'à 45 ou 75 kg selon la compagnie), et une réservation anticipée. Point crucial : la plupart des compagnies **interdisent en soute les races brachycéphales** (bouledogue, carlin, boxer…) pour raison de santé respiratoire. Dimensionnez la caisse avec notre [calculateur de caisse de transport](/fr/tools/crate/) et lisez notre guide pour [choisir une caisse conforme aux exigences applicables](/fr/travel-hub/caisse-transport-avion-homologuee-chien/).
+Les conditions : une **caisse rigide homologuée IATA** (solide, ventilée sur plusieurs côtés, avec fond étanche et fixations métalliques), un poids maximal de l'ensemble chien + caisse (souvent jusqu'à 45 ou 75 kg selon la compagnie), et une réservation anticipée. Point crucial : la plupart des compagnies **interdisent en soute les races brachycéphales** (bouledogue, carlin, boxer…) pour raison de santé respiratoire. Dimensionnez la caisse avec notre [calculateur de caisse IATA](/fr/tools/crate/) et lisez notre guide pour [choisir une caisse homologuée](/fr/travel-hub/caisse-transport-avion-homologuee-chien/).
 
 ## 3. En fret : à ne pas confondre avec la soute
 
@@ -73,7 +73,7 @@ La plus médiatisée est **Bark Air**, lancée en mai 2024 : opérateur de vols 
 
 Pour la grande majorité des voyageurs, le choix se résume à **cabine** (petit chien) ou **soute** (chien moyen à grand) sur une compagnie régulière — le fret étant réservé aux cas particuliers, et les compagnies canines à un budget d'exception. Avant de réserver, vérifiez toujours les **formalités d'entrée du pays de destination** (voir notre [vérificateur de formalités par pays](/fr/countries/)) et comparez les conditions avec le [comparatif des compagnies aériennes](/fr/airlines/). Pour le détail pratique d'un vol classique, notre guide [voyager en avion avec son chien](/fr/travel-hub/voyager-avion-avec-chien/) reprend chaque étape.
 
-<ol class="gd-etapes"><li><a href="/fr/travel-hub/voyager-etranger-avec-chien/">Vérifier les formalités sanitaires</a></li><li><a href="/fr/travel-hub/caisse-transport-avion-homologuee-chien/">Choisir une caisse de transport conforme aux exigences IATA</a></li><li><a href="/fr/travel-hub/anxiete-chien-transport/">Préparer votre chien au stress du vol</a></li><li><a href="/fr/airlines/">Comparer les 62 compagnies</a></li></ol>
+<ol class="gd-etapes"><li><a href="/fr/travel-hub/voyager-etranger-avec-chien/">Vérifier les formalités sanitaires</a></li><li><a href="/fr/travel-hub/caisse-transport-avion-homologuee-chien/">Choisir une caisse de transport homologuée IATA</a></li><li><a href="/fr/travel-hub/anxiete-chien-transport/">Préparer votre chien au stress du vol</a></li><li><a href="/fr/airlines/">Comparer les 62 compagnies</a></li></ol>
 
 ## Sources
 

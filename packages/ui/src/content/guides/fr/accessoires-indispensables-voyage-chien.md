@@ -24,8 +24,8 @@ cover:
 faq:
   - q: "Quels sont les accessoires vraiment indispensables pour voyager avec un chien ?"
     a: "Les incontournables sont un système de transport sécurisé (harnais voiture ou caisse), de l'eau et une gamelle pliable, un moyen d'identification et de repérage (médaille + GPS), une trousse de premiers secours, et les équipements de confort adaptés à la saison. Le reste se choisit selon le mode de transport et la destination."
-  - q: "Faut-il une caisse conforme aux exigences applicables pour voyager en avion avec son chien ?"
-    a: "Oui : en soute, la plupart des compagnies exigent une caisse rigide conforme aux normes IATA, où le chien peut se tenir debout, se retourner et s'allonger. En cabine (petits chiens), un sac souple aux dimensions de la compagnie est requis. Voyez notre guide dédié à la caisse conforme aux exigences applicables."
+  - q: "Faut-il une caisse homologuée pour voyager en avion avec son chien ?"
+    a: "Oui : en soute, la plupart des compagnies exigent une caisse rigide conforme aux normes IATA, où le chien peut se tenir debout, se retourner et s'allonger. En cabine (petits chiens), un sac souple aux dimensions de la compagnie est requis. Voyez notre guide dédié à la caisse homologuée."
   - q: "Un harnais ou une caisse pour la voiture ?"
     a: "Les deux sont valables s'ils sont bien fixés. Le harnais de sécurité relié à la ceinture convient aux chiens habitués et calmes ; la caisse arrimée offre une protection maximale et rassure les chiens anxieux. L'essentiel est que le chien soit immobilisé et ne gêne pas la conduite."
   - q: "Un GPS remplace-t-il la puce d'identification ?"
@@ -44,9 +44,9 @@ Pour choisir, lisez notre guide [quels équipements voiture sont vraiment utiles
 
 ## Quelle caisse ou quel sac de transport choisir ?
 
-Le contenant dépend du gabarit et du mode de transport. Pour un **petit chien**, un sac souple ventilé suffit souvent et passe en cabine en avion ou en train — voyez [les sacs de transport les plus confortables pour petits chiens](/fr/travel-hub/sacs-transport-petits-chiens/). Pour un **chien moyen à grand**, ou un voyage en avion en soute, il faut une **caisse rigide conforme aux exigences IATA**, correctement dimensionnée.
+Le contenant dépend du gabarit et du mode de transport. Pour un **petit chien**, un sac souple ventilé suffit souvent et passe en cabine en avion ou en train — voyez [les sacs de transport les plus confortables pour petits chiens](/fr/travel-hub/sacs-transport-petits-chiens/). Pour un **chien moyen à grand**, ou un voyage en avion en soute, il faut une **caisse rigide homologuée IATA**, correctement dimensionnée.
 
-Trois ressources pour ne pas se tromper : le comparatif [sac ou caisse de transport](/fr/travel-hub/sac-caisse-transport-chien/), notre guide [comment choisir une caisse conforme aux exigences applicables pour l'avion](/fr/travel-hub/caisse-transport-avion-homologuee-chien/), et l'article complet [voyager en avion avec son chien](/fr/travel-hub/voyager-avion-avec-chien/) pour les démarches.
+Trois ressources pour ne pas se tromper : le comparatif [sac ou caisse de transport](/fr/travel-hub/sac-caisse-transport-chien/), notre guide [comment choisir une caisse homologuée pour l'avion](/fr/travel-hub/caisse-transport-avion-homologuee-chien/), et l'article complet [voyager en avion avec son chien](/fr/travel-hub/voyager-avion-avec-chien/) pour les démarches.
 
 ## Comment hydrater et nourrir son chien en voyage ?
 

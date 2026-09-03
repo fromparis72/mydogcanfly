@@ -3,7 +3,7 @@ key: "dog-carriers-and-crates"
 title: "Bolso o transportín rígido: cuál elegir para tu perro"
 seoTitle: "Bolso o transportín para perro: cómo elegir"
 description: "Bolso flexible, transportín rígido o jaula: cómo elegir según el tamaño de tu perro y el medio de transporte, las normas aéreas y los consejos de habituación."
-summary: "El contenedor adecuado depende del tamaño de tu perro y de cómo viajas: bolso flexible para perros pequeños en cabina, transportín rígido conforme a los requisitos aplicables para coche, avión o tren. La habituación progresiva es la clave de la aceptación."
+summary: "El contenedor adecuado depende del tamaño de tu perro y de cómo viajas: bolso flexible para perros pequeños en cabina, transportín rígido homologado para coche, avión o tren. La habituación progresiva es la clave de la aceptación."
 date: "2026-07-04T08:00:00+02:00"
 lastmod: "2026-07-04T08:00:00+02:00"
 author: "Camille Roussel"
@@ -11,7 +11,7 @@ category: "gear"
 tags: ["perro", "transportín de viaje", "bolso", "equipamiento"]
 enbref:
   - "👜 **Bolso flexible**: perros pequeños en cabina"
-  - "📦 **Transportín rígido conforme a los requisitos aplicables**: coche, avión, tren"
+  - "📦 **Transportín rígido homologado**: coche, avión, tren"
   - "📐 Tamaño = **ponerse de pie, darse la vuelta, tumbarse**"
   - "🐾 La **habituación progresiva** lo cambia todo"
 cover:

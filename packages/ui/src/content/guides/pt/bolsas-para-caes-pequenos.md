@@ -23,7 +23,7 @@ faq:
   - q: "Qual é o peso máximo de um cachorro em uma bolsa de cabine?"
     a: "Depende inteiramente da companhia aérea. Muitas limitam o peso total (cachorro + bolsa) a poucos quilos, muitas vezes em torno de 8 kg, mas esse número varia. Consulte sempre a página oficial da sua companhia antes de comprar uma bolsa ou de reservar, porque acima do limite o cachorro viaja no porão ou não viaja."
   - q: "Bolsa macia ou caixa rígida para viajar?"
-    a: "Para a cabine do avião, as bolsas macias costumam ser preferidas, porque se comprimem embaixo do assento. Para o porão, o carro ou cães grandes, uma caixa rígida conforme a los requisitos aplicables é mais segura. A escolha depende do porte do seu cachorro, do meio de transporte e da duração da viagem."
+    a: "Para a cabine do avião, as bolsas macias costumam ser preferidas, porque se comprimem embaixo do assento. Para o porão, o carro ou cães grandes, uma caixa rígida homologada é mais segura. A escolha depende do porte do seu cachorro, do meio de transporte e da duração da viagem."
   - q: "Como acostumo o meu cachorro à bolsa dele?"
     a: "Deixe a bolsa aberta e acessível em casa por vários dias, com um cobertor familiar dentro. Recompense cada entrada voluntária, feche-a depois por alguns segundos, carregue-a por distâncias curtas e aumente aos poucos. O objetivo é que a bolsa vire um refúgio associado a coisas positivas antes da primeira viagem de verdade."
   - q: "Minha bolsa é vendida como «própria para cabine», isso basta?"

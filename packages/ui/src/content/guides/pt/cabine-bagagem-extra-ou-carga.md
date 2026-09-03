@@ -35,7 +35,7 @@ Usar o vocabulário certo importa, porque pedir o errado faz perder semanas. A v
 
 ## Cabine: uma taxa na sua própria reserva
 
-O animal viaja em uma bolsa conforme a los requisitos aplicables embaixo do assento da frente. Comercialmente é o mais simples: em geral uma taxa fixa acrescentada à sua reserva, uma cota de animais por voo e um limite estrito de porte e peso que cobre **cachorro mais bolsa**.
+O animal viaja em uma bolsa homologada embaixo do assento da frente. Comercialmente é o mais simples: em geral uma taxa fixa acrescentada à sua reserva, uma cota de animais por voo e um limite estrito de porte e peso que cobre **cachorro mais bolsa**.
 
 O que você ganha não é só conforto. Você vê o animal o tempo todo, a temperatura é regulada para pessoas durante todo o trajeto e os embargos sazonais praticamente não se aplicam — ponto desenvolvido em [os embargos por calor no porão](/pt/travel-hub/embargos-por-calor-no-porao/).
 
@@ -49,7 +49,7 @@ Características práticas:
 
 - Despacho no terminal de passageiros, em geral em um balcão específico e mais cedo que a bagagem comum.
 - Tarifado como taxa por animal ou como excesso de bagagem, conforme a companhia.
-- Exige uma caixa rígida conforme a IATA — veja [escolher uma caixa conforme a los requisitos aplicables](/pt/travel-hub/caixa-de-transporte-homologada-iata/) e dimensione-a com a nossa [calculadora de caixa](/pt/tools/crate/).
+- Exige uma caixa rígida conforme a IATA — veja [escolher uma caixa homologada](/pt/travel-hub/caixa-de-transporte-homologada-iata/) e dimensione-a com a nossa [calculadora de caixa](/pt/tools/crate/).
 - Sujeito aos embargos de temperatura e às restrições de raça, em especial para as [raças braquicefálicas](/pt/travel-hub/racas-braquicefalicas-e-aviao/).
 
 Nem todas as companhias oferecem isso em todas as rotas, e várias o retiraram por completo. É uma das coisas que se movem: veja [por que as políticas de animais mudam](/pt/travel-hub/politicas-de-animais-que-mudam/).

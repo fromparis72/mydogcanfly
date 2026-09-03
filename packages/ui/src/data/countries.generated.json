@@ -848,9 +848,9 @@
         "pt": "Confirme que o seu cachorro não é de uma raça proibida (pit bull, Tosa, Dogo Argentino, tipos mastim, híbrido de lobo…)"
       },
       {
-        "en": "Airline reservation confirming your dog's travel option and suitable travel crate",
-        "fr": "Réservation confirmant l'option de transport de ton chien et caisse de transport adaptée",
-        "es": "Reserva de la aerolínea que confirme la opción de viaje de tu perro y jaula adecuada conforme a los requisitos aplicables",
+        "en": "Airline reservation confirming your dog's travel option and suitable IATA crate",
+        "fr": "Réservation confirmant l'option de transport de ton chien et caisse IATA adaptée",
+        "es": "Reserva de la aerolínea que confirme la opción de viaje de tu perro y jaula adecuada conforme a la IATA",
         "pt": "Reserva na companhia aérea confirmando a opção de transporte do seu cachorro e caixa de transporte adequada às normas da IATA"
       }
     ],
@@ -1697,9 +1697,9 @@
         "pt": "Notificação prévia ao serviço veterinário do aeroporto (Tirana Rinas)"
       },
       {
-        "en": "Airline reservation and suitable travel crate if travelling in the hold",
-        "fr": "Réservation et caisse de transport adaptée si voyage en soute",
-        "es": "Reserva de la aerolínea y jaula adecuada conforme a los requisitos aplicables si viaja en bodega",
+        "en": "Airline reservation and suitable IATA crate if travelling in the hold",
+        "fr": "Réservation et caisse IATA adaptée si voyage en soute",
+        "es": "Reserva de la aerolínea y jaula adecuada conforme a la IATA si viaja en bodega",
         "pt": "Reserva na companhia aérea e caixa de transporte adequada às normas IATA se for viajar no porão"
       },
       {
@@ -2598,9 +2598,9 @@
         "pt": "Documentos em armênio, russo ou inglês, ou com tradução oficial"
       },
       {
-        "en": "Enter via a checkpoint with veterinary control (e.g. Zvartnots Airport); suitable travel crate if travelling in the hold",
-        "fr": "Entrée par un point de passage avec contrôle vétérinaire (ex. aéroport de Zvartnots) ; caisse de transport adaptée si voyage en soute",
-        "es": "Entra por un punto de paso con control veterinario (p. ej. el aeropuerto de Zvartnots); jaula adecuada conforme a los requisitos aplicables si viaja en bodega",
+        "en": "Enter via a checkpoint with veterinary control (e.g. Zvartnots Airport); suitable IATA crate if travelling in the hold",
+        "fr": "Entrée par un point de passage avec contrôle vétérinaire (ex. aéroport de Zvartnots) ; caisse IATA adaptée si voyage en soute",
+        "es": "Entra por un punto de paso con control veterinario (p. ej. el aeropuerto de Zvartnots); jaula adecuada conforme a la IATA si viaja en bodega",
         "pt": "Entre por um posto com controle veterinário (por exemplo, o Aeroporto de Zvartnots); caixa de transporte adequada às normas IATA se for viajar no porão"
       }
     ],
@@ -3446,9 +3446,9 @@
         "pt": "Documentos originais (não cópias) para apresentar ao ISV e à AGT no ponto de entrada"
       },
       {
-        "en": "Airline reservation and a suitable travel crate if travelling in the hold",
-        "fr": "Réservation et caisse de transport adaptée si voyage en soute",
-        "es": "Reserva de la aerolínea y una jaula adecuada conforme a los requisitos aplicables si viaja en bodega",
+        "en": "Airline reservation and a suitable IATA crate if travelling in the hold",
+        "fr": "Réservation et caisse IATA adaptée si voyage en soute",
+        "es": "Reserva de la aerolínea y una jaula adecuada conforme a la IATA si viaja en bodega",
         "pt": "Reserva na companhia aérea e caixa de transporte adequada à IATA em caso de viagem no porão"
       },
       {
@@ -4343,10 +4343,10 @@
         "pt": "Confira que o CVI/passaporte seja usado dentro de 60 dias da emissão e que a vacina antirrábica ainda esteja válida na chegada"
       },
       {
-        "en": "Airline reservation confirming your dog's travel option and a suitable travel crate if in the hold",
-        "fr": "Réservation confirmant l'option de transport de ton chien et une caisse de transport adaptée si en soute",
-        "es": "Reserva de la aerolínea que confirme la opción de viaje de tu perro y una jaula adecuada conforme a los requisitos aplicables si viaja en bodega",
-        "pt": "Reserva da companhia aérea confirmando a opção de viagem do seu cachorro e uma caixa de transporte adequada se ele for no porão"
+        "en": "Airline reservation confirming your dog's travel option and a suitable IATA crate if in the hold",
+        "fr": "Réservation confirmant l'option de transport de ton chien et une caisse IATA adaptée si en soute",
+        "es": "Reserva de la aerolínea que confirme la opción de viaje de tu perro y una jaula adecuada conforme a la IATA si viaja en bodega",
+        "pt": "Reserva da companhia aérea confirmando a opção de viagem do seu cachorro e uma caixa de transporte IATA adequada se ele for no porão"
       },
       {
         "en": "For unaccompanied cargo: arrange 24 working hours' advance notice to the border post",
@@ -5184,9 +5184,9 @@
         "pt": "Reserva na companhia aérea confirmando a forma de transporte do seu cachorro"
       },
       {
-        "en": "Suitable travel crate if travelling in the hold",
-        "fr": "caisse de transport adaptée si voyage en soute",
-        "es": "jaula de transporte adecuada si viaja en bodega",
+        "en": "Suitable IATA crate if travelling in the hold",
+        "fr": "Caisse IATA adaptée si voyage en soute",
+        "es": "Jaula IATA adecuada si viaja en bodega",
         "pt": "Caixa de transporte adequada à IATA se a viagem for no porão"
       },
       {
@@ -5789,10 +5789,10 @@
           "pt": "Somente Melbourne"
         },
         "when": {
-          "en": "Dog must arrive directly at Melbourne International Airport as manifested cargo in an compliant with the applicable requirements crate; no cabin travel, no domestic transfers.",
-          "fr": "Le chien doit arriver directement à l'aéroport international de Melbourne en fret manifesté, dans une caisse de transport ; pas de cabine, pas de transfert domestique.",
-          "es": "El perro debe llegar directamente al aeropuerto internacional de Melbourne como carga manifestada en una jaula conforme a los requisitos aplicables; sin viaje en cabina, sin transbordos nacionales.",
-          "pt": "O cachorro precisa chegar diretamente ao aeroporto internacional de Melbourne como carga manifestada, em caixa de transporte em conformidade com os requisitos aplicáveis; nada de viagem na cabine nem de conexões domésticas."
+          "en": "Dog must arrive directly at Melbourne International Airport as manifested cargo in an IATA-approved crate; no cabin travel, no domestic transfers.",
+          "fr": "Le chien doit arriver directement à l'aéroport international de Melbourne en fret manifesté, dans une caisse IATA ; pas de cabine, pas de transfert domestique.",
+          "es": "El perro debe llegar directamente al aeropuerto internacional de Melbourne como carga manifestada en una jaula aprobada por la IATA; sin viaje en cabina, sin transbordos nacionales.",
+          "pt": "O cachorro precisa chegar diretamente ao aeroporto internacional de Melbourne como carga manifestada, em caixa de transporte aprovada pela IATA; nada de viagem na cabine nem de conexões domésticas."
         },
         "exceptions": {
           "en": "Transit (staying on the plane) is allowed anywhere; transhipment is allowed only in approved countries under competent-authority supervision.",
@@ -6162,10 +6162,10 @@
         "pt": "Atestado de saúde veterinário original endossado viajando com o cachorro"
       },
       {
-        "en": "Mickleham quarantine booked and paid; flight arriving directly into Melbourne as cargo in an travel crate",
-        "fr": "Quarantaine de Mickleham réservée et payée ; vol arrivant directement à Melbourne en fret, dans une caisse de transport",
-        "es": "Cuarentena de Mickleham reservada y pagada; vuelo que llega directamente a Melbourne como carga en una jaula de transporte",
-        "pt": "Quarentena de Mickleham reservada e paga; voo chegando diretamente a Melbourne como carga, em caixa de transporte"
+        "en": "Mickleham quarantine booked and paid; flight arriving directly into Melbourne as cargo in an IATA crate",
+        "fr": "Quarantaine de Mickleham réservée et payée ; vol arrivant directement à Melbourne en fret, dans une caisse IATA",
+        "es": "Cuarentena de Mickleham reservada y pagada; vuelo que llega directamente a Melbourne como carga en una jaula IATA",
+        "pt": "Quarentena de Mickleham reservada e paga; voo chegando diretamente a Melbourne como carga, em caixa de transporte IATA"
       },
       {
         "en": "Confirm your dog is not a prohibited breed (pure-breed or wolf-hybrid list)",
@@ -7948,9 +7948,9 @@
         "pt": "Reserva na companhia aérea confirmando a forma de transporte do seu cachorro"
       },
       {
-        "en": "Suitable travel crate if travelling in the hold",
-        "fr": "caisse de transport adaptée si voyage en soute",
-        "es": "jaula de transporte adecuada si viaja en bodega",
+        "en": "Suitable IATA crate if travelling in the hold",
+        "fr": "Caisse IATA adaptée si voyage en soute",
+        "es": "Jaula IATA adecuada si viaja en bodega",
         "pt": "Caixa de transporte adequada à IATA se a viagem for no porão"
       },
       {
@@ -8856,9 +8856,9 @@
         "pt": "Confirme com o DLS o momento exato da vacinação, a duração da quarentena e a idade mínima (não publicados oficialmente)"
       },
       {
-        "en": "compliant with the applicable requirements crate if travelling in the hold; confirm your breed with the airline",
-        "fr": "Caisse conforme aux exigences applicables si voyage en soute ; vérifier ta race auprès de la compagnie",
-        "es": "Jaula de transporte si viaja en bodega; confirma tu raza con la aerolínea",
+        "en": "IATA-compliant crate if travelling in the hold; confirm your breed with the airline",
+        "fr": "Caisse conforme IATA si voyage en soute ; vérifier ta race auprès de la compagnie",
+        "es": "Jaula conforme a la IATA si viaja en bodega; confirma tu raza con la aerolínea",
         "pt": "Caixa de transporte em conformidade com a IATA, se viajar no porão; confirme a raça do seu cachorro com a companhia aérea"
       }
     ],
@@ -9714,9 +9714,9 @@
         "pt": "Reserva na companhia aérea confirmando a forma de transporte do seu cachorro"
       },
       {
-        "en": "Suitable travel crate if travelling in the hold",
-        "fr": "caisse de transport adaptée si voyage en soute",
-        "es": "jaula de transporte adecuada si viaja en bodega",
+        "en": "Suitable IATA crate if travelling in the hold",
+        "fr": "Caisse IATA adaptée si voyage en soute",
+        "es": "Jaula IATA adecuada si viaja en bodega",
         "pt": "Caixa de transporte adequada à IATA se a viagem for no porão"
       },
       {
@@ -10677,9 +10677,9 @@
         "pt": "Se houver retorno à UE, planejar o teste sorológico antirrábico (o Burkina Faso tem raiva endêmica)"
       },
       {
-        "en": "Airline reservation confirming your dog's travel option and suitable travel crate",
-        "fr": "Réservation confirmant l'option de transport de ton chien et caisse de transport adaptée",
-        "es": "Reserva de la aerolínea que confirme la opción de viaje de tu perro y jaula de transporte adecuada",
+        "en": "Airline reservation confirming your dog's travel option and suitable IATA crate",
+        "fr": "Réservation confirmant l'option de transport de ton chien et caisse IATA adaptée",
+        "es": "Reserva de la aerolínea que confirme la opción de viaje de tu perro y jaula IATA adecuada",
         "pt": "Reserva na companhia aérea confirmando a opção de transporte do seu cachorro e caixa de transporte adequada às normas da IATA"
       }
     ],
@@ -11497,9 +11497,9 @@
         "pt": "Reserva na companhia aérea confirmando a forma de transporte do seu cachorro"
       },
       {
-        "en": "Suitable travel crate if travelling in the hold",
-        "fr": "caisse de transport adaptée si voyage en soute",
-        "es": "jaula de transporte adecuada si viaja en bodega",
+        "en": "Suitable IATA crate if travelling in the hold",
+        "fr": "Caisse IATA adaptée si voyage en soute",
+        "es": "Jaula IATA adecuada si viaja en bodega",
         "pt": "Caixa de transporte adequada à IATA se a viagem for no porão"
       },
       {
@@ -12400,9 +12400,9 @@
         "pt": "Confirme a identificação (microchip) aceita junto ao departamento de Quarentena Veterinária"
       },
       {
-        "en": "Airline reservation confirming your dog's travel option and a suitable travel crate",
-        "fr": "Réservation confirmant l'option de transport de ton chien et une caisse de transport adaptée",
-        "es": "Reserva de la aerolínea que confirme la opción de viaje de tu perro y una jaula de transporte adecuada",
+        "en": "Airline reservation confirming your dog's travel option and a suitable IATA crate",
+        "fr": "Réservation confirmant l'option de transport de ton chien et une caisse IATA adaptée",
+        "es": "Reserva de la aerolínea que confirme la opción de viaje de tu perro y una jaula IATA adecuada",
         "pt": "Reserva na companhia aérea confirmando a opção de viagem do cachorro e uma caixa de transporte adequada às normas IATA"
       }
     ],
@@ -13292,9 +13292,9 @@
         "pt": "Confirmar qualquer condição de raça, idade mínima ou adicional junto da Direction de l'Élevage antes de reservar"
       },
       {
-        "en": "Airline reservation confirming your dog's travel option and suitable travel crate",
-        "fr": "Réservation confirmant l'option de transport de ton chien et caisse de transport adaptée",
-        "es": "Reserva de la aerolínea que confirme la opción de viaje de tu perro y jaula de transporte adecuada",
+        "en": "Airline reservation confirming your dog's travel option and suitable IATA crate",
+        "fr": "Réservation confirmant l'option de transport de ton chien et caisse IATA adaptée",
+        "es": "Reserva de la aerolínea que confirme la opción de viaje de tu perro y jaula IATA adecuada",
         "pt": "Reserva na companhia aérea confirmando a opção de transporte do seu cachorro e caixa de transporte adequada às normas da IATA"
       }
     ],
@@ -14201,10 +14201,10 @@
         "pt": "Microchip recomendado para a identificação (e exigido por muitos outros países / para a volta)"
       },
       {
-        "en": "Airline reservation confirming your dog's travel option and a suitable travel crate if in the hold",
-        "fr": "Réservation confirmant l'option de transport de ton chien et une caisse de transport adaptée si en soute",
-        "es": "Reserva de la aerolínea que confirme la opción de viaje de tu perro y una jaula adecuada conforme a los requisitos aplicables si viaja en bodega",
-        "pt": "Reserva da companhia aérea confirmando a opção de viagem do seu cachorro e uma caixa de transporte adequada se ele for no porão"
+        "en": "Airline reservation confirming your dog's travel option and a suitable IATA crate if in the hold",
+        "fr": "Réservation confirmant l'option de transport de ton chien et une caisse IATA adaptée si en soute",
+        "es": "Reserva de la aerolínea que confirme la opción de viaje de tu perro y una jaula adecuada conforme a la IATA si viaja en bodega",
+        "pt": "Reserva da companhia aérea confirmando a opção de viagem do seu cachorro e uma caixa de transporte IATA adequada se ele for no porão"
       }
     ],
     "sources": [
@@ -15159,9 +15159,9 @@
         "pt": "Reserva na companhia aérea confirmando a forma de transporte do seu cachorro"
       },
       {
-        "en": "Suitable travel crate if travelling in the hold",
-        "fr": "caisse de transport adaptée si voyage en soute",
-        "es": "Jaula adecuada conforme a los requisitos aplicables si viaja en bodega",
+        "en": "Suitable IATA crate if travelling in the hold",
+        "fr": "Caisse IATA adaptée si voyage en soute",
+        "es": "Jaula adecuada conforme a la IATA si viaja en bodega",
         "pt": "Caixa de transporte adequada à IATA se a viagem for no porão"
       },
       {
@@ -16131,9 +16131,9 @@
         "pt": "Aviso prévio de 72 horas dado aos Serviços Veterinários da BAHFSA"
       },
       {
-        "en": "Airline reservation and suitable travel crate if travelling in the hold",
-        "fr": "Réservation compagnie et caisse de transport adaptée si voyage en soute",
-        "es": "Reserva de la aerolínea y jaula adecuada conforme a los requisitos aplicables si viaja en bodega",
+        "en": "Airline reservation and suitable IATA crate if travelling in the hold",
+        "fr": "Réservation compagnie et caisse IATA adaptée si voyage en soute",
+        "es": "Reserva de la aerolínea y jaula adecuada conforme a la IATA si viaja en bodega",
         "pt": "Reserva na companhia aérea e caixa de transporte adequada às normas IATA se for viajar no porão"
       }
     ],
@@ -17005,9 +17005,9 @@
         "pt": "Reserva na companhia aérea confirmando a forma de transporte do seu cachorro"
       },
       {
-        "en": "Suitable travel crate if travelling in the hold",
-        "fr": "caisse de transport adaptée si voyage en soute",
-        "es": "Jaula adecuada conforme a los requisitos aplicables si viaja en bodega",
+        "en": "Suitable IATA crate if travelling in the hold",
+        "fr": "Caisse IATA adaptée si voyage en soute",
+        "es": "Jaula adecuada conforme a la IATA si viaja en bodega",
         "pt": "Caixa de transporte adequada à IATA se a viagem for no porão"
       },
       {
@@ -17911,9 +17911,9 @@
         "pt": "Declare seu cachorro à CBSA na fronteira"
       },
       {
-        "en": "Suitable travel crate if travelling in the hold",
-        "fr": "caisse de transport adaptée si voyage en soute",
-        "es": "Jaula adecuada conforme a los requisitos aplicables si viaja en bodega",
+        "en": "Suitable IATA crate if travelling in the hold",
+        "fr": "Caisse IATA adaptée si voyage en soute",
+        "es": "Jaula adecuada conforme a la IATA si viaja en bodega",
         "pt": "Caixa de transporte adequada à IATA se a viagem for no porão"
       },
       {
@@ -18789,9 +18789,9 @@
         "pt": "Confirmar diretamente com as autoridades qualquer ponto sobre raça, teste sorológico, tratamento antiparasitário ou idade mínima (não publicado)"
       },
       {
-        "en": "Airline reservation confirming your dog's travel option and a suitable travel crate",
-        "fr": "Réservation confirmant l'option de transport de ton chien et une caisse de transport adaptée",
-        "es": "Reserva de la aerolínea que confirme la opción de viaje de tu perro y una jaula de transporte adecuada",
+        "en": "Airline reservation confirming your dog's travel option and a suitable IATA crate",
+        "fr": "Réservation confirmant l'option de transport de ton chien et une caisse IATA adaptée",
+        "es": "Reserva de la aerolínea que confirme la opción de viaje de tu perro y una jaula IATA adecuada",
         "pt": "Reserva na companhia aérea confirmando a opção de viagem do cachorro e uma caixa de transporte adequada às normas IATA"
       }
     ],
@@ -19675,9 +19675,9 @@
         "pt": "Confirmar diretamente com as autoridades qualquer ponto sobre raça, quarentena, tratamento antiparasitário, teste sorológico ou idade mínima (não publicado)"
       },
       {
-        "en": "Airline reservation confirming your dog's travel option and a suitable travel crate",
-        "fr": "Réservation confirmant l'option de transport de ton chien et une caisse de transport adaptée",
-        "es": "Reserva de la aerolínea que confirme la opción de viaje de tu perro y una jaula de transporte adecuada",
+        "en": "Airline reservation confirming your dog's travel option and a suitable IATA crate",
+        "fr": "Réservation confirmant l'option de transport de ton chien et une caisse IATA adaptée",
+        "es": "Reserva de la aerolínea que confirme la opción de viaje de tu perro y una jaula IATA adecuada",
         "pt": "Reserva na companhia aérea confirmando a opção de viagem do cachorro e uma caixa de transporte adequada às normas IATA"
       }
     ],
@@ -20542,9 +20542,9 @@
         "pt": "Planeje a entrada pelo aeroporto de Basileia, Genebra ou Zurique nas chegadas de países terceiros"
       },
       {
-        "en": "Airline reservation and suitable travel crate if travelling in the hold",
-        "fr": "Réservation et caisse de transport adaptée si voyage en soute",
-        "es": "Reserva de la aerolínea y jaula de transporte adecuada si viaja en bodega",
+        "en": "Airline reservation and suitable IATA crate if travelling in the hold",
+        "fr": "Réservation et caisse IATA adaptée si voyage en soute",
+        "es": "Reserva de la aerolínea y jaula IATA adecuada si viaja en bodega",
         "pt": "Reserva na companhia aérea e caixa de transporte adequada às normas IATA se for viajar no porão"
       },
       {
@@ -21490,9 +21490,9 @@
         "pt": "Confirmar qualquer condição adicional ou relativa à raça junto da DSV antes de reservar"
       },
       {
-        "en": "Airline reservation confirming your dog's travel option and suitable travel crate",
-        "fr": "Réservation confirmant l'option de transport de ton chien et caisse de transport adaptée",
-        "es": "Reserva de la aerolínea que confirme la opción de viaje de tu perro y una jaula de transporte adecuada",
+        "en": "Airline reservation confirming your dog's travel option and suitable IATA crate",
+        "fr": "Réservation confirmant l'option de transport de ton chien et caisse IATA adaptée",
+        "es": "Reserva de la aerolínea que confirme la opción de viaje de tu perro y una jaula IATA adecuada",
         "pt": "Reserva na companhia aérea confirmando a opção de transporte do seu cachorro e caixa de transporte adequada às normas da IATA"
       }
     ],
@@ -22389,10 +22389,10 @@
         "pt": "Planeje manter o cachorro confinado no endereço de destino por 10 dias após a chegada"
       },
       {
-        "en": "Airline reservation confirming your dog's travel option and a suitable travel crate if in the hold",
-        "fr": "Réservation confirmant l'option de transport de ton chien et une caisse de transport adaptée si en soute",
-        "es": "Reserva de la aerolínea que confirme la opción de viaje de tu perro y una jaula de transporte adecuada si viaja en bodega",
-        "pt": "Reserva da companhia aérea confirmando a opção de viagem do seu cachorro e uma caixa de transporte adequada se ele for no porão"
+        "en": "Airline reservation confirming your dog's travel option and a suitable IATA crate if in the hold",
+        "fr": "Réservation confirmant l'option de transport de ton chien et une caisse IATA adaptée si en soute",
+        "es": "Reserva de la aerolínea que confirme la opción de viaje de tu perro y una jaula IATA adecuada si viaja en bodega",
+        "pt": "Reserva da companhia aérea confirmando a opção de viagem do seu cachorro e uma caixa de transporte IATA adequada se ele for no porão"
       }
     ],
     "sources": [
@@ -23322,9 +23322,9 @@
         "pt": "Confirmar diretamente com o MINEPIA qualquer ponto sobre raça, quarentena, tratamento antiparasitário ou idade mínima (não publicado)"
       },
       {
-        "en": "Airline reservation confirming your dog's travel option and a suitable travel crate",
-        "fr": "Réservation confirmant l'option de transport de ton chien et une caisse de transport adaptée",
-        "es": "Reserva de la aerolínea que confirme la opción de viaje de tu perro y una jaula de transporte adecuada",
+        "en": "Airline reservation confirming your dog's travel option and a suitable IATA crate",
+        "fr": "Réservation confirmant l'option de transport de ton chien et une caisse IATA adaptée",
+        "es": "Reserva de la aerolínea que confirme la opción de viaje de tu perro y una jaula IATA adecuada",
         "pt": "Reserva na companhia aérea confirmando a opção de viagem do cachorro e uma caixa de transporte adequada às normas IATA"
       }
     ],
@@ -24223,10 +24223,10 @@
         "pt": "Confirme que o seu porto de chegada tem instalações de isolamento/quarentena, se for preciso"
       },
       {
-        "en": "Airline reservation confirming your dog's travel option and travel crate if in the hold",
-        "fr": "Réservation confirmant l'option de transport et caisse de transport si voyage en soute",
-        "es": "Reserva de la aerolínea que confirme la opción de viaje de tu perro y una jaula de transporte si viaja en bodega",
-        "pt": "Reserva da companhia aérea confirmando a opção de viagem do seu cachorro e caixa de transporte se for no porão"
+        "en": "Airline reservation confirming your dog's travel option and IATA crate if in the hold",
+        "fr": "Réservation confirmant l'option de transport et caisse IATA si voyage en soute",
+        "es": "Reserva de la aerolínea que confirme la opción de viaje de tu perro y una jaula IATA si viaja en bodega",
+        "pt": "Reserva da companhia aérea confirmando a opção de viagem do seu cachorro e caixa de transporte IATA se for no porão"
       },
       {
         "en": "Check the destination city's restricted-breed and size rules",
@@ -25155,10 +25155,10 @@
         "pt": "Verifique se o seu cachorro não é de uma raça proibida ou “potencialmente perigosa” segundo a lei colombiana"
       },
       {
-        "en": "Airline reservation confirming your dog's travel option and a suitable travel crate if in the hold; a card to pay the ICA (no cash)",
-        "fr": "Réservation confirmant l'option de transport de ton chien et une caisse de transport adaptée si en soute ; une carte pour payer l'ICA (pas d'espèces)",
-        "es": "Reserva de la aerolínea que confirme la opción de viaje de tu perro y una jaula de transporte adecuada si viaja en bodega; una tarjeta para pagar al ICA (sin efectivo)",
-        "pt": "Reserva da companhia aérea confirmando a opção de viagem do seu cachorro e uma caixa de transporte adequada se ele for no porão; um cartão para pagar o ICA (sem dinheiro em espécie)"
+        "en": "Airline reservation confirming your dog's travel option and a suitable IATA crate if in the hold; a card to pay the ICA (no cash)",
+        "fr": "Réservation confirmant l'option de transport de ton chien et une caisse IATA adaptée si en soute ; une carte pour payer l'ICA (pas d'espèces)",
+        "es": "Reserva de la aerolínea que confirme la opción de viaje de tu perro y una jaula IATA adecuada si viaja en bodega; una tarjeta para pagar al ICA (sin efectivo)",
+        "pt": "Reserva da companhia aérea confirmando a opção de viagem do seu cachorro e uma caixa de transporte IATA adequada se ele for no porão; um cartão para pagar o ICA (sem dinheiro em espécie)"
       }
     ],
     "sources": [
@@ -26108,9 +26108,9 @@
         "pt": "Documentos originais levados com você (não cópias)"
       },
       {
-        "en": "Airline reservation and suitable travel crate if travelling in the hold",
-        "fr": "Réservation compagnie et caisse de transport adaptée si voyage en soute",
-        "es": "Reserva de la aerolínea y jaula de transporte adecuada si viaja en bodega",
+        "en": "Airline reservation and suitable IATA crate if travelling in the hold",
+        "fr": "Réservation compagnie et caisse IATA adaptée si voyage en soute",
+        "es": "Reserva de la aerolínea y jaula IATA adecuada si viaja en bodega",
         "pt": "Reserva na companhia aérea e caixa de transporte adequada às normas IATA se for viajar no porão"
       }
     ],
@@ -26974,9 +26974,9 @@
         "pt": "Se for ficar mais de 30 dias, planeje o certificado cubano de exportação para a volta"
       },
       {
-        "en": "Airline reservation and suitable travel crate if travelling in the hold",
-        "fr": "Réservation compagnie et caisse de transport adaptée si voyage en soute",
-        "es": "Reserva de la aerolínea y jaula de transporte adecuada si viaja en bodega",
+        "en": "Airline reservation and suitable IATA crate if travelling in the hold",
+        "fr": "Réservation compagnie et caisse IATA adaptée si voyage en soute",
+        "es": "Reserva de la aerolínea y jaula IATA adecuada si viaja en bodega",
         "pt": "Reserva na companhia aérea e caixa de transporte adequada às normas IATA se for viajar no porão"
       }
     ],
@@ -27934,9 +27934,9 @@
         "pt": "Confirmar os pontos «Não informado» (teste sorológico, quarentena, raças, pontos de entrada) junto da autoridade veterinária cabo-verdiana antes de reservar"
       },
       {
-        "en": "Airline reservation confirming your dog's travel option and a suitable travel crate",
-        "fr": "Réservation confirmant l'option de transport de ton chien et une caisse de transport adaptée",
-        "es": "Reserva de la aerolínea que confirme la opción de viaje de tu perro y una jaula de transporte adecuada",
+        "en": "Airline reservation confirming your dog's travel option and a suitable IATA crate",
+        "fr": "Réservation confirmant l'option de transport de ton chien et une caisse IATA adaptée",
+        "es": "Reserva de la aerolínea que confirme la opción de viaje de tu perro y una jaula IATA adecuada",
         "pt": "Reserva na companhia aérea confirmando a opção de viagem do cachorro e uma caixa de transporte adequada às normas IATA"
       }
     ],
@@ -28804,9 +28804,9 @@
         "pt": "Chegar por um ponto de entrada designado (aeroporto de Lárnaca/Pafos, porto de Lemesos/Lárnaca)"
       },
       {
-        "en": "Original documents plus a suitable travel crate if travelling in the hold",
-        "fr": "Documents originaux et caisse de transport adaptée si voyage en soute",
-        "es": "Documentos originales más una jaula de transporte adecuada si viaja en bodega",
+        "en": "Original documents plus a suitable IATA crate if travelling in the hold",
+        "fr": "Documents originaux et caisse IATA adaptée si voyage en soute",
+        "es": "Documentos originales más una jaula IATA adecuada si viaja en bodega",
         "pt": "Documentos originais e caixa de transporte adequada à IATA se a viagem for no porão"
       }
     ],
@@ -29639,9 +29639,9 @@
         "pt": "Reserva na companhia aérea confirmando a forma de transporte do seu cachorro"
       },
       {
-        "en": "Suitable travel crate if travelling in the hold",
-        "fr": "caisse de transport adaptée si voyage en soute",
-        "es": "jaula de transporte adecuada si viaja en bodega",
+        "en": "Suitable IATA crate if travelling in the hold",
+        "fr": "Caisse IATA adaptée si voyage en soute",
+        "es": "Jaula IATA adecuada si viaja en bodega",
         "pt": "Caixa de transporte adequada à IATA se a viagem for no porão"
       },
       {
@@ -30536,9 +30536,9 @@
         "pt": "Reserva na companhia aérea confirmando a forma de transporte do seu cachorro"
       },
       {
-        "en": "Suitable travel crate if travelling in the hold",
-        "fr": "caisse de transport adaptée si voyage en soute",
-        "es": "jaula de transporte adecuada si viaja en bodega",
+        "en": "Suitable IATA crate if travelling in the hold",
+        "fr": "Caisse IATA adaptée si voyage en soute",
+        "es": "Jaula IATA adecuada si viaja en bodega",
         "pt": "Caixa de transporte adequada à IATA se a viagem for no porão"
       },
       {
@@ -31425,9 +31425,9 @@
         "pt": "Levar a autorização e os certificados originais para apresentar no ponto de entrada (não cópias)"
       },
       {
-        "en": "Airline reservation and a suitable travel crate if travelling in the hold",
-        "fr": "Réservation et caisse de transport adaptée si voyage en soute",
-        "es": "Reserva de la aerolínea y una jaula de transporte adecuada si viaja en bodega",
+        "en": "Airline reservation and a suitable IATA crate if travelling in the hold",
+        "fr": "Réservation et caisse IATA adaptée si voyage en soute",
+        "es": "Reserva de la aerolínea y una jaula IATA adecuada si viaja en bodega",
         "pt": "Reserva na companhia aérea e caixa de transporte adequada à IATA em caso de viagem no porão"
       },
       {
@@ -32319,9 +32319,9 @@
         "pt": "Inscrever o cachorro no Registro Dinamarquês de Cães se a estadia passar de 4 semanas"
       },
       {
-        "en": "Suitable travel crate if travelling in the hold",
-        "fr": "caisse de transport adaptée si voyage en soute",
-        "es": "jaula de transporte adecuada si viaja en bodega",
+        "en": "Suitable IATA crate if travelling in the hold",
+        "fr": "Caisse IATA adaptée si voyage en soute",
+        "es": "Jaula IATA adecuada si viaja en bodega",
         "pt": "Caixa de transporte adequada à IATA se a viagem for no porão"
       }
     ],
@@ -33253,9 +33253,9 @@
         "pt": "Documentos originais levados com você (não cópias)"
       },
       {
-        "en": "Airline reservation and suitable travel crate if travelling in the hold",
-        "fr": "Réservation compagnie et caisse de transport adaptée si voyage en soute",
-        "es": "Reserva de la aerolínea y jaula de transporte adecuada si viaja en bodega",
+        "en": "Airline reservation and suitable IATA crate if travelling in the hold",
+        "fr": "Réservation compagnie et caisse IATA adaptée si voyage en soute",
+        "es": "Reserva de la aerolínea y jaula IATA adecuada si viaja en bodega",
         "pt": "Reserva na companhia aérea e caixa de transporte adequada às normas IATA se for viajar no porão"
       }
     ],
@@ -34181,9 +34181,9 @@
         "pt": "Verificar com a DSV qualquer exigência especial relacionada ao histórico de raiva do cachorro antes de reservar"
       },
       {
-        "en": "Airline reservation confirming your dog's travel option and suitable travel crate",
-        "fr": "Réservation confirmant l'option de transport de ton chien et caisse de transport adaptée",
-        "es": "Reserva de la aerolínea que confirme la opción de viaje de tu perro y una jaula de transporte adecuada",
+        "en": "Airline reservation confirming your dog's travel option and suitable IATA crate",
+        "fr": "Réservation confirmant l'option de transport de ton chien et caisse IATA adaptée",
+        "es": "Reserva de la aerolínea que confirme la opción de viaje de tu perro y una jaula IATA adecuada",
         "pt": "Reserva na companhia aérea confirmando a opção de transporte do seu cachorro e caixa de transporte adequada às normas da IATA"
       }
     ],
@@ -35101,10 +35101,10 @@
         "pt": "Para chegadas como carga: escreva por e-mail ao escritório da AGROCALIDAD do aeroporto de chegada pelo menos 72 horas antes para obter a Autorização Zoossanitária de Importação (paga pelos bancos autorizados, sem dinheiro em espécie)"
       },
       {
-        "en": "Airline reservation confirming your dog's travel option and a suitable travel crate if in the hold",
-        "fr": "Réservation confirmant l'option de transport de ton chien et une caisse de transport adaptée si en soute",
-        "es": "Reserva de la aerolínea que confirme la opción de viaje de tu perro y una jaula de transporte adecuada si viaja en bodega",
-        "pt": "Reserva da companhia aérea confirmando a opção de viagem do seu cachorro e uma caixa de transporte adequada se ele for no porão"
+        "en": "Airline reservation confirming your dog's travel option and a suitable IATA crate if in the hold",
+        "fr": "Réservation confirmant l'option de transport de ton chien et une caisse IATA adaptée si en soute",
+        "es": "Reserva de la aerolínea que confirme la opción de viaje de tu perro y una jaula IATA adecuada si viaja en bodega",
+        "pt": "Reserva da companhia aérea confirmando a opção de viagem do seu cachorro e uma caixa de transporte IATA adequada se ele for no porão"
       }
     ],
     "sources": [
@@ -35930,9 +35930,9 @@
         "pt": "Reserva na companhia aérea confirmando a forma de transporte do seu cachorro"
       },
       {
-        "en": "Suitable travel crate if travelling in the hold",
-        "fr": "caisse de transport adaptée si voyage en soute",
-        "es": "jaula de transporte adecuada si viaja en bodega",
+        "en": "Suitable IATA crate if travelling in the hold",
+        "fr": "Caisse IATA adaptée si voyage en soute",
+        "es": "Jaula IATA adecuada si viaja en bodega",
         "pt": "Caixa de transporte adequada à IATA se a viagem for no porão"
       },
       {
@@ -36863,10 +36863,10 @@
         "pt": "Carteira de vacinação e comprovante do microchip originais (não cópias)"
       },
       {
-        "en": "Airline reservation confirming your dog's travel option and travel crate if in the hold",
-        "fr": "Réservation confirmant l'option de transport du chien et caisse de transport si voyage en soute",
-        "es": "Reserva de la aerolínea que confirme la opción de viaje de tu perro y jaula de transporte si viaja en bodega",
-        "pt": "Reserva da companhia aérea confirmando a opção de viagem do seu cachorro e caixa de transporte se for no porão"
+        "en": "Airline reservation confirming your dog's travel option and IATA crate if in the hold",
+        "fr": "Réservation confirmant l'option de transport du chien et caisse IATA si voyage en soute",
+        "es": "Reserva de la aerolínea que confirme la opción de viaje de tu perro y jaula IATA si viaja en bodega",
+        "pt": "Reserva da companhia aérea confirmando a opção de viagem do seu cachorro e caixa de transporte IATA se for no porão"
       },
       {
         "en": "Confirm your dog's breed is not banned and, if listed, check licensing rules with GOVS",
@@ -37695,9 +37695,9 @@
         "pt": "Reserva na companhia aérea confirmando a forma de transporte do seu cachorro"
       },
       {
-        "en": "Suitable travel crate if travelling in the hold",
-        "fr": "caisse de transport adaptée si voyage en soute",
-        "es": "jaula de transporte adecuada si viaja en bodega",
+        "en": "Suitable IATA crate if travelling in the hold",
+        "fr": "Caisse IATA adaptée si voyage en soute",
+        "es": "Jaula IATA adecuada si viaja en bodega",
         "pt": "Caixa de transporte adequada à IATA se a viagem for no porão"
       },
       {
@@ -38593,9 +38593,9 @@
         "pt": "Levar a autorização e os certificados originais para apresentar no ponto de entrada (não cópias)"
       },
       {
-        "en": "Airline reservation and a suitable travel crate if travelling in the hold",
-        "fr": "Réservation et caisse de transport adaptée si voyage en soute",
-        "es": "Reserva de la aerolínea y una jaula de transporte adecuada si viaja en bodega",
+        "en": "Airline reservation and a suitable IATA crate if travelling in the hold",
+        "fr": "Réservation et caisse IATA adaptée si voyage en soute",
+        "es": "Reserva de la aerolínea y una jaula IATA adecuada si viaja en bodega",
         "pt": "Reserva na companhia aérea e caixa de transporte adequada à IATA em caso de viagem no porão"
       },
       {
@@ -39440,9 +39440,9 @@
         "pt": "Reserva na companhia aérea confirmando a forma de transporte do seu cachorro"
       },
       {
-        "en": "Suitable travel crate if travelling in the hold",
-        "fr": "caisse de transport adaptée si voyage en soute",
-        "es": "jaula de transporte adecuada si viaja en bodega",
+        "en": "Suitable IATA crate if travelling in the hold",
+        "fr": "Caisse IATA adaptée si voyage en soute",
+        "es": "Jaula IATA adecuada si viaja en bodega",
         "pt": "Caixa de transporte adequada à IATA se a viagem for no porão"
       }
     ],
@@ -40481,10 +40481,10 @@
         "pt": "Complete os exames e tratamentos listados na sua autorização, além do atestado de saúde veterinário endossado e dos resultados laboratoriais"
       },
       {
-        "en": "Book PEQ quarantine (Koronivia) 6–8 weeks ahead; fly a direct route in an travel crate with seals intact",
-        "fr": "Réserve la quarantaine PEQ (Koronivia) 6 à 8 semaines à l'avance ; voyage par route directe dans une caisse de transport aux scellés intacts",
-        "es": "Reserva la cuarentena PEQ (Koronivia) con 6–8 semanas de antelación; vuela por una ruta directa en una jaula de transporte con los precintos intactos",
-        "pt": "Reserve a quarentena na PEQ (Koronivia) com 6 a 8 semanas de antecedência; voe por rota direta em uma caixa de transporte com os lacres intactos"
+        "en": "Book PEQ quarantine (Koronivia) 6–8 weeks ahead; fly a direct route in an IATA crate with seals intact",
+        "fr": "Réserve la quarantaine PEQ (Koronivia) 6 à 8 semaines à l'avance ; voyage par route directe dans une caisse IATA aux scellés intacts",
+        "es": "Reserva la cuarentena PEQ (Koronivia) con 6–8 semanas de antelación; vuela por una ruta directa en una jaula IATA con los precintos intactos",
+        "pt": "Reserve a quarentena na PEQ (Koronivia) com 6 a 8 semanas de antecedência; voe por rota direta em uma caixa de transporte IATA com os lacres intactos"
       }
     ],
     "sources": [
@@ -41418,9 +41418,9 @@
         "pt": "Reserva na companhia aérea confirmando a forma de transporte do seu cachorro"
       },
       {
-        "en": "Suitable travel crate if travelling in the hold",
-        "fr": "caisse de transport adaptée si voyage en soute",
-        "es": "jaula de transporte adecuada si viaja en bodega",
+        "en": "Suitable IATA crate if travelling in the hold",
+        "fr": "Caisse IATA adaptée si voyage en soute",
+        "es": "Jaula IATA adecuada si viaja en bodega",
         "pt": "Caixa de transporte adequada à IATA se a viagem for no porão"
       },
       {
@@ -42328,9 +42328,9 @@
         "pt": "Confirmar diretamente com as autoridades qualquer ponto sobre raça, quarentena, tratamento antiparasitário, teste sorológico ou idade mínima (não publicado)"
       },
       {
-        "en": "Airline reservation confirming your dog's travel option and a suitable travel crate",
-        "fr": "Réservation confirmant l'option de transport de ton chien et une caisse de transport adaptée",
-        "es": "Reserva de la aerolínea que confirme la opción de viaje de tu perro y una jaula de transporte adecuada",
+        "en": "Airline reservation confirming your dog's travel option and a suitable IATA crate",
+        "fr": "Réservation confirmant l'option de transport de ton chien et une caisse IATA adaptée",
+        "es": "Reserva de la aerolínea que confirme la opción de viaje de tu perro y una jaula IATA adecuada",
         "pt": "Reserva na companhia aérea confirmando a opção de viagem do cachorro e uma caixa de transporte adequada às normas IATA"
       }
     ],
@@ -44231,9 +44231,9 @@
         "pt": "Documentos originais, um conjunto por animal (até 5 animais por viajante, não comercial)"
       },
       {
-        "en": "Airline reservation confirming your dog's travel option and a suitable travel crate if travelling in the hold",
-        "fr": "Réservation confirmant l'option de transport de ton chien et une caisse de transport adaptée si voyage en soute",
-        "es": "Reserva de la aerolínea que confirme la opción de viaje de tu perro y una jaula de transporte adecuada si viaja en bodega",
+        "en": "Airline reservation confirming your dog's travel option and a suitable IATA crate if travelling in the hold",
+        "fr": "Réservation confirmant l'option de transport de ton chien et une caisse IATA adaptée si voyage en soute",
+        "es": "Reserva de la aerolínea que confirme la opción de viaje de tu perro y una jaula IATA adecuada si viaja en bodega",
         "pt": "Reserva na companhia aérea confirmando a forma de transporte do seu cachorro e caixa de transporte adequada às normas IATA se for viajar no porão"
       }
     ],
@@ -45187,9 +45187,9 @@
         "pt": "Autorização, certificado e relatórios laboratoriais originais para apresentar à VSD no ponto de entrada (não cópias)"
       },
       {
-        "en": "Airline reservation and a suitable travel crate if travelling in the hold",
-        "fr": "Réservation et caisse de transport adaptée si voyage en soute",
-        "es": "Reserva de la aerolínea y una jaula de transporte adecuada si viaja en bodega",
+        "en": "Airline reservation and a suitable IATA crate if travelling in the hold",
+        "fr": "Réservation et caisse IATA adaptée si voyage en soute",
+        "es": "Reserva de la aerolínea y una jaula IATA adecuada si viaja en bodega",
         "pt": "Reserva na companhia aérea e caixa de transporte adequada à IATA em caso de viagem no porão"
       }
     ],
@@ -46105,9 +46105,9 @@
         "pt": "Se você for voltar à UE, planeje o teste sorológico antirrábico (titulação) (a região tem raiva endêmica)"
       },
       {
-        "en": "Airline reservation confirming your dog's travel option and a suitable travel crate",
-        "fr": "Réservation confirmant l'option de transport de ton chien et caisse de transport adaptée",
-        "es": "Reserva de la aerolínea que confirme la opción de viaje de tu perro y una jaula de transporte adecuada",
+        "en": "Airline reservation confirming your dog's travel option and a suitable IATA crate",
+        "fr": "Réservation confirmant l'option de transport de ton chien et caisse IATA adaptée",
+        "es": "Reserva de la aerolínea que confirme la opción de viaje de tu perro y una jaula IATA adecuada",
         "pt": "Reserva na companhia aérea confirmando a opção de viagem do cachorro e uma caixa de transporte adequada às normas IATA"
       }
     ],
@@ -47012,9 +47012,9 @@
         "pt": "Se você for voltar à UE ou aos EUA, planeje o teste sorológico antirrábico (titulação) / as regras do CDC (a Guiné tem raiva endêmica e é não listada)"
       },
       {
-        "en": "Airline reservation confirming your dog's travel option and suitable travel crate",
-        "fr": "Réservation confirmant l'option de transport de ton chien et caisse de transport adaptée",
-        "es": "Reserva de la aerolínea que confirme la opción de viaje de tu perro y jaula de transporte adecuada",
+        "en": "Airline reservation confirming your dog's travel option and suitable IATA crate",
+        "fr": "Réservation confirmant l'option de transport de ton chien et caisse IATA adaptée",
+        "es": "Reserva de la aerolínea que confirme la opción de viaje de tu perro y jaula IATA adecuada",
         "pt": "Reserva na companhia aérea confirmando a opção de transporte do seu cachorro e caixa de transporte adequada às normas da IATA"
       }
     ],
@@ -47829,9 +47829,9 @@
         "pt": "Reserva na companhia aérea confirmando a forma de transporte do seu cachorro"
       },
       {
-        "en": "Suitable travel crate if travelling in the hold",
-        "fr": "caisse de transport adaptée si voyage en soute",
-        "es": "jaula de transporte adecuada si viaja en bodega",
+        "en": "Suitable IATA crate if travelling in the hold",
+        "fr": "Caisse IATA adaptée si voyage en soute",
+        "es": "Jaula IATA adecuada si viaja en bodega",
         "pt": "Caixa de transporte adequada à IATA se a viagem for no porão"
       },
       {
@@ -48731,9 +48731,9 @@
         "pt": "Microchip implantado (não exigido pelo VISAR, mas recomendado para a identificação, a viagem de volta e as companhias aéreas)"
       },
       {
-        "en": "Airline reservation and suitable travel crate if travelling in the hold",
-        "fr": "Réservation compagnie et caisse de transport adaptée si voyage en soute",
-        "es": "Reserva de la aerolínea y jaula de transporte adecuada si viaja en bodega",
+        "en": "Airline reservation and suitable IATA crate if travelling in the hold",
+        "fr": "Réservation compagnie et caisse IATA adaptée si voyage en soute",
+        "es": "Reserva de la aerolínea y jaula IATA adecuada si viaja en bodega",
         "pt": "Reserva na companhia aérea e caixa de transporte adequada às normas IATA se for viajar no porão"
       }
     ],
@@ -50707,9 +50707,9 @@
         "pt": "Confira as regras municipais de raças se você for morar em Tegucigalpa (ordenança do Distrito Central)"
       },
       {
-        "en": "Airline reservation and suitable travel crate if travelling in the hold",
-        "fr": "Réservation compagnie et caisse de transport adaptée si voyage en soute",
-        "es": "Reserva de la aerolínea y jaula de transporte adecuada si viaja en bodega",
+        "en": "Airline reservation and suitable IATA crate if travelling in the hold",
+        "fr": "Réservation compagnie et caisse IATA adaptée si voyage en soute",
+        "es": "Reserva de la aerolínea y jaula IATA adecuada si viaja en bodega",
         "pt": "Reserva na companhia aérea e caixa de transporte adequada às normas IATA se for viajar no porão"
       }
     ],
@@ -51580,9 +51580,9 @@
         "pt": "Reserva na companhia aérea confirmando a forma de transporte do seu cachorro"
       },
       {
-        "en": "Suitable travel crate if travelling in the hold",
-        "fr": "caisse de transport adaptée si voyage en soute",
-        "es": "jaula de transporte adecuada si viaja en bodega",
+        "en": "Suitable IATA crate if travelling in the hold",
+        "fr": "Caisse IATA adaptée si voyage en soute",
+        "es": "Jaula IATA adecuada si viaja en bodega",
         "pt": "Caixa de transporte adequada à IATA se a viagem for no porão"
       },
       {
@@ -52430,9 +52430,9 @@
         "pt": "Reserva na companhia aérea confirmando a forma de transporte do seu cachorro"
       },
       {
-        "en": "Suitable travel crate if travelling in the hold",
-        "fr": "caisse de transport adaptée si voyage en soute",
-        "es": "jaula de transporte adecuada si viaja en bodega",
+        "en": "Suitable IATA crate if travelling in the hold",
+        "fr": "Caisse IATA adaptée si voyage en soute",
+        "es": "Jaula IATA adecuada si viaja en bodega",
         "pt": "Caixa de transporte adequada à IATA se a viagem for no porão"
       },
       {
@@ -53399,9 +53399,9 @@
         "pt": "Notifique o animal à quarentena do Barantin pelo menos 2 dias antes da chegada; planeje uma quarentena de ≥14 dias"
       },
       {
-        "en": "compliant with the applicable requirements crate; confirm your dog's breed is accepted by the airline",
-        "fr": "Caisse conforme aux exigences applicables ; vérifie que la race de ton chien est acceptée par la compagnie",
-        "es": "Jaula de transporte; confirma que la aerolínea acepta la raza de tu perro",
+        "en": "IATA-compliant crate; confirm your dog's breed is accepted by the airline",
+        "fr": "Caisse conforme IATA ; vérifie que la race de ton chien est acceptée par la compagnie",
+        "es": "Jaula conforme a la IATA; confirma que la aerolínea acepta la raza de tu perro",
         "pt": "Caixa de transporte conforme a IATA; confirme que a raça do seu cachorro é aceita pela companhia aérea"
       }
     ],
@@ -54219,10 +54219,10 @@
         "pt": "Notificação prévia + controle de conformidade agendado se a chegada for de fora da UE"
       },
       {
-        "en": "Original documents (not copies); airline reservation and suitable travel crate if in the hold",
-        "fr": "Documents originaux (pas de copies) ; réservation aérienne et caisse de transport adaptée si voyage en soute",
-        "es": "Documentos originales (no copias); reserva de la aerolínea y jaula de transporte adecuada si viaja en bodega",
-        "pt": "Documentos originais (não cópias); reserva na companhia aérea e caixa de transporte adequada se for no porão"
+        "en": "Original documents (not copies); airline reservation and suitable IATA crate if in the hold",
+        "fr": "Documents originaux (pas de copies) ; réservation aérienne et caisse IATA adaptée si voyage en soute",
+        "es": "Documentos originales (no copias); reserva de la aerolínea y jaula IATA adecuada si viaja en bodega",
+        "pt": "Documentos originais (não cópias); reserva na companhia aérea e caixa de transporte IATA adequada se for no porão"
       },
       {
         "en": "If a restricted breed, plan for muzzle, ≤2 m leash and a handler over 16 in public",
@@ -55171,8 +55171,8 @@
         "pt": "Autorização de importação se forem mais de dois animais, carga ou raça perigosa"
       },
       {
-        "en": "Confirm your dog's breed is not restricted, and accepted by your airline; compliant with the applicable requirements crate if in the hold",
-        "fr": "Vérifie que la race de ton chien n'est pas restreinte et est acceptée par la compagnie ; caisse conforme aux exigences applicables si en soute",
+        "en": "Confirm your dog's breed is not restricted, and accepted by your airline; IATA-compliant crate if in the hold",
+        "fr": "Vérifie que la race de ton chien n'est pas restreinte et est acceptée par la compagnie ; caisse conforme IATA si en soute",
         "es": "Confirma que la raza de tu perro no esté restringida y que la acepte tu aerolínea; jaula conforme a IATA si viaja en bodega",
         "pt": "Confirme que a raça do seu cachorro não é restrita e que é aceita pela sua companhia aérea; caixa de transporte em conformidade com a IATA se for no porão"
       }
@@ -56112,10 +56112,10 @@
         "pt": "Voo que chega a um aeroporto com AQCS (Delhi, Mumbai, Chennai, Kolkata, Bengaluru, Hyderabad)"
       },
       {
-        "en": "Suitable travel crate if travelling in the hold, plus airway bill / passport / e-ticket copies",
-        "fr": "caisse de transport adaptée si voyage en soute, plus copies de la lettre de transport aérien / passeport / e-billet",
-        "es": "jaula de transporte adecuada si viaja en bodega, más copias de la carta de porte aéreo / pasaporte / billete electrónico",
-        "pt": "caixa de transporte adequada se viajar no porão, mais cópias do conhecimento aéreo / passaporte / passagem eletrônica"
+        "en": "Suitable IATA crate if travelling in the hold, plus airway bill / passport / e-ticket copies",
+        "fr": "Caisse IATA adaptée si voyage en soute, plus copies de la lettre de transport aérien / passeport / e-billet",
+        "es": "Jaula IATA adecuada si viaja en bodega, más copias de la carta de porte aéreo / pasaporte / billete electrónico",
+        "pt": "Caixa de transporte IATA adequada se viajar no porão, mais cópias do conhecimento aéreo / passaporte / passagem eletrônica"
       },
       {
         "en": "Check the current status of the 2024 'ferocious breeds' guidance for your breed and destination state",
@@ -56978,9 +56978,9 @@
         "pt": "Confirme com o Ministério da Agricultura que a raça do seu cachorro não é restrita"
       },
       {
-        "en": "Airline reservation confirming your dog's travel option and a suitable travel crate",
-        "fr": "Réservation confirmant l'option de transport de ton chien et une caisse de transport adaptée",
-        "es": "Reserva de la aerolínea que confirme la opción de viaje de tu perro y una jaula de transporte adecuada",
+        "en": "Airline reservation confirming your dog's travel option and a suitable IATA crate",
+        "fr": "Réservation confirmant l'option de transport de ton chien et une caisse IATA adaptée",
+        "es": "Reserva de la aerolínea que confirme la opción de viaje de tu perro y una jaula IATA adecuada",
         "pt": "Reserva na companhia aérea confirmando a opção de viagem do cachorro e uma caixa de transporte adequada às normas IATA"
       }
     ],
@@ -58763,9 +58763,9 @@
         "pt": "Certificado sanitário e de origem D1/D2 totalmente preenchido, em inglês, enviado à MAST no prazo"
       },
       {
-        "en": "Flight into Keflavík only, on an approved arrival day and time; suitable travel crate",
-        "fr": "Vol vers Keflavík uniquement, à une date et une heure d'arrivée approuvées ; caisse de transport adaptée",
-        "es": "Vuelo únicamente a Keflavík, en un día y hora de llegada aprobados; jaula de transporte adecuada",
+        "en": "Flight into Keflavík only, on an approved arrival day and time; suitable IATA crate",
+        "fr": "Vol vers Keflavík uniquement, à une date et une heure d'arrivée approuvées ; caisse IATA adaptée",
+        "es": "Vuelo únicamente a Keflavík, en un día y hora de llegada aprobados; jaula IATA adecuada",
         "pt": "Voo somente para Keflavík, em dia e horário de chegada aprovados; caixa de transporte adequada às normas da IATA"
       }
     ],
@@ -59601,9 +59601,9 @@
         "pt": "Reserva na companhia aérea confirmando a forma de transporte do seu cachorro"
       },
       {
-        "en": "Suitable travel crate if travelling in the hold",
-        "fr": "caisse de transport adaptée si voyage en soute",
-        "es": "jaula de transporte adecuada si viaja en bodega",
+        "en": "Suitable IATA crate if travelling in the hold",
+        "fr": "Caisse IATA adaptée si voyage en soute",
+        "es": "Jaula IATA adecuada si viaja en bodega",
         "pt": "Caixa de transporte adequada à IATA se a viagem for no porão"
       },
       {
@@ -60285,10 +60285,10 @@
           "pt": "Somente Kingston"
         },
         "when": {
-          "en": "The dog must arrive directly into Kingston (unless the Chief Veterinary Officer authorizes otherwise), as manifested cargo, in an compliant with the applicable requirements crate. Except for service dogs, all dogs are checked at the freight terminal, not the passenger terminal.",
-          "fr": "Le chien doit arriver directement à Kingston (sauf autorisation contraire du chef des services vétérinaires), en fret manifesté, dans une caisse conforme aux exigences applicables. Sauf pour les chiens d'assistance, tous les chiens sont contrôlés au terminal de fret, pas au terminal passagers.",
-          "es": "El perro debe llegar directamente a Kingston (salvo que el jefe de servicios veterinarios autorice otra cosa), como carga manifestada, en una jaula conforme a los requisitos aplicables. Salvo los perros de asistencia, todos los perros se controlan en la terminal de carga, no en la de pasajeros.",
-          "pt": "O cachorro precisa chegar diretamente a Kingston (salvo autorização em contrário do Chief Veterinary Officer), como carga manifestada, em caixa de transporte em conformidade com os requisitos aplicáveis. Salvo os cães de assistência, todos os cachorros são conferidos no terminal de cargas, não no terminal de passageiros."
+          "en": "The dog must arrive directly into Kingston (unless the Chief Veterinary Officer authorizes otherwise), as manifested cargo, in an IATA-approved crate. Except for service dogs, all dogs are checked at the freight terminal, not the passenger terminal.",
+          "fr": "Le chien doit arriver directement à Kingston (sauf autorisation contraire du chef des services vétérinaires), en fret manifesté, dans une caisse conforme IATA. Sauf pour les chiens d'assistance, tous les chiens sont contrôlés au terminal de fret, pas au terminal passagers.",
+          "es": "El perro debe llegar directamente a Kingston (salvo que el jefe de servicios veterinarios autorice otra cosa), como carga manifestada, en una jaula aprobada por la IATA. Salvo los perros de asistencia, todos los perros se controlan en la terminal de carga, no en la de pasajeros.",
+          "pt": "O cachorro precisa chegar diretamente a Kingston (salvo autorização em contrário do Chief Veterinary Officer), como carga manifestada, em caixa de transporte aprovada pela IATA. Salvo os cães de assistência, todos os cachorros são conferidos no terminal de cargas, não no terminal de passageiros."
         },
         "exceptions": {
           "en": "Transit/transhipment via Jamaica needs prior VSD authorization and the dog must not leave the international/air side of the airport.",
@@ -60425,10 +60425,10 @@
       },
       "points": [
         {
-          "en": "Your dog must arrive directly into Kingston as manifested cargo in an travel crate; except for service dogs, it is handled at the freight terminal, not the passenger terminal.",
-          "fr": "Ton chien doit arriver directement à Kingston en fret manifesté dans une caisse de transport ; sauf pour les chiens d'assistance, il est pris en charge au terminal de fret, pas au terminal passagers.",
-          "es": "Tu perro debe llegar directamente a Kingston como carga manifestada en una jaula de transporte; salvo los perros de asistencia, se gestiona en la terminal de carga, no en la de pasajeros.",
-          "pt": "Seu cachorro precisa chegar diretamente a Kingston como carga manifestada, em caixa de transporte; salvo no caso de cães de assistência, ele é atendido no terminal de cargas, não no terminal de passageiros."
+          "en": "Your dog must arrive directly into Kingston as manifested cargo in an IATA crate; except for service dogs, it is handled at the freight terminal, not the passenger terminal.",
+          "fr": "Ton chien doit arriver directement à Kingston en fret manifesté dans une caisse IATA ; sauf pour les chiens d'assistance, il est pris en charge au terminal de fret, pas au terminal passagers.",
+          "es": "Tu perro debe llegar directamente a Kingston como carga manifestada en una jaula IATA; salvo los perros de asistencia, se gestiona en la terminal de carga, no en la de pasajeros.",
+          "pt": "Seu cachorro precisa chegar diretamente a Kingston como carga manifestada, em caixa de transporte IATA; salvo no caso de cães de assistência, ele é atendido no terminal de cargas, não no terminal de passageiros."
         },
         {
           "en": "As far as practicable, arrive during working hours (8:30 a.m.–5:00 p.m. Mon–Thu, 8:30 a.m.–4:00 p.m. Fri); arrivals outside these hours attract extra fees.",
@@ -61444,9 +61444,9 @@
         "pt": "Confirme com o Ministério da Agricultura que a raça do seu cachorro não é restrita"
       },
       {
-        "en": "Airline reservation confirming your dog's travel option and a suitable travel crate",
-        "fr": "Réservation confirmant l'option de transport de ton chien et une caisse de transport adaptée",
-        "es": "Reserva de la aerolínea que confirme la opción de viaje de tu perro y una jaula de transporte adecuada",
+        "en": "Airline reservation confirming your dog's travel option and a suitable IATA crate",
+        "fr": "Réservation confirmant l'option de transport de ton chien et une caisse IATA adaptée",
+        "es": "Reserva de la aerolínea que confirme la opción de viaje de tu perro y una jaula IATA adecuada",
         "pt": "Reserva na companhia aérea confirmando a opção de viagem do cachorro e uma caixa de transporte adequada às normas IATA"
       }
     ],
@@ -62376,9 +62376,9 @@
         "pt": "Chegue por um aeroporto ou porto designado; leve os documentos originais"
       },
       {
-        "en": "Airline reservation and suitable travel crate if travelling in the hold",
-        "fr": "Réservation aérienne et caisse de transport adaptée si voyage en soute",
-        "es": "Reserva de la aerolínea y jaula de transporte adecuada si viaja en bodega",
+        "en": "Airline reservation and suitable IATA crate if travelling in the hold",
+        "fr": "Réservation aérienne et caisse IATA adaptée si voyage en soute",
+        "es": "Reserva de la aerolínea y jaula IATA adecuada si viaja en bodega",
         "pt": "Reserva na companhia aérea e caixa de transporte adequada às normas IATA se for viajar no porão"
       }
     ],
@@ -63322,9 +63322,9 @@
         "pt": "Autorização e certificados originais para apresentar no ponto de entrada"
       },
       {
-        "en": "Airline reservation and suitable travel crate if travelling in the hold",
-        "fr": "Réservation et caisse de transport adaptée si voyage en soute",
-        "es": "Reserva de la aerolínea y jaula de transporte adecuada si viaja en bodega",
+        "en": "Airline reservation and suitable IATA crate if travelling in the hold",
+        "fr": "Réservation et caisse IATA adaptée si voyage en soute",
+        "es": "Reserva de la aerolínea y jaula IATA adecuada si viaja en bodega",
         "pt": "Reserva na companhia aérea e caixa de transporte adequada às normas IATA em caso de viagem no porão"
       }
     ],
@@ -64305,9 +64305,9 @@
         "pt": "Documentos originais à mão para o posto de controle sanitário animal e a alfândega (GDCE)"
       },
       {
-        "en": "Airline reservation and suitable travel crate; confirm your dog's breed is accepted by the carrier",
-        "fr": "Réservation aérienne et caisse de transport adaptée ; vérifie que la race de ton chien est acceptée par la compagnie",
-        "es": "Reserva de la aerolínea y jaula de transporte adecuada; confirma que la raza de tu perro es aceptada por la compañía",
+        "en": "Airline reservation and suitable IATA crate; confirm your dog's breed is accepted by the carrier",
+        "fr": "Réservation aérienne et caisse IATA adaptée ; vérifie que la race de ton chien est acceptée par la compagnie",
+        "es": "Reserva de la aerolínea y jaula IATA adecuada; confirma que la raza de tu perro es aceptada por la compañía",
         "pt": "Reserva na companhia aérea e caixa de transporte adequada, em conformidade com a IATA; confirme que a raça do seu cachorro é aceita pela companhia aérea"
       }
     ],
@@ -65209,9 +65209,9 @@
         "pt": "Reserva na companhia aérea confirmando a forma de transporte do seu cachorro"
       },
       {
-        "en": "Suitable travel crate if travelling in the hold",
-        "fr": "caisse de transport adaptée si voyage en soute",
-        "es": "jaula de transporte adecuada si viaja en bodega",
+        "en": "Suitable IATA crate if travelling in the hold",
+        "fr": "Caisse IATA adaptée si voyage en soute",
+        "es": "Jaula IATA adecuada si viaja en bodega",
         "pt": "Caixa de transporte adequada à IATA se a viagem for no porão"
       },
       {
@@ -66046,9 +66046,9 @@
         "pt": "Confirme com a PAAF que a raça do seu cachorro é admissível para importação"
       },
       {
-        "en": "Airline reservation confirming your dog's travel option and a suitable travel crate",
-        "fr": "Réservation confirmant l'option de transport de ton chien et une caisse de transport adaptée",
-        "es": "Reserva de la aerolínea que confirme la opción de viaje de tu perro y una jaula de transporte adecuada",
+        "en": "Airline reservation confirming your dog's travel option and a suitable IATA crate",
+        "fr": "Réservation confirmant l'option de transport de ton chien et une caisse IATA adaptée",
+        "es": "Reserva de la aerolínea que confirme la opción de viaje de tu perro y una jaula IATA adecuada",
         "pt": "Reserva na companhia aérea confirmando a opção de viagem do cachorro e uma caixa de transporte adequada às normas IATA"
       }
     ],
@@ -66941,9 +66941,9 @@
         "pt": "Documentos em russo ou cazaque, ou com uma tradução oficial"
       },
       {
-        "en": "Enter via a checkpoint with veterinary control; suitable travel crate if travelling in the hold",
-        "fr": "Entrée par un point de passage avec contrôle vétérinaire ; caisse de transport adaptée si voyage en soute",
-        "es": "Entra por un paso fronterizo con control veterinario; jaula de transporte adecuada si viaja en bodega",
+        "en": "Enter via a checkpoint with veterinary control; suitable IATA crate if travelling in the hold",
+        "fr": "Entrée par un point de passage avec contrôle vétérinaire ; caisse IATA adaptée si voyage en soute",
+        "es": "Entra por un paso fronterizo con control veterinario; jaula IATA adecuada si viaja en bodega",
         "pt": "Entre por um posto de fronteira com controle veterinário; caixa de transporte adequada às normas IATA em caso de viagem no porão"
       }
     ],
@@ -67880,10 +67880,10 @@
         "pt": "Planeje a liberação de importação obtida junto à alfândega na chegada"
       },
       {
-        "en": "Airline reservation confirming your dog's travel option and travel crate if in the hold",
-        "fr": "Réservation confirmant l'option de transport du chien et caisse de transport si voyage en soute",
-        "es": "Reserva de la aerolínea que confirme la opción de viaje de tu perro y jaula de transporte si viaja en bodega",
-        "pt": "Reserva da companhia aérea confirmando a opção de viagem do seu cachorro e caixa de transporte se for no porão"
+        "en": "Airline reservation confirming your dog's travel option and IATA crate if in the hold",
+        "fr": "Réservation confirmant l'option de transport du chien et caisse IATA si voyage en soute",
+        "es": "Reserva de la aerolínea que confirme la opción de viaje de tu perro y jaula IATA si viaja en bodega",
+        "pt": "Reserva da companhia aérea confirmando a opção de viagem do seu cachorro e caixa de transporte IATA se for no porão"
       }
     ],
     "sources": [
@@ -68706,9 +68706,9 @@
         "pt": "Planeje a entrada por via terrestre ou pela Suíça — o Liechtenstein não tem aeroporto internacional"
       },
       {
-        "en": "Airline reservation and suitable travel crate if flying into a neighbouring airport",
-        "fr": "Réservation et caisse de transport adaptée si vol vers un aéroport voisin",
-        "es": "Reserva de la aerolínea y jaula de transporte adecuada si vuelas a un aeropuerto vecino",
+        "en": "Airline reservation and suitable IATA crate if flying into a neighbouring airport",
+        "fr": "Réservation et caisse IATA adaptée si vol vers un aéroport voisin",
+        "es": "Reserva de la aerolínea y jaula IATA adecuada si vuelas a un aeropuerto vecino",
         "pt": "Reserva na companhia aérea e caixa de transporte adequada às normas IATA se o voo chegar a um aeroporto vizinho"
       },
       {
@@ -69717,8 +69717,8 @@
         "pt": "Escritório de quarentena do aeroporto notificado antes da partida (aqokatunayake@gmail.com); reserve LKR 950 para a chegada"
       },
       {
-        "en": "Plan for a 30-day home quarantine after arrival; compliant with the applicable requirements crate; confirm your breed with the airline",
-        "fr": "Prévoir une quarantaine à domicile de 30 jours après l'arrivée ; caisse conforme aux exigences applicables ; vérifier ta race auprès de la compagnie",
+        "en": "Plan for a 30-day home quarantine after arrival; IATA-compliant crate; confirm your breed with the airline",
+        "fr": "Prévoir une quarantaine à domicile de 30 jours après l'arrivée ; caisse conforme IATA ; vérifier ta race auprès de la compagnie",
         "es": "Prevé una cuarentena domiciliaria de 30 días tras la llegada; jaula conforme a IATA; confirma la raza con la aerolínea",
         "pt": "Planeje uma quarentena domiciliar de 30 dias após a chegada; caixa de transporte em conformidade com a IATA; confirme a raça do seu cachorro com a companhia aérea"
       }
@@ -70543,9 +70543,9 @@
         "pt": "Reserva na companhia aérea confirmando a forma de transporte do seu cachorro"
       },
       {
-        "en": "Suitable travel crate if travelling in the hold",
-        "fr": "caisse de transport adaptée si voyage en soute",
-        "es": "jaula de transporte adecuada si viaja en bodega",
+        "en": "Suitable IATA crate if travelling in the hold",
+        "fr": "Caisse IATA adaptée si voyage en soute",
+        "es": "Jaula IATA adecuada si viaja en bodega",
         "pt": "Caixa de transporte adequada à IATA se a viagem for no porão"
       },
       {
@@ -71387,9 +71387,9 @@
         "pt": "Reserva na companhia aérea confirmando a forma de transporte do seu cachorro"
       },
       {
-        "en": "Suitable travel crate if travelling in the hold",
-        "fr": "caisse de transport adaptée si voyage en soute",
-        "es": "jaula de transporte adecuada si viaja en bodega",
+        "en": "Suitable IATA crate if travelling in the hold",
+        "fr": "Caisse IATA adaptée si voyage en soute",
+        "es": "Jaula IATA adecuada si viaja en bodega",
         "pt": "Caixa de transporte adequada à IATA se a viagem for no porão"
       },
       {
@@ -72246,9 +72246,9 @@
         "pt": "Reserva na companhia aérea confirmando a forma de transporte do seu cachorro"
       },
       {
-        "en": "Suitable travel crate if travelling in the hold",
-        "fr": "caisse de transport adaptée si voyage en soute",
-        "es": "jaula de transporte adecuada si viaja en bodega",
+        "en": "Suitable IATA crate if travelling in the hold",
+        "fr": "Caisse IATA adaptée si voyage en soute",
+        "es": "Jaula IATA adecuada si viaja en bodega",
         "pt": "Caixa de transporte adequada à IATA se a viagem for no porão"
       },
       {
@@ -73191,9 +73191,9 @@
         "pt": "Confirme que seu cachorro não é de uma raça proibida (pit bull, Boerbull/Mastiff, Tosa)"
       },
       {
-        "en": "Airline reservation confirming your dog's travel option and suitable travel crate",
-        "fr": "Réservation confirmant l'option de transport de ton chien et caisse de transport adaptée",
-        "es": "Reserva de la aerolínea que confirme la opción de viaje de tu perro y jaula de transporte adecuada",
+        "en": "Airline reservation confirming your dog's travel option and suitable IATA crate",
+        "fr": "Réservation confirmant l'option de transport de ton chien et caisse IATA adaptée",
+        "es": "Reserva de la aerolínea que confirme la opción de viaje de tu perro y jaula IATA adecuada",
         "pt": "Reserva na companhia aérea confirmando a opção de transporte do seu cachorro e caixa de transporte adequada às normas da IATA"
       }
     ],
@@ -74059,9 +74059,9 @@
         "pt": "Reserva na companhia aérea confirmando a forma de transporte do seu cachorro e as regras da companhia"
       },
       {
-        "en": "Suitable travel crate if travelling in the hold; original documents in hand",
-        "fr": "caisse de transport adaptée si voyage en soute ; documents originaux sur soi",
-        "es": "jaula de transporte adecuada si viaja en bodega; documentos originales a mano",
+        "en": "Suitable IATA crate if travelling in the hold; original documents in hand",
+        "fr": "Caisse IATA adaptée si voyage en soute ; documents originaux sur soi",
+        "es": "Jaula IATA adecuada si viaja en bodega; documentos originales a mano",
         "pt": "Caixa de transporte adequada à IATA se a viagem for no porão; documentos originais em mãos"
       }
     ],
@@ -74930,9 +74930,9 @@
         "pt": "Reserva na companhia aérea confirmando a forma de transporte do seu cachorro"
       },
       {
-        "en": "Suitable travel crate if travelling in the hold",
-        "fr": "caisse de transport adaptée si voyage en soute",
-        "es": "jaula de transporte adecuada si viaja en bodega",
+        "en": "Suitable IATA crate if travelling in the hold",
+        "fr": "Caisse IATA adaptée si voyage en soute",
+        "es": "Jaula IATA adecuada si viaja en bodega",
         "pt": "Caixa de transporte adequada à IATA se a viagem for no porão"
       }
     ],
@@ -75798,9 +75798,9 @@
         "pt": "Leve todos os documentos originais; apresente-os aos agentes veterinários da DSV e à alfândega no ponto de entrada"
       },
       {
-        "en": "Airline reservation and a suitable travel crate if travelling in the hold",
-        "fr": "Réservation et caisse de transport adaptée si voyage en soute",
-        "es": "Reserva de la aerolínea y una jaula de transporte adecuada si viaja en bodega",
+        "en": "Airline reservation and a suitable IATA crate if travelling in the hold",
+        "fr": "Réservation et caisse IATA adaptée si voyage en soute",
+        "es": "Reserva de la aerolínea y una jaula IATA adecuada si viaja en bodega",
         "pt": "Reserva na companhia aérea e caixa de transporte adequada à IATA em caso de viagem no porão"
       }
     ],
@@ -76654,9 +76654,9 @@
         "pt": "Reserva na companhia aérea confirmando a forma de transporte do seu cachorro"
       },
       {
-        "en": "Suitable travel crate if travelling in the hold",
-        "fr": "caisse de transport adaptée si voyage en soute",
-        "es": "jaula de transporte adecuada si viaja en bodega",
+        "en": "Suitable IATA crate if travelling in the hold",
+        "fr": "Caisse IATA adaptée si voyage en soute",
+        "es": "Jaula IATA adecuada si viaja en bodega",
         "pt": "Caixa de transporte adequada à IATA se a viagem for no porão"
       },
       {
@@ -77487,9 +77487,9 @@
         "pt": "Se você for voltar à UE, planeje o teste sorológico antirrábico (titulação) (o Mali tem raiva endêmica e é não listado)"
       },
       {
-        "en": "Airline reservation confirming your dog's travel option and suitable travel crate",
-        "fr": "Réservation confirmant l'option de transport de ton chien et caisse de transport adaptée",
-        "es": "Reserva de la aerolínea que confirme la opción de viaje de tu perro y jaula de transporte adecuada",
+        "en": "Airline reservation confirming your dog's travel option and suitable IATA crate",
+        "fr": "Réservation confirmant l'option de transport de ton chien et caisse IATA adaptée",
+        "es": "Reserva de la aerolínea que confirme la opción de viaje de tu perro y jaula IATA adecuada",
         "pt": "Reserva na companhia aérea confirmando a opção de transporte do seu cachorro e caixa de transporte adequada às normas da IATA"
       }
     ],
@@ -78437,9 +78437,9 @@
         "pt": "Documentos originais à mão para a estação de quarentena do LBVD e a alfândega"
       },
       {
-        "en": "Airline reservation and suitable travel crate; confirm your dog's breed is accepted by the carrier",
-        "fr": "Réservation aérienne et caisse de transport adaptée ; vérifie que la race de ton chien est acceptée par la compagnie",
-        "es": "Reserva de la aerolínea y jaula de transporte adecuada; confirma que la aerolínea acepta la raza de tu perro",
+        "en": "Airline reservation and suitable IATA crate; confirm your dog's breed is accepted by the carrier",
+        "fr": "Réservation aérienne et caisse IATA adaptée ; vérifie que la race de ton chien est acceptée par la compagnie",
+        "es": "Reserva de la aerolínea y jaula IATA adecuada; confirma que la aerolínea acepta la raza de tu perro",
         "pt": "Reserva na companhia aérea e caixa de transporte adequada, em conformidade com a IATA; confirme que a raça do seu cachorro é aceita pela companhia aérea"
       }
     ],
@@ -79288,9 +79288,9 @@
         "pt": "Entre por uma travessia com controle veterinário; declare o animal à alfândega"
       },
       {
-        "en": "Suitable travel crate if travelling in the hold",
-        "fr": "caisse de transport adaptée si voyage en soute",
-        "es": "jaula de transporte adecuada si viaja en bodega",
+        "en": "Suitable IATA crate if travelling in the hold",
+        "fr": "Caisse IATA adaptée si voyage en soute",
+        "es": "Jaula IATA adecuada si viaja en bodega",
         "pt": "Caixa de transporte adequada à IATA se a viagem for no porão"
       }
     ],
@@ -80189,9 +80189,9 @@
         "pt": "Se você for retornar à UE, planeje o teste sorológico antirrábico (a Mauritânia é endêmica para a raiva e não listada)"
       },
       {
-        "en": "Airline reservation confirming your dog's travel option and suitable travel crate",
-        "fr": "Réservation confirmant l'option de transport de ton chien et caisse de transport adaptée",
-        "es": "Reserva de la aerolínea que confirme la opción de viaje de tu perro y jaula de transporte adecuada",
+        "en": "Airline reservation confirming your dog's travel option and suitable IATA crate",
+        "fr": "Réservation confirmant l'option de transport de ton chien et caisse IATA adaptée",
+        "es": "Reserva de la aerolínea que confirme la opción de viaje de tu perro y jaula IATA adecuada",
         "pt": "Reserva na companhia aérea confirmando a opção de transporte do seu cachorro e caixa de transporte adequada às normas da IATA"
       }
     ],
@@ -81013,10 +81013,10 @@
         "pt": "Entrada pelo Malta International Airport (Luqa) ou por um terminal marítimo de passageiros designado"
       },
       {
-        "en": "Original documents (not copies); airline reservation and suitable travel crate if in the hold",
-        "fr": "Documents originaux (pas de copies) ; réservation aérienne et caisse de transport adaptée si voyage en soute",
-        "es": "Documentos originales (no copias); reserva de la aerolínea y jaula de transporte adecuada si viaja en bodega",
-        "pt": "Documentos originais (não cópias); reserva na companhia aérea e caixa de transporte adequada se for no porão"
+        "en": "Original documents (not copies); airline reservation and suitable IATA crate if in the hold",
+        "fr": "Documents originaux (pas de copies) ; réservation aérienne et caisse IATA adaptée si voyage en soute",
+        "es": "Documentos originales (no copias); reserva de la aerolínea y jaula IATA adecuada si viaja en bodega",
+        "pt": "Documentos originais (não cópias); reserva na companhia aérea e caixa de transporte IATA adequada se for no porão"
       }
     ],
     "sources": [
@@ -83692,10 +83692,10 @@
         "pt": "No máximo uma porção de ração seca para um dia, se levar alguma"
       },
       {
-        "en": "Airline reservation confirming your dog's travel option and travel crate if in the hold",
-        "fr": "Réservation confirmant l'option de transport de ton chien et caisse de transport si en soute",
-        "es": "Reserva de la aerolínea que confirme la opción de viaje de tu perro y jaula de transporte si viaja en bodega",
-        "pt": "Reserva da companhia aérea confirmando a opção de viagem do seu cachorro e caixa de transporte se for no porão"
+        "en": "Airline reservation confirming your dog's travel option and IATA crate if in the hold",
+        "fr": "Réservation confirmant l'option de transport de ton chien et caisse IATA si en soute",
+        "es": "Reserva de la aerolínea que confirme la opción de viaje de tu perro y jaula IATA si viaja en bodega",
+        "pt": "Reserva da companhia aérea confirmando a opção de viagem do seu cachorro e caixa de transporte IATA se for no porão"
       },
       {
         "en": "Consider the Pet Frequent Traveler Program (PMVF) if you travel often",
@@ -84629,9 +84629,9 @@
         "pt": "Voo direto para um local de desembarque aprovado; planeje uma possível quarentena (mín. 7 dias)"
       },
       {
-        "en": "Suitable travel crate if travelling in the hold, and original documents",
-        "fr": "caisse de transport adaptée si voyage en soute, et documents originaux",
-        "es": "jaula de transporte adecuada si viaja en bodega, y documentos originales",
+        "en": "Suitable IATA crate if travelling in the hold, and original documents",
+        "fr": "Caisse IATA adaptée si voyage en soute, et documents originaux",
+        "es": "Jaula IATA adecuada si viaja en bodega, y documentos originales",
         "pt": "Caixa de transporte adequada, em conformidade com a IATA, se viajar no porão, e documentos originais"
       }
     ],
@@ -85506,9 +85506,9 @@
         "pt": "Licença de importação e certificados originais para apresentar no ponto de entrada"
       },
       {
-        "en": "Airline reservation and suitable travel crate if travelling in the hold",
-        "fr": "Réservation et caisse de transport adaptée si voyage en soute",
-        "es": "Reserva de la aerolínea y jaula de transporte adecuada si viaja en bodega",
+        "en": "Airline reservation and suitable IATA crate if travelling in the hold",
+        "fr": "Réservation et caisse IATA adaptée si voyage en soute",
+        "es": "Reserva de la aerolínea y jaula IATA adecuada si viaja en bodega",
         "pt": "Reserva na companhia aérea e caixa de transporte adequada à IATA se a viagem for no porão"
       }
     ],
@@ -86398,9 +86398,9 @@
         "pt": "Se você for voltar à UE, planeje o teste sorológico antirrábico (titulação) (o Níger tem raiva endêmica e é não listado)"
       },
       {
-        "en": "Airline reservation confirming your dog's travel option and suitable travel crate",
-        "fr": "Réservation confirmant l'option de transport de ton chien et caisse de transport adaptée",
-        "es": "Reserva de la aerolínea que confirme la opción de viaje de tu perro y jaula de transporte adecuada",
+        "en": "Airline reservation confirming your dog's travel option and suitable IATA crate",
+        "fr": "Réservation confirmant l'option de transport de ton chien et caisse IATA adaptée",
+        "es": "Reserva de la aerolínea que confirme la opción de viaje de tu perro y jaula IATA adecuada",
         "pt": "Reserva na companhia aérea confirmando a opção de transporte do seu cachorro e caixa de transporte adequada às normas da IATA"
       }
     ],
@@ -87254,9 +87254,9 @@
         "pt": "Autorização e certificados originais para apresentar à NAQS no ponto de entrada (não cópias)"
       },
       {
-        "en": "Airline reservation and a suitable travel crate if travelling in the hold",
-        "fr": "Réservation et caisse de transport adaptée si voyage en soute",
-        "es": "Reserva de la aerolínea y una jaula de transporte adecuada si viaja en bodega",
+        "en": "Airline reservation and a suitable IATA crate if travelling in the hold",
+        "fr": "Réservation et caisse IATA adaptée si voyage en soute",
+        "es": "Reserva de la aerolínea y una jaula IATA adecuada si viaja en bodega",
         "pt": "Reserva na companhia aérea e caixa de transporte adequada à IATA em caso de viagem no porão"
       },
       {
@@ -88206,9 +88206,9 @@
         "pt": "Programe-se para obter a autorização de quarentena do IPSA no ponto de entrada na chegada"
       },
       {
-        "en": "Airline reservation and suitable travel crate if travelling in the hold",
-        "fr": "Réservation compagnie et caisse de transport adaptée si voyage en soute",
-        "es": "Reserva de la aerolínea y jaula de transporte adecuada si viaja en bodega",
+        "en": "Airline reservation and suitable IATA crate if travelling in the hold",
+        "fr": "Réservation compagnie et caisse IATA adaptée si voyage en soute",
+        "es": "Reserva de la aerolínea y jaula IATA adecuada si viaja en bodega",
         "pt": "Reserva na companhia aérea e caixa de transporte adequada às normas IATA se for viajar no porão"
       }
     ],
@@ -89032,9 +89032,9 @@
         "pt": "Reserva na companhia aérea confirmando a forma de transporte do seu cachorro"
       },
       {
-        "en": "Suitable travel crate if travelling in the hold",
-        "fr": "caisse de transport adaptée si voyage en soute",
-        "es": "jaula de transporte adecuada si viaja en bodega",
+        "en": "Suitable IATA crate if travelling in the hold",
+        "fr": "Caisse IATA adaptée si voyage en soute",
+        "es": "Jaula IATA adecuada si viaja en bodega",
         "pt": "Caixa de transporte adequada à IATA se a viagem for no porão"
       },
       {
@@ -90867,8 +90867,8 @@
         "pt": "Confirme a idade mínima, o intervalo exato da vacinação antirrábica e qualquer tratamento antiparasitário com o Animal Quarantine Office (não publicados)"
       },
       {
-        "en": "Check customs duty/valuation with the Department of Customs; compliant with the applicable requirements crate if travelling in the hold; confirm your breed with the airline",
-        "fr": "Vérifier les droits de douane/valorisation auprès du Département des douanes ; caisse conforme aux exigences applicables si voyage en soute ; vérifier ta race auprès de la compagnie",
+        "en": "Check customs duty/valuation with the Department of Customs; IATA-compliant crate if travelling in the hold; confirm your breed with the airline",
+        "fr": "Vérifier les droits de douane/valorisation auprès du Département des douanes ; caisse conforme IATA si voyage en soute ; vérifier ta race auprès de la compagnie",
         "es": "Comprobar los derechos de aduana/valoración con el Departamento de Aduanas; jaula conforme a IATA si viaja en bodega; confirmar tu raza con la aerolínea",
         "pt": "Confira a taxa/avaliação alfandegária com o Department of Customs; caixa de transporte em conformidade com a IATA se viajar no porão; confirme a raça do seu cachorro com a companhia aérea"
       }
@@ -91385,7 +91385,7 @@
         },
         "when": {
           "en": "Treated twice against ticks and fleas (second treatment within 2 days of shipment) and treated with registered products against internal parasites.",
-          "fr": "Traité deux fois contre tiques et puces (second traitement dans les 2 jours précédant l'expédition) et traité avec des produits conformes aux exigences applicables contre les parasites internes.",
+          "fr": "Traité deux fois contre tiques et puces (second traitement dans les 2 jours précédant l'expédition) et traité avec des produits homologués contre les parasites internes.",
           "es": "Tratado dos veces contra garrapatas y pulgas (el segundo tratamiento dentro de los 2 días previos al envío) y tratado con productos registrados contra los parásitos internos.",
           "pt": "Tratado duas vezes contra carrapatos e pulgas (o segundo tratamento nos 2 dias anteriores ao embarque) e tratado com produtos registrados contra parasitas internos."
         },
@@ -92622,9 +92622,9 @@
         "pt": "Confirme que o seu cachorro não é de uma raça proibida pela Resolução 222/2019 (pit bull, mastim, Rottweiler, Boxer, Dogue Alemão, Presa Canário, cruzamentos tipo lobo…)"
       },
       {
-        "en": "Airline reservation confirming your dog's travel option and suitable travel crate",
-        "fr": "Réservation confirmant l'option de transport de ton chien et caisse de transport adaptée",
-        "es": "Reserva de la aerolínea que confirme la opción de viaje de tu perro y jaula de transporte adecuada",
+        "en": "Airline reservation confirming your dog's travel option and suitable IATA crate",
+        "fr": "Réservation confirmant l'option de transport de ton chien et caisse IATA adaptée",
+        "es": "Reserva de la aerolínea que confirme la opción de viaje de tu perro y jaula IATA adecuada",
         "pt": "Reserva na companhia aérea confirmando a opção de transporte do seu cachorro e caixa de transporte adequada às normas da IATA"
       }
     ],
@@ -93564,9 +93564,9 @@
         "pt": "Documentos originais mais um jogo de cópias levados com você"
       },
       {
-        "en": "Airline reservation and suitable travel crate if travelling in the hold",
-        "fr": "Réservation compagnie et caisse de transport adaptée si voyage en soute",
-        "es": "Reserva de la aerolínea y jaula de transporte adecuada si viaja en bodega",
+        "en": "Airline reservation and suitable IATA crate if travelling in the hold",
+        "fr": "Réservation compagnie et caisse IATA adaptée si voyage en soute",
+        "es": "Reserva de la aerolínea y jaula IATA adecuada si viaja en bodega",
         "pt": "Reserva na companhia aérea e caixa de transporte adequada às normas IATA se for viajar no porão"
       }
     ],
@@ -94500,10 +94500,10 @@
         "pt": "Microchip recomendado para a identificação (e exigido por muitos outros países / para a volta)"
       },
       {
-        "en": "Airline reservation confirming your dog's travel option and a suitable travel crate if in the hold",
-        "fr": "Réservation confirmant l'option de transport de ton chien et une caisse de transport adaptée si en soute",
-        "es": "Reserva de la aerolínea que confirme la opción de viaje de tu perro y una jaula de transporte adecuada si viaja en bodega",
-        "pt": "Reserva da companhia aérea confirmando a opção de viagem do seu cachorro e uma caixa de transporte adequada se ele for no porão"
+        "en": "Airline reservation confirming your dog's travel option and a suitable IATA crate if in the hold",
+        "fr": "Réservation confirmant l'option de transport de ton chien et une caisse IATA adaptée si en soute",
+        "es": "Reserva de la aerolínea que confirme la opción de viaje de tu perro y una jaula IATA adecuada si viaja en bodega",
+        "pt": "Reserva da companhia aérea confirmando a opção de viagem do seu cachorro e uma caixa de transporte IATA adequada se ele for no porão"
       }
     ],
     "sources": [
@@ -95448,8 +95448,8 @@
         "pt": "SPSIC impresso e EP/IVHC original prontos para o agente do BAI; reserve as taxas de chegada (Php)"
       },
       {
-        "en": "compliant with the applicable requirements crate; confirm your dog's breed is accepted by the airline",
-        "fr": "Caisse conforme aux exigences applicables ; vérifie que la race de ton chien est acceptée par la compagnie",
+        "en": "IATA-compliant crate; confirm your dog's breed is accepted by the airline",
+        "fr": "Caisse conforme IATA ; vérifie que la race de ton chien est acceptée par la compagnie",
         "es": "Jaula conforme a IATA; confirma que la aerolínea acepta la raza de tu perro",
         "pt": "Caixa de transporte conforme a IATA; confirme que a raça do seu cachorro é aceita pela companhia aérea"
       }
@@ -96323,8 +96323,8 @@
         "pt": "Originais de todos os documentos levados para a inspeção do AQD e a liberação da Alfândega do Paquistão (FBR)"
       },
       {
-        "en": "compliant with the applicable requirements crate if travelling in the hold; confirm your breed is accepted by the airline",
-        "fr": "Caisse conforme aux exigences applicables si voyage en soute ; vérifie que ta race est acceptée par la compagnie aérienne",
+        "en": "IATA-compliant crate if travelling in the hold; confirm your breed is accepted by the airline",
+        "fr": "Caisse conforme IATA si voyage en soute ; vérifie que ta race est acceptée par la compagnie aérienne",
         "es": "Jaula conforme a IATA si viaja en bodega; confirma que la aerolínea acepta tu raza",
         "pt": "Caixa de transporte em conformidade com a IATA se for viajar no porão; confirme que a raça do seu cachorro é aceita pela companhia aérea"
       }
@@ -97220,9 +97220,9 @@
         "pt": "Reserva na companhia aérea confirmando a forma de transporte do seu cachorro"
       },
       {
-        "en": "Suitable travel crate if travelling in the hold",
-        "fr": "caisse de transport adaptée si voyage en soute",
-        "es": "jaula de transporte adecuada si viaja en bodega",
+        "en": "Suitable IATA crate if travelling in the hold",
+        "fr": "Caisse IATA adaptée si voyage en soute",
+        "es": "Jaula IATA adecuada si viaja en bodega",
         "pt": "Caixa de transporte adequada à IATA se a viagem for no porão"
       },
       {
@@ -98091,9 +98091,9 @@
         "pt": "Reserva na companhia aérea confirmando a forma de transporte do seu cachorro"
       },
       {
-        "en": "Suitable travel crate if travelling in the hold",
-        "fr": "caisse de transport adaptée si voyage en soute",
-        "es": "jaula de transporte adecuada si viaja en bodega",
+        "en": "Suitable IATA crate if travelling in the hold",
+        "fr": "Caisse IATA adaptée si voyage en soute",
+        "es": "Jaula IATA adecuada si viaja en bodega",
         "pt": "Caixa de transporte adequada à IATA se a viagem for no porão"
       },
       {
@@ -98984,9 +98984,9 @@
         "pt": "O microchip não é obrigatório para a entrada, mas é fortemente recomendado (ISO 11784/11785) para a identificação e para a viagem de volta"
       },
       {
-        "en": "Airline reservation confirming your dog's travel option and a suitable travel crate if in the hold; for unaccompanied/cargo, contact SENACSA in advance",
-        "fr": "Réservation confirmant l'option de transport de ton chien et une caisse de transport adaptée si en soute ; pour le fret/non accompagné, contacte le SENACSA à l'avance",
-        "es": "Reserva de la aerolínea que confirme la opción de viaje de tu perro y una jaula de transporte adecuada si viaja en bodega; para carga/sin acompañante, contacta con el SENACSA por adelantado",
+        "en": "Airline reservation confirming your dog's travel option and a suitable IATA crate if in the hold; for unaccompanied/cargo, contact SENACSA in advance",
+        "fr": "Réservation confirmant l'option de transport de ton chien et une caisse IATA adaptée si en soute ; pour le fret/non accompagné, contacte le SENACSA à l'avance",
+        "es": "Reserva de la aerolínea que confirme la opción de viaje de tu perro y una jaula IATA adecuada si viaja en bodega; para carga/sin acompañante, contacta con el SENACSA por adelantado",
         "pt": "Reserva na companhia aérea confirmando a forma de transporte do seu cachorro e caixa de transporte adequada à IATA se a viagem for no porão; para carga desacompanhada, entre em contato com o SENACSA com antecedência"
       }
     ],
@@ -99893,9 +99893,9 @@
         "pt": "Confirme que o seu cachorro não é de uma raça proibida (pit bull, Dogo Argentino, Fila Brasileiro, tipos tosa/mastim, Rottweiler…)"
       },
       {
-        "en": "Airline reservation confirming your dog's travel option and suitable travel crate",
-        "fr": "Réservation confirmant l'option de transport de ton chien et caisse de transport adaptée",
-        "es": "Reserva de la aerolínea que confirme la opción de viaje de tu perro y jaula de transporte adecuada",
+        "en": "Airline reservation confirming your dog's travel option and suitable IATA crate",
+        "fr": "Réservation confirmant l'option de transport de ton chien et caisse IATA adaptée",
+        "es": "Reserva de la aerolínea que confirme la opción de viaje de tu perro y jaula IATA adecuada",
         "pt": "Reserva na companhia aérea confirmando a opção de transporte do seu cachorro e caixa de transporte adequada às normas da IATA"
       }
     ],
@@ -100766,9 +100766,9 @@
         "pt": "Reserva na companhia aérea confirmando a forma de transporte do seu cachorro"
       },
       {
-        "en": "Suitable travel crate if travelling in the hold",
-        "fr": "caisse de transport adaptée si voyage en soute",
-        "es": "jaula de transporte adecuada si viaja en bodega",
+        "en": "Suitable IATA crate if travelling in the hold",
+        "fr": "Caisse IATA adaptée si voyage en soute",
+        "es": "Jaula IATA adecuada si viaja en bodega",
         "pt": "Caixa de transporte adequada à IATA se a viagem for no porão"
       },
       {
@@ -101652,9 +101652,9 @@
         "pt": "Reserva na companhia aérea confirmando a forma de transporte do seu cachorro"
       },
       {
-        "en": "Suitable travel crate if travelling in the hold",
-        "fr": "caisse de transport adaptée si voyage en soute",
-        "es": "jaula de transporte adecuada si viaja en bodega",
+        "en": "Suitable IATA crate if travelling in the hold",
+        "fr": "Caisse IATA adaptée si voyage en soute",
+        "es": "Jaula IATA adecuada si viaja en bodega",
         "pt": "Caixa de transporte adequada à IATA se a viagem for no porão"
       },
       {
@@ -102538,10 +102538,10 @@
         "pt": "Documentos em russo ou com tradução oficial"
       },
       {
-        "en": "Enter via a checkpoint with veterinary control; suitable travel crate if in the hold",
-        "fr": "Entrée par un point de passage avec contrôle vétérinaire ; caisse de transport adaptée si voyage en soute",
-        "es": "Entra por un puesto de control con control veterinario; jaula de transporte adecuada si viaja en bodega",
-        "pt": "Entrada por um posto de fronteira com controle veterinário; caixa de transporte adequada se for no porão"
+        "en": "Enter via a checkpoint with veterinary control; suitable IATA crate if in the hold",
+        "fr": "Entrée par un point de passage avec contrôle vétérinaire ; caisse IATA adaptée si voyage en soute",
+        "es": "Entra por un puesto de control con control veterinario; jaula IATA adecuada si viaja en bodega",
+        "pt": "Entrada por um posto de fronteira com controle veterinário; caixa de transporte IATA adequada se for no porão"
       }
     ],
     "sources": [
@@ -103447,9 +103447,9 @@
         "pt": "Filhote com pelo menos cerca de 4 meses antes da viagem"
       },
       {
-        "en": "Airline reservation and suitable travel crate if travelling in the hold",
-        "fr": "Réservation et caisse de transport adaptée si voyage en soute",
-        "es": "Reserva de la aerolínea y jaula de transporte adecuada si viaja en bodega",
+        "en": "Airline reservation and suitable IATA crate if travelling in the hold",
+        "fr": "Réservation et caisse IATA adaptée si voyage en soute",
+        "es": "Reserva de la aerolínea y jaula IATA adecuada si viaja en bodega",
         "pt": "Reserva na companhia aérea e caixa de transporte adequada às normas IATA em caso de viagem no porão"
       }
     ],
@@ -105051,9 +105051,9 @@
           "pt": "Obrigatório"
         },
         "when": {
-          "en": "All animals must travel as manifest cargo, preferably on a direct or approved scheduled flight, in an compliant with the applicable requirements container, and must not make contact with any other animals en route. A Veterinary Officer collects the dog at the airport.",
-          "fr": "Tout animal doit voyager en fret manifesté, de préférence sur un vol direct ou un vol régulier approuvé, dans un conteneur conforme aux exigences applicables, et ne doit avoir aucun contact avec d'autres animaux en route. Un vétérinaire officiel récupère le chien à l'aéroport.",
-          "es": "Todos los animales deben viajar como carga manifestada, preferiblemente en un vuelo directo o regular aprobado, en un contenedor conforme a los requisitos aplicables, y no deben entrar en contacto con ningún otro animal durante el trayecto. Un veterinario oficial recoge al perro en el aeropuerto.",
+          "en": "All animals must travel as manifest cargo, preferably on a direct or approved scheduled flight, in an IATA-compliant container, and must not make contact with any other animals en route. A Veterinary Officer collects the dog at the airport.",
+          "fr": "Tout animal doit voyager en fret manifesté, de préférence sur un vol direct ou un vol régulier approuvé, dans un conteneur conforme IATA, et ne doit avoir aucun contact avec d'autres animaux en route. Un vétérinaire officiel récupère le chien à l'aéroport.",
+          "es": "Todos los animales deben viajar como carga manifestada, preferiblemente en un vuelo directo o regular aprobado, en un contenedor conforme a la IATA, y no deben entrar en contacto con ningún otro animal durante el trayecto. Un veterinario oficial recoge al perro en el aeropuerto.",
           "pt": "Todos os animais precisam viajar como carga manifestada, preferencialmente em um voo direto ou regular aprovado, em um contêiner compatível com a IATA, e não podem entrar em contato com nenhum outro animal durante o trajeto. Um Veterinary Officer recolhe o cachorro no aeroporto."
         },
         "exceptions": {
@@ -105165,9 +105165,9 @@
           "pt": "Reserve o canil de quarentena com pelo menos 2 semanas de antecedência e confirme 24 horas antes da chegada; sem uma reserva confirmada, o cachorro não pode ser recebido."
         },
         {
-          "en": "The dog must arrive as manifest cargo in an compliant with the applicable requirements container; a Veterinary Officer collects it at the airport. It is preferable that the owner or a responsible person be present, as customs and cargo/handling fees must be settled.",
-          "fr": "Le chien doit arriver en fret manifesté dans un conteneur conforme aux exigences applicables ; un vétérinaire officiel le récupère à l'aéroport. Il est préférable que le propriétaire ou une personne responsable soit présent, car des frais de douane et de manutention doivent être réglés.",
-          "es": "El perro debe llegar como carga manifestada en un contenedor conforme a los requisitos aplicables; un veterinario oficial lo recoge en el aeropuerto. Es preferible que el propietario o una persona responsable esté presente, ya que hay que abonar las tasas de aduana y de carga/manipulación.",
+          "en": "The dog must arrive as manifest cargo in an IATA-compliant container; a Veterinary Officer collects it at the airport. It is preferable that the owner or a responsible person be present, as customs and cargo/handling fees must be settled.",
+          "fr": "Le chien doit arriver en fret manifesté dans un conteneur conforme IATA ; un vétérinaire officiel le récupère à l'aéroport. Il est préférable que le propriétaire ou une personne responsable soit présent, car des frais de douane et de manutention doivent être réglés.",
+          "es": "El perro debe llegar como carga manifestada en un contenedor conforme a la IATA; un veterinario oficial lo recoge en el aeropuerto. Es preferible que el propietario o una persona responsable esté presente, ya que hay que abonar las tasas de aduana y de carga/manipulación.",
           "pt": "O cachorro precisa chegar como carga manifestada em um contêiner compatível com a IATA; um Veterinary Officer o recolhe no aeroporto. É preferível que o dono ou uma pessoa responsável esteja presente, já que as taxas alfandegárias e de manuseio de carga precisam ser pagas."
         },
         {
@@ -105312,10 +105312,10 @@
         "pt": "Solicite a autorização veterinária de importação por escrito — 4 semanas antes (livre de raiva) ou 4 meses antes (afetado pela raiva)"
       },
       {
-        "en": "Original veterinary certificate (English or French) and all records travelling with the dog; fly as manifest cargo in an travel crate",
-        "fr": "Certificat vétérinaire original (anglais ou français) et tous les carnets voyageant avec le chien ; vol en fret manifesté dans une caisse de transport",
-        "es": "Certificado veterinario original (inglés o francés) y todos los registros viajando con el perro; vuelo como carga manifestada en una jaula de transporte",
-        "pt": "Certificado veterinário original (em inglês ou francês) e todos os registros viajando com o cachorro; voo como carga manifestada em uma caixa de transporte"
+        "en": "Original veterinary certificate (English or French) and all records travelling with the dog; fly as manifest cargo in an IATA crate",
+        "fr": "Certificat vétérinaire original (anglais ou français) et tous les carnets voyageant avec le chien ; vol en fret manifesté dans une caisse IATA",
+        "es": "Certificado veterinario original (inglés o francés) y todos los registros viajando con el perro; vuelo como carga manifestada en una jaula IATA",
+        "pt": "Certificado veterinário original (em inglês ou francês) e todos os registros viajando com o cachorro; voo como carga manifestada em uma caixa de transporte IATA"
       },
       {
         "en": "Book the Union Vale quarantine ≥2 weeks ahead and confirm 24 hours before arrival; obtain the Ministry of Finance import permit for customs clearance",
@@ -106156,9 +106156,9 @@
         "pt": "Reserva na companhia aérea confirmando a forma de transporte do seu cachorro"
       },
       {
-        "en": "Suitable travel crate if travelling in the hold",
-        "fr": "caisse de transport adaptée si voyage en soute",
-        "es": "jaula de transporte adecuada si viaja en bodega",
+        "en": "Suitable IATA crate if travelling in the hold",
+        "fr": "Caisse IATA adaptée si voyage en soute",
+        "es": "Jaula IATA adecuada si viaja en bodega",
         "pt": "Caixa de transporte adequada à IATA se a viagem for no porão"
       }
     ],
@@ -107118,9 +107118,9 @@
         "pt": "Agendamento da inspeção na fronteira feito pelo menos 5 dias antes da chegada"
       },
       {
-        "en": "compliant with the applicable requirements crate; confirm your dog is not a Part 1 banned breed",
-        "fr": "Caisse conforme aux exigences applicables ; vérifie que ton chien n'est pas une race interdite (partie 1)",
-        "es": "Jaula de transporte; confirma que tu perro no es de una raza prohibida de la parte 1",
+        "en": "IATA-compliant crate; confirm your dog is not a Part 1 banned breed",
+        "fr": "Caisse conforme IATA ; vérifie que ton chien n'est pas une race interdite (partie 1)",
+        "es": "Jaula conforme a la IATA; confirma que tu perro no es de una raza prohibida de la parte 1",
         "pt": "Caixa de transporte em conformidade com a IATA; confirme que seu cachorro não é de uma raça proibida da Parte 1"
       }
     ],
@@ -107962,9 +107962,9 @@
         "pt": "Reserva na companhia aérea confirmando a forma de transporte do seu cachorro"
       },
       {
-        "en": "Suitable travel crate if travelling in the hold",
-        "fr": "caisse de transport adaptée si voyage en soute",
-        "es": "jaula de transporte adecuada si viaja en bodega",
+        "en": "Suitable IATA crate if travelling in the hold",
+        "fr": "Caisse IATA adaptée si voyage en soute",
+        "es": "Jaula IATA adecuada si viaja en bodega",
         "pt": "Caixa de transporte adequada à IATA se a viagem for no porão"
       },
       {
@@ -108812,9 +108812,9 @@
         "pt": "Reserva na companhia aérea confirmando a forma de transporte do seu cachorro"
       },
       {
-        "en": "Suitable travel crate if travelling in the hold",
-        "fr": "caisse de transport adaptée si voyage en soute",
-        "es": "jaula de transporte adecuada si viaja en bodega",
+        "en": "Suitable IATA crate if travelling in the hold",
+        "fr": "Caisse IATA adaptée si voyage en soute",
+        "es": "Jaula IATA adecuada si viaja en bodega",
         "pt": "Caixa de transporte adequada à IATA se a viagem for no porão"
       },
       {
@@ -109739,9 +109739,9 @@
         "pt": "Autorização e certificado originais para apresentar no ponto de entrada (não cópias)"
       },
       {
-        "en": "Airline reservation and a suitable travel crate if travelling in the hold",
-        "fr": "Réservation et caisse de transport adaptée si voyage en soute",
-        "es": "Reserva de la aerolínea y una jaula de transporte adecuada si viaja en bodega",
+        "en": "Airline reservation and a suitable IATA crate if travelling in the hold",
+        "fr": "Réservation et caisse IATA adaptée si voyage en soute",
+        "es": "Reserva de la aerolínea y una jaula IATA adecuada si viaja en bodega",
         "pt": "Reserva na companhia aérea e caixa de transporte adequada à IATA em caso de viagem no porão"
       },
       {
@@ -110651,9 +110651,9 @@
         "pt": "Se você for voltar à UE, programe o teste sorológico antirrábico (no Senegal a raiva é endêmica)"
       },
       {
-        "en": "Airline reservation confirming your dog's travel option and suitable travel crate",
-        "fr": "Réservation confirmant l'option de transport de ton chien et caisse de transport adaptée",
-        "es": "Reserva de la aerolínea que confirme la opción de viaje de tu perro y jaula de transporte adecuada",
+        "en": "Airline reservation confirming your dog's travel option and suitable IATA crate",
+        "fr": "Réservation confirmant l'option de transport de ton chien et caisse IATA adaptée",
+        "es": "Reserva de la aerolínea que confirme la opción de viaje de tu perro y jaula IATA adecuada",
         "pt": "Reserva na companhia aérea confirmando a opção de transporte do seu cachorro e caixa de transporte adequada às normas da IATA"
       }
     ],
@@ -111516,9 +111516,9 @@
         "pt": "Para a viagem de volta: certificado zoossanitário de exportação do MAG para animais de estimação (a autorização de importação não vale para a volta)"
       },
       {
-        "en": "Airline reservation and suitable travel crate if travelling in the hold",
-        "fr": "Réservation compagnie et caisse de transport adaptée si voyage en soute",
-        "es": "Reserva de la aerolínea y jaula de transporte adecuada si viaja en bodega",
+        "en": "Airline reservation and suitable IATA crate if travelling in the hold",
+        "fr": "Réservation compagnie et caisse IATA adaptée si voyage en soute",
+        "es": "Reserva de la aerolínea y jaula IATA adecuada si viaja en bodega",
         "pt": "Reserva na companhia aérea e caixa de transporte adequada às normas IATA se for viajar no porão"
       }
     ],
@@ -112376,9 +112376,9 @@
         "pt": "Se você for retornar à UE, planeje o teste sorológico antirrábico (o Chade é tratado como um país terceiro não listado, em uma região com raiva endêmica)"
       },
       {
-        "en": "Airline reservation confirming your dog's travel option and a suitable travel crate",
-        "fr": "Réservation confirmant l'option de transport de ton chien et une caisse de transport adaptée",
-        "es": "Reserva de la aerolínea que confirme la opción de viaje de tu perro y una jaula de transporte adecuada",
+        "en": "Airline reservation confirming your dog's travel option and a suitable IATA crate",
+        "fr": "Réservation confirmant l'option de transport de ton chien et une caisse IATA adaptée",
+        "es": "Reserva de la aerolínea que confirme la opción de viaje de tu perro y una jaula IATA adecuada",
         "pt": "Reserva na companhia aérea confirmando a opção de viagem do cachorro e uma caixa de transporte adequada às normas IATA"
       }
     ],
@@ -113294,9 +113294,9 @@
         "pt": "Confirme qualquer questão de raça, idade mínima, notificação ou condição adicional com os serviços veterinários do Togo antes de reservar"
       },
       {
-        "en": "Airline reservation confirming your dog's travel option and suitable travel crate",
-        "fr": "Réservation confirmant l'option de transport de ton chien et caisse de transport adaptée",
-        "es": "Reserva de la aerolínea que confirme la opción de viaje de tu perro y jaula de transporte adecuada",
+        "en": "Airline reservation confirming your dog's travel option and suitable IATA crate",
+        "fr": "Réservation confirmant l'option de transport de ton chien et caisse IATA adaptée",
+        "es": "Reserva de la aerolínea que confirme la opción de viaje de tu perro y jaula IATA adecuada",
         "pt": "Reserva na companhia aérea confirmando a opção de transporte do seu cachorro e caixa de transporte adequada às normas da IATA"
       }
     ],
@@ -114260,8 +114260,8 @@
         "pt": "Autorização de importação impressa e passaporte prontos para a AQS; reserve 500 bahts por animal"
       },
       {
-        "en": "compliant with the applicable requirements crate; confirm your dog's breed is accepted by the airline",
-        "fr": "Caisse conforme aux exigences applicables ; vérifie que la race de ton chien est acceptée par la compagnie",
+        "en": "IATA-compliant crate; confirm your dog's breed is accepted by the airline",
+        "fr": "Caisse conforme IATA ; vérifie que la race de ton chien est acceptée par la compagnie",
         "es": "Jaula conforme con la IATA; confirma que la aerolínea acepta la raza de tu perro",
         "pt": "Caixa de transporte conforme a IATA; confirme que a raça do seu cachorro é aceita pela companhia aérea"
       }
@@ -115191,9 +115191,9 @@
         "pt": "Verifique com a DGSV qualquer exigência especial ligada à origem e ao histórico de raiva do seu cachorro"
       },
       {
-        "en": "Airline reservation confirming your dog's travel option and suitable travel crate",
-        "fr": "Réservation confirmant l'option de transport de ton chien et caisse de transport adaptée",
-        "es": "Reserva de la aerolínea que confirme la opción de viaje de tu perro y jaula de transporte adecuada",
+        "en": "Airline reservation confirming your dog's travel option and suitable IATA crate",
+        "fr": "Réservation confirmant l'option de transport de ton chien et caisse IATA adaptée",
+        "es": "Reserva de la aerolínea que confirme la opción de viaje de tu perro y jaula IATA adecuada",
         "pt": "Reserva na companhia aérea confirmando a opção de transporte do seu cachorro e caixa de transporte adequada às normas da IATA"
       }
     ],
@@ -117018,9 +117018,9 @@
         "pt": "Avisar o Veterinary Officer (Quarantine) com pelo menos 2 dias úteis / 48 horas de antecedência em relação à chegada"
       },
       {
-        "en": "Book a flight (cabin, checked baggage or cargo) and a suitable travel crate; no quarantine if compliant",
-        "fr": "Réserve un vol (cabine, bagage enregistré ou fret) et une caisse de transport adaptée ; pas de quarantaine si conforme",
-        "es": "Reserva un vuelo (cabina, equipaje facturado o carga) y una jaula de transporte adecuada; sin cuarentena si se cumplen los requisitos",
+        "en": "Book a flight (cabin, checked baggage or cargo) and a suitable IATA crate; no quarantine if compliant",
+        "fr": "Réserve un vol (cabine, bagage enregistré ou fret) et une caisse IATA adaptée ; pas de quarantaine si conforme",
+        "es": "Reserva un vuelo (cabina, equipaje facturado o carga) y una jaula IATA adecuada; sin cuarentena si se cumplen los requisitos",
         "pt": "Reservar o voo (cabine, bagagem despachada ou carga) e uma caixa de transporte adequada às normas da IATA; sem quarentena se estiver tudo em conformidade"
       }
     ],
@@ -117910,10 +117910,10 @@
         "pt": "Vaga de quarentena confirmada pela autorização (origens infectadas por raiva)"
       },
       {
-        "en": "Airline reservation confirming your dog's travel option and travel crate",
-        "fr": "Réservation confirmant l'option de transport et caisse de transport de ton chien",
-        "es": "Reserva de la aerolínea que confirme la opción de viaje de tu perro y la jaula de transporte",
-        "pt": "Reserva na companhia aérea confirmando a opção de viagem do cachorro e caixa de transporte"
+        "en": "Airline reservation confirming your dog's travel option and IATA crate",
+        "fr": "Réservation confirmant l'option de transport et caisse IATA de ton chien",
+        "es": "Reserva de la aerolínea que confirme la opción de viaje de tu perro y la jaula IATA",
+        "pt": "Reserva na companhia aérea confirmando a opção de viagem do cachorro e caixa de transporte IATA"
       },
       {
         "en": "Confirm your dog is not a prohibited pit-bull-type breed",
@@ -118802,9 +118802,9 @@
         "pt": "Mantenha fotocópias dos registros do animal; planeje uma autorização de exportação se você for sair do país com o cachorro"
       },
       {
-        "en": "Airline reservation and suitable travel crate if travelling in the hold",
-        "fr": "Réservation et caisse de transport adaptée si voyage en soute",
-        "es": "Reserva de la aerolínea y jaula de transporte adecuada si viaja en bodega",
+        "en": "Airline reservation and suitable IATA crate if travelling in the hold",
+        "fr": "Réservation et caisse IATA adaptée si voyage en soute",
+        "es": "Reserva de la aerolínea y jaula IATA adecuada si viaja en bodega",
         "pt": "Reserva na companhia aérea e caixa de transporte adequada às normas IATA em caso de viagem no porão"
       }
     ],
@@ -119673,9 +119673,9 @@
         "pt": "Reserva na companhia aérea confirmando a forma de transporte do seu cachorro"
       },
       {
-        "en": "Suitable travel crate if travelling in the hold",
-        "fr": "caisse de transport adaptée si voyage en soute",
-        "es": "jaula de transporte adecuada si viaja en bodega",
+        "en": "Suitable IATA crate if travelling in the hold",
+        "fr": "Caisse IATA adaptée si voyage en soute",
+        "es": "Jaula IATA adecuada si viaja en bodega",
         "pt": "Caixa de transporte adequada à IATA se a viagem for no porão"
       },
       {
@@ -120597,9 +120597,9 @@
         "pt": "Planeje-se para a quarentena pós-importação publicada de 21 a 30 dias e para a liberação após os testes prescritos"
       },
       {
-        "en": "Original permit and certificates to present at the port of entry; airline reservation and suitable travel crate if travelling in the hold",
-        "fr": "Permis et certificats originaux à présenter au point d'entrée ; réservation et caisse de transport adaptée si voyage en soute",
-        "es": "Permiso y certificados originales para presentar en el punto de entrada; reserva de la aerolínea y jaula de transporte adecuada si viaja en bodega",
+        "en": "Original permit and certificates to present at the port of entry; airline reservation and suitable IATA crate if travelling in the hold",
+        "fr": "Permis et certificats originaux à présenter au point d'entrée ; réservation et caisse IATA adaptée si voyage en soute",
+        "es": "Permiso y certificados originales para presentar en el punto de entrada; reserva de la aerolínea y jaula IATA adecuada si viaja en bodega",
         "pt": "Autorização e certificados originais para apresentar no porto de entrada; reserva na companhia aérea e caixa de transporte adequada às normas IATA em caso de viagem no porão"
       }
     ],
@@ -121932,9 +121932,9 @@
         "pt": "Confira as regras de entrada do seu estado de destino e a eventual legislação local sobre raças"
       },
       {
-        "en": "Airline reservation and suitable travel crate if travelling in the hold",
-        "fr": "Réservation compagnie et caisse de transport adaptée si voyage en soute",
-        "es": "Reserva de la aerolínea y jaula de transporte adecuada si viaja en bodega",
+        "en": "Airline reservation and suitable IATA crate if travelling in the hold",
+        "fr": "Réservation compagnie et caisse IATA adaptée si voyage en soute",
+        "es": "Reserva de la aerolínea y jaula IATA adecuada si viaja en bodega",
         "pt": "Reserva na companhia aérea e caixa de transporte adequada às normas IATA se for viajar no porão"
       }
     ],
@@ -122875,9 +122875,9 @@
         "pt": "Para filhote com menos de 3 meses: atestado de idade e ausência de caso de raiva urbana onde ele viveu nos últimos 90 dias"
       },
       {
-        "en": "Airline reservation confirming your dog's travel option and a suitable travel crate if in the hold; for cargo via Carrasco, notify MGAP 72 working hours ahead",
-        "fr": "Réservation confirmant l'option de transport de ton chien et une caisse de transport adaptée si en soute ; pour le fret via Carrasco, préviens le MGAP 72 heures ouvrables à l'avance",
-        "es": "Reserva de la aerolínea que confirme la opción de viaje de tu perro y una jaula de transporte adecuada si viaja en bodega; para carga vía Carrasco, avisa al MGAP con 72 horas hábiles de antelación",
+        "en": "Airline reservation confirming your dog's travel option and a suitable IATA crate if in the hold; for cargo via Carrasco, notify MGAP 72 working hours ahead",
+        "fr": "Réservation confirmant l'option de transport de ton chien et une caisse IATA adaptée si en soute ; pour le fret via Carrasco, préviens le MGAP 72 heures ouvrables à l'avance",
+        "es": "Reserva de la aerolínea que confirme la opción de viaje de tu perro y una jaula IATA adecuada si viaja en bodega; para carga vía Carrasco, avisa al MGAP con 72 horas hábiles de antelación",
         "pt": "Reserva na companhia aérea confirmando a forma de transporte do seu cachorro e caixa de transporte adequada à IATA se a viagem for no porão; para carga via Carrasco, avise o MGAP com 72 horas úteis de antecedência"
       }
     ],
@@ -123894,10 +123894,10 @@
         "pt": "Confira se o seu cachorro não é de uma raça do tipo pit bull proibida pela lei venezuelana"
       },
       {
-        "en": "Airline reservation confirming your dog's travel option and a suitable travel crate if in the hold",
-        "fr": "Réservation confirmant l'option de transport de ton chien et une caisse de transport adaptée si en soute",
-        "es": "Reserva de la aerolínea que confirme la opción de viaje de tu perro y una jaula de transporte adecuada si viaja en bodega",
-        "pt": "Reserva da companhia aérea confirmando a opção de viagem do seu cachorro e uma caixa de transporte adequada se ele for no porão"
+        "en": "Airline reservation confirming your dog's travel option and a suitable IATA crate if in the hold",
+        "fr": "Réservation confirmant l'option de transport de ton chien et une caisse IATA adaptée si en soute",
+        "es": "Reserva de la aerolínea que confirme la opción de viaje de tu perro y una jaula IATA adecuada si viaja en bodega",
+        "pt": "Reserva da companhia aérea confirmando a opção de viagem do seu cachorro e uma caixa de transporte IATA adequada se ele for no porão"
       }
     ],
     "sources": [
@@ -124796,9 +124796,9 @@
         "pt": "Chegue por um aeroporto internacional designado e avise o posto de quarentena com antecedência"
       },
       {
-        "en": "Airline reservation and suitable travel crate if travelling in the hold",
-        "fr": "Réservation aérienne et caisse de transport adaptée si voyage en soute",
-        "es": "Reserva de la aerolínea y jaula de transporte adecuada si viaja en bodega",
+        "en": "Airline reservation and suitable IATA crate if travelling in the hold",
+        "fr": "Réservation aérienne et caisse IATA adaptée si voyage en soute",
+        "es": "Reserva de la aerolínea y jaula IATA adecuada si viaja en bodega",
         "pt": "Reserva na companhia aérea e caixa de transporte adequada às normas IATA se for viajar no porão"
       }
     ],
@@ -125642,9 +125642,9 @@
         "pt": "Notificação prévia ao serviço veterinário do aeroporto (Pristina)"
       },
       {
-        "en": "Airline reservation and suitable travel crate if travelling in the hold",
-        "fr": "Réservation et caisse de transport adaptée si voyage en soute",
-        "es": "Reserva de la aerolínea y jaula de transporte adecuada si viaja en bodega",
+        "en": "Airline reservation and suitable IATA crate if travelling in the hold",
+        "fr": "Réservation et caisse IATA adaptée si voyage en soute",
+        "es": "Reserva de la aerolínea y jaula IATA adecuada si viaja en bodega",
         "pt": "Reserva na companhia aérea e caixa de transporte adequada às normas IATA se for viajar no porão"
       }
     ],
@@ -126525,9 +126525,9 @@
         "pt": "Autorização e certificados originais para apresentar no ponto de entrada"
       },
       {
-        "en": "Airline reservation and suitable travel crate if travelling in the hold",
-        "fr": "Réservation et caisse de transport adaptée si voyage en soute",
-        "es": "Reserva de la aerolínea y jaula de transporte adecuada si viaja en bodega",
+        "en": "Airline reservation and suitable IATA crate if travelling in the hold",
+        "fr": "Réservation et caisse IATA adaptée si voyage en soute",
+        "es": "Reserva de la aerolínea y jaula IATA adecuada si viaja en bodega",
         "pt": "Reserva na companhia aérea e caixa de transporte adequada às normas IATA se for viajar no porão"
       },
       {

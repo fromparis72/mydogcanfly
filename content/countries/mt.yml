@@ -306,10 +306,10 @@ checklist:
     fr: "Entrée par l'aéroport international de Malte (Luqa) ou un terminal passagers maritime désigné"
     es: "Entra por el Aeropuerto Internacional de Malta (Luqa) o una terminal marítima de pasajeros designada"
     pt: "Entrada pelo Malta International Airport (Luqa) ou por um terminal marítimo de passageiros designado"
-  - en: "Original documents (not copies); airline reservation and suitable travel crate if in the hold"
-    fr: "Documents originaux (pas de copies) ; réservation aérienne et caisse de transport adaptée si voyage en soute"
-    es: "Documentos originales (no copias); reserva de la aerolínea y jaula de transporte adecuada si viaja en bodega"
-    pt: "Documentos originais (não cópias); reserva na companhia aérea e caixa de transporte adequada se for no porão"
+  - en: "Original documents (not copies); airline reservation and suitable IATA crate if in the hold"
+    fr: "Documents originaux (pas de copies) ; réservation aérienne et caisse IATA adaptée si voyage en soute"
+    es: "Documentos originales (no copias); reserva de la aerolínea y jaula IATA adecuada si viaja en bodega"
+    pt: "Documentos originais (não cópias); reserva na companhia aérea e caixa de transporte IATA adequada se for no porão"
 
 sources:
   - label: { en: "Malta Customs — Importing Live Animals / Pets into Malta", fr: "Douane de Malte — Importation d'animaux vivants / d'animaux de compagnie à Malte", es: "Malta Customs — Importación de animales vivos / mascotas a Malta", pt: "Malta Customs — Importação de animais vivos / animais de estimação para Malta" }

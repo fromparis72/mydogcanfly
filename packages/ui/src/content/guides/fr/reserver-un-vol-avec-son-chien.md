@@ -55,7 +55,7 @@ Ayez ces éléments sous la main avant d'appeler. Les questions sont presque par
 - **La race** — certaines sont restreintes ou refusées en soute, un point traité dans notre guide sur les [races brachycéphales et l'avion](/fr/travel-hub/races-brachycephales-et-avion/).
 - **L'itinéraire et l'appareil**, parce qu'une correspondance peut soumettre votre animal à deux jeux de règles différents.
 
-Si vous ne connaissez pas encore la taille de caisse qu'il vous faut, dimensionnez-la avant d'appeler plutôt que de l'estimer : notre [calculateur de caisse de transport](/fr/tools/crate/) et le guide pour [mesurer son chien pour une caisse](/fr/travel-hub/mesurer-son-chien-pour-une-caisse-iata/) vous donnent un chiffre que vous pourrez citer.
+Si vous ne connaissez pas encore la taille de caisse qu'il vous faut, dimensionnez-la avant d'appeler plutôt que de l'estimer : notre [calculateur de caisse IATA](/fr/tools/crate/) et le guide pour [mesurer son chien pour une caisse](/fr/travel-hub/mesurer-son-chien-pour-une-caisse-iata/) vous donnent un chiffre que vous pourrez citer.
 
 ## Cabine, soute ou fret : décidez avant d'appeler
 

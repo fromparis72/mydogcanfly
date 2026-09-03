@@ -12,7 +12,7 @@ tags: ["dog", "airplane", "cabin", "hold", "cargo", "service dog"]
 sourceUrl: "/flying-with-a-dog-cabin-hold-cargo/"
 enbref:
   - "🧳 **Cabin** (small dogs, carrier under the seat)"
-  - "📦 **Hold** (accompanied baggage, travel crate)"
+  - "📦 **Hold** (accompanied baggage, IATA crate)"
   - "🚚 **Cargo** (freight, priced by quote)"
   - "🦺 **Service dog** (free in the cabin)"
   - "💙 **Emotional support** (very restricted rules)"
@@ -22,7 +22,7 @@ cover:
   alt: "A dog in its travel crate being loaded into an aircraft hold on a conveyor belt"
 faq:
   - q: "What is the difference between the hold and cargo?"
-    a: "In the **hold** (accompanied baggage, AVIH), the dog travels on your flight, under your ticket, in an travel crate. As **cargo**, it is shipped as freight, sometimes on a different flight, priced by quote and with heavier paperwork."
+    a: "In the **hold** (accompanied baggage, AVIH), the dog travels on your flight, under your ticket, in an IATA crate. As **cargo**, it is shipped as freight, sometimes on a different flight, priced by quote and with heavier paperwork."
   - q: "Does an emotional support dog fly free in the cabin?"
     a: "No, not anymore in most cases. Since 2021, US airlines are no longer required to accept them as service dogs; they travel as pets (paid, in a carrier). In Europe, this status is not recognized."
   - q: "Does a guide dog pay for its ticket?"
@@ -43,7 +43,7 @@ It's the most reassuring formula: your dog stays with you, at normal temperature
 
 Above the cabin weight limit, the dog travels in the **hold**, in a **pressurized, heated compartment** designed for live animals (code AVIH in airline jargon: *Animal in Hold*). This is always **accompanied baggage**: your dog travels on **the same flight as you**, under your ticket.
 
-The conditions: a **rigid compliant with the applicable requirements crate** (sturdy, ventilated on several sides, with a leak-proof floor and metal hardware), a maximum combined weight for dog + crate (often up to 45 or 75 kg / 99 or 165 lb depending on the airline), and an advance reservation. Crucial point: most airlines **ban brachycephalic breeds from the hold** (bulldogs, pugs, boxers…) for respiratory health reasons. Size the crate with our [travel crate calculator](/tools/crate/) and read our guide to [choosing an airline-approved crate](/travel-hub/airline-approved-dog-crate/).
+The conditions: a **rigid IATA-approved crate** (sturdy, ventilated on several sides, with a leak-proof floor and metal hardware), a maximum combined weight for dog + crate (often up to 45 or 75 kg / 99 or 165 lb depending on the airline), and an advance reservation. Crucial point: most airlines **ban brachycephalic breeds from the hold** (bulldogs, pugs, boxers…) for respiratory health reasons. Size the crate with our [IATA crate calculator](/tools/crate/) and read our guide to [choosing an airline-approved crate](/travel-hub/airline-approved-dog-crate/).
 
 ## 3. As cargo: not to be confused with the hold
 
@@ -73,7 +73,7 @@ The most publicized is **Bark Air**, launched in May 2024: a charter operator, i
 
 For the vast majority of travelers, the choice comes down to **cabin** (small dog) or **hold** (medium to large dog) on a regular airline — cargo being reserved for special cases, and dog-only airlines for exceptional budgets. Before booking, always check the **destination country's entry requirements** (see our [dog travel requirements by country](/countries/)) and compare conditions with the [airline pet policy comparison](/airlines/). For the practical details of a standard flight, our guide to [flying with a dog](/travel-hub/flying-with-a-dog/) walks through every step.
 
-<ol class="gd-etapes"><li><a href="/travel-hub/international-travel-with-a-dog/">Check the health requirements</a></li><li><a href="/travel-hub/airline-approved-dog-crate/">Choose an compliant with the applicable requirements travel crate</a></li><li><a href="/travel-hub/dog-travel-anxiety/">Prepare your dog for the stress of the flight</a></li><li><a href="/airlines/">Compare all 62 airlines</a></li></ol>
+<ol class="gd-etapes"><li><a href="/travel-hub/international-travel-with-a-dog/">Check the health requirements</a></li><li><a href="/travel-hub/airline-approved-dog-crate/">Choose an IATA-approved travel crate</a></li><li><a href="/travel-hub/dog-travel-anxiety/">Prepare your dog for the stress of the flight</a></li><li><a href="/airlines/">Compare all 62 airlines</a></li></ol>
 
 ## Sources
 

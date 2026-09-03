@@ -352,10 +352,10 @@ checklist:
     fr: "Prévois le dédouanement d'importation obtenu auprès de la douane à l'arrivée"
     es: "Prevé el despacho de importación que se obtiene en aduanas a la llegada"
     pt: "Planeje a liberação de importação obtida junto à alfândega na chegada"
-  - en: "Airline reservation confirming your dog's travel option and travel crate if in the hold"
-    fr: "Réservation confirmant l'option de transport du chien et caisse de transport si voyage en soute"
-    es: "Reserva de la aerolínea que confirme la opción de viaje de tu perro y jaula de transporte si viaja en bodega"
-    pt: "Reserva da companhia aérea confirmando a opção de viagem do seu cachorro e caixa de transporte se for no porão"
+  - en: "Airline reservation confirming your dog's travel option and IATA crate if in the hold"
+    fr: "Réservation confirmant l'option de transport du chien et caisse IATA si voyage en soute"
+    es: "Reserva de la aerolínea que confirme la opción de viaje de tu perro y jaula IATA si viaja en bodega"
+    pt: "Reserva da companhia aérea confirmando a opção de viagem do seu cachorro e caixa de transporte IATA se for no porão"
 
 sources:
   - label: { en: "Ministry of Agriculture (regulations portal) — Decree No. 12301: Veterinary Quarantine", fr: "Ministère de l'Agriculture (portail réglementaire) — Décret n° 12301 : quarantaine vétérinaire", es: "Ministerio de Agricultura (portal normativo) — Decreto n.º 12301: cuarentena veterinaria", pt: "Ministério da Agricultura (portal de regulamentos) — Decreto nº 12301: Quarentena Veterinária" }

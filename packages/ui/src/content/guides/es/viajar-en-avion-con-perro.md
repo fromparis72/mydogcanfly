@@ -2,8 +2,8 @@
 key: "flying-with-a-dog"
 title: "Viajar en avión con perro: cabina, bodega y papeleo"
 seoTitle: "Viajar en avión con perro: cabina, bodega y papeleo"
-description: "Viajar en avión con perro: normas de cabina o bodega, límites de peso, el transportín y los documentos sanitarios, explicados paso a paso."
-summary: "Viajar en avión con perro exige un transportín, un peso dentro del límite de tu aerolínea y un papeleo sanitario iniciado varias semanas antes de salir."
+description: "Viajar en avión con perro: normas de cabina o bodega, límites de peso, el transportín IATA y los documentos sanitarios, explicados paso a paso."
+summary: "Viajar en avión con perro exige un transportín IATA, un peso dentro del límite de tu aerolínea y un papeleo sanitario iniciado varias semanas antes de salir."
 date: "2026-06-25T11:00:00+02:00"
 lastmod: "2026-06-25T11:00:00+02:00"
 author: "Camille Roussel"
@@ -11,7 +11,7 @@ category: "travel"
 tags: ["perro", "avión", "viaje internacional"]
 enbref:
   - "🧳 **Cabina** para perros pequeños (a menudo ≤ 8 kg, transportín incluido)"
-  - "📦 **Bodega** para perros más grandes, en un **transportín**"
+  - "📦 **Bodega** para perros más grandes, en un **transportín IATA**"
   - "📄 Papeleo sanitario: microchip, vacuna antirrábica, documento de viaje y, a veces, test serológico de rabia"
   - "⏳ **Empieza varias semanas** antes de la salida"
 cover:
@@ -20,7 +20,7 @@ cover:
   credit: "Foto: [Jeswin Thomas](https://unsplash.com/@jeswinthomas?utm_source=mydogcanfly&utm_medium=referral) en [Unsplash](https://unsplash.com/?utm_source=mydogcanfly&utm_medium=referral)"
 faq:
   - q: "¿Cuál es el peso máximo para volar en cabina?"
-    a: "El límite suele situarse entre 6 y 8 kg, transportín incluido, pero varía según la aerolínea. Por encima de esa cifra, el perro viaja en bodega dentro de un transportín. Comprueba siempre el umbral exacto de tu compañía."
+    a: "El límite suele situarse entre 6 y 8 kg, transportín incluido, pero varía según la aerolínea. Por encima de esa cifra, el perro viaja en bodega dentro de un transportín IATA. Comprueba siempre el umbral exacto de tu compañía."
   - q: "¿Puede mi perro viajar en bodega sin mí?"
     a: "Sí, algunas aerolíneas transportan al perro como carga, sin su dueño a bordo, pero las condiciones son estrictas y caras. La mayoría de los viajeros prefiere acompañar a su animal en el mismo vuelo."
   - q: "¿Pueden volar las razas de hocico corto?"
@@ -38,14 +38,14 @@ El avión abre la puerta a viajes lejanos con tu perro, pero es también el medi
 El lugar donde viaja tu perro depende sobre todo del peso y de la aerolínea.
 
 - **En cabina**: reservada a perros pequeños, por lo general hasta 6 u 8 kg incluido el transportín. El transportín debe caber bajo el asiento de delante. Es la opción más tranquilizadora, porque tu perro se queda contigo.
-- **En bodega**: para perros más pesados, que viajan en un transportín rígido conforme a los requisitos IATA, en un compartimento presurizado y con calefacción.
+- **En bodega**: para perros más pesados, que viajan en un transportín rígido homologado IATA, en un compartimento presurizado y con calefacción.
 - **Posible negativa**: algunas aerolíneas no aceptan razas braquicéfalas (bulldogs, carlinos) en bodega, por el riesgo respiratorio.
 
 Comprueba siempre las condiciones exactas con tu aerolínea antes de reservar.
 
-## ¿Qué es un transportín y cómo elegirlo?
+## ¿Qué es un transportín IATA y cómo elegirlo?
 
-El transportín es la norma internacional para el transporte aéreo de animales. Debe ser rígido, bien ventilado por al menos tres lados, con una puerta que cierre con seguridad y un suelo estanco. Tu perro tiene que poder ponerse de pie, darse la vuelta y tumbarse cómodamente dentro.
+El transportín IATA es la norma internacional para el transporte aéreo de animales. Debe ser rígido, bien ventilado por al menos tres lados, con una puerta que cierre con seguridad y un suelo estanco. Tu perro tiene que poder ponerse de pie, darse la vuelta y tumbarse cómodamente dentro.
 
 Acostumbra a tu perro al transportín varias semanas antes del vuelo. Para elegir el adecuado, consulta nuestra guía sobre [el equipamiento de viaje del perro](/es/travel-hub/equipamiento-de-viaje-para-perro/), que detalla dimensiones y criterios de seguridad.
 
@@ -69,7 +69,7 @@ Este es el orden que conviene seguir para que no se olvide nada:
 3. **Consigue el documento de viaje**: el pasaporte europeo para animales de compañía que expide tu veterinario si tu perro reside en la UE, o los certificados sanitarios que exija el país de destino.
 4. **Comprueba los requisitos del país de llegada**: algunos exigen un test serológico de rabia, una cuarentena o tratamientos antiparasitarios.
 5. **Contacta con la aerolínea** para reservar la plaza de tu animal y confirmar el peso admitido y el tipo de transportín.
-6. **Consigue un transportín conforme** y acostumbra a tu perro a usarlo.
+6. **Consigue un transportín IATA conforme** y acostumbra a tu perro a usarlo.
 7. **Prepara el gran día**: ejercicio antes de salir, comida ligera 4 horas antes, un bebedero fijado al transportín y una etiqueta de «animal vivo».
 
 ## ¿Con cuánta antelación hay que empezar?
@@ -91,7 +91,7 @@ Después alarga la duración y añade movimiento: lleva el transportín en brazo
 
 ## ¿Qué presupuesto hay que prever para volar con un perro?
 
-El coste depende de la aerolínea, la distancia y la forma de viajar del perro. A título orientativo, cuenta con 50 a 125 € para un perro pequeño en cabina en un vuelo dentro de Europa, y con 100 a 400 € para el transporte en bodega según la distancia. Después llegan los extras, a menudo infravalorados: un transportín conforme (de 40 a más de 150 € según el tamaño), la consulta veterinaria y el documento de viaje, la vacuna antirrábica y un posible test serológico de rabia (del orden de 70 a 120 € en un laboratorio autorizado). Algunos destinos exigen además tratamientos antiparasitarios con fecha o certificados traducidos, a veces de pago. Fija un presupuesto global y anticípate: las plazas para animales son limitadas en cada vuelo y se agotan rápido, sobre todo en temporada alta.
+El coste depende de la aerolínea, la distancia y la forma de viajar del perro. A título orientativo, cuenta con 50 a 125 € para un perro pequeño en cabina en un vuelo dentro de Europa, y con 100 a 400 € para el transporte en bodega según la distancia. Después llegan los extras, a menudo infravalorados: un transportín IATA conforme (de 40 a más de 150 € según el tamaño), la consulta veterinaria y el documento de viaje, la vacuna antirrábica y un posible test serológico de rabia (del orden de 70 a 120 € en un laboratorio autorizado). Algunos destinos exigen además tratamientos antiparasitarios con fecha o certificados traducidos, a veces de pago. Fija un presupuesto global y anticípate: las plazas para animales son limitadas en cada vuelo y se agotan rápido, sobre todo en temporada alta.
 
 ## ¿Tren o avión: qué elegir?
 
@@ -104,4 +104,4 @@ Para desplazamientos dentro de la Europa continental, el tren suele ser más sen
 - [Service-public.fr — animales de compañía y viajes](https://www.service-public.fr)
 - [Comisión Europea — viajar con animales de compañía](https://europa.eu)
 
-<ol class="gd-etapes"><li><a href="/es/travel-hub/viajar-al-extranjero-con-perro/">Comprueba los requisitos sanitarios</a></li><li><a href="/es/travel-hub/transportin-homologado-iata-perro/">Elige un transportín conforme a los requisitos IATA</a></li><li><a href="/es/travel-hub/ansiedad-del-perro-en-los-viajes/">Prepara a tu perro para el estrés del vuelo</a></li><li><a href="/es/airlines/">Compara las 62 aerolíneas</a></li></ol>
+<ol class="gd-etapes"><li><a href="/es/travel-hub/viajar-al-extranjero-con-perro/">Comprueba los requisitos sanitarios</a></li><li><a href="/es/travel-hub/transportin-homologado-iata-perro/">Elige un transportín homologado IATA</a></li><li><a href="/es/travel-hub/ansiedad-del-perro-en-los-viajes/">Prepara a tu perro para el estrés del vuelo</a></li><li><a href="/es/airlines/">Compara las 62 aerolíneas</a></li></ol>

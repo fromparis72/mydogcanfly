@@ -49,7 +49,7 @@ Caractéristiques pratiques :
 
 - Enregistrement au terminal passagers, en général à un guichet dédié et plus tôt qu'un bagage ordinaire.
 - Tarifé comme un forfait animal ou comme un excédent de bagage, selon le transporteur.
-- Exige une caisse rigide conforme à l'IATA — voyez [choisir une caisse conforme aux exigences applicables](/fr/travel-hub/caisse-transport-avion-homologuee-chien/) et dimensionnez-la avec notre [calculateur de caisse](/fr/tools/crate/).
+- Exige une caisse rigide conforme à l'IATA — voyez [choisir une caisse homologuée](/fr/travel-hub/caisse-transport-avion-homologuee-chien/) et dimensionnez-la avec notre [calculateur de caisse](/fr/tools/crate/).
 - Soumis aux embargos de température et aux restrictions de race, notamment pour les [races brachycéphales](/fr/travel-hub/races-brachycephales-et-avion/).
 
 Tous les transporteurs ne le proposent pas sur toutes les lignes, et plusieurs l'ont retiré entièrement. C'est l'une des choses qui bougent : voyez [pourquoi les politiques animaux changent](/fr/travel-hub/politiques-animaux-des-compagnies-qui-changent/).

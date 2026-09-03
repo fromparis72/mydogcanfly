@@ -1,7 +1,7 @@
 ---
 key: "measuring-your-dog-for-a-crate"
-title: "Medir a tu perro para un transportín, sin adivinar"
-seoTitle: "Medir a un perro para un transportín"
+title: "Medir a tu perro para un transportín IATA, sin adivinar"
+seoTitle: "Medir a un perro para un transportín IATA"
 description: "Las cuatro medidas que las aerolíneas comprueban de verdad, cómo tomarlas correctamente y por qué pasarse de tamaño no es la respuesta segura."
 summary: "Cuatro medidas deciden el transportín: longitud, altura a la cruz, altura de pie con la cabeza alta y anchura. Tómalas con el perro de pie, añade los márgenes y contrasta el resultado con la aerolínea."
 date: "2026-08-17T09:00:00+02:00"
@@ -37,7 +37,7 @@ La medición en sí lleva cinco minutos. Esto es qué medir, cómo, y qué hacer
 
 Todas las aerolíneas aplican alguna versión de la misma exigencia, tomada de las Live Animals Regulations de la IATA: dentro del transportín, el perro debe poder **estar de pie con la cabeza alta, girarse por completo y tumbarse de forma natural**, sin tocar las paredes ni el techo.
 
-Todo lo demás —las cuatro medidas, los márgenes— existe solo para satisfacer esa frase. Nuestra guía sobre [elegir un transportín conforme a los requisitos aplicables](/es/travel-hub/transportin-homologado-iata-perro/) cubre las exigencias de construcción: ventilación por varios lados, cierres seguros, suelo estanco.
+Todo lo demás —las cuatro medidas, los márgenes— existe solo para satisfacer esa frase. Nuestra guía sobre [elegir un transportín homologado](/es/travel-hub/transportin-homologado-iata-perro/) cubre las exigencias de construcción: ventilación por varios lados, cierres seguros, suelo estanco.
 
 ## Las cuatro medidas
 
@@ -50,7 +50,7 @@ Tómalas con el perro **de pie**, sobre una superficie plana y con una cinta mé
 
 Después, los márgenes habituales: la longitud del transportín es normalmente **A + la mitad de B**, la altura interior al menos **C más unos centímetros**, y la anchura interior al menos **el doble de D** para que el perro pueda girarse.
 
-En lugar de hacer esa aritmética a mano, introduce tus medidas en nuestra [calculadora de transportín](/es/tools/crate/): devuelve las dimensiones interiores que hay que buscar, que es la cifra a citar cuando contactes con la aerolínea.
+En lugar de hacer esa aritmética a mano, introduce tus medidas en nuestra [calculadora de transportín IATA](/es/tools/crate/): devuelve las dimensiones interiores que hay que buscar, que es la cifra a citar cuando contactes con la aerolínea.
 
 ## Por qué más grande no es más seguro
 

@@ -379,10 +379,10 @@ checklist:
     fr: "Vérifie que ton chien n'est pas une race de type pit-bull interdite au regard de la loi vénézuélienne"
     es: "Comprueba que tu perro no sea una raza de tipo pit-bull prohibida conforme a la ley venezolana"
     pt: "Confira se o seu cachorro não é de uma raça do tipo pit bull proibida pela lei venezuelana"
-  - en: "Airline reservation confirming your dog's travel option and a suitable travel crate if in the hold"
-    fr: "Réservation confirmant l'option de transport de ton chien et une caisse de transport adaptée si en soute"
-    es: "Reserva de la aerolínea que confirme la opción de viaje de tu perro y una jaula de transporte adecuada si viaja en bodega"
-    pt: "Reserva da companhia aérea confirmando a opção de viagem do seu cachorro e uma caixa de transporte adequada se ele for no porão"
+  - en: "Airline reservation confirming your dog's travel option and a suitable IATA crate if in the hold"
+    fr: "Réservation confirmant l'option de transport de ton chien et une caisse IATA adaptée si en soute"
+    es: "Reserva de la aerolínea que confirme la opción de viaje de tu perro y una jaula IATA adecuada si viaja en bodega"
+    pt: "Reserva da companhia aérea confirmando a opção de viagem do seu cachorro e uma caixa de transporte IATA adequada se ele for no porão"
 
 sources:
   - label: { en: "INSAI (via Embassy of Venezuela in France) — Requirements to bring a pet (dogs/cats) into Venezuela", fr: "INSAI (via l'ambassade du Venezuela en France) — Conditions pour faire entrer un animal (chiens/chats) au Venezuela", es: "INSAI (a través de la Embajada de Venezuela en Francia) — Requisitos para hacer entrar una mascota (perros/gatos) en Venezuela", pt: "INSAI (via Embaixada da Venezuela na França) — Requisitos para levar um animal de estimação (cachorros/gatos) para a Venezuela" }

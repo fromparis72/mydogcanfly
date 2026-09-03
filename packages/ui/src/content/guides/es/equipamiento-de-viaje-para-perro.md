@@ -3,7 +3,7 @@ key: "dog-travel-gear"
 title: "Elegir el equipamiento de viaje del perro: transportín, arnés, bolso"
 seoTitle: "Equipamiento de viaje para perro: transportín, arnés, bolso"
 description: "Equipamiento de viaje para perro: cómo elegir transportín, arnés de seguridad o bolso según el tamaño de tu perro, el medio de transporte y las normas de seguridad."
-summary: "El equipamiento adecuado depende del tamaño de tu perro y del medio de transporte: transportín rígido, arnés de seguridad conforme a los requisitos aplicables o bolso, según la situación."
+summary: "El equipamiento adecuado depende del tamaño de tu perro y del medio de transporte: transportín rígido, arnés de seguridad homologado o bolso, según la situación."
 date: "2026-06-25T09:30:00+02:00"
 lastmod: "2026-06-25T09:30:00+02:00"
 author: "Camille Roussel"
@@ -27,12 +27,12 @@ faq:
   - q: "¿Cómo acierto con el tamaño del transportín?"
     a: "Mide la altura de tu perro a la cruz (con las orejas erguidas) y su longitud del hocico a la base de la cola, y añade unos centímetros. El perro debe poder ponerse de pie, darse la vuelta y tumbarse sin agobio."
   - q: "¿Qué presupuesto hay que prever para equipar bien al perro?"
-    a: "Cuenta con unos 30–80 € para un arnés con crash test, 25–60 € para un transportín flexible, 50–150 € para un transportín rígido IATA y 30–90 € para un bolso de cabina. Un equipamiento conforme a los requisitos aplicables y duradero sale más barato a la larga que un modelo económico que habrá que reemplazar."
+    a: "Cuenta con unos 30–80 € para un arnés con crash test, 25–60 € para un transportín flexible, 50–150 € para un transportín rígido IATA y 30–90 € para un bolso de cabina. Un equipamiento homologado y duradero sale más barato a la larga que un modelo económico que habrá que reemplazar."
   - q: "¿Puede el arnés de coche servir también para pasear?"
     a: "Algunos modelos son polivalentes, pero un arnés de seguridad con crash test está pensado ante todo para el coche. Para paseos largos, un arnés específico y mejor acolchado resultará más cómodo en el día a día."
 ---
 
-Equipar a tu perro para viajar no consiste en acumular accesorios: se trata de elegir los adecuados para su peso, su carácter y tu medio de transporte. Un transportín mal dimensionado, un arnés no conforme a los requisitos aplicables o un bolso demasiado pequeño pueden comprometer la seguridad y la comodidad de tu perro. Estos son los criterios concretos para acertar a la primera.
+Equipar a tu perro para viajar no consiste en acumular accesorios: se trata de elegir los adecuados para su peso, su carácter y tu medio de transporte. Un transportín mal dimensionado, un arnés no homologado o un bolso demasiado pequeño pueden comprometer la seguridad y la comodidad de tu perro. Estos son los criterios concretos para acertar a la primera.
 
 ## Transportín, arnés o bolso: ¿qué equipamiento para qué uso?
 
@@ -45,7 +45,7 @@ Cada dispositivo cumple una función precisa. Aquí tienes una comparativa para 
 | Arnés de seguridad | Perros medianos y grandes | Coche | Libertad de movimiento, se engancha al cinturón |
 | Bolso de transporte | Perros pequeños (< 8 kg) | Tren, cabina de avión | Compacto, mantiene al perro cerca de ti |
 
-La elección parte de tu medio de desplazamiento principal. Un perro grande que viaja sobre todo en coche estará bien con un arnés conforme a los requisitos aplicables; un perro pequeño que vuela necesita un bolso conforme para cabina.
+La elección parte de tu medio de desplazamiento principal. Un perro grande que viaja sobre todo en coche estará bien con un arnés homologado; un perro pequeño que vuela necesita un bolso conforme para cabina.
 
 ## Qué mirar en un transportín de viaje
 
@@ -116,7 +116,7 @@ En cuanto al presupuesto, estas son cifras realistas para equiparse sin sorpresa
 | Transportín rígido IATA | 50–150 € | Varios años |
 | Bolso de cabina | 30–90 € | Varios años |
 
-Invertir en material duradero y conforme a los requisitos aplicables cuesta menos con el tiempo que reemplazar un modelo de gama baja, y sobre todo protege de verdad a tu perro.
+Invertir en material duradero y homologado cuesta menos con el tiempo que reemplazar un modelo de gama baja, y sobre todo protege de verdad a tu perro.
 
 ## ¿Qué accesorios adicionales llevar?
 

@@ -337,10 +337,10 @@ checklist:
     fr: "Prévois de garder le chien confiné à son adresse de destination pendant 10 jours après l'arrivée"
     es: "Prevé mantener al perro confinado en su dirección de destino durante 10 días tras la llegada"
     pt: "Planeje manter o cachorro confinado no endereço de destino por 10 dias após a chegada"
-  - en: "Airline reservation confirming your dog's travel option and a suitable travel crate if in the hold"
-    fr: "Réservation confirmant l'option de transport de ton chien et une caisse de transport adaptée si en soute"
-    es: "Reserva de la aerolínea que confirme la opción de viaje de tu perro y una jaula de transporte adecuada si viaja en bodega"
-    pt: "Reserva da companhia aérea confirmando a opção de viagem do seu cachorro e uma caixa de transporte adequada se ele for no porão"
+  - en: "Airline reservation confirming your dog's travel option and a suitable IATA crate if in the hold"
+    fr: "Réservation confirmant l'option de transport de ton chien et une caisse IATA adaptée si en soute"
+    es: "Reserva de la aerolínea que confirme la opción de viaje de tu perro y una jaula IATA adecuada si viaja en bodega"
+    pt: "Reserva da companhia aérea confirmando a opção de viagem do seu cachorro e uma caixa de transporte IATA adequada se ele for no porão"
 
 sources:
   - label: { en: "SAG — Entry of pet dogs, cats and ferrets (Ingreso de perros, gatos y hurones mascotas)", fr: "SAG — Entrée des chiens, chats et furets de compagnie (Ingreso de perros, gatos y hurones mascotas)", es: "SAG — Entrada de perros, gatos y hurones de compañía (Ingreso de perros, gatos y hurones mascotas)", pt: "SAG — Entrada de cães, gatos e furões de estimação (Ingreso de perros, gatos y hurones mascotas)" }

@@ -49,7 +49,7 @@ Practical characteristics:
 
 - Checked in at the passenger terminal, usually at a dedicated desk and earlier than normal baggage.
 - Priced as a pet fee or an excess-baggage charge, depending on the carrier.
-- Requires an compliant with the applicable requirements rigid crate — see [choosing an airline-approved crate](/travel-hub/airline-approved-dog-crate/) and size it with our [crate calculator](/tools/crate/).
+- Requires an IATA-compliant rigid crate — see [choosing an airline-approved crate](/travel-hub/airline-approved-dog-crate/) and size it with our [crate calculator](/tools/crate/).
 - Subject to temperature embargoes and to breed restrictions, notably for [snub-nosed breeds](/travel-hub/snub-nosed-breeds-and-flying/).
 
 Not every carrier offers it on every route, and several have withdrawn it entirely. That is one of the things that moves: see [why airline pet policies change](/travel-hub/airline-pet-policy-changes/).

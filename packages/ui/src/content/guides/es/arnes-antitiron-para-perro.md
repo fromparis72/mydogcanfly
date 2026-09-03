@@ -29,7 +29,7 @@ faq:
   - q: "¿Se recomiendan los arneses que aprietan cuando el perro tira?"
     a: "Funcionan por incomodidad —a veces por pinzamiento bajo las axilas— y conllevan riesgo de lesión y de que tu perro asocie el paseo con algo negativo. La mayoría de los educadores en refuerzo positivo prefiere un arnés de anilla delantera, que redirige sin castigar. Evítalos para el uso diario."
   - q: "¿Puedo usar el mismo arnés en el coche?"
-    a: "No. Un arnés de paseo no está diseñado ni sometido a crash test para resistir un impacto en coche. Para el coche hace falta un arnés de seguridad específico enganchado al cinturón, o un transportín conforme a los requisitos aplicables. Son dos equipamientos distintos con funciones distintas."
+    a: "No. Un arnés de paseo no está diseñado ni sometido a crash test para resistir un impacto en coche. Para el coche hace falta un arnés de seguridad específico enganchado al cinturón, o un transportín homologado. Son dos equipamientos distintos con funciones distintas."
 ---
 
 Si tu perro convierte cada paseo en una sesión de tiro de trineo, no eres el único. Los tirones de correa son uno de los motivos más frecuentes por los que se llama a un educador canino. Muchos esperan que un accesorio resuelva el problema en una sola salida, y ahí es donde aparece la decepción o, peor, la compra inadecuada que hace daño al perro.

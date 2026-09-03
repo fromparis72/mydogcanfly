@@ -2,7 +2,7 @@
 key: "dog-carriers-and-crates"
 title: "Sac ou caisse de transport : bien choisir pour son chien"
 description: "Sac, caisse ou cage de transport : critères de choix selon la taille du chien et le mode de voyage, normes avion et conseils d'habituation."
-summary: "Le bon contenant dépend du gabarit et du mode de transport : sac souple pour les petits chiens en cabine, caisse rigide conforme aux exigences applicables pour la voiture, l'avion ou le train. L'habituation progressive est la clé de l'acceptation."
+summary: "Le bon contenant dépend du gabarit et du mode de transport : sac souple pour les petits chiens en cabine, caisse rigide homologuée pour la voiture, l'avion ou le train. L'habituation progressive est la clé de l'acceptation."
 date: "2026-07-04T08:00:00+02:00"
 lastmod: "2026-07-04T08:00:00+02:00"
 author: "Camille Roussel"
@@ -11,7 +11,7 @@ tags: ["chien", "caisse de transport", "sac", "équipement"]
 sourceUrl: "/sac-caisse-transport-chien/"
 enbref:
   - "👜 **Sac souple** : petits chiens en cabine"
-  - "📦 **Caisse rigide conforme aux exigences applicables** : voiture, avion, train"
+  - "📦 **Caisse rigide homologuée** : voiture, avion, train"
   - "📐 Taille = **debout, se retourner, se coucher**"
   - "🐾 L'**habituation progressive** fait toute la différence"
 cover:
@@ -23,7 +23,7 @@ faq:
     a: "Choisissez une caisse dans laquelle votre chien peut se tenir debout sans courber la tête, se retourner complètement et se coucher en allongeant les pattes. Mesurez sa longueur du nez à la base de la queue et sa hauteur en position debout, puis ajoutez une marge. Ni trop petite, ni excessivement grande."
   - q: "Un sac souple est-il accepté en cabine d'avion ?"
     a: "Souvent oui pour les petits chiens, mais chaque compagnie fixe ses propres limites de dimensions et de poids. Le sac doit être ventilé, fermé de façon sécurisée et tenir sous le siège avant. Vérifiez toujours les conditions exactes auprès de la compagnie avant de réserver."
-  - q: "Faut-il une caisse rigide conforme aux exigences IATA pour la soute ?"
+  - q: "Faut-il une caisse rigide homologuée IATA pour la soute ?"
     a: "Oui, le transport en soute exige une caisse rigide conforme aux exigences IATA : solidité, ventilation sur plusieurs faces, fermetures sécurisées et fond étanche. Les compagnies peuvent ajouter leurs propres critères, donc confirmez le modèle attendu avant le départ."
   - q: "Comment éviter que mon chien stresse dans sa caisse ?"
     a: "Procédez par habituation progressive en associant la caisse à des expériences positives : friandises, couverture familière, séances courtes puis de plus en plus longues. Ne l'enfermez jamais brutalement et n'utilisez jamais la caisse comme punition, sous peine de créer une aversion durable."

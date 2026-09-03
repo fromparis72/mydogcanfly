@@ -1,7 +1,7 @@
 ---
 key: "measuring-your-dog-for-a-crate"
-title: "Medir o seu cachorro para uma caixa de transporte, sem adivinhar"
-seoTitle: "Medir um cachorro para uma caixa de transporte"
+title: "Medir o seu cachorro para uma caixa IATA, sem adivinhar"
+seoTitle: "Medir um cachorro para uma caixa de transporte IATA"
 description: "As quatro medidas que as companhias realmente conferem, como tomá-las corretamente e por que exagerar no tamanho não é a resposta segura."
 summary: "Quatro medidas decidem a caixa: comprimento, altura na cernelha, altura de pé com a cabeça erguida e largura. Tome-as com o cachorro de pé, acrescente as margens e confronte o resultado com a companhia."
 date: "2026-08-17T09:00:00+02:00"
@@ -37,7 +37,7 @@ A medição em si leva cinco minutos. Aqui está o que medir, como, e o que faze
 
 Todas as companhias aplicam alguma versão da mesma exigência, tirada das Live Animals Regulations da IATA: dentro da caixa, o cachorro precisa conseguir **ficar de pé com a cabeça erguida, virar-se por completo e deitar-se naturalmente**, sem tocar nas paredes nem no teto.
 
-Todo o resto — as quatro medidas, as margens — existe apenas para satisfazer essa frase. O nosso guia sobre [escolher uma caixa conforme a los requisitos aplicables](/pt/travel-hub/caixa-de-transporte-homologada-iata/) trata das exigências de construção: ventilação em vários lados, travas seguras, piso estanque.
+Todo o resto — as quatro medidas, as margens — existe apenas para satisfazer essa frase. O nosso guia sobre [escolher uma caixa homologada](/pt/travel-hub/caixa-de-transporte-homologada-iata/) trata das exigências de construção: ventilação em vários lados, travas seguras, piso estanque.
 
 ## As quatro medidas
 
@@ -50,7 +50,7 @@ Tome-as com o cachorro **de pé**, sobre uma superfície plana e com uma fita m�
 
 Depois, as margens habituais: o comprimento da caixa é normalmente **A + metade de B**, a altura interna pelo menos **C mais alguns centímetros**, e a largura interna pelo menos **duas vezes D** para que o cachorro consiga se virar.
 
-Em vez de fazer essa conta à mão, coloque as suas medidas na nossa [calculadora de caixa de transporte](/pt/tools/crate/): ela devolve as dimensões internas a procurar, que é o número a citar quando você falar com a companhia.
+Em vez de fazer essa conta à mão, coloque as suas medidas na nossa [calculadora de caixa IATA](/pt/tools/crate/): ela devolve as dimensões internas a procurar, que é o número a citar quando você falar com a companhia.
 
 ## Por que maior não é mais seguro
 
