@@ -759,15 +759,16 @@ const MUTATIONS = [
     attendu: "l'arbre a CHANGÉ malgré l'échec",
   },
   {
-    nom: "un guide est rangé sous une clé valide mais fausse au regard de son ancienne rubrique",
-    id: "un-guide-est-range-sous-une-cle-valide-mais-fausse-au-re",
-    /* La correspondance doit MORDRE, et pas seulement exister. La clé posée ici est parfaitement
-       licite au regard du schéma — `z.enum` la laisse passer, le site se construit, l'index
-       affiche quatre rubriques — mais elle ne correspond PAS à ce que portait le fichier avant
-       migration. Seul un vérificateur qui recalcule depuis l'état antérieur peut le voir. */
-    fichier: "packages/ui/src/content/guides/es/embargos-por-calor-en-bodega.md",
-    cherche: 'category: "travel"',
-    remplace: 'category: "health"',
+    nom: "la preuve historique accepte une correspondance de migration erronée",
+    id: "la-preuve-historique-accepte-une-correspondance-de-migrat",
+    /* La preuve compare deux commits IMMUABLES (rescopage du 03/09/2026) : muter un guide courant
+       ne l'atteint plus, et c'est voulu — les éditions postérieures lui sont étrangères. Ce qui
+       peut encore la tromper, c'est SA PROPRE TABLE de correspondance, recopiée à dessein pour ne
+       rien emprunter au migrateur. On y fait dire que « Travel » donnait « health » : le
+       recalcul depuis l'état antérieur doit contredire le résultat historique et le NOMMER. */
+    fichier: "preuve-migration-categories.mjs",
+    cherche: '["Travel", "travel"], ["Voyager", "travel"],',
+    remplace: '["Travel", "health"], ["Voyager", "travel"],',
     harnais: "preuve-migration-categories.mjs",
     attendu: "aurait dû donner",
   },
