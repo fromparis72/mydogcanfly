@@ -62,12 +62,32 @@ const SEGMENTS = [
   [/· última verificación /g, "· fuentes recopiladas el "],
   [/· última verificação em /g, "· fontes recolhidas em "],
   [/· verified /g, "· sources collected "],
+];
+
+/* SECONDE PASSE — RÉPARER LA REDONDANCE QUE LA PREMIÈRE A CRÉÉE.
+ *
+ * « 4 Aegean sources · SOURCES collected 8 August 2026 » : mon remplacement a introduit un second
+ * « sources » dans une phrase qui en portait déjà un. Ce n'est pas faux, c'est mal écrit — et je
+ * l'ai écrit. La réparation est une SUPPRESSION stricte du nom redondant, sans toucher à la
+ * grammaire : aucun accord, aucun article, aucun genre à recalculer.
+ *
+ * CE QUE JE NE FAIS PAS ICI, ET POURQUOI. Le NOMBRE annoncé (« 4 sources ») n'est adossé à rien :
+ * le dépôt ne contient qu'UNE source officielle pour Aegean, l'autre étant une auto-citation. Le
+ * retirer demanderait de réécrire l'amorce de la phrase dans quatre langues, avec singulier,
+ * pluriel, article et genre — « 1 source Aircalin » → « Source Aircalin ». C'est très exactement
+ * la manœuvre qui, en août, a produit des phrases fausses dans 302 fichiers. Le compte est donc
+ * SIGNALÉ à l'arbitrage, pas réécrit à une semaine du lancement. */
+const REDONDANCES = [
+  [/· sources collected /g, "· collected "],
+  [/· sources relevées le /g, "· relevées le "],
+  [/· fuentes recopiladas el /g, "· recopiladas el "],
+  [/· fontes recolhidas em /g, "· recolhidas em "],
   [/· vérifiée le /g, "· sources relevées le "],
   [/· verificada el /g, "· fuentes recopiladas el "],
   [/· verificada em /g, "· fontes recolhidas em "],
 ];
 
-let fiches = 0, pastilles = 0, segments = 0, ecrites = 0;
+let fiches = 0, pastilles = 0, segments = 0, redondances = 0, ecrites = 0;
 const restants = [];
 
 for (const f of readdirSync(SRC).filter((x) => x.endsWith(".yml") && x !== "_template.yml").sort()) {
@@ -85,6 +105,9 @@ for (const f of readdirSync(SRC).filter((x) => x.endsWith(".yml") && x !== "_tem
   for (const [motif, remplacement] of SEGMENTS) {
     apres = apres.replace(motif, () => { segments++; return remplacement; });
   }
+  for (const [motif, remplacement] of REDONDANCES) {
+    apres = apres.replace(motif, () => { redondances++; return remplacement; });
+  }
   /* Ce que l'outil n'a PAS su corriger doit se voir, plutôt que de passer pour un zéro. */
   if (/Verified \d|Vérifié le \d|Verificado (?:el |em )?\d|last verified|dernière vérification|última verifica/i.test(apres)) {
     restants.push(f);
@@ -98,6 +121,7 @@ for (const f of readdirSync(SRC).filter((x) => x.endsWith(".yml") && x !== "_tem
 console.log(`${fiches} fiches lues`);
 console.log(`  ${pastilles} pastille(s) « Vérifié le … » remplacée(s) par « Mise à jour le … »`);
 console.log(`  ${segments} segment(s) « dernière vérification » remplacé(s) par « sources relevées le »`);
+console.log(`  ${redondances} redondance(s) « sources · sources » réparée(s)`);
 console.log(`  ${ecrites} fiche(s) ${ECRIRE ? "réécrite(s)" : "à réécrire"}`);
 if (restants.length) {
   console.log(`\n  ⚠ ${restants.length} fiche(s) portent ENCORE une mention non reconnue :`);

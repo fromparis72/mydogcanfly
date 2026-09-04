@@ -92,9 +92,9 @@ sont désormais engendrées depuis `PLACEMENT_STATUS_CAUSES`.
 
 ---
 
-## 3. LES CINQ ARBITRAGES EN ATTENTE — c'est la partie qui compte
+## 3. LES SIX ARBITRAGES EN ATTENTE — c'est la partie qui compte
 
-Ce sont **cinq faces d'une seule question** : combien montrer d'une donnée non prouvée ? Elles
+Ce sont **six faces d'une seule question** : combien montrer d'une donnée non prouvée ? Elles
 gagnent à être tranchées ensemble.
 
 ### 3.1 — Les listes « meilleures compagnies » des fiches de race sont VIDES
@@ -169,7 +169,27 @@ n'afficher le verdict que lorsqu'au moins un canal est décidé ; ou le laisser 
 la contradiction. Le compte est figé dans une contre-épreuve et rougira dans un sens comme dans
 l'autre.
 
-### 3.5 — Les citations de l'étape B
+### 3.5 — Les fiches annoncent un nombre de sources qu'elles ne montrent pas
+
+**95 fiches** affichent, sous un bouclier « 🛡️ Source officielle », une ligne du type
+« 4 sources Aegean · relevées le 8 août 2026 ». Le visiteur ne reçoit **aucune** de ces 4 sources :
+le seul lien sortant de la fiche Aegean est `https://en.aegeanair.com/`, la page d'accueil.
+
+Et le compte n'est adossé à rien : le dépôt contient **2** URL pour Aegean, dont une auto-citation
+(`mydogcanfly.com/aegean-airlines-dog-policy/`) — donc **une seule** source officielle, pour un
+chiffre annoncé de 4. Sur 95 fiches annonçant un nombre, 80 annoncent plus que ce que le dépôt
+porte.
+
+**Je ne l'ai pas réécrit, et c'est un choix de prudence assumé.** Retirer le nombre demande de
+refaire l'amorce dans quatre langues — « 1 source Aircalin » → « Source Aircalin », avec singulier,
+pluriel, article et genre. C'est exactement la manœuvre qui, en août, a produit des phrases fausses
+dans 302 fichiers. À une semaine du lancement, le risque de casser 408 pages dépasse le gain.
+
+**Ce que j'ai corrigé en revanche, parce que c'était ma faute :** mon remplacement des « dernière
+vérification » avait créé « 4 Aegean sources · **sources** collected 8 August 2026 ». 408
+redondances réparées par suppression stricte du nom en trop — aucune grammaire touchée.
+
+### 3.6 — Les citations de l'étape B
 
 Rien n'avance sans elles. **Je ne reconstruirai jamais une citation à partir d'un résumé**, et mon
 conteneur n'a pas d'accès réseau ouvert. Pour chaque canal à remonter en `verified_official`, il me
@@ -352,7 +372,7 @@ politique redeviendra `allowed`.
 
 ## 8. Ce que je demande
 
-1. **Les cinq arbitrages du § 3**, tranchés ensemble.
+1. **Les six arbitrages du § 3**, tranchés ensemble.
 2. **Le prédicat exact de l'ensemble 1** (§ 4), pour converger sur 14 ou 34.
 3. **Les citations de l'étape B**, au format : URL, phrase exacte, langue, emplacement, date.
 
