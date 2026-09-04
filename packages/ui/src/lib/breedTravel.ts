@@ -72,8 +72,16 @@ const REGION_SUMMER: Record<string, number> = {
 
 const L = (en: string, fr: string, es: string, pt: string, tone: Tone): Level => ({ en, fr, es, pt, tone });
 
-export function computeBreedTravel(breedId: string): BreedTravelProfile | null {
-  const kb: any = loadKB();
+/**
+ * `kbOverride` n'existe que pour les contre-épreuves, et ne change RIEN en production : sans lui,
+ * la fonction charge la base réelle comme elle l'a toujours fait. Il a été ajouté le 04/09/2026
+ * parce que la frontière de confiance a vidé `bestAirlines` sur les données réelles — plus aucune
+ * politique n'est `allowed` — et que le contrôle « la réponse NOMME des compagnies compatibles »
+ * n'avait donc plus de matière à observer. Un témoin qui ne peut plus se déclencher ne prouve
+ * rien ; on lui rend son cas par une base citée, plutôt que d'abaisser le contrôle.
+ */
+export function computeBreedTravel(breedId: string, kbOverride?: unknown): BreedTravelProfile | null {
+  const kb: any = kbOverride ?? loadKB();
   const b: any = kb.breeds.get(breedId);
   if (!b) return null;
   const w: number = b.weight_kg;

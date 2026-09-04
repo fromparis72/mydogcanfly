@@ -25,13 +25,12 @@ chips:
       es: Sin cabina en ningún caso
       pt: "Sem cabine, em nenhum caso"
     cls: "no"
-  - icon: ✓
+  - icon: 🗓
     label:
-      en: Verified 8 Aug 2026
-      fr: Vérifié le 8 août 2026
-      es: Verificado el 8 ago. 2026
-      pt: "Verificado em 8 ago. 2026"
-    cls: ok
+      en: Updated 8 Aug 2026
+      fr: Mise à jour le 8 août 2026
+      es: Actualizado el 8 ago. 2026
+      pt: "Atualizado em 8 ago. 2026"
 verdict:
   cls: warn
   label:
@@ -345,8 +344,8 @@ book:
   host: flysaa.com
   url: https://www.flysaa.com/
 sources:
-  en: 1 South African Airways source · last verified 8 August 2026
-  fr: 1 source South African Airways · dernière vérification 8 août 2026
-  es: 1 fuente de South African Airways · última verificación 8 de agosto de 2026
-  pt: "1 fonte da South African Airways · última verificação em 8 de agosto de 2026"
+  en: 1 South African Airways source · sources collected 8 August 2026
+  fr: 1 source South African Airways · sources relevées le 8 août 2026
+  es: 1 fuente de South African Airways · fuentes recopiladas el 8 de agosto de 2026
+  pt: "1 fonte da South African Airways · fontes recolhidas em 8 de agosto de 2026"
 verified_date: 2026-08-08
