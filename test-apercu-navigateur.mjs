@@ -88,15 +88,26 @@ const nouvellePage = async () => {
 async function chercher({ from, dest, kg, race = null, placement = null, locale = "" }) {
   const p = await nouvellePage();
   await p.goto(`${BASE}${locale}/?from=${from}&dest=${dest}`, { waitUntil: "networkidle" });
-  if (race) { await p.fill("#f-breed", race); await p.dispatchEvent("#f-breed", "input"); }
+  if (race) { await p.fill("#f-breed", race); await p.dispatchEvent("#f-breed", "input"); await p.waitForTimeout(300); }
+  /* LE POIDS EST POSÉ APRÈS LA RACE, ET RELU. Choisir une race REMPLIT le poids automatiquement
+     (poids type de la race) : ma première rédaction écrivait « 7 » puis laissait le gabarit
+     préfixer le sien, et le formulaire partait avec 87 kg pour un carlin. Les contrôles passaient
+     — l'avis brachycéphale s'affichait bien — mais ils portaient sur un autre chien que celui
+     annoncé. Un harnais qui dit tester un chien de 7 kg doit tester un chien de 7 kg. */
+  await p.fill("#f-weight", "");
   await p.fill("#f-weight", String(kg));
+  const poseE = await p.inputValue("#f-weight");
+  if (poseE !== String(kg)) throw new Error(`poids non posé : voulu ${kg}, formulaire ${poseE}`);
   if (placement) await p.selectOption("#f-placement", placement);
   await p.click("#mdcf-finder button[type=submit]");
   await p.waitForSelector("#mdcf-finder-result:not([hidden])", { timeout: 30000 });
   await p.waitForTimeout(1200);
   const texte = (await p.textContent("#mdcf-finder-result")) ?? "";
+  /* On relit le poids APRÈS la soumission aussi : un gabarit qui le réécrirait au moment
+     d'envoyer produirait le même mensonge, une étape plus loin. */
+  const poidsFinal = await p.inputValue("#f-weight");
   const cartes = await p.$$eval(".acard, [class*=acard]", (n) => n.length).catch(() => 0);
-  return { p, texte, cartes };
+  return { p, texte, cartes, poidsFinal };
 }
 
 /* Les MONTANTS. Un chiffre accolé à une devise — les poids (« 8 kg »), les pourcentages et les
@@ -197,7 +208,8 @@ console.log("\n=== Compagnie opératrice ===");
 /* ---- 7. Restrictions de race ------------------------------------------------------------------ */
 console.log("\n=== Restrictions de race — un carlin ===");
 {
-  const { p, texte, cartes } = await chercher({ from: "airport_cdg", dest: "airport_jfk", kg: 7, race: "Pug" });
+  const { p, texte, cartes, poidsFinal } = await chercher({ from: "airport_cdg", dest: "airport_jfk", kg: 7, race: "Pug" });
+  check("le formulaire porte bien le chien annoncé : un carlin de 7 kg", poidsFinal === "7", `poids envoyé : ${poidsFinal} kg`);
   check("la recherche aboutit avec une race brachycéphale", cartes > 0, `${cartes} carte(s)`);
   check("la particularité brachycéphale est DITE au visiteur",
     /brachy|snub|short-nosed|flat-faced|museau/i.test(texte), texte.slice(0, 200));
@@ -238,7 +250,27 @@ for (const [nom, slug, gouvernemental] of [["France", "fr", true], ["Brésil", "
   await p.close();
 }
 
-/* ---- 9. La préversion reste fermée aux moteurs ------------------------------------------------ */
+/* ---- 9. LE SCORE DE COMPATIBILITÉ, CONSTATÉ — un effet de la frontière, pas de la route ------ */
+console.log("\n=== Le score affiché en tête de rapport ===");
+{
+  const { p, texte } = await chercher({ from: "airport_cdg", dest: "airport_jfk", kg: 4 });
+  const m = texte.match(/(\d{1,3})\s*%/);
+  const score = m ? Number(m[1]) : null;
+  /* MESURÉ HORS NAVIGATEUR le 04/09/2026, sur la MÊME route et les MÊMES 22 cartes :
+   *   données réelles  → score 10, 0 compagnie acceptante
+   *   données citées   → score 76, 20 compagnies acceptantes
+   * L'effondrement ne vient donc pas du trajet : il vient de ce qu'aucune politique n'est prouvée.
+   * Le rapport affiche « Yes — with conditions » à côté de « 9 % », et les deux se contredisent à
+   * l'œil : le titre promet, le chiffre décourage. C'est un ARBITRAGE, pas un défaut technique —
+   * il rejoint les listes de race vides et `offers_pet_transport` vrai partout. Ce contrôle le
+   * FIGE pour qu'il ne passe pas inaperçu, et rougira dès que des citations le feront remonter. */
+  check("le score est constaté et figé bas (≤ 15) tant qu'aucune politique n'est prouvée",
+    score !== null && score <= 15, `score affiché : ${score}%`);
+  console.log(`  ·    même route, mêmes cartes, avec des citations : le score remonterait à 76 %`);
+  await p.close();
+}
+
+/* ---- 10. La préversion reste fermée aux moteurs ------------------------------------------------ */
 console.log("\n=== La préversion ne doit PAS être indexable ===");
 {
   /* Codex l'exige explicitement : « la préversion reste en noindex, nofollow ». Le dist servi ici
