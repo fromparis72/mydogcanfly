@@ -25,8 +25,8 @@ import { PlacementPolicyAuthored, projectPlacementPolicy, niveauDePreuve,
   PLACEMENT_STATUS_CAUSES, preuveAuditee, sourceAffichable, loadKB } from "./packages/knowledge/src/index.ts";
 import { qualifier, refuseLeCanalSansCondition, restreintLeCanalSousCondition,
   estOfficielleUtilisable } from "./mesures/politiques-veracite/qualifier.mjs";
-import { readFileSync, readdirSync } from "node:fs";
-import { join } from "node:path";
+import { readFileSync, readdirSync, existsSync, statSync } from "node:fs";
+import { join, relative } from "node:path";
 
 let pass = 0, fail = 0;
 const check = (label, cond, detail = "") => {
@@ -245,6 +245,92 @@ console.log("\n=== 11. Aucune fiche n'affirme plus « Vérifié le … » ===");
   }
   check("le champ structurel `verified_date:` n'a PAS été touché — il porte la cadence de revue",
     structurel === 102, String(structurel));
+}
+
+/* ---- 12 et 13. LE DOM CONSTRUIT — ce que le visiteur lit vraiment ------------------------- */
+/* Tout ce qui précède parle du contrat et de la base. Un contrat juste rendu par un gabarit qui
+ * publie autre chose ne vaut rien : c'est très exactement la faute que le contre-test navigateur
+ * du 15/08/2026 avait trouvée — la fiche affichait « Autorisé » là où la politique disait « à
+ * confirmer », parce que l'écran lisait un champ éditorial au lieu de la décision. On relit donc
+ * les pages CONSTRUITES, dans les quatre langues.
+ *
+ *   node --import tsx test-frontiere-confiance.mjs --dist=packages/ui/dist
+ *
+ * Sans `--dist=`, ces deux contrôles ne sont pas joués et le DISENT — ils le sont en CI. */
+const DIST = (process.argv.find((a) => a.startsWith("--dist=")) ?? "").split("=")[1];
+if (!DIST) {
+  console.log("\n=== 12 et 13. DOM construit — NON JOUÉ (aucun --dist=) ===");
+  console.log("  ·    à jouer sur le site construit : --dist=packages/ui/dist");
+} else if (!existsSync(DIST)) {
+  console.log(`\n=== 12 et 13. DOM construit ===`);
+  check(`le dist existe : ${DIST}`, false);
+} else {
+  console.log("\n=== 12. Aucune fiche compagnie ne publie de verdict catégorique sur un canal ===");
+  /* Les libellés PUBLIÉS, repris des quatre fichiers de traduction — jamais retapés ici : les
+     retaper, c'est chercher une phrase que le site n'écrit peut-être plus. */
+  const LANGUES = ["en", "fr", "es", "pt"];
+  const libelle = (cle, lang) =>
+    JSON.parse(readFileSync(`packages/knowledge/translations/${lang}/strings.json`, "utf8"))[cle];
+  const CATEGORIQUES = LANGUES.flatMap((l) => [libelle("premium.allowed", l), libelle("premium.not_allowed", l)]);
+  const A_CONFIRMER = LANGUES.map((l) => libelle("air.to_confirm", l));
+
+  const fiches = [];
+  (function marcher(d) {
+    for (const e of readdirSync(d)) {
+      const f = join(d, e);
+      if (statSync(f).isDirectory()) marcher(f);
+      else if (e === "index.html" && /(^|\/)airlines\/[^/]+\/index\.html$/.test(f.split("\\").join("/"))) fiches.push(f);
+    }
+  })(DIST);
+  check(`${fiches.length} fiches compagnie construites relues`, fiches.length > 0);
+
+  /* La pastille de canal, isolée par sa structure : `<div class="mini" data-status=…>` porte le
+     statut EN CLAIR dans l'attribut. On vérifie donc les deux : l'attribut, qui vient de la
+     décision, et le texte, qui est ce que l'œil lit. */
+  const fautives = [], statutsVus = {};
+  for (const f of fiches) {
+    const html = readFileSync(f, "utf8");
+    for (const m of html.matchAll(/<div class="mini"[^>]*data-status="([^"]+)"[^>]*>([\s\S]*?)<\/div>\s*<div class="k"/g)) {
+      const [, statut, bloc] = m;
+      statutsVus[statut] = (statutsVus[statut] ?? 0) + 1;
+      const texte = bloc.replace(/<[^>]+>/g, " ").replace(/\s+/g, " ");
+      const dit = CATEGORIQUES.find((lib) => lib && texte.includes(lib));
+      if (statut !== "allowed" && statut !== "denied" && dit) {
+        fautives.push(`${f} : statut ${statut} mais la pastille dit « ${dit} »`);
+      }
+    }
+  }
+  /* NON-VACUITÉ D'ABORD. « Aucun canal n'est `allowed` » serait vrai aussi d'un lecteur qui ne
+     reconnaît aucun canal — c'est la faute que ce dépôt a commise trois fois, et qui a produit
+     autant de faux zéros. On exige donc que le lecteur ait VU des blocs avant de conclure. */
+  const vus = Object.values(statutsVus).reduce((x, y) => x + y, 0);
+  check("le lecteur a bien VU des blocs de canal (sans quoi le contrôle suivant ne dirait rien)",
+    vus === 1184, `${vus} bloc(s) — attendu 1184 : 296 canaux × 4 langues`);
+  check("aucun canal ne porte le statut `allowed` ou `denied` dans les pages construites",
+    !statutsVus.allowed && !statutsVus.denied, JSON.stringify(statutsVus));
+  check("aucune pastille n'affiche « Accepté » ou « Non accepté » sur un canal à confirmer",
+    fautives.length === 0, fautives.slice(0, 5).join("\n         "));
+
+  console.log("\n=== 13. …et la réserve est DITE, dans les quatre langues ===");
+  /* Une page muette serait conforme au contrôle 12 tout en étant inutilisable : on exige donc
+     que la réserve soit écrite, et écrite dans la langue de la page. */
+  const parLangue = {};
+  for (const f of fiches) {
+    const chemin = "/" + relative(DIST, f).split("\\").join("/");
+    const lang = LANGUES.find((l) => chemin.startsWith(`/${l}/`)) ?? "en";
+    const html = readFileSync(f, "utf8");
+    parLangue[lang] ??= { total: 0, avecReserve: 0 };
+    parLangue[lang].total++;
+    if (html.includes(libelle("air.to_confirm", lang))) parLangue[lang].avecReserve++;
+  }
+  const manquantes = LANGUES.filter((l) => !parLangue[l] || parLangue[l].avecReserve !== parLangue[l].total);
+  check("chaque fiche dit « à confirmer » dans SA langue, dans les quatre langues",
+    manquantes.length === 0, JSON.stringify(parLangue));
+  /* Et le libellé de la page officielle non citée doit exister dans les quatre langues — sinon
+     les 33 canaux qui ont un lien à montrer le montreraient sans phrase pour le qualifier. */
+  const sansLibelle = LANGUES.filter((l) => !libelle("premium.official_source_unquoted", l));
+  check("le libellé « page officielle, aucune phrase citée » existe dans les quatre langues",
+    sansLibelle.length === 0, sansLibelle.join(", "));
 }
 
 console.log(`\n${pass} OK, ${fail} FAIL`);
