@@ -68,9 +68,14 @@ endroit, et les 60 tombent à 0 sans rien casser d'autre.
     Scénario B :  90 cartes compagnie sur 102
 
 Les 2 fiches épargnées en A n'ont aucun bloc décidé du tout.
-Côté pays, rien ne bouge dans ce lot : les 189 fiches pays ne passent pas par
-`policies:`, et leur provenance est matériellement meilleure (137/189 sources
-gouvernementales, 800 URL sourcées, 0 fiche sans source).
+Côté pays, rien ne bouge dans ce lot. CORRECTION DE VOCABULAIRE (contre-revue) :
+il y a 140 FICHES pays et 189 RÈGLES de portée pays — j'écrivais « 189 fiches »,
+ce qui confondait les deux et gonflait le référentiel de 49 unités. Vérifié :
+`content/countries` contient 140 fichiers, `rules.json` 189 règles `scope.type
+= country`. Ces fiches ne passent pas par `policies:`, et leur provenance est
+matériellement meilleure (137 des 189 règles citent une source gouvernementale,
+800 URL sourcées, 0 fiche sans source) — ce qui ne prouve encore rien au niveau
+de chaque modalité, et ne sera pas traité dans ce lot.
 
 
 3. COMPAGNIES QUI N'AURAIENT PLUS AUCUN CANAL DÉCIDÉ
