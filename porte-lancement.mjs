@@ -115,6 +115,45 @@ console.log(`— porte de lancement — ${pages.length} pages, ${redirections.le
     extraits(redirigees.map((l) => l.url)));
 }
 
+/* ---- 1 bis. BIJECTION entre les pages indexables et les sitemaps ----------------------------- */
+{
+  /* Le contrôle 1 ne regardait qu'un sens : les URL annoncées mènent-elles quelque part. L'autre
+     sens est un risque de lancement à part entière et il ne se voit PAS en regardant le site : une
+     page publiée, indexable, absente des sitemaps, que Google mettra des semaines à trouver — si
+     elle la trouve. Et la réciproque : une page listée mais portant `noindex` dit à Google
+     « indexe-la » et « ne l'indexe pas » dans la même livraison.
+     On exige donc la bijection, dans les deux sens, sans doublon. */
+  const admis = existsSync(ADMIS) ? JSON.parse(lire(ADMIS)) : { chemins: [], prefixes: [] };
+  const estAdmis = (c) => admis.chemins.includes(c) || admis.prefixes.some((p) => c.startsWith(p));
+  const aNoindex = (html) => /<meta[^>]+name=["']robots["'][^>]*noindex/i.test(html);
+
+  const listees = [];
+  for (const f of readdirSync(DIST).filter((x) => /^sitemap.*\.xml$/.test(x))) {
+    for (const m of lire(join(DIST, f)).matchAll(/<loc>([^<]+)<\/loc>/g)) {
+      if (!/sitemap.*\.xml$/.test(m[1])) listees.push(m[1].startsWith(HOTE) ? (m[1].slice(HOTE.length) || "/") : m[1]);
+    }
+  }
+  const doublons = listees.filter((u, i) => listees.indexOf(u) !== i);
+  check("aucune URL n'est listée DEUX FOIS dans les sitemaps", doublons.length === 0,
+    extraits([...new Set(doublons)]));
+
+  const ensemble = new Set(listees);
+  const absentes = [], listeesFermees = [];
+  for (const [f, html] of contenus) {
+    const c = cheminDe(f);
+    if (/(^|\/)404\.html$/.test(c)) continue;
+    if (aNoindex(html)) {
+      if (ensemble.has(c)) listeesFermees.push(c);          // annoncée ET fermée : contradiction
+      continue;
+    }
+    if (estAdmis(c)) continue;
+    if (!ensemble.has(c)) absentes.push(c);
+  }
+  check("toute page indexable figure dans un sitemap", absentes.length === 0, extraits(absentes));
+  check("aucune page listée au sitemap ne porte `noindex`", listeesFermees.length === 0, extraits(listeesFermees));
+  console.log(`         (${ensemble.size} URL listées)`);
+}
+
 /* ---- 2. Aucune page de production ne porte `noindex` ---------------------------------------- */
 {
   const admis = existsSync(ADMIS) ? JSON.parse(lire(ADMIS)) : { chemins: [], prefixes: [] };
@@ -200,6 +239,32 @@ console.log(`— porte de lancement — ${pages.length} pages, ${redirections.le
   check("toute page à variantes les déclare dans les QUATRE langues", incompletes.length === 0, extraits(incompletes));
   check("…et déclare `x-default`", sansDefaut.length === 0, extraits(sansDefaut));
   check("aucun `hreflang` ne désigne une page inexistante", morts.length === 0, extraits(morts));
+
+  /* LA RÉCIPROCITÉ. Google IGNORE une déclaration `hreflang` que la page désignée ne lui rend pas :
+     la grappe entière est alors écartée, en silence, sans qu'aucune page paraisse cassée. Deux
+     conditions, donc — chaque page doit se déclarer ELLE-MÊME dans sa grappe, et chaque cible doit
+     renvoyer vers elle. C'est le genre de défaut qui ne se voit qu'en Search Console, six semaines
+     plus tard. */
+  const grappes = new Map();
+  for (const [f, html] of contenus) {
+    const alt = alternatesDe(html);
+    if (alt.size) grappes.set(cheminDe(f), alt);
+  }
+  const nonReciproques = [], sansAuto = [];
+  for (const [c, alt] of grappes) {
+    const cibles = [...alt.entries()]
+      .filter(([lang]) => lang !== "x-default")
+      .map(([lang, href]) => [lang, href.startsWith(HOTE) ? (href.slice(HOTE.length) || "/") : href]);
+    if (!cibles.some(([, cible]) => cible === c)) sansAuto.push(c);
+    for (const [lang, cible] of cibles) {
+      const retour = grappes.get(cible);
+      if (!retour) { nonReciproques.push(`${c} [${lang}] → ${cible} : la cible ne déclare aucun hreflang`); continue; }
+      const rend = [...retour.values()].some((h) => (h.startsWith(HOTE) ? (h.slice(HOTE.length) || "/") : h) === c);
+      if (!rend) nonReciproques.push(`${c} [${lang}] → ${cible} : la cible ne renvoie PAS vers ${c}`);
+    }
+  }
+  check("chaque page se déclare elle-même dans sa grappe de langues", sansAuto.length === 0, extraits(sansAuto));
+  check(`les ${grappes.size} grappes de langues sont RÉCIPROQUES`, nonReciproques.length === 0, extraits(nonReciproques));
 }
 
 /* ---- 6. Le JSON-LD correspond au contenu visible ---------------------------------------------- */

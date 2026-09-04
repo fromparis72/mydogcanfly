@@ -22,7 +22,9 @@
  *     contrôle 3 montre par où passe désormais le lien affichable.
  */
 import { PlacementPolicyAuthored, projectPlacementPolicy, niveauDePreuve,
-  PLACEMENT_STATUS_CAUSES, preuveAuditee, sourceAffichable, loadKB } from "./packages/knowledge/src/index.ts";
+  PLACEMENT_STATUS_CAUSES, preuveAuditee, sourceAffichable, loadKB, estAutoCitation } from "./packages/knowledge/src/index.ts";
+import { evaluate } from "./packages/engine/src/evaluate.ts";
+import { explain } from "./packages/engine/src/explain.ts";
 import { qualifier, refuseLeCanalSansCondition, restreintLeCanalSousCondition,
   estOfficielleUtilisable } from "./mesures/politiques-veracite/qualifier.mjs";
 import { readFileSync, readdirSync, existsSync, statSync } from "node:fs";
@@ -245,6 +247,68 @@ console.log("\n=== 11. Aucune fiche n'affirme plus « Vérifié le … » ===");
   }
   check("le champ structurel `verified_date:` n'a PAS été touché — il porte la cadence de revue",
     structurel === 102, String(structurel));
+}
+
+console.log("\n=== 11 bis. AUCUNE auto-citation ne peut être servie comme source ===");
+{
+  /* LA FAUTE QUE CE CONTRÔLE FERME (04/09/2026). 44 règles d'entrée PAYS citent
+   * `https://mydogcanfly.com/dog-travel-requirements-by-country/` — notre propre page — comme
+   * source de leurs exigences, dont 3 en criticité `critical`. Sur CDG → Almaty, le rapport ne
+   * servait QU'ELLE : notre page donnée comme fondement des exigences légales du Kazakhstan.
+   *
+   * `preuve.ts` interdit cela depuis le 15/08/2026, et son en-tête dit que la règle vaut jusque
+   * dans « la liste de sources d'un rapport ». Le chemin pays ne l'appliquait pas.
+   *
+   * POURQUOI LA BASELINE NE L'A PAS VU, ET POURQUOI CE CONTRÔLE EST DIFFÉRENT : la baseline
+   * vérifie 72 scénarios figés, dont aucun ne va vers ces 44 pays. Le contrôle était juste, son
+   * ÉCHANTILLON ne mordait pas là. Celui-ci ne prend pas d'échantillon : il balaie TOUTES les
+   * règles du dépôt et exige que pas une auto-citation ne puisse être présentée. */
+  const regles = JSON.parse(readFileSync("packages/knowledge/raw/rules.json", "utf8"));
+  const auto = regles.filter((r) => estAutoCitation(r?.source?.url));
+  const parPortee = {};
+  for (const r of auto) parPortee[r.scope?.type ?? "?"] = (parPortee[r.scope?.type ?? "?"] ?? 0) + 1;
+  /* Le compte est FIGÉ : il descendra quand les sources seront remplacées, et chaque baisse devra
+     être nommée. Il ne doit jamais MONTER. */
+  /* 128 AU TOTAL, ET NON 44 : ma première rédaction n'attendait que les règles PAYS, parce que
+     c'est là que la faute se voyait. Le balayage en a trouvé 84 de plus, de portée COMPAGNIE —
+     exactement la répartition que la contre-revue avait chiffrée (84 deny + 44 require, 52 URL).
+     Les 84 ne sont PAS présentées : les sources d'un rapport viennent des exigences pays, des
+     politiques de canal (filtrées par `preuveAuditee`) et des preuves de race ; les règles
+     compagnie ne vivent que dans `fired`, qui ne quitte pas le moteur.
+     Elles alimentent en revanche `confidences`, donc l'indice de confiance affiché — une dette
+     réelle, plus petite, consignée pour la contre-revue et non corrigée ici : toucher au calcul
+     du score est une décision de produit, et le score est déjà en attente d'arbitrage. */
+  check("128 règles portent une auto-citation dans la DONNÉE — 84 compagnie, 44 pays, compte figé",
+    auto.length === 128 && parPortee.airline === 84 && parPortee.country === 44, JSON.stringify(parPortee));
+
+  /* Et surtout, la propriété qui protège le visiteur : quelle que soit la destination, aucune
+     auto-citation n'atteint le rapport. On l'éprouve sur CHAQUE pays auto-cité qui a un aéroport
+     desservi — pas sur un échantillon. */
+  const kb = loadKB();
+  const paysAuto = new Set(auto.map((r) => r.scope?.id));
+  const destinations = [];
+  for (const a of kb.airports.values()) if (paysAuto.has(a.country_id)) destinations.push(a.id);
+  check("des destinations réelles existent dans ces pays (sans quoi le contrôle ne dirait rien)",
+    destinations.length > 0, `${destinations.length} aéroport(s)`);
+  const fautives = [];
+  for (const d of destinations) {
+    const rapport = explain(evaluate(kb, {
+      origin: "airport_cdg", destination: d, dog: { weight_kg: 5 },
+      travel_type: "pet", placement: "any", locale: "en",
+    }), "en");
+    for (const s of rapport.sources ?? []) if (estAutoCitation(s.url)) fautives.push(`${d} → ${s.url}`);
+    for (const c of rapport.conditions ?? []) if (c.source_url && estAutoCitation(c.source_url)) fautives.push(`${d} (condition) → ${c.source_url}`);
+  }
+  check(`aucune auto-citation servie sur ${destinations.length} destination(s) concernée(s)`,
+    fautives.length === 0, fautives.slice(0, 5).join("\n         "));
+  /* L'exigence, elle, ne disparaît PAS avec sa fausse source : on le vérifie, sans quoi le
+     correctif aurait effacé le contenu au lieu du mensonge. */
+  const temoin = explain(evaluate(kb, {
+    origin: "airport_cdg", destination: destinations[0], dog: { weight_kg: 5 },
+    travel_type: "pet", placement: "any", locale: "en",
+  }), "en");
+  check("l'exigence d'entrée reste AFFICHÉE, seulement privée de sa fausse source",
+    (temoin.conditions ?? []).length > 0, JSON.stringify((temoin.conditions ?? []).length));
 }
 
 /* ---- 12 et 13. LE DOM CONSTRUIT — ce que le visiteur lit vraiment ------------------------- */

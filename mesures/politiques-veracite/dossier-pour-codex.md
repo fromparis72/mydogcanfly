@@ -143,6 +143,87 @@ entièrement « à confirmer » (liste des 51 dans `rapport-frontiere-confiance.
 
 ---
 
+## 3 bis. UNE FAUTE TROUVÉE APRÈS COUP, ET CORRIGÉE — le site se citait lui-même
+
+**C'est la trouvaille la plus sérieuse depuis le début du lot, et elle était EN LIGNE.**
+
+Sur un CDG → Almaty, le rapport servait **une seule source**, et c'était
+`https://mydogcanfly.com/dog-travel-requirements-by-country/` — notre propre page — donnée comme
+fondement des **exigences légales d'entrée au Kazakhstan**, en criticité `high`.
+
+**44 règles d'entrée pays** citent cette page ; trois d'entre elles sont en criticité `critical`.
+Le balayage complet en a trouvé **128 au total** : 84 de portée compagnie, 44 de portée pays —
+exactement la répartition que la contre-revue avait chiffrée (84 `deny` + 44 `require`, 52 URL).
+
+### Pourquoi ce n'était pas une décision à arbitrer
+
+`preuve.ts` interdit l'auto-citation depuis le 15/08/2026, et son en-tête dit que la règle vaut
+« partout où une source justifie une décision — fiche compagnie, carte du Finder, **liste de sources
+d'un rapport** ». Le chemin des exigences pays ne l'appliquait simplement pas : `toFired` recopiait
+`r.source.url` tel quel. C'est un **bogue contre un arbitrage déjà rendu**, pas une décision
+nouvelle — je l'ai donc corrigé, en le nommant.
+
+### Pourquoi la contre-épreuve existante ne l'avait pas vu
+
+Elle vérifie qu'aucune auto-citation ne subsiste dans les **72 scénarios figés**, et aucun de ces
+72 ne va vers l'un de ces 44 pays. **Le contrôle était juste ; son échantillon ne mordait pas là.**
+C'est la même famille de faute que les trois faux zéros de l'instrument IATA : un contrôle qui ne
+parle que de ce qu'il regarde.
+
+La nouvelle contre-épreuve (`test-frontiere-confiance.mjs`, § 11 bis) ne prend **pas d'échantillon** :
+elle balaie toutes les règles du dépôt, puis éprouve **chaque destination réelle** de ces 44 pays —
+19 aéroports — et exige qu'aucune auto-citation n'atteigne ni les sources du rapport ni les
+conditions.
+
+### Ce qui est corrigé, et ce qui ne l'est pas
+
+L'exigence elle-même **reste affichée** : elle est peut-être juste, et la retirer serait une
+décision de contenu. Ce qui disparaît est le seul mensonge présent — la prétention qu'une page à
+nous la fonde. Une exigence sans source est plus honnête qu'une exigence adossée à soi-même.
+`f.source_url` reste intact dans `fired` : l'audit doit continuer de voir d'où vient la règle.
+
+### Une dette plus petite, NON corrigée, signalée
+
+Les 84 règles compagnie auto-citées ne sont jamais présentées — `fired` ne quitte pas le moteur.
+Mais elles alimentent `confidences`, donc **l'indice de confiance affiché au visiteur**. Notre
+propre page contribue ainsi à la note de confiance. Je n'y touche pas : modifier le calcul du score
+est une décision de produit, et le score est déjà en attente d'arbitrage (§ 3.3).
+
+**Question pour la contre-revue :** les 44 exigences pays « Baseline: most destinations require ISO
+microchip… », en criticité `high` pour 46 d'entre elles et `critical` pour 3, doivent-elles rester
+publiées maintenant qu'elles n'ont plus aucune source ? Elles sont génériques et probablement
+justes ; elles ne sont plus adossées à rien.
+
+---
+
+## 3 ter. L'état de preuve du côté PAYS, mesuré pour préparer votre retour
+
+Jamais mesuré jusqu'ici. Le voici, pour que la vérification prioritaire puisse démarrer sans phase
+d'inventaire.
+
+| | |
+|---|---|
+| règles de portée pays | 189 (pour **140 fiches**) |
+| sources gouvernementales | 137 |
+| sources de type `other` | 52 — dont **44 auto-citations** |
+| portant une citation verbatim | **0** |
+| portant un locator | **0** |
+| action `require` / `deny` | 183 / **6** |
+
+**Les 6 refus catégoriques pays sont les faits les mieux sourcés du dépôt.** Ce sont six
+interdictions de race, toutes gouvernementales, chacune citant son instrument légal : Dangerous Dogs
+Act 1991 (GB), Hundeverbringungs- und -einfuhrbeschränkungsgesetz (DE), loi sur les chiens de
+catégorie 1 (FR), Control of Dogs (XL Bully) Regulations 2024 (IE), Dog Control Act 1996 (NZ),
+Customs (Prohibited Imports) Regulations 1956 (AU). **Elles ne devraient PAS être rétrogradées à
+l'aveugle** : leur `rationale` nomme la loi, il ne leur manque que le champ `quote`.
+
+Différence de nature avec le côté compagnie : une exigence `require` fausse fait faire des démarches
+inutiles ; un `deny` faux bloque à tort. Les 183 `require` sont donc moins dangereux que les 216
+verdicts compagnie l'étaient — mais 44 d'entre eux n'avaient, jusqu'à aujourd'hui, que nous-mêmes
+pour source.
+
+---
+
 ## 4. DEUX DIVERGENCES DE MESURE NON RÉSOLUES
 
 Je ne les ai pas ajustées pour tomber sur les chiffres de la contre-revue : **fitter une définition

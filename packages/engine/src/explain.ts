@@ -1,4 +1,4 @@
-import { t, isEstimatedTemperature } from "@mydogcanfly/knowledge";
+import { t, isEstimatedTemperature, estAutoCitation } from "@mydogcanfly/knowledge";
 import type { Decision, DecisionReport, ReportItem, AirlineResult, PlacementStatus, AdvisorySignal, SafetyAdvisory } from "./contracts";
 import { hasActiveClimateCause, makePlacementDecision, advisoryKey, SafetyAdvisory as SafetyAdvisorySchema } from "./contracts";
 
@@ -125,12 +125,37 @@ export function explain(decision: Decision, locale = "en"): DecisionReport {
 
   // Country entry requirements → "before departure" conditions.
   // The rationale prose already lists the required documents, so we do NOT append a redundant "Required: …".
+  /* UNE AUTO-CITATION NE FONDE RIEN — Y COMPRIS ICI (correction du 04/09/2026).
+   *
+   * `preuve.ts` pose cette règle depuis le 15/08/2026, et son en-tête dit explicitement qu'elle
+   * vaut « partout où une source justifie une décision — fiche compagnie, carte du Finder, LISTE
+   * DE SOURCES D'UN RAPPORT ». Le chemin des exigences PAYS ne l'appliquait pas : `toFired` recopie
+   * `r.source.url` tel quel, et 44 règles d'entrée pays citent
+   * `https://mydogcanfly.com/dog-travel-requirements-by-country/` — notre propre page.
+   *
+   * Ce que le visiteur voyait, mesuré sur CDG → Almaty : le rapport servait UNE seule source, et
+   * c'était nous, donnée comme fondement des exigences légales d'entrée au Kazakhstan, en
+   * criticité `high`. Trois de ces 44 règles sont en criticité `critical`.
+   *
+   * Pourquoi la contre-épreuve de baseline ne l'a pas vu : elle vérifie qu'aucune auto-citation ne
+   * subsiste dans les 72 scénarios figés, et aucun de ces 72 ne va vers un de ces 44 pays. Le
+   * contrôle était juste, son échantillon ne mordait pas là. Une contre-épreuve dédiée, qui balaie
+   * TOUTES les règles pays, est ajoutée dans `test-frontiere-confiance.mjs`.
+   *
+   * CE QUI EST CORRIGÉ, ET CE QUI NE L'EST PAS. L'exigence elle-même reste affichée : elle est
+   * peut-être juste, et la retirer serait une décision de contenu qui ne m'appartient pas. Ce qui
+   * disparaît est le seul mensonge présent — la prétention qu'une page à nous la fonde. Une
+   * exigence sans source est plus honnête qu'une exigence adossée à soi-même.
+   *
+   * `f.source_url` reste intact dans `fired` : l'audit doit continuer de voir d'où vient la règle.
+   * Ce n'est qu'à la PRÉSENTATION que l'auto-citation s'efface. */
   for (const f of decision.countryRequirements) {
+    const presentable = estAutoCitation(f.source_url) ? undefined : f.source_url;
     conditions.push({
       text: f.rationale,
-      criticality: f.criticality, rule_id: f.rule_id, source_url: f.source_url,
+      criticality: f.criticality, rule_id: f.rule_id, source_url: presentable,
     });
-    sources.set(f.source_url, { url: f.source_url });
+    if (presentable) sources.set(presentable, { url: presentable });
     confidences.push(f.confidence);
   }
   conditions.sort((x, y) => CRIT_ORDER[x.criticality] - CRIT_ORDER[y.criticality]);

@@ -100,7 +100,7 @@ function attaque(nom, mutation, motifAttendu) {
   rmSync(d, { recursive: true, force: true });
 }
 
-console.log("\n— quatorze attaques, une faute à la fois —\n");
+console.log("\n— dix-neuf attaques, une faute à la fois —\n");
 
 attaque("1. une URL de sitemap qui ne mène nulle part",
   (d) => ecrire(d, "sitemap-en.xml", `<?xml version="1.0"?><urlset><loc>${HOTE}/fantome/</loc></urlset>`),
@@ -166,6 +166,27 @@ attaque("14. un lien interne mort",
   (d) => ecrire(d, "index.html", page("/", "Flying with a dog", ALT)
     .replace('<a href="/fr/">', '<a href="/page-morte/">')),
   /lien interne ne mène à une erreur/);
+
+attaque("15. une page indexable ABSENTE des sitemaps — Google ne la trouvera peut-être jamais",
+  (d) => ecrire(d, "sitemap-en.xml", `<?xml version="1.0"?><urlset><loc>${HOTE}/</loc><loc>${HOTE}/fr/</loc><loc>${HOTE}/es/</loc></urlset>`),
+  /page indexable figure dans un sitemap/);
+
+attaque("16. une page listée au sitemap ET porteuse de `noindex` — deux ordres contraires",
+  (d) => ecrire(d, "pt/index.html", page("/pt/", "Viajar com um cachorro", ALT)
+    .replace("<head>", '<head><meta name="robots" content="noindex, nofollow">')),
+  /listée au sitemap ne porte .noindex|noindex/);
+
+attaque("17. la même URL listée DEUX FOIS",
+  (d) => ecrire(d, "sitemap-en.xml", `<?xml version="1.0"?><urlset>${Object.values(ALT).map((u) => `<loc>${HOTE}${u}</loc>`).join("")}<loc>${HOTE}/fr/</loc></urlset>`),
+  /listée DEUX FOIS/);
+
+attaque("18. une grappe de langues NON réciproque — Google écarte la grappe entière, en silence",
+  (d) => ecrire(d, "es/index.html", page("/es/", "Volar con un perro", { en: "/", fr: "/fr/", es: "/es/", pt: "/" })),
+  /RÉCIPROQUES/);
+
+attaque("19. une page qui ne se déclare pas elle-même dans sa grappe",
+  (d) => ecrire(d, "pt/index.html", page("/pt/", "Viajar com um cachorro", { en: "/", fr: "/fr/", es: "/es/", pt: "/es/" })),
+  /se déclare elle-même/);
 
 /* ---- Le contrôle d'arbre propre, à part : il ne dépend pas du dist ------------------------- */
 {
