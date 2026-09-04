@@ -57,11 +57,37 @@ const PREUVE_RECEVABLE = new Set(["official_website"]);
 const AUTO_CITATION = /(^|\/\/)([a-z0-9-]+\.)?mydogcanfly\.com/i;
 const AGREGATEURS = /pettravel\.com|petrelocation\.com|klm-pet|dogfriendly|tripadvisor/i;
 
-/** Une règle dont la condition compare un poids ou une taille à un seuil : elle prouve un refus
- *  CONDITIONNEL, jamais le refus général qu'une fiche publie. */
-function conditionnelleSurUnSeuil(r) {
-  const txt = JSON.stringify(r.applies_when ?? {});
-  return /"op"\s*:\s*"(gt|gte|lt|lte)"/.test(txt) || /weight_kg|length_cm|height_cm/.test(txt);
+/* ---- CE QUI PROUVE UN REFUS GÉNÉRAL : UN PRÉDICAT POSITIF, PAS UNE LISTE D'EXCLUSIONS --------
+ *
+ * PREMIÈRE RÉDACTION, ET SA FAIBLESSE. Elle écartait les conditions comparant un SEUIL — « op:
+ * gt », « weight_kg ». Une liste d'exclusions ne peut qu'être incomplète : elle laissait passer
+ * une condition de route, de race ou de saison, qui rend pourtant le refus tout aussi conditionnel.
+ * On énonce donc la propriété POSITIVEMENT : toutes les feuilles de `applies_when` portent
+ * EXCLUSIVEMENT sur `placement`, avec `eq` ou `in`, composées par `all`, `any` ou `or` — et leur
+ * union COUVRE le canal étudié. Toute autre feuille, quelle qu'elle soit, rend la preuve
+ * conditionnelle sans qu'il faille l'avoir prévue. Une négation (`not`) disqualifie aussi : elle
+ * inverse la couverture, et rien ici n'a besoin d'elle. */
+function feuillesDePlacement(noeud, out = { feuilles: [], pur: true }) {
+  if (Array.isArray(noeud)) { for (const n of noeud) feuillesDePlacement(n, out); return out; }
+  if (!noeud || typeof noeud !== "object") return out;
+  if ("fact" in noeud) {
+    if (noeud.fact !== "placement" || !["eq", "in"].includes(noeud.op)) out.pur = false;
+    else out.feuilles.push(...(Array.isArray(noeud.value) ? noeud.value : [noeud.value]));
+    return out;
+  }
+  for (const [k, v] of Object.entries(noeud)) {
+    if (["all", "any", "or"].includes(k)) feuillesDePlacement(v, out);
+    else out.pur = false;                       // `not`, ou tout combinateur inattendu
+  }
+  return out;
+}
+
+/** Vrai si la condition de la règle ne parle QUE de placement et couvre le canal étudié. */
+function prouveLeCanalSansCondition(r, canal) {
+  const aw = r.applies_when ?? {};
+  if (!Object.keys(aw).length) return false;     // sans condition, on ne sait pas ce qu'elle vise
+  const { feuilles, pur } = feuillesDePlacement(aw);
+  return pur && feuilles.length > 0 && feuilles.includes(canal);
 }
 
 export function mesurer(racine = ".") {
@@ -76,7 +102,7 @@ export function mesurer(racine = ".") {
   const m = {
     affirmations: 0, categoriques: 0, chiffrees: 0, couvertes: 0,
     categoriquesSansPreuve: 0, chiffreesSansPreuve: 0,
-    refusPublies: 0, refusSansAucuneRegle: 0, refusProuves: 0, refusNonProuves: 0,
+    refusPublies: 0, refusSansRegleDeCategorie: 0, refusSansRegleDuCanal: 0, refusProuves: 0, refusNonProuves: 0,
     compagnies: 0, compagniesSansRegle: 0,
   };
   const refusNus = [], parAirline = [];
@@ -114,11 +140,20 @@ export function mesurer(racine = ".") {
         const prouvantRefus = regs.filter((r) => r.effect?.action === "deny"
           && (r.effect?.placement ?? []).includes(ch.placement)
           && PREUVE_RECEVABLE.has(r.source?.source_type)
-          && !conditionnelleSurUnSeuil(r));
+          && prouveLeCanalSansCondition(r, ch.placement));
         if (prouvantRefus.length) m.refusProuves++;
         else m.refusNonProuves++;
-        if (!pertinentes.length) {
-          m.refusSansAucuneRegle++;
+        /* ORPHELIN SE MESURE PAR CANAL, ET NON PAR CATÉGORIE. L'indicateur précédent regardait
+           la CATÉGORIE de la règle : une règle « placement » portant sur la soute suffisait donc
+           à faire passer un refus de cabine pour accompagné. Il annonçait 7 refus orphelins là
+           où la mesure canal par canal en trouve 16, sur 11 compagnies. L'ancien indicateur est
+           conservé sous son nom exact — « aucune règle de la même catégorie » — parce qu'il n'était
+           pas faux, il était mal nommé. */
+        if (!pertinentes.length) m.refusSansRegleDeCategorie++;
+        const denyDuCanal = regs.filter((r) => r.effect?.action === "deny"
+          && (r.effect?.placement ?? []).includes(ch.placement));
+        if (!denyDuCanal.length) {
+          m.refusSansRegleDuCanal++;
           refusNus.push(`${d.name} · ${ch.placement} · « ${ch.statusLabel?.en ?? ""} »`);
         }
       }
@@ -163,13 +198,15 @@ if (import.meta.url === `file://${process.argv[1]}`) {
   console.log(`        de catégorie voisine — BORNE HAUTE, pas un taux de preuve   ${pct(m.couvertes, m.affirmations)}`);
   console.log(`  ${String(m.categoriques).padStart(4)}  verdicts CATÉGORIQUES (autorisé / refusé)`);
   console.log(`  ${String(m.categoriquesSansPreuve).padStart(4)}  …dont SANS preuve officielle                            ${pct(m.categoriquesSansPreuve, m.categoriques)}`);
-  console.log(`  ${String(m.chiffrees).padStart(4)}  affirmations CHIFFRÉES (poids, dimensions)`);
+  console.log(`  ${String(m.chiffrees).padStart(4)}  blocs CONTENANT UN CHIFFRE (poids, dimensions) — pas un fait chiffré vérifié`);
   console.log(`  ${String(m.chiffreesSansPreuve).padStart(4)}  …dont SANS preuve officielle                            ${pct(m.chiffreesSansPreuve, m.chiffrees)}`);
   console.log(`\n  ${String(m.refusPublies).padStart(4)}  REFUS catégoriques publiés`);
-  console.log(`  ${String(m.refusProuves).padStart(4)}  …prouvés au sens strict : même compagnie, deny, canal nommé dans`);
-  console.log(`        effect.placement, source officielle, condition NON conditionnelle à un seuil`);
+  console.log(`  ${String(m.refusProuves).padStart(4)}  …prouvés au sens strict : même compagnie, « deny », canal nommé dans`);
+  console.log(`        effect.placement, source officielle, ET condition portant EXCLUSIVEMENT sur`);
+  console.log(`        « placement » (eq/in, composés par all/any/or) et couvrant ce canal`);
   console.log(`  ${String(m.refusNonProuves).padStart(4)}  …NON prouvés à ce sens                                  ${pct(m.refusNonProuves, m.refusPublies)}`);
-  console.log(`  ${String(m.refusSansAucuneRegle).padStart(4)}  …dont sans AUCUNE règle derrière eux`);
+  console.log(`  ${String(m.refusSansRegleDuCanal).padStart(4)}  …dont sans AUCUNE règle « deny » nommant CE canal (${new Set(refusNus.map((x) => x.split(" · ")[0])).size} compagnies)`);
+  console.log(`  ${String(m.refusSansRegleDeCategorie).padStart(4)}  …dont sans aucune règle de la même CATÉGORIE (indicateur plus lâche)`);
   for (const r of refusNus) console.log(`          · ${r}`);
   console.log(`\n  ${String(m.compagniesSansRegle).padStart(4)}  compagnies sans aucune règle`);
 
