@@ -380,6 +380,26 @@ Rien d'autre. Le mécanisme est en place et vert ; ce qui manque est du jugement
 
 ---
 
+## 8 bis. Ce qui a été trouvé en CHERCHANT, et pas en attendant
+
+Trois des six arbitrages, et la faute la plus sérieuse du lot, ne viennent pas d'une contre-revue :
+ils viennent d'avoir cherché, à chaque fois, **là où un contrôle existant ne mordait pas**. Le motif
+se répète assez pour être nommé.
+
+| trouvaille | pourquoi personne ne l'avait vue |
+|---|---|
+| le site se cite lui-même comme source légale d'un pays | la contre-épreuve porte sur 72 scénarios figés, dont aucun ne va vers ces 44 pays |
+| le verdict de tête contredit ses propres canaux | le correctif de T0-B2 a fermé l'étage des canaux, jamais celui du verdict |
+| les fiches annoncent des sources qu'elles ne montrent pas | rien ne compare le nombre annoncé à ce que le dépôt contient |
+| le harnais navigateur testait un carlin de 87 kg | aucune assertion ne portait sur le formulaire ENVOYÉ — je l'ai vu sur une capture d'écran |
+
+La leçon est celle que ce dépôt écrit partout depuis l'affaire IATA : **un contrôle qui ne parle que
+de ce qu'il regarde compte zéro là où il ne regarde pas.** Les quatre nouvelles contre-épreuves ne
+prennent donc aucun échantillon — elles balaient toutes les règles, toutes les fiches, toutes les
+destinations concernées.
+
+---
+
 ## 9. Où regarder
 
 | | |
