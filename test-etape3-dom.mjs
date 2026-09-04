@@ -180,9 +180,30 @@ ok(`départ : ${pages.length} pages construites`);
      publique s'en sert aussitôt. */
   const corpusSources = grouperLicites(reconcilier({ scelle: new Map() }));
   const corpusPubliees = grouperLicites(corpusBrut, (x) => `${x.url} · ${x.zone}`);
+
+  /* ---- LE GESTE DE SCELLEMENT S'EXÉCUTE AVANT LA PORTE, ET NON APRÈS -------------------------
+   * RÉSERVE D'ERGONOMIE SIGNALÉE PAR LA CONTRE-REVUE DU 04/09/2026, et elle était juste. Le geste
+   * venait APRÈS les contrôles : le jour où une tournure licite nouvelle apparaît, le premier
+   * passage écrivait bien le scellé neuf, mais sortait ROUGE — la porte ayant déjà été jugée sur
+   * l'ANCIEN scellé —, et il fallait un second passage pour voir vert. Ce n'était pas un faux
+   * vert ; c'était un faux rouge, ce qui use la confiance tout aussi sûrement.
+   * Le geste précède donc la porte, et la porte relit le scellé qu'il vient d'écrire : un
+   * rescellement est vert du premier coup, et il DIT ce qu'il a changé. Sans le geste, rien ne
+   * bouge : le scellé ne se déplace jamais tout seul. */
+  let SCELLE_PUBLIE_EFFECTIF = SCELLE_PUBLIE;
+  if (process.argv.includes("--sceller-licites")) {
+    const avant = existsSync(CHEMIN_SCELLE_LICITES) ? readFileSync(CHEMIN_SCELLE_LICITES, "utf8") : "";
+    const neuf = serialiserScelleLicites(corpusSources, corpusPubliees);
+    writeFileSync(CHEMIN_SCELLE_LICITES, neuf);
+    SCELLE_PUBLIE_EFFECTIF = chargerScelleLicitesPubliees();
+    console.log(avant === neuf
+      ? `  · scellé des licites INCHANGÉ : ${corpusSources.size} chemin(s) source, ${corpusPubliees.size} couple(s) URL/zone`
+      : `  · scellé des licites RÉÉCRIT : ${corpusSources.size} chemin(s) source, ${corpusPubliees.size} couple(s) URL/zone`
+        + ` — ${avant ? "il a changé, relisez le diff avant de committer" : "création"}`);
+  }
   const nus = [];
   for (const [cle, tournures] of corpusPubliees) {
-    const scelles = SCELLE_PUBLIE.get(cle) ?? new Map();
+    const scelles = SCELLE_PUBLIE_EFFECTIF.get(cle) ?? new Map();
     const [url, zone] = [cle.slice(0, cle.lastIndexOf(" · ")), cle.slice(cle.lastIndexOf(" · ") + 3)];
     for (const [voisinage, n] of tournures) {
       for (let i = scelles.get(voisinage) ?? 0; i < n; i++) nus.push({ url, zone, voisinage });
@@ -473,11 +494,6 @@ ok(`départ : ${pages.length} pages construites`);
    * prescrite DÉTRUISAIT son propre état au lieu de le reproduire. On calcule désormais les deux
    * sections À SCELLÉ VIDE, et on les écrit ENSEMBLE — un seul écrivain, aucune section ne peut
    * être effacée par l'autre. Un second scellement rend le même octet, et un contrôle l'exige. */
-
-  if (process.argv.includes("--sceller-licites")) {
-    writeFileSync(CHEMIN_SCELLE_LICITES, serialiserScelleLicites(corpusSources, corpusPubliees));
-    console.log(`  · scellé des licites RÉÉCRIT : ${corpusSources.size} chemin(s) source, ${corpusPubliees.size} couple(s) URL/zone`);
-  }
 
   /* ---- 1undecies. LE SCELLÉ ÉGALE LE CORPUS, DANS LES DEUX SENS, ET SE REPRODUIT AU BIT ------ */
   {
