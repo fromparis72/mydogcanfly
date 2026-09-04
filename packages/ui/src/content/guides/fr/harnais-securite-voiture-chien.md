@@ -1,6 +1,6 @@
 ---
 key: "dog-car-harness"
-title: "Choisir un harnais de sécurité voiture homologué pour son chien"
+title: "Choisir un harnais de sécurité automobile pour son chien"
 seoTitle: "Harnais de sécurité voiture pour chien : bien choisir"
 description: "Choisir un harnais de sécurité voiture pour son chien : normes et crash-tests, taille, attache à la ceinture et installation correcte."
 summary: "Un harnais de voiture doit être crash-testé, à la bonne taille et relié à la ceinture par une attache courte. C'est, avec la caisse de transport, la seule manière de sécuriser un chien en voiture et de respecter le Code de la route."
@@ -15,7 +15,7 @@ enbref:
   - "📏 Doit être **parfaitement ajusté** au gabarit"
   - "🔗 Relié à la **ceinture** par une **attache courte**"
   - "❌ Un harnais de **promenade** n'offre aucune garantie"
-  - "✅ Avec la caisse homologuée : l'un des **2 seuls dispositifs fiables**"
+  - "✅ Avec la caisse conforme aux exigences applicables : l'un des **2 seuls dispositifs fiables**"
 cover:
   image: "/travel-hub/dog-car-harness.webp"
   alt: "Un chiot carlin noir installé sur un siège de voiture"
@@ -90,7 +90,7 @@ Pour comparer en détail les contenants, consultez notre guide [sac ou caisse de
 
 ## Que dit la réglementation française ?
 
-Le Code de la route impose que la conduite ne soit pas gênée et que rien ne réduise la visibilité ou la liberté de mouvement du conducteur. Un chien libre qui se déplace dans l'habitacle peut constituer une gêne sanctionnable. En attachant votre chien avec un harnais homologué ou en le plaçant dans une caisse, vous respectez cette obligation et réduisez fortement les risques. C'est aussi une question de bon sens assurantiel : un animal non retenu peut compliquer l'indemnisation après un accident.
+Le Code de la route impose que la conduite ne soit pas gênée et que rien ne réduise la visibilité ou la liberté de mouvement du conducteur. Un chien libre qui se déplace dans l'habitacle peut constituer une gêne sanctionnable. En attachant votre chien avec un harnais de sécurité automobile pour chien ou en le plaçant dans une caisse, vous respectez cette obligation et réduisez fortement les risques. C'est aussi une question de bon sens assurantiel : un animal non retenu peut compliquer l'indemnisation après un accident.
 
 ## Sources
 

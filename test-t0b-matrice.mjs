@@ -92,12 +92,38 @@ const DECISIONS_POST_MIGRATION = new Set([
  *    aucune source lisible — le détail dit « aucune limite de poids vérifiée ; à confirmer »,
  *    quatre langues.
  *  · airline_garuda_indonesia/cargo (id.) : « au-delà de 32 kg » disparaît pour la même
- *    raison — « animaux plus grands », sans seuil, quatre langues. */
+ *    raison — « animaux plus grands », sans seuil, quatre langues.
+ *
+ * MICRO-LOT ÉDITORIAL IATA (03/09/2026). Quatre blocs cargo portaient un vocabulaire qui
+ * attribue à l'IATA ce qu'elle ne fait pas. La correction est éditoriale, jamais décisionnelle :
+ * aucune décision, aucun statut, aucun canal ne bouge — seule la phrase change.
+ *  · airline_air_tahiti_nui/cargo, airline_virgin_atlantic/cargo : « IATA crate » / « caisse
+ *    IATA » attribuaient le contenant à l'IATA. Le contenant garde son nom, l'attribution part.
+ *  · airline_cathay_pacific/cargo : « bookings only through IPATA / IATA-accredited agents »
+ *    omettait deux des trois catégories de la page officielle et transformait « freight
+ *    forwarder » en « agent ». Les trois catégories sont rétablies telles que la compagnie les
+ *    publie — membre IPATA ou ATA, IATA Accredited Freight Forwarder, ou titulaire d'un
+ *    certificat de formation IATA LAR valide.
+ *  · airline_airbaltic/cargo : « third-party IATA-certified cargo agents » disait qu'une
+ *    ENTREPRISE est certifiée par l'IATA. La page dit autre chose : elle recommande des agents
+ *    TITULAIRES d'un certificat de formation IATA LAR. L'accréditation d'entreprise et le
+ *    certificat de formation d'une personne ne sont pas la même chose.
+ *
+ * SECONDE PASSE SUR CES DEUX BLOCS (03/09/2026), après contre-revue. La première correction ne
+ * s'était pas exécutée : le chemin airBaltic déclaré n'existait pas, et l'exception Cathay passait
+ * APRÈS les règles génériques, qui avaient déjà transformé son texte. Les quatre langues sont
+ * désormais traitées pour chacune des deux compagnies, et la formulation dit ce que dit la page :
+ * Cathay nomme ses TROIS catégories et l'exception de Hong Kong ; airBaltic nomme un certificat de
+ * FORMATION, jamais une entreprise certifiée. */
 const EDITIONS_POST_MIGRATION = new Map([
   ["airline_virgin_australia/cargo", "4398ecf181f18a61f2c1a0f99d4905f6bb9086c80cfd0a50e99a507c5f566fef"],
   ["airline_alaska/cargo", "faee91262c08431b11bc9e3b8f6dc3739dd4131cf3af0484fa6410ad8ca28c2a"],
   ["airline_garuda_indonesia/hold", "2d72e7da86ada5c91cd319398dde07aa8b5d6669a04f88dda5f1da0662bc6812"],
   ["airline_garuda_indonesia/cargo", "63a75a5b654ce0e1fc3f107d9ad1422840e35ca49920db352e822c291b7c302b"],
+  ["airline_air_tahiti_nui/cargo", "2133d076933a63806f16a1373edcf0167e9dfb946680b169fdf49afbc8ea6903"],
+  ["airline_airbaltic/cargo", "d63a3bf6f427ce14292050779bf1a417a2e972a7fbf071ea61b41dcc0e2f2a19"],
+  ["airline_cathay_pacific/cargo", "03d38ebebe05c9639cb8a560638943964d82a0badaf25be1ca59c4db42d50a60"],
+  ["airline_virgin_atlantic/cargo", "5d884e29651651b6d7291de3af9a13401c36615b7b7b84c834d57c4924c6304d"],
 ]);
 /** Décision runtime visée par une ligne du manifeste, sous forme d'auteur. */
 const attenduPour = (r) => r.decision.state === "legacy_unreviewed"

@@ -30,8 +30,16 @@
  * qu'un état final réussi ne peut pas révéler. Elle est éprouvée sur jeux d'essai jetables par
  * `test-migration-categories.mjs`, qui casse exprès ce qu'on ne peut pas casser ici.
  *
- * La base de comparaison est FIGÉE dans le fichier, comme un dossier de mesure : un contrôle
- * dont la référence bouge avec la branche finit par se comparer à lui-même.
+ * LES DEUX ÉTATS SONT FIGÉS DANS LE FICHIER, ET AUCUN N'EST L'ARBRE COURANT (rescopage du
+ * 03/09/2026, arbitré par la contre-revue). Cette preuve affirme ce qu'a fait une migration
+ * DATÉE : elle compare donc BASE (le sommet de `main` avant le lot) à RESULTAT (le commit où la
+ * migration a atterri), deux états git immuables. Elle comparait auparavant BASE à l'état
+ * PRÉSENT — ce qui mesurait « rien n'a bougé depuis août », pas « la migration n'a touché que le
+ * champ prévu ». Le premier lot éditorial légitime l'a fait rougir, exactement comme l'en-tête
+ * ci-dessous l'annonçait. Les éditions postérieures lui sont désormais étrangères, comme elles
+ * doivent l'être ; un contrôle dont la référence bouge avec la branche finit par se comparer à
+ * lui-même. Le rescopage n'ouvre PAS un journal d'exceptions : une liste d'éditions nommées ici
+ * aurait rongé peu à peu la propriété « hors champ inchangé ».
  *
  * CE CONTRÔLE N'ENTRE PAS EN CI, DÉLIBÉRÉMENT. C'est une preuve DATÉE, pas une garantie
  * permanente : sa propriété 1 exige les 288 mêmes chemins qu'au commit de base, si bien que le
@@ -43,13 +51,22 @@
  *
  *   node preuve-migration-categories.mjs
  */
-import { readFileSync, readdirSync, mkdtempSync, rmSync } from "node:fs";
+import { readFileSync, writeFileSync, readdirSync, mkdtempSync, rmSync } from "node:fs";
+import { createHash } from "node:crypto";
 import { tmpdir } from "node:os";
 import { spawnSync } from "node:child_process";
 import { join } from "node:path";
 
 /** L'état AVANT migration : sommet de `main` au moment où ce lot commence. */
 const BASE = "7ac07e572712cf51c17ed6bd759c0f2c34131504";
+/** L'état APRÈS migration : le commit où elle a atterri. Jamais HEAD, jamais l'arbre courant. */
+const RESULTAT = "c867628f554c432a3bf9a1fa79454b9fe5f03eca";
+/* LE MIGRATEUR DE LA PREUVE, NOMMÉ PAR SON COMMIT ET PAR SON EMPREINTE. C'est la version corrigée
+   et atomique arbitrée le 03/09/2026 ; l'empreinte est relevée sur ces octets-là, si bien qu'un
+   commit réécrit ou une extraction silencieusement différente ne passeraient pas. */
+const MIGRATEUR_COMMIT = "c2c3fe90ef02cedf5c743816638c6d53a4074ee5";
+const MIGRATEUR_CHEMIN = "packages/knowledge/scripts/migrer-categories.mjs";
+const MIGRATEUR_EMPREINTE = "7eefee1eb704c3492c8f3980fd947c97acc3b0a776b417e9f2fd6e2491a24333";
 
 const RACINE = "packages/ui/src/content/guides";
 const LANGUES = ["en", "fr", "es", "pt"];
@@ -79,11 +96,11 @@ const ABANDONS_ATTENDUS = new Map([
 /* git DOIT échouer FERMÉ. Un `catch` qui rendrait la chaîne vide transformerait « je n'ai pas pu
  * lire l'état antérieur » en « l'état antérieur était vide », et la preuve conclurait au vert
  * sur du néant. C'est la faute que la contre-revue a fait fermer deux fois dans ce dépôt. */
-function auCommit(chemin) {
-  const r = spawnSync("git", ["show", `${BASE}:${chemin}`], { encoding: "utf-8", maxBuffer: 64 * 1024 * 1024 });
+function auCommit(chemin, commit = BASE) {
+  const r = spawnSync("git", ["show", `${commit}:${chemin}`], { encoding: "utf-8", maxBuffer: 64 * 1024 * 1024 });
   if (r.status !== 0) {
     process.stderr.write(
-      `[preuve] ÉCHEC : impossible de lire « ${chemin} » au commit ${BASE.slice(0, 12)}.\n` +
+      `[preuve] ÉCHEC : impossible de lire « ${chemin} » au commit ${commit.slice(0, 12)}.\n` +
       `[preuve] ${(r.stderr || "").trim()}\n` +
       `[preuve] Si le clone est superficiel, approfondissez-le : git fetch --unshallow\n`);
     process.exit(1);
@@ -105,15 +122,13 @@ const defauts = [];
 const echec = (m) => defauts.push(m);
 
 /* ---- 1. identité de l'ensemble ------------------------------------------------------------ */
-const apres = [];
-for (const langue of LANGUES) {
-  for (const nom of readdirSync(join(RACINE, langue)).filter((f) => f.endsWith(".md")).sort()) {
-    apres.push(`${RACINE}/${langue}/${nom}`);
-  }
-}
-const r = spawnSync("git", ["ls-tree", "-r", "--name-only", BASE, "--", RACINE], { encoding: "utf-8" });
-if (r.status !== 0) { process.stderr.write("[preuve] ÉCHEC : git ls-tree sur la base.\n"); process.exit(1); }
-const avant = r.stdout.split("\n").filter((l) => l.endsWith(".md")).sort();
+const arbreDe = (commit) => {
+  const r = spawnSync("git", ["ls-tree", "-r", "--name-only", commit, "--", RACINE], { encoding: "utf-8" });
+  if (r.status !== 0) { process.stderr.write(`[preuve] ÉCHEC : git ls-tree sur ${commit.slice(0, 12)}.\n`); process.exit(1); }
+  return r.stdout.split("\n").filter((l) => l.endsWith(".md")).sort();
+};
+const avant = arbreDe(BASE);
+const apres = arbreDe(RESULTAT);
 
 const perdus = avant.filter((p) => !apres.includes(p));
 const ajoutes = apres.filter((p) => !avant.includes(p));
@@ -125,8 +140,8 @@ const compte = new Map(CLES.map((k) => [k, 0]));
 const abandonsVus = new Map();
 let compares = 0;
 for (const chemin of apres.filter((p) => avant.includes(p))) {
-  const a = auCommit(chemin);
-  const b = readFileSync(chemin, "utf-8");
+  const a = auCommit(chemin, BASE);
+  const b = auCommit(chemin, RESULTAT);
   compares++;
 
   const vals = anciennesValeurs(a);
@@ -192,14 +207,40 @@ for (const [chemin, valeur] of abandonsVus) {
   const base = mkdtempSync(join(tmpdir(), "preuve-idem-"));
   const arbre = join(base, "wt");
   const g = (...a) => spawnSync("git", a, { encoding: "utf-8" });
-  const ajout = g("worktree", "add", "--detach", "--quiet", arbre, "HEAD");
+  /* Détaché sur RESULTAT, pas sur HEAD : l'idempotence se prouve sur l'état que la migration a
+     produit.
+     ET LE MIGRATEUR EXÉCUTÉ EST CELUI DE `c2c3fe90`, TIRÉ DU DÉPÔT — pas le fichier de l'arbre
+     courant. FAUTE MESURÉE PAR LA CONTRE-REVUE DU 03/09/2026 : cette preuve est DATÉE, elle porte
+     sur deux commits immuables, et elle exécutait pourtant la version VIVANTE du migrateur. Le
+     commentaire s'en défendait en disant les deux fichiers identiques « vérifié par git diff » —
+     ce qui était vrai ce jour-là et ne prouve rien du lendemain. Une preuve historique dont un
+     ingrédient bouge avec l'arbre de travail n'est plus une preuve historique : elle mesurerait
+     l'idempotence d'un migrateur que la migration n'a jamais utilisé.
+     Les octets sont donc EXTRAITS du commit, leur empreinte est vérifiée, et c'est ce fichier-là
+     qui s'exécute. Il est écrit DANS le worktree, à côté de ses propres dépendances, parce qu'il
+     importe `./lib/categories-guides.mjs` relativement — et retiré avant le contrôle de propreté,
+     pour qu'il ne compte pas lui-même comme une modification. */
+  const ajout = g("worktree", "add", "--detach", "--quiet", arbre, RESULTAT);
   if (ajout.status !== 0) {
     echec(`5. worktree jetable impossible : ${(ajout.stderr || "").trim()}`);
   } else {
-    const rejeu = spawnSync("node",
-      ["packages/knowledge/scripts/migrer-categories.mjs", `--racine=${join(arbre, RACINE)}`],
-      { encoding: "utf-8" });
-    const etat = g("-C", arbre, "status", "--porcelain", "-uall");
+    const octets = spawnSync("git", ["show", `${MIGRATEUR_COMMIT}:${MIGRATEUR_CHEMIN}`],
+      { encoding: "buffer", maxBuffer: 1 << 26 });
+    let rejeu = { status: 1, stdout: "", stderr: "octets du migrateur historique non extraits" };
+    let etat = { stdout: "" };
+    if (octets.status !== 0) {
+      echec(`5. les octets du migrateur à ${MIGRATEUR_COMMIT.slice(0, 8)} sont introuvables`);
+    } else {
+      const empreinte = createHash("sha256").update(octets.stdout).digest("hex");
+      if (empreinte !== MIGRATEUR_EMPREINTE) {
+        echec(`5. le migrateur historique ne porte pas l'empreinte attendue : ${empreinte} au lieu de ${MIGRATEUR_EMPREINTE}`);
+      }
+      const cible = join(arbre, "packages/knowledge/scripts", `migrer-categories.${MIGRATEUR_COMMIT.slice(0, 8)}.mjs`);
+      writeFileSync(cible, octets.stdout);
+      rejeu = spawnSync("node", [cible, `--racine=${join(arbre, RACINE)}`], { encoding: "utf-8" });
+      rmSync(cible, { force: true });
+      etat = g("-C", arbre, "status", "--porcelain", "-uall");
+    }
     if (rejeu.status !== 0) {
       echec(`5. le rejeu RÉEL de la migration échoue (code ${rejeu.status}) : ${(rejeu.stderr || "").trim().split("\n")[0]}`);
     }
@@ -219,6 +260,7 @@ for (const [chemin, valeur] of abandonsVus) {
 /* ---- verdict ------------------------------------------------------------------------------- */
 const log = (m) => process.stdout.write(`${m}\n`);
 log(`base de comparaison : ${BASE}`);
+log(`résultat comparé    : ${RESULTAT}`);
 log(`fichiers confrontés : ${compares} (avant ${avant.length} · après ${apres.length})`);
 log(`répartition finale  : ${CLES.map((k) => `${k}:${compte.get(k)}`).join(" ")}`);
 log("");

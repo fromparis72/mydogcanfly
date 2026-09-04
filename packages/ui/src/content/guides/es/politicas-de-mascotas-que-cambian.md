@@ -54,7 +54,7 @@ Antes de dar por segura una reserva, confirma estos puntos en la documentación 
 
 1. **La aerolínea operadora.** En código compartido valen las normas de quien opera el avión, no las del vendedor del billete.
 2. **El modo de transporte que te han vendido.** Cabina, bodega como equipaje acompañado y carga manifestada son tres contratos distintos: consulta [cabina, equipaje adicional o carga manifestada](/es/travel-hub/cabina-equipaje-adicional-o-carga/).
-3. **Las dimensiones y el peso total** admitidos para tu animal, por escrito. Nuestra [calculadora de transportín IATA](/es/tools/crate/) te da la cifra con la que contrastar.
+3. **Las dimensiones y el peso total** admitidos para tu animal, por escrito. Nuestra [calculadora de transportín](/es/tools/crate/) te da la cifra con la que contrastar.
 4. **Las restricciones estacionales** vigentes en tus fechas, en cada aeropuerto del itinerario, escala incluida, que suele ser la restricción determinante. Consulta [escalas y conexiones con perro](/es/travel-hub/escalas-y-conexiones-con-perro/).
 
 Y repite la comprobación n.º 4 unos días antes de volar.

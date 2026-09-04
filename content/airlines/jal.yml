@@ -113,10 +113,10 @@ channels:
       es: Permitido
       pt: "Permitido"
     detail:
-      en: Pets as checked baggage in the bulk hold (pet + crate ≤ 32 kg); min 8 weeks, rabies-vaccinated. IATA crate (rental available).
-      fr: Animaux en bagage enregistré dans la soute vrac (animal + caisse ≤ 32 kg) ; min 8 semaines, vaccinés contre la rage. Caisse IATA (location possible).
-      es: Mascotas como equipaje facturado en la bodega a granel (mascota + jaula ≤ 32 kg); mín. 8 semanas, vacunadas contra la rabia. Jaula IATA (con alquiler disponible).
-      pt: "Animais como bagagem despachada no porão de carga geral (animal + caixa de transporte ≤ 32 kg); mín. 8 semanas, vacinado contra a raiva. Caixa IATA (aluguel disponível)."
+      en: Pets as checked baggage in the bulk hold (pet + crate ≤ 32 kg); min 8 weeks, rabies-vaccinated. travel crate (rental available).
+      fr: Animaux en bagage enregistré dans la soute vrac (animal + caisse ≤ 32 kg) ; min 8 semaines, vaccinés contre la rage. Caisse de transport (location possible).
+      es: Mascotas como equipaje facturado en la bodega a granel (mascota + jaula ≤ 32 kg); mín. 8 semanas, vacunadas contra la rabia. Jaula de transporte (con alquiler disponible).
+      pt: "Animais como bagagem despachada no porão de carga geral (animal + caixa de transporte ≤ 32 kg); mín. 8 semanas, vacinado contra a raiva. Caixa de transporte (aluguel disponível)."
     fee:
       en: ¥5,500–7,700
       fr: 5 500–7 700 ¥
@@ -286,10 +286,10 @@ goodToKnow:
       es: Jaulas de alquiler
       pt: "Caixas de aluguel"
     value:
-      en: IATA rental crates (S–XL) available; L/XL need advance reservation.
-      fr: Caisses IATA en location (S–XL) ; L/XL sur réservation préalable.
-      es: Jaulas IATA de alquiler (S–XL) disponibles; los L/XL requieren reserva previa.
-      pt: "Caixas IATA de aluguel (S–XL) disponíveis; os tamanhos L/XL exigem reserva antecipada."
+      en: Rental crates that meet the applicable requirements (S–XL) available; L/XL need advance reservation.
+      fr: Caisses de transport en location (S–XL) ; L/XL sur réservation préalable.
+      es: Jaulas de transporte de alquiler (S–XL) disponibles; los L/XL requieren reserva previa.
+      pt: "Caixas de transporte de aluguel (S–XL) disponíveis; os tamanhos L/XL exigem reserva antecipada."
   - icon: ⏱️
     label:
       en: Check-in

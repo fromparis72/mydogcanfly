@@ -54,7 +54,7 @@ Avant de considérer une réservation comme sûre, confirmez ces points sur les 
 
 1. **Le transporteur opérant.** En partage de code, ce sont les règles de l'exploitant de l'appareil qui valent, pas celles du vendeur du billet.
 2. **Le mode de transport qui vous a été vendu.** Cabine, soute en bagage accompagné et fret manifesté sont trois contrats différents — voyez [cabine, bagage excédentaire ou fret manifesté](/fr/travel-hub/cabine-bagage-excedentaire-ou-fret/).
-3. **Les dimensions et le poids total** acceptés pour votre animal, par écrit. Notre [calculateur de caisse IATA](/fr/tools/crate/) vous donne le chiffre à confronter.
+3. **Les dimensions et le poids total** acceptés pour votre animal, par écrit. Notre [calculateur de caisse de transport](/fr/tools/crate/) vous donne le chiffre à confronter.
 4. **Les restrictions saisonnières** en vigueur à vos dates, dans chaque aéroport de l'itinéraire — escale comprise, qui est souvent la contrainte déterminante. Voyez [escales et correspondances avec un chien](/fr/travel-hub/escales-et-correspondances-avec-un-chien/).
 
 Puis refaites la vérification n° 4 quelques jours avant de partir.

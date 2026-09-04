@@ -81,26 +81,82 @@ const RACINE = process.cwd();
 /* LES TERMINAISONS ACCENTUÉES. Faute trouvée par la contre-épreuve 4 : `\\w*` ne contient PAS les
    lettres accentuées en JavaScript, si bien que « certifiée IATA » et « approuvée par l'IATA »
    n'étaient jamais vues — deux formes françaises entières manquaient au relevé. */
+/* ---- L'ESPACE À L'INTÉRIEUR D'UNE PHRASE ---------------------------------------------------
+ *
+ * DÉFAUT MESURÉ LE 03/09/2026, ET IL INVENTAIT DES AFFIRMATIONS. Depuis que le lecteur de zones
+ * rend le texte comme il est AFFICHÉ, une frontière de bloc devient une ligne vide. Or `\s+`
+ * traverse les lignes vides : la fin d'une cellule de tableau se soudait donc au début de la
+ * suivante. Sur la page espagnole « equipamiento de viaje », une cellule finit par « …opciones
+ * conformes a IATA » — une référence LICITE — et la suivante commence par « Transportín
+ * flexible » ; le motif y lisait « IATA Transportín », une attribution de contenant qui n'est
+ * écrite nulle part. Deux occurrences fantômes au registre public, plus deux autres du même
+ * mécanisme sur d'autres pages.
+ *
+ * UNE PHRASE NE TRAVERSE PAS UNE LIGNE VIDE. L'espace intra-phrase autorise donc les espaces, les
+ * tabulations et UN retour à la ligne — un paragraphe peut être replié par l'éditeur — mais
+ * jamais deux, qui signent un changement de bloc. C'est le lecteur qui a rendu ce défaut visible :
+ * avant lui, tout était collé et le motif ne pouvait pas franchir ce qu'il ne voyait pas. */
+const ESP = "(?:[^\\S\\n]|\\n(?!\\s*\\n))+";
+
 const SUITE = "[\\wÀ-ÿ]*";
 export const ALTERNATIVES = [
   "IATA[- ]?(?:approved|compliant|certified|accredited)",
+  /* « conforme CON la IATA » — trouvée par la réconciliation des jetons, dans une fiche pays
+     espagnole publiée. Le contrat connaissait « conforme A la IATA » et « compatible CON la
+     IATA », mais pas le croisement des deux. */
+  "conformes?\\s+con\\s+(?:la\\s+)?IATA",
   "IATA[- ]?(?:LAR|formula|method|requirements?|standards?|guidelines?)",
   "Live Animals Regulations",
   `homologu${SUITE}`, `homologad${SUITE}`, `homologa${SUITE}`,
-  "conforme[s]?\\s+(?:à\\s+la\\s+norme\\s+)?IATA",
-  "conforme[s]?\\s+(?:a|à)\\s+la\\s+IATA",
-  "conforme[s]?\\s+(?:à|a)\\s+(?:la\\s+)?norma\\s+IATA",
+  /* DEUX VERBES D'AGRÉMENT DE PLUS, TROUVÉS PAR LA RÉCONCILIATION DES JETONS (04/09/2026) et non
+     par une relecture : « caisse agréée IATA » vivait dans `packages/knowledge/raw/rules.json`,
+     invisible, parce que le contrat connaissait « homologuée », « certifiée » et « approuvée »
+     mais pas « agréée ». C'est la même faute que `container`, sur le verbe au lieu du nom.
+     ILS SONT BORNÉS À L'ADJACENCE D'« IATA », dans les deux sens, et pas écrits en mot nu comme
+     `homologu${SUITE}` : « agréé » tout seul qualifie aussi un vétérinaire ou un transporteur, et
+     l'attraper partout ferait entrer dans ce lot des phrases qui n'ont rien à s'y voir. */
+  /* L'ATTRIBUTION PAR COMPLÉMENT D'AGENT — « approved BY IATA ». Le contrat connaissait
+     « IATA-approved » (adjectif antéposé) et « approuvée par l'IATA », mais pas la forme anglaise
+     ni l'apostrophe typographique : « approuvée par l’IATA », avec un « ’ » et non un « ' »,
+     était invisible. C'est le même piège que `\b` sur un « é », sur un autre caractère. */
+  `(?:approved|certified|accredited|recognised|recognized|approuv[\\wÀ-ÿ]*|aprobad[\\wÀ-ÿ]*|aprovad[\\wÀ-ÿ]*)${ESP}(?:by|par|por|pela?)${ESP}(?:l['’]\\s*|(?:the|la|le|el|a|o)${ESP})?IATA`,
+  `agréé(?:e|s|es)?${ESP}IATA`, `IATA${ESP}agréé(?:e|s|es)?`,
+  `aprova?d[oa]s?${ESP}IATA`, `IATA${ESP}aprova?d[oa]s?`,
+  `aproba[dt][oa]s?${ESP}IATA`, `IATA${ESP}aproba[dt][oa]s?`,
+  /* ---- LA CONFORMITÉ AFFIRMÉE D'UN OBJET, EN ESPAGNOL ET EN PORTUGAIS -----------------------
+   *
+   * TROU MESURÉ LE 03/09/2026, ET C'ÉTAIT UNE DETTE PRÉEXISTANTE — 37 occurrences dans 24
+   * fichiers actifs, dont des guides espagnols et portugais RÉELLEMENT PUBLIÉS :
+   * « caixa de transporte em conformidade com a IATA », « transportín conforme a IATA »,
+   * « contêiner compatível com a IATA ». Le motif ne connaissait que les formes AVEC article —
+   * « conforme a LA IATA » — et ces phrases-là n'en portent pas. Le registre a donc pu annoncer
+   * zéro alors que la dette publiée ne l'était pas : un zéro LEXICAL, jamais un zéro réel.
+   *
+   * LA DISTINCTION EST DANS L'ORDRE. Se conformer aux EXIGENCES publiées par l'IATA est vrai et
+   * licite ; être conforme à L'IATA ne veut rien dire, sinon prétendre que l'organisation valide
+   * l'objet. Les formes qui nomment les exigences sont donc écrites AVANT, et accrochent les
+   * premières. */
+  `em${ESP}conformidade${ESP}com${ESP}(?:os${ESP})?requisitos(?:${ESP}d[ao]s?)?${ESP}IATA`,
+  `conformes?${ESP}aos${ESP}requisitos(?:${ESP}d[ao]s?)?${ESP}IATA`,
+  `requisitos${ESP}(?:d[ao]s?${ESP})?IATA`,
+  `em${ESP}conformidade${ESP}com${ESP}a${ESP}IATA`,
+  `compat[íi]ve(?:l|is)${ESP}com${ESP}a${ESP}IATA`,
+  `compatibles?${ESP}con${ESP}la${ESP}IATA`,
+  `conforme[s]?${ESP}(?:à${ESP}la${ESP}norme${ESP})?IATA`,
+  `conforme[s]?${ESP}(?:a|à)${ESP}la${ESP}IATA`,
+  `conforme[s]?${ESP}(?:à|a)${ESP}(?:la${ESP})?norma${ESP}IATA`,
+  `conformes?${ESP}(?:a|à)${ESP}IATA`,
   /* SYMÉTRIE LINGUISTIQUE (arbitrage du 02/09/2026). « norme(s) IATA » était licite et
      « norma IATA » interdit, alors que les deux nomment le même référentiel — une incohérence
      entre langues, pas une règle. Les deux sont désormais licites À L'OCCURRENCE. Les
      AFFIRMATIONS COMPLÈTES restent interdites, et les alternatives qui les portent — « conforme
      à la norme IATA », « conforme a la norma IATA » — sont placées AVANT celles-ci, donc elles
      accrochent les premières. */
-  "normas?\\s+IATA", "normes?\\s+IATA", "exigences\\s+IATA",
-  `certifi${SUITE}\\s+IATA`,
-  `approuv${SUITE}\\s+par\\s+(?:l')?IATA`,
-  `aprobad${SUITE}\\s+por\\s+la\\s+IATA`,
-  `aprovad${SUITE}\\s+pela\\s+IATA`,
+  `normas?${ESP}IATA`, `normes?${ESP}IATA`, `exigences${ESP}IATA`,
+  `certifi${SUITE}${ESP}IATA`,
+  `approuv${SUITE}${ESP}par${ESP}(?:l')?IATA`,
+  `aprobad${SUITE}${ESP}por${ESP}la${ESP}IATA`,
+  `aprovad${SUITE}${ESP}pela${ESP}IATA`,
 ];
 
 /* ---- LA FAMILLE « CONTENANT + IATA », AJOUTÉE LE 02/09/2026 ---------------------------------
@@ -124,16 +180,50 @@ export const ALTERNATIVES = [
  * LE MOTIF EST ÉCRIT UNE SEULE FOIS et sert AUX DEUX étages — le relevé et le jugement. Les
  * définir séparément, c'est les laisser diverger : ce lot en a fait deux fois l'expérience avec le
  * détecteur de montants. */
-const CONTENANT = "caisses?|cages?|crates?|kennels?|carriers?|sacs?|bags?|jaulas?"
-  + "|transport[íi]n(?:es)?|caixas?|bolsas?|conteneurs?";
-const QUALIF = "(?:de\\s+)?(?:type|typical|tipo|t[íi]pic[ao]s?)";
+/* `containers?` A ÉTÉ AJOUTÉ LE 04/09/2026, ET C'ÉTAIT UN FAUX ZÉRO DE PLUS. Le mot manquait au
+   lexique alors que la TABLE ANGLAISE DU RÉÉCRIVEUR le connaissait depuis toujours — elle écrit
+   `(crate|kennel|carrier|cage|container|box)`. Deux définitions du même vocabulaire, encore : le
+   réécriveur savait corriger ce que l'instrument ne savait pas voir, si bien que
+   `content/airlines/thai_airways.yml` a gardé « IATA container required » et « a leak-proof,
+   disinfected IATA container » — publiés sur la fiche anglaise Thai Airways — pendant que le
+   registre annonçait 0 / 0. Le français, l'espagnol et le portugais de cette MÊME fiche avaient
+   pourtant été corrigés : la divergence se voyait à l'œil nu dans le fichier.
+   LA MESURE A ÉTÉ REFAITE EXHAUSTIVEMENT avant d'élargir : tous les mots collés à « IATA » dans
+   le dépôt entier, dans les deux sens, ont été relevés et confrontés à ce lexique. `container`
+   est le SEUL nom de contenant qui manquait. `box`, `contenedor`, `contentor`, `caja`, `cesta`,
+   `basket`, `panier` n'apparaissent nulle part au contact d'« IATA » — ils ne sont donc pas
+   ajoutés, parce qu'on n'élargit pas sur une intuition. */
+export const CONTENANT = "caisses?|cages?|crates?|kennels?|carriers?|sacs?|bags?|jaulas?"
+  + "|transport[íi]n(?:es)?|caixas?|bolsas?|conteneurs?|containers?";
+/* LE QUALIFICATIF INTERCALÉ, ET C'EST UNE FAUTE MESURÉE QUI L'AJOUTE (contre-revue du 03/09/2026).
+ * La famille ne reconnaissait que le contenant DIRECTEMENT ADJACENT à `IATA`, plus le seul axe
+ * « type / tipo ». Un mot glissé entre les deux la rendait aveugle : « caisse rigide IATA »,
+ * « transportín rígido IATA », « caixa rígida IATA », « Caisse de transport IATA », « IATA travel
+ * crate » n'étaient comptés nulle part. Le registre publié affichait donc 0 / 0 pendant que la
+ * faute restait à l'écran — un zéro lexical, pas un zéro de vérité. Une famille qui ne voit que
+ * l'adjacence ne mesure pas la famille : elle mesure une de ses formes.
+ *
+ * DEUX AXES, ET DEUX SEULEMENT, parce que ce sont les deux que le dépôt écrit :
+ *   · LA MATIÈRE — la rigidité du contenant : `rigide`, `rígido`, `rígida` sont les formes
+ *     relevées ; les quatre langues sont complétées sur le même axe, pas au-delà ;
+ *   · L'USAGE — ce à quoi le contenant sert : `de transport`, `de transporte`, `de viaje`,
+ *     `travel`, `dog`, `pet`, `rental`, toutes relevées telles quelles.
+ * LA BORNE EST NOMMÉE : un troisième axe — une couleur, une marque, une dimension — resterait
+ * invisible jusqu'à ce qu'on l'écrive ici. C'est le prix d'un bornage exact, et il est préférable
+ * au prix inverse : `[\wÀ-ÿ]+` attraperait « exigences IATA de contenant » et rendrait interdite
+ * une référence licite. */
+export const MATIERE = "rigid|hard(?:-sided)?|soft(?:-sided)?"          // en
+  + "|rigides?|souples?"                                          // fr
+  + "|r[íi]gid[oa]s?|flexibles?|flex[íi]ve(?:l|is)|bland[oa]s?";   // es/pt
+export const USAGE = `de${ESP}transporte?|de${ESP}via(?:je|gem)|de${ESP}voyage|travel|dog|pet|rental`;
+const QUALIF = `(?:de${ESP})?(?:type|typical|tipo|t[íi]pic[ao]s?)|${MATIERE}|${USAGE}`;
 /* L'ORDRE COMPTE : dans une alternance, la première branche qui accroche gagne. La forme à
  * qualificatif SUIVANT — « Caisse IATA type » — doit donc précéder la forme nue, sans quoi celle-ci
  * s'arrêterait à « Caisse IATA » et le relevé montrerait une phrase tronquée. */
 export const FAMILLE_CONTENANT = [
-  `\\b(?:${CONTENANT})\\s+IATA\\s+(?:${QUALIF})\\b`,     // Caisse IATA type · Jaula IATA típica
-  `\\b(?:${CONTENANT})\\s+(?:${QUALIF}\\s+)?IATA\\b`,   // caisse IATA · caisse de type IATA
-  `\\bIATA\\s+(?:${QUALIF}\\s+)?(?:${CONTENANT})\\b`,    // IATA crate · IATA typical kennel
+  `\\b(?:${CONTENANT})${ESP}IATA${ESP}(?:${QUALIF})\\b`,          // Caisse IATA type · Jaula IATA típica
+  `\\b(?:${CONTENANT})${ESP}(?:(?:${QUALIF})${ESP})?IATA\\b`,     // caisse IATA · caisse rigide IATA
+  `\\bIATA${ESP}(?:(?:${QUALIF})${ESP})?(?:${CONTENANT})\\b`,     // IATA crate · IATA travel crate
 ];
 
 /* LES FORMES SANS CONTENANT ADJACENT, BORNÉES UNE PAR UNE.
@@ -150,9 +240,9 @@ export const FAMILLE_CONTENANT = [
  * LA LIMITE EST NOMMÉE : une cinquième formulation de ce genre serait invisible jusqu'à ce qu'on
  * l'ajoute ici — c'est le prix d'un bornage exact, et il est préférable au prix inverse. */
 export const FORMES_BORNEES = [
-  "\\brigid\\s+IATA\\s+type\\b",            // en — « rigid IATA type with two-point locking »
-  "\\btype\\s+IATA\\s+rigide\\b",           // fr — « type IATA rigide avec verrouillage »
-  "\\btipo\\s+IATA\\s+r[íi]gid[ao]\\b",     // es/pt — « tipo IATA rígida con cierre »
+  `\\brigid${ESP}IATA${ESP}type\\b`,            // en — « rigid IATA type with two-point locking »
+  `\\btype${ESP}IATA${ESP}rigide\\b`,           // fr — « type IATA rigide avec verrouillage »
+  `\\btipo${ESP}IATA${ESP}r[íi]gid[ao]\\b`,     // es/pt — « tipo IATA rígida con cierre »
 ];
 
 /* LE MOTIF HÉRITÉ, GARDÉ POUR PROUVER QUE L'EXTENSION N'EST QU'UN AJOUT. La contre-épreuve rejoue
@@ -167,13 +257,362 @@ export const MOTIF_HERITE = new RegExp(ALTERNATIVES_HERITEES.join("|"), "gi");
 
 /* ---- LES DEUX JUGEMENTS, PORTÉS SUR LE TEXTE TROUVÉ SEUL -----------------------------------
    Pas sur la ligne : c'est toute la correction du P0-2. Chacun ne voit que l'occurrence. */
-const OCC_LEGITIME = /^(?:Live Animals Regulations|IATA[- ]?(?:LAR|formula|method|requirements?|standards?|guidelines?)|normes?\s+IATA|normas?\s+IATA|exigences\s+IATA)$/i;
+const OCC_LEGITIME = /^(?:Live Animals Regulations|IATA[- ]?(?:LAR|formula|method|requirements?|standards?|guidelines?)|normes?\s+IATA|normas?\s+IATA|exigences\s+IATA|requisitos\s+(?:d[ao]s?\s+)?IATA|em\s+conformidade\s+com\s+(?:os\s+)?requisitos(?:\s+d[ao]s?)?\s+IATA|conformes?\s+aos\s+requisitos(?:\s+d[ao]s?)?\s+IATA)$/i;
 const OCC_INTERDITE_FAMILLE = new RegExp(`^(?:${[...FAMILLE_CONTENANT, ...FORMES_BORNEES].join("|")})$`, "i");
-const OCC_INTERDITE = /^(?:IATA[- ]?(?:approved|compliant|certified|accredited)|homologu[\wÀ-ÿ]*|homologad[\wÀ-ÿ]*|homologa[\wÀ-ÿ]*|conforme[s]?\s+(?:à\s+la\s+norme\s+)?IATA|conforme[s]?\s+(?:a|à)\s+la\s+IATA|conforme[s]?\s+(?:à|a)\s+(?:la\s+)?norma\s+IATA|certifi[\wÀ-ÿ]*\s+IATA|approuv[\wÀ-ÿ]*\s+par\s+(?:l')?IATA|aprobad[\wÀ-ÿ]*\s+por\s+la\s+IATA|aprovad[\wÀ-ÿ]*\s+pela\s+IATA)$/i;
+const OCC_INTERDITE = /^(?:IATA[- ]?(?:approved|compliant|certified|accredited)|homologu[\wÀ-ÿ]*|homologad[\wÀ-ÿ]*|homologa[\wÀ-ÿ]*|conforme[s]?\s+(?:à\s+la\s+norme\s+)?IATA|conforme[s]?\s+(?:a|à)\s+la\s+IATA|conformes?\s+con\s+(?:la\s+)?IATA|conforme[s]?\s+(?:à|a)\s+(?:la\s+)?norma\s+IATA|certifi[\wÀ-ÿ]*\s+IATA|(?:approved|certified|accredited|recognised|recognized|approuv[\wÀ-ÿ]*|aprobad[\wÀ-ÿ]*|aprovad[\wÀ-ÿ]*)\s+(?:by|par|por|pela?)\s+(?:(?:the|l['’]|la|le|el|a|o)\s*)?IATA|aprobad[\wÀ-ÿ]*\s+por\s+la\s+IATA|aprovad[\wÀ-ÿ]*\s+pela\s+IATA|em\s+conformidade\s+com\s+a\s+IATA|compat[íi]ve(?:l|is)\s+com\s+a\s+IATA|compatibles?\s+con\s+la\s+IATA|conformes?\s+(?:a|à)\s+IATA|agréé(?:e|s|es)?\s+IATA|IATA\s+agréé(?:e|s|es)?|aprova?d[oa]s?\s+IATA|IATA\s+aprova?d[oa]s?|aproba[dt][oa]s?\s+IATA|IATA\s+aproba[dt][oa]s?)$/i;
 
 /* Les quatre slugs que l'arbitrage conserve : identifiants historiques stables, jamais du
    contenu éditorial à reproduire dans un titre ou un texte. */
-const SLUGS_CONSERVES = [
+/* ---- LA RÉCONCILIATION DE TOUS LES JETONS « IATA » ------------------------------------------
+ *
+ * POURQUOI CETTE PIÈCE EXISTE, ET CE QU'ELLE RÉPARE. Jusqu'ici, l'inventaire ne parlait que de ce
+ * que le MOTIF attrapait. Tout ce qu'il n'attrapait pas était invisible — non pas classé « rien à
+ * corriger », mais absent du compte. C'est la mécanique EXACTE des deux faux zéros de ce lot : le
+ * qualificatif intercalé d'abord, puis le mot `container` absent du lexique, qui a laissé « IATA
+ * container required » publié sur la fiche anglaise Thai Airways pendant que le registre affichait
+ * 0 / 0. Dans les deux cas, l'instrument n'a pas menti : il n'a rien dit. Et une contre-épreuve
+ * qui ne fait qu'affirmer « ces deux phrases-là restent invisibles » ne surveille rien, parce
+ * qu'elle ne balaie pas le dépôt : ajouter demain une troisième forme la laisserait verte.
+ *
+ * LE RENVERSEMENT. On n'énumère plus ce qu'on sait reconnaître ; on exige que CHAQUE jeton « IATA »
+ * du périmètre soit rendu compte, d'une des deux façons :
+ *   1. il est DANS une occurrence du motif — et `classer()` lui donne alors une catégorie, en
+ *      refusant déjà le repli complaisant ;
+ *   2. il est dans un CONTEXTE LICITE déclaré ci-dessous — l'organisation nommée comme acteur, sa
+ *      réglementation, sa méthode, son code d'aéroport, une accréditation réelle, une URL.
+ * Tout le reste est un jeton NON RÉCONCILIÉ, et fait échouer le relevé en nommant fichier, ligne et
+ * voisinage. Une forme inconnue ne peut donc plus être silencieuse : au pire elle est bruyante.
+ *
+ * CE QUE CELA COÛTE, DIT FRANCHEMENT. La liste ci-dessous devra grandir quand le site écrira une
+ * tournure licite nouvelle, et l'inventaire rougira en attendant. C'est le prix voulu : il est
+ * payé par celui qui écrit la tournure, au moment où il l'écrit, et non par un lecteur qui
+ * découvre six mois plus tard une affirmation publiée que personne ne comptait. */
+/* CHAQUE PERMISSION PORTE SA FORCE, et c'est le dernier enseignement des résidus. Une permission
+ * FORTE nomme une chose précise de l'IATA — une publication (« IATA Live Animals Regulations »),
+ * un outil (« calculateur IATA »), une exigence publiée (« ventilation IATA »), un code
+ * d'aéroport. Elle ne peut pas servir à blanchir une attribution de contenant, parce que la phrase
+ * qui l'emploie NOMME cette chose : « a rigid crate that meets the IATA *Live Animals
+ * Regulations* » parle du référentiel, pas d'une caisse estampillée.
+ * Une permission FAIBLE ne nomme rien — un article, un verbe, un tiret de citation, une
+ * parenthèse. C'est exactement ce qu'une attribution peut détourner : « A IATA-blessed crate »
+ * n'est licite que par son « a », et « Jaula conforme con la IATA » que par son « la ». La garde
+ * de voisinage ne s'applique donc QU'AUX PERMISSIONS FAIBLES. Sans cette distinction, il fallait
+ * choisir entre laisser passer deux attributions et rendre illisibles vingt passages justes. */
+export const CONTEXTES_LICITES = [
+  /* L'ORGANISATION NOMMÉE COMME ACTEUR — elle publie, exige, déconseille, accrédite. */
+  [/(?:l['’]|la |le |el |da |pela |o |a |[à]s? )IATA(?![\wÀ-ÿ])/gi, "l'organisation nommée"],
+  [/(?<![\wÀ-ÿ])IATA(?=\s+(?:LAR|CEIV|Cargo|Live|Center|Centre|Accredited|Cargo\s+Agency))/g, "désignation officielle", true],
+  [/(?<![\wÀ-ÿ])IATA(?=\s+(?:publie|exige|demande|recommande|déconseille|écrit|accrédite|impose|définit|ne\b|est\b|n['’])) /gi, "l'organisation, sujet du verbe"],
+  [/(?<![\wÀ-ÿ])IATA(?=\s+(?:publishes|requires|advises|discourages|recommends|defines|holds|follows))/gi, "the organisation as subject"],
+  [/(?<![\wÀ-ÿ])IATA\s+(?:is|stands for)\s+(?:the\s+)?International/gi, "l'organisation et son nom développé", true],
+  [/(?<![\wÀ-ÿ])IATA(?=\s+(?:exige|desaconseja|recomienda|publica|define|es\b|no\b|desaconselha|recomenda|publica|define|é\b|não\b))/gi, "la organización / a organização, sujeito"],
+  /* SA RÉGLEMENTATION, SA MÉTHODE, SON CODE — nommer un référentiel n'attribue aucun objet. */
+  [/(?<![\wÀ-ÿ])(?:réglementations?|reglamentaci[óo]n|reglamentos?|regulamentos?|regulations?|normes?|normas?|standards?|est[áa]ndar|padr[ãa]o|règles?|reglas?|regras?|rules?|requirements?|requisitos?|exigences?|recommandations?|recommendations?|guidelines?|formules?|f[óo]rmulas?|formula|m[ée]thodes?|method|m[ée]todo|codes?|c[óo]digos?|calculateur|calculadora|calculator|source|sources|fuentes|fontes)\s+IATA(?![\wÀ-ÿ])/gi, "le référentiel nommé", true],
+  [/(?<![\wÀ-ÿ])IATA\s+(?:LAR|CEIV|Cargo|Live\s+Animals?|standards?|requirements?|guidelines?|formula|method|rules?|recommendations?|compliance|code|id|website|sizing|calculator|global|sources?)(?![\wÀ-ÿ])/gi, "le référentiel nommé, IATA en tête", true],
+  /* UNE ACCRÉDITATION OU UNE FORMATION QUI EXISTE VRAIMENT — le détail est arbitré dans
+     `FRAGMENTS_ATTRIBUES` ; ici on reconnaît seulement que le jeton n'est pas orphelin. */
+  [/(?<![\wÀ-ÿ])(?:certificats?|certificados?|certificate|formation|formaci[óo]n|forma[çc][ãa]o|accr[ée]ditations?|acreditaci[óo]n|acredita[çc][ãa]o|accreditation|credencial|agents?|agentes?|accr[ée]dit[ée]s?|acreditad[oa]s?|accredited)\s+IATA(?![\wÀ-ÿ])/gi, "une accréditation ou une formation réelle"],
+  /* L'ORGANISATION CITÉE COMME SOURCE. « ## Sources — [IATA — Live Animals Regulations](…) » :
+     71 des 111 jetons non réconciliés étaient exactement cela. Citer une source n'attribue rien. */
+  [/(?<![\wÀ-ÿ])IATA\s*(?:[—–]|-\s)/g, "l'organisation citée comme source"],
+  [/(?<![\wÀ-ÿ])IATA\s*\(\s*(?:the\s+International|l['’]Association|la\s+Asociaci[óo]n|a\s+Associa[çc][ãa]o)/gi, "l'organisation et son nom développé", true],
+  /* LE MOT LUI-MÊME, CITÉ ENTRE GUILLEMETS OU ENTRE PARENTHÈSES — on parle DU mot, pas d'un objet.
+     « en déduire qu'une caisse serait "IATA" ne l'est pas » est même une phrase qui NIE
+     l'attribution : la compter comme une attribution serait un contresens. */
+  [/[«"“']\s*IATA\s*[»"”']/g, "le mot cité entre guillemets"],
+  [/\(\s*IATA\s*\)/g, "le sigle entre parenthèses"],
+  /* LE RÉFÉRENTIEL SOUS SES AUTRES NOMS, ET SES EXIGENCES DE VENTILATION. */
+  [/(?<![\wÀ-ÿ])(?:regulaci[óo]n(?:es)?|regula[çc][õo]es|ventilation|ventilaci[óo]n|ventila[çc][ãa]o|r[ée]f[ée]rences?|referencias?|refer[êe]ncias?|references)\s+IATA(?![\wÀ-ÿ])/gi, "le référentiel sous un autre nom", true],
+  /* « LA CONFORMITÉ IATA » ET « SELON IATA » DISENT CE QUE DIT « NORMES IATA », qui est arbitré
+     LICITE. Les avoir retirés un moment a rendu bruyants six passages publiés des guides et
+     quatre libellés de fiches — c'est la même relation : l'objet se conforme à ce que l'IATA
+     PUBLIE. Ce qui reste interdit, et que le motif voit, c'est la conformité affirmée à
+     l'ORGANISATION elle-même — « conforme a la IATA », « conforme con la IATA ». */
+  [/(?<![\wÀ-ÿ])(?:conformit[ée]|conformidad|conformidade)\s+IATA(?![\wÀ-ÿ])/gi, "la conformité au référentiel", true],
+  [/(?<![\wÀ-ÿ])(?:per|selon|seg[úu]n|according\s+to)\s+IATA(?![\wÀ-ÿ])/gi, "selon le référentiel", true],
+  [/(?<![\wÀ-ÿ])IATA\s+(?:ventilation|references|[*_]Live)/gi, "le référentiel, IATA en tête", true],
+  /* UN AGENT DE FRET SPÉCIALISÉ — l'IATA accrédite réellement des agents ; ce n'est pas un
+     contenant, et rien n'y est attribué à l'organisation qui ne le soit déjà. */
+  [/(?<![\wÀ-ÿ])(?:an?|un)\s+IATA\s+pet\s+agents?(?![\wÀ-ÿ])/gi, "un agent de fret accrédité", true],
+  /* PUBLIÉ PAR, IMPOSÉ PAR — l'organisation comme auteur d'une règle. */
+  [/(?<![\wÀ-ÿ])(?:published|mandated|defined|recommended|set|required)\s+by\s+IATA(?![\wÀ-ÿ])/gi, "l'organisation, auteur de la règle", true],
+  /* UNE PASTILLE QUI ADDITIONNE DEUX EXIGENCES : « IATA + permis ». Le « + » n'attribue rien. */
+  [/(?<![\wÀ-ÿ])IATA\s*\+|\+\s*IATA(?![\wÀ-ÿ])/g, "une addition d'exigences"],
+  /* LE CODE D'AÉROPORT, LA PAGE DE L'ORGANISATION, ET SON NOM DANS UNE ÉNUMÉRATION DE SOURCES.
+     `by IATA` n'est licite QUE derrière les verbes qui en font l'AUTEUR d'une règle ou la clé d'un
+     regroupement — jamais derrière « approved », « certified » ou « accredited », qui attribuent
+     un objet et que le motif doit voir. */
+  [/(?<![\wÀ-ÿ])IATA\s+codes?(?![\wÀ-ÿ])/gi, "le code d'aéroport", true],
+  [/(?<![\wÀ-ÿ])(?:pages?|site|website|p[áa]gina)\s+IATA(?![\wÀ-ÿ])/gi, "la page de l'organisation", true],
+  [/(?<![\wÀ-ÿ])(?:upsert|keyed|indexed|sorted|grouped|deduplicated)\s+by\s+IATA(?![\wÀ-ÿ])/gi, "une clé de regroupement"],
+  [/(?<![\wÀ-ÿ])IATA\s*\/\s*[A-Z]/g, "une énumération de sources"],
+  /* UNE ADRESSE, UN IDENTIFIANT, UN NOM DE FICHIER — de la syntaxe, pas une phrase. */
+  /* SANS LE DRAPEAU `i`, ET C'EST TOUT LE POINT. Un slug s'écrit en minuscules : `iata-`,
+     `-iata`, `iata/`. Reconnaître ces fragments SANS égard à la casse rendait licite n'importe
+     quel mot composé sur l'acronyme — « IATA-blessed crate » devenait un identifiant. La
+     contre-épreuve 11 l'a montré en tentant d'insérer précisément cette forme. */
+  [/iata\.org|iata-|-iata|\/iata|iata\/|iata_|_iata/g, "adresse ou identifiant", true],
+  [/"IATA"|IATA:/g, "clé ou champ nommé", true],
+];
+
+/**
+ * LES JETONS « IATA » D'UN TEXTE QUE RIEN NE REND COMPTE.
+ *
+ * Rend la liste des positions où « IATA » paraît sans être ni dans une occurrence du motif, ni
+ * dans un contexte licite déclaré. Chaque entrée porte son voisinage, pour qu'on puisse juger sur
+ * pièce : soit la tournure est licite et s'ajoute à `CONTEXTES_LICITES`, soit elle est une
+ * affirmation et le motif doit la voir. Les deux décisions sont explicites ; aucune n'est muette.
+ */
+/* UN CONTEXTE LICITE NE PEUT PAS COUVRIR UN JETON QU'UN CONTENANT TOUCHE.
+ *
+ * DEUX TROUS MESURÉS EN ÉCRIVANT LA CONTRE-ÉPREUVE 11, et ils étaient graves. « l'organisation
+ * nommée » acceptait l'article ANGLAIS : « a IATA soft-sided travel carrier » devenait licite par
+ * son « a ». « l'organisation, sujet du verbe » acceptait `is` : « caisse rigide double coque IATA
+ * is required » devenait licite par son « is ». Autrement dit, une permission écrite pour la prose
+ * blanchissait des attributions de contenant — exactement ce que le lot combat.
+ *
+ * Plutôt que rustiner quinze expressions, on pose une règle : AUCUN contexte licite ne s'applique
+ * si un nom de contenant ou un qualificatif de la famille touche le jeton. Le vocabulaire vient de
+ * la famille elle-même, jamais d'une seconde liste — c'est la faute que ce dépôt a déjà commise
+ * quatre fois. Une tournure ainsi écartée ne devient pas « interdite » : elle devient NON
+ * RÉCONCILIÉE, donc bruyante, et il faut trancher. */
+/* LA GARDE REGARDE LE MOT COLLÉ, ET C'EST UN ARBITRAGE MESURÉ. Une rédaction intermédiaire a
+   élargi à une fenêtre de 25 caractères : elle attrapait bien deux formes synthétiques de plus,
+   mais elle rendait NON RÉCONCILIÉS vingt passages parfaitement licites — les mots-clés
+   `["crate", "IATA"]`, la traduction « The travel crate (IATA) », et jusqu'à la phrase de
+   `CrateCalculator.astro` qui NIE l'attribution (« en déduire qu'une caisse serait "IATA" ne
+   l'est pas »). Chacun aurait exigé une permission nouvelle, et chaque permission est un trou en
+   puissance : les deux trous corrigés juste au-dessus en sont la preuve. On garde donc la garde
+   précise, et on corrige les permissions à leur source plutôt que d'ajouter une heuristique. */
+/* LA GARDE FRANCHIT QUELQUES MOTS, MAIS JAMAIS UNE PONCTUATION. C'est ce que les huit derniers
+   résidus ont enseigné, un par un :
+     · « A IATA-blessed crate » — un adjectif s'intercale, donc regarder le seul mot collé ne
+       suffit pas : il faut en franchir deux ou trois ;
+     · « Airline-Approved Dog Crate: IATA Rules » — ici « Crate » touche le jeton, mais un
+       DEUX-POINTS les sépare : ce sont deux syntagmes, et « IATA Rules » nomme un référentiel ;
+     · « tags: ["travel crate", "airplane", "IATA"] » — des mots-clés séparés par des virgules et
+       des guillemets, pas une phrase ;
+     · « The travel crate (IATA) » — la parenthèse ouvre une glose, elle ne continue pas le nom.
+   La ponctuation est donc la frontière : on franchit des espaces et des traits d'union, rien
+   d'autre. Une élargissement sans cette borne rendait vingt passages licites illisibles au
+   contrôle ; sans la traversée, deux attributions passaient. */
+const VOISIN_DE_CONTENANT_APRES = new RegExp(`^[ \\t-]*(?:[\\wÀ-ÿ]+[ \\t-]+){0,2}(?:${CONTENANT}|${MATIERE})(?:[^\\wÀ-ÿ]|$)`, "i");
+const VOISIN_DE_CONTENANT_AVANT = new RegExp(`(?:^|[^\\wÀ-ÿ])(?:${CONTENANT}|${MATIERE})(?:[ \\t-]+[\\wÀ-ÿ]+){0,3}[ \\t-]*$`, "i");
+
+/* ---- LE SCELLÉ DES OCCURRENCES LICITES ------------------------------------------------------
+ *
+ * POURQUOI ON ARRÊTE LA COURSE AUX EXPRESSIONS RÉGULIÈRES. Chaque permission lexicale ajoutée à
+ * `CONTEXTES_LICITES` couvre une FAMILLE de phrases, dont la plupart n'existent pas — et c'est par
+ * là que les attributions passent : « IATA standards approved crate » se glissait dans la
+ * permission écrite pour « IATA standards ». Élargir le motif, puis élargir la permission, puis
+ * reboucher la permission : cette course n'a pas de fin, et chaque tour la rend plus perméable.
+ *
+ * LE SCELLÉ RENVERSE LA CHARGE. Les tournures licites qui vivent à côté d'un contenant ne sont plus
+ * couvertes par une règle générale : elles sont ÉNUMÉRÉES, une par une, avec leur chemin et leur
+ * voisinage exact. Une formulation nouvelle — même parfaitement licite — n'est couverte par
+ * personne : elle fait rougir l'inventaire, et il faut la classer puis resceller par un geste
+ * NOMMÉ (`--sceller-licites`). C'est exactement le coût voulu : il est payé par celui qui écrit
+ * la phrase, au moment où il l'écrit.
+ *
+ * CE QUE LE SCELLÉ NE FAIT PAS : il ne rend rien licite. Une occurrence que le motif juge
+ * INTERDITE reste interdite, scellée ou non — le scellé ne s'applique qu'aux jetons qu'aucune
+ * règle ne condamne et qu'un contenant voisine. */
+export const CHEMIN_SCELLE_LICITES = "occurrences-licites-scellees.json";
+
+/* LE SCELLÉ PORTE LA MULTIPLICITÉ, PAS UNE SIMPLE APPARTENANCE.
+ *
+ * FAUTE MESURÉE LE 04/09/2026. La première rédaction chargeait chaque section en `Set` et se
+ * contentait de `scelles.has(voisinage)`. Trois conséquences, toutes réelles :
+ *   · une entrée INVENTÉE était acceptée en silence — rien ne vérifiait qu'elle correspondît encore
+ *     à une occurrence du corpus ;
+ *   · deux occurrences identiques dans le même fichier étaient couvertes par UNE chaîne, si bien
+ *     qu'ajouter une répétition d'une tournure déjà scellée ne demandait aucun rescellement ;
+ *   · le compte s'en ressentait : le geste annonçait 32 occurrences publiées et n'en sérialisait
+ *     que 30, deux ayant été absorbées par la déduplication. Le scellé ne portait donc pas l'état
+ *     qu'il prétendait porter.
+ * Une autorisation d'appartenance n'est pas un scellé. Un scellé est une ÉGALITÉ : mêmes clés,
+ * mêmes tournures, mêmes nombres, dans les deux sens. */
+function chargerSection(chemin, section) {
+  if (!existsSync(chemin)) return new Map();
+  try {
+    const brut = JSON.parse(readFileSync(chemin, "utf8"));
+    return new Map(Object.entries(brut[section] ?? {})
+      .map(([k, v]) => [k, new Map(Object.entries(v))]));
+  } catch { return new Map(); }
+}
+
+/** Regroupe des occurrences `{clé, voisinage}` en `Map<clé, Map<voisinage, nombre>>`. */
+export function grouperLicites(liste, cle = (x) => x.fichier) {
+  const out = new Map();
+  for (const j of liste) {
+    const k = cle(j);
+    if (!out.has(k)) out.set(k, new Map());
+    const m = out.get(k);
+    m.set(j.voisinage, (m.get(j.voisinage) ?? 0) + 1);
+  }
+  return out;
+}
+
+/** La forme sérialisée d'une `Map<clé, Map<voisinage, n>>` : clés et tournures triées. */
+const sectionTriee = (m) => Object.fromEntries([...m.keys()].sort().map((k) =>
+  [k, Object.fromEntries([...m.get(k).entries()].sort((a, b) => a[0].localeCompare(b[0])))]));
+const compter = (m) => [...m.values()].reduce((t, x) => t + [...x.values()].reduce((a, b) => a + b, 0), 0);
+
+/**
+ * LES OCTETS EXACTS DU SCELLÉ. Écrits ICI et nulle part ailleurs, pour que le geste qui l'écrit et
+ * le contrôle qui le relit ne puissent pas diverger — c'est la faute que ce dépôt a commise cinq
+ * fois. Un second scellement doit rendre le même octet ; le contrôle le vérifie sans écrire.
+ */
+export function serialiserScelleLicites(sources, publiees) {
+  return JSON.stringify({
+    _commentaire: "LES TOURNURES LICITES QUI VOISINENT UN CONTENANT, ÉNUMÉRÉES AVEC LEUR NOMBRE. "
+      + "Elles ne sont couvertes par aucune permission lexicale générale : c'est délibéré. Une "
+      + "permission écrite pour « IATA standards » couvrait aussi « IATA standards approved crate », "
+      + "et c'est par là que les attributions passaient. Ici chaque tournure est nommée avec sa clé "
+      + "— chemin de fichier pour les sources, « URL · zone » pour les pages — son voisinage exact "
+      + "et sa MULTIPLICITÉ. La comparaison se fait dans les deux sens : une occurrence de plus, une "
+      + "de moins, une entrée orpheline, une tournure déplacée d'un fichier ou d'une zone à l'autre, "
+      + "un nombre différent — chacun fait rougir. CE SCELLÉ NE REND RIEN LICITE : une occurrence que "
+      + "le motif juge interdite le reste, scellée ou non. Il ne dit qu'une chose : « ces tournures-là, "
+      + "en ce nombre-là, ont été lues et classées par un humain ». Toute formulation nouvelle, même "
+      + "licite, n'est couverte par personne et bloque jusqu'à un rescellement nommé. "
+      + "OBSERVATION CONSIGNÉE : sur les fiches compagnies, deux `<span>` adjacents sans espace se "
+      + "soudent au rendu — « 🛡️ IATA rules » suivi de « Acceptance strictly follows… » se lit "
+      + "« IATA rulesAcceptance ». C'est un défaut de BALISAGE, pas de vocabulaire ; hors de ce lot, "
+      + "nommé ici pour qu'il ne se perde pas.",
+    _mesure: {
+      sources: { cles: sources.size, occurrences: compter(sources) },
+      publiees: { cles: publiees.size, occurrences: compter(publiees) },
+    },
+    occurrences: sectionTriee(sources),
+    publiees: sectionTriee(publiees),
+  }, null, 2) + "\n";
+}
+
+/**
+ * LA COMPARAISON DANS LES DEUX SENS. Rend la liste des écarts, chacun nommé par sa nature : une
+ * occurrence du corpus que le scellé ignore, une entrée du scellé que le corpus n'a plus, un
+ * nombre qui ne correspond pas. Un déplacement de fichier ou de zone se lit comme les deux à la
+ * fois — orpheline ici, manquante là — et c'est exactement ce qu'il est.
+ */
+export function comparerScelleLicites(corpus, scelle, quoi = "source") {
+  const ecarts = [];
+  for (const [k, tournures] of corpus) {
+    const scelles = scelle.get(k);
+    if (!scelles) { ecarts.push(`${quoi} NON SCELLÉE : ${k} (${[...tournures.values()].reduce((a, b) => a + b, 0)} occurrence(s))`); continue; }
+    for (const [v, n] of tournures) {
+      const m = scelles.get(v) ?? 0;
+      if (m !== n) ecarts.push(`multiplicité ${quoi} en ${k} : le corpus en porte ${n}, le scellé ${m} — …${v.slice(0, 60)}…`);
+    }
+  }
+  for (const [k, tournures] of scelle) {
+    const reelles = corpus.get(k);
+    if (!reelles) { ecarts.push(`entrée ORPHELINE du scellé : ${quoi} ${k} ne porte plus aucune tournure à sceller`); continue; }
+    for (const [v, n] of tournures) {
+      if (!reelles.has(v)) ecarts.push(`tournure ORPHELINE du scellé en ${k} : plus aucune occurrence — …${v.slice(0, 60)}… (${n} scellée(s))`);
+    }
+  }
+  return ecarts;
+}
+
+/** LA FORME DU FICHIER, STRICTEMENT : ses sections, ses mesures, section par section. */
+export function verifierFormeScelleLicites(chemin = CHEMIN_SCELLE_LICITES) {
+  if (!existsSync(chemin)) return [`scellé absent : ${chemin}`];
+  let brut;
+  try { brut = JSON.parse(readFileSync(chemin, "utf8")); }
+  catch (e) { return [`scellé illisible : ${e.message}`]; }
+  const ecarts = [];
+  const attendues = ["_commentaire", "_regle", "_mesure", "occurrences", "publiees"];
+  for (const k of Object.keys(brut)) if (!attendues.includes(k)) ecarts.push(`champ inconnu à la racine : ${k}`);
+  for (const k of ["_commentaire", "_mesure", "occurrences", "publiees"]) if (!(k in brut)) ecarts.push(`champ absent : ${k}`);
+  for (const [section, nom] of [["occurrences", "sources"], ["publiees", "publiees"]]) {
+    const sec = brut[section] ?? {};
+    let n = 0;
+    for (const [k, v] of Object.entries(sec)) {
+      if (typeof v !== "object" || Array.isArray(v) || v === null) { ecarts.push(`${section}.${k} n'est pas un objet « voisinage → nombre »`); continue; }
+      for (const [t, c] of Object.entries(v)) {
+        if (!Number.isInteger(c) || c < 1) ecarts.push(`${section}.${k} : multiplicité invalide (${c}) pour …${t.slice(0, 40)}…`);
+        else n += c;
+      }
+    }
+    const m = brut._mesure?.[nom];
+    if (!m) ecarts.push(`_mesure.${nom} absente : le scellé ne déclare pas ce qu'il porte`);
+    else {
+      if (m.cles !== Object.keys(sec).length) ecarts.push(`_mesure.${nom}.cles = ${m.cles} contre ${Object.keys(sec).length} réelles`);
+      if (m.occurrences !== n) ecarts.push(`_mesure.${nom}.occurrences = ${m.occurrences} contre ${n} réelles`);
+    }
+  }
+  return ecarts;
+}
+/** Les tournures licites des SOURCES, par chemin de fichier. */
+export function chargerScelleLicites(chemin = CHEMIN_SCELLE_LICITES) {
+  return chargerSection(chemin, "occurrences");
+}
+/** Les mêmes, côté PAGES PUBLIÉES, par « URL · zone » — car une page n'a pas de chemin de source,
+ *  et parce qu'un défaut déplacé d'une zone à l'autre ne doit pas hériter du scellé de l'autre. */
+export function chargerScelleLicitesPubliees(chemin = CHEMIN_SCELLE_LICITES) {
+  return chargerSection(chemin, "publiees");
+}
+
+export function jetonsNonReconcilies(texte, motif = MOTIF, scelles = null) {
+  const reste = scelles ? new Map(scelles) : null;
+  const couvertInterdit = [], couvertLegitime = [], couvertLicite = [];
+  motif.lastIndex = 0;
+  for (const m of texte.matchAll(motif)) {
+    (jugerOccurrence(m[0]) === "interdite" ? couvertInterdit : couvertLegitime)
+      .push([m.index, m.index + m[0].length]);
+  }
+  const couvertFort = [];
+  for (const [re, , fort] of CONTEXTES_LICITES) {
+    re.lastIndex = 0;
+    for (const m of texte.matchAll(re)) (fort ? couvertFort : couvertLicite).push([m.index, m.index + m[0].length]);
+  }
+  const out = [];
+  const jeton = /(?<![\wÀ-ÿ])IATA(?![\wÀ-ÿ])/g;
+  let m;
+  while ((m = jeton.exec(texte))) {
+    /* LA FENÊTRE DOIT CONTENIR CE QUE LE MOTIF CHERCHE. À 30 caractères, « IATA requirements
+       compliant carrier » était coupée sur « carrie » et l'attribution passait : une garde qui
+       tronque le mot qu'elle cherche ne garde rien. Trois mots plus un nom de contenant tiennent
+       en 45 caractères dans les quatre langues. */
+    const avant = texte.slice(Math.max(0, m.index - 45), m.index);
+    const apres = texte.slice(m.index + 4, m.index + 49);
+    const touche = VOISIN_DE_CONTENANT_AVANT.test(avant) || VOISIN_DE_CONTENANT_APRES.test(apres);
+    const dedans = (l) => l.some(([a, b]) => m.index >= a && m.index + 4 <= b);
+    /* UN FRAGMENT LICITE PEUT HABILLER UNE ATTRIBUTION. « IATA standards approved crate » contient
+       « IATA standards », que le contrat juge LÉGITIME — et le jeton passait donc pour rendu
+       compte, alors que la phrase attribue bien une caisse. Un jeton dans une occurrence
+       INTERDITE est, lui, réellement rendu compte : il sera rapporté comme dette. La garde de
+       voisinage s'applique donc aussi aux occurrences légitimes. */
+    if (dedans(couvertInterdit)) continue;
+    if (!touche && dedans(couvertLegitime)) continue;
+    /* AUCUNE PERMISSION NE FRANCHIT LA GARDE, PAS MÊME UNE PERMISSION « FORTE ». Le commentaire
+       précédent affirmait qu'une permission nommant une publication de l'IATA ne pouvait pas
+       blanchir une attribution ; le code, lui, l'acceptait AVANT toute garde. Trois phrases le
+       démontraient : « IATA Cargo crate », « IATA standards approved crate » et « IATA
+       requirements compliant carrier » ne déclenchaient rien du tout. La distinction fort/faible
+       est donc supprimée du chemin de décision : toute permission passe sous la même garde de
+       voisinage, et les tournures licites que cela met en défaut sont SCELLÉES une par une, par
+       chemin et par fragment, plutôt que couvertes par une permission lexicale générale. */
+    if (!touche && dedans(couvertLicite)) continue;
+    if (!touche && dedans(couvertFort)) continue;
+    const voisinage = texte.slice(Math.max(0, m.index - 45), m.index + 49).replace(/\s+/g, " ").trim();
+    /* LA MULTIPLICITÉ SE CONSOMME : la deuxième occurrence d'une tournure scellée une seule fois
+       n'est PAS couverte. Le budget est une copie locale — le scellé partagé n'est jamais muté. */
+    if (reste) {
+      const n = reste.get(voisinage) ?? 0;
+      if (n > 0) { reste.set(voisinage, n - 1); continue; }
+    }
+    out.push({
+      index: m.index,
+      ligne: texte.slice(0, m.index).split("\n").length,
+      voisinage,
+    });
+  }
+  return out;
+}
+
+export const SLUGS_CONSERVES = [
   "airline-approved-dog-crate",
   "caisse-transport-avion-homologuee-chien",
   "transportin-homologado-iata-perro",
@@ -215,7 +654,14 @@ const GENERES = [/^packages\/knowledge\/raw\/guides\.json$/, /\.generated\.json$
  *     PREMIÈRE règle appliquée n'est pas une exception.
  * Une mesure qui se compte elle-même n'est plus une mesure.
  *
- * LES QUATRE, ET POURQUOI ILS SONT QUATRE. `inventaire-iata.mjs` et `test-inventaire-iata.mjs`
+ * LE CINQUIÈME, AJOUTÉ LE 03/09/2026 : `reecrire-iata.mjs`. Il porte la TABLE de réécriture,
+ * c'est-à-dire le vocabulaire interdit en toutes lettres et sa contrepartie licite — il le porte
+ * pour la même raison que l'instrument le porte, définir le geste. Sans cette entrée il gonflait
+ * de quatre les slugs conservés et de quatre les références licites, dès sa première exécution.
+ * C'est le SCELLÉ qui l'a désigné : la mesure a rougi avant que le chiffre n'entre dans un
+ * rapport. C'est exactement ce pour quoi il a été écrit.
+ *
+ * LES PREMIERS, ET POURQUOI. `inventaire-iata.mjs` et `test-inventaire-iata.mjs`
  * citent tout le champ lexical pour le DÉFINIR et l'ÉPROUVER ; les compter comme dette
  * reviendrait à mesurer sa propre règle. Ils sortaient jusqu'ici du périmètre de lecture, donc
  * en silence ; ils sortent désormais par cette liste, donc à découvert. Voir `FICHIERS_IGNORES`.
@@ -223,7 +669,7 @@ const GENERES = [/^packages\/knowledge\/raw\/guides\.json$/, /\.generated\.json$
  * L'ÉGALITÉ EST EXACTE, ET UNE CONTRE-ÉPREUVE L'EXIGE : `dette-iata-publiee.backup.json`,
  * `docs/dette-iata-publiee.json`, `test-etape3-dom.backup.mjs` et une vraie source éditoriale ne
  * bénéficient pas de cette priorité — la même formulation y reste comptée. */
-export const INSTRUMENTS_DE_MESURE = ["dette-iata-publiee.json", "inventaire-iata.mjs", "test-etape3-dom.mjs", "test-inventaire-iata.mjs"];
+export const INSTRUMENTS_DE_MESURE = ["dette-iata-publiee.json", "occurrences-licites-scellees.json", "inventaire-iata.mjs", "reecrire-iata.mjs", "test-etape3-dom.mjs", "test-inventaire-iata.mjs", "test-reecriture-iata.mjs"];
 
 /* ---- LE SCELLÉ DES INSTRUMENTS -------------------------------------------------------------
  *
@@ -388,6 +834,157 @@ export function jugerOccurrence(trouve) {
   return "inconnue";
 }
 
+/* ---- L'EXEMPTION DE SLUG, CANONIQUE ET PARTAGÉE ---------------------------------------------
+ *
+ * POURQUOI ELLE SORT DE `classer()` (03/09/2026). Trois slugs arbitrés comme CONSERVÉS —
+ * `caisse-transport-avion-homologuee-chien`, `transportin-homologado-iata-perro`,
+ * `caixa-de-transporte-homologada-iata` — apparaissent dans les URL du JSON-LD des pages qu'ils
+ * nomment. La garde de la dette PUBLIÉE les comptait comme des affirmations, alors que `classer()`
+ * les exempte depuis toujours dans les sources. Deux règles pour la même question, donc deux
+ * réponses : tant que ces slugs existent, le registre ne pouvait STRUCTURELLEMENT pas atteindre
+ * zéro. Une seule définition, ici, consommée par les deux.
+ *
+ * ELLE EST BORNÉE À LA POSITION EXACTE DU SLUG, ET C'EST TOUT L'ENJEU : l'occurrence doit vivre
+ * ENTIÈREMENT à l'intérieur du slug. Les mêmes mots écrits dans la prose voisine restent
+ * interdits, et un slug altéré d'un seul caractère ne bénéficie de rien. */
+export function dansUnSlugConserve(texte, debut, fin) {
+  for (const sl of SLUGS_CONSERVES) {
+    let i = texte.indexOf(sl);
+    while (i !== -1) {
+      if (debut >= i && fin <= i + sl.length) return true;
+      i = texte.indexOf(sl, i + 1);
+    }
+  }
+  return false;
+}
+
+/* ---- LES FRAGMENTS ATTRIBUÉS, PAR CHEMIN EXACT ET TEXTE EXACT --------------------------------
+ *
+ * L'IATA ACCRÉDITE RÉELLEMENT DES ENTREPRISES DE FRET — le programme « IATA Cargo Agency
+ * Accreditation » existe, et « IATA Accredited Freight Forwarder » est sa désignation officielle.
+ * Elle délivre par ailleurs un certificat de formation « IATA Live Animals Regulations » à des
+ * PERSONNES. Ce sont deux choses différentes, et aucune des deux n'est l'homologation d'une caisse.
+ *
+ * AUCUNE PERMISSION LEXICALE GÉNÉRALE N'EST OUVERTE, et c'est l'arbitrage du 03/09/2026 :
+ * `IATA-accredited`, `IATA-certified` et le mot « agent » restent interdits partout. Ne sont
+ * licites que ces FRAGMENTS EXACTS, à ces CHEMINS EXACTS, chacun avec la page qui l'établit. Un
+ * mot déplacé, une lettre changée, un autre fichier : rien n'est exempté.
+ *
+ * L'occurrence doit vivre ENTIÈREMENT à l'intérieur du fragment déclaré — comme pour les slugs.
+ * Les mêmes mots écrits ailleurs dans la même ligne restent interdits. */
+const PAGES_CATHAY = ["/airlines/cathay-pacific/", "/fr/airlines/cathay-pacific/", "/es/airlines/cathay-pacific/", "/pt/airlines/cathay-pacific/"];
+const PAGES_AIRBALTIC = ["/airlines/airbaltic/", "/fr/airlines/airbaltic/", "/es/airlines/airbaltic/", "/pt/airlines/airbaltic/"];
+/** L'artefact que l'ingesteur écrit à partir des fiches compagnies, mot pour mot. */
+const DERIVE_AIRLINES = "packages/ui/src/data/airlines.generated.json";
+/* ---- LES CORRECTIONS CARGO, SCELLÉES DANS L'ÉTAT COURANT ------------------------------------
+ *
+ * POURQUOI UN SCELLÉ, ET PAS SEULEMENT UNE RÈGLE (contre-revue du 03/09/2026). Une contre-épreuve
+ * existait déjà : elle rejouait le réécriveur sur le texte ANTÉRIEUR et exigeait qu'aucune sortie
+ * fautive n'en sorte. Elle éprouvait donc la RÈGLE — et rien d'autre. Elle serait restée verte si
+ * quelqu'un avait ensuite modifié la fiche à la main, ou si le rendu de la page avait cessé de
+ * porter la phrase : la règle produit toujours la bonne sortie, mais ce n'est plus elle qui est
+ * publiée. Ce qu'il faut sceller, c'est le RÉSULTAT.
+ *
+ * CE QUE CES HUIT VALEURS DISENT, ET POURQUOI CHAQUE MOT COMPTE. Deux affirmations avaient été
+ * corrigées après vérification des pages officielles :
+ *   · Cathay Pacific — l'IATA accrédite réellement des transitaires (« IATA Accredited Freight
+ *     Forwarder », programme IATA Cargo Agency) et délivre réellement un certificat de formation
+ *     Live Animals Regulations. Le raccourci « agents accrédités IATA » fondait les deux en une
+ *     qualité unique qui n'existe pas ; les trois canaux sont donc nommés séparément.
+ *   · airBaltic — « certified cargo agents » était faux : l'IATA ne certifie pas un agent de fret.
+ *     Ce qui existe est le CERTIFICAT DE FORMATION Live Animals Regulations que détient l'agent.
+ *
+ * LE SCELLÉ EST ÉCRIT UNE SEULE FOIS et sert AUX DEUX ÉTAGES — la valeur à la source, et son rendu
+ * dans la page publiée. Les définir séparément, ce serait les laisser diverger : c'est la faute
+ * que ce lot a déjà commise deux fois. */
+export const CORRECTIONS_CARGO = [
+  { fichier: "content/airlines/cathay_pacific.yml", langue: "en", page: "/airlines/cathay-pacific/",
+    source: "https://www.cathaypacific.com/cx/en_IN/prepare-trip/help-for-passengers/travelling-with-animals/overview-cargo.html",
+    valeur: "All pets travel via Cathay Cargo (Cathay Live Animal). Since Sep 2025, bookings only through IPATA or ATA members, IATA Accredited Freight Forwarders, or holders of a valid IATA Live Animals Regulations certificate (from Hong Kong, any agent may book)." },
+  { fichier: "content/airlines/cathay_pacific.yml", langue: "fr", page: "/fr/airlines/cathay-pacific/",
+    source: "https://www.cathaypacific.com/cx/en_IN/prepare-trip/help-for-passengers/travelling-with-animals/overview-cargo.html",
+    valeur: "Tous les animaux voyagent via Cathay Cargo (Cathay Live Animal). Depuis sept. 2025, réservation uniquement via des agents membres IPATA ou ATA, transitaires titulaires de l'accréditation IATA Cargo Agency (IATA Accredited Freight Forwarder), ou titulaires d'un certificat IATA Live Animals Regulations valide ; au départ de Hong Kong, n'importe quel agent peut réserver." },
+  { fichier: "content/airlines/cathay_pacific.yml", langue: "es", page: "/es/airlines/cathay-pacific/",
+    source: "https://www.cathaypacific.com/cx/en_IN/prepare-trip/help-for-passengers/travelling-with-animals/overview-cargo.html",
+    valeur: "Todas las mascotas viajan mediante Cathay Cargo (Cathay Live Animal). Desde sep 2025, las reservas solo se hacen a través de miembros de IPATA o ATA, transitarios con la acreditación IATA Cargo Agency (IATA Accredited Freight Forwarder), o titulares de un certificado IATA Live Animals Regulations en vigor; desde Hong Kong, cualquier agente puede reservar." },
+  { fichier: "content/airlines/cathay_pacific.yml", langue: "pt", page: "/pt/airlines/cathay-pacific/",
+    source: "https://www.cathaypacific.com/cx/en_IN/prepare-trip/help-for-passengers/travelling-with-animals/overview-cargo.html",
+    valeur: "Todos os animais viajam pela Cathay Cargo (Cathay Live Animal). Desde set. de 2025, as reservas são feitas somente por membros da IPATA ou da ATA, agentes de carga com a acreditação IATA Cargo Agency (IATA Accredited Freight Forwarder), ou titulares de um certificado IATA Live Animals Regulations válido; a partir de Hong Kong, qualquer agente pode reservar." },
+  { fichier: "content/airlines/airbaltic.yml", langue: "en", page: "/airlines/airbaltic/",
+    source: "https://www.airbaltic.com/en/cargo/shipping-animals-cargo",
+    valeur: "For animals over 75 kg or shipped without their owner. airBaltic is an EU-authorised animal carrier, but pricing and crate specifics are handled entirely by third-party cargo agents holding a valid IATA Live Animals Regulations training certificate, not published on airBaltic's own site." },
+  { fichier: "content/airlines/airbaltic.yml", langue: "fr", page: "/fr/airlines/airbaltic/",
+    source: "https://www.airbaltic.com/en/cargo/shipping-animals-cargo",
+    valeur: "Pour les animaux de plus de 75 kg ou expédiés sans leur propriétaire. airBaltic est un transporteur animalier agréé UE, mais tarifs et gabarits de caisse sont entièrement gérés par des agences de fret tierces titulaires d'un certificat de formation IATA Live Animals Regulations valide, non publiés sur le site d'airBaltic." },
+  { fichier: "content/airlines/airbaltic.yml", langue: "es", page: "/es/airlines/airbaltic/",
+    source: "https://www.airbaltic.com/en/cargo/shipping-animals-cargo",
+    valeur: "Para animales de más de 75 kg o enviados sin su propietario. airBaltic es un transportista animal autorizado por la UE, pero las tarifas y las especificaciones de la jaula las gestionan por completo agencias de carga externas con un certificado de formación IATA Live Animals Regulations en vigor, no publicadas en el sitio de airBaltic." },
+  { fichier: "content/airlines/airbaltic.yml", langue: "pt", page: "/pt/airlines/airbaltic/",
+    source: "https://www.airbaltic.com/en/cargo/shipping-animals-cargo",
+    valeur: "Para animais com mais de 75 kg ou enviados sem o dono. A airBaltic é uma transportadora de animais autorizada pela UE, mas tarifas e especificações de caixa são geridas inteiramente por agências de carga terceirizadas com certificado de formação IATA Live Animals Regulations válido, não publicadas no site da airBaltic." },
+];
+
+export const FRAGMENTS_ATTRIBUES = [
+  /* `pages` : les URL PUBLIÉES où le fragment peut paraître — la garde du DOM n'exempte que là,
+     et que le texte exact. Une page de plus, un mot de moins : rien n'est exempté.
+     `chemins` : LA SOURCE DE VÉRITÉ ET SES COPIES DÉRIVÉES. Faute mesurée le 03/09/2026 : le
+     fragment n'était déclaré qu'au fichier YAML, si bien qu'une fois recopié par l'ingesteur dans
+     `airlines.generated.json` il redevenait une affirmation interdite « à régénérer » — alors que
+     la régénération le reproduit à l'identique, puisqu'il est licite. Une référence licite ne
+     devient pas illicite en changeant de fichier : elle l'est là où elle est LÉGITIMEMENT
+     recopiée, et nulle part ailleurs. Les chemins dérivés sont donc nommés, un par un. */
+  { chemins: ["content/airlines/cathay_pacific.yml", DERIVE_AIRLINES], pages: PAGES_CATHAY,
+    fragment: "IATA Accredited Freight Forwarder",
+    source: "https://www.cathaypacific.com/cx/en_IN/prepare-trip/help-for-passengers/travelling-with-animals/overview-cargo.html" },
+  { chemins: ["content/airlines/cathay_pacific.yml", DERIVE_AIRLINES], pages: PAGES_CATHAY,
+    fragment: "certificat IATA Live Animals Regulations",
+    source: "idem — la page nomme le certificat de formation LAR comme troisième catégorie admise" },
+  { chemins: ["content/airlines/cathay_pacific.yml", DERIVE_AIRLINES], pages: PAGES_CATHAY,
+    fragment: "IATA Live Animals Regulations certificate",
+    source: "idem" },
+  { chemins: ["content/airlines/cathay_pacific.yml", DERIVE_AIRLINES], pages: PAGES_CATHAY,
+    fragment: "certificado IATA Live Animals Regulations",
+    source: "idem — la désignation officielle du certificat, en espagnol comme en portugais" },
+  { chemins: ["content/airlines/airbaltic.yml", DERIVE_AIRLINES], pages: PAGES_AIRBALTIC,
+    fragment: "IATA Live Animals Regulations training certificate",
+    source: "https://www.airbaltic.com/en/cargo/shipping-animals-cargo" },
+  { chemins: ["content/airlines/airbaltic.yml", DERIVE_AIRLINES], pages: PAGES_AIRBALTIC,
+    fragment: "certificat de formation IATA Live Animals Regulations",
+    source: "idem" },
+  { chemins: ["content/airlines/airbaltic.yml", DERIVE_AIRLINES], pages: PAGES_AIRBALTIC,
+    fragment: "certificado de formación IATA Live Animals Regulations",
+    source: "idem" },
+  { chemins: ["content/airlines/airbaltic.yml", DERIVE_AIRLINES], pages: PAGES_AIRBALTIC,
+    fragment: "certificado de formação IATA Live Animals Regulations",
+    source: "idem" },
+];
+
+/** Vrai si l'occurrence vit ENTIÈREMENT dans un fragment attribué déclaré POUR CE CHEMIN. */
+export function dansUnFragmentAttribue(chemin, ligne, debut, fin) {
+  for (const f of FRAGMENTS_ATTRIBUES) {
+    if (!f.chemins.includes(chemin)) continue;
+    let i = ligne.indexOf(f.fragment);
+    while (i !== -1) {
+      if (debut >= i && fin <= i + f.fragment.length) return true;
+      i = ligne.indexOf(f.fragment, i + 1);
+    }
+  }
+  return false;
+}
+
+/** Côté PUBLIÉ : vrai si l'occurrence vit entièrement dans un fragment déclaré POUR CETTE URL. */
+export function dansUnFragmentAttribuePublie(url, texte, debut, fin) {
+  for (const f of FRAGMENTS_ATTRIBUES) {
+    if (!f.pages?.includes(url)) continue;
+    let i = texte.indexOf(f.fragment);
+    while (i !== -1) {
+      if (debut >= i && fin <= i + f.fragment.length) return true;
+      i = texte.indexOf(f.fragment, i + 1);
+    }
+  }
+  return false;
+}
+
 export function classer(chemin, ligne, trouve, debut, fin) {
   /* 0 — UN INSTRUMENT DE MESURE NE SE MESURE PAS LUI-MÊME. Cette règle passe AVANT toutes les
      autres, y compris avant les slugs et avant le jugement lexical : sinon une URL du registre est
@@ -396,13 +993,11 @@ export function classer(chemin, ligne, trouve, debut, fin) {
   if (INSTRUMENTS_DE_MESURE.includes(chemin)) return "registre_preuve_non_public";
 
   /* 1 — L'occurrence EST à l'intérieur d'un slug conservé : un identifiant, pas une phrase. */
-  for (const sl of SLUGS_CONSERVES) {
-    let i = ligne.indexOf(sl);
-    while (i !== -1) {
-      if (debut >= i && fin <= i + sl.length) return "slug_conserve";
-      i = ligne.indexOf(sl, i + 1);
-    }
-  }
+  if (dansUnSlugConserve(ligne, debut, fin)) return "slug_conserve";
+
+  /* 1 bis — L'occurrence vit dans un FRAGMENT ATTRIBUÉ, déclaré pour CE chemin et sourcé : une
+     désignation officielle de l'IATA, qui existe vraiment. Voir `FRAGMENTS_ATTRIBUES`. */
+  if (dansUnFragmentAttribue(chemin, ligne, debut, fin)) return "reference_reglementaire_legitime";
   /* 2 — L'occurrence est À L'INTÉRIEUR d'une citation attribuée : on ne réécrit pas une source. */
   for (const [a, b] of portéesDeCitation(ligne)) if (debut >= a && fin <= b) return "citation_attribuee";
 
@@ -516,6 +1111,67 @@ export function* parcourir(dir, inverse = false) {
 }
 
 /** Le relevé complet, TRIÉ — l'ordre ne dépend d'aucun système de fichiers. */
+/**
+ * LES JETONS NON RÉCONCILIÉS DE TOUT LE PÉRIMÈTRE, fichier par fichier.
+ *
+ * Même parcours que `relever()` — même racine, même énumération — pour qu'un fichier ne puisse pas
+ * être dans un balayage et hors de l'autre. Les répertoires que `classer()` déclare hors lot
+ * (l'héritage v1, les brouillons Hugo, l'artefact `guides.json`) en sont exclus NOMMÉMENT : leur
+ * dette est déclarée, pas mesurée mot à mot.
+ */
+/* LE PÉRIMÈTRE DE LA RÉCONCILIATION, DÉCLARÉ PAR CHEMIN ET PAS PAR HABITUDE.
+ *
+ * Ce que la contre-revue demande de réconcilier, ce sont « les sources et zones publiques » : ce
+ * qu'un lecteur peut atteindre, directement ou par un générateur. On l'écrit donc en positif —
+ * seuls ces répertoires sont balayés — plutôt qu'en négatif, où l'on découvrirait au fil de l'eau
+ * qu'un nouveau répertoire n'était exclu par personne.
+ *
+ * CE QUI EN EST DEHORS, ET POURQUOI. Les études internes à la racine, la configuration de la CI,
+ * les scripts de migration ponctuels, le code du moteur et les briefs d'outillage portent le mot
+ * « IATA » dans des commentaires et des notes de travail : ils ne publient rien, et les y inclure
+ * noierait les vraies tournures sous du bruit — c'est ce bruit qui a rendu invisible « IATA
+ * container ». Cette exclusion est un CHOIX, pas un oubli : elle laisse hors surveillance des
+ * occurrences comme « caisse 115 × 60 × 85 cm maximum, IATA rigide » dans `ETUDE-16-COMPAGNIES.md`,
+ * qui est une note d'étude et non une page. Le jour où l'un de ces fichiers se met à publier, il
+ * faut l'ajouter ici — et rien ne le rappellera automatiquement. */
+export const PERIMETRE_RECONCILIE = ["content/airlines/", "content/countries/",
+  "packages/ui/src/", "packages/ui/public/", "packages/knowledge/raw/",
+  "packages/knowledge/translations/", "data/"];
+
+/* CE QUI EST RETIRÉ DU BALAYAGE, UN CHEMIN À LA FOIS ET AVEC SA RAISON.
+ * Il n'y a plus AUCUNE exclusion par famille ici, et c'est une faute mesurée qui l'interdit :
+ * `reconcilier()` écartait tout chemin de `GENERATRICES_DECLAREES`, qui vaut `["content/"]`. Les
+ * 324 fiches compagnies et pays — les sources de vérité mêmes de ce lot — n'étaient donc JAMAIS
+ * parcourues. Le zéro annoncé était vide de contenu : une source temporaire portant « Use an
+ * IATA-blessed travel container » était bien relevée en lecture directe et disparaissait à travers
+ * `reconcilier()`. Une exclusion écrite en famille ne se relit pas ; une exclusion écrite en
+ * chemin, si. */
+export const HORS_RECONCILIATION = [
+  /* Artefact compilé depuis le corpus Hugo v1 ; sa dette est déclarée et il n'est pas régénéré. */
+  "packages/knowledge/raw/guides.json",
+];
+
+export function reconcilier({ inverse = false, racine = RACINE, motif = MOTIF, racines = PERIMETRE_RECONCILIE, scelle = chargerScelleLicites() } = {}) {
+  const out = [];
+  /* LES RACINES RÉELLEMENT PARCOURUES, rapportées avec le relevé : une racine déclarée que rien
+     ne visite est un balayage qui ment sans le dire. */
+  const vus = new Set();
+  for (const p of parcourir(racine, inverse)) {
+    const chemin = relative(racine, p);
+    if (!racines.some((x) => chemin.startsWith(x))) continue;
+    if (INSTRUMENTS_DE_MESURE.includes(chemin)) continue;
+    if (TESTS.some((r) => r.test(chemin))) continue;
+    if (HORS_RECONCILIATION.includes(chemin)) continue;
+    vus.add(racines.find((x) => chemin.startsWith(x)));
+    let contenu;
+    try { contenu = readFileSync(p, "utf8"); } catch { continue; }
+    if (!/IATA/.test(contenu)) continue;
+    for (const j of jetonsNonReconcilies(contenu, motif, scelle.get(chemin))) out.push({ fichier: chemin, ...j });
+  }
+  out.racinesVisitees = vus;
+  return out.sort((a, b) => a.fichier.localeCompare(b.fichier) || a.ligne - b.ligne);
+}
+
 export function relever({ inverse = false, racine = RACINE, motif = MOTIF } = {}) {
   const out = [];
   for (const p of parcourir(racine, inverse)) {
@@ -550,9 +1206,25 @@ export function verifier(releve, declarations = A_REFORMULER) {
      instrument ajouté en douce retire des occurrences du compte, ce qui EST une falsification du
      relevé — pas un détail de test. */
   const scelle = verifierScelleInstruments();
+  /* ---- ET TOUT JETON « IATA » DONT PERSONNE NE REND COMPTE FAIT ÉCHOUER LE RELEVÉ ------------
+     C'est le renversement demandé par la contre-revue du 04/09/2026. Jusqu'ici l'inventaire ne
+     parlait que de ce que le motif attrapait : une forme inconnue n'était pas classée « rien à
+     corriger », elle était ABSENTE. Trois faux zéros de suite en sont sortis — le qualificatif
+     intercalé, `container`, puis `agréée`. Désormais chaque jeton doit être rendu compte, et une
+     tournure inconnue est BRUYANTE au lieu d'être muette. */
+  const nonReconcilies = reconcilier();
+  /* ---- ET LE SCELLÉ DES LICITES EST UNE ÉGALITÉ, VÉRIFIÉE DANS LES DEUX SENS ----------------
+     `reconcilier()` ne dit qu'une moitié : les occurrences du corpus que le scellé ne couvre pas.
+     L'autre moitié — une entrée du scellé qui ne correspond plus à rien, une multiplicité qui a
+     changé — passait en silence. Les deux moitiés sont ici, plus la forme du fichier. */
+  const formeScelleLicites = verifierFormeScelleLicites();
+  const corpus = grouperLicites(reconcilier({ scelle: new Map() }));
+  const scelleLicites = comparerScelleLicites(corpus, chargerScelleLicites(), "source");
   return {
-    inconnues, hors, orphelines, scelle,
-    ok: inconnues.length === 0 && hors.length === 0 && orphelines.length === 0 && scelle.length === 0,
+    inconnues, hors, orphelines, scelle, nonReconcilies, scelleLicites, formeScelleLicites,
+    ok: inconnues.length === 0 && hors.length === 0 && orphelines.length === 0
+      && scelle.length === 0 && nonReconcilies.length === 0
+      && scelleLicites.length === 0 && formeScelleLicites.length === 0,
   };
 }
 
@@ -565,6 +1237,13 @@ if (import.meta.url === `file://${process.argv[1]}`) {
     for (const c of chemins) console.log(`  · ${c}`);
     process.exit(0);
   }
+  /* IL N'Y A QU'UN SEUL ÉCRIVAIN DU SCELLÉ, ET CE N'EST PAS ICI. Le geste `--sceller-licites` vit
+     dans `test-etape3-dom.mjs`, seul endroit qui dispose À LA FOIS des sources et du site
+     construit : les deux sections doivent être produites ENSEMBLE, sinon rejouer le geste d'un
+     côté efface l'autre — c'est exactement ce qui s'est produit, `publiees` étant réécrit à `{}`
+     au second passage. Deux écrivains pour un même fichier, c'est la faute que ce dépôt a déjà
+     commise cinq fois sous d'autres formes. */
+
   const releve = relever();
 
   const constats = citationsDeLHeritage();
@@ -575,6 +1254,21 @@ if (import.meta.url === `file://${process.argv[1]}`) {
     for (const r of v.hors.slice(0, 20)) console.error(`  catégorie hors liste : ${r.fichier}:${r.ligne}:${r.colonne}  « ${r.categorie} »`);
     for (const r of v.orphelines) console.error(`  ancre de reformulation qui ne trouve rien : ${r.fichier} « ${r.ancre} »`);
     for (const e of v.scelle) console.error(`  scellé des instruments : ${e}`);
+    for (const r of v.nonReconcilies.slice(0, 20))
+      console.error(`  jeton « IATA » dont rien ne rend compte : ${r.fichier}:${r.ligne}  …${r.voisinage}…`);
+    if (v.nonReconcilies.length > 20) console.error(`  … et ${v.nonReconcilies.length - 20} autre(s)`);
+    for (const e of v.formeScelleLicites) console.error(`  forme du scellé des licites : ${e}`);
+    for (const e of v.scelleLicites.slice(0, 15)) console.error(`  scellé des licites : ${e}`);
+    if (v.scelleLicites.length > 15) console.error(`  … et ${v.scelleLicites.length - 15} autre(s)`);
+    if (v.scelleLicites.length || v.formeScelleLicites.length) console.error(
+      "\n  Le scellé des tournures licites doit ÉGALER le corpus, pas seulement l'autoriser."
+      + "\n  Rejouer le geste : node --import tsx test-etape3-dom.mjs --dist=packages/ui/dist --sceller-licites");
+    if (v.nonReconcilies.length) console.error(
+      "\n  Un jeton non réconcilié n'est PAS une erreur du dépôt : c'est une tournure que le contrat\n"
+      + "  ne connaît pas encore. Deux issues, et il faut en choisir une explicitement — soit elle est\n"
+      + "  licite et rejoint `CONTEXTES_LICITES`, soit elle attribue quelque chose à l'IATA et le motif\n"
+      + "  doit la voir. Ce qui est interdit, c'est de ne rien décider : c'est ainsi que trois faux zéros\n"
+      + "  ont été publiés.");
     process.exit(1);
   }
 

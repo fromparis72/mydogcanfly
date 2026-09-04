@@ -29,7 +29,7 @@ faq:
   - q: "Les harnais qui resserrent quand le chien tire sont-ils recommandés ?"
     a: "Ils fonctionnent par inconfort, voire par pincement sous les aisselles, et présentent un risque de blessure et d'association négative à la promenade. La plupart des éducateurs en méthode positive leur préfèrent un harnais à attache frontale, qui redirige sans punir. À éviter pour un usage quotidien."
   - q: "Peut-on utiliser le même harnais pour la voiture ?"
-    a: "Non. Un harnais de promenade n'est pas conçu ni testé pour résister à un choc en voiture. Pour le transport, il faut un harnais de sécurité spécifique, attaché à la ceinture, ou une caisse de transport homologuée. Ce sont deux équipements distincts avec des fonctions différentes."
+    a: "Non. Un harnais de promenade n'est pas conçu ni testé pour résister à un choc en voiture. Pour le transport, il faut un harnais de sécurité spécifique, attaché à la ceinture, ou une caisse de transport conforme aux exigences applicables. Ce sont deux équipements distincts avec des fonctions différentes."
 ---
 
 Si votre chien transforme chaque promenade en séance de traîneau, vous n'êtes pas seul. La traction en laisse est l'un des motifs les plus fréquents de consultation en éducation canine. Beaucoup de propriétaires espèrent qu'un accessoire réglera le problème en une sortie — et c'est là que se glissent les déceptions, ou pire, les achats inadaptés qui blessent le chien.

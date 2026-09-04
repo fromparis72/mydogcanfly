@@ -1,7 +1,7 @@
 ---
 key: "measuring-your-dog-for-a-crate"
-title: "Mesurer son chien pour une caisse IATA, sans deviner"
-seoTitle: "Mesurer un chien pour une caisse de transport IATA"
+title: "Mesurer son chien pour une caisse de transport, sans deviner"
+seoTitle: "Mesurer un chien pour une caisse de transport"
 description: "Les quatre mesures que les compagnies vérifient réellement, comment les prendre correctement, et pourquoi voir trop grand n'est pas la solution de sécurité."
 summary: "Quatre mesures décident de la caisse : longueur, hauteur au garrot, hauteur debout tête levée, et largeur. Prenez-les sur un chien debout, ajoutez les marges, puis confrontez le résultat à la compagnie."
 date: "2026-08-17T09:00:00+02:00"
@@ -37,7 +37,7 @@ La mesure elle-même prend cinq minutes. Voici quoi mesurer, comment, et quoi fa
 
 Toutes les compagnies appliquent une version de la même exigence, issue des Live Animals Regulations de l'IATA : à l'intérieur de la caisse, le chien doit pouvoir **se tenir debout tête levée, se retourner complètement et se coucher naturellement**, sans toucher les parois ni le toit.
 
-Tout le reste — les quatre mesures, les marges — n'existe que pour satisfaire cette phrase. Notre guide sur [choisir une caisse homologuée](/fr/travel-hub/caisse-transport-avion-homologuee-chien/) traite les exigences de construction : ventilation sur plusieurs côtés, fermetures sûres, fond étanche.
+Tout le reste — les quatre mesures, les marges — n'existe que pour satisfaire cette phrase. Notre guide sur [choisir une caisse conforme aux exigences applicables](/fr/travel-hub/caisse-transport-avion-homologuee-chien/) traite les exigences de construction : ventilation sur plusieurs côtés, fermetures sûres, fond étanche.
 
 ## Les quatre mesures
 
@@ -50,7 +50,7 @@ Prenez-les sur un chien **debout**, sur une surface plane, avec un mètre ruban 
 
 Puis les marges habituelles : la longueur de caisse vaut normalement **A + la moitié de B**, la hauteur intérieure au moins **C plus quelques centimètres**, et la largeur intérieure au moins **deux fois D** pour que le chien puisse se retourner.
 
-Plutôt que de faire ce calcul à la main, entrez vos mesures dans notre [calculateur de caisse IATA](/fr/tools/crate/) : il renvoie les dimensions intérieures à rechercher, c'est-à-dire le chiffre à citer quand vous contacterez la compagnie.
+Plutôt que de faire ce calcul à la main, entrez vos mesures dans notre [calculateur de caisse de transport](/fr/tools/crate/) : il renvoie les dimensions intérieures à rechercher, c'est-à-dire le chiffre à citer quand vous contacterez la compagnie.
 
 ## Pourquoi plus grand n'est pas plus sûr
 

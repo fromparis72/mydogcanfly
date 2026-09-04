@@ -3,7 +3,7 @@ key: "dog-travel-gear"
 title: "Elegir el equipamiento de viaje del perro: transportín, arnés, bolso"
 seoTitle: "Equipamiento de viaje para perro: transportín, arnés, bolso"
 description: "Equipamiento de viaje para perro: cómo elegir transportín, arnés de seguridad o bolso según el tamaño de tu perro, el medio de transporte y las normas de seguridad."
-summary: "El equipamiento adecuado depende del tamaño de tu perro y del medio de transporte: transportín rígido, arnés de seguridad homologado o bolso, según la situación."
+summary: "El equipamiento adecuado depende del tamaño de tu perro y del medio de transporte: transportín rígido, arnés de seguridad de coche para perro o bolso, según la situación."
 date: "2026-06-25T09:30:00+02:00"
 lastmod: "2026-06-25T09:30:00+02:00"
 author: "Camille Roussel"
@@ -23,16 +23,16 @@ faq:
   - q: "¿Es obligatorio sujetar a mi perro en el coche?"
     a: "Sí. En la mayoría de los países, las normas de circulación exigen que nada estorbe al conductor: un perro suelto es un peligro. Un arnés con crash test enganchado al cinturón, un transportín o una reja separadora son las soluciones conformes y seguras."
   - q: "¿Vale un transportín flexible para el avión?"
-    a: "Para la cabina, algunos bolsos flexibles conformes se aceptan para perros pequeños. Para la bodega, en cambio, solo se admite un transportín rígido conforme a IATA, porque protege al animal y resiste la manipulación."
+    a: "Para la cabina, algunos bolsos flexibles conformes se aceptan para perros pequeños. Para la bodega, en cambio, solo se admite un transportín rígido conforme a los requisitos aplicables, porque protege al animal y resiste la manipulación."
   - q: "¿Cómo acierto con el tamaño del transportín?"
     a: "Mide la altura de tu perro a la cruz (con las orejas erguidas) y su longitud del hocico a la base de la cola, y añade unos centímetros. El perro debe poder ponerse de pie, darse la vuelta y tumbarse sin agobio."
   - q: "¿Qué presupuesto hay que prever para equipar bien al perro?"
-    a: "Cuenta con unos 30–80 € para un arnés con crash test, 25–60 € para un transportín flexible, 50–150 € para un transportín rígido IATA y 30–90 € para un bolso de cabina. Un equipamiento homologado y duradero sale más barato a la larga que un modelo económico que habrá que reemplazar."
+    a: "Cuenta con unos 30–80 € para un arnés con crash test, 25–60 € para un transportín flexible, 50–150 € para un transportín rígido y 30–90 € para un bolso de cabina. Un equipamiento duradero y adecuado al medio de transporte sale más barato a la larga que un modelo económico que habrá que reemplazar."
   - q: "¿Puede el arnés de coche servir también para pasear?"
     a: "Algunos modelos son polivalentes, pero un arnés de seguridad con crash test está pensado ante todo para el coche. Para paseos largos, un arnés específico y mejor acolchado resultará más cómodo en el día a día."
 ---
 
-Equipar a tu perro para viajar no consiste en acumular accesorios: se trata de elegir los adecuados para su peso, su carácter y tu medio de transporte. Un transportín mal dimensionado, un arnés no homologado o un bolso demasiado pequeño pueden comprometer la seguridad y la comodidad de tu perro. Estos son los criterios concretos para acertar a la primera.
+Equipar a tu perro para viajar no consiste en acumular accesorios: se trata de elegir los adecuados para su peso, su carácter y tu medio de transporte. Un transportín mal dimensionado, un arnés inadecuado o un bolso demasiado pequeño pueden comprometer la seguridad y la comodidad de tu perro. Estos son los criterios concretos para acertar a la primera.
 
 ## Transportín, arnés o bolso: ¿qué equipamiento para qué uso?
 
@@ -40,12 +40,12 @@ Cada dispositivo cumple una función precisa. Aquí tienes una comparativa para 
 
 | Equipamiento | Para quién | Medio de transporte | Ventaja principal |
 |---|---|---|---|
-| Transportín rígido | Todos los tamaños | Coche, avión | Seguridad máxima, opciones conformes a IATA |
+| Transportín rígido | Todos los tamaños | Coche, avión | Seguridad máxima, opciones conformes a los requisitos aplicables |
 | Transportín flexible | Perros pequeños y medianos | Coche, tren | Ligero y plegable |
 | Arnés de seguridad | Perros medianos y grandes | Coche | Libertad de movimiento, se engancha al cinturón |
 | Bolso de transporte | Perros pequeños (< 8 kg) | Tren, cabina de avión | Compacto, mantiene al perro cerca de ti |
 
-La elección parte de tu medio de desplazamiento principal. Un perro grande que viaja sobre todo en coche estará bien con un arnés homologado; un perro pequeño que vuela necesita un bolso conforme para cabina.
+La elección parte de tu medio de desplazamiento principal. Un perro grande que viaja sobre todo en coche estará bien con un arnés de seguridad de coche para perro; un perro pequeño que vuela necesita un bolso conforme para cabina.
 
 ## Qué mirar en un transportín de viaje
 
@@ -113,10 +113,10 @@ En cuanto al presupuesto, estas son cifras realistas para equiparse sin sorpresa
 |---|---|---|
 | Arnés de seguridad con crash test | 30–80 € | Varios años |
 | Transportín flexible | 25–60 € | De 2 a 5 años |
-| Transportín rígido IATA | 50–150 € | Varios años |
+| Transportín rígido | 50–150 € | Varios años |
 | Bolso de cabina | 30–90 € | Varios años |
 
-Invertir en material duradero y homologado cuesta menos con el tiempo que reemplazar un modelo de gama baja, y sobre todo protege de verdad a tu perro.
+Invertir en material duradero y adecuado al medio de transporte cuesta menos con el tiempo que reemplazar un modelo de gama baja, y sobre todo protege de verdad a tu perro.
 
 ## ¿Qué accesorios adicionales llevar?
 

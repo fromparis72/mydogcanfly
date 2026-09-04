@@ -87,7 +87,7 @@ Varios gestos sencillos limitan la náusea:
 | Colocar al perro mirando hacia delante | Mirar en el sentido de la marcha alivia el mareo |
 | Hacer paradas regulares | El descanso y la hidratación calman al perro |
 
-Un buen equipamiento de sujeción es clave: consulta nuestras recomendaciones para [elegir el equipamiento de viaje de tu perro](/es/travel-hub/equipamiento-de-viaje-para-perro/), en especial transportines y arneses homologados.
+Un buen equipamiento de sujeción es clave: consulta nuestras recomendaciones para [elegir el equipamiento de viaje de tu perro](/es/travel-hub/equipamiento-de-viaje-para-perro/), en especial transportines y arneses de seguridad de coche para perro.
 
 En trayectos largos, marca un ritmo regular: una parada cada **2 horas** aproximadamente, igual que para un conductor humano. Aprovéchala para ofrecer un poco de agua (en pequeñas cantidades), un paseo corto con correa y una parada para sus necesidades. Mantén el habitáculo a una temperatura moderada, de 20 a 22 °C, y entreabre una ventanilla para renovar el aire. Evita mirar fijamente a tu perro o vigilarlo con ansiedad por el retrovisor: tu propia tensión se transmite y alimenta su malestar. Una voz tranquila y unas palabras de ánimo espaciadas bastan.
 

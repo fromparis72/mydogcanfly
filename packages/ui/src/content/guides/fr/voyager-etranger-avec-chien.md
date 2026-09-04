@@ -100,4 +100,4 @@ Quelques réflexes utiles sur place :
 
 Comparez les exigences par destination avec notre **[vérificateur de formalités par pays](/fr/countries/)**.
 
-<ol class="gd-etapes"><li><a href="/fr/travel-hub/voyager-etranger-avec-chien/">Vérifier les formalités sanitaires</a></li><li><a href="/fr/travel-hub/caisse-transport-avion-homologuee-chien/">Choisir une caisse de transport homologuée IATA</a></li><li><a href="/fr/travel-hub/anxiete-chien-transport/">Préparer votre chien au stress du vol</a></li><li><a href="/fr/airlines/">Comparer les 62 compagnies</a></li></ol>
+<ol class="gd-etapes"><li><a href="/fr/travel-hub/voyager-etranger-avec-chien/">Vérifier les formalités sanitaires</a></li><li><a href="/fr/travel-hub/caisse-transport-avion-homologuee-chien/">Choisir une caisse de transport conforme aux exigences applicables</a></li><li><a href="/fr/travel-hub/anxiete-chien-transport/">Préparer votre chien au stress du vol</a></li><li><a href="/fr/airlines/">Comparer les 62 compagnies</a></li></ol>

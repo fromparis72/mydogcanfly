@@ -1,7 +1,7 @@
 ---
 key: "airline-approved-dog-crate"
-title: "Escolher uma caixa de transporte homologada pela IATA"
-seoTitle: "Caixa IATA para cachorro: regras e medidas"
+title: "Escolher uma caixa de transporte"
+seoTitle: "Caixa de transporte para cachorro: regras e medidas"
 description: "Guia da caixa de avião para cachorro: exigências da IATA, método de medição, materiais, modelos em conformidade. O guia completo para voar com tranquilidade."
 summary: "Guia da caixa de avião para cachorro: exigências da IATA, método de medição, materiais, modelos em conformidade. O guia completo para voar com tranquilidade."
 date: "2026-06-22T09:00:00+02:00"
@@ -10,7 +10,7 @@ author: "Camille Roussel"
 category: "gear"
 tags: ["cachorro", "caixa de transporte", "avião", "IATA"]
 enbref:
-  - "📏 Caixa **rígida de casco duplo**, em conformidade com a **IATA** (CR82)"
+  - "📏 Caixa **rígida de casco duplo**, em conformidade com os **requisitos aplicáveis** (CR82)"
   - "🐕 O animal precisa poder **ficar de pé, virar-se e deitar-se**"
   - "🔩 **Ferragens de metal** (parafusos e porcas), sem travas de plástico"
   - "💨 **Ventilação** distribuída em 3 ou 4 lados"
@@ -18,10 +18,10 @@ enbref:
   - "🗓️ **Acostume o cachorro à caixa** com várias semanas de antecedência"
 cover:
   image: "/travel-hub/airline-approved-dog-crate.webp"
-  alt: "Um viajante e o seu cachorro ao lado de uma caixa em conformidade com a IATA no aeroporto"
-  credit: "Caixa de transporte rígida em conformidade com a IATA."
+  alt: "Um viajante e o seu cachorro ao lado de uma caixa em conformidade com os requisitos aplicáveis no aeroporto"
+  credit: "Caixa de transporte rígida em conformidade com os requisitos aplicáveis."
 faq:
-  - q: "O que é exatamente uma caixa em conformidade com a IATA?"
+  - q: "O que é exatamente uma caixa em conformidade com os requisitos aplicáveis?"
     a: "É uma caixa rígida que atende às *Live Animals Regulations* da IATA: o animal precisa poder ficar de pé sem encostar no teto, virar-se e deitar-se; a ventilação é distribuída em vários lados; e as duas metades do casco são unidas com ferragens de metal. Não é um selo pago, e sim um conjunto de exigências verificadas no balcão de check-in, que cada companhia pode complementar."
   - q: "Como sei qual é o tamanho de caixa certo para o meu cachorro?"
     a: "Meça o cachorro de pé: comprimento do focinho até a base da cauda, altura do chão até o cotovelo, largura na altura dos ombros e altura total até a cabeça ou as orelhas. O comprimento interno da caixa precisa ser no mínimo o comprimento do cachorro mais metade da altura da pata; a largura, cerca do dobro da largura do cachorro; e a altura, a altura dele de pé, com margem. Depois, escolha o tamanho imediatamente superior do fabricante."
@@ -37,7 +37,7 @@ Quando você prepara um voo com o seu cachorro no porão, a caixa de transporte 
 
 Cito alguns modelos conhecidos como pontos de referência — caixas como a Petmate Sky Kennel ou a Vari Kennel aparecem com frequência nos relatos de viajantes — sem inventar dimensões nem preços: as especificações exatas estão nas fichas técnicas dos fabricantes e precisam sempre ser confrontadas com as exigências da sua companhia. Antes de reservar, leia também o nosso guia geral sobre [viajar de avião com cachorro](/pt/travel-hub/viajar-de-aviao-com-cachorro/), que cobre cabine, porão e documentação.
 
-## O que é uma caixa «em conformidade com a IATA»?
+## O que é uma caixa «em conformidade com os requisitos aplicáveis»?
 
 A IATA (Associação Internacional de Transporte Aéreo) publica as *Live Animals Regulations*, o quadro de referência que quase todas as companhias usam para regular o transporte de animais no porão. Para cães e gatos, você verá com frequência a menção «Container Requirement 82» (CR82). Não é uma certificação no sentido de um selo pago: é um conjunto de exigências que a caixa precisa atender, verificadas no check-in.
 
@@ -123,7 +123,7 @@ Se o seu cachorro demonstrar ansiedade acentuada, converse com o veterinário be
 
 ## Caixa de porão ou bolsa de cabine: como decidir?
 
-Tudo depende do porte do seu cachorro e da política da companhia. Cães pequenos viajam com frequência na cabine, em uma bolsa flexível homologada que desliza embaixo do assento, enquanto os maiores vão no porão em uma caixa rígida IATA. Nem as restrições nem o material são os mesmos. Se você está pesando as duas opções, a nossa comparação de [bolsas e caixas de transporte para cachorro](/pt/travel-hub/bolsas-e-caixas-de-transporte/) ajuda a escolher conforme o porte do animal, a duração do voo e as regras da companhia.
+Tudo depende do porte do seu cachorro e da política da companhia. Cães pequenos viajam com frequência na cabine, em uma bolsa flexível com as dimensões admitidas que desliza embaixo do assento, enquanto os maiores vão no porão em uma caixa de transporte rígida. Nem as restrições nem o material são os mesmos. Se você está pesando as duas opções, a nossa comparação de [bolsas e caixas de transporte para cachorro](/pt/travel-hub/bolsas-e-caixas-de-transporte/) ajuda a escolher conforme o porte do animal, a duração do voo e as regras da companhia.
 
 <ol class="gd-etapes"><li><a href="/pt/airlines/">Confira as condições de porão da sua companhia</a></li><li><a href="/pt/tools/crate/">Calcule o tamanho da caixa com a calculadora IATA</a></li><li><a href="/pt/travel-hub/ansiedade-do-cachorro-em-viagem/">Acostume o seu cachorro à caixa e gerencie o estresse do voo</a></li></ol>
 

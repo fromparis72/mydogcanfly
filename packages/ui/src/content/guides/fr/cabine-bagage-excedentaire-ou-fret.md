@@ -35,7 +35,7 @@ Employer le bon vocabulaire compte, parce que demander le mauvais fait perdre de
 
 ## Cabine : des frais sur votre propre dossier
 
-L'animal voyage dans un sac homologué sous le siège devant vous. Commercialement, c'est le plus simple : en général un forfait ajouté à votre réservation, un quota d'animaux par vol, et une limite stricte de taille et de poids portant sur **le chien et le sac réunis**.
+L'animal voyage dans un sac admis en cabine sous le siège devant vous. Commercialement, c'est le plus simple : en général un forfait ajouté à votre réservation, un quota d'animaux par vol, et une limite stricte de taille et de poids portant sur **le chien et le sac réunis**.
 
 Ce que vous y gagnez n'est pas seulement du confort. Vous voyez l'animal en permanence, la température est régulée pour des humains tout du long, et les embargos saisonniers ne s'appliquent pour ainsi dire pas — point développé dans [les embargos chaleur en soute](/fr/travel-hub/embargos-chaleur-en-soute/).
 
@@ -49,7 +49,7 @@ Caractéristiques pratiques :
 
 - Enregistrement au terminal passagers, en général à un guichet dédié et plus tôt qu'un bagage ordinaire.
 - Tarifé comme un forfait animal ou comme un excédent de bagage, selon le transporteur.
-- Exige une caisse rigide conforme à l'IATA — voyez [choisir une caisse homologuée](/fr/travel-hub/caisse-transport-avion-homologuee-chien/) et dimensionnez-la avec notre [calculateur de caisse](/fr/tools/crate/).
+- Exige une caisse rigide conforme à l'IATA — voyez [choisir une caisse conforme aux exigences applicables](/fr/travel-hub/caisse-transport-avion-homologuee-chien/) et dimensionnez-la avec notre [calculateur de caisse](/fr/tools/crate/).
 - Soumis aux embargos de température et aux restrictions de race, notamment pour les [races brachycéphales](/fr/travel-hub/races-brachycephales-et-avion/).
 
 Tous les transporteurs ne le proposent pas sur toutes les lignes, et plusieurs l'ont retiré entièrement. C'est l'une des choses qui bougent : voyez [pourquoi les politiques animaux changent](/fr/travel-hub/politiques-animaux-des-compagnies-qui-changent/).

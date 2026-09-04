@@ -23,7 +23,7 @@ faq:
   - q: "Quel poids maximal pour un chien en sac de transport cabine ?"
     a: "Cela dépend entièrement de la compagnie aérienne. Beaucoup limitent le poids total (chien + sac) à quelques kilos seulement, souvent autour de 8 kg, mais ce chiffre varie. Vérifiez toujours la page officielle de votre compagnie avant d'acheter un sac ou de réserver, car au-delà de la limite le chien voyage en soute ou pas du tout."
   - q: "Sac souple ou caisse rigide pour voyager ?"
-    a: "Pour la cabine en avion, les sacs souples sont généralement préférés car ils se compriment sous le siège. Pour la soute, la voiture ou les grands chiens, la caisse rigide homologuée est plus sûre. Le choix dépend du gabarit, du mode de transport et de la durée du trajet."
+    a: "Pour la cabine en avion, les sacs souples sont généralement préférés car ils se compriment sous le siège. Pour la soute, la voiture ou les grands chiens, la caisse rigide conforme aux exigences applicables est plus sûre. Le choix dépend du gabarit, du mode de transport et de la durée du trajet."
   - q: "Comment habituer mon chien à son sac de transport ?"
     a: "Laissez le sac ouvert et accessible à la maison plusieurs jours, avec une couverture familière à l'intérieur. Récompensez chaque entrée volontaire, puis fermez quelques secondes, portez sur de courtes distances et allongez progressivement. L'objectif est que le sac devienne un refuge associé à du positif avant le premier vrai trajet."
   - q: "Mon sac est vendu \\\"compatible cabine\\\", est-ce suffisant ?"

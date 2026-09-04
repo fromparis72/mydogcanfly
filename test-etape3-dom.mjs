@@ -20,7 +20,7 @@
 import { readFileSync, writeFileSync, readdirSync, statSync, existsSync, mkdtempSync, mkdirSync, rmSync } from "node:fs";
 import { tmpdir } from "node:os";
 import { join } from "node:path";
-import { MOTIF, jugerOccurrence } from "./inventaire-iata.mjs";
+import { MOTIF, jugerOccurrence, dansUnSlugConserve, dansUnFragmentAttribuePublie , CORRECTIONS_CARGO, jetonsNonReconcilies, chargerScelleLicitesPubliees, CHEMIN_SCELLE_LICITES, reconcilier, grouperLicites, comparerScelleLicites, serialiserScelleLicites, verifierFormeScelleLicites, chargerScelleLicites } from "./inventaire-iata.mjs";
 import { zonesDe } from "./test-lib/zones-publiques.mjs";
 
 const DIST = process.argv.slice(2).find((a) => a.startsWith("--dist="))?.slice(7);
@@ -121,8 +121,13 @@ ok(`départ : ${pages.length} pages construites`);
      dans le corps, ne contient aucune suite brute « IATA » — la page était donc écartée sans
      jamais passer par le lecteur de zones, qui l'aurait pourtant rendue lisible. Un filtre posé
      AVANT le décodage annule le décodage. Les 3 121 pages sont désormais toutes parsées. */
-  const relevePublie = (racine, listePages) => {
+  /* LES TOURNURES LICITES PUBLIÉES, scellées par « URL · zone ». Voir l'instrument : une
+     permission lexicale générale couvre des phrases qui n'existent pas, et c'est par là que les
+     attributions passent. Ici, chaque tournure licite voisinant un contenant est énumérée. */
+  const SCELLE_PUBLIE = chargerScelleLicitesPubliees();
+  const relevePublie = (racine, listePages, scelle = SCELLE_PUBLIE) => {
     const vu = {};
+    const nus = [];
     let illisibles = 0;
     for (const p of listePages) {
       const url = p.slice(racine.length).replace(/\/index\.html$/, "/");
@@ -131,18 +136,87 @@ ok(`départ : ${pages.length} pages construites`);
       if (z.jsonLdInvalide) echec("1bis lecture", `${url} : ${z.jsonLdInvalide} bloc(s) JSON-LD illisible(s) — leur contenu n'a pas pu être jugé`);
       const par = {};
       for (const [zone, texte] of ZONES(z)) {
+        /* ---- LA RÉCONCILIATION S'EXÉCUTE SUR LA PAGE, PAS SEULEMENT SUR LES SOURCES ----------
+         * FAUTE MESURÉE LE 04/09/2026, et elle vidait la promesse de son sens. Ce relevé ne
+         * parcourait que les correspondances de `MOTIF`, puis ne retenait que celles jugées
+         * « interdite ». Un jeton que le motif ne connaît pas était donc ABSENT du registre —
+         * « IATA-blessed crate » posé dans le corps, une métadonnée ou le JSON-LD laissait le
+         * registre à 0 / 0, alors que la réconciliation des sources l'aurait déclaré bruyant.
+         * Les deux chemins de contrôle disaient deux choses différentes de la MÊME page.
+         * Le jeton non réconcilié ne rejoint PAS le registre des formulations connues : il fait
+         * échouer la porte tout de suite. Un registre est une liste de dettes CONNUES ; une
+         * tournure que personne n'a classée n'est pas une dette connue, c'est un trou. */
+        for (const j of jetonsNonReconcilies(String(texte), MOTIF, scelle.get(`${url} · ${zone}`))) {
+          nus.push({ url, zone, voisinage: j.voisinage });
+        }
         MOTIF.lastIndex = 0;
         for (const m of String(texte).matchAll(MOTIF)) {
           if (jugerOccurrence(m[0]) !== "interdite") continue;
+          /* L'EXEMPTION DE SLUG EST LA MÊME QUE CELLE DES SOURCES, et elle vient de l'instrument.
+             Trois slugs arbitrés comme CONSERVÉS paraissent dans les URL du JSON-LD des pages
+             qu'ils nomment. `classer()` les exempte depuis toujours ; cette garde ne le faisait
+             pas. Deux règles pour la même question, donc deux réponses : tant que ces slugs
+             existent, le registre ne pouvait STRUCTURELLEMENT pas atteindre zéro. L'exemption est
+             bornée à la POSITION exacte : les mêmes mots dans la prose restent interdits. */
+          if (dansUnSlugConserve(String(texte), m.index, m.index + m[0].length)) continue;
+          /* Et les fragments attribués, par URL exacte et texte exact — la même liste que celle
+             que `classer()` consulte à la source, jamais une permission lexicale. */
+          if (dansUnFragmentAttribuePublie(url, String(texte), m.index, m.index + m[0].length)) continue;
           const f = `${zone} · ${m[0].toLowerCase().replace(/\s+/g, " ").trim()}`;
           par[f] = (par[f] || 0) + 1;
         }
       }
       if (Object.keys(par).length) vu[url] = par;
     }
-    return { vu, illisibles };
+    return { vu, illisibles, nus };
   };
-  const { vu } = relevePublie(DIST, pages);
+  /* UNE SEULE LECTURE DES 3 121 PAGES, DEUX VUES. Le relevé se fait à scellé VIDE — il rend donc
+     le CORPUS complet des tournures licites voisinant un contenant — et ce qui reste non
+     réconcilié s'en déduit par soustraction du scellé. Lire deux fois le site pour obtenir les
+     deux vues doublait le temps du contrôle sans rien prouver de plus. */
+  const { vu, nus: corpusBrut } = relevePublie(DIST, pages, new Map());
+  /* LES DEUX CORPUS, calculés À SCELLÉ VIDE : ce sont eux qui font foi, et le scellé se compare à
+     eux. Ils sont déclarés ici, au plus près de l'unique lecture du site, parce que la porte
+     publique s'en sert aussitôt. */
+  const corpusSources = grouperLicites(reconcilier({ scelle: new Map() }));
+  const corpusPubliees = grouperLicites(corpusBrut, (x) => `${x.url} · ${x.zone}`);
+
+  /* ---- LE GESTE DE SCELLEMENT S'EXÉCUTE AVANT LA PORTE, ET NON APRÈS -------------------------
+   * RÉSERVE D'ERGONOMIE SIGNALÉE PAR LA CONTRE-REVUE DU 04/09/2026, et elle était juste. Le geste
+   * venait APRÈS les contrôles : le jour où une tournure licite nouvelle apparaît, le premier
+   * passage écrivait bien le scellé neuf, mais sortait ROUGE — la porte ayant déjà été jugée sur
+   * l'ANCIEN scellé —, et il fallait un second passage pour voir vert. Ce n'était pas un faux
+   * vert ; c'était un faux rouge, ce qui use la confiance tout aussi sûrement.
+   * Le geste précède donc la porte, et la porte relit le scellé qu'il vient d'écrire : un
+   * rescellement est vert du premier coup, et il DIT ce qu'il a changé. Sans le geste, rien ne
+   * bouge : le scellé ne se déplace jamais tout seul. */
+  let SCELLE_PUBLIE_EFFECTIF = SCELLE_PUBLIE;
+  if (process.argv.includes("--sceller-licites")) {
+    const avant = existsSync(CHEMIN_SCELLE_LICITES) ? readFileSync(CHEMIN_SCELLE_LICITES, "utf8") : "";
+    const neuf = serialiserScelleLicites(corpusSources, corpusPubliees);
+    writeFileSync(CHEMIN_SCELLE_LICITES, neuf);
+    SCELLE_PUBLIE_EFFECTIF = chargerScelleLicitesPubliees();
+    console.log(avant === neuf
+      ? `  · scellé des licites INCHANGÉ : ${corpusSources.size} chemin(s) source, ${corpusPubliees.size} couple(s) URL/zone`
+      : `  · scellé des licites RÉÉCRIT : ${corpusSources.size} chemin(s) source, ${corpusPubliees.size} couple(s) URL/zone`
+        + ` — ${avant ? "il a changé, relisez le diff avant de committer" : "création"}`);
+  }
+  const nus = [];
+  for (const [cle, tournures] of corpusPubliees) {
+    const scelles = SCELLE_PUBLIE_EFFECTIF.get(cle) ?? new Map();
+    const [url, zone] = [cle.slice(0, cle.lastIndexOf(" · ")), cle.slice(cle.lastIndexOf(" · ") + 3)];
+    for (const [voisinage, n] of tournures) {
+      for (let i = scelles.get(voisinage) ?? 0; i < n; i++) nus.push({ url, zone, voisinage });
+    }
+  }
+  if (nus.length) {
+    echec("1septies jeton non réconcilié PUBLIÉ", `${nus.length} jeton(s) « IATA » qu'aucune règle ni aucun scellé ne rend compte`);
+    for (const n of nus.slice(0, 10)) console.error(`      ${n.url} [${n.zone}] …${n.voisinage}…`);
+    if (nus.length > 10) console.error(`      … et ${nus.length - 10} autre(s)`);
+    console.error("\n      Une tournure publiée que personne n'a classée n'entre pas au registre : elle"
+      + "\n      bloque la porte. Soit elle attribue quelque chose à l'IATA et le motif doit la voir,"
+      + "\n      soit elle est licite et rejoint le scellé par un geste nommé.");
+  } else ok(`1septies aucun jeton « IATA » publié n'échappe au compte — les ${pages.length} pages sont réconciliées zone par zone`);
 
   const comparer = (attendu, constate) => {
     const ecarts = [];
@@ -209,6 +283,7 @@ ok(`départ : ${pages.length} pages construites`);
         MOTIF.lastIndex = 0;
         for (const m of String(texte).matchAll(MOTIF)) {
           if (jugerOccurrence(m[0]) !== "interdite") continue;
+          if (dansUnSlugConserve(String(texte), m.index, m.index + m[0].length)) continue;
           par[zone] = (par[zone] ?? 0) + 1;
         }
       }
@@ -260,11 +335,223 @@ ok(`départ : ${pages.length} pages construites`);
         else if ((dansCorps.corps ?? 0) === (par.corps ?? 0)) ratés.push(`déplacement vers « ${zone} » : la zone ne change pas, le sceau de zone ne sert à rien`);
       }
 
+      /* ---- LE QUALIFICATIF INTERCALÉ, SUR LE DOM RÉEL (contre-revue du 03/09/2026) -----------
+       * Le registre affichait 0 / 0 alors que « caisse rigide IATA », « transportín rígido IATA »
+       * et « caixa rígida IATA » étaient publiés : la famille canonique ne voyait que le contenant
+       * COLLÉ à `IATA`, et un adjectif suffisait à l'aveugler. Un zéro obtenu avec un motif borgne
+       * n'est pas un zéro, c'est un silence.
+       * Chaque forme est donc injectée DANS UNE PAGE RÉELLE — corps, métadonnée, JSON-LD et
+       * attribut accessible tour à tour — et doit ressortir du pipeline entier : lecture des
+       * zones, motif, jugement lexical. Les vérifier sur une chaîne en mémoire ne prouverait que
+       * l'expression régulière ; ici on éprouve la chaîne complète, celle qui produit le registre. */
+      const QUALIFIEES = ["caisse rigide IATA", "transportín rígido IATA", "caixa rígida IATA",
+        "caisse de transport IATA", "IATA travel crate", "jaula de viaje IATA",
+        "bolsa de transporte IATA", "IATA rental crates",
+        /* `container` et les verbes d'agrément — contre-revue du 04/09/2026. « IATA container
+           required » était SERVI sur la fiche anglaise Thai Airways pendant que ce registre
+           annonçait 0 / 0, parce que le lexique canonique ignorait le mot que la table anglaise
+           du réécriveur connaissait pourtant. Ces formes sont donc éprouvées ici comme les
+           autres : dans le corps, une métadonnée, le JSON-LD et un attribut accessible. */
+        "IATA container", "IATA containers", "caisse agréée IATA", "approved by IATA"];
+      for (const forme of QUALIFIEES) {
+        const zones = [
+          ["corps", brut.replace(/(<body[^>]*>)/, `$1<p>${forme}</p>`), "corps"],
+          ["metas", brut.replace("</head>", `<meta name="description" content="${forme}"></head>`), "metas"],
+          ["json-ld", brut.replace("</head>", `<script type="application/ld+json">{"d":"${forme}"}</scr` + 'ipt></head>'), "json-ld"],
+          ["alt", brut.replace(/(<body[^>]*>)/, `$1<img alt="${forme}" src="/x.png">`), "attributs-accessibles"],
+        ];
+        for (const [nom, html, zone] of zones) {
+          const delta = (compter(html).par[zone] ?? 0) - (base.par[zone] ?? 0);
+          if (delta < 1) ratés.push(`« ${forme} » injectée en ${nom} : la zone « ${zone} » ne bouge pas — la forme reste invisible au registre`);
+        }
+      }
+      /* ET L'INVERSE, sans quoi on pourrait faire bouger le compteur en emportant du vrai : une
+         référence réglementaire licite injectée de la même façon ne doit RIEN ajouter. */
+      for (const licite of ["IATA requirements", "normes IATA", "Live Animals Regulations"]) {
+        const delta = (compter(brut.replace(/(<body[^>]*>)/, `$1<p>${licite}</p>`)).par.corps ?? 0) - (base.par.corps ?? 0);
+        if (delta !== 0) ratés.push(`« ${licite} » injectée dans le corps ajoute ${delta} au registre : une référence licite est comptée comme dette`);
+      }
+
       if (ratés.length) { echec("1quinquies zones", `${ratés.length} écart(s)`); for (const r of ratés.slice(0, 6)) console.error(`      ${r}`); }
       else ok("1quinquies zones — corps, métas, JSON-LD et textes accessibles des attributs sont lus séparément ; "
         + "un identifiant aria n'est pas un texte ; une référence licite ne compte pas ; un JSON-LD illisible rougit ; "
-        + "un défaut déplacé vers une métadonnée OU vers un attribut change de zone à total constant");
+        + "un défaut déplacé vers une métadonnée OU vers un attribut change de zone à total constant ; "
+        + `et les ${QUALIFIEES.length} formes à qualificatif intercalé sont vues dans chacune des quatre zones d'une page réelle, sans qu'aucune référence licite ne le devienne`);
     }
+  }
+
+  /* ---- 1octies. LES CORRECTIONS CARGO SONT SERVIES, DANS LES HUIT PAGES ---------------------
+   * Le scellé de `test:unit` garde la valeur À LA SOURCE. Il ne dit rien de ce que le lecteur
+   * reçoit : une fiche juste peut ne pas être rendue, être tronquée, ou rester servie dans une
+   * version antérieure du dist. Les huit pages linguistiques sont donc relues ici, et chacune
+   * doit porter sa phrase AU MOT PRÈS. La liste vient de l'instrument — jamais d'une copie. */
+  {
+    const ecarts = [];
+    for (const c of CORRECTIONS_CARGO) {
+      const chemin = join(DIST, c.page, "index.html");
+      if (!existsSync(chemin)) { ecarts.push(`${c.page} : page absente du dist`); continue; }
+      const z = zonesDe(readFileSync(chemin, "utf8"));
+      const tout = [z.titre, z.corps, ...Object.values(z.metas ?? {}), JSON.stringify(z.jsonLd ?? "")].join("\n");
+      if (!tout.includes(c.valeur)) {
+        const bout = c.valeur.slice(0, 60);
+        ecarts.push(`${c.page} [${c.langue}] : la phrase scellée n'est pas servie — attendu « ${bout}… »`);
+      }
+    }
+    /* ET LA CONTRE-ÉPREUVE NÉGATIVE : une phrase altérée d'un seul mot ne doit PAS passer, sans
+       quoi ce contrôle prouverait seulement que la page contient du texte. */
+    if (CORRECTIONS_CARGO.length) {
+      const c = CORRECTIONS_CARGO[0];
+      const chemin = join(DIST, c.page, "index.html");
+      if (existsSync(chemin)) {
+        const z = zonesDe(readFileSync(chemin, "utf8"));
+        const tout = [z.titre, z.corps, ...Object.values(z.metas ?? {}), JSON.stringify(z.jsonLd ?? "")].join("\n");
+        if (tout.includes(c.valeur.replace("Accredited", "accredited-"))) ecarts.push("une phrase altérée est acceptée : le contrôle ne compare pas au mot près");
+      }
+    }
+    if (ecarts.length) { echec("1octies corrections cargo publiées", `${ecarts.length} écart(s)`); for (const e of ecarts.slice(0, 8)) console.error(`      ${e}`); }
+    else ok(`1octies les ${CORRECTIONS_CARGO.length} corrections cargo sont servies au mot près dans leurs ${new Set(CORRECTIONS_CARGO.map((c) => c.page)).size} pages linguistiques — une phrase altérée d'un mot ne passe pas`);
+  }
+
+  /* ---- 1decies. UNE TOURNURE INCONNUE POSÉE DANS UNE VRAIE PAGE BLOQUE LA PORTE --------------
+   * Le contrôle `1septies` s'exécute sur les 3 121 pages et n'y trouve rien : à lui seul, il ne
+   * prouve donc pas qu'il TROUVERAIT quelque chose. On pose ici l'attaque exacte de la contre-revue
+   * — « IATA-blessed crate », que le motif ne connaît pas — dans une PAGE RÉELLE, tour à tour dans
+   * le corps, une métadonnée, le JSON-LD et un attribut accessible, et l'on exige que le MÊME
+   * chemin que celui du verdict du registre la relève. Avant cette fermeture, les trois premières
+   * zones rendaient « 0 interdite » et le registre restait à 0 / 0. */
+  {
+    const ecarts = [];
+    const temoin = pages.find((p) => /\/airlines\/[^/]+\/index\.html$/.test(p.slice(DIST.length)));
+    if (!temoin) ecarts.push("aucune fiche compagnie dans le dist : la mutation ne prouverait rien");
+    else {
+      const brut = readFileSync(temoin, "utf8");
+      const dossier = mkdtempSync(join(tmpdir(), "porte-nue-"));
+      try {
+        const poser = (html) => {
+          const d = join(dossier, "p"); mkdirSync(d, { recursive: true });
+          const f = join(d, "index.html"); writeFileSync(f, html); return f;
+        };
+        const CAS = [
+          ["corps", brut.replace(/(<body[^>]*>)/, "$1<p>IATA-blessed crate</p>")],
+          /* Les trois attaques de la contre-revue, posées dans le corps d'une page réelle : elles
+             portent un fragment licite et passaient donc sans bruit. */
+          ["corps · IATA Cargo crate", brut.replace(/(<body[^>]*>)/, "$1<p>IATA Cargo crate</p>")],
+          ["corps · IATA standards approved crate", brut.replace(/(<body[^>]*>)/, "$1<p>IATA standards approved crate</p>")],
+          ["corps · IATA requirements compliant carrier", brut.replace(/(<body[^>]*>)/, "$1<p>IATA requirements compliant carrier</p>")],
+          ["métadonnée", brut.replace("</head>", '<meta name="description" content="IATA-blessed crate"></head>')],
+          ["json-ld", brut.replace("</head>", '<script type="application/ld+json">{"d":"IATA-blessed crate"}</scr' + 'ipt></head>')],
+          ["attribut accessible", brut.replace(/(<body[^>]*>)/, '$1<img alt="IATA-blessed crate" src="/x.png">')],
+        ];
+        for (const [nom, html] of CAS) {
+          const f = poser(html);
+          const { vu, nus: nusCas } = relevePublie(dossier, [f]);
+          const interdites = Object.values(vu).reduce((a, o) => a + Object.values(o).reduce((x, y) => x + y, 0), 0);
+          if (!nusCas.length) ecarts.push(`« IATA-blessed crate » posée dans ${nom} n'est PAS relevée — le registre en compterait ${interdites}`);
+          rmSync(f, { force: true });
+        }
+        /* ET LE TÉMOIN NÉGATIF : la page intacte ne doit rien rendre, sans quoi le contrôle
+           crierait sur n'importe quoi et ne dirait rien de la mutation. */
+        const intacte = poser(brut);
+        if (relevePublie(dossier, [intacte]).nus.length) ecarts.push("la page intacte est déjà bruyante : la mutation ne prouve rien");
+      } finally { rmSync(dossier, { recursive: true, force: true }); }
+    }
+    if (ecarts.length) { echec("1decies porte réconciliée", `${ecarts.length} écart(s)`); for (const e of ecarts) console.error(`      ${e}`); }
+    else ok("1decies les quatre attaques posées dans une page réelle bloquent la porte — « IATA-blessed crate » depuis les quatre zones — corps, métadonnée, JSON-LD et attribut accessible — par le chemin même qui produit le verdict du registre");
+  }
+
+  /* ---- 1nonies. LES DEUX PHRASES THAI AIRWAYS N'EXISTENT NI À LA SOURCE NI À L'ÉCRAN --------
+   * La contre-revue les a trouvées publiées alors que tout était vert. On exige donc leur absence
+   * EXACTE aux deux étages, et la présence de ce qui les remplace — sans quoi « absent » pourrait
+   * simplement vouloir dire « la page a disparu ». */
+  {
+    const ecarts = [];
+    const ANCIENNES = ["IATA container required",
+      "provide a leak-proof, disinfected IATA container with food and water"];
+    const NEUVES = ["Travel container required",
+      "provide a leak-proof, disinfected travel container with food and water"];
+    const source = "content/airlines/thai_airways.yml";
+    const brutSource = existsSync(source) ? readFileSync(source, "utf8") : "";
+    if (!brutSource) ecarts.push(`${source} : fiche introuvable`);
+    for (const a of ANCIENNES) if (brutSource.includes(a)) ecarts.push(`${source} : « ${a} » est revenue à la source`);
+    for (const n of NEUVES) if (!brutSource.includes(n)) ecarts.push(`${source} : « ${n} » a disparu de la source`);
+    const page = join(DIST, "/airlines/thai-airways/", "index.html");
+    if (!existsSync(page)) ecarts.push("/airlines/thai-airways/ : page absente du dist");
+    else {
+      const z = zonesDe(readFileSync(page, "utf8"));
+      const tout = [z.titre, z.corps, ...Object.values(z.metas ?? {}), JSON.stringify(z.jsonLd ?? "")].join("\n");
+      for (const a of ANCIENNES) if (tout.includes(a)) ecarts.push(`/airlines/thai-airways/ : « ${a} » est SERVIE`);
+      for (const n of NEUVES) if (!tout.includes(n)) ecarts.push(`/airlines/thai-airways/ : « ${n} » n'est pas servie`);
+    }
+    if (ecarts.length) { echec("1nonies Thai Airways", `${ecarts.length} écart(s)`); for (const e of ecarts) console.error(`      ${e}`); }
+    else ok("1nonies les deux attributions Thai Airways ont disparu de la source ET de la page construite, et ce qui les remplace y est bien servi");
+  }
+
+  /* ---- LE SCELLÉ DES TOURNURES LICITES : UN SEUL ÉCRIVAIN, LES DEUX SECTIONS ENSEMBLE -------
+   *
+   * TROIS FAUTES MESURÉES LE 04/09/2026, et la troisième était la plus vicieuse. Le geste
+   * précédent calculait les tournures à sceller AVEC le scellé déjà en place : sur un état propre,
+   * `nus` valait donc zéro, et le fichier était réécrit avec `publiees: {}`. Rejouer la commande
+   * prescrite DÉTRUISAIT son propre état au lieu de le reproduire. On calcule désormais les deux
+   * sections À SCELLÉ VIDE, et on les écrit ENSEMBLE — un seul écrivain, aucune section ne peut
+   * être effacée par l'autre. Un second scellement rend le même octet, et un contrôle l'exige. */
+
+  /* ---- 1undecies. LE SCELLÉ ÉGALE LE CORPUS, DANS LES DEUX SENS, ET SE REPRODUIT AU BIT ------ */
+  {
+    const ecarts = [
+      ...verifierFormeScelleLicites(),
+      ...comparerScelleLicites(corpusPubliees, chargerScelleLicitesPubliees(), "page"),
+    ];
+    /* L'IDENTITÉ OCTET POUR OCTET, sans rien écrire : on sérialise ce qu'un second scellement
+       produirait et on le compare au fichier présent. C'est la seule façon d'exiger « rejouer le
+       geste ne change rien » dans un contrôle qui ne doit pas modifier le dépôt. */
+    const attendu = serialiserScelleLicites(corpusSources, corpusPubliees);
+    const present = existsSync(CHEMIN_SCELLE_LICITES) ? readFileSync(CHEMIN_SCELLE_LICITES, "utf8") : "";
+    if (present !== attendu) {
+      const a = present.split("\n"), b = attendu.split("\n");
+      const i = a.findIndex((l, k) => l !== b[k]);
+      ecarts.push(`un second scellement ne rendrait PAS le même octet — première divergence ligne ${i + 1} : ${JSON.stringify((a[i] ?? "").trim().slice(0, 80))} au lieu de ${JSON.stringify((b[i] ?? "").trim().slice(0, 80))}`);
+    }
+    /* ---- LES CINQ ATTAQUES DE LA CONTRE-REVUE, JOUÉES SUR DES COPIES DU SCELLÉ --------------
+     * Un scellé qui ne mord pas n'est qu'une liste. Chacune de ces mutations doit produire un
+     * écart NOMMÉ ; leur intitulé dit laquelle, pour qu'un échec se lise sans déboguer. */
+    const copie = (m) => new Map([...m].map(([k, v]) => [k, new Map(v)]));
+    const attaques = [];
+    const eprouver = (nom, corpus, scelle, attendu) => {
+      const vus = comparerScelleLicites(corpus, scelle, "épreuve");
+      if (!vus.length) attaques.push(`${nom} : ACCEPTÉE en silence`);
+      else if (!vus.some((e) => attendu.test(e))) attaques.push(`${nom} : refusée, mais sans nommer sa nature — ${vus[0]}`);
+    };
+    if (!corpusSources.size || !corpusPubliees.size) attaques.push("corpus vide : les attaques ne prouveraient rien");
+    else {
+      /* 1 — une entrée SOURCE inventée, qui ne correspond à aucune occurrence réelle. */
+      const s1 = copie(chargerScelleLicites());
+      s1.set("content/airlines/fichier-qui-nexiste-pas.yml", new Map([["une tournure inventée IATA", 1]]));
+      eprouver("1 entrée source orpheline", corpusSources, s1, /ORPHELINE/);
+      /* 2 — la même chose côté PAGES. */
+      const s2 = copie(chargerScelleLicitesPubliees());
+      s2.set("/une-page-qui-nexiste-pas/ · corps", new Map([["une tournure inventée IATA", 1]]));
+      eprouver("2 entrée publique orpheline", corpusPubliees, s2, /ORPHELINE/);
+      /* 3 — une RÉPÉTITION d'une tournure licite déjà scellée : le corpus en porte une de plus
+             que le scellé. C'est la faute que le `Set` rendait invisible. */
+      const [cle3, tour3] = [...corpusSources][0];
+      const c3 = copie(corpusSources);
+      const [v3, n3] = [...tour3][0];
+      c3.get(cle3).set(v3, n3 + 1);
+      eprouver("3 répétition d'une occurrence licite", c3, chargerScelleLicites(), /multiplicité/);
+      /* 4 — l'occurrence réelle DISPARAÎT, le scellé reste : entrée orpheline dans l'autre sens. */
+      const c4 = copie(corpusSources);
+      c4.delete(cle3);
+      eprouver("4 occurrence supprimée, scellé conservé", c4, chargerScelleLicites(), /ORPHELINE/);
+      /* 5 — une tournure DÉPLACÉE d'une zone à l'autre : orpheline ici, non scellée là. */
+      const [cle5, tour5] = [...corpusPubliees][0];
+      const c5 = copie(corpusPubliees);
+      c5.delete(cle5);
+      c5.set(`${cle5.slice(0, cle5.lastIndexOf(" · "))} · metas`, new Map(tour5));
+      eprouver("5 tournure déplacée de zone", c5, chargerScelleLicitesPubliees(), /ORPHELINE|NON SCELLÉE/);
+    }
+    ecarts.push(...attaques);
+    if (ecarts.length) { echec("1undecies scellé des licites", `${ecarts.length} écart(s)`); for (const e of ecarts.slice(0, 8)) console.error(`      ${e}`); }
+    else ok(`1undecies le scellé des licites ÉGALE le corpus dans les deux sens — ${corpusSources.size} chemin(s) source et ${corpusPubliees.size} couple(s) URL/zone, multiplicités comprises —, un second scellement rendrait le même octet, et les cinq attaques (orpheline source, orpheline publique, répétition, occurrence supprimée, tournure déplacée de zone) mordent toutes`);
   }
 
   /* `--ecrire-registre` déplace la sentinelle. Il n'est PAS appelé par la CI : le registre ne
@@ -302,22 +589,44 @@ ok(`départ : ${pages.length} pages construites`);
   if (ecarts.length) echec(`1bis registre de la dette (${ecarts.length} écart(s))`, ecarts.slice(0, 4).join(" · "));
   else ok(`1bis la dette publiée correspond EXACTEMENT au registre : ${Object.keys(vu).length} pages, ${total} occurrences`);
 
-  /* LES DEUX ATTAQUES QUE LE TOTAL SEUL LAISSAIT PASSER, jouées sur des copies du constat. */
+  /* LES DEUX ATTAQUES QUE LE TOTAL SEUL LAISSAIT PASSER, jouées sur des copies du constat.
+   *
+   * ELLES DOIVENT TENIR QUAND LE REGISTRE EST VIDE, et c'est le cas depuis le 03/09/2026. Faute
+   * mesurée le jour même : la première rédaction prenait `urls[0]` et la première formulation du
+   * registre. À zéro page, elle levait un TypeError — autrement dit, la garde cessait de garder
+   * À L'INSTANT PRÉCIS où la dette était fermée, c'est-à-dire quand elle devient le seul rempart
+   * contre une réapparition. Un registre vide est un verrou, pas un blanc-seing.
+   *
+   * On travaille donc sur un COUPLE TÉMOIN : le registre réel s'il porte quelque chose, sinon un
+   * registre fabriqué d'une page et d'une formulation. Le comparateur est le même dans les deux
+   * cas — c'est LUI qu'on éprouve, pas le contenu du registre. */
   {
-    const urls = Object.keys(registre);
-    const deplace = JSON.parse(JSON.stringify(vu));
-    const premiere = urls[0], forme = Object.keys(registre[premiere])[0];
-    delete deplace[premiere];                                  // une page corrigée…
-    deplace["/une-page-jusque-la-saine/"] = { [forme]: 1 };     // …et une autre salie : total constant
-    const vuDeplace = comparer(registre, deplace);
-    if (!vuDeplace.length) echec("1ter défaut déplacé", "un défaut déplacé à effectif constant est accepté");
-    else ok(`1ter un défaut déplacé à effectif constant est vu (${vuDeplace.length} écart(s))`);
+    const vide = Object.keys(registre).length === 0;
+    const PAGE = vide ? "/temoin-de-contre-epreuve/" : Object.keys(registre)[0];
+    const FORME = vide ? "corps · caisse iata" : Object.keys(registre[PAGE])[0];
+    const base = vide ? { [PAGE]: { [FORME]: 1 } } : registre;
+    const constat = vide ? { [PAGE]: { [FORME]: 1 } } : JSON.parse(JSON.stringify(vu));
 
-    const enPlus = JSON.parse(JSON.stringify(vu));
-    enPlus[premiere][forme] += 1;                               // une occurrence de plus, même page
-    const vuEnPlus = comparer(registre, enPlus);
+    const deplace = JSON.parse(JSON.stringify(constat));
+    delete deplace[PAGE];                                      // une page corrigée…
+    deplace["/une-page-jusque-la-saine/"] = { [FORME]: 1 };     // …et une autre salie : total constant
+    const vuDeplace = comparer(base, deplace);
+    if (!vuDeplace.length) echec("1ter défaut déplacé", "un défaut déplacé à effectif constant est accepté");
+    else ok(`1ter un défaut déplacé à effectif constant est vu (${vuDeplace.length} écart(s))${vide ? " — sur un couple témoin, le registre réel étant vide" : ""}`);
+
+    const enPlus = JSON.parse(JSON.stringify(constat));
+    enPlus[PAGE][FORME] += 1;                                   // une occurrence de plus, même page
+    const vuEnPlus = comparer(base, enPlus);
     if (!vuEnPlus.length) echec("1quater occurrence supplémentaire", "une occurrence de plus sur une page déjà comptée est acceptée");
     else ok("1quater une occurrence supplémentaire sur une page déjà enregistrée est vue");
+
+    /* ET LA CONTRE-ÉPREUVE PROPRE AU REGISTRE VIDE : une page qui REDEVIENT fautive doit rougir.
+       Sans elle, « zéro » ne prouverait rien — un comparateur qui accepte tout rend zéro aussi. */
+    if (vide) {
+      const reapparition = comparer(registre, { "/une-page-qui-redevient-fautive/": { "corps · caisse iata": 1 } });
+      if (!reapparition.length) echec("1quinquies-zero réapparition", "une page redevenue fautive est acceptée par un registre vide");
+      else ok("1quinquies-zero une affirmation qui réapparaît fait rougir le registre vide — zéro est un verrou, pas un blanc-seing");
+    }
   }
 }
 

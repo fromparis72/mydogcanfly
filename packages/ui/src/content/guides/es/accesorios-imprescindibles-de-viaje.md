@@ -15,7 +15,7 @@ enbref:
   - "📍 Con qué **localizarlo** (localizador GPS)"
   - "🧥 **Material de confort** acorde con el tiempo"
   - "🩹 Un **botiquín de primeros auxilios**"
-  - "✅ **Equipamiento homologado** para tu medio de transporte"
+  - "✅ **Equipamiento adecuado** para tu medio de transporte"
 cover:
   image: "/travel-hub/dog-travel-accessories.webp"
   alt: "Perro listo para salir de viaje, sentado en el asiento trasero de un coche"
@@ -23,8 +23,8 @@ cover:
 faq:
   - q: "¿Qué accesorios son de verdad imprescindibles para viajar con un perro?"
     a: "Lo indispensable es un sistema de transporte seguro (arnés de coche o transportín), agua y un bol plegable, con qué identificar y localizar a tu perro (chapa + localizador GPS), un botiquín de primeros auxilios y material de confort acorde con la estación. Todo lo demás depende de tu medio de transporte y de tu destino."
-  - q: "¿Necesito un transportín homologado para volar con mi perro?"
-    a: "Sí: en bodega, la mayoría de las aerolíneas exige un transportín rígido conforme a las normas IATA, en el que el perro pueda ponerse de pie, darse la vuelta y tumbarse. En cabina (perros pequeños), hace falta un bolso blando acorde con las dimensiones de la aerolínea. Consulta nuestra guía dedicada a los transportines homologados."
+  - q: "¿Necesito un transportín conforme a los requisitos aplicables para volar con mi perro?"
+    a: "Sí: en bodega, la mayoría de las aerolíneas exige un transportín rígido conforme a las normas IATA, en el que el perro pueda ponerse de pie, darse la vuelta y tumbarse. En cabina (perros pequeños), hace falta un bolso blando acorde con las dimensiones de la aerolínea. Consulta nuestra guía dedicada a los transportines conformes a los requisitos aplicables."
   - q: "¿Arnés o transportín para el coche?"
     a: "Ambos sirven siempre que estén bien anclados. Un arnés de seguridad crash-test enganchado al cinturón conviene a los perros tranquilos y acostumbrados; un transportín anclado ofrece la máxima protección y tranquiliza a los perros ansiosos. Lo que cuenta es que el perro esté sujeto y no pueda estorbar al conductor."
   - q: "¿Sustituye un localizador GPS al microchip?"
@@ -43,9 +43,9 @@ Para elegir, lee nuestra guía sobre [qué equipamiento de coche sirve de verdad
 
 ## ¿Qué transportín o bolso elegir?
 
-El contenedor depende del tamaño de tu perro y de tu medio de transporte. Para un **perro pequeño**, un bolso blando bien ventilado suele bastar y se acepta en cabina en avión y en tren: consulta [los bolsos más cómodos para perros pequeños](/es/travel-hub/bolsos-para-perros-pequenos/). Para un **perro mediano o grande**, o para viajar en bodega, hace falta un **transportín rígido conforme a la IATA** y bien dimensionado.
+El contenedor depende del tamaño de tu perro y de tu medio de transporte. Para un **perro pequeño**, un bolso blando bien ventilado suele bastar y se acepta en cabina en avión y en tren: consulta [los bolsos más cómodos para perros pequeños](/es/travel-hub/bolsos-para-perros-pequenos/). Para un **perro mediano o grande**, o para viajar en bodega, hace falta un **transportín rígido conforme a los requisitos aplicables** y bien dimensionado.
 
-Tres recursos para acertar: la [comparativa entre bolso y transportín](/es/travel-hub/bolsos-y-transportines-para-perro/), nuestra guía sobre [elegir un transportín homologado](/es/travel-hub/transportin-homologado-iata-perro/) y el artículo completo sobre [viajar en avión con perro](/es/travel-hub/viajar-en-avion-con-perro/) para el papeleo.
+Tres recursos para acertar: la [comparativa entre bolso y transportín](/es/travel-hub/bolsos-y-transportines-para-perro/), nuestra guía sobre [elegir un transportín conforme a los requisitos aplicables](/es/travel-hub/transportin-homologado-iata-perro/) y el artículo completo sobre [viajar en avión con perro](/es/travel-hub/viajar-en-avion-con-perro/) para el papeleo.
 
 ## ¿Cómo hidratar y alimentar a tu perro en ruta?
 
@@ -76,7 +76,7 @@ Nuestras guías: [la ansiedad del perro en los viajes](/es/travel-hub/ansiedad-d
 Para salir con tranquilidad, asegúrate de tener:
 
 - un **sistema de transporte seguro**: arnés de coche crash-test o transportín anclado;
-- un **transportín o bolso homologado** si vas en avión, en tren o en ferry;
+- un **transportín o bolso aceptado por la compañía** si vas en avión, en tren o en ferry;
 - una **botella + un bol plegable** y la comida habitual de tu perro;
 - un **localizador GPS** y una chapa con tus datos;
 - **material según el tiempo**: alfombrilla refrescante en verano, abrigo y botitas en invierno;

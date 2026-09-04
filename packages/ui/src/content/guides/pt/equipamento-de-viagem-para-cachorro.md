@@ -3,7 +3,7 @@ key: "dog-travel-gear"
 title: "Escolher o equipamento de viagem do cachorro: caixa, peitoral, bolsa"
 seoTitle: "Equipamento de viagem para cachorro: caixa, peitoral, bolsa"
 description: "Equipamento de viagem para cachorro: como escolher caixa de transporte, peitoral de segurança ou bolsa conforme o porte do cachorro, o meio de transporte e as normas de segurança."
-summary: "O equipamento certo depende do porte do cachorro e do meio de transporte: caixa rígida, peitoral de segurança homologado ou bolsa, conforme a situação."
+summary: "O equipamento certo depende do porte do cachorro e do meio de transporte: caixa rígida, peitoral de segurança de carro para cachorro ou bolsa, conforme a situação."
 date: "2026-06-25T09:30:00+02:00"
 lastmod: "2026-06-25T09:30:00+02:00"
 author: "Camille Roussel"
@@ -23,16 +23,16 @@ faq:
   - q: "É obrigatório prender o meu cachorro no carro?"
     a: "Sim. Na maioria dos países, as regras de trânsito exigem que nada atrapalhe o motorista: um cachorro solto é um perigo. Um peitoral com crash test preso ao cinto, uma caixa de transporte ou uma grade separadora são as soluções seguras e em conformidade."
   - q: "Uma caixa flexível serve para o avião?"
-    a: "Para a cabine, algumas bolsas flexíveis em conformidade são aceitas para cães pequenos. Para o porão, porém, só é admitida uma caixa rígida em conformidade com a IATA, porque protege o animal e resiste ao manuseio."
+    a: "Para a cabine, algumas bolsas flexíveis em conformidade são aceitas para cães pequenos. Para o porão, porém, só é admitida uma caixa rígida em conformidade com os requisitos aplicáveis, porque protege o animal e resiste ao manuseio."
   - q: "Como acerto o tamanho da caixa?"
     a: "Meça a altura do seu cachorro na cernelha (com as orelhas eretas) e o comprimento do focinho até a base da cauda, e acrescente alguns centímetros. O cachorro precisa poder ficar de pé, virar-se e deitar-se sem aperto."
   - q: "Que orçamento prever para equipar bem o cachorro?"
-    a: "Conte com cerca de 30–80 € para um peitoral com crash test, 25–60 € para uma caixa flexível, 50–150 € para uma caixa rígida IATA e 30–90 € para uma bolsa de cabine. Um equipamento homologado e durável sai mais barato no longo prazo que um modelo econômico que precisará ser trocado."
+    a: "Conte com cerca de 30–80 € para um peitoral com crash test, 25–60 € para uma caixa flexível, 50–150 € para uma caixa de transporte rígida e 30–90 € para uma bolsa de cabine. Um equipamento durável e adequado ao meio de transporte sai mais barato no longo prazo que um modelo econômico que precisará ser trocado."
   - q: "O peitoral de carro pode servir também para passear?"
     a: "Alguns modelos são versáteis, mas um peitoral de segurança com crash test é pensado antes de tudo para o carro. Para passeios longos, um peitoral específico e mais acolchoado será mais confortável no dia a dia."
 ---
 
-Equipar o seu cachorro para viajar não é acumular acessórios: é escolher os certos para o peso dele, o temperamento e o seu meio de transporte. Uma caixa mal dimensionada, um peitoral não homologado ou uma bolsa pequena demais podem comprometer a segurança e o conforto do seu cachorro. Estes são os critérios concretos para acertar de primeira.
+Equipar o seu cachorro para viajar não é acumular acessórios: é escolher os certos para o peso dele, o temperamento e o seu meio de transporte. Uma caixa mal dimensionada, um peitoral inadequado ou uma bolsa pequena demais podem comprometer a segurança e o conforto do seu cachorro. Estes são os critérios concretos para acertar de primeira.
 
 ## Caixa, peitoral ou bolsa: qual equipamento para qual uso?
 
@@ -40,12 +40,12 @@ Cada dispositivo cumpre uma função precisa. Aqui está uma comparação para o
 
 | Equipamento | Para quem | Meio de transporte | Vantagem principal |
 |---|---|---|---|
-| Caixa rígida | Todos os portes | Carro, avião | Segurança máxima, opções em conformidade com a IATA |
+| Caixa rígida | Todos os portes | Carro, avião | Segurança máxima, opções em conformidade com os requisitos aplicáveis |
 | Caixa flexível | Cães pequenos e médios | Carro, trem | Leve e dobrável |
 | Peitoral de segurança | Cães médios e grandes | Carro | Liberdade de movimento, prende ao cinto |
 | Bolsa de transporte | Cães pequenos (< 8 kg) | Trem, cabine de avião | Compacta, mantém o cachorro perto de você |
 
-A escolha parte do seu meio de deslocamento principal. Um cachorro grande que anda sobretudo de carro fica bem com um peitoral homologado; um cachorro pequeno que voa precisa de uma bolsa em conformidade para cabine.
+A escolha parte do seu meio de deslocamento principal. Um cachorro grande que anda sobretudo de carro fica bem com um peitoral de segurança de carro para cachorro; um cachorro pequeno que voa precisa de uma bolsa em conformidade para cabine.
 
 ## O que observar em uma caixa de transporte
 
@@ -113,10 +113,10 @@ Quanto ao orçamento, estes são valores realistas para se equipar sem sustos:
 |---|---|---|
 | Peitoral de segurança com crash test | 30–80 € | Vários anos |
 | Caixa flexível | 25–60 € | De 2 a 5 anos |
-| Caixa rígida IATA | 50–150 € | Vários anos |
+| Caixa de transporte rígida | 50–150 € | Vários anos |
 | Bolsa de cabine | 30–90 € | Vários anos |
 
-Investir em material durável e homologado custa menos ao longo do tempo que substituir um modelo de baixa qualidade — e, sobretudo, protege de verdade o seu cachorro.
+Investir em material durável e adequado ao meio de transporte custa menos ao longo do tempo que substituir um modelo de baixa qualidade — e, sobretudo, protege de verdade o seu cachorro.
 
 ## Que acessórios adicionais levar?
 

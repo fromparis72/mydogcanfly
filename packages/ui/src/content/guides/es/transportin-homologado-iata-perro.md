@@ -1,7 +1,7 @@
 ---
 key: "airline-approved-dog-crate"
-title: "Elegir un transportín homologado IATA para perro"
-seoTitle: "Transportín IATA para perro: normas y medidas"
+title: "Elegir un transportín conforme a los requisitos aplicables para perro"
+seoTitle: "Transportín para perro: normas y medidas"
 description: "Guía del transportín de avión para perro: requisitos IATA, método de medición, materiales, modelos conformes. La guía completa para volar con tranquilidad."
 summary: "Guía del transportín de avión para perro: requisitos IATA, método de medición, materiales, modelos conformes. La guía completa para volar con tranquilidad."
 date: "2026-06-22T09:00:00+02:00"
@@ -10,7 +10,7 @@ author: "Camille Roussel"
 category: "gear"
 tags: ["perro", "transportín de viaje", "avión", "IATA"]
 enbref:
-  - "📏 Transportín **rígido de doble casco**, conforme a **IATA** (CR82)"
+  - "📏 Transportín **rígido de doble casco**, conforme a los **requisitos aplicables** (CR82)"
   - "🐕 El animal debe poder **ponerse de pie, darse la vuelta y tumbarse**"
   - "🔩 **Herrajes metálicos** (tornillos y tuercas), sin clips de plástico"
   - "💨 **Ventilación** repartida en 3 o 4 lados"
@@ -18,10 +18,10 @@ enbref:
   - "🗓️ **Acostumbra a tu perro al transportín** con varias semanas de antelación"
 cover:
   image: "/travel-hub/airline-approved-dog-crate.webp"
-  alt: "Un viajero y su perro junto a un transportín conforme a IATA en el aeropuerto"
-  credit: "Transportín de viaje rígido conforme a IATA."
+  alt: "Un viajero y su perro junto a un transportín conforme a los requisitos aplicables en el aeropuerto"
+  credit: "Transportín de viaje rígido conforme a los requisitos aplicables."
 faq:
-  - q: "¿Qué es exactamente un transportín conforme a IATA?"
+  - q: "¿Qué es exactamente un transportín conforme a los requisitos aplicables?"
     a: "Es un transportín rígido que cumple las *Live Animals Regulations* de la IATA: el animal debe poder ponerse de pie sin tocar el techo, darse la vuelta y tumbarse; la ventilación se reparte en varios lados; y las dos mitades del casco se unen con herrajes metálicos. No es un sello de pago, sino un conjunto de requisitos que se comprueban en el mostrador de facturación y que cada aerolínea puede completar."
   - q: "¿Cómo sé qué tamaño de transportín necesita mi perro?"
     a: "Mide al perro de pie: longitud del hocico a la base de la cola, altura del suelo al codo, anchura a la altura de los hombros y altura total hasta la cabeza o las orejas. La longitud interior del transportín debe ser al menos la longitud del perro más la mitad de la altura de la pata, la anchura aproximadamente el doble de la anchura del perro, y la altura su altura de pie con margen. Después, elige la talla inmediatamente superior del fabricante."
@@ -37,7 +37,7 @@ Cuando preparas un vuelo con tu perro en bodega, el transportín no es un acceso
 
 Menciono algunos modelos conocidos como puntos de referencia —transportines como el Petmate Sky Kennel o el Vari Kennel aparecen a menudo en los comentarios de viajeros— sin inventar dimensiones ni precios: las especificaciones exactas están en las fichas técnicas de los fabricantes y siempre deben contrastarse con los requisitos de tu aerolínea. Antes de reservar, lee también nuestra guía general sobre [viajar en avión con perro](/es/travel-hub/viajar-en-avion-con-perro/), que cubre cabina, bodega y papeleo.
 
-## ¿Qué es un transportín «conforme a IATA»?
+## ¿Qué es un transportín «conforme a los requisitos aplicables»?
 
 La IATA (Asociación Internacional de Transporte Aéreo) publica las *Live Animals Regulations*, el marco de referencia que casi todas las aerolíneas usan para regular el transporte de animales en bodega. Para perros y gatos verás a menudo la mención «Container Requirement 82» (CR82). No es una certificación en el sentido de un sello de pago: es un conjunto de requisitos que el transportín debe cumplir, verificados en la facturación.
 
@@ -123,7 +123,7 @@ Si tu perro muestra una ansiedad marcada, háblalo con tu veterinario mucho ante
 
 ## ¿Transportín de bodega o bolso de cabina: cómo decidir?
 
-Todo depende del tamaño de tu perro y de la política de la aerolínea. Los perros pequeños viajan a menudo en cabina en un bolso flexible homologado que se desliza bajo el asiento, mientras que los más grandes van en bodega en un transportín rígido IATA. Ni las limitaciones ni el material son los mismos. Si estás sopesando ambas opciones, nuestra comparativa de [bolsos y transportines para perro](/es/travel-hub/bolsos-y-transportines-para-perro/) te ayuda a elegir según el tamaño del animal, la duración del vuelo y las normas de la compañía.
+Todo depende del tamaño de tu perro y de la política de la aerolínea. Los perros pequeños viajan a menudo en cabina en un bolso flexible con las dimensiones admitidas que se desliza bajo el asiento, mientras que los más grandes van en bodega en un transportín rígido. Ni las limitaciones ni el material son los mismos. Si estás sopesando ambas opciones, nuestra comparativa de [bolsos y transportines para perro](/es/travel-hub/bolsos-y-transportines-para-perro/) te ayuda a elegir según el tamaño del animal, la duración del vuelo y las normas de la compañía.
 
 <ol class="gd-etapes"><li><a href="/es/airlines/">Comprueba las condiciones de bodega de tu aerolínea</a></li><li><a href="/es/tools/crate/">Calcula el tamaño del transportín con la calculadora IATA</a></li><li><a href="/es/travel-hub/ansiedad-del-perro-en-los-viajes/">Acostumbra a tu perro al transportín y gestiona el estrés del vuelo</a></li></ol>
 
