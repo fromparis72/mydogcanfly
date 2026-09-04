@@ -41,10 +41,28 @@ const CATEGORIES_PAR_CANAL = {
 /* CE QUI COMPTE COMME PREUVE, ET CE QUI N'EN EST PAS UNE. L'arbitrage est explicite : ni
    auto-citation, ni agrégateur, ni déduction. `official_website` est la seule preuve recevable
    pour une politique de compagnie ; `government` prouve une règle d'IMPORTATION, pas la politique
-   commerciale d'un transporteur. */
+   commerciale d'un transporteur.
+   ET LE DÉPÔT SAIT DÉJÀ TOUT CELA — c'est la vraie découverte de cette phase, et elle corrige une
+   erreur que j'ai écrite. `packages/knowledge/src/breed-restrictions.ts` définit `SourcedQuote` :
+   citation verbatim d'au moins dix caractères, langue en BCP-47, locator, refus explicite de
+   l'auto-citation (« un domaine MyDogCanFly ne peut pas fonder un fait métier ») et exigence d'un
+   type de source factuel. J'avais rapporté que le modèle de preuve « ne peut pas porter ce qu'on
+   lui demandera » : c'était faux. Il le porte, et plus strictement que demandé.
+   LE DÉFAUT EST AILLEURS, ET C'EST LE MÊME QUE DANS TOUT CE DÉPÔT : il y a DEUX modèles de
+   provenance pour la même chose. Le strict, `SourcedQuote`, sert aux restrictions de race. Le
+   lâche — un objet `source` sans citation ni locator, qui accepte `source_type: other` et les URL
+   mydogcanfly.com — est celui qui adosse les fiches publiées. Ce n'est pas un modèle à créer,
+   c'est un modèle à faire descendre là où il manque. */
 const PREUVE_RECEVABLE = new Set(["official_website"]);
 const AUTO_CITATION = /(^|\/\/)([a-z0-9-]+\.)?mydogcanfly\.com/i;
 const AGREGATEURS = /pettravel\.com|petrelocation\.com|klm-pet|dogfriendly|tripadvisor/i;
+
+/** Une règle dont la condition compare un poids ou une taille à un seuil : elle prouve un refus
+ *  CONDITIONNEL, jamais le refus général qu'une fiche publie. */
+function conditionnelleSurUnSeuil(r) {
+  const txt = JSON.stringify(r.applies_when ?? {});
+  return /"op"\s*:\s*"(gt|gte|lt|lte)"/.test(txt) || /weight_kg|length_cm|height_cm/.test(txt);
+}
 
 export function mesurer(racine = ".") {
   const regles = JSON.parse(readFileSync(join(racine, REGLES), "utf8"));
@@ -58,7 +76,7 @@ export function mesurer(racine = ".") {
   const m = {
     affirmations: 0, categoriques: 0, chiffrees: 0, couvertes: 0,
     categoriquesSansPreuve: 0, chiffreesSansPreuve: 0,
-    refusPublies: 0, refusSansAucuneRegle: 0,
+    refusPublies: 0, refusSansAucuneRegle: 0, refusProuves: 0, refusNonProuves: 0,
     compagnies: 0, compagniesSansRegle: 0,
   };
   const refusNus = [], parAirline = [];
@@ -74,7 +92,12 @@ export function mesurer(racine = ".") {
       const categorique = ch.cls === "ok" || ch.cls === "no";
       const chiffree = /\d/.test(ch.detail?.en ?? "");
       const pertinentes = regs.filter((r) => CATEGORIES_PAR_CANAL[ch.placement]?.has(r.category));
-      const prouvantes = pertinentes.filter((r) => PREUVE_RECEVABLE.has(r.source?.source_type));
+      /* ASSOCIÉES, ET NON PROUVANTES. Le mot compte : cette association est une BORNE HAUTE. Elle
+         exige seulement une règle de catégorie voisine portant une source officielle — elle ne
+         vérifie ni que la règle parle du même fait, ni qu'elle couvre la même portée. Le vrai taux
+         de preuve ne peut qu'être INFÉRIEUR. */
+      const associees = pertinentes.filter((r) => PREUVE_RECEVABLE.has(r.source?.source_type));
+      const prouvantes = associees;
       if (categorique) m.categoriques++;
       if (chiffree) m.chiffrees++;
       if (prouvantes.length) m.couvertes++;
@@ -82,6 +105,18 @@ export function mesurer(racine = ".") {
       if (chiffree && !prouvantes.length) m.chiffreesSansPreuve++;
       if (ch.cls === "no") {
         m.refusPublies++; refus++;
+        /* ---- CE QUI PROUVE UN REFUS, ET RIEN DE MOINS ----------------------------------------
+         * Une règle de POIDS conditionnelle ne prouve pas un refus GÉNÉRAL : « au-delà de 8 kg,
+         * refusé en cabine » ne prouve pas « aucun chien en cabine ». Quatre conditions donc :
+         * même compagnie (déjà, par construction), `action: deny`, le canal NOMMÉ dans
+         * `effect.placement`, et une source officielle. Une règle dont la condition porte sur un
+         * seuil est écartée : elle prouve un refus conditionnel, pas celui qui est publié. */
+        const prouvantRefus = regs.filter((r) => r.effect?.action === "deny"
+          && (r.effect?.placement ?? []).includes(ch.placement)
+          && PREUVE_RECEVABLE.has(r.source?.source_type)
+          && !conditionnelleSurUnSeuil(r));
+        if (prouvantRefus.length) m.refusProuves++;
+        else m.refusNonProuves++;
         if (!pertinentes.length) {
           m.refusSansAucuneRegle++;
           refusNus.push(`${d.name} · ${ch.placement} · « ${ch.statusLabel?.en ?? ""} »`);
@@ -97,28 +132,43 @@ export function mesurer(racine = ".") {
   /* LES RÈGLES DE REFUS, PAR LA NATURE DE LEUR PREUVE. Un refus est ce qu'un visiteur subit sans
      recours : c'est l'affirmation dont la preuve doit être la plus solide. */
   const deny = regles.filter((r) => r.effect?.action === "deny");
+  /* L'AUTO-CITATION, COMPTÉE EN ENTIER PUIS PAR EFFET. Un premier relevé n'avait donné que le
+     sous-ensemble « deny » en le présentant comme le total : 84 règles au lieu de 128. Les deux
+     chiffres existent et ne disent pas la même chose — l'un mesure ce qu'on s'autorise à citer,
+     l'autre ce qu'on refuse au visiteur sur cette base. */
+  const autoTout = regles.filter((r) => AUTO_CITATION.test(r.source?.url ?? ""));
   const auto = deny.filter((r) => AUTO_CITATION.test(r.source?.url ?? ""));
+  const autoParEffet = new Map();
+  for (const r of autoTout) {
+    const a = r.effect?.action ?? "—";
+    autoParEffet.set(a, (autoParEffet.get(a) ?? 0) + 1);
+  }
   const agreg = deny.filter((r) => AGREGATEURS.test(r.source?.url ?? ""));
   const urlsAuto = [...new Set(auto.map((r) => r.source.url))];
+  const urlsAutoTout = [...new Set(autoTout.map((r) => r.source.url))];
 
   /* LE MODÈLE DE PREUVE LUI-MÊME : ce que le champ `source` porte, et ce qu'il ne porte pas. */
   const champs = new Set();
   for (const r of regles) for (const k of Object.keys(r.source ?? {})) champs.add(k);
 
-  return { m, parAirline, refusNus, deny, auto, agreg, urlsAuto, champs, regles };
+  return { m, parAirline, refusNus, deny, auto, autoTout, autoParEffet, agreg, urlsAuto, urlsAutoTout, champs, regles };
 }
 
 if (import.meta.url === `file://${process.argv[1]}`) {
-  const { m, parAirline, refusNus, deny, auto, agreg, urlsAuto, champs } = mesurer();
+  const { m, parAirline, refusNus, deny, auto, autoTout, autoParEffet, agreg, urlsAuto, urlsAutoTout, champs } = mesurer();
   const pct = (a, b) => `${((100 * a) / b).toFixed(1)} %`;
   console.log(`AFFIRMATIONS PUBLIÉES — ${m.compagnies} compagnies\n`);
-  console.log(`  ${String(m.affirmations).padStart(4)}  affirmations de canal publiées`);
-  console.log(`  ${String(m.couvertes).padStart(4)}  couvertes par une source officielle de portée adaptée   ${pct(m.couvertes, m.affirmations)}`);
+  console.log(`  ${String(m.affirmations).padStart(4)}  BLOCS DE CANAL publiés (cabine, soute, fret)`);
+  console.log(`  ${String(m.couvertes).padStart(4)}  blocs ayant AU MOINS UNE ASSOCIATION à une règle officielle`);
+  console.log(`        de catégorie voisine — BORNE HAUTE, pas un taux de preuve   ${pct(m.couvertes, m.affirmations)}`);
   console.log(`  ${String(m.categoriques).padStart(4)}  verdicts CATÉGORIQUES (autorisé / refusé)`);
   console.log(`  ${String(m.categoriquesSansPreuve).padStart(4)}  …dont SANS preuve officielle                            ${pct(m.categoriquesSansPreuve, m.categoriques)}`);
   console.log(`  ${String(m.chiffrees).padStart(4)}  affirmations CHIFFRÉES (poids, dimensions)`);
   console.log(`  ${String(m.chiffreesSansPreuve).padStart(4)}  …dont SANS preuve officielle                            ${pct(m.chiffreesSansPreuve, m.chiffrees)}`);
   console.log(`\n  ${String(m.refusPublies).padStart(4)}  REFUS catégoriques publiés`);
+  console.log(`  ${String(m.refusProuves).padStart(4)}  …prouvés au sens strict : même compagnie, deny, canal nommé dans`);
+  console.log(`        effect.placement, source officielle, condition NON conditionnelle à un seuil`);
+  console.log(`  ${String(m.refusNonProuves).padStart(4)}  …NON prouvés à ce sens                                  ${pct(m.refusNonProuves, m.refusPublies)}`);
   console.log(`  ${String(m.refusSansAucuneRegle).padStart(4)}  …dont sans AUCUNE règle derrière eux`);
   for (const r of refusNus) console.log(`          · ${r}`);
   console.log(`\n  ${String(m.compagniesSansRegle).padStart(4)}  compagnies sans aucune règle`);
@@ -127,8 +177,9 @@ if (import.meta.url === `file://${process.argv[1]}`) {
   const parType = new Map();
   for (const r of deny) parType.set(r.source?.source_type ?? "—", (parType.get(r.source?.source_type ?? "—") ?? 0) + 1);
   for (const [k, n] of [...parType].sort((a, b) => b[1] - a[1])) console.log(`  ${String(n).padStart(4)}  ${k}`);
-  console.log(`\n  ${String(auto.length).padStart(4)}  refus sourcés sur NOTRE PROPRE SITE (auto-citation)`);
-  console.log(`  ${String(urlsAuto.length).padStart(4)}  URL distinctes ainsi citées`);
+  console.log(`\n  ${String(autoTout.length).padStart(4)}  règles au TOTAL sourcées sur NOTRE PROPRE SITE, vers ${urlsAutoTout.length} URL distinctes`);
+  for (const [a, n] of [...autoParEffet].sort((x, y) => y[1] - x[1])) console.log(`        dont ${String(n).padStart(3)} « ${a} »`);
+  console.log(`  ${String(auto.length).padStart(4)}  REFUS ainsi sourcés, vers ${urlsAuto.length} URL distinctes`);
   console.log(`  ${String(agreg.length).padStart(4)}  refus sourcés sur un agrégateur`);
 
   console.log(`\nLE MODÈLE DE PREUVE — champs présents dans « source »\n  ${[...champs].sort().join(", ")}`);
