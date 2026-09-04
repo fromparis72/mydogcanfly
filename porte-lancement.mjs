@@ -28,7 +28,11 @@ import { execSync } from "node:child_process";
 const arg = (n, d) => (process.argv.find((a) => a.startsWith(`--${n}=`)) ?? `--${n}=${d}`).split("=").slice(1).join("=");
 const DIST = arg("dist", "packages/ui/dist");
 const HOTE = "https://mydogcanfly.com";
-const ADMIS = "porte-noindex-admis.json";
+/* Le fichier d'exceptions est un PARAMÈTRE, pas une constante : le harnais d'attaques travaille
+   sur un dist synthétique de six pages, où les chemins réels du site n'existent pas — le contrôle
+   « chaque exception déclarée correspond à une page réelle » y rougirait sans qu'aucune faute ne
+   soit en cause, et le témoin négatif deviendrait inutilisable. */
+const ADMIS = arg("admis", "porte-noindex-admis.json");
 
 let pass = 0, fail = 0;
 const check = (label, cond, detail = "") => {
