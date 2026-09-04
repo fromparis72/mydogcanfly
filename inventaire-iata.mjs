@@ -419,12 +419,130 @@ const VOISIN_DE_CONTENANT_AVANT = new RegExp(`(?:^|[^\\wÀ-ÿ])(?:${CONTENANT}|$
  * règle ne condamne et qu'un contenant voisine. */
 export const CHEMIN_SCELLE_LICITES = "occurrences-licites-scellees.json";
 
+/* LE SCELLÉ PORTE LA MULTIPLICITÉ, PAS UNE SIMPLE APPARTENANCE.
+ *
+ * FAUTE MESURÉE LE 04/09/2026. La première rédaction chargeait chaque section en `Set` et se
+ * contentait de `scelles.has(voisinage)`. Trois conséquences, toutes réelles :
+ *   · une entrée INVENTÉE était acceptée en silence — rien ne vérifiait qu'elle correspondît encore
+ *     à une occurrence du corpus ;
+ *   · deux occurrences identiques dans le même fichier étaient couvertes par UNE chaîne, si bien
+ *     qu'ajouter une répétition d'une tournure déjà scellée ne demandait aucun rescellement ;
+ *   · le compte s'en ressentait : le geste annonçait 32 occurrences publiées et n'en sérialisait
+ *     que 30, deux ayant été absorbées par la déduplication. Le scellé ne portait donc pas l'état
+ *     qu'il prétendait porter.
+ * Une autorisation d'appartenance n'est pas un scellé. Un scellé est une ÉGALITÉ : mêmes clés,
+ * mêmes tournures, mêmes nombres, dans les deux sens. */
 function chargerSection(chemin, section) {
   if (!existsSync(chemin)) return new Map();
   try {
     const brut = JSON.parse(readFileSync(chemin, "utf8"));
-    return new Map(Object.entries(brut[section] ?? {}).map(([k, v]) => [k, new Set(v)]));
+    return new Map(Object.entries(brut[section] ?? {})
+      .map(([k, v]) => [k, new Map(Object.entries(v))]));
   } catch { return new Map(); }
+}
+
+/** Regroupe des occurrences `{clé, voisinage}` en `Map<clé, Map<voisinage, nombre>>`. */
+export function grouperLicites(liste, cle = (x) => x.fichier) {
+  const out = new Map();
+  for (const j of liste) {
+    const k = cle(j);
+    if (!out.has(k)) out.set(k, new Map());
+    const m = out.get(k);
+    m.set(j.voisinage, (m.get(j.voisinage) ?? 0) + 1);
+  }
+  return out;
+}
+
+/** La forme sérialisée d'une `Map<clé, Map<voisinage, n>>` : clés et tournures triées. */
+const sectionTriee = (m) => Object.fromEntries([...m.keys()].sort().map((k) =>
+  [k, Object.fromEntries([...m.get(k).entries()].sort((a, b) => a[0].localeCompare(b[0])))]));
+const compter = (m) => [...m.values()].reduce((t, x) => t + [...x.values()].reduce((a, b) => a + b, 0), 0);
+
+/**
+ * LES OCTETS EXACTS DU SCELLÉ. Écrits ICI et nulle part ailleurs, pour que le geste qui l'écrit et
+ * le contrôle qui le relit ne puissent pas diverger — c'est la faute que ce dépôt a commise cinq
+ * fois. Un second scellement doit rendre le même octet ; le contrôle le vérifie sans écrire.
+ */
+export function serialiserScelleLicites(sources, publiees) {
+  return JSON.stringify({
+    _commentaire: "LES TOURNURES LICITES QUI VOISINENT UN CONTENANT, ÉNUMÉRÉES AVEC LEUR NOMBRE. "
+      + "Elles ne sont couvertes par aucune permission lexicale générale : c'est délibéré. Une "
+      + "permission écrite pour « IATA standards » couvrait aussi « IATA standards approved crate », "
+      + "et c'est par là que les attributions passaient. Ici chaque tournure est nommée avec sa clé "
+      + "— chemin de fichier pour les sources, « URL · zone » pour les pages — son voisinage exact "
+      + "et sa MULTIPLICITÉ. La comparaison se fait dans les deux sens : une occurrence de plus, une "
+      + "de moins, une entrée orpheline, une tournure déplacée d'un fichier ou d'une zone à l'autre, "
+      + "un nombre différent — chacun fait rougir. CE SCELLÉ NE REND RIEN LICITE : une occurrence que "
+      + "le motif juge interdite le reste, scellée ou non. Il ne dit qu'une chose : « ces tournures-là, "
+      + "en ce nombre-là, ont été lues et classées par un humain ». Toute formulation nouvelle, même "
+      + "licite, n'est couverte par personne et bloque jusqu'à un rescellement nommé. "
+      + "OBSERVATION CONSIGNÉE : sur les fiches compagnies, deux `<span>` adjacents sans espace se "
+      + "soudent au rendu — « 🛡️ IATA rules » suivi de « Acceptance strictly follows… » se lit "
+      + "« IATA rulesAcceptance ». C'est un défaut de BALISAGE, pas de vocabulaire ; hors de ce lot, "
+      + "nommé ici pour qu'il ne se perde pas.",
+    _mesure: {
+      sources: { cles: sources.size, occurrences: compter(sources) },
+      publiees: { cles: publiees.size, occurrences: compter(publiees) },
+    },
+    occurrences: sectionTriee(sources),
+    publiees: sectionTriee(publiees),
+  }, null, 2) + "\n";
+}
+
+/**
+ * LA COMPARAISON DANS LES DEUX SENS. Rend la liste des écarts, chacun nommé par sa nature : une
+ * occurrence du corpus que le scellé ignore, une entrée du scellé que le corpus n'a plus, un
+ * nombre qui ne correspond pas. Un déplacement de fichier ou de zone se lit comme les deux à la
+ * fois — orpheline ici, manquante là — et c'est exactement ce qu'il est.
+ */
+export function comparerScelleLicites(corpus, scelle, quoi = "source") {
+  const ecarts = [];
+  for (const [k, tournures] of corpus) {
+    const scelles = scelle.get(k);
+    if (!scelles) { ecarts.push(`${quoi} NON SCELLÉE : ${k} (${[...tournures.values()].reduce((a, b) => a + b, 0)} occurrence(s))`); continue; }
+    for (const [v, n] of tournures) {
+      const m = scelles.get(v) ?? 0;
+      if (m !== n) ecarts.push(`multiplicité ${quoi} en ${k} : le corpus en porte ${n}, le scellé ${m} — …${v.slice(0, 60)}…`);
+    }
+  }
+  for (const [k, tournures] of scelle) {
+    const reelles = corpus.get(k);
+    if (!reelles) { ecarts.push(`entrée ORPHELINE du scellé : ${quoi} ${k} ne porte plus aucune tournure à sceller`); continue; }
+    for (const [v, n] of tournures) {
+      if (!reelles.has(v)) ecarts.push(`tournure ORPHELINE du scellé en ${k} : plus aucune occurrence — …${v.slice(0, 60)}… (${n} scellée(s))`);
+    }
+  }
+  return ecarts;
+}
+
+/** LA FORME DU FICHIER, STRICTEMENT : ses sections, ses mesures, section par section. */
+export function verifierFormeScelleLicites(chemin = CHEMIN_SCELLE_LICITES) {
+  if (!existsSync(chemin)) return [`scellé absent : ${chemin}`];
+  let brut;
+  try { brut = JSON.parse(readFileSync(chemin, "utf8")); }
+  catch (e) { return [`scellé illisible : ${e.message}`]; }
+  const ecarts = [];
+  const attendues = ["_commentaire", "_regle", "_mesure", "occurrences", "publiees"];
+  for (const k of Object.keys(brut)) if (!attendues.includes(k)) ecarts.push(`champ inconnu à la racine : ${k}`);
+  for (const k of ["_commentaire", "_mesure", "occurrences", "publiees"]) if (!(k in brut)) ecarts.push(`champ absent : ${k}`);
+  for (const [section, nom] of [["occurrences", "sources"], ["publiees", "publiees"]]) {
+    const sec = brut[section] ?? {};
+    let n = 0;
+    for (const [k, v] of Object.entries(sec)) {
+      if (typeof v !== "object" || Array.isArray(v) || v === null) { ecarts.push(`${section}.${k} n'est pas un objet « voisinage → nombre »`); continue; }
+      for (const [t, c] of Object.entries(v)) {
+        if (!Number.isInteger(c) || c < 1) ecarts.push(`${section}.${k} : multiplicité invalide (${c}) pour …${t.slice(0, 40)}…`);
+        else n += c;
+      }
+    }
+    const m = brut._mesure?.[nom];
+    if (!m) ecarts.push(`_mesure.${nom} absente : le scellé ne déclare pas ce qu'il porte`);
+    else {
+      if (m.cles !== Object.keys(sec).length) ecarts.push(`_mesure.${nom}.cles = ${m.cles} contre ${Object.keys(sec).length} réelles`);
+      if (m.occurrences !== n) ecarts.push(`_mesure.${nom}.occurrences = ${m.occurrences} contre ${n} réelles`);
+    }
+  }
+  return ecarts;
 }
 /** Les tournures licites des SOURCES, par chemin de fichier. */
 export function chargerScelleLicites(chemin = CHEMIN_SCELLE_LICITES) {
@@ -437,6 +555,7 @@ export function chargerScelleLicitesPubliees(chemin = CHEMIN_SCELLE_LICITES) {
 }
 
 export function jetonsNonReconcilies(texte, motif = MOTIF, scelles = null) {
+  const reste = scelles ? new Map(scelles) : null;
   const couvertInterdit = [], couvertLegitime = [], couvertLicite = [];
   motif.lastIndex = 0;
   for (const m of texte.matchAll(motif)) {
@@ -478,7 +597,12 @@ export function jetonsNonReconcilies(texte, motif = MOTIF, scelles = null) {
     if (!touche && dedans(couvertLicite)) continue;
     if (!touche && dedans(couvertFort)) continue;
     const voisinage = texte.slice(Math.max(0, m.index - 45), m.index + 49).replace(/\s+/g, " ").trim();
-    if (scelles && scelles.has(voisinage)) continue;   // licite, énumérée, scellée par son chemin
+    /* LA MULTIPLICITÉ SE CONSOMME : la deuxième occurrence d'une tournure scellée une seule fois
+       n'est PAS couverte. Le budget est une copie locale — le scellé partagé n'est jamais muté. */
+    if (reste) {
+      const n = reste.get(voisinage) ?? 0;
+      if (n > 0) { reste.set(voisinage, n - 1); continue; }
+    }
     out.push({
       index: m.index,
       ligne: texte.slice(0, m.index).split("\n").length,
@@ -1089,10 +1213,18 @@ export function verifier(releve, declarations = A_REFORMULER) {
      intercalé, `container`, puis `agréée`. Désormais chaque jeton doit être rendu compte, et une
      tournure inconnue est BRUYANTE au lieu d'être muette. */
   const nonReconcilies = reconcilier();
+  /* ---- ET LE SCELLÉ DES LICITES EST UNE ÉGALITÉ, VÉRIFIÉE DANS LES DEUX SENS ----------------
+     `reconcilier()` ne dit qu'une moitié : les occurrences du corpus que le scellé ne couvre pas.
+     L'autre moitié — une entrée du scellé qui ne correspond plus à rien, une multiplicité qui a
+     changé — passait en silence. Les deux moitiés sont ici, plus la forme du fichier. */
+  const formeScelleLicites = verifierFormeScelleLicites();
+  const corpus = grouperLicites(reconcilier({ scelle: new Map() }));
+  const scelleLicites = comparerScelleLicites(corpus, chargerScelleLicites(), "source");
   return {
-    inconnues, hors, orphelines, scelle, nonReconcilies,
+    inconnues, hors, orphelines, scelle, nonReconcilies, scelleLicites, formeScelleLicites,
     ok: inconnues.length === 0 && hors.length === 0 && orphelines.length === 0
-      && scelle.length === 0 && nonReconcilies.length === 0,
+      && scelle.length === 0 && nonReconcilies.length === 0
+      && scelleLicites.length === 0 && formeScelleLicites.length === 0,
   };
 }
 
@@ -1105,32 +1237,12 @@ if (import.meta.url === `file://${process.argv[1]}`) {
     for (const c of chemins) console.log(`  · ${c}`);
     process.exit(0);
   }
-  /* LE GESTE DE SCELLEMENT DES OCCURRENCES LICITES. Délibéré, jamais automatique : il grave la
-     liste EXACTE des tournures licites qui voisinent un contenant, chemin par chemin. Toute
-     formulation nouvelle rougira jusqu'à ce qu'un humain la classe et rejoue ce geste. */
-  if (ARGS.includes("--sceller-licites")) {
-    const restants = reconcilier({ scelle: new Map() });
-    const par = {};
-    for (const j of restants) (par[j.fichier] ??= []).push(j.voisinage);
-    for (const k of Object.keys(par)) par[k] = [...new Set(par[k])].sort();
-    const trie = Object.fromEntries(Object.keys(par).sort().map((k) => [k, par[k]]));
-    const ancien = existsSync(CHEMIN_SCELLE_LICITES) ? JSON.parse(readFileSync(CHEMIN_SCELLE_LICITES, "utf8")) : {};
-    writeFileSync(CHEMIN_SCELLE_LICITES, JSON.stringify({
-      _commentaire: "LES TOURNURES LICITES QUI VOISINENT UN CONTENANT, ÉNUMÉRÉES UNE PAR UNE. "
-        + "Elles ne sont couvertes par aucune permission lexicale générale : c'est délibéré. Une "
-        + "permission écrite pour « IATA standards » couvrait aussi « IATA standards approved crate », "
-        + "et c'est par là que les attributions passaient. Ici, chaque tournure est nommée avec son "
-        + "chemin et son voisinage exact ; une formulation NOUVELLE, même licite, n'est couverte par "
-        + "personne et fait rougir l'inventaire jusqu'à ce qu'un humain la classe et rejoue "
-        + "`node inventaire-iata.mjs --sceller-licites`. CE SCELLÉ NE REND RIEN LICITE : une "
-        + "occurrence que le motif juge interdite le reste, scellée ou non.",
-      _mesure: { fichiers: Object.keys(trie).length, occurrences: restants.length },
-      occurrences: trie,
-      publiees: ancien.publiees ?? {},
-    }, null, 2) + "\n");
-    console.log(`  · occurrences licites SCELLÉES : ${restants.length} dans ${Object.keys(trie).length} fichier(s)`);
-    process.exit(0);
-  }
+  /* IL N'Y A QU'UN SEUL ÉCRIVAIN DU SCELLÉ, ET CE N'EST PAS ICI. Le geste `--sceller-licites` vit
+     dans `test-etape3-dom.mjs`, seul endroit qui dispose À LA FOIS des sources et du site
+     construit : les deux sections doivent être produites ENSEMBLE, sinon rejouer le geste d'un
+     côté efface l'autre — c'est exactement ce qui s'est produit, `publiees` étant réécrit à `{}`
+     au second passage. Deux écrivains pour un même fichier, c'est la faute que ce dépôt a déjà
+     commise cinq fois sous d'autres formes. */
 
   const releve = relever();
 
@@ -1145,6 +1257,12 @@ if (import.meta.url === `file://${process.argv[1]}`) {
     for (const r of v.nonReconcilies.slice(0, 20))
       console.error(`  jeton « IATA » dont rien ne rend compte : ${r.fichier}:${r.ligne}  …${r.voisinage}…`);
     if (v.nonReconcilies.length > 20) console.error(`  … et ${v.nonReconcilies.length - 20} autre(s)`);
+    for (const e of v.formeScelleLicites) console.error(`  forme du scellé des licites : ${e}`);
+    for (const e of v.scelleLicites.slice(0, 15)) console.error(`  scellé des licites : ${e}`);
+    if (v.scelleLicites.length > 15) console.error(`  … et ${v.scelleLicites.length - 15} autre(s)`);
+    if (v.scelleLicites.length || v.formeScelleLicites.length) console.error(
+      "\n  Le scellé des tournures licites doit ÉGALER le corpus, pas seulement l'autoriser."
+      + "\n  Rejouer le geste : node --import tsx test-etape3-dom.mjs --dist=packages/ui/dist --sceller-licites");
     if (v.nonReconcilies.length) console.error(
       "\n  Un jeton non réconcilié n'est PAS une erreur du dépôt : c'est une tournure que le contrat\n"
       + "  ne connaît pas encore. Deux issues, et il faut en choisir une explicitement — soit elle est\n"

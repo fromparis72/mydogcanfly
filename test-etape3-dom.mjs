@@ -20,7 +20,7 @@
 import { readFileSync, writeFileSync, readdirSync, statSync, existsSync, mkdtempSync, mkdirSync, rmSync } from "node:fs";
 import { tmpdir } from "node:os";
 import { join } from "node:path";
-import { MOTIF, jugerOccurrence, dansUnSlugConserve, dansUnFragmentAttribuePublie , CORRECTIONS_CARGO, jetonsNonReconcilies, chargerScelleLicitesPubliees, CHEMIN_SCELLE_LICITES } from "./inventaire-iata.mjs";
+import { MOTIF, jugerOccurrence, dansUnSlugConserve, dansUnFragmentAttribuePublie , CORRECTIONS_CARGO, jetonsNonReconcilies, chargerScelleLicitesPubliees, CHEMIN_SCELLE_LICITES, reconcilier, grouperLicites, comparerScelleLicites, serialiserScelleLicites, verifierFormeScelleLicites, chargerScelleLicites } from "./inventaire-iata.mjs";
 import { zonesDe } from "./test-lib/zones-publiques.mjs";
 
 const DIST = process.argv.slice(2).find((a) => a.startsWith("--dist="))?.slice(7);
@@ -125,7 +125,7 @@ ok(`départ : ${pages.length} pages construites`);
      permission lexicale générale couvre des phrases qui n'existent pas, et c'est par là que les
      attributions passent. Ici, chaque tournure licite voisinant un contenant est énumérée. */
   const SCELLE_PUBLIE = chargerScelleLicitesPubliees();
-  const relevePublie = (racine, listePages) => {
+  const relevePublie = (racine, listePages, scelle = SCELLE_PUBLIE) => {
     const vu = {};
     const nus = [];
     let illisibles = 0;
@@ -146,7 +146,7 @@ ok(`départ : ${pages.length} pages construites`);
          * Le jeton non réconcilié ne rejoint PAS le registre des formulations connues : il fait
          * échouer la porte tout de suite. Un registre est une liste de dettes CONNUES ; une
          * tournure que personne n'a classée n'est pas une dette connue, c'est un trou. */
-        for (const j of jetonsNonReconcilies(String(texte), MOTIF, SCELLE_PUBLIE.get(`${url} · ${zone}`))) {
+        for (const j of jetonsNonReconcilies(String(texte), MOTIF, scelle.get(`${url} · ${zone}`))) {
           nus.push({ url, zone, voisinage: j.voisinage });
         }
         MOTIF.lastIndex = 0;
@@ -170,7 +170,24 @@ ok(`départ : ${pages.length} pages construites`);
     }
     return { vu, illisibles, nus };
   };
-  const { vu, nus } = relevePublie(DIST, pages);
+  /* UNE SEULE LECTURE DES 3 121 PAGES, DEUX VUES. Le relevé se fait à scellé VIDE — il rend donc
+     le CORPUS complet des tournures licites voisinant un contenant — et ce qui reste non
+     réconcilié s'en déduit par soustraction du scellé. Lire deux fois le site pour obtenir les
+     deux vues doublait le temps du contrôle sans rien prouver de plus. */
+  const { vu, nus: corpusBrut } = relevePublie(DIST, pages, new Map());
+  /* LES DEUX CORPUS, calculés À SCELLÉ VIDE : ce sont eux qui font foi, et le scellé se compare à
+     eux. Ils sont déclarés ici, au plus près de l'unique lecture du site, parce que la porte
+     publique s'en sert aussitôt. */
+  const corpusSources = grouperLicites(reconcilier({ scelle: new Map() }));
+  const corpusPubliees = grouperLicites(corpusBrut, (x) => `${x.url} · ${x.zone}`);
+  const nus = [];
+  for (const [cle, tournures] of corpusPubliees) {
+    const scelles = SCELLE_PUBLIE.get(cle) ?? new Map();
+    const [url, zone] = [cle.slice(0, cle.lastIndexOf(" · ")), cle.slice(cle.lastIndexOf(" · ") + 3)];
+    for (const [voisinage, n] of tournures) {
+      for (let i = scelles.get(voisinage) ?? 0; i < n; i++) nus.push({ url, zone, voisinage });
+    }
+  }
   if (nus.length) {
     echec("1septies jeton non réconcilié PUBLIÉ", `${nus.length} jeton(s) « IATA » qu'aucune règle ni aucun scellé ne rend compte`);
     for (const n of nus.slice(0, 10)) console.error(`      ${n.url} [${n.zone}] …${n.voisinage}…`);
@@ -448,22 +465,77 @@ ok(`départ : ${pages.length} pages construites`);
     else ok("1nonies les deux attributions Thai Airways ont disparu de la source ET de la page construite, et ce qui les remplace y est bien servi");
   }
 
-  /* LE GESTE DE SCELLEMENT DES TOURNURES LICITES PUBLIÉES. Comme `--ecrire-registre`, il est
-     délibéré et n'est PAS appelé par la CI : une tournure nouvelle bloque la porte jusqu'à ce
-     qu'un humain la classe et rejoue ce geste.
-     UNE OBSERVATION Y EST CONSIGNÉE PLUTÔT QU'ENTERRÉE : sur les fiches compagnies, deux `<span>`
-     adjacents sans espace se soudent au rendu — « 🛡️ IATA rules » suivi de « Acceptance strictly
-     follows… » se lit « IATA rulesAcceptance », ce qui empêche de reconnaître la tournure licite
-     « IATA rules ». C'est un défaut de balisage, pas de vocabulaire ; il est hors de ce lot et
-     nommé ici pour qu'il ne se perde pas. */
+  /* ---- LE SCELLÉ DES TOURNURES LICITES : UN SEUL ÉCRIVAIN, LES DEUX SECTIONS ENSEMBLE -------
+   *
+   * TROIS FAUTES MESURÉES LE 04/09/2026, et la troisième était la plus vicieuse. Le geste
+   * précédent calculait les tournures à sceller AVEC le scellé déjà en place : sur un état propre,
+   * `nus` valait donc zéro, et le fichier était réécrit avec `publiees: {}`. Rejouer la commande
+   * prescrite DÉTRUISAIT son propre état au lieu de le reproduire. On calcule désormais les deux
+   * sections À SCELLÉ VIDE, et on les écrit ENSEMBLE — un seul écrivain, aucune section ne peut
+   * être effacée par l'autre. Un second scellement rend le même octet, et un contrôle l'exige. */
+
   if (process.argv.includes("--sceller-licites")) {
-    const par = {};
-    for (const n of nus) (par[`${n.url} · ${n.zone}`] ??= []).push(n.voisinage);
-    for (const k of Object.keys(par)) par[k] = [...new Set(par[k])].sort();
-    const trie = Object.fromEntries(Object.keys(par).sort().map((k) => [k, par[k]]));
-    const ancien = JSON.parse(readFileSync(CHEMIN_SCELLE_LICITES, "utf8"));
-    writeFileSync(CHEMIN_SCELLE_LICITES, JSON.stringify({ ...ancien, publiees: trie }, null, 2) + "\n");
-    console.log(`  · tournures licites PUBLIÉES scellées : ${nus.length} dans ${Object.keys(trie).length} couple(s) URL/zone`);
+    writeFileSync(CHEMIN_SCELLE_LICITES, serialiserScelleLicites(corpusSources, corpusPubliees));
+    console.log(`  · scellé des licites RÉÉCRIT : ${corpusSources.size} chemin(s) source, ${corpusPubliees.size} couple(s) URL/zone`);
+  }
+
+  /* ---- 1undecies. LE SCELLÉ ÉGALE LE CORPUS, DANS LES DEUX SENS, ET SE REPRODUIT AU BIT ------ */
+  {
+    const ecarts = [
+      ...verifierFormeScelleLicites(),
+      ...comparerScelleLicites(corpusPubliees, chargerScelleLicitesPubliees(), "page"),
+    ];
+    /* L'IDENTITÉ OCTET POUR OCTET, sans rien écrire : on sérialise ce qu'un second scellement
+       produirait et on le compare au fichier présent. C'est la seule façon d'exiger « rejouer le
+       geste ne change rien » dans un contrôle qui ne doit pas modifier le dépôt. */
+    const attendu = serialiserScelleLicites(corpusSources, corpusPubliees);
+    const present = existsSync(CHEMIN_SCELLE_LICITES) ? readFileSync(CHEMIN_SCELLE_LICITES, "utf8") : "";
+    if (present !== attendu) {
+      const a = present.split("\n"), b = attendu.split("\n");
+      const i = a.findIndex((l, k) => l !== b[k]);
+      ecarts.push(`un second scellement ne rendrait PAS le même octet — première divergence ligne ${i + 1} : ${JSON.stringify((a[i] ?? "").trim().slice(0, 80))} au lieu de ${JSON.stringify((b[i] ?? "").trim().slice(0, 80))}`);
+    }
+    /* ---- LES CINQ ATTAQUES DE LA CONTRE-REVUE, JOUÉES SUR DES COPIES DU SCELLÉ --------------
+     * Un scellé qui ne mord pas n'est qu'une liste. Chacune de ces mutations doit produire un
+     * écart NOMMÉ ; leur intitulé dit laquelle, pour qu'un échec se lise sans déboguer. */
+    const copie = (m) => new Map([...m].map(([k, v]) => [k, new Map(v)]));
+    const attaques = [];
+    const eprouver = (nom, corpus, scelle, attendu) => {
+      const vus = comparerScelleLicites(corpus, scelle, "épreuve");
+      if (!vus.length) attaques.push(`${nom} : ACCEPTÉE en silence`);
+      else if (!vus.some((e) => attendu.test(e))) attaques.push(`${nom} : refusée, mais sans nommer sa nature — ${vus[0]}`);
+    };
+    if (!corpusSources.size || !corpusPubliees.size) attaques.push("corpus vide : les attaques ne prouveraient rien");
+    else {
+      /* 1 — une entrée SOURCE inventée, qui ne correspond à aucune occurrence réelle. */
+      const s1 = copie(chargerScelleLicites());
+      s1.set("content/airlines/fichier-qui-nexiste-pas.yml", new Map([["une tournure inventée IATA", 1]]));
+      eprouver("1 entrée source orpheline", corpusSources, s1, /ORPHELINE/);
+      /* 2 — la même chose côté PAGES. */
+      const s2 = copie(chargerScelleLicitesPubliees());
+      s2.set("/une-page-qui-nexiste-pas/ · corps", new Map([["une tournure inventée IATA", 1]]));
+      eprouver("2 entrée publique orpheline", corpusPubliees, s2, /ORPHELINE/);
+      /* 3 — une RÉPÉTITION d'une tournure licite déjà scellée : le corpus en porte une de plus
+             que le scellé. C'est la faute que le `Set` rendait invisible. */
+      const [cle3, tour3] = [...corpusSources][0];
+      const c3 = copie(corpusSources);
+      const [v3, n3] = [...tour3][0];
+      c3.get(cle3).set(v3, n3 + 1);
+      eprouver("3 répétition d'une occurrence licite", c3, chargerScelleLicites(), /multiplicité/);
+      /* 4 — l'occurrence réelle DISPARAÎT, le scellé reste : entrée orpheline dans l'autre sens. */
+      const c4 = copie(corpusSources);
+      c4.delete(cle3);
+      eprouver("4 occurrence supprimée, scellé conservé", c4, chargerScelleLicites(), /ORPHELINE/);
+      /* 5 — une tournure DÉPLACÉE d'une zone à l'autre : orpheline ici, non scellée là. */
+      const [cle5, tour5] = [...corpusPubliees][0];
+      const c5 = copie(corpusPubliees);
+      c5.delete(cle5);
+      c5.set(`${cle5.slice(0, cle5.lastIndexOf(" · "))} · metas`, new Map(tour5));
+      eprouver("5 tournure déplacée de zone", c5, chargerScelleLicitesPubliees(), /ORPHELINE|NON SCELLÉE/);
+    }
+    ecarts.push(...attaques);
+    if (ecarts.length) { echec("1undecies scellé des licites", `${ecarts.length} écart(s)`); for (const e of ecarts.slice(0, 8)) console.error(`      ${e}`); }
+    else ok(`1undecies le scellé des licites ÉGALE le corpus dans les deux sens — ${corpusSources.size} chemin(s) source et ${corpusPubliees.size} couple(s) URL/zone, multiplicités comprises —, un second scellement rendrait le même octet, et les cinq attaques (orpheline source, orpheline publique, répétition, occurrence supprimée, tournure déplacée de zone) mordent toutes`);
   }
 
   /* `--ecrire-registre` déplace la sentinelle. Il n'est PAS appelé par la CI : le registre ne

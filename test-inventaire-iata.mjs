@@ -684,8 +684,15 @@ const classerLigne = (chemin, ligne) => {
   const muettes = ATTRIBUTIONS.filter((p) => etat(p) === "silencieuse");
   const bruyantes = LICITES_SANS_CONTENANT.filter((p) => etat(p) !== "silencieuse");
   const nonScellables = LICITES_PRES_D_UN_CONTENANT.filter((p) => etat(p) === "silencieuse");
+  /* Le scellé porte désormais la MULTIPLICITÉ : on fabrique donc le scellé exact de la phrase —
+     chaque voisinage avec son nombre — et l'on exige qu'il la couvre entièrement. */
+  const scelleDeSoi = (p) => {
+    const m = new Map();
+    for (const j of jetonsNonReconcilies(p)) m.set(j.voisinage, (m.get(j.voisinage) ?? 0) + 1);
+    return m;
+  };
   const nonCouvertes = LICITES_PRES_D_UN_CONTENANT.filter((p) =>
-    jetonsNonReconcilies(p, MOTIF, new Set(jetonsNonReconcilies(p).map((j) => j.voisinage))).length);
+    jetonsNonReconcilies(p, MOTIF, scelleDeSoi(p)).length);
   if (muettes.length) echec("12 rien de silencieux", `${muettes.length} attribution(s) qu'aucun des deux étages ne relève : ${muettes.join(" · ")}`);
   else if (bruyantes.length) echec("12 rien de silencieux", `${bruyantes.length} tournure(s) licite(s) SANS contenant voisin devenue(s) bruyante(s) : ${bruyantes.join(" · ")}`);
   else if (nonScellables.length) echec("12 rien de silencieux", `${nonScellables.length} tournure(s) licite(s) PRÈS d'un contenant passe(nt) sans scellé : la garantie est plus faible qu'annoncée — ${nonScellables.join(" · ")}`);

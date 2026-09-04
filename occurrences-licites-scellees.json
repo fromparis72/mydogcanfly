@@ -1,143 +1,149 @@
 {
-  "_commentaire": "LES TOURNURES LICITES QUI VOISINENT UN CONTENANT, ÉNUMÉRÉES UNE PAR UNE. Elles ne sont couvertes par aucune permission lexicale générale : c'est délibéré. Une permission écrite pour « IATA standards » couvrait aussi « IATA standards approved crate », et c'est par là que les attributions passaient. Ici, chaque tournure est nommée avec son chemin et son voisinage exact ; une formulation NOUVELLE, même licite, n'est couverte par personne et fait rougir l'inventaire jusqu'à ce qu'un humain la classe et rejoue `node inventaire-iata.mjs --sceller-licites`. CE SCELLÉ NE REND RIEN LICITE : une occurrence que le motif juge interdite le reste, scellée ou non.",
+  "_commentaire": "LES TOURNURES LICITES QUI VOISINENT UN CONTENANT, ÉNUMÉRÉES AVEC LEUR NOMBRE. Elles ne sont couvertes par aucune permission lexicale générale : c'est délibéré. Une permission écrite pour « IATA standards » couvrait aussi « IATA standards approved crate », et c'est par là que les attributions passaient. Ici chaque tournure est nommée avec sa clé — chemin de fichier pour les sources, « URL · zone » pour les pages — son voisinage exact et sa MULTIPLICITÉ. La comparaison se fait dans les deux sens : une occurrence de plus, une de moins, une entrée orpheline, une tournure déplacée d'un fichier ou d'une zone à l'autre, un nombre différent — chacun fait rougir. CE SCELLÉ NE REND RIEN LICITE : une occurrence que le motif juge interdite le reste, scellée ou non. Il ne dit qu'une chose : « ces tournures-là, en ce nombre-là, ont été lues et classées par un humain ». Toute formulation nouvelle, même licite, n'est couverte par personne et bloque jusqu'à un rescellement nommé. OBSERVATION CONSIGNÉE : sur les fiches compagnies, deux `<span>` adjacents sans espace se soudent au rendu — « 🛡️ IATA rules » suivi de « Acceptance strictly follows… » se lit « IATA rulesAcceptance ». C'est un défaut de BALISAGE, pas de vocabulaire ; hors de ce lot, nommé ici pour qu'il ne se perde pas.",
   "_mesure": {
-    "fichiers": 14,
-    "occurrences": 24
+    "sources": {
+      "cles": 14,
+      "occurrences": 24
+    },
+    "publiees": {
+      "cles": 25,
+      "occurrences": 32
+    }
   },
   "occurrences": {
-    "content/airlines/neos.yml": [
-      "\"Up to 10 kg (pet + carrier), rigid or soft IATA-standard carrier up to 48 × 35 × 29 cm, wate",
-      "+ jaula), jaula rígida o blanda de estándar IATA de hasta 48 × 35 × 29 cm, fondo impermeable,",
-      "caisse), caisse rigide ou souple aux normes IATA jusqu'à 48 × 35 × 29 cm, fond étanche, non o"
-    ],
-    "content/airlines/swiss.yml": [
-      "m 4 May 2026, hold crates must meet stricter IATA ventilation limits or be refused. fr:",
-      "porão devem atender a limites de ventilação IATA mais rígidos, ou serão recusadas.\" - icon:"
-    ],
-    "content/countries/fj.yml": [
-      "plus directe, dans un conteneur conforme aux IATA Live Animal Regulations (un animal par caiss"
-    ],
-    "packages/ui/src/components/HomeSections.astro": [
-      "en soute dans une caisse conforme aux normes IATA. Certaines races brachycéphales, comme les B",
-      "pagnies exige une caisse conforme aux normes IATA pour le transport en soute.\", \"Ton chien"
-    ],
-    "packages/ui/src/content/guides/en/airline-approved-dog-crate.md": [
-      "?\" a: \"It's a rigid crate that meets the IATA *Live Animals Regulations*: the animal must",
-      "href=\"/tools/crate/\">Size the crate with the IATA calculator</a></li><li><a href=\"/travel-hub/"
-    ],
-    "packages/ui/src/content/guides/en/dog-carriers-and-crates.md": [
-      "e train? For the plane, the crate must meet IATA requirements, which govern sturdiness, venti",
-      "el in the hold requires a hard crate meeting IATA requirements: sturdiness, ventilation on sev"
-    ],
-    "packages/ui/src/content/guides/en/dog-travel-accessories.md": [
-      "st airlines require a rigid crate that meets IATA standards, in which the dog can stand up, tu"
-    ],
-    "packages/ui/src/content/guides/es/transportin-homologado-iata-perro.md": [
-      "el tamaño del transportín con la calculadora IATA</a></li><li><a href=\"/es/travel-hub/ansiedad"
-    ],
-    "packages/ui/src/content/guides/fr/accessoires-indispensables-voyage-chien.md": [
-      "xigent une caisse rigide conforme aux normes IATA, où le chien peut se tenir debout, se retour"
-    ],
-    "packages/ui/src/content/guides/fr/caisse-transport-avion-homologuee-chien.md": [
-      "\">Dimensionner la caisse avec le calculateur IATA</a></li><li><a href=\"/fr/travel-hub/anxiete-"
-    ],
-    "packages/ui/src/content/guides/fr/sac-caisse-transport-chien.md": [
-      "ige une caisse rigide conforme aux exigences IATA : solidité, ventilation sur plusieurs faces,"
-    ],
-    "packages/ui/src/content/guides/pt/caixa-de-transporte-homologada-iata.md": [
-      "Calcule o tamanho da caixa com a calculadora IATA</a></li><li><a href=\"/pt/travel-hub/ansiedad"
-    ],
-    "packages/ui/src/data/airlines.generated.json": [
-      "\"Up to 10 kg (pet + carrier), rigid or soft IATA-standard carrier up to 48 × 35 × 29 cm, wate",
-      "+ jaula), jaula rígida o blanda de estándar IATA de hasta 48 × 35 × 29 cm, fondo impermeable,",
-      "caisse), caisse rigide ou souple aux normes IATA jusqu'à 48 × 35 × 29 cm, fond étanche, non o",
-      "m 4 May 2026, hold crates must meet stricter IATA ventilation limits or be refused.\",",
-      "porão devem atender a limites de ventilação IATA mais rígidos, ou serão recusadas.\" }"
-    ],
-    "packages/ui/src/data/countries.generated.json": [
-      "plus directe, dans un conteneur conforme aux IATA Live Animal Regulations (un animal par caiss"
-    ]
+    "content/airlines/neos.yml": {
+      "\"Up to 10 kg (pet + carrier), rigid or soft IATA-standard carrier up to 48 × 35 × 29 cm, wate": 1,
+      "+ jaula), jaula rígida o blanda de estándar IATA de hasta 48 × 35 × 29 cm, fondo impermeable,": 1,
+      "caisse), caisse rigide ou souple aux normes IATA jusqu'à 48 × 35 × 29 cm, fond étanche, non o": 1
+    },
+    "content/airlines/swiss.yml": {
+      "m 4 May 2026, hold crates must meet stricter IATA ventilation limits or be refused. fr:": 1,
+      "porão devem atender a limites de ventilação IATA mais rígidos, ou serão recusadas.\" - icon:": 1
+    },
+    "content/countries/fj.yml": {
+      "plus directe, dans un conteneur conforme aux IATA Live Animal Regulations (un animal par caiss": 1
+    },
+    "packages/ui/src/components/HomeSections.astro": {
+      "en soute dans une caisse conforme aux normes IATA. Certaines races brachycéphales, comme les B": 1,
+      "pagnies exige une caisse conforme aux normes IATA pour le transport en soute.\", \"Ton chien": 1
+    },
+    "packages/ui/src/content/guides/en/airline-approved-dog-crate.md": {
+      "?\" a: \"It's a rigid crate that meets the IATA *Live Animals Regulations*: the animal must": 1,
+      "href=\"/tools/crate/\">Size the crate with the IATA calculator</a></li><li><a href=\"/travel-hub/": 1
+    },
+    "packages/ui/src/content/guides/en/dog-carriers-and-crates.md": {
+      "e train? For the plane, the crate must meet IATA requirements, which govern sturdiness, venti": 1,
+      "el in the hold requires a hard crate meeting IATA requirements: sturdiness, ventilation on sev": 1
+    },
+    "packages/ui/src/content/guides/en/dog-travel-accessories.md": {
+      "st airlines require a rigid crate that meets IATA standards, in which the dog can stand up, tu": 1
+    },
+    "packages/ui/src/content/guides/es/transportin-homologado-iata-perro.md": {
+      "el tamaño del transportín con la calculadora IATA</a></li><li><a href=\"/es/travel-hub/ansiedad": 1
+    },
+    "packages/ui/src/content/guides/fr/accessoires-indispensables-voyage-chien.md": {
+      "xigent une caisse rigide conforme aux normes IATA, où le chien peut se tenir debout, se retour": 1
+    },
+    "packages/ui/src/content/guides/fr/caisse-transport-avion-homologuee-chien.md": {
+      "\">Dimensionner la caisse avec le calculateur IATA</a></li><li><a href=\"/fr/travel-hub/anxiete-": 1
+    },
+    "packages/ui/src/content/guides/fr/sac-caisse-transport-chien.md": {
+      "ige une caisse rigide conforme aux exigences IATA : solidité, ventilation sur plusieurs faces,": 1
+    },
+    "packages/ui/src/content/guides/pt/caixa-de-transporte-homologada-iata.md": {
+      "Calcule o tamanho da caixa com a calculadora IATA</a></li><li><a href=\"/pt/travel-hub/ansiedad": 1
+    },
+    "packages/ui/src/data/airlines.generated.json": {
+      "\"Up to 10 kg (pet + carrier), rigid or soft IATA-standard carrier up to 48 × 35 × 29 cm, wate": 1,
+      "+ jaula), jaula rígida o blanda de estándar IATA de hasta 48 × 35 × 29 cm, fondo impermeable,": 1,
+      "caisse), caisse rigide ou souple aux normes IATA jusqu'à 48 × 35 × 29 cm, fond étanche, non o": 1,
+      "m 4 May 2026, hold crates must meet stricter IATA ventilation limits or be refused.\",": 1,
+      "porão devem atender a limites de ventilação IATA mais rígidos, ou serão recusadas.\" }": 1
+    },
+    "packages/ui/src/data/countries.generated.json": {
+      "plus directe, dans un conteneur conforme aux IATA Live Animal Regulations (un animal par caiss": 1
+    }
   },
   "publiees": {
-    "/airlines/air-mauritius/ · corps": [
-      "val (up to 30 by origin), with charges. 🛡️ IATA rulesAcceptance strictly follows the latest"
-    ],
-    "/airlines/neos/ · corps": [
-      ". Up to 10 kg (pet + carrier), rigid or soft IATA-standard carrier up to 48 × 35 × 29 cm, wate",
-      "Up to 10 kg (pet + carrier), rigid or soft IATA-standard carrier up to 48 × 35 × 29 cm, wate"
-    ],
-    "/airlines/neos/ · json-ld": [
-      ". Up to 10 kg (pet + carrier), rigid or soft IATA-standard carrier up to 48 × 35 × 29 cm, wate"
-    ],
-    "/airlines/swiss/ · corps": [
-      "m 4 May 2026, hold crates must meet stricter IATA ventilation limits or be refused. 🛋️ Loung"
-    ],
-    "/es/airlines/neos/ · corps": [
-      "+ jaula), jaula rígida o blanda de estándar IATA de hasta 48 × 35 × 29 cm, fondo impermeable,"
-    ],
-    "/es/airlines/neos/ · json-ld": [
-      "+ jaula), jaula rígida o blanda de estándar IATA de hasta 48 × 35 × 29 cm, fondo impermeable,"
-    ],
-    "/es/travel-hub/transportin-homologado-iata-perro/ · corps": [
-      "el tamaño del transportín con la calculadora IATA Acostumbra a tu perro al transportín y gest"
-    ],
-    "/fr/ · corps": [
-      "en soute dans une caisse conforme aux normes IATA. Certaines races brachycéphales, comme les B",
-      "pagnies exige une caisse conforme aux normes IATA pour le transport en soute. Ton chien doit"
-    ],
-    "/fr/ · json-ld": [
-      "en soute dans une caisse conforme aux normes IATA. Certaines races brachycéphales, comme les B",
-      "pagnies exige une caisse conforme aux normes IATA pour le transport en soute. Ton chien doit p"
-    ],
-    "/fr/airlines/neos/ · corps": [
-      "caisse), caisse rigide ou souple aux normes IATA jusqu'à 48 × 35 × 29 cm, fond étanche, non o"
-    ],
-    "/fr/airlines/neos/ · json-ld": [
-      "caisse), caisse rigide ou souple aux normes IATA jusqu'à 48 × 35 × 29 cm, fond étanche, non o"
-    ],
-    "/fr/countries/fj/ · corps": [
-      "plus directe, dans un conteneur conforme aux IATA Live Animal Regulations (un animal par caiss"
-    ],
-    "/fr/travel-hub/accessoires-indispensables-voyage-chien/ · corps": [
-      "xigent une caisse rigide conforme aux normes IATA, où le chien peut se tenir debout, se retour"
-    ],
-    "/fr/travel-hub/accessoires-indispensables-voyage-chien/ · json-ld": [
-      "xigent une caisse rigide conforme aux normes IATA, où le chien peut se tenir debout, se retour"
-    ],
-    "/fr/travel-hub/caisse-transport-avion-homologuee-chien/ · corps": [
-      "Dimensionner la caisse avec le calculateur IATA Habituer le chien et gérer le stress du vol"
-    ],
-    "/fr/travel-hub/sac-caisse-transport-chien/ · corps": [
-      "ige une caisse rigide conforme aux exigences IATA : solidité, ventilation sur plusieurs faces,"
-    ],
-    "/fr/travel-hub/sac-caisse-transport-chien/ · json-ld": [
-      "ige une caisse rigide conforme aux exigences IATA : solidité, ventilation sur plusieurs faces,"
-    ],
-    "/pt/airlines/swiss/ · corps": [
-      "porão devem atender a limites de ventilação IATA mais rígidos, ou serão recusadas. 🛋️ Salas"
-    ],
-    "/pt/travel-hub/caixa-de-transporte-homologada-iata/ · corps": [
-      "Calcule o tamanho da caixa com a calculadora IATA Acostume o seu cachorro à caixa e gerencie"
-    ],
-    "/travel-hub/airline-approved-dog-crate/ · corps": [
-      "e's hold conditions Size the crate with the IATA calculator Crate-train your dog and manage",
-      "rements? It's a rigid crate that meets the IATA *Live Animals Regulations*: the animal must"
-    ],
-    "/travel-hub/airline-approved-dog-crate/ · json-ld": [
-      "nswer text It's a rigid crate that meets the IATA *Live Animals Regulations*: the animal must"
-    ],
-    "/travel-hub/dog-carriers-and-crates/ · corps": [
-      "el in the hold requires a hard crate meeting IATA requirements: sturdiness, ventilation on sev",
-      "train? For the plane, the crate must meet IATA requirements, which govern sturdiness, venti"
-    ],
-    "/travel-hub/dog-carriers-and-crates/ · json-ld": [
-      "el in the hold requires a hard crate meeting IATA requirements: sturdiness, ventilation on sev"
-    ],
-    "/travel-hub/dog-travel-accessories/ · corps": [
-      "st airlines require a rigid crate that meets IATA standards, in which the dog can stand up, tu"
-    ],
-    "/travel-hub/dog-travel-accessories/ · json-ld": [
-      "st airlines require a rigid crate that meets IATA standards, in which the dog can stand up, tu"
-    ]
+    "/airlines/air-mauritius/ · corps": {
+      "val (up to 30 by origin), with charges. 🛡️ IATA rulesAcceptance strictly follows the latest": 1
+    },
+    "/airlines/neos/ · corps": {
+      ". Up to 10 kg (pet + carrier), rigid or soft IATA-standard carrier up to 48 × 35 × 29 cm, wate": 1,
+      "Up to 10 kg (pet + carrier), rigid or soft IATA-standard carrier up to 48 × 35 × 29 cm, wate": 1
+    },
+    "/airlines/neos/ · json-ld": {
+      ". Up to 10 kg (pet + carrier), rigid or soft IATA-standard carrier up to 48 × 35 × 29 cm, wate": 1
+    },
+    "/airlines/swiss/ · corps": {
+      "m 4 May 2026, hold crates must meet stricter IATA ventilation limits or be refused. 🛋️ Loung": 1
+    },
+    "/es/airlines/neos/ · corps": {
+      "+ jaula), jaula rígida o blanda de estándar IATA de hasta 48 × 35 × 29 cm, fondo impermeable,": 2
+    },
+    "/es/airlines/neos/ · json-ld": {
+      "+ jaula), jaula rígida o blanda de estándar IATA de hasta 48 × 35 × 29 cm, fondo impermeable,": 1
+    },
+    "/es/travel-hub/transportin-homologado-iata-perro/ · corps": {
+      "el tamaño del transportín con la calculadora IATA Acostumbra a tu perro al transportín y gest": 1
+    },
+    "/fr/ · corps": {
+      "en soute dans une caisse conforme aux normes IATA. Certaines races brachycéphales, comme les B": 1,
+      "pagnies exige une caisse conforme aux normes IATA pour le transport en soute. Ton chien doit": 1
+    },
+    "/fr/ · json-ld": {
+      "en soute dans une caisse conforme aux normes IATA. Certaines races brachycéphales, comme les B": 1,
+      "pagnies exige une caisse conforme aux normes IATA pour le transport en soute. Ton chien doit p": 1
+    },
+    "/fr/airlines/neos/ · corps": {
+      "caisse), caisse rigide ou souple aux normes IATA jusqu'à 48 × 35 × 29 cm, fond étanche, non o": 2
+    },
+    "/fr/airlines/neos/ · json-ld": {
+      "caisse), caisse rigide ou souple aux normes IATA jusqu'à 48 × 35 × 29 cm, fond étanche, non o": 1
+    },
+    "/fr/countries/fj/ · corps": {
+      "plus directe, dans un conteneur conforme aux IATA Live Animal Regulations (un animal par caiss": 1
+    },
+    "/fr/travel-hub/accessoires-indispensables-voyage-chien/ · corps": {
+      "xigent une caisse rigide conforme aux normes IATA, où le chien peut se tenir debout, se retour": 1
+    },
+    "/fr/travel-hub/accessoires-indispensables-voyage-chien/ · json-ld": {
+      "xigent une caisse rigide conforme aux normes IATA, où le chien peut se tenir debout, se retour": 1
+    },
+    "/fr/travel-hub/caisse-transport-avion-homologuee-chien/ · corps": {
+      "Dimensionner la caisse avec le calculateur IATA Habituer le chien et gérer le stress du vol": 1
+    },
+    "/fr/travel-hub/sac-caisse-transport-chien/ · corps": {
+      "ige une caisse rigide conforme aux exigences IATA : solidité, ventilation sur plusieurs faces,": 1
+    },
+    "/fr/travel-hub/sac-caisse-transport-chien/ · json-ld": {
+      "ige une caisse rigide conforme aux exigences IATA : solidité, ventilation sur plusieurs faces,": 1
+    },
+    "/pt/airlines/swiss/ · corps": {
+      "porão devem atender a limites de ventilação IATA mais rígidos, ou serão recusadas. 🛋️ Salas": 1
+    },
+    "/pt/travel-hub/caixa-de-transporte-homologada-iata/ · corps": {
+      "Calcule o tamanho da caixa com a calculadora IATA Acostume o seu cachorro à caixa e gerencie": 1
+    },
+    "/travel-hub/airline-approved-dog-crate/ · corps": {
+      "e's hold conditions Size the crate with the IATA calculator Crate-train your dog and manage": 1,
+      "rements? It's a rigid crate that meets the IATA *Live Animals Regulations*: the animal must": 1
+    },
+    "/travel-hub/airline-approved-dog-crate/ · json-ld": {
+      "nswer text It's a rigid crate that meets the IATA *Live Animals Regulations*: the animal must": 1
+    },
+    "/travel-hub/dog-carriers-and-crates/ · corps": {
+      "el in the hold requires a hard crate meeting IATA requirements: sturdiness, ventilation on sev": 1,
+      "train? For the plane, the crate must meet IATA requirements, which govern sturdiness, venti": 1
+    },
+    "/travel-hub/dog-carriers-and-crates/ · json-ld": {
+      "el in the hold requires a hard crate meeting IATA requirements: sturdiness, ventilation on sev": 1
+    },
+    "/travel-hub/dog-travel-accessories/ · corps": {
+      "st airlines require a rigid crate that meets IATA standards, in which the dog can stand up, tu": 1
+    },
+    "/travel-hub/dog-travel-accessories/ · json-ld": {
+      "st airlines require a rigid crate that meets IATA standards, in which the dog can stand up, tu": 1
+    }
   }
 }
