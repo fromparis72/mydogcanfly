@@ -92,9 +92,9 @@ sont désormais engendrées depuis `PLACEMENT_STATUS_CAUSES`.
 
 ---
 
-## 3. LES QUATRE ARBITRAGES EN ATTENTE — c'est la partie qui compte
+## 3. LES CINQ ARBITRAGES EN ATTENTE — c'est la partie qui compte
 
-Ce sont **quatre faces d'une seule question** : combien montrer d'une donnée non prouvée ? Elles
+Ce sont **cinq faces d'une seule question** : combien montrer d'une donnée non prouvée ? Elles
 gagnent à être tranchées ensemble.
 
 ### 3.1 — Les listes « meilleures compagnies » des fiches de race sont VIDES
@@ -131,7 +131,32 @@ Mesuré sur la **même route et les mêmes 22 cartes** (CDG → JFK, chien de 4 
 Le Finder affiche « Yes — with conditions » à côté de « 9 % » : le titre promet, le chiffre
 décourage, et les deux se contredisent à l'œil. Figé dans `test-apercu-navigateur.mjs`.
 
-### 3.4 — Les citations de l'étape B
+### 3.4 — Le VERDICT de tête des fiches est encore éditorial
+
+Chaque fiche compagnie porte, au-dessus de tout, une pastille colorée **écrite à la main dans le
+YAML** : « ★ Easy » en vert, « ★ Hard » ou « ★ No pets » en rouge. Elle ne descend PAS du bloc
+`policies:`.
+
+Mesuré sur les 102 fiches construites : **8 vertes, 29 rouges, 65 prudentes — et ZÉRO canal décidé
+sous aucune d'elles.** La fiche Aegean affiche « ★ Easy » en vert au-dessus de trois canaux « à
+confirmer » ; Aer Lingus affiche « ★ Hard » en rouge au-dessus de trois canaux dont aucun n'est
+refusé.
+
+C'est exactement la faute que `decisionCanal.ts` a fermée un niveau plus bas — « une couleur de
+pastille et une étiquette écrites à la main [qui] contredisent la décision canonique » — mais elle
+n'a jamais été fermée à l'étage du verdict de fiche.
+
+**Je ne l'ai pas corrigé, et voici pourquoi la différence avec l'auto-citation (§ 3 bis) est
+réelle :** l'auto-citation contredisait un arbitrage RENDU et explicitement étendu à « la liste de
+sources d'un rapport » — c'était un bogue. Le bloc `verdict:` n'a jamais été arbitré, et c'est
+l'élément éditorial principal de la fiche. Le trancher est une décision de produit.
+
+Trois options, si cela aide : dériver la COULEUR des décisions canoniques en gardant le libellé ;
+n'afficher le verdict que lorsqu'au moins un canal est décidé ; ou le laisser tel quel en assumant
+la contradiction. Le compte est figé dans une contre-épreuve et rougira dans un sens comme dans
+l'autre.
+
+### 3.5 — Les citations de l'étape B
 
 Rien n'avance sans elles. **Je ne reconstruirai jamais une citation à partir d'un résumé**, et mon
 conteneur n'a pas d'accès réseau ouvert. Pour chaque canal à remonter en `verified_official`, il me
@@ -314,7 +339,7 @@ politique redeviendra `allowed`.
 
 ## 8. Ce que je demande
 
-1. **Les quatre arbitrages du § 3**, tranchés ensemble.
+1. **Les cinq arbitrages du § 3**, tranchés ensemble.
 2. **Le prédicat exact de l'ensemble 1** (§ 4), pour converger sur 14 ou 34.
 3. **Les citations de l'étape B**, au format : URL, phrase exacte, langue, emplacement, date.
 

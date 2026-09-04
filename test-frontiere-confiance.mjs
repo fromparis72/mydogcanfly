@@ -375,6 +375,39 @@ if (!DIST) {
   check("aucune pastille n'affiche « Accepté » ou « Non accepté » sur un canal à confirmer",
     fautives.length === 0, fautives.slice(0, 5).join("\n         "));
 
+  console.log("\n=== 12 bis. Le VERDICT de tête, encore éditorial — constat figé, ARBITRAGE EN ATTENTE ===");
+  {
+    /* CE QUE CE CONTRÔLE SIGNALE SANS LE CORRIGER. Chaque fiche porte, en tête, une pastille
+     * « ★ Easy », « ★ Hard », « ★ No pets », écrite À LA MAIN dans le YAML et colorée par un `cls`
+     * lui aussi écrit à la main. Elle ne descend PAS du bloc `policies:`.
+     *
+     * C'est la faute que `decisionCanal.ts` a fermée un niveau plus bas — « une couleur de pastille
+     * et une étiquette écrites à la main [qui] CONTREDISENT la décision canonique » — mais elle
+     * n'a jamais été fermée à l'étage du verdict de fiche. Depuis la frontière de confiance, aucun
+     * canal n'est décidé : une pastille VERTE « ★ Easy » surmonte donc trois canaux « à confirmer »,
+     * et une pastille ROUGE « ★ No pets » surmonte trois canaux dont aucun n'est refusé.
+     *
+     * JE NE LE CORRIGE PAS SEUL. Contrairement à l'auto-citation — qui contredisait un arbitrage
+     * déjà rendu et explicitement étendu à « la liste de sources d'un rapport » —, le bloc
+     * `verdict:` n'a jamais été arbitré, et c'est l'élément éditorial principal de la fiche.
+     * Le trancher est une décision de produit. Il rejoint la liste des arbitrages en attente.
+     *
+     * Le compte est FIGÉ pour qu'il ne dérive pas en silence, dans un sens comme dans l'autre. */
+    let vert = 0, rouge = 0, prudent = 0, avecCanalDecide = 0;
+    for (const f of fiches) {
+      const html = readFileSync(f, "utf8");
+      const m = html.match(/pill (ok|no|warn) big"[^>]*>★ ([^<]+)</);
+      if (!m) continue;
+      const statuts = [...html.matchAll(/data-status="([^"]+)"/g)].map((x) => x[1]);
+      if (m[1] === "ok") vert++; else if (m[1] === "no") rouge++; else prudent++;
+      if (statuts.some((st) => st === "allowed" || st === "denied")) avecCanalDecide++;
+    }
+    check("les verdicts de tête sont comptés : 32 verts, 116 rouges, 260 prudents (4 langues)",
+      vert === 32 && rouge === 116 && prudent === 260, JSON.stringify({ vert, rouge, prudent }));
+    check("AUCUNE fiche n'a de canal décidé sous son verdict — la contradiction est totale et figée",
+      avecCanalDecide === 0, `${avecCanalDecide} fiche(s) avec un canal décidé`);
+  }
+
   console.log("\n=== 13. …et la réserve est DITE, dans les quatre langues ===");
   /* Une page muette serait conforme au contrôle 12 tout en étant inutilisable : on exige donc
      que la réserve soit écrite, et écrite dans la langue de la page. */
