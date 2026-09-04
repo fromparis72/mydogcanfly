@@ -97,6 +97,11 @@ const EN = [
   [re("an\\s+IATA\\s+crate", "gi"), "a travel crate"],
   [re("an\\s+IATA\\s+kennel", "gi"), "a kennel"],
   [re("an\\s+IATA\\s+(carrier|cage)", "gi"), (_m, n) => `a travel ${n}`],
+  /* `IATA container` — mesuré sur la fiche Thai Airways, dont le français, l'espagnol et le
+     portugais disent déjà « contenant / jaula / caixa de transport(e) ». L'anglais dit donc la
+     même chose, et pas autre chose. */
+  [re("IATA\\s+containers", "gi"), "travel containers"],
+  [re("IATA\\s+container", "gi"), "travel container"],
   [re("IATA\\s+crates", "gi"), "travel crates"],
   [re("IATA\\s+crate", "gi"), "travel crate"],
   [re("IATA\\s+kennels", "gi"), "kennels"],
@@ -245,6 +250,10 @@ const ES = [
   [re("jaula\\s+conforme\\s+a\\s+IATA", "gi"), "jaula de transporte conforme a los requisitos aplicables"],
   [re("transportines\\s+conformes\\s+a\\s+IATA", "gi"), "transportines conformes a los requisitos aplicables"],
   [re("transportín\\s+conforme\\s+a\\s+IATA", "gi"), "transportín conforme a los requisitos aplicables"],
+  [re("jaulas\\s+conformes\\s+con\\s+la\\s+IATA", "gi"), "jaulas de transporte conformes a los requisitos aplicables"],
+  [re("jaula\\s+conforme\\s+con\\s+la\\s+IATA", "gi"), "jaula de transporte conforme a los requisitos aplicables"],
+  [re("conformes\\s+con\\s+(?:la\\s+)?IATA", "gi"), "conformes a los requisitos aplicables"],
+  [re("conforme\\s+con\\s+(?:la\\s+)?IATA", "gi"), "conforme a los requisitos aplicables"],
   [re("compatibles\\s+con\\s+la\\s+IATA", "gi"), "conformes a los requisitos aplicables"],
   [re("compatible\\s+con\\s+la\\s+IATA", "gi"), "conforme a los requisitos aplicables"],
   [re("conformes\\s+a\\s+IATA", "gi"), "conformes a los requisitos aplicables"],
@@ -552,9 +561,34 @@ export function appliquer(fragment, langue, compteur = new Map(), tables = TABLE
        fautes ont été mesurées, chacune dans son sens. */
     out = out.replace(motif, (...args) => {
       const m = args[0];
+      const chaine = args[args.length - 1];
+      const decalage = args[args.length - 2];
       const sortie = typeof rep === "function" ? rep(...args) : rep;
       const premier = /^[\wÀ-ÿ]+/.exec(m)?.[0] ?? "";
       const acronyme = premier.length > 1 && premier === premier.toUpperCase();
+      /* UN ACRONYME EN DÉBUT DE PHRASE EST QUAND MÊME UN DÉBUT DE PHRASE. Faute mesurée le
+         04/09/2026 sur la fiche Thai Airways : la pastille « IATA container required » est
+         devenue « travel container required », en minuscule, à côté de ses sœurs « Contenant de
+         transport requis » et « Jaula de transporte obligatoria ». La règle « jamais la capitale
+         d'un acronyme » est juste AU MILIEU d'une phrase — « an IATA crate » ne doit pas donner
+         « a Travel crate » — mais elle ne dit rien de la position.
+         ET LE DÉBUT DE PHRASE EST DÉFINI ÉTROITEMENT, PARCE QU'UNE PREMIÈRE RÉDACTION L'A DÉFINI
+         LARGEMENT ET A CASSÉ QUARANTE PHRASES. Y compter « ; » et « : » a produit « les chiots
+         sont refusés ; Caisse de transport requise » ; y compter « . » a produit « pet + crate
+         ≤ 32 kg incl. A travel crate », parce qu'une abréviation se termine par un point sans
+         finir la phrase — et ces fiches en sont pleines (« incl. », « min. », « max. », « sept. »).
+         Distinguer l'abréviation de la fin de phrase demanderait une liste d'abréviations par
+         langue : on ne le fait pas, et on le DIT. Ne comptent donc que les deux positions dont
+         rien ne dépend : le tout début du fragment, et le début d'une ligne.
+         LE GUILLEMET OUVRANT EST TRANSPARENT, et c'est la VÉRIFICATION PAR VALEURS qui l'a
+         imposé. Une règle qui dépend de la POSITION ne voit pas la même chose selon qu'on lui
+         donne la valeur DÉCODÉE d'un scalaire — « crate that meets… », décalage 0 — ou sa PLAGE
+         BRUTE dans le YAML — « "crate that meets… » , décalage 1 derrière un guillemet. Les deux
+         chemins se sont donc contredits, et `verifierYaml` a REFUSÉ d'écrire six fichiers en
+         nommant le chemin exact de la valeur : la garde a fait son travail avant moi. Le
+         guillemet d'ouverture n'est pas du texte, il est de la syntaxe ; il ne sépare rien. */
+      const debutDePhrase = /(^|\n)[ \t]*["'`\u00ab]?[ \t]*$/.test(chaine.slice(0, decalage));
+      if (debutDePhrase) return sortie.charAt(0).toUpperCase() + sortie.slice(1);
       return !acronyme && /^\p{Lu}/u.test(m) ? sortie.charAt(0).toUpperCase() + sortie.slice(1) : sortie;
     });
     if (out !== avant) {

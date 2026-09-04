@@ -12,7 +12,7 @@
 import { readFileSync, writeFileSync, mkdtempSync, rmSync, existsSync } from "node:fs";
 import { join, dirname } from "node:path";
 import { tmpdir } from "node:os";
-import { dansUnFragmentAttribuePublie, FRAGMENTS_ATTRIBUES, dansUnSlugConserve, classer, relever, verifier, citationsDeLHeritage, ancresOrphelines, MOTIF, MOTIF_HERITE, ALTERNATIVES, FAMILLE_CONTENANT, FORMES_BORNEES, CATEGORIES, INSTRUMENTS_DE_MESURE, CHEMIN_SCELLE_INSTRUMENTS, verifierScelleInstruments } from "./inventaire-iata.mjs";
+import { jetonsNonReconcilies, reconcilier, PERIMETRE_RECONCILIE, dansUnFragmentAttribuePublie, FRAGMENTS_ATTRIBUES, dansUnSlugConserve, classer, relever, verifier, citationsDeLHeritage, ancresOrphelines, MOTIF, MOTIF_HERITE, ALTERNATIVES, FAMILLE_CONTENANT, FORMES_BORNEES, CATEGORIES, INSTRUMENTS_DE_MESURE, CHEMIN_SCELLE_INSTRUMENTS, verifierScelleInstruments } from "./inventaire-iata.mjs";
 
 let defauts = 0;
 const echec = (nom, detail) => { defauts++; console.error(`  ✗ ${nom} — ${detail}`); };
@@ -99,6 +99,12 @@ const classerLigne = (chemin, ligne) => {
        sans échantillon n'est pas éprouvée — c'est exactement ce que ce contrôle existe pour dire. */
     "Caisse IATA type", "caisse IATA", "IATA crate",
     "rigid IATA type", "type IATA rigide", "tipo IATA rígida",
+    /* LES SEPT AJOUTS DU 04/09/2026 — le complément d'agent dans les quatre langues, et les deux
+       verbes d'agrément que la réconciliation des jetons a fait sortir de l'ombre. */
+    "approved by the IATA", "agréée IATA", "IATA agréée",
+    "aprovada IATA", "IATA aprovada", "aprobada IATA", "IATA aprobada",
+    /* Et la préposition espagnole que le contrat ignorait, trouvée par la réconciliation. */
+    "conforme con la IATA",
   ];
   if (ECHANTILLONS.length !== ALTERNATIVES.length) {
     echec("4 couverture du motif", `${ALTERNATIVES.length} alternative(s) au motif pour ${ECHANTILLONS.length} échantillon(s) — l'une d'elles n'est pas éprouvée`);
@@ -494,7 +500,17 @@ const classerLigne = (chemin, ligne) => {
     "caixa rígida IATA", "caixa flexível IATA", "bolsa flexível IATA",
     "caisse de transport IATA", "caixa de transporte IATA", "bolsa de transporte IATA",
     "jaula de viaje IATA", "caixa de viagem IATA", "sac de voyage IATA",
-    "IATA travel crate", "IATA dog crate", "IATA pet crate", "IATA rental crates"];
+    "IATA travel crate", "IATA dog crate", "IATA pet crate", "IATA rental crates",
+    /* ---- `container`, ET LES DEUX VERBES D'AGRÉMENT (contre-revue du 04/09/2026) -----------
+       Le lexique des contenants ignorait le mot anglais `container` alors que la table anglaise
+       du réécriveur le connaissait : « IATA container required » est resté publié sur la fiche
+       anglaise Thai Airways pendant que le registre annonçait 0 / 0. Même mécanique sur les
+       verbes : « agréée IATA » vivait dans `rules.json`, et « approuvée par l'IATA » écrit avec
+       une apostrophe TYPOGRAPHIQUE échappait au motif comme `\b` échappe à un « é ». */
+    "IATA container", "IATA containers", "container IATA", "containers IATA",
+    "IATA rigid container", "IATA agréée",
+    "approved by IATA", "approved by the IATA", "certified by IATA",
+    "approuvée par l’IATA", "approuvée par l'IATA", "aprovada pela IATA", "aprobada por la IATA"];
   /* CE QUE LA FAMILLE VOIT EN PARTIE, ET POURQUOI C'EST SUFFISANT ICI. Dans « rigid IATA crate »
      l'adjectif précède le tout : le motif accroche « IATA crate » et laisse « rigid » dehors. Ce
      n'est pas un trou — l'affirmation interdite EST « IATA crate », et le réécriveur rend « rigid
@@ -502,7 +518,10 @@ const classerLigne = (chemin, ligne) => {
      occurrence soit vue ET jugée interdite. Exiger l'égalité au texte entier ferait échouer un
      contrôle sur une propriété qu'on ne cherche pas. */
   const VUES_EN_PARTIE = ["rigid IATA crate", "soft-sided IATA carrier", "hard IATA kennel",
-    "una jaula rígida IATA de gran tamaño"];
+    "una jaula rígida IATA de gran tamaño",
+    /* « caisse agréée IATA » : l'affirmation interdite est « agréée IATA » ; le nom du contenant
+       la précède et reste dehors, comme « rigid » devant « IATA crate ». */
+    "caisse agréée IATA", "un contenedor aprobado por la IATA"];
   /* ---- LA LIMITE DU BORNAGE, MESURÉE PLUTÔT QU'AFFIRMÉE ------------------------------------
      La famille admet UN qualificatif intercalé, pas deux. « caisse rigide double coque IATA »
      serait donc invisible — et c'est un CONSTAT, pas une garantie. Aucune forme à deux
@@ -511,6 +530,15 @@ const classerLigne = (chemin, ligne) => {
      n'enterre pas non plus la limite dans un commentaire : elle est ÉPROUVÉE. Le jour où l'on
      ajoute le second cran, ce contrôle rougira et forcera à le dire. */
   const LIMITE_NOMMEE = ["caisse rigide double coque IATA", "IATA soft-sided travel carrier"];
+  /* ET LA LIMITE EST DÉSORMAIS SURVEILLÉE, PAS SEULEMENT NOMMÉE. La contre-revue du 04/09/2026 a
+     eu raison de la rédaction précédente : elle vérifiait que deux phrases SYNTHÉTIQUES restaient
+     invisibles, sans jamais balayer le dépôt. Écrire demain « caisse rigide double coque IATA »
+     dans une vraie source aurait donc laissé le test ET le registre au vert.
+     La réconciliation renverse cela : le jeton « IATA » de ces phrases n'est ni dans une
+     occurrence du motif, ni dans un contexte licite déclaré. Il DOIT donc ressortir comme non
+     réconcilié — c'est-à-dire faire échouer l'inventaire — même si le motif spécialisé ne
+     reconnaît pas encore la forme. Une forme inconnue est bruyante, plus jamais muette. */
+  const nonSurveillees = LIMITE_NOMMEE.filter((t) => jetonsNonReconcilies(t).length === 0);
   /* « norma IATA » N'EST PAS DANS CETTE LISTE, ET C'EST UN CONSTAT, PAS UN OUBLI. L'espagnol
      « norma IATA » est classé INTERDIT par un arbitrage antérieur, alors que le français
      « norme(s) IATA » est classé LICITE. Les deux disent pourtant la même chose. L'incohérence
@@ -553,8 +581,87 @@ const classerLigne = (chemin, ligne) => {
   else if (laxistes.length) echec("10 famille", `affirmations complètes devenues licites : ${laxistes.join(", ")}`);
   else if (trop.length) echec("10 famille", `vues alors qu'elles ne disent rien d'un contenant : ${trop.join(", ")}`);
   else if (limiteDeplacee.length) echec("10 famille", `la limite du bornage a bougé sans être nommée : ${limiteDeplacee.join(", ")} — deux qualificatifs sont désormais vus, il faut le dire ici`);
-  else ok(`10 famille — ${VUES.length} formes vues en entier, ${VUES_EN_PARTIE.length} vues en partie et jugées interdites, ${LIMITE_NOMMEE.length} formes à deux qualificatifs hors bornage (limite nommée), ${LICITES.length} références licites préservées, `
+  else if (nonSurveillees.length) echec("10 famille", `hors bornage ET hors surveillance : ${nonSurveillees.join(", ")} — ces formes passeraient inaperçues dans une vraie source`);
+  else ok(`10 famille — ${VUES.length} formes vues en entier, ${VUES_EN_PARTIE.length} vues en partie et jugées interdites, ${LIMITE_NOMMEE.length} formes à deux qualificatifs hors bornage mais SURVEILLÉES par la réconciliation, ${LICITES.length} références licites préservées, `
     + `${INTERDITES.length} affirmations complètes toujours interdites, ${IGNOREES.length} formes sans contenant ignorées`);
+}
+
+/* ---- 11. LA RÉCONCILIATION DES JETONS BALAIE LE DÉPÔT, ET UNE FORME INCONNUE Y ROUGIT ------ */
+/* CE QUE CE CONTRÔLE REMPLACE. La rédaction précédente se contentait d'affirmer que deux phrases
+ * synthétiques restaient invisibles au motif. Elle ne balayait rien : ajouter la même phrase dans
+ * une VRAIE source l'aurait laissée verte, et le registre avec elle. C'est le reproche exact de la
+ * contre-revue du 04/09/2026, et il était fondé.
+ *
+ * Ici on part du CONTENU RÉEL d'une source de vérité, on y insère la forme, et on exige que la
+ * réconciliation la nomme — sans que le motif spécialisé ait besoin de la reconnaître. C'est la
+ * propriété qui manquait : ce n'est plus « je sais reconnaître ces formes-là », c'est « aucun jeton
+ * ne m'échappe ».
+ *
+ * ET LE PÉRIMÈTRE RÉEL EST À ZÉRO, éprouvé ici aussi : sans cela, un balayage qui ne trouverait
+ * jamais rien parce qu'il ne lit aucun fichier passerait pour une garantie. */
+{
+  const ecarts = [];
+  const reel = "content/airlines/thai_airways.yml";
+  let brut;
+  try { brut = readFileSync(reel, "utf8"); } catch { brut = ""; }
+  if (!brut) ecarts.push(`${reel} : source réelle illisible — la mutation ne prouverait rien`);
+  else {
+    if (jetonsNonReconcilies(brut).length !== 0)
+      ecarts.push(`${reel} porte déjà des jetons non réconciliés : le témoin n'est pas propre`);
+    for (const forme of ["caisse rigide double coque IATA", "IATA soft-sided travel carrier",
+                         "une caisse bénie par IATA", "IATA-blessed crate"]) {
+      const mute = brut.replace("The pet must be healthy", `A ${forme} is required. The pet must be healthy`);
+      if (mute === brut) { ecarts.push(`la mutation « ${forme} » ne s'est pas appliquée`); continue; }
+      const vus = jetonsNonReconcilies(mute);
+      if (!vus.some((j) => j.voisinage.includes("IATA")))
+        ecarts.push(`« ${forme} » insérée dans une source réelle n'est PAS relevée`);
+      if (vus.length <= jetonsNonReconcilies(brut).length)
+        ecarts.push(`« ${forme} » n'augmente pas le nombre de jetons non réconciliés`);
+    }
+  }
+  /* Le périmètre réel, à zéro, et non vide : il doit lire des fichiers. */
+  const restants = reconcilier();
+  if (restants.length) ecarts.push(`${restants.length} jeton(s) non réconcilié(s) dans le périmètre : ${restants[0].fichier}:${restants[0].ligne}`);
+  if (!PERIMETRE_RECONCILIE.length) ecarts.push("le périmètre de réconciliation est vide : il ne garde rien");
+  if (ecarts.length) { echec("11 réconciliation des jetons", `${ecarts.length} écart(s)`); for (const e of ecarts.slice(0, 5)) console.error(`      ${e}`); }
+  else ok(`11 réconciliation — le périmètre (${PERIMETRE_RECONCILIE.length} racines déclarées) ne laisse AUCUN jeton « IATA » sans compte, et quatre formes inconnues insérées dans une source réelle y sont toutes relevées`);
+}
+
+/* ---- 12. AUCUNE TOURNURE N'EST SILENCIEUSE, ET AUCUNE PERMISSION N'EST UN LAISSEZ-PASSER ---- */
+/* LA PROPRIÉTÉ QUE CE LOT AURAIT DÛ TENIR DÈS LE DÉPART, écrite en toutes lettres : une tournure
+ * qui touche à l'IATA est soit VUE et jugée, soit NON RÉCONCILIÉE et bruyante. Jamais silencieuse.
+ * Les trois faux zéros publiés — le qualificatif intercalé, `container`, `agréée` — étaient tous
+ * des silences, pas des erreurs de jugement.
+ *
+ * ET LE SECOND VOLET COMPTE AUTANT. Les permissions de `CONTEXTES_LICITES` sont des trous en
+ * puissance : en les écrivant, j'en ai ouvert neuf d'un coup — « a valid IATA crate », « the
+ * airline IATA kennel », « per IATA crate rules » passaient parce qu'un mot de la permission
+ * traînait dans la phrase. Une permission ne doit jamais blanchir une attribution de contenant.
+ * Les deux moitiés sont donc éprouvées ensemble : rien de silencieux d'un côté, rien de bruyant
+ * de l'autre — car un contrôle qui hurle sur tout ne serait pas lu. */
+{
+  const etat = (p) => {
+    MOTIF.lastIndex = 0;
+    if ((p.match(MOTIF) ?? []).some((x) => classer("content/airlines/x.yml", p, x, p.indexOf(x), p.indexOf(x) + x.length) !== "reference_reglementaire_legitime")) return "vue";
+    return jetonsNonReconcilies(p).length ? "bruyante" : "silencieuse";
+  };
+  /* Des attributions, dont aucune n'existe aujourd'hui dans le dépôt : c'est le point. Elles
+     éprouvent ce qui se passera le jour où quelqu'un les écrira. */
+  const ATTRIBUTIONS = ["a valid IATA crate", "the airline IATA kennel", "per IATA crate rules",
+    "a third-party IATA carrier", "latest IATA cage", "sources IATA crate",
+    "Jaula conforme con la IATA", "A IATA-blessed crate", "caisse rigide double coque IATA",
+    "IATA soft-sided travel carrier", "une caisse bénie par IATA", "IATA container required",
+    "caisse agréée IATA", "une caisse approuvée par l’IATA"];
+  /* Et des tournures licites réellement publiées, qui ne doivent pas devenir du bruit. */
+  const LICITES_REELLES = ["une caisse conforme aux normes IATA", "l'IATA publie les exigences",
+    "a rigid crate that meets the IATA Live Animals Regulations", "The travel crate (IATA)",
+    "Dimensionner la caisse avec le calculateur IATA", "crates must meet stricter IATA ventilation limits",
+    "una jaula de estándar IATA", "Hold (checked, per IATA)", "La conformité IATA si vous volez"];
+  const muettes = ATTRIBUTIONS.filter((p) => etat(p) === "silencieuse");
+  const bruyantes = LICITES_REELLES.filter((p) => etat(p) !== "silencieuse");
+  if (muettes.length) echec("12 rien de silencieux", `${muettes.length} attribution(s) qu'aucun des deux étages ne relève : ${muettes.join(" · ")}`);
+  else if (bruyantes.length) echec("12 rien de silencieux", `${bruyantes.length} tournure(s) licite(s) devenue(s) bruyante(s) : ${bruyantes.join(" · ")}`);
+  else ok(`12 aucune des ${ATTRIBUTIONS.length} attributions éprouvées n'est silencieuse — vue par le motif, ou relevée comme non réconciliée — et aucune des ${LICITES_REELLES.length} tournures licites réellement publiées ne fait de bruit`);
 }
 
 if (defauts) { console.error(`\n[inventaire] ÉCHEC — ${defauts} contre-épreuve(s) en défaut`); process.exit(1); }

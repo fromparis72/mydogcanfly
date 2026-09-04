@@ -124,11 +124,23 @@ const ok = (nom) => console.log(`  ✓ ${nom}`);
 /* ---- 5. L'ANGLAIS PRODUIT EST GRAMMATICAL ------------------------------------------------- */
 /* La faute exacte : le remplacement portait sur l'adjectif seul et laissait l'article. */
 {
+  /* LES TROIS PREMIERS CAS SONT DÉSORMAIS PLACÉS DANS UNE PHRASE, et c'est une correction du
+     témoin, pas du contrat. Depuis que la capitalisation tient compte de la POSITION — un
+     acronyme en tête de scalaire est quand même un début de phrase, voir la pastille Thai
+     Airways —, « an IATA crate » donné TOUT SEUL commence bel et bien une phrase, et « A travel
+     crate » y est juste. Le témoin voulait éprouver l'ARTICLE au milieu d'une phrase : il le dit
+     maintenant explicitement, au lieu de s'appuyer sur un décalage nul. Le quatrième cas reste
+     nu : il commence vraiment un libellé, et sa capitale initiale est vérifiée pour elle-même. */
   const cas = [
-    ["an IATA-approved crate", "a crate that meets the applicable requirements"],
-    ["an IATA crate", "a travel crate"],
-    ["an IATA kennel", "a kennel"],
+    ["You need an IATA-approved crate", "You need a crate that meets the applicable requirements"],
+    ["You need an IATA crate", "You need a travel crate"],
+    ["You need an IATA kennel", "You need a kennel"],
     ["Suitable IATA crate if travelling in the hold", "Suitable travel crate if travelling in the hold"],
+    /* Et le début de scalaire, éprouvé pour lui-même : la pastille Thai Airways disait
+       « IATA container required » et devait devenir « Travel container required », pas
+       « travel container required » à côté de « Contenant de transport requis ». */
+    ["IATA container required", "Travel container required"],
+    ["IATA crate required", "Travel crate required"],
   ];
   const ecarts = [];
   for (const [de, attendu] of cas) {
@@ -136,7 +148,9 @@ const ok = (nom) => console.log(`  ✓ ${nom}`);
     if (vu !== attendu) ecarts.push(`« ${de} » → « ${vu} » au lieu de « ${attendu} »`);
   }
   if (ecarts.length) echec("5 grammaire anglaise", ecarts.join(" · "));
-  else ok(`5 l'article suit le nom : « an IATA-approved crate » devient « ${appliquer("an IATA-approved crate", "en")} »`);
+  else ok("5 l'article suit le nom au milieu d'une phrase, et la capitale suit la POSITION en tête de scalaire"
+    + ` : « You need an IATA-approved crate » → « ${appliquer("You need an IATA-approved crate", "en")} », `
+    + `« IATA container required » → « ${appliquer("IATA container required", "en")} »`);
 }
 
 /* ---- 6. LE GENRE ET LA CASSE SUIVENT LE FRANÇAIS ------------------------------------------ */

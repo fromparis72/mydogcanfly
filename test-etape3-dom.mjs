@@ -282,7 +282,13 @@ ok(`départ : ${pages.length} pages construites`);
        * l'expression régulière ; ici on éprouve la chaîne complète, celle qui produit le registre. */
       const QUALIFIEES = ["caisse rigide IATA", "transportín rígido IATA", "caixa rígida IATA",
         "caisse de transport IATA", "IATA travel crate", "jaula de viaje IATA",
-        "bolsa de transporte IATA", "IATA rental crates"];
+        "bolsa de transporte IATA", "IATA rental crates",
+        /* `container` et les verbes d'agrément — contre-revue du 04/09/2026. « IATA container
+           required » était SERVI sur la fiche anglaise Thai Airways pendant que ce registre
+           annonçait 0 / 0, parce que le lexique canonique ignorait le mot que la table anglaise
+           du réécriveur connaissait pourtant. Ces formes sont donc éprouvées ici comme les
+           autres : dans le corps, une métadonnée, le JSON-LD et un attribut accessible. */
+        "IATA container", "IATA containers", "caisse agréée IATA", "approved by IATA"];
       for (const forme of QUALIFIEES) {
         const zones = [
           ["corps", brut.replace(/(<body[^>]*>)/, `$1<p>${forme}</p>`), "corps"],
@@ -340,6 +346,33 @@ ok(`départ : ${pages.length} pages construites`);
     }
     if (ecarts.length) { echec("1octies corrections cargo publiées", `${ecarts.length} écart(s)`); for (const e of ecarts.slice(0, 8)) console.error(`      ${e}`); }
     else ok(`1octies les ${CORRECTIONS_CARGO.length} corrections cargo sont servies au mot près dans leurs ${new Set(CORRECTIONS_CARGO.map((c) => c.page)).size} pages linguistiques — une phrase altérée d'un mot ne passe pas`);
+  }
+
+  /* ---- 1nonies. LES DEUX PHRASES THAI AIRWAYS N'EXISTENT NI À LA SOURCE NI À L'ÉCRAN --------
+   * La contre-revue les a trouvées publiées alors que tout était vert. On exige donc leur absence
+   * EXACTE aux deux étages, et la présence de ce qui les remplace — sans quoi « absent » pourrait
+   * simplement vouloir dire « la page a disparu ». */
+  {
+    const ecarts = [];
+    const ANCIENNES = ["IATA container required",
+      "provide a leak-proof, disinfected IATA container with food and water"];
+    const NEUVES = ["Travel container required",
+      "provide a leak-proof, disinfected travel container with food and water"];
+    const source = "content/airlines/thai_airways.yml";
+    const brutSource = existsSync(source) ? readFileSync(source, "utf8") : "";
+    if (!brutSource) ecarts.push(`${source} : fiche introuvable`);
+    for (const a of ANCIENNES) if (brutSource.includes(a)) ecarts.push(`${source} : « ${a} » est revenue à la source`);
+    for (const n of NEUVES) if (!brutSource.includes(n)) ecarts.push(`${source} : « ${n} » a disparu de la source`);
+    const page = join(DIST, "/airlines/thai-airways/", "index.html");
+    if (!existsSync(page)) ecarts.push("/airlines/thai-airways/ : page absente du dist");
+    else {
+      const z = zonesDe(readFileSync(page, "utf8"));
+      const tout = [z.titre, z.corps, ...Object.values(z.metas ?? {}), JSON.stringify(z.jsonLd ?? "")].join("\n");
+      for (const a of ANCIENNES) if (tout.includes(a)) ecarts.push(`/airlines/thai-airways/ : « ${a} » est SERVIE`);
+      for (const n of NEUVES) if (!tout.includes(n)) ecarts.push(`/airlines/thai-airways/ : « ${n} » n'est pas servie`);
+    }
+    if (ecarts.length) { echec("1nonies Thai Airways", `${ecarts.length} écart(s)`); for (const e of ecarts) console.error(`      ${e}`); }
+    else ok("1nonies les deux attributions Thai Airways ont disparu de la source ET de la page construite, et ce qui les remplace y est bien servi");
   }
 
   /* `--ecrire-registre` déplace la sentinelle. Il n'est PAS appelé par la CI : le registre ne
