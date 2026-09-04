@@ -11,7 +11,7 @@ import { loadKB, t as tt, inlineT, inlineF, localizer, dateFormatter } from "@my
 import FaqBlock from "./FaqBlock.astro";
 import { airlineFaq, faqJsonLd } from "../lib/faq";
 import { airlineReach, brachyBreeds, brachyRestriction } from "../lib/cluster";
-import { politiqueDuCanal, cleLibelleStatut, classeStatut, causeDeConfirmation, preuveAuditee } from "../lib/decisionCanal";
+import { politiqueDuCanal, cleLibelleStatut, classeStatut, causeDeConfirmation, preuveAuditee, sourceAffichable } from "../lib/decisionCanal";
 interface Props { id: string; locale?: string }
 const { id, locale = "en" } = Astro.props;
 const fr = locale === "fr";
@@ -189,6 +189,10 @@ const jsonLd = faqItems.length ? [webpageLd, faqJsonLd(faqItems)] : [webpageLd];
           const statut = decision.status;
           const cause = causeDeConfirmation(decision);
           const preuve = preuveAuditee(decision);
+          /* Le lien officiel SANS phrase citée n'est pas une preuve : il se montre, mais sans
+             bouclier, sans « vérifié le… » et sans indice de confiance — ces trois signes
+             disent « nous avons lu », et personne n'a lu. */
+          const lienOfficiel = preuve ? null : sourceAffichable(decision);
           return (
             <div class="mini" data-placement={c.placement} data-status={statut}>
               <div class="t">{c.icon} {t(c.name)}<span class={`pill ${classeStatut(statut)} ml`}>{tt(locale, cleLibelleStatut(statut))}</span></div>
@@ -222,6 +226,15 @@ const jsonLd = faqItems.length ? [webpageLd, faqJsonLd(faqItems)] : [webpageLd];
                     <span>{tt(locale, "premium.verified_on").replace("{date}", fmtDate(preuve.verified_date))}</span>
                     <span>{tt(locale, "premium.confidence").replace("{n}", String(preuve.confidence))}</span>
                   </div>
+                </div>
+              )}
+              {/* LA PAGE OFFICIELLE ASSOCIÉE — un lien pour aller lire, pas une preuve. Ni date de
+                * vérification ni indice de confiance : les afficher ferait exactement ce que ce
+                * lot corrige, affirmer une vérification qui n'a pas eu lieu. */}
+              {lienOfficiel && (
+                <div class="proof proof-weak">
+                  <div class="proof-h">🔗 {tt(locale, "premium.channel_official_page")}</div>
+                  <a class="proof-lnk" href={lienOfficiel.url} rel="nofollow noopener" target="_blank">{hote(lienOfficiel.url)}</a>
                 </div>
               )}
             </div>
@@ -453,6 +466,9 @@ const jsonLd = faqItems.length ? [webpageLd, faqJsonLd(faqItems)] : [webpageLd];
   .afp .proof-q { margin: 6px 0 0; padding-left: 9px; border-left: 2px solid var(--mdcf-line, #e6ebf1); color: var(--mdcf-muted, #5b6b7f); font-style: italic; line-height: 1.45; }
   .afp .proof-loc { margin-top: 5px; color: var(--mdcf-muted, #5b6b7f); }
   .afp .proof-m { display: flex; gap: 10px; flex-wrap: wrap; margin-top: 6px; font-weight: 600; color: var(--mdcf-muted, #5b6b7f); }
+  /* Le lien officiel non cité est visuellement PLUS SOBRE que la preuve : même bloc, titre en
+     retrait, aucune métadonnée. La hiérarchie visuelle dit la hiérarchie de confiance. */
+  .afp .proof-weak .proof-h { font-weight: 600; color: var(--mdcf-muted, #5b6b7f); }
   .afp table.fare { width: 100%; border-collapse: collapse; font-size: 14.5px; }
   .afp table.fare th, .afp table.fare td { padding: 9px 10px; border-bottom: 1px solid var(--mdcf-line, #e6ebf1); text-align: left; }
   .afp table.fare th { font-size: 12.5px; font-weight: 700; color: var(--mdcf-muted, #5b6b7f); text-transform: uppercase; letter-spacing: .04em; }

@@ -1,5 +1,5 @@
 import { z } from "zod";
-import { Placement, TravelType, Locale, TravelDate, PlacementStatus, TemperatureProvenance, estAutoCitation, SourcedQuote } from "@mydogcanfly/knowledge";
+import { Placement, TravelType, Locale, TravelDate, PlacementStatus, TemperatureProvenance, estAutoCitation, SourcedQuote, PLACEMENT_STATUS_CAUSES } from "@mydogcanfly/knowledge";
 import type { LocalizedText } from "@mydogcanfly/knowledge";
 export type { PlacementStatus, TemperatureProvenance };
 
@@ -25,16 +25,20 @@ type PlacementStatusLitteral = "allowed" | "denied" | "confirmation_required";
 export const ConfirmationCause = z.discriminatedUnion("code", [
   /** Embargo `summer_embargo` déclenché sur une température ESTIMÉE — la seule cause active en T0-A. */
   z.object({ code: z.literal("estimated_climate"), rule_id: z.string().min(1) }).strict(),
-  /** Politique non publiée (Thai Cargo…) — émise par les politiques canoniques `undocumented` (T0-B). */
-  z.object({ code: z.literal("policy_unpublished"), policy_ref: z.string().regex(POLICY_REF_RE) }).strict(),
-  /** Acceptation au cas par cas / on request — politiques canoniques `case_by_case` (T0-B). */
-  z.object({ code: z.literal("airline_approval"), policy_ref: z.string().regex(POLICY_REF_RE) }).strict(),
-  /** Donnée HÉRITÉE non revérifiée (T0-B) — la condition figure dans notre fiche mais n'a pas
-   *  encore été confrontée à une source officielle à jour. L'incertitude est LA NÔTRE : la
-   *  ranger avec `policy_unpublished` l'attribuerait à la compagnie, ce qui serait exactement
-   *  la perte d'interprétation que T0-B répare. `policy_ref` est obligatoire — une donnée non
-   *  revérifiée sans le couple (compagnie, canal) qu'elle concerne serait inauditables. */
-  z.object({ code: z.literal("legacy_unreviewed"), policy_ref: z.string().regex(POLICY_REF_RE) }).strict(),
+  /* LES CAUSES DE POLITIQUE NE SONT PLUS RETAPÉES ICI — elles sont ENGENDRÉES depuis
+     `PLACEMENT_STATUS_CAUSES`, le registre du contrat de connaissance, parce que les trois
+     littéraux qui figuraient à cet endroit ont divergé au premier ajout : la quatrième cause
+     (`official_source_unquoted`) était émise par la projection, transmise telle quelle par
+     `evaluate.ts`, et REFUSÉE ici — le Finder répondait HTTP 400 sur toute route touchant une
+     compagnie concernée. Les quatre partagent exactement la même forme `{code, policy_ref}` ;
+     une cause ajoutée là-bas est désormais acceptée ici sans que personne ait à y penser.
+
+       `airline_approval`         acceptation au cas par cas ;
+       `policy_unpublished`       la compagnie ne publie pas ses conditions ;
+       `legacy_unreviewed`        NOTRE donnée n'a pas été revérifiée ;
+       `official_source_unquoted` page officielle rattachée, aucune phrase citée. */
+  ...PLACEMENT_STATUS_CAUSES.map((code) =>
+    z.object({ code: z.literal(code), policy_ref: z.string().regex(POLICY_REF_RE) }).strict()),
   /**
    * NOTRE politique BRACHYCÉPHALE n'a pas été revérifiée (T0-B3-a). Distincte de
    * `legacy_unreviewed`, qui parle de notre donnée de CANAL : celle-ci parle de ce que la

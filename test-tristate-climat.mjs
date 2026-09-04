@@ -17,7 +17,7 @@
  * réimplémentant le moteur, et sans toucher un fichier.
  */
 import worker from "./packages/workers/src/index.ts";
-import { loadKB } from "./packages/knowledge/src/index.ts";
+import { loadKB, rawKB, normalize } from "./packages/knowledge/src/index.ts";
 import { evaluate } from "./packages/engine/src/evaluate.ts";
 import { explain } from "./packages/engine/src/explain.ts";
 import { rankDestinations } from "./packages/engine/src/destinations.ts";
@@ -30,6 +30,46 @@ const check = (label, cond, detail = "") => {
 };
 
 const kb = loadKB();
+
+/* ── UNE PREUVE CITÉE, POUR QUE LES TÉMOINS RESTENT DES TÉMOINS ────────────────────────────────
+ *
+ * Depuis la frontière de confiance (04/09/2026), une politique ne produit `allowed` que si sa
+ * provenance porte une phrase citée, sa langue et son emplacement. Aucune des 302 politiques
+ * réelles n'en porte : sur la KB telle quelle plus AUCUN canal n'est `allowed`, et six contrôles
+ * de ce harnais — tri, verdict, dominance — perdaient leur témoin. Un témoin qui ne peut plus se
+ * déclencher ne prouve plus rien : il fallait le rétablir, pas l'abaisser.
+ *
+ * ON CITE DONC LA SOURCE, ET ON LAISSE LA PROJECTION DÉCIDER. La première version de ce bloc
+ * forçait `status: "allowed"` sur la politique déjà projetée : elle contournait exactement le
+ * mécanisme qu'elle prétendait exercer, et rouvrait même des canaux refusés. On repart donc de
+ * la donnée d'AUTEUR — `rawKB` — à laquelle on ajoute une citation, et c'est
+ * `projectPlacementPolicy` qui en tire le statut, comme en production.
+ *
+ * La citation est fictive et le dit. Ce qui est vrai ici, et vérifié, c'est le MÉCANISME : une
+ * politique pourvue d'une preuve complète décide encore ; sans elle, elle ne décide plus. `kb`
+ * (non citée) reste la KB réelle et sert à tous les contrôles sur données réelles.
+ */
+const kbCitee = (() => {
+  const brut = JSON.parse(JSON.stringify(rawKB));
+  for (const a of brut.airlines ?? []) {
+    const pol = a?.premium?.policy;
+    if (!pol) continue;
+    for (const d of Object.values(pol)) {
+      /* TOUTES les provenances sont citées ici, y compris les dérivées, et `source_derived` est
+         retiré avec elles : cette KB est SYNTHÉTIQUE et n'existe que pour rendre aux contrôles de
+         tri et de verdict une population `allowed` à ordonner. Se limiter aux 35 provenances non
+         fabriquées ne produisait aucune soute autorisée sur CDG→IST — le témoin restait mort.
+         Ce n'est pas une preuve fabriquée : rien ici n'est publié, et la démonstration que seule
+         une preuve citée décide vit dans `test-frontiere-confiance.mjs`, sur la KB réelle. */
+      if (!d?.source) continue;
+      delete d.source_derived;
+      d.source.quote = "Pets are accepted on this route, subject to the conditions below.";
+      d.source.quote_language = "en";
+      d.source.locator = "section « Travelling with pets », paragraphe 1";
+    }
+  }
+  return normalize(brut);
+})();
 /* Date DYNAMIQUE (contre-revue v3, corrigée en v7 sur la contre-revue v6) : le PROCHAIN 15
    juillet, comparé sur la date complète — la version par mois seul choisissait le 15 juillet de
    l'année SUIVANTE quand on était entre le 1er et le 14 juillet, cinq jours avant le bon. */
@@ -121,7 +161,7 @@ console.log("\n=== 4. Tri-state : estimation → confirmation_required ; fournie
   const repV = explain(vis, "fr");
   check("température fournie : climat.embargo=true, confirmation_required=false",
     repV.climate?.embargo === true && repV.climate?.confirmation_required === false, JSON.stringify(repV.climate));
-  const froid = evaluate(kb, FinderRequest.parse({ origin: "airport_cdg", destination: "airport_ist", dog: GOLDEN, date: JUILLET, weather: { temperature_c: 20 } }));
+  const froid = evaluate(kbCitee, FinderRequest.parse({ origin: "airport_cdg", destination: "airport_ist", dog: GOLDEN, date: JUILLET, weather: { temperature_c: 20 } }));
   const pFroid = stOf(froid, "airline_turkish", "hold");
   check("température fournie SOUS le seuil (20) : hold = allowed (l'embargo ne se déclenche pas)",
     pFroid?.status === "allowed", JSON.stringify(pFroid));
@@ -166,9 +206,23 @@ console.log("\n=== 5. Dominance : denied > confirmation_required — interaction
    * sourcé (brest_ba_iag_snub_nose_case_by_case). Le cargo BA d'un brachycéphale passe de
    * « denied » à « confirmation_required[breed_policy_unreviewed] » : 24 → 25. Compte figé,
    * mouvement nommé — toute bascule non documentée doit toujours rougir. */
-  check("carlin : les confirmations qui existent ont pour cause la RACE, et elles sont 25",
-    race === 25 && confirmations.length === 25,
-    `${confirmations.length} confirmation(s), dont ${race} de race, sur ${tousLesCanaux.length} canaux`);
+  /* MOUVEMENT NOMMÉ (frontière de confiance, 04/09/2026) : 25 → 44 confirmations, dont 27 de
+   * race. Les 25 d'origine étaient TOUTES de cause raciale, parce qu'aucune autre cause ne
+   * pouvait exister : les politiques décidaient sans preuve. Depuis, une politique sans phrase
+   * citée passe « à confirmer » et apporte sa propre cause — d'où 17 confirmations de PROVENANCE
+   * qui n'existaient pas, et 2 canaux de race de plus (leur politique ne les refuse plus en dur).
+   * Les causes S'ACCUMULENT — c'est le contrat, et aucune ne masque l'autre : les 44 portent une
+   * cause de provenance, et 27 d'entre elles portent EN PLUS la cause raciale. La première
+   * rédaction de ce contrôle les croyait exclusives et attendait 17 ; elle décrivait un contrat
+   * qui n'a jamais existé.
+   * La propriété testée n'a pas bougé d'un pouce : AUCUNE confirmation n'est de cause climatique,
+   * et toute confirmation dit laquelle des deux incertitudes la porte. Compte figé, mouvement
+   * nommé — toute bascule non documentée doit toujours rougir. */
+  const provenance = confirmations.filter((p) =>
+    (p.confirmation_causes ?? []).some((c) => c.code === "legacy_unreviewed" || c.code === "official_source_unquoted")).length;
+  check("carlin : 44 confirmations — toutes de provenance, 27 aussi de race, aucune inexpliquée",
+    confirmations.length === 44 && provenance === 44 && race === 27,
+    `${confirmations.length} confirmation(s), dont ${race} de race et ${provenance} de provenance, sur ${tousLesCanaux.length} canaux`);
 }
 
 console.log("\n=== 6. Verdict : règle exacte, par restriction en mémoire ===");
@@ -176,7 +230,7 @@ console.log("\n=== 6. Verdict : règle exacte, par restriction en mémoire ===")
  * y compris par Codex sur les quatre préférences). La règle se teste donc sur une base RESTREINTE :
  * mêmes données, seule Turkish reste candidate. */
 {
-  const kbTK = { ...kb, airlines: new Map([...kb.airlines].filter(([id]) => id === "airline_turkish")) };
+  const kbTK = { ...kbCitee, airlines: new Map([...kbCitee.airlines].filter(([id]) => id === "airline_turkish")) };
   const dec = evaluate(kbTK, FinderRequest.parse({ origin: "airport_cdg", destination: "airport_ist", dog: GOLDEN, date: JUILLET, placement: "hold" }));
   const rep = explain(dec, "fr");
   check("placement=hold, seul canal à confirmer → verdict CONDITIONAL", rep.verdict === "conditional", rep.verdict);
@@ -269,7 +323,7 @@ console.log("\n=== 7 bis. climate.embargo dérive des RÈGLES, pas du seuil (con
 
 console.log("\n=== 7 ter. Tri : l'accepté RÉEL passe avant le « à confirmer » (contre-revue v3) ===");
 {
-  const est = evaluate(kb, FinderRequest.parse({ origin: "airport_cdg", destination: "airport_ist", dog: GOLDEN, date: JUILLET }));
+  const est = evaluate(kbCitee, FinderRequest.parse({ origin: "airport_cdg", destination: "airport_ist", dog: GOLDEN, date: JUILLET }));
   const rep = explain(est, "fr");
   const premierConfirmSeul = rep.airlines.findIndex((a) => !a.cabin && !a.hold && !a.cargo && (a.to_confirm?.length ?? 0) > 0);
   const dernierAccepte = rep.airlines.map((a, i) => (a.cabin || a.hold || a.cargo ? i : -1)).reduce((x, y) => Math.max(x, y), -1);
@@ -309,7 +363,7 @@ console.log("\n=== 7 quinquies. Tri par PLACEMENT DEMANDÉ — 5 kg, soute ET fr
      couvrait aussi le fret. La CI fige désormais ce résultat (aujourd'hui : 12 autorisées puis
      4 à confirmer, sur les deux canaux) au lieu de dépendre d'une mesure ponctuelle. */
   for (const canal of ["hold", "cargo"]) {
-    const dec = evaluate(kb, FinderRequest.parse({ origin: "airport_cdg", destination: "airport_ist", dog: { weight_kg: 5 }, date: JUILLET, placement: canal }));
+    const dec = evaluate(kbCitee, FinderRequest.parse({ origin: "airport_cdg", destination: "airport_ist", dog: { weight_kg: 5 }, date: JUILLET, placement: canal }));
     const rep = explain(dec, "fr");
     const ok = rep.airlines.map((a, i) => ((canal === "hold" ? a.hold : a.cargo) ? i : -1)).filter((i) => i >= 0);
     const confirm = rep.airlines.map((a, i) => ((canal === "hold" ? a.hold_status : a.cargo_status) === "confirmation_required" ? i : -1)).filter((i) => i >= 0);

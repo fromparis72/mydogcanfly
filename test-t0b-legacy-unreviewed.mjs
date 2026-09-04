@@ -242,8 +242,17 @@ console.log("=== 6. Agrégation Destinations : le signal survit, avec compagnie 
   /* Une seconde compagnie ouverte ne doit pas effacer le signal de la première. */
   const OTHER = "airline_fixture_t0b_two";
   const clone2 = { ...base, id: OTHER, name: "Fixture T0B Two", premium: { ...base.premium, policy: { ...base.premium?.policy, hold: NON_REVUE } } };
+  /* La soute de la compagnie de référence est POSÉE `allowed` en fixture, avec une provenance
+     citée : depuis la frontière de confiance (04/09/2026), aucune politique réelle ne l'est, et
+     le témoin de dominance — « un canal agrégé `allowed` n'efface pas le signal d'une autre
+     compagnie » — n'avait plus de canal autorisé à agréger. La propriété testée ne parle pas de
+     provenance ; on lui rend donc son cas, sans emprunter à une donnée qui ne le dit plus. */
+  const SOUTE_AUTORISEE = { status: "allowed", allowed: true,
+    source: { ...(base.premium?.policy?.hold?.source ?? base.premium?.policy?.cabin?.source),
+      quote: "Dogs are accepted in the hold on this route.", quote_language: "en", locator: "section « Pets »" } };
   const dst2 = rankDestinations(fixtureKB({
-    airlines: [AIRLINE], dropRules: (r) => r.category === "summer_embargo", extraAirlines: [clone2],
+    airlines: [AIRLINE], patchPolicy: { [AIRLINE]: { hold: SOUTE_AUTORISEE } },
+    dropRules: (r) => r.category === "summer_embargo", extraAirlines: [clone2],
   }), { origin: "airport_cdg", dog: GOLDEN, date: JANVIER, locale: "en", placement: "any" });
   const ist2 = dst2.matches.find((m) => m.iata === "IST");
   check("hold agrégé = allowed (dominance destination) MAIS le signal de l'autre compagnie survit",
@@ -261,7 +270,7 @@ console.log("=== 7. T0-B2 : la migration est FAITE, et la forme héritée est in
      l'héritage non re-vérifié (« not_offered » affirmait une interdiction qu'aucune page
      officielle lisible ne prouve), décision nommée dans DECISIONS_POST_MIGRATION de
      test-t0b-matrice.mjs. 73 manifeste + 10 stale + 1 décision post-migration. */
-  let porteuses = 0, canaux = 0, nonPubliee = 0;
+  let porteuses = 0, canaux = 0, nonPubliee = 0, nonCitee = 0;
   for (const a of kb.airlines.values()) {
     for (const ch of ["cabin", "hold", "cargo"]) {
       const p = a.premium?.policy?.[ch];
@@ -269,10 +278,20 @@ console.log("=== 7. T0-B2 : la migration est FAITE, et la forme héritée est in
       canaux++;
       if (p.status_cause === "legacy_unreviewed") porteuses++;
       if (p.status_cause === "policy_unpublished") nonPubliee++;
+      if (p.status_cause === "official_source_unquoted") nonCitee++;
     }
   }
   check(`les ${canaux} politiques réelles sont au complet`, canaux === 302, String(canaux));
-  check("84 politiques émettent legacy_unreviewed (73 manifeste + 10 stale + Garuda cabine)", porteuses === 84, String(porteuses));
+  /* 04/09/2026 — FRONTIÈRE DE CONFIANCE. 84 → 267. Les 84 d'origine restent ce qu'elles étaient
+     (73 manifeste + 10 stale + Garuda cabine) ; s'y ajoutent les 183 décisions catégoriques dont
+     la provenance est fabriquée depuis notre propre fiche, auto-citée, ou absente — elles ne
+     peuvent ni décider ni montrer quoi que ce soit. Les 33 qui gardent une page officielle à
+     montrer portent `official_source_unquoted` et sont comptées à part, ci-dessous : 267 + 33
+     = les 300 politiques sans preuve citée, les 2 dernières étant Thai fret et Virgin cabine. */
+  check("267 politiques émettent legacy_unreviewed (84 d'origine + 183 sans page à montrer)",
+    porteuses === 267, String(porteuses));
+  check("33 politiques émettent official_source_unquoted — une page officielle, aucune phrase citée",
+    nonCitee === 33, String(nonCitee));
   check("1 seule émet policy_unpublished (Thai Cargo)", nonPubliee === 1, String(nonPubliee));
 
   /* 7.2 — l'artefact ne porte plus AUCUNE forme d'auteur héritée. C'est la contrepartie
@@ -493,8 +512,12 @@ console.log("=== 8. Baseline FIGÉE : le point de comparaison de T0-B2 est scell
    * roulant : ni la RC ni l'étape 2 ne sont écrasées, et la preuve permanente « étape 2 → 3 » de
    * test-t0a-baseline.mjs établit que SEUL le libellé de canal les sépare — 430 cartes sur 1 560,
    * toutes multicanales, 1 130 inchangées, rien d'autre nulle part. */
-  check("Tarifs étape 3 : la baseline vivante est identique à la figée la plus récente",
-    vivante.equals(readFileSync("test-baselines/tarifs-etape3-finder-baseline-apres.json")));
+  /* 04/09/2026 — LA PLUS RÉCENTE EST CELLE DE LA FRONTIÈRE DE CONFIANCE. Même principe roulant :
+   * celle de l'étape 3 des Tarifs n'est pas écrasée, elle devient l'AVANT de ce lot, et la preuve
+   * permanente de test-t0a-baseline.mjs établit ce qui sépare la paire — 1 948 bascules, toutes
+   * vers « à confirmer », aucune vers `allowed`, aucune vers `denied`. */
+  check("Frontière de confiance : la baseline vivante est identique à la figée la plus récente",
+    vivante.equals(readFileSync("test-baselines/frontiere-finder-baseline-apres.json")));
   check("Tarifs étape 3 : la figée de l'étape 2 reste intacte à côté (elle n'a pas été écrasée)",
     !readFileSync("test-baselines/tarifs-finder-baseline-apres.json")
       .equals(readFileSync("test-baselines/tarifs-etape3-finder-baseline-apres.json")));

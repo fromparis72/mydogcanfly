@@ -31,7 +31,7 @@
  *     cartes du Finder. Deux copies d'une même règle finissent toujours par diverger.
  */
 import type { PlacementPolicy, PolicySource } from "@mydogcanfly/knowledge";
-import { preuveAuditee as preuveAuditeeCanonique } from "@mydogcanfly/knowledge";
+import { preuveAuditee as preuveAuditeeCanonique, sourceAffichable as sourceAffichableCanonique } from "@mydogcanfly/knowledge";
 
 export type Placement = "cabin" | "hold" | "cargo";
 export type StatutCanonique = "allowed" | "denied" | "confirmation_required";
@@ -68,3 +68,12 @@ export const causeDeConfirmation = (d: PlacementPolicy): string | null =>
 /** La source AUDITÉE d'une politique, ou `null` — règle canonique, appliquée telle quelle. */
 export const preuveAuditee = (d: PlacementPolicy | undefined): PolicySource | null =>
   preuveAuditeeCanonique(d) ?? null;
+
+/**
+ * LE LIEN OFFICIEL À MONTRER, preuve ou simple page associée — contrat plus faible, nom distinct.
+ * L'écran a besoin des deux notions : ce qui FONDE la réponse (rien, aujourd'hui) et ce que le
+ * visiteur peut aller lire. Les confondre au niveau du code ferait passer la seconde pour la
+ * première ; c'est la raison d'être des deux résolveurs séparés dans `preuve.ts`.
+ */
+export const sourceAffichable = (d: PlacementPolicy | undefined): PolicySource | null =>
+  sourceAffichableCanonique(d) ?? null;

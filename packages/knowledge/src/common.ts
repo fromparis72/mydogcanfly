@@ -111,6 +111,35 @@ export const id = (prefix: string) =>
 export const SourceType = z.enum([
   "official_website", "regulation", "government", "airline_contact", "press", "other",
 ]);
+/**
+ * Types de source pouvant fonder un FAIT MÉTIER. Un article de presse ou un « other » documentent
+ * un contexte ; ils ne ferment pas un canal à un chien.
+ *
+ * DÉFINI ICI, ET PLUS DANS `breed-restrictions.ts`. Trois fichiers avaient besoin de cette liste —
+ * la preuve d'une restriction de race, la projection d'une politique de canal, la qualification
+ * d'un lien officiel. La recopier trois fois, c'est la garantie qu'elles divergeront : c'est
+ * exactement la faute que ce dépôt documente partout ailleurs. `common.ts` n'importe que `zod`,
+ * donc tout le monde peut la lire sans cycle.
+ */
+export const FACTUAL_SOURCE_TYPES = [
+  "official_website", "regulation", "government", "airline_contact",
+] as const;
+
+/** Domaines qui ne peuvent JAMAIS fonder un fait métier — nous compris, sous-domaines inclus. */
+export const FORBIDDEN_SOURCE_DOMAINS = ["mydogcanfly.com"] as const;
+
+/** Hostname normalisé : minuscules, point final retiré, préfixe `www.` conservé tel quel. */
+export const normalizeHost = (url: string): string =>
+  new URL(url).hostname.toLowerCase().replace(/\.+$/, "");
+
+/** `true` si l'URL est une de nos pages. Une URL illisible n'est pas une auto-citation. */
+export const isForbiddenSource = (url: string | undefined | null): boolean => {
+  if (!url) return false;
+  let host: string;
+  try { host = normalizeHost(String(url)); } catch { return false; }
+  return FORBIDDEN_SOURCE_DOMAINS.some((d) => host === d || host.endsWith("." + d));
+};
+
 export const ReviewEvent = z.object({
   date: z.string().date(),
   reviewer: z.string(),

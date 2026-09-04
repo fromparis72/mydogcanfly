@@ -82,6 +82,37 @@ export const estNonRevue = (p: PolitiqueSourcable | undefined | null): boolean =
 export function preuveAuditee<T extends PolitiqueSourcable>(p: T | undefined | null): NonNullable<T["source"]> | null {
   if (!p || !p.source) return null;
   if (estNonRevue(p)) return null;
+  if (estSourceOfficielleNonCitee(p)) return null;
+  if (p.source_derived) return null;
+  if (estAutoCitation(p.source.url)) return null;
+  return p.source as NonNullable<T["source"]>;
+}
+
+/**
+ * QUATRIÈME EXCLUSION — la page officielle SANS phrase citée (contre-revue Codex, P0-3).
+ *
+ * J'avais proposé de laisser ce fichier inchangé pour que la source d'un canal « source
+ * officielle associée » reste exposée par `preuveAuditee`. C'était faux, et le nom de la fonction
+ * suffisait à le dire : elle promet une preuve AUDITÉE. Lui faire retourner une URL dont aucune
+ * phrase n'a été lue, c'est renommer le fait sans le changer — et tous ses appelants, moteur
+ * compris, auraient pris cette URL pour une preuve. La fonction la refuse donc.
+ */
+export const estSourceOfficielleNonCitee = (p: PolitiqueSourcable | undefined | null): boolean =>
+  p?.status_cause === "official_source_unquoted";
+
+/**
+ * LE LIEN OFFICIEL AFFICHABLE — délibérément distinct de la preuve.
+ *
+ * Ce n'est pas un troisième modèle de provenance : c'est la même `Source`, résolue par une
+ * fonction dont le contrat est plus faible et dit lequel. Elle répond « voici la page où le
+ * visiteur ira lire lui-même », jamais « voici ce qui fonde notre réponse ». Les deux
+ * résolveurs restent séparés pour qu'aucun appelant ne puisse confondre l'un avec l'autre.
+ */
+export function sourceAffichable<T extends PolitiqueSourcable>(p: T | undefined | null): NonNullable<T["source"]> | null {
+  const auditee = preuveAuditee(p);
+  if (auditee) return auditee;
+  if (!p || !p.source) return null;
+  if (!estSourceOfficielleNonCitee(p)) return null;   // rien d'autre ne devient affichable
   if (p.source_derived) return null;
   if (estAutoCitation(p.source.url)) return null;
   return p.source as NonNullable<T["source"]>;

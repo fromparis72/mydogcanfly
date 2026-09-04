@@ -93,13 +93,31 @@ if (WRITE) {
 } else {
   const ref = JSON.parse(readFileSync(FILE, "utf8"));
   check("le nombre de couples recalculé égale le fichier versionné", couples === ref.couples_evalues, `${couples} vs ${ref.couples_evalues}`);
-  check("les ENTRÉES EXACTES concordent (chaque bascule, une à une)",
-    JSON.stringify(entries) === JSON.stringify(ref.entries),
-    `${entries.length} recalculées vs ${ref.entries?.length ?? 0} versionnées`);
-  check("compteurs cohérents avec les entrées recalculées",
-    ref.changements === entries.length && ref.false_to_true === f2t && ref.true_to_false === entries.length - f2t);
-  check("liste EXACTE des compagnies", JSON.stringify(airlines) === JSON.stringify(ref.airlines), airlines.join(","));
+
+  /* ── LE TÉMOIN DE TRANSITION EST ARRIVÉ AU BOUT (frontière de confiance, 04/09/2026) ────────
+   *
+   * `_legacy_carries_pets` reproduit l'ANCIEN calcul, qui exigeait `allowed === true` sur au
+   * moins un canal. Depuis que seule une phrase citée produit `allowed`, et qu'aucune des 302
+   * politiques n'en porte, cette condition est devenue INATTEIGNABLE : le témoin vaut `false`
+   * partout, et la comparaison ancien/nouveau bascule sur les 42 360 couples. La régénérer
+   * donnerait un fichier de 6,7 Mo disant « tout diffère » — vrai, et sans aucune information.
+   *
+   * On ne baisse donc pas la barrière, on constate qu'elle a fini son travail — l'en-tête de ce
+   * fichier l'annonçait déjà : « ce fichier et le témoin partent ensemble une fois la migration
+   * digérée ». Ce qui est vérifié à la place est PLUS FORT que la comparaison entrée par entrée :
+   * la dégénérescence elle-même est affirmée, avec sa cause. Si un jour une politique redevenait
+   * `allowed` — première citation vérifiée intégrée —, ce contrôle ROUGIRAIT, et c'est
+   * exactement ce qu'on veut : le témoin devra alors être retiré pour de bon, ou refiger.
+   *
+   * L'INVARIANT DE SÛRETÉ, lui, reste vérifié sur le recalcul du jour, et il n'a jamais été
+   * aussi chargé : aucune compagnie ne PERD son transport d'animaux. */
+  check("le témoin hérité est INATTEIGNABLE : aucun canal n'est `allowed`, il vaut false partout",
+    entries.length === couples && entries.every((e) => e.old === false),
+    `${entries.length} bascule(s) sur ${couples} couples`);
   check("toutes les bascules sont false→true (aucune perte de transport)", entries.every((e) => e.new && !e.old));
+  check("la mesure T0-B2 reste figée (2 017 bascules, 55 compagnies) — elle n'est PAS régénérée",
+    ref.changements === 2017 && ref.airlines.length === 55 && ref.true_to_false === 0,
+    JSON.stringify({ ch: ref.changements, air: ref.airlines?.length, t2f: ref.true_to_false }));
 
   /* Le relevé T0-A reste intact et lisible : il borne encore les 11 compagnies de la preuve
      historique. Le figer ici évite qu'un `--write` distrait ne le régénère sur des données

@@ -231,12 +231,30 @@ console.log("=== 2. Les branches décisives — statut, causes, PREUVES, et le r
         && d.evidence[0].restriction_ref === "brest_allow_a" && d.evidence[0].role === "authorisation",
       JSON.stringify(d));
   }
-  /* Un canal structurellement fermé ne se rouvre pas — sur une compagnie RÉELLEMENT fermée. */
+  /* Un canal structurellement fermé ne se rouvre pas — sur une compagnie RÉELLEMENT fermée.
+   *
+   * 04/09/2026 — la soute d'Air Serbia est `not_offered` dans sa fiche, mais sans phrase citée :
+   * depuis la frontière de confiance elle sort « à confirmer », et le témoin « bien `denied`
+   * avant toute restriction » n'avait plus de canal fermé à observer. On CITE donc sa provenance
+   * dans une KB de test, et la projection la referme d'elle-même — ce qui vérifie au passage,
+   * gratuitement, que la fermeture reste possible dès qu'une phrase la fonde. */
   {
-    const ferme = canal(rapport(kbAvec([]), req()), "hold", FERMEE);
+    const kbFermeeCitee = (restrictions) => {
+      const brut = JSON.parse(JSON.stringify(rawKB));
+      const a = (brut.airlines ?? []).find((x) => x.id === FERMEE);
+      const src = a?.premium?.policy?.hold?.source;
+      if (!src) throw new Error(`fixture : ${FERMEE} sans source de soute`);
+      src.quote = "Dogs are not accepted in the hold on this route.";
+      src.quote_language = "en";
+      src.locator = "section « Pets »";
+      delete a.premium.policy.hold.source_derived;
+      const kb = normalize({ ...brut, breed_restrictions: restrictions });
+      return { ...kb, rules: kb.rules };
+    };
+    const ferme = canal(rapport(kbFermeeCitee([]), req()), "hold", FERMEE);
     check(`témoin : la soute de ${FERMEE} est bien \`denied\` avant toute restriction`,
       ferme?.status === "denied", JSON.stringify(ferme));
-    const d = canal(rapport(kbAvec([{ ...r("brest_allow_ferme", "allow"), airline_id: FERMEE }]), req()), "hold", FERMEE);
+    const d = canal(rapport(kbFermeeCitee([{ ...r("brest_allow_ferme", "allow"), airline_id: FERMEE }]), req()), "hold", FERMEE);
     check("un canal fermé le reste : `allow` ne crée pas une soute qui n'existe pas",
       d.status === "denied" && d.evidence === undefined, JSON.stringify(d));
   }
@@ -449,8 +467,13 @@ console.log("=== 8. Sur le référentiel RÉEL, après T0-B3-b ===");
      BA ouvre son cargo en « à confirmer » pour un brachycéphale (+1 cause par rapport), et
      l'avis IAG/BA se publie À CÔTÉ de l'IATA (2 avis par rapport, 8 rapports). Comptes figés,
      mouvement nommé — toute bascule non documentée doit toujours rougir. */
+  /* 04/09/2026 — FRONTIÈRE DE CONFIANCE : 280 → 298 causes, à cartes constantes (206). Les 18
+     nouvelles sont des canaux qu'une politique non prouvée fermait en dur et qui, devenus « à
+     confirmer », laissent désormais la cause de RACE s'exprimer là où elle était éteinte par le
+     refus. Aucune carte n'apparaît ni ne disparaît, et le chien non visé reste à zéro — la
+     propriété testée est intacte. Compte figé, mouvement nommé. */
   check(`le chien VISÉ reçoit l'incertitude : ${carlin.causes} causes de race sur ${carlin.cartes} cartes`,
-    carlin.causes === 280 && carlin.cartes === 206, JSON.stringify(carlin));
+    carlin.causes === 298 && carlin.cartes === 206, JSON.stringify(carlin));
   check("… et les avis IATA et IAG/BA lui sont publiés, une fois chacun par rapport",
     carlin.avis === 16, JSON.stringify(carlin.avis));
   check("AUCUNE preuve de race : le registre ne porte qu'un avis, et un avis ne prouve rien",
