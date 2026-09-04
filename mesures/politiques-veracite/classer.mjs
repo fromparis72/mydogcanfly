@@ -132,7 +132,14 @@ if (import.meta.url === `file://${process.argv[1]}`) {
   console.log(`  ${String(decides - prouves).padStart(4)}  rétrogradés   ${((100 * (decides - prouves)) / decides).toFixed(1)} %`);
   console.log(`  ${String(cartesA).padStart(4)}  cartes compagnie portant au moins un « à confirmer »`);
   console.log(`  ${String(sansCanalA.length).padStart(4)}  compagnies sans AUCUN canal décidé  → l'outil ne dit plus rien`);
-  console.log(`\nSCÉNARIO B — un CORROBORÉ tient une indication prudente\n`);
+  console.log(`\nSCÉNARIO B — RÉFUTÉ PAR LA CONTRE-REVUE DU 04/09/2026, conservé pour mémoire\n`);
+  console.log(`  Les « 60 corroborés » ci-dessous N'EXISTENT PAS. L'appariement qui les produit ne`);
+  console.log(`  regarde ni l'ACTION de la règle ni sa PORTÉE : 32 de ces 60 sont des politiques`);
+  console.log(`  « offered » adossées à des règles « deny », et le reste inclut des refus mondiaux`);
+  console.log(`  appuyés sur une interdiction limitée au Royaume-Uni. Le fait qui tranche : les 208`);
+  console.log(`  règles de portée compagnie sont TOUTES des « deny » — aucune ne peut soutenir une`);
+  console.log(`  acceptation. L'appariement correct vit dans qualifier.mjs, et la classe retenue`);
+  console.log(`  s'appelle « official_source_unquoted » : une page officielle, aucune phrase citée.\n`);
   console.log(`  ${String(corrobores).padStart(4)}  décidés adossés à une règle officielle vérifiée`);
   console.log(`  ${String(muets).padStart(4)}  rétrogradés sans rien à dire   ${((100 * muets) / decides).toFixed(1)} %`);
   console.log(`  ${String(cartesB).padStart(4)}  cartes compagnie portant au moins un « à confirmer »`);
