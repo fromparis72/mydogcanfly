@@ -399,10 +399,50 @@ export const CONTEXTES_LICITES = [
 const VOISIN_DE_CONTENANT_APRES = new RegExp(`^[ \\t-]*(?:[\\wÀ-ÿ]+[ \\t-]+){0,2}(?:${CONTENANT}|${MATIERE})(?:[^\\wÀ-ÿ]|$)`, "i");
 const VOISIN_DE_CONTENANT_AVANT = new RegExp(`(?:^|[^\\wÀ-ÿ])(?:${CONTENANT}|${MATIERE})(?:[ \\t-]+[\\wÀ-ÿ]+){0,3}[ \\t-]*$`, "i");
 
-export function jetonsNonReconcilies(texte, motif = MOTIF) {
-  const couvertMotif = [], couvertLicite = [];
+/* ---- LE SCELLÉ DES OCCURRENCES LICITES ------------------------------------------------------
+ *
+ * POURQUOI ON ARRÊTE LA COURSE AUX EXPRESSIONS RÉGULIÈRES. Chaque permission lexicale ajoutée à
+ * `CONTEXTES_LICITES` couvre une FAMILLE de phrases, dont la plupart n'existent pas — et c'est par
+ * là que les attributions passent : « IATA standards approved crate » se glissait dans la
+ * permission écrite pour « IATA standards ». Élargir le motif, puis élargir la permission, puis
+ * reboucher la permission : cette course n'a pas de fin, et chaque tour la rend plus perméable.
+ *
+ * LE SCELLÉ RENVERSE LA CHARGE. Les tournures licites qui vivent à côté d'un contenant ne sont plus
+ * couvertes par une règle générale : elles sont ÉNUMÉRÉES, une par une, avec leur chemin et leur
+ * voisinage exact. Une formulation nouvelle — même parfaitement licite — n'est couverte par
+ * personne : elle fait rougir l'inventaire, et il faut la classer puis resceller par un geste
+ * NOMMÉ (`--sceller-licites`). C'est exactement le coût voulu : il est payé par celui qui écrit
+ * la phrase, au moment où il l'écrit.
+ *
+ * CE QUE LE SCELLÉ NE FAIT PAS : il ne rend rien licite. Une occurrence que le motif juge
+ * INTERDITE reste interdite, scellée ou non — le scellé ne s'applique qu'aux jetons qu'aucune
+ * règle ne condamne et qu'un contenant voisine. */
+export const CHEMIN_SCELLE_LICITES = "occurrences-licites-scellees.json";
+
+function chargerSection(chemin, section) {
+  if (!existsSync(chemin)) return new Map();
+  try {
+    const brut = JSON.parse(readFileSync(chemin, "utf8"));
+    return new Map(Object.entries(brut[section] ?? {}).map(([k, v]) => [k, new Set(v)]));
+  } catch { return new Map(); }
+}
+/** Les tournures licites des SOURCES, par chemin de fichier. */
+export function chargerScelleLicites(chemin = CHEMIN_SCELLE_LICITES) {
+  return chargerSection(chemin, "occurrences");
+}
+/** Les mêmes, côté PAGES PUBLIÉES, par « URL · zone » — car une page n'a pas de chemin de source,
+ *  et parce qu'un défaut déplacé d'une zone à l'autre ne doit pas hériter du scellé de l'autre. */
+export function chargerScelleLicitesPubliees(chemin = CHEMIN_SCELLE_LICITES) {
+  return chargerSection(chemin, "publiees");
+}
+
+export function jetonsNonReconcilies(texte, motif = MOTIF, scelles = null) {
+  const couvertInterdit = [], couvertLegitime = [], couvertLicite = [];
   motif.lastIndex = 0;
-  for (const m of texte.matchAll(motif)) couvertMotif.push([m.index, m.index + m[0].length]);
+  for (const m of texte.matchAll(motif)) {
+    (jugerOccurrence(m[0]) === "interdite" ? couvertInterdit : couvertLegitime)
+      .push([m.index, m.index + m[0].length]);
+  }
   const couvertFort = [];
   for (const [re, , fort] of CONTEXTES_LICITES) {
     re.lastIndex = 0;
@@ -412,17 +452,37 @@ export function jetonsNonReconcilies(texte, motif = MOTIF) {
   const jeton = /(?<![\wÀ-ÿ])IATA(?![\wÀ-ÿ])/g;
   let m;
   while ((m = jeton.exec(texte))) {
-    const avant = texte.slice(Math.max(0, m.index - 30), m.index);
-    const apres = texte.slice(m.index + 4, m.index + 34);
+    /* LA FENÊTRE DOIT CONTENIR CE QUE LE MOTIF CHERCHE. À 30 caractères, « IATA requirements
+       compliant carrier » était coupée sur « carrie » et l'attribution passait : une garde qui
+       tronque le mot qu'elle cherche ne garde rien. Trois mots plus un nom de contenant tiennent
+       en 45 caractères dans les quatre langues. */
+    const avant = texte.slice(Math.max(0, m.index - 45), m.index);
+    const apres = texte.slice(m.index + 4, m.index + 49);
     const touche = VOISIN_DE_CONTENANT_AVANT.test(avant) || VOISIN_DE_CONTENANT_APRES.test(apres);
     const dedans = (l) => l.some(([a, b]) => m.index >= a && m.index + 4 <= b);
-    if (dedans(couvertMotif)) continue;
-    if (dedans(couvertFort)) continue;                      // permission forte : elle NOMME
-    if (!touche && dedans(couvertLicite)) continue;         // permission faible : sous garde
+    /* UN FRAGMENT LICITE PEUT HABILLER UNE ATTRIBUTION. « IATA standards approved crate » contient
+       « IATA standards », que le contrat juge LÉGITIME — et le jeton passait donc pour rendu
+       compte, alors que la phrase attribue bien une caisse. Un jeton dans une occurrence
+       INTERDITE est, lui, réellement rendu compte : il sera rapporté comme dette. La garde de
+       voisinage s'applique donc aussi aux occurrences légitimes. */
+    if (dedans(couvertInterdit)) continue;
+    if (!touche && dedans(couvertLegitime)) continue;
+    /* AUCUNE PERMISSION NE FRANCHIT LA GARDE, PAS MÊME UNE PERMISSION « FORTE ». Le commentaire
+       précédent affirmait qu'une permission nommant une publication de l'IATA ne pouvait pas
+       blanchir une attribution ; le code, lui, l'acceptait AVANT toute garde. Trois phrases le
+       démontraient : « IATA Cargo crate », « IATA standards approved crate » et « IATA
+       requirements compliant carrier » ne déclenchaient rien du tout. La distinction fort/faible
+       est donc supprimée du chemin de décision : toute permission passe sous la même garde de
+       voisinage, et les tournures licites que cela met en défaut sont SCELLÉES une par une, par
+       chemin et par fragment, plutôt que couvertes par une permission lexicale générale. */
+    if (!touche && dedans(couvertLicite)) continue;
+    if (!touche && dedans(couvertFort)) continue;
+    const voisinage = texte.slice(Math.max(0, m.index - 45), m.index + 49).replace(/\s+/g, " ").trim();
+    if (scelles && scelles.has(voisinage)) continue;   // licite, énumérée, scellée par son chemin
     out.push({
       index: m.index,
       ligne: texte.slice(0, m.index).split("\n").length,
-      voisinage: texte.slice(Math.max(0, m.index - 45), m.index + 49).replace(/\s+/g, " ").trim(),
+      voisinage,
     });
   }
   return out;
@@ -485,7 +545,7 @@ const GENERES = [/^packages\/knowledge\/raw\/guides\.json$/, /\.generated\.json$
  * L'ÉGALITÉ EST EXACTE, ET UNE CONTRE-ÉPREUVE L'EXIGE : `dette-iata-publiee.backup.json`,
  * `docs/dette-iata-publiee.json`, `test-etape3-dom.backup.mjs` et une vraie source éditoriale ne
  * bénéficient pas de cette priorité — la même formulation y reste comptée. */
-export const INSTRUMENTS_DE_MESURE = ["dette-iata-publiee.json", "inventaire-iata.mjs", "reecrire-iata.mjs", "test-etape3-dom.mjs", "test-inventaire-iata.mjs", "test-reecriture-iata.mjs"];
+export const INSTRUMENTS_DE_MESURE = ["dette-iata-publiee.json", "occurrences-licites-scellees.json", "inventaire-iata.mjs", "reecrire-iata.mjs", "test-etape3-dom.mjs", "test-inventaire-iata.mjs", "test-reecriture-iata.mjs"];
 
 /* ---- LE SCELLÉ DES INSTRUMENTS -------------------------------------------------------------
  *
@@ -950,24 +1010,41 @@ export function* parcourir(dir, inverse = false) {
  * occurrences comme « caisse 115 × 60 × 85 cm maximum, IATA rigide » dans `ETUDE-16-COMPAGNIES.md`,
  * qui est une note d'étude et non une page. Le jour où l'un de ces fichiers se met à publier, il
  * faut l'ajouter ici — et rien ne le rappellera automatiquement. */
-export const PERIMETRE_RECONCILIE = ["content/", "packages/ui/src/", "packages/ui/public/",
-  "packages/knowledge/raw/", "packages/knowledge/translations/", "data/"];
+export const PERIMETRE_RECONCILIE = ["content/airlines/", "content/countries/",
+  "packages/ui/src/", "packages/ui/public/", "packages/knowledge/raw/",
+  "packages/knowledge/translations/", "data/"];
 
-export function reconcilier({ inverse = false, racine = RACINE, motif = MOTIF } = {}) {
+/* CE QUI EST RETIRÉ DU BALAYAGE, UN CHEMIN À LA FOIS ET AVEC SA RAISON.
+ * Il n'y a plus AUCUNE exclusion par famille ici, et c'est une faute mesurée qui l'interdit :
+ * `reconcilier()` écartait tout chemin de `GENERATRICES_DECLAREES`, qui vaut `["content/"]`. Les
+ * 324 fiches compagnies et pays — les sources de vérité mêmes de ce lot — n'étaient donc JAMAIS
+ * parcourues. Le zéro annoncé était vide de contenu : une source temporaire portant « Use an
+ * IATA-blessed travel container » était bien relevée en lecture directe et disparaissait à travers
+ * `reconcilier()`. Une exclusion écrite en famille ne se relit pas ; une exclusion écrite en
+ * chemin, si. */
+export const HORS_RECONCILIATION = [
+  /* Artefact compilé depuis le corpus Hugo v1 ; sa dette est déclarée et il n'est pas régénéré. */
+  "packages/knowledge/raw/guides.json",
+];
+
+export function reconcilier({ inverse = false, racine = RACINE, motif = MOTIF, racines = PERIMETRE_RECONCILIE, scelle = chargerScelleLicites() } = {}) {
   const out = [];
+  /* LES RACINES RÉELLEMENT PARCOURUES, rapportées avec le relevé : une racine déclarée que rien
+     ne visite est un balayage qui ment sans le dire. */
+  const vus = new Set();
   for (const p of parcourir(racine, inverse)) {
     const chemin = relative(racine, p);
-    if (!PERIMETRE_RECONCILIE.some((x) => chemin.startsWith(x))) continue;
+    if (!racines.some((x) => chemin.startsWith(x))) continue;
     if (INSTRUMENTS_DE_MESURE.includes(chemin)) continue;
     if (TESTS.some((r) => r.test(chemin))) continue;
-    if (HERITAGE_V1.some((x) => chemin === x || chemin.startsWith(x))) continue;
-    if (GENERATRICES_DECLAREES.some((x) => chemin.startsWith(x))) continue;
-    if (chemin === "packages/knowledge/raw/guides.json") continue;
+    if (HORS_RECONCILIATION.includes(chemin)) continue;
+    vus.add(racines.find((x) => chemin.startsWith(x)));
     let contenu;
     try { contenu = readFileSync(p, "utf8"); } catch { continue; }
     if (!/IATA/.test(contenu)) continue;
-    for (const j of jetonsNonReconcilies(contenu, motif)) out.push({ fichier: chemin, ...j });
+    for (const j of jetonsNonReconcilies(contenu, motif, scelle.get(chemin))) out.push({ fichier: chemin, ...j });
   }
+  out.racinesVisitees = vus;
   return out.sort((a, b) => a.fichier.localeCompare(b.fichier) || a.ligne - b.ligne);
 }
 
@@ -1028,6 +1105,33 @@ if (import.meta.url === `file://${process.argv[1]}`) {
     for (const c of chemins) console.log(`  · ${c}`);
     process.exit(0);
   }
+  /* LE GESTE DE SCELLEMENT DES OCCURRENCES LICITES. Délibéré, jamais automatique : il grave la
+     liste EXACTE des tournures licites qui voisinent un contenant, chemin par chemin. Toute
+     formulation nouvelle rougira jusqu'à ce qu'un humain la classe et rejoue ce geste. */
+  if (ARGS.includes("--sceller-licites")) {
+    const restants = reconcilier({ scelle: new Map() });
+    const par = {};
+    for (const j of restants) (par[j.fichier] ??= []).push(j.voisinage);
+    for (const k of Object.keys(par)) par[k] = [...new Set(par[k])].sort();
+    const trie = Object.fromEntries(Object.keys(par).sort().map((k) => [k, par[k]]));
+    const ancien = existsSync(CHEMIN_SCELLE_LICITES) ? JSON.parse(readFileSync(CHEMIN_SCELLE_LICITES, "utf8")) : {};
+    writeFileSync(CHEMIN_SCELLE_LICITES, JSON.stringify({
+      _commentaire: "LES TOURNURES LICITES QUI VOISINENT UN CONTENANT, ÉNUMÉRÉES UNE PAR UNE. "
+        + "Elles ne sont couvertes par aucune permission lexicale générale : c'est délibéré. Une "
+        + "permission écrite pour « IATA standards » couvrait aussi « IATA standards approved crate », "
+        + "et c'est par là que les attributions passaient. Ici, chaque tournure est nommée avec son "
+        + "chemin et son voisinage exact ; une formulation NOUVELLE, même licite, n'est couverte par "
+        + "personne et fait rougir l'inventaire jusqu'à ce qu'un humain la classe et rejoue "
+        + "`node inventaire-iata.mjs --sceller-licites`. CE SCELLÉ NE REND RIEN LICITE : une "
+        + "occurrence que le motif juge interdite le reste, scellée ou non.",
+      _mesure: { fichiers: Object.keys(trie).length, occurrences: restants.length },
+      occurrences: trie,
+      publiees: ancien.publiees ?? {},
+    }, null, 2) + "\n");
+    console.log(`  · occurrences licites SCELLÉES : ${restants.length} dans ${Object.keys(trie).length} fichier(s)`);
+    process.exit(0);
+  }
+
   const releve = relever();
 
   const constats = citationsDeLHeritage();

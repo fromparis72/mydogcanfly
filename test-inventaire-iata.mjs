@@ -9,7 +9,7 @@
  * contrat. On éprouve donc ici les quatre faux-verts trouvés par la contre-revue du 30/08/2026,
  * chacun sur sa propre cause.
  */
-import { readFileSync, writeFileSync, mkdtempSync, rmSync, existsSync } from "node:fs";
+import { readFileSync, writeFileSync, mkdtempSync, mkdirSync, rmSync, existsSync } from "node:fs";
 import { join, dirname } from "node:path";
 import { tmpdir } from "node:os";
 import { jetonsNonReconcilies, reconcilier, PERIMETRE_RECONCILIE, dansUnFragmentAttribuePublie, FRAGMENTS_ATTRIBUES, dansUnSlugConserve, classer, relever, verifier, citationsDeLHeritage, ancresOrphelines, MOTIF, MOTIF_HERITE, ALTERNATIVES, FAMILLE_CONTENANT, FORMES_BORNEES, CATEGORIES, INSTRUMENTS_DE_MESURE, CHEMIN_SCELLE_INSTRUMENTS, verifierScelleInstruments } from "./inventaire-iata.mjs";
@@ -586,45 +586,55 @@ const classerLigne = (chemin, ligne) => {
     + `${INTERDITES.length} affirmations complètes toujours interdites, ${IGNOREES.length} formes sans contenant ignorées`);
 }
 
-/* ---- 11. LA RÉCONCILIATION DES JETONS BALAIE LE DÉPÔT, ET UNE FORME INCONNUE Y ROUGIT ------ */
-/* CE QUE CE CONTRÔLE REMPLACE. La rédaction précédente se contentait d'affirmer que deux phrases
- * synthétiques restaient invisibles au motif. Elle ne balayait rien : ajouter la même phrase dans
- * une VRAIE source l'aurait laissée verte, et le registre avec elle. C'est le reproche exact de la
- * contre-revue du 04/09/2026, et il était fondé.
+/* ---- 11. LA RÉCONCILIATION PARCOURT VRAIMENT LES SOURCES, PAR SON PROPRE CHEMIN ------------ */
+/* DEUX RÉDACTIONS PRÉCÉDENTES ONT MANQUÉ CE CONTRÔLE, ET LA SECONDE ÉTAIT LA PIRE.
+ *   · La première n'affirmait que l'invisibilité de deux phrases synthétiques, sans rien balayer.
+ *   · La seconde balayait — mais `reconcilier()` écartait tout chemin de `GENERATRICES_DECLAREES`,
+ *     qui vaut `["content/"]` : les 324 fiches compagnies et pays, sources de vérité de ce lot,
+ *     n'étaient JAMAIS parcourues. Le contrôle ne l'a pas vu parce qu'il mutait une chaîne EN
+ *     MÉMOIRE et appelait `jetonsNonReconcilies()` directement, sans jamais traverser le filtrage
+ *     de chemins de `reconcilier()`. Une contre-épreuve qui court-circuite le chemin de production
+ *     n'éprouve pas le chemin de production.
  *
- * Ici on part du CONTENU RÉEL d'une source de vérité, on y insère la forme, et on exige que la
- * réconciliation la nomme — sans que le motif spécialisé ait besoin de la reconnaître. C'est la
- * propriété qui manquait : ce n'est plus « je sais reconnaître ces formes-là », c'est « aucun jeton
- * ne m'échappe ».
- *
- * ET LE PÉRIMÈTRE RÉEL EST À ZÉRO, éprouvé ici aussi : sans cela, un balayage qui ne trouverait
- * jamais rien parce qu'il ne lit aucun fichier passerait pour une garantie. */
+ * ON ÉCRIT DONC UN VRAI FICHIER dans une racine jetable, et on passe par `reconcilier({racine})` —
+ * le même code, le même filtrage — en exigeant le CHEMIN EXACT du fichier muté. Et l'on exige que
+ * chaque racine déclarée soit RÉELLEMENT visitée : une racine que rien ne parcourt est un
+ * balayage qui ment sans le dire. */
 {
   const ecarts = [];
-  const reel = "content/airlines/thai_airways.yml";
-  let brut;
-  try { brut = readFileSync(reel, "utf8"); } catch { brut = ""; }
-  if (!brut) ecarts.push(`${reel} : source réelle illisible — la mutation ne prouverait rien`);
-  else {
-    if (jetonsNonReconcilies(brut).length !== 0)
-      ecarts.push(`${reel} porte déjà des jetons non réconciliés : le témoin n'est pas propre`);
-    for (const forme of ["caisse rigide double coque IATA", "IATA soft-sided travel carrier",
-                         "une caisse bénie par IATA", "IATA-blessed crate"]) {
-      const mute = brut.replace("The pet must be healthy", `A ${forme} is required. The pet must be healthy`);
-      if (mute === brut) { ecarts.push(`la mutation « ${forme} » ne s'est pas appliquée`); continue; }
-      const vus = jetonsNonReconcilies(mute);
-      if (!vus.some((j) => j.voisinage.includes("IATA")))
-        ecarts.push(`« ${forme} » insérée dans une source réelle n'est PAS relevée`);
-      if (vus.length <= jetonsNonReconcilies(brut).length)
-        ecarts.push(`« ${forme} » n'augmente pas le nombre de jetons non réconciliés`);
+  const base = mkdtempSync(join(tmpdir(), "recon-"));
+  try {
+    const dir = join(base, "content", "airlines");
+    mkdirSync(dir, { recursive: true });
+    const FORMES = ["Use an IATA-blessed travel container", "caisse rigide double coque IATA",
+      "IATA soft-sided travel carrier", "IATA Cargo crate", "IATA standards approved crate",
+      "IATA requirements compliant carrier"];
+    for (const [i, forme] of FORMES.entries()) {
+      const nom = `x${i}.yml`;
+      writeFileSync(join(dir, nom), `name: Témoin\nnote:\n  en: "${forme}"\n`);
+      const vus = reconcilier({ racine: base, racines: ["content/airlines/"], scelle: new Map() });
+      const attendu = `content/airlines/${nom}`;
+      if (!vus.some((v) => v.fichier === attendu))
+        ecarts.push(`« ${forme} » écrite dans ${attendu} n'est pas relevée par reconcilier() — vu : ${JSON.stringify(vus.map((v) => v.fichier))}`);
+      rmSync(join(dir, nom), { force: true });
     }
-  }
-  /* Le périmètre réel, à zéro, et non vide : il doit lire des fichiers. */
-  const restants = reconcilier();
-  if (restants.length) ecarts.push(`${restants.length} jeton(s) non réconcilié(s) dans le périmètre : ${restants[0].fichier}:${restants[0].ligne}`);
-  if (!PERIMETRE_RECONCILIE.length) ecarts.push("le périmètre de réconciliation est vide : il ne garde rien");
-  if (ecarts.length) { echec("11 réconciliation des jetons", `${ecarts.length} écart(s)`); for (const e of ecarts.slice(0, 5)) console.error(`      ${e}`); }
-  else ok(`11 réconciliation — le périmètre (${PERIMETRE_RECONCILIE.length} racines déclarées) ne laisse AUCUN jeton « IATA » sans compte, et quatre formes inconnues insérées dans une source réelle y sont toutes relevées`);
+    /* ET LE TÉMOIN NÉGATIF : une racine jetable sans faute ne doit rien rendre. */
+    writeFileSync(join(dir, "propre.yml"), 'name: Témoin\nnote:\n  en: "conforme aux normes IATA"\n');
+    const propre = reconcilier({ racine: base, racines: ["content/airlines/"], scelle: new Map() });
+    if (propre.length) ecarts.push(`une racine sans faute rend ${propre.length} jeton(s) : le contrôle crie sur tout`);
+  } finally { rmSync(base, { recursive: true, force: true }); }
+
+  /* CHAQUE RACINE DÉCLARÉE EST RÉELLEMENT PARCOURUE, sur le dépôt réel. */
+  const reel = reconcilier();
+  const jamais = PERIMETRE_RECONCILIE.filter((r) => !reel.racinesVisitees.has(r));
+  if (jamais.length) ecarts.push(`racine(s) déclarée(s) que rien ne parcourt : ${jamais.join(", ")}`);
+  if (reel.length) ecarts.push(`${reel.length} jeton(s) non réconcilié(s) : ${reel[0].fichier}:${reel[0].ligne}`);
+  /* ET LE SCELLÉ DES LICITES PORTE RÉELLEMENT : sans lui, le dépôt réel ne serait pas à zéro. */
+  const sansScelle = reconcilier({ scelle: new Map() });
+  if (!sansScelle.length) ecarts.push("le scellé des occurrences licites ne retire rien : il ne prouve rien");
+
+  if (ecarts.length) { echec("11 réconciliation des jetons", `${ecarts.length} écart(s)`); for (const e of ecarts.slice(0, 6)) console.error(`      ${e}`); }
+  else ok(`11 réconciliation — six formes inconnues écrites dans une VRAIE racine jetable sont relevées par reconcilier() au chemin exact, les ${PERIMETRE_RECONCILIE.length} racines déclarées sont toutes parcourues, et le scellé retire ${sansScelle.length} tournure(s) licite(s) énumérée(s)`);
 }
 
 /* ---- 12. AUCUNE TOURNURE N'EST SILENCIEUSE, ET AUCUNE PERMISSION N'EST UN LAISSEZ-PASSER ---- */
@@ -651,17 +661,36 @@ const classerLigne = (chemin, ligne) => {
     "a third-party IATA carrier", "latest IATA cage", "sources IATA crate",
     "Jaula conforme con la IATA", "A IATA-blessed crate", "caisse rigide double coque IATA",
     "IATA soft-sided travel carrier", "une caisse bénie par IATA", "IATA container required",
-    "caisse agréée IATA", "une caisse approuvée par l’IATA"];
-  /* Et des tournures licites réellement publiées, qui ne doivent pas devenir du bruit. */
-  const LICITES_REELLES = ["une caisse conforme aux normes IATA", "l'IATA publie les exigences",
-    "a rigid crate that meets the IATA Live Animals Regulations", "The travel crate (IATA)",
-    "Dimensionner la caisse avec le calculateur IATA", "crates must meet stricter IATA ventilation limits",
-    "una jaula de estándar IATA", "Hold (checked, per IATA)", "La conformité IATA si vous volez"];
+    "caisse agréée IATA", "une caisse approuvée par l’IATA",
+    /* LES TROIS ATTAQUES DE LA CONTRE-REVUE DU 04/09/2026. Toutes trois portaient un fragment que
+       le contrat juge LICITE — « IATA Cargo », « IATA standards », « IATA requirements » — et
+       passaient donc sans bruit, en habillant l'attribution d'une permission écrite pour autre
+       chose. C'est la raison pour laquelle plus aucune permission ne franchit la garde. */
+    "IATA Cargo crate", "IATA standards approved crate", "IATA requirements compliant carrier"];
+  /* DES TOURNURES LICITES QUI NE VOISINENT AUCUN CONTENANT : celles-là, et celles-là seulement,
+     sont couvertes par une permission générale et doivent rester silencieuses. */
+  const LICITES_SANS_CONTENANT = ["l'IATA publie les exigences", "Hold (checked, per IATA)",
+    "La conformité IATA si vous volez", "IATA Live Animals Regulations", "code IATA de l'aéroport"];
+  /* ET CELLES QUI EN VOISINENT UN NE SONT COUVERTES PAR AUCUNE PERMISSION — c'est délibéré, et
+     c'est la borne honnête de la garantie. Elles sont licites, elles sont publiées, et elles ne
+     passent QUE parce qu'elles sont ÉNUMÉRÉES dans le scellé, à leur chemin. Une permission
+     écrite pour « IATA standards » couvrait aussi « IATA standards approved crate » : c'est par là
+     que les attributions passaient. On vérifie donc les deux faces — bruyantes sans le scellé,
+     silencieuses avec — sans quoi le scellé pourrait être vide sans que rien ne le dise. */
+  const LICITES_PRES_D_UN_CONTENANT = ["une caisse conforme aux normes IATA",
+    "a rigid crate that meets the IATA Live Animals Regulations",
+    "Dimensionner la caisse avec le calculateur IATA",
+    "crates must meet stricter IATA ventilation limits", "una jaula de estándar IATA"];
   const muettes = ATTRIBUTIONS.filter((p) => etat(p) === "silencieuse");
-  const bruyantes = LICITES_REELLES.filter((p) => etat(p) !== "silencieuse");
+  const bruyantes = LICITES_SANS_CONTENANT.filter((p) => etat(p) !== "silencieuse");
+  const nonScellables = LICITES_PRES_D_UN_CONTENANT.filter((p) => etat(p) === "silencieuse");
+  const nonCouvertes = LICITES_PRES_D_UN_CONTENANT.filter((p) =>
+    jetonsNonReconcilies(p, MOTIF, new Set(jetonsNonReconcilies(p).map((j) => j.voisinage))).length);
   if (muettes.length) echec("12 rien de silencieux", `${muettes.length} attribution(s) qu'aucun des deux étages ne relève : ${muettes.join(" · ")}`);
-  else if (bruyantes.length) echec("12 rien de silencieux", `${bruyantes.length} tournure(s) licite(s) devenue(s) bruyante(s) : ${bruyantes.join(" · ")}`);
-  else ok(`12 aucune des ${ATTRIBUTIONS.length} attributions éprouvées n'est silencieuse — vue par le motif, ou relevée comme non réconciliée — et aucune des ${LICITES_REELLES.length} tournures licites réellement publiées ne fait de bruit`);
+  else if (bruyantes.length) echec("12 rien de silencieux", `${bruyantes.length} tournure(s) licite(s) SANS contenant voisin devenue(s) bruyante(s) : ${bruyantes.join(" · ")}`);
+  else if (nonScellables.length) echec("12 rien de silencieux", `${nonScellables.length} tournure(s) licite(s) PRÈS d'un contenant passe(nt) sans scellé : la garantie est plus faible qu'annoncée — ${nonScellables.join(" · ")}`);
+  else if (nonCouvertes.length) echec("12 rien de silencieux", `${nonCouvertes.length} tournure(s) que son propre scellé ne couvre pas : le scellé ne sert à rien — ${nonCouvertes.join(" · ")}`);
+  else ok(`12 aucune des ${ATTRIBUTIONS.length} attributions éprouvées n'est silencieuse ; les ${LICITES_SANS_CONTENANT.length} tournures licites SANS contenant voisin le restent par permission ; les ${LICITES_PRES_D_UN_CONTENANT.length} qui en voisinent un ne passent QUE par leur scellé nominatif — la garantie est bornée à l'état exact du corpus, et elle le dit`);
 }
 
 if (defauts) { console.error(`\n[inventaire] ÉCHEC — ${defauts} contre-épreuve(s) en défaut`); process.exit(1); }

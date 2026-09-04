@@ -20,7 +20,7 @@
 import { readFileSync, writeFileSync, readdirSync, statSync, existsSync, mkdtempSync, mkdirSync, rmSync } from "node:fs";
 import { tmpdir } from "node:os";
 import { join } from "node:path";
-import { MOTIF, jugerOccurrence, dansUnSlugConserve, dansUnFragmentAttribuePublie , CORRECTIONS_CARGO } from "./inventaire-iata.mjs";
+import { MOTIF, jugerOccurrence, dansUnSlugConserve, dansUnFragmentAttribuePublie , CORRECTIONS_CARGO, jetonsNonReconcilies, chargerScelleLicitesPubliees, CHEMIN_SCELLE_LICITES } from "./inventaire-iata.mjs";
 import { zonesDe } from "./test-lib/zones-publiques.mjs";
 
 const DIST = process.argv.slice(2).find((a) => a.startsWith("--dist="))?.slice(7);
@@ -121,8 +121,13 @@ ok(`départ : ${pages.length} pages construites`);
      dans le corps, ne contient aucune suite brute « IATA » — la page était donc écartée sans
      jamais passer par le lecteur de zones, qui l'aurait pourtant rendue lisible. Un filtre posé
      AVANT le décodage annule le décodage. Les 3 121 pages sont désormais toutes parsées. */
+  /* LES TOURNURES LICITES PUBLIÉES, scellées par « URL · zone ». Voir l'instrument : une
+     permission lexicale générale couvre des phrases qui n'existent pas, et c'est par là que les
+     attributions passent. Ici, chaque tournure licite voisinant un contenant est énumérée. */
+  const SCELLE_PUBLIE = chargerScelleLicitesPubliees();
   const relevePublie = (racine, listePages) => {
     const vu = {};
+    const nus = [];
     let illisibles = 0;
     for (const p of listePages) {
       const url = p.slice(racine.length).replace(/\/index\.html$/, "/");
@@ -131,6 +136,19 @@ ok(`départ : ${pages.length} pages construites`);
       if (z.jsonLdInvalide) echec("1bis lecture", `${url} : ${z.jsonLdInvalide} bloc(s) JSON-LD illisible(s) — leur contenu n'a pas pu être jugé`);
       const par = {};
       for (const [zone, texte] of ZONES(z)) {
+        /* ---- LA RÉCONCILIATION S'EXÉCUTE SUR LA PAGE, PAS SEULEMENT SUR LES SOURCES ----------
+         * FAUTE MESURÉE LE 04/09/2026, et elle vidait la promesse de son sens. Ce relevé ne
+         * parcourait que les correspondances de `MOTIF`, puis ne retenait que celles jugées
+         * « interdite ». Un jeton que le motif ne connaît pas était donc ABSENT du registre —
+         * « IATA-blessed crate » posé dans le corps, une métadonnée ou le JSON-LD laissait le
+         * registre à 0 / 0, alors que la réconciliation des sources l'aurait déclaré bruyant.
+         * Les deux chemins de contrôle disaient deux choses différentes de la MÊME page.
+         * Le jeton non réconcilié ne rejoint PAS le registre des formulations connues : il fait
+         * échouer la porte tout de suite. Un registre est une liste de dettes CONNUES ; une
+         * tournure que personne n'a classée n'est pas une dette connue, c'est un trou. */
+        for (const j of jetonsNonReconcilies(String(texte), MOTIF, SCELLE_PUBLIE.get(`${url} · ${zone}`))) {
+          nus.push({ url, zone, voisinage: j.voisinage });
+        }
         MOTIF.lastIndex = 0;
         for (const m of String(texte).matchAll(MOTIF)) {
           if (jugerOccurrence(m[0]) !== "interdite") continue;
@@ -150,9 +168,17 @@ ok(`départ : ${pages.length} pages construites`);
       }
       if (Object.keys(par).length) vu[url] = par;
     }
-    return { vu, illisibles };
+    return { vu, illisibles, nus };
   };
-  const { vu } = relevePublie(DIST, pages);
+  const { vu, nus } = relevePublie(DIST, pages);
+  if (nus.length) {
+    echec("1septies jeton non réconcilié PUBLIÉ", `${nus.length} jeton(s) « IATA » qu'aucune règle ni aucun scellé ne rend compte`);
+    for (const n of nus.slice(0, 10)) console.error(`      ${n.url} [${n.zone}] …${n.voisinage}…`);
+    if (nus.length > 10) console.error(`      … et ${nus.length - 10} autre(s)`);
+    console.error("\n      Une tournure publiée que personne n'a classée n'entre pas au registre : elle"
+      + "\n      bloque la porte. Soit elle attribue quelque chose à l'IATA et le motif doit la voir,"
+      + "\n      soit elle est licite et rejoint le scellé par un geste nommé.");
+  } else ok(`1septies aucun jeton « IATA » publié n'échappe au compte — les ${pages.length} pages sont réconciliées zone par zone`);
 
   const comparer = (attendu, constate) => {
     const ecarts = [];
@@ -348,6 +374,53 @@ ok(`départ : ${pages.length} pages construites`);
     else ok(`1octies les ${CORRECTIONS_CARGO.length} corrections cargo sont servies au mot près dans leurs ${new Set(CORRECTIONS_CARGO.map((c) => c.page)).size} pages linguistiques — une phrase altérée d'un mot ne passe pas`);
   }
 
+  /* ---- 1decies. UNE TOURNURE INCONNUE POSÉE DANS UNE VRAIE PAGE BLOQUE LA PORTE --------------
+   * Le contrôle `1septies` s'exécute sur les 3 121 pages et n'y trouve rien : à lui seul, il ne
+   * prouve donc pas qu'il TROUVERAIT quelque chose. On pose ici l'attaque exacte de la contre-revue
+   * — « IATA-blessed crate », que le motif ne connaît pas — dans une PAGE RÉELLE, tour à tour dans
+   * le corps, une métadonnée, le JSON-LD et un attribut accessible, et l'on exige que le MÊME
+   * chemin que celui du verdict du registre la relève. Avant cette fermeture, les trois premières
+   * zones rendaient « 0 interdite » et le registre restait à 0 / 0. */
+  {
+    const ecarts = [];
+    const temoin = pages.find((p) => /\/airlines\/[^/]+\/index\.html$/.test(p.slice(DIST.length)));
+    if (!temoin) ecarts.push("aucune fiche compagnie dans le dist : la mutation ne prouverait rien");
+    else {
+      const brut = readFileSync(temoin, "utf8");
+      const dossier = mkdtempSync(join(tmpdir(), "porte-nue-"));
+      try {
+        const poser = (html) => {
+          const d = join(dossier, "p"); mkdirSync(d, { recursive: true });
+          const f = join(d, "index.html"); writeFileSync(f, html); return f;
+        };
+        const CAS = [
+          ["corps", brut.replace(/(<body[^>]*>)/, "$1<p>IATA-blessed crate</p>")],
+          /* Les trois attaques de la contre-revue, posées dans le corps d'une page réelle : elles
+             portent un fragment licite et passaient donc sans bruit. */
+          ["corps · IATA Cargo crate", brut.replace(/(<body[^>]*>)/, "$1<p>IATA Cargo crate</p>")],
+          ["corps · IATA standards approved crate", brut.replace(/(<body[^>]*>)/, "$1<p>IATA standards approved crate</p>")],
+          ["corps · IATA requirements compliant carrier", brut.replace(/(<body[^>]*>)/, "$1<p>IATA requirements compliant carrier</p>")],
+          ["métadonnée", brut.replace("</head>", '<meta name="description" content="IATA-blessed crate"></head>')],
+          ["json-ld", brut.replace("</head>", '<script type="application/ld+json">{"d":"IATA-blessed crate"}</scr' + 'ipt></head>')],
+          ["attribut accessible", brut.replace(/(<body[^>]*>)/, '$1<img alt="IATA-blessed crate" src="/x.png">')],
+        ];
+        for (const [nom, html] of CAS) {
+          const f = poser(html);
+          const { vu, nus: nusCas } = relevePublie(dossier, [f]);
+          const interdites = Object.values(vu).reduce((a, o) => a + Object.values(o).reduce((x, y) => x + y, 0), 0);
+          if (!nusCas.length) ecarts.push(`« IATA-blessed crate » posée dans ${nom} n'est PAS relevée — le registre en compterait ${interdites}`);
+          rmSync(f, { force: true });
+        }
+        /* ET LE TÉMOIN NÉGATIF : la page intacte ne doit rien rendre, sans quoi le contrôle
+           crierait sur n'importe quoi et ne dirait rien de la mutation. */
+        const intacte = poser(brut);
+        if (relevePublie(dossier, [intacte]).nus.length) ecarts.push("la page intacte est déjà bruyante : la mutation ne prouve rien");
+      } finally { rmSync(dossier, { recursive: true, force: true }); }
+    }
+    if (ecarts.length) { echec("1decies porte réconciliée", `${ecarts.length} écart(s)`); for (const e of ecarts) console.error(`      ${e}`); }
+    else ok("1decies les quatre attaques posées dans une page réelle bloquent la porte — « IATA-blessed crate » depuis les quatre zones — corps, métadonnée, JSON-LD et attribut accessible — par le chemin même qui produit le verdict du registre");
+  }
+
   /* ---- 1nonies. LES DEUX PHRASES THAI AIRWAYS N'EXISTENT NI À LA SOURCE NI À L'ÉCRAN --------
    * La contre-revue les a trouvées publiées alors que tout était vert. On exige donc leur absence
    * EXACTE aux deux étages, et la présence de ce qui les remplace — sans quoi « absent » pourrait
@@ -373,6 +446,24 @@ ok(`départ : ${pages.length} pages construites`);
     }
     if (ecarts.length) { echec("1nonies Thai Airways", `${ecarts.length} écart(s)`); for (const e of ecarts) console.error(`      ${e}`); }
     else ok("1nonies les deux attributions Thai Airways ont disparu de la source ET de la page construite, et ce qui les remplace y est bien servi");
+  }
+
+  /* LE GESTE DE SCELLEMENT DES TOURNURES LICITES PUBLIÉES. Comme `--ecrire-registre`, il est
+     délibéré et n'est PAS appelé par la CI : une tournure nouvelle bloque la porte jusqu'à ce
+     qu'un humain la classe et rejoue ce geste.
+     UNE OBSERVATION Y EST CONSIGNÉE PLUTÔT QU'ENTERRÉE : sur les fiches compagnies, deux `<span>`
+     adjacents sans espace se soudent au rendu — « 🛡️ IATA rules » suivi de « Acceptance strictly
+     follows… » se lit « IATA rulesAcceptance », ce qui empêche de reconnaître la tournure licite
+     « IATA rules ». C'est un défaut de balisage, pas de vocabulaire ; il est hors de ce lot et
+     nommé ici pour qu'il ne se perde pas. */
+  if (process.argv.includes("--sceller-licites")) {
+    const par = {};
+    for (const n of nus) (par[`${n.url} · ${n.zone}`] ??= []).push(n.voisinage);
+    for (const k of Object.keys(par)) par[k] = [...new Set(par[k])].sort();
+    const trie = Object.fromEntries(Object.keys(par).sort().map((k) => [k, par[k]]));
+    const ancien = JSON.parse(readFileSync(CHEMIN_SCELLE_LICITES, "utf8"));
+    writeFileSync(CHEMIN_SCELLE_LICITES, JSON.stringify({ ...ancien, publiees: trie }, null, 2) + "\n");
+    console.log(`  · tournures licites PUBLIÉES scellées : ${nus.length} dans ${Object.keys(trie).length} couple(s) URL/zone`);
   }
 
   /* `--ecrire-registre` déplace la sentinelle. Il n'est PAS appelé par la CI : le registre ne
