@@ -430,6 +430,34 @@ Rien d'autre. Le mécanisme est en place et vert ; ce qui manque est du jugement
 
 ---
 
+## 7 bis. Les 172 fiches de RACE — inventaire pour l'après-lancement
+
+Votre plan place « amélioration des races et des estimations de caisse » **après** le lancement. Je
+n'y ai donc pas touché ; voici l'état, pour que le lot ne commence pas par une phase d'inventaire.
+
+| | |
+|---|---|
+| races | 172, dont **22 brachycéphales** |
+| portant un poids | 172 / 172 |
+| portant une source pour le poids ou le caractère brachycéphale | **0** |
+| source des traits de voyage (`travel`) | `dogtime.com`, `source_type: "other"` |
+| sources affichées sur la page de race | **aucune** |
+
+**Pourquoi ce n'est pas anodin, même si c'est hors périmètre.** Ces deux champs non sourcés ne sont
+pas décoratifs : `brachycephalic` déclenche les avis et les restrictions de soute, et `weight_kg`
+préremplit le poids du Finder — donc décide de l'éligibilité cabine. Un carlin annoncé à 8 kg passe
+sous la barre des 8 kg de plusieurs compagnies.
+
+**Et une incohérence de standard, à trancher un jour :** la fiche pays Koweït refuse explicitement
+les sites commerciaux de relocation comme sources — « MyDogCanFly does not treat those as official
+sources » — pendant que le référentiel de races est bâti sur `dogtime.com`, typé `other`, c'est-à-dire
+le type que `SourcedQuote` interdit pour fonder un fait métier. Deux standards dans le même dépôt.
+
+La page ne ment pas : elle n'affiche aucune source, donc elle n'en revendique aucune. Elle affirme
+simplement sans étayer.
+
+---
+
 ## 8 bis. Ce qui a été trouvé en CHERCHANT, et pas en attendant
 
 Trois des six arbitrages, et la faute la plus sérieuse du lot, ne viennent pas d'une contre-revue :
