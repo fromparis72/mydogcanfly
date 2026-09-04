@@ -406,6 +406,30 @@ if (!DIST) {
       vert === 32 && rouge === 116 && prudent === 260, JSON.stringify({ vert, rouge, prudent }));
     check("AUCUNE fiche n'a de canal décidé sous son verdict — la contradiction est totale et figée",
       avecCanalDecide === 0, `${avecCanalDecide} fiche(s) avec un canal décidé`);
+
+    /* LA NOTE SOUS LE VERDICT dit la même chose en prose : « Cabin and hold are both open ». Même
+     * famille, même arbitrage. Mesuré sur les fiches SOURCES (une par compagnie, pas quatre) : 19
+     * des 102 notes affirment catégoriquement l'ouverture ou la fermeture d'un canal.
+     *
+     * UNE ACCUSATION QUE JE RETIRE : 18 notes parlent de « clear published fees », « a fully
+     * published fare grid ». J'y ai d'abord vu une promesse que le site ne tient plus depuis le
+     * micro-lot Tarifs. En les relisant, elles décrivent la COMPAGNIE — « cette compagnie publie
+     * une grille claire » —, pas notre page. Ce n'est donc pas un mensonge, mais une incohérence
+     * de lecture : on annonce des tarifs clairs et l'écran répond « tarif à confirmer ». Constat,
+     * pas faute. Il est consigné sans être compté comme un défaut. */
+    const CATEGORIQUE = /\b(are both open|is open|are open|both allowed|are accepted|is allowed|no published|there is no|are closed|is closed|not accepted|are both)\b/i;
+    let notes = 0, notesCategoriques = 0, notesTarif = 0;
+    for (const f of readdirSync("content/airlines").filter((x) => x.endsWith(".yml") && x !== "_template.yml")) {
+      const y = readFileSync(join("content/airlines", f), "utf8");
+      const m = y.match(/^verdictNote:\n\s*en: ([^\n]+)/m);
+      if (!m) continue;
+      notes++;
+      if (CATEGORIQUE.test(m[1])) notesCategoriques++;
+      if (/\b(fee|fees|fare|price|priced)\b/i.test(m[1])) notesTarif++;
+    }
+    check("19 des 102 notes de verdict affirment encore l'ouverture d'un canal — compte figé",
+      notes === 102 && notesCategoriques === 19, JSON.stringify({ notes, notesCategoriques }));
+    console.log(`  ·    ${notesTarif} notes parlent de tarifs — elles décrivent la COMPAGNIE, pas notre page : constat, pas faute`);
   }
 
   console.log("\n=== 13. …et la réserve est DITE, dans les quatre langues ===");

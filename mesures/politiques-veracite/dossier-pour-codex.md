@@ -151,6 +151,19 @@ réelle :** l'auto-citation contredisait un arbitrage RENDU et explicitement ét
 sources d'un rapport » — c'était un bogue. Le bloc `verdict:` n'a jamais été arbitré, et c'est
 l'élément éditorial principal de la fiche. Le trancher est une décision de produit.
 
+**La note sous le verdict dit la même chose en prose.** 19 des 102 notes affirment catégoriquement
+l'ouverture ou la fermeture d'un canal : « Cabin and hold are both open », « there is no published
+hold or cargo option ». Même famille, même arbitrage.
+
+**Une accusation que je retire, pour être exact :** 17 notes parlent de « clear published fees »,
+« a fully published fare grid ». J'y ai d'abord vu une promesse que le site ne tient plus depuis le
+micro-lot Tarifs. En les relisant, elles décrivent **la compagnie** — « cette compagnie publie une
+grille claire » —, pas notre page. Ce n'est pas un mensonge. C'est une incohérence de lecture : on
+annonce des tarifs clairs, et l'écran répond « tarif à confirmer ». Consigné comme constat, pas
+compté comme défaut. (17 avec la définition figée dans la contre-épreuve — `fee|fees|fare|price|
+priced` sur limites de mot ; ma première sonde en trouvait 18 en comptant aussi « cost » et les
+symboles de devise. C'est le chiffre du contrôle qui fait foi.)
+
 Trois options, si cela aide : dériver la COULEUR des décisions canoniques en gardant le libellé ;
 n'afficher le verdict que lorsqu'au moins un canal est décidé ; ou le laisser tel quel en assumant
 la contradiction. Le compte est figé dans une contre-épreuve et rougira dans un sens comme dans
