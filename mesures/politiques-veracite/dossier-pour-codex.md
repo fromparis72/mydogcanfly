@@ -282,6 +282,56 @@ pour source.
 
 ---
 
+## 3 quater. LE CÔTÉ PAYS EST BIEN MEILLEUR QUE MA PREMIÈRE MESURE NE LE LAISSAIT CROIRE
+
+**Correction importante à ce que j'ai écrit au § 3 ter.** Mesurer les 189 RÈGLES pays donne une
+image sombre — 0 citation, 0 locator, 44 auto-citations. Mesurer les 140 **FICHES** pays, c'est-à-dire
+ce que les pages rendent réellement, donne l'inverse :
+
+| | |
+|---|---|
+| fiches pays | 140 |
+| fiches pourvues de sources | **140 / 140** |
+| sources libellées au total | **800** (5,7 par fiche) |
+| confiance déclarée | 70 en ★4 · 38 en ★3 · 25 en ★2 · 7 en ★1 |
+| citant un domaine d'autorité | **140 / 140** |
+
+Ce sont **deux objets différents**, et les confondre ferait condamner le meilleur référentiel du
+dépôt. Les sources ne sont pas des pages d'accueil : elles pointent la page de service de
+l'autorité, avec un libellé — « MOCCAE — Import of pets (cats / dogs) »,
+`moccae.gov.ae/en/services/import-permit-pets`.
+
+**Le contenu s'y refuse même explicitement les sources faibles.** La fiche Koweït écrit : *« Restricted-breed
+lists circulate on commercial pet-relocation sites, but MyDogCanFly does not treat those as official
+sources. Because breed rules can lead to refusal at the border, this point must be verified directly
+with PAAF. »* C'est exactement la norme que le côté compagnie n'avait pas.
+
+### La priorité de vérification pays, dérivée des données
+
+**Les 32 fiches en confiance ★1–★2 sont les destinations les MOINS consultées** : Angola, Tchad,
+Djibouti, Gabon, Mauritanie, Niger, Congo (★1) ; puis Azerbaïdjan, Bénin, Burkina, Cambodge,
+Cameroun, Cap-Vert, RDC, Éthiopie, Guinée, Iran, Irak, Jordanie, Koweït, Liban, Madagascar, Mali,
+Mongolie, Mozambique, Myanmar, Pakistan, Arabie saoudite, Sierra Leone, Gambie, Togo, Venezuela (★2).
+
+**Les 20 destinations réellement fréquentées sont toutes en ★3 ou ★4**, avec 4 à 10 sources
+chacune : US, GB, CA, AU, JP, DE, ES, IT, PT, NL, CH, MA, TN, DZ, TH, AE, SN, CI, BR, MX.
+
+**Conséquence pour le calendrier :** la « dizaine de destinations prioritaires » de l'étape B est
+déjà en bon état. Le côté pays n'est pas le chemin critique du lancement — le côté compagnie l'est.
+Cet état est désormais FIGÉ par une contre-épreuve : un bon état non verrouillé se dégrade sans que
+personne le voie.
+
+### Une correction sur ma propre méthode
+
+J'ai compté trois fois les domaines « officiels » avec une expression régulière, et trois fois elle
+a sous-compté : 130, puis 135, puis 140 — parce que `inspection.canada.ca`, `mattilsynet.no`,
+`dld.go.th`, `mafra.go.kr`, `govmu.org`, `gub.uy`, `rks-gov.net` ne suivent aucun motif commun. Les
+domaines d'État n'ont pas de forme mondiale. C'est ma propre version de la faute que je traque
+ailleurs : **un instrument qui ne parle que de ce qu'il reconnaît**. La contre-épreuve s'appuie donc
+sur la déclaration de la fiche (`sources`, `confidence`), pas sur mes devinettes de domaine.
+
+---
+
 ## 4. DEUX DIVERGENCES DE MESURE NON RÉSOLUES
 
 Je ne les ai pas ajustées pour tomber sur les chiffres de la contre-revue : **fitter une définition

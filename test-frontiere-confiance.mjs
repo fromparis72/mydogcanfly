@@ -454,5 +454,56 @@ if (!DIST) {
     sansLibelle.length === 0, sansLibelle.join(", "));
 }
 
+console.log("\n=== 14. Le côté PAYS — verrouiller un bon état plutôt que le découvrir deux fois ===");
+{
+  /* CE QUE CETTE SECTION CORRIGE. Mesurer les 189 RÈGLES pays donne une image sombre : 0 citation,
+   * 0 locator, 44 auto-citations. Mesurer les 140 FICHES pays — celles que les pages rendent —
+   * donne l'inverse : 800 sources libellées, 5,7 par fiche, pointant la page de service de
+   * l'autorité et non sa page d'accueil. Ce sont deux objets différents, et confondre les deux
+   * ferait condamner un référentiel qui est le meilleur du dépôt.
+   *
+   * Le contenu s'y refuse même explicitement des sources faibles : « Restricted-breed lists
+   * circulate on commercial pet-relocation sites, but MyDogCanFly does not treat those as official
+   * sources… this point must be verified directly with PAAF. » C'est la norme que le côté
+   * compagnie n'avait pas.
+   *
+   * On FIGE donc cet état — un bon état non verrouillé se dégrade sans que personne le voie. */
+  const YAML = (await import("yaml")).default;
+  const dossier = "content/countries";
+  const fiches = readdirSync(dossier).filter((x) => x.endsWith(".yml"));
+  let sansSource = [], totalSources = 0;
+  const confiance = {};
+  const parIso = new Map();
+  for (const f of fiches) {
+    const d = YAML.parse(readFileSync(join(dossier, f), "utf8"));
+    const src = Array.isArray(d.sources) ? d.sources : [];
+    totalSources += src.length;
+    if (!src.length) sansSource.push(f);
+    confiance[d.confidence ?? "?"] = (confiance[d.confidence ?? "?"] ?? 0) + 1;
+    if (d.iso2) parIso.set(String(d.iso2).toUpperCase(), { c: d.confidence ?? 0, n: src.length });
+  }
+  check("140 fiches pays, TOUTES pourvues de sources", fiches.length === 140 && sansSource.length === 0,
+    sansSource.join(", "));
+  check("800 sources libellées au total — compte figé, toute baisse doit être nommée",
+    totalSources === 800, String(totalSources));
+  check("répartition de confiance figée : 70 en ★4, 38 en ★3, 25 en ★2, 7 en ★1",
+    confiance[4] === 70 && confiance[3] === 38 && confiance[2] === 25 && confiance[1] === 7,
+    JSON.stringify(confiance));
+
+  /* LES DESTINATIONS QUI COMPTENT. La confiance basse se concentre sur des pays peu consultés
+     (Tchad, Djibouti, Gabon…) ; les vingt destinations réellement fréquentées sont toutes à ★3 ou
+     ★4. C'est ce qui rend le côté pays lançable, et c'est donc ce qu'il faut garder. */
+  const PRIORITAIRES = ["US", "GB", "CA", "AU", "JP", "DE", "ES", "IT", "PT", "NL",
+    "CH", "MA", "TN", "DZ", "TH", "AE", "SN", "CI", "BR", "MX"];
+  const faibles = PRIORITAIRES.filter((iso) => (parIso.get(iso)?.c ?? 0) < 3);
+  const absentes = PRIORITAIRES.filter((iso) => !parIso.has(iso));
+  check("les 20 destinations prioritaires existent toutes", absentes.length === 0, absentes.join(", "));
+  check("…et sont TOUTES en confiance ★3 ou ★4", faibles.length === 0,
+    faibles.map((i) => `${i}=★${parIso.get(i)?.c}`).join(", "));
+  check("…et portent chacune au moins 4 sources",
+    PRIORITAIRES.every((i) => (parIso.get(i)?.n ?? 0) >= 4),
+    PRIORITAIRES.filter((i) => (parIso.get(i)?.n ?? 0) < 4).join(", "));
+}
+
 console.log(`\n${pass} OK, ${fail} FAIL`);
 if (fail > 0) process.exit(1);
