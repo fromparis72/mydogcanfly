@@ -506,3 +506,24 @@ en septembre ; cette fois le motif figurait dans la ligne de commande du *détec
 `pgrep` répondait « encore vivant » en se voyant lui-même. Le motif s'écrit désormais
 `'astro[ ]build'` : la classe de caractères ne se contient pas elle-même. La même faute, prise par
 l'autre bout.
+
+## Une régression de ma part, trouvée en auditant mes propres consommateurs
+
+Après avoir corrigé `entry_allowed`, j'ai cherché qui d'autre le lisait. Un consommateur plus loin,
+la porte de classement de l'outil Destinations faisait `m.entry_allowed ? 1 : 0.05`.
+
+Depuis que la frontière garde le chemin de l'entrée, ce booléen vaut `true` sur une interdiction non
+citée. **Édimbourg et Cork, avec un American Bully XL, sont donc passés à pleine porte** — au même
+rang qu'une ville sans la moindre restriction connue, alors qu'ils étaient enterrés la veille. Le
+booléen restait juste ; la question posée était trop pauvre. C'est exactement la faute que tu venais
+de relever, un cran plus loin dans la chaîne, et introduite par ma propre correction.
+
+Trois portes pour trois états : `0,05` sur un blocage prouvé, `0,35` sur une entrée à confirmer, `1`
+sans interdiction connue. Mesuré : **6 destinations à confirmer, 133 sans interdiction connue** pour
+cette race.
+
+**Et la garde que j'ai écrite pour ça était elle-même fautive** : elle cherchait l'ancien motif dans
+le fichier entier et le trouvait — dans le commentaire où je venais d'expliquer que cette porte
+était fautive. Elle accusait ma propre explication, exactement comme le contrôle qui avait rougi sur
+la phrase légitime des races au museau court. Les commentaires sont retirés avant de chercher : un
+contrôle doit lire le **code**, pas le texte qui en parle.
