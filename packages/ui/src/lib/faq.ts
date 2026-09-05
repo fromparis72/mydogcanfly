@@ -1,4 +1,5 @@
-import { inlineT, inlineF } from "@mydogcanfly/knowledge";
+import { inlineT, inlineF, t as tt } from "@mydogcanfly/knowledge";
+import { politiqueDuCanal, cleLibelleStatut, preuveAuditee, type Placement } from "./decisionCanal";
 /**
  * FAQ générées depuis les données existantes — compagnies et pays.
  *
@@ -35,43 +36,77 @@ const join = (parts: (string | undefined)[], sep = " ") =>
 
 // ---------------------------------------------------------------- compagnies
 
-export function airlineFaq(d: any, locale: string): FaqItem[] {
-  const t = L(locale);
+export function airlineFaq(d: any, locale: string, policy?: any): FaqItem[] {
+  /* `L(locale)` n'est plus lu ici : plus aucune réponse de compagnie ne vient d'un champ
+     éditorial quadrilingue. Il sert toujours aux fiches PAYS, plus bas. */
   const name: string = d.name;
   const out: FaqItem[] = [];
   const push = (q: string, a: string) => { if (a && a.trim().length > 20) out.push({ q, a: clip(a) }); };
 
-  const chan = (key: "Cabin" | "Hold" | "Cargo") =>
-    (d.channels ?? []).find((c: any) => c?.name?.en === key);
-
   const Q = inlineT(locale);
   const F = inlineF(locale); // phrases où la donnée entre par un trou numéroté
 
+  /* ── LA FAQ LIT LA POLITIQUE CANONIQUE, PLUS L'ÉDITORIAL (contre-revue du 05/09/2026) ───────
+   *
+   * LE DÉFAUT. La fiche a DEUX chemins de données pour un même canal : la politique de la base
+   * de connaissances — citée, datée, franchie par la frontière de confiance — et le tableau
+   * historique `channels[]`, où `statusLabel` et `detail` sont du texte libre écrit à la main,
+   * sans source et sans possibilité d'en avoir une. La CARTE a été ramenée sur la politique ;
+   * la FAQ, elle, lisait toujours l'éditorial. J'ai donc masqué `detail` sur la carte tout en le
+   * republiant dix lignes plus bas, en réponse à une question — et, pire, dans le JSON-LD
+   * `FAQPage`, où un moteur génératif le lit comme une réponse autorisée. Le contrôle DOM des
+   * fiches sentinelles l'a attrapé : Air France « moins de 8 kg … 46 × 28 × 24 cm », Thai
+   * Airways « 34 races : fret uniquement ».
+   *
+   * LA FERMETURE. Ces réponses se construisent désormais avec les MÊMES pièces que la carte :
+   * le libellé publié du statut canonique, puis — si la décision repose sur une phrase citée —
+   * cette phrase VERBATIM avec son lien officiel ; sinon la phrase générique d'ignorance. Aucun
+   * seuil, aucune dimension, aucune modalité ne peut plus rentrer par ici. C'est aussi ce qui
+   * rend IMPOSSIBLE le retour des 295 divergences `cls`/`statusLabel` : elles ne sont plus lues
+   * nulle part par l'interface, sans qu'aucun sous-système de réconciliation ait été construit.
+   *
+   * `policy` est optionnel POUR LES SEULS APPELANTS QUI N'EN ONT PAS — mais alors la réponse se
+   * limite au libellé et à l'ignorance : jamais de repli sur l'éditorial. */
+  /* ON N'INTERROGE QUE LES CANAUX QUE LA FICHE DÉCLARE — comme la carte, qui itère `d.channels`.
+     Première rédaction : je demandais le triplet cabine/soute/fret à toutes les fiches. Air
+     Tahiti Nui n'a pas de politique de soute, et `politiqueDuCanal` LÈVE plutôt que de déduire
+     une décision d'un `cls` éditorial : le build de production s'est arrêté sur elle. Le garde
+     avait raison — c'est ma question qui inventait un canal. */
+  const declares = new Set<string>((d.channels ?? []).map((c: any) => c?.placement).filter(Boolean));
+  const reponseCanal = (placement: Placement): string | null => {
+    if (!policy || !declares.has(placement)) return null;
+    const decision = politiqueDuCanal(policy, placement, d.id ?? name);
+    const libelle = tt(locale, cleLibelleStatut(decision.status));
+    const preuve = preuveAuditee(decision);
+    /* La citation est publiée telle qu'elle a été lue, dans SA langue, et signalée comme une
+       citation : la traduire serait en faire notre phrase, et nous n'avons pas lu la nôtre. */
+    const fond = preuve?.quote
+      ? `« ${preuve.quote} » (${preuve.url})`
+      : tt(locale, "premium.channel_unproven");
+    return join([`${name} — ${libelle}.`, fond]);
+  };
+
   // 1 — cabine
-  const cabin = chan("Cabin");
-  if (cabin) {
+  const repCabine = reponseCanal("cabin");
+  if (repCabine) {
     push(
       F("Can my dog travel in the cabin on {0}?",
         "Mon chien peut-il voyager en cabine sur {0} ?",
         "¿Mi perro puede viajar en cabina en {0}?", name),
-      /* LA PHRASE « Fare: … » A ÉTÉ RETIRÉE (micro-lot Tarifs, 29/08/2026). Elle publiait
-         `cabin.fee` — une chaîne libre héritée — DEUX fois : dans le texte visible de la FAQ et
-         dans le JSON-LD FAQPage. C'est le contrôle du DOM construit qui l'a trouvée : les trois
-         surfaces corrigées à la main ne suffisaient pas, et une relecture ne l'aurait pas vue. */
-      join([`${name} — ${t(cabin.statusLabel)}.`, t(cabin.detail)]),
+      repCabine,
     );
   }
 
   // 2 — soute et fret réunis : c'est la même question pour un grand chien
-  const hold = chan("Hold"), cargo = chan("Cargo");
-  if (hold || cargo) {
+  const repSoute = reponseCanal("hold"), repFret = reponseCanal("cargo");
+  if (repSoute || repFret) {
     push(
       F("Does {0} carry dogs in the hold?",
         "{0} accepte-t-elle les chiens en soute ?",
         "¿{0} acepta perros en bodega?", name),
       join([
-        hold ? `${Q("Hold", "Soute", "Bodega")} — ${t(hold.statusLabel)}. ${t(hold.detail)}` : "",
-        cargo ? `${Q("Cargo", "Fret", "Carga")} — ${t(cargo.statusLabel)}. ${t(cargo.detail)}` : "",
+        repSoute ? `${Q("Hold", "Soute", "Bodega")} — ${repSoute}` : "",
+        repFret ? `${Q("Cargo", "Fret", "Carga")} — ${repFret}` : "",
       ], " "),
     );
   }
@@ -82,56 +117,23 @@ export function airlineFaq(d: any, locale: string): FaqItem[] {
      de prix est exactement ce que ce lot interdit tant qu'aucune table structurée ne la fonde.
      La question reviendra avec sa table, et elle répondra alors pour un trajet, pas en général. */
 
-  // 4 — brachycéphales : la question la plus posée
-  const brachy = (d.restrictions ?? []).find((r: any) =>
-    /flat-faced|brachy|snub/i.test(r?.title?.en ?? ""));
-  if (brachy) {
-    const pills = (brachy.pills ?? []).map((p: any) => t(p.label)).join(" · ");
-    push(
-      F("Does {0} accept flat-faced (brachycephalic) breeds?",
-        "{0} accepte-t-elle les races brachycéphales ?",
-        "¿{0} acepta razas de hocico chato (braquicéfalas)?", name),
-      join([pills ? `${name} — ${pills}.` : `${name}${colonOf(locale).trimEnd()}`, t(brachy.note)]),
-    );
-  }
-
-  // 5 — caisse
-  const crate = d.crate ?? [];
-  if (crate.length) {
-    push(
-      F("What kind of crate does {0} require?",
-        "Quelle caisse {0} exige-t-elle ?",
-        "¿Qué tipo de jaula exige {0}?", name),
-      join([
-        F("{0} requires a crate meeting the applicable container requirements, and that it accepts:",
-          "{0} exige une cage conforme aux exigences applicables, et qu'elle accepte :",
-          "{0} exige una jaula que cumpla los requisitos aplicables y que acepte:", name),
-        crate.slice(0, 4).map((c: any) => t(c)).join(" ; ") + ".",
-      ]),
-    );
-  }
-
-  // 6 — chaleur
-  const temp = d.temperature;
-  if (temp?.note) {
-    push(
-      F("Does {0} suspend dog transport in hot weather?",
-        "{0} suspend-elle le transport des chiens en cas de forte chaleur ?",
-        "¿{0} suspende el transporte de perros con calor?", name),
-      join([t(temp.note)]),
-    );
-  }
-
-  // 7 — chien d'assistance
-  const asst = (d.assistance ?? [])[0];
-  if (asst) {
-    push(
-      F("Are assistance dogs accepted on {0}?",
-        "Les chiens d'assistance sont-ils acceptés sur {0} ?",
-        "¿Se aceptan perros de asistencia en {0}?", name),
-      join([`${name} — ${t(asst.label)}.`, t(asst.value)]),
-    );
-  }
+  /* 4 À 7 — BRACHYCÉPHALES, CAISSE, CHALEUR, CHIEN D'ASSISTANCE : RETIRÉES (05/09/2026).
+   *
+   * Elles lisaient `restrictions`, `crate`, `temperature` et `assistance`. MESURE : ces quatre
+   * champs sont du texte libre quadrilingue — les entrées de `crate` n'ont que les clés `en`,
+   * `fr`, `es`, `pt`, aucune place pour une source ; aucune des 201 `restrictions` n'en porte
+   * une. Ils affirment pourtant, compagnie nommée à l'appui, des seuils (« 8–25 kg »), des
+   * dimensions (« 55 × 40 × 23 cm »), des exceptions d'appareil (« DH8-100 et ATR ») et des
+   * refus de races (« 34 races : fret uniquement »).
+   *
+   * Une réponse de FAQ est catégorique par construction, et le balisage `FAQPage` la donne à
+   * lire à une machine comme une réponse autorisée. C'est exactement ce que le critère de
+   * réussite interdit : « aucune information insuffisamment prouvée ne doit produire à elle
+   * seule une réponse catégorique susceptible d'induire le visiteur en erreur ». Ces quatre
+   * questions reviendront quand leurs champs porteront une source citée — pas avant. Les mêmes
+   * blocs sont masqués sur la fiche par `surfacesEditorialesAffichables`, du même mouvement.
+   *
+   * Il reste donc deux questions par fiche, toutes deux adossées à la politique canonique. */
 
   return out.slice(0, 7);
 }

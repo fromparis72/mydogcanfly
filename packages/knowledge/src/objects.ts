@@ -1,5 +1,5 @@
 import { z } from "zod";
-import { id, LocalizedText, DogSize, Source, PlacementStatus } from "./common";
+import { id, LocalizedText, DogSize, Source, SourceCitable, PlacementStatus, FACTUAL_SOURCE_TYPES, isForbiddenSource } from "./common";
 
 export const Country = z.object({
   id: id("country"),
@@ -108,16 +108,10 @@ export type MediaRef = z.infer<typeof MediaRef>;
  *
  *  Les trois champs sont facultatifs : 258 provenances sont dérivées et n'ont rien à citer. Mais
  *  une citation sans sa langue serait interprétable, donc l'une entraîne l'autre. */
-export const PolicySource = Source.extend({
-  /** La phrase officielle qui fonde la décision, reprise telle quelle. */
-  quote: z.string().min(10).optional(),
-  /** Étiquette BCP-47 — la citation est rendue dans SA langue, la traduire l'interpréterait. */
-  quote_language: z.string().regex(/^[a-z]{2,3}(-[A-Za-z0-9]{2,8})*$/, "étiquette de langue BCP-47 attendue").optional(),
-  /** Où la phrase a été lue : ancre, titre de section, numéro d'accordéon. */
-  locator: z.string().min(1).optional(),
-}).refine((s) => !s.quote || !!s.quote_language, {
-  message: "une citation doit dire sa langue", path: ["quote_language"],
-});
+/** DÉPLACÉ DANS `common.ts` sous le nom `SourceCitable` (05/09/2026) — voir le commentaire
+ *  là-bas. Le nom historique reste ici, alias de la définition unique : les règles avaient besoin
+ *  de la même chose, et une seconde copie aurait rejoué la faute que ce dépôt répète. */
+export const PolicySource = SourceCitable;
 export type PolicySource = z.infer<typeof PolicySource>;
 
 /** Bloc commun aux deux branches d'auteur ET au runtime : les champs enrichis existants
@@ -218,6 +212,27 @@ export type PlacementPolicyAuthored = z.infer<typeof PlacementPolicyAuthored>;
  *  (booléen de transition consommé par l'UI existante) ; `status_cause` n'existe QUE sur la
  *  branche confirmation, et y est OBLIGATOIRE — le moteur lit une cause garantie par le type,
  *  il n'en fabrique jamais. */
+/**
+ * LES CAUSES DE CONFIRMATION, ÉNUMÉRÉES UNE FOIS — et exportées parce que le moteur en a besoin.
+ *
+ * Elles étaient RETAPÉES dans `packages/engine/src/contracts.ts`, et l'ajout d'une quatrième
+ * cause ici a fait tomber le Finder en HTTP 400 : le moteur transmet pourtant la cause telle
+ * quelle (`causes.push({ code: pol.status_cause })`), mais son union discriminée ne connaissait
+ * que trois littéraux sur quatre. Deux registres du même registre, et ils ont divergé au premier
+ * ajout. Le moteur construit désormais ses branches À PARTIR de cette liste.
+ *
+ *   `airline_approval`         la compagnie décide au cas par cas ;
+ *   `policy_unpublished`       la compagnie ne publie pas ses conditions ;
+ *   `legacy_unreviewed`        NOTRE donnée n'a pas été revérifiée — notre incertitude, jamais
+ *                              une incertitude attribuée à la compagnie ;
+ *   `official_source_unquoted` une page officielle est rattachée au canal, mais aucune phrase
+ *                              n'en a été citée. Elle s'affiche, elle ne décide pas.
+ */
+export const PLACEMENT_STATUS_CAUSES = [
+  "airline_approval", "policy_unpublished", "legacy_unreviewed", "official_source_unquoted",
+] as const;
+export type PlacementStatusCause = (typeof PLACEMENT_STATUS_CAUSES)[number];
+
 export const PlacementPolicy = z.discriminatedUnion("status", [
   z.object({ ...PlacementPolicyCommon, status: z.literal("allowed"), allowed: z.literal(true), derived_from_fiche: z.boolean().optional() }).strict(),
   z.object({ ...PlacementPolicyCommon, status: z.literal("denied"), allowed: z.literal(false), derived_from_fiche: z.boolean().optional() }).strict(),
@@ -228,7 +243,7 @@ export const PlacementPolicy = z.discriminatedUnion("status", [
     /* `legacy_unreviewed` (T0-B) rejoint les deux causes de politique : elle n'existe QUE sur la
        branche confirmation, jamais sur `allowed` ni `denied` — la discrimination par statut le
        rend inconstructible, pas seulement invalide à la sérialisation. */
-    status_cause: z.enum(["airline_approval", "policy_unpublished", "legacy_unreviewed"]),
+    status_cause: z.enum(PLACEMENT_STATUS_CAUSES),
     derived_from_fiche: z.boolean().optional(),
   }).strict(),
 ]);
@@ -239,6 +254,43 @@ export type PlacementPolicy = z.infer<typeof PlacementPolicy>;
  *    et avec elle le dernier champ d'auteur volontairement ignoré. Les deux formes restantes
  *    disent exactement ce que le runtime reçoit ;
  *  - tous les champs communs traversent, `derived_from_fiche` compris. */
+/**
+ * LE NIVEAU DE PREUVE D'UNE PROVENANCE — la frontière de confiance, en un seul prédicat.
+ *
+ * CE QU'IL FERME. Jusqu'ici, `availability: offered` produisait `status: "allowed"` sans que rien
+ * ne regarde CE QUI FONDE cette disponibilité. Mesure du 04/09/2026 : sur 302 blocs de politique,
+ * 216 décident catégoriquement et AUCUN ne porte de citation. Les deux seules provenances citées
+ * du dépôt sont posées sur des blocs non décidés. Autrement dit, chacune des 216 réponses fermes
+ * du site reposait sur une donnée que personne n'avait confrontée à une phrase publiée.
+ *
+ * TROIS NIVEAUX, ET UN SEUL DÉCIDE :
+ *   `citee`                — page officielle + phrase reprise + sa langue + son emplacement.
+ *                            C'est la seule qui autorise un verdict catégorique.
+ *   `officielle_non_citee` — page officielle rattachée au canal, mais aucune phrase lue. Elle
+ *                            s'affiche, elle ne décide pas.
+ *   `aucune`               — provenance fabriquée par l'ingestion (`source_derived`), page
+ *                            MyDogCanFly, type non factuel, ou rien. Elle ne s'affiche même pas.
+ *
+ * `locator` EST EXIGÉ, comme dans `T0bAuditSource` : savoir dans quelle section la phrase a été
+ * lue est ce qui rend une contre-revue possible sans relire la page entière.
+ */
+export type NiveauDePreuve = "citee" | "officielle_non_citee" | "aucune";
+
+export function niveauDePreuve(p: {
+  source?: PolicySource; source_derived?: boolean;
+} | undefined | null): NiveauDePreuve {
+  const s = p?.source;
+  if (!s) return "aucune";
+  if (p?.source_derived) return "aucune";              // fabriquée depuis notre propre fiche
+  if (isForbiddenSource(s.url)) return "aucune";       // auto-citation : jamais une preuve
+  if (!(FACTUAL_SOURCE_TYPES as readonly string[]).includes(s.source_type)) return "aucune";
+  try { if (!/^https?:$/.test(new URL(s.url).protocol)) return "aucune"; } catch { return "aucune"; }
+  const citee = typeof s.quote === "string" && s.quote.length >= 10
+    && typeof s.quote_language === "string" && s.quote_language.length > 0
+    && typeof s.locator === "string" && s.locator.length > 0;
+  return citee ? "citee" : "officielle_non_citee";
+}
+
 export function projectPlacementPolicy(authored: PlacementPolicyAuthored): PlacementPolicy {
   const { max_weight_kg, carrier_dims_cm, fee, conditions, brachy_allowed, source, source_derived, derived_from_fiche } = authored;
   const common = { max_weight_kg, carrier_dims_cm, fee, conditions, brachy_allowed, source, source_derived, derived_from_fiche };
@@ -251,8 +303,24 @@ export function projectPlacementPolicy(authored: PlacementPolicyAuthored): Place
       ...common, status: "confirmation_required", allowed: false, status_cause: "legacy_unreviewed",
     });
   }
-  if (authored.availability === "offered") return PlacementPolicy.parse({ ...common, status: "allowed", allowed: true });
-  if (authored.availability === "not_offered") return PlacementPolicy.parse({ ...common, status: "denied", allowed: false });
+  /* UNE DISPONIBILITÉ NE SUFFIT PLUS À PRODUIRE UN VERDICT — il lui faut une phrase citée.
+     Sans elle, la décision est rétrogradée à « à confirmer », en disant laquelle des deux
+     situations on est : une page officielle existe et on la montre, ou il n'y a rien à montrer.
+     C'est ici, et nulle part ailleurs : la projection est le seul passage obligé entre la donnée
+     et l'écran — la fiche compagnie comme les cartes du Finder la traversent (objects.ts:290). */
+  const decidee = authored.availability === "offered" || authored.availability === "not_offered";
+  if (decidee) {
+    const niveau = niveauDePreuve(authored);
+    if (niveau === "citee") {
+      return authored.availability === "offered"
+        ? PlacementPolicy.parse({ ...common, status: "allowed", allowed: true })
+        : PlacementPolicy.parse({ ...common, status: "denied", allowed: false });
+    }
+    return PlacementPolicy.parse({
+      ...common, status: "confirmation_required", allowed: false,
+      status_cause: niveau === "officielle_non_citee" ? "official_source_unquoted" : "legacy_unreviewed",
+    });
+  }
   return PlacementPolicy.parse({
     ...common, status: "confirmation_required", allowed: false,
     status_cause: authored.availability === "case_by_case" ? "airline_approval" : "policy_unpublished",

@@ -1,5 +1,5 @@
 import { z } from "zod";
-import { Placement, TravelType, Locale, TravelDate, PlacementStatus, TemperatureProvenance, estAutoCitation, SourcedQuote } from "@mydogcanfly/knowledge";
+import { Placement, TravelType, Locale, TravelDate, PlacementStatus, TemperatureProvenance, estAutoCitation, SourcedQuote, PLACEMENT_STATUS_CAUSES } from "@mydogcanfly/knowledge";
 import type { LocalizedText } from "@mydogcanfly/knowledge";
 export type { PlacementStatus, TemperatureProvenance };
 
@@ -25,16 +25,27 @@ type PlacementStatusLitteral = "allowed" | "denied" | "confirmation_required";
 export const ConfirmationCause = z.discriminatedUnion("code", [
   /** Embargo `summer_embargo` déclenché sur une température ESTIMÉE — la seule cause active en T0-A. */
   z.object({ code: z.literal("estimated_climate"), rule_id: z.string().min(1) }).strict(),
-  /** Politique non publiée (Thai Cargo…) — émise par les politiques canoniques `undocumented` (T0-B). */
-  z.object({ code: z.literal("policy_unpublished"), policy_ref: z.string().regex(POLICY_REF_RE) }).strict(),
-  /** Acceptation au cas par cas / on request — politiques canoniques `case_by_case` (T0-B). */
-  z.object({ code: z.literal("airline_approval"), policy_ref: z.string().regex(POLICY_REF_RE) }).strict(),
-  /** Donnée HÉRITÉE non revérifiée (T0-B) — la condition figure dans notre fiche mais n'a pas
-   *  encore été confrontée à une source officielle à jour. L'incertitude est LA NÔTRE : la
-   *  ranger avec `policy_unpublished` l'attribuerait à la compagnie, ce qui serait exactement
-   *  la perte d'interprétation que T0-B répare. `policy_ref` est obligatoire — une donnée non
-   *  revérifiée sans le couple (compagnie, canal) qu'elle concerne serait inauditables. */
-  z.object({ code: z.literal("legacy_unreviewed"), policy_ref: z.string().regex(POLICY_REF_RE) }).strict(),
+  /** Embargo `summer_embargo` déclenché sur une température CERTAINE, par une règle NON CITÉE.
+   *  La température ne fait pas de doute ; c'est la règle qui n'est pas prouvée. Elle ne peut donc
+   *  plus refuser (frontière de confiance du 05/09/2026, étendue au chemin climatique le même
+   *  jour) : elle demande confirmation, en nommant sa règle. Sa cause est DISTINCTE
+   *  d'`estimated_climate` parce que le doute n'est pas le même — confondre les deux aurait remis
+   *  deux définitions derrière un seul nom, la faute que cette base répète. */
+  z.object({ code: z.literal("climate_rule_unquoted"), rule_id: z.string().min(1) }).strict(),
+  /* LES CAUSES DE POLITIQUE NE SONT PLUS RETAPÉES ICI — elles sont ENGENDRÉES depuis
+     `PLACEMENT_STATUS_CAUSES`, le registre du contrat de connaissance, parce que les trois
+     littéraux qui figuraient à cet endroit ont divergé au premier ajout : la quatrième cause
+     (`official_source_unquoted`) était émise par la projection, transmise telle quelle par
+     `evaluate.ts`, et REFUSÉE ici — le Finder répondait HTTP 400 sur toute route touchant une
+     compagnie concernée. Les quatre partagent exactement la même forme `{code, policy_ref}` ;
+     une cause ajoutée là-bas est désormais acceptée ici sans que personne ait à y penser.
+
+       `airline_approval`         acceptation au cas par cas ;
+       `policy_unpublished`       la compagnie ne publie pas ses conditions ;
+       `legacy_unreviewed`        NOTRE donnée n'a pas été revérifiée ;
+       `official_source_unquoted` page officielle rattachée, aucune phrase citée. */
+  ...PLACEMENT_STATUS_CAUSES.map((code) =>
+    z.object({ code: z.literal(code), policy_ref: z.string().regex(POLICY_REF_RE) }).strict()),
   /**
    * NOTRE politique BRACHYCÉPHALE n'a pas été revérifiée (T0-B3-a). Distincte de
    * `legacy_unreviewed`, qui parle de notre donnée de CANAL : celle-ci parle de ce que la
@@ -58,19 +69,64 @@ export const ConfirmationCause = z.discriminatedUnion("code", [
     policy_ref: z.string().regex(POLICY_REF_RE),
     restriction_ref: z.string().regex(/^brest_[a-z0-9_]+$/),
   }).strict(),
+  /**
+   * UNE RÈGLE `deny` S'EST DÉCLENCHÉE MAIS N'A PAS LE DROIT DE REFUSER (05/09/2026).
+   *
+   * Deux causes, parce que le visiteur n'est pas dans la même situation selon qu'il a une page à
+   * lire ou rien du tout — exactement la distinction déjà faite au niveau des politiques entre
+   * `official_source_unquoted` et `legacy_unreviewed`.
+   *
+   * `rule_id` est OBLIGATOIRE : une incertitude qui ne dit pas de quelle règle elle vient est
+   * inauditable, et c'est précisément ce qui a permis à `rule_british_airways_no_cabin` de fermer
+   * la soute pendant des mois sans que personne puisse le rattacher à quoi que ce soit.
+   */
+  z.object({ code: z.literal("rule_official_unquoted"), rule_id: z.string().min(1) }).strict(),
+  z.object({ code: z.literal("rule_unverified"), rule_id: z.string().min(1) }).strict(),
+  /**
+   * AUCUNE POLITIQUE DÉCLARÉE POUR CE CANAL. L'absence valait `denied` par défaut — « la fiche ne
+   * documente pas cette soute, donc elle n'existe pas ». C'est une inférence, pas un fait : une
+   * absence signifie qu'on ne sait pas. Elle vaut donc confirmation, comme tout le reste.
+   */
+  z.object({ code: z.literal("policy_absent"), policy_ref: z.string().regex(POLICY_REF_RE) }).strict(),
   /** Fait requis absent (poids total T2, âge T3). `fact` restera à resserrer en registre fermé
    *  avant la première migration T2/T3 — aucune donnée réelle ne l'émet en T0-A. */
   z.object({ code: z.literal("missing_fact"), fact: z.string().min(1), requirement_ref: z.string().min(1) }).strict(),
+  /** Un FAIT DE RACE `deny` s'est déclenché sans porter une preuve complète (05/09/2026).
+   *
+   *  `SourcedQuote` impose la phrase et sa langue, mais laisse le `locator` FACULTATIF : un fait
+   *  de race pouvait donc refuser un canal sur une provenance que la même frontière refuse à une
+   *  RÈGLE. Deux exigences de preuve pour une même décision à l'écran — la faute que ce dépôt
+   *  répète. Les deux chemins lisent maintenant le même prédicat canonique, et un fait de race
+   *  non prouvé demande confirmation en nommant sa restriction. */
+  z.object({ code: z.literal("breed_deny_unverified"), policy_ref: z.string().regex(POLICY_REF_RE), restriction_ref: z.string().min(1) }).strict(),
 ]);
 export type ConfirmationCause = z.infer<typeof ConfirmationCause>;
 
+/** LES CAUSES DE CHALEUR, EN UN SEUL ENDROIT.
+ *
+ *  Trois lecteurs dérivent un drapeau de chaleur — `hasActiveClimateCause` ici, le balayage des
+ *  destinations, le titre de la section « à confirmer » de l'outil Destinations. Chacun comparait
+ *  le code à `"estimated_climate"` en dur. Ajouter une seconde cause climatique par cette porte
+ *  aurait allumé le drapeau chez l'un et pas chez les autres : c'est exactement la faute
+ *  récurrente de ce dépôt — deux définitions du même fait qui divergent. Elles lisent désormais
+ *  toutes cette fonction. */
+export const CLIMATE_CAUSE_CODES = ["estimated_climate", "climate_rule_unquoted"] as const;
+export const estCauseClimatique = (
+  c: { code: string },
+): c is Extract<ConfirmationCause, { code: (typeof CLIMATE_CAUSE_CODES)[number] }> =>
+  (CLIMATE_CAUSE_CODES as readonly string[]).includes(c.code);
+
 /** Clé canonique d'une cause — tri stable et déduplication des snapshots. */
 export const causeKey = (c: ConfirmationCause): string =>
-  c.code === "estimated_climate" ? `${c.code}|${c.rule_id}`
+  estCauseClimatique(c) ? `${c.code}|${c.rule_id}`
   : c.code === "missing_fact" ? `${c.code}|${c.fact}|${c.requirement_ref}`
   /* `restriction_ref` fait partie de l'identité d'une exigence : deux exigences distinctes sur le
      même canal partagent leur `policy_ref` et seraient dédupliquées sans elle. */
-  : c.code === "breed_requirement" ? `${c.code}|${c.policy_ref}|${c.restriction_ref}`
+  : (c.code === "breed_requirement" || c.code === "breed_deny_unverified") ? `${c.code}|${c.policy_ref}|${c.restriction_ref}`
+  /* Les causes de RÈGLE s'identifient par leur règle, pas par un canal : deux règles distinctes
+     déclenchées sur le même canal doivent rester deux causes, sans quoi le visiteur n'en verrait
+     qu'une — la même faute que `restriction_ref` a fermée pour les exigences de race. */
+  : (c.code === "rule_official_unquoted" || c.code === "rule_unverified") ? `${c.code}|${c.rule_id}`
   : `${c.code}|${c.policy_ref}`;
 
 const sortDedupCauses = (causes: ConfirmationCause[]): ConfirmationCause[] => {
@@ -292,7 +348,7 @@ export function makePlacementDecisionSet(ds: PlacementDecision[]): PlacementDeci
 
 /** La chaleur dérive d'une CAUSE CLIMATIQUE ACTIVE — jamais du seul statut (T0-A). */
 export const hasActiveClimateCause = (d: PlacementDecision): boolean =>
-  d.status === "confirmation_required" && d.confirmation_causes.some((c) => c.code === "estimated_climate");
+  d.status === "confirmation_required" && d.confirmation_causes.some(estCauseClimatique);
 
 /** Signal de confirmation d'une destination : la cause SANS perdre la compagnie ni le canal
  *  (contre-revue v2 : deux signaux identiques chez deux compagnies ou sur deux canaux sont deux
@@ -436,7 +492,9 @@ export interface DestinationMatch {
   placement_ok: boolean;         // le placement demandé est réellement `allowed` sur ≥1 compagnie directe
   /** Aucun canal demandé `allowed`, mais ≥1 « à confirmer » : à afficher en ALTERNATIVE, jamais en compatible. */
   placement_to_confirm: boolean;
-  entry_allowed: boolean;    // no blocking country-level denial (e.g. hard import ban)
+  /** Le statut d'entrée du pays — voir `EntryStatus`. Le classement doit le lire, pas le booléen. */
+  entry_status: EntryStatus;
+  entry_allowed: boolean;    // projection legacy : `entry_status !== "blocked"`
   flight_hours: number;      // estimated direct flight time (great-circle distance ÷ cruise speed)
 }
 
@@ -451,6 +509,31 @@ export interface DestinationsResult {
 }
 
 /* ---- Internal (Decision Engine output) ---- */
+/** LE PAYS LAISSE-T-IL ENTRER CE CHIEN ? TROIS RÉPONSES, PARCE QU'IL Y EN A TROIS.
+ *
+ *  `entry_allowed` était un BOOLÉEN, et il rejouait mot pour mot la faute d'`offers_pet_transport` :
+ *  aucune place pour l'inconnu, donc il tranchait. Depuis que la frontière garde ce chemin, une
+ *  interdiction NON CITÉE le laissait à `true` — et le rapport disait alors trois choses à la fois
+ *  sur le même trajet (mesuré, CDG → LHR, American Bully XL) :
+ *
+ *      « Interdit par l'article 1 du Dangerous Dogs Act 1991 »   (exigence, critique)
+ *      « Pas encore établi »                                     (verdict global)
+ *      « Le Royaume-Uni autorise l'entrée »                      (élément positif)
+ *
+ *  Le troisième énoncé était une conclusion tirée d'une absence de preuve, et c'est le seul des
+ *  trois qui soit franchement faux.
+ *
+ *    "blocked"               ≥1 refus d'entrée DÉCISIF — le pays refuse, c'est établi ;
+ *    "confirmation_required" ≥1 refus applicable mais non décisif — une restriction existe peut-être,
+ *                            elle n'est pas prouvée, et le trajet ne peut pas être déclaré possible ;
+ *    "no_known_block"        aucun refus applicable identifié. Ce n'est PAS « le pays autorise » :
+ *                            c'est « aucune interdiction bloquante établie dans nos données ».
+ */
+export type EntryStatus = "blocked" | "confirmation_required" | "no_known_block";
+
+/** Trois valeurs, parce que l'ignorance en est une — voir AirlineDecision.offers_pet_transport. */
+export type PetTransportStatus = "yes" | "no" | "unknown";
+
 export interface FiredRule {
   rule_id: string;
   action: string;
@@ -460,13 +543,19 @@ export interface FiredRule {
   source_url: string;
   confidence: number;
   params: Record<string, unknown>;
+  /** La règle porte-t-elle une preuve CITÉE (page officielle + phrase + langue + emplacement) ?
+   *  Seule une règle décisive peut refuser. `fired` conserve les autres pour l'audit ; ce champ
+   *  empêche qu'elles décident silencieusement en aval. */
+  decisive: boolean;
 }
 export interface AirlineDecision {
   airline_id: string;
   airline_name: string;
   country_id?: string;        // pays d'immatriculation déclaré dans les données — PAS un statut de porte-drapeau
   direct: boolean;            // likely a direct flight on this route (hub at origin or destination)
-  carries_pets: boolean;      // true if the airline carries pets at all (a neutral dog) — false = structural "no pets"
+  /* INTERNE, jamais public : projection booléenne d'`offers_pet_transport === "yes"`. Elle ne
+     sert qu'à la mesure d'écart versionnée ; l'écran lit le statut ternaire. */
+  carries_pets: boolean;
   /* Ce que vaut réellement l'itinéraire proposé. On ne présente plus un nonstop attesté et une
      correspondance fabriquée par géométrie de hub sous la même étiquette :
        direct_documented       — la paire origine|destination figure dans `direct_routes` ;
@@ -501,9 +590,20 @@ export interface AirlineDecision {
      T0-A : le triplet est validé (`PlacementDecisionSet`) et chaque confirmation porte ses
      causes structurées. */
   placements: PlacementDecision[];
-  /** Vérité STRUCTURELLE (T0-A) : ≥1 canal dont la POLITIQUE (après projection) est `allowed`
-   *  ou `confirmation_required` — sans appliquer les règles du trajet ni le climat. */
-  offers_pet_transport: boolean;
+  /** LA COMPAGNIE TRANSPORTE-T-ELLE DES ANIMAUX ? OUI, NON, OU ON NE SAIT PAS (05/09/2026).
+   *
+   *  Ce champ était un BOOLÉEN, et il valait `true` sur les 102 compagnies du dépôt. Il était
+   *  dérivé de « la politique n'est pas refusée » — c'est-à-dire d'une ABSENCE de refus, jamais
+   *  d'une preuve d'acceptation. Un booléen n'a pas de place pour l'ignorance : il fallait bien
+   *  qu'il tranche, alors il tranchait toujours dans le même sens, et le site affirmait 102 fois
+   *  un fait que personne n'avait établi.
+   *
+   *  Les trois valeurs suivent la même frontière que les canaux :
+   *    "yes"     ≥1 canal `allowed` — une acceptation PROUVÉE (citation complète) ;
+   *    "no"      les trois canaux `denied` — trois refus PROUVÉS ;
+   *    "unknown" tout le reste, y compris une politique absente.
+   *  Aujourd'hui : 0 « oui », 0 « non », 102 « on ne sait pas ». C'est la vérité du dépôt. */
+  offers_pet_transport: PetTransportStatus;
   /** TÉMOIN DE TRANSITION, jamais public (retiré par explain) : l'ancien calcul verbatim, pour
    *  que la CI recalcule l'écart exhaustif versionné (t0a-carries-pets-diff.json). À retirer
    *  avec le fichier une fois la migration digérée. */
@@ -523,7 +623,19 @@ export interface Decision {
   request: FinderRequest;
   airlines: AirlineDecision[];
   countryRequirements: FiredRule[];
-  destination: { country_id: string; country_name: string; entry_allowed: boolean };
+  destination: {
+    country_id: string; country_name: string;
+    /** LE PAYS LAISSE-T-IL ENTRER CE CHIEN ? TROIS RÉPONSES — voir `EntryStatus`. */
+    entry_status: EntryStatus;
+    /** Projection booléenne HISTORIQUE d'`entry_status === "blocked"`, inversée : elle ne vaut
+     *  `false` que sur un blocage PROUVÉ. Conservée pour les lecteurs internes qui n'ont besoin
+     *  que de « est-ce bloqué » ; elle ne doit JAMAIS servir à conclure que le pays autorise. */
+    entry_allowed: boolean;
+    /** Les interdictions d'entrée qui se sont déclenchées SANS pouvoir décider, par `rule_id`.
+     *  Elles ne ferment rien, mais elles ne se perdent pas : leur exigence reste publiée en tête
+     *  du rapport, et ce champ permet de les auditer et de les compter. */
+    entry_unverified_denies?: string[];
+  };
   origin_country_id: string; // pays de l'aéroport de départ (le départage carrier_of_* est retiré — J-bis 11/08/2026)
   domestic: boolean;       // same country at both ends: no border crossing, so no import requirements apply
   brachycephalic: boolean; // effective snub-nosed flag (from request or breed) — drives welfare wording
@@ -570,17 +682,19 @@ export interface AirlineResult {
    *  confirmation portant ses causes structurées. Les booléens et `*_status` ci-dessus en
    *  DÉRIVENT ; c'est la source d'affichage des libellés par famille de cause. */
   placement_decisions: PlacementDecision[];
-  /** Vérité structurelle canonique (T0-A) : la compagnie PROPOSE un transport d'animaux —
-   *  ≥1 canal dont la politique est `allowed` ou `confirmation_required`, indépendamment du
-   *  trajet et du climat. `carries_pets` en est la projection legacy pendant la transition. */
-  offers_pet_transport?: boolean;
+  /** Statut ternaire — voir AirlineDecision.offers_pet_transport. */
+  offers_pet_transport?: PetTransportStatus;
   /* Projection legacy de `offers_pet_transport` (T0-A — correction contrôlée, diff versionné :
      l'ancien calcul appliquait les règles du trajet au « chien neutre » et affichait « Animaux
      refusés » sur des compagnies dont la politique propose un canal).
      NE JAMAIS EN DÉDUIRE UN MOTIF : « true, mais aucun mode accepté » ne veut pas dire « race
      refusée » — c'est le plus souvent le poids, ou l'absence de soute/fret. Le motif réel est
      dans `deny_reasons`, lu sur les règles qui ont refusé. */
-  carries_pets?: boolean;
+  /* RETIRÉ DE LA SURFACE PUBLIQUE (05/09/2026) : ce booléen était la projection d'un booléen
+     qui valait `true` partout, et l'écran en tirait « la compagnie prend des animaux, mais pas
+     ce chien-ci » — une affirmation sur la compagnie qu'aucune preuve ne soutenait. L'écran lit
+     désormais le statut ternaire, qui sait dire « on ne sait pas ». */
+  carries_pets?: undefined;
   /** Motifs du refus (codes stables), présents seulement quand aucun mode n'est accepté. */
   deny_reasons?: string[];
   /** Nature de l'itinéraire — voir AirlineDecision.itinerary_confidence. */
@@ -666,7 +780,18 @@ export interface AdvisorySignal {
 }
 
 export interface DecisionReport {
-  verdict: "compatible" | "conditional" | "incompatible";
+  /** LA RÉPONSE À « MON CHIEN PEUT-IL VOYAGER ? » — quatre valeurs depuis le 05/09/2026.
+   *
+   *  Elle n'en avait que trois, et aucune ne savait dire « on ne l'a pas encore établi ». Comme
+   *  tout énoncé à trois valeurs sommé de trancher, elle tranchait : sur des trajets où AUCUN
+   *  canal n'était prouvé, le site répondait « Oui — sous conditions » — un OUI catégorique tiré
+   *  de zéro preuve. C'est exactement ce que le critère de lancement interdit.
+   *
+   *    "compatible"   ≥1 canal PROUVÉ ouvert, aucune formalité d'entrée ;
+   *    "conditional"  ≥1 canal PROUVÉ ouvert, sous formalités ;
+   *    "unknown"      rien de prouvé dans un sens ni dans l'autre, mais des pistes à confirmer ;
+   *    "incompatible" le pays refuse l'entrée, ou tous les canaux sont refusés — PROUVÉS. */
+  verdict: "compatible" | "conditional" | "unknown" | "incompatible";
   /** 0..100 TRIP-level score (see computeScore() in explain.ts) — every candidate airline on this
    *  route combined, never a single carrier's number. Weighted from real choice (accepted ÷
    *  candidate airlines), route-attestation quality (direct_documented > direct_assumed >

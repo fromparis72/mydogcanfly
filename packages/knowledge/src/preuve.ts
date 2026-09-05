@@ -29,6 +29,7 @@
  */
 
 import type { PlacementPolicy, PlacementPolicyAuthored } from "./objects";
+import { FACTUAL_SOURCE_TYPES, isForbiddenSource } from "./common";
 
 /** La branche d'auteur « non revérifiée », extraite de l'union — jamais son littéral retapé. */
 type BrancheNonRevue = Extract<PlacementPolicyAuthored, { review_state: unknown }>;
@@ -82,7 +83,91 @@ export const estNonRevue = (p: PolitiqueSourcable | undefined | null): boolean =
 export function preuveAuditee<T extends PolitiqueSourcable>(p: T | undefined | null): NonNullable<T["source"]> | null {
   if (!p || !p.source) return null;
   if (estNonRevue(p)) return null;
+  if (estSourceOfficielleNonCitee(p)) return null;
   if (p.source_derived) return null;
   if (estAutoCitation(p.source.url)) return null;
   return p.source as NonNullable<T["source"]>;
 }
+
+/**
+ * QUATRIÈME EXCLUSION — la page officielle SANS phrase citée (contre-revue Codex, P0-3).
+ *
+ * J'avais proposé de laisser ce fichier inchangé pour que la source d'un canal « source
+ * officielle associée » reste exposée par `preuveAuditee`. C'était faux, et le nom de la fonction
+ * suffisait à le dire : elle promet une preuve AUDITÉE. Lui faire retourner une URL dont aucune
+ * phrase n'a été lue, c'est renommer le fait sans le changer — et tous ses appelants, moteur
+ * compris, auraient pris cette URL pour une preuve. La fonction la refuse donc.
+ */
+export const estSourceOfficielleNonCitee = (p: PolitiqueSourcable | undefined | null): boolean =>
+  p?.status_cause === "official_source_unquoted";
+
+/**
+ * LE LIEN OFFICIEL AFFICHABLE — délibérément distinct de la preuve.
+ *
+ * Ce n'est pas un troisième modèle de provenance : c'est la même `Source`, résolue par une
+ * fonction dont le contrat est plus faible et dit lequel. Elle répond « voici la page où le
+ * visiteur ira lire lui-même », jamais « voici ce qui fonde notre réponse ». Les deux
+ * résolveurs restent séparés pour qu'aucun appelant ne puisse confondre l'un avec l'autre.
+ */
+export function sourceAffichable<T extends PolitiqueSourcable>(p: T | undefined | null): NonNullable<T["source"]> | null {
+  const auditee = preuveAuditee(p);
+  if (auditee) return auditee;
+  if (!p || !p.source) return null;
+  if (!estSourceOfficielleNonCitee(p)) return null;   // rien d'autre ne devient affichable
+  if (p.source_derived) return null;
+  if (estAutoCitation(p.source.url)) return null;
+  return p.source as NonNullable<T["source"]>;
+}
+
+
+/**
+ * CE QU'UNE RÈGLE A LE DROIT DE DÉCIDER — la frontière de confiance, côté RÈGLES.
+ *
+ * LA FAILLE QUE CECI FERME (contre-revue du 05/09/2026). La frontière avait rétrogradé les 302
+ * POLITIQUES : plus aucune ne produisait de verdict sans citation. Mais `evaluate.ts` refusait
+ * toujours un canal dès qu'une règle `deny` se déclenchait, sans rien demander à sa provenance.
+ * Les deux chemins menaient au même écran, et l'un des deux n'était pas gardé.
+ *
+ * British Airways l'a montré, et je l'avais rapporté comme une bonne nouvelle : la carte affichait
+ * déjà « refusé » en cabine AVANT la citation. Ce n'était pas une confirmation, c'était le
+ * symptôme. Pire : `rule_british_airways_no_cabin` refuse cabine ET SOUTE — son nom ne parle que
+ * de la cabine, son effet couvre les deux —, sans citation, alors que la page officielle dit
+ * l'inverse pour la soute (« Your pet will travel in the hold of our aircraft »).
+ *
+ * ÉTAT MESURÉ LE 05/09/2026 : sur les règles `deny`, ZÉRO est citée, 130 portent une page
+ * officielle sans phrase, 88 sont faibles (type non factuel, ou auto-citation). Aucune ne peut
+ * donc décider — et c'est le résultat correct, pas un accident.
+ *
+ * CE QUI DÉCIDE, ET CE QUI NE DÉCIDE PAS :
+ *   `citee`                 page officielle + phrase + langue + emplacement → peut REFUSER, et
+ *                           seulement sur les placements que porte son propre `effect.placement` :
+ *                           une citation qui prouve la cabine ne ferme pas la soute. Séparer la
+ *                           règle est le travail de qui apporte la citation ;
+ *   `officielle_non_citee`  une page à montrer, aucun refus ;
+ *   `faible`                ni l'un ni l'autre.
+ */
+export type NiveauDePreuveRegle = "citee" | "officielle_non_citee" | "faible";
+
+/** Forme minimale d'une règle pour ce jugement — on ne lit QUE sa provenance. */
+export type RegleSourcable = {
+  source?: {
+    url?: string; source_type?: string;
+    quote?: string; quote_language?: string; locator?: string;
+  };
+};
+
+export function niveauDePreuveRegle(r: RegleSourcable | undefined | null): NiveauDePreuveRegle {
+  const s = r?.source;
+  if (!s?.url) return "faible";
+  if (isForbiddenSource(s.url)) return "faible";                     // auto-citation : jamais
+  if (!(FACTUAL_SOURCE_TYPES as readonly string[]).includes(String(s.source_type))) return "faible";
+  try { if (!/^https?:$/.test(new URL(s.url).protocol)) return "faible"; } catch { return "faible"; }
+  const citee = typeof s.quote === "string" && s.quote.length >= 10
+    && typeof s.quote_language === "string" && s.quote_language.length > 0
+    && typeof s.locator === "string" && s.locator.length > 0;
+  return citee ? "citee" : "officielle_non_citee";
+}
+
+/** `true` si cette règle a le droit de produire un refus ferme. */
+export const regleDecisive = (r: RegleSourcable | undefined | null): boolean =>
+  niveauDePreuveRegle(r) === "citee";

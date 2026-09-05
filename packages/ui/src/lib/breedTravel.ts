@@ -15,6 +15,14 @@ export interface DnaRow { icon: string; label: Bi; value: Level }
 export interface ChannelView {
   level: Level;            // qualitative 5-step verdict
   detail: Bi;             // one honest line explaining the number behind it
+  /** Le verdict repose-t-il sur au moins une politique ÉTABLIE ? (05/09/2026)
+   *  Les trois verdicts de canal se calculaient sur un dénominateur qui pouvait valoir zéro, et
+   *  aucun ne savait le dire : `pct = tot ? yes/tot : 0` rendait 0, donc « Souvent refusé », sur
+   *  ZÉRO politique lue ; la cabine, elle, se rabattait sur une limite SUPPOSÉE de 8 kg et
+   *  annonçait « Très souvent possible » juste au-dessus d'un détail disant qu'aucune compagnie
+   *  ne publie de limite adaptée. Deux affirmations catégoriques tirées d'un vide, sur 172 races
+   *  et quatre langues. Ce drapeau est ce vide, nommé. */
+  etabli: boolean;
 }
 export interface AirlineRank {
   name: string; slug: string; tone: Tone; badge: string; // ✅ ⚠ ❌
@@ -27,7 +35,7 @@ export interface BreedTravelProfile {
   id: string; slug: string;
   name: string; nameFr: string; nameEs: string; namePt: string;
   size: string; weightKg: number; brachy: boolean; coat?: string;
-  difficulty: Level & { emoji: string; score: number; stars: number };
+  difficulty: Level & { emoji: string; score: number; stars: number; etabli: boolean };
   dna: DnaRow[];
   cabin: ChannelView; hold: ChannelView; cargo: ChannelView;
   airlineHeadline: Level;          // "Cargo only", "Accepted by most", ...
@@ -72,8 +80,16 @@ const REGION_SUMMER: Record<string, number> = {
 
 const L = (en: string, fr: string, es: string, pt: string, tone: Tone): Level => ({ en, fr, es, pt, tone });
 
-export function computeBreedTravel(breedId: string): BreedTravelProfile | null {
-  const kb: any = loadKB();
+/**
+ * `kbOverride` n'existe que pour les contre-épreuves, et ne change RIEN en production : sans lui,
+ * la fonction charge la base réelle comme elle l'a toujours fait. Il a été ajouté le 04/09/2026
+ * parce que la frontière de confiance a vidé `bestAirlines` sur les données réelles — plus aucune
+ * politique n'est `allowed` — et que le contrôle « la réponse NOMME des compagnies compatibles »
+ * n'avait donc plus de matière à observer. Un témoin qui ne peut plus se déclencher ne prouve
+ * rien ; on lui rend son cas par une base citée, plutôt que d'abaisser le contrôle.
+ */
+export function computeBreedTravel(breedId: string, kbOverride?: unknown): BreedTravelProfile | null {
+  const kb: any = kbOverride ?? loadKB();
   const b: any = kb.breeds.get(breedId);
   if (!b) return null;
   const w: number = b.weight_kg;
@@ -240,7 +256,40 @@ export function computeBreedTravel(breedId: string): BreedTravelProfile | null {
 // ---------- verdict helpers ----------
 function clamp(n: number, lo: number, hi: number) { return Math.max(lo, Math.min(hi, n)); }
 
+const NON_ETABLI = L("Not established", "Pas encore établi", "Aún no establecido", "Ainda não estabelecido", "warn");
+const detailNonEtabli = (canal: "cabin" | "hold" | "cargo", brachy = false): Bi => {
+  const nom = {
+    cabin: { en: "in the cabin", fr: "en cabine", es: "en cabina", pt: "em cabine" },
+    hold: { en: "in the hold", fr: "en soute", es: "en bodega", pt: "no porão" },
+    cargo: { en: "as cargo", fr: "en fret", es: "como carga", pt: "como carga" },
+  }[canal];
+  /* LA MISE EN GARDE BRACHYCÉPHALE SURVIT À LA SUPPRESSION DU CHIFFRE FAUX.
+     Première rédaction fautive, nommée : le détail « 0 compagnies interdisent explicitement les
+     chiens au museau court en soute » disait deux choses — un COMPTE tiré du vide, et une
+     PRÉCAUTION de catégorie qui, elle, reste vraie et ne prétend rien sur une compagnie
+     particulière. J'ai retiré les deux d'un coup, et la fiche du carlin a cessé de mentionner
+     son museau court en soute et en fret. Le contrôle 4 de test-faq-races.mjs l'a vu. On ne
+     garde que la précaution, sans son faux chiffre. */
+  const brachyNote = brachy && canal !== "cabin" ? {
+    en: " Snub-nosed breeds also face seasonal heat embargoes and per-carrier respiratory restrictions — confirm with each airline.",
+    fr: " Les races au museau court sont en outre exposées aux embargos chaleur saisonniers et à des restrictions respiratoires propres à chaque compagnie — à confirmer avec chacune.",
+    es: " Las razas de hocico chato están además expuestas a embargos por calor estacionales y a restricciones respiratorias propias de cada aerolínea — confírmalo con cada una.",
+    pt: " As raças de focinho achatado estão além disso expostas a embargos sazonais por calor e a restrições respiratórias próprias de cada companhia — confirme com cada uma.",
+  } : { en: "", fr: "", es: "", pt: "" };
+  return {
+    en: `No airline policy for travel ${nom.en} has been confirmed by a quoted official source yet — this is not a refusal, it is an absence of proof.${brachyNote.en}`,
+    fr: `Aucune politique de compagnie pour le voyage ${nom.fr} n'est encore confirmée par une source officielle citée — ce n'est pas un refus, c'est une absence de preuve.${brachyNote.fr}`,
+    es: `Todavía no hay ninguna política de aerolínea para viajar ${nom.es} confirmada por una fuente oficial citada — no es un rechazo, es una ausencia de prueba.${brachyNote.es}`,
+    pt: `Nenhuma política de companhia para viajar ${nom.pt} está ainda confirmada por uma fonte oficial citada — não é uma recusa, é uma ausência de prova.${brachyNote.pt}`,
+  };
+};
+
 function cabinVerdict(w: number, within: number, stated: number, unk: number): ChannelView {
+  /* AUCUNE LIMITE PUBLIÉE ⇒ AUCUN VERDICT. Le repli qui suivait déduisait le niveau du seul POIDS
+     du chien, comparé à une limite « usuelle » de 8 kg que personne n'a lue nulle part : un
+     chihuahua recevait « Très souvent possible » sur zéro politique établie. Un ordre de grandeur
+     du marché n'est pas une politique de compagnie. */
+  if (stated === 0 && unk === 0) return { level: NON_ETABLI, detail: detailNonEtabli("cabin"), etabli: false };
   let level: Level;
   if (stated > 0) {
     const pct = within / stated;
@@ -263,11 +312,14 @@ function cabinVerdict(w: number, within: number, stated: number, unk: number): C
         fr: `Aucune compagnie ne publie de limite cabine adaptée à ${w} kg — d'après les limites usuelles (~8 kg).`,
         es: `Ninguna aerolínea publica un límite de peso en cabina que se ajuste claramente a ${w} kg — según los límites habituales (~8 kg).`,
         pt: `Nenhuma companhia aérea publica um limite de peso em cabine que caiba claramente em ${w} kg — com base nos limites habituais (~8 kg).` };
-  return { level, detail };
+  return { level, detail, etabli: true };
 }
 
 function holdVerdict(brachy: boolean, yes: number, no: number, bans: number): ChannelView {
   const tot = yes + no;
+  /* `pct = tot ? yes/tot : 0` : sur zéro politique établie, le pourcentage valait 0 et la fiche
+     annonçait « Souvent refusé » — un refus déduit de l'absence de données. */
+  if (tot === 0) return { level: NON_ETABLI, detail: detailNonEtabli("hold", brachy), etabli: false };
   const pct = tot ? yes / tot : 0;
   let level: Level;
   if (brachy) {
@@ -291,11 +343,12 @@ function holdVerdict(brachy: boolean, yes: number, no: number, bans: number): Ch
         fr: `${yes} compagnies acceptent ce profil en soute, ${no} non.`,
         es: `${yes} aerolíneas aceptan este perfil en la bodega, ${no} no.`,
         pt: `${yes} companhias aéreas aceitam este perfil no porão, ${no} não.` };
-  return { level, detail };
+  return { level, detail, etabli: true };
 }
 
 function cargoVerdict(yes: number, no: number, brachy: boolean): ChannelView {
   const tot = yes + no;
+  if (tot === 0) return { level: NON_ETABLI, detail: detailNonEtabli("cargo", brachy), etabli: false };
   const pct = tot ? yes / tot : 0;
   let level = pct >= 0.7 ? L("Widely accepted", "Largement accepté", "Ampliamente aceptado", "Amplamente aceito", "ok")
     : pct >= 0.4 ? L("Accepted with conditions", "Accepté sous conditions", "Aceptado con condiciones", "Aceito com condições", "warn")
@@ -311,10 +364,16 @@ function cargoVerdict(yes: number, no: number, brachy: boolean): ChannelView {
         fr: `${yes} compagnies proposent une option cargo compatible avec cette race.`,
         es: `${yes} aerolíneas ofrecen una opción de carga para mascotas compatible con esta raza.`,
         pt: `${yes} companhias aéreas oferecem uma opção de carga para animais compatível com esta raça.` };
-  return { level, detail };
+  return { level, detail, etabli: true };
 }
 
 function headline(cabin: ChannelView, hold: ChannelView, cargo: ChannelView): Level {
+  /* Le repli final de cette cascade était « Souvent refusé » : quand AUCUN canal n'est établi,
+     aucun n'a le ton « ok », et la synthèse concluait donc au refus — la conclusion la plus dure
+     de la page, atteinte par défaut. Elle dit maintenant ce qu'elle sait. */
+  if (!cabin.etabli && !hold.etabli && !cargo.etabli) {
+    return L("Not established yet", "Pas encore établi", "Aún no establecido", "Ainda não estabelecido", "warn");
+  }
   if (cabin.level.tone === "ok") return L("Accepted by most airlines (cabin)", "Accepté par la plupart (cabine)", "Aceptado por la mayoría de aerolíneas (cabina)", "Aceito pela maioria das companhias (cabine)", "ok");
   if (hold.level.tone === "ok") return L("Accepted in hold by many airlines", "Accepté en soute par beaucoup", "Aceptado en bodega por muchas aerolíneas", "Aceito no porão por muitas companhias", "ok");
   if (cargo.level.tone === "ok") return L("Cargo only for most airlines", "Cargo uniquement chez la plupart", "Solo carga en la mayoría de aerolíneas", "Somente carga na maioria das companhias", "warn");
@@ -340,11 +399,20 @@ function adaptVerdict(a: number): Level {
   return a >= 4 ? L("High", "Élevée", "Alta", "Alta", "ok") : a === 3 ? L("Moderate", "Modérée", "Moderada", "Moderada", "warn") : L("Low", "Faible", "Baja", "Baixa", "no");
 }
 
-function difficulty(cabin: ChannelView, hold: ChannelView, cargo: ChannelView, heat: Level, brachy: boolean): Level & { emoji: string; score: number; stars: number } {
+function difficulty(cabin: ChannelView, hold: ChannelView, cargo: ChannelView, heat: Level, brachy: boolean): Level & { emoji: string; score: number; stars: number; etabli: boolean } {
   // Best REALISTIC channel for an owner, by priority cabin > hold > cargo.
   // Cargo-only is inherently difficult (costly, complex, heat-exposed), so it scores low even when "widely accepted".
   const ok = (v: ChannelView) => v.level.tone === "ok";
   const warn = (v: ChannelView) => v.level.tone === "warn";
+  /* LA NOTE GLOBALE NE SE CALCULE PLUS SUR RIEN. Sans canal établi, cette cascade tombait dans
+     `base = 18` — « Voyage très difficile », 1,5/5 — puis affichait ce score en chiffres, en
+     gros, dans l'en-tête de la fiche. Une note précise sur un dossier vide est exactement la
+     réponse catégorique trompeuse que le critère de lancement interdit. Elle se déclare non
+     établie, et la page n'affiche alors ni étoiles ni /100 (voir BreedTravelPage.astro). */
+  if (!cabin.etabli && !hold.etabli && !cargo.etabli) {
+    return { ...L("Not established yet", "Pas encore établi", "Aún no establecido", "Ainda não estabelecido", "warn"),
+      emoji: "•", score: 0, stars: 0, etabli: false };
+  }
   let base: number;
   if (ok(cabin)) base = 100;
   else if (ok(hold)) base = 78;
@@ -363,7 +431,7 @@ function difficulty(cabin: ChannelView, hold: ChannelView, cargo: ChannelView, h
     { ...L("Difficult Traveller", "Voyageur difficile", "Viajero difícil", "Viajante difícil", "no"), emoji: "🟠" },
     { ...L("Very Difficult Traveller", "Voyageur très difficile", "Viajero muy difícil", "Viajante muito difícil", "crit"), emoji: "🔴" },
   ];
-  return { ...table[cls], score, stars };
+  return { ...table[cls], score, stars, etabli: true };
 }
 
 function climateBadges(kb: any, heatSensitive: boolean, coldTol: number) {

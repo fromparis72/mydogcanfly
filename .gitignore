@@ -27,3 +27,7 @@ packages/**/.astro/
 # Bac à sable du harnais test-ingest-check.mjs (créé et supprimé à chaque exécution)
 /.ingest-sandbox/
 fraicheur-sortie/
+
+# Captures de la vérification navigateur (journée 5) : des preuves à REGARDER, pas à versionner —
+# elles sont régénérées par `npm run test:apercu` et pèseraient 1,5 Mo de binaire par passage.
+mesures/apercu-jour5/

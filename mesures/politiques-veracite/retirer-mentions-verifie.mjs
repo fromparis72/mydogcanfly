@@ -1,0 +1,191 @@
+#!/usr/bin/env node
+/**
+ * « VÉRIFIÉ LE … » — RETIRER UNE AFFIRMATION QUE RIEN NE FONDE.
+ *
+ *   node mesures/politiques-veracite/retirer-mentions-verifie.mjs [--ecrire]
+ *
+ * Sans `--ecrire`, l'outil ne touche à rien et rend le relevé. Il est REJOUABLE et IDEMPOTENT :
+ * relancé sur un dépôt déjà corrigé, il rapporte zéro remplacement.
+ *
+ * POURQUOI. 102 fiches affichent une pastille « Vérifié le 11 juil. 2026 », cochée en vert, et
+ * 100 une ligne « … · dernière vérification 8 août 2026 ». Le lot « frontière de confiance » vient
+ * d'établir que ZÉRO des 302 politiques ne porte de phrase citée : l'historique de la plupart dit
+ * lui-même « Initial import — pending live re-verification ». Une date de RELEVÉ n'est pas une
+ * date de VÉRIFICATION, et l'écrire en vert avec une coche est l'affirmation la plus visible du
+ * site — celle qu'un visiteur lit avant tout le reste.
+ *
+ * CE QUI EST REMPLACÉ, ET CE QUI NE L'EST PAS. Seul le VERBE change. La date reste, le nombre de
+ * sources reste, la phrase autour reste : ce qui est vrai n'est pas retiré, ce qui est faux
+ * n'est pas conservé. La coche « ✓ » devient un calendrier « 🗓 » et la pastille perd son vert :
+ * un signe qui dit « validé » est une affirmation, au même titre qu'un mot.
+ *
+ * `verified_date:` — le champ STRUCTUREL — n'est pas touché. Il n'est pas lu par le visiteur, il
+ * sert à dériver `review_due` (cadence de 90 jours, ADR-0007) : le renommer casserait la cadence
+ * sans rien corriger d'affiché.
+ *
+ * ÉCRITURE TEXTUELLE, JAMAIS UN ALLER-RETOUR YAML. Le round-trip `parseDocument` → `String()` ne
+ * restitue à l'identique aucune des fiches (guillemets, largeur de ligne, commentaires) : le diff
+ * deviendrait illisible et la correction indiscernable d'un reformatage. Règle héritée de
+ * `mesures/t0b2/outils/ecrire-policies-yaml.mjs`, et elle vaut toujours.
+ */
+import { readdirSync, readFileSync, writeFileSync } from "node:fs";
+import { join } from "node:path";
+
+const ECRIRE = process.argv.includes("--ecrire");
+const SRC = "content/airlines";
+
+/* La pastille, prise comme un BLOC : icône, les quatre libellés, et la classe verte qui suit.
+   La prendre ligne par ligne remplacerait « Verified » partout où il apparaît — y compris dans
+   une phrase de canal où il peut être légitime. */
+const PASTILLE = new RegExp(
+  "([ \\t]*)- icon: ✓\\n"
+  + "([ \\t]*)label:\\n"
+  + "([ \\t]*)en: Verified ([^\\n]+)\\n"
+  + "([ \\t]*)fr: Vérifié le ([^\\n]+)\\n"
+  + "([ \\t]*)es: Verificado (?:el )?([^\\n]+)\\n"
+  + "([ \\t]*)pt: \"Verificado em ([^\\n]+)\"\\n"
+  + "([ \\t]*)cls: ok\\n",
+  "g",
+);
+
+/* Le segment de la ligne « sources » : le verbe seul, la date conservée telle quelle.
+ *
+ * HUIT FORMES, ET NON QUATRE. Ma première rédaction n'en connaissait que quatre — celles que
+ * j'avais dénombrées en cherchant « last verified ». Deux fiches, Icelandair et KM Malta, en
+ * portent une CINQUIÈME (« · verified 18 July 2026 », sans « last »), et ses trois traductions.
+ * Je ne les ai pas trouvées en réfléchissant : le contrôle de résidu les a nommées. C'est
+ * exactement la faute que ce dépôt collectionne — un instrument qui ne parle que de ce qu'il
+ * reconnaît compte zéro là où il ne voit rien. Le relevé résiduel existe pour ça, et il reste. */
+const SEGMENTS = [
+  [/· last verified /g, "· sources collected "],
+  [/· dernière vérification /g, "· sources relevées le "],
+  [/· última verificación /g, "· fuentes recopiladas el "],
+  [/· última verificação em /g, "· fontes recolhidas em "],
+  [/· verified /g, "· sources collected "],
+];
+
+/* SECONDE PASSE — RÉPARER LA REDONDANCE QUE LA PREMIÈRE A CRÉÉE.
+ *
+ * « 4 Aegean sources · SOURCES collected 8 August 2026 » : mon remplacement a introduit un second
+ * « sources » dans une phrase qui en portait déjà un. Ce n'est pas faux, c'est mal écrit — et je
+ * l'ai écrit. La réparation est une SUPPRESSION stricte du nom redondant, sans toucher à la
+ * grammaire : aucun accord, aucun article, aucun genre à recalculer.
+ *
+ * CE QUE JE NE FAIS PAS ICI, ET POURQUOI. Le NOMBRE annoncé (« 4 sources ») n'est adossé à rien :
+ * le dépôt ne contient qu'UNE source officielle pour Aegean, l'autre étant une auto-citation. Le
+ * retirer demanderait de réécrire l'amorce de la phrase dans quatre langues, avec singulier,
+ * pluriel, article et genre — « 1 source Aircalin » → « Source Aircalin ». C'est très exactement
+ * la manœuvre qui, en août, a produit des phrases fausses dans 302 fichiers. Le compte est donc
+ * SIGNALÉ à l'arbitrage, pas réécrit à une semaine du lancement. */
+const REDONDANCES = [
+  [/· sources collected /g, "· collected "],
+  [/· sources relevées le /g, "· relevées le "],
+  [/· fuentes recopiladas el /g, "· recopiladas el "],
+  [/· fontes recolhidas em /g, "· recolhidas em "],
+  [/· vérifiée le /g, "· sources relevées le "],
+  [/· verificada el /g, "· fuentes recopiladas el "],
+  [/· verificada em /g, "· fontes recolhidas em "],
+];
+
+/* ── TROISIÈME PASSE — LE NOMBRE DE SOURCES ANNONCÉ (arbitrage du 05/09/2026) ──────────────────
+ *
+ * 95 fiches affichaient « 4 sources Aegean », sous un bouclier « Source officielle ». Le visiteur
+ * n'en recevait AUCUNE — le seul lien sortant est la page d'accueil de la compagnie — et le compte
+ * n'était adossé à rien : le dépôt porte deux URL pour Aegean, dont une auto-citation, donc UNE
+ * source officielle pour un chiffre annoncé de quatre. Sur les 95, 80 annonçaient plus que ce que
+ * le dépôt contient.
+ *
+ * POURQUOI CETTE TRANSFORMATION EST SÛRE, ALORS QUE JE L'AVAIS REFUSÉE. Je craignais de devoir
+ * refaire l'amorce dans quatre langues — singulier, pluriel, article, genre — et c'est la manœuvre
+ * qui, en août, a produit des phrases fausses dans 302 fichiers. Le relevé des formes montre qu'il
+ * n'en est rien : les 95 lignes de chaque langue sont toutes de la forme `<compte> <groupe
+ * nominal>`. On retire le compte et on met la majuscule ; LE NOM GARDE SON NOMBRE, qui était déjà
+ * correct. « 4 sources Aegean » → « Sources Aegean » ; « 1 source Aircalin » → « Source Aircalin ».
+ * Aucun accord n'est recalculé, donc aucune phrase ne peut être cassée — et ce qui reste est vrai.
+ */
+const RETIRER_COMPTE = /^(\s*(?:en|fr|es|pt):\s*"?)(\d+)\s+(\S)/gm;
+
+let fiches = 0, pastilles = 0, segments = 0, redondances = 0, comptes = 0, accords = 0, ecrites = 0;
+const restants = [];
+
+for (const f of readdirSync(SRC).filter((x) => x.endsWith(".yml") && x !== "_template.yml").sort()) {
+  const chemin = join(SRC, f);
+  const avant = readFileSync(chemin, "utf8");
+  fiches++;
+  let apres = avant.replace(PASTILLE, (_m, i1, i2, i3, dEn, i5, dFr, i7, dEs, i9, dPt) => {
+    pastilles++;
+    return `${i1}- icon: 🗓\n${i2}label:\n`
+      + `${i3}en: Updated ${dEn}\n`
+      + `${i5}fr: Mise à jour le ${dFr}\n`
+      + `${i7}es: Actualizado el ${dEs}\n`
+      + `${i9}pt: "Atualizado em ${dPt}"\n`;
+  });
+  for (const [motif, remplacement] of SEGMENTS) {
+    apres = apres.replace(motif, () => { segments++; return remplacement; });
+  }
+  for (const [motif, remplacement] of REDONDANCES) {
+    apres = apres.replace(motif, () => { redondances++; return remplacement; });
+  }
+  /* ── QUATRIÈME PASSE — L'ACCORD DU PARTICIPE, QUE J'AVAIS CASSÉ ────────────────────────────
+   *
+   * Retirer le compte a mis au jour un défaut que j'avais introduit à la première passe :
+   * « 1 source Aircalin · SOURCES RELEVÉES le 8 août » devient « Source Aircalin · RELEVÉES le
+   * 8 août ». Le participe s'accordait avec le mot « sources » que j'avais ajouté puis retiré ; il
+   * ne s'accorde plus avec rien. 16 fiches par langue sont au singulier.
+   *
+   * C'est très exactement la difficulté que je redoutais — et la preuve qu'elle était réelle. Elle
+   * se traite ici parce qu'elle est BORNÉE et VÉRIFIABLE : trois langues, un participe chacune, un
+   * critère de nombre lisible sur le premier mot de la ligne. L'anglais n'accorde pas : rien à y
+   * faire. */
+  const ACCORDS = [
+    [/^(\s*fr:\s*"?(?:Source|Page)\s[^\n]*·\s*)relevées\b/gm, "$1relevée"],
+    [/^(\s*es:\s*"?(?:Fuente|Página)\s[^\n]*·\s*)recopiladas\b/gm, "$1recopilada"],
+    [/^(\s*pt:\s*"?(?:Fonte|Página)\s[^\n]*·\s*)recolhidas\b/gm, "$1recolhida"],
+  ];
+
+  /* Le compte ne se retire QUE sur la ligne `sources:` — jamais sur une ligne quelconque qui
+     commencerait par un chiffre. On délimite donc le bloc avant de toucher quoi que ce soit. */
+  const bloc = apres.match(/\nsources:\n(?:[ \t]+(?:en|fr|es|pt):[^\n]*\n)+/);
+  if (bloc) {
+    const remplace = bloc[0].replace(RETIRER_COMPTE, (_m, tete, _n, premier) => {
+      comptes++;
+      return tete + premier.toUpperCase();
+    });
+    /* REMPLACEMENT PAR CHAÎNE, PAS PAR FONCTION. Ma première rédaction passait une fonction qui
+       ignorait ses propres groupes de capture et reconstruisait `$1` depuis un `match` périmé : le
+       préfixe de ligne était détruit, et les 16 fiches au singulier sont sorties amputées de leur
+       clé de langue. `git checkout` a tout restauré ; la leçon est écrite ici. Une chaîne de
+       remplacement laisse le moteur d'expressions régulières faire la substitution — il ne se
+       trompe pas de capture. */
+    let final = remplace;
+    for (const [motif, r] of ACCORDS) {
+      const avant = final;
+      final = final.replace(motif, r);
+      if (final !== avant) accords++;
+    }
+    if (final !== bloc[0]) apres = apres.replace(bloc[0], final);
+  }
+  /* Ce que l'outil n'a PAS su corriger doit se voir, plutôt que de passer pour un zéro. */
+  if (/Verified \d|Vérifié le \d|Verificado (?:el |em )?\d|last verified|dernière vérification|última verifica/i.test(apres)) {
+    restants.push(f);
+  }
+  if (apres !== avant) {
+    ecrites++;
+    if (ECRIRE) writeFileSync(chemin, apres);
+  }
+}
+
+console.log(`${fiches} fiches lues`);
+console.log(`  ${pastilles} pastille(s) « Vérifié le … » remplacée(s) par « Mise à jour le … »`);
+console.log(`  ${segments} segment(s) « dernière vérification » remplacé(s) par « sources relevées le »`);
+console.log(`  ${redondances} redondance(s) « sources · sources » réparée(s)`);
+console.log(`  ${comptes} nombre(s) de sources annoncé(s) retiré(s)`);
+console.log(`  ${accords} accord(s) de participe rétabli(s) au singulier`);
+console.log(`  ${ecrites} fiche(s) ${ECRIRE ? "réécrite(s)" : "à réécrire"}`);
+if (restants.length) {
+  console.log(`\n  ⚠ ${restants.length} fiche(s) portent ENCORE une mention non reconnue :`);
+  for (const f of restants) console.log(`      ${f}`);
+  process.exitCode = 1;
+} else {
+  console.log(`\n  aucune mention de vérification résiduelle`);
+}

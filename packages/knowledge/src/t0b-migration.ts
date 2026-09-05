@@ -1,5 +1,5 @@
 import { z } from "zod";
-import { LocalizedText, Placement, id, reviewDueFrom } from "./common";
+import { LocalizedText, Placement, id, reviewDueFrom, Source, FACTUAL_SOURCE_TYPES, isForbiddenSource } from "./common";
 /* Le modèle de provenance citée existe déjà et il est le bon : `Source` étendu d'une citation
    verbatim, d'une langue BCP-47 et d'un locator, avec interdiction de l'auto-citation, URL
    http(s) obligatoire et types de source factuels seulement. On le RÉUTILISE — deux modèles de
@@ -124,6 +124,45 @@ export const T0bAuditSource = SourcedQuote
     message: "locator obligatoire : une décision de migration doit dire OÙ la phrase a été lue",
     path: ["locator"],
   });
+
+/**
+ * LA PAGE OFFICIELLE ASSOCIÉE, SANS PHRASE CITÉE — le contrat FAIBLE, écrit à côté du fort pour
+ * que la différence soit lisible d'un coup d'œil et non déduite.
+ *
+ * Elle exige tout ce qui rend un lien sérieux — page officielle ou réglementaire, jamais une de
+ * nos pages, http(s), cadence de revue à 90 jours — et n'exige PAS la seule chose qui ferait
+ * d'elle une preuve : la phrase. C'est pourquoi une politique qui n'a que celle-ci ne peut pas
+ * produire de verdict catégorique (`projectPlacementPolicy`) et n'est pas retournée par
+ * `preuveAuditee` (`preuve.ts`), seulement par `sourceAffichable`.
+ *
+ * Les prédicats ne sont pas retapés : `FACTUAL_SOURCE_TYPES` et `isForbiddenSource` sont ceux de
+ * `common.ts`, les mêmes que ceux dont `SourcedQuote` se sert. Une seconde définition de
+ * « source officielle » aurait divergé de la première — c'est la faute que ce dépôt collectionne.
+ */
+export const T0bSourceOfficielleNonCitee = Source
+  .extend({ quote: z.undefined().optional(), locator: z.string().min(1).optional() })
+  .strict()
+  .refine((s) => /^https?:$/.test((() => { try { return new URL(s.url).protocol; } catch { return ""; } })()), {
+    message: "seules les URL http(s) sont acceptées", path: ["url"],
+  })
+  .refine((s) => !isForbiddenSource(s.url), {
+    message: "auto-citation : un domaine MyDogCanFly ne peut pas accompagner une décision",
+    path: ["url"],
+  })
+  .refine((s) => (FACTUAL_SOURCE_TYPES as readonly string[]).includes(s.source_type), {
+    message: `un lien officiel exige une source ${FACTUAL_SOURCE_TYPES.join(", ")}`, path: ["source_type"],
+  })
+  .refine((s) => s.review_due === reviewDueFrom(s.verified_date, "airline"), (s) => ({
+    message: `review_due doit valoir exactement ${reviewDueFrom(s.verified_date, "airline")} (cadence airline : 90 jours)`,
+    path: ["review_due"],
+  }));
+
+/**
+ * LA provenance qu'une fiche peut porter sur une décision : citée, ou officielle non citée.
+ * L'ordre compte — la forme forte est essayée d'abord, pour qu'une source complète ne soit
+ * jamais validée par le contrat faible et perde sa citation en silence.
+ */
+export const T0bSourceDePolitique = z.union([T0bAuditSource, T0bSourceOfficielleNonCitee]);
 
 const justification = z.string().min(1);
 

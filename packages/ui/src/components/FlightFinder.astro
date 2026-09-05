@@ -110,6 +110,7 @@ const labels = {
   /* Plus de « Race non acceptée » posé par défaut : le moteur ne connaissait pas la cause du refus
      et l'interface en inventait une. Le badge est neutre, le motif réel vient du moteur (label). */
   notCompatible: t(locale, "air.not_compatible_short"),
+  petsUnknown: t(locale, "air.pets_unknown_short"),
   unverifiedShort: t(locale, "air.unverified_short"),
   unverifiedNote: t(locale, "air.unverified_note"),
   directCount: t(locale, "air.direct_count"),
@@ -147,13 +148,23 @@ const labels = {
   /* T0-B — famille DISTINCTE de « politique » : l'incertitude est la NÔTRE (donnée héritée non
      revérifiée), pas celle de la compagnie. Le code interne `legacy_unreviewed` n'est jamais
      affiché ; le visiteur lit une phrase qui dit d'où vient le doute et quoi faire. */
+  /* UNE PAGE OFFICIELLE EXISTE, AUCUNE PHRASE N'EN A ÉTÉ CITÉE (05/09/2026). Cette famille
+     manquait : `official_source_unquoted` tombait dans le vide depuis que je l'avais introduite,
+     et la carte disait « à confirmer » sans dire pourquoi. Les causes de RÈGLE non citée la
+     rejoignent — du point de vue du visiteur, la situation est la même : il y a une page à lire,
+     et personne n'y a encore lu la phrase qui trancherait. */
+  confirmOfficialLink: T("An official airline page covers this channel, but no sentence has been quoted from it yet — read the conditions there and confirm with the airline.", "Une page officielle de la compagnie couvre ce canal, mais aucune phrase n'en a encore été citée — lis-y les conditions et confirme auprès de la compagnie.", "Una página oficial de la aerolínea cubre este canal, pero aún no se ha citado ninguna frase — consulta allí las condiciones y confírmalas con la aerolínea."),
   confirmUnreviewed: T("This information has not yet been reverified against a current official source — confirm directly with the airline before booking.", "Cette information n'a pas encore été revérifiée à partir d'une source officielle à jour — confirme-la directement auprès de la compagnie avant de réserver.", "Esta información aún no se ha vuelto a verificar a partir de una fuente oficial actualizada; confírmala directamente con la aerolínea antes de reservar."),
   confidence: T("confidence", "confiance", "confianza"),
   answer: {
     compatible: t(locale, "answer.compatible"),
     conditional: t(locale, "answer.conditional"),
+    /* Quatrième réponse (05/09/2026) : « pas encore établi ». Sans elle, un trajet dont aucun
+       canal n'est prouvé recevait `conditional`, c'est-à-dire « Oui — sous conditions ». */
+    unknown: t(locale, "answer.unknown"),
     incompatible: t(locale, "answer.incompatible"),
   },
+  answerUnknownNote: t(locale, "answer.unknown_note"),
   // Breed lookup for the client: name (lowercased) → id, median weight (kg), snub-nosed flag.
   breeds: Object.fromEntries(breeds.map((b) => [b.label.toLowerCase(), { id: b.id, w: b.weight, br: b.brachy }])),
   breedById: Object.fromEntries(breeds.map((b) => [b.id, b.label])),   // for ?breed= deep-link prefill
@@ -479,6 +490,24 @@ const labels = {
     </div>`;
   }
 
+  /* LA JAUGE DE COMPATIBILITÉ NE S'AFFICHE PLUS (05/09/2026).
+   *
+   * Elle annonçait « 10 % de compatibilité » sur un Paris → New York, en gros et en couleur. Ce
+   * nombre dérive de trois faits — part de compagnies acceptantes, qualité des itinéraires,
+   * moyenne des confiances de sources. Depuis la frontière de confiance, la première vaut ZÉRO
+   * partout, car aucun canal n'est prouvé ouvert : il ne restait qu'un résidu de qualité
+   * d'itinéraire et d'étoiles de sources, affiché avec la précision d'une mesure. « 10 % » se lit
+   * « presque impossible » ; la vérité est « nous ne le savons pas encore ». Un chiffre précis
+   * tiré de données non prouvées est exactement la réponse catégorique trompeuse que le critère
+   * de lancement interdit.
+   *
+   * CONSTANTE, ET NON CONDITIONNELLE À LA DONNÉE — même arbitrage que sur les fiches compagnie,
+   * où la contre-revue a refusé `scoreEtNoteAffichables = aUnCanal("allowed")` : rebrancher la
+   * jauge dès la PREMIÈRE preuve publierait encore un nombre calculé sur 301 politiques non
+   * prouvées. Elle se rallumera par une décision écrite, pas par un effet de bord de la donnée.
+   * Le score reste calculé et servi par l'API — il n'est pas AFFICHÉ. */
+  const SCORE_AFFICHABLE = false;
+
   function render(r: DecisionReport): string {
     const stars = "★".repeat(r.confidence) + "☆".repeat(Math.max(0, 5 - r.confidence));
     const answer = (L.answer && L.answer[r.verdict]) || r.verdict;
@@ -545,11 +574,19 @@ const labels = {
                       && !a.heat_confirmation_required && !(a.to_confirm && a.to_confirm.length);
                     const caps = [];
                     if (structuralNoPets) {
-                      // Une compagnie qui ne prend aucun animal ("Animaux refusés") reste distincte d'une
-                      // compagnie qui en prend mais écarte CE chien. Pour la seconde, le badge ne nomme plus
-                      // de cause — le motif exact (poids, race, soute non proposée…) est dans le libellé.
-                      if (a.carries_pets) caps.push({ cls: "nomatch", ic: "🐾", txt: L.notCompatible });
-                      else caps.push({ cls: "nopets", ic: "🚫", txt: L.noPets });
+                      /* Une compagnie qui ne prend aucun animal (« Animaux refusés ») reste distincte
+                         d'une compagnie qui en prend mais écarte CE chien. Pour la seconde, le badge ne
+                         nomme plus de cause — le motif exact (poids, race, soute non proposée…) est dans
+                         le libellé.
+                         TROISIÈME CAS, OUVERT LE 05/09/2026 : on ne sait pas. Cette ligne lisait
+                         `carries_pets`, un booléen qui valait `true` sur les 102 compagnies du dépôt : le
+                         visiteur lisait donc « cette compagnie transporte des animaux, mais pas le vôtre »
+                         là où rien n'établissait ni l'un ni l'autre. Le badge ne tranche plus que sur les
+                         deux états prouvés, et dit son ignorance dans le troisième. */
+                      const pets = a.offers_pet_transport;
+                      if (pets === "yes") caps.push({ cls: "nomatch", ic: "🐾", txt: L.notCompatible });
+                      else if (pets === "no") caps.push({ cls: "nopets", ic: "🚫", txt: L.noPets });
+                      else caps.push({ cls: "petsunknown", ic: "?", txt: L.petsUnknown });
                     } else {
                       const viaCode = a.connect_airport_id ? (AIRSHORT[a.connect_airport_id] || "") : "";
                       /* Le badge « ✈ Direct » est réservé au direct ATTESTÉ. Un `direct_assumed`
@@ -632,6 +669,15 @@ const labels = {
                         /* T0-B : famille PROPRE — `legacy_unreviewed` ne rejoint pas « policy »,
                            qui attribuerait à la compagnie un doute qui vient de notre donnée. */
                         if (c.code === "legacy_unreviewed") fams.add("unreviewed");
+                        /* Notre donnée manque, ou la règle qui fermait le canal n'est pas
+                           vérifiable : c'est NOTRE incertitude, pas celle de la compagnie. */
+                        /* `breed_deny_unverified` rejoint « notre incertitude » : nous détenons un
+                           fait de race que nous ne savons pas prouver. Il ne doit surtout pas
+                           tomber dans le vide, comme `official_source_unquoted` l'a fait. */
+                        else if (c.code === "policy_absent" || c.code === "rule_unverified"
+                                 || c.code === "breed_deny_unverified") fams.add("unreviewed");
+                        /* Une page officielle existe, sans phrase citée — politique ou règle. */
+                        else if (c.code === "official_source_unquoted" || c.code === "rule_official_unquoted") fams.add("official_link");
                         else if (c.code === "policy_unpublished" || c.code === "airline_approval") fams.add("policy");
                         else if (c.code === "missing_fact") fams.add("missing");
                       }
@@ -641,6 +687,7 @@ const labels = {
                        le visiteur lit « nous ne l'avons pas revérifié » avant toute phrase qui
                        parle de la politique de la compagnie. */
                     if (fams.has("unreviewed")) lines.push(`<div class="acard__confirmwhy">? ${esc(L.confirmUnreviewed)}</div>`);
+                    if (fams.has("official_link")) lines.push(`<div class="acard__confirmwhy">? ${esc(L.confirmOfficialLink)}</div>`);
                     if (fams.has("policy")) lines.push(`<div class="acard__confirmwhy">? ${esc(L.confirmPolicy)}</div>`);
                     if (fams.has("missing")) lines.push(`<div class="acard__confirmwhy">? ${esc(L.confirmMissing)}</div>`);
                     return lines.join("");
@@ -703,13 +750,15 @@ const labels = {
       <div class="report report--${r.verdict}">
         <p class="report__q">${esc(L.answerQ)}</p>
         <p class="report__answer">${esc(answer)}</p>
+        ${SCORE_AFFICHABLE ? `
         <div class="report__score">
           <div class="report__score-row">
             <div class="report__gauge"><span style="width:${score}%"></span></div>
             <div class="report__score-meta"><strong>${score}%</strong> ${esc(L.compatibility)}</div>
           </div>
           <div class="report__score-note">${esc(L.compatibilityNote)}</div>
-        </div>
+        </div>` : ""}
+        ${r.verdict === "unknown" ? `<p class="report__unknown">${esc(L.answerUnknownNote)}</p>` : ""}
         ${climateBanner(r)}
         ${roundTripFlag()}
         ${safetyAdvisories(r)}
@@ -1296,6 +1345,9 @@ const labels = {
   .report--incompatible .report__answer { color: var(--mdcf-risk); }
   .report--conditional .report__answer { color: var(--mdcf-warn); }
   .report--compatible .report__answer { color: var(--mdcf-ok); }
+  /* « Pas encore établi » : gris. Sans cette règle la réponse héritait de la couleur par défaut
+     de `.report__answer`, l'encre pleine, qui se lit comme une affirmation. */
+  .report--unknown .report__answer { color: #475569; }
   .report__score { margin: 0 0 4px; }
   .report__score-row { display: flex; align-items: center; gap: 12px; }
   .report__gauge { flex: 1 1 auto; height: 10px; border-radius: 999px; background: color-mix(in srgb, var(--mdcf-line) 70%, transparent); overflow: hidden; }
@@ -1308,6 +1360,9 @@ const labels = {
      sur une compagnie précise (voir explain.ts, computeScore). Discret mais toujours visible —
      directement sous la jauge, pas dans une infobulle qu'on peut manquer. */
   .report__score-note { font-size: 12px; color: var(--mdcf-muted); margin-top: 2px; }
+  /* La note « pas encore établi » : neutre, jamais rouge ni verte — elle ne décide de rien. */
+  .report__unknown { margin: 6px 0 0; font-size: 13px; line-height: 1.4; color: #475569;
+    background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 8px; padding: 8px 11px; }
   .report__sec { margin-top: 4px; }
   .rtflag { border: 1px solid; border-left-width: 5px; border-radius: 0 10px 10px 0; padding: 12px 14px; margin: 14px 0; }
   .rtflag__t { font-weight: 800; font-size: 14px; margin: 0 0 3px; }
@@ -1358,6 +1413,9 @@ const labels = {
   .acard__status--heat { color: #9a3412; background: #ffe4cc; }
   .acard__status--nopets { color: #991b1b; background: #fee2e2; }
   .acard__status--nomatch { color: #92400e; background: #fef0dc; }
+  /* « On ne sait pas » : gris, comme la correspondance non étayée — jamais le rouge d'un refus
+     ni l'ambre d'une option écartée. L'ignorance ne doit ressembler à aucune décision. */
+  .acard__status--petsunknown { color: #475569; background: #e2e8f0; }
   /* Correspondance non étayée : gris, jamais vert ni orange « option » — elle ne doit pas se lire
      comme une option vérifiée. Le liseré et l'opacité la démarquent d'une carte démontrée. */
   .acard__status--unver { color: #475569; background: #e2e8f0; }

@@ -1,0 +1,54 @@
+{
+  "_commentaire": "LES CONSTATS OFFICIELS DE LA CONTRE-REVUE, DU 4 SEPTEMBRE 2026, CONSIGNÉS TELS QUE REÇUS. Ce fichier n'est PAS une source : c'est le compte rendu d'une vérification faite par un tiers qui, lui, a accès aux pages. Il ne peut donc pas encore alimenter un fait métier — `SourcedQuote` exige une CITATION VERBATIM, sa langue et son locator, et ce que j'ai reçu ce sont des DÉCISIONS, pas des phrases. Le transformer en preuve reviendrait à fabriquer la citation, c'est-à-dire à commettre exactement la faute que ce lot combat. Les citations manquantes sont nommées ci-dessous, page par page.",
+  "_statut": "constats_a_citer",
+  "date_verification": "2026-09-04",
+  "verificateur": "contre-revue (accès web direct)",
+  "compagnies": [
+    {
+      "fiche": "content/airlines/gulf_air.yml",
+      "decisions": { "cabin": "no", "hold": "no", "cargo": "yes" },
+      "exceptions_structurees_a_prevoir": ["chiens d'assistance", "faucons sur certaines routes"],
+      "sources": [
+        { "url": "https://www.gulfair.com/transparency/conditions-of-carriage", "locator_annonce": "article 8.9.3", "constat": "interdit les animaux vivants comme bagages enregistrés, hors exception des faucons sur certaines routes", "citation_verbatim": null },
+        { "url": "https://www.gulfair.com/cargo", "locator_annonce": "Falcon Cargo — Live Animals", "constat": "les animaux voyagent comme fret, acceptés sous lettre de transport aérien principale", "citation_verbatim": null }
+      ],
+      "http_observe": 403,
+      "note_http": "403 décrit l'accessibilité AUTOMATISÉE, pas la validité documentaire : la page reste consultable."
+    },
+    {
+      "fiche": "content/airlines/kenya_airways.yml",
+      "decisions": { "cabin": "no", "hold": "no", "cargo": "yes_only" },
+      "exceptions_structurees_a_prevoir": ["chiens d'assistance"],
+      "sources": [
+        { "url": "https://www.kenya-airways.com/en-ke/plan/baggage-information/pet-carriage/", "locator_annonce": null, "constat": "exclut explicitement PETC et AVIH, puis impose le fret", "citation_verbatim": null }
+      ],
+      "http_observe": 200
+    },
+    {
+      "fiche": "content/airlines/south_african_airways.yml",
+      "decisions": { "cabin": "no", "hold": "yes_domestique_sud_africain", "cargo": "required_international" },
+      "portee_reelle": "la soute n'est ouverte QUE sur le domestique sud-africain ; à l'international, fret manifesté sous Air Waybill",
+      "contraintes": { "caisse_max_m": "1 × 1", "poids_ensemble_max_kg": 23 },
+      "tarif_vu": { "montant": 300, "devise": "ZAR", "consigne": "reste MASQUÉ tant que le contrat tarifaire atomique n'existe pas" },
+      "sources": [
+        { "url": "https://www.flysaa.com/manage-fly/baggage/checked-baggage/animals?inheritRedirect=true", "locator_annonce": null, "constat": "cabine refusée hors assistance ; soute domestique avec caisse ≤ 1 × 1 m et ensemble ≤ 23 kg ; international en fret manifesté", "citation_verbatim": null }
+      ],
+      "http_observe": 200
+    },
+    {
+      "fiche": "content/airlines/tui_airways.yml",
+      "decisions": { "cabin": "no", "hold_bagage_passager": "no", "cargo": "confirmation_required" },
+      "piege_nomme": "NE PAS confondre TUI Airways UK et TUI fly Germany : deux transporteurs, deux politiques.",
+      "sources": [
+        { "url": "https://www.tui.co.uk/destinations/faq/airport-flights-and-luggage/flight-information/can-i-take-my-pet-with-me", "locator_annonce": null, "constat": "les animaux voyagent en soute comme fret, jamais en cabine passagers, sous réserve que le vol puisse les accueillir", "citation_verbatim": null }
+      ],
+      "http_observe": 403,
+      "note_http": "403 décrit l'accessibilité AUTOMATISÉE, pas la validité documentaire."
+    }
+  ],
+  "confrontation_au_publie": {
+    "resultat": "LES QUATRE VERDICTS PUBLIÉS SONT EXACTS. Le pilote ne montre pas que le site dit faux ; il montre que le site n'est pas PROUVÉ. La dette est une dette de provenance, pas encore une dette de vérité — et c'est une nouvelle qui change le calcul du risque de lancement.",
+    "nuance": "La portée de South African Airways — « South African domestic flights only », caisse 1 × 1 m, ensemble 23 kg — figure DANS LA PROSE de la fiche et nulle part dans la donnée. Le moteur ne peut donc pas s'en servir, et rien ne la vérifie. C'est exactement la portée que la contre-revue demande d'attacher au fait."
+  },
+  "ce_qui_manque_pour_ecrire_un_fait": "Pour chaque décision ci-dessus : la PHRASE officielle telle quelle, sa langue, et son locator. `SourcedQuote` exige une citation d'au moins dix caractères ; elle ne peut pas être déduite d'un résumé sans devenir une invention."
+}

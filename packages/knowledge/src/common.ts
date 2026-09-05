@@ -111,6 +111,35 @@ export const id = (prefix: string) =>
 export const SourceType = z.enum([
   "official_website", "regulation", "government", "airline_contact", "press", "other",
 ]);
+/**
+ * Types de source pouvant fonder un FAIT MÉTIER. Un article de presse ou un « other » documentent
+ * un contexte ; ils ne ferment pas un canal à un chien.
+ *
+ * DÉFINI ICI, ET PLUS DANS `breed-restrictions.ts`. Trois fichiers avaient besoin de cette liste —
+ * la preuve d'une restriction de race, la projection d'une politique de canal, la qualification
+ * d'un lien officiel. La recopier trois fois, c'est la garantie qu'elles divergeront : c'est
+ * exactement la faute que ce dépôt documente partout ailleurs. `common.ts` n'importe que `zod`,
+ * donc tout le monde peut la lire sans cycle.
+ */
+export const FACTUAL_SOURCE_TYPES = [
+  "official_website", "regulation", "government", "airline_contact",
+] as const;
+
+/** Domaines qui ne peuvent JAMAIS fonder un fait métier — nous compris, sous-domaines inclus. */
+export const FORBIDDEN_SOURCE_DOMAINS = ["mydogcanfly.com"] as const;
+
+/** Hostname normalisé : minuscules, point final retiré, préfixe `www.` conservé tel quel. */
+export const normalizeHost = (url: string): string =>
+  new URL(url).hostname.toLowerCase().replace(/\.+$/, "");
+
+/** `true` si l'URL est une de nos pages. Une URL illisible n'est pas une auto-citation. */
+export const isForbiddenSource = (url: string | undefined | null): boolean => {
+  if (!url) return false;
+  let host: string;
+  try { host = normalizeHost(String(url)); } catch { return false; }
+  return FORBIDDEN_SOURCE_DOMAINS.some((d) => host === d || host.endsWith("." + d));
+};
+
 export const ReviewEvent = z.object({
   date: z.string().date(),
   reviewer: z.string(),
@@ -126,6 +155,32 @@ export const Source = z.object({
   history: z.array(ReviewEvent).default([]),
 });
 export type Source = z.infer<typeof Source>;
+
+/** UNE PROVENANCE QUI PEUT ÊTRE CITÉE — `Source` plus la phrase qui la rend vérifiable.
+ *
+ *  Ce schéma vivait dans `objects.ts` sous le nom `PolicySource`, où seules les POLITIQUES de
+ *  canal pouvaient l'atteindre. Conséquence mesurée le 05/09/2026 : les RÈGLES, elles, portaient
+ *  un `Source` nu — `normalize` effaçait donc en silence toute phrase ajoutée à une règle, et la
+ *  frontière de confiance côté règles (« seule une règle citée peut refuser ») était une porte
+ *  qu'AUCUNE donnée ne pouvait franchir. Un harnais qui citait une règle pour en prouver le
+ *  mécanisme échouait sans que la citation ait jamais atteint le moteur.
+ *
+ *  Il vit désormais dans `common.ts`, qui n'importe que zod : politiques, règles et faits de race
+ *  lisent la MÊME définition de « provenance citable », sans cycle et sans copie.
+ *
+ *  Les trois champs restent facultatifs — 258 provenances sont dérivées et n'ont rien à citer.
+ *  Mais une citation sans sa langue serait interprétable : l'une entraîne l'autre. */
+export const SourceCitable = Source.extend({
+  /** La phrase officielle qui fonde la décision, reprise telle quelle. */
+  quote: z.string().min(10).optional(),
+  /** Étiquette BCP-47 — la citation est rendue dans SA langue, la traduire l'interpréterait. */
+  quote_language: z.string().regex(/^[a-z]{2,3}(-[A-Za-z0-9]{2,8})*$/, "étiquette de langue BCP-47 attendue").optional(),
+  /** Où la phrase a été lue : ancre, titre de section, numéro d'accordéon. */
+  locator: z.string().min(1).optional(),
+}).refine((s) => !s.quote || !!s.quote_language, {
+  message: "une citation doit dire sa langue", path: ["quote_language"],
+});
+export type SourceCitable = z.infer<typeof SourceCitable>;
 
 /* ---- Review cadence policy (ADR-0007). review_due is derived, never hand-typed. ---- */
 export const REVIEW_CADENCE_DAYS = {
