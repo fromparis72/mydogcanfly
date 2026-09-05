@@ -489,3 +489,20 @@ aucun score. La matrice publique ne contient aucun trajet à interdiction applic
 
 Compte figé mis à jour, mouvement nommé : règles `deny` — **1 citée** (Nouvelle-Zélande, contre 0),
 129 officielles non citées (contre 130), 88 faibles (inchangé).
+
+## Deux détails corrigés en vérifiant, et une trappe reconnue
+
+**L'accord de l'article.** Les nouvelles phrases rendaient « à confirmer auprès des autorités de
+Royaume-Uni » et « Royaume-Uni restreint peut-être… » — sans article, en français comme en
+espagnol. Plutôt que de construire une mécanique d'accord (une source de fautes à elle seule, et
+j'en ai déjà commis une sur les participes), le nom du pays est déplacé **après un tiret** —
+« Entrée à confirmer pour ce chien — Royaume-Uni » — et la condition parle du « pays de
+destination ». Aucune langue n'a alors besoin d'article. L'anglais des éléments positifs n'est pas
+touché : la baseline des 72 scénarios est en anglais, et je l'ai **vérifiée** plutôt que supposée —
+elle ne bouge pas.
+
+**`pgrep -f "astro build"` se trouve lui-même.** J'avais déjà tué mon propre shell avec `pkill -f`
+en septembre ; cette fois le motif figurait dans la ligne de commande du *détecteur*, et
+`pgrep` répondait « encore vivant » en se voyant lui-même. Le motif s'écrit désormais
+`'astro[ ]build'` : la classe de caractères ne se contient pas elle-même. La même faute, prise par
+l'autre bout.
