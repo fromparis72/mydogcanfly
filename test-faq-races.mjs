@@ -288,11 +288,31 @@ if (DIST) {
     if (!existsSync(f)) echec("8bis DOM portugais", "la fiche portugaise est absente du dist");
     else {
       const html = readFileSync(f, "utf8");
-      const PAIRES = [
+      /* MOUVEMENT NOMMÉ (05/09/2026) — ET UN VRAI DÉFAUT TROUVÉ EN CHEMIN.
+       *
+       * Cette contre-épreuve exigeait la phrase qui EXPLIQUE LE CLASSEMENT des compagnies. Depuis
+       * la frontière de confiance, `bestAirlines` est VIDE sur les données réelles — plus aucune
+       * politique n'est `allowed` — et la note ne se rend donc plus du tout : la contre-épreuve
+       * réclamait une phrase qui n'a plus d'objet. C'est la section VIDE qui parle à sa place.
+       *
+       * Ce qu'elle protège n'est pas telle phrase, c'est L'ABSENCE DE REPLI SILENCIEUX vers
+       * l'anglais sur la page portugaise. Elle porte donc désormais sur la phrase RÉELLEMENT
+       * rendue, et la protection est restée intacte en changeant de sujet : la phrase d'état vide
+       * n'avait AUCUNE entrée dans `translations/pt/inline.json`, et la fiche portugaise publiait
+       * bel et bien un paragraphe anglais. Le contrôle a donc attrapé, sous sa nouvelle forme,
+       * exactement la faute qu'il avait été écrit pour attraper.
+       *
+       * Les deux phrases d'origine restent exigées SI le classement revient — le jour où une
+       * citation rendra un canal `allowed`. Elles dorment, elles ne sont pas supprimées. */
+      const classementRendu = html.includes("bt2-airname");
+      const PAIRES = classementRendu ? [
         ["Classificação obtida das políticas publicadas (limites de peso em cabine, disponibilidade de porão e carga).",
          "Ranking derived from published policies (cabin weight limits, hold and cargo availability)"],
         ["Com base na dificuldade global, no peso, nos canais disponíveis e nas políticas publicadas.",
          "Based on overall difficulty, weight, available channels and published policies."],
+      ] : [
+        ["Ainda não há nenhum canal de companhia confirmado por uma fonte oficial citada para esta raça",
+         "No airline channel has been confirmed by a quoted official source for this breed yet"],
       ];
       let bon = 0;
       for (const [pt, en] of PAIRES) {
@@ -300,7 +320,9 @@ if (DIST) {
         else if (html.includes(en)) echec("8bis DOM portugais", `la version ANGLAISE subsiste sur la page portugaise : « ${en.slice(0, 50)}… »`);
         else bon++;
       }
-      if (bon === PAIRES.length) ok("8bis la fiche portugaise porte les deux phrases en portugais, sans repli anglais");
+      if (bon === PAIRES.length)
+        ok(`8bis la fiche portugaise porte ${bon} phrase(s) en portugais, sans repli anglais `
+          + `(classement ${classementRendu ? "rendu" : "VIDE — c'est l'état vide qui est éprouvé"})`);
     }
   }
 } else {

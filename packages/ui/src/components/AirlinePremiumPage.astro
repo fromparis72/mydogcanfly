@@ -34,49 +34,16 @@ const F = inlineF(locale); // phrases à trous : la donnée entre par {0}, {1}�
    pas ; le lien complet reste dans `href`, où le harnais le compare à l'octet près. */
 const hote = (u: string) => { try { return new URL(u).hostname.replace(/^www\./, ""); } catch { return u; } };
 
-/* LES CHIFFRES QUI DÉCIDENT, EN GRAS DANS LA PHRASE.
+/* ── `chiffresEnGras` ET SES QUATRE EXPRESSIONS SONT SUPPRIMÉS (05/09/2026) ─────────────────
  *
- * « Chien ou chat < 8 kg, sac souple ventilé sous le siège (46 × 28 × 24 cm) » contient tout ce
- * qu'un voyageur veut savoir, mais noyé : il faut lire la phrase entière pour trouver la cote du
- * sac, qui est justement ce qu'il vient chercher avant d'en acheter un. Les trois valeurs passent
- * donc en gras et en couleur pleine, la phrase reste intacte autour.
+ * Cette fonction mettait en gras les seuils, les cotes et les mots « sac souple / rigide » dans
+ * `channels[].detail`. Elle n'avait qu'un seul appelant, et cet appelant était le défaut : sous
+ * une pastille « à confirmer », elle donnait à « moins de 8 kg » et « 46 × 28 × 24 cm » le poids
+ * typographique d'une règle établie. Le détail retiré, elle n'est plus l'outil de rien.
  *
- * LE TRAITEMENT VAUT POUR LES TROIS CANAUX, pas seulement la cabine. C'était la remarque de
- * Philippe : les dimensions de la caisse en soute et les limites en fret méritent la même
- * lisibilité, et privilégier la cabine reviendrait à décider à sa place de ce qui compte.
- *
- * ON N'EMPHASE QUE CE QUI EST NON AMBIGU dans les quatre langues : les dimensions, les poids, et
- * la nature du sac — souple ou rigide, qui fait refuser au comptoir un sac pourtant au bon
- * gabarit. Le reste de la phrase n'est pas touché : une règle qui grossit s'attrape des mots
- * qu'elle ne devrait pas, et un gras partout ne met plus rien en valeur.
- *
- * ÉCHAPPEMENT D'ABORD, BALISES ENSUITE. Le texte vient des fiches, donc de nous — mais l'injecter
- * en HTML sans le neutraliser installerait une faille pour la première fiche qui contiendra un
- * chevron. On échappe, puis on ajoute les `<b>` sur le texte déjà sûr. */
-const ECHAPPE: Record<string, string> = { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" };
-const SOUPLE = /\b(sacs? souples?|soft (?:sided )?(?:carrier|bag|kennel)|bolsos? blandos?|transport[íi]n(?:es)? blandos?|bolsas? male[áa]vel(?:eis)?|caixas? male[áa]vel(?:eis)?|sacs? rigides?|hard(?:-| )sided|r[íi]gidos?|r[íi]gidas?)\b/gi;
-/* Trois nombres séparés par × : une cote de sac. L'unité est facultative — certaines fiches
- * l'écrivent une seule fois en fin de parenthèse. */
-const COTES = /\d{1,3}(?:[.,]\d)?\s*[×x]\s*\d{1,3}(?:[.,]\d)?\s*[×x]\s*\d{1,3}(?:[.,]\d)?(?:\s*(?:cm|in\b|"))?/g;
-/* Un poids, comparateur compris : « < 8 kg » se lit d'un bloc, et le couper laisserait un
- * « chat < » orphelin devant un gras.
- *
- * Le comparateur est cherché sous sa forme ÉCHAPPÉE — `&lt;`, `&gt;` — parce que l'échappement
- * a déjà eu lieu quand cette règle s'applique. Une première version cherchait `<` et ne trouvait
- * plus rien : elle produisait « chat &lt;<b> 8 kg</b> », comparateur exclu et espace prise dans
- * le gras. Les deux branches sont séparées pour que la variante sans comparateur ne capture pas
- * l'espace qui la précède. */
-const POIDS = /(?:&lt;|&gt;|[≤≥])\s*\d{1,3}(?:[.,]\d)?\s*(?:kg|lbs?|lb)\b|\d{1,3}(?:[.,]\d)?\s*(?:kg|lbs?|lb)\b/g;
-
-function chiffresEnGras(texte: string): string {
-  const sur = String(texte ?? "").replace(/[&<>"]/g, (c) => ECHAPPE[c]);
-  /* Les cotes AVANT les poids : « 46 × 28 × 24 cm » ne doit pas être entamé par une règle qui
-   * chercherait un nombre isolé. */
-  return sur
-    .replace(COTES, (m) => `<b>${m}</b>`)
-    .replace(POIDS, (m) => (m.includes("<b>") ? m : `<b>${m}</b>`))
-    .replace(SOUPLE, (m) => `<b>${m}</b>`);
-}
+ * Elle est supprimée plutôt que laissée en place « au cas où » : du code mort dont la seule
+ * raison d'être était de mettre en valeur des chiffres non prouvés est une invitation à les
+ * remettre. `ECHAPPE`, `SOUPLE`, `COTES` et `POIDS` n'avaient aucun autre lecteur. */
 // Préfixe de langue : dérivé du code de langue, jamais énuméré — une liste en dur ici
 // renvoyait les pages portugaises vers les URL anglaises.
 const base = locale === "en" ? "" : `/${locale}`;
@@ -469,15 +436,22 @@ const jsonLd = faqItems.length ? [webpageLd, faqJsonLd(faqItems)] : [webpageLd];
       </div>
     )}
 
+    {/* LA FAQ NE DATE PLUS UNE VÉRIFICATION QU'ELLE NE PEUT PAS ÉTABLIR (contre-revue du
+      * 05/09/2026). Elle affirmait « dernière vérification le 8 août 2026 » sur une fiche dont
+      * aucune politique ne porte de citation. Ce qui reste est vrai et utile : les réponses
+      * viennent des conditions publiées par la compagnie, et ces conditions changent.
+      *
+      * CE COMMENTAIRE ÉTAIT DANS LA LISTE D'ATTRIBUTS de `<FaqBlock>`, entre `title` et `note`.
+      * Le build Astro l'acceptait ; `astro check` non — en position d'attribut, `{/* … */}` se
+      * lit comme une expression, et TOUT le fichier partait en erreur de syntaxe à partir de là
+      * (13 diagnostics, dont un « JSX expressions must have one parent element » 20 lignes plus
+      * bas, qui ne désignait rien de réel). `npm run typecheck` ne couvre pas les `.astro` : seul
+      * `check-astro-debt.mjs`, en CI, l'a vu. Un commentaire se place AVANT l'élément. */}
     <FaqBlock
       items={faqItems}
       title={F("Flying with a dog on {0}: common questions",
                "Voyager avec un chien sur {0} : questions fréquentes",
                "Viajar con un perro en {0}: preguntas frecuentes", d.name)}
-      {/* LA FAQ NE DATE PLUS UNE VÉRIFICATION QU'ELLE NE PEUT PAS ÉTABLIR (contre-revue du
-        * 05/09/2026). Elle affirmait « dernière vérification le 8 août 2026 » sur une fiche dont
-        * aucune politique ne porte de citation. Ce qui reste est vrai et utile : les réponses
-        * viennent des conditions publiées par la compagnie, et ces conditions changent. */}
       note={T("This page summarises the information currently on record. Conditions can change: confirm them with the airline before booking.",
               "Cette page résume les informations actuellement enregistrées. Les conditions peuvent changer : confirme-les auprès de la compagnie avant de réserver.",
               "Esta página resume la información registrada actualmente. Las condiciones pueden cambiar: confírmalas con la aerolínea antes de reservar.")}

@@ -920,3 +920,53 @@ les outils. Rien d'autre.
 `build:prod` 3 113 pages · porte 29/29 · navigateur 79/79.
 
 **À la décision de Philippe** — la fusion, et le déploiement.
+
+---
+
+# Annexe 3 — deux rougeurs de CI, et ce que mes contrôles locaux ne voyaient pas
+
+## `astro check` : un commentaire dans une liste d'attributs
+
+`Vérifications` est tombée sur `check-astro-debt.mjs` : **dette 175 → 188**, dont **13 erreurs**
+dans `AirlinePremiumPage.astro` — `ts(1005)`, `ts(1002)`, `ts(1109)`, `ts(2657)`, `ts(7008)`.
+
+Cause unique : un commentaire `{/* … */}` que j'avais placé **dans la liste d'attributs** de
+`<FaqBlock>`, entre `title` et `note`. Le build Astro l'accepte et produit un HTML correct ;
+`astro check` non — en position d'attribut, `{/* … */}` se lit comme une expression, et **tout le
+fichier** part en erreur de syntaxe à partir de là. Le diagnostic le plus visible désignait un
+`<OnwardNav />` vingt lignes plus bas, qui n'avait rien de fautif.
+
+**Ce que cela dit de ma vérification.** `npm run typecheck` ne couvre pas les `.astro` : il lance
+`tsc` sur `knowledge`, `engine` et `workers`. J'avais donc trois builds verts, 164 contrôles
+d'entités verts, et une erreur de syntaxe dans le gabarit — invisible à tout ce que je lançais.
+**`check-astro-debt.mjs` fait désormais partie de ce que je joue avant de pousser.**
+
+`chiffresEnGras` et ses quatre expressions sont supprimés du même mouvement : leur unique
+appelant était le défaut corrigé à l'annexe 1. Du code mort dont la seule raison d'être était de
+mettre en gras des chiffres non prouvés est une invitation à les remettre.
+
+## `faq-races` § 8 bis : la contre-épreuve a trouvé, sous une autre forme, la faute qu'elle visait
+
+`Site entier` est tombée sur une phrase portugaise absente d'une fiche race. **Ce n'est pas mon
+lot d'aujourd'hui** : la frontière de confiance a vidé `bestAirlines` le 04/09/2026 (`2d1afe6`) —
+plus aucune politique n'est `allowed` —, et la note qui explique le classement ne se rend donc
+plus. La contre-épreuve réclamait une phrase qui n'a plus d'objet.
+
+Elle protège en réalité une propriété plus générale : **aucun repli silencieux vers l'anglais sur
+la page portugaise**. Portée sur la phrase réellement rendue — celle qui dit pourquoi la section
+est vide —, elle a **immédiatement rougi** : cette phrase n'avait aucune entrée dans
+`translations/pt/inline.json`, et la fiche portugaise publiait bel et bien un paragraphe **en
+anglais**. Le français et l'espagnol, eux, étaient traduits.
+
+C'est le **même mécanisme** que celui documenté pour la description publique : `T(en, fr, es)`
+n'a pas d'argument portugais, et `inlineT("pt")` retombe sur l'anglais dès que la table pt n'a
+pas la clé. Deux occurrences dans le même lot ; c'est un motif, pas un accident.
+
+Le contrôle a donc attrapé, sous sa nouvelle forme, exactement la faute qu'il avait été écrit
+pour attraper. Les deux phrases d'origine restent exigées **si** le classement revient : elles
+dorment, elles ne sont pas supprimées.
+
+## Vérifications, tête `0b29a4f` + ces deux correctifs
+
+`test:unit` vert · `astro check` **dette stable à 175** · frontière 133/133 · entités 164/164 ·
+built-ui 793/793 · `faq-races` DOM vert · `build:prod` 3 113 pages · navigateur 79/79.
