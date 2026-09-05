@@ -75,17 +75,39 @@ export const causeDeConfirmation = (d: PlacementPolicy): string | null =>
  *
  * La table est celle qu'a fixée l'arbitrage, et elle ne connaît que les statuts canoniques :
  *
- *   au moins un `allowed`                    → transport possible sur au moins un canal vérifié
- *   aucun, mais au moins un à confirmer      → conditions à confirmer
- *   sinon (tous refusés, prouvés)            → aucun canal accepté
+ *   au moins un `allowed`                          → transport possible sur au moins un canal vérifié
+ *   les TROIS canaux présents et tous `denied`     → aucun canal accepté
+ *   tout le reste, y compris un état incomplet     → conditions à confirmer
+ *
+ * LE DERNIER CAS ÉTAIT UN REPLI, ET IL MENTAIT (contre-revue du 05/09/2026).
+ *
+ * La rédaction précédente concluait `premium.verdict_none` — « aucun canal accepté » — dès qu'elle
+ * ne trouvait ni `allowed` ni `confirmation_required`. Elle le concluait donc aussi sur une
+ * politique ABSENTE, sur un seul canal refusé, sur deux. Mesuré sur la fonction elle-même :
+ *
+ *     undefined                        → « aucun canal accepté »
+ *     { cabin: denied }                → « aucun canal accepté »
+ *     { cabin: denied, hold: denied }  → « aucun canal accepté »
+ *     trois canaux `denied`            → « aucun canal accepté »   ← le SEUL cas légitime
+ *
+ * `Object.values()` ne voit que les clés PRÉSENTES : deux canaux inconnus ne pesaient rien, et
+ * l'absence se lisait comme un refus. C'est la faute que ce dépôt répète — un contrôle qui ne
+ * parle que de ce qu'il reconnaît compte zéro là où il ne regarde pas — cette fois dans le sens
+ * le plus dur, puisqu'elle transformait l'ignorance en verdict de refus sur la fiche.
+ *
+ * Les trois canaux sont donc énumérés EXPLICITEMENT, et « tous refusés » exige qu'ils soient tous
+ * les trois présents. Un canal manquant est inconnu, et l'inconnu se confirme — il ne se refuse
+ * pas. (Le dépôt en compte 4 aujourd'hui, sur 306.)
  */
+const PLACEMENTS_FICHE: readonly Placement[] = ["cabin", "hold", "cargo"];
 export function verdictDeFiche(
   policy: Partial<Record<Placement, PlacementPolicy>> | undefined,
 ): { cls: "ok" | "warn" | "no"; cle: string } {
-  const statuts = Object.values(policy ?? {}).map((p) => p?.status);
+  const statuts = PLACEMENTS_FICHE.map((p) => policy?.[p]?.status);
   if (statuts.includes("allowed")) return { cls: "ok", cle: "premium.verdict_open" };
-  if (statuts.includes("confirmation_required")) return { cls: "warn", cle: "air.to_confirm" };
-  return { cls: "no", cle: "premium.verdict_none" };
+  /* `every` sur les TROIS positions : un canal absent vaut `undefined`, jamais `denied`. */
+  if (statuts.every((s) => s === "denied")) return { cls: "no", cle: "premium.verdict_none" };
+  return { cls: "warn", cle: "air.to_confirm" };
 }
 
 /** La source AUDITÉE d'une politique, ou `null` — règle canonique, appliquée telle quelle. */

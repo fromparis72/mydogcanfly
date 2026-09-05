@@ -371,7 +371,13 @@ console.log("=== 10. Dominance intra-compagnie : un refus dur ÉTEINT les causes
     criticality: "critical",
     applies_when: { all: [{ fact: "route.dest_country_id", op: "eq", value: "country_tr" }] },
     effect: { action: "deny" }, params: {},
-    rationale: "fixture", source: { url: "https://example.com", source_type: "government", verified_date: "2026-08-14", review_due: "2027-08-14", confidence: 4, reviewer: "test", history: [] },
+    /* CITÉE (05/09/2026) : la frontière atteint l'entrée dans le pays, et une interdiction non
+       citée ne ferme plus rien. Ce paragraphe éprouve la DOMINANCE d'un refus sur les causes de
+       confirmation, pas le droit d'interdire — il lui faut donc une interdiction recevable. */
+    rationale: "fixture", source: { url: "https://example.gov/import", source_type: "government",
+      verified_date: "2026-08-14", review_due: "2027-08-14", confidence: 4, reviewer: "test",
+      quote: "Dogs of this description may not be imported.", quote_language: "en",
+      locator: "section « fixture »", history: [] },
   };
   const fkb = fixtureKB({ airlines: [AIRLINE], patchPolicy: { [AIRLINE]: { cargo: CONFIRM_POLICY } }, addRules: [denyEntry] });
   const rep = explain(evaluate(fkb, req({ date: JUILLET })), "en");

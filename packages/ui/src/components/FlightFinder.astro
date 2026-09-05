@@ -671,7 +671,11 @@ const labels = {
                         if (c.code === "legacy_unreviewed") fams.add("unreviewed");
                         /* Notre donnée manque, ou la règle qui fermait le canal n'est pas
                            vérifiable : c'est NOTRE incertitude, pas celle de la compagnie. */
-                        else if (c.code === "policy_absent" || c.code === "rule_unverified") fams.add("unreviewed");
+                        /* `breed_deny_unverified` rejoint « notre incertitude » : nous détenons un
+                           fait de race que nous ne savons pas prouver. Il ne doit surtout pas
+                           tomber dans le vide, comme `official_source_unquoted` l'a fait. */
+                        else if (c.code === "policy_absent" || c.code === "rule_unverified"
+                                 || c.code === "breed_deny_unverified") fams.add("unreviewed");
                         /* Une page officielle existe, sans phrase citée — politique ou règle. */
                         else if (c.code === "official_source_unquoted" || c.code === "rule_official_unquoted") fams.add("official_link");
                         else if (c.code === "policy_unpublished" || c.code === "airline_approval") fams.add("policy");

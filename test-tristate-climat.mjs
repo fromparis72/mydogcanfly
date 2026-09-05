@@ -332,7 +332,15 @@ console.log("\n=== 6. Verdict : règle exacte, par restriction en mémoire ===")
     criticality: "critical", applies_when: { fact: "dog.weight_kg", op: "gt", value: 0 },
     effect: { action: "deny" }, params: {},
     rationale: "règle de TEST — interdiction d'entrée synthétique", rationale_i18n: {},
-    source: { url: "https://example.org/test", source_type: "other", verified_date: "2026-08-13", review_due: "2027-02-13", confidence: 1, reviewer: "test", history: [] },
+    /* CITÉE (05/09/2026) : depuis que la frontière atteint l'entrée dans le pays, une règle pays
+       non citée ne ferme plus l'entrée. Ce témoin n'éprouve PAS le droit d'interdire, il éprouve
+       la DOMINANCE d'une interdiction sur les confirmations — il lui faut donc une interdiction
+       qui a le droit d'exister. La provenance est synthétique et le dit ; le mécanisme, lui, est
+       le vrai. */
+    source: { url: "https://example.gov/test", source_type: "official_website", verified_date: "2026-08-13",
+      review_due: "2027-02-13", confidence: 4, reviewer: "test",
+      quote: "Dogs of this description may not be brought into the country.",
+      quote_language: "en", locator: "section « test »", history: [] },
   };
   const kbBan = { ...kbTK, rules: [...kbTK.rules, banRule] };
   const decBan = evaluate(kbBan, FinderRequest.parse({ origin: "airport_cdg", destination: "airport_ist", dog: GOLDEN, date: JUILLET, placement: "hold" }));
@@ -468,12 +476,30 @@ console.log("\n=== 7 sexies. Entrée interdite : le bandeau ne survit pas aux ca
      interdit l'entrée de la race ; toutes les cartes sont démarquées par `entryAllowed` — le
      bandeau ne peut donc plus affirmer un embargo. Et l'invariant est GLOBAL : bandeau ⇔ cartes,
      par dérivation directe. */
-  const dec = evaluate(kb, FinderRequest.parse({
+  /* MOUVEMENT NOMMÉ (05/09/2026) : `rule_fr_breed_ban_restricted_types` porte une URL officielle
+     et aucune phrase citée — depuis que la frontière atteint l'entrée dans le pays, elle ne ferme
+     plus l'entrée sur la base réelle. Ce paragraphe n'éprouve pas ce droit-là mais la DOMINANCE
+     d'une interdiction sur le bandeau chaleur : on lui rend donc son témoin en citant la règle,
+     au scalpel, comme ailleurs dans ce harnais. La contre-revue a d'ailleurs établi que cette
+     règle est aussi trop LARGE — la catégorie 1 française se définit par la morphologie et
+     l'absence de pedigree, pas par un nom de race — ce qu'un simple `citerRegles` ne corrige pas ;
+     c'est consigné dans mesures/politiques-veracite/regles-pays-a-requalifier.json. */
+  const dec = evaluate(citerRegles("rule_fr_breed_ban_restricted_types"), FinderRequest.parse({
     origin: "airport_jfk", destination: "airport_cdg",
     dog: { breed_id: "breed_american_pit_bull_terrier", weight_kg: 25 },
     date: JUILLET, weather: { temperature_c: 35 },
   }));
   check("témoin : l'entrée est interdite", dec.destination.entry_allowed === false);
+  /* Et la contrepartie, sur la base RÉELLE : non citée, la même règle ne ferme plus rien. */
+  const decReel = evaluate(kb, FinderRequest.parse({
+    origin: "airport_jfk", destination: "airport_cdg",
+    dog: { breed_id: "breed_american_pit_bull_terrier", weight_kg: 25 },
+    date: JUILLET, weather: { temperature_c: 35 },
+  }));
+  check("base réelle : la même interdiction, NON citée, ne ferme plus l'entrée",
+    decReel.destination.entry_allowed === true
+      && (decReel.destination.entry_unverified_denies ?? []).includes("rule_fr_breed_ban_restricted_types"),
+    JSON.stringify({ e: decReel.destination.entry_allowed, u: decReel.destination.entry_unverified_denies }));
   check("témoin : une règle summer_embargo s'est pourtant déclenchée quelque part",
     dec.airlines.some((a) => a.fired.some((f) => f.category === "summer_embargo")));
   const rep = explain(dec, "fr");

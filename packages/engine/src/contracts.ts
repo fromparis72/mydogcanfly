@@ -91,6 +91,14 @@ export const ConfirmationCause = z.discriminatedUnion("code", [
   /** Fait requis absent (poids total T2, âge T3). `fact` restera à resserrer en registre fermé
    *  avant la première migration T2/T3 — aucune donnée réelle ne l'émet en T0-A. */
   z.object({ code: z.literal("missing_fact"), fact: z.string().min(1), requirement_ref: z.string().min(1) }).strict(),
+  /** Un FAIT DE RACE `deny` s'est déclenché sans porter une preuve complète (05/09/2026).
+   *
+   *  `SourcedQuote` impose la phrase et sa langue, mais laisse le `locator` FACULTATIF : un fait
+   *  de race pouvait donc refuser un canal sur une provenance que la même frontière refuse à une
+   *  RÈGLE. Deux exigences de preuve pour une même décision à l'écran — la faute que ce dépôt
+   *  répète. Les deux chemins lisent maintenant le même prédicat canonique, et un fait de race
+   *  non prouvé demande confirmation en nommant sa restriction. */
+  z.object({ code: z.literal("breed_deny_unverified"), policy_ref: z.string().regex(POLICY_REF_RE), restriction_ref: z.string().min(1) }).strict(),
 ]);
 export type ConfirmationCause = z.infer<typeof ConfirmationCause>;
 
@@ -114,7 +122,7 @@ export const causeKey = (c: ConfirmationCause): string =>
   : c.code === "missing_fact" ? `${c.code}|${c.fact}|${c.requirement_ref}`
   /* `restriction_ref` fait partie de l'identité d'une exigence : deux exigences distinctes sur le
      même canal partagent leur `policy_ref` et seraient dédupliquées sans elle. */
-  : c.code === "breed_requirement" ? `${c.code}|${c.policy_ref}|${c.restriction_ref}`
+  : (c.code === "breed_requirement" || c.code === "breed_deny_unverified") ? `${c.code}|${c.policy_ref}|${c.restriction_ref}`
   /* Les causes de RÈGLE s'identifient par leur règle, pas par un canal : deux règles distinctes
      déclenchées sur le même canal doivent rester deux causes, sans quoi le visiteur n'en verrait
      qu'une — la même faute que `restriction_ref` a fermée pour les exigences de race. */
@@ -591,7 +599,15 @@ export interface Decision {
   request: FinderRequest;
   airlines: AirlineDecision[];
   countryRequirements: FiredRule[];
-  destination: { country_id: string; country_name: string; entry_allowed: boolean };
+  destination: {
+    country_id: string; country_name: string;
+    /** `false` seulement sur une interdiction d'entrée PROUVÉE (règle pays citée). */
+    entry_allowed: boolean;
+    /** Les interdictions d'entrée qui se sont déclenchées SANS pouvoir décider, par `rule_id`.
+     *  Elles ne ferment rien, mais elles ne se perdent pas : leur exigence reste publiée en tête
+     *  du rapport, et ce champ permet de les auditer et de les compter. */
+    entry_unverified_denies?: string[];
+  };
   origin_country_id: string; // pays de l'aéroport de départ (le départage carrier_of_* est retiré — J-bis 11/08/2026)
   domestic: boolean;       // same country at both ends: no border crossing, so no import requirements apply
   brachycephalic: boolean; // effective snub-nosed flag (from request or breed) — drives welfare wording

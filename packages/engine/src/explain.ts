@@ -206,7 +206,17 @@ export function explain(decision: Decision, locale = "en"): DecisionReport {
        - aucun motif exploitable → libellé neutre. Jamais « race non acceptée » par défaut : c'était
          faux pour Delta, JetBlue et Brussels Airlines, qui refusent un golden de 30 kg sur son poids. */
     const reasons = a.deny_reasons ?? [];
-    const notAccepted = !a.carries_pets
+    /* `offers_pet_transport === "no"`, JAMAIS `!carries_pets` (contre-revue du 05/09/2026).
+     *
+     * `carries_pets` est devenu la projection booléenne d'`offers_pet_transport === "yes"` : il
+     * vaut donc `false` aussi bien sur un refus PROUVÉ que sur un « on ne sait pas ». Cette
+     * ligne rendait donc « Animaux refusés » sur l'ignorance. Reproduit : CDG → LHR avec un
+     * American Bully XL — l'interdiction d'entrée BRITANNIQUE éteint les trois canaux, et les
+     * DIX compagnies, toutes `unknown`, annonçaient « No pets ». Une interdiction du PAYS
+     * devenait ainsi une affirmation structurelle fausse sur chaque compagnie : le visiteur
+     * lisait « Air France ne transporte pas d'animaux », ce que rien n'établit et qui le
+     * suivrait sur tous ses autres trajets. */
+    const notAccepted = a.offers_pet_transport === "no"
       ? L("air.no_pets")
       : reasons.length
         ? L("air.not_accepted_because").replace("{reasons}", joinList(reasons.map((c) => L(`air.reason.${c}`)), locale))

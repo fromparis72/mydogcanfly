@@ -221,7 +221,13 @@ console.log("=== 5. Moteur sur fixture : la cause remonte jusqu'à la carte ==="
     criticality: "critical",
     applies_when: { all: [{ fact: "route.dest_country_id", op: "eq", value: "country_tr" }] },
     effect: { action: "deny" }, params: {}, rationale: "fixture",
-    source: { url: "https://example.com", source_type: "government", verified_date: "2026-08-14", review_due: "2027-08-14", confidence: 4, reviewer: "test", history: [] },
+    /* CITÉE (05/09/2026) : depuis que la frontière atteint l'entrée dans le pays, une interdiction
+       non citée demande confirmation au lieu de fermer. Ce témoin éprouve la DOMINANCE d'un refus
+       sur une cause non revérifiée — il lui faut un refus qui a le droit d'exister. */
+    source: { url: "https://example.gov/import", source_type: "government", verified_date: "2026-08-14",
+      review_due: "2027-08-14", confidence: 4, reviewer: "test",
+      quote: "Dogs of this description may not be imported.", quote_language: "en",
+      locator: "section « fixture »", history: [] },
   };
   const refus = explain(evaluate(fixtureKB({
     airlines: [AIRLINE], patchPolicy: { [AIRLINE]: { cargo: NON_REVUE } }, addRules: [denyEntry],

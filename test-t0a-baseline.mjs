@@ -305,7 +305,7 @@ console.log("=== Preuve PERMANENTE Citation 1 — British Airways cabine (baseli
   /* LA PREMIÈRE CITATION DU DÉPÔT, ET CE QU'ELLE A LE DROIT DE FAIRE.
    *
    * British Airways cabine est passée « à confirmer » → `denied`, sur la phrase publiée
-   * « We don't carry pets in the cabin on any route. », lue directement le 05/09/2026 avec sa
+   * « We don’t carry pets in the cabin on any route. », lue directement le 05/09/2026 avec sa
    * langue et son emplacement. C'est le premier verdict que ce site ait le droit d'afficher depuis
    * la frontière de confiance.
    *
@@ -1168,7 +1168,7 @@ console.log("=== Couverture DIRECTE : les 302 politiques, hors des 72 scénarios
    * et il redescendra au fur et à mesure que des citations vérifiées seront intégrées. */
   /* 05/09/2026 — PREMIÈRE CITATION INTÉGRÉE, et le compte figé bouge pour la meilleure raison
    * possible : British Airways cabine passe « à confirmer » → `denied`, sur la phrase publiée
-   * « We don't carry pets in the cabin on any route. », lue directement, avec sa langue et son
+   * « We don’t carry pets in the cabin on any route. », lue directement, avec sa langue et son
    * emplacement. Une politique quitte donc `official_source_unquoted` (33 → 32) pour devenir le
    * premier verdict prouvé du dépôt. Chaque citation suivante devra nommer son mouvement ici. */
   check("répartition runtime : 0 allowed · 1 denied · 301 à confirmer",

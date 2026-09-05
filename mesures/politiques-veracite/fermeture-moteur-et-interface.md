@@ -260,3 +260,134 @@ plutôt que par le bas. Je peux préparer les six emplacements ; la lecture des 
 
 Aucune figée n'est écrasée ; chacune reste l'AVANT de la suivante, et chaque paire a son contrôle
 permanent qui rougit si le mouvement s'inverse.
+
+---
+
+# CONTRE-REVUE DE `f0297db` — fermeture des trois P0 et des trois P1
+
+**Date** : 5 septembre 2026, après-midi.
+
+## P0-1 — le verdict de fiche transformait l'ignorance en refus total
+
+Reproduit sur la fonction réelle, à l'identique :
+
+| entrée | avant | après |
+|---|---|---|
+| `undefined` | `no` | `warn` |
+| `{ cabin: denied }` | `no` | `warn` |
+| `{ cabin: denied, hold: denied }` | `no` | `warn` |
+| trois canaux `denied` | `no` | `no` |
+
+`Object.values()` ne voyait que les clés **présentes** : deux canaux inconnus ne pesaient rien, et
+l'absence se lisait comme un refus. Même faute que d'habitude — *un contrôle qui ne parle que de ce
+qu'il reconnaît compte zéro là où il ne regarde pas* — cette fois dans le sens le plus dur, sur la
+fiche. Les trois placements sont désormais énumérés explicitement ; « tous refusés » exige les trois.
+
+**Option retenue** : la seconde (prudence sur tout état incomplet), et non l'échec de build, parce
+que le dépôt porte réellement **4 canaux absents sur 306** — les faire échouer aurait cassé le build
+sur une donnée légitimement inconnue. Le contrôle `politiqueDuCanal`, lui, continue de lever sur un
+canal AFFICHÉ sans politique.
+
+**La contre-épreuve gravait le défaut** : sa dernière ligne exigeait que `{ cabin: denied }` rende
+`no`. Elle verrouillait le repli fautif — une correction l'aurait fait rougir, et on l'aurait crue
+régressive. Remplacée par les quatre cas, plus deux mesures sur la base réelle (aucune des 102 fiches
+ne conclut au refus total ; British Airways a sa cabine refusée sur preuve et sa **fiche** prudente).
+
+## P0-2 — « No pets » sur l'ignorance, et le motif qui revenait par la bande
+
+Reproduit exactement (CDG → LHR, `breed_american_bully_xl`) : **10 compagnies**, toutes
+`offers_pet_transport: "unknown"`, toutes étiquetées **« No pets »**. `carries_pets` étant devenu la
+projection de `=== "yes"`, il vaut `false` aussi bien sur un refus prouvé que sur un « on ne sait
+pas ». L'interdiction du **pays** devenait une affirmation structurelle fausse sur chaque compagnie —
+qui aurait suivi le visiteur sur tous ses autres trajets.
+
+`air.no_pets` ne sort plus que d'`offers_pet_transport === "no"`.
+
+**Défaut trouvé en vérifiant le correctif** : une fois « No pets » retiré, les cartes disaient
+« cabine non proposée, soute non proposée, race non acceptée ». Ces motifs viennent de
+`denyReasonsOf`, qui parcourait **toutes** les règles `deny` déclenchées, y compris celles auxquelles
+la frontière venait de retirer le pouvoir de décider. Le refus venait du pays ; la carte l'imputait à
+la compagnie. **Une règle qui ne peut pas décider ne peut pas non plus expliquer** : `denyReasonsOf`
+lit désormais le même prédicat. Les dix cartes portent maintenant un libellé neutre, et l'exigence
+pays — texte intégral du Dangerous Dogs Act, certificat d'exemption compris — reste en tête du
+rapport au niveau `critical`.
+
+## P0-3 — l'entrée dans le pays, quatrième chemin non gardé
+
+`entry_allowed` passait à `false` sur une exigence pays `deny` sans rien demander à sa provenance —
+et ce refus-là éteint les trois canaux de **toutes** les compagnies d'un coup. Le chemin est
+maintenant gardé comme les autres.
+
+**Ce n'est pas un silence** : l'exigence reste publiée en tête du rapport, texte intégral, niveau
+`critical`, et l'interdiction non décisive est **nommée** dans `destination.entry_unverified_denies`
+plutôt que perdue. Contre-épreuve versionnée : la même règle, citée, referme bien l'entrée — la porte
+n'est pas condamnée.
+
+**La citation ne suffira pas pour cinq des six.** Les lectures de la contre-revue sont consignées
+dans `mesures/politiques-veracite/regles-pays-a-requalifier.json`, avec pour chacune ce qui manque :
+
+| pays | condition à revoir | ce qui manque |
+|---|---|---|
+| Australie | — | la phrase exacte (locator connu) |
+| Nouvelle-Zélande | « entièrement ou principalement » porte sur le **type**, pas sur un `breed_id` | la phrase exacte ; **et la source citée par la contre-revue n'est pas celle que porte la règle** |
+| Allemagne | exceptions réglementaires du HundVerbrEinfG non vérifiées | la vérification, puis la phrase |
+| France | catégorie 1 = **morphologie + absence de pedigree reconnu** ; `breed_id in [pit_bull]` est un raccourci faux dans les deux sens | un fait « pedigree reconnu », ou la rétrogradation en confirmation |
+| Grande-Bretagne | (1) la source portée par la règle traite de la **détention**, pas de l'**importation** ; (2) l'exemption par certificat n'est pas exprimée | la bonne source, la phrase, l'exemption |
+| Irlande | aucune condition de séjour ni de résidence ; la S.I. 491/2024 prévoit trente jours pour certains non-résidents | l'expression des exceptions, puis la phrase |
+
+Un **garde-fou** rend ce registre contraignant : une règle pays qui deviendrait décisive sans être
+déclarée `resolu` fait échouer la CI. Une citation future ne pourra donc pas restaurer en silence une
+règle que la lecture des sources a déjà démentie.
+
+**Je n'ai fabriqué aucune citation.** Australie et Nouvelle-Zélande n'attendent que le libellé exact,
+mot pour mot — il me faut la phrase telle qu'elle est publiée.
+
+## P1-1 — le contrôle qui se félicitait de n'avoir rien vu
+
+`absences >= 0` est vrai de tout entier. Remplacé : la politique `airline_air_france#hold` est
+réellement supprimée d'une copie de la base, et le contrôle exige `confirmation_required` +
+`policy_absent` sur **la compagnie et le canal exacts**, avec un témoin négatif sur la base intacte.
+
+## P1-2 — deux exigences de preuve pour une même décision
+
+`SourcedQuote.locator` étant facultatif, un fait de race pouvait fermer un canal sur une provenance
+que la frontière refuse à une règle. Les deux chemins lisent maintenant le **même prédicat
+canonique** (`regleDecisive`). Un `deny` de race non prouvé demande confirmation et **nomme sa
+restriction** (`breed_deny_unverified`), rangée dans la famille « notre incertitude » du Finder — pas
+dans le vide, comme `official_source_unquoted` l'avait été.
+
+**Erreur nommée** : j'ai d'abord versé ces provenances dans `evidence` au rôle `refusal`. Le contrat
+l'a refusée, et il a raison — une preuve de **refus** sur un canal qui n'est pas refusé est
+incohérente, et lui donnerait à l'écran le rang qui lui manque précisément. Le canal ne porte donc
+aucune preuve.
+
+**Et les fixtures du harnais étaient sous la barre** : aucune ne portait de `locator`. C'est en les
+remontant qu'on a vu que le défaut était réel et non théorique. Un paragraphe neuf prouve la
+frontière dans les deux sens — preuve complète → refus ; même fait sans emplacement → confirmation
+nommée, sans preuve publiée, sans motif.
+
+Cinq témoins d'interdiction d'entrée (synthétiques et réels) ont dû être **cités** pour continuer
+d'exercer la dominance qu'ils défendent — jamais abaissés.
+
+## P1 mineur — l'apostrophe
+
+La citation portait une apostrophe **ASCII** (U+0027) là où la page écrit une apostrophe
+**typographique** (U+2019). Le champ dit « reprise telle quelle » : il porte désormais l'octet lu.
+**Option retenue : aucune normalisation typographique, nulle part** — replier « ’ » sur « ' » rendrait
+`verbatim` approximatif et masquerait, lors d'une comparaison future à la page, lequel des deux
+textes a bougé. La règle est écrite dans `lectures-effectuees.json` et gardée par un contrôle qui
+compare la **chaîne complète**, dans la fiche et dans les deux artefacts engendrés.
+
+La seconde phrase que tu confirmes — « Your pet will travel in the hold of our aircraft. » — est
+consignée avec la lecture « soute NON PROUVÉE » : la page prouve le **contraire** d'un refus de
+soute, ce qui rendait `rule_british_airways_no_cabin` doublement infondée sur ce canal.
+
+## Ce qu'il me faut de toi pour aller plus loin
+
+1. les **phrases exactes**, mot pour mot avec leur langue, pour l'Australie et la Nouvelle-Zélande ;
+2. pour la Nouvelle-Zélande, **laquelle des deux URL** fait foi (celle de la règle ou celle que tu
+   cites) ;
+3. le résultat du contrôle des **exceptions allemandes** ;
+4. ton arbitrage sur France / Grande-Bretagne / Irlande : conditionner les règles (ce qui demande
+   d'ajouter un fait « pedigree reconnu » et un fait « durée de séjour » au contexte d'évaluation),
+   ou les laisser en confirmation permanente avec leur texte d'exigence intégral.

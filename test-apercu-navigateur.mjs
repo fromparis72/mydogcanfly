@@ -331,49 +331,43 @@ console.log("\n=== Fiche de race : plus aucune affirmation sans preuve ===");
   await p.close(); await p2.close();
 }
 
-console.log("\n=== Carte compagnie : le statut ternaire ===");
+console.log("\n=== Carte compagnie : aucune affirmation structurelle sur l'ignorance ===");
 {
-  /* LA ROUTE EST CHOISIE POUR ATTEINDRE LA BRANCHE, pas pour être verte.
+  /* LE CAS EXACT DE LA CONTRE-REVUE (P0-2, 05/09/2026) : CDG → LHR avec un American Bully XL.
+   * L'interdiction d'entrée britannique éteignait les trois canaux, et les DIX compagnies —
+   * toutes `offers_pet_transport: "unknown"` — annonçaient « No pets ». Une interdiction du PAYS
+   * devenait une affirmation structurelle fausse sur chaque compagnie, qui aurait suivi le
+   * visiteur sur tous ses autres trajets. On le vérifie ici dans le DOM SERVI.
    *
-   * La ligne du badge ne s'exécute que sur une carte SANS canal ouvert et SANS canal à confirmer.
-   * Sur un Paris → New York ordinaire, toutes les cartes ont des canaux « à confirmer » : la
-   * branche n'est jamais atteinte, et deux contrôles qui cherchent une étiquette absente y
-   * seraient verts sans rien exercer. Paris → Dublin avec un American Bully XL l'atteint : le
-   * pays interdit la race, `entry_allowed` éteint les trois canaux, et les 11 cartes deviennent
-   * structurelles. Avant ce lot, ces 11 cartes affichaient « 🐾 Non compatible » — soit « ces
-   * compagnies transportent des animaux, mais pas le vôtre » — alors qu'AUCUNE politique de ces
-   * compagnies n'est établie. C'est exactement le cas que le statut ternaire ferme. */
-  /* LE LIBELLÉ EXACT, ET RIEN D'AUTRE. Première rédaction fautive, nommée : j'ai écrit
-     « American Bully XL » alors que la liste porte « American Bully (XL) ». La race n'a pas été
-     posée, la route n'a produit aucune carte structurelle, et mes deux contrôles négatifs sont
-     passés au vert sans rien exercer — la troisième fois cette semaine qu'un contrôle compte zéro
-     là où il ne regarde pas. Le témoin ci-dessous vérifie donc que la BRANCHE est atteinte, par
-     son étiquette PROPRE et non par un « à confirmer » quelconque : la première version a été
-     satisfaite par « Itinerary to confirm », un badge d'itinéraire sans rapport. */
-  const { p, texte } = await chercher({ from: "airport_cdg", dest: "airport_dub", kg: 25, race: "American Bully (XL)" });
-  check("des cartes compagnie sont rendues (témoin non vide)",
-    (await p.$$(".acard")).length > 0, String((await p.$$(".acard")).length));
+   * MESURE DU JOUR, ET ELLE COMPTE : depuis que la frontière atteint aussi l'entrée dans le pays,
+   * la branche « aucun canal ouvert ni à confirmer » est devenue INATTEIGNABLE sur les données
+   * réelles — il faudrait trois refus prouvés, or le dépôt n'en porte qu'un (British Airways
+   * cabine). Le contrôle ne prétend donc pas l'exercer : il MESURE qu'elle est vide, et l'imprime.
+   * Le jour où une citation la rendra atteignable, le compte changera et se verra. */
+  const { p, texte } = await chercher({ from: "airport_cdg", dest: "airport_lhr", kg: 50, race: "American Bully (XL)" });
+  const cartes = await p.$$(".acard");
+  check("des cartes compagnie sont rendues (témoin non vide)", cartes.length > 0, String(cartes.length));
   const badges = await p.$$eval(".acard__status", (n) => n.map((x) => x.textContent.trim()));
-  /* SANS CE TÉMOIN, LES DEUX CONTRÔLES SUIVANTS SERAIENT VIDES. Ils cherchent une étiquette
-     ABSENTE : si aucune étiquette n'est rendue du tout, ils passent en ne regardant rien — la
-     faute que ce dépôt a déjà commise trois fois (« un contrôle qui ne parle que de ce qu'il
-     reconnaît compte zéro là où il ne regarde pas »). */
-  check("des étiquettes de statut sont bien rendues sur les cartes (témoin non vide)",
-    badges.length > 0, `${badges.length} étiquette(s)`);
-  console.log(`  ·    étiquettes rendues : ${JSON.stringify([...new Set(badges)])}`);
-  /* LA BRANCHE EST-ELLE VRAIMENT ATTEINTE ? Sans ce contrôle, les deux suivants resteraient verts
-     le jour où la route cesserait de produire des cartes structurelles. */
-  const petsBadges = await p.$$eval(".acard__status--petsunknown, .acard__status--nopets, .acard__status--nomatch",
-    (n) => n.map((x) => x.textContent.trim()));
-  check("la branche du statut d'animaux est bien atteinte (≥1 carte structurelle)",
-    petsBadges.length > 0, `${petsBadges.length} · toutes étiquettes : ${JSON.stringify([...new Set(badges)])}`);
-  check("…et ces cartes disent « transport à confirmer », le seul état que la donnée établit",
-    petsBadges.length > 0 && petsBadges.every((b) => /Pet transport to confirm|Transport d'animaux à confirmer|Transporte de mascotas por confirmar|Transporte de animais a confirmar/i.test(b)),
-    JSON.stringify([...new Set(petsBadges)]));
-  check("aucune carte n'affirme « Animaux refusés » — aucun refus complet n'est prouvé",
-    !badges.some((b) => /Animaux refusés/i.test(b)), JSON.stringify(badges.filter((b) => /Animaux refusés/i.test(b))));
-  check("aucune carte n'affirme « Non compatible » — cela supposait un transport établi",
-    !badges.some((b) => /Non compatible/i.test(b)), JSON.stringify(badges.filter((b) => /Non compatible/i.test(b))));
+  check("des étiquettes de statut sont rendues (témoin non vide)", badges.length > 0, `${badges.length}`);
+  const structurelles = await p.$$(".acard__status--petsunknown, .acard__status--nopets, .acard__status--nomatch");
+  console.log(`  ·    cartes structurelles atteintes : ${structurelles.length} — la branche est vide sur données réelles, c'est le constat du jour`);
+  /* LA PROPRIÉTÉ, elle, se vérifie sur TOUT le rapport et non sur cette seule branche : aucune
+     affirmation structurelle ne doit apparaître nulle part, ni en badge ni en libellé de carte. */
+  const interdits = [/Animaux refusés/i, /No pets/i, /Sin mascotas/i, /Não aceita animais/i,
+    /Non compatible/i, /Not compatible\b(?! with this dog or this route)/i];
+  const fuites = interdits.filter((re) => re.test(texte));
+  check("AUCUNE affirmation « animaux refusés » ni « non compatible » dans tout le rapport",
+    fuites.length === 0, JSON.stringify(fuites.map(String)));
+  /* Et le motif ne revient pas par la bande : les cartes disaient « cabine non proposée, soute non
+     proposée », des motifs tirés de règles auxquelles la frontière avait retiré le droit de
+     décider. Le refus venait du PAYS ; la carte l'imputait à la compagnie. */
+  for (const motif of [/cabin not offered/i, /hold not offered/i, /breed not accepted/i,
+                       /cabine non proposée/i, /race non acceptée/i]) {
+    check(`aucun motif « ${String(motif).slice(1, 26)}… » imputé aux compagnies`, !motif.test(texte));
+  }
+  /* NON VIDE : l'interdiction n'a pas disparu pour autant — elle est publiée, entière, en tête. */
+  check("…et l'interdiction d'entrée reste bien PUBLIÉE dans le rapport, texte intégral",
+    /Dangerous Dogs Act/i.test(texte) && /Certificate of Exemption/i.test(texte));
   await p.close();
 }
 

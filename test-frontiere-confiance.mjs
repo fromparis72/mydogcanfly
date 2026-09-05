@@ -188,7 +188,7 @@ console.log("\n=== 10. Sur la base RÉELLE : plus aucun verdict catégorique ===
     }
   }
   /* MOUVEMENT NOMMÉ — 05/09/2026, PREMIÈRE CITATION INTÉGRÉE. British Airways cabine passe de
-   * « à confirmer » à `denied`, sur la phrase publiée « We don't carry pets in the cabin on any
+   * « à confirmer » à `denied`, sur la phrase publiée « We don’t carry pets in the cabin on any
    * route. », lue directement le 05/09 et reprise avec sa langue et son emplacement.
    *
    * C'est le premier verdict catégorique que ce site ait le droit d'afficher depuis la frontière,
@@ -551,10 +551,40 @@ console.log("\n=== 13 bis. Le verdict dérivé, et ce qui ne revient JAMAIS avec
     verdictDeFiche({ cabin: P("denied"), hold: P("confirmation_required", "legacy_unreviewed") }).cle === "air.to_confirm");
   check("trois refus prouvés → aucun canal accepté",
     verdictDeFiche({ cabin: P("denied"), hold: P("denied"), cargo: P("denied") }).cle === "premium.verdict_none");
+  /* CETTE CONTRE-ÉPREUVE GRAVAIT LE DÉFAUT (contre-revue du 05/09/2026). Sa dernière ligne
+     EXIGEAIT que `{ cabin: denied }` — un seul canal refusé, les deux autres inconnus — rende
+     « aucun canal accepté ». Elle verrouillait donc le repli fautif au lieu de le dénoncer : une
+     correction l'aurait fait rougir, et on l'aurait crue régressive. Les quatre cas de la
+     contre-revue la remplacent, et ils énoncent la propriété dans le bon sens — seule la présence
+     des TROIS refus établit « tous refusés ». */
   check("…et la classe suit le sens, jamais l'éditorial",
     verdictDeFiche({ cabin: P("allowed") }).cls === "ok"
-      && verdictDeFiche({ cabin: P("confirmation_required", "legacy_unreviewed") }).cls === "warn"
-      && verdictDeFiche({ cabin: P("denied") }).cls === "no");
+      && verdictDeFiche({ cabin: P("confirmation_required", "legacy_unreviewed") }).cls === "warn");
+  for (const [nom, pol] of [
+    ["politique ABSENTE", undefined],
+    ["un seul canal refusé, deux inconnus", { cabin: P("denied") }],
+    ["deux canaux refusés, un inconnu", { cabin: P("denied"), hold: P("denied") }],
+  ]) {
+    check(`${nom} → PRUDENT, jamais « aucun canal accepté »`,
+      verdictDeFiche(pol).cle === "air.to_confirm" && verdictDeFiche(pol).cls === "warn",
+      JSON.stringify(verdictDeFiche(pol)));
+  }
+  check("les TROIS canaux refusés — et eux seuls — rendent « aucun canal accepté »",
+    verdictDeFiche({ cabin: P("denied"), hold: P("denied"), cargo: P("denied") }).cle === "premium.verdict_none");
+  /* Sur la base RÉELLE : les 4 canaux absents du dépôt ne doivent transformer aucune fiche en
+     refus total. British Airways porte le seul `denied` prouvé, et sa fiche reste prudente. */
+  {
+    const kbR = loadKB();
+    const fiches = [...kbR.airlines.values()];
+    const refusTotal = fiches.filter((a) => verdictDeFiche(a.premium?.policy).cle === "premium.verdict_none");
+    check("aucune des 102 fiches ne conclut au refus total — aucune n'a trois refus prouvés",
+      refusTotal.length === 0, JSON.stringify(refusTotal.map((a) => a.id)));
+    const ba = kbR.airlines.get("airline_british_airways");
+    check("British Airways : cabine refusée sur preuve, mais la FICHE reste prudente",
+      ba?.premium?.policy?.cabin?.status === "denied"
+        && verdictDeFiche(ba?.premium?.policy).cle === "air.to_confirm",
+      JSON.stringify(verdictDeFiche(ba?.premium?.policy)));
+  }
 
   /* LE POINT QUI A ÉTÉ REFUSÉ DEUX FOIS : le score ne doit pas revenir quand un canal devient
      vérifié. Le dépôt porte MAINTENANT un canal prouvé — British Airways cabine, `denied` sur
@@ -621,15 +651,45 @@ console.log("\n=== 13 ter. LA FRONTIÈRE S'APPLIQUE AUSSI AUX RÈGLES ===");
       && c.rule_id === "rule_british_airways_no_cabin"),
     JSON.stringify(parCanal.hold?.confirmation_causes));
 
-  /* Une absence de politique n'est plus un refus : elle se dit, et nomme son canal. */
-  let absences = 0;
-  for (const a of rapport.airlines ?? []) for (const d of a.placement_decisions ?? []) {
-    if ((d.confirmation_causes ?? []).some((c) => c.code === "policy_absent")) absences++;
+  /* UNE ABSENCE DE POLITIQUE N'EST PLUS UN REFUS — ET LE CONTRÔLE L'EXERCE VRAIMENT.
+   *
+   * Rédaction précédente, fautive et nommée (contre-revue du 05/09/2026) : elle exigeait
+   * `absences >= 0`, ce qui est vrai de tout entier. Elle passait donc sans qu'AUCUN cas
+   * d'absence ait été rencontré — un contrôle qui se félicite de n'avoir rien vu. On SUPPRIME
+   * donc réellement une politique dans une copie de la base, et on exige la cause exacte sur la
+   * compagnie et le canal exacts. */
+  {
+    const { rawKB: brutAbs, normalize: normAbs } = await import("./packages/knowledge/src/index.ts");
+    const brut = JSON.parse(JSON.stringify(brutAbs));
+    const CIBLE = "airline_air_france", CANAL = "hold";
+    let retiree = false;
+    for (const a of brut.airlines ?? []) {
+      if (a.id !== CIBLE) continue;
+      if (a?.premium?.policy?.[CANAL]) { delete a.premium.policy[CANAL]; retiree = true; }
+    }
+    check(`témoin : la politique ${CIBLE}#${CANAL} existait et a bien été retirée`, retiree);
+    const decAbs = evaluate(normAbs(brut), { origin: "airport_cdg", destination: "airport_jfk",
+      dog: { weight_kg: 5 }, travel_type: "pet", placement: "any", locale: "en" });
+    const carte = decAbs.airlines.find((a) => a.airline_id === CIBLE);
+    const canal = carte?.placements.find((d) => d.placement === CANAL);
+    check(`politique retirée → ${CANAL} = confirmation_required, jamais un refus par défaut`,
+      canal?.status === "confirmation_required", JSON.stringify(canal?.status));
+    check("…et la cause est `policy_absent`, nommant la compagnie ET le canal",
+      (canal?.confirmation_causes ?? []).some((c) => c.code === "policy_absent" && c.policy_ref === `${CIBLE}#${CANAL}`),
+      JSON.stringify(canal?.confirmation_causes));
+    /* TÉMOIN NÉGATIF : sur la base intacte, ce canal n'a pas cette cause — sans quoi le contrôle
+       ci-dessus serait vrai avec ou sans la suppression. */
+    const carteRef = evaluate(loadKB(), { origin: "airport_cdg", destination: "airport_jfk",
+      dog: { weight_kg: 5 }, travel_type: "pet", placement: "any", locale: "en" })
+      .airlines.find((a) => a.airline_id === CIBLE);
+    const canalRef = carteRef?.placements.find((d) => d.placement === CANAL);
+    check("TÉMOIN : sur la base intacte, ce canal ne porte PAS `policy_absent`",
+      !(canalRef?.confirmation_causes ?? []).some((c) => c.code === "policy_absent"),
+      JSON.stringify(canalRef?.confirmation_causes));
   }
-  check("une politique absente produit une CONFIRMATION nommée, jamais un refus par défaut",
-    absences >= 0 && (rapport.airlines ?? []).every((a) => (a.placement_decisions ?? [])
-      .every((d) => d.status !== "denied" || !(d.confirmation_causes ?? []).length)),
-    `${absences} absence(s) déclarée(s)`);
+  check("aucun canal refusé ne traîne de causes de confirmation (dominance intra-compagnie)",
+    (rapport.airlines ?? []).every((a) => (a.placement_decisions ?? [])
+      .every((d) => d.status !== "denied" || !(d.confirmation_causes ?? []).length)));
 }
 
 console.log("\n=== 13 quater. LA FRONTIÈRE S'APPLIQUE AUSSI À LA CHALEUR ===");
@@ -675,6 +735,110 @@ console.log("\n=== 13 quater. LA FRONTIÈRE S'APPLIQUE AUSSI À LA CHALEUR ===")
   check("la copie navigateur des codes de chaleur est IDENTIQUE au contrat",
     JSON.stringify(copie) === JSON.stringify([...CLIMATE_CAUSE_CODES]),
     `contrat ${JSON.stringify([...CLIMATE_CAUSE_CODES])} · copie ${JSON.stringify(copie)}`);
+}
+
+console.log("\n=== 12 ter. UNE CITATION EST STOCKÉE TELLE QU'ELLE EST LUE ===");
+{
+  /* Contre-revue du 05/09/2026 : la page de British Airways écrit « We don’t carry pets… » avec
+   * une apostrophe TYPOGRAPHIQUE (U+2019), et le registre stockait une apostrophe ASCII (U+0027).
+   * Le champ dit « reprise telle quelle » — il doit donc porter l'octet réellement lu. L'option
+   * retenue est la plus simple et la plus honnête : AUCUNE normalisation typographique, nulle
+   * part. Replier « ’ » sur « ' » rendrait `verbatim` approximatif, et masquerait, lors d'une
+   * comparaison future à la page, lequel des deux textes a bougé.
+   *
+   * Le contrôle porte sur la CHAÎNE COMPLÈTE, pas sur la présence du caractère : c'est le seul
+   * moyen qu'il rougisse si un éditeur, un formateur ou une réécriture repliait l'apostrophe. */
+  const CITATION_BA = "We don\u2019t carry pets in the cabin on any route.";
+  const kbTypo = loadKB();
+  const q = kbTypo.airlines.get("airline_british_airways")?.premium?.policy?.cabin?.source?.quote;
+  check("la citation British Airways porte l'apostrophe typographique de la page",
+    q === CITATION_BA, JSON.stringify(q));
+  check("…et aucune apostrophe ASCII ne subsiste dans cette citation",
+    typeof q === "string" && !q.includes("'"), JSON.stringify(q));
+  /* Les artefacts ENGENDRÉS doivent porter la même chaîne : l'ingestion ne doit rien replier. */
+  for (const f of ["packages/knowledge/raw/objects.json", "packages/ui/src/data/airlines.generated.json"]) {
+    const t = readFileSync(f, "utf8");
+    check(`${f.split("/").pop()} : la citation y est identique, sans repli`,
+      t.includes(CITATION_BA) && !t.includes("We don't carry pets"));
+  }
+}
+
+console.log("\n=== 13 quinquies. LA FRONTIÈRE ATTEINT L'ENTRÉE DANS LE PAYS ===");
+{
+  /* LE QUATRIÈME CHEMIN, ET LE PLUS TRANCHANT. `entry_allowed` passait à `false` sur une exigence
+   * pays `deny` sans rien demander à sa provenance — et ce refus-là éteint les trois canaux de
+   * TOUTES les compagnies d'un coup. Les six règles concernées portent une URL officielle et
+   * aucune phrase citée. La contre-revue du 05/09/2026 a lu les six sources et a établi que la
+   * citation ne suffirait PAS pour cinq d'entre elles : leur condition est elle-même trop large
+   * (France par la morphologie, Grande-Bretagne par l'exemption et l'apparence, Irlande par les
+   * séjours de trente jours, Allemagne par ses exceptions, Nouvelle-Zélande par « entièrement ou
+   * principalement »). Ce registre retient le constat pour qu'une citation future ne restaure
+   * pas en silence une règle fausse. */
+  const { niveauDePreuveRegle } = await import("./packages/knowledge/src/index.ts");
+  const registre = JSON.parse(readFileSync("mesures/politiques-veracite/regles-pays-a-requalifier.json", "utf8"));
+  const regles = JSON.parse(readFileSync("packages/knowledge/raw/rules.json", "utf8"));
+  const denysPays = regles.filter((r) => r.scope?.type === "country" && r.effect?.action === "deny");
+  check("état figé : 6 interdictions d'entrée par pays, TOUTES officielles non citées",
+    denysPays.length === 6 && denysPays.every((r) => niveauDePreuveRegle(r) === "officielle_non_citee"),
+    JSON.stringify(denysPays.map((r) => [r.id, niveauDePreuveRegle(r)])));
+  check("le registre de requalification couvre exactement ces six règles",
+    registre.regles.length === 6
+      && denysPays.every((r) => registre.regles.some((x) => x.rule_id === r.id)),
+    JSON.stringify(registre.regles.map((x) => x.rule_id)));
+  /* LA GARDE QUI REND LE REGISTRE CONTRAIGNANT : citer une règle ne suffit pas à la libérer si sa
+     CONDITION reste à revoir. Sans cela, la prochaine citation rouvrirait un refus catégorique
+     que la lecture des sources a déjà démenti. */
+  const fautives = denysPays.filter((r) => {
+    const e = registre.regles.find((x) => x.rule_id === r.id);
+    return niveauDePreuveRegle(r) === "citee" && !(e && e.resolu);
+  });
+  check("aucune règle pays n'est devenue décisive sans que le registre la déclare résolue",
+    fautives.length === 0, JSON.stringify(fautives.map((r) => r.id)));
+  check("le registre nomme, pour chaque règle non résolue, ce qui lui manque",
+    registre.regles.filter((x) => !x.resolu).every((x) => typeof x.manque === "string" && x.manque.length > 10),
+    JSON.stringify(registre.regles.filter((x) => !x.manque).map((x) => x.rule_id)));
+
+  /* LE COMPORTEMENT, SUR LE CAS RÉEL DE LA CONTRE-REVUE. Le refus ne décide plus — mais il ne se
+     tait pas : l'exigence pays reste publiée en tête, au niveau `critical`, texte intégral. */
+  const kbP = loadKB();
+  const dec = evaluate(kbP, { origin: "airport_cdg", destination: "airport_lhr",
+    dog: { breed_id: "breed_american_bully_xl", weight_kg: 50 }, travel_type: "pet", placement: "any", locale: "en" });
+  const rep = explain(dec, "en");
+  check("CDG→LHR, American Bully XL : l'interdiction NON CITÉE ne ferme plus l'entrée",
+    dec.destination.entry_allowed === true, String(dec.destination.entry_allowed));
+  check("…et elle est NOMMÉE plutôt que perdue (entry_unverified_denies)",
+    (dec.destination.entry_unverified_denies ?? []).includes("rule_gb_breed_ban_restricted_types"),
+    JSON.stringify(dec.destination.entry_unverified_denies));
+  check("…et son exigence reste publiée en tête du rapport, au niveau critique",
+    rep.conditions?.[0]?.criticality === "critical" && /Dangerous Dogs Act/i.test(rep.conditions?.[0]?.text ?? ""),
+    JSON.stringify({ crit: rep.conditions?.[0]?.criticality, txt: (rep.conditions?.[0]?.text ?? "").slice(0, 60) }));
+  /* P0-2 DE LA CONTRE-REVUE, dans sa reproduction exacte : une interdiction du PAYS ne doit
+     produire aucune affirmation structurelle sur les COMPAGNIES. Dix cartes annonçaient
+     « No pets » alors que leur statut ternaire vaut « unknown ». */
+  const inconnues = rep.airlines.filter((a) => a.offers_pet_transport === "unknown");
+  check("témoin non vide : les compagnies de ce trajet sont toutes « on ne sait pas »",
+    inconnues.length === rep.airlines.length && inconnues.length >= 10,
+    `${inconnues.length} / ${rep.airlines.length}`);
+  check("AUCUNE d'elles n'annonce « animaux refusés » — l'interdiction vient du PAYS",
+    rep.airlines.every((a) => !/No pets|Animaux refusés/i.test(a.label ?? "")),
+    JSON.stringify(rep.airlines.filter((a) => /No pets/i.test(a.label ?? "")).map((a) => a.airline_id)));
+  /* Et le motif ne revient pas non plus par la bande : une règle qui ne peut pas décider ne peut
+     pas expliquer. Les cartes disaient « cabine non proposée, soute non proposée ». */
+  check("…ni ne leur impute un motif tiré d'une règle non citée",
+    rep.airlines.every((a) => (a.deny_reasons ?? []).length === 0),
+    JSON.stringify(rep.airlines.map((a) => a.deny_reasons).filter((x) => x?.length).slice(0, 3)));
+  /* CONTRE-ÉPREUVE : la même règle, CITÉE, referme bien l'entrée. Sans elle, ce paragraphe ne
+     prouverait que l'inaction. */
+  const { rawKB: brutKB, normalize: normaliser } = await import("./packages/knowledge/src/index.ts");
+  const brut = JSON.parse(JSON.stringify(brutKB));
+  for (const r of brut.rules ?? []) if (r.id === "rule_gb_breed_ban_restricted_types" && r.source) {
+    r.source.quote = "It is illegal to bring a banned dog into Great Britain.";
+    r.source.quote_language = "en"; r.source.locator = "section « Banned dogs »";
+  }
+  const decCite = evaluate(normaliser(brut), { origin: "airport_cdg", destination: "airport_lhr",
+    dog: { breed_id: "breed_american_bully_xl", weight_kg: 50 }, travel_type: "pet", placement: "any", locale: "en" });
+  check("la MÊME règle, citée, referme l'entrée — la porte n'est pas condamnée",
+    decCite.destination.entry_allowed === false, String(decCite.destination.entry_allowed));
 }
 
 console.log("\n=== 14. Le côté PAYS — verrouiller un bon état plutôt que le découvrir deux fois ===");

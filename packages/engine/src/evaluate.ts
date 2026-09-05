@@ -98,6 +98,14 @@ function denyReasonsOf(perPlacement: { placement: string; fires: Rule[]; breedDe
   for (const { placement, fires } of perPlacement) {
     for (const r of fires) {
       if (r.effect.action !== "deny") continue;
+      /* LA FRONTIÈRE VAUT AUSSI POUR LE MOTIF (contre-revue du 05/09/2026). Une règle non citée
+         n'a plus le droit de refuser un canal — mais son MOTIF continuait d'être publié comme
+         l'explication du refus. Vu sur CDG → LHR avec un American Bully XL : les canaux sont
+         éteints par l'interdiction d'entrée BRITANNIQUE, et la carte expliquait pourtant
+         « cabine non proposée, soute non proposée », des motifs tirés de règles auxquelles on
+         venait de retirer le pouvoir de décider. Le refus venait du pays ; la carte l'imputait à
+         la compagnie. Une règle qui ne peut pas décider ne peut pas non plus expliquer. */
+      if (!regleDecisive(r)) continue;
       if (r.effect.placement && !(r.effect.placement as string[]).includes(placement)) continue;
       // L'embargo chaleur est déjà porté par son propre bandeau, et il est temporaire : le
       // ranger parmi les motifs de refus laisserait croire à une incompatibilité de fond.
@@ -211,9 +219,32 @@ function applyBreedRestrictions(args: {
      générale du canal. Les faits de race vivent au pluriel dans `evidence`. */
   const preuves = (rs: BreedRestriction[], role: RestrictionEvidence["role"]): RestrictionEvidence[] =>
     rs.map((r) => ({ restriction_ref: r.id, role, source: r.source }));
-  if (denies.length) {
+  /* LE MÊME PRÉDICAT DE PREUVE QUE LES RÈGLES (contre-revue du 05/09/2026).
+     `SourcedQuote` impose la phrase et sa langue, mais laisse le `locator` FACULTATIF : un fait de
+     race pouvait donc fermer un canal sur une provenance que la frontière refuse à une règle. Deux
+     exigences de preuve pour une même décision à l'écran. `regleDecisive` est le prédicat
+     canonique — il lit `source` et rien d'autre, et vaut donc pour les deux objets. */
+  const deniesDecisifs = denies.filter((r) => regleDecisive(r));
+  const deniesNonProuves = denies.filter((r) => !regleDecisive(r));
+  if (deniesDecisifs.length) {
     /* Dominance : un refus éteint les causes de confirmation du canal, comme un refus dur de règle. */
-    return { status: "denied", causes: [], evidence: preuves(denies, "refusal"), source: baseSource, denied_by_breed: true };
+    return { status: "denied", causes: [], evidence: preuves(deniesDecisifs, "refusal"), source: baseSource, denied_by_breed: true };
+  }
+  if (deniesNonProuves.length) {
+    /* IL NE REFUSE PAS, ET IL NE SE PRÉSENTE PAS NON PLUS COMME UNE PREUVE.
+       Ma première rédaction versait ces provenances dans `evidence` au rôle `refusal` : le contrat
+       l'a refusée, et il a raison — une preuve de REFUS sur un canal qui n'est pas refusé est
+       incohérente, et lui donnerait à l'écran le rang qui lui manque précisément. Le canal ne
+       porte donc AUCUNE preuve ; la cause, elle, NOMME la restriction, dont la provenance reste
+       auditable dans le registre. Même discipline que `breed_policy_unreviewed` : ce qui n'établit
+       rien ne se publie pas comme établissant quelque chose. */
+    return {
+      status: "confirmation_required",
+      causes: [...baseCauses, ...deniesNonProuves.map((r): ConfirmationCause => ({
+        code: "breed_deny_unverified", policy_ref: policyRef, restriction_ref: r.id,
+      }))],
+      source: baseSource, denied_by_breed: false,
+    };
   }
   if (requires.length) {
     return {
@@ -805,13 +836,42 @@ export function evaluate(kb: NormalizedKB, req: FinderRequest, opts?: { weatherP
   const advisories: AdvisorySignal[] = airlineDecisions
     .flatMap((a) => advisoriesParCompagnie.get(a.airline_id) ?? []);
 
-  const entry_allowed = !countryRequirements.some((f) => f.action === "deny");
+  /* ── LA FRONTIÈRE ATTEINT LE DERNIER CHEMIN : L'ENTRÉE DANS LE PAYS (05/09/2026) ─────────────
+   *
+   * `entry_allowed` passait à `false` dès qu'une exigence pays `deny` se déclenchait, sans rien
+   * demander à sa provenance — quatrième chemin de refus non gardé, et le plus tranchant de tous
+   * puisqu'il éteint les trois canaux de TOUTES les compagnies d'un coup et produit « Pas en
+   * l'état ». Les six règles concernées (AU, DE, FR, GB, IE, NZ) portent une URL officielle et
+   * AUCUNE phrase citée.
+   *
+   * LA CONTRE-REVUE A TRANCHÉ, ET ELLE EST ALLÉE PLUS LOIN QUE LA PROVENANCE : lecture des six
+   * sources faite, trois de ces règles sont SUBSTANTIELLEMENT trop catégoriques, et aucune
+   * citation ne les rendrait justes en l'état —
+   *   France : la catégorie 1 se définit par la MORPHOLOGIE et l'absence de pedigree reconnu, pas
+   *            par un nom de race ; `american_pit_bull_terrier → deny` est un raccourci ;
+   *   Grande-Bretagne : l'entrée est interdite SAUF certificat d'exemption valide, et le « type »
+   *            se qualifie sur l'apparence, pas sur le nom ;
+   *   Irlande : l'interdiction existe, mais le texte prévoit certificats et cas particuliers
+   *            (non-résidents, séjour de trente jours au plus).
+   * L'Allemagne reste à contrôler pour ses exceptions réglementaires. Australie et
+   * Nouvelle-Zélande correspondent à leur source et n'attendent que le libellé exact.
+   *
+   * Elles demandent donc toutes CONFIRMATION en attendant. Ce n'est pas un silence : l'exigence
+   * pays reste publiée en tête du rapport avec son texte intégral et son lien officiel — le
+   * visiteur lit toujours le Dangerous Dogs Act et le certificat d'exemption. Ce que le site
+   * cesse de faire, c'est de trancher à sa place sur une règle que personne n'a vérifiée. */
+  const entryDenies = countryRequirements.filter((f) => f.action === "deny");
+  const entry_allowed = !entryDenies.some((f) => f.decisive);
+  /* Les interdictions NON CITÉES sont nommées à part : elles ne décident pas, mais elles ne
+     doivent pas se perdre non plus. Un doute anonyme est inauditable. */
+  const entry_unverified_denies = entryDenies.filter((f) => !f.decisive).map((f) => f.rule_id);
 
   return {
     request: req,
     airlines: airlineDecisions,
     countryRequirements,
-    destination: { country_id: destCountry, country_name: destCountryName, entry_allowed },
+    destination: { country_id: destCountry, country_name: destCountryName, entry_allowed,
+      ...(entry_unverified_denies.length ? { entry_unverified_denies } : {}) },
     origin_country_id: originCountry,
     domestic: isDomestic,
     brachycephalic: brachy,

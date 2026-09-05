@@ -86,7 +86,13 @@ policies:
       confidence: 4
       reviewer: "Codex — lecture directe de la page officielle"
       history: []
-      quote: "We don't carry pets in the cabin on any route."
+      # APOSTROPHE TYPOGRAPHIQUE (U+2019), comme sur la page officielle — contre-revue du
+      # 05/09/2026. La citation était stockée avec une apostrophe ASCII (U+0027) : le champ dit
+      # « reprise telle quelle », il doit donc porter l'octet réellement lu. Aucune normalisation
+      # typographique n'est appliquée nulle part, et c'est délibéré : replier « ’ » sur « ' »
+      # rendrait `verbatim` approximatif, et une comparaison future à la page échouerait sans
+      # qu'on sache lequel des deux textes a bougé.
+      quote: "We don’t carry pets in the cabin on any route."
       quote_language: en
       locator: "Travelling with pets → Travelling to and from the UK"
   hold:

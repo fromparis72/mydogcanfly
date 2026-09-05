@@ -34,10 +34,17 @@ const FERMEE = "airline_air_serbia";   // soute ET fret `denied` sur CDG→IST, 
 const GOLDEN = "breed_golden_retriever";
 const PUG = "breed_pug";
 
-const SRC = (url, quote, confidence = 4) => ({
+/* `locator` AJOUTÉ (contre-revue du 05/09/2026). `SourcedQuote` le laisse facultatif, et
+   `applyBreedRestrictions` appliquait tout `deny` directement : un fait de race pouvait donc
+   fermer un canal sur une provenance que la frontière refuse à une RÈGLE — deux exigences de
+   preuve pour une même décision à l'écran. Les deux chemins lisent maintenant le même prédicat
+   canonique, et les fixtures de ce harnais étaient précisément SOUS la barre : sans cet
+   emplacement, elles ne décidaient plus. C'est la démonstration du défaut, pas un contournement —
+   le contrôle « sans locator, la restriction ne décide pas » est écrit juste en dessous. */
+const SRC = (url, quote, confidence = 4, locator = "section « Pets », paragraphe 1") => ({
   url, source_type: "official_website", verified_date: "2026-08-16", review_due: "2027-02-12",
   confidence, reviewer: "harnais T0-B3-a", history: [],
-  quote, quote_language: "en",
+  quote, quote_language: "en", locator,
 });
 const DETAIL = {
   en: "A veterinary fitness-to-fly certificate is required.",
@@ -431,6 +438,51 @@ console.log("=== 7. Le motif de refus `breed_restricted` ===");
   check("`explain` : compagnie entièrement fermée par la race → motif publié, sans `||` complaisant",
     (c.deny_reasons ?? []).includes("breed_restricted"),
     JSON.stringify({ deny_reasons: c.deny_reasons, statuts: c.placement_decisions.map((d) => d.status) }));
+}
+
+console.log("=== 7 bis. UN FAIT DE RACE PASSE PAR LE MÊME PRÉDICAT DE PREUVE QU'UNE RÈGLE ===");
+{
+  /* LE CONTOURNEMENT QUE FERME CE PARAGRAPHE (contre-revue du 05/09/2026).
+   * `SourcedQuote` impose la phrase et sa langue, mais laisse le `locator` FACULTATIF ;
+   * `applyBreedRestrictions` appliquait ensuite tout `deny` directement. Un fait de race pouvait
+   * donc fermer un canal sur une provenance que la frontière refuse à une RÈGLE : deux exigences
+   * de preuve pour une seule et même décision à l'écran — la faute que ce dépôt répète.
+   * Les fixtures de ce harnais vivaient d'ailleurs sous la barre : c'est en les remontant qu'on
+   * l'a constaté. */
+  const cible = { breed_ids: [GOLDEN] };
+  const sansLocator = { url: "https://exemple.example/deny", source_type: "official_website",
+    verified_date: "2026-08-16", review_due: "2027-02-12", confidence: 4, reviewer: "harnais",
+    history: [], quote: "Official refusal sentence, long enough.", quote_language: "en" };
+  const denyComplet = { id: "brest_deny_complet", applies_to: cible, action: "deny", placements: ["hold"],
+    source: SRC("https://exemple.example/deny", "Official refusal sentence, long enough.") };
+  const denyAmpute = { id: "brest_deny_ampute", applies_to: cible, action: "deny", placements: ["hold"],
+    source: sansLocator };
+
+  const soute = (restrictions) => evaluate(kbAvec(restrictions), req())
+    .airlines.find((x) => x.airline_id === AIRLINE)?.placements.find((d) => d.placement === "hold");
+
+  const complet = soute([denyComplet]);
+  check("preuve COMPLÈTE (phrase + langue + emplacement) → la soute est refusée",
+    complet?.status === "denied", JSON.stringify(complet?.status));
+
+  const ampute = soute([denyAmpute]);
+  check("MÊME fait, SANS emplacement → il ne refuse plus, il demande confirmation",
+    ampute?.status === "confirmation_required", JSON.stringify(ampute?.status));
+  check("…et la cause NOMME la restriction, plutôt que de la taire",
+    (ampute?.confirmation_causes ?? []).some((c) => c.code === "breed_deny_unverified"
+      && c.restriction_ref === "brest_deny_ampute" && c.policy_ref === `${AIRLINE}#hold`),
+    JSON.stringify(ampute?.confirmation_causes));
+  /* Et il ne se présente PAS comme une preuve : un fait qui n'établit rien ne doit pas paraître
+     à l'écran avec le rang d'un fait établi. Ma première rédaction le versait dans `evidence` au
+     rôle « refusal » — le contrat l'a refusé, à juste titre. */
+  check("…et le canal ne porte AUCUNE preuve : ce qui n'établit rien ne se publie pas comme tel",
+    (ampute?.evidence ?? []).length === 0, JSON.stringify(ampute?.evidence));
+  /* Le motif de refus suit la même règle : une restriction qui ne peut pas décider ne peut pas
+     expliquer non plus. */
+  const carteAmputee = evaluate(kbAvec([denyAmpute]), req()).airlines.find((x) => x.airline_id === AIRLINE);
+  check("…ni ne produit le motif `breed_restricted`",
+    !(carteAmputee?.deny_reasons ?? []).includes("breed_restricted"),
+    JSON.stringify(carteAmputee?.deny_reasons));
 }
 
 console.log("=== 8. Sur le référentiel RÉEL, après T0-B3-b ===");
