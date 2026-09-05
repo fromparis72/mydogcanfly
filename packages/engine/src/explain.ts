@@ -277,7 +277,12 @@ export function explain(decision: Decision, locale = "en"): DecisionReport {
        promesse que si le marquage suit sa définition. Une carte dont la cabine est fermée au poids
        et la soute par l'embargo est bien CONCERNÉE par l'embargo. La nuance « juste saisonnier »
        reste disponible côté UI via `deny_reasons` (vide ⇔ aucune cause non saisonnière). */
-    const heatFired = entryAllowed && a.fired.some((f) => f.category === "summer_embargo");
+    /* `decisive` (05/09/2026) : l'embargo AFFIRMÉ n'est plus déduit de la PRÉSENCE d'une règle.
+       Les six règles `summer_embargo` du dépôt portent une URL officielle et aucune phrase citée ;
+       depuis que la frontière les empêche de refuser, une carte marquée « suspendu » aurait
+       annoncé une suspension que le moteur n'appliquait plus. Le drapeau suit donc la règle qui
+       a réellement le droit de décider. */
+    const heatFired = entryAllowed && a.fired.some((f) => f.category === "summer_embargo" && f.decisive);
     /* P0 climat : le drapeau dépend de la PROVENANCE de la température. Fournie par le visiteur →
        embargo confirmé, avec sa garde historique (« seule raison du refus », voir ci-dessus).
        Estimée → signal de confirmation, porté par les STATUTS eux-mêmes : dès qu'un canal est

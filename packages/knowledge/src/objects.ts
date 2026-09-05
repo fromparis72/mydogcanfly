@@ -1,5 +1,5 @@
 import { z } from "zod";
-import { id, LocalizedText, DogSize, Source, PlacementStatus, FACTUAL_SOURCE_TYPES, isForbiddenSource } from "./common";
+import { id, LocalizedText, DogSize, Source, SourceCitable, PlacementStatus, FACTUAL_SOURCE_TYPES, isForbiddenSource } from "./common";
 
 export const Country = z.object({
   id: id("country"),
@@ -108,16 +108,10 @@ export type MediaRef = z.infer<typeof MediaRef>;
  *
  *  Les trois champs sont facultatifs : 258 provenances sont dérivées et n'ont rien à citer. Mais
  *  une citation sans sa langue serait interprétable, donc l'une entraîne l'autre. */
-export const PolicySource = Source.extend({
-  /** La phrase officielle qui fonde la décision, reprise telle quelle. */
-  quote: z.string().min(10).optional(),
-  /** Étiquette BCP-47 — la citation est rendue dans SA langue, la traduire l'interpréterait. */
-  quote_language: z.string().regex(/^[a-z]{2,3}(-[A-Za-z0-9]{2,8})*$/, "étiquette de langue BCP-47 attendue").optional(),
-  /** Où la phrase a été lue : ancre, titre de section, numéro d'accordéon. */
-  locator: z.string().min(1).optional(),
-}).refine((s) => !s.quote || !!s.quote_language, {
-  message: "une citation doit dire sa langue", path: ["quote_language"],
-});
+/** DÉPLACÉ DANS `common.ts` sous le nom `SourceCitable` (05/09/2026) — voir le commentaire
+ *  là-bas. Le nom historique reste ici, alias de la définition unique : les règles avaient besoin
+ *  de la même chose, et une seconde copie aurait rejoué la faute que ce dépôt répète. */
+export const PolicySource = SourceCitable;
 export type PolicySource = z.infer<typeof PolicySource>;
 
 /** Bloc commun aux deux branches d'auteur ET au runtime : les champs enrichis existants

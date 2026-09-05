@@ -521,8 +521,16 @@ console.log("=== 8. Baseline FIGÉE : le point de comparaison de T0-B2 est scell
    * vers « à confirmer », aucune vers `allowed`, aucune vers `denied`. */
   /* 05/09/2026 — la plus récente est celle de la première citation ; celle de la frontière reste
      intacte à côté comme AVANT de la paire. */
-  check("Citation 1 : la baseline vivante est identique à la figée la plus récente",
-    vivante.equals(readFileSync("test-baselines/citation-ba-cabine-apres.json")));
+  /* 05/09/2026, plus tard le même jour — LA PLUS RÉCENTE EST CELLE DE LA FRONTIÈRE DES RÈGLES.
+   * Même principe roulant : celle de la première citation n'est pas écrasée, elle devient l'AVANT
+   * de la nouvelle paire, et la preuve permanente de test-t0a-baseline.mjs établit ce qui les
+   * sépare — 1 168 canaux passent de `denied` à « à confirmer », aucun ne se referme, aucun ne va
+   * jusqu'à `allowed`, et British Airways cabine reste refusée sur sa phrase citée. */
+  check("Frontière des règles : la baseline vivante est identique à la figée la plus récente",
+    vivante.equals(readFileSync("test-baselines/frontiere-regles-apres.json")));
+  check("Citation 1 : sa figée reste intacte à côté (elle n'a pas été écrasée)",
+    !readFileSync("test-baselines/citation-ba-cabine-apres.json")
+      .equals(readFileSync("test-baselines/frontiere-regles-apres.json")));
   check("Tarifs étape 3 : la figée de l'étape 2 reste intacte à côté (elle n'a pas été écrasée)",
     !readFileSync("test-baselines/tarifs-finder-baseline-apres.json")
       .equals(readFileSync("test-baselines/tarifs-etape3-finder-baseline-apres.json")));

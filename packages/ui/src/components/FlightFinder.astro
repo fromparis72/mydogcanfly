@@ -147,6 +147,12 @@ const labels = {
   /* T0-B — famille DISTINCTE de « politique » : l'incertitude est la NÔTRE (donnée héritée non
      revérifiée), pas celle de la compagnie. Le code interne `legacy_unreviewed` n'est jamais
      affiché ; le visiteur lit une phrase qui dit d'où vient le doute et quoi faire. */
+  /* UNE PAGE OFFICIELLE EXISTE, AUCUNE PHRASE N'EN A ÉTÉ CITÉE (05/09/2026). Cette famille
+     manquait : `official_source_unquoted` tombait dans le vide depuis que je l'avais introduite,
+     et la carte disait « à confirmer » sans dire pourquoi. Les causes de RÈGLE non citée la
+     rejoignent — du point de vue du visiteur, la situation est la même : il y a une page à lire,
+     et personne n'y a encore lu la phrase qui trancherait. */
+  confirmOfficialLink: T("An official airline page covers this channel, but no sentence has been quoted from it yet — read the conditions there and confirm with the airline.", "Une page officielle de la compagnie couvre ce canal, mais aucune phrase n'en a encore été citée — lis-y les conditions et confirme auprès de la compagnie.", "Una página oficial de la aerolínea cubre este canal, pero aún no se ha citado ninguna frase — consulta allí las condiciones y confírmalas con la aerolínea."),
   confirmUnreviewed: T("This information has not yet been reverified against a current official source — confirm directly with the airline before booking.", "Cette information n'a pas encore été revérifiée à partir d'une source officielle à jour — confirme-la directement auprès de la compagnie avant de réserver.", "Esta información aún no se ha vuelto a verificar a partir de una fuente oficial actualizada; confírmala directamente con la aerolínea antes de reservar."),
   confidence: T("confidence", "confiance", "confianza"),
   answer: {
@@ -632,6 +638,11 @@ const labels = {
                         /* T0-B : famille PROPRE — `legacy_unreviewed` ne rejoint pas « policy »,
                            qui attribuerait à la compagnie un doute qui vient de notre donnée. */
                         if (c.code === "legacy_unreviewed") fams.add("unreviewed");
+                        /* Notre donnée manque, ou la règle qui fermait le canal n'est pas
+                           vérifiable : c'est NOTRE incertitude, pas celle de la compagnie. */
+                        else if (c.code === "policy_absent" || c.code === "rule_unverified") fams.add("unreviewed");
+                        /* Une page officielle existe, sans phrase citée — politique ou règle. */
+                        else if (c.code === "official_source_unquoted" || c.code === "rule_official_unquoted") fams.add("official_link");
                         else if (c.code === "policy_unpublished" || c.code === "airline_approval") fams.add("policy");
                         else if (c.code === "missing_fact") fams.add("missing");
                       }
@@ -641,6 +652,7 @@ const labels = {
                        le visiteur lit « nous ne l'avons pas revérifié » avant toute phrase qui
                        parle de la politique de la compagnie. */
                     if (fams.has("unreviewed")) lines.push(`<div class="acard__confirmwhy">? ${esc(L.confirmUnreviewed)}</div>`);
+                    if (fams.has("official_link")) lines.push(`<div class="acard__confirmwhy">? ${esc(L.confirmOfficialLink)}</div>`);
                     if (fams.has("policy")) lines.push(`<div class="acard__confirmwhy">? ${esc(L.confirmPolicy)}</div>`);
                     if (fams.has("missing")) lines.push(`<div class="acard__confirmwhy">? ${esc(L.confirmMissing)}</div>`);
                     return lines.join("");

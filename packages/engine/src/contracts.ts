@@ -25,6 +25,13 @@ type PlacementStatusLitteral = "allowed" | "denied" | "confirmation_required";
 export const ConfirmationCause = z.discriminatedUnion("code", [
   /** Embargo `summer_embargo` déclenché sur une température ESTIMÉE — la seule cause active en T0-A. */
   z.object({ code: z.literal("estimated_climate"), rule_id: z.string().min(1) }).strict(),
+  /** Embargo `summer_embargo` déclenché sur une température CERTAINE, par une règle NON CITÉE.
+   *  La température ne fait pas de doute ; c'est la règle qui n'est pas prouvée. Elle ne peut donc
+   *  plus refuser (frontière de confiance du 05/09/2026, étendue au chemin climatique le même
+   *  jour) : elle demande confirmation, en nommant sa règle. Sa cause est DISTINCTE
+   *  d'`estimated_climate` parce que le doute n'est pas le même — confondre les deux aurait remis
+   *  deux définitions derrière un seul nom, la faute que cette base répète. */
+  z.object({ code: z.literal("climate_rule_unquoted"), rule_id: z.string().min(1) }).strict(),
   /* LES CAUSES DE POLITIQUE NE SONT PLUS RETAPÉES ICI — elles sont ENGENDRÉES depuis
      `PLACEMENT_STATUS_CAUSES`, le registre du contrat de connaissance, parce que les trois
      littéraux qui figuraient à cet endroit ont divergé au premier ajout : la quatrième cause
@@ -62,19 +69,56 @@ export const ConfirmationCause = z.discriminatedUnion("code", [
     policy_ref: z.string().regex(POLICY_REF_RE),
     restriction_ref: z.string().regex(/^brest_[a-z0-9_]+$/),
   }).strict(),
+  /**
+   * UNE RÈGLE `deny` S'EST DÉCLENCHÉE MAIS N'A PAS LE DROIT DE REFUSER (05/09/2026).
+   *
+   * Deux causes, parce que le visiteur n'est pas dans la même situation selon qu'il a une page à
+   * lire ou rien du tout — exactement la distinction déjà faite au niveau des politiques entre
+   * `official_source_unquoted` et `legacy_unreviewed`.
+   *
+   * `rule_id` est OBLIGATOIRE : une incertitude qui ne dit pas de quelle règle elle vient est
+   * inauditable, et c'est précisément ce qui a permis à `rule_british_airways_no_cabin` de fermer
+   * la soute pendant des mois sans que personne puisse le rattacher à quoi que ce soit.
+   */
+  z.object({ code: z.literal("rule_official_unquoted"), rule_id: z.string().min(1) }).strict(),
+  z.object({ code: z.literal("rule_unverified"), rule_id: z.string().min(1) }).strict(),
+  /**
+   * AUCUNE POLITIQUE DÉCLARÉE POUR CE CANAL. L'absence valait `denied` par défaut — « la fiche ne
+   * documente pas cette soute, donc elle n'existe pas ». C'est une inférence, pas un fait : une
+   * absence signifie qu'on ne sait pas. Elle vaut donc confirmation, comme tout le reste.
+   */
+  z.object({ code: z.literal("policy_absent"), policy_ref: z.string().regex(POLICY_REF_RE) }).strict(),
   /** Fait requis absent (poids total T2, âge T3). `fact` restera à resserrer en registre fermé
    *  avant la première migration T2/T3 — aucune donnée réelle ne l'émet en T0-A. */
   z.object({ code: z.literal("missing_fact"), fact: z.string().min(1), requirement_ref: z.string().min(1) }).strict(),
 ]);
 export type ConfirmationCause = z.infer<typeof ConfirmationCause>;
 
+/** LES CAUSES DE CHALEUR, EN UN SEUL ENDROIT.
+ *
+ *  Trois lecteurs dérivent un drapeau de chaleur — `hasActiveClimateCause` ici, le balayage des
+ *  destinations, le titre de la section « à confirmer » de l'outil Destinations. Chacun comparait
+ *  le code à `"estimated_climate"` en dur. Ajouter une seconde cause climatique par cette porte
+ *  aurait allumé le drapeau chez l'un et pas chez les autres : c'est exactement la faute
+ *  récurrente de ce dépôt — deux définitions du même fait qui divergent. Elles lisent désormais
+ *  toutes cette fonction. */
+export const CLIMATE_CAUSE_CODES = ["estimated_climate", "climate_rule_unquoted"] as const;
+export const estCauseClimatique = (
+  c: { code: string },
+): c is Extract<ConfirmationCause, { code: (typeof CLIMATE_CAUSE_CODES)[number] }> =>
+  (CLIMATE_CAUSE_CODES as readonly string[]).includes(c.code);
+
 /** Clé canonique d'une cause — tri stable et déduplication des snapshots. */
 export const causeKey = (c: ConfirmationCause): string =>
-  c.code === "estimated_climate" ? `${c.code}|${c.rule_id}`
+  estCauseClimatique(c) ? `${c.code}|${c.rule_id}`
   : c.code === "missing_fact" ? `${c.code}|${c.fact}|${c.requirement_ref}`
   /* `restriction_ref` fait partie de l'identité d'une exigence : deux exigences distinctes sur le
      même canal partagent leur `policy_ref` et seraient dédupliquées sans elle. */
   : c.code === "breed_requirement" ? `${c.code}|${c.policy_ref}|${c.restriction_ref}`
+  /* Les causes de RÈGLE s'identifient par leur règle, pas par un canal : deux règles distinctes
+     déclenchées sur le même canal doivent rester deux causes, sans quoi le visiteur n'en verrait
+     qu'une — la même faute que `restriction_ref` a fermée pour les exigences de race. */
+  : (c.code === "rule_official_unquoted" || c.code === "rule_unverified") ? `${c.code}|${c.rule_id}`
   : `${c.code}|${c.policy_ref}`;
 
 const sortDedupCauses = (causes: ConfirmationCause[]): ConfirmationCause[] => {
@@ -296,7 +340,7 @@ export function makePlacementDecisionSet(ds: PlacementDecision[]): PlacementDeci
 
 /** La chaleur dérive d'une CAUSE CLIMATIQUE ACTIVE — jamais du seul statut (T0-A). */
 export const hasActiveClimateCause = (d: PlacementDecision): boolean =>
-  d.status === "confirmation_required" && d.confirmation_causes.some((c) => c.code === "estimated_climate");
+  d.status === "confirmation_required" && d.confirmation_causes.some(estCauseClimatique);
 
 /** Signal de confirmation d'une destination : la cause SANS perdre la compagnie ni le canal
  *  (contre-revue v2 : deux signaux identiques chez deux compagnies ou sur deux canaux sont deux
@@ -464,6 +508,10 @@ export interface FiredRule {
   source_url: string;
   confidence: number;
   params: Record<string, unknown>;
+  /** La règle porte-t-elle une preuve CITÉE (page officielle + phrase + langue + emplacement) ?
+   *  Seule une règle décisive peut refuser. `fired` conserve les autres pour l'audit ; ce champ
+   *  empêche qu'elles décident silencieusement en aval. */
+  decisive: boolean;
 }
 export interface AirlineDecision {
   airline_id: string;

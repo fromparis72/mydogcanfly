@@ -1,5 +1,5 @@
 import type { NormalizedKB, Rule, Predicate, Condition, EvalContextShape, PlacementPolicy, PlacementStatus, TemperatureProvenance, BreedRestriction } from "@mydogcanfly/knowledge";
-import { MONTH_UNKNOWN, isEstimatedTemperature, preuveAuditee } from "@mydogcanfly/knowledge";
+import { MONTH_UNKNOWN, isEstimatedTemperature, preuveAuditee, regleDecisive, niveauDePreuveRegle } from "@mydogcanfly/knowledge";
 import type { FinderRequest, Decision, AirlineDecision, FiredRule, ConfirmationCause, RestrictionEvidence, AdvisorySignal } from "./contracts";
 import { makePlacementDecision, makePlacementDecisionSet } from "./contracts";
 
@@ -244,6 +244,12 @@ function toFired(r: Rule, locale: string): FiredRule {
     rule_id: r.id, action: r.effect.action, category: r.category, criticality: r.criticality,
     rationale: r.rationale_i18n?.[locale] ?? r.rationale, // localized where available, else EN
     source_url: r.source.url, confidence: r.source.confidence, params: r.params,
+    /* LE NIVEAU DE PREUVE VOYAGE AVEC LA RÈGLE (05/09/2026). `fired` garde toutes les règles pour
+       l'audit — mais leur seule présence ne doit plus rien décider en aval. Ce champ est calculé
+       ICI, à l'unique endroit qui tient encore la règle complète : le rapport, lui, ne voit que
+       cette projection aplatie et déduisait « embargo appliqué » de la simple présence d'une
+       règle d'embargo, y compris non citée. */
+    decisive: regleDecisive(r),
   };
 }
 
@@ -466,23 +472,62 @@ export function evaluate(kb: NormalizedKB, req: FinderRequest, opts?: { weatherP
          fiche ne documente aucune soute n'a pas une soute « à confirmer », elle n'en a pas. */
       const hardDenies = denyFires.filter((r) => r.category !== "summer_embargo");
       const climateDenies = denyFires.filter((r) => r.category === "summer_embargo");
+      /* LA FRONTIÈRE VAUT AUSSI POUR LA CHALEUR (05/09/2026). « Une règle non citée ne peut
+         produire aucun `denied`, même si elle possède une URL officielle » ne souffre pas
+         d'exception climatique : une règle d'embargo non vérifiée fait dire au site que la
+         compagnie suspend la soute, ce que personne n'a lu sur sa page. */
+      const climateDecisifs = climateDenies.filter((r) => regleDecisive(r));
       let allFires = fires;
       const pol = policy?.[p];
       /* T0-A : le statut de la POLITIQUE runtime est la vérité du socle fiche ; `allowed` n'est
          plus lu. Dominance intra-compagnie : denied > confirmation_required > allowed — un refus
          dur ÉTEINT les causes de confirmation du canal (les règles restent dans `fired` pour
          l'audit). Un embargo sur température FOURNIE reste un refus, comme avant. */
+      /* ── LA FRONTIÈRE DE CONFIANCE S'APPLIQUE AUSSI AUX RÈGLES (05/09/2026) ───────────────
+       *
+       * Ce bloc refusait un canal dès qu'une règle `deny` se déclenchait, sans rien demander à sa
+       * provenance. La frontière avait rétrogradé les 302 POLITIQUES ; les règles, elles,
+       * pouvaient recréer exactement les mêmes refus catégoriques par un chemin non gardé.
+       *
+       * Je l'avais constaté sans le voir : « la carte de British Airways était déjà refusée en
+       * cabine, par une règle » — rapporté comme une bonne nouvelle, alors que c'était le
+       * symptôme. Et `rule_british_airways_no_cabin` ferme aussi la SOUTE, sans citation, quand
+       * la page officielle dit « Your pet will travel in the hold of our aircraft ».
+       *
+       * Désormais, seule une règle CITÉE — page officielle, phrase, langue, emplacement — peut
+       * refuser, et seulement sur les placements que porte son propre `effect.placement` : une
+       * citation qui prouve la cabine ne ferme pas la soute. Les autres règles restent dans
+       * `fired` pour l'audit et produisent une CONFIRMATION portant leur `rule_id` — une
+       * incertitude anonyme est inauditable, et c'est ce qui a laissé passer celle-ci. */
+      const denyDecisifs = hardDenies.filter((r) => regleDecisive(r));
+      const denyNonDecisifs = hardDenies.filter((r) => !regleDecisive(r));
+
       let status: PlacementStatus;
       const causes: ConfirmationCause[] = [];
-      if (hardDenies.length > 0) {
+      if (denyDecisifs.length > 0) {
         status = "denied";
-      } else if (pol?.status !== "allowed" && pol?.status !== "confirmation_required") {
-        // Socle fiche systématique (corrigé 10/08/2026) : un statut `denied` explicite ou une clé
-        // absente (« inconnu ») sont traités pareil, refusés par défaut, quel que soit le nombre
-        // de règles propres à la compagnie par ailleurs.
+      } else if (pol?.status === "denied") {
+        /* UN REFUS DE POLITIQUE EST PROUVÉ, PAR CONSTRUCTION. Depuis la frontière,
+           `projectPlacementPolicy` n'émet `denied` que sur une provenance citée : le laisser
+           décider n'est pas un contournement, c'est le seul chemin qui reste légitime.
+           MA PREMIÈRE RÉDACTION L'A PERDU. Elle traitait « ni allowed ni confirmation » comme une
+           absence, et rétrogradait donc le premier refus prouvé du dépôt — British Airways cabine
+           — en « à confirmer ». Je ne l'ai pas vu en relisant : je l'avais vérifié sur une sortie
+           TRONQUÉE dont je n'avais jamais lu le statut, et j'en avais déduit ce que j'espérais. */
         status = "denied";
+      } else if (!pol) {
+        /* UNE ABSENCE N'EST PAS UN REFUS. Le socle traitait « la fiche ne décide pas ce canal »
+           comme « ce canal n'existe pas » : une inférence, pas un fait. Une absence signifie
+           qu'on ne sait pas, et se dit donc « à confirmer », en nommant le canal concerné. */
+        status = "confirmation_required";
+        causes.push({ code: "policy_absent", policy_ref: `${a.id}#${p}` });
         allFires = [...fires, policyFallbackDenyRule(a.id, p, pol)];
-      } else if (climateDenies.length > 0 && !tempIsEstimated) {
+      } else if (climateDecisifs.length > 0 && !tempIsEstimated) {
+        /* Un embargo sur température FOURNIE reste un refus — mais seulement si la RÈGLE est
+           citée. La température n'est pas en doute ; la règle, elle, l'était : les six règles
+           `summer_embargo` du dépôt portent une URL officielle et AUCUNE phrase citée, et cette
+           branche les laissait refuser catégoriquement la soute et le fret. C'était le troisième
+           chemin de refus non gardé, après `hardDenies` et l'absence de politique. */
         status = "denied";
       } else {
         /* Ici, plus aucun refus ne domine : les causes de confirmation s'accumulent — politique
@@ -496,10 +541,23 @@ export function evaluate(kb: NormalizedKB, req: FinderRequest, opts?: { weatherP
           if (!pol.status_cause) throw new Error(`politique ${a.id}#${p} à confirmer SANS cause — schéma runtime violé`);
           causes.push({ code: pol.status_cause, policy_ref: `${a.id}#${p}` });
         }
-        if (climateDenies.length > 0) {
-          // tempIsEstimated garanti par la branche précédente : cause climatique ACTIVE au sens
-          // exact de la contre-revue (règle déclenchée + estimée + non dominée + statut final).
-          for (const r of climateDenies) causes.push({ code: "estimated_climate", rule_id: r.id });
+        /* Les règles qui se sont déclenchées SANS avoir le droit de refuser deviennent des causes
+           de confirmation, chacune nommant sa règle. Une page officielle sans phrase reste
+           montrable comme lien faible ; une règle faible ne montre rien. */
+        for (const r of denyNonDecisifs) {
+          causes.push(niveauDePreuveRegle(r) === "officielle_non_citee"
+            ? { code: "rule_official_unquoted", rule_id: r.id }
+            : { code: "rule_unverified", rule_id: r.id });
+        }
+        /* Deux causes climatiques distinctes, jamais confondues :
+             `estimated_climate`     — la règle vaut, c'est la TEMPÉRATURE qui est estimée ;
+             `climate_rule_unquoted` — la température est certaine, c'est la RÈGLE qui n'est pas
+                                       prouvée (elle vient d'atterrir ici au lieu de refuser).
+           Les deux allument le drapeau chaleur : la question posée à la compagnie est la même. */
+        for (const r of climateDenies) {
+          causes.push(tempIsEstimated
+            ? { code: "estimated_climate", rule_id: r.id }
+            : { code: "climate_rule_unquoted", rule_id: r.id });
         }
         status = causes.length > 0 ? "confirmation_required" : "allowed";
       }

@@ -664,9 +664,14 @@ const L = {
          chaleur — le titre climatique exige que CHAQUE destination ait ≥1 signal ET que tous
          soient climatiques ; sinon, générique. (Le contrat serveur produit toujours le tableau ;
          le repli couvre une réponse ancienne ou mal formée.) */
+      /* Les DEUX causes de chaleur (05/09/2026) : température estimée, ou règle d'embargo non
+         citée. La liste est celle du contrat (`CLIMATE_CAUSE_CODES`) — ce script tourne dans le
+         navigateur et ne peut pas l'importer, donc elle est recopiée ICI et NULLE PART AILLEURS,
+         sous la garde de `test-frontiere-confiance.mjs` qui compare les deux listes. */
+      const CODES_CHALEUR = ["estimated_climate", "climate_rule_unquoted"];
       const onlyClimate = toConfirmList.every((m) =>
         (m.confirmation_signals || []).length > 0 &&
-        (m.confirmation_signals || []).every((s) => s.cause && s.cause.code === "estimated_climate"));
+        (m.confirmation_signals || []).every((s) => s.cause && CODES_CHALEUR.includes(s.cause.code)));
       const tcTitle = onlyClimate ? S.toConfirmSectionTitle : S.toConfirmSectionTitleGeneric;
       html += `<h3 class="dfx__toph" id="dfx-toconfirm-title">${esc(tcTitle)}</h3><p class="dfx__altnote">${esc(S.toConfirmSectionHint)}</p><div class="dfx__grid" id="dfx-toconfirm">${tcScored.map((c) => c.html).join("")}</div>`;
     }

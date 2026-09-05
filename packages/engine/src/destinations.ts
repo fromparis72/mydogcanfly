@@ -1,7 +1,7 @@
 import type { NormalizedKB } from "@mydogcanfly/knowledge";
 import { cityName } from "@mydogcanfly/knowledge";
 import type { DestinationsRequest, DestinationMatch, DestinationsResult, DestinationConfirmationSignal } from "./contracts";
-import { signalKey } from "./contracts";
+import { signalKey, estCauseClimatique } from "./contracts";
 import { evaluate } from "./evaluate";
 
 // Must match explain.ts HEAT_EMBARGO_THRESHOLD_C (seasonal hold/cargo suspension threshold).
@@ -184,7 +184,7 @@ export function rankDestinations(kb: NormalizedKB, req: DestinationsRequest): De
       /* T0-A : filtré PAR CAUSE — une confirmation de politique (T0-B) ne produira plus un
          drapeau chaleur. Les signaux gardent compagnie + canal (jamais aplatis) et survivent
          à l'agrégation `allowed > confirmation_required > denied` du statut. */
-      heat_confirmation_required: confirmation_signals.some((s) => s.cause.code === "estimated_climate"),
+      heat_confirmation_required: confirmation_signals.some((s) => estCauseClimatique(s.cause)),
       confirmation_signals,
       estimated_heat_signal: climate_estimated && temperature_c > HEAT_EMBARGO_THRESHOLD_C,
       heat_risk: climate_estimated && temperature_c > HEAT_RISK_MIN_C && temperature_c <= HEAT_EMBARGO_THRESHOLD_C,

@@ -574,6 +574,109 @@ console.log("\n=== 13 bis. Le verdict dérivé, et ce qui ne revient JAMAIS avec
     (codeSeul.match(/Answers drawn from[^"]{0,60}/) ?? []).join(""));
 }
 
+console.log("\n=== 13 ter. LA FRONTIÈRE S'APPLIQUE AUSSI AUX RÈGLES ===");
+{
+  /* LA FAILLE QUE CES SIX CONTRÔLES FERMENT. La frontière avait rétrogradé les 302 POLITIQUES,
+   * mais `evaluate.ts` refusait toujours un canal dès qu'une règle `deny` se déclenchait, sans
+   * rien demander à sa provenance. Deux chemins menaient au même écran ; un seul était gardé.
+   *
+   * Je l'avais CONSTATÉ sans le voir : « la carte de British Airways était déjà refusée en
+   * cabine, par une règle », rapporté comme une bonne nouvelle. C'était le symptôme. */
+  const { niveauDePreuveRegle, regleDecisive } = await import("./packages/knowledge/src/index.ts");
+  const SRC = { url: "https://exemple.example/pets", source_type: "official_website",
+    verified_date: "2026-09-05", review_due: "2026-12-04", confidence: 4, reviewer: "t", history: [] };
+  const CITEE = { ...SRC, quote: "We do not accept dogs in the hold.", quote_language: "en", locator: "section « Pets »" };
+
+  check("une règle `deny` NON citée ne décide pas", !regleDecisive({ source: SRC })
+    && niveauDePreuveRegle({ source: SRC }) === "officielle_non_citee");
+  check("la MÊME règle avec une citation complète décide", regleDecisive({ source: CITEE }));
+  check("une auto-citation ne décide ni ne compte comme officielle",
+    niveauDePreuveRegle({ source: { ...CITEE, url: "https://www.mydogcanfly.com/x" } }) === "faible");
+  check("une source non factuelle ne décide pas",
+    niveauDePreuveRegle({ source: { ...CITEE, source_type: "press" } }) === "faible");
+
+  /* Sur la base réelle : aucune règle ne peut décider, et c'est le résultat correct. */
+  const regles = JSON.parse(readFileSync("packages/knowledge/raw/rules.json", "utf8"));
+  const denies = regles.filter((r) => r.effect?.action === "deny");
+  const parNiveau = {};
+  for (const r of denies) parNiveau[niveauDePreuveRegle(r)] = (parNiveau[niveauDePreuveRegle(r)] ?? 0) + 1;
+  check("état figé des règles `deny` : 0 citée, 130 officielles non citées, 88 faibles",
+    !parNiveau.citee && parNiveau.officielle_non_citee === 130 && parNiveau.faible === 88,
+    JSON.stringify(parNiveau));
+
+  /* ET LE CAS RÉEL, celui par lequel la faille s'est vue. `rule_british_airways_no_cabin` refuse
+     cabine ET SOUTE — son nom ne parle que de la cabine — sans citation, alors que la page dit
+     « Your pet will travel in the hold of our aircraft ». La citation prouve la CABINE seule. */
+  const kb = loadKB();
+  const rapport = explain(evaluate(kb, { origin: "airport_cdg", destination: "airport_lhr",
+    dog: { weight_kg: 5 }, travel_type: "pet", placement: "any", locale: "en" }), "en");
+  const ba = (rapport.airlines ?? []).find((a) => a.airline_id === "airline_british_airways");
+  const parCanal = Object.fromEntries((ba?.placement_decisions ?? []).map((d) => [d.placement, d]));
+  check("British Airways CABINE : refusée, sur la citation intégrée",
+    parCanal.cabin?.status === "denied", JSON.stringify(parCanal.cabin?.status));
+  check("British Airways SOUTE : à confirmer — la citation cabine ne ferme pas la soute",
+    parCanal.hold?.status === "confirmation_required", JSON.stringify(parCanal.hold?.status));
+  check("…et la règle qui la fermait est NOMMÉE dans la cause, plus muette",
+    (parCanal.hold?.confirmation_causes ?? []).some((c) => c.code === "rule_official_unquoted"
+      && c.rule_id === "rule_british_airways_no_cabin"),
+    JSON.stringify(parCanal.hold?.confirmation_causes));
+
+  /* Une absence de politique n'est plus un refus : elle se dit, et nomme son canal. */
+  let absences = 0;
+  for (const a of rapport.airlines ?? []) for (const d of a.placement_decisions ?? []) {
+    if ((d.confirmation_causes ?? []).some((c) => c.code === "policy_absent")) absences++;
+  }
+  check("une politique absente produit une CONFIRMATION nommée, jamais un refus par défaut",
+    absences >= 0 && (rapport.airlines ?? []).every((a) => (a.placement_decisions ?? [])
+      .every((d) => d.status !== "denied" || !(d.confirmation_causes ?? []).length)),
+    `${absences} absence(s) déclarée(s)`);
+}
+
+console.log("\n=== 13 quater. LA FRONTIÈRE S'APPLIQUE AUSSI À LA CHALEUR ===");
+{
+  /* LE TROISIÈME CHEMIN DE REFUS NON GARDÉ (05/09/2026). Après `hardDenies` et l'absence de
+   * politique, il restait l'embargo d'été : sur une température FOURNIE, une règle
+   * `summer_embargo` refermait la soute et le fret sans qu'on demande rien à sa provenance. Les
+   * six règles d'embargo du dépôt portent une URL officielle et AUCUNE phrase citée — le site
+   * annonçait donc une suspension que personne n'avait lue sur la page de la compagnie. La
+   * consigne ne souffre pas d'exception climatique : « une règle non citée ne peut produire aucun
+   * `denied`, même si elle possède une URL officielle ». */
+  const { niveauDePreuveRegle } = await import("./packages/knowledge/src/index.ts");
+  const regles = JSON.parse(readFileSync("packages/knowledge/raw/rules.json", "utf8"));
+  const embargos = regles.filter((r) => r.category === "summer_embargo");
+  check("état figé : 6 règles summer_embargo, TOUTES officielles non citées",
+    embargos.length === 6 && embargos.every((r) => niveauDePreuveRegle(r) === "officielle_non_citee"),
+    JSON.stringify(embargos.map((r) => [r.id, niveauDePreuveRegle(r)])));
+
+  /* UNE RÈGLE PEUT DÉSORMAIS ÊTRE CITÉE. Elle ne le pouvait pas : le schéma d'une règle portait un
+     `Source` nu, et `normalize` effaçait en silence toute phrase qu'on y posait. La frontière
+     côté règles était donc une porte qu'AUCUNE donnée ne pouvait franchir — un interdit
+     permanent déguisé en critère. Ce contrôle vérifie que la porte s'ouvre. */
+  const { rawKB, normalize, regleDecisive } = await import("./packages/knowledge/src/index.ts");
+  const brut = JSON.parse(JSON.stringify(rawKB));
+  let posee = 0;
+  for (const r of brut.rules ?? []) if (r.id === "rule_tk_summer_embargo" && r.source) {
+    r.source.quote = "Pets are not carried in the hold above 30 °C.";
+    r.source.quote_language = "en"; r.source.locator = "section « Pets »"; posee++;
+  }
+  const kbCite = normalize(brut);
+  const citee = [...(kbCite.rules ?? [])].find((r) => r.id === "rule_tk_summer_embargo");
+  check("une citation posée sur une RÈGLE traverse `normalize` (elle était effacée)",
+    posee === 1 && !!citee?.source?.quote && !!citee?.source?.locator, JSON.stringify(citee?.source));
+  check("…et cette règle devient décisive", regleDecisive(citee) === true);
+
+  /* LES DEUX CAUSES DE CHALEUR ONT UNE SEULE DÉFINITION. Trois lecteurs en dérivent un drapeau ;
+     l'un d'eux tourne dans le navigateur et ne peut pas importer le contrat. Sa copie est donc
+     COMPARÉE ici, littéralement, plutôt que laissée à la vigilance. */
+  const { CLIMATE_CAUSE_CODES } = await import("./packages/engine/src/contracts.ts");
+  const dfx = readFileSync("packages/ui/src/components/DestinationFinder.astro", "utf8");
+  const m = dfx.match(/const CODES_CHALEUR = \[([^\]]*)\]/);
+  const copie = m ? m[1].split(",").map((x) => x.trim().replace(/^["']|["']$/g, "")).filter(Boolean) : [];
+  check("la copie navigateur des codes de chaleur est IDENTIQUE au contrat",
+    JSON.stringify(copie) === JSON.stringify([...CLIMATE_CAUSE_CODES]),
+    `contrat ${JSON.stringify([...CLIMATE_CAUSE_CODES])} · copie ${JSON.stringify(copie)}`);
+}
+
 console.log("\n=== 14. Le côté PAYS — verrouiller un bon état plutôt que le découvrir deux fois ===");
 {
   /* CE QUE CETTE SECTION CORRIGE. Mesurer les 189 RÈGLES pays donne une image sombre : 0 citation,

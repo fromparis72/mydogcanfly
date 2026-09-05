@@ -74,8 +74,21 @@ function canonical(body) {
     return mmdd(v);
   };
   /* Ligne compacte par compagnie : tout le métier, un ordre stable, un diff lisible. */
+  /* L'IDENTITÉ D'UNE CAUSE, JAMAIS `undefined` (05/09/2026).
+     Cette projection lisait `c.policy_ref` pour TOUTE cause qui n'était ni climatique ni
+     `missing_fact`. Les causes de RÈGLE, apparues avec la frontière, portent un `rule_id` et pas
+     de `policy_ref` : la surface figée les rendait « rule_official_unquoted:undefined ». Une
+     incertitude anonyme est inauditable — c'est exactement ce qui avait laissé passer la règle
+     British Airways. La baseline aurait figé cet anonymat pour toujours.
+     Chaque cause nomme donc le champ qui l'identifie, et une cause inconnue ÉCHOUE franchement
+     plutôt que d'écrire `undefined` dans un fichier scellé. */
+  const idCause = (c) => {
+    const v = c.policy_ref ?? c.rule_id ?? c.fact;
+    if (v === undefined) throw new Error(`cause sans identité dans la baseline : ${JSON.stringify(c)}`);
+    return v;
+  };
   const dec = (d) => `${d.placement}:${d.status}` + (d.confirmation_causes
-    ? `[${d.confirmation_causes.map((c) => c.code === "estimated_climate" ? `clim:${c.rule_id}` : c.code === "missing_fact" ? `fact:${c.fact}` : `${c.code}:${c.policy_ref}`).join(",")}]` : "");
+    ? `[${d.confirmation_causes.map((c) => c.code === "estimated_climate" ? `clim:${c.rule_id}` : c.code === "missing_fact" ? `fact:${c.fact}` : `${c.code}:${idCause(c)}`).join(",")}]` : "");
   const air = (a) => [
     a.airline_id, a.direct ? "direct" : "conn", a.itinerary_confidence ?? "-",
     `st:${a.cabin_status}/${a.hold_status}/${a.cargo_status}`,
@@ -293,10 +306,10 @@ console.log("=== Preuve PERMANENTE Citation 1 — British Airways cabine (baseli
    * langue et son emplacement. C'est le premier verdict que ce site ait le droit d'afficher depuis
    * la frontière de confiance.
    *
-   * CE QUI EST EXIGÉ ICI, et qui vaut pour toute citation à venir : une preuve ne déplace QUE le
-   * canal qu'elle prouve. Si une citation cabine changeait la soute d'une autre compagnie, ou
-   * ouvrait quoi que ce soit, la preuve serait mal branchée — et ce contrôle le dirait avant la
-   * mise en ligne, pas après.
+   * CE QUI EST EXIGÉ ICI : une preuve ne déplace QUE le canal qu'elle prouve. Si une citation
+   * cabine changeait la soute d'une autre compagnie, la preuve serait mal branchée — et ce
+   * contrôle le dirait avant la mise en ligne, pas après. La PORTÉE est la propriété figée ; le
+   * sens du mouvement, lui, ne l'est pas (voir la correction ci-dessous).
    *
    * L'AVANT de cette paire est l'APRÈS de la frontière : la chaîne des figées reste continue. */
   const AVANT = "test-baselines/frontiere-finder-baseline-apres.json";
@@ -316,14 +329,25 @@ console.log("=== Preuve PERMANENTE Citation 1 — British Airways cabine (baseli
      * les règles n'ont jamais fait partie du lot « frontière ». La preuve n'a donc renversé aucun
      * verdict — elle a fourni ce qui manquait sous un verdict déjà rendu.
      *
-     * Le mouvement réel est plus propre, et c'est lui qu'on fige : sur les 72 scénarios, SEUL le
-     * champ `sources` bouge, et seulement en gagnant l'URL British Airways — parce que la
-     * politique cabine porte désormais une preuve auditée, que `preuveAuditee` accepte enfin de
-     * rendre. Aucun statut, aucune carte, aucun libellé, aucun classement.
+     * Le mouvement réel, entre ces deux fichiers scellés : sur les 72 scénarios, SEUL le champ
+     * `sources` bouge, et seulement en gagnant l'URL British Airways — parce que la politique
+     * cabine porte désormais une preuve auditée, que `preuveAuditee` accepte enfin de rendre.
+     * Aucun statut, aucune carte, aucun libellé, aucun classement. Ce fait-là est mesuré, et il
+     * reste figé tel quel.
      *
-     * C'est exactement ce qu'une citation doit faire : rendre vérifiable ce qui était affirmé,
-     * sans rien changer d'autre. Toute citation future devra satisfaire ce même contrôle — et si
-     * l'une d'elles déplaçait un verdict, il faudrait le nommer avant la mise en ligne. */
+     * MAIS J'EN AVAIS TIRÉ UNE RÈGLE FAUSSE, ET ELLE EST RETIRÉE ICI (contre-revue du 05/09/2026).
+     * J'avais écrit : « c'est exactement ce qu'une citation doit faire : rendre vérifiable ce qui
+     * était affirmé, sans rien changer d'autre — toute citation future devra satisfaire ce même
+     * contrôle ». C'est conceptuellement faux, et dangereux : une citation a précisément le droit
+     * de faire passer un fait de « à confirmer » à `denied` ou à `allowed`. C'est même sa raison
+     * d'être — sans quoi aucune preuve ne pourrait jamais rien ouvrir ni rien fermer, et les 301
+     * politiques « à confirmer » le resteraient quoi qu'on lise sur les pages officielles.
+     *
+     * Et le fait que RIEN n'ait bougé ici n'était pas la marque d'une citation bien élevée :
+     * c'était le SYMPTÔME de la faille. Le verdict était déjà rendu par une règle non citée, qui
+     * refusait la cabine ET la soute sans preuve. La citation n'a rien pu déplacer parce qu'un
+     * chemin non gardé avait déjà tout décidé. Cette paire fige donc un ÉTAT, daté, et non une
+     * loi : la loi vraie est celle de la portée — une preuve ne déplace que ce qu'elle prouve. */
     const URL_BA = "https://www.britishairways.com/content/information/travel-assistance/travelling-with-pets";
     let scenariosQuiBougent = 0, gagnentLUrl = 0, mouvementsHorsSources = [];
     for (const k of cles) {
@@ -338,7 +362,10 @@ console.log("=== Preuve PERMANENTE Citation 1 — British Airways cabine (baseli
       const enMoins = [...sa].filter((u) => !sb.has(u));
       if (enPlus.length || enMoins.length) mouvementsHorsSources.push(`${k} : +${enPlus} −${enMoins}`);
     }
-    check("RIEN d'autre que les sources ne bouge — aucun verdict, aucune carte, aucun libellé",
+    /* Contrôle sur CETTE paire figée, pas sur les citations futures : entre ces deux fichiers,
+       datés, seules les sources bougent. Une citation future qui déplacerait un verdict ne
+       rougira pas ici — elle aura sa propre paire figée, et son propre mouvement nommé. */
+    check("entre CES deux figées : rien d'autre que les sources ne bouge",
       mouvementsHorsSources.length === 0, mouvementsHorsSources.slice(0, 3).join(" ; "));
     check("les 72 scénarios gagnent l'URL British Airways, et elle seule",
       scenariosQuiBougent === 72 && gagnentLUrl === 72,
@@ -347,6 +374,100 @@ console.log("=== Preuve PERMANENTE Citation 1 — British Airways cabine (baseli
        jamais à l'écran : l'URL doit VRAIMENT être servie, pas seulement ne rien casser. */
     check("l'URL de la preuve est réellement servie au rapport",
       (apres[cles[0]].sources ?? []).includes(URL_BA), JSON.stringify(apres[cles[0]].sources));
+  }
+}
+
+console.log("=== Preuve PERMANENTE Frontière des RÈGLES (deux baselines FIGÉES) ===");
+{
+  /* CE QUE LA FERMETURE DU MOTEUR A DÉPLACÉ, ET DANS QUEL SENS.
+   *
+   * Trois chemins menaient à un refus catégorique sans preuve : les règles `deny` de
+   * `rules.json`, l'absence de politique traitée comme un refus, et l'embargo d'été sur
+   * température fournie. La frontière de confiance n'en gardait aucun — elle n'avait rétrogradé
+   * que les 302 politiques.
+   *
+   * LE SENS DU MOUVEMENT EST LA PROPRIÉTÉ. Un canal ne peut que s'OUVRIR vers « à confirmer » :
+   * ce lot retire des affirmations, il n'en ajoute aucune. Aucun canal ne devient `denied`, aucun
+   * ne devient `allowed` — la seule décision du dépôt reste British Airways cabine, sur sa phrase
+   * citée, et elle ne bouge pas. Une régression qui refermerait un canal, ou qui en ouvrirait un
+   * sans preuve, se verrait ici.
+   *
+   * PREMIÈRE MESURE FAUSSE, NOMMÉE : j'ai d'abord comparé les cartes PAR RANG, et lu « 28 bascules
+   * vers denied ». Il n'y en a aucune — 1 168 canaux se sont ouverts, donc 888 cartes ont changé
+   * de rang, et je comparais British Airways à Iberia. La comparaison porte désormais sur
+   * l'identité de la compagnie, et le rang est mesuré à part. */
+  const AVANT = "test-baselines/frontiere-regles-avant.json";
+  const APRES = "test-baselines/frontiere-regles-apres.json";
+  check("la baseline AVANT la frontière des règles est versionnée", existsSync(AVANT));
+  check("la baseline APRÈS est versionnée", existsSync(APRES));
+  if (existsSync(AVANT) && existsSync(APRES)) {
+    const avant = JSON.parse(readFileSync(AVANT, "utf8"));
+    const apres = JSON.parse(readFileSync(APRES, "utf8"));
+    const cles = Object.keys(apres);
+    check("les deux baselines couvrent les mêmes 72 scénarios",
+      cles.length === 72 && Object.keys(avant).length === 72 && cles.every((k) => k in avant));
+    const idOf = (s) => s.split(" | ")[0];
+    const stOfCarte = (s, ch) => {
+      const m = s.match(/st:([a-z_]+)\/([a-z_]+)\/([a-z_]+)/);
+      return m ? m[{ cabin: 1, hold: 2, cargo: 3 }[ch]] : null;
+    };
+    let cartes = 0, contenu = 0, rangs = 0, populations = 0;
+    const basc = {}, causes = {};
+    for (const k of cles) {
+      const A = new Map((avant[k].airlines ?? []).map((s, i) => [idOf(s), { s, i }]));
+      const B = apres[k].airlines ?? [];
+      if (A.size !== B.length) populations++;
+      B.forEach((s, i) => {
+        cartes++;
+        const av = A.get(idOf(s));
+        if (!av) { populations++; return; }
+        if (av.i !== i) rangs++;
+        if (av.s === s) return;
+        contenu++;
+        for (const ch of ["cabin", "hold", "cargo"]) {
+          const x = stOfCarte(av.s, ch), y = stOfCarte(s, ch);
+          if (x !== y) basc[`${x}→${y}`] = (basc[`${x}→${y}`] ?? 0) + 1;
+        }
+        for (const c of ["rule_official_unquoted", "rule_unverified", "policy_absent"]) {
+          const na = (av.s.match(new RegExp(c, "g")) ?? []).length;
+          const nb = (s.match(new RegExp(c, "g")) ?? []).length;
+          if (nb !== na) causes[c] = (causes[c] ?? 0) + (nb - na);
+        }
+      });
+    }
+    check("la population des cartes est IDENTIQUE — aucune compagnie n'apparaît ni ne disparaît",
+      populations === 0, `${populations} écart(s)`);
+    check("1560 cartes comparées par IDENTITÉ de compagnie", cartes === 1560, String(cartes));
+    /* LE CŒUR : une seule bascule existe, et elle va dans le sens de l'ouverture. */
+    check("SEULE bascule : denied → confirmation_required (1168 canaux), aucune autre",
+      Object.keys(basc).length === 1 && basc["denied→confirmation_required"] === 1168,
+      JSON.stringify(basc));
+    check("compte figé des causes gagnées : 992 rule_official_unquoted · 288 rule_unverified · 8 policy_absent",
+      causes.rule_official_unquoted === 992 && causes.rule_unverified === 288 && causes.policy_absent === 8,
+      JSON.stringify(causes));
+    check("conséquence assumée : 888 cartes changent de rang", rangs === 888, String(rangs));
+    check("756 cartes changent de contenu", contenu === 756, String(contenu));
+    /* CONTRE-ÉPREUVES. La preuve doit rougir si le sens du mouvement s'inversait — sans quoi elle
+       ne prouverait que l'égalité de deux fichiers. */
+    const sabote = JSON.parse(JSON.stringify(apres));
+    const k0 = cles[0];
+    sabote[k0].airlines[0] = sabote[k0].airlines[0].replace("confirmation_required", "denied");
+    let bascSabot = 0;
+    {
+      const A = new Map((avant[k0].airlines ?? []).map((s) => [idOf(s), s]));
+      const s = sabote[k0].airlines[0], av = A.get(idOf(s));
+      for (const ch of ["cabin", "hold", "cargo"]) if (stOfCarte(av, ch) !== stOfCarte(s, ch)) bascSabot++;
+    }
+    check("la preuve rougit si un canal se REFERME (contre-épreuve)", bascSabot > 0, String(bascSabot));
+    /* Et la seule décision du dépôt survit intacte : British Airways cabine reste refusée. */
+    const baApres = cles.flatMap((k) => (apres[k].airlines ?? []).filter((s) => idOf(s) === "airline_british_airways"));
+    check("British Airways CABINE reste `denied` partout — la citation n'a pas été emportée",
+      baApres.length > 0 && baApres.every((s) => stOfCarte(s, "cabin") === "denied"),
+      `${baApres.length} carte(s), ${baApres.filter((s) => stOfCarte(s, "cabin") !== "denied").length} écart(s)`);
+    check("…et sa SOUTE est désormais « à confirmer », en nommant la règle qui la fermait",
+      baApres.every((s) => stOfCarte(s, "hold") === "confirmation_required")
+        && baApres.every((s) => s.includes("rule_official_unquoted:rule_british_airways_no_cabin")),
+      `${baApres.filter((s) => stOfCarte(s, "hold") !== "confirmation_required").length} écart(s)`);
   }
 }
 
@@ -655,8 +776,15 @@ console.log("=== Preuve T0-B2-UI (deux baselines FIGÉES — permanente) ===");
        pas écrasée : elle devient l'AVANT de la paire « Citation 1 », et la preuve permanente
        ci-dessus établit ce qui les sépare — les seules sources bougent, l'URL British Airways
        entre dans les 72 rapports, et aucun verdict ne se déplace. */
-    check("la baseline vivante est identique à la baseline figée la plus récente (citation BA cabine)",
+    /* 05/09/2026 — LA PLUS RÉCENTE EST CELLE DE LA FRONTIÈRE DES RÈGLES. Celle de la première
+       citation n'est pas écrasée : elle devient l'AVANT de cette paire, et la preuve permanente
+       ci-dessus établit ce qui les sépare — 1 168 canaux s'ouvrent de `denied` vers « à
+       confirmer », aucun ne se referme, aucun ne s'ouvre jusqu'à `allowed`. */
+    check("la baseline vivante est identique à la baseline figée la plus récente (frontière des règles)",
       readFileSync("test-baselines/t0a-finder-baseline.json", "utf8")
+        === readFileSync("test-baselines/frontiere-regles-apres.json", "utf8"));
+    check("l'AVANT de la frontière des règles EST l'après de la première citation — chaîne continue",
+      readFileSync("test-baselines/frontiere-regles-avant.json", "utf8")
         === readFileSync("test-baselines/citation-ba-cabine-apres.json", "utf8"));
     check("l'AVANT de ce lot EST l'après de l'étape 3 des Tarifs — la chaîne des figées est continue",
       readFileSync("test-baselines/frontiere-finder-baseline-avant.json", "utf8")

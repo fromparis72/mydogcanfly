@@ -70,6 +70,34 @@ const kbCitee = (() => {
   }
   return normalize(brut);
 })();
+/* ── CITER UNE RÈGLE, AU SCALPEL (05/09/2026) ──────────────────────────────────────────────────
+ *
+ * La frontière de confiance s'applique désormais AUX RÈGLES : une règle non citée ne refuse plus
+ * rien, même munie d'une URL officielle — y compris les six règles `summer_embargo`, qui portent
+ * toutes une URL et aucune phrase. Neuf contrôles de ce harnais reposaient sur le refus produit
+ * par une de ces règles : leur TÉMOIN est mort, pas leur propriété. Les abaisser aurait effacé la
+ * démonstration ; on rend donc à chacun la règle citée dont sa propre affirmation a besoin.
+ *
+ * AU SCALPEL, et non « toutes les règles » : chaque contrôle nomme les identifiants qu'il cite,
+ * pour qu'aucun ne devienne vert par une preuve qu'il n'a pas demandée. La citation est fictive et
+ * le dit ; ce qui est vérifié ici est le MÉCANISME. La démonstration inverse — sans citation, rien
+ * ne refuse — se fait sur `kb`, la base réelle, juste à côté de chaque témoin.
+ */
+const citerRegles = (...ids) => {
+  const brut = JSON.parse(JSON.stringify(rawKB));
+  const vus = new Set();
+  for (const r of brut.rules ?? []) {
+    if (!ids.includes(r.id) || !r.source) continue;
+    vus.add(r.id);
+    r.source.quote = "Fictitious quotation, harness only — exercises the citation mechanism.";
+    r.source.quote_language = "en";
+    r.source.locator = "section « harnais », paragraphe 1";
+  }
+  const manquants = ids.filter((i) => !vus.has(i));
+  if (manquants.length) throw new Error(`citerRegles : règle(s) introuvable(s) — ${manquants.join(", ")}`);
+  return normalize(brut);
+};
+
 /* Date DYNAMIQUE (contre-revue v3, corrigée en v7 sur la contre-revue v6) : le PROCHAIN 15
    juillet, comparé sur la date complète — la version par mois seul choisissait le 15 juillet de
    l'année SUIVANTE quand on était entre le 1er et le 14 juillet, cinq jours avant le bon. */
@@ -152,15 +180,39 @@ console.log("\n=== 4. Tri-state : estimation → confirmation_required ; fournie
   check("climat du rapport : confirmation_required=true, embargo=false",
     rep.climate?.confirmation_required === true && rep.climate?.embargo === false, JSON.stringify(rep.climate));
 
+  /* MOUVEMENT NOMMÉ (05/09/2026) — la frontière de confiance s'applique aussi au climat.
+     Ce bloc affirmait « température fournie ⇒ refus ». La température fournie garde bien son
+     effet, mais elle ne suffit pas : encore faut-il que la RÈGLE d'embargo soit prouvée. Les six
+     règles `summer_embargo` du dépôt ont une URL officielle et aucune phrase citée — sur la base
+     RÉELLE, 35° fournis ne referment donc plus rien. Le contrôle est dédoublé : le mécanisme sur
+     une règle citée, la base réelle telle qu'elle est. */
+  const visCite = evaluate(citerRegles("rule_tk_summer_embargo"),
+    FinderRequest.parse({ origin: "airport_cdg", destination: "airport_ist", dog: GOLDEN, date: JUILLET, weather: { temperature_c: 35 } }));
+  for (const pl of ["hold", "cargo"]) {
+    const p = stOf(visCite, "airline_turkish", pl);
+    check(`règle CITÉE + température FOURNIE (35) : ${pl} = denied — la donnée fournie garde son effet`,
+      p?.status === "denied" && p?.allowed === false, JSON.stringify(p));
+  }
+  const repVCite = explain(visCite, "fr");
+  check("règle citée, température fournie : climat.embargo=true, confirmation_required=false",
+    repVCite.climate?.embargo === true && repVCite.climate?.confirmation_required === false, JSON.stringify(repVCite.climate));
+
   const vis = evaluate(kb, FinderRequest.parse({ origin: "airport_cdg", destination: "airport_ist", dog: GOLDEN, date: JUILLET, weather: { temperature_c: 35 } }));
   for (const pl of ["hold", "cargo"]) {
     const p = stOf(vis, "airline_turkish", pl);
-    check(`température FOURNIE (35) : ${pl} = denied — la donnée fournie garde son effet`,
-      p?.status === "denied" && p?.allowed === false, JSON.stringify(p));
+    check(`règle NON CITÉE + température fournie (35) : ${pl} ne refuse PAS — il demande confirmation`,
+      p?.status === "confirmation_required" && p?.allowed === false, JSON.stringify(p));
+    check(`…et la cause nomme sa règle (climate_rule_unquoted)`,
+      (p?.confirmation_causes ?? []).some((c) => c.code === "climate_rule_unquoted" && c.rule_id === "rule_tk_summer_embargo"),
+      JSON.stringify(p?.confirmation_causes));
   }
   const repV = explain(vis, "fr");
-  check("température fournie : climat.embargo=true, confirmation_required=false",
-    repV.climate?.embargo === true && repV.climate?.confirmation_required === false, JSON.stringify(repV.climate));
+  /* Le bandeau suit : il n'AFFIRME plus une suspension qu'aucune règle prouvée n'impose. Il ne
+     bascule pas non plus en « chaleur estimée » — la température, elle, est certaine. */
+  check("règle non citée, température fournie : climat.embargo=FALSE (rien n'est affirmé)",
+    repV.climate?.embargo === false, JSON.stringify(repV.climate));
+  check("…et aucune carte ne porte heat_embargo",
+    repV.airlines.every((a) => a.heat_embargo === false));
   const froid = evaluate(kbCitee, FinderRequest.parse({ origin: "airport_cdg", destination: "airport_ist", dog: GOLDEN, date: JUILLET, weather: { temperature_c: 20 } }));
   const pFroid = stOf(froid, "airline_turkish", "hold");
   check("température fournie SOUS le seuil (20) : hold = allowed (l'embargo ne se déclenche pas)",
@@ -187,10 +239,19 @@ console.log("\n=== 5. Dominance : denied > confirmation_required — interaction
  * se voyait pas. Elle compte désormais ce qu'elle annonce — la cause `estimated_climate`. */
 {
   const est = evaluate(kb, FinderRequest.parse({ origin: "airport_cdg", destination: "airport_ist", dog: CARLIN, date: JUILLET }));
+  /* MOUVEMENT NOMMÉ — LA FRONTIÈRE S'APPLIQUE AUX RÈGLES (05/09/2026).
+   *
+   * `rule_tk_brachy_hold` fermait la soute et le fret d'un carlin. Elle n'est pas citée : elle ne
+   * décide donc plus, et les deux canaux passent « à confirmer » en NOMMANT la règle. Le visiteur
+   * n'est pas laissé sans rien — l'avis de sécurité brachycéphale, lui, reste publié, et la cause
+   * `breed_policy_unreviewed` dit que notre donnée de race n'a pas été revérifiée. */
   for (const pl of ["hold", "cargo"]) {
     const p = stOf(est, "airline_turkish", pl);
-    check(`carlin : ${pl} = denied (la règle de race domine l'embargo estimé)`,
-      p?.status === "denied", JSON.stringify(p));
+    check(`carlin : ${pl} n'est plus refusé sur une règle non citée`,
+      p?.status === "confirmation_required", JSON.stringify(p?.status));
+    check(`carlin : ${pl} NOMME la règle de race qui le fermait`,
+      (p?.confirmation_causes ?? []).some((c) => c.code === "rule_official_unquoted" && c.rule_id === "rule_tk_brachy_hold"),
+      JSON.stringify((p?.confirmation_causes ?? []).map((c) => c.code)));
   }
   const tousLesCanaux = est.airlines.flatMap((a) => a.placements);
   const confirmations = tousLesCanaux.filter((p) => p.status === "confirmation_required");
@@ -198,8 +259,18 @@ console.log("\n=== 5. Dominance : denied > confirmation_required — interaction
     (p.confirmation_causes ?? []).some((c) => c.code === "estimated_climate")).length;
   const race = confirmations.filter((p) =>
     (p.confirmation_causes ?? []).some((c) => c.code === "breed_policy_unreviewed")).length;
-  check("carlin : ZÉRO confirmation de cause CLIMATIQUE sur cette route (28 °C estimés, sous le seuil)",
-    climatiques === 0, `${climatiques} confirmation(s) climatique(s)`);
+  /* CE CONTRÔLE REPOSAIT SUR UNE PRÉMISSE FAUSSE, ET LE MASQUAGE LA CACHAIT.
+   *
+   * Il affirmait « 28 °C estimés, sous le seuil » et exigeait zéro confirmation climatique. La
+   * température estimée sur cette route en juillet est de 34 °C — AU-DESSUS du seuil de 30 que
+   * `rule_tk_summer_embargo` exige. La règle se déclenchait donc depuis toujours ; son effet était
+   * simplement ÉTEINT par le refus de race, qui dominait. En cessant de refuser sur une règle non
+   * citée, on ne crée pas ces confirmations : on cesse de les cacher.
+   *
+   * C'est le meilleur argument pour la fermeture demandée : un refus non prouvé ne masquait pas
+   * seulement son absence de preuve, il masquait aussi un vrai signal de chaleur. */
+  check("carlin : les confirmations climatiques apparaissent — elles étaient MASQUÉES par le refus de race",
+    climatiques === 8, `${climatiques} confirmation(s) climatique(s) — 34 °C estimés, seuil 30`);
   /* 28/08/2026 — lecture directe Codex sur IAG Cargo : « Some dangerous dog breeds and snub
    * nosed breeds … MAY not be accepted », au cas par cas via l'agent animalier. Le refus
    * catégorique rule_ba_brachy_hold était donc faux : supprimé, remplacé par un avis warn
@@ -220,8 +291,10 @@ console.log("\n=== 5. Dominance : denied > confirmation_required — interaction
    * nommé — toute bascule non documentée doit toujours rougir. */
   const provenance = confirmations.filter((p) =>
     (p.confirmation_causes ?? []).some((c) => c.code === "legacy_unreviewed" || c.code === "official_source_unquoted")).length;
-  check("carlin : 44 confirmations — toutes de provenance, 27 aussi de race, aucune inexpliquée",
-    confirmations.length === 44 && provenance === 44 && race === 27,
+  /* 44 → 59, et 27 → 40 de race : les canaux que la règle de race fermait rejoignent les
+     confirmations, en disant pourquoi. Aucune n'est inexpliquée. */
+  check("carlin : 59 confirmations — toutes de provenance, 40 aussi de race, aucune inexpliquée",
+    confirmations.length === 59 && provenance === 59 && race === 40,
     `${confirmations.length} confirmation(s), dont ${race} de race et ${provenance} de provenance, sur ${tousLesCanaux.length} canaux`);
 }
 
@@ -341,7 +414,13 @@ console.log("\n=== 7 quater. Bandeau ⇔ cartes : l'embargo affiché a toujours 
   /* kbTK + 35° fournis : Turkish a la cabine fermée au POIDS et la soute/le fret par l'embargo.
      La v4 démarquait la carte (garde « seule raison ») pendant que le bandeau affirmait « les
      compagnies concernées sont marquées ». L'invariant est désormais structurel. */
-  const kbTK = { ...kb, airlines: new Map([...kb.airlines].filter(([id]) => id === "airline_turkish")) };
+  /* MOUVEMENT NOMMÉ (05/09/2026) : les DEUX règles que ce témoin invoque sont désormais citées.
+     Depuis la frontière côté règles, ni `rule_tk_cabin_weight` ni `rule_tk_summer_embargo` — URL
+     officielle, aucune phrase — ne referme quoi que ce soit sur la base réelle : le témoin
+     n'avait plus ni cabine fermée au poids, ni embargo à marquer. L'invariant qu'il défend, lui,
+     est intact : quand le bandeau AFFIRME un embargo, une carte au moins doit le porter. */
+  const kbCiteeTK = citerRegles("rule_tk_cabin_weight", "rule_tk_summer_embargo");
+  const kbTK = { ...kbCiteeTK, airlines: new Map([...kbCiteeTK.airlines].filter(([id]) => id === "airline_turkish")) };
   const dec = evaluate(kbTK, FinderRequest.parse({ origin: "airport_cdg", destination: "airport_ist", dog: GOLDEN, date: JUILLET, weather: { temperature_c: 35 } }));
   const rep = explain(dec, "fr");
   /* v7 (contre-revue v6) : la disjonction « OU cabine fermée » rendait le témoin vert même si le
@@ -423,9 +502,26 @@ for (const [dogLabel, dog] of [["golden", GOLDEN], ["carlin", CARLIN]]) {
   // Le cas nominal de la contre-revue : carlin, Athènes — signal OUI, confirmation NON.
   const dest = rankDestinations(kb, DestinationsRequest.parse({ origin: "airport_cdg", dog: CARLIN, date: JUILLET, locale: "fr" }));
   const ath = dest.matches.find((m) => m.iata === "ATH");
-  check("carlin/Athènes : estimated_heat_signal=true, heat_confirmation_required=FALSE",
-    ath?.estimated_heat_signal === true && ath?.heat_confirmation_required === false,
+  /* ── MOUVEMENT NOMMÉ (05/09/2026) : ATHÈNES N'EST PLUS UN TÉMOIN DE « DRAPEAU ÉTEINT » ────────
+   *
+   * Ce contrôle épinglait « signal OUI, confirmation NON » sur Athènes. Il est devenu faux, et la
+   * mesure dit pourquoi : à 31° estimés, la règle `rule_af_summer_embargo` se déclenche sur la
+   * soute et le fret d'Air France et produit une confirmation CLIMATIQUE bien réelle. Elle se
+   * déclenchait déjà — c'est un refus de RACE non prouvé qui l'éteignait. Le même effet exactement
+   * que celui relevé sur CDG→IST : un refus non prouvé ne masquait pas seulement son absence de
+   * preuve, il masquait aussi un vrai signal de chaleur.
+   *
+   * Épingler « conf=false » ici reviendrait donc à exiger que le site TAISE une question légitime.
+   * Athènes devient ce qu'elle est : le témoin que le drapeau s'allume sur une CAUSE, et qu'il
+   * nomme la règle qui l'allume. La propriété « une confirmation de RACE ne l'allume pas » n'est
+   * pas perdue pour autant — elle est reprise plus bas, sur les destinations RÉELLES où elle a
+   * encore un témoin. */
+  check("carlin/Athènes : estimated_heat_signal=true, et le drapeau chaleur est allumé",
+    ath?.estimated_heat_signal === true && ath?.heat_confirmation_required === true,
     JSON.stringify({ sig: ath?.estimated_heat_signal, conf: ath?.heat_confirmation_required, h: ath?.hold_status, c: ath?.cargo_status }));
+  check("carlin/Athènes : il est allumé par une CAUSE climatique qui nomme sa règle",
+    (ath?.confirmation_signals ?? []).some((x) => x.cause.code === "estimated_climate" && !!x.cause.rule_id),
+    JSON.stringify((ath?.confirmation_signals ?? []).filter((x) => x.cause.code === "estimated_climate")));
   /* T0-B3-b : Aegean était l'une des 42. Sa soute et son fret ne sont plus refusés — ils sont
      « à confirmer », faute de fait de race audité. Le drapeau CHALEUR reste pourtant faux, et
      c'est le point : il dérive d'une cause climatique ACTIVE, pas du statut. Une confirmation de
@@ -434,8 +530,28 @@ for (const [dogLabel, dog] of [["golden", GOLDEN], ["carlin", CARLIN]]) {
   check("carlin/Athènes : hold et cargo sont désormais « à confirmer » (les 42 sont retirées)",
     ath?.hold_status === "confirmation_required" && ath?.cargo_status === "confirmation_required",
     JSON.stringify({ h: ath?.hold_status, c: ath?.cargo_status }));
-  check("carlin/Athènes : une confirmation de RACE n'allume pas le drapeau CHALEUR",
-    ath?.heat_confirmation_required === false);
+  /* LA PROPRIÉTÉ, SUR SES VRAIS TÉMOINS. Le drapeau ne doit s'allumer que sur une cause de
+     chaleur — jamais sur une confirmation de race, de politique ou de règle non vérifiée. Elle se
+     démontre désormais là où le cas existe VRAIMENT : les destinations chaudes dont toutes les
+     confirmations sont non climatiques. Le compte est imprimé pour que le témoin ne puisse pas
+     devenir vide en silence. */
+  const chaudesSansCauseClimatique = dest.matches.filter((m) =>
+    m.estimated_heat_signal && m.confirmation_signals.length > 0 &&
+    !m.confirmation_signals.some((x) => x.cause.code === "estimated_climate" || x.cause.code === "climate_rule_unquoted"));
+  check("témoin non vide : des destinations CHAUDES n'ont que des confirmations non climatiques",
+    chaudesSansCauseClimatique.length > 0, `${chaudesSansCauseClimatique.length}`);
+  console.log(`         ${chaudesSansCauseClimatique.length} destinations chaudes sans cause climatique · ex. ${chaudesSansCauseClimatique.slice(0, 4).map((m) => `${m.iata} ${m.temperature_c}°`).join(", ")}`);
+  check("…et sur AUCUNE le drapeau chaleur ne s'allume (une confirmation de RACE ne l'allume pas)",
+    chaudesSansCauseClimatique.every((m) => m.heat_confirmation_required === false),
+    JSON.stringify(chaudesSansCauseClimatique.filter((m) => m.heat_confirmation_required).map((m) => m.iata)));
+  /* Réciproque, sur le balayage entier : tout drapeau allumé s'appuie sur une cause de chaleur.
+     Ce n'est PAS la tautologie de l'implémentation : le drapeau est relu ici depuis les signaux
+     publics de la destination, et le contrôle exige en plus que la cause nomme sa règle. */
+  const allumees = dest.matches.filter((m) => m.heat_confirmation_required);
+  check(`tout drapeau chaleur allumé (${allumees.length}) s'appuie sur une cause de chaleur nommant sa règle`,
+    allumees.every((m) => m.confirmation_signals.some((x) =>
+      (x.cause.code === "estimated_climate" || x.cause.code === "climate_rule_unquoted") && !!x.cause.rule_id)),
+    JSON.stringify(allumees.filter((m) => !m.confirmation_signals.some((x) => x.cause.code === "estimated_climate" || x.cause.code === "climate_rule_unquoted")).map((m) => m.iata)));
 }
 {
   // Rapport Finder : même invariant sur le bandeau global.
@@ -461,9 +577,21 @@ for (const [dogLabel, dog] of [["golden", GOLDEN], ["carlin", CARLIN]]) {
     rep.climate?.confirmation_required === false && rep.climate?.embargo === false, JSON.stringify(rep.climate));
   const estIst = evaluate(kb, FinderRequest.parse({ origin: "airport_cdg", destination: "airport_ist", dog: CARLIN, date: JUILLET }));
   const repIst = explain(estIst, "fr");
-  check("bandeau Finder (carlin/IST, 34° estimés) : signal=true, confirmation=false, embargo=false",
-    repIst.climate?.estimated_heat_signal === true && repIst.climate?.confirmation_required === false && repIst.climate?.embargo === false,
+  /* MOUVEMENT NOMMÉ (05/09/2026), même cause qu'à Athènes : à 34° estimés, quatre embargos d'été
+     se déclenchent sur la soute et le fret (Air France, KLM, Lufthansa, Turkish). Ils se
+     déclenchaient déjà ; les refus de race non prouvés les éteignaient. Le bandeau DEMANDE donc
+     maintenant confirmation — et c'est la bonne réponse. Ce qu'il ne fait toujours pas, et qui
+     reste le cœur de ce paragraphe, c'est AFFIRMER : une température estimée ne produit jamais
+     d'embargo, quelle que soit sa valeur. */
+  check("bandeau Finder (carlin/IST, 34° estimés) : signal=true, confirmation=true, embargo=FALSE",
+    repIst.climate?.estimated_heat_signal === true && repIst.climate?.confirmation_required === true && repIst.climate?.embargo === false,
     JSON.stringify(repIst.climate));
+  check("…et chaque confirmation climatique nomme sa règle d'embargo",
+    estIst.airlines.flatMap((a) => a.placements).flatMap((p) => p.confirmation_causes ?? [])
+      .filter((c) => c.code === "estimated_climate").every((c) => !!c.rule_id) &&
+    estIst.airlines.flatMap((a) => a.placements).some((p) => (p.confirmation_causes ?? []).some((c) => c.code === "estimated_climate")));
+  check("…et AUCUNE carte n'affirme un embargo sur une température estimée",
+    repIst.airlines.every((a) => a.heat_embargo === false));
 }
 
 console.log("\n=== SUMMARY ===");

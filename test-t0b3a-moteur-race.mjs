@@ -472,8 +472,15 @@ console.log("=== 8. Sur le référentiel RÉEL, après T0-B3-b ===");
      confirmer », laissent désormais la cause de RACE s'exprimer là où elle était éteinte par le
      refus. Aucune carte n'apparaît ni ne disparaît, et le chien non visé reste à zéro — la
      propriété testée est intacte. Compte figé, mouvement nommé. */
+  /* 05/09/2026 — FRONTIÈRE DES RÈGLES : 298 → 412 causes, toujours à cartes constantes (206).
+     Exactement le même mécanisme que la ligne précédente, d'un cran plus loin : ce n'étaient plus
+     des POLITIQUES non prouvées qui fermaient ces canaux en dur, mais des RÈGLES non citées. Une
+     fois ces canaux passés à « à confirmer », la cause de RACE s'y exprime au lieu d'être éteinte
+     par le refus. Le fait à retenir est celui-là, et il vaut pour les trois chemins fermés
+     aujourd'hui : un refus non prouvé ne masquait pas seulement son absence de preuve, il
+     masquait aussi tout ce que le canal avait d'autre à dire. Compte figé, mouvement nommé. */
   check(`le chien VISÉ reçoit l'incertitude : ${carlin.causes} causes de race sur ${carlin.cartes} cartes`,
-    carlin.causes === 298 && carlin.cartes === 206, JSON.stringify(carlin));
+    carlin.causes === 412 && carlin.cartes === 206, JSON.stringify(carlin));
   check("… et les avis IATA et IAG/BA lui sont publiés, une fois chacun par rapport",
     carlin.avis === 16, JSON.stringify(carlin.avis));
   check("AUCUNE preuve de race : le registre ne porte qu'un avis, et un avis ne prouve rien",
