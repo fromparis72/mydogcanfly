@@ -187,12 +187,20 @@ console.log("\n=== 10. Sur la base RÉELLE : plus aucun verdict catégorique ===
       else { aConfirmer++; causes[p.status_cause] = (causes[p.status_cause] ?? 0) + 1; }
     }
   }
-  check("ZÉRO canal `allowed` et ZÉRO canal `denied` sur les 302 politiques",
-    allowed === 0 && denied === 0 && aConfirmer === 302, JSON.stringify({ allowed, denied, aConfirmer }));
+  /* MOUVEMENT NOMMÉ — 05/09/2026, PREMIÈRE CITATION INTÉGRÉE. British Airways cabine passe de
+   * « à confirmer » à `denied`, sur la phrase publiée « We don't carry pets in the cabin on any
+   * route. », lue directement le 05/09 et reprise avec sa langue et son emplacement.
+   *
+   * C'est le premier verdict catégorique que ce site ait le droit d'afficher depuis la frontière,
+   * et il vaut démonstration : la machine rend bien une décision ferme dès qu'une preuve existe.
+   * Le compte reste figé — 302 politiques, dont exactement une prouvée — et chaque citation à
+   * venir devra bouger ce chiffre en se nommant, comme celle-ci. */
+  check("UNE seule décision prouvée : 0 `allowed`, 1 `denied`, 301 à confirmer",
+    allowed === 0 && denied === 1 && aConfirmer === 301, JSON.stringify({ allowed, denied, aConfirmer }));
   check("chaque « à confirmer » porte une cause — aucune incertitude muette",
-    Object.values(causes).reduce((x, y) => x + y, 0) === 302, JSON.stringify(causes));
-  check("33 gardent une page officielle à montrer, 267 n'ont rien à montrer",
-    causes.official_source_unquoted === 33 && causes.legacy_unreviewed === 267, JSON.stringify(causes));
+    Object.values(causes).reduce((x, y) => x + y, 0) === 301, JSON.stringify(causes));
+  check("32 gardent une page officielle à montrer, 267 n'ont rien à montrer",
+    causes.official_source_unquoted === 32 && causes.legacy_unreviewed === 267, JSON.stringify(causes));
   /* Et la preuve que ce n'est pas un effet de bord de l'affichage : la même règle vaut à la
      source, sur l'artefact d'auteur, avant tout moteur. */
   const objets = JSON.parse(readFileSync("packages/knowledge/raw/objects.json", "utf8"));
@@ -210,10 +218,14 @@ console.log("\n=== 10. Sur la base RÉELLE : plus aucun verdict catégorique ===
      la cabine de Virgin Australia, et l'ironie est le cœur du sujet : les deux seules preuves
      citées du dépôt sont posées sur des blocs qui NE DÉCIDENT PAS (`undocumented`,
      `case_by_case`). Aucune des 216 décisions catégoriques n'en porte. */
-  check("exactement 2 politiques d'auteur portent une phrase citée (Thai fret, Virgin cabine)",
-    citees.length === 2, citees.join(", "));
-  check("et AUCUNE d'elles n'est une décision — c'est bien la DONNÉE qui manque là où elle déciderait",
-    decideesCitees.length === 0, decideesCitees.join(", "));
+  /* Elles étaient deux, posées sur des blocs qui NE DÉCIDENT PAS — l'ironie du lot. Elles sont
+     trois, et la troisième décide : c'est la différence entre un dépôt qui ne peut rien prouver
+     et un dépôt qui commence à prouver. */
+  check("3 politiques d'auteur portent une phrase citée (Thai fret, Virgin cabine, BA cabine)",
+    citees.length === 3, citees.join(", "));
+  check("et UNE d'elles est une décision — British Airways cabine, la première prouvée",
+    decideesCitees.length === 1 && decideesCitees[0] === "airline_british_airways.cabin",
+    decideesCitees.join(", "));
 }
 
 console.log("\n=== 11. Aucune fiche n'affirme plus « Vérifié le … » ===");
@@ -400,8 +412,12 @@ if (!DIST) {
   const vus = Object.values(statutsVus).reduce((x, y) => x + y, 0);
   check("le lecteur a bien VU des blocs de canal (sans quoi le contrôle suivant ne dirait rien)",
     vus === 1184, `${vus} bloc(s) — attendu 1184 : 296 canaux × 4 langues`);
-  check("aucun canal ne porte le statut `allowed` ou `denied` dans les pages construites",
-    !statutsVus.allowed && !statutsVus.denied, JSON.stringify(statutsVus));
+  /* MOUVEMENT NOMMÉ — la première citation atteint l'écran. British Airways cabine est publiée
+     `denied` dans les quatre langues : 4 blocs sur 1 184. Le reste est à confirmer. Aucun canal
+     n'est `allowed` : aucune ACCEPTATION n'est encore prouvée. */
+  check("un seul canal décidé publié : 4 `denied` (BA cabine × 4 langues), 0 `allowed`",
+    !statutsVus.allowed && statutsVus.denied === 4 && statutsVus.confirmation_required === 1180,
+    JSON.stringify(statutsVus));
   check("aucune pastille n'affiche « Accepté » ou « Non accepté » sur un canal à confirmer",
     fautives.length === 0, fautives.slice(0, 5).join("\n         "));
 
@@ -454,8 +470,13 @@ if (!DIST) {
      * premier n'est pas vrai par accident. */
     check("AUCUN verdict de tête n'est catégorique : 0 vert, 0 rouge, 408 prudents",
       vert === 0 && rouge === 0 && prudent === 408, JSON.stringify({ vert, rouge, prudent }));
-    check("…et c'est bien PARCE QUE aucun canal n'est décidé, pas par hasard",
-      avecCanalDecide === 0, `${avecCanalDecide} fiche(s) avec un canal décidé`);
+    /* La raison a changé, et c'est ce qui rend le contrôle intéressant. Ce n'est plus « aucun
+       canal n'est décidé » — quatre pages en ont un. C'est qu'un canal REFUSÉ ne suffit pas à
+       coiffer la fiche d'un verdict catégorique tant que les autres restent à confirmer : British
+       Airways a sa cabine prouvée fermée, et sa fiche dit toujours « à confirmer », parce que sa
+       soute et son fret, eux, ne sont pas établis. La table de dérivation le garantit. */
+    check("4 fiches ont désormais un canal décidé, et leur verdict reste prudent pour autant",
+      avecCanalDecide === 4, `${avecCanalDecide} fiche(s) avec un canal décidé`);
 
     /* LA NOTE SOUS LE VERDICT dit la même chose en prose : « Cabin and hold are both open ». Même
      * famille, même arbitrage. Mesuré sur les fiches SOURCES (une par compagnie, pas quatre) : 19
@@ -513,6 +534,44 @@ if (!DIST) {
   const sansLibelle = LANGUES.filter((l) => !libelle("premium.official_source_unquoted", l));
   check("le libellé « page officielle, aucune phrase citée » existe dans les quatre langues",
     sansLibelle.length === 0, sansLibelle.join(", "));
+}
+
+console.log("\n=== 13 bis. Le verdict dérivé, et ce qui ne revient JAMAIS avec lui ===");
+{
+  /* LA CONTRE-ÉPREUVE EXACTE DEMANDÉE PAR LA CONTRE-REVUE : un canal `allowed` cité, deux canaux à
+   * confirmer, verdict dérivé positif — et AUCUN ancien score ni note éditoriale nulle part.
+   * Elle éprouve la fonction, pas le gabarit, parce que c'est la fonction qui décide ; et elle
+   * éprouve le DOM pour ce que la fonction ne peut pas garantir : l'absence du score. */
+  const { verdictDeFiche } = await import("./packages/ui/src/lib/decisionCanal.ts");
+  const P = (status, cause) => ({ status, ...(cause ? { status_cause: cause } : {}) });
+  check("un canal `allowed` + deux à confirmer → verdict POSITIF",
+    verdictDeFiche({ cabin: P("allowed"), hold: P("confirmation_required", "legacy_unreviewed"),
+      cargo: P("confirmation_required", "official_source_unquoted") }).cle === "premium.verdict_open");
+  check("aucun `allowed`, un à confirmer → verdict PRUDENT",
+    verdictDeFiche({ cabin: P("denied"), hold: P("confirmation_required", "legacy_unreviewed") }).cle === "air.to_confirm");
+  check("trois refus prouvés → aucun canal accepté",
+    verdictDeFiche({ cabin: P("denied"), hold: P("denied"), cargo: P("denied") }).cle === "premium.verdict_none");
+  check("…et la classe suit le sens, jamais l'éditorial",
+    verdictDeFiche({ cabin: P("allowed") }).cls === "ok"
+      && verdictDeFiche({ cabin: P("confirmation_required", "legacy_unreviewed") }).cls === "warn"
+      && verdictDeFiche({ cabin: P("denied") }).cls === "no");
+
+  /* LE POINT QUI A ÉTÉ REFUSÉ DEUX FOIS : le score ne doit pas revenir quand un canal devient
+     vérifié. Le dépôt porte MAINTENANT un canal prouvé — British Airways cabine, `denied` sur
+     citation. Si une condition d'affichage subsistait, une fiche l'exposerait. */
+  const gabarit = readFileSync("packages/ui/src/components/AirlinePremiumPage.astro", "utf8");
+  const codeSeul = gabarit.replace(/\{\/\*[\s\S]*?\*\/\}/g, " ").replace(/\/\*[\s\S]*?\*\//g, " ");
+  check("le score n'est plus conditionné à un canal vérifié — il est masqué, point",
+    /const scoreEtNoteAffichables = false/.test(codeSeul),
+    (codeSeul.match(/scoreEtNoteAffichables = [^;]+/) ?? []).join(""));
+  /* Le contrôle vise la NOTE DE FAQ, pas n'importe quelle phrase contenant « conditions
+     publiées ». Ma première rédaction rougissait sur la phrase des races à museau court —
+     « Les conditions publiées par {0} évoquent les races à museau court sans énoncer de refus
+     général » —, qui est exacte et utile. Un contrôle trop large accuse le juste. */
+  check("la note de FAQ ne revendique plus une provenance ni une date de vérification",
+    !/Answers drawn from|Réponses tirées des conditions/.test(codeSeul)
+      && /summarises the information currently on record/.test(codeSeul),
+    (codeSeul.match(/Answers drawn from[^"]{0,60}/) ?? []).join(""));
 }
 
 console.log("\n=== 14. Le côté PAYS — verrouiller un bon état plutôt que le découvrir deux fois ===");

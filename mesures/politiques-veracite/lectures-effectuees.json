@@ -1,0 +1,44 @@
+{
+  "_quoi": "Lectures directes de pages officielles, résultat POSITIF comme NÉGATIF. Une lecture qui n'établit rien est aussi utile qu'une qui établit : sans elle, le canal serait relu.",
+  "_regle": "Seule une phrase publiée SANS condition de route, de poids ni de saison peut fonder un verdict global. Une page qui décrit un usage sans l'interdire ne prouve pas l'interdiction.",
+  "lectures": [
+    {
+      "airline_id": "airline_british_airways",
+      "compagnie": "British Airways",
+      "canal": "cabin",
+      "date_lecture": "2026-09-05",
+      "lecteur": "Codex — lecture directe",
+      "resultat": "PROUVÉ",
+      "url": "https://www.britishairways.com/content/information/travel-assistance/travelling-with-pets",
+      "citation": "We don't carry pets in the cabin on any route.",
+      "langue": "en",
+      "locator": "Travelling with pets → Travelling to and from the UK",
+      "consequence": "availability not_offered → status denied. Première décision prouvée du dépôt.",
+      "integre_le": "2026-09-05"
+    },
+    {
+      "airline_id": "airline_british_airways",
+      "compagnie": "British Airways",
+      "canal": "hold",
+      "date_lecture": "2026-09-05",
+      "lecteur": "Codex — lecture directe",
+      "resultat": "NON PROUVÉ",
+      "url": "https://www.britishairways.com/content/information/travel-assistance/travelling-with-pets",
+      "citation_contraire": "Your pet will travel in the hold of our aircraft.",
+      "pourquoi": "La page dit l'inverse du refus publié. Le transport passe par des partenaires, ce qui peut correspondre commercialement au fret — mais conclure « aucune soute » demanderait une définition et une citation de plus.",
+      "consequence": "reste confirmation_required. Ne pas relire cette page pour ce canal sans nouvelle question."
+    },
+    {
+      "airline_id": "airline_qatar_airways",
+      "compagnie": "Qatar Airways",
+      "canal": "cabin",
+      "date_lecture": "2026-09-05",
+      "lecteur": "Codex — lecture directe",
+      "resultat": "NON PROUVÉ",
+      "url": "https://www.qatarairways.com/en-us/baggage/animals.html",
+      "pourquoi": "La page réserve la cabine aux faucons et aux chiens d'assistance, et décrit chiens, chats et oiseaux comme bagage enregistré — mais elle n'écrit nulle part qu'aucun chien de compagnie ne peut voyager en cabine. Décrire un usage n'est pas l'interdire.",
+      "consequence": "reste confirmation_required, au standard strict."
+    }
+  ],
+  "_enseignement": "Trois lectures, une seule preuve. Les 34 URL de l'ensemble B sont de bonnes pistes, pas 34 refus déjà prouvés — et c'est précisément pourquoi le chiffre de 34 ne devait pas être présenté comme un acquis."
+}

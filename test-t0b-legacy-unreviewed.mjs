@@ -290,8 +290,11 @@ console.log("=== 7. T0-B2 : la migration est FAITE, et la forme héritée est in
      = les 300 politiques sans preuve citée, les 2 dernières étant Thai fret et Virgin cabine. */
   check("267 politiques émettent legacy_unreviewed (84 d'origine + 183 sans page à montrer)",
     porteuses === 267, String(porteuses));
-  check("33 politiques émettent official_source_unquoted — une page officielle, aucune phrase citée",
-    nonCitee === 33, String(nonCitee));
+  /* 05/09/2026 — 33 → 32. British Airways cabine quitte ce groupe : sa page officielle porte
+     désormais la phrase, et la politique devient le premier `denied` prouvé du dépôt. Chaque
+     citation suivante fera baisser ce compte, et devra le nommer comme celle-ci. */
+  check("32 politiques émettent official_source_unquoted — une page officielle, aucune phrase citée",
+    nonCitee === 32, String(nonCitee));
   check("1 seule émet policy_unpublished (Thai Cargo)", nonPubliee === 1, String(nonPubliee));
 
   /* 7.2 — l'artefact ne porte plus AUCUNE forme d'auteur héritée. C'est la contrepartie
@@ -516,8 +519,10 @@ console.log("=== 8. Baseline FIGÉE : le point de comparaison de T0-B2 est scell
    * celle de l'étape 3 des Tarifs n'est pas écrasée, elle devient l'AVANT de ce lot, et la preuve
    * permanente de test-t0a-baseline.mjs établit ce qui sépare la paire — 1 948 bascules, toutes
    * vers « à confirmer », aucune vers `allowed`, aucune vers `denied`. */
-  check("Frontière de confiance : la baseline vivante est identique à la figée la plus récente",
-    vivante.equals(readFileSync("test-baselines/frontiere-finder-baseline-apres.json")));
+  /* 05/09/2026 — la plus récente est celle de la première citation ; celle de la frontière reste
+     intacte à côté comme AVANT de la paire. */
+  check("Citation 1 : la baseline vivante est identique à la figée la plus récente",
+    vivante.equals(readFileSync("test-baselines/citation-ba-cabine-apres.json")));
   check("Tarifs étape 3 : la figée de l'étape 2 reste intacte à côté (elle n'a pas été écrasée)",
     !readFileSync("test-baselines/tarifs-finder-baseline-apres.json")
       .equals(readFileSync("test-baselines/tarifs-etape3-finder-baseline-apres.json")));

@@ -11,7 +11,7 @@ import { loadKB, t as tt, inlineT, inlineF, localizer, dateFormatter } from "@my
 import FaqBlock from "./FaqBlock.astro";
 import { airlineFaq, faqJsonLd } from "../lib/faq";
 import { airlineReach, brachyBreeds, brachyRestriction } from "../lib/cluster";
-import { politiqueDuCanal, cleLibelleStatut, classeStatut, causeDeConfirmation, preuveAuditee, sourceAffichable } from "../lib/decisionCanal";
+import { politiqueDuCanal, cleLibelleStatut, classeStatut, causeDeConfirmation, preuveAuditee, sourceAffichable, verdictDeFiche } from "../lib/decisionCanal";
 interface Props { id: string; locale?: string }
 const { id, locale = "en" } = Astro.props;
 const fr = locale === "fr";
@@ -120,20 +120,21 @@ const chanList = (brachy?.channels ?? []).map(chanName).join(" / ");
  *   trois `denied` prouvés                        → aucun canal accepté (no)
  *
  * Le libellé vient des chaînes PUBLIÉES, jamais du YAML. */
-const politiquesDeLaFiche = Object.values(kbAir?.premium?.policy ?? {}) as { status?: string }[];
-const aUnCanal = (st: string) => politiquesDeLaFiche.some((p) => p.status === st);
-const verdictDerive: { cls: "ok" | "warn" | "no"; cle: string } =
-  aUnCanal("allowed") ? { cls: "ok", cle: "premium.verdict_open" }
-  : aUnCanal("confirmation_required") ? { cls: "warn", cle: "air.to_confirm" }
-  : { cls: "no", cle: "premium.verdict_none" };
+const verdictDerive = verdictDeFiche(kbAir?.premium?.policy);
 
-/* LE SCORE ET LA NOTE RESTENT MASQUÉS TANT QU'ILS NE DÉRIVENT PAS DE DONNÉES PROUVÉES.
- * `rating` (4,5/5 et 89/100) est calculé sur des politiques dont aucune ne porte de citation, et
- * `verdictNote` est de la prose éditoriale — 19 des 102 affirment encore l'ouverture d'un canal
- * (« Cabin and hold are both open »). Un chiffre flatteur ou une phrase affirmative à côté d'un
- * « à confirmer » disent au lecteur le contraire l'un de l'autre. Ils reparaîtront quand ils
- * descendront de faits prouvés, pas avant. */
-const scoreEtNoteAffichables = aUnCanal("allowed");
+/* LE SCORE ET LA NOTE SONT MASQUÉS, SANS CONDITION DE RETOUR.
+ *
+ * Ma rédaction précédente les rendait dès qu'un canal devenait `allowed` — et la contre-revue du
+ * 05/09/2026 l'a refusée pour la même raison que le verdict : un canal cabine cité ne rend pas
+ * canonique un `rating` calculé sur des politiques non prouvées, ni une phrase éditoriale écrite
+ * avant tout cela. « Cabin and hold are both open » resterait faux le jour où seule la cabine est
+ * citée. C'était une seconde porte de derrière, ouverte au même endroit que la première.
+ *
+ * Ils ne reparaîtront donc PAS par une condition d'affichage : ils reparaîtront le jour où on les
+ * aura reconstruits depuis les décisions prouvées — c'est-à-dire par un autre code que celui-ci.
+ * La constante est écrite en clair pour que sa suppression soit un geste délibéré, jamais un effet
+ * de bord. */
+const scoreEtNoteAffichables = false as boolean;
 
 const seoLong = F("{0} pet policy: dog in cabin, hold & cargo", "{0} : animaux et chien en cabine ou en soute", "{0}: mascotas y perro en cabina o bodega", d.name);
 const seoShort = F("{0} pet policy: dog in cabin & hold", "{0} : animaux en cabine ou en soute", "{0}: mascotas en cabina o bodega", d.name);
@@ -183,8 +184,8 @@ const jsonLd = faqItems.length ? [webpageLd, faqJsonLd(faqItems)] : [webpageLd];
             *
             * LA RÈGLE : tant qu'aucun canal n'est décidé, la fiche affiche la réserve PUBLIÉE
             * (`air.to_confirm`) dans la classe prudente, et le libellé éditorial s'efface. Dès
-            * qu'une citation vérifiée rouvre un canal, l'ancien verdict revient de lui-même —
-            * rien à défaire le jour venu. */}
+            * qu'une citation vérifiée décide un canal, le verdict DÉRIVÉ change de lui-même —
+            * mais il reste dérivé : l'ancien libellé YAML ne revient jamais. */}
           <span class={`pill ${verdictDerive.cls} big`}>★ {tt(locale, verdictDerive.cle)}</span>
           {scoreEtNoteAffichables && rating && (
             <span class={`hv-score hv-score--${scoreCls}`} title={T("MyDogCanFly score", "Note MyDogCanFly", "Puntuación MyDogCanFly")}>
@@ -433,10 +434,9 @@ const jsonLd = faqItems.length ? [webpageLd, faqJsonLd(faqItems)] : [webpageLd];
         * 05/09/2026). Elle affirmait « dernière vérification le 8 août 2026 » sur une fiche dont
         * aucune politique ne porte de citation. Ce qui reste est vrai et utile : les réponses
         * viennent des conditions publiées par la compagnie, et ces conditions changent. */}
-      note={F("Answers drawn from {0}'s published conditions. Airline conditions are commercial and can change — confirm with the airline at booking.",
-              "Réponses tirées des conditions publiées par {0}. Les conditions d'une compagnie sont commerciales et peuvent changer — confirme auprès d'elle à la réservation.",
-              "Respuestas basadas en las condiciones publicadas por {0}. Las condiciones de una aerolínea son comerciales y pueden cambiar — confírmalo con la aerolínea al reservar.",
-              d.name)}
+      note={T("This page summarises the information currently on record. Conditions can change: confirm them with the airline before booking.",
+              "Cette page résume les informations actuellement enregistrées. Les conditions peuvent changer : confirme-les auprès de la compagnie avant de réserver.",
+              "Esta página resume la información registrada actualmente. Las condiciones pueden cambiar: confírmalas con la aerolínea antes de reservar.")}
     />
 
     <OnwardNav locale={locale} currentAirlineId={id} defaultIso={homeIso} defaultName={homeName} />

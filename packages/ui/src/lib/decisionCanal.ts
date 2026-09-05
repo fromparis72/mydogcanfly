@@ -65,6 +65,29 @@ export const classeStatut = (s: StatutCanonique): "ok" | "no" | "warn" =>
 export const causeDeConfirmation = (d: PlacementPolicy): string | null =>
   d.status === "confirmation_required" ? d.status_cause : null;
 
+/**
+ * LE VERDICT DE TÊTE D'UNE FICHE — dérivé des trois canaux, jamais de l'éditorial.
+ *
+ * Il vit ici et non dans le gabarit, pour la même raison que le reste de ce fichier : une règle
+ * écrite dans une page n'est pas éprouvable, et la contre-revue du 05/09/2026 a refusé deux
+ * rédactions successives qui rendaient la main au YAML — d'abord pour le libellé, puis pour le
+ * score. Une porte de derrière fermée dans le gabarit se rouvre au prochain gabarit.
+ *
+ * La table est celle qu'a fixée l'arbitrage, et elle ne connaît que les statuts canoniques :
+ *
+ *   au moins un `allowed`                    → transport possible sur au moins un canal vérifié
+ *   aucun, mais au moins un à confirmer      → conditions à confirmer
+ *   sinon (tous refusés, prouvés)            → aucun canal accepté
+ */
+export function verdictDeFiche(
+  policy: Partial<Record<Placement, PlacementPolicy>> | undefined,
+): { cls: "ok" | "warn" | "no"; cle: string } {
+  const statuts = Object.values(policy ?? {}).map((p) => p?.status);
+  if (statuts.includes("allowed")) return { cls: "ok", cle: "premium.verdict_open" };
+  if (statuts.includes("confirmation_required")) return { cls: "warn", cle: "air.to_confirm" };
+  return { cls: "no", cle: "premium.verdict_none" };
+}
+
 /** La source AUDITÉE d'une politique, ou `null` — règle canonique, appliquée telle quelle. */
 export const preuveAuditee = (d: PlacementPolicy | undefined): PolicySource | null =>
   preuveAuditeeCanonique(d) ?? null;

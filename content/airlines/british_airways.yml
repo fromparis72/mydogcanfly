@@ -74,7 +74,27 @@ ladder:
 policies:
   cabin:
     availability: not_offered
+    # PREMIÈRE DÉCISION PROUVÉE DU DÉPÔT (lecture directe Codex, 05/09/2026).
+    # La phrase est reprise telle qu'elle est publiée, et elle ne pose AUCUNE condition de route,
+    # de poids ni de saison : c'est ce qui la rend capable de fonder un refus global. Le `locator`
+    # dit où la relire sans reparcourir la page entière.
+    source:
+      url: "https://www.britishairways.com/content/information/travel-assistance/travelling-with-pets"
+      source_type: official_website
+      verified_date: "2026-09-05"
+      review_due: "2026-12-04"
+      confidence: 4
+      reviewer: "Codex — lecture directe de la page officielle"
+      history: []
+      quote: "We don't carry pets in the cabin on any route."
+      quote_language: en
+      locator: "Travelling with pets → Travelling to and from the UK"
   hold:
+    # NON PROUVÉ, ET LA LECTURE L'A ÉTABLI (Codex, 05/09/2026). La même page dit au contraire
+    # « Your pet will travel in the hold of our aircraft ». Le transport passe par des partenaires,
+    # ce qui peut correspondre commercialement au fret, mais on ne conclut pas « aucune soute »
+    # sans une définition et une citation de plus. La politique reste donc à confirmer — et c'est
+    # une lecture qui a servi : elle empêche de reprendre ce canal en croyant qu'il reste à voir.
     availability: not_offered
   cargo:
     availability: offered

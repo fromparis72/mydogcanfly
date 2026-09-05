@@ -52,7 +52,14 @@ for (const f of readdirSync("content/airlines").filter((x) => x.endsWith(".yml")
       ensemble: orphelin ? "A — orphelin (aucune règle sur ce canal)" : "B — page officielle non citée",
       url_officielle_candidate: orphelin ? "" : q.source.url,
       fait_exact_a_etablir: faitAEtablir(p.availability, canal),
-      rule_id: orphelin ? "" : (rs.find((r) => r.source?.url === q.source.url)?.id ?? ""),
+      /* LA RÈGLE N'EST QU'UN REPÉRAGE — contre-revue du 05/09/2026. La colonne s'appelait
+         `rule_id` et se lisait comme une preuve ; or plusieurs de ces règles ne soutiennent
+         nullement le fait cherché : la cabine d'Air China est repérée par une règle de POIDS EN
+         SOUTE, la soute d'American, de Delta et de United par une règle de POIDS EN CABINE. Elles
+         ont servi à trouver l'URL, rien de plus. Le nom de la colonne le dit désormais, et la
+         colonne `relation` l'écrit en toutes lettres pour qu'aucune ne soit reprise comme preuve. */
+      rule_id_ayant_fourni_url: orphelin ? "" : (rs.find((r) => r.source?.url === q.source.url)?.id ?? ""),
+      relation: orphelin ? "" : "repérage uniquement — ne soutient pas le fait",
     });
   }
 }
@@ -60,12 +67,13 @@ for (const f of readdirSync("content/airlines").filter((x) => x.endsWith(".yml")
 lignes.sort((x, y) => x.ensemble.localeCompare(y.ensemble) || x.compagnie.localeCompare(y.compagnie) || x.canal.localeCompare(y.canal));
 
 const COLONNES = ["airline_id", "compagnie", "canal", "disponibilite_actuelle", "ensemble",
-  "url_officielle_candidate", "fait_exact_a_etablir", "rule_id"];
+  "url_officielle_candidate", "fait_exact_a_etablir", "rule_id_ayant_fourni_url", "relation"];
 const tsv = [COLONNES.join("\t"), ...lignes.map((l) => COLONNES.map((c) => String(l[c]).replace(/\t/g, " ")).join("\t"))].join("\n") + "\n";
 const json = JSON.stringify({
   _quoi: "Canaux dont une citation officielle est attendue, par ordre de priorité arbitré.",
   _format_attendu_en_retour: "url · phrase exacte (verbatim) · langue (BCP-47) · emplacement dans la page (locator) · date de lecture",
   _rappel: "Une citation reconstruite depuis un résumé n'est pas une citation. Seul le texte lu sur la page compte.",
+  _avertissement_rule_id: "`rule_id_ayant_fourni_url` a servi à TROUVER l'URL et rien d'autre. Plusieurs de ces règles portent sur un autre canal ou une autre condition que le fait cherché — elles ne doivent jamais être reprises comme preuve.",
   totaux: { A: lignes.filter((l) => l.ensemble.startsWith("A")).length, B: lignes.filter((l) => l.ensemble.startsWith("B")).length },
   lignes,
 }, null, 1) + "\n";
