@@ -492,7 +492,9 @@ export interface DestinationMatch {
   placement_ok: boolean;         // le placement demandé est réellement `allowed` sur ≥1 compagnie directe
   /** Aucun canal demandé `allowed`, mais ≥1 « à confirmer » : à afficher en ALTERNATIVE, jamais en compatible. */
   placement_to_confirm: boolean;
-  entry_allowed: boolean;    // no blocking country-level denial (e.g. hard import ban)
+  /** Le statut d'entrée du pays — voir `EntryStatus`. Le classement doit le lire, pas le booléen. */
+  entry_status: EntryStatus;
+  entry_allowed: boolean;    // projection legacy : `entry_status !== "blocked"`
   flight_hours: number;      // estimated direct flight time (great-circle distance ÷ cruise speed)
 }
 

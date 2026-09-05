@@ -368,6 +368,38 @@ console.log("\n=== Carte compagnie : aucune affirmation structurelle sur l'ignor
   /* NON VIDE : l'interdiction n'a pas disparu pour autant — elle est publiée, entière, en tête. */
   check("…et l'interdiction d'entrée reste bien PUBLIÉE dans le rapport, texte intégral",
     /Dangerous Dogs Act/i.test(texte) && /Certificate of Exemption/i.test(texte));
+
+  /* ── LE STATUT D'ENTRÉE TERNAIRE, DANS LE DOM (contre-revue du 05/09/2026) ──────────────────
+   *
+   * Le même rapport affirmait « Le Royaume-Uni autorise l'entrée » à côté de « Interdit par
+   * l'article 1 du Dangerous Dogs Act ». `entry_allowed` était booléen : il valait `true` dès
+   * qu'aucune interdiction n'était PROUVÉE, et l'écran en tirait une phrase positive. Nous ne
+   * connaissons pas les autorisations, seulement les blocages — et leur absence dans nos données. */
+  check("AUCUNE phrase n'affirme que le pays autorise l'entrée",
+    !/allows entry|autorise l'entrée|permite la entrada|autoriza a entrada/i.test(texte));
+  check("…le rapport dit à la place que l'entrée est à confirmer pour ce chien",
+    /may restrict this dog on entry|Entrée à confirmer pour ce chien/i.test(texte));
+  check("…et l'exigence est encadrée comme une restriction POTENTIELLE, pas comme un fait acquis",
+    /Potential entry restriction|Restriction d'entrée potentielle/i.test(texte));
+  await p.close();
+}
+
+console.log("\n=== Une interdiction PROUVÉE, elle, tranche encore ===");
+{
+  /* SANS CE PARAGRAPHE, TOUT CE QUI PRÉCÈDE NE PROUVERAIT QUE L'INACTION. La Nouvelle-Zélande est
+   * la première RÈGLE citée du dépôt — phrase, langue et emplacement relevés sur la norme
+   * d'importation 2026 du MPI. Son interdiction doit donc, elle, produire un refus franc : le
+   * statut ternaire n'est pas un binaire déguisé qui aurait simplement tout rendu prudent. */
+  const { p, texte } = await chercher({ from: "airport_cdg", dest: "airport_akl", kg: 60, race: "Tosa Inu" });
+  check("Auckland, Tosa Inu : le rapport se rend et porte du contenu", texte.length > 400, `${texte.length}`);
+  /* Le libellé anglais exact est « Not as requested » (answer.incompatible) — relevé dans le
+     fichier de traduction, pas deviné : c'est en devinant « American Bully XL » au lieu de
+     « American Bully (XL) » que j'ai fabriqué un faux vert hier. */
+  check("…et l'entrée est refusée FRANCHEMENT, pas « à confirmer »",
+    /Not as requested/i.test(texte) && !/may restrict this dog on entry/i.test(texte),
+    texte.slice(0, 120));
+  check("…sur la phrase citée de la norme d'importation néo-zélandaise",
+    /Dog Control Act 1996/i.test(texte), texte.slice(0, 120));
   await p.close();
 }
 

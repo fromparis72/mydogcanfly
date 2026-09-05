@@ -923,6 +923,41 @@ console.log("\n=== 13 quinquies. L'ENTRÉE DANS LE PAYS : UN STATUT TERNAIRE, ET
   check("…et sa phrase ne dit PAS « le pays autorise », mais « aucune interdiction établie »",
     (explain(decLibre, "en").positives ?? []).some((x) => /No blocking entry ban established/i.test(x.text)),
     JSON.stringify((explain(decLibre, "en").positives ?? []).map((x) => x.text.slice(0, 50))));
+
+  /* ── ET LE TERNAIRE VOYAGE JUSQU'À L'OUTIL DESTINATIONS ─────────────────────────────────────
+   *
+   * RÉGRESSION QUE J'AI INTRODUITE, ET TROUVÉE EN AUDITANT MES PROPRES CONSOMMATEURS. La porte de
+   * classement de l'outil Destinations lisait `m.entry_allowed ? 1 : 0.05`. Depuis que la
+   * frontière garde ce chemin, ce booléen vaut `true` sur une interdiction non citée : Édimbourg
+   * et Cork, avec un American Bully XL, sont donc passés à PLEINE porte — au même rang qu'une
+   * ville sans la moindre restriction connue, alors qu'ils étaient enterrés la veille. Le booléen
+   * restait juste ; la question posée était trop pauvre. */
+  const { rankDestinations } = await import("./packages/engine/src/destinations.ts");
+  const dest = rankDestinations(kbP, { origin: "airport_cdg",
+    dog: { breed_id: "breed_american_bully_xl", weight_kg: 50 }, locale: "fr" });
+  const parStatut = {};
+  for (const m of dest.matches) parStatut[m.entry_status] = (parStatut[m.entry_status] ?? 0) + 1;
+  check("chaque destination porte son statut d'entrée ternaire, jamais le seul booléen",
+    dest.matches.every((m) => typeof m.entry_status === "string"),
+    JSON.stringify(parStatut));
+  check("témoin non vide : 6 destinations sont « à confirmer » pour cette race",
+    parStatut.confirmation_required === 6, JSON.stringify(parStatut));
+  check("…et elles se distinguent des 133 autres, qui n'ont aucune interdiction connue",
+    parStatut.no_known_block === 133 && !parStatut.blocked, JSON.stringify(parStatut));
+  /* La porte de classement vit dans le gabarit (script navigateur) : on la lit, littéralement,
+     plutôt que de faire confiance. Une régression qui reviendrait au booléen se verrait. */
+  const dfx = readFileSync("packages/ui/src/components/DestinationFinder.astro", "utf8");
+  /* COMMENTAIRES RETIRÉS AVANT DE CHERCHER L'ANCIEN MOTIF. Première rédaction fautive, nommée :
+     le contrôle cherchait `m.entry_allowed ? 1 : 0.05` dans le fichier ENTIER, et le trouvait —
+     dans le commentaire où je viens d'expliquer que cette porte était fautive. Il accusait ma
+     propre explication. Même faute que le contrôle qui avait rougi sur la phrase légitime des
+     races au museau court : un contrôle doit lire le CODE, pas le texte qui en parle. */
+  const dfxCode = dfx.replace(/\/\*[\s\S]*?\*\//g, "");
+  check("la porte de classement lit les TROIS états",
+    /entree === "blocked" \? 0\.05 : entree === "confirmation_required" \? 0\.35 : 1/.test(dfxCode));
+  check("…et l'ancienne porte binaire a bien disparu DU CODE",
+    !/m\.entry_allowed \? 1 : 0\.05/.test(dfxCode),
+    JSON.stringify((dfxCode.match(/.{0,40}m\.entry_allowed \? 1 : 0\.05.{0,20}/) ?? [])[0] ?? ""));
 }
 
 console.log("\n=== 14. Le côté PAYS — verrouiller un bon état plutôt que le découvrir deux fois ===");

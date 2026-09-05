@@ -198,6 +198,14 @@ export function rankDestinations(kb: NormalizedKB, req: DestinationsRequest): De
       cargo_status,
       placement_ok,
       placement_to_confirm,
+      /* LE TERNAIRE VOYAGE JUSQU'ICI (contre-revue du 05/09/2026). Ce champ seul a fait remonter
+         au rang des destinations sans restriction celles dont l'entrée est seulement « à
+         confirmer » : depuis que la frontière garde ce chemin, `entry_allowed` y vaut `true`, et
+         la porte de classement de l'outil Destinations valait donc 1 pour Édimbourg, Cork et
+         Berlin avec un American Bully XL — exactement comme pour une ville sans la moindre
+         restriction connue. Le booléen restait juste ; c'est la question posée qui était trop
+         pauvre. */
+      entry_status: decision.destination.entry_status,
       entry_allowed: decision.destination.entry_allowed,
       flight_hours,
     });

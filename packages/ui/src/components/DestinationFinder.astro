@@ -318,6 +318,7 @@ const L = {
     heat_confirmation_required: boolean; estimated_heat_signal: boolean;
     /* T0-A : les causes avec leur compagnie et leur canal — jamais aplaties. */
     confirmation_signals?: { airline_id: string; placement: string; cause: { code: string } & Record<string, string> }[];
+    entry_status?: "blocked" | "confirmation_required" | "no_known_block";
     entry_allowed: boolean; flight_hours: number;
   };
   type Docs = { base: boolean; eu: boolean; titer: boolean; cert: boolean };
@@ -427,7 +428,13 @@ const L = {
 
   function card(m: Match, docs: Docs, brachy: boolean, placementPref: string): { html: string; score: number } {
     const cl = climate(m, brachy), fm = formalities(m, docs), fl = flightsMeta(m, placementPref);
-    const gate = m.entry_allowed ? 1 : 0.05;
+    /* TROIS PORTES, PARCE QU'IL Y A TROIS ÉTATS (05/09/2026). `m.entry_allowed ? 1 : 0.05` ne
+       connaissait que « bloqué » et « pas bloqué » : une destination dont l'entrée est seulement
+       à confirmer y passait à pleine porte, au même rang qu'une ville sans restriction connue.
+       Elle ne mérite ni le rang d'une destination libre, ni l'enterrement d'une interdiction
+       prouvée. Le repli lit l'ancien booléen : une réponse d'API antérieure reste servie. */
+    const entree = m.entry_status || (m.entry_allowed ? "no_known_block" : "blocked");
+    const gate = entree === "blocked" ? 0.05 : entree === "confirmation_required" ? 0.35 : 1;
     const score = Math.round(100 * gate * (0.4 * cl.score + 0.3 * fl.score + 0.3 * fm.score));
     const bad = score < 40;
     const href = `${L.cbase}${m.iso2.toLowerCase()}/`;
