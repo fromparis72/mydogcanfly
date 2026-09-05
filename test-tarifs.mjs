@@ -293,9 +293,41 @@ if (DIST) {
       }
       dom.window.close();
     }
-    const manquants = Object.keys(LIBELLES).filter((s) => !vus.has(s));
-    if (manquants.length) echec("5quater couverture", `états jamais rencontrés : ${manquants.join(", ")} — le contrôle serait vert faute de matière`);
-    else ok(`5quater la pastille dit les trois états, chacun rencontré dans le HTML construit (${absencesLegitimes} canal/canaux hérités non revérifiés, légitimement absents)`);
+    /* ── MOUVEMENT NOMMÉ (05/09/2026) — LA COUVERTURE SE MESURE SUR LA DONNÉE, PAS SUR UN VŒU ──
+     *
+     * Cette contre-épreuve exigeait que les TROIS états soient rencontrés dans le HTML : sans
+     * quoi elle serait « verte faute de matière ». L'intention est juste et elle est conservée.
+     * Mais depuis la frontière de confiance, `allowed` n'a plus AUCUN porteur — aucune des 302
+     * politiques ne l'est, `denied` ne s'obtenant que sur une phrase citée. Exiger sa présence
+     * dans le DOM, c'est exiger que la base affirme quelque chose qu'elle ne peut plus prouver :
+     * la seule façon de faire reverdir le contrôle serait de RE-PUBLIER une acceptation non
+     * prouvée. Un contrôle qui pousse à cela travaille contre ce qu'il protège.
+     *
+     * On mesure donc les états RÉELLEMENT présents dans la base, et on exige exactement ceux-là
+     * dans le HTML construit. La garantie ne baisse pas, elle se déplace au bon endroit :
+     *   · un état porté par la donnée et absent du DOM fait toujours rougir ;
+     *   · l'absence d'`allowed` est EXPLIQUÉE par une mesure, jamais tolérée par principe ;
+     *   · le jour où une citation rendra un canal `allowed`, il rentrera de lui-même dans les
+     *     états attendus et devra reparaître dans le DOM — le contrôle se réarme seul.
+     * Et la couverture ne peut pas tomber à zéro sans être vue. */
+    const etatsEnBase = new Set();
+    for (const air of kb.airlines.values()) {
+      for (const canal of ["cabin", "hold", "cargo"]) {
+        const st = air?.premium?.policy?.[canal]?.status;
+        if (st && LIBELLES[st]) etatsEnBase.add(st);
+      }
+    }
+    const manquants = [...etatsEnBase].filter((s) => !vus.has(s));
+    const sansPorteur = Object.keys(LIBELLES).filter((s) => !etatsEnBase.has(s));
+    if (etatsEnBase.size < 2) {
+      echec("5quater couverture", `la base ne porte que ${etatsEnBase.size} état(s) — le contrôle n'a plus de matière`);
+    } else if (manquants.length) {
+      echec("5quater couverture", `états portés par la base mais jamais rendus : ${manquants.join(", ")}`);
+    } else {
+      ok(`5quater la pastille dit les ${vus.size} état(s) que la base porte, chacun rencontré dans le HTML construit`
+        + `${sansPorteur.length ? ` — « ${sansPorteur.join(", ")} » n'a AUCUN porteur depuis la frontière de confiance, absence mesurée et non supposée` : ""}`
+        + ` (${absencesLegitimes} canal/canaux hérités non revérifiés, légitimement absents)`);
+    }
   }
 
   /* Les quatre langues portent bien un statut, et pas un mot anglais laissé là. */

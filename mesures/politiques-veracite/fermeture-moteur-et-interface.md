@@ -1027,3 +1027,70 @@ built-ui 793/793 · `faq-races` DOM vert · `build:prod` 3 113 pages · navigate
 
 Vérifié sur le DOM construit : plus aucun `hv-score` ni `hv-pts`, et zéro repli anglais résiduel
 sur la fiche portugaise.
+
+---
+
+# Annexe 5 — j'ai cessé de découvrir la CI un réveil à la fois
+
+## Le vrai reproche à me faire
+
+Trois lots de suite, j'ai poussé après avoir joué *mes* contrôles, et la CI a trouvé autre chose.
+La cause n'est pas la malchance : **je ne jouais pas ce que la CI joue**. `npm run typecheck` ne
+couvre pas les `.astro` ; sept contrôles ne tournent que sur un `dist` complet ; trois autres sur
+un build de *preview*. J'ai donc énuméré les étapes du fichier de CI et je les ai toutes exécutées
+d'un coup. **Trois échecs sont tombés ensemble** — dont deux que la CI n'avait même pas encore
+atteints, s'arrêtant au premier.
+
+## Les cinq contre-épreuves re-fondées — toutes de la même famille
+
+Une même cause produit les cinq : **la frontière de confiance a retiré `allowed` à toutes les
+politiques, et le lot a retiré `channels[].detail` de l'écran**. Des témoins écrits avant ces
+deux gestes exigeaient donc soit un état qui n'existe plus, soit une phrase qui n'est plus servie.
+Aucun n'a été abaissé.
+
+| contre-épreuve | ce qu'elle exigeait | ce qu'elle exige maintenant |
+| --- | --- | --- |
+| `tarifs` § 5 quater | les **trois** états rencontrés dans le DOM | les états **que la base porte**, mesurés ; l'absence d'`allowed` est expliquée, jamais tolérée — et le contrôle se réarme seul le jour où une citation en produit un |
+| `étape3` § 2 | les quatre combinaisons de canaux ouverts | idem, sur une base **synthétique déclarée**, avec l'état figé « aucun canal réel n'est `allowed` » à côté |
+| `étape3` § 1 octies | les 8 phrases cargo corrigées **servies** au mot près | qu'**aucune** ne soit servie — la valeur reste scellée à la source par `test:unit` |
+| `étape3` § 1 nonies | la phrase Thai de remplacement servie | ni l'ancienne **ni** la neuve servies ; à la source, rien ne change |
+| `montants-propagation` § 2 | les 4 zones portent `d.metaDesc` | les 4 zones portent la **description canonique**, et `verdictNote` ne doit **pas** être publié |
+
+Dans chaque cas l'exigence **monte** : on n'attend plus qu'une phrase soit exacte, on interdit
+qu'elle paraisse. Et chaque contre-épreuve garde son sabotage : celui de `montants-propagation`
+§ 2 bis, qui mutait un paragraphe désormais absent, **réintroduit** maintenant la note éditoriale
+dans la page et exige qu'elle soit vue.
+
+**Une erreur de ma main en chemin, mesurée puis corrigée** : pour la base synthétique j'avais
+choisi Thai Airways, Aegean et British Airways « au jugé ». Aegean ne dessert aucun trajet de
+contrôle, et les drapeaux du rapport ne découlent pas du seul statut — la cabine de Thai et la
+soute de BA restent fermées par d'autres portes. J'ai mesuré quelles compagnies répondent
+réellement sur leurs trois canaux, et retenu celles-là.
+
+## Le scellé des licites, re-scellé par son geste
+
+`occurrences-licites-scellees.json` enregistre où les tournures IATA licites sont **publiées**.
+Les lecteurs éditoriaux retirés, huit entrées sont devenues orphelines. Le dépôt a un geste nommé
+pour cela — `--sceller-licites` — et c'est lui qui a réécrit le scellé, jamais une main.
+
+**Diff relu avant d'accepter** : 32 → 20 occurrences, 25 → 16 clés. **Que des retraits**, aucune
+occurrence publiée ajoutée — Neos « caisse aux normes IATA jusqu'à 48 × 35 × 29 cm », Swiss
+« IATA ventilation limits », Air Mauritius « IATA rules ». Le mouvement va dans le sens du lot.
+
+## Ce qui n'est PAS une régression, et pourquoi je le dis plutôt que de le « corriger »
+
+`test:audit-obs` échoue sur mon `dist` local et **doit** y échouer : il exige du rapport d'audit
+une ligne INFO qui n'existe que sur un build de **preview** (`noindex` sur toutes les pages).
+En CI, `audit` et `test:audit-obs` tournent après `build:preview` ; mon `dist` est un build de
+production. De même, `contre-epreuves --dom` et `--dist-complet` **refusent** de tourner sur un
+arbre sale : ils mutent des fichiers et les restaurent par `git checkout`. Les trois sont joués
+après ce commit, sur arbre propre.
+
+## Vérifications locales
+
+Joués et verts : `test:unit`, `typecheck`, `check`, `ingest:check`, `smoke`, `test:provenance`,
+`test:index-hub`, `test:migration-categories`, `test:couvertures`, `test:fetch-couvertures`,
+`test:annonce`, `test:liens`, `test:guide-page`, `test:built-ui`, `test:entities`, `audit`,
+`check-astro-debt`, `contre-epreuves --contrat`, et les sept contrôles sur `dist` complet
+(`faq-races`, `tarifs`, `montants-publies`, `montants-propagation`, `caisses-non-sourcees`,
+`etape3-dom`, `fiches-affirmations-retirees`).
