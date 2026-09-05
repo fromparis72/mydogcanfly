@@ -628,3 +628,52 @@ reçoit la porte de la prudence**.
 
 `git diff --check` : **propre** (l'espace final de `test-frontiere-confiance.mjs:862` et tous les
 autres sont retirés).
+
+---
+
+# CLÔTURE TECHNIQUE — `5465f92b889d66b2704d762ee1a7bcf95756e7a3`
+
+**Feu vert technique de Codex, 5 septembre 2026.** Aucune réserve restante sur la contre-revue
+différentielle. Ce feu vert **n'autorise ni fusion ni déploiement** : ces deux décisions
+appartiennent à Philippe, et lui seul.
+
+## Ce que ce lot a fermé, en six passes de contre-revue
+
+| passe | ce qui a été fermé |
+|---|---|
+| `c25221c` | les trois chemins de refus non gardés du moteur — règles, politique absente, embargo d'été |
+| `2d1afe6` | les trois arbitrages d'interface — statut ternaire, quatrième réponse, jauge masquée |
+| `cbcd9da` | le verdict de fiche, le libellé « No pets », le motif imputé à tort, le registre pays |
+| `47a4cf1` | le statut d'entrée ternaire — « le pays autorise » ne se déduit plus d'une absence de preuve |
+| `caca925` | le résumé éditorial publié sous l'autorité d'une page officielle ; la garde du registre |
+| `a82a578` | le faux vert du repli, caché par la stabilité du tri ; la race obligatoire non remplie |
+| `5465f92` | deux témoins muets du harnais caisse ; la taille standard disparue ; `SANS_ANIMAUX = 7` |
+
+## Vérifications finales
+
+`test:unit` vert · `test:built-ui` vert · `build:prod` **3 121 pages** · porte de lancement
+**29/29** · navigateur **79/79** · caisse **24/24** · `git diff --check` propre.
+
+Les harnais sont passés de 39 à **79** contrôles navigateur, et de 15 à **24** sur le calculateur
+de caisse — non par ajout de confort, mais parce que chaque témoin devenu muet a dû être re-fondé
+plutôt qu'abaissé.
+
+## Ce qui reste ouvert, et à qui
+
+**À l'arbitrage de Codex** — l'Australie. Sa citation est relevée et conservée entière dans
+`regles-pays-a-requalifier.json`, mais je ne l'ai pas appliquée : la page n'interdit que les races
+**pures** et admet les croisés, or le formulaire demande une race, pas une pureté. La citer
+refuserait des chiens que la page admet. Codex a approuvé cette lecture ; elle reste à confirmer si
+un fait de pureté est un jour recueilli.
+
+**À un lot ultérieur** — France, Grande-Bretagne, Irlande et Allemagne restent en confirmation
+prudente. Les conditionner demande d'ajouter au contexte d'évaluation des faits que le formulaire
+ne recueille pas : pedigree reconnu, durée de séjour, résidence, certificat d'exemption, statut de
+chien de service. Aucun champ n'a été ajouté avant le lancement, conformément à l'arbitrage.
+
+**Dette cosmétique nommée** — deux règles CSS orphelines (`.crx-size__code`, `.crx-size__d`)
+subsistent dans `CrateCalculator.astro` pour une fonctionnalité retirée. Elles ne publient aucune
+donnée. Non nettoyées ici **délibérément** : toucher à la source invaliderait le dist sur lequel
+tout ce lot a été vérifié.
+
+**À la décision de Philippe** — la fusion, et le déploiement.
