@@ -1,6 +1,6 @@
 import type { NormalizedKB, Rule, Predicate, Condition, EvalContextShape, PlacementPolicy, PlacementStatus, TemperatureProvenance, BreedRestriction } from "@mydogcanfly/knowledge";
 import { MONTH_UNKNOWN, isEstimatedTemperature, preuveAuditee, regleDecisive, niveauDePreuveRegle } from "@mydogcanfly/knowledge";
-import type { FinderRequest, Decision, AirlineDecision, FiredRule, ConfirmationCause, RestrictionEvidence, AdvisorySignal } from "./contracts";
+import type { FinderRequest, Decision, AirlineDecision, FiredRule, ConfirmationCause, RestrictionEvidence, AdvisorySignal, PetTransportStatus } from "./contracts";
 import { makePlacementDecision, makePlacementDecisionSet } from "./contracts";
 
 type Ctx = Record<string, string | number | boolean>;
@@ -614,10 +614,20 @@ export function evaluate(kb: NormalizedKB, req: FinderRequest, opts?: { weatherP
        `confirmation_required` — sans règles de route, sans climat. Une estimation climatique ne
        peut jamais produire « aucun animal transporté » ; une compagnie fermée sur les trois
        canaux reste false. `carries_pets` devient la projection legacy de cette vérité unique. */
-    const offers_pet_transport = PLACEMENTS.some(
-      (p) => policy?.[p]?.status === "allowed" || policy?.[p]?.status === "confirmation_required",
-    );
-    const carries_pets = offers_pet_transport;
+    /* TERNAIRE (05/09/2026). Le calcul ci-dessus rendait `true` dès qu'un canal n'était pas
+       refusé : sur les 102 compagnies du dépôt, il rendait `true` 102 fois. Il ne mesurait pas
+       une acceptation, il mesurait l'absence d'un refus — et un booléen n'avait nulle part où
+       ranger « on ne sait pas ». Les trois valeurs suivent la frontière des canaux : une
+       acceptation prouvée dit oui, trois refus prouvés disent non, et tout le reste le dit. */
+    const statuts = PLACEMENTS.map((p) => policy?.[p]?.status);
+    const offers_pet_transport: PetTransportStatus =
+      statuts.some((s) => s === "allowed") ? "yes"
+      : statuts.every((s) => s === "denied") ? "no"
+      : "unknown";
+    /* `carries_pets` ne quitte plus le moteur (voir le contrat) : l'écran lisait « la compagnie
+       prend des animaux, mais pas ce chien-ci » d'un champ qui valait `true` partout. Le témoin
+       interne, lui, garde sa forme booléenne — il ne sert qu'à la mesure d'écart versionnée. */
+    const carries_pets = offers_pet_transport === "yes";
     /* TÉMOIN DE TRANSITION (à retirer avec test-baselines/t0a-carries-pets-diff.json une fois
        la migration digérée) : l'ANCIEN calcul, verbatim — chien neutre, règles du trajet et du
        climat appliquées. Jamais exposé au public (retiré par explain) ; il n'existe que pour

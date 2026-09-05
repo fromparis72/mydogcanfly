@@ -306,7 +306,13 @@ console.log("\n=== 6. Verdict : règle exacte, par restriction en mémoire ===")
   const kbTK = { ...kbCitee, airlines: new Map([...kbCitee.airlines].filter(([id]) => id === "airline_turkish")) };
   const dec = evaluate(kbTK, FinderRequest.parse({ origin: "airport_cdg", destination: "airport_ist", dog: GOLDEN, date: JUILLET, placement: "hold" }));
   const rep = explain(dec, "fr");
-  check("placement=hold, seul canal à confirmer → verdict CONDITIONAL", rep.verdict === "conditional", rep.verdict);
+  /* MOUVEMENT NOMMÉ (05/09/2026) — la quatrième réponse. `conditional` s'affiche « Oui — sous
+     conditions » : ce contrôle exigeait donc que le site réponde OUI quand le seul canal demandé
+     est « à confirmer ». Ce n'est pas un oui atténué, c'est l'absence de réponse, et elle a
+     désormais son nom. Ce que ce paragraphe défend — le verdict suit le PLACEMENT DEMANDÉ, et
+     une confirmation ne devient pas un refus — est intact : `unknown` n'est pas `incompatible`. */
+  check("placement=hold, seul canal à confirmer → verdict UNKNOWN (jamais « oui », jamais un refus)",
+    rep.verdict === "unknown", rep.verdict);
   /* Petit chien : la cabine de Turkish est fermée au POIDS pour un golden de 25 kg — le témoin
      « cabin_status=allowed » serait faux pour une raison sans rapport avec le verdict testé. */
   const decC = evaluate(kbTK, FinderRequest.parse({ origin: "airport_cdg", destination: "airport_ist", dog: { weight_kg: 5 }, date: JUILLET, placement: "cabin" }));

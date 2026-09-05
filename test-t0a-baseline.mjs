@@ -95,7 +95,10 @@ function canonical(body) {
     (a.placement_decisions ?? []).map(dec).join(" ") || "-",
     `bool:${Number(a.cabin)}${Number(a.hold)}${Number(a.cargo)}`,
     `confirm:${(a.to_confirm ?? []).join("+") || "-"}`,
-    `pets:${a.carries_pets ?? "-"}/${a.offers_pet_transport ?? "-"}`,
+    /* `carries_pets` a quitté la surface publique le 05/09/2026 (booléen vrai partout, dont
+       l'écran tirait « la compagnie prend des animaux, mais pas ce chien-ci »). La baseline ne
+       fige plus qu'une valeur, et elle est ternaire. */
+    `pets:${a.offers_pet_transport ?? "-"}`,
     `deny:${(a.deny_reasons ?? []).join("+") || "-"}`,
     /* LE CHAMP « fee » N'EXISTE PLUS (micro-lot Tarifs, 29/08/2026). Laisser « fee:${a.fee ?? "-"} »
        rendrait « fee:- » partout : la baseline cesserait de contrôler quoi que ce soit de
@@ -471,6 +474,82 @@ console.log("=== Preuve PERMANENTE Frontière des RÈGLES (deux baselines FIGÉE
   }
 }
 
+console.log("=== Preuve PERMANENTE Arbitrages d'interface (deux baselines FIGÉES) ===");
+{
+  /* TROIS AFFIRMATIONS SANS PREUVE, RETIRÉES DE L'ÉCRAN.
+   *
+   *  1. LE STATUT TERNAIRE. `offers_pet_transport` était un booléen, et il valait `true` sur les
+   *     102 compagnies — dérivé de « la politique n'est pas refusée », donc d'une ABSENCE de
+   *     refus. L'écran en tirait « cette compagnie prend des animaux, mais pas le vôtre ».
+   *  2. LA RÉPONSE DE TÊTE. Le verdict n'avait que trois valeurs, et aucune ne savait dire « on
+   *     ne sait pas » : sur des trajets où AUCUN canal n'est prouvé, il valait `conditional`, qui
+   *     s'affiche « Oui — sous conditions ». Le site répondait OUI sur zéro preuve à la question
+   *     qu'il pose lui-même en titre.
+   *  3. LA JAUGE. « 10 % de compatibilité » sur un Paris → New York : sa première composante —
+   *     part de compagnies acceptantes — vaut zéro partout depuis la frontière, il ne restait
+   *     qu'un résidu affiché avec la précision d'une mesure.
+   *
+   * CE QUE CE LOT NE FAIT PAS, et c'est la propriété figée ici : il ne touche à AUCUNE décision.
+   * Aucun statut de canal ne bouge, aucune cause n'apparaît ni ne disparaît, aucune carte ne
+   * change de rang, aucun score ne change de valeur. Il retire des affirmations, il n'en déplace
+   * aucune. Une régression qui rouvrirait un canal en même temps qu'elle change un libellé se
+   * verrait ici. */
+  const AVANT = "test-baselines/arbitrages-interface-avant.json";
+  const APRES = "test-baselines/arbitrages-interface-apres.json";
+  check("la baseline AVANT les arbitrages d'interface est versionnée", existsSync(AVANT));
+  check("la baseline APRÈS est versionnée", existsSync(APRES));
+  if (existsSync(AVANT) && existsSync(APRES)) {
+    const avant = JSON.parse(readFileSync(AVANT, "utf8"));
+    const apres = JSON.parse(readFileSync(APRES, "utf8"));
+    const cles = Object.keys(apres);
+    check("les deux baselines couvrent les mêmes 72 scénarios",
+      cles.length === 72 && Object.keys(avant).length === 72 && cles.every((k) => k in avant));
+    const idOf = (s) => s.split(" | ")[0];
+    const seg = (s, prefixe) => (s.split(" | ").find((x) => x.startsWith(prefixe)) ?? "");
+    /* LA RÉPONSE DE TÊTE : 72 scénarios sur 72 passent de « Oui — sous conditions » à « pas
+       encore établi ». Aucun ne devient compatible ni incompatible. */
+    const vd = {};
+    for (const k of cles) if (avant[k].verdict !== apres[k].verdict) vd[`${avant[k].verdict}→${apres[k].verdict}`] = (vd[`${avant[k].verdict}→${apres[k].verdict}`] ?? 0) + 1;
+    check("les 72 verdicts passent de `conditional` à `unknown`, et rien d'autre",
+      Object.keys(vd).length === 1 && vd["conditional→unknown"] === 72, JSON.stringify(vd));
+    /* LE SCORE RESTE CALCULÉ ET SERVI — il n'est plus AFFICHÉ. Le figer ici prouve que ce lot n'a
+       pas touché au moteur pour masquer un chiffre : c'est l'écran qui ne le rend plus. */
+    check("aucun score ne change de valeur — la jauge est masquée, pas neutralisée",
+      cles.every((k) => avant[k].score === apres[k].score),
+      JSON.stringify(cles.filter((k) => avant[k].score !== apres[k].score).slice(0, 3)));
+    let cartes = 0, statuts = 0, causes = 0, rangs = 0, pets = 0, autres = 0;
+    for (const k of cles) {
+      const A = new Map((avant[k].airlines ?? []).map((s, i) => [idOf(s), { s, i }]));
+      (apres[k].airlines ?? []).forEach((s, i) => {
+        cartes++;
+        const av = A.get(idOf(s));
+        if (!av) { autres++; return; }
+        if (av.i !== i) rangs++;
+        if (seg(av.s, "st:") !== seg(s, "st:")) statuts++;
+        /* Les causes voyagent dans les segments de canal ; on les compare en bloc. */
+        const canaux = (x) => x.split(" | ").filter((y) => /^(cabin|hold|cargo):/.test(y)).join(" ");
+        if (canaux(av.s) !== canaux(s)) causes++;
+        if (seg(av.s, "pets:") !== seg(s, "pets:")) pets++;
+        /* Tout le reste de la carte, segment par segment, hors `pets:` — il ne doit pas bouger. */
+        const reste = (x) => x.split(" | ").filter((y) => !y.startsWith("pets:")).join(" | ");
+        if (reste(av.s) !== reste(s)) autres++;
+      });
+    }
+    check("1560 cartes comparées", cartes === 1560, String(cartes));
+    check("AUCUN statut de canal ne bouge", statuts === 0, String(statuts));
+    check("AUCUNE cause n'apparaît ni ne disparaît", causes === 0, String(causes));
+    check("AUCUNE carte ne change de rang", rangs === 0, String(rangs));
+    check("les 1560 cartes changent leur SEUL segment `pets:` (booléen → ternaire)",
+      pets === 1560, String(pets));
+    check("et RIEN d'autre ne bouge dans aucune carte", autres === 0, String(autres));
+    /* Le contenu du nouveau segment, en clair : « on ne sait pas » partout, ce qui est l'état
+       réel du dépôt — 0 acceptation prouvée, 0 refus complet prouvé, 102 inconnues. */
+    const valeurs = new Set(cles.flatMap((k) => (apres[k].airlines ?? []).map((s) => seg(s, "pets:"))));
+    check("le statut ternaire vaut « unknown » partout — l'état réel du dépôt",
+      valeurs.size === 1 && valeurs.has("pets:unknown"), JSON.stringify([...valeurs]));
+  }
+}
+
 console.log("=== Preuve HISTORIQUE T0-A (deux baselines FIGÉES — permanente) ===");
 {
   const AVANT = "test-baselines/t0a-finder-baseline-avant.json";
@@ -780,8 +859,13 @@ console.log("=== Preuve T0-B2-UI (deux baselines FIGÉES — permanente) ===");
        citation n'est pas écrasée : elle devient l'AVANT de cette paire, et la preuve permanente
        ci-dessus établit ce qui les sépare — 1 168 canaux s'ouvrent de `denied` vers « à
        confirmer », aucun ne se referme, aucun ne s'ouvre jusqu'à `allowed`. */
-    check("la baseline vivante est identique à la baseline figée la plus récente (frontière des règles)",
+    /* 05/09/2026, troisième figée du jour — LA PLUS RÉCENTE EST CELLE DES ARBITRAGES D'INTERFACE.
+       Celle de la frontière des règles n'est pas écrasée : elle devient l'AVANT de cette paire. */
+    check("la baseline vivante est identique à la baseline figée la plus récente (arbitrages d'interface)",
       readFileSync("test-baselines/t0a-finder-baseline.json", "utf8")
+        === readFileSync("test-baselines/arbitrages-interface-apres.json", "utf8"));
+    check("l'AVANT des arbitrages EST l'après de la frontière des règles — chaîne continue",
+      readFileSync("test-baselines/arbitrages-interface-avant.json", "utf8")
         === readFileSync("test-baselines/frontiere-regles-apres.json", "utf8"));
     check("l'AVANT de la frontière des règles EST l'après de la première citation — chaîne continue",
       readFileSync("test-baselines/frontiere-regles-avant.json", "utf8")

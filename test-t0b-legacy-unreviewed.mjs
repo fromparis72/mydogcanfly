@@ -200,8 +200,11 @@ console.log("=== 5. Moteur sur fixture : la cause remonte jusqu'à la carte ==="
   };
   const dec = evaluate(fixtureKB({ airlines: [AIRLINE], patchPolicy: { [AIRLINE]: onlyUnreviewed } }), req({ date: JANVIER }));
   const a = dec.airlines.find((x) => x.airline_id === AIRLINE);
-  check("seul canal non revérifié → offers_pet_transport reste true (jamais « aucun animal »)",
-    a.offers_pet_transport === true && a.carries_pets === true);
+  /* MOUVEMENT NOMMÉ (05/09/2026) — statut ternaire. Une donnée non revérifiée ne prouve pas
+     davantage que la compagnie transporte des animaux qu'elle ne prouve le contraire. Ce que ce
+     contrôle défend reste entier : elle ne bascule PAS vers « aucun animal ». */
+  check("seul canal non revérifié → « on ne sait pas », jamais « aucun animal »",
+    a.offers_pet_transport === "unknown", String(a.offers_pet_transport));
   check("aucun placement allowed → aucun tarif emprunté", a.fee === undefined, JSON.stringify({ fee: a.fee }));
 
   console.log("--- coexistence avec le climat, et dominance d'un refus dur ---");
@@ -526,8 +529,16 @@ console.log("=== 8. Baseline FIGÉE : le point de comparaison de T0-B2 est scell
    * de la nouvelle paire, et la preuve permanente de test-t0a-baseline.mjs établit ce qui les
    * sépare — 1 168 canaux passent de `denied` à « à confirmer », aucun ne se referme, aucun ne va
    * jusqu'à `allowed`, et British Airways cabine reste refusée sur sa phrase citée. */
-  check("Frontière des règles : la baseline vivante est identique à la figée la plus récente",
-    vivante.equals(readFileSync("test-baselines/frontiere-regles-apres.json")));
+  /* 05/09/2026, troisième figée du jour — LA PLUS RÉCENTE EST CELLE DES ARBITRAGES D'INTERFACE
+   * (statut ternaire, quatrième réponse, jauge masquée). Même principe roulant : celle de la
+   * frontière des règles devient l'AVANT de la paire, et la preuve permanente de
+   * test-t0a-baseline.mjs établit ce qui les sépare — 72 verdicts, 1 560 segments `pets:`, et
+   * AUCUN statut, AUCUNE cause, AUCUN rang, AUCUN score. */
+  check("Arbitrages d'interface : la baseline vivante est identique à la figée la plus récente",
+    vivante.equals(readFileSync("test-baselines/arbitrages-interface-apres.json")));
+  check("Frontière des règles : sa figée reste intacte à côté (elle n'a pas été écrasée)",
+    !readFileSync("test-baselines/frontiere-regles-apres.json")
+      .equals(readFileSync("test-baselines/arbitrages-interface-apres.json")));
   check("Citation 1 : sa figée reste intacte à côté (elle n'a pas été écrasée)",
     !readFileSync("test-baselines/citation-ba-cabine-apres.json")
       .equals(readFileSync("test-baselines/frontiere-regles-apres.json")));

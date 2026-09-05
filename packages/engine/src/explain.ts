@@ -390,7 +390,7 @@ export function explain(decision: Decision, locale = "en"): DecisionReport {
         }
       }
     }
-    return { airline_id: a.airline_id, name: a.airline_name, direct: a.direct, itinerary_confidence: a.itinerary_confidence, deny_reasons: (cabin || hold || cargo || to_confirm.length > 0) ? undefined : reasons, connect_airport_id: a.connect_airport_id, detour_km: a.detour_km, cabin, hold, cargo, cabin_status, hold_status, cargo_status, to_confirm: to_confirm.length ? to_confirm : undefined, placement_decisions, offers_pet_transport: a.offers_pet_transport, carries_pets: a.carries_pets, label, statuts_tarifaires, heat_embargo, heat_confirmation_required, carrier_of_origin, carrier_of_destination, origin_airport_id: a.origin_airport_id, destination_airport_id: a.destination_airport_id };
+    return { airline_id: a.airline_id, name: a.airline_name, direct: a.direct, itinerary_confidence: a.itinerary_confidence, deny_reasons: (cabin || hold || cargo || to_confirm.length > 0) ? undefined : reasons, connect_airport_id: a.connect_airport_id, detour_km: a.detour_km, cabin, hold, cargo, cabin_status, hold_status, cargo_status, to_confirm: to_confirm.length ? to_confirm : undefined, placement_decisions, offers_pet_transport: a.offers_pet_transport, label, statuts_tarifaires, heat_embargo, heat_confirmation_required, carrier_of_origin, carrier_of_destination, origin_airport_id: a.origin_airport_id, destination_airport_id: a.destination_airport_id };
   });
   /* Le placement demandé, AVANT le tri (contre-revue v4 : le classement l'ignorait — quatre
      « soute à confirmer » précédaient des soutes réellement autorisées sur une recherche soute). */
@@ -469,10 +469,16 @@ export function explain(decision: Decision, locale = "en"): DecisionReport {
        3. ≥1 allowed correspondant → verdict actuel (compatible/conditional selon les formalités) ;
        4. sinon ≥1 confirmation_required correspondant → conditional ;
        5. sinon → incompatible. */
+  /* 05/09/2026 — LA QUATRIÈME RÉPONSE. La ligne 4 disait « sinon ≥1 confirmation → conditional »,
+     et `conditional` s'affiche « Oui — sous conditions ». Depuis la frontière de confiance, plus
+     aucun canal n'est prouvé ouvert : les 22 compagnies d'un CDG→JFK sont toutes « à confirmer »,
+     et le site répondait donc OUI, sur zéro preuve, à la question qu'il pose lui-même en titre.
+     Un « à confirmer » n'est pas un oui atténué — c'est l'absence de réponse, et elle a
+     maintenant son nom. Le reste de la règle est inchangé : le refus d'entrée prime sur tout. */
   const verdict: DecisionReport["verdict"] =
     !entryAllowed ? "incompatible"
     : anyCompatible ? (conditions.length > 0 ? "conditional" : "compatible")
-    : anyConfirm ? "conditional"
+    : anyConfirm ? "unknown"
     : "incompatible";
 
   // Same source-confidence average the ★ rating below is built from (see `confidence`) — reused

@@ -114,7 +114,14 @@ if (WRITE) {
   check("le témoin hérité est INATTEIGNABLE : aucun canal n'est `allowed`, il vaut false partout",
     entries.length === couples && entries.every((e) => e.old === false),
     `${entries.length} bascule(s) sur ${couples} couples`);
-  check("toutes les bascules sont false→true (aucune perte de transport)", entries.every((e) => e.new && !e.old));
+  /* 05/09/2026 — `offers_pet_transport` EST TERNAIRE, et cette ligne devait changer avec lui.
+     Elle disait `e.new && !e.old` : une CHAÎNE non vide est vraie, si bien que la valeur « no »
+     — la perte de transport que ce contrôle existe pour interdire — l'aurait satisfaite. Faux
+     vert en puissance, corrigé avant d'exister. L'invariant est désormais écrit dans les termes
+     du champ : aucune compagnie ne passe à « non ». */
+  check("aucune compagnie ne perd son transport d'animaux (aucun passage à « no »)",
+    entries.every((e) => e.new !== "no" && e.old === false),
+    JSON.stringify(entries.filter((e) => e.new === "no").slice(0, 3)));
   check("la mesure T0-B2 reste figée (2 017 bascules, 55 compagnies) — elle n'est PAS régénérée",
     ref.changements === 2017 && ref.airlines.length === 55 && ref.true_to_false === 0,
     JSON.stringify({ ch: ref.changements, air: ref.airlines?.length, t2f: ref.true_to_false }));

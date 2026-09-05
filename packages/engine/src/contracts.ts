@@ -499,6 +499,9 @@ export interface DestinationsResult {
 }
 
 /* ---- Internal (Decision Engine output) ---- */
+/** Trois valeurs, parce que l'ignorance en est une — voir AirlineDecision.offers_pet_transport. */
+export type PetTransportStatus = "yes" | "no" | "unknown";
+
 export interface FiredRule {
   rule_id: string;
   action: string;
@@ -518,7 +521,9 @@ export interface AirlineDecision {
   airline_name: string;
   country_id?: string;        // pays d'immatriculation déclaré dans les données — PAS un statut de porte-drapeau
   direct: boolean;            // likely a direct flight on this route (hub at origin or destination)
-  carries_pets: boolean;      // true if the airline carries pets at all (a neutral dog) — false = structural "no pets"
+  /* INTERNE, jamais public : projection booléenne d'`offers_pet_transport === "yes"`. Elle ne
+     sert qu'à la mesure d'écart versionnée ; l'écran lit le statut ternaire. */
+  carries_pets: boolean;
   /* Ce que vaut réellement l'itinéraire proposé. On ne présente plus un nonstop attesté et une
      correspondance fabriquée par géométrie de hub sous la même étiquette :
        direct_documented       — la paire origine|destination figure dans `direct_routes` ;
@@ -553,9 +558,20 @@ export interface AirlineDecision {
      T0-A : le triplet est validé (`PlacementDecisionSet`) et chaque confirmation porte ses
      causes structurées. */
   placements: PlacementDecision[];
-  /** Vérité STRUCTURELLE (T0-A) : ≥1 canal dont la POLITIQUE (après projection) est `allowed`
-   *  ou `confirmation_required` — sans appliquer les règles du trajet ni le climat. */
-  offers_pet_transport: boolean;
+  /** LA COMPAGNIE TRANSPORTE-T-ELLE DES ANIMAUX ? OUI, NON, OU ON NE SAIT PAS (05/09/2026).
+   *
+   *  Ce champ était un BOOLÉEN, et il valait `true` sur les 102 compagnies du dépôt. Il était
+   *  dérivé de « la politique n'est pas refusée » — c'est-à-dire d'une ABSENCE de refus, jamais
+   *  d'une preuve d'acceptation. Un booléen n'a pas de place pour l'ignorance : il fallait bien
+   *  qu'il tranche, alors il tranchait toujours dans le même sens, et le site affirmait 102 fois
+   *  un fait que personne n'avait établi.
+   *
+   *  Les trois valeurs suivent la même frontière que les canaux :
+   *    "yes"     ≥1 canal `allowed` — une acceptation PROUVÉE (citation complète) ;
+   *    "no"      les trois canaux `denied` — trois refus PROUVÉS ;
+   *    "unknown" tout le reste, y compris une politique absente.
+   *  Aujourd'hui : 0 « oui », 0 « non », 102 « on ne sait pas ». C'est la vérité du dépôt. */
+  offers_pet_transport: PetTransportStatus;
   /** TÉMOIN DE TRANSITION, jamais public (retiré par explain) : l'ancien calcul verbatim, pour
    *  que la CI recalcule l'écart exhaustif versionné (t0a-carries-pets-diff.json). À retirer
    *  avec le fichier une fois la migration digérée. */
@@ -622,17 +638,19 @@ export interface AirlineResult {
    *  confirmation portant ses causes structurées. Les booléens et `*_status` ci-dessus en
    *  DÉRIVENT ; c'est la source d'affichage des libellés par famille de cause. */
   placement_decisions: PlacementDecision[];
-  /** Vérité structurelle canonique (T0-A) : la compagnie PROPOSE un transport d'animaux —
-   *  ≥1 canal dont la politique est `allowed` ou `confirmation_required`, indépendamment du
-   *  trajet et du climat. `carries_pets` en est la projection legacy pendant la transition. */
-  offers_pet_transport?: boolean;
+  /** Statut ternaire — voir AirlineDecision.offers_pet_transport. */
+  offers_pet_transport?: PetTransportStatus;
   /* Projection legacy de `offers_pet_transport` (T0-A — correction contrôlée, diff versionné :
      l'ancien calcul appliquait les règles du trajet au « chien neutre » et affichait « Animaux
      refusés » sur des compagnies dont la politique propose un canal).
      NE JAMAIS EN DÉDUIRE UN MOTIF : « true, mais aucun mode accepté » ne veut pas dire « race
      refusée » — c'est le plus souvent le poids, ou l'absence de soute/fret. Le motif réel est
      dans `deny_reasons`, lu sur les règles qui ont refusé. */
-  carries_pets?: boolean;
+  /* RETIRÉ DE LA SURFACE PUBLIQUE (05/09/2026) : ce booléen était la projection d'un booléen
+     qui valait `true` partout, et l'écran en tirait « la compagnie prend des animaux, mais pas
+     ce chien-ci » — une affirmation sur la compagnie qu'aucune preuve ne soutenait. L'écran lit
+     désormais le statut ternaire, qui sait dire « on ne sait pas ». */
+  carries_pets?: undefined;
   /** Motifs du refus (codes stables), présents seulement quand aucun mode n'est accepté. */
   deny_reasons?: string[];
   /** Nature de l'itinéraire — voir AirlineDecision.itinerary_confidence. */
@@ -718,7 +736,18 @@ export interface AdvisorySignal {
 }
 
 export interface DecisionReport {
-  verdict: "compatible" | "conditional" | "incompatible";
+  /** LA RÉPONSE À « MON CHIEN PEUT-IL VOYAGER ? » — quatre valeurs depuis le 05/09/2026.
+   *
+   *  Elle n'en avait que trois, et aucune ne savait dire « on ne l'a pas encore établi ». Comme
+   *  tout énoncé à trois valeurs sommé de trancher, elle tranchait : sur des trajets où AUCUN
+   *  canal n'était prouvé, le site répondait « Oui — sous conditions » — un OUI catégorique tiré
+   *  de zéro preuve. C'est exactement ce que le critère de lancement interdit.
+   *
+   *    "compatible"   ≥1 canal PROUVÉ ouvert, aucune formalité d'entrée ;
+   *    "conditional"  ≥1 canal PROUVÉ ouvert, sous formalités ;
+   *    "unknown"      rien de prouvé dans un sens ni dans l'autre, mais des pistes à confirmer ;
+   *    "incompatible" le pays refuse l'entrée, ou tous les canaux sont refusés — PROUVÉS. */
+  verdict: "compatible" | "conditional" | "unknown" | "incompatible";
   /** 0..100 TRIP-level score (see computeScore() in explain.ts) — every candidate airline on this
    *  route combined, never a single carrier's number. Weighted from real choice (accepted ÷
    *  candidate airlines), route-attestation quality (direct_documented > direct_assumed >

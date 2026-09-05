@@ -322,8 +322,13 @@ console.log("=== 8. offers_pet_transport : structurel, jamais éteint par une es
   const fkb = fixtureKB({ airlines: [AIRLINE], patchPolicy: { [AIRLINE]: onlyConfirm } });
   const dec = evaluate(fkb, req({ date: JANVIER }));
   const a = dec.airlines.find((x) => x.airline_id === AIRLINE);
-  check("compagnie au SEUL canal à confirmer → offers_pet_transport=true, jamais « aucun animal »",
-    a.offers_pet_transport === true && a.carries_pets === true);
+  /* MOUVEMENT NOMMÉ (05/09/2026) — le champ est TERNAIRE. Ce contrôle exigeait `true` sur une
+     compagnie dont le seul canal ouvert est « à confirmer » : il défendait la bonne moitié de la
+     propriété (« jamais aucun animal »), mais il affirmait l'autre sans preuve. Un canal à
+     confirmer ne prouve pas que la compagnie transporte des animaux — il dit qu'on ne sait pas.
+     La propriété défendue devient donc : ce n'est PAS « non », et ce n'est pas « oui » non plus. */
+  check("compagnie au SEUL canal à confirmer → « on ne sait pas », jamais « aucun animal »",
+    a.offers_pet_transport === "unknown", String(a.offers_pet_transport));
   const july = evaluate(fixtureKB({ airlines: [AIRLINE] }), req({ date: JUILLET })).airlines.find((x) => x.airline_id === AIRLINE);
   const january = evaluate(fixtureKB({ airlines: [AIRLINE] }), req({ date: JANVIER })).airlines.find((x) => x.airline_id === AIRLINE);
   check("une estimation climatique ne change JAMAIS la valeur (juillet = janvier)",
@@ -335,7 +340,13 @@ console.log("=== 8. offers_pet_transport : structurel, jamais éteint par une es
   };
   const closed = evaluate(fixtureKB({ airlines: [AIRLINE], patchPolicy: { [AIRLINE]: allClosed } }), req({ date: JANVIER }))
     .airlines.find((x) => x.airline_id === AIRLINE);
-  check("compagnie fermée sur les trois canaux → false", closed.offers_pet_transport === false);
+  check("compagnie fermée sur les trois canaux (refus PROUVÉS) → « non »",
+    closed.offers_pet_transport === "no", String(closed.offers_pet_transport));
+  /* Et le troisième état, qui n'existait pas : une politique ABSENTE ne dit pas « non ». */
+  const absente = evaluate(fixtureKB({ airlines: [AIRLINE], patchPolicy: { [AIRLINE]: {} } }), req({ date: JANVIER }))
+    .airlines.find((x) => x.airline_id === AIRLINE);
+  check("compagnie sans aucune politique → « on ne sait pas », jamais « non »",
+    absente.offers_pet_transport === "unknown", String(absente.offers_pet_transport));
 }
 
 console.log("=== 9. Tarif : jamais emprunté à un autre canal quand le premier est à confirmer ===");
