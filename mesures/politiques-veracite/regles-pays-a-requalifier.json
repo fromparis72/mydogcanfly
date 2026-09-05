@@ -2,7 +2,7 @@
  "objet": "Les six interdictions d'entrée par PAYS — état de requalification",
  "etabli_le": "2026-09-05",
  "pourquoi": "Ces six règles produisaient `entry_allowed = false`, donc un refus catégorique éteignant les trois canaux de TOUTES les compagnies, sans qu'aucune ne porte de phrase citée. Le chemin est désormais gardé comme les autres : une règle pays non citée demande confirmation. Mais la contre-revue du 05/09/2026 a lu les six sources officielles et a établi que la citation NE SUFFIT PAS pour trois d'entre elles : leur condition de déclenchement est elle-même trop large. Ce fichier retient ce constat pour qu'une citation future ne puisse pas restaurer en silence une règle fausse.",
- "regle_de_sortie": "Une règle ne quitte ce registre que par `resolu: true`, et la garde le VÉRIFIE MÉCANIQUEMENT au lieu de croire le drapeau. Deux conditions, toutes deux exécutables : (1) la règle porte une preuve complète (phrase + langue + emplacement, source factuelle, pas d'auto-citation) — c'est `regleDecisive` qui le dit ; (2) si `condition_a_revoir` n'est pas vide, l'empreinte ACTUELLE de son prédicat (`applies_when` + `effect`, canonisés puis SHA-256) doit DIFFÉRER de `empreinte_predicat_constate`, l'empreinte du prédicat fautif relevé le 05/09/2026. Ajouter une citation et basculer `resolu` à la main ne suffit donc pas : sans correction du prédicat, la CI rougit.",
+ "regle_de_sortie": "Une règle ne quitte ce registre que par `resolu: true`, ET la garde vérifie l'ÉTAT APPROUVÉ, jamais un simple mouvement. Deux égalités exactes sont exigées : (1) le prédicat courant de la règle, sous sa forme canonique (clés triées, tableaux triés — ce sont des ENSEMBLES, l'ordre n'y a aucun sens), doit être ÉGAL à `predicat_approuve` ; (2) la provenance courante (url, quote, quote_language, locator) doit être ÉGALE à `preuve_approuvee`. Une permutation, une condition sans rapport ou une citation différente échouent donc toutes. L'ancienne garde n'exigeait qu'une empreinte DIFFÉRENTE de celle du prédicat fautif : permuter deux races dans la liste suffisait à la satisfaire — elle constatait un mouvement, pas une correction approuvée.",
  "regles": [
   {
    "rule_id": "rule_au_breed_ban_restricted_types",
@@ -14,7 +14,6 @@
    "source_actuelle_dans_la_regle": "https://www.agriculture.gov.au/biosecurity-trade/cats-dogs/how-to-import/step-by-step-guides/category-3-step-by-step-guide-for-dogs",
    "condition_a_revoir": "L'interdiction ne vise QUE les races PURES : la page annonce les chiens croisés comme admis s'ils satisfont les autres conditions. Or le formulaire demande une race, pas une PURETÉ — choisir « Dogo Argentino » n'établit pas que le chien est de race pure. Le prédicat `dog.breed_id in [...]` refuserait donc des croisés que la page admet.",
    "manque": "un fait de PURETÉ dans le contexte d'évaluation (le formulaire ne le demande pas, et l'ajouter est un autre lot). La citation, elle, est relevée et disponible ci-dessus.",
-   "empreinte_predicat_constate": "c337592ab95b357a",
    "citation_relevee": {
     "url": "https://www.agriculture.gov.au/biosecurity-trade/cats-dogs/how-to-import/step-by-step-guides/category-3-step-by-step-guide-for-dogs",
     "titre": "How to bring your dog to Australia from a Group 3 country",
@@ -23,7 +22,34 @@
     "quote_language": "en",
     "releve_par": "Codex, 05/09/2026"
    },
-   "decision_05_09": "RESTE À CONFIRMER. La preuve existe, le prédicat ne suit pas : citer la règle la rendrait décisive et ferait refuser des chiens croisés que la page australienne admet explicitement. C'est une lecture de ma part, soumise à arbitrage."
+   "decision_05_09": "RESTE À CONFIRMER. La preuve existe, le prédicat ne suit pas : citer la règle la rendrait décisive et ferait refuser des chiens croisés que la page australienne admet explicitement. C'est une lecture de ma part, soumise à arbitrage.",
+   "predicat_constate": {
+    "applies_when": {
+     "all": [
+      {
+       "fact": "dog.breed_id",
+       "op": "in",
+       "value": [
+        "breed_american_pit_bull_terrier",
+        "breed_dogo_argentino",
+        "breed_fila_brasileiro",
+        "breed_presa_canario_dogo_canario",
+        "breed_tosa_inu"
+       ]
+      },
+      {
+       "fact": "route.dest_country_id",
+       "op": "eq",
+       "value": "country_au"
+      }
+     ]
+    },
+    "effect": {
+     "action": "deny"
+    }
+   },
+   "predicat_approuve": null,
+   "preuve_approuvee": null
   },
   {
    "rule_id": "rule_nz_breed_ban_restricted_types",
@@ -35,7 +61,6 @@
    "source_actuelle_dans_la_regle": "https://www.mpi.govt.nz/bring-send-to-nz/pets-travelling-to-nz/bringing-cats-and-dogs-to-nz/bringing-cats-and-dogs-to-nz-using-the-2026-import-health-standard/step-by-step-guide-to-bringing-cats-and-dogs-to-nz-2026",
    "condition_a_revoir": "",
    "manque": "",
-   "empreinte_predicat_constate": "9395e74a2cf6827d",
    "citation_relevee": {
     "url": "https://www.mpi.govt.nz/bring-send-to-nz/pets-travelling-to-nz/bringing-cats-and-dogs-to-nz/bringing-cats-and-dogs-to-nz-using-the-2026-import-health-standard/step-by-step-guide-to-bringing-cats-and-dogs-to-nz-2026",
     "locator": "2. Check your cat or dog is eligible to come to New Zealand → Prohibited dog breeds or types",
@@ -43,7 +68,71 @@
     "quote_language": "en",
     "releve_par": "Codex, 05/09/2026"
    },
-   "decision_05_09": "CITÉE ET APPLIQUÉE. « entirely or predominantly » est plus LARGE que le nom de race : un chien déclaré d'une de ces races lui appartient au moins de façon prédominante, donc le prédicat `dog.breed_id in [...]` est couvert par la phrase — contrairement au cas australien, qui exige la pureté. La source de la règle a été remplacée par la page 2026, plus fraîche que l'ancien guide PDF."
+   "decision_05_09": "CITÉE ET APPLIQUÉE. « entirely or predominantly » est plus LARGE que le nom de race : un chien déclaré d'une de ces races lui appartient au moins de façon prédominante, donc le prédicat `dog.breed_id in [...]` est couvert par la phrase — contrairement au cas australien, qui exige la pureté. La source de la règle a été remplacée par la page 2026, plus fraîche que l'ancien guide PDF.",
+   "predicat_constate": {
+    "applies_when": {
+     "all": [
+      {
+       "fact": "dog.breed_id",
+       "op": "in",
+       "value": [
+        "breed_american_pit_bull_terrier",
+        "breed_dogo_argentino",
+        "breed_fila_brasileiro",
+        "breed_presa_canario_dogo_canario",
+        "breed_tosa_inu"
+       ]
+      },
+      {
+       "fact": "route.dest_country_id",
+       "op": "eq",
+       "value": "country_nz"
+      }
+     ]
+    },
+    "effect": {
+     "action": "deny"
+    }
+   },
+   "predicat_approuve": {
+    "applies_when": {
+     "all": [
+      {
+       "fact": "dog.breed_id",
+       "op": "in",
+       "value": [
+        "breed_american_pit_bull_terrier",
+        "breed_dogo_argentino",
+        "breed_fila_brasileiro",
+        "breed_presa_canario_dogo_canario",
+        "breed_tosa_inu"
+       ]
+      },
+      {
+       "fact": "route.dest_country_id",
+       "op": "eq",
+       "value": "country_nz"
+      }
+     ]
+    },
+    "effect": {
+     "action": "deny"
+    }
+   },
+   "preuve_approuvee": {
+    "url": "https://www.mpi.govt.nz/bring-send-to-nz/pets-travelling-to-nz/bringing-cats-and-dogs-to-nz/bringing-cats-and-dogs-to-nz-using-the-2026-import-health-standard/step-by-step-guide-to-bringing-cats-and-dogs-to-nz-2026",
+    "quote": "The Dog Control Act 1996 prohibits the import into New Zealand of any dog that belongs entirely or predominantly to one or more of these breeds or types of dogs.",
+    "quote_language": "en",
+    "locator": "2. Check your cat or dog is eligible to come to New Zealand → Prohibited dog breeds or types"
+   },
+   "valeurs_couvertes": [
+    "breed_american_pit_bull_terrier",
+    "breed_tosa_inu",
+    "breed_dogo_argentino",
+    "breed_fila_brasileiro",
+    "breed_presa_canario_dogo_canario"
+   ],
+   "note_couverture": "La contre-revue l'a relevé : la phrase citée dit « these breeds or types » SANS énumérer la liste. C'est le prédicat approuvé ci-dessus qui fixe les cinq valeurs couvertes, et l'égalité exacte exigée par la garde les verrouille : ajouter une sixième race ferait rougir la CI tant que la preuve n'aurait pas été réexaminée. Le `locator` désigne la section qui porte la liste sur la page officielle."
   },
   {
    "rule_id": "rule_de_breed_ban_restricted_types",
@@ -55,12 +144,37 @@
    "source_actuelle_dans_la_regle": "https://www.gesetze-im-internet.de/hundverbreinfg/BJNR053010001.html",
    "condition_a_revoir": "Aucune des trois exceptions n'est exprimée. Le formulaire ne connaît ni la durée du séjour, ni la résidence, ni le statut de chien de service.",
    "manque": "des faits « durée de séjour », « résidence » et « chien de service » — un autre lot",
-   "empreinte_predicat_constate": "b7bba5e58174d102",
    "sources_exceptions": [
     "https://www.gesetze-im-internet.de/hundverbreinfvo/__2.html",
     "https://www.zoll.de/DE/Privatpersonen/Reisen/Rueckkehr-aus-einem-Nicht-EU-Staat/Einschraenkungen/Gefaehrliche-Hunde/gefaehrliche_hunde.html"
    ],
-   "decision_05_09": "RESTE À CONFIRMER avant lancement (arbitrage Codex du 05/09/2026)."
+   "decision_05_09": "RESTE À CONFIRMER avant lancement (arbitrage Codex du 05/09/2026).",
+   "predicat_constate": {
+    "applies_when": {
+     "all": [
+      {
+       "fact": "dog.breed_id",
+       "op": "in",
+       "value": [
+        "breed_american_pit_bull_terrier",
+        "breed_american_staffordshire_terrier",
+        "breed_bull_terrier",
+        "breed_staffordshire_bull_terrier"
+       ]
+      },
+      {
+       "fact": "route.dest_country_id",
+       "op": "eq",
+       "value": "country_de"
+      }
+     ]
+    },
+    "effect": {
+     "action": "deny"
+    }
+   },
+   "predicat_approuve": null,
+   "preuve_approuvee": null
   },
   {
    "rule_id": "rule_fr_breed_ban_restricted_types",
@@ -72,8 +186,30 @@
    "source_actuelle_dans_la_regle": "https://agriculture.gouv.fr/les-chiens-de-categorie-1-et-2-et-les-chiens-dangereux",
    "condition_a_revoir": "`dog.breed_id in [breed_american_pit_bull_terrier]` est un raccourci FAUX : un American Staffordshire Terrier AVEC pedigree reconnu est catégorie 2, pas catégorie 1, et un chien sans pedigree répondant à la morphologie est catégorie 1 quel que soit le nom qu'on lui donne. La règle doit soit interroger l'existence d'un pedigree reconnu, soit devenir une confirmation de catégorie.",
    "manque": "un fait « pedigree reconnu » dans le contexte d'évaluation, ou la rétrogradation en confirmation",
-   "empreinte_predicat_constate": "866b64effb564e48",
-   "decision_05_09": "RESTE À CONFIRMER avant lancement (arbitrage Codex du 05/09/2026) : le formulaire ne connaît ni durée de séjour, ni résidence, ni certificat d'exemption, ni pedigree ou qualification morphologique. Aucun champ nouveau n'est ajouté maintenant — ce serait un autre lot."
+   "decision_05_09": "RESTE À CONFIRMER avant lancement (arbitrage Codex du 05/09/2026) : le formulaire ne connaît ni durée de séjour, ni résidence, ni certificat d'exemption, ni pedigree ou qualification morphologique. Aucun champ nouveau n'est ajouté maintenant — ce serait un autre lot.",
+   "predicat_constate": {
+    "applies_when": {
+     "all": [
+      {
+       "fact": "dog.breed_id",
+       "op": "in",
+       "value": [
+        "breed_american_pit_bull_terrier"
+       ]
+      },
+      {
+       "fact": "route.dest_country_id",
+       "op": "eq",
+       "value": "country_fr"
+      }
+     ]
+    },
+    "effect": {
+     "action": "deny"
+    }
+   },
+   "predicat_approuve": null,
+   "preuve_approuvee": null
   },
   {
    "rule_id": "rule_gb_breed_ban_restricted_types",
@@ -85,8 +221,34 @@
    "source_actuelle_dans_la_regle": "https://www.gov.uk/control-dog-public/banned-dogs",
    "condition_a_revoir": "Deux défauts distincts. (1) La source portée par la règle traite de la DÉTENTION d'un chien interdit au Royaume-Uni, pas de son IMPORTATION : ce n'est pas la page qui fonde le refus d'entrée. (2) L'exemption par certificat n'est pas exprimée. Le texte de l'exigence, lui, la mentionne déjà correctement.",
    "manque": "la bonne source, la phrase exacte, et l'expression de l'exemption",
-   "empreinte_predicat_constate": "bb34e06305660595",
-   "decision_05_09": "RESTE À CONFIRMER avant lancement (arbitrage Codex du 05/09/2026) : le formulaire ne connaît ni durée de séjour, ni résidence, ni certificat d'exemption, ni pedigree ou qualification morphologique. Aucun champ nouveau n'est ajouté maintenant — ce serait un autre lot."
+   "decision_05_09": "RESTE À CONFIRMER avant lancement (arbitrage Codex du 05/09/2026) : le formulaire ne connaît ni durée de séjour, ni résidence, ni certificat d'exemption, ni pedigree ou qualification morphologique. Aucun champ nouveau n'est ajouté maintenant — ce serait un autre lot.",
+   "predicat_constate": {
+    "applies_when": {
+     "all": [
+      {
+       "fact": "dog.breed_id",
+       "op": "in",
+       "value": [
+        "breed_american_bully_xl",
+        "breed_american_pit_bull_terrier",
+        "breed_dogo_argentino",
+        "breed_fila_brasileiro",
+        "breed_tosa_inu"
+       ]
+      },
+      {
+       "fact": "route.dest_country_id",
+       "op": "eq",
+       "value": "country_gb"
+      }
+     ]
+    },
+    "effect": {
+     "action": "deny"
+    }
+   },
+   "predicat_approuve": null,
+   "preuve_approuvee": null
   },
   {
    "rule_id": "rule_ie_breed_ban_restricted_types",
@@ -98,10 +260,32 @@
    "source_actuelle_dans_la_regle": "https://www.irishstatutebook.ie/eli/2024/si/491/made/en/print",
    "condition_a_revoir": "Aucune condition de séjour ni de résidence n'est exprimée ; le refus est inconditionnel alors que la S.I. 491/2024 prévoit des cas de séjour de trente jours au plus pour certains non-résidents.",
    "manque": "l'expression des exceptions, puis la phrase exacte",
-   "empreinte_predicat_constate": "fd2a799902f6fb6e",
-   "decision_05_09": "RESTE À CONFIRMER avant lancement (arbitrage Codex du 05/09/2026) : le formulaire ne connaît ni durée de séjour, ni résidence, ni certificat d'exemption, ni pedigree ou qualification morphologique. Aucun champ nouveau n'est ajouté maintenant — ce serait un autre lot."
+   "decision_05_09": "RESTE À CONFIRMER avant lancement (arbitrage Codex du 05/09/2026) : le formulaire ne connaît ni durée de séjour, ni résidence, ni certificat d'exemption, ni pedigree ou qualification morphologique. Aucun champ nouveau n'est ajouté maintenant — ce serait un autre lot.",
+   "predicat_constate": {
+    "applies_when": {
+     "all": [
+      {
+       "fact": "dog.breed_id",
+       "op": "in",
+       "value": [
+        "breed_american_bully_xl"
+       ]
+      },
+      {
+       "fact": "route.dest_country_id",
+       "op": "eq",
+       "value": "country_ie"
+      }
+     ]
+    },
+    "effect": {
+     "action": "deny"
+    }
+   },
+   "predicat_approuve": null,
+   "preuve_approuvee": null
   }
  ],
- "empreinte_comment": "`empreinte_predicat_constate` = SHA-256 tronqué à 16 caractères de la forme canonique de {applies_when, effect} au moment du constat. Elle N'EST PAS une signature de sécurité : elle sert à prouver qu'un prédicat a bougé, pas à empêcher qu'on le contrefasse.",
- "arbitrage_lancement": "Codex, 05/09/2026 : ne PAS ajouter de champs au formulaire avant le lancement. Nouvelle-Zélande redevient catégorique (citée). Australie reste à confirmer — sa page n'interdit que les races pures. Allemagne, France, Grande-Bretagne et Irlande restent en confirmation prudente. Leur avertissement critique et leur lien officiel restent visibles, sans phrase affirmant que l'entrée est autorisée ni définitivement interdite."
+ "arbitrage_lancement": "Codex, 05/09/2026 : ne PAS ajouter de champs au formulaire avant le lancement. Nouvelle-Zélande redevient catégorique (citée). Australie reste à confirmer — sa page n'interdit que les races pures. Allemagne, France, Grande-Bretagne et Irlande restent en confirmation prudente. Leur avertissement critique et leur lien officiel restent visibles, sans phrase affirmant que l'entrée est autorisée ni définitivement interdite.",
+ "forme_canonique": "Clés triées récursivement, TABLEAUX TRIÉS. L'hypothèse est explicite et vaut pour ces prédicats-ci : `all` est une conjonction, `dog.breed_id in [...]` et `effect.placement` sont des ensembles — l'ordre n'y porte aucun sens. Un prédicat futur où l'ordre compterait devrait sortir de ce schéma."
 }

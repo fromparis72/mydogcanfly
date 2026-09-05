@@ -554,3 +554,77 @@ Ce que le navigateur vérifie désormais sur l'entrée, dans le DOM servi :
 
 Aucune figée n'est écrasée ; chacune reste l'AVANT de la suivante, et chaque paire a son contrôle
 permanent qui rougit si le mouvement s'inverse.
+
+---
+
+# CONTRE-REVUE DE `f76cd7c` — deux faux-verts, et un repli qui recréait le défaut
+
+**Date** : 5 septembre 2026, soir.
+
+## P0-1 — un texte à nous, publié sous l'autorité de la page officielle
+
+Mesuré : la règle britannique n'a **aucune `source.quote`** (`undefined`), et le rapport publiait
+pourtant, sous « *What the official page says, and which we have not been able to verify sentence by
+sentence :* », notre `rationale` — un résumé éditorial. Le visiteur lisait donc, attribué à gov.uk,
+« *possession is only lawful under a court-ordered Certificate of Exemption, which cannot be obtained
+for a dog arriving from abroad* », une conclusion catégorique que personne n'a lue sur la page.
+
+**Encadrer un texte ne le rend pas sourçable.** Ma rédaction précédente croyait résoudre le problème
+en annonçant l'incertitude ; elle ne faisait que donner une adresse officielle à une phrase interne.
+Le `rationale` d'un `deny` non décisif **ne sort plus du tout** : le visiteur reçoit une formulation
+neutre et **le lien officiel**, qui le mène au texte véritable. `rationale` reste dans `fired`, pour
+l'audit.
+
+Contre-épreuve exacte : remplacer le `rationale` britannique par une absurdité (« tous les chiens
+doivent porter un chapeau ») ne change **aucun** texte public, et l'absurdité n'apparaît nulle part
+dans le rapport ; le lien, le `rule_id` et la criticité `critical` restent servis.
+
+Et le contrôle qui vérifiait ce point **gravait le défaut** : il EXIGEAIT que le texte officiel soit
+« conservé entier ». Il est inversé.
+
+## P0-2 — la garde constatait un mouvement, pas une correction
+
+Reproduit exactement : citation ajoutée, `resolu: true`, **permutation de deux races** dans la liste
+— `decisive: true`, empreinte modifiée, garde verte. Et ma propre contre-épreuve confirmait le
+défaut, puisqu'elle remplaçait la liste par le seul XL Bully et appelait cela « réellement changé ».
+
+Le registre porte désormais **l'état approuvé**, pas une empreinte de départ :
+
+- `predicat_approuve` — l'objet canonique lisible, **tableaux triés** : ces tableaux sont des
+  ensembles (`all` est une conjonction, la liste de races et `effect.placement` sont des ensembles),
+  l'ordre n'y porte aucun sens. L'hypothèse est écrite dans le fichier ;
+- `preuve_approuvee` — url, phrase, langue, emplacement, en entier ;
+- une règle résolue ne passe que si **les deux sont exactement égaux** à l'état approuvé.
+
+Cinq sabotages rougissent, et un témoin positif reste vert :
+
+| sabotage | résultat |
+|---|---|
+| citation + `resolu`, permutation seule | **rouge** |
+| citation + `resolu`, condition sans rapport | **rouge** |
+| Nouvelle-Zélande, citation différente | **rouge** |
+| Nouvelle-Zélande, une sixième race ajoutée | **rouge** |
+| règle non citée déclarée `resolu` à la main | **rouge** |
+| *permuter la liste d'une règle déjà approuvée* | *vert* — l'ordre n'a aucun sens |
+
+Ton point sur la couverture néo-zélandaise est traité par ce mécanisme : la phrase dit « *these
+breeds or types* » sans énumérer, donc c'est le **prédicat approuvé** qui fixe les cinq valeurs, et
+l'égalité exacte les verrouille — le sabotage « sixième race » le démontre. L'entrée porte aussi
+`valeurs_couvertes` en clair, pour qu'un lecteur humain voie ce que la preuve est réputée couvrir.
+
+## P1 — le repli recréait le faux-vert, et le navigateur n'éprouvait rien
+
+`entry_status` devient **obligatoire** dans le type, et le repli **échoue vers la prudence** :
+`confirmation_required`, jamais `no_known_block`. Un statut absent n'est pas une absence de blocage,
+c'est une ignorance.
+
+Et tu avais raison sur les fixtures : le chemin ternaire n'était éprouvé **nulle part** dans le
+navigateur — l'outil Destinations n'y était pas ouvert du tout. Un paragraphe neuf le pilote de bout
+en bout (formulaire → Worker → rendu) et vérifie que chaque destination servie porte un statut, que
+les deux états attendus sont présents, que les trois portes sont distinctes, et **qu'un statut absent
+reçoit la porte de la prudence**.
+
+## Finition
+
+`git diff --check` : **propre** (l'espace final de `test-frontiere-confiance.mjs:862` et tous les
+autres sont retirés).

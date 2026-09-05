@@ -793,12 +793,17 @@ console.log("\n=== 13 quinquies. L'ENTRÉE DANS LE PAYS : UN STATUT TERNAIRE, ET
   const regles = JSON.parse(readFileSync("packages/knowledge/raw/rules.json", "utf8"));
   const denysPays = regles.filter((r) => r.scope?.type === "country" && r.effect?.action === "deny");
 
-  /* L'EMPREINTE DU PRÉDICAT — forme canonique (clés triées) puis SHA-256. Elle ne protège de
-     rien, elle PROUVE qu'un prédicat a bougé : c'est tout ce qu'on lui demande. */
-  const canon = (v) => Array.isArray(v) ? v.map(canon)
+  /* LA FORME CANONIQUE D'UN PRÉDICAT. Clés triées, ET TABLEAUX TRIÉS : ces tableaux représentent
+     des ENSEMBLES — `all` est une conjonction, la liste de races et `effect.placement` sont des
+     ensembles —, l'ordre n'y porte aucun sens. Sans le tri des tableaux, permuter deux races
+     suffisait à faire croire à une correction. */
+  const canon = (v) => Array.isArray(v)
+    ? v.map(canon).sort((a, b) => JSON.stringify(a).localeCompare(JSON.stringify(b)))
     : (v && typeof v === "object") ? Object.fromEntries(Object.keys(v).sort().map((k) => [k, canon(v[k])])) : v;
-  const empreinte = (r) => createHash("sha256")
-    .update(JSON.stringify(canon({ applies_when: r.applies_when, effect: r.effect }))).digest("hex").slice(0, 16);
+  const predicatDe = (r) => canon({ applies_when: r.applies_when, effect: r.effect });
+  const preuveDe = (r) => ({ url: r.source?.url ?? null, quote: r.source?.quote ?? null,
+    quote_language: r.source?.quote_language ?? null, locator: r.source?.locator ?? null });
+  const egal = (a, b) => JSON.stringify(a) === JSON.stringify(b);
 
   check("le registre couvre exactement les 6 interdictions d'entrée par pays",
     denysPays.length === 6 && registre.regles.length === 6
@@ -809,47 +814,87 @@ console.log("\n=== 13 quinquies. L'ENTRÉE DANS LE PAYS : UN STATUT TERNAIRE, ET
       && denysPays.filter((r) => niveauDePreuveRegle(r) === "officielle_non_citee").length === 5,
     JSON.stringify(denysPays.map((r) => [r.id, niveauDePreuveRegle(r)])));
 
-  /* LA GARDE, ÉCRITE COMME UNE FONCTION pour être exercée à vide ET sur un cas saboté. */
+  /* ── LA GARDE : ÉTAT APPROUVÉ, JAMAIS UN SIMPLE MOUVEMENT ──────────────────────────────────
+   *
+   * RÉDACTION PRÉCÉDENTE, FAUTIVE ET NOMMÉE : elle exigeait seulement que l'empreinte du prédicat
+   * DIFFÈRE de celle du prédicat fautif. Permuter deux races dans la liste britannique suffisait
+   * donc à la satisfaire — citation ajoutée, `resolu` basculé à la main, aucune correction
+   * sémantique, garde verte. Elle constatait un mouvement, pas une correction approuvée. Et ma
+   * propre contre-épreuve gravait le défaut : elle remplaçait la liste par le seul XL Bully et
+   * appelait cela « réellement changé ».
+   *
+   * Elle exige désormais DEUX ÉGALITÉS EXACTES avec l'état écrit dans le registre — le prédicat
+   * canonique, et la provenance (url, phrase, langue, emplacement). */
   const gardeRouge = (reglesEval, registreEval) => reglesEval
     .filter((r) => r.scope?.type === "country" && r.effect?.action === "deny")
     .filter((r) => {
       const e = registreEval.regles.find((x) => x.rule_id === r.id);
-      if (!decisive(r)) return false;                    // non décisive : rien à exiger
-      if (!e || !e.resolu) return true;                  // décisive sans entrée résolue
-      /* RÉSOLUE ET DÉCISIVE : si une condition restait à revoir, le PRÉDICAT doit avoir bougé. */
-      return !!e.condition_a_revoir && empreinte(r) === e.empreinte_predicat_constate;
+      if (!decisive(r)) return !!(e && e.resolu);      // résolue mais plus décisive : incohérent
+      if (!e || !e.resolu) return true;                // décisive sans entrée résolue
+      return !egal(predicatDe(r), e.predicat_approuve) || !egal(preuveDe(r), e.preuve_approuvee);
     })
     .map((r) => r.id);
 
   check("sur l'état versionné, la garde est verte", gardeRouge(regles, registre).length === 0,
     JSON.stringify(gardeRouge(regles, registre)));
 
-  /* LA CONTRE-ÉPREUVE EXACTE DEMANDÉE : citer la Grande-Bretagne, basculer `resolu` à la main,
-     ne corriger NI l'exemption NI le prédicat. La garde doit rougir. */
+  /* LES QUATRE SABOTAGES DEMANDÉS. Chacun part de l'état versionné, ne change QU'UNE chose, et
+     doit rougir. Le cinquième cas — l'état approuvé lui-même — est le contrôle ci-dessus. */
+  const saboter = (nom, muter) => {
+    const rs = JSON.parse(JSON.stringify(regles)), rg = JSON.parse(JSON.stringify(registre));
+    muter(rs, rg);
+    check(`SABOTAGE « ${nom} » → la garde ROUGIT`, gardeRouge(rs, rg).length > 0, JSON.stringify(gardeRouge(rs, rg)));
+  };
+  const citerGB = (rs) => {
+    const gb = rs.find((r) => r.id === "rule_gb_breed_ban_restricted_types");
+    gb.source.quote = "It is illegal to bring a banned dog into Great Britain.";
+    gb.source.quote_language = "en"; gb.source.locator = "section « Banned dogs »";
+    return gb;
+  };
+  const resoudre = (rg, id) => { rg.regles.find((e) => e.rule_id === id).resolu = true; };
+  saboter("citation + resolu, PERMUTATION seule de deux races", (rs, rg) => {
+    const gb = citerGB(rs); const l = gb.applies_when.all[1].value;
+    [l[0], l[1]] = [l[1], l[0]];
+    resoudre(rg, gb.id);
+  });
+  saboter("citation + resolu, condition SANS RAPPORT ajoutée", (rs, rg) => {
+    const gb = citerGB(rs);
+    gb.applies_when.all.push({ fact: "dog.weight_kg", op: "gt", value: 0 });
+    resoudre(rg, gb.id);
+  });
+  saboter("Nouvelle-Zélande : CITATION DIFFÉRENTE de la preuve approuvée", (rs) => {
+    rs.find((r) => r.id === "rule_nz_breed_ban_restricted_types").source.quote =
+      "A different sentence, plausible but not the one that was approved.";
+  });
+  saboter("Nouvelle-Zélande : une SIXIÈME race ajoutée au prédicat approuvé", (rs) => {
+    rs.find((r) => r.id === "rule_nz_breed_ban_restricted_types").applies_when.all[1].value.push("breed_american_bully_xl");
+  });
+  saboter("une règle NON citée déclarée `resolu` à la main", (rs, rg) => {
+    resoudre(rg, "rule_fr_breed_ban_restricted_types");
+  });
+  /* ET LE TÉMOIN POSITIF : la permutation SEULE, sur une règle déjà approuvée, ne rougit PAS —
+     sans quoi la garde serait simplement stricte, et non exacte. */
   {
-    const reglesSab = JSON.parse(JSON.stringify(regles));
-    const registreSab = JSON.parse(JSON.stringify(registre));
-    for (const r of reglesSab) if (r.id === "rule_gb_breed_ban_restricted_types") {
-      r.source.quote = "It is illegal to bring a banned dog into Great Britain.";
-      r.source.quote_language = "en"; r.source.locator = "section « Banned dogs »";
-    }
-    for (const e of registreSab.regles) if (e.rule_id === "rule_gb_breed_ban_restricted_types") e.resolu = true;
-    check("SABOTAGE : citation + `resolu:true` SANS corriger le prédicat → la garde ROUGIT",
-      gardeRouge(reglesSab, registreSab).includes("rule_gb_breed_ban_restricted_types"),
-      JSON.stringify(gardeRouge(reglesSab, registreSab)));
-    /* Et la contrepartie : le prédicat corrigé (ici : la liste réduite), elle passe. Sans ce
-       second volet, la garde pourrait être rouge pour une raison sans rapport. */
-    for (const r of reglesSab) if (r.id === "rule_gb_breed_ban_restricted_types") {
-      r.applies_when.all[1].value = ["breed_american_bully_xl"];
-    }
-    check("…et une fois le prédicat RÉELLEMENT changé, elle repasse au vert",
-      !gardeRouge(reglesSab, registreSab).includes("rule_gb_breed_ban_restricted_types"),
-      JSON.stringify(gardeRouge(reglesSab, registreSab)));
+    const rs = JSON.parse(JSON.stringify(regles));
+    const nz = rs.find((r) => r.id === "rule_nz_breed_ban_restricted_types");
+    const l = nz.applies_when.all[1].value; [l[0], l[4]] = [l[4], l[0]];
+    check("TÉMOIN : permuter la liste d'une règle APPROUVÉE ne rougit pas — l'ordre n'a aucun sens",
+      gardeRouge(rs, registre).length === 0, JSON.stringify(gardeRouge(rs, registre)));
   }
-  check("chaque entrée non résolue nomme ce qui lui manque, et porte l'empreinte constatée",
-    registre.regles.filter((x) => !x.resolu).every((x) => (x.manque ?? "").length > 10
-      && /^[0-9a-f]{16}$/.test(x.empreinte_predicat_constate ?? "")),
+  check("chaque entrée non résolue nomme ce qui lui manque et porte son prédicat constaté",
+    registre.regles.filter((x) => !x.resolu).every((x) => (x.manque ?? "").length > 10 && !!x.predicat_constate),
     JSON.stringify(registre.regles.filter((x) => !x.resolu).map((x) => x.rule_id)));
+  check("l'entrée résolue lie sa preuve APPROUVÉE en entier (url, phrase, langue, emplacement)",
+    registre.regles.filter((x) => x.resolu).every((x) => x.preuve_approuvee
+      && ["url", "quote", "quote_language", "locator"].every((k) => typeof x.preuve_approuvee[k] === "string")),
+    JSON.stringify(registre.regles.filter((x) => x.resolu).map((x) => x.preuve_approuvee)));
+  /* La contre-revue l'a relevé : la phrase néo-zélandaise dit « these breeds or types » sans
+     énumérer. Ce sont donc les valeurs du prédicat approuvé qui fixent la couverture, et
+     l'égalité exacte les verrouille (sabotage « sixième race » ci-dessus). */
+  check("…et l'entrée résolue énumère les valeurs que sa preuve est réputée couvrir",
+    registre.regles.filter((x) => x.resolu).every((x) => Array.isArray(x.valeurs_couvertes)
+      && x.valeurs_couvertes.length === 5),
+    JSON.stringify(registre.regles.filter((x) => x.resolu).map((x) => x.valeurs_couvertes)));
 
   /* ── LE STATUT TERNAIRE, SUR LE CAS RÉEL DE LA CONTRE-REVUE ──────────────────────────────── */
   const kbP = loadKB();
@@ -859,7 +904,7 @@ console.log("\n=== 13 quinquies. L'ENTRÉE DANS LE PAYS : UN STATUT TERNAIRE, ET
   const rep = explain(dec, "en");
   check("CDG→LHR : interdiction NON CITÉE → statut pays `confirmation_required`",
     dec.destination.entry_status === "confirmation_required", String(dec.destination.entry_status));
-  check("…et elle est NOMMÉE plutôt que perdue", 
+  check("…et elle est NOMMÉE plutôt que perdue",
     (dec.destination.entry_unverified_denies ?? []).includes("rule_gb_breed_ban_restricted_types"),
     JSON.stringify(dec.destination.entry_unverified_denies));
   check("…et le verdict global est `unknown` — ni autorisé, ni refusé", rep.verdict === "unknown", rep.verdict);
@@ -872,11 +917,44 @@ console.log("\n=== 13 quinquies. L'ENTRÉE DANS LE PAYS : UN STATUT TERNAIRE, ET
     textes.some((t) => /may restrict this dog on entry/i.test(t)), JSON.stringify(textes.slice(0, 2)));
   /* LE RATIONALE CATÉGORIQUE EST ENCADRÉ, pas supprimé : le texte officiel reste lisible entier. */
   const cond = (rep.conditions ?? [])[0];
-  check("l'exigence non décisive est présentée comme une restriction POTENTIELLE à confirmer",
-    /Potential entry restriction, to confirm/i.test(cond?.text ?? ""), (cond?.text ?? "").slice(0, 70));
-  check("…mais le texte officiel y est conservé ENTIER, avec son lien",
-    /Dangerous Dogs Act 1991/.test(cond?.text ?? "") && /Certificate of Exemption/.test(cond?.text ?? "")
-      && typeof cond?.source_url === "string");
+  check("l'exigence non décisive est présentée comme une restriction POTENTIELLE",
+    /^Potential entry restriction\./i.test(cond?.text ?? ""), (cond?.text ?? "").slice(0, 70));
+  /* CE CONTRÔLE DISAIT L'INVERSE, ET IL GRAVAIT LE DÉFAUT (contre-revue du 05/09/2026). Il
+     EXIGEAIT que le texte officiel soit « conservé entier » dans la condition. Or ce texte est
+     `rationale` — NOTRE résumé éditorial —, et la phrase qui l'introduisait l'attribuait à la
+     page officielle : « Ce que dit la page officielle… ». La règle britannique n'a AUCUNE
+     `source.quote`. Le rapport publiait donc, sous l'autorité de gov.uk, des conclusions
+     catégoriques que personne n'y a lues. Encadrer un texte ne le rend pas sourçable. */
+  check("…et NOTRE résumé éditorial n'est PAS publié sous l'autorité de la page officielle",
+    !/Dangerous Dogs Act 1991/.test(cond?.text ?? "") && !/Certificate of Exemption/.test(cond?.text ?? "")
+      && !/What the official page says/i.test(cond?.text ?? ""), (cond?.text ?? "").slice(0, 90));
+  check("…mais le LIEN officiel, lui, est bien servi — le visiteur va lire le vrai texte",
+    typeof cond?.source_url === "string" && /^https:\/\/www\.gov\.uk\//.test(cond.source_url), String(cond?.source_url));
+  /* LA CONTRE-ÉPREUVE EXACTE DEMANDÉE : remplacer le `rationale` britannique par une phrase
+     absurde ne doit modifier AUCUN texte public ; le lien, le `rule_id` et la criticité restent. */
+  {
+    const { rawKB: brutR, normalize: normR } = await import("./packages/knowledge/src/index.ts");
+    const brut = JSON.parse(JSON.stringify(brutR));
+    let touche = 0;
+    for (const r of brut.rules ?? []) if (r.id === "rule_gb_breed_ban_restricted_types") {
+      r.rationale = "ABSURDITÉ DE CONTRE-ÉPREUVE : tous les chiens doivent porter un chapeau.";
+      r.rationale_i18n = {}; touche++;
+    }
+    check("témoin : le rationale britannique a bien été remplacé", touche === 1);
+    const repAbs = explain(evaluate(normR(brut), { origin: "airport_cdg", destination: "airport_lhr",
+      dog: { breed_id: "breed_american_bully_xl", weight_kg: 50 }, travel_type: "pet", placement: "any", locale: "en" }), "en");
+    const condAbs = (repAbs.conditions ?? []).find((c) => c.rule_id === "rule_gb_breed_ban_restricted_types");
+    check("un `rationale` absurde ne change AUCUN texte public",
+      condAbs?.text === cond?.text, JSON.stringify(condAbs?.text ?? "").slice(0, 90));
+    check("…et le lien, le `rule_id` et la criticité restent servis",
+      condAbs?.source_url === cond?.source_url && condAbs?.rule_id === cond?.rule_id
+        && condAbs?.criticality === cond?.criticality,
+      JSON.stringify({ u: condAbs?.source_url, r: condAbs?.rule_id, c: condAbs?.criticality }));
+    /* Et l'absurdité n'apparaît nulle part ailleurs dans le rapport. */
+    const tousTextes = JSON.stringify(repAbs);
+    check("…et l'absurdité n'apparaît NULLE PART dans le rapport public",
+      !/chapeau/i.test(tousTextes));
+  }
   check("…et elle garde son niveau critique — l'encadrer ne l'atténue pas",
     cond?.criticality === "critical", String(cond?.criticality));
   check("aucune exigence issue d'un `deny` non décisif ne COMMENCE par une affirmation d'interdiction",

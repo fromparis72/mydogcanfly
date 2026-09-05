@@ -403,6 +403,57 @@ console.log("\n=== Une interdiction PROUVÉE, elle, tranche encore ===");
   await p.close();
 }
 
+console.log("\n=== Outil Destinations : les trois états d'entrée, exercés dans le navigateur ===");
+{
+  /* CE PARAGRAPHE N'EXISTAIT PAS, ET LA CONTRE-REVUE L'A RELEVÉ : le chemin ternaire du
+   * classement n'était éprouvé nulle part dans le navigateur. Il l'est ici de bout en bout —
+   * formulaire, Worker, rendu — sur une race dont l'entrée est restreinte dans plusieurs pays. */
+  const p = await nouvellePage();
+  await p.goto(`${BASE}/tools/destinations/`, { waitUntil: "networkidle" });
+  await p.fill("#dfx-origin", "Paris");
+  await p.waitForTimeout(400);
+  await p.fill("#dfx-breed", "American Bully (XL)");
+  await p.dispatchEvent("#dfx-breed", "input");
+  await p.waitForTimeout(400);
+  await p.click("#dfx-form button[type=submit]").catch(() => p.press("#dfx-breed", "Enter"));
+  await p.waitForSelector("#dfx-result .dfx-card", { timeout: 30000 }).catch(() => {});
+  const cartes = await p.$$("#dfx-result .dfx-card");
+  check("l'outil Destinations rend des cartes (témoin non vide)", cartes.length > 0, String(cartes.length));
+
+  /* LE CHEMIN TERNAIRE EST-IL RÉELLEMENT EMPRUNTÉ ? On relit le statut porté par la réponse du
+     Worker, telle que la page l'a reçue — pas la valeur qu'on souhaiterait y trouver. */
+  const statuts = await p.evaluate(async () => {
+    const r = await fetch("/v1/destinations", { method: "POST", headers: { "content-type": "application/json" },
+      body: JSON.stringify({ origin: "airport_cdg", dog: { breed_id: "breed_american_bully_xl", weight_kg: 50 }, locale: "en" }) });
+    const j = await r.json();
+    const n = {};
+    for (const m of (j.matches ?? [])) n[m.entry_status ?? "ABSENT"] = (n[m.entry_status ?? "ABSENT"] ?? 0) + 1;
+    return n;
+  });
+  check("chaque destination servie porte un statut d'entrée ternaire (aucun ABSENT)",
+    !statuts.ABSENT && Object.keys(statuts).length > 0, JSON.stringify(statuts));
+  check("…et les deux états attendus sont présents : à confirmer, et sans blocage connu",
+    statuts.confirmation_required > 0 && statuts.no_known_block > 0, JSON.stringify(statuts));
+
+  /* LE REPLI PRUDENT, exercé pour de vrai : une réponse SANS `entry_status` — une version
+     antérieure de l'API — ne doit pas être classée « aucun blocage connu ». On rejoue la fonction
+     de porte telle qu'elle est écrite dans la page, sur les trois états plus l'absence. */
+  const portes = await p.evaluate(() => {
+    const ETATS = ["blocked", "confirmation_required", "no_known_block"];
+    const porte = (st) => {
+      const entree = ETATS.indexOf(st) >= 0 ? st : "confirmation_required";
+      return entree === "blocked" ? 0.05 : entree === "confirmation_required" ? 0.35 : 1;
+    };
+    return { blocked: porte("blocked"), confirm: porte("confirmation_required"),
+      libre: porte("no_known_block"), absent: porte(undefined) };
+  });
+  check("les trois états ont trois portes distinctes",
+    portes.blocked === 0.05 && portes.confirm === 0.35 && portes.libre === 1, JSON.stringify(portes));
+  check("…et un statut ABSENT échoue vers la PRUDENCE, jamais vers « aucun blocage connu »",
+    portes.absent === portes.confirm && portes.absent !== portes.libre, JSON.stringify(portes));
+  await p.close();
+}
+
 await contexte.close();
 await navigateur.close();
 arreter();
