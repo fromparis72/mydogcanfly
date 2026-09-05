@@ -104,13 +104,36 @@ const chanList = (brachy?.channels ?? []).map(chanName).join(" / ");
 // Titre SEO ≠ H1. Search Console montre que la requête tapée est « <compagnie> pet policy » :
 // on met donc « pet » (générique, très recherché) ET « dog » (spécialité du site). Le suffixe
 // de marque est retiré : sur un site jeune il consomme des caractères sans rien rapporter.
-/* Aucun canal de cette compagnie n'est décidé ? Alors la fiche ne peut pas se coiffer d'un verdict
-   catégorique. La lecture passe par la MÊME politique runtime que les pastilles de canal — jamais
-   par `channels[].cls`, qui est éditorial et que le contre-test du 15/08/2026 a pris en flagrant
-   délit de contredire la décision canonique. */
+/* ── LE VERDICT DE TÊTE EST DÉRIVÉ DES TROIS CANAUX, TOUJOURS ─────────────────────────────────
+ *
+ * Première rédaction, refusée par la contre-revue du 05/09/2026 et à juste titre : elle passait en
+ * état prudent tant qu'aucun canal n'était décidé, PUIS rendait la main au verdict YAML dès qu'un
+ * canal l'était. Une simple citation cabine aurait donc pu faire réapparaître un « No pets » ou un
+ * « Easy » historique sans rapport avec les décisions canoniques — la contradiction qu'on ferme
+ * serait revenue par la porte de derrière, et personne ne l'aurait vue venir.
+ *
+ * La règle est donc SANS ÉCHAPPATOIRE : aucun chemin public ne relit `d.verdict.cls` ni
+ * `d.verdict.label`. Le sens ET la couleur descendent des trois politiques runtime :
+ *
+ *   au moins un `allowed`                        → transport possible sur un canal vérifié (ok)
+ *   aucun `allowed`, au moins un à confirmer      → conditions à confirmer (warn)
+ *   trois `denied` prouvés                        → aucun canal accepté (no)
+ *
+ * Le libellé vient des chaînes PUBLIÉES, jamais du YAML. */
 const politiquesDeLaFiche = Object.values(kbAir?.premium?.policy ?? {}) as { status?: string }[];
-const verdictPrudent = politiquesDeLaFiche.length > 0
-  && !politiquesDeLaFiche.some((p) => p.status === "allowed" || p.status === "denied");
+const aUnCanal = (st: string) => politiquesDeLaFiche.some((p) => p.status === st);
+const verdictDerive: { cls: "ok" | "warn" | "no"; cle: string } =
+  aUnCanal("allowed") ? { cls: "ok", cle: "premium.verdict_open" }
+  : aUnCanal("confirmation_required") ? { cls: "warn", cle: "air.to_confirm" }
+  : { cls: "no", cle: "premium.verdict_none" };
+
+/* LE SCORE ET LA NOTE RESTENT MASQUÉS TANT QU'ILS NE DÉRIVENT PAS DE DONNÉES PROUVÉES.
+ * `rating` (4,5/5 et 89/100) est calculé sur des politiques dont aucune ne porte de citation, et
+ * `verdictNote` est de la prose éditoriale — 19 des 102 affirment encore l'ouverture d'un canal
+ * (« Cabin and hold are both open »). Un chiffre flatteur ou une phrase affirmative à côté d'un
+ * « à confirmer » disent au lecteur le contraire l'un de l'autre. Ils reparaîtront quand ils
+ * descendront de faits prouvés, pas avant. */
+const scoreEtNoteAffichables = aUnCanal("allowed");
 
 const seoLong = F("{0} pet policy: dog in cabin, hold & cargo", "{0} : animaux et chien en cabine ou en soute", "{0}: mascotas y perro en cabina o bodega", d.name);
 const seoShort = F("{0} pet policy: dog in cabin & hold", "{0} : animaux en cabine ou en soute", "{0}: mascotas en cabina o bodega", d.name);
@@ -162,17 +185,15 @@ const jsonLd = faqItems.length ? [webpageLd, faqJsonLd(faqItems)] : [webpageLd];
             * (`air.to_confirm`) dans la classe prudente, et le libellé éditorial s'efface. Dès
             * qu'une citation vérifiée rouvre un canal, l'ancien verdict revient de lui-même —
             * rien à défaire le jour venu. */}
-          <span class={`pill ${verdictPrudent ? "warn" : d.verdict.cls} big`}>
-            ★ {verdictPrudent ? tt(locale, "air.to_confirm") : t(d.verdict.label)}
-          </span>
-          {rating && (
+          <span class={`pill ${verdictDerive.cls} big`}>★ {tt(locale, verdictDerive.cle)}</span>
+          {scoreEtNoteAffichables && rating && (
             <span class={`hv-score hv-score--${scoreCls}`} title={T("MyDogCanFly score", "Note MyDogCanFly", "Puntuación MyDogCanFly")}>
               <b>{rating.score.toFixed(1)}</b><small>/5</small>
             </span>
           )}
         </div>
-        {rating && <div class="hv-pts">{rating.points}/100 · {T("MyDogCanFly score", "note MyDogCanFly", "puntuación MyDogCanFly")}</div>}
-        <p>{t(d.verdictNote)}</p>
+        {scoreEtNoteAffichables && rating && <div class="hv-pts">{rating.points}/100 · {T("MyDogCanFly score", "note MyDogCanFly", "puntuación MyDogCanFly")}</div>}
+        {scoreEtNoteAffichables && <p>{t(d.verdictNote)}</p>}
       </div>
       {/* Non-affiliation, sous le logo et non enterrée dans les mentions légales.
         *
@@ -408,16 +429,33 @@ const jsonLd = faqItems.length ? [webpageLd, faqJsonLd(faqItems)] : [webpageLd];
       title={F("Flying with a dog on {0}: common questions",
                "Voyager avec un chien sur {0} : questions fréquentes",
                "Viajar con un perro en {0}: preguntas frecuentes", d.name)}
-      note={F("Answers drawn from {0}'s published conditions, last verified {1}. Airline conditions are commercial and can change — confirm at booking.",
-              "Réponses tirées des conditions publiées par {0}, dernière vérification le {1}. Les conditions d'une compagnie sont commerciales et peuvent changer — confirme à la réservation.",
-              "Respuestas basadas en las condiciones publicadas por {0}, última verificación el {1}. Las condiciones de una aerolínea son comerciales y pueden cambiar — confírmalo al reservar.",
-              d.name, fmtDate(d.verified_date))}
+      {/* LA FAQ NE DATE PLUS UNE VÉRIFICATION QU'ELLE NE PEUT PAS ÉTABLIR (contre-revue du
+        * 05/09/2026). Elle affirmait « dernière vérification le 8 août 2026 » sur une fiche dont
+        * aucune politique ne porte de citation. Ce qui reste est vrai et utile : les réponses
+        * viennent des conditions publiées par la compagnie, et ces conditions changent. */}
+      note={F("Answers drawn from {0}'s published conditions. Airline conditions are commercial and can change — confirm with the airline at booking.",
+              "Réponses tirées des conditions publiées par {0}. Les conditions d'une compagnie sont commerciales et peuvent changer — confirme auprès d'elle à la réservation.",
+              "Respuestas basadas en las condiciones publicadas por {0}. Las condiciones de una aerolínea son comerciales y pueden cambiar — confírmalo con la aerolínea al reservar.",
+              d.name)}
     />
 
     <OnwardNav locale={locale} currentAirlineId={id} defaultIso={homeIso} defaultName={homeName} />
 
     <div class="card src">
-      <div class="chips"><span class="pill ok">🛡️ {T("Official source", "Source officielle", "Fuente oficial")}</span><span class="muted">{t(d.sources)}</span></div>
+      {/* LE BLOC HISTORIQUE `d.sources` N'EST PLUS RENDU (contre-revue du 05/09/2026).
+        *
+        * Il affichait, sous un bouclier vert « Source officielle », une ligne du genre « Air France
+        * sources · confidence 5/5 · collected 8 August 2026 ». Trois affirmations, dont aucune
+        * n'est rattachable aux faits de la page : un bouclier qui valide, une confiance chiffrée
+        * qui ne vient d'aucune preuve, une date de collecte globale qui ne dit rien de la politique
+        * cabine ni de la soute. Retirer le NOMBRE de sources ne suffisait pas — c'est la promesse
+        * entière qu'il fallait retirer.
+        *
+        * Seuls les blocs de CANAL parlent encore de provenance, et sous condition stricte : une
+        * `T0bAuditSource` affiche citation, locator, date et confiance ; une
+        * `official_source_unquoted` n'affiche que son lien et la réserve prudente.
+        *
+        * `verified_date` reste en donnée interne : il porte la cadence de revue (ADR-0007). */}
       {/* G minimal (arbitrage Codex 28/08/2026) : la fiche décrit la compagnie qui vend — en
           partage de code, l'opérateur effectif peut différer et ses conditions avec. Présence
           quadrilingue garantie par test-mention-transporteur.mjs. */}

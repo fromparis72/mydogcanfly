@@ -435,6 +435,18 @@ if (!DIST) {
       if (m[1] === "ok") vert++; else if (m[1] === "no") rouge++; else prudent++;
       if (statuts.some((st) => st === "allowed" || st === "denied")) avecCanalDecide++;
     }
+    /* AUCUN CHEMIN PUBLIC NE RELIT L'ÉDITORIAL — vérifié sur la SOURCE, pas sur le rendu.
+     * Ma première fermeture rendait la main à `d.verdict.cls` dès qu'un canal serait décidé : une
+     * citation cabine aurait pu faire réapparaître un « No pets » historique. La contre-revue l'a
+     * refusé, et ce contrôle rend le retour inconstructible plutôt qu'improbable. */
+    const gabarit = readFileSync("packages/ui/src/components/AirlinePremiumPage.astro", "utf8");
+    const codeSeul = gabarit.replace(/\{\/\*[\s\S]*?\*\/\}/g, " ").replace(/\/\*[\s\S]*?\*\//g, " ");
+    check("le gabarit ne lit plus `d.verdict.cls` ni `d.verdict.label`",
+      !/d\.verdict\.(cls|label)/.test(codeSeul),
+      (codeSeul.match(/d\.verdict\.\w+/g) ?? []).join(", "));
+    check("le bloc historique `d.sources` n'est plus rendu", !/\bt\(d\.sources\)/.test(codeSeul));
+    check("la FAQ ne date plus une vérification", !/last verified|dernière vérification/.test(codeSeul));
+
     /* ARBITRÉ ET CORRIGÉ LE 05/09/2026. Le constat figé disait 32 verts et 116 rouges surmontant
      * zéro canal décidé. Le verdict descend désormais des décisions : tant qu'aucun canal n'est
      * décidé, la fiche affiche la réserve PUBLIÉE dans la classe prudente. Les deux contrôles
@@ -465,11 +477,19 @@ if (!DIST) {
       if (CATEGORIQUE.test(m[1])) notesCategoriques++;
       if (/\b(fee|fees|fare|price|priced)\b/i.test(m[1])) notesTarif++;
     }
-    /* La NOTE sous le verdict reste éditoriale : elle dit en prose ce que la pastille ne dit plus.
-       Le compte est conservé tel quel — le libellé prudent la surmonte désormais, ce qui atténue
-       la contradiction sans la supprimer. Prochaine passe, si la contre-revue le demande. */
-    check("19 des 102 notes de verdict affirment encore l'ouverture d'un canal — compte figé",
+    /* LES 19 NOTES CATÉGORIQUES NE SONT PLUS UNE « PROCHAINE PASSE ». La contre-revue a tranché :
+       elles font partie de cette fermeture. Elles restent DANS LA DONNÉE — les retirer serait une
+       réécriture éditoriale de 102 fiches — mais elles ne sont plus RENDUES tant qu'aucun canal
+       n'est prouvé, au même titre que le score. Le compte dans la donnée reste figé ; ce qui est
+       vérifié ici, c'est qu'il n'atteint plus l'écran. */
+    check("19 des 102 notes restent dans la DONNÉE — compte figé",
       notes === 102 && notesCategoriques === 19, JSON.stringify({ notes, notesCategoriques }));
+    const auteursNotes = fiches.filter((f) => {
+      const html = readFileSync(f, "utf8");
+      return /class="hv-pts"/.test(html) || /hv-score/.test(html);
+    });
+    check("ni le score, ni les points, ni la note éditoriale n'atteignent l'écran",
+      auteursNotes.length === 0, `${auteursNotes.length} page(s) les affichent encore`);
     console.log(`  ·    ${notesTarif} notes parlent de tarifs — elles décrivent la COMPAGNIE, pas notre page : constat, pas faute`);
   }
 
