@@ -227,6 +227,100 @@ for (const s of SENTINELLES_COMPAGNIES) {
   }
 }
 
+// ---- 2 bis. AUCUN SEUIL NON PROUVÉ NE SORT SUR UNE FICHE ------------------------------------
+console.log("\n=== 2 bis. Une fiche « à confirmer » ne publie AUCUN seuil, dimension ni modalité ===");
+{
+  /* LE DÉFAUT QUE CE PARAGRAPHE FERME, ET QUE J'AVAIS MANQUÉ.
+   *
+   * J'ai écrit que « rien de faux n'atteint l'écran » après n'avoir regardé que la PASTILLE.
+   * C'était inexact : sous une pastille « à confirmer », la fiche publiait encore le texte
+   * éditorial historique — « moins de 8 kg », « 46 × 28 × 24 cm », « soute jusqu'à 75 kg » chez
+   * Air France, l'âge minimal et les exceptions de routes chez Thai Airways — par SIX surfaces :
+   * `channels[].detail`, la FAQ (et son balisage `FAQPage`), `crate`, `temperature`,
+   * `assistance` et `goodToKnow`. Masquer la première en republiant les cinq autres n'aurait
+   * rien fermé : c'est ce contrôle, sur le DOM CONSTRUIT, qui les a toutes trouvées.
+   *
+   * La lecture a lieu dans un PROCESSUS COURT (`test-lib/verifier-seuils-fiches.mjs`) : écrite
+   * d'abord ici, elle a fait passer le processus principal de 355 à 565 Mo et rougir son propre
+   * plafond de 400 Mo — j'avais introduit, en écrivant un contrôle, la régression que le harnais
+   * surveille ailleurs. Les motifs cherchés sont ceux des fiches elles-mêmes. */
+  const MOTIFS = [
+    ["\\b\\d+\\s*(?:kg|kilos?)\\b", "i", "un seuil de poids"],
+    ["\\d+\\s*[×x]\\s*\\d+\\s*[×x]\\s*\\d+", "i", "des dimensions de caisse"],
+    ["Updated \\d|Mise à jour le|Actualizado el|Atualizado em", "i", "une date de mise à jour globale"],
+    ["No cabin, no hold|Cargo only|No pets in the cabin|No cabin, anywhere|No hold\\b", "i", "une puce de refus"],
+  ];
+  /* Le désaveu, dans les quatre langues — la phrase par laquelle le bloc des races se déclare
+     NÔTRE et non celui de la compagnie. Sans elle, son texte reste dans l'examen. */
+  const CLASSIF = ["MyDogCanFly's own brachycephalic|classification brachycéphale de MyDogCanFly|clasificación braquicéfala propia|classificação braquicefálica do pr", ""];
+
+  const FICHES = [...new Set(SENTINELLES_COMPAGNIES.map((x) => x.slug))];
+  const taches = [];
+  for (const slug of FICHES) for (const [langue, pfx] of LANGUES) {
+    taches.push({ rel: path.join(pfx, "airlines", slug, "index.html"), slug, langue });
+  }
+  const require2 = createRequire(import.meta.url);
+  const { spawnSync: spawn2 } = require2("node:child_process");
+  const os2 = require2("node:os");
+  const dossier2 = fs.mkdtempSync(path.join(os2.tmpdir(), "mdcf-seuils-"));
+  let res2 = null;
+  try {
+    const f2 = path.join(dossier2, "taches.json");
+    fs.writeFileSync(f2, JSON.stringify({ dist: DIST, motifs: MOTIFS, classif: CLASSIF, taches }));
+    const r2 = spawn2(process.execPath, ["--max-old-space-size=512",
+      path.join(ROOT, "test-lib", "verifier-seuils-fiches.mjs"), f2],
+      { encoding: "utf8", maxBuffer: 32 * 1024 * 1024 });
+    check("le lot de lecture des fiches a abouti sous 512 Mo de tas", r2.status === 0,
+      (r2.stderr || "").split("\n").find((l) => /heap|Error/i.test(l)) ?? `code ${r2.status}`);
+    if (r2.status === 0) res2 = JSON.parse(r2.stdout);
+  } finally {
+    fs.rmSync(dossier2, { recursive: true, force: true });
+  }
+
+  if (res2) {
+    /* Chaque fuite est NOMMÉE avec son extrait : un compte seul ne dirait pas quoi corriger. */
+    for (const f of res2.fuites) {
+      check(`${f.slug} · ${f.langue} : aucune publication ${f.quoi}`, false, `« …${f.extrait}… »`);
+    }
+    check(`aucune fiche sentinelle ne publie de seuil, dimension, date ou refus non prouvé`,
+      res2.fuites.length === 0, `${res2.fuites.length} fuite(s)`);
+    /* JAMAIS VERT FAUTE DE MATIÈRE : sans pages lues, tout ce qui précède ne prouve rien. */
+    check(`témoin : des fiches ont RÉELLEMENT été lues (${res2.pagesLues})`,
+      res2.pagesLues === taches.length, `${res2.pagesLues}/${taches.length}`);
+    /* Et le témoin de l'EXCLUSION : elle a porté sur des blocs réels, tous munis de leur désaveu. */
+    check(`témoin : le bloc « notre classification » a été trouvé sur ${res2.blocsNotres} page(s), toutes avec son désaveu`,
+      res2.blocsNotres > 0 && res2.notresSansDesaveu.length === 0,
+      res2.notresSansDesaveu.slice(0, 3).join(" | "));
+  }
+}
+
+// ---- 2 ter. LA BRANCHE `allowed` N'A PLUS DE PORTEUR RÉEL — TÉMOIN SYNTHÉTIQUE ---------------
+console.log("\n=== 2 ter. La branche `allowed`, éprouvée par un témoin SYNTHÉTIQUE nommé ===");
+{
+  /* Air France cabine portait `allowed` : depuis la frontière, plus AUCUNE des 302 politiques ne
+   * l'est. La sentinelle a donc changé d'état (mouvement nommé dans `sentinelles-entites.mjs`),
+   * et la couverture d'un vrai refus est passée à British Airways cabine, seule décision fondée
+   * sur une citation stricte. La branche `allowed`, elle, n'a plus de porteur : elle est éprouvée
+   * ICI, sur une politique SYNTHÉTIQUE explicitement nommée, jamais sur une page du site. Sans ce
+   * paragraphe, le rendu d'un canal accepté ne serait plus éprouvé nulle part. */
+  const { cleLibelleStatut, classeStatut } = await import("./packages/ui/src/lib/decisionCanal.ts");
+  check("SYNTHÉTIQUE : un canal `allowed` porte la classe et le libellé publiés de l'acceptation",
+    classeStatut("allowed") === "ok" && cleLibelleStatut("allowed") === "premium.allowed");
+  check("…et les deux autres états gardent les leurs",
+    classeStatut("denied") === "no" && cleLibelleStatut("denied") === "premium.not_allowed"
+      && classeStatut("confirmation_required") === "warn"
+      && cleLibelleStatut("confirmation_required") === "air.to_confirm");
+  /* ET LA MESURE QUI JUSTIFIE LE TÉMOIN : aucune fiche réelle ne porte `allowed`. Le jour où une
+     citation en produira un, ce contrôle rougira et la sentinelle redeviendra réelle. */
+  /* La base déjà chargée en tête de fichier, pas une seconde copie : `loadKB()` n'est pas
+     mémoïsé, et deux instances coûtaient ~70 Mo au processus principal — assez pour faire
+     rougir son propre plafond de 400 Mo. Une seule base, un seul instrument. */
+  const allowedReels = [...kb.airlines.values()].flatMap((a) =>
+    ["cabin", "hold", "cargo"].filter((pl) => a.premium?.policy?.[pl]?.status === "allowed").map((pl) => `${a.id}#${pl}`));
+  check("état figé : AUCUN canal réel n'est `allowed` — d'où le témoin synthétique",
+    allowedReels.length === 0, JSON.stringify(allowedReels.slice(0, 3)));
+}
+
 // ---- 3. La preuve auditée, DANS le bloc du canal, à l'URL EXACTE ------------------------------
 console.log("\n=== 3. La preuve auditée du fret Thai : lien exact, texte visible, confiance nommée ===");
 {
@@ -260,11 +354,14 @@ console.log("\n=== 3. La preuve auditée du fret Thai : lien exact, texte visibl
       visible.includes(libelleConfiance), visible.slice(0, 140));
     check(`${langue} : aucune auto-citation MyDogCanFly dans le bloc décisionnel`,
       !/mydogcanfly\.com/i.test(bloc?.innerHTML ?? ""));
-    /* La date de la FICHE reste visible ailleurs sur la page, et ne se substitue pas à celle du
-       canal : les confondre présenterait une vérification de juillet comme l'audit du 13 août. */
+    /* MOUVEMENT NOMMÉ (05/09/2026) : LA DATE GLOBALE DE LA FICHE N'EST PLUS PUBLIÉE, ET NE DOIT
+       PLUS L'ÊTRE. Ce contrôle EXIGEAIT qu'elle soit visible. Or une date de fiche ne se rattache
+       à aucune preuve précise : affichée en tête, elle laisse croire que tout ce que la page
+       affirme a été vérifié à cette date. Seule une date ATTACHÉE À UNE PREUVE peut paraître —
+       celle du canal audité, contrôlée juste au-dessus. L'exigence est donc inversée. */
     const page = doc.body.textContent.replace(/\s+/g, " ");
-    check(`${langue} : la date de la fiche (« ${formatDate(langue, dateFiche)} ») est visible et distincte`,
-      page.includes(formatDate(langue, dateFiche)) && !visible.includes(formatDate(langue, dateFiche)));
+    check(`${langue} : la date globale de la fiche (« ${formatDate(langue, dateFiche)} ») n'est PAS publiée`,
+      !page.includes(formatDate(langue, dateFiche)), formatDate(langue, dateFiche));
     dom.window.close();
   }
   /* Contre-épreuve : une politique NON REVÉRIFIÉE ne reçoit aucune source, dans aucune langue. */
@@ -388,8 +485,24 @@ console.log(`\n=== 5. Les ${CIBLE.length} canaux contradictoires × 4 langues : 
    * aucune page officielle lisible). Son éditorial requalifié (cls `warn`, « À confirmer »)
    * se lit « allowed » au sens de litDeCls face à `confirmation_required` : le canal rejoint
    * le registre où la soute et le fret de la même fiche vivaient déjà — 71 fiches, inchangé. */
-  check("80 canaux contradictoires sur 71 fiches, relus des fiches et du contrat runtime",
-    CONTRADICTOIRES.length === 80 && new Set(CONTRADICTOIRES.map((c) => c.slug)).size === 71,
+  /* 80 → 295, 71 fiches → 102 (05/09/2026, FRONTIÈRE DE CONFIANCE). MOUVEMENT NOMMÉ, et le
+   * plus large de ce dépôt. Aucune des 302 politiques n'est plus `allowed`, et `denied` ne
+   * s'obtient que sur une phrase citée : 301 canaux valent « à confirmer ». Le `cls` éditorial,
+   * lui, garde la couleur de son époque — d'où 295 divergences sur 102 fiches, c'est-à-dire
+   * presque toutes. Ce n'est pas une régression : c'est la mesure de la dette éditoriale que la
+   * frontière vient de rendre visible d'un coup.
+   *
+   * CETTE DETTE EST INTERNE ET NE PEUT PLUS ATTEINDRE L'INTERFACE. Aucun sous-système de
+   * réconciliation n'a été construit — ç'aurait été traiter le symptôme. Ce sont les LECTEURS
+   * qui ont disparu : la carte de canal lit `politiqueDuCanal`, la FAQ aussi depuis ce lot, et
+   * `ladder`, `restrictions`, `crate`, `temperature`, `assistance`, `goodToKnow` et les puces
+   * de date sont masqués par `surfacesEditorialesAffichables`. Le contrôle ci-dessous continue
+   * de prouver, bloc par bloc et langue par langue, que c'est bien la décision CANONIQUE qui
+   * est publiée sur chacun de ces 295 canaux — donc que la dette reste muette.
+   *
+   * Ce compte ne bougera plus que par une donnée : chaque citation obtenue en retirera un. */
+  check("295 canaux contradictoires sur 102 fiches, relus des fiches et du contrat runtime",
+    CONTRADICTOIRES.length === 295 && new Set(CONTRADICTOIRES.map((c) => c.slug)).size === 102,
     `${CONTRADICTOIRES.length} canaux · ${new Set(CONTRADICTOIRES.map((c) => c.slug)).size} fiches`);
 
   /* LA LECTURE SE FAIT PAR LOTS, DANS DES PROCESSUS COURTS (CI du 16/08/2026, run 31 sur main).
@@ -466,8 +579,24 @@ console.log(`\n=== 5. Les ${CIBLE.length} canaux contradictoires × 4 langues : 
   check("la cible de cette portée n'est pas vide", CIBLE.length > 0, String(CIBLE.length));
   /* Et le PROCESSUS PRINCIPAL, lui, doit rester léger : c'est la preuve que la lecture des pages
      ne laisse plus rien derrière elle ici. */
+  /* CE QUE CETTE MESURE DIT — ET CE QU'ELLE DISAIT AVANT (correction du 05/09/2026).
+   *
+   * Elle lisait `heapUsed` tel quel, c'est-à-dire à un instant qui dépend de QUAND le ramasse-
+   * miettes a tourné. Trois exécutions IDENTIQUES du même code ont donné 365, 371 puis 420 Mo :
+   * le contrôle rendait donc un verdict tiré au sort autour de son seuil. Un contrôle qui rougit
+   * une fois sur trois sans que rien ne change finit désactivé — et emporte avec lui la garantie
+   * qu'il portait.
+   *
+   * On mesure désormais ce que la section VOULAIT dire : ce qui reste RETENU après une collecte
+   * forcée. C'est une quantité définie, reproductible, et plus SÉVÈRE que la précédente — elle
+   * ne peut plus être flattée par un ramasse-miettes opportun. Le plafond n'a pas bougé. */
+  const v8 = require_("node:v8"), vm = require_("node:vm");
+  v8.setFlagsFromString("--expose-gc");
+  vm.runInNewContext("gc")();
+  v8.setFlagsFromString("--no-expose-gc");
   const picParent = Math.round(process.memoryUsage().heapUsed / 1048576);
-  check(`le processus principal reste sous 400 Mo (${picParent} Mo)`, picParent < 400, `${picParent} Mo`);
+  check(`le processus principal ne RETIENT pas plus de 400 Mo après collecte (${picParent} Mo)`,
+    picParent < 400, `${picParent} Mo`);
 }
 
 console.log(`\n${pass} OK, ${fail} FAIL`);

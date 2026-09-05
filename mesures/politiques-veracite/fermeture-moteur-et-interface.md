@@ -689,3 +689,144 @@ donnée. Non nettoyées ici **délibérément** : toucher à la source invalider
 tout ce lot a été vérifié.
 
 **À la décision de Philippe** — la fusion, et le déploiement.
+
+---
+
+# Annexe — « rien de faux n'atteint l'écran » était FAUX (05/09/2026)
+
+## L'erreur, nommée
+
+J'ai conclu le lot précédent par : *« rien de faux n'atteint l'écran »*. C'était **inexact**, et
+la contre-revue l'a établi. Je n'avais regardé que la **pastille**. La pastille est bien
+canonique — elle lit `politiqueDuCanal`, elle est vérifiée bloc par bloc dans les quatre langues
+— mais elle ne représente qu'une fraction de ce que la fiche publie. Sous elle, et autour d'elle,
+le texte éditorial historique continuait de sortir tel quel.
+
+Ce n'est pas une imprécision de rédaction. C'est une **vérification partielle présentée comme
+une garantie générale** : j'ai contrôlé une surface, et j'ai conclu sur toutes. C'est la faute
+que ce dépôt refuse partout ailleurs, commise par moi, dans la phrase de clôture.
+
+## Ce que la fiche publiait réellement
+
+Une fiche a **deux chemins de données** pour un même canal :
+
+| chemin | contenu | citée ? |
+| --- | --- | --- |
+| `premium.policy[canal]` (base de connaissances) | statut, conditions, source, citation, date | oui, quand elle existe |
+| `channels[]` (fiche générée) | `cls`, `statusLabel`, `detail` — texte libre écrit à la main | **jamais, et pas de place pour l'être** |
+
+La carte avait été ramenée sur le premier. **Six surfaces** lisaient encore le second, ou des
+champs de la même nature :
+
+1. `channels[].detail`, rendu sans condition sous la pastille, chiffres **mis en gras** ;
+2. la **FAQ** (`airlineFaq`), qui republiait `statusLabel` + `detail` — et, par le balisage
+   `FAQPage`, les donnait à lire à une machine comme des réponses autorisées ;
+3. `crate` — « max 55 × 40 × 23 cm — mais 40 × 25 × 25 cm sur DH8-100 et ATR » ;
+4. `temperature` (pastilles + note) ;
+5. `assistance` ;
+6. `goodToKnow` — « accord préalable obligatoire · soute ≥ 24 h · États-Unis 48 h », « 15 semaines ».
+
+À quoi s'ajoutaient `ladder` (« Cabine ≤ 8 kg »), les 201 `restrictions` — **aucune sourcée**,
+mesuré — et les 102 puces « Mise à jour le … ».
+
+**Mesure de la sourçabilité** : une entrée de `crate` n'a que les clés `en`, `fr`, `es`, `pt`.
+Il n'y a pas même un champ où une source pourrait aller. Ces textes ne sont pas « en attente de
+vérification » : ils sont **structurellement invérifiables** en l'état.
+
+## Ce qui a été fait
+
+**Canal non prouvé** — plus aucun `detail`. Une phrase générique localisée (`premium.channel_unproven`)
+dit l'ignorance et renvoie à la compagnie ; le lien officiel non cité reste montré, sans bouclier,
+sans « vérifié le… », sans indice de confiance.
+
+**Canal prouvé** — seule la citation stricte est publiée, verbatim, dans le bloc `proof`, avec son
+lien et son emplacement. Correction d'une seconde inexactitude de ma part : la phrase générique
+était d'abord rendue **aussi** sur British Airways cabine, où elle affirme « rien n'a été confirmé
+sur une source citée » — ce qui y est **faux**. Elle est désormais conditionnée à l'absence de preuve.
+
+**La FAQ lit la politique canonique.** C'est le point qui ferme la classe entière : elle reçoit
+`kbAir?.premium?.policy` et se construit avec les **mêmes pièces que la carte** — libellé publié du
+statut, puis citation verbatim ou phrase d'ignorance. Elle ne se rabat **jamais** sur l'éditorial.
+Les quatre questions adossées à `restrictions`, `crate`, `temperature` et `assistance` sont
+retirées : une réponse de FAQ est catégorique par construction, et le balisage la donne pour
+autorisée. Il reste **deux questions par fiche**, toutes deux adossées à la politique.
+
+**Les surfaces éditoriales sont masquées** par `surfacesEditorialesAffichables` : `ladder`,
+`restrictions`, `crate`, `temperature`, `assistance`, `goodToKnow`, et les puces de date et de refus.
+
+**Une phrase devenue pendante a été retirée.** Le bloc brachycéphale disait « ce que la compagnie a
+écrit figure dans les **restrictions ci-dessus** » — or `restrictions` venait d'être masqué. Elle
+renvoyait à un bloc absent, et affirmait de surcroît un refus tiré de ces mêmes données non
+sourcées. Ce masquage-là, je ne l'avais pas anticipé : c'est en relisant mes propres consommateurs
+que je l'ai trouvé.
+
+**Ce qui RESTE, et pourquoi.** La liste des races brachycéphales reste, avec leurs poids. Elle
+porte sa phrase de désaveu : *« ces N races sont la classification de MyDogCanFly — ce n'est pas
+la liste publiée par {compagnie} »*. Ce sont **nos** données, assumées comme telles, et le maillage
+vers les fiches races en dépend. **Déviation nommée, soumise à arbitrage** : si Codex juge qu'un
+poids de race publié à côté d'un nom de compagnie reste trop ambigu, il tombe au prochain lot.
+
+## La dette 295/102 — interne, et désormais muette
+
+Le compte des canaux dont le `cls` éditorial contredit la décision canonique passe de **80 sur 71
+fiches** à **295 sur 102**. **Mouvement nommé** : depuis la frontière de confiance, aucune des 302
+politiques n'est `allowed` et `denied` ne s'obtient que sur une phrase citée — 301 canaux valent
+« à confirmer », tandis que le `cls` garde la couleur de son époque. Ce n'est pas une régression :
+c'est la mesure de la dette éditoriale, rendue visible d'un coup.
+
+**Aucun sous-système de réconciliation n'a été construit** — ç'aurait été traiter le symptôme.
+Ce sont les **lecteurs** qui ont disparu. Le contrôle de la section 5 continue de prouver, bloc par
+bloc et langue par langue, que c'est la décision canonique qui est publiée sur ces 295 canaux :
+la dette est donc **inatteignable depuis l'interface**, et le restera tant que ce contrôle vit.
+
+## Les preuves ajoutées
+
+**Preuve DOM** (`test-lib/verifier-seuils-fiches.mjs`, section 2 bis) : sur les 5 fiches
+sentinelles × 4 langues, **aucun** seuil de poids, dimension de caisse, date de mise à jour ni
+puce de refus ne survit dans le DOM construit. 16 pages lues, 12 blocs « notre classification »
+trouvés et retirés, **tous** porteurs de leur désaveu.
+
+Deux corrections de ma main sur cette preuve elle-même :
+
+- **le contrôle du désaveu était vide.** Je repérais le bloc par la phrase « classification de
+  MyDogCanFly », puis je vérifiais qu'il portait… cette même phrase. Il ne pouvait pas rougir. Le
+  bloc est désormais repéré par sa **structure** (une carte contenant des pastilles de race en
+  « N kg »), ce qui rend le désaveu **réfutable** ;
+- **j'ai introduit, en écrivant un contrôle de véracité, la régression que le harnais surveille
+  par ailleurs.** Lire ces 16 pages dans le processus principal l'a fait passer de 355 à 565 Mo,
+  au-delà de son plafond de 400. La lecture a été déplacée dans un **processus court**, comme
+  l'exige déjà l'architecture de ce fichier.
+
+**Témoin synthétique `allowed`** (section 2 ter) : Air France cabine et Thai Airways cabine
+passent à `confirmation_required` — **mouvement nommé** dans `sentinelles-entites.mjs`. La
+couverture d'un vrai refus passe à **British Airways cabine**, seule décision du dépôt fondée sur
+une citation stricte (« We don't carry pets in the cabin on any route. »). La branche `allowed`
+n'ayant plus **aucun** porteur réel — mesuré, et figé par un contrôle — elle est éprouvée par un
+témoin **explicitement déclaré synthétique**, jamais par une page du site.
+
+**Une mesure était tirée au sort.** Le plafond mémoire lisait `heapUsed` à un instant dépendant du
+ramasse-miettes : trois exécutions **identiques** ont donné 365, 371 puis 420 Mo. Un contrôle qui
+rougit une fois sur trois sans que rien ne change finit désactivé, et emporte sa garantie. Il
+mesure désormais ce qui reste **retenu après collecte forcée** — quantité définie, reproductible,
+et **plus sévère** : 115–131 Mo, plafond inchangé.
+
+## Une erreur trouvée par le build de production
+
+Ma première rédaction de la FAQ demandait le triplet cabine/soute/fret à **toutes** les fiches.
+Air Tahiti Nui n'a pas de politique de soute, et `politiqueDuCanal` **lève** plutôt que de déduire
+une décision d'un `cls` éditorial : le build de production s'est arrêté sur elle. Le garde avait
+raison — c'est ma question qui inventait un canal. La FAQ n'interroge plus que les canaux que la
+fiche **déclare**, exactement comme la carte.
+
+## Ce qui reste ouvert
+
+**À l'arbitrage de Codex** — les poids de races dans le bloc « notre classification », maintenus
+avec leur désaveu (ci-dessus).
+
+**À un lot ultérieur, nommé ici** — les `metaDesc` des 102 fiches annoncent encore « fares,
+restrictions and official sources », alors que les tarifs et les restrictions ne sont plus
+publiés. C'est une **inexactitude de métadonnée**, pas une affirmation sur le chien ; elle n'a pas
+été corrigée ici pour ne pas ouvrir la revue des 102 fiches que la contre-revue a explicitement
+écartée.
+
+**À la décision de Philippe** — la fusion, et le déploiement.

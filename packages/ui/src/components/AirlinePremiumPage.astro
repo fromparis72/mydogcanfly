@@ -135,6 +135,22 @@ const verdictDerive = verdictDeFiche(kbAir?.premium?.policy);
  * La constante est écrite en clair pour que sa suppression soit un geste délibéré, jamais un effet
  * de bord. */
 const scoreEtNoteAffichables = false as boolean;
+/* ── LES SURFACES ÉDITORIALES CATÉGORIQUES SONT MASQUÉES (contre-revue du 05/09/2026) ──────────
+ *
+ * Deux blocs de cette page affirmaient encore des faits que rien n'établit :
+ *
+ *   `ladder`        — « Cabine ≤ 8 kg · Soute 8–75 kg · Fret > 75 kg », des seuils publiés comme
+ *                     acquis, sur des canaux dont la décision vaut « à confirmer » ;
+ *   `restrictions`  — 201 entrées sur l'ensemble des fiches, et MESURÉ : aucune ne porte de
+ *                     source. Leurs clés sont `icon`, `title`, `pills`, `note` — rien d'autre.
+ *
+ * Ils suivent donc le score et le détail de canal : masqués tant qu'une preuve ne les fonde pas,
+ * par une CONSTANTE et non par une condition sur la donnée — rebrancher à la première fiche
+ * prouvée republierait les 101 autres. Ils reviendront compagnie par compagnie, quand chacune
+ * aura sa source ; rien n'est supprimé de la donnée elle-même.
+ *
+ * Ce n'est pas une mise à jour de harnais : c'est une correction de véracité publique. */
+const surfacesEditorialesAffichables = false as boolean;
 
 const seoLong = F("{0} pet policy: dog in cabin, hold & cargo", "{0} : animaux et chien en cabine ou en soute", "{0}: mascotas y perro en cabina o bodega", d.name);
 const seoShort = F("{0} pet policy: dog in cabin & hold", "{0} : animaux en cabine ou en soute", "{0}: mascotas en cabina o bodega", d.name);
@@ -149,9 +165,12 @@ const webpageLd = {
   isPartOf: { "@id": "https://mydogcanfly.com/#website" },
   about: { "@type": "Airline", name: d.name },
 };
-// FAQ dérivée des données de la fiche (aucun contenu inventé). Le balisage FAQPage n'est
-// émis que si des questions ont réellement pu être construites et sont donc visibles.
-const faqItems = airlineFaq(d, locale);
+/* FAQ construite sur la POLITIQUE CANONIQUE, la même que les cartes de canaux ci-dessous —
+   `kbAir?.premium?.policy` lui est passée explicitement. Sans elle, `airlineFaq` ne produit
+   aucune réponse de canal : elle ne se rabat JAMAIS sur `channels[].detail`, dont le texte
+   éditorial repartait autrefois dans le balisage `FAQPage`. Le détail est en tête de `faq.ts`.
+   Le balisage n'est émis que si des questions ont réellement pu être construites. */
+const faqItems = airlineFaq(d, locale, kbAir?.premium?.policy);
 const jsonLd = faqItems.length ? [webpageLd, faqJsonLd(faqItems)] : [webpageLd];
 ---
 <Base title={seoTitle} description={t(d.metaDesc)} locale={locale} ogType="article" jsonLd={jsonLd}>
@@ -169,7 +188,22 @@ const jsonLd = faqItems.length ? [webpageLd, faqJsonLd(faqItems)] : [webpageLd];
       <div class="hero-id">
         <h1>{tt(locale, "airline.h1").replace("{name}", d.name)}</h1>
         <div class="chips">
-          {d.chips.map((c) => (<span class={`pill ${c.cls ?? "neutral"}`}>{c.icon} {t(c.label)}</span>))}
+          {/* ── LES PUCES QUI AFFIRMENT SONT RETIRÉES (contre-revue du 05/09/2026) ──────────────
+              Mesuré sur les 102 fiches : 277 puces, dont 102 « Mise à jour le … » et 6 qui
+              énoncent un refus (« No cabin, no hold », « Cargo only », « No pets in the cabin »).
+
+              La puce de DATE est la plus trompeuse des deux : posée en tête, elle ne se rattache
+              à aucune preuve et laisse croire que TOUT ce que la page affirme a été vérifié ce
+              jour-là. Seule une date attachée à une preuve précise peut paraître — celle du canal
+              audité, dans son bloc.
+
+              Les 6 puces de refus énoncent une décision de canal que la frontière ne tient plus
+              pour établie : elles contrediraient les pastilles de la même page.
+
+              Ce qui reste est l'identité STRUCTURELLE — alliance, pays, aéroports : ni décision,
+              ni date de vérification. Le filtre porte sur l'icône parce que c'est ce que la donnée
+              offre ; il est mesuré et gardé par un contrôle DOM. */}
+          {d.chips.filter((c) => c.icon !== "🗓" && c.icon !== "🚫").map((c) => (<span class={`pill ${c.cls ?? "neutral"}`}>{c.icon} {t(c.label)}</span>))}
         </div>
       </div>
       <div class="hero-verdict">
@@ -217,7 +251,7 @@ const jsonLd = faqItems.length ? [webpageLd, faqJsonLd(faqItems)] : [webpageLd];
     <div class="card">
       <h2>⚖️ {T("Where does your dog travel?", "Où voyage ton chien ?", "¿Dónde viaja tu perro?")}</h2>
       <div class="ladder">
-        {d.ladder.map((s) => (<div style={`flex:${s.flex};background:${s.color}`}>{t(s.label)}<small>{typeof s.sub === "string" ? s.sub : t(s.sub)}</small></div>))}
+        {surfacesEditorialesAffichables && d.ladder.map((s) => (<div style={`flex:${s.flex};background:${s.color}`}>{t(s.label)}<small>{typeof s.sub === "string" ? s.sub : t(s.sub)}</small></div>))}
       </div>
       <p class="muted mt6">{T("Weight includes the carrier or kennel.", "Poids incluant le sac de transport ou la caisse.", "El peso incluye el bolso de transporte o la jaula.")}</p>
       <div class="g mt14">
@@ -240,7 +274,24 @@ const jsonLd = faqItems.length ? [webpageLd, faqJsonLd(faqItems)] : [webpageLd];
           return (
             <div class="mini" data-placement={c.placement} data-status={statut}>
               <div class="t">{c.icon} {t(c.name)}<span class={`pill ${classeStatut(statut)} ml`}>{tt(locale, cleLibelleStatut(statut))}</span></div>
-              <div class="k" set:html={chiffresEnGras(t(c.detail))} />
+              {/* ── `c.detail` NE SORT PLUS TEL QUEL (contre-revue du 05/09/2026) ─────────────
+                  J'avais écrit que « rien de faux n'atteint l'écran » après n'avoir vérifié que
+                  la PASTILLE. C'était inexact, et la contre-revue l'a montré : juste sous une
+                  pastille « à confirmer », cette ligne publiait le texte éditorial historique —
+                  « moins de 8 kg », « 46 × 28 × 24 cm », « soute jusqu'à 75 kg » pour Air France,
+                  l'âge minimal et les exceptions de routes pour Thai Airways — et
+                  `chiffresEnGras` mettait ces seuils EN GRAS. Le visiteur lisait donc « à
+                  confirmer » et, deux lignes plus bas, une règle détaillée donnée pour certaine.
+
+                  Une citation qui prouve l'ACCEPTATION ne prouve ni le poids, ni les dimensions,
+                  ni l'âge, ni les exceptions : ce détail n'est donc pas davantage publiable sur
+                  un canal prouvé. Ce que la preuve établit est publié à sa place, verbatim, dans
+                  le bloc `proof` ci-dessous — avec son lien et son emplacement. */}
+              {/* La phrase générique DIT « rien n'a été confirmé sur une source citée » : sur le
+                  seul canal qui l'est — British Airways cabine — elle serait fausse. Elle ne
+                  paraît donc que faute de preuve ; là où la preuve existe, c'est le bloc `proof`
+                  ci-dessous qui parle, et il ne dit que la phrase citée. */}
+              {!preuve && <div class="k">{tt(locale, "premium.channel_unproven")}</div>}
               {/* LE MONTANT A ÉTÉ RETIRÉ (micro-lot Tarifs, 29/08/2026). Il venait de
                   premium.policy[canal].fee — une chaîne libre, sans devise séparée, sans route,
                   sans date d'applicabilité : lisible, mais impossible à rapporter à un trajet.
@@ -309,7 +360,7 @@ const jsonLd = faqItems.length ? [webpageLd, faqJsonLd(faqItems)] : [webpageLd];
     <div class="card danger">
       <h2>⚠️ {T("Key restrictions", "Restrictions importantes", "Restricciones importantes")}</h2>
       <div class="g">
-        {d.restrictions.map((r) => (
+        {surfacesEditorialesAffichables && d.restrictions.map((r) => (
           <div class="mini">
             <div class="t">{r.icon} {t(r.title)}</div>
             <div class="chips mt8">{r.pills.map((p) => (<span class={`pill ${p.cls}`}>{t(p.label)}</span>))}</div>
@@ -339,7 +390,15 @@ const jsonLd = faqItems.length ? [webpageLd, faqJsonLd(faqItems)] : [webpageLd];
     {brachy && brachyList.length > 0 && (
       <div class="card">
         <h2>🐶 {T("Check whether your dog is snub-nosed", "Vérifie si ton chien est brachycéphale", "Comprueba si tu perro es braquicéfalo")}</h2>
-        <p class="k">
+        {/* CETTE PHRASE RENVOYAIT À UN BLOC QUE LE MASQUAGE VIENT DE FAIRE DISPARAÎTRE.
+            Elle dit « ce que la compagnie a écrit figure dans les restrictions ci-dessus » —
+            or `restrictions` n'est plus rendu, faute de source. Elle affirmait en outre, au
+            nom de la compagnie, un refus tiré de ces mêmes `restrictions` non sourcées. Elle
+            ne paraît donc plus tant que ces données n'ont pas de citation ; la phrase générique
+            la remplace, et la liste ci-dessous — qui se déclare NOTRE classification et sert
+            le maillage vers les fiches races — reste. */}
+        {!surfacesEditorialesAffichables && <p class="k">{tt(locale, "premium.editorial_unproven")}</p>}
+        {surfacesEditorialesAffichables && <p class="k">
           {brachy.kind === "explicit"
             ? F("{0} refuses brachycephalic (snub-nosed) breeds in {1}. What the airline itself wrote is in the restrictions above — that text alone says which breeds it turns away.",
                 "{0} refuse les races brachycéphales (museau court) en {1}. Ce que la compagnie a écrit elle-même figure dans les restrictions ci-dessus — ce texte seul dit quelles races elle écarte.",
@@ -349,7 +408,7 @@ const jsonLd = faqItems.length ? [webpageLd, faqJsonLd(faqItems)] : [webpageLd];
                 "Les conditions publiées par {0} évoquent les races à museau court ({1}) sans énoncer de refus général. Vérifie la fiche de ta race, puis confirme auprès de la compagnie avant de réserver.",
                 "Las condiciones publicadas por {0} mencionan las razas de hocico chato ({1}) sin declarar un rechazo general. Consulta la ficha de tu raza y confírmalo con la aerolínea antes de reservar.",
                 d.name, chanList)}
-        </p>
+        </p>}
         <div class="reach-chips mt8">
           {brachyList.map((b) => (<a class="reach-chip" href={`${base}/breeds/${b.slug}/`}>{b.name} <span class="reach-iata">{b.weightKg} kg</span></a>))}
         </div>
@@ -363,7 +422,16 @@ const jsonLd = faqItems.length ? [webpageLd, faqJsonLd(faqItems)] : [webpageLd];
       </div>
     )}
 
-    {d.crate && (
+    {/* ── CAISSE, TEMPÉRATURE, CHIEN D'ASSISTANCE : MASQUÉS TANT QU'ILS NE SONT PAS PROUVÉS ──
+        Même mouvement que `ladder` et `restrictions`, et même mesure : `crate`, `temperature`
+        et `assistance` sont du texte libre quadrilingue — une entrée de `crate` n'a que les
+        clés `en`/`fr`/`es`/`pt`, il n'y a pas même de place pour une source. Ils affirmaient
+        pourtant, compagnie nommée, « max 55 × 40 × 23 cm », « mais 40 × 25 × 25 cm sur DH8-100
+        et ATR », « animal moyen (8–25 kg) ». C'est le contrôle DOM des fiches sentinelles qui
+        les a trouvés : j'avais masqué la ligne `detail` de la carte en croyant avoir tout vu.
+        Le lien vers l'outil de caisse SURVIT au masquage : il ne dit rien de la compagnie, il
+        mène à un calcul que le visiteur fait lui-même. */}
+    {surfacesEditorialesAffichables && d.crate && (
       <div class="card">
         <h2>📦 {T("The travel crate for the hold", "La cage de transport en soute", "El transportín para viajar en bodega")}</h2>
         <div class="cols">
@@ -374,28 +442,38 @@ const jsonLd = faqItems.length ? [webpageLd, faqJsonLd(faqItems)] : [webpageLd];
 
     <div class="card warnb">
       <h2>🌡️ {T("Temperature & hold", "Température & soute", "Temperatura y bodega")}</h2>
-      <div class="chips mb8">
-        {d.temperature.pills.map((p) => (<span class={`pill ${p.cls}`}>{t(p.label)}</span>))}
-      </div>
-      <p class="muted">{t(d.temperature.note)}</p>
+      {surfacesEditorialesAffichables && (
+        <div class="chips mb8">
+          {d.temperature.pills.map((p) => (<span class={`pill ${p.cls}`}>{t(p.label)}</span>))}
+        </div>
+      )}
+      <p class="muted">{surfacesEditorialesAffichables ? t(d.temperature.note) : tt(locale, "premium.editorial_unproven")}</p>
       <a class="cratecta" data-carry="breed" href={`${locale === "en" ? "/tools/crate/" : `/${locale}/tools/crate/`}#air=${id}`}>📦 {T("Check your crate size for this airline", "Vérifier la taille de cage pour cette compagnie", "Comprueba el tamaño de la jaula para esta aerolínea")} →</a>
     </div>
 
-    <div class="card">
-      <h2>🦮 {T("Assistance dog", "Chien d'assistance", "Perro de asistencia")}</h2>
-      <div class="g">
-        {d.assistance.map((a) => (
-          <div class="mini"><div class="t"><span class="aci">{a.icon}</span> {t(a.label)}</div><div class="k">{t(a.value)}</div></div>
+    {surfacesEditorialesAffichables && (
+      <div class="card">
+        <h2>🦮 {T("Assistance dog", "Chien d'assistance", "Perro de asistencia")}</h2>
+        <div class="g">
+          {d.assistance.map((a) => (
+            <div class="mini"><div class="t"><span class="aci">{a.icon}</span> {t(a.label)}</div><div class="k">{t(a.value)}</div></div>
+          ))}
+        </div>
+      </div>
+    )}
+
+    {/* `goodToKnow` relève de la MÊME classe, et je l'avais laissé passer : « accord préalable
+        obligatoire · soute ≥ 24 h · États-Unis 48 h », « 15 semaines, vaccins à jour », « Air
+        France n'accepte pas les animaux ordinaires en cabine Business sur les vols
+        intercontinentaux ». Ce sont des règles de compagnie, catégoriques, sans source. */}
+    {surfacesEditorialesAffichables && (
+      <div class="card">
+        <h2>ℹ️ {T("Good to know", "Bon à savoir", "Conviene saber")}</h2>
+        {d.goodToKnow.map((g) => (
+          <div class="row"><span class="lbl">{g.icon} {t(g.label)}</span><span class="muted r">{t(g.value)}</span></div>
         ))}
       </div>
-    </div>
-
-    <div class="card">
-      <h2>ℹ️ {T("Good to know", "Bon à savoir", "Conviene saber")}</h2>
-      {d.goodToKnow.map((g) => (
-        <div class="row"><span class="lbl">{g.icon} {t(g.label)}</span><span class="muted r">{t(g.value)}</span></div>
-      ))}
-    </div>
+    )}
 
     {(reach.countries.length > 0 || reach.hubs.length > 0) && (
       <div class="card reach">
