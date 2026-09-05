@@ -527,3 +527,30 @@ le fichier entier et le trouvait — dans le commentaire où je venais d'expliqu
 était fautive. Elle accusait ma propre explication, exactement comme le contrôle qui avait rougi sur
 la phrase légitime des races au museau court. Les commentaires sont retirés avant de chercher : un
 contrôle doit lire le **code**, pas le texte qui en parle.
+
+## Vérification de bout en bout de ce lot
+
+- `npm run test:unit` : **vert**, code de sortie 0
+- `npm run build:prod` : **3 121 pages**, code de sortie 0
+- `porte-lancement.mjs` : **29 contrôles OK, 0 en échec**
+- `test-apercu-navigateur.mjs` (Chromium sur le dist servi) : **65 OK, 0 échec** (44 avant ce lot)
+
+Ce que le navigateur vérifie désormais sur l'entrée, dans le DOM servi :
+
+- aucune phrase n'affirme que le pays autorise l'entrée ;
+- le rapport dit à la place que l'entrée est **à confirmer pour ce chien** ;
+- l'exigence est **encadrée** comme une restriction potentielle, et le texte officiel — Dangerous
+  Dogs Act, certificat d'exemption — y reste entier ;
+- **et une interdiction PROUVÉE tranche encore** : Auckland avec un Tosa Inu rend « Not as
+  requested », sur la phrase citée du Dog Control Act 1996. Sans ce dernier contrôle, tout ce qui
+  précède ne prouverait que l'inaction — un ternaire qui aurait simplement tout rendu prudent
+  aurait été vert partout ailleurs.
+
+## Chaîne des baselines figées
+
+```
+… → citation-ba-cabine → frontiere-regles → arbitrages-interface → entree-ternaire
+```
+
+Aucune figée n'est écrasée ; chacune reste l'AVANT de la suivante, et chaque paire a son contrôle
+permanent qui rougit si le mouvement s'inverse.
