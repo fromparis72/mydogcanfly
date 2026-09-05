@@ -365,9 +365,15 @@ console.log("\n=== Carte compagnie : aucune affirmation structurelle sur l'ignor
                        /cabine non proposée/i, /race non acceptée/i]) {
     check(`aucun motif « ${String(motif).slice(1, 26)}… » imputé aux compagnies`, !motif.test(texte));
   }
-  /* NON VIDE : l'interdiction n'a pas disparu pour autant — elle est publiée, entière, en tête. */
-  check("…et l'interdiction d'entrée reste bien PUBLIÉE dans le rapport, texte intégral",
-    /Dangerous Dogs Act/i.test(texte) && /Certificate of Exemption/i.test(texte));
+  /* CE CONTRÔLE DISAIT L'INVERSE, ET IL GRAVAIT LE DÉFAUT (contre-revue du 05/09/2026). Il
+     EXIGEAIT que le texte officiel soit « publié entier ». Or ce texte est `rationale` — NOTRE
+     résumé éditorial — et il était présenté sous l'autorité de la page officielle, alors que la
+     règle britannique n'a aucune `source.quote`. Ce qui doit rester, c'est le LIEN. */
+  check("NOTRE résumé éditorial n'est PAS publié sous l'autorité de la page officielle",
+    !/Dangerous Dogs Act/i.test(texte) && !/Certificate of Exemption/i.test(texte));
+  const liens = await p.$$eval("#mdcf-finder-result a[href^='http']", (n) => n.map((a) => a.getAttribute("href")));
+  check("…mais le LIEN officiel, lui, est bien servi — le visiteur va lire le vrai texte",
+    liens.some((h) => /^https:\/\/www\.gov\.uk\//.test(h)), JSON.stringify(liens.slice(0, 4)));
 
   /* ── LE STATUT D'ENTRÉE TERNAIRE, DANS LE DOM (contre-revue du 05/09/2026) ──────────────────
    *
@@ -379,8 +385,11 @@ console.log("\n=== Carte compagnie : aucune affirmation structurelle sur l'ignor
     !/allows entry|autorise l'entrée|permite la entrada|autoriza a entrada/i.test(texte));
   check("…le rapport dit à la place que l'entrée est à confirmer pour ce chien",
     /may restrict this dog on entry|Entrée à confirmer pour ce chien/i.test(texte));
-  check("…et l'exigence est encadrée comme une restriction POTENTIELLE, pas comme un fait acquis",
-    /Potential entry restriction|Restriction d'entrée potentielle/i.test(texte));
+  check("…et l'exigence est présentée comme une restriction POTENTIELLE, pas comme un fait acquis",
+    /An entry restriction may apply to this dog/i.test(texte), texte.slice(0, 120));
+  /* Et elle n'affirme rien sur NOTRE processus de vérification. */
+  check("…sans prétendre que nous n'avons pas vérifié la page nous-mêmes",
+    !/we have not been able to verify/i.test(texte));
   await p.close();
 }
 
@@ -405,32 +414,36 @@ console.log("\n=== Une interdiction PROUVÉE, elle, tranche encore ===");
 
 console.log("\n=== Outil Destinations : les trois états d'entrée, dans le VRAI rendu ===");
 {
-  /* PREUVE CIRCULAIRE, NOMMÉE ET REMPLACÉE (contre-revue du 05/09/2026).
+  /* DEUX FAUTES CORRIGÉES ICI, toutes deux relevées en contre-revue le 05/09/2026.
    *
-   * Ma rédaction précédente affirmait « on rejoue la fonction de porte telle qu'elle est écrite
-   * dans la page ». C'était faux : elle en RECOPIAIT une seconde version dans le test. Saboter le
-   * vrai `DestinationFinder.astro` pour qu'il retombe sur « aucun blocage connu » n'aurait rien
-   * fait rougir — le contrôle éprouvait sa propre copie.
+   * 1. PREUVE CIRCULAIRE. Ma première rédaction affirmait « on rejoue la fonction de porte telle
+   *    qu'elle est écrite dans la page » : elle en RECOPIAIT une seconde version dans le test.
+   *    La porte vit maintenant dans `packages/ui/src/lib/entryGate.ts`, importée par la page, et
+   *    ce paragraphe n'appelle plus aucune fonction — il lit le rendu.
    *
-   * Deux corrections. (1) La porte vit maintenant dans `packages/ui/src/lib/entryGate.ts`, importée
-   * par la page : il n'y a plus qu'une définition. (2) Ce paragraphe n'appelle plus AUCUNE
-   * fonction : il intercepte `/v1/destinations`, sert une réponse contrôlée portant les cinq cas —
-   * bloqué, à confirmer, sans blocage connu, statut ABSENT, statut INVALIDE — et lit le CLASSEMENT
-   * RÉELLEMENT RENDU. Tout est identique d'une destination à l'autre sauf `entry_status` : l'ordre
-   * obtenu ne peut donc venir que de la porte. Un repli fautif vers « aucun blocage connu » ferait
-   * remonter ABSENT et INVALIDE au niveau de LIBRE, et les deux contrôles d'ordre rougiraient. */
+   * 2. LE SCÉNARIO NE REMPLISSAIT PAS LA RACE, POURTANT OBLIGATOIRE. Le code de production fait
+   *    `const b = resolveBreed(); if (!b) { showHint(S.breedMissing); return; }` : sans race, la
+   *    requête ne part pas et aucune carte n'est rendue. Mon `waitForSelector(...).catch(() => {})`
+   *    masquait l'attente, et le témoin des cinq cartes aurait fini rouge. La race est désormais
+   *    posée, l'appel intercepté est COMPTÉ, et son corps est vérifié avant toute assertion.
+   *
+   * 3. LES POSITIONS NE SUFFISENT PAS. Exiger « ABSENT ne passe pas devant LIBRE » acceptait le
+   *    faux vert : avec un repli fautif vers `no_known_block`, ABSENT obtient le MÊME score que
+   *    LIBRE et reste derrière par stabilité du tri. On relève donc les SCORES rendus. */
   const p = await nouvellePage();
   const villes = [
-    { id: "BLOQUE", st: "blocked" },
-    { id: "CONFIRMER", st: "confirmation_required" },
-    { id: "LIBRE", st: "no_known_block" },
-    { id: "ABSENT", st: undefined },
-    { id: "INVALIDE", st: "totalement_inconnu" },
+    { id: "BLOCKEDCITY", st: "blocked" },
+    { id: "CONFIRMCITY", st: "confirmation_required" },
+    { id: "FREECITY", st: "no_known_block" },
+    { id: "ABSENTCITY", st: undefined },
+    { id: "INVALIDCITY", st: "totalement_inconnu" },
   ];
+  const corps = [];
   await p.route("**/v1/destinations", async (route) => {
+    try { corps.push(JSON.parse(route.request().postData() ?? "{}")); } catch { corps.push(null); }
     const matches = villes.map((v, i) => ({
-      airport_id: `airport_fixture_${i}`, iata: v.id.slice(0, 3), city: v.id,
-      country_id: "country_fixture", iso2: "ZZ", country_name: v.id, region: "Europe",
+      airport_id: `airport_fixture_${i}`, iata: `T${i}0`, city: v.id,
+      country_id: "country_fixture", iso2: "US", country_name: v.id, region: "North America",
       temperature_c: 18, climate_estimated: false,
       heat_embargo: false, heat_confirmation_required: false, confirmation_signals: [],
       estimated_heat_signal: false, heat_risk: false,
@@ -442,34 +455,61 @@ console.log("\n=== Outil Destinations : les trois états d'entrée, dans le VRAI
       entry_allowed: true, flight_hours: 2,
     }));
     await route.fulfill({ status: 200, contentType: "application/json",
-      body: JSON.stringify({ matches, generated_at: new Date().toISOString() }) });
+      body: JSON.stringify({ matches, candidates_total: matches.length }) });
   });
   await p.goto(`${BASE}/tools/destinations/`, { waitUntil: "networkidle" });
-  await p.fill("#dfx-origin", "Paris");
-  await p.waitForTimeout(400);
-  await p.click("#dfx-form button[type=submit]").catch(() => p.press("#dfx-origin", "Enter"));
-  await p.waitForSelector("#dfx-result .dfx-card", { timeout: 30000 }).catch(() => {});
+  /* LES DEUX CHAMPS SONT DES COMBOBOX : taper ne suffit pas, il faut CHOISIR dans la liste —
+     `resolveOrigin`/`resolveBreed` ne lisent que ce qui a été sélectionné. Sans cela le
+     formulaire répond « Choose a city or airport from the list. » et rien ne part. */
+  const choisir = async (champ, texte) => {
+    await p.fill(champ, texte);
+    await p.dispatchEvent(champ, "input");
+    await p.waitForSelector(`${champ}-listbox .ac-item`, { timeout: 10000 });
+    await p.click(`${champ}-listbox .ac-item`);
+    await p.waitForTimeout(200);
+  };
+  await choisir("#dfx-origin", "Paris");
+  /* LA RACE EST OBLIGATOIRE — libellé exact relevé dans la base, jamais deviné. */
+  await choisir("#dfx-breed", "Golden Retriever");
+  check("témoin : les deux champs obligatoires portent une valeur RÉSOLUE",
+    (await p.inputValue("#dfx-origin")).includes("Paris") && (await p.inputValue("#dfx-breed")) === "Golden Retriever",
+    JSON.stringify({ o: await p.inputValue("#dfx-origin"), r: await p.inputValue("#dfx-breed") }));
+  /* Le bouton est recouvert par la liste déroulante : on soumet le formulaire lui-même. */
+  await p.keyboard.press("Escape");
+  await p.evaluate(() => document.getElementById("dfx-form").requestSubmit());
+  await p.waitForSelector("#dfx-result .dfx-card", { timeout: 20000 }).catch(() => {});
 
-  /* On lit le rendu : le nom de la ville et le score affiché, dans l'ordre du DOM. */
+  /* LA PREUVE QUE LA REQUÊTE EST PARTIE, AVANT TOUTE ASSERTION DE SCORE. */
+  check("exactement UNE requête /v1/destinations est partie", corps.length === 1, `${corps.length}`);
+  check("…et son corps porte bien la race choisie",
+    corps[0]?.dog?.breed_id === "breed_golden_retriever", JSON.stringify(corps[0]?.dog));
+  /* `showHint` écrit dans `#dfx-result` un `<p class="dfx__hint">` — c'est là qu'atterrirait
+     « Choose your dog's breed. » si la race n'avait pas été posée. */
+  const indice = await p.textContent("#dfx-result .dfx__hint").catch(() => "");
+  check("…et le formulaire ne réclame pas la race (aucun indice « choisis la race »)",
+    !/Choose your dog's breed|Choisis la race/i.test(indice ?? ""), JSON.stringify(indice));
+
   const rendu = await p.$$eval("#dfx-result .dfx-card", (n) => n.map((c) => ({
-    ville: (c.querySelector(".dfx-card__city") || c).textContent.trim().split("\n")[0].trim(),
     texte: c.textContent.replace(/\s+/g, " "),
+    score: Number((c.querySelector(".dfx-card__score") || {}).textContent),
   })));
   check("le VRAI rendu produit les cinq destinations de la fixture", rendu.length === 5,
-    JSON.stringify(rendu.map((x) => x.ville)));
-  const rang = (id) => rendu.findIndex((x) => x.texte.includes(id));
-  console.log(`  ·    ordre rendu : ${JSON.stringify(rendu.map((x) => x.ville))}`);
-  check("LIBRE (aucun blocage connu) passe devant À CONFIRMER",
-    rang("LIBRE") >= 0 && rang("CONFIRMER") >= 0 && rang("LIBRE") < rang("CONFIRMER"),
-    JSON.stringify({ libre: rang("LIBRE"), confirmer: rang("CONFIRMER") }));
-  check("…et À CONFIRMER passe devant BLOQUÉ",
-    rang("CONFIRMER") < rang("BLOQUE"), JSON.stringify({ confirmer: rang("CONFIRMER"), bloque: rang("BLOQUE") }));
-  /* LES DEUX CONTRÔLES QUI ATTRAPENT UN REPLI FAUTIF. Si la page repliait sur « aucun blocage
-     connu », ABSENT et INVALIDE se rangeraient AVEC libre, devant « à confirmer ». */
-  check("un statut ABSENT est traité en PRUDENCE : il ne passe pas devant À CONFIRMER",
-    rang("ABSENT") > rang("LIBRE"), JSON.stringify({ absent: rang("ABSENT"), libre: rang("LIBRE") }));
-  check("un statut INVALIDE aussi — il ne passe pas devant À CONFIRMER",
-    rang("INVALIDE") > rang("LIBRE"), JSON.stringify({ invalide: rang("INVALIDE"), libre: rang("LIBRE") }));
+    JSON.stringify(rendu.map((x) => x.texte.slice(0, 24))));
+  const sc = {};
+  for (const v of villes) sc[v.id] = rendu.find((x) => x.texte.includes(v.id))?.score;
+  console.log(`  ·    scores rendus : ${JSON.stringify(sc)}`);
+  /* LES CINQ SCORES DOIVENT ÊTRE LISIBLES AVANT TOUTE COMPARAISON. Sans cette garde, les deux
+     égalités ci-dessous seraient satisfaites par `undefined === undefined` : elles étaient vertes
+     sur un rendu VIDE, à côté de six contrôles rouges. Une égalité entre deux absences ne prouve
+     rien — c'est la même faute que « un contrôle qui ne parle que de ce qu'il reconnaît ». */
+  const lisibles = Object.values(sc).every(Number.isFinite);
+  check("les cinq scores sont lisibles", lisibles, JSON.stringify(sc));
+  check("LIBRE > À CONFIRMER", lisibles && sc.FREECITY > sc.CONFIRMCITY, JSON.stringify(sc));
+  check("À CONFIRMER > BLOQUÉ", lisibles && sc.CONFIRMCITY > sc.BLOCKEDCITY, JSON.stringify(sc));
+  check("ABSENT = À CONFIRMER exactement — le repli est prudent",
+    lisibles && sc.ABSENTCITY === sc.CONFIRMCITY, JSON.stringify(sc));
+  check("INVALIDE = À CONFIRMER exactement",
+    lisibles && sc.INVALIDCITY === sc.CONFIRMCITY, JSON.stringify(sc));
   await p.unroute("**/v1/destinations");
   await p.close();
 }

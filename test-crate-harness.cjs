@@ -114,17 +114,66 @@ function scenario(page, { a, d, poids, airId = "", brachy = false, race = "" }) 
 
 /* ---- Le référentiel doit être PEUPLÉ : sans compagnies, tout ce qui suit passerait à vide ---- */
 const pages = Object.fromEntries(LOCALES.map(([l, dir]) => [l, chargerPage(dir)]));
-const AIR = pages.en.L.airlines ?? {};
+
+/* ── DEUX TÉMOINS RE-FONDÉS, PAS ABAISSÉS (frontière de confiance) ─────────────────────────────
+ *
+ * `noPets` exige les TROIS canaux `denied`, et `cabin` n'existe que sur un canal `allowed`.
+ * Depuis que seule une phrase citée décide, le dépôt ne porte plus qu'un seul refus prouvé
+ * (British Airways cabine) et aucune acceptation : les deux populations sont donc VIDES sur les
+ * données réelles — 0 compagnie « aucun animal » (contre 7 figées), 0 compagnie publiant une
+ * limite cabine exploitable (contre 12). Les sections 1 et 4 de ce harnais n'exerçaient plus rien.
+ *
+ * On leur rend leur cas par DEUX COMPAGNIES SYNTHÉTIQUES, injectées dans les libellés de la page
+ * — le script de production reste celui du dist, et c'est lui qu'on éprouve. Elles sont déclarées
+ * comme telles et ne sortent pas d'ici. La démonstration que les données RÉELLES n'en portent plus
+ * vit juste en dessous, sur les comptes mesurés. */
+const SYNTH_SANS_ANIMAUX = "airline_synthetique_sans_animaux";
+const SYNTH_CABINE = "airline_synthetique_cabine_8kg";
+function pageAvecTemoins(page) {
+  const extra = {
+    [SYNTH_SANS_ANIMAUX]: { name: "Synthetic NoPets Air", cabin: null, hold: "no", cargo: false,
+      noPets: true, site: "", fiche: "/airlines/synthetic/" },
+    [SYNTH_CABINE]: { name: "Synthetic Cabin Air", cabin: { maxKg: 8, dims: { l: 40, w: 30, h: 22 } },
+      hold: "unknown", cargo: false, noPets: false, site: "", fiche: "/airlines/synthetic/" },
+  };
+  const L = JSON.parse(JSON.stringify(page.L));
+  L.airlines = { ...(L.airlines ?? {}), ...extra };
+  let section = page.section.replace(
+    /(<script type="application\/json" id="crx-labels"[^>]*>)[\s\S]*?(<\/script>)/,
+    (_, a, b) => a + JSON.stringify(L).replace(/<\//g, "<\\/") + b);
+  if (section === page.section) throw new Error("injection des témoins impossible : bloc crx-labels introuvable");
+  /* Le `<select>` est rendu côté serveur : sans option, `select.value = id` reste vide et le
+     scénario porterait sur « toutes compagnies ». Le témoin serait alors muet, pas faux — donc
+     invisible, ce qui est pire. */
+  const options = Object.entries(extra)
+    .map(([id, a]) => `<option value="${id}">${a.name}</option>`).join("");
+  const avecOptions = section.replace(/(<select id="crx-airline"[^>]*>)/, (m) => m + options);
+  if (avecOptions === section) throw new Error("injection des témoins impossible : select crx-airline introuvable");
+  section = avecOptions;
+  return { ...page, section, L };
+}
+const pagesT = Object.fromEntries(Object.entries(pages).map(([l, p]) => [l, pageAvecTemoins(p)]));
+
+const AIR_REEL = pages.en.L.airlines ?? {};
+const AIR = pagesT.en.L.airlines ?? {};
 const sansAnimaux = Object.entries(AIR).filter(([, a]) => a.noPets).map(([id]) => id);
+/* L'ÉTAT RÉEL, MESURÉ ET FIGÉ — mouvement nommé du 05/09/2026 : 7 → 0 et 12 → 0. Un refus total
+   comme une limite cabine publiée sont des AFFIRMATIONS ; aucune n'est prouvée aujourd'hui. */
+check("état réel figé : AUCUNE compagnie ne refuse les trois placements (7 avant la frontière)",
+  Object.values(AIR_REEL).filter((a) => a.noPets).length === 0,
+  `${Object.values(AIR_REEL).filter((a) => a.noPets).length}`);
+check("état réel figé : AUCUNE compagnie ne publie de limite cabine exploitable (12 avant)",
+  Object.values(AIR_REEL).filter((a) => !a.noPets && a.cabin && a.cabin.maxKg != null).length === 0,
+  `${Object.values(AIR_REEL).filter((a) => !a.noPets && a.cabin && a.cabin.maxKg != null).length}`);
 check("le référentiel embarqué est peuplé (sinon rien de ce qui suit ne prouverait quoi que ce soit)",
   Object.keys(AIR).length >= 50 && Object.keys(pages.en.L.breeds ?? {}).length >= 100,
   `${Object.keys(AIR).length} compagnies · ${Object.keys(pages.en.L.breeds ?? {}).length} races`);
-check(`les compagnies qui refusent les trois placements sont au nombre de ${SANS_ANIMAUX}`,
-  sansAnimaux.length === SANS_ANIMAUX, `${sansAnimaux.length} : ${sansAnimaux.join(", ")}`);
+check("le témoin « aucun animal » existe (synthétique — les données réelles n'en portent plus)",
+  sansAnimaux.length === 1 && sansAnimaux[0] === SYNTH_SANS_ANIMAUX, sansAnimaux.join(", "));
 
 /* ---- 1. « Aucun animal » prend le dessus, sans ligne de soute ambiguë ------------------------- */
 for (const id of sansAnimaux) {
-  const r = scenario(pages.en, { a: 60, d: 45, poids: 12, airId: id });
+  const r = scenario(pagesT.en, { a: 60, d: 45, poids: 12, airId: id });
   if (r.erreur) { check(`${id} : un résultat est rendu`, false, r.erreur); continue; }
   const refus = r.lignes.filter((l) => l.genre === "no");
   /* LA PHRASE EXACTE, PAS UNE APPROXIMATION. Le danger n'est pas l'absence de refus — c'est un
@@ -165,10 +214,16 @@ for (const m of MESURES) {
 /* ---- 4. Un chien trop lourd ne reçoit jamais un verdict cabine favorable ---------------------- */
 const avecPoidsCabine = Object.entries(AIR)
   .filter(([, a]) => !a.noPets && a.cabin && a.cabin.maxKg != null).slice(0, 12);
-check("des compagnies publient une limite de poids cabine (sinon ce contrôle ne prouve rien)",
-  avecPoidsCabine.length >= 5, `${avecPoidsCabine.length} compagnie(s)`);
+/* MOUVEMENT NOMMÉ : le seuil était « ≥ 5 compagnies réelles ». Depuis la frontière, AUCUNE
+   politique n'est `allowed`, donc aucune limite cabine n'est exploitable — la population réelle
+   est vide (mesurée ci-dessus) et la compagnie éprouvée ici est le témoin SYNTHÉTIQUE. Ce que la
+   section démontre est inchangé : un chien trop lourd ne reçoit jamais un verdict cabine
+   favorable, et c'est le script de production qui le décide. */
+check("le témoin « limite cabine publiée » existe (synthétique — les données réelles n'en portent plus)",
+  avecPoidsCabine.length === 1 && avecPoidsCabine[0][0] === SYNTH_CABINE,
+  `${avecPoidsCabine.length} : ${avecPoidsCabine.map(([i]) => i).join(", ")}`);
 for (const [id, a] of avecPoidsCabine) {
-  const trop = scenario(pages.en, { a: 45, d: 32, poids: a.cabin.maxKg + 10, airId: id });
+  const trop = scenario(pagesT.en, { a: 45, d: 32, poids: a.cabin.maxKg + 10, airId: id });
   if (trop.erreur) { check(`${id} : un résultat est rendu au-delà de la limite`, false, trop.erreur); continue; }
   check(`${id} : au-delà de ${a.cabin.maxKg} kg, aucun verdict cabine favorable`,
     !trop.lignes.some((l) => l.genre === "ok"),
