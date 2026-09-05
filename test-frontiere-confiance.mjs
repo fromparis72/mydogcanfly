@@ -591,9 +591,20 @@ console.log("\n=== 13 bis. Le verdict dérivé, et ce qui ne revient JAMAIS avec
      citation. Si une condition d'affichage subsistait, une fiche l'exposerait. */
   const gabarit = readFileSync("packages/ui/src/components/AirlinePremiumPage.astro", "utf8");
   const codeSeul = gabarit.replace(/\{\/\*[\s\S]*?\*\/\}/g, " ").replace(/\/\*[\s\S]*?\*\//g, " ");
-  check("le score n'est plus conditionné à un canal vérifié — il est masqué, point",
-    /const scoreEtNoteAffichables = false/.test(codeSeul),
-    (codeSeul.match(/scoreEtNoteAffichables = [^;]+/) ?? []).join(""));
+  /* MOUVEMENT NOMMÉ (05/09/2026) — L'EXIGENCE MONTE D'UN CRAN.
+     Ce contrôle exigeait que la constante `scoreEtNoteAffichables` vaille `false`. La
+     contre-revue a montré que la constante était elle-même le défaut : `rating.score`,
+     `rating.points` et `d.verdictNote` restaient dans le gabarit, à UN caractère de revenir.
+     Elle est supprimée, et ses trois lecteurs avec. On n'exige donc plus qu'un interrupteur
+     soit dans la bonne position : on exige qu'il n'y ait plus d'interrupteur, ni de lecteur.
+     C'est strictement plus fort que la rédaction précédente. */
+  const LECTEURS_SCORE = ["rating.score", "rating.points", "d.verdictNote", "scoreEtNoteAffichables"];
+  const survivants = LECTEURS_SCORE.filter((x) => codeSeul.includes(x));
+  check("le score, ses points et la note éditoriale n'ont plus AUCUN lecteur — pas même un interrupteur",
+    survivants.length === 0, survivants.join(" | "));
+  /* Non-vacuité : le décommentage ne doit pas avoir vidé le fichier. */
+  check("témoin : le gabarit dépouillé porte encore son lecteur canonique",
+    codeSeul.includes("politiqueDuCanal(") && codeSeul.includes("verdictDeFiche("));
   /* Le contrôle vise la NOTE DE FAQ, pas n'importe quelle phrase contenant « conditions
      publiées ». Ma première rédaction rougissait sur la phrase des races à museau court —
      « Les conditions publiées par {0} évoquent les races à museau court sans énoncer de refus

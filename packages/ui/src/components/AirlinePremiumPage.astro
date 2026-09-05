@@ -18,14 +18,14 @@ const fr = locale === "fr";
 const d = airlineData[id];
 const logo = (logos as Record<string, { src: string; dark?: boolean }>)[id];
 const kb = loadKB();
-const kbAirline = [...kb.airlines.values()].find((a) => a.id === id) as { rating?: { score: number; points: number }; country_id?: string } | undefined;
-const rating = kbAirline?.rating;
+/* `rating` n'est plus lu : le score et la note publiés ont été SUPPRIMÉS du gabarit (voir plus
+   bas). Seul le pays d'attache est encore tiré d'ici. */
+const kbAirline = [...kb.airlines.values()].find((a) => a.id === id) as { country_id?: string } | undefined;
 // Home country of the carrier — the default "next step" suggestion on direct arrivals (most people
 // flying an airline registered in a country often travel to that country); overridden by ?to=<iso> when coming from the finder.
 const homeCountry = kbAirline?.country_id ? kb.countries.get(kbAirline.country_id) : undefined;
 const homeIso = homeCountry ? homeCountry.iso2.toLowerCase() : undefined;
 const homeName = homeCountry ? ((homeCountry.name as unknown as Record<string, string>)[locale] ?? (homeCountry.name as unknown as { en: string }).en) : undefined;
-const scoreCls = rating ? (rating.score >= 4 ? "ok" : rating.score >= 3 ? "warn" : "no") : "";
 const t = localizer(locale);
 const T = inlineT(locale);
 const fmtDate = dateFormatter(locale); // date visible à la langue de la page ; le JSON-LD garde l'ISO
@@ -89,19 +89,22 @@ const hubsIata = ((kbAir as { hub_airport_ids?: string[] } | undefined)?.hub_air
  * Le libellé vient des chaînes PUBLIÉES, jamais du YAML. */
 const verdictDerive = verdictDeFiche(kbAir?.premium?.policy);
 
-/* LE SCORE ET LA NOTE SONT MASQUÉS, SANS CONDITION DE RETOUR.
+/* ── LE SCORE, SES POINTS ET LA NOTE ÉDITORIALE : LECTEURS SUPPRIMÉS (contre-revue du 05/09) ──
  *
- * Ma rédaction précédente les rendait dès qu'un canal devenait `allowed` — et la contre-revue du
- * 05/09/2026 l'a refusée pour la même raison que le verdict : un canal cabine cité ne rend pas
- * canonique un `rating` calculé sur des politiques non prouvées, ni une phrase éditoriale écrite
- * avant tout cela. « Cabin and hold are both open » resterait faux le jour où seule la cabine est
- * citée. C'était une seconde porte de derrière, ouverte au même endroit que la première.
+ * Ils étaient derrière `scoreEtNoteAffichables = false`, et j'avais écrit que la constante était
+ * « écrite en clair pour que sa suppression soit un geste délibéré ». C'était le même défaut que
+ * `surfacesEditorialesAffichables`, au même endroit, et je ne l'ai pas vu en corrigeant l'autre :
+ * une constante n'est pas une frontière. `rating.score`, `rating.points` et `d.verdictNote`
+ * restaient dans le gabarit, à un caractère de revenir.
  *
- * Ils ne reparaîtront donc PAS par une condition d'affichage : ils reparaîtront le jour où on les
- * aura reconstruits depuis les décisions prouvées — c'est-à-dire par un autre code que celui-ci.
- * La constante est écrite en clair pour que sa suppression soit un geste délibéré, jamais un effet
- * de bord. */
-const scoreEtNoteAffichables = false as boolean;
+ * CE QU'ILS AFFIRMAIENT. `rating` est calculé sur des politiques dont aucune n'est prouvée ; un
+ * « 4,2/5 » ou un « 78/100 » donne à cette absence de preuve l'apparence d'une mesure.
+ * `verdictNote` est une phrase éditoriale écrite avant la frontière — « Cabin and hold are both
+ * open » resterait faux le jour où seule la cabine est citée.
+ *
+ * Ils reviendront reconstruits depuis les décisions PROUVÉES, c'est-à-dire par un autre code que
+ * celui-ci. Les données restent intactes. Ce qui reste publié en tête de fiche est le verdict
+ * DÉRIVÉ (`verdictDerive`), qui ne lit que la politique canonique. */
 /* ── LES SURFACES ÉDITORIALES NON SOURCÉES N'ONT PLUS DE LECTEUR ────────────────────────────
  *
  * Une constante `surfacesEditorialesAffichables = false` gardait ici `ladder`, `restrictions`,
@@ -197,14 +200,7 @@ const jsonLd = faqItems.length ? [webpageLd, faqJsonLd(faqItems)] : [webpageLd];
             * qu'une citation vérifiée décide un canal, le verdict DÉRIVÉ change de lui-même —
             * mais il reste dérivé : l'ancien libellé YAML ne revient jamais. */}
           <span class={`pill ${verdictDerive.cls} big`}>★ {tt(locale, verdictDerive.cle)}</span>
-          {scoreEtNoteAffichables && rating && (
-            <span class={`hv-score hv-score--${scoreCls}`} title={T("MyDogCanFly score", "Note MyDogCanFly", "Puntuación MyDogCanFly")}>
-              <b>{rating.score.toFixed(1)}</b><small>/5</small>
-            </span>
-          )}
         </div>
-        {scoreEtNoteAffichables && rating && <div class="hv-pts">{rating.points}/100 · {T("MyDogCanFly score", "note MyDogCanFly", "puntuación MyDogCanFly")}</div>}
-        {scoreEtNoteAffichables && <p>{t(d.verdictNote)}</p>}
       </div>
       {/* Non-affiliation, sous le logo et non enterrée dans les mentions légales.
         *
@@ -317,7 +313,7 @@ const jsonLd = faqItems.length ? [webpageLd, faqJsonLd(faqItems)] : [webpageLd];
       {/* Un lien vers un OUTIL, pas une affirmation sur la compagnie : le calculateur de caisse
           est canonique (il ne retient un gabarit de cabine que sur un statut `allowed`). Il vivait
           au bas de la carte « Température & soute », supprimée avec le reste de l'éditorial. */}
-      <a class="cratecta" data-carry="breed" href={`${locale === "en" ? "/tools/crate/" : `/${locale}/tools/crate/`}#air=${id}`}>📦 {T("Check your crate size", "Vérifier la taille de la caisse", "Comprueba el tamaño de la jaula")} →</a>
+      <a class="cratecta" data-carry="breed" href={`${locale === "en" ? "/tools/crate/" : `/${locale}/tools/crate/`}#air=${id}`}>📦 {T("What size travel crate does my dog need?", "Quelle taille de cage de transport pour mon chien ?", "¿Qué tamaño de transportín necesita mi perro?")} →</a>
     </div>
 
     {/* LA GRILLE « TARIFS PAR ZONE » N'EST PLUS RENDUE (micro-lot Tarifs, 29/08/2026), et c'est

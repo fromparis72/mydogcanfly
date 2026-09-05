@@ -339,8 +339,13 @@ console.log("\n=== 2 quater. Le gabarit ne LIT plus les champs éditoriaux non s
   check("témoin : le gabarit dépouillé de ses commentaires contient encore son code",
     code.includes("d.channels.map") && code.includes("politiqueDuCanal("), `${code.length} caractères`);
 
+  /* Le score, ses points et la note éditoriale rejoignent la liste : ils vivaient derrière une
+     SECONDE constante, `scoreEtNoteAffichables`, que je n'avais pas vue en supprimant la
+     première — le même défaut, au même endroit, dans le même fichier. Une seule liste désormais,
+     et les deux constantes y sont nommées pour qu'aucune ne puisse reparaître. */
   const RETIRES = ["d.ladder", "d.restrictions", "d.crate", "d.temperature", "d.assistance",
-    "d.goodToKnow", "d.chips", "d.metaDesc", "surfacesEditorialesAffichables"];
+    "d.goodToKnow", "d.chips", "d.metaDesc", "surfacesEditorialesAffichables",
+    "rating.score", "rating.points", "d.verdictNote", "scoreEtNoteAffichables", "scoreCls"];
   for (const champ of RETIRES) {
     check(`aucun lecteur de \`${champ}\` dans le gabarit`, !code.includes(champ),
       code.includes(champ) ? code.slice(Math.max(0, code.indexOf(champ) - 50), code.indexOf(champ) + 50).replace(/\s+/g, " ") : "");
@@ -348,6 +353,27 @@ console.log("\n=== 2 quater. Le gabarit ne LIT plus les champs éditoriaux non s
   /* CONTRE-ÉPREUVE DU CONTRÔLE LUI-MÊME : il doit savoir attraper un lecteur réintroduit. */
   const sabote = code.replace("d.channels.map", "d.restrictions.map");
   check("contre-épreuve : un lecteur réintroduit SERAIT attrapé", sabote.includes("d.restrictions"));
+
+  /* ── LE PIÈGE DU PORTUGAIS, RENDU IMPOSSIBLE À REFAIRE SANS ÊTRE VU ─────────────────────────
+   *
+   * `T(en, fr, es)` n'a pas d'argument portugais : `inlineT("pt")` cherche la phrase ANGLAISE
+   * dans `translations/pt/inline.json` et, si la clé manque, publie l'anglais sur la page
+   * portugaise — sans rien signaler. Ce lot en a produit DEUX occurrences : la phrase d'état vide
+   * des fiches races, et le libellé du lien vers l'outil de caisse que j'avais reformulé — perdant
+   * au passage la traduction que l'ancien libellé avait. Deux fois la même faute, dont une
+   * commise APRÈS l'avoir documentée.
+   *
+   * On lit donc les phrases anglaises que CE gabarit passe à `T(...)` et on exige qu'elles soient
+   * toutes connues de la table portugaise. Le contrôle est borné à ce fichier : il ne prétend pas
+   * couvrir le dépôt, et il le dit. */
+  const ptTable = JSON.parse(fs.readFileSync(
+    path.join(ROOT, "packages", "knowledge", "translations", "pt", "inline.json"), "utf8"));
+  const phrasesT = [...code.matchAll(/\bT\(\s*"((?:[^"\\]|\\.)+)"/g)].map((m) => m[1].replace(/\\"/g, '"'));
+  const sansPt = [...new Set(phrasesT)].filter((ph) => !(ph in ptTable));
+  check(`témoin : des phrases \`T(...)\` ont été relevées dans le gabarit (${new Set(phrasesT).size})`,
+    new Set(phrasesT).size > 5);
+  check("aucune phrase du gabarit ne retombera en anglais sur la page portugaise",
+    sansPt.length === 0, sansPt.slice(0, 3).map((x) => `« ${x.slice(0, 60)}… »`).join(" | "));
 }
 
 // ---- 2 ter. LA BRANCHE `allowed` N'A PLUS DE PORTEUR RÉEL — TÉMOIN SYNTHÉTIQUE ---------------

@@ -970,3 +970,60 @@ dorment, elles ne sont pas supprimées.
 
 `test:unit` vert · `astro check` **dette stable à 175** · frontière 133/133 · entités 164/164 ·
 built-ui 793/793 · `faq-races` DOM vert · `build:prod` 3 113 pages · navigateur 79/79.
+
+---
+
+# Annexe 4 — la seconde constante, et une troisième fois le portugais
+
+## P0 — j'avais corrigé un interrupteur en en laissant un autre, dans le même fichier
+
+`scoreEtNoteAffichables = false` gardait `rating.score`, `rating.points` et `d.verdictNote`.
+C'est **exactement** le défaut reproché à `surfacesEditorialesAffichables` — même fichier, même
+mécanisme, à quarante lignes d'écart — et je ne l'ai pas vu en supprimant l'autre. J'avais même
+écrit, en commentaire, que la constante était « écrite en clair pour que sa suppression soit un
+geste délibéré » : une justification, là où il fallait une suppression.
+
+Ce qu'ils affirmaient : `rating` est calculé sur des politiques dont **aucune** n'est prouvée —
+un « 4,2/5 » donne à cette absence de preuve l'apparence d'une mesure ; `verdictNote` est une
+phrase écrite avant la frontière (« Cabin and hold are both open »).
+
+Supprimés : la constante, les trois branches JSX, `rating` et `scoreCls`. Les données restent.
+Ce qui subsiste en tête de fiche est le verdict **dérivé**, qui ne lit que la politique canonique.
+
+La garde de lecteurs couvre désormais **quatorze** identifiants, les deux constantes nommément.
+
+## P1 — le portugais, une troisième fois, et la garde qui manquait
+
+Mon nouveau libellé `"Check your crate size"` n'existait pas dans `pt/inline.json` : la page
+portugaise serait retombée en anglais. Pire, en reformulant j'avais **perdu une traduction que
+l'ancien libellé possédait** (`Confira o tamanho da caixa para esta companhia`). Le libellé
+canonique déjà validé et déjà traduit est réemployé, sans en créer un de plus.
+
+**Trois occurrences du même piège dans ce lot** — la phrase d'état vide des fiches races, ce
+libellé, et une troisième que la garde a trouvée : la note de FAQ « This page summarises the
+information currently on record… », que je publiais **en anglais sur la page portugaise** depuis
+l'annexe 1. Trois fois, dont deux **après** l'avoir documentée.
+
+Le mécanisme : `T(en, fr, es)` n'a pas d'argument portugais ; `inlineT("pt")` cherche la phrase
+anglaise dans la table pt et, si la clé manque, publie l'anglais **sans rien signaler**.
+
+Une garde ferme le trou pour ce gabarit : les phrases anglaises passées à `T(...)` sont relevées
+dans la source et doivent toutes être connues de la table portugaise. Elle a rougi immédiatement,
+sur la troisième occurrence. **Portée bornée, et elle le dit** : ce fichier, pas le dépôt. La
+généralisation à toutes les surfaces reste à faire, et n'a pas été entreprise ici — c'eût été
+ouvrir un chantier que la contre-revue a explicitement exclu.
+
+## Une garantie voisine, re-fondée
+
+`test-frontiere-confiance.mjs` exigeait que `scoreEtNoteAffichables` vaille `false`. La constante
+supprimée, elle rougissait. **Mouvement nommé** : elle n'exige plus qu'un interrupteur soit dans
+la bonne position, mais qu'il **n'y ait plus d'interrupteur ni de lecteur** — strictement plus
+fort. Avec son témoin de non-vacuité.
+
+## Vérifications
+
+`test:unit` vert · `astro check` dette stable à 175 · frontière **134/134** · entités **171/171** ·
+built-ui 793/793 · `faq-races` DOM vert · `build:prod` 3 113 pages · navigateur 79/79.
+
+Vérifié sur le DOM construit : plus aucun `hv-score` ni `hv-pts`, et zéro repli anglais résiduel
+sur la fiche portugaise.
