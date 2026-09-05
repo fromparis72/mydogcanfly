@@ -239,6 +239,36 @@ console.log("\n=== 11. Aucune fiche n'affirme plus « Vérifié le … » ===");
   }
   check("…et les 102 gardent leur date, sous un verbe honnête (« Mise à jour le … »)",
     avecDate === 102, String(avecDate));
+  /* LE NOMBRE DE SOURCES ANNONCÉ (arbitrage du 05/09/2026). 95 fiches affichaient « 4 sources
+     Aegean » sous un bouclier « Source officielle », sans en montrer aucune — et le compte n'était
+     adossé à rien : une source officielle dans le dépôt pour un chiffre annoncé de quatre. Il est
+     retiré ; le nom garde son nombre, donc ce qui reste est vrai. */
+  let avecCompte = 0, lignes = 0;
+  for (const f of readdirSync(dir).filter((x) => x.endsWith(".yml") && x !== "_template.yml")) {
+    const y = readFileSync(join(dir, f), "utf8");
+    const bloc = y.match(/\nsources:\n(?:[ \t]+(?:en|fr|es|pt):[^\n]*\n)+/);
+    if (!bloc) continue;
+    for (const l of bloc[0].split("\n")) {
+      const m = l.match(/^\s*(?:en|fr|es|pt):\s*"?(.+)$/);
+      if (!m) continue;
+      lignes++;
+      if (/^\d/.test(m[1])) avecCompte++;
+    }
+  }
+  check("aucune ligne de sources n'annonce plus un nombre invérifiable",
+    lignes === 408 && avecCompte === 0, `${avecCompte} sur ${lignes} ligne(s)`);
+  /* Et l'accord du participe, que le retrait du compte a mis au jour — 16 fiches au singulier par
+     langue. « Source Aircalin · relevée » et non « relevées ». */
+  const fautesAccord = [];
+  for (const f of readdirSync(dir).filter((x) => x.endsWith(".yml") && x !== "_template.yml")) {
+    const y = readFileSync(join(dir, f), "utf8");
+    if (/^\s*fr:\s*"?(?:Source|Page)\s[^\n]*·\s*relevées\b/m.test(y)) fautesAccord.push(`${f} fr`);
+    if (/^\s*es:\s*"?(?:Fuente|Página)\s[^\n]*·\s*recopiladas\b/m.test(y)) fautesAccord.push(`${f} es`);
+    if (/^\s*pt:\s*"?(?:Fonte|Página)\s[^\n]*·\s*recolhidas\b/m.test(y)) fautesAccord.push(`${f} pt`);
+  }
+  check("le participe s'accorde avec le nombre du nom, dans les trois langues qui accordent",
+    fautesAccord.length === 0, fautesAccord.slice(0, 5).join(", "));
+
   /* `verified_date:` est STRUCTUREL — il dérive `review_due` (cadence 90 jours, ADR-0007). Le
      retirer casserait la cadence sans rien corriger d'affiché : il doit rester. */
   let structurel = 0;
@@ -396,15 +426,23 @@ if (!DIST) {
     let vert = 0, rouge = 0, prudent = 0, avecCanalDecide = 0;
     for (const f of fiches) {
       const html = readFileSync(f, "utf8");
-      const m = html.match(/pill (ok|no|warn) big"[^>]*>★ ([^<]+)</);
+      /* Le lecteur doit suivre le gabarit, pas l'idée que je m'en fais. Ma première rédaction
+         exigeait `>★ ` collé : Astro insère un `data-astro-cid-…` puis un retour ligne, et le
+         compte tombait à zéro partout — un faux zéro de plus, produit par mon propre lecteur. */
+      const m = html.match(/pill (ok|no|warn) big"[^>]*>\s*★\s*([^<]+)</);
       if (!m) continue;
       const statuts = [...html.matchAll(/data-status="([^"]+)"/g)].map((x) => x[1]);
       if (m[1] === "ok") vert++; else if (m[1] === "no") rouge++; else prudent++;
       if (statuts.some((st) => st === "allowed" || st === "denied")) avecCanalDecide++;
     }
-    check("les verdicts de tête sont comptés : 32 verts, 116 rouges, 260 prudents (4 langues)",
-      vert === 32 && rouge === 116 && prudent === 260, JSON.stringify({ vert, rouge, prudent }));
-    check("AUCUNE fiche n'a de canal décidé sous son verdict — la contradiction est totale et figée",
+    /* ARBITRÉ ET CORRIGÉ LE 05/09/2026. Le constat figé disait 32 verts et 116 rouges surmontant
+     * zéro canal décidé. Le verdict descend désormais des décisions : tant qu'aucun canal n'est
+     * décidé, la fiche affiche la réserve PUBLIÉE dans la classe prudente. Les deux contrôles
+     * disent maintenant l'inverse l'un de l'autre, et c'est voulu — le second garantit que le
+     * premier n'est pas vrai par accident. */
+    check("AUCUN verdict de tête n'est catégorique : 0 vert, 0 rouge, 408 prudents",
+      vert === 0 && rouge === 0 && prudent === 408, JSON.stringify({ vert, rouge, prudent }));
+    check("…et c'est bien PARCE QUE aucun canal n'est décidé, pas par hasard",
       avecCanalDecide === 0, `${avecCanalDecide} fiche(s) avec un canal décidé`);
 
     /* LA NOTE SOUS LE VERDICT dit la même chose en prose : « Cabin and hold are both open ». Même
@@ -427,6 +465,9 @@ if (!DIST) {
       if (CATEGORIQUE.test(m[1])) notesCategoriques++;
       if (/\b(fee|fees|fare|price|priced)\b/i.test(m[1])) notesTarif++;
     }
+    /* La NOTE sous le verdict reste éditoriale : elle dit en prose ce que la pastille ne dit plus.
+       Le compte est conservé tel quel — le libellé prudent la surmonte désormais, ce qui atténue
+       la contradiction sans la supprimer. Prochaine passe, si la contre-revue le demande. */
     check("19 des 102 notes de verdict affirment encore l'ouverture d'un canal — compte figé",
       notes === 102 && notesCategoriques === 19, JSON.stringify({ notes, notesCategoriques }));
     console.log(`  ·    ${notesTarif} notes parlent de tarifs — elles décrivent la COMPAGNIE, pas notre page : constat, pas faute`);

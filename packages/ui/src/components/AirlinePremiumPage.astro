@@ -104,6 +104,14 @@ const chanList = (brachy?.channels ?? []).map(chanName).join(" / ");
 // Titre SEO ≠ H1. Search Console montre que la requête tapée est « <compagnie> pet policy » :
 // on met donc « pet » (générique, très recherché) ET « dog » (spécialité du site). Le suffixe
 // de marque est retiré : sur un site jeune il consomme des caractères sans rien rapporter.
+/* Aucun canal de cette compagnie n'est décidé ? Alors la fiche ne peut pas se coiffer d'un verdict
+   catégorique. La lecture passe par la MÊME politique runtime que les pastilles de canal — jamais
+   par `channels[].cls`, qui est éditorial et que le contre-test du 15/08/2026 a pris en flagrant
+   délit de contredire la décision canonique. */
+const politiquesDeLaFiche = Object.values(kbAir?.premium?.policy ?? {}) as { status?: string }[];
+const verdictPrudent = politiquesDeLaFiche.length > 0
+  && !politiquesDeLaFiche.some((p) => p.status === "allowed" || p.status === "denied");
+
 const seoLong = F("{0} pet policy: dog in cabin, hold & cargo", "{0} : animaux et chien en cabine ou en soute", "{0}: mascotas y perro en cabina o bodega", d.name);
 const seoShort = F("{0} pet policy: dog in cabin & hold", "{0} : animaux en cabine ou en soute", "{0}: mascotas en cabina o bodega", d.name);
 const seoTitle = seoLong.length <= 65 ? seoLong : seoShort;
@@ -142,7 +150,21 @@ const jsonLd = faqItems.length ? [webpageLd, faqJsonLd(faqItems)] : [webpageLd];
       </div>
       <div class="hero-verdict">
         <div class="hv-row">
-          <span class={`pill ${d.verdict.cls} big`}>★ {t(d.verdict.label)}</span>
+          {/* LE VERDICT DE TÊTE DESCEND DES DÉCISIONS, PLUS DE L'ÉDITORIAL (arbitrage du
+            * 05/09/2026). Il était écrit à la main dans le YAML — « ★ Easy » en vert, « ★ No pets »
+            * en rouge — et ne consultait pas `policies:`. Mesuré avant correction : 8 fiches vertes
+            * et 29 rouges surmontaient TROIS canaux « à confirmer », zéro canal décidé sous aucune.
+            *
+            * C'est la faute que `decisionCanal.ts` a fermée un étage plus bas : « une classe
+            * VISUELLE ne décide plus d'un verdict ». Elle n'avait jamais été fermée ici.
+            *
+            * LA RÈGLE : tant qu'aucun canal n'est décidé, la fiche affiche la réserve PUBLIÉE
+            * (`air.to_confirm`) dans la classe prudente, et le libellé éditorial s'efface. Dès
+            * qu'une citation vérifiée rouvre un canal, l'ancien verdict revient de lui-même —
+            * rien à défaire le jour venu. */}
+          <span class={`pill ${verdictPrudent ? "warn" : d.verdict.cls} big`}>
+            ★ {verdictPrudent ? tt(locale, "air.to_confirm") : t(d.verdict.label)}
+          </span>
           {rating && (
             <span class={`hv-score hv-score--${scoreCls}`} title={T("MyDogCanFly score", "Note MyDogCanFly", "Puntuación MyDogCanFly")}>
               <b>{rating.score.toFixed(1)}</b><small>/5</small>

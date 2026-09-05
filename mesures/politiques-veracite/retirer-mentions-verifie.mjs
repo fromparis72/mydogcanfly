@@ -87,7 +87,25 @@ const REDONDANCES = [
   [/· verificada em /g, "· fontes recolhidas em "],
 ];
 
-let fiches = 0, pastilles = 0, segments = 0, redondances = 0, ecrites = 0;
+/* ── TROISIÈME PASSE — LE NOMBRE DE SOURCES ANNONCÉ (arbitrage du 05/09/2026) ──────────────────
+ *
+ * 95 fiches affichaient « 4 sources Aegean », sous un bouclier « Source officielle ». Le visiteur
+ * n'en recevait AUCUNE — le seul lien sortant est la page d'accueil de la compagnie — et le compte
+ * n'était adossé à rien : le dépôt porte deux URL pour Aegean, dont une auto-citation, donc UNE
+ * source officielle pour un chiffre annoncé de quatre. Sur les 95, 80 annonçaient plus que ce que
+ * le dépôt contient.
+ *
+ * POURQUOI CETTE TRANSFORMATION EST SÛRE, ALORS QUE JE L'AVAIS REFUSÉE. Je craignais de devoir
+ * refaire l'amorce dans quatre langues — singulier, pluriel, article, genre — et c'est la manœuvre
+ * qui, en août, a produit des phrases fausses dans 302 fichiers. Le relevé des formes montre qu'il
+ * n'en est rien : les 95 lignes de chaque langue sont toutes de la forme `<compte> <groupe
+ * nominal>`. On retire le compte et on met la majuscule ; LE NOM GARDE SON NOMBRE, qui était déjà
+ * correct. « 4 sources Aegean » → « Sources Aegean » ; « 1 source Aircalin » → « Source Aircalin ».
+ * Aucun accord n'est recalculé, donc aucune phrase ne peut être cassée — et ce qui reste est vrai.
+ */
+const RETIRER_COMPTE = /^(\s*(?:en|fr|es|pt):\s*"?)(\d+)\s+(\S)/gm;
+
+let fiches = 0, pastilles = 0, segments = 0, redondances = 0, comptes = 0, accords = 0, ecrites = 0;
 const restants = [];
 
 for (const f of readdirSync(SRC).filter((x) => x.endsWith(".yml") && x !== "_template.yml").sort()) {
@@ -108,6 +126,45 @@ for (const f of readdirSync(SRC).filter((x) => x.endsWith(".yml") && x !== "_tem
   for (const [motif, remplacement] of REDONDANCES) {
     apres = apres.replace(motif, () => { redondances++; return remplacement; });
   }
+  /* ── QUATRIÈME PASSE — L'ACCORD DU PARTICIPE, QUE J'AVAIS CASSÉ ────────────────────────────
+   *
+   * Retirer le compte a mis au jour un défaut que j'avais introduit à la première passe :
+   * « 1 source Aircalin · SOURCES RELEVÉES le 8 août » devient « Source Aircalin · RELEVÉES le
+   * 8 août ». Le participe s'accordait avec le mot « sources » que j'avais ajouté puis retiré ; il
+   * ne s'accorde plus avec rien. 16 fiches par langue sont au singulier.
+   *
+   * C'est très exactement la difficulté que je redoutais — et la preuve qu'elle était réelle. Elle
+   * se traite ici parce qu'elle est BORNÉE et VÉRIFIABLE : trois langues, un participe chacune, un
+   * critère de nombre lisible sur le premier mot de la ligne. L'anglais n'accorde pas : rien à y
+   * faire. */
+  const ACCORDS = [
+    [/^(\s*fr:\s*"?(?:Source|Page)\s[^\n]*·\s*)relevées\b/gm, "$1relevée"],
+    [/^(\s*es:\s*"?(?:Fuente|Página)\s[^\n]*·\s*)recopiladas\b/gm, "$1recopilada"],
+    [/^(\s*pt:\s*"?(?:Fonte|Página)\s[^\n]*·\s*)recolhidas\b/gm, "$1recolhida"],
+  ];
+
+  /* Le compte ne se retire QUE sur la ligne `sources:` — jamais sur une ligne quelconque qui
+     commencerait par un chiffre. On délimite donc le bloc avant de toucher quoi que ce soit. */
+  const bloc = apres.match(/\nsources:\n(?:[ \t]+(?:en|fr|es|pt):[^\n]*\n)+/);
+  if (bloc) {
+    const remplace = bloc[0].replace(RETIRER_COMPTE, (_m, tete, _n, premier) => {
+      comptes++;
+      return tete + premier.toUpperCase();
+    });
+    /* REMPLACEMENT PAR CHAÎNE, PAS PAR FONCTION. Ma première rédaction passait une fonction qui
+       ignorait ses propres groupes de capture et reconstruisait `$1` depuis un `match` périmé : le
+       préfixe de ligne était détruit, et les 16 fiches au singulier sont sorties amputées de leur
+       clé de langue. `git checkout` a tout restauré ; la leçon est écrite ici. Une chaîne de
+       remplacement laisse le moteur d'expressions régulières faire la substitution — il ne se
+       trompe pas de capture. */
+    let final = remplace;
+    for (const [motif, r] of ACCORDS) {
+      const avant = final;
+      final = final.replace(motif, r);
+      if (final !== avant) accords++;
+    }
+    if (final !== bloc[0]) apres = apres.replace(bloc[0], final);
+  }
   /* Ce que l'outil n'a PAS su corriger doit se voir, plutôt que de passer pour un zéro. */
   if (/Verified \d|Vérifié le \d|Verificado (?:el |em )?\d|last verified|dernière vérification|última verifica/i.test(apres)) {
     restants.push(f);
@@ -122,6 +179,8 @@ console.log(`${fiches} fiches lues`);
 console.log(`  ${pastilles} pastille(s) « Vérifié le … » remplacée(s) par « Mise à jour le … »`);
 console.log(`  ${segments} segment(s) « dernière vérification » remplacé(s) par « sources relevées le »`);
 console.log(`  ${redondances} redondance(s) « sources · sources » réparée(s)`);
+console.log(`  ${comptes} nombre(s) de sources annoncé(s) retiré(s)`);
+console.log(`  ${accords} accord(s) de participe rétabli(s) au singulier`);
 console.log(`  ${ecrites} fiche(s) ${ECRIRE ? "réécrite(s)" : "à réécrire"}`);
 if (restants.length) {
   console.log(`\n  ⚠ ${restants.length} fiche(s) portent ENCORE une mention non reconnue :`);
