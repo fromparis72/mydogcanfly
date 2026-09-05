@@ -40,7 +40,10 @@ import { JSDOM } from "jsdom";
 const entree = JSON.parse(fs.readFileSync(process.argv[2], "utf8"));
 const MOTIFS = entree.motifs.map(([src, dr, quoi]) => [new RegExp(src, dr), quoi]);
 const CLASSIF = new RegExp(entree.classif[0], entree.classif[1]);
-const sortie = { pagesLues: 0, blocsNotres: 0, notresSansDesaveu: [], fuites: [], picMo: 0 };
+const ANCIENNE_META = /fares|restrictions|tarifs|official sources|fuentes oficiales|fontes oficiais/i;
+const BRACHY = new RegExp(entree.classif[0], entree.classif[1]);
+const sortie = { pagesLues: 0, blocsNotres: 0, notresSansDesaveu: [], fuites: [], picMo: 0,
+  zonesVides: [], metaAnciennes: [], metaDivergentes: [], sectionsVides: [], brachyPresents: [], cartesExaminees: 0 };
 
 for (const tache of entree.taches) {
   const abs = path.join(entree.dist, tache.rel);
@@ -65,6 +68,49 @@ for (const tache of entree.taches) {
       if (CLASSIF.test(notre.textContent)) notre.remove();
       else sortie.notresSansDesaveu.push(tache.rel);
     }
+    /* ── LES QUATRE ZONES PUBLIQUES : plus aucune trace de l'ancienne `metaDesc` ─────────────
+       Elle annonçait « cabin, hold and cargo rules, fares, restrictions and official sources » —
+       des tarifs retirés au micro-lot Tarifs et des restrictions retirées à celui-ci. La page
+       promettait donc, à l'extérieur d'elle-même, un contenu qu'elle ne présente plus. On lit les
+       quatre zones et on exige la MÊME description neutre partout : une seule définition. */
+    const zone = (sel, attr) => doc.querySelector(sel)?.getAttribute(attr) ?? null;
+    const desc = [
+      ["description", zone('meta[name="description"]', "content")],
+      ["og:description", zone('meta[property="og:description"]', "content")],
+      ["twitter:description", zone('meta[name="twitter:description"]', "content")],
+      ["WebPage/JSON-LD", (() => {
+        for (const el of doc.querySelectorAll('script[type="application/ld+json"]')) {
+          try {
+            for (const n of [].concat(JSON.parse(el.textContent))) {
+              if (n && n["@type"] === "WebPage") return n.description ?? null;
+            }
+          } catch { /* un JSON-LD illisible est signalé par le contrôle de zone, pas ici */ }
+        }
+        return null;
+      })()],
+    ];
+    for (const [nom, valeur] of desc) {
+      if (!valeur) sortie.zonesVides.push(`${tache.rel} — ${nom}`);
+      else if (ANCIENNE_META.test(valeur)) sortie.metaAnciennes.push(`${tache.rel} — ${nom} : ${valeur.slice(0, 90)}`);
+    }
+    const distinctes = new Set(desc.map(([, v]) => v));
+    if (distinctes.size !== 1) sortie.metaDivergentes.push(`${tache.rel} — ${distinctes.size} descriptions différentes`);
+
+    /* ── AUCUNE SECTION VIDE ─────────────────────────────────────────────────────────────────
+       Les premières suppressions laissaient des coquilles : une carte « Restrictions importantes »
+       rendue sans contenu, l'enveloppe `.ladder` vide sous son titre. Une carte qui n'a qu'un
+       titre est un contenu promis puis absent. */
+    for (const carte of doc.querySelectorAll(".card")) {
+      sortie.cartesExaminees++;
+      const titre = carte.querySelector("h2");
+      const reste = carte.textContent.replace(titre?.textContent ?? "", "").replace(/\s+/g, "").trim();
+      if (!reste) sortie.sectionsVides.push(`${tache.rel} — « ${(titre?.textContent ?? "sans titre").trim()} »`);
+    }
+
+    /* Le bloc brachycéphale ne doit plus paraître du tout sur une fiche compagnie : sa PRÉSENCE
+       établissait une association entre ces races et la compagnie, qu'aucun désaveu ne défait. */
+    if (BRACHY.test(doc.body.textContent)) sortie.brachyPresents.push(tache.rel);
+
     const texte = doc.body.textContent.replace(/\s+/g, " ");
     for (const [re, quoi] of MOTIFS) {
       const m = texte.match(re);

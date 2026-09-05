@@ -288,10 +288,66 @@ console.log("\n=== 2 bis. Une fiche « à confirmer » ne publie AUCUN seuil, di
     check(`témoin : des fiches ont RÉELLEMENT été lues (${res2.pagesLues})`,
       res2.pagesLues === taches.length, `${res2.pagesLues}/${taches.length}`);
     /* Et le témoin de l'EXCLUSION : elle a porté sur des blocs réels, tous munis de leur désaveu. */
-    check(`témoin : le bloc « notre classification » a été trouvé sur ${res2.blocsNotres} page(s), toutes avec son désaveu`,
-      res2.blocsNotres > 0 && res2.notresSansDesaveu.length === 0,
-      res2.notresSansDesaveu.slice(0, 3).join(" | "));
+    /* Le bloc brachycéphale est SUPPRIMÉ des fiches compagnies : sa présence même — déclenchée
+       par une restriction non prouvée — associait ces races à la compagnie. Le compteur
+       `blocsNotres` reste lu comme contre-épreuve : il doit valoir 0 ici. */
+    check("aucun bloc brachycéphale sur les fiches compagnies (sa présence associait ces races à la compagnie)",
+      res2.brachyPresents.length === 0 && res2.blocsNotres === 0,
+      res2.brachyPresents.slice(0, 3).join(" | "));
+    check("les 4 zones publiques ne portent plus l'ancienne `metaDesc`",
+      res2.metaAnciennes.length === 0, res2.metaAnciennes.slice(0, 3).join(" | "));
+    check("les 4 zones publiques sont toutes RENSEIGNÉES", res2.zonesVides.length === 0,
+      res2.zonesVides.slice(0, 3).join(" | "));
+    check("…et portent EXACTEMENT la même description — une seule définition",
+      res2.metaDivergentes.length === 0, res2.metaDivergentes.slice(0, 3).join(" | "));
+    check("aucune section vide sur les fiches sentinelles", res2.sectionsVides.length === 0,
+      res2.sectionsVides.slice(0, 4).join(" | "));
+    /* NON-VACUITÉ : « aucune section vide » passerait aussi s'il n'y avait AUCUNE carte à lire. */
+    check(`témoin : des cartes ont RÉELLEMENT été examinées (${res2.cartesExaminees})`,
+      res2.cartesExaminees >= res2.pagesLues);
   }
+}
+
+// ---- 2 quater. LES LECTEURS RETIRÉS NE PEUVENT PAS REVENIR PAR UN INTERRUPTEUR --------------
+console.log("\n=== 2 quater. Le gabarit ne LIT plus les champs éditoriaux non sourcés ===");
+{
+  /* POURQUOI CE CONTRÔLE PORTE SUR LA SOURCE, ET PAS SUR LE DOM.
+   *
+   * Premier geste : j'avais mis ces blocs derrière `surfacesEditorialesAffichables = false`. Le
+   * DOM était propre — et la contre-revue a refusé la fermeture, avec raison : la dette n'était
+   * pas devenue inatteignable, elle était à UN BOOLÉEN de distance. Repasser la constante à
+   * `true` aurait republié d'un coup les 201 restrictions, les échelles de poids, les gabarits de
+   * caisse et les règles de « bon à savoir » — sans qu'aucun contrôle DOM ne bouge avant le fait.
+   *
+   * Un contrôle sur le rendu ne peut pas dire cela : il constate ce qui sort aujourd'hui, pas ce
+   * qu'un booléen ferait sortir demain. C'est donc la SOURCE du gabarit qui est lue, et l'absence
+   * de lecteur qui est exigée. Le retour public de ces champs demandera une implémentation neuve,
+   * alimentée par des preuves — le coût est voulu.
+   *
+   * LES COMMENTAIRES SONT RETIRÉS AVANT LA RECHERCHE. Sans cela le contrôle s'accuserait
+   * lui-même : chaque suppression est expliquée sur place, en nommant le champ supprimé. Je m'y
+   * suis déjà fait prendre une fois dans ce dépôt. */
+  const GABARIT = path.join(ROOT, "packages", "ui", "src", "components", "AirlinePremiumPage.astro");
+  const brut = fs.readFileSync(GABARIT, "utf8");
+  const code = brut
+    .replace(/\{\/\*[\s\S]*?\*\/\}/g, " ")   // commentaires JSX
+    .replace(/\/\*[\s\S]*?\*\//g, " ")         // blocs /* … */
+    .replace(/(^|[^:])\/\/[^\n]*/g, "$1 ");    // lignes // … (sans casser « https:// »)
+
+  /* NON-VACUITÉ : si le décommentage avait vidé le fichier, tout ce qui suit passerait au vert.
+     On exige donc que le code utile survive — et avec lui le lecteur CANONIQUE, qui doit rester. */
+  check("témoin : le gabarit dépouillé de ses commentaires contient encore son code",
+    code.includes("d.channels.map") && code.includes("politiqueDuCanal("), `${code.length} caractères`);
+
+  const RETIRES = ["d.ladder", "d.restrictions", "d.crate", "d.temperature", "d.assistance",
+    "d.goodToKnow", "d.chips", "d.metaDesc", "surfacesEditorialesAffichables"];
+  for (const champ of RETIRES) {
+    check(`aucun lecteur de \`${champ}\` dans le gabarit`, !code.includes(champ),
+      code.includes(champ) ? code.slice(Math.max(0, code.indexOf(champ) - 50), code.indexOf(champ) + 50).replace(/\s+/g, " ") : "");
+  }
+  /* CONTRE-ÉPREUVE DU CONTRÔLE LUI-MÊME : il doit savoir attraper un lecteur réintroduit. */
+  const sabote = code.replace("d.channels.map", "d.restrictions.map");
+  check("contre-épreuve : un lecteur réintroduit SERAIT attrapé", sabote.includes("d.restrictions"));
 }
 
 // ---- 2 ter. LA BRANCHE `allowed` N'A PLUS DE PORTEUR RÉEL — TÉMOIN SYNTHÉTIQUE ---------------

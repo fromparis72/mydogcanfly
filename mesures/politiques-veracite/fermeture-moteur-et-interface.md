@@ -830,3 +830,93 @@ publiés. C'est une **inexactitude de métadonnée**, pas une affirmation sur le
 écartée.
 
 **À la décision de Philippe** — la fusion, et le déploiement.
+
+---
+
+# Annexe 2 — l'interrupteur n'était pas une frontière (contre-revue sur `5dee48f`)
+
+## Le reproche central, et pourquoi il est juste
+
+J'avais écrit que la dette éditoriale était devenue « inatteignable depuis l'interface ». Elle
+était en réalité **à un booléen de distance** : `surfacesEditorialesAffichables = false` gardait
+`ladder`, `restrictions`, `crate`, `temperature`, `assistance` et `goodToKnow`, et **tous leurs
+lecteurs restaient dans le gabarit**. Repasser la constante à `true` — un caractère — aurait
+republié d'un coup toute la couche non sourcée.
+
+C'est la même erreur de raisonnement que celle de l'annexe 1, à un étage au-dessus : j'avais
+vérifié **l'état** (le DOM est propre) et conclu sur la **propriété** (rien ne peut le salir).
+Un contrôle sur le rendu constate ce qui sort aujourd'hui ; il ne dit rien de ce qu'un booléen
+ferait sortir demain.
+
+## Les quatre points
+
+**P0-1 — les lecteurs sont supprimés.** Plus de constante, plus de branche JSX. Les six champs
+n'ont **aucun lecteur** dans `AirlinePremiumPage.astro`. Les données restent intactes dans les
+fiches ; leur retour au public exigera une implémentation neuve, alimentée par des preuves.
+
+**P0-2 — la description publique ne promet plus ce que la page ne publie plus.** `d.metaDesc`
+annonçait sur les 102 fiches « cabin, hold and cargo rules, **fares**, **restrictions** and
+official sources » — dans la balise `description`, dans `og:description`, dans
+`twitter:description` **et** dans le `WebPage` du JSON-LD. J'avais corrigé l'intérieur de la
+fiche sans regarder ce qu'elle annonce d'elle-même à l'extérieur. Aucune fiche n'est réécrite :
+le gabarit produit une description neutre, tenue dans le **catalogue de traductions** — donc
+réellement déclinée en espagnol et en portugais. `inlineF` n'aurait pas suffi : sa table
+portugaise est indexée par la phrase anglaise, et le portugais serait retombé sur l'anglais.
+La **même chaîne** sert les quatre zones.
+
+**P0-3 — le bloc brachycéphale est supprimé des fiches compagnies.** Le reproche est plus fin
+que celui que j'avais entendu, et il est juste : les poids ne sont pas le problème. Le problème
+est que ce bloc n'**apparaît** sur une fiche compagnie que si `brachyRestriction(kbAir)` y trouve
+une restriction **non prouvée**. Sa présence même établit l'association entre ces races et cette
+compagnie — une affirmation qu'aucun désaveu ne défait, puisqu'elle est portée par le fait d'être
+là. Ma déviation argumentée de l'annexe 1 est donc **retirée**, pas maintenue. S'y ajoutait une
+phrase devenue fausse par mon propre masquage : « lis le texte de la compagnie ci-dessus », alors
+que ce texte venait d'être retiré. La classification reste sur les **fiches races**.
+
+**P1 — les coquilles.** La carte « Restrictions importantes » était rendue **vide** ; l'enveloppe
+`.ladder` subsistait avec la phrase « Poids incluant le sac de transport ou la caisse » commentant
+des seuils absents ; la carte « Température & soute » restait affichée avec un message générique
+et un appel à l'outil de caisse sans rapport. Tout cela disparaît. L'appel à l'outil **survit**,
+déplacé dans la carte des canaux et reformulé sans mention de la compagnie : il n'affirme rien, et
+le calculateur est lui-même canonique — mesuré, il ne retient un gabarit de cabine que sur un
+statut `allowed`, ce qu'aucune politique ne vaut plus.
+
+**Les puces ne sont plus filtrées par émoji.** Mon filtre `🗓`/`🚫` était une liste noire : la
+première puce affirmant quelque chose sous une autre icône serait repassée. `d.chips` n'est plus
+lu du tout ; les trois identités structurelles sont **rebâties** depuis `alliance`, `country_id`
+et `hub_airport_ids`. Ce qui n'a pas de champ canonique n'a plus de puce.
+
+## Les quatre preuves
+
+1. **Aucun lecteur** des champs retirés dans le gabarit — contrôle sur la **source**, commentaires
+   retirés d'abord (chaque suppression y est expliquée en nommant son champ : sans cela le
+   contrôle s'accuserait lui-même, ce qui m'est déjà arrivé dans ce dépôt). Avec un témoin de
+   non-vacuité — le code utile doit survivre au décommentage — et une contre-épreuve : un lecteur
+   réintroduit serait attrapé.
+2. **Aucune ancienne `metaDesc`** dans les quatre zones publiques, toutes renseignées et portant
+   **exactement** la même chaîne.
+3. **Aucun bloc brachycéphale** sur les fiches compagnies.
+4. **Aucune section vide** sur les fiches sentinelles — 64 cartes réellement examinées, témoin de
+   non-vacuité à l'appui ; une carte réduite à son titre serait signalée.
+
+## Une garantie voisine, re-fondée plutôt qu'abaissée
+
+`test-inventaire-iata.mjs` § 6 bis exigeait la **présence** du titre reformulé « La cage de
+transport en soute » — parce que la section existait et qu'il fallait vérifier qu'elle ne réclamait
+plus la norme IATA. La section supprimée, la contre-épreuve rougissait. **Mouvement nommé** : elle
+exige désormais l'**interdiction** (l'ancien titre ne revient pas) et conditionne l'exigence
+portugaise à la présence du titre — elle dort tant que rien ne le rend, et mord dès qu'il
+reparaît. La garantie n'a pas baissé : ce qui ne se rend plus ne peut plus rien affirmer.
+
+## Ce que la fiche compagnie publie désormais
+
+Son identité ; les statuts canoniques des canaux réellement déclarés ; la citation stricte quand
+elle existe ; sinon un message prudent et le lien officiel disponible ; des liens génériques vers
+les outils. Rien d'autre.
+
+## Vérifications
+
+`test:unit` vert · frontière 133/133 · entités **164/164** · built-ui 793/793 ·
+`build:prod` 3 113 pages · porte 29/29 · navigateur 79/79.
+
+**À la décision de Philippe** — la fusion, et le déploiement.
