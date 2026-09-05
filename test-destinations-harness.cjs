@@ -114,6 +114,10 @@ function match(over = {}) {
     airlines_total: 1, airlines_to_confirm_total: 0,
     cabin_status: "allowed", hold_status: "denied", cargo_status: "denied",
     placement_ok: true, placement_to_confirm: false,
+    /* `entry_status` EST OBLIGATOIRE DEPUIS LE 05/09/2026, et cette fixture ne portait que le
+       booléen — le chemin ternaire n'était donc éprouvé par aucune de ses variantes. La valeur
+       par défaut est l'état neutre ; les variantes qui veulent éprouver la porte le surchargent. */
+    entry_status: "no_known_block",
     entry_allowed: true, flight_hours: 8,
     ...over,
   };
@@ -441,6 +445,52 @@ async function main() {
     check("fr : aucun libellé anglais résiduel dans la carte",
       !/(to confirm with the airline|no heat signal)/i.test(r.doc.querySelector("#dfx-toconfirm .dfx-card")?.textContent ?? ""));
   }
+
+  await troisEtatsDEntree();
+}
+
+async function troisEtatsDEntree() {
+  /* LE CHEMIN TERNAIRE, DANS LE VRAI RENDU (contre-revue du 05/09/2026).
+   *
+   * Ce harnais exécute le script RÉEL de `DestinationFinder.astro` : ce qu'on lit ici est
+   * l'ordre qu'un visiteur verrait. Les fixtures ne portaient que `entry_allowed`, donc le
+   * chemin ternaire n'était éprouvé nulle part — et la porte s'appelle désormais
+   * `porteDEntree`, dans `packages/ui/src/lib/entryGate.ts`, importée par la page.
+   *
+   * Cinq destinations IDENTIQUES sauf `entry_status`. L'ordre obtenu ne peut donc venir que de
+   * la porte. Si le repli redevenait « aucun blocage connu », ABSENT et INVALIDE remonteraient
+   * au rang de LIBRE et les deux derniers contrôles rougiraient. */
+  const parts = loadParts("");
+  const cas = [
+    ["BLOCKEDCITY", "blocked"],
+    ["CONFIRMCITY", "confirmation_required"],
+    ["FREECITY", "no_known_block"],
+    ["ABSENTCITY", undefined],
+    ["INVALIDCITY", "totalement_inconnu"],
+  ];
+  const matches = cas.map(([ville, st], i) => {
+    const m = match({ airport_id: `airport_t${i}`, iata: `T${i}0`, city: ville, country_name: ville,
+      iso2: "US", temperature_c: 18, climate_estimated: false, flight_hours: 2 });
+    if (st === undefined) delete m.entry_status; else m.entry_status = st;
+    return m;
+  });
+  const breeds = parts.labels.breeds;
+  const r = await run(parts, { matches, breedKey: Object.keys(breeds).find((k) => !breeds[k].br), placement: "any" });
+  const rendu = [...r.doc.querySelectorAll(".dfx-card")].map((c) => c.textContent.replace(/\s+/g, " "));
+  check(`les cinq destinations sont rendues (témoin non vide, ${rendu.length})`, rendu.length === 5);
+  const rang = (v) => rendu.findIndex((t) => t.includes(v));
+  check("LIBRE passe devant À CONFIRMER",
+    rang("FREECITY") >= 0 && rang("FREECITY") < rang("CONFIRMCITY"),
+    JSON.stringify({ libre: rang("FREECITY"), confirmer: rang("CONFIRMCITY") }));
+  check("À CONFIRMER passe devant BLOQUÉ",
+    rang("CONFIRMCITY") < rang("BLOCKEDCITY"),
+    JSON.stringify({ confirmer: rang("CONFIRMCITY"), bloque: rang("BLOCKEDCITY") }));
+  check("un statut ABSENT ne passe PAS devant « à confirmer » — le repli est prudent",
+    rang("ABSENTCITY") > rang("FREECITY"),
+    JSON.stringify({ absent: rang("ABSENTCITY"), libre: rang("FREECITY") }));
+  check("un statut INVALIDE non plus",
+    rang("INVALIDCITY") > rang("FREECITY"),
+    JSON.stringify({ invalide: rang("INVALIDCITY"), libre: rang("FREECITY") }));
 }
 
 main().then(() => {

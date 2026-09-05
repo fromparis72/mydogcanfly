@@ -403,25 +403,83 @@ console.log("\n=== Une interdiction PROUVÉE, elle, tranche encore ===");
   await p.close();
 }
 
-console.log("\n=== Outil Destinations : les trois états d'entrée, exercés dans le navigateur ===");
+console.log("\n=== Outil Destinations : les trois états d'entrée, dans le VRAI rendu ===");
 {
-  /* CE PARAGRAPHE N'EXISTAIT PAS, ET LA CONTRE-REVUE L'A RELEVÉ : le chemin ternaire du
-   * classement n'était éprouvé nulle part dans le navigateur. Il l'est ici de bout en bout —
-   * formulaire, Worker, rendu — sur une race dont l'entrée est restreinte dans plusieurs pays. */
+  /* PREUVE CIRCULAIRE, NOMMÉE ET REMPLACÉE (contre-revue du 05/09/2026).
+   *
+   * Ma rédaction précédente affirmait « on rejoue la fonction de porte telle qu'elle est écrite
+   * dans la page ». C'était faux : elle en RECOPIAIT une seconde version dans le test. Saboter le
+   * vrai `DestinationFinder.astro` pour qu'il retombe sur « aucun blocage connu » n'aurait rien
+   * fait rougir — le contrôle éprouvait sa propre copie.
+   *
+   * Deux corrections. (1) La porte vit maintenant dans `packages/ui/src/lib/entryGate.ts`, importée
+   * par la page : il n'y a plus qu'une définition. (2) Ce paragraphe n'appelle plus AUCUNE
+   * fonction : il intercepte `/v1/destinations`, sert une réponse contrôlée portant les cinq cas —
+   * bloqué, à confirmer, sans blocage connu, statut ABSENT, statut INVALIDE — et lit le CLASSEMENT
+   * RÉELLEMENT RENDU. Tout est identique d'une destination à l'autre sauf `entry_status` : l'ordre
+   * obtenu ne peut donc venir que de la porte. Un repli fautif vers « aucun blocage connu » ferait
+   * remonter ABSENT et INVALIDE au niveau de LIBRE, et les deux contrôles d'ordre rougiraient. */
   const p = await nouvellePage();
+  const villes = [
+    { id: "BLOQUE", st: "blocked" },
+    { id: "CONFIRMER", st: "confirmation_required" },
+    { id: "LIBRE", st: "no_known_block" },
+    { id: "ABSENT", st: undefined },
+    { id: "INVALIDE", st: "totalement_inconnu" },
+  ];
+  await p.route("**/v1/destinations", async (route) => {
+    const matches = villes.map((v, i) => ({
+      airport_id: `airport_fixture_${i}`, iata: v.id.slice(0, 3), city: v.id,
+      country_id: "country_fixture", iso2: "ZZ", country_name: v.id, region: "Europe",
+      temperature_c: 18, climate_estimated: false,
+      heat_embargo: false, heat_confirmation_required: false, confirmation_signals: [],
+      estimated_heat_signal: false, heat_risk: false,
+      airlines_total: 4, airlines_to_confirm_total: 0,
+      cabin_ok: true, hold_ok: true, cargo_ok: true,
+      cabin_status: "allowed", hold_status: "allowed", cargo_status: "allowed",
+      placement_ok: true, placement_to_confirm: false,
+      ...(v.st === undefined ? {} : { entry_status: v.st }),
+      entry_allowed: true, flight_hours: 2,
+    }));
+    await route.fulfill({ status: 200, contentType: "application/json",
+      body: JSON.stringify({ matches, generated_at: new Date().toISOString() }) });
+  });
   await p.goto(`${BASE}/tools/destinations/`, { waitUntil: "networkidle" });
   await p.fill("#dfx-origin", "Paris");
   await p.waitForTimeout(400);
-  await p.fill("#dfx-breed", "American Bully (XL)");
-  await p.dispatchEvent("#dfx-breed", "input");
-  await p.waitForTimeout(400);
-  await p.click("#dfx-form button[type=submit]").catch(() => p.press("#dfx-breed", "Enter"));
+  await p.click("#dfx-form button[type=submit]").catch(() => p.press("#dfx-origin", "Enter"));
   await p.waitForSelector("#dfx-result .dfx-card", { timeout: 30000 }).catch(() => {});
-  const cartes = await p.$$("#dfx-result .dfx-card");
-  check("l'outil Destinations rend des cartes (témoin non vide)", cartes.length > 0, String(cartes.length));
 
-  /* LE CHEMIN TERNAIRE EST-IL RÉELLEMENT EMPRUNTÉ ? On relit le statut porté par la réponse du
-     Worker, telle que la page l'a reçue — pas la valeur qu'on souhaiterait y trouver. */
+  /* On lit le rendu : le nom de la ville et le score affiché, dans l'ordre du DOM. */
+  const rendu = await p.$$eval("#dfx-result .dfx-card", (n) => n.map((c) => ({
+    ville: (c.querySelector(".dfx-card__city") || c).textContent.trim().split("\n")[0].trim(),
+    texte: c.textContent.replace(/\s+/g, " "),
+  })));
+  check("le VRAI rendu produit les cinq destinations de la fixture", rendu.length === 5,
+    JSON.stringify(rendu.map((x) => x.ville)));
+  const rang = (id) => rendu.findIndex((x) => x.texte.includes(id));
+  console.log(`  ·    ordre rendu : ${JSON.stringify(rendu.map((x) => x.ville))}`);
+  check("LIBRE (aucun blocage connu) passe devant À CONFIRMER",
+    rang("LIBRE") >= 0 && rang("CONFIRMER") >= 0 && rang("LIBRE") < rang("CONFIRMER"),
+    JSON.stringify({ libre: rang("LIBRE"), confirmer: rang("CONFIRMER") }));
+  check("…et À CONFIRMER passe devant BLOQUÉ",
+    rang("CONFIRMER") < rang("BLOQUE"), JSON.stringify({ confirmer: rang("CONFIRMER"), bloque: rang("BLOQUE") }));
+  /* LES DEUX CONTRÔLES QUI ATTRAPENT UN REPLI FAUTIF. Si la page repliait sur « aucun blocage
+     connu », ABSENT et INVALIDE se rangeraient AVEC libre, devant « à confirmer ». */
+  check("un statut ABSENT est traité en PRUDENCE : il ne passe pas devant À CONFIRMER",
+    rang("ABSENT") > rang("LIBRE"), JSON.stringify({ absent: rang("ABSENT"), libre: rang("LIBRE") }));
+  check("un statut INVALIDE aussi — il ne passe pas devant À CONFIRMER",
+    rang("INVALIDE") > rang("LIBRE"), JSON.stringify({ invalide: rang("INVALIDE"), libre: rang("LIBRE") }));
+  await p.unroute("**/v1/destinations");
+  await p.close();
+}
+
+console.log("\n=== Et sur les VRAIES données : les trois états voyagent jusqu'au navigateur ===");
+{
+  /* La fixture ci-dessus prouve le comportement de la porte ; celle-ci prouve que le Worker sert
+     bien le champ, sur la base réelle, à travers l'API que la page appelle. */
+  const p = await nouvellePage();
+  await p.goto(`${BASE}/tools/destinations/`, { waitUntil: "domcontentloaded" });
   const statuts = await p.evaluate(async () => {
     const r = await fetch("/v1/destinations", { method: "POST", headers: { "content-type": "application/json" },
       body: JSON.stringify({ origin: "airport_cdg", dog: { breed_id: "breed_american_bully_xl", weight_kg: 50 }, locale: "en" }) });
@@ -430,27 +488,10 @@ console.log("\n=== Outil Destinations : les trois états d'entrée, exercés dan
     for (const m of (j.matches ?? [])) n[m.entry_status ?? "ABSENT"] = (n[m.entry_status ?? "ABSENT"] ?? 0) + 1;
     return n;
   });
-  check("chaque destination servie porte un statut d'entrée ternaire (aucun ABSENT)",
+  check("chaque destination servie porte un statut d'entrée (aucun ABSENT)",
     !statuts.ABSENT && Object.keys(statuts).length > 0, JSON.stringify(statuts));
-  check("…et les deux états attendus sont présents : à confirmer, et sans blocage connu",
+  check("…et les deux états attendus sont présents pour cette race",
     statuts.confirmation_required > 0 && statuts.no_known_block > 0, JSON.stringify(statuts));
-
-  /* LE REPLI PRUDENT, exercé pour de vrai : une réponse SANS `entry_status` — une version
-     antérieure de l'API — ne doit pas être classée « aucun blocage connu ». On rejoue la fonction
-     de porte telle qu'elle est écrite dans la page, sur les trois états plus l'absence. */
-  const portes = await p.evaluate(() => {
-    const ETATS = ["blocked", "confirmation_required", "no_known_block"];
-    const porte = (st) => {
-      const entree = ETATS.indexOf(st) >= 0 ? st : "confirmation_required";
-      return entree === "blocked" ? 0.05 : entree === "confirmation_required" ? 0.35 : 1;
-    };
-    return { blocked: porte("blocked"), confirm: porte("confirmation_required"),
-      libre: porte("no_known_block"), absent: porte(undefined) };
-  });
-  check("les trois états ont trois portes distinctes",
-    portes.blocked === 0.05 && portes.confirm === 0.35 && portes.libre === 1, JSON.stringify(portes));
-  check("…et un statut ABSENT échoue vers la PRUDENCE, jamais vers « aucun blocage connu »",
-    portes.absent === portes.confirm && portes.absent !== portes.libre, JSON.stringify(portes));
   await p.close();
 }
 

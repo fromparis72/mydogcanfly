@@ -215,6 +215,7 @@ const L = {
 </section>
 
 <script>
+  import { porteDEntree } from "../lib/entryGate";
   import { travelDateBoundsClient } from "../lib/travel-date-bounds";
   import { attachCombobox, type ComboItem } from "../lib/combobox";
   const L = JSON.parse(document.getElementById("dfx-labels")?.textContent ?? "{}");
@@ -430,19 +431,10 @@ const L = {
 
   function card(m: Match, docs: Docs, brachy: boolean, placementPref: string): { html: string; score: number } {
     const cl = climate(m, brachy), fm = formalities(m, docs), fl = flightsMeta(m, placementPref);
-    /* TROIS PORTES, PARCE QU'IL Y A TROIS ÉTATS (05/09/2026). L'ancienne porte ne connaissait que
-       « bloqué » et « pas bloqué » : une destination dont l'entrée est seulement à confirmer y
-       passait à PLEINE porte, au même rang qu'une ville sans restriction connue. Elle ne mérite ni
-       le rang d'une destination libre, ni l'enterrement d'une interdiction prouvée.
-
-       LE REPLI ÉCHOUE VERS LA PRUDENCE, PAS VERS LE SILENCE (contre-revue du 05/09/2026). Ma
-       première rédaction repliait sur l'ancien booléen — `m.entry_allowed ? "no_known_block" : …`
-       — et recréait donc mot pour mot le faux-vert que ce lot retire : une réponse ancienne ou
-       incomplète portant `entry_allowed: true` était classée « aucun blocage connu ». Un statut
-       absent n'est pas une absence de blocage, c'est une ignorance : elle se confirme. */
-    const ETATS = ["blocked", "confirmation_required", "no_known_block"];
-    const entree = ETATS.indexOf(m.entry_status) >= 0 ? m.entry_status : "confirmation_required";
-    const gate = entree === "blocked" ? 0.05 : entree === "confirmation_required" ? 0.35 : 1;
+    /* LA PORTE VIT DANS `../lib/entryGate` — une seule définition, importée ici et par les
+       harnais. Elle était écrite en double : le test navigateur en gardait sa propre copie et
+       serait resté vert si CETTE page-ci avait été sabotée. */
+    const gate = porteDEntree(m.entry_status);
     const score = Math.round(100 * gate * (0.4 * cl.score + 0.3 * fl.score + 0.3 * fm.score));
     const bad = score < 40;
     const href = `${L.cbase}${m.iso2.toLowerCase()}/`;

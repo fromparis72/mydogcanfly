@@ -151,15 +151,11 @@ export function explain(decision: Decision, locale = "en"): DecisionReport {
    * Ce n'est qu'à la PRÉSENTATION que l'auto-citation s'efface. */
   for (const f of decision.countryRequirements) {
     const presentable = estAutoCitation(f.source_url) ? undefined : f.source_url;
-    /* UNE RÈGLE QUI NE DÉCIDE PAS NE GARDE PAS SA CONCLUSION CATÉGORIQUE (contre-revue du
-       05/09/2026). Le `rationale` d'une interdiction non citée continuait d'être publié tel quel —
-       « Interdit par l'article 1… », « impossible à obtenir pour un chien arrivant de l'étranger » —
-       c'est-à-dire une conclusion présentée comme établie alors que le moteur venait de refuser de
-       la tenir pour telle. Le TEXTE est conservé, entier : il est peut-être juste, et le retirer
-       serait une décision de contenu. Ce qui change est son CADRE — il est annoncé comme une
-       restriction potentielle à confirmer, et le lien officiel reste à côté. */
     const nonDecisive = f.action === "deny" && !f.decisive;
     /* LE `rationale` D'UNE RÈGLE NON DÉCISIVE NE SORT PLUS DU TOUT (contre-revue du 05/09/2026).
+       (Un commentaire antérieur affirmait ici que « le TEXTE est conservé, entier ». Il décrivait
+       la rédaction intermédiaire, celle qui encadrait le texte au lieu de le retirer ; il
+       contredisait le code qui le suit et il est supprimé.)
        Ma rédaction précédente l'encadrait — « Ce que dit la page officielle, et que nous n'avons
        pas pu vérifier phrase par phrase : … » — puis l'imprimait. Or `rationale` est NOTRE résumé
        éditorial, pas une citation : la règle britannique n'a aucune `source.quote`, et le rapport
@@ -167,7 +163,15 @@ export function explain(decision: Decision, locale = "en"): DecisionReport {
        (« possession is only lawful under a court-ordered Certificate of Exemption, which cannot be
        obtained for a dog arriving from abroad »). Encadrer un texte ne le rend pas sourçable ; il
        fallait cesser de le publier. Le visiteur reçoit une formulation neutre et LE LIEN OFFICIEL,
-       qui le mène au texte véritable. `rationale` reste dans `fired`, pour l'audit. */
+       qui le mène au texte véritable. `rationale` reste dans `fired`, pour l'audit.
+
+       LA FORMULATION NE PRÉTEND PLUS RIEN SUR NOTRE PROCESSUS (contre-revue du 05/09/2026). Elle
+       disait « nous n'avons pas pu vérifier nous-mêmes le texte officiel », ce qui confondait
+       trois situations distinctes : une page bien lue dont la citation verbatim n'est pas
+       enregistrée ; une information réellement non vérifiée ; et une restriction dont
+       l'applicabilité dépend d'une donnée que le formulaire ne recueille pas — la pureté du chien
+       pour l'Australie. La phrase publiée porte donc sur le FAIT, pas sur nous : une restriction
+       peut s'appliquer, les informations disponibles ne permettent pas de l'établir ici. */
     const texte = nonDecisive ? L("cond.potential_restriction") : f.rationale;
     conditions.push({
       text: texte,

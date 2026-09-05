@@ -829,8 +829,17 @@ console.log("\n=== 13 quinquies. L'ENTRÉE DANS LE PAYS : UN STATUT TERNAIRE, ET
     .filter((r) => r.scope?.type === "country" && r.effect?.action === "deny")
     .filter((r) => {
       const e = registreEval.regles.find((x) => x.rule_id === r.id);
-      if (!decisive(r)) return !!(e && e.resolu);      // résolue mais plus décisive : incohérent
-      if (!e || !e.resolu) return true;                // décisive sans entrée résolue
+      if (!e) return true;                             // règle pays hors registre : inconnue au bataillon
+      if (!decisive(r)) {
+        /* NON DÉCISIVE. La rédaction précédente ne regardait QUE le drapeau `resolu` : tant qu'une
+           entrée restait à `false`, le prédicat de la règle vivante pouvait s'élargir ou se
+           rétrécir sans que rien ne bouge. Reproduit — ajouter `breed_golden_retriever` à la règle
+           britannique laissait la garde verte, pendant que le registre continuait d'annoncer un
+           état constaté qui n'existait plus. Le registre DÉCRIT une restriction : sa description
+           doit rester exacte, ou être mise à jour explicitement. */
+        return !!e.resolu || !egal(predicatDe(r), e.predicat_constate);
+      }
+      if (!e.resolu) return true;                      // décisive sans entrée résolue
       return !egal(predicatDe(r), e.predicat_approuve) || !egal(preuveDe(r), e.preuve_approuvee);
     })
     .map((r) => r.id);
@@ -872,6 +881,27 @@ console.log("\n=== 13 quinquies. L'ENTRÉE DANS LE PAYS : UN STATUT TERNAIRE, ET
   saboter("une règle NON citée déclarée `resolu` à la main", (rs, rg) => {
     resoudre(rg, "rule_fr_breed_ban_restricted_types");
   });
+  /* ET LE CAS QUE LA GARDE NE REGARDAIT PAS DU TOUT : une règle NON résolue dont le prédicat
+     bouge en silence. Le registre annoncerait un état constaté périmé pendant que la règle
+     réellement exécutée s'est élargie — ou rétrécie. */
+  saboter("règle NON résolue : une race AJOUTÉE au prédicat constaté", (rs) => {
+    rs.find((r) => r.id === "rule_gb_breed_ban_restricted_types").applies_when.all[1].value.push("breed_golden_retriever");
+  });
+  saboter("règle NON résolue : une race RETIRÉE du prédicat constaté", (rs) => {
+    rs.find((r) => r.id === "rule_ie_breed_ban_restricted_types").applies_when.all[1].value.pop();
+  });
+  saboter("règle NON résolue : une condition SANS RAPPORT ajoutée", (rs) => {
+    rs.find((r) => r.id === "rule_fr_breed_ban_restricted_types").applies_when.all.push({ fact: "dog.weight_kg", op: "gt", value: 0 });
+  });
+  /* TÉMOIN POSITIF : permuter la liste d'une règle NON résolue ne rougit pas non plus — la forme
+     canonique trie les ensembles des deux côtés, résolus comme non résolus. */
+  {
+    const rs = JSON.parse(JSON.stringify(regles));
+    const l = rs.find((r) => r.id === "rule_gb_breed_ban_restricted_types").applies_when.all[1].value;
+    [l[0], l[3]] = [l[3], l[0]];
+    check("TÉMOIN : permuter la liste d'une règle NON résolue ne rougit pas",
+      gardeRouge(rs, registre).length === 0, JSON.stringify(gardeRouge(rs, registre)));
+  }
   /* ET LE TÉMOIN POSITIF : la permutation SEULE, sur une règle déjà approuvée, ne rougit PAS —
      sans quoi la garde serait simplement stricte, et non exacte. */
   {
@@ -918,7 +948,38 @@ console.log("\n=== 13 quinquies. L'ENTRÉE DANS LE PAYS : UN STATUT TERNAIRE, ET
   /* LE RATIONALE CATÉGORIQUE EST ENCADRÉ, pas supprimé : le texte officiel reste lisible entier. */
   const cond = (rep.conditions ?? [])[0];
   check("l'exigence non décisive est présentée comme une restriction POTENTIELLE",
-    /^Potential entry restriction\./i.test(cond?.text ?? ""), (cond?.text ?? "").slice(0, 70));
+    /^An entry restriction may apply to this dog\./i.test(cond?.text ?? ""), (cond?.text ?? "").slice(0, 70));
+  /* Et elle n'affirme plus rien sur NOTRE processus : « nous n'avons pas pu vérifier nous-mêmes »
+     confondait une page lue sans citation enregistrée, une information non vérifiée, et une
+     restriction dont l'applicabilité dépend d'une donnée que le formulaire ne recueille pas. */
+  check("…et elle ne prétend RIEN sur notre propre vérification",
+    !/we have not been able to verify|nous n'avons pas pu vérifier|no hemos podido verificar|não conseguimos verificar/i
+      .test(cond?.text ?? ""), (cond?.text ?? "").slice(0, 110));
+
+  /* LA PORTE DE CLASSEMENT, ÉPROUVÉE SUR LA FONCTION DE PRODUCTION ELLE-MÊME. Elle vivait en
+     double — la page d'un côté, une copie dans le harnais navigateur de l'autre —, si bien que
+     saboter la page n'aurait rien fait rougir. Elle n'existe plus qu'ici. */
+  {
+    const { porteDEntree, ETATS_ENTREE } = await import("./packages/ui/src/lib/entryGate.ts");
+    check("la porte connaît exactement les trois états", ETATS_ENTREE.length === 3);
+    check("trois états, trois portes distinctes",
+      porteDEntree("blocked") === 0.05 && porteDEntree("confirmation_required") === 0.35
+        && porteDEntree("no_known_block") === 1,
+      JSON.stringify(ETATS_ENTREE.map(porteDEntree)));
+    for (const absurde of [undefined, null, "", "no_known_blockk", "NO_KNOWN_BLOCK", 42, {}, []]) {
+      check(`statut invalide (${JSON.stringify(absurde)}) → porte de PRUDENCE, jamais celle du libre`,
+        porteDEntree(absurde) === porteDEntree("confirmation_required")
+          && porteDEntree(absurde) !== porteDEntree("no_known_block"),
+        String(porteDEntree(absurde)));
+    }
+    /* Et la page l'IMPORTE, elle n'en garde pas une copie. */
+    const dfxSrc = readFileSync("packages/ui/src/components/DestinationFinder.astro", "utf8")
+      .replace(/\/\*[\s\S]*?\*\//g, "");
+    check("le gabarit IMPORTE la porte de production, il n'en réécrit aucune",
+      /import \{ porteDEntree \} from "\.\.\/lib\/entryGate"/.test(dfxSrc)
+        && /const gate = porteDEntree\(m\.entry_status\)/.test(dfxSrc)
+        && !/0\.35 : 1/.test(dfxSrc));
+  }
   /* CE CONTRÔLE DISAIT L'INVERSE, ET IL GRAVAIT LE DÉFAUT (contre-revue du 05/09/2026). Il
      EXIGEAIT que le texte officiel soit « conservé entier » dans la condition. Or ce texte est
      `rationale` — NOTRE résumé éditorial —, et la phrase qui l'introduisait l'attribuait à la
@@ -1031,8 +1092,8 @@ console.log("\n=== 13 quinquies. L'ENTRÉE DANS LE PAYS : UN STATUT TERNAIRE, ET
      propre explication. Même faute que le contrôle qui avait rougi sur la phrase légitime des
      races au museau court : un contrôle doit lire le CODE, pas le texte qui en parle. */
   const dfxCode = dfx.replace(/\/\*[\s\S]*?\*\//g, "");
-  check("la porte de classement lit les TROIS états",
-    /entree === "blocked" \? 0\.05 : entree === "confirmation_required" \? 0\.35 : 1/.test(dfxCode));
+  /* La porte elle-même est éprouvée plus haut, sur la FONCTION DE PRODUCTION (`entryGate.ts`) —
+     ce contrôle-ci ne garde plus que la disparition de l'ancienne porte binaire du gabarit. */
   check("…et l'ancienne porte binaire a bien disparu DU CODE",
     !/m\.entry_allowed \? 1 : 0\.05/.test(dfxCode),
     JSON.stringify((dfxCode.match(/.{0,40}m\.entry_allowed \? 1 : 0\.05.{0,20}/) ?? [])[0] ?? ""));
