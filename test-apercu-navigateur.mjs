@@ -259,14 +259,27 @@ console.log("\n=== Le score affiché en tête de rapport ===");
   /* MESURÉ HORS NAVIGATEUR le 04/09/2026, sur la MÊME route et les MÊMES 22 cartes :
    *   données réelles  → score 10, 0 compagnie acceptante
    *   données citées   → score 76, 20 compagnies acceptantes
-   * L'effondrement ne vient donc pas du trajet : il vient de ce qu'aucune politique n'est prouvée.
-   * Le rapport affiche « Yes — with conditions » à côté de « 9 % », et les deux se contredisent à
-   * l'œil : le titre promet, le chiffre décourage. C'est un ARBITRAGE, pas un défaut technique —
-   * il rejoint les listes de race vides et `offers_pet_transport` vrai partout. Ce contrôle le
-   * FIGE pour qu'il ne passe pas inaperçu, et rougira dès que des citations le feront remonter. */
-  check("le score est constaté et figé bas (≤ 15) tant qu'aucune politique n'est prouvée",
-    score !== null && score <= 15, `score affiché : ${score}%`);
-  console.log(`  ·    même route, mêmes cartes, avec des citations : le score remonterait à 76 %`);
+   * L'effondrement ne venait donc pas du trajet : il venait de ce qu'aucune politique n'est
+   * prouvée. Le rapport affichait « Yes — with conditions » à côté de « 9 % », et les deux se
+   * contredisaient à l'œil : le titre promettait, le chiffre décourageait.
+   *
+   * L'ARBITRAGE EST RENDU (05/09/2026), ET CE TÉMOIN CHANGE DE SENS. Il figeait le chiffre pour
+   * qu'il ne passe pas inaperçu, en attendant la décision. La décision est prise : la jauge ne
+   * s'affiche plus du tout, parce qu'un pourcentage précis posé sur des données non prouvées est
+   * la réponse catégorique trompeuse que le critère de lancement interdit. Le contrôle exige
+   * donc maintenant l'ABSENCE — propriété strictement plus forte que « ≤ 15 », et vérifiée là où
+   * ça compte : dans le DOM réel, pas dans le contrat.
+   *
+   * Il reste NON VIDE : la réponse de tête, elle, doit être présente et dire « pas encore
+   * établi ». Sans cette moitié, une page blanche satisferait le contrôle. */
+  check("AUCUN pourcentage n'est affiché en tête de rapport — la jauge est masquée",
+    score === null, `score affiché : ${score}%`);
+  const reponse = await p.$eval(".report__answer", (n) => n.textContent.trim()).catch(() => "");
+  check("…et la réponse de tête est bien rendue, en disant qu'elle n'est pas établie",
+    /pas encore|not established|aún no|ainda não/i.test(reponse), JSON.stringify(reponse));
+  const note = await p.$eval(".report__unknown", (n) => n.textContent.trim()).catch(() => "");
+  check("…et la note explique pourquoi, sans se lire comme un refus",
+    note.length > 40 && !/refus|refused|rechaz|recus/i.test(note), JSON.stringify(note.slice(0, 90)));
   await p.close();
 }
 
@@ -282,6 +295,85 @@ console.log("\n=== La préversion ne doit PAS être indexable ===");
   const robots = await p.$eval('meta[name="robots"]', (n) => n.getAttribute("content")).catch(() => null);
   console.log(`  ·    dist servi : meta robots = ${robots ?? "(absente)"} — artefact de PRODUCTION`);
   console.log("  ·    la préversion Cloudflare, elle, est construite par `npm run build` et reste fermée");
+  await p.close();
+}
+
+/* ---- 11. LES DEUX AUTRES ARBITRAGES, DANS LE DOM RÉEL --------------------------------------- */
+console.log("\n=== Fiche de race : plus aucune affirmation sans preuve ===");
+{
+  /* Ce que la page annonçait le 05/09/2026 au matin, sur 172 races et quatre langues :
+     « Accepté par la plupart (cabine) », « Très souvent possible » d'après une limite SUPPOSÉE de
+     8 kg, « Souvent refusé » en soute sur « 0 acceptent, 0 non », et « Voyageur très difficile ·
+     1,5/5 · 18/100 ». Quatre réponses catégoriques produites par un vide. On les cherche ici dans
+     le HTML SERVI — pas dans la fonction qui les calcule, où je les avais déjà crues absentes. */
+  const p = await nouvellePage();
+  await p.goto(`${BASE}/fr/breeds/pug/`, { waitUntil: "domcontentloaded" });
+  const texte = (await p.evaluate(() => document.body.innerText)).replace(/\s+/g, " ");
+  check("la fiche du carlin s'ouvre et porte du contenu", texte.length > 800, `${texte.length} caractères`);
+  for (const interdit of ["Accepté par la plupart", "Souvent refusé", "Très souvent possible"]) {
+    check(`aucune affirmation « ${interdit} » — elle ne reposait sur rien`, !texte.includes(interdit));
+  }
+  check("aucune note chiffrée /100 — elle mesurait un dossier vide",
+    !/\/100/.test(texte), (texte.match(/[^ ]{0,12}\/100/) || [])[0] || "");
+  check("les canaux disent « pas encore établi »", /[Pp]as encore établi/.test(texte));
+  /* NON VIDE : la précaution de catégorie doit survivre au retrait du faux chiffre. Ma première
+     rédaction les avait supprimés ensemble, et la fiche d'un brachycéphale ne parlait plus de son
+     museau court en soute. */
+  check("…et la précaution brachycéphale SURVIT (museau court encore mentionné)",
+    /museau court/i.test(texte));
+  check("la section « Meilleures compagnies » explique son vide au lieu de le laisser béant",
+    /rien à classer/i.test(texte) && /absence de preuve/i.test(texte));
+  /* TÉMOIN : un golden n'est pas brachycéphale — la précaution ne doit pas se propager. */
+  const p2 = await nouvellePage();
+  await p2.goto(`${BASE}/fr/breeds/golden-retriever/`, { waitUntil: "domcontentloaded" });
+  const t2 = (await p2.evaluate(() => document.body.innerText)).replace(/\s+/g, " ");
+  check("TÉMOIN : la fiche d'un golden ne parle pas de museau court", !/museau court/i.test(t2));
+  await p.close(); await p2.close();
+}
+
+console.log("\n=== Carte compagnie : le statut ternaire ===");
+{
+  /* LA ROUTE EST CHOISIE POUR ATTEINDRE LA BRANCHE, pas pour être verte.
+   *
+   * La ligne du badge ne s'exécute que sur une carte SANS canal ouvert et SANS canal à confirmer.
+   * Sur un Paris → New York ordinaire, toutes les cartes ont des canaux « à confirmer » : la
+   * branche n'est jamais atteinte, et deux contrôles qui cherchent une étiquette absente y
+   * seraient verts sans rien exercer. Paris → Dublin avec un American Bully XL l'atteint : le
+   * pays interdit la race, `entry_allowed` éteint les trois canaux, et les 11 cartes deviennent
+   * structurelles. Avant ce lot, ces 11 cartes affichaient « 🐾 Non compatible » — soit « ces
+   * compagnies transportent des animaux, mais pas le vôtre » — alors qu'AUCUNE politique de ces
+   * compagnies n'est établie. C'est exactement le cas que le statut ternaire ferme. */
+  /* LE LIBELLÉ EXACT, ET RIEN D'AUTRE. Première rédaction fautive, nommée : j'ai écrit
+     « American Bully XL » alors que la liste porte « American Bully (XL) ». La race n'a pas été
+     posée, la route n'a produit aucune carte structurelle, et mes deux contrôles négatifs sont
+     passés au vert sans rien exercer — la troisième fois cette semaine qu'un contrôle compte zéro
+     là où il ne regarde pas. Le témoin ci-dessous vérifie donc que la BRANCHE est atteinte, par
+     son étiquette PROPRE et non par un « à confirmer » quelconque : la première version a été
+     satisfaite par « Itinerary to confirm », un badge d'itinéraire sans rapport. */
+  const { p, texte } = await chercher({ from: "airport_cdg", dest: "airport_dub", kg: 25, race: "American Bully (XL)" });
+  check("des cartes compagnie sont rendues (témoin non vide)",
+    (await p.$$(".acard")).length > 0, String((await p.$$(".acard")).length));
+  const badges = await p.$$eval(".acard__status", (n) => n.map((x) => x.textContent.trim()));
+  /* SANS CE TÉMOIN, LES DEUX CONTRÔLES SUIVANTS SERAIENT VIDES. Ils cherchent une étiquette
+     ABSENTE : si aucune étiquette n'est rendue du tout, ils passent en ne regardant rien — la
+     faute que ce dépôt a déjà commise trois fois (« un contrôle qui ne parle que de ce qu'il
+     reconnaît compte zéro là où il ne regarde pas »). */
+  check("des étiquettes de statut sont bien rendues sur les cartes (témoin non vide)",
+    badges.length > 0, `${badges.length} étiquette(s)`);
+  console.log(`  ·    étiquettes rendues : ${JSON.stringify([...new Set(badges)])}`);
+  /* LA BRANCHE EST-ELLE VRAIMENT ATTEINTE ? Sans ce contrôle, les deux suivants resteraient verts
+     le jour où la route cesserait de produire des cartes structurelles. */
+  const petsBadges = await p.$$eval(".acard__status--petsunknown, .acard__status--nopets, .acard__status--nomatch",
+    (n) => n.map((x) => x.textContent.trim()));
+  check("la branche du statut d'animaux est bien atteinte (≥1 carte structurelle)",
+    petsBadges.length > 0, `${petsBadges.length} · toutes étiquettes : ${JSON.stringify([...new Set(badges)])}`);
+  check("…et ces cartes disent « transport à confirmer », le seul état que la donnée établit",
+    petsBadges.length > 0 && petsBadges.every((b) => /Pet transport to confirm|Transport d'animaux à confirmer|Transporte de mascotas por confirmar|Transporte de animais a confirmar/i.test(b)),
+    JSON.stringify([...new Set(petsBadges)]));
+  check("aucune carte n'affirme « Animaux refusés » — aucun refus complet n'est prouvé",
+    !badges.some((b) => /Animaux refusés/i.test(b)), JSON.stringify(badges.filter((b) => /Animaux refusés/i.test(b))));
+  check("aucune carte n'affirme « Non compatible » — cela supposait un transport établi",
+    !badges.some((b) => /Non compatible/i.test(b)), JSON.stringify(badges.filter((b) => /Non compatible/i.test(b))));
   await p.close();
 }
 

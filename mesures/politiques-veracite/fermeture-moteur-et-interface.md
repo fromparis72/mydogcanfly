@@ -186,6 +186,35 @@ Ce lot **retire des affirmations, il n'en déplace aucune**.
 
 ---
 
+## Vérification dans le navigateur — et un faux vert attrapé là
+
+Les trois arbitrages sont vérifiés dans le **DOM servi**, pas seulement dans les fonctions qui les
+calculent : `test-apercu-navigateur.mjs` passe de 39 à **56 contrôles**, tous verts.
+
+- la jauge : le contrôle qui **figeait** le score bas (« ≤ 15 ») en attendant l'arbitrage exige
+  maintenant son **absence** — propriété strictement plus forte — et vérifie en plus que la réponse
+  de tête est bien rendue et dit « pas encore établi » (sans cette moitié, une page blanche
+  passerait) ;
+- la fiche de race : les quatre affirmations retirées sont cherchées **par leur texte** dans la page
+  du carlin, la précaution brachycéphale est exigée présente, et un golden sert de témoin négatif ;
+- le statut ternaire : sur Paris → Dublin avec un American Bully XL, les **11 cartes** affichent
+  « Pet transport to confirm ». **Avant ce lot, elles affichaient « 🐾 Not compatible »** — soit
+  « ces compagnies transportent des animaux, mais pas le vôtre » — alors qu'aucune politique de ces
+  compagnies n'est établie. C'est le cas exact que le ternaire ferme.
+
+**FAUX VERT NOMMÉ, attrapé dans le navigateur.** Ma première rédaction de ce dernier contrôle a
+écrit la race « American Bully XL » alors que la liste porte « American Bully (**XL**) ». La race
+n'a pas été posée, la route n'a produit aucune carte structurelle, et les deux contrôles négatifs —
+qui cherchent une étiquette **absente** — sont passés au vert **sans rien exercer**. Pire : le
+témoin que j'avais ajouté pour l'éviter cherchait « à confirmer » n'importe où et a été satisfait
+par `« ? Itinerary to confirm »`, un badge d'itinéraire sans rapport. Le témoin vise désormais la
+classe CSS propre de l'étiquette, et le libellé exact.
+
+C'est la troisième fois cette semaine que la même faute revient sous une forme neuve : *un contrôle
+qui ne parle que de ce qu'il reconnaît compte zéro là où il ne regarde pas.*
+
+---
+
 ## Ce que je n'ai PAS fait — arbitrage demandé
 
 **Les six interdictions de race par PAYS.** `rule_{au,de,fr,gb,ie,nz}_breed_ban_restricted_types`
@@ -215,7 +244,9 @@ plutôt que par le bas. Je peux préparer les six emplacements ; la lecture des 
 - `test-tristate-climat.mjs` : 87/87
 - `test-frontiere-confiance.mjs` : 0 FAIL (dont §13 quater, nouveau)
 - `test-t0a-baseline.mjs` : deux nouvelles preuves permanentes, chaîne des figées continue
-- build de production et porte de lancement : voir le commit de tête
+- `npm run build:prod` : **3 121 pages**, code de sortie 0
+- `porte-lancement.mjs` : **29 contrôles OK, 0 en échec**
+- `test-apercu-navigateur.mjs` (Chromium sur le dist servi) : **56 OK, 0 échec**
 
 ## Chaîne des baselines figées
 
