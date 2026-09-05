@@ -8,14 +8,12 @@
  * trop petite est un refus à l'embarquement — ou pire.
  *
  * CE QU'IL VÉRIFIE, ET POURQUOI CHACUN EST UN VRAI RISQUE :
- *   1. les 7 compagnies qui refusent LES TROIS placements affichent le message dédié, et JAMAIS
- *      une ligne de soute qui laisserait croire la cabine possible. C'est la régression du
- *      09/08/2026, corrigée à la main et gardée par rien depuis ;
- *   2. la taille standard proposée est ≥ au minimum calculé sur les TROIS dimensions. Proposer une
- *      caisse plus petite que son propre minimum serait un conseil dangereux ;
- *   3. la majoration brachycéphale est STRICTEMENT positive sur les trois dimensions ;
- *   4. un chien plus lourd que la limite cabine ne reçoit JAMAIS un verdict cabine favorable ;
- *   5. un même scénario donne la même taille et le même verdict dans les quatre langues — une
+ *   1. une compagnie qui refuse LES TROIS placements affiche le message dédié, et JAMAIS une ligne
+ *      de soute qui laisserait croire la cabine possible. C'est la régression du 09/08/2026,
+ *      corrigée à la main et gardée par rien depuis ;
+ *   2. la majoration brachycéphale est STRICTEMENT positive sur les trois dimensions ;
+ *   3. un chien plus lourd que la limite cabine ne reçoit JAMAIS un verdict cabine favorable ;
+ *   4. un même scénario donne le même minimum et le même verdict dans les quatre langues — une
  *      traduction ne change pas une catégorie.
  *
  * Le harnais ne réimplémente pas la formule IATA : il vérifie des INVARIANTS de rendu. Recalculer
@@ -23,6 +21,25 @@
  *
  * JAMAIS VERT FAUTE DE MATIÈRE : il exige un référentiel peuplé et un résultat rendu pour CHAQUE
  * scénario. Un scénario muet fait échouer le harnais au lieu de disparaître du total.
+ *
+ * ── DEUX RETRAITS DU 05/09/2026, NOMMÉS ──────────────────────────────────────────────────────
+ *
+ * LA CONSTANTE `SANS_ANIMAUX = 7` EST RETIRÉE. Elle a valu 7, puis 17, puis 7 de nouveau, et un
+ * long préambule racontait ces allers-retours. Depuis la frontière de confiance elle vaut ZÉRO :
+ * `noPets` exige les trois canaux `denied`, et le dépôt ne porte plus qu'un seul refus prouvé —
+ * British Airways cabine. Garder une constante figée à 7 et son historique à côté d'un état réel
+ * à 0 aurait été un commentaire qui ment sur le code qu'il annonce : exactement le reproche que
+ * ce préambule adressait déjà aux données. L'état réel est MESURÉ et figé plus bas, avec son
+ * mouvement nommé.
+ *
+ * LA « TAILLE STANDARD » EST RETIRÉE elle aussi : elle n'est plus rendue (vérifié — zéro
+ * occurrence de `crx-size__code` dans le dist, seules deux règles CSS orphelines subsistent dans
+ * la source). Ses deux contrôles ne prouvaient donc rien — l'un était conditionné à
+ * `if (nu.dimsTaille)` et ne s'exécutait jamais, l'autre comparait quatre `null` entre eux et
+ * concluait « la taille standard est la même dans les quatre langues ».
+ *
+ * Les sections qui exigent une compagnie « aucun animal » ou une limite cabine publiée sont
+ * re-fondées sur deux compagnies SYNTHÉTIQUES déclarées — le script éprouvé reste celui du dist.
  */
 const fs = require("fs");
 const path = require("path");
@@ -30,30 +47,6 @@ const { JSDOM } = require("jsdom");
 
 const DIST = path.join(__dirname, "packages/ui/dist");
 const LOCALES = [["en", ""], ["fr", "fr"], ["es", "es"], ["pt", "pt"]];
-
-/** Les compagnies qui refusent cabine ET soute ET fret, figées le 19/08/2026. Un écart doit se
- *  VOIR ici et être assumé dans le même commit, jamais passer en silence.
- *
- *  MESURÉ À 17, PAS À 7. Le commentaire de `CrateCalculator.astro` (retest du 09/08/2026) nomme
- *  sept compagnies — Ryanair, easyJet, Wizz Air, Icelandair, IndiGo, Batik Air Indonésie et
- *  Malaisie — comme si la liste était close. Le référentiel en produit dix-sept aujourd'hui :
- *  s'y ajoutent Aer Lingus, Aircalin, Cathay Pacific, Garuda Indonesia, Gulf Air, Kenya Airways,
- *  Qantas, South African Airways, TUI Airways et Virgin Atlantic. Le code n'a pas dérivé — les
- *  DONNÉES ont bougé sous un commentaire resté figé. Signalé, non corrigé : réécrire un
- *  commentaire daté d'une contre-revue n'est pas à moi de le faire.
- *
- *  RETOUR À 7 (28/08/2026, lot RC). Le « 17 » n'était pas une évolution des données : c'était
- *  la dérivation qui confondait deux réalités que T0-A a séparées. `noPets` jugeait sur
- *  `allowed === false`, qui recouvre le refus explicite (`denied`) ET l'incertitude à
- *  confirmer (`confirmation_required`, dont les canaux `legacy_unreviewed`) — les dix
- *  compagnies « ajoutées » avaient simplement une soute ou un fret non revérifiés, et l'outil
- *  leur faisait dire « ne transporte pas les chiens ». La bascule de Virgin Australia en
- *  cabine conditionnelle (arbitrage A-bis) l'a fait voir : elle entrait dans la liste alors
- *  que sa cabine ACCEPTE les petits chiens sous conditions. La dérivation juge désormais par
- *  STATUT (`denied` sur les trois canaux), et le compte retombe exactement sur les sept
- *  compagnies du commentaire d'origine : Ryanair, easyJet, Wizz Air, Icelandair, IndiGo,
- *  Batik Air Indonésie et Malaisie. */
-const SANS_ANIMAUX = 7;
 
 let pass = 0, fail = 0;
 const check = (label, cond, detail = "") => {
@@ -103,13 +96,21 @@ function scenario(page, { a, d, poids, airId = "", brachy = false, race = "" }) 
   if (!out || out.hidden) return { erreur: "aucun résultat rendu" };
   const nombres = (s) => [...String(s).matchAll(/(\d+(?:[.,]\d+)?)/g)].map((m) => parseFloat(m[1].replace(",", ".")));
   const minimum = [...out.querySelectorAll(".crx-dims span b")].map((b) => nombres(b.textContent)[0]);
-  const codeTaille = out.querySelector(".crx-size__code")?.textContent.trim() ?? null;
-  const dimsTaille = codeTaille ? nombres(out.querySelector(".crx-size__d")?.textContent ?? "") : null;
+  /* LA « TAILLE STANDARD » N'EST PLUS RENDUE (vérifié : 0 occurrence de `crx-size__code` dans le
+     dist, seules deux règles CSS orphelines subsistent dans la source). Les relevés `codeTaille`
+     et `dimsTaille` valaient donc `null` partout, et les deux contrôles qui les lisaient ne
+     prouvaient rien : l'un était conditionné à `if (nu.dimsTaille)` et ne s'exécutait jamais,
+     l'autre comparait quatre `null` entre eux et concluait « la taille standard est la même dans
+     les quatre langues ». Ils sont retirés. Ce que ce harnais démontre reste entier : dimensions
+     minimales, majoration brachycéphale, et suite des verdicts. */
   const lignes = [...out.querySelectorAll(".crx-line")].map((l) => ({
     genre: [...l.classList].map((c) => /^crx-line--(.+)$/.exec(c)?.[1]).find(Boolean) ?? null,
     texte: (l.textContent || "").replace(/\s+/g, " ").trim(),
   }));
-  return { minimum, codeTaille, dimsTaille, lignes };
+  /* CE QUE LE `<select>` PORTE VRAIMENT APRÈS COUP. Poser `value = id` sur un `<select>` dépourvu
+     de l'option correspondante laisse la valeur VIDE, sans erreur : le scénario porte alors sur
+     « toutes compagnies » en silence. On le remonte pour que les contrôles puissent l'exiger. */
+  return { minimum, lignes, airChoisie: doc.getElementById("crx-airline")?.value ?? null };
 }
 
 /* ---- Le référentiel doit être PEUPLÉ : sans compagnies, tout ce qui suit passerait à vide ---- */
@@ -201,11 +202,6 @@ for (const m of MESURES) {
   if (nu.erreur || br.erreur) { check(`A=${m.a} D=${m.d} : les deux scénarios rendent un résultat`, false); continue; }
   check(`A=${m.a} D=${m.d} : trois dimensions minimales sont affichées`, nu.minimum.length === 3,
     JSON.stringify(nu.minimum));
-  if (nu.dimsTaille) {
-    check(`A=${m.a} D=${m.d} : la taille standard ${nu.codeTaille} couvre le minimum calculé`,
-      nu.dimsTaille.length === 3 && nu.dimsTaille.every((v, i) => v >= nu.minimum[i]),
-      `standard ${JSON.stringify(nu.dimsTaille)} < minimum ${JSON.stringify(nu.minimum)}`);
-  }
   check(`A=${m.a} D=${m.d} : le brachycéphale majore STRICTEMENT les trois dimensions`,
     br.minimum.length === 3 && br.minimum.every((v, i) => v > nu.minimum[i]),
     `sans ${JSON.stringify(nu.minimum)} → avec ${JSON.stringify(br.minimum)}`);
@@ -231,15 +227,26 @@ for (const [id, a] of avecPoidsCabine) {
 }
 
 /* ---- 5. Quatre langues, mêmes catégories ------------------------------------------------------ */
-const REFERENCE = { a: 70, d: 52, poids: 18, airId: Object.keys(AIR).find((id) => AIR[id].cabin && !AIR[id].noPets) };
-const parLangue = Object.fromEntries(LOCALES.map(([l]) => [l, scenario(pages[l], REFERENCE)]));
+/* LA COMPAGNIE EST CHOISIE EXPLICITEMENT, ET LA PAGE PORTE SON OPTION (05/09/2026).
+   Ce bloc cherchait une compagnie réelle « avec cabine et sans refus total » : depuis la
+   frontière, il n'en existe AUCUNE, `airId` valait donc `undefined`. Pire, il appelait
+   `scenario(pages[l], …)` — la page SANS les témoins injectés —, si bien que même une
+   compagnie synthétique n'aurait pas eu d'option dans le `<select>` et que le scénario portait
+   en réalité sur « toutes compagnies ». Le témoin était muet, pas faux : invisible. */
+const REFERENCE = { a: 70, d: 52, poids: 18, airId: SYNTH_CABINE };
+const parLangue = Object.fromEntries(LOCALES.map(([l]) => [l, scenario(pagesT[l], REFERENCE)]));
 check("le scénario de référence rend un résultat dans les quatre langues",
   Object.values(parLangue).every((r) => !r.erreur),
   Object.entries(parLangue).filter(([, r]) => r.erreur).map(([l, r]) => `${l}: ${r.erreur}`).join(" | "));
+/* LA COMPAGNIE EST-ELLE RÉELLEMENT SÉLECTIONNÉE ? Sans ce témoin, tout ce qui suit porterait sur
+   « toutes compagnies » sans que rien ne le dise. */
+check("la compagnie de référence est effectivement sélectionnée dans les quatre langues",
+  Object.values(parLangue).every((r) => r.airChoisie === SYNTH_CABINE),
+  Object.entries(parLangue).map(([l, r]) => `${l}: ${JSON.stringify(r.airChoisie)}`).join(" | "));
+check("…et chaque langue rend au moins un verdict (aucune liste vide)",
+  Object.values(parLangue).every((r) => (r.lignes ?? []).length > 0),
+  Object.entries(parLangue).map(([l, r]) => `${l}: ${(r.lignes ?? []).length}`).join(" | "));
 if (Object.values(parLangue).every((r) => !r.erreur)) {
-  const codes = [...new Set(Object.values(parLangue).map((r) => r.codeTaille))];
-  check("la taille standard est la même dans les quatre langues", codes.length === 1,
-    Object.entries(parLangue).map(([l, r]) => `${l}: ${r.codeTaille}`).join(" | "));
   const genres = [...new Set(Object.values(parLangue).map((r) => r.lignes.map((x) => x.genre).join(",")))];
   check("la suite des verdicts est la même dans les quatre langues", genres.length === 1,
     Object.entries(parLangue).map(([l, r]) => `${l}: ${r.lignes.map((x) => x.genre).join(",")}`).join(" | "));
