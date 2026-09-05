@@ -540,8 +540,14 @@ console.log("=== 8. Baseline FIGÉE : le point de comparaison de T0-B2 est scell
    * frontière des règles devient l'AVANT de la paire, et la preuve permanente de
    * test-t0a-baseline.mjs établit ce qui les sépare — 72 verdicts, 1 560 segments `pets:`, et
    * AUCUN statut, AUCUNE cause, AUCUN rang, AUCUN score. */
-  check("Arbitrages d'interface : la baseline vivante est identique à la figée la plus récente",
-    vivante.equals(readFileSync("test-baselines/arbitrages-interface-apres.json")));
+  /* 05/09/2026, quatrième figée du jour — LA PLUS RÉCENTE EST CELLE DU STATUT D'ENTRÉE TERNAIRE.
+   * Ce qui la sépare de la précédente : un seul énoncé, dans les 72 scénarios — « X autorise
+   * l'entrée » devient « aucune interdiction d'entrée bloquante établie dans nos données ». */
+  check("Entrée ternaire : la baseline vivante est identique à la figée la plus récente",
+    vivante.equals(readFileSync("test-baselines/entree-ternaire-apres.json")));
+  check("Arbitrages d'interface : sa figée reste intacte à côté (elle n'a pas été écrasée)",
+    !readFileSync("test-baselines/arbitrages-interface-apres.json")
+      .equals(readFileSync("test-baselines/entree-ternaire-apres.json")));
   check("Frontière des règles : sa figée reste intacte à côté (elle n'a pas été écrasée)",
     !readFileSync("test-baselines/frontiere-regles-apres.json")
       .equals(readFileSync("test-baselines/arbitrages-interface-apres.json")));

@@ -1,74 +1,107 @@
 {
-  "objet": "Les six interdictions d'entrée par PAYS — état de requalification",
-  "etabli_le": "2026-09-05",
-  "pourquoi": "Ces six règles produisaient `entry_allowed = false`, donc un refus catégorique éteignant les trois canaux de TOUTES les compagnies, sans qu'aucune ne porte de phrase citée. Le chemin est désormais gardé comme les autres : une règle pays non citée demande confirmation. Mais la contre-revue du 05/09/2026 a lu les six sources officielles et a établi que la citation NE SUFFIT PAS pour trois d'entre elles : leur condition de déclenchement est elle-même trop large. Ce fichier retient ce constat pour qu'une citation future ne puisse pas restaurer en silence une règle fausse.",
-  "regle_de_sortie": "Une règle ne quitte ce registre que par `resolu: true`, ce qui exige DEUX choses : la phrase officielle citée (quote + quote_language + locator) ET, quand `condition_a_revoir` n'est pas vide, la correction de son prédicat. Le harnais refuse toute règle devenue décisive dont l'entrée n'est pas résolue.",
-  "regles": [
-    {
-      "rule_id": "rule_au_breed_ban_restricted_types",
-      "pays": "Australie",
-      "resolu": false,
-      "constat_contre_revue": "La liste des cinq races pures interdites correspond bien à la règle.",
-      "locator_indique": "« Confirm your dog is eligible » → « Pure breed dogs banned from Australia include »",
-      "source_confirmee": "https://www.agriculture.gov.au/biosecurity-trade/cats-dogs/how-to-import/step-by-step-guides/category-3-step-by-step-guide-for-dogs",
-      "source_actuelle_dans_la_regle": "https://www.agriculture.gov.au/biosecurity-trade/cats-dogs/how-to-import/step-by-step-guides/category-3-step-by-step-guide-for-dogs",
-      "condition_a_revoir": "",
-      "manque": "la phrase exacte, mot pour mot, avec sa langue — non fabriquée ici"
-    },
-    {
-      "rule_id": "rule_nz_breed_ban_restricted_types",
-      "pays": "Nouvelle-Zélande",
-      "resolu": false,
-      "constat_contre_revue": "La source interdit les chiens appartenant entièrement ou principalement aux cinq races ou types listés. La règle est largement confirmée, avec cette nuance à conserver.",
-      "locator_indique": "",
-      "source_confirmee": "https://www.mpi.govt.nz/bring-send-to-nz/pets-travelling-to-nz/bringing-cats-and-dogs-to-nz/bringing-cats-and-dogs-to-nz-using-the-2026-import-health-standard/step-by-step-guide-to-bringing-cats-and-dogs-to-nz-2026",
-      "source_actuelle_dans_la_regle": "https://www.mpi.govt.nz/dmsdocument/1575-Cats-and-dogs-Import-Health-Standard-Guidance-Document",
-      "condition_a_revoir": "La nuance « entièrement ou principalement » (wholly or predominantly) porte sur le TYPE, pas sur l'identifiant de race : un `dog.breed_id in [...]` ne l'exprime pas. À conserver au moins dans le texte de l'exigence.",
-      "manque": "la phrase exacte ; et la source citée par la contre-revue n'est PAS celle que porte la règle aujourd'hui — à trancher avant de citer"
-    },
-    {
-      "rule_id": "rule_de_breed_ban_restricted_types",
-      "pays": "Allemagne",
-      "resolu": false,
-      "constat_contre_revue": "Les quatre races sont explicitement interdites d'introduction par le §2, mais il faut vérifier les exceptions réglementaires avant de conserver un refus totalement inconditionnel.",
-      "locator_indique": "§2",
-      "source_confirmee": "https://www.gesetze-im-internet.de/hundverbreinfg/BJNR053010001.html",
-      "source_actuelle_dans_la_regle": "https://www.gesetze-im-internet.de/hundverbreinfg/BJNR053010001.html",
-      "condition_a_revoir": "Exceptions réglementaires du HundVerbrEinfG non vérifiées. Tant qu'elles ne le sont pas, un refus inconditionnel n'est pas établi.",
-      "manque": "la vérification des exceptions, puis la phrase exacte"
-    },
-    {
-      "rule_id": "rule_fr_breed_ban_restricted_types",
-      "pays": "France",
-      "resolu": false,
-      "constat_contre_revue": "L'interdiction concerne les chiens de catégorie 1, définis par leur MORPHOLOGIE et l'absence de pedigree reconnu — pas simplement tout chien sélectionné sous un nom de race.",
-      "locator_indique": "",
-      "source_confirmee": "https://agriculture.gouv.fr/les-chiens-de-categorie-1-et-2-et-les-chiens-dangereux",
-      "source_actuelle_dans_la_regle": "https://agriculture.gouv.fr/les-chiens-de-categorie-1-et-2-et-les-chiens-dangereux",
-      "condition_a_revoir": "`dog.breed_id in [breed_american_pit_bull_terrier]` est un raccourci FAUX : un American Staffordshire Terrier AVEC pedigree reconnu est catégorie 2, pas catégorie 1, et un chien sans pedigree répondant à la morphologie est catégorie 1 quel que soit le nom qu'on lui donne. La règle doit soit interroger l'existence d'un pedigree reconnu, soit devenir une confirmation de catégorie.",
-      "manque": "un fait « pedigree reconnu » dans le contexte d'évaluation, ou la rétrogradation en confirmation"
-    },
-    {
-      "rule_id": "rule_gb_breed_ban_restricted_types",
-      "pays": "Grande-Bretagne",
-      "resolu": false,
-      "constat_contre_revue": "La source d'IMPORTATION dit explicitement que l'entrée est interdite sauf certificat d'exemption valide ; la qualification comme type interdit dépend aussi de l'APPARENCE plutôt que du seul nom de race. La règle actuelle est trop catégorique.",
-      "locator_indique": "",
-      "source_confirmee": "https://www.gov.uk/bring-pet-to-great-britain",
-      "source_actuelle_dans_la_regle": "https://www.gov.uk/control-dog-public/banned-dogs",
-      "condition_a_revoir": "Deux défauts distincts. (1) La source portée par la règle traite de la DÉTENTION d'un chien interdit au Royaume-Uni, pas de son IMPORTATION : ce n'est pas la page qui fonde le refus d'entrée. (2) L'exemption par certificat n'est pas exprimée. Le texte de l'exigence, lui, la mentionne déjà correctement.",
-      "manque": "la bonne source, la phrase exacte, et l'expression de l'exemption"
-    },
-    {
-      "rule_id": "rule_ie_breed_ban_restricted_types",
-      "pays": "Irlande",
-      "resolu": false,
-      "constat_contre_revue": "L'importation d'un XL Bully est interdite, mais le texte prévoit certificats et cas particuliers, notamment certains non-résidents pour un séjour maximal de trente jours. Le refus actuel sans condition est faux pour ces exceptions.",
-      "locator_indique": "",
-      "source_confirmee": "https://www.irishstatutebook.ie/eli/2024/si/491/made/en/",
-      "source_actuelle_dans_la_regle": "https://www.irishstatutebook.ie/eli/2024/si/491/made/en/print",
-      "condition_a_revoir": "Aucune condition de séjour ni de résidence n'est exprimée ; le refus est inconditionnel alors que la S.I. 491/2024 prévoit des cas de séjour de trente jours au plus pour certains non-résidents.",
-      "manque": "l'expression des exceptions, puis la phrase exacte"
-    }
-  ]
+ "objet": "Les six interdictions d'entrée par PAYS — état de requalification",
+ "etabli_le": "2026-09-05",
+ "pourquoi": "Ces six règles produisaient `entry_allowed = false`, donc un refus catégorique éteignant les trois canaux de TOUTES les compagnies, sans qu'aucune ne porte de phrase citée. Le chemin est désormais gardé comme les autres : une règle pays non citée demande confirmation. Mais la contre-revue du 05/09/2026 a lu les six sources officielles et a établi que la citation NE SUFFIT PAS pour trois d'entre elles : leur condition de déclenchement est elle-même trop large. Ce fichier retient ce constat pour qu'une citation future ne puisse pas restaurer en silence une règle fausse.",
+ "regle_de_sortie": "Une règle ne quitte ce registre que par `resolu: true`, et la garde le VÉRIFIE MÉCANIQUEMENT au lieu de croire le drapeau. Deux conditions, toutes deux exécutables : (1) la règle porte une preuve complète (phrase + langue + emplacement, source factuelle, pas d'auto-citation) — c'est `regleDecisive` qui le dit ; (2) si `condition_a_revoir` n'est pas vide, l'empreinte ACTUELLE de son prédicat (`applies_when` + `effect`, canonisés puis SHA-256) doit DIFFÉRER de `empreinte_predicat_constate`, l'empreinte du prédicat fautif relevé le 05/09/2026. Ajouter une citation et basculer `resolu` à la main ne suffit donc pas : sans correction du prédicat, la CI rougit.",
+ "regles": [
+  {
+   "rule_id": "rule_au_breed_ban_restricted_types",
+   "pays": "Australie",
+   "resolu": false,
+   "constat_contre_revue": "La liste des cinq races pures interdites correspond bien à la règle.",
+   "locator_indique": "« Confirm your dog is eligible » → « Pure breed dogs banned from Australia include »",
+   "source_confirmee": "https://www.agriculture.gov.au/biosecurity-trade/cats-dogs/how-to-import/step-by-step-guides/category-3-step-by-step-guide-for-dogs",
+   "source_actuelle_dans_la_regle": "https://www.agriculture.gov.au/biosecurity-trade/cats-dogs/how-to-import/step-by-step-guides/category-3-step-by-step-guide-for-dogs",
+   "condition_a_revoir": "L'interdiction ne vise QUE les races PURES : la page annonce les chiens croisés comme admis s'ils satisfont les autres conditions. Or le formulaire demande une race, pas une PURETÉ — choisir « Dogo Argentino » n'établit pas que le chien est de race pure. Le prédicat `dog.breed_id in [...]` refuserait donc des croisés que la page admet.",
+   "manque": "un fait de PURETÉ dans le contexte d'évaluation (le formulaire ne le demande pas, et l'ajouter est un autre lot). La citation, elle, est relevée et disponible ci-dessus.",
+   "empreinte_predicat_constate": "c337592ab95b357a",
+   "citation_relevee": {
+    "url": "https://www.agriculture.gov.au/biosecurity-trade/cats-dogs/how-to-import/step-by-step-guides/category-3-step-by-step-guide-for-dogs",
+    "titre": "How to bring your dog to Australia from a Group 3 country",
+    "locator": "Confirm your dog is eligible for import to Australia → Pure breed dogs banned from Australia include",
+    "quote": "Some dog breeds are not allowed into Australia. This includes some hybrid dogs (domestic and non-domestic) and some pure-bred dogs.",
+    "quote_language": "en",
+    "releve_par": "Codex, 05/09/2026"
+   },
+   "decision_05_09": "RESTE À CONFIRMER. La preuve existe, le prédicat ne suit pas : citer la règle la rendrait décisive et ferait refuser des chiens croisés que la page australienne admet explicitement. C'est une lecture de ma part, soumise à arbitrage."
+  },
+  {
+   "rule_id": "rule_nz_breed_ban_restricted_types",
+   "pays": "Nouvelle-Zélande",
+   "resolu": true,
+   "constat_contre_revue": "La source interdit les chiens appartenant entièrement ou principalement aux cinq races ou types listés. La règle est largement confirmée, avec cette nuance à conserver.",
+   "locator_indique": "",
+   "source_confirmee": "https://www.mpi.govt.nz/bring-send-to-nz/pets-travelling-to-nz/bringing-cats-and-dogs-to-nz/bringing-cats-and-dogs-to-nz-using-the-2026-import-health-standard/step-by-step-guide-to-bringing-cats-and-dogs-to-nz-2026",
+   "source_actuelle_dans_la_regle": "https://www.mpi.govt.nz/bring-send-to-nz/pets-travelling-to-nz/bringing-cats-and-dogs-to-nz/bringing-cats-and-dogs-to-nz-using-the-2026-import-health-standard/step-by-step-guide-to-bringing-cats-and-dogs-to-nz-2026",
+   "condition_a_revoir": "",
+   "manque": "",
+   "empreinte_predicat_constate": "9395e74a2cf6827d",
+   "citation_relevee": {
+    "url": "https://www.mpi.govt.nz/bring-send-to-nz/pets-travelling-to-nz/bringing-cats-and-dogs-to-nz/bringing-cats-and-dogs-to-nz-using-the-2026-import-health-standard/step-by-step-guide-to-bringing-cats-and-dogs-to-nz-2026",
+    "locator": "2. Check your cat or dog is eligible to come to New Zealand → Prohibited dog breeds or types",
+    "quote": "The Dog Control Act 1996 prohibits the import into New Zealand of any dog that belongs entirely or predominantly to one or more of these breeds or types of dogs.",
+    "quote_language": "en",
+    "releve_par": "Codex, 05/09/2026"
+   },
+   "decision_05_09": "CITÉE ET APPLIQUÉE. « entirely or predominantly » est plus LARGE que le nom de race : un chien déclaré d'une de ces races lui appartient au moins de façon prédominante, donc le prédicat `dog.breed_id in [...]` est couvert par la phrase — contrairement au cas australien, qui exige la pureté. La source de la règle a été remplacée par la page 2026, plus fraîche que l'ancien guide PDF."
+  },
+  {
+   "rule_id": "rule_de_breed_ban_restricted_types",
+   "pays": "Allemagne",
+   "resolu": false,
+   "constat_contre_revue": "Le refus inconditionnel est FAUX : les exceptions du §2 HundVerbrEinfVO sont confirmées — chiens de service, d'assistance, guides et de secours ; retour d'un chien légalement détenu en Allemagne ; séjour temporaire avec une personne non résidente, quatre semaines au maximum.",
+   "locator_indique": "§2",
+   "source_confirmee": "https://www.gesetze-im-internet.de/hundverbreinfg/BJNR053010001.html",
+   "source_actuelle_dans_la_regle": "https://www.gesetze-im-internet.de/hundverbreinfg/BJNR053010001.html",
+   "condition_a_revoir": "Aucune des trois exceptions n'est exprimée. Le formulaire ne connaît ni la durée du séjour, ni la résidence, ni le statut de chien de service.",
+   "manque": "des faits « durée de séjour », « résidence » et « chien de service » — un autre lot",
+   "empreinte_predicat_constate": "b7bba5e58174d102",
+   "sources_exceptions": [
+    "https://www.gesetze-im-internet.de/hundverbreinfvo/__2.html",
+    "https://www.zoll.de/DE/Privatpersonen/Reisen/Rueckkehr-aus-einem-Nicht-EU-Staat/Einschraenkungen/Gefaehrliche-Hunde/gefaehrliche_hunde.html"
+   ],
+   "decision_05_09": "RESTE À CONFIRMER avant lancement (arbitrage Codex du 05/09/2026)."
+  },
+  {
+   "rule_id": "rule_fr_breed_ban_restricted_types",
+   "pays": "France",
+   "resolu": false,
+   "constat_contre_revue": "L'interdiction concerne les chiens de catégorie 1, définis par leur MORPHOLOGIE et l'absence de pedigree reconnu — pas simplement tout chien sélectionné sous un nom de race.",
+   "locator_indique": "",
+   "source_confirmee": "https://agriculture.gouv.fr/les-chiens-de-categorie-1-et-2-et-les-chiens-dangereux",
+   "source_actuelle_dans_la_regle": "https://agriculture.gouv.fr/les-chiens-de-categorie-1-et-2-et-les-chiens-dangereux",
+   "condition_a_revoir": "`dog.breed_id in [breed_american_pit_bull_terrier]` est un raccourci FAUX : un American Staffordshire Terrier AVEC pedigree reconnu est catégorie 2, pas catégorie 1, et un chien sans pedigree répondant à la morphologie est catégorie 1 quel que soit le nom qu'on lui donne. La règle doit soit interroger l'existence d'un pedigree reconnu, soit devenir une confirmation de catégorie.",
+   "manque": "un fait « pedigree reconnu » dans le contexte d'évaluation, ou la rétrogradation en confirmation",
+   "empreinte_predicat_constate": "866b64effb564e48",
+   "decision_05_09": "RESTE À CONFIRMER avant lancement (arbitrage Codex du 05/09/2026) : le formulaire ne connaît ni durée de séjour, ni résidence, ni certificat d'exemption, ni pedigree ou qualification morphologique. Aucun champ nouveau n'est ajouté maintenant — ce serait un autre lot."
+  },
+  {
+   "rule_id": "rule_gb_breed_ban_restricted_types",
+   "pays": "Grande-Bretagne",
+   "resolu": false,
+   "constat_contre_revue": "La source d'IMPORTATION dit explicitement que l'entrée est interdite sauf certificat d'exemption valide ; la qualification comme type interdit dépend aussi de l'APPARENCE plutôt que du seul nom de race. La règle actuelle est trop catégorique.",
+   "locator_indique": "",
+   "source_confirmee": "https://www.gov.uk/bring-pet-to-great-britain",
+   "source_actuelle_dans_la_regle": "https://www.gov.uk/control-dog-public/banned-dogs",
+   "condition_a_revoir": "Deux défauts distincts. (1) La source portée par la règle traite de la DÉTENTION d'un chien interdit au Royaume-Uni, pas de son IMPORTATION : ce n'est pas la page qui fonde le refus d'entrée. (2) L'exemption par certificat n'est pas exprimée. Le texte de l'exigence, lui, la mentionne déjà correctement.",
+   "manque": "la bonne source, la phrase exacte, et l'expression de l'exemption",
+   "empreinte_predicat_constate": "bb34e06305660595",
+   "decision_05_09": "RESTE À CONFIRMER avant lancement (arbitrage Codex du 05/09/2026) : le formulaire ne connaît ni durée de séjour, ni résidence, ni certificat d'exemption, ni pedigree ou qualification morphologique. Aucun champ nouveau n'est ajouté maintenant — ce serait un autre lot."
+  },
+  {
+   "rule_id": "rule_ie_breed_ban_restricted_types",
+   "pays": "Irlande",
+   "resolu": false,
+   "constat_contre_revue": "L'importation d'un XL Bully est interdite, mais le texte prévoit certificats et cas particuliers, notamment certains non-résidents pour un séjour maximal de trente jours. Le refus actuel sans condition est faux pour ces exceptions.",
+   "locator_indique": "",
+   "source_confirmee": "https://www.irishstatutebook.ie/eli/2024/si/491/made/en/",
+   "source_actuelle_dans_la_regle": "https://www.irishstatutebook.ie/eli/2024/si/491/made/en/print",
+   "condition_a_revoir": "Aucune condition de séjour ni de résidence n'est exprimée ; le refus est inconditionnel alors que la S.I. 491/2024 prévoit des cas de séjour de trente jours au plus pour certains non-résidents.",
+   "manque": "l'expression des exceptions, puis la phrase exacte",
+   "empreinte_predicat_constate": "fd2a799902f6fb6e",
+   "decision_05_09": "RESTE À CONFIRMER avant lancement (arbitrage Codex du 05/09/2026) : le formulaire ne connaît ni durée de séjour, ni résidence, ni certificat d'exemption, ni pedigree ou qualification morphologique. Aucun champ nouveau n'est ajouté maintenant — ce serait un autre lot."
+  }
+ ],
+ "empreinte_comment": "`empreinte_predicat_constate` = SHA-256 tronqué à 16 caractères de la forme canonique de {applies_when, effect} au moment du constat. Elle N'EST PAS une signature de sécurité : elle sert à prouver qu'un prédicat a bougé, pas à empêcher qu'on le contrefasse.",
+ "arbitrage_lancement": "Codex, 05/09/2026 : ne PAS ajouter de champs au formulaire avant le lancement. Nouvelle-Zélande redevient catégorique (citée). Australie reste à confirmer — sa page n'interdit que les races pures. Allemagne, France, Grande-Bretagne et Irlande restent en confirmation prudente. Leur avertissement critique et leur lien officiel restent visibles, sans phrase affirmant que l'entrée est autorisée ni définitivement interdite."
 }

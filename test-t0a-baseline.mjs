@@ -550,6 +550,65 @@ console.log("=== Preuve PERMANENTE Arbitrages d'interface (deux baselines FIGÉE
   }
 }
 
+console.log("=== Preuve PERMANENTE Statut d'entrée ternaire (deux baselines FIGÉES) ===");
+{
+  /* « LE PAYS AUTORISE L'ENTRÉE » ÉTAIT UNE CONCLUSION TIRÉE D'UNE ABSENCE DE PREUVE.
+   *
+   * `entry_allowed` était booléen : il valait `true` dès qu'aucune interdiction n'était PROUVÉE,
+   * et le rapport en tirait une phrase positive. Sur un trajet où une interdiction s'appliquait
+   * sans être citée, le même rapport disait donc trois choses à la fois — « Interdit par l'article
+   * 1 du Dangerous Dogs Act » (exigence critique), « Pas encore établi » (verdict), et « Le
+   * Royaume-Uni autorise l'entrée ». Nous ne connaissons pas les autorisations : nous ne
+   * connaissons que les blocages, et leur absence dans NOS données.
+   *
+   * CE QUE CE LOT NE FAIT PAS, et c'est la propriété figée ici : il ne touche à aucune décision.
+   * Un seul énoncé change, dans les 72 scénarios, et c'est celui qui affirmait de trop. */
+  const AVANT = "test-baselines/entree-ternaire-avant.json";
+  const APRES = "test-baselines/entree-ternaire-apres.json";
+  check("la baseline AVANT le statut d'entrée ternaire est versionnée", existsSync(AVANT));
+  check("la baseline APRÈS est versionnée", existsSync(APRES));
+  if (existsSync(AVANT) && existsSync(APRES)) {
+    const avant = JSON.parse(readFileSync(AVANT, "utf8"));
+    const apres = JSON.parse(readFileSync(APRES, "utf8"));
+    const cles = Object.keys(apres);
+    check("les deux baselines couvrent les mêmes 72 scénarios",
+      cles.length === 72 && Object.keys(avant).length === 72 && cles.every((k) => k in avant));
+    /* Champ par champ : SEUL `positives` bouge. */
+    const champs = {};
+    for (const k of cles) for (const c of Object.keys(apres[k])) {
+      if (JSON.stringify(avant[k][c]) !== JSON.stringify(apres[k][c])) champs[c] = (champs[c] ?? 0) + 1;
+    }
+    check("SEUL le champ `positives` bouge, sur les 72 scénarios",
+      Object.keys(champs).length === 1 && champs.positives === 72, JSON.stringify(champs));
+    /* Et dans `positives`, un seul énoncé est substitué — jamais un ajout, jamais une perte. */
+    let substitutions = 0, autresMouvements = 0;
+    for (const k of cles) {
+      const A = avant[k].positives ?? [], B = apres[k].positives ?? [];
+      if (A.length !== B.length) { autresMouvements++; continue; }
+      const sA = new Set(A.map((x) => JSON.stringify(x))), sB = new Set(B.map((x) => JSON.stringify(x)));
+      const retires = [...sA].filter((x) => !sB.has(x)).map((x) => JSON.parse(x));
+      const ajoutes = [...sB].filter((x) => !sA.has(x)).map((x) => JSON.parse(x));
+      if (retires.length !== 1 || ajoutes.length !== 1) { autresMouvements++; continue; }
+      if (/ allows entry$/.test(retires[0].text) && /^No blocking entry ban established in our data for /.test(ajoutes[0].text)
+          && retires[0].criticality === ajoutes[0].criticality) substitutions++;
+      else autresMouvements++;
+    }
+    check("les 72 scénarios substituent « X autorise l'entrée » par « aucune interdiction établie »",
+      substitutions === 72, `${substitutions} substitution(s)`);
+    check("…et RIEN d'autre ne bouge dans `positives` : aucun ajout, aucune perte, aucun autre texte",
+      autresMouvements === 0, `${autresMouvements} mouvement(s) inattendu(s)`);
+    /* La matrice publique ne contient AUCUN trajet où une interdiction s'applique : les 72
+       scénarios sont donc tous `no_known_block`, et c'est pourquoi aucun verdict ne bouge ici. Le
+       cas `confirmation_required` — celui qui a révélé le défaut — vit dans
+       test-frontiere-confiance.mjs, sur CDG → LHR avec un American Bully XL. */
+    check("aucun verdict ne bouge : la matrice ne contient aucun trajet à interdiction applicable",
+      cles.every((k) => avant[k].verdict === apres[k].verdict),
+      JSON.stringify(cles.filter((k) => avant[k].verdict !== apres[k].verdict).slice(0, 3)));
+    check("aucune carte compagnie ne bouge non plus",
+      cles.every((k) => JSON.stringify(avant[k].airlines) === JSON.stringify(apres[k].airlines)));
+  }
+}
+
 console.log("=== Preuve HISTORIQUE T0-A (deux baselines FIGÉES — permanente) ===");
 {
   const AVANT = "test-baselines/t0a-finder-baseline-avant.json";
@@ -861,8 +920,12 @@ console.log("=== Preuve T0-B2-UI (deux baselines FIGÉES — permanente) ===");
        confirmer », aucun ne se referme, aucun ne s'ouvre jusqu'à `allowed`. */
     /* 05/09/2026, troisième figée du jour — LA PLUS RÉCENTE EST CELLE DES ARBITRAGES D'INTERFACE.
        Celle de la frontière des règles n'est pas écrasée : elle devient l'AVANT de cette paire. */
-    check("la baseline vivante est identique à la baseline figée la plus récente (arbitrages d'interface)",
+    /* 05/09/2026, quatrième figée du jour — LA PLUS RÉCENTE EST CELLE DU STATUT D'ENTRÉE TERNAIRE. */
+    check("la baseline vivante est identique à la baseline figée la plus récente (entrée ternaire)",
       readFileSync("test-baselines/t0a-finder-baseline.json", "utf8")
+        === readFileSync("test-baselines/entree-ternaire-apres.json", "utf8"));
+    check("l'AVANT de l'entrée ternaire EST l'après des arbitrages d'interface — chaîne continue",
+      readFileSync("test-baselines/entree-ternaire-avant.json", "utf8")
         === readFileSync("test-baselines/arbitrages-interface-apres.json", "utf8"));
     check("l'AVANT des arbitrages EST l'après de la frontière des règles — chaîne continue",
       readFileSync("test-baselines/arbitrages-interface-avant.json", "utf8")

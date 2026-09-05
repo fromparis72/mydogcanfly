@@ -507,6 +507,28 @@ export interface DestinationsResult {
 }
 
 /* ---- Internal (Decision Engine output) ---- */
+/** LE PAYS LAISSE-T-IL ENTRER CE CHIEN ? TROIS RÉPONSES, PARCE QU'IL Y EN A TROIS.
+ *
+ *  `entry_allowed` était un BOOLÉEN, et il rejouait mot pour mot la faute d'`offers_pet_transport` :
+ *  aucune place pour l'inconnu, donc il tranchait. Depuis que la frontière garde ce chemin, une
+ *  interdiction NON CITÉE le laissait à `true` — et le rapport disait alors trois choses à la fois
+ *  sur le même trajet (mesuré, CDG → LHR, American Bully XL) :
+ *
+ *      « Interdit par l'article 1 du Dangerous Dogs Act 1991 »   (exigence, critique)
+ *      « Pas encore établi »                                     (verdict global)
+ *      « Le Royaume-Uni autorise l'entrée »                      (élément positif)
+ *
+ *  Le troisième énoncé était une conclusion tirée d'une absence de preuve, et c'est le seul des
+ *  trois qui soit franchement faux.
+ *
+ *    "blocked"               ≥1 refus d'entrée DÉCISIF — le pays refuse, c'est établi ;
+ *    "confirmation_required" ≥1 refus applicable mais non décisif — une restriction existe peut-être,
+ *                            elle n'est pas prouvée, et le trajet ne peut pas être déclaré possible ;
+ *    "no_known_block"        aucun refus applicable identifié. Ce n'est PAS « le pays autorise » :
+ *                            c'est « aucune interdiction bloquante établie dans nos données ».
+ */
+export type EntryStatus = "blocked" | "confirmation_required" | "no_known_block";
+
 /** Trois valeurs, parce que l'ignorance en est une — voir AirlineDecision.offers_pet_transport. */
 export type PetTransportStatus = "yes" | "no" | "unknown";
 
@@ -601,7 +623,11 @@ export interface Decision {
   countryRequirements: FiredRule[];
   destination: {
     country_id: string; country_name: string;
-    /** `false` seulement sur une interdiction d'entrée PROUVÉE (règle pays citée). */
+    /** LE PAYS LAISSE-T-IL ENTRER CE CHIEN ? TROIS RÉPONSES — voir `EntryStatus`. */
+    entry_status: EntryStatus;
+    /** Projection booléenne HISTORIQUE d'`entry_status === "blocked"`, inversée : elle ne vaut
+     *  `false` que sur un blocage PROUVÉ. Conservée pour les lecteurs internes qui n'ont besoin
+     *  que de « est-ce bloqué » ; elle ne doit JAMAIS servir à conclure que le pays autorise. */
     entry_allowed: boolean;
     /** Les interdictions d'entrée qui se sont déclenchées SANS pouvoir décider, par `rule_id`.
      *  Elles ne ferment rien, mais elles ne se perdent pas : leur exigence reste publiée en tête

@@ -630,9 +630,18 @@ console.log("\n=== 13 ter. LA FRONTIÈRE S'APPLIQUE AUSSI AUX RÈGLES ===");
   const denies = regles.filter((r) => r.effect?.action === "deny");
   const parNiveau = {};
   for (const r of denies) parNiveau[niveauDePreuveRegle(r)] = (parNiveau[niveauDePreuveRegle(r)] ?? 0) + 1;
-  check("état figé des règles `deny` : 0 citée, 130 officielles non citées, 88 faibles",
-    !parNiveau.citee && parNiveau.officielle_non_citee === 130 && parNiveau.faible === 88,
+  /* MOUVEMENT NOMMÉ (05/09/2026) : 0 → 1 citée, 130 → 129 officielles non citées. La règle est
+     `rule_nz_breed_ban_restricted_types`, sur la phrase de la norme d'importation 2026 du MPI
+     relevée en contre-revue — « The Dog Control Act 1996 prohibits the import into New Zealand of
+     any dog that belongs entirely or predominantly to one or more of these breeds or types of
+     dogs. » C'est la première RÈGLE citée du dépôt, comme British Airways cabine fut la première
+     POLITIQUE. Le compte des faibles ne bouge pas : une citation ne déplace que sa propre règle. */
+  check("état figé des règles `deny` : 1 citée (NZ), 129 officielles non citées, 88 faibles",
+    parNiveau.citee === 1 && parNiveau.officielle_non_citee === 129 && parNiveau.faible === 88,
     JSON.stringify(parNiveau));
+  check("…et la seule citée est bien la règle néo-zélandaise",
+    denies.filter((r) => niveauDePreuveRegle(r) === "citee").map((r) => r.id).join() === "rule_nz_breed_ban_restricted_types",
+    JSON.stringify(denies.filter((r) => niveauDePreuveRegle(r) === "citee").map((r) => r.id)));
 
   /* ET LE CAS RÉEL, celui par lequel la faille s'est vue. `rule_british_airways_no_cabin` refuse
      cabine ET SOUTE — son nom ne parle que de la cabine — sans citation, alors que la page dit
@@ -763,82 +772,157 @@ console.log("\n=== 12 ter. UNE CITATION EST STOCKÉE TELLE QU'ELLE EST LUE ===")
   }
 }
 
-console.log("\n=== 13 quinquies. LA FRONTIÈRE ATTEINT L'ENTRÉE DANS LE PAYS ===");
+console.log("\n=== 13 quinquies. L'ENTRÉE DANS LE PAYS : UN STATUT TERNAIRE, ET UN REGISTRE QUI SE PROUVE ===");
 {
-  /* LE QUATRIÈME CHEMIN, ET LE PLUS TRANCHANT. `entry_allowed` passait à `false` sur une exigence
-   * pays `deny` sans rien demander à sa provenance — et ce refus-là éteint les trois canaux de
-   * TOUTES les compagnies d'un coup. Les six règles concernées portent une URL officielle et
-   * aucune phrase citée. La contre-revue du 05/09/2026 a lu les six sources et a établi que la
-   * citation ne suffirait PAS pour cinq d'entre elles : leur condition est elle-même trop large
-   * (France par la morphologie, Grande-Bretagne par l'exemption et l'apparence, Irlande par les
-   * séjours de trente jours, Allemagne par ses exceptions, Nouvelle-Zélande par « entièrement ou
-   * principalement »). Ce registre retient le constat pour qu'une citation future ne restaure
-   * pas en silence une règle fausse. */
-  const { niveauDePreuveRegle } = await import("./packages/knowledge/src/index.ts");
+  /* DEUX DÉFAUTS FERMÉS ICI, tous deux relevés en contre-revue le 05/09/2026.
+   *
+   * 1. `entry_allowed` ÉTAIT BOOLÉEN, et rejouait mot pour mot la faute d'`offers_pet_transport` :
+   *    aucune place pour l'inconnu. Une interdiction non citée le laissait à `true`, et le même
+   *    rapport disait alors trois choses à la fois — « Interdit par l'article 1 du Dangerous Dogs
+   *    Act » (exigence critique), « Pas encore établi » (verdict), et « Le Royaume-Uni autorise
+   *    l'entrée » (élément positif). Le troisième était une conclusion tirée d'une absence de
+   *    preuve, et le seul des trois franchement faux.
+   *
+   * 2. LE REGISTRE DE REQUALIFICATION SE CROYAIT SUR PAROLE. La garde vérifiait « citée et non
+   *    résolue → rouge » : il suffisait donc d'ajouter une citation et de basculer `resolu` à la
+   *    main pour restaurer un refus dont le prédicat n'avait pas changé. Le texte exigeait les
+   *    deux ; le code n'en prouvait qu'un. */
+  const { niveauDePreuveRegle, regleDecisive: decisive } = await import("./packages/knowledge/src/index.ts");
+  const { createHash } = await import("node:crypto");
   const registre = JSON.parse(readFileSync("mesures/politiques-veracite/regles-pays-a-requalifier.json", "utf8"));
   const regles = JSON.parse(readFileSync("packages/knowledge/raw/rules.json", "utf8"));
   const denysPays = regles.filter((r) => r.scope?.type === "country" && r.effect?.action === "deny");
-  check("état figé : 6 interdictions d'entrée par pays, TOUTES officielles non citées",
-    denysPays.length === 6 && denysPays.every((r) => niveauDePreuveRegle(r) === "officielle_non_citee"),
-    JSON.stringify(denysPays.map((r) => [r.id, niveauDePreuveRegle(r)])));
-  check("le registre de requalification couvre exactement ces six règles",
-    registre.regles.length === 6
-      && denysPays.every((r) => registre.regles.some((x) => x.rule_id === r.id)),
-    JSON.stringify(registre.regles.map((x) => x.rule_id)));
-  /* LA GARDE QUI REND LE REGISTRE CONTRAIGNANT : citer une règle ne suffit pas à la libérer si sa
-     CONDITION reste à revoir. Sans cela, la prochaine citation rouvrirait un refus catégorique
-     que la lecture des sources a déjà démenti. */
-  const fautives = denysPays.filter((r) => {
-    const e = registre.regles.find((x) => x.rule_id === r.id);
-    return niveauDePreuveRegle(r) === "citee" && !(e && e.resolu);
-  });
-  check("aucune règle pays n'est devenue décisive sans que le registre la déclare résolue",
-    fautives.length === 0, JSON.stringify(fautives.map((r) => r.id)));
-  check("le registre nomme, pour chaque règle non résolue, ce qui lui manque",
-    registre.regles.filter((x) => !x.resolu).every((x) => typeof x.manque === "string" && x.manque.length > 10),
-    JSON.stringify(registre.regles.filter((x) => !x.manque).map((x) => x.rule_id)));
 
-  /* LE COMPORTEMENT, SUR LE CAS RÉEL DE LA CONTRE-REVUE. Le refus ne décide plus — mais il ne se
-     tait pas : l'exigence pays reste publiée en tête, au niveau `critical`, texte intégral. */
+  /* L'EMPREINTE DU PRÉDICAT — forme canonique (clés triées) puis SHA-256. Elle ne protège de
+     rien, elle PROUVE qu'un prédicat a bougé : c'est tout ce qu'on lui demande. */
+  const canon = (v) => Array.isArray(v) ? v.map(canon)
+    : (v && typeof v === "object") ? Object.fromEntries(Object.keys(v).sort().map((k) => [k, canon(v[k])])) : v;
+  const empreinte = (r) => createHash("sha256")
+    .update(JSON.stringify(canon({ applies_when: r.applies_when, effect: r.effect }))).digest("hex").slice(0, 16);
+
+  check("le registre couvre exactement les 6 interdictions d'entrée par pays",
+    denysPays.length === 6 && registre.regles.length === 6
+      && denysPays.every((r) => registre.regles.some((x) => x.rule_id === r.id)),
+    JSON.stringify(denysPays.map((r) => r.id)));
+  check("état figé : 1 règle citée (Nouvelle-Zélande), 5 officielles non citées",
+    denysPays.filter((r) => niveauDePreuveRegle(r) === "citee").length === 1
+      && denysPays.filter((r) => niveauDePreuveRegle(r) === "officielle_non_citee").length === 5,
+    JSON.stringify(denysPays.map((r) => [r.id, niveauDePreuveRegle(r)])));
+
+  /* LA GARDE, ÉCRITE COMME UNE FONCTION pour être exercée à vide ET sur un cas saboté. */
+  const gardeRouge = (reglesEval, registreEval) => reglesEval
+    .filter((r) => r.scope?.type === "country" && r.effect?.action === "deny")
+    .filter((r) => {
+      const e = registreEval.regles.find((x) => x.rule_id === r.id);
+      if (!decisive(r)) return false;                    // non décisive : rien à exiger
+      if (!e || !e.resolu) return true;                  // décisive sans entrée résolue
+      /* RÉSOLUE ET DÉCISIVE : si une condition restait à revoir, le PRÉDICAT doit avoir bougé. */
+      return !!e.condition_a_revoir && empreinte(r) === e.empreinte_predicat_constate;
+    })
+    .map((r) => r.id);
+
+  check("sur l'état versionné, la garde est verte", gardeRouge(regles, registre).length === 0,
+    JSON.stringify(gardeRouge(regles, registre)));
+
+  /* LA CONTRE-ÉPREUVE EXACTE DEMANDÉE : citer la Grande-Bretagne, basculer `resolu` à la main,
+     ne corriger NI l'exemption NI le prédicat. La garde doit rougir. */
+  {
+    const reglesSab = JSON.parse(JSON.stringify(regles));
+    const registreSab = JSON.parse(JSON.stringify(registre));
+    for (const r of reglesSab) if (r.id === "rule_gb_breed_ban_restricted_types") {
+      r.source.quote = "It is illegal to bring a banned dog into Great Britain.";
+      r.source.quote_language = "en"; r.source.locator = "section « Banned dogs »";
+    }
+    for (const e of registreSab.regles) if (e.rule_id === "rule_gb_breed_ban_restricted_types") e.resolu = true;
+    check("SABOTAGE : citation + `resolu:true` SANS corriger le prédicat → la garde ROUGIT",
+      gardeRouge(reglesSab, registreSab).includes("rule_gb_breed_ban_restricted_types"),
+      JSON.stringify(gardeRouge(reglesSab, registreSab)));
+    /* Et la contrepartie : le prédicat corrigé (ici : la liste réduite), elle passe. Sans ce
+       second volet, la garde pourrait être rouge pour une raison sans rapport. */
+    for (const r of reglesSab) if (r.id === "rule_gb_breed_ban_restricted_types") {
+      r.applies_when.all[1].value = ["breed_american_bully_xl"];
+    }
+    check("…et une fois le prédicat RÉELLEMENT changé, elle repasse au vert",
+      !gardeRouge(reglesSab, registreSab).includes("rule_gb_breed_ban_restricted_types"),
+      JSON.stringify(gardeRouge(reglesSab, registreSab)));
+  }
+  check("chaque entrée non résolue nomme ce qui lui manque, et porte l'empreinte constatée",
+    registre.regles.filter((x) => !x.resolu).every((x) => (x.manque ?? "").length > 10
+      && /^[0-9a-f]{16}$/.test(x.empreinte_predicat_constate ?? "")),
+    JSON.stringify(registre.regles.filter((x) => !x.resolu).map((x) => x.rule_id)));
+
+  /* ── LE STATUT TERNAIRE, SUR LE CAS RÉEL DE LA CONTRE-REVUE ──────────────────────────────── */
   const kbP = loadKB();
-  const dec = evaluate(kbP, { origin: "airport_cdg", destination: "airport_lhr",
-    dog: { breed_id: "breed_american_bully_xl", weight_kg: 50 }, travel_type: "pet", placement: "any", locale: "en" });
+  const req = (dest, breed) => ({ origin: "airport_cdg", destination: dest,
+    dog: { breed_id: breed, weight_kg: 50 }, travel_type: "pet", placement: "any", locale: "en" });
+  const dec = evaluate(kbP, req("airport_lhr", "breed_american_bully_xl"));
   const rep = explain(dec, "en");
-  check("CDG→LHR, American Bully XL : l'interdiction NON CITÉE ne ferme plus l'entrée",
-    dec.destination.entry_allowed === true, String(dec.destination.entry_allowed));
-  check("…et elle est NOMMÉE plutôt que perdue (entry_unverified_denies)",
+  check("CDG→LHR : interdiction NON CITÉE → statut pays `confirmation_required`",
+    dec.destination.entry_status === "confirmation_required", String(dec.destination.entry_status));
+  check("…et elle est NOMMÉE plutôt que perdue", 
     (dec.destination.entry_unverified_denies ?? []).includes("rule_gb_breed_ban_restricted_types"),
     JSON.stringify(dec.destination.entry_unverified_denies));
-  check("…et son exigence reste publiée en tête du rapport, au niveau critique",
-    rep.conditions?.[0]?.criticality === "critical" && /Dangerous Dogs Act/i.test(rep.conditions?.[0]?.text ?? ""),
-    JSON.stringify({ crit: rep.conditions?.[0]?.criticality, txt: (rep.conditions?.[0]?.text ?? "").slice(0, 60) }));
-  /* P0-2 DE LA CONTRE-REVUE, dans sa reproduction exacte : une interdiction du PAYS ne doit
-     produire aucune affirmation structurelle sur les COMPAGNIES. Dix cartes annonçaient
-     « No pets » alors que leur statut ternaire vaut « unknown ». */
-  const inconnues = rep.airlines.filter((a) => a.offers_pet_transport === "unknown");
-  check("témoin non vide : les compagnies de ce trajet sont toutes « on ne sait pas »",
-    inconnues.length === rep.airlines.length && inconnues.length >= 10,
-    `${inconnues.length} / ${rep.airlines.length}`);
-  check("AUCUNE d'elles n'annonce « animaux refusés » — l'interdiction vient du PAYS",
-    rep.airlines.every((a) => !/No pets|Animaux refusés/i.test(a.label ?? "")),
-    JSON.stringify(rep.airlines.filter((a) => /No pets/i.test(a.label ?? "")).map((a) => a.airline_id)));
-  /* Et le motif ne revient pas non plus par la bande : une règle qui ne peut pas décider ne peut
-     pas expliquer. Les cartes disaient « cabine non proposée, soute non proposée ». */
-  check("…ni ne leur impute un motif tiré d'une règle non citée",
-    rep.airlines.every((a) => (a.deny_reasons ?? []).length === 0),
-    JSON.stringify(rep.airlines.map((a) => a.deny_reasons).filter((x) => x?.length).slice(0, 3)));
-  /* CONTRE-ÉPREUVE : la même règle, CITÉE, referme bien l'entrée. Sans elle, ce paragraphe ne
-     prouverait que l'inaction. */
-  const { rawKB: brutKB, normalize: normaliser } = await import("./packages/knowledge/src/index.ts");
-  const brut = JSON.parse(JSON.stringify(brutKB));
-  for (const r of brut.rules ?? []) if (r.id === "rule_gb_breed_ban_restricted_types" && r.source) {
-    r.source.quote = "It is illegal to bring a banned dog into Great Britain.";
-    r.source.quote_language = "en"; r.source.locator = "section « Banned dogs »";
+  check("…et le verdict global est `unknown` — ni autorisé, ni refusé", rep.verdict === "unknown", rep.verdict);
+  /* LE MENSONGE RETIRÉ : plus aucune phrase n'affirme que le pays autorise l'entrée. */
+  const textes = [...(rep.positives ?? []), ...(rep.conditions ?? [])].map((x) => x.text);
+  check("AUCUNE phrase n'affirme « le Royaume-Uni autorise l'entrée »",
+    !textes.some((t) => /allows entry|autorise l.entrée|permite la entrada|autoriza a entrada/i.test(t)),
+    JSON.stringify(textes.filter((t) => /allows entry/i.test(t))));
+  check("…et le rapport dit à la place que le pays restreint PEUT-ÊTRE ce chien",
+    textes.some((t) => /may restrict this dog on entry/i.test(t)), JSON.stringify(textes.slice(0, 2)));
+  /* LE RATIONALE CATÉGORIQUE EST ENCADRÉ, pas supprimé : le texte officiel reste lisible entier. */
+  const cond = (rep.conditions ?? [])[0];
+  check("l'exigence non décisive est présentée comme une restriction POTENTIELLE à confirmer",
+    /Potential entry restriction, to confirm/i.test(cond?.text ?? ""), (cond?.text ?? "").slice(0, 70));
+  check("…mais le texte officiel y est conservé ENTIER, avec son lien",
+    /Dangerous Dogs Act 1991/.test(cond?.text ?? "") && /Certificate of Exemption/.test(cond?.text ?? "")
+      && typeof cond?.source_url === "string");
+  check("…et elle garde son niveau critique — l'encadrer ne l'atténue pas",
+    cond?.criticality === "critical", String(cond?.criticality));
+  check("aucune exigence issue d'un `deny` non décisif ne COMMENCE par une affirmation d'interdiction",
+    (rep.conditions ?? []).filter((c) => (dec.destination.entry_unverified_denies ?? []).includes(c.rule_id))
+      .every((c) => !/^(Prohibited|Importing|Interdit|It is illegal)/i.test(c.text)),
+    JSON.stringify((rep.conditions ?? []).map((c) => c.text.slice(0, 40))));
+
+  /* UNE COMPAGNIE `allowed` NE PEUT PAS RENDRE LE TRAJET COMPATIBLE TANT QUE L'ENTRÉE EST À
+     CONFIRMER. Sans ce contrôle, la règle « le statut pays plafonne le verdict » ne serait
+     éprouvée par aucune donnée : aucune compagnie réelle n'est `allowed` aujourd'hui. */
+  {
+    const { rawKB: brutV, normalize: normV } = await import("./packages/knowledge/src/index.ts");
+    const brut = JSON.parse(JSON.stringify(brutV));
+    let cite = 0;
+    for (const a of brut.airlines ?? []) {
+      const pol = a?.premium?.policy;
+      if (!pol) continue;
+      for (const d of Object.values(pol)) {
+        if (!d?.source) continue;
+        delete d.source_derived;
+        d.source.quote = "Pets are accepted on this route, subject to the conditions below.";
+        d.source.quote_language = "en"; d.source.locator = "section « Pets », paragraphe 1"; cite++;
+      }
+    }
+    const decOuvert = evaluate(normV(brut), req("airport_lhr", "breed_american_bully_xl"));
+    const repOuvert = explain(decOuvert, "en");
+    const ouvertes = repOuvert.airlines.filter((a) => a.cabin || a.hold || a.cargo);
+    check(`témoin non vide : ${ouvertes.length} compagnie(s) réellement ouverte(s) sur ce trajet (${cite} politiques citées)`,
+      ouvertes.length > 0, `${ouvertes.length}`);
+    check("MALGRÉ une compagnie ouverte, le trajet reste `unknown` tant que l'entrée est à confirmer",
+      repOuvert.verdict === "unknown", repOuvert.verdict);
+    check("…et le statut pays est bien la cause du plafond",
+      decOuvert.destination.entry_status === "confirmation_required", String(decOuvert.destination.entry_status));
   }
-  const decCite = evaluate(normaliser(brut), { origin: "airport_cdg", destination: "airport_lhr",
-    dog: { breed_id: "breed_american_bully_xl", weight_kg: 50 }, travel_type: "pet", placement: "any", locale: "en" });
-  check("la MÊME règle, citée, referme l'entrée — la porte n'est pas condamnée",
-    decCite.destination.entry_allowed === false, String(decCite.destination.entry_allowed));
+
+  /* LES DEUX AUTRES ÉTATS, pour que le ternaire ne soit pas un binaire déguisé. */
+  const decNZ = evaluate(kbP, req("airport_akl", "breed_american_pit_bull_terrier"));
+  check("Nouvelle-Zélande CITÉE → statut `blocked`, et le verdict est incompatible",
+    decNZ.destination.entry_status === "blocked" && explain(decNZ, "en").verdict === "incompatible",
+    JSON.stringify({ e: decNZ.destination.entry_status, v: explain(decNZ, "en").verdict }));
+  const decLibre = evaluate(kbP, req("airport_jfk", "breed_golden_retriever"));
+  check("un trajet sans interdiction applicable → `no_known_block`",
+    decLibre.destination.entry_status === "no_known_block", String(decLibre.destination.entry_status));
+  check("…et sa phrase ne dit PAS « le pays autorise », mais « aucune interdiction établie »",
+    (explain(decLibre, "en").positives ?? []).some((x) => /No blocking entry ban established/i.test(x.text)),
+    JSON.stringify((explain(decLibre, "en").positives ?? []).map((x) => x.text.slice(0, 50))));
 }
 
 console.log("\n=== 14. Le côté PAYS — verrouiller un bon état plutôt que le découvrir deux fois ===");

@@ -391,3 +391,101 @@ soute, ce qui rendait `rule_british_airways_no_cabin` doublement infondée sur c
 4. ton arbitrage sur France / Grande-Bretagne / Irlande : conditionner les règles (ce qui demande
    d'ajouter un fait « pedigree reconnu » et un fait « durée de séjour » au contexte d'évaluation),
    ou les laisser en confirmation permanente avec leur texte d'exigence intégral.
+
+---
+
+# CONTRE-REVUE DE `cbcd9da` — le statut d'entrée ternaire, et un registre qui se prouve
+
+**Date** : 5 septembre 2026, fin d'après-midi.
+
+## P0 — j'ai refait, sur l'entrée, la faute que je venais de corriger deux fois
+
+`entry_allowed` est resté **booléen**. Un booléen n'a pas de place pour l'inconnu : une
+interdiction non citée le laissait donc à `true`, et le même rapport disait trois choses à la fois
+(reproduit, CDG → LHR, American Bully XL) :
+
+| énoncé | où | verdict de vérité |
+|---|---|---|
+| « Interdit par l'article 1 du Dangerous Dogs Act 1991 » | exigence, `critical` | texte officiel, non vérifié phrase à phrase |
+| « Pas encore établi » | verdict global | juste |
+| « **Le Royaume-Uni autorise l'entrée** » | élément positif | **faux** — conclusion tirée d'une absence de preuve |
+
+C'est le troisième qui était intenable, et c'est exactement la faute d'`offers_pet_transport`
+et du verdict de fiche, une troisième fois. **Nous ne connaissons pas les autorisations : nous ne
+connaissons que les blocages, et leur absence dans nos données.**
+
+`EntryStatus` remplace le booléen — `blocked` / `confirmation_required` / `no_known_block` —, avec
+les quatre conséquences demandées :
+
+1. le statut est ternaire, et `entry_allowed` n'en est plus qu'une projection interne
+   (`!== "blocked"`), qui ne doit jamais servir à conclure qu'un pays autorise ;
+2. un statut pays `confirmation_required` **plafonne le verdict à `unknown`**, même si une
+   compagnie devient `allowed` — l'embarquement n'est pas l'entrée ;
+3. plus aucune phrase ne conclut à une autorisation : `no_known_block` dit « aucune interdiction
+   d'entrée bloquante établie dans nos données », `confirmation_required` dit « le pays restreint
+   peut-être ce chien — à confirmer », au niveau `high` et en ton négatif ;
+4. le `rationale` catégorique d'une règle non décisive est **encadré, pas supprimé** : le texte
+   officiel reste lisible entier, avec son lien, sous « Restriction d'entrée potentielle, à
+   confirmer auprès des autorités de … Ce que dit la page officielle, et que nous n'avons pas pu
+   vérifier phrase par phrase : … ». La criticité `critical` est conservée — l'encadrer ne
+   l'atténue pas.
+
+Les quatre contre-épreuves demandées sont écrites, plus quatre autres : les deux autres états du
+ternaire (pour qu'il ne soit pas un binaire déguisé), et le fait qu'aucune exigence issue d'un
+`deny` non décisif ne **commence** par une affirmation d'interdiction.
+
+Pour la troisième contre-épreuve — « une compagnie synthétiquement `allowed` ne peut rendre le
+trajet compatible » — la base réelle ne portait aucun canal `allowed` : elle est construite en
+citant les 302 politiques en mémoire, ce qui ouvre **3 compagnies** sur ce trajet, et le verdict
+reste `unknown`. Sans cela, la règle « le statut pays plafonne le verdict » n'aurait été éprouvée
+par aucune donnée.
+
+## P1 — le registre se croyait sur parole
+
+La garde vérifiait « citée **et** non résolue → rouge ». Ajouter une citation et basculer `resolu`
+à la main suffisait donc à restaurer un refus dont le prédicat n'avait pas changé : le texte
+exigeait les deux, le code n'en prouvait qu'un.
+
+Chaque entrée porte maintenant `empreinte_predicat_constate` — SHA-256 tronqué de la forme
+canonique de `{applies_when, effect}` au moment du constat. Une entrée `resolu: true` dont la
+`condition_a_revoir` n'est pas vide doit présenter un prédicat dont **l'empreinte a changé**. La
+contre-épreuve exacte est écrite : citer la règle GB, passer son entrée à `resolu: true`, ne rien
+corriger → **la garde rougit** ; et une fois le prédicat réellement modifié, elle repasse au vert
+(sans ce second volet, elle pourrait être rouge pour une raison sans rapport).
+
+## Les sources — ce qui est appliqué, et ce qui ne l'est pas
+
+**Nouvelle-Zélande : citée et appliquée.** La règle porte désormais la page 2026 du MPI, la phrase
+exacte et son locator. Elle est la **première règle citée du dépôt**, comme British Airways cabine
+fut la première politique. Le statut d'entrée devient `blocked` et le verdict `incompatible` — le
+ternaire n'est donc pas un binaire déguisé.
+
+Raisonnement pour l'appliquer : « *entirely or predominantly* » est **plus large** que le nom de
+race — un chien déclaré d'une de ces races lui appartient au moins de façon prédominante, donc le
+prédicat `dog.breed_id in [...]` est couvert par la phrase.
+
+**Australie : citation relevée, mais NON appliquée.** Et c'est la même distinction, prise dans
+l'autre sens : la page australienne n'interdit que les races **pures**, et annonce les croisés
+comme admis. Or le formulaire demande une race, pas une **pureté** — choisir « Dogo Argentino »
+n'établit pas que le chien est de race pure. Citer la règle la rendrait décisive et ferait refuser
+des chiens que la page admet explicitement. La citation est conservée entière dans le registre,
+prête à servir le jour où un fait de pureté existera. **C'est ma lecture, et je la soumets** :
+ton critère était « si le choix de race signifie bien que le chien appartient effectivement à la
+race visée », et pour l'Australie il ne le signifie pas.
+
+**Allemagne : les trois exceptions que tu confirmes sont consignées** (chiens de service,
+d'assistance, guides et de secours ; retour d'un chien légalement détenu ; séjour temporaire de
+quatre semaines au plus avec une personne non résidente), avec les deux sources. Elle reste en
+confirmation, avec France, Grande-Bretagne et Irlande. **Aucun champ n'est ajouté au formulaire**,
+conformément à ton arbitrage.
+
+## Mouvement mesuré et figé
+
+`entree-ternaire-avant.json` → `entree-ternaire-apres.json` : **un seul énoncé change**, dans les
+72 scénarios — « X autorise l'entrée » devient « aucune interdiction d'entrée bloquante établie
+dans nos données pour X ». Aucun verdict, aucune carte, aucun statut, aucune cause, aucun rang,
+aucun score. La matrice publique ne contient aucun trajet à interdiction applicable : le cas
+`confirmation_required` vit dans `test-frontiere-confiance.mjs`.
+
+Compte figé mis à jour, mouvement nommé : règles `deny` — **1 citée** (Nouvelle-Zélande, contre 0),
+129 officielles non citées (contre 130), 88 faibles (inchangé).

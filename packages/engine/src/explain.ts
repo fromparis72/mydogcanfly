@@ -151,8 +151,21 @@ export function explain(decision: Decision, locale = "en"): DecisionReport {
    * Ce n'est qu'à la PRÉSENTATION que l'auto-citation s'efface. */
   for (const f of decision.countryRequirements) {
     const presentable = estAutoCitation(f.source_url) ? undefined : f.source_url;
+    /* UNE RÈGLE QUI NE DÉCIDE PAS NE GARDE PAS SA CONCLUSION CATÉGORIQUE (contre-revue du
+       05/09/2026). Le `rationale` d'une interdiction non citée continuait d'être publié tel quel —
+       « Interdit par l'article 1… », « impossible à obtenir pour un chien arrivant de l'étranger » —
+       c'est-à-dire une conclusion présentée comme établie alors que le moteur venait de refuser de
+       la tenir pour telle. Le TEXTE est conservé, entier : il est peut-être juste, et le retirer
+       serait une décision de contenu. Ce qui change est son CADRE — il est annoncé comme une
+       restriction potentielle à confirmer, et le lien officiel reste à côté. */
+    const nonDecisive = f.action === "deny" && !f.decisive;
+    const texte = nonDecisive
+      ? L("cond.potential_restriction")
+          .replace("{country}", decision.destination.country_name)
+          .replace("{rationale}", f.rationale)
+      : f.rationale;
     conditions.push({
-      text: f.rationale,
+      text: texte,
       criticality: f.criticality, rule_id: f.rule_id, source_url: presentable,
     });
     if (presentable) sources.set(presentable, { url: presentable });
@@ -485,8 +498,14 @@ export function explain(decision: Decision, locale = "en"): DecisionReport {
      et le site répondait donc OUI, sur zéro preuve, à la question qu'il pose lui-même en titre.
      Un « à confirmer » n'est pas un oui atténué — c'est l'absence de réponse, et elle a
      maintenant son nom. Le reste de la règle est inchangé : le refus d'entrée prime sur tout. */
+  /* L'ENTRÉE À CONFIRMER PLAFONNE LE VERDICT (contre-revue du 05/09/2026). Sans cette ligne, une
+     compagnie devenue `allowed` rendrait le trajet « compatible » alors qu'une restriction d'entrée
+     applicable, mais non prouvée, pèse encore sur lui : l'embarquement n'est pas l'entrée. La
+     règle du 13/08 est inchangée pour le reste — le refus d'entrée PROUVÉ prime sur tout. */
+  const entryStatus = decision.destination.entry_status;
   const verdict: DecisionReport["verdict"] =
-    !entryAllowed ? "incompatible"
+    entryStatus === "blocked" ? "incompatible"
+    : entryStatus === "confirmation_required" ? "unknown"
     : anyCompatible ? (conditions.length > 0 ? "conditional" : "compatible")
     : anyConfirm ? "unknown"
     : "incompatible";
@@ -549,8 +568,20 @@ export function explain(decision: Decision, locale = "en"): DecisionReport {
       positives.push({ text: L("why.no_cabin").replace("{modes}", joinList(rest, locale)), criticality: "high", tone: "negative" });
     }
   }
-  if (decision.destination.entry_allowed) {
-    positives.push({ text: L("why.country_allows").replace("{country}", decision.destination.country_name), criticality: "low" });
+  /* « LE PAYS AUTORISE L'ENTRÉE » NE SE DÉDUIT PLUS D'UNE ABSENCE DE PREUVE (05/09/2026).
+     Cette ligne lisait `entry_allowed`, qui valait `true` dès qu'aucune interdiction n'était
+     PROUVÉE — le rapport affirmait donc « le Royaume-Uni autorise l'entrée » à côté d'une exigence
+     critique disant « Interdit par l'article 1 du Dangerous Dogs Act ». Les trois états ont
+     désormais chacun leur phrase, et aucune ne conclut à une autorisation que nous n'avons pas
+     établie : nous ne connaissons pas les autorisations, nous ne connaissons que les blocages. */
+  {
+    const pays = decision.destination.country_name;
+    if (decision.destination.entry_status === "confirmation_required") {
+      positives.push({ text: L("why.country_entry_to_confirm").replace("{country}", pays),
+        criticality: "high", tone: "negative" });
+    } else if (decision.destination.entry_status === "no_known_block") {
+      positives.push({ text: L("why.country_no_known_block").replace("{country}", pays), criticality: "low" });
+    }
   }
   positives.push({ text: decision.countryRequirements.length ? L("why.docs_known") : L("why.no_docs"), criticality: "low" });
 

@@ -1,6 +1,6 @@
 import type { NormalizedKB, Rule, Predicate, Condition, EvalContextShape, PlacementPolicy, PlacementStatus, TemperatureProvenance, BreedRestriction } from "@mydogcanfly/knowledge";
 import { MONTH_UNKNOWN, isEstimatedTemperature, preuveAuditee, regleDecisive, niveauDePreuveRegle } from "@mydogcanfly/knowledge";
-import type { FinderRequest, Decision, AirlineDecision, FiredRule, ConfirmationCause, RestrictionEvidence, AdvisorySignal, PetTransportStatus } from "./contracts";
+import type { FinderRequest, Decision, AirlineDecision, FiredRule, ConfirmationCause, RestrictionEvidence, AdvisorySignal, PetTransportStatus, EntryStatus } from "./contracts";
 import { makePlacementDecision, makePlacementDecisionSet } from "./contracts";
 
 type Ctx = Record<string, string | number | boolean>;
@@ -861,7 +861,15 @@ export function evaluate(kb: NormalizedKB, req: FinderRequest, opts?: { weatherP
    * visiteur lit toujours le Dangerous Dogs Act et le certificat d'exemption. Ce que le site
    * cesse de faire, c'est de trancher à sa place sur une règle que personne n'a vérifiée. */
   const entryDenies = countryRequirements.filter((f) => f.action === "deny");
-  const entry_allowed = !entryDenies.some((f) => f.decisive);
+  /* TERNAIRE (contre-revue du 05/09/2026). `entry_allowed` seul rejouait la faute du booléen
+     `offers_pet_transport` : une interdiction non citée le laissait à `true`, et le rapport
+     concluait « le pays autorise l'entrée » à côté de « Interdit par l'article 1 ». Une absence de
+     preuve n'est pas une autorisation. */
+  const entry_status: EntryStatus =
+    entryDenies.some((f) => f.decisive) ? "blocked"
+    : entryDenies.length > 0 ? "confirmation_required"
+    : "no_known_block";
+  const entry_allowed = entry_status !== "blocked";
   /* Les interdictions NON CITÉES sont nommées à part : elles ne décident pas, mais elles ne
      doivent pas se perdre non plus. Un doute anonyme est inauditable. */
   const entry_unverified_denies = entryDenies.filter((f) => !f.decisive).map((f) => f.rule_id);
@@ -870,7 +878,7 @@ export function evaluate(kb: NormalizedKB, req: FinderRequest, opts?: { weatherP
     request: req,
     airlines: airlineDecisions,
     countryRequirements,
-    destination: { country_id: destCountry, country_name: destCountryName, entry_allowed,
+    destination: { country_id: destCountry, country_name: destCountryName, entry_status, entry_allowed,
       ...(entry_unverified_denies.length ? { entry_unverified_denies } : {}) },
     origin_country_id: originCountry,
     domestic: isDomestic,
