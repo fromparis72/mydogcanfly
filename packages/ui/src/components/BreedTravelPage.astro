@@ -90,7 +90,14 @@ const sub = [
   <section class="bt2-card">
     <h2 class="bt2-h2">{T("Travel Snapshot", "Aperçu voyage", "Resumen del viaje")}</h2>
     <div class="bt2-snap">
-      {[["✈", T("Cabin", "Cabine", "Cabina"), p.cabin.level],["🛄", T("Hold", "Soute", "Bodega"), p.hold.level],["📦", "Cargo", p.cargo.level],["🌡", T("Heat", "Chaleur", "Calor"), p.heat],["❄", T("Cold", "Froid", "Frío"), p.cold]].map(([ic, lbl, lv]) => (
+      {/* ── TROISIÈME LECTEUR, TROUVÉ APRÈS LES DEUX AUTRES (contre-vérification du 06/09/2026) ──
+          `p.heat` et `p.cold` étaient ENCORE publiés ici. Je les avais retirés du « Travel DNA »
+          et de la grille d'indicateurs, et j'avais laissé l'aperçu — exactement la faute déjà
+          commise deux fois : masquer une surface et en oublier une autre. Pire, la garde que
+          j'avais écrite annonçait « aucune qualification de risque » en ne lisant que les deux
+          surfaces corrigées : elle rendait un verdict qu'elle n'avait pas mesuré.
+          L'aperçu se réduit donc aux trois canaux, qui sont ce que la fiche sait dire. */}
+      {[["✈", T("Cabin", "Cabine", "Cabina"), p.cabin.level],["🛄", T("Hold", "Soute", "Bodega"), p.hold.level],["📦", "Cargo", p.cargo.level]].map(([ic, lbl, lv]) => (
         <div class="bt2-snapcell">
           <div class="bt2-snapic">{ic}</div>
           <div class="bt2-snaplbl">{lbl}</div>

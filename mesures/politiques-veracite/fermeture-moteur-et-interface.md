@@ -1236,3 +1236,46 @@ Une restitution reste possible dans un lot distinct : afficher la note DogTime *
 et avec sa source visible.
 
 **La préversion `ad57ac1` / `9dca579a` demeure invalide et ne doit jamais être promue.**
+
+---
+
+# Annexe 8 — le troisième lecteur, et le faux témoin que j'avais écrit
+
+## Ce que la contre-vérification de `8f155bd` a trouvé
+
+**Pour la troisième fois le même motif.** J'avais retiré chaleur et froid du « Travel DNA » et de
+la grille d'indicateurs, et laissé l'**« Aperçu voyage »** (`.bt2-snap`), qui les publiait encore.
+Masquer une surface et en oublier une autre : fiches compagnies, puis FAQ des races, puis ceci.
+
+**Et ma garde mentait.** Elle ne lisait que les deux surfaces corrigées et concluait « aucune
+qualification de risque ». Un contrôle qui rend un verdict qu'il n'a pas mesuré est pire que pas
+de contrôle : il rassure.
+
+**Le défaut différé.** La note globale appliquait toujours une pénalité de chaleur (jusqu'à 26
+points) et 8 points pour une race brachycéphale. Aujourd'hui elle est masquée faute de canal
+établi — rien ne paraît. Mais le jour où une citation établira un canal, elle redeviendrait
+publique **en portant** deux déductions que l'arbitrage venait d'écarter, sans que personne les
+revoie.
+
+## Fermeture
+
+- l'aperçu voyage se réduit aux **trois canaux** ;
+- la note ne se calcule plus **que** sur les canaux — seule chose que ce dépôt sait établir par
+  citation ; `heat` et `brachy` n'y entrent plus ;
+- la garde 8 ter exige **exactement** trois cellules dans l'aperçu — une liste fermée ne peut pas
+  accueillir un quatrième axe en silence ;
+- **8 quater** : la liste des champs publiés est **relevée dans le gabarit** (ses `p.<champ>`),
+  pas écrite à la main — un champ rebranché entrerait de lui-même dans le périmètre. Le profil
+  est calculé sur la base réelle puis sur une base où `heat_tolerance`, `cold_tolerance` et le
+  pelage sont modifiés : **aucun des 17 champs publiés ne bouge**, et un témoin vérifie que la
+  mutation mord bien ailleurs dans le profil.
+
+## Ce dont je suis sûr, et ce dont je ne le suis pas
+
+Sûr, parce que mesuré : les 17 champs publiés ne contiennent aucun axe physiologique ; aucun
+verdict physiologique n'apparaît dans le DOM construit, quatre langues, sur une race ordinaire
+et sur une brachycéphale ; la note est insensible à la physiologie.
+
+Pas sûr : qu'il n'existe aucune surface que ni la contre-revue ni moi n'avons regardée. La
+différence avec les trois fois précédentes : la preuve est désormais **structurelle** — une liste
+relevée dans la source — et non une énumération de mémoire.

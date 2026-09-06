@@ -436,8 +436,22 @@ function difficulty(cabin: ChannelView, hold: ChannelView, cargo: ChannelView, h
   else if (ok(cargo)) base = 50;            // cargo-only → Difficult territory before penalties
   else if (warn(cargo)) base = 38;
   else base = 18;
-  const heatPen = heat.tone === "crit" ? 26 : heat.tone === "no" ? 16 : heat.tone === "warn" ? 6 : 0;
-  const score = clamp(Math.round(base - heatPen - (brachy ? 8 : 0)), 5, 100);
+  /* ── LA NOTE NE DÉPEND PLUS DE LA PHYSIOLOGIE (contre-vérification du 06/09/2026) ──────────
+   *
+   * Elle appliquait `heatPen` — 26, 16 ou 6 points selon le ton de `heat` — et une pénalité de
+   * 8 points pour une race brachycéphale. Les deux sont des DÉDUCTIONS retirées de l'affichage
+   * quelques heures plus tôt : `heat` vient d'une note DogTime de tolérance, et la brachycéphalie
+   * ne mesure aucun risque en vol par elle-même.
+   *
+   * Le défaut est DIFFÉRÉ, et c'est ce qui le rend dangereux : aujourd'hui la note est masquée
+   * faute de canal établi, donc rien ne paraît. Mais le jour où une citation rendra un canal
+   * établi, la note redeviendrait publique — et elle porterait à nouveau, sans que personne le
+   * revoie, deux déductions que l'arbitrage vient d'écarter de l'écran. Une donnée retirée de
+   * l'affichage ne doit pas continuer à peser dans un chiffre qui, lui, reviendra.
+   *
+   * La note ne se calcule donc plus QUE sur les canaux — c'est-à-dire sur les politiques, seules
+   * choses que ce dépôt sait établir par citation. `heat` et `brachy` n'entrent plus. */
+  const score = clamp(base, 5, 100);
   const stars = Math.round((score / 20) * 10) / 10;
   const cls = score >= 82 ? 0 : score >= 64 ? 1 : score >= 46 ? 2 : score >= 28 ? 3 : 4;
   const table = [
