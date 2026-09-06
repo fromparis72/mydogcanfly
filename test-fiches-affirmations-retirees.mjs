@@ -44,6 +44,7 @@
 import { readFileSync, readdirSync, statSync, existsSync } from "node:fs";
 import { join } from "node:path";
 import { createRequire } from "node:module";
+import { zonesDe } from "./test-lib/zones-publiques.mjs";   // le lecteur canonique, jamais un quatrième
 
 const YAML = createRequire(join(process.cwd(), "package.json"))("yaml");
 /** Les commentaires YAML racontent (mentions historiques qualifiées), ils ne publient pas :
@@ -234,59 +235,120 @@ function verifierGarudaDecision(policies) {
   if (!garuda.includes("Historiquement annoncée fermée aux animaux")) echec("6c", "la chaîne d'ancrage a disparu de la fiche Garuda — la contre-épreuve ne prouve plus rien");
 }
 
-/* ---- 7. DESSERVIR N'EST PAS ACCEPTER, ET UNE FAQ N'AFFIRME PAS UN REFUS ---------------------
+/* ---- 7. DESSERVIR N'EST PAS ACCEPTER, ET AUCUNE SURFACE NE PROMET « LA PLUS ADAPTÉE » -------
  *
- * DEUX AFFIRMATIONS RELEVÉES LE 07/09/2026 par le contre-test navigateur, sur des surfaces que
- * les gardes précédentes ne lisaient pas.
+ * CE PARAGRAPHE A ÉTÉ ÉCRIT DEUX FOIS, ET LA PREMIÈRE ÉTAIT UN FAUX VERT.
  *
- *   · Les pages pays et aéroports annonçaient « les compagnies qui desservent ce pays ET
- *     ACCEPTENT LES CHIENS » — 140 pages pays, autant de pages aéroport, quatre langues. Or la
- *     fonction qui les sélectionne ne retient pas des compagnies acceptantes : elle retient
- *     celles dont un canal est DOCUMENTÉ. Depuis la frontière de confiance, aucune politique
- *     n'est prouvée acceptante ; le titre promettait un état que la donnée n'établit pas.
- *   · La FAQ du calculateur de caisse affirmait « Beaucoup de compagnies refusent par ailleurs
- *     ces races en soute », dans les quatre langues. Un refus catégorique, chiffré par un vague
- *     « beaucoup », sans une seule citation.
+ * Il annonçait « lire le DOM » et se donnait pour cela sa PROPRE fonction : le contenu de
+ * `<main>`, les balises retirées à l'expression régulière. Il ne voyait donc ni les métadonnées —
+ * que le commit portant ce contrôle venait précisément de corriger —, ni le JSON-LD, ni les
+ * attributs accessibles. Trois zones publiques, invisibles au contrôle censé les garder.
  *
- * POURQUOI CE CONTRÔLE LIT LE DOM ET NON LA SOURCE. J'ai cherché la phrase de la caisse dans la
- * source, avec un motif trop étroit — « refusent ces races », quand le texte dit « refusent PAR
- * AILLEURS ces races » — et dans le mauvais fichier. N'ayant rien trouvé, j'ai écrit qu'elle
- * n'existait pas. Le contre-test, lui, l'avait LUE à l'écran. Un contrôle qui lit la page rendue
- * ne peut pas être trompé par un qualificatif intercalé. */
+ * `test-lib/zones-publiques.mjs` existe depuis le 02/09/2026 et rend exactement ces cinq zones.
+ * Son en-tête raconte les trois rédactions qu'il a fallu pour qu'il soit juste. En écrire une
+ * quatrième à côté, c'est le défaut qu'il a lui-même été créé pour clore : « ce qui compte comme
+ * publié ne peut pas dépendre de l'instrument qui regarde ».
+ *
+ * TROIS AUTRES TROUS DE LA PREMIÈRE RÉDACTION, tous relevés en contre-revue :
+ *   · trois pages pays et trois aéroports par langue, dans l'ordre du système de fichiers ;
+ *   · aucune exigence de PRÉSENCE : supprimer les blocs corrigés laissait le contrôle vert ;
+ *   · les anciens titres (« Airlines flying to … with a dog ») absents des témoins. */
 {
   const DIST = "packages/ui/dist";
   const COMPLET = process.argv.includes("--dist-complet");
   if (!existsSync(DIST)) {
     console.log("  · 7 dist absent : contrôle porté par le job « Site entier »");
   } else {
-    /* Ce qu'aucune de ces pages n'a le droit de dire. Les motifs couvrent les quatre langues et
-       tolèrent un mot intercalé — c'est précisément ce qui m'a échappé. */
-    /* `\w` NE COUVRE PAS LES LETTRES ACCENTUÉES en JavaScript : le mot intercalé « também » a
-       fait rater ce motif à sa première rédaction, et le témoin de non-vacuité ci-dessous l'a vu
-       immédiatement. C'est le même piège que la phrase elle-même — un mot au milieu — attrapé
-       cette fois par un contrôle et non par une contre-revue. Le mot intercalé s'écrit donc
-       `[^\s]+`, qui ne présume rien de l'alphabet. */
-    const ACCEPTATION = [
-      /serve this country and accept dogs/i,
-      /airlines?\s+(?:[^\s]+\s+){0,3}accept(?:ing)? dogs/i,
-      /compagnies?\s+(?:[^\s]+\s+){0,3}accept(?:ent|ant) (?:le chien|les chiens)/i,
-      /aerol[ií]neas?\s+(?:[^\s]+\s+){0,3}acept(?:an|ando) perros/i,
-      /companhias?\s+(?:[^\s]+\s+){0,3}aceit(?:am|ando) (?:cães|cachorros)/i,
+    /* CE QU'AUCUNE PAGE N'A LE DROIT DE DIRE. Le mot intercalé s'écrit `[^\s]+` : `\w` ne couvre
+       pas les lettres accentuées en JavaScript, et « também » avait fait rater le motif portugais
+       à la rédaction précédente — le témoin de non-vacuité l'a vu, pas moi. */
+    const INTERDITS = [
+      // Desservir présenté comme accepter (pages pays et aéroports, 4 langues)
+      ["desserte", /serve this country and accept dogs/i],
+      ["desserte", /airlines?\s+(?:[^\s]+\s+){0,3}accept(?:ing)? dogs/i],
+      ["desserte", /compagnies?\s+(?:[^\s]+\s+){0,3}accept(?:ent|ant) (?:le chien|les chiens)/i],
+      ["desserte", /aerol[ií]neas?\s+(?:[^\s]+\s+){0,3}acept(?:an|ando) perros/i],
+      ["desserte", /companhias?\s+(?:[^\s]+\s+){0,3}aceit(?:am|ando) (?:cães|cachorros)/i],
+      // Les anciens titres de section, qui promettaient le voyage plutôt que la desserte
+      ["ancien titre", /Airlines flying to .{0,40} with a dog/i],
+      ["ancien titre", /Compagnies qui desservent .{0,40} avec un chien/i],
+      ["ancien titre", /Aerol[ií]neas que vuelan a .{0,40} con un perro/i],
+      /* Refus catégorique non cité — BORNÉ À LA PAGE CAISSE, qui est son objet. Appliqué à tout
+         le site, ce motif rougit sur une phrase ÉDITORIALE des fiches pays : « many carriers
+         refuse or restrict snub-nosed breeds in the hold », présente dans 7 fiches de
+         `content/countries/`. C'est le même défaut — une affirmation catégorique sans citation —
+         mais dans les DONNÉES et non dans un gabarit, hors du périmètre arbitré pour ce lot. Il
+         est relevé dans le dossier plutôt que corrigé au passage ou masqué en rétrécissant le
+         motif. */
+      ["refus caisse", /(?:beaucoup|nombreuses?) de compagnies\s+(?:[^\s]+\s+){0,3}refusent/i, "/tools/crate/"],
+      ["refus caisse", /many airlines\s+(?:[^\s]+\s+){0,2}refuse/i, "/tools/crate/"],
+      ["refus caisse", /muchas aerol[ií]neas\s+(?:[^\s]+\s+){0,2}rechazan/i, "/tools/crate/"],
+      ["refus caisse", /muitas companhias\s+(?:[^\s]+\s+){0,2}recusam/i, "/tools/crate/"],
+      // « La plus adaptée » et la recommandation personnalisée (accueil : corps ET JSON-LD)
+      ["plus adaptée", /(?:la compagnie|compagnie) a[ée]rienne la plus adapt[ée]e/i],
+      ["plus adaptée", /celles qui sont les plus adapt[ée]es/i],
+      ["plus adaptée", /airline best suited to your dog/i],
+      ["plus adaptée", /those best suited to your dog/i],
+      ["plus adaptée", /aerol[ií]nea que mejor se adapta/i],
+      ["plus adaptée", /las que mejor se adaptan/i],
+      ["plus adaptée", /companhia a[ée]rea mais adequada/i],
+      ["plus adaptée", /as mais adequadas ao seu/i],
+      ["recommandation", /recommandation personnalis[ée]e/i],
+      ["recommandation", /personalised recommendation/i],
+      ["recommandation", /recomendaci[óo]n personalizada/i],
+      ["recommandation", /recomenda[çc][ãa]o personalizada/i],
+      // Le titre SEO qui affirmait que les règles sont sourcées
+      ["titre sourcé", /Airline Rules, Checked and Sourced/i],
+      ["titre sourcé", /r[èe]gles des compagnies, sourc[ée]es/i],
     ];
-    const REFUS_CAISSE = [
-      /(?:beaucoup|nombreuses?) de compagnies\s+(?:[^\s]+\s+){0,3}refusent/i,
-      /many airlines\s+(?:[^\s]+\s+){0,2}refuse/i,
-      /muchas aerol[ií]neas\s+(?:[^\s]+\s+){0,2}rechazan/i,
-      /muitas companhias\s+(?:[^\s]+\s+){0,2}recusam/i,
+
+    /* CE QUI DOIT ÊTRE PRÉSENT — ET POURQUOI CE N'EST PAS CE QUE J'AVAIS ÉCRIT.
+     *
+     * La contre-revue demandait « au moins un témoin réel de la formulation corrigée par langue »,
+     * sans quoi supprimer les blocs laisserait le contrôle vert. J'ai d'abord exigé la présence
+     * de la formulation des pages pays et aéroports. Elle a rougi, et la mesure explique
+     * pourquoi : `dogChannel()` ne retient une compagnie que si `premium.policy.<canal>.allowed`
+     * est vrai, et depuis la frontière de confiance AUCUNE des 102 compagnies ne l'est —
+     * 0/102, mesuré le 07/09/2026. La section n'est donc rendue sur AUCUNE des 140 pages pays ni
+     * sur aucune page aéroport : elle est dormante, et ma reformulation avec elle.
+     *
+     * Exiger sa présence dans le DOM reviendrait à exiger qu'une acceptation non prouvée soit
+     * republiée pour satisfaire un contrôle — exactement ce que `tarifs` §5quater a déjà refusé
+     * de faire. L'exigence est donc portée sur deux plans, sans rien abaisser :
+     *
+     *   · PRÉSENCE RÉELLE là où la surface est servie : la page caisse et l'accueil, dans les
+     *     quatre langues. Supprimer ces blocs fait rougir.
+     *   · PRÉSENCE EN SOURCE pour les sections dormantes : les deux gabarits doivent porter la
+     *     formulation prudente et aucune trace de l'ancienne. Une section dormante qui se
+     *     réveillera le jour d'une citation se réveillera avec le bon texte.
+     *   · RÉARMEMENT AUTOMATIQUE : si une page rend la section, la formulation prudente y est
+     *     exigée. Le contrôle n'a rien à changer le jour où la donnée revient. */
+    const ATTENDUS_RENDUS = {
+      "":   [["caisse", "/tools/crate/", /may also apply specific restrictions to snub-nosed breeds/i],
+             ["accueil", "index.html", /what a cited source confirms and what is still to be checked/i]],
+      "fr": [["caisse", "/tools/crate/", /appliquer des restrictions particulières aux races brachycéphales/i],
+             ["accueil", "index.html", /ce qui est confirmé par une source citée et ce qui reste à vérifier/i]],
+      "es": [["caisse", "/tools/crate/", /aplicar restricciones específicas a las razas braquicéfalas/i],
+             ["accueil", "index.html", /lo que confirma una fuente citada y lo que queda por comprobar/i]],
+      "pt": [["caisse", "/tools/crate/", /aplicar restrições específicas às raças braquicefálicas/i],
+             ["accueil", "index.html", /o que uma fonte citada confirma e o que ainda falta verificar/i]],
+    };
+    /* La formulation prudente exigée DÈS QU'UNE PAGE REND LA SECTION — le réarmement. */
+    /* Le titre de SECTION est suivi d'un pays ou d'un code IATA ; la MÉTADONNÉE des pages
+       aéroport, corrigée dans le même commit, dit « Documented airlines serving it, and how to
+       report… ». Sans la négation ci-dessous, ce réarmement rougissait sur la métadonnée — un
+       faux positif de ma main, vu par le contrôle lui-même sur les pages ALG et ASU. */
+    const SI_RENDUE = [
+      [/Documented airlines serving (?!it[,.])/i, /to be checked on each airline's page/i],
+      [/Compagnies documentées desservant (?!ce pays)/i, /à vérifier sur chaque fiche compagnie/i],
+      [/Aerolíneas documentadas que operan (?!allí)/i,   /hay que comprobarlo en la ficha de cada aerolínea/i],
+      [/Companhias documentadas que operam (?!lá)/i,     /você confere na ficha de cada companhia/i],
     ];
-    const corpsDe = (html) => (/<main\b[^>]*>[\s\S]*?<\/main>/i.exec(html)?.[0] ?? html)
-      .replace(/<script[\s\S]*?<\/script>/gi, " ")
-      .replace(/<[^>]+>/g, " ").replace(/&[a-z]+;/g, " ").replace(/\s+/g, " ");
 
     const lister = (fragment) => {
       const t = [];
       const marcher = (d) => {
-        for (const n of readdirSync(d)) {
+        for (const n of readdirSync(d).sort()) {          // ordre stable, pas celui du disque
           const c = join(d, n);
           const st = statSync(c);
           if (st.isDirectory()) { marcher(c); continue; }
@@ -294,69 +356,107 @@ function verifierGarudaDecision(policies) {
         }
       };
       marcher(DIST);
-      return t;
+      return t.sort();
     };
 
-    /* Les pages pays et aéroports : on en lit un échantillon par langue, pas les 3 121 — le
-       gabarit est unique, une page suffit à l'exercer, quatre langues à couvrir la traduction. */
-    const echantillon = [];
+    /* TOUTES les pages pays et aéroports, pas un échantillon — le gabarit est unique mais les
+       données ne le sont pas, et c'est une donnée (le nom d'une compagnie, un compteur) qui
+       pourrait ramener la promesse sur une page et pas sur une autre. */
+    const pages = [...lister("/countries/"), ...lister("/airports/"), ...lister("/tools/crate/")];
     for (const l of ["", "/fr", "/es", "/pt"]) {
-      echantillon.push(...lister(`${DIST}${l}/countries/`).slice(0, 3));
-      echantillon.push(...lister(`${DIST}${l}/airports/`).slice(0, 3));
+      const acc = join(DIST, l.slice(1), "index.html");
+      if (existsSync(acc)) pages.push(acc);
     }
+
     const fuites = [];
-    for (const f of echantillon) {
-      const corps = corpsDe(readFileSync(f, "utf8"));
-      for (const re of ACCEPTATION) {
-        const m = re.exec(corps);
-        if (m) fuites.push(`${f} : « ${m[0].slice(0, 60)} »`);
+    const vus = { "": 0, fr: 0, es: 0, pt: 0 };
+    const presents = { "": new Set(), fr: new Set(), es: new Set(), pt: new Set() };
+    for (const f of pages) {
+      const rel = f.slice(DIST.length + 1);
+      const lang = /^(fr|es|pt)\//.test(rel) ? rel.slice(0, 2) : "";
+      const z = zonesDe(readFileSync(f, "utf8"));
+      /* LES CINQ ZONES, pas seulement le corps : le titre et les métadonnées sont ce que la
+         rédaction précédente ne voyait pas, et le JSON-LD reprend la FAQ mot pour mot. */
+      const tout = [z.titre, z.corps, z.metas, z.jsonLd, z.attributs].join("\n");
+      vus[lang]++;
+      for (const [nom, re, portee] of INTERDITS) {
+        if (portee && !f.includes(portee)) continue;      // un motif borné ne juge que son objet
+        const m = re.exec(tout);
+        if (m) fuites.push(`${rel} [${nom}] : « ${m[0].slice(0, 60)} »`);
       }
-    }
-    if (!echantillon.length) {
-      if (COMPLET) echec("7 desserte", "aucune page pays ni aéroport dans le dist — le contrôle ne saurait pas conclure");
-      else console.log("  · 7 pages pays/aéroports absentes de ce dist réduit : contrôle porté par --dist-complet");
-    } else if (fuites.length) {
-      for (const f of fuites.slice(0, 4)) echec("7 desserte", f);
-    } else {
-      ok(`7 ${echantillon.length} pages pays/aéroports lues : desservir n'y est jamais présenté comme accepter`);
+      for (const [nom, frag, re] of (ATTENDUS_RENDUS[lang] ?? []))
+        if (f.includes(frag) && re.test(tout)) presents[lang].add(nom);
+      /* Réarmement : une page qui rend la section doit porter la formulation prudente entière. */
+      for (const [titre, prudence] of SI_RENDUE)
+        if (titre.test(tout) && !prudence.test(tout))
+          fuites.push(`${rel} [section rendue] : titre corrigé présent, phrase prudente absente`);
     }
 
-    /* La page du calculateur de caisse, dans les quatre langues. */
-    const caisses = lister("/tools/crate/");
-    const fuitesCaisse = [];
-    for (const f of caisses) {
-      const corps = corpsDe(readFileSync(f, "utf8"));
-      for (const re of REFUS_CAISSE) {
-        const m = re.exec(corps);
-        if (m) fuitesCaisse.push(`${f} : « ${m[0].slice(0, 60)} »`);
+    if (!pages.length) {
+      if (COMPLET) echec("7 zones", "aucune page pays, aéroport ou caisse dans le dist — le contrôle ne saurait pas conclure");
+      else console.log("  · 7 pages absentes de ce dist réduit : contrôle porté par --dist-complet");
+    } else {
+      if (fuites.length) for (const f of fuites.slice(0, 6)) echec("7 zones", f);
+      else ok(`7 ${pages.length} pages lues par le lecteur canonique (titre, corps, métadonnées, JSON-LD, attributs) : aucune promesse retirée n'y reparaît`);
+
+      /* La PRÉSENCE, langue par langue — et seulement sur un dist complet, où toutes les pages
+         pays et aéroports existent. Sur le dist réduit, leur absence est normale. */
+      const manquants = [];
+      for (const [lang, attendus] of Object.entries(ATTENDUS_RENDUS)) {
+        if (!vus[lang]) { if (COMPLET) manquants.push(`aucune page lue en « ${lang || "en"} »`); continue; }
+        for (const [nom, frag] of attendus) {
+          if (!pages.some((f) => f.includes(frag) && (/^(fr|es|pt)\//.test(f.slice(DIST.length + 1)) ? f.slice(DIST.length + 1, DIST.length + 3) : "") === lang)) continue;
+          if (!presents[lang].has(nom)) manquants.push(`${lang || "en"} · ${nom}`);
+        }
+      }
+      if (manquants.length) for (const m of manquants.slice(0, 6)) echec("7 présence", `formulation prudente absente — ${m}`);
+      else ok(`7 présence : la formulation prudente est servie sur la page caisse et l'accueil dans les quatre langues (supprimer ces blocs ferait rougir)`);
+
+      /* LA PRÉSENCE EN SOURCE, pour les deux sections dormantes — 0/102 compagnies ont un canal
+         `allowed`, la section n'est donc rendue nulle part et le DOM ne peut rien prouver ici. */
+      const GABARITS = [
+        ["CountryGuidePage.astro", /Compagnies documentées desservant/, /accept(?:ent|ant) (?:le chien|les chiens)|serve this country and accept dogs/],
+        ["AirportReliefPage.astro", /Compagnies documentées desservant/, /Compagnies acceptant le chien|Airlines accepting dogs/],
+      ];
+      for (const [fichier, attendu, interdit] of GABARITS) {
+        const src = readFileSync(join("packages/ui/src/components", fichier), "utf8");
+        const utile = src.replace(/\{\/\*[\s\S]*?\*\/\}/g, " ").replace(/^\s*\/\/.*$/gm, " ");
+        if (!attendu.test(utile)) echec("7 source", `${fichier} : la formulation prudente a disparu du gabarit`);
+        else if (interdit.test(utile)) echec("7 source", `${fichier} : la promesse d'acceptation est revenue dans le gabarit`);
+        else ok(`7 source : ${fichier} porte la formulation prudente et aucune promesse d'acceptation (section dormante : 0/102 compagnies ont un canal établi)`);
       }
     }
-    if (!caisses.length) {
-      if (COMPLET) echec("7 caisse", "aucune page /tools/crate/ dans le dist");
-      else console.log("  · 7 page caisse absente de ce dist réduit");
-    } else if (fuitesCaisse.length) {
-      for (const f of fuitesCaisse.slice(0, 4)) echec("7 caisse", f);
-    } else {
-      ok(`7 ${caisses.length} page(s) caisse : aucun refus catégorique non cité`);
-    }
 
-    /* NON-VACUITÉ. Les deux jeux de motifs doivent reconnaître les phrases RÉELLEMENT retirées ;
-       sinon ce paragraphe ne garantit rien et se contente de ne rien trouver. */
+    /* NON-VACUITÉ. Les motifs doivent reconnaître les phrases RÉELLEMENT retirées ; sinon ce
+       paragraphe ne garantit rien et se contente de ne rien trouver. */
     const retirees = [
-      ["desserte en", "Carriers we document that serve this country and accept dogs.", ACCEPTATION],
-      ["desserte fr", "Compagnies acceptant le chien à CDG", ACCEPTATION],
-      ["desserte es", "Aerolíneas que aceptan perros en CDG", ACCEPTATION],
-      ["desserte pt", "companhias que aceitam cães neste aeroporto", ACCEPTATION],
-      ["caisse fr", "Beaucoup de compagnies refusent par ailleurs ces races en soute.", REFUS_CAISSE],
-      ["caisse en", "Many airlines also refuse these breeds in the hold.", REFUS_CAISSE],
-      ["caisse es", "Además, muchas aerolíneas rechazan estas razas en bodega.", REFUS_CAISSE],
-      ["caisse pt", "Muitas companhias também recusam essas raças no porão.", REFUS_CAISSE],
+      ["desserte en",     "Carriers we document that serve this country and accept dogs."],
+      ["desserte fr",     "Compagnies acceptant le chien à CDG"],
+      ["desserte es",     "Aerolíneas que aceptan perros en CDG"],
+      ["desserte pt",     "companhias que aceitam cães neste aeroporto"],
+      ["titre pays en",   "Airlines flying to Portugal with a dog"],
+      ["titre pays fr",   "Compagnies qui desservent le Portugal avec un chien"],
+      ["titre pays es",   "Aerolíneas que vuelan a Portugal con un perro"],
+      ["caisse fr",       "Beaucoup de compagnies refusent par ailleurs ces races en soute."],
+      ["caisse en",       "Many airlines also refuse these breeds in the hold."],
+      ["caisse es",       "Además, muchas aerolíneas rechazan estas razas en bodega."],
+      ["caisse pt",       "Muitas companhias também recusam essas raças no porão."],
+      ["faq fr",          "t'aider à choisir la compagnie aérienne la plus adaptée à ton chien"],
+      ["faq en",          "help you choose the airline best suited to your dog and your destination"],
+      ["faq es",          "elegir la aerolínea que mejor se adapta a tu perro"],
+      ["faq pt",          "escolher a companhia aérea mais adequada ao seu cachorro"],
+      ["reco fr",         "tu obtiens une recommandation personnalisée accompagnée des sources"],
+      ["reco en",         "you get a personalised recommendation along with the official sources"],
+      ["reco es",         "obtienes una recomendación personalizada junto con las fuentes"],
+      ["reco pt",         "você recebe uma recomendação personalizada acompanhada das fontes"],
+      ["titre seo en",    "Can My Dog Fly? Airline Rules, Checked and Sourced | MyDogCanFly"],
+      ["titre seo fr",    "Voyager avec son chien en avion : règles des compagnies, sourcées"],
     ];
     let aveugles = 0;
-    for (const [nom, phrase, motifs] of retirees) {
-      if (!motifs.some((re) => re.test(phrase))) { aveugles++; echec("7 témoin", `le motif ne reconnaît pas la phrase retirée (${nom})`); }
+    for (const [nom, phrase] of retirees) {
+      if (!INTERDITS.some(([, re]) => re.test(phrase))) { aveugles++; echec("7 témoin", `aucun motif ne reconnaît la phrase retirée (${nom})`); }
     }
-    if (!aveugles) ok(`7 témoin : les motifs reconnaissent les ${retirees.length} phrases retirées le 07/09/2026, mot intercalé compris`);
+    if (!aveugles) ok(`7 témoin : les motifs reconnaissent les ${retirees.length} phrases retirées, mot intercalé et accents compris`);
   }
 }
 

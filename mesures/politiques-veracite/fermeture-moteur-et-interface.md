@@ -1460,3 +1460,61 @@ Les trois surfaces distinguent maintenant les deux choses : **desservir est cons
 **retirées** de la table, et non laissées dormantes : une clé orpheline qui contient la promesse
 peut la réintroduire au premier gabarit qui reprend son libellé.
 
+---
+
+## Annexe 11 — Le contrôle que j'avais écrit pour fermer un trou en ouvrait quatre (07/09/2026)
+
+### Un contrôle qui annonce ce qu'il ne fait pas
+
+L'annexe 10 se félicitait d'un point : le nouveau §7 « lit le DOM construit, pas la source », donc
+« ne peut pas être trompé par un mot intercalé ». C'était vrai de la phrase qu'il visait, et faux
+de tout le reste.
+
+Pour lire ce DOM, je lui avais donné **sa propre fonction** : le contenu de `<main>`, les scripts
+retirés, les balises effacées à l'expression régulière. Il ne voyait donc **ni les métadonnées, ni
+le JSON-LD, ni les attributs accessibles**. Les métadonnées : celles-là mêmes que le commit
+portant ce contrôle venait de corriger. Le JSON-LD : il reprend la FAQ d'accueil mot pour mot.
+Un contrôle qui garde une correction sans voir la surface corrigée est un faux vert.
+
+`test-lib/zones-publiques.mjs` existe depuis le 02/09/2026 et rend exactement ces cinq zones. Son
+en-tête raconte les trois rédactions successives qu'il a fallu pour qu'il soit juste — dont un
+`<title>` de SVG perdu, qui laissait passer un montant dans un nom accessible. J'en ai écrit une
+quatrième à côté, sans le lire. C'est très précisément le défaut que ce fichier a été créé pour
+clore, et qu'il énonce dans sa deuxième phrase :
+
+> « Ce qui compte comme "publié" ne peut pas dépendre de l'instrument qui regarde. »
+
+### Trois autres trous, tous relevés en contre-revue
+
+- **Trois pages pays et trois aéroports par langue**, dans l'ordre du système de fichiers. Le
+  gabarit est unique, mais les données ne le sont pas : c'est une donnée — un compteur, un nom —
+  qui peut ramener la promesse sur une page et pas sur une autre. Le contrôle lit maintenant
+  **toutes** les pages pays, aéroports et caisse, plus les quatre accueils, dans un ordre trié.
+- **Aucune exigence de présence.** Supprimer purement et simplement les blocs corrigés laissait le
+  contrôle vert : une interdiction seule ne garde rien. Il exige désormais, **par langue**, que la
+  formulation prudente soit effectivement servie.
+- **Les anciens titres absents des témoins.** « Airlines flying to … with a dog » pouvait revenir
+  sans faire rougir quoi que ce soit. Les témoins passent de 8 à 21 phrases.
+
+### Ce que je retiens, et qui vaut au-delà de ce contrôle
+
+Trois fois dans ce lot, j'ai produit un instrument qui **disait** garder quelque chose sans le
+garder : la constante booléenne au lieu d'une suppression, le grep vide opposé à une observation,
+et maintenant un lecteur maison annoncé comme un lecteur de DOM. À chaque fois la faute est la
+même — j'ai décrit l'intention de l'outil plutôt que sa portée réelle, et cette description m'a
+servi de preuve.
+
+La règle qui en sort : **avant d'écrire un lecteur, chercher celui qui existe** ; et quand un
+contrôle prétend couvrir une surface, le prouver en supprimant cette surface pour le voir rougir.
+C'est ce que fait l'exigence de présence ajoutée ici.
+
+### Et le portugais, une fois de plus
+
+Les cinq chaînes écrites la veille employaient `tua`, `teu`, `verificámos`, `junto da` — du
+portugais européen, alors que le composant déclare et emploie partout un registre **brésilien**
+(`você`, `seu`, `cachorro`). Le balayage complet de mes ajouts en a trouvé **9 sur 65**, pas 5 :
+je traduisais phrase par phrase sans relire le registre du fichier d'accueil.
+
+Toutes sont réalignées. Ce n'est pas un détail de style : une page qui alterne les deux registres
+signale au lecteur qu'elle a été écrite par une machine qui ne sait pas à qui elle parle — et sur
+un site dont l'argument est la fiabilité, cela coûte la même confiance qu'un chiffre faux.
