@@ -212,7 +212,7 @@ export function computeBreedTravel(breedId: string, kbOverride?: unknown): Breed
       : L("Occasional traveller", "Voyageur occasionnel", "Viajero ocasional", "Viajante ocasional", "warn");
 
   // ---- Difficulty class (primary verdict) ----
-  const diff = difficulty(cabin, hold, cargo, heat, brachy);
+  const diff = difficulty(cabin, hold, cargo);
 
   // ---- Travel DNA ----
   const dna: DnaRow[] = [
@@ -415,7 +415,7 @@ function adaptVerdict(a: number): Level {
   return a >= 4 ? L("High", "Élevée", "Alta", "Alta", "ok") : a === 3 ? L("Moderate", "Modérée", "Moderada", "Moderada", "warn") : L("Low", "Faible", "Baja", "Baixa", "no");
 }
 
-function difficulty(cabin: ChannelView, hold: ChannelView, cargo: ChannelView, heat: Level, brachy: boolean): Level & { emoji: string; score: number; stars: number; etabli: boolean } {
+function difficulty(cabin: ChannelView, hold: ChannelView, cargo: ChannelView): Level & { emoji: string; score: number; stars: number; etabli: boolean } {
   // Best REALISTIC channel for an owner, by priority cabin > hold > cargo.
   // Cargo-only is inherently difficult (costly, complex, heat-exposed), so it scores low even when "widely accepted".
   const ok = (v: ChannelView) => v.level.tone === "ok";
@@ -450,7 +450,8 @@ function difficulty(cabin: ChannelView, hold: ChannelView, cargo: ChannelView, h
    * l'affichage ne doit pas continuer à peser dans un chiffre qui, lui, reviendra.
    *
    * La note ne se calcule donc plus QUE sur les canaux — c'est-à-dire sur les politiques, seules
-   * choses que ce dépôt sait établir par citation. `heat` et `brachy` n'entrent plus. */
+   * choses que ce dépôt sait établir par citation. `heat` et `brachy` n'entrent plus — et depuis
+   * le P2 relevé par Codex le 06/09/2026, la fonction ne les reçoit même plus en paramètres. */
   const score = clamp(base, 5, 100);
   const stars = Math.round((score / 20) * 10) / 10;
   const cls = score >= 82 ? 0 : score >= 64 ? 1 : score >= 46 ? 2 : score >= 28 ? 3 : 4;
