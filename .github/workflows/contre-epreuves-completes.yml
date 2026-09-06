@@ -89,5 +89,21 @@ jobs:
       # Le runner exige un arbre PROPRE au départ : il écrit dans les fichiers du dépôt et les
       # restaure par `git checkout`. Il vérifie aussi que l'arbre est rendu intact à la fin, et,
       # sous `--tout`, que RIEN n'a été laissé de côté.
+      # LE CONTRE-TEST NAVIGATEUR N'ÉTAIT LANCÉ PAR AUCUN WORKFLOW (constaté le 07/09/2026). Il
+      # tournait à la main avant chaque poussée, et ses « 104/104 » étaient rapportés dans les
+      # messages de commit comme s'ils protégeaient la branche : ils ne protégeaient rien. Il est
+      # câblé ici, avec Playwright installé pour la circonstance ; le harnais échoue de lui-même
+      # si Playwright manque en CI, plutôt que de rendre 0 en se déclarant « non joué ».
+      # Playwright n'est pas une dépendance du dépôt — le harnais le prend où on le lui dit. On
+      # l'installe SANS toucher au verrou (`--no-save`), à la version employée en local, pour que
+      # la CI voie exactement ce que la machine de travail a vu.
+      - name: Playwright (le contre-test navigateur en a besoin)
+        run: |
+          npm i --no-save playwright@1.56.1
+          npx playwright install --with-deps chromium
+
+      - name: Le navigateur voit ce que voit un visiteur
+        run: npm run test:apercu
+
       - name: Chaque garantie doit savoir échouer — catalogue entier
         run: npm run contre-epreuves -- --tout

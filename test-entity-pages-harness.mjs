@@ -408,23 +408,122 @@ console.log("\n=== 2 quater. Le gabarit ne LIT plus les champs éditoriaux non s
     }
   })(path.join(ROOT, "packages", "ui", "src"));
 
-  const APPEL = /\b(?:T|L|F)\(\s*(["'`])((?:\\.|(?!\1).)*)\1\s*,/gs;
-  let gabaritsLus = 0, phrasesLues = 0;
+  /* LES ALIAS SONT DÉCOUVERTS, PAS DEVINÉS (07/09/2026, deuxième rédaction).
+   *
+   * La première liste était écrite en dur : `T`, `L`, `F`. Le dépôt en emploie deux autres —
+   * `Q` et `q` — et appelle aussi `inlineT(locale)(…)` sans passer par une constante. Neuf appels
+   * échappaient donc au balayage : 852 vus pour 861 réels, et le contrôle annonçait pourtant une
+   * couverture complète. Un nom d'alias écrit à la main est une supposition sur le code ; le code
+   * le déclare, il suffit de le lire.
+   *
+   * LES LITTÉRAUX SONT DÉCODÉS PAR JSON, PAS PAR DEUX `replace`. Les deux que j'avais écrits ne
+   * traitaient que `\'` et `\"`. Une clé contenant `\n` — le corps du courriel des fiches
+   * aéroport — était donc comparée avec ses barres obliques inverses intactes, tandis que la
+   * table portugaise porte le vrai saut de ligne : les clés diffèrent, `inlineT` ne trouve rien,
+   * et les 268 fiches d'aéroport portugaises préremplissaient le courriel EN ANGLAIS pendant que
+   * cette garde restait verte. */
+  /* LES ALIAS SE DÉCOUVRENT PAR FICHIER, ET C'EST UNE SECONDE CORRECTION. Une première version
+     les collectait pour tout le dépôt : `q` est un alias de traduction dans un fichier, et le
+     CONSTRUCTEUR de chaîne de requête dans `RelatedTools.astro` — quatre appels — plus un
+     paramètre de fonction dans `faq.ts`. Un même nom, deux choses. Réunis globalement, ces cinq
+     homonymes gonflaient le compte sans être des traductions. C'est l'écart entre les 861 appels
+     annoncés en contre-revue et les 854 que je mesure : 854 + 5 homonymes + les deux définitions
+     `Q`/`q` comptées à part. Le nom d'un alias n'a de sens que dans la portée où il est déclaré. */
+  /* UN ALIAS EST `const T = inlineT(locale);` — PAS `const q = inlineT(locale)(en, fr, es);`.
+     Le second est le RÉSULTAT d'un appel direct : `q` y contient une chaîne traduite, pas une
+     fonction. Ma première découverte confondait les deux et déclarait `q` alias de `faq.ts`,
+     puis s'étonnait qu'il ne serve à aucun appel. La parenthèse fermante doit donc être suivie
+     d'autre chose qu'une nouvelle parenthèse ouvrante. L'appel direct lui-même reste lu : il est
+     la seconde branche du motif d'appel. */
+  const aliasDe = (src) => [...new Set([...src.matchAll(/\bconst\s+([A-Za-z_$][\w$]*)\s*=\s*inline[TF]\s*\([^)]*\)\s*(?!\()/g)].map((m) => m[1]))];
+  const alias = new Set();
+  for (const f of fichiersUI) for (const a of aliasDe(fs.readFileSync(f, "utf8"))) alias.add(a);
+  /* UN DÉCODEUR D'ÉCHAPPEMENTS EXPLICITE, ET C'EST LA TROISIÈME RÉDACTION DE CE DÉTAIL.
+     La première ne traitait que `\'` et `\"` : la clé multiligne du courriel échappait. La
+     deuxième passait par `JSON.parse` après avoir ré-échappé les guillemets — elle cassait sur
+     les littéraux qui en contiennent DÉJÀ d'échappés (`privacy.astro`, `terms.astro`). Un
+     littéral JavaScript se décode selon ses propres règles ; les emprunter à JSON était un
+     raccourci, et un raccourci de plus dans un contrôle qui doit être exact. */
+  const ECHAPPES = { n: "\n", t: "\t", r: "\r", b: "\b", f: "\f", v: "\v", 0: "\0" };
+  const decoder = (brut) => {
+    let out = "";
+    for (let k = 0; k < brut.length; k++) {
+      if (brut[k] !== "\\") { out += brut[k]; continue; }
+      const c = brut[++k];
+      if (c === undefined) return null;                       // barre oblique finale : illisible
+      if (c === "u") {
+        if (brut[k + 1] === "{") {
+          const fin = brut.indexOf("}", k);
+          if (fin === -1) return null;
+          out += String.fromCodePoint(parseInt(brut.slice(k + 2, fin), 16)); k = fin;
+        } else { out += String.fromCharCode(parseInt(brut.slice(k + 1, k + 5), 16)); k += 4; }
+      } else if (c === "x") { out += String.fromCharCode(parseInt(brut.slice(k + 1, k + 3), 16)); k += 2; }
+      else if (c === "\n") { /* continuation de ligne : rien */ }
+      else out += (c in ECHAPPES ? ECHAPPES[c] : c);          // \' \" \` \\ \$ et tout le reste
+    }
+    return out;
+  };
+  const motifPour = (al) => new RegExp(
+    `(?:\\b(?:${al.join("|")})|inline[TF]\\s*\\([^)]*\\))\\(\\s*(["'\`])((?:\\\\.|(?!\\1)[\\s\\S])*)\\1\\s*,`, "g");
+
+  let gabaritsLus = 0, phrasesLues = 0, indecodables = 0;
   const fuitesPt = [];
   for (const f of fichiersUI) {
     const src = sansCommentaires(fs.readFileSync(f, "utf8"));
     if (!/inlineT\(|inlineF\(/.test(src)) continue;
+    const al = aliasDe(src);
+    if (!al.length) continue;
     gabaritsLus++;
-    for (const m of src.matchAll(APPEL)) {
-      const en = m[2].replace(/\\'/g, "'").replace(/\\"/g, '"');
+    for (const m of src.matchAll(motifPour(al))) {
+      const en = decoder(m[2]);
       phrasesLues++;
+      if (en === null) { indecodables++; continue; }
       if (!(en in ptTable)) fuitesPt.push(`${path.relative(ROOT, f)} : « ${en.slice(0, 55)}… »`);
     }
   }
-  check(`témoin : le balayage voit des gabarits et des phrases (${gabaritsLus} gabarits, ${phrasesLues} phrases)`,
-    gabaritsLus >= 12 && phrasesLues > 500);
+  /* LE COMPTE EST EXIGÉ, PAS DÉCORATIF. 861 est la mesure du 07/09/2026 ; il ne peut que MONTER
+     (un gabarit qui ajoute une phrase) et jamais descendre sans qu'on le sache. */
+  check(`témoin : ${alias.size} alias découverts (${[...alias].sort().join(", ")}), ${gabaritsLus} gabarits, ${phrasesLues} appels lus`,
+    alias.size >= 4 && gabaritsLus >= 12 && phrasesLues >= 854,
+    `alias=${alias.size} gabarits=${gabaritsLus} appels=${phrasesLues} (plancher : 854, mesuré le 07/09/2026 — voir le commentaire sur les homonymes)`);
+  check("tout littéral passé à un alias est décodable", indecodables === 0, `${indecodables} littéral(aux) illisible(s)`);
   check("aucune phrase d'aucun gabarit ne retombera en anglais sur une page portugaise",
     fuitesPt.length === 0, `${fuitesPt.length} fuite(s) — ${fuitesPt.slice(0, 3).join(" | ")}`);
+
+  /* TÉMOINS, UN PAR TROU RÉELLEMENT MESURÉ.
+     Ils ne présument aucun nom d'alias : le premier exige que CHAQUE alias découvert serve à au
+     moins un appel effectivement lu — un alias qu'on découvre mais qu'on ne lit jamais serait un
+     trou silencieux, exactement celui que `Q` et `q` ouvraient. */
+  {
+    const parAlias = new Map([...alias].map((a) => [a, 0]));
+    for (const f of fichiersUI) {
+      const src = sansCommentaires(fs.readFileSync(f, "utf8"));
+      const al = aliasDe(src);
+      if (!al.length) continue;
+      for (const m of src.matchAll(motifPour(al))) {
+        const nom = /^([A-Za-z_$][\w$]*)\s*\(/.exec(m[0])?.[1];
+        if (nom && parAlias.has(nom)) parAlias.set(nom, parAlias.get(nom) + 1);
+      }
+    }
+    const muets = [...parAlias].filter(([, n]) => n === 0).map(([a]) => a);
+    check(`témoin d'alias : les ${alias.size} alias découverts servent tous à au moins un appel lu (${[...parAlias].map(([a, n]) => `${a}:${n}`).join(", ")})`,
+      muets.length === 0, `alias sans aucun appel lu : ${muets.join(", ")}`);
+
+    const MULTILIGNE = "Airport: {A}\nTerminal:";
+    const cleMultiligne = Object.keys(ptTable).find((k) => k.startsWith(MULTILIGNE));
+    check("témoin de littéral : la clé multiligne du courriel des fiches aéroport est décodée et traduite",
+      Boolean(cleMultiligne), "la clé à vrais sauts de ligne n'existe pas dans la table portugaise");
+
+    /* Le décodeur doit rendre EXACTEMENT ce qu'un moteur JavaScript rendrait, y compris sur les
+       trois formes qui l'ont fait échouer : saut de ligne, guillemet déjà échappé, apostrophe. */
+    const eprouves = [
+      ["a\\nb", "a\nb"], ['il dit \\"oui\\"', 'il dit "oui"'], ["l\\'an", "l'an"],
+      ["\\u00e9t\\u00e9", "été"], ["100\\\\%", "100\\%"],
+    ];
+    const faux = eprouves.filter(([brut, attendu]) => decoder(brut) !== attendu);
+    check("témoin de décodage : saut de ligne, guillemet échappé, apostrophe, \\u et barre oblique",
+      faux.length === 0, `${faux.length} forme(s) mal décodée(s)`);
+  }
 
   /* NON-VACUITÉ : une phrase absente de la table DOIT être vue. On sabote une copie de la table
    * en retirant une clé réellement employée, et on rejoue le même balayage. */
@@ -439,9 +538,11 @@ console.log("\n=== 2 quater. Le gabarit ne LIT plus les champs éditoriaux non s
     for (const f of fichiersUI) {
       const src = sansCommentaires(fs.readFileSync(f, "utf8"));
       if (!/inlineT\(|inlineF\(/.test(src)) continue;
-      for (const m of src.matchAll(APPEL)) {
-        const en = m[2].replace(/\\'/g, "'").replace(/\\"/g, '"');
-        if (!(en in tableSabotee)) vue = true;
+      const al = aliasDe(src);
+      if (!al.length) continue;
+      for (const m of src.matchAll(motifPour(al))) {
+        const en = decoder(m[2]);
+        if (en !== null && !(en in tableSabotee)) vue = true;
       }
     }
     check("contre-épreuve : retirer une clé de la table portugaise fait rougir le balayage",

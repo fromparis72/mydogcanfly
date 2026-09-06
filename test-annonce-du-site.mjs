@@ -160,6 +160,90 @@ exiger("aucun sitemap n'annonce une URL sans page construite",
 dire("");
 dire(`  site : ${total} pages HTML · guides : ${pagesGuides.length} pages, ${languesParCle.size} clés`);
 dire(`  alternates lus : ${alternatesLus} · URL au sitemap : ${Object.values(urlsSitemap).reduce((a, s) => a + s.size, 0)}`);
+/* ---- 6. LES CHIFFRES QUE LE SITE ANNONCE SUR LUI-MÊME ----------------------------------------
+ *
+ * `HomeSections.astro` majorait chaque compte de 20 % avant de l'afficher, et le press kit
+ * portait quatre valeurs écrites à la main dont deux SUPÉRIEURES au corpus réel. Le contrôle
+ * porte donc sur les trois surfaces à la fois — accueil, page press kit, documents
+ * téléchargeables — parce que corriger la première en laissant les autres est exactement ce qui
+ * s'est produit : la page dynamique avait été refaite, les quatre HTML statiques non.
+ *
+ * LE SUFFIXE « + » EST INTERDIT sur ces chiffres. « 102+ » se lit « au moins 102 » : c'est une
+ * borne inférieure présentée comme un compte, et c'est ce que faisait `boost()` en arrondissant
+ * vers le haut. Un compte exact n'a pas besoin d'être arrondi. */
+{
+  /* LES COMPTES VIENNENT DE LA SOURCE BRUTE, pas d'un import de la base. Ce contrôle tourne en
+     Node pur — `node test-annonce-du-site.mjs`, sans `tsx` — et `@mydogcanfly/knowledge` est du
+     TypeScript : l'importer faisait tomber le contrôle sur un `ERR_MODULE_NOT_FOUND`. Or
+     `raw/objects.json` est précisément ce que `normalize()` reçoit : même origine, un cran plus
+     tôt, lisible sans compilateur. */
+  const brut = JSON.parse(readFileSync(join("packages", "knowledge", "raw", "objects.json"), "utf8"));
+  const REELS = {
+    compagnies: brut.airlines.length, pays: brut.countries.length,
+    races: brut.breeds.length, aeroports: brut.airports.length,
+  };
+  dire(`\n=== 6. Les chiffres annoncés — base : ${REELS.compagnies} compagnies, ${REELS.pays} pays, ${REELS.races} races, ${REELS.aeroports} aéroports ===`);
+
+  /* Les majorations exactes que `boost()` produisait, plus les valeurs jadis écrites à la main. */
+  const FAUX = ["120+", "160+", "200+", "300+", "90+", "250+", "169"];
+  const texteDe = (html) => html
+    .replace(/<script[\s\S]*?<\/script>/gi, " ").replace(/<style[\s\S]*?<\/style>/gi, " ")
+    .replace(/<[^>]+>/g, " ").replace(/&#(\d+);/g, (_, d) => String.fromCharCode(+d))
+    .replace(/&[a-z]+;/g, " ").replace(/\s+/g, " ");
+
+  const surfaces = [];
+  for (const l of LANGUES) {
+    const acc = l === "en" ? join(DIST, "index.html") : join(DIST, l, "index.html");
+    const prs = l === "en" ? join(DIST, "presskit", "index.html") : join(DIST, l, "presskit", "index.html");
+    for (const [nom, f] of [[`accueil ${l}`, acc], [`press kit ${l}`, prs]])
+      if (existsSync(f)) surfaces.push([nom, texteDe(readFileSync(f, "utf8"))]);
+  }
+  for (const l of LANGUES) {
+    const stat = join("packages", "ui", "public", "presskit", `press-kit-${l}.html`);
+    if (existsSync(stat)) surfaces.push([`press kit téléchargeable ${l}`, texteDe(readFileSync(stat, "utf8"))]);
+  }
+  dire(`  surfaces lues : ${surfaces.map(([n]) => n).join(", ")}`);
+  exiger("les trois surfaces sont lues (accueil, page press kit, documents)", surfaces.length >= 12,
+    `${surfaces.length} surface(s) — le contrôle ne saurait pas conclure`);
+
+  /* Un compte majoré ne doit apparaître nulle part. */
+  const majores = [];
+  for (const [nom, texte] of surfaces)
+    for (const f of FAUX)
+      if (new RegExp(`(?<![\\d.,])${f.replace("+", "\\+")}(?![\\d])`).test(texte)) majores.push(`${nom} : « ${f} »`);
+  exiger("aucun compte majoré ni écrit à la main ne subsiste", majores.length === 0, majores.slice(0, 4).join(" | "));
+
+  /* Et le suffixe « + » collé à l'un des quatre comptes réels. */
+  const avecPlus = [];
+  for (const [nom, texte] of surfaces)
+    for (const n of Object.values(REELS))
+      if (new RegExp(`(?<![\\d.,])${n}\\+`).test(texte)) avecPlus.push(`${nom} : « ${n}+ »`);
+  exiger("aucun compte réel n'est suivi d'un « + »", avecPlus.length === 0, avecPlus.slice(0, 4).join(" | "));
+
+  /* Les comptes réels sont bien SERVIS, sans quoi les deux interdictions ci-dessus seraient
+     satisfaites par une page qui n'annonce plus rien du tout. */
+  const accueils = surfaces.filter(([n]) => n.startsWith("accueil"));
+  const servis = accueils.filter(([, t]) =>
+    Object.values(REELS).filter((n) => new RegExp(`(?<![\\d.,])${n}(?![\\d])`).test(t)).length >= 3);
+  exiger("chaque accueil sert au moins trois des quatre comptes réels", servis.length === accueils.length,
+    `${servis.length}/${accueils.length} accueil(s)`);
+
+  /* ATTAQUES — les deux interdictions doivent savoir échouer. */
+  {
+    const [, unAccueil] = accueils[0] ?? [];
+    if (unAccueil) {
+      const falsifie = unAccueil.replace(new RegExp(`(?<![\\d.,])${REELS.compagnies}(?![\\d])`), "120+");
+      const vuFalsifie = FAUX.some((f) => new RegExp(`(?<![\\d.,])${f.replace("+", "\\+")}(?![\\d])`).test(falsifie));
+      exiger("attaque : un compte falsifié en « 120+ » est vu", vuFalsifie,
+        "la falsification passe inaperçue — l'interdiction ne garde rien");
+      const avecSuffixe = unAccueil.replace(new RegExp(`(?<![\\d.,])${REELS.compagnies}(?![\\d])`), `${REELS.compagnies}+`);
+      const vuSuffixe = new RegExp(`(?<![\\d.,])${REELS.compagnies}\\+`).test(avecSuffixe);
+      exiger("attaque : le retour du suffixe « + » est vu", vuSuffixe,
+        "le « + » réintroduit passe inaperçu");
+    }
+  }
+}
+
 if (echecs) {
   process.stderr.write(`\n[annonce] ÉCHEC — ${echecs} contrôle(s) non tenu(s)\n`);
   process.exit(1);

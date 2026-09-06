@@ -43,9 +43,16 @@ try {
   const req = createRequire(import.meta.url);
   chromium = req(process.env.PLAYWRIGHT ?? "playwright").chromium;
 } catch {
-  console.log("[aperçu] NON JOUÉ — playwright introuvable.");
+  /* HORS CI, une absence de Playwright est un simple « non joué » : le harnais est fait pour
+     tourner sur une machine de travail qui ne l'a pas forcément.
+     EN CI, c'est un ÉCHEC. Ce contrôle a longtemps annoncé « 104/104 » sans qu'aucun workflow ne
+     le lance ; le jour où on le câble, un runner sans Playwright rendrait 0 en disant « non joué »
+     et la coche verte laisserait croire que le navigateur a vu la page. Un contrôle qui ne s'est
+     pas exécuté ne protège rien, et doit le dire assez fort pour arrêter la chaîne. */
+  const enCI = process.env.CI === "true" || process.env.GITHUB_ACTIONS === "true";
+  console.log(`[aperçu] ${enCI ? "ÉCHEC" : "NON JOUÉ"} — playwright introuvable.`);
   console.log("  npm i playwright ailleurs, puis : PLAYWRIGHT=/chemin/playwright node test-apercu-navigateur.mjs");
-  process.exit(0);
+  process.exit(enCI ? 1 : 0);
 }
 
 /* ---- Le serveur d'aperçu, démarré et arrêté par le harnais ---------------------------------- */

@@ -345,6 +345,10 @@ function verifierGarudaDecision(policies) {
       [/Companhias documentadas que operam (?!lá)/i,     /você confere na ficha de cada companhia/i],
     ];
 
+    const check7 = (cas, condition, libelleOk, detailEchec) => {
+      if (condition) ok(`${cas} : ${libelleOk}`);
+      else echec(cas, detailEchec);
+    };
     const lister = (fragment) => {
       const t = [];
       const marcher = (d) => {
@@ -368,7 +372,20 @@ function verifierGarudaDecision(policies) {
       if (existsSync(acc)) pages.push(acc);
     }
 
+    /* L'ACCUEIL EST UN CHEMIN EXACT, PAS UN SUFFIXE. `f.includes("index.html")` était vrai de
+       TOUTE page Astro — chacune se rend en `…/index.html`. La garde de présence serait donc
+       restée verte si la phrase avait disparu de l'accueil pour être copiée sur une page pays.
+       Une exigence de présence qui accepte n'importe quelle page ne prouve rien de la page
+       qu'elle vise. L'attaque correspondante est jouée plus bas. */
+    const ACCUEILS = new Set(["index.html", "fr/index.html", "es/index.html", "pt/index.html"]);
+    const estLa = (chemin, frag, lang) => {
+      const rel = chemin.slice(DIST.length + 1);
+      if (frag === "index.html") return ACCUEILS.has(rel);
+      const langDuChemin = /^(fr|es|pt)\//.test(rel) ? rel.slice(0, 2) : "";
+      return chemin.includes(frag) && langDuChemin === lang;
+    };
     const fuites = [];
+    let jsonLdIllisibles = 0;
     const vus = { "": 0, fr: 0, es: 0, pt: 0 };
     const presents = { "": new Set(), fr: new Set(), es: new Set(), pt: new Set() };
     for (const f of pages) {
@@ -378,6 +395,7 @@ function verifierGarudaDecision(policies) {
       /* LES CINQ ZONES, pas seulement le corps : le titre et les métadonnées sont ce que la
          rédaction précédente ne voyait pas, et le JSON-LD reprend la FAQ mot pour mot. */
       const tout = [z.titre, z.corps, z.metas, z.jsonLd, z.attributs].join("\n");
+      jsonLdIllisibles += z.jsonLdInvalide ?? 0;
       vus[lang]++;
       for (const [nom, re, portee] of INTERDITS) {
         if (portee && !f.includes(portee)) continue;      // un motif borné ne juge que son objet
@@ -385,7 +403,7 @@ function verifierGarudaDecision(policies) {
         if (m) fuites.push(`${rel} [${nom}] : « ${m[0].slice(0, 60)} »`);
       }
       for (const [nom, frag, re] of (ATTENDUS_RENDUS[lang] ?? []))
-        if (f.includes(frag) && re.test(tout)) presents[lang].add(nom);
+        if (estLa(f, frag, lang) && re.test(tout)) presents[lang].add(nom);
       /* Réarmement : une page qui rend la section doit porter la formulation prudente entière. */
       for (const [titre, prudence] of SI_RENDUE)
         if (titre.test(tout) && !prudence.test(tout))
@@ -405,12 +423,60 @@ function verifierGarudaDecision(policies) {
       for (const [lang, attendus] of Object.entries(ATTENDUS_RENDUS)) {
         if (!vus[lang]) { if (COMPLET) manquants.push(`aucune page lue en « ${lang || "en"} »`); continue; }
         for (const [nom, frag] of attendus) {
-          if (!pages.some((f) => f.includes(frag) && (/^(fr|es|pt)\//.test(f.slice(DIST.length + 1)) ? f.slice(DIST.length + 1, DIST.length + 3) : "") === lang)) continue;
+          if (!pages.some((f) => estLa(f, frag, lang))) continue;
           if (!presents[lang].has(nom)) manquants.push(`${lang || "en"} · ${nom}`);
         }
       }
       if (manquants.length) for (const m of manquants.slice(0, 6)) echec("7 présence", `formulation prudente absente — ${m}`);
       else ok(`7 présence : la formulation prudente est servie sur la page caisse et l'accueil dans les quatre langues (supprimer ces blocs ferait rougir)`);
+
+      /* L'ATTAQUE, JOUÉE SUR LE CORPUS RÉEL. On retire la phrase de l'accueil français et on la
+         copie sur une page pays française, puis on REJOUE le calcul de présence sur ce corpus
+         muté. Il doit signaler l'accueil manquant. Avec l'ancien `f.includes("index.html")`,
+         la page pays — qui se rend elle aussi en `index.html` — l'aurait satisfait. */
+      {
+        /* Le drapeau `g` n'est pas un détail : la FAQ d'accueil est publiée DEUX fois — dans le
+           corps et dans le JSON-LD qui la reprend mot pour mot. Sans lui, la mutation n'en
+           retirait qu'une et l'attaque échouait en donnant l'impression que la garde était
+           mauvaise. C'est la garde qui avait raison, et ma mutation qui était incomplète. */
+        const PHRASE = /ce qui est confirmé par une source citée et ce qui reste à vérifier/gi;
+        const presenceSur = (corpus) => {
+          const vusM = { "": 0, fr: 0, es: 0, pt: 0 };
+          const presentsM = { "": new Set(), fr: new Set(), es: new Set(), pt: new Set() };
+          for (const [chemin, texte] of corpus) {
+            const rel = chemin.slice(DIST.length + 1);
+            const lg = /^(fr|es|pt)\//.test(rel) ? rel.slice(0, 2) : "";
+            vusM[lg]++;
+            for (const [nom, frag, re] of (ATTENDUS_RENDUS[lg] ?? []))
+              if (estLa(chemin, frag, lg) && re.test(texte)) presentsM[lg].add(nom);
+          }
+          return presentsM;
+        };
+        const accueilFr = join(DIST, "fr", "index.html");
+        const paysFr = pages.find((f) => f.includes("/fr/countries/"));
+        if (existsSync(accueilFr) && paysFr) {
+          const zonesDe_ = (f) => { const z = zonesDe(readFileSync(f, "utf8")); return [z.titre, z.corps, z.metas, z.jsonLd, z.attributs].join("\n"); };
+          const reel = [[accueilFr, zonesDe_(accueilFr)], [paysFr, zonesDe_(paysFr)]];
+          check7("7 attaque", presenceSur(reel).fr.has("accueil"),
+            "témoin : sur le corpus réel, l'accueil français porte bien la phrase prudente",
+            "la phrase n'est pas sur l'accueil français — l'attaque ne prouverait rien");
+          /* Le déplacement : l'accueil perd la phrase, la page pays la gagne. */
+          const mute = [
+            [accueilFr, zonesDe_(accueilFr).replace(PHRASE, "…")],
+            [paysFr, zonesDe_(paysFr) + "\nce qui est confirmé par une source citée et ce qui reste à vérifier"],
+          ];
+          check7("7 attaque", !presenceSur(mute).fr.has("accueil"),
+            "phrase déplacée de l'accueil vers une page pays : le contrôle de présence rougit",
+            "le contrôle reste vert alors que l'accueil ne porte plus la phrase — une page pays l'a satisfait");
+        }
+      }
+
+      /* LE JSON-LD DOIT ÊTRE LISIBLE. Le lecteur canonique compte les blocs qu'il n'a pas su
+         analyser ; annoncer « cinq zones lues » en ignorant ce compte reviendrait à dire qu'on a
+         regardé une zone dont on n'a rien pu tirer. */
+      check7("7 json-ld", jsonLdIllisibles === 0,
+        "aucun bloc JSON-LD illisible sur les pages parcourues",
+        `${jsonLdIllisibles} bloc(s) JSON-LD non analysables — la zone annoncée comme lue ne l'est pas`);
 
       /* LA PRÉSENCE EN SOURCE, pour les deux sections dormantes — 0/102 compagnies ont un canal
          `allowed`, la section n'est donc rendue nulle part et le DOM ne peut rien prouver ici. */

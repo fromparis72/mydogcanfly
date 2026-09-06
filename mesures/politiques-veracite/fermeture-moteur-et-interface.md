@@ -1518,3 +1518,75 @@ je traduisais phrase par phrase sans relire le registre du fichier d'accueil.
 Toutes sont réalignées. Ce n'est pas un détail de style : une page qui alterne les deux registres
 signale au lecteur qu'elle a été écrite par une machine qui ne sait pas à qui elle parle — et sur
 un site dont l'argument est la fiabilité, cela coûte la même confiance qu'un chiffre faux.
+
+---
+
+## Annexe 12 — Quatre gardes vertes qui ne gardaient pas, et un PDF que je n'ai pas su refaire (07/09/2026)
+
+### Le scanner portugais annonçait une couverture qu'il n'avait pas
+
+Il cherchait les appels nommés `T`, `L` ou `F` — trois noms que j'avais **écrits à la main** après
+avoir regardé quelques fichiers. Le dépôt en emploie un quatrième, `Q`, et appelle aussi
+`inlineT(locale)(…)` directement. Un nom d'alias écrit en dur est une supposition sur le code ;
+le code le déclare, il suffisait de le lire. La découverte se fait maintenant **par fichier** —
+et c'est une seconde correction, car `q` est un alias de traduction quelque part et le
+**constructeur de chaîne de requête** dans `RelatedTools.astro`. Réunis globalement, ces
+homonymes gonflaient le compte sans être des traductions : c'est l'écart entre les 861 appels
+annoncés en contre-revue et les **854** que je mesure.
+
+Il décodait aussi les littéraux avec deux `replace`, pour `\'` et `\"`. Conséquence mesurée : le
+corps du courriel des fiches aéroport contient des `\n`. La clé lue par le scanner gardait ses
+barres obliques inverses, celle de la table portait le vrai saut de ligne — deux clés différentes,
+`inlineT` ne trouvait rien, et les **268 fiches d'aéroport portugaises** préremplissaient le
+courriel **en anglais** pendant que la garde restait verte. Le décodeur est maintenant explicite
+et éprouvé sur cinq formes, dont celles qui l'ont fait échouer.
+
+### Une substitution mécanique n'est pas une relecture
+
+J'avais « corrigé » le registre portugais avec des expressions régulières. Elles ont produit
+`verifiqueção` — un mot qui n'existe dans aucune langue, né d'un `verifica → verifique` appliqué à
+l'intérieur de `verificação`. Et elles ont laissé des phrases qui mélangent deux personnes
+grammaticales dans la même ligne : *« Compara … e verifique »*, *« Escolha … ou consulta »*,
+*« lê lá … e confirme »*.
+
+Les 66 chaînes du lot ont été **relues une par une**. C'est la seule méthode qui convienne : une
+règle de substitution ne sait pas si `confirma` est un impératif européen à corriger ou la
+troisième personne d'un indicatif à laisser.
+
+### Une exigence de présence qui acceptait n'importe quelle page
+
+Le §7 vérifiait la phrase de l'accueil avec `f.includes("index.html")`. **Toute** page Astro se
+rend en `…/index.html` : la garde serait restée verte si la phrase avait disparu de l'accueil pour
+être copiée sur une page pays. L'ancrage est désormais exact, et **l'attaque est jouée** sur le
+corpus réel — on retire la phrase de l'accueil, on la copie sur une page pays, le contrôle doit
+rougir. Il l'a fait, mais seulement à la seconde tentative : ma mutation n'avait pas le drapeau
+`g` et n'en retirait qu'une des deux occurrences, car la FAQ d'accueil est publiée **deux fois**,
+dans le corps et dans le JSON-LD qui la reprend. La garde avait raison, ma mutation était
+incomplète.
+
+Le lecteur canonique rend aussi `jsonLdInvalide`. Annoncer « cinq zones lues » en ignorant ce
+compte, c'était dire qu'on a regardé une zone dont on n'a rien pu tirer. Il est exigé nul.
+
+### Le press kit corrigé d'un côté, faux de l'autre
+
+J'avais refait la page dynamique et laissé les **quatre HTML téléchargeables**, qui portaient
+encore `90+` compagnies, `160+` destinations, `169` races — et surtout **« 100 % informations
+sourcées »**, quand 45 canaux sur 302 portent une citation propre. Les quatre fichiers sont
+corrigés : les comptes réels, et une tuile qui dit ce qui est mesurable (302 politiques
+documentées) au lieu d'un pourcentage faux.
+
+**Ce que je n'ai pas su faire** : régénérer les quatre PDF. Ils sont produits par un composant web
+`<doc-page>` qui, dans mon environnement, ne rend aucune hauteur — mes essais donnaient des
+fichiers de 900 octets, c'est-à-dire des pages blanches. Plutôt que de publier des PDF dégradés ou
+de laisser en ligne des documents portant les anciens chiffres, **je les ai retirés**. Le gabarit
+teste déjà l'existence du fichier : les boutons de téléchargement disparaissent d'eux-mêmes. Les
+HTML restent, corrigés. C'est la seconde option de l'arbitrage, et je dis pourquoi j'ai dû la
+prendre plutôt que la première.
+
+### Le contre-test navigateur ne protégeait rien
+
+Il n'était lancé par **aucun workflow**. Ses « 104/104 » figuraient dans mes messages de commit
+comme s'ils protégeaient la branche : ils attestaient seulement que je l'avais lancé à la main.
+Il est câblé au catalogue complet, avec Playwright installé pour la circonstance. Et son repli est
+corrigé : hors CI, une absence de Playwright reste un « non joué » ; **en CI, c'est un échec** —
+un contrôle qui ne s'est pas exécuté ne doit pas rendre une coche verte.
