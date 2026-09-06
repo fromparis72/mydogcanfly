@@ -13,6 +13,7 @@
  */
 import { readFileSync, existsSync } from "node:fs";
 import { join } from "node:path";
+import { JSDOM } from "jsdom";
 import { computeBreedTravel, faqCompagnies } from "./packages/ui/src/lib/breedTravel.ts";
 import { loadKB, normalize, rawKB } from "./packages/knowledge/src/index.ts";
 
@@ -278,6 +279,50 @@ if (DIST) {
   }
   if (!vues) echec("8 DOM", "aucune fiche golden retriever dans le dist");
   else if (defauts === 0) ok(`8 les ${vues} fiches construites : aucune mention brachycéphale, ancre présente, aucune réponse qui renvoie`);
+
+  /* ── 8 TER. LES TROIS QUALIFICATIONS DE RISQUE ONT QUITTÉ LES FICHES RACES ─────────────────
+   *
+   * ARBITRAGE DU 06/09/2026. « Risque chaleur », « risque respiratoire » et « tolérance au
+   * froid » étaient publiés comme des RISQUES. Aucun ne pouvait l'être : une note DogTime de
+   * tolérance n'est pas une mesure de sécurité en avion ; `brachy ? élevé : faible` affirmait un
+   * risque respiratoire FAIBLE sur toutes les races non brachycéphales ; et les replis se
+   * calculaient sur le pelage. J'avais proposé de les garder — l'arbitrage les a écartés.
+   *
+   * On exige leur absence DANS LES QUATRE LANGUES, et — c'est l'autre moitié du contrôle — que
+   * le lien vers le CALCULATEUR de risque chaleur, lui, demeure : il dépend du trajet, de la
+   * date et des températures, donc il répond à une question réellement calculable. Sans cette
+   * seconde exigence, une page vide passerait le contrôle. */
+  {
+    const LANGUES = [["en", ""], ["fr", "fr/"], ["es", "es/"], ["pt", "pt/"]];
+    /* LE CONTRÔLE PORTE SUR LA STRUCTURE, PAS SUR LES MOTS — ET J'AI DÛ LE CORRIGER.
+       Ma première rédaction cherchait « Risque chaleur » dans tout le HTML. Elle a rougi en
+       français, espagnol et portugais… sur le LIEN VERS L'OUTIL, « 🌡 Risque chaleur en soute »,
+       c'est-à-dire exactement ce que l'arbitrage demande de CONSERVER. Un contrôle qui accuse ce
+       qu'il doit protéger est inutilisable. On vise donc les porteurs réels des trois axes :
+       la grille d'indicateurs (`.bt2-indcell`, supprimée) et les lignes du « Travel DNA »
+       (`.bt2-dnalbl`), dont les libellés Chaleur / Froid / Respiration ne doivent plus paraître. */
+    const DNA_INTERDITS = /^(Heat|Cold|Breathing|Chaleur|Froid|Respiration|Calor|Frío|Respiración|Frio|Respiração)$/;
+    const OUTIL = /\/tools\/heat\/|tools\/heat/;
+    let lues = 0, defautsIci = 0;
+    for (const [lg, pfx] of LANGUES) {
+      const f = join(DIST, `${pfx}breeds/golden-retriever/index.html`);
+      if (!existsSync(f)) { echec("8ter fiches races", `${pfx}breeds/golden-retriever/ absente du dist`); defautsIci++; continue; }
+      const html = readFileSync(f, "utf8");
+      lues++;
+      const doc = new JSDOM(html).window.document;
+      const cellules = doc.querySelectorAll(".bt2-indcell");
+      if (cellules.length) { echec("8ter fiches races", `${lg} : ${cellules.length} indicateur(s) de risque encore rendus`); defautsIci++; }
+      const dna = [...doc.querySelectorAll(".bt2-dnalbl")].map((x) => x.textContent.trim());
+      const restes = dna.filter((x) => DNA_INTERDITS.test(x));
+      if (restes.length) { echec("8ter fiches races", `${lg} : « ${restes.join(", ")} » subsiste(nt) dans le Travel DNA`); defautsIci++; }
+      /* NON-VACUITÉ : le « Travel DNA » doit exister, sinon son absence prouverait tout. */
+      if (dna.length === 0) { echec("8ter fiches races", `${lg} : aucune ligne de Travel DNA — l'absence ne prouverait rien`); defautsIci++; }
+      /* LA MOITIÉ POSITIVE : l'outil qui répond vraiment doit rester atteignable. */
+      if (!OUTIL.test(html)) { echec("8ter fiches races", `${lg} : le lien vers le calculateur de risque chaleur a disparu`); defautsIci++; }
+    }
+    if (lues !== LANGUES.length) echec("8ter fiches races", `${lues}/${LANGUES.length} fiche(s) lue(s) — le contrôle ne prouverait rien`);
+    else if (!defautsIci) ok(`8ter les ${lues} fiches races ne publient plus aucune des trois qualifications de risque, et le lien vers le calculateur chaleur demeure dans chacune`);
+  }
 
   /* 8 BIS — LA PAGE PORTUGAISE, mot pour mot. Les deux phrases ajoutées au lot manquaient de
      `translations/pt/inline.json` : `inlineT("pt")` repliait sur l'anglais, et la page portugaise

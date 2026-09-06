@@ -219,9 +219,25 @@ export function computeBreedTravel(breedId: string, kbOverride?: unknown): Breed
     { icon: "✈", label: { en: "Cabin", fr: "Cabine", es: "Cabina", pt: "Cabine" }, value: cabin.level },
     { icon: "🛄", label: { en: "Hold", fr: "Soute", es: "Bodega", pt: "Porão" }, value: hold.level },
     { icon: "📦", label: { en: "Cargo", fr: "Cargo", es: "Carga", pt: "Carga" }, value: cargo.level },
-    { icon: "🌡", label: { en: "Heat", fr: "Chaleur", es: "Calor", pt: "Calor" }, value: heat },
-    { icon: "❄", label: { en: "Cold", fr: "Froid", es: "Frío", pt: "Frio" }, value: cold },
-    { icon: "🫁", label: { en: "Breathing", fr: "Respiration", es: "Respiración", pt: "Respiração" }, value: respiratory },
+    /* ── CHALEUR, FROID ET RESPIRATION QUITTENT LE « TRAVEL DNA » (arbitrage du 06/09/2026) ────
+     *
+     * Les trois lignes affirmaient un RISQUE. Aucune ne pouvait l'établir :
+     *   · `heat` transformait une note DogTime « Tolerates Hot Weather » — une tolérance
+     *     déclarée — en appréciation de sécurité sanitaire en avion. Ce n'est pas la même
+     *     question, et la note ne répond pas à la seconde.
+     *   · `respiratory` valait `brachy ? « Risque élevé » : « Risque faible »`. La branche
+     *     « faible » est le vrai défaut : elle affirmait un risque respiratoire FAIBLE sur les
+     *     150 races non brachycéphales, sans rien avoir mesuré chez aucune.
+     *   · `cold` est la plus proche de sa source, mais devient une déduction non sourcée dès que
+     *     la note DogTime manque — le repli se calcule alors sur le PELAGE.
+     *
+     * Les replis eux-mêmes (`coat → heat/cold`, `brachy → respiratory`) sont des déductions
+     * internes : ils peuvent rester en donnée, jamais en affirmation publique.
+     *
+     * Ce qui répond vraiment à la question de la chaleur reste accessible : le calculateur, qui
+     * part du TRAJET, de la DATE et des températures. Une restitution est possible dans un lot
+     * distinct — afficher la note DogTime COMME telle, « tolérance déclarée par DogTime », avec
+     * sa source visible et sans repli inventé. */
     { icon: "🌍", label: { en: "Adaptability", fr: "Adaptabilité", es: "Adaptabilidad", pt: "Adaptabilidade" }, value: adaptVerdict(adapt) },
   ];
 

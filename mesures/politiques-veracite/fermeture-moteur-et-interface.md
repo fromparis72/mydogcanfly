@@ -1185,3 +1185,54 @@ race, plus de dimensions génériques dans le calculateur.
 
 **La préversion `9dca579a` ne doit pas être promue.** Une nouvelle sera à créer sur ordre de
 Philippe, après CI verte sur cette tête.
+
+---
+
+# Annexe 7 — les trois axes physiologiques : ma déviation est écartée
+
+J'avais gardé « risque chaleur », « risque respiratoire » et « tolérance au froid » en les jugeant
+physiologiques donc attribuables. L'arbitrage les retire, et il a raison sur le fond :
+
+| axe | ce qu'il affirmait | pourquoi c'est indéfendable |
+| --- | --- | --- |
+| chaleur | un **risque** en avion | la source est une note DogTime de **tolérance** — pas la même question |
+| respiration | `brachy ? élevé : faible` | la branche « faible » affirme un risque respiratoire **faible sur 150 races** sans rien avoir mesuré |
+| froid | un niveau de tolérance | proche de sa source, mais **déduit du pelage** dès que la note manque |
+
+Les replis `coat → heat/cold` et `brachy → respiratory` sont des déductions internes : ils restent
+en donnée, jamais en affirmation publique.
+
+**Ce qui est retiré** : les trois lignes du « Travel DNA », et la grille d'indicateurs — qui ne
+rendait plus qu'eux, et serait devenue un titre au-dessus de rien.
+
+**Ce qui reste** : le lien vers le **calculateur** de risque chaleur, qui part du trajet, de la
+date et des températures — donc répond à une question réellement calculable. Et, pour une race
+brachycéphale, un **fait sans qualification** : « Certaines compagnies appliquent des restrictions
+particulières aux races brachycéphales ; confirme la règle applicable au vol auprès du
+transporteur effectif. » Le renvoi au transporteur **effectif** compte : en partage de code, ce
+n'est pas toujours celui qui vend.
+
+## La garde, et la faute que j'y ai commise
+
+Contrôle DOM sur les quatre langues : ni grille d'indicateurs, ni ligne Chaleur/Froid/Respiration
+dans le « Travel DNA », **et** le lien vers le calculateur présent — sans cette seconde moitié,
+une page vide passerait.
+
+**Ma première rédaction cherchait le texte « Risque chaleur » dans tout le HTML.** Elle a rougi en
+français, espagnol et portugais — sur le **lien vers l'outil**, « 🌡 Risque chaleur en soute »,
+c'est-à-dire exactement ce que l'arbitrage demande de conserver. Un contrôle qui accuse ce qu'il
+doit protéger est inutilisable. Il porte désormais sur la **structure** — `.bt2-indcell` et les
+libellés de `.bt2-dnalbl` — avec un témoin de non-vacuité exigeant que le « Travel DNA » reste
+peuplé.
+
+## Vérifications
+
+`test:unit` vert · `astro check` **166 → 165**, référence rescellée · frontière 134/134 ·
+entités 172/172 · built-ui, liens, annonce, guides, hub verts · les six contrôles sur `dist`
+complet verts · `faq-races` **8 ter vert** · `build:prod` 3 113 pages · navigateur 79/79.
+
+Une restitution reste possible dans un lot distinct : afficher la note DogTime **comme telle** —
+« tolérance déclarée par DogTime » —, sans la transformer en risque aérien, sans repli inventé,
+et avec sa source visible.
+
+**La préversion `ad57ac1` / `9dca579a` demeure invalide et ne doit jamais être promue.**

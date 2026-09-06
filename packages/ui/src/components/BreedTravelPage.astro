@@ -36,25 +36,17 @@ const sub = [
   p.brachy ? (T("Snub-nosed", "Brachycéphale", "Braquicéfalo")) : null,
 ].filter(Boolean).join(" · ");
 /* `p.season` n'a plus de lecteur : les notes de saison sont retirées (voir plus bas). */
-/* ── TROIS INDICATEURS RESTENT, TROIS PARTENT (contre-test navigateur du 06/09/2026) ──────────
+/* ── LE BLOC D'INDICATEURS EST SUPPRIMÉ (arbitrage du 06/09/2026) ────────────────────────────
  *
- * La frontière passe entre ce qui décrit LE CHIEN et ce qui se déduit des POLITIQUES.
- *   · chaleur, respiration, tolérance au froid → physiologie de la race, attribuée aux données
- *     de race elles-mêmes. Elles restent : ce sont des caractéristiques, pas des recommandations.
- *   · risque d'embargo climatique, longs courriers, difficulté de préparation → tous trois
- *     calculés à partir des canaux des compagnies, dont AUCUN n'est aujourd'hui établi comme
- *     accepté. Un niveau dérivé d'un dossier vide affirme sans savoir. Ils partent.
+ * J'avais gardé trois axes — chaleur, respiration, tolérance au froid — en les jugeant
+ * physiologiques donc attribuables. L'arbitrage les écarte, et la raison est méthodologique :
+ * une note DogTime de TOLÉRANCE n'est pas une mesure du RISQUE en avion ; `brachy ? élevé :
+ * faible` affirme un risque respiratoire faible sur toutes les races non brachycéphales ; et
+ * les replis calculés sur le pelage sont des déductions internes non sourcées.
  *
- * DÉVIATION NOMMÉE, soumise à arbitrage : la contre-revue demandait de masquer « les niveaux
- * dérivés » et citait l'embargo, les longs courriers et la difficulté. J'ai gardé les trois axes
- * physiologiques, qu'elle n'a pas nommés et qui portent une information de sécurité réelle. Si
- * l'arbitrage estime que leur méthode est, elle aussi, indéfendable, ils tomberont au prochain
- * lot — les données restent, seuls les lecteurs seraient à retirer. */
-const indicators: [string, string, Level][] = [
-  ["🌡", T("Heat risk", "Risque chaleur", "Riesgo de calor"), p.heat],
-  ["🫁", T("Respiratory risk", "Risque respiratoire", "Riesgo respiratorio"), p.respiratory],
-  ["❄", T("Cold tolerance", "Tolérance au froid", "Tolerancia al frío"), p.cold],
-];
+ * Ma déviation est donc retirée, pas maintenue. Les données brutes restent internes ; c'est
+ * leur PUBLICATION comme qualification de risque qui n'était pas défendable. */
+
 ---
 <div class="mdcf-container bt2">
   <Breadcrumb locale={locale} items={[
@@ -179,18 +171,21 @@ const indicators: [string, string, Level][] = [
       : T("Ranking derived from published policies (cabin weight limits, hold and cargo availability). ⚠ = to confirm, never a fabricated refusal.", "Classement dérivé des politiques publiées (limites de poids cabine, disponibilité soute et fret). ⚠ = à confirmer, jamais un refus inventé.", "Clasificación derivada de las políticas publicadas (límites de peso en cabina, disponibilidad de bodega y carga). ⚠ = por confirmar, nunca un rechazo inventado.")}</p>}
   </section>
 
-  <!-- INDICATORS -->
-  <section class="bt2-card">
-    <h2 class="bt2-h2">{T("Breed characteristics", "Caractéristiques de la race", "Características de la raza")}</h2>
-    <div class="bt2-ind">
-      {indicators.map(([ic, lbl, lv]) => (
-        <div class="bt2-indcell">
-          <div class="bt2-indtop"><span class="bt2-indic">{ic}</span> {lbl}</div>
-          <span class={`bt2-pill tone-${lv.tone}`}>{t(lv)}</span>
-        </div>
-      ))}
-    </div>
-  </section>
+  {/* La section « caractéristiques de la race » ne rendait plus que les trois axes retirés
+      ci-dessus : sans eux, elle serait un titre au-dessus de rien. Elle disparaît avec eux.
+      Pour les races brachycéphales, ce qui est vrai et utile est dit plus bas, en une phrase
+      prudente qui renvoie au transporteur effectif plutôt que d'énoncer un risque. */}
+  {/* CE QUI REMPLACE LES TROIS AXES POUR UNE RACE BRACHYCÉPHALE : un fait, pas un risque. Le
+      caractère brachycéphale de la race est une donnée attribuée ; ce que les compagnies en font
+      varie de l'une à l'autre, et c'est à elles de le dire. La phrase ne qualifie donc rien et
+      renvoie au transporteur EFFECTIF — en partage de code, ce n'est pas toujours le vendeur. */}
+  {p.brachy && (
+    <section class="bt2-card">
+      <h2 class="bt2-h2">🫁 {T("Snub-nosed breeds", "Races brachycéphales", "Razas braquicéfalas")}</h2>
+      <p class="bt2-chandet">{tt(locale, "race.brachy_prudence")}</p>
+    </section>
+  )}
+
 
   {/* ── SAISONS ET PAYS CONSEILLÉS/À ÉVITER : LECTEURS SUPPRIMÉS (contre-test du 06/09/2026) ──
       Cette section notait les quatre saisons en étoiles, puis recommandait des pays (France,
