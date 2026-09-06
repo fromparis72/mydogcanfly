@@ -29,7 +29,7 @@ const airportName = pick(a?.name) || city;
 const countryName = country ? pick(country.name) : "";
 const isUS = a?.country_id === "country_us";
 const siblings = a ? siblingAirports(kb, id, locale, 6) : [];
-// Compagnies acceptant le chien qui opèrent ici — ferme la case aéroport → compagnie.
+// Compagnies documentées opérant ici — l'acceptation reste à vérifier. Ferme la case aéroport → compagnie.
 const airlines = a ? dogAirlinesForAirport(kb, id, locale, 8) : { list: [], total: 0, hidden: 0 };
 const countryHref = country ? `${base}/countries/${country.iso2.toLowerCase()}/` : null;
 
@@ -180,9 +180,13 @@ const title = F("Pet relief areas at {0} ({1})", "Coins pipi pour chiens à {0} 
 
   {(countryHref || siblings.length > 0 || airlines.list.length > 0) && (
     <section class="apr-card apr-geo">
+      {/* MÊME DISTINCTION QUE SUR LES PAGES PAYS (07/09/2026) : « Compagnies acceptant le chien
+          à CDG » promettait une acceptation que `dogAirlinesForAirport` n'établit pas — elle
+          retient les compagnies dont un canal est DOCUMENTÉ. Desservir est constaté, accepter est
+          à vérifier. */}
       {airlines.list.length > 0 && (
         <div class="apr-geosib">
-          <span class="apr-geolbl">{F("Airlines accepting dogs at {0}", "Compagnies acceptant le chien à {0}", "Aerolíneas que aceptan perros en {0}", a?.iata ?? "")}:</span>
+          <span class="apr-geolbl">{F("Documented airlines serving {0}", "Compagnies documentées desservant {0}", "Aerolíneas documentadas que operan en {0}", a?.iata ?? "")}:</span>
           <div class="apr-geochips">
             {airlines.list.map((al) => (
               <a class="apr-chip" href={`${base}/airlines/${al.slug}/`} data-carry="breed">
@@ -194,7 +198,7 @@ const title = F("Pet relief areas at {0} ({1})", "Coins pipi pour chiens à {0} 
           {/* Le classement suit la présence de la compagnie à cet aéroport, hubs d'abord. Le
               nombre de routes n'est pas affiché : l'échantillonnage n'est pas symétrique d'un
               aéroport à l'autre, le chiffre donnerait une précision qu'il n'a pas. */}
-          <p class="apr-geonote">{F("{0} airlines we document accept dogs and serve this airport. The verdict is each airline's general policy — it does not prejudge your breed or your route.", "{0} compagnies que nous documentons acceptent le chien et desservent cet aéroport. Le verdict est la politique générale de chacune : il ne préjuge ni de ta race, ni de ton itinéraire.", "{0} aerolíneas que documentamos aceptan perros y operan en este aeropuerto. El veredicto es la política general de cada una: no prejuzga tu raza ni tu itinerario.", airlines.total)}</p>
+          <p class="apr-geonote">{F("{0} airlines we document serve this airport. Whether the dog is accepted, and under what conditions, is to be checked on each airline's page — it does not prejudge your breed or your route.", "{0} compagnies que nous documentons desservent cet aéroport. L'acceptation du chien et ses conditions sont à vérifier sur chaque fiche compagnie — cela ne préjuge ni de ta race, ni de ton itinéraire.", "{0} aerolíneas que documentamos operan en este aeropuerto. Si el perro es aceptado, y en qué condiciones, hay que comprobarlo en la ficha de cada aerolínea: no prejuzga tu raza ni tu ruta.", airlines.total)}</p>
         </div>
       )}
       {countryHref && (

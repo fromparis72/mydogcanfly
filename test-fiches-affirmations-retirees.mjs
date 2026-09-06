@@ -234,5 +234,131 @@ function verifierGarudaDecision(policies) {
   if (!garuda.includes("Historiquement annoncée fermée aux animaux")) echec("6c", "la chaîne d'ancrage a disparu de la fiche Garuda — la contre-épreuve ne prouve plus rien");
 }
 
+/* ---- 7. DESSERVIR N'EST PAS ACCEPTER, ET UNE FAQ N'AFFIRME PAS UN REFUS ---------------------
+ *
+ * DEUX AFFIRMATIONS RELEVÉES LE 07/09/2026 par le contre-test navigateur, sur des surfaces que
+ * les gardes précédentes ne lisaient pas.
+ *
+ *   · Les pages pays et aéroports annonçaient « les compagnies qui desservent ce pays ET
+ *     ACCEPTENT LES CHIENS » — 140 pages pays, autant de pages aéroport, quatre langues. Or la
+ *     fonction qui les sélectionne ne retient pas des compagnies acceptantes : elle retient
+ *     celles dont un canal est DOCUMENTÉ. Depuis la frontière de confiance, aucune politique
+ *     n'est prouvée acceptante ; le titre promettait un état que la donnée n'établit pas.
+ *   · La FAQ du calculateur de caisse affirmait « Beaucoup de compagnies refusent par ailleurs
+ *     ces races en soute », dans les quatre langues. Un refus catégorique, chiffré par un vague
+ *     « beaucoup », sans une seule citation.
+ *
+ * POURQUOI CE CONTRÔLE LIT LE DOM ET NON LA SOURCE. J'ai cherché la phrase de la caisse dans la
+ * source, avec un motif trop étroit — « refusent ces races », quand le texte dit « refusent PAR
+ * AILLEURS ces races » — et dans le mauvais fichier. N'ayant rien trouvé, j'ai écrit qu'elle
+ * n'existait pas. Le contre-test, lui, l'avait LUE à l'écran. Un contrôle qui lit la page rendue
+ * ne peut pas être trompé par un qualificatif intercalé. */
+{
+  const DIST = "packages/ui/dist";
+  const COMPLET = process.argv.includes("--dist-complet");
+  if (!existsSync(DIST)) {
+    console.log("  · 7 dist absent : contrôle porté par le job « Site entier »");
+  } else {
+    /* Ce qu'aucune de ces pages n'a le droit de dire. Les motifs couvrent les quatre langues et
+       tolèrent un mot intercalé — c'est précisément ce qui m'a échappé. */
+    /* `\w` NE COUVRE PAS LES LETTRES ACCENTUÉES en JavaScript : le mot intercalé « também » a
+       fait rater ce motif à sa première rédaction, et le témoin de non-vacuité ci-dessous l'a vu
+       immédiatement. C'est le même piège que la phrase elle-même — un mot au milieu — attrapé
+       cette fois par un contrôle et non par une contre-revue. Le mot intercalé s'écrit donc
+       `[^\s]+`, qui ne présume rien de l'alphabet. */
+    const ACCEPTATION = [
+      /serve this country and accept dogs/i,
+      /airlines?\s+(?:[^\s]+\s+){0,3}accept(?:ing)? dogs/i,
+      /compagnies?\s+(?:[^\s]+\s+){0,3}accept(?:ent|ant) (?:le chien|les chiens)/i,
+      /aerol[ií]neas?\s+(?:[^\s]+\s+){0,3}acept(?:an|ando) perros/i,
+      /companhias?\s+(?:[^\s]+\s+){0,3}aceit(?:am|ando) (?:cães|cachorros)/i,
+    ];
+    const REFUS_CAISSE = [
+      /(?:beaucoup|nombreuses?) de compagnies\s+(?:[^\s]+\s+){0,3}refusent/i,
+      /many airlines\s+(?:[^\s]+\s+){0,2}refuse/i,
+      /muchas aerol[ií]neas\s+(?:[^\s]+\s+){0,2}rechazan/i,
+      /muitas companhias\s+(?:[^\s]+\s+){0,2}recusam/i,
+    ];
+    const corpsDe = (html) => (/<main\b[^>]*>[\s\S]*?<\/main>/i.exec(html)?.[0] ?? html)
+      .replace(/<script[\s\S]*?<\/script>/gi, " ")
+      .replace(/<[^>]+>/g, " ").replace(/&[a-z]+;/g, " ").replace(/\s+/g, " ");
+
+    const lister = (fragment) => {
+      const t = [];
+      const marcher = (d) => {
+        for (const n of readdirSync(d)) {
+          const c = join(d, n);
+          const st = statSync(c);
+          if (st.isDirectory()) { marcher(c); continue; }
+          if (st.isFile() && n.endsWith(".html") && c.includes(fragment)) t.push(c);
+        }
+      };
+      marcher(DIST);
+      return t;
+    };
+
+    /* Les pages pays et aéroports : on en lit un échantillon par langue, pas les 3 121 — le
+       gabarit est unique, une page suffit à l'exercer, quatre langues à couvrir la traduction. */
+    const echantillon = [];
+    for (const l of ["", "/fr", "/es", "/pt"]) {
+      echantillon.push(...lister(`${DIST}${l}/countries/`).slice(0, 3));
+      echantillon.push(...lister(`${DIST}${l}/airports/`).slice(0, 3));
+    }
+    const fuites = [];
+    for (const f of echantillon) {
+      const corps = corpsDe(readFileSync(f, "utf8"));
+      for (const re of ACCEPTATION) {
+        const m = re.exec(corps);
+        if (m) fuites.push(`${f} : « ${m[0].slice(0, 60)} »`);
+      }
+    }
+    if (!echantillon.length) {
+      if (COMPLET) echec("7 desserte", "aucune page pays ni aéroport dans le dist — le contrôle ne saurait pas conclure");
+      else console.log("  · 7 pages pays/aéroports absentes de ce dist réduit : contrôle porté par --dist-complet");
+    } else if (fuites.length) {
+      for (const f of fuites.slice(0, 4)) echec("7 desserte", f);
+    } else {
+      ok(`7 ${echantillon.length} pages pays/aéroports lues : desservir n'y est jamais présenté comme accepter`);
+    }
+
+    /* La page du calculateur de caisse, dans les quatre langues. */
+    const caisses = lister("/tools/crate/");
+    const fuitesCaisse = [];
+    for (const f of caisses) {
+      const corps = corpsDe(readFileSync(f, "utf8"));
+      for (const re of REFUS_CAISSE) {
+        const m = re.exec(corps);
+        if (m) fuitesCaisse.push(`${f} : « ${m[0].slice(0, 60)} »`);
+      }
+    }
+    if (!caisses.length) {
+      if (COMPLET) echec("7 caisse", "aucune page /tools/crate/ dans le dist");
+      else console.log("  · 7 page caisse absente de ce dist réduit");
+    } else if (fuitesCaisse.length) {
+      for (const f of fuitesCaisse.slice(0, 4)) echec("7 caisse", f);
+    } else {
+      ok(`7 ${caisses.length} page(s) caisse : aucun refus catégorique non cité`);
+    }
+
+    /* NON-VACUITÉ. Les deux jeux de motifs doivent reconnaître les phrases RÉELLEMENT retirées ;
+       sinon ce paragraphe ne garantit rien et se contente de ne rien trouver. */
+    const retirees = [
+      ["desserte en", "Carriers we document that serve this country and accept dogs.", ACCEPTATION],
+      ["desserte fr", "Compagnies acceptant le chien à CDG", ACCEPTATION],
+      ["desserte es", "Aerolíneas que aceptan perros en CDG", ACCEPTATION],
+      ["desserte pt", "companhias que aceitam cães neste aeroporto", ACCEPTATION],
+      ["caisse fr", "Beaucoup de compagnies refusent par ailleurs ces races en soute.", REFUS_CAISSE],
+      ["caisse en", "Many airlines also refuse these breeds in the hold.", REFUS_CAISSE],
+      ["caisse es", "Además, muchas aerolíneas rechazan estas razas en bodega.", REFUS_CAISSE],
+      ["caisse pt", "Muitas companhias também recusam essas raças no porão.", REFUS_CAISSE],
+    ];
+    let aveugles = 0;
+    for (const [nom, phrase, motifs] of retirees) {
+      if (!motifs.some((re) => re.test(phrase))) { aveugles++; echec("7 témoin", `le motif ne reconnaît pas la phrase retirée (${nom})`); }
+    }
+    if (!aveugles) ok(`7 témoin : les motifs reconnaissent les ${retirees.length} phrases retirées le 07/09/2026, mot intercalé compris`);
+  }
+}
+
 if (defauts) { console.error(`\n[affirmations-retirees] ÉCHEC — ${defauts} défaut(s)`); process.exit(1); }
 console.log("\n[affirmations-retirees] les faits non prouvés sont retirés de toutes les surfaces CONSTRUITES — les sources héritées v1 restent non publiées (contrôle 1 bis) — et tout retour rougirait.");

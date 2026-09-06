@@ -1367,13 +1367,12 @@ le score — cette fois je ne le diffère pas.
 Ce que le site dit désormais des races brachycéphales tient dans une phrase unique et prudente,
 `race.brachy_prudence`, rendue une fois sur la fiche.
 
-*Une chose que je n'ai pas trouvée* : le contre-test attribuait au calculateur de caisse la
-variante « Beaucoup de compagnies refusent ces races en soute ». Cette phrase n'existe nulle part
-dans le dépôt. La plus proche est celle de `pagedata.ts`, corrigée ci-dessus, que Philippe a
-désignée comme l'emplacement réel. Le `brachyNote` du calculateur de caisse dit tout autre chose —
-une marge de confort de +10 %, présentée comme la nôtre et non comme une norme IATA — et n'a pas
-été touchée. Je le dis plutôt que de réécrire une phrase voisine en laissant croire que la bonne
-a été traitée.
+*Ce que j'avais écrit ici, et qui était faux* : « le contre-test attribuait au calculateur de
+caisse la variante "Beaucoup de compagnies refusent ces races en soute" ; cette phrase n'existe
+nulle part dans le dépôt ». **Elle existe, dans les quatre langues.** Elle est dans
+`packages/ui/src/pages/[...loc]/tools/crate.astro`, à la fin de la réponse FAQ sur la marge de
+10 %. Voir l'annexe 10, qui dit comment je l'ai manquée et pourquoi cette erreur est la plus
+grave des trois du lot.
 
 ### 4. L'accueil promettait encore « la meilleure compagnie »
 
@@ -1397,4 +1396,67 @@ chacune si elle est prouvée.
 compagnies documentées qui desservent ce pays **et acceptent les chiens** » — sur 140 pages pays.
 Ces surfaces n'étaient pas dans le lot arbitré. Je les nomme ici : c'est le même défaut, il reste
 publié, et il demandera un arbitrage.
+
+
+---
+
+## Annexe 10 — J'ai opposé une recherche vide à une observation directe (07/09/2026)
+
+### Ce qui s'est passé
+
+Le contre-test navigateur avait **lu à l'écran**, en portugais, sur la préversion, une phrase du
+calculateur de caisse affirmant que beaucoup de compagnies refusent les races brachycéphales en
+soute. Je l'ai cherchée, je ne l'ai pas trouvée, et j'ai écrit — dans un message, dans un commit
+poussé et dans ce dossier — qu'elle **n'existait nulle part dans le dépôt**.
+
+Elle existe, dans les quatre langues, dans `tools/crate.astro` :
+
+> « … c'est une marge de confort MyDogCanFly, pas un chiffre imposé par l'IATA. **Beaucoup de
+> compagnies refusent par ailleurs ces races en soute.** »
+
+### Deux fautes de méthode, et la seconde est la vraie
+
+**La première est technique.** J'ai cherché « refusent ces races ». Le texte dit « refusent **par
+ailleurs** ces races » : deux mots intercalés, et le motif ne trouve rien. J'ai ensuite cherché
+dans `CrateCalculator.astro` — le composant — alors que la phrase vit dans la **page**. Ce
+mécanisme du qualificatif intercalé porte un nom dans ce dépôt : c'est le défaut **P0-1** d'un lot
+antérieur, que j'ai moi-même corrigé et documenté. Je l'avais écrit, et je m'y suis repris.
+
+**La seconde est de raisonnement, et c'est celle qui compte.** Une recherche qui ne trouve rien
+**ne prouve rien** : elle dit que *ce motif-là*, dans *ces fichiers-là*, n'a rien vu. J'en ai tiré
+une affirmation d'inexistence, et je l'ai opposée à quelqu'un qui avait **vu la phrase à
+l'écran**. C'est l'inverse exact de la règle de ce projet : la surface rendue arbitre, jamais ma
+recherche. Un rendu observé est une mesure ; un grep vide est l'absence d'une mesure.
+
+Cette erreur est plus grave que la phrase elle-même. La phrase était un défaut de plus dans un lot
+qui en corrigeait cinq. L'affirmation, elle, invitait à classer une observation juste comme une
+erreur de l'observateur — et si Codex n'avait pas insisté en donnant le chemin du fichier, la
+phrase serait partie en production avec ma signature en dessous.
+
+### Ce que je change, au-delà de la correction
+
+Le contrôle qui garde cette phrase **lit le DOM construit, pas la source** (§7 de
+`test-fiches-affirmations-retirees.mjs`). Un contrôle qui lit la page rendue ne peut pas être
+trompé par un mot intercalé, et il voit ce que le visiteur voit — ce que mon grep ne faisait pas.
+Ses motifs tolèrent explicitement jusqu'à trois mots intercalés, et son témoin de non-vacuité
+exige qu'ils reconnaissent les **huit** phrases réellement retirées ce jour-là, la version « par
+ailleurs » comprise.
+
+### Le second point du même arbitrage : desservir n'est pas accepter
+
+`CountryGuidePage.astro` et `AirportReliefPage.astro` annonçaient « les compagnies qui desservent
+ce pays **et acceptent les chiens** » — 140 pages pays, autant de pages aéroport, quatre langues,
+plus la métadonnée des pages aéroport. Je l'avais relevé au lot précédent et rangé en « hors
+périmètre, à arbitrer ».
+
+C'était une erreur d'appréciation : ce n'est pas un chantier voisin, c'est **le même défaut**. La
+fonction `dogAirlinesForCountry` ne sélectionne pas des compagnies acceptantes ; elle retient
+celles dont un canal est **documenté** (`dogChannel(a) !== "none"`). Le titre, le chapeau et le
+compteur promettaient donc un état que la donnée n'établit pas — et depuis la frontière de
+confiance, aucune politique n'est prouvée acceptante.
+
+Les trois surfaces distinguent maintenant les deux choses : **desservir est constaté, accepter est
+à vérifier fiche par fiche.** Les sept clés portugaises qui portaient l'ancienne promesse sont
+**retirées** de la table, et non laissées dormantes : une clé orpheline qui contient la promesse
+peut la réintroduire au premier gabarit qui reprend son libellé.
 
