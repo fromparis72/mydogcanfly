@@ -557,15 +557,19 @@ function buildFaq(x: any): { q: Bi; a: Bi }[] {
            es: `Bodega: ${x.hold.level.es.toLowerCase()}. Carga: ${x.cargo.level.es.toLowerCase()}. ${x.hold.detail.es}`,
            pt: `Porão: ${x.hold.level.pt.toLowerCase()}. Carga: ${x.cargo.level.pt.toLowerCase()}. ${x.hold.detail.pt}` } },
     ...faqCompagnies(x),
-    { q: { en: `Can a ${x.name} fly in summer?`, fr: `Un ${x.nameFr} peut-il voyager en été ?`, es: `¿Puede un ${x.nameEs} viajar en verano?`, pt: `Um ${x.namePt} pode viajar no verão?` },
-      a: { en: `Heat risk is ${x.heat.en.toLowerCase()} and climate-embargo risk is ${x.embargo.en.toLowerCase()}. Best season: ${x.bestSeason.en}.`,
-           fr: `Le risque chaleur est ${x.heat.fr.toLowerCase()} et le risque d'embargo climatique ${x.embargo.fr.toLowerCase()}. Meilleure saison : ${x.bestSeason.fr}.`,
-           es: `El riesgo de calor es ${x.heat.es.toLowerCase()} y el riesgo de embargo climático es ${x.embargo.es.toLowerCase()}. Mejor temporada: ${x.bestSeason.es}.`,
-           pt: `O risco de calor é ${x.heat.pt.toLowerCase()} e o risco de embargo climático é ${x.embargo.pt.toLowerCase()}. Melhor estação: ${x.bestSeason.pt}.` } },
-    { q: { en: `Is a direct flight recommended?`, fr: `Un vol direct est-il recommandé ?`, es: `¿Se recomienda un vuelo directo?`, pt: `Um voo direto é recomendado?` },
-      a: { en: `Yes — ${x.longHaul.en.toLowerCase()}. Direct routing limits temperature exposure and handling stress.`,
-           fr: `Oui — ${x.longHaul.fr.toLowerCase()}. Un vol direct limite l'exposition à la chaleur et le stress de manipulation.`,
-           es: `Sí — ${x.longHaul.es.toLowerCase()}. Un vuelo directo limita la exposición a la temperatura y el estrés por manipulación.`,
-           pt: `Sim — ${x.longHaul.pt.toLowerCase()}. Um voo direto limita a exposição à temperatura e o estresse do manuseio.` } },
+    /* ── DEUX QUESTIONS RETIRÉES (contre-test navigateur du 06/09/2026) ─────────────────────
+     *
+     * « Un {race} peut-il voyager en été ? » répondait par le risque d'embargo climatique et une
+     * MEILLEURE SAISON ; « Un vol direct est-il recommandé ? » répondait « Oui — court/moyen-
+     * courrier ». Les deux se calculent à partir des canaux des compagnies, dont AUCUN n'est
+     * aujourd'hui établi comme accepté — et une réponse de FAQ est catégorique par construction,
+     * en plus d'être donnée à lire à une machine par le balisage `FAQPage`.
+     *
+     * Ces deux réponses avaient survécu au retrait des mêmes affirmations dans le corps de la
+     * fiche : je les avais retirées de la page et laissées dans sa FAQ. C'est exactement la
+     * faute déjà commise sur les fiches compagnies — masquer une surface et en oublier une autre.
+     *
+     * Le risque chaleur reste accessible, mais par l'OUTIL, qui part de la date et du trajet
+     * réels du visiteur au lieu de recommander une saison dans l'abstrait. */
   ];
 }

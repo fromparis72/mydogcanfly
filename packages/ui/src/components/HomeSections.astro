@@ -64,12 +64,20 @@ const stats = [
   { n: `${boost(kb.airports.size)}+`, key: "home.stats.airports" },
   { n: t(locale, "home.stats.thousands"), key: "home.stats.routes" },
 ];
-// Top airlines by the Decision Engine score — the same value shown on each airline page.
-const topRated = [...kb.airlines.values()]
-  .filter((a) => (a as { rating?: { score: number } }).rating)
-  .sort((a, b) => (b as { rating: { score: number } }).rating.score - (a as { rating: { score: number } }).rating.score || a.name.localeCompare(b.name))
-  .slice(0, 6)
-  .map((a) => ({ name: a.name, score: (a as { rating: { score: number } }).rating.score, href: hrefFor(a.id, locale) }));
+/* ── L'ACCUEIL NE CLASSE PLUS, ET NE NOTE PLUS (contre-test navigateur du 06/09/2026) ────────
+ *
+ * Il publiait « Turkish 4,9 », « Air France 4,8 », des rangs numérotés et la promesse « chaque
+ * compagnie notée … sourcé et daté ». Ce sont EXACTEMENT les notes que la frontière de confiance
+ * a retirées des fiches, parce qu'elles se calculent sur des politiques non prouvées : les
+ * effacer de la fiche et les laisser en page d'accueil, c'était déplacer l'affirmation, pas la
+ * retirer. Et l'accueil est la page la plus vue du site.
+ *
+ * Il reste une liste NEUTRE, sans ordre qualitatif : les compagnies sont triées par NOM, sans
+ * rang ni score. Le tri alphabétique n'affirme rien ; un tri par note affirme tout. */
+const aVerifier = [...kb.airlines.values()]
+  .map((a) => ({ name: a.name, href: hrefFor(a.id, locale) }))
+  .sort((a, b) => a.name.localeCompare(b.name))
+  .slice(0, 6);
 // « Par où commencent nos lecteurs » — le seul bloc statique qui envoie l'accueil vers les
 // fiches. Mesuré avant intervention : hors navigation, l'accueil ne proposait que 6 fiches
 // compagnies et un outil ; tout le reste passait par le Finder (JavaScript) ou par le menu.
@@ -428,15 +436,12 @@ const faqLd = JSON.stringify({
 
 <section class="mdcf-section">
   <div class="mdcf-container">
-    <p class="mdcf-eyebrow">{t(locale, "home.rated.eyebrow")}</p>
     <h2 class="mdcf-h2">{t(locale, "home.rated.title")}</h2>
     <p>{t(locale, "home.rated.sub")}</p>
     <div class="rated">
-      {topRated.map((a, i) => (
+      {aVerifier.map((a) => (
         <a class="mdcf-card rated-card" href={a.href}>
-          <span class="rated-rank">{i + 1}</span>
           <span class="rated-name">{a.name}</span>
-          <span class="rated-score"><span class="rated-star" aria-hidden="true">★</span><b>{a.score.toFixed(1)}</b></span>
         </a>
       ))}
     </div>
@@ -713,11 +718,7 @@ const faqLd = JSON.stringify({
   .trust-check { color: #059669; font-weight: 800; }
   .rated { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin-top: 16px; }
   .rated-card { display: flex; align-items: center; gap: 12px; text-decoration: none; color: var(--mdcf-ink); }
-  .rated-rank { flex: 0 0 auto; width: 26px; height: 26px; border-radius: 999px; background: var(--mdcf-subtle); color: var(--mdcf-muted); font-size: 13px; font-weight: 800; display: inline-flex; align-items: center; justify-content: center; }
   .rated-name { flex: 1 1 auto; font-weight: 600; font-size: 14.5px; }
-  .rated-score { display: inline-flex; align-items: center; gap: 4px; }
-  .rated-star { color: #f59e0b; }
-  .rated-score b { font-size: 17px; }
   .rated-more { margin: 14px 0 0; font-size: 14px; }
   .plan-emoji { flex: 0 0 auto; font-size: 20px; line-height: 1; }
   .plan-label { font-weight: 600; font-size: 14.5px; }

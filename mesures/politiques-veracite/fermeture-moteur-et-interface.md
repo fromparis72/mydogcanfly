@@ -1094,3 +1094,94 @@ Joués et verts : `test:unit`, `typecheck`, `check`, `ingest:check`, `smoke`, `t
 `check-astro-debt`, `contre-epreuves --contrat`, et les sept contrôles sur `dist` complet
 (`faq-races`, `tarifs`, `montants-publies`, `montants-propagation`, `caisses-non-sourcees`,
 `etape3-dom`, `fiches-affirmations-retirees`).
+
+---
+
+# Annexe 6 — le contre-test navigateur a vu ce qu'aucun test technique ne regardait
+
+La CI était verte sur les trois parcours, la préversion `9dca579a` techniquement conforme — et un
+visiteur y lisait encore **du texte de diagnostic**, des **classements obsolètes** et plusieurs
+**recommandations non étayées**. C'est la démonstration de ce que la préversion sert à trouver.
+
+## P0-1 — mon commentaire s'est publié lui-même
+
+Le pire du lot, et il est entièrement de ma main. Pour expliquer une correction, j'avais écrit un
+commentaire qui **citait la syntaxe de commentaire en exemple** — `{/* … */}`. Cette citation
+contient `*/}`, qui **referme le commentaire par anticipation** : les quatre lignes suivantes sont
+devenues du texte publié, sur **toutes les fiches compagnies, dans les quatre langues**, juste
+avant la FAQ. Un visiteur lisait « JSX expressions must have one parent element » et
+« check-astro-debt.mjs ».
+
+Le commentaire est supprimé, son histoire vit ici. Un **détecteur** a été écrit et vérifié contre
+la version fautive : il repère un commentaire refermé trop tôt en cherchant, après la fermeture,
+une queue de lignes en « * ». Zéro occurrence restante.
+
+**Et surtout, la garde qui manquait** : `test-lib/verifier-seuils-fiches.mjs` lit désormais le
+**TEXTE VISIBLE** des fiches construites et refuse tout vocabulaire de développement — nom de
+fichier `.astro`/`.mjs`, « astro check », « TODO », ou un fragment de syntaxe de commentaire.
+Les contrôles DOM existants cherchaient des **éléments nommés** ; aucun ne lisait ce qu'un
+visiteur **lit**. Contre-épreuve faite sur une page réellement sabotée avec le texte fuité.
+
+## P0-2 — l'accueil republiait ce que les fiches venaient de perdre
+
+Il affichait « Turkish 4,9 », « Air France 4,8 », des rangs numérotés, « compagnies classées selon
+leur compatibilité » et « chaque compagnie notée … sourcé et daté ». Ce sont **exactement** les
+notes que la frontière a retirées des fiches. Les effacer de la fiche et les laisser sur la page
+la plus vue du site, c'était **déplacer l'affirmation, pas la retirer**.
+
+Le classement, les rangs et les scores sont supprimés. Reste une liste **triée par nom** : un tri
+alphabétique n'affirme rien, un tri par note affirme tout. Les libellés « les meilleures
+compagnies », « compagnies adaptées aux chiens » et « vérifié régulièrement » sont reformulés.
+
+## P0-3 — la page « à propos » promettait ce que l'audit dément
+
+Elle affirmait que **chaque** politique vient d'une source primaire officielle, que « rien n'est
+inventé », et que chaque fiche porte source, date et confiance. Mesure : sur 302 politiques de
+canal, **une seule** repose sur une phrase citée. Une page « à propos » qui sur-promet est plus
+grave qu'une fiche qui sur-promet — c'est là que le visiteur décide s'il nous croit. Elle décrit
+maintenant les deux états réels, et dit que le reste est en cours de revue.
+
+## P0-4 — le réseau commercial présenté comme un réseau « avec chiens »
+
+« Où Air France vole avec les chiens » : la source est le réseau **commercial**, qui ignore tout
+de la politique animaux. Titre remplacé par « Réseau de {compagnie} et formalités des
+destinations », avec une phrase qui dit que desservir n'est pas accepter. `noPetCountries` —
+des exclusions **catégoriques sans citation** — n'a plus de lecteur.
+
+## P0-5 — les fiches races recommandaient encore
+
+Saisons notées en étoiles, pays « recommandés » (France, États-Unis, Royaume-Uni) et « à éviter »
+(Émirats), risque d'embargo, difficulté, « niveau recommandé », « basé sur … les canaux
+disponibles et les politiques publiées » — alors qu'**aucun canal n'est établi comme accepté**.
+Tous ces lecteurs sont supprimés.
+
+**Une faute déjà commise, refaite** : j'avais retiré ces affirmations du corps de la fiche et les
+avais **laissées dans sa FAQ**, où « meilleure saison » et « un vol direct est-il recommandé ? Oui
+— court/moyen-courrier » survivaient. C'est exactement ce qui s'était passé sur les fiches
+compagnies. Les deux réponses sont retirées.
+
+**Déviation nommée, soumise à arbitrage** : j'ai **gardé** les trois axes physiologiques — chaleur,
+respiration, tolérance au froid. Ils décrivent le chien, pas une politique, et la contre-revue ne
+les a pas nommés. Si leur méthode est jugée indéfendable, ils tomberont au prochain lot.
+
+## Les deux P1
+
+Le calculateur publiait « une caisse cabine rigide fait environ **44 × 30 × 19 cm** max » — des
+dimensions écrites en dur, sourcées nulle part, et contredisant le principe même de l'outil
+(le gabarit dépend de la compagnie). Retirée. Le Finder disait « 0 compagnies directes
+**compatibles** · 27 compagnies » : devenu « 0 option confirmée · 27 pistes à vérifier », dans les
+quatre langues.
+
+## Vérifications
+
+`test:unit` vert · `typecheck` vert · `astro check` **dette 175 → 166**, référence rescellée par
+son geste · frontière **134/134** · entités **172/172** · built-ui, liens, annonce, guides, hub :
+verts · les sept contrôles sur `dist` complet : verts · `build:prod` 3 113 pages · navigateur
+**79/79**.
+
+Vérifié sur le DOM construit, dans les quatre langues : plus aucun texte de développement, plus
+aucun score ni rang sur l'accueil, plus aucune recommandation de saison ou de pays sur la fiche
+race, plus de dimensions génériques dans le calculateur.
+
+**La préversion `9dca579a` ne doit pas être promue.** Une nouvelle sera à créer sur ordre de
+Philippe, après CI verte sur cette tête.

@@ -48,18 +48,17 @@ const hote = (u: string) => { try { return new URL(u).hostname.replace(/^www\./,
 // renvoyait les pages portugaises vers les URL anglaises.
 const base = locale === "en" ? "" : `/${locale}`;
 const reachAll = airlineReach(kb, id, locale, 16, 8);
-/* Le bloc « Où <compagnie> vole avec les chiens » lit le réseau commercial, qui ne sait rien de
- * la politique animaux. Sur Volotea, il affichait Malte et le Royaume-Uni — deux pays où la
- * compagnie écrit noir sur blanc qu'elle ne transporte aucun animal. On retire donc les pays
- * que la fiche déclare fermés, et on les redit juste en dessous plutôt que de les laisser dans
- * une liste dont le titre promet le contraire. Sans la clé, rien ne change. */
-const noPet = new Set((d.noPetCountries ?? []).map((c) => c.toUpperCase()));
-const reach = noPet.size
-  ? { ...reachAll, countries: reachAll.countries.filter((c) => !noPet.has(c.iso2.toUpperCase())) }
-  : reachAll;
-const noPetNames = noPet.size
-  ? reachAll.countries.filter((c) => noPet.has(c.iso2.toUpperCase())).map((c) => c.name)
-  : [];
+/* ── `noPetCountries` N'A PLUS DE LECTEUR (contre-test navigateur du 06/09/2026) ─────────────
+ *
+ * Il servait à retirer de la liste des destinations les pays où la compagnie « ne transporte
+ * aucun animal », puis à les renommer juste en dessous. L'intention était bonne, la donnée ne
+ * l'est pas : c'est une liste d'exclusions catégoriques SANS la citation stricte que la
+ * frontière exige désormais de tout refus. On ne peut pas interdire un refus non prouvé sur les
+ * canaux et le publier ici sous forme de liste de pays.
+ *
+ * La donnée reste dans les fiches ; elle n'est plus lue. Le réseau affiché redevient ce qu'il
+ * est réellement : le réseau COMMERCIAL, sans rien affirmer sur les animaux. */
+const reach = reachAll;
 /* `brachyRestriction` / `brachyBreeds` ne sont plus lus ICI : le bloc qu'ils alimentaient est
    supprimé des fiches compagnies (voir le commentaire à son emplacement). Ils restent utilisés
    par les fiches RACES, où la classification est bien une information propre à MyDogCanFly. */
@@ -406,7 +405,11 @@ const jsonLd = faqItems.length ? [webpageLd, faqJsonLd(faqItems)] : [webpageLd];
 
     {(reach.countries.length > 0 || reach.hubs.length > 0) && (
       <div class="card reach">
-        <h2>🗺️ {F("Where {0} flies with dogs", "Où {0} vole avec les chiens", "Adónde vuela {0} con perros", d.name)}</h2>
+        {/* LE TITRE PROMETTAIT CE QUE LA SECTION NE SAIT PAS. « Où Air France vole avec les
+            chiens » : la source est le réseau COMMERCIAL, qui ignore tout de la politique
+            animaux. Desservir un pays n'est pas y accepter un chien. */}
+        <h2>🗺️ {F("{0}'s network and destination formalities", "Réseau de {0} et formalités des destinations", "Red de {0} y formalidades de los destinos", d.name)}</h2>
+        <p class="muted">{tt(locale, "premium.reseau_non_acceptation")}</p>
         {reach.hubs.length > 0 && (
           <div class="reach-blk">
             <div class="reach-lbl">{T("Main hubs", "Principaux hubs", "Hubs principales")}</div>
@@ -421,28 +424,15 @@ const jsonLd = faqItems.length ? [webpageLd, faqJsonLd(faqItems)] : [webpageLd];
             <div class="reach-chips">
               {reach.countries.map((c) => (<a class="reach-chip" href={`${base}/countries/${c.slug}/`}>{c.name}</a>))}
             </div>
-            {noPetNames.length > 0 && (
-              <p class="muted mt8">{F("{0} also flies to {1}, but carries no pets on those routes — they're left out of the list above.",
-                  "{0} dessert aussi {1}, mais n'y transporte aucun animal — ces pays sont donc hors de la liste ci-dessus.",
-                  "{0} también vuela a {1}, pero no transporta ninguna mascota en esas rutas — por eso quedan fuera de la lista de arriba.",
-                  d.name, noPetNames.join(" · "))}</p>
-            )}
           </div>
         )}
       </div>
     )}
 
-    {/* LA FAQ NE DATE PLUS UNE VÉRIFICATION QU'ELLE NE PEUT PAS ÉTABLIR (contre-revue du
-      * 05/09/2026). Elle affirmait « dernière vérification le 8 août 2026 » sur une fiche dont
-      * aucune politique ne porte de citation. Ce qui reste est vrai et utile : les réponses
-      * viennent des conditions publiées par la compagnie, et ces conditions changent.
-      *
-      * CE COMMENTAIRE ÉTAIT DANS LA LISTE D'ATTRIBUTS de `<FaqBlock>`, entre `title` et `note`.
-      * Le build Astro l'acceptait ; `astro check` non — en position d'attribut, `{/* … */}` se
-      * lit comme une expression, et TOUT le fichier partait en erreur de syntaxe à partir de là
-      * (13 diagnostics, dont un « JSX expressions must have one parent element » 20 lignes plus
-      * bas, qui ne désignait rien de réel). `npm run typecheck` ne couvre pas les `.astro` : seul
-      * `check-astro-debt.mjs`, en CI, l'a vu. Un commentaire se place AVANT l'élément. */}
+    {/* La FAQ ne date plus une vérification qu'elle ne peut pas établir : elle affirmait
+        « dernière vérification le 8 août 2026 » sur une fiche dont aucune politique n'est citée.
+        L'historique de cette correction, et celui du commentaire qui s'était lui-même publié à
+        cet endroit, vivent dans mesures/politiques-veracite/fermeture-moteur-et-interface.md. */}
     <FaqBlock
       items={faqItems}
       title={F("Flying with a dog on {0}: common questions",

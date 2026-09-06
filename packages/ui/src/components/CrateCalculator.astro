@@ -110,7 +110,12 @@ const L = {
     // le message ci-dessus (noHold) ne le dit pas et laisse croire que la cabine reste possible.
     noPetsAtAll: T("{name} does not transport pet dogs in the cabin or the hold. Only certain eligible assistance dogs are accepted, under conditions.", "{name} ne transporte pas les chiens de compagnie en cabine ou en soute. Seuls certains chiens d'assistance éligibles sont acceptés, sous conditions.", "{name} no transporta perros de compañía en cabina ni en bodega. Solo se aceptan determinados perros de asistencia elegibles, bajo ciertas condiciones."),
     cabinUnknown: T("Cabin dimensions not published for this airline — verify directly.", "Dimensions cabine non publiées pour cette compagnie — à vérifier directement.", "Esta aerolínea no publica las dimensiones de cabina: verifícalo directamente."),
-    genericCabin: T("Typical hard cabin carrier max is about {dims} — most airlines only allow small dogs in cabin.", "Une caisse cabine rigide fait environ {dims} max — la plupart des compagnies n'admettent que les petits chiens en cabine.", "Un bolso rígido de cabina típico mide como máximo unos {dims}; la mayoría de las aerolíneas solo admiten perros pequeños en cabina."),
+    /* `genericCabin` A ÉTÉ RETIRÉ (contre-test navigateur du 06/09/2026). Il publiait « une caisse
+       cabine rigide fait environ 44 × 30 × 19 cm max — la plupart des compagnies n'admettent que
+       les petits chiens en cabine », avec des dimensions écrites en dur et sourcées nulle part.
+       Il contredisait en outre le principe de ce calculateur : le gabarit admis dépend de la
+       COMPAGNIE, et c'est précisément pourquoi on ne publie plus de table générique. */
+    cabinSansCompagnie: T("Cabin carrier limits differ from one airline to the next, so nothing generic can be stated here. Pick an airline above, or check its page.", "Les gabarits admis en cabine diffèrent d'une compagnie à l'autre : rien de générique ne peut être affirmé ici. Choisis une compagnie ci-dessus, ou consulte sa fiche.", "Los límites del bolso de cabina cambian de una aerolínea a otra, así que aquí no se puede afirmar nada genérico. Elige una aerolínea arriba o consulta su ficha."),
     tipsTitle: T("Safety & comfort", "Sécurité & confort", "Seguridad y comodidad"),
     tips: locale === "fr" ? [
       "Le chien doit pouvoir se tenir debout (oreilles sans toucher le toit), se retourner et s'allonger naturellement.",
@@ -363,7 +368,7 @@ const L = {
         cabinHtml = holdLine || pill("neutral", `<span class="crx-q">?</span> ${esc(S.cabinUnknown)}`);
       }
     } else {
-      cabinHtml = pill("neutral", `ℹ️ ${esc(S.genericCabin.replace("{dims}", fmt3(44, 30, 19)))}`);
+      cabinHtml = pill("neutral", `ℹ️ ${esc(S.cabinSansCompagnie)}`);
     }
 
     // Ranking links, contextual: cabin-eligible → carriers (bags); hold-relevant → crates. Both when both apply.
