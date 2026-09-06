@@ -49,20 +49,29 @@ const bailey = {
   aria: L("Play the MyDogCanFly launch film", "Lire le film de lancement de MyDogCanFly", "Reproducir el vídeo de lanzamiento de MyDogCanFly"),
 };
 
-// Stats banner — computed from the real DB, boosted up to +20% then rounded to a clean figure (per product decision).
-// Recomputes on every build, so it grows on its own as the database expands.
+/* ── LES CHIFFRES DE L'ACCUEIL SONT CEUX DE LA BASE, SANS MAJORATION (07/09/2026) ────────────
+ *
+ * `boost()` multipliait chaque compte par 1,2 puis arrondissait vers le haut, et un « + » était
+ * ajouté derrière : 102 compagnies devenaient « 120+ », 140 pays « 160+ », 172 races « 200+ »,
+ * 268 aéroports « 300+ ». Le commentaire disait « per product decision » — une décision de
+ * produit ne rend pas un chiffre vrai. Un visiteur qui lit « 120+ compagnies » puis en compte
+ * 102 n'a pas trouvé une approximation, il a trouvé une majoration ; et le « + » promettait
+ * encore davantage. C'est la même faute que les notes /5 retirées la veille : donner à une
+ * mesure absente l'apparence d'une mesure.
+ *
+ * Le compte est désormais celui de la base, tel quel. Il reste recalculé à chaque build, donc il
+ * grandit tout seul — ce qui était l'argument du boost, sans le mensonge.
+ *
+ * « Des milliers d'itinéraires » est retiré, et non corrigé : aucune mesure d'itinéraires n'existe
+ * dans ce dépôt. Une ligne qu'aucun calcul ne soutient ne peut pas être ramenée à sa vraie
+ * valeur, elle peut seulement disparaître jusqu'à ce qu'une mesure existe. Les clés
+ * `home.stats.routes` et `home.stats.thousands` restent dans les tables : elles dorment. */
 const kb = loadKB();
-const boost = (n: number) => {
-  const m = n * 1.2;
-  const step = m >= 200 ? 50 : m >= 100 ? 20 : 10;
-  return Math.max(step, Math.floor(m / step) * step);
-};
 const stats = [
-  { n: `${boost(kb.airlines.size)}+`, key: "home.stats.airlines" },
-  { n: `${boost(kb.countries.size)}+`, key: "home.stats.destinations" },
-  { n: `${boost(kb.breeds.size)}+`, key: "home.stats.breeds" },
-  { n: `${boost(kb.airports.size)}+`, key: "home.stats.airports" },
-  { n: t(locale, "home.stats.thousands"), key: "home.stats.routes" },
+  { n: `${kb.airlines.size}`, key: "home.stats.airlines" },
+  { n: `${kb.countries.size}`, key: "home.stats.destinations" },
+  { n: `${kb.breeds.size}`, key: "home.stats.breeds" },
+  { n: `${kb.airports.size}`, key: "home.stats.airports" },
 ];
 /* ── L'ACCUEIL NE CLASSE PLUS, ET NE NOTE PLUS (contre-test navigateur du 06/09/2026) ────────
  *

@@ -1279,3 +1279,122 @@ et sur une brachycéphale ; la note est insensible à la physiologie.
 Pas sûr : qu'il n'existe aucune surface que ni la contre-revue ni moi n'avons regardée. La
 différence avec les trois fois précédentes : la preuve est désormais **structurelle** — une liste
 relevée dans la source — et non une énumération de mémoire.
+
+---
+
+## Annexe 9 — Contre-test navigateur de la préversion 82fcf408 (07/09/2026)
+
+La préversion `82fcf408`, construite depuis `main` à `92b2b9f`, a été parcourue au navigateur.
+Le moteur, les fiches compagnies, les fiches races et le calculateur de caisse ont tenu. Cinq
+blocs de défauts rédactionnels sont ressortis. Ce qui suit dit ce qu'ils étaient, ce que j'ai
+corrigé, et **ce que j'ai mesuré au-delà de ce qui m'était rapporté**.
+
+### 1. Des chiffres majorés à l'accueil, et un press kit qui les dépassait encore
+
+`HomeSections.astro` multipliait chaque compte par 1,2, arrondissait vers le haut et ajoutait
+un « + » : **102** compagnies devenaient « 120+ », **140** pays « 160+ », **172** races « 200+ »,
+**268** aéroports « 300+ ». Le commentaire d'origine assumait le geste — « boosted up to +20%
+… per product decision ». Une décision de produit ne rend pas un chiffre vrai, et le « + »
+promettait encore au-delà de la majoration.
+
+Le press kit, lui, portait quatre valeurs écrites à la main : « 90+ », « 160+ », « 200+ »,
+« 250+ ». Deux étaient **supérieures** au corpus réel, deux inférieures : figées à une date, elles
+dérivaient dans les deux sens sans que rien ne le signale. Une plaquette de presse est reprise
+telle quelle par ceux qui la lisent ; un chiffre faux y voyage plus loin qu'ailleurs.
+
+Les deux surfaces lisent désormais `loadKB()` et affichent le compte exact, sans majoration ni
+« + ». « Des milliers d'itinéraires » est **retiré et non corrigé** : aucune mesure d'itinéraires
+n'existe dans ce dépôt. Une ligne qu'aucun calcul ne soutient ne peut pas être ramenée à sa vraie
+valeur, seulement disparaître jusqu'à ce qu'une mesure existe. Les clés de traduction dorment.
+
+### 2. Le portugais : trois phrases rapportées, cinquante-six trouvées
+
+Le contre-test a vu trois phrases anglaises sur `/pt/about/` : le titre de méthode et les deux
+paragraphes qui distinguent le vérifié du à-confirmer. **Ce sont exactement les trois textes que
+j'avais réécrits au lot précédent.**
+
+Le mécanisme est celui que j'ai déjà nommé trois fois : `T(en, fr, es)` n'a pas d'argument
+portugais ; `inlineT("pt")` cherche la phrase anglaise dans la table pt et, si la clé manque,
+publie l'anglais sans rien signaler. La garde que j'avais écrite pour le fermer était **bornée à
+un seul gabarit**, `AirlinePremiumPage.astro` — déviation que j'avais nommée et jugée acceptable.
+J'ai ensuite réécrit trois phrases dans un gabarit hors de sa portée.
+
+La mesure complète, faite après le rapport, a relevé **56 phrases sur 12 gabarits** : Destinations
+23, Finder 10, calculateur chaleur 9, fiches races 3, À propos 3, press kit 2, et six autres à une.
+Le contre-test n'en avait vu que trois parce qu'il avait ouvert une page *statique* ; les autres
+ne paraissent qu'après une interaction. **Le coût de la borne était de 53 phrases publiées en
+anglais sur des pages portugaises, invisibles à tout ce que je jouais.**
+
+Fait qui achève de condamner la borne : mes propres corrections de ce lot — nouveau titre
+d'accueil, nouveau libellé du lien compagnies, nouvelle phrase de présentation — en ont créé
+**cinq de plus** avant même que j'aie fini. Le total traduit est de **60 clés** (61 occurrences ;
+« Travel Hub guides » est employé par deux gabarits).
+
+Aucune exclusion n'a été retenue. Les cas qui auraient pu en être — la marque `MyDogCanFly`, le
+nom de rubrique `Travel Hub`, `IATA`, `USDA APHIS`, `WOAH`, les noms propres — sont des
+**fragments** à l'intérieur de phrases, pas des phrases : ils restent tels quels dans la
+traduction, la phrase qui les porte est traduite.
+
+La garde est étendue à **tout fichier de `packages/ui/src` appelant `inlineT`/`inlineF`** : 44
+gabarits, 852 phrases relevées, zéro sans portugais. Elle porte son témoin de non-vacuité — retirer
+une clé de la table la fait rougir.
+
+### 3. « Beaucoup de compagnies refusent », aux quatre endroits où elle vivait
+
+Le contre-test citait la phrase de `detailNonEtabli()`, publiée deux fois sur la fiche du carlin.
+Elle affirmait que les races au museau court « sont exposées aux embargos chaleur saisonniers et à
+des restrictions respiratoires », sans une seule citation — et elle paraissait **juste après** un
+paragraphe disant « ce n'est pas un refus, c'est une absence de preuve ». La page se contredisait
+d'une phrase à l'autre.
+
+Le commentaire que j'avais laissé au-dessus la défendait comme « une PRÉCAUTION de catégorie qui,
+elle, reste vraie ». Une précaution qui affirme qu'un risque existe est une affirmation.
+
+Quatre emplacements traités, dont trois que le rapport ne nommait pas :
+
+| Emplacement | État | Geste |
+|---|---|---|
+| `breedTravel.ts` · `detailNonEtabli` | publié, ×2 sur le carlin | supprimé ; le paramètre `brachy` disparaît avec |
+| `breedTravel.ts` · `holdVerdict` | dormant (aucun canal établi) | le compte mesuré reste, la supposition part |
+| `breedTravel.ts` · `cargoVerdict` | dormant | idem |
+| `pagedata.ts` · `breedTravelView` | dormant (gabarit non rendu) | réécrit, sur ordre explicite |
+
+Les trois derniers ne paraissent pas aujourd'hui : sans canal établi, c'est `detailNonEtabli` qui
+sort, et `EntityPage.astro` ne rend plus les fiches races. Mais ils **reviendraient à l'écran dès
+la première citation qui établit un canal**. C'est le défaut différé que j'avais déjà nommé pour
+le score — cette fois je ne le diffère pas.
+
+Ce que le site dit désormais des races brachycéphales tient dans une phrase unique et prudente,
+`race.brachy_prudence`, rendue une fois sur la fiche.
+
+*Une chose que je n'ai pas trouvée* : le contre-test attribuait au calculateur de caisse la
+variante « Beaucoup de compagnies refusent ces races en soute ». Cette phrase n'existe nulle part
+dans le dépôt. La plus proche est celle de `pagedata.ts`, corrigée ci-dessus, que Philippe a
+désignée comme l'emplacement réel. Le `brachyNote` du calculateur de caisse dit tout autre chose —
+une marge de confort de +10 %, présentée comme la nôtre et non comme une norme IATA — et n'a pas
+été touchée. Je le dis plutôt que de réécrire une phrase voisine en laissant croire que la bonne
+a été traitée.
+
+### 4. L'accueil promettait encore « la meilleure compagnie »
+
+Le corps de l'accueil était devenu prudent au lot précédent, mais son **titre principal** disait
+toujours « Trouve la compagnie aérienne idéale ». Trois surfaces portaient la même promesse, et
+deux d'entre elles sont plus reprises que la page elle-même :
+
+- le H1 et son chapeau, dans les quatre langues ;
+- les **quatre descriptions SEO** de l'accueil — « Find the best airline for your dog »,
+  « les compagnies aériennes qui acceptent les chiens », « Encuentra la mejor opción » — et le
+  titre français, qui annonçait « 90+ compagnies » pour 102 ;
+- trois lecteurs : `HeatCalculator.astro`, `CountryOnward.astro`, et le titre « Meilleures
+  compagnies pour cette race » des fiches races.
+
+Tous disent maintenant ce que le site fait réellement : donner les conditions, et dire pour
+chacune si elle est prouvée.
+
+### 5. Ce que je n'ai pas fait, et pourquoi
+
+`CountryGuidePage.astro` et `AirportReliefPage.astro` portent la même formulation — « les
+compagnies documentées qui desservent ce pays **et acceptent les chiens** » — sur 140 pages pays.
+Ces surfaces n'étaient pas dans le lot arbitré. Je les nomme ici : c'est le même défaut, il reste
+publié, et il demandera un arbitrage.
+

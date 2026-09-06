@@ -26,7 +26,7 @@ const out = `# MyDogCanFly
 
 > The world's reference for flying with a dog. MyDogCanFly compares ${nAir} airlines, ${nCty} country entry regimes, ${nBrd} dog breeds and ${nApt} airports, and answers one question: can this dog fly on this route, in the cabin, the hold or as cargo? Every rule carries its official source, a verification date and a confidence level.
 
-The site is trilingual. English lives at the root, French under /fr/ and Spanish under /es/; every URL below exists in all three languages by prefixing the locale.
+The site is published in four languages. English lives at the root, French under /fr/, Spanish under /es/ and Portuguese under /pt/; every URL below exists in all four languages by prefixing the locale.
 
 Editorial rules worth knowing when citing this site: airline policies are re-verified every 90 days and country rules every 180; a distinction is always drawn between what the law requires and what an airline imposes commercially; and where an official source could not be confirmed, the page says so rather than guessing.
 
@@ -65,7 +65,7 @@ ${link("Terms", "/terms/")}
 
 ## Optional
 
-${link("Full sitemap", "/sitemap.xml", "every page in all three languages")}
+${link("Full sitemap", "/sitemap.xml", "every page in all four languages")}
 ${link("Travel hub", "/travel-hub/", "long-form guidance")}
 ${link("Report an error", "/report-error/", "corrections are welcome and reviewed")}
 `;

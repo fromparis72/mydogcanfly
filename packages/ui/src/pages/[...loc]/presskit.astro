@@ -1,5 +1,5 @@
 ---
-import { inlineT } from "@mydogcanfly/knowledge";
+import { inlineT, loadKB } from "@mydogcanfly/knowledge";
 /* Presse & partenariats — une page par langue, dans le design du site.
  *
  * Parti pris : la page est écrite ici, en HTML léger et indexable, et NON servie depuis
@@ -24,6 +24,7 @@ export function getStaticPaths() {
 }
 const { locale } = Astro.props as { locale: string };
 const T = inlineT(locale);
+const kb = loadKB();
 // Préfixe de langue : dérivé du code de langue, jamais énuméré — une liste en dur ici
 // renvoyait les pages portugaises vers les URL anglaises.
 const base = locale === "en" ? "" : `/${locale}`;
@@ -188,10 +189,17 @@ const brief = [
      "Vérifiez si votre chien peut voler avec la compagnie choisie vers votre pays de destination, ainsi que les formalités légales et vétérinaires, et les restrictions applicables.",
      "Comprueba si tu perro puede volar con la aerolínea elegida al país de destino, así como los requisitos legales y veterinarios y las restricciones aplicables.")],
   [T("Price", "Prix", "Precio"), T("Free, no account needed", "Gratuit, sans compte", "Gratuito, sin cuenta")],
-  [T("Airlines", "Compagnies", "Aerolíneas"), "90+"],
-  [T("Destinations", "Destinations", "Destinos"), "160+"],
-  [T("Dog breeds", "Races de chiens", "Razas de perro"), "200+"],
-  [T("Airports listed", "Aéroports listés", "Aeropuertos listados"), "250+"],
+  /* CES QUATRE CHIFFRES SE LISENT DANS LA BASE, ILS NE S'ÉCRIVENT PLUS À LA MAIN (07/09/2026).
+     Ils valaient « 90+ », « 160+ », « 200+ », « 250+ » en dur. Deux d'entre eux étaient
+     SUPÉRIEURS au corpus réel — 160 destinations pour 140 pays, 200 races pour 172 — et les deux
+     autres inférieurs : figés à une date, ils dérivaient dans les deux sens sans que rien ne le
+     signale. Une plaquette de presse est reprise telle quelle par ceux qui la lisent ; un chiffre
+     faux y voyage plus loin qu'ailleurs. Ils viennent maintenant de `loadKB()`, la même source
+     que la bande de l'accueil, et sans « + ». */
+  [T("Airlines", "Compagnies", "Aerolíneas"), `${kb.airlines.size}`],
+  [T("Destinations", "Destinations", "Destinos"), `${kb.countries.size}`],
+  [T("Dog breeds", "Races de chiens", "Razas de perro"), `${kb.breeds.size}`],
+  [T("Airports listed", "Aéroports listés", "Aeropuertos listados"), `${kb.airports.size}`],
   [T("Languages", "Langues", "Idiomas"), T("English, French, Spanish, Portuguese", "anglais, français, espagnol, portugais", "inglés, francés, español, portugués")],
   [T("Publisher", "Éditeur", "Editor"), "B2B VENUES LLC"],
   /* Le fondateur signe « Philippe BENOIST » sur tout ce qui est destiné à la presse — cette

@@ -273,7 +273,7 @@ export function computeBreedTravel(breedId: string, kbOverride?: unknown): Breed
 function clamp(n: number, lo: number, hi: number) { return Math.max(lo, Math.min(hi, n)); }
 
 const NON_ETABLI = L("Not established", "Pas encore établi", "Aún no establecido", "Ainda não estabelecido", "warn");
-const detailNonEtabli = (canal: "cabin" | "hold" | "cargo", brachy = false): Bi => {
+const detailNonEtabli = (canal: "cabin" | "hold" | "cargo"): Bi => {
   const nom = {
     cabin: { en: "in the cabin", fr: "en cabine", es: "en cabina", pt: "em cabine" },
     hold: { en: "in the hold", fr: "en soute", es: "en bodega", pt: "no porão" },
@@ -286,17 +286,23 @@ const detailNonEtabli = (canal: "cabin" | "hold" | "cargo", brachy = false): Bi 
      particulière. J'ai retiré les deux d'un coup, et la fiche du carlin a cessé de mentionner
      son museau court en soute et en fret. Le contrôle 4 de test-faq-races.mjs l'a vu. On ne
      garde que la précaution, sans son faux chiffre. */
-  const brachyNote = brachy && canal !== "cabin" ? {
-    en: " Snub-nosed breeds also face seasonal heat embargoes and per-carrier respiratory restrictions — confirm with each airline.",
-    fr: " Les races au museau court sont en outre exposées aux embargos chaleur saisonniers et à des restrictions respiratoires propres à chaque compagnie — à confirmer avec chacune.",
-    es: " Las razas de hocico chato están además expuestas a embargos por calor estacionales y a restricciones respiratorias propias de cada aerolínea — confírmalo con cada una.",
-    pt: " As raças de focinho achatado estão além disso expostas a embargos sazonais por calor e a restrições respiratórias próprias de cada companhia — confirme com cada uma.",
-  } : { en: "", fr: "", es: "", pt: "" };
+  /* SUPPRIMÉ LE 07/09/2026, ET C'EST LA MÊME PHRASE QUE J'AVAIS SAUVÉE DEUX FOIS.
+     Elle disait « Les races au museau court sont EN OUTRE EXPOSÉES aux embargos chaleur
+     saisonniers et à des restrictions respiratoires propres à chaque compagnie ». Le commentaire
+     ci-dessus la défendait comme « une PRÉCAUTION de catégorie qui, elle, reste vraie » — mais
+     une précaution qui affirme qu'un risque EXISTE est une affirmation, et celle-ci n'a aucune
+     citation derrière elle. Pire, elle paraissait sous un paragraphe qui vient de dire « aucune
+     politique n'est confirmée, ce n'est pas un refus » : la page niait sa propre prudence dans
+     la phrase suivante, en soute ET en fret, soit deux fois sur la fiche du carlin.
+     Ce que le site dit désormais des races brachycéphales tient dans UNE phrase, prudente et
+     unique — `race.brachy_prudence`, rendue une fois sur la fiche : certaines compagnies
+     appliquent des restrictions particulières, à confirmer auprès du transporteur effectif.
+     Le paramètre `brachy` de cette fonction n'a donc plus d'emploi et disparaît avec elle. */
   return {
-    en: `No airline policy for travel ${nom.en} has been confirmed by a quoted official source yet — this is not a refusal, it is an absence of proof.${brachyNote.en}`,
-    fr: `Aucune politique de compagnie pour le voyage ${nom.fr} n'est encore confirmée par une source officielle citée — ce n'est pas un refus, c'est une absence de preuve.${brachyNote.fr}`,
-    es: `Todavía no hay ninguna política de aerolínea para viajar ${nom.es} confirmada por una fuente oficial citada — no es un rechazo, es una ausencia de prueba.${brachyNote.es}`,
-    pt: `Nenhuma política de companhia para viajar ${nom.pt} está ainda confirmada por uma fonte oficial citada — não é uma recusa, é uma ausência de prova.${brachyNote.pt}`,
+    en: `No airline policy for travel ${nom.en} has been confirmed by a quoted official source yet — this is not a refusal, it is an absence of proof.`,
+    fr: `Aucune politique de compagnie pour le voyage ${nom.fr} n'est encore confirmée par une source officielle citée — ce n'est pas un refus, c'est une absence de preuve.`,
+    es: `Todavía no hay ninguna política de aerolínea para viajar ${nom.es} confirmada por una fuente oficial citada — no es un rechazo, es una ausencia de prueba.`,
+    pt: `Nenhuma política de companhia para viajar ${nom.pt} está ainda confirmada por uma fonte oficial citada — não é uma recusa, é uma ausência de prova.`,
   };
 };
 
@@ -335,7 +341,7 @@ function holdVerdict(brachy: boolean, yes: number, no: number, bans: number): Ch
   const tot = yes + no;
   /* `pct = tot ? yes/tot : 0` : sur zéro politique établie, le pourcentage valait 0 et la fiche
      annonçait « Souvent refusé » — un refus déduit de l'absence de données. */
-  if (tot === 0) return { level: NON_ETABLI, detail: detailNonEtabli("hold", brachy), etabli: false };
+  if (tot === 0) return { level: NON_ETABLI, detail: detailNonEtabli("hold"), etabli: false };
   const pct = tot ? yes / tot : 0;
   let level: Level;
   if (brachy) {
@@ -350,11 +356,21 @@ function holdVerdict(brachy: boolean, yes: number, no: number, bans: number): Ch
       : pct >= 0.4 ? L("Restricted", "Soumis à restrictions", "Restringido", "Sujeito a restrições", "warn")
         : L("Frequently refused", "Souvent refusé", "Rechazado con frecuencia", "Frequentemente recusado", "no");
   }
+  /* CE QUI EST COMPTÉ RESTE, CE QUI ÉTAIT SUPPOSÉ PART (07/09/2026). Cette phrase mêlait un
+     COMPTE mesuré sur la base — `bans` compagnies dont l'interdiction est enregistrée — et une
+     supposition sur toutes les autres : « d'autres PEUVENT appliquer un embargo chaleur
+     saisonnier ». La seconde n'a aucune citation ; collée derrière un chiffre exact, elle
+     empruntait son autorité. Le compte reste, la supposition disparaît, et la mise en garde
+     brachycéphale est dite UNE fois sur la fiche par `race.brachy_prudence`.
+     Ces phrases ne sont pas publiées aujourd'hui (aucun canal n'étant établi, c'est
+     `detailNonEtabli` qui sort), mais elles reviendraient à l'écran dès la première citation qui
+     établit un canal : les corriger maintenant, c'est refuser le défaut différé — le même que
+     celui du score, nommé au lot précédent. */
   const detail: Bi = brachy
-    ? { en: `${bans} airlines explicitly ban snub-nosed dogs from the hold; others may still apply seasonal heat embargoes — confirm with each carrier.`,
-        fr: `${bans} compagnies interdisent explicitement les chiens au museau court en soute ; d'autres peuvent appliquer un embargo chaleur saisonnier — à confirmer avec chaque compagnie.`,
-        es: `${bans} aerolíneas prohíben expresamente a los perros de hocico chato en la bodega; otras pueden aplicar embargos por calor estacionales — confírmalo con cada aerolínea.`,
-        pt: `${bans} companhias aéreas proíbem expressamente cachorros de focinho achatado no porão; outras podem aplicar embargos sazonais por calor — confirme com cada companhia.` }
+    ? { en: `${bans} airlines have a recorded ban on snub-nosed dogs in the hold — confirm the rule that applies to your flight with the carrier operating it.`,
+        fr: `${bans} compagnies ont une interdiction enregistrée pour les chiens au museau court en soute — confirme la règle applicable au vol auprès du transporteur effectif.`,
+        es: `${bans} aerolíneas tienen registrada una prohibición para los perros de hocico chato en bodega — confirma la norma aplicable a tu vuelo con el transportista que lo opera.`,
+        pt: `${bans} companhias têm uma proibição registada para cachorros de focinho achatado no porão — confirma a regra aplicável ao teu voo junto da transportadora que o opera.` }
     : { en: `${yes} airlines accept this profile in the hold, ${no} do not.`,
         fr: `${yes} compagnies acceptent ce profil en soute, ${no} non.`,
         es: `${yes} aerolíneas aceptan este perfil en la bodega, ${no} no.`,
@@ -364,18 +380,21 @@ function holdVerdict(brachy: boolean, yes: number, no: number, bans: number): Ch
 
 function cargoVerdict(yes: number, no: number, brachy: boolean): ChannelView {
   const tot = yes + no;
-  if (tot === 0) return { level: NON_ETABLI, detail: detailNonEtabli("cargo", brachy), etabli: false };
+  if (tot === 0) return { level: NON_ETABLI, detail: detailNonEtabli("cargo"), etabli: false };
   const pct = tot ? yes / tot : 0;
   let level = pct >= 0.7 ? L("Widely accepted", "Largement accepté", "Ampliamente aceptado", "Amplamente aceito", "ok")
     : pct >= 0.4 ? L("Accepted with conditions", "Accepté sous conditions", "Aceptado con condiciones", "Aceito com condições", "warn")
       : L("Limited", "Limité", "Limitado", "Limitado", "no");
   // Snub-nosed dogs are commonly subject to seasonal cargo heat embargoes → cap at "with conditions".
   if (brachy && level.tone === "ok") level = L("Accepted with conditions", "Accepté sous conditions", "Aceptado con condiciones", "Aceito com condições", "warn");
+  /* MÊME GESTE QU'EN SOUTE : le compte d'options cargo est mesuré, « prévoir embargos chaleur
+     saisonniers et validation vétérinaire » ne l'est pas. La branche brachycéphale ne se
+     distingue donc plus par une prédiction, mais par le renvoi au transporteur effectif. */
   const detail: Bi = brachy
-    ? { en: `${yes} airlines run a pet-cargo option; for snub-nosed breeds expect seasonal heat embargoes and vet clearance.`,
-        fr: `${yes} compagnies proposent une option cargo ; pour les races au museau court, prévoir embargos chaleur saisonniers et validation vétérinaire.`,
-        es: `${yes} aerolíneas ofrecen una opción de carga para mascotas; para las razas de hocico chato, cuenta con embargos por calor estacionales y validación veterinaria.`,
-        pt: `${yes} companhias aéreas oferecem uma opção de carga para animais; para raças de focinho achatado, conte com embargos sazonais por calor e liberação veterinária.` }
+    ? { en: `${yes} airlines run a pet-cargo option — confirm the conditions that apply to snub-nosed breeds with the carrier operating your flight.`,
+        fr: `${yes} compagnies proposent une option cargo — confirme les conditions applicables aux races brachycéphales auprès du transporteur effectif.`,
+        es: `${yes} aerolíneas ofrecen una opción de carga para mascotas — confirma las condiciones aplicables a las razas braquicéfalas con el transportista que opera tu vuelo.`,
+        pt: `${yes} companhias oferecem uma opção de carga para animais — confirma as condições aplicáveis às raças braquicefálicas junto da transportadora que opera o teu voo.` }
     : { en: `${yes} airlines run a pet-cargo option compatible with this breed.`,
         fr: `${yes} compagnies proposent une option cargo compatible avec cette race.`,
         es: `${yes} aerolíneas ofrecen una opción de carga para mascotas compatible con esta raza.`,

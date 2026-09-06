@@ -316,11 +316,29 @@ console.log("\n=== Fiche de race : plus aucune affirmation sans preuve ===");
   check("aucune note chiffrée /100 — elle mesurait un dossier vide",
     !/\/100/.test(texte), (texte.match(/[^ ]{0,12}\/100/) || [])[0] || "");
   check("les canaux disent « pas encore établi »", /[Pp]as encore établi/.test(texte));
-  /* NON VIDE : la précaution de catégorie doit survivre au retrait du faux chiffre. Ma première
-     rédaction les avait supprimés ensemble, et la fiche d'un brachycéphale ne parlait plus de son
-     museau court en soute. */
-  check("…et la précaution brachycéphale SURVIT (museau court encore mentionné)",
-    /museau court/i.test(texte));
+  /* ── LA PRÉCAUTION SURVIT, MAIS ON N'EN VÉRIFIE PLUS LE MOT : ON EN VÉRIFIE LA PHRASE ───────
+   *
+   * Ce témoin exigeait l'expression « museau court » quelque part sur la fiche. Il avait une
+   * raison d'être — j'avais un jour supprimé la mention en même temps qu'un faux chiffre, et la
+   * fiche d'un brachycéphale avait cessé de dire ce qu'il est. Mais chercher un MOT laisse passer
+   * n'importe quelle phrase qui le contient : celle qui portait « museau court » affirmait, sans
+   * citation, des embargos chaleur et des restrictions respiratoires. Elle est supprimée le
+   * 07/09/2026, et avec elle l'expression.
+   *
+   * Le témoin ne demande donc plus qu'un mot soit là, il demande que LA phrase prudente soit là —
+   * celle du dépôt, `race.brachy_prudence`, relue dans la table de traduction plutôt que recopiée
+   * ici. Et il exige en plus qu'aucune affirmation catégorique ne l'accompagne. */
+  {
+    const fsn = await import("node:fs");
+    const strFr = JSON.parse(fsn.readFileSync("packages/knowledge/translations/fr/strings.json", "utf8"));
+    const prudence = strFr["race.brachy_prudence"];
+    check("…et la précaution brachycéphale SURVIT — la phrase prudente canonique est publiée",
+      Boolean(prudence) && texte.includes(prudence.replace(/\s+/g, " ")),
+      `attendu : « ${(prudence ?? "").slice(0, 50)}… »`);
+    const AFFIRMATIONS = /embargos? chaleur|restrictions? respiratoires?|risque respiratoire|refusé par de nombreuses/i;
+    check("…et aucune affirmation catégorique sur la catégorie ne l'accompagne",
+      !AFFIRMATIONS.test(texte), (texte.match(/[^.]{0,60}(embargos? chaleur|restrictions? respiratoires?|risque respiratoire)[^.]{0,40}/i) || [])[0] || "");
+  }
   check("la section « Meilleures compagnies » explique son vide au lieu de le laisser béant",
     /rien à classer/i.test(texte) && /absence de preuve/i.test(texte));
   /* TÉMOIN : un golden n'est pas brachycéphale — la précaution ne doit pas se propager. */
@@ -533,6 +551,157 @@ console.log("\n=== Et sur les VRAIES données : les trois états voyagent jusqu'
   check("…et les deux états attendus sont présents pour cette race",
     statuts.confirmation_required > 0 && statuts.no_known_block > 0, JSON.stringify(statuts));
   await p.close();
+}
+
+/* ---- Les quatre outils, EXERCÉS EN PORTUGAIS -------------------------------------------------
+ *
+ * POURQUOI CE BLOC EXISTE. Le contre-test navigateur de la préversion 82fcf408 a trouvé trois
+ * phrases anglaises sur `/pt/about/` — une page STATIQUE, qu'il suffisait d'ouvrir. Les phrases
+ * des outils, elles, ne paraissent qu'APRÈS une interaction : messages de validation, états
+ * vides, avertissements de seuil, résultats. Ouvrir la page ne les montre pas ; 47 des 60 phrases
+ * traduites dans ce lot sont dans ce cas. Un contrôle qui se contenterait de charger l'URL
+ * conclurait « aucune phrase anglaise » sans avoir rien exercé — un faux témoin, comme celui du
+ * §8ter du lot précédent.
+ *
+ * CE QUE LE CONTRÔLE FAIT. Il relève les phrases anglaises directement DANS LA SOURCE du gabarit
+ * (jamais recopiées ici : une liste recopiée dérive), exerce l'outil en portugais, puis exige que
+ * le texte visible n'en porte aucune. Il exige aussi qu'au moins une traduction attendue soit
+ * VUE — sans quoi un outil qui ne rendrait rien du tout passerait pour irréprochable.
+ *
+ * CE QU'IL NE PRÉTEND PAS FAIRE. Il ne juge pas la qualité du portugais, et il ne teste que les
+ * phrases d'au moins 30 caractères : « airline » ou « airlines », qui sont dans la liste, sont
+ * des mots trop courts pour être cherchés dans un texte sans produire de faux positifs. Leur
+ * présence dans la table est garantie ailleurs, par le balayage du harnais d'entités. */
+console.log("\n=== Les quatre outils, exercés EN PORTUGAIS ===");
+{
+  const fsn = await import("node:fs");
+  const APPEL = /\b(?:T|L|F)\(\s*(["'`])((?:\\.|(?!\1).)*)\1\s*,/gs;
+  const sansCommentaires = (t) => t
+    .replace(/\{\/\*[\s\S]*?\*\/\}/g, " ")
+    .replace(/\/\*[\s\S]*?\*\//g, " ")
+    .replace(/(^|[^:])\/\/[^\n]*/g, "$1 ");
+  const phrasesDe = (gabarit) => [...new Set(
+    [...sansCommentaires(fsn.readFileSync(gabarit, "utf8")).matchAll(APPEL)]
+      .map((m) => m[2].replace(/\\'/g, "'").replace(/\\"/g, '"')))]
+    .filter((ph) => ph.length >= 30);
+  const tablePt = JSON.parse(fsn.readFileSync("packages/knowledge/translations/pt/inline.json", "utf8"));
+
+  /** Exige : aucune phrase anglaise du gabarit dans le texte, et au moins une traduction vue. */
+  const exiger = (nom, gabarit, texte) => {
+    const phrases = phrasesDe(gabarit);
+    const anglais = phrases.filter((ph) => texte.includes(ph));
+    check(`${nom} : témoin — des phrases sont relevées dans le gabarit (${phrases.length})`,
+      phrases.length >= 5);
+    check(`${nom} : aucune phrase anglaise dans l'état rendu en portugais`,
+      anglais.length === 0, anglais.slice(0, 2).map((x) => `« ${x.slice(0, 55)}… »`).join(" | "));
+    const traduites = phrases.map((ph) => tablePt[ph]).filter((v) => v && v.length >= 30);
+    const vues = traduites.filter((v) => texte.includes(v));
+    check(`${nom} : au moins une traduction portugaise est RÉELLEMENT vue (${vues.length}/${traduites.length})`,
+      vues.length > 0, vues.length === 0 ? `aucune des ${traduites.length} traductions du gabarit n'apparaît` : "");
+  };
+
+  /* 1. LE FINDER — une recherche complète, en portugais. */
+  {
+    /* LA DESTINATION EST UN AÉROPORT, PAS UN PAYS. Première rédaction fautive, nommée : j'avais
+       écrit `dest: "country_us"`, que le lien profond ne résout pas — le formulaire répondait
+       « Escolha uma cidade ou aeroporto de destino… » et rendait 65 caractères. J'ai cru un
+       instant à un défaut du portugais ; la même sonde en anglais donnait le même message, ce
+       qui a désigné ma requête, pas la page. Les trois recherches du début de ce harnais
+       emploient `airport_jfk` : on emploie la même. */
+    const { p, texte } = await chercher({ from: "airport_cdg", dest: "airport_jfk", kg: 30,
+      race: "Golden Retriever", locale: "/pt" });
+    const corps = await p.textContent("body");
+    check("finder pt : aucune erreur JavaScript", p.__erreurs.length === 0, p.__erreurs.slice(0, 2).join(" | "));
+    check("finder pt : le résultat n'est pas vide", texte.trim().length > 80, `${texte.trim().length} caractères`);
+    exiger("finder pt", "packages/ui/src/components/FlightFinder.astro", corps);
+    await capturer(p, "pt-finder");
+    await p.close();
+  }
+
+  /* 2. LE CALCULATEUR DE CAISSE — une race choisie, un résultat calculé. */
+  {
+    const p = await nouvellePage();
+    await p.goto(`${BASE}/pt/tools/crate/`, { waitUntil: "networkidle" });
+    await p.fill("#crx-breed", "Pug");
+    await p.dispatchEvent("#crx-breed", "input");
+    await p.waitForTimeout(400);
+    await p.evaluate(() => document.getElementById("crx-form").requestSubmit());
+    await p.waitForSelector("#crx-result:not([hidden])", { timeout: 20000 }).catch(() => {});
+    await p.waitForTimeout(600);
+    const corps = await p.textContent("body");
+    const resultat = (await p.textContent("#crx-result").catch(() => "")) ?? "";
+    check("caisse pt : aucune erreur JavaScript", p.__erreurs.length === 0, p.__erreurs.slice(0, 2).join(" | "));
+    check("caisse pt : un résultat a été calculé", resultat.trim().length > 20, `${resultat.trim().length} caractères`);
+    exiger("caisse pt", "packages/ui/src/components/CrateCalculator.astro", corps);
+    await capturer(p, "pt-caisse");
+    await p.close();
+  }
+
+  /* 3. LE CALCULATEUR CHALEUR — deux aéroports et une race, donc les seuils et les mises en garde. */
+  {
+    const p = await nouvellePage();
+    await p.goto(`${BASE}/pt/tools/heat/`, { waitUntil: "networkidle" });
+    const choisir = async (champ, texte) => {
+      await p.fill(champ, texte);
+      await p.dispatchEvent(champ, "input");
+      await p.waitForSelector(`${champ}-listbox .ac-item`, { timeout: 10000 });
+      await p.click(`${champ}-listbox .ac-item`);
+      await p.waitForTimeout(200);
+    };
+    await choisir("#hx-dep", "Paris");
+    await choisir("#hx-arr", "Dubai");
+    await choisir("#hx-breed", "Pug");
+    await p.keyboard.press("Escape");
+    await p.evaluate(() => document.getElementById("hx-form").requestSubmit());
+    await p.waitForSelector("#hx-out:not([hidden])", { timeout: 20000 }).catch(() => {});
+    await p.waitForTimeout(600);
+    const corps = await p.textContent("body");
+    const sortie = (await p.textContent("#hx-out").catch(() => "")) ?? "";
+    check("chaleur pt : aucune erreur JavaScript", p.__erreurs.length === 0, p.__erreurs.slice(0, 2).join(" | "));
+    check("chaleur pt : une estimation a été rendue", sortie.trim().length > 20, `${sortie.trim().length} caractères`);
+    exiger("chaleur pt", "packages/ui/src/components/HeatCalculator.astro", corps);
+    await capturer(p, "pt-chaleur");
+    await p.close();
+  }
+
+  /* 4. DESTINATIONS — l'outil qui porte le plus de phrases (23 sur 60), exercé sur la base réelle. */
+  {
+    const p = await nouvellePage();
+    await p.goto(`${BASE}/pt/tools/destinations/`, { waitUntil: "networkidle" });
+    const choisir = async (champ, texte) => {
+      await p.fill(champ, texte);
+      await p.dispatchEvent(champ, "input");
+      await p.waitForSelector(`${champ}-listbox .ac-item`, { timeout: 10000 });
+      await p.click(`${champ}-listbox .ac-item`);
+      await p.waitForTimeout(200);
+    };
+    await choisir("#dfx-origin", "Paris");
+    await choisir("#dfx-breed", "Golden Retriever");
+    await p.keyboard.press("Escape");
+    await p.evaluate(() => document.getElementById("dfx-form").requestSubmit());
+    await p.waitForSelector("#dfx-result:not([hidden])", { timeout: 25000 }).catch(() => {});
+    await p.waitForTimeout(900);
+    const corps = await p.textContent("body");
+    const resultat = (await p.textContent("#dfx-result").catch(() => "")) ?? "";
+    check("destinations pt : aucune erreur JavaScript", p.__erreurs.length === 0, p.__erreurs.slice(0, 2).join(" | "));
+    check("destinations pt : l'outil a répondu quelque chose", resultat.trim().length > 20, `${resultat.trim().length} caractères`);
+    exiger("destinations pt", "packages/ui/src/components/DestinationFinder.astro", corps);
+    await capturer(p, "pt-destinations");
+    await p.close();
+  }
+
+  /* 5. LA PAGE « À PROPOS » EN PORTUGAIS — celle qui a été prise en défaut, cette fois exigée
+   *    à l'endroit exact où les trois phrases paraissaient. */
+  {
+    const p = await nouvellePage();
+    await p.goto(`${BASE}/pt/about/`, { waitUntil: "domcontentloaded" });
+    const corps = await p.textContent("body");
+    exiger("à propos pt", "packages/ui/src/pages/[...loc]/about.astro", corps);
+    check("à propos pt : la page ne se dit plus bilingue ni trilingue",
+      !/bilingu|trilingu/i.test(corps ?? ""), (corps ?? "").match(/[^.]*(bilingu|trilingu)[^.]*/i)?.[0]?.slice(0, 80) ?? "");
+    await capturer(p, "pt-a-propos");
+    await p.close();
+  }
 }
 
 await contexte.close();

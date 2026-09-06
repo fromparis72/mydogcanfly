@@ -15,7 +15,13 @@ export function getStaticPaths() {
 const { locale } = Astro.props as { locale: string };
 const fr = locale === "fr";
 const L = inlineT(locale);
-const title = L("Which travel crate size for my dog?", "Quelle taille de cage de transport pour mon chien ?", "¿Qué talla de jaula de transporte para perros necesito?");
+/* LIBELLÉ CANONIQUE, RÉEMPLOYÉ PLUTÔT QUE REFORMULÉ (07/09/2026). Cette page portait un titre à
+   elle — « Which travel crate size for my dog? » — dont la table portugaise ne connaissait pas la
+   forme retenue, si bien que /pt/tools/crate/ affichait son titre en anglais. Le site possède
+   déjà un libellé pour cette question, employé par le Finder, les fiches races et les fiches
+   compagnies, et traduit dans les quatre langues. On l'emploie ici aussi : une question posée
+   quatre fois sur le site doit s'écrire d'une seule façon. */
+const title = L("What size travel crate does my dog need?", "Quelle taille de cage de transport pour mon chien ?", "¿Qué tamaño de transportín necesita mi perro?");
 const blurb = L(
   "Measure your dog (length + height) and get the minimum interior crate size — safe and comfortable — with a cabin-or-hold check by airline.",
   "Mesure ton chien (longueur + hauteur) et obtiens les dimensions intérieures minimales de la cage — sécurité et confort — avec vérification cabine ou soute selon la compagnie.",

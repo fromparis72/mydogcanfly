@@ -15,26 +15,33 @@ const { locale } = Astro.props as { locale: string };
 // SEO title/description, une variante par langue. L'anglais garde le suffixe de marque (il tient dans
 // la limite d'affichage de Google) ; le français s'en passe pour rester court. L'espagnol avait
 // jusqu'ici les chaînes françaises par défaut — corrigé.
+/* LES QUATRE DESCRIPTIONS NE PROMETTENT PLUS « LA MEILLEURE COMPAGNIE » (07/09/2026).
+   Elles disaient « Find the best airline for your dog », « les compagnies aériennes qui
+   acceptent les chiens », « Encuentra la mejor opción » — et le titre français annonçait
+   « 90+ compagnies » là où la base en compte 102. Aucun canal n'étant aujourd'hui confirmé par
+   une citation, promettre un choix optimal dans la zone la plus reprise du site (le résultat de
+   recherche) contredit ce que la page dit ensuite. Les quatre annoncent désormais ce que le site
+   fait réellement : donner les conditions, et dire pour chacune si elle est prouvée. */
 const SEO: Record<string, { title: string; description: string }> = {
   en: {
-    title: "Can My Dog Fly? Compare Dog-Friendly Airlines | MyDogCanFly",
+    title: "Can My Dog Fly? Airline Rules, Checked and Sourced | MyDogCanFly",
     description:
-      "Compare dog-friendly airlines, cabin and cargo options, breed restrictions and travel requirements. Find the best airline for your dog.",
+      "Airline conditions for dogs — cabin, hold and cargo — with country formalities and breed restrictions. Each answer shows whether it is confirmed by a quoted source or still to be checked.",
   },
   fr: {
-    title: "Voyager avec son chien en avion : 90+ compagnies comparées",
+    title: "Voyager avec son chien en avion : règles des compagnies, sourcées",
     description:
-      "Votre chien peut prendre l'avion ! Comparez les compagnies aériennes qui acceptent les chiens : cabine ou soute, races et formalités.",
+      "Les conditions des compagnies pour les chiens — cabine, soute, fret — avec les formalités par pays et les restrictions de race. Chaque réponse indique si elle est confirmée par une source citée ou encore à vérifier.",
   },
   es: {
-    title: "¿Puede volar mi perro? Compara aerolíneas para perros",
+    title: "¿Puede volar mi perro? Normas de las aerolíneas, con fuentes",
     description:
-      "Compara aerolíneas que aceptan perros, opciones en cabina, bodega, restricciones por raza y requisitos de viaje. Encuentra la mejor opción.",
+      "Las condiciones de las aerolíneas para perros — cabina, bodega y carga — con los trámites por país y las restricciones por raza. Cada respuesta indica si está confirmada por una fuente citada o aún por comprobar.",
   },
   pt: {
-    title: "Meu cachorro pode voar? Compare companhias que aceitam cães",
+    title: "O meu cão pode voar? Regras das companhias, com fontes",
     description:
-      "Compare as companhias aéreas que aceitam cachorros: cabine, porão e carga, restrições de raça e exigências de entrada. Encontre a melhor opção.",
+      "As condições das companhias para cães — cabine, porão e carga — com as formalidades por país e as restrições de raça. Cada resposta indica se está confirmada por uma fonte citada ou ainda por verificar.",
   },
 };
 const { title: seoTitle, description: seoDescription } = SEO[locale] ?? SEO.en;

@@ -376,14 +376,77 @@ console.log("\n=== 2 quater. Le gabarit ne LIT plus les champs éditoriaux non s
    * On lit donc les phrases anglaises que CE gabarit passe à `T(...)` et on exige qu'elles soient
    * toutes connues de la table portugaise. Le contrôle est borné à ce fichier : il ne prétend pas
    * couvrir le dépôt, et il le dit. */
+  /* ── LA PORTÉE BORNÉE A COÛTÉ CE QU'ELLE LAISSAIT OUVERT (07/09/2026) ───────────────────────
+   *
+   * La version précédente de ce contrôle ne lisait QU'`AirlinePremiumPage.astro`, et le disait :
+   * « borné à ce fichier, il ne prétend pas couvrir le dépôt ». Le contre-test navigateur de la
+   * préversion 82fcf408 a trouvé trois phrases anglaises sur `/pt/about/` — un gabarit hors de
+   * cette portée, et dont j'avais moi-même réécrit ces trois phrases au lot d'avant. La mesure
+   * complète, faite après coup, en a relevé 56 sur 12 gabarits.
+   *
+   * La borne est donc levée : le contrôle lit TOUT fichier de `packages/ui/src` qui appelle
+   * `inlineT` ou `inlineF`, et exige que chaque phrase anglaise passée à `T(...)`, `L(...)` ou
+   * `F(...)` existe dans la table portugaise. Ces trois noms sont les alias locaux réellement
+   * employés dans le dépôt ; les chercher par leur nom d'appel, et non par le nom de l'import,
+   * est ce qui permet de couvrir des gabarits qui les nomment différemment.
+   *
+   * Ce que le contrôle ne prétend pas faire : juger la QUALITÉ d'une traduction, ni couvrir les
+   * textes qui ne passent pas par ce mécanisme (contenu Markdown des guides, données de la base).
+   * Il ferme un trou précis — la clé absente qui publie l'anglais sans rien dire — et rien de plus. */
   const ptTable = JSON.parse(fs.readFileSync(
     path.join(ROOT, "packages", "knowledge", "translations", "pt", "inline.json"), "utf8"));
-  const phrasesT = [...code.matchAll(/\bT\(\s*"((?:[^"\\]|\\.)+)"/g)].map((m) => m[1].replace(/\\"/g, '"'));
-  const sansPt = [...new Set(phrasesT)].filter((ph) => !(ph in ptTable));
-  check(`témoin : des phrases \`T(...)\` ont été relevées dans le gabarit (${new Set(phrasesT).size})`,
-    new Set(phrasesT).size > 5);
-  check("aucune phrase du gabarit ne retombera en anglais sur la page portugaise",
-    sansPt.length === 0, sansPt.slice(0, 3).map((x) => `« ${x.slice(0, 60)}… »`).join(" | "));
+  const sansCommentaires = (t) => t
+    .replace(/\{\/\*[\s\S]*?\*\/\}/g, " ")
+    .replace(/\/\*[\s\S]*?\*\//g, " ")
+    .replace(/(^|[^:])\/\/[^\n]*/g, "$1 ");
+  const fichiersUI = [];
+  (function balayer(dir) {
+    for (const e of fs.readdirSync(dir, { withFileTypes: true })) {
+      const chemin = path.join(dir, e.name);
+      if (e.isDirectory()) balayer(chemin);
+      else if (/\.(astro|ts)$/.test(e.name)) fichiersUI.push(chemin);
+    }
+  })(path.join(ROOT, "packages", "ui", "src"));
+
+  const APPEL = /\b(?:T|L|F)\(\s*(["'`])((?:\\.|(?!\1).)*)\1\s*,/gs;
+  let gabaritsLus = 0, phrasesLues = 0;
+  const fuitesPt = [];
+  for (const f of fichiersUI) {
+    const src = sansCommentaires(fs.readFileSync(f, "utf8"));
+    if (!/inlineT\(|inlineF\(/.test(src)) continue;
+    gabaritsLus++;
+    for (const m of src.matchAll(APPEL)) {
+      const en = m[2].replace(/\\'/g, "'").replace(/\\"/g, '"');
+      phrasesLues++;
+      if (!(en in ptTable)) fuitesPt.push(`${path.relative(ROOT, f)} : « ${en.slice(0, 55)}… »`);
+    }
+  }
+  check(`témoin : le balayage voit des gabarits et des phrases (${gabaritsLus} gabarits, ${phrasesLues} phrases)`,
+    gabaritsLus >= 12 && phrasesLues > 500);
+  check("aucune phrase d'aucun gabarit ne retombera en anglais sur une page portugaise",
+    fuitesPt.length === 0, `${fuitesPt.length} fuite(s) — ${fuitesPt.slice(0, 3).join(" | ")}`);
+
+  /* NON-VACUITÉ : une phrase absente de la table DOIT être vue. On sabote une copie de la table
+   * en retirant une clé réellement employée, et on rejoue le même balayage. */
+  {
+    const uneClePresente = [...fs.readFileSync(
+      path.join(ROOT, "packages", "ui", "src", "components", "FlightFinder.astro"), "utf8")
+      .matchAll(/\bT\(\s*"((?:[^"\\]|\\.)+)"\s*,/g)]
+      .map((m) => m[1].replace(/\\"/g, '"')).find((ph) => ph in ptTable);
+    const tableSabotee = { ...ptTable };
+    delete tableSabotee[uneClePresente];
+    let vue = false;
+    for (const f of fichiersUI) {
+      const src = sansCommentaires(fs.readFileSync(f, "utf8"));
+      if (!/inlineT\(|inlineF\(/.test(src)) continue;
+      for (const m of src.matchAll(APPEL)) {
+        const en = m[2].replace(/\\'/g, "'").replace(/\\"/g, '"');
+        if (!(en in tableSabotee)) vue = true;
+      }
+    }
+    check("contre-épreuve : retirer une clé de la table portugaise fait rougir le balayage",
+      Boolean(uneClePresente) && vue);
+  }
 }
 
 // ---- 2 ter. LA BRANCHE `allowed` N'A PLUS DE PORTEUR RÉEL — TÉMOIN SYNTHÉTIQUE ---------------
