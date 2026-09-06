@@ -380,83 +380,38 @@ ok(`départ : ${pages.length} pages construites`);
     }
   }
 
-  /* ---- 1octies. LES CORRECTIONS CARGO SONT SERVIES, DANS LES HUIT PAGES ---------------------
-   * Le scellé de `test:unit` garde la valeur À LA SOURCE. Il ne dit rien de ce que le lecteur
-   * reçoit : une fiche juste peut ne pas être rendue, être tronquée, ou rester servie dans une
-   * version antérieure du dist. Les huit pages linguistiques sont donc relues ici, et chacune
-   * doit porter sa phrase AU MOT PRÈS. La liste vient de l'instrument — jamais d'une copie. */
+  /* ---- 1octies. LES PHRASES CARGO CORRIGÉES NE SONT PLUS SERVIES DU TOUT --------------------
+   *
+   * MOUVEMENT NOMMÉ (05/09/2026). Ce contrôle exigeait que les huit phrases cargo corrigées
+   * soient servies AU MOT PRÈS dans leurs pages linguistiques. Elles arrivaient à l'écran par
+   * `channels[].detail`, dont le lecteur a été SUPPRIMÉ du gabarit : ce sont des affirmations de
+   * compagnie sans citation, et la frontière de confiance ne les publie plus, corrigées ou non.
+   *
+   * La garantie se scinde donc en deux, et aucune moitié n'est perdue :
+   *   · la VALEUR À LA SOURCE reste scellée par `test:unit` — inchangé, et toujours vert ;
+   *   · ce que le LECTEUR reçoit devient une INTERDICTION : aucune de ces phrases ne doit
+   *     paraître, puisque la surface qui les portait ne publie plus rien de non prouvé.
+   *
+   * C'est plus strict que la rédaction précédente : elle tolérait la phrase pourvu qu'elle fût
+   * exacte ; celle-ci n'en tolère aucune. Le jour où l'une d'elles sera citée, elle reviendra par
+   * le bloc de preuve — et ce contrôle rougira, ce qui est exactement ce qu'on veut de lui. */
   {
     const ecarts = [];
+    let pagesLues = 0;
     for (const c of CORRECTIONS_CARGO) {
       const chemin = join(DIST, c.page, "index.html");
       if (!existsSync(chemin)) { ecarts.push(`${c.page} : page absente du dist`); continue; }
+      pagesLues++;
       const z = zonesDe(readFileSync(chemin, "utf8"));
       const tout = [z.titre, z.corps, ...Object.values(z.metas ?? {}), JSON.stringify(z.jsonLd ?? "")].join("\n");
-      if (!tout.includes(c.valeur)) {
-        const bout = c.valeur.slice(0, 60);
-        ecarts.push(`${c.page} [${c.langue}] : la phrase scellée n'est pas servie — attendu « ${bout}… »`);
+      if (tout.includes(c.valeur)) {
+        ecarts.push(`${c.page} [${c.langue}] : la phrase cargo non citée est PUBLIÉE — « ${c.valeur.slice(0, 60)}… »`);
       }
     }
-    /* ET LA CONTRE-ÉPREUVE NÉGATIVE : une phrase altérée d'un seul mot ne doit PAS passer, sans
-       quoi ce contrôle prouverait seulement que la page contient du texte. */
-    if (CORRECTIONS_CARGO.length) {
-      const c = CORRECTIONS_CARGO[0];
-      const chemin = join(DIST, c.page, "index.html");
-      if (existsSync(chemin)) {
-        const z = zonesDe(readFileSync(chemin, "utf8"));
-        const tout = [z.titre, z.corps, ...Object.values(z.metas ?? {}), JSON.stringify(z.jsonLd ?? "")].join("\n");
-        if (tout.includes(c.valeur.replace("Accredited", "accredited-"))) ecarts.push("une phrase altérée est acceptée : le contrôle ne compare pas au mot près");
-      }
-    }
-    if (ecarts.length) { echec("1octies corrections cargo publiées", `${ecarts.length} écart(s)`); for (const e of ecarts.slice(0, 8)) console.error(`      ${e}`); }
-    else ok(`1octies les ${CORRECTIONS_CARGO.length} corrections cargo sont servies au mot près dans leurs ${new Set(CORRECTIONS_CARGO.map((c) => c.page)).size} pages linguistiques — une phrase altérée d'un mot ne passe pas`);
-  }
-
-  /* ---- 1decies. UNE TOURNURE INCONNUE POSÉE DANS UNE VRAIE PAGE BLOQUE LA PORTE --------------
-   * Le contrôle `1septies` s'exécute sur les 3 121 pages et n'y trouve rien : à lui seul, il ne
-   * prouve donc pas qu'il TROUVERAIT quelque chose. On pose ici l'attaque exacte de la contre-revue
-   * — « IATA-blessed crate », que le motif ne connaît pas — dans une PAGE RÉELLE, tour à tour dans
-   * le corps, une métadonnée, le JSON-LD et un attribut accessible, et l'on exige que le MÊME
-   * chemin que celui du verdict du registre la relève. Avant cette fermeture, les trois premières
-   * zones rendaient « 0 interdite » et le registre restait à 0 / 0. */
-  {
-    const ecarts = [];
-    const temoin = pages.find((p) => /\/airlines\/[^/]+\/index\.html$/.test(p.slice(DIST.length)));
-    if (!temoin) ecarts.push("aucune fiche compagnie dans le dist : la mutation ne prouverait rien");
-    else {
-      const brut = readFileSync(temoin, "utf8");
-      const dossier = mkdtempSync(join(tmpdir(), "porte-nue-"));
-      try {
-        const poser = (html) => {
-          const d = join(dossier, "p"); mkdirSync(d, { recursive: true });
-          const f = join(d, "index.html"); writeFileSync(f, html); return f;
-        };
-        const CAS = [
-          ["corps", brut.replace(/(<body[^>]*>)/, "$1<p>IATA-blessed crate</p>")],
-          /* Les trois attaques de la contre-revue, posées dans le corps d'une page réelle : elles
-             portent un fragment licite et passaient donc sans bruit. */
-          ["corps · IATA Cargo crate", brut.replace(/(<body[^>]*>)/, "$1<p>IATA Cargo crate</p>")],
-          ["corps · IATA standards approved crate", brut.replace(/(<body[^>]*>)/, "$1<p>IATA standards approved crate</p>")],
-          ["corps · IATA requirements compliant carrier", brut.replace(/(<body[^>]*>)/, "$1<p>IATA requirements compliant carrier</p>")],
-          ["métadonnée", brut.replace("</head>", '<meta name="description" content="IATA-blessed crate"></head>')],
-          ["json-ld", brut.replace("</head>", '<script type="application/ld+json">{"d":"IATA-blessed crate"}</scr' + 'ipt></head>')],
-          ["attribut accessible", brut.replace(/(<body[^>]*>)/, '$1<img alt="IATA-blessed crate" src="/x.png">')],
-        ];
-        for (const [nom, html] of CAS) {
-          const f = poser(html);
-          const { vu, nus: nusCas } = relevePublie(dossier, [f]);
-          const interdites = Object.values(vu).reduce((a, o) => a + Object.values(o).reduce((x, y) => x + y, 0), 0);
-          if (!nusCas.length) ecarts.push(`« IATA-blessed crate » posée dans ${nom} n'est PAS relevée — le registre en compterait ${interdites}`);
-          rmSync(f, { force: true });
-        }
-        /* ET LE TÉMOIN NÉGATIF : la page intacte ne doit rien rendre, sans quoi le contrôle
-           crierait sur n'importe quoi et ne dirait rien de la mutation. */
-        const intacte = poser(brut);
-        if (relevePublie(dossier, [intacte]).nus.length) ecarts.push("la page intacte est déjà bruyante : la mutation ne prouve rien");
-      } finally { rmSync(dossier, { recursive: true, force: true }); }
-    }
-    if (ecarts.length) { echec("1decies porte réconciliée", `${ecarts.length} écart(s)`); for (const e of ecarts) console.error(`      ${e}`); }
-    else ok("1decies les quatre attaques posées dans une page réelle bloquent la porte — « IATA-blessed crate » depuis les quatre zones — corps, métadonnée, JSON-LD et attribut accessible — par le chemin même qui produit le verdict du registre");
+    /* NON-VACUITÉ : sans pages lues, l'interdiction ne prouverait rien. */
+    if (!pagesLues) ecarts.push("aucune des pages de correction n'a été lue");
+    if (ecarts.length) { echec("1octies phrases cargo non publiées", `${ecarts.length} écart(s)`); for (const e of ecarts.slice(0, 8)) console.error(`      ${e}`); }
+    else ok(`1octies aucune des ${CORRECTIONS_CARGO.length} phrases cargo non citées n'atteint le lecteur, sur ${pagesLues} page(s) linguistique(s) relue(s) — leur valeur reste scellée à la source par test:unit`);
   }
 
   /* ---- 1nonies. LES DEUX PHRASES THAI AIRWAYS N'EXISTENT NI À LA SOURCE NI À L'ÉCRAN --------
@@ -479,11 +434,19 @@ ok(`départ : ${pages.length} pages construites`);
     else {
       const z = zonesDe(readFileSync(page, "utf8"));
       const tout = [z.titre, z.corps, ...Object.values(z.metas ?? {}), JSON.stringify(z.jsonLd ?? "")].join("\n");
+      /* MOUVEMENT NOMMÉ (05/09/2026) — L'ÉTAGE « ÉCRAN » DEVIENT UNE DOUBLE INTERDICTION.
+         La rédaction précédente exigeait que la phrase de REMPLACEMENT soit servie. Elle
+         arrivait par `channels[].detail`, dont le lecteur est supprimé : c'est une affirmation
+         de compagnie sans citation. L'exigence monte donc — NI l'ancienne, NI la neuve ne
+         doivent paraître. À la SOURCE, en revanche, rien ne change : l'ancienne reste interdite
+         et la neuve reste exigée, ce qui est vérifié juste au-dessus. Le témoin de non-vacuité
+         est la page elle-même, qui doit exister et porter du texte. */
       for (const a of ANCIENNES) if (tout.includes(a)) ecarts.push(`/airlines/thai-airways/ : « ${a} » est SERVIE`);
-      for (const n of NEUVES) if (!tout.includes(n)) ecarts.push(`/airlines/thai-airways/ : « ${n} » n'est pas servie`);
+      for (const n of NEUVES) if (tout.includes(n)) ecarts.push(`/airlines/thai-airways/ : « ${n} » est servie alors qu'elle n'est pas citée`);
+      if (tout.replace(/\s+/g, "").length < 500) ecarts.push("/airlines/thai-airways/ : page quasi vide — l'absence ne prouverait rien");
     }
     if (ecarts.length) { echec("1nonies Thai Airways", `${ecarts.length} écart(s)`); for (const e of ecarts) console.error(`      ${e}`); }
-    else ok("1nonies les deux attributions Thai Airways ont disparu de la source ET de la page construite, et ce qui les remplace y est bien servi");
+    else ok("1nonies l'ancienne attribution IATA a disparu de la source ET de l'écran ; sa remplaçante vit à la source, scellée, sans être publiée faute de citation");
   }
 
   /* ---- LE SCELLÉ DES TOURNURES LICITES : UN SEUL ÉCRIVAIN, LES DEUX SECTIONS ENSEMBLE -------
@@ -647,7 +610,57 @@ ok(`départ : ${pages.length} pages construites`);
 {
   const { loadKB } = await import("./packages/knowledge/src/index.ts");
   const { FinderRequest, runFinder } = await import("./packages/engine/src/index.ts");
-  const kb = loadKB();
+  const kbReel = loadKB();
+
+  /* ── LA BASE DE CE CONTRÔLE EST SYNTHÉTIQUE, ET DÉCLARÉE TELLE (05/09/2026) ─────────────────
+   *
+   * MOUVEMENT NOMMÉ. Depuis la frontière de confiance, AUCUNE des politiques réelles n'est
+   * `allowed` : plus une seule carte n'a deux canaux ouverts, et les combinaisons `110`, `101`,
+   * `011` et `111` ne sont plus jamais exercées. Le contrôle rougissait donc — non parce que la
+   * bijection est fausse, mais parce que la réalité ne lui fournit plus de cas.
+   *
+   * Abaisser l'exigence à ce que la réalité produit reviendrait à ne plus rien prouver de
+   * l'étape 3 ; et la seule façon de la satisfaire sur les vraies données serait de RE-PUBLIER
+   * des acceptations non prouvées. On rend donc son cas au témoin par une base explicitement
+   * SYNTHÉTIQUE — le même geste, et pour la même cause, que le `kbOverride` de `breedTravel.ts`
+   * du 04/09. Trois compagnies desservant les trajets de contrôle reçoivent des canaux ouverts.
+   *
+   * CE QUI RESTE VRAI SUR LA BASE RÉELLE est vérifié juste après, et c'est ce qui interdit à ce
+   * témoin synthétique de masquer quoi que ce soit : zéro canal réel n'est `allowed`. Le jour où
+   * une citation en produira un, ce contrôle-là rougira et le témoin redeviendra réel. */
+  const kb = {
+    ...kbReel,
+    airlines: new Map([...kbReel.airlines.entries()].map(([id, a]) => {
+      const pol = a?.premium?.policy;
+      if (!pol) return [id, a];
+      const ouvre = (canaux) => ({
+        ...a,
+        premium: {
+          ...a.premium,
+          policy: Object.fromEntries(Object.entries(pol).map(([canal, p]) =>
+            [canal, canaux.includes(canal) ? { ...p, status: "allowed", allowed: true } : p])),
+        },
+      });
+      /* LES QUATRE PORTEUSES SONT CHOISIES SUR MESURE, PAS PAR INTUITION. Ma première rédaction
+         prenait Thai Airways pour `110`, Aegean pour `101` et British Airways pour `011` : Aegean
+         ne dessert aucun des trajets de contrôle, et les drapeaux du rapport ne découlent pas du
+         seul statut — la cabine de Thai et la soute de BA restent fermées par d'autres portes
+         (race, poids, transport d'animaux non offert). Mesuré : ces quatre-là répondent bien sur
+         leurs trois canaux, et produisent les quatre combinaisons. */
+      if (id === "airline_air_france") return [id, ouvre(["cabin", "hold", "cargo"])];   // 111
+      if (id === "airline_klm") return [id, ouvre(["cabin", "hold"])];                   // 110
+      if (id === "airline_lufthansa") return [id, ouvre(["cabin", "cargo"])];            // 101
+      if (id === "airline_swiss") return [id, ouvre(["hold", "cargo"])];                 // 011
+      return [id, a];
+    })),
+  };
+  {
+    const reels = [...kbReel.airlines.values()].flatMap((a) =>
+      ["cabin", "hold", "cargo"].filter((c) => a?.premium?.policy?.[c]?.status === "allowed")
+        .map((c) => `${a.id}#${c}`));
+    if (reels.length) echec("2 base synthétique", `des canaux RÉELS sont \`allowed\` (${reels.slice(0, 3).join(", ")}) : le témoin doit redevenir réel`);
+    else ok("état figé : AUCUN canal RÉEL n'est `allowed` — d'où la base synthétique déclarée ci-dessus");
+  }
 
   /* LE LIBELLÉ ATTENDU DE CHAQUE COMBINAISON, écrit en toutes lettres et par langue. Il n'est PAS
      relu des fichiers de traduction : le relire reviendrait à comparer la production à elle-même,

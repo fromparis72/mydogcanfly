@@ -52,7 +52,9 @@ console.log(JSON.stringify(post.report, null, 2));
 
 const r = post.report as { verdict: string; sources: unknown[] };
 const okShape =
-  ["compatible", "conditional", "incompatible"].includes(r.verdict) &&
+  /* « unknown » depuis le 05/09/2026 : la réponse « pas encore établi ». Cette liste l'ignorait,
+     donc le fumigène aurait déclaré la forme invalide sur la quasi-totalité des trajets réels. */
+  ["compatible", "conditional", "unknown", "incompatible"].includes(r.verdict) &&
   Array.isArray(r.sources) && r.sources.length >= 2;
 const errOf = (x: { report: unknown }) => (x.report as { error?: string }).error;
 const okGetBare = getBare.status === 400 && errOf(getBare) === "missing_parameters";

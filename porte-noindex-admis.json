@@ -1,0 +1,43 @@
+{
+  "_pourquoi": "Les pages qui ont le DROIT de porter `noindex` en production. Chacune est une décision, pas un oubli — et c'est tout l'objet de ce fichier : sans lui, la porte de lancement ne saurait pas distinguer les 585 pages délibérément fermées aux moteurs de la catastrophe du 5 août 2026, où les 2 776 pages du site l'étaient par accident. Une page fermée qui ne figure pas ici fait ÉCHOUER la porte.",
+  "_regle": "Ajouter une entrée ici est une décision éditoriale, jamais un moyen de faire taire la porte. Chaque famille porte sa raison.",
+  "prefixes": [
+    "/airports/",
+    "/fr/airports/",
+    "/es/airports/",
+    "/pt/airports/"
+  ],
+  "_prefixes_pourquoi": {
+    "/airports/": "564 fiches aéroport (141 × 4 langues). Contenu mince et largement factuel — code IATA, ville, pays, quelques services animaliers — sans valeur de recherche propre : indexées, elles diluent le site sans répondre à aucune requête. Elles restent utiles EN INTERNE, atteignables depuis le Finder et les fiches pays. Décision éditoriale, pas un défaut."
+  },
+  "chemins": [
+    "/404.html",
+    "/fr/404.html",
+    "/es/404.html",
+    "/pt/404.html",
+    "/fr/404/",
+    "/es/404/",
+    "/pt/404/",
+    "/button-lab.html",
+    "/lab/roundtrip/",
+    "/presskit/press-kit-en.html",
+    "/presskit/press-kit-fr.html",
+    "/presskit/press-kit-es.html",
+    "/presskit/press-kit-pt.html",
+    "/tools/fiche/",
+    "/fr/tools/fiche/",
+    "/es/tools/fiche/",
+    "/pt/tools/fiche/",
+    "/tools/timeline/",
+    "/fr/tools/timeline/",
+    "/es/tools/timeline/",
+    "/pt/tools/timeline/"
+  ],
+  "_chemins_pourquoi": {
+    "404": "Une page d'erreur indexée est une page d'erreur servie depuis Google. Elle doit rester fermée.",
+    "/button-lab.html": "Bac à sable de composants, hors parcours public.",
+    "/lab/roundtrip/": "Prototype interne. `/lab/` est déjà interdit dans robots.txt ; le `noindex` est la seconde barrière, et les deux sont voulues.",
+    "presskit": "Les quatre variantes linguistiques du dossier de presse sont servies comme fichiers autonomes, hors du parcours indexé — c'est `/presskit/` qui est la page publique.",
+    "/tools/fiche/ et /tools/timeline/": "Outils de rendu internes, sans contenu propre : ils composent des vues à partir de données déjà publiées ailleurs."
+  }
+}

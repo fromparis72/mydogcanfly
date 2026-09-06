@@ -1,0 +1,239 @@
+RAPPORT DEMANDÉ AVANT TOUTE MODIFICATION DU MOTEUR
+Lot pré-lancement — frontière de confiance des données
+Mesure rejouable : `node mesures/politiques-veracite/classer.mjs`
+Aucune PR ouverte. Production, Cloudflare et Search Console non touchés.
+
+
+0. UNE CORRECTION D'ABORD, PARCE QU'ELLE CHANGE TOUS LES CHIFFRES
+──────────────────────────────────────────────────────────────────────────────
+Ma première mesure comptait les verdicts sur `channels[].cls`, la pastille écrite
+à la main dans la fiche. C'était la mauvaise surface : depuis T0-B2, l'écran ne
+lit plus `cls`. `packages/ui/src/lib/decisionCanal.ts` prend la décision dans
+`premium.policy[canal]`, projetée du bloc `policies:` de la fiche. Mesurer `cls`
+revenait à mesurer un champ que plus personne n'affiche.
+
+C'est la faute que ce dépôt documente déjà partout : deux définitions de la même
+chose, et j'ai mesuré celle qui ne publie pas. Elle est nommée, pas effacée : la
+section fautive reste dans `classer.mjs` avec son commentaire d'erreur.
+
+Les chiffres ci-dessous portent tous sur `policies:`, la surface qui décide.
+Écart avec mon envoi précédent : 209 verdicts (faux, comptés sur `cls`) → 216
+(vrais, comptés sur `policies:`).
+
+
+1. IMPACT CONCRET DE LA RÉTROGRADATION SUR LES VERDICTS CATÉGORIQUES
+──────────────────────────────────────────────────────────────────────────────
+102 fiches · 302 blocs de politique :
+
+    216   décidés (`offered` | `not_offered`) → verdict catégorique publié
+     84   déjà `legacy_unreviewed` → déjà « à confirmer », rien à rétrograder
+      2   `case_by_case` | `undocumented`
+  ─────
+      0   décidés portant une source AUDITÉE
+
+Zéro. Aucune des 216 décisions publiées ne porte de preuve au sens de la classe
+`verified_official`. Les DEUX seules sources auditées du dépôt — Thai Airways et
+Virgin Australia — sont posées sur des blocs NON décidés (`undocumented`,
+`case_by_case`). Le dépôt n'a donc pas « peu » de preuves sur ses verdicts : il
+n'en a aucune.
+
+SCÉNARIO A — seule une preuve citée maintient un verdict :
+    216 rétrogradés, soit 100,0 %. L'outil ne répond plus rien nulle part.
+    C'est exactement le résultat que vous demandez d'éviter.
+
+SCÉNARIO B — un CORROBORÉ tient une indication prudente :
+     60 des 216 sont adossés à une règle officielle dont l'historique enregistre
+        une vérification substantielle → « sources concordantes, confirmation
+        recommandée » plutôt que silence
+    156 rétrogradés sans rien à dire, soit 72,2 %
+
+La classe `corroborated` n'est pas un confort : c'est la seule chose qui sépare
+un outil dégradé d'un outil muet.
+
+Réserve nommée sur ces 60. Ils sont reconnus en lisant `source.history[].note`,
+c'est-à-dire de la PROSE — « Vérifié ligne à ligne contre la table APHA »,
+« verified from the airline's official pet policy ». Reconnaître une vérification
+à la forme d'une phrase est un signal FAIBLE, et ce dépôt s'en méfie à juste
+titre. Je le retiens quand même, parce que la note est déclarative : quelqu'un
+l'a écrite pour dire ce qu'il avait fait. L'ignorer serait une fausse mesure dans
+l'autre sens — prétendre que rien n'a jamais été vérifié. Le prédicat est isolé
+dans trois constantes nommées (`VERIFICATION_REELLE`, `AVEU_NON_VERIFIE`,
+`IMPORT_DE_SOI`) : si vous jugez le signal insuffisant, il se durcit en un seul
+endroit, et les 60 tombent à 0 sans rien casser d'autre.
+
+
+2. NOMBRE DE CARTES QUI DEVIENDRAIENT « À CONFIRMER »
+──────────────────────────────────────────────────────────────────────────────
+    Scénario A : 100 cartes compagnie sur 102 portent au moins un « à confirmer »
+    Scénario B :  90 cartes compagnie sur 102
+
+Les 2 fiches épargnées en A n'ont aucun bloc décidé du tout.
+Côté pays, rien ne bouge dans ce lot. CORRECTION DE VOCABULAIRE (contre-revue) :
+il y a 140 FICHES pays et 189 RÈGLES de portée pays — j'écrivais « 189 fiches »,
+ce qui confondait les deux et gonflait le référentiel de 49 unités. Vérifié :
+`content/countries` contient 140 fichiers, `rules.json` 189 règles `scope.type
+= country`. Ces fiches ne passent pas par `policies:`, et leur provenance est
+matériellement meilleure (137 des 189 règles citent une source gouvernementale,
+800 URL sourcées, 0 fiche sans source) — ce qui ne prouve encore rien au niveau
+de chaque modalité, et ne sera pas traité dans ce lot.
+
+
+3. COMPAGNIES QUI N'AURAIENT PLUS AUCUN CANAL DÉCIDÉ
+──────────────────────────────────────────────────────────────────────────────
+Scénario A : 100 compagnies — toutes celles qui décident quelque chose.
+
+Scénario B : 51 compagnies —
+Aegean Airlines · Aeromexico · Air Astana · Air Canada · Air Europa · Air France
+· Air India · Air Mauritius · Air Tahiti Nui · Air Transat · airBaltic · Alaska
+Airlines · American Airlines · ANA (All Nippon Airways) · Austrian Airlines ·
+Avianca · British Airways · Cathay Pacific · China Airlines · Delta Air Lines ·
+EgyptAir · Emirates · Ethiopian Airlines · Etihad Airways · EVA Air · Gulf Air ·
+Iberia · Iberia Express · Japan Airlines (JAL) · Kenya Airways · KLM Royal Dutch
+Airlines · Korean Air · LOT Polish Airlines · Lufthansa · Pegasus Airlines ·
+Philippine Airlines · Qantas · Qatar Airways · Royal Jordanian · SAS Scandinavian
+Airlines · Singapore Airlines · Sky Express · Smartwings · South African Airways
+· SunExpress · SWISS · TAROM · Thai Airways · TUI Airways · Turkish Airlines ·
+WestJet
+
+Cette liste recoupe largement les 11 compagnies de vos 16 canaux orphelins, et
+elle contient les plus consultées. C'est elle qui doit piloter la vérification
+prioritaire de l'étape C : ~25 compagnies bien choisies dans cette liste
+ramèneraient l'essentiel du trafic sur des verdicts prouvés.
+
+
+4. RÉEMPLOI EXACT DES TYPES ET STATUTS EXISTANTS — AUCUN NOUVEAU MODÈLE
+──────────────────────────────────────────────────────────────────────────────
+Vos quatre classes existent déjà dans le dépôt. Rien n'est à créer.
+
+  `verified_official`
+      = `T0bAuditSource` (packages/knowledge/src/t0b-migration.ts:115)
+      = `SourcedQuote` + locator OBLIGATOIRE + cadence de 90 jours exacte.
+      `SourcedQuote` (packages/knowledge/src/breed-restrictions.ts:533) impose
+      déjà : citation ≥ 10 caractères, `quote_language` BCP-47, URL http(s),
+      refus de l'auto-citation MyDogCanFly, types de source factuels,
+      `review_due` ≥ `verified_date`.
+      → strictement plus exigeant que ce que je vous avais proposé. Je maintiens
+        la correction : j'avais écrit que le modèle de preuve « ne pouvait pas
+        porter ce qui allait lui être demandé ». C'était faux.
+
+  `corroborated`
+      = `Source` (packages/knowledge/src/common.ts:119), le modèle général :
+      URL, `source_type`, `verified_date`, `review_due`, `confidence` 1–5,
+      `reviewer`, `history`. Une source officielle SANS citation verbatim.
+      → aucun champ nouveau. La distinction entre les deux classes est
+        STRUCTURELLE : la présence de `quote` fait la différence, elle n'est pas
+        déclarée dans un drapeau qui pourrait mentir.
+
+  `legacy_unverified`
+      = `review_state: "legacy_unreviewed"` (objects.ts:202), projeté par
+      `projectPlacementPolicy` en `status: "confirmation_required"` +
+      `status_cause: "legacy_unreviewed"` (objects.ts:231).
+      → déjà porté par 84 blocs, déjà rendu, déjà traduit en quatre langues.
+
+  `unknown`
+      = absence de bloc. Le schéma d'ingestion refuse déjà un canal visible dont
+      `policies:` ne décide pas (ingest-airlines.mjs:216) : la classe est
+      inconstructible, et c'est bien ainsi.
+
+UNE SEULE DÉVIATION, ARGUMENTÉE, SOUMISE À ARBITRAGE
+Vous demandez de réemployer `legacy_unreviewed` pour tout ce qui est rétrogradé.
+Je ne peux pas le faire pour les 60 CORROBORÉS, et la raison est mécanique :
+`preuve.ts:estNonRevue()` renvoie `null` sur toute politique dont la cause est
+`legacy_unreviewed` — délibérément, car c'est le correctif d'une faute réelle
+(dix politiques non revues portaient une source officielle et auraient été
+présentées comme auditées). Si je réemploie ce littéral pour les corroborés,
+`preuveAuditee` masque leur source, et l'indication prudente n'a plus rien à
+montrer : elle redevient un silence.
+
+Je propose donc UNE valeur de plus dans l'énumération EXISTANTE `status_cause` :
+`"source_corroborated"`. Pas un modèle, pas un sous-système : une quatrième
+valeur dans un enum de trois, sur la seule branche qui porte déjà une cause.
+`preuve.ts` n'est pas touché. Si vous refusez cette valeur, le repli est le
+scénario A — 216 rétrogradations muettes — et je l'appliquerai sans discuter.
+
+
+5. LE CORRECTIF MINIMAL, FICHIER PAR FICHIER
+──────────────────────────────────────────────────────────────────────────────
+Six fichiers de code, une passe de données, un fichier de contre-épreuves.
+
+(a) packages/knowledge/scripts/ingest-airlines.mjs        ~15 lignes
+    `DecisionPlacement.source` devient l'union `T0bAuditSource | Source`
+    (restreinte aux `FACTUAL_SOURCE_TYPES`, auto-citation déjà refusée).
+    La projection d'une décision devient : preuve citée → verdict maintenu ;
+    source corroborante seule → `confirmation_required` ; rien → idem, muet.
+
+(b) packages/knowledge/src/objects.ts                     ~8 lignes
+    `status_cause` accueille `"source_corroborated"`. `projectPlacementPolicy`
+    traite le cas. Aucune autre branche modifiée.
+
+(c) packages/knowledge/src/preuve.ts                      0 ligne
+    Inchangé, et c'est le but de la déviation ci-dessus. Vérifié par
+    contre-épreuve, pas par lecture.
+
+(d) packages/ui/src/lib/decisionCanal.ts                  ~4 lignes
+    `causeDeConfirmation` renvoie déjà le littéral ; rien à changer. La pastille
+    reste « à confirmer » via `cleLibelleStatut`, déjà prudent.
+
+(e) packages/knowledge/translations/{en,fr,es,pt}/strings.json   4 clés
+    `premium.source_corroborated`. Le rendu la consomme déjà :
+    AirlinePremiumPage.astro:211 résout `premium.${cause}` — aucune ligne
+    d'affichage à écrire.
+      fr : « Sources concordantes — confirmation recommandée auprès de la
+             compagnie »
+      en : « Corroborating sources — confirm with the airline »
+      es : « Fuentes concordantes — confirmación recomendada con la aerolínea »
+      pt : « Fontes concordantes — confirmação recomendada com a companhia »
+
+(f) mesures/politiques-veracite/ecrire-corroborations.mjs  nouveau, rejouable
+    Écrit dans les 60 blocs concernés la source corroborante, MÉCANIQUEMENT
+    depuis `rules.json` — jamais reconstruite de mémoire. Rejouable, idempotent,
+    diff lisible. Une passe de données, pas une saisie.
+
+(g) test-frontiere-confiance.mjs                          nouveau, 8 épreuves
+    1. une décision sans preuve ne peut PLUS produire un verdict catégorique —
+       ni `allowed`, ni `denied` — vérifié sur la politique runtime ;
+    2. une décision corroborée n'est jamais rendue catégorique non plus ;
+    3. `preuveAuditee` expose la source d'un corroboré et continue de la masquer
+       sur un `legacy_unreviewed` (la faute des dix ne se rouvre pas) ;
+    4. une source corroborante auto-citée est REFUSÉE à l'ingestion ;
+    5. une source corroborante d'un type non factuel est refusée ;
+    6. les 84 `legacy_unreviewed` existants ne changent pas d'un octet ;
+    7. DOM : la page Gulf Air construite ne publie plus « Autorisé » ni
+       « Non autorisé » sur un canal sans preuve, et publie la phrase prudente
+       dans les quatre langues ;
+    8. DOM : aucune page ne publie une phrase prudente sans source affichée.
+
+CE QUI N'EST PAS TOUCHÉ : `rules.json` et le moteur du Finder, les 189 fiches
+pays, les 1 563 montants dormants (ils restent masqués), les articles, la
+recherche IATA, la CI, Cloudflare, Search Console.
+
+
+6. ESTIMATION EN HEURES
+──────────────────────────────────────────────────────────────────────────────
+    (a) ingestion, union de source et projection            1 h 30
+    (b) objects.ts, quatrième cause                         0 h 45
+    (d) decisionCanal, vérification qu'il n'y a rien à faire 0 h 15
+    (e) quatre libellés                                     0 h 30
+    (f) passe de données sur les 60 blocs, rejouable        1 h 30
+    (g) huit contre-épreuves, moteur + DOM                  2 h 30
+        rejeu complet, build, CI                            1 h 00
+  ─────────────────────────────────────────────────────────────────
+    TOTAL                                                   8 h 00
+
+Sous le plafond d'une journée. La vérification prioritaire de l'étape C n'est
+PAS dans ce chiffre : elle dépend de citations verbatim et de locators que je ne
+peux pas produire — mon conteneur n'a pas d'accès réseau ouvert, et je ne
+reconstruirai jamais une citation à partir d'un résumé. Chaque compagnie
+remontée en `verified_official` demande de votre côté l'URL, la phrase exacte,
+sa langue, son emplacement dans la page et la date de lecture ; de mon côté,
+l'écriture et la contre-épreuve valent environ 10 minutes par canal.
+
+
+CE QUE JE DEMANDE POUR AVANCER
+──────────────────────────────────────────────────────────────────────────────
+    1. l'arbitrage sur `"source_corroborated"` (§4) — ou l'ordre d'appliquer le
+       scénario A muet ;
+    2. votre avis sur le signal faible des 60 corroborés (§1) : je le retiens,
+       vous pouvez le refuser, il se durcit en un seul endroit ;
+    3. rien d'autre. Le correctif ne dépend d'aucune donnée que vous devriez
+       aller chercher.

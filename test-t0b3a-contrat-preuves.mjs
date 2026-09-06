@@ -227,8 +227,13 @@ const ENTRY_DENY = {
   criticality: "critical",
   applies_when: { all: [{ fact: "route.dest_country_id", op: "eq", value: "country_tr" }] },
   effect: { action: "deny" }, params: {}, rationale: "fixture",
-  source: { url: "https://example.com", source_type: "government", verified_date: "2026-08-16",
-    review_due: "2027-02-12", confidence: 4, reviewer: "harnais", history: [] },
+  /* CITÉE (05/09/2026) : la frontière atteint l'entrée dans le pays. Ce témoin éprouve la
+     dominance d'un refus d'entrée sur les preuves et les causes d'un canal — il lui faut donc une
+     interdiction recevable, pas le droit d'interdire sans preuve. */
+  source: { url: "https://example.gov/import", source_type: "government", verified_date: "2026-08-16",
+    review_due: "2027-02-12", confidence: 4, reviewer: "harnais",
+    quote: "Dogs of this description may not be imported.", quote_language: "en",
+    locator: "section « fixture »", history: [] },
 };
 const fixtureKB = (addRules = []) => ({
   ...kb,

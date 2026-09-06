@@ -31,7 +31,7 @@ import { z } from "zod";
 /* LE contrat de provenance auditée, réutilisé tel quel (jamais recopié) : citation verbatim,
    langue BCP-47, URL http(s) hors domaines maison, type de source factuel, cadence de 90 jours
    dérivée et locator obligatoire. C'est ce qui impose d'exécuter ce script sous `tsx`. */
-import { T0bAuditSource } from "../src/t0b-migration.ts";
+import { T0bAuditSource, T0bSourceDePolitique } from "../src/t0b-migration.ts";
 
 const HERE = dirname(fileURLToPath(import.meta.url));
 const ROOT = join(HERE, "..", "..", "..");
@@ -120,7 +120,11 @@ const Placement = z.enum(PLACEMENTS);
 const DecisionPlacement = z.union([
   z.object({
     availability: z.enum(["offered", "not_offered", "case_by_case", "undocumented"]),
-    source: T0bAuditSource.optional(),
+    /* CITÉE ou OFFICIELLE NON CITÉE — l'union, pas seulement la forme forte. Restreindre ce
+       champ à `T0bAuditSource` rendait inexprimable le seul état que 34 canaux peuvent
+       honnêtement atteindre aujourd'hui : « voici la page officielle, personne n'en a encore
+       cité de phrase ». Le contrat faible est écrit à côté du fort dans `t0b-migration.ts`. */
+    source: T0bSourceDePolitique.optional(),
     /** Les CONDITIONS d'un placement conditionnel, dans les langues rendues (arbitrage
      *  Codex 28/08/2026, cas Virgin Australia) : un `case_by_case` sans ses conditions
      *  affiche « sous confirmation » sans dire de quoi la confirmation dépend. Le champ

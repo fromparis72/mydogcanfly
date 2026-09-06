@@ -114,6 +114,10 @@ function match(over = {}) {
     airlines_total: 1, airlines_to_confirm_total: 0,
     cabin_status: "allowed", hold_status: "denied", cargo_status: "denied",
     placement_ok: true, placement_to_confirm: false,
+    /* `entry_status` EST OBLIGATOIRE DEPUIS LE 05/09/2026, et cette fixture ne portait que le
+       booléen — le chemin ternaire n'était donc éprouvé par aucune de ses variantes. La valeur
+       par défaut est l'état neutre ; les variantes qui veulent éprouver la porte le surchargent. */
+    entry_status: "no_known_block",
     entry_allowed: true, flight_hours: 8,
     ...over,
   };
@@ -440,6 +444,92 @@ async function main() {
       JSON.stringify(r.doc.getElementById("dfx-toconfirm-title")?.textContent));
     check("fr : aucun libellé anglais résiduel dans la carte",
       !/(to confirm with the airline|no heat signal)/i.test(r.doc.querySelector("#dfx-toconfirm .dfx-card")?.textContent ?? ""));
+  }
+
+  await troisEtatsDEntree();
+}
+
+/* LES CINQ CAS DU REPLI, DANS LE VRAI RENDU — voir `troisEtatsDEntree` ci-dessous. */
+const CAS_ENTREE = [
+  ["BLOCKEDCITY", "blocked"],
+  ["CONFIRMCITY", "confirmation_required"],
+  ["FREECITY", "no_known_block"],
+  ["ABSENTCITY", undefined],
+  ["INVALIDCITY", "totalement_inconnu"],
+];
+
+/** Rend les cinq villes et relève le SCORE affiché de chacune. `mutation` permet de saboter le
+ *  script de production servi, pour éprouver que ces contrôles rougissent vraiment. */
+async function scoresParEtat(mutation) {
+  const parts = loadParts("");
+  if (mutation) {
+    parts.clientScript = mutation(parts.clientScript);
+  }
+  const matches = CAS_ENTREE.map(([ville, st], i) => {
+    const m = match({ airport_id: `airport_t${i}`, iata: `T${i}0`, city: ville, country_name: ville,
+      iso2: "US", temperature_c: 18, climate_estimated: false, flight_hours: 2 });
+    if (st === undefined) delete m.entry_status; else m.entry_status = st;
+    return m;
+  });
+  const breeds = parts.labels.breeds;
+  const r = await run(parts, { matches, breedKey: Object.keys(breeds).find((k) => !breeds[k].br), placement: "any" });
+  const scores = {};
+  for (const c of r.doc.querySelectorAll(".dfx-card")) {
+    const nom = CAS_ENTREE.map(([v]) => v).find((v) => c.textContent.includes(v));
+    if (nom) scores[nom] = Number(c.querySelector(".dfx-card__score")?.textContent.trim());
+  }
+  return scores;
+}
+
+async function troisEtatsDEntree() {
+  /* LE CHEMIN TERNAIRE, DANS LE VRAI RENDU — ET SUR LES SCORES, PAS SUR LES RANGS.
+   *
+   * PREMIÈRE RÉDACTION FAUTIVE, NOMMÉE (contre-revue du 05/09/2026). Elle n'exigeait que des
+   * POSITIONS : « ABSENT ne passe pas devant LIBRE ». Or avec le repli fautif vers
+   * `no_known_block`, ABSENT obtient le MÊME score que LIBRE et reste derrière lui par simple
+   * STABILITÉ DU TRI. Le contrôle annonçait donc « repli prudent » tout en acceptant exactement le
+   * faux vert qu'il devait interdire — vérifié sur la production reconstruite : ALL CHECKS PASSED.
+   *
+   * On relève donc le SCORE RENDU de chaque ville, et on exige les égalités et inégalités
+   * exactes. Les cinq destinations sont identiques sauf `entry_status` : l'écart ne peut venir
+   * que de la porte. */
+  const sc = await scoresParEtat(null);
+  check(`les cinq destinations sont rendues avec un score (témoin non vide)`,
+    Object.keys(sc).length === 5 && Object.values(sc).every(Number.isFinite), JSON.stringify(sc));
+  check("LIBRE > À CONFIRMER — une entrée douteuse ne vaut pas une entrée sans restriction connue",
+    sc.FREECITY > sc.CONFIRMCITY, JSON.stringify(sc));
+  check("À CONFIRMER > BLOQUÉ — un doute ne vaut pas un refus prouvé",
+    sc.CONFIRMCITY > sc.BLOCKEDCITY, JSON.stringify(sc));
+  check("ABSENT = À CONFIRMER exactement — le repli est prudent, pas seulement « pas devant »",
+    sc.ABSENTCITY === sc.CONFIRMCITY, JSON.stringify(sc));
+  check("INVALIDE = À CONFIRMER exactement",
+    sc.INVALIDCITY === sc.CONFIRMCITY, JSON.stringify(sc));
+
+  /* LES DEUX SABOTAGES, JOUÉS SUR LE SCRIPT DE PRODUCTION SERVI. Sans eux, les quatre contrôles
+     ci-dessus ne prouveraient que l'état du jour : c'est en les faisant rougir qu'on établit
+     qu'ils gardent quelque chose. */
+  const sabotages = [
+    ['repli vers "no_known_block"', (js) => js.split('"confirmation_required"').length > 1
+      ? js.replace(/\?\s*([A-Za-z_$][\w$]*)\s*:\s*"confirmation_required"/, '? $1 : "no_known_block"')
+      : js],
+    ['repli vers "blocked"', (js) => js.replace(/\?\s*([A-Za-z_$][\w$]*)\s*:\s*"confirmation_required"/, '? $1 : "blocked"')],
+  ];
+  for (const [nom, muter] of sabotages) {
+    let sabote = null, erreur = null;
+    try { sabote = await scoresParEtat(muter); } catch (e) { erreur = e.message; }
+    const rougit = erreur !== null || !(sabote
+      && sabote.ABSENTCITY === sabote.CONFIRMCITY && sabote.INVALIDCITY === sabote.CONFIRMCITY);
+    check(`SABOTAGE du repli — ${nom} — fait ROUGIR ces contrôles`,
+      rougit, JSON.stringify(sabote ?? erreur));
+  }
+  /* TÉMOIN DE MUTATION : le sabotage doit VRAIMENT avoir touché le script, sinon les deux
+     contrôles ci-dessus seraient verts pour n'avoir rien changé du tout. */
+  {
+    const parts = loadParts("");
+    const avant = parts.clientScript;
+    const apres = sabotages[0][1](avant);
+    check("témoin : le sabotage modifie RÉELLEMENT le script de production servi",
+      apres !== avant && /"no_known_block"/.test(apres));
   }
 }
 

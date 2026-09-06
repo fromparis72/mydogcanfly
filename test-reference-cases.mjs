@@ -7,7 +7,9 @@
  * moteur interrogé À TRAVERS le Worker — c'est-à-dire à travers le contrat HTTP réel, pas via
  * l'API interne du moteur, pour qu'une régression de sérialisation ou de routage soit visible.
  *
- *   cas 1 — La Compagnie, chien de 32 kg : cabine impossible, soute et fret non proposés
+ *   cas 1 — La Compagnie, chien de 32 kg : aucun canal accepté, et aucun canal REFUSÉ non plus —
+ *           depuis que ni une politique ni une règle non citée ne décident, les trois sont « à
+ *           confirmer », et chacun nomme ce qui produit son incertitude
  *   cas 7 — paramètres invalides ou inconnus : aucune conclusion positive inventée
  *
  * Les cas 2, 3, 4, 6 relèvent du DOM construit (harnais fiche et Finder) et le cas 5 des
@@ -72,11 +74,50 @@ console.log("— Cas 1 : La Compagnie, chien de 32 kg (EWR → ORY) —");
   if (lc) {
     check("aucun placement accepté (ni cabine, ni soute, ni fret)", !lc.cabin && !lc.hold && !lc.cargo,
       `cabin=${lc.cabin} hold=${lc.hold} cargo=${lc.cargo}`);
-    const r = lc.deny_reasons ?? [];
-    check("motif « poids au-dessus de la limite publiée »", r.includes("weight_limit"), JSON.stringify(r));
-    check("motif « soute non proposée »", r.includes("hold_unavailable"), JSON.stringify(r));
-    check("motif « fret non proposé »", r.includes("cargo_unavailable"), JSON.stringify(r));
-    check("les trois motifs sont présents ensemble", r.length >= 3, JSON.stringify(r));
+    /* CE QUE CE CAS AFFIRMAIT, ET QUI N'EST PLUS VRAI (frontière de confiance, 04/09/2026).
+     *
+     * Les trois motifs attendus ici — `weight_limit`, `hold_unavailable`, `cargo_unavailable` —
+     * supposaient que « soute non proposée » et « fret non proposé » étaient des faits ÉTABLIS.
+     * Ils venaient du bloc `policies:` de la fiche, qui ne porte aucune phrase citée : le site
+     * affirmait donc une fermeture qu'aucune source ne fonde. C'est exactement ce que le lot
+     * ferme, et la disparition de ces motifs est le SIGNE que la fermeture a eu lieu, pas une
+     * régression. Le cas fondateur est donc réécrit, pas supprimé — et il vérifie plus qu'avant.
+     *
+     * Ce qui reste vrai, et qui est le cœur du cas : un chien de 32 kg n'est accepté NULLE PART
+     * chez La Compagnie. Ce qui change : la RAISON. La cabine et le fret restent des refus
+     * fermes parce qu'ils viennent de RÈGLES (plafond de poids publié), couche que ce lot ne
+     * touche pas ; la soute passe « à confirmer » avec sa cause, parce qu'elle ne venait que
+     * d'une politique non prouvée.
+     *
+     * `deny_reasons` est ABSENT dès qu'un canal est à confirmer — comportement d'origine
+     * (`explain.ts:363`), antérieur à ce lot : le champ n'est servi que sur un refus total. */
+    const st = Object.fromEntries((lc.placement_decisions ?? []).map((d) => [d.placement, d]));
+    check("aucun canal n'est « allowed »", ["cabin","hold","cargo"].every((k) => st[k]?.status !== "allowed"),
+      JSON.stringify(Object.fromEntries(["cabin","hold","cargo"].map((k) => [k, st[k]?.status]))));
+    check("la soute passe « à confirmer » — sa fermeture n'était pas prouvée",
+      st.hold?.status === "confirmation_required", JSON.stringify(st.hold));
+    check("et elle dit SA cause, sans l'attribuer à la compagnie",
+      (st.hold?.confirmation_causes ?? []).some((c) => c.code === "legacy_unreviewed"
+        && c.policy_ref === "airline_la_compagnie#hold"), JSON.stringify(st.hold?.confirmation_causes));
+    /* CE QUE J'AFFIRMAIS ICI, ET QUI ÉTAIT LE SYMPTÔME (corrigé le 05/09/2026).
+     *
+     * J'avais écrit « cabine et fret restent des refus fermes — ils viennent de RÈGLES, hors
+     * périmètre du lot », et je l'avais présenté comme rassurant. C'était l'aveu que la frontière
+     * avait un contournement : les 302 politiques étaient gardées, les 208 règles ne l'étaient
+     * pas, et elles pouvaient recréer exactement les mêmes refus catégoriques sans citation.
+     *
+     * Depuis, seule une règle CITÉE refuse. Aucune ne l'est aujourd'hui : les trois canaux passent
+     * donc « à confirmer », et chaque incertitude NOMME sa source — la règle de plafond de poids
+     * pour la cabine, notre donnée non revérifiée pour la soute, l'absence de politique pour le
+     * fret. Le cas fondateur reste vrai sur l'essentiel : un chien de 32 kg n'est accepté nulle
+     * part chez La Compagnie. Ce qui a changé, c'est qu'on ne PRÉTEND plus le prouver. */
+    check("aucun canal n'est refusé sur une règle non citée — les trois sont à confirmer",
+      ["cabin", "hold", "cargo"].every((k) => st[k]?.status === "confirmation_required"),
+      `cabin=${st.cabin?.status} hold=${st.hold?.status} cargo=${st.cargo?.status}`);
+    check("…et chaque incertitude nomme ce qui la produit",
+      (st.cabin?.confirmation_causes ?? []).some((c) => c.code === "rule_unverified" && c.rule_id)
+        && (st.cargo?.confirmation_causes ?? []).some((c) => c.code === "policy_absent"),
+      JSON.stringify({ cabin: st.cabin?.confirmation_causes, cargo: st.cargo?.confirmation_causes }));
   }
 }
 

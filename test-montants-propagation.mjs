@@ -37,6 +37,18 @@ import { execFileSync } from "node:child_process";
 import { JSDOM } from "jsdom";
 import { compter, zonesDe } from "./test-lib/montants.mjs";
 
+/* ── LA DESCRIPTION PUBLIQUE NE VIENT PLUS DE L'ARTEFACT (contre-revue du 05/09/2026) ─────────
+ * `d.metaDesc` annonçait « fares, restrictions and official sources » — des tarifs et des
+ * restrictions que la fiche ne publie plus. Le gabarit produit désormais une description NEUTRE,
+ * tenue dans le catalogue de traductions. La propriété défendue ici est INCHANGÉE, et elle reste
+ * vérifiée sur les 2 030 pages : les quatre zones publiques portent toutes la MÊME phrase, et
+ * cette phrase est celle de la source canonique. Seule la source a changé — on la lit donc là où
+ * le gabarit la lit, jamais en la recopiant ici. */
+const CATALOGUE = Object.fromEntries(["en", "fr", "es", "pt"].map((l) =>
+  [l, JSON.parse(readFileSync(join("packages", "knowledge", "translations", l, "strings.json"), "utf8"))]));
+const descriptionAttendue = (langue, nom) =>
+  (CATALOGUE[langue]?.["premium.meta_description"] ?? "").replace("{airline}", nom);
+
 let defauts = 0;
 const echec = (nom, detail) => { defauts++; console.error(`  ✗ ${nom} — ${detail}`); };
 const ok = (nom) => console.log(`  ✓ ${nom}`);
@@ -115,33 +127,35 @@ function ecartsDeParite(html, langue, slug) {
   const ici = (quoi) => `${langue}/${slug} : ${quoi}`;
 
   /* 1. LE RÉSUMÉ — le paragraphe du bloc verdict, et lui seul. */
+  /* 1. `verdictNote` N'EST PLUS PUBLIÉ DU TOUT (contre-revue du 05/09/2026).
+     Ce bloc vérifiait que la phrase servie ÉGALE celle de l'artefact. La phrase est une note
+     éditoriale écrite avant la frontière de confiance — « Cabin and hold are both open » —
+     et son lecteur a été supprimé du gabarit. L'exigence devient donc plus forte : la phrase
+     ne doit PAS être servie. On la cherche dans le HTML, et sa présence est un écart. */
   {
     const attendu = d.verdictNote?.[langue];
+    comparees++;
     const cibles = doc.querySelectorAll(".hero-verdict p");
-    if (typeof attendu !== "string" || !attendu) ecarts.push(ici("verdictNote absent de l'artefact"));
-    else if (cibles.length !== 1) ecarts.push(ici(`${cibles.length} paragraphe(s) « .hero-verdict p » au lieu d'un seul`));
-    else {
-      comparees++;
-      const servi = cibles[0].textContent?.trim() ?? "";
-      if (servi !== attendu.trim()) ecarts.push(ici(`« .hero-verdict p » ≠ verdictNote de l'artefact — servi « ${servi.slice(0, 60)}… »`));
-    }
+    if (cibles.length) ecarts.push(ici(`${cibles.length} paragraphe(s) « .hero-verdict p » — la note éditoriale est republiée`));
+    else if (typeof attendu === "string" && attendu.trim() && doc.body.textContent.includes(attendu.trim()))
+      ecarts.push(ici(`la note éditoriale « ${attendu.slice(0, 50)}… » est publiée hors de son bloc d'origine`));
   }
 
   /* 2. LA DESCRIPTION — les trois métas, une à une. */
   {
-    const attendu = d.metaDesc?.[langue];
+    const attendu = descriptionAttendue(langue, d.name);
     const METAS = [
       ["description", 'meta[name="description"]'],
       ["og:description", 'meta[property="og:description"]'],
       ["twitter:description", 'meta[name="twitter:description"]'],
     ];
-    if (typeof attendu !== "string" || !attendu) ecarts.push(ici("metaDesc absent de l'artefact"));
+    if (!attendu) ecarts.push(ici("`premium.meta_description` absente du catalogue de traductions"));
     else for (const [nom, sel] of METAS) {
       const els = doc.querySelectorAll(sel);
       if (els.length !== 1) { ecarts.push(ici(`${els.length} balise(s) « ${nom} » au lieu d'une seule`)); continue; }
       comparees++;
       const servi = els[0].getAttribute("content") ?? "";
-      if (servi !== attendu) ecarts.push(ici(`« ${nom} » ≠ metaDesc de l'artefact — servi « ${servi.slice(0, 60)}… »`));
+      if (servi !== attendu) ecarts.push(ici(`« ${nom} » ≠ description canonique — servi « ${servi.slice(0, 60)}… »`));
     }
   }
 
@@ -154,7 +168,7 @@ function ecartsDeParite(html, langue, slug) {
    * On les collecte donc RÉCURSIVEMENT, « @graph » compris, et l'on exige le cardinal attendu —
    * un seul — avant toute comparaison. */
   {
-    const attendu = d.metaDesc?.[langue];
+    const attendu = descriptionAttendue(langue, d.name);
     const trouves = [];
     let illisible = 0;
     const collecter = (v) => {
@@ -169,10 +183,10 @@ function ecartsDeParite(html, langue, slug) {
     }
     if (illisible) ecarts.push(ici(`${illisible} bloc(s) JSON-LD illisible(s)`));
     else if (trouves.length !== 1) ecarts.push(ici(`${trouves.length} nœud(s) « WebPage » dans le JSON-LD au lieu d'un seul`));
-    else if (typeof attendu === "string" && attendu) {
+    else if (attendu) {
       comparees++;
       if (trouves[0].description !== attendu)
-        ecarts.push(ici(`WebPage.description ≠ metaDesc de l'artefact — servi « ${String(trouves[0].description).slice(0, 60)}… »`));
+        ecarts.push(ici(`WebPage.description ≠ description canonique — servi « ${String(trouves[0].description).slice(0, 60)}… »`));
     }
   }
 
@@ -227,26 +241,32 @@ const fiches = [];
     /* 2bis — LE TÉMOIN DÉPLACÉ DANS UN ÉLÉMENT CACHÉ. Le gabarit écrit sa propre phrase dans le
      * bloc verdict ; la phrase de l'artefact, elle, subsiste ailleurs, invisible. Une parité qui
      * cherche « quelque part dans le corps » reste verte. La parité exacte doit rougir. */
+    /* 2bis — LA NOTE ÉDITORIALE REPUBLIÉE (re-fondée le 05/09/2026).
+     *
+     * Cette contre-épreuve mutait le texte de « .hero-verdict p » pour prouver qu'un résumé
+     * écrit en dur serait vu. Ce paragraphe n'existe plus : son lecteur a été supprimé du
+     * gabarit, `verdictNote` étant une phrase écrite avant la frontière de confiance. La
+     * contre-épreuve ne pouvait donc plus construire son attaque.
+     *
+     * Elle sabote maintenant la règle NOUVELLE, qui est plus stricte : au lieu de vérifier que
+     * la phrase servie égale celle de l'artefact, on vérifie qu'elle n'est PAS servie. On la
+     * réintroduit donc dans la page — exactement ce que ferait une régression du gabarit — et
+     * l'on exige que la parité la voie, et elle seule. */
     {
       const dom = new JSDOM(html);
       const doc = dom.window.document;
       const attendu = donnees[`airline_${f.slug.replace(/-/g, "_")}`]?.verdictNote?.[f.langue];
-      const cible = doc.querySelector(".hero-verdict p");
-      if (!attendu || !cible) echec("2bis", "verdictNote ou « .hero-verdict p » introuvable sur la page témoin");
+      const hote = doc.querySelector(".hero-verdict");
+      if (!attendu || !hote) echec("2bis", "verdictNote ou « .hero-verdict » introuvable sur la page témoin");
       else {
-        cible.textContent = "Le gabarit écrit désormais sa propre phrase.";
-        const cache = doc.createElement("div");
-        cache.hidden = true;
-        cache.textContent = attendu;                       // le témoin survit, mais caché
-        doc.body.appendChild(cache);
+        const revenu = doc.createElement("p");
+        revenu.textContent = attendu;                      // la note éditoriale reparaît
+        hote.appendChild(revenu);
         const mute = dom.serialize();
-        if (!zonesDe(mute).corps.includes(attendu))
-          echec("2bis", "le témoin caché n'est pas dans le corps : l'attaque n'est pas celle qu'on croit reproduire");
-        else {
-          const r = ecartsDeParite(mute, f.langue, f.slug).ecarts;
-          if (r.length !== 1 || !r[0].includes("hero-verdict")) echec("2bis", `la mutation produit ${JSON.stringify(r)} au lieu du seul écart sur « .hero-verdict p »`);
-          else ok("2bis — un résumé écrit en dur est vu, même si la phrase de l'artefact survit dans un élément caché");
-        }
+        const r = ecartsDeParite(mute, f.langue, f.slug).ecarts;
+        if (r.length !== 1 || !r[0].includes("hero-verdict"))
+          echec("2bis", `la mutation produit ${JSON.stringify(r)} au lieu du seul écart sur « .hero-verdict p »`);
+        else ok("2bis — la note éditoriale republiée dans le bloc verdict est vue immédiatement");
       }
     }
 

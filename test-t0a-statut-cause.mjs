@@ -91,11 +91,16 @@ console.log("=== 1. Union discriminée : les états incohérents sont INCONSTRUC
 
 console.log("=== 2. Schémas d'auteur : stricts, union exclusive, projection SANS PERTE ===");
 {
+  /* SRC = page officielle SANS phrase citée. Depuis la frontière de confiance (04/09/2026), elle
+     ne suffit plus à produire un verdict : elle accompagne, elle ne décide pas. SRC_CITEE ajoute
+     ce qui manque — la phrase, sa langue, son emplacement — et redevient décisive. Les deux
+     existent côte à côte pour que la DIFFÉRENCE soit testée, et pas seulement l'un des deux cas. */
   const SRC = { url: "https://example.com/policy", source_type: "official_website", verified_date: "2026-08-14", review_due: "2027-08-14", confidence: 3, reviewer: "test", history: [] };
+  const SRC_CITEE = { ...SRC, quote: "Dogs are accepted in the cabin up to 8 kg.", quote_language: "en", locator: "section « Pets »" };
   const enriched = {
     availability: "offered", derived_from_fiche: true,
     max_weight_kg: 8, carrier_dims_cm: { l: 55, w: 40, h: 23 },
-    fee: "€125 (intra-Europe)", conditions: { en: "IATA crate" }, brachy_allowed: false, source: SRC,
+    fee: "€125 (intra-Europe)", conditions: { en: "IATA crate" }, brachy_allowed: false, source: SRC_CITEE,
   };
   check("politique canonique ENRICHIE acceptée par le schéma d'auteur",
     CanonicalPlacementPolicyAuthored.safeParse(enriched).success);
@@ -112,16 +117,34 @@ console.log("=== 2. Schémas d'auteur : stricts, union exclusive, projection SAN
   check("`allowed` ET `availability` simultanés → ÉCHEC (union exclusive)",
     !PlacementPolicyAuthored.safeParse({ allowed: true, availability: "offered", source: SRC }).success);
   const proj = projectPlacementPolicy(CanonicalPlacementPolicyAuthored.parse(enriched));
-  check("projection canonique : availability offered → status allowed",
-    proj.status === "allowed" && proj.allowed === true);
+  check("projection canonique : offered AVEC phrase citée → status allowed",
+    proj.status === "allowed" && proj.allowed === true, JSON.stringify(proj));
   check("les champs communs TRAVERSENT sans perte (poids, dims, tarif, conditions, brachy, source, provenance)",
     proj.max_weight_kg === 8 && proj.carrier_dims_cm?.l === 55 && proj.fee === "€125 (intra-Europe)"
       && proj.conditions?.en === "IATA crate" && proj.brachy_allowed === false
-      && proj.source?.url === SRC.url && proj.derived_from_fiche === true,
+      && proj.source?.url === SRC_CITEE.url && proj.source?.quote === SRC_CITEE.quote
+      && proj.derived_from_fiche === true,
     JSON.stringify(proj));
-  const can = (availability) => projectPlacementPolicy(CanonicalPlacementPolicyAuthored.parse({ availability, source: SRC }));
-  check("canonical offered → allowed", can("offered").status === "allowed");
-  check("canonical not_offered → denied", can("not_offered").status === "denied");
+  const can = (availability) => projectPlacementPolicy(CanonicalPlacementPolicyAuthored.parse({ availability, source: SRC_CITEE }));
+  /* AVEC la phrase : la disponibilité décide, exactement comme avant ce lot. */
+  check("canonical offered + phrase citée → allowed", can("offered").status === "allowed");
+  check("canonical not_offered + phrase citée → denied", can("not_offered").status === "denied");
+  /* SANS la phrase : elle ne décide plus, et dit pourquoi. C'est LA propriété du lot, et elle
+     est testée ici sur les deux sens — une acceptation non prouvée ne devient pas un refus, et
+     un refus non prouvé ne devient pas une acceptation : les deux deviennent « à confirmer ». */
+  const sansPhrase = (availability) => projectPlacementPolicy(CanonicalPlacementPolicyAuthored.parse({ availability, source: SRC }));
+  check("canonical offered SANS phrase → à confirmer, cause official_source_unquoted",
+    sansPhrase("offered").status === "confirmation_required"
+      && sansPhrase("offered").status_cause === "official_source_unquoted", JSON.stringify(sansPhrase("offered")));
+  check("canonical not_offered SANS phrase → à confirmer, jamais un refus maintenu",
+    sansPhrase("not_offered").status === "confirmation_required"
+      && sansPhrase("not_offered").allowed === false, JSON.stringify(sansPhrase("not_offered")));
+  /* Provenance FABRIQUÉE depuis notre propre fiche : ni preuve, ni page à montrer. */
+  const derivee = projectPlacementPolicy(CanonicalPlacementPolicyAuthored.parse({
+    availability: "offered", source: SRC, source_derived: true }));
+  check("canonical offered + provenance dérivée → à confirmer, cause legacy_unreviewed",
+    derivee.status === "confirmation_required" && derivee.status_cause === "legacy_unreviewed",
+    JSON.stringify(derivee));
   check("canonical case_by_case → confirmation + airline_approval",
     can("case_by_case").status === "confirmation_required" && can("case_by_case").status_cause === "airline_approval");
   check("canonical undocumented → confirmation + policy_unpublished",
@@ -182,6 +205,14 @@ function fixtureKB({ airlines, patchPolicy = {}, dropRules = () => false, addRul
   return { ...kb, airlines: m, rules: [...kb.rules.filter((r) => !dropRules(r)), ...addRules] };
 }
 const CONFIRM_POLICY = { status: "confirmation_required", status_cause: "policy_unpublished", allowed: false, source: SRCFIX };
+/* SOUTE AUTORISÉE, EXPLICITE (frontière de confiance, 04/09/2026). La soute réelle de Turkish
+   est passée « à confirmer » — sa politique ne porte aucune phrase citée —, ce qui privait de
+   témoin deux contrôles qui ne parlent PAS de provenance : la confirmation climatique (cas 3) et
+   la dominance d'agrégation côté destinations (cas 5). Ces deux propriétés se testent sur un
+   canal AUTORISÉ ; on le pose donc en fixture, avec une provenance citée, plutôt que de
+   l'emprunter à une donnée réelle qui ne le dit plus. */
+const ALLOWED_POLICY = { status: "allowed", allowed: true,
+  source: { ...SRCFIX, quote: "Dogs are accepted in the hold on this route.", quote_language: "en", locator: "section « Pets »" } };
 const req = (over = {}) => ({
   origin: "airport_cdg", destination: "airport_ist", dog: GOLDEN,
   travel_type: "pet", placement: "any", locale: "en", ...over,
@@ -231,7 +262,7 @@ console.log("=== 4. Cas 2 — politique à confirmer + estimation CHAUDE sans r�
 
 console.log("=== 5. Cas 3 — véritable embargo estimé → confirmation climatique INCHANGÉE ===");
 {
-  const rep = explain(evaluate(fixtureKB({ airlines: [AIRLINE] }), req({ date: JUILLET })), "en");
+  const rep = explain(evaluate(fixtureKB({ airlines: [AIRLINE], patchPolicy: { [AIRLINE]: { hold: ALLOWED_POLICY } } }), req({ date: JUILLET })), "en");
   const card = rep.airlines.find((a) => a.airline_id === AIRLINE);
   const holdDec = card.placement_decisions.find((d) => d.placement === "hold");
   check("soute à confirmer, cause estimated_climate avec rule_id",
@@ -268,6 +299,7 @@ console.log("=== 7. Cas 5 — agrégation destination : allowed d'une compagnie 
   };
   const fkb = fixtureKB({
     airlines: [AIRLINE],
+    patchPolicy: { [AIRLINE]: { hold: ALLOWED_POLICY } },
     dropRules: (r) => r.category === "summer_embargo",
     extraAirlines: [clone],
   });
@@ -290,8 +322,13 @@ console.log("=== 8. offers_pet_transport : structurel, jamais éteint par une es
   const fkb = fixtureKB({ airlines: [AIRLINE], patchPolicy: { [AIRLINE]: onlyConfirm } });
   const dec = evaluate(fkb, req({ date: JANVIER }));
   const a = dec.airlines.find((x) => x.airline_id === AIRLINE);
-  check("compagnie au SEUL canal à confirmer → offers_pet_transport=true, jamais « aucun animal »",
-    a.offers_pet_transport === true && a.carries_pets === true);
+  /* MOUVEMENT NOMMÉ (05/09/2026) — le champ est TERNAIRE. Ce contrôle exigeait `true` sur une
+     compagnie dont le seul canal ouvert est « à confirmer » : il défendait la bonne moitié de la
+     propriété (« jamais aucun animal »), mais il affirmait l'autre sans preuve. Un canal à
+     confirmer ne prouve pas que la compagnie transporte des animaux — il dit qu'on ne sait pas.
+     La propriété défendue devient donc : ce n'est PAS « non », et ce n'est pas « oui » non plus. */
+  check("compagnie au SEUL canal à confirmer → « on ne sait pas », jamais « aucun animal »",
+    a.offers_pet_transport === "unknown", String(a.offers_pet_transport));
   const july = evaluate(fixtureKB({ airlines: [AIRLINE] }), req({ date: JUILLET })).airlines.find((x) => x.airline_id === AIRLINE);
   const january = evaluate(fixtureKB({ airlines: [AIRLINE] }), req({ date: JANVIER })).airlines.find((x) => x.airline_id === AIRLINE);
   check("une estimation climatique ne change JAMAIS la valeur (juillet = janvier)",
@@ -303,7 +340,13 @@ console.log("=== 8. offers_pet_transport : structurel, jamais éteint par une es
   };
   const closed = evaluate(fixtureKB({ airlines: [AIRLINE], patchPolicy: { [AIRLINE]: allClosed } }), req({ date: JANVIER }))
     .airlines.find((x) => x.airline_id === AIRLINE);
-  check("compagnie fermée sur les trois canaux → false", closed.offers_pet_transport === false);
+  check("compagnie fermée sur les trois canaux (refus PROUVÉS) → « non »",
+    closed.offers_pet_transport === "no", String(closed.offers_pet_transport));
+  /* Et le troisième état, qui n'existait pas : une politique ABSENTE ne dit pas « non ». */
+  const absente = evaluate(fixtureKB({ airlines: [AIRLINE], patchPolicy: { [AIRLINE]: {} } }), req({ date: JANVIER }))
+    .airlines.find((x) => x.airline_id === AIRLINE);
+  check("compagnie sans aucune politique → « on ne sait pas », jamais « non »",
+    absente.offers_pet_transport === "unknown", String(absente.offers_pet_transport));
 }
 
 console.log("=== 9. Tarif : jamais emprunté à un autre canal quand le premier est à confirmer ===");
@@ -328,7 +371,13 @@ console.log("=== 10. Dominance intra-compagnie : un refus dur ÉTEINT les causes
     criticality: "critical",
     applies_when: { all: [{ fact: "route.dest_country_id", op: "eq", value: "country_tr" }] },
     effect: { action: "deny" }, params: {},
-    rationale: "fixture", source: { url: "https://example.com", source_type: "government", verified_date: "2026-08-14", review_due: "2027-08-14", confidence: 4, reviewer: "test", history: [] },
+    /* CITÉE (05/09/2026) : la frontière atteint l'entrée dans le pays, et une interdiction non
+       citée ne ferme plus rien. Ce paragraphe éprouve la DOMINANCE d'un refus sur les causes de
+       confirmation, pas le droit d'interdire — il lui faut donc une interdiction recevable. */
+    rationale: "fixture", source: { url: "https://example.gov/import", source_type: "government",
+      verified_date: "2026-08-14", review_due: "2027-08-14", confidence: 4, reviewer: "test",
+      quote: "Dogs of this description may not be imported.", quote_language: "en",
+      locator: "section « fixture »", history: [] },
   };
   const fkb = fixtureKB({ airlines: [AIRLINE], patchPolicy: { [AIRLINE]: { cargo: CONFIRM_POLICY } }, addRules: [denyEntry] });
   const rep = explain(evaluate(fkb, req({ date: JUILLET })), "en");

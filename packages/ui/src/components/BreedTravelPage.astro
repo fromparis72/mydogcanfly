@@ -74,7 +74,12 @@ const indicators: [string, string, Level][] = [
       <p class="bt2-sub">{sub}</p>
       <div class="bt2-verdict">
         <span class="bt2-diff">{p.difficulty.emoji} {t(p.difficulty)}</span>
-        <span class="bt2-score"><b>{p.difficulty.stars.toFixed(1)}</b><small>/5</small> · {p.difficulty.score}/100</span>
+        {/* LA NOTE CHIFFRÉE NE S'AFFICHE QUE SI ELLE MESURE QUELQUE CHOSE (05/09/2026). Sans
+            aucune politique de compagnie établie, elle valait « 1,5/5 · 18/100 » — une précision
+            de mesure posée sur un dossier vide, en tête de 172 fiches et quatre langues. */}
+        {p.difficulty.etabli && (
+          <span class="bt2-score"><b>{p.difficulty.stars.toFixed(1)}</b><small>/5</small> · {p.difficulty.score}/100</span>
+        )}
       </div>
       <div class="bt2-ctas">
         <a class="bt2-cta" href={finderHref}>✈ {T("Find the best airline for this breed", "Trouver la meilleure compagnie pour cette race", "Encuentra la mejor aerolínea para esta raza")}</a>
@@ -138,6 +143,16 @@ const indicators: [string, string, Level][] = [
         reste utile — et une ancre nommée survit à un changement de mise en page, contrairement à
         un « ci-dessous ». */}
     <h2 class="bt2-h2" id="compagnies-compatibles">{T("Best airlines for this breed", "Meilleures compagnies pour cette race", "Mejores aerolíneas para esta raza")}</h2>
+    {/* LA SECTION DIT POURQUOI ELLE EST VIDE (05/09/2026). Elle affichait un titre — « Meilleures
+        compagnies pour cette race » — au-dessus de rien, puis une note expliquant un classement
+        absent. Un titre qui promet une liste et n'en livre aucune se lit comme une panne, ou pire
+        comme « aucune compagnie ne convient ». */}
+    {p.bestAirlines.length === 0 && (
+      <p class="bt2-empty">{T(
+        "No airline channel has been confirmed by a quoted official source for this breed yet, so there is nothing to rank here. This is an absence of proof, not a refusal — check the airline pages, or use the finder for a specific route.",
+        "Aucun canal de compagnie n'est encore confirmé par une source officielle citée pour cette race : il n'y a donc rien à classer ici. C'est une absence de preuve, pas un refus — consulte les fiches compagnies, ou utilise le moteur pour un trajet précis.",
+        "Todavía no hay ningún canal de aerolínea confirmado por una fuente oficial citada para esta raza, así que no hay nada que clasificar aquí. Es una ausencia de prueba, no un rechazo — consulta las fichas de aerolíneas o usa el buscador para una ruta concreta.")}</p>
+    )}
     <div class="bt2-airlines">
       {p.bestAirlines.map((a) => (
         <a class={`bt2-air tone-${a.tone}`} href={`${base}/airlines/${a.slug}/`} data-carry="breed">
@@ -151,9 +166,10 @@ const indicators: [string, string, Level][] = [
         portait pour TOUTES les races : la fiche d'un golden retriever expliquait son classement
         par des interdictions de museau court qui ne le concernent pas. Une explication qui ne
         s'applique pas au cas lu est une erreur, même quand elle est vraie ailleurs. */}
-    <p class="bt2-note">{p.brachy
+    {/* La note explique un CLASSEMENT : sans classement, elle n'a pas d'objet. */}
+    {p.bestAirlines.length > 0 && <p class="bt2-note">{p.brachy
       ? T("Ranking derived from published policies (cabin weight, snub-nosed hold bans). ⚠ = to confirm, never a fabricated refusal.", "Classement dérivé des politiques publiées (poids cabine, interdictions soute museau court). ⚠ = à confirmer, jamais un refus inventé.", "Clasificación derivada de las políticas publicadas (peso en cabina, prohibiciones de hocico chato en bodega). ⚠ = por confirmar, nunca un rechazo inventado.")
-      : T("Ranking derived from published policies (cabin weight limits, hold and cargo availability). ⚠ = to confirm, never a fabricated refusal.", "Classement dérivé des politiques publiées (limites de poids cabine, disponibilité soute et fret). ⚠ = à confirmer, jamais un refus inventé.", "Clasificación derivada de las políticas publicadas (límites de peso en cabina, disponibilidad de bodega y carga). ⚠ = por confirmar, nunca un rechazo inventado.")}</p>
+      : T("Ranking derived from published policies (cabin weight limits, hold and cargo availability). ⚠ = to confirm, never a fabricated refusal.", "Classement dérivé des politiques publiées (limites de poids cabine, disponibilité soute et fret). ⚠ = à confirmer, jamais un refus inventé.", "Clasificación derivada de las políticas publicadas (límites de peso en cabina, disponibilidad de bodega y carga). ⚠ = por confirmar, nunca un rechazo inventado.")}</p>}
   </section>
 
   <!-- INDICATORS -->
@@ -312,6 +328,10 @@ document.addEventListener("DOMContentLoaded",function(){
 
   .bt2-card { border: 1px solid var(--mdcf-line); border-radius: 16px; padding: 20px 22px; margin: 0 0 16px; background: var(--mdcf-surface); }
   .bt2-h2 { font-size: 18px; margin: 0 0 14px; color: var(--mdcf-ink); }
+  /* La section vide qui s'explique : neutre, jamais rouge — une absence de preuve n'est pas un
+     refus, et sa couleur ne doit pas le suggérer. */
+  .bt2-empty { margin: 0 0 4px; font-size: 13.5px; line-height: 1.5; color: #475569;
+    background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 10px; padding: 10px 13px; }
   .bt2-note { color: var(--mdcf-muted); font-size: 12.5px; margin: 12px 0 0; line-height: 1.5; }
 
   .bt2-pill { display: inline-block; padding: 4px 11px; border-radius: 999px; font-size: 13px; font-weight: 700; border: 1px solid transparent; }

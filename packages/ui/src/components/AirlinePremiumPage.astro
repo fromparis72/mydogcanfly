@@ -10,22 +10,22 @@ import logos from "../data/airline-logos.generated.json";
 import { loadKB, t as tt, inlineT, inlineF, localizer, dateFormatter } from "@mydogcanfly/knowledge";
 import FaqBlock from "./FaqBlock.astro";
 import { airlineFaq, faqJsonLd } from "../lib/faq";
-import { airlineReach, brachyBreeds, brachyRestriction } from "../lib/cluster";
-import { politiqueDuCanal, cleLibelleStatut, classeStatut, causeDeConfirmation, preuveAuditee } from "../lib/decisionCanal";
+import { airlineReach } from "../lib/cluster";
+import { politiqueDuCanal, cleLibelleStatut, classeStatut, causeDeConfirmation, preuveAuditee, sourceAffichable, verdictDeFiche } from "../lib/decisionCanal";
 interface Props { id: string; locale?: string }
 const { id, locale = "en" } = Astro.props;
 const fr = locale === "fr";
 const d = airlineData[id];
 const logo = (logos as Record<string, { src: string; dark?: boolean }>)[id];
 const kb = loadKB();
-const kbAirline = [...kb.airlines.values()].find((a) => a.id === id) as { rating?: { score: number; points: number }; country_id?: string } | undefined;
-const rating = kbAirline?.rating;
+/* `rating` n'est plus lu : le score et la note publiés ont été SUPPRIMÉS du gabarit (voir plus
+   bas). Seul le pays d'attache est encore tiré d'ici. */
+const kbAirline = [...kb.airlines.values()].find((a) => a.id === id) as { country_id?: string } | undefined;
 // Home country of the carrier — the default "next step" suggestion on direct arrivals (most people
 // flying an airline registered in a country often travel to that country); overridden by ?to=<iso> when coming from the finder.
 const homeCountry = kbAirline?.country_id ? kb.countries.get(kbAirline.country_id) : undefined;
 const homeIso = homeCountry ? homeCountry.iso2.toLowerCase() : undefined;
 const homeName = homeCountry ? ((homeCountry.name as unknown as Record<string, string>)[locale] ?? (homeCountry.name as unknown as { en: string }).en) : undefined;
-const scoreCls = rating ? (rating.score >= 4 ? "ok" : rating.score >= 3 ? "warn" : "no") : "";
 const t = localizer(locale);
 const T = inlineT(locale);
 const fmtDate = dateFormatter(locale); // date visible à la langue de la page ; le JSON-LD garde l'ISO
@@ -34,49 +34,16 @@ const F = inlineF(locale); // phrases à trous : la donnée entre par {0}, {1}�
    pas ; le lien complet reste dans `href`, où le harnais le compare à l'octet près. */
 const hote = (u: string) => { try { return new URL(u).hostname.replace(/^www\./, ""); } catch { return u; } };
 
-/* LES CHIFFRES QUI DÉCIDENT, EN GRAS DANS LA PHRASE.
+/* ── `chiffresEnGras` ET SES QUATRE EXPRESSIONS SONT SUPPRIMÉS (05/09/2026) ─────────────────
  *
- * « Chien ou chat < 8 kg, sac souple ventilé sous le siège (46 × 28 × 24 cm) » contient tout ce
- * qu'un voyageur veut savoir, mais noyé : il faut lire la phrase entière pour trouver la cote du
- * sac, qui est justement ce qu'il vient chercher avant d'en acheter un. Les trois valeurs passent
- * donc en gras et en couleur pleine, la phrase reste intacte autour.
+ * Cette fonction mettait en gras les seuils, les cotes et les mots « sac souple / rigide » dans
+ * `channels[].detail`. Elle n'avait qu'un seul appelant, et cet appelant était le défaut : sous
+ * une pastille « à confirmer », elle donnait à « moins de 8 kg » et « 46 × 28 × 24 cm » le poids
+ * typographique d'une règle établie. Le détail retiré, elle n'est plus l'outil de rien.
  *
- * LE TRAITEMENT VAUT POUR LES TROIS CANAUX, pas seulement la cabine. C'était la remarque de
- * Philippe : les dimensions de la caisse en soute et les limites en fret méritent la même
- * lisibilité, et privilégier la cabine reviendrait à décider à sa place de ce qui compte.
- *
- * ON N'EMPHASE QUE CE QUI EST NON AMBIGU dans les quatre langues : les dimensions, les poids, et
- * la nature du sac — souple ou rigide, qui fait refuser au comptoir un sac pourtant au bon
- * gabarit. Le reste de la phrase n'est pas touché : une règle qui grossit s'attrape des mots
- * qu'elle ne devrait pas, et un gras partout ne met plus rien en valeur.
- *
- * ÉCHAPPEMENT D'ABORD, BALISES ENSUITE. Le texte vient des fiches, donc de nous — mais l'injecter
- * en HTML sans le neutraliser installerait une faille pour la première fiche qui contiendra un
- * chevron. On échappe, puis on ajoute les `<b>` sur le texte déjà sûr. */
-const ECHAPPE: Record<string, string> = { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" };
-const SOUPLE = /\b(sacs? souples?|soft (?:sided )?(?:carrier|bag|kennel)|bolsos? blandos?|transport[íi]n(?:es)? blandos?|bolsas? male[áa]vel(?:eis)?|caixas? male[áa]vel(?:eis)?|sacs? rigides?|hard(?:-| )sided|r[íi]gidos?|r[íi]gidas?)\b/gi;
-/* Trois nombres séparés par × : une cote de sac. L'unité est facultative — certaines fiches
- * l'écrivent une seule fois en fin de parenthèse. */
-const COTES = /\d{1,3}(?:[.,]\d)?\s*[×x]\s*\d{1,3}(?:[.,]\d)?\s*[×x]\s*\d{1,3}(?:[.,]\d)?(?:\s*(?:cm|in\b|"))?/g;
-/* Un poids, comparateur compris : « < 8 kg » se lit d'un bloc, et le couper laisserait un
- * « chat < » orphelin devant un gras.
- *
- * Le comparateur est cherché sous sa forme ÉCHAPPÉE — `&lt;`, `&gt;` — parce que l'échappement
- * a déjà eu lieu quand cette règle s'applique. Une première version cherchait `<` et ne trouvait
- * plus rien : elle produisait « chat &lt;<b> 8 kg</b> », comparateur exclu et espace prise dans
- * le gras. Les deux branches sont séparées pour que la variante sans comparateur ne capture pas
- * l'espace qui la précède. */
-const POIDS = /(?:&lt;|&gt;|[≤≥])\s*\d{1,3}(?:[.,]\d)?\s*(?:kg|lbs?|lb)\b|\d{1,3}(?:[.,]\d)?\s*(?:kg|lbs?|lb)\b/g;
-
-function chiffresEnGras(texte: string): string {
-  const sur = String(texte ?? "").replace(/[&<>"]/g, (c) => ECHAPPE[c]);
-  /* Les cotes AVANT les poids : « 46 × 28 × 24 cm » ne doit pas être entamé par une règle qui
-   * chercherait un nombre isolé. */
-  return sur
-    .replace(COTES, (m) => `<b>${m}</b>`)
-    .replace(POIDS, (m) => (m.includes("<b>") ? m : `<b>${m}</b>`))
-    .replace(SOUPLE, (m) => `<b>${m}</b>`);
-}
+ * Elle est supprimée plutôt que laissée en place « au cas où » : du code mort dont la seule
+ * raison d'être était de mettre en valeur des chiffres non prouvés est une invitation à les
+ * remettre. `ECHAPPE`, `SOUPLE`, `COTES` et `POIDS` n'avaient aucun autre lecteur. */
 // Préfixe de langue : dérivé du code de langue, jamais énuméré — une liste en dur ici
 // renvoyait les pages portugaises vers les URL anglaises.
 const base = locale === "en" ? "" : `/${locale}`;
@@ -93,36 +60,101 @@ const reach = noPet.size
 const noPetNames = noPet.size
   ? reachAll.countries.filter((c) => noPet.has(c.iso2.toUpperCase())).map((c) => c.name)
   : [];
-// Restriction brachycéphale : la seule restriction de race que les données portent de façon
-// structurée. La liste est donnée en entier, jamais tronquée — sur une restriction, une liste
-// partielle laisse croire à celui qui n'y voit pas sa race qu'il n'est pas concerné.
+/* `brachyRestriction` / `brachyBreeds` ne sont plus lus ICI : le bloc qu'ils alimentaient est
+   supprimé des fiches compagnies (voir le commentaire à son emplacement). Ils restent utilisés
+   par les fiches RACES, où la classification est bien une information propre à MyDogCanFly. */
 const kbAir = kb.airlines.get(id);
-const brachy = kbAir ? brachyRestriction(kbAir) : null;
-const brachyList = brachy ? brachyBreeds(kb, locale) : [];
-const chanName = (c: string) => c === "cabin" ? T("cabin", "cabine", "cabina") : c === "hold" ? T("the hold", "soute", "bodega") : T("cargo", "cargo", "carga");
-const chanList = (brachy?.channels ?? []).map(chanName).join(" / ");
+/* L'identité STRUCTURELLE, lue dans la base — jamais dans l'éditorial. Le pays d'attache est
+   déjà résolu plus haut (`homeName`) : une seule définition, pas une seconde lecture. */
+const hubsIata = ((kbAir as { hub_airport_ids?: string[] } | undefined)?.hub_airport_ids ?? [])
+  .map((aid) => kb.airports.get(aid)?.iata).filter((x): x is string => !!x);
 // Titre SEO ≠ H1. Search Console montre que la requête tapée est « <compagnie> pet policy » :
 // on met donc « pet » (générique, très recherché) ET « dog » (spécialité du site). Le suffixe
 // de marque est retiré : sur un site jeune il consomme des caractères sans rien rapporter.
+/* ── LE VERDICT DE TÊTE EST DÉRIVÉ DES TROIS CANAUX, TOUJOURS ─────────────────────────────────
+ *
+ * Première rédaction, refusée par la contre-revue du 05/09/2026 et à juste titre : elle passait en
+ * état prudent tant qu'aucun canal n'était décidé, PUIS rendait la main au verdict YAML dès qu'un
+ * canal l'était. Une simple citation cabine aurait donc pu faire réapparaître un « No pets » ou un
+ * « Easy » historique sans rapport avec les décisions canoniques — la contradiction qu'on ferme
+ * serait revenue par la porte de derrière, et personne ne l'aurait vue venir.
+ *
+ * La règle est donc SANS ÉCHAPPATOIRE : aucun chemin public ne relit `d.verdict.cls` ni
+ * `d.verdict.label`. Le sens ET la couleur descendent des trois politiques runtime :
+ *
+ *   au moins un `allowed`                        → transport possible sur un canal vérifié (ok)
+ *   aucun `allowed`, au moins un à confirmer      → conditions à confirmer (warn)
+ *   trois `denied` prouvés                        → aucun canal accepté (no)
+ *
+ * Le libellé vient des chaînes PUBLIÉES, jamais du YAML. */
+const verdictDerive = verdictDeFiche(kbAir?.premium?.policy);
+
+/* ── LE SCORE, SES POINTS ET LA NOTE ÉDITORIALE : LECTEURS SUPPRIMÉS (contre-revue du 05/09) ──
+ *
+ * Ils étaient derrière `scoreEtNoteAffichables = false`, et j'avais écrit que la constante était
+ * « écrite en clair pour que sa suppression soit un geste délibéré ». C'était le même défaut que
+ * `surfacesEditorialesAffichables`, au même endroit, et je ne l'ai pas vu en corrigeant l'autre :
+ * une constante n'est pas une frontière. `rating.score`, `rating.points` et `d.verdictNote`
+ * restaient dans le gabarit, à un caractère de revenir.
+ *
+ * CE QU'ILS AFFIRMAIENT. `rating` est calculé sur des politiques dont aucune n'est prouvée ; un
+ * « 4,2/5 » ou un « 78/100 » donne à cette absence de preuve l'apparence d'une mesure.
+ * `verdictNote` est une phrase éditoriale écrite avant la frontière — « Cabin and hold are both
+ * open » resterait faux le jour où seule la cabine est citée.
+ *
+ * Ils reviendront reconstruits depuis les décisions PROUVÉES, c'est-à-dire par un autre code que
+ * celui-ci. Les données restent intactes. Ce qui reste publié en tête de fiche est le verdict
+ * DÉRIVÉ (`verdictDerive`), qui ne lit que la politique canonique. */
+/* ── LES SURFACES ÉDITORIALES NON SOURCÉES N'ONT PLUS DE LECTEUR ────────────────────────────
+ *
+ * Une constante `surfacesEditorialesAffichables = false` gardait ici `ladder`, `restrictions`,
+ * `crate`, `temperature`, `assistance` et `goodToKnow`. La contre-revue a refusé l'interrupteur,
+ * et elle avait raison : la dette n'était pas devenue inatteignable, elle était à un booléen de
+ * distance — la repasser à `true` aurait republié d'un coup toute la couche non sourcée, et
+ * plusieurs enveloppes restaient rendues VIDES au passage.
+ *
+ * Les lecteurs sont donc RETIRÉS du gabarit, chacun à son emplacement, avec sa mesure. Les
+ * données restent intactes dans les fiches ; leur retour au public exigera une implémentation
+ * neuve, alimentée par des preuves. C'est plus long à rebrancher — c'est précisément l'effet
+ * recherché. */
+
+
 const seoLong = F("{0} pet policy: dog in cabin, hold & cargo", "{0} : animaux et chien en cabine ou en soute", "{0}: mascotas y perro en cabina o bodega", d.name);
 const seoShort = F("{0} pet policy: dog in cabin & hold", "{0} : animaux en cabine ou en soute", "{0}: mascotas en cabina o bodega", d.name);
 const seoTitle = seoLong.length <= 65 ? seoLong : seoShort;
+/* ── LA DESCRIPTION PUBLIQUE NE PROMET PLUS CE QUE LA PAGE NE PUBLIE PLUS ───────────────────
+ *
+ * `d.metaDesc` annonçait, sur les 102 fiches : « cabin, hold and cargo rules, fares,
+ * restrictions and official sources ». Or les tarifs sont retirés depuis le micro-lot Tarifs,
+ * et les restrictions viennent de l'être : la page promettait publiquement — dans la balise
+ * `description`, dans `og:description`, dans `twitter:description` et dans le `WebPage` du
+ * JSON-LD — un contenu qu'elle ne présente plus. J'avais corrigé l'intérieur de la fiche sans
+ * regarder ce qu'elle annonce d'elle-même à l'extérieur.
+ *
+ * On ne réécrit pas 102 fiches : le gabarit produit une description NEUTRE et localisée, tenue
+ * dans le catalogue de traductions — donc réellement déclinée en espagnol et en portugais, et
+ * non rabattue sur l'anglais comme le ferait `inlineF`, dont la table portugaise est indexée par
+ * la phrase anglaise. La MÊME chaîne sert les quatre zones publiques : une seule définition. */
+const metaDescription = tt(locale, "premium.meta_description").replace("{airline}", d.name);
 // WebPage about the airline (entity grounding for GEO / rich results).
 const webpageLd = {
   "@context": "https://schema.org",
   "@type": "WebPage",
   name: seoTitle,
-  description: t(d.metaDesc),
+  description: metaDescription,
   inLanguage: locale,
   isPartOf: { "@id": "https://mydogcanfly.com/#website" },
   about: { "@type": "Airline", name: d.name },
 };
-// FAQ dérivée des données de la fiche (aucun contenu inventé). Le balisage FAQPage n'est
-// émis que si des questions ont réellement pu être construites et sont donc visibles.
-const faqItems = airlineFaq(d, locale);
+/* FAQ construite sur la POLITIQUE CANONIQUE, la même que les cartes de canaux ci-dessous —
+   `kbAir?.premium?.policy` lui est passée explicitement. Sans elle, `airlineFaq` ne produit
+   aucune réponse de canal : elle ne se rabat JAMAIS sur `channels[].detail`, dont le texte
+   éditorial repartait autrefois dans le balisage `FAQPage`. Le détail est en tête de `faq.ts`.
+   Le balisage n'est émis que si des questions ont réellement pu être construites. */
+const faqItems = airlineFaq(d, locale, kbAir?.premium?.policy);
 const jsonLd = faqItems.length ? [webpageLd, faqJsonLd(faqItems)] : [webpageLd];
 ---
-<Base title={seoTitle} description={t(d.metaDesc)} locale={locale} ogType="article" jsonLd={jsonLd}>
+<Base title={seoTitle} description={metaDescription} locale={locale} ogType="article" jsonLd={jsonLd}>
   <div class="mdcf-container afp">
     <Breadcrumb locale={locale} items={[
       { label: T("Home", "Accueil", "Inicio"), href: "/" },
@@ -137,20 +169,38 @@ const jsonLd = faqItems.length ? [webpageLd, faqJsonLd(faqItems)] : [webpageLd];
       <div class="hero-id">
         <h1>{tt(locale, "airline.h1").replace("{name}", d.name)}</h1>
         <div class="chips">
-          {d.chips.map((c) => (<span class={`pill ${c.cls ?? "neutral"}`}>{c.icon} {t(c.label)}</span>))}
+          {/* ── LES PUCES SONT RECONSTRUITES DEPUIS DES CHAMPS CANONIQUES ──────────────────────
+              Mesuré sur les 102 fiches : 277 puces éditoriales, dont 102 « Mise à jour le … » et
+              6 qui énoncent un refus. Mon premier geste les filtrait PAR ÉMOJI (`🗓`, `🚫`) — une
+              liste noire, et la contre-revue a eu raison de la refuser : décider de la nature
+              d'une affirmation d'après son icône est fragile, et la première puce affirmant
+              quelque chose sous une autre icône serait repassée sans rien déclencher.
+
+              Le tableau `d.chips` n'est donc plus lu du tout. Les trois identités STRUCTURELLES
+              sont rebâties depuis la base de connaissances — `alliance`, `country_id`,
+              `hub_airport_ids` : ni décision, ni date de vérification, rien qu'une carte
+              d'identité. Ce qui n'a pas de champ canonique n'a plus de puce. */}
+          {kbAir?.alliance && <span class="pill neutral">✈ {kbAir.alliance.replace(/(^|\s)\S/g, (m: string) => m.toUpperCase())}</span>}
+          {homeName && <span class="pill neutral">📍 {homeName}</span>}
+          {hubsIata.length > 0 && <span class="pill neutral">🛫 {hubsIata.join(" · ")}</span>}
         </div>
       </div>
       <div class="hero-verdict">
         <div class="hv-row">
-          <span class={`pill ${d.verdict.cls} big`}>★ {t(d.verdict.label)}</span>
-          {rating && (
-            <span class={`hv-score hv-score--${scoreCls}`} title={T("MyDogCanFly score", "Note MyDogCanFly", "Puntuación MyDogCanFly")}>
-              <b>{rating.score.toFixed(1)}</b><small>/5</small>
-            </span>
-          )}
+          {/* LE VERDICT DE TÊTE DESCEND DES DÉCISIONS, PLUS DE L'ÉDITORIAL (arbitrage du
+            * 05/09/2026). Il était écrit à la main dans le YAML — « ★ Easy » en vert, « ★ No pets »
+            * en rouge — et ne consultait pas `policies:`. Mesuré avant correction : 8 fiches vertes
+            * et 29 rouges surmontaient TROIS canaux « à confirmer », zéro canal décidé sous aucune.
+            *
+            * C'est la faute que `decisionCanal.ts` a fermée un étage plus bas : « une classe
+            * VISUELLE ne décide plus d'un verdict ». Elle n'avait jamais été fermée ici.
+            *
+            * LA RÈGLE : tant qu'aucun canal n'est décidé, la fiche affiche la réserve PUBLIÉE
+            * (`air.to_confirm`) dans la classe prudente, et le libellé éditorial s'efface. Dès
+            * qu'une citation vérifiée décide un canal, le verdict DÉRIVÉ change de lui-même —
+            * mais il reste dérivé : l'ancien libellé YAML ne revient jamais. */}
+          <span class={`pill ${verdictDerive.cls} big`}>★ {tt(locale, verdictDerive.cle)}</span>
         </div>
-        {rating && <div class="hv-pts">{rating.points}/100 · {T("MyDogCanFly score", "note MyDogCanFly", "puntuación MyDogCanFly")}</div>}
-        <p>{t(d.verdictNote)}</p>
       </div>
       {/* Non-affiliation, sous le logo et non enterrée dans les mentions légales.
         *
@@ -172,10 +222,12 @@ const jsonLd = faqItems.length ? [webpageLd, faqJsonLd(faqItems)] : [webpageLd];
 
     <div class="card">
       <h2>⚖️ {T("Where does your dog travel?", "Où voyage ton chien ?", "¿Dónde viaja tu perro?")}</h2>
-      <div class="ladder">
-        {d.ladder.map((s) => (<div style={`flex:${s.flex};background:${s.color}`}>{t(s.label)}<small>{typeof s.sub === "string" ? s.sub : t(s.sub)}</small></div>))}
-      </div>
-      <p class="muted mt6">{T("Weight includes the carrier or kennel.", "Poids incluant le sac de transport ou la caisse.", "El peso incluye el bolso de transporte o la jaula.")}</p>
+      {/* ── L'ÉCHELLE DE POIDS ET SA PHRASE SONT SUPPRIMÉES (contre-revue du 05/09/2026) ────────
+          `ladder` publiait « Cabine ≤ 8 kg », « Soute 8 – 75 kg », « Fret > 75 kg » : des seuils
+          de compagnie, sans source. Mon premier geste l'avait passée derrière un interrupteur —
+          mais l'enveloppe `.ladder` restait rendue, VIDE, et la phrase « Poids incluant le sac de
+          transport ou la caisse » restait dessous, à commenter des seuils absents. Enveloppe,
+          contenu et phrase disparaissent ensemble. */}
       <div class="g mt14">
         {d.channels.map((c) => {
           /* LA DÉCISION VIENT DE LA POLITIQUE CANONIQUE, PAS DE LA PASTILLE ÉDITORIALE.
@@ -189,10 +241,31 @@ const jsonLd = faqItems.length ? [webpageLd, faqJsonLd(faqItems)] : [webpageLd];
           const statut = decision.status;
           const cause = causeDeConfirmation(decision);
           const preuve = preuveAuditee(decision);
+          /* Le lien officiel SANS phrase citée n'est pas une preuve : il se montre, mais sans
+             bouclier, sans « vérifié le… » et sans indice de confiance — ces trois signes
+             disent « nous avons lu », et personne n'a lu. */
+          const lienOfficiel = preuve ? null : sourceAffichable(decision);
           return (
             <div class="mini" data-placement={c.placement} data-status={statut}>
               <div class="t">{c.icon} {t(c.name)}<span class={`pill ${classeStatut(statut)} ml`}>{tt(locale, cleLibelleStatut(statut))}</span></div>
-              <div class="k" set:html={chiffresEnGras(t(c.detail))} />
+              {/* ── `c.detail` NE SORT PLUS TEL QUEL (contre-revue du 05/09/2026) ─────────────
+                  J'avais écrit que « rien de faux n'atteint l'écran » après n'avoir vérifié que
+                  la PASTILLE. C'était inexact, et la contre-revue l'a montré : juste sous une
+                  pastille « à confirmer », cette ligne publiait le texte éditorial historique —
+                  « moins de 8 kg », « 46 × 28 × 24 cm », « soute jusqu'à 75 kg » pour Air France,
+                  l'âge minimal et les exceptions de routes pour Thai Airways — et
+                  `chiffresEnGras` mettait ces seuils EN GRAS. Le visiteur lisait donc « à
+                  confirmer » et, deux lignes plus bas, une règle détaillée donnée pour certaine.
+
+                  Une citation qui prouve l'ACCEPTATION ne prouve ni le poids, ni les dimensions,
+                  ni l'âge, ni les exceptions : ce détail n'est donc pas davantage publiable sur
+                  un canal prouvé. Ce que la preuve établit est publié à sa place, verbatim, dans
+                  le bloc `proof` ci-dessous — avec son lien et son emplacement. */}
+              {/* La phrase générique DIT « rien n'a été confirmé sur une source citée » : sur le
+                  seul canal qui l'est — British Airways cabine — elle serait fausse. Elle ne
+                  paraît donc que faute de preuve ; là où la preuve existe, c'est le bloc `proof`
+                  ci-dessous qui parle, et il ne dit que la phrase citée. */}
+              {!preuve && <div class="k">{tt(locale, "premium.channel_unproven")}</div>}
               {/* LE MONTANT A ÉTÉ RETIRÉ (micro-lot Tarifs, 29/08/2026). Il venait de
                   premium.policy[canal].fee — une chaîne libre, sans devise séparée, sans route,
                   sans date d'applicabilité : lisible, mais impossible à rapporter à un trajet.
@@ -224,10 +297,23 @@ const jsonLd = faqItems.length ? [webpageLd, faqJsonLd(faqItems)] : [webpageLd];
                   </div>
                 </div>
               )}
+              {/* LA PAGE OFFICIELLE ASSOCIÉE — un lien pour aller lire, pas une preuve. Ni date de
+                * vérification ni indice de confiance : les afficher ferait exactement ce que ce
+                * lot corrige, affirmer une vérification qui n'a pas eu lieu. */}
+              {lienOfficiel && (
+                <div class="proof proof-weak">
+                  <div class="proof-h">🔗 {tt(locale, "premium.channel_official_page")}</div>
+                  <a class="proof-lnk" href={lienOfficiel.url} rel="nofollow noopener" target="_blank">{hote(lienOfficiel.url)}</a>
+                </div>
+              )}
             </div>
           );
         })}
       </div>
+      {/* Un lien vers un OUTIL, pas une affirmation sur la compagnie : le calculateur de caisse
+          est canonique (il ne retient un gabarit de cabine que sur un statut `allowed`). Il vivait
+          au bas de la carte « Température & soute », supprimée avec le reste de l'éditorial. */}
+      <a class="cratecta" data-carry="breed" href={`${locale === "en" ? "/tools/crate/" : `/${locale}/tools/crate/`}#air=${id}`}>📦 {T("What size travel crate does my dog need?", "Quelle taille de cage de transport pour mon chien ?", "¿Qué tamaño de transportín necesita mi perro?")} →</a>
     </div>
 
     {/* LA GRILLE « TARIFS PAR ZONE » N'EST PLUS RENDUE (micro-lot Tarifs, 29/08/2026), et c'est
@@ -249,18 +335,13 @@ const jsonLd = faqItems.length ? [webpageLd, faqJsonLd(faqItems)] : [webpageLd];
         une table structurée et sourcée permettra de calculer, et elles répondront alors POUR UN
         TRAJET, pas en général. */}
 
-    <div class="card danger">
-      <h2>⚠️ {T("Key restrictions", "Restrictions importantes", "Restricciones importantes")}</h2>
-      <div class="g">
-        {d.restrictions.map((r) => (
-          <div class="mini">
-            <div class="t">{r.icon} {t(r.title)}</div>
-            <div class="chips mt8">{r.pills.map((p) => (<span class={`pill ${p.cls}`}>{t(p.label)}</span>))}</div>
-            <div class="k">{t(r.note)}</div>
-          </div>
-        ))}
-      </div>
-    </div>
+    {/* ── LA CARTE « RESTRICTIONS IMPORTANTES » EST SUPPRIMÉE (contre-revue du 05/09/2026) ──
+        Elle était d'abord passée derrière une constante `surfacesEditorialesAffichables = false`.
+        Deux défauts, tous deux justes : elle restait RENDUE VIDE — un titre d'alerte au-dessus de
+        rien —, et surtout un interrupteur n'est pas une frontière. Repasser la constante à `true`
+        aurait republié d'un geste toute la couche non sourcée. Le lecteur est donc RETIRÉ : les
+        201 `restrictions` (aucune sourcée, mesuré) restent dans les données, et leur retour au
+        public exigera une implémentation neuve, alimentée par des preuves. */}
 
     {/* NOTRE TAXONOMIE N'EST PAS CELLE DE LA COMPAGNIE.
       *
@@ -279,66 +360,49 @@ const jsonLd = faqItems.length ? [webpageLd, faqJsonLd(faqItems)] : [webpageLd];
       * La liste reste — c'est une aide au repérage utile, et le maillage vers les fiches
       * races en dépend — mais elle est désormais nommée pour ce qu'elle est. Ce que la
       * compagnie a écrit, elle, vit dans `restrictions` de sa fiche, sourcé au cas par cas. */}
-    {brachy && brachyList.length > 0 && (
-      <div class="card">
-        <h2>🐶 {T("Check whether your dog is snub-nosed", "Vérifie si ton chien est brachycéphale", "Comprueba si tu perro es braquicéfalo")}</h2>
-        <p class="k">
-          {brachy.kind === "explicit"
-            ? F("{0} refuses brachycephalic (snub-nosed) breeds in {1}. What the airline itself wrote is in the restrictions above — that text alone says which breeds it turns away.",
-                "{0} refuse les races brachycéphales (museau court) en {1}. Ce que la compagnie a écrit elle-même figure dans les restrictions ci-dessus — ce texte seul dit quelles races elle écarte.",
-                "{0} rechaza las razas braquicéfalas (hocico chato) en {1}. Lo que la propia aerolínea ha escrito está en las restricciones de arriba — solo ese texto dice qué razas rechaza.",
-                d.name, chanList)
-            : F("{0}'s published conditions mention snub-nosed breeds ({1}) without stating a general refusal. Check your breed's fiche, then confirm with the airline before booking.",
-                "Les conditions publiées par {0} évoquent les races à museau court ({1}) sans énoncer de refus général. Vérifie la fiche de ta race, puis confirme auprès de la compagnie avant de réserver.",
-                "Las condiciones publicadas por {0} mencionan las razas de hocico chato ({1}) sin declarar un rechazo general. Consulta la ficha de tu raza y confírmalo con la aerolínea antes de reservar.",
-                d.name, chanList)}
-        </p>
-        <div class="reach-chips mt8">
-          {brachyList.map((b) => (<a class="reach-chip" href={`${base}/breeds/${b.slug}/`}>{b.name} <span class="reach-iata">{b.weightKg} kg</span></a>))}
-        </div>
-        {/* La phrase évite « la liste de {compagnie} » : l'élision française tombe faux dès que le
-          * nom commence par une voyelle (« de Aegean », « de Air France »). On dit donc « la liste
-          * publiée par {compagnie} », qui marche pour les 92 fiches sans table d'exceptions. */}
-        <p class="muted mt8">{F("These {0} breeds are MyDogCanFly's own brachycephalic classification, heaviest first — it is not the list published by {1}. Use it to situate your dog, then read the airline's own wording above and confirm with it before booking.",
-            "Ces {0} races sont la classification brachycéphale de MyDogCanFly, les plus lourdes d'abord — ce n'est pas la liste publiée par {1}. Sers-t'en pour situer ton chien, puis lis le texte de la compagnie ci-dessus et confirme auprès d'elle avant de réserver.",
-            "Estas {0} razas son la clasificación braquicéfala propia de MyDogCanFly, las más pesadas primero — no es la lista publicada por {1}. Úsala para situar a tu perro, luego lee el texto de la aerolínea más arriba y confírmalo con ella antes de reservar.",
-            brachyList.length, d.name)}</p>
-      </div>
-    )}
+    {/* ── LE BLOC BRACHYCÉPHALE EST SUPPRIMÉ DES FICHES COMPAGNIES (contre-revue du 05/09/2026) ──
+        Je l'avais gardé en pensant que sa phrase de désaveu suffisait : « ces N races sont la
+        classification de MyDogCanFly — ce n'est PAS la liste publiée par {compagnie} ». Le
+        reproche est plus fin que celui que j'avais entendu, et il est juste : les poids ne sont
+        pas le problème. Le problème est que ce bloc n'APPARAÎT sur une fiche compagnie que si
+        `brachyRestriction(kbAir)` y trouve une restriction NON PROUVÉE. Sa présence même
+        établit donc, en silence, une association entre ces races et cette compagnie — une
+        affirmation qu'aucun désaveu ne défait, puisqu'elle est portée par le fait d'être là.
 
-    {d.crate && (
-      <div class="card">
-        <h2>📦 {T("The travel crate for the hold", "La cage de transport en soute", "El transportín para viajar en bodega")}</h2>
-        <div class="cols">
-          {d.crate.map((c) => (<div class="chk"><span class="ci ok">✓</span> {t(c)}</div>))}
-        </div>
-      </div>
-    )}
+        S'y ajoutait une phrase devenue fausse par mon propre masquage : « lis le texte de la
+        compagnie ci-dessus », alors que ce texte venait d'être retiré.
 
-    <div class="card warnb">
-      <h2>🌡️ {T("Temperature & hold", "Température & soute", "Temperatura y bodega")}</h2>
-      <div class="chips mb8">
-        {d.temperature.pills.map((p) => (<span class={`pill ${p.cls}`}>{t(p.label)}</span>))}
-      </div>
-      <p class="muted">{t(d.temperature.note)}</p>
-      <a class="cratecta" data-carry="breed" href={`${locale === "en" ? "/tools/crate/" : `/${locale}/tools/crate/`}#air=${id}`}>📦 {T("Check your crate size for this airline", "Vérifier la taille de cage pour cette compagnie", "Comprueba el tamaño de la jaula para esta aerolínea")} →</a>
-    </div>
+        La classification et les poids restent sur les FICHES RACES, où ils sont bien une
+        information propre à MyDogCanFly, rattachée à son sujet. */}
 
-    <div class="card">
-      <h2>🦮 {T("Assistance dog", "Chien d'assistance", "Perro de asistencia")}</h2>
-      <div class="g">
-        {d.assistance.map((a) => (
-          <div class="mini"><div class="t"><span class="aci">{a.icon}</span> {t(a.label)}</div><div class="k">{t(a.value)}</div></div>
-        ))}
-      </div>
-    </div>
+    {/* ── CAISSE, TEMPÉRATURE, CHIEN D'ASSISTANCE : MASQUÉS TANT QU'ILS NE SONT PAS PROUVÉS ──
+        Même mouvement que `ladder` et `restrictions`, et même mesure : `crate`, `temperature`
+        et `assistance` sont du texte libre quadrilingue — une entrée de `crate` n'a que les
+        clés `en`/`fr`/`es`/`pt`, il n'y a pas même de place pour une source. Ils affirmaient
+        pourtant, compagnie nommée, « max 55 × 40 × 23 cm », « mais 40 × 25 × 25 cm sur DH8-100
+        et ATR », « animal moyen (8–25 kg) ». C'est le contrôle DOM des fiches sentinelles qui
+        les a trouvés : j'avais masqué la ligne `detail` de la carte en croyant avoir tout vu.
+        Le lien vers l'outil de caisse SURVIT au masquage : il ne dit rien de la compagnie, il
+        mène à un calcul que le visiteur fait lui-même. */}
+    {/* ── CAISSE, TEMPÉRATURE, CHIEN D'ASSISTANCE, BON À SAVOIR : LECTEURS SUPPRIMÉS ─────────
+        Ces quatre blocs étaient d'abord passés derrière `surfacesEditorialesAffichables = false`.
+        La contre-revue a eu raison de refuser l'interrupteur : le basculer à `true` aurait
+        republié d'un geste toute la couche non sourcée, et la carte « Température & soute »
+        restait de surcroît AFFICHÉE, avec un message générique et un appel à l'outil de caisse
+        sans rapport avec elle. Les lecteurs sont donc RETIRÉS du gabarit.
 
-    <div class="card">
-      <h2>ℹ️ {T("Good to know", "Bon à savoir", "Conviene saber")}</h2>
-      {d.goodToKnow.map((g) => (
-        <div class="row"><span class="lbl">{g.icon} {t(g.label)}</span><span class="muted r">{t(g.value)}</span></div>
-      ))}
-    </div>
+        MESURE qui fonde le retrait : `crate`, `temperature`, `assistance` et `goodToKnow` sont du
+        texte libre quadrilingue — une entrée de `crate` n'a que les clés `en`/`fr`/`es`/`pt`, il
+        n'y a pas même un champ où une source pourrait aller. Ils affirmaient pourtant, compagnie
+        nommée : « max 55 × 40 × 23 cm — mais 40 × 25 × 25 cm sur DH8-100 et ATR », « animal moyen
+        (8–25 kg) », « accord préalable obligatoire · soute ≥ 24 h · États-Unis 48 h ».
+        Les données restent intactes ; leur retour au public exigera une implémentation neuve,
+        alimentée par des preuves — pas le basculement d'un interrupteur.
+
+        L'APPEL À L'OUTIL DE CAISSE SURVIT, déplacé dans la carte des canaux : il n'affirme rien
+        de la compagnie. Le calculateur est lui-même canonique — mesuré : il ne retient un gabarit
+        de cabine que si le statut vaut `allowed`, ce qu'aucune politique ne vaut plus, et lit
+        soute et fret sur le statut runtime, jamais sur l'éditorial. */}
 
     {(reach.countries.length > 0 || reach.hubs.length > 0) && (
       <div class="card reach">
@@ -368,21 +432,44 @@ const jsonLd = faqItems.length ? [webpageLd, faqJsonLd(faqItems)] : [webpageLd];
       </div>
     )}
 
+    {/* LA FAQ NE DATE PLUS UNE VÉRIFICATION QU'ELLE NE PEUT PAS ÉTABLIR (contre-revue du
+      * 05/09/2026). Elle affirmait « dernière vérification le 8 août 2026 » sur une fiche dont
+      * aucune politique ne porte de citation. Ce qui reste est vrai et utile : les réponses
+      * viennent des conditions publiées par la compagnie, et ces conditions changent.
+      *
+      * CE COMMENTAIRE ÉTAIT DANS LA LISTE D'ATTRIBUTS de `<FaqBlock>`, entre `title` et `note`.
+      * Le build Astro l'acceptait ; `astro check` non — en position d'attribut, `{/* … */}` se
+      * lit comme une expression, et TOUT le fichier partait en erreur de syntaxe à partir de là
+      * (13 diagnostics, dont un « JSX expressions must have one parent element » 20 lignes plus
+      * bas, qui ne désignait rien de réel). `npm run typecheck` ne couvre pas les `.astro` : seul
+      * `check-astro-debt.mjs`, en CI, l'a vu. Un commentaire se place AVANT l'élément. */}
     <FaqBlock
       items={faqItems}
       title={F("Flying with a dog on {0}: common questions",
                "Voyager avec un chien sur {0} : questions fréquentes",
                "Viajar con un perro en {0}: preguntas frecuentes", d.name)}
-      note={F("Answers drawn from {0}'s published conditions, last verified {1}. Airline conditions are commercial and can change — confirm at booking.",
-              "Réponses tirées des conditions publiées par {0}, dernière vérification le {1}. Les conditions d'une compagnie sont commerciales et peuvent changer — confirme à la réservation.",
-              "Respuestas basadas en las condiciones publicadas por {0}, última verificación el {1}. Las condiciones de una aerolínea son comerciales y pueden cambiar — confírmalo al reservar.",
-              d.name, fmtDate(d.verified_date))}
+      note={T("This page summarises the information currently on record. Conditions can change: confirm them with the airline before booking.",
+              "Cette page résume les informations actuellement enregistrées. Les conditions peuvent changer : confirme-les auprès de la compagnie avant de réserver.",
+              "Esta página resume la información registrada actualmente. Las condiciones pueden cambiar: confírmalas con la aerolínea antes de reservar.")}
     />
 
     <OnwardNav locale={locale} currentAirlineId={id} defaultIso={homeIso} defaultName={homeName} />
 
     <div class="card src">
-      <div class="chips"><span class="pill ok">🛡️ {T("Official source", "Source officielle", "Fuente oficial")}</span><span class="muted">{t(d.sources)}</span></div>
+      {/* LE BLOC HISTORIQUE `d.sources` N'EST PLUS RENDU (contre-revue du 05/09/2026).
+        *
+        * Il affichait, sous un bouclier vert « Source officielle », une ligne du genre « Air France
+        * sources · confidence 5/5 · collected 8 August 2026 ». Trois affirmations, dont aucune
+        * n'est rattachable aux faits de la page : un bouclier qui valide, une confiance chiffrée
+        * qui ne vient d'aucune preuve, une date de collecte globale qui ne dit rien de la politique
+        * cabine ni de la soute. Retirer le NOMBRE de sources ne suffisait pas — c'est la promesse
+        * entière qu'il fallait retirer.
+        *
+        * Seuls les blocs de CANAL parlent encore de provenance, et sous condition stricte : une
+        * `T0bAuditSource` affiche citation, locator, date et confiance ; une
+        * `official_source_unquoted` n'affiche que son lien et la réserve prudente.
+        *
+        * `verified_date` reste en donnée interne : il porte la cadence de revue (ADR-0007). */}
       {/* G minimal (arbitrage Codex 28/08/2026) : la fiche décrit la compagnie qui vend — en
           partage de code, l'opérateur effectif peut différer et ses conditions avec. Présence
           quadrilingue garantie par test-mention-transporteur.mjs. */}
@@ -453,6 +540,9 @@ const jsonLd = faqItems.length ? [webpageLd, faqJsonLd(faqItems)] : [webpageLd];
   .afp .proof-q { margin: 6px 0 0; padding-left: 9px; border-left: 2px solid var(--mdcf-line, #e6ebf1); color: var(--mdcf-muted, #5b6b7f); font-style: italic; line-height: 1.45; }
   .afp .proof-loc { margin-top: 5px; color: var(--mdcf-muted, #5b6b7f); }
   .afp .proof-m { display: flex; gap: 10px; flex-wrap: wrap; margin-top: 6px; font-weight: 600; color: var(--mdcf-muted, #5b6b7f); }
+  /* Le lien officiel non cité est visuellement PLUS SOBRE que la preuve : même bloc, titre en
+     retrait, aucune métadonnée. La hiérarchie visuelle dit la hiérarchie de confiance. */
+  .afp .proof-weak .proof-h { font-weight: 600; color: var(--mdcf-muted, #5b6b7f); }
   .afp table.fare { width: 100%; border-collapse: collapse; font-size: 14.5px; }
   .afp table.fare th, .afp table.fare td { padding: 9px 10px; border-bottom: 1px solid var(--mdcf-line, #e6ebf1); text-align: left; }
   .afp table.fare th { font-size: 12.5px; font-weight: 700; color: var(--mdcf-muted, #5b6b7f); text-transform: uppercase; letter-spacing: .04em; }

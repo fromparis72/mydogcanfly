@@ -24,13 +24,12 @@ chips:
       fr: Royaume-Uni · LHR
       es: Reino Unido · LHR
       pt: "Reino Unido · LHR"
-  - icon: ✓
+  - icon: 🗓
     label:
-      en: Verified 11 Jul 2026
-      fr: Vérifié le 11 juil. 2026
-      es: Verificado el 11 jul 2026
-      pt: "Verificado em 11 jul. 2026"
-    cls: ok
+      en: Updated 11 Jul 2026
+      fr: Mise à jour le 11 juil. 2026
+      es: Actualizado el 11 jul 2026
+      pt: "Atualizado em 11 jul. 2026"
 verdict:
   cls: no
   label:
@@ -75,7 +74,33 @@ ladder:
 policies:
   cabin:
     availability: not_offered
+    # PREMIÈRE DÉCISION PROUVÉE DU DÉPÔT (lecture directe Codex, 05/09/2026).
+    # La phrase est reprise telle qu'elle est publiée, et elle ne pose AUCUNE condition de route,
+    # de poids ni de saison : c'est ce qui la rend capable de fonder un refus global. Le `locator`
+    # dit où la relire sans reparcourir la page entière.
+    source:
+      url: "https://www.britishairways.com/content/information/travel-assistance/travelling-with-pets"
+      source_type: official_website
+      verified_date: "2026-09-05"
+      review_due: "2026-12-04"
+      confidence: 4
+      reviewer: "Codex — lecture directe de la page officielle"
+      history: []
+      # APOSTROPHE TYPOGRAPHIQUE (U+2019), comme sur la page officielle — contre-revue du
+      # 05/09/2026. La citation était stockée avec une apostrophe ASCII (U+0027) : le champ dit
+      # « reprise telle quelle », il doit donc porter l'octet réellement lu. Aucune normalisation
+      # typographique n'est appliquée nulle part, et c'est délibéré : replier « ’ » sur « ' »
+      # rendrait `verbatim` approximatif, et une comparaison future à la page échouerait sans
+      # qu'on sache lequel des deux textes a bougé.
+      quote: "We don’t carry pets in the cabin on any route."
+      quote_language: en
+      locator: "Travelling with pets → Travelling to and from the UK"
   hold:
+    # NON PROUVÉ, ET LA LECTURE L'A ÉTABLI (Codex, 05/09/2026). La même page dit au contraire
+    # « Your pet will travel in the hold of our aircraft ». Le transport passe par des partenaires,
+    # ce qui peut correspondre commercialement au fret, mais on ne conclut pas « aucune soute »
+    # sans une définition et une citation de plus. La politique reste donc à confirmer — et c'est
+    # une lecture qui a servi : elle empêche de reprendre ce canal en croyant qu'il reste à voir.
     availability: not_offered
   cargo:
     availability: offered
@@ -303,8 +328,8 @@ book:
   host: britishairways.com
   url: https://www.britishairways.com/
 sources:
-  en: 4 British Airways & IAG Cargo sources · last verified 11 July 2026
-  fr: 4 sources British Airways & IAG Cargo · dernière vérification 11 juillet 2026
-  es: 4 fuentes de British Airways y IAG Cargo · última verificación 11 julio 2026
-  pt: "4 fontes da British Airways e IAG Cargo · última verificação em 11 de julho de 2026"
+  en: British Airways & IAG Cargo sources · collected 11 July 2026
+  fr: Sources British Airways & IAG Cargo · relevées le 11 juillet 2026
+  es: Fuentes de British Airways y IAG Cargo · recopiladas el 11 julio 2026
+  pt: "Fontes da British Airways e IAG Cargo · recolhidas em 11 de julho de 2026"
 verified_date: 2026-07-11

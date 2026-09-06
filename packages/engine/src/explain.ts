@@ -1,4 +1,4 @@
-import { t, isEstimatedTemperature } from "@mydogcanfly/knowledge";
+import { t, isEstimatedTemperature, estAutoCitation } from "@mydogcanfly/knowledge";
 import type { Decision, DecisionReport, ReportItem, AirlineResult, PlacementStatus, AdvisorySignal, SafetyAdvisory } from "./contracts";
 import { hasActiveClimateCause, makePlacementDecision, advisoryKey, SafetyAdvisory as SafetyAdvisorySchema } from "./contracts";
 
@@ -125,12 +125,59 @@ export function explain(decision: Decision, locale = "en"): DecisionReport {
 
   // Country entry requirements → "before departure" conditions.
   // The rationale prose already lists the required documents, so we do NOT append a redundant "Required: …".
+  /* UNE AUTO-CITATION NE FONDE RIEN — Y COMPRIS ICI (correction du 04/09/2026).
+   *
+   * `preuve.ts` pose cette règle depuis le 15/08/2026, et son en-tête dit explicitement qu'elle
+   * vaut « partout où une source justifie une décision — fiche compagnie, carte du Finder, LISTE
+   * DE SOURCES D'UN RAPPORT ». Le chemin des exigences PAYS ne l'appliquait pas : `toFired` recopie
+   * `r.source.url` tel quel, et 44 règles d'entrée pays citent
+   * `https://mydogcanfly.com/dog-travel-requirements-by-country/` — notre propre page.
+   *
+   * Ce que le visiteur voyait, mesuré sur CDG → Almaty : le rapport servait UNE seule source, et
+   * c'était nous, donnée comme fondement des exigences légales d'entrée au Kazakhstan, en
+   * criticité `high`. Trois de ces 44 règles sont en criticité `critical`.
+   *
+   * Pourquoi la contre-épreuve de baseline ne l'a pas vu : elle vérifie qu'aucune auto-citation ne
+   * subsiste dans les 72 scénarios figés, et aucun de ces 72 ne va vers un de ces 44 pays. Le
+   * contrôle était juste, son échantillon ne mordait pas là. Une contre-épreuve dédiée, qui balaie
+   * TOUTES les règles pays, est ajoutée dans `test-frontiere-confiance.mjs`.
+   *
+   * CE QUI EST CORRIGÉ, ET CE QUI NE L'EST PAS. L'exigence elle-même reste affichée : elle est
+   * peut-être juste, et la retirer serait une décision de contenu qui ne m'appartient pas. Ce qui
+   * disparaît est le seul mensonge présent — la prétention qu'une page à nous la fonde. Une
+   * exigence sans source est plus honnête qu'une exigence adossée à soi-même.
+   *
+   * `f.source_url` reste intact dans `fired` : l'audit doit continuer de voir d'où vient la règle.
+   * Ce n'est qu'à la PRÉSENTATION que l'auto-citation s'efface. */
   for (const f of decision.countryRequirements) {
+    const presentable = estAutoCitation(f.source_url) ? undefined : f.source_url;
+    const nonDecisive = f.action === "deny" && !f.decisive;
+    /* LE `rationale` D'UNE RÈGLE NON DÉCISIVE NE SORT PLUS DU TOUT (contre-revue du 05/09/2026).
+       (Un commentaire antérieur affirmait ici que « le TEXTE est conservé, entier ». Il décrivait
+       la rédaction intermédiaire, celle qui encadrait le texte au lieu de le retirer ; il
+       contredisait le code qui le suit et il est supprimé.)
+       Ma rédaction précédente l'encadrait — « Ce que dit la page officielle, et que nous n'avons
+       pas pu vérifier phrase par phrase : … » — puis l'imprimait. Or `rationale` est NOTRE résumé
+       éditorial, pas une citation : la règle britannique n'a aucune `source.quote`, et le rapport
+       attribuait donc à la page officielle des conclusions catégoriques que personne n'y a lues
+       (« possession is only lawful under a court-ordered Certificate of Exemption, which cannot be
+       obtained for a dog arriving from abroad »). Encadrer un texte ne le rend pas sourçable ; il
+       fallait cesser de le publier. Le visiteur reçoit une formulation neutre et LE LIEN OFFICIEL,
+       qui le mène au texte véritable. `rationale` reste dans `fired`, pour l'audit.
+
+       LA FORMULATION NE PRÉTEND PLUS RIEN SUR NOTRE PROCESSUS (contre-revue du 05/09/2026). Elle
+       disait « nous n'avons pas pu vérifier nous-mêmes le texte officiel », ce qui confondait
+       trois situations distinctes : une page bien lue dont la citation verbatim n'est pas
+       enregistrée ; une information réellement non vérifiée ; et une restriction dont
+       l'applicabilité dépend d'une donnée que le formulaire ne recueille pas — la pureté du chien
+       pour l'Australie. La phrase publiée porte donc sur le FAIT, pas sur nous : une restriction
+       peut s'appliquer, les informations disponibles ne permettent pas de l'établir ici. */
+    const texte = nonDecisive ? L("cond.potential_restriction") : f.rationale;
     conditions.push({
-      text: f.rationale,
-      criticality: f.criticality, rule_id: f.rule_id, source_url: f.source_url,
+      text: texte,
+      criticality: f.criticality, rule_id: f.rule_id, source_url: presentable,
     });
-    sources.set(f.source_url, { url: f.source_url });
+    if (presentable) sources.set(presentable, { url: presentable });
     confidences.push(f.confidence);
   }
   conditions.sort((x, y) => CRIT_ORDER[x.criticality] - CRIT_ORDER[y.criticality]);
@@ -181,7 +228,17 @@ export function explain(decision: Decision, locale = "en"): DecisionReport {
        - aucun motif exploitable → libellé neutre. Jamais « race non acceptée » par défaut : c'était
          faux pour Delta, JetBlue et Brussels Airlines, qui refusent un golden de 30 kg sur son poids. */
     const reasons = a.deny_reasons ?? [];
-    const notAccepted = !a.carries_pets
+    /* `offers_pet_transport === "no"`, JAMAIS `!carries_pets` (contre-revue du 05/09/2026).
+     *
+     * `carries_pets` est devenu la projection booléenne d'`offers_pet_transport === "yes"` : il
+     * vaut donc `false` aussi bien sur un refus PROUVÉ que sur un « on ne sait pas ». Cette
+     * ligne rendait donc « Animaux refusés » sur l'ignorance. Reproduit : CDG → LHR avec un
+     * American Bully XL — l'interdiction d'entrée BRITANNIQUE éteint les trois canaux, et les
+     * DIX compagnies, toutes `unknown`, annonçaient « No pets ». Une interdiction du PAYS
+     * devenait ainsi une affirmation structurelle fausse sur chaque compagnie : le visiteur
+     * lisait « Air France ne transporte pas d'animaux », ce que rien n'établit et qui le
+     * suivrait sur tous ses autres trajets. */
+    const notAccepted = a.offers_pet_transport === "no"
       ? L("air.no_pets")
       : reasons.length
         ? L("air.not_accepted_because").replace("{reasons}", joinList(reasons.map((c) => L(`air.reason.${c}`)), locale))
@@ -252,7 +309,12 @@ export function explain(decision: Decision, locale = "en"): DecisionReport {
        promesse que si le marquage suit sa définition. Une carte dont la cabine est fermée au poids
        et la soute par l'embargo est bien CONCERNÉE par l'embargo. La nuance « juste saisonnier »
        reste disponible côté UI via `deny_reasons` (vide ⇔ aucune cause non saisonnière). */
-    const heatFired = entryAllowed && a.fired.some((f) => f.category === "summer_embargo");
+    /* `decisive` (05/09/2026) : l'embargo AFFIRMÉ n'est plus déduit de la PRÉSENCE d'une règle.
+       Les six règles `summer_embargo` du dépôt portent une URL officielle et aucune phrase citée ;
+       depuis que la frontière les empêche de refuser, une carte marquée « suspendu » aurait
+       annoncé une suspension que le moteur n'appliquait plus. Le drapeau suit donc la règle qui
+       a réellement le droit de décider. */
+    const heatFired = entryAllowed && a.fired.some((f) => f.category === "summer_embargo" && f.decisive);
     /* P0 climat : le drapeau dépend de la PROVENANCE de la température. Fournie par le visiteur →
        embargo confirmé, avec sa garde historique (« seule raison du refus », voir ci-dessus).
        Estimée → signal de confirmation, porté par les STATUTS eux-mêmes : dès qu'un canal est
@@ -360,7 +422,7 @@ export function explain(decision: Decision, locale = "en"): DecisionReport {
         }
       }
     }
-    return { airline_id: a.airline_id, name: a.airline_name, direct: a.direct, itinerary_confidence: a.itinerary_confidence, deny_reasons: (cabin || hold || cargo || to_confirm.length > 0) ? undefined : reasons, connect_airport_id: a.connect_airport_id, detour_km: a.detour_km, cabin, hold, cargo, cabin_status, hold_status, cargo_status, to_confirm: to_confirm.length ? to_confirm : undefined, placement_decisions, offers_pet_transport: a.offers_pet_transport, carries_pets: a.carries_pets, label, statuts_tarifaires, heat_embargo, heat_confirmation_required, carrier_of_origin, carrier_of_destination, origin_airport_id: a.origin_airport_id, destination_airport_id: a.destination_airport_id };
+    return { airline_id: a.airline_id, name: a.airline_name, direct: a.direct, itinerary_confidence: a.itinerary_confidence, deny_reasons: (cabin || hold || cargo || to_confirm.length > 0) ? undefined : reasons, connect_airport_id: a.connect_airport_id, detour_km: a.detour_km, cabin, hold, cargo, cabin_status, hold_status, cargo_status, to_confirm: to_confirm.length ? to_confirm : undefined, placement_decisions, offers_pet_transport: a.offers_pet_transport, label, statuts_tarifaires, heat_embargo, heat_confirmation_required, carrier_of_origin, carrier_of_destination, origin_airport_id: a.origin_airport_id, destination_airport_id: a.destination_airport_id };
   });
   /* Le placement demandé, AVANT le tri (contre-revue v4 : le classement l'ignorait — quatre
      « soute à confirmer » précédaient des soutes réellement autorisées sur une recherche soute). */
@@ -439,10 +501,22 @@ export function explain(decision: Decision, locale = "en"): DecisionReport {
        3. ≥1 allowed correspondant → verdict actuel (compatible/conditional selon les formalités) ;
        4. sinon ≥1 confirmation_required correspondant → conditional ;
        5. sinon → incompatible. */
+  /* 05/09/2026 — LA QUATRIÈME RÉPONSE. La ligne 4 disait « sinon ≥1 confirmation → conditional »,
+     et `conditional` s'affiche « Oui — sous conditions ». Depuis la frontière de confiance, plus
+     aucun canal n'est prouvé ouvert : les 22 compagnies d'un CDG→JFK sont toutes « à confirmer »,
+     et le site répondait donc OUI, sur zéro preuve, à la question qu'il pose lui-même en titre.
+     Un « à confirmer » n'est pas un oui atténué — c'est l'absence de réponse, et elle a
+     maintenant son nom. Le reste de la règle est inchangé : le refus d'entrée prime sur tout. */
+  /* L'ENTRÉE À CONFIRMER PLAFONNE LE VERDICT (contre-revue du 05/09/2026). Sans cette ligne, une
+     compagnie devenue `allowed` rendrait le trajet « compatible » alors qu'une restriction d'entrée
+     applicable, mais non prouvée, pèse encore sur lui : l'embarquement n'est pas l'entrée. La
+     règle du 13/08 est inchangée pour le reste — le refus d'entrée PROUVÉ prime sur tout. */
+  const entryStatus = decision.destination.entry_status;
   const verdict: DecisionReport["verdict"] =
-    !entryAllowed ? "incompatible"
+    entryStatus === "blocked" ? "incompatible"
+    : entryStatus === "confirmation_required" ? "unknown"
     : anyCompatible ? (conditions.length > 0 ? "conditional" : "compatible")
-    : anyConfirm ? "conditional"
+    : anyConfirm ? "unknown"
     : "incompatible";
 
   // Same source-confidence average the ★ rating below is built from (see `confidence`) — reused
@@ -503,8 +577,20 @@ export function explain(decision: Decision, locale = "en"): DecisionReport {
       positives.push({ text: L("why.no_cabin").replace("{modes}", joinList(rest, locale)), criticality: "high", tone: "negative" });
     }
   }
-  if (decision.destination.entry_allowed) {
-    positives.push({ text: L("why.country_allows").replace("{country}", decision.destination.country_name), criticality: "low" });
+  /* « LE PAYS AUTORISE L'ENTRÉE » NE SE DÉDUIT PLUS D'UNE ABSENCE DE PREUVE (05/09/2026).
+     Cette ligne lisait `entry_allowed`, qui valait `true` dès qu'aucune interdiction n'était
+     PROUVÉE — le rapport affirmait donc « le Royaume-Uni autorise l'entrée » à côté d'une exigence
+     critique disant « Interdit par l'article 1 du Dangerous Dogs Act ». Les trois états ont
+     désormais chacun leur phrase, et aucune ne conclut à une autorisation que nous n'avons pas
+     établie : nous ne connaissons pas les autorisations, nous ne connaissons que les blocages. */
+  {
+    const pays = decision.destination.country_name;
+    if (decision.destination.entry_status === "confirmation_required") {
+      positives.push({ text: L("why.country_entry_to_confirm").replace("{country}", pays),
+        criticality: "high", tone: "negative" });
+    } else if (decision.destination.entry_status === "no_known_block") {
+      positives.push({ text: L("why.country_no_known_block").replace("{country}", pays), criticality: "low" });
+    }
   }
   positives.push({ text: decision.countryRequirements.length ? L("why.docs_known") : L("why.no_docs"), criticality: "low" });
 

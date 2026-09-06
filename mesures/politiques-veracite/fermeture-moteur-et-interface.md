@@ -1,0 +1,1096 @@
+# Fermeture du moteur + trois arbitrages d'interface — dossier de contre-revue
+
+**Date** : 5 septembre 2026 · **Branche** : `claude/passation-t0-b2-xgrvye`
+**Point de départ** : `85c04d1` (bloqué par le P0 moteur de Codex)
+
+Ce dossier couvre deux lots successifs. Le premier ferme le P0 moteur ; le second applique les
+trois arbitrages d'interface restants. Chacun est mesuré, figé par une paire de baselines, et
+prouvé par un contrôle permanent.
+
+---
+
+## LOT 1 — Aucune règle non prouvée ne refuse plus rien
+
+### Ce que le P0 disait, et ce que la mesure a trouvé
+
+Codex : « la carte British Airways affichait déjà `denied` en cabine — par une règle » signifie que
+`projectPlacementPolicy` n'est pas le seul chemin de décision. Exact. La mesure en a trouvé **trois**,
+pas un :
+
+| # | Chemin | Ce qu'il produisait |
+|---|--------|---------------------|
+| 1 | `hardDenies` — les règles `deny` de `rules.json` | un refus catégorique sans rien demander à la provenance |
+| 2 | l'absence de politique | « la fiche ne décide pas ce canal » traité comme « ce canal n'existe pas » |
+| 3 | l'embargo d'été sur température **fournie** | une suspension annoncée que personne n'avait lue |
+
+Le troisième n'était pas dans le P0 : je l'ai trouvé en re-fondant un témoin du harnais climat.
+Les **six** règles `summer_embargo` du dépôt (AC, AF, IB, KL, LH, TK) portent une URL officielle et
+**aucune phrase citée** — elles refermaient donc la soute et le fret de façon catégorique dès que le
+visiteur saisissait une température au-dessus de 30 °C.
+
+### La porte était infranchissable — défaut nommé
+
+Le critère « seule une règle citée peut refuser » était **inapplicable par construction** : le schéma
+d'une règle portait un `Source` nu, sans `quote`/`quote_language`/`locator`, et `normalize` effaçait
+donc en silence toute citation qu'on y posait. `regleDecisive` ne pouvait être vrai pour aucune règle,
+jamais. J'ai découvert le défaut en écrivant un témoin qui citait une règle : il échouait, et la
+citation n'avait jamais atteint le moteur.
+
+Correction : le schéma citable quitte `objects.ts` (où il s'appelait `PolicySource` et n'était
+atteignable que par les politiques) pour **`common.ts`**, sous le nom `SourceCitable`. Politiques,
+règles et faits de race lisent désormais la même définition — `common.ts` n'importe que zod, donc
+sans cycle et sans copie. `PolicySource` reste comme alias du nom historique.
+
+### Nouvelle cause, et pourquoi elle est distincte
+
+`climate_rule_unquoted { rule_id }` : la température est **certaine**, c'est la **règle** qui n'est
+pas prouvée. Distincte d'`estimated_climate` (où c'est la température qui est estimée) parce que le
+doute n'est pas le même — les confondre aurait remis deux définitions derrière un seul nom.
+
+Les deux allument le drapeau chaleur : la question posée à la compagnie est la même. Et parce que
+**trois** lecteurs dérivaient ce drapeau en comparant le code en dur, la liste vit maintenant dans
+une seule fonction du contrat, `estCauseClimatique` / `CLIMATE_CAUSE_CODES`. Le troisième lecteur
+tourne dans le navigateur et ne peut pas importer le contrat : sa copie est **comparée
+littéralement** par `test-frontiere-confiance.mjs` §13 quater, plutôt que laissée à la vigilance.
+
+`FiredRule` gagne un champ `decisive`, calculé au seul endroit qui tient encore la règle complète.
+Sans lui, `explain` déduisait « embargo appliqué » de la simple **présence** d'une règle d'embargo
+dans `fired` : une carte se serait affichée « suspendu » alors que le moteur n'appliquait plus rien.
+C'est exactement le point 4 de la fermeture — `fired` garde tout pour l'audit, mais rien n'y décide
+silencieusement.
+
+### Mouvement mesuré et figé
+
+`test-baselines/frontiere-regles-avant.json` → `frontiere-regles-apres.json`
+
+- **1 168 canaux** passent de `denied` à `confirmation_required` (408 cabine, 480 soute, 280 fret) ;
+- **aucun** ne se referme, **aucun** ne va jusqu'à `allowed` ;
+- causes gagnées : **992** `rule_official_unquoted`, **288** `rule_unverified`, **8** `policy_absent` ;
+- **888 cartes** changent de rang — conséquence assumée de l'ouverture ;
+- **British Airways cabine reste `denied`** sur sa phrase citée, et sa **soute** passe à « à
+  confirmer » **en nommant** `rule_british_airways_no_cabin`. C'est le cas exact du P0.
+
+### Trois erreurs nommées
+
+1. **La baseline « Citation 1 » énonçait une règle fausse.** Elle affirmait qu'une citation ne doit
+   changer que `sources`. Codex l'a déclarée conceptuellement fausse, et il a raison : une citation
+   a précisément le droit de faire passer un fait de « à confirmer » à `denied`. Le commentaire est
+   réécrit — la paire fige un **état daté**, pas une loi ; la loi vraie est celle de la **portée**
+   (une preuve ne déplace que ce qu'elle prouve). Et si rien n'avait bougé, c'était le **symptôme** :
+   un chemin non gardé avait déjà tout décidé.
+2. **La surface figée rendait `rule_official_unquoted:undefined`.** La projection lisait `policy_ref`
+   pour toute cause ; les causes de règle portent un `rule_id`. Une incertitude anonyme est
+   inauditable — c'est ce qui avait laissé passer la règle BA. La baseline aurait scellé cet
+   anonymat. Elle **échoue franchement** maintenant plutôt que d'écrire `undefined` dans un fichier
+   scellé.
+3. **J'ai d'abord mesuré « 28 bascules vers denied ».** Il n'y en a aucune : je comparais les cartes
+   **par rang** alors que 888 en avaient changé — donc British Airways à Iberia. La comparaison porte
+   désormais sur l'identité de la compagnie, et le rang est mesuré à part. (Deux autres outils de
+   mesure fautifs le même jour : un diff qui parcourait une chaîne comme un objet, et un `pkill`
+   dont le motif figurait dans sa propre ligne de commande.)
+
+### Témoins re-fondés, jamais abaissés
+
+Neuf contrôles du harnais climat reposaient sur un refus produit par une règle non citée. Leur
+**témoin** est mort, pas leur **propriété**. `citerRegles(...ids)` cite **au scalpel** la règle dont
+chaque contrôle a besoin — chacun nomme ses identifiants, pour qu'aucun ne devienne vert par une
+preuve qu'il n'a pas demandée — et la démonstration inverse (« sans citation, rien ne refuse ») est
+jouée juste à côté sur la base réelle.
+
+**Athènes cesse d'être un témoin de « drapeau éteint ».** À 31 °C estimés, `rule_af_summer_embargo`
+se déclenche sur la soute et le fret d'Air France et produit une confirmation climatique réelle. Elle
+se déclenchait **déjà** ; c'est un refus de race non prouvé qui l'éteignait. Épingler « drapeau
+éteint » reviendrait à exiger que le site **taise** une question légitime. La propriété défendue —
+« une confirmation de RACE n'allume pas le drapeau CHALEUR » — garde **17 témoins réels** :
+destinations chaudes dont toutes les confirmations sont non climatiques, drapeau éteint sur toutes.
+
+Le même effet explique le compte de causes de race : **298 → 412**, à cartes constantes (206). Un
+refus non prouvé ne masquait pas seulement son absence de preuve, **il masquait aussi tout ce que le
+canal avait d'autre à dire**.
+
+---
+
+## LOT 2 — Les trois arbitrages d'interface
+
+### 1. Statut ternaire
+
+`offers_pet_transport` était un **booléen**, et il valait `true` sur les **102 compagnies**. Il
+dérivait de « la politique n'est pas refusée » — d'une **absence de refus**, jamais d'une preuve
+d'acceptation. Un booléen n'a nulle part où ranger l'ignorance : il tranchait donc toujours dans le
+même sens.
+
+Trois valeurs, sur la même frontière que les canaux : `"yes"` (≥1 canal `allowed` prouvé), `"no"`
+(les trois `denied`, prouvés), `"unknown"` (tout le reste, politique absente comprise).
+**État réel : 0 oui · 0 non · 102 on-ne-sait-pas.**
+
+Sur l'écran, la ligne lisait `carries_pets` et affichait « 🐾 Non compatible » — c'est-à-dire *« cette
+compagnie transporte des animaux, mais pas le vôtre »* — là où rien n'établissait ni l'un ni l'autre.
+`carries_pets` **quitte la surface publique** ; le badge ne tranche plus que sur les deux états
+prouvés et dit son ignorance dans le troisième, en gris (jamais le rouge d'un refus).
+
+### 2. Verdict et score du Finder
+
+**Le verdict n'avait que trois valeurs**, et aucune ne savait dire « on ne sait pas ». Sur un
+CDG→JFK, les 22 compagnies sont toutes « à confirmer » : le verdict valait `conditional`, qui
+s'affiche **« Oui — sous conditions »**. Le site répondait **OUI**, sur zéro preuve, à la question
+qu'il pose lui-même en titre. Quatrième valeur : `"unknown"` → *« Pas encore établi »*, en gris, avec
+une note qui dit pourquoi et renvoie vers ce qu'il faut confirmer.
+
+**La jauge est masquée.** Elle annonçait « 10 % de compatibilité » sur un Paris → New York. Sa
+première composante — part de compagnies acceptantes — vaut **zéro partout** depuis la frontière ; il
+ne restait qu'un résidu de qualité d'itinéraire et d'étoiles de sources, affiché avec la précision
+d'une mesure. « 10 % » se lit « presque impossible » ; la vérité est « nous ne le savons pas encore ».
+
+`SCORE_AFFICHABLE = false`, **constante et non conditionnelle à la donnée** — même arbitrage que sur
+les fiches compagnie, où la contre-revue a refusé `scoreEtNoteAffichables = aUnCanal("allowed")` :
+rebrancher la jauge dès la **première** preuve publierait encore un nombre calculé sur 301 politiques
+non prouvées. Le score reste **calculé et servi par l'API** — il n'est pas **affiché**. Le contrôle
+permanent le vérifie explicitement : aucun score ne change de valeur.
+
+### 3. Fiches de race — bien pire qu'une liste vide
+
+L'arbitrage portait sur `bestAirlines` vide. La mesure a trouvé beaucoup plus grave sur **172 races ×
+4 langues = 688 pages** :
+
+| Ce qui s'affichait | Sur quoi |
+|---|---|
+| « **Accepté par la plupart (cabine)** » | 0 acceptation prouvée |
+| « **Très souvent possible** » en cabine | une limite **supposée** de ~8 kg, avec juste en dessous le détail « *aucune compagnie ne publie de limite adaptée* » — le niveau contredisait son propre détail |
+| « **Souvent refusé** » en soute | « *0 compagnies acceptent, 0 non* » — un refus déduit de `pct = tot ? yes/tot : 0` |
+| « **Voyageur très difficile · 1,5/5 · 18/100** » | la même cascade, tombée dans son repli |
+
+Quatre réponses catégoriques produites par un vide, en tête de page. Chaque verdict est fermé **à sa
+propre source** : `ChannelView` gagne un drapeau `etabli`, et chacun retourne « Pas encore établi »
+quand sa base de preuve est vide. La synthèse et la note globale suivent ; la note chiffrée ne
+s'affiche plus. La section « Meilleures compagnies » **dit pourquoi elle est vide** au lieu de poser
+un titre au-dessus de rien — un titre qui promet une liste et n'en livre aucune se lit comme une
+panne, ou pire comme « aucune compagnie ne convient ».
+
+La FAQ a hérité des libellés honnêtes **sans une ligne de code** : instrument unique.
+
+**Erreur nommée** : ma première rédaction a supprimé, avec le faux chiffre « 0 compagnies
+interdisent explicitement les chiens au museau court en soute », la **précaution de catégorie** qui,
+elle, restait vraie et ne prétendait rien sur une compagnie particulière. La fiche du carlin a cessé
+de mentionner son museau court en soute et en fret. Le contrôle 4 de `test-faq-races.mjs` l'a vu.
+Seule la précaution est rétablie, sans son chiffre.
+
+### Mouvement mesuré et figé
+
+`test-baselines/arbitrages-interface-avant.json` → `arbitrages-interface-apres.json`
+
+- **72 verdicts** sur 72 : `conditional` → `unknown`. Aucun ne devient compatible ni incompatible ;
+- **1 560 cartes** changent leur **seul** segment `pets:` (booléen → ternaire), valeur `unknown` partout ;
+- **AUCUN** statut de canal, **AUCUNE** cause, **AUCUN** rang, **AUCUN** score ne bouge.
+
+Ce lot **retire des affirmations, il n'en déplace aucune**.
+
+---
+
+## Vérification dans le navigateur — et un faux vert attrapé là
+
+Les trois arbitrages sont vérifiés dans le **DOM servi**, pas seulement dans les fonctions qui les
+calculent : `test-apercu-navigateur.mjs` passe de 39 à **56 contrôles**, tous verts.
+
+- la jauge : le contrôle qui **figeait** le score bas (« ≤ 15 ») en attendant l'arbitrage exige
+  maintenant son **absence** — propriété strictement plus forte — et vérifie en plus que la réponse
+  de tête est bien rendue et dit « pas encore établi » (sans cette moitié, une page blanche
+  passerait) ;
+- la fiche de race : les quatre affirmations retirées sont cherchées **par leur texte** dans la page
+  du carlin, la précaution brachycéphale est exigée présente, et un golden sert de témoin négatif ;
+- le statut ternaire : sur Paris → Dublin avec un American Bully XL, les **11 cartes** affichent
+  « Pet transport to confirm ». **Avant ce lot, elles affichaient « 🐾 Not compatible »** — soit
+  « ces compagnies transportent des animaux, mais pas le vôtre » — alors qu'aucune politique de ces
+  compagnies n'est établie. C'est le cas exact que le ternaire ferme.
+
+**FAUX VERT NOMMÉ, attrapé dans le navigateur.** Ma première rédaction de ce dernier contrôle a
+écrit la race « American Bully XL » alors que la liste porte « American Bully (**XL**) ». La race
+n'a pas été posée, la route n'a produit aucune carte structurelle, et les deux contrôles négatifs —
+qui cherchent une étiquette **absente** — sont passés au vert **sans rien exercer**. Pire : le
+témoin que j'avais ajouté pour l'éviter cherchait « à confirmer » n'importe où et a été satisfait
+par `« ? Itinerary to confirm »`, un badge d'itinéraire sans rapport. Le témoin vise désormais la
+classe CSS propre de l'étiquette, et le libellé exact.
+
+C'est la troisième fois cette semaine que la même faute revient sous une forme neuve : *un contrôle
+qui ne parle que de ce qu'il reconnaît compte zéro là où il ne regarde pas.*
+
+---
+
+## Ce que je n'ai PAS fait — arbitrage demandé
+
+**Les six interdictions de race par PAYS.** `rule_{au,de,fr,gb,ie,nz}_breed_ban_restricted_types`
+sont `deny`, de portée `country`, et **toutes `officielle_non_citee`**. Elles continuent de produire
+`entry_allowed = false`, donc un verdict `incompatible` — *« Pas en l'état »* —, un refus catégorique
+sur une règle non citée. À la lettre de la consigne, elles tombent sous la même interdiction.
+
+**Je ne l'ai pas appliquée, et je le nomme plutôt que de trancher seul**, parce que l'asymétrie du
+préjudice s'inverse ici :
+
+- ce sont des **lois**, publiées sur des sites d'État (`agriculture.gouv.fr`, `gov.uk`,
+  `gesetze-im-internet.de`, `irishstatutebook.ie`, `mpi.govt.nz`, `agriculture.gov.au`) ;
+- dire « on ne sait pas » à quelqu'un dont le chien est **légalement interdit d'entrée** l'envoie à
+  l'aéroport avec un animal qui peut être saisi. Le faux négatif coûte ici plus cher que le faux
+  positif — l'inverse exact du cas compagnie.
+
+**Proposition** : les citer plutôt que les dégrader. Six pages officielles, six phrases à relever —
+c'est le lot le moins cher du dépôt, et il ferme le dernier chemin de refus non gardé **par le haut**
+plutôt que par le bas. Je peux préparer les six emplacements ; la lecture des pages te revient.
+
+---
+
+## État de vérification
+
+- `npm run test:unit` : **vert**, code de sortie 0
+- `npm run typecheck` : vert sur les trois paquets
+- `test-tristate-climat.mjs` : 87/87
+- `test-frontiere-confiance.mjs` : 0 FAIL (dont §13 quater, nouveau)
+- `test-t0a-baseline.mjs` : deux nouvelles preuves permanentes, chaîne des figées continue
+- `npm run build:prod` : **3 121 pages**, code de sortie 0
+- `porte-lancement.mjs` : **29 contrôles OK, 0 en échec**
+- `test-apercu-navigateur.mjs` (Chromium sur le dist servi) : **56 OK, 0 échec**
+
+## Chaîne des baselines figées
+
+```
+… → tarifs-etape3 → frontiere-finder → citation-ba-cabine
+                                          ↓
+                                    frontiere-regles (1 168 canaux ouverts)
+                                          ↓
+                                arbitrages-interface (72 verdicts, 1 560 statuts ternaires)
+```
+
+Aucune figée n'est écrasée ; chacune reste l'AVANT de la suivante, et chaque paire a son contrôle
+permanent qui rougit si le mouvement s'inverse.
+
+---
+
+# CONTRE-REVUE DE `f0297db` — fermeture des trois P0 et des trois P1
+
+**Date** : 5 septembre 2026, après-midi.
+
+## P0-1 — le verdict de fiche transformait l'ignorance en refus total
+
+Reproduit sur la fonction réelle, à l'identique :
+
+| entrée | avant | après |
+|---|---|---|
+| `undefined` | `no` | `warn` |
+| `{ cabin: denied }` | `no` | `warn` |
+| `{ cabin: denied, hold: denied }` | `no` | `warn` |
+| trois canaux `denied` | `no` | `no` |
+
+`Object.values()` ne voyait que les clés **présentes** : deux canaux inconnus ne pesaient rien, et
+l'absence se lisait comme un refus. Même faute que d'habitude — *un contrôle qui ne parle que de ce
+qu'il reconnaît compte zéro là où il ne regarde pas* — cette fois dans le sens le plus dur, sur la
+fiche. Les trois placements sont désormais énumérés explicitement ; « tous refusés » exige les trois.
+
+**Option retenue** : la seconde (prudence sur tout état incomplet), et non l'échec de build, parce
+que le dépôt porte réellement **4 canaux absents sur 306** — les faire échouer aurait cassé le build
+sur une donnée légitimement inconnue. Le contrôle `politiqueDuCanal`, lui, continue de lever sur un
+canal AFFICHÉ sans politique.
+
+**La contre-épreuve gravait le défaut** : sa dernière ligne exigeait que `{ cabin: denied }` rende
+`no`. Elle verrouillait le repli fautif — une correction l'aurait fait rougir, et on l'aurait crue
+régressive. Remplacée par les quatre cas, plus deux mesures sur la base réelle (aucune des 102 fiches
+ne conclut au refus total ; British Airways a sa cabine refusée sur preuve et sa **fiche** prudente).
+
+## P0-2 — « No pets » sur l'ignorance, et le motif qui revenait par la bande
+
+Reproduit exactement (CDG → LHR, `breed_american_bully_xl`) : **10 compagnies**, toutes
+`offers_pet_transport: "unknown"`, toutes étiquetées **« No pets »**. `carries_pets` étant devenu la
+projection de `=== "yes"`, il vaut `false` aussi bien sur un refus prouvé que sur un « on ne sait
+pas ». L'interdiction du **pays** devenait une affirmation structurelle fausse sur chaque compagnie —
+qui aurait suivi le visiteur sur tous ses autres trajets.
+
+`air.no_pets` ne sort plus que d'`offers_pet_transport === "no"`.
+
+**Défaut trouvé en vérifiant le correctif** : une fois « No pets » retiré, les cartes disaient
+« cabine non proposée, soute non proposée, race non acceptée ». Ces motifs viennent de
+`denyReasonsOf`, qui parcourait **toutes** les règles `deny` déclenchées, y compris celles auxquelles
+la frontière venait de retirer le pouvoir de décider. Le refus venait du pays ; la carte l'imputait à
+la compagnie. **Une règle qui ne peut pas décider ne peut pas non plus expliquer** : `denyReasonsOf`
+lit désormais le même prédicat. Les dix cartes portent maintenant un libellé neutre, et l'exigence
+pays — texte intégral du Dangerous Dogs Act, certificat d'exemption compris — reste en tête du
+rapport au niveau `critical`.
+
+## P0-3 — l'entrée dans le pays, quatrième chemin non gardé
+
+`entry_allowed` passait à `false` sur une exigence pays `deny` sans rien demander à sa provenance —
+et ce refus-là éteint les trois canaux de **toutes** les compagnies d'un coup. Le chemin est
+maintenant gardé comme les autres.
+
+**Ce n'est pas un silence** : l'exigence reste publiée en tête du rapport, texte intégral, niveau
+`critical`, et l'interdiction non décisive est **nommée** dans `destination.entry_unverified_denies`
+plutôt que perdue. Contre-épreuve versionnée : la même règle, citée, referme bien l'entrée — la porte
+n'est pas condamnée.
+
+**La citation ne suffira pas pour cinq des six.** Les lectures de la contre-revue sont consignées
+dans `mesures/politiques-veracite/regles-pays-a-requalifier.json`, avec pour chacune ce qui manque :
+
+| pays | condition à revoir | ce qui manque |
+|---|---|---|
+| Australie | — | la phrase exacte (locator connu) |
+| Nouvelle-Zélande | « entièrement ou principalement » porte sur le **type**, pas sur un `breed_id` | la phrase exacte ; **et la source citée par la contre-revue n'est pas celle que porte la règle** |
+| Allemagne | exceptions réglementaires du HundVerbrEinfG non vérifiées | la vérification, puis la phrase |
+| France | catégorie 1 = **morphologie + absence de pedigree reconnu** ; `breed_id in [pit_bull]` est un raccourci faux dans les deux sens | un fait « pedigree reconnu », ou la rétrogradation en confirmation |
+| Grande-Bretagne | (1) la source portée par la règle traite de la **détention**, pas de l'**importation** ; (2) l'exemption par certificat n'est pas exprimée | la bonne source, la phrase, l'exemption |
+| Irlande | aucune condition de séjour ni de résidence ; la S.I. 491/2024 prévoit trente jours pour certains non-résidents | l'expression des exceptions, puis la phrase |
+
+Un **garde-fou** rend ce registre contraignant : une règle pays qui deviendrait décisive sans être
+déclarée `resolu` fait échouer la CI. Une citation future ne pourra donc pas restaurer en silence une
+règle que la lecture des sources a déjà démentie.
+
+**Je n'ai fabriqué aucune citation.** Australie et Nouvelle-Zélande n'attendent que le libellé exact,
+mot pour mot — il me faut la phrase telle qu'elle est publiée.
+
+## P1-1 — le contrôle qui se félicitait de n'avoir rien vu
+
+`absences >= 0` est vrai de tout entier. Remplacé : la politique `airline_air_france#hold` est
+réellement supprimée d'une copie de la base, et le contrôle exige `confirmation_required` +
+`policy_absent` sur **la compagnie et le canal exacts**, avec un témoin négatif sur la base intacte.
+
+## P1-2 — deux exigences de preuve pour une même décision
+
+`SourcedQuote.locator` étant facultatif, un fait de race pouvait fermer un canal sur une provenance
+que la frontière refuse à une règle. Les deux chemins lisent maintenant le **même prédicat
+canonique** (`regleDecisive`). Un `deny` de race non prouvé demande confirmation et **nomme sa
+restriction** (`breed_deny_unverified`), rangée dans la famille « notre incertitude » du Finder — pas
+dans le vide, comme `official_source_unquoted` l'avait été.
+
+**Erreur nommée** : j'ai d'abord versé ces provenances dans `evidence` au rôle `refusal`. Le contrat
+l'a refusée, et il a raison — une preuve de **refus** sur un canal qui n'est pas refusé est
+incohérente, et lui donnerait à l'écran le rang qui lui manque précisément. Le canal ne porte donc
+aucune preuve.
+
+**Et les fixtures du harnais étaient sous la barre** : aucune ne portait de `locator`. C'est en les
+remontant qu'on a vu que le défaut était réel et non théorique. Un paragraphe neuf prouve la
+frontière dans les deux sens — preuve complète → refus ; même fait sans emplacement → confirmation
+nommée, sans preuve publiée, sans motif.
+
+Cinq témoins d'interdiction d'entrée (synthétiques et réels) ont dû être **cités** pour continuer
+d'exercer la dominance qu'ils défendent — jamais abaissés.
+
+## P1 mineur — l'apostrophe
+
+La citation portait une apostrophe **ASCII** (U+0027) là où la page écrit une apostrophe
+**typographique** (U+2019). Le champ dit « reprise telle quelle » : il porte désormais l'octet lu.
+**Option retenue : aucune normalisation typographique, nulle part** — replier « ’ » sur « ' » rendrait
+`verbatim` approximatif et masquerait, lors d'une comparaison future à la page, lequel des deux
+textes a bougé. La règle est écrite dans `lectures-effectuees.json` et gardée par un contrôle qui
+compare la **chaîne complète**, dans la fiche et dans les deux artefacts engendrés.
+
+La seconde phrase que tu confirmes — « Your pet will travel in the hold of our aircraft. » — est
+consignée avec la lecture « soute NON PROUVÉE » : la page prouve le **contraire** d'un refus de
+soute, ce qui rendait `rule_british_airways_no_cabin` doublement infondée sur ce canal.
+
+## Ce qu'il me faut de toi pour aller plus loin
+
+1. les **phrases exactes**, mot pour mot avec leur langue, pour l'Australie et la Nouvelle-Zélande ;
+2. pour la Nouvelle-Zélande, **laquelle des deux URL** fait foi (celle de la règle ou celle que tu
+   cites) ;
+3. le résultat du contrôle des **exceptions allemandes** ;
+4. ton arbitrage sur France / Grande-Bretagne / Irlande : conditionner les règles (ce qui demande
+   d'ajouter un fait « pedigree reconnu » et un fait « durée de séjour » au contexte d'évaluation),
+   ou les laisser en confirmation permanente avec leur texte d'exigence intégral.
+
+---
+
+# CONTRE-REVUE DE `cbcd9da` — le statut d'entrée ternaire, et un registre qui se prouve
+
+**Date** : 5 septembre 2026, fin d'après-midi.
+
+## P0 — j'ai refait, sur l'entrée, la faute que je venais de corriger deux fois
+
+`entry_allowed` est resté **booléen**. Un booléen n'a pas de place pour l'inconnu : une
+interdiction non citée le laissait donc à `true`, et le même rapport disait trois choses à la fois
+(reproduit, CDG → LHR, American Bully XL) :
+
+| énoncé | où | verdict de vérité |
+|---|---|---|
+| « Interdit par l'article 1 du Dangerous Dogs Act 1991 » | exigence, `critical` | texte officiel, non vérifié phrase à phrase |
+| « Pas encore établi » | verdict global | juste |
+| « **Le Royaume-Uni autorise l'entrée** » | élément positif | **faux** — conclusion tirée d'une absence de preuve |
+
+C'est le troisième qui était intenable, et c'est exactement la faute d'`offers_pet_transport`
+et du verdict de fiche, une troisième fois. **Nous ne connaissons pas les autorisations : nous ne
+connaissons que les blocages, et leur absence dans nos données.**
+
+`EntryStatus` remplace le booléen — `blocked` / `confirmation_required` / `no_known_block` —, avec
+les quatre conséquences demandées :
+
+1. le statut est ternaire, et `entry_allowed` n'en est plus qu'une projection interne
+   (`!== "blocked"`), qui ne doit jamais servir à conclure qu'un pays autorise ;
+2. un statut pays `confirmation_required` **plafonne le verdict à `unknown`**, même si une
+   compagnie devient `allowed` — l'embarquement n'est pas l'entrée ;
+3. plus aucune phrase ne conclut à une autorisation : `no_known_block` dit « aucune interdiction
+   d'entrée bloquante établie dans nos données », `confirmation_required` dit « le pays restreint
+   peut-être ce chien — à confirmer », au niveau `high` et en ton négatif ;
+4. le `rationale` catégorique d'une règle non décisive est **encadré, pas supprimé** : le texte
+   officiel reste lisible entier, avec son lien, sous « Restriction d'entrée potentielle, à
+   confirmer auprès des autorités de … Ce que dit la page officielle, et que nous n'avons pas pu
+   vérifier phrase par phrase : … ». La criticité `critical` est conservée — l'encadrer ne
+   l'atténue pas.
+
+Les quatre contre-épreuves demandées sont écrites, plus quatre autres : les deux autres états du
+ternaire (pour qu'il ne soit pas un binaire déguisé), et le fait qu'aucune exigence issue d'un
+`deny` non décisif ne **commence** par une affirmation d'interdiction.
+
+Pour la troisième contre-épreuve — « une compagnie synthétiquement `allowed` ne peut rendre le
+trajet compatible » — la base réelle ne portait aucun canal `allowed` : elle est construite en
+citant les 302 politiques en mémoire, ce qui ouvre **3 compagnies** sur ce trajet, et le verdict
+reste `unknown`. Sans cela, la règle « le statut pays plafonne le verdict » n'aurait été éprouvée
+par aucune donnée.
+
+## P1 — le registre se croyait sur parole
+
+La garde vérifiait « citée **et** non résolue → rouge ». Ajouter une citation et basculer `resolu`
+à la main suffisait donc à restaurer un refus dont le prédicat n'avait pas changé : le texte
+exigeait les deux, le code n'en prouvait qu'un.
+
+Chaque entrée porte maintenant `empreinte_predicat_constate` — SHA-256 tronqué de la forme
+canonique de `{applies_when, effect}` au moment du constat. Une entrée `resolu: true` dont la
+`condition_a_revoir` n'est pas vide doit présenter un prédicat dont **l'empreinte a changé**. La
+contre-épreuve exacte est écrite : citer la règle GB, passer son entrée à `resolu: true`, ne rien
+corriger → **la garde rougit** ; et une fois le prédicat réellement modifié, elle repasse au vert
+(sans ce second volet, elle pourrait être rouge pour une raison sans rapport).
+
+## Les sources — ce qui est appliqué, et ce qui ne l'est pas
+
+**Nouvelle-Zélande : citée et appliquée.** La règle porte désormais la page 2026 du MPI, la phrase
+exacte et son locator. Elle est la **première règle citée du dépôt**, comme British Airways cabine
+fut la première politique. Le statut d'entrée devient `blocked` et le verdict `incompatible` — le
+ternaire n'est donc pas un binaire déguisé.
+
+Raisonnement pour l'appliquer : « *entirely or predominantly* » est **plus large** que le nom de
+race — un chien déclaré d'une de ces races lui appartient au moins de façon prédominante, donc le
+prédicat `dog.breed_id in [...]` est couvert par la phrase.
+
+**Australie : citation relevée, mais NON appliquée.** Et c'est la même distinction, prise dans
+l'autre sens : la page australienne n'interdit que les races **pures**, et annonce les croisés
+comme admis. Or le formulaire demande une race, pas une **pureté** — choisir « Dogo Argentino »
+n'établit pas que le chien est de race pure. Citer la règle la rendrait décisive et ferait refuser
+des chiens que la page admet explicitement. La citation est conservée entière dans le registre,
+prête à servir le jour où un fait de pureté existera. **C'est ma lecture, et je la soumets** :
+ton critère était « si le choix de race signifie bien que le chien appartient effectivement à la
+race visée », et pour l'Australie il ne le signifie pas.
+
+**Allemagne : les trois exceptions que tu confirmes sont consignées** (chiens de service,
+d'assistance, guides et de secours ; retour d'un chien légalement détenu ; séjour temporaire de
+quatre semaines au plus avec une personne non résidente), avec les deux sources. Elle reste en
+confirmation, avec France, Grande-Bretagne et Irlande. **Aucun champ n'est ajouté au formulaire**,
+conformément à ton arbitrage.
+
+## Mouvement mesuré et figé
+
+`entree-ternaire-avant.json` → `entree-ternaire-apres.json` : **un seul énoncé change**, dans les
+72 scénarios — « X autorise l'entrée » devient « aucune interdiction d'entrée bloquante établie
+dans nos données pour X ». Aucun verdict, aucune carte, aucun statut, aucune cause, aucun rang,
+aucun score. La matrice publique ne contient aucun trajet à interdiction applicable : le cas
+`confirmation_required` vit dans `test-frontiere-confiance.mjs`.
+
+Compte figé mis à jour, mouvement nommé : règles `deny` — **1 citée** (Nouvelle-Zélande, contre 0),
+129 officielles non citées (contre 130), 88 faibles (inchangé).
+
+## Deux détails corrigés en vérifiant, et une trappe reconnue
+
+**L'accord de l'article.** Les nouvelles phrases rendaient « à confirmer auprès des autorités de
+Royaume-Uni » et « Royaume-Uni restreint peut-être… » — sans article, en français comme en
+espagnol. Plutôt que de construire une mécanique d'accord (une source de fautes à elle seule, et
+j'en ai déjà commis une sur les participes), le nom du pays est déplacé **après un tiret** —
+« Entrée à confirmer pour ce chien — Royaume-Uni » — et la condition parle du « pays de
+destination ». Aucune langue n'a alors besoin d'article. L'anglais des éléments positifs n'est pas
+touché : la baseline des 72 scénarios est en anglais, et je l'ai **vérifiée** plutôt que supposée —
+elle ne bouge pas.
+
+**`pgrep -f "astro build"` se trouve lui-même.** J'avais déjà tué mon propre shell avec `pkill -f`
+en septembre ; cette fois le motif figurait dans la ligne de commande du *détecteur*, et
+`pgrep` répondait « encore vivant » en se voyant lui-même. Le motif s'écrit désormais
+`'astro[ ]build'` : la classe de caractères ne se contient pas elle-même. La même faute, prise par
+l'autre bout.
+
+## Une régression de ma part, trouvée en auditant mes propres consommateurs
+
+Après avoir corrigé `entry_allowed`, j'ai cherché qui d'autre le lisait. Un consommateur plus loin,
+la porte de classement de l'outil Destinations faisait `m.entry_allowed ? 1 : 0.05`.
+
+Depuis que la frontière garde le chemin de l'entrée, ce booléen vaut `true` sur une interdiction non
+citée. **Édimbourg et Cork, avec un American Bully XL, sont donc passés à pleine porte** — au même
+rang qu'une ville sans la moindre restriction connue, alors qu'ils étaient enterrés la veille. Le
+booléen restait juste ; la question posée était trop pauvre. C'est exactement la faute que tu venais
+de relever, un cran plus loin dans la chaîne, et introduite par ma propre correction.
+
+Trois portes pour trois états : `0,05` sur un blocage prouvé, `0,35` sur une entrée à confirmer, `1`
+sans interdiction connue. Mesuré : **6 destinations à confirmer, 133 sans interdiction connue** pour
+cette race.
+
+**Et la garde que j'ai écrite pour ça était elle-même fautive** : elle cherchait l'ancien motif dans
+le fichier entier et le trouvait — dans le commentaire où je venais d'expliquer que cette porte
+était fautive. Elle accusait ma propre explication, exactement comme le contrôle qui avait rougi sur
+la phrase légitime des races au museau court. Les commentaires sont retirés avant de chercher : un
+contrôle doit lire le **code**, pas le texte qui en parle.
+
+## Vérification de bout en bout de ce lot
+
+- `npm run test:unit` : **vert**, code de sortie 0
+- `npm run build:prod` : **3 121 pages**, code de sortie 0
+- `porte-lancement.mjs` : **29 contrôles OK, 0 en échec**
+- `test-apercu-navigateur.mjs` (Chromium sur le dist servi) : **65 OK, 0 échec** (44 avant ce lot)
+
+Ce que le navigateur vérifie désormais sur l'entrée, dans le DOM servi :
+
+- aucune phrase n'affirme que le pays autorise l'entrée ;
+- le rapport dit à la place que l'entrée est **à confirmer pour ce chien** ;
+- l'exigence est **encadrée** comme une restriction potentielle, et le texte officiel — Dangerous
+  Dogs Act, certificat d'exemption — y reste entier ;
+- **et une interdiction PROUVÉE tranche encore** : Auckland avec un Tosa Inu rend « Not as
+  requested », sur la phrase citée du Dog Control Act 1996. Sans ce dernier contrôle, tout ce qui
+  précède ne prouverait que l'inaction — un ternaire qui aurait simplement tout rendu prudent
+  aurait été vert partout ailleurs.
+
+## Chaîne des baselines figées
+
+```
+… → citation-ba-cabine → frontiere-regles → arbitrages-interface → entree-ternaire
+```
+
+Aucune figée n'est écrasée ; chacune reste l'AVANT de la suivante, et chaque paire a son contrôle
+permanent qui rougit si le mouvement s'inverse.
+
+---
+
+# CONTRE-REVUE DE `f76cd7c` — deux faux-verts, et un repli qui recréait le défaut
+
+**Date** : 5 septembre 2026, soir.
+
+## P0-1 — un texte à nous, publié sous l'autorité de la page officielle
+
+Mesuré : la règle britannique n'a **aucune `source.quote`** (`undefined`), et le rapport publiait
+pourtant, sous « *What the official page says, and which we have not been able to verify sentence by
+sentence :* », notre `rationale` — un résumé éditorial. Le visiteur lisait donc, attribué à gov.uk,
+« *possession is only lawful under a court-ordered Certificate of Exemption, which cannot be obtained
+for a dog arriving from abroad* », une conclusion catégorique que personne n'a lue sur la page.
+
+**Encadrer un texte ne le rend pas sourçable.** Ma rédaction précédente croyait résoudre le problème
+en annonçant l'incertitude ; elle ne faisait que donner une adresse officielle à une phrase interne.
+Le `rationale` d'un `deny` non décisif **ne sort plus du tout** : le visiteur reçoit une formulation
+neutre et **le lien officiel**, qui le mène au texte véritable. `rationale` reste dans `fired`, pour
+l'audit.
+
+Contre-épreuve exacte : remplacer le `rationale` britannique par une absurdité (« tous les chiens
+doivent porter un chapeau ») ne change **aucun** texte public, et l'absurdité n'apparaît nulle part
+dans le rapport ; le lien, le `rule_id` et la criticité `critical` restent servis.
+
+Et le contrôle qui vérifiait ce point **gravait le défaut** : il EXIGEAIT que le texte officiel soit
+« conservé entier ». Il est inversé.
+
+## P0-2 — la garde constatait un mouvement, pas une correction
+
+Reproduit exactement : citation ajoutée, `resolu: true`, **permutation de deux races** dans la liste
+— `decisive: true`, empreinte modifiée, garde verte. Et ma propre contre-épreuve confirmait le
+défaut, puisqu'elle remplaçait la liste par le seul XL Bully et appelait cela « réellement changé ».
+
+Le registre porte désormais **l'état approuvé**, pas une empreinte de départ :
+
+- `predicat_approuve` — l'objet canonique lisible, **tableaux triés** : ces tableaux sont des
+  ensembles (`all` est une conjonction, la liste de races et `effect.placement` sont des ensembles),
+  l'ordre n'y porte aucun sens. L'hypothèse est écrite dans le fichier ;
+- `preuve_approuvee` — url, phrase, langue, emplacement, en entier ;
+- une règle résolue ne passe que si **les deux sont exactement égaux** à l'état approuvé.
+
+Cinq sabotages rougissent, et un témoin positif reste vert :
+
+| sabotage | résultat |
+|---|---|
+| citation + `resolu`, permutation seule | **rouge** |
+| citation + `resolu`, condition sans rapport | **rouge** |
+| Nouvelle-Zélande, citation différente | **rouge** |
+| Nouvelle-Zélande, une sixième race ajoutée | **rouge** |
+| règle non citée déclarée `resolu` à la main | **rouge** |
+| *permuter la liste d'une règle déjà approuvée* | *vert* — l'ordre n'a aucun sens |
+
+Ton point sur la couverture néo-zélandaise est traité par ce mécanisme : la phrase dit « *these
+breeds or types* » sans énumérer, donc c'est le **prédicat approuvé** qui fixe les cinq valeurs, et
+l'égalité exacte les verrouille — le sabotage « sixième race » le démontre. L'entrée porte aussi
+`valeurs_couvertes` en clair, pour qu'un lecteur humain voie ce que la preuve est réputée couvrir.
+
+## P1 — le repli recréait le faux-vert, et le navigateur n'éprouvait rien
+
+`entry_status` devient **obligatoire** dans le type, et le repli **échoue vers la prudence** :
+`confirmation_required`, jamais `no_known_block`. Un statut absent n'est pas une absence de blocage,
+c'est une ignorance.
+
+Et tu avais raison sur les fixtures : le chemin ternaire n'était éprouvé **nulle part** dans le
+navigateur — l'outil Destinations n'y était pas ouvert du tout. Un paragraphe neuf le pilote de bout
+en bout (formulaire → Worker → rendu) et vérifie que chaque destination servie porte un statut, que
+les deux états attendus sont présents, que les trois portes sont distinctes, et **qu'un statut absent
+reçoit la porte de la prudence**.
+
+## Finition
+
+`git diff --check` : **propre** (l'espace final de `test-frontiere-confiance.mjs:862` et tous les
+autres sont retirés).
+
+---
+
+# CLÔTURE TECHNIQUE — `5465f92b889d66b2704d762ee1a7bcf95756e7a3`
+
+**Feu vert technique de Codex, 5 septembre 2026.** Aucune réserve restante sur la contre-revue
+différentielle. Ce feu vert **n'autorise ni fusion ni déploiement** : ces deux décisions
+appartiennent à Philippe, et lui seul.
+
+## Ce que ce lot a fermé, commit par commit
+
+Sept passes de contre-revue, après le P0 moteur qui a ouvert la série.
+
+| commit | ce qui a été fermé |
+|---|---|
+| `c25221c` | les trois chemins de refus non gardés du moteur — règles, politique absente, embargo d'été |
+| `2d1afe6` | les trois arbitrages d'interface — statut ternaire, quatrième réponse, jauge masquée |
+| `cbcd9da` | le verdict de fiche, le libellé « No pets », le motif imputé à tort ; création du registre pays |
+| `47a4cf1` | le statut d'entrée ternaire — « le pays autorise » ne se déduit plus d'une absence de preuve |
+| `c38ea3b` | le classement des destinations, qui promouvait les pays interdisant peut-être le chien |
+| `caca925` | résumé éditorial retiré ; état approuvé de la règle résolue verrouillé |
+| `111a0a0` | prédicat des règles non résolues verrouillé ; porte d'entrée extraite ; formulation prudente corrigée |
+| `a82a578` | scores exacts et parcours navigateur réellement exercé |
+| `5465f92` | témoins du harnais caisse re-fondés |
+
+**Correction du 05/09/2026, nommée.** La première rédaction de ce tableau annonçait « six passes »
+en listant sept lignes, **omettait `111a0a0`**, et attribuait à `caca925` toute la garde du
+registre. C'est inexact et vérifié comme tel : `caca925` a verrouillé l'état approuvé de la règle
+RÉSOLUE (`predicat_approuve`) ; l'égalité avec `predicat_constate` pour les règles NON résolues —
+le défaut par lequel la règle britannique pouvait gagner un golden retriever en silence — n'est
+arrivée qu'avec `111a0a0`. Un tableau de clôture qui se trompe d'auteur sur une garde est
+exactement le genre de document qui fera perdre une heure à quelqu'un dans six mois.
+
+## Vérifications finales
+
+`test:unit` vert · `test:built-ui` vert · `build:prod` **3 121 pages** · porte de lancement
+**29/29** · navigateur **79/79** · caisse **24/24** · `git diff --check` propre.
+
+Les harnais sont passés de 39 à **79** contrôles navigateur, et de 15 à **24** sur le calculateur
+de caisse — non par ajout de confort, mais parce que chaque témoin devenu muet a dû être re-fondé
+plutôt qu'abaissé.
+
+## Ce qui reste ouvert, et à qui
+
+**Décision maintenue — Australie** : statut prudent tant que le formulaire ne recueille pas la
+pureté du chien. L'arbitrage est RENDU, pas en attente : la citation est relevée et conservée
+entière dans `regles-pays-a-requalifier.json`, et elle n'est pas appliquée parce que la page
+n'interdit que les races **pures** et admet explicitement les croisés — or le formulaire demande
+une race, pas une pureté. La citer refuserait des chiens que la page admet.
+
+**À un lot ultérieur** — France, Grande-Bretagne, Irlande et Allemagne restent en confirmation
+prudente. Les conditionner demande d'ajouter au contexte d'évaluation des faits que le formulaire
+ne recueille pas : pedigree reconnu, durée de séjour, résidence, certificat d'exemption, statut de
+chien de service. Aucun champ n'a été ajouté avant le lancement, conformément à l'arbitrage.
+
+**Dette cosmétique nommée** — deux règles CSS orphelines (`.crx-size__code`, `.crx-size__d`)
+subsistent dans `CrateCalculator.astro` pour une fonctionnalité retirée. Elles ne publient aucune
+donnée. Non nettoyées ici **délibérément** : toucher à la source invaliderait le dist sur lequel
+tout ce lot a été vérifié.
+
+**À la décision de Philippe** — la fusion, et le déploiement.
+
+---
+
+# Annexe — « rien de faux n'atteint l'écran » était FAUX (05/09/2026)
+
+## L'erreur, nommée
+
+J'ai conclu le lot précédent par : *« rien de faux n'atteint l'écran »*. C'était **inexact**, et
+la contre-revue l'a établi. Je n'avais regardé que la **pastille**. La pastille est bien
+canonique — elle lit `politiqueDuCanal`, elle est vérifiée bloc par bloc dans les quatre langues
+— mais elle ne représente qu'une fraction de ce que la fiche publie. Sous elle, et autour d'elle,
+le texte éditorial historique continuait de sortir tel quel.
+
+Ce n'est pas une imprécision de rédaction. C'est une **vérification partielle présentée comme
+une garantie générale** : j'ai contrôlé une surface, et j'ai conclu sur toutes. C'est la faute
+que ce dépôt refuse partout ailleurs, commise par moi, dans la phrase de clôture.
+
+## Ce que la fiche publiait réellement
+
+Une fiche a **deux chemins de données** pour un même canal :
+
+| chemin | contenu | citée ? |
+| --- | --- | --- |
+| `premium.policy[canal]` (base de connaissances) | statut, conditions, source, citation, date | oui, quand elle existe |
+| `channels[]` (fiche générée) | `cls`, `statusLabel`, `detail` — texte libre écrit à la main | **jamais, et pas de place pour l'être** |
+
+La carte avait été ramenée sur le premier. **Six surfaces** lisaient encore le second, ou des
+champs de la même nature :
+
+1. `channels[].detail`, rendu sans condition sous la pastille, chiffres **mis en gras** ;
+2. la **FAQ** (`airlineFaq`), qui republiait `statusLabel` + `detail` — et, par le balisage
+   `FAQPage`, les donnait à lire à une machine comme des réponses autorisées ;
+3. `crate` — « max 55 × 40 × 23 cm — mais 40 × 25 × 25 cm sur DH8-100 et ATR » ;
+4. `temperature` (pastilles + note) ;
+5. `assistance` ;
+6. `goodToKnow` — « accord préalable obligatoire · soute ≥ 24 h · États-Unis 48 h », « 15 semaines ».
+
+À quoi s'ajoutaient `ladder` (« Cabine ≤ 8 kg »), les 201 `restrictions` — **aucune sourcée**,
+mesuré — et les 102 puces « Mise à jour le … ».
+
+**Mesure de la sourçabilité** : une entrée de `crate` n'a que les clés `en`, `fr`, `es`, `pt`.
+Il n'y a pas même un champ où une source pourrait aller. Ces textes ne sont pas « en attente de
+vérification » : ils sont **structurellement invérifiables** en l'état.
+
+## Ce qui a été fait
+
+**Canal non prouvé** — plus aucun `detail`. Une phrase générique localisée (`premium.channel_unproven`)
+dit l'ignorance et renvoie à la compagnie ; le lien officiel non cité reste montré, sans bouclier,
+sans « vérifié le… », sans indice de confiance.
+
+**Canal prouvé** — seule la citation stricte est publiée, verbatim, dans le bloc `proof`, avec son
+lien et son emplacement. Correction d'une seconde inexactitude de ma part : la phrase générique
+était d'abord rendue **aussi** sur British Airways cabine, où elle affirme « rien n'a été confirmé
+sur une source citée » — ce qui y est **faux**. Elle est désormais conditionnée à l'absence de preuve.
+
+**La FAQ lit la politique canonique.** C'est le point qui ferme la classe entière : elle reçoit
+`kbAir?.premium?.policy` et se construit avec les **mêmes pièces que la carte** — libellé publié du
+statut, puis citation verbatim ou phrase d'ignorance. Elle ne se rabat **jamais** sur l'éditorial.
+Les quatre questions adossées à `restrictions`, `crate`, `temperature` et `assistance` sont
+retirées : une réponse de FAQ est catégorique par construction, et le balisage la donne pour
+autorisée. Il reste **deux questions par fiche**, toutes deux adossées à la politique.
+
+**Les surfaces éditoriales sont masquées** par `surfacesEditorialesAffichables` : `ladder`,
+`restrictions`, `crate`, `temperature`, `assistance`, `goodToKnow`, et les puces de date et de refus.
+
+**Une phrase devenue pendante a été retirée.** Le bloc brachycéphale disait « ce que la compagnie a
+écrit figure dans les **restrictions ci-dessus** » — or `restrictions` venait d'être masqué. Elle
+renvoyait à un bloc absent, et affirmait de surcroît un refus tiré de ces mêmes données non
+sourcées. Ce masquage-là, je ne l'avais pas anticipé : c'est en relisant mes propres consommateurs
+que je l'ai trouvé.
+
+**Ce qui RESTE, et pourquoi.** La liste des races brachycéphales reste, avec leurs poids. Elle
+porte sa phrase de désaveu : *« ces N races sont la classification de MyDogCanFly — ce n'est pas
+la liste publiée par {compagnie} »*. Ce sont **nos** données, assumées comme telles, et le maillage
+vers les fiches races en dépend. **Déviation nommée, soumise à arbitrage** : si Codex juge qu'un
+poids de race publié à côté d'un nom de compagnie reste trop ambigu, il tombe au prochain lot.
+
+## La dette 295/102 — interne, et désormais muette
+
+Le compte des canaux dont le `cls` éditorial contredit la décision canonique passe de **80 sur 71
+fiches** à **295 sur 102**. **Mouvement nommé** : depuis la frontière de confiance, aucune des 302
+politiques n'est `allowed` et `denied` ne s'obtient que sur une phrase citée — 301 canaux valent
+« à confirmer », tandis que le `cls` garde la couleur de son époque. Ce n'est pas une régression :
+c'est la mesure de la dette éditoriale, rendue visible d'un coup.
+
+**Aucun sous-système de réconciliation n'a été construit** — ç'aurait été traiter le symptôme.
+Ce sont les **lecteurs** qui ont disparu. Le contrôle de la section 5 continue de prouver, bloc par
+bloc et langue par langue, que c'est la décision canonique qui est publiée sur ces 295 canaux :
+la dette est donc **inatteignable depuis l'interface**, et le restera tant que ce contrôle vit.
+
+## Les preuves ajoutées
+
+**Preuve DOM** (`test-lib/verifier-seuils-fiches.mjs`, section 2 bis) : sur les 5 fiches
+sentinelles × 4 langues, **aucun** seuil de poids, dimension de caisse, date de mise à jour ni
+puce de refus ne survit dans le DOM construit. 16 pages lues, 12 blocs « notre classification »
+trouvés et retirés, **tous** porteurs de leur désaveu.
+
+Deux corrections de ma main sur cette preuve elle-même :
+
+- **le contrôle du désaveu était vide.** Je repérais le bloc par la phrase « classification de
+  MyDogCanFly », puis je vérifiais qu'il portait… cette même phrase. Il ne pouvait pas rougir. Le
+  bloc est désormais repéré par sa **structure** (une carte contenant des pastilles de race en
+  « N kg »), ce qui rend le désaveu **réfutable** ;
+- **j'ai introduit, en écrivant un contrôle de véracité, la régression que le harnais surveille
+  par ailleurs.** Lire ces 16 pages dans le processus principal l'a fait passer de 355 à 565 Mo,
+  au-delà de son plafond de 400. La lecture a été déplacée dans un **processus court**, comme
+  l'exige déjà l'architecture de ce fichier.
+
+**Témoin synthétique `allowed`** (section 2 ter) : Air France cabine et Thai Airways cabine
+passent à `confirmation_required` — **mouvement nommé** dans `sentinelles-entites.mjs`. La
+couverture d'un vrai refus passe à **British Airways cabine**, seule décision du dépôt fondée sur
+une citation stricte (« We don't carry pets in the cabin on any route. »). La branche `allowed`
+n'ayant plus **aucun** porteur réel — mesuré, et figé par un contrôle — elle est éprouvée par un
+témoin **explicitement déclaré synthétique**, jamais par une page du site.
+
+**Une mesure était tirée au sort.** Le plafond mémoire lisait `heapUsed` à un instant dépendant du
+ramasse-miettes : trois exécutions **identiques** ont donné 365, 371 puis 420 Mo. Un contrôle qui
+rougit une fois sur trois sans que rien ne change finit désactivé, et emporte sa garantie. Il
+mesure désormais ce qui reste **retenu après collecte forcée** — quantité définie, reproductible,
+et **plus sévère** : 115–131 Mo, plafond inchangé.
+
+## Une erreur trouvée par le build de production
+
+Ma première rédaction de la FAQ demandait le triplet cabine/soute/fret à **toutes** les fiches.
+Air Tahiti Nui n'a pas de politique de soute, et `politiqueDuCanal` **lève** plutôt que de déduire
+une décision d'un `cls` éditorial : le build de production s'est arrêté sur elle. Le garde avait
+raison — c'est ma question qui inventait un canal. La FAQ n'interroge plus que les canaux que la
+fiche **déclare**, exactement comme la carte.
+
+## Ce qui reste ouvert
+
+**À l'arbitrage de Codex** — les poids de races dans le bloc « notre classification », maintenus
+avec leur désaveu (ci-dessus).
+
+**À un lot ultérieur, nommé ici** — les `metaDesc` des 102 fiches annoncent encore « fares,
+restrictions and official sources », alors que les tarifs et les restrictions ne sont plus
+publiés. C'est une **inexactitude de métadonnée**, pas une affirmation sur le chien ; elle n'a pas
+été corrigée ici pour ne pas ouvrir la revue des 102 fiches que la contre-revue a explicitement
+écartée.
+
+**À la décision de Philippe** — la fusion, et le déploiement.
+
+---
+
+# Annexe 2 — l'interrupteur n'était pas une frontière (contre-revue sur `5dee48f`)
+
+## Le reproche central, et pourquoi il est juste
+
+J'avais écrit que la dette éditoriale était devenue « inatteignable depuis l'interface ». Elle
+était en réalité **à un booléen de distance** : `surfacesEditorialesAffichables = false` gardait
+`ladder`, `restrictions`, `crate`, `temperature`, `assistance` et `goodToKnow`, et **tous leurs
+lecteurs restaient dans le gabarit**. Repasser la constante à `true` — un caractère — aurait
+republié d'un coup toute la couche non sourcée.
+
+C'est la même erreur de raisonnement que celle de l'annexe 1, à un étage au-dessus : j'avais
+vérifié **l'état** (le DOM est propre) et conclu sur la **propriété** (rien ne peut le salir).
+Un contrôle sur le rendu constate ce qui sort aujourd'hui ; il ne dit rien de ce qu'un booléen
+ferait sortir demain.
+
+## Les quatre points
+
+**P0-1 — les lecteurs sont supprimés.** Plus de constante, plus de branche JSX. Les six champs
+n'ont **aucun lecteur** dans `AirlinePremiumPage.astro`. Les données restent intactes dans les
+fiches ; leur retour au public exigera une implémentation neuve, alimentée par des preuves.
+
+**P0-2 — la description publique ne promet plus ce que la page ne publie plus.** `d.metaDesc`
+annonçait sur les 102 fiches « cabin, hold and cargo rules, **fares**, **restrictions** and
+official sources » — dans la balise `description`, dans `og:description`, dans
+`twitter:description` **et** dans le `WebPage` du JSON-LD. J'avais corrigé l'intérieur de la
+fiche sans regarder ce qu'elle annonce d'elle-même à l'extérieur. Aucune fiche n'est réécrite :
+le gabarit produit une description neutre, tenue dans le **catalogue de traductions** — donc
+réellement déclinée en espagnol et en portugais. `inlineF` n'aurait pas suffi : sa table
+portugaise est indexée par la phrase anglaise, et le portugais serait retombé sur l'anglais.
+La **même chaîne** sert les quatre zones.
+
+**P0-3 — le bloc brachycéphale est supprimé des fiches compagnies.** Le reproche est plus fin
+que celui que j'avais entendu, et il est juste : les poids ne sont pas le problème. Le problème
+est que ce bloc n'**apparaît** sur une fiche compagnie que si `brachyRestriction(kbAir)` y trouve
+une restriction **non prouvée**. Sa présence même établit l'association entre ces races et cette
+compagnie — une affirmation qu'aucun désaveu ne défait, puisqu'elle est portée par le fait d'être
+là. Ma déviation argumentée de l'annexe 1 est donc **retirée**, pas maintenue. S'y ajoutait une
+phrase devenue fausse par mon propre masquage : « lis le texte de la compagnie ci-dessus », alors
+que ce texte venait d'être retiré. La classification reste sur les **fiches races**.
+
+**P1 — les coquilles.** La carte « Restrictions importantes » était rendue **vide** ; l'enveloppe
+`.ladder` subsistait avec la phrase « Poids incluant le sac de transport ou la caisse » commentant
+des seuils absents ; la carte « Température & soute » restait affichée avec un message générique
+et un appel à l'outil de caisse sans rapport. Tout cela disparaît. L'appel à l'outil **survit**,
+déplacé dans la carte des canaux et reformulé sans mention de la compagnie : il n'affirme rien, et
+le calculateur est lui-même canonique — mesuré, il ne retient un gabarit de cabine que sur un
+statut `allowed`, ce qu'aucune politique ne vaut plus.
+
+**Les puces ne sont plus filtrées par émoji.** Mon filtre `🗓`/`🚫` était une liste noire : la
+première puce affirmant quelque chose sous une autre icône serait repassée. `d.chips` n'est plus
+lu du tout ; les trois identités structurelles sont **rebâties** depuis `alliance`, `country_id`
+et `hub_airport_ids`. Ce qui n'a pas de champ canonique n'a plus de puce.
+
+## Les quatre preuves
+
+1. **Aucun lecteur** des champs retirés dans le gabarit — contrôle sur la **source**, commentaires
+   retirés d'abord (chaque suppression y est expliquée en nommant son champ : sans cela le
+   contrôle s'accuserait lui-même, ce qui m'est déjà arrivé dans ce dépôt). Avec un témoin de
+   non-vacuité — le code utile doit survivre au décommentage — et une contre-épreuve : un lecteur
+   réintroduit serait attrapé.
+2. **Aucune ancienne `metaDesc`** dans les quatre zones publiques, toutes renseignées et portant
+   **exactement** la même chaîne.
+3. **Aucun bloc brachycéphale** sur les fiches compagnies.
+4. **Aucune section vide** sur les fiches sentinelles — 64 cartes réellement examinées, témoin de
+   non-vacuité à l'appui ; une carte réduite à son titre serait signalée.
+
+## Une garantie voisine, re-fondée plutôt qu'abaissée
+
+`test-inventaire-iata.mjs` § 6 bis exigeait la **présence** du titre reformulé « La cage de
+transport en soute » — parce que la section existait et qu'il fallait vérifier qu'elle ne réclamait
+plus la norme IATA. La section supprimée, la contre-épreuve rougissait. **Mouvement nommé** : elle
+exige désormais l'**interdiction** (l'ancien titre ne revient pas) et conditionne l'exigence
+portugaise à la présence du titre — elle dort tant que rien ne le rend, et mord dès qu'il
+reparaît. La garantie n'a pas baissé : ce qui ne se rend plus ne peut plus rien affirmer.
+
+## Ce que la fiche compagnie publie désormais
+
+Son identité ; les statuts canoniques des canaux réellement déclarés ; la citation stricte quand
+elle existe ; sinon un message prudent et le lien officiel disponible ; des liens génériques vers
+les outils. Rien d'autre.
+
+## Vérifications
+
+`test:unit` vert · frontière 133/133 · entités **164/164** · built-ui 793/793 ·
+`build:prod` 3 113 pages · porte 29/29 · navigateur 79/79.
+
+**À la décision de Philippe** — la fusion, et le déploiement.
+
+---
+
+# Annexe 3 — deux rougeurs de CI, et ce que mes contrôles locaux ne voyaient pas
+
+## `astro check` : un commentaire dans une liste d'attributs
+
+`Vérifications` est tombée sur `check-astro-debt.mjs` : **dette 175 → 188**, dont **13 erreurs**
+dans `AirlinePremiumPage.astro` — `ts(1005)`, `ts(1002)`, `ts(1109)`, `ts(2657)`, `ts(7008)`.
+
+Cause unique : un commentaire `{/* … */}` que j'avais placé **dans la liste d'attributs** de
+`<FaqBlock>`, entre `title` et `note`. Le build Astro l'accepte et produit un HTML correct ;
+`astro check` non — en position d'attribut, `{/* … */}` se lit comme une expression, et **tout le
+fichier** part en erreur de syntaxe à partir de là. Le diagnostic le plus visible désignait un
+`<OnwardNav />` vingt lignes plus bas, qui n'avait rien de fautif.
+
+**Ce que cela dit de ma vérification.** `npm run typecheck` ne couvre pas les `.astro` : il lance
+`tsc` sur `knowledge`, `engine` et `workers`. J'avais donc trois builds verts, 164 contrôles
+d'entités verts, et une erreur de syntaxe dans le gabarit — invisible à tout ce que je lançais.
+**`check-astro-debt.mjs` fait désormais partie de ce que je joue avant de pousser.**
+
+`chiffresEnGras` et ses quatre expressions sont supprimés du même mouvement : leur unique
+appelant était le défaut corrigé à l'annexe 1. Du code mort dont la seule raison d'être était de
+mettre en gras des chiffres non prouvés est une invitation à les remettre.
+
+## `faq-races` § 8 bis : la contre-épreuve a trouvé, sous une autre forme, la faute qu'elle visait
+
+`Site entier` est tombée sur une phrase portugaise absente d'une fiche race. **Ce n'est pas mon
+lot d'aujourd'hui** : la frontière de confiance a vidé `bestAirlines` le 04/09/2026 (`2d1afe6`) —
+plus aucune politique n'est `allowed` —, et la note qui explique le classement ne se rend donc
+plus. La contre-épreuve réclamait une phrase qui n'a plus d'objet.
+
+Elle protège en réalité une propriété plus générale : **aucun repli silencieux vers l'anglais sur
+la page portugaise**. Portée sur la phrase réellement rendue — celle qui dit pourquoi la section
+est vide —, elle a **immédiatement rougi** : cette phrase n'avait aucune entrée dans
+`translations/pt/inline.json`, et la fiche portugaise publiait bel et bien un paragraphe **en
+anglais**. Le français et l'espagnol, eux, étaient traduits.
+
+C'est le **même mécanisme** que celui documenté pour la description publique : `T(en, fr, es)`
+n'a pas d'argument portugais, et `inlineT("pt")` retombe sur l'anglais dès que la table pt n'a
+pas la clé. Deux occurrences dans le même lot ; c'est un motif, pas un accident.
+
+Le contrôle a donc attrapé, sous sa nouvelle forme, exactement la faute qu'il avait été écrit
+pour attraper. Les deux phrases d'origine restent exigées **si** le classement revient : elles
+dorment, elles ne sont pas supprimées.
+
+## Vérifications, tête `0b29a4f` + ces deux correctifs
+
+`test:unit` vert · `astro check` **dette stable à 175** · frontière 133/133 · entités 164/164 ·
+built-ui 793/793 · `faq-races` DOM vert · `build:prod` 3 113 pages · navigateur 79/79.
+
+---
+
+# Annexe 4 — la seconde constante, et une troisième fois le portugais
+
+## P0 — j'avais corrigé un interrupteur en en laissant un autre, dans le même fichier
+
+`scoreEtNoteAffichables = false` gardait `rating.score`, `rating.points` et `d.verdictNote`.
+C'est **exactement** le défaut reproché à `surfacesEditorialesAffichables` — même fichier, même
+mécanisme, à quarante lignes d'écart — et je ne l'ai pas vu en supprimant l'autre. J'avais même
+écrit, en commentaire, que la constante était « écrite en clair pour que sa suppression soit un
+geste délibéré » : une justification, là où il fallait une suppression.
+
+Ce qu'ils affirmaient : `rating` est calculé sur des politiques dont **aucune** n'est prouvée —
+un « 4,2/5 » donne à cette absence de preuve l'apparence d'une mesure ; `verdictNote` est une
+phrase écrite avant la frontière (« Cabin and hold are both open »).
+
+Supprimés : la constante, les trois branches JSX, `rating` et `scoreCls`. Les données restent.
+Ce qui subsiste en tête de fiche est le verdict **dérivé**, qui ne lit que la politique canonique.
+
+La garde de lecteurs couvre désormais **quatorze** identifiants, les deux constantes nommément.
+
+## P1 — le portugais, une troisième fois, et la garde qui manquait
+
+Mon nouveau libellé `"Check your crate size"` n'existait pas dans `pt/inline.json` : la page
+portugaise serait retombée en anglais. Pire, en reformulant j'avais **perdu une traduction que
+l'ancien libellé possédait** (`Confira o tamanho da caixa para esta companhia`). Le libellé
+canonique déjà validé et déjà traduit est réemployé, sans en créer un de plus.
+
+**Trois occurrences du même piège dans ce lot** — la phrase d'état vide des fiches races, ce
+libellé, et une troisième que la garde a trouvée : la note de FAQ « This page summarises the
+information currently on record… », que je publiais **en anglais sur la page portugaise** depuis
+l'annexe 1. Trois fois, dont deux **après** l'avoir documentée.
+
+Le mécanisme : `T(en, fr, es)` n'a pas d'argument portugais ; `inlineT("pt")` cherche la phrase
+anglaise dans la table pt et, si la clé manque, publie l'anglais **sans rien signaler**.
+
+Une garde ferme le trou pour ce gabarit : les phrases anglaises passées à `T(...)` sont relevées
+dans la source et doivent toutes être connues de la table portugaise. Elle a rougi immédiatement,
+sur la troisième occurrence. **Portée bornée, et elle le dit** : ce fichier, pas le dépôt. La
+généralisation à toutes les surfaces reste à faire, et n'a pas été entreprise ici — c'eût été
+ouvrir un chantier que la contre-revue a explicitement exclu.
+
+## Une garantie voisine, re-fondée
+
+`test-frontiere-confiance.mjs` exigeait que `scoreEtNoteAffichables` vaille `false`. La constante
+supprimée, elle rougissait. **Mouvement nommé** : elle n'exige plus qu'un interrupteur soit dans
+la bonne position, mais qu'il **n'y ait plus d'interrupteur ni de lecteur** — strictement plus
+fort. Avec son témoin de non-vacuité.
+
+## Vérifications
+
+`test:unit` vert · `astro check` dette stable à 175 · frontière **134/134** · entités **171/171** ·
+built-ui 793/793 · `faq-races` DOM vert · `build:prod` 3 113 pages · navigateur 79/79.
+
+Vérifié sur le DOM construit : plus aucun `hv-score` ni `hv-pts`, et zéro repli anglais résiduel
+sur la fiche portugaise.
+
+---
+
+# Annexe 5 — j'ai cessé de découvrir la CI un réveil à la fois
+
+## Le vrai reproche à me faire
+
+Trois lots de suite, j'ai poussé après avoir joué *mes* contrôles, et la CI a trouvé autre chose.
+La cause n'est pas la malchance : **je ne jouais pas ce que la CI joue**. `npm run typecheck` ne
+couvre pas les `.astro` ; sept contrôles ne tournent que sur un `dist` complet ; trois autres sur
+un build de *preview*. J'ai donc énuméré les étapes du fichier de CI et je les ai toutes exécutées
+d'un coup. **Trois échecs sont tombés ensemble** — dont deux que la CI n'avait même pas encore
+atteints, s'arrêtant au premier.
+
+## Les cinq contre-épreuves re-fondées — toutes de la même famille
+
+Une même cause produit les cinq : **la frontière de confiance a retiré `allowed` à toutes les
+politiques, et le lot a retiré `channels[].detail` de l'écran**. Des témoins écrits avant ces
+deux gestes exigeaient donc soit un état qui n'existe plus, soit une phrase qui n'est plus servie.
+Aucun n'a été abaissé.
+
+| contre-épreuve | ce qu'elle exigeait | ce qu'elle exige maintenant |
+| --- | --- | --- |
+| `tarifs` § 5 quater | les **trois** états rencontrés dans le DOM | les états **que la base porte**, mesurés ; l'absence d'`allowed` est expliquée, jamais tolérée — et le contrôle se réarme seul le jour où une citation en produit un |
+| `étape3` § 2 | les quatre combinaisons de canaux ouverts | idem, sur une base **synthétique déclarée**, avec l'état figé « aucun canal réel n'est `allowed` » à côté |
+| `étape3` § 1 octies | les 8 phrases cargo corrigées **servies** au mot près | qu'**aucune** ne soit servie — la valeur reste scellée à la source par `test:unit` |
+| `étape3` § 1 nonies | la phrase Thai de remplacement servie | ni l'ancienne **ni** la neuve servies ; à la source, rien ne change |
+| `montants-propagation` § 2 | les 4 zones portent `d.metaDesc` | les 4 zones portent la **description canonique**, et `verdictNote` ne doit **pas** être publié |
+
+Dans chaque cas l'exigence **monte** : on n'attend plus qu'une phrase soit exacte, on interdit
+qu'elle paraisse. Et chaque contre-épreuve garde son sabotage : celui de `montants-propagation`
+§ 2 bis, qui mutait un paragraphe désormais absent, **réintroduit** maintenant la note éditoriale
+dans la page et exige qu'elle soit vue.
+
+**Une erreur de ma main en chemin, mesurée puis corrigée** : pour la base synthétique j'avais
+choisi Thai Airways, Aegean et British Airways « au jugé ». Aegean ne dessert aucun trajet de
+contrôle, et les drapeaux du rapport ne découlent pas du seul statut — la cabine de Thai et la
+soute de BA restent fermées par d'autres portes. J'ai mesuré quelles compagnies répondent
+réellement sur leurs trois canaux, et retenu celles-là.
+
+## Le scellé des licites, re-scellé par son geste
+
+`occurrences-licites-scellees.json` enregistre où les tournures IATA licites sont **publiées**.
+Les lecteurs éditoriaux retirés, huit entrées sont devenues orphelines. Le dépôt a un geste nommé
+pour cela — `--sceller-licites` — et c'est lui qui a réécrit le scellé, jamais une main.
+
+**Diff relu avant d'accepter** : 32 → 20 occurrences, 25 → 16 clés. **Que des retraits**, aucune
+occurrence publiée ajoutée — Neos « caisse aux normes IATA jusqu'à 48 × 35 × 29 cm », Swiss
+« IATA ventilation limits », Air Mauritius « IATA rules ». Le mouvement va dans le sens du lot.
+
+## Ce qui n'est PAS une régression, et pourquoi je le dis plutôt que de le « corriger »
+
+`test:audit-obs` échoue sur mon `dist` local et **doit** y échouer : il exige du rapport d'audit
+une ligne INFO qui n'existe que sur un build de **preview** (`noindex` sur toutes les pages).
+En CI, `audit` et `test:audit-obs` tournent après `build:preview` ; mon `dist` est un build de
+production. De même, `contre-epreuves --dom` et `--dist-complet` **refusent** de tourner sur un
+arbre sale : ils mutent des fichiers et les restaurent par `git checkout`. Les trois sont joués
+après ce commit, sur arbre propre.
+
+## Vérifications locales
+
+Joués et verts : `test:unit`, `typecheck`, `check`, `ingest:check`, `smoke`, `test:provenance`,
+`test:index-hub`, `test:migration-categories`, `test:couvertures`, `test:fetch-couvertures`,
+`test:annonce`, `test:liens`, `test:guide-page`, `test:built-ui`, `test:entities`, `audit`,
+`check-astro-debt`, `contre-epreuves --contrat`, et les sept contrôles sur `dist` complet
+(`faq-races`, `tarifs`, `montants-publies`, `montants-propagation`, `caisses-non-sourcees`,
+`etape3-dom`, `fiches-affirmations-retirees`).

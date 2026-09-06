@@ -1,6 +1,6 @@
 import type { NormalizedKB, Rule, Predicate, Condition, EvalContextShape, PlacementPolicy, PlacementStatus, TemperatureProvenance, BreedRestriction } from "@mydogcanfly/knowledge";
-import { MONTH_UNKNOWN, isEstimatedTemperature, preuveAuditee } from "@mydogcanfly/knowledge";
-import type { FinderRequest, Decision, AirlineDecision, FiredRule, ConfirmationCause, RestrictionEvidence, AdvisorySignal } from "./contracts";
+import { MONTH_UNKNOWN, isEstimatedTemperature, preuveAuditee, regleDecisive, niveauDePreuveRegle } from "@mydogcanfly/knowledge";
+import type { FinderRequest, Decision, AirlineDecision, FiredRule, ConfirmationCause, RestrictionEvidence, AdvisorySignal, PetTransportStatus, EntryStatus } from "./contracts";
 import { makePlacementDecision, makePlacementDecisionSet } from "./contracts";
 
 type Ctx = Record<string, string | number | boolean>;
@@ -98,6 +98,14 @@ function denyReasonsOf(perPlacement: { placement: string; fires: Rule[]; breedDe
   for (const { placement, fires } of perPlacement) {
     for (const r of fires) {
       if (r.effect.action !== "deny") continue;
+      /* LA FRONTIÈRE VAUT AUSSI POUR LE MOTIF (contre-revue du 05/09/2026). Une règle non citée
+         n'a plus le droit de refuser un canal — mais son MOTIF continuait d'être publié comme
+         l'explication du refus. Vu sur CDG → LHR avec un American Bully XL : les canaux sont
+         éteints par l'interdiction d'entrée BRITANNIQUE, et la carte expliquait pourtant
+         « cabine non proposée, soute non proposée », des motifs tirés de règles auxquelles on
+         venait de retirer le pouvoir de décider. Le refus venait du pays ; la carte l'imputait à
+         la compagnie. Une règle qui ne peut pas décider ne peut pas non plus expliquer. */
+      if (!regleDecisive(r)) continue;
       if (r.effect.placement && !(r.effect.placement as string[]).includes(placement)) continue;
       // L'embargo chaleur est déjà porté par son propre bandeau, et il est temporaire : le
       // ranger parmi les motifs de refus laisserait croire à une incompatibilité de fond.
@@ -211,9 +219,32 @@ function applyBreedRestrictions(args: {
      générale du canal. Les faits de race vivent au pluriel dans `evidence`. */
   const preuves = (rs: BreedRestriction[], role: RestrictionEvidence["role"]): RestrictionEvidence[] =>
     rs.map((r) => ({ restriction_ref: r.id, role, source: r.source }));
-  if (denies.length) {
+  /* LE MÊME PRÉDICAT DE PREUVE QUE LES RÈGLES (contre-revue du 05/09/2026).
+     `SourcedQuote` impose la phrase et sa langue, mais laisse le `locator` FACULTATIF : un fait de
+     race pouvait donc fermer un canal sur une provenance que la frontière refuse à une règle. Deux
+     exigences de preuve pour une même décision à l'écran. `regleDecisive` est le prédicat
+     canonique — il lit `source` et rien d'autre, et vaut donc pour les deux objets. */
+  const deniesDecisifs = denies.filter((r) => regleDecisive(r));
+  const deniesNonProuves = denies.filter((r) => !regleDecisive(r));
+  if (deniesDecisifs.length) {
     /* Dominance : un refus éteint les causes de confirmation du canal, comme un refus dur de règle. */
-    return { status: "denied", causes: [], evidence: preuves(denies, "refusal"), source: baseSource, denied_by_breed: true };
+    return { status: "denied", causes: [], evidence: preuves(deniesDecisifs, "refusal"), source: baseSource, denied_by_breed: true };
+  }
+  if (deniesNonProuves.length) {
+    /* IL NE REFUSE PAS, ET IL NE SE PRÉSENTE PAS NON PLUS COMME UNE PREUVE.
+       Ma première rédaction versait ces provenances dans `evidence` au rôle `refusal` : le contrat
+       l'a refusée, et il a raison — une preuve de REFUS sur un canal qui n'est pas refusé est
+       incohérente, et lui donnerait à l'écran le rang qui lui manque précisément. Le canal ne
+       porte donc AUCUNE preuve ; la cause, elle, NOMME la restriction, dont la provenance reste
+       auditable dans le registre. Même discipline que `breed_policy_unreviewed` : ce qui n'établit
+       rien ne se publie pas comme établissant quelque chose. */
+    return {
+      status: "confirmation_required",
+      causes: [...baseCauses, ...deniesNonProuves.map((r): ConfirmationCause => ({
+        code: "breed_deny_unverified", policy_ref: policyRef, restriction_ref: r.id,
+      }))],
+      source: baseSource, denied_by_breed: false,
+    };
   }
   if (requires.length) {
     return {
@@ -244,6 +275,12 @@ function toFired(r: Rule, locale: string): FiredRule {
     rule_id: r.id, action: r.effect.action, category: r.category, criticality: r.criticality,
     rationale: r.rationale_i18n?.[locale] ?? r.rationale, // localized where available, else EN
     source_url: r.source.url, confidence: r.source.confidence, params: r.params,
+    /* LE NIVEAU DE PREUVE VOYAGE AVEC LA RÈGLE (05/09/2026). `fired` garde toutes les règles pour
+       l'audit — mais leur seule présence ne doit plus rien décider en aval. Ce champ est calculé
+       ICI, à l'unique endroit qui tient encore la règle complète : le rapport, lui, ne voit que
+       cette projection aplatie et déduisait « embargo appliqué » de la simple présence d'une
+       règle d'embargo, y compris non citée. */
+    decisive: regleDecisive(r),
   };
 }
 
@@ -466,23 +503,62 @@ export function evaluate(kb: NormalizedKB, req: FinderRequest, opts?: { weatherP
          fiche ne documente aucune soute n'a pas une soute « à confirmer », elle n'en a pas. */
       const hardDenies = denyFires.filter((r) => r.category !== "summer_embargo");
       const climateDenies = denyFires.filter((r) => r.category === "summer_embargo");
+      /* LA FRONTIÈRE VAUT AUSSI POUR LA CHALEUR (05/09/2026). « Une règle non citée ne peut
+         produire aucun `denied`, même si elle possède une URL officielle » ne souffre pas
+         d'exception climatique : une règle d'embargo non vérifiée fait dire au site que la
+         compagnie suspend la soute, ce que personne n'a lu sur sa page. */
+      const climateDecisifs = climateDenies.filter((r) => regleDecisive(r));
       let allFires = fires;
       const pol = policy?.[p];
       /* T0-A : le statut de la POLITIQUE runtime est la vérité du socle fiche ; `allowed` n'est
          plus lu. Dominance intra-compagnie : denied > confirmation_required > allowed — un refus
          dur ÉTEINT les causes de confirmation du canal (les règles restent dans `fired` pour
          l'audit). Un embargo sur température FOURNIE reste un refus, comme avant. */
+      /* ── LA FRONTIÈRE DE CONFIANCE S'APPLIQUE AUSSI AUX RÈGLES (05/09/2026) ───────────────
+       *
+       * Ce bloc refusait un canal dès qu'une règle `deny` se déclenchait, sans rien demander à sa
+       * provenance. La frontière avait rétrogradé les 302 POLITIQUES ; les règles, elles,
+       * pouvaient recréer exactement les mêmes refus catégoriques par un chemin non gardé.
+       *
+       * Je l'avais constaté sans le voir : « la carte de British Airways était déjà refusée en
+       * cabine, par une règle » — rapporté comme une bonne nouvelle, alors que c'était le
+       * symptôme. Et `rule_british_airways_no_cabin` ferme aussi la SOUTE, sans citation, quand
+       * la page officielle dit « Your pet will travel in the hold of our aircraft ».
+       *
+       * Désormais, seule une règle CITÉE — page officielle, phrase, langue, emplacement — peut
+       * refuser, et seulement sur les placements que porte son propre `effect.placement` : une
+       * citation qui prouve la cabine ne ferme pas la soute. Les autres règles restent dans
+       * `fired` pour l'audit et produisent une CONFIRMATION portant leur `rule_id` — une
+       * incertitude anonyme est inauditable, et c'est ce qui a laissé passer celle-ci. */
+      const denyDecisifs = hardDenies.filter((r) => regleDecisive(r));
+      const denyNonDecisifs = hardDenies.filter((r) => !regleDecisive(r));
+
       let status: PlacementStatus;
       const causes: ConfirmationCause[] = [];
-      if (hardDenies.length > 0) {
+      if (denyDecisifs.length > 0) {
         status = "denied";
-      } else if (pol?.status !== "allowed" && pol?.status !== "confirmation_required") {
-        // Socle fiche systématique (corrigé 10/08/2026) : un statut `denied` explicite ou une clé
-        // absente (« inconnu ») sont traités pareil, refusés par défaut, quel que soit le nombre
-        // de règles propres à la compagnie par ailleurs.
+      } else if (pol?.status === "denied") {
+        /* UN REFUS DE POLITIQUE EST PROUVÉ, PAR CONSTRUCTION. Depuis la frontière,
+           `projectPlacementPolicy` n'émet `denied` que sur une provenance citée : le laisser
+           décider n'est pas un contournement, c'est le seul chemin qui reste légitime.
+           MA PREMIÈRE RÉDACTION L'A PERDU. Elle traitait « ni allowed ni confirmation » comme une
+           absence, et rétrogradait donc le premier refus prouvé du dépôt — British Airways cabine
+           — en « à confirmer ». Je ne l'ai pas vu en relisant : je l'avais vérifié sur une sortie
+           TRONQUÉE dont je n'avais jamais lu le statut, et j'en avais déduit ce que j'espérais. */
         status = "denied";
+      } else if (!pol) {
+        /* UNE ABSENCE N'EST PAS UN REFUS. Le socle traitait « la fiche ne décide pas ce canal »
+           comme « ce canal n'existe pas » : une inférence, pas un fait. Une absence signifie
+           qu'on ne sait pas, et se dit donc « à confirmer », en nommant le canal concerné. */
+        status = "confirmation_required";
+        causes.push({ code: "policy_absent", policy_ref: `${a.id}#${p}` });
         allFires = [...fires, policyFallbackDenyRule(a.id, p, pol)];
-      } else if (climateDenies.length > 0 && !tempIsEstimated) {
+      } else if (climateDecisifs.length > 0 && !tempIsEstimated) {
+        /* Un embargo sur température FOURNIE reste un refus — mais seulement si la RÈGLE est
+           citée. La température n'est pas en doute ; la règle, elle, l'était : les six règles
+           `summer_embargo` du dépôt portent une URL officielle et AUCUNE phrase citée, et cette
+           branche les laissait refuser catégoriquement la soute et le fret. C'était le troisième
+           chemin de refus non gardé, après `hardDenies` et l'absence de politique. */
         status = "denied";
       } else {
         /* Ici, plus aucun refus ne domine : les causes de confirmation s'accumulent — politique
@@ -496,10 +572,23 @@ export function evaluate(kb: NormalizedKB, req: FinderRequest, opts?: { weatherP
           if (!pol.status_cause) throw new Error(`politique ${a.id}#${p} à confirmer SANS cause — schéma runtime violé`);
           causes.push({ code: pol.status_cause, policy_ref: `${a.id}#${p}` });
         }
-        if (climateDenies.length > 0) {
-          // tempIsEstimated garanti par la branche précédente : cause climatique ACTIVE au sens
-          // exact de la contre-revue (règle déclenchée + estimée + non dominée + statut final).
-          for (const r of climateDenies) causes.push({ code: "estimated_climate", rule_id: r.id });
+        /* Les règles qui se sont déclenchées SANS avoir le droit de refuser deviennent des causes
+           de confirmation, chacune nommant sa règle. Une page officielle sans phrase reste
+           montrable comme lien faible ; une règle faible ne montre rien. */
+        for (const r of denyNonDecisifs) {
+          causes.push(niveauDePreuveRegle(r) === "officielle_non_citee"
+            ? { code: "rule_official_unquoted", rule_id: r.id }
+            : { code: "rule_unverified", rule_id: r.id });
+        }
+        /* Deux causes climatiques distinctes, jamais confondues :
+             `estimated_climate`     — la règle vaut, c'est la TEMPÉRATURE qui est estimée ;
+             `climate_rule_unquoted` — la température est certaine, c'est la RÈGLE qui n'est pas
+                                       prouvée (elle vient d'atterrir ici au lieu de refuser).
+           Les deux allument le drapeau chaleur : la question posée à la compagnie est la même. */
+        for (const r of climateDenies) {
+          causes.push(tempIsEstimated
+            ? { code: "estimated_climate", rule_id: r.id }
+            : { code: "climate_rule_unquoted", rule_id: r.id });
         }
         status = causes.length > 0 ? "confirmation_required" : "allowed";
       }
@@ -556,10 +645,20 @@ export function evaluate(kb: NormalizedKB, req: FinderRequest, opts?: { weatherP
        `confirmation_required` — sans règles de route, sans climat. Une estimation climatique ne
        peut jamais produire « aucun animal transporté » ; une compagnie fermée sur les trois
        canaux reste false. `carries_pets` devient la projection legacy de cette vérité unique. */
-    const offers_pet_transport = PLACEMENTS.some(
-      (p) => policy?.[p]?.status === "allowed" || policy?.[p]?.status === "confirmation_required",
-    );
-    const carries_pets = offers_pet_transport;
+    /* TERNAIRE (05/09/2026). Le calcul ci-dessus rendait `true` dès qu'un canal n'était pas
+       refusé : sur les 102 compagnies du dépôt, il rendait `true` 102 fois. Il ne mesurait pas
+       une acceptation, il mesurait l'absence d'un refus — et un booléen n'avait nulle part où
+       ranger « on ne sait pas ». Les trois valeurs suivent la frontière des canaux : une
+       acceptation prouvée dit oui, trois refus prouvés disent non, et tout le reste le dit. */
+    const statuts = PLACEMENTS.map((p) => policy?.[p]?.status);
+    const offers_pet_transport: PetTransportStatus =
+      statuts.some((s) => s === "allowed") ? "yes"
+      : statuts.every((s) => s === "denied") ? "no"
+      : "unknown";
+    /* `carries_pets` ne quitte plus le moteur (voir le contrat) : l'écran lisait « la compagnie
+       prend des animaux, mais pas ce chien-ci » d'un champ qui valait `true` partout. Le témoin
+       interne, lui, garde sa forme booléenne — il ne sert qu'à la mesure d'écart versionnée. */
+    const carries_pets = offers_pet_transport === "yes";
     /* TÉMOIN DE TRANSITION (à retirer avec test-baselines/t0a-carries-pets-diff.json une fois
        la migration digérée) : l'ANCIEN calcul, verbatim — chien neutre, règles du trajet et du
        climat appliquées. Jamais exposé au public (retiré par explain) ; il n'existe que pour
@@ -737,13 +836,50 @@ export function evaluate(kb: NormalizedKB, req: FinderRequest, opts?: { weatherP
   const advisories: AdvisorySignal[] = airlineDecisions
     .flatMap((a) => advisoriesParCompagnie.get(a.airline_id) ?? []);
 
-  const entry_allowed = !countryRequirements.some((f) => f.action === "deny");
+  /* ── LA FRONTIÈRE ATTEINT LE DERNIER CHEMIN : L'ENTRÉE DANS LE PAYS (05/09/2026) ─────────────
+   *
+   * `entry_allowed` passait à `false` dès qu'une exigence pays `deny` se déclenchait, sans rien
+   * demander à sa provenance — quatrième chemin de refus non gardé, et le plus tranchant de tous
+   * puisqu'il éteint les trois canaux de TOUTES les compagnies d'un coup et produit « Pas en
+   * l'état ». Les six règles concernées (AU, DE, FR, GB, IE, NZ) portent une URL officielle et
+   * AUCUNE phrase citée.
+   *
+   * LA CONTRE-REVUE A TRANCHÉ, ET ELLE EST ALLÉE PLUS LOIN QUE LA PROVENANCE : lecture des six
+   * sources faite, trois de ces règles sont SUBSTANTIELLEMENT trop catégoriques, et aucune
+   * citation ne les rendrait justes en l'état —
+   *   France : la catégorie 1 se définit par la MORPHOLOGIE et l'absence de pedigree reconnu, pas
+   *            par un nom de race ; `american_pit_bull_terrier → deny` est un raccourci ;
+   *   Grande-Bretagne : l'entrée est interdite SAUF certificat d'exemption valide, et le « type »
+   *            se qualifie sur l'apparence, pas sur le nom ;
+   *   Irlande : l'interdiction existe, mais le texte prévoit certificats et cas particuliers
+   *            (non-résidents, séjour de trente jours au plus).
+   * L'Allemagne reste à contrôler pour ses exceptions réglementaires. Australie et
+   * Nouvelle-Zélande correspondent à leur source et n'attendent que le libellé exact.
+   *
+   * Elles demandent donc toutes CONFIRMATION en attendant. Ce n'est pas un silence : l'exigence
+   * pays reste publiée en tête du rapport avec son texte intégral et son lien officiel — le
+   * visiteur lit toujours le Dangerous Dogs Act et le certificat d'exemption. Ce que le site
+   * cesse de faire, c'est de trancher à sa place sur une règle que personne n'a vérifiée. */
+  const entryDenies = countryRequirements.filter((f) => f.action === "deny");
+  /* TERNAIRE (contre-revue du 05/09/2026). `entry_allowed` seul rejouait la faute du booléen
+     `offers_pet_transport` : une interdiction non citée le laissait à `true`, et le rapport
+     concluait « le pays autorise l'entrée » à côté de « Interdit par l'article 1 ». Une absence de
+     preuve n'est pas une autorisation. */
+  const entry_status: EntryStatus =
+    entryDenies.some((f) => f.decisive) ? "blocked"
+    : entryDenies.length > 0 ? "confirmation_required"
+    : "no_known_block";
+  const entry_allowed = entry_status !== "blocked";
+  /* Les interdictions NON CITÉES sont nommées à part : elles ne décident pas, mais elles ne
+     doivent pas se perdre non plus. Un doute anonyme est inauditable. */
+  const entry_unverified_denies = entryDenies.filter((f) => !f.decisive).map((f) => f.rule_id);
 
   return {
     request: req,
     airlines: airlineDecisions,
     countryRequirements,
-    destination: { country_id: destCountry, country_name: destCountryName, entry_allowed },
+    destination: { country_id: destCountry, country_name: destCountryName, entry_status, entry_allowed,
+      ...(entry_unverified_denies.length ? { entry_unverified_denies } : {}) },
     origin_country_id: originCountry,
     domestic: isDomestic,
     brachycephalic: brachy,

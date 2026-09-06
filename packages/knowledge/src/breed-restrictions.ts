@@ -1,5 +1,5 @@
 import { z } from "zod";
-import { DogSize, LocalizedText, Placement, Source, TravelType } from "./common";
+import { DogSize, LocalizedText, Placement, Source, TravelType, isForbiddenSource, FACTUAL_SOURCE_TYPES } from "./common";
 import { Op } from "./rules";
 
 /**
@@ -504,18 +504,10 @@ export const ExecutablePredicate: z.ZodType<ExecutablePredicate> = z.lazy(() =>
 // 3. Provenance — le contrat `Source` existant, étendu
 // ---------------------------------------------------------------------------------------------
 
-/** Domaines qui ne peuvent JAMAIS fonder un fait métier — nous compris, sous-domaines inclus. */
-export const FORBIDDEN_SOURCE_DOMAINS = ["mydogcanfly.com"] as const;
-
-/** Hostname normalisé : minuscules, point final retiré, préfixe `www.` conservé tel quel. */
-export const normalizeHost = (url: string): string =>
-  new URL(url).hostname.toLowerCase().replace(/\.+$/, "");
-
-export const isForbiddenSource = (url: string): boolean => {
-  let host: string;
-  try { host = normalizeHost(url); } catch { return false; }
-  return FORBIDDEN_SOURCE_DOMAINS.some((d) => host === d || host.endsWith("." + d));
-};
+/* Domaines interdits, hostname normalisé et auto-citation vivent désormais dans `common.ts` :
+   la projection d'une politique de canal en a besoin elle aussi, et une seconde copie aurait
+   divergé. Ils restent exportés d'ici — les appelants existants ne changent pas d'import. */
+export { FORBIDDEN_SOURCE_DOMAINS, normalizeHost, isForbiddenSource, FACTUAL_SOURCE_TYPES } from "./common";
 
 /**
  * `Source` (common.ts) plus la citation. On COMPOSE plutôt que de redéfinir : la première version
@@ -528,7 +520,7 @@ export const isForbiddenSource = (url: string): boolean => {
  * Types de source admis pour fonder un FAIT MÉTIER. Un article de presse ou un « other » peuvent
  * documenter un contexte ; ils ne peuvent pas fermer un canal à un chien.
  */
-export const FACTUAL_SOURCE_TYPES = ["official_website", "regulation", "government", "airline_contact"] as const;
+
 
 export const SourcedQuote = Source.extend({
   /** La phrase officielle qui fonde le fait, reprise telle quelle. */

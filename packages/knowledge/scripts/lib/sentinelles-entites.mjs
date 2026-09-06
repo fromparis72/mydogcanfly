@@ -5,12 +5,22 @@
  * fois, c'est se garantir qu'un jour le harnais cherchera une page que le build n'aura pas
  * produite — et qu'il échouera « faute de matière » au lieu de mesurer quelque chose.
  *
- * POURQUOI CELLES-CI. Chacune couvre une FORME DE DÉCISION distincte du contrat T0-B2, pas un
- * cas signalé :
- *   · `offered`            → Air France, cabine        (statut `allowed`)
- *   · `not_offered`        → Thai Airways, cabine      (statut `denied`)
- *   · `undocumented`       → Thai Airways, fret        (`confirmation_required`, source AUDITÉE)
- *   · `legacy_unreviewed`  → Aegean, fret              (`confirmation_required`, SANS source)
+ * POURQUOI CELLES-CI. Chacune couvre une FORME DE DÉCISION distincte, telle qu'elle existe
+ * RÉELLEMENT dans les données :
+ *   · refus PROUVÉ        → British Airways, cabine   (`denied`, sur citation stricte)
+ *   · source AUDITÉE      → Thai Airways, fret        (`confirmation_required`, avec preuve)
+ *   · sans source         → Aegean, fret              (`confirmation_required`, SANS preuve)
+ *   · politique d'auteur  → Air France, cabine        (`confirmation_required` depuis la frontière)
+ *   · non offerte         → Thai Airways, cabine      (`confirmation_required` depuis la frontière)
+ *
+ * MOUVEMENT NOMMÉ (05/09/2026). Air France cabine portait `allowed` et Thai Airways cabine
+ * `denied` : depuis la frontière de confiance, aucune politique n'est `allowed`, et `denied` ne
+ * s'obtient que sur une phrase citée. Les deux valent donc `confirmation_required`. La couverture
+ * d'un VRAI refus n'est pas perdue pour autant — elle passe à British Airways cabine, seule
+ * décision du dépôt fondée sur une citation stricte. La branche `allowed`, elle, n'a plus aucun
+ * porteur réel : elle est éprouvée par un témoin SYNTHÉTIQUE nommé, dans le harnais, et jamais
+ * par une page du site.
+ *
  * `case_by_case` n'a aucun porteur dans les données (0 politique) : lui donner une sentinelle
  * reviendrait à tester une fixture, pas le site.
  *
@@ -18,12 +28,13 @@
  * fonction dont l'absence produisait l'erreur de console relevée au contre-test du 15/08/2026.
  */
 
-/** Les quatre décisions observées, sur trois fiches. */
+/** Les décisions observées, sur quatre fiches. */
 export const SENTINELLES_COMPAGNIES = [
   { slug: "thai-airways", id: "airline_thai_airways", placement: "cargo", statut: "confirmation_required", role: "auditée · undocumented" },
   { slug: "aegean", id: "airline_aegean", placement: "cargo", statut: "confirmation_required", role: "non revérifiée · legacy_unreviewed" },
-  { slug: "air-france", id: "airline_air_france", placement: "cabin", statut: "allowed", role: "offerte · offered" },
-  { slug: "thai-airways", id: "airline_thai_airways", placement: "cabin", statut: "denied", role: "non offerte · not_offered" },
+  { slug: "air-france", id: "airline_air_france", placement: "cabin", statut: "confirmation_required", role: "politique d'auteur, non prouvée" },
+  { slug: "thai-airways", id: "airline_thai_airways", placement: "cabin", statut: "confirmation_required", role: "non offerte, non prouvée" },
+  { slug: "british-airways", id: "airline_british_airways", placement: "cabin", statut: "denied", role: "refus PROUVÉ · citation stricte" },
 ];
 
 /** La page pays sentinelle — France, dont le guide est complet dans les quatre langues. */

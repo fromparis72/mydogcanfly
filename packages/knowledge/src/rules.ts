@@ -1,5 +1,5 @@
 import { z } from "zod";
-import { id, Placement, TravelType, RuleCategory, Criticality, Source } from "./common";
+import { id, Placement, TravelType, RuleCategory, Criticality, SourceCitable } from "./common";
 
 /**
  * Facts the evaluator reads from the evaluation context (ADR-0009).
@@ -67,6 +67,10 @@ export const Rule = z.object({
   params: z.record(z.unknown()).default({}),
   rationale: z.string().min(1), // English base — every rule explains itself
   rationale_i18n: z.record(z.string()).optional(), // optional localized rationales, keyed by locale (fallback → rationale)
-  source: Source,               // every rule is sourced + dated (ADR-0006)
+  /* CITABLE (05/09/2026) : une règle porte désormais la même provenance qu'une politique — URL,
+     date, ET phrase/langue/emplacement facultatifs. Sans cela, `normalize` effaçait toute
+     citation posée sur une règle, et « seule une règle citée peut refuser » interdisait à TOUTE
+     règle de refuser, sans qu'aucune donnée puisse jamais lever l'interdit. */
+  source: SourceCitable,        // every rule is sourced + dated (ADR-0006)
 });
 export type Rule = z.infer<typeof Rule>;

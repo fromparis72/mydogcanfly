@@ -147,22 +147,33 @@ const classerLigne = (chemin, ligne) => {
   }
 }
 
-/* 6 bis — LE TITRE ARBITRÉ EST RÉELLEMENT REFORMULÉ, dans les quatre langues. Cette
-   contre-épreuve exigeait naguère les TROIS occurrences du titre d'origine ; l'étape 3 les a
-   supprimées, et elle exige donc maintenant le résultat plutôt que le reste à faire. */
+/* 6 bis — LE TITRE QUI RÉCLAMAIT LA NORME IATA NE REVIENT PAS.
+   MOUVEMENT NOMMÉ (05/09/2026). Cette contre-épreuve exigeait la PRÉSENCE du titre reformulé
+   (« La cage de transport en soute »), parce que la section existait et qu'il fallait vérifier
+   qu'elle ne réclamait plus la norme IATA. La section entière est désormais SUPPRIMÉE du
+   gabarit : `crate` est du texte libre quadrilingue, sans champ où loger une source, et il
+   publiait « max 55 × 40 × 23 cm — mais 40 × 25 × 25 cm sur DH8-100 et ATR ».
+
+   La garantie protégée n'a pas baissé, elle est mieux tenue : ce qui ne se rend plus ne peut
+   plus rien affirmer. Ce que cette contre-épreuve exige donc maintenant, c'est l'INTERDICTION
+   — l'ancien titre ne revient pas — et, POUR LE JOUR OÙ la section reviendrait sur preuves, que
+   sa reformulation portugaise soit toujours juste. Cette seconde exigence est conditionnée à la
+   présence du titre : elle dort tant que rien ne le rend, et mord dès qu'il reparaît. */
 {
   const source = readFileSync("packages/ui/src/components/AirlinePremiumPage.astro", "utf8");
-  const ATTENDUS = ["The travel crate for the hold", "La cage de transport en soute",
-                    "El transportín para viajar en bodega"];
   const ANCIENS = ["The hold crate (IATA standard)", "La caisse soute (norme IATA)", "La jaula de bodega (norma IATA)"];
-  const manquants = ATTENDUS.filter((t) => !source.includes(t));
+  const REFORMULES = ["The travel crate for the hold", "La cage de transport en soute",
+                      "El transportín para viajar en bodega"];
   const survivants = ANCIENS.filter((t) => source.includes(t));
+  const revenus = REFORMULES.filter((t) => source.includes(t));
   const ptOk = JSON.parse(readFileSync("packages/knowledge/translations/pt/inline.json", "utf8"))["The travel crate for the hold"];
-  if (manquants.length) echec("6bis titre reformulé", `absent(s) : ${manquants.join(" | ")}`);
-  else if (survivants.length) echec("6bis titre reformulé", `l'ancien titre subsiste : ${survivants.join(" | ")}`);
-  else if (ptOk !== "A caixa de transporte para viagem no porão")
-    echec("6bis titre reformulé", `portugais : ${JSON.stringify(ptOk)}`);
-  else ok("6bis le titre de section est reformulé dans les quatre langues, et l'ancien a disparu");
+  if (survivants.length) echec("6bis titre IATA", `l'ancien titre est revenu : ${survivants.join(" | ")}`);
+  else if (revenus.length && ptOk !== "A caixa de transporte para viagem no porão")
+    echec("6bis titre reformulé", `la section est revenue, mais le portugais est faux : ${JSON.stringify(ptOk)}`);
+  else if (revenus.length)
+    ok(`6bis la section de caisse est revenue (${revenus.length} titre(s)) — reformulée dans les quatre langues, l'ancien titre absent`);
+  else
+    ok("6bis la section de caisse est SUPPRIMÉE du gabarit : ni l'ancien titre réclamant la norme IATA, ni sa reformulation, ne sont rendus");
 }
 
 /* 6 sexies — UN INSTRUMENT DE MESURE NE SE MESURE PAS LUI-MÊME. Auto-contamination reproduite

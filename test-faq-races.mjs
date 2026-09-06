@@ -14,7 +14,7 @@
 import { readFileSync, existsSync } from "node:fs";
 import { join } from "node:path";
 import { computeBreedTravel, faqCompagnies } from "./packages/ui/src/lib/breedTravel.ts";
-import { loadKB } from "./packages/knowledge/src/index.ts";
+import { loadKB, normalize, rawKB } from "./packages/knowledge/src/index.ts";
 
 const DIST = process.argv.slice(2).find((a) => a.startsWith("--dist="))?.slice(7);
 let defauts = 0;
@@ -45,12 +45,45 @@ const LANGUES = ["en", "fr", "es", "pt"];
 const golden = computeBreedTravel("breed_golden_retriever");
 if (!golden) { console.error("[faq-races] le golden retriever est introuvable — rien ne peut être prouvé"); process.exit(1); }
 
+/* ── LA BASE CITÉE, POUR QUE LE CONTRÔLE 1 GARDE UNE MATIÈRE ───────────────────────────────────
+ *
+ * Depuis la frontière de confiance (04/09/2026), aucune des 302 politiques ne porte de phrase
+ * citée : plus aucune n'est `allowed`, et `bestAirlines` — qui, par l'arbitrage du 29/08, exclut
+ * les politiques « à confirmer » — est VIDE sur les données réelles, pour toutes les races.
+ *
+ * DEUX CHOSES SONT VÉRIFIÉES SÉPARÉMENT, ET IL FAUT LES DEUX :
+ *   · le MÉCANISME, sur une base où des provenances sont citées — la réponse nomme alors de
+ *     vraies compagnies avec leur canal, exactement comme avant (contrôle 1) ;
+ *   · l'ÉTAT RÉEL, constaté et FIGÉ tel qu'il est — zéro compagnie compatible aujourd'hui
+ *     (contrôle 1 bis). Il n'est pas caché derrière la fixture : il est écrit noir sur blanc, et
+ *     il rougira le jour où il changera, dans un sens comme dans l'autre.
+ *
+ * L'état réel n'est PAS un mensonge : le contrôle 7 établit que la branche vide rend, dans les
+ * quatre langues, « aucune compagnie compatible n'est actuellement établie dans les données
+ * vérifiées ». La page est honnête ; elle est pauvre. Savoir si elle doit citer les compagnies
+ * « à confirmer » revient à rouvrir l'arbitrage du 29/08, et cela ne se tranche pas ici. */
+const kbCitee = (() => {
+  const brut = JSON.parse(JSON.stringify(rawKB));
+  for (const a of brut.airlines ?? []) {
+    for (const d of Object.values(a?.premium?.policy ?? {})) {
+      if (!d?.source) continue;
+      delete d.source_derived;
+      d.source.quote = "Pets are accepted on this route, subject to the conditions below.";
+      d.source.quote_language = "en";
+      d.source.locator = "section « Travelling with pets », paragraphe 1";
+    }
+  }
+  return normalize(brut);
+})();
+const goldenCite = computeBreedTravel("breed_golden_retriever", kbCitee);
+if (!goldenCite) { console.error("[faq-races] profil cité introuvable"); process.exit(1); }
+
 /* ---- 1. La réponse NOMME des compagnies réellement compatibles, avec leur canal ------------- */
 {
-  const q = golden.faq.find((f) => /generally accept/i.test(f.q.en));
+  const q = goldenCite.faq.find((f) => /generally accept/i.test(f.q.en));
   if (!q) { echec("1 question", "la question « quelles compagnies acceptent » est absente de la FAQ"); }
   else {
-    const noms = golden.bestAirlines.map((a) => a.name);
+    const noms = goldenCite.bestAirlines.map((a) => a.name);
     if (!noms.length) echec("1 matière", "le golden retriever n'a aucune compagnie compatible — le contrôle ne prouverait rien");
     /* Chaque nom cité doit exister dans bestAirlines : une réponse qui nomme une compagnie
        absente de la liste serait une invention, pas une synthèse. */
@@ -60,12 +93,31 @@ if (!golden) { console.error("[faq-races] le golden retriever est introuvable �
       if (cites.length < 2) echec("1 noms", `[${lang}] la réponse ne nomme que ${cites.length} compagnie(s) de bestAirlines`);
     }
     /* Le canal annoncé doit être celui des compagnies citées. */
-    const canaux = new Set(golden.bestAirlines.slice(0, 4).map((a) => a.channel));
+    const canaux = new Set(goldenCite.bestAirlines.slice(0, 4).map((a) => a.channel));
     if (canaux.size === 1) {
       const attendu = { cabin: "en cabine", hold: "en soute", cargo: "en fret" }[[...canaux][0]];
       if (!q.a.fr.includes(attendu)) echec("1 canal", `[fr] le canal « ${attendu} » n'est pas dit alors que les quatre compagnies le partagent`);
     }
-    if (defauts === 0) ok(`1 la réponse nomme des compagnies de bestAirlines avec leur canal (${golden.bestAirlines.length} compatibles, canal « ${[...canaux].join("+")} »)`);
+    if (defauts === 0) ok(`1 la réponse nomme des compagnies de bestAirlines avec leur canal (${goldenCite.bestAirlines.length} compatibles, canal « ${[...canaux].join("+")} »)`);
+  }
+}
+
+/* ---- 1 bis. L'ÉTAT RÉEL, constaté et figé — pas caché derrière la fixture ------------------- */
+{
+  let avecCompagnies = 0, races = 0;
+  for (const id of [...loadKB().breeds.keys()]) {
+    const p = computeBreedTravel(id);
+    if (!p) continue;
+    races++;
+    if (p.bestAirlines.length) avecCompagnies++;
+  }
+  if (avecCompagnies !== 0) {
+    echec("1 bis état réel", `${avecCompagnies} race(s) sur ${races} ont désormais des compagnies compatibles — `
+      + "l'état figé disait 0. Mouvement à nommer : soit une citation vérifiée est entrée (tant mieux), "
+      + "soit l'arbitrage du 29/08 a été rouvert.");
+  } else {
+    ok(`1 bis état réel FIGÉ : 0 race sur ${races} n'a de compagnie compatible — aucune politique n'est `
+      + "prouvée, et la page le dit honnêtement (contrôle 7). ARBITRAGE EN ATTENTE.");
   }
 }
 
@@ -236,11 +288,31 @@ if (DIST) {
     if (!existsSync(f)) echec("8bis DOM portugais", "la fiche portugaise est absente du dist");
     else {
       const html = readFileSync(f, "utf8");
-      const PAIRES = [
+      /* MOUVEMENT NOMMÉ (05/09/2026) — ET UN VRAI DÉFAUT TROUVÉ EN CHEMIN.
+       *
+       * Cette contre-épreuve exigeait la phrase qui EXPLIQUE LE CLASSEMENT des compagnies. Depuis
+       * la frontière de confiance, `bestAirlines` est VIDE sur les données réelles — plus aucune
+       * politique n'est `allowed` — et la note ne se rend donc plus du tout : la contre-épreuve
+       * réclamait une phrase qui n'a plus d'objet. C'est la section VIDE qui parle à sa place.
+       *
+       * Ce qu'elle protège n'est pas telle phrase, c'est L'ABSENCE DE REPLI SILENCIEUX vers
+       * l'anglais sur la page portugaise. Elle porte donc désormais sur la phrase RÉELLEMENT
+       * rendue, et la protection est restée intacte en changeant de sujet : la phrase d'état vide
+       * n'avait AUCUNE entrée dans `translations/pt/inline.json`, et la fiche portugaise publiait
+       * bel et bien un paragraphe anglais. Le contrôle a donc attrapé, sous sa nouvelle forme,
+       * exactement la faute qu'il avait été écrit pour attraper.
+       *
+       * Les deux phrases d'origine restent exigées SI le classement revient — le jour où une
+       * citation rendra un canal `allowed`. Elles dorment, elles ne sont pas supprimées. */
+      const classementRendu = html.includes("bt2-airname");
+      const PAIRES = classementRendu ? [
         ["Classificação obtida das políticas publicadas (limites de peso em cabine, disponibilidade de porão e carga).",
          "Ranking derived from published policies (cabin weight limits, hold and cargo availability)"],
         ["Com base na dificuldade global, no peso, nos canais disponíveis e nas políticas publicadas.",
          "Based on overall difficulty, weight, available channels and published policies."],
+      ] : [
+        ["Ainda não há nenhum canal de companhia confirmado por uma fonte oficial citada para esta raça",
+         "No airline channel has been confirmed by a quoted official source for this breed yet"],
       ];
       let bon = 0;
       for (const [pt, en] of PAIRES) {
@@ -248,7 +320,9 @@ if (DIST) {
         else if (html.includes(en)) echec("8bis DOM portugais", `la version ANGLAISE subsiste sur la page portugaise : « ${en.slice(0, 50)}… »`);
         else bon++;
       }
-      if (bon === PAIRES.length) ok("8bis la fiche portugaise porte les deux phrases en portugais, sans repli anglais");
+      if (bon === PAIRES.length)
+        ok(`8bis la fiche portugaise porte ${bon} phrase(s) en portugais, sans repli anglais `
+          + `(classement ${classementRendu ? "rendu" : "VIDE — c'est l'état vide qui est éprouvé"})`);
     }
   }
 } else {
