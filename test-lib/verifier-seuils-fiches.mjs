@@ -40,10 +40,16 @@ import { JSDOM } from "jsdom";
 const entree = JSON.parse(fs.readFileSync(process.argv[2], "utf8"));
 const MOTIFS = entree.motifs.map(([src, dr, quoi]) => [new RegExp(src, dr), quoi]);
 const CLASSIF = new RegExp(entree.classif[0], entree.classif[1]);
+/* Le vocabulaire qui trahit du texte interne échappé sur une page publique. */
+const DEV = [
+  [/JSX expressions|astro check|check-astro-debt|typecheck|\.astro\b|\.mjs\b|\.ts\b(?! ?:)/, "un identifiant de fichier ou d'outil de développement"],
+  [/contre-revue du \d|contre-test du \d|TODO\b|FIXME\b/, "une note de travail interne"],
+  [/\{\/\*|\*\/\}/, "un fragment de syntaxe de commentaire"],
+];
 const ANCIENNE_META = /fares|restrictions|tarifs|official sources|fuentes oficiales|fontes oficiais/i;
 const BRACHY = new RegExp(entree.classif[0], entree.classif[1]);
 const sortie = { pagesLues: 0, blocsNotres: 0, notresSansDesaveu: [], fuites: [], picMo: 0,
-  zonesVides: [], metaAnciennes: [], metaDivergentes: [], sectionsVides: [], brachyPresents: [], cartesExaminees: 0 };
+  zonesVides: [], metaAnciennes: [], metaDivergentes: [], sectionsVides: [], brachyPresents: [], cartesExaminees: 0, fuitesDev: [] };
 
 for (const tache of entree.taches) {
   const abs = path.join(entree.dist, tache.rel);
@@ -111,6 +117,24 @@ for (const tache of entree.taches) {
        établissait une association entre ces races et la compagnie, qu'aucun désaveu ne défait. */
     if (BRACHY.test(doc.body.textContent)) sortie.brachyPresents.push(tache.rel);
 
+    const texteBrut = doc.body.textContent.replace(/\s+/g, " ");
+    /* ── AUCUN TEXTE DE DÉVELOPPEMENT N'ATTEINT LE VISITEUR (contre-test du 06/09/2026) ──────
+       Un commentaire que j'avais écrit pour EXPLIQUER une correction s'est publié lui-même :
+       il citait la syntaxe `{/* … *​/}` en exemple, et cette citation a refermé le commentaire
+       par anticipation. Quatre lignes de diagnostic — « JSX expressions must have one parent
+       element », « check-astro-debt.mjs » — sont apparues sur toutes les fiches, dans les quatre
+       langues, juste avant la FAQ. Aucun contrôle ne lisait le TEXTE VISIBLE d'une fiche
+       construite : les tests DOM cherchaient des éléments précis, jamais ce qu'un visiteur lit.
+       Ce contrôle cherche donc du vocabulaire qui n'a rien à faire sur un site public. */
+    for (const [re, quoi] of DEV) {
+      const m = texteBrut.match(re);
+      if (m) {
+        sortie.fuitesDev.push({
+          slug: tache.slug, langue: tache.langue, quoi,
+          extrait: texteBrut.slice(Math.max(0, m.index - 60), m.index + 60),
+        });
+      }
+    }
     const texte = doc.body.textContent.replace(/\s+/g, " ");
     for (const [re, quoi] of MOTIFS) {
       const m = texte.match(re);

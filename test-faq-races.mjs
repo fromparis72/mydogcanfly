@@ -13,6 +13,7 @@
  */
 import { readFileSync, existsSync } from "node:fs";
 import { join } from "node:path";
+import { JSDOM } from "jsdom";
 import { computeBreedTravel, faqCompagnies } from "./packages/ui/src/lib/breedTravel.ts";
 import { loadKB, normalize, rawKB } from "./packages/knowledge/src/index.ts";
 
@@ -278,6 +279,117 @@ if (DIST) {
   }
   if (!vues) echec("8 DOM", "aucune fiche golden retriever dans le dist");
   else if (defauts === 0) ok(`8 les ${vues} fiches construites : aucune mention brachycéphale, ancre présente, aucune réponse qui renvoie`);
+
+  /* ── 8 TER. LES TROIS QUALIFICATIONS DE RISQUE ONT QUITTÉ LES FICHES RACES ─────────────────
+   *
+   * ARBITRAGE DU 06/09/2026. « Risque chaleur », « risque respiratoire » et « tolérance au
+   * froid » étaient publiés comme des RISQUES. Aucun ne pouvait l'être : une note DogTime de
+   * tolérance n'est pas une mesure de sécurité en avion ; `brachy ? élevé : faible` affirmait un
+   * risque respiratoire FAIBLE sur toutes les races non brachycéphales ; et les replis se
+   * calculaient sur le pelage. J'avais proposé de les garder — l'arbitrage les a écartés.
+   *
+   * On exige leur absence DANS LES QUATRE LANGUES, et — c'est l'autre moitié du contrôle — que
+   * le lien vers le CALCULATEUR de risque chaleur, lui, demeure : il dépend du trajet, de la
+   * date et des températures, donc il répond à une question réellement calculable. Sans cette
+   * seconde exigence, une page vide passerait le contrôle. */
+  {
+    const LANGUES = [["en", ""], ["fr", "fr/"], ["es", "es/"], ["pt", "pt/"]];
+    /* LE CONTRÔLE PORTE SUR LA STRUCTURE, PAS SUR LES MOTS — ET J'AI DÛ LE CORRIGER.
+       Ma première rédaction cherchait « Risque chaleur » dans tout le HTML. Elle a rougi en
+       français, espagnol et portugais… sur le LIEN VERS L'OUTIL, « 🌡 Risque chaleur en soute »,
+       c'est-à-dire exactement ce que l'arbitrage demande de CONSERVER. Un contrôle qui accuse ce
+       qu'il doit protéger est inutilisable. On vise donc les porteurs réels des trois axes :
+       la grille d'indicateurs (`.bt2-indcell`, supprimée) et les lignes du « Travel DNA »
+       (`.bt2-dnalbl`), dont les libellés Chaleur / Froid / Respiration ne doivent plus paraître. */
+    const DNA_INTERDITS = /^(Heat|Cold|Breathing|Chaleur|Froid|Respiration|Calor|Frío|Respiración|Frio|Respiração)$/;
+    const OUTIL = /\/tools\/heat\/|tools\/heat/;
+    let lues = 0, defautsIci = 0;
+    for (const [lg, pfx] of LANGUES) {
+      const f = join(DIST, `${pfx}breeds/golden-retriever/index.html`);
+      if (!existsSync(f)) { echec("8ter fiches races", `${pfx}breeds/golden-retriever/ absente du dist`); defautsIci++; continue; }
+      const html = readFileSync(f, "utf8");
+      lues++;
+      const doc = new JSDOM(html).window.document;
+      const cellules = doc.querySelectorAll(".bt2-indcell");
+      if (cellules.length) { echec("8ter fiches races", `${lg} : ${cellules.length} indicateur(s) de risque encore rendus`); defautsIci++; }
+      const dna = [...doc.querySelectorAll(".bt2-dnalbl")].map((x) => x.textContent.trim());
+      const restes = dna.filter((x) => DNA_INTERDITS.test(x));
+      if (restes.length) { echec("8ter fiches races", `${lg} : « ${restes.join(", ")} » subsiste(nt) dans le Travel DNA`); defautsIci++; }
+      /* NON-VACUITÉ : le « Travel DNA » doit exister, sinon son absence prouverait tout. */
+      if (dna.length === 0) { echec("8ter fiches races", `${lg} : aucune ligne de Travel DNA — l'absence ne prouverait rien`); defautsIci++; }
+      /* ── L'APERÇU VOYAGE, TROISIÈME SURFACE — ET CELLE QUE CETTE GARDE IGNORAIT ──────────────
+         Ma rédaction précédente ne lisait que `.bt2-indcell` et `.bt2-dnalbl`, et concluait
+         pourtant « aucune qualification de risque ». C'était un faux témoin : `.bt2-snaplbl`
+         publiait encore Chaleur et Froid, et le contrôle affirmait leur absence sans l'avoir
+         regardée. On exige donc EXACTEMENT les trois canaux, dans l'ordre et rien d'autre —
+         une liste fermée ne peut pas accueillir un quatrième axe en silence. */
+      const CANAUX = {
+        en: ["Cabin", "Hold", "Cargo"], fr: ["Cabine", "Soute", "Cargo"],
+        es: ["Cabina", "Bodega", "Cargo"], pt: ["Cabine", "Porão", "Cargo"],
+      }[lg];
+      const snap = [...doc.querySelectorAll(".bt2-snaplbl")].map((x) => x.textContent.trim());
+      if (snap.length !== 3 || snap.some((v, i) => v !== CANAUX[i])) {
+        echec("8ter fiches races", `${lg} : l'aperçu voyage rend [${snap.join(", ")}] au lieu de [${CANAUX.join(", ")}]`);
+        defautsIci++;
+      }
+      /* LA MOITIÉ POSITIVE : l'outil qui répond vraiment doit rester atteignable. */
+      if (!OUTIL.test(html)) { echec("8ter fiches races", `${lg} : le lien vers le calculateur de risque chaleur a disparu`); defautsIci++; }
+    }
+    if (lues !== LANGUES.length) echec("8ter fiches races", `${lues}/${LANGUES.length} fiche(s) lue(s) — le contrôle ne prouverait rien`);
+    else if (!defautsIci) ok(`8ter les ${lues} fiches races ne publient plus aucune des trois qualifications de risque, et le lien vers le calculateur chaleur demeure dans chacune`);
+  }
+
+  /* ── 8 QUATER. LA PHYSIOLOGIE NE PEUT PLUS ATTEINDRE UNE VALEUR PUBLIÉE ─────────────────────
+   *
+   * Retirer trois axes de l'affichage ne suffit pas si leurs entrées continuent d'alimenter, en
+   * coulisse, un chiffre qui reviendra. C'était le cas : la note globale appliquait une pénalité
+   * de chaleur (jusqu'à 26 points) et 8 points pour une race brachycéphale. Aujourd'hui la note
+   * est masquée faute de canal établi ; le jour où une citation en établit un, elle redeviendrait
+   * publique EN PORTANT ces déductions, sans que personne les revoie. Un défaut différé.
+   *
+   * LA PREUVE, ET POURQUOI ELLE N'EST PAS CIRCULAIRE. La liste des champs publiés n'est pas
+   * écrite à la main ici : elle est RELEVÉE dans le gabarit, en cherchant ses `p.<champ>`. Si
+   * quelqu'un rebranche demain un champ physiologique, il entrera de lui-même dans le périmètre
+   * de ce contrôle, sans que personne pense à l'y ajouter.
+   *
+   * On calcule alors le profil deux fois — base réelle, puis base où `heat_tolerance`,
+   * `cold_tolerance` et le pelage sont modifiés — et on exige que TOUT champ publié soit
+   * identique à l'octet. Avec un témoin : la mutation doit réellement changer quelque chose
+   * dans le profil, sinon elle ne prouverait rien. */
+  {
+    const gabarit = readFileSync("packages/ui/src/components/BreedTravelPage.astro", "utf8")
+      .replace(/\{\/\*[\s\S]*?\*\/\}/g, " ").replace(/\/\*[\s\S]*?\*\//g, " ");
+    const champsPublies = [...new Set([...gabarit.matchAll(/\bp\.([A-Za-z_$][\w$]*)/g)].map((m) => m[1]))];
+
+    const BREED = "breed_golden_retriever";
+    const reel = loadKB();
+    const avant = computeBreedTravel(BREED, reel);
+
+    /* La base mutée : mêmes objets partout, SAUF la race témoin, dont on change les trois
+       entrées physiologiques — y compris le pelage, qui alimente les replis. */
+    const b0 = reel.breeds.get(BREED);
+    const mute = {
+      ...reel,
+      breeds: new Map([...reel.breeds.entries()].map(([k, v]) => k !== BREED ? [k, v] : [k, {
+        ...v,
+        coat: v.coat === "double" ? "short" : "double",
+        travel: { ...(v.travel || {}), heat_tolerance: 5, cold_tolerance: 1 },
+      }])),
+    };
+    const apres = computeBreedTravel(BREED, mute);
+
+    if (!avant || !apres) echec("8quater physiologie", "profil introuvable pour la race témoin");
+    else if (!champsPublies.length) echec("8quater physiologie", "aucun champ `p.<…>` relevé dans le gabarit — le contrôle serait vide");
+    else {
+      /* TÉMOIN : la mutation doit mordre quelque part dans le profil, sinon rien n'est prouvé. */
+      const bouge = JSON.stringify(avant) !== JSON.stringify(apres);
+      const ecarts = champsPublies.filter((c) =>
+        JSON.stringify(avant[c] ?? null) !== JSON.stringify(apres[c] ?? null));
+      if (!bouge) echec("8quater physiologie", "la mutation ne change RIEN dans le profil — elle ne prouve rien (pelage d'origine : " + b0?.coat + ")");
+      else if (ecarts.length) echec("8quater physiologie", `${ecarts.length} champ(s) PUBLIÉ(S) changent avec la physiologie : ${ecarts.join(", ")}`);
+      else ok(`8quater aucun des ${champsPublies.length} champs publiés par le gabarit ne bouge quand on change heat_tolerance, cold_tolerance et le pelage — et la mutation mord bien ailleurs dans le profil`);
+    }
+  }
 
   /* 8 BIS — LA PAGE PORTUGAISE, mot pour mot. Les deux phrases ajoutées au lot manquaient de
      `translations/pt/inline.json` : `inlineT("pt")` repliait sur l'anglais, et la page portugaise

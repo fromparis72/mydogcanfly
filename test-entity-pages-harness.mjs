@@ -284,6 +284,16 @@ console.log("\n=== 2 bis. Une fiche « à confirmer » ne publie AUCUN seuil, di
     }
     check(`aucune fiche sentinelle ne publie de seuil, dimension, date ou refus non prouvé`,
       res2.fuites.length === 0, `${res2.fuites.length} fuite(s)`);
+    /* ── ET AUCUN TEXTE DE DÉVELOPPEMENT (contre-test navigateur du 06/09/2026) ─────────────
+       Un commentaire que j'avais écrit pour expliquer une correction s'est publié lui-même, sur
+       toutes les fiches et dans les quatre langues, parce qu'il citait la syntaxe de commentaire
+       et l'a donc refermé par anticipation. Les tests DOM cherchaient des éléments nommés ;
+       aucun ne lisait ce qu'un visiteur LIT. Celui-ci le fait. */
+    for (const f of res2.fuitesDev) {
+      check(`${f.slug} · ${f.langue} : aucun texte de développement publié`, false, `« …${f.extrait}… »`);
+    }
+    check("aucune fiche ne publie de texte de développement",
+      res2.fuitesDev.length === 0, `${res2.fuitesDev.length} fuite(s)`);
     /* JAMAIS VERT FAUTE DE MATIÈRE : sans pages lues, tout ce qui précède ne prouve rien. */
     check(`témoin : des fiches ont RÉELLEMENT été lues (${res2.pagesLues})`,
       res2.pagesLues === taches.length, `${res2.pagesLues}/${taches.length}`);

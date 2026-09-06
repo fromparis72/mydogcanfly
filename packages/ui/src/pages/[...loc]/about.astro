@@ -55,11 +55,25 @@ const orgLd = JSON.stringify({
         "MyDogCanFly es una plataforma trilingüe, orientada a datos, que ayuda a viajar en avión con tu perro con total seguridad y legalidad. No vendemos billetes ni damos opiniones veterinarias — recopilamos, estructuramos y verificamos las reglas oficiales para que decidas con confianza.",
       )}</p>
 
-      <h2 class="abt-h">{T("How we source and verify data", "Comment nous sourçons et vérifions les données", "Cómo obtenemos y verificamos los datos")}</h2>
+      {/* CE PARAGRAPHE PROMETTAIT CE QUE L'AUDIT VIENT DE DÉMENTIR (contre-test du 06/09/2026).
+          Il affirmait que CHAQUE politique, règle pays et profil de race vient d'une source
+          primaire officielle, que « rien n'est inventé » et que chaque fiche porte source, date
+          et confiance. La frontière de confiance a mesuré l'inverse : sur 302 politiques de
+          canal, UNE SEULE repose sur une phrase citée. Une page « à propos » qui sur-promet est
+          plus grave qu'une fiche qui sur-promet : c'est là que le visiteur décide s'il nous
+          croit. Elle décrit donc désormais l'état réel, y compris ce qui n'est pas tenu. */}
+      <h2 class="abt-h">{T("How we source data, and what we do not yet claim",
+        "Comment nous sourçons les données, et ce que nous n'affirmons pas encore",
+        "Cómo obtenemos los datos, y lo que todavía no afirmamos")}</h2>
       <p>{T(
-        "Every airline policy, country entry rule and breed travel profile is built from primary, official sources — airline pet-travel pages, national veterinary authorities, USDA APHIS export pages, the World Organisation for Animal Health (WOAH) and EU regulations. Two rules govern the whole site: nothing is fabricated, and where an official source does not publish a fact we mark it \"Unknown\" rather than guessing. Each record carries its source, a verification date and a confidence level.",
-        "Chaque politique de compagnie, règle d'entrée par pays et profil de voyage par race est construit à partir de sources primaires et officielles — pages « animaux » des compagnies, autorités vétérinaires nationales, pages export de l'USDA APHIS, l'Organisation mondiale de la santé animale (WOAH) et les règlements de l'UE. Deux règles régissent tout le site : rien n'est inventé, et lorsqu'une source officielle ne publie pas une information, nous indiquons « Inconnu » plutôt que de deviner. Chaque fiche porte sa source, une date de vérification et un niveau de confiance.",
-        "Cada política de aerolínea, regla de entrada por país y perfil de viaje por raza se construye a partir de fuentes primarias y oficiales — páginas de viaje con mascotas de las aerolíneas, autoridades veterinarias nacionales, páginas de exportación del USDA APHIS, la Organización Mundial de Sanidad Animal (WOAH) y los reglamentos de la UE. Dos reglas rigen todo el sitio: nada se inventa y, cuando una fuente oficial no publica un dato, lo marcamos como «Desconocido» en lugar de adivinar. Cada ficha lleva su fuente, una fecha de verificación y un nivel de confianza.",
+        "We build from primary, official sources — airline pet-travel pages, national veterinary authorities, USDA APHIS export pages, the World Organisation for Animal Health (WOAH) and EU regulations. But we distinguish two states, and we show which one applies. A small number of records are strictly verified: an official page was read, a sentence was quoted, and that quotation is published with its link and date. Everything else is on record without being confirmed, and the site marks it as still to be confirmed with the airline or authority rather than presenting it as established.",
+        "Nous partons de sources primaires et officielles — pages « animaux » des compagnies, autorités vétérinaires nationales, pages export de l'USDA APHIS, l'Organisation mondiale de la santé animale (WOAH) et les règlements de l'UE. Mais nous distinguons deux états, et nous montrons lequel s'applique. Un petit nombre d'informations sont strictement vérifiées : une page officielle a été lue, une phrase en a été citée, et cette citation est publiée avec son lien et sa date. Tout le reste est enregistré sans être confirmé, et le site le signale comme restant à confirmer auprès de la compagnie ou de l'autorité, plutôt que de le présenter comme établi.",
+        "Partimos de fuentes primarias y oficiales — páginas de viaje con mascotas de las aerolíneas, autoridades veterinarias nacionales, páginas de exportación del USDA APHIS, la Organización Mundial de Sanidad Animal (WOAH) y los reglamentos de la UE. Pero distinguimos dos estados y mostramos cuál se aplica. Un pequeño número de datos están estrictamente verificados: se leyó una página oficial, se citó una frase, y esa cita se publica con su enlace y su fecha. Todo lo demás está registrado sin estar confirmado, y el sitio lo señala como pendiente de confirmar con la aerolínea o la autoridad, en lugar de presentarlo como establecido.",
+      )}</p>
+      <p>{T(
+        "This is deliberate, and it is work in progress: the records still to be confirmed are being reviewed one by one. Where we do not know, the site says so — it does not guess, and it does not turn an absence of proof into a refusal.",
+        "C'est délibéré, et c'est un travail en cours : les informations à confirmer sont revues une par une. Là où nous ne savons pas, le site le dit — il ne devine pas, et il ne transforme pas une absence de preuve en refus.",
+        "Es deliberado y es un trabajo en curso: los datos pendientes de confirmar se revisan uno a uno. Donde no sabemos, el sitio lo dice — no adivina, y no convierte una ausencia de prueba en un rechazo.",
       )}</p>
       <p>{T(
         "Our tools (flight finder, heat-risk, crate size, travel timeline, airport relief) derive their verdicts from this data with a transparent rules engine — the reasoning is always shown, never a black box.",

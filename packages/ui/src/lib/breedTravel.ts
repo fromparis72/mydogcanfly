@@ -212,16 +212,32 @@ export function computeBreedTravel(breedId: string, kbOverride?: unknown): Breed
       : L("Occasional traveller", "Voyageur occasionnel", "Viajero ocasional", "Viajante ocasional", "warn");
 
   // ---- Difficulty class (primary verdict) ----
-  const diff = difficulty(cabin, hold, cargo, heat, brachy);
+  const diff = difficulty(cabin, hold, cargo);
 
   // ---- Travel DNA ----
   const dna: DnaRow[] = [
     { icon: "✈", label: { en: "Cabin", fr: "Cabine", es: "Cabina", pt: "Cabine" }, value: cabin.level },
     { icon: "🛄", label: { en: "Hold", fr: "Soute", es: "Bodega", pt: "Porão" }, value: hold.level },
     { icon: "📦", label: { en: "Cargo", fr: "Cargo", es: "Carga", pt: "Carga" }, value: cargo.level },
-    { icon: "🌡", label: { en: "Heat", fr: "Chaleur", es: "Calor", pt: "Calor" }, value: heat },
-    { icon: "❄", label: { en: "Cold", fr: "Froid", es: "Frío", pt: "Frio" }, value: cold },
-    { icon: "🫁", label: { en: "Breathing", fr: "Respiration", es: "Respiración", pt: "Respiração" }, value: respiratory },
+    /* ── CHALEUR, FROID ET RESPIRATION QUITTENT LE « TRAVEL DNA » (arbitrage du 06/09/2026) ────
+     *
+     * Les trois lignes affirmaient un RISQUE. Aucune ne pouvait l'établir :
+     *   · `heat` transformait une note DogTime « Tolerates Hot Weather » — une tolérance
+     *     déclarée — en appréciation de sécurité sanitaire en avion. Ce n'est pas la même
+     *     question, et la note ne répond pas à la seconde.
+     *   · `respiratory` valait `brachy ? « Risque élevé » : « Risque faible »`. La branche
+     *     « faible » est le vrai défaut : elle affirmait un risque respiratoire FAIBLE sur les
+     *     150 races non brachycéphales, sans rien avoir mesuré chez aucune.
+     *   · `cold` est la plus proche de sa source, mais devient une déduction non sourcée dès que
+     *     la note DogTime manque — le repli se calcule alors sur le PELAGE.
+     *
+     * Les replis eux-mêmes (`coat → heat/cold`, `brachy → respiratory`) sont des déductions
+     * internes : ils peuvent rester en donnée, jamais en affirmation publique.
+     *
+     * Ce qui répond vraiment à la question de la chaleur reste accessible : le calculateur, qui
+     * part du TRAJET, de la DATE et des températures. Une restitution est possible dans un lot
+     * distinct — afficher la note DogTime COMME telle, « tolérance déclarée par DogTime », avec
+     * sa source visible et sans repli inventé. */
     { icon: "🌍", label: { en: "Adaptability", fr: "Adaptabilité", es: "Adaptabilidad", pt: "Adaptabilidade" }, value: adaptVerdict(adapt) },
   ];
 
@@ -399,7 +415,7 @@ function adaptVerdict(a: number): Level {
   return a >= 4 ? L("High", "Élevée", "Alta", "Alta", "ok") : a === 3 ? L("Moderate", "Modérée", "Moderada", "Moderada", "warn") : L("Low", "Faible", "Baja", "Baixa", "no");
 }
 
-function difficulty(cabin: ChannelView, hold: ChannelView, cargo: ChannelView, heat: Level, brachy: boolean): Level & { emoji: string; score: number; stars: number; etabli: boolean } {
+function difficulty(cabin: ChannelView, hold: ChannelView, cargo: ChannelView): Level & { emoji: string; score: number; stars: number; etabli: boolean } {
   // Best REALISTIC channel for an owner, by priority cabin > hold > cargo.
   // Cargo-only is inherently difficult (costly, complex, heat-exposed), so it scores low even when "widely accepted".
   const ok = (v: ChannelView) => v.level.tone === "ok";
@@ -420,8 +436,23 @@ function difficulty(cabin: ChannelView, hold: ChannelView, cargo: ChannelView, h
   else if (ok(cargo)) base = 50;            // cargo-only → Difficult territory before penalties
   else if (warn(cargo)) base = 38;
   else base = 18;
-  const heatPen = heat.tone === "crit" ? 26 : heat.tone === "no" ? 16 : heat.tone === "warn" ? 6 : 0;
-  const score = clamp(Math.round(base - heatPen - (brachy ? 8 : 0)), 5, 100);
+  /* ── LA NOTE NE DÉPEND PLUS DE LA PHYSIOLOGIE (contre-vérification du 06/09/2026) ──────────
+   *
+   * Elle appliquait `heatPen` — 26, 16 ou 6 points selon le ton de `heat` — et une pénalité de
+   * 8 points pour une race brachycéphale. Les deux sont des DÉDUCTIONS retirées de l'affichage
+   * quelques heures plus tôt : `heat` vient d'une note DogTime de tolérance, et la brachycéphalie
+   * ne mesure aucun risque en vol par elle-même.
+   *
+   * Le défaut est DIFFÉRÉ, et c'est ce qui le rend dangereux : aujourd'hui la note est masquée
+   * faute de canal établi, donc rien ne paraît. Mais le jour où une citation rendra un canal
+   * établi, la note redeviendrait publique — et elle porterait à nouveau, sans que personne le
+   * revoie, deux déductions que l'arbitrage vient d'écarter de l'écran. Une donnée retirée de
+   * l'affichage ne doit pas continuer à peser dans un chiffre qui, lui, reviendra.
+   *
+   * La note ne se calcule donc plus QUE sur les canaux — c'est-à-dire sur les politiques, seules
+   * choses que ce dépôt sait établir par citation. `heat` et `brachy` n'entrent plus — et depuis
+   * le P2 relevé par Codex le 06/09/2026, la fonction ne les reçoit même plus en paramètres. */
+  const score = clamp(base, 5, 100);
   const stars = Math.round((score / 20) * 10) / 10;
   const cls = score >= 82 ? 0 : score >= 64 ? 1 : score >= 46 ? 2 : score >= 28 ? 3 : 4;
   const table = [
@@ -557,15 +588,19 @@ function buildFaq(x: any): { q: Bi; a: Bi }[] {
            es: `Bodega: ${x.hold.level.es.toLowerCase()}. Carga: ${x.cargo.level.es.toLowerCase()}. ${x.hold.detail.es}`,
            pt: `Porão: ${x.hold.level.pt.toLowerCase()}. Carga: ${x.cargo.level.pt.toLowerCase()}. ${x.hold.detail.pt}` } },
     ...faqCompagnies(x),
-    { q: { en: `Can a ${x.name} fly in summer?`, fr: `Un ${x.nameFr} peut-il voyager en été ?`, es: `¿Puede un ${x.nameEs} viajar en verano?`, pt: `Um ${x.namePt} pode viajar no verão?` },
-      a: { en: `Heat risk is ${x.heat.en.toLowerCase()} and climate-embargo risk is ${x.embargo.en.toLowerCase()}. Best season: ${x.bestSeason.en}.`,
-           fr: `Le risque chaleur est ${x.heat.fr.toLowerCase()} et le risque d'embargo climatique ${x.embargo.fr.toLowerCase()}. Meilleure saison : ${x.bestSeason.fr}.`,
-           es: `El riesgo de calor es ${x.heat.es.toLowerCase()} y el riesgo de embargo climático es ${x.embargo.es.toLowerCase()}. Mejor temporada: ${x.bestSeason.es}.`,
-           pt: `O risco de calor é ${x.heat.pt.toLowerCase()} e o risco de embargo climático é ${x.embargo.pt.toLowerCase()}. Melhor estação: ${x.bestSeason.pt}.` } },
-    { q: { en: `Is a direct flight recommended?`, fr: `Un vol direct est-il recommandé ?`, es: `¿Se recomienda un vuelo directo?`, pt: `Um voo direto é recomendado?` },
-      a: { en: `Yes — ${x.longHaul.en.toLowerCase()}. Direct routing limits temperature exposure and handling stress.`,
-           fr: `Oui — ${x.longHaul.fr.toLowerCase()}. Un vol direct limite l'exposition à la chaleur et le stress de manipulation.`,
-           es: `Sí — ${x.longHaul.es.toLowerCase()}. Un vuelo directo limita la exposición a la temperatura y el estrés por manipulación.`,
-           pt: `Sim — ${x.longHaul.pt.toLowerCase()}. Um voo direto limita a exposição à temperatura e o estresse do manuseio.` } },
+    /* ── DEUX QUESTIONS RETIRÉES (contre-test navigateur du 06/09/2026) ─────────────────────
+     *
+     * « Un {race} peut-il voyager en été ? » répondait par le risque d'embargo climatique et une
+     * MEILLEURE SAISON ; « Un vol direct est-il recommandé ? » répondait « Oui — court/moyen-
+     * courrier ». Les deux se calculent à partir des canaux des compagnies, dont AUCUN n'est
+     * aujourd'hui établi comme accepté — et une réponse de FAQ est catégorique par construction,
+     * en plus d'être donnée à lire à une machine par le balisage `FAQPage`.
+     *
+     * Ces deux réponses avaient survécu au retrait des mêmes affirmations dans le corps de la
+     * fiche : je les avais retirées de la page et laissées dans sa FAQ. C'est exactement la
+     * faute déjà commise sur les fiches compagnies — masquer une surface et en oublier une autre.
+     *
+     * Le risque chaleur reste accessible, mais par l'OUTIL, qui part de la date et du trajet
+     * réels du visiteur au lieu de recommander une saison dans l'abstrait. */
   ];
 }

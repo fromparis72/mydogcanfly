@@ -1,5 +1,5 @@
 ---
-import { inlineT, localizer, localized } from "@mydogcanfly/knowledge";
+import { inlineT, localizer, localized, t as tt } from "@mydogcanfly/knowledge";
 import Breadcrumb from "./Breadcrumb.astro";
 import PageActions from "./PageActions.astro";
 import type { BreedTravelProfile, Bi, Level } from "../lib/breedTravel";
@@ -35,20 +35,18 @@ const sub = [
   `${p.weightKg} kg`,
   p.brachy ? (T("Snub-nosed", "Brachycéphale", "Braquicéfalo")) : null,
 ].filter(Boolean).join(" · ");
-const seasonRows: [string, string, number][] = [
-  ["❄", T("Winter", "Hiver", "Invierno"), p.season.winter],
-  ["🌸", T("Spring", "Printemps", "Primavera"), p.season.spring],
-  ["🍂", T("Autumn", "Automne", "Otoño"), p.season.autumn],
-  ["☀️", T("Summer", "Été", "Verano"), p.season.summer],
-].sort((a, b) => b[2] - a[2]);
-const indicators: [string, string, Level][] = [
-  ["🌡", T("Heat risk", "Risque chaleur", "Riesgo de calor"), p.heat],
-  ["🫁", T("Respiratory risk", "Risque respiratoire", "Riesgo respiratorio"), p.respiratory],
-  ["❄", T("Cold tolerance", "Tolérance au froid", "Tolerancia al frío"), p.cold],
-  ["🚫", T("Climate-embargo risk", "Risque d'embargo climatique", "Riesgo de embargo climático"), p.embargo],
-  ["🛫", T("Long-haul", "Longs courriers", "Largo recorrido"), p.longHaul],
-  ["🧳", T("Prep difficulty", "Difficulté de préparation", "Dificultad de preparación"), p.prep],
-];
+/* `p.season` n'a plus de lecteur : les notes de saison sont retirées (voir plus bas). */
+/* ── LE BLOC D'INDICATEURS EST SUPPRIMÉ (arbitrage du 06/09/2026) ────────────────────────────
+ *
+ * J'avais gardé trois axes — chaleur, respiration, tolérance au froid — en les jugeant
+ * physiologiques donc attribuables. L'arbitrage les écarte, et la raison est méthodologique :
+ * une note DogTime de TOLÉRANCE n'est pas une mesure du RISQUE en avion ; `brachy ? élevé :
+ * faible` affirme un risque respiratoire faible sur toutes les races non brachycéphales ; et
+ * les replis calculés sur le pelage sont des déductions internes non sourcées.
+ *
+ * Ma déviation est donc retirée, pas maintenue. Les données brutes restent internes ; c'est
+ * leur PUBLICATION comme qualification de risque qui n'était pas défendable. */
+
 ---
 <div class="mdcf-container bt2">
   <Breadcrumb locale={locale} items={[
@@ -82,7 +80,7 @@ const indicators: [string, string, Level][] = [
         )}
       </div>
       <div class="bt2-ctas">
-        <a class="bt2-cta" href={finderHref}>✈ {T("Find the best airline for this breed", "Trouver la meilleure compagnie pour cette race", "Encuentra la mejor aerolínea para esta raza")}</a>
+        <a class="bt2-cta" href={finderHref}>✈ {T("Check airlines for this breed", "Vérifier les compagnies pour cette race", "Comprobar aerolíneas para esta raza")}</a>
         <a class="bt2-cta bt2-cta--sun" href={heatHref}>🌡 {fr ? `Fait-il trop chaud pour un ${name} ?` : es ? `¿Hace demasiado calor para un ${name}?` : locale === "pt" ? `Está quente demais para um ${name}?` : `Is it too hot for a ${name}?`}</a>
       </div>
     </div>
@@ -92,7 +90,14 @@ const indicators: [string, string, Level][] = [
   <section class="bt2-card">
     <h2 class="bt2-h2">{T("Travel Snapshot", "Aperçu voyage", "Resumen del viaje")}</h2>
     <div class="bt2-snap">
-      {[["✈", T("Cabin", "Cabine", "Cabina"), p.cabin.level],["🛄", T("Hold", "Soute", "Bodega"), p.hold.level],["📦", "Cargo", p.cargo.level],["🌡", T("Heat", "Chaleur", "Calor"), p.heat],["❄", T("Cold", "Froid", "Frío"), p.cold]].map(([ic, lbl, lv]) => (
+      {/* ── TROISIÈME LECTEUR, TROUVÉ APRÈS LES DEUX AUTRES (contre-vérification du 06/09/2026) ──
+          `p.heat` et `p.cold` étaient ENCORE publiés ici. Je les avais retirés du « Travel DNA »
+          et de la grille d'indicateurs, et j'avais laissé l'aperçu — exactement la faute déjà
+          commise deux fois : masquer une surface et en oublier une autre. Pire, la garde que
+          j'avais écrite annonçait « aucune qualification de risque » en ne lisant que les deux
+          surfaces corrigées : elle rendait un verdict qu'elle n'avait pas mesuré.
+          L'aperçu se réduit donc aux trois canaux, qui sont ce que la fiche sait dire. */}
+      {[["✈", T("Cabin", "Cabine", "Cabina"), p.cabin.level],["🛄", T("Hold", "Soute", "Bodega"), p.hold.level],["📦", "Cargo", p.cargo.level]].map(([ic, lbl, lv]) => (
         <div class="bt2-snapcell">
           <div class="bt2-snapic">{ic}</div>
           <div class="bt2-snaplbl">{lbl}</div>
@@ -119,7 +124,8 @@ const indicators: [string, string, Level][] = [
         </div>
       ))}
     </div>
-    <p class="bt2-note">{T("Each axis is derived from breed data and airline policies — nothing is fabricated.", "Chaque axe est déduit des données de la race et des politiques des compagnies — rien n'est inventé.", "Cada eje se deriva de los datos de la raza y de las políticas de las aerolíneas — nada es inventado.")}</p>
+    {/* « rien n'est inventé » est retiré : la phrase se voulait rassurante, mais elle affirmait
+        une garantie que l'audit a démentie pour la majorité des politiques de compagnies. */}
   </section>
 
   <!-- CABIN / HOLD / CARGO -->
@@ -172,55 +178,33 @@ const indicators: [string, string, Level][] = [
       : T("Ranking derived from published policies (cabin weight limits, hold and cargo availability). ⚠ = to confirm, never a fabricated refusal.", "Classement dérivé des politiques publiées (limites de poids cabine, disponibilité soute et fret). ⚠ = à confirmer, jamais un refus inventé.", "Clasificación derivada de las políticas publicadas (límites de peso en cabina, disponibilidad de bodega y carga). ⚠ = por confirmar, nunca un rechazo inventado.")}</p>}
   </section>
 
-  <!-- INDICATORS -->
-  <section class="bt2-card">
-    <h2 class="bt2-h2">{T("Key indicators", "Indicateurs clés", "Indicadores clave")}</h2>
-    <div class="bt2-ind">
-      {indicators.map(([ic, lbl, lv]) => (
-        <div class="bt2-indcell">
-          <div class="bt2-indtop"><span class="bt2-indic">{ic}</span> {lbl}</div>
-          <span class={`bt2-pill tone-${lv.tone}`}>{t(lv)}</span>
-        </div>
-      ))}
-    </div>
-  </section>
+  {/* La section « caractéristiques de la race » ne rendait plus que les trois axes retirés
+      ci-dessus : sans eux, elle serait un titre au-dessus de rien. Elle disparaît avec eux.
+      Pour les races brachycéphales, ce qui est vrai et utile est dit plus bas, en une phrase
+      prudente qui renvoie au transporteur effectif plutôt que d'énoncer un risque. */}
+  {/* CE QUI REMPLACE LES TROIS AXES POUR UNE RACE BRACHYCÉPHALE : un fait, pas un risque. Le
+      caractère brachycéphale de la race est une donnée attribuée ; ce que les compagnies en font
+      varie de l'une à l'autre, et c'est à elles de le dire. La phrase ne qualifie donc rien et
+      renvoie au transporteur EFFECTIF — en partage de code, ce n'est pas toujours le vendeur. */}
+  {p.brachy && (
+    <section class="bt2-card">
+      <h2 class="bt2-h2">🫁 {T("Snub-nosed breeds", "Races brachycéphales", "Razas braquicéfalas")}</h2>
+      <p class="bt2-chandet">{tt(locale, "race.brachy_prudence")}</p>
+    </section>
+  )}
 
-  <!-- SEASON + CLIMATES -->
+
+  {/* ── SAISONS ET PAYS CONSEILLÉS/À ÉVITER : LECTEURS SUPPRIMÉS (contre-test du 06/09/2026) ──
+      Cette section notait les quatre saisons en étoiles, puis recommandait des pays (France,
+      États-Unis, Royaume-Uni) et en déconseillait d'autres (Émirats). Ces classements se
+      déduisent des politiques des compagnies — dont AUCUNE n'établit aujourd'hui un canal
+      accepté — croisées avec des climats : une recommandation de destination construite sur des
+      données que le site déclare lui-même « à confirmer » n'est pas publiable.
+      Ce qui reste est l'outil qui calcule à partir de la DATE et du TRAJET du visiteur, sans rien
+      recommander à sa place. Les données ne sont pas supprimées, seulement leurs lecteurs. */}
   <section class="bt2-card">
-    <h2 class="bt2-h2">{T("Ideal season & climates", "Saison idéale & climats", "Temporada ideal y climas")}</h2>
-    <div class="bt2-season">
-      {seasonRows.map(([ic, lbl, n]) => (
-        <div class="bt2-seasonrow">
-          <span class="bt2-seasonlbl">{ic} {lbl}</span>
-          <span class="bt2-seasonstars">{star(n)}</span>
-        </div>
-      ))}
-    </div>
-    {/* Les drapeaux climatiques désignent des pays qui ont tous une fiche : ce sont des
-        liens, pas des étiquettes. Volontairement SANS `data-carry` : consulter les
-        formalités d'un pays n'est pas une étape de l'entonnoir de la race, et cliquer sur
-        un drapeau ne doit pas désigner le chien du visiteur pour le reste de sa visite. */}
-    <div class="bt2-clim">
-      <div>
-        <div class="bt2-climhd tone-ok">{T("Recommended", "Recommandés", "Recomendados")}</div>
-        <div class="bt2-badges">{p.climates.recommended.map((c) => (
-          <a class="bt2-badge bt2-badge--link" href={`${base}/countries/${c.iso2.toLowerCase()}/`}
-             title={`${T("Entry requirements", "Formalités d'entrée", "Requisitos de entrada")} — ${localized(locale, c)}`}>
-            {flag(c.iso2)} {localized(locale, c)}
-          </a>
-        ))}</div>
-      </div>
-      <div>
-        <div class="bt2-climhd tone-no">{T("Avoid", "À éviter", "Evitar")}</div>
-        <div class="bt2-badges">{p.climates.avoid.map((c) => (
-          <a class="bt2-badge bt2-badge--link" href={`${base}/countries/${c.iso2.toLowerCase()}/`}
-             title={`${T("Entry requirements", "Formalités d'entrée", "Requisitos de entrada")} — ${localized(locale, c)}`}>
-            {flag(c.iso2)} {localized(locale, c)}
-          </a>
-        ))}</div>
-      </div>
-    </div>
-    <p class="bt2-note">{t(p.climates.basis)}</p>
+    <h2 class="bt2-h2">{T("Heat and the season of your trip", "La chaleur et la saison de ton voyage", "El calor y la temporada de tu viaje")}</h2>
+    <p class="bt2-chandet">{tt(locale, "premium.editorial_unproven")}</p>
     <a class="bt2-onav bt2-onav--inline" href={heatHref}>🌡 {T("Calculate the heat risk for your date and route", "Calculer le risque chaleur pour ta date et ton trajet", "Calcular el riesgo de calor para tu fecha y ruta")}</a>
   </section>
 
@@ -243,13 +227,10 @@ const indicators: [string, string, Level][] = [
         "El tamaño correcto depende de las medidas de tu perro, no solo de su raza.")}</p>
       <a class="bt2-link" href={crateHref}>→ {T("What size travel crate does my dog need?", "Quelle taille de cage de transport pour mon chien ?", "¿Qué tamaño de transportín necesita mi perro?")}</a>
     </div>
-    <div>
-      <h2 class="bt2-h2">🎓 {T("Recommended experience", "Niveau recommandé", "Experiencia recomendada")}</h2>
-      <span class={`bt2-pill tone-${p.experience.tone}`}>{t(p.experience)}</span>
-      {/* Formulation NEUTRE : le caractère brachycéphale n'entre dans ce niveau que pour les
-          races qui le sont, et le nommer partout le laissait croire universel. */}
-      <p class="bt2-chandet">{T("Based on overall difficulty, weight, available channels and published policies.", "Basé sur la difficulté globale, le poids, les canaux disponibles et les politiques publiées.", "Según la dificultad global, el peso, los canales disponibles y las políticas publicadas.")}</p>
-    </div>
+    {/* « NIVEAU RECOMMANDÉ » EST SUPPRIMÉ. Il se disait « basé sur la difficulté globale, le
+        poids, les canaux disponibles et les politiques publiées » — or aucun canal n'est
+        aujourd'hui établi comme accepté. Une recommandation d'expérience adossée à des canaux
+        indéterminés recommande à partir de rien. */}
   </section>
 
   <!-- FAQ -->
