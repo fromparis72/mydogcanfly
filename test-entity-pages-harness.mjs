@@ -538,15 +538,39 @@ console.log("\n=== 2 quater. Le gabarit ne LIT plus les champs éditoriaux non s
     for (const f of fichiersUI) {
       const src = sansCommentaires(fs.readFileSync(f, "utf8"));
       if (!/inlineT\(|inlineF\(/.test(src)) continue;
-      const al = aliasDe(src);
-      if (!al.length) continue;
-      for (const m of src.matchAll(motifPour(al))) {
+      for (const m of src.matchAll(motifPour(aliasDe(src)))) {
         const en = decoder(m[2]);
         if (en !== null && !(en in tableSabotee)) vue = true;
       }
     }
     check("contre-épreuve : retirer une clé de la table portugaise fait rougir le balayage",
       Boolean(uneClePresente) && vue);
+
+    /* CONTRE-ÉPREUVE DU FICHIER JETABLE — un gabarit qui n'emploie QUE l'appel direct, sans
+       déclarer le moindre alias, doit être lu. C'est le cas que le `continue` supprimé laissait
+       passer ; il n'existe dans aucun fichier réel, on le fabrique donc pour l'éprouver. */
+    {
+      const jetable = path.join(ROOT, "packages", "ui", "src", `.balayage-temoin-${process.pid}.astro`);
+      const phraseInconnue = `Phrase qui n'existe dans aucune table — témoin ${process.pid}`;
+      fs.writeFileSync(jetable,
+        `---
+import { inlineT } from "@mydogcanfly/knowledge";
+const titre = inlineT(locale)("${phraseInconnue}", "fr", "es");
+---
+<p>{titre}</p>
+`);
+      try {
+        const src = sansCommentaires(fs.readFileSync(jetable, "utf8"));
+        const aucunAlias = aliasDe(src).length === 0;
+        let vueSansAlias = false;
+        for (const m of src.matchAll(motifPour(aliasDe(src))))
+          if (decoder(m[2]) === phraseInconnue) vueSansAlias = true;
+        check("contre-épreuve : un gabarit sans alias déclaré, n'employant que l'appel direct, est lu",
+          aucunAlias && vueSansAlias,
+          aucunAlias ? "l'appel direct n'est PAS lu — un tel gabarit publierait l'anglais sans être vu"
+                     : "le fichier témoin déclare un alias : il n'éprouve pas le cas visé");
+      } finally { fs.rmSync(jetable, { force: true }); }
+    }
   }
 }
 

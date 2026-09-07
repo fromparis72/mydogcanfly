@@ -1590,3 +1590,69 @@ comme s'ils protégeaient la branche : ils attestaient seulement que je l'avais 
 Il est câblé au catalogue complet, avec Playwright installé pour la circonstance. Et son repli est
 corrigé : hors CI, une absence de Playwright reste un « non joué » ; **en CI, c'est un échec** —
 un contrôle qui ne s'est pas exécuté ne doit pas rendre une coche verte.
+
+---
+
+## Annexe 13 — Corriger cinq tuiles et déclarer la surface traitée (07/09/2026)
+
+### La quatrième fois
+
+J'ai corrigé les cinq compteurs des dossiers de presse téléchargeables et écrit qu'ils étaient
+corrigés. La contre-revue a ouvert les fichiers en entier : ce sont des **copies publiques d'un
+produit antérieur**. Ils publiaient encore, dans quatre langues :
+
+- la série de caisse **« 500 / XL »** et son « ≈ 94 × 64 × 68 cm » — la série commerciale non
+  sourcée retirée des fiches race et du calculateur ;
+- **chaleur et froid « lus sur les données de la race »** — les déductions retirées du Travel DNA ;
+- **« meilleures compagnies »**, **« score de compatibilité »**, **« recommandations sur mesure »**
+  — les promesses que la frontière de confiance interdit ;
+- **« chaque règle renvoie à une documentation officielle »** — quand 45 canaux sur 302 portent une
+  citation propre ;
+- une date de vérification figée et des promesses de révision continue.
+
+C'est la **quatrième fois** dans ce chantier que je masque une surface en en laissant une autre :
+la carte compagnie puis la FAQ, le corps de fiche race puis la FAQ, l'ADN puis l'aperçu voyage, et
+maintenant la page dynamique puis les documents. Le motif est constant : je corrige ce que la
+revue **nomme**, et je déclare corrigé ce qu'elle **désigne**.
+
+Les quatre HTML avaient été retirés, comme les PDF avant eux. **Philippe a décidé le 07/09/2026
+de les rétablir en l'état** et de traiter ces documents dans un lot séparé.
+
+Ce qui doit rester écrit, parce que la décision ne le change pas : ces fichiers vivent dans
+`public/`, sont copiés dans le site construit, servis à `/presskit/press-kit-<lg>.html`, proposés
+au téléchargement par la page de presse et déclarés dans `porte-noindex-admis.json`. **Ils sont
+publics**, et ils décrivent toujours un produit antérieur. Leur exclusion du contrôle est une
+déviation nommée, pas un constat de propreté.
+
+Deux choses ont été conservées de la correction : les cinq compteurs restent exacts
+(102 / 140 / 172 / 4 / 302), parce que réintroduire sciemment des chiffres faux aurait été un
+geste actif contre le critère de lancement, que la décision de rétablir ne demandait pas ; et le
+contrôle annonce à chaque passage combien de documents sont publiés **sans être audités**, en
+refusant que ce nombre dérive en silence.
+
+### La page dynamique portait les mêmes promesses
+
+Six formulations corrigées : le score de compatibilité, « chaque règle porte l'autorité dont elle
+vient », « chaleur et froid lus sur les données de la race », « chaque règle porte sa source […]
+revérifiées tous les 90 jours », « nous répondons avec la source et sa date de vérification », et
+le moteur qui « montre d'où vient chaque réponse ».
+
+### Le contrôle ne cherchait que des nombres
+
+Mon §6 lisait les compteurs et le suffixe `+`. Il serait resté vert devant toutes les phrases
+ci-dessus. Onze motifs de promesse s'y ajoutent, avec témoin de non-vacuité sur les neuf phrases
+réellement retirées, et une exigence que les documents téléchargeables **restent retirés**.
+
+Ces motifs ont attrapé mes propres corrections avant que je les termine : les six phrases neuves
+de la page press kit n'existaient pas dans la table portugaise, et la garde des replis l'a dit
+immédiatement.
+
+### Le scanner annonçait encore une couverture qu'il n'avait pas
+
+Il commençait par `if (!aliasDe(src).length) continue;` : un gabarit n'employant **que** l'appel
+direct `inlineT(locale)(…)`, sans déclarer d'alias, aurait été ignoré en silence. Aucune fuite
+réelle — le seul appel direct vit dans `faq.ts`, qui déclare aussi des alias — mais la prétention
+de couverture générale était fausse, et c'est elle qui compte : un contrôle qu'on croit général
+dispense d'en écrire un autre. Le `continue` est supprimé, et une contre-épreuve **fabrique** le
+cas : un fichier jetable ne contenant qu'un appel direct, dont la clé manque à la table, doit être
+lu.

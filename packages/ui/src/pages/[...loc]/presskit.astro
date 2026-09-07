@@ -130,19 +130,19 @@ const shots = [
             "El punto de partida: ruta, raza, peso, cabina o bodega, fecha del viaje.") },
   { file: "screenshots/02-recommendation-2",
     name: T("The recommendation", "La recommandation", "La recomendación"),
-    note: T("A verdict with a compatibility score, the reasons behind it, and the airlines that actually fly the route.",
-            "Un verdict avec son taux de compatibilité, les raisons qui le motivent, et les compagnies qui font vraiment la route.",
-            "Un veredicto con su porcentaje de compatibilidad, las razones que lo motivan y las aerolíneas que cubren la ruta.") },
+    note: T("What each airline's published conditions say for this route, given as confirmed by a cited source or still to be checked.",
+            "Ce que les conditions publiées de chaque compagnie disent pour ce trajet, donné comme confirmé par une source citée ou à vérifier.",
+            "Lo que dicen las condiciones publicadas de cada aerolínea para esta ruta, indicado como confirmado por una fuente citada o pendiente de comprobar.") },
   { file: "screenshots/03-requirements-sheet-3",
     name: T("The tailored requirements sheet", "La fiche d'exigences sur mesure", "La ficha de requisitos a medida"),
-    note: T("Step by step, outbound and return — each rule carrying the authority it comes from.",
-            "Étape par étape, aller et retour — chaque règle porte l'autorité dont elle vient.",
-            "Paso a paso, ida y vuelta — cada norma indica la autoridad de la que procede.") },
+    note: T("Step by step, outbound and return — with the authority named where one could be cited.",
+            "Étape par étape, aller et retour — avec l'autorité nommée là où elle a pu être citée.",
+            "Paso a paso, ida y vuelta — con la autoridad nombrada allí donde ha podido citarse.") },
   { file: "screenshots/04-breed-report-2",
     name: T("The breed travel report", "Le rapport de voyage par race", "El informe de viaje por raza"),
-    note: T("Cabin, hold, cargo, heat and cold — read from the breed's own data.",
-            "Cabine, soute, cargo, chaleur et froid — lus sur les données de la race.",
-            "Cabina, bodega, carga, calor y frío — leídos de los datos de la raza.") },
+    note: T("Cabin, hold and cargo — the three channels, from airline policies only.",
+            "Cabine, soute et fret — les trois canaux, à partir des seules politiques des compagnies.",
+            "Cabina, bodega y carga — los tres canales, solo a partir de las políticas de las aerolíneas.") },
 ];
 
 /* Photos réelles. Le reste de l'univers visuel du site est illustré ou généré ; ces images-ci
@@ -303,9 +303,9 @@ const desc = T(
           "<b>MyDogCanFly</b> responde a una sola pregunta: <b>¿puede volar mi perro, en esta aerolínea, a este país?</b> El sitio compara lo que cada aerolínea permite en cabina, en bodega y en carga, lo que cada destino exige a la llegada, y lo que el tamaño y la morfología de cada raza cambian en la práctica.",
         )}</p>
         <p class="prs-claim">{T(
-          "Every rule carries its source, its verification date and a confidence level. Airlines are re-checked every 90 days, countries every 180. Free, no account, in four languages.",
-          "Chaque règle porte sa source, sa date de vérification et un niveau de confiance. Les compagnies sont revérifiées tous les 90 jours, les pays tous les 180. Gratuit, sans compte, en quatre langues.",
-          "Cada norma incluye su fuente, su fecha de verificación y un nivel de confianza. Las aerolíneas se revisan cada 90 días, los países cada 180. Gratis, sin cuenta, en cuatro idiomas.",
+          "Conditions confirmed by a cited source carry that source and its date; the rest is shown as still to be checked rather than as established. Free, no account, in four languages.",
+          "Les conditions confirmées par une source citée portent cette source et sa date ; le reste est présenté comme à vérifier, et non comme établi. Gratuit, sans compte, en quatre langues.",
+          "Las condiciones confirmadas por una fuente citada llevan esa fuente y su fecha; el resto se muestra como pendiente de comprobar, no como establecido. Gratis, sin cuenta, en cuatro idiomas.",
         )}</p>
       </div>
 
@@ -508,9 +508,9 @@ const desc = T(
           <p class="prs-author-name">Philippe BENOIST</p>
           <p class="prs-author-role">{T("Founder and publisher, MyDogCanFly", "Fondateur et éditeur, MyDogCanFly", "Fundador y editor, MyDogCanFly")}</p>
           <p class="prs-author-body">{T(
-            "Philippe BENOIST built MyDogCanFly after flying with Bailey, his golden retriever, and finding that no two airlines answered the same question the same way. The sources are public — airline conditions of carriage, government animal-health regulations — but scattered and contradictory. He gathered and read them, and used artificial intelligence to structure, code and maintain the result: a single decision engine that says yes, no, or yes-with-conditions, and shows where each answer comes from.",
-            "Philippe BENOIST a construit MyDogCanFly après avoir voyagé avec Bailey, son golden retriever, et constaté que deux compagnies ne répondaient jamais pareil à la même question. Les sources sont publiques — conditions de transport des compagnies, réglementations sanitaires des États — mais éparpillées et contradictoires. Il les a rassemblées et lues, et s'est appuyé sur l'intelligence artificielle pour structurer, coder et tenir à jour le résultat : un moteur de décision unique qui dit oui, non, ou oui sous conditions, et montre d'où vient chaque réponse.",
-            "Philippe BENOIST creó MyDogCanFly después de viajar con Bailey, su golden retriever, y comprobar que dos aerolíneas nunca respondían igual a la misma pregunta. Las fuentes son públicas — condiciones de transporte de las aerolíneas, normativas sanitarias de los países — pero están dispersas y se contradicen. Las reunió y las leyó, y se apoyó en la inteligencia artificial para estructurar, programar y mantener el resultado: un único motor de decisión que dice sí, no, o sí con condiciones, y muestra de dónde viene cada respuesta.",
+            "Philippe BENOIST built MyDogCanFly after flying with Bailey, his golden retriever, and finding that no two airlines answered the same question the same way. The sources are public — airline conditions of carriage, government animal-health regulations — but scattered and contradictory. He gathered and read them, and used artificial intelligence to structure, code and maintain the result: a single engine that gathers those conditions and separates what a cited source confirms from what still needs checking.",
+            "Philippe BENOIST a construit MyDogCanFly après avoir voyagé avec Bailey, son golden retriever, et constaté que deux compagnies ne répondaient jamais pareil à la même question. Les sources sont publiques — conditions de transport des compagnies, réglementations sanitaires des États — mais éparpillées et contradictoires. Il les a rassemblées et lues, et s'est appuyé sur l'intelligence artificielle pour structurer, coder et tenir à jour le résultat : un moteur unique qui rassemble ces conditions et sépare ce qu'une source citée confirme de ce qui reste à vérifier.",
+            "Philippe BENOIST creó MyDogCanFly después de viajar con Bailey, su golden retriever, y comprobar que dos aerolíneas nunca respondían igual a la misma pregunta. Las fuentes son públicas — condiciones de transporte de las aerolíneas, normativas sanitarias de los países — pero están dispersas y se contradicen. Las reunió y las leyó, y se apoyó en la inteligencia artificial para estructurar, programar y mantener el resultado: un único motor que reúne esas condiciones y separa lo que confirma una fuente citada de lo que queda por comprobar.",
           )}</p>
         </div>
       </div>
@@ -580,9 +580,9 @@ const desc = T(
           <b>{T("Press", "Presse", "Prensa")}</b>
           <a href={`mailto:${LEGAL.pressEmail}`}>{LEGAL.pressEmail}</a>
           <span>{T(
-            "Interviews, data questions, fact-checking. We answer data questions with the source and its verification date.",
-            "Interviews, questions sur les données, vérification de faits. Nous répondons aux questions de données avec la source et sa date de vérification.",
-            "Entrevistas, preguntas sobre los datos, verificación de hechos. Respondemos con la fuente y su fecha de verificación.",
+            "Interviews, data questions, fact-checking. We answer with the source and its date where one has been cited, and say so plainly where none has.",
+            "Interviews, questions sur les données, vérification de faits. Nous répondons avec la source et sa date là où une source a été citée, et le disons clairement là où il n'y en a pas.",
+            "Entrevistas, preguntas sobre los datos, verificación de hechos. Respondemos con la fuente y su fecha allí donde se ha citado una, y lo decimos claramente cuando no la hay.",
           )}</span>
         </div>
         <div class="prs-contact">

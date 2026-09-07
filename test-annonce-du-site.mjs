@@ -198,12 +198,29 @@ dire(`  alternates lus : ${alternatesLus} · URL au sitemap : ${Object.values(ur
     for (const [nom, f] of [[`accueil ${l}`, acc], [`press kit ${l}`, prs]])
       if (existsSync(f)) surfaces.push([nom, texteDe(readFileSync(f, "utf8"))]);
   }
-  for (const l of LANGUES) {
-    const stat = join("packages", "ui", "public", "presskit", `press-kit-${l}.html`);
-    if (existsSync(stat)) surfaces.push([`press kit téléchargeable ${l}`, texteDe(readFileSync(stat, "utf8"))]);
-  }
+  /* LES QUATRE DOSSIERS TÉLÉCHARGEABLES SONT HORS DE CE BALAYAGE — DÉCISION DE PHILIPPE, 07/09/2026.
+   *
+   * Ils avaient été retirés parce qu'ils décrivent un produit antérieur : série de caisse
+   * « 500 / XL », chaleur et froid « lus sur les données de la race », « meilleures compagnies »,
+   * « score de compatibilité », « recommandations sur mesure », « chaque règle renvoie à une
+   * documentation officielle ». Philippe a décidé de les rétablir en l'état et de les traiter
+   * dans un lot séparé.
+   *
+   * CE QUE CELA VEUT DIRE, ET QUI DOIT RESTER ÉCRIT : ces fichiers vivent dans `public/`, sont
+   * donc copiés dans le site construit, servis à `/presskit/press-kit-<lg>.html`, proposés au
+   * téléchargement par la page de presse et déclarés dans `porte-noindex-admis.json`. Ils sont
+   * PUBLICS. Leur exclusion de ce contrôle est une déviation nommée, pas un constat de propreté :
+   * ils ne sont ni audités ni gardés, et ce paragraphe est le seul endroit où on le dit.
+   *
+   * Leurs cinq compteurs ont été corrigés (102 / 140 / 172 / 4 / 302) et le sont restés : les
+   * réintroduire faux aurait été un geste actif contre le critère de lancement, que la décision
+   * de rétablir ne demandait pas. */
+  const DOSSIERS_TELECHARGEABLES = LANGUES.flatMap((l) =>
+    [`press-kit-${l}.html`, `press-kit-${l}.pdf`].map((f) => join("packages", "ui", "public", "presskit", f)));
   dire(`  surfaces lues : ${surfaces.map(([n]) => n).join(", ")}`);
-  exiger("les trois surfaces sont lues (accueil, page press kit, documents)", surfaces.length >= 12,
+  /* HUIT surfaces : les quatre accueils et les quatre pages de presse du SITE. Les documents
+     téléchargeables sont exclus par décision de Philippe (voir le paragraphe ci-dessus). */
+  exiger("les deux surfaces publiées sont lues (accueil et page press kit, quatre langues)", surfaces.length >= 8,
     `${surfaces.length} surface(s) — le contrôle ne saurait pas conclure`);
 
   /* Un compte majoré ne doit apparaître nulle part. */
@@ -227,6 +244,86 @@ dire(`  alternates lus : ${alternatesLus} · URL au sitemap : ${Object.values(ur
     Object.values(REELS).filter((n) => new RegExp(`(?<![\\d.,])${n}(?![\\d])`).test(t)).length >= 3);
   exiger("chaque accueil sert au moins trois des quatre comptes réels", servis.length === accueils.length,
     `${servis.length}/${accueils.length} accueil(s)`);
+
+  /* LES CHIFFRES NE SONT PAS LE SEUL MENSONGE POSSIBLE (07/09/2026, second passage).
+   *
+   * Le contrôle qui précède ne cherchait que des NOMBRES. Il est resté vert devant quatre
+   * dossiers de presse téléchargeables qui décrivaient un produit antérieur en entier : série de
+   * caisse « 500 / XL » retirée des fiches, chaleur et froid « lus sur les données de la race »
+   * retirés du Travel DNA, « meilleures compagnies », « score de compatibilité »,
+   * « recommandations sur mesure », et surtout « chaque règle renvoie à une documentation
+   * officielle » — quand 45 canaux sur 302 portent une citation propre.
+   *
+   * J'avais corrigé cinq tuiles chiffrées et déclaré la surface traitée. C'est la quatrième fois
+   * dans ce chantier que je masque une surface en en laissant une autre. Les quatre documents
+   * sont retirés ; ce qui suit garde la page qui reste. */
+  /* LA MOITIÉ D'UNE PHRASE N'EST PAS LA PHRASE. Ces quatre motifs ont d'abord rougi sur le titre
+     de l'accueil — « Chaque règle est sourcée et datée — OU SIGNALÉE À CONFIRMER ». Cette phrase
+     est exactement ce que le lot défend : elle nomme les deux états. Ce qui est interdit, c'est
+     l'affirmation universelle SANS son alternative ; l'alternative est donc cherchée dans ce qui
+     suit, et sa présence disculpe la phrase. Sans cela, le contrôle aurait poussé à retirer une
+     formulation honnête pour se satisfaire lui-même. */
+  /* L'ALTERNATIVE DISCULPE, ET ELLE EST CHERCHÉE HORS DU MOTIF. Une première rédaction la
+     plaçait en négation à l'intérieur : `{0,5}` étant variable, le moteur reculait jusqu'à
+     trouver une découpe où la négation passait, et la phrase honnête rougissait quand même. La
+     règle est appliquée APRÈS le match, sur ce qui suit — lisible, et sans retour arrière. */
+  const ALTERNATIVE = /ou signal[ée]e? [àa] confirmer|or flagged as unconfirmed|o se marca como por confirmar|ou [ée] assinalada a confirmar|[àa] confirmer|to be checked|por confirmar|a confirmar/i;
+  const PROMESSES = [
+    ["source universelle", /chaque r[èe]gle[,\s]+(?:[^\s]+\s+){0,5}(?:porte|renvoie|indique|est sourc[ée]e)/i],
+    ["source universelle", /every rule[,\s]+(?:[^\s]+\s+){0,5}(?:carries|is sourced|traced)/i],
+    ["source universelle", /cada norma[,\s]+(?:[^\s]+\s+){0,5}(?:incluye|indica|remite|tiene fuente)/i],
+    ["source universelle", /cada regra[,\s]+(?:[^\s]+\s+){0,5}(?:tem|indica|remete)/i],
+    ["révision périodique", /revérifi[ée]es? tous les \d+ jours|re-checked every \d+ days|se revisan cada \d+ d[ií]as/i],
+    ["score", /score de compatibilit[ée]|taux de compatibilit[ée]|compatibility score|porcentaje de compatibilidad/i],
+    ["meilleure compagnie", /meilleures? compagnies?|best airlines? for your dog|mejores? aerol[ií]neas? para tu perro/i],
+    ["recommandation", /recommandations? (?:sur mesure|personnalis[ée]es?)|tailored recommendations?|recomendaciones? a medida/i],
+    ["physiologie publiée", /chaleur et froid\s+(?:[^\s]+\s+){0,3}lus sur les donn[ée]es de la race|heat and cold\s+(?:[^\s]+\s+){0,3}read from the breed/i],
+    ["caisse non sourcée", /500\s*\/\s*XL|94\s*×\s*64/i],
+    ["origine de chaque réponse", /montre d'o[ùu] vient chaque r[ée]ponse|shows where each answer comes from|muestra de d[óo]nde viene cada respuesta/i],
+  ];
+  const promesses = [];
+  for (const [nom, texte] of surfaces)
+    for (const [quoi, re] of PROMESSES) {
+      const m = re.exec(texte);
+      if (!m) continue;
+      /* Une affirmation universelle SUIVIE de son alternative nomme les deux états : c'est la
+         formulation que ce lot installe partout, pas celle qu'il interdit. Le titre d'accueil
+         « Chaque règle est sourcée et datée — OU SIGNALÉE À CONFIRMER » en est le cas type ; sans
+         cette règle, le contrôle aurait poussé à retirer une phrase honnête pour se satisfaire. */
+      if (quoi === "source universelle" && ALTERNATIVE.test(texte.slice(m.index, m.index + m[0].length + 90))) continue;
+      promesses.push(`${nom} [${quoi}] : « ${m[0].slice(0, 55)} »`);
+    }
+  exiger("aucune surface d'annonce ne promet une vérification universelle, un score ou une recommandation",
+    promesses.length === 0, promesses.slice(0, 5).join(" | "));
+
+  /* CE QUI EST PUBLIÉ SANS ÊTRE GARDÉ, DIT À VOIX HAUTE. Le contrôle ne juge pas ces documents —
+     décision de Philippe — mais il refuse de laisser leur nombre dériver en silence : si un
+     cinquième dossier apparaissait, personne ne saurait qu'il échappe aussi au balayage. */
+  const presents = DOSSIERS_TELECHARGEABLES.filter((f) => existsSync(f));
+  dire(`  dossiers téléchargeables publiés SANS être audités par ce contrôle : ${presents.length} (décision du 07/09/2026)`);
+  exiger("le nombre de dossiers téléchargeables non audités est celui qui a été arbitré (8 : 4 HTML + 4 PDF)",
+    presents.length === 8, `${presents.length} document(s) — l'écart n'a pas été arbitré`);
+
+  /* NON-VACUITÉ des motifs : ils doivent reconnaître les phrases réellement retirées. */
+  {
+    const retirees = [
+      "Chaque règle porte sa source, sa date de vérification et un niveau de confiance.",
+      "Every rule, policy and requirement is sourced, checked and kept up to date",
+      "Les compagnies sont revérifiées tous les 90 jours",
+      "Un verdict avec son taux de compatibilité",
+      "Best airlines for your dog",
+      "tailored recommendations",
+      "Cabine, soute, cargo, chaleur et froid — lus sur les données de la race.",
+      "500 / XL",
+      "montre d'où vient chaque réponse",
+    ];
+    const aveugles = retirees.filter((ph) => !PROMESSES.some(([, re]) => re.test(ph)));
+    const disculpees = retirees.filter((ph) => ALTERNATIVE.test(ph));
+    exiger("témoin : aucune phrase retirée ne porte l'alternative qui la disculperait",
+      disculpees.length === 0, `${disculpees.length} phrase(s) : ${disculpees.slice(0, 2).join(" | ")}`);
+    exiger("témoin : les motifs reconnaissent les phrases retirées du dossier de presse",
+      aveugles.length === 0, `${aveugles.length} non reconnue(s) : ${aveugles.slice(0, 2).join(" | ")}`);
+  }
 
   /* ATTAQUES — les deux interdictions doivent savoir échouer. */
   {
