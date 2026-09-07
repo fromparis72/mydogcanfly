@@ -246,6 +246,45 @@ const interdites = (texte) => {
   else ok("12 identifiants aria, adresses, valeur de champ de saisie et attributs d'un élément non public restent hors de la zone");
 }
 
+/* ---- 13. LES ATTRIBUTS DE `\<html\>` ET `\<body\>`, DANS LEURS TROIS FORMES VALIDES -----------
+ *
+ * Ces attributs partaient avec leurs balises : l'injection par `innerHTML` dans un `<div>` jette
+ * `html`, `head` et `body` en ne gardant que leurs enfants. Un `aria-label` sur le corps est
+ * pourtant lu à voix haute comme n'importe quel texte, et il échappait à TOUTES les portes qui
+ * emploient ce lecteur — quatrième correction, trouvée par une contre-épreuve de presse.
+ *
+ * La correction suivante fut pire que le défaut : elle relevait ces attributs à l'expression
+ * régulière `<body\b([^>]*)>` et découpait les guillemets à la main. Trois formes parfaitement
+ * valides lui échappaient, et un prix rendu « €400 » à l'écran pouvait traverser les gardes
+ * tarifaires. Les voici, une par une — un cas de test par forme, parce qu'un seul les aurait
+ * toutes crues couvertes. */
+{
+  const ecarts = [];
+  const cas = [
+    ["entité HTML", '<html><body aria-label="&#x20AC;400 each way"><p>x</p></body></html>', "€400 each way"],
+    ["chevron dans la valeur", '<html><body aria-label="€400 each way > confirmation required"><p>x</p></body></html>',
+     "€400 each way > confirmation required"],
+    ["sans guillemets", "<html><body aria-label=€400><p>x</p></body></html>", "€400"],
+    ["attribut sur <html>", '<html lang="fr" aria-label="€400 par trajet"><body><p>x</p></body></html>', "€400 par trajet"],
+    ["guillemets simples", "<html><body aria-label='€400 &amp; plus'><p>x</p></body></html>", "€400 & plus"],
+    ["balise auto-fermante", '<html><body aria-label="€400" /><p>x</p></body></html>', "€400"],
+  ];
+  for (const [nom, html, attendu] of cas) {
+    const vu = zonesDe(html).attributs;
+    if (!vu.includes(attendu)) ecarts.push(`${nom} : attendu « ${attendu} », lu ${JSON.stringify(vu)}`);
+  }
+  /* NON-VACUITÉ : une page sans attribut de racine ne doit rien ajouter — sans quoi les six cas
+     ci-dessus passeraient sur un lecteur qui rendrait n'importe quoi. */
+  const vide = zonesDe("<html><body><p>x</p></body></html>").attributs;
+  if (vide.trim() !== "") ecarts.push(`une page sans attribut de racine en rend : ${JSON.stringify(vide)}`);
+  /* Et ce qui n'est PAS un texte accessible reste dehors, comme pour le reste du fichier. */
+  const nonTexte = zonesDe('<html data-prix="€400"><body id="€400 aussi"><p>x</p></body></html>').attributs;
+  if (nonTexte.includes("€400")) ecarts.push(`un attribut non accessible est lu : ${JSON.stringify(nonTexte)}`);
+
+  if (ecarts.length) echec("13 attributs de racine", ecarts.join(" · "));
+  else ok(`13 les attributs de \`<html>\` et \`<body>\` sont lus dans leurs ${cas.length} formes valides — entité, chevron dans la valeur, sans guillemets, guillemets simples — et rien d'autre ne l'est`);
+}
+
 console.log(defauts
   ? `\n[zones] ÉCHEC — ${defauts} contre-épreuve(s) en défaut`
   : "\n[zones] un seul lecteur : le titre reste dans sa zone, les titres SVG dans le corps, le texte est lu comme il est rendu, les textes accessibles des attributs ont leur zone, et les deux gardes voient la même page.");

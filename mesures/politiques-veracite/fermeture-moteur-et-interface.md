@@ -1759,3 +1759,56 @@ Vérifié qu'aucune autre garde ne rougit de cet élargissement : `tarifs`, `mon
 Une contre-épreuve écrite pour prouver qu'un contrôle voit une zone a prouvé qu'il ne la voyait
 pas — et le trou n'était pas dans le contrôle, mais dans l'instrument partagé sous lui. C'est
 exactement ce à quoi sert une attaque : elle ne confirme pas ce qu'on croit, elle mesure.
+
+---
+
+## Annexe 16 — La correction du lecteur était un parseur de plus (07/09/2026)
+
+### Ce que l'annexe 15 avait corrigé, et mal
+
+L'annexe 15 raconte comment une contre-épreuve a découvert que `zonesDe()` perdait les attributs
+portés par `<html>` et `<body>` : l'injection par `innerHTML` dans un `<div>` réutilisé jette ces
+balises en ne gardant que leurs enfants. La correction relevait donc ces attributs sur le HTML
+brut, à l'expression régulière `<body\b([^>]*)>`, en découpant les guillemets à la main.
+
+**Trois formes parfaitement valides lui échappaient**, mesurées en contre-revue sur le lecteur
+réel :
+
+| HTML public | ce que le lecteur rendait |
+|---|---|
+| `<body aria-label="&#x20AC;400 each way">` | `&#x20AC;400 each way` — l'entité n'était pas décodée |
+| `<body aria-label="€400 each way > confirmation required">` | vide — le `>` fermait la balise trop tôt |
+| `<body aria-label=€400>` | vide — sans guillemets, rien n'était vu |
+
+Un prix rendu **« €400 »** à l'écran pouvait donc traverser toutes les gardes tarifaires.
+
+### Le défaut, commis à l'intérieur du fichier qui le combat
+
+`zones-publiques.mjs` existe pour qu'il n'y ait **qu'un seul** lecteur de HTML dans ce dépôt. Sa
+deuxième phrase le dit : *« ce qui compte comme publié ne peut pas dépendre de l'instrument qui
+regarde »*. J'y ai écrit un analyseur de HTML à la main.
+
+C'est la troisième fois dans ce lot que je réécris un lecteur au lieu d'employer celui qui existe —
+le §7 des affirmations retirées (annexe 11), le §6 de l'annonce (annexe 15), et maintenant
+**dedans**. Le réflexe survit à sa propre documentation : je l'ai nommé deux fois et je l'ai
+recommis deux fois. Ce qui l'arrête n'est pas de le comprendre, c'est qu'une contre-épreuve le
+mesure.
+
+### Deux gestes, et aucun ne devine
+
+- Un **scanner qui suit les guillemets** délimite la balise ouvrante : un `>` entre guillemets ne
+  ferme plus rien, et une balise jamais fermée ne rend rien plutôt qu'une valeur inventée.
+- Les attributs sont **réinjectés sur un `<div>` neutre** et lus par `getAttribute` : c'est le
+  **même parseur** que tout le reste du fichier qui décode — avec ou sans guillemets, entités
+  comprises. Le lecteur ne fait plus que déléguer.
+
+### Six cas, pas trois
+
+Le §13 de `test-zones-publiques.mjs` couvre les trois formes signalées, plus l'attribut porté par
+`<html>`, les guillemets simples et la balise auto-fermante — un cas par forme, parce qu'un seul
+les aurait toutes crues couvertes. Deux témoins l'encadrent : une page sans attribut de racine ne
+doit **rien** rendre, et un attribut non accessible (`data-prix`, `id`) doit rester dehors.
+
+Les sept gardes qui emploient ce lecteur — `tarifs`, `montants-publiés`, `montants-propagation`,
+`caisses-non-sourcées`, `étape3`, `affirmations-retirées`, `annonce` — restent vertes après
+l'élargissement.

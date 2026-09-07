@@ -192,16 +192,42 @@ export function zonesDe(html) {
    * autre : c'est du texte public, et il échappait à TOUTES les portes qui emploient ce lecteur.
    * On les relève donc sur le HTML BRUT, avant l'injection — seule la première balise de chaque
    * sorte, et uniquement les attributs déjà reconnus comme accessibles ailleurs dans ce fichier. */
-  const attributsDeLaBalise = (nom) => {
-    const m = new RegExp(`<${nom}\\b([^>]*)>`, "i").exec(brut);
-    if (!m) return [];
-    const out = [];
-    for (const a of ATTRIBUTS_ACCESSIBLES) {
-      const v = new RegExp(`\\b${a}\\s*=\\s*("([^"]*)"|'([^']*)')`, "i").exec(m[1]);
-      const val = v?.[2] ?? v?.[3];
-      if (val) out.push(val);
+  /* CINQUIÈME CORRECTION, ET LA PRÉCÉDENTE ÉTAIT UN PARSEUR DE PLUS. La quatrième relevait ces
+   * attributs à l'expression régulière `<body\b([^>]*)>` puis découpait les guillemets à la main.
+   * Trois formes parfaitement valides lui échappaient, mesurées en contre-revue :
+   *
+   *     <body aria-label="&#x20AC;400 each way">          l'entité n'était pas décodée
+   *     <body aria-label="€400 > confirmation required">  le « > » fermait la balise trop tôt
+   *     <body aria-label=€400>                            sans guillemets, rien n'était vu
+   *
+   * Un prix rendu « €400 » à l'écran pouvait donc traverser toutes les gardes tarifaires. Écrire
+   * un analyseur de HTML à la main dans le fichier dont la raison d'être est de n'en avoir qu'un
+   * seul : c'est le défaut que ce fichier combat, commis à l'intérieur de lui-même.
+   *
+   * DEUX GESTES, ET AUCUN NE DEVINE. On délimite la balise ouvrante par un scanner qui suit les
+   * guillemets — un « > » entre guillemets ne ferme rien — puis on confie ses attributs AU MÊME
+   * PARSEUR que le reste : réinjectés sur un `<div>` neutre, ils sont décodés par le DOM, avec ou
+   * sans guillemets, entités comprises. Le lecteur ne fait plus que déléguer. */
+  const baliseOuvrante = (nom) => {
+    const debut = new RegExp(`<${nom}(?=[\\s/>])`, "i").exec(brut);
+    if (!debut) return null;
+    let i = debut.index + debut[0].length, guillemet = null;
+    for (; i < brut.length; i++) {
+      const c = brut[i];
+      if (guillemet) { if (c === guillemet) guillemet = null; continue; }
+      if (c === '"' || c === "'") { guillemet = c; continue; }
+      if (c === ">") return brut.slice(debut.index + debut[0].length, i);
     }
-    return out;
+    return null;                                    // balise jamais fermée : rien à lire
+  };
+  const attributsDeLaBalise = (nom) => {
+    const bruts = baliseOuvrante(nom);
+    if (bruts === null) return [];
+    const porteur = d.createElement("div");
+    porteur.innerHTML = `<div ${bruts.replace(/\/+$/, "")}></div>`;   // le DOM décode, pas nous
+    const el = porteur.firstElementChild;
+    if (!el) return [];
+    return ATTRIBUTS_ACCESSIBLES.map((a) => el.getAttribute(a)).filter((v) => v);
   };
   const attributsRacine = [...attributsDeLaBalise("html"), ...attributsDeLaBalise("body")];
 
