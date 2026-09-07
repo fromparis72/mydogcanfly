@@ -23,13 +23,29 @@
  */
 import { spawn } from "node:child_process";
 import { createRequire } from "node:module";
-import { mkdirSync } from "node:fs";
+import { mkdirSync, existsSync } from "node:fs";
 import { join } from "node:path";
 
 const arg = (n, d) => (process.argv.find((a) => a.startsWith(`--${n}=`)) ?? `--${n}=${d}`).split("=").slice(1).join("=");
 const PORT = Number(arg("port", "8788"));
 const BASE = `http://localhost:${PORT}`;
-const CHROME = process.env.CHROMIUM ?? "/opt/pw-browsers/chromium-1194/chrome-linux/chrome";
+/* LE CHEMIN DU NAVIGATEUR N'EST PLUS ÉCRIT EN DUR (07/09/2026).
+ *
+ * Il valait `/opt/pw-browsers/chromium-1194/chrome-linux/chrome` par défaut — le chemin de LA
+ * machine où ce harnais a été écrit. Tant qu'il ne tournait qu'à la main, cela passait ; au
+ * premier passage en CI, Playwright a bien téléchargé son navigateur dans
+ * `~/.cache/ms-playwright`, et le lancement est allé le chercher dans `/opt`, où il n'y a rien.
+ *
+ * Ce défaut est resté invisible aussi longtemps que le contrôle n'était lancé par aucun
+ * workflow : c'est le même constat que pour ses « 104/104 » — un contrôle qu'on ne fait tourner
+ * que soi-même finit par ne décrire que sa propre machine.
+ *
+ * `CHROMIUM` reste honoré quand il est donné. Sinon, on ne force RIEN : Playwright résout le
+ * navigateur qu'il a lui-même installé, ce qu'il sait faire mieux qu'un chemin deviné. */
+const CHROME = process.env.CHROMIUM
+  ?? (existsSync("/opt/pw-browsers/chromium-1194/chrome-linux/chrome")
+      ? "/opt/pw-browsers/chromium-1194/chrome-linux/chrome"
+      : undefined);
 
 let pass = 0, fail = 0;
 const check = (label, cond, detail = "") => {
@@ -78,7 +94,7 @@ const capturer = async (page, nom) => {
   try { await page.screenshot({ path: join(CAPTURES, `${nom}.png`), fullPage: false }); } catch { /* non bloquant */ }
 };
 
-const navigateur = await chromium.launch({ executablePath: CHROME });
+const navigateur = await chromium.launch(CHROME ? { executablePath: CHROME } : {});
 const contexte = await navigateur.newContext({ viewport: { width: 1280, height: 900 } });
 
 /** Les erreurs JS sont collectées PAR PAGE : une page qui plante en silence rend un écran vide
