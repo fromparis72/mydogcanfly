@@ -1875,3 +1875,107 @@ aurait toutes crues couvertes.
 Trois témoins l'encadrent : une page sans attribut de racine ne rend **rien** ; `data-prix` et `id`
 restent dehors ; et **le piège seul, sans vrai `<body>` derrière, ne rend rien** — sans ce
 troisième, le contrôle serait satisfait par un lecteur qui rend la première valeur venue.
+
+## Annexe 18 — Le parseur était bon, le rangement effaçait une valeur (07/09/2026)
+
+### Le défaut, et il ne venait plus de l'analyse
+
+L'annexe 17 avait enfin confié la localisation de `<html>` et `<body>` à `parse5`. Mais ce que le
+parseur rendait, je le rangeais dans une **`Map` indexée par nom d'attribut** :
+
+```js
+const lus = new Map();
+for (const { name, value } of [...attrsHtml, ...attrsBody]) lus.set(name.toLowerCase(), value);
+```
+
+`<html>` et `<body>` sont **deux éléments**, et rien n'interdit qu'ils portent le même attribut.
+Quand c'est le cas, le second écrase le premier :
+
+```html
+<html aria-label="€400 each way"><body aria-label="ordinary label">
+        →  le lecteur ne rendait que « ordinary label »
+```
+
+Un prix publié sur la racine disparaissait derrière un libellé anodin porté par le corps — une
+surface accessible réelle, masquée par la structure de données que j'avais choisie pour la ranger.
+Mesuré sur le lecteur avant correction : `["ordinary label"]`, et rien d'autre.
+
+### Pourquoi une `Map`, et pourquoi c'était faux
+
+Je l'avais prise pour **dédoublonner** — sans me demander ce qu'il y avait à dédoublonner. Deux
+attributs de même nom sur deux éléments distincts ne sont pas un doublon : ce sont deux textes,
+lus à voix haute l'un après l'autre. Une `Map` répond à la question « quelle est la valeur de
+`aria-label` ? », qui n'est pas la question du lecteur. La sienne est « qu'est-ce qui est publié ? »
+— et la réponse est une liste, pas un dictionnaire.
+
+C'est la **septième correction** de ce fichier, et la première qui ne porte pas sur la lecture du
+HTML mais sur ce qu'on fait du résultat une fois lu. Le mur avait changé de place ; je ne l'ai pas vu
+parce que je regardais encore l'ancien.
+
+### Le correctif, tel que Codex l'a formulé
+
+Plus de fusion par nom. Chaque liste d'attributs est **filtrée** sur les six noms accessibles, puis
+les deux sont **concaténées** dans l'ordre du document — `<html>` puis `<body>`. Les deux occurrences
+sont conservées, parce que les deux sont lues.
+
+Le §13 de `test-zones-publiques.mjs` reçoit deux cas — `aria-label` sur les deux balises, `title`
+sur les deux balises — avec deux valeurs distinctes et **l'exigence que les deux soient lues**.
+C'est ce qui distingue un lecteur qui cumule d'un lecteur qui choisit : un lecteur qui n'en rend
+qu'une échoue, et c'est mesuré — la `Map` rétablie le temps d'une contre-épreuve, le §13 tombe sur
+exactement ces deux cas et se relève quand elle est retirée.
+
+Onze formes couvertes désormais, contre neuf ; les trois témoins de l'annexe 17 inchangés.
+
+### Et l'arrêt anticipé de l'annexe 17 cachait une surface, lui aussi
+
+En regardant la même catégorie — *ce que le navigateur publie sur la racine* — plutôt que le seul
+cas signalé, une seconde chose est apparue, que je n'avais pas cherchée la veille. L'annexe 17
+interrompait le parseur **dès que `<body>` était créé**, au nom d'une mesure : 24 fois moins cher.
+
+Mais une balise `<html>` ou `<body>` rencontrée **plus loin** dans le document n'est pas jetée par
+le navigateur. La règle HTML (« in body », start tag `body` / `html`) lui fait **adopter**, sur
+l'élément déjà construit, les attributs qu'il ne portait pas encore. Mesuré le 07/09/2026, sur
+parse5 comme sur jsdom :
+
+```html
+<html><body><p>x</p><body aria-label="€400 each way"><html title="€400 par trajet">
+   parse5  →  html.attrs = [title="€400 par trajet"]   body.attrs = [aria-label="€400 each way"]
+   jsdom   →  documentElement.title = "€400 par trajet"   body.aria-label = "€400 each way"
+   lecteur (arrêt anticipé)  →  ""
+```
+
+Un prix que le navigateur publie, et qu'aucune porte ne voyait. L'arrêt anticipé avait acheté sa
+vitesse avec une surface accessible réelle.
+
+**Et la vitesse elle-même était mal pesée.** Les 116 s contre 4,8 s de l'annexe 17 comparaient un
+parse complet mesuré seul à un arrêt anticipé mesuré seul, sans les rapporter au lecteur entier.
+Remesurés **sous la même charge**, sur les 500 mêmes pages :
+
+| | 500 pages | rapporté à 3 121 |
+|---|---|---|
+| arrêt dès `<body>` | 0,5 s | 3,1 s |
+| parse complet, arbre entier | 3,2 s | 19,9 s |
+| parse complet, sans texte | 2,9 s | 18,1 s |
+
+Rapport de **6**, non de 24. Et le lecteur entier coûte **48 s** sur ces mêmes 500 pages : le parse
+complet lui ajoute **7 %**. J'avais optimisé, avec une exception et un symbole, 1 % du coût total —
+et la surface perdue valait plus que ces 1 %.
+
+**Huitième correction** : plus d'exception, plus de signal d'arrêt. Le parseur va au bout, les
+éléments `html` et `body` sont capturés à leur création, et leurs attributs sont lus **après** —
+une fois que le parseur a fini de leur adjoindre ce que le document leur adjoint. Le §13 reçoit les
+deux cas tardifs, et un **témoin en sens inverse** : quand le corps porte déjà l'attribut, la balise
+tardive ne le remplace pas — le navigateur garde le premier, le lecteur aussi. Sans ce témoin, un
+lecteur qui lirait *des balises* plutôt que *ce qui est publié* passerait, et inventerait une
+surface que personne ne voit.
+
+Treize formes couvertes ; l'arrêt anticipé rétabli sur une copie du lecteur, exactement les deux
+cas tardifs tombent et tout le reste tient.
+
+### Ce que je retiens, cette fois
+
+Deux erreurs dans une même fonction de vingt lignes, l'une signalée, l'autre trouvée en cherchant
+autour de la première. La méthode du projet dit *mesurer avant de concevoir* ; elle dit aussi de
+regarder **la catégorie** d'un défaut signalé, pas seulement son exemplaire. Les sept corrections
+précédentes de ce fichier ont chacune corrigé l'exemplaire. Celle-ci est la première à avoir
+cherché le voisin avant qu'on le lui montre.

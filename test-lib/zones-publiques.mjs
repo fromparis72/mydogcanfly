@@ -49,10 +49,6 @@
 import { JSDOM } from "jsdom";
 import { Parser, defaultTreeAdapter } from "parse5";   // le parseur que jsdom emploie lui-même
 
-/* Le signal d'arrêt du parcours de racine : une exception, parce que `parse5` n'offre aucun
-   moyen de s'interrompre autrement, et qu'aller au bout coûte vingt-quatre fois plus cher. */
-const ARRET_RACINE = Symbol("racine lue");
-
 /* LA FENÊTRE UNIQUE DU PROCESSUS. Elle est créée à la première lecture et ne l'est plus jamais :
    c'est tout l'intérêt. Chaque page est réinjectée dans un `<div>` neuf de ce document. */
 let doc = null;
@@ -232,24 +228,52 @@ export function zonesDe(html) {
    *
    * MESURÉ sur les 3 121 pages du site complet, le 07/09/2026 :
    *   parse complet de chaque page ......... 116 s
-   *   arrêt dès `<body>` (ce qui suit) ....... 4,8 s, 0,2 Mo de tas
-   * Le parseur intégral coûtait vingt-quatre fois plus cher pour la même réponse. */
+   *   arrêt dès `<body>` ..................... 4,8 s, 0,2 Mo de tas
+   * Le parseur intégral coûtait vingt-quatre fois plus cher pour la même réponse — c'est ce qui
+   * a été écrit ici, et l'arrêt anticipé a été retiré le jour même : voir la huitième correction,
+   * qui nomme ce que cet arrêt ne voyait pas, et remesure le rapport. */
+  /* HUITIÈME CORRECTION, ET L'ARRÊT ANTICIPÉ ÉTAIT UNE SURFACE EN MOINS. La sixième interrompait
+   * le parseur dès que `<body>` était CRÉÉ, au nom d'une mesure — vingt-quatre fois moins cher.
+   * Mais une balise `<html>` ou `<body>` rencontrée PLUS LOIN dans le document n'est pas jetée par
+   * le navigateur : la règle HTML lui fait ADOPTER, sur l'élément déjà construit, les attributs
+   * qu'il ne portait pas encore. Mesuré sur parse5 comme sur jsdom, le 07/09/2026 :
+   *
+   *     <html><body><p>x</p><body aria-label="€400 each way">…
+   *       → le navigateur publie « €400 each way » sur le corps ; le lecteur rendait « »
+   *
+   * L'arrêt anticipé avait donc acheté sa vitesse avec une surface accessible réelle. Et la
+   * vitesse elle-même était mal pesée : mesurés sous la même charge, parse complet et arrêt
+   * anticipé sont dans un rapport de 6, non de 24 — 3,2 s contre 0,5 s pour 500 pages — et le
+   * lecteur entier coûte 48 s sur ces mêmes 500 pages. Le parse complet ajoute 7 % au lecteur.
+   * On lit donc les attributs APRÈS le parse, sur les éléments capturés, une fois que le parseur a
+   * fini de leur adjoindre ce que le document leur adjoint. Plus d'exception, plus de signal. */
   const attributsDeLaRacine = () => {
-    let attrsHtml = [], attrsBody = [];
+    let elHtml = null, elBody = null;
     const adaptateur = Object.create(defaultTreeAdapter);
     adaptateur.createElement = function (nom, ns, attrs) {
-      if (nom === "html") attrsHtml = attrs;
-      if (nom === "body") {
-        attrsBody = attrs;
-        const stop = new Error("body atteint"); stop.code = ARRET_RACINE; throw stop;
-      }
-      return defaultTreeAdapter.createElement(nom, ns, attrs);
+      const el = defaultTreeAdapter.createElement(nom, ns, attrs);
+      if (nom === "html" && !elHtml) elHtml = el;
+      if (nom === "body" && !elBody) elBody = el;
+      return el;
     };
-    try { Parser.parse(brut, { treeAdapter: adaptateur }); }
-    catch (e) { if (e.code !== ARRET_RACINE) throw e; }
-    const lus = new Map();
-    for (const { name, value } of [...attrsHtml, ...attrsBody]) lus.set(name.toLowerCase(), value);
-    return ATTRIBUTS_ACCESSIBLES.map((a) => lus.get(a)).filter((v) => v);
+    Parser.parse(brut, { treeAdapter: adaptateur });
+    const attrsHtml = elHtml?.attrs ?? [], attrsBody = elBody?.attrs ?? [];
+    /* SEPTIÈME CORRECTION, ET CELLE-CI NE VENAIT PLUS DE L'ANALYSE MAIS DU RANGEMENT. La sixième
+     * cumulait les attributs des deux balises dans une `Map` indexée par nom. Or `<html>` et
+     * `<body>` sont DEUX éléments, et rien n'interdit qu'ils portent le même attribut :
+     *
+     *     <html aria-label="€400 each way"><body aria-label="ordinary label">
+     *       → le lecteur ne rendait que « ordinary label »
+     *
+     * Le second écrasait le premier, et un prix publié sur la racine disparaissait derrière un
+     * libellé anodin porté par le corps. On ne fusionne donc plus par nom : on filtre chaque liste
+     * sur les attributs reconnus comme accessibles, et on concatène les deux, dans l'ordre du
+     * document — les deux occurrences sont conservées, parce que les deux sont lues à voix haute. */
+    const accessibles = (attrs) => (attrs ?? [])
+      .filter(({ name }) => ATTRIBUTS_ACCESSIBLES.includes(name.toLowerCase()))
+      .map(({ value }) => value)
+      .filter((v) => v);
+    return [...accessibles(attrsHtml), ...accessibles(attrsBody)];
   };
   const attributsRacine = attributsDeLaRacine();
 
