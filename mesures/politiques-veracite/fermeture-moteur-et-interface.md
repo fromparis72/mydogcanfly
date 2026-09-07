@@ -1979,3 +1979,54 @@ autour de la première. La méthode du projet dit *mesurer avant de concevoir* ;
 regarder **la catégorie** d'un défaut signalé, pas seulement son exemplaire. Les sept corrections
 précédentes de ce fichier ont chacune corrigé l'exemplaire. Celle-ci est la première à avoir
 cherché le voisin avant qu'on le lui montre.
+
+## Annexe 19 — « Le parseur que jsdom emploie » était une phrase, pas une mesure (07/09/2026)
+
+### Ce que Codex a trouvé
+
+`parse5` était importé directement par le lecteur partagé, mais **aucun `package.json` du dépôt ne
+le déclarait**. L'import résolvait vers ce que l'arbre de dépendances laissait à la racine :
+
+```
+npm ls parse5   (avant)
++-- @mydogcanfly/ui → astro@4.16.19 → @astrojs/markdown-remark → hast-util-from-html → parse5@7.3.0
+`-- jsdom@30.0.1 → parse5@8.0.1        (imbriquée : node_modules/jsdom/node_modules/parse5)
+```
+
+La racine résolvait donc `parse5@7.3.0`, **apportée par hasard par Astro**, pendant que jsdom
+employait réellement sa propre `8.0.1`. J'avais écrit « le parseur que jsdom emploie lui-même » dans
+le fichier et dans deux annexes. C'était faux : deux versions majeures distinctes, et l'identité du
+lecteur partagé dépendait de l'arbre de dépendances d'un générateur de site. Une mise à jour d'Astro
+pouvait changer ou casser le lecteur sans qu'aucune ligne du dépôt ne bouge.
+
+### Pourquoi je ne l'ai pas vu
+
+Parce que ça marchait. L'import résolvait, les treize cas passaient, et j'ai pris la résolution pour
+une déclaration. La méthode du projet dit *mesurer avant d'affirmer* ; j'ai affirmé l'identité d'un
+parseur sans avoir tapé `npm ls`. C'est la même faute que les chiffres du press kit : une phrase qui
+sonne juste et que personne n'a mesurée.
+
+### Le correctif, tel que Codex l'a formulé
+
+`parse5@8.0.1` déclarée en `devDependencies` à la racine, **épinglée** (`--save-exact`), et inscrite
+au lockfile. L'import direct est conservé : il résout maintenant la même version majeure que jsdom.
+
+```
+npm ls parse5   (après)
++-- @mydogcanfly/ui → astro → … → parse5@7.3.0   (imbriquées, deux fois, sous hast-util-*)
++-- jsdom@30.0.1 → parse5@8.0.1 deduped
+`-- parse5@8.0.1
+```
+
+Vérifié avant d'installer : la `8.0.1` est **ESM seule** (plus de build CommonJS), ce qui convient au
+lecteur, et les trois points d'API qu'il emploie — `Parser.parse`, `defaultTreeAdapter.createElement`,
+`adoptAttributes` — existent à l'identique et rendent les mêmes attributs sur le cas de collision et
+le cas tardif.
+
+Le lockfile bouge sur six entrées, toutes `parse5` ou sa dépendance `entities` : la `8.0.1` de jsdom
+remonte à la racine avec son `entities@8.0.0`, les deux `7.3.0` d'Astro descendent sous
+`hast-util-from-html` et `hast-util-raw` avec leur `entities@6.0.1`. Mesuré (`npm ls entities`) :
+aucun autre paquet ne dépend d'`entities`, personne ne change de version sans l'avoir demandé.
+
+Rejoué sur ce SHA : lecteur 13/13, `test:unit` intégral, contre-épreuves `--tout`, `build:prod` et
+porte de lancement ; la CI rejoue le harnais navigateur.

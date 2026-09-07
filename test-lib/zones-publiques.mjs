@@ -47,7 +47,16 @@
  * lecteur — un filtre posé avant le décodage annule le décodage.
  */
 import { JSDOM } from "jsdom";
-import { Parser, defaultTreeAdapter } from "parse5";   // le parseur que jsdom emploie lui-même
+/* LE PARSEUR QUE JSDOM EMPLOIE — ET C'ÉTAIT FAUX PENDANT UNE JOURNÉE (contre-revue du 07/09/2026).
+ * `parse5` a été importé ici sans être déclaré par le dépôt. L'import résolvait alors PAR HASARD
+ * vers `parse5@7.3.0`, apportée transitivement par Astro (`hast-util-from-html`), tandis que
+ * jsdom 30.0.1 embarque sa propre `parse5@8.0.1`, imbriquée. Deux parseurs, deux versions
+ * majeures, et un lecteur partagé dont l'identité dépendait de l'arbre de dépendances d'un
+ * générateur de site — une mise à jour d'Astro pouvait le changer ou le casser en silence.
+ * `parse5@8.0.1` est désormais déclarée en `devDependencies`, épinglée, et dédupliquée avec
+ * celle de jsdom : la phrase ci-dessous est vraie parce qu'elle est mesurée (`npm ls parse5`),
+ * pas parce qu'elle est écrite. */
+import { Parser, defaultTreeAdapter } from "parse5";   // la même 8.0.1 que jsdom, déclarée
 
 /* LA FENÊTRE UNIQUE DU PROCESSUS. Elle est créée à la première lecture et ne l'est plus jamais :
    c'est tout l'intérêt. Chaque page est réinjectée dans un `<div>` neuf de ce document. */
