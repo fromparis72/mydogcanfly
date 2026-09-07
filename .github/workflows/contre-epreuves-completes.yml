@@ -83,20 +83,25 @@ jobs:
       # LE SITE COMPLET D'ABORD, et ce n'est pas facultatif : les mutations qui le LISENT ne le
       # reconstruisent pas. Sans ce build, `--tout` refuse de démarrer plutôt que de faire échouer
       # leurs harnais faute de matière — ce qui aurait l'air d'une garantie qui ne porte pas.
-      - name: Site complet (les mutations qui le lisent en ont besoin)
-        run: npm run build:preview -- --api-base=https://00000000-mydogcanfly-api-preview.fromparis.workers.dev
+      # LE CONTRE-TEST NAVIGATEUR PASSE EN PREMIER, ET SUR SON PROPRE BUILD. Il a d'abord été
+      # branché APRÈS `build:preview`, sur le site complet : 31 épreuves sur 103 ont échoué, toutes
+      # de la même famille — « The engine didn't answer », précédé en console par un refus CORS
+      # vers `https://00000000-mydogcanfly-api-preview.fromparis.workers.dev`.
+      #
+      # La cause n'est pas le harnais : `apercu-local.mjs` sert l'API SOUS LA MÊME ORIGINE, en
+      # appelant le vrai Worker en mémoire derrière `/v1/*`. Le site testé doit donc l'appeler en
+      # chemin RELATIF. Le build complet ci-dessous est câblé sur une adresse de Worker FACTICE —
+      # que des zéros — parce que les mutations, elles, ne font que lire le HTML et n'ont besoin
+      # d'aucun moteur. Les deux besoins sont incompatibles dans un seul dist ; ils prennent donc
+      # chacun le leur, dans cet ordre.
+      #
+      # C'est la seconde chose que ce câblage révèle : le harnais ne décrivait pas seulement la
+      # MACHINE où il tournait (le chemin du navigateur, corrigé au commit précédent), mais aussi
+      # le DIST qu'on lui donnait. Ses « 104/104 » supposaient un build local que personne d'autre
+      # ne faisait.
+      - name: Site local (le contre-test navigateur appelle l'API en chemin relatif)
+        run: npm run build
 
-      # Le runner exige un arbre PROPRE au départ : il écrit dans les fichiers du dépôt et les
-      # restaure par `git checkout`. Il vérifie aussi que l'arbre est rendu intact à la fin, et,
-      # sous `--tout`, que RIEN n'a été laissé de côté.
-      # LE CONTRE-TEST NAVIGATEUR N'ÉTAIT LANCÉ PAR AUCUN WORKFLOW (constaté le 07/09/2026). Il
-      # tournait à la main avant chaque poussée, et ses « 104/104 » étaient rapportés dans les
-      # messages de commit comme s'ils protégeaient la branche : ils ne protégeaient rien. Il est
-      # câblé ici, avec Playwright installé pour la circonstance ; le harnais échoue de lui-même
-      # si Playwright manque en CI, plutôt que de rendre 0 en se déclarant « non joué ».
-      # Playwright n'est pas une dépendance du dépôt — le harnais le prend où on le lui dit. On
-      # l'installe SANS toucher au verrou (`--no-save`), à la version employée en local, pour que
-      # la CI voie exactement ce que la machine de travail a vu.
       - name: Playwright (le contre-test navigateur en a besoin)
         run: |
           npm i --no-save playwright@1.56.1
@@ -105,5 +110,11 @@ jobs:
       - name: Le navigateur voit ce que voit un visiteur
         run: npm run test:apercu
 
+      - name: Site complet (les mutations qui le lisent en ont besoin)
+        run: npm run build:preview -- --api-base=https://00000000-mydogcanfly-api-preview.fromparis.workers.dev
+
+      # Le runner exige un arbre PROPRE au départ : il écrit dans les fichiers du dépôt et les
+      # restaure par `git checkout`. Il vérifie aussi que l'arbre est rendu intact à la fin, et,
+      # sous `--tout`, que RIEN n'a été laissé de côté.
       - name: Chaque garantie doit savoir échouer — catalogue entier
         run: npm run contre-epreuves -- --tout
