@@ -1812,3 +1812,66 @@ doit **rien** rendre, et un attribut non accessible (`data-prix`, `id`) doit res
 Les sept gardes qui emploient ce lecteur — `tarifs`, `montants-publiés`, `montants-propagation`,
 `caisses-non-sourcées`, `étape3`, `affirmations-retirées`, `annonce` — restent vertes après
 l'élargissement.
+
+---
+
+## Annexe 17 — Trois scanners pour une balise, et le parseur qu'il fallait appeler (07/09/2026)
+
+### Le même mur, trois fois
+
+La correction précédente relevait les attributs de `<html>` et `<body>` avec un scanner qui suivait
+les guillemets. Il ne connaissait pas le **contexte HTML** :
+
+```html
+<script>const t = "<body aria-label=piege>";</script>
+<body aria-label="€400 each way">        →  le lecteur rendait « piege »
+```
+
+Le faux `<body>`, écrit dans une chaîne JavaScript et jamais servi à personne, précédait le vrai
+dans le fichier. Le lecteur prenait le premier venu, et le prix réellement affiché passait sous les
+gardes tarifaires. Même effet avec un `<!-- <body …> -->`.
+
+C'est la **troisième rédaction** de la même chose à buter sur le même mur :
+
+1. expression régulière `<body\b([^>]*)>` — cassait sur les entités, le `>` dans une valeur, et
+   l'absence de guillemets ;
+2. scanner à guillemets — corrigeait ces trois formes, ignorait le contexte ;
+3. et il aurait fallu un troisième correctif pour les commentaires, puis un quatrième pour les
+   `<textarea>`, et ainsi de suite.
+
+À chaque tour, j'ai corrigé le symptôme signalé **en gardant l'approche fautive**. Écrire un
+analyseur de HTML est un métier, et ce fichier existe précisément pour n'en avoir qu'un.
+
+### Ce qu'il fallait faire dès le départ
+
+`parse5` est déjà installé : c'est le parseur que **jsdom emploie sous le capot**. Il lit le
+document selon les règles HTML — commentaires, scripts, styles, modes de texte brut — sans qu'on
+ait rien à lui expliquer.
+
+Un adaptateur d'arbre délègue tout au sien et **s'interrompt dès que `<body>` est construit**. À cet
+instant, le parseur a déjà traversé toute la tête ; le reste du document ne coûte rien.
+
+### La mesure, parce qu'un arrêt anticipé demande à être justifié
+
+Sur les 3 121 pages du site complet :
+
+| | Durée | Tas |
+|---|---|---|
+| parse complet de chaque page | 116 s | 0 Mo |
+| **arrêt dès `<body>`** | **4,8 s** | **0,2 Mo** |
+
+Et le lecteur entier ne bouge pas : **47,9 s / 227 Mo** avec `parse5`, contre **48,0 s / 226 Mo**
+avec le scanner, sur 500 pages. Le poids du lecteur vient de jsdom sur le corps, pas de la
+localisation de la racine — la question du coût, qui avait justifié le `<div>` réutilisé en
+septembre, ne se posait pas ici.
+
+### Neuf cas, et un témoin qui manquait
+
+Le §13 de `test-zones-publiques.mjs` couvre maintenant : entité, chevron dans la valeur, absence de
+guillemets, guillemets simples, balise auto-fermante, attribut sur `<html>`, faux `<body>` en
+script, faux `<body>` en commentaire, faux `<html>` en commentaire. Un cas par forme — un seul les
+aurait toutes crues couvertes.
+
+Trois témoins l'encadrent : une page sans attribut de racine ne rend **rien** ; `data-prix` et `id`
+restent dehors ; et **le piège seul, sans vrai `<body>` derrière, ne rend rien** — sans ce
+troisième, le contrôle serait satisfait par un lecteur qui rend la première valeur venue.

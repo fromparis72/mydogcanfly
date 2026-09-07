@@ -268,6 +268,20 @@ const interdites = (texte) => {
     ["attribut sur <html>", '<html lang="fr" aria-label="€400 par trajet"><body><p>x</p></body></html>', "€400 par trajet"],
     ["guillemets simples", "<html><body aria-label='€400 &amp; plus'><p>x</p></body></html>", "€400 & plus"],
     ["balise auto-fermante", '<html><body aria-label="€400" /><p>x</p></body></html>', "€400"],
+    /* LES DEUX ATTAQUES QUI ONT TUÉ LE SCANNER. Un `<body>` écrit dans une chaîne JavaScript ou
+       dans un commentaire n'est servi à personne, mais il précède le vrai dans le fichier : trois
+       rédactions successives — expression régulière, scanner naïf, scanner à guillemets — l'ont
+       pris pour la balise réelle et ont rendu SA valeur. Le prix réellement affiché passait alors
+       sous les gardes tarifaires. Seul un parseur qui connaît le contexte HTML les distingue. */
+    ["faux <body> dans un script",
+     '<html><head><script>const t = "<body aria-label=piege>";</script></head>'
+     + '<body aria-label="€400 each way"><p>x</p></body></html>', "€400 each way"],
+    ["faux <body> dans un commentaire",
+     '<html><!-- <body aria-label="piege"> --><body aria-label="€400 each way"><p>x</p></body></html>',
+     "€400 each way"],
+    ["faux <html> dans un commentaire",
+     '<!-- <html aria-label="piege"> --><html aria-label="€400 par trajet"><body><p>x</p></body></html>',
+     "€400 par trajet"],
   ];
   for (const [nom, html, attendu] of cas) {
     const vu = zonesDe(html).attributs;
@@ -280,6 +294,10 @@ const interdites = (texte) => {
   /* Et ce qui n'est PAS un texte accessible reste dehors, comme pour le reste du fichier. */
   const nonTexte = zonesDe('<html data-prix="€400"><body id="€400 aussi"><p>x</p></body></html>').attributs;
   if (nonTexte.includes("€400")) ecarts.push(`un attribut non accessible est lu : ${JSON.stringify(nonTexte)}`);
+  /* Et le piège seul, sans vrai body derrière : il ne doit RIEN rendre — sinon le contrôle
+     ci-dessus serait satisfait par un lecteur qui rend la première valeur venue. */
+  const piegeSeul = zonesDe('<html><head><script>const t = "<body aria-label=piege>";</script></head><body><p>x</p></body></html>').attributs;
+  if (piegeSeul.includes("piege")) ecarts.push(`le faux \`<body>\` d'un script est lu : ${JSON.stringify(piegeSeul)}`);
 
   if (ecarts.length) echec("13 attributs de racine", ecarts.join(" · "));
   else ok(`13 les attributs de \`<html>\` et \`<body>\` sont lus dans leurs ${cas.length} formes valides — entité, chevron dans la valeur, sans guillemets, guillemets simples — et rien d'autre ne l'est`);

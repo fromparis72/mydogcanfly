@@ -47,6 +47,11 @@
  * lecteur — un filtre posé avant le décodage annule le décodage.
  */
 import { JSDOM } from "jsdom";
+import { Parser, defaultTreeAdapter } from "parse5";   // le parseur que jsdom emploie lui-même
+
+/* Le signal d'arrêt du parcours de racine : une exception, parce que `parse5` n'offre aucun
+   moyen de s'interrompre autrement, et qu'aller au bout coûte vingt-quatre fois plus cher. */
+const ARRET_RACINE = Symbol("racine lue");
 
 /* LA FENÊTRE UNIQUE DU PROCESSUS. Elle est créée à la première lecture et ne l'est plus jamais :
    c'est tout l'intérêt. Chaque page est réinjectée dans un `<div>` neuf de ce document. */
@@ -208,28 +213,45 @@ export function zonesDe(html) {
    * guillemets — un « > » entre guillemets ne ferme rien — puis on confie ses attributs AU MÊME
    * PARSEUR que le reste : réinjectés sur un `<div>` neutre, ils sont décodés par le DOM, avec ou
    * sans guillemets, entités comprises. Le lecteur ne fait plus que déléguer. */
-  const baliseOuvrante = (nom) => {
-    const debut = new RegExp(`<${nom}(?=[\\s/>])`, "i").exec(brut);
-    if (!debut) return null;
-    let i = debut.index + debut[0].length, guillemet = null;
-    for (; i < brut.length; i++) {
-      const c = brut[i];
-      if (guillemet) { if (c === guillemet) guillemet = null; continue; }
-      if (c === '"' || c === "'") { guillemet = c; continue; }
-      if (c === ">") return brut.slice(debut.index + debut[0].length, i);
-    }
-    return null;                                    // balise jamais fermée : rien à lire
+  /* SIXIÈME CORRECTION, ET LA CINQUIÈME ÉTAIT ENCORE UN SCANNER. Elle suivait les guillemets —
+   * un « > » entre guillemets ne fermait plus la balise — mais elle ne connaissait pas le CONTEXTE
+   * HTML : elle prenait le premier `<body` du fichier, fût-il dans un script ou un commentaire.
+   *
+   *     <script>const t = "<body aria-label=piege>";</script>
+   *     <body aria-label="€400 each way">          → le lecteur rendait « piege »
+   *
+   * Le faux `<body>`, jamais servi à personne, masquait donc le vrai, et son `aria-label` avec.
+   * Trois rédactions de suite — expression régulière, puis scanner naïf, puis scanner à guillemets
+   * — ont buté sur la même chose : écrire un analyseur de HTML est un métier, et ce fichier existe
+   * précisément pour n'en avoir qu'un.
+   *
+   * ON NE LOCALISE PLUS RIEN SOI-MÊME. `parse5` — le parseur que jsdom emploie sous le capot —
+   * lit le document selon les règles HTML, commentaires, scripts et styles compris. Un adaptateur
+   * d'arbre délègue tout au sien et s'interrompt dès que `<body>` est construit : à cet instant le
+   * parseur a déjà traversé toute la tête, et le reste du document ne coûte rien.
+   *
+   * MESURÉ sur les 3 121 pages du site complet, le 07/09/2026 :
+   *   parse complet de chaque page ......... 116 s
+   *   arrêt dès `<body>` (ce qui suit) ....... 4,8 s, 0,2 Mo de tas
+   * Le parseur intégral coûtait vingt-quatre fois plus cher pour la même réponse. */
+  const attributsDeLaRacine = () => {
+    let attrsHtml = [], attrsBody = [];
+    const adaptateur = Object.create(defaultTreeAdapter);
+    adaptateur.createElement = function (nom, ns, attrs) {
+      if (nom === "html") attrsHtml = attrs;
+      if (nom === "body") {
+        attrsBody = attrs;
+        const stop = new Error("body atteint"); stop.code = ARRET_RACINE; throw stop;
+      }
+      return defaultTreeAdapter.createElement(nom, ns, attrs);
+    };
+    try { Parser.parse(brut, { treeAdapter: adaptateur }); }
+    catch (e) { if (e.code !== ARRET_RACINE) throw e; }
+    const lus = new Map();
+    for (const { name, value } of [...attrsHtml, ...attrsBody]) lus.set(name.toLowerCase(), value);
+    return ATTRIBUTS_ACCESSIBLES.map((a) => lus.get(a)).filter((v) => v);
   };
-  const attributsDeLaBalise = (nom) => {
-    const bruts = baliseOuvrante(nom);
-    if (bruts === null) return [];
-    const porteur = d.createElement("div");
-    porteur.innerHTML = `<div ${bruts.replace(/\/+$/, "")}></div>`;   // le DOM décode, pas nous
-    const el = porteur.firstElementChild;
-    if (!el) return [];
-    return ATTRIBUTS_ACCESSIBLES.map((a) => el.getAttribute(a)).filter((v) => v);
-  };
-  const attributsRacine = [...attributsDeLaBalise("html"), ...attributsDeLaBalise("body")];
+  const attributsRacine = attributsDeLaRacine();
 
   /* LE TITRE DU DOCUMENT, ET LUI SEUL. Un `querySelector("title")` nu ramènerait le PREMIER titre
      de l'arbre, qui peut être celui d'un SVG placé dans le corps. On exige l'espace de noms HTML. */
