@@ -29,6 +29,7 @@
  */
 import { readFileSync, readdirSync, existsSync } from "node:fs";
 import { join } from "node:path";
+import { zonesDe } from "./test-lib/zones-publiques.mjs";   // le lecteur canonique, jamais un cinquième
 
 const DIST = "packages/ui/dist";
 const LANGUES = ["en", "fr", "es", "pt"];
@@ -186,17 +187,40 @@ dire(`  alternates lus : ${alternatesLus} · URL au sitemap : ${Object.values(ur
 
   /* Les majorations exactes que `boost()` produisait, plus les valeurs jadis écrites à la main. */
   const FAUX = ["120+", "160+", "200+", "300+", "90+", "250+", "169"];
-  const texteDe = (html) => html
-    .replace(/<script[\s\S]*?<\/script>/gi, " ").replace(/<style[\s\S]*?<\/style>/gi, " ")
-    .replace(/<[^>]+>/g, " ").replace(/&#(\d+);/g, (_, d) => String.fromCharCode(+d))
-    .replace(/&[a-z]+;/g, " ").replace(/\s+/g, " ");
+  /* LE LECTEUR EST CELUI DU DÉPÔT, ET C'EST LA SECONDE FOIS QU'IL FAUT LE DIRE (07/09/2026).
+   *
+   * Ce paragraphe transformait le HTML avec sa PROPRE fonction : scripts et balises effacés à
+   * l'expression régulière, entités décodées à moitié. Il ne voyait donc ni les métadonnées, ni
+   * le JSON-LD, ni les attributs accessibles. Une seule ligne suffisait à le rendre aveugle :
+   *
+   *     <meta name="description" content="€400 each way">
+   *
+   * la phrase est publique, et le contrôle passait à côté.
+   *
+   * `test-lib/zones-publiques.mjs` rend exactement ces cinq zones depuis le 02/09/2026. J'en ai
+   * écrit une quatrième version pour le §7 — c'est l'annexe 11 — puis une CINQUIÈME ici, quelques
+   * heures après avoir documenté pourquoi il ne fallait pas. Écrire son propre lecteur est mon
+   * réflexe, pas un oubli : il faut le nommer comme tel pour cesser de le refaire.
+   *
+   * LES DOCUMENTS SONT LUS DANS `dist/`, pas dans `public/`. C'est là qu'ils sont réellement
+   * publiés, après la copie du build ; lire la source revient à faire confiance à cette copie
+   * plutôt qu'à la vérifier. */
+  const zonesJointes = (chemin) => {
+    const z = zonesDe(readFileSync(chemin, "utf8"));
+    return { texte: [z.titre, z.corps, z.metas, z.jsonLd, z.attributs].join("\n"), invalides: z.jsonLdInvalide ?? 0 };
+  };
 
   const surfaces = [];
+  let jsonLdIllisibles = 0;
+  const ajouter = (nom, f) => {
+    if (!existsSync(f)) return;
+    const { texte, invalides } = zonesJointes(f);
+    jsonLdIllisibles += invalides;
+    surfaces.push([nom, texte]);
+  };
   for (const l of LANGUES) {
-    const acc = l === "en" ? join(DIST, "index.html") : join(DIST, l, "index.html");
-    const prs = l === "en" ? join(DIST, "presskit", "index.html") : join(DIST, l, "presskit", "index.html");
-    for (const [nom, f] of [[`accueil ${l}`, acc], [`press kit ${l}`, prs]])
-      if (existsSync(f)) surfaces.push([nom, texteDe(readFileSync(f, "utf8"))]);
+    ajouter(`accueil ${l}`, l === "en" ? join(DIST, "index.html") : join(DIST, l, "index.html"));
+    ajouter(`press kit ${l}`, l === "en" ? join(DIST, "presskit", "index.html") : join(DIST, l, "presskit", "index.html"));
   }
   /* LES QUATRE DOSSIERS TÉLÉCHARGEABLES SONT DANS LE BALAYAGE (07/09/2026, arbitrage final).
    *
@@ -207,18 +231,12 @@ dire(`  alternates lus : ${alternatesLus} · URL au sitemap : ${Object.values(ur
    * La contre-revue a ouvert les fichiers et y a trouvé ce que mon inventaire avait manqué : un
    * TARIF — « 400 € par trajet, sur cette route » — dans les quatre langues, en gros caractères.
    * C'est la famille de défaut que le lot « Tarifs » traitait comme bloquant le lancement. La
-   * décision de rétablir avait été prise sur ma liste incomplète, qui ne mentionnait ni ce tarif
-   * ni la série de caisse « 500 / XL » ; elle a été reprise dès que le fait a été connu.
+   * décision de rétablir avait été prise sur ma liste incomplète ; elle a été reprise dès que le
+   * fait a été connu.
    *
-   * Les quatre HTML sont corrigés et REMIS ICI : un document proposé au téléchargement est une
-   * surface publique comme une autre, et une surface publique qu'aucun contrôle ne lit finit par
-   * dériver. Les quatre PDF, que je ne sais pas régénérer — leur composant `<doc-page>` ne rend
-   * aucune hauteur hors de son environnement d'origine — sont retirés ; leur absence est exigée
-   * plus bas, faute de pouvoir garantir leur contenu. */
-  for (const l of LANGUES) {
-    const stat = join("packages", "ui", "public", "presskit", `press-kit-${l}.html`);
-    if (existsSync(stat)) surfaces.push([`press kit téléchargeable ${l}`, texteDe(readFileSync(stat, "utf8"))]);
-  }
+   * Un document proposé au téléchargement est une surface publique comme une autre, et une
+   * surface publique qu'aucun contrôle ne lit finit par dériver. */
+  for (const l of LANGUES) ajouter(`press kit téléchargeable ${l}`, join(DIST, "presskit", `press-kit-${l}.html`));
 
   dire(`  surfaces lues (${surfaces.length}) : ${surfaces.map(([n]) => n).join(", ")}`);
   exiger("les trois surfaces publiées sont lues (accueil, page press kit, documents téléchargeables)", surfaces.length >= 12,
@@ -311,13 +329,20 @@ dire(`  alternates lus : ${alternatesLus} · URL au sitemap : ${Object.values(ur
   exiger("aucune surface d'annonce ne promet une vérification universelle, un score ou une recommandation",
     promesses.length === 0, promesses.slice(0, 5).join(" | "));
 
+  /* UN JSON-LD ILLISIBLE EST UN ÉCHEC, comme dans `étape3` §1bis et le §7 des affirmations
+     retirées : annoncer « cinq zones lues » en ignorant ce compte reviendrait à dire qu'on a
+     regardé une zone dont on n'a rien pu tirer. */
+  exiger("aucun bloc JSON-LD illisible sur les surfaces d'annonce", jsonLdIllisibles === 0,
+    `${jsonLdIllisibles} bloc(s) non analysable(s) — la zone annoncée comme lue ne l'est pas`);
+
   /* LES PDF NE DOIVENT PAS REVENIR SANS AVOIR ÉTÉ REFAITS. Ils portaient le même tarif et les
      mêmes promesses que les HTML ; ceux-ci sont corrigés et relus ci-dessus, ceux-là ne peuvent
      pas l'être ici — leur composant `<doc-page>` ne rend aucune hauteur hors de son environnement
      d'origine, et mes essais donnaient des pages blanches de 900 octets. Tant que personne ne
      peut garantir leur contenu, ils restent absents plutôt que publiés sans garde. */
   const pdfRevenus = LANGUES
-    .map((l) => join("packages", "ui", "public", "presskit", `press-kit-${l}.pdf`))
+    .flatMap((l) => [join("packages", "ui", "public", "presskit", `press-kit-${l}.pdf`),
+                     join(DIST, "presskit", `press-kit-${l}.pdf`)])
     .filter((f) => existsSync(f));
   exiger("les dossiers de presse PDF restent retirés (ils ne peuvent pas être relus par ce contrôle)",
     pdfRevenus.length === 0, `${pdfRevenus.length} PDF revenu(s) : ${pdfRevenus.slice(0, 2).join(", ")}`);
@@ -349,6 +374,41 @@ dire(`  alternates lus : ${alternatesLus} · URL au sitemap : ${Object.values(ur
       disculpees.length === 0, `${disculpees.length} phrase(s) : ${disculpees.slice(0, 2).join(" | ")}`);
     exiger("témoin : les motifs reconnaissent les phrases retirées du dossier de presse",
       aveugles.length === 0, `${aveugles.length} non reconnue(s) : ${aveugles.slice(0, 2).join(" | ")}`);
+  }
+
+  /* DEUX ATTAQUES SUR LES ZONES QUE LE LECTEUR MAISON NE VOYAIT PAS. Elles portent sur un HTML
+     de presse RÉEL, copié, muté, relu par le même chemin de code : une métadonnée qui reprend le
+     tarif, un attribut accessible qui reprend la promesse universelle. Sans le lecteur canonique,
+     les deux passaient inaperçues — c'est très exactement le trou signalé en contre-revue. */
+  {
+    const reel = join(DIST, "presskit", "press-kit-en.html");
+    if (!existsSync(reel)) {
+      exiger("un dossier de presse réel est disponible pour les attaques", false,
+        "press-kit-en.html absent du dist — les attaques ne prouveraient rien");
+    } else {
+      const brut = readFileSync(reel, "utf8");
+      const muter = (html) => {
+        const z = zonesDe(html);
+        return [z.titre, z.corps, z.metas, z.jsonLd, z.attributs].join("\n");
+      };
+      const vu = (texte, quoi) => PROMESSES.some(([nom, re]) => nom === quoi && re.test(texte));
+
+      const parMeta = muter(brut.replace("</head>", '<meta name="description" content="€400 each way, on this route"></head>'));
+      exiger("attaque : un tarif réintroduit dans une métadonnée est vu", vu(parMeta, "tarif publié"),
+        "la métadonnée échappe au balayage — le lecteur ne lit pas les cinq zones");
+
+      const parAttribut = muter(brut.replace("<body", '<body aria-label="Every rule is sourced, checked and kept up to date"'));
+      exiger("attaque : une promesse réintroduite dans un attribut accessible est vue",
+        vu(parAttribut, "source universelle"),
+        "l'attribut accessible échappe au balayage");
+
+      /* Et le témoin qui empêche les deux précédents de passer pour vrais sans rien prouver :
+         le document NON muté ne doit déclencher ni l'un ni l'autre. */
+      const intact = muter(brut);
+      exiger("témoin : le document réel, non muté, ne déclenche aucune des deux attaques",
+        !vu(intact, "tarif publié") && !vu(intact, "source universelle"),
+        "le document porte déjà l'une des deux phrases — les attaques ne prouveraient rien");
+    }
   }
 
   /* ATTAQUES — les deux interdictions doivent savoir échouer. */

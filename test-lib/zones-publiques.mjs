@@ -177,7 +177,33 @@ const METAS_PUBLIQUES = [
 export function zonesDe(html) {
   const d = document_();
   const racine = d.createElement("div");
-  racine.innerHTML = String(html ?? "");
+  const brut = String(html ?? "");
+  racine.innerHTML = brut;
+
+  /* LES ATTRIBUTS DE `<html>` ET `<body>`, QUE LE `<div>` RÉUTILISÉ FAIT DISPARAÎTRE.
+   *
+   * Quatrième correction de ce lecteur, trouvée le 07/09/2026 par une contre-épreuve qui plaçait
+   * une promesse dans `<body aria-label="…">` et attendait qu'elle soit vue : elle ne l'était pas.
+   * La cause est la même que celle qui avait fait perdre les `<title>` de SVG — l'injection par
+   * `innerHTML` dans un `<div>`. Le parseur y jette `html`, `head` et `body` en ne gardant que
+   * leurs enfants : les attributs portés par ces balises partent avec elles.
+   *
+   * Un `aria-label` sur le corps est lu à voix haute par un lecteur d'écran comme n'importe quel
+   * autre : c'est du texte public, et il échappait à TOUTES les portes qui emploient ce lecteur.
+   * On les relève donc sur le HTML BRUT, avant l'injection — seule la première balise de chaque
+   * sorte, et uniquement les attributs déjà reconnus comme accessibles ailleurs dans ce fichier. */
+  const attributsDeLaBalise = (nom) => {
+    const m = new RegExp(`<${nom}\\b([^>]*)>`, "i").exec(brut);
+    if (!m) return [];
+    const out = [];
+    for (const a of ATTRIBUTS_ACCESSIBLES) {
+      const v = new RegExp(`\\b${a}\\s*=\\s*("([^"]*)"|'([^']*)')`, "i").exec(m[1]);
+      const val = v?.[2] ?? v?.[3];
+      if (val) out.push(val);
+    }
+    return out;
+  };
+  const attributsRacine = [...attributsDeLaBalise("html"), ...attributsDeLaBalise("body")];
 
   /* LE TITRE DU DOCUMENT, ET LUI SEUL. Un `querySelector("title")` nu ramènerait le PREMIER titre
      de l'arbre, qui peut être celui d'un SVG placé dans le corps. On exige l'espace de noms HTML. */
@@ -213,7 +239,7 @@ export function zonesDe(html) {
     if (JAMAIS_PUBLIC.has(nom) || (n.namespaceURI === XHTML && TETE_HTML.has(nom))) n.remove();
   }
   const corps = texteRendu(racine, []).join("");
-  const attributs = attributsAccessibles(racine);
+  const attributs = [...attributsRacine, attributsAccessibles(racine)].filter(Boolean).join("\n");
 
   racine.innerHTML = "";            // on ne garde rien d'une page à l'autre
   return { titre, corps, metas, jsonLd, attributs, jsonLdInvalide };

@@ -1709,3 +1709,53 @@ Ils portaient les mêmes phrases et je ne sais pas les régénérer : leur compo
 rend aucune hauteur hors de son environnement d'origine, et mes essais donnaient des pages blanches
 de 900 octets. Ils sont **retirés**, et leur absence est désormais **exigée** par le contrôle —
 tant que personne ne peut garantir leur contenu, ils restent dehors plutôt que publiés sans garde.
+
+---
+
+## Annexe 15 — Un cinquième lecteur, et le trou qu'il a fini par trouver (07/09/2026)
+
+### Le même défaut, dans le même lot, quelques heures après l'avoir écrit
+
+L'annexe 11 raconte comment j'avais donné au §7 sa propre lecture du HTML au lieu d'employer
+`test-lib/zones-publiques.mjs`, et pourquoi c'était un faux vert. J'ai écrit cette annexe le matin.
+L'après-midi, en remettant les dossiers de presse sous contrôle, j'ai écrit une **cinquième**
+lecture — `texteDe()`, quatre expressions régulières — dans `test-annonce-du-site.mjs`.
+
+Une ligne suffisait à la rendre aveugle :
+
+```html
+<meta name="description" content="€400 each way">
+```
+
+La phrase est publique, et le contrôle passait à côté. Écrire mon propre lecteur n'est pas un
+oubli, c'est un réflexe : il faut le nommer comme tel pour cesser de le refaire. `texteDe` est
+supprimé ; toutes les surfaces du paragraphe — accueils, pages de presse, documents — passent par
+`zonesDe()`. Les documents sont désormais lus dans `dist/presskit/`, là où ils sont réellement
+publiés, et non dans `public/` : lire la source revenait à faire confiance à la copie du build
+plutôt qu'à la vérifier. Un JSON-LD illisible fait échouer, comme dans les autres portes.
+
+### L'attaque a trouvé mieux que ce qu'elle visait
+
+Les deux contre-épreuves demandées réintroduisent une phrase interdite dans une zone que le lecteur
+maison ne voyait pas : le tarif dans une métadonnée, la promesse universelle dans un attribut
+accessible. La première a été vue immédiatement. **La seconde ne l'a pas été.**
+
+Ce n'était pas l'attaque qui était mauvaise. `zonesDe` injecte le HTML dans un `<div>` réutilisé —
+c'est ce qui lui permet de tenir sur 3 121 pages sans épuiser le tas. Or le parseur y jette `html`,
+`head` et `body` en ne gardant que leurs enfants : **les attributs portés par ces balises partent
+avec elles**. Un `aria-label` sur le corps est pourtant lu à voix haute par un lecteur d'écran
+comme n'importe quel autre texte, et il échappait à **toutes** les portes qui emploient ce lecteur.
+
+C'est la même cause que le `<title>` de SVG perdu en septembre — la troisième rédaction de ce
+fichier — et c'est sa quatrième correction. Les attributs de `<html>` et `<body>` sont maintenant
+relevés sur le HTML brut, avant l'injection, en n'acceptant que les attributs déjà reconnus comme
+accessibles ailleurs dans le même fichier.
+
+Vérifié qu'aucune autre garde ne rougit de cet élargissement : `tarifs`, `montants-publies`,
+`montants-propagation`, `caisses-non-sourcees`, `étape3` et `affirmations-retirées` restent vertes.
+
+### Ce que je retiens
+
+Une contre-épreuve écrite pour prouver qu'un contrôle voit une zone a prouvé qu'il ne la voyait
+pas — et le trou n'était pas dans le contrôle, mais dans l'instrument partagé sous lui. C'est
+exactement ce à quoi sert une attaque : elle ne confirme pas ce qu'on croit, elle mesure.
