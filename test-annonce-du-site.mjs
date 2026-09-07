@@ -198,29 +198,30 @@ dire(`  alternates lus : ${alternatesLus} · URL au sitemap : ${Object.values(ur
     for (const [nom, f] of [[`accueil ${l}`, acc], [`press kit ${l}`, prs]])
       if (existsSync(f)) surfaces.push([nom, texteDe(readFileSync(f, "utf8"))]);
   }
-  /* LES QUATRE DOSSIERS TÉLÉCHARGEABLES SONT HORS DE CE BALAYAGE — DÉCISION DE PHILIPPE, 07/09/2026.
+  /* LES QUATRE DOSSIERS TÉLÉCHARGEABLES SONT DANS LE BALAYAGE (07/09/2026, arbitrage final).
    *
-   * Ils avaient été retirés parce qu'ils décrivent un produit antérieur : série de caisse
-   * « 500 / XL », chaleur et froid « lus sur les données de la race », « meilleures compagnies »,
-   * « score de compatibilité », « recommandations sur mesure », « chaque règle renvoie à une
-   * documentation officielle ». Philippe a décidé de les rétablir en l'état et de les traiter
-   * dans un lot séparé.
+   * Ils en avaient été SORTIS le matin même, sur décision de Philippe : ils décrivaient un
+   * produit antérieur, et il avait choisi de les rétablir en l'état pour les traiter à part. Le
+   * contrôle se contentait alors d'annoncer qu'il y en avait huit, non audités.
    *
-   * CE QUE CELA VEUT DIRE, ET QUI DOIT RESTER ÉCRIT : ces fichiers vivent dans `public/`, sont
-   * donc copiés dans le site construit, servis à `/presskit/press-kit-<lg>.html`, proposés au
-   * téléchargement par la page de presse et déclarés dans `porte-noindex-admis.json`. Ils sont
-   * PUBLICS. Leur exclusion de ce contrôle est une déviation nommée, pas un constat de propreté :
-   * ils ne sont ni audités ni gardés, et ce paragraphe est le seul endroit où on le dit.
+   * La contre-revue a ouvert les fichiers et y a trouvé ce que mon inventaire avait manqué : un
+   * TARIF — « 400 € par trajet, sur cette route » — dans les quatre langues, en gros caractères.
+   * C'est la famille de défaut que le lot « Tarifs » traitait comme bloquant le lancement. La
+   * décision de rétablir avait été prise sur ma liste incomplète, qui ne mentionnait ni ce tarif
+   * ni la série de caisse « 500 / XL » ; elle a été reprise dès que le fait a été connu.
    *
-   * Leurs cinq compteurs ont été corrigés (102 / 140 / 172 / 4 / 302) et le sont restés : les
-   * réintroduire faux aurait été un geste actif contre le critère de lancement, que la décision
-   * de rétablir ne demandait pas. */
-  const DOSSIERS_TELECHARGEABLES = LANGUES.flatMap((l) =>
-    [`press-kit-${l}.html`, `press-kit-${l}.pdf`].map((f) => join("packages", "ui", "public", "presskit", f)));
-  dire(`  surfaces lues : ${surfaces.map(([n]) => n).join(", ")}`);
-  /* HUIT surfaces : les quatre accueils et les quatre pages de presse du SITE. Les documents
-     téléchargeables sont exclus par décision de Philippe (voir le paragraphe ci-dessus). */
-  exiger("les deux surfaces publiées sont lues (accueil et page press kit, quatre langues)", surfaces.length >= 8,
+   * Les quatre HTML sont corrigés et REMIS ICI : un document proposé au téléchargement est une
+   * surface publique comme une autre, et une surface publique qu'aucun contrôle ne lit finit par
+   * dériver. Les quatre PDF, que je ne sais pas régénérer — leur composant `<doc-page>` ne rend
+   * aucune hauteur hors de son environnement d'origine — sont retirés ; leur absence est exigée
+   * plus bas, faute de pouvoir garantir leur contenu. */
+  for (const l of LANGUES) {
+    const stat = join("packages", "ui", "public", "presskit", `press-kit-${l}.html`);
+    if (existsSync(stat)) surfaces.push([`press kit téléchargeable ${l}`, texteDe(readFileSync(stat, "utf8"))]);
+  }
+
+  dire(`  surfaces lues (${surfaces.length}) : ${surfaces.map(([n]) => n).join(", ")}`);
+  exiger("les trois surfaces publiées sont lues (accueil, page press kit, documents téléchargeables)", surfaces.length >= 12,
     `${surfaces.length} surface(s) — le contrôle ne saurait pas conclure`);
 
   /* Un compte majoré ne doit apparaître nulle part. */
@@ -269,16 +270,30 @@ dire(`  alternates lus : ${alternatesLus} · URL au sitemap : ${Object.values(ur
      règle est appliquée APRÈS le match, sur ce qui suit — lisible, et sans retour arrière. */
   const ALTERNATIVE = /ou signal[ée]e? [àa] confirmer|or flagged as unconfirmed|o se marca como por confirmar|ou [ée] assinalada a confirmar|[àa] confirmer|to be checked|por confirmar|a confirmar/i;
   const PROMESSES = [
-    ["source universelle", /chaque r[èe]gle[,\s]+(?:[^\s]+\s+){0,5}(?:porte|renvoie|indique|est sourc[ée]e)/i],
-    ["source universelle", /every rule[,\s]+(?:[^\s]+\s+){0,5}(?:carries|is sourced|traced)/i],
-    ["source universelle", /cada norma[,\s]+(?:[^\s]+\s+){0,5}(?:incluye|indica|remite|tiene fuente)/i],
-    ["source universelle", /cada regra[,\s]+(?:[^\s]+\s+){0,5}(?:tem|indica|remete)/i],
+    /* « NOMME » MANQUAIT, et c'est le contrôle qui me l'a appris : la légende « chaque règle nomme
+       son autorité » existait dans les QUATRE langues, et seul le portugais — qui dit « indica » —
+       était vu. Un verbe oublié dans une liste de verbes est un trou aussi large que la liste. */
+    ["source universelle", /chaque r[èe]gle[,\s]+(?:[^\s]+\s+){0,5}(?:porte|renvoie|indique|nomme|est sourc[ée]e)/i],
+    /* « EACH » ET « EVERY » disent la même chose et le motif n'en connaissait qu'un : la légende
+       anglaise dit « EACH rule names its authority ». Le témoin de non-vacuité l'a vu — c'est la
+       seconde fois dans ce paragraphe qu'un mot manquant ouvre un trou de la taille du motif. */
+    ["source universelle", /(?:every|each) rule[,\s]+(?:[^\s]+\s+){0,5}(?:carries|names|is sourced|traced)/i],
+    ["source universelle", /cada norma[,\s]+(?:[^\s]+\s+){0,5}(?:incluye|indica|nombra|remite|tiene fuente)/i],
+    ["source universelle", /cada regra[,\s]+(?:[^\s]+\s+){0,5}(?:tem|traz|indica|remete)/i],
     ["révision périodique", /revérifi[ée]es? tous les \d+ jours|re-checked every \d+ days|se revisan cada \d+ d[ií]as/i],
     ["score", /score de compatibilit[ée]|taux de compatibilit[ée]|compatibility score|porcentaje de compatibilidad/i],
     ["meilleure compagnie", /meilleures? compagnies?|best airlines? for your dog|mejores? aerol[ií]neas? para tu perro/i],
     ["recommandation", /recommandations? (?:sur mesure|personnalis[ée]es?)|tailored recommendations?|recomendaciones? a medida/i],
     ["physiologie publiée", /chaleur et froid\s+(?:[^\s]+\s+){0,3}lus sur les donn[ée]es de la race|heat and cold\s+(?:[^\s]+\s+){0,3}read from the breed/i],
     ["caisse non sourcée", /500\s*\/\s*XL|94\s*×\s*64/i],
+    /* UN TARIF PRÉSENTÉ COMME UN FAIT. « 400 € par trajet, sur cette route » vivait dans les
+       quatre dossiers téléchargeables, en gros caractères, alors que le lot « Tarifs » avait
+       retiré ces montants de toutes les surfaces du site. Il a survécu parce que ces documents
+       n'étaient lus par aucun contrôle. Le motif ne vise QUE les montants présentés comme un
+       prix de transport : les chiffres de marché du dossier ($2,4 md, 4,0 md) portent un appel
+       de note et restent licites. */
+    ["tarif publié", /(?:€\s?\d[\d.,]*|\d[\d.,]*\s?€)[^.]{0,40}(?:par trajet|each way|por trayecto|por trecho)/i],
+    ["tarif publié", /(?:par trajet|each way|por trayecto|por trecho)[^.]{0,40}(?:€\s?\d[\d.,]*|\d[\d.,]*\s?€)/i],
     ["origine de chaque réponse", /montre d'o[ùu] vient chaque r[ée]ponse|shows where each answer comes from|muestra de d[óo]nde viene cada respuesta/i],
   ];
   const promesses = [];
@@ -296,13 +311,16 @@ dire(`  alternates lus : ${alternatesLus} · URL au sitemap : ${Object.values(ur
   exiger("aucune surface d'annonce ne promet une vérification universelle, un score ou une recommandation",
     promesses.length === 0, promesses.slice(0, 5).join(" | "));
 
-  /* CE QUI EST PUBLIÉ SANS ÊTRE GARDÉ, DIT À VOIX HAUTE. Le contrôle ne juge pas ces documents —
-     décision de Philippe — mais il refuse de laisser leur nombre dériver en silence : si un
-     cinquième dossier apparaissait, personne ne saurait qu'il échappe aussi au balayage. */
-  const presents = DOSSIERS_TELECHARGEABLES.filter((f) => existsSync(f));
-  dire(`  dossiers téléchargeables publiés SANS être audités par ce contrôle : ${presents.length} (décision du 07/09/2026)`);
-  exiger("le nombre de dossiers téléchargeables non audités est celui qui a été arbitré (8 : 4 HTML + 4 PDF)",
-    presents.length === 8, `${presents.length} document(s) — l'écart n'a pas été arbitré`);
+  /* LES PDF NE DOIVENT PAS REVENIR SANS AVOIR ÉTÉ REFAITS. Ils portaient le même tarif et les
+     mêmes promesses que les HTML ; ceux-ci sont corrigés et relus ci-dessus, ceux-là ne peuvent
+     pas l'être ici — leur composant `<doc-page>` ne rend aucune hauteur hors de son environnement
+     d'origine, et mes essais donnaient des pages blanches de 900 octets. Tant que personne ne
+     peut garantir leur contenu, ils restent absents plutôt que publiés sans garde. */
+  const pdfRevenus = LANGUES
+    .map((l) => join("packages", "ui", "public", "presskit", `press-kit-${l}.pdf`))
+    .filter((f) => existsSync(f));
+  exiger("les dossiers de presse PDF restent retirés (ils ne peuvent pas être relus par ce contrôle)",
+    pdfRevenus.length === 0, `${pdfRevenus.length} PDF revenu(s) : ${pdfRevenus.slice(0, 2).join(", ")}`);
 
   /* NON-VACUITÉ des motifs : ils doivent reconnaître les phrases réellement retirées. */
   {
@@ -315,6 +333,14 @@ dire(`  alternates lus : ${alternatesLus} · URL au sitemap : ${Object.values(ur
       "tailored recommendations",
       "Cabine, soute, cargo, chaleur et froid — lus sur les données de la race.",
       "500 / XL",
+      "400 € par trajet, sur cette route",
+      "€400 each way, on this route",
+      "400 € por trayecto, en esta ruta",
+      "400 € por trecho, nesta rota",
+      "Étape par étape, aller et retour — chaque règle nomme son autorité.",
+      "Step by step, outbound and return — each rule names its authority.",
+      "Paso a paso, ida y vuelta — cada norma nombra su autoridad.",
+      "Passo a passo, ida e volta — cada regra indica sua autoridade.",
       "montre d'où vient chaque réponse",
     ];
     const aveugles = retirees.filter((ph) => !PROMESSES.some(([, re]) => re.test(ph)));

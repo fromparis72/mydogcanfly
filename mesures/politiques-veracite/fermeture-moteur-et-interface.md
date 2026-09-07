@@ -1656,3 +1656,56 @@ de couverture générale était fausse, et c'est elle qui compte : un contrôle 
 dispense d'en écrire un autre. Le `continue` est supprimé, et une contre-épreuve **fabrique** le
 cas : un fichier jetable ne contenant qu'un appel direct, dont la clé manque à la table, doit être
 lu.
+
+---
+
+## Annexe 14 — Un tarif publié, et deux verbes qui manquaient à un motif (07/09/2026)
+
+### Ce que mon inventaire avait manqué
+
+Les quatre dossiers de presse téléchargeables ont été rétablis le matin même, sur décision de
+Philippe, après que je lui ai listé ce qu'ils contenaient encore : score de compatibilité,
+« meilleures compagnies », « chaque règle sourcée ». La contre-revue a ouvert les fichiers et y a
+trouvé ce que je n'avais pas mesuré :
+
+> **400 € par trajet, sur cette route**
+
+En gros caractères orange, dans les **quatre langues**. C'est la famille de défaut que le lot
+« Tarifs » traitait comme **bloquant le lancement**, et elle était en ligne, téléchargeable, depuis
+le début. La décision de rétablir avait été prise sur mon inventaire incomplet ; Philippe l'a
+reprise dès que le fait a été connu.
+
+Même mécanisme pour la série de caisse « 500 / XL » et son « ≈ 94 × 64 × 68 cm » : la série
+commerciale non sourcée, retirée des fiches et du calculateur des semaines plus tôt, survivait ici.
+
+### Les deux leçons du contrôle, qui valent plus que les corrections
+
+Les quatre HTML sont corrigés — tarif, série, traçabilité universelle, score, physiologie,
+« meilleures compagnies », recommandations sur mesure, date de vérification figée — et **remis dans
+le balayage**. Un document proposé au téléchargement est une surface publique comme une autre, et
+une surface publique qu'aucun contrôle ne lit finit par dériver.
+
+Une fois remis, le contrôle a rougi **deux fois de suite**, sur des choses qu'aucun de nous n'avait
+vues :
+
+1. **Sur ma propre reformulation.** J'avais remplacé « chaque règle renvoie à une documentation
+   officielle » par « chaque règle publiée porte sa propre date de vérification ». C'est la même
+   affirmation universelle, déplacée de la source vers la date. J'avais échangé une promesse contre
+   une autre en croyant corriger.
+2. **Sur une phrase que mon inventaire manuel avait manquée** : « chaque règle nomme son autorité »,
+   présente dans les quatre langues. Mon motif listait `porte | renvoie | indique | est sourcée` —
+   il voyait le portugais (`indica`) et pas les trois autres (`names`, `nomme`, `nombra`). Puis, le
+   témoin de non-vacuité en a trouvé une troisième : le motif anglais disait `every rule`, la
+   légende dit `each rule`.
+
+**Un verbe oublié dans une liste de verbes ouvre un trou de la taille de la liste.** Deux fois dans
+le même paragraphe, un synonyme absent a rendu le contrôle aveugle à une phrase qu'il visait
+explicitement. C'est le même défaut que le qualificatif intercalé de l'annexe 10, sous une autre
+forme : ma recherche décrit ce que j'ai pensé à écrire, jamais ce que le texte dit.
+
+### Les PDF
+
+Ils portaient les mêmes phrases et je ne sais pas les régénérer : leur composant `<doc-page>` ne
+rend aucune hauteur hors de son environnement d'origine, et mes essais donnaient des pages blanches
+de 900 octets. Ils sont **retirés**, et leur absence est désormais **exigée** par le contrôle —
+tant que personne ne peut garantir leur contenu, ils restent dehors plutôt que publiés sans garde.
