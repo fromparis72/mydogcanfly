@@ -113,10 +113,6 @@ const labels = {
   petsUnknown: t(locale, "air.pets_unknown_short"),
   unverifiedShort: t(locale, "air.unverified_short"),
   unverifiedNote: t(locale, "air.unverified_note"),
-  directCount: t(locale, "air.direct_count"),
-  directCountPlural: t(locale, "air.direct_count_plural"),
-  airlinesCount: t(locale, "air.airlines_count"),
-  airlinesCountOne: t(locale, "air.airlines_count_one"),
   entryReq: t(locale, "air.entry_req"),
   countryBase: locale === "en" ? "/countries/" : `/${locale}/countries/`,
   cabinShort: t(locale, "placement.cabin"),
@@ -163,6 +159,10 @@ const labels = {
      citation. Deux instruments, deux réponses pour le même fait. */
   originalText: T("Original text (in English)", "Texte original (en anglais)", "Texto original (en inglés)"),
   deniedDocumented: T("not accepted — refusal documented by a cited official source", "non accepté — refus documenté par une source officielle citée", "no se acepta: rechazo documentado por una fuente oficial citada"),
+  /* LE QUATRIÈME ÉTAT SUR LA CARTE (08/09/2026) : un canal accepté sous les conditions publiées
+     par la compagnie, sur citation. Jamais « OK » : le visiteur lit la condition et la source. */
+  acceptedConditions: T("accepted under the airline's conditions — documented by a cited official source", "accepté sous conditions de la compagnie — documenté par une source officielle citée", "aceptado bajo las condiciones de la aerolínea: documentado por una fuente oficial citada"),
+  weightLimitCombined: t(locale, "air.cond.weight_limit"),
   confidence: T("confidence", "confiance", "confianza"),
   answer: {
     compatible: t(locale, "answer.compatible"),
@@ -188,16 +188,30 @@ const labels = {
   destInvalid: t(locale, "finder.dest_invalid"),
   sameEndpoint: t(locale, "finder.same_endpoint"),
   /* Message d'une date hors contrat. Écrit ici plutôt que dans le fichier de traductions parce
-     que les trois autres messages de garde du formulaire y sont déjà — cohérence locale. */
-  dateOutOfRange: T("Choose a date between today and 18 months from now.",
-                    "Choisis une date comprise entre aujourd'hui et 18 mois.",
-                    "Elige una fecha entre hoy y 18 meses."),
+     que les trois autres messages de garde du formulaire y sont déjà — cohérence locale.
+     IL NOMME LA PLAGE (08/09/2026) : « entre aujourd'hui et 18 mois » disait la règle sans dire
+     les jours ; `{min}` et `{max}` reçoivent, à la soumission, les deux bornes ISO que le champ
+     porte en `min`/`max` — le visiteur lit exactement ce que le moteur acceptera. ISO plutôt qu'un
+     format local : c'est la forme du contrat, sans ambiguïté, et un contrôle peut la recalculer. */
+  dateOutOfRange: T("Choose a date between today ({min}) and 18 months from now ({max}).",
+                    "Choisis une date comprise entre aujourd'hui ({min}) et 18 mois ({max}).",
+                    "Elige una fecha entre hoy ({min}) y 18 meses ({max})."),
   weightMissing: t(locale, "finder.weight_missing"),
   weightInvalid: t(locale, "finder.weight_invalid"),
   weightTooHigh: t(locale, "finder.weight_too_high"),
   matchTitle: t(locale, "finder.match_title"),
   altTitle: t(locale, "finder.alt_title"),
   noMatchMode: t(locale, "finder.no_match_mode"),
+  /* LE CONTRAT D'AFFICHAGE (08/09/2026, lot Finder — point 2 de Codex, P0 (c) de Philippe) : le
+     prouvé d'abord, le non prouvé en second niveau, un résumé par canal à la place du compteur
+     « 0 options confirmées · 27 pistes ». */
+  sumCond: t(locale, "finder.sum.cond"),
+  sumDenied: t(locale, "finder.sum.denied"),
+  sumConfirm: t(locale, "finder.sum.confirm"),
+  sumDocumentedTitle: t(locale, "finder.sum.documented_title"),
+  sumLeadsTitle: t(locale, "finder.sum.leads_title"),
+  sumLeadsNote: t(locale, "finder.sum.leads_note"),
+  sumNoneDocumented: t(locale, "finder.sum.none_documented"),
   airMap: Object.fromEntries(airports.map((a) => [a.label.toLowerCase(), a.id])),
   airRev: Object.fromEntries(airports.map((a) => [a.id, a.label])),
   airShort: Object.fromEntries(airports.map((a) => [a.id, a.iata])),
@@ -222,7 +236,15 @@ const labels = {
     bodyTiter: T("The return needs a long procedure (rabies titer) started BEFORE you leave — not on the way back.", "Le retour impose une démarche longue (titrage antirabique) à lancer AVANT ton départ, pas au moment de rentrer.", "La vuelta exige un trámite largo (titulación antirrábica) que debes iniciar ANTES de salir, no al regresar."),
     bodyIsland: T("Entry requires an import permit and quarantine — plan several months ahead.", "L'entrée impose un permis d'importation et une quarantaine — compte plusieurs mois d'anticipation.", "La entrada exige un permiso de importación y cuarentena — cuenta con varios meses de antelación."),
     bodyWarn: T("Leaving the destination needs official steps arranged on site; the return isn't automatic.", "Sortir du pays de destination demande des démarches officielles à préparer sur place ; le retour n'est pas automatique.", "Salir del país de destino exige trámites oficiales que se preparan in situ; la vuelta no es automática."),
-    bodyInfo: T("Formalities apply on entry and on return — plan a vet certificate each way.", "Des formalités s'appliquent à l'entrée et au retour — prévois un certificat vétérinaire dans chaque sens.", "Se aplican trámites a la entrada y a la vuelta — prevé un certificado veterinario en cada sentido."),
+    /* PLUS DE « CERTIFICAT VÉTÉRINAIRE DANS CHAQUE SENS » (08/09/2026, lot Finder, point 4 de
+       Codex). Cette phrase était le SEUL endroit du Finder qui affirmait un document, et elle
+       l'affirmait pour tout trajet de niveau « info » — y compris Paris → Athènes, où le moteur,
+       lui, disait juste : passeport européen, puce, vaccin antirabique valide (`rule_gr_import`),
+       et aucun certificat. Le bandeau n'a pas de source propre : il ne nomme donc plus aucun
+       document. Il renvoie aux étapes que le moteur a listées en dessous quand il y en a, et à la
+       page du pays sinon. */
+    bodyInfo: T("Formalities apply on entry and on return — the steps listed below apply both ways.", "Des formalités s'appliquent à l'entrée et au retour — les étapes listées ci-dessous valent dans les deux sens.", "Se aplican trámites a la entrada y a la vuelta — los pasos indicados abajo valen en ambos sentidos."),
+    bodyInfoNoSteps: T("Formalities apply on entry and on return — check the country page before you leave.", "Des formalités s'appliquent à l'entrée et au retour — consulte la page du pays avant de partir.", "Se aplican trámites a la entrada y a la vuelta — consulta la página del país antes de salir."),
     /* AUCUN DÉCOMPTE. Le CTA annonçait « les 4 étapes », un 4 codé en dur, alors que la page
        visée en montre un nombre variable selon le pays et les données disponibles : le libellé
        était faux dès que le contenu différait, et le serait redevenu à chaque évolution. On ne
@@ -263,7 +285,17 @@ const labels = {
 };
 ---
 <section id="flight-finder" class="finder" aria-label="Flight Finder">
-  <form id="mdcf-finder" class="finder__form">
+  {/* `novalidate` (DÉFAUT P0 du 08/09/2026, mesuré au navigateur) : le champ de date porte `min`/`max`
+      posés à l'exécution ; avec une date PASSÉE (2026-07-15 saisie le 08/09/2026), la validation
+      NATIVE bloquait l'événement `submit` AVANT notre gestionnaire — aucune requête, aucun message
+      dans la zone de résultat, seulement un défilement de la page vers le champ. Un testeur l'a
+      décrit comme « le formulaire retourne à l'accueil sans verdict ». Le harnais jsdom ne le
+      voyait pas : il émet `submit` lui-même, sans passer par la validation native.
+      Les bornes `min`/`max` restent comme aide de saisie (calendrier grisé) ; toute garde vit dans
+      le gestionnaire, qui écrit TOUJOURS un message dans `#mdcf-finder-result`. Aucun autre champ
+      ne s'appuyait sur la validation native : origine, destination et poids y sont déjà validés
+      (le `min="0"`/`step="0.1"` du poids n'était qu'une aide ; un poids ≤ 0 reçoit son message). */}
+  <form id="mdcf-finder" class="finder__form" novalidate>
     <div class="finder__row">
       <div class="finder__field">
         <label for="f-origin">{t(locale, "finder.from")}</label>
@@ -490,12 +522,15 @@ const labels = {
   // .rtflag) mais jamais appelée dans render() — le bandeau ne s'affichait pour PERSONNE, sur
   // AUCUN trajet, y compris un retour UE avec titrage requis (le cas "crit" le plus important).
   // Câblée maintenant juste après climateBanner(), l'autre bandeau de niveau trajet.
-  function roundTripFlag(): string {
+  function roundTripFlag(r: any): string {
     const dest = (L.countryRT ?? {})[lastDestIso];
     if (!dest) return "";
     const orig = (L.countryRT ?? {})[lastOriginIso];
     const S = L.rt ?? {};
-    let sev = "info", title = S.titleInfo, body = S.bodyInfo;
+    /* Niveau « info » : le texte dépend de ce que le moteur a réellement listé — jamais d'un
+       document présumé. */
+    const etapes = Array.isArray(r?.conditions) ? r.conditions.length : 0;
+    let sev = "info", title = S.titleInfo, body = etapes > 0 ? S.bodyInfo : S.bodyInfoNoSteps;
     if (orig && orig.regime === "eu" && dest.regime === "non_listed") { sev = "crit"; title = S.titleCrit; body = S.bodyTiter; }
     else if (dest.regime === "island_strict") { sev = "crit"; title = S.titleCrit; body = S.bodyIsland; }
     else if (dest.exit) { sev = "warn"; title = S.titleWarn; body = S.bodyWarn; }
@@ -536,15 +571,10 @@ const labels = {
     // la route, y compris des compagnies qui n'acceptent l'animal sur aucun mode (cas type : Paris→
     // Londres affichait "5 vols directs probables" en comptant des vols que l'animal ne peut pas
     // prendre, faute d'agrément britannique pour la soute — voir rule_*_gb_not_approved).
-    /* Le compteur « N directs » n'additionne que du DIRECT ATTESTÉ (`direct_documented`).
-     * Correctif P0 du 11/08/2026 : il comptait `a.direct` seul, donc aussi les `direct_assumed`
-     * — des vols directs déduits d'un hub, sans preuve de route. Le moteur ne produit plus cet
-     * état tant que toutes les compagnies ont un graphe de routes, mais le compteur ne doit pas
-     * dépendre de cette circonstance : si une compagnie sans graphe réapparaît un jour, son
-     * itinéraire supposé ne doit pas être annoncé comme un direct établi. */
-    const usableDirect = (r.airlines ?? []).filter(
-      (a) => a.direct && a.itinerary_confidence === "direct_documented" && (a.cabin || a.hold || a.cargo),
-    );
+    /* Le compteur « N directs » (direct ATTESTÉ seulement, correctif P0 du 11/08/2026) N'EXISTE
+     * PLUS (08/09/2026) : il a été remplacé par le résumé par canal, plus bas. La propriété qu'il
+     * protégeait — un direct supposé n'est jamais annoncé comme établi — vit sur la carte
+     * elle-même (badge « Direct non vérifié », classe `acard--unverified`), vérifiée au harnais. */
     /* Garde défensive (audit du 09/08/2026, tâche 24) : r.score vient du Worker et alimente à la
      * fois un `width:${...}%` CSS et un texte affiché — un score non numérique (NaN), négatif ou
      * au-delà de 100 (bug côté moteur, réponse tronquée, future évolution du contrat) produirait
@@ -641,10 +671,10 @@ const labels = {
                        d'un canal ouvert, jamais la croix d'un canal fermé. Repli sur les booléens
                        si un rapport ancien ne porte pas les statuts. */
                     const st = a[`${ch}_status`] ?? (a[ch] ? "allowed" : "denied");
-                    const cls = st === "allowed" ? "ab--ok" : st === "confirmation_required" ? "ab--confirm" : "ab--no";
+                    const cls = st === "allowed" ? "ab--ok" : st === "accepted_with_conditions" ? "ab--cond" : st === "confirmation_required" ? "ab--confirm" : "ab--no";
                     const cap = ch === "cabin" ? L.cabinShort : ch === "hold" ? L.holdShort : L.cargoShort;
                     /* Le refus porte sa croix : une rature CSS n'est pas un statut (08/09/2026). */
-                    const mark = st === "confirmation_required" ? " ?" : st === "denied" ? " ✗" : "";
+                    const mark = st === "confirmation_required" ? " ?" : st === "denied" ? " ✗" : st === "accepted_with_conditions" ? " ✓*" : "";
                     return `<span class="ab ${cls}">${esc(cap)}${mark}</span>`;
                   }).join("")}</div>
                   <div class="acard__label">${esc(a.label)}</div>
@@ -662,6 +692,16 @@ const labels = {
                      * jamais sur une page non citée : `evaluate.ts`). Quand la décision porte sa
                      * source, on l'écrit : canal, refus documenté, hôte, date. */
                     const lignes = [];
+                    /* L'ACCEPTATION SOUS CONDITIONS SE DIT AUSSI EN TOUTES LETTRES (08/09/2026) :
+                       canal, « accepté sous conditions de la compagnie », le plafond chien +
+                       contenant quand la politique le publie, hôte et date de la citation. */
+                    for (const d of (a.placement_decisions || [])) {
+                      if (d.status !== "accepted_with_conditions") continue;
+                      const cap = d.placement === "cabin" ? L.cabinShort : d.placement === "hold" ? L.holdShort : L.cargoShort;
+                      const seuil = d.weight_limit_kg ? ` · ${esc(L.weightLimitCombined.replace("{kg}", String(d.weight_limit_kg)))}` : "";
+                      const src = d.source && d.source.url ? ` — ${esc(host(d.source.url))}${d.source.verified_date ? ` · ${esc(d.source.verified_date)}` : ""}` : "";
+                      lignes.push(`<div class="acard__accepted">✓ ${esc(cap)} : ${esc(L.acceptedConditions)}${seuil}${src}</div>`);
+                    }
                     for (const d of (a.placement_decisions || [])) {
                       if (d.status !== "denied" || !d.source || !d.source.url) continue;
                       const cap = d.placement === "cabin" ? L.cabinShort : d.placement === "hold" ? L.holdShort : L.cargoShort;
@@ -809,7 +849,7 @@ const labels = {
         </div>` : ""}
         ${r.verdict === "unknown" ? `<p class="report__unknown">${esc(L.answerUnknownNote)}</p>` : ""}
         ${climateBanner(r)}
-        ${roundTripFlag()}
+        ${roundTripFlag(r)}
         ${safetyAdvisories(r)}
         ${why}
         ${r.domestic ? (() => {
@@ -826,14 +866,53 @@ const labels = {
         })() : block(L.before, r.conditions)}
         ${r.airlines && r.airlines.length
           ? (() => {
-              const header = `<h4>${esc(L.airlines)}</h4>
-              <div class="acap">✈ <b>${usableDirect.length}</b> ${esc(usableDirect.length === 1 ? L.directCount : L.directCountPlural)} · <b>${r.airlines.length}</b> ${esc(r.airlines.length === 1 ? L.airlinesCountOne : L.airlinesCount)}</div>`;
+              /* LE COMPTEUR « 0 OPTIONS CONFIRMÉES · 27 PISTES » N'EST PLUS LE RÉSULTAT PRINCIPAL
+               * (08/09/2026). Mesuré sur Paris → Athènes, Golden 32 kg : 27 cartes, 23 « à
+               * confirmer » sur les trois canaux, et un chiffre vert qui disait « 0 » — alors que
+               * British Airways portait un refus cabine documenté, et que les politiques prouvées
+               * à venir (cohorte A de Codex) donneront des refus et des acceptations sous
+               * conditions. Le contrat d'affichage devient :
+               *   1. un RÉSUMÉ PAR CANAL — combien sous conditions, combien de refus documentés,
+               *      combien à confirmer — jamais un total qui mélange les trois ;
+               *   2. les compagnies qui ont AU MOINS UNE réponse (canal ouvert sous conditions ou
+               *      refusé sur preuve) d'abord, sous leur propre titre ;
+               *   3. celles dont les TROIS canaux sont « ? » en second niveau, repliées, avec la
+               *      phrase qui dit ce qu'elles sont : des pistes, pas des réponses ;
+               *   4. quand rien n'est documenté, une phrase brève et honnête — pas 27 cartes à plat.
+               * Le tri du moteur (prouvé d'abord) est respecté à l'intérieur de chaque groupe ; on
+               * ne recalcule aucun statut ici, on lit ceux des cartes. */
+              const statutDe = (a: any, ch: "cabin" | "hold" | "cargo"): string => a[`${ch}_status`] ?? (a[ch] ? "allowed" : "denied");
+              const CANAUX = ["cabin", "hold", "cargo"] as const;
+              const documentee = (a: any) => CANAUX.some((ch) => statutDe(a, ch) !== "confirmation_required");
+              const resume = CANAUX.map((ch) => {
+                const n = { cond: 0, denied: 0, confirm: 0 };
+                for (const a of r.airlines) {
+                  const st = statutDe(a, ch);
+                  if (st === "accepted_with_conditions" || st === "allowed") n.cond++;
+                  else if (st === "denied") n.denied++;
+                  else n.confirm++;
+                }
+                const cap = ch === "cabin" ? L.cabinShort : ch === "hold" ? L.holdShort : L.cargoShort;
+                return `<span class="asum__ch"><b class="asum__cap">${esc(cap)}</b> : <b>${n.cond}</b> ${esc(L.sumCond)} · <b>${n.denied}</b> ${esc(L.sumDenied)} · <b>${n.confirm}</b> ${esc(L.sumConfirm)}</span>`;
+              }).join("");
+              const header = `<h4>${esc(L.airlines)}</h4><div class="asum">${resume}</div>`;
+              /* Une liste en deux niveaux : documentées à plat, pistes repliées. */
+              const deuxNiveaux = (liste: any[], titreDocumentees: string | null) => {
+                const doc = liste.filter(documentee), pistes = liste.filter((a: any) => !documentee(a));
+                const haut = doc.length
+                  ? `${titreDocumentees ? `<h5 class="acards__sub">${esc(titreDocumentees.replace("{n}", String(doc.length)))}</h5>` : ""}<ul class="acards">${doc.map(airlineCard).join("")}</ul>`
+                  : (pistes.length ? `<p class="finder__hint asum__none">${esc(L.sumNoneDocumented)}</p>` : "");
+                const bas = pistes.length
+                  ? `<details class="acards__leads"><summary>${esc(L.sumLeadsTitle.replace("{n}", String(pistes.length)))}</summary><p class="finder__hint">${esc(L.sumLeadsNote)}</p><ul class="acards">${pistes.map(airlineCard).join("")}</ul></details>`
+                  : "";
+                return haut + bas;
+              };
               // Retest 09/08/2026, point 6 : "any" reste une liste unique (rien à trier — le champ
               // demande "peu importe le mode"). Pour cabine/soute/fret, on scinde en deux groupes
               // titrés au lieu de faire disparaître les compagnies incompatibles avec CE mode :
               // l'info "alternative en soute/fret" a une vraie valeur pour le visiteur.
               if (lastPlacement === "any") {
-                return `<div class="report__sec">${header}<ul class="acards">${r.airlines.map(airlineCard).join("")}</ul></div>`;
+                return `<div class="report__sec">${header}${deuxNiveaux(r.airlines, L.sumDocumentedTitle)}</div>`;
               }
               const key = lastPlacement as "cabin" | "hold" | "cargo";
               const matched = r.airlines.filter((a: any) => a[key]);
@@ -842,7 +921,7 @@ const labels = {
                 ? `<h5 class="acards__sub">${esc(L.matchTitle)}</h5><ul class="acards">${matched.map(airlineCard).join("")}</ul>`
                 : `<p class="finder__hint">${esc(L.noMatchMode)}</p>`;
               const altBlock = alt.length
-                ? `<h5 class="acards__sub">${esc(L.altTitle)}</h5><ul class="acards">${alt.map(airlineCard).join("")}</ul>`
+                ? `<h5 class="acards__sub">${esc(L.altTitle)}</h5>${deuxNiveaux(alt, null)}`
                 : "";
               return `<div class="report__sec">${header}${matchBlock}${altBlock}</div>`;
             })()
@@ -1297,14 +1376,24 @@ const labels = {
     /* Date hors contrat : on interrompt AVANT toute requête. Le champ porte `min`/`max`, mais la
        saisie au clavier les contourne sur plusieurs navigateurs — et surtout, échouer en silence
        en retirant la date donnerait un rapport qui ne répond pas à la question posée. */
+    /* PLUS DE `reportValidity` (08/09/2026). Cette bulle native ne s'affichait JAMAIS pour la cause
+       qu'elle prétendait couvrir : quand la date était hors des bornes `min`/`max`, le navigateur
+       arrêtait la soumission avant ce gestionnaire (cf. `novalidate` sur le formulaire) ; et quand
+       elle s'affichait, elle disparaissait au premier clic et faisait défiler la page vers le
+       champ sans rien laisser dans la zone de résultat. Le message vit ici, en toutes lettres,
+       avec les bornes du jour ; le champ reçoit le focus SANS défilement pour que le message reste
+       sous les yeux, et `aria-invalid` pour les lecteurs d'écran. */
+    const dateEl = byId("f-date") as HTMLInputElement | null;
+    dateEl?.removeAttribute("aria-invalid");
     if (dateOutOfContract(gv("f-date"))) {
-      const el = byId("f-date") as HTMLInputElement | null;
-      if (el && typeof el.reportValidity === "function") {
-        el.setCustomValidity(L.dateOutOfRange ?? "Choose a date between today and 18 months from now.");
-        el.reportValidity();
-        setTimeout(() => el.setCustomValidity(""), 0);
+      const b = travelDateBoundsClient();
+      const msg = (L.dateOutOfRange ?? "Choose a date between today ({min}) and 18 months from now ({max}).")
+        .replace("{min}", b.min).replace("{max}", b.max);
+      if (dateEl) {
+        dateEl.setAttribute("aria-invalid", "true");
+        try { dateEl.focus({ preventScroll: true }); } catch { /* navigateur sans l'option : sans importance */ }
       }
-      return showHint(L.dateOutOfRange ?? "Choose a date between today and 18 months from now.");
+      return showHint(msg);
     }
 
     const req = buildRequest();
@@ -1481,6 +1570,8 @@ const labels = {
   .ab--ok { color: #065f46; background: #d1fae5; }
   .ab--no { color: #991b1b; background: #fee2e2; text-decoration: line-through; }
   .acard__denied { margin-top: .35rem; font-size: .85rem; color: #991b1b; }
+  .acard__accepted { margin-top: .35rem; font-size: .85rem; color: #065f46; }
+  .ab--cond { color: #065f46; background: #d1fae5; }
   .cond__orig { margin-top: .25rem; font-size: .9em; color: #475569; }
   .cond__orig summary { cursor: pointer; }
   .cond__src { font-size: .9em; }
@@ -1511,9 +1602,13 @@ const labels = {
     50%      { box-shadow: 0 0 0 1px rgba(180, 83, 10, .30), 0 0 24px 5px rgba(234, 88, 12, .45); }
   }
   @media (prefers-reduced-motion: reduce) { .report__climate { animation: none; } }
-  .acap { display: inline-flex; align-items: center; gap: 6px; margin: 0 0 10px 18px; padding: 6px 14px; border-radius: 999px;
-    background: #d1fae5; color: #065f46; font-size: 13px; font-weight: 650; }
-  .acap b { color: #065f46; }
+  .asum { display: flex; flex-wrap: wrap; gap: 6px 14px; margin: 0 0 10px 18px; font-size: 13px; color: var(--mdcf-muted); }
+  .asum__ch { display: inline-flex; align-items: center; gap: 4px; padding: 5px 12px; border-radius: 999px; background: var(--mdcf-surface-2, #f3f4f6); }
+  .asum__ch b { color: var(--mdcf-ink); font-weight: 700; }
+  .asum__none { margin: 6px 18px 10px; }
+  .acards__leads { margin: 12px 18px 0; }
+  .acards__leads > summary { cursor: pointer; font-size: 12px; text-transform: uppercase; letter-spacing: .05em; font-weight: 800; color: var(--mdcf-muted); }
+  .acards__leads[open] > summary { margin-bottom: 6px; }
   .acard__fee { margin-top: 6px; font-size: 13px; font-weight: 650; color: var(--mdcf-ink); }
   .acard__links { display: flex; flex-direction: column; align-items: flex-start; gap: 6px; margin-top: 8px; }
   .acard__country { display: inline-flex; align-items: center; gap: 6px; padding: 4px 10px; border-radius: 8px;

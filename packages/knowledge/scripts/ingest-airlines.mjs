@@ -131,6 +131,14 @@ const DecisionPlacement = z.union([
      *  existe déjà au schéma canonique (`PlacementPolicyCommon.conditions`) — la fiche
      *  ne savait simplement pas l'exprimer, et la projection le perdait. */
     conditions: LT.optional(),
+    /** LE SEUIL DE POIDS PUBLIÉ, ET S'IL INCLUT LE CONTENANT (08/09/2026, dossier de preuves).
+     *  `max_weight_kg` existait au schéma canonique mais la fiche ne savait pas l'écrire sur une
+     *  décision — il n'arrivait que par la ligne tarifaire « cabine » (`derivePolicy`). Une
+     *  citation « eight (8) kilos, combined with its container » s'écrit maintenant à côté d'elle :
+     *  `max_weight_kg: 8`, `weight_includes_carrier: true`. Le moteur refuse au-dessus, n'accorde
+     *  jamais en dessous. */
+    max_weight_kg: z.number().positive().optional(),
+    weight_includes_carrier: z.boolean().optional(),
   }).strict(),
   z.object({ review_state: z.literal("legacy_unreviewed") }).strict(),
 ]);
@@ -596,6 +604,7 @@ for (const a of (objects.airlines || [])) {
       ...decision,
       ...(d.conditions ? { conditions: d.conditions } : {}),
       ...(d.max_weight_kg != null ? { max_weight_kg: d.max_weight_kg } : {}),
+      ...(d.weight_includes_carrier === true ? { weight_includes_carrier: true } : {}),
       ...(d.brachy_allowed === false ? { brachy_allowed: false } : {}),
       source: sourceRetenue,
       ...(sourceRetenue === source ? { source_derived: true } : {}),

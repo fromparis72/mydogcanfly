@@ -215,8 +215,10 @@ console.log("\n=== 4. Tri-state : estimation → confirmation_required ; fournie
     repV.airlines.every((a) => a.heat_embargo === false));
   const froid = evaluate(kbCitee, FinderRequest.parse({ origin: "airport_cdg", destination: "airport_ist", dog: GOLDEN, date: JUILLET, weather: { temperature_c: 20 } }));
   const pFroid = stOf(froid, "airline_turkish", "hold");
-  check("température fournie SOUS le seuil (20) : hold = allowed (l'embargo ne se déclenche pas)",
-    pFroid?.status === "allowed", JSON.stringify(pFroid));
+  /* MOUVEMENT NOMMÉ (08/09/2026, quatrième état) : la politique citée de soute vaut
+     `accepted_with_conditions`, plus `allowed` ; l'embargo, lui, ne se déclenche toujours pas. */
+  check("température fournie SOUS le seuil (20) : hold = accepted_with_conditions (l'embargo ne se déclenche pas)",
+    pFroid?.status === "accepted_with_conditions" && pFroid?.allowed === true, JSON.stringify(pFroid));
 }
 
 console.log("\n=== 5. Dominance : denied > confirmation_required — interaction P0 climat / P0-B brachy ===");
@@ -321,11 +323,14 @@ console.log("\n=== 6. Verdict : règle exacte, par restriction en mémoire ===")
      était satisfiable par presque tout. On épingle la RÈGLE : la cabine est allowed, donc le
      verdict suit la voie « allowed » — conditional UNIQUEMENT par les formalités, jamais par la
      confirmation de la soute, et jamais incompatible. */
-  check("placement=cabin : cabin_status=allowed (témoin)", repC.airlines[0]?.cabin_status === "allowed",
-    repC.airlines[0]?.cabin_status);
-  check("placement=cabin : verdict par la voie « allowed » — exactement (formalités ? conditional : compatible)",
-    repC.verdict === (repC.conditions.length > 0 ? "conditional" : "compatible"),
-    `verdict ${repC.verdict}, ${repC.conditions.length} formalité(s)`);
+  /* MOUVEMENT NOMMÉ (08/09/2026, quatrième état) : la cabine citée vaut `accepted_with_conditions`,
+     plus `allowed`. Conséquence sur le verdict : un canal ouvert sous conditions donne « Oui —
+     sous conditions » même sans formalité pays ; `compatible` n'a plus de chemin réel. Ce que le
+     paragraphe défend — jamais incompatible, jamais unknown quand la cabine est prouvée — tient. */
+  check("placement=cabin : cabin_status=accepted_with_conditions (témoin, plus jamais allowed)",
+    repC.airlines[0]?.cabin_status === "accepted_with_conditions", repC.airlines[0]?.cabin_status);
+  check("placement=cabin : verdict « conditional » par la voie ouverte — jamais compatible sec, jamais incompatible, jamais unknown",
+    repC.verdict === "conditional", `verdict ${repC.verdict}, ${repC.conditions.length} formalité(s)`);
   /* entry_allowed=false DOMINE : même base restreinte, une règle pays deny ajoutée en mémoire. */
   const banRule = {
     id: "rule_test_entry_ban", scope: { type: "country", id: "country_tr" }, category: "import_rules",

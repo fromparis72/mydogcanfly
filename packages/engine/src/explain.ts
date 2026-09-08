@@ -279,7 +279,18 @@ export function explain(decision: Decision, locale = "en"): DecisionReport {
       "cabin,hold": "air.cabin_hold", "cabin,cargo": "air.cabin_cargo",
       "hold,cargo": "air.hold_cargo", "cabin,hold,cargo": "air.cabin_hold_cargo",
     };
-    const label = ouverts.length > 1
+    /* « SOUS CONDITIONS », JAMAIS « OK » (08/09/2026). Un canal ouvert l'est désormais par une
+       politique `accepted_with_conditions` : le libellé le dit, canal par canal. Les clés
+       `air.cabin_ok` / `air.hold_only`… ne servent plus qu'à un `allowed` que rien ne produit. */
+    const conditionnel = (["cabin", "hold", "cargo"] as const).some((pl) => statusOf(a, pl) === "accepted_with_conditions");
+    const CLE_COND: Record<string, string> = {
+      "cabin": "air.cond.cabin", "hold": "air.cond.hold", "cargo": "air.cond.cargo",
+      "cabin,hold": "air.cond.cabin_hold", "cabin,cargo": "air.cond.cabin_cargo",
+      "hold,cargo": "air.cond.hold_cargo", "cabin,hold,cargo": "air.cond.cabin_hold_cargo",
+    };
+    const label = ouverts.length > 0 && conditionnel
+      ? L(CLE_COND[ouverts.join(",")])
+      : ouverts.length > 1
       ? L(CLE_MULTI[ouverts.join(",")])
       : ouverts.length === 1
         ? L(ouverts[0] === "cabin" ? "air.cabin_ok" : ouverts[0] === "hold" ? "air.hold_only" : "air.cargo_only")
@@ -527,10 +538,15 @@ export function explain(decision: Decision, locale = "en"): DecisionReport {
      applicable, mais non prouvée, pèse encore sur lui : l'embarquement n'est pas l'entrée. La
      règle du 13/08 est inchangée pour le reste — le refus d'entrée PROUVÉ prime sur tout. */
   const entryStatus = decision.destination.entry_status;
+  /* UN CANAL « ACCEPTÉ SOUS CONDITIONS » NE DONNE JAMAIS « OUI » SEC (08/09/2026) : le verdict
+     est au mieux « Oui — sous conditions », même sans formalité pays. Mesuré : aucune politique
+     n'émet plus `allowed`, donc `compatible` n'a plus de chemin réel ; il reste pour le contrat. */
+  const tousConditionnels = acceptedAirlines.length > 0 && acceptedAirlines.every((a) =>
+    a.cabin_status !== "allowed" && a.hold_status !== "allowed" && a.cargo_status !== "allowed");
   const verdict: DecisionReport["verdict"] =
     entryStatus === "blocked" ? "incompatible"
     : entryStatus === "confirmation_required" ? "unknown"
-    : anyCompatible ? (conditions.length > 0 ? "conditional" : "compatible")
+    : anyCompatible ? ((conditions.length > 0 || tousConditionnels) ? "conditional" : "compatible")
     : anyConfirm ? "unknown"
     : "incompatible";
 

@@ -54,8 +54,17 @@ console.log("=== 1. Une donnée sans preuve ne décide pas — dans les deux sen
   }
   /* Et la contrepartie, sans laquelle le contrôle ci-dessus serait satisfait par une fonction
      qui rétrograderait TOUT : avec la phrase, la décision passe, exactement comme avant. */
-  check("`offered` AVEC phrase citée → `allowed` : la frontière laisse passer ce qui est prouvé",
-    projeter({ availability: "offered", source: CITEE }).status === "allowed");
+  /* MOUVEMENT NOMMÉ (08/09/2026, quatrième état — arbitrage Philippe) : ce contrôle attendait
+     `allowed`. `offered` prouvé signifie seulement « la compagnie publie ce mode sous les
+     conditions citées » : la projection émet désormais `accepted_with_conditions`, jamais
+     `allowed`. Le témoin ci-dessous garde `allowed` interdit en sortie de projection. */
+  const offertProuve = projeter({ availability: "offered", source: CITEE });
+  check("`offered` AVEC phrase citée → `accepted_with_conditions` : la frontière laisse passer ce qui est prouvé, sans accord absolu",
+    offertProuve.status === "accepted_with_conditions" && offertProuve.allowed === true, JSON.stringify(offertProuve));
+  check("la projection n'émet JAMAIS `allowed` (quatrième état : l'accord absolu disparaît des réponses publiées)",
+    ["offered", "not_offered", "case_by_case", "undocumented"].every((dispo) =>
+      projeter({ availability: dispo, source: CITEE }).status !== "allowed"
+      && projeter({ availability: dispo, source: PAGE }).status !== "allowed"));
   check("`not_offered` AVEC phrase citée → `denied` : elle laisse aussi passer un refus prouvé",
     projeter({ availability: "not_offered", source: CITEE }).status === "denied");
   /* Une citation sans son emplacement n'est pas une preuve : on ne saurait pas où relire. */

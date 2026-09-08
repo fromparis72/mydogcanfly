@@ -45,9 +45,9 @@ const airlines = [...kb.airlines.values()].map((a) => {
   // pour Qantas ou Cathay, dont la soute est simplement non revérifiée — et a fait basculer
   // Virgin Australia en « aucun animal » le jour où sa cabine est devenue conditionnelle
   // (arbitrage A-bis). Un statut absent ou à confirmer est « unknown », jamais un refus.
-  const hold: "yes" | "no" | "unknown" = pol.hold?.status === "allowed" ? "yes" : pol.hold?.status === "denied" ? "no" : "unknown";
-  const cargoAllowed = pol.cargo?.status === "allowed";
-  const cabinObj = cab?.status === "allowed" ? { maxKg: cab.max_weight_kg ?? null, dims: cab.carrier_dims_cm ?? null } : null;
+  const hold: "yes" | "no" | "unknown" = (pol.hold?.status === "allowed" || pol.hold?.status === "accepted_with_conditions") ? "yes" : pol.hold?.status === "denied" ? "no" : "unknown";
+  const cargoAllowed = pol.cargo?.status === "allowed" || pol.cargo?.status === "accepted_with_conditions";
+  const cabinObj = (cab?.status === "allowed" || cab?.status === "accepted_with_conditions") ? { maxKg: cab.max_weight_kg ?? null, dims: cab.carrier_dims_cm ?? null } : null;
   // Retest du 09/08/2026 : Ryanair affichait « n'accepte pas ce chien en soute » sans jamais dire
   // que la cabine ET le fret sont AUSSI refusés — ça laissait croire que la cabine restait possible.
   // 7 compagnies du référentiel refusent EXPLICITEMENT les trois placements (cabine/soute/fret) :

@@ -119,6 +119,13 @@ export type PolicySource = z.infer<typeof PolicySource>;
  *  restriction brachycéphale). Ils traversent la projection SANS PERTE. */
 const PlacementPolicyCommon = {
   max_weight_kg: z.number().positive().optional(),   // incl. carrier where the airline states so
+  /** LE SEUIL INCLUT-IL LE CONTENANT ? (08/09/2026). Le formulaire recueille le poids du CHIEN ;
+   *  les pages officielles plafonnent presque toujours chien + contenant (8 kg en cabine). Quand
+   *  ce champ vaut `true`, le moteur peut REFUSER sûrement un chien qui dépasse le seuil à lui
+   *  seul, et ne doit JAMAIS accorder en dessous sans connaître le poids du contenant — c'est
+   *  la règle du dossier de preuves, arbitrée par Philippe. Absent : le seuil n'est pas
+   *  qualifié, le moteur ne s'en sert pas pour refuser. */
+  weight_includes_carrier: z.boolean().optional(),
   carrier_dims_cm: z.object({ l: z.number(), w: z.number(), h: z.number() }).optional(),
   fee: z.string().optional(),                        // as published, e.g. "€125 (intra-Europe)"
   conditions: LocalizedText.optional(),
@@ -235,6 +242,10 @@ export type PlacementStatusCause = (typeof PLACEMENT_STATUS_CAUSES)[number];
 
 export const PlacementPolicy = z.discriminatedUnion("status", [
   z.object({ ...PlacementPolicyCommon, status: z.literal("allowed"), allowed: z.literal(true), derived_from_fiche: z.boolean().optional() }).strict(),
+  /* Le quatrième état (voir `PlacementStatus`) : `allowed: true` parce que c'est la réponse
+     positive que l'interface traite comme canal utilisable ; le statut, lui, dit « sous
+     conditions », et aucune surface ne doit le rendre comme un oui sec. */
+  z.object({ ...PlacementPolicyCommon, status: z.literal("accepted_with_conditions"), allowed: z.literal(true), derived_from_fiche: z.boolean().optional() }).strict(),
   z.object({ ...PlacementPolicyCommon, status: z.literal("denied"), allowed: z.literal(false), derived_from_fiche: z.boolean().optional() }).strict(),
   z.object({
     ...PlacementPolicyCommon,
@@ -292,8 +303,12 @@ export function niveauDePreuve(p: {
 }
 
 export function projectPlacementPolicy(authored: PlacementPolicyAuthored): PlacementPolicy {
-  const { max_weight_kg, carrier_dims_cm, fee, conditions, brachy_allowed, source, source_derived, derived_from_fiche } = authored;
-  const common = { max_weight_kg, carrier_dims_cm, fee, conditions, brachy_allowed, source, source_derived, derived_from_fiche };
+  /* ERREUR NOMMÉE (08/09/2026) : ma première rédaction du quatrième état ajoutait
+     `weight_includes_carrier` au schéma et au moteur, mais pas à cette liste — la projection le
+     perdait, et le moteur ne refusait donc jamais au seuil. Attrapé en écrivant le témoin
+     (`test-quatrieme-etat.mjs`), pas en relisant. */
+  const { max_weight_kg, weight_includes_carrier, carrier_dims_cm, fee, conditions, brachy_allowed, source, source_derived, derived_from_fiche } = authored;
+  const common = { max_weight_kg, weight_includes_carrier, carrier_dims_cm, fee, conditions, brachy_allowed, source, source_derived, derived_from_fiche };
   /* Donnée non revérifiée : à confirmer, cause explicitement NÔTRE — jamais une incertitude
      attribuée à la compagnie. Placée en tête parce qu'elle est la seule branche dont le
      discriminant ne peut coexister avec un autre ; l'ordre ne change rien au résultat, il rend
@@ -312,8 +327,12 @@ export function projectPlacementPolicy(authored: PlacementPolicyAuthored): Place
   if (decidee) {
     const niveau = niveauDePreuve(authored);
     if (niveau === "citee") {
+      /* `offered` CITÉ NE DONNE PLUS `allowed` (08/09/2026). Une phrase officielle qui dit que la
+         compagnie propose ce mode sous ses conditions prouve l'existence du mode et ses
+         conditions — pas que CE chien y est admis. Le oui catégorique n'a plus de source
+         possible ici ; il reste un état du contrat que rien ne produit. */
       return authored.availability === "offered"
-        ? PlacementPolicy.parse({ ...common, status: "allowed", allowed: true })
+        ? PlacementPolicy.parse({ ...common, status: "accepted_with_conditions", allowed: true })
         : PlacementPolicy.parse({ ...common, status: "denied", allowed: false });
     }
     return PlacementPolicy.parse({

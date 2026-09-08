@@ -20,7 +20,7 @@ export type { PlacementStatus, TemperatureProvenance };
 const POLICY_REF_RE = /^airline_[a-z0-9_]+#(cabin|hold|cargo)$/;
 
 /** Les trois statuts, en littéraux — pour indexer une table sans la désynchroniser du contrat. */
-type PlacementStatusLitteral = "allowed" | "denied" | "confirmation_required";
+type PlacementStatusLitteral = "allowed" | "accepted_with_conditions" | "denied" | "confirmation_required";
 
 export const ConfirmationCause = z.discriminatedUnion("code", [
   /** Embargo `summer_embargo` déclenché sur une température ESTIMÉE — la seule cause active en T0-A. */
@@ -203,6 +203,12 @@ const EvidenceArray = z.array(RestrictionEvidence).min(1);
 const PlacementDecisionShape = z.discriminatedUnion("status", [
   z.object({ placement: Placement, status: z.literal("allowed"), allowed: z.literal(true),
     source: DecisionSource.optional(), evidence: EvidenceArray.optional() }).strict(),
+  /* LE QUATRIÈME ÉTAT (08/09/2026) : accepté sous les conditions publiées par la compagnie, sur
+     citation. `weight_limit_kg` transporte, quand la politique le dit, le plafond chien +
+     contenant sous lequel ce canal est proposé — la carte peut l'écrire, sans le promettre. */
+  z.object({ placement: Placement, status: z.literal("accepted_with_conditions"), allowed: z.literal(true),
+    weight_limit_kg: z.number().positive().optional(),
+    source: DecisionSource.optional(), evidence: EvidenceArray.optional() }).strict(),
   z.object({ placement: Placement, status: z.literal("denied"), allowed: z.literal(false),
     source: DecisionSource.optional(), evidence: EvidenceArray.optional() }).strict(),
   z.object({
@@ -250,6 +256,9 @@ const PlacementDecisionShape = z.discriminatedUnion("status", [
  */
 const ROLES_ADMIS: Record<PlacementStatusLitteral, readonly string[]> = {
   allowed: ["authorisation"],
+  /* Accepté sous conditions (08/09/2026) : une autorisation ou une exigence de race peuvent
+     qualifier le canal ; un refus le fermerait et changerait son statut. */
+  accepted_with_conditions: ["authorisation", "requirement"],
   confirmation_required: ["authorisation", "requirement"],
   denied: ["authorisation", "requirement", "refusal"],
 };
@@ -315,6 +324,8 @@ export function makePlacementDecision(
   /** Les preuves des restrictions de RACE qui ont tranché — une par restriction décisive, jamais
    *  réduites à la première. Distinctes de `source`, qui reste la projection courte du canal. */
   evidence?: RestrictionEvidence[],
+  /** Le plafond chien + contenant publié, sur un canal accepté sous conditions (sinon ignoré). */
+  weightLimitKg?: number,
 ): PlacementDecision {
   /* La preuve est facultative : la plupart des politiques n'en ont pas d'auditée, et une décision
      sans source vaut mieux qu'une décision avec une source fabriquée. Quand elle existe, elle est
@@ -331,7 +342,10 @@ export function makePlacementDecision(
     status === "confirmation_required"
       ? { placement, status, allowed: false, confirmation_causes: sortDedupCauses(causes ?? []),
           source: preuve, evidence: preuves }
-      : { placement, status, allowed: status === "allowed", source: preuve, evidence: preuves },
+      : status === "accepted_with_conditions"
+        ? { placement, status, allowed: true, source: preuve, evidence: preuves,
+            ...(weightLimitKg ? { weight_limit_kg: weightLimitKg } : {}) }
+        : { placement, status, allowed: status === "allowed", source: preuve, evidence: preuves },
   );
 }
 /** Les quatre champs du contrat, extraits d'une source de fiche — `.strict()` refuse les autres. */

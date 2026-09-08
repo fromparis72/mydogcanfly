@@ -116,6 +116,8 @@ export function computeBreedTravel(breedId: string, kbOverride?: unknown): Breed
    * compagnie éligible, et « confirmation_required » ne compte ni dans les oui ni dans les non.
    */
   const statutDu = (p: any): "allowed" | "confirmation_required" | "denied" | "inconnu" => {
+    /* Le quatrième état (08/09/2026) vaut « ouvert » pour cette page : accepté sous conditions. */
+    if (p?.status === "accepted_with_conditions") return "allowed";
     if (!p) return "inconnu";
     if (p.status === "allowed" || p.status === "confirmation_required" || p.status === "denied") return p.status;
     if (p.allowed === undefined) return "inconnu";

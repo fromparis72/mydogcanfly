@@ -52,7 +52,15 @@ export type TemperatureReading = z.infer<typeof TemperatureReading>;
  * embargo estimé s'y ajoute. Les booléens historiques (`allowed`, `cabin_ok`…) ne valent `true`
  * QUE pour `allowed` — un statut « à confirmer » n'est jamais rendu comme disponible.
  */
-export const PlacementStatus = z.enum(["allowed", "denied", "confirmation_required"]);
+/* LE QUATRIÈME ÉTAT (arbitrage de Philippe, 08/09/2026, sur dossier de preuves de Codex).
+ * `accepted_with_conditions` : la compagnie PUBLIE ce mode de transport, sous ses conditions
+ * (poids total avec contenant, réservation, races, routes), et une phrase citée le prouve. Ce
+ * n'est ni « place disponible sur ce vol », ni « ce chien satisfait déjà tout » — c'est la
+ * réponse positive honnête, la seule qu'une politique `offered` citée puisse produire.
+ * `allowed` — le oui catégorique — reste dans l'énumération pour le code qui l'énumère, mais la
+ * projection ne l'émet plus JAMAIS : écart nommé, sa suppression est un lot à part, et la garde
+ * « 0 allowed » de test-frontiere-confiance le tient. */
+export const PlacementStatus = z.enum(["allowed", "accepted_with_conditions", "denied", "confirmation_required"]);
 export type PlacementStatus = z.infer<typeof PlacementStatus>;
 
 export const TRAVEL_DATE_HORIZON_MONTHS = 18;

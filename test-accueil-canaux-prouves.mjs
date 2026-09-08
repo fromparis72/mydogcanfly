@@ -42,7 +42,7 @@ for (const a of kb.airlines.values()) {
   for (const v of Object.values(a.premium?.policy ?? {})) {
     if (!v) continue;
     compte.total++;
-    if (v.status === "allowed") compte.ouverts++;
+    if (v.status === "allowed" || v.status === "accepted_with_conditions") compte.ouverts++;
     else if (v.status === "denied") compte.refus++;
     else compte.aConfirmer++;
   }
