@@ -56,7 +56,7 @@ const check = (label, cond, detail = "") => {
 };
 
 /** Le libellé PUBLIÉ de chaque statut — relu des traductions, jamais réécrit ici. */
-const CLE_LIBELLE = { allowed: "premium.allowed", denied: "premium.not_allowed", confirmation_required: "air.to_confirm" };
+const CLE_LIBELLE = { allowed: "premium.allowed", accepted_with_conditions: "premium.accepted_conditions", denied: "premium.not_allowed", confirmation_required: "air.to_confirm" };
 const libelle = (langue, statut) => tt(langue, CLE_LIBELLE[statut]);
 
 /** La preuve auditée du fret Thai, telle que le manifeste approuvé la fige. */
@@ -781,8 +781,13 @@ console.log(`\n=== 5. Les ${CIBLE.length} canaux contradictoires × 4 langues : 
    * est publiée sur chacun de ces 295 canaux — donc que la dette reste muette.
    *
    * Ce compte ne bougera plus que par une donnée : chaque citation obtenue en retirera un. */
-  check("295 canaux contradictoires sur 102 fiches, relus des fiches et du contrat runtime",
-    CONTRADICTOIRES.length === 295 && new Set(CONTRADICTOIRES.map((c) => c.slug)).size === 102,
+  /* 295 → 288, 102 → 101 fiches (08/09/2026, import strict V3). Exactement ce que la ligne
+   * précédente annonçait : « chaque citation obtenue en retirera un ». Sept canaux dont le
+   * `cls` éditorial disait déjà « non » ont reçu la citation qui le prouve — Ryanair ×3 (la fiche
+   * sort du registre), easyJet cabine et soute, Qatar cabine, Vueling soute. Les 18 canaux
+   * acceptés sous conditions, eux, restent contradictoires : leur éditorial dit « Autorisé ». */
+  check("288 canaux contradictoires sur 101 fiches, relus des fiches et du contrat runtime",
+    CONTRADICTOIRES.length === 288 && new Set(CONTRADICTOIRES.map((c) => c.slug)).size === 101,
     `${CONTRADICTOIRES.length} canaux · ${new Set(CONTRADICTOIRES.map((c) => c.slug)).size} fiches`);
 
   /* LA LECTURE SE FAIT PAR LOTS, DANS DES PROCESSUS COURTS (CI du 16/08/2026, run 31 sur main).

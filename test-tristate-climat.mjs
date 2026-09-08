@@ -295,9 +295,18 @@ console.log("\n=== 5. Dominance : denied > confirmation_required — interaction
     (p.confirmation_causes ?? []).some((c) => c.code === "legacy_unreviewed" || c.code === "official_source_unquoted")).length;
   /* 44 → 59, et 27 → 40 de race : les canaux que la règle de race fermait rejoignent les
      confirmations, en disant pourquoi. Aucune n'est inexpliquée. */
-  check("carlin : 59 confirmations — toutes de provenance, 40 aussi de race, aucune inexpliquée",
-    confirmations.length === 59 && provenance === 59 && race === 40,
-    `${confirmations.length} confirmation(s), dont ${race} de race et ${provenance} de provenance, sur ${tousLesCanaux.length} canaux`);
+  /* MOUVEMENT NOMMÉ (08/09/2026, import strict V3 — 25 preuves citées) : 59 → 51 confirmations,
+     40 → 38 de race, 59 → 46 de provenance. Huit canaux ont reçu une RÉPONSE (citation) et ne
+     sont plus « à confirmer » ; et pour la première fois, CINQ confirmations n'ont PAS de cause
+     de provenance : leur politique est prouvée (soute citée d'Aegean, KLM, Lufthansa, Turkish,
+     Iberia), seule la règle brachycéphale non citée les retient. « Toutes de provenance » n'est
+     plus la propriété : la propriété est « chacune dit laquelle des deux incertitudes la porte » —
+     elle est désormais testée telle quelle, et le compte reste figé. */
+  const inexpliquees = confirmations.filter((p) =>
+    !(p.confirmation_causes ?? []).some((c) => c.code === "breed_policy_unreviewed" || c.code === "legacy_unreviewed" || c.code === "official_source_unquoted"));
+  check("carlin : 51 confirmations — 46 de provenance, 38 de race, aucune inexpliquée (chacune porte l'une des deux causes)",
+    confirmations.length === 51 && provenance === 46 && race === 38 && inexpliquees.length === 0,
+    `${confirmations.length} confirmation(s), dont ${race} de race et ${provenance} de provenance, ${inexpliquees.length} inexpliquée(s), sur ${tousLesCanaux.length} canaux`);
 }
 
 console.log("\n=== 6. Verdict : règle exacte, par restriction en mémoire ===");

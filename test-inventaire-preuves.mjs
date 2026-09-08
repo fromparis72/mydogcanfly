@@ -33,23 +33,35 @@ const check = (label, cond, detail = "") => {
  * sens comme dans l'autre. */
 const SENTINELLES = {
   compagnies: 102, lignes: 306, politiques: 302,
-  par_categorie: { A: 3, A_incomplete: 0, B: 125, C: 175, D: 3 },
+  par_categorie: { A: 28, A_incomplete: 0, B: 108, C: 167, D: 3 },
   par_canal: {
-    cabin: { A: 2, A_incomplete: 0, B: 35, C: 65, D: 0 },
-    hold: { A: 0, A_incomplete: 0, B: 67, C: 35, D: 0 },
-    cargo: { A: 1, A_incomplete: 0, B: 23, C: 75, D: 3 },
+    /* MOUVEMENT NOMMÉ (08/09/2026, import strict V3 — 25 citations importées) : A 3 → 28 ; B 125 → 108 ; C 175 → 167 ; D inchangé. */
+    cabin: { A: 14, A_incomplete: 0, B: 29, C: 59, D: 0 },
+    hold: { A: 12, A_incomplete: 0, B: 57, C: 33, D: 0 },
+    cargo: { A: 2, A_incomplete: 0, B: 22, C: 75, D: 3 },
   },
   /* 42 B par la politique = les 45 politiques non fabriquées moins les 3 citées ; 83 B par une
      règle = 82 politiques fabriquées + Air Tahiti Nui soute (sans politique) ; 41 de ces 83 ne
      tiennent qu'à la table gov.uk des routes agréées, pas à une page de la compagnie. */
-  B_par_piste: { politique: 42, regle: 83 }, B_par_regle_gov_uk_seul: 41,
+  /* MOUVEMENT NOMMÉ (08/09/2026, import strict V3 — 25 citations importées) : politique 42 → 33, règle 83 → 75, gov.uk seul 41 → 37. */
+  B_par_piste: { politique: 33, regle: 75 }, B_par_regle_gov_uk_seul: 37,
   regles_sans_canal: ["rule_transavia_gb_no_pets"],
 };
-const A_ATTENDUS = ["airline_british_airways#cabin", "airline_thai_airways#cargo", "airline_virgin_australia#cabin"];
+/* MOUVEMENT NOMMÉ (08/09/2026, import strict V3 — 25 citations importées) : 3 → 28 A, nominativement. */
+const A_ATTENDUS = [
+  "airline_aegean#cabin", "airline_aegean#hold", "airline_air_france#hold", "airline_british_airways#cabin",
+  "airline_easyjet#cabin", "airline_easyjet#hold", "airline_finnair#cabin", "airline_iberia#cabin", "airline_iberia#hold",
+  "airline_klm#cabin", "airline_klm#hold", "airline_lufthansa#cabin", "airline_lufthansa#hold",
+  "airline_qatar_airways#cabin", "airline_qatar_airways#hold", "airline_ryanair#cabin", "airline_ryanair#hold", "airline_ryanair#cargo",
+  "airline_sas#cabin", "airline_tap#cabin", "airline_tap#hold", "airline_thai_airways#cargo",
+  "airline_transavia#cabin", "airline_transavia#hold", "airline_turkish#cabin", "airline_turkish#hold",
+  "airline_virgin_australia#cabin", "airline_vueling#hold",
+];
 const D_ATTENDUS = ["airline_la_compagnie#cargo", "airline_smartwings#cargo", "airline_transavia#cargo"];
 /* Cinq B par la politique, pris parmi les 42 : deux décidées `offered`, deux `not_offered`,
    une `legacy_unreviewed` — pour que la cohérence soit éprouvée sur les trois formes. */
-const B_TEMOINS = ["airline_air_canada#cabin", "airline_klm#hold", "airline_delta#hold", "airline_united#cargo", "airline_qantas#hold"];
+/* KLM soute est devenue A (citée) : témoin B re-fondé sur Air Canada soute, jamais abaissé. */
+const B_TEMOINS = ["airline_air_canada#cabin", "airline_air_canada#hold", "airline_delta#hold", "airline_united#cargo", "airline_qantas#hold"];
 
 const donnees = chargerDonnees();
 const registre = construireRegistre(donnees);
@@ -96,8 +108,8 @@ console.log("\n=== (b) Sentinelles : comptes figés par catégorie et par canal 
 console.log("\n=== (c) Témoins nommés ===");
 {
   const A = lignes.filter((l) => l.categorie === "A").map(cle);
-  check(`les 3 A sont ${A_ATTENDUS.join(", ")}`, A.join() === A_ATTENDUS.join(), A.join(", "));
-  check("les 3 A passent par la POLITIQUE (aucune règle citée n'existe encore)",
+  check(`les ${A_ATTENDUS.length} A sont ${A_ATTENDUS.join(", ")}`, A.join() === A_ATTENDUS.join(), A.join(", "));
+  check("les 28 A passent par la POLITIQUE (aucune règle citée n'existe encore)",
     lignes.filter((l) => l.categorie === "A").every((l) => l.piste === "politique" && l.manques.length === 0));
   const D = lignes.filter((l) => l.categorie === "D").map(cle);
   check(`les 3 D sont ${D_ATTENDUS.join(", ")}`, D.join() === D_ATTENDUS.join(), D.join(", "));
@@ -146,16 +158,17 @@ console.log("\n=== (d) Cohérence avec `niveauDePreuve` ===");
   /* Et sur l'ensemble : les paires (catégorie, niveau) sont exactement celles attendues, et le
      script lui-même ne signale aucune paire inattendue. */
   const paires = resume.coherence_niveau_de_preuve.paires;
-  check("sur les 306 lignes, A ↔ citee 3, B(politique) ↔ officielle_non_citee 42, C ↔ aucune 175",
-    paires["A ↔ citee"] === 3 && paires["B ↔ officielle_non_citee"] === 42 && paires["C ↔ aucune"] === 175, JSON.stringify(paires));
-  check("les seuls écarts sont NOMMÉS : 82 B par règle sur politique « aucune », 1 B par règle sans politique, 3 D",
-    resume.coherence_niveau_de_preuve.ecarts.B_par_regle_sur_politique_aucune === 82
+  /* MOUVEMENT NOMMÉ (08/09/2026, import strict V3 — 25 citations importées) : 3/42/175 → 28/33/167 ; 82 → 74 B par règle sur politique « aucune ». */
+  check("sur les 306 lignes, A ↔ citee 28, B(politique) ↔ officielle_non_citee 33, C ↔ aucune 167",
+    paires["A ↔ citee"] === 28 && paires["B ↔ officielle_non_citee"] === 33 && paires["C ↔ aucune"] === 167, JSON.stringify(paires));
+  check("les seuls écarts sont NOMMÉS : 74 B par règle sur politique « aucune », 1 B par règle sans politique, 3 D",
+    resume.coherence_niveau_de_preuve.ecarts.B_par_regle_sur_politique_aucune === 74
     && resume.coherence_niveau_de_preuve.ecarts.B_par_regle_sans_politique === 1
     && resume.coherence_niveau_de_preuve.ecarts.D_sans_politique === 3
     && resume.coherence_niveau_de_preuve.ecarts.inattendus.length === 0, JSON.stringify(resume.coherence_niveau_de_preuve.ecarts));
   const niveaux = lignes.filter((l) => l.niveau_de_preuve_politique !== null).reduce((m, l) => { m[l.niveau_de_preuve_politique] = (m[l.niveau_de_preuve_politique] ?? 0) + 1; return m; }, {});
-  check("302 politiques : 3 citées, 42 officielles non citées, 257 aucune — le compte de test-frontiere-confiance",
-    niveaux.citee === 3 && niveaux.officielle_non_citee === 42 && niveaux.aucune === 257, JSON.stringify(niveaux));
+  check("302 politiques : 28 citées, 33 officielles non citées, 241 aucune — le compte de test-frontiere-confiance",
+    niveaux.citee === 28 && niveaux.officielle_non_citee === 33 && niveaux.aucune === 241, JSON.stringify(niveaux));
 }
 
 console.log("\n=== (e) Non-vacuité : une ligne mutée change de catégorie ===");
@@ -179,18 +192,20 @@ console.log("\n=== (e) Non-vacuité : une ligne mutée change de catégorie ==="
     manquesDeCitation({ ...ba.source, url: "https://mydogcanfly.com/x" }).join() === "url_officielle");
   /* Dans l'autre sens : un B devient A dès que les cinq champs sont posés — et une règle citée
      vaut A pour le canal, sans toucher la politique. */
-  const klm = donnees.objets.find((o) => o.id === "airline_klm").premium.policy.hold;
-  const klmRegles = donnees.regles.filter((r) => r.scope?.type === "airline" && r.scope.id === "airline_klm" && (r.effect?.placement ?? []).includes("hold"));
-  check("KLM soute est B", classerLigne(klm, klmRegles).categorie === "B");
-  check("KLM soute + les cinq champs → A par la politique",
-    classerLigne({ ...klm, source: { ...klm.source, quote: "Dogs travel in the hold up to 75 kg.", quote_language: "en", locator: "section « Hold »" } }, klmRegles).categorie === "A");
-  const regleCitee = { ...klmRegles[0], source: { ...klmRegles[0].source, quote: "Dogs travel in the hold up to 75 kg.", quote_language: "en", locator: "section « Hold »" } };
-  const c4 = classerLigne(klm, [regleCitee, ...klmRegles.slice(1)]);
-  check("KLM soute + une RÈGLE citée → A par la règle", c4.categorie === "A" && c4.piste === `regle:${regleCitee.id}`, JSON.stringify(c4));
-  const aegean = donnees.objets.find((o) => o.id === "airline_aegean").premium.policy.cabin;
-  check("Aegean cabine (URL fabriquée, règle auto-citée) est C", classerLigne(aegean, []).categorie === "C");
-  check("Aegean cabine + une règle avec URL officielle → B par la règle",
-    classerLigne(aegean, [{ id: "rule_x", source: { url: "https://en.aegeanair.com/pets", source_type: "official_website", verified_date: "2026-09-08" } }]).categorie === "B");
+  /* MOUVEMENT NOMMÉ (08/09/2026, import strict V3 — 25 citations importées) : KLM soute et Aegean cabine sont devenues A (citées) ; les témoins B et C sont
+     RE-FONDÉS sur Air Canada soute (B par la politique) et aeromexico cabin (C, URL fabriquée), pas abaissés. */
+  const ac = donnees.objets.find((o) => o.id === "airline_air_canada").premium.policy.hold;
+  const acRegles = donnees.regles.filter((r) => r.scope?.type === "airline" && r.scope.id === "airline_air_canada" && (r.effect?.placement ?? []).includes("hold"));
+  check("Air Canada soute est B", classerLigne(ac, acRegles).categorie === "B");
+  check("Air Canada soute + les cinq champs → A par la politique",
+    classerLigne({ ...ac, source: { ...ac.source, quote: "Dogs travel in the hold up to 45 kg.", quote_language: "en", locator: "section « Hold »" } }, acRegles).categorie === "A");
+  const regleCitee = { ...acRegles[0], source: { ...acRegles[0].source, quote: "Dogs travel in the hold up to 45 kg.", quote_language: "en", locator: "section « Hold »" } };
+  const c4 = classerLigne(ac, [regleCitee, ...acRegles.slice(1)]);
+  check("Air Canada soute + une RÈGLE citée → A par la règle", c4.categorie === "A" && c4.piste === `regle:${regleCitee.id}`, JSON.stringify(c4));
+  const temoinC = donnees.objets.find((o) => o.id === "airline_aeromexico").premium.policy.cabin;
+  check("aeromexico cabin (URL fabriquée, règle auto-citée) est C", classerLigne(temoinC, []).categorie === "C");
+  check("aeromexico cabin + une règle avec URL officielle → B par la règle",
+    classerLigne(temoinC, [{ id: "rule_x", source: { url: "https://example-airline.example/pets", source_type: "official_website", verified_date: "2026-09-08" } }]).categorie === "B");
   check("ni politique ni règle → D", classerLigne(undefined, []).categorie === "D");
 }
 

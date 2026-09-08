@@ -70,8 +70,36 @@ ladder:
 policies:
   cabin:
     availability: not_offered
+    # PREUVE IMPORTÉE — import strict V3 (Codex, lecture directe du 2026-09-08, cohorte A fait 18).
+    # Effet attendu : Ordinary pet dog follows a non-cabin path.
+    # Portée nommée : the statement is limited to ordinary pet dogs; falcons and service dogs are distinct flows
+    source:
+      url: "https://www.qatarairways.com/tradeportal/en/specialservices/Carriage-of-live-animals.html"
+      source_type: official_website
+      verified_date: "2026-09-08"
+      review_due: "2026-12-07"   # reviewDueFrom(verified_date, "airline") — calculé par l'importeur
+      confidence: 4
+      reviewer: "Codex — lecture directe de la page officielle"
+      history: []
+      quote: "With effect from 11 January 2021, Qatar Airways will only accept service animal (SVAN) on board QR operated flights on regulated routes to assist passengers with a disability, with a maximum of 2 dogs per passenger."
+      quote_language: en
+      locator: "Carriage of Live Animals → passenger-cabin policy"
   hold:
     availability: offered
+    # PREUVE IMPORTÉE — import strict V3 (Codex, lecture directe du 2026-09-08, cohorte A fait 19).
+    # Effet attendu : Show checked-baggage hold offered under conditions.
+    # Portée nommée : domesticated dogs, cats and birds; local requirements, restricted breeds and route exceptions apply
+    source:
+      url: "https://www.qatarairways.com/en-au/baggage/animals.html"
+      source_type: official_website
+      verified_date: "2026-09-08"
+      review_due: "2026-12-07"   # reviewDueFrom(verified_date, "airline") — calculé par l'importeur
+      confidence: 4
+      reviewer: "Codex — lecture directe de la page officielle"
+      history: []
+      quote: "We accept domesticated dogs, cats and birds as checked baggage."
+      quote_language: en
+      locator: "Eligibility"
   cargo:
     review_state: legacy_unreviewed
 channels:

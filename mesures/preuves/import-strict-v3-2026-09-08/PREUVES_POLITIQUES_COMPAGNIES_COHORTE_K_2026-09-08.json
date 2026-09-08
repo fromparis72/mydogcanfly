@@ -1,0 +1,138 @@
+{
+  "schema_version": 1,
+  "as_of": "2026-09-08",
+  "purpose": "Evidence packet only. Qantas and Alaska facts describe distinct passenger-hold and cargo processes. Air New Zealand's hold decision is international-only. Wizz's ordinary-pet refusal is corroborated by the current hosted conditions of its main operating entities and is marked lower confidence because their published revision date is older.",
+  "provenance_defaults": {
+    "source_type": "official_website",
+    "verified_date": "2026-09-08",
+    "review_due": "derive_with_reviewDueFrom(verified_date, 'airline')",
+    "confidence": 4,
+    "reviewer": "Codex — lecture directe de la page officielle"
+  },
+  "facts": [
+    {
+      "airline_id": "airline_qantas",
+      "placement": "hold",
+      "recommendation": "offered_with_conditions",
+      "condition_scope": "the passenger must notify Qantas; airport-specific rules can require freight or allow checked-baggage hold carriage, subject to Qantas agreement",
+      "finder_effect": "Passenger hold is a conditional lead, never a blanket positive. The airport and booking process decide whether it is available.",
+      "url": "https://www.qantas.com/en-za/book/flights/conditions-of-carriage",
+      "quote": "some airports will require that your pet travels as freight and some will allow carriage in the hold as Checked Baggage",
+      "quote_language": "en",
+      "locator": "Conditions of Carriage → 8.8 Pet animals"
+    },
+    {
+      "airline_id": "airline_qantas",
+      "placement": "cargo",
+      "recommendation": "offered_with_conditions",
+      "condition_scope": "all ordinary pet-animal travel bookings go directly through Qantas Freight; international travel may require a pet travel specialist",
+      "finder_effect": "Offer only a conditional Qantas Freight path, with route, shipper, crate and acceptance still to be confirmed.",
+      "url": "https://www.qantas.com/en-gb/travel-information/pets",
+      "quote": "Book your pet's flight with Qantas Freight",
+      "quote_language": "en",
+      "locator": "Travelling with pets → Pet travel"
+    },
+    {
+      "airline_id": "airline_alaska",
+      "placement": "cabin",
+      "recommendation": "offered_with_conditions",
+      "condition_scope": "only pets fitting in an under-seat carrier; carrier conditions, route restrictions and limited capacity apply",
+      "finder_effect": "Cabin can be a conditional lead for a genuinely small dog and compliant carrier; do not derive a body-weight clearance where no published threshold is stated.",
+      "url": "https://www.alaskaair.com/content/travel-info/pets",
+      "quote": "Pets that fit in an under-seat carrier can travel in a cabin.",
+      "quote_language": "en",
+      "locator": "Traveling with Pets → Pets in cabin"
+    },
+    {
+      "airline_id": "airline_alaska",
+      "placement": "hold",
+      "recommendation": "offered_with_conditions",
+      "condition_scope": "climate-controlled baggage compartment; capacity, breed, travel-date and fleet restrictions apply, and partner transfers require recheck",
+      "finder_effect": "Passenger hold can be proposed conditionally, with seasonal/breed/fleet warnings kept visible.",
+      "url": "https://www.alaskaair.com/content/travel-info/pets",
+      "quote": "Pets can travel in our climate-controlled baggage compartment.",
+      "quote_language": "en",
+      "locator": "Traveling with Pets → Pets in baggage compartment"
+    },
+    {
+      "airline_id": "airline_alaska",
+      "placement": "cargo",
+      "recommendation": "offered_with_conditions",
+      "condition_scope": "Pet Connect is available through Alaska and Hawaiian Air Cargo for pets travelling without an accompanying passenger",
+      "finder_effect": "Cargo is a conditional transport path, not an automatic approval for the itinerary or animal.",
+      "url": "https://www.alaskaair.com/content/travel-info/pets",
+      "quote": "Our Pet Connect animal travel program is available via Alaska and Hawaiian Air Cargo",
+      "quote_language": "en",
+      "locator": "Traveling with Pets → overview"
+    },
+    {
+      "airline_id": "airline_air_new_zealand",
+      "placement": "hold",
+      "recommendation": "not_offered_for_international_pet_dogs",
+      "condition_scope": "the statement is expressly restricted to international flights; domestic New Zealand service must be treated separately",
+      "finder_effect": "Do not offer Air New Zealand passenger hold on an international itinerary under this fact.",
+      "url": "https://www.airnewzealand.co.nz/flights/en-nz/",
+      "quote": "On international flights, pets are not permitted as checked-in baggage",
+      "quote_language": "en",
+      "locator": "Flights → Where can I find out more about flying with pets?"
+    },
+    {
+      "airline_id": "airline_air_new_zealand",
+      "placement": "cargo",
+      "recommendation": "required_for_international_pet_dogs",
+      "condition_scope": "the statement is limited to international flights and directs to international cargo eligibility guidelines",
+      "finder_effect": "On an international Air New Zealand itinerary, direct the visitor to conditional cargo eligibility rather than passenger hold.",
+      "url": "https://www.airnewzealand.co.nz/flights/en-nz/",
+      "quote": "must travel as cargo.",
+      "quote_language": "en",
+      "locator": "Flights → Where can I find out more about flying with pets?"
+    },
+    {
+      "airline_id": "airline_virgin_atlantic",
+      "placement": "cabin",
+      "recommendation": "not_offered_for_pet_dogs",
+      "condition_scope": "the airline’s current Conditions reserve passenger-cabin carriage to assistance dogs accompanying disabled passengers; ordinary pet travel requires separate agreement",
+      "finder_effect": "Do not offer Virgin Atlantic passenger cabin for an ordinary pet dog.",
+      "url": "https://www.virginatlantic.com/policies/conditions-of-carriage/article-16",
+      "quote": "only Assistance Dogs accompanying disabled passengers can be taken into the aircraft cabin",
+      "quote_language": "en",
+      "locator": "Conditions of Carriage → Article 16.3(a)"
+    },
+    {
+      "airline_id": "airline_wizz_air",
+      "placement": "all",
+      "recommendation": "not_offered_for_pet_dogs",
+      "condition_scope": "the official conditions of Wizz Air Hungary, Wizz Air Malta and Wizz Air UK all reserve live-animal carriage to recognised assistance dogs; source revision dates require a shorter renewal cadence",
+      "finder_effect": "Do not offer an ordinary pet dog in cabin, passenger hold or ordinary cargo until a newer published Wizz rule replaces this evidence.",
+      "url": "https://wizzair.com/cms/api/docs/default-source/downloadable-documents/gcc-w6_en_final_010323-clean_6c8388cf-bc51-4942-a584-80934a0c3d83.pdf",
+      "quote": "We do not carry live animals on Our flights, except for Recognised Assistance Dogs.",
+      "quote_language": "en",
+      "locator": "Wizz Air Hungary General Conditions of Carriage → 15.6.1",
+      "confidence": 3,
+      "review_due": "2026-10-08",
+      "source_publication_note": "Official current-hosted terms; the supplied revision is dated 2023-03-07, so this fact needs a 30-day renewal rather than the normal airline cadence."
+    }
+  ],
+  "intentionally_unset": [
+    {
+      "airline_id": "airline_qantas",
+      "placement": "cabin",
+      "reason": "The directly read Qantas material distinguishes approved service dogs; it does not supply a direct ordinary-pet cabin acceptance rule for import here."
+    },
+    {
+      "airline_id": "airline_air_new_zealand",
+      "placement": "cabin",
+      "reason": "The directly read source establishes international hold/cargo routing, not an ordinary pet-dog cabin policy."
+    },
+    {
+      "airline_id": "airline_virgin_atlantic",
+      "placement": "hold",
+      "reason": "The directly read current Conditions identify the ordinary-pet agreement requirement but do not provide a complete current passenger-hold decision."
+    },
+    {
+      "airline_id": "airline_virgin_atlantic",
+      "placement": "cargo",
+      "reason": "Cargo materials were located, but this cohort does not import an acceptance decision without the fully current pet cargo policy and route conditions."
+    }
+  ]
+}

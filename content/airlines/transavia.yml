@@ -56,8 +56,39 @@ ladder:
 policies:
   cabin:
     availability: offered
+    # PREUVE IMPORTÉE — import strict V3 (Codex, lecture directe du 2026-09-08, cohorte A fait 3).
+    # Effet attendu : For a 32 kg dog, cabin is not suitable.
+    # Portée nommée : official ceiling applies to pet including carrying bag
+    # Le plafond cité inclut le CONTENANT : refus sûr si le chien seul le dépasse, jamais un oui en dessous.
+    max_weight_kg: 8
+    weight_includes_carrier: true
+    source:
+      url: "https://www.transavia.com/help/en-eu/children-pets-groups/pets-on-board/cabin"
+      source_type: official_website
+      verified_date: "2026-09-08"
+      review_due: "2026-12-07"   # reviewDueFrom(verified_date, "airline") — calculé par l'importeur
+      confidence: 4
+      reviewer: "Codex — lecture directe de la page officielle"
+      history: []
+      quote: "Maximum weight of the pet, including the carrying bag: 8 kg."
+      quote_language: en
+      locator: "Weight"
   hold:
     availability: offered
+    # PREUVE IMPORTÉE — import strict V3 (Codex, lecture directe du 2026-09-08, cohorte A fait 4).
+    # Effet attendu : Show hold offered under conditions, not a promise of remaining capacity.
+    # Portée nommée : snub-nosed dogs and cats are excluded from hold; capacity is limited to two pets per flight
+    source:
+      url: "https://www.transavia.com/help/en-eu/children-pets-groups/pets-on-board/hold-luggage-pet"
+      source_type: official_website
+      verified_date: "2026-09-08"
+      review_due: "2026-12-07"   # reviewDueFrom(verified_date, "airline") — calculé par l'importeur
+      confidence: 4
+      reviewer: "Codex — lecture directe de la page officielle"
+      history: []
+      quote: "You may transport your pet in our cargo hold."
+      quote_language: en
+      locator: "Can my pet travel in the luggage hold?"
 channels:
   - placement: cabin
     icon: 🐾

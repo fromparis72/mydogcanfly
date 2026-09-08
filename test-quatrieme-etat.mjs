@@ -95,7 +95,10 @@ console.log("\n=== 2. KB réelle : aucune politique n'émet `allowed` ; rien ne 
      fret accepté) et Virgin Australia cabine est `case_by_case` (approbation compagnie). Les trois
      politiques citées du dépôt ne produisent donc qu'un refus (BA cabine). SENTINELLE figée à 0 :
      elle avance par mouvement nommé à chaque import de citation `offered`. */
-  check(`politiques réelles en accepted_with_conditions : 0 tant qu'aucune citation \`offered\` n'est importée — mesuré : ${cond}`, cond === 0);
+  /* MOUVEMENT NOMMÉ (08/09/2026, import strict V3 — 25 citations importées) : 0 → 18. Dix-huit politiques `offered` citées (Aegean cabine et soute, Air France
+     soute, Finnair cabine, Iberia ×2, KLM ×2, Lufthansa ×2, Qatar soute, SAS cabine, TAP ×2,
+     Transavia ×2, Turkish ×2) sont au quatrième état. Toujours 0 `allowed`. */
+  check(`politiques réelles en accepted_with_conditions : 18 depuis l'import strict V3 — mesuré : ${cond}`, cond === 18);
   const af = REQ(GOLDEN_32, kb);
   const cab = stOf(af, "airline_air_france", "cabin");
   check("Air France cabine, KB réelle (non citée) : reste « à confirmer », pas un refus au seuil sans preuve",
@@ -122,8 +125,13 @@ console.log("\n=== 3. Golden 32 kg, CDG → ATH, cabine citée à 8 kg chien + c
   check("le refus porte l'URL de la politique CITÉE, et cette politique porte la phrase",
     !!cab?.source?.url && cab.source.url === polAF?.source?.url && (polAF?.source?.quote ?? "").length >= 10 && !!polAF?.source?.locator,
     JSON.stringify({ decision: cab?.source, politique: polAF?.source }));
-  check("la soute Air France, non citée dans cette KB, reste « à confirmer » — le seuil cabine ne déteint pas",
-    stOf(dec, "airline_air_france", "hold")?.status === "confirmation_required");
+  /* MOUVEMENT NOMMÉ (08/09/2026, import strict V3 — 25 citations importées) : la soute Air France est désormais CITÉE dans la donnée réelle (« more than 8 kg …
+     and up to 75 kg … with its carrier, it must travel in the hold »), plafond 75 kg contenant
+     compris : elle est acceptée sous conditions pour 32 kg, et transporte son plafond. Le témoin
+     « le seuil cabine ne déteint pas » devient : la soute n'est PAS refusée par le seuil cabine. */
+  const soute = stOf(dec, "airline_air_france", "hold");
+  check("la soute Air France (citée à 75 kg chien + contenant) est acceptée sous conditions à 32 kg — le seuil cabine ne déteint pas",
+    soute?.status === "accepted_with_conditions" && soute?.weight_limit_kg === 75, JSON.stringify(soute));
   /* Le témoin inverse : sans `weight_includes_carrier`, le seuil n'est pas qualifié, et le moteur
      ne refuse PAS au seuil. Mesuré : le canal tombe « à confirmer », parce que deux règles de
      poids NON CITÉES (`rule_af_cabin_weight`, `rule_global_cabin_weight_cap`) pèsent encore sur
@@ -132,6 +140,21 @@ console.log("\n=== 3. Golden 32 kg, CDG → ATH, cabine citée à 8 kg chien + c
   const sans = stOf(REQ(GOLDEN_32, kbCiteeSansSeuil), "airline_air_france", "cabin");
   check("même politique SANS `weight_includes_carrier` → JAMAIS un refus au seuil (mesuré : à confirmer, par les règles de poids non citées)",
     sans?.status !== "denied" && sans?.status !== "allowed", JSON.stringify(sans));
+  /* LOT 2 : `weight_includes_carrier: false` EXPLICITE = plafond du chien seul (Air Europa cabine).
+     Le chien seul au-dessus est refusé sûrement, et la décision dit que le contenant s'ajoute. */
+  {
+    const brut = JSON.parse(JSON.stringify(rawKB));
+    const cab = brut.airlines.find((a) => a.id === "airline_air_france").premium.policy.cabin;
+    delete cab.source_derived;
+    cab.source = { ...cab.source, quote: CITEE.quote, quote_language: "en", locator: CITEE.locator };
+    cab.weight_includes_carrier = false;
+    const kbChienSeul = normalize(brut);
+    const g = stOf(evaluate(kbChienSeul, FinderRequest.parse({ origin: "airport_cdg", destination: "airport_ath", dog: GOLDEN_32, date: JUILLET })), "airline_air_france", "cabin");
+    const c = stOf(evaluate(kbChienSeul, FinderRequest.parse({ origin: "airport_cdg", destination: "airport_ath", dog: CAVALIER_6, date: JUILLET })), "airline_air_france", "cabin");
+    check("plafond du CHIEN SEUL (`weight_includes_carrier: false`) : Golden 32 kg refusé sûrement, motif poids", g?.status === "denied", JSON.stringify(g));
+    check("…et Cavalier 6 kg sous conditions, la décision disant que le contenant s'ajoute",
+      c?.status === "accepted_with_conditions" && c?.weight_limit_kg === 8 && c?.weight_limit_includes_carrier === false, JSON.stringify(c));
+  }
   check("…et la confirmation nomme la règle de poids non citée d'Air France",
     (sans?.confirmation_causes ?? []).some((c) => c.rule_id === "rule_af_cabin_weight"), JSON.stringify(sans?.confirmation_causes));
 }
@@ -149,8 +172,20 @@ console.log("\n=== 4. Cavalier 6 kg, même route : jamais un oui sec en dessous 
   check("la carte est ouverte en cabine, statut accepted_with_conditions", carte?.cabin === true && carte?.cabin_status === "accepted_with_conditions", JSON.stringify(carte && { cabin: carte.cabin, cabin_status: carte.cabin_status }));
   check("le libellé dit « sous conditions » et jamais « OK »", /sous conditions/i.test(carte?.label ?? "") && !/\bOK\b/.test(carte?.label ?? ""), carte?.label);
   check("le verdict est « conditional », jamais « compatible » (le oui sec n'a plus de chemin)", rep.verdict === "conditional", rep.verdict);
-  check("Air France passe DEVANT les compagnies « à confirmer » (le prouvé d'abord)",
-    rep.airlines.findIndex((x) => x.airline_id === "airline_air_france") === 0, rep.airlines.slice(0, 3).map((x) => `${x.airline_id}:${x.cabin_status}`).join(" "));
+  /* Le prouvé d'abord : depuis l'import V3, Air France n'est plus seule documentée sur ce trajet
+     (Aegean, Lufthansa, KLM…) ; la propriété est que TOUTE carte documentée précède TOUTE carte
+     dont les trois canaux sont « ? ». */
+  /* MESURÉ, et ma première rédaction se trompait de couche : le MOTEUR trie par utilité
+     (ouvert, puis à confirmer, puis refusé) — un refus documenté (easyJet) vient donc APRÈS des
+     pistes « ? ». Le regroupement « documentées d'abord » est le contrat de l'INTERFACE
+     (FlightFinder, `deuxNiveaux`, harnais jsdom). Ici, la propriété du moteur : toute carte
+     ouverte précède toute carte « ? », et Air France est parmi les ouvertes. */
+  const ouverte = (x) => ["cabin", "hold", "cargo"].some((ch) => x[`${ch}_status`] === "accepted_with_conditions");
+  const premiereNonOuverte = rep.airlines.findIndex((x) => !ouverte(x));
+  const derniereOuverte = rep.airlines.map(ouverte).lastIndexOf(true);
+  check("toute compagnie ouverte sous conditions passe DEVANT toute carte non ouverte (le prouvé d'abord), Air France comprise",
+    premiereNonOuverte > derniereOuverte && ouverte(rep.airlines.find((x) => x.airline_id === "airline_air_france")),
+    rep.airlines.slice(0, 12).map((x) => `${x.airline_id}:${x.cabin_status}`).join(" "));
 }
 
 console.log("\n=== 5. Les quatre langues portent les libellés du quatrième état ===");

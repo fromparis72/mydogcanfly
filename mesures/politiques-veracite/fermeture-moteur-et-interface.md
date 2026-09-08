@@ -2370,3 +2370,96 @@ Contrat d'affichage du Finder : prouvé d'abord, non prouvé en second niveau et
 résultats à plat, résumé par catégorie à la place du compteur « 0 options confirmées · 27 pistes »
 (`test-flightfinder-harness.cjs` attend encore ce compteur : mouvement nommé à faire). Puis import
 de la cohorte A dès le fichier consolidé, une compagnie à la fois, avec un scénario par import.
+
+## Annexe 23 — L'import strict V3 : 26 faits, 25 citations, et tout ce qui a bougé en se nommant (08/09/2026)
+
+### Ce qui a été importé, et d'où
+
+Le paquet de Codex (`mesures/preuves/import-strict-v3-2026-09-08/`, onze JSON A → K, le dossier
+et sa notice) avec son LISEZ_MOI, **qui prévaut** : seuls 26 faits sont autorisés — cohorte A
+`facts[0..19]`, B `facts[0]` (Finnair cabine) et `facts[3]` (SAS cabine), C `facts[0..2]`
+(Ryanair), F `facts[1]` (Vueling soute). Les 64 autres faits du paquet restent des pistes ;
+ils sont conservés, jamais lus par l'importeur, et un témoin vérifie qu'aucun n'a de citation
+dans la donnée.
+
+Philippe a transmis la consigne de Codex : ne jamais transformer « sous conditions » en
+acceptation catégorique ; la citation reste sur la fiche, la carte garde statut, lien et date,
+sans élargir son contrat dans ce lot. C'est ce qui a été fait — `DecisionSource` est inchangée.
+
+**L'importeur est rejouable et nominatif** (`packages/knowledge/scripts/importer-preuves-v3.mjs`,
+`--check` pour simuler) : il écrit dans `policies:` de la fiche la source sous le contrat
+existant (`T0bAuditSource`), `review_due` CALCULÉ par `reviewDueFrom` — 2026-09-08 + 90 jours =
+2026-12-07 —, et le seuil `max_weight_kg` + `weight_includes_carrier: true` seulement quand la
+phrase citée le porte (table `SEUILS` explicite : dix cabines à 8 kg, Vueling cabine non importée,
+Air France soute 75 kg, Turkish soute 50 kg). Il refuse tout fait dont la recommandation ne
+correspond pas à la disponibilité déjà écrite dans la fiche : **aucune disponibilité n'a changé**,
+les 26 concordaient. British Airways cabine (preuve du 05/09) est conservée, non remplacée : 25
+importés, 1 conservé, 0 refusé.
+
+### Mesuré après ingestion
+
+| | avant | après |
+|---|---|---|
+| politiques citées | 3 | **28** (26 décisives ; Thai fret et Virgin Australia cabine ne décident pas) |
+| `accepted_with_conditions` | 0 | **18** |
+| `denied` | 1 | **8** (BA cabine, easyJet ×2, Ryanair ×3, Qatar cabine, Vueling soute) |
+| `allowed` | 0 | **0** |
+| à confirmer | 301 | 276 (`legacy_unreviewed` 267 → 251, `official_source_unquoted` 32 → 23) |
+| registre A / B / C / D | 3 / 125 / 175 / 3 | 28 / 108 / 167 / 3 |
+| baseline t0a, cartes changées (par compagnie) | — | 504 / 1 560 ; 450 canaux → sous conditions, 32 → refusé, 0 → `allowed` ; 52 verdicts « pas encore établi » → « oui, sous conditions » |
+
+**Paris → Athènes, Golden 32 kg** distingue désormais Aegean (cabine refusée au seuil, soute
+sous conditions), Air France (soute sous conditions à 75 kg chien + contenant, cabine à confirmer
+faute de phrase) et easyJet (cabine et soute refusées) — le critère d'acceptation du lot.
+**Ryanair** est la première fiche à conclure au refus total, sur trois citations.
+
+### Deux défauts trouvés en important, et corrigés
+
+1. **La branche « politique préservée » de l'ingestion perdait le seuil.** Ma retouche du matin
+   n'écrivait `max_weight_kg` / `weight_includes_carrier` que sur la branche dérivée ; sur une
+   politique enrichie écrite à la main — Air France, KLM, Iberia, Lufthansa, Turkish, celles que
+   le dossier cite —, le champ passait le schéma puis disparaissait. Même classe de défaut que
+   la priorité de la source auditée (15/08). Corrigé : les champs ÉCRITS dans `policies:`
+   l'emportent, et seulement eux (le poids déduit de la ligne tarifaire reste soumis à la
+   préservation et à la détection de dérive).
+2. **« Ton chien peut voyager en cabine »** (`why.transport_modes`) disait un oui sec dès qu'un
+   canal était ouvert sous conditions. Réécrit ×4 : ce que les compagnies publient, sous leurs
+   conditions, jamais une place garantie. De même sur les pages races : « Accepté en soute » →
+   « Soute — sous conditions de la compagnie », et le plafond cabine dit « chien + contenant ».
+3. **Un refus documenté n'était qu'un détail** : easyJet, cabine et soute refusées sur citation,
+   affichait « Politique à confirmer » (vrai pour le fret). Le libellé nomme maintenant le refus en
+   tête et ce qui reste à confirmer ensuite (`air.refused_then_confirm`, ×4).
+
+### Les mouvements nommés (tous figés sur mesure)
+
+`test-frontiere-confiance` §10 et §13 bis (28 citées nominativement, 26 décisives, 0/18/8/276,
+Ryanair seule en refus total) · `test-t0b-legacy-unreviewed` (251, 23) · `test-t0a-baseline`
+(table : `offered` cité → quatrième état ; répartition 0/18/8/276 ; causes 251/23/1/1 ; nouvelle
+figée `import-strict-v3-apres.json`, chaîne continue depuis `entree-ternaire-apres.json`, preuve
+permanente ci-dessus) · `test-t0a-carries-diff` (le témoin hérité redevient atteignable, 7 113
+couples, refigé ; Ryanair seule perte, sur preuve) · `test-tristate-climat` (carlin : 51
+confirmations, 46 de provenance, 38 de race, chacune expliquée — cinq n'ont plus de cause de
+provenance parce que leur politique est prouvée) · `test-inventaire-preuves` (registre régénéré ;
+témoins B et C re-fondés sur Air Canada soute et Aeromexico cabine, KLM soute et Aegean cabine
+étant devenues A) · `test-faq-races` (172 races sur 172 ont des compagnies, sur des politiques
+citées) · `test-quatrieme-etat` (sentinelle 0 → 18 ; Air France soute citée à 75 kg) ·
+`test-ingest-check` (la contre-épreuve (b) retire le bloc cabine entier d'Aegean, qui porte
+maintenant une preuve) · `test-contre-epreuves` (la mutation « un refus de race ne porte plus
+son motif » suit la ligne d'`evaluate.ts` où `weightDeny` s'est ajouté — c'était la cause unique
+des trois rouges de la CI sur `7ecbe94`).
+
+Nouveau harnais `test-preuves-v3.mjs` (162 contrôles, dans `test:unit`) : étage 1, chaque fait
+relu depuis le dossier est dans `objects.json` à l'octet près, avec sa révision calculée ;
+étage 2, Paris → Athènes, Paris → Doha, Amsterdam → Málaga, Amsterdam → Lisbonne — grand chien
+au-dessus du seuil, petit chien conditionnel, brachycéphale jamais accepté, refus cités,
+Ryanair « animaux refusés », TAP soute sans seuil global (32/45 kg selon la route : portée
+nommée) ; et ce que l'import n'a PAS fait (0 `allowed`, faits en attente sans citation).
+
+### Ce que je n'ai pas fait, nommé
+
+- Aucune disponibilité changée, aucun tarif, aucune liste de races, aucune règle sanitaire ou
+  météo : le lot porte les 26 faits, rien d'autre.
+- Les `channels[]` éditoriaux des fiches (« Autorisé ») n'ont pas été touchés ; ils ne décident
+  pas (T0-B2). Si Codex veut les aligner sur « sous conditions », c'est un lot B.
+- Iberia soute 45 kg, KLM soute 75 kg, Finnair soute 75/50 kg : seuils présents dans
+  `condition_scope`, absents des phrases citées — non écrits.

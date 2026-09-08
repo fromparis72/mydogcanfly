@@ -341,6 +341,10 @@ function derivePolicy(fiche) {
     const { source: sourceAuditee, ...discriminant } = decision;
     p[mode] = { ...discriminant };
     if (sourceAuditee) Object.defineProperty(p[mode], "__source_auditee", { value: sourceAuditee, enumerable: false });
+    /* CE QUE LA FICHE A ÉCRIT ELLE-MÊME, distingué de ce que la dérivation ajoute plus bas
+       (le poids cabine tiré de la ligne tarifaire). Sur une politique enrichie préservée, seuls
+       ces champs-là l'emportent sur l'artefact — voir la branche préservée. */
+    Object.defineProperty(p[mode], "__ecrits", { value: new Set(Object.keys(discriminant)), enumerable: false });
   }
   /* Poids maximal en cabine : le seul maximum non ambigu que la fiche exprime. Le rattachement
      passe désormais par le placement du canal, plus par le libellé de la ligne tarifaire. */
@@ -556,6 +560,7 @@ for (const a of (objects.airlines || [])) {
         const fiche = d[field];
         if (fiche === undefined) continue;              // la fiche ne dit rien → pas de contradiction
         if (cur[field] === fiche) continue;
+        if (d.__ecrits?.has(field)) continue;           // écrit dans policies: → appliqué plus bas, ni perte ni dérive
         // Deux situations très différentes, qu'il serait faux de confondre :
         //   DRIFT — les deux côtés portent une valeur, et elles s'opposent. Contradiction franche.
         //   GAP   — la fiche affirme, la politique enrichie est muette. Le fait n'atteint pas le
@@ -566,6 +571,17 @@ for (const a of (objects.airlines || [])) {
       /* Seule la décision est réécrite ; tout le reste de la politique enrichie est préservé
          DANS SON ORDRE, et l'ancien booléen d'auteur est retiré s'il traîne encore. */
       const { allowed: _a, conditional: _c, availability: _av, review_state: _rs, ...enrichissements } = cur;
+      /* LE SEUIL ÉCRIT DANS LA FICHE L'EMPORTE, ICI AUSSI (08/09/2026, import strict V3). Ma
+         retouche du matin n'écrivait `max_weight_kg` / `weight_includes_carrier` / `conditions`
+         que sur la branche DÉRIVÉE : sur une politique enrichie préservée — Air France cabine,
+         KLM, Iberia, Lufthansa, Turkish… précisément celles que le dossier de preuves cite —,
+         le champ était accepté par le schéma puis perdu, et le moteur n'aurait jamais refusé au
+         seuil. Même classe de défaut que la priorité de la source auditée, corrigée le 15/08.
+         Seuls les champs ÉCRITS dans `policies:` passent (pas le poids déduit de la ligne
+         tarifaire, qui reste soumis à la préservation et à la détection de dérive). */
+      for (const k of ["max_weight_kg", "weight_includes_carrier", "conditions"]) {
+        if (d.__ecrits?.has(k) && d[k] !== undefined) enrichissements[k] = d[k];
+      }
       /* Une source AUDITÉE écrite dans la fiche l'emporte, ici aussi. La première correction
          plaçait cette priorité UNIQUEMENT dans la branche dérivée : sur une politique enrichie,
          l'audit était accepté par le schéma puis silencieusement ignoré, et l'ancienne provenance
@@ -604,7 +620,7 @@ for (const a of (objects.airlines || [])) {
       ...decision,
       ...(d.conditions ? { conditions: d.conditions } : {}),
       ...(d.max_weight_kg != null ? { max_weight_kg: d.max_weight_kg } : {}),
-      ...(d.weight_includes_carrier === true ? { weight_includes_carrier: true } : {}),
+      ...(typeof d.weight_includes_carrier === "boolean" ? { weight_includes_carrier: d.weight_includes_carrier } : {}),
       ...(d.brachy_allowed === false ? { brachy_allowed: false } : {}),
       source: sourceRetenue,
       ...(sourceRetenue === source ? { source_derived: true } : {}),

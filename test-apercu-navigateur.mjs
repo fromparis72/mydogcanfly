@@ -326,11 +326,15 @@ console.log("\n=== Le score affiché en tête de rapport ===");
   check("AUCUN pourcentage n'est affiché en tête de rapport — la jauge est masquée",
     score === null, `score affiché : ${score}%`);
   const reponse = await p.$eval(".report__answer", (n) => n.textContent.trim()).catch(() => "");
-  check("…et la réponse de tête est bien rendue, en disant qu'elle n'est pas établie",
-    /pas encore|not established|aún no|ainda não/i.test(reponse), JSON.stringify(reponse));
+  /* MOUVEMENT NOMMÉ (08/09/2026, import strict V3) : sur ce trajet, des canaux sont désormais
+     prouvés SOUS CONDITIONS, et la réponse de tête dit « Oui — sous conditions » au lieu de « pas
+     encore établi ». Ce que le contrôle défend est intact : une réponse de tête présente, jamais
+     un oui sec, jamais un pourcentage. La note « pourquoi » n'existe que sur un verdict inconnu. */
+  check("…et la réponse de tête est bien rendue : « pas encore établi » ou « sous conditions », jamais un oui sec",
+    /pas encore|not established|aún no|ainda não|conditions|condições|condiciones/i.test(reponse) && !/^(yes|oui|sí|sim)\s*$/i.test(reponse), JSON.stringify(reponse));
   const note = await p.$eval(".report__unknown", (n) => n.textContent.trim()).catch(() => "");
-  check("…et la note explique pourquoi, sans se lire comme un refus",
-    note.length > 40 && !/refus|refused|rechaz|recus/i.test(note), JSON.stringify(note.slice(0, 90)));
+  check("…et si une note « pourquoi » est rendue, elle ne se lit pas comme un refus",
+    note === "" || (note.length > 40 && !/refus|refused|rechaz|recus/i.test(note)), JSON.stringify(note.slice(0, 90)));
   await p.close();
 }
 
@@ -366,7 +370,10 @@ console.log("\n=== Fiche de race : plus aucune affirmation sans preuve ===");
   }
   check("aucune note chiffrée /100 — elle mesurait un dossier vide",
     !/\/100/.test(texte), (texte.match(/[^ ]{0,12}\/100/) || [])[0] || "");
-  check("les canaux disent « pas encore établi »", /[Pp]as encore établi/.test(texte));
+  /* MOUVEMENT NOMMÉ (08/09/2026, import strict V3) : neuf limites cabine sont CITÉES, les canaux
+     ne disent plus « pas encore établi » mais « sous conditions » — et jamais « accepté ». */
+  check("les canaux disent « sous conditions », jamais « accepté par la plupart » ni « très souvent possible »",
+    /sous conditions/i.test(texte) && !/Accept[ée] par la plupart|Très souvent possible|Largement accepté/i.test(texte));
   /* ── LA PRÉCAUTION SURVIT, MAIS ON N'EN VÉRIFIE PLUS LE MOT : ON EN VÉRIFIE LA PHRASE ───────
    *
    * Ce témoin exigeait l'expression « museau court » quelque part sur la fiche. Il avait une
@@ -390,8 +397,12 @@ console.log("\n=== Fiche de race : plus aucune affirmation sans preuve ===");
     check("…et aucune affirmation catégorique sur la catégorie ne l'accompagne",
       !AFFIRMATIONS.test(texte), (texte.match(/[^.]{0,60}(embargos? chaleur|restrictions? respiratoires?|risque respiratoire)[^.]{0,40}/i) || [])[0] || "");
   }
-  check("la section « Meilleures compagnies » explique son vide au lieu de le laisser béant",
-    /rien à classer/i.test(texte) && /absence de preuve/i.test(texte));
+  /* MOUVEMENT NOMMÉ (08/09/2026) : la section n'est plus vide — elle liste des compagnies citées,
+     chacune « sous conditions », sans coche pleine ni « Accepté ». */
+  const lignesCompagnies = await p.$$eval(".bt2-air", (ns) => ns.map((n) => n.textContent.replace(/\s+/g, " ").trim()));
+  check("la section « Compagnies à vérifier » liste des compagnies citées, chacune « sous conditions », jamais « Accepté »",
+    lignesCompagnies.length > 0 && lignesCompagnies.every((l) => /sous conditions|confirmer/i.test(l) && !/✅|Accepté en/i.test(l)),
+    lignesCompagnies.slice(0, 3).join(" | "));
   /* TÉMOIN : un golden n'est pas brachycéphale — la précaution ne doit pas se propager. */
   const p2 = await nouvellePage();
   await p2.goto(`${BASE}/fr/breeds/golden-retriever/`, { waitUntil: "domcontentloaded" });

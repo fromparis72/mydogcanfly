@@ -101,10 +101,36 @@
     ],
     "policies": {
       "cabin": {
-        "availability": "offered"
+        "availability": "offered",
+        "source": {
+          "url": "https://en.aegeanair.com/travel-info/travelling-with-aegean/special-assistance/traveling-with-pet/",
+          "source_type": "official_website",
+          "verified_date": "2026-09-08",
+          "review_due": "2026-12-07",
+          "confidence": 4,
+          "reviewer": "Codex — lecture directe de la page officielle",
+          "history": [],
+          "quote": "The maximum permitted weight for a pet, combined with its container, is eight (8) kilos.",
+          "quote_language": "en",
+          "locator": "Pets in cabin"
+        },
+        "max_weight_kg": 8,
+        "weight_includes_carrier": true
       },
       "hold": {
-        "availability": "offered"
+        "availability": "offered",
+        "source": {
+          "url": "https://en.aegeanair.com/travel-info/travelling-with-aegean/special-assistance/traveling-with-pet/",
+          "source_type": "official_website",
+          "verified_date": "2026-09-08",
+          "review_due": "2026-12-07",
+          "confidence": 4,
+          "reviewer": "Codex — lecture directe de la page officielle",
+          "history": [],
+          "quote": "If you have a larger cat or dog which exceeds the eight (8) kilos weight limit (including its container), then it should only be transported in the baggage hold compartment of the aircraft.",
+          "quote_language": "en",
+          "locator": "Animals in aircraft hold"
+        }
       },
       "cargo": {
         "review_state": "legacy_unreviewed"
@@ -5057,7 +5083,21 @@
         "availability": "offered"
       },
       "hold": {
-        "availability": "offered"
+        "availability": "offered",
+        "source": {
+          "url": "https://wwws.airfrance.fr/en/information/passagers/voyager-avec-son-animal-chien-chat",
+          "source_type": "official_website",
+          "verified_date": "2026-09-08",
+          "review_due": "2026-12-07",
+          "confidence": 4,
+          "reviewer": "Codex — lecture directe de la page officielle",
+          "history": [],
+          "quote": "If your cat or dog weighs more than 8 kg/17.64 lb. and up to 75 kg/165.35 lb. with its carrier, it must travel in the hold.",
+          "quote_language": "en",
+          "locator": "Important!"
+        },
+        "max_weight_kg": 75,
+        "weight_includes_carrier": true
       },
       "cargo": {
         "availability": "offered"
@@ -17571,10 +17611,34 @@
     ],
     "policies": {
       "cabin": {
-        "availability": "not_offered"
+        "availability": "not_offered",
+        "source": {
+          "url": "https://www.easyjet.com/en/help/baggage/restricted-and-unusual-items",
+          "source_type": "official_website",
+          "verified_date": "2026-09-08",
+          "review_due": "2026-12-07",
+          "confidence": 4,
+          "reviewer": "Codex — lecture directe de la page officielle",
+          "history": [],
+          "quote": "Animals are not allowed on our flights, apart from recognised registered guide and assistance dogs.",
+          "quote_language": "en",
+          "locator": "Pets"
+        }
       },
       "hold": {
-        "availability": "not_offered"
+        "availability": "not_offered",
+        "source": {
+          "url": "https://www.easyjet.com/en/help/baggage/restricted-and-unusual-items",
+          "source_type": "official_website",
+          "verified_date": "2026-09-08",
+          "review_due": "2026-12-07",
+          "confidence": 4,
+          "reviewer": "Codex — lecture directe de la page officielle",
+          "history": [],
+          "quote": "Animals are not allowed on our flights, apart from recognised registered guide and assistance dogs.",
+          "quote_language": "en",
+          "locator": "Pets"
+        }
       },
       "cargo": {
         "availability": "not_offered"
@@ -21269,7 +21333,21 @@
     ],
     "policies": {
       "cabin": {
-        "availability": "offered"
+        "availability": "offered",
+        "source": {
+          "url": "https://www.finnair.com/en/pets-on-finnair-flights",
+          "source_type": "official_website",
+          "verified_date": "2026-09-08",
+          "review_due": "2026-12-07",
+          "confidence": 4,
+          "reviewer": "Codex — lecture directe de la page officielle",
+          "history": [],
+          "quote": "Max. 8 kg (17.6 lb).",
+          "quote_language": "en",
+          "locator": "Travel options for pets → Pets in cabin"
+        },
+        "max_weight_kg": 8,
+        "weight_includes_carrier": true
       },
       "hold": {
         "availability": "offered"
@@ -22953,10 +23031,36 @@
     ],
     "policies": {
       "cabin": {
-        "availability": "offered"
+        "availability": "offered",
+        "source": {
+          "url": "https://www.iberia.com/us/fly-with-iberia/pets/",
+          "source_type": "official_website",
+          "verified_date": "2026-09-08",
+          "review_due": "2026-12-07",
+          "confidence": 4,
+          "reviewer": "Codex — lecture directe de la page officielle",
+          "history": [],
+          "quote": "Dogs, cats, ornamental fish, tortoises and birds may travel with you in the cabin if they do not exceed 8 kg in weight, including the pet carrier.",
+          "quote_language": "en",
+          "locator": "Acceptance in the cabin"
+        },
+        "max_weight_kg": 8,
+        "weight_includes_carrier": true
       },
       "hold": {
-        "availability": "offered"
+        "availability": "offered",
+        "source": {
+          "url": "https://www.iberia.com/us/fly-with-iberia/pets/",
+          "source_type": "official_website",
+          "verified_date": "2026-09-08",
+          "review_due": "2026-12-07",
+          "confidence": 4,
+          "reviewer": "Codex — lecture directe de la page officielle",
+          "history": [],
+          "quote": "The Iberia Group allow cats and dogs to travel in the hold.",
+          "quote_language": "en",
+          "locator": "Acceptance in hold"
+        }
       },
       "cargo": {
         "availability": "offered"
@@ -26352,10 +26456,36 @@
     ],
     "policies": {
       "cabin": {
-        "availability": "offered"
+        "availability": "offered",
+        "source": {
+          "url": "https://www.klm.com/information/pets/reservation",
+          "source_type": "official_website",
+          "verified_date": "2026-09-08",
+          "review_due": "2026-12-07",
+          "confidence": 4,
+          "reviewer": "Codex — lecture directe de la page officielle",
+          "history": [],
+          "quote": "Because they'll need to travel underneath the seat in front of you, the bag or kennel can weigh no more than 8 kg (17.6 lb), with your pet inside.",
+          "quote_language": "en",
+          "locator": "Pets in the cabin"
+        },
+        "max_weight_kg": 8,
+        "weight_includes_carrier": true
       },
       "hold": {
-        "availability": "offered"
+        "availability": "offered",
+        "source": {
+          "url": "https://www.klm.com/information/pets/reservation",
+          "source_type": "official_website",
+          "verified_date": "2026-09-08",
+          "review_due": "2026-12-07",
+          "confidence": 4,
+          "reviewer": "Codex — lecture directe de la page officielle",
+          "history": [],
+          "quote": "You can bring up to 3 pets in the hold.",
+          "quote_language": "en",
+          "locator": "Pets in the hold"
+        }
       },
       "cargo": {
         "availability": "offered"
@@ -29013,10 +29143,36 @@
     ],
     "policies": {
       "cabin": {
-        "availability": "offered"
+        "availability": "offered",
+        "source": {
+          "url": "https://www.lufthansa.com/ua/en/travelling-with-animals",
+          "source_type": "official_website",
+          "verified_date": "2026-09-08",
+          "review_due": "2026-12-07",
+          "confidence": 4,
+          "reviewer": "Codex — lecture directe de la page officielle",
+          "history": [],
+          "quote": "Only smaller dogs and cats weighing no more than 8 kg including their transport container may be transported under certain conditions as additional carry-on baggage in the passenger cabin.",
+          "quote_language": "en",
+          "locator": "What travel options are there for the different types of animals?"
+        },
+        "max_weight_kg": 8,
+        "weight_includes_carrier": true
       },
       "hold": {
-        "availability": "offered"
+        "availability": "offered",
+        "source": {
+          "url": "https://www.lufthansa.com/ua/en/travelling-with-animals",
+          "source_type": "official_website",
+          "verified_date": "2026-09-08",
+          "review_due": "2026-12-07",
+          "confidence": 4,
+          "reviewer": "Codex — lecture directe de la page officielle",
+          "history": [],
+          "quote": "Dogs and cats weighing more than 8 kg including their transport container may be carried as excess baggage in the aircraft’s air-conditioned cargo hold under certain conditions.",
+          "quote_language": "en",
+          "locator": "What travel options are there for the different types of animals?"
+        }
       },
       "cargo": {
         "availability": "offered"
@@ -32178,10 +32334,34 @@
     ],
     "policies": {
       "cabin": {
-        "availability": "not_offered"
+        "availability": "not_offered",
+        "source": {
+          "url": "https://www.qatarairways.com/tradeportal/en/specialservices/Carriage-of-live-animals.html",
+          "source_type": "official_website",
+          "verified_date": "2026-09-08",
+          "review_due": "2026-12-07",
+          "confidence": 4,
+          "reviewer": "Codex — lecture directe de la page officielle",
+          "history": [],
+          "quote": "With effect from 11 January 2021, Qatar Airways will only accept service animal (SVAN) on board QR operated flights on regulated routes to assist passengers with a disability, with a maximum of 2 dogs per passenger.",
+          "quote_language": "en",
+          "locator": "Carriage of Live Animals → passenger-cabin policy"
+        }
       },
       "hold": {
-        "availability": "offered"
+        "availability": "offered",
+        "source": {
+          "url": "https://www.qatarairways.com/en-au/baggage/animals.html",
+          "source_type": "official_website",
+          "verified_date": "2026-09-08",
+          "review_due": "2026-12-07",
+          "confidence": 4,
+          "reviewer": "Codex — lecture directe de la page officielle",
+          "history": [],
+          "quote": "We accept domesticated dogs, cats and birds as checked baggage.",
+          "quote_language": "en",
+          "locator": "Eligibility"
+        }
       },
       "cargo": {
         "review_state": "legacy_unreviewed"
@@ -33555,13 +33735,49 @@
     ],
     "policies": {
       "cabin": {
-        "availability": "not_offered"
+        "availability": "not_offered",
+        "source": {
+          "url": "https://help.ryanair.com/hc/en-us/articles/12890968181521-Does-Ryanair-carry-animals",
+          "source_type": "official_website",
+          "verified_date": "2026-09-08",
+          "review_due": "2026-12-07",
+          "confidence": 4,
+          "reviewer": "Codex — lecture directe de la page officielle",
+          "history": [],
+          "quote": "We do not carry animals on board any Ryanair flights, except guide/assistance dogs on certain routes.",
+          "quote_language": "en",
+          "locator": "Does Ryanair carry animals?"
+        }
       },
       "hold": {
-        "availability": "not_offered"
+        "availability": "not_offered",
+        "source": {
+          "url": "https://help.ryanair.com/hc/en-us/articles/12890968181521-Does-Ryanair-carry-animals",
+          "source_type": "official_website",
+          "verified_date": "2026-09-08",
+          "review_due": "2026-12-07",
+          "confidence": 4,
+          "reviewer": "Codex — lecture directe de la page officielle",
+          "history": [],
+          "quote": "We do not carry animals on board any Ryanair flights, except guide/assistance dogs on certain routes.",
+          "quote_language": "en",
+          "locator": "Does Ryanair carry animals?"
+        }
       },
       "cargo": {
-        "availability": "not_offered"
+        "availability": "not_offered",
+        "source": {
+          "url": "https://oat.ryanair.com/hr/en/useful-info/help-centre/terms-and-conditions",
+          "source_type": "official_website",
+          "verified_date": "2026-09-08",
+          "review_due": "2026-12-07",
+          "confidence": 4,
+          "reviewer": "Codex — lecture directe de la page officielle",
+          "history": [],
+          "quote": "We do not carry cargo on our flights.",
+          "quote_language": "en",
+          "locator": "General Terms & Conditions of Carriage → 8.8 Animals, cargo and human ashes → 8.8.2"
+        }
       }
     },
     "channels": [
@@ -33957,7 +34173,21 @@
     ],
     "policies": {
       "cabin": {
-        "availability": "offered"
+        "availability": "offered",
+        "source": {
+          "url": "https://www.flysas.com/en/travel-info/travel-with-pets/cabin",
+          "source_type": "official_website",
+          "verified_date": "2026-09-08",
+          "review_due": "2026-12-07",
+          "confidence": 4,
+          "reviewer": "Codex — lecture directe de la page officielle",
+          "history": [],
+          "quote": "Max weight: 8 kg (including pet).",
+          "quote_language": "en",
+          "locator": "Pet in cabin → Pet carrier requirements"
+        },
+        "max_weight_kg": 8,
+        "weight_includes_carrier": true
       },
       "hold": {
         "availability": "offered"
@@ -37164,10 +37394,36 @@
     ],
     "policies": {
       "cabin": {
-        "availability": "offered"
+        "availability": "offered",
+        "source": {
+          "url": "https://www.flytap.com/en-gb/information/traveling-with-animals/pets",
+          "source_type": "official_website",
+          "verified_date": "2026-09-08",
+          "review_due": "2026-12-07",
+          "confidence": 4,
+          "reviewer": "Codex — lecture directe de la page officielle",
+          "history": [],
+          "quote": "Maximum total weight: 8 kg / 17 lbs (pets + carrier).",
+          "quote_language": "en",
+          "locator": "Transporting pets in the cabin → Weight and size"
+        },
+        "max_weight_kg": 8,
+        "weight_includes_carrier": true
       },
       "hold": {
-        "availability": "offered"
+        "availability": "offered",
+        "source": {
+          "url": "https://www.flytap.com/en-gb/information/traveling-with-animals/pets",
+          "source_type": "official_website",
+          "verified_date": "2026-09-08",
+          "review_due": "2026-12-07",
+          "confidence": 4,
+          "reviewer": "Codex — lecture directe de la page officielle",
+          "history": [],
+          "quote": "Up to 32 kg / 70 lbs on flights to, from, or with a stopover in the US, Hungary, France and the Netherlands.",
+          "quote_language": "en",
+          "locator": "Aircraft hold → Maximum total weight"
+        }
       },
       "cargo": {
         "review_state": "legacy_unreviewed"
@@ -38492,10 +38748,36 @@
     ],
     "policies": {
       "cabin": {
-        "availability": "offered"
+        "availability": "offered",
+        "source": {
+          "url": "https://www.transavia.com/help/en-eu/children-pets-groups/pets-on-board/cabin",
+          "source_type": "official_website",
+          "verified_date": "2026-09-08",
+          "review_due": "2026-12-07",
+          "confidence": 4,
+          "reviewer": "Codex — lecture directe de la page officielle",
+          "history": [],
+          "quote": "Maximum weight of the pet, including the carrying bag: 8 kg.",
+          "quote_language": "en",
+          "locator": "Weight"
+        },
+        "max_weight_kg": 8,
+        "weight_includes_carrier": true
       },
       "hold": {
-        "availability": "offered"
+        "availability": "offered",
+        "source": {
+          "url": "https://www.transavia.com/help/en-eu/children-pets-groups/pets-on-board/hold-luggage-pet",
+          "source_type": "official_website",
+          "verified_date": "2026-09-08",
+          "review_due": "2026-12-07",
+          "confidence": 4,
+          "reviewer": "Codex — lecture directe de la page officielle",
+          "history": [],
+          "quote": "You may transport your pet in our cargo hold.",
+          "quote_language": "en",
+          "locator": "Can my pet travel in the luggage hold?"
+        }
       }
     },
     "channels": [
@@ -39749,10 +40031,38 @@
     ],
     "policies": {
       "cabin": {
-        "availability": "offered"
+        "availability": "offered",
+        "source": {
+          "url": "https://www.turkishairlines.com/en-ch/any-questions/traveling-with-pets/",
+          "source_type": "official_website",
+          "verified_date": "2026-09-08",
+          "review_due": "2026-12-07",
+          "confidence": 4,
+          "reviewer": "Codex — lecture directe de la page officielle",
+          "history": [],
+          "quote": "Pets traveling in the aircraft cabin cannot exceed a total of 8 kg, including their carrier.",
+          "quote_language": "en",
+          "locator": "Are there weight or size limits for my pet?"
+        },
+        "max_weight_kg": 8,
+        "weight_includes_carrier": true
       },
       "hold": {
-        "availability": "offered"
+        "availability": "offered",
+        "source": {
+          "url": "https://www.turkishairlines.com/en-ch/any-questions/traveling-with-pets/",
+          "source_type": "official_website",
+          "verified_date": "2026-09-08",
+          "review_due": "2026-12-07",
+          "confidence": 4,
+          "reviewer": "Codex — lecture directe de la page officielle",
+          "history": [],
+          "quote": "The total weight of the carrier and the pet together cannot exceed 50 kg.",
+          "quote_language": "en",
+          "locator": "Are there weight or size limits for my pet?"
+        },
+        "max_weight_kg": 50,
+        "weight_includes_carrier": true
       },
       "cargo": {
         "availability": "offered"
@@ -42317,7 +42627,19 @@
         "availability": "offered"
       },
       "hold": {
-        "availability": "not_offered"
+        "availability": "not_offered",
+        "source": {
+          "url": "https://help.vueling.com/hc/en-gb/articles/19798818168337-Fly-with-my-Pet",
+          "source_type": "official_website",
+          "verified_date": "2026-09-08",
+          "review_due": "2026-12-07",
+          "confidence": 4,
+          "reviewer": "Codex — lecture directe de la page officielle",
+          "history": [],
+          "quote": "animals cannot be carried in the plane's cargo hold.",
+          "quote_language": "en",
+          "locator": "Fly with my Pet → service features"
+        }
       },
       "cargo": {
         "availability": "not_offered"

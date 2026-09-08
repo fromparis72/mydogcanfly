@@ -163,6 +163,7 @@ const labels = {
      par la compagnie, sur citation. Jamais « OK » : le visiteur lit la condition et la source. */
   acceptedConditions: T("accepted under the airline's conditions — documented by a cited official source", "accepté sous conditions de la compagnie — documenté par une source officielle citée", "aceptado bajo las condiciones de la aerolínea: documentado por una fuente oficial citada"),
   weightLimitCombined: t(locale, "air.cond.weight_limit"),
+  weightLimitDog: t(locale, "air.cond.weight_limit_dog"),
   confidence: T("confidence", "confiance", "confianza"),
   answer: {
     compatible: t(locale, "answer.compatible"),
@@ -698,7 +699,8 @@ const labels = {
                     for (const d of (a.placement_decisions || [])) {
                       if (d.status !== "accepted_with_conditions") continue;
                       const cap = d.placement === "cabin" ? L.cabinShort : d.placement === "hold" ? L.holdShort : L.cargoShort;
-                      const seuil = d.weight_limit_kg ? ` · ${esc(L.weightLimitCombined.replace("{kg}", String(d.weight_limit_kg)))}` : "";
+                      /* `weight_limit_includes_carrier === false` : plafond du CHIEN SEUL (lot 2) — la carte le dit. */
+                      const seuil = d.weight_limit_kg ? ` · ${esc((d.weight_limit_includes_carrier === false ? L.weightLimitDog : L.weightLimitCombined).replace("{kg}", String(d.weight_limit_kg)))}` : "";
                       const src = d.source && d.source.url ? ` — ${esc(host(d.source.url))}${d.source.verified_date ? ` · ${esc(d.source.verified_date)}` : ""}` : "";
                       lignes.push(`<div class="acard__accepted">✓ ${esc(cap)} : ${esc(L.acceptedConditions)}${seuil}${src}</div>`);
                     }

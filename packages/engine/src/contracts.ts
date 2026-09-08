@@ -208,6 +208,8 @@ const PlacementDecisionShape = z.discriminatedUnion("status", [
      contenant sous lequel ce canal est proposé — la carte peut l'écrire, sans le promettre. */
   z.object({ placement: Placement, status: z.literal("accepted_with_conditions"), allowed: z.literal(true),
     weight_limit_kg: z.number().positive().optional(),
+    /** `true` : chien + contenant ; `false` : chien seul, le contenant s'ajoute (lot 2). */
+    weight_limit_includes_carrier: z.boolean().optional(),
     source: DecisionSource.optional(), evidence: EvidenceArray.optional() }).strict(),
   z.object({ placement: Placement, status: z.literal("denied"), allowed: z.literal(false),
     source: DecisionSource.optional(), evidence: EvidenceArray.optional() }).strict(),
@@ -326,6 +328,8 @@ export function makePlacementDecision(
   evidence?: RestrictionEvidence[],
   /** Le plafond chien + contenant publié, sur un canal accepté sous conditions (sinon ignoré). */
   weightLimitKg?: number,
+  /** Le plafond inclut-il le contenant ? `false` = plafond du chien seul (lot 2). Ignoré sans plafond. */
+  weightLimitIncludesCarrier?: boolean,
 ): PlacementDecision {
   /* La preuve est facultative : la plupart des politiques n'en ont pas d'auditée, et une décision
      sans source vaut mieux qu'une décision avec une source fabriquée. Quand elle existe, elle est
@@ -344,7 +348,7 @@ export function makePlacementDecision(
           source: preuve, evidence: preuves }
       : status === "accepted_with_conditions"
         ? { placement, status, allowed: true, source: preuve, evidence: preuves,
-            ...(weightLimitKg ? { weight_limit_kg: weightLimitKg } : {}) }
+            ...(weightLimitKg ? { weight_limit_kg: weightLimitKg, ...(typeof weightLimitIncludesCarrier === "boolean" ? { weight_limit_includes_carrier: weightLimitIncludesCarrier } : {}) } : {}) }
         : { placement, status, allowed: status === "allowed", source: preuve, evidence: preuves },
   );
 }

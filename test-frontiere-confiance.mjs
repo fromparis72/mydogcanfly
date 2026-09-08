@@ -187,15 +187,19 @@ console.log("\n=== 9. L'ambiguïté ne se tranche pas en silence ===");
 console.log("\n=== 10. Sur la base RÉELLE : plus aucun verdict catégorique ===");
 {
   const kb = loadKB();
-  let allowed = 0, denied = 0, aConfirmer = 0;
+  let allowed = 0, denied = 0, aConfirmer = 0, sousConditions = 0;
   const causes = {};
   for (const a of kb.airlines.values()) {
     for (const p of Object.values(a.premium?.policy ?? {})) {
       if (p.status === "allowed") allowed++;
+      else if (p.status === "accepted_with_conditions") sousConditions++;
       else if (p.status === "denied") denied++;
       else { aConfirmer++; causes[p.status_cause] = (causes[p.status_cause] ?? 0) + 1; }
     }
   }
+  /* MOUVEMENT NOMMÉ (08/09/2026, import strict V3 — 25 citations importées, lues par Codex le 08/09, une par fait décisif ; British Airways cabine conservée) : 1 → 8 `denied` (easyJet cabine et soute, Ryanair ×3, Qatar cabine, Vueling soute,
+     BA cabine), 0 → 18 `accepted_with_conditions` (le quatrième état : `offered` cité ne donne
+     jamais `allowed`), 301 → 276 à confirmer. `allowed` reste à ZÉRO, et c'est la propriété. */
   /* MOUVEMENT NOMMÉ — 05/09/2026, PREMIÈRE CITATION INTÉGRÉE. British Airways cabine passe de
    * « à confirmer » à `denied`, sur la phrase publiée « We don’t carry pets in the cabin on any
    * route. », lue directement le 05/09 et reprise avec sa langue et son emplacement.
@@ -204,12 +208,12 @@ console.log("\n=== 10. Sur la base RÉELLE : plus aucun verdict catégorique ===
    * et il vaut démonstration : la machine rend bien une décision ferme dès qu'une preuve existe.
    * Le compte reste figé — 302 politiques, dont exactement une prouvée — et chaque citation à
    * venir devra bouger ce chiffre en se nommant, comme celle-ci. */
-  check("UNE seule décision prouvée : 0 `allowed`, 1 `denied`, 301 à confirmer",
-    allowed === 0 && denied === 1 && aConfirmer === 301, JSON.stringify({ allowed, denied, aConfirmer }));
+  check("26 décisions prouvées : 0 `allowed`, 18 sous conditions, 8 `denied`, 276 à confirmer",
+    allowed === 0 && sousConditions === 18 && denied === 8 && aConfirmer === 276, JSON.stringify({ allowed, sousConditions, denied, aConfirmer }));
   check("chaque « à confirmer » porte une cause — aucune incertitude muette",
-    Object.values(causes).reduce((x, y) => x + y, 0) === 301, JSON.stringify(causes));
-  check("32 gardent une page officielle à montrer, 267 n'ont rien à montrer",
-    causes.official_source_unquoted === 32 && causes.legacy_unreviewed === 267, JSON.stringify(causes));
+    Object.values(causes).reduce((x, y) => x + y, 0) === 276 && !("undefined" in causes), JSON.stringify(causes));
+  check("23 gardent une page officielle à montrer, 251 n'ont rien à montrer",
+    causes.official_source_unquoted === 23 && causes.legacy_unreviewed === 251, JSON.stringify(causes));
   /* Et la preuve que ce n'est pas un effet de bord de l'affichage : la même règle vaut à la
      source, sur l'artefact d'auteur, avant tout moteur. */
   const objets = JSON.parse(readFileSync("packages/knowledge/raw/objects.json", "utf8"));
@@ -230,10 +234,22 @@ console.log("\n=== 10. Sur la base RÉELLE : plus aucun verdict catégorique ===
   /* Elles étaient deux, posées sur des blocs qui NE DÉCIDENT PAS — l'ironie du lot. Elles sont
      trois, et la troisième décide : c'est la différence entre un dépôt qui ne peut rien prouver
      et un dépôt qui commence à prouver. */
-  check("3 politiques d'auteur portent une phrase citée (Thai fret, Virgin cabine, BA cabine)",
-    citees.length === 3, citees.join(", "));
-  check("et UNE d'elles est une décision — British Airways cabine, la première prouvée",
-    decideesCitees.length === 1 && decideesCitees[0] === "airline_british_airways.cabin",
+  /* MOUVEMENT NOMMÉ (08/09/2026, import strict V3 — 25 citations importées, lues par Codex le 08/09, une par fait décisif ; British Airways cabine conservée) : 3 → 28 politiques citées, 1 → 26 décisions citées. Les deux non décisives restent
+     Thai fret (`undocumented`) et Virgin Australia cabine (`case_by_case`). La liste est FIGÉE
+     nominativement : une citation qui entrerait sans se nommer ici rougirait. */
+  const CITEES_V3 = [
+    "airline_aegean.cabin", "airline_aegean.hold", "airline_air_france.hold", "airline_british_airways.cabin",
+    "airline_easyjet.cabin", "airline_easyjet.hold", "airline_finnair.cabin", "airline_iberia.cabin", "airline_iberia.hold",
+    "airline_klm.cabin", "airline_klm.hold", "airline_lufthansa.cabin", "airline_lufthansa.hold",
+    "airline_qatar_airways.cabin", "airline_qatar_airways.hold", "airline_ryanair.cabin", "airline_ryanair.hold", "airline_ryanair.cargo",
+    "airline_sas.cabin", "airline_tap.cabin", "airline_tap.hold", "airline_thai_airways.cargo",
+    "airline_transavia.cabin", "airline_transavia.hold", "airline_turkish.cabin", "airline_turkish.hold",
+    "airline_virgin_australia.cabin", "airline_vueling.hold",
+  ];
+  check("28 politiques d'auteur portent une phrase citée — nominativement",
+    JSON.stringify([...citees].sort()) === JSON.stringify([...CITEES_V3].sort()), citees.join(", "));
+  check("et 26 d'elles sont des décisions (toutes sauf Thai fret et Virgin Australia cabine)",
+    decideesCitees.length === 26 && !decideesCitees.includes("airline_thai_airways.cargo") && !decideesCitees.includes("airline_virgin_australia.cabin"),
     decideesCitees.join(", "));
 }
 
@@ -586,8 +602,11 @@ console.log("\n=== 13 bis. Le verdict dérivé, et ce qui ne revient JAMAIS avec
     const kbR = loadKB();
     const fiches = [...kbR.airlines.values()];
     const refusTotal = fiches.filter((a) => verdictDeFiche(a.premium?.policy).cle === "premium.verdict_none");
-    check("aucune des 102 fiches ne conclut au refus total — aucune n'a trois refus prouvés",
-      refusTotal.length === 0, JSON.stringify(refusTotal.map((a) => a.id)));
+    /* MOUVEMENT NOMMÉ (08/09/2026, import strict V3 — 25 citations importées, lues par Codex le 08/09, une par fait décisif ; British Airways cabine conservée) : Ryanair est la PREMIÈRE fiche à conclure au refus total, sur trois citations —
+       « We do not carry animals on board any Ryanair flights » (cabine, soute) et « We do not
+       carry cargo on our flights » (fret). Nominativement, et elle seule. */
+    check("UNE seule fiche conclut au refus total — Ryanair, sur trois refus prouvés",
+      JSON.stringify(refusTotal.map((a) => a.id)) === JSON.stringify(["airline_ryanair"]), JSON.stringify(refusTotal.map((a) => a.id)));
     const ba = kbR.airlines.get("airline_british_airways");
     check("British Airways : cabine refusée sur preuve, mais la FICHE reste prudente",
       ba?.premium?.policy?.cabin?.status === "denied"

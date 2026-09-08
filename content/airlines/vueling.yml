@@ -62,6 +62,20 @@ policies:
     availability: offered
   hold:
     availability: not_offered
+    # PREUVE IMPORTÉE — import strict V3 (Codex, lecture directe du 2026-09-08, cohorte F fait 1).
+    # Effet attendu : For a large pet dog, do not offer passenger hold. Do not infer a separate cargo service without another official Vueling source.
+    # Portée nommée : the official passenger-pet page states that animals cannot be carried in the aircraft cargo hold; it is not a cargo-service statement
+    source:
+      url: "https://help.vueling.com/hc/en-gb/articles/19798818168337-Fly-with-my-Pet"
+      source_type: official_website
+      verified_date: "2026-09-08"
+      review_due: "2026-12-07"   # reviewDueFrom(verified_date, "airline") — calculé par l'importeur
+      confidence: 4
+      reviewer: "Codex — lecture directe de la page officielle"
+      history: []
+      quote: "animals cannot be carried in the plane's cargo hold."
+      quote_language: en
+      locator: "Fly with my Pet → service features"
   cargo:
     availability: not_offered
 channels:

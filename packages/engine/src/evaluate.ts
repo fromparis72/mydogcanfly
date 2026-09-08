@@ -548,7 +548,11 @@ export function evaluate(kb: NormalizedKB, req: FinderRequest, opts?: { weatherP
          source citée de la politique — c'est elle qui le prouve. */
       const poidsChien = Number(ctx["dog.weight_kg"] ?? 0);
       const seuilDepasse = pol?.status === "accepted_with_conditions"
-        && pol.weight_includes_carrier === true && typeof pol.max_weight_kg === "number"
+        /* `true` : plafond chien + contenant ; `false` EXPLICITE : plafond du chien seul (lot 2,
+           Air Europa cabine : « The weight of the pet cannot exceed 8 kg »). Dans les deux cas le
+           chien seul au-dessus est refusé sûrement ; absent (`undefined`) : seuil non qualifié,
+           jamais un refus. */
+        && typeof pol.weight_includes_carrier === "boolean" && typeof pol.max_weight_kg === "number"
         && poidsChien > pol.max_weight_kg;
       let weightDeny = false;
       if (denyDecisifs.length > 0) {
@@ -641,7 +645,8 @@ export function evaluate(kb: NormalizedKB, req: FinderRequest, opts?: { weatherP
          comme justification d'une politique qu'elle ne documente pas. */
       return {
         decision: makePlacementDecision(p, race.status, race.causes, race.source, race.evidence,
-          race.status === "accepted_with_conditions" && pol?.weight_includes_carrier === true ? pol.max_weight_kg : undefined),
+          race.status === "accepted_with_conditions" && typeof pol?.weight_includes_carrier === "boolean" ? pol.max_weight_kg : undefined,
+          race.status === "accepted_with_conditions" && typeof pol?.weight_includes_carrier === "boolean" ? pol.weight_includes_carrier : undefined),
         fires: allFires, breedDeny: race.denied_by_breed, weightDeny,
       };
     });

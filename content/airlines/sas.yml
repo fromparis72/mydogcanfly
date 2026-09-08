@@ -74,6 +74,23 @@ ladder:
 policies:
   cabin:
     availability: offered
+    # PREUVE IMPORTÉE — import strict V3 (Codex, lecture directe du 2026-09-08, cohorte B fait 3).
+    # Effet attendu : For a 30 or 32 kg dog, cabin is not suitable.
+    # Portée nommée : official ceiling applies to pet plus carrier; business-class, route and aircraft exceptions apply
+    # Le plafond cité inclut le CONTENANT : refus sûr si le chien seul le dépasse, jamais un oui en dessous.
+    max_weight_kg: 8
+    weight_includes_carrier: true
+    source:
+      url: "https://www.flysas.com/en/travel-info/travel-with-pets/cabin"
+      source_type: official_website
+      verified_date: "2026-09-08"
+      review_due: "2026-12-07"   # reviewDueFrom(verified_date, "airline") — calculé par l'importeur
+      confidence: 4
+      reviewer: "Codex — lecture directe de la page officielle"
+      history: []
+      quote: "Max weight: 8 kg (including pet)."
+      quote_language: en
+      locator: "Pet in cabin → Pet carrier requirements"
   hold:
     availability: offered
   cargo:

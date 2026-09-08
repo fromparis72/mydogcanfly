@@ -19,6 +19,10 @@ import { loadKB } from "./packages/knowledge/src/index.ts";
 import { evaluate } from "./packages/engine/src/evaluate.ts";
 
 const WRITE = process.argv.includes("--write");
+/* Couples où le témoin hérité vaut `true` depuis l'import strict V3 (08/09/2026) — MESURÉ : 7 113
+   sur 42 360, c'est-à-dire les couples (compagnie × paire × date) où un canal est accepté sous
+   conditions. Figé ; avance par mouvement nommé à chaque import. */
+const TEMOIN_VRAI_V3 = 7113;
 /**
  * T0-B2 — la sonde vivante compare désormais au fichier DE CE LOT.
  *
@@ -111,17 +115,26 @@ if (WRITE) {
    *
    * L'INVARIANT DE SÛRETÉ, lui, reste vérifié sur le recalcul du jour, et il n'a jamais été
    * aussi chargé : aucune compagnie ne PERD son transport d'animaux. */
-  check("le témoin hérité est INATTEIGNABLE : aucun canal n'est `allowed`, il vaut false partout",
-    entries.length === couples && entries.every((e) => e.old === false),
-    `${entries.length} bascule(s) sur ${couples} couples`);
+  /* MOUVEMENT NOMMÉ (08/09/2026, import strict V3 — 25 citations importées, lues par Codex le 08/09, une par fait décisif ; British Airways cabine conservée) : le témoin hérité REDEVIENT atteignable, exactement comme ce bloc l'annonçait —
+     « si un jour une politique redevenait allowed, ce contrôle rougirait ». Il exige
+     `allowed === true` sur un canal : le quatrième état le porte (accepté sous conditions).
+     Il n'est pas retiré : on le refige. Le nombre de couples où il vaut `true` est mesuré et
+     figé ici, et il ne bougera que par un mouvement nommé. */
+  const temoinVrai = entries.filter((e) => e.old === true).length;
+  console.log(`         témoin hérité vrai sur ${temoinVrai} couple(s) sur ${couples}`);
+  check("le témoin hérité est atteignable là où un canal est accepté sous conditions — compte figé",
+    temoinVrai === TEMOIN_VRAI_V3 && entries.every((e) => e.old !== e.new),
+    `${temoinVrai} couple(s) à témoin vrai, ${entries.length} bascule(s) sur ${couples} couples`);
   /* 05/09/2026 — `offers_pet_transport` EST TERNAIRE, et cette ligne devait changer avec lui.
      Elle disait `e.new && !e.old` : une CHAÎNE non vide est vraie, si bien que la valeur « no »
      — la perte de transport que ce contrôle existe pour interdire — l'aurait satisfaite. Faux
      vert en puissance, corrigé avant d'exister. L'invariant est désormais écrit dans les termes
      du champ : aucune compagnie ne passe à « non ». */
-  check("aucune compagnie ne perd son transport d'animaux (aucun passage à « no »)",
-    entries.every((e) => e.new !== "no" && e.old === false),
-    JSON.stringify(entries.filter((e) => e.new === "no").slice(0, 3)));
+  /* MOUVEMENT NOMMÉ (08/09/2026, import strict V3 — 25 citations importées, lues par Codex le 08/09, une par fait décisif ; British Airways cabine conservée) : Ryanair passe à « no » — sur TROIS citations (cabine, soute, fret), pas sur un
+     silence. C'est la seule perte admise, nominativement ; toute autre rougit. */
+  const perdent = [...new Set(entries.filter((e) => e.new === "no").map((e) => e.airline_id))].sort();
+  check("une seule compagnie perd son transport d'animaux, sur preuve : Ryanair",
+    JSON.stringify(perdent) === JSON.stringify(["airline_ryanair"]), JSON.stringify(perdent));
   check("la mesure T0-B2 reste figée (2 017 bascules, 55 compagnies) — elle n'est PAS régénérée",
     ref.changements === 2017 && ref.airlines.length === 55 && ref.true_to_false === 0,
     JSON.stringify({ ch: ref.changements, air: ref.airlines?.length, t2f: ref.true_to_false }));

@@ -1,0 +1,113 @@
+{
+  "schema_version": 1,
+  "as_of": "2026-09-08",
+  "purpose": "Evidence packet only. Pegasus distinguishes domestic/North Cyprus hold carriage from international flights. TUI's cited cabin exclusion is only for routes to or from the UK. Volotea explicitly excludes passenger hold, not merely the present itinerary.",
+  "provenance_defaults": {
+    "source_type": "official_website",
+    "verified_date": "2026-09-08",
+    "review_due": "derive_with_reviewDueFrom(verified_date, 'airline')",
+    "confidence": 4,
+    "reviewer": "Codex — lecture directe de la page officielle"
+  },
+  "facts": [
+    {
+      "airline_id": "airline_pegasus",
+      "placement": "cabin",
+      "recommendation": "deny_when_dog_weight_kg_gt_8",
+      "condition_scope": "the 8 kg ceiling applies to animal plus cage; destination restrictions, cage requirements and pet reservation apply",
+      "finder_effect": "For a 30 or 32 kg dog, cabin is not suitable. Do not clear a lighter dog without the combined cage weight and route conditions.",
+      "url": "https://www.flypgs.com/en/useful-info/other-info/frequently-asked-questions",
+      "quote": "Pets weighing over 8 kg in their cages must be placed in the cargo hold.",
+      "quote_language": "en",
+      "locator": "Frequently Asked Questions → What are the rules for travelling with pets?"
+    },
+    {
+      "airline_id": "airline_pegasus",
+      "placement": "hold",
+      "recommendation": "offered_on_domestic_and_north_cyprus_routes_when_pet_plus_cage_kg_gt_8",
+      "condition_scope": "the rule is limited to Pegasus domestic scheduled and North Cyprus flights; carrier requirements and booking conditions apply",
+      "finder_effect": "For an eligible domestic/North Cyprus route, passenger hold can be proposed conditionally above 8 kg combined. It must not appear for international routes.",
+      "url": "https://www.flypgs.com/fr/informations-utiles/informations-de-vol/regles-generales",
+      "quote": "Si le poids total de l'animal avec la cage dépasse 8 kg, l'animal (AVIH) est transporté dans le conteneur de fret climatisé.",
+      "quote_language": "fr",
+      "locator": "Règles Générales → 12.2.2"
+    },
+    {
+      "airline_id": "airline_pegasus",
+      "placement": "hold",
+      "recommendation": "not_offered_for_international_pet_dogs",
+      "condition_scope": "the published AVIH rule is expressly limited to domestic and North Cyprus flights",
+      "finder_effect": "Do not offer Pegasus passenger hold for an international itinerary under this evidence.",
+      "url": "https://www.flypgs.com/fr/informations-utiles/informations-de-vol/regles-generales",
+      "quote": "il n'est pas possible de transporter des animaux de compagnie non transportés en cabine (AVIH) sur les vols internationaux.",
+      "quote_language": "fr",
+      "locator": "Règles Générales → 12.2.1"
+    },
+    {
+      "airline_id": "airline_tui_airways",
+      "placement": "cabin",
+      "recommendation": "not_offered_for_pet_dogs_to_or_from_uk",
+      "condition_scope": "the official statement is restricted to TUI flights to or from the United Kingdom; service and route constraints remain for all other cases",
+      "finder_effect": "Do not offer an ordinary pet dog in the passenger cabin on a TUI itinerary to or from the UK.",
+      "url": "https://www.tui.co.uk/destinations/faq/airport-flights-and-luggage/flight-information/can-i-take-my-pet-with-me",
+      "quote": "All pets flying with TUI, travel in the hold as cargo and not in the passenger cabin to or from the UK.",
+      "quote_language": "en",
+      "locator": "Can I take my pet with me? → How your pet will travel"
+    },
+    {
+      "airline_id": "airline_tui_airways",
+      "placement": "cargo",
+      "recommendation": "offered_with_conditions_to_or_from_uk",
+      "condition_scope": "the pet must be cleared by TUI Cargo for the particular flight; country restrictions, documents and crate conditions apply",
+      "finder_effect": "For a TUI route to or from the UK, give a conditional cargo lead rather than a promise of a booked place.",
+      "url": "https://www.tui.co.uk/destinations/faq/airport-flights-and-luggage/flight-information/can-i-take-my-pet-with-me",
+      "quote": "Your pet can usually go on the same flight as you.",
+      "quote_language": "en",
+      "locator": "Can I take my pet with me? → How your pet will travel"
+    },
+    {
+      "airline_id": "airline_volotea",
+      "placement": "cabin",
+      "recommendation": "deny_when_dog_weight_kg_gt_10",
+      "condition_scope": "the 10 kg ceiling includes non-rigid box, pet and accessories; UK, Ireland and Malta routes are excluded",
+      "finder_effect": "For a 30 or 32 kg dog, cabin is not suitable. Under 10 kg dog body weight alone remains insufficient without carrier and route checks.",
+      "url": "https://www.volotea.com/en/legal-conditions/conditions-of-carriage/",
+      "quote": "Maximum weight of the box (including the pet and its accessories) is 10 Kg.",
+      "quote_language": "en",
+      "locator": "Conditions of Carriage → 6.10 Animals"
+    },
+    {
+      "airline_id": "airline_volotea",
+      "placement": "hold",
+      "recommendation": "not_offered_for_pet_dogs",
+      "condition_scope": "the statement expressly concerns pet transport in the aircraft hold and is not a conclusion drawn from cabin limits",
+      "finder_effect": "Do not offer Volotea passenger hold for an ordinary pet dog.",
+      "url": "https://www.volotea.com/en/legal-conditions/conditions-of-carriage/",
+      "quote": "Volotea does not offer the option of transporting pets in the aircraft hold.",
+      "quote_language": "en",
+      "locator": "Conditions of Carriage → 6.10 Animals"
+    }
+  ],
+  "intentionally_unset": [
+    {
+      "airline_id": "airline_pegasus",
+      "placement": "cargo",
+      "reason": "The direct sources establish the passenger AVIH rules but not a general ordinary pet-dog cargo service."
+    },
+    {
+      "airline_id": "airline_tui_airways",
+      "placement": "hold",
+      "reason": "The TUI source uses the term 'hold as cargo'; this packet records the UK cargo process and does not force it into the repository's passenger-hold category."
+    },
+    {
+      "airline_id": "airline_volotea",
+      "placement": "cargo",
+      "reason": "Volotea's Conditions of Carriage say it does not transport cargo, but this cohort does not treat that general statement as a fully specified pet-cargo policy."
+    },
+    {
+      "airline_id": "airline_wizz_air",
+      "placement": "all",
+      "reason": "Official conditions were located that refuse live animals except recognised assistance dogs, but their publication dating requires a fresh current-document check before importing a categorical ordinary-pet rule."
+    }
+  ]
+}

@@ -74,8 +74,39 @@ ladder:
 policies:
   cabin:
     availability: offered
+    # PREUVE IMPORTÉE — import strict V3 (Codex, lecture directe du 2026-09-08, cohorte A fait 1).
+    # Effet attendu : For a 32 kg dog, cabin is not suitable.
+    # Portée nommée : official ceiling applies to pet plus container; do not positively clear a dog below 8 kg without carrier weight
+    # Le plafond cité inclut le CONTENANT : refus sûr si le chien seul le dépasse, jamais un oui en dessous.
+    max_weight_kg: 8
+    weight_includes_carrier: true
+    source:
+      url: "https://en.aegeanair.com/travel-info/travelling-with-aegean/special-assistance/traveling-with-pet/"
+      source_type: official_website
+      verified_date: "2026-09-08"
+      review_due: "2026-12-07"   # reviewDueFrom(verified_date, "airline") — calculé par l'importeur
+      confidence: 4
+      reviewer: "Codex — lecture directe de la page officielle"
+      history: []
+      quote: "The maximum permitted weight for a pet, combined with its container, is eight (8) kilos."
+      quote_language: en
+      locator: "Pets in cabin"
   hold:
     availability: offered
+    # PREUVE IMPORTÉE — import strict V3 (Codex, lecture directe du 2026-09-08, cohorte A fait 2).
+    # Effet attendu : For a 32 kg dog, show hold offered under conditions.
+    # Portée nommée : larger cat or dog exceeding 8 kg including its container; route, aircraft, breed and connection exceptions apply
+    source:
+      url: "https://en.aegeanair.com/travel-info/travelling-with-aegean/special-assistance/traveling-with-pet/"
+      source_type: official_website
+      verified_date: "2026-09-08"
+      review_due: "2026-12-07"   # reviewDueFrom(verified_date, "airline") — calculé par l'importeur
+      confidence: 4
+      reviewer: "Codex — lecture directe de la page officielle"
+      history: []
+      quote: "If you have a larger cat or dog which exceeds the eight (8) kilos weight limit (including its container), then it should only be transported in the baggage hold compartment of the aircraft."
+      quote_language: en
+      locator: "Animals in aircraft hold"
   cargo:
     review_state: legacy_unreviewed
 channels:

@@ -32,7 +32,11 @@
 export const SENTINELLES_COMPAGNIES = [
   { slug: "thai-airways", id: "airline_thai_airways", placement: "cargo", statut: "confirmation_required", role: "auditée · undocumented" },
   { slug: "aegean", id: "airline_aegean", placement: "cargo", statut: "confirmation_required", role: "non revérifiée · legacy_unreviewed" },
-  { slug: "air-france", id: "airline_air_france", placement: "cabin", statut: "confirmation_required", role: "politique d'auteur, non prouvée" },
+  /* RE-FONDÉE (08/09/2026, import strict V3) : Air France publie désormais une citation de SOUTE
+     (8 à 75 kg chien + contenant) ; sa fiche n'est plus « entièrement à confirmer » et ne peut
+     plus témoigner qu'une telle fiche ne publie aucun seuil. Air Canada cabine tient le même
+     rôle — politique d'auteur `offered`, page officielle sans phrase citée. Jamais abaissée. */
+  { slug: "air-canada", id: "airline_air_canada", placement: "cabin", statut: "confirmation_required", role: "politique d'auteur, non prouvée" },
   { slug: "thai-airways", id: "airline_thai_airways", placement: "cabin", statut: "confirmation_required", role: "non offerte, non prouvée" },
   { slug: "british-airways", id: "airline_british_airways", placement: "cabin", statut: "denied", role: "refus PROUVÉ · citation stricte" },
 ];
