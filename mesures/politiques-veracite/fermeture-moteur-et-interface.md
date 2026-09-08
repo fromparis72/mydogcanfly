@@ -2123,6 +2123,16 @@ réécrire est une décision de contenu ; je la demande, avec une recommandation
 Le slogan « Can my dog fly? For sure. » : anglais sur les pages non anglaises, et « For sure » est
 une réponse catégorique là où le site répond « confirmé ou à vérifier ». Décision éditoriale.
 
+### Une CI rouge de ma main, nommée (run 34213137943)
+
+`test-accueil-canaux-prouves.mjs` lisait un dist par défaut et vivait dans `test:unit`, qui tourne
+en CI **avant** le build : « index.html absent du dist », quatre fois. Localement je l'avais joué
+après un build, et j'ai pris mon ordre d'exécution pour celui de la CI — le harnais navigateur
+m'avait déjà appris cette leçon (annexe 14 : « le harnais décrivait ma machine »). Le test suit
+maintenant la convention de `test-etape3-dom` : `--dist=` obligatoire, refus sans lui, étape de CI
+après le build sur le site complet. Une garde qui se saute faute d'artefact ne garde rien ; une
+garde qui cherche un artefact avant qu'il existe ne garde rien non plus.
+
 ### Ce que je retiens
 
 Deux instruments lisant une même donnée doivent rendre la même chose, et ce dossier le sait depuis

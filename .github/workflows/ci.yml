@@ -366,6 +366,12 @@ jobs:
       - name: Les affirmations retirées ne reviennent pas (dist complet)
         run: node test-fiches-affirmations-retirees.mjs --dist-complet
 
+      # L'ACCUEIL DIT CE QUE LA BASE PROUVE (contre-test navigateur du 08/09/2026) : la phrase sur les
+      # canaux confirmés est calculée au build ; ce contrôle recompte et relit l'accueil construit dans
+      # ses zones publiques, quatre langues. Il EXIGE `--dist` et refuse son absence.
+      - name: L'accueil et les canaux prouvés (site complet)
+        run: node --import tsx test-accueil-canaux-prouves.mjs --dist=packages/ui/dist
+
       # LES CONTRE-ÉPREUVES QUI LISENT LE SITE COMPLET. Elles ne reconstruisent rien — elles mutent
       # ce qui LIT le site, pas le site — et se servent donc du `dist` que ce job vient de produire.
       # Sans cette étape, elles n'étaient jouées NULLE PART : le job rapide lance `--dom`, et son

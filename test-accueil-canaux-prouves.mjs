@@ -10,15 +10,25 @@
  * `allowed` et `denied` sortent de `projectPlacementPolicy` sur citation — et cette contre-épreuve
  * recompte de son côté, puis relit l'accueil construit dans ses zones publiques.
  *
- *   node --import tsx test-accueil-canaux-prouves.mjs [--dist=packages/ui/dist]
+ *   node --import tsx test-accueil-canaux-prouves.mjs --dist=packages/ui/dist
+ *
+ * `--dist=` EST OBLIGATOIRE, et son absence est un REFUS — pas un vert. Première rédaction
+ * fautive, nommée : ce test lisait un dist par défaut et vivait dans `test:unit`, qui tourne en CI
+ * AVANT le build ; il a rougi sur « index.html absent du dist » (run 34213137943). Localement je
+ * l'avais joué après un build, et j'ai pris mon ordre d'exécution pour celui de la CI. Il suit
+ * désormais la convention de `test-etape3-dom` : joué en CI après le build, sur le site complet.
  */
 import { readFileSync, existsSync } from "node:fs";
 import { join } from "node:path";
 import { loadKB } from "@mydogcanfly/knowledge";
 import { zonesDe } from "./test-lib/zones-publiques.mjs";
 
-const arg = (n, d) => (process.argv.find((a) => a.startsWith(`--${n}=`)) ?? `--${n}=${d}`).split("=").slice(1).join("=");
-const DIST = arg("dist", "packages/ui/dist");
+const DIST = process.argv.slice(2).find((a) => a.startsWith("--dist="))?.slice(7);
+if (!DIST || !existsSync(DIST)) {
+  console.error("[accueil-canaux] REFUS — `--dist=<chemin>` est obligatoire et doit exister.");
+  console.error("                 Une garde qui se saute faute d'artefact ne garde rien.");
+  process.exit(1);
+}
 let defauts = 0;
 const ok = (m) => console.log(`  ✓ ${m}`);
 const echec = (m, d) => { defauts++; console.log(`  ✗ ${m}${d ? ` — ${d}` : ""}`); };
