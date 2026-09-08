@@ -72,6 +72,20 @@ policies:
     availability: not_offered
   hold:
     availability: offered
+    # PREUVE IMPORTÉE — import strict lot3 (Codex, lecture directe du 2026-09-08, cohorte LOT3 fait 10).
+    # Effet attendu : A checked-pet path exists, but capacity and acceptance must remain conditional. Do not turn this into a cargo decision for an unaccompanied animal.
+    # Portée nommée : JAL international pet service, advance reservation, crate capacity, animal eligibility and operating-carrier restrictions
+    source:
+      url: "https://www.jal.co.jp/jp/en/inter/support/pet/"
+      source_type: official_website
+      verified_date: "2026-09-08"
+      review_due: "2026-12-07"   # reviewDueFrom(verified_date, "airline") — calculé par l'importeur
+      confidence: 4
+      reviewer: "Codex — direct reading of official airline page"
+      history: []
+      quote: "Pets can be checked in at the same check-in counter as their owners."
+      quote_language: en
+      locator: "Traveling with pets → How to transport your pet → Step 3"
   cargo:
     review_state: legacy_unreviewed
 channels:

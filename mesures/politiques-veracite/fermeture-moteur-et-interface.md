@@ -2463,3 +2463,78 @@ nommée) ; et ce que l'import n'a PAS fait (0 `allowed`, faits en attente sans c
   pas (T0-B2). Si Codex veut les aligner sur « sous conditions », c'est un lot B.
 - Iberia soute 45 kg, KLM soute 75 kg, Finnair soute 75/50 kg : seuils présents dans
   `condition_scope`, absents des phrases citées — non écrits.
+
+## Annexe 24 — Lots 2 et 3 de l'import strict : 24 faits, trois réactivations, un plafond du chien seul, et Addis-Abeba qui disparaissait (08/09/2026, soir)
+
+Philippe a demandé d'enchaîner les lots 2 et 3 après le lot 1 sans attendre d'ordre. Fait ; rien
+n'est fusionné, promu ni déployé.
+
+### Importé
+
+Les deux paquets (`mesures/preuves/import-strict-lot-2-2026-09-08/`, `…-lot-3-…`), 12 faits
+chacun, tous autorisés par leurs LISEZ_MOI, importés par le même importeur (`--lot=lot2`,
+`--lot=lot3`). 24 importés, 0 refusé. **Trois lignes non revérifiées RÉACTIVÉES sur citation**
+(Cathay Pacific, Air India, Ethiopian fret) : la seule situation où l'importeur écrit une
+disponibilité, nommée « RÉACTIVÉ » dans son rapport et en commentaire dans la fiche. Les dix
+canaux `intentionally_unset` restent sans citation (témoin).
+
+Seuils écrits, tels que la phrase les porte : Air Transat cabine 8, Air India cabine 10, Avianca
+cabine 10 et soute 70, Ethiopian cabine 8 et soute 45, Etihad cabine 8 (chien + contenant) ; **Air
+Europa cabine 8, chien SEUL** (« The weight of the pet cannot exceed 8 kg », 10 kg sac compris).
+Non écrits, nommés : Air India soute 32 kg (dans la phrase du fret, pas de la soute), Air Canada
+soute 45 kg (portée seulement).
+
+### Le modèle complété : `weight_includes_carrier: false`
+
+Le champ ne connaissait que `true`. Explicite à `false`, il dit un plafond du chien seul : le
+moteur refuse au-dessus dans les deux cas (`typeof === "boolean"`, jamais sur `undefined`), la
+décision transporte `weight_limit_includes_carrier`, et chaque surface le dit — carte du Finder
+(« Poids du chien seul jusqu'à 8 kg (contenant en plus) »), calculateur de caisse, pages races.
+Témoins : `test-quatrieme-etat` (Golden 32 refusé, Cavalier 6 sous conditions avec le drapeau) et
+`test-preuves-lots-2-3` (Air Europa : 9 kg refusé, 6 kg sous conditions).
+
+### Mesuré
+
+| | après lot 1 | après lots 2 et 3 |
+|---|---|---|
+| politiques citées | 28 | **52** (50 décisives) |
+| sous conditions / refusées / à confirmer | 18 / 8 / 276 | **39 / 11 / 252** |
+| `allowed` | 0 | **0** |
+| causes legacy / officielle non citée | 251 / 23 | 230 / 20 |
+| registre A / B / C / D | 28 / 108 / 167 / 3 | 52 / 102 / 149 / 3 |
+| baseline t0a (par compagnie) | 504 cartes | 208 cartes, 12 compagnies, 248 → sous conditions, 32 → refusé, 0 verdict déplacé |
+| témoin hérité `carries_pets` | 7 113 | 13 830 |
+| limites cabine citées (calculateur) | 9 | 15, dont 1 chien seul |
+
+### Ce qu'un compteur a trouvé : Addis-Abeba disparaissait
+
+`test-frontiere-confiance` compte les destinations d'un American Bully XL de 50 kg depuis Paris :
+139 → 138. Ethiopian, pour ce chien, avait cabine et soute REFUSÉES sur seuil cité (8 et 45 kg
+contenant compris) et le fret accepté SOUS CONDITIONS — un statut que l'outil Destinations ne
+connaissait pas : il ne comptait comme ouvert que `allowed`, que rien ne produit plus. La
+destination n'avait donc ni canal « ouvert » ni canal « à confirmer », et sortait de la liste.
+Corrigé : le quatrième état compte comme ouvert (`destinations.ts`), un champ
+`placement_conditional` dit à l'interface qu'aucun `allowed` n'existe, et le libellé devient
+« Vol direct — sous conditions des compagnies ». 139 destinations à nouveau ; témoin dans
+`test-preuves-lots-2-3` (Addis-Abeba présente, ouverte sous conditions seulement, fret ouvert,
+cabine et soute refusées ; aucune destination « ok » qui ne soit conditionnelle).
+
+### Erreurs de ma part, nommées
+
+1. Trois attentes fausses sur Air Canada, Delta et JetBlue cabine pour un Golden de 32 kg : la
+   politique citée n'a pas de plafond, mais des RÈGLES de poids non citées demandent confirmation.
+   Le moteur avait raison ; l'attente est corrigée sur mesure (à confirmer, jamais refusé).
+2. `test-t0b-legacy-unreviewed` porte lui aussi la chaîne des baselines figées, et je l'avais
+   rejoué au lot 1 AVANT de régénérer la baseline : il était resté sur « entrée ternaire ». Mis à
+   jour ici sur la figée la plus récente (lots 2 et 3).
+3. Le calculateur de caisse et les pages races portaient encore un « ✅ Éligible cabine » /
+   « Accepté en soute » ; corrigés au lot 1, la contre-épreuve navigateur du lot 1 a en plus
+   montré que la note /100 et « Accepté par la plupart » revenaient par effet de bord de la
+   donnée — masqués par décision écrite (`NOTE_AFFICHABLE = false`), comme la jauge du Finder.
+
+### Mouvements nommés
+
+frontière §10 (0/39/11/252, 230/20, 52 citées nominativement, 50 décisives), legacy (230, 20,
+chaîne), baseline (figée `import-strict-lots-2-3-apres`, chaîne, preuve permanente), carries
+(13 830), registre (52/102/149/3, témoins re-fondés sur WestJet soute), quatrième état (39),
+caisses (15 limites, 1 chien seul), entités (compte des contradictions, relu après build).

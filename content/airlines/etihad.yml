@@ -68,6 +68,23 @@ ladder:
 policies:
   cabin:
     availability: offered
+    # PREUVE IMPORTÉE — import strict lot3 (Codex, lecture directe du 2026-09-08, cohorte LOT3 fait 11).
+    # Effet attendu : For a dog above 8 kg, do not offer the Etihad cabin. At or below 8 kg, do not infer acceptance from the threshold alone.
+    # Portée nommée : the 8 kg ceiling includes the carrier; a dog alone over 8 kg cannot satisfy the cabin rule. Etihad-operated flight, eligible route, documents and advance approval remain required.
+    # Le plafond cité inclut le CONTENANT : refus sûr si le chien seul le dépasse, jamais un oui en dessous.
+    max_weight_kg: 8
+    weight_includes_carrier: true
+    source:
+      url: "https://www.etihad.com/en/plan/travel-companion/travelling-with-pets"
+      source_type: official_website
+      verified_date: "2026-09-08"
+      review_due: "2026-12-07"   # reviewDueFrom(verified_date, "airline") — calculé par l'importeur
+      confidence: 4
+      reviewer: "Codex — direct reading of official airline page"
+      history: []
+      quote: "Pets must be at least 16 weeks old and weigh up to 8kg, including their carrier."
+      quote_language: en
+      locator: "Travelling with Pets → Eligibility"
   hold:
     availability: not_offered
   cargo:

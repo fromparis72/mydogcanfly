@@ -3265,10 +3265,34 @@
     ],
     "policies": {
       "cabin": {
-        "availability": "offered"
+        "availability": "offered",
+        "source": {
+          "url": "https://www.aircanada.com/ca/en/aco/home/plan/special-assistance/pets.html",
+          "source_type": "official_website",
+          "verified_date": "2026-09-08",
+          "review_due": "2026-12-07",
+          "confidence": 4,
+          "reviewer": "Codex — direct reading of official airline page",
+          "history": [],
+          "quote": "Your cat or small dog is welcome to join you in the cabin, as long as they’re kept in a flexible, soft sided carrier under the seat in front of you.",
+          "quote_language": "en",
+          "locator": "Travelling with your Pet → In the Cabin"
+        }
       },
       "hold": {
-        "availability": "offered"
+        "availability": "offered",
+        "source": {
+          "url": "https://www.aircanada.com/ca/en/aco/home/plan/special-assistance/pets.html",
+          "source_type": "official_website",
+          "verified_date": "2026-09-08",
+          "review_due": "2026-12-07",
+          "confidence": 4,
+          "reviewer": "Codex — direct reading of official airline page",
+          "history": [],
+          "quote": "Your pet can't fly in the cabin with you? It can still travel safely and comfortably on the same flight as you, in the pressurized cargo compartment of most of our aircraft.",
+          "quote_language": "en",
+          "locator": "Travelling with your Pet → In the Baggage Compartment"
+        }
       },
       "cargo": {
         "availability": "offered"
@@ -4623,10 +4647,36 @@
     ],
     "policies": {
       "cabin": {
-        "availability": "offered"
+        "availability": "offered",
+        "source": {
+          "url": "https://www.aireuropa.com/us/en/aea/informacion-para-volar/pasajeros/mascotas.html",
+          "source_type": "official_website",
+          "verified_date": "2026-09-08",
+          "review_due": "2026-12-07",
+          "confidence": 4,
+          "reviewer": "Codex — direct reading of official airline page",
+          "history": [],
+          "quote": "Maximum Weight: The weight of the pet cannot exceed 8 kg. The overall weight of the carrier and pet cannot exceed 10 kg.",
+          "quote_language": "en",
+          "locator": "Flying with pets on board → Animals in the cabin"
+        },
+        "max_weight_kg": 8,
+        "weight_includes_carrier": false
       },
       "hold": {
-        "availability": "offered"
+        "availability": "offered",
+        "source": {
+          "url": "https://www.aireuropa.com/us/en/aea/informacion-para-volar/pasajeros/mascotas.html",
+          "source_type": "official_website",
+          "verified_date": "2026-09-08",
+          "review_due": "2026-12-07",
+          "confidence": 4,
+          "reviewer": "Codex — direct reading of official airline page",
+          "history": [],
+          "quote": "Pets may travel on board or in the aircraft hold depending on their species, breed and weight.",
+          "quote_language": "en",
+          "locator": "Flying with pets on board → How can I fly with my pet?"
+        }
       },
       "cargo": {
         "review_state": "legacy_unreviewed"
@@ -5649,13 +5699,51 @@
     ],
     "policies": {
       "cabin": {
-        "availability": "offered"
+        "availability": "offered",
+        "source": {
+          "url": "https://www.airindia.com/in/en/frequently-asked-questions/pet-travel.html",
+          "source_type": "official_website",
+          "verified_date": "2026-09-08",
+          "review_due": "2026-12-07",
+          "confidence": 4,
+          "reviewer": "Codex — direct reading of official airline page",
+          "history": [],
+          "quote": "The combined weight of the pet and the carrier must not exceed 10 kg / 22 lb to travel in the cabin. Pets of heavier weight will be carried in the aircraft hold.",
+          "quote_language": "en",
+          "locator": "Pet Travel FAQ → maximum permissible weight in cabin"
+        },
+        "max_weight_kg": 10,
+        "weight_includes_carrier": true
       },
       "hold": {
-        "availability": "offered"
+        "availability": "offered",
+        "source": {
+          "url": "https://www.airindia.com/in/en/frequently-asked-questions/pet-travel.html",
+          "source_type": "official_website",
+          "verified_date": "2026-09-08",
+          "review_due": "2026-12-07",
+          "confidence": 4,
+          "reviewer": "Codex — direct reading of official airline page",
+          "history": [],
+          "quote": "We allow passengers to travel with their domesticated cats and dogs on board our domestic and select international flights in the passenger cabin or the aircraft hold as checked baggage, subject to approvals by Air India.",
+          "quote_language": "en",
+          "locator": "Pet Travel FAQ → What is Air India’s pet policy?"
+        }
       },
       "cargo": {
-        "review_state": "legacy_unreviewed"
+        "availability": "offered",
+        "source": {
+          "url": "https://www.airindia.com/in/en/frequently-asked-questions/pet-travel.html",
+          "source_type": "official_website",
+          "verified_date": "2026-09-08",
+          "review_due": "2026-12-07",
+          "confidence": 4,
+          "reviewer": "Codex — direct reading of official airline page",
+          "history": [],
+          "quote": "If your pet weighs more than 10 kg / 22 lb, then it must be transported as checked baggage. If the combined weight of the pet and the container is over 32 kg / 70 lb they must be carried as cargo.",
+          "quote_language": "en",
+          "locator": "Pet Travel FAQ → When does my pet need to be transported as checked baggage or cargo?"
+        }
       }
     },
     "channels": [
@@ -7722,10 +7810,36 @@
     ],
     "policies": {
       "cabin": {
-        "availability": "offered"
+        "availability": "offered",
+        "source": {
+          "url": "https://www.airtransat.com/en-GB/travel-information/special-services/pets-and-service-dogs",
+          "source_type": "official_website",
+          "verified_date": "2026-09-08",
+          "review_due": "2026-12-07",
+          "confidence": 4,
+          "reviewer": "Codex — direct reading of official airline page",
+          "history": [],
+          "quote": "The total weight of the carrier and animal must not exceed 8 kilos.",
+          "quote_language": "en",
+          "locator": "Pets in cabin → Restrictions"
+        },
+        "max_weight_kg": 8,
+        "weight_includes_carrier": true
       },
       "hold": {
-        "availability": "offered"
+        "availability": "offered",
+        "source": {
+          "url": "https://www.airtransat.com/en-GB/travel-information/special-services/pets-and-service-dogs",
+          "source_type": "official_website",
+          "verified_date": "2026-09-08",
+          "review_due": "2026-12-07",
+          "confidence": 4,
+          "reviewer": "Codex — direct reading of official airline page",
+          "history": [],
+          "quote": "Only cats and dogs are allowed in the checked baggage hold.",
+          "quote_language": "en",
+          "locator": "Pets in the checked baggage hold → Restrictions"
+        }
       },
       "cargo": {
         "review_state": "legacy_unreviewed"
@@ -9996,10 +10110,34 @@
     ],
     "policies": {
       "cabin": {
-        "availability": "not_offered"
+        "availability": "not_offered",
+        "source": {
+          "url": "https://www.ana.co.jp/en/jp/guide/reservation/support/international/pets/",
+          "source_type": "official_website",
+          "verified_date": "2026-09-08",
+          "review_due": "2026-12-07",
+          "confidence": 4,
+          "reviewer": "Codex — direct reading of official airline page",
+          "history": [],
+          "quote": "The symbol \"〇\" indicates \"allowed\" and the symbol \"×\" indicates \"not allowed\". Class | Allowed to Be Checked In | Allowed to Be Carried on Board | Remarks. Mammals | ○ | × | -",
+          "quote_language": "en",
+          "locator": "For passengers traveling with pets (International Flights) → Pets which can be checked in"
+        }
       },
       "hold": {
-        "availability": "offered"
+        "availability": "offered",
+        "source": {
+          "url": "https://www.ana.co.jp/en/jp/guide/reservation/support/international/pets/",
+          "source_type": "official_website",
+          "verified_date": "2026-09-08",
+          "review_due": "2026-12-07",
+          "confidence": 4,
+          "reviewer": "Codex — direct reading of official airline page",
+          "history": [],
+          "quote": "Your pet will be carried in the cargo section, which is located underneath the passenger cabin.",
+          "quote_language": "en",
+          "locator": "For passengers traveling with pets (International Flights) → Reservation and Fee"
+        }
       },
       "cargo": {
         "review_state": "legacy_unreviewed"
@@ -11316,10 +11454,38 @@
     ],
     "policies": {
       "cabin": {
-        "availability": "offered"
+        "availability": "offered",
+        "source": {
+          "url": "https://ayuda.avianca.com/hc/en-us/articles/13091527349787-Can-I-fly-with-my-pet",
+          "source_type": "official_website",
+          "verified_date": "2026-09-08",
+          "review_due": "2026-12-07",
+          "confidence": 4,
+          "reviewer": "Codex — direct reading of official airline page",
+          "history": [],
+          "quote": "Dogs and cats weighing no more than 10 kg (22 lb), including the weight of their container, may fly in the cabin.",
+          "quote_language": "en",
+          "locator": "Can I fly with my pet? → Pets up to 22 lb including the container"
+        },
+        "max_weight_kg": 10,
+        "weight_includes_carrier": true
       },
       "hold": {
-        "availability": "offered"
+        "availability": "offered",
+        "source": {
+          "url": "https://ayuda.avianca.com/hc/en-us/articles/13091527349787-Can-I-fly-with-my-pet",
+          "source_type": "official_website",
+          "verified_date": "2026-09-08",
+          "review_due": "2026-12-07",
+          "confidence": 4,
+          "reviewer": "Codex — direct reading of official airline page",
+          "history": [],
+          "quote": "Pets weighing no more than 70 kg (154 lb), including the container's weight, may fly in the hold.",
+          "quote_language": "en",
+          "locator": "Can I fly with my pet? → Pets up to 70 kg including the container"
+        },
+        "max_weight_kg": 70,
+        "weight_includes_carrier": true
       },
       "cargo": {
         "review_state": "legacy_unreviewed"
@@ -13781,13 +13947,37 @@
     ],
     "policies": {
       "cabin": {
-        "availability": "not_offered"
+        "availability": "not_offered",
+        "source": {
+          "url": "https://www.cathaypacific.com/cx/en_GB/faqs/baggage/cabin-baggage-allowance/are-pets-allowed-in-the-cabin.html?cxsource=LANGUAGE_SELECTOR_EN_HK",
+          "source_type": "official_website",
+          "verified_date": "2026-09-08",
+          "review_due": "2026-12-07",
+          "confidence": 4,
+          "reviewer": "Codex — direct reading of official airline page",
+          "history": [],
+          "quote": "Aside from service dogs, pets are not allowed in the cabin.",
+          "quote_language": "en",
+          "locator": "Are pets allowed in the cabin?"
+        }
       },
       "hold": {
         "availability": "not_offered"
       },
       "cargo": {
-        "review_state": "legacy_unreviewed"
+        "availability": "offered",
+        "source": {
+          "url": "https://www.cathaypacific.com/cx/en_GB/faqs/baggage/cabin-baggage-allowance/are-pets-allowed-in-the-cabin.html?cxsource=LANGUAGE_SELECTOR_EN_HK",
+          "source_type": "official_website",
+          "verified_date": "2026-09-08",
+          "review_due": "2026-12-07",
+          "confidence": 4,
+          "reviewer": "Codex — direct reading of official airline page",
+          "history": [],
+          "quote": "Your pet will need to travel in cargo.",
+          "quote_language": "en",
+          "locator": "Are pets allowed in the cabin?"
+        }
       }
     },
     "channels": [
@@ -17172,7 +17362,19 @@
     ],
     "policies": {
       "cabin": {
-        "availability": "offered"
+        "availability": "offered",
+        "source": {
+          "url": "https://www.delta.com/us/en/pet-travel/overview",
+          "source_type": "official_website",
+          "verified_date": "2026-09-08",
+          "review_due": "2026-12-07",
+          "confidence": 4,
+          "reviewer": "Codex — direct reading of official airline page",
+          "history": [],
+          "quote": "On domestic flights within the contiguous U.S., small dogs, cats and household birds that meet the age, health, size and kennel requirements can travel in the cabin.",
+          "quote_language": "en",
+          "locator": "Pet Travel on Delta → Traveling with In-Cabin Pets"
+        }
       },
       "hold": {
         "availability": "not_offered"
@@ -19665,13 +19867,53 @@
     ],
     "policies": {
       "cabin": {
-        "availability": "offered"
+        "availability": "offered",
+        "source": {
+          "url": "https://www.ethiopianairlines.com/us/information/special-needs/travelling-with-pets",
+          "source_type": "official_website",
+          "verified_date": "2026-09-08",
+          "review_due": "2026-12-07",
+          "confidence": 4,
+          "reviewer": "Codex — direct reading of official airline page",
+          "history": [],
+          "quote": "You must bring your pet in a box that does not exceed 55 x 40 x 20 cm and 8 kg (including the container). If the size or weight is more, the pet must be transported in the aircraft hold.",
+          "quote_language": "en",
+          "locator": "Travelling with Pets → Policy"
+        },
+        "max_weight_kg": 8,
+        "weight_includes_carrier": true
       },
       "hold": {
-        "availability": "offered"
+        "availability": "offered",
+        "source": {
+          "url": "https://www.ethiopianairlines.com/us/information/special-needs/travelling-with-pets",
+          "source_type": "official_website",
+          "verified_date": "2026-09-08",
+          "review_due": "2026-12-07",
+          "confidence": 4,
+          "reviewer": "Codex — direct reading of official airline page",
+          "history": [],
+          "quote": "If the cage is larger than allowed for cabin travel, or the total weight (pet + cage) is more than 8 kg and up to 45 kg, it will be transported in the hold.",
+          "quote_language": "en",
+          "locator": "Travelling with Pets → Policy"
+        },
+        "max_weight_kg": 45,
+        "weight_includes_carrier": true
       },
       "cargo": {
-        "review_state": "legacy_unreviewed"
+        "availability": "offered",
+        "source": {
+          "url": "https://www.ethiopianairlines.com/us/information/special-needs/travelling-with-pets",
+          "source_type": "official_website",
+          "verified_date": "2026-09-08",
+          "review_due": "2026-12-07",
+          "confidence": 4,
+          "reviewer": "Codex — direct reading of official airline page",
+          "history": [],
+          "quote": "Pets (including cage) weighing more than 45 kg must be transported as cargo, following cargo procedures.",
+          "quote_language": "en",
+          "locator": "Travelling with Pets → Policy"
+        }
       }
     },
     "channels": [
@@ -20086,7 +20328,21 @@
     ],
     "policies": {
       "cabin": {
-        "availability": "offered"
+        "availability": "offered",
+        "source": {
+          "url": "https://www.etihad.com/en/plan/travel-companion/travelling-with-pets",
+          "source_type": "official_website",
+          "verified_date": "2026-09-08",
+          "review_due": "2026-12-07",
+          "confidence": 4,
+          "reviewer": "Codex — direct reading of official airline page",
+          "history": [],
+          "quote": "Pets must be at least 16 weeks old and weigh up to 8kg, including their carrier.",
+          "quote_language": "en",
+          "locator": "Travelling with Pets → Eligibility"
+        },
+        "max_weight_kg": 8,
+        "weight_includes_carrier": true
       },
       "hold": {
         "availability": "not_offered"
@@ -20937,10 +21193,34 @@
     ],
     "policies": {
       "cabin": {
-        "availability": "not_offered"
+        "availability": "not_offered",
+        "source": {
+          "url": "https://www.evaair.com/en-us/fly-prepare/baggage/travelling-with-pets/",
+          "source_type": "official_website",
+          "verified_date": "2026-09-08",
+          "review_due": "2026-12-07",
+          "confidence": 4,
+          "reviewer": "Codex — direct reading of official airline page",
+          "history": [],
+          "quote": "Pets are not accepted in the cabin except for service dogs carried by disabled passengers.",
+          "quote_language": "en",
+          "locator": "Travelling with Pets → Travelling with Pets"
+        }
       },
       "hold": {
-        "availability": "offered"
+        "availability": "offered",
+        "source": {
+          "url": "https://www.evaair.com/en-us/fly-prepare/baggage/travelling-with-pets/",
+          "source_type": "official_website",
+          "verified_date": "2026-09-08",
+          "review_due": "2026-12-07",
+          "confidence": 4,
+          "reviewer": "Codex — direct reading of official airline page",
+          "history": [],
+          "quote": "The accompanied pets, only dogs, cats, and rabbits, can be transported on EVA Air's aircraft as checked baggage in the cargo compartment.",
+          "quote_language": "en",
+          "locator": "Travelling with Pets → Travelling with Pets"
+        }
       },
       "cargo": {
         "review_state": "legacy_unreviewed"
@@ -25125,7 +25405,19 @@
         "availability": "not_offered"
       },
       "hold": {
-        "availability": "offered"
+        "availability": "offered",
+        "source": {
+          "url": "https://www.jal.co.jp/jp/en/inter/support/pet/",
+          "source_type": "official_website",
+          "verified_date": "2026-09-08",
+          "review_due": "2026-12-07",
+          "confidence": 4,
+          "reviewer": "Codex — direct reading of official airline page",
+          "history": [],
+          "quote": "Pets can be checked in at the same check-in counter as their owners.",
+          "quote_language": "en",
+          "locator": "Traveling with pets → How to transport your pet → Step 3"
+        }
       },
       "cargo": {
         "review_state": "legacy_unreviewed"
@@ -25541,7 +25833,19 @@
     ],
     "policies": {
       "cabin": {
-        "availability": "offered"
+        "availability": "offered",
+        "source": {
+          "url": "https://www.jetblue.com/help/traveling-with-pets",
+          "source_type": "official_website",
+          "verified_date": "2026-09-08",
+          "review_due": "2026-12-07",
+          "confidence": 4,
+          "reviewer": "Codex — direct reading of official airline page",
+          "history": [],
+          "quote": "Only small dogs and cats may travel in the cabin in an FAA-approved pet carrier that fits comfortably under the seat in front of you.",
+          "quote_language": "en",
+          "locator": "Traveling with Pets → Pet guidelines"
+        }
       },
       "hold": {
         "availability": "not_offered"

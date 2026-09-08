@@ -1,0 +1,179 @@
+{
+  "schema_version": 1,
+  "as_of": "2026-09-08",
+  "status": "strict_import_candidate",
+  "purpose": "Third independently reviewed batch. Each fact carries one continuous excerpt from a current first-party airline page. A conditional channel is not a seat-availability claim.",
+  "provenance_defaults": {
+    "source_type": "official_website",
+    "verified_date": "2026-09-08",
+    "review_due": "derive_with_reviewDueFrom(verified_date, 'airline')",
+    "confidence": 4,
+    "reviewer": "Codex — direct reading of official airline page"
+  },
+  "facts": [
+    {
+      "airline_id": "airline_air_india",
+      "placement": "cabin",
+      "recommendation": "deny_when_dog_weight_kg_gt_10",
+      "condition_scope": "the 10 kg ceiling includes the carrier; a dog alone over 10 kg cannot satisfy this cabin rule. Route, cabin-class and document restrictions remain applicable.",
+      "finder_effect": "For a dog above 10 kg, do not offer the Air India cabin. At or below 10 kg, do not infer acceptance from this negative threshold.",
+      "url": "https://www.airindia.com/in/en/frequently-asked-questions/pet-travel.html",
+      "quote": "The combined weight of the pet and the carrier must not exceed 10 kg / 22 lb to travel in the cabin. Pets of heavier weight will be carried in the aircraft hold.",
+      "quote_language": "en",
+      "locator": "Pet Travel FAQ → maximum permissible weight in cabin"
+    },
+    {
+      "airline_id": "airline_air_india",
+      "placement": "hold",
+      "recommendation": "offered_with_conditions",
+      "condition_scope": "domestic and select international flights, prior approval, aircraft and route compatibility; pet plus carrier over 10 kg and not more than 32 kg",
+      "finder_effect": "Passenger hold is a conditional route for a larger dog. It is never a guarantee for the chosen aircraft, route or paperwork.",
+      "url": "https://www.airindia.com/in/en/frequently-asked-questions/pet-travel.html",
+      "quote": "We allow passengers to travel with their domesticated cats and dogs on board our domestic and select international flights in the passenger cabin or the aircraft hold as checked baggage, subject to approvals by Air India.",
+      "quote_language": "en",
+      "locator": "Pet Travel FAQ → What is Air India’s pet policy?"
+    },
+    {
+      "airline_id": "airline_air_india",
+      "placement": "cargo",
+      "recommendation": "offered_with_conditions",
+      "condition_scope": "when the combined weight of pet and container is above 32 kg; route, cargo process and documentation restrictions apply",
+      "finder_effect": "Cargo is a conditional direction for a very large dog-and-container combination, never an automatic shipment acceptance.",
+      "url": "https://www.airindia.com/in/en/frequently-asked-questions/pet-travel.html",
+      "quote": "If your pet weighs more than 10 kg / 22 lb, then it must be transported as checked baggage. If the combined weight of the pet and the container is over 32 kg / 70 lb they must be carried as cargo.",
+      "quote_language": "en",
+      "locator": "Pet Travel FAQ → When does my pet need to be transported as checked baggage or cargo?"
+    },
+    {
+      "airline_id": "airline_avianca",
+      "placement": "cabin",
+      "recommendation": "deny_when_dog_weight_kg_gt_10",
+      "condition_scope": "the 10 kg ceiling includes the container; a dog alone over 10 kg cannot satisfy the cabin rule. Route, class, carrier and document conditions remain applicable.",
+      "finder_effect": "For a dog above 10 kg, do not offer the Avianca cabin. At or below 10 kg, this fact does not itself confirm a booking.",
+      "url": "https://ayuda.avianca.com/hc/en-us/articles/13091527349787-Can-I-fly-with-my-pet",
+      "quote": "Dogs and cats weighing no more than 10 kg (22 lb), including the weight of their container, may fly in the cabin.",
+      "quote_language": "en",
+      "locator": "Can I fly with my pet? → Pets up to 22 lb including the container"
+    },
+    {
+      "airline_id": "airline_avianca",
+      "placement": "hold",
+      "recommendation": "offered_with_conditions",
+      "condition_scope": "pet plus container up to 70 kg, ventilated hold, route and seasonal restrictions, advance booking and space availability",
+      "finder_effect": "Passenger hold is a conditional path. Do not present it where Avianca’s route or aircraft restrictions exclude it.",
+      "url": "https://ayuda.avianca.com/hc/en-us/articles/13091527349787-Can-I-fly-with-my-pet",
+      "quote": "Pets weighing no more than 70 kg (154 lb), including the container's weight, may fly in the hold.",
+      "quote_language": "en",
+      "locator": "Can I fly with my pet? → Pets up to 70 kg including the container"
+    },
+    {
+      "airline_id": "airline_ethiopian",
+      "placement": "cabin",
+      "recommendation": "deny_when_dog_weight_kg_gt_8",
+      "condition_scope": "the 8 kg ceiling includes the container; a dog alone over 8 kg cannot satisfy the cabin rule. Operating-carrier, route and advance-arrangement restrictions apply.",
+      "finder_effect": "For a dog above 8 kg, do not offer the Ethiopian cabin. At or below 8 kg, no confirmation is inferred from the threshold alone.",
+      "url": "https://www.ethiopianairlines.com/us/information/special-needs/travelling-with-pets",
+      "quote": "You must bring your pet in a box that does not exceed 55 x 40 x 20 cm and 8 kg (including the container). If the size or weight is more, the pet must be transported in the aircraft hold.",
+      "quote_language": "en",
+      "locator": "Travelling with Pets → Policy"
+    },
+    {
+      "airline_id": "airline_ethiopian",
+      "placement": "hold",
+      "recommendation": "offered_with_conditions",
+      "condition_scope": "pet plus cage over 8 kg and up to 45 kg; advance arrangement, route, breed and operating-carrier restrictions apply",
+      "finder_effect": "Passenger hold is a conditional path for a dog-and-container combination over the cabin ceiling, not a blanket approval.",
+      "url": "https://www.ethiopianairlines.com/us/information/special-needs/travelling-with-pets",
+      "quote": "If the cage is larger than allowed for cabin travel, or the total weight (pet + cage) is more than 8 kg and up to 45 kg, it will be transported in the hold.",
+      "quote_language": "en",
+      "locator": "Travelling with Pets → Policy"
+    },
+    {
+      "airline_id": "airline_ethiopian",
+      "placement": "cargo",
+      "recommendation": "offered_with_conditions",
+      "condition_scope": "pet plus cage above 45 kg; cargo procedures, legal and route restrictions apply",
+      "finder_effect": "Cargo is a conditional direction for a dog-and-container combination above 45 kg, not a shipping confirmation.",
+      "url": "https://www.ethiopianairlines.com/us/information/special-needs/travelling-with-pets",
+      "quote": "Pets (including cage) weighing more than 45 kg must be transported as cargo, following cargo procedures.",
+      "quote_language": "en",
+      "locator": "Travelling with Pets → Policy"
+    },
+    {
+      "airline_id": "airline_ana",
+      "placement": "cabin",
+      "recommendation": "not_offered_for_pet_dogs",
+      "condition_scope": "ordinary companion mammals on ANA international pet service; assistance dogs are a distinct accessibility flow",
+      "finder_effect": "Do not offer ANA’s passenger cabin to an ordinary pet dog.",
+      "url": "https://www.ana.co.jp/en/jp/guide/reservation/support/international/pets/",
+      "quote": "The symbol \"〇\" indicates \"allowed\" and the symbol \"×\" indicates \"not allowed\". Class | Allowed to Be Checked In | Allowed to Be Carried on Board | Remarks. Mammals | ○ | × | -",
+      "quote_language": "en",
+      "locator": "For passengers traveling with pets (International Flights) → Pets which can be checked in"
+    },
+    {
+      "airline_id": "airline_ana",
+      "placement": "hold",
+      "recommendation": "offered_with_conditions",
+      "condition_scope": "ANA-operated flight under ANA flight number, advance reservation, country/quarantine limits and seasonal or breed restrictions",
+      "finder_effect": "Passenger hold is a conditional path; never apply it to a codeshare or a route that requires cargo treatment.",
+      "url": "https://www.ana.co.jp/en/jp/guide/reservation/support/international/pets/",
+      "quote": "Your pet will be carried in the cargo section, which is located underneath the passenger cabin.",
+      "quote_language": "en",
+      "locator": "For passengers traveling with pets (International Flights) → Reservation and Fee"
+    },
+    {
+      "airline_id": "airline_jal",
+      "placement": "hold",
+      "recommendation": "offered_with_conditions",
+      "condition_scope": "JAL international pet service, advance reservation, crate capacity, animal eligibility and operating-carrier restrictions",
+      "finder_effect": "A checked-pet path exists, but capacity and acceptance must remain conditional. Do not turn this into a cargo decision for an unaccompanied animal.",
+      "url": "https://www.jal.co.jp/jp/en/inter/support/pet/",
+      "quote": "Pets can be checked in at the same check-in counter as their owners.",
+      "quote_language": "en",
+      "locator": "Traveling with pets → How to transport your pet → Step 3"
+    },
+    {
+      "airline_id": "airline_etihad",
+      "placement": "cabin",
+      "recommendation": "deny_when_dog_weight_kg_gt_8",
+      "condition_scope": "the 8 kg ceiling includes the carrier; a dog alone over 8 kg cannot satisfy the cabin rule. Etihad-operated flight, eligible route, documents and advance approval remain required.",
+      "finder_effect": "For a dog above 8 kg, do not offer the Etihad cabin. At or below 8 kg, do not infer acceptance from the threshold alone.",
+      "url": "https://www.etihad.com/en/plan/travel-companion/travelling-with-pets",
+      "quote": "Pets must be at least 16 weeks old and weigh up to 8kg, including their carrier.",
+      "quote_language": "en",
+      "locator": "Travelling with Pets → Eligibility"
+    }
+  ],
+  "intentionally_unset": [
+    {
+      "airline_id": "airline_avianca",
+      "placement": "cargo",
+      "reason": "Avianca directs animals above its passenger-hold ceiling to Avianca Cargo, but no current general cargo-acceptance decision is imported here."
+    },
+    {
+      "airline_id": "airline_ana",
+      "placement": "cargo",
+      "reason": "ANA distinguishes separately shipped cargo from its accompanying-pet service. No cargo policy is inferred from the latter."
+    },
+    {
+      "airline_id": "airline_jal",
+      "placement": "cabin",
+      "reason": "The current JAL source supports a checked-pet service. This batch does not turn its terminology into a second cabin decision."
+    },
+    {
+      "airline_id": "airline_jal",
+      "placement": "cargo",
+      "reason": "JAL uses cargo terminology for the checked-pet flow. Mapping it to the site's separate freight category needs a deliberately scoped review."
+    },
+    {
+      "airline_id": "airline_etihad",
+      "placement": "hold",
+      "reason": "The current official passenger page reviewed here establishes cabin carriage only; no passenger-hold decision is imported."
+    },
+    {
+      "airline_id": "airline_etihad",
+      "placement": "cargo",
+      "reason": "No cargo decision is inferred from the passenger pet page."
+    }
+  ]
+}

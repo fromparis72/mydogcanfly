@@ -353,9 +353,12 @@ function holdVerdict(brachy: boolean, yes: number, no: number, bans: number): Ch
     // Snub-nosed dogs face widespread heat/respiratory hold restrictions that vary by carrier
     // and season. We never rate the hold "widely accepted" for a brachycephalic breed — this is
     // category-level caution, not a fabricated per-airline refusal (the detail gives the hard count).
-    level = bans >= 8 || pct < 0.35
-      ? L("Frequently refused", "Souvent refusé", "Rechazado con frecuencia", "Frequentemente recusado", "no")
-      : L("Restricted — confirm per airline", "Restrictions — à confirmer", "Restringido — confirmar según la aerolínea", "Restrito — confirmar com cada companhia", "warn");
+    /* « SOUVENT REFUSÉ » N'EST PAS PROUVÉ (08/09/2026, lots 2 et 3, contre-épreuve navigateur sur la
+       fiche du carlin). Les refus brachycéphales de soute (`brachy_allowed: false`) sont des
+       restrictions NON CITÉES : le moteur, lui, les rend « à confirmer » (`breed_policy_unreviewed`),
+       jamais refusées. La fiche dit la même chose — restrictions, à confirmer — quel que soit le
+       compte, qui reste donné dans le détail. */
+    level = L("Restricted — confirm per airline", "Restrictions — à confirmer", "Restringido — confirmar según la aerolínea", "Restrito — confirmar com cada companhia", "warn");
   } else {
     level = pct >= 0.7 ? L("Possible for most, under the airlines' conditions", "Possible pour la plupart, sous conditions des compagnies", "Posible en la mayoría, con las condiciones de las aerolíneas", "Possível na maioria, nas condições das companhias", "ok")
       : pct >= 0.4 ? L("Restricted", "Soumis à restrictions", "Restringido", "Sujeito a restrições", "warn")

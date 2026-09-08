@@ -22,7 +22,8 @@ const WRITE = process.argv.includes("--write");
 /* Couples où le témoin hérité vaut `true` depuis l'import strict V3 (08/09/2026) — MESURÉ : 7 113
    sur 42 360, c'est-à-dire les couples (compagnie × paire × date) où un canal est accepté sous
    conditions. Figé ; avance par mouvement nommé à chaque import. */
-const TEMOIN_VRAI_V3 = 7113;
+/* MOUVEMENT NOMMÉ (08/09/2026, import strict lots 2 et 3 — 24 citations de plus, 52 en tout) : 7 113 → 13 830. */
+const TEMOIN_VRAI_V3 = 13830;
 /**
  * T0-B2 — la sonde vivante compare désormais au fichier DE CE LOT.
  *

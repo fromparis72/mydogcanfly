@@ -49,6 +49,10 @@ const LOTS = {
   lot2: { dossier: "mesures/preuves/import-strict-lot-2-2026-09-08", total: 12,
     fichiers: { LOT2: "tous" },
     nom: () => "PREUVES_POLITIQUES_COMPAGNIES_LOT_2_STRICT_2026-09-08.json" },
+  /** Le troisième paquet : un seul fichier, ses 12 faits tous autorisés. */
+  lot3: { dossier: "mesures/preuves/import-strict-lot-3-2026-09-08", total: 12,
+    fichiers: { LOT3: "tous" },
+    nom: () => "PREUVES_POLITIQUES_COMPAGNIES_LOT_3_STRICT_2026-09-08.json" },
 };
 if (!LOTS[LOT]) throw new Error(`lot inconnu : ${LOT}`);
 const DOSSIER = resolve(arg("dossier", LOTS[LOT].dossier));
@@ -68,6 +72,14 @@ const SEUILS = {
      `weight_includes_carrier: false`, EXPLICITE — le moteur refuse au-dessus dans les deux cas,
      et la carte dit lequel des deux plafonds elle applique. */
   "airline_air_transat.cabin": 8, "airline_air_europa.cabin": 8,
+  /* Lot 3 — toutes contenant compris, en toutes lettres dans la phrase citée : Air India cabine
+     10 (« combined weight of the pet and the carrier must not exceed 10 kg »), Avianca cabine 10
+     et soute 70 (« including the weight of their container » / « including the container's
+     weight »), Ethiopian cabine 8 et soute 45 (« pet + cage … up to 45 kg »), Etihad cabine 8
+     (« up to 8kg, including their carrier »). Air India soute 32 kg n'est PAS écrit : le seuil
+     figure dans la phrase du FRET (fait 2), pas dans celle de la soute (fait 1). */
+  "airline_air_india.cabin": 10, "airline_avianca.cabin": 10, "airline_avianca.hold": 70,
+  "airline_ethiopian.cabin": 8, "airline_ethiopian.hold": 45, "airline_etihad.cabin": 8,
 };
 /** Seuils du CHIEN SEUL (le contenant s'ajoute) : `weight_includes_carrier: false`, écrit. */
 const SEUIL_CHIEN_SEUL = new Set(["airline_air_europa.cabin"]);
@@ -130,7 +142,7 @@ for (const [airlineId, lot] of parFiche) {
          preuve »). Le rapport le nomme « RÉACTIVÉ », distinct d'« IMPORTÉ ». */
       const legacy = bloc.findIndex((l) => /^    review_state:\s*legacy_unreviewed/.test(l));
       if (legacy < 0) { rapport.push({ ...f, action: "REFUSÉ", raison: "ni `availability:` ni `review_state:` — bloc illisible" }); continue; }
-      bloc[legacy] = `    availability: ${attendue}   # RÉACTIVÉE sur citation (import strict, lot 2, ${f.verified_date}) — était review_state: legacy_unreviewed`;
+      bloc[legacy] = `    availability: ${attendue}   # RÉACTIVÉE sur citation (import strict, ${LOT}, ${f.verified_date}) — était review_state: legacy_unreviewed`;
       lignes[pDebut + 1 + legacy] = bloc[legacy];
       dispoLigne = legacy; reactivee = true;
     }
@@ -149,7 +161,7 @@ for (const [airlineId, lot] of parFiche) {
     if (/…|\.\.\./.test(f.quote)) { rapport.push({ ...f, action: "REFUSÉ", raison: "citation non continue (ellipse)" }); continue; }
     const reviewDue = reviewDueFrom(f.verified_date, "airline");
     const insertion = [
-      `    # PREUVE IMPORTÉE — import strict V3 (Codex, lecture directe du ${f.verified_date}, cohorte ${f.cohorte} fait ${f.index}).`,
+      `    # PREUVE IMPORTÉE — import strict ${LOT} (Codex, lecture directe du ${f.verified_date}, cohorte ${f.cohorte} fait ${f.index}).`,
       `    # Effet attendu : ${f.finder_effect}`,
       `    # Portée nommée : ${f.condition_scope}`,
       ...(seuil ? [

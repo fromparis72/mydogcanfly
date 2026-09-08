@@ -74,8 +74,36 @@ ladder:
 policies:
   cabin:
     availability: not_offered
+    # PREUVE IMPORTÉE — import strict lot3 (Codex, lecture directe du 2026-09-08, cohorte LOT3 fait 8).
+    # Effet attendu : Do not offer ANA’s passenger cabin to an ordinary pet dog.
+    # Portée nommée : ordinary companion mammals on ANA international pet service; assistance dogs are a distinct accessibility flow
+    source:
+      url: "https://www.ana.co.jp/en/jp/guide/reservation/support/international/pets/"
+      source_type: official_website
+      verified_date: "2026-09-08"
+      review_due: "2026-12-07"   # reviewDueFrom(verified_date, "airline") — calculé par l'importeur
+      confidence: 4
+      reviewer: "Codex — direct reading of official airline page"
+      history: []
+      quote: "The symbol \"〇\" indicates \"allowed\" and the symbol \"×\" indicates \"not allowed\". Class | Allowed to Be Checked In | Allowed to Be Carried on Board | Remarks. Mammals | ○ | × | -"
+      quote_language: en
+      locator: "For passengers traveling with pets (International Flights) → Pets which can be checked in"
   hold:
     availability: offered
+    # PREUVE IMPORTÉE — import strict lot3 (Codex, lecture directe du 2026-09-08, cohorte LOT3 fait 9).
+    # Effet attendu : Passenger hold is a conditional path; never apply it to a codeshare or a route that requires cargo treatment.
+    # Portée nommée : ANA-operated flight under ANA flight number, advance reservation, country/quarantine limits and seasonal or breed restrictions
+    source:
+      url: "https://www.ana.co.jp/en/jp/guide/reservation/support/international/pets/"
+      source_type: official_website
+      verified_date: "2026-09-08"
+      review_due: "2026-12-07"   # reviewDueFrom(verified_date, "airline") — calculé par l'importeur
+      confidence: 4
+      reviewer: "Codex — direct reading of official airline page"
+      history: []
+      quote: "Your pet will be carried in the cargo section, which is located underneath the passenger cabin."
+      quote_language: en
+      locator: "For passengers traveling with pets (International Flights) → Reservation and Fee"
   cargo:
     review_state: legacy_unreviewed
 channels:

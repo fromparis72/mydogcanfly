@@ -113,13 +113,21 @@ export function rankDestinations(kb: NormalizedKB, req: DestinationsRequest): De
        Paris → Miami). */
     const hasStatus = (a: (typeof directAll)[number], st: string, p?: string) =>
       a.placements.some((x) => (p ? x.placement === p : true) && x.status === st);
-    const direct = directAll.filter((a) => hasStatus(a, "allowed"));
-    const directToConfirm = directAll.filter((a) => !hasStatus(a, "allowed") && hasStatus(a, "confirmation_required"));
+    /* LE QUATRIÈME ÉTAT COMPTE COMME OUVERT (08/09/2026, import strict lots 2 et 3 — trouvé par
+       un compteur : Addis-Abeba DISPARAISSAIT de l'outil pour un chien de 50 kg, parce qu'Ethiopian
+       n'avait plus ni `allowed` ni « à confirmer » — cabine et soute refusées sur seuil cité, fret
+       accepté SOUS CONDITIONS, un statut que ce filtre ne connaissait pas). Un canal accepté sous
+       conditions est un canal ouvert : la destination est incluse, et `placement_conditional`
+       dit à l'interface de ne jamais l'appeler « compatible » sans ce mot. */
+    const ouvert = (a: (typeof directAll)[number], p?: string) => hasStatus(a, "allowed", p) || hasStatus(a, "accepted_with_conditions", p);
+    const direct = directAll.filter((a) => ouvert(a));
+    const directToConfirm = directAll.filter((a) => !ouvert(a) && hasStatus(a, "confirmation_required"));
     if (!direct.length && !directToConfirm.length) continue;
 
     const included = [...direct, ...directToConfirm];
-    const statusOfChannel = (p: string): "allowed" | "denied" | "confirmation_required" =>
+    const statusOfChannel = (p: string): "allowed" | "accepted_with_conditions" | "denied" | "confirmation_required" =>
       included.some((a) => hasStatus(a, "allowed", p)) ? "allowed"
+      : included.some((a) => hasStatus(a, "accepted_with_conditions", p)) ? "accepted_with_conditions"
       : included.some((a) => hasStatus(a, "confirmation_required", p)) ? "confirmation_required"
       : "denied";
     const cabin_status = statusOfChannel("cabin");
@@ -142,14 +150,19 @@ export function rankDestinations(kb: NormalizedKB, req: DestinationsRequest): De
     /* Booléens de transition : vrais UNIQUEMENT pour `allowed`. Le fret est désormais ÉMIS
        (arbitrage option 1) : il était calculé, décidait de `placement_ok`, et n'apparaissait
        nulle part — 3 à 5 destinations étaient compatibles par un canal invisible. */
-    const cabin_ok = cabin_status === "allowed";
-    const hold_ok = hold_status === "allowed";
-    const cargo_ok = cargo_status === "allowed";
+    const estOuvert = (st: string) => st === "allowed" || st === "accepted_with_conditions";
+    const cabin_ok = estOuvert(cabin_status);
+    const hold_ok = estOuvert(hold_status);
+    const cargo_ok = estOuvert(cargo_status);
     const prefStatus = placementPref === "any"
-      ? (cabin_ok || hold_ok || cargo_ok ? "allowed"
+      ? ([cabin_status, hold_status, cargo_status].includes("allowed") ? "allowed"
+         : [cabin_status, hold_status, cargo_status].includes("accepted_with_conditions") ? "accepted_with_conditions"
          : [cabin_status, hold_status, cargo_status].includes("confirmation_required") ? "confirmation_required" : "denied")
       : statusOfChannel(placementPref);
-    const placement_ok = prefStatus === "allowed";
+    const placement_ok = estOuvert(prefStatus);
+    /* Ouvert SOUS CONDITIONS seulement (aucun `allowed`) : l'interface le dit. Mesuré : `allowed`
+       n'est plus produit par aucune politique, donc toute destination « ok » est conditionnelle. */
+    const placement_conditional = placement_ok && prefStatus !== "allowed";
     const placement_to_confirm = prefStatus === "confirmation_required";
 
     // Shortest origin→this-airport distance → estimated direct flight time.
@@ -197,6 +210,7 @@ export function rankDestinations(kb: NormalizedKB, req: DestinationsRequest): De
       hold_status,
       cargo_status,
       placement_ok,
+      placement_conditional,
       placement_to_confirm,
       /* LE TERNAIRE VOYAGE JUSQU'ICI (contre-revue du 05/09/2026). Ce champ seul a fait remonter
          au rang des destinations sans restriction celles dont l'entrée est seulement « à

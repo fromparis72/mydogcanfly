@@ -68,8 +68,39 @@ ladder:
 policies:
   cabin:
     availability: offered
+    # PREUVE IMPORTÉE — import strict V3 (Codex, lecture directe du 2026-09-08, cohorte LOT2 fait 4).
+    # Effet attendu : For a dog heavier than 8 kg, cabin is not suitable. Below 8 kg, carrier weight and route conditions remain unresolved.
+    # Portée nommée : the ceiling is carrier plus animal; a dog alone above 8 kg therefore cannot fit this cabin rule
+    # Le plafond cité inclut le CONTENANT : refus sûr si le chien seul le dépasse, jamais un oui en dessous.
+    max_weight_kg: 8
+    weight_includes_carrier: true
+    source:
+      url: "https://www.airtransat.com/en-GB/travel-information/special-services/pets-and-service-dogs"
+      source_type: official_website
+      verified_date: "2026-09-08"
+      review_due: "2026-12-07"   # reviewDueFrom(verified_date, "airline") — calculé par l'importeur
+      confidence: 4
+      reviewer: "Codex — direct reading of official airline page"
+      history: []
+      quote: "The total weight of the carrier and animal must not exceed 8 kilos."
+      quote_language: en
+      locator: "Pets in cabin → Restrictions"
   hold:
     availability: offered
+    # PREUVE IMPORTÉE — import strict V3 (Codex, lecture directe du 2026-09-08, cohorte LOT2 fait 5).
+    # Effet attendu : Passenger hold is a conditional lead. Booking/payment never proves acceptance, which remains operationally constrained.
+    # Portée nommée : cat or dog only; no codeshare, connection, vacation package or Train + Air; advance reservation and operational acceptance required
+    source:
+      url: "https://www.airtransat.com/en-GB/travel-information/special-services/pets-and-service-dogs"
+      source_type: official_website
+      verified_date: "2026-09-08"
+      review_due: "2026-12-07"   # reviewDueFrom(verified_date, "airline") — calculé par l'importeur
+      confidence: 4
+      reviewer: "Codex — direct reading of official airline page"
+      history: []
+      quote: "Only cats and dogs are allowed in the checked baggage hold."
+      quote_language: en
+      locator: "Pets in the checked baggage hold → Restrictions"
   cargo:
     review_state: legacy_unreviewed
 channels:

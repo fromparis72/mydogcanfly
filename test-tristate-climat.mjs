@@ -399,11 +399,16 @@ console.log("\n=== 7. Destinations : statuts, fret émis, inclusion en alternati
     JSON.stringify(auh?.confirmation_signals));
   check("Abou Dabi : AUCUN drapeau chaleur — la cause n'est pas climatique",
     auh?.heat_embargo === false && auh?.heat_confirmation_required === false);
-  const statuses = ["allowed", "denied", "confirmation_required"];
+  /* MOUVEMENT NOMMÉ (08/09/2026, lots 2 et 3) : le quatrième état est un statut de destination, et
+     un canal « ok » l'est aussi quand il est accepté sous conditions (Addis-Abeba, voir annexe 24). */
+  const statuses = ["allowed", "accepted_with_conditions", "denied", "confirmation_required"];
   check("tous les statuts émis sont valides",
     dest.matches.every((m) => [m.cabin_status, m.hold_status, m.cargo_status].every((s) => statuses.includes(s))));
-  check("booléens *_ok vrais UNIQUEMENT pour allowed",
-    dest.matches.every((m) => (m.cabin_ok === (m.cabin_status === "allowed")) && (m.hold_ok === (m.hold_status === "allowed")) && (m.cargo_ok === (m.cargo_status === "allowed"))));
+  const ouvert = (st) => st === "allowed" || st === "accepted_with_conditions";
+  check("booléens *_ok vrais UNIQUEMENT pour un canal ouvert (allowed ou accepté sous conditions)",
+    dest.matches.every((m) => (m.cabin_ok === ouvert(m.cabin_status)) && (m.hold_ok === ouvert(m.hold_status)) && (m.cargo_ok === ouvert(m.cargo_status))));
+  check("…et `placement_conditional` est vrai sur toute destination ouverte : aucun `allowed` n'existe",
+    dest.matches.every((m) => !m.placement_ok || m.placement_conditional === true));
 }
 
 console.log("\n=== 7 bis. climate.embargo dérive des RÈGLES, pas du seuil (contre-revue v3) ===");

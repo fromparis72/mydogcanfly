@@ -786,8 +786,10 @@ console.log(`\n=== 5. Les ${CIBLE.length} canaux contradictoires × 4 langues : 
    * `cls` éditorial disait déjà « non » ont reçu la citation qui le prouve — Ryanair ×3 (la fiche
    * sort du registre), easyJet cabine et soute, Qatar cabine, Vueling soute. Les 18 canaux
    * acceptés sous conditions, eux, restent contradictoires : leur éditorial dit « Autorisé ». */
-  check("288 canaux contradictoires sur 101 fiches, relus des fiches et du contrat runtime",
-    CONTRADICTOIRES.length === 288 && new Set(CONTRADICTOIRES.map((c) => c.slug)).size === 101,
+  /* 288 → 285 (08/09/2026, lots 2 et 3) : Cathay Pacific, EVA Air et ANA cabines — l'éditorial
+   * disait déjà « non », la citation le prouve. Toujours 101 fiches. */
+  check("285 canaux contradictoires sur 101 fiches, relus des fiches et du contrat runtime",
+    CONTRADICTOIRES.length === 285 && new Set(CONTRADICTOIRES.map((c) => c.slug)).size === 101,
     `${CONTRADICTOIRES.length} canaux · ${new Set(CONTRADICTOIRES.map((c) => c.slug)).size} fiches`);
 
   /* LA LECTURE SE FAIT PAR LOTS, DANS DES PROCESSUS COURTS (CI du 16/08/2026, run 31 sur main).

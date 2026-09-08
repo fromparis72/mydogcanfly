@@ -82,6 +82,20 @@ ladder:
 policies:
   cabin:
     availability: offered
+    # PREUVE IMPORTÉE — import strict V3 (Codex, lecture directe du 2026-09-08, cohorte LOT2 fait 2).
+    # Effet attendu : Cabin is a conditional lead for a genuinely small dog. It must not be presented as available for a large dog or every destination.
+    # Portée nommée : small dog, age/health/size/kennel requirements; destination and cabin-class exclusions apply
+    source:
+      url: "https://www.delta.com/us/en/pet-travel/overview"
+      source_type: official_website
+      verified_date: "2026-09-08"
+      review_due: "2026-12-07"   # reviewDueFrom(verified_date, "airline") — calculé par l'importeur
+      confidence: 4
+      reviewer: "Codex — direct reading of official airline page"
+      history: []
+      quote: "On domestic flights within the contiguous U.S., small dogs, cats and household birds that meet the age, health, size and kennel requirements can travel in the cabin."
+      quote_language: en
+      locator: "Pet Travel on Delta → Traveling with In-Cabin Pets"
   hold:
     availability: not_offered
   cargo:

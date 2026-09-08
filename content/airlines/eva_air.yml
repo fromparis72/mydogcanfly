@@ -62,8 +62,36 @@ ladder:
 policies:
   cabin:
     availability: not_offered
+    # PREUVE IMPORTÉE — import strict V3 (Codex, lecture directe du 2026-09-08, cohorte LOT2 fait 10).
+    # Effet attendu : Do not offer EVA Air passenger cabin to an ordinary pet dog.
+    # Portée nommée : service dogs carried by disabled passengers are a separate accessibility flow
+    source:
+      url: "https://www.evaair.com/en-us/fly-prepare/baggage/travelling-with-pets/"
+      source_type: official_website
+      verified_date: "2026-09-08"
+      review_due: "2026-12-07"   # reviewDueFrom(verified_date, "airline") — calculé par l'importeur
+      confidence: 4
+      reviewer: "Codex — direct reading of official airline page"
+      history: []
+      quote: "Pets are not accepted in the cabin except for service dogs carried by disabled passengers."
+      quote_language: en
+      locator: "Travelling with Pets → Travelling with Pets"
   hold:
     availability: offered
+    # PREUVE IMPORTÉE — import strict V3 (Codex, lecture directe du 2026-09-08, cohorte LOT2 fait 11).
+    # Effet attendu : Passenger hold is a conditional path, not a blanket approval for the route or dog.
+    # Portée nommée : accompanied dogs, cats and rabbits on EVA/UNI operated international flights; breed, season, container, route and advance-reservation restrictions apply
+    source:
+      url: "https://www.evaair.com/en-us/fly-prepare/baggage/travelling-with-pets/"
+      source_type: official_website
+      verified_date: "2026-09-08"
+      review_due: "2026-12-07"   # reviewDueFrom(verified_date, "airline") — calculé par l'importeur
+      confidence: 4
+      reviewer: "Codex — direct reading of official airline page"
+      history: []
+      quote: "The accompanied pets, only dogs, cats, and rabbits, can be transported on EVA Air's aircraft as checked baggage in the cargo compartment."
+      quote_language: en
+      locator: "Travelling with Pets → Travelling with Pets"
   cargo:
     review_state: legacy_unreviewed
     # dette éditoriale scellée (T0-B2) : aucun canal visible ne décrit ce placement

@@ -507,7 +507,9 @@ export interface DestinationMatch {
    *  quand le statut agrégé vaut `allowed` grâce à une autre compagnie. Triées, dédupliquées
    *  sur le triplet complet. */
   confirmation_signals: DestinationConfirmationSignal[];
-  placement_ok: boolean;         // le placement demandé est réellement `allowed` sur ≥1 compagnie directe
+  placement_ok: boolean;         // le placement demandé est réellement ouvert (`allowed` ou accepté sous conditions) sur ≥1 compagnie directe
+  /** Ouvert sous conditions SEULEMENT — aucun `allowed` (08/09/2026) : jamais « compatible » sans ce mot. */
+  placement_conditional: boolean;
   /** Aucun canal demandé `allowed`, mais ≥1 « à confirmer » : à afficher en ALTERNATIVE, jamais en compatible. */
   placement_to_confirm: boolean;
   /** Le statut d'entrée du pays — voir `EntryStatus`. Le classement doit le lire, pas le booléen. */
