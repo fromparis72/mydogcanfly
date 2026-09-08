@@ -2123,6 +2123,17 @@ réécrire est une décision de contenu ; je la demande, avec une recommandation
 Le slogan « Can my dog fly? For sure. » : anglais sur les pages non anglaises, et « For sure » est
 une réponse catégorique là où le site répond « confirmé ou à vérifier ». Décision éditoriale.
 
+### P1 de Codex : le registre portugais des deux phrases d'accueil
+
+Mes deux nouvelles phrases disaient « registado » — portugais européen, recopié de l'ancienne
+phrase — pour une locale `pt-BR`. Corrigé : « registrado », deux chaînes, rien d'autre. Mesuré au
+passage et **nommé pour arbitrage, non corrigé** (hors de la demande) : la table portugaise est
+mixte — 29 « cachorro » contre 7 « cão » — et trois chaînes préexistantes de la même section ou
+voisines gardent le registre européen : `home.hero.title` (« O teu cão pode voar? »),
+`home.rated.title` (« …para o teu cão »), `premium.channel_unproven` (« registado », « Confirma »).
+Le lot précédent avait relu 66 chaînes du gabarit en registre brésilien ; `strings.json` n'y était
+pas.
+
 ### Une CI rouge de ma main, nommée (run 34213137943)
 
 `test-accueil-canaux-prouves.mjs` lisait un dist par défaut et vivait dans `test:unit`, qui tourne
