@@ -2538,3 +2538,16 @@ frontière §10 (0/39/11/252, 230/20, 52 citées nominativement, 50 décisives),
 chaîne), baseline (figée `import-strict-lots-2-3-apres`, chaîne, preuve permanente), carries
 (13 830), registre (52/102/149/3, témoins re-fondés sur WestJet soute), quatrième état (39),
 caisses (15 limites, 1 chien seul), entités (compte des contradictions, relu après build).
+
+### Post-scriptum (23:00 UTC) — le registre de fraîcheur, et un message de commit faux
+
+La CI « Vérifications » a rougi sur `5650715` : le registre de fraîcheur des sources est SCELLÉ,
+et 49 sources de canal ont changé sans rescellement dans la même PR. C'est l'étape que j'avais
+omise ; rescellée par `fraicheur/sceller-registre.mjs --ecrire` (`e4ea534`).
+
+**Erreur nommée** : le message de ce commit dit « 51 sources … plus Air France soute et Etihad
+cabine ». C'est faux. Mesuré après coup, entrée par entrée : **49 entrées changées, exactement
+les 49 canaux importés** — Air France soute et Etihad cabine en font partie. Les 51 lignes du diff
+sont les 49 empreintes de source plus les deux lignes d'empreinte globale. J'ai lu un `--stat` et
+écrit une explication à sa place, sans mesurer ; l'historique poussé ne se réécrit pas, la
+correction vit ici et dans le commit qui suit.
