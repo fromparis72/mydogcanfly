@@ -705,11 +705,11 @@ const labels = {
                        ce canal, aucune phrase citée » se lisait comme un jugement sur toute la
                        compagnie ; il ne portait que sur le fret de British Airways, dont la cabine
                        était refusée sur citation. La phrase dit maintenant de quel canal elle parle. */
-                    const fams = new Map();
-                    const nommer = (fam, d) => {
+                    const fams = new Map<string, string[]>();
+                    const nommer = (fam: string, d: { placement: string }) => {
                       const cap = d.placement === "cabin" ? L.cabinShort : d.placement === "hold" ? L.holdShort : L.cargoShort;
                       if (!fams.has(fam)) fams.set(fam, []);
-                      if (!fams.get(fam).includes(cap)) fams.get(fam).push(cap);
+                      if (!fams.get(fam)!.includes(cap)) fams.get(fam)!.push(cap);
                     };
                     for (const d of (a.placement_decisions || [])) {
                       if (d.status !== "confirmation_required") continue;
@@ -734,7 +734,7 @@ const labels = {
                     /* Ordre : notre propre incertitude D'ABORD. Quand les deux familles coexistent,
                        le visiteur lit « nous ne l'avons pas revérifié » avant toute phrase qui
                        parle de la politique de la compagnie. */
-                    const ligne = (fam, texte) => `<div class="acard__confirmwhy">? ${esc(fams.get(fam).join(", "))} : ${esc(texte)}</div>`;
+                    const ligne = (fam: string, texte: string) => `<div class="acard__confirmwhy">? ${esc((fams.get(fam) ?? []).join(", "))} : ${esc(texte)}</div>`;
                     if (fams.has("unreviewed")) lines.push(ligne("unreviewed", L.confirmUnreviewed));
                     if (fams.has("official_link")) lines.push(ligne("official_link", L.confirmOfficialLink));
                     if (fams.has("policy")) lines.push(ligne("policy", L.confirmPolicy));

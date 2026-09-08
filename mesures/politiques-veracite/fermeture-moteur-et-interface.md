@@ -2144,6 +2144,15 @@ maintenant la convention de `test-etape3-dom` : `--dist=` obligatoire, refus san
 après le build sur le site complet. Une garde qui se saute faute d'artefact ne garde rien ; une
 garde qui cherche un artefact avant qu'il existe ne garde rien non plus.
 
+### Une seconde CI rouge de ma main, nommée (run 34213783836)
+
+La jauge de dette Astro — `check-astro-debt.mjs`, jouée en CI après le typecheck — est montée de
+165 à 169 : quatre `ts(7006)` dans `FlightFinder.astro`, les paramètres de mes deux fonctions
+fléchées `nommer(fam, d)` et `ligne(fam, texte)` laissés implicitement `any`. J'avais joué le
+typecheck, qui ne compte pas cette dette, et pas la jauge, qui la compte : deux instruments, et
+je n'ai regardé que celui qui ne pouvait pas rougir. Paramètres typés, jauge rejouée à 165 avant
+de pousser.
+
 ### Ce que je retiens
 
 Deux instruments lisant une même donnée doivent rendre la même chose, et ce dossier le sait depuis
