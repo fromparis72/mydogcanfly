@@ -457,7 +457,13 @@ const initials = title.split(/\s+/).map((w) => w[0] ?? "").slice(0, 2).join("").
                 <span class="ep__badge" style={`--c:${critColor[r.criticality] ?? "#64748b"}`}>{t(locale, `crit.${r.criticality}`, r.criticality)}</span>
                 <span class="ep__cat">{t(locale, `cat.${r.category}`, r.category.replace(/_/g, " "))}</span>
               </div>
-              <p class="ep__rationale">{r.rationale}</p>
+              {/* UNE RÈGLE NON TRADUITE N'EST PAS SERVIE COMME DU TEXTE DE LA PAGE (08/09/2026) :
+                  renvoi dans la langue de la page, original replié et étiqueté. `rationale_locale`
+                  vient de `locRules` ; absent, on rend comme avant. */}
+              {(r as { rationale_locale?: string }).rationale_locale && (r as { rationale_locale?: string }).rationale_locale !== locale
+                ? (<><p class="ep__rationale">{t(locale, "cond.rule_untranslated")}</p>
+                    <details class="ep__orig"><summary>{t(locale, "cond.original_text")}</summary><p lang={(r as { rationale_locale?: string }).rationale_locale}>{r.rationale}</p></details></>)
+                : (<p class="ep__rationale">{r.rationale}</p>)}
               <p class="ep__src">
                 {t(locale, "section.sources")}: <a href={r.source.url} rel="nofollow noopener" target="_blank">{host(r.source.url)}</a>
                 <span> · {r.source.verified_date}</span>

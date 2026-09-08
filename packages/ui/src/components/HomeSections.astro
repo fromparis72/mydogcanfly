@@ -67,6 +67,25 @@ const bailey = {
  * valeur, elle peut seulement disparaître jusqu'à ce qu'une mesure existe. Les clés
  * `home.stats.routes` et `home.stats.thousands` restent dans les tables : elles dorment. */
 const kb = loadKB();
+
+/* LA PHRASE SUR LES CANAUX CONFIRMÉS EST CALCULÉE, PAS ÉCRITE (contre-test navigateur du
+ * 08/09/2026). Elle disait « aucun canal de compagnie n'est encore confirmé par une source
+ * officielle citée » — et la fiche British Airways, deux clics plus loin, montrait un refus cabine
+ * cité, daté du 05/09/2026. La phrase était vraie pour les OUVERTURES (aucune n'est prouvée) et
+ * fausse pour les REFUS : elle confondait « confirmé » et « confirmé ouvert ». On compte donc, à
+ * chaque build, les politiques de canal que la projection tient pour prouvées — `allowed` et
+ * `denied` ne sortent de `projectPlacementPolicy` que sur citation — et la phrase dit les deux
+ * nombres. Mesuré le 08/09/2026 : 0 ouverture, 1 refus, 301 à confirmer sur 302. */
+const canauxProuves = { ouverts: 0, refus: 0 };
+for (const a of kb.airlines.values()) {
+  for (const v of Object.values((a as { premium?: { policy?: Record<string, { status?: string } | undefined> } }).premium?.policy ?? {})) {
+    if (v?.status === "allowed") canauxProuves.ouverts++;
+    else if (v?.status === "denied") canauxProuves.refus++;
+  }
+}
+const ratedSub = t(locale, canauxProuves.ouverts === 0 ? "home.rated.sub.none_open" : "home.rated.sub.some_open")
+  .replace("{open}", String(canauxProuves.ouverts))
+  .replace("{refusals}", String(canauxProuves.refus));
 const stats = [
   { n: `${kb.airlines.size}`, key: "home.stats.airlines" },
   { n: `${kb.countries.size}`, key: "home.stats.destinations" },
@@ -446,7 +465,7 @@ const faqLd = JSON.stringify({
 <section class="mdcf-section">
   <div class="mdcf-container">
     <h2 class="mdcf-h2">{t(locale, "home.rated.title")}</h2>
-    <p>{t(locale, "home.rated.sub")}</p>
+    <p>{ratedSub}</p>
     <div class="rated">
       {aVerifier.map((a) => (
         <a class="mdcf-card rated-card" href={a.href}>

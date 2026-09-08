@@ -2030,3 +2030,161 @@ aucun autre paquet ne dépend d'`entities`, personne ne change de version sans l
 
 Rejoué sur ce SHA : lecteur 13/13, `test:unit` intégral, contre-épreuves `--tout`, `build:prod` et
 porte de lancement ; la CI rejoue le harnais navigateur.
+
+## Annexe 20 — Le contre-test de `6dc1c56d` : trois surfaces où deux instruments disaient deux choses (08/09/2026)
+
+### Le verdict de Codex
+
+Préversion `6dc1c56d` (main à `dbf9efe`) : techniquement valide, **pas promue**. Les PDF de presse sont
+bien absents. Trois défauts publics réels restent, et un point éditorial.
+
+1. Les quatre HTML publics du press kit montrent encore l'ancien produit.
+2. Le Finder portugais sert un paragraphe réglementaire **anglais** : Paris → New York, Golden
+   Retriever, 30 kg, 15 octobre → « Dogs need a readable microchip… ».
+3. Le Finder **contredit la fiche British Airways** : BA via LHR y est « Política a confirmar »,
+   « nenhuma frase citada », la cabine sans « Não aceito » — la fiche, elle, montre le refus cabine,
+   la citation et la date. L'accueil affirme aussi qu'aucun canal n'est confirmé par une source
+   citée.
+
+Slogan anglais « Can my dog fly? For sure. » sur l'accueil portugais : classé éditorial.
+
+### 2. La règle anglaise — mesurée à la source
+
+`rules.json` : 401 règles, `rationale` en anglais partout, `rationale_i18n` **fr 401 / es 48 / pt 8**.
+Règles pays : 189, **pt 0 / 189**, es 40 / 189. Le moteur (`toFired`) faisait
+`rationale_i18n[locale] ?? rationale` — repli sur l'anglais, muet — et `explain` imprimait le
+résultat. `pagedata.locRules` faisait exactement la même chose pour les fiches. Le Worker appelé
+localement en `locale: pt` rend `conditions[0].text = "Dogs need a readable microchip…"`.
+
+Ce n'est pas un défaut portugais : l'espagnol a le même trou sur 353 règles sur 401. Codex n'a
+testé que le portugais.
+
+**Pourquoi pas traduire.** 189 règles pays en portugais et 149 en espagnol, à la machine, en trois
+jours : c'est la voie qui a produit « verifiqueção » (annexe 12), et une règle d'entrée mal
+traduite est pire qu'une règle renvoyée à sa source.
+
+**Ce qui est fait.** Le repli reste (l'anglais est le seul texte qui existe) mais il est **nommé** :
+`FiredRule.rationale_locale` dit la langue réellement servie. `explain` ne sort plus jamais un
+texte hors de la langue de la page : quand la règle n'est pas traduite, `text` est une formulation
+de renvoi dans la langue demandée (`cond.rule_untranslated`, quatre tables) et l'original voyage à
+part (`text_original`, `text_original_locale`). Le Finder le montre **replié et étiqueté** « Texto
+original (em inglês) », avec le lien vers la source officielle. Les fiches font de même
+(`EntityPage`). En anglais et en français, rien ne change — c'est le témoin de
+`test-langue-du-rapport.mjs`.
+
+**Une correction dormante, nommée.** Mesuré sur le site construit après correction : la section
+« règles » d'`EntityPage` n'est rendue sur **aucune page** des quatre langues (`ep__rationale` :
+0 occurrence), et aucune page statique pt/es ne publie le texte anglais de la règle US. Le seul
+canal public du repli anglais était le Finder. La correction de `locRules`/`EntityPage` ferme le
+même piège à sa source pour le jour où cette section sera servie ; elle ne change rien de publié
+aujourd'hui, et ce n'est pas elle qui répond à Codex.
+
+**Choix argumenté, pour arbitrage.** Montrer l'original anglais replié plutôt que le retirer : un
+visiteur qui lit l'anglais garde l'information, celui qui ne le lit pas voit une page portugaise
+qui dit d'où vient la règle. Codex peut juger que même replié, l'anglais n'a pas sa place ; le
+retrait est alors une ligne.
+
+### 3. British Airways — deux instruments, une donnée
+
+Le moteur, appelé localement sur la requête de Codex : `cabin: denied` **avec** source
+(britishairways.com, vérifiée 2026-09-05), `hold` et `cargo` : `confirmation_required`, causes
+`official_source_unquoted` / `rule_official_unquoted`. Le libellé de carte « Política a confirmar »
+et la phrase « aucune phrase citée » étaient donc **vrais pour le fret** — et présentés comme un
+jugement sur toute la compagnie, pendant que la cabine, refusée sur citation, n'avait qu'une
+**rature CSS** (`text-decoration: line-through`) : rien pour un lecteur d'écran, rien pour l'œil.
+
+La fiche lisait la même projection et écrivait « Non accepté », la citation, la date. Même donnée,
+deux rendus. Un canal `denied` ne l'est que sur preuve décisive (`evaluate.ts` ne refuse jamais sur
+une page non citée) : quand la décision porte sa source, la carte l'écrit désormais en toutes
+lettres — « Cabine ✗ · não aceito — recusa documentada por fonte oficial citada — britishairways.com
+· 2026-09-05 » — et chaque cause de confirmation **nomme ses canaux** (« Porão, Carga : uma página
+oficial cobre este canal… »). Sur cette route, un seul refus `denied` : BA cabine.
+
+### 3 bis. L'accueil — « confirmé » n'est pas « confirmé ouvert »
+
+`home.rated.sub`, quatre langues : « Aucun canal de compagnie n'est encore confirmé par une source
+officielle citée. » Mesuré sur la projection : **0 ouverture prouvée, 1 refus prouvé, 301 à
+confirmer sur 302**. (Les fiches YAML portent 3 citations — BA cabine, Thai fret, Virgin Australia
+cabine — mais la projection n'en tient qu'une pour un refus ; les deux autres restent « à
+confirmer », et c'est la projection que le site publie.) La phrase est maintenant **calculée au
+build** depuis ces deux nombres, avec deux formulations selon qu'une ouverture est prouvée ou non,
+et `test-accueil-canaux-prouves.mjs` recompte de son côté puis relit l'accueil construit dans ses
+cinq zones publiques.
+
+### 1 et le slogan — décisions de Philippe
+
+Les quatre HTML du press kit sont des brochures de l'ancien produit : « Decision Engine™ », « The
+right decision in minutes », « Verified information — sourced from official documentation »,
+« book with confidence », « aligned with IATA Live Animals Regulations », un exemple Air France
+catégorique. Cinq passes de correction phrase par phrase ont chacune laissé une surface. Le press
+kit dynamique, lui, est validé. Retirer les quatre HTML (404 propre, comme les PDF) ou les
+réécrire est une décision de contenu ; je la demande, avec une recommandation.
+
+Le slogan « Can my dog fly? For sure. » : anglais sur les pages non anglaises, et « For sure » est
+une réponse catégorique là où le site répond « confirmé ou à vérifier ». Décision éditoriale.
+
+### P1 de Codex : le registre portugais des deux phrases d'accueil
+
+Mes deux nouvelles phrases disaient « registado » — portugais européen, recopié de l'ancienne
+phrase — pour une locale `pt-BR`. Corrigé : « registrado », deux chaînes, rien d'autre. Mesuré au
+passage et **nommé pour arbitrage, non corrigé** (hors de la demande) : la table portugaise est
+mixte — 29 « cachorro » contre 7 « cão » — et trois chaînes préexistantes de la même section ou
+voisines gardent le registre européen : `home.hero.title` (« O teu cão pode voar? »),
+`home.rated.title` (« …para o teu cão »), `premium.channel_unproven` (« registado », « Confirma »).
+Le lot précédent avait relu 66 chaînes du gabarit en registre brésilien ; `strings.json` n'y était
+pas.
+
+### Une CI rouge de ma main, nommée (run 34213137943)
+
+`test-accueil-canaux-prouves.mjs` lisait un dist par défaut et vivait dans `test:unit`, qui tourne
+en CI **avant** le build : « index.html absent du dist », quatre fois. Localement je l'avais joué
+après un build, et j'ai pris mon ordre d'exécution pour celui de la CI — le harnais navigateur
+m'avait déjà appris cette leçon (annexe 14 : « le harnais décrivait ma machine »). Le test suit
+maintenant la convention de `test-etape3-dom` : `--dist=` obligatoire, refus sans lui, étape de CI
+après le build sur le site complet. Une garde qui se saute faute d'artefact ne garde rien ; une
+garde qui cherche un artefact avant qu'il existe ne garde rien non plus.
+
+### Une seconde CI rouge de ma main, nommée (run 34213783836)
+
+La jauge de dette Astro — `check-astro-debt.mjs`, jouée en CI après le typecheck — est montée de
+165 à 169 : quatre `ts(7006)` dans `FlightFinder.astro`, les paramètres de mes deux fonctions
+fléchées `nommer(fam, d)` et `ligne(fam, texte)` laissés implicitement `any`. J'avais joué le
+typecheck, qui ne compte pas cette dette, et pas la jauge, qui la compte : deux instruments, et
+je n'ai regardé que celui qui ne pouvait pas rougir. Paramètres typés, jauge rejouée à 165 avant
+de pousser.
+
+### Ce que je retiens
+
+Deux instruments lisant une même donnée doivent rendre la même chose, et ce dossier le sait depuis
+l'annexe 11. La carte du Finder et la fiche BA lisaient la même projection ; l'une écrivait le
+refus, l'autre le barrait. Le repli `?? rationale` existait à deux endroits, écrit deux fois de la
+même main, avec le même silence. Ce lot ne corrige pas trois défauts : il corrige deux fois la
+même chose, et la nomme.
+
+### Ordre de Philippe (08/09/2026) : les PDF de presse rétablis, sans modification
+
+Les quatre PDF avaient été retirés (`14bd13c`, puis `414b7f3`) parce qu'ils portaient le tarif
+« 400 € par trajet » et les promesses de l'ancien produit, et que personne ne savait les refaire.
+Philippe ordonne leur rétablissement tel quel. Exécuté : les quatre binaires reviennent depuis
+l'arbre d'avant leur second retrait, et sont **identiques à l'octet** à ceux d'avant le premier
+(mêmes blobs Git : `ff44ea2b`, `a8ba76a6`, `a337cf04`, `7d626021`).
+
+Ce que la garde §6 ne peut pas faire : lire un PDF. Ce qu'elle fait désormais : exiger leur
+présence (dépôt et dist), exiger leur identité avec les originaux (SHA-256 figées — « sans
+modification » est l'ordre, tout changement sera un mouvement nommé), et **annoncer à chaque
+passage** que quatre documents sont publiés sans avoir été relus. Une erreur au passage, nommée :
+ma première sentinelle figeait dix-sept caractères d'empreinte mal découpés (seize premiers et le
+soixante-quatrième) et comparait aux dix-sept premiers — la garde a rougi sur des PDF identiques.
+Les empreintes sont maintenant entières, calculées par le code qui les vérifie. Ma réserve, nommée une fois :
+ces documents contredisent la frontière de confiance que le reste du site respecte, et Codex les
+avait classés P0. La décision est celle de Philippe ; le dossier la porte.
+
+### Décisions de Philippe (08/09/2026) : les quatre HTML et le slogan restent tels quels
+
+À la question posée avec recommandation, Philippe garde les quatre HTML du press kit en l'état
+(cohérent avec l'ordre sur les PDF : les huit documents restent publics) et garde le slogan
+« Can my dog fly? For sure. » tel quel, en anglais partout. Les deux sont nommés : la garde §6
+annonce désormais, à chaque passage, combien de phrases de l'ancien produit relevées par Codex
+restent publiées dans les HTML sans être couvertes par ses motifs — un vert qui dit ce qu'il ne
+regarde pas plutôt qu'un vert muet. Codex les relèvera sans doute encore ; l'arbitrage est celui de
+Philippe et le dossier le porte.

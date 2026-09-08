@@ -636,6 +636,29 @@ console.log("\n=== Les quatre outils, exercés EN PORTUGAIS ===");
     const corps = await p.textContent("body");
     check("finder pt : aucune erreur JavaScript", p.__erreurs.length === 0, p.__erreurs.slice(0, 2).join(" | "));
     check("finder pt : le résultat n'est pas vide", texte.trim().length > 80, `${texte.trim().length} caractères`);
+    /* LE CAS EXACT DU CONTRE-TEST NAVIGATEUR DU 08/09/2026, sur cette même recherche.
+       1. La règle d'entrée des États-Unis n'a pas de portugais : la page servait « Dogs need a
+          readable microchip… » comme texte de la page. On lit `innerText` — ce que le navigateur
+          RESTITUE, un `<details>` fermé exclu — et on exige le renvoi en portugais, l'anglais
+          n'apparaissant que replié et étiqueté.
+       2. British Airways via LHR : la cabine est refusée sur citation (fiche : « Não aceito »,
+          05/09/2026) mais la carte ne l'écrivait pas — une rature CSS et « Política a confirmar ».
+          La carte doit maintenant l'écrire en toutes lettres, avec l'hôte et la date. */
+    const visible = await p.innerText("body");
+    check("finder pt : la règle US non traduite n'est pas servie en anglais comme texte de la page",
+      !/Dogs need a readable microchip/.test(visible), "« Dogs need a readable microchip » est visible");
+    check("finder pt : la règle US non traduite est renvoyée en portugais",
+      /Esta regra de entrada só está documentada em inglês/.test(visible));
+    check("finder pt : l'original anglais existe, replié et étiqueté",
+      /Texto original \(em inglês\)/.test(visible) && /Dogs need a readable microchip/.test(corps));
+    const ba = p.locator(".acard", { hasText: "British Airways" });
+    const baTexte = (await ba.count()) ? await ba.first().innerText() : "";
+    check("finder pt : la carte British Airways est présente", baTexte.length > 0);
+    check("finder pt : la carte BA écrit le refus cabine documenté, avec hôte et date",
+      /Cabine\s*✗/.test(baTexte) && /não aceito — recusa documentada por fonte oficial citada — britishairways\.com · 2026-09-05/.test(baTexte),
+      baTexte.replace(/\s+/g, " ").slice(0, 300));
+    check("finder pt : la cause « aucune frase citada » nomme ses canaux, pas la compagnie entière",
+      /\? (Porão|Carga)[^:]*: /.test(baTexte), baTexte.replace(/\s+/g, " ").slice(0, 300));
     exiger("finder pt", "packages/ui/src/components/FlightFinder.astro", corps);
     await capturer(p, "pt-finder");
     await p.close();

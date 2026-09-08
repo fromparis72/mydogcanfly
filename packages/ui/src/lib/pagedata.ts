@@ -149,9 +149,19 @@ function rel(kb: NormalizedKB, ids: string[], locale: string): Related[] {
   }));
 }
 
-/** Entity pages render `rule.rationale`; swap in the localized text so FR pages aren't English. */
-function locRules(rules: Rule[], locale: string): Rule[] {
-  return rules.map((r) => ({ ...r, rationale: r.rationale_i18n?.[locale] ?? r.rationale }));
+/** Entity pages render `rule.rationale`; swap in the localized text so FR pages aren't English.
+ *
+ * LE REPLI VERS L'ANGLAIS EST NOMMÉ (contre-test navigateur du 08/09/2026). Cette fonction
+ * retombait sur `r.rationale` — l'anglais — sans le dire, et la fiche imprimait le résultat comme
+ * du texte de la page : 189 règles pays sur 189 n'ont pas de portugais, 149 pas d'espagnol. Le
+ * même défaut que dans le Finder, au même moment, par le même `?? r.rationale`. `rationale_locale`
+ * dit la langue réellement servie ; `EntityPage` décide de l'affichage. */
+export type LocRule = Rule & { rationale_locale: string };
+function locRules(rules: Rule[], locale: string): LocRule[] {
+  return rules.map((r) => {
+    const traduit = r.rationale_i18n?.[locale];
+    return { ...r, rationale: traduit ?? r.rationale, rationale_locale: traduit ? locale : "en" };
+  });
 }
 
 /** Localize the few well-known pet-scheme labels for display. */

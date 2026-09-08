@@ -27,6 +27,7 @@
  *   `href-annonce`  l'adresse annoncée est fabriquée autrement → « vise une page construite » tombe
  *   `sitemap`       une famille disparaît du sitemap           → « listée au sitemap de sa langue » tombe
  */
+import { createHash } from "node:crypto";
 import { readFileSync, readdirSync, existsSync } from "node:fs";
 import { join } from "node:path";
 import { zonesDe } from "./test-lib/zones-publiques.mjs";   // le lecteur canonique, jamais un cinquième
@@ -335,17 +336,59 @@ dire(`  alternates lus : ${alternatesLus} · URL au sitemap : ${Object.values(ur
   exiger("aucun bloc JSON-LD illisible sur les surfaces d'annonce", jsonLdIllisibles === 0,
     `${jsonLdIllisibles} bloc(s) non analysable(s) — la zone annoncée comme lue ne l'est pas`);
 
-  /* LES PDF NE DOIVENT PAS REVENIR SANS AVOIR ÉTÉ REFAITS. Ils portaient le même tarif et les
-     mêmes promesses que les HTML ; ceux-ci sont corrigés et relus ci-dessus, ceux-là ne peuvent
-     pas l'être ici — leur composant `<doc-page>` ne rend aucune hauteur hors de son environnement
-     d'origine, et mes essais donnaient des pages blanches de 900 octets. Tant que personne ne
-     peut garantir leur contenu, ils restent absents plutôt que publiés sans garde. */
-  const pdfRevenus = LANGUES
-    .flatMap((l) => [join("packages", "ui", "public", "presskit", `press-kit-${l}.pdf`),
-                     join(DIST, "presskit", `press-kit-${l}.pdf`)])
-    .filter((f) => existsSync(f));
-  exiger("les dossiers de presse PDF restent retirés (ils ne peuvent pas être relus par ce contrôle)",
-    pdfRevenus.length === 0, `${pdfRevenus.length} PDF revenu(s) : ${pdfRevenus.slice(0, 2).join(", ")}`);
+  /* LES PDF SONT RÉTABLIS SANS MODIFICATION, SUR ORDRE DE PHILIPPE (08/09/2026).
+     Ce contrôle exigeait leur absence : ils portaient le même tarif (« 400 € par trajet ») et les
+     mêmes promesses que les HTML, et il ne sait pas lire un PDF — leur composant `<doc-page>` ne
+     rend aucune hauteur hors de son environnement d'origine, mes essais de régénération donnaient
+     des pages blanches de 900 octets. Philippe a ordonné leur rétablissement tel quel. La garde
+     ne peut donc pas garantir leur contenu, et elle ne prétend pas le faire : elle DIT, à chaque
+     passage, que quatre documents sont publiés sans avoir été relus. Ce qu'elle garantit, c'est
+     l'ordre lui-même — « sans modification » : chaque PDF est identique, à l'octet, à l'original
+     d'avant le premier retrait (empreintes SHA-256 figées ci-dessous, blobs `ff44ea2b`,
+     `a8ba76a6`, `a337cf04`, `7d626021` du dépôt). Tout changement de contenu est un mouvement
+     nommé, pas une dérive. */
+  /* EMPREINTES ENTIÈRES. Ma première rédaction en figeait dix-sept caractères — seize premiers
+     et le soixante-quatrième, un `cut` mal lu — et comparait aux dix-sept premiers : la garde a
+     rougi sur des PDF pourtant identiques. Une sentinelle tronquée à la main est une sentinelle
+     fausse ; on fige l'empreinte complète, calculée par le même code qui la vérifie. */
+  const PDF_ORIGINAUX = {
+    en: "e892c802adb28b2c5bffaf68bb14f651e9bdbf9b5e15d7bc749d85022032135b",
+    fr: "6dac30e0e23aa7e9f68d336f936340f87fb7a0c50c7666b2d19a10b1c6b60362",
+    es: "84faf173aec7af68b64cb8f1b1b025d700c2216b7ae7f4307eb644b5616c9c3c",
+    pt: "47370f823d32a49579f4f5feb531c1966bd8384094f54aeb9f84e071d2a4ef97",
+  };
+  const pdfDepot = LANGUES.map((l) => [l, join("packages", "ui", "public", "presskit", `press-kit-${l}.pdf`)]);
+  const pdfDist = LANGUES.map((l) => [l, join(DIST, "presskit", `press-kit-${l}.pdf`)]);
+  const manquants = [...pdfDepot, ...pdfDist].filter(([, f]) => !existsSync(f)).map(([, f]) => f);
+  exiger("les quatre dossiers de presse PDF sont publiés — dépôt et dist — comme Philippe l'a ordonné",
+    manquants.length === 0, `${manquants.length} manquant(s) : ${manquants.slice(0, 2).join(", ")}`);
+  const modifies = [...pdfDepot, ...pdfDist].filter(([l, f]) => existsSync(f)
+    && createHash("sha256").update(readFileSync(f)).digest("hex") !== PDF_ORIGINAUX[l]).map(([, f]) => f);
+  exiger("chaque PDF est identique à l'octet à l'original — « sans modification » est l'ordre",
+    modifies.length === 0, `${modifies.length} modifié(s) : ${modifies.slice(0, 2).join(", ")}`);
+  console.log(`  ⚠ ${pdfDist.length} dossier(s) de presse PDF publié(s) SANS avoir été relus par ce contrôle (ordre de Philippe, 08/09/2026) — ils décrivent l'ancien produit.`);
+
+  /* LES QUATRE HTML AUSSI, ET CE CONTRÔLE NE DOIT PAS ÊTRE UN VERT MUET. Il les relit avec ses
+     motifs et ne rougit pas — mais le contre-test navigateur de Codex (08/09/2026) y a lu des
+     promesses de l'ancien produit que ces motifs ne couvrent pas : « Decision Engine™ », « The
+     right decision in minutes », « Verified information », « book with confidence », « aligned
+     with IATA Live Animals Regulations ». Philippe a décidé de les garder tels quels. On ne
+     rougit donc pas sur ordre, et on ne se tait pas non plus : on compte ces phrases et on le dit. */
+  const CONNUES_NON_COUVERTES = [
+    /Decision Engine/i, /right decision in minutes|bonne décision en quelques minutes|decisión correcta en minutos|decisão certa em minutos/i,
+    /Verified information|Informations vérifiées|Información verificada|Informações verificadas/i,
+    /with confidence|en confiance|con confianza|com confiança/i,
+    /IATA Live Animals Regulations/i,
+  ];
+  let connues = 0;
+  for (const l of LANGUES) {
+    const f = join("packages", "ui", "public", "presskit", `press-kit-${l}.html`);
+    if (!existsSync(f)) continue;
+    const z = zonesDe(readFileSync(f, "utf8"));
+    const tout = [z.titre, z.corps, z.metas, z.jsonLd, z.attributs].join("\n");
+    for (const re of CONNUES_NON_COUVERTES) connues += (tout.match(new RegExp(re.source, re.flags + "g")) ?? []).length;
+  }
+  console.log(`  ⚠ ${LANGUES.length} dossier(s) de presse HTML publié(s) tels quels (décision de Philippe, 08/09/2026) : ${connues} phrase(s) de l'ancien produit relevée(s) par le contre-test, non couvertes par les motifs de ce contrôle.`);
 
   /* NON-VACUITÉ des motifs : ils doivent reconnaître les phrases réellement retirées. */
   {

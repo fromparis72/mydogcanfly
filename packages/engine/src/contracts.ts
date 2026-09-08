@@ -540,6 +540,13 @@ export interface FiredRule {
   category: string;
   criticality: string;
   rationale: string;
+  /** LA LANGUE DANS LAQUELLE `rationale` EST RÉELLEMENT SERVI (contre-test navigateur du
+   *  08/09/2026). `toFired` retombait sur l'anglais quand `rationale_i18n[locale]` manquait — sans
+   *  le dire. Sur une page portugaise, le Finder imprimait « Dogs need a readable microchip… »
+   *  comme si c'était du portugais : 189 règles pays sur 189 n'ont pas de portugais, 149 pas
+   *  d'espagnol. Le repli reste (le texte anglais est le seul qui existe), mais il est NOMMÉ : la
+   *  locale demandée quand une traduction existe, sinon « en ». L'aval décide quoi en faire. */
+  rationale_locale: string;
   source_url: string;
   confidence: number;
   params: Record<string, unknown>;
@@ -652,6 +659,12 @@ export interface ReportItem {
   tone?: "positive" | "negative"; // UI marker: green check (default) vs red cross
   rule_id?: string;
   source_url?: string;
+  /** PRÉSENTS UNIQUEMENT quand `text` est une formulation de renvoi, parce que le texte de la
+   *  règle n'existe pas dans la langue de la page : l'original, et sa langue. L'interface les
+   *  montre repliés et étiquetés — jamais comme du texte de la page. Absents quand `text` est
+   *  dans la langue demandée. */
+  text_original?: string;
+  text_original_locale?: string;
 }
 /** A contextual partner suggestion — only ever present when it adds value to this report. */
 export interface PartnerRef {

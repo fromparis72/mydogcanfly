@@ -155,6 +155,14 @@ const labels = {
      et personne n'y a encore lu la phrase qui trancherait. */
   confirmOfficialLink: T("An official airline page covers this channel, but no sentence has been quoted from it yet — read the conditions there and confirm with the airline.", "Une page officielle de la compagnie couvre ce canal, mais aucune phrase n'en a encore été citée — lis-y les conditions et confirme auprès de la compagnie.", "Una página oficial de la aerolínea cubre este canal, pero aún no se ha citado ninguna frase — consulta allí las condiciones y confírmalas con la aerolínea."),
   confirmUnreviewed: T("This information has not yet been reverified against a current official source — confirm directly with the airline before booking.", "Cette information n'a pas encore été revérifiée à partir d'une source officielle à jour — confirme-la directement auprès de la compagnie avant de réserver.", "Esta información aún no se ha vuelto a verificar a partir de una fuente oficial actualizada; confírmala directamente con la aerolínea antes de reservar."),
+  /* CONTRE-TEST NAVIGATEUR DU 08/09/2026 — trois chaînes. La première étiquette l'original
+     anglais d'une règle non traduite (le rapport ne le sert plus comme texte de la page : voir
+     `explain.ts`). Les deux autres disent EN TOUTES LETTRES qu'un canal est refusé : la carte
+     barrait le mot « Cabine » et n'écrivait rien — un lecteur d'écran lisait « Cabine », un œil
+     lisait une rature, et la fiche British Airways, elle, disait « Non accepté » avec sa
+     citation. Deux instruments, deux réponses pour le même fait. */
+  originalText: T("Original text (in English)", "Texte original (en anglais)", "Texto original (en inglés)"),
+  deniedDocumented: T("not accepted — refusal documented by a cited official source", "non accepté — refus documenté par une source officielle citée", "no se acepta: rechazo documentado por una fuente oficial citada"),
   confidence: T("confidence", "confiance", "confianza"),
   answer: {
     compatible: t(locale, "answer.compatible"),
@@ -350,8 +358,17 @@ const labels = {
   const flag = (iso2: string) => iso2.length === 2
     ? String.fromCodePoint(...[...iso2.toUpperCase()].map((c) => 0x1f1e6 + c.charCodeAt(0) - 65))
     : "";
+  /* L'ORIGINAL NON TRADUIT EST MONTRÉ REPLIÉ ET ÉTIQUETÉ, jamais comme du texte de la page
+     (contre-test navigateur du 08/09/2026 : « Dogs need a readable microchip… » au milieu d'une
+     page portugaise). `text` est déjà dans la langue de la page — une formulation de renvoi quand
+     la règle n'est pas traduite — et `text_original` ne vient QUE dans ce cas. Le lien vers la
+     source officielle accompagne le renvoi quand la règle en a une présentable. */
   const block = (title: string, items: ReportItem[]) =>
-    items.length ? `<h4>${esc(title)}</h4><ul>${items.map((i) => `<li>${esc(i.text)}</li>`).join("")}</ul>` : "";
+    items.length ? `<h4>${esc(title)}</h4><ul>${items.map((i) => `<li>${esc(i.text)}${
+      i.text_original && i.source_url ? ` <a class="cond__src" href="${esc(i.source_url)}" rel="nofollow noopener" target="_blank">${esc(host(i.source_url))}</a>` : ""
+    }${
+      i.text_original ? `<details class="cond__orig"><summary>${esc(L.originalText)}</summary><p lang="${esc(i.text_original_locale ?? "en")}">${esc(i.text_original)}</p></details>` : ""
+    }</li>`).join("")}</ul>` : "";
 
   /* Retest 09/08/2026, point 1 : après un calcul, modifier n'importe quel critère (départ, arrivée,
    * race, poids, unité, mode, date) laissait l'ANCIEN résultat affiché sans avertissement — par
@@ -626,10 +643,32 @@ const labels = {
                     const st = a[`${ch}_status`] ?? (a[ch] ? "allowed" : "denied");
                     const cls = st === "allowed" ? "ab--ok" : st === "confirmation_required" ? "ab--confirm" : "ab--no";
                     const cap = ch === "cabin" ? L.cabinShort : ch === "hold" ? L.holdShort : L.cargoShort;
-                    const mark = st === "confirmation_required" ? " ?" : "";
+                    /* Le refus porte sa croix : une rature CSS n'est pas un statut (08/09/2026). */
+                    const mark = st === "confirmation_required" ? " ?" : st === "denied" ? " ✗" : "";
                     return `<span class="ab ${cls}">${esc(cap)}${mark}</span>`;
                   }).join("")}</div>
                   <div class="acard__label">${esc(a.label)}</div>
+                  ${(() => {
+                    /* LE REFUS PROUVÉ SE DIT EN TOUTES LETTRES (contre-test navigateur du 08/09/2026).
+                     *
+                     * Paris → New York, British Airways via LHR : le moteur rendait
+                     * `cabin:denied` avec sa source vérifiée, `hold` et `cargo` à confirmer. La
+                     * carte affichait le libellé « Politique à confirmer » (vrai pour le fret) et
+                     * « aucune phrase citée » (vrai pour le fret) — et pour la cabine, une rature.
+                     * La fiche British Airways, elle, écrit « Non accepté » avec la citation et sa
+                     * date. Le visiteur lisait deux réponses pour un même fait.
+                     *
+                     * Un canal `denied` ne l'est que sur une preuve décisive (le moteur ne refuse
+                     * jamais sur une page non citée : `evaluate.ts`). Quand la décision porte sa
+                     * source, on l'écrit : canal, refus documenté, hôte, date. */
+                    const lignes = [];
+                    for (const d of (a.placement_decisions || [])) {
+                      if (d.status !== "denied" || !d.source || !d.source.url) continue;
+                      const cap = d.placement === "cabin" ? L.cabinShort : d.placement === "hold" ? L.holdShort : L.cargoShort;
+                      lignes.push(`<div class="acard__denied">✗ ${esc(cap)} : ${esc(L.deniedDocumented)} — ${esc(host(d.source.url))}${d.source.verified_date ? ` · ${esc(d.source.verified_date)}` : ""}</div>`);
+                    }
+                    return lignes.join("");
+                  })()}
                   ${(() => {
                     /* LES SOURCES DES CANAUX, et RIEN D'AUTRE (contre-test du 15/08/2026).
                      *
@@ -662,34 +701,44 @@ const labels = {
                        a déjà son bandeau + sa ligne — pas de second message redondant). Aujourd'hui
                        aucune donnée ne produit ces familles ; le rendu existe pour T0-B et il est
                        verrouillé par les harnais sur fixtures. */
-                    const fams = new Set();
+                    /* CHAQUE FAMILLE NOMME SES CANAUX (08/09/2026). « Une page officielle couvre
+                       ce canal, aucune phrase citée » se lisait comme un jugement sur toute la
+                       compagnie ; il ne portait que sur le fret de British Airways, dont la cabine
+                       était refusée sur citation. La phrase dit maintenant de quel canal elle parle. */
+                    const fams = new Map<string, string[]>();
+                    const nommer = (fam: string, d: { placement: string }) => {
+                      const cap = d.placement === "cabin" ? L.cabinShort : d.placement === "hold" ? L.holdShort : L.cargoShort;
+                      if (!fams.has(fam)) fams.set(fam, []);
+                      if (!fams.get(fam)!.includes(cap)) fams.get(fam)!.push(cap);
+                    };
                     for (const d of (a.placement_decisions || [])) {
                       if (d.status !== "confirmation_required") continue;
                       for (const c of (d.confirmation_causes || [])) {
                         /* T0-B : famille PROPRE — `legacy_unreviewed` ne rejoint pas « policy »,
                            qui attribuerait à la compagnie un doute qui vient de notre donnée. */
-                        if (c.code === "legacy_unreviewed") fams.add("unreviewed");
+                        if (c.code === "legacy_unreviewed") nommer("unreviewed", d);
                         /* Notre donnée manque, ou la règle qui fermait le canal n'est pas
                            vérifiable : c'est NOTRE incertitude, pas celle de la compagnie. */
                         /* `breed_deny_unverified` rejoint « notre incertitude » : nous détenons un
                            fait de race que nous ne savons pas prouver. Il ne doit surtout pas
                            tomber dans le vide, comme `official_source_unquoted` l'a fait. */
                         else if (c.code === "policy_absent" || c.code === "rule_unverified"
-                                 || c.code === "breed_deny_unverified") fams.add("unreviewed");
+                                 || c.code === "breed_deny_unverified") nommer("unreviewed", d);
                         /* Une page officielle existe, sans phrase citée — politique ou règle. */
-                        else if (c.code === "official_source_unquoted" || c.code === "rule_official_unquoted") fams.add("official_link");
-                        else if (c.code === "policy_unpublished" || c.code === "airline_approval") fams.add("policy");
-                        else if (c.code === "missing_fact") fams.add("missing");
+                        else if (c.code === "official_source_unquoted" || c.code === "rule_official_unquoted") nommer("official_link", d);
+                        else if (c.code === "policy_unpublished" || c.code === "airline_approval") nommer("policy", d);
+                        else if (c.code === "missing_fact") nommer("missing", d);
                       }
                     }
                     const lines = [];
                     /* Ordre : notre propre incertitude D'ABORD. Quand les deux familles coexistent,
                        le visiteur lit « nous ne l'avons pas revérifié » avant toute phrase qui
                        parle de la politique de la compagnie. */
-                    if (fams.has("unreviewed")) lines.push(`<div class="acard__confirmwhy">? ${esc(L.confirmUnreviewed)}</div>`);
-                    if (fams.has("official_link")) lines.push(`<div class="acard__confirmwhy">? ${esc(L.confirmOfficialLink)}</div>`);
-                    if (fams.has("policy")) lines.push(`<div class="acard__confirmwhy">? ${esc(L.confirmPolicy)}</div>`);
-                    if (fams.has("missing")) lines.push(`<div class="acard__confirmwhy">? ${esc(L.confirmMissing)}</div>`);
+                    const ligne = (fam: string, texte: string) => `<div class="acard__confirmwhy">? ${esc((fams.get(fam) ?? []).join(", "))} : ${esc(texte)}</div>`;
+                    if (fams.has("unreviewed")) lines.push(ligne("unreviewed", L.confirmUnreviewed));
+                    if (fams.has("official_link")) lines.push(ligne("official_link", L.confirmOfficialLink));
+                    if (fams.has("policy")) lines.push(ligne("policy", L.confirmPolicy));
+                    if (fams.has("missing")) lines.push(ligne("missing", L.confirmMissing));
                     return lines.join("");
                   })()}
                   ${/* LE MONTANT NU A DISPARU. Cette ligne rendait le champ « fee » — un montant
@@ -1431,6 +1480,10 @@ const labels = {
   .ab { font-size: 11px; font-weight: 700; padding: 2px 8px; border-radius: 999px; }
   .ab--ok { color: #065f46; background: #d1fae5; }
   .ab--no { color: #991b1b; background: #fee2e2; text-decoration: line-through; }
+  .acard__denied { margin-top: .35rem; font-size: .85rem; color: #991b1b; }
+  .cond__orig { margin-top: .25rem; font-size: .9em; color: #475569; }
+  .cond__orig summary { cursor: pointer; }
+  .cond__src { font-size: .9em; }
   /* « À confirmer » : ambre, ni coche ni croix — le canal n'est ni ouvert ni fermé, il attend la
      réponse de la compagnie. */
   .ab--confirm { color: #92400e; background: #fef3c7; }
