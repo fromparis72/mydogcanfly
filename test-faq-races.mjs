@@ -472,11 +472,16 @@ if (DIST) {
        * Les deux phrases d'origine restent exigées SI le classement revient — le jour où une
        * citation rendra un canal `allowed`. Elles dorment, elles ne sont pas supprimées. */
       const classementRendu = html.includes("bt2-airname");
+      /* LE CLASSEMENT EST REVENU (08/09/2026, import strict) — sur des canaux acceptés SOUS
+         CONDITIONS, pas `allowed`. La phrase du classement est de nouveau exigée. La seconde
+         phrase dormante (« Com base na dificuldade global… ») n'existe PLUS dans le gabarit :
+         la section de difficulté a été retirée le 06/09 avec la note /100, et la note reste
+         masquée par décision écrite (`NOTE_AFFICHABLE`). Exiger une phrase que le gabarit ne
+         rend plus serait un faux rouge ; elle est retirée d'ici, nommée, et sa clé portugaise
+         reste dans inline.json comme dette morte. */
       const PAIRES = classementRendu ? [
         ["Classificação obtida das políticas publicadas (limites de peso em cabine, disponibilidade de porão e carga).",
          "Ranking derived from published policies (cabin weight limits, hold and cargo availability)"],
-        ["Com base na dificuldade global, no peso, nos canais disponíveis e nas políticas publicadas.",
-         "Based on overall difficulty, weight, available channels and published policies."],
       ] : [
         ["Ainda não há nenhum canal de companhia confirmado por uma fonte oficial citada para esta raça",
          "No airline channel has been confirmed by a quoted official source for this breed yet"],
