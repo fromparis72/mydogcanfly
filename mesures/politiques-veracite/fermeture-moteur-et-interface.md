@@ -2551,3 +2551,29 @@ les 49 canaux importés** — Air France soute et Etihad cabine en font partie. 
 sont les 49 empreintes de source plus les deux lignes d'empreinte globale. J'ai lu un `--stat` et
 écrit une explication à sa place, sans mesurer ; l'historique poussé ne se réécrit pas, la
 correction vit ici et dans le commit qui suit.
+
+### Post-scriptum 2 (22:22 UTC, CI « Site entier » sur `75f7fba`) — le `101` qui n'était plus exercé
+
+`test-etape3-dom.mjs` § 2 a rougi : « jamais exercée(s) : en/101, fr/101, es/101, pt/101 ». Ce
+contrôle prouve la bijection combinaison → libellé des cartes multicanales sur une base
+synthétique déclarée (quatre porteuses reçoivent des canaux `allowed`). Sa porteuse du `101` était
+Lufthansa : cabine + fret ouverts, soute réelle « à confirmer ». L'import V3 a cité la soute
+Lufthansa (`accepted_with_conditions`) — la même ouverture donne désormais `111`. Le contrôle
+n'avait pas été rejoué localement sur ce lot : il vit dans « Site entier », pas dans `test:unit`,
+et je l'avais omis. Erreur nommée.
+
+Deux mouvements, tous deux mesurés :
+
+1. **Porteuse re-fondée** : mesuré sur les 49 compagnies des trois trajets de contrôle, Austrian
+   dessert les trois (BKK, JFK, LAX), sa soute réelle reste « à confirmer », cabine + fret ouverts
+   donnent `101` sur chacun. Aucune exigence abaissée.
+2. **Bijection à deux variantes** : depuis les lots, la base RÉELLE produit à nouveau des cartes
+   multicanales — par le quatrième état, jamais par `allowed` — et le moteur les libelle
+   « … : acceptés sous conditions de la compagnie ». La table du contrôle ne connaissait que le
+   libellé catégorique ; elle aurait compté ces cartes en écart dès que la couverture aurait
+   repassé. Ajout d'une seconde table, écrite en toutes lettres ×4 sans relire les traductions,
+   et d'une sentinelle figée des combinaisons conditionnelles réelles par langue :
+   `011` (Air India, Ethiopian — golden 30 kg, cabine refusée sur seuil cité), `110` (Turkish,
+   Iberia, Air Canada, TAP), `111` (Air India, Ethiopian). Le `101` conditionnel n'existe pas en
+   réalité et n'est pas exigé. Contre-épreuve 2quater : permuter deux libellés conditionnels sur
+   la base réelle est vu.
