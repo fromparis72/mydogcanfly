@@ -273,7 +273,9 @@ function applyBreedRestrictions(args: {
 function toFired(r: Rule, locale: string): FiredRule {
   return {
     rule_id: r.id, action: r.effect.action, category: r.category, criticality: r.criticality,
+    /* Le repli vers l'anglais est conservé mais NOMMÉ (`rationale_locale`) : voir `FiredRule`. */
     rationale: r.rationale_i18n?.[locale] ?? r.rationale, // localized where available, else EN
+    rationale_locale: r.rationale_i18n?.[locale] ? locale : "en",
     source_url: r.source.url, confidence: r.source.confidence, params: r.params,
     /* LE NIVEAU DE PREUVE VOYAGE AVEC LA RÈGLE (05/09/2026). `fired` garde toutes les règles pour
        l'audit — mais leur seule présence ne doit plus rien décider en aval. Ce champ est calculé

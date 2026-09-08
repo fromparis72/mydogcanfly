@@ -172,10 +172,25 @@ export function explain(decision: Decision, locale = "en"): DecisionReport {
        l'applicabilité dépend d'une donnée que le formulaire ne recueille pas — la pureté du chien
        pour l'Australie. La phrase publiée porte donc sur le FAIT, pas sur nous : une restriction
        peut s'appliquer, les informations disponibles ne permettent pas de l'établir ici. */
-    const texte = nonDecisive ? L("cond.potential_restriction") : f.rationale;
+    /* LE TEXTE D'UNE RÈGLE NE SORT QUE DANS LA LANGUE DE LA PAGE (contre-test navigateur du
+       08/09/2026). `toFired` retombe sur l'anglais quand la traduction manque, et ce rapport
+       l'imprimait tel quel : sur Paris → New York en portugais, « Dogs need a readable microchip… »
+       paraissait au milieu d'une page portugaise, sans rien qui dise que ce n'en était pas. Une
+       information d'entrée dans une langue que le visiteur n'a pas choisie n'est pas une
+       information : c'est un texte qu'il ne lira peut-être pas, présenté comme s'il l'avait lu.
+       Le rapport sert donc une formulation de renvoi dans la langue de la page, et transporte
+       l'original À PART, avec sa langue, pour que l'interface le montre étiqueté. Traduire les
+       189 règles pays à la machine aurait été l'autre voie : c'est celle qui a produit
+       « verifiqueção » (annexe 12), et une règle d'entrée mal traduite est pire qu'une règle
+       renvoyée à sa source. Rien ne change en anglais, ni en français (401/401 traduites). */
+    const nonTraduite = !nonDecisive && f.rationale_locale !== locale;
+    const texte = nonDecisive ? L("cond.potential_restriction")
+      : nonTraduite ? L("cond.rule_untranslated")
+      : f.rationale;
     conditions.push({
       text: texte,
       criticality: f.criticality, rule_id: f.rule_id, source_url: presentable,
+      ...(nonTraduite ? { text_original: f.rationale, text_original_locale: f.rationale_locale } : {}),
     });
     if (presentable) sources.set(presentable, { url: presentable });
     confidences.push(f.confidence);
