@@ -339,9 +339,18 @@ function breedTravelView(kb: NormalizedKB, b: {
     : L(`Adults usually exceed the ~8 kg cabin limit; only the smallest individuals or puppies may qualify, and only on airlines that allow it.`,
         `Les adultes dépassent généralement la limite cabine de ~8 kg ; seuls les plus petits sujets ou les chiots peuvent y prétendre, et uniquement sur les compagnies qui l'autorisent.`);
 
+  /* « LIMITÉ OU REFUSÉ PAR DE NOMBREUSES COMPAGNIES » : SUPPRIMÉ LE 07/09/2026.
+     Relevé par le contre-test navigateur de la préversion 82fcf408. La phrase énonçait trois
+     choses non citées d'affilée — combien de compagnies refusent, l'existence d'un « risque
+     chaleur/respiration GLOBAL », et une conduite à tenir — au nom d'une catégorie de races,
+     sans qu'une seule source soit produite. C'est la forme même que le critère de lancement
+     interdit : une réponse catégorique fondée sur une information insuffisamment prouvée.
+     Ce qui reste est vrai et vérifiable : la règle dépend du transporteur qui opère le vol, et
+     c'est à lui qu'on la demande. Le conseil matériel sur la caisse n'a pas besoin d'un chiffre
+     inventé pour tenir debout, il est donc conservé, séparé de toute prédiction de refus. */
   const hold = brachy
-    ? L(`As a snub-nosed breed, hold and cargo carriage is restricted or refused by many airlines, and a global heat/breathing risk applies. Where accepted, avoid warm-weather flights and use a roomy, well-ventilated travel crate that meets the applicable container requirements.`,
-        `Race brachycéphale : le transport en soute et en fret est limité ou refusé par de nombreuses compagnies, avec un risque chaleur/respiration global. Lorsqu'il est accepté, évitez les vols par temps chaud et utilisez une cage de transport spacieuse et bien ventilée, conforme aux exigences applicables.`)
+    ? L(`Airlines set their own rules for snub-nosed breeds in the hold and as cargo — confirm the rule that applies to your flight with the carrier operating it. Whatever the answer, use a roomy, well-ventilated travel crate that meets the applicable container requirements.`,
+        `Chaque compagnie fixe ses propres règles pour les races brachycéphales en soute et en fret — confirme la règle applicable au vol auprès du transporteur effectif. Quelle que soit la réponse, utilise une cage de transport spacieuse et bien ventilée, conforme aux exigences applicables.`)
     : L(`Travels in the pressurised, temperature-controlled hold in a crate meeting the airline's requirements when above cabin limits. Book early and prefer cooler times of day.`,
         `Voyage dans la soute pressurisée et climatisée, dans une cage conforme aux exigences de la compagnie au-dessus des limites cabine. Réserve tôt et privilégie les heures fraîches.`);
 

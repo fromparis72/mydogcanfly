@@ -246,6 +246,88 @@ const interdites = (texte) => {
   else ok("12 identifiants aria, adresses, valeur de champ de saisie et attributs d'un élément non public restent hors de la zone");
 }
 
+/* ---- 13. LES ATTRIBUTS DE `\<html\>` ET `\<body\>`, DANS LEURS TROIS FORMES VALIDES -----------
+ *
+ * Ces attributs partaient avec leurs balises : l'injection par `innerHTML` dans un `<div>` jette
+ * `html`, `head` et `body` en ne gardant que leurs enfants. Un `aria-label` sur le corps est
+ * pourtant lu à voix haute comme n'importe quel texte, et il échappait à TOUTES les portes qui
+ * emploient ce lecteur — quatrième correction, trouvée par une contre-épreuve de presse.
+ *
+ * La correction suivante fut pire que le défaut : elle relevait ces attributs à l'expression
+ * régulière `<body\b([^>]*)>` et découpait les guillemets à la main. Trois formes parfaitement
+ * valides lui échappaient, et un prix rendu « €400 » à l'écran pouvait traverser les gardes
+ * tarifaires. Les voici, une par une — un cas de test par forme, parce qu'un seul les aurait
+ * toutes crues couvertes. */
+{
+  const ecarts = [];
+  const cas = [
+    ["entité HTML", '<html><body aria-label="&#x20AC;400 each way"><p>x</p></body></html>', "€400 each way"],
+    ["chevron dans la valeur", '<html><body aria-label="€400 each way > confirmation required"><p>x</p></body></html>',
+     "€400 each way > confirmation required"],
+    ["sans guillemets", "<html><body aria-label=€400><p>x</p></body></html>", "€400"],
+    ["attribut sur <html>", '<html lang="fr" aria-label="€400 par trajet"><body><p>x</p></body></html>', "€400 par trajet"],
+    ["guillemets simples", "<html><body aria-label='€400 &amp; plus'><p>x</p></body></html>", "€400 & plus"],
+    ["balise auto-fermante", '<html><body aria-label="€400" /><p>x</p></body></html>', "€400"],
+    /* LES DEUX ATTAQUES QUI ONT TUÉ LE SCANNER. Un `<body>` écrit dans une chaîne JavaScript ou
+       dans un commentaire n'est servi à personne, mais il précède le vrai dans le fichier : trois
+       rédactions successives — expression régulière, scanner naïf, scanner à guillemets — l'ont
+       pris pour la balise réelle et ont rendu SA valeur. Le prix réellement affiché passait alors
+       sous les gardes tarifaires. Seul un parseur qui connaît le contexte HTML les distingue. */
+    ["faux <body> dans un script",
+     '<html><head><script>const t = "<body aria-label=piege>";</script></head>'
+     + '<body aria-label="€400 each way"><p>x</p></body></html>', "€400 each way"],
+    ["faux <body> dans un commentaire",
+     '<html><!-- <body aria-label="piege"> --><body aria-label="€400 each way"><p>x</p></body></html>',
+     "€400 each way"],
+    ["faux <html> dans un commentaire",
+     '<!-- <html aria-label="piege"> --><html aria-label="€400 par trajet"><body><p>x</p></body></html>',
+     "€400 par trajet"],
+    /* LA COLLISION DE NOMS, ET ELLE N'AVAIT RIEN À VOIR AVEC L'ANALYSE. Une fois le parseur en
+       place, les attributs des deux balises étaient rangés dans une `Map` indexée par nom : le
+       corps écrasait alors la racine dès qu'ils portaient le même attribut, et un prix publié sur
+       le `<html>` disparaissait derrière un libellé anodin. LES DEUX VALEURS SONT EXIGÉES : c'est
+       ce qui distingue un lecteur qui cumule d'un lecteur qui choisit. */
+    ["même attribut sur les deux balises",
+     '<html aria-label="€400 each way"><body aria-label="ordinary label"><p>x</p></body></html>',
+     ["€400 each way", "ordinary label"]],
+    ["même attribut, autre nom, valeurs distinctes",
+     '<html title="€400 par trajet"><body title="libellé ordinaire"><p>x</p></body></html>',
+     ["€400 par trajet", "libellé ordinaire"]],
+    /* LA BALISE TARDIVE, QUE L'ARRÊT ANTICIPÉ NE VOYAIT PAS. Une `<body>` ou une `<html>` rencontrée
+       après l'ouverture du corps n'est pas jetée par le navigateur : la règle HTML lui fait adopter,
+       sur l'élément déjà construit, les attributs qu'il ne portait pas encore. Mesuré sur parse5 et
+       sur jsdom. Le lecteur qui s'interrompait dès la création du corps rendait « » ici. */
+    ["<body> tardive", '<html><body><p>x</p><body aria-label="€400 each way"></body></html>', "€400 each way"],
+    ["<html> tardive", '<html><body><p>x</p><html title="€400 par trajet"></body></html>', "€400 par trajet"],
+  ];
+  for (const [nom, html, attendu] of cas) {
+    const vu = zonesDe(html).attributs;
+    for (const a of [attendu].flat()) {
+      if (!vu.includes(a)) ecarts.push(`${nom} : attendu « ${a} », lu ${JSON.stringify(vu)}`);
+    }
+  }
+  /* NON-VACUITÉ : une page sans attribut de racine ne doit rien ajouter — sans quoi les six cas
+     ci-dessus passeraient sur un lecteur qui rendrait n'importe quoi. */
+  const vide = zonesDe("<html><body><p>x</p></body></html>").attributs;
+  if (vide.trim() !== "") ecarts.push(`une page sans attribut de racine en rend : ${JSON.stringify(vide)}`);
+  /* Et ce qui n'est PAS un texte accessible reste dehors, comme pour le reste du fichier. */
+  const nonTexte = zonesDe('<html data-prix="€400"><body id="€400 aussi"><p>x</p></body></html>').attributs;
+  if (nonTexte.includes("€400")) ecarts.push(`un attribut non accessible est lu : ${JSON.stringify(nonTexte)}`);
+  /* Et le piège seul, sans vrai body derrière : il ne doit RIEN rendre — sinon le contrôle
+     ci-dessus serait satisfait par un lecteur qui rend la première valeur venue. */
+  const piegeSeul = zonesDe('<html><head><script>const t = "<body aria-label=piege>";</script></head><body><p>x</p></body></html>').attributs;
+  if (piegeSeul.includes("piege")) ecarts.push(`le faux \`<body>\` d'un script est lu : ${JSON.stringify(piegeSeul)}`);
+  /* Et la balise tardive n'adopte que ce qui MANQUE : un attribut déjà porté par le corps n'est pas
+     remplacé, le navigateur garde le premier. Le lecteur doit faire de même — sinon il lirait des
+     balises, pas ce qui est publié, et inventerait une surface que personne ne voit. */
+  const tardiveDejaPortee = zonesDe('<html><body aria-label="ordinary label"><p>x</p><body aria-label="€400 each way"></body></html>').attributs;
+  if (tardiveDejaPortee.includes("€400")) ecarts.push(`une balise tardive remplace un attribut déjà porté : ${JSON.stringify(tardiveDejaPortee)}`);
+  if (!tardiveDejaPortee.includes("ordinary label")) ecarts.push(`le premier attribut du corps est perdu : ${JSON.stringify(tardiveDejaPortee)}`);
+
+  if (ecarts.length) echec("13 attributs de racine", ecarts.join(" · "));
+  else ok(`13 les attributs de \`<html>\` et \`<body>\` sont lus dans leurs ${cas.length} formes valides — entité, chevron dans la valeur, sans guillemets, guillemets simples, même attribut porté par les deux balises, balise tardive adoptée — et rien d'autre ne l'est`);
+}
+
 console.log(defauts
   ? `\n[zones] ÉCHEC — ${defauts} contre-épreuve(s) en défaut`
   : "\n[zones] un seul lecteur : le titre reste dans sa zone, les titres SVG dans le corps, le texte est lu comme il est rendu, les textes accessibles des attributs ont leur zone, et les deux gardes voient la même page.");

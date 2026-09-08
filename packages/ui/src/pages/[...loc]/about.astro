@@ -49,10 +49,17 @@ const orgLd = JSON.stringify({
     <div class="mdcf-container abt">
       <p class="mdcf-eyebrow">{T("About · Editorial team", "À propos · Équipe éditoriale", "Acerca de · Equipo editorial")}</p>
       <h1 class="mdcf-h2">{title}</h1>
+      {/* DEUX CORRECTIONS DANS UNE PHRASE (07/09/2026), RELEVÉES AU CONTRE-TEST NAVIGATEUR.
+          « bilingue » datait de l'époque où le site avait deux langues ; l'espagnol disait
+          « trilingüe » ; le tableau juste en dessous, lui, en annonce quatre depuis longtemps.
+          La page se contredisait elle-même. Et « nous vérifions les règles officielles » promet
+          à toutes les fiches un état — vérifié — qui n'appartient aujourd'hui qu'à une petite
+          partie d'entre elles ; c'est la sur-promesse que le lot précédent a retirée du corps de
+          la page et qui subsistait, intacte, dans son premier paragraphe. */}
       <p class="abt-lede">{T(
-        "MyDogCanFly is a data-driven, bilingual platform that helps people fly safely and legally with their dog. We do not sell tickets or give veterinary opinions — we compile, structure and verify the official rules so you can decide with confidence.",
-        "MyDogCanFly est une plateforme bilingue, orientée données, qui aide à voyager en avion avec son chien en toute sécurité et légalité. Nous ne vendons pas de billets et ne donnons pas d'avis vétérinaire — nous compilons, structurons et vérifions les règles officielles pour que vous décidiez en confiance.",
-        "MyDogCanFly es una plataforma trilingüe, orientada a datos, que ayuda a viajar en avión con tu perro con total seguridad y legalidad. No vendemos billetes ni damos opiniones veterinarias — recopilamos, estructuramos y verificamos las reglas oficiales para que decidas con confianza.",
+        "MyDogCanFly is a data-driven, multilingual platform that helps people fly safely and legally with their dog. We do not sell tickets or give veterinary opinions — we gather and structure the official rules, and we distinguish what is verified from what is still to be confirmed, so you can see what your decision rests on.",
+        "MyDogCanFly est une plateforme multilingue, orientée données, qui aide à voyager en avion avec son chien en toute sécurité et légalité. Nous ne vendons pas de billets et ne donnons pas d'avis vétérinaire — nous rassemblons et structurons les règles officielles, et nous distinguons ce qui est vérifié de ce qui reste à confirmer, pour que vous voyiez sur quoi repose votre décision.",
+        "MyDogCanFly es una plataforma multilingüe, orientada a datos, que ayuda a viajar en avión con tu perro con total seguridad y legalidad. No vendemos billetes ni damos opiniones veterinarias: reunimos y estructuramos las normas oficiales, y distinguimos lo que está verificado de lo que aún está por confirmar, para que veas en qué se apoya tu decisión.",
       )}</p>
 
       {/* CE PARAGRAPHE PROMETTAIT CE QUE L'AUDIT VIENT DE DÉMENTIR (contre-test du 06/09/2026).
@@ -87,8 +94,8 @@ const orgLd = JSON.stringify({
           <p class="abt-author__role">{T("Founder & Director of Publication", "Fondateur & Directeur de la publication", "Fundador y director de publicación")}</p>
           <p class="abt-author__name">{LEGAL.director}</p>
           <p>{T(
-            "MyDogCanFly is founded and edited by Phil Albert-Benoist, who is also its director of publication. His background bridges digital engineering (EFREI Paris) and visual culture (ENSP Arles): the technical foundations of a rigorous, structured, standards-compliant web platform, paired with a demanding editorial eye. Day-to-day this means platform architecture, Schema.org structured data, SEO and GEO (optimisation for search and for generative engines), bilingual editorial governance and privacy compliance.",
-            "MyDogCanFly est fondé et édité par Phil Albert-Benoist, également directeur de la publication. Son parcours relie l'ingénierie numérique (EFREI Paris) et la culture visuelle (ENSP Arles) : les fondations techniques d'une plateforme web rigoureuse, structurée et conforme aux standards, avec une exigence éditoriale forte. Au quotidien : architecture de plateforme, données structurées Schema.org, SEO et GEO (optimisation pour la recherche et les moteurs génératifs), gouvernance éditoriale bilingue et conformité vie privée.",
+            "MyDogCanFly is founded and edited by Phil Albert-Benoist, who is also its director of publication. His background bridges digital engineering (EFREI Paris) and visual culture (ENSP Arles): the technical foundations of a rigorous, structured, standards-compliant web platform, paired with a demanding editorial eye. Day-to-day this means platform architecture, Schema.org structured data, SEO and GEO (optimisation for search and for generative engines), multilingual editorial governance and privacy compliance.",
+            "MyDogCanFly est fondé et édité par Phil Albert-Benoist, également directeur de la publication. Son parcours relie l'ingénierie numérique (EFREI Paris) et la culture visuelle (ENSP Arles) : les fondations techniques d'une plateforme web rigoureuse, structurée et conforme aux standards, avec une exigence éditoriale forte. Au quotidien : architecture de plateforme, données structurées Schema.org, SEO et GEO (optimisation pour la recherche et les moteurs génératifs), gouvernance éditoriale multilingue et conformité vie privée.",
             "MyDogCanFly está fundado y editado por Phil Albert-Benoist, que también es su director de publicación. Su trayectoria une la ingeniería digital (EFREI Paris) y la cultura visual (ENSP Arles): las bases técnicas de una plataforma web rigurosa, estructurada y conforme a los estándares, junto con una mirada editorial exigente. En el día a día, esto significa arquitectura de plataforma, datos estructurados Schema.org, SEO y GEO (optimización para la búsqueda y para los motores generativos), gobernanza editorial multilingüe y cumplimiento en materia de privacidad.",
           )}</p>
           <p>{T(

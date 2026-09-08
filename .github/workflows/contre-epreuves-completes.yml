@@ -83,6 +83,33 @@ jobs:
       # LE SITE COMPLET D'ABORD, et ce n'est pas facultatif : les mutations qui le LISENT ne le
       # reconstruisent pas. Sans ce build, `--tout` refuse de démarrer plutôt que de faire échouer
       # leurs harnais faute de matière — ce qui aurait l'air d'une garantie qui ne porte pas.
+      # LE CONTRE-TEST NAVIGATEUR PASSE EN PREMIER, ET SUR SON PROPRE BUILD. Il a d'abord été
+      # branché APRÈS `build:preview`, sur le site complet : 31 épreuves sur 103 ont échoué, toutes
+      # de la même famille — « The engine didn't answer », précédé en console par un refus CORS
+      # vers `https://00000000-mydogcanfly-api-preview.fromparis.workers.dev`.
+      #
+      # La cause n'est pas le harnais : `apercu-local.mjs` sert l'API SOUS LA MÊME ORIGINE, en
+      # appelant le vrai Worker en mémoire derrière `/v1/*`. Le site testé doit donc l'appeler en
+      # chemin RELATIF. Le build complet ci-dessous est câblé sur une adresse de Worker FACTICE —
+      # que des zéros — parce que les mutations, elles, ne font que lire le HTML et n'ont besoin
+      # d'aucun moteur. Les deux besoins sont incompatibles dans un seul dist ; ils prennent donc
+      # chacun le leur, dans cet ordre.
+      #
+      # C'est la seconde chose que ce câblage révèle : le harnais ne décrivait pas seulement la
+      # MACHINE où il tournait (le chemin du navigateur, corrigé au commit précédent), mais aussi
+      # le DIST qu'on lui donnait. Ses « 104/104 » supposaient un build local que personne d'autre
+      # ne faisait.
+      - name: Site local (le contre-test navigateur appelle l'API en chemin relatif)
+        run: npm run build
+
+      - name: Playwright (le contre-test navigateur en a besoin)
+        run: |
+          npm i --no-save playwright@1.56.1
+          npx playwright install --with-deps chromium
+
+      - name: Le navigateur voit ce que voit un visiteur
+        run: npm run test:apercu
+
       - name: Site complet (les mutations qui le lisent en ont besoin)
         run: npm run build:preview -- --api-base=https://00000000-mydogcanfly-api-preview.fromparis.workers.dev
 

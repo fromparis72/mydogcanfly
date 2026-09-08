@@ -47,6 +47,16 @@
  * lecteur — un filtre posé avant le décodage annule le décodage.
  */
 import { JSDOM } from "jsdom";
+/* LE PARSEUR QUE JSDOM EMPLOIE — ET C'ÉTAIT FAUX PENDANT UNE JOURNÉE (contre-revue du 07/09/2026).
+ * `parse5` a été importé ici sans être déclaré par le dépôt. L'import résolvait alors PAR HASARD
+ * vers `parse5@7.3.0`, apportée transitivement par Astro (`hast-util-from-html`), tandis que
+ * jsdom 30.0.1 embarque sa propre `parse5@8.0.1`, imbriquée. Deux parseurs, deux versions
+ * majeures, et un lecteur partagé dont l'identité dépendait de l'arbre de dépendances d'un
+ * générateur de site — une mise à jour d'Astro pouvait le changer ou le casser en silence.
+ * `parse5@8.0.1` est désormais déclarée en `devDependencies`, épinglée, et dédupliquée avec
+ * celle de jsdom : la phrase ci-dessous est vraie parce qu'elle est mesurée (`npm ls parse5`),
+ * pas parce qu'elle est écrite. */
+import { Parser, defaultTreeAdapter } from "parse5";   // la même 8.0.1 que jsdom, déclarée
 
 /* LA FENÊTRE UNIQUE DU PROCESSUS. Elle est créée à la première lecture et ne l'est plus jamais :
    c'est tout l'intérêt. Chaque page est réinjectée dans un `<div>` neuf de ce document. */
@@ -177,7 +187,104 @@ const METAS_PUBLIQUES = [
 export function zonesDe(html) {
   const d = document_();
   const racine = d.createElement("div");
-  racine.innerHTML = String(html ?? "");
+  const brut = String(html ?? "");
+  racine.innerHTML = brut;
+
+  /* LES ATTRIBUTS DE `<html>` ET `<body>`, QUE LE `<div>` RÉUTILISÉ FAIT DISPARAÎTRE.
+   *
+   * Quatrième correction de ce lecteur, trouvée le 07/09/2026 par une contre-épreuve qui plaçait
+   * une promesse dans `<body aria-label="…">` et attendait qu'elle soit vue : elle ne l'était pas.
+   * La cause est la même que celle qui avait fait perdre les `<title>` de SVG — l'injection par
+   * `innerHTML` dans un `<div>`. Le parseur y jette `html`, `head` et `body` en ne gardant que
+   * leurs enfants : les attributs portés par ces balises partent avec elles.
+   *
+   * Un `aria-label` sur le corps est lu à voix haute par un lecteur d'écran comme n'importe quel
+   * autre : c'est du texte public, et il échappait à TOUTES les portes qui emploient ce lecteur.
+   * On les relève donc sur le HTML BRUT, avant l'injection — seule la première balise de chaque
+   * sorte, et uniquement les attributs déjà reconnus comme accessibles ailleurs dans ce fichier. */
+  /* CINQUIÈME CORRECTION, ET LA PRÉCÉDENTE ÉTAIT UN PARSEUR DE PLUS. La quatrième relevait ces
+   * attributs à l'expression régulière `<body\b([^>]*)>` puis découpait les guillemets à la main.
+   * Trois formes parfaitement valides lui échappaient, mesurées en contre-revue :
+   *
+   *     <body aria-label="&#x20AC;400 each way">          l'entité n'était pas décodée
+   *     <body aria-label="€400 > confirmation required">  le « > » fermait la balise trop tôt
+   *     <body aria-label=€400>                            sans guillemets, rien n'était vu
+   *
+   * Un prix rendu « €400 » à l'écran pouvait donc traverser toutes les gardes tarifaires. Écrire
+   * un analyseur de HTML à la main dans le fichier dont la raison d'être est de n'en avoir qu'un
+   * seul : c'est le défaut que ce fichier combat, commis à l'intérieur de lui-même.
+   *
+   * DEUX GESTES, ET AUCUN NE DEVINE. On délimite la balise ouvrante par un scanner qui suit les
+   * guillemets — un « > » entre guillemets ne ferme rien — puis on confie ses attributs AU MÊME
+   * PARSEUR que le reste : réinjectés sur un `<div>` neutre, ils sont décodés par le DOM, avec ou
+   * sans guillemets, entités comprises. Le lecteur ne fait plus que déléguer. */
+  /* SIXIÈME CORRECTION, ET LA CINQUIÈME ÉTAIT ENCORE UN SCANNER. Elle suivait les guillemets —
+   * un « > » entre guillemets ne fermait plus la balise — mais elle ne connaissait pas le CONTEXTE
+   * HTML : elle prenait le premier `<body` du fichier, fût-il dans un script ou un commentaire.
+   *
+   *     <script>const t = "<body aria-label=piege>";</script>
+   *     <body aria-label="€400 each way">          → le lecteur rendait « piege »
+   *
+   * Le faux `<body>`, jamais servi à personne, masquait donc le vrai, et son `aria-label` avec.
+   * Trois rédactions de suite — expression régulière, puis scanner naïf, puis scanner à guillemets
+   * — ont buté sur la même chose : écrire un analyseur de HTML est un métier, et ce fichier existe
+   * précisément pour n'en avoir qu'un.
+   *
+   * ON NE LOCALISE PLUS RIEN SOI-MÊME. `parse5` — le parseur que jsdom emploie sous le capot —
+   * lit le document selon les règles HTML, commentaires, scripts et styles compris. Un adaptateur
+   * d'arbre délègue tout au sien et s'interrompt dès que `<body>` est construit : à cet instant le
+   * parseur a déjà traversé toute la tête, et le reste du document ne coûte rien.
+   *
+   * MESURÉ sur les 3 121 pages du site complet, le 07/09/2026 :
+   *   parse complet de chaque page ......... 116 s
+   *   arrêt dès `<body>` ..................... 4,8 s, 0,2 Mo de tas
+   * Le parseur intégral coûtait vingt-quatre fois plus cher pour la même réponse — c'est ce qui
+   * a été écrit ici, et l'arrêt anticipé a été retiré le jour même : voir la huitième correction,
+   * qui nomme ce que cet arrêt ne voyait pas, et remesure le rapport. */
+  /* HUITIÈME CORRECTION, ET L'ARRÊT ANTICIPÉ ÉTAIT UNE SURFACE EN MOINS. La sixième interrompait
+   * le parseur dès que `<body>` était CRÉÉ, au nom d'une mesure — vingt-quatre fois moins cher.
+   * Mais une balise `<html>` ou `<body>` rencontrée PLUS LOIN dans le document n'est pas jetée par
+   * le navigateur : la règle HTML lui fait ADOPTER, sur l'élément déjà construit, les attributs
+   * qu'il ne portait pas encore. Mesuré sur parse5 comme sur jsdom, le 07/09/2026 :
+   *
+   *     <html><body><p>x</p><body aria-label="€400 each way">…
+   *       → le navigateur publie « €400 each way » sur le corps ; le lecteur rendait « »
+   *
+   * L'arrêt anticipé avait donc acheté sa vitesse avec une surface accessible réelle. Et la
+   * vitesse elle-même était mal pesée : mesurés sous la même charge, parse complet et arrêt
+   * anticipé sont dans un rapport de 6, non de 24 — 3,2 s contre 0,5 s pour 500 pages — et le
+   * lecteur entier coûte 48 s sur ces mêmes 500 pages. Le parse complet ajoute 7 % au lecteur.
+   * On lit donc les attributs APRÈS le parse, sur les éléments capturés, une fois que le parseur a
+   * fini de leur adjoindre ce que le document leur adjoint. Plus d'exception, plus de signal. */
+  const attributsDeLaRacine = () => {
+    let elHtml = null, elBody = null;
+    const adaptateur = Object.create(defaultTreeAdapter);
+    adaptateur.createElement = function (nom, ns, attrs) {
+      const el = defaultTreeAdapter.createElement(nom, ns, attrs);
+      if (nom === "html" && !elHtml) elHtml = el;
+      if (nom === "body" && !elBody) elBody = el;
+      return el;
+    };
+    Parser.parse(brut, { treeAdapter: adaptateur });
+    const attrsHtml = elHtml?.attrs ?? [], attrsBody = elBody?.attrs ?? [];
+    /* SEPTIÈME CORRECTION, ET CELLE-CI NE VENAIT PLUS DE L'ANALYSE MAIS DU RANGEMENT. La sixième
+     * cumulait les attributs des deux balises dans une `Map` indexée par nom. Or `<html>` et
+     * `<body>` sont DEUX éléments, et rien n'interdit qu'ils portent le même attribut :
+     *
+     *     <html aria-label="€400 each way"><body aria-label="ordinary label">
+     *       → le lecteur ne rendait que « ordinary label »
+     *
+     * Le second écrasait le premier, et un prix publié sur la racine disparaissait derrière un
+     * libellé anodin porté par le corps. On ne fusionne donc plus par nom : on filtre chaque liste
+     * sur les attributs reconnus comme accessibles, et on concatène les deux, dans l'ordre du
+     * document — les deux occurrences sont conservées, parce que les deux sont lues à voix haute. */
+    const accessibles = (attrs) => (attrs ?? [])
+      .filter(({ name }) => ATTRIBUTS_ACCESSIBLES.includes(name.toLowerCase()))
+      .map(({ value }) => value)
+      .filter((v) => v);
+    return [...accessibles(attrsHtml), ...accessibles(attrsBody)];
+  };
+  const attributsRacine = attributsDeLaRacine();
 
   /* LE TITRE DU DOCUMENT, ET LUI SEUL. Un `querySelector("title")` nu ramènerait le PREMIER titre
      de l'arbre, qui peut être celui d'un SVG placé dans le corps. On exige l'espace de noms HTML. */
@@ -213,7 +320,7 @@ export function zonesDe(html) {
     if (JAMAIS_PUBLIC.has(nom) || (n.namespaceURI === XHTML && TETE_HTML.has(nom))) n.remove();
   }
   const corps = texteRendu(racine, []).join("");
-  const attributs = attributsAccessibles(racine);
+  const attributs = [...attributsRacine, attributsAccessibles(racine)].filter(Boolean).join("\n");
 
   racine.innerHTML = "";            // on ne garde rien d'une page à l'autre
   return { titre, corps, metas, jsonLd, attributs, jsonLdInvalide };

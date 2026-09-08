@@ -145,15 +145,66 @@ if (!goldenCite) { console.error("[faq-races] profil cité introuvable"); proces
   }
 }
 
-/* ---- 4. Une race brachycéphale garde ses restrictions -------------------------------------- */
+/* ---- 4. Une race brachycéphale : marquée dans les données, prudente dans le texte ----------- */
+/* ── MOUVEMENT NOMMÉ DU 07/09/2026, ET IL EXIGE PLUS QU'AVANT ────────────────────────────────
+ *
+ * Ce contrôle exigeait qu'une mention brachycéphale apparaisse quelque part dans le PROFIL du
+ * carlin. Il a été écrit pour attraper une vraie faute — j'avais un jour supprimé le mot en même
+ * temps que le faux chiffre qui l'accompagnait, et la fiche avait cessé de dire que le carlin a
+ * le museau court. Sa forme, en revanche, ne demandait qu'une chose : que le MOT soit là.
+ *
+ * Le contre-test navigateur du 07/09/2026 a montré ce que cette forme laissait passer. La phrase
+ * qui portait le mot affirmait que ces races « sont exposées aux embargos chaleur saisonniers et
+ * à des restrictions respiratoires » — sans aucune citation, et juste après un paragraphe disant
+ * « ce n'est pas un refus, c'est une absence de preuve ». Le contrôle était satisfait : le mot y
+ * était. Une affirmation catégorique non sourcée passait sous un témoin qui comptait des mots.
+ *
+ * La phrase est supprimée, donc ce témoin rougissait — le profil ne porte plus le mot, la
+ * prudence étant désormais rendue par le gabarit via `race.brachy_prudence`. Il n'est pas abaissé
+ * pour autant : il exige maintenant DEUX choses, là où il n'en exigeait qu'une, et les deux
+ * portent sur ce qui est réellement publié.
+ *
+ *   · le fait reste dans les données : `brachy` est vrai pour le carlin, faux pour le golden —
+ *     c'est ce qui permet au gabarit de dire quelque chose ;
+ *   · et AUCUNE des phrases du profil ne doit affirmer un refus, un embargo ou une restriction
+ *     respiratoire au nom de la catégorie. Le vocabulaire interdit est énuméré, dans les quatre
+ *     langues, et le contrôle porte son propre témoin de non-vacuité. */
 {
   const carlin = computeBreedTravel("breed_pug");
   if (!carlin) echec("4 carlin", "le carlin est introuvable");
-  else if (!carlin.brachy) echec("4 carlin", "le carlin n'est pas marqué brachycéphale");
+  else if (!carlin.brachy) echec("4 carlin", "le carlin n'est pas marqué brachycéphale — le fait a quitté les données");
   else {
-    const texte = JSON.stringify(carlin);
-    if (!BRACHY.test(texte)) echec("4 carlin", "aucune mention brachycéphale sur une race qui l'est — la restriction a disparu avec le mot");
-    else ok("4 le carlin garde ses restrictions brachycéphales");
+    ok("4 le carlin reste marqué brachycéphale dans les données");
+
+    /* Ce qu'une phrase de profil n'a plus le droit d'affirmer au nom de la catégorie. */
+    const AFFIRMATIONS = [
+      /embargo(s)? (chaleur|sazona|por calor|saisonnier)/i,
+      /seasonal heat embargo/i,
+      /restrictions? respiratoires?|respiratory restriction|restricciones respiratorias|restrições respiratórias/i,
+      /refusé par de nombreuses|refused by many|rechazado por muchas|recusado por muitas/i,
+      /interdit(es)? (en soute|dans la soute)|banned from the hold/i,
+    ];
+    const phrases = [];
+    (function ramasser(x) {
+      if (typeof x === "string") { phrases.push(x); return; }
+      if (Array.isArray(x)) { x.forEach(ramasser); return; }
+      if (x && typeof x === "object") { Object.values(x).forEach(ramasser); }
+    })(carlin);
+    const fautives = phrases.filter((ph) => AFFIRMATIONS.some((re) => re.test(ph)));
+    if (fautives.length) {
+      for (const f of fautives.slice(0, 3)) echec("4 affirmation", `« ${f.slice(0, 80)}… »`);
+    } else {
+      ok(`4 aucune des ${phrases.length} phrases du profil n'affirme un refus ou un embargo au nom de la catégorie`);
+    }
+
+    /* NON-VACUITÉ : le motif doit reconnaître la phrase RÉELLEMENT supprimée. Sans ce témoin, une
+       liste d'expressions qui ne correspondrait à rien passerait pour une garantie. */
+    const supprimee = "Les races au museau court sont en outre exposées aux embargos chaleur saisonniers et à des restrictions respiratoires propres à chaque compagnie — à confirmer avec chacune.";
+    if (!AFFIRMATIONS.some((re) => re.test(supprimee))) {
+      echec("4 témoin", "le motif ne reconnaît pas la phrase qui a motivé ce contrôle — il ne garantit rien");
+    } else {
+      ok("4 témoin : le motif reconnaît bien la phrase supprimée le 07/09/2026");
+    }
   }
 }
 

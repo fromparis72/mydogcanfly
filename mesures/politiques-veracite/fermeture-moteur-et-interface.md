@@ -1279,3 +1279,754 @@ et sur une brachycéphale ; la note est insensible à la physiologie.
 Pas sûr : qu'il n'existe aucune surface que ni la contre-revue ni moi n'avons regardée. La
 différence avec les trois fois précédentes : la preuve est désormais **structurelle** — une liste
 relevée dans la source — et non une énumération de mémoire.
+
+---
+
+## Annexe 9 — Contre-test navigateur de la préversion 82fcf408 (07/09/2026)
+
+La préversion `82fcf408`, construite depuis `main` à `92b2b9f`, a été parcourue au navigateur.
+Le moteur, les fiches compagnies, les fiches races et le calculateur de caisse ont tenu. Cinq
+blocs de défauts rédactionnels sont ressortis. Ce qui suit dit ce qu'ils étaient, ce que j'ai
+corrigé, et **ce que j'ai mesuré au-delà de ce qui m'était rapporté**.
+
+### 1. Des chiffres majorés à l'accueil, et un press kit qui les dépassait encore
+
+`HomeSections.astro` multipliait chaque compte par 1,2, arrondissait vers le haut et ajoutait
+un « + » : **102** compagnies devenaient « 120+ », **140** pays « 160+ », **172** races « 200+ »,
+**268** aéroports « 300+ ». Le commentaire d'origine assumait le geste — « boosted up to +20%
+… per product decision ». Une décision de produit ne rend pas un chiffre vrai, et le « + »
+promettait encore au-delà de la majoration.
+
+Le press kit, lui, portait quatre valeurs écrites à la main : « 90+ », « 160+ », « 200+ »,
+« 250+ ». Deux étaient **supérieures** au corpus réel, deux inférieures : figées à une date, elles
+dérivaient dans les deux sens sans que rien ne le signale. Une plaquette de presse est reprise
+telle quelle par ceux qui la lisent ; un chiffre faux y voyage plus loin qu'ailleurs.
+
+Les deux surfaces lisent désormais `loadKB()` et affichent le compte exact, sans majoration ni
+« + ». « Des milliers d'itinéraires » est **retiré et non corrigé** : aucune mesure d'itinéraires
+n'existe dans ce dépôt. Une ligne qu'aucun calcul ne soutient ne peut pas être ramenée à sa vraie
+valeur, seulement disparaître jusqu'à ce qu'une mesure existe. Les clés de traduction dorment.
+
+### 2. Le portugais : trois phrases rapportées, cinquante-six trouvées
+
+Le contre-test a vu trois phrases anglaises sur `/pt/about/` : le titre de méthode et les deux
+paragraphes qui distinguent le vérifié du à-confirmer. **Ce sont exactement les trois textes que
+j'avais réécrits au lot précédent.**
+
+Le mécanisme est celui que j'ai déjà nommé trois fois : `T(en, fr, es)` n'a pas d'argument
+portugais ; `inlineT("pt")` cherche la phrase anglaise dans la table pt et, si la clé manque,
+publie l'anglais sans rien signaler. La garde que j'avais écrite pour le fermer était **bornée à
+un seul gabarit**, `AirlinePremiumPage.astro` — déviation que j'avais nommée et jugée acceptable.
+J'ai ensuite réécrit trois phrases dans un gabarit hors de sa portée.
+
+La mesure complète, faite après le rapport, a relevé **56 phrases sur 12 gabarits** : Destinations
+23, Finder 10, calculateur chaleur 9, fiches races 3, À propos 3, press kit 2, et six autres à une.
+Le contre-test n'en avait vu que trois parce qu'il avait ouvert une page *statique* ; les autres
+ne paraissent qu'après une interaction. **Le coût de la borne était de 53 phrases publiées en
+anglais sur des pages portugaises, invisibles à tout ce que je jouais.**
+
+Fait qui achève de condamner la borne : mes propres corrections de ce lot — nouveau titre
+d'accueil, nouveau libellé du lien compagnies, nouvelle phrase de présentation — en ont créé
+**cinq de plus** avant même que j'aie fini. Le total traduit est de **60 clés** (61 occurrences ;
+« Travel Hub guides » est employé par deux gabarits).
+
+Aucune exclusion n'a été retenue. Les cas qui auraient pu en être — la marque `MyDogCanFly`, le
+nom de rubrique `Travel Hub`, `IATA`, `USDA APHIS`, `WOAH`, les noms propres — sont des
+**fragments** à l'intérieur de phrases, pas des phrases : ils restent tels quels dans la
+traduction, la phrase qui les porte est traduite.
+
+La garde est étendue à **tout fichier de `packages/ui/src` appelant `inlineT`/`inlineF`** : 44
+gabarits, 852 phrases relevées, zéro sans portugais. Elle porte son témoin de non-vacuité — retirer
+une clé de la table la fait rougir.
+
+### 3. « Beaucoup de compagnies refusent », aux quatre endroits où elle vivait
+
+Le contre-test citait la phrase de `detailNonEtabli()`, publiée deux fois sur la fiche du carlin.
+Elle affirmait que les races au museau court « sont exposées aux embargos chaleur saisonniers et à
+des restrictions respiratoires », sans une seule citation — et elle paraissait **juste après** un
+paragraphe disant « ce n'est pas un refus, c'est une absence de preuve ». La page se contredisait
+d'une phrase à l'autre.
+
+Le commentaire que j'avais laissé au-dessus la défendait comme « une PRÉCAUTION de catégorie qui,
+elle, reste vraie ». Une précaution qui affirme qu'un risque existe est une affirmation.
+
+Quatre emplacements traités, dont trois que le rapport ne nommait pas :
+
+| Emplacement | État | Geste |
+|---|---|---|
+| `breedTravel.ts` · `detailNonEtabli` | publié, ×2 sur le carlin | supprimé ; le paramètre `brachy` disparaît avec |
+| `breedTravel.ts` · `holdVerdict` | dormant (aucun canal établi) | le compte mesuré reste, la supposition part |
+| `breedTravel.ts` · `cargoVerdict` | dormant | idem |
+| `pagedata.ts` · `breedTravelView` | dormant (gabarit non rendu) | réécrit, sur ordre explicite |
+
+Les trois derniers ne paraissent pas aujourd'hui : sans canal établi, c'est `detailNonEtabli` qui
+sort, et `EntityPage.astro` ne rend plus les fiches races. Mais ils **reviendraient à l'écran dès
+la première citation qui établit un canal**. C'est le défaut différé que j'avais déjà nommé pour
+le score — cette fois je ne le diffère pas.
+
+Ce que le site dit désormais des races brachycéphales tient dans une phrase unique et prudente,
+`race.brachy_prudence`, rendue une fois sur la fiche.
+
+*Ce que j'avais écrit ici, et qui était faux* : « le contre-test attribuait au calculateur de
+caisse la variante "Beaucoup de compagnies refusent ces races en soute" ; cette phrase n'existe
+nulle part dans le dépôt ». **Elle existe, dans les quatre langues.** Elle est dans
+`packages/ui/src/pages/[...loc]/tools/crate.astro`, à la fin de la réponse FAQ sur la marge de
+10 %. Voir l'annexe 10, qui dit comment je l'ai manquée et pourquoi cette erreur est la plus
+grave des trois du lot.
+
+### 4. L'accueil promettait encore « la meilleure compagnie »
+
+Le corps de l'accueil était devenu prudent au lot précédent, mais son **titre principal** disait
+toujours « Trouve la compagnie aérienne idéale ». Trois surfaces portaient la même promesse, et
+deux d'entre elles sont plus reprises que la page elle-même :
+
+- le H1 et son chapeau, dans les quatre langues ;
+- les **quatre descriptions SEO** de l'accueil — « Find the best airline for your dog »,
+  « les compagnies aériennes qui acceptent les chiens », « Encuentra la mejor opción » — et le
+  titre français, qui annonçait « 90+ compagnies » pour 102 ;
+- trois lecteurs : `HeatCalculator.astro`, `CountryOnward.astro`, et le titre « Meilleures
+  compagnies pour cette race » des fiches races.
+
+Tous disent maintenant ce que le site fait réellement : donner les conditions, et dire pour
+chacune si elle est prouvée.
+
+### 5. Ce que je n'ai pas fait, et pourquoi
+
+`CountryGuidePage.astro` et `AirportReliefPage.astro` portent la même formulation — « les
+compagnies documentées qui desservent ce pays **et acceptent les chiens** » — sur 140 pages pays.
+Ces surfaces n'étaient pas dans le lot arbitré. Je les nomme ici : c'est le même défaut, il reste
+publié, et il demandera un arbitrage.
+
+
+---
+
+## Annexe 10 — J'ai opposé une recherche vide à une observation directe (07/09/2026)
+
+### Ce qui s'est passé
+
+Le contre-test navigateur avait **lu à l'écran**, en portugais, sur la préversion, une phrase du
+calculateur de caisse affirmant que beaucoup de compagnies refusent les races brachycéphales en
+soute. Je l'ai cherchée, je ne l'ai pas trouvée, et j'ai écrit — dans un message, dans un commit
+poussé et dans ce dossier — qu'elle **n'existait nulle part dans le dépôt**.
+
+Elle existe, dans les quatre langues, dans `tools/crate.astro` :
+
+> « … c'est une marge de confort MyDogCanFly, pas un chiffre imposé par l'IATA. **Beaucoup de
+> compagnies refusent par ailleurs ces races en soute.** »
+
+### Deux fautes de méthode, et la seconde est la vraie
+
+**La première est technique.** J'ai cherché « refusent ces races ». Le texte dit « refusent **par
+ailleurs** ces races » : deux mots intercalés, et le motif ne trouve rien. J'ai ensuite cherché
+dans `CrateCalculator.astro` — le composant — alors que la phrase vit dans la **page**. Ce
+mécanisme du qualificatif intercalé porte un nom dans ce dépôt : c'est le défaut **P0-1** d'un lot
+antérieur, que j'ai moi-même corrigé et documenté. Je l'avais écrit, et je m'y suis repris.
+
+**La seconde est de raisonnement, et c'est celle qui compte.** Une recherche qui ne trouve rien
+**ne prouve rien** : elle dit que *ce motif-là*, dans *ces fichiers-là*, n'a rien vu. J'en ai tiré
+une affirmation d'inexistence, et je l'ai opposée à quelqu'un qui avait **vu la phrase à
+l'écran**. C'est l'inverse exact de la règle de ce projet : la surface rendue arbitre, jamais ma
+recherche. Un rendu observé est une mesure ; un grep vide est l'absence d'une mesure.
+
+Cette erreur est plus grave que la phrase elle-même. La phrase était un défaut de plus dans un lot
+qui en corrigeait cinq. L'affirmation, elle, invitait à classer une observation juste comme une
+erreur de l'observateur — et si Codex n'avait pas insisté en donnant le chemin du fichier, la
+phrase serait partie en production avec ma signature en dessous.
+
+### Ce que je change, au-delà de la correction
+
+Le contrôle qui garde cette phrase **lit le DOM construit, pas la source** (§7 de
+`test-fiches-affirmations-retirees.mjs`). Un contrôle qui lit la page rendue ne peut pas être
+trompé par un mot intercalé, et il voit ce que le visiteur voit — ce que mon grep ne faisait pas.
+Ses motifs tolèrent explicitement jusqu'à trois mots intercalés, et son témoin de non-vacuité
+exige qu'ils reconnaissent les **huit** phrases réellement retirées ce jour-là, la version « par
+ailleurs » comprise.
+
+### Le second point du même arbitrage : desservir n'est pas accepter
+
+`CountryGuidePage.astro` et `AirportReliefPage.astro` annonçaient « les compagnies qui desservent
+ce pays **et acceptent les chiens** » — 140 pages pays, autant de pages aéroport, quatre langues,
+plus la métadonnée des pages aéroport. Je l'avais relevé au lot précédent et rangé en « hors
+périmètre, à arbitrer ».
+
+C'était une erreur d'appréciation : ce n'est pas un chantier voisin, c'est **le même défaut**. La
+fonction `dogAirlinesForCountry` ne sélectionne pas des compagnies acceptantes ; elle retient
+celles dont un canal est **documenté** (`dogChannel(a) !== "none"`). Le titre, le chapeau et le
+compteur promettaient donc un état que la donnée n'établit pas — et depuis la frontière de
+confiance, aucune politique n'est prouvée acceptante.
+
+Les trois surfaces distinguent maintenant les deux choses : **desservir est constaté, accepter est
+à vérifier fiche par fiche.** Les sept clés portugaises qui portaient l'ancienne promesse sont
+**retirées** de la table, et non laissées dormantes : une clé orpheline qui contient la promesse
+peut la réintroduire au premier gabarit qui reprend son libellé.
+
+---
+
+## Annexe 11 — Le contrôle que j'avais écrit pour fermer un trou en ouvrait quatre (07/09/2026)
+
+### Un contrôle qui annonce ce qu'il ne fait pas
+
+L'annexe 10 se félicitait d'un point : le nouveau §7 « lit le DOM construit, pas la source », donc
+« ne peut pas être trompé par un mot intercalé ». C'était vrai de la phrase qu'il visait, et faux
+de tout le reste.
+
+Pour lire ce DOM, je lui avais donné **sa propre fonction** : le contenu de `<main>`, les scripts
+retirés, les balises effacées à l'expression régulière. Il ne voyait donc **ni les métadonnées, ni
+le JSON-LD, ni les attributs accessibles**. Les métadonnées : celles-là mêmes que le commit
+portant ce contrôle venait de corriger. Le JSON-LD : il reprend la FAQ d'accueil mot pour mot.
+Un contrôle qui garde une correction sans voir la surface corrigée est un faux vert.
+
+`test-lib/zones-publiques.mjs` existe depuis le 02/09/2026 et rend exactement ces cinq zones. Son
+en-tête raconte les trois rédactions successives qu'il a fallu pour qu'il soit juste — dont un
+`<title>` de SVG perdu, qui laissait passer un montant dans un nom accessible. J'en ai écrit une
+quatrième à côté, sans le lire. C'est très précisément le défaut que ce fichier a été créé pour
+clore, et qu'il énonce dans sa deuxième phrase :
+
+> « Ce qui compte comme "publié" ne peut pas dépendre de l'instrument qui regarde. »
+
+### Trois autres trous, tous relevés en contre-revue
+
+- **Trois pages pays et trois aéroports par langue**, dans l'ordre du système de fichiers. Le
+  gabarit est unique, mais les données ne le sont pas : c'est une donnée — un compteur, un nom —
+  qui peut ramener la promesse sur une page et pas sur une autre. Le contrôle lit maintenant
+  **toutes** les pages pays, aéroports et caisse, plus les quatre accueils, dans un ordre trié.
+- **Aucune exigence de présence.** Supprimer purement et simplement les blocs corrigés laissait le
+  contrôle vert : une interdiction seule ne garde rien. Il exige désormais, **par langue**, que la
+  formulation prudente soit effectivement servie.
+- **Les anciens titres absents des témoins.** « Airlines flying to … with a dog » pouvait revenir
+  sans faire rougir quoi que ce soit. Les témoins passent de 8 à 21 phrases.
+
+### Ce que je retiens, et qui vaut au-delà de ce contrôle
+
+Trois fois dans ce lot, j'ai produit un instrument qui **disait** garder quelque chose sans le
+garder : la constante booléenne au lieu d'une suppression, le grep vide opposé à une observation,
+et maintenant un lecteur maison annoncé comme un lecteur de DOM. À chaque fois la faute est la
+même — j'ai décrit l'intention de l'outil plutôt que sa portée réelle, et cette description m'a
+servi de preuve.
+
+La règle qui en sort : **avant d'écrire un lecteur, chercher celui qui existe** ; et quand un
+contrôle prétend couvrir une surface, le prouver en supprimant cette surface pour le voir rougir.
+C'est ce que fait l'exigence de présence ajoutée ici.
+
+### Et le portugais, une fois de plus
+
+Les cinq chaînes écrites la veille employaient `tua`, `teu`, `verificámos`, `junto da` — du
+portugais européen, alors que le composant déclare et emploie partout un registre **brésilien**
+(`você`, `seu`, `cachorro`). Le balayage complet de mes ajouts en a trouvé **9 sur 65**, pas 5 :
+je traduisais phrase par phrase sans relire le registre du fichier d'accueil.
+
+Toutes sont réalignées. Ce n'est pas un détail de style : une page qui alterne les deux registres
+signale au lecteur qu'elle a été écrite par une machine qui ne sait pas à qui elle parle — et sur
+un site dont l'argument est la fiabilité, cela coûte la même confiance qu'un chiffre faux.
+
+---
+
+## Annexe 12 — Quatre gardes vertes qui ne gardaient pas, et un PDF que je n'ai pas su refaire (07/09/2026)
+
+### Le scanner portugais annonçait une couverture qu'il n'avait pas
+
+Il cherchait les appels nommés `T`, `L` ou `F` — trois noms que j'avais **écrits à la main** après
+avoir regardé quelques fichiers. Le dépôt en emploie un quatrième, `Q`, et appelle aussi
+`inlineT(locale)(…)` directement. Un nom d'alias écrit en dur est une supposition sur le code ;
+le code le déclare, il suffisait de le lire. La découverte se fait maintenant **par fichier** —
+et c'est une seconde correction, car `q` est un alias de traduction quelque part et le
+**constructeur de chaîne de requête** dans `RelatedTools.astro`. Réunis globalement, ces
+homonymes gonflaient le compte sans être des traductions : c'est l'écart entre les 861 appels
+annoncés en contre-revue et les **854** que je mesure.
+
+Il décodait aussi les littéraux avec deux `replace`, pour `\'` et `\"`. Conséquence mesurée : le
+corps du courriel des fiches aéroport contient des `\n`. La clé lue par le scanner gardait ses
+barres obliques inverses, celle de la table portait le vrai saut de ligne — deux clés différentes,
+`inlineT` ne trouvait rien, et les **268 fiches d'aéroport portugaises** préremplissaient le
+courriel **en anglais** pendant que la garde restait verte. Le décodeur est maintenant explicite
+et éprouvé sur cinq formes, dont celles qui l'ont fait échouer.
+
+### Une substitution mécanique n'est pas une relecture
+
+J'avais « corrigé » le registre portugais avec des expressions régulières. Elles ont produit
+`verifiqueção` — un mot qui n'existe dans aucune langue, né d'un `verifica → verifique` appliqué à
+l'intérieur de `verificação`. Et elles ont laissé des phrases qui mélangent deux personnes
+grammaticales dans la même ligne : *« Compara … e verifique »*, *« Escolha … ou consulta »*,
+*« lê lá … e confirme »*.
+
+Les 66 chaînes du lot ont été **relues une par une**. C'est la seule méthode qui convienne : une
+règle de substitution ne sait pas si `confirma` est un impératif européen à corriger ou la
+troisième personne d'un indicatif à laisser.
+
+### Une exigence de présence qui acceptait n'importe quelle page
+
+Le §7 vérifiait la phrase de l'accueil avec `f.includes("index.html")`. **Toute** page Astro se
+rend en `…/index.html` : la garde serait restée verte si la phrase avait disparu de l'accueil pour
+être copiée sur une page pays. L'ancrage est désormais exact, et **l'attaque est jouée** sur le
+corpus réel — on retire la phrase de l'accueil, on la copie sur une page pays, le contrôle doit
+rougir. Il l'a fait, mais seulement à la seconde tentative : ma mutation n'avait pas le drapeau
+`g` et n'en retirait qu'une des deux occurrences, car la FAQ d'accueil est publiée **deux fois**,
+dans le corps et dans le JSON-LD qui la reprend. La garde avait raison, ma mutation était
+incomplète.
+
+Le lecteur canonique rend aussi `jsonLdInvalide`. Annoncer « cinq zones lues » en ignorant ce
+compte, c'était dire qu'on a regardé une zone dont on n'a rien pu tirer. Il est exigé nul.
+
+### Le press kit corrigé d'un côté, faux de l'autre
+
+J'avais refait la page dynamique et laissé les **quatre HTML téléchargeables**, qui portaient
+encore `90+` compagnies, `160+` destinations, `169` races — et surtout **« 100 % informations
+sourcées »**, quand 45 canaux sur 302 portent une citation propre. Les quatre fichiers sont
+corrigés : les comptes réels, et une tuile qui dit ce qui est mesurable (302 politiques
+documentées) au lieu d'un pourcentage faux.
+
+**Ce que je n'ai pas su faire** : régénérer les quatre PDF. Ils sont produits par un composant web
+`<doc-page>` qui, dans mon environnement, ne rend aucune hauteur — mes essais donnaient des
+fichiers de 900 octets, c'est-à-dire des pages blanches. Plutôt que de publier des PDF dégradés ou
+de laisser en ligne des documents portant les anciens chiffres, **je les ai retirés**. Le gabarit
+teste déjà l'existence du fichier : les boutons de téléchargement disparaissent d'eux-mêmes. Les
+HTML restent, corrigés. C'est la seconde option de l'arbitrage, et je dis pourquoi j'ai dû la
+prendre plutôt que la première.
+
+### Le contre-test navigateur ne protégeait rien
+
+Il n'était lancé par **aucun workflow**. Ses « 104/104 » figuraient dans mes messages de commit
+comme s'ils protégeaient la branche : ils attestaient seulement que je l'avais lancé à la main.
+Il est câblé au catalogue complet, avec Playwright installé pour la circonstance. Et son repli est
+corrigé : hors CI, une absence de Playwright reste un « non joué » ; **en CI, c'est un échec** —
+un contrôle qui ne s'est pas exécuté ne doit pas rendre une coche verte.
+
+---
+
+## Annexe 13 — Corriger cinq tuiles et déclarer la surface traitée (07/09/2026)
+
+### La quatrième fois
+
+J'ai corrigé les cinq compteurs des dossiers de presse téléchargeables et écrit qu'ils étaient
+corrigés. La contre-revue a ouvert les fichiers en entier : ce sont des **copies publiques d'un
+produit antérieur**. Ils publiaient encore, dans quatre langues :
+
+- la série de caisse **« 500 / XL »** et son « ≈ 94 × 64 × 68 cm » — la série commerciale non
+  sourcée retirée des fiches race et du calculateur ;
+- **chaleur et froid « lus sur les données de la race »** — les déductions retirées du Travel DNA ;
+- **« meilleures compagnies »**, **« score de compatibilité »**, **« recommandations sur mesure »**
+  — les promesses que la frontière de confiance interdit ;
+- **« chaque règle renvoie à une documentation officielle »** — quand 45 canaux sur 302 portent une
+  citation propre ;
+- une date de vérification figée et des promesses de révision continue.
+
+C'est la **quatrième fois** dans ce chantier que je masque une surface en en laissant une autre :
+la carte compagnie puis la FAQ, le corps de fiche race puis la FAQ, l'ADN puis l'aperçu voyage, et
+maintenant la page dynamique puis les documents. Le motif est constant : je corrige ce que la
+revue **nomme**, et je déclare corrigé ce qu'elle **désigne**.
+
+Les quatre HTML avaient été retirés, comme les PDF avant eux. **Philippe a décidé le 07/09/2026
+de les rétablir en l'état** et de traiter ces documents dans un lot séparé.
+
+Ce qui doit rester écrit, parce que la décision ne le change pas : ces fichiers vivent dans
+`public/`, sont copiés dans le site construit, servis à `/presskit/press-kit-<lg>.html`, proposés
+au téléchargement par la page de presse et déclarés dans `porte-noindex-admis.json`. **Ils sont
+publics**, et ils décrivent toujours un produit antérieur. Leur exclusion du contrôle est une
+déviation nommée, pas un constat de propreté.
+
+Deux choses ont été conservées de la correction : les cinq compteurs restent exacts
+(102 / 140 / 172 / 4 / 302), parce que réintroduire sciemment des chiffres faux aurait été un
+geste actif contre le critère de lancement, que la décision de rétablir ne demandait pas ; et le
+contrôle annonce à chaque passage combien de documents sont publiés **sans être audités**, en
+refusant que ce nombre dérive en silence.
+
+### La page dynamique portait les mêmes promesses
+
+Six formulations corrigées : le score de compatibilité, « chaque règle porte l'autorité dont elle
+vient », « chaleur et froid lus sur les données de la race », « chaque règle porte sa source […]
+revérifiées tous les 90 jours », « nous répondons avec la source et sa date de vérification », et
+le moteur qui « montre d'où vient chaque réponse ».
+
+### Le contrôle ne cherchait que des nombres
+
+Mon §6 lisait les compteurs et le suffixe `+`. Il serait resté vert devant toutes les phrases
+ci-dessus. Onze motifs de promesse s'y ajoutent, avec témoin de non-vacuité sur les neuf phrases
+réellement retirées, et une exigence que les documents téléchargeables **restent retirés**.
+
+Ces motifs ont attrapé mes propres corrections avant que je les termine : les six phrases neuves
+de la page press kit n'existaient pas dans la table portugaise, et la garde des replis l'a dit
+immédiatement.
+
+### Le scanner annonçait encore une couverture qu'il n'avait pas
+
+Il commençait par `if (!aliasDe(src).length) continue;` : un gabarit n'employant **que** l'appel
+direct `inlineT(locale)(…)`, sans déclarer d'alias, aurait été ignoré en silence. Aucune fuite
+réelle — le seul appel direct vit dans `faq.ts`, qui déclare aussi des alias — mais la prétention
+de couverture générale était fausse, et c'est elle qui compte : un contrôle qu'on croit général
+dispense d'en écrire un autre. Le `continue` est supprimé, et une contre-épreuve **fabrique** le
+cas : un fichier jetable ne contenant qu'un appel direct, dont la clé manque à la table, doit être
+lu.
+
+---
+
+## Annexe 14 — Un tarif publié, et deux verbes qui manquaient à un motif (07/09/2026)
+
+### Ce que mon inventaire avait manqué
+
+Les quatre dossiers de presse téléchargeables ont été rétablis le matin même, sur décision de
+Philippe, après que je lui ai listé ce qu'ils contenaient encore : score de compatibilité,
+« meilleures compagnies », « chaque règle sourcée ». La contre-revue a ouvert les fichiers et y a
+trouvé ce que je n'avais pas mesuré :
+
+> **400 € par trajet, sur cette route**
+
+En gros caractères orange, dans les **quatre langues**. C'est la famille de défaut que le lot
+« Tarifs » traitait comme **bloquant le lancement**, et elle était en ligne, téléchargeable, depuis
+le début. La décision de rétablir avait été prise sur mon inventaire incomplet ; Philippe l'a
+reprise dès que le fait a été connu.
+
+Même mécanisme pour la série de caisse « 500 / XL » et son « ≈ 94 × 64 × 68 cm » : la série
+commerciale non sourcée, retirée des fiches et du calculateur des semaines plus tôt, survivait ici.
+
+### Les deux leçons du contrôle, qui valent plus que les corrections
+
+Les quatre HTML sont corrigés — tarif, série, traçabilité universelle, score, physiologie,
+« meilleures compagnies », recommandations sur mesure, date de vérification figée — et **remis dans
+le balayage**. Un document proposé au téléchargement est une surface publique comme une autre, et
+une surface publique qu'aucun contrôle ne lit finit par dériver.
+
+Une fois remis, le contrôle a rougi **deux fois de suite**, sur des choses qu'aucun de nous n'avait
+vues :
+
+1. **Sur ma propre reformulation.** J'avais remplacé « chaque règle renvoie à une documentation
+   officielle » par « chaque règle publiée porte sa propre date de vérification ». C'est la même
+   affirmation universelle, déplacée de la source vers la date. J'avais échangé une promesse contre
+   une autre en croyant corriger.
+2. **Sur une phrase que mon inventaire manuel avait manquée** : « chaque règle nomme son autorité »,
+   présente dans les quatre langues. Mon motif listait `porte | renvoie | indique | est sourcée` —
+   il voyait le portugais (`indica`) et pas les trois autres (`names`, `nomme`, `nombra`). Puis, le
+   témoin de non-vacuité en a trouvé une troisième : le motif anglais disait `every rule`, la
+   légende dit `each rule`.
+
+**Un verbe oublié dans une liste de verbes ouvre un trou de la taille de la liste.** Deux fois dans
+le même paragraphe, un synonyme absent a rendu le contrôle aveugle à une phrase qu'il visait
+explicitement. C'est le même défaut que le qualificatif intercalé de l'annexe 10, sous une autre
+forme : ma recherche décrit ce que j'ai pensé à écrire, jamais ce que le texte dit.
+
+### Les PDF
+
+Ils portaient les mêmes phrases et je ne sais pas les régénérer : leur composant `<doc-page>` ne
+rend aucune hauteur hors de son environnement d'origine, et mes essais donnaient des pages blanches
+de 900 octets. Ils sont **retirés**, et leur absence est désormais **exigée** par le contrôle —
+tant que personne ne peut garantir leur contenu, ils restent dehors plutôt que publiés sans garde.
+
+---
+
+## Annexe 15 — Un cinquième lecteur, et le trou qu'il a fini par trouver (07/09/2026)
+
+### Le même défaut, dans le même lot, quelques heures après l'avoir écrit
+
+L'annexe 11 raconte comment j'avais donné au §7 sa propre lecture du HTML au lieu d'employer
+`test-lib/zones-publiques.mjs`, et pourquoi c'était un faux vert. J'ai écrit cette annexe le matin.
+L'après-midi, en remettant les dossiers de presse sous contrôle, j'ai écrit une **cinquième**
+lecture — `texteDe()`, quatre expressions régulières — dans `test-annonce-du-site.mjs`.
+
+Une ligne suffisait à la rendre aveugle :
+
+```html
+<meta name="description" content="€400 each way">
+```
+
+La phrase est publique, et le contrôle passait à côté. Écrire mon propre lecteur n'est pas un
+oubli, c'est un réflexe : il faut le nommer comme tel pour cesser de le refaire. `texteDe` est
+supprimé ; toutes les surfaces du paragraphe — accueils, pages de presse, documents — passent par
+`zonesDe()`. Les documents sont désormais lus dans `dist/presskit/`, là où ils sont réellement
+publiés, et non dans `public/` : lire la source revenait à faire confiance à la copie du build
+plutôt qu'à la vérifier. Un JSON-LD illisible fait échouer, comme dans les autres portes.
+
+### L'attaque a trouvé mieux que ce qu'elle visait
+
+Les deux contre-épreuves demandées réintroduisent une phrase interdite dans une zone que le lecteur
+maison ne voyait pas : le tarif dans une métadonnée, la promesse universelle dans un attribut
+accessible. La première a été vue immédiatement. **La seconde ne l'a pas été.**
+
+Ce n'était pas l'attaque qui était mauvaise. `zonesDe` injecte le HTML dans un `<div>` réutilisé —
+c'est ce qui lui permet de tenir sur 3 121 pages sans épuiser le tas. Or le parseur y jette `html`,
+`head` et `body` en ne gardant que leurs enfants : **les attributs portés par ces balises partent
+avec elles**. Un `aria-label` sur le corps est pourtant lu à voix haute par un lecteur d'écran
+comme n'importe quel autre texte, et il échappait à **toutes** les portes qui emploient ce lecteur.
+
+C'est la même cause que le `<title>` de SVG perdu en septembre — la troisième rédaction de ce
+fichier — et c'est sa quatrième correction. Les attributs de `<html>` et `<body>` sont maintenant
+relevés sur le HTML brut, avant l'injection, en n'acceptant que les attributs déjà reconnus comme
+accessibles ailleurs dans le même fichier.
+
+Vérifié qu'aucune autre garde ne rougit de cet élargissement : `tarifs`, `montants-publies`,
+`montants-propagation`, `caisses-non-sourcees`, `étape3` et `affirmations-retirées` restent vertes.
+
+### Ce que je retiens
+
+Une contre-épreuve écrite pour prouver qu'un contrôle voit une zone a prouvé qu'il ne la voyait
+pas — et le trou n'était pas dans le contrôle, mais dans l'instrument partagé sous lui. C'est
+exactement ce à quoi sert une attaque : elle ne confirme pas ce qu'on croit, elle mesure.
+
+---
+
+## Annexe 16 — La correction du lecteur était un parseur de plus (07/09/2026)
+
+### Ce que l'annexe 15 avait corrigé, et mal
+
+L'annexe 15 raconte comment une contre-épreuve a découvert que `zonesDe()` perdait les attributs
+portés par `<html>` et `<body>` : l'injection par `innerHTML` dans un `<div>` réutilisé jette ces
+balises en ne gardant que leurs enfants. La correction relevait donc ces attributs sur le HTML
+brut, à l'expression régulière `<body\b([^>]*)>`, en découpant les guillemets à la main.
+
+**Trois formes parfaitement valides lui échappaient**, mesurées en contre-revue sur le lecteur
+réel :
+
+| HTML public | ce que le lecteur rendait |
+|---|---|
+| `<body aria-label="&#x20AC;400 each way">` | `&#x20AC;400 each way` — l'entité n'était pas décodée |
+| `<body aria-label="€400 each way > confirmation required">` | vide — le `>` fermait la balise trop tôt |
+| `<body aria-label=€400>` | vide — sans guillemets, rien n'était vu |
+
+Un prix rendu **« €400 »** à l'écran pouvait donc traverser toutes les gardes tarifaires.
+
+### Le défaut, commis à l'intérieur du fichier qui le combat
+
+`zones-publiques.mjs` existe pour qu'il n'y ait **qu'un seul** lecteur de HTML dans ce dépôt. Sa
+deuxième phrase le dit : *« ce qui compte comme publié ne peut pas dépendre de l'instrument qui
+regarde »*. J'y ai écrit un analyseur de HTML à la main.
+
+C'est la troisième fois dans ce lot que je réécris un lecteur au lieu d'employer celui qui existe —
+le §7 des affirmations retirées (annexe 11), le §6 de l'annonce (annexe 15), et maintenant
+**dedans**. Le réflexe survit à sa propre documentation : je l'ai nommé deux fois et je l'ai
+recommis deux fois. Ce qui l'arrête n'est pas de le comprendre, c'est qu'une contre-épreuve le
+mesure.
+
+### Deux gestes, et aucun ne devine
+
+- Un **scanner qui suit les guillemets** délimite la balise ouvrante : un `>` entre guillemets ne
+  ferme plus rien, et une balise jamais fermée ne rend rien plutôt qu'une valeur inventée.
+- Les attributs sont **réinjectés sur un `<div>` neutre** et lus par `getAttribute` : c'est le
+  **même parseur** que tout le reste du fichier qui décode — avec ou sans guillemets, entités
+  comprises. Le lecteur ne fait plus que déléguer.
+
+### Six cas, pas trois
+
+Le §13 de `test-zones-publiques.mjs` couvre les trois formes signalées, plus l'attribut porté par
+`<html>`, les guillemets simples et la balise auto-fermante — un cas par forme, parce qu'un seul
+les aurait toutes crues couvertes. Deux témoins l'encadrent : une page sans attribut de racine ne
+doit **rien** rendre, et un attribut non accessible (`data-prix`, `id`) doit rester dehors.
+
+Les sept gardes qui emploient ce lecteur — `tarifs`, `montants-publiés`, `montants-propagation`,
+`caisses-non-sourcées`, `étape3`, `affirmations-retirées`, `annonce` — restent vertes après
+l'élargissement.
+
+---
+
+## Annexe 17 — Trois scanners pour une balise, et le parseur qu'il fallait appeler (07/09/2026)
+
+### Le même mur, trois fois
+
+La correction précédente relevait les attributs de `<html>` et `<body>` avec un scanner qui suivait
+les guillemets. Il ne connaissait pas le **contexte HTML** :
+
+```html
+<script>const t = "<body aria-label=piege>";</script>
+<body aria-label="€400 each way">        →  le lecteur rendait « piege »
+```
+
+Le faux `<body>`, écrit dans une chaîne JavaScript et jamais servi à personne, précédait le vrai
+dans le fichier. Le lecteur prenait le premier venu, et le prix réellement affiché passait sous les
+gardes tarifaires. Même effet avec un `<!-- <body …> -->`.
+
+C'est la **troisième rédaction** de la même chose à buter sur le même mur :
+
+1. expression régulière `<body\b([^>]*)>` — cassait sur les entités, le `>` dans une valeur, et
+   l'absence de guillemets ;
+2. scanner à guillemets — corrigeait ces trois formes, ignorait le contexte ;
+3. et il aurait fallu un troisième correctif pour les commentaires, puis un quatrième pour les
+   `<textarea>`, et ainsi de suite.
+
+À chaque tour, j'ai corrigé le symptôme signalé **en gardant l'approche fautive**. Écrire un
+analyseur de HTML est un métier, et ce fichier existe précisément pour n'en avoir qu'un.
+
+### Ce qu'il fallait faire dès le départ
+
+`parse5` est déjà installé : c'est le parseur que **jsdom emploie sous le capot**. Il lit le
+document selon les règles HTML — commentaires, scripts, styles, modes de texte brut — sans qu'on
+ait rien à lui expliquer.
+
+Un adaptateur d'arbre délègue tout au sien et **s'interrompt dès que `<body>` est construit**. À cet
+instant, le parseur a déjà traversé toute la tête ; le reste du document ne coûte rien.
+
+### La mesure, parce qu'un arrêt anticipé demande à être justifié
+
+Sur les 3 121 pages du site complet :
+
+| | Durée | Tas |
+|---|---|---|
+| parse complet de chaque page | 116 s | 0 Mo |
+| **arrêt dès `<body>`** | **4,8 s** | **0,2 Mo** |
+
+Et le lecteur entier ne bouge pas : **47,9 s / 227 Mo** avec `parse5`, contre **48,0 s / 226 Mo**
+avec le scanner, sur 500 pages. Le poids du lecteur vient de jsdom sur le corps, pas de la
+localisation de la racine — la question du coût, qui avait justifié le `<div>` réutilisé en
+septembre, ne se posait pas ici.
+
+### Neuf cas, et un témoin qui manquait
+
+Le §13 de `test-zones-publiques.mjs` couvre maintenant : entité, chevron dans la valeur, absence de
+guillemets, guillemets simples, balise auto-fermante, attribut sur `<html>`, faux `<body>` en
+script, faux `<body>` en commentaire, faux `<html>` en commentaire. Un cas par forme — un seul les
+aurait toutes crues couvertes.
+
+Trois témoins l'encadrent : une page sans attribut de racine ne rend **rien** ; `data-prix` et `id`
+restent dehors ; et **le piège seul, sans vrai `<body>` derrière, ne rend rien** — sans ce
+troisième, le contrôle serait satisfait par un lecteur qui rend la première valeur venue.
+
+## Annexe 18 — Le parseur était bon, le rangement effaçait une valeur (07/09/2026)
+
+### Le défaut, et il ne venait plus de l'analyse
+
+L'annexe 17 avait enfin confié la localisation de `<html>` et `<body>` à `parse5`. Mais ce que le
+parseur rendait, je le rangeais dans une **`Map` indexée par nom d'attribut** :
+
+```js
+const lus = new Map();
+for (const { name, value } of [...attrsHtml, ...attrsBody]) lus.set(name.toLowerCase(), value);
+```
+
+`<html>` et `<body>` sont **deux éléments**, et rien n'interdit qu'ils portent le même attribut.
+Quand c'est le cas, le second écrase le premier :
+
+```html
+<html aria-label="€400 each way"><body aria-label="ordinary label">
+        →  le lecteur ne rendait que « ordinary label »
+```
+
+Un prix publié sur la racine disparaissait derrière un libellé anodin porté par le corps — une
+surface accessible réelle, masquée par la structure de données que j'avais choisie pour la ranger.
+Mesuré sur le lecteur avant correction : `["ordinary label"]`, et rien d'autre.
+
+### Pourquoi une `Map`, et pourquoi c'était faux
+
+Je l'avais prise pour **dédoublonner** — sans me demander ce qu'il y avait à dédoublonner. Deux
+attributs de même nom sur deux éléments distincts ne sont pas un doublon : ce sont deux textes,
+lus à voix haute l'un après l'autre. Une `Map` répond à la question « quelle est la valeur de
+`aria-label` ? », qui n'est pas la question du lecteur. La sienne est « qu'est-ce qui est publié ? »
+— et la réponse est une liste, pas un dictionnaire.
+
+C'est la **septième correction** de ce fichier, et la première qui ne porte pas sur la lecture du
+HTML mais sur ce qu'on fait du résultat une fois lu. Le mur avait changé de place ; je ne l'ai pas vu
+parce que je regardais encore l'ancien.
+
+### Le correctif, tel que Codex l'a formulé
+
+Plus de fusion par nom. Chaque liste d'attributs est **filtrée** sur les six noms accessibles, puis
+les deux sont **concaténées** dans l'ordre du document — `<html>` puis `<body>`. Les deux occurrences
+sont conservées, parce que les deux sont lues.
+
+Le §13 de `test-zones-publiques.mjs` reçoit deux cas — `aria-label` sur les deux balises, `title`
+sur les deux balises — avec deux valeurs distinctes et **l'exigence que les deux soient lues**.
+C'est ce qui distingue un lecteur qui cumule d'un lecteur qui choisit : un lecteur qui n'en rend
+qu'une échoue, et c'est mesuré — la `Map` rétablie le temps d'une contre-épreuve, le §13 tombe sur
+exactement ces deux cas et se relève quand elle est retirée.
+
+Onze formes couvertes désormais, contre neuf ; les trois témoins de l'annexe 17 inchangés.
+
+### Et l'arrêt anticipé de l'annexe 17 cachait une surface, lui aussi
+
+En regardant la même catégorie — *ce que le navigateur publie sur la racine* — plutôt que le seul
+cas signalé, une seconde chose est apparue, que je n'avais pas cherchée la veille. L'annexe 17
+interrompait le parseur **dès que `<body>` était créé**, au nom d'une mesure : 24 fois moins cher.
+
+Mais une balise `<html>` ou `<body>` rencontrée **plus loin** dans le document n'est pas jetée par
+le navigateur. La règle HTML (« in body », start tag `body` / `html`) lui fait **adopter**, sur
+l'élément déjà construit, les attributs qu'il ne portait pas encore. Mesuré le 07/09/2026, sur
+parse5 comme sur jsdom :
+
+```html
+<html><body><p>x</p><body aria-label="€400 each way"><html title="€400 par trajet">
+   parse5  →  html.attrs = [title="€400 par trajet"]   body.attrs = [aria-label="€400 each way"]
+   jsdom   →  documentElement.title = "€400 par trajet"   body.aria-label = "€400 each way"
+   lecteur (arrêt anticipé)  →  ""
+```
+
+Un prix que le navigateur publie, et qu'aucune porte ne voyait. L'arrêt anticipé avait acheté sa
+vitesse avec une surface accessible réelle.
+
+**Et la vitesse elle-même était mal pesée.** Les 116 s contre 4,8 s de l'annexe 17 comparaient un
+parse complet mesuré seul à un arrêt anticipé mesuré seul, sans les rapporter au lecteur entier.
+Remesurés **sous la même charge**, sur les 500 mêmes pages :
+
+| | 500 pages | rapporté à 3 121 |
+|---|---|---|
+| arrêt dès `<body>` | 0,5 s | 3,1 s |
+| parse complet, arbre entier | 3,2 s | 19,9 s |
+| parse complet, sans texte | 2,9 s | 18,1 s |
+
+Rapport de **6**, non de 24. Et le lecteur entier coûte **48 s** sur ces mêmes 500 pages : le parse
+complet lui ajoute **7 %**. J'avais optimisé, avec une exception et un symbole, 1 % du coût total —
+et la surface perdue valait plus que ces 1 %.
+
+**Huitième correction** : plus d'exception, plus de signal d'arrêt. Le parseur va au bout, les
+éléments `html` et `body` sont capturés à leur création, et leurs attributs sont lus **après** —
+une fois que le parseur a fini de leur adjoindre ce que le document leur adjoint. Le §13 reçoit les
+deux cas tardifs, et un **témoin en sens inverse** : quand le corps porte déjà l'attribut, la balise
+tardive ne le remplace pas — le navigateur garde le premier, le lecteur aussi. Sans ce témoin, un
+lecteur qui lirait *des balises* plutôt que *ce qui est publié* passerait, et inventerait une
+surface que personne ne voit.
+
+Treize formes couvertes ; l'arrêt anticipé rétabli sur une copie du lecteur, exactement les deux
+cas tardifs tombent et tout le reste tient.
+
+### Ce que je retiens, cette fois
+
+Deux erreurs dans une même fonction de vingt lignes, l'une signalée, l'autre trouvée en cherchant
+autour de la première. La méthode du projet dit *mesurer avant de concevoir* ; elle dit aussi de
+regarder **la catégorie** d'un défaut signalé, pas seulement son exemplaire. Les sept corrections
+précédentes de ce fichier ont chacune corrigé l'exemplaire. Celle-ci est la première à avoir
+cherché le voisin avant qu'on le lui montre.
+
+## Annexe 19 — « Le parseur que jsdom emploie » était une phrase, pas une mesure (07/09/2026)
+
+### Ce que Codex a trouvé
+
+`parse5` était importé directement par le lecteur partagé, mais **aucun `package.json` du dépôt ne
+le déclarait**. L'import résolvait vers ce que l'arbre de dépendances laissait à la racine :
+
+```
+npm ls parse5   (avant)
++-- @mydogcanfly/ui → astro@4.16.19 → @astrojs/markdown-remark → hast-util-from-html → parse5@7.3.0
+`-- jsdom@30.0.1 → parse5@8.0.1        (imbriquée : node_modules/jsdom/node_modules/parse5)
+```
+
+La racine résolvait donc `parse5@7.3.0`, **apportée par hasard par Astro**, pendant que jsdom
+employait réellement sa propre `8.0.1`. J'avais écrit « le parseur que jsdom emploie lui-même » dans
+le fichier et dans deux annexes. C'était faux : deux versions majeures distinctes, et l'identité du
+lecteur partagé dépendait de l'arbre de dépendances d'un générateur de site. Une mise à jour d'Astro
+pouvait changer ou casser le lecteur sans qu'aucune ligne du dépôt ne bouge.
+
+### Pourquoi je ne l'ai pas vu
+
+Parce que ça marchait. L'import résolvait, les treize cas passaient, et j'ai pris la résolution pour
+une déclaration. La méthode du projet dit *mesurer avant d'affirmer* ; j'ai affirmé l'identité d'un
+parseur sans avoir tapé `npm ls`. C'est la même faute que les chiffres du press kit : une phrase qui
+sonne juste et que personne n'a mesurée.
+
+### Le correctif, tel que Codex l'a formulé
+
+`parse5@8.0.1` déclarée en `devDependencies` à la racine, **épinglée** (`--save-exact`), et inscrite
+au lockfile. L'import direct est conservé : il résout maintenant la même version majeure que jsdom.
+
+```
+npm ls parse5   (après)
++-- @mydogcanfly/ui → astro → … → parse5@7.3.0   (imbriquées, deux fois, sous hast-util-*)
++-- jsdom@30.0.1 → parse5@8.0.1 deduped
+`-- parse5@8.0.1
+```
+
+Vérifié avant d'installer : la `8.0.1` est **ESM seule** (plus de build CommonJS), ce qui convient au
+lecteur, et les trois points d'API qu'il emploie — `Parser.parse`, `defaultTreeAdapter.createElement`,
+`adoptAttributes` — existent à l'identique et rendent les mêmes attributs sur le cas de collision et
+le cas tardif.
+
+Le lockfile bouge sur six entrées, toutes `parse5` ou sa dépendance `entities` : la `8.0.1` de jsdom
+remonte à la racine avec son `entities@8.0.0`, les deux `7.3.0` d'Astro descendent sous
+`hast-util-from-html` et `hast-util-raw` avec leur `entities@6.0.1`. Mesuré (`npm ls entities`) :
+aucun autre paquet ne dépend d'`entities`, personne ne change de version sans l'avoir demandé.
+
+Rejoué sur ce SHA : lecteur 13/13, `test:unit` intégral, contre-épreuves `--tout`, `build:prod` et
+porte de lancement ; la CI rejoue le harnais navigateur.

@@ -53,7 +53,8 @@ const steps = g.requirements
   .map((r) => ({ item: r.item, when: r.when }))
   .filter((x) => { const w = t(x.when as any).trim(); return w.length > 1 && w !== "—" && w !== "-"; });
 
-// Compagnies qui desservent ce pays ET acceptent le chien. Remplace l'ancien bloc
+// Compagnies documentées desservant ce pays — l'acceptation reste à vérifier fiche par fiche.
+// Remplace l'ancien bloc
 // « Compagnies nationales », qui ne listait que les compagnies immatriculées ici : sur
 // 140 fiches il ne produisait que 0,6 lien par page alors que la fiche compagnie, elle,
 // renvoie vers 14,7 pays. Les compagnies nationales restent en tête de liste, signalées.
@@ -285,10 +286,18 @@ const jsonLd = faqItems.length ? [webpageLd, faqJsonLd(faqItems)] : [webpageLd];
     </div>
 
     <!-- AIRLINES SERVING THIS COUNTRY -->
+    {/* DESSERTE ET ACCEPTATION SONT DEUX CHOSES (07/09/2026). Ce bloc annonçait « les compagnies
+    qui desservent ce pays ET ACCEPTENT LES CHIENS », sur 140 pages pays. Or `dogAirlinesForCountry`
+    ne sélectionne pas des compagnies qui acceptent : elle retient celles dont un canal est
+    DOCUMENTÉ — `dogChannel(a) !== "none"`. Depuis la frontière de confiance, aucune politique
+    n'est prouvée acceptante ; le titre promettait donc un état que la donnée sous-jacente
+    n'établit pas, et le compteur comptait des compagnies documentées en les appelant acceptantes.
+    Le libellé dit maintenant ce que la fonction fait : desservir est constaté, accepter est à
+    vérifier fiche par fiche. */}
     {dogAirlines.list.length > 0 && (
       <div class="card">
-        <h2>✈️ {F("Airlines flying to {0} with a dog", "Compagnies qui desservent {0} avec un chien", "Aerolíneas que vuelan a {0} con un perro", t(g.name))}</h2>
-        <p class="muted">{T("Carriers we document that serve this country and accept dogs. The verdict is the airline's general policy — it does not prejudge your breed, your crate or your exact route.", "Compagnies que nous documentons, desservant ce pays et acceptant les chiens. Le verdict est la politique générale de la compagnie : il ne préjuge ni de ta race, ni de ta caisse, ni de ton itinéraire précis.", "Aerolíneas que documentamos, que operan en este país y aceptan perros. El veredicto es la política general de la aerolínea: no prejuzga tu raza, tu jaula ni tu itinerario exacto.")}</p>
+        <h2>✈️ {F("Documented airlines serving {0}", "Compagnies documentées desservant {0}", "Aerolíneas documentadas que operan en {0}", t(g.name))}</h2>
+        <p class="muted">{T("Airlines we document that serve this country. Whether the dog is accepted, and under what conditions, is to be checked on each airline's page — it does not prejudge your breed, your crate or your exact route.", "Compagnies que nous documentons, desservant ce pays. L'acceptation du chien et ses conditions sont à vérifier sur chaque fiche compagnie — cela ne préjuge ni de ta race, ni de ta cage, ni de ton itinéraire exact.", "Aerolíneas que documentamos y que operan en este país. Si el perro es aceptado, y en qué condiciones, hay que comprobarlo en la ficha de cada aerolínea: no prejuzga tu raza, tu jaula ni tu ruta exacta.")}</p>
         <div class="calines">
           {dogAirlines.list.map((a) => {
             const p = channelPill(a.channel as "cabin" | "hold" | "cargo", a.maxKg);
@@ -314,7 +323,7 @@ const jsonLd = faqItems.length ? [webpageLd, faqJsonLd(faqItems)] : [webpageLd];
           )}</p>
         )}
         <p class="muted small">
-          {dogAirlines.hidden > 0 && F("+{0} more documented airlines accept dogs to this country. ", "+{0} autres compagnies documentées acceptent le chien vers ce pays. ", "+{0} aerolíneas documentadas más aceptan perros hacia este país. ", dogAirlines.hidden)}
+          {dogAirlines.hidden > 0 && F("+{0} more documented airlines serve this country. ", "+{0} autres compagnies documentées desservent ce pays. ", "+{0} aerolíneas documentadas más operan en este país. ", dogAirlines.hidden)}
           {/* Réserve nécessaire : ne jamais laisser croire que les compagnies absentes de la
               liste refusent le chien — certaines ne publient tout simplement rien. */}
           {dogAirlines.undocumented > 0 && (dogAirlines.undocumented > 1
