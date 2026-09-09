@@ -3254,3 +3254,19 @@ nommées deviennent des faits vérifiés). Nouveau harnais `test-preuves-reconci
 (18 contrôles), dans test:unit. Erreurs nommées : schéma de fiche oublié à la première passe ;
 deux glissements dans mes harnais (liste d'identifiants, chien témoin).
 
+### Post-scriptum — seconde bascule du 09/09 : lots 4 à 9 et correctif en production
+
+Fusion de #42 sur ordre de Philippe (« Feu vert pour PR »), `main` = `05f0f3d`. Déploiement par
+Philippe, sorties collées telles quelles :
+
+| | |
+|---|---|
+| Worker | `sha` `05f0f3d54ad69d6156477f18e039302250e03f98`, `worker_version_id` `3fb64b62-cf82-4a6b-87bc-e74d4d633590` |
+| Pages | `npm run release` : « build indexable et complet — déploiement autorisé », 2 132 fichiers, https://24837599.mydogcanfly-v2-preview.pages.dev |
+| contrôles | `/`, `/fr/`, `/fr/countries/fr/`, `/fr/airlines/thai-airways/`, `/fr/airlines/indigo/` : cinq `200` |
+
+Non consigné : les sorties du premier déploiement du jour (lots 4 à 6, `3666bb6`) n'ont pas été
+transmises ; la bascule est prouvée par celle-ci, qui la recouvre. Relecture en ligne du contenu
+(accueil 142 / 34, fiche Thai citant THAI Cargo, fiche IndiGo à trois refus) : à faire par Codex,
+ce conteneur n'atteignant pas le site.
+
