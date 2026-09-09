@@ -64,8 +64,36 @@ ladder:
 policies:
   cabin:
     availability: offered
+    # PREUVE IMPORTÉE — import strict lot7 (Codex, lecture directe du 2026-09-09, cohorte LOT7 fait 15).
+    # Effet attendu : French Bee cabin is a documented conditional route.
+    # Portée nommée : One dog or cat per passenger, with the carrier and all route, weight, breed, health, reservation and documentation conditions satisfied.
+    source:
+      url: "https://support.frenchbee.com/hc/fr/articles/4408189999633-Quel-type-de-sac-pour-mon-animal-en-cabine"
+      source_type: official_website
+      verified_date: "2026-09-09"
+      review_due: "2026-12-08"   # reviewDueFrom(verified_date, "airline") — calculé par l'importeur
+      confidence: 4
+      reviewer: "Codex — direct reading of official airline page"
+      history: []
+      quote: "En cabine vous avez le droit de transporter un chien ou chat par passager."
+      quote_language: fr
+      locator: "Quel type de sac pour mon animal en cabine ?"
   hold:
     availability: offered
+    # PREUVE IMPORTÉE — import strict lot7 (Codex, lecture directe du 2026-09-09, cohorte LOT7 fait 16).
+    # Effet attendu : French Bee hold is conditional and does not apply to brachycephalic dogs.
+    # Portée nommée : Dogs and cats may travel in hold subject to weight, size, breed, crate, route and documentation conditions; brachycephalic animals are excluded.
+    source:
+      url: "https://support.frenchbee.com/hc/fr/articles/360039534611-Puis-je-faire-voyager-mon-animal-avec-moi-dans-l-avion"
+      source_type: official_website
+      verified_date: "2026-09-09"
+      review_due: "2026-12-08"   # reviewDueFrom(verified_date, "airline") — calculé par l'importeur
+      confidence: 4
+      reviewer: "Codex — direct reading of official airline page"
+      history: []
+      quote: "Ils peuvent voyager en soute sous certaines conditions"
+      quote_language: fr
+      locator: "Puis-je faire voyager mon animal avec moi dans l’avion ?"
   cargo:
     review_state: legacy_unreviewed
 channels:

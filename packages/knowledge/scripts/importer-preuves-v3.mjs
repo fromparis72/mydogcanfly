@@ -65,6 +65,25 @@ const LOTS = {
   lot6: { dossier: "mesures/preuves/import-strict-lot-6-2026-09-09", total: 22,
     fichiers: { LOT6: "tous" },
     nom: () => "PREUVES_POLITIQUES_COMPAGNIES_LOT_6_STRICT_2026-09-09.json" },
+  /** Septième et huitième paquets (09/09) : 23 faits et 7 non-décisions chacun. */
+  lot7: { dossier: "mesures/preuves/import-strict-lot-7-2026-09-09", total: 23,
+    fichiers: { LOT7: "tous" },
+    nom: () => "PREUVES_POLITIQUES_COMPAGNIES_LOT_7_STRICT_2026-09-09.json" },
+  lot8: { dossier: "mesures/preuves/import-strict-lot-8-2026-09-09", total: 23,
+    fichiers: { LOT8: "tous" },
+    nom: () => "PREUVES_POLITIQUES_COMPAGNIES_LOT_8_STRICT_2026-09-09.json" },
+  /** Neuvième paquet (09/09), lot de clôture : les 9 dernières compagnies, 18 faits, 9 non-décisions. */
+  lot9: { dossier: "mesures/preuves/import-strict-lot-9-2026-09-09", total: 18,
+    fichiers: { LOT9: "tous" },
+    nom: () => "PREUVES_POLITIQUES_COMPAGNIES_LOT_9_STRICT_2026-09-09.json" },
+  /** CORRECTIF D'ARBITRAGES (09/09, Codex, tranché par Philippe) : six remplacements de preuves dans les lots 4, 6 et
+   *  8. Clé `replace_facts`. Cinq passent par l'importeur APRÈS retrait manuel de l'ancienne preuve et, pour Thai
+   *  fret, Aer Lingus soute et Air China cabine, changement manuel de la disponibilité SUR ORDRE (l'importeur, lui, ne
+   *  la change jamais). Le sixième (Bangkok Airways fret, index 3) est `case_by_case` par arbitrage — précédent Virgin
+   *  A-bis — et sa preuve est écrite à la main dans la fiche : l'importeur refuserait la disponibilité. */
+  correctif: { dossier: "mesures/preuves/correctif-arbitrages-2026-09-09", total: 5, cle: "replace_facts",
+    fichiers: { CORRECTIF: [0, 1, 2, 4, 5] },
+    nom: () => "CORRECTIF_ARBITRAGES_POLITIQUES_COMPAGNIES_2026-09-09.json" },
 };
 if (!LOTS[LOT]) throw new Error(`lot inconnu : ${LOT}`);
 const DOSSIER = resolve(arg("dossier", LOTS[LOT].dossier));
@@ -122,6 +141,23 @@ const SEUILS = {
      citée s'arrête à « subject to the following conditions: » et ne porte pas le chiffre ; portée
      Economy + vol ≤ 5 h — NON écrit, par contrat autant que par portée. */
   "airline_aeromexico.cabin": 9, "airline_aeromexico.hold": 45, "airline_egyptair.cabin": 8,
+  /* Lots 7 et 8 — RÈGLE PRÉCISÉE, nommée pour Codex : un seuil n'est écrit que si la phrase citée
+     porte À LA FOIS le chiffre ET la base du poids (animal + contenant), parce que le modèle exige
+     `weight_includes_carrier` pour refuser, et que déduire cette base de la portée nommée serait une
+     inférence. Écrits : Air Austral 8 (« le poids de l'animal + son contenant doit être inférieur à
+     8 kg »), La Compagnie 8 (« jusqu'à 8kg, sac compris »), Copa 10 (« maximum 10kg including
+     container »), Tunisair 8 (« 08 kg y compris le contenant et la nourriture »), SunExpress 8
+     (« up to 8 kg (incl. container) »). NON écrits, la phrase ne portant pas la base : Air Algérie 6,
+     SKY express 8 et 25, KM Malta 10 et 32, Smartwings 8 et 32 ; ni Corsair 8/50, Iberia Express
+     8/45, Luxair 8 (chiffre absent de la phrase). Si Codex veut que la portée nommée suffise, ces
+     lignes s'ajoutent. */
+  "airline_air_austral.cabin": 8, "airline_la_compagnie.cabin": 8,
+  "airline_copa.cabin": 10, "airline_tunisair.cabin": 8, "airline_sunexpress.cabin": 8,
+  /* Lot 9 — même règle. Écrits : Aerolíneas Argentinas 9 (« de máx. 9 kilos en el contenedor
+     correspondiente »), Edelweiss 8 (« up to a maximum of 8 kg including the pet carrier »), TAROM 8
+     (« up to 8 kilos (including the weight of the standard transportation cage) »). NON écrits : Air
+     Astana 8 et Neos 10 (chiffre absent de la phrase citée). */
+  "airline_aerolineas_argentinas.cabin": 9, "airline_edelweiss.cabin": 8, "airline_tarom.cabin": 8,
 };
 /** Seuils du CHIEN SEUL (le contenant s'ajoute) : `weight_includes_carrier: false`, écrit. */
 const SEUIL_CHIEN_SEUL = new Set(["airline_air_europa.cabin"]);
@@ -138,8 +174,8 @@ for (const [coh, idx] of Object.entries(AUTORISES)) {
   const f = resolve(DOSSIER, LOTS[LOT].nom(coh));
   const d = JSON.parse(readFileSync(f, "utf8"));
   const def = d.provenance_defaults ?? {};
-  for (const i of (idx === "tous" ? d.facts.map((_, k) => k) : idx)) {
-    const x = d.facts[i];
+  for (const i of (idx === "tous" ? (d[LOTS[LOT].cle ?? "facts"]).map((_, k) => k) : idx)) {
+    const x = (d[LOTS[LOT].cle ?? "facts"])[i];
     if (!x) throw new Error(`cohorte ${coh} : facts[${i}] absent — le LISEZ_MOI et le JSON ne concordent pas`);
     faits.push({ cohorte: coh, index: i, ...x, source_type: def.source_type ?? "official_website",
       verified_date: def.verified_date ?? d.as_of, confidence: def.confidence ?? 4, reviewer: def.reviewer });

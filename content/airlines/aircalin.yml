@@ -74,10 +74,52 @@ ladder:
 policies:
   cabin:
     availability: not_offered
+    # PREUVE IMPORTÉE — import strict lot7 (Codex, lecture directe du 2026-09-09, cohorte LOT7 fait 9).
+    # Effet attendu : Aircalin cabin is a documented refusal for ordinary pet dogs.
+    # Portée nommée : Ordinary pet dogs are freight-only. The separately stated cabin exception is limited to guide dogs and is outside this verdict.
+    source:
+      url: "https://www.aircalin.com/fr/animaux"
+      source_type: official_website
+      verified_date: "2026-09-09"
+      review_due: "2026-12-08"   # reviewDueFrom(verified_date, "airline") — calculé par l'importeur
+      confidence: 4
+      reviewer: "Codex — direct reading of official airline page"
+      history: []
+      quote: "Le transport des animaux s’effectue en fret uniquement."
+      quote_language: fr
+      locator: "Transport d'animaux"
   hold:
     availability: not_offered
+    # PREUVE IMPORTÉE — import strict lot7 (Codex, lecture directe du 2026-09-09, cohorte LOT7 fait 10).
+    # Effet attendu : Aircalin passenger hold is not offered for ordinary pet dogs; cargo remains the documented route.
+    # Portée nommée : The official page defines animal carriage as freight-only; its later reference to the aircraft hold describes operational handling, not accompanied checked-pet service.
+    source:
+      url: "https://www.aircalin.com/fr/animaux"
+      source_type: official_website
+      verified_date: "2026-09-09"
+      review_due: "2026-12-08"   # reviewDueFrom(verified_date, "airline") — calculé par l'importeur
+      confidence: 4
+      reviewer: "Codex — direct reading of official airline page"
+      history: []
+      quote: "Le transport des animaux s’effectue en fret uniquement."
+      quote_language: fr
+      locator: "Transport d'animaux"
   cargo:
-    review_state: legacy_unreviewed
+    availability: offered   # RÉACTIVÉE sur citation (import strict, lot7, 2026-09-09) — était review_state: legacy_unreviewed
+    # PREUVE IMPORTÉE — import strict lot7 (Codex, lecture directe du 2026-09-09, cohorte LOT7 fait 11).
+    # Effet attendu : Aircalin cargo is the documented conditional route for ordinary pet dogs.
+    # Portée nommée : Freight-only carriage; advance notification, station, route, health, import and container requirements apply.
+    source:
+      url: "https://www.aircalin.com/fr/animaux"
+      source_type: official_website
+      verified_date: "2026-09-09"
+      review_due: "2026-12-08"   # reviewDueFrom(verified_date, "airline") — calculé par l'importeur
+      confidence: 4
+      reviewer: "Codex — direct reading of official airline page"
+      history: []
+      quote: "Le transport des animaux s’effectue en fret uniquement."
+      quote_language: fr
+      locator: "Transport d'animaux"
 channels:
   - placement: cabin
     icon: 🐾

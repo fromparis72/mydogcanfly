@@ -62,8 +62,36 @@ ladder:
 policies:
   cabin:
     availability: offered
+    # PREUVE IMPORTÉE — import strict lot7 (Codex, lecture directe du 2026-09-09, cohorte LOT7 fait 21).
+    # Effet attendu : Luxair cabin is conditional and route-scoped.
+    # Portée nommée : Dogs and cats only; under-8-kg cabin policy, quota, route, reservation, documentation and container conditions apply. Cabin is unavailable on listed destinations.
+    source:
+      url: "https://www.luxair.lu/en/node/502/"
+      source_type: official_website
+      verified_date: "2026-09-09"
+      review_due: "2026-12-08"   # reviewDueFrom(verified_date, "airline") — calculé par l'importeur
+      confidence: 4
+      reviewer: "Codex — direct reading of official airline page"
+      history: []
+      quote: "welcome them on board either in cabin"
+      quote_language: en
+      locator: "Travelling with animals → General information and regulations"
   hold:
     availability: offered
+    # PREUVE IMPORTÉE — import strict lot7 (Codex, lecture directe du 2026-09-09, cohorte LOT7 fait 22).
+    # Effet attendu : Luxair hold is conditional and route-scoped.
+    # Portée nommée : Dogs and cats only; aircraft quota, route, reservation, documentation and container conditions apply. Hold is unavailable to and from Paris Charles de Gaulle and on other listed destinations.
+    source:
+      url: "https://www.luxair.lu/en/node/502/"
+      source_type: official_website
+      verified_date: "2026-09-09"
+      review_due: "2026-12-08"   # reviewDueFrom(verified_date, "airline") — calculé par l'importeur
+      confidence: 4
+      reviewer: "Codex — direct reading of official airline page"
+      history: []
+      quote: "welcome them on board either in cabin or in hold"
+      quote_language: en
+      locator: "Travelling with animals → General information and regulations"
   cargo:
     review_state: legacy_unreviewed
 channels:

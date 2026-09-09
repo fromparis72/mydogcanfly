@@ -218,12 +218,16 @@ console.log("\n=== 10. Sur la base RÉELLE : plus aucun verdict catégorique ===
      revérifiées RÉACTIVÉES sur citation (Virgin Australia, Philippine, Air Mauritius, Garuda fret). Virgin Australia cabine REFUSÉE par l'importeur (la fiche dit
      case_by_case — arbitrage du 28/08 —, le fait suppose offered) : elle reste « à confirmer » (airline_approval), ce que Codex demande lui-même. */
   /* MOUVEMENT NOMMÉ (09/09/2026, import strict lot 6 — 21 citations de plus, 113 en tout) : 0 · 88 · 23 · 191 ; causes 174 · 15. */
-  check("111 décisions prouvées : 0 `allowed`, 88 sous conditions, 23 `denied`, 191 à confirmer",
-    allowed === 0 && sousConditions === 88 && denied === 23 && aConfirmer === 191, JSON.stringify({ allowed, sousConditions, denied, aConfirmer }));
+  /* MOUVEMENT NOMMÉ (09/09/2026, import strict lot 7 — 23 citations de plus, 136 en tout) : 0 · 108 · 26 · 168 ; causes 151 · 15. */
+  /* MOUVEMENT NOMMÉ (09/09/2026, import strict lot 8 — 22 citations de plus, 158 en tout) : 0 · 124 · 32 · 146 ; causes 129 · 15. */
+  /* MOUVEMENT NOMMÉ (09/09/2026, import strict lot 9 — 18 citations de plus, 176 en tout, lot de clôture) : 0 · 140 · 34 · 128 ; causes 111 · 15. */
+  /* MOUVEMENT NOMMÉ (09/09/2026, correctif d'arbitrages — Codex, tranché par Philippe ; six preuves remplacées dans les lots 4, 6 et 8) : 0 · 142 · 34 · 126 ; causes 109 · 15 · 0 · 2 (Thai fret cesse d'être « non publié », Bangkok fret devient `case_by_case`). */
+  check("176 décisions prouvées : 0 `allowed`, 142 sous conditions, 34 `denied`, 126 à confirmer",
+    allowed === 0 && sousConditions === 142 && denied === 34 && aConfirmer === 126, JSON.stringify({ allowed, sousConditions, denied, aConfirmer }));
   check("chaque « à confirmer » porte une cause — aucune incertitude muette",
-    Object.values(causes).reduce((x, y) => x + y, 0) === 191 && !("undefined" in causes), JSON.stringify(causes));
-  check("15 gardent une page officielle à montrer, 174 n'ont rien à montrer",
-    causes.official_source_unquoted === 15 && causes.legacy_unreviewed === 174, JSON.stringify(causes));
+    Object.values(causes).reduce((x, y) => x + y, 0) === 126 && !("undefined" in causes), JSON.stringify(causes));
+  check("15 gardent une page officielle à montrer, 109 n'ont rien à montrer",
+    causes.official_source_unquoted === 15 && causes.legacy_unreviewed === 109, JSON.stringify(causes));
   /* Et la preuve que ce n'est pas un effet de bord de l'affichage : la même règle vaut à la
      source, sur l'artefact d'auteur, avant tout moteur. */
   const objets = JSON.parse(readFileSync("packages/knowledge/raw/objects.json", "utf8"));
@@ -322,6 +326,75 @@ console.log("\n=== 10. Sur la base RÉELLE : plus aucun verdict catégorique ===
     "airline_gulf_air.cargo",
     "airline_royal_jordanian.cabin",
     "airline_royal_jordanian.hold",
+    /* Lot 7 (09/09/2026) : 23 citations de plus, 136 en tout. */
+    "airline_air_algerie.cabin",
+    "airline_air_algerie.hold",
+    "airline_air_austral.cabin",
+    "airline_air_austral.hold",
+    "airline_air_caraibes.cabin",
+    "airline_air_caraibes.hold",
+    "airline_air_caraibes.cargo",
+    "airline_air_tahiti_nui.cabin",
+    "airline_air_tahiti_nui.cargo",
+    "airline_aircalin.cabin",
+    "airline_aircalin.hold",
+    "airline_aircalin.cargo",
+    "airline_corsair.cabin",
+    "airline_corsair.hold",
+    "airline_corsair.cargo",
+    "airline_french_bee.cabin",
+    "airline_french_bee.hold",
+    "airline_iberia_express.cabin",
+    "airline_iberia_express.hold",
+    "airline_la_compagnie.cabin",
+    "airline_la_compagnie.hold",
+    "airline_luxair.cabin",
+    "airline_luxair.hold",
+    /* Lot 8 (09/09/2026) : 22 citations de plus, 158 en tout. Thai Airways fret REFUSÉ (la fiche dit `undocumented`, citation auditée du 13/08 conservée). */
+    "airline_bangkok_airways.cargo",
+    "airline_china_southern.cabin",
+    "airline_china_southern.hold",
+    "airline_copa.cabin",
+    "airline_copa.hold",
+    "airline_copa.cargo",
+    "airline_indigo.cabin",
+    "airline_indigo.hold",
+    "airline_indigo.cargo",
+    "airline_thai_airways.cabin",
+    "airline_thai_airways.hold",
+    "airline_tunisair.cabin",
+    "airline_tunisair.hold",
+    "airline_sky_express.cabin",
+    "airline_sky_express.hold",
+    "airline_km_malta.cabin",
+    "airline_km_malta.hold",
+    "airline_km_malta.cargo",
+    "airline_sunexpress.cabin",
+    "airline_sunexpress.hold",
+    "airline_smartwings.cabin",
+    "airline_smartwings.hold",
+    /* Lot 9 (09/09/2026), lot de clôture : 18 citations de plus, 176 en tout — les 102 compagnies ont été examinées. */
+    "airline_aerolineas_argentinas.cabin",
+    "airline_aerolineas_argentinas.hold",
+    "airline_aerolineas_argentinas.cargo",
+    "airline_air_astana.cabin",
+    "airline_air_astana.hold",
+    "airline_air_astana.cargo",
+    "airline_batik_air_indonesia.cabin",
+    "airline_batik_air_indonesia.hold",
+    "airline_croatia_airlines.cabin",
+    "airline_croatia_airlines.hold",
+    "airline_edelweiss.cabin",
+    "airline_edelweiss.hold",
+    "airline_edelweiss.cargo",
+    "airline_neos.cabin",
+    "airline_neos.hold",
+    "airline_tarom.cabin",
+    "airline_tarom.hold",
+    "airline_tarom.cargo",
+    /* Correctif d'arbitrages (09/09/2026) : Aer Lingus soute (lot 4) et Air China cabine (lot 6) reçoivent leur phrase sur ordre. */
+    "airline_aer_lingus.hold",
+    "airline_air_china.cabin",
     "airline_iberia.cabin",
     "airline_iberia.hold",
     "airline_ita_airways.cabin",
@@ -364,10 +437,12 @@ console.log("\n=== 10. Sur la base RÉELLE : plus aucun verdict catégorique ===
     "airline_westjet.cabin",
     "airline_westjet.hold",
   ];
-  check("113 politiques d'auteur portent une phrase citée — nominativement",
+  check("178 politiques d'auteur portent une phrase citée — nominativement",
     JSON.stringify([...citees].sort()) === JSON.stringify([...CITEES_V3].sort()), citees.join(", "));
-  check("et 111 d'elles sont des décisions (toutes sauf Thai fret et Virgin Australia cabine)",
-    decideesCitees.length === 111 && !decideesCitees.includes("airline_thai_airways.cargo") && !decideesCitees.includes("airline_virgin_australia.cabin"),
+  /* Correctif (09/09/2026) : Thai fret DEVIENT une décision (arbitrage : `offered`, preuve THAI Cargo) ; Bangkok Airways fret CESSE d'en
+     être une (`case_by_case`, portée intérieure que le modèle ne porte pas — précédent Virgin A-bis). */
+  check("et 176 d'elles sont des décisions (toutes sauf Virgin Australia cabine et Bangkok Airways fret)",
+    decideesCitees.length === 176 && !decideesCitees.includes("airline_bangkok_airways.cargo") && !decideesCitees.includes("airline_virgin_australia.cabin"),
     decideesCitees.join(", "));
 }
 
@@ -723,8 +798,11 @@ console.log("\n=== 13 bis. Le verdict dérivé, et ce qui ne revient JAMAIS avec
     /* MOUVEMENT NOMMÉ (08/09/2026, import strict V3 — 25 citations importées, lues par Codex le 08/09, une par fait décisif ; British Airways cabine conservée) : Ryanair est la PREMIÈRE fiche à conclure au refus total, sur trois citations —
        « We do not carry animals on board any Ryanair flights » (cabine, soute) et « We do not
        carry cargo on our flights » (fret). Nominativement, et elle seule. */
-    check("UNE seule fiche conclut au refus total — Ryanair, sur trois refus prouvés",
-      JSON.stringify(refusTotal.map((a) => a.id)) === JSON.stringify(["airline_ryanair"]), JSON.stringify(refusTotal.map((a) => a.id)));
+    /* MOUVEMENT NOMMÉ (09/09/2026, import strict lot 8) : IndiGo rejoint Ryanair — trois refus prouvés sur UNE
+       phrase officielle (« does not permit the carriage of pets or animals on its aircraft »), fret compris.
+       Deux fiches, nominativement, et elles seules. */
+    check("DEUX fiches concluent au refus total — IndiGo et Ryanair, sur trois refus prouvés chacune",
+      JSON.stringify(refusTotal.map((a) => a.id).sort()) === JSON.stringify(["airline_indigo", "airline_ryanair"]), JSON.stringify(refusTotal.map((a) => a.id)));
     const ba = kbR.airlines.get("airline_british_airways");
     check("British Airways : cabine refusée sur preuve, mais la FICHE reste prudente",
       ba?.premium?.policy?.cabin?.status === "denied"

@@ -60,8 +60,36 @@ ladder:
 policies:
   cabin:
     availability: offered
+    # PREUVE IMPORTÉE — import strict lot7 (Codex, lecture directe du 2026-09-09, cohorte LOT7 fait 7).
+    # Effet attendu : Air Tahiti Nui cabin is route-scoped and must not be generalized to the whole network.
+    # Portée nommée : Vaccinated dogs and cats accompanied by their owner; only the four listed Papeete, Los Angeles and Paris sectors; combined animal-and-container weight up to 8 kg, quota and documentation rules apply.
+    source:
+      url: "https://pf.airtahitinui.com/voyager-avec-un-animal"
+      source_type: official_website
+      verified_date: "2026-09-09"
+      review_due: "2026-12-08"   # reviewDueFrom(verified_date, "airline") — calculé par l'importeur
+      confidence: 4
+      reviewer: "Codex — direct reading of official airline page"
+      history: []
+      quote: "Air Tahiti Nui accepte le transport en cabine des chiens et chats vaccinés accompagnés de leur propriétaire et uniquement sur les vols suivants :"
+      quote_language: fr
+      locator: "Animaux domestiques en cabine"
   cargo:
-    review_state: legacy_unreviewed
+    availability: offered   # RÉACTIVÉE sur citation (import strict, lot7, 2026-09-09) — était review_state: legacy_unreviewed
+    # PREUVE IMPORTÉE — import strict lot7 (Codex, lecture directe du 2026-09-09, cohorte LOT7 fait 8).
+    # Effet attendu : Air Tahiti Nui cargo is a documented conditional freight route; it must not be labeled accompanied checked baggage.
+    # Portée nommée : Air Tahiti Nui Cargo carries dogs and cats on listed stations when cabin transport is unavailable; freight booking, route, crate and health requirements apply.
+    source:
+      url: "https://pf.airtahitinui.com/transport-danimaux-en-soute"
+      source_type: official_website
+      verified_date: "2026-09-09"
+      review_due: "2026-12-08"   # reviewDueFrom(verified_date, "airline") — calculé par l'importeur
+      confidence: 4
+      reviewer: "Codex — direct reading of official airline page"
+      history: []
+      quote: "Si, en revanche, votre animal ne peut pas être transporté en cabine, il peut certainement être transporté par fret, dans la soute de l’appareil."
+      quote_language: fr
+      locator: "Vous souhaitez faire voyager votre animal de compagnie ?"
 channels:
   - placement: cabin
     icon: 🐾

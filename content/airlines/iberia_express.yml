@@ -68,8 +68,36 @@ ladder:
 policies:
   cabin:
     availability: offered
+    # PREUVE IMPORTÉE — import strict lot7 (Codex, lecture directe du 2026-09-09, cohorte LOT7 fait 17).
+    # Effet attendu : Iberia Express cabin is a documented conditional route.
+    # Portée nommée : Selected domestic animals may be accepted in cabin after reservation approval; combined weight, container, route, species and documentation restrictions apply.
+    source:
+      url: "https://www.iberiaexpress.com/informacion-general/informacion-pasajero/antes-de-volar/mascotas"
+      source_type: official_website
+      verified_date: "2026-09-09"
+      review_due: "2026-12-08"   # reviewDueFrom(verified_date, "airline") — calculé par l'importeur
+      confidence: 4
+      reviewer: "Codex — direct reading of official airline page"
+      history: []
+      quote: "podrán ser aceptados para el transporte en cabina determinados animales domésticos"
+      quote_language: es
+      locator: "Aceptación en cabina de pasajero"
   hold:
     availability: offered
+    # PREUVE IMPORTÉE — import strict lot7 (Codex, lecture directe du 2026-09-09, cohorte LOT7 fait 18).
+    # Effet attendu : Iberia Express hold is conditional and excludes brachycephalic dogs.
+    # Portée nommée : Dogs and cats may be accepted in hold subject to a 45 kg combined animal-and-container ceiling, advance request, route, breed, connection, quota and documentation restrictions.
+    source:
+      url: "https://www.iberiaexpress.com/informacion-general/informacion-pasajero/antes-de-volar/mascotas"
+      source_type: official_website
+      verified_date: "2026-09-09"
+      review_due: "2026-12-08"   # reviewDueFrom(verified_date, "airline") — calculé par l'importeur
+      confidence: 4
+      reviewer: "Codex — direct reading of official airline page"
+      history: []
+      quote: "pueden ser aceptados como equipaje en bodega"
+      quote_language: es
+      locator: "Aceptación en bodega"
   cargo:
     review_state: legacy_unreviewed
 channels:

@@ -66,8 +66,36 @@ ladder:
 policies:
   cabin:
     availability: offered
+    # PREUVE IMPORTÉE — import strict lot9 (Codex, lecture directe du 2026-09-09, cohorte LOT9 fait 13).
+    # Effet attendu : Neos cabin is conditional with a 10 kg combined animal-and-carrier ceiling.
+    # Portée nommée : Dogs up to 10 kg including carrier may travel in cabin, subject to booking, route, breed, quota, container, health and documentation conditions.
+    source:
+      url: "https://www.neosair.com/us/en/information/traveling-with-pets"
+      source_type: official_website
+      verified_date: "2026-09-09"
+      review_due: "2026-12-08"   # reviewDueFrom(verified_date, "airline") — calculé par l'importeur
+      confidence: 4
+      reviewer: "Codex — direct reading of official airline material"
+      history: []
+      quote: "you are allowed to transport them in the cabin"
+      quote_language: en
+      locator: "NECESSARY REQUIREMENTS"
   hold:
     availability: offered
+    # PREUVE IMPORTÉE — import strict lot9 (Codex, lecture directe du 2026-09-09, cohorte LOT9 fait 14).
+    # Effet attendu : Neos hold is a documented conditional route above the 10 kg combined threshold.
+    # Portée nommée : Dogs over 10 kg including carrier may travel in the pressurized and ventilated hold, subject to route, breed, booking, crate, health and documentation restrictions.
+    source:
+      url: "https://www.neosair.com/us/en/information/traveling-with-pets"
+      source_type: official_website
+      verified_date: "2026-09-09"
+      review_due: "2026-12-08"   # reviewDueFrom(verified_date, "airline") — calculé par l'importeur
+      confidence: 4
+      reviewer: "Codex — direct reading of official airline material"
+      history: []
+      quote: "transportation is authorised in the hold of the aircraft"
+      quote_language: en
+      locator: "NECESSARY REQUIREMENTS"
   cargo:
     review_state: legacy_unreviewed
 channels:

@@ -2893,3 +2893,304 @@ et je n'ai pas rejoué ce contrôle après. Une empreinte figée trop tôt : mê
 lot ; le contrôle (a) passe sur un worktree exact de `cea12c1`. Aucun fichier de données ne change
 ici : ce post-scriptum consigne l'erreur, la CI de `cea12c1` en est la preuve.
 
+## Annexe 29 — Import strict, lot 7 : 23 faits, 23 importés, règle des seuils précisée (09/09/2026)
+
+Paquet de Codex (`mesures/preuves/import-strict-lot-7-2026-09-09/`), lecture directe du 09/09 :
+10 compagnies, 23 faits, 7 non-décisions. Importé sur la base du lot 6, sur une branche neuve
+(`lot/import-strict-lots-7-8`) créée pendant l'attente de la fusion de #41.
+
+| | |
+|---|---|
+| importés | 23 (Air Algérie ×2, Air Austral ×2, Air Caraïbes ×3, Air Tahiti Nui ×2, Aircalin ×3, Corsair ×3, French Bee ×2, Iberia Express ×2, La Compagnie ×2, Luxair ×2) |
+| réactivés sur citation | 4, tous en fret : Air Caraïbes, Air Tahiti Nui, Aircalin, Corsair |
+| refusés | 0 |
+| non-décisions | 7, « à confirmer » ; Air Tahiti Nui soute reste ABSENTE de la fiche (aucune politique créée) |
+| langues | français (Air Austral, Air Caraïbes, Air Tahiti Nui, Aircalin, Corsair, French Bee, La Compagnie), espagnol (Iberia Express), anglais (Air Algérie, Luxair) |
+
+### Règle des seuils précisée, nommée pour Codex
+
+Jusqu'ici : un seuil est écrit quand la phrase citée porte le chiffre. Précision : la phrase doit
+porter le chiffre **et la base du poids** (animal + contenant), parce que le modèle exige
+`weight_includes_carrier` pour refuser et que déduire cette base de la portée nommée serait une
+inférence. Écrits : Air Austral 8 (« le poids de l'animal + son contenant doit être inférieur à
+8 kg »), La Compagnie 8 (« jusqu'à 8kg, sac compris »). Non écrits : Air Algérie 6 (base absente :
+« only small pets under 6 kg »), Corsair 8/50, Iberia Express 8/45, Luxair 8 (chiffre absent de la
+phrase). Si Codex veut que la portée nommée suffise, les lignes s'ajoutent à `SEUILS`.
+
+Air Algérie **perd** le 6 kg que l'ingestion déduisait de sa grille tarifaire : la cabine est
+citée, et la dérivation tarifaire ne s'applique plus à un canal cité (erreur nommée à l'annexe 27).
+
+### Mesuré après import
+
+| | avant (lot 6) | après (lot 7) |
+|---|---|---|
+| politiques citées (décisives) | 113 (111) | 136 (134) |
+| `allowed` / sous conditions / refusées / à confirmer | 0 / 88 / 23 / 191 | 0 / 108 / 26 / 168 |
+| causes legacy / page officielle sans phrase | 174 / 15 | 151 / 15 |
+| registre A / B / C / D | 113 / 78 / 112 / 3 | 136 / 70 / 97 / 3 |
+| limites cabine citées | 22 | 24 (à vérifier sur le dist, construit une fois pour les lots 7 et 8) |
+| témoin hérité | 26 040 | 26 868 |
+| canaux contradictoires | 274 | 271 (Aircalin cabine et soute, La Compagnie soute) |
+| causes de race (carlin) | 406 | 404 (Aircalin soute refusée sur citation, 2 cartes) |
+| baseline | figée lot 6 | figée `import-strict-lot-7-apres` : 16 cartes / 1 560, 2 compagnies (Aircalin, Air Algérie), 8 → sous conditions, 16 → refusé, aucun verdict déplacé |
+
+### Trouvé par la mesure, nommé comme dette
+
+Des règles de poids héritées non citées gardent un Golden de 32 kg « à confirmer » en cabine chez
+Air Algérie, Air Caraïbes, Air Tahiti Nui, Corsair, French Bee (`rule_*_cabin_weight`,
+`rule_global_cabin_weight_cap`), et un Carlin de 8 kg chez Air Algérie. Le moteur nomme la règle ;
+même dette qu'aux lots 5 et 6, hors du périmètre des lots d'import.
+
+### Mouvements nommés
+
+frontière, legacy (151, chaîne → lot 7), baseline (chaîne, répartition, preuve permanente lot 7),
+carries (26 868), quatrième état (108), registre (136/70/97/3, canaux 62/14/26 · 54/36/12 ·
+20/20/59, pistes 23/47, gov.uk 23, paires 136/23/97, écarts 46, niveaux 136/23/143), matrice
+(quatre réactivations fret), race (404), entités (271), caisses (24). Témoin C de l'inventaire
+re-fondé d'Air Algérie cabine (citée) sur Aerolíneas Argentinas cabine, hors des lots 7 et 8.
+Nouveau harnais `test-preuves-lot-7.mjs` (123 contrôles), dans test:unit.
+
+**Méthode, nommée** : le dist n'est construit qu'une fois, après le lot 8 ; les contrôles sur le site
+construit (caisses, entités, accueil, étape 3, contre-épreuves) portent sur la tête des deux lots.
+
+## Annexe 30 — Import strict, lot 8 : 23 faits, 22 importés, Thai Airways fret refusé par contrat, IndiGo deuxième refus total prouvé (09/09/2026)
+
+Paquet de Codex (`mesures/preuves/import-strict-lot-8-2026-09-09/`), lecture directe du 09/09 :
+10 compagnies, 23 faits, 7 non-décisions. Importé sur la base du lot 7, même branche.
+
+| | |
+|---|---|
+| importés | 22 (Bangkok Airways fret, China Southern ×2, Copa ×3, IndiGo ×3, Thai Airways ×2, Tunisair ×2, SKY express ×2, KM Malta ×3, SunExpress ×2, Smartwings ×2) |
+| réactivés sur citation | 5 : Bangkok Airways, Copa, KM Malta fret ; SKY express, SunExpress soute |
+| refusé | **Thai Airways fret** : la fiche dit `undocumented` et porte la citation auditée du 13/08 (Claude+Codex : « (For cargo acceptance, please contact directly to Cargo Department) »). Codex cite la même phrase avec « sous conditions ». Sa propre règle — « ne jamais convertir “contactez Cargo” en fret accepté » — s'y oppose. L'importeur ne change jamais une disponibilité ; la ligne reste « à confirmer » (`policy_unpublished`). **Question à Philippe et Codex** : la règle tient-elle, ou le fret Thai devient-il « sous conditions » comme Air Mauritius (lot 5) ? |
+| seuils écrits | Copa 10 (« maximum 10kg including container »), Tunisair 8 (« 08 kg y compris le contenant et la nourriture »), SunExpress 8 (« up to 8 kg (incl. container) ») |
+| seuils non écrits | SKY express 8/25, KM Malta 10/32, Smartwings 8/32 (base du poids absente de la phrase) ; KM Malta et Smartwings perdent leur plafond déduit de la grille tarifaire |
+
+### IndiGo : deuxième refus total prouvé
+
+Trois canaux refusés sur une même page officielle (« does not permit the carriage of pets or
+animals on its aircraft »). Trois témoins figés sur « Ryanair, et elle seule » avancent par
+mouvement nommé : frontière (deux fiches au refus total), carries (deux compagnies perdent leur
+transport sur preuve), caisses (deux compagnies « ni cabine ni soute »). Le calculateur affiche
+pour IndiGo le message dédié « aucun animal », comme pour Ryanair.
+
+### Signalé pour contre-revue de Codex, écrit tel quel
+
+- **China Southern soute** : la phrase citée est « you can check it » — quatre mots, contigus, mais
+  qui ne disent ni « chien » ni « soute » sans leur contexte. Importée (le contrat est respecté),
+  signalée.
+- **IndiGo fret** : « pets or animals on its aircraft » — fragment de la même phrase que la cabine
+  et la soute ; importé, signalé.
+- **Bangkok Airways fret** : cité sur des routes INTÉRIEURES listées (« …on the following routes: »),
+  réactivé « sous conditions » pour tout le réseau — même classe que Philippine cabine (lot 5) : le
+  modèle ne porte pas la portée de route. Nommé, pas converti.
+
+### Mesuré après import
+
+| | avant (lot 7) | après (lot 8) |
+|---|---|---|
+| politiques citées (décisives) | 136 (134) | 158 (156) |
+| `allowed` / sous conditions / refusées / à confirmer | 0 / 108 / 26 / 168 | 0 / 124 / 32 / 146 |
+| causes legacy / page officielle sans phrase | 151 / 15 | 129 / 15 |
+| registre A / B / C / D | 136 / 70 / 97 / 3 | 158 / 58 / 87 / 3 |
+| limites cabine citées | 24 | 27 (à vérifier sur le dist) |
+| refus totaux prouvés | 1 (Ryanair) | 2 (Ryanair, IndiGo) |
+| témoin hérité | 26 868 | 28 536 |
+| canaux contradictoires | 271 | 265 (China Southern cabine, Copa soute, IndiGo ×3, Thai cabine) |
+| causes de race (carlin) | 404 | 404 (mesuré avant/après : China Southern et Thai cabines n'en portaient aucune) |
+| baseline | figée lot 7 | figée `import-strict-lot-8-apres` : 48 cartes / 1 560, 4 compagnies (Thai, China Southern, SunExpress, Smartwings), 40 → sous conditions, 32 → refusé, aucun verdict déplacé |
+
+### Témoins re-fondés par mesure, jamais abaissés
+
+- Sentinelle « non offerte, non prouvée » (cabine) : Thai Airways cabine est citée (refus prouvé).
+  Re-fondée sur **Air China cabine** — la ligne même que le lot 6 a refusé d'importer, témoin exact
+  de cette forme tant que l'arbitrage n'est pas rendu. Mesuré : 12 candidates.
+- Harnais des entités, « carte sans canal sourcé » : China Southern citée → **El Al** (seule
+  candidate à racine page d'accueil hors des lots 7 et 8, sur CDG→BKK).
+
+### Trouvé par la mesure, nommé comme dette
+
+Règles héritées non citées : KM Malta vers Londres (`rule_gb_no_cabin_pets`,
+`rule_km_malta_gb_not_approved`) garde cabine et soute « à confirmer » — ici la restriction de
+route reste opposable, ce que Codex demande ; Smartwings cabine, Golden 32 kg, « à confirmer » par
+`rule_smartwings_cabin_weight`. Même classe qu'aux lots précédents.
+
+### Mouvements nommés
+
+frontière, legacy (129, chaîne → lot 8), baseline (chaîne, répartition, preuve permanente lot 8),
+carries (28 536, deux pertes), quatrième état (124), registre (158/58/87/3, canaux 71/10/21 ·
+63/29/10 · 24/19/56, pistes 23/35, gov.uk 19, paires 158/23/87, écarts 34, niveaux 158/23/121),
+matrice (cinq réactivations), entités (265, témoin El Al), caisses (27, deux refus totaux),
+sentinelle Air China cabine. Nouveau harnais `test-preuves-lot-8.mjs` (121 contrôles), dans test:unit.
+
+### Post-scriptum — le cas fondateur n° 1 (La Compagnie, 32 kg) entre dans son quatrième état
+
+`test-reference-cases.mjs` a rougi sur la suite complète (les suites unitaires rejouées
+individuellement ne l'incluaient pas — méthode nommée : la suite complète est le seul juge). Le
+cas affirmait depuis le 05/09 que les trois canaux de La Compagnie sont « à confirmer » pour un
+chien de 32 kg, parce qu'aucune fermeture n'était prouvée. Le lot 7 cite deux phrases de la page
+officielle : la cabine refuse au seuil cité (8 kg sac compris), la soute est refusée sur citation
+(« le transport d'animaux en soute n'est pas proposé »). Le fret, sans politique dans la fiche,
+reste « à confirmer » (`policy_absent`). Le cas est réécrit, pas abaissé : la propriété gardée est
+« aucun refus sans phrase citée, et chaque incertitude nomme ce qui la produit ». La boucle du
+tour 6 se referme : ce que le site affirmait sans preuve, il le prouve pour deux canaux sur trois.
+
+### Post-scriptum — ce que le dist et la suite complète ont ajouté (lots 7 et 8)
+
+- **Caisses** : 27 limites cabine citées (mesuré, conforme) ; les témoins « aucun animal » passent de
+  deux à trois (synthétique, Ryanair, IndiGo), tous joués.
+- **Entités** : 265 canaux contradictoires sur **100** fiches — IndiGo sort du registre, ses trois
+  canaux étant prouvés, comme Ryanair au lot V3. Témoin « carte sans canal sourcé » El Al conforme.
+- **Climat tri-état, carlin CDG→IST** : 50 → 47 confirmations, 44 → 35 de provenance (Air Algérie,
+  KM Malta, SKY express, Tunisair cités sur ce trajet), 38 de race inchangé — et **une confirmation
+  d'un troisième genre** : Air Algérie cabine, citée, où la règle héritée non citée
+  `rule_air_algerie_cabin_weight` garde le carlin « à confirmer ». Le témoin croyait qu'une
+  confirmation portait l'une de DEUX causes ; le moteur en nomme trois depuis le 05/09 (provenance,
+  race, règle non citée). Le témoin la compte à part ; la propriété est reformulée, pas abaissée.
+- Accueil, affirmations retirées, étape 3 DOM, dette Astro (165) : verts sur le dist.
+
+## Annexe 31 — Import strict, lot 9 : 18 faits, 18 importés, clôture de l'examen des 102 compagnies (09/09/2026)
+
+Paquet de Codex (`mesures/preuves/import-strict-lot-9-2026-09-09/`), lecture directe du 09/09 : les
+9 dernières compagnies du référentiel, 18 faits, 9 non-décisions. Importé sur la base du lot 8, même
+branche, même PR (#42, retitrée « lots 7, 8 et 9 »).
+
+**Ce que la clôture veut dire, et ne veut pas dire** (Codex, repris tel quel) : les 102 compagnies
+ont désormais une issue explicite pour chacun des trois canaux dans les artefacts stricts — fait
+cité ou non-décision motivée. Couverture de l'**examen**, pas preuve sur les 306 canaux : 176
+politiques citées sur 302, 126 restent sans phrase, et une absence de preuve reste une absence de
+preuve.
+
+| | |
+|---|---|
+| importés | 18 (Aerolíneas Argentinas ×3, Air Astana ×3, Batik Air Indonesia ×2, Croatia Airlines ×2, Edelweiss ×3, Neos ×2, TAROM ×3) |
+| réactivés sur citation | 5 : Aerolíneas Argentinas, Air Astana, Edelweiss fret ; TAROM soute et fret |
+| refusés | 0 |
+| non-décisions | 9 : Batik Air Indonesia fret ; Batik Air Malaysia ×3 (aucun texte officiel exploitable — **rien n'est propagé** depuis Batik Air Indonesia) ; Croatia fret ; EL AL ×3 (la checklist de cage ne décide aucun canal) ; Neos fret |
+| langues | russe (Air Astana ×3), espagnol (Aerolíneas Argentinas ×3), anglais |
+| seuils écrits | Aerolíneas Argentinas 9 (« de máx. 9 kilos en el contenedor correspondiente »), Edelweiss 8 (« including the pet carrier »), TAROM 8 (« including the weight of the standard transportation cage ») |
+| seuils non écrits | Air Astana 8, Neos 10 (chiffre absent de la phrase citée) |
+
+### Nommé pour contre-revue de Codex
+
+- **Croatia Airlines** : les deux sources sont des documents de première partie DATÉS (manuel
+  d'exploitation au sol du 24.01.2023, politique de service d'octobre 2019). Importées par contrat
+  (domaine officiel, phrase contiguë), échéance calculée par `reviewDueFrom` — jamais copiée. La
+  priorité de relecture que Codex demande est **nommée ici** ; le dépôt n'a pas de mécanisme
+  d'échéance anticipée, et en inventer un serait une règle métier nouvelle (arbitrage).
+- **Air Astana fret** et **TAROM fret** : portées nommées (destinations où le bagage est interdit ;
+  chiens de plus de 40 kg) que le modèle ne porte pas — même classe que Bangkok Airways et
+  Philippine ; réactivés « sous conditions » réseau entier, nommés, pas convertis.
+- **Aerolíneas Argentinas cabine et soute** : la source est un document interne rendu public
+  (portail de formation « campus »), pas une page passager. Accepté par le contrat (domaine
+  officiel), signalé.
+
+### Mesuré après import
+
+| | avant (lot 8) | après (lot 9) |
+|---|---|---|
+| politiques citées (décisives) | 158 (156) | 176 (174) |
+| `allowed` / sous conditions / refusées / à confirmer | 0 / 124 / 32 / 146 | 0 / 140 / 34 / 128 |
+| causes legacy / page officielle sans phrase | 129 / 15 | 111 / 15 |
+| registre A / B / C / D | 158 / 58 / 87 / 3 | 176 / 53 / 74 / 3 |
+| limites cabine citées | 27 | 30 (à vérifier sur le dist) |
+| témoin hérité | 28 536 | 29 205 |
+| canaux contradictoires | 265 / 100 fiches | 263 / 100 (Batik Air Indonesia cabine et soute) |
+| causes de race (carlin) | 404 | 404 (mesuré avant/après : rien ne bouge) |
+| climat tri-état, carlin CDG→IST | 47 (35 prov. / 38 race / 1 règle) | 45 (30 / 38 / 1) |
+| baseline | figée lot 8 | figée `import-strict-lot-9-apres` : 8 cartes / 1 560, 1 compagnie (Neos), 12 → sous conditions, aucun refus, aucun verdict déplacé |
+
+### Témoins re-fondés par mesure
+
+Témoin C de l'inventaire : Aerolíneas Argentinas cabine citée → **Air Serbia cabine** (hors de tout
+lot). Témoin « carte sans canal sourcé » : EL AL, inchangé — ses trois canaux restent non décidés par
+la décision même de Codex. Sentinelle « non offerte, non prouvée » : Air China cabine, inchangée.
+
+### Mouvements nommés
+
+frontière, legacy (111, chaîne → lot 9), baseline (chaîne, répartition, preuve permanente lot 9),
+carries (29 205), quatrième état (140), registre (176/53/74/3, canaux 78/10/14 · 70/24/8 ·
+28/19/52, pistes 23/30, gov.uk 14, paires 176/23/74, écarts 29, niveaux 176/23/103), matrice (cinq
+réactivations), entités (263), caisses (30), climat tri-état (45/30/38/1). Nouveau harnais
+`test-preuves-lot-9.mjs` (103 contrôles), dans test:unit ; il vérifie aussi que la chaîne des
+baselines figées est complète de l'import V3 au lot 9.
+
+## Annexe 32 — Correctif d'arbitrages : six questions tranchées par Codex, relayées et tranchées par Philippe (09/09/2026)
+
+Dossier : `mesures/preuves/correctif-arbitrages-2026-09-09/` (arbitrages détaillés + JSON `replace_facts`).
+Ce n'est pas un lot : six preuves de lots déjà importés (4, 6, 8) sont remplacées, et trois
+disponibilités changent **sur ordre** — ce que l'importeur ne fait jamais seul.
+
+| Question | Arbitrage | Ce qui a été fait |
+|---|---|---|
+| Thai Airways fret (lot 8, refusé) | conservé « sous conditions », preuve remplacée par la page THAI Cargo | `undocumented` → `offered` à la main sur ordre ; ancienne citation auditée du 13/08 (« contactez Cargo ») retirée de la politique, consignée en commentaire de la fiche et dans le manifeste ; nouvelle preuve écrite par l'importeur (`--lot=correctif`) |
+| China Southern soute (lot 8, fragment) | conservé, citation remplacée par la réponse complète | ancienne preuve retirée, nouvelle écrite par l'importeur |
+| IndiGo fret (lot 8, fragment) | refus maintenu, prouvé par la FAQ CarGo | idem ; refus total prouvé maintenu |
+| Bangkok Airways fret (lot 8, portée intérieure) | sous conditions **uniquement** sur les liaisons intérieures publiées (sauf Bangkok–Krabi, Chiang Mai–Krabi) ; hors périmètre, ne pas afficher le fret comme proposé | le modèle ne restreint pas par route : `offered` afficherait « sous conditions » sur un vol international. **Précédent Virgin A-bis appliqué** : `case_by_case` + citation du correctif (URL canonique) + conditions quadrilingues nommant Krabi → « à confirmer » partout. Nommé pour arbitrage si Codex préfère « sous conditions » réseau entier avec la portée en texte |
+| Aer Lingus soute (lot 4, refusé) | arbitrage maintenu : soute via agent, Aer Lingus Regional exclue | `not_offered` → `offered` à la main sur ordre ; phrase du lot 4 écrite par l'importeur |
+| Air China cabine (lot 6, refusé) | maintenu sous conditions sur les vols opérés par Air China ; « domestic dogs » = chiens domestiques | `not_offered` → `offered` à la main sur ordre ; phrase du lot 6, URL de l'accord de transport en cabine |
+
+**Règle des seuils fixée par Codex** : chiffre, unité, borne et base pesée ; un plafond combiné
+élimine un chien déjà trop lourd, il ne confirme jamais un chien plus léger. Le modèle la
+respecte sur l'élimination (refus sûr au-dessus) et sur la non-confirmation (jamais `allowed`).
+**Dette nommée** : pas de champ pour la borne — « inférieur à 8 kg » (Air Austral, exclusif) est
+stocké comme un plafond inclusif : un chien de 8,0 kg exactement n'y est pas refusé alors qu'il
+devrait l'être. Règle métier nouvelle : à arbitrer, pas corrigée ici. Témoin dans
+`test-preuves-correctif.mjs`.
+
+### Trouvé par la mesure, nommé comme dette
+
+Aer Lingus soute et Air China cabine sont citées et « sous conditions » dans la politique, mais
+des **règles héritées non citées** (`rule_aer_lingus_no_hold`, `rule_air_china_no_cabin`) gardent
+les canaux « à confirmer » dans le Finder, en se nommant. Même dette que Philippine cabine ; les
+règles compagnies restent hors du périmètre. Sans leur relecture, l'arbitrage n'atteint pas
+l'écran du Finder pour ces deux canaux — la fiche, elle, dit bien « sous conditions ».
+
+### Mesuré
+
+| | avant (lot 9) | après (correctif) |
+|---|---|---|
+| politiques citées (décisives) | 176 (174) | 178 (176 : Thai fret devient une décision, Bangkok fret cesse d'en être une) |
+| `allowed` / sous conditions / refusées / à confirmer | 0 / 140 / 34 / 128 | 0 / 142 / 34 / 126 |
+| causes legacy / page officielle / non publiée / accord compagnie | 111 / 15 / 1 / 1 | 109 / 15 / **0** / **2** |
+| registre A / B / C / D | 176 / 53 / 74 / 3 | 178 / 51 / 74 / 3 |
+| témoin hérité | 29 205 | 29 190 |
+| baseline | figée lot 9 | figée `correctif-arbitrages-apres` : 72 cartes / 1 560, 3 compagnies (Thai, Air China, Aer Lingus), 8 → sous conditions, aucun refus, aucun verdict déplacé |
+
+### Témoins déplacés par mouvement nommé
+
+- Sentinelle « non offerte, non prouvée » : Air China cabine citée → **Bangkok Airways cabine**
+  (laissée non décidée par Codex).
+- Manifeste T0-B2 : la décision auditée Thai fret (`undocumented`) est supersédée ; le manifeste
+  la garde, la matrice admet la valeur arbitrée sur preuve, `test-t0b-legacy-unreviewed.mjs` § 7 bis
+  compare désormais fiche, artefact et runtime à la source du correctif. Cause `policy_unpublished`
+  : 1 → 0 dans le référentiel réel.
+- Preuve permanente T0-B2-UI : l'URL AVIH de Thai, ajoutée alors comme source de canal, est
+  supersédée par la page THAI Cargo — admise si sa remplaçante est une source de canal.
+- Matrice : Bangkok fret, réactivé au lot 8, admis en `case_by_case` cité.
+- Harnais des lots 4, 6, 8 et 9 réécrits à l'état arbitré, l'histoire gardée en commentaire.
+  Nouveau harnais `test-preuves-correctif.mjs` (27 contrôles), dans test:unit.
+
+**Importeur** : clé de faits configurable (`replace_facts`) ; le contrat ne change pas — il n'a
+changé aucune disponibilité, les trois changements sont des lignes de fiche écrites à la main
+avec l'arbitrage en commentaire.
+
+### Post-scriptum — ce que le dist et la suite complète ont fait bouger (correctif)
+
+- **Vocabulaire IATA** : la nouvelle citation Thai Cargo (« …the IATA's Live Animals Regulations… ») publie
+  quatre jetons « IATA » (une page par langue) qu'aucune règle ni aucun scellé ne couvrait : l'étape 3 a
+  rougi (1septies, 1undecies). C'est une citation officielle, licite par nature ; elle rejoint le scellé des
+  tournures licites par le geste prévu (`test-etape3-dom.mjs --sceller-licites`, seul écrivain du scellé) —
+  le coût voulu, payé par celui qui écrit la phrase.
+- **Sentinelle « auditée · undocumented »** (Thai fret) : cette forme n'existe plus dans le référentiel réel
+  (0 `policy_unpublished`) ; la même page porte désormais le témoin de la forme qui l'a remplacée — décision
+  arbitrée sur ordre, citée, « accepté sous conditions ». Le harnais des entités relit la preuve de
+  référence dans le correctif, plus dans le manifeste (lien, citation visible, date rendue, confiance).
+- **Harnais de l'ingestion (l)** : la falsification de la source auditée visait la page passager AVIH
+  (échéance 2026-11-11, « (For cargo… ») ; ces motifs ne trouvaient plus rien à falsifier. Re-fondée sur la
+  preuve THAI Cargo — même contre-épreuve, même contrat.
+- **Contre-épreuve du manifeste falsifié** : l'admission par arbitrage de Thai fret aveuglait la matrice
+  quand la décision auditée était échangée avec Aegean. Erreur nommée, corrigée : l'admission ne vaut que
+  si la ligne du manifeste porte encore la décision auditée d'origine ; un manifeste falsifié rougit.
+- Caisses 56/56 (30 limites, 3 refus totaux), accueil, affirmations retirées, dette Astro 165 : verts.
+

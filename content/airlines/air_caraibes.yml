@@ -68,10 +68,52 @@ ladder:
 policies:
   cabin:
     availability: offered
+    # PREUVE IMPORTÉE — import strict lot7 (Codex, lecture directe du 2026-09-09, cohorte LOT7 fait 4).
+    # Effet attendu : Air Caraïbes cabin is a documented conditional route.
+    # Portée nommée : Cabin accepts dogs, cats and listed small pets, subject to quotas, route, behavior, container, age and documentation rules.
+    source:
+      url: "https://www.aircaraibes.com/avant-voyage/demandes-particulieres/animaux"
+      source_type: official_website
+      verified_date: "2026-09-09"
+      review_due: "2026-12-08"   # reviewDueFrom(verified_date, "airline") — calculé par l'importeur
+      confidence: 4
+      reviewer: "Codex — direct reading of official airline page"
+      history: []
+      quote: "sont uniquement les chiens, chats"
+      quote_language: fr
+      locator: "Animaux en cabine → Présentation"
   hold:
     availability: offered
+    # PREUVE IMPORTÉE — import strict lot7 (Codex, lecture directe du 2026-09-09, cohorte LOT7 fait 5).
+    # Effet attendu : Air Caraïbes hold is conditional and does not apply to brachycephalic dogs.
+    # Portée nommée : Dogs and cats only, subject to airline acceptance, quota, route, weight, breed, container and documentation rules; snub-nosed animals are excluded from hold.
+    source:
+      url: "https://www.aircaraibes.com/avant-voyage/demandes-particulieres/animaux"
+      source_type: official_website
+      verified_date: "2026-09-09"
+      review_due: "2026-12-08"   # reviewDueFrom(verified_date, "airline") — calculé par l'importeur
+      confidence: 4
+      reviewer: "Codex — direct reading of official airline page"
+      history: []
+      quote: "sont les chiens et chats uniquement (sous réserve d'acceptation de la compagnie)."
+      quote_language: fr
+      locator: "Animaux en soute → Présentation"
   cargo:
-    review_state: legacy_unreviewed
+    availability: offered   # RÉACTIVÉE sur citation (import strict, lot7, 2026-09-09) — était review_state: legacy_unreviewed
+    # PREUVE IMPORTÉE — import strict lot7 (Codex, lecture directe du 2026-09-09, cohorte LOT7 fait 6).
+    # Effet attendu : Air Caraïbes cargo is conditional and is not a general passenger-hold answer.
+    # Portée nommée : Freight is the documented route for other animals and for large dogs that cannot use the maximum passenger-hold container; booking and station approval remain required.
+    source:
+      url: "https://www.aircaraibes.com/avant-voyage/demandes-particulieres/animaux"
+      source_type: official_website
+      verified_date: "2026-09-09"
+      review_due: "2026-12-08"   # reviewDueFrom(verified_date, "airline") — calculé par l'importeur
+      confidence: 4
+      reviewer: "Codex — direct reading of official airline page"
+      history: []
+      quote: "devront voyager par FRET."
+      quote_language: fr
+      locator: "Animaux en soute → Règles de transport"
 channels:
   - placement: cabin
     icon: 🐾

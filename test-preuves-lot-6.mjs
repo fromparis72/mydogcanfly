@@ -52,6 +52,7 @@ const projetee = (id, pl) => kb.airlines.get(id)?.premium?.policy?.[pl];
 const SEUILS = { "airline_aeromexico.cabin": [9, true], "airline_aeromexico.hold": [45, true], "airline_egyptair.cabin": [8, true] };
 const REACTIVEES = ["airline_south_african_airways.hold", "airline_south_african_airways.cargo", "airline_saudia.cabin", "airline_kenya_airways.cargo", "airline_gulf_air.cargo", "airline_royal_jordanian.cabin"];
 const REFUSE = "airline_air_china.cabin";
+const CORRECTIF = JSON.parse(readFileSync("mesures/preuves/correctif-arbitrages-2026-09-09/CORRECTIF_ARBITRAGES_POLITIQUES_COMPAGNIES_2026-09-09.json", "utf8"));
 
 console.log("=== Étage 1 — 22 faits relus, 21 dans la donnée à l'octet près, 1 refusé et nommé ===");
 {
@@ -62,9 +63,14 @@ console.log("=== Étage 1 — 22 faits relus, 21 dans la donnée à l'octet prè
     const s = pol?.source ?? {};
     const proj = projetee(f.airline_id, f.placement);
     if (cle === REFUSE) {
-      check(`${cle} (LOT6[${f.index}]) : REFUSÉ par l'importeur — la fiche dit \`not_offered\`, la phrase de Codex n'est pas écrite, la disponibilité n'a pas bougé`,
-        pol?.availability === "not_offered" && s.quote !== f.quote && !s.quote, JSON.stringify({ availability: pol?.availability, quote: s.quote }));
-      check(`  …projeté « à confirmer » (refus non cité), jamais un refus prouvé ni un oui`, proj?.status === "confirmation_required", JSON.stringify({ status: proj?.status, cause: proj?.status_cause }));
+      /* HISTOIRE : refusé à l'import du lot 6 (la fiche disait `not_offered`), porté à l'arbitrage. ARBITRAGE (09/09/2026,
+         Codex, tranché par Philippe — correctif) : « maintenu sous conditions sur les vols opérés par Air China » ; « domestic
+         dogs » = chiens domestiques, pas vols intérieurs. Disponibilité changée À LA MAIN sur ordre, phrase écrite par
+         l'importeur du correctif : même phrase que le lot 6, page de l'accord de transport en cabine (URL du correctif). */
+      const arb = CORRECTIF.replace_facts.find((x) => x.airline_id === f.airline_id && x.placement === f.placement);
+      check(`${cle} (LOT6[${f.index}]) : ARBITRÉ — \`offered\` sur ordre, phrase du lot 6, URL et localisateur du correctif`,
+        pol?.availability === "offered" && s.quote === f.quote && s.quote === arb.quote && s.url === arb.url && s.locator === arb.locator && s.verified_date === "2026-09-09", JSON.stringify({ availability: pol?.availability, quote: s.quote, url: s.url }));
+      check(`  …projeté « accepté sous conditions » — jamais \`allowed\``, proj?.status === "accepted_with_conditions", JSON.stringify({ status: proj?.status, cause: proj?.status_cause }));
       continue;
     }
     check(`${cle} (LOT6[${f.index}]) : phrase, URL, localisateur, langue, date de lecture`,
@@ -152,7 +158,9 @@ console.log("\n=== Étage 2 — Paris → Riyad, Pékin, Nairobi, Amman ; Johann
     canal(ruh, "airline_saudia", "hold")?.status === "accepted_with_conditions" && canal(ruh, "airline_saudia", "cargo")?.status === "confirmation_required");
   const pek = decide("airport_cdg", "airport_pek", GOLDEN_32), pekC = decide("airport_cdg", "airport_pek", CAVALIER_6);
   const acC = canal(pekC, "airline_air_china", "cabin");
-  check("Air China cabine, Cavalier 6 kg : « à confirmer » (fait refusé : la fiche dit `not_offered` sans phrase, la règle héritée `rule_air_china_no_cabin` nommée) — jamais un oui, jamais un refus prouvé",
+  /* Après arbitrage : la cabine est citée et « sous conditions » dans la politique, mais la RÈGLE héritée non citée
+     `rule_air_china_no_cabin` garde le canal « à confirmer » sur Paris → Pékin, en la nommant — dette hors périmètre. */
+  check("Air China cabine, Cavalier 6 kg : citée sur arbitrage, mais « à confirmer » par la règle héritée non citée `rule_air_china_no_cabin`, NOMMÉE — jamais un oui, jamais un refus prouvé",
     acC?.status === "confirmation_required" && (acC?.confirmation_causes ?? []).some((x) => x.rule_id === "rule_air_china_no_cabin"), JSON.stringify(acC));
   check("Air China soute, Golden 32 kg : sous conditions (demande préalable citée) ; fret non décidé → à confirmer",
     canal(pek, "airline_air_china", "hold")?.status === "accepted_with_conditions" && canal(pek, "airline_air_china", "cargo")?.status === "confirmation_required");
@@ -179,7 +187,8 @@ console.log("\n=== Ce que l'import n'a PAS fait ===");
   let allowed = 0;
   for (const a of kb.airlines.values()) for (const p of Object.values(a.premium?.policy ?? {})) if (p.status === "allowed") allowed++;
   check("aucune politique réelle n'est `allowed`", allowed === 0, String(allowed));
-  check("Air China cabine n'a PAS été basculée à la main : `not_offered` intact, sans phrase", politique("airline_air_china", "cabin")?.availability === "not_offered" && !politique("airline_air_china", "cabin")?.source?.quote);
+  check("Air China cabine a été basculée SUR ARBITRAGE (Codex 09/09, tranché par Philippe), et le dit dans la fiche",
+    politique("airline_air_china", "cabin")?.availability === "offered" && /ARBITRAGE \(Codex, 09\/09\/2026/.test(readFileSync("content/airlines/air_china.yml", "utf8")));
   check("United soute et fret : aucune disponibilité ni phrase écrite (rien n'est déduit de la cabine)",
     !politique("airline_united", "hold")?.source?.quote && !politique("airline_united", "cargo")?.source?.quote);
 }

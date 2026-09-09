@@ -30,7 +30,12 @@
 
 /** Les décisions observées, sur quatre fiches. */
 export const SENTINELLES_COMPAGNIES = [
-  { slug: "thai-airways", id: "airline_thai_airways", placement: "cargo", statut: "confirmation_required", role: "auditée · undocumented" },
+  /* RE-FONDÉE SOUS UNE AUTRE FORME (09/09/2026, correctif d'arbitrages) : la décision auditée « undocumented » de Thai
+     fret est SUPERSÉDÉE par l'arbitrage (Codex, tranché par Philippe) — `offered` sur la page THAI Cargo. Mesuré : plus
+     AUCUNE politique du référentiel réel n'émet `policy_unpublished` ; cette forme-là (« auditée · undocumented ») n'existe
+     plus, et on le dit. La même page porte désormais le témoin de la forme qui l'a remplacée : une décision ARBITRÉE sur
+     ordre, citée, « accepté sous conditions » — la pastille doit dire la condition, jamais une place. */
+  { slug: "thai-airways", id: "airline_thai_airways", placement: "cargo", statut: "accepted_with_conditions", role: "arbitrée sur ordre · citée (THAI Cargo) · jamais une place promise" },
   { slug: "aegean", id: "airline_aegean", placement: "cargo", statut: "confirmation_required", role: "non revérifiée · legacy_unreviewed" },
   /* RE-FONDÉE (08/09/2026, import strict V3) : Air France publie désormais une citation de SOUTE
      (8 à 75 kg chien + contenant) ; sa fiche n'est plus « entièrement à confirmer » et ne peut
@@ -52,7 +57,16 @@ export const SENTINELLES_COMPAGNIES = [
      United SOUTE — page officielle, aucune phrase citée, « à confirmer » à côté d'une cabine citée.
      Même slug, même page construite ; le statut attendu ne change pas. */
   { slug: "united", id: "airline_united", placement: "hold", statut: "confirmation_required", role: "page officielle sans phrase citée, à côté d'un canal prouvé" },
-  { slug: "thai-airways", id: "airline_thai_airways", placement: "cabin", statut: "confirmation_required", role: "non offerte, non prouvée" },
+  /* RE-FONDÉE (09/09/2026, lot 8) : Thai Airways cabine est citée (« As a general policy, we do not accept
+     pets in the cabin… ») — un refus PROUVÉ, plus « non prouvé ». Même forme, autre porteuse, mesurée
+     sur les 12 cabines « non offertes, non prouvées » de la base projetée : Air China — précisément la
+     ligne que le lot 6 a REFUSÉ d'importer (la fiche dit `not_offered`, Codex dit « sous conditions »).
+     Tant que l'arbitrage n'est pas rendu, elle est le témoin exact de cette forme. */
+  /* RE-FONDÉE (09/09/2026, correctif d'arbitrages) : Air China cabine est désormais citée (arbitrage Codex, tranché par
+     Philippe : « sous conditions » sur les vols opérés par Air China). Même forme, autre porteuse, mesurée sur les 10
+     cabines « non offertes, non prouvées » restantes : Bangkok Airways — dont Codex a explicitement laissé la cabine
+     non décidée (lot 8 : « la source examinée est une page Cargo ; elle ne prouve aucun canal passager »). */
+  { slug: "bangkok-airways", id: "airline_bangkok_airways", placement: "cabin", statut: "confirmation_required", role: "non offerte, non prouvée · refus d'auteur sans phrase" },
   { slug: "british-airways", id: "airline_british_airways", placement: "cabin", statut: "denied", role: "refus PROUVÉ · citation stricte" },
 ];
 

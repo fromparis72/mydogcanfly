@@ -59,10 +59,16 @@ const check = (label, cond, detail = "") => {
 const CLE_LIBELLE = { allowed: "premium.allowed", accepted_with_conditions: "premium.accepted_conditions", denied: "premium.not_allowed", confirmation_required: "air.to_confirm" };
 const libelle = (langue, statut) => tt(langue, CLE_LIBELLE[statut]);
 
-/** La preuve auditée du fret Thai, telle que le manifeste approuvé la fige. */
+/** La preuve du fret Thai, telle que le CORRECTIF D'ARBITRAGES la fixe (09/09/2026, Codex, tranché par Philippe).
+ *  MOUVEMENT NOMMÉ : jusqu'ici, ce témoin relisait la source auditée du manifeste de migration (page passager AVIH,
+ *  « contactez Cargo », 13/08). L'arbitrage l'a SUPERSÉDÉE par la page THAI Cargo ; le manifeste garde l'ancienne, la
+ *  page construite doit servir la nouvelle — lien, citation visible, date rendue, confiance. La forme du témoin ne
+ *  change pas : ce que la page affiche EST la preuve de référence, champ par champ. */
 const AUDIT = (() => {
-  const m = JSON.parse(fs.readFileSync(path.join(ROOT, "test-baselines", "t0b-migration-matrice.json"), "utf8"));
-  return m.rows.find((r) => r.identity.airline_id === "airline_thai_airways" && r.identity.placement === "cargo").decision.source;
+  const c = JSON.parse(fs.readFileSync(path.join(ROOT, "mesures", "preuves", "correctif-arbitrages-2026-09-09", "CORRECTIF_ARBITRAGES_POLITIQUES_COMPAGNIES_2026-09-09.json"), "utf8"));
+  const f = c.replace_facts.find((x) => x.airline_id === "airline_thai_airways" && x.placement === "cargo");
+  return { url: f.url, source_type: c.provenance_defaults.source_type, verified_date: c.provenance_defaults.verified_date, review_due: c.provenance_defaults.review_due,
+    confidence: c.provenance_defaults.confidence, reviewer: c.provenance_defaults.reviewer, quote: f.quote, quote_language: f.quote_language, locator: f.locator };
 })();
 
 const kb = loadKB();
@@ -717,7 +723,10 @@ console.log("\n=== 4. Carte RENDUE du Finder : les sources des canaux, et rien d
      35 cartes de CDG→BKK : cinq compagnies n'ont aucun canal sourcé, trois avec une racine qui est
      une page d'accueil (Aircalin, China Southern, El Al ; LOT et Singapore ont une racine
      mydogcanfly.com). China Southern est retenue. Jamais abaissé. */
-  const TEMOIN_SANS_SOURCE = "airline_china_southern";
+  /* RE-FONDÉ ENCORE (09/09/2026, lot 8) : China Southern est citée (cabine refusée, soute sous conditions).
+     Mesuré sur CDG→BKK : quatre cartes sans canal sourcé, une seule à racine page d'accueil hors des
+     lots 7 et 8 — El Al. Retenue. */
+  const TEMOIN_SANS_SOURCE = "airline_el_al";
   const cartes2 = ["airline_thai_airways", TEMOIN_SANS_SOURCE]
     .map((id) => (rapport.airlines ?? []).find((a) => a.airline_id === id));
   check(`le témoin ${TEMOIN_SANS_SOURCE} est servi, sans aucun canal sourcé`,
@@ -748,7 +757,7 @@ console.log("\n=== 4. Carte RENDUE du Finder : les sources des canaux, et rien d
   check("la carte Thai porte un lien vers l'URL auditée du fret", hrefs(carteThai).includes(AUDIT.url),
     hrefs(carteThai).join(" | ") || "aucun lien");
   const lienSource = [...carteThai.querySelectorAll("a[href]")].find((a) => a.getAttribute("href") === AUDIT.url);
-  check("ce lien est VISIBLE et nommé par son canal", (lienSource?.textContent || "").includes("thaiairways.com")
+  check("ce lien est VISIBLE et nommé par son canal", (lienSource?.textContent || "").includes("thaicargo.com")
     && /cargo|fret|carga/i.test(lienSource?.textContent || ""), lienSource ? `« ${lienSource.textContent} »` : "absent");
   /* Le témoin : aucun canal sourcé → AUCUN bloc de sources, pas un lien « par défaut ». */
   check(`la carte ${TEMOIN_SANS_SOURCE} n'affiche AUCUN bloc de sources`,
@@ -801,8 +810,15 @@ console.log(`\n=== 5. Les ${CIBLE.length} canaux contradictoires × 4 langues : 
    * cabine et soute — l'éditorial disait déjà « non », la citation le prouve. Saudia cabine reste
    * contradictoire : son éditorial dit « chats uniquement » (warn) là où le canal est refusé aux
    * chiens sur citation. Toujours 101 fiches. */
-  check("274 canaux contradictoires sur 101 fiches, relus des fiches et du contrat runtime",
-    CONTRADICTOIRES.length === 274 && new Set(CONTRADICTOIRES.map((c) => c.slug)).size === 101,
+  /* 274 → 271 (09/09/2026, lot 7) : Aircalin cabine et soute, La Compagnie soute — l'éditorial disait déjà
+   * « non », la citation le prouve. Toujours 101 fiches. */
+  /* 271 → 265 (09/09/2026, lot 8) : China Southern cabine, Copa soute, IndiGo cabine, soute et fret, Thai
+   * Airways cabine — l'éditorial disait déjà « non », la citation le prouve. 101 → 100 fiches : IndiGo
+   * SORT du registre, ses trois canaux étant désormais prouvés (comme Ryanair au lot V3). */
+  /* 265 → 263 (09/09/2026, lot 9, clôture) : Batik Air Indonesia cabine et soute — l'éditorial disait déjà « non », la
+   * citation le prouve ; son fret, non décidé, reste contradictoire (100 fiches). */
+  check("263 canaux contradictoires sur 100 fiches, relus des fiches et du contrat runtime",
+    CONTRADICTOIRES.length === 263 && new Set(CONTRADICTOIRES.map((c) => c.slug)).size === 100,
     `${CONTRADICTOIRES.length} canaux · ${new Set(CONTRADICTOIRES.map((c) => c.slug)).size} fiches`);
 
   /* LA LECTURE SE FAIT PAR LOTS, DANS DES PROCESSUS COURTS (CI du 16/08/2026, run 31 sur main).

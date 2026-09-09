@@ -71,6 +71,11 @@ const STALE_VERSES = new Set([
 const DECISIONS_POST_MIGRATION = new Set([
   "airline_virgin_australia|cabin",
   "airline_garuda_indonesia|cabin",
+  /* Correctif d'arbitrages (09/09/2026, Codex, tranché par Philippe) : Thai Airways fret passe d'`undocumented` (décision
+     auditée du manifeste, « contactez Cargo ») à `offered` sur la page THAI Cargo. L'observation de migration reste
+     intacte ; la valeur courante est admise ici par identité, et `test-t0b-legacy-unreviewed.mjs` (7 bis) exige que la
+     fiche, l'artefact et le runtime portent la source du correctif, champ par champ. */
+  "airline_thai_airways|cargo",
 ]);
 /* LIGNES DU MANIFESTE RÉACTIVÉES SUR CITATION (08/09/2026, import strict, lots 2 et 3).
  *
@@ -111,6 +116,33 @@ const REACTIVEES_SUR_CITATION = new Set([
   "airline_gulf_air|cargo",
   "airline_royal_jordanian|cabin",
   "airline_saudia|cabin",
+  /* Lot 7 (09/09/2026) : Air Caraïbes fret (« devront voyager par FRET. »), Air Tahiti Nui fret (« …il
+     peut certainement être transporté par fret… »), Aircalin fret (« Le transport des animaux
+     s'effectue en fret uniquement. »), Corsair fret (« Au-delà de 50 kg, le transport devra
+     s'effectuer par le fret. »). */
+  "airline_air_caraibes|cargo",
+  "airline_air_tahiti_nui|cargo",
+  "airline_aircalin|cargo",
+  "airline_corsair|cargo",
+  /* Lot 8 (09/09/2026) : Bangkok Airways fret (« Special cargo service as Live animals dog, cat (AVI)… »,
+     routes INTÉRIEURES — portée nommée), Copa fret (« must be arranged through Copa Cargo »), KM Malta
+     fret (« booking your pet in the aircraft hold as Cargo »), SKY express soute (« Dogs and cats
+     weighing more than 8 kilograms »), SunExpress soute (« Dogs and cats weighing more than 8 kg »). */
+  "airline_bangkok_airways|cargo",
+  "airline_copa|cargo",
+  "airline_km_malta|cargo",
+  "airline_sky_express|hold",
+  "airline_sunexpress|hold",
+  /* Lot 9 (09/09/2026), clôture : Aerolíneas Argentinas fret (« Aerolineas Cargo ofrece transporte de
+     mascotas… »), Air Astana fret (« …исключительно по грузовой авианакладной », portée : destinations où le
+     bagage est interdit), Edelweiss fret (« …transported unaccompanied as freight. »), TAROM soute (« …more
+     than 8kg can be transported safely in the hold ») et fret (« May be accepted only as cargo. », chiens
+     > 40 kg). */
+  "airline_aerolineas_argentinas|cargo",
+  "airline_air_astana|cargo",
+  "airline_edelweiss|cargo",
+  "airline_tarom|hold",
+  "airline_tarom|cargo",
 ]);
 /* POLICY_STALE RÉACTIVÉS SUR CITATION (09/09/2026, lot 4). Deux des dix anciens POLICY_STALE
  * versés en `legacy_unreviewed` — Qantas soute et Qantas fret — ont reçu une phrase des Conditions
@@ -214,7 +246,20 @@ for (const r of rows) {
   if (REACTIVEES_SUR_CITATION.has(k)) {
     /* Une ligne réactivée porte une DÉCISION citée — `offered` ou, depuis le lot 6 (Saudia cabine),
        `not_offered` : un refus cité réactive aussi, jamais sans sa phrase. */
-    if (!((p.availability === "offered" || p.availability === "not_offered") && citee(p))) err(`ligne réactivée SANS sa preuve: ${k} → availability=${p.availability}, citée=${citee(p)}`);
+    /* Correctif d'arbitrages (09/09/2026) : Bangkok Airways fret, réactivé `offered` au lot 8, est ARBITRÉ `case_by_case`
+       (portée intérieure que le modèle ne porte pas — précédent Virgin A-bis) : la preuve reste exigée, la disponibilité
+       admise est celle de l'arbitrage. Nominativement, et pour cette seule ligne. */
+    const dispoAdmise = p.availability === "offered" || p.availability === "not_offered" || (k === "airline_bangkok_airways|cargo" && p.availability === "case_by_case");
+    if (!(dispoAdmise && citee(p))) err(`ligne réactivée SANS sa preuve: ${k} → availability=${p.availability}, citée=${citee(p)}`);
+    continue;
+  }
+  if (k === "airline_thai_airways|cargo" && r.decision.target_availability === "undocumented" && /contact directly to Cargo Department/.test(r.decision.source?.quote ?? "")) {
+    /* Correctif d'arbitrages (09/09/2026, Codex, tranché par Philippe) : la décision auditée du manifeste (`undocumented`)
+       est SUPERSÉDÉE par `offered` sur la page THAI Cargo. L'observation de migration reste vérifiée telle quelle ; la
+       valeur courante est admise par identité, et la preuve exigée. L'admission ne vaut que si la LIGNE DU MANIFESTE est
+       encore la décision auditée d'origine : un manifeste falsifié (décision échangée — contre-épreuve de
+       `test-t0b-manifeste.mjs`) retombe sur le contrôle ordinaire et rougit comme avant. */
+    if (!(p.availability === "offered" && citee(p))) err(`décision arbitrée SANS sa preuve: ${k} → availability=${p.availability}, citée=${citee(p)}`);
     continue;
   }
   const attendu = attenduPour(r);

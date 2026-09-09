@@ -74,10 +74,55 @@ ladder:
 policies:
   cabin:
     availability: offered
+    # PREUVE IMPORTÉE — import strict lot8 (Codex, lecture directe du 2026-09-09, cohorte LOT8 fait 3).
+    # Effet attendu : Copa cabin is conditional with a 10 kg combined pet-and-container ceiling.
+    # Portée nommée : Small dogs and cats up to 10 kg including the container; Main Cabin only, advance reservation, route, age, container, quota and documentation restrictions apply.
+    # Le plafond cité inclut le CONTENANT : refus sûr si le chien seul le dépasse, jamais un oui en dessous.
+    max_weight_kg: 10
+    weight_includes_carrier: true
+    source:
+      url: "https://www.copaair.com/assets/ENG-COM-24-001-Update-Service-or-Emotional-Support-Dog-and-Pet-in-Cabin-Transportation-Policy.pdf"
+      source_type: official_website
+      verified_date: "2026-09-09"
+      review_due: "2026-12-08"   # reviewDueFrom(verified_date, "airline") — calculé par l'importeur
+      confidence: 4
+      reviewer: "Codex — direct reading of official airline page"
+      history: []
+      quote: "Copa Airlines only accepts small dogs and cats (maximum 10kg including container) as pets in the cabin."
+      quote_language: en
+      locator: "COM-24-001 → Policy"
   hold:
     availability: not_offered
+    # PREUVE IMPORTÉE — import strict lot8 (Codex, lecture directe du 2026-09-09, cohorte LOT8 fait 4).
+    # Effet attendu : Copa passenger hold is a documented refusal; do not confuse it with Copa Cargo.
+    # Portée nommée : Copa no longer accepts pets as passenger checked baggage on domestic or international flights; Copa Cargo is a separate route.
+    source:
+      url: "https://www.copaair.com/assets/contrato-de-transporte-en-dot-oct-2024.pdf"
+      source_type: official_website
+      verified_date: "2026-09-09"
+      review_due: "2026-12-08"   # reviewDueFrom(verified_date, "airline") — calculé par l'importeur
+      confidence: 4
+      reviewer: "Codex — direct reading of official airline page"
+      history: []
+      quote: "shall no longer offer any transportation services for pets as checked baggage"
+      quote_language: en
+      locator: "Contract of Carriage → 5.7.1.1 Transportation of Pets as Checked Baggage"
   cargo:
-    review_state: legacy_unreviewed
+    availability: offered   # RÉACTIVÉE sur citation (import strict, lot8, 2026-09-09) — était review_state: legacy_unreviewed
+    # PREUVE IMPORTÉE — import strict lot8 (Codex, lecture directe du 2026-09-09, cohorte LOT8 fait 5).
+    # Effet attendu : Copa cargo is the documented conditional alternative to checked-pet service.
+    # Portée nommée : Pet transport outside the passenger cabin must be arranged through Copa Cargo; cargo booking, station, route, animal, crate and documentation approval apply.
+    source:
+      url: "https://www.copaair.com/assets/contrato-de-transporte-en-dot-oct-2024.pdf"
+      source_type: official_website
+      verified_date: "2026-09-09"
+      review_due: "2026-12-08"   # reviewDueFrom(verified_date, "airline") — calculé par l'importeur
+      confidence: 4
+      reviewer: "Codex — direct reading of official airline page"
+      history: []
+      quote: "must be arranged through Copa Cargo"
+      quote_language: en
+      locator: "Contract of Carriage → 5.7.1.1 Transportation of Pets as Checked Baggage"
 channels:
   - placement: cabin
     icon: 🐾

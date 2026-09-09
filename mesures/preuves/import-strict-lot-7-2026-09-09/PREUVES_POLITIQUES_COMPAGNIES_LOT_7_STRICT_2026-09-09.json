@@ -1,0 +1,305 @@
+{
+  "schema_version": 1,
+  "as_of": "2026-09-09",
+  "status": "strict_import_candidate",
+  "purpose": "Seventh independently reviewed batch. Each fact is supported by a continuous quotation from a current first-party airline page. A conditional channel is a documented policy route, never availability or final carriage acceptance.",
+  "provenance_defaults": {
+    "source_type": "official_website",
+    "verified_date": "2026-09-09",
+    "review_due": "derive_with_reviewDueFrom(verified_date, 'airline')",
+    "confidence": 4,
+    "reviewer": "Codex — direct reading of official airline page"
+  },
+  "facts": [
+    {
+      "airline_id": "airline_air_algerie",
+      "placement": "cabin",
+      "recommendation": "offered_with_conditions",
+      "condition_scope": "Small pets under 6 kg are described as accepted in cabin, subject to route, quota, documentation and container rules. The page is inconsistent about whether the 6 kg basis includes the container, so no structured dog-only threshold may be inferred.",
+      "finder_effect": "Air Algérie cabin is a documented conditional route; the 6 kg wording remains descriptive and must not become a dog-only threshold.",
+      "url": "https://airalgerie.dz/en/plan-your-trip/baggage/travel-with-pets/",
+      "quote": "only small pets under 6 kg are accepted on board",
+      "quote_language": "en",
+      "locator": "Travel with pets → Pets travelling in cabin"
+    },
+    {
+      "airline_id": "airline_air_algerie",
+      "placement": "hold",
+      "recommendation": "offered_with_conditions",
+      "condition_scope": "The hold route applies when cabin weight or container limits are exceeded, with route, aircraft, documentation and container restrictions. Hold is prohibited to and from the United Kingdom.",
+      "finder_effect": "Air Algérie hold is conditional and must be suppressed on United Kingdom sectors.",
+      "url": "https://airalgerie.dz/en/plan-your-trip/baggage/travel-with-pets/",
+      "quote": "your pet must be transported in the hold",
+      "quote_language": "en",
+      "locator": "Travel with pets → Pets travel in the hold"
+    },
+    {
+      "airline_id": "airline_air_austral",
+      "placement": "cabin",
+      "recommendation": "offered_with_conditions",
+      "condition_scope": "Cats and dogs other than French category 1 and 2 dogs; animal plus container below 8 kg; quota, container, route and documentation rules apply.",
+      "finder_effect": "Air Austral cabin is conditional with an 8 kg combined animal-and-container ceiling.",
+      "url": "https://www.air-austral.com/preparer-mon-vol/demandes-speciales/animaux.html",
+      "quote": "le poids de l'animal + son contenant doit être inférieur à 8 kg",
+      "quote_language": "fr",
+      "locator": "Animaux acceptés en cabine (PETC)"
+    },
+    {
+      "airline_id": "airline_air_austral",
+      "placement": "hold",
+      "recommendation": "offered_with_conditions",
+      "condition_scope": "Cats and dogs over 8 kg; capacity, breed, route, container and documentation restrictions apply.",
+      "finder_effect": "Air Austral hold is a documented conditional route, not guaranteed acceptance.",
+      "url": "https://www.air-austral.com/preparer-mon-vol/demandes-speciales/animaux.html",
+      "quote": "Le transport en soute est obligatoire",
+      "quote_language": "fr",
+      "locator": "Animaux transportés en soute (AVIH)"
+    },
+    {
+      "airline_id": "airline_air_caraibes",
+      "placement": "cabin",
+      "recommendation": "offered_with_conditions",
+      "condition_scope": "Cabin accepts dogs, cats and listed small pets, subject to quotas, route, behavior, container, age and documentation rules.",
+      "finder_effect": "Air Caraïbes cabin is a documented conditional route.",
+      "url": "https://www.aircaraibes.com/avant-voyage/demandes-particulieres/animaux",
+      "quote": "sont uniquement les chiens, chats",
+      "quote_language": "fr",
+      "locator": "Animaux en cabine → Présentation"
+    },
+    {
+      "airline_id": "airline_air_caraibes",
+      "placement": "hold",
+      "recommendation": "offered_with_conditions",
+      "condition_scope": "Dogs and cats only, subject to airline acceptance, quota, route, weight, breed, container and documentation rules; snub-nosed animals are excluded from hold.",
+      "finder_effect": "Air Caraïbes hold is conditional and does not apply to brachycephalic dogs.",
+      "url": "https://www.aircaraibes.com/avant-voyage/demandes-particulieres/animaux",
+      "quote": "sont les chiens et chats uniquement (sous réserve d'acceptation de la compagnie).",
+      "quote_language": "fr",
+      "locator": "Animaux en soute → Présentation"
+    },
+    {
+      "airline_id": "airline_air_caraibes",
+      "placement": "cargo",
+      "recommendation": "offered_with_conditions",
+      "condition_scope": "Freight is the documented route for other animals and for large dogs that cannot use the maximum passenger-hold container; booking and station approval remain required.",
+      "finder_effect": "Air Caraïbes cargo is conditional and is not a general passenger-hold answer.",
+      "url": "https://www.aircaraibes.com/avant-voyage/demandes-particulieres/animaux",
+      "quote": "devront voyager par FRET.",
+      "quote_language": "fr",
+      "locator": "Animaux en soute → Règles de transport"
+    },
+    {
+      "airline_id": "airline_air_tahiti_nui",
+      "placement": "cabin",
+      "recommendation": "offered_with_conditions",
+      "condition_scope": "Vaccinated dogs and cats accompanied by their owner; only the four listed Papeete, Los Angeles and Paris sectors; combined animal-and-container weight up to 8 kg, quota and documentation rules apply.",
+      "finder_effect": "Air Tahiti Nui cabin is route-scoped and must not be generalized to the whole network.",
+      "url": "https://pf.airtahitinui.com/voyager-avec-un-animal",
+      "quote": "Air Tahiti Nui accepte le transport en cabine des chiens et chats vaccinés accompagnés de leur propriétaire et uniquement sur les vols suivants :",
+      "quote_language": "fr",
+      "locator": "Animaux domestiques en cabine"
+    },
+    {
+      "airline_id": "airline_air_tahiti_nui",
+      "placement": "cargo",
+      "recommendation": "offered_with_conditions",
+      "condition_scope": "Air Tahiti Nui Cargo carries dogs and cats on listed stations when cabin transport is unavailable; freight booking, route, crate and health requirements apply.",
+      "finder_effect": "Air Tahiti Nui cargo is a documented conditional freight route; it must not be labeled accompanied checked baggage.",
+      "url": "https://pf.airtahitinui.com/transport-danimaux-en-soute",
+      "quote": "Si, en revanche, votre animal ne peut pas être transporté en cabine, il peut certainement être transporté par fret, dans la soute de l’appareil.",
+      "quote_language": "fr",
+      "locator": "Vous souhaitez faire voyager votre animal de compagnie ?"
+    },
+    {
+      "airline_id": "airline_aircalin",
+      "placement": "cabin",
+      "recommendation": "not_offered_for_pet_dogs",
+      "condition_scope": "Ordinary pet dogs are freight-only. The separately stated cabin exception is limited to guide dogs and is outside this verdict.",
+      "finder_effect": "Aircalin cabin is a documented refusal for ordinary pet dogs.",
+      "url": "https://www.aircalin.com/fr/animaux",
+      "quote": "Le transport des animaux s’effectue en fret uniquement.",
+      "quote_language": "fr",
+      "locator": "Transport d'animaux"
+    },
+    {
+      "airline_id": "airline_aircalin",
+      "placement": "hold",
+      "recommendation": "not_offered_for_pet_dogs",
+      "condition_scope": "The official page defines animal carriage as freight-only; its later reference to the aircraft hold describes operational handling, not accompanied checked-pet service.",
+      "finder_effect": "Aircalin passenger hold is not offered for ordinary pet dogs; cargo remains the documented route.",
+      "url": "https://www.aircalin.com/fr/animaux",
+      "quote": "Le transport des animaux s’effectue en fret uniquement.",
+      "quote_language": "fr",
+      "locator": "Transport d'animaux"
+    },
+    {
+      "airline_id": "airline_aircalin",
+      "placement": "cargo",
+      "recommendation": "offered_with_conditions",
+      "condition_scope": "Freight-only carriage; advance notification, station, route, health, import and container requirements apply.",
+      "finder_effect": "Aircalin cargo is the documented conditional route for ordinary pet dogs.",
+      "url": "https://www.aircalin.com/fr/animaux",
+      "quote": "Le transport des animaux s’effectue en fret uniquement.",
+      "quote_language": "fr",
+      "locator": "Transport d'animaux"
+    },
+    {
+      "airline_id": "airline_corsair",
+      "placement": "cabin",
+      "recommendation": "offered_with_conditions",
+      "condition_scope": "Animal plus container no more than 8 kg; route, breed, health, documentation, quota and container restrictions apply.",
+      "finder_effect": "Corsair cabin is conditional with an 8 kg combined animal-and-container ceiling.",
+      "url": "https://www.flycorsair.com/fr/legal/conditions-generales-de-vente-et-de-transport",
+      "quote": "Le transport peut s'effectuer en cabine",
+      "quote_language": "fr",
+      "locator": "Conditions de transport → Transport d'animaux"
+    },
+    {
+      "airline_id": "airline_corsair",
+      "placement": "hold",
+      "recommendation": "offered_with_conditions",
+      "condition_scope": "Animal plus container no more than 50 kg; route, breed, health, documentation and container restrictions apply.",
+      "finder_effect": "Corsair hold is conditional with a 50 kg combined animal-and-container ceiling.",
+      "url": "https://www.flycorsair.com/fr/legal/conditions-generales-de-vente-et-de-transport",
+      "quote": "Le transport s'effectue en soute",
+      "quote_language": "fr",
+      "locator": "Conditions de transport → Transport d'animaux"
+    },
+    {
+      "airline_id": "airline_corsair",
+      "placement": "cargo",
+      "recommendation": "offered_with_conditions",
+      "condition_scope": "Freight is required above the 50 kg combined animal-and-container passenger-hold ceiling; route, breed and cargo acceptance rules still apply.",
+      "finder_effect": "Corsair cargo is conditional for dogs above the passenger-hold weight ceiling.",
+      "url": "https://www.flycorsair.com/fr/legal/conditions-generales-de-vente-et-de-transport",
+      "quote": "Au-delà de 50 kg, le transport devra s'effectuer par le fret.",
+      "quote_language": "fr",
+      "locator": "Conditions de transport → Transport d'animaux"
+    },
+    {
+      "airline_id": "airline_french_bee",
+      "placement": "cabin",
+      "recommendation": "offered_with_conditions",
+      "condition_scope": "One dog or cat per passenger, with the carrier and all route, weight, breed, health, reservation and documentation conditions satisfied.",
+      "finder_effect": "French Bee cabin is a documented conditional route.",
+      "url": "https://support.frenchbee.com/hc/fr/articles/4408189999633-Quel-type-de-sac-pour-mon-animal-en-cabine",
+      "quote": "En cabine vous avez le droit de transporter un chien ou chat par passager.",
+      "quote_language": "fr",
+      "locator": "Quel type de sac pour mon animal en cabine ?"
+    },
+    {
+      "airline_id": "airline_french_bee",
+      "placement": "hold",
+      "recommendation": "offered_with_conditions",
+      "condition_scope": "Dogs and cats may travel in hold subject to weight, size, breed, crate, route and documentation conditions; brachycephalic animals are excluded.",
+      "finder_effect": "French Bee hold is conditional and does not apply to brachycephalic dogs.",
+      "url": "https://support.frenchbee.com/hc/fr/articles/360039534611-Puis-je-faire-voyager-mon-animal-avec-moi-dans-l-avion",
+      "quote": "Ils peuvent voyager en soute sous certaines conditions",
+      "quote_language": "fr",
+      "locator": "Puis-je faire voyager mon animal avec moi dans l’avion ?"
+    },
+    {
+      "airline_id": "airline_iberia_express",
+      "placement": "cabin",
+      "recommendation": "offered_with_conditions",
+      "condition_scope": "Selected domestic animals may be accepted in cabin after reservation approval; combined weight, container, route, species and documentation restrictions apply.",
+      "finder_effect": "Iberia Express cabin is a documented conditional route.",
+      "url": "https://www.iberiaexpress.com/informacion-general/informacion-pasajero/antes-de-volar/mascotas",
+      "quote": "podrán ser aceptados para el transporte en cabina determinados animales domésticos",
+      "quote_language": "es",
+      "locator": "Aceptación en cabina de pasajero"
+    },
+    {
+      "airline_id": "airline_iberia_express",
+      "placement": "hold",
+      "recommendation": "offered_with_conditions",
+      "condition_scope": "Dogs and cats may be accepted in hold subject to a 45 kg combined animal-and-container ceiling, advance request, route, breed, connection, quota and documentation restrictions.",
+      "finder_effect": "Iberia Express hold is conditional and excludes brachycephalic dogs.",
+      "url": "https://www.iberiaexpress.com/informacion-general/informacion-pasajero/antes-de-volar/mascotas",
+      "quote": "pueden ser aceptados como equipaje en bodega",
+      "quote_language": "es",
+      "locator": "Aceptación en bodega"
+    },
+    {
+      "airline_id": "airline_la_compagnie",
+      "placement": "cabin",
+      "recommendation": "offered_with_conditions",
+      "condition_scope": "Dogs and cats up to 8 kg including the bag, subject to a four-animal flight quota, advance request, container, behavior and documentation rules.",
+      "finder_effect": "La Compagnie cabin is conditional with an 8 kg combined animal-and-bag ceiling.",
+      "url": "https://www.lacompagnie.com/fr/plan/special-services",
+      "quote": "vos compagnons, jusqu’à 8kg, sac compris, (chiens et chats)",
+      "quote_language": "fr",
+      "locator": "Services optionnels → Animaux"
+    },
+    {
+      "airline_id": "airline_la_compagnie",
+      "placement": "hold",
+      "recommendation": "not_offered_for_pet_dogs",
+      "condition_scope": "Ordinary pet transport is cabin-only; passenger hold is explicitly not offered.",
+      "finder_effect": "La Compagnie hold is a documented refusal for ordinary pet dogs.",
+      "url": "https://www.lacompagnie.com/fr/plan/special-services",
+      "quote": "Seul le transport en cabine est autorisé, le transport d’animaux en soute n’est pas proposé.",
+      "quote_language": "fr",
+      "locator": "Services optionnels → Animaux"
+    },
+    {
+      "airline_id": "airline_luxair",
+      "placement": "cabin",
+      "recommendation": "offered_with_conditions",
+      "condition_scope": "Dogs and cats only; under-8-kg cabin policy, quota, route, reservation, documentation and container conditions apply. Cabin is unavailable on listed destinations.",
+      "finder_effect": "Luxair cabin is conditional and route-scoped.",
+      "url": "https://www.luxair.lu/en/node/502/",
+      "quote": "welcome them on board either in cabin",
+      "quote_language": "en",
+      "locator": "Travelling with animals → General information and regulations"
+    },
+    {
+      "airline_id": "airline_luxair",
+      "placement": "hold",
+      "recommendation": "offered_with_conditions",
+      "condition_scope": "Dogs and cats only; aircraft quota, route, reservation, documentation and container conditions apply. Hold is unavailable to and from Paris Charles de Gaulle and on other listed destinations.",
+      "finder_effect": "Luxair hold is conditional and route-scoped.",
+      "url": "https://www.luxair.lu/en/node/502/",
+      "quote": "welcome them on board either in cabin or in hold",
+      "quote_language": "en",
+      "locator": "Travelling with animals → General information and regulations"
+    }
+  ],
+  "intentionally_unset": [
+    {
+      "airline_id": "airline_air_algerie",
+      "placement": "cargo",
+      "reason": "The reviewed page mentions freight for United Kingdom sectors but does not establish a general cargo offer for the whole network."
+    },
+    {
+      "airline_id": "airline_air_austral",
+      "placement": "cargo",
+      "reason": "The reviewed page mentions freight for other animal types but does not establish a distinct general cargo route for ordinary pet dogs."
+    },
+    {
+      "airline_id": "airline_air_tahiti_nui",
+      "placement": "hold",
+      "reason": "The official material describes cabin and Air Tahiti Nui Cargo; it does not establish accompanied checked-pet service as a separate channel."
+    },
+    {
+      "airline_id": "airline_french_bee",
+      "placement": "cargo",
+      "reason": "The two current passenger FAQs establish cabin and hold only; no separate unaccompanied freight offer was proven."
+    },
+    {
+      "airline_id": "airline_iberia_express",
+      "placement": "cargo",
+      "reason": "The page says some non-PETC/AVIH animals may be handled as merchandise in some cases, but does not establish a general dog cargo answer."
+    },
+    {
+      "airline_id": "airline_la_compagnie",
+      "placement": "cargo",
+      "reason": "The reviewed page proves cabin and the absence of passenger hold, but says nothing decisive about separately booked cargo."
+    },
+    {
+      "airline_id": "airline_luxair",
+      "placement": "cargo",
+      "reason": "The reviewed passenger page establishes cabin and hold only, not a distinct unaccompanied freight offer."
+    }
+  ]
+}

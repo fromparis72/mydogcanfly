@@ -1,0 +1,305 @@
+{
+  "schema_version": 1,
+  "as_of": "2026-09-09",
+  "status": "strict_import_candidate",
+  "purpose": "Eighth independently reviewed batch. Each fact is supported by a continuous quotation from a current first-party airline page or first-party contract. A conditional channel is a documented policy route, never availability or final carriage acceptance.",
+  "provenance_defaults": {
+    "source_type": "official_website",
+    "verified_date": "2026-09-09",
+    "review_due": "derive_with_reviewDueFrom(verified_date, 'airline')",
+    "confidence": 4,
+    "reviewer": "Codex — direct reading of official airline page"
+  },
+  "facts": [
+    {
+      "airline_id": "airline_bangkok_airways",
+      "placement": "cargo",
+      "recommendation": "offered_with_conditions",
+      "condition_scope": "Live dogs and cats are accepted as special cargo only on listed domestic routes and aircraft, with advance booking, health certificate, kennel, breed and capacity restrictions; international stations are excluded.",
+      "finder_effect": "Bangkok Airways cargo is conditional and domestic-route-only.",
+      "url": "https://prod.bangkokair.com/eng/cargo-service/pet_carriage",
+      "quote": "Special cargo service as Live animals dog, cat (AVI) is available on Airbus and ATR72 on the following routes:",
+      "quote_language": "en",
+      "locator": "Cargo Service → Pet Carriage Service"
+    },
+    {
+      "airline_id": "airline_china_southern",
+      "placement": "cabin",
+      "recommendation": "not_offered_for_pet_dogs",
+      "condition_scope": "Ordinary pet dogs are not accepted in the passenger cabin; guide dogs are a separate exception.",
+      "finder_effect": "China Southern cabin is a documented refusal for ordinary pet dogs.",
+      "url": "https://www.csair.com/hk/en/tourguide/faq/baggage/dongwu.shtml",
+      "quote": "No animal can be brought into the passenger cabin",
+      "quote_language": "en",
+      "locator": "Pets → Which animals can be brought into the cabin?"
+    },
+    {
+      "airline_id": "airline_china_southern",
+      "placement": "hold",
+      "recommendation": "offered_with_conditions",
+      "condition_scope": "Pets may be checked only after prior airline and successive-carrier approval, with quarantine, vaccination, route, document and container requirements.",
+      "finder_effect": "China Southern hold is a documented conditional route.",
+      "url": "https://www.csair.com/hk/en/tourguide/faq/baggage/dongwu.shtml",
+      "quote": "you can check it",
+      "quote_language": "en",
+      "locator": "Pets → May I take my pet into cabin?"
+    },
+    {
+      "airline_id": "airline_copa",
+      "placement": "cabin",
+      "recommendation": "offered_with_conditions",
+      "condition_scope": "Small dogs and cats up to 10 kg including the container; Main Cabin only, advance reservation, route, age, container, quota and documentation restrictions apply.",
+      "finder_effect": "Copa cabin is conditional with a 10 kg combined pet-and-container ceiling.",
+      "url": "https://www.copaair.com/assets/ENG-COM-24-001-Update-Service-or-Emotional-Support-Dog-and-Pet-in-Cabin-Transportation-Policy.pdf",
+      "quote": "Copa Airlines only accepts small dogs and cats (maximum 10kg including container) as pets in the cabin.",
+      "quote_language": "en",
+      "locator": "COM-24-001 → Policy"
+    },
+    {
+      "airline_id": "airline_copa",
+      "placement": "hold",
+      "recommendation": "not_offered_for_pet_dogs",
+      "condition_scope": "Copa no longer accepts pets as passenger checked baggage on domestic or international flights; Copa Cargo is a separate route.",
+      "finder_effect": "Copa passenger hold is a documented refusal; do not confuse it with Copa Cargo.",
+      "url": "https://www.copaair.com/assets/contrato-de-transporte-en-dot-oct-2024.pdf",
+      "quote": "shall no longer offer any transportation services for pets as checked baggage",
+      "quote_language": "en",
+      "locator": "Contract of Carriage → 5.7.1.1 Transportation of Pets as Checked Baggage"
+    },
+    {
+      "airline_id": "airline_copa",
+      "placement": "cargo",
+      "recommendation": "offered_with_conditions",
+      "condition_scope": "Pet transport outside the passenger cabin must be arranged through Copa Cargo; cargo booking, station, route, animal, crate and documentation approval apply.",
+      "finder_effect": "Copa cargo is the documented conditional alternative to checked-pet service.",
+      "url": "https://www.copaair.com/assets/contrato-de-transporte-en-dot-oct-2024.pdf",
+      "quote": "must be arranged through Copa Cargo",
+      "quote_language": "en",
+      "locator": "Contract of Carriage → 5.7.1.1 Transportation of Pets as Checked Baggage"
+    },
+    {
+      "airline_id": "airline_indigo",
+      "placement": "cabin",
+      "recommendation": "not_offered_for_pet_dogs",
+      "condition_scope": "Ordinary pets are not carried on IndiGo aircraft; the separately stated guide-dog exception is outside this verdict.",
+      "finder_effect": "IndiGo cabin is a documented refusal for ordinary pet dogs.",
+      "url": "https://www.goindigo.in/information/how-to-book.html?loginPopup=true",
+      "quote": "does not permit the carriage of pets",
+      "quote_language": "en",
+      "locator": "How to Book → Special Services → Can I carry my pet on board?"
+    },
+    {
+      "airline_id": "airline_indigo",
+      "placement": "hold",
+      "recommendation": "not_offered_for_pet_dogs",
+      "condition_scope": "The official prohibition covers carriage of ordinary pets on IndiGo aircraft; guide dogs are a separate exception.",
+      "finder_effect": "IndiGo passenger hold is a documented refusal for ordinary pet dogs.",
+      "url": "https://www.goindigo.in/information/how-to-book.html?loginPopup=true",
+      "quote": "does not permit the carriage of pets or animals",
+      "quote_language": "en",
+      "locator": "How to Book → Special Services → Can I carry my pet on board?"
+    },
+    {
+      "airline_id": "airline_indigo",
+      "placement": "cargo",
+      "recommendation": "not_offered_for_pet_dogs",
+      "condition_scope": "The first-party passenger policy states that pets or animals are not carried on IndiGo aircraft; no ordinary-pet cargo exception is stated there.",
+      "finder_effect": "IndiGo cargo is a documented refusal for ordinary pet dogs under the reviewed policy.",
+      "url": "https://www.goindigo.in/information/how-to-book.html?loginPopup=true",
+      "quote": "pets or animals on its aircraft",
+      "quote_language": "en",
+      "locator": "How to Book → Special Services → Can I carry my pet on board?"
+    },
+    {
+      "airline_id": "airline_thai_airways",
+      "placement": "cabin",
+      "recommendation": "not_offered_for_pet_dogs",
+      "condition_scope": "Ordinary pet dogs are generally not permitted in cabin; trained service dogs under the separately stated conditions are outside this verdict.",
+      "finder_effect": "Thai Airways cabin is a documented refusal for ordinary pet dogs.",
+      "url": "https://www.thaiairways.com/en-th/content/special-assistance/travel-with-pets/pets-in-cabin/",
+      "quote": "As a general policy, we do not accept pets in the cabin for travel, except for the conditions listed above.",
+      "quote_language": "en",
+      "locator": "Pets in Cabin Policy → Pets Other than Service Animals"
+    },
+    {
+      "airline_id": "airline_thai_airways",
+      "placement": "hold",
+      "recommendation": "offered_with_conditions",
+      "condition_scope": "Dogs and cats as accompanied checked baggage on the same flight, subject to age, breed embargo, route, aircraft, crate, document, weight and advance-acceptance conditions.",
+      "finder_effect": "Thai Airways hold is a documented conditional route.",
+      "url": "https://www.thaiairways.com/en-tw/content/special-assistance/travel-with-pets/pets-as-checked-baggage-avih/",
+      "quote": "accept dog/cat for carriage as checked baggage",
+      "quote_language": "en",
+      "locator": "Pets as Checked Baggage (AVIH) → Conditions for Acceptance"
+    },
+    {
+      "airline_id": "airline_thai_airways",
+      "placement": "cargo",
+      "recommendation": "offered_with_conditions",
+      "condition_scope": "Cargo acceptance requires direct coordination with Thai Cargo and remains subject to station, route, breed, crate and documentation approval.",
+      "finder_effect": "Thai Airways cargo is a documented conditional route, not guaranteed acceptance.",
+      "url": "https://www.thaiairways.com/en-tw/content/special-assistance/travel-with-pets/pets-as-checked-baggage-avih/",
+      "quote": "For cargo acceptance of pets, please contact the Cargo Department directly.",
+      "quote_language": "en",
+      "locator": "Pets as Checked Baggage (AVIH) → Pets in Cargo"
+    },
+    {
+      "airline_id": "airline_tunisair",
+      "placement": "cabin",
+      "recommendation": "offered_with_conditions",
+      "condition_scope": "Dogs up to 8 kg including container and food may be accepted in cabin, subject to prior carrier agreement, route, container and documentation rules.",
+      "finder_effect": "Tunisair cabin is conditional with an 8 kg combined animal-container-food ceiling.",
+      "url": "https://www.tunisair.com/fr/conditions-generales-de-transport",
+      "quote": "les chiens d’un poids maximal de 08 kg y compris le contenant et la nourriture",
+      "quote_language": "fr",
+      "locator": "Conditions générales de transport → 10.2.1 Animaux voyageant en cabine"
+    },
+    {
+      "airline_id": "airline_tunisair",
+      "placement": "hold",
+      "recommendation": "offered_with_conditions",
+      "condition_scope": "The conditions of carriage contain a dedicated hold policy and require prior carrier agreement, a safe crate and complete documents; final method and count remain at the carrier's discretion.",
+      "finder_effect": "Tunisair hold is a documented conditional route.",
+      "url": "https://www.tunisair.com/fr/conditions-generales-de-transport",
+      "quote": "Animaux voyageant en soute",
+      "quote_language": "fr",
+      "locator": "Conditions générales de transport → 10.3 Animaux voyageant en soute"
+    },
+    {
+      "airline_id": "airline_sky_express",
+      "placement": "cabin",
+      "recommendation": "offered_with_conditions",
+      "condition_scope": "Dogs and cats up to 8 kg including the carrier; aircraft, route, booking, health, quota, container and documentation restrictions apply.",
+      "finder_effect": "SKY express cabin is conditional with an 8 kg combined animal-and-container ceiling.",
+      "url": "https://www.skyexpress.gr/en/sky-experience/sky-pets",
+      "quote": "Dogs and cats weighing up to 8 kg",
+      "quote_language": "en",
+      "locator": "Carriage of animals in the cabin (up to 8kg)"
+    },
+    {
+      "airline_id": "airline_sky_express",
+      "placement": "hold",
+      "recommendation": "offered_with_conditions",
+      "condition_scope": "Dogs and cats over 8 kg and no more than 25 kg including the crate; ATR aircraft only, with route, booking, health, crate and documentation restrictions.",
+      "finder_effect": "SKY express hold is conditional, aircraft-scoped and has a 25 kg combined ceiling.",
+      "url": "https://www.skyexpress.gr/en/sky-experience/sky-pets",
+      "quote": "Dogs and cats weighing more than 8 kilograms",
+      "quote_language": "en",
+      "locator": "Transporting animals in the aircraft hold (weight more than 8kg)"
+    },
+    {
+      "airline_id": "airline_km_malta",
+      "placement": "cabin",
+      "recommendation": "offered_with_conditions",
+      "condition_scope": "Dogs and cats up to 10 kg including carrier, subject to direct-route, United Kingdom, age, quota, advance booking, container and documentation restrictions.",
+      "finder_effect": "KM Malta cabin is conditional with a 10 kg combined animal-and-carrier ceiling.",
+      "url": "https://kmmaltairlines.com/en/travelling-with-pets",
+      "quote": "Dogs and cats (up to 10kg)",
+      "quote_language": "en",
+      "locator": "Travelling with Pets → Pets in Cabin"
+    },
+    {
+      "airline_id": "airline_km_malta",
+      "placement": "hold",
+      "recommendation": "offered_with_conditions",
+      "condition_scope": "Dogs and cats up to 32 kg, subject to direct-route, United Kingdom, quota, advance booking, crate and documentation restrictions.",
+      "finder_effect": "KM Malta hold is a documented conditional route with a 32 kg stated ceiling.",
+      "url": "https://kmmaltairlines.com/en/travelling-with-pets",
+      "quote": "Dogs and cats weighing up to 32kg",
+      "quote_language": "en",
+      "locator": "Travelling with Pets → Pet as Checked Baggage"
+    },
+    {
+      "airline_id": "airline_km_malta",
+      "placement": "cargo",
+      "recommendation": "offered_with_conditions",
+      "condition_scope": "Cargo may be booked when PETC or accompanied baggage is unavailable; route, station, crate, documentation and cargo-department approval apply.",
+      "finder_effect": "KM Malta cargo is a documented conditional alternative.",
+      "url": "https://kmmaltairlines.com/en/travelling-with-pets",
+      "quote": "booking your pet in the aircraft hold as Cargo",
+      "quote_language": "en",
+      "locator": "Travelling with Pets → Pets as Cargo"
+    },
+    {
+      "airline_id": "airline_sunexpress",
+      "placement": "cabin",
+      "recommendation": "offered_with_conditions",
+      "condition_scope": "One dog or cat up to 8 kg including the container per passenger, subject to quota, advance confirmation, route, container and documentation rules.",
+      "finder_effect": "SunExpress cabin is conditional with an 8 kg combined animal-and-container ceiling.",
+      "url": "https://www.sunexpress.com/en-gb/information/luggage-info/transporting-animals/",
+      "quote": "one dog or cat weighing up to 8 kg (incl. container)",
+      "quote_language": "en",
+      "locator": "Transporting animals → Carriage of animals inside cabin"
+    },
+    {
+      "airline_id": "airline_sunexpress",
+      "placement": "hold",
+      "recommendation": "offered_with_conditions",
+      "condition_scope": "Dogs and cats over 8 kg, subject to advance confirmation, route, aircraft, crate, health and documentation rules.",
+      "finder_effect": "SunExpress hold is a documented conditional route.",
+      "url": "https://www.sunexpress.com/en-gb/information/luggage-info/transporting-animals/",
+      "quote": "Dogs and cats weighing more than 8 kg",
+      "quote_language": "en",
+      "locator": "Transporting animals → Travelling in the animal compartment"
+    },
+    {
+      "airline_id": "airline_smartwings",
+      "placement": "cabin",
+      "recommendation": "offered_with_conditions",
+      "condition_scope": "Dogs and cats up to 8 kg including the crate, subject to prior approval, route, operating carrier, quota, container, health and documentation restrictions.",
+      "finder_effect": "Smartwings cabin is a documented conditional route with an 8 kg combined ceiling.",
+      "url": "https://www.smartwings.com/en/fees-and-charges/?layout=default",
+      "quote": "Pet in cabin (1 piece up to 8 kg / leg)",
+      "quote_language": "en",
+      "locator": "Fees and charges → Price list of additional services → PETC"
+    },
+    {
+      "airline_id": "airline_smartwings",
+      "placement": "hold",
+      "recommendation": "offered_with_conditions",
+      "condition_scope": "Animal in hold up to 32 kg including the box, subject to prior approval, route, operating carrier, aircraft, capacity, container, health and documentation restrictions.",
+      "finder_effect": "Smartwings hold is a documented conditional route with a 32 kg combined ceiling.",
+      "url": "https://www.smartwings.com/en/fees-and-charges/?layout=default",
+      "quote": "Animal in hold (1 piece up to 32 kg / leg)",
+      "quote_language": "en",
+      "locator": "Fees and charges → Price list of additional services → AVIH"
+    }
+  ],
+  "intentionally_unset": [
+    {
+      "airline_id": "airline_bangkok_airways",
+      "placement": "cabin",
+      "reason": "The reviewed first-party page establishes a special cargo service only; it does not prove a passenger-cabin policy."
+    },
+    {
+      "airline_id": "airline_bangkok_airways",
+      "placement": "hold",
+      "reason": "The reviewed page uses cargo terminology and shipment conditions, not accompanied checked-pet service."
+    },
+    {
+      "airline_id": "airline_china_southern",
+      "placement": "cargo",
+      "reason": "The reviewed FAQ establishes cabin refusal and checked-pet transport, not a separate unaccompanied freight offer."
+    },
+    {
+      "airline_id": "airline_tunisair",
+      "placement": "cargo",
+      "reason": "The reviewed conditions establish passenger cabin and a dedicated hold procedure but no distinct ordinary-dog freight offer."
+    },
+    {
+      "airline_id": "airline_sky_express",
+      "placement": "cargo",
+      "reason": "The reviewed passenger page establishes cabin and aircraft hold only, not separately booked freight."
+    },
+    {
+      "airline_id": "airline_sunexpress",
+      "placement": "cargo",
+      "reason": "The reviewed page establishes cabin and accompanied hold. Route-specific air-cargo language elsewhere is insufficient for a general cargo answer."
+    },
+    {
+      "airline_id": "airline_smartwings",
+      "placement": "cargo",
+      "reason": "The reviewed price list establishes PETC and AVIH only. A route-specific Dubai cargo rule is not a general network-wide cargo answer."
+    }
+  ]
+}

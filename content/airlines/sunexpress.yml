@@ -66,8 +66,39 @@ ladder:
 policies:
   cabin:
     availability: offered
+    # PREUVE IMPORTÉE — import strict lot8 (Codex, lecture directe du 2026-09-09, cohorte LOT8 fait 19).
+    # Effet attendu : SunExpress cabin is conditional with an 8 kg combined animal-and-container ceiling.
+    # Portée nommée : One dog or cat up to 8 kg including the container per passenger, subject to quota, advance confirmation, route, container and documentation rules.
+    # Le plafond cité inclut le CONTENANT : refus sûr si le chien seul le dépasse, jamais un oui en dessous.
+    max_weight_kg: 8
+    weight_includes_carrier: true
+    source:
+      url: "https://www.sunexpress.com/en-gb/information/luggage-info/transporting-animals/"
+      source_type: official_website
+      verified_date: "2026-09-09"
+      review_due: "2026-12-08"   # reviewDueFrom(verified_date, "airline") — calculé par l'importeur
+      confidence: 4
+      reviewer: "Codex — direct reading of official airline page"
+      history: []
+      quote: "one dog or cat weighing up to 8 kg (incl. container)"
+      quote_language: en
+      locator: "Transporting animals → Carriage of animals inside cabin"
   hold:
-    review_state: legacy_unreviewed
+    availability: offered   # RÉACTIVÉE sur citation (import strict, lot8, 2026-09-09) — était review_state: legacy_unreviewed
+    # PREUVE IMPORTÉE — import strict lot8 (Codex, lecture directe du 2026-09-09, cohorte LOT8 fait 20).
+    # Effet attendu : SunExpress hold is a documented conditional route.
+    # Portée nommée : Dogs and cats over 8 kg, subject to advance confirmation, route, aircraft, crate, health and documentation rules.
+    source:
+      url: "https://www.sunexpress.com/en-gb/information/luggage-info/transporting-animals/"
+      source_type: official_website
+      verified_date: "2026-09-09"
+      review_due: "2026-12-08"   # reviewDueFrom(verified_date, "airline") — calculé par l'importeur
+      confidence: 4
+      reviewer: "Codex — direct reading of official airline page"
+      history: []
+      quote: "Dogs and cats weighing more than 8 kg"
+      quote_language: en
+      locator: "Transporting animals → Travelling in the animal compartment"
   cargo:
     review_state: legacy_unreviewed
 channels:

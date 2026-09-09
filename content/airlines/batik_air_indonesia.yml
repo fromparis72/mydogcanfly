@@ -59,8 +59,36 @@ ladder:
 policies:
   cabin:
     availability: not_offered
+    # PREUVE IMPORTÉE — import strict lot9 (Codex, lecture directe du 2026-09-09, cohorte LOT9 fait 6).
+    # Effet attendu : Batik Air Indonesia cabin is a documented refusal for ordinary pet dogs.
+    # Portée nommée : Batik Air Indonesia states that pets are not permitted on its flights; assistance animals, if separately governed, are outside this ordinary-pet verdict.
+    source:
+      url: "https://help.batikair.com/article/bring-live-animalpet/753"
+      source_type: official_website
+      verified_date: "2026-09-09"
+      review_due: "2026-12-08"   # reviewDueFrom(verified_date, "airline") — calculé par l'importeur
+      confidence: 4
+      reviewer: "Codex — direct reading of official airline material"
+      history: []
+      quote: "Batik Air Indonesia flights are not allowed to bring pets."
+      quote_language: en
+      locator: "Bring Live Animal/Pet"
   hold:
     availability: not_offered
+    # PREUVE IMPORTÉE — import strict lot9 (Codex, lecture directe du 2026-09-09, cohorte LOT9 fait 7).
+    # Effet attendu : Batik Air Indonesia passenger hold is a documented refusal for ordinary pet dogs.
+    # Portée nommée : The official prohibition covers ordinary pets on Batik Air Indonesia flights and provides no accompanied-hold exception.
+    source:
+      url: "https://help.batikair.com/article/bring-live-animalpet/753"
+      source_type: official_website
+      verified_date: "2026-09-09"
+      review_due: "2026-12-08"   # reviewDueFrom(verified_date, "airline") — calculé par l'importeur
+      confidence: 4
+      reviewer: "Codex — direct reading of official airline material"
+      history: []
+      quote: "not allowed to bring pets"
+      quote_language: en
+      locator: "Bring Live Animal/Pet"
   cargo:
     availability: not_offered
 channels:

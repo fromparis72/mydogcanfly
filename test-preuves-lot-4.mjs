@@ -63,11 +63,14 @@ console.log("=== Étage 1 — 23 faits relus, 22 dans la donnée à l'octet prè
     const s = pol?.source ?? {};
     const proj = kb.airlines.get(f.airline_id)?.premium?.policy?.[f.placement];
     if (cle === REFUSE) {
-      /* La fiche n'a aucun bloc `source:` sous `hold:` ; l'ingestion DÉRIVE une source (site de la
-         compagnie, « derived from fiche ») — ce n'est pas une preuve, et elle n'a pas de phrase. */
-      check(`${cle} (LOT4[${f.index}]) : REFUSÉ par l'importeur — aucune citation écrite, la fiche garde \`not_offered\` sans bloc source`,
-        !s.quote && pol?.availability === "not_offered" && !ficheAerLingusHoldASource, JSON.stringify({ availability: pol?.availability, quote: s.quote }));
-      check(`  …projeté « à confirmer » : ni refus prouvé, ni oui — en attente d'arbitrage`, proj?.status === "confirmation_required", JSON.stringify({ status: proj?.status, cause: proj?.status_cause }));
+      /* HISTOIRE : refusé à l'import du lot 4 (la fiche disait `not_offered` sans bloc source), porté à l'arbitrage.
+         ARBITRAGE (09/09/2026, Codex, tranché par Philippe — correctif d'arbitrages) : « maintenu » — soute via agent
+         animalier sous conditions d'opérateur, d'appareil et de route ; Aer Lingus Regional exclue. La disponibilité a
+         été changée À LA MAIN, sur ordre (l'importeur ne la change jamais), puis la phrase écrite par l'importeur du
+         correctif — la même phrase que celle du lot 4. */
+      check(`${cle} (LOT4[${f.index}]) : ARBITRÉ — \`offered\` sur ordre, phrase, URL, localisateur, langue et date du correctif`,
+        pol?.availability === "offered" && ficheAerLingusHoldASource && s.quote === f.quote && s.url === f.url && s.locator === f.locator && s.verified_date === "2026-09-09", JSON.stringify({ availability: pol?.availability, quote: s.quote }));
+      check(`  …projeté « accepté sous conditions » — jamais \`allowed\``, proj?.status === "accepted_with_conditions", JSON.stringify({ status: proj?.status, cause: proj?.status_cause }));
       continue;
     }
     check(`${cle} (LOT4[${f.index}]) : phrase, URL, localisateur, langue, date de lecture`,
@@ -139,8 +142,12 @@ console.log("\n=== Étage 2 — Paris → Dubaï, Londres → Sydney, Paris → 
   check("Qantas soute ET fret, Golden 32 kg : deux anciens POLICY_STALE RÉACTIVÉS sur citation → sous conditions",
     canal(syd, "airline_qantas", "hold")?.status === "accepted_with_conditions" && canal(syd, "airline_qantas", "cargo")?.status === "accepted_with_conditions");
   const dub = decide("airport_cdg", "airport_dub", GOLDEN_32);
-  check("Aer Lingus soute : fait REFUSÉ par l'importeur → reste « à confirmer », SANS citation (ni refus prouvé, ni oui) ; fret non décidé → à confirmer",
-    canal(dub, "airline_aer_lingus", "hold")?.status === "confirmation_required" && canal(dub, "airline_aer_lingus", "cargo")?.status === "confirmation_required", JSON.stringify(canal(dub, "airline_aer_lingus", "hold")));
+  /* MESURÉ après arbitrage : la soute est citée et « sous conditions » dans la politique, mais une RÈGLE héritée non
+     citée (`rule_aer_lingus_no_hold`) garde le canal « à confirmer » sur Paris → Dublin, en la nommant. Même dette que
+     Philippine cabine et Air China cabine : les règles compagnies sont hors du périmètre des lots d'import. */
+  const alH = canal(dub, "airline_aer_lingus", "hold");
+  check("Aer Lingus soute (Paris → Dublin), Golden 32 kg : citée sur arbitrage, mais « à confirmer » par la règle héritée non citée `rule_aer_lingus_no_hold`, NOMMÉE ; fret non décidé → à confirmer",
+    alH?.status === "confirmation_required" && (alH?.confirmation_causes ?? []).some((x) => x.rule_id === "rule_aer_lingus_no_hold") && canal(dub, "airline_aer_lingus", "cargo")?.status === "confirmation_required", JSON.stringify(alH));
 }
 
 console.log("\n=== Étage 2 — Paris → Rome, New York → Los Angeles, Londres → Los Angeles, Seattle → Los Angeles ===");
@@ -171,8 +178,8 @@ console.log("\n=== Ce que l'import n'a PAS fait ===");
   let allowed = 0;
   for (const a of kb.airlines.values()) for (const p of Object.values(a.premium?.policy ?? {})) if (p.status === "allowed") allowed++;
   check("aucune politique réelle n'est `allowed` — « sous conditions » n'est jamais devenu une acceptation catégorique", allowed === 0, String(allowed));
-  check("Aer Lingus soute n'a PAS été basculée à la main : `not_offered`, sans bloc source dans la fiche, sans phrase — l'arbitrage reste à rendre",
-    politique("airline_aer_lingus", "hold")?.availability === "not_offered" && !ficheAerLingusHoldASource && !politique("airline_aer_lingus", "hold")?.source?.quote);
+  check("Aer Lingus soute a été basculée SUR ARBITRAGE (Codex 09/09, tranché par Philippe), et le dit dans la fiche",
+    politique("airline_aer_lingus", "hold")?.availability === "offered" && /ARBITRAGE \(Codex, 09\/09\/2026/.test(readFileSync("content/airlines/aer_lingus.yml", "utf8")));
 }
 
 console.log(`\n=== SUMMARY ===\n${fail === 0 ? `ALL CHECKS PASSED (${pass})` : `${fail} CHECK(S) FAILED sur ${pass + fail}`}`);
