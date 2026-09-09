@@ -3352,3 +3352,124 @@ portugaise des phrases en ligne complétée. Un seul build complet à la fin du 
 | `test:unit` complet, typecheck | verts sur l'état fusionné |
 
 Contre-épreuves complètes sur l'arbre propre : voir le commit suivant.
+
+### Post-scriptum — quatrième bascule du 09/09 : #44 (gabarit, table vide) en production, et ce que Codex y a lu
+
+Ordre de fusion de Philippe (« feu vert pour fusionner #44 »), fusion `fc4c5c9`, déploiement par
+Philippe, sortie transmise :
+
+| | |
+|---|---|
+| Worker | `sha` `fc4c5c9c37a5f3c1d4fadd709e4ba7d592419219`, `worker_version_id` `f526fd38-5c01-4ebb-a282-a33b85f55a07`, démarrage 215 ms |
+| Pages | `npm run release` : « build indexable et complet — déploiement autorisé », sitemaps 2 536 URL (102 compagnies, 140 pays, 172 races, 269 aéroports), https://572a937e.mydogcanfly-v2-preview.pages.dev |
+| santé | `/v1/health` : `ok`, `v1`, le SHA de `main` fusionné |
+
+Relecture en ligne de Codex (Golden Retriever) : conseillées 88 × 44 × 70, minimales 85 × 41 × 67,
+et le message « la table de correspondance MyDogCanFly n'est pas encore publiée ». Lecture exacte :
+c'est l'état de #44 tel qu'il a été conçu (table vide, version 0) ; la table version 1 était alors
+dans la branche suivante, non encore en PR. Codex conclut « le besoin initial n'est pas encore
+livré ; l'outil actuel n'en présente que la première moitié » — c'est vrai de la production à cet
+instant, et c'est l'annexe 35 qui livre la seconde moitié. Sa demande (XL dominant, algorithme,
+cinq frontières, Golden 88 × 44 × 70 → XL, enveloppe jamais présentée comme un produit) est
+reprise point par point dans les témoins de l'annexe 35.
+
+## Annexe 35 — Table « Gabarit indicatif MyDogCanFly » : version 0 → version 1 (09/09/2026, classement A/B)
+
+Bloc de Codex transmis par Philippe (« Bloc à transmettre à Claude »), avec deux consignes de
+méthode : ne rien ajouter à la PR #44 déjà sous CI ; créer un micro-lot distinct. Branche
+`lot/gabarit-table-mydogcanfly`, empilée sur `lot/gabarit-indicatif-cage` (`780887e`).
+
+### La table, telle que livrée
+
+Classification **interne et explicitement nommée** : « Gabarit indicatif MyDogCanFly ». Enveloppe
+intérieure conseillée maximale (L × l × H, cm) : S 60 × 40 × 45 · M 75 × 50 × 55 · L 90 × 60 × 65 ·
+XL 105 × 70 × 75 · XXL 120 × 80 × 90 · au-delà : très grand format / solution à rechercher.
+
+Règle : classement sur les dimensions **conseillées** (avec la marge MyDogCanFly), jamais sur la race
+ni le poids ; les trois dimensions doivent entrer dans l'enveloppe ; si une seule dépasse, gabarit
+suivant. La table est un repère de recherche, pas la description d'un produit disponible ; elle ne
+produit ni modèle, ni code 100–700, ni prétention de conformité à une norme.
+
+### Mouvement nommé
+
+`TABLE_GABARIT_INDICATIF` version « 0 — table attendue » → « 1 — table livrée par Codex, confirmée
+par Philippe ». Le classement gagne un troisième état : `table_absente` (rien d'affiché, comme en
+version 0), `gabarit` (S → XXL), `au_dela` (marque « XXL+ » en plus petit, phrase « très grand
+format — solution à rechercher »). Les deux premiers états existaient déjà par `null` ; ils étaient
+confondus, ce qui aurait affiché « table non publiée » à un chien plus grand que XXL. Corrigé avant
+que la table n'existe en production.
+
+### Affichage (bloc Codex)
+
+Titre « Gabarit indicatif MyDogCanFly » ; code du gabarit à 54 px (≈ 4 × 13,5 px) ; « Dimensions
+conseillées avec notre marge (+3 cm) » ; « Minimum calculé selon la méthode publiée par l'IATA » ;
+avertissement « Les appellations et dimensions varient selon les fabricants. Vérifiez les dimensions
+intérieures et faites confirmer le modèle par la compagnie. » Quatre langues (portugais par la table
+des phrases en ligne).
+
+**Déviation argumentée, nommée pour arbitrage :** le bloc écrit « … : X × Y × Z cm » sur une seule
+ligne ; l'interface garde les trois cases L / l / H sous chaque titre, parce qu'elles suivent le
+sélecteur d'unité (cm / in) et sont ce que le harnais relève. Même information, même ordre
+(conseillées en gras avant le minimum en gris), forme différente.
+
+Le mot « IATA » entre dans une phrase nouvelle, ce que le micro-lot précédent avait évité. Mesuré :
+l'inventaire de l'étape 3 classe « method published by IATA » en référence licite, sans contenant
+voisin ; le scellé des tournures licites est rejoué sur le dist (voir le post-scriptum).
+
+### Témoins
+
+`test-gabarit-indicatif.mjs` : 15 → 39 contrôles — table lue chiffre par chiffre, chaque frontière
+(exactement à l'enveloppe → la classe ; +1 cm sur un seul axe, pour chacun des trois axes → la
+suivante ; au-delà de XXL → `au_dela`), le cas de Codex 94 × 64 × 68 → XL, les trois états distincts,
+table mal formée → tout ou rien, signature sans race ni poids ; table synthétique et « ce qui ne
+revient pas » inchangés. Harnais des caisses : le gabarit affiché est comparé à celui que donne la
+table **relue dans le module** (deuxième lecture, pas une copie) ; le minimum nomme sa méthode sans
+« homologué » ; l'avertissement nomme fabricants et compagnie ; un chien géant (A 120, D 95) sort de
+la table dans les quatre langues. Un seul build complet à la fin du lot.
+
+### Post-scriptum — mesuré sur le dist (un seul build, `5396607` + témoins)
+
+| contrôle | résultat |
+|---|---|
+| `test-gabarit-indicatif.mjs` | 40/40 (15 → 40 : frontières, +1 cm par axe, au-delà, 94 × 64 × 68 → XL, Golden 88 × 44 × 70 → XL, trois états, tout ou rien, sans race ni poids) |
+| caisses | 84 contrôles tenus, 0 en échec (72 → 84 : gabarit attendu par la table relue, enveloppe non affichée comme produit, méthode nommée, avertissement, chien géant hors table — quatre langues) |
+| caisses non sourcées (`--dist`) | vert après re-fondation du témoin 3 (ci-dessous) |
+| entités | 178 OK, 0 FAIL |
+| étape 3 DOM | 3 121 pages, zéro affirmation ; scellé des licites ÉGAL au corpus (16 chemins source, 20 couples URL/zone) — la phrase « méthode publiée par l'IATA » n'y entre pas, faute de contenant voisin |
+| chaîne `test:built-ui`, `test:unit` complet, typecheck | verts |
+
+**Témoin re-fondé, nommé :** `test-caisses-non-sourcees.mjs` § 3 (« ce qui est légitime est toujours
+là ») exigeait l'ancien titre « dimensions minimales calculées à partir des mesures saisies », que le
+bloc Codex remplace par « minimum calculé selon la méthode publiée par l'IATA ». Il a rougi sur les
+quatre pages du calculateur — à raison : la phrase avait disparu. Il exige désormais les DEUX choses
+légitimes qui doivent rester, la méthode nommée dans le titre ET la mention des mesures du chien
+dans la note (« à partir de tes mesures », dans les quatre langues) ; l'ancien n'en tenait qu'une.
+
+Contre-épreuves complètes sur l'arbre propre : voir le commit suivant.
+
+### Contre-revue de Codex sur #45 (09/09/2026) — un P0 réfuté par mesure, une déviation close
+
+**P0 avancé :** « `test-gabarit-indicatif.mjs` est orphelin : appelé ni par `test:unit`, ni par
+`ci.yml`, ni par le catalogue ; la CI peut devenir verte sans jamais l'exécuter. Correction : ajouter
+`node --import tsx test-gabarit-indicatif.mjs` à `test:unit`. »
+
+**Mesuré, avant toute correction :**
+
+| où | résultat |
+|---|---|
+| `package.json`, `test:unit`, têtes `780887e`, `fc4c5c9` (`main`), `562f5e1` (#45) | le témoin est PRÉSENT : `… && tsx test-preuves-reconciliation.mjs && tsx test-gabarit-indicatif.mjs`, 47 segments — sous la forme `tsx …`, comme les autres témoins TypeScript de la chaîne, non `node --import tsx …` (ce qui explique sans doute un grep qui ne trouve rien) |
+| `ci.yml` | l'étape « Tests unitaires » exécute `npm run test:unit` (ligne 136) |
+| journal CI de #44, job « Vérifications », run 34368271371 | à 15:12:14 UTC, après « ALL CHECKS PASSED (18) » du harnais de réconciliation : « === 1. La table réelle … », « === 2. Table SYNTHÉTIQUE … », « === 3. Ce qui ne revient pas … », puis « ALL CHECKS PASSED (15) » |
+
+Conclusion : le témoin n'est pas orphelin ; la CI l'exécute déjà, et l'a exécuté sur #44. Le câblage
+demandé existe. **Déviation argumentée, nommée pour arbitrage :** je n'ajoute pas une seconde
+invocation (elle doublerait un témoin déjà joué) et je ne pousse pas de commit vide ; la nouvelle
+tête que Codex demande est celle-ci, qui consigne la mesure. Le journal du run de #45 montrera « ALL
+CHECKS PASSED (40) » au même endroit ; c'est là que Codex peut le relire.
+
+**Déviation des trois cases L / l / H :** validée par Codex (« plus lisibles, suivent le passage
+cm / in ; la ligne compacte n'est pas nécessaire »). Close.
+
+Le reste de la contre-revue est favorable : XL à 54 px (4 × 13,5), conseillées et minimales en
+gras, classement sur les trois conseillées seules, un axe qui dépasse → gabarit suivant, « XXL+ » et
+« très grand format » au-delà, enveloppes jamais présentées comme un produit.
