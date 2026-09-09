@@ -3115,3 +3115,63 @@ réactivations), entités (263), caisses (30), climat tri-état (45/30/38/1). No
 `test-preuves-lot-9.mjs` (103 contrôles), dans test:unit ; il vérifie aussi que la chaîne des
 baselines figées est complète de l'import V3 au lot 9.
 
+## Annexe 32 — Correctif d'arbitrages : six questions tranchées par Codex, relayées et tranchées par Philippe (09/09/2026)
+
+Dossier : `mesures/preuves/correctif-arbitrages-2026-09-09/` (arbitrages détaillés + JSON `replace_facts`).
+Ce n'est pas un lot : six preuves de lots déjà importés (4, 6, 8) sont remplacées, et trois
+disponibilités changent **sur ordre** — ce que l'importeur ne fait jamais seul.
+
+| Question | Arbitrage | Ce qui a été fait |
+|---|---|---|
+| Thai Airways fret (lot 8, refusé) | conservé « sous conditions », preuve remplacée par la page THAI Cargo | `undocumented` → `offered` à la main sur ordre ; ancienne citation auditée du 13/08 (« contactez Cargo ») retirée de la politique, consignée en commentaire de la fiche et dans le manifeste ; nouvelle preuve écrite par l'importeur (`--lot=correctif`) |
+| China Southern soute (lot 8, fragment) | conservé, citation remplacée par la réponse complète | ancienne preuve retirée, nouvelle écrite par l'importeur |
+| IndiGo fret (lot 8, fragment) | refus maintenu, prouvé par la FAQ CarGo | idem ; refus total prouvé maintenu |
+| Bangkok Airways fret (lot 8, portée intérieure) | sous conditions **uniquement** sur les liaisons intérieures publiées (sauf Bangkok–Krabi, Chiang Mai–Krabi) ; hors périmètre, ne pas afficher le fret comme proposé | le modèle ne restreint pas par route : `offered` afficherait « sous conditions » sur un vol international. **Précédent Virgin A-bis appliqué** : `case_by_case` + citation du correctif (URL canonique) + conditions quadrilingues nommant Krabi → « à confirmer » partout. Nommé pour arbitrage si Codex préfère « sous conditions » réseau entier avec la portée en texte |
+| Aer Lingus soute (lot 4, refusé) | arbitrage maintenu : soute via agent, Aer Lingus Regional exclue | `not_offered` → `offered` à la main sur ordre ; phrase du lot 4 écrite par l'importeur |
+| Air China cabine (lot 6, refusé) | maintenu sous conditions sur les vols opérés par Air China ; « domestic dogs » = chiens domestiques | `not_offered` → `offered` à la main sur ordre ; phrase du lot 6, URL de l'accord de transport en cabine |
+
+**Règle des seuils fixée par Codex** : chiffre, unité, borne et base pesée ; un plafond combiné
+élimine un chien déjà trop lourd, il ne confirme jamais un chien plus léger. Le modèle la
+respecte sur l'élimination (refus sûr au-dessus) et sur la non-confirmation (jamais `allowed`).
+**Dette nommée** : pas de champ pour la borne — « inférieur à 8 kg » (Air Austral, exclusif) est
+stocké comme un plafond inclusif : un chien de 8,0 kg exactement n'y est pas refusé alors qu'il
+devrait l'être. Règle métier nouvelle : à arbitrer, pas corrigée ici. Témoin dans
+`test-preuves-correctif.mjs`.
+
+### Trouvé par la mesure, nommé comme dette
+
+Aer Lingus soute et Air China cabine sont citées et « sous conditions » dans la politique, mais
+des **règles héritées non citées** (`rule_aer_lingus_no_hold`, `rule_air_china_no_cabin`) gardent
+les canaux « à confirmer » dans le Finder, en se nommant. Même dette que Philippine cabine ; les
+règles compagnies restent hors du périmètre. Sans leur relecture, l'arbitrage n'atteint pas
+l'écran du Finder pour ces deux canaux — la fiche, elle, dit bien « sous conditions ».
+
+### Mesuré
+
+| | avant (lot 9) | après (correctif) |
+|---|---|---|
+| politiques citées (décisives) | 176 (174) | 178 (176 : Thai fret devient une décision, Bangkok fret cesse d'en être une) |
+| `allowed` / sous conditions / refusées / à confirmer | 0 / 140 / 34 / 128 | 0 / 142 / 34 / 126 |
+| causes legacy / page officielle / non publiée / accord compagnie | 111 / 15 / 1 / 1 | 109 / 15 / **0** / **2** |
+| registre A / B / C / D | 176 / 53 / 74 / 3 | 178 / 51 / 74 / 3 |
+| témoin hérité | 29 205 | 29 190 |
+| baseline | figée lot 9 | figée `correctif-arbitrages-apres` : 72 cartes / 1 560, 3 compagnies (Thai, Air China, Aer Lingus), 8 → sous conditions, aucun refus, aucun verdict déplacé |
+
+### Témoins déplacés par mouvement nommé
+
+- Sentinelle « non offerte, non prouvée » : Air China cabine citée → **Bangkok Airways cabine**
+  (laissée non décidée par Codex).
+- Manifeste T0-B2 : la décision auditée Thai fret (`undocumented`) est supersédée ; le manifeste
+  la garde, la matrice admet la valeur arbitrée sur preuve, `test-t0b-legacy-unreviewed.mjs` § 7 bis
+  compare désormais fiche, artefact et runtime à la source du correctif. Cause `policy_unpublished`
+  : 1 → 0 dans le référentiel réel.
+- Preuve permanente T0-B2-UI : l'URL AVIH de Thai, ajoutée alors comme source de canal, est
+  supersédée par la page THAI Cargo — admise si sa remplaçante est une source de canal.
+- Matrice : Bangkok fret, réactivé au lot 8, admis en `case_by_case` cité.
+- Harnais des lots 4, 6, 8 et 9 réécrits à l'état arbitré, l'histoire gardée en commentaire.
+  Nouveau harnais `test-preuves-correctif.mjs` (27 contrôles), dans test:unit.
+
+**Importeur** : clé de faits configurable (`replace_facts`) ; le contrat ne change pas — il n'a
+changé aucune disponibilité, les trois changements sont des lignes de fiche écrites à la main
+avec l'arbitrage en commentaire.
+

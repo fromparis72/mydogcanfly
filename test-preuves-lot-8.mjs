@@ -50,6 +50,10 @@ const projetee = (id, pl) => kb.airlines.get(id)?.premium?.policy?.[pl];
 const SEUILS = { "airline_copa.cabin": [10, true], "airline_tunisair.cabin": [8, true], "airline_sunexpress.cabin": [8, true] };
 const REACTIVEES = ["airline_bangkok_airways.cargo", "airline_copa.cargo", "airline_km_malta.cargo", "airline_sky_express.hold", "airline_sunexpress.hold"];
 const REFUSE = "airline_thai_airways.cargo";
+/* CORRECTIF D'ARBITRAGES (09/09/2026, Codex, tranché par Philippe) : quatre faits de ce lot ont vu leur preuve REMPLACÉE
+   (Thai fret, China Southern soute, IndiGo fret, Bangkok fret). Pour eux, la donnée est comparée au correctif, pas au lot. */
+const CORRECTIF = JSON.parse(readFileSync("mesures/preuves/correctif-arbitrages-2026-09-09/CORRECTIF_ARBITRAGES_POLITIQUES_COMPAGNIES_2026-09-09.json", "utf8"));
+const REMPLACE = (id, pl) => CORRECTIF.replace_facts.find((x) => x.airline_id === id && x.placement === pl);
 
 console.log("=== Étage 1 — 23 faits relus, 22 dans la donnée à l'octet près, 1 refusé et nommé ===");
 {
@@ -59,10 +63,31 @@ console.log("=== Étage 1 — 23 faits relus, 22 dans la donnée à l'octet prè
     const pol = politique(f.airline_id, f.placement);
     const s = pol?.source ?? {};
     const proj = projetee(f.airline_id, f.placement);
+    const arb = REMPLACE(f.airline_id, f.placement);
     if (cle === REFUSE) {
-      check(`${cle} (LOT8[${f.index}]) : REFUSÉ par l'importeur — la fiche garde \`undocumented\` et la citation AUDITÉE du 13/08 ; la phrase de Codex n'est pas écrite`,
-        pol?.availability === "undocumented" && s.quote !== f.quote && !!s.quote && s.verified_date !== f.verified_date, JSON.stringify({ availability: pol?.availability, quote: s.quote, verified: s.verified_date }));
-      check(`  …projeté « à confirmer », cause policy_unpublished — « contactez Cargo » n'est jamais « fret accepté »`, proj?.status === "confirmation_required" && proj?.status_cause === "policy_unpublished", JSON.stringify({ status: proj?.status, cause: proj?.status_cause }));
+      /* HISTOIRE : refusé à l'import du lot 8 (la fiche disait `undocumented`, décision auditée du 13/08, « contactez Cargo »),
+         porté à l'arbitrage. ARBITRAGE : « conserver sous conditions, mais remplacer la preuve » — page THAI Cargo. */
+      check(`${cle} (LOT8[${f.index}]) : ARBITRÉ — \`offered\` sur ordre, preuve THAI Cargo du correctif (la phrase du lot 8, « contactez Cargo », n'est pas écrite)`,
+        pol?.availability === "offered" && s.quote === arb.quote && s.url === arb.url && s.locator === arb.locator && s.quote !== f.quote, JSON.stringify({ availability: pol?.availability, quote: s.quote }));
+      check(`  …projeté « accepté sous conditions » — le canal existe, aucune place n'est promise`, proj?.status === "accepted_with_conditions", JSON.stringify({ status: proj?.status, cause: proj?.status_cause }));
+      continue;
+    }
+    if (arb && cle === "airline_bangkok_airways.cargo") {
+      /* ARBITRAGE : « sous conditions uniquement sur les liaisons intérieures publiées ; hors périmètre, ne pas afficher le
+         fret comme proposé ». Le modèle ne restreint pas par route : précédent Virgin A-bis, `case_by_case` + citation +
+         conditions quadrilingues ; projeté « à confirmer » (airline_approval). */
+      check(`${cle} (LOT8[${f.index}]) : ARBITRÉ \`case_by_case\` — preuve du correctif (URL canonique, localisateur Domestic/International), conditions quadrilingues`,
+        pol?.availability === "case_by_case" && s.quote === arb.quote && s.url === arb.url && s.locator === arb.locator && ["en", "fr", "es", "pt"].every((l) => /Krabi/.test(pol?.conditions?.[l] ?? "")), JSON.stringify({ availability: pol?.availability, url: s.url }));
+      check(`  …projeté « à confirmer », cause airline_approval — jamais « sous conditions » sur un vol international`, proj?.status === "confirmation_required" && proj?.status_cause === "airline_approval", JSON.stringify({ status: proj?.status, cause: proj?.status_cause }));
+      continue;
+    }
+    if (arb) {
+      check(`${cle} (LOT8[${f.index}]) : preuve REMPLACÉE par le correctif — phrase, URL, localisateur, langue, date`,
+        !!pol && s.quote === arb.quote && s.locator === arb.locator && s.quote_language === arb.quote_language && s.url === arb.url && s.verified_date === "2026-09-09",
+        JSON.stringify({ attendu: arb.quote, lu: s.quote }));
+      check(`  …review_due calculé par reviewDueFrom (2026-12-08)`, s.review_due === reviewDueFrom(s.verified_date ?? "", "airline") && s.review_due === "2026-12-08", `${s.verified_date} → ${s.review_due}`);
+      const attenduR = f.recommendation.startsWith("not_offered") ? "denied" : "accepted_with_conditions";
+      check(`  …projeté ${attenduR}`, proj?.status === attenduR, JSON.stringify({ status: proj?.status }));
       continue;
     }
     check(`${cle} (LOT8[${f.index}]) : phrase, URL, localisateur, langue, date de lecture`,
@@ -84,15 +109,17 @@ console.log("=== Étage 1 — 23 faits relus, 22 dans la donnée à l'octet prè
   }
   check("Tunisair : citations en français conservées (`quote_language: fr`), le « 08 kg » de la source y compris",
     politique("airline_tunisair", "cabin")?.source?.quote === "les chiens d’un poids maximal de 08 kg y compris le contenant et la nourriture" && politique("airline_tunisair", "cabin")?.source?.quote_language === "fr" && politique("airline_tunisair", "hold")?.source?.quote_language === "fr");
-  check("citations FRAGMENTAIRES signalées, écrites telles quelles : China Southern soute « you can check it », IndiGo fret « pets or animals on its aircraft »",
-    politique("airline_china_southern", "hold")?.source?.quote === "you can check it" && politique("airline_indigo", "cargo")?.source?.quote === "pets or animals on its aircraft");
+  /* MOUVEMENT NOMMÉ (correctif) : les deux fragments signalés ont été REMPLACÉS par Codex — la réponse officielle complète
+     pour China Southern soute, la FAQ IndiGo CarGo pour IndiGo fret. */
+  check("citations fragmentaires REMPLACÉES : China Southern soute (réponse complète), IndiGo fret (« No, IndiGo does not carry livestock », page CarGo)",
+    politique("airline_china_southern", "hold")?.source?.quote === "Sorry, a pet can not be taken into cabin. However, you can check it." && politique("airline_indigo", "cargo")?.source?.quote === "No, IndiGo does not carry livestock" && /goindigo\.in\/cargo\//.test(politique("airline_indigo", "cargo")?.source?.url ?? ""));
   const km = projetee("airline_km_malta", "cabin"), sw = projetee("airline_smartwings", "cabin"), sk = projetee("airline_sky_express", "cabin");
   check("KM Malta, Smartwings, SKY express cabines PROJETÉES : sous conditions, SANS plafond — 10, 8 et 8 kg ni écrits (base absente de la phrase) ni déduits de la grille tarifaire",
     [km, sw, sk].every((p) => p?.status === "accepted_with_conditions" && p?.max_weight_kg === undefined && p?.weight_includes_carrier === undefined), JSON.stringify({ km, sw, sk }));
   check("IndiGo : trois refus PROUVÉS (cabine, soute, fret) — deuxième refus total du dépôt, après Ryanair",
     ["cabin", "hold", "cargo"].every((c) => projetee("airline_indigo", c)?.status === "denied"));
-  check("Bangkok Airways fret RÉACTIVÉ : la portée nommée est INTÉRIEURE (« on the following routes ») — le modèle ne la porte pas, c'est nommé, pas converti",
-    projetee("airline_bangkok_airways", "cargo")?.status === "accepted_with_conditions" && /following routes:$/.test(politique("airline_bangkok_airways", "cargo")?.source?.quote ?? ""));
+  check("Bangkok Airways fret : réactivé au lot 8, ARBITRÉ `case_by_case` (portée intérieure, exclusions Krabi) — « à confirmer » partout, la citation et la portée publiées",
+    projetee("airline_bangkok_airways", "cargo")?.status === "confirmation_required" && projetee("airline_bangkok_airways", "cargo")?.status_cause === "airline_approval" && /following routes:$/.test(politique("airline_bangkok_airways", "cargo")?.source?.quote ?? ""));
 }
 
 console.log("\n=== Étage 2 — Miami → Panama : Copa, trois états distincts ===");
@@ -124,8 +151,8 @@ console.log("\n=== Étage 2 — Paris → Canton, Bangkok, Tunis ; Athènes → 
   const bkk = decide("airport_cdg", "airport_bkk", GOLDEN_32), bkkC = decide("airport_cdg", "airport_bkk", CAVALIER_6);
   check("Thai Airways cabine : refusée sur citation pour tout chien ; soute, Golden 32 kg : sous conditions (AVIH)",
     canal(bkk, "airline_thai_airways", "cabin")?.status === "denied" && canal(bkkC, "airline_thai_airways", "cabin")?.status === "denied" && canal(bkk, "airline_thai_airways", "hold")?.status === "accepted_with_conditions");
-  check("Thai Airways fret : REFUSÉ à l'import → reste « à confirmer », cause policy_unpublished (« contactez Cargo » n'est pas une offre)",
-    canal(bkk, "airline_thai_airways", "cargo")?.status === "confirmation_required" && (canal(bkk, "airline_thai_airways", "cargo")?.confirmation_causes ?? []).some((x) => x.code === "policy_unpublished"), JSON.stringify(canal(bkk, "airline_thai_airways", "cargo")));
+  check("Thai Airways fret, Golden 32 kg : ARBITRÉ → sous conditions (page THAI Cargo) — le canal existe, aucune place n'est promise",
+    canal(bkk, "airline_thai_airways", "cargo")?.status === "accepted_with_conditions", JSON.stringify(canal(bkk, "airline_thai_airways", "cargo")));
   const tun = decide("airport_cdg", "airport_tun", GOLDEN_32), tunC = decide("airport_cdg", "airport_tun", CAVALIER_6);
   const tc = canal(tunC, "airline_tunisair", "cabin");
   check("Tunisair cabine, Cavalier 6 kg : sous conditions, plafond 8 (contenant et nourriture compris) ; Golden 32 kg : refus sûr ; soute Golden : sous conditions ; fret non décidé",
@@ -159,8 +186,8 @@ console.log("\n=== Ce que l'import n'a PAS fait ===");
   let allowed = 0;
   for (const a of kb.airlines.values()) for (const p of Object.values(a.premium?.policy ?? {})) if (p.status === "allowed") allowed++;
   check("aucune politique réelle n'est `allowed`", allowed === 0, String(allowed));
-  check("Thai Airways fret n'a PAS été basculé à la main : `undocumented` intact, citation auditée du 13/08 intacte",
-    politique("airline_thai_airways", "cargo")?.availability === "undocumented" && politique("airline_thai_airways", "cargo")?.source?.verified_date === "2026-08-13" && politique("airline_thai_airways", "cargo")?.source?.quote === "(For cargo acceptance, please contact directly to Cargo Department)");
+  check("Thai Airways fret a été basculé SUR ARBITRAGE (Codex 09/09, tranché par Philippe) ; la fiche consigne l'ancienne citation auditée du 13/08 en commentaire",
+    politique("airline_thai_airways", "cargo")?.availability === "offered" && /ARBITRAGE \(Codex, 09\/09\/2026/.test(readFileSync("content/airlines/thai_airways.yml", "utf8")) && /contact directly to Cargo/.test(readFileSync("content/airlines/thai_airways.yml", "utf8")));
 }
 
 console.log(`\n=== SUMMARY ===\n${fail === 0 ? `ALL CHECKS PASSED (${pass})` : `${fail} CHECK(S) FAILED sur ${pass + fail}`}`);

@@ -76,6 +76,14 @@ const LOTS = {
   lot9: { dossier: "mesures/preuves/import-strict-lot-9-2026-09-09", total: 18,
     fichiers: { LOT9: "tous" },
     nom: () => "PREUVES_POLITIQUES_COMPAGNIES_LOT_9_STRICT_2026-09-09.json" },
+  /** CORRECTIF D'ARBITRAGES (09/09, Codex, tranché par Philippe) : six remplacements de preuves dans les lots 4, 6 et
+   *  8. Clé `replace_facts`. Cinq passent par l'importeur APRÈS retrait manuel de l'ancienne preuve et, pour Thai
+   *  fret, Aer Lingus soute et Air China cabine, changement manuel de la disponibilité SUR ORDRE (l'importeur, lui, ne
+   *  la change jamais). Le sixième (Bangkok Airways fret, index 3) est `case_by_case` par arbitrage — précédent Virgin
+   *  A-bis — et sa preuve est écrite à la main dans la fiche : l'importeur refuserait la disponibilité. */
+  correctif: { dossier: "mesures/preuves/correctif-arbitrages-2026-09-09", total: 5, cle: "replace_facts",
+    fichiers: { CORRECTIF: [0, 1, 2, 4, 5] },
+    nom: () => "CORRECTIF_ARBITRAGES_POLITIQUES_COMPAGNIES_2026-09-09.json" },
 };
 if (!LOTS[LOT]) throw new Error(`lot inconnu : ${LOT}`);
 const DOSSIER = resolve(arg("dossier", LOTS[LOT].dossier));
@@ -166,8 +174,8 @@ for (const [coh, idx] of Object.entries(AUTORISES)) {
   const f = resolve(DOSSIER, LOTS[LOT].nom(coh));
   const d = JSON.parse(readFileSync(f, "utf8"));
   const def = d.provenance_defaults ?? {};
-  for (const i of (idx === "tous" ? d.facts.map((_, k) => k) : idx)) {
-    const x = d.facts[i];
+  for (const i of (idx === "tous" ? (d[LOTS[LOT].cle ?? "facts"]).map((_, k) => k) : idx)) {
+    const x = (d[LOTS[LOT].cle ?? "facts"])[i];
     if (!x) throw new Error(`cohorte ${coh} : facts[${i}] absent — le LISEZ_MOI et le JSON ne concordent pas`);
     faits.push({ cohorte: coh, index: i, ...x, source_type: def.source_type ?? "official_website",
       verified_date: def.verified_date ?? d.as_of, confidence: def.confidence ?? 4, reviewer: def.reviewer });

@@ -57,7 +57,11 @@ export const SENTINELLES_COMPAGNIES = [
      sur les 12 cabines « non offertes, non prouvées » de la base projetée : Air China — précisément la
      ligne que le lot 6 a REFUSÉ d'importer (la fiche dit `not_offered`, Codex dit « sous conditions »).
      Tant que l'arbitrage n'est pas rendu, elle est le témoin exact de cette forme. */
-  { slug: "air-china", id: "airline_air_china", placement: "cabin", statut: "confirmation_required", role: "non offerte, non prouvée · refus d'auteur sans phrase" },
+  /* RE-FONDÉE (09/09/2026, correctif d'arbitrages) : Air China cabine est désormais citée (arbitrage Codex, tranché par
+     Philippe : « sous conditions » sur les vols opérés par Air China). Même forme, autre porteuse, mesurée sur les 10
+     cabines « non offertes, non prouvées » restantes : Bangkok Airways — dont Codex a explicitement laissé la cabine
+     non décidée (lot 8 : « la source examinée est une page Cargo ; elle ne prouve aucun canal passager »). */
+  { slug: "bangkok-airways", id: "airline_bangkok_airways", placement: "cabin", statut: "confirmation_required", role: "non offerte, non prouvée · refus d'auteur sans phrase" },
   { slug: "british-airways", id: "airline_british_airways", placement: "cabin", statut: "denied", role: "refus PROUVÉ · citation stricte" },
 ];
 

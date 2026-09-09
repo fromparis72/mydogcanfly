@@ -86,21 +86,30 @@ policies:
   hold:
     availability: offered
   cargo:
-    availability: offered   # RÉACTIVÉE sur citation (import strict, lot8, 2026-09-09) — était review_state: legacy_unreviewed
-    # PREUVE IMPORTÉE — import strict lot8 (Codex, lecture directe du 2026-09-09, cohorte LOT8 fait 0).
-    # Effet attendu : Bangkok Airways cargo is conditional and domestic-route-only.
-    # Portée nommée : Live dogs and cats are accepted as special cargo only on listed domestic routes and aircraft, with advance booking, health certificate, kennel, breed and capacity restrictions; international stations are excluded.
+    availability: case_by_case   # ARBITRÉ (Codex 09/09/2026, relayé par Philippe) — était offered (réactivée lot 8)
+    # ARBITRAGE (Codex, 09/09/2026, relayé et tranché par Philippe — mesures/preuves/correctif-arbitrages-2026-09-09) :
+    # « sous conditions uniquement sur les liaisons intérieures publiées, sauf Bangkok–Krabi et Chiang Mai–Krabi ;
+    # toutes les escales internationales sont refusées ; hors de ce périmètre, ne pas afficher le fret comme proposé ».
+    # Le modèle ne sait pas restreindre un canal par route : `offered` afficherait « sous conditions » sur un vol
+    # international, ce que l'arbitrage interdit. Précédent appliqué : Virgin Australia cabine (option A-bis, 28/08) —
+    # `case_by_case` projette « à confirmer » (airline_approval), la citation et la portée restent publiées.
+    # Nommé pour arbitrage si Codex préfère « sous conditions » réseau entier avec la portée en texte.
+    conditions:
+      en: "Live dogs and cats as special cargo (AVI) on Airbus and ATR72, domestic routes only, except Bangkok–Krabi and Chiang Mai–Krabi; all international stations are not accepted; advance booking, health certificate, kennel, breed and capacity conditions apply."
+      fr: "Chiens et chats vivants en fret spécial (AVI) sur Airbus et ATR72, liaisons intérieures uniquement, sauf Bangkok–Krabi et Chiang Mai–Krabi ; toutes les escales internationales sont refusées ; réservation préalable, certificat sanitaire, caisse, race et capacité sous conditions."
+      es: "Perros y gatos vivos como carga especial (AVI) en Airbus y ATR72, solo rutas nacionales, excepto Bangkok–Krabi y Chiang Mai–Krabi; todas las escalas internacionales se rechazan; reserva previa, certificado sanitario, jaula, raza y capacidad sujetos a condiciones."
+      pt: "Cães e gatos vivos como carga especial (AVI) em Airbus e ATR72, apenas rotas domésticas, exceto Bangkok–Krabi e Chiang Mai–Krabi; todas as escalas internacionais são recusadas; reserva prévia, certificado sanitário, caixa, raça e capacidade sujeitos a condições."
     source:
-      url: "https://prod.bangkokair.com/eng/cargo-service/pet_carriage"
+      url: "https://www.bangkokair.com/cargo-service/pet_carriage"
       source_type: official_website
       verified_date: "2026-09-09"
-      review_due: "2026-12-08"   # reviewDueFrom(verified_date, "airline") — calculé par l'importeur
+      review_due: "2026-12-08"   # reviewDueFrom(verified_date, "airline")
       confidence: 4
       reviewer: "Codex — direct reading of official airline page"
       history: []
       quote: "Special cargo service as Live animals dog, cat (AVI) is available on Airbus and ATR72 on the following routes:"
       quote_language: en
-      locator: "Cargo Service → Pet Carriage Service"
+      locator: "Cargo Service → Pet Carriage Service → Domestic Routes / International Routes"
 channels:
   - placement: cabin
     icon: 🐾

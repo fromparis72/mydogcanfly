@@ -306,8 +306,9 @@ console.log("=== 7. T0-B2 : la migration est FAITE, et la forme héritée est in
   /* MOUVEMENT NOMMÉ (09/09/2026, import strict lot 7 — 23 citations de plus, 136 en tout) : 174 → 151 ; quatre lignes non revérifiées réactivées sur citation, toutes en fret (Air Caraïbes, Air Tahiti Nui, Aircalin, Corsair). */
   /* MOUVEMENT NOMMÉ (09/09/2026, import strict lot 8 — 22 citations de plus, 158 en tout) : 151 → 129 ; cinq lignes non revérifiées réactivées sur citation (Bangkok Airways, Copa, KM Malta fret ; SKY express, SunExpress soute). */
   /* MOUVEMENT NOMMÉ (09/09/2026, import strict lot 9 — 18 citations de plus, 176 en tout, lot de clôture) : 129 → 111 ; cinq lignes non revérifiées réactivées sur citation (Aerolíneas Argentinas, Air Astana, Edelweiss fret ; TAROM soute et fret). */
-  check("111 politiques émettent legacy_unreviewed (73 d'origine + 38 sans page à montrer)",
-    porteuses === 111, String(porteuses));
+  /* MOUVEMENT NOMMÉ (09/09/2026, correctif d'arbitrages — Codex, tranché par Philippe ; six preuves remplacées dans les lots 4, 6 et 8) : 111 → 109 (Aer Lingus soute, Air China cabine citées sur ordre). */
+  check("109 politiques émettent legacy_unreviewed (73 d'origine + 36 sans page à montrer)",
+    porteuses === 109, String(porteuses));
   /* 05/09/2026 — 33 → 32. British Airways cabine quitte ce groupe : sa page officielle porte
      désormais la phrase, et la politique devient le premier `denied` prouvé du dépôt. Chaque
      citation suivante fera baisser ce compte, et devra le nommer comme celle-ci. */
@@ -316,7 +317,9 @@ console.log("=== 7. T0-B2 : la migration est FAITE, et la forme héritée est in
   /* MOUVEMENT NOMMÉ (09/09/2026, lot 6) : 16 → 15 — United cabine, citée, quitte cette cause. */
   check("15 politiques émettent official_source_unquoted — une page officielle, aucune phrase citée",
     nonCitee === 15, String(nonCitee));
-  check("1 seule émet policy_unpublished (Thai Cargo)", nonPubliee === 1, String(nonPubliee));
+  /* MOUVEMENT NOMMÉ (09/09/2026, correctif d'arbitrages) : 1 → 0. Thai Cargo, seule « non publiée » depuis la migration, est
+     ARBITRÉE `offered` sur la page THAI Cargo (Codex, tranché par Philippe) ; la cause disparaît du référentiel réel. */
+  check("0 politique n'émet policy_unpublished — Thai Cargo, arbitrée, a quitté cette cause", nonPubliee === 0, String(nonPubliee));
 
   /* 7.2 — l'artefact ne porte plus AUCUNE forme d'auteur héritée. C'est la contrepartie
      matérielle de la suppression du schéma : si un `allowed` ou un `conditional` réapparaissait
@@ -348,41 +351,43 @@ console.log("=== 7. T0-B2 : la migration est FAITE, et la forme héritée est in
     !PlacementPolicyAuthored.safeParse({ availability: "offered", review_state: "legacy_unreviewed", source: SRC }).success);
 }
 
-console.log("=== 7 bis. La décision AUDITÉE arrive avec sa PREUVE (Thai Cargo) ===");
+console.log("=== 7 bis. La décision AUDITÉE arrive avec sa PREUVE (Thai Cargo) — puis l'ARBITRAGE la remplace, avec la sienne ===");
 {
-  /* Une décision auditée migrée sans sa provenance n'est pas migrée, elle est recopiée : la
-     fiche disait `availability: undocumented` et la politique canonique recevait la page
-     d'accueil de la compagnie, une date antérieure et une confiance moindre (contre-revue du
-     15/08/2026). On compare donc les TROIS représentations à la source approuvée du manifeste :
-     ce que la fiche écrit, ce que l'artefact porte, ce que le runtime sert. */
+  /* HISTOIRE, gardée : une décision auditée migrée sans sa provenance n'est pas migrée, elle est recopiée
+     (contre-revue du 15/08/2026) ; la fiche disait `undocumented` et portait la source approuvée du manifeste.
+     MOUVEMENT NOMMÉ (09/09/2026, correctif d'arbitrages — Codex, tranché par Philippe) : « conserver sous conditions,
+     mais remplacer la preuve ». La ligne du manifeste (`undocumented`, « contactez Cargo », 13/08) est SUPERSÉDÉE par
+     l'arbitrage : `availability: offered`, preuve THAI Cargo du 09/09. Le témoin garde sa forme — trois représentations
+     comparées champ par champ à UNE source de référence — mais la référence est désormais celle du correctif, et la
+     décision projetée est « accepté sous conditions ». L'ancienne source approuvée reste dans le manifeste et dans le
+     commentaire de la fiche ; elle n'est plus ce que le site sert. */
+  const correctif = JSON.parse(readFileSync("mesures/preuves/correctif-arbitrages-2026-09-09/CORRECTIF_ARBITRAGES_POLITIQUES_COMPAGNIES_2026-09-09.json", "utf8"));
+  const arb = correctif.replace_facts.find((f) => f.airline_id === "airline_thai_airways" && f.placement === "cargo");
+  const approuvee = { url: arb.url, source_type: correctif.provenance_defaults.source_type, verified_date: correctif.provenance_defaults.verified_date,
+    review_due: correctif.provenance_defaults.review_due, confidence: correctif.provenance_defaults.confidence, reviewer: correctif.provenance_defaults.reviewer,
+    quote: arb.quote, quote_language: arb.quote_language, locator: arb.locator };
+
   const manifeste = JSON.parse(readFileSync("test-baselines/t0b-migration-matrice.json", "utf8"));
-  const approuvee = manifeste.rows.find(
-    (r) => r.identity.airline_id === "airline_thai_airways" && r.identity.placement === "cargo",
-  ).decision.source;
+  const migree = manifeste.rows.find((r) => r.identity.airline_id === "airline_thai_airways" && r.identity.placement === "cargo").decision;
+  check("le MANIFESTE garde la décision auditée d'origine (`undocumented`, « contactez Cargo », 13/08) — l'histoire n'est pas réécrite",
+    migree.target_availability === "undocumented" && migree.source?.verified_date === "2026-08-13" && /contact directly to Cargo Department/.test(migree.source?.quote ?? ""));
 
   const fiche = YAML.parse(readFileSync("content/airlines/thai_airways.yml", "utf8"));
   const yamlSource = fiche.policies?.cargo?.source;
-  check("la FICHE porte une source auditée sur thai/cargo", !!yamlSource);
+  check("la FICHE porte une source citée sur thai/cargo, et dit `offered` SUR ARBITRAGE", !!yamlSource && fiche.policies?.cargo?.availability === "offered");
 
   const CHAMPS = ["url", "source_type", "verified_date", "review_due", "confidence", "reviewer", "quote", "quote_language", "locator"];
   const ecarts = (src) => CHAMPS.filter((c) => JSON.stringify(src?.[c]) !== JSON.stringify(approuvee[c]));
-  check("fiche ≡ source APPROUVÉE du manifeste, champ par champ", ecarts(yamlSource).length === 0,
-    `écarts : ${ecarts(yamlSource).join(", ")}`);
-
+  check("fiche ≡ source du CORRECTIF, champ par champ", ecarts(yamlSource).length === 0, `écarts : ${ecarts(yamlSource).join(", ")}`);
   const artefact = JSON.parse(readFileSync("packages/knowledge/raw/objects.json", "utf8"))
     .airlines.find((a) => a.id === "airline_thai_airways").premium.policy.cargo.source;
-  check("objects.json ≡ source APPROUVÉE, champ par champ", ecarts(artefact).length === 0,
-    `écarts : ${ecarts(artefact).join(", ")}`);
-
+  check("objects.json ≡ source du CORRECTIF, champ par champ", ecarts(artefact).length === 0, `écarts : ${ecarts(artefact).join(", ")}`);
   const runtime = kb.airlines.get("airline_thai_airways")?.premium?.policy?.cargo;
-  check("le RUNTIME sert l'URL, la date, l'échéance et la confiance approuvées",
+  check("le RUNTIME sert l'URL, la date, l'échéance et la confiance du correctif",
     runtime?.source?.url === approuvee.url && runtime?.source?.verified_date === approuvee.verified_date
-    && runtime?.source?.review_due === approuvee.review_due && runtime?.source?.confidence === approuvee.confidence,
-    JSON.stringify(runtime?.source));
-  /* La preuve accompagne la décision, elle ne la remplace pas : le statut reste celui du registre. */
-  check("et la décision reste `confirmation_required` / `policy_unpublished`",
-    runtime?.status === "confirmation_required" && runtime?.status_cause === "policy_unpublished",
-    `${runtime?.status} / ${runtime?.status_cause}`);
+    && runtime?.source?.review_due === approuvee.review_due && runtime?.source?.confidence === approuvee.confidence, JSON.stringify(runtime?.source));
+  check("et la décision est « accepté sous conditions » — jamais `allowed`, jamais une place promise",
+    runtime?.status === "accepted_with_conditions" && runtime?.allowed === true, `${runtime?.status} / ${runtime?.status_cause}`);
 }
 
 console.log("=== 7 ter. Une politique NON REVUE reste sans preuve, même avec une source officielle ===");
@@ -561,8 +566,8 @@ console.log("=== 8. Baseline FIGÉE : le point de comparaison de T0-B2 est scell
      ternaire → import V3 → lots 2 et 3, chaque « avant » égal à l'« après » précédent, vérifié
      dans test-t0a-baseline.mjs). */
   /* 09/09/2026 — la plus récente est celle du lot 4 (chaîne : … → lots 2 et 3 → lot 4). */
-  check("Import strict lot 9 : la baseline vivante est identique à la figée la plus récente",
-    vivante.equals(readFileSync("test-baselines/import-strict-lot-9-apres.json")));
+  check("Correctif d'arbitrages : la baseline vivante est identique à la figée la plus récente",
+    vivante.equals(readFileSync("test-baselines/correctif-arbitrages-apres.json")));
   check("Arbitrages d'interface : sa figée reste intacte à côté (elle n'a pas été écrasée)",
     !readFileSync("test-baselines/arbitrages-interface-apres.json")
       .equals(readFileSync("test-baselines/entree-ternaire-apres.json")));

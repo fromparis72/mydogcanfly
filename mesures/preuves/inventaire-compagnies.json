@@ -1,28 +1,28 @@
 {
   "resume": {
-    "empreinte_donnees_sha256": "30417494484539bd5101fc80f85f46733203ff4985663d9ffdc6d57eeb6cdd6f",
+    "empreinte_donnees_sha256": "7f60f080373c3d15fafba7c8d5275856e1fedde71828cd1a73b63b4d7d4062c2",
     "compagnies": 102,
     "lignes": 306,
     "politiques": 302,
     "par_categorie": {
-      "A": 176,
+      "A": 178,
       "A_incomplete": 0,
-      "B": 53,
+      "B": 51,
       "C": 74,
       "D": 3
     },
     "par_canal": {
       "cabin": {
-        "A": 78,
+        "A": 79,
         "A_incomplete": 0,
-        "B": 10,
+        "B": 9,
         "C": 14,
         "D": 0
       },
       "hold": {
-        "A": 70,
+        "A": 71,
         "A_incomplete": 0,
-        "B": 24,
+        "B": 23,
         "C": 8,
         "D": 0
       },
@@ -38,6 +38,7 @@
       "airline_aegean#cabin (politique)",
       "airline_aegean#hold (politique)",
       "airline_aer_lingus#cabin (politique)",
+      "airline_aer_lingus#hold (politique)",
       "airline_aerolineas_argentinas#cabin (politique)",
       "airline_aerolineas_argentinas#hold (politique)",
       "airline_aerolineas_argentinas#cargo (politique)",
@@ -55,6 +56,7 @@
       "airline_air_caraibes#cabin (politique)",
       "airline_air_caraibes#hold (politique)",
       "airline_air_caraibes#cargo (politique)",
+      "airline_air_china#cabin (politique)",
       "airline_air_china#hold (politique)",
       "airline_air_europa#cabin (politique)",
       "airline_air_europa#hold (politique)",
@@ -220,36 +222,34 @@
     ],
     "B_par_piste": {
       "politique": 23,
-      "regle": 30
+      "regle": 28
     },
     "B_par_regle_gov_uk_seul": 14,
     "priorite_B": {
       "availability": {
-        "not_offered": 23,
+        "not_offered": 21,
         "null": 12,
         "offered": 18
       },
       "derived_from_fiche": {
         "false": 16,
-        "true": 37
+        "true": 35
       },
       "source_derived": {
         "false": 24,
-        "true": 29
+        "true": 27
       },
       "review_state": {
         "legacy_unreviewed": 11,
-        "null": 42
+        "null": 40
       },
       "history": {
-        "0": 44,
+        "0": 42,
         "1": 9
       },
       "hotes": {
         "aa.com": 1,
-        "aerlingus.com": 1,
         "aircanada.com": 1,
-        "airchina.us": 1,
         "airnewzealand.com": 2,
         "asianacargo.com": 1,
         "brcargo.com": 1,
@@ -292,15 +292,15 @@
     },
     "coherence_niveau_de_preuve": {
       "paires": {
-        "A ↔ citee": 176,
-        "B ↔ aucune": 29,
+        "A ↔ citee": 178,
+        "B ↔ aucune": 27,
         "B ↔ officielle_non_citee": 23,
         "B ↔ politique_absente": 1,
         "C ↔ aucune": 74,
         "D ↔ politique_absente": 3
       },
       "ecarts": {
-        "B_par_regle_sur_politique_aucune": 29,
+        "B_par_regle_sur_politique_aucune": 27,
         "B_par_regle_sans_politique": 1,
         "A_par_regle": 0,
         "A_incomplete": 0,
@@ -431,22 +431,22 @@
       "airline_id": "airline_aer_lingus",
       "name": "Aer Lingus",
       "canal": "hold",
-      "categorie": "B",
-      "piste": "regle:rule_aer_lingus_no_hold",
+      "categorie": "A",
+      "piste": "politique",
       "manques": [],
-      "url": "https://www.aerlingus.com/prepare/bags/travelling-with-pets/",
+      "url": "https://www.aerlingus.com/localized/en/modals/baggage-information.html",
       "hote": "aerlingus.com",
-      "verified_date": "2026-07-10",
-      "niveau_de_preuve_politique": "aucune",
+      "verified_date": "2026-09-09",
+      "niveau_de_preuve_politique": "citee",
       "priorite": {
-        "availability": "not_offered",
+        "availability": "offered",
         "derived_from_fiche": true,
-        "source_derived": true,
+        "source_derived": false,
         "review_state": null,
         "history": 0,
-        "url_politique": "https://www.aerlingus.com",
+        "url_politique": "https://www.aerlingus.com/localized/en/modals/baggage-information.html",
         "hote_politique": "aerlingus.com",
-        "url_fabriquee": true,
+        "url_fabriquee": false,
         "regles": [
           "rule_aer_lingus_no_hold"
         ],
@@ -1078,22 +1078,22 @@
       "airline_id": "airline_air_china",
       "name": "Air China",
       "canal": "cabin",
-      "categorie": "B",
-      "piste": "regle:rule_air_china_no_cabin",
+      "categorie": "A",
+      "piste": "politique",
       "manques": [],
-      "url": "https://www.airchina.us/US/GB/info/assistance/pets.html",
-      "hote": "airchina.us",
-      "verified_date": "2026-07-10",
-      "niveau_de_preuve_politique": "aucune",
+      "url": "https://m.airchina.com.cn/ac/c/invoke/specialService/petCabinAgreement%40pg",
+      "hote": "m.airchina.com.cn",
+      "verified_date": "2026-09-09",
+      "niveau_de_preuve_politique": "citee",
       "priorite": {
-        "availability": "not_offered",
+        "availability": "offered",
         "derived_from_fiche": true,
-        "source_derived": true,
+        "source_derived": false,
         "review_state": null,
         "history": 0,
-        "url_politique": "https://www.airchina.com",
-        "hote_politique": "airchina.com",
-        "url_fabriquee": true,
+        "url_politique": "https://m.airchina.com.cn/ac/c/invoke/specialService/petCabinAgreement%40pg",
+        "hote_politique": "m.airchina.com.cn",
+        "url_fabriquee": false,
         "regles": [
           "rule_air_china_no_cabin"
         ],
@@ -2572,18 +2572,18 @@
       "categorie": "A",
       "piste": "politique",
       "manques": [],
-      "url": "https://prod.bangkokair.com/eng/cargo-service/pet_carriage",
-      "hote": "prod.bangkokair.com",
+      "url": "https://www.bangkokair.com/cargo-service/pet_carriage",
+      "hote": "bangkokair.com",
       "verified_date": "2026-09-09",
       "niveau_de_preuve_politique": "citee",
       "priorite": {
-        "availability": "offered",
+        "availability": "case_by_case",
         "derived_from_fiche": true,
         "source_derived": false,
         "review_state": null,
         "history": 0,
-        "url_politique": "https://prod.bangkokair.com/eng/cargo-service/pet_carriage",
-        "hote_politique": "prod.bangkokair.com",
+        "url_politique": "https://www.bangkokair.com/cargo-service/pet_carriage",
+        "hote_politique": "bangkokair.com",
         "url_fabriquee": false,
         "regles": [],
         "regles_officielles": [],
@@ -3230,7 +3230,7 @@
       "categorie": "A",
       "piste": "politique",
       "manques": [],
-      "url": "https://www.csair.com/hk/en/tourguide/faq/baggage/dongwu.shtml",
+      "url": "https://www.csair.com/sg/en/tourguide/faq/baggage/dongwu.shtml",
       "hote": "csair.com",
       "verified_date": "2026-09-09",
       "niveau_de_preuve_politique": "citee",
@@ -3240,7 +3240,7 @@
         "source_derived": false,
         "review_state": null,
         "history": 0,
-        "url_politique": "https://www.csair.com/hk/en/tourguide/faq/baggage/dongwu.shtml",
+        "url_politique": "https://www.csair.com/sg/en/tourguide/faq/baggage/dongwu.shtml",
         "hote_politique": "csair.com",
         "url_fabriquee": false,
         "regles": [
@@ -5160,7 +5160,7 @@
       "categorie": "A",
       "piste": "politique",
       "manques": [],
-      "url": "https://www.goindigo.in/information/how-to-book.html?loginPopup=true",
+      "url": "https://www.goindigo.in/cargo/products-guidelines.html",
       "hote": "goindigo.in",
       "verified_date": "2026-09-09",
       "niveau_de_preuve_politique": "citee",
@@ -5170,7 +5170,7 @@
         "source_derived": false,
         "review_state": null,
         "history": 0,
-        "url_politique": "https://www.goindigo.in/information/how-to-book.html?loginPopup=true",
+        "url_politique": "https://www.goindigo.in/cargo/products-guidelines.html",
         "hote_politique": "goindigo.in",
         "url_fabriquee": false,
         "regles": [
@@ -7962,18 +7962,18 @@
       "categorie": "A",
       "piste": "politique",
       "manques": [],
-      "url": "https://www.thaiairways.com/en-au/content/special-assistance/travel-with-pets/pets-as-checked-baggage-avih/",
-      "hote": "thaiairways.com",
-      "verified_date": "2026-08-13",
+      "url": "https://www.thaicargo.com/en/product-view/1/live-animals---pets",
+      "hote": "thaicargo.com",
+      "verified_date": "2026-09-09",
       "niveau_de_preuve_politique": "citee",
       "priorite": {
-        "availability": "undocumented",
+        "availability": "offered",
         "derived_from_fiche": true,
         "source_derived": false,
         "review_state": null,
         "history": 0,
-        "url_politique": "https://www.thaiairways.com/en-au/content/special-assistance/travel-with-pets/pets-as-checked-baggage-avih/",
-        "hote_politique": "thaiairways.com",
+        "url_politique": "https://www.thaicargo.com/en/product-view/1/live-animals---pets",
+        "hote_politique": "thaicargo.com",
         "url_fabriquee": false,
         "regles": [],
         "regles_officielles": [],

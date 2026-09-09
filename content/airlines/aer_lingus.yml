@@ -83,7 +83,23 @@ policies:
       quote_language: en
       locator: "Baggage Information → General Animals & Pets Rules"
   hold:
-    availability: not_offered
+    availability: offered   # ARBITRÉ (Codex 09/09/2026, relayé par Philippe) — était not_offered, sans phrase
+    # PREUVE IMPORTÉE — import strict correctif (Codex, lecture directe du 2026-09-09, cohorte CORRECTIF fait 4).
+    # Effet attendu : Aer Lingus hold is a conditional route; do not present it for every Aer Lingus-marketed itinerary.
+    # Portée nommée : Pet-agent booking and operating-airline, aircraft and route restrictions apply; Aer Lingus Regional operated by Emerald Airlines prohibits pet carriage, and some aircraft holds are not ventilated.
+    source:
+      url: "https://www.aerlingus.com/localized/en/modals/baggage-information.html"
+      source_type: official_website
+      verified_date: "2026-09-09"
+      review_due: "2026-12-08"   # reviewDueFrom(verified_date, "airline") — calculé par l'importeur
+      confidence: 4
+      reviewer: "Codex — direct reading of official airline page"
+      history: []
+      quote: "Pets must be booked to travel with a pet agent, and they will be carried in the aircraft hold."
+      quote_language: en
+      locator: "Baggage Information → General Animals & Pets Rules"
+    # ARBITRAGE (Codex, 09/09/2026, relayé et tranché par Philippe — mesures/preuves/correctif-arbitrages-2026-09-09) :
+    # soute via agent animalier sous conditions d'opérateur, d'appareil et de route ; Aer Lingus Regional (Emerald) exclue — le recours à un agent ne fait pas de la soute accompagnée un canal fret.
   cargo:
     review_state: legacy_unreviewed
 channels:

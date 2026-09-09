@@ -73,7 +73,23 @@ ladder:
       pt: "grande porte"
 policies:
   cabin:
-    availability: not_offered
+    availability: offered   # ARBITRÉ (Codex 09/09/2026, relayé par Philippe) — était not_offered, sans phrase
+    # PREUVE IMPORTÉE — import strict correctif (Codex, lecture directe du 2026-09-09, cohorte CORRECTIF fait 5).
+    # Effet attendu : Air China cabin is a documented conditional route on Air China-operated flights; do not extend it to partner-operated flights or treat it as guaranteed availability.
+    # Portée nommée : Pet dogs and cats on flights operated by Air China, subject to advance booking, quota, age, breed, route, documentation and under-seat carrier restrictions.
+    source:
+      url: "https://m.airchina.com.cn/ac/c/invoke/specialService/petCabinAgreement%40pg"
+      source_type: official_website
+      verified_date: "2026-09-09"
+      review_due: "2026-12-08"   # reviewDueFrom(verified_date, "airline") — calculé par l'importeur
+      confidence: 4
+      reviewer: "Codex — direct reading of official airline page"
+      history: []
+      quote: "A maximum of 2 pets are permitted per flight, and each passenger may bring no more than 1 pet into the cabin."
+      quote_language: en
+      locator: "Agreement for In-Cabin Transportation of Pets → I. Carrier's Regulations on Pet Transportation"
+    # ARBITRAGE (Codex, 09/09/2026, relayé et tranché par Philippe — mesures/preuves/correctif-arbitrages-2026-09-09) :
+    # cabine sous conditions sur les vols opérés par Air China ; « domestic dogs » = chiens domestiques, pas vols intérieurs ; ne pas étendre aux vols partenaires. La règle héritée non citée rule_air_china_no_cabin reste nommée par le moteur (dette, hors périmètre).
   hold:
     availability: offered
     # PREUVE IMPORTÉE — import strict lot6 (Codex, lecture directe du 2026-09-09, cohorte LOT6 fait 13).

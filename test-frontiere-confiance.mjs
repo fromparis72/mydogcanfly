@@ -221,12 +221,13 @@ console.log("\n=== 10. Sur la base RÉELLE : plus aucun verdict catégorique ===
   /* MOUVEMENT NOMMÉ (09/09/2026, import strict lot 7 — 23 citations de plus, 136 en tout) : 0 · 108 · 26 · 168 ; causes 151 · 15. */
   /* MOUVEMENT NOMMÉ (09/09/2026, import strict lot 8 — 22 citations de plus, 158 en tout) : 0 · 124 · 32 · 146 ; causes 129 · 15. */
   /* MOUVEMENT NOMMÉ (09/09/2026, import strict lot 9 — 18 citations de plus, 176 en tout, lot de clôture) : 0 · 140 · 34 · 128 ; causes 111 · 15. */
-  check("174 décisions prouvées : 0 `allowed`, 140 sous conditions, 34 `denied`, 128 à confirmer",
-    allowed === 0 && sousConditions === 140 && denied === 34 && aConfirmer === 128, JSON.stringify({ allowed, sousConditions, denied, aConfirmer }));
+  /* MOUVEMENT NOMMÉ (09/09/2026, correctif d'arbitrages — Codex, tranché par Philippe ; six preuves remplacées dans les lots 4, 6 et 8) : 0 · 142 · 34 · 126 ; causes 109 · 15 · 0 · 2 (Thai fret cesse d'être « non publié », Bangkok fret devient `case_by_case`). */
+  check("176 décisions prouvées : 0 `allowed`, 142 sous conditions, 34 `denied`, 126 à confirmer",
+    allowed === 0 && sousConditions === 142 && denied === 34 && aConfirmer === 126, JSON.stringify({ allowed, sousConditions, denied, aConfirmer }));
   check("chaque « à confirmer » porte une cause — aucune incertitude muette",
-    Object.values(causes).reduce((x, y) => x + y, 0) === 128 && !("undefined" in causes), JSON.stringify(causes));
-  check("15 gardent une page officielle à montrer, 111 n'ont rien à montrer",
-    causes.official_source_unquoted === 15 && causes.legacy_unreviewed === 111, JSON.stringify(causes));
+    Object.values(causes).reduce((x, y) => x + y, 0) === 126 && !("undefined" in causes), JSON.stringify(causes));
+  check("15 gardent une page officielle à montrer, 109 n'ont rien à montrer",
+    causes.official_source_unquoted === 15 && causes.legacy_unreviewed === 109, JSON.stringify(causes));
   /* Et la preuve que ce n'est pas un effet de bord de l'affichage : la même règle vaut à la
      source, sur l'artefact d'auteur, avant tout moteur. */
   const objets = JSON.parse(readFileSync("packages/knowledge/raw/objects.json", "utf8"));
@@ -391,6 +392,9 @@ console.log("\n=== 10. Sur la base RÉELLE : plus aucun verdict catégorique ===
     "airline_tarom.cabin",
     "airline_tarom.hold",
     "airline_tarom.cargo",
+    /* Correctif d'arbitrages (09/09/2026) : Aer Lingus soute (lot 4) et Air China cabine (lot 6) reçoivent leur phrase sur ordre. */
+    "airline_aer_lingus.hold",
+    "airline_air_china.cabin",
     "airline_iberia.cabin",
     "airline_iberia.hold",
     "airline_ita_airways.cabin",
@@ -433,10 +437,12 @@ console.log("\n=== 10. Sur la base RÉELLE : plus aucun verdict catégorique ===
     "airline_westjet.cabin",
     "airline_westjet.hold",
   ];
-  check("176 politiques d'auteur portent une phrase citée — nominativement",
+  check("178 politiques d'auteur portent une phrase citée — nominativement",
     JSON.stringify([...citees].sort()) === JSON.stringify([...CITEES_V3].sort()), citees.join(", "));
-  check("et 174 d'elles sont des décisions (toutes sauf Thai fret et Virgin Australia cabine)",
-    decideesCitees.length === 174 && !decideesCitees.includes("airline_thai_airways.cargo") && !decideesCitees.includes("airline_virgin_australia.cabin"),
+  /* Correctif (09/09/2026) : Thai fret DEVIENT une décision (arbitrage : `offered`, preuve THAI Cargo) ; Bangkok Airways fret CESSE d'en
+     être une (`case_by_case`, portée intérieure que le modèle ne porte pas — précédent Virgin A-bis). */
+  check("et 176 d'elles sont des décisions (toutes sauf Virgin Australia cabine et Bangkok Airways fret)",
+    decideesCitees.length === 176 && !decideesCitees.includes("airline_bangkok_airways.cargo") && !decideesCitees.includes("airline_virgin_australia.cabin"),
     decideesCitees.join(", "));
 }
 

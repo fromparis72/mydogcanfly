@@ -1,0 +1,106 @@
+{
+  "schema_version": 1,
+  "as_of": "2026-09-09",
+  "status": "strict_correction_candidate",
+  "purpose": "Replace weak or over-broad evidence in lots 4, 6 and 8, and record two inherited decisions confirmed by direct reading of current official airline pages.",
+  "provenance_defaults": {
+    "source_type": "official_website",
+    "verified_date": "2026-09-09",
+    "review_due": "2026-12-08",
+    "confidence": 4,
+    "reviewer": "Codex — direct reading of official airline page"
+  },
+  "replace_facts": [
+    {
+      "replaces_lot": 8,
+      "airline_id": "airline_thai_airways",
+      "placement": "cargo",
+      "recommendation": "offered_with_conditions",
+      "condition_scope": "Live-animal cargo is accepted only subject to reservation confirmation, animal, aircraft, temperature, route, documentation and THAI Cargo conditions.",
+      "finder_effect": "Thai Airways cargo is a documented conditional route, never guaranteed acceptance for a specific flight.",
+      "url": "https://www.thaicargo.com/en/product-view/1/live-animals---pets",
+      "quote": "The acceptance of live - animal consignments is subject to the conditions described in the IATA's Live Animals Regulations and to TG's Regulations",
+      "quote_language": "en",
+      "locator": "Live Animals & Pets → opening paragraph"
+    },
+    {
+      "replaces_lot": 8,
+      "airline_id": "airline_china_southern",
+      "placement": "hold",
+      "recommendation": "offered_with_conditions",
+      "condition_scope": "Pets may be checked only after prior approval by China Southern and successive carriers, with quarantine, vaccination, route, document and container requirements.",
+      "finder_effect": "China Southern hold is a documented conditional route.",
+      "url": "https://www.csair.com/sg/en/tourguide/faq/baggage/dongwu.shtml",
+      "quote": "Sorry, a pet can not be taken into cabin. However, you can check it.",
+      "quote_language": "en",
+      "locator": "Pets → May I take my pet into cabin?"
+    },
+    {
+      "replaces_lot": 8,
+      "airline_id": "airline_indigo",
+      "placement": "cargo",
+      "recommendation": "not_offered_for_pet_dogs",
+      "condition_scope": "The official IndiGo CarGo FAQ directly refuses transportation of a pet dog as cargo.",
+      "finder_effect": "IndiGo cargo is a documented refusal for pet dogs.",
+      "url": "https://www.goindigo.in/cargo/products-guidelines.html",
+      "quote": "No, IndiGo does not carry livestock",
+      "quote_language": "en",
+      "locator": "Product Guidelines → Need help? Check FAQs → Can I transport my pet dog on CarGo?"
+    },
+    {
+      "replaces_lot": 8,
+      "airline_id": "airline_bangkok_airways",
+      "placement": "cargo",
+      "recommendation": "offered_with_conditions",
+      "condition_scope": "Live dogs and cats are accepted as special cargo on Airbus and ATR72 on domestic routes except Bangkok–Krabi v.v. and Chiang Mai–Krabi v.v.; all international stations are excluded; booking, certificate, kennel, breed and capacity conditions apply.",
+      "finder_effect": "Offer Bangkok Airways cargo only within the explicitly supported domestic scope; do not offer it on international routes or the two excluded domestic route pairs.",
+      "url": "https://www.bangkokair.com/cargo-service/pet_carriage",
+      "quote": "Special cargo service as Live animals dog, cat (AVI) is available on Airbus and ATR72 on the following routes:",
+      "quote_language": "en",
+      "locator": "Cargo Service → Pet Carriage Service → Domestic Routes / International Routes"
+    },
+    {
+      "replaces_lot": 4,
+      "airline_id": "airline_aer_lingus",
+      "placement": "hold",
+      "recommendation": "offered_with_conditions",
+      "condition_scope": "Pet-agent booking and operating-airline, aircraft and route restrictions apply; Aer Lingus Regional operated by Emerald Airlines prohibits pet carriage, and some aircraft holds are not ventilated.",
+      "finder_effect": "Aer Lingus hold is a conditional route; do not present it for every Aer Lingus-marketed itinerary.",
+      "url": "https://www.aerlingus.com/localized/en/modals/baggage-information.html",
+      "quote": "Pets must be booked to travel with a pet agent, and they will be carried in the aircraft hold.",
+      "quote_language": "en",
+      "locator": "Baggage Information → General Animals & Pets Rules"
+    },
+    {
+      "replaces_lot": 6,
+      "airline_id": "airline_air_china",
+      "placement": "cabin",
+      "recommendation": "offered_with_conditions",
+      "condition_scope": "Pet dogs and cats on flights operated by Air China, subject to advance booking, quota, age, breed, route, documentation and under-seat carrier restrictions.",
+      "finder_effect": "Air China cabin is a documented conditional route on Air China-operated flights; do not extend it to partner-operated flights or treat it as guaranteed availability.",
+      "url": "https://m.airchina.com.cn/ac/c/invoke/specialService/petCabinAgreement%40pg",
+      "quote": "A maximum of 2 pets are permitted per flight, and each passenger may bring no more than 1 pet into the cabin.",
+      "quote_language": "en",
+      "locator": "Agreement for In-Cabin Transportation of Pets → I. Carrier's Regulations on Pet Transportation"
+    }
+  ],
+  "threshold_rule": {
+    "required_source_fields": [
+      "numeric_value",
+      "unit",
+      "comparison_operator",
+      "weight_basis"
+    ],
+    "allowed_weight_basis": [
+      "dog_only",
+      "dog_plus_carrier",
+      "dog_plus_carrier_plus_contents"
+    ],
+    "unknown_basis_action": "keep_in_condition_text_but_do_not_create_computed_threshold",
+    "combined_limit_logic": {
+      "dog_alone_above_limit": "channel_impossible",
+      "dog_alone_at_or_below_limit": "does_not_prove_acceptance"
+    },
+    "general_rule": "A threshold may eliminate a channel but never establish positive acceptance or availability by itself."
+  }
+}

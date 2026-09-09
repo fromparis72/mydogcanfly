@@ -29,7 +29,8 @@ const WRITE = process.argv.includes("--write");
 /* MOUVEMENT NOMMÉ (09/09/2026, import strict lot 7 — 23 citations de plus, 136 en tout) : 26 040 → 26 868. */
 /* MOUVEMENT NOMMÉ (09/09/2026, import strict lot 8 — 22 citations de plus, 158 en tout) : 26 868 → 28 536. */
 /* MOUVEMENT NOMMÉ (09/09/2026, import strict lot 9 — 18 citations de plus, 176 en tout, lot de clôture) : 28 536 → 29 205. */
-const TEMOIN_VRAI_V3 = 29205;
+/* MOUVEMENT NOMMÉ (09/09/2026, correctif d'arbitrages — Codex, tranché par Philippe ; six preuves remplacées dans les lots 4, 6 et 8) : 29 205 → 29 190. */
+const TEMOIN_VRAI_V3 = 29190;
 /**
  * T0-B2 — la sonde vivante compare désormais au fichier DE CE LOT.
  *

@@ -105,21 +105,26 @@ policies:
       quote_language: en
       locator: "Pets as Checked Baggage (AVIH) → Conditions for Acceptance"
   cargo:
-    availability: undocumented
-    # Décision AUDITÉE — recopiée verbatim de la ligne approuvée du manifeste de migration
-    # (test-baselines/t0b-migration-matrice.json, airline_thai_airways/cargo). La page officielle
-    # ne publie aucune condition générale d'acceptation cargo des chiens : elle renvoie au
-    # département Cargo. La preuve accompagne la décision, sinon la décision est recopiée, pas migrée.
+    availability: offered   # ARBITRÉ (Codex 09/09/2026, relayé par Philippe) — était undocumented (décision auditée du 13/08)
+    # PREUVE IMPORTÉE — import strict correctif (Codex, lecture directe du 2026-09-09, cohorte CORRECTIF fait 0).
+    # Effet attendu : Thai Airways cargo is a documented conditional route, never guaranteed acceptance for a specific flight.
+    # Portée nommée : Live-animal cargo is accepted only subject to reservation confirmation, animal, aircraft, temperature, route, documentation and THAI Cargo conditions.
     source:
-      url: "https://www.thaiairways.com/en-au/content/special-assistance/travel-with-pets/pets-as-checked-baggage-avih/"
+      url: "https://www.thaicargo.com/en/product-view/1/live-animals---pets"
       source_type: official_website
-      verified_date: "2026-08-13"
-      review_due: "2026-11-11"
+      verified_date: "2026-09-09"
+      review_due: "2026-12-08"   # reviewDueFrom(verified_date, "airline") — calculé par l'importeur
       confidence: 4
-      reviewer: "Claude+Codex (lecture intégrale 13/08/2026)"
-      quote: "(For cargo acceptance, please contact directly to Cargo Department)"
+      reviewer: "Codex — direct reading of official airline page"
+      history: []
+      quote: "The acceptance of live - animal consignments is subject to the conditions described in the IATA's Live Animals Regulations and to TG's Regulations"
       quote_language: en
-      locator: "section « Embargo Of Snub-nosed And Other Dog Breeds »"
+      locator: "Live Animals & Pets → opening paragraph"
+    # ARBITRAGE (Codex, 09/09/2026, relayé et tranché par Philippe — mesures/preuves/correctif-arbitrages-2026-09-09) :
+    # « conserver sous conditions, mais remplacer la preuve » : la phrase « contactez Cargo » de la page passager
+    # (citation auditée Claude+Codex du 13/08/2026, « (For cargo acceptance, please contact directly to Cargo
+    # Department) », thaiairways.com …/pets-as-checked-baggage-avih/) est REMPLACÉE par la page THAI Cargo. Aucune
+    # promesse de place : « sous conditions » signifie que le canal existe, jamais qu'un vol précis l'accepte.
 channels:
   - placement: cabin
     icon: 🐾

@@ -71,6 +71,11 @@ const STALE_VERSES = new Set([
 const DECISIONS_POST_MIGRATION = new Set([
   "airline_virgin_australia|cabin",
   "airline_garuda_indonesia|cabin",
+  /* Correctif d'arbitrages (09/09/2026, Codex, tranché par Philippe) : Thai Airways fret passe d'`undocumented` (décision
+     auditée du manifeste, « contactez Cargo ») à `offered` sur la page THAI Cargo. L'observation de migration reste
+     intacte ; la valeur courante est admise ici par identité, et `test-t0b-legacy-unreviewed.mjs` (7 bis) exige que la
+     fiche, l'artefact et le runtime portent la source du correctif, champ par champ. */
+  "airline_thai_airways|cargo",
 ]);
 /* LIGNES DU MANIFESTE RÉACTIVÉES SUR CITATION (08/09/2026, import strict, lots 2 et 3).
  *
@@ -241,7 +246,18 @@ for (const r of rows) {
   if (REACTIVEES_SUR_CITATION.has(k)) {
     /* Une ligne réactivée porte une DÉCISION citée — `offered` ou, depuis le lot 6 (Saudia cabine),
        `not_offered` : un refus cité réactive aussi, jamais sans sa phrase. */
-    if (!((p.availability === "offered" || p.availability === "not_offered") && citee(p))) err(`ligne réactivée SANS sa preuve: ${k} → availability=${p.availability}, citée=${citee(p)}`);
+    /* Correctif d'arbitrages (09/09/2026) : Bangkok Airways fret, réactivé `offered` au lot 8, est ARBITRÉ `case_by_case`
+       (portée intérieure que le modèle ne porte pas — précédent Virgin A-bis) : la preuve reste exigée, la disponibilité
+       admise est celle de l'arbitrage. Nominativement, et pour cette seule ligne. */
+    const dispoAdmise = p.availability === "offered" || p.availability === "not_offered" || (k === "airline_bangkok_airways|cargo" && p.availability === "case_by_case");
+    if (!(dispoAdmise && citee(p))) err(`ligne réactivée SANS sa preuve: ${k} → availability=${p.availability}, citée=${citee(p)}`);
+    continue;
+  }
+  if (k === "airline_thai_airways|cargo") {
+    /* Correctif d'arbitrages (09/09/2026, Codex, tranché par Philippe) : la décision auditée du manifeste (`undocumented`)
+       est SUPERSÉDÉE par `offered` sur la page THAI Cargo. L'observation de migration reste vérifiée telle quelle ; la
+       valeur courante est admise par identité, et la preuve exigée. */
+    if (!(p.availability === "offered" && citee(p))) err(`décision arbitrée SANS sa preuve: ${k} → availability=${p.availability}, citée=${citee(p)}`);
     continue;
   }
   const attendu = attenduPour(r);

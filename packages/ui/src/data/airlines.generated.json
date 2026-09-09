@@ -622,7 +622,19 @@
         }
       },
       "hold": {
-        "availability": "not_offered"
+        "availability": "offered",
+        "source": {
+          "url": "https://www.aerlingus.com/localized/en/modals/baggage-information.html",
+          "source_type": "official_website",
+          "verified_date": "2026-09-09",
+          "review_due": "2026-12-08",
+          "confidence": 4,
+          "reviewer": "Codex — direct reading of official airline page",
+          "history": [],
+          "quote": "Pets must be booked to travel with a pet agent, and they will be carried in the aircraft hold.",
+          "quote_language": "en",
+          "locator": "Baggage Information → General Animals & Pets Rules"
+        }
       },
       "cargo": {
         "review_state": "legacy_unreviewed"
@@ -4413,7 +4425,19 @@
     ],
     "policies": {
       "cabin": {
-        "availability": "not_offered"
+        "availability": "offered",
+        "source": {
+          "url": "https://m.airchina.com.cn/ac/c/invoke/specialService/petCabinAgreement%40pg",
+          "source_type": "official_website",
+          "verified_date": "2026-09-09",
+          "review_due": "2026-12-08",
+          "confidence": 4,
+          "reviewer": "Codex — direct reading of official airline page",
+          "history": [],
+          "quote": "A maximum of 2 pets are permitted per flight, and each passenger may bring no more than 1 pet into the cabin.",
+          "quote_language": "en",
+          "locator": "Agreement for In-Cabin Transportation of Pets → I. Carrier's Regulations on Pet Transportation"
+        }
       },
       "hold": {
         "availability": "offered",
@@ -12376,9 +12400,9 @@
         "availability": "offered"
       },
       "cargo": {
-        "availability": "offered",
+        "availability": "case_by_case",
         "source": {
-          "url": "https://prod.bangkokair.com/eng/cargo-service/pet_carriage",
+          "url": "https://www.bangkokair.com/cargo-service/pet_carriage",
           "source_type": "official_website",
           "verified_date": "2026-09-09",
           "review_due": "2026-12-08",
@@ -12387,7 +12411,13 @@
           "history": [],
           "quote": "Special cargo service as Live animals dog, cat (AVI) is available on Airbus and ATR72 on the following routes:",
           "quote_language": "en",
-          "locator": "Cargo Service → Pet Carriage Service"
+          "locator": "Cargo Service → Pet Carriage Service → Domestic Routes / International Routes"
+        },
+        "conditions": {
+          "en": "Live dogs and cats as special cargo (AVI) on Airbus and ATR72, domestic routes only, except Bangkok–Krabi and Chiang Mai–Krabi; all international stations are not accepted; advance booking, health certificate, kennel, breed and capacity conditions apply.",
+          "fr": "Chiens et chats vivants en fret spécial (AVI) sur Airbus et ATR72, liaisons intérieures uniquement, sauf Bangkok–Krabi et Chiang Mai–Krabi ; toutes les escales internationales sont refusées ; réservation préalable, certificat sanitaire, caisse, race et capacité sous conditions.",
+          "es": "Perros y gatos vivos como carga especial (AVI) en Airbus y ATR72, solo rutas nacionales, excepto Bangkok–Krabi y Chiang Mai–Krabi; todas las escalas internacionales se rechazan; reserva previa, certificado sanitario, jaula, raza y capacidad sujetos a condiciones.",
+          "pt": "Cães e gatos vivos como carga especial (AVI) em Airbus e ATR72, apenas rotas domésticas, exceto Bangkok–Krabi e Chiang Mai–Krabi; todas as escalas internacionais são recusadas; reserva prévia, certificado sanitário, caixa, raça e capacidade sujeitos a condições."
         }
       }
     },
@@ -15790,14 +15820,14 @@
       "hold": {
         "availability": "offered",
         "source": {
-          "url": "https://www.csair.com/hk/en/tourguide/faq/baggage/dongwu.shtml",
+          "url": "https://www.csair.com/sg/en/tourguide/faq/baggage/dongwu.shtml",
           "source_type": "official_website",
           "verified_date": "2026-09-09",
           "review_due": "2026-12-08",
           "confidence": 4,
           "reviewer": "Codex — direct reading of official airline page",
           "history": [],
-          "quote": "you can check it",
+          "quote": "Sorry, a pet can not be taken into cabin. However, you can check it.",
           "quote_language": "en",
           "locator": "Pets → May I take my pet into cabin?"
         }
@@ -25418,16 +25448,16 @@
       "cargo": {
         "availability": "not_offered",
         "source": {
-          "url": "https://www.goindigo.in/information/how-to-book.html?loginPopup=true",
+          "url": "https://www.goindigo.in/cargo/products-guidelines.html",
           "source_type": "official_website",
           "verified_date": "2026-09-09",
           "review_due": "2026-12-08",
           "confidence": 4,
           "reviewer": "Codex — direct reading of official airline page",
           "history": [],
-          "quote": "pets or animals on its aircraft",
+          "quote": "No, IndiGo does not carry livestock",
           "quote_language": "en",
-          "locator": "How to Book → Special Services → Can I carry my pet on board?"
+          "locator": "Product Guidelines → Need help? Check FAQs → Can I transport my pet dog on CarGo?"
         }
       }
     },
@@ -40056,18 +40086,18 @@
         }
       },
       "cargo": {
-        "availability": "undocumented",
+        "availability": "offered",
         "source": {
-          "url": "https://www.thaiairways.com/en-au/content/special-assistance/travel-with-pets/pets-as-checked-baggage-avih/",
+          "url": "https://www.thaicargo.com/en/product-view/1/live-animals---pets",
           "source_type": "official_website",
-          "verified_date": "2026-08-13",
-          "review_due": "2026-11-11",
+          "verified_date": "2026-09-09",
+          "review_due": "2026-12-08",
           "confidence": 4,
-          "reviewer": "Claude+Codex (lecture intégrale 13/08/2026)",
+          "reviewer": "Codex — direct reading of official airline page",
           "history": [],
-          "quote": "(For cargo acceptance, please contact directly to Cargo Department)",
+          "quote": "The acceptance of live - animal consignments is subject to the conditions described in the IATA's Live Animals Regulations and to TG's Regulations",
           "quote_language": "en",
-          "locator": "section « Embargo Of Snub-nosed And Other Dog Breeds »"
+          "locator": "Live Animals & Pets → opening paragraph"
         }
       }
     },
