@@ -3474,6 +3474,35 @@ Le reste de la contre-revue est favorable : XL à 54 px (4 × 13,5), conseillée
 gras, classement sur les trois conseillées seules, un axe qui dépasse → gabarit suivant, « XXL+ » et
 « très grand format » au-delà, enveloppes jamais présentées comme un produit.
 
+### Post-scriptum — feu vert final de Codex, fusion et cinquième bascule du 09/09
+
+**Rétractation de Codex, cause nommée par lui :** « Mon P0 était erroné. J'ai comparé les fichiers de
+`FETCH_HEAD` avec le `package.json` d'un checkout local plus ancien. Le test était bien câblé sous la
+forme `tsx test-gabarit-indicatif.mjs`. » Vérification indépendante de sa part : `test:unit` contient
+le témoin ; `ci.yml` exécute `test:unit` ; « Vérifications », « Site entier », « Contre-épreuves
+complètes » en succès sur `946da0a`. Feu vert technique final sur cette tête ; le cas Golden → XL et
+l'affichage L / l / H validés.
+
+**Fusion :** ordre de Philippe (« FEU VERT pour FUSION », seule PR ouverte), `7dab627`.
+
+**Déploiement par Philippe, sortie transmise :**
+
+| | |
+|---|---|
+| Pages | `npm run release` : « build indexable et complet — déploiement autorisé », 2 536 URL (102 / 140 / 172 / 269), 6 fichiers nouveaux, https://333cde18.mydogcanfly-v2-preview.pages.dev |
+| Worker | `Current Version ID` `d35b4df3-9d44-4d54-97ab-3fd25cd241f4`, démarrage 253 ms |
+| santé, première lecture | `sha fc4c5c9…`, `worker_version_id f526fd38…` — l'ANCIENNE version, servie dans la seconde qui a suivi le déploiement (propagation) ; non retenue comme preuve |
+| santé, seconde lecture | `git rev-parse HEAD` = `7dab62729960d879cc42b6f856402b309772a109` ; `/v1/health` : `ok`, `v1`, `sha 7dab627…`, `worker_version_id d35b4df3-9d44-4d54-97ab-3fd25cd241f4` — concordante |
+
+Erreur de méthode nommée : le `curl` de santé enchaîné dans la même seconde que `wrangler deploy` peut
+lire l'ancienne version ; la preuve de bascule est la lecture qui porte le SHA ET l'identifiant de
+version annoncé par le déploiement. Les quatre bascules précédentes ont eu la chance d'une lecture
+déjà propagée ; la règle vaut désormais pour toutes.
+
+Relecture en ligne à faire par Codex : Golden Retriever → XL dominant, conseillées 88 × 44 × 70 en
+gras au-dessus du minimum 85 × 41 × 67, titre du minimum nommant la méthode, avertissement fabricants
+et compagnie ; un très grand chien → « XXL+ » et « très grand format ».
+
 ## Annexe 36 — Correctif d'actualisation : le résultat suit le changement d'unité (09/09/2026, classement A)
 
 Relecture en ligne de Codex sur `main` `7dab627` (cinquième bascule). Trois contrôles conformes : Golden
