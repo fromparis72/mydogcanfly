@@ -74,7 +74,7 @@ function chargerPage(dir) {
 }
 
 /** Un scénario : deux mesures, un poids, une compagnie, une case brachycéphale. */
-function scenario(page, { a, d, poids, airId = "", brachy = false, race = "" }) {
+function scenario(page, { a, d, poids, airId = "", brachy = false, race = "", puisUnite = null }) {
   const dom = new JSDOM(`<!doctype html><html><body>${page.section}</body></html>`, {
     url: "https://mydogcanfly.com/tools/crate/", runScripts: "outside-only",
   });
@@ -94,6 +94,17 @@ function scenario(page, { a, d, poids, airId = "", brachy = false, race = "" }) 
 
   const out = doc.getElementById("crx-result");
   if (!out || out.hidden) return { erreur: "aucun résultat rendu" };
+  const releve = relever(doc, out);
+  /* CHANGEMENT D'UNITÉ APRÈS CALCUL (Codex, relecture en ligne du 09/09/2026) : un clic sur le bouton d'unité,
+     et AUCUN nouveau submit — le résultat doit suivre de lui-même. Le relevé d'après est retourné à part. */
+  if (puisUnite) {
+    doc.getElementById(`u-${puisUnite}`).dispatchEvent(new dom.window.MouseEvent("click", { bubbles: true }));
+    releve.apresUnite = relever(doc, out);
+  }
+  return releve;
+}
+
+function relever(doc, out) {
   const nombres = (s) => [...String(s).matchAll(/(\d+(?:[.,]\d+)?)/g)].map((m) => parseFloat(m[1].replace(",", ".")));
   /* MICRO-LOT GABARIT (09/09/2026) : la carte porte désormais DEUX blocs de dimensions — conseillées (marge
      MyDogCanFly) puis minimales (méthode publiée). Le minimum se lit dans son bloc nommé, pas « le premier ». */
@@ -118,7 +129,7 @@ function scenario(page, { a, d, poids, airId = "", brachy = false, race = "" }) 
   /* CE QUE LE `<select>` PORTE VRAIMENT APRÈS COUP. Poser `value = id` sur un `<select>` dépourvu
      de l'option correspondante laisse la valeur VIDE, sans erreur : le scénario porte alors sur
      « toutes compagnies » en silence. On le remonte pour que les contrôles puissent l'exiger. */
-  return { minimum, conseillees, gabarit, gabaritAbsent, auDela, titreMin, texteCarte: out.querySelector(".crx-card--gabarit")?.textContent ?? "", avertissement, lignes, airChoisie: doc.getElementById("crx-airline")?.value ?? null };
+  return { minimum, conseillees, textesRec: [...out.querySelectorAll(".crx-dims--rec span b")].map((b) => b.textContent.trim()), gabarit, gabaritAbsent, auDela, titreMin, texteCarte: out.querySelector(".crx-card--gabarit")?.textContent ?? "", avertissement, lignes, airChoisie: doc.getElementById("crx-airline")?.value ?? null };
 }
 
 /* ---- Le référentiel doit être PEUPLÉ : sans compagnies, tout ce qui suit passerait à vide ---- */
@@ -309,6 +320,23 @@ if (Object.values(parLangue).every((r) => !r.erreur)) {
   for (const [lang, r] of Object.entries(geant)) {
     check(`${lang} : au-delà de XXL → aucun gabarit, marque « au-delà » et phrase « très grand format » (conseillées ${JSON.stringify(r.conseillees)})`,
       !r.erreur && r.gabarit === null && !r.gabaritAbsent && typeof r.auDela === "string" && /XXL/.test(r.auDela) && gabaritAttendu(r.conseillees) === null, r.erreur ?? JSON.stringify(r.auDela));
+  }
+}
+
+/* CHANGEMENT D'UNITÉ APRÈS CALCUL — le défaut trouvé par Codex en production (7dab627) : les champs passaient
+   en pouces, le résultat restait en centimètres jusqu'à un second « Calculer ». Un chien de la taille du Golden
+   (A 72, D 67, 30 kg) est calculé en cm, puis « in » est cliqué, sans nouveau submit. */
+{
+  const bascule = Object.fromEntries(LOCALES.map(([l]) => [l, scenario(pagesT[l], { a: 72, d: 67, poids: 30, airId: SYNTH_CABINE, puisUnite: "in" })]));
+  for (const [lang, r] of Object.entries(bascule)) {
+    const ap = r.apresUnite;
+    check(`${lang} : avant le clic, résultat en cm et gabarit XL (conseillées ${JSON.stringify(r.conseillees)})`,
+      !r.erreur && r.gabarit === "XL" && r.textesRec.length === 3 && r.textesRec.every((t) => / cm$/.test(t)), r.erreur ?? JSON.stringify(r.textesRec));
+    check(`${lang} : après le clic sur « in », SANS second « Calculer », les trois conseillées sont en pouces`,
+      !!ap && ap.textesRec.length === 3 && ap.textesRec.every((t) => / in$/.test(t)), JSON.stringify(ap?.textesRec));
+    check(`${lang} : …et valent les centimètres d'avant convertis (÷ 2,54, arrondi au demi-pouce supérieur, ± 0,5)`,
+      !!ap && ap.conseillees.every((v, i) => Math.abs(v - Math.ceil((r.conseillees[i] / 2.54) * 2) / 2) <= 0.5), JSON.stringify([r.conseillees, ap?.conseillees]));
+    check(`${lang} : …et le gabarit reste XL`, !!ap && ap.gabarit === "XL", JSON.stringify(ap?.gabarit));
   }
 }
 
