@@ -807,9 +807,10 @@ console.log(`\n=== 5. Les ${CIBLE.length} canaux contradictoires × 4 langues : 
   /* 274 → 271 (09/09/2026, lot 7) : Aircalin cabine et soute, La Compagnie soute — l'éditorial disait déjà
    * « non », la citation le prouve. Toujours 101 fiches. */
   /* 271 → 265 (09/09/2026, lot 8) : China Southern cabine, Copa soute, IndiGo cabine, soute et fret, Thai
-   * Airways cabine — l'éditorial disait déjà « non », la citation le prouve. Toujours 101 fiches. */
-  check("265 canaux contradictoires sur 101 fiches, relus des fiches et du contrat runtime",
-    CONTRADICTOIRES.length === 265 && new Set(CONTRADICTOIRES.map((c) => c.slug)).size === 101,
+   * Airways cabine — l'éditorial disait déjà « non », la citation le prouve. 101 → 100 fiches : IndiGo
+   * SORT du registre, ses trois canaux étant désormais prouvés (comme Ryanair au lot V3). */
+  check("265 canaux contradictoires sur 100 fiches, relus des fiches et du contrat runtime",
+    CONTRADICTOIRES.length === 265 && new Set(CONTRADICTOIRES.map((c) => c.slug)).size === 100,
     `${CONTRADICTOIRES.length} canaux · ${new Set(CONTRADICTOIRES.map((c) => c.slug)).size} fiches`);
 
   /* LA LECTURE SE FAIT PAR LOTS, DANS DES PROCESSUS COURTS (CI du 16/08/2026, run 31 sur main).

@@ -186,8 +186,9 @@ check("état réel figé : 27 compagnies publient une limite cabine citée, chac
 check("le référentiel embarqué est peuplé (sinon rien de ce qui suit ne prouverait quoi que ce soit)",
   Object.keys(AIR).length >= 50 && Object.keys(pages.en.L.breeds ?? {}).length >= 100,
   `${Object.keys(AIR).length} compagnies · ${Object.keys(pages.en.L.breeds ?? {}).length} races`);
-check("les témoins « aucun animal » sont le synthétique ET Ryanair (réel, cité) — les deux sont joués",
-  sansAnimaux.length === 2 && sansAnimaux.includes(SYNTH_SANS_ANIMAUX) && sansAnimaux.includes("airline_ryanair"), sansAnimaux.join(", "));
+/* MOUVEMENT NOMMÉ (09/09/2026, import strict lot 8) : IndiGo rejoint les témoins réels — trois refus cités. */
+check("les témoins « aucun animal » sont le synthétique, Ryanair ET IndiGo (réels, cités) — les trois sont joués",
+  sansAnimaux.length === 3 && sansAnimaux.includes(SYNTH_SANS_ANIMAUX) && sansAnimaux.includes("airline_ryanair") && sansAnimaux.includes("airline_indigo"), sansAnimaux.join(", "));
 
 /* ---- 1. « Aucun animal » prend le dessus, sans ligne de soute ambiguë ------------------------- */
 for (const id of sansAnimaux) {

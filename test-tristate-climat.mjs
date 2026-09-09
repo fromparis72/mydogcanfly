@@ -302,11 +302,23 @@ console.log("\n=== 5. Dominance : denied > confirmation_required — interaction
      Iberia), seule la règle brachycéphale non citée les retient. « Toutes de provenance » n'est
      plus la propriété : la propriété est « chacune dit laquelle des deux incertitudes la porte » —
      elle est désormais testée telle quelle, et le compte reste figé. */
+  /* MOUVEMENT NOMMÉ (09/09/2026, import strict lots 7 et 8 — 45 citations de plus, 158 en tout) : 50 → 47
+     confirmations, 44 → 35 de provenance (Air Algérie, KM Malta, SKY express et Tunisair, cabines et soutes
+     citées sur ce trajet), 38 de race inchangé — et, pour la première fois, UNE confirmation qui n'est
+     ni de provenance ni de race : Air Algérie cabine, CITÉE (« only small pets under 6 kg are accepted on
+     board »), où une RÈGLE héritée non citée (`rule_air_algerie_cabin_weight`) garde le carlin « à
+     confirmer ». Ce n'est pas une confirmation inexpliquée : c'est la troisième incertitude que le moteur
+     sait nommer depuis le 05/09 (une règle non citée ne décide plus, elle se nomme). Le témoin la compte
+     désormais à part, et la propriété devient « chacune dit laquelle des TROIS incertitudes la porte ». */
+  const parRegleSeule = confirmations.filter((p) =>
+    !(p.confirmation_causes ?? []).some((c) => c.code === "breed_policy_unreviewed" || c.code === "legacy_unreviewed" || c.code === "official_source_unquoted")
+      && (p.confirmation_causes ?? []).some((c) => (c.code === "rule_unverified" || c.code === "rule_official_unquoted") && c.rule_id));
   const inexpliquees = confirmations.filter((p) =>
-    !(p.confirmation_causes ?? []).some((c) => c.code === "breed_policy_unreviewed" || c.code === "legacy_unreviewed" || c.code === "official_source_unquoted"));
+    !(p.confirmation_causes ?? []).some((c) => c.code === "breed_policy_unreviewed" || c.code === "legacy_unreviewed" || c.code === "official_source_unquoted"
+      || ((c.code === "rule_unverified" || c.code === "rule_official_unquoted") && c.rule_id)));
   /* MOUVEMENT NOMMÉ (09/09/2026, import strict lot 4 — 22 citations de plus, 74 en tout) : 51 → 50 confirmations, 46 → 44 de provenance (deux canaux du trajet cités) ; 38 de race, inchangé. */
-  check("carlin : 50 confirmations — 44 de provenance, 38 de race, aucune inexpliquée (chacune porte l'une des deux causes)",
-    confirmations.length === 50 && provenance === 44 && race === 38 && inexpliquees.length === 0,
+  check("carlin : 47 confirmations — 35 de provenance, 38 de race, 1 par règle non citée seule (Air Algérie cabine), aucune inexpliquée (chacune porte l'une des trois causes)",
+    confirmations.length === 47 && provenance === 35 && race === 38 && parRegleSeule.length === 1 && parRegleSeule[0]?.placement === "cabin" && inexpliquees.length === 0,
     `${confirmations.length} confirmation(s), dont ${race} de race et ${provenance} de provenance, ${inexpliquees.length} inexpliquée(s), sur ${tousLesCanaux.length} canaux`);
 }
 

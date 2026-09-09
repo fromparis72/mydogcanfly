@@ -3023,3 +3023,29 @@ carries (28 536, deux pertes), quatrième état (124), registre (158/58/87/3, ca
 matrice (cinq réactivations), entités (265, témoin El Al), caisses (27, deux refus totaux),
 sentinelle Air China cabine. Nouveau harnais `test-preuves-lot-8.mjs` (121 contrôles), dans test:unit.
 
+### Post-scriptum — le cas fondateur n° 1 (La Compagnie, 32 kg) entre dans son quatrième état
+
+`test-reference-cases.mjs` a rougi sur la suite complète (les suites unitaires rejouées
+individuellement ne l'incluaient pas — méthode nommée : la suite complète est le seul juge). Le
+cas affirmait depuis le 05/09 que les trois canaux de La Compagnie sont « à confirmer » pour un
+chien de 32 kg, parce qu'aucune fermeture n'était prouvée. Le lot 7 cite deux phrases de la page
+officielle : la cabine refuse au seuil cité (8 kg sac compris), la soute est refusée sur citation
+(« le transport d'animaux en soute n'est pas proposé »). Le fret, sans politique dans la fiche,
+reste « à confirmer » (`policy_absent`). Le cas est réécrit, pas abaissé : la propriété gardée est
+« aucun refus sans phrase citée, et chaque incertitude nomme ce qui la produit ». La boucle du
+tour 6 se referme : ce que le site affirmait sans preuve, il le prouve pour deux canaux sur trois.
+
+### Post-scriptum — ce que le dist et la suite complète ont ajouté (lots 7 et 8)
+
+- **Caisses** : 27 limites cabine citées (mesuré, conforme) ; les témoins « aucun animal » passent de
+  deux à trois (synthétique, Ryanair, IndiGo), tous joués.
+- **Entités** : 265 canaux contradictoires sur **100** fiches — IndiGo sort du registre, ses trois
+  canaux étant prouvés, comme Ryanair au lot V3. Témoin « carte sans canal sourcé » El Al conforme.
+- **Climat tri-état, carlin CDG→IST** : 50 → 47 confirmations, 44 → 35 de provenance (Air Algérie,
+  KM Malta, SKY express, Tunisair cités sur ce trajet), 38 de race inchangé — et **une confirmation
+  d'un troisième genre** : Air Algérie cabine, citée, où la règle héritée non citée
+  `rule_air_algerie_cabin_weight` garde le carlin « à confirmer ». Le témoin croyait qu'une
+  confirmation portait l'une de DEUX causes ; le moteur en nomme trois depuis le 05/09 (provenance,
+  race, règle non citée). Le témoin la compte à part ; la propriété est reformulée, pas abaissée.
+- Accueil, affirmations retirées, étape 3 DOM, dette Astro (165) : verts sur le dist.
+

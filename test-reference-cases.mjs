@@ -94,11 +94,20 @@ console.log("— Cas 1 : La Compagnie, chien de 32 kg (EWR → ORY) —");
     const st = Object.fromEntries((lc.placement_decisions ?? []).map((d) => [d.placement, d]));
     check("aucun canal n'est « allowed »", ["cabin","hold","cargo"].every((k) => st[k]?.status !== "allowed"),
       JSON.stringify(Object.fromEntries(["cabin","hold","cargo"].map((k) => [k, st[k]?.status]))));
-    check("la soute passe « à confirmer » — sa fermeture n'était pas prouvée",
-      st.hold?.status === "confirmation_required", JSON.stringify(st.hold));
-    check("et elle dit SA cause, sans l'attribuer à la compagnie",
-      (st.hold?.confirmation_causes ?? []).some((c) => c.code === "legacy_unreviewed"
-        && c.policy_ref === "airline_la_compagnie#hold"), JSON.stringify(st.hold?.confirmation_causes));
+    /* QUATRIÈME ÉTAT DU CAS FONDATEUR (09/09/2026, import strict lot 7). La boucle se referme :
+     * Codex a lu la page officielle de La Compagnie et en a cité deux phrases — « vos compagnons,
+     * jusqu'à 8kg, sac compris » (cabine, seuil ÉCRIT chien + contenant) et « Seul le transport en
+     * cabine est autorisé, le transport d'animaux en soute n'est pas proposé. » (soute). Ce que le
+     * cas affirmait au tour 6 sans preuve, il le PROUVE aujourd'hui pour deux canaux : la cabine
+     * refuse au seuil cité (32 kg de chien seul dépassent 8 kg sac compris), la soute refuse sur
+     * citation. Le fret, lui, n'a toujours AUCUNE politique dans la fiche : il reste « à
+     * confirmer », cause `policy_absent`. Le cas n'est ni supprimé ni abaissé : les deux témoins
+     * précédents (« à confirmer », cause `legacy_unreviewed`) sont remplacés par leur contraire
+     * prouvé, et le troisième canal garde exactement l'exigence d'avant. */
+    check("la soute est REFUSÉE sur citation — sa fermeture est désormais prouvée (lot 7)",
+      st.hold?.status === "denied" && st.hold?.source?.url === "https://www.lacompagnie.com/fr/plan/special-services", JSON.stringify(st.hold));
+    check("et la cabine est REFUSÉE au seuil cité — 8 kg sac compris, le chien seul en pèse 32",
+      st.cabin?.status === "denied" && st.cabin?.source?.url === "https://www.lacompagnie.com/fr/plan/special-services", JSON.stringify(st.cabin));
     /* CE QUE J'AFFIRMAIS ICI, ET QUI ÉTAIT LE SYMPTÔME (corrigé le 05/09/2026).
      *
      * J'avais écrit « cabine et fret restent des refus fermes — ils viennent de RÈGLES, hors
@@ -111,13 +120,15 @@ console.log("— Cas 1 : La Compagnie, chien de 32 kg (EWR → ORY) —");
      * pour la cabine, notre donnée non revérifiée pour la soute, l'absence de politique pour le
      * fret. Le cas fondateur reste vrai sur l'essentiel : un chien de 32 kg n'est accepté nulle
      * part chez La Compagnie. Ce qui a changé, c'est qu'on ne PRÉTEND plus le prouver. */
-    check("aucun canal n'est refusé sur une règle non citée — les trois sont à confirmer",
-      ["cabin", "hold", "cargo"].every((k) => st[k]?.status === "confirmation_required"),
+    /* MOUVEMENT NOMMÉ (09/09/2026, lot 7) : « les trois sont à confirmer » n'est plus vrai — deux sont
+     * refusés SUR CITATION, aucun sur une règle non citée. La propriété gardée est la même : aucun
+     * refus sans phrase, et chaque incertitude nomme ce qui la produit. */
+    check("aucun canal n'est refusé sans phrase citée — cabine et soute refusées sur citation, fret à confirmer",
+      st.cabin?.status === "denied" && st.hold?.status === "denied" && st.cargo?.status === "confirmation_required",
       `cabin=${st.cabin?.status} hold=${st.hold?.status} cargo=${st.cargo?.status}`);
-    check("…et chaque incertitude nomme ce qui la produit",
-      (st.cabin?.confirmation_causes ?? []).some((c) => c.code === "rule_unverified" && c.rule_id)
-        && (st.cargo?.confirmation_causes ?? []).some((c) => c.code === "policy_absent"),
-      JSON.stringify({ cabin: st.cabin?.confirmation_causes, cargo: st.cargo?.confirmation_causes }));
+    check("…et la seule incertitude restante nomme ce qui la produit (fret : aucune politique)",
+      (st.cargo?.confirmation_causes ?? []).some((c) => c.code === "policy_absent" && c.policy_ref === "airline_la_compagnie#cargo"),
+      JSON.stringify({ cargo: st.cargo?.confirmation_causes }));
   }
 }
 
