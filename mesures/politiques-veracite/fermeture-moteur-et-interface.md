@@ -3446,3 +3446,30 @@ légitimes qui doivent rester, la méthode nommée dans le titre ET la mention d
 dans la note (« à partir de tes mesures », dans les quatre langues) ; l'ancien n'en tenait qu'une.
 
 Contre-épreuves complètes sur l'arbre propre : voir le commit suivant.
+
+### Contre-revue de Codex sur #45 (09/09/2026) — un P0 réfuté par mesure, une déviation close
+
+**P0 avancé :** « `test-gabarit-indicatif.mjs` est orphelin : appelé ni par `test:unit`, ni par
+`ci.yml`, ni par le catalogue ; la CI peut devenir verte sans jamais l'exécuter. Correction : ajouter
+`node --import tsx test-gabarit-indicatif.mjs` à `test:unit`. »
+
+**Mesuré, avant toute correction :**
+
+| où | résultat |
+|---|---|
+| `package.json`, `test:unit`, têtes `780887e`, `fc4c5c9` (`main`), `562f5e1` (#45) | le témoin est PRÉSENT : `… && tsx test-preuves-reconciliation.mjs && tsx test-gabarit-indicatif.mjs`, 47 segments — sous la forme `tsx …`, comme les autres témoins TypeScript de la chaîne, non `node --import tsx …` (ce qui explique sans doute un grep qui ne trouve rien) |
+| `ci.yml` | l'étape « Tests unitaires » exécute `npm run test:unit` (ligne 136) |
+| journal CI de #44, job « Vérifications », run 34368271371 | à 15:12:14 UTC, après « ALL CHECKS PASSED (18) » du harnais de réconciliation : « === 1. La table réelle … », « === 2. Table SYNTHÉTIQUE … », « === 3. Ce qui ne revient pas … », puis « ALL CHECKS PASSED (15) » |
+
+Conclusion : le témoin n'est pas orphelin ; la CI l'exécute déjà, et l'a exécuté sur #44. Le câblage
+demandé existe. **Déviation argumentée, nommée pour arbitrage :** je n'ajoute pas une seconde
+invocation (elle doublerait un témoin déjà joué) et je ne pousse pas de commit vide ; la nouvelle
+tête que Codex demande est celle-ci, qui consigne la mesure. Le journal du run de #45 montrera « ALL
+CHECKS PASSED (40) » au même endroit ; c'est là que Codex peut le relire.
+
+**Déviation des trois cases L / l / H :** validée par Codex (« plus lisibles, suivent le passage
+cm / in ; la ligne compacte n'est pas nécessaire »). Close.
+
+Le reste de la contre-revue est favorable : XL à 54 px (4 × 13,5), conseillées et minimales en
+gras, classement sur les trois conseillées seules, un axe qui dépasse → gabarit suivant, « XXL+ » et
+« très grand format » au-delà, enveloppes jamais présentées comme un produit.
