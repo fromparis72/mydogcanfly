@@ -3194,3 +3194,58 @@ avec l'arbitrage en commentaire.
   si la ligne du manifeste porte encore la décision auditée d'origine ; un manifeste falsifié rougit.
 - Caisses 56/56 (30 limites, 3 refus totaux), accueil, affirmations retirées, dette Astro 165 : verts.
 
+## Annexe 34 — Micro-lot isolé « gabarit indicatif de cage » (09/09/2026, classement A/B)
+
+Proposition de Codex, transmise et confirmée par Philippe (« transmets-lui le bloc tel quel »). Lot
+séparé des politiques compagnies, branche `lot/gabarit-indicatif-cage` partie de `main` (`05f0f3d`).
+
+### Trois informations distinctes dans le calculateur
+
+| | source | présentation |
+|---|---|---|
+| `dimensions_minimales` | méthode de dimensionnement publiée, depuis les mesures RÉELLES saisies (inchangé) | gras, secondaires (bloc en pointillés, chiffres en gris) |
+| `dimensions_conseillees` | minimales + marge MyDogCanFly de **3 cm** sur chaque dimension — la borne haute du conseil déjà affiché (« 2–3 cm »), NOTRE recommandation, dite comme telle | gras, dominantes parmi les dimensions |
+| `gabarit_indicatif` | S, M, L, XL, XXL depuis les conseillées, par la table MyDogCanFly indicative | ≈ 4 × le texte courant (54 px sur 13,5), élément dominant de la carte |
+
+Avertissement visible en bas de carte, quatre langues : « Les appellations varient selon les
+fabricants. Vérifiez toujours les dimensions intérieures du modèle choisi. »
+
+### La table n'est pas inventée
+
+`packages/ui/src/lib/gabarit-indicatif.ts` porte le contrat (`nature: indicatif`, `auteur:
+MyDogCanFly`, `version`, `classes[]` avec maxima intérieurs par gabarit) et une table **vide**,
+version « 0 — table attendue (Codex prépare la correspondance et ses limites) ». Tant qu'elle est
+vide, `gabaritPour` rend `null` et la carte dit « la table de correspondance MyDogCanFly n'est pas
+encore publiée — utilisez les dimensions ci-dessous ». Remplir la table sera un mouvement nommé,
+avec sa version. La sélection prend la plus petite classe, dans l'ordre S → XXL, dont les maxima
+contiennent les conseillées, limite incluse ; au-delà de XXL, rien — jamais un gabarit par défaut ;
+une classe mal formée invalide la table entière.
+
+### Ce qui ne revient pas, vérifié
+
+Aucun couple 100–700 / taille (garde `test-caisses-non-sourcees.mjs` inchangée, plus un témoin
+dans `test-gabarit-indicatif.mjs`) ; aucune « cage approuvée/homologuée » ; aucune estimation depuis
+la race seule (le module ne lit pas la race) ; aucun modèle commercial. Les phrases nouvelles
+n'emploient pas le mot « IATA » (« méthode de dimensionnement publiée »), pour ne pas toucher au
+registre des jetons de l'étape 3.
+
+### Vérification proportionnée (A/B)
+
+`test-gabarit-indicatif.mjs` (contrat, table vide, table synthétique aux limites, ce qui ne
+revient pas), harnais des caisses relevant les deux blocs et le gabarit (conseillées = minimales + 3
+dans les quatre langues, aucun gabarit tant que la table est vide, avertissement visible), table
+portugaise des phrases en ligne complétée. Un seul build complet à la fin du lot.
+
+
+### Erreurs nommées pendant le lot
+
+- Le témoin « aucun couple 100–700 / taille » rougissait sur l'en-tête de commentaire du
+  composant, qui NOMME l'ancien couple « 500 / XL » comme perte (annexe du 05/09). Le témoin mesure
+  désormais le code et les phrases livrées, commentaires retirés, et s'auto-contrôle sur
+  « 500 / XL » et « XL (500) » pour prouver qu'il mord encore. L'erreur nommée en commentaire
+  n'est pas effacée.
+- L'inventaire de l'étape 3 (`6ter`, contrat « zéro affirmation publique dans les surfaces
+  applicatives ») a relevé le mot « homologuée » dans le commentaire d'en-tête du module, écrit
+  pour dire ce qui ne revient pas. Même trajet que la ligne de `FlightFinder.astro` du 30/08 :
+  le commentaire est reformulé sans le mot, le contrat reste à zéro, aucune exception de
+  classement n'est ajoutée.

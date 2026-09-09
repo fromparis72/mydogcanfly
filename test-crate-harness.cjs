@@ -95,7 +95,13 @@ function scenario(page, { a, d, poids, airId = "", brachy = false, race = "" }) 
   const out = doc.getElementById("crx-result");
   if (!out || out.hidden) return { erreur: "aucun résultat rendu" };
   const nombres = (s) => [...String(s).matchAll(/(\d+(?:[.,]\d+)?)/g)].map((m) => parseFloat(m[1].replace(",", ".")));
-  const minimum = [...out.querySelectorAll(".crx-dims span b")].map((b) => nombres(b.textContent)[0]);
+  /* MICRO-LOT GABARIT (09/09/2026) : la carte porte désormais DEUX blocs de dimensions — conseillées (marge
+     MyDogCanFly) puis minimales (méthode publiée). Le minimum se lit dans son bloc nommé, pas « le premier ». */
+  const minimum = [...out.querySelectorAll(".crx-dims--min span b")].map((b) => nombres(b.textContent)[0]);
+  const conseillees = [...out.querySelectorAll(".crx-dims--rec span b")].map((b) => nombres(b.textContent)[0]);
+  const gabarit = out.querySelector(".crx-gabarit__code")?.getAttribute("data-gabarit") ?? null;
+  const gabaritAbsent = !!out.querySelector(".crx-gabarit__absent");
+  const avertissement = out.querySelector(".crx-warn")?.textContent ?? "";
   /* LA « TAILLE STANDARD » N'EST PLUS RENDUE (vérifié : 0 occurrence de `crx-size__code` dans le
      dist, seules deux règles CSS orphelines subsistent dans la source). Les relevés `codeTaille`
      et `dimsTaille` valaient donc `null` partout, et les deux contrôles qui les lisaient ne
@@ -110,7 +116,7 @@ function scenario(page, { a, d, poids, airId = "", brachy = false, race = "" }) 
   /* CE QUE LE `<select>` PORTE VRAIMENT APRÈS COUP. Poser `value = id` sur un `<select>` dépourvu
      de l'option correspondante laisse la valeur VIDE, sans erreur : le scénario porte alors sur
      « toutes compagnies » en silence. On le remonte pour que les contrôles puissent l'exiger. */
-  return { minimum, lignes, airChoisie: doc.getElementById("crx-airline")?.value ?? null };
+  return { minimum, conseillees, gabarit, gabaritAbsent, avertissement, lignes, airChoisie: doc.getElementById("crx-airline")?.value ?? null };
 }
 
 /* ---- Le référentiel doit être PEUPLÉ : sans compagnies, tout ce qui suit passerait à vide ---- */
@@ -275,6 +281,14 @@ if (Object.values(parLangue).every((r) => !r.erreur)) {
     Object.entries(parLangue).map(([l, r]) => `${l}: ${r.lignes.map((x) => x.genre).join(",")}`).join(" | "));
   const minima = [...new Set(Object.values(parLangue).map((r) => JSON.stringify(r.minimum)))];
   check("le minimum calculé est le même dans les quatre langues", minima.length === 1, minima.join(" | "));
+  /* MICRO-LOT GABARIT (09/09/2026) — trois informations distinctes, vérifiées dans les quatre langues. */
+  for (const [lang, r] of Object.entries(parLangue)) {
+    check(`${lang} : dimensions conseillées = minimales + 3 cm sur chaque dimension (marge MyDogCanFly)`,
+      r.conseillees.length === 3 && r.conseillees.every((v, i) => Math.abs(v - (r.minimum[i] + 3)) < 0.51), `${JSON.stringify(r.minimum)} → ${JSON.stringify(r.conseillees)}`);
+    check(`${lang} : aucun gabarit affiché tant que la table MyDogCanFly est VIDE — la carte le dit, sans inventer de seuil`,
+      r.gabarit === null && r.gabaritAbsent);
+    check(`${lang} : l'avertissement « les appellations varient selon les fabricants… » est visible`, r.avertissement.length > 40 && !/IATA|100|700/.test(r.avertissement), r.avertissement);
+  }
 }
 
 console.log(`\n  [caisse] ${pass} contrôles tenus, ${fail} en échec`);
