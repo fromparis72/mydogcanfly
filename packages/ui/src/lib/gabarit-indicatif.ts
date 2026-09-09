@@ -9,9 +9,13 @@
  *   3. `gabarit_indicatif`     — S, M, L, XL ou XXL, repère COMMERCIAL non normalisé, dérivé des dimensions
  *      conseillées par une table MyDogCanFly explicitement indicative.
  *
- * LA TABLE N'EST PAS INVENTÉE ICI. Codex prépare la correspondance et ses limites ; tant qu'elle n'est pas
- * livrée, `classes` est VIDE, `gabaritPour` rend `null`, et l'interface n'affiche aucun gabarit — seulement
- * les dimensions. Aucun seuil silencieux : la version le dit.
+ * LA TABLE N'EST PAS INVENTÉE ICI. Livrée par Codex le 09/09/2026 (« Gabarit indicatif MyDogCanFly »),
+ * transmise et confirmée par Philippe, elle est une classification INTERNE, explicitement nommée : un repère
+ * de recherche, pas la description d'un produit réellement disponible. Le classement se fait sur les dimensions
+ * CONSEILLÉES (avec la marge MyDogCanFly), jamais sur la race ni sur le poids ; les trois dimensions doivent
+ * entrer dans l'enveloppe, et si UNE seule la dépasse, on passe au gabarit suivant. Au-delà de XXL : « très
+ * grand format / solution à rechercher », jamais un gabarit par défaut. Version 0 (table vide, micro-lot du
+ * même jour) → version 1 : mouvement nommé, avec ses témoins aux frontières.
  *
  * CE QUI NE REVIENT PAS : les codes 100–700 (nomenclature de fabricant, retirés le 05/09/2026), toute
  * prétention qu'une cage satisferait une norme (le motif de l'inventaire interdit même les mots dans les
@@ -39,13 +43,20 @@ export interface TableGabaritIndicatif {
  *  Elle reprend la borne haute du conseil déjà affiché par le calculateur (« 2–3 cm de marge de confort »). */
 export const MARGE_CONSEILLEE_CM = 3;
 
-/** LA TABLE, VIDE TANT QUE CODEX NE L'A PAS LIVRÉE. Remplir `classes` est un mouvement nommé, avec sa version. */
+/** LA TABLE « GABARIT INDICATIF MYDOGCANFLY » — version 1, livrée par Codex le 09/09/2026 (version 0 : vide).
+ *  Enveloppe intérieure conseillée MAXIMALE par gabarit (L × l × H, cm). Un repère de recherche, pas un produit. */
 export const TABLE_GABARIT_INDICATIF: TableGabaritIndicatif = {
   nature: "indicatif",
   auteur: "MyDogCanFly",
-  version: "0 — table attendue (Codex prépare la correspondance et ses limites, 09/09/2026)",
-  note: "Repère commercial non normalisé. Les appellations varient selon les fabricants : vérifier toujours les dimensions intérieures du modèle choisi.",
-  classes: [],
+  version: "1 — table « Gabarit indicatif MyDogCanFly » livrée par Codex, confirmée par Philippe (09/09/2026)",
+  note: "Repère de recherche non normalisé, pas la description d'un produit disponible. Les appellations et dimensions varient selon les fabricants : vérifier les dimensions intérieures et faire confirmer le modèle par la compagnie.",
+  classes: [
+    { code: "S",   max_l_cm: 60,  max_w_cm: 40, max_h_cm: 45 },
+    { code: "M",   max_l_cm: 75,  max_w_cm: 50, max_h_cm: 55 },
+    { code: "L",   max_l_cm: 90,  max_w_cm: 60, max_h_cm: 65 },
+    { code: "XL",  max_l_cm: 105, max_w_cm: 70, max_h_cm: 75 },
+    { code: "XXL", max_l_cm: 120, max_w_cm: 80, max_h_cm: 90 },
+  ],
 };
 
 /** Les dimensions conseillées : les minimales calculées, plus la marge MyDogCanFly sur chaque dimension. */
@@ -66,4 +77,20 @@ export function gabaritPour(conseillees: Dimensions, table: TableGabaritIndicati
     if (conseillees.l <= c.max_l_cm && conseillees.w <= c.max_w_cm && conseillees.h <= c.max_h_cm) return c.code;
   }
   return null;
+}
+
+/** LE CLASSEMENT, À TROIS ÉTATS DISTINCTS — l'interface ne doit pas confondre « table absente » et « chien
+ *  plus grand que XXL » : le premier n'affiche rien, le second affiche « très grand format / solution à
+ *  rechercher ». `gabarit` porte le code quand il existe, `null` sinon. */
+export type ClassementGabarit =
+  | { etat: "table_absente"; gabarit: null }
+  | { etat: "gabarit"; gabarit: CodeGabarit }
+  | { etat: "au_dela"; gabarit: null };
+
+export function classerGabarit(conseillees: Dimensions, table: TableGabaritIndicatif = TABLE_GABARIT_INDICATIF): ClassementGabarit {
+  const tableValide = !!table && table.nature === "indicatif" && Array.isArray(table.classes) && table.classes.length > 0
+    && table.classes.every((c) => ORDRE_GABARITS.includes(c.code) && [c.max_l_cm, c.max_w_cm, c.max_h_cm].every((x) => Number.isFinite(x) && x > 0));
+  if (!tableValide) return { etat: "table_absente", gabarit: null };
+  const code = gabaritPour(conseillees, table);
+  return code ? { etat: "gabarit", gabarit: code } : { etat: "au_dela", gabarit: null };
 }

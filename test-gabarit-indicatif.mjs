@@ -4,25 +4,50 @@
  *
  *   npx tsx test-gabarit-indicatif.mjs
  *
- * Le contrat du module, éprouvé sans site construit : la table est VIDE tant que Codex ne l'a pas livrée (aucun
- * seuil inventé), les conseillées sont les minimales plus la marge MyDogCanFly, et — sur une table SYNTHÉTIQUE,
- * déclarée comme telle — la sélection respecte les limites entre deux gabarits, dans l'ordre S → XXL, sans
- * gabarit par défaut. Les séries 100–700 n'existent nulle part dans le module ni dans le composant.
+ * Le contrat du module, éprouvé sans site construit : la table « Gabarit indicatif MyDogCanFly » (version 1,
+ * livrée par Codex le 09/09/2026 ; version 0 : vide) est lue chiffre par chiffre, chaque frontière de classe est
+ * éprouvée (limite incluse, +1 cm sur un seul axe → classe suivante, au-delà de XXL → « très grand format »),
+ * les conseillées sont les minimales plus la marge MyDogCanFly, et — sur une table SYNTHÉTIQUE, déclarée comme
+ * telle — la sélection respecte l'ordre S → XXL sans gabarit par défaut. Les séries 100–700 n'existent nulle part dans le module ni dans le composant.
  */
 import { readFileSync } from "node:fs";
-import { TABLE_GABARIT_INDICATIF, MARGE_CONSEILLEE_CM, dimensionsConseillees, gabaritPour, ORDRE_GABARITS } from "./packages/ui/src/lib/gabarit-indicatif.ts";
+import { TABLE_GABARIT_INDICATIF, MARGE_CONSEILLEE_CM, dimensionsConseillees, gabaritPour, classerGabarit, ORDRE_GABARITS } from "./packages/ui/src/lib/gabarit-indicatif.ts";
 
 let pass = 0, fail = 0;
 const check = (label, cond, detail = "") => { console.log((cond ? "  OK   " : "  FAIL ") + label + (cond || !detail ? "" : `\n         ${detail}`)); cond ? pass++ : fail++; };
 
-console.log("=== 1. La table réelle : indicative, MyDogCanFly, VIDE — attendue de Codex ===");
+console.log("=== 1. La table réelle « Gabarit indicatif MyDogCanFly » — version 1, livrée par Codex, chaque frontière éprouvée ===");
 {
-  check("nature `indicatif`, auteur MyDogCanFly, version qui dit que la table est attendue", TABLE_GABARIT_INDICATIF.nature === "indicatif" && TABLE_GABARIT_INDICATIF.auteur === "MyDogCanFly" && /attendue/.test(TABLE_GABARIT_INDICATIF.version));
-  check("aucune classe : aucun seuil n'a été inventé", TABLE_GABARIT_INDICATIF.classes.length === 0);
-  check("table vide → aucun gabarit, quel que soit le chien", gabaritPour({ l: 60, w: 30, h: 40 }) === null && gabaritPour({ l: 120, w: 60, h: 90 }) === null);
+  /* VERSION 0 → VERSION 1 : mouvement nommé (bloc Codex du 09/09/2026, transmis et confirmé par Philippe). La
+     table est INTERNE et nommée ; le témoin la lit telle qu'elle est livrée, chiffre par chiffre. */
+  const ATTENDUE = [["S", 60, 40, 45], ["M", 75, 50, 55], ["L", 90, 60, 65], ["XL", 105, 70, 75], ["XXL", 120, 80, 90]];
+  check("nature `indicatif`, auteur MyDogCanFly, version 1 qui nomme Codex et Philippe", TABLE_GABARIT_INDICATIF.nature === "indicatif" && TABLE_GABARIT_INDICATIF.auteur === "MyDogCanFly" && /^1 — /.test(TABLE_GABARIT_INDICATIF.version) && /Codex/.test(TABLE_GABARIT_INDICATIF.version) && /Philippe/.test(TABLE_GABARIT_INDICATIF.version));
+  check("les cinq classes S, M, L, XL, XXL portent exactement les enveloppes livrées (L × l × H, cm)",
+    JSON.stringify(TABLE_GABARIT_INDICATIF.classes.map((c) => [c.code, c.max_l_cm, c.max_w_cm, c.max_h_cm])) === JSON.stringify(ATTENDUE),
+    JSON.stringify(TABLE_GABARIT_INDICATIF.classes));
+  check("la note dit « repère », « pas … produit », « fabricants », « compagnie »", /repère/i.test(TABLE_GABARIT_INDICATIF.note) && /pas la description d'un produit/.test(TABLE_GABARIT_INDICATIF.note) && /fabricants/.test(TABLE_GABARIT_INDICATIF.note) && /compagnie/.test(TABLE_GABARIT_INDICATIF.note));
   check("la marge MyDogCanFly vaut 3 cm — la borne haute du conseil déjà affiché (« 2–3 cm »)", MARGE_CONSEILLEE_CM === 3);
   const rec = dimensionsConseillees({ l: 60, w: 30, h: 40 });
   check("conseillées = minimales + 3 sur chaque dimension", rec.l === 63 && rec.w === 33 && rec.h === 43);
+
+  /* CHAQUE FRONTIÈRE : exactement à l'enveloppe → la classe (limite incluse) ; un centimètre de plus sur UN SEUL
+     axe → la classe suivante, pour chacun des trois axes. Au-delà de XXL → `au_dela`, jamais un défaut. */
+  const suivant = { S: "M", M: "L", L: "XL", XL: "XXL", XXL: null };
+  for (const [code, L, W, H] of ATTENDUE) {
+    check(`${code} : exactement à l'enveloppe (${L}×${W}×${H}) → ${code}`, gabaritPour({ l: L, w: W, h: H }) === code, String(gabaritPour({ l: L, w: W, h: H })));
+    for (const [axe, d] of [["longueur", { l: L + 1, w: W, h: H }], ["largeur", { l: L, w: W + 1, h: H }], ["hauteur", { l: L, w: W, h: H + 1 }]]) {
+      const attendu = suivant[code];
+      const vu = classerGabarit(d);
+      check(`${code} : +1 cm en ${axe} seule → ${attendu ?? "au-delà (« très grand format »)"}`,
+        attendu ? vu.etat === "gabarit" && vu.gabarit === attendu : vu.etat === "au_dela" && vu.gabarit === null, JSON.stringify(vu));
+    }
+  }
+  check("le cas de Codex : 94 × 64 × 68 → XL (la longueur dépasse L, les deux autres tiendraient)", gabaritPour({ l: 94, w: 64, h: 68 }) === "XL");
+  check("les trois états sont distincts : table vide → `table_absente` (rien d'affiché), pas `au_dela`",
+    classerGabarit({ l: 50, w: 30, h: 40 }, { ...TABLE_GABARIT_INDICATIF, classes: [] }).etat === "table_absente");
+  check("une classe mal formée rend la table entière `table_absente` — jamais une classe de moins en silence",
+    classerGabarit({ l: 50, w: 30, h: 40 }, { ...TABLE_GABARIT_INDICATIF, classes: [...TABLE_GABARIT_INDICATIF.classes, { code: "M", max_l_cm: 0, max_w_cm: 1, max_h_cm: 1 }] }).etat === "table_absente");
+  check("le classement ne prend NI race NI poids : la signature n'accepte que trois dimensions", classerGabarit.length <= 2 && !/poids|weight|breed|race/.test(classerGabarit.toString()));
 }
 
 console.log("\n=== 2. Table SYNTHÉTIQUE : les limites entre deux gabarits, dans l'ordre, sans défaut ===");

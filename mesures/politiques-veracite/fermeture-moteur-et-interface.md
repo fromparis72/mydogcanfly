@@ -3352,3 +3352,57 @@ portugaise des phrases en ligne complétée. Un seul build complet à la fin du 
 | `test:unit` complet, typecheck | verts sur l'état fusionné |
 
 Contre-épreuves complètes sur l'arbre propre : voir le commit suivant.
+
+## Annexe 35 — Table « Gabarit indicatif MyDogCanFly » : version 0 → version 1 (09/09/2026, classement A/B)
+
+Bloc de Codex transmis par Philippe (« Bloc à transmettre à Claude »), avec deux consignes de
+méthode : ne rien ajouter à la PR #44 déjà sous CI ; créer un micro-lot distinct. Branche
+`lot/gabarit-table-mydogcanfly`, empilée sur `lot/gabarit-indicatif-cage` (`780887e`).
+
+### La table, telle que livrée
+
+Classification **interne et explicitement nommée** : « Gabarit indicatif MyDogCanFly ». Enveloppe
+intérieure conseillée maximale (L × l × H, cm) : S 60 × 40 × 45 · M 75 × 50 × 55 · L 90 × 60 × 65 ·
+XL 105 × 70 × 75 · XXL 120 × 80 × 90 · au-delà : très grand format / solution à rechercher.
+
+Règle : classement sur les dimensions **conseillées** (avec la marge MyDogCanFly), jamais sur la race
+ni le poids ; les trois dimensions doivent entrer dans l'enveloppe ; si une seule dépasse, gabarit
+suivant. La table est un repère de recherche, pas la description d'un produit disponible ; elle ne
+produit ni modèle, ni code 100–700, ni prétention de conformité à une norme.
+
+### Mouvement nommé
+
+`TABLE_GABARIT_INDICATIF` version « 0 — table attendue » → « 1 — table livrée par Codex, confirmée
+par Philippe ». Le classement gagne un troisième état : `table_absente` (rien d'affiché, comme en
+version 0), `gabarit` (S → XXL), `au_dela` (marque « XXL+ » en plus petit, phrase « très grand
+format — solution à rechercher »). Les deux premiers états existaient déjà par `null` ; ils étaient
+confondus, ce qui aurait affiché « table non publiée » à un chien plus grand que XXL. Corrigé avant
+que la table n'existe en production.
+
+### Affichage (bloc Codex)
+
+Titre « Gabarit indicatif MyDogCanFly » ; code du gabarit à 54 px (≈ 4 × 13,5 px) ; « Dimensions
+conseillées avec notre marge (+3 cm) » ; « Minimum calculé selon la méthode publiée par l'IATA » ;
+avertissement « Les appellations et dimensions varient selon les fabricants. Vérifiez les dimensions
+intérieures et faites confirmer le modèle par la compagnie. » Quatre langues (portugais par la table
+des phrases en ligne).
+
+**Déviation argumentée, nommée pour arbitrage :** le bloc écrit « … : X × Y × Z cm » sur une seule
+ligne ; l'interface garde les trois cases L / l / H sous chaque titre, parce qu'elles suivent le
+sélecteur d'unité (cm / in) et sont ce que le harnais relève. Même information, même ordre
+(conseillées en gras avant le minimum en gris), forme différente.
+
+Le mot « IATA » entre dans une phrase nouvelle, ce que le micro-lot précédent avait évité. Mesuré :
+l'inventaire de l'étape 3 classe « method published by IATA » en référence licite, sans contenant
+voisin ; le scellé des tournures licites est rejoué sur le dist (voir le post-scriptum).
+
+### Témoins
+
+`test-gabarit-indicatif.mjs` : 15 → 39 contrôles — table lue chiffre par chiffre, chaque frontière
+(exactement à l'enveloppe → la classe ; +1 cm sur un seul axe, pour chacun des trois axes → la
+suivante ; au-delà de XXL → `au_dela`), le cas de Codex 94 × 64 × 68 → XL, les trois états distincts,
+table mal formée → tout ou rien, signature sans race ni poids ; table synthétique et « ce qui ne
+revient pas » inchangés. Harnais des caisses : le gabarit affiché est comparé à celui que donne la
+table **relue dans le module** (deuxième lecture, pas une copie) ; le minimum nomme sa méthode sans
+« homologué » ; l'avertissement nomme fabricants et compagnie ; un chien géant (A 120, D 95) sort de
+la table dans les quatre langues. Un seul build complet à la fin du lot.

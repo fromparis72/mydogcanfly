@@ -99,8 +99,10 @@ function scenario(page, { a, d, poids, airId = "", brachy = false, race = "" }) 
      MyDogCanFly) puis minimales (méthode publiée). Le minimum se lit dans son bloc nommé, pas « le premier ». */
   const minimum = [...out.querySelectorAll(".crx-dims--min span b")].map((b) => nombres(b.textContent)[0]);
   const conseillees = [...out.querySelectorAll(".crx-dims--rec span b")].map((b) => nombres(b.textContent)[0]);
-  const gabarit = out.querySelector(".crx-gabarit__code")?.getAttribute("data-gabarit") ?? null;
+  const gabarit = out.querySelector(".crx-gabarit__code[data-gabarit]")?.getAttribute("data-gabarit") ?? null;
   const gabaritAbsent = !!out.querySelector(".crx-gabarit__absent");
+  const auDela = out.querySelector("[data-gabarit-au-dela]") ? (out.querySelector(".crx-gabarit__note")?.textContent ?? "") : null;
+  const titreMin = out.querySelector(".crx-h4--min")?.textContent ?? "";
   const avertissement = out.querySelector(".crx-warn")?.textContent ?? "";
   /* LA « TAILLE STANDARD » N'EST PLUS RENDUE (vérifié : 0 occurrence de `crx-size__code` dans le
      dist, seules deux règles CSS orphelines subsistent dans la source). Les relevés `codeTaille`
@@ -116,7 +118,7 @@ function scenario(page, { a, d, poids, airId = "", brachy = false, race = "" }) 
   /* CE QUE LE `<select>` PORTE VRAIMENT APRÈS COUP. Poser `value = id` sur un `<select>` dépourvu
      de l'option correspondante laisse la valeur VIDE, sans erreur : le scénario porte alors sur
      « toutes compagnies » en silence. On le remonte pour que les contrôles puissent l'exiger. */
-  return { minimum, conseillees, gabarit, gabaritAbsent, avertissement, lignes, airChoisie: doc.getElementById("crx-airline")?.value ?? null };
+  return { minimum, conseillees, gabarit, gabaritAbsent, auDela, titreMin, avertissement, lignes, airChoisie: doc.getElementById("crx-airline")?.value ?? null };
 }
 
 /* ---- Le référentiel doit être PEUPLÉ : sans compagnies, tout ce qui suit passerait à vide ---- */
@@ -285,10 +287,38 @@ if (Object.values(parLangue).every((r) => !r.erreur)) {
   for (const [lang, r] of Object.entries(parLangue)) {
     check(`${lang} : dimensions conseillées = minimales + 3 cm sur chaque dimension (marge MyDogCanFly)`,
       r.conseillees.length === 3 && r.conseillees.every((v, i) => Math.abs(v - (r.minimum[i] + 3)) < 0.51), `${JSON.stringify(r.minimum)} → ${JSON.stringify(r.conseillees)}`);
-    check(`${lang} : aucun gabarit affiché tant que la table MyDogCanFly est VIDE — la carte le dit, sans inventer de seuil`,
-      r.gabarit === null && r.gabaritAbsent);
-    check(`${lang} : l'avertissement « les appellations varient selon les fabricants… » est visible`, r.avertissement.length > 40 && !/IATA|100|700/.test(r.avertissement), r.avertissement);
+    /* TABLE LIVRÉE (version 1, Codex 09/09/2026) : le gabarit affiché est celui que la table donne pour les
+       CONSEILLÉES. Le harnais relit la table dans le module (deuxième lecture, indépendante) et réapplique la
+       règle — les trois dimensions dans l'enveloppe, sinon la classe suivante. */
+    const attendu = gabaritAttendu(r.conseillees);
+    check(`${lang} : gabarit affiché = ${attendu} (celui de la table pour ${JSON.stringify(r.conseillees)}), en très grand (data-gabarit)`,
+      r.gabarit === attendu && !r.gabaritAbsent && r.auDela === null, `vu ${JSON.stringify(r.gabarit)}`);
+    check(`${lang} : le minimum nomme sa méthode (« méthode publiée par l'IATA »), sans « homologué » ni « approuvé »`,
+      /IATA/.test(r.titreMin) && !/homolog|approv|aprob|certif/i.test(r.titreMin), r.titreMin);
+    check(`${lang} : l'avertissement dit fabricants, dimensions intérieures et confirmation par la compagnie`,
+      /fabricant|manufacturer/i.test(r.avertissement) && /(compagnie|airline|aerolínea|companhia)/i.test(r.avertissement) && !/IATA|100|700/.test(r.avertissement), r.avertissement);
   }
+  /* AU-DELÀ DE XXL : un très grand chien (A = 120, D = 95) sort de la table → « très grand format / solution à
+     rechercher », marqué comme tel, sans gabarit et sans défaut. */
+  const geant = Object.fromEntries(LOCALES.map(([l]) => [l, scenario(pagesT[l], { a: 120, d: 95, poids: 70, airId: SYNTH_CABINE })]));
+  for (const [lang, r] of Object.entries(geant)) {
+    check(`${lang} : au-delà de XXL → aucun gabarit, marque « au-delà » et phrase « très grand format » (conseillées ${JSON.stringify(r.conseillees)})`,
+      !r.erreur && r.gabarit === null && !r.gabaritAbsent && typeof r.auDela === "string" && /XXL/.test(r.auDela) && gabaritAttendu(r.conseillees) === null, r.erreur ?? JSON.stringify(r.auDela));
+  }
+}
+
+/* LA TABLE, RELUE DANS LE MODULE — pas recopiée : une copie divergerait en silence. */
+function tableDuModule() {
+  const src = require("node:fs").readFileSync("packages/ui/src/lib/gabarit-indicatif.ts", "utf8");
+  const bloc = src.slice(src.indexOf("export const TABLE_GABARIT_INDICATIF"), src.indexOf("};", src.indexOf("export const TABLE_GABARIT_INDICATIF")));
+  const classes = [...bloc.matchAll(/code: "(S|M|L|XL|XXL)",\s*max_l_cm: (\d+),\s*max_w_cm: (\d+),\s*max_h_cm: (\d+)/g)].map((m) => ({ code: m[1], l: +m[2], w: +m[3], h: +m[4] }));
+  if (classes.length !== 5) throw new Error(`table du module illisible : ${classes.length} classe(s) lue(s)`);
+  return classes;
+}
+function gabaritAttendu(cons) {
+  if (!cons || cons.length !== 3) return null;
+  for (const c of tableDuModule()) if (cons[0] <= c.l && cons[1] <= c.w && cons[2] <= c.h) return c.code;
+  return null;
 }
 
 console.log(`\n  [caisse] ${pass} contrôles tenus, ${fail} en échec`);
