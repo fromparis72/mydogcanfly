@@ -217,12 +217,13 @@ console.log("\n=== 10. Sur la base RÉELLE : plus aucun verdict catégorique ===
   /* MOUVEMENT NOMMÉ (09/09/2026, import strict lot 5 — 18 citations de plus, 92 en tout) : 58 → 73 sous conditions, 14 → 17 refusés (Malaysia, China Eastern, Air Mauritius cabines), 230 → 212 à confirmer ; quatre lignes non
      revérifiées RÉACTIVÉES sur citation (Virgin Australia, Philippine, Air Mauritius, Garuda fret). Virgin Australia cabine REFUSÉE par l'importeur (la fiche dit
      case_by_case — arbitrage du 28/08 —, le fait suppose offered) : elle reste « à confirmer » (airline_approval), ce que Codex demande lui-même. */
-  check("90 décisions prouvées : 0 `allowed`, 73 sous conditions, 17 `denied`, 212 à confirmer",
-    allowed === 0 && sousConditions === 73 && denied === 17 && aConfirmer === 212, JSON.stringify({ allowed, sousConditions, denied, aConfirmer }));
+  /* MOUVEMENT NOMMÉ (09/09/2026, import strict lot 6 — 21 citations de plus, 113 en tout) : 0 · 88 · 23 · 191 ; causes 174 · 15. */
+  check("111 décisions prouvées : 0 `allowed`, 88 sous conditions, 23 `denied`, 191 à confirmer",
+    allowed === 0 && sousConditions === 88 && denied === 23 && aConfirmer === 191, JSON.stringify({ allowed, sousConditions, denied, aConfirmer }));
   check("chaque « à confirmer » porte une cause — aucune incertitude muette",
-    Object.values(causes).reduce((x, y) => x + y, 0) === 212 && !("undefined" in causes), JSON.stringify(causes));
-  check("16 gardent une page officielle à montrer, 194 n'ont rien à montrer",
-    causes.official_source_unquoted === 16 && causes.legacy_unreviewed === 194, JSON.stringify(causes));
+    Object.values(causes).reduce((x, y) => x + y, 0) === 191 && !("undefined" in causes), JSON.stringify(causes));
+  check("15 gardent une page officielle à montrer, 174 n'ont rien à montrer",
+    causes.official_source_unquoted === 15 && causes.legacy_unreviewed === 174, JSON.stringify(causes));
   /* Et la preuve que ce n'est pas un effet de bord de l'affichage : la même règle vaut à la
      source, sur l'artefact d'auteur, avant tout moteur. */
   const objets = JSON.parse(readFileSync("packages/knowledge/raw/objects.json", "utf8"));
@@ -299,6 +300,28 @@ console.log("\n=== 10. Sur la base RÉELLE : plus aucun verdict catégorique ===
     "airline_eva_air.hold",
     "airline_finnair.cabin",
     "airline_garuda_indonesia.cargo",
+    /* Lot 6 (09/09/2026) : 21 citations de plus, 113 en tout. Air China cabine REFUSÉE (la fiche dit `not_offered`). */
+    "airline_aeromexico.cabin",
+    "airline_aeromexico.hold",
+    "airline_latam.cabin",
+    "airline_latam.hold",
+    "airline_united.cabin",
+    "airline_south_african_airways.cabin",
+    "airline_south_african_airways.hold",
+    "airline_south_african_airways.cargo",
+    "airline_saudia.cabin",
+    "airline_saudia.hold",
+    "airline_egyptair.cabin",
+    "airline_egyptair.hold",
+    "airline_air_china.hold",
+    "airline_kenya_airways.cabin",
+    "airline_kenya_airways.hold",
+    "airline_kenya_airways.cargo",
+    "airline_gulf_air.cabin",
+    "airline_gulf_air.hold",
+    "airline_gulf_air.cargo",
+    "airline_royal_jordanian.cabin",
+    "airline_royal_jordanian.hold",
     "airline_iberia.cabin",
     "airline_iberia.hold",
     "airline_ita_airways.cabin",
@@ -341,10 +364,10 @@ console.log("\n=== 10. Sur la base RÉELLE : plus aucun verdict catégorique ===
     "airline_westjet.cabin",
     "airline_westjet.hold",
   ];
-  check("92 politiques d'auteur portent une phrase citée — nominativement",
+  check("113 politiques d'auteur portent une phrase citée — nominativement",
     JSON.stringify([...citees].sort()) === JSON.stringify([...CITEES_V3].sort()), citees.join(", "));
-  check("et 90 d'elles sont des décisions (toutes sauf Thai fret et Virgin Australia cabine)",
-    decideesCitees.length === 90 && !decideesCitees.includes("airline_thai_airways.cargo") && !decideesCitees.includes("airline_virgin_australia.cabin"),
+  check("et 111 d'elles sont des décisions (toutes sauf Thai fret et Virgin Australia cabine)",
+    decideesCitees.length === 111 && !decideesCitees.includes("airline_thai_airways.cargo") && !decideesCitees.includes("airline_virgin_australia.cabin"),
     decideesCitees.join(", "));
 }
 

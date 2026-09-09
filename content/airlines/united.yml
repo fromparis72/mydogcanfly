@@ -82,6 +82,20 @@ ladder:
 policies:
   cabin:
     availability: offered
+    # PREUVE IMPORTÉE — import strict lot6 (Codex, lecture directe du 2026-09-09, cohorte LOT6 fait 4).
+    # Effet attendu : United cabin is a documented conditional route. It is not a proof of a hold or freight offer.
+    # Portée nommée : One pet per adult or senior reservation; United's route, carrier, booking and other pet restrictions apply.
+    source:
+      url: "https://www.united.com/en/us/fly/travel/special-assistance/pets-in-cabin.html"
+      source_type: official_website
+      verified_date: "2026-09-09"
+      review_due: "2026-12-08"   # reviewDueFrom(verified_date, "airline") — calculé par l'importeur
+      confidence: 4
+      reviewer: "Codex — direct reading of official airline page"
+      history: []
+      quote: "We allow one pet per adult or senior in a reservation."
+      quote_language: en
+      locator: "United booking flow → Pets in cabin"
   hold:
     availability: not_offered
   cargo:

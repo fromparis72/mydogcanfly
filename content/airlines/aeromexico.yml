@@ -70,8 +70,42 @@ ladder:
 policies:
   cabin:
     availability: offered
+    # PREUVE IMPORTÉE — import strict lot6 (Codex, lecture directe du 2026-09-09, cohorte LOT6 fait 0).
+    # Effet attendu : Aeromexico cabin is a documented conditional route. Its 9 kg combined limit is not a global dog-only threshold.
+    # Portée nommée : Dogs and cats only; pet plus carrier must not exceed 9 kg, and health, route and carrier conditions apply.
+    # Le plafond cité inclut le CONTENANT : refus sûr si le chien seul le dépasse, jamais un oui en dessous.
+    max_weight_kg: 9
+    weight_includes_carrier: true
+    source:
+      url: "https://beta.aeromexico.com/es-mx/informacion-de-vuelos/transporte-aereo-de-mascotas"
+      source_type: official_website
+      verified_date: "2026-09-09"
+      review_due: "2026-12-08"   # reviewDueFrom(verified_date, "airline") — calculé par l'importeur
+      confidence: 4
+      reviewer: "Codex — direct reading of official airline page"
+      history: []
+      quote: "Mascota bajo el asiento (PETC) / Pet with you | Perros, Gatos | Sin límite de tiempo (cumpliendo requisitos de cada país) | Cabina | Hasta 9 kg (Incluyendo transportadora)"
+      quote_language: es
+      locator: "Servicios de Mascotas → Tipos de servicios para viajar con tu mascota"
   hold:
     availability: offered
+    # PREUVE IMPORTÉE — import strict lot6 (Codex, lecture directe du 2026-09-09, cohorte LOT6 fait 1).
+    # Effet attendu : Aeromexico hold is a documented conditional route, not a guaranteed booking.
+    # Portée nommée : Dogs and cats only; pet plus carrier must not exceed 45 kg, with country requirements and advance procedures.
+    # Le plafond cité inclut le CONTENANT : refus sûr si le chien seul le dépasse, jamais un oui en dessous.
+    max_weight_kg: 45
+    weight_includes_carrier: true
+    source:
+      url: "https://beta.aeromexico.com/es-mx/informacion-de-vuelos/transporte-aereo-de-mascotas"
+      source_type: official_website
+      verified_date: "2026-09-09"
+      review_due: "2026-12-08"   # reviewDueFrom(verified_date, "airline") — calculé par l'importeur
+      confidence: 4
+      reviewer: "Codex — direct reading of official airline page"
+      history: []
+      quote: "Mascota en bodega (AVIH) / Checked pet | Perros, Gatos, Gallos | Sin límite de tiempo (cumpliendo requisitos de cada país) | Bodega | Hasta 45 kg (Incluyendo transportadora)"
+      quote_language: es
+      locator: "Servicios de Mascotas → Tipos de servicios para viajar con tu mascota"
   cargo:
     review_state: legacy_unreviewed
 channels:

@@ -2805,3 +2805,75 @@ autres `111` (soute citée) ou `001` (BA, cabine refusée). LOT retenue : aucun 
 cité, l'ouverture synthétique ne recouvre aucune preuve. Le témoin est re-fondé, pas abaissé ; les
 combinaisons conditionnelles figées (`011`, `110`, `111`) ne bougent pas.
 
+## Annexe 28 — Import strict, lot 6 : 22 faits, 21 importés, Air China cabine refusée par contrat, première réactivation en refus cité (09/09/2026)
+
+Philippe a donné son feu vert pour enchaîner les lots sans attendre (« tu as mon feu vert ») ; ce
+feu vert porte sur l'enchaînement des imports, pas sur une fusion. Sixième paquet de Codex
+(`mesures/preuves/import-strict-lot-6-2026-09-09/`), lecture directe du 09/09/2026 : 10 compagnies,
+22 faits, 8 non-décisions. Importé par le même importeur (`--lot=lot6`), sans règle métier nouvelle.
+
+| | |
+|---|---|
+| importés | 21 (Aeromexico ×2, LATAM ×2, United cabine, South African ×3, Saudia ×2, EgyptAir ×2, Air China soute, Kenya ×3, Gulf Air ×3, Royal Jordanian ×2) |
+| réactivés sur citation | 6 : South African soute et fret, Kenya fret, Gulf Air fret, Royal Jordanian cabine — et **Saudia cabine, première réactivation d'une ligne non revérifiée en REFUS cité** (`not_offered`) ; la matrice T0-B2 admet désormais `offered` ou `not_offered` cité pour une ligne réactivée, jamais sans phrase |
+| refusé | **Air China cabine** : la fiche dit `not_offered` (sans phrase) ; Codex dit « sous conditions » (chiens et chats sur vols intérieurs, accord préalable). L'importeur ne change jamais une disponibilité. La ligne reste « à confirmer », avec sa règle héritée `rule_air_china_no_cabin` nommée. **Question à Philippe et Codex** : basculer la fiche à `offered` (l'importeur pourra alors écrire la phrase), ou garder le refus d'auteur ? |
+| seuils écrits | Aeromexico cabine 9 et soute 45 (« Hasta 9 kg / 45 kg (Incluyendo transportadora) »), EgyptAir cabine 8 (« The total weight of animal and cage should not exceed 8 KG ») — chien + contenant, portée générale, même lecture de la règle 5 qu'au lot 5. Leurs anciens plafonds déduits de la grille tarifaire sont désormais ÉCRITS depuis la phrase |
+| seuil non écrit | Royal Jordanian 7 : la phrase citée s'arrête à « subject to the following conditions: » et ne porte pas le chiffre ; portée Economy + vol ≤ 5 h |
+| non-décisions | 8, toutes « à confirmer » : fret Aeromexico, LATAM, EgyptAir, Air China, Royal Jordanian, Saudia ; United soute et fret (rien n'est déduit de sa cabine) |
+
+### À contre-revoir, nommé
+
+- **Saudia, provenance** : l'URL relue par Codex est `booking-uat.dcloud.saudia.com` — un
+  sous-domaine d'environnement de test de la compagnie. Le domaine est saudia.com, le contrat de
+  provenance l'accepte, la citation est écrite telle quelle. Je ne réécris pas une URL ; je la
+  signale : Codex peut confirmer sur le domaine public si la même phrase y figure.
+- **Air China cabine** (ci-dessus).
+
+### Sentinelle « politique d'auteur non prouvée » : la forme n'existe plus, re-fondée sous une autre
+
+United cabine (dernière candidate, annexe 26) est citée par ce lot. Mesuré sur la base projetée :
+aucune politique d'auteur `offered` à page officielle sans phrase ne subsiste sur une fiche sans
+canal prouvé — les 15 « page officielle sans phrase citée » restantes vivent toutes à côté d'un
+canal prouvé. Le rôle est re-fondé sur **United soute** (page officielle, aucune phrase, « à
+confirmer » à côté d'une cabine citée), même slug, même statut attendu. Dit, pas abaissé.
+
+### Mesuré après import
+
+| | avant (lot 5) | après (lot 6) |
+|---|---|---|
+| politiques citées (décisives) | 92 (90) | 113 (111) |
+| `allowed` / sous conditions / refusées / à confirmer | 0 / 73 / 17 / 212 | 0 / 88 / 23 / 191 |
+| causes legacy / page officielle sans phrase | 194 / 16 | 174 / 15 (United cabine sort de la seconde) |
+| registre A / B / C / D | 92 / 84 / 127 / 3 | 113 / 78 / 112 / 3 |
+| B par piste politique / règle, gov.uk seul | 24 / 60, 33 | 23 / 55, 31 |
+| limites cabine citées | 20 | 22 (Aeromexico 9, EgyptAir 8) |
+| témoin hérité | 21 348 | 26 040 |
+| baseline | figée lot 5 | figée `import-strict-lot-6-apres` : 136 cartes / 1 560, 9 compagnies (South African ne dessert aucun des 72 scénarios), 116 → sous conditions, 88 → refusé, aucun verdict déplacé |
+
+### Trouvé par la mesure, nommé comme dette
+
+- **United cabine** citée, mais un Golden de 32 kg reste « à confirmer » par des règles de poids
+  héritées non citées (`rule_ua_cabin_weight`, `rule_united_cabin_weight`) ; **LATAM cabine**, même
+  forme (`rule_latam_cabin_weight`). Le moteur nomme les règles ; elles sont hors du périmètre des
+  lots d'import.
+- **Témoin C de l'inventaire** re-fondé d'Aeromexico cabine (devenue A) sur Air Algérie cabine
+  (provenance dérivée, sans phrase).
+- **Témoin « carte sans canal sourcé »** du harnais des entités re-fondé d'Air China (soute
+  désormais citée) sur China Southern, mesuré sur les 35 cartes de CDG→BKK (trois candidates à
+  racine page d'accueil : Aircalin, China Southern, El Al).
+- **Canaux contradictoires 279 → 274** : South African cabine, Kenya cabine et soute, Gulf Air
+  cabine et soute — l'éditorial disait déjà « non », la citation le prouve. Saudia cabine reste
+  contradictoire (éditorial « chats uniquement », canal refusé aux chiens sur citation).
+- **Causes de race 412 → 406** (`test-t0b3a-moteur-race.mjs`), mesuré avant/après sur un worktree
+  de HEAD : Gulf Air soute (4 cartes) et Kenya soute (2 cartes), refusées sur citation — un refus
+  prouvé éteint la cause de race, mécanisme inverse de celui nommé les 04 et 05/09.
+
+### Mouvements nommés
+
+frontière (111 décisives, 0/88/23/191, 174/15, 113 nominativement, somme des causes 191), legacy
+(174, 15, chaîne → lot 6), baseline (chaîne, répartition, preuve permanente lot 6), carries
+(26 040), quatrième état (88), registre (113/78/112/3, canaux 52/14/36 · 45/44/13 · 16/20/63, pistes
+23/55/31, paires 113/23/112, écarts 54, niveaux 113/23/166, A 113 en ordre d'inventaire), caisses
+(22 limites, 23 témoins), matrice (six réactivations, dont un refus cité), sentinelles (United
+soute). Nouveau harnais `test-preuves-lot-6.mjs` (124 contrôles), dans `test:unit`.
+

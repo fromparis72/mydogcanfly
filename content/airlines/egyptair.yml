@@ -74,8 +74,39 @@ ladder:
 policies:
   cabin:
     availability: offered
+    # PREUVE IMPORTÉE — import strict lot6 (Codex, lecture directe du 2026-09-09, cohorte LOT6 fait 10).
+    # Effet attendu : EgyptAir cabin is a conditional route. The combined 8 kg cap must not become a global dog-only rule.
+    # Portée nommée : Cats and dogs only; pet plus cage must not exceed 8 kg and route, booking, animal and container conditions apply.
+    # Le plafond cité inclut le CONTENANT : refus sûr si le chien seul le dépasse, jamais un oui en dessous.
+    max_weight_kg: 8
+    weight_includes_carrier: true
+    source:
+      url: "https://www.egyptair.com/en/fly/special-services/Pages/traveling-with-pets.aspx"
+      source_type: official_website
+      verified_date: "2026-09-09"
+      review_due: "2026-12-08"   # reviewDueFrom(verified_date, "airline") — calculé par l'importeur
+      confidence: 4
+      reviewer: "Codex — direct reading of official airline page"
+      history: []
+      quote: "The total weight of animal and cage should not exceed 8 KG."
+      quote_language: en
+      locator: "Traveling With Pets → Animal Transport in Passenger Cabins"
   hold:
     availability: offered
+    # PREUVE IMPORTÉE — import strict lot6 (Codex, lecture directe du 2026-09-09, cohorte LOT6 fait 11).
+    # Effet attendu : EgyptAir hold is a documented conditional route, not an acceptance guarantee.
+    # Portée nommée : Cats and dogs only; container, route, connecting carrier, breed and final-acceptance conditions apply.
+    source:
+      url: "https://www.egyptair.com/en/fly/special-services/Pages/traveling-with-pets.aspx"
+      source_type: official_website
+      verified_date: "2026-09-09"
+      review_due: "2026-12-08"   # reviewDueFrom(verified_date, "airline") — calculé par l'importeur
+      confidence: 4
+      reviewer: "Codex — direct reading of official airline page"
+      history: []
+      quote: "EGYPTAIR accepts live animals as checked baggage or in the cabin as follows:"
+      quote_language: en
+      locator: "Traveling With Pets → Animal Transport in Aircraft Baggage Holds"
   cargo:
     review_state: legacy_unreviewed
 channels:

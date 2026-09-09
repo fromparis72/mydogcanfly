@@ -99,6 +99,18 @@ const REACTIVEES_SUR_CITATION = new Set([
   "airline_philippine|cargo",
   "airline_air_mauritius|cargo",
   "airline_garuda_indonesia|cargo",
+  /* Lot 6 (09/09/2026) : South African soute (« …either as cargo, or as checked baggage in the
+     hold. ») et fret (« …manifested cargo under an Air Waybill… »), Kenya fret (« Live animals
+     shall be consigned as cargo only. »), Gulf Air fret (« All live animals on Gulf Air travel as
+     cargo. »), Royal Jordanian cabine (« …only permitted in Economy Class Cabins… »), et Saudia
+     cabine — PREMIÈRE réactivation en REFUS cité (« Dogs must be transported in the cargo hold… ») :
+     la preuve exigée est la même, la disponibilité réactivée est `not_offered`. */
+  "airline_south_african_airways|hold",
+  "airline_south_african_airways|cargo",
+  "airline_kenya_airways|cargo",
+  "airline_gulf_air|cargo",
+  "airline_royal_jordanian|cabin",
+  "airline_saudia|cabin",
 ]);
 /* POLICY_STALE RÉACTIVÉS SUR CITATION (09/09/2026, lot 4). Deux des dix anciens POLICY_STALE
  * versés en `legacy_unreviewed` — Qantas soute et Qantas fret — ont reçu une phrase des Conditions
@@ -200,7 +212,9 @@ for (const r of rows) {
   const p = a?.premium?.policy?.[r.identity.placement];
   if (!p) { err(`ligne de manifeste NON consommée (politique absente): ${k}`); continue; }
   if (REACTIVEES_SUR_CITATION.has(k)) {
-    if (!(p.availability === "offered" && citee(p))) err(`ligne réactivée SANS sa preuve: ${k} → availability=${p.availability}, citée=${citee(p)}`);
+    /* Une ligne réactivée porte une DÉCISION citée — `offered` ou, depuis le lot 6 (Saudia cabine),
+       `not_offered` : un refus cité réactive aussi, jamais sans sa phrase. */
+    if (!((p.availability === "offered" || p.availability === "not_offered") && citee(p))) err(`ligne réactivée SANS sa preuve: ${k} → availability=${p.availability}, citée=${citee(p)}`);
     continue;
   }
   const attendu = attenduPour(r);

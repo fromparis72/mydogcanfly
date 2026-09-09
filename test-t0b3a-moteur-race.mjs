@@ -531,8 +531,14 @@ console.log("=== 8. Sur le référentiel RÉEL, après T0-B3-b ===");
      par le refus. Le fait à retenir est celui-là, et il vaut pour les trois chemins fermés
      aujourd'hui : un refus non prouvé ne masquait pas seulement son absence de preuve, il
      masquait aussi tout ce que le canal avait d'autre à dire. Compte figé, mouvement nommé. */
+  /* 09/09/2026 — IMPORT STRICT LOT 6 : 412 → 406 causes, à cartes constantes (206). Le mécanisme
+     inverse des deux lignes précédentes, mesuré avant/après sur un worktree de HEAD : Gulf Air
+     soute (4 cartes) et Kenya Airways soute (2 cartes) sont désormais REFUSÉES sur citation
+     (« All live animals on Gulf Air travel as cargo. » ; « Live animals will not be accepted as
+     checked-in Animal in Hold (AVIH)… »), et un refus PROUVÉ éteint la cause de race là où
+     l'incertitude la laissait s'exprimer. Aucune autre cause ne bouge. Compte figé, mouvement nommé. */
   check(`le chien VISÉ reçoit l'incertitude : ${carlin.causes} causes de race sur ${carlin.cartes} cartes`,
-    carlin.causes === 412 && carlin.cartes === 206, JSON.stringify(carlin));
+    carlin.causes === 406 && carlin.cartes === 206, JSON.stringify(carlin));
   check("… et les avis IATA et IAG/BA lui sont publiés, une fois chacun par rapport",
     carlin.avis === 16, JSON.stringify(carlin.avis));
   check("AUCUNE preuve de race : le registre ne porte qu'un avis, et un avis ne prouve rien",

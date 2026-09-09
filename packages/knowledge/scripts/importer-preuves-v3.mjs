@@ -61,6 +61,10 @@ const LOTS = {
   lot5: { dossier: "mesures/preuves/import-strict-lot-5-2026-09-09", total: 19,
     fichiers: { LOT5: "tous" },
     nom: () => "PREUVES_POLITIQUES_COMPAGNIES_LOT_5_STRICT_2026-09-09.json" },
+  /** Le sixième paquet (09/09) : un seul fichier, ses 22 faits tous autorisés, 8 non-décisions. */
+  lot6: { dossier: "mesures/preuves/import-strict-lot-6-2026-09-09", total: 22,
+    fichiers: { LOT6: "tous" },
+    nom: () => "PREUVES_POLITIQUES_COMPAGNIES_LOT_6_STRICT_2026-09-09.json" },
 };
 if (!LOTS[LOT]) throw new Error(`lot inconnu : ${LOT}`);
 const DOSSIER = resolve(arg("dossier", LOTS[LOT].dossier));
@@ -110,6 +114,14 @@ const SEUILS = {
      l'arbitrage du 28/08 exige, est écrit dans la fiche depuis la citation de Philippe du 28/08 —
      inerte : `case_by_case` ne refuse jamais au seuil. */
   "airline_korean_air.cabin": 7, "airline_korean_air.hold": 45, "airline_asiana.cabin": 7,
+  /* Lot 6 — même lecture que le lot 5 (règle 5 de Codex : « aucun ne peut devenir un seuil global du
+     moteur sans modéliser toute sa portée »). Aeromexico 9 (cabine) et 45 (soute) : la ligne citée
+     du tableau officiel dit « Hasta 9 kg (Incluyendo transportadora) » / « Hasta 45 kg (Incluyendo
+     transportadora) », sans route — écrits, chien + contenant. EgyptAir 8 : « The total weight of
+     animal and cage should not exceed 8 KG », sans route — écrit. Royal Jordanian 7 : la phrase
+     citée s'arrête à « subject to the following conditions: » et ne porte pas le chiffre ; portée
+     Economy + vol ≤ 5 h — NON écrit, par contrat autant que par portée. */
+  "airline_aeromexico.cabin": 9, "airline_aeromexico.hold": 45, "airline_egyptair.cabin": 8,
 };
 /** Seuils du CHIEN SEUL (le contenant s'ajoute) : `weight_includes_carrier: false`, écrit. */
 const SEUIL_CHIEN_SEUL = new Set(["airline_air_europa.cabin"]);
