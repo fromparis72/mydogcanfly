@@ -871,8 +871,9 @@ console.log("\n=== 13 ter. LA FRONTIÈRE S'APPLIQUE AUSSI AUX RÈGLES ===");
      any dog that belongs entirely or predominantly to one or more of these breeds or types of
      dogs. » C'est la première RÈGLE citée du dépôt, comme British Airways cabine fut la première
      POLITIQUE. Le compte des faibles ne bouge pas : une citation ne déplace que sa propre règle. */
-  check("état figé des règles `deny` : 1 citée (NZ), 129 officielles non citées, 88 faibles",
-    parNiveau.citee === 1 && parNiveau.officielle_non_citee === 129 && parNiveau.faible === 88,
+    /* MOUVEMENT NOMMÉ (09/09/2026, réconciliation ciblée — Philippe, sur décision de Codex : deux règles héritées non citées retirées, borne stricte modélisée) : 129 → 127 règles `deny` officielles non citées (rule_aer_lingus_no_hold, rule_air_china_no_cabin retirées : elles contredisaient une politique citée plus récente). */
+  check("état figé des règles `deny` : 1 citée (NZ), 127 officielles non citées, 88 faibles",
+    parNiveau.citee === 1 && parNiveau.officielle_non_citee === 127 && parNiveau.faible === 88,
     JSON.stringify(parNiveau));
   check("…et la seule citée est bien la règle néo-zélandaise",
     denies.filter((r) => niveauDePreuveRegle(r) === "citee").map((r) => r.id).join() === "rule_nz_breed_ban_restricted_types",

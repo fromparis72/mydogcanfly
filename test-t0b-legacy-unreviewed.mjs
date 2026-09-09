@@ -566,8 +566,8 @@ console.log("=== 8. Baseline FIGÉE : le point de comparaison de T0-B2 est scell
      ternaire → import V3 → lots 2 et 3, chaque « avant » égal à l'« après » précédent, vérifié
      dans test-t0a-baseline.mjs). */
   /* 09/09/2026 — la plus récente est celle du lot 4 (chaîne : … → lots 2 et 3 → lot 4). */
-  check("Correctif d'arbitrages : la baseline vivante est identique à la figée la plus récente",
-    vivante.equals(readFileSync("test-baselines/correctif-arbitrages-apres.json")));
+  check("Réconciliation ciblée : la baseline vivante est identique à la figée la plus récente",
+    vivante.equals(readFileSync("test-baselines/reconciliation-arbitrages-apres.json")));
   check("Arbitrages d'interface : sa figée reste intacte à côté (elle n'a pas été écrasée)",
     !readFileSync("test-baselines/arbitrages-interface-apres.json")
       .equals(readFileSync("test-baselines/entree-ternaire-apres.json")));

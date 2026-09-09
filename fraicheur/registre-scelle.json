@@ -5557,11 +5557,6 @@
     },
     {
       "famille": "rules",
-      "locator": "rules[rule_aer_lingus_no_hold].source",
-      "empreinte_source": "a3b2748bf4b805687bcbecb5fbf8ae246c2af15c71365f68ac422d49c99a3236"
-    },
-    {
-      "famille": "rules",
       "locator": "rules[rule_aerolineas_argentinas_gb_not_approved].source",
       "empreinte_source": "e9d9ccffb36de1ac8ab00975fcaa24da3e8058c85f23cc4834db5ad8df6ecc75"
     },
@@ -5633,11 +5628,6 @@
     {
       "famille": "rules",
       "locator": "rules[rule_air_china_hold_weight].source",
-      "empreinte_source": "b3d11415b7542665c98811447f51b9c2ebca1799b3dbcce142dd73d7d0c10b60"
-    },
-    {
-      "famille": "rules",
-      "locator": "rules[rule_air_china_no_cabin].source",
       "empreinte_source": "b3d11415b7542665c98811447f51b9c2ebca1799b3dbcce142dd73d7d0c10b60"
     },
     {
@@ -7517,14 +7507,14 @@
     }
   ],
   "empreintes": {
-    "globale": "2ed4b206a2f184c9044a8d57ec950f46d35d87cf9fe847be4c3e60a71ddeebe7",
+    "globale": "c0479b4c82d80540a9155101f0eaafd831690da7215891b80cfa2adadf32a933",
     "par_famille": {
       "airlines": "fa025d4181233052d3c6ef70650fd79d05e99624606701a6cacd44a901d9c885",
       "airports": "915d2262732a378589b12216f81e11bde703b14d8645cacf5df24e60b862eb55",
       "breed_restrictions": "bc9ea0fd8feb2eaf8dfe9d5bcabe3162537b3898376ca9eb2ac54144bc7c8606",
       "breeds": "2e72ef699d47b9652af8e1a3d154202f9c682fb3cb1a8d1204adbb010bf19cc0",
       "countries": "91dcd83dabbe2c7b8909702096d63335f4738e110431c1102d5eb3ebffa64346",
-      "rules": "10a3cde02df26ba1be116f52cee7648ba17eb29167d9118e6bb6f0e59e5bef3b"
+      "rules": "a7edfbcab98c143eee855d25bbd6dbf7e5e7a2465358586250a81a869fe939ea"
     }
   }
 }

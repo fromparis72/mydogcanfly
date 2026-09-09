@@ -75,10 +75,14 @@ console.log("\n=== Effets dans le Finder ===");
   check("China Southern soute (Paris → Canton), Golden 32 kg : sous conditions, sur la réponse officielle complète", canal(can, "airline_china_southern", "hold")?.status === "accepted_with_conditions");
   const bom = decide("airport_del", "airport_bom", GOLDEN_32);
   check("IndiGo (Delhi → Bombay) : fret refusé sur la page CarGo, cabine et soute refusées sur la politique passager — refus total prouvé maintenu", ["cabin", "hold", "cargo"].every((c) => canal(bom, "airline_indigo", c)?.status === "denied"));
-  const dub = decide("airport_cdg", "airport_dub", GOLDEN_32), pek = decide("airport_cdg", "airport_pek", GOLDEN_32);
+  /* ERREUR NOMMÉE (réconciliation) : ce témoin lançait Air China cabine avec un Golden de 32 kg — « à confirmer » par la
+     règle globale de poids, pas par la règle retirée. Le témoin vise la règle retirée : un Cavalier de 6 kg. */
+  const dub = decide("airport_cdg", "airport_dub", GOLDEN_32), pek = decide("airport_cdg", "airport_pek", { breed_id: "breed_cavalier_king_charles", weight_kg: 6 });
   const al = canal(dub, "airline_aer_lingus", "hold"), ac = canal(pek, "airline_air_china", "cabin");
-  check("Aer Lingus soute et Air China cabine : citées sur arbitrage, mais gardées « à confirmer » par des RÈGLES héritées non citées, NOMMÉES (`rule_aer_lingus_no_hold`, `rule_air_china_no_cabin`) — dette hors périmètre",
-    al?.status === "confirmation_required" && (al?.confirmation_causes ?? []).some((x) => x.rule_id === "rule_aer_lingus_no_hold") && ac?.status === "confirmation_required" && (ac?.confirmation_causes ?? []).some((x) => x.rule_id === "rule_air_china_no_cabin"), JSON.stringify({ al, ac }));
+  /* HISTOIRE : au correctif, deux règles héritées non citées gardaient ces canaux « à confirmer » — dette nommée.
+     RÉCONCILIATION CIBLÉE (même jour) : règles retirées, le verdict cité atteint le Finder. */
+  check("Aer Lingus soute et Air China cabine : le verdict cité « sous conditions » atteint le Finder — les règles héritées non citées sont RETIRÉES (réconciliation ciblée)",
+    al?.status === "accepted_with_conditions" && ac?.status === "accepted_with_conditions", JSON.stringify({ al, ac }));
 }
 
 console.log("\n=== Règle des seuils de Codex, confrontée au modèle ===");
@@ -89,10 +93,11 @@ console.log("\n=== Règle des seuils de Codex, confrontée au modèle ===");
   check("le modèle respecte « jamais ne confirme » : aucune politique réelle n'est `allowed`, un chien sous le plafond reste « sous conditions »", allowed === 0, String(allowed));
   check("le modèle respecte « élimine » : Air Austral cabine, Golden 32 kg (« inférieur à 8 kg » chien + contenant) → refus sûr",
     canal(decide("airport_cdg", "airport_run", GOLDEN_32), "airline_air_austral", "cabin")?.status === "denied");
-  /* DETTE NOMMÉE : pas de champ pour la borne. « inférieur à 8 kg » est exclusif ; le moteur ne refuse qu'au-dessus de 8. */
+  /* HISTOIRE : la borne n'était pas modélisée (dette nommée au correctif). RÉCONCILIATION : `weight_limit_bound: lt`
+     écrit depuis la phrase (« inférieur à 8 kg ») ; le moteur refuse à 8,0. Contre-épreuves complètes dans
+     `test-preuves-reconciliation.mjs` (7,9 / 8 / 8,1, et la borne inclusive en miroir). */
   const huit = canal(decide("airport_cdg", "airport_run", { breed_id: "breed_pug", weight_kg: 8 }), "airline_air_austral", "cabin");
-  check("DETTE NOMMÉE — borne exclusive non modélisée : Air Austral, chien de 8,0 kg exactement, n'est PAS refusé (le moteur ne refuse qu'au-dessus du plafond) — à corriger sur arbitrage, pas ici",
-    huit?.status !== "denied", JSON.stringify(huit));
+  check("borne stricte modélisée : Air Austral, chien de 8,0 kg exactement, est REFUSÉ (« inférieur à 8 kg »)", huit?.status === "denied", JSON.stringify(huit));
 }
 
 console.log(`\n=== SUMMARY ===\n${fail === 0 ? `ALL CHECKS PASSED (${pass})` : `${fail} CHECK(S) FAILED sur ${pass + fail}`}`);

@@ -112,6 +112,8 @@ export interface CountryAirline {
   channel: DogChannel;
   /** Plafond cabine annoncé, en kg. Absent = la compagnie accepte sans chiffre publié. */
   maxKg?: number;
+  /** Borne stricte (09/09/2026) : le plafond exclut la valeur (« inférieur à »). */
+  strict?: boolean;
   /** Aéroports du pays effectivement desservis d'après les routes AeroDataBox. */
   airports: number;
   /** Compagnie immatriculée dans ce pays. */
@@ -148,9 +150,9 @@ function servedCounts(kb: any): Map<string, Map<string, number>> {
 /** Le canal réellement praticable pour un chien, par ordre de préférence du maître.
  *  `none` couvre aussi bien le refus explicite (Ryanair) que la politique non documentée :
  *  ces compagnies ne sont jamais affichées, seulement comptées, pour ne rien affirmer de faux. */
-function dogChannel(a: any): { channel: DogChannel; maxKg?: number } {
+function dogChannel(a: any): { channel: DogChannel; maxKg?: number; strict?: boolean } {
   const p = a?.premium?.policy || {};
-  if (p.cabin?.allowed) return { channel: "cabin", maxKg: p.cabin.max_weight_kg ?? undefined };
+  if (p.cabin?.allowed) return { channel: "cabin", maxKg: p.cabin.max_weight_kg ?? undefined, strict: p.cabin.weight_limit_bound === "lt" };
   if (p.hold?.allowed) return { channel: "hold" };
   if (p.cargo?.allowed) return { channel: "cargo" };
   return { channel: "none" };
@@ -181,10 +183,10 @@ export function dogAirlinesForCountry(kb: any, countryId: string, locale: string
     const declared = (a.serves_country_ids || []).includes(countryId);
     const national = a.country_id === countryId;
     if (!n && !declared && !national) continue;
-    const { channel, maxKg } = dogChannel(a);
+    const { channel, maxKg, strict } = dogChannel(a);
     if (channel === "none") { undocumented++; continue; }
     const net = (a.direct_routes || []).length + (a.seasonal_routes || []).length;
-    all.push({ id: a.id, slug: slugFor(a.id), name: a.name, channel, maxKg, airports: n, national, net });
+    all.push({ id: a.id, slug: slugFor(a.id), name: a.name, channel, maxKg, strict, airports: n, national, net });
   }
   // La compagnie du pays d'abord — c'est celle que le voyageur cherche en premier pour
   // une destination. Ensuite la présence réelle (nombre d'aéroports du pays desservis),
@@ -225,6 +227,8 @@ export interface AirportAirline {
   id: string; slug: string; name: string;
   channel: Exclude<DogChannel, "none">;
   maxKg?: number;
+  /** Borne stricte (09/09/2026) : le plafond exclut la valeur (« inférieur à »). */
+  strict?: boolean;
   /** L'aéroport est un hub déclaré de la compagnie. */
   hub: boolean;
 }
@@ -242,10 +246,10 @@ export function dogAirlinesForAirport(kb: any, airportId: string, locale: string
   for (const [airlineId, n] of at) {
     const a: any = kb.airlines.get(airlineId);
     if (!a) continue;
-    const { channel, maxKg } = dogChannel(a);
+    const { channel, maxKg, strict } = dogChannel(a);
     if (channel === "none") continue;
     rows.push({
-      id: a.id, slug: slugFor(a.id), name: a.name, channel, maxKg,
+      id: a.id, slug: slugFor(a.id), name: a.name, channel, maxKg, strict,
       hub: (a.hub_airport_ids || []).includes(airportId), n,
     });
   }

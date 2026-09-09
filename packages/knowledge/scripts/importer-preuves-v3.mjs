@@ -161,6 +161,10 @@ const SEUILS = {
 };
 /** Seuils du CHIEN SEUL (le contenant s'ajoute) : `weight_includes_carrier: false`, écrit. */
 const SEUIL_CHIEN_SEUL = new Set(["airline_air_europa.cabin"]);
+/** BORNES STRICTES (09/09/2026, règle des seuils de Codex, tranchée par Philippe) : la phrase citée dit « inférieur à »,
+ *  « less than » — la valeur est EXCLUE. Écrit `weight_limit_bound: lt`. Absent = `lte` (« jusqu'à », « maximum »,
+ *  « ne dépasse pas »). Mesuré sur les 37 seuils écrits : une seule borne stricte, Air Austral cabine. */
+const SEUIL_BORNE_STRICTE = new Set(["airline_air_austral.cabin"]);
 
 const DISPONIBILITE = {
   deny_when_dog_weight_kg_gt_8: "offered", deny_when_dog_weight_kg_gt_10: "offered",
@@ -248,6 +252,7 @@ for (const [airlineId, lot] of parFiche) {
           : `    # Le plafond cité inclut le CONTENANT : refus sûr si le chien seul le dépasse, jamais un oui en dessous.`,
         `    max_weight_kg: ${seuil}`,
         `    weight_includes_carrier: ${chienSeul ? "false" : "true"}`,
+        ...(SEUIL_BORNE_STRICTE.has(cle) ? [`    weight_limit_bound: lt   # la phrase dit « inférieur à » : la valeur est exclue, un chien de ${seuil} kg exactement est refusé`] : []),
       ] : []),
       `    source:`,
       `      url: ${yamlStr(f.url)}`,

@@ -1,6 +1,6 @@
 {
   "resume": {
-    "empreinte_donnees_sha256": "7f60f080373c3d15fafba7c8d5275856e1fedde71828cd1a73b63b4d7d4062c2",
+    "empreinte_donnees_sha256": "3c5250f91a385ee3e87eb9e2129eedfef7c1edb02095d70fd8cb1bf03989bc0f",
     "compagnies": 102,
     "lignes": 306,
     "politiques": 302,
@@ -447,15 +447,9 @@
         "url_politique": "https://www.aerlingus.com/localized/en/modals/baggage-information.html",
         "hote_politique": "aerlingus.com",
         "url_fabriquee": false,
-        "regles": [
-          "rule_aer_lingus_no_hold"
-        ],
-        "regles_officielles": [
-          "rule_aer_lingus_no_hold"
-        ],
-        "hotes_regles": [
-          "aerlingus.com"
-        ]
+        "regles": [],
+        "regles_officielles": [],
+        "hotes_regles": []
       }
     },
     {
@@ -1094,15 +1088,9 @@
         "url_politique": "https://m.airchina.com.cn/ac/c/invoke/specialService/petCabinAgreement%40pg",
         "hote_politique": "m.airchina.com.cn",
         "url_fabriquee": false,
-        "regles": [
-          "rule_air_china_no_cabin"
-        ],
-        "regles_officielles": [
-          "rule_air_china_no_cabin"
-        ],
-        "hotes_regles": [
-          "airchina.us"
-        ]
+        "regles": [],
+        "regles_officielles": [],
+        "hotes_regles": []
       }
     },
     {

@@ -222,7 +222,8 @@ function premiumView(a: { premium?: unknown }, locale: string): PremiumView | un
          qu'on lui prêterait. */
       status: (p as { status?: "allowed" | "accepted_with_conditions" | "confirmation_required" | "denied" }).status
         ?? (p.allowed ? "allowed" : "denied"),
-      maxWeight: p.max_weight_kg ? `${p.max_weight_kg} kg` : undefined,
+      /* Borne stricte (09/09/2026) : « < 8 kg » quand la phrase dit « inférieur à » ; sinon la forme d'avant. */
+      maxWeight: p.max_weight_kg ? `${(p as { weight_limit_bound?: string }).weight_limit_bound === "lt" ? "< " : ""}${p.max_weight_kg} kg` : undefined,
       dims: p.carrier_dims_cm ? `${p.carrier_dims_cm.l}×${p.carrier_dims_cm.w}×${p.carrier_dims_cm.h} cm` : undefined,
       /* `fee` NE DESCEND PLUS JUSQU'À LA VUE (micro-lot Tarifs, 29/08/2026) : la chaîne de
          `premium.policy[canal].fee` est libre, sans devise séparée, sans route ni date

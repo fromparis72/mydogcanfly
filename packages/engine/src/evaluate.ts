@@ -553,7 +553,9 @@ export function evaluate(kb: NormalizedKB, req: FinderRequest, opts?: { weatherP
            chien seul au-dessus est refusé sûrement ; absent (`undefined`) : seuil non qualifié,
            jamais un refus. */
         && typeof pol.weight_includes_carrier === "boolean" && typeof pol.max_weight_kg === "number"
-        && poidsChien > pol.max_weight_kg;
+        /* LA BORNE (09/09/2026, règle des seuils de Codex) : `lt` exclut la valeur — Air Austral, « inférieur à
+           8 kg » : 8,0 kg est refusé, 7,9 ne l'est pas ; `lte` ou absent l'inclut : 8,0 passe, 8,1 est refusé. */
+        && (pol.weight_limit_bound === "lt" ? poidsChien >= pol.max_weight_kg : poidsChien > pol.max_weight_kg);
       let weightDeny = false;
       if (denyDecisifs.length > 0) {
         status = "denied";
@@ -646,7 +648,8 @@ export function evaluate(kb: NormalizedKB, req: FinderRequest, opts?: { weatherP
       return {
         decision: makePlacementDecision(p, race.status, race.causes, race.source, race.evidence,
           race.status === "accepted_with_conditions" && typeof pol?.weight_includes_carrier === "boolean" ? pol.max_weight_kg : undefined,
-          race.status === "accepted_with_conditions" && typeof pol?.weight_includes_carrier === "boolean" ? pol.weight_includes_carrier : undefined),
+          race.status === "accepted_with_conditions" && typeof pol?.weight_includes_carrier === "boolean" ? pol.weight_includes_carrier : undefined,
+          race.status === "accepted_with_conditions" && typeof pol?.weight_includes_carrier === "boolean" ? pol.weight_limit_bound : undefined),
         fires: allFires, breedDeny: race.denied_by_breed, weightDeny,
       };
     });
