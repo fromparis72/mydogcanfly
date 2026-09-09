@@ -2577,3 +2577,34 @@ Deux mouvements, tous deux mesurés :
    Iberia, Air Canada, TAP), `111` (Air India, Ethiopian). Le `101` conditionnel n'existe pas en
    réalité et n'est pas exigé. Contre-épreuve 2quater : permuter deux libellés conditionnels sur
    la base réelle est vu.
+
+## Annexe 25 — La bascule du 09/09/2026 : quatrième état et trois lots de preuves en production
+
+### Fusions, sur ordre de Philippe
+
+Feu vert de Codex sur `#39` (`0cf64ee`) et `#40` (`90fd22b`), puis feu vert de Philippe « pour
+les 2 » (09/09, ~04:40 UTC). La phrase de Codex « Ordre de fusion : #39, puis #40 » a été lue comme
+une séquence, pas comme un ordre : seul celui de Philippe a déclenché les fusions. Commits de
+fusion, comme les précédents : `465a50f` (#39) puis `8d24c44` (#40). L'arbre de `8d24c44` est
+identique à celui de `90fd22b` (`298c11f1`) : la CI sur `main` refait une preuve déjà faite, et
+Philippe n'a pas eu à l'attendre — délai mesuré, pas subi.
+
+### La bascule, consignée
+
+| | |
+|---|---|
+| `main` | `8d24c44` (fusion de PR #40, parents `465a50f` · `90fd22b`) |
+| Worker de production | `sha` `8d24c447…`, `worker_version_id` `4df711a0-8968-4542-b227-b192cdf1eedf`, lu sur `/v1/health` par Philippe ; retour : `e2bcece5` (08/09, annexe 21) |
+| Pages production | déploiement `3e97d459` par `npm run release` (2 272 fichiers envoyés, 1 360 déjà présents, « build indexable et complet ») ; retour : `ef4557b6` (08/09) |
+| contrôles en ligne | à consigner sur les sorties de Philippe (200 ×4, robots ouvert, 301 du calculateur, 404 chaleur, Paris → Athènes Golden 32 kg, Addis-Abeba) |
+
+### Deux erreurs de procédure, nommées
+
+1. **J'ai redonné `/fr/countries/france/` dans la liste de contrôles**, alors que l'annexe 21
+   l'avait déjà écartée : les pays sont adressés par code ISO, l'URL juste est
+   `/fr/countries/fr/`. La liste vivait dans `preflight-production.mjs`, non corrigé depuis le
+   08/09, et je l'ai recopiée sans relire l'annexe. Le 404 qu'elle produirait viendrait de moi.
+2. **Le pré-vol local a dit « NE PAS BASCULER » sur un dist de préversion** (noindex, robots
+   fermé) : le script vérifie le dist présent, pas celui que `release` construira. Faux rouge,
+   expliqué à Philippe, mais un signal qui crie pour rien use la confiance. À corriger avec le
+   lot « préflight + §8 » déjà nommé (Worker absent du script, URL pays fausse).
