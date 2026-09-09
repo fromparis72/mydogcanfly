@@ -2596,7 +2596,8 @@ Philippe n'a pas eu à l'attendre — délai mesuré, pas subi.
 | `main` | `8d24c44` (fusion de PR #40, parents `465a50f` · `90fd22b`) |
 | Worker de production | `sha` `8d24c447…`, `worker_version_id` `4df711a0-8968-4542-b227-b192cdf1eedf`, lu sur `/v1/health` par Philippe ; retour : `e2bcece5` (08/09, annexe 21) |
 | Pages production | déploiement `3e97d459` par `npm run release` (2 272 fichiers envoyés, 1 360 déjà présents, « build indexable et complet ») ; retour : `ef4557b6` (08/09) |
-| contrôles en ligne | à consigner sur les sorties de Philippe (200 ×4, robots ouvert, 301 du calculateur, 404 chaleur, Paris → Athènes Golden 32 kg, Addis-Abeba) |
+| contrôles en ligne (curl de Philippe, ~06:50 UTC) | 200 sur `/`, `/fr/`, `/airlines/air-france/`, `/fr/countries/fr/` ; `robots.txt` : `Allow: /`, seul `/lab/` fermé, sitemap annoncé ; 301 de l'ancien calculateur vers `/tools/crate/` ; 404 préservée de l'outil chaleur ; accueil FR « 39 canaux confirmés ; 11 refus documentés » ; fiche Air France : soute acceptée sous conditions avec citation, vérifiée le 08/09/2026, confiance 4/5, cabine et fret à confirmer |
+| reste à relire | navigateur : Paris → Athènes, Golden 32 kg (Aegean, Air France, easyJet distinctes) ; Addis-Abeba dans Destinations ; relecture directe de Codex |
 
 ### Deux erreurs de procédure, nommées
 
@@ -2608,3 +2609,6 @@ Philippe n'a pas eu à l'attendre — délai mesuré, pas subi.
    fermé) : le script vérifie le dist présent, pas celui que `release` construira. Faux rouge,
    expliqué à Philippe, mais un signal qui crie pour rien use la confiance. À corriger avec le
    lot « préflight + §8 » déjà nommé (Worker absent du script, URL pays fausse).
+3. **La commande `curl` à quatre adresses n'appliquait `-o /dev/null` qu'à la première** : les
+   trois autres pages se sont affichées entières dans le terminal de Philippe. Sans conséquence,
+   mais c'est ma commande, pas son terminal.
