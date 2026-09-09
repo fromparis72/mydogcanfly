@@ -3473,3 +3473,43 @@ cm / in ; la ligne compacte n'est pas nécessaire »). Close.
 Le reste de la contre-revue est favorable : XL à 54 px (4 × 13,5), conseillées et minimales en
 gras, classement sur les trois conseillées seules, un axe qui dépasse → gabarit suivant, « XXL+ » et
 « très grand format » au-delà, enveloppes jamais présentées comme un produit.
+
+## Annexe 36 — Correctif d'actualisation : le résultat suit le changement d'unité (09/09/2026, classement A)
+
+Relecture en ligne de Codex sur `main` `7dab627` (cinquième bascule). Trois contrôles conformes : Golden
+Retriever → `XL` à 54 px / graisse 900, conseillées 88 × 44 × 70 et minimum 85 × 41 × 67 en gras ; titre du
+minimum et avertissement ; A 120 / D 95 → `XXL+`, « très grand format ». **Un défaut réel** : après un
+calcul en centimètres, cliquer sur `in` convertit les champs de saisie mais laisse le résultat en cm
+jusqu'à un second clic sur « Calculer ». Seule régression fonctionnelle trouvée.
+
+### Mesuré avant de corriger
+
+`setUnit` convertissait les champs, basculait le bouton et les étiquettes, puis s'arrêtait : le résultat,
+rendu par le gestionnaire `submit`, n'était pas réémis. Le témoin nouveau, joué sur le dist de
+`7dab627` AVANT le correctif, rougit : 8 contrôles en échec sur 100 (dans les quatre langues, les trois
+conseillées restent « … cm » après le clic, et ne valent pas les pouces attendus). Le défaut est
+reproduit, et le témoin mord.
+
+### Correctif, très localisé
+
+Dans `setUnit`, après la mise à jour des étiquettes : si un résultat est visible (`crx-result` non
+caché et portant une carte), le formulaire reçoit l'événement `submit` — le même chemin que le bouton
+« Calculer », sans second clic. Rien d'autre ne change : ni la table, ni les textes, ni la méthode.
+
+### Témoin (harnais des caisses, quatre langues)
+
+Chien de la taille du Golden (A 72, D 67, 30 kg) calculé en cm ; clic sur `in` ; **sans** nouveau
+submit : les trois conseillées portent l'unité `in`, valent les centimètres d'avant ÷ 2,54 arrondis
+au demi-pouce supérieur (± 0,5), et le gabarit reste `XL`. Le scénario retourne le relevé d'avant et
+celui d'après séparément. Un seul build complet à la fin.
+
+### Mesuré sur le dist corrigé (un seul build, `e540882`)
+
+| contrôle | résultat |
+|---|---|
+| caisses | 100 contrôles tenus, 0 en échec (84 → 100 : 16 relevés nouveaux, quatre langues × avant / pouces / valeurs / gabarit) — les 8 rouges d'avant le correctif sont verts |
+| caisses non sourcées, entités, chaîne built-ui | verts ; 178/178 |
+| étape 3 DOM | verte, scellé des licites inchangé (le script du calculateur n'ajoute aucune tournure) |
+| `test:unit` complet, typecheck | verts |
+
+Contre-épreuves complètes sur l'arbre propre : voir le commit suivant.

@@ -291,6 +291,11 @@ const L = {
     (byId("u-cm") as HTMLElement)?.classList.toggle("is-on", u === "cm");
     (byId("u-in") as HTMLElement)?.classList.toggle("is-on", u === "in");
     updateUnitLabels();
+    /* RELECTURE EN LIGNE DE CODEX (09/09/2026) : après un calcul, cliquer sur l'unité convertissait les champs
+       mais laissait le résultat dans l'ancienne unité jusqu'à un second clic sur « Calculer ». Un résultat
+       visible est recalculé aussitôt, par le même chemin que le bouton (l'événement submit du formulaire). */
+    const f = byId("crx-form") as HTMLFormElement | null, o = byId("crx-result") as HTMLDivElement | null;
+    if (f && o && !o.hidden && o.querySelector(".crx-card")) f.dispatchEvent(new Event("submit", { bubbles: true, cancelable: true }));
   }
   byId("u-cm")?.addEventListener("click", () => setUnit("cm"));
   byId("u-in")?.addEventListener("click", () => setUnit("in"));
