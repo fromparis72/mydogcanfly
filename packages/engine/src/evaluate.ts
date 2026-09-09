@@ -86,9 +86,12 @@ const REASON_BY_CATEGORY: Record<string, string> = {
 };
 /** Ordre d'affichage : d'abord ce qui tient au chien, ensuite ce que la compagnie ne propose pas. */
 const REASON_ORDER = ["breed_restricted", "weight_limit", "cabin_unavailable", "hold_unavailable", "cargo_unavailable"];
-function denyReasonsOf(perPlacement: { placement: string; fires: Rule[]; breedDeny?: boolean }[]): string[] {
+function denyReasonsOf(perPlacement: { placement: string; fires: Rule[]; breedDeny?: boolean; weightDeny?: boolean }[]): string[] {
   const found = new Set<string>();
-  for (const { breedDeny } of perPlacement) {
+  for (const { breedDeny, weightDeny } of perPlacement) {
+    /* Un refus prononcé par le SEUIL DE LA POLITIQUE (chien + contenant, 08/09/2026) porte le
+       motif « poids au-delà de la limite publiée », comme un refus par règle de poids. */
+    if (weightDeny) found.add("weight_limit");
     /* Un refus prononcé par une RESTRICTION DE RACE porte le même motif qu'un refus prononcé par
        une règle `breed_ban` : le visiteur lit pourquoi son chien est refusé, pas quel objet du
        référentiel l'a décidé. Sans cette ligne, une compagnie refusant la soute sur un fait de
@@ -537,8 +540,26 @@ export function evaluate(kb: NormalizedKB, req: FinderRequest, opts?: { weatherP
 
       let status: PlacementStatus;
       const causes: ConfirmationCause[] = [];
+      /* LE SEUIL CHIEN + CONTENANT (arbitrage de Philippe, 08/09/2026). Une politique acceptée
+         sous conditions qui publie un plafond INCLUANT le contenant refuse sûrement un chien qui
+         le dépasse à lui seul : 32 kg de Golden contre 8 kg de cabine, le sac n'y change rien.
+         En dessous du seuil, on ne conclut JAMAIS un oui : le poids du contenant est inconnu, le
+         canal reste « accepté sous conditions », et la carte dit la condition. Le refus porte la
+         source citée de la politique — c'est elle qui le prouve. */
+      const poidsChien = Number(ctx["dog.weight_kg"] ?? 0);
+      const seuilDepasse = pol?.status === "accepted_with_conditions"
+        /* `true` : plafond chien + contenant ; `false` EXPLICITE : plafond du chien seul (lot 2,
+           Air Europa cabine : « The weight of the pet cannot exceed 8 kg »). Dans les deux cas le
+           chien seul au-dessus est refusé sûrement ; absent (`undefined`) : seuil non qualifié,
+           jamais un refus. */
+        && typeof pol.weight_includes_carrier === "boolean" && typeof pol.max_weight_kg === "number"
+        && poidsChien > pol.max_weight_kg;
+      let weightDeny = false;
       if (denyDecisifs.length > 0) {
         status = "denied";
+      } else if (seuilDepasse) {
+        status = "denied";
+        weightDeny = true;
       } else if (pol?.status === "denied") {
         /* UN REFUS DE POLITIQUE EST PROUVÉ, PAR CONSTRUCTION. Depuis la frontière,
            `projectPlacementPolicy` n'émet `denied` que sur une provenance citée : le laisser
@@ -592,7 +613,12 @@ export function evaluate(kb: NormalizedKB, req: FinderRequest, opts?: { weatherP
             ? { code: "estimated_climate", rule_id: r.id }
             : { code: "climate_rule_unquoted", rule_id: r.id });
         }
-        status = causes.length > 0 ? "confirmation_required" : "allowed";
+        /* Le statut positif est celui de la politique : `accepted_with_conditions` depuis le
+           08/09/2026 (une politique `offered` citée), `allowed` seulement si une politique le
+           disait encore — aucune ne le dit plus, voir `projectPlacementPolicy`. */
+        status = causes.length > 0 ? "confirmation_required"
+          : pol?.status === "accepted_with_conditions" ? "accepted_with_conditions"
+          : "allowed";
       }
       /* ---- LES FAITS DE RACE ---------------------------------------------------------------
          Appliqués APRÈS le statut de base, et jamais dans l'autre sens : ils ne créent pas de
@@ -618,8 +644,10 @@ export function evaluate(kb: NormalizedKB, req: FinderRequest, opts?: { weatherP
          racine de la fiche ne descend jamais ici — c'est elle que le contre-test a vue s'afficher
          comme justification d'une politique qu'elle ne documente pas. */
       return {
-        decision: makePlacementDecision(p, race.status, race.causes, race.source, race.evidence),
-        fires: allFires, breedDeny: race.denied_by_breed,
+        decision: makePlacementDecision(p, race.status, race.causes, race.source, race.evidence,
+          race.status === "accepted_with_conditions" && typeof pol?.weight_includes_carrier === "boolean" ? pol.max_weight_kg : undefined,
+          race.status === "accepted_with_conditions" && typeof pol?.weight_includes_carrier === "boolean" ? pol.weight_includes_carrier : undefined),
+        fires: allFires, breedDeny: race.denied_by_breed, weightDeny,
       };
     });
     /* Le triplet complet est validé — exactement {cabin, hold, cargo}, ni absence ni doublon. */
@@ -818,7 +846,7 @@ export function evaluate(kb: NormalizedKB, req: FinderRequest, opts?: { weatherP
          point d'appel : une soute fermée par un fait de race audité sortait avec `deny_reasons`
          absent — un refus sans motif, exactement le défaut que ce champ existe pour empêcher. */
       deny_reasons: denyReasonsOf(perPlacement.map((x) => ({
-        placement: x.decision.placement, fires: x.fires, breedDeny: x.breedDeny }))),
+        placement: x.decision.placement, fires: x.fires, breedDeny: x.breedDeny, weightDeny: x.weightDeny }))),
       connect_airport_id,
       detour_km,
       origin_airport_id,

@@ -64,6 +64,20 @@ ladder:
 policies:
   cabin:
     availability: offered
+    # PREUVE IMPORTÉE — import strict V3 (Codex, lecture directe du 2026-09-08, cohorte LOT2 fait 3).
+    # Effet attendu : Show a conditional cabin lead only for a dog that is actually small enough for the under-seat carrier.
+    # Portée nommée : small dogs and cats only, in an FAA-approved carrier fitting under the seat; no large dogs are accommodated
+    source:
+      url: "https://www.jetblue.com/help/traveling-with-pets"
+      source_type: official_website
+      verified_date: "2026-09-08"
+      review_due: "2026-12-07"   # reviewDueFrom(verified_date, "airline") — calculé par l'importeur
+      confidence: 4
+      reviewer: "Codex — direct reading of official airline page"
+      history: []
+      quote: "Only small dogs and cats may travel in the cabin in an FAA-approved pet carrier that fits comfortably under the seat in front of you."
+      quote_language: en
+      locator: "Traveling with Pets → Pet guidelines"
   hold:
     availability: not_offered
   cargo:

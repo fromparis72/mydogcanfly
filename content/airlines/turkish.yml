@@ -70,8 +70,42 @@ ladder:
 policies:
   cabin:
     availability: offered
+    # PREUVE IMPORTÉE — import strict V3 (Codex, lecture directe du 2026-09-08, cohorte A fait 16).
+    # Effet attendu : For a 32 kg dog, cabin is not suitable.
+    # Portée nommée : official ceiling applies to pet plus carrier
+    # Le plafond cité inclut le CONTENANT : refus sûr si le chien seul le dépasse, jamais un oui en dessous.
+    max_weight_kg: 8
+    weight_includes_carrier: true
+    source:
+      url: "https://www.turkishairlines.com/en-ch/any-questions/traveling-with-pets/"
+      source_type: official_website
+      verified_date: "2026-09-08"
+      review_due: "2026-12-07"   # reviewDueFrom(verified_date, "airline") — calculé par l'importeur
+      confidence: 4
+      reviewer: "Codex — lecture directe de la page officielle"
+      history: []
+      quote: "Pets traveling in the aircraft cabin cannot exceed a total of 8 kg, including their carrier."
+      quote_language: en
+      locator: "Are there weight or size limits for my pet?"
   hold:
     availability: offered
+    # PREUVE IMPORTÉE — import strict V3 (Codex, lecture directe du 2026-09-08, cohorte A fait 17).
+    # Effet attendu : Show hold offered under conditions for a 32 kg dog, subject to carrier weight and dimensions.
+    # Portée nommée : official ceiling is 50 kg for carrier plus pet; carrier dimensions also limited
+    # Le plafond cité inclut le CONTENANT : refus sûr si le chien seul le dépasse, jamais un oui en dessous.
+    max_weight_kg: 50
+    weight_includes_carrier: true
+    source:
+      url: "https://www.turkishairlines.com/en-ch/any-questions/traveling-with-pets/"
+      source_type: official_website
+      verified_date: "2026-09-08"
+      review_due: "2026-12-07"   # reviewDueFrom(verified_date, "airline") — calculé par l'importeur
+      confidence: 4
+      reviewer: "Codex — lecture directe de la page officielle"
+      history: []
+      quote: "The total weight of the carrier and the pet together cannot exceed 50 kg."
+      quote_language: en
+      locator: "Are there weight or size limits for my pet?"
   cargo:
     availability: offered
 channels:

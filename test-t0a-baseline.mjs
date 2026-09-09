@@ -921,8 +921,18 @@ console.log("=== Preuve T0-B2-UI (deux baselines FIGÉES — permanente) ===");
     /* 05/09/2026, troisième figée du jour — LA PLUS RÉCENTE EST CELLE DES ARBITRAGES D'INTERFACE.
        Celle de la frontière des règles n'est pas écrasée : elle devient l'AVANT de cette paire. */
     /* 05/09/2026, quatrième figée du jour — LA PLUS RÉCENTE EST CELLE DU STATUT D'ENTRÉE TERNAIRE. */
-    check("la baseline vivante est identique à la baseline figée la plus récente (entrée ternaire)",
+    /* 08/09/2026 — LA PLUS RÉCENTE EST CELLE DE L'IMPORT STRICT V3 (25 citations lues par Codex).
+       Celle de l'entrée ternaire n'est pas écrasée : elle devient l'AVANT de cette paire, et la
+       preuve permanente ci-dessous établit ce qui les sépare. */
+    /* 08/09/2026, plus tard — LA PLUS RÉCENTE EST CELLE DES LOTS 2 ET 3 DE L'IMPORT STRICT. */
+    check("la baseline vivante est identique à la baseline figée la plus récente (import strict, lots 2 et 3)",
       readFileSync("test-baselines/t0a-finder-baseline.json", "utf8")
+        === readFileSync("test-baselines/import-strict-lots-2-3-apres.json", "utf8"));
+    check("l'AVANT des lots 2 et 3 EST l'après de l'import V3 — chaîne continue",
+      readFileSync("test-baselines/import-strict-lots-2-3-avant.json", "utf8")
+        === readFileSync("test-baselines/import-strict-v3-apres.json", "utf8"));
+    check("l'AVANT de l'import strict V3 EST l'après de l'entrée ternaire — chaîne continue",
+      readFileSync("test-baselines/import-strict-v3-avant.json", "utf8")
         === readFileSync("test-baselines/entree-ternaire-apres.json", "utf8"));
     check("l'AVANT de l'entrée ternaire EST l'après des arbitrages d'interface — chaîne continue",
       readFileSync("test-baselines/entree-ternaire-avant.json", "utf8")
@@ -1157,6 +1167,100 @@ console.log("=== Preuve T0-B2-UI (deux baselines FIGÉES — permanente) ===");
  * Les 36 autres seraient migrés sans qu'aucun test ne les regarde. Cette sonde les prend tous, au
  * niveau normalisation/projection : ce que la fiche décide, ce que le runtime en fait.
  */
+console.log("=== Preuve PERMANENTE Import strict V3 — 25 citations, et rien d'autre ne bouge (baselines FIGÉES) ===");
+{
+  /* CE QU'UNE PREUVE A LE DROIT DE FAIRE, MESURÉ SUR DEUX FICHIERS SCELLÉS. Entre l'entrée
+   * ternaire (avant) et l'import strict V3 (après) :
+   *   - SEULES les cartes des compagnies importées changent — douze d'entre elles sont sur les
+   *     neuf routes de la baseline (easyJet, Ryanair et Transavia n'y volent pas) ;
+   *   - 504 cartes sur 1 560 ; 450 canaux passent « à confirmer » → accepté sous conditions,
+   *     32 « à confirmer » → refusé ; AUCUN canal ne va vers `allowed`, aucun ne se referme
+   *     depuis un état ouvert ;
+   *   - 52 verdicts passent « pas encore établi » → « oui, sous conditions » ; aucun ne devient
+   *     « oui » sec ni « non ».
+   * Les cartes sont appariées par identifiant de compagnie, pas par rang : l'ordre bouge (le
+   * prouvé remonte), et un appariement par rang aurait compté 1 228 « changements » sans sens. */
+  const AVANT = "test-baselines/import-strict-v3-avant.json";
+  const APRES = "test-baselines/import-strict-v3-apres.json";
+  const IMPORTEES = ["airline_aegean", "airline_air_france", "airline_british_airways", "airline_easyjet", "airline_finnair",
+    "airline_iberia", "airline_klm", "airline_lufthansa", "airline_qatar_airways", "airline_ryanair", "airline_sas",
+    "airline_tap", "airline_transavia", "airline_turkish", "airline_vueling"];
+  check("les deux baselines de l'import V3 sont versionnées", existsSync(AVANT) && existsSync(APRES));
+  if (existsSync(AVANT) && existsSync(APRES)) {
+    const avant = JSON.parse(readFileSync(AVANT, "utf8")), apres = JSON.parse(readFileSync(APRES, "utf8"));
+    const idDe = (s) => s.split(" | ")[0];
+    const statutsDe = (s) => (s.split(" | ").find((seg) => seg.startsWith("st:")) ?? "st:?/?/?").slice(3).split("/");
+    const changees = new Map(); const transitions = new Map(); const verdicts = new Map();
+    let cartes = 0, total = 0;
+    for (const k of Object.keys(apres)) {
+      const A = new Map((avant[k]?.airlines ?? []).map((s) => [idDe(s), s]));
+      for (const s of apres[k].airlines ?? []) {
+        total++;
+        const o = A.get(idDe(s));
+        if (o === s) continue;
+        cartes++; changees.set(idDe(s), (changees.get(idDe(s)) ?? 0) + 1);
+        const so = statutsDe(o ?? ""), sn = statutsDe(s);
+        for (let i = 0; i < 3; i++) if (so[i] !== sn[i]) transitions.set(`${so[i]}→${sn[i]}`, (transitions.get(`${so[i]}→${sn[i]}`) ?? 0) + 1);
+      }
+      const v = `${avant[k]?.verdict}→${apres[k].verdict}`; verdicts.set(v, (verdicts.get(v) ?? 0) + 1);
+    }
+    check("les deux baselines couvrent les mêmes 72 scénarios", Object.keys(apres).length === 72 && Object.keys(apres).every((k) => k in avant));
+    check("SEULES des compagnies importées changent de carte — 12 d'entre elles, nominativement",
+      [...changees.keys()].every((id) => IMPORTEES.includes(id)) && changees.size === 12,
+      [...changees.keys()].filter((id) => !IMPORTEES.includes(id)).join(", ") || `${changees.size} compagnies`);
+    check("504 cartes sur 1 560 changent (appariées par compagnie)", cartes === 504 && total === 1560, `${cartes} / ${total}`);
+    check("450 canaux « à confirmer » → accepté sous conditions, 32 → refusé, et RIEN d'autre",
+      transitions.get("confirmation_required→accepted_with_conditions") === 450 && transitions.get("confirmation_required→denied") === 32 && transitions.size === 2,
+      JSON.stringify([...transitions]));
+    check("AUCUN canal ne va vers `allowed`", [...transitions.keys()].every((t) => !t.endsWith("→allowed")));
+    check("52 verdicts « unknown » → « conditional », 20 restent « unknown », aucun « compatible », aucun « incompatible »",
+      verdicts.get("unknown→conditional") === 52 && verdicts.get("unknown→unknown") === 20 && verdicts.size === 2, JSON.stringify([...verdicts]));
+  }
+}
+
+console.log("=== Preuve PERMANENTE Import strict lots 2 et 3 — 24 citations, et rien d'autre ne bouge (baselines FIGÉES) ===");
+{
+  /* Même méthode que la preuve V3 : cartes appariées par compagnie. Entre l'après de l'import V3
+   * et l'après des lots 2 et 3 : 208 cartes sur 1 560, douze compagnies importées et elles seules ;
+   * 248 canaux « à confirmer » → accepté sous conditions, 32 → refusé (Cathay, EVA Air, ANA
+   * cabines) ; aucun vers `allowed` ; AUCUN verdict ne bouge (52 « conditional », 20 « unknown »
+   * — les scénarios de la baseline avaient déjà leurs canaux prouvés au lot précédent). */
+  const AVANT = "test-baselines/import-strict-lots-2-3-avant.json";
+  const APRES = "test-baselines/import-strict-lots-2-3-apres.json";
+  const IMPORTEES = ["airline_air_canada", "airline_delta", "airline_jetblue", "airline_air_transat", "airline_air_europa",
+    "airline_cathay_pacific", "airline_eva_air", "airline_air_india", "airline_avianca", "airline_ethiopian", "airline_ana", "airline_jal", "airline_etihad"];
+  check("les deux baselines des lots 2 et 3 sont versionnées", existsSync(AVANT) && existsSync(APRES));
+  if (existsSync(AVANT) && existsSync(APRES)) {
+    const avant = JSON.parse(readFileSync(AVANT, "utf8")), apres = JSON.parse(readFileSync(APRES, "utf8"));
+    const idDe = (s) => s.split(" | ")[0];
+    const statutsDe = (s) => (s.split(" | ").find((seg) => seg.startsWith("st:")) ?? "st:?/?/?").slice(3).split("/");
+    const changees = new Map(); const transitions = new Map(); const verdicts = new Map();
+    let cartes = 0, total = 0;
+    for (const k of Object.keys(apres)) {
+      const A = new Map((avant[k]?.airlines ?? []).map((s) => [idDe(s), s]));
+      for (const s of apres[k].airlines ?? []) {
+        total++;
+        const o = A.get(idDe(s));
+        if (o === s) continue;
+        cartes++; changees.set(idDe(s), (changees.get(idDe(s)) ?? 0) + 1);
+        const so = statutsDe(o ?? ""), sn = statutsDe(s);
+        for (let i = 0; i < 3; i++) if (so[i] !== sn[i]) transitions.set(`${so[i]}→${sn[i]}`, (transitions.get(`${so[i]}→${sn[i]}`) ?? 0) + 1);
+      }
+      const v = `${avant[k]?.verdict}→${apres[k].verdict}`; verdicts.set(v, (verdicts.get(v) ?? 0) + 1);
+    }
+    check("SEULES des compagnies importées aux lots 2 et 3 changent de carte — 12 d'entre elles",
+      [...changees.keys()].every((id) => IMPORTEES.includes(id)) && changees.size === 12,
+      [...changees.keys()].filter((id) => !IMPORTEES.includes(id)).join(", ") || `${changees.size} compagnies`);
+    check("208 cartes sur 1 560 changent (appariées par compagnie)", cartes === 208 && total === 1560, `${cartes} / ${total}`);
+    check("248 canaux « à confirmer » → accepté sous conditions, 32 → refusé, et RIEN d'autre",
+      transitions.get("confirmation_required→accepted_with_conditions") === 248 && transitions.get("confirmation_required→denied") === 32 && transitions.size === 2,
+      JSON.stringify([...transitions]));
+    check("AUCUN canal ne va vers `allowed`, AUCUN verdict ne bouge (52 conditional, 20 unknown)",
+      [...transitions.keys()].every((t) => !t.endsWith("→allowed")) && verdicts.get("conditional→conditional") === 52 && verdicts.get("unknown→unknown") === 20 && verdicts.size === 2,
+      JSON.stringify([...verdicts]));
+  }
+}
+
 console.log("=== Couverture DIRECTE : les 302 politiques, hors des 72 scénarios ===");
 {
   const kbCouverture = loadKB();
@@ -1167,8 +1271,9 @@ console.log("=== Couverture DIRECTE : les 302 politiques, hors des 72 scénarios
   const cible = (auteur, availability) => {
     const niveau = niveauDePreuve(auteur);
     if (niveau === "citee") {
+      /* QUATRIÈME ÉTAT (08/09/2026) : `offered` cité → `accepted_with_conditions`, jamais `allowed`. */
       return availability === "offered"
-        ? { status: "allowed", allowed: true, cause: undefined }
+        ? { status: "accepted_with_conditions", allowed: true, cause: undefined }
         : { status: "denied", allowed: false, cause: undefined };
     }
     return { status: "confirmation_required", allowed: false,
@@ -1234,11 +1339,14 @@ console.log("=== Couverture DIRECTE : les 302 politiques, hors des 72 scénarios
    * « We don’t carry pets in the cabin on any route. », lue directement, avec sa langue et son
    * emplacement. Une politique quitte donc `official_source_unquoted` (33 → 32) pour devenir le
    * premier verdict prouvé du dépôt. Chaque citation suivante devra nommer son mouvement ici. */
-  check("répartition runtime : 0 allowed · 1 denied · 301 à confirmer",
-    !parStatut.allowed && parStatut.denied === 1 && parStatut.confirmation_required === 301,
+  /* MOUVEMENT NOMMÉ (08/09/2026, import strict V3 — 25 citations importées, lues par Codex le 08/09, une par fait décisif ; British Airways cabine conservée) : 0 allowed · 18 accepted_with_conditions · 8 denied · 276 à confirmer ; causes
+     251 legacy_unreviewed (−16) · 23 official_source_unquoted (−9) · 1 · 1 (intactes). */
+  /* MOUVEMENT NOMMÉ (08/09/2026, import strict lots 2 et 3 — 24 citations de plus, 52 en tout) : 0 · 39 · 11 · 252 ; causes 230 · 20 · 1 · 1. */
+  check("répartition runtime : 0 allowed · 39 sous conditions · 11 denied · 252 à confirmer",
+    !parStatut.allowed && parStatut.accepted_with_conditions === 39 && parStatut.denied === 11 && parStatut.confirmation_required === 252,
     JSON.stringify(parStatut));
-  check("causes : 267 legacy_unreviewed · 32 official_source_unquoted · 1 policy_unpublished · 1 airline_approval",
-    parCause.legacy_unreviewed === 267 && parCause.official_source_unquoted === 32
+  check("causes : 230 legacy_unreviewed · 20 official_source_unquoted · 1 policy_unpublished · 1 airline_approval",
+    parCause.legacy_unreviewed === 230 && parCause.official_source_unquoted === 20
       && parCause.policy_unpublished === 1 && parCause.airline_approval === 1, JSON.stringify(parCause));
 }
 

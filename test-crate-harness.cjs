@@ -160,17 +160,24 @@ const AIR = pagesT.en.L.airlines ?? {};
 const sansAnimaux = Object.entries(AIR).filter(([, a]) => a.noPets).map(([id]) => id);
 /* L'ÉTAT RÉEL, MESURÉ ET FIGÉ — mouvement nommé du 05/09/2026 : 7 → 0 et 12 → 0. Un refus total
    comme une limite cabine publiée sont des AFFIRMATIONS ; aucune n'est prouvée aujourd'hui. */
-check("état réel figé : AUCUNE compagnie ne refuse les trois placements (7 avant la frontière)",
-  Object.values(AIR_REEL).filter((a) => a.noPets).length === 0,
-  `${Object.values(AIR_REEL).filter((a) => a.noPets).length}`);
-check("état réel figé : AUCUNE compagnie ne publie de limite cabine exploitable (12 avant)",
-  Object.values(AIR_REEL).filter((a) => !a.noPets && a.cabin && a.cabin.maxKg != null).length === 0,
+/* MOUVEMENT NOMMÉ (08/09/2026, import strict V3 — 25 citations) : 0 → 1 refus total (Ryanair, sur
+   trois phrases citées) et 0 → 9 limites cabine exploitables (Aegean, Finnair, Iberia, KLM,
+   Lufthansa, SAS, TAP, Transavia, Turkish — toutes « chien + contenant », 8 kg). Figé sur mesure. */
+check("état réel figé : UNE compagnie refuse les trois placements — Ryanair, sur citations",
+  JSON.stringify(Object.entries(AIR_REEL).filter(([, a]) => a.noPets).map(([id]) => id)) === JSON.stringify(["airline_ryanair"]),
+  Object.entries(AIR_REEL).filter(([, a]) => a.noPets).map(([id]) => id).join(", "));
+/* MOUVEMENT NOMMÉ (08/09/2026, import strict lots 2 et 3 — 24 citations de plus, 52 en tout) : 9 → 15 limites cabine citées ; Air Europa plafonne le CHIEN SEUL (`incl: false`), les
+   quatorze autres chien + contenant — toutes QUALIFIÉES (booléen écrit), jamais devinées. */
+check("état réel figé : 15 compagnies publient une limite cabine citée, chacune qualifiée (chien + contenant, ou chien seul)",
+  Object.values(AIR_REEL).filter((a) => !a.noPets && a.cabin && a.cabin.maxKg != null).length === 15
+    && Object.values(AIR_REEL).filter((a) => !a.noPets && a.cabin && a.cabin.maxKg != null).every((a) => typeof a.cabin.incl === "boolean")
+    && Object.values(AIR_REEL).filter((a) => !a.noPets && a.cabin && a.cabin.maxKg != null && a.cabin.incl === false).length === 1,
   `${Object.values(AIR_REEL).filter((a) => !a.noPets && a.cabin && a.cabin.maxKg != null).length}`);
 check("le référentiel embarqué est peuplé (sinon rien de ce qui suit ne prouverait quoi que ce soit)",
   Object.keys(AIR).length >= 50 && Object.keys(pages.en.L.breeds ?? {}).length >= 100,
   `${Object.keys(AIR).length} compagnies · ${Object.keys(pages.en.L.breeds ?? {}).length} races`);
-check("le témoin « aucun animal » existe (synthétique — les données réelles n'en portent plus)",
-  sansAnimaux.length === 1 && sansAnimaux[0] === SYNTH_SANS_ANIMAUX, sansAnimaux.join(", "));
+check("les témoins « aucun animal » sont le synthétique ET Ryanair (réel, cité) — les deux sont joués",
+  sansAnimaux.length === 2 && sansAnimaux.includes(SYNTH_SANS_ANIMAUX) && sansAnimaux.includes("airline_ryanair"), sansAnimaux.join(", "));
 
 /* ---- 1. « Aucun animal » prend le dessus, sans ligne de soute ambiguë ------------------------- */
 for (const id of sansAnimaux) {
@@ -209,14 +216,16 @@ for (const m of MESURES) {
 
 /* ---- 4. Un chien trop lourd ne reçoit jamais un verdict cabine favorable ---------------------- */
 const avecPoidsCabine = Object.entries(AIR)
-  .filter(([, a]) => !a.noPets && a.cabin && a.cabin.maxKg != null).slice(0, 12);
+  .filter(([, a]) => !a.noPets && a.cabin && a.cabin.maxKg != null).slice(0, 20);
 /* MOUVEMENT NOMMÉ : le seuil était « ≥ 5 compagnies réelles ». Depuis la frontière, AUCUNE
    politique n'est `allowed`, donc aucune limite cabine n'est exploitable — la population réelle
    est vide (mesurée ci-dessus) et la compagnie éprouvée ici est le témoin SYNTHÉTIQUE. Ce que la
    section démontre est inchangé : un chien trop lourd ne reçoit jamais un verdict cabine
    favorable, et c'est le script de production qui le décide. */
-check("le témoin « limite cabine publiée » existe (synthétique — les données réelles n'en portent plus)",
-  avecPoidsCabine.length === 1 && avecPoidsCabine[0][0] === SYNTH_CABINE,
+/* MOUVEMENT NOMMÉ (08/09/2026) : le synthétique n'est plus seul — neuf limites réelles citées le
+   rejoignent, et chacune est jouée ci-dessous (au-delà du plafond, jamais un verdict favorable). */
+check("les témoins « limite cabine publiée » : le synthétique et les 15 limites réelles citées",
+  avecPoidsCabine.length === 16 && avecPoidsCabine.some(([i]) => i === SYNTH_CABINE),
   `${avecPoidsCabine.length} : ${avecPoidsCabine.map(([i]) => i).join(", ")}`);
 for (const [id, a] of avecPoidsCabine) {
   const trop = scenario(pagesT.en, { a: 45, d: 32, poids: a.cabin.maxKg + 10, airId: id });

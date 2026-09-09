@@ -1,0 +1,91 @@
+{
+  "schema_version": 1,
+  "as_of": "2026-09-08",
+  "purpose": "Evidence packet only. Each fact is limited to an explicit statement on a directly read official airline page. A combined pet-and-carrier ceiling can exclude a dog that exceeds it alone; it cannot positively clear a smaller dog without the carrier and route conditions.",
+  "provenance_defaults": {
+    "source_type": "official_website",
+    "verified_date": "2026-09-08",
+    "review_due": "derive_with_reviewDueFrom(verified_date, 'airline')",
+    "confidence": 4,
+    "reviewer": "Codex — lecture directe de la page officielle"
+  },
+  "facts": [
+    {
+      "airline_id": "airline_norwegian",
+      "placement": "cabin",
+      "recommendation": "deny_when_dog_weight_kg_gt_8",
+      "condition_scope": "official ceiling applies to pet plus carrier and only to listed Schengen/EU and Svalbard routes; capacity remains limited",
+      "finder_effect": "For a 30 or 32 kg dog, cabin is not suitable. A dog at or below 8 kg is not positively cleared without carrier weight and route checks.",
+      "url": "https://www.norwegian.com/uk/travel-info/baggage/travelling-with-pets/",
+      "quote": "The container and pet(s) must not exceed 8 kg in total gross weight.",
+      "quote_language": "en",
+      "locator": "Getting ready to fly → Kennels and crates → In the cabin"
+    },
+    {
+      "airline_id": "airline_norwegian",
+      "placement": "hold",
+      "recommendation": "offered_with_conditions",
+      "condition_scope": "officially listed for Schengen/EU flights excluding Ireland and Iceland, plus limited Svalbard and Norwegian connection cases; crate and booking requirements apply",
+      "finder_effect": "Passenger hold may be offered only after route, connection, crate and capacity checks; never present it as a guaranteed booking outcome.",
+      "url": "https://www.norwegian.com/uk/travel-info/baggage/travelling-with-pets/",
+      "quote": "Cats and dogs can travel in the cargo hold on the following flights:",
+      "quote_language": "en",
+      "locator": "Pets in the cargo hold"
+    },
+    {
+      "airline_id": "airline_condor",
+      "placement": "cabin",
+      "recommendation": "deny_when_dog_weight_kg_gt_8",
+      "condition_scope": "official ceiling applies to the box including the animal; only small cats and dogs and a prior reservation are accepted",
+      "finder_effect": "For a 30 or 32 kg dog, cabin is not suitable. Under 8 kg dog body weight alone is not a clearance: carrier, route and reservation still apply.",
+      "url": "https://www.condor.com/eu/flight-preparation/baggage-and-animals/travelling-with-pets/pets-in-cabin.jsp",
+      "quote": "the box including the animal may weigh a maximum of 8 kg.",
+      "quote_language": "en",
+      "locator": "Pets in Cabin → Transportation in the Cabin"
+    },
+    {
+      "airline_id": "airline_condor",
+      "placement": "hold",
+      "recommendation": "offered_with_conditions",
+      "condition_scope": "limited number of dogs and cats, carrier and breed information required; reservation only up to 48 hours before departure and only on direct flights",
+      "finder_effect": "Passenger hold can be proposed as conditional, not confirmed: the route must be direct and the airline must accept the requested animal and carrier.",
+      "url": "https://www.condor.com/eu/flight-preparation/baggage-and-animals/travelling-with-pets/pets-in-cargo-hold.jsp",
+      "quote": "we only allow a limited number of dogs and cats on our aircrafts.",
+      "quote_language": "en",
+      "locator": "Pets in Cargo Hold → Transporting Pets in Cargo Hold"
+    },
+    {
+      "airline_id": "airline_eurowings",
+      "placement": "cabin",
+      "recommendation": "deny_when_dog_weight_kg_gt_8",
+      "condition_scope": "the published threshold is for the pet as a whole and requires a kennel that fits under the seat; the source does not establish a passenger-hold decision",
+      "finder_effect": "For a 30 or 32 kg dog, cabin is not suitable. Do not turn the 8 kg statement into a positive clearance without the carrier conditions.",
+      "url": "https://www.eurowings.com/en/booking/travel-extras/komfort-services.html",
+      "quote": "Your furry friend up to 8 kg can travel in the cabin, provided their kennel fits under the seat in front of you.",
+      "quote_language": "en",
+      "locator": "Travelling with animals"
+    }
+  ],
+  "intentionally_unset": [
+    {
+      "airline_id": "airline_eurowings",
+      "placement": "hold",
+      "reason": "The directly read Eurowings page establishes only the cabin condition. Group membership is not evidence of an Eurowings passenger-hold policy."
+    },
+    {
+      "airline_id": "airline_eurowings",
+      "placement": "cargo",
+      "reason": "No directly read official Eurowings source in this cohort establishes an ordinary pet-dog cargo service."
+    },
+    {
+      "airline_id": "airline_norwegian",
+      "placement": "cargo",
+      "reason": "The directly read Norwegian page documents passenger cargo hold only; it does not establish a separate cargo product for ordinary pet dogs."
+    },
+    {
+      "airline_id": "airline_condor",
+      "placement": "cargo",
+      "reason": "The directly read Condor page documents passenger cargo hold only; it does not establish a separate cargo product for ordinary pet dogs."
+    }
+  ]
+}

@@ -112,13 +112,17 @@ if (!goldenCite) { console.error("[faq-races] profil cité introuvable"); proces
     races++;
     if (p.bestAirlines.length) avecCompagnies++;
   }
-  if (avecCompagnies !== 0) {
-    echec("1 bis état réel", `${avecCompagnies} race(s) sur ${races} ont désormais des compagnies compatibles — `
-      + "l'état figé disait 0. Mouvement à nommer : soit une citation vérifiée est entrée (tant mieux), "
+  /* MOUVEMENT NOMMÉ (08/09/2026, import strict V3 — 25 citations importées) : 0 → 172 races sur 172. Dix-huit politiques `offered` citées sont au quatrième
+     état (accepté sous conditions), que `computeBreedTravel` compte comme ouvertes : chaque race
+     trouve au moins une compagnie. C'est la citation vérifiée qui est entrée — l'arbitrage du
+     29/08 n'a pas été rouvert. Compte figé ; il bouge par mouvement nommé. */
+  const RACES_AVEC_COMPAGNIES_V3 = 172;
+  if (avecCompagnies !== RACES_AVEC_COMPAGNIES_V3) {
+    echec("1 bis état réel", `${avecCompagnies} race(s) sur ${races} ont des compagnies compatibles — `
+      + `l'état figé (import strict V3) disait ${RACES_AVEC_COMPAGNIES_V3}. Mouvement à nommer : soit une citation vérifiée est entrée ou sortie, `
       + "soit l'arbitrage du 29/08 a été rouvert.");
   } else {
-    ok(`1 bis état réel FIGÉ : 0 race sur ${races} n'a de compagnie compatible — aucune politique n'est `
-      + "prouvée, et la page le dit honnêtement (contrôle 7). ARBITRAGE EN ATTENTE.");
+    ok(`1 bis état réel FIGÉ : ${avecCompagnies} race(s) sur ${races} ont des compagnies — sur des politiques citées, acceptées sous conditions (import strict V3).`);
   }
 }
 
@@ -468,11 +472,16 @@ if (DIST) {
        * Les deux phrases d'origine restent exigées SI le classement revient — le jour où une
        * citation rendra un canal `allowed`. Elles dorment, elles ne sont pas supprimées. */
       const classementRendu = html.includes("bt2-airname");
+      /* LE CLASSEMENT EST REVENU (08/09/2026, import strict) — sur des canaux acceptés SOUS
+         CONDITIONS, pas `allowed`. La phrase du classement est de nouveau exigée. La seconde
+         phrase dormante (« Com base na dificuldade global… ») n'existe PLUS dans le gabarit :
+         la section de difficulté a été retirée le 06/09 avec la note /100, et la note reste
+         masquée par décision écrite (`NOTE_AFFICHABLE`). Exiger une phrase que le gabarit ne
+         rend plus serait un faux rouge ; elle est retirée d'ici, nommée, et sa clé portugaise
+         reste dans inline.json comme dette morte. */
       const PAIRES = classementRendu ? [
         ["Classificação obtida das políticas publicadas (limites de peso em cabine, disponibilidade de porão e carga).",
          "Ranking derived from published policies (cabin weight limits, hold and cargo availability)"],
-        ["Com base na dificuldade global, no peso, nos canais disponíveis e nas políticas publicadas.",
-         "Based on overall difficulty, weight, available channels and published policies."],
       ] : [
         ["Ainda não há nenhum canal de companhia confirmado por uma fonte oficial citada para esta raça",
          "No airline channel has been confirmed by a quoted official source for this breed yet"],

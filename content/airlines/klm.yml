@@ -74,8 +74,39 @@ ladder:
 policies:
   cabin:
     availability: offered
+    # PREUVE IMPORTÉE — import strict V3 (Codex, lecture directe du 2026-09-08, cohorte A fait 7).
+    # Effet attendu : For a 32 kg dog, cabin is not suitable.
+    # Portée nommée : official ceiling applies to kennel including pet; cabin class and route restrictions also apply
+    # Le plafond cité inclut le CONTENANT : refus sûr si le chien seul le dépasse, jamais un oui en dessous.
+    max_weight_kg: 8
+    weight_includes_carrier: true
+    source:
+      url: "https://www.klm.com/information/pets/reservation"
+      source_type: official_website
+      verified_date: "2026-09-08"
+      review_due: "2026-12-07"   # reviewDueFrom(verified_date, "airline") — calculé par l'importeur
+      confidence: 4
+      reviewer: "Codex — lecture directe de la page officielle"
+      history: []
+      quote: "Because they'll need to travel underneath the seat in front of you, the bag or kennel can weigh no more than 8 kg (17.6 lb), with your pet inside."
+      quote_language: en
+      locator: "Pets in the cabin"
   hold:
     availability: offered
+    # PREUVE IMPORTÉE — import strict V3 (Codex, lecture directe du 2026-09-08, cohorte A fait 8).
+    # Effet attendu : Show hold offered under conditions, not blanket acceptance.
+    # Portée nommée : pet plus kennel below 75 kg; fleet, connection, route and breed exclusions apply
+    source:
+      url: "https://www.klm.com/information/pets/reservation"
+      source_type: official_website
+      verified_date: "2026-09-08"
+      review_due: "2026-12-07"   # reviewDueFrom(verified_date, "airline") — calculé par l'importeur
+      confidence: 4
+      reviewer: "Codex — lecture directe de la page officielle"
+      history: []
+      quote: "You can bring up to 3 pets in the hold."
+      quote_language: en
+      locator: "Pets in the hold"
   cargo:
     availability: offered
 channels:

@@ -70,10 +70,58 @@ ladder:
 policies:
   cabin:
     availability: offered
+    # PREUVE IMPORTÉE — import strict lot3 (Codex, lecture directe du 2026-09-08, cohorte LOT3 fait 5).
+    # Effet attendu : For a dog above 8 kg, do not offer the Ethiopian cabin. At or below 8 kg, no confirmation is inferred from the threshold alone.
+    # Portée nommée : the 8 kg ceiling includes the container; a dog alone over 8 kg cannot satisfy the cabin rule. Operating-carrier, route and advance-arrangement restrictions apply.
+    # Le plafond cité inclut le CONTENANT : refus sûr si le chien seul le dépasse, jamais un oui en dessous.
+    max_weight_kg: 8
+    weight_includes_carrier: true
+    source:
+      url: "https://www.ethiopianairlines.com/us/information/special-needs/travelling-with-pets"
+      source_type: official_website
+      verified_date: "2026-09-08"
+      review_due: "2026-12-07"   # reviewDueFrom(verified_date, "airline") — calculé par l'importeur
+      confidence: 4
+      reviewer: "Codex — direct reading of official airline page"
+      history: []
+      quote: "You must bring your pet in a box that does not exceed 55 x 40 x 20 cm and 8 kg (including the container). If the size or weight is more, the pet must be transported in the aircraft hold."
+      quote_language: en
+      locator: "Travelling with Pets → Policy"
   hold:
     availability: offered
+    # PREUVE IMPORTÉE — import strict lot3 (Codex, lecture directe du 2026-09-08, cohorte LOT3 fait 6).
+    # Effet attendu : Passenger hold is a conditional path for a dog-and-container combination over the cabin ceiling, not a blanket approval.
+    # Portée nommée : pet plus cage over 8 kg and up to 45 kg; advance arrangement, route, breed and operating-carrier restrictions apply
+    # Le plafond cité inclut le CONTENANT : refus sûr si le chien seul le dépasse, jamais un oui en dessous.
+    max_weight_kg: 45
+    weight_includes_carrier: true
+    source:
+      url: "https://www.ethiopianairlines.com/us/information/special-needs/travelling-with-pets"
+      source_type: official_website
+      verified_date: "2026-09-08"
+      review_due: "2026-12-07"   # reviewDueFrom(verified_date, "airline") — calculé par l'importeur
+      confidence: 4
+      reviewer: "Codex — direct reading of official airline page"
+      history: []
+      quote: "If the cage is larger than allowed for cabin travel, or the total weight (pet + cage) is more than 8 kg and up to 45 kg, it will be transported in the hold."
+      quote_language: en
+      locator: "Travelling with Pets → Policy"
   cargo:
-    review_state: legacy_unreviewed
+    availability: offered   # RÉACTIVÉE sur citation (import strict, lot3, 2026-09-08) — était review_state: legacy_unreviewed
+    # PREUVE IMPORTÉE — import strict lot3 (Codex, lecture directe du 2026-09-08, cohorte LOT3 fait 7).
+    # Effet attendu : Cargo is a conditional direction for a dog-and-container combination above 45 kg, not a shipping confirmation.
+    # Portée nommée : pet plus cage above 45 kg; cargo procedures, legal and route restrictions apply
+    source:
+      url: "https://www.ethiopianairlines.com/us/information/special-needs/travelling-with-pets"
+      source_type: official_website
+      verified_date: "2026-09-08"
+      review_due: "2026-12-07"   # reviewDueFrom(verified_date, "airline") — calculé par l'importeur
+      confidence: 4
+      reviewer: "Codex — direct reading of official airline page"
+      history: []
+      quote: "Pets (including cage) weighing more than 45 kg must be transported as cargo, following cargo procedures."
+      quote_language: en
+      locator: "Travelling with Pets → Policy"
 channels:
   - placement: cabin
     icon: 🐾

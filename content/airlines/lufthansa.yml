@@ -74,8 +74,39 @@ ladder:
 policies:
   cabin:
     availability: offered
+    # PREUVE IMPORTÉE — import strict V3 (Codex, lecture directe du 2026-09-08, cohorte A fait 9).
+    # Effet attendu : For a 32 kg dog, cabin is not suitable.
+    # Portée nommée : official ceiling applies to dog plus transport container
+    # Le plafond cité inclut le CONTENANT : refus sûr si le chien seul le dépasse, jamais un oui en dessous.
+    max_weight_kg: 8
+    weight_includes_carrier: true
+    source:
+      url: "https://www.lufthansa.com/ua/en/travelling-with-animals"
+      source_type: official_website
+      verified_date: "2026-09-08"
+      review_due: "2026-12-07"   # reviewDueFrom(verified_date, "airline") — calculé par l'importeur
+      confidence: 4
+      reviewer: "Codex — lecture directe de la page officielle"
+      history: []
+      quote: "Only smaller dogs and cats weighing no more than 8 kg including their transport container may be transported under certain conditions as additional carry-on baggage in the passenger cabin."
+      quote_language: en
+      locator: "What travel options are there for the different types of animals?"
   hold:
     availability: offered
+    # PREUVE IMPORTÉE — import strict V3 (Codex, lecture directe du 2026-09-08, cohorte A fait 10).
+    # Effet attendu : Show hold offered under conditions for a large dog.
+    # Portée nommée : dog plus container over 8 kg; route, weather and country restrictions apply
+    source:
+      url: "https://www.lufthansa.com/ua/en/travelling-with-animals"
+      source_type: official_website
+      verified_date: "2026-09-08"
+      review_due: "2026-12-07"   # reviewDueFrom(verified_date, "airline") — calculé par l'importeur
+      confidence: 4
+      reviewer: "Codex — lecture directe de la page officielle"
+      history: []
+      quote: "Dogs and cats weighing more than 8 kg including their transport container may be carried as excess baggage in the aircraft’s air-conditioned cargo hold under certain conditions."
+      quote_language: en
+      locator: "What travel options are there for the different types of animals?"
   cargo:
     availability: offered
 channels:

@@ -72,6 +72,23 @@ policies:
     availability: offered
   hold:
     availability: offered
+    # PREUVE IMPORTÉE — import strict V3 (Codex, lecture directe du 2026-09-08, cohorte A fait 0).
+    # Effet attendu : For a 32 kg dog, show hold offered under conditions; do not turn booking availability into policy_unknown.
+    # Portée nommée : dog_plus_carrier > 8 kg and <= 75 kg
+    # Le plafond cité inclut le CONTENANT : refus sûr si le chien seul le dépasse, jamais un oui en dessous.
+    max_weight_kg: 75
+    weight_includes_carrier: true
+    source:
+      url: "https://wwws.airfrance.fr/en/information/passagers/voyager-avec-son-animal-chien-chat"
+      source_type: official_website
+      verified_date: "2026-09-08"
+      review_due: "2026-12-07"   # reviewDueFrom(verified_date, "airline") — calculé par l'importeur
+      confidence: 4
+      reviewer: "Codex — lecture directe de la page officielle"
+      history: []
+      quote: "If your cat or dog weighs more than 8 kg/17.64 lb. and up to 75 kg/165.35 lb. with its carrier, it must travel in the hold."
+      quote_language: en
+      locator: "Important!"
   cargo:
     availability: offered
 channels:

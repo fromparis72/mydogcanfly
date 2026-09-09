@@ -79,7 +79,7 @@ const kb = loadKB();
 const canauxProuves = { ouverts: 0, refus: 0 };
 for (const a of kb.airlines.values()) {
   for (const v of Object.values((a as { premium?: { policy?: Record<string, { status?: string } | undefined> } }).premium?.policy ?? {})) {
-    if (v?.status === "allowed") canauxProuves.ouverts++;
+    if (v?.status === "allowed" || v?.status === "accepted_with_conditions") canauxProuves.ouverts++;   // ouvert sous conditions, cité (08/09/2026)
     else if (v?.status === "denied") canauxProuves.refus++;
   }
 }

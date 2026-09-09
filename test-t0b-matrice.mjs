@@ -72,6 +72,25 @@ const DECISIONS_POST_MIGRATION = new Set([
   "airline_virgin_australia|cabin",
   "airline_garuda_indonesia|cabin",
 ]);
+/* LIGNES DU MANIFESTE RÉACTIVÉES SUR CITATION (08/09/2026, import strict, lots 2 et 3).
+ *
+ * Trois lignes versées en `legacy_unreviewed` par la migration ont reçu une phrase officielle
+ * lue directement (Codex, 08/09/2026) : Cathay Pacific fret (« Your pet will need to travel in
+ * cargo. »), Air India fret (« … must be carried as cargo. »), Ethiopian fret (« … must be
+ * transported as cargo, following cargo procedures. »). L'importeur a réécrit leur discriminant
+ * en `availability: offered` — la SEULE situation où il écrit une disponibilité, et seulement
+ * parce que la preuve complète l'accompagne (c'est ce que la frontière prescrit : ne jamais
+ * réactiver une valeur sans cette preuve). Elles sont admises ici par IDENTITÉ, et le contrôle
+ * exige la preuve : `offered` ET une citation (phrase ≥ 10, langue, localisateur). Sans elle,
+ * la ligne rougit à nouveau. L'observation de migration, elle, reste intacte. */
+const REACTIVEES_SUR_CITATION = new Set([
+  "airline_cathay_pacific|cargo",
+  "airline_air_india|cargo",
+  "airline_ethiopian|cargo",
+]);
+const citee = (p) => typeof p?.source?.quote === "string" && p.source.quote.length >= 10
+  && typeof p.source.quote_language === "string" && p.source.quote_language.length > 0
+  && typeof p.source.locator === "string" && p.source.locator.length > 0;
 /* Éditions POST-MIGRATION d'un bloc AUDITÉ, nommées avec leur nouvelle empreinte.
  *
  * L'observation de migration reste INTACTE dans la baseline — elle prouve toujours qu'aucun
@@ -149,6 +168,10 @@ for (const r of rows) {
   const a = objects.airlines.find((x) => x.id === r.identity.airline_id);
   const p = a?.premium?.policy?.[r.identity.placement];
   if (!p) { err(`ligne de manifeste NON consommée (politique absente): ${k}`); continue; }
+  if (REACTIVEES_SUR_CITATION.has(k)) {
+    if (!(p.availability === "offered" && citee(p))) err(`ligne réactivée SANS sa preuve: ${k} → availability=${p.availability}, citée=${citee(p)}`);
+    continue;
+  }
   const attendu = attenduPour(r);
   const cle = Object.keys(attendu)[0];
   if (p[cle] !== attendu[cle]) err(`ligne de manifeste non consommée à sa valeur: ${k} → ${cle}=${p[cle]} ≠ ${attendu[cle]}`);

@@ -1,0 +1,164 @@
+{
+  "schema_version": 1,
+  "as_of": "2026-09-08",
+  "purpose": "Evidence packet only. Every fact is grounded in a directly read official airline page. A missing placement is intentionally not inferred.",
+  "provenance_defaults": {
+    "source_type": "official_website",
+    "verified_date": "2026-09-08",
+    "review_due": "derive_with_reviewDueFrom(verified_date, 'airline')",
+    "confidence": 4,
+    "reviewer": "Codex — lecture directe de la page officielle"
+  },
+  "facts": [
+    {
+      "airline_id": "airline_finnair",
+      "placement": "cabin",
+      "recommendation": "deny_when_dog_weight_kg_gt_8",
+      "condition_scope": "official ceiling applies to pet plus carrier; a dog below 8 kg is not positively cleared without carrier weight",
+      "finder_effect": "For a 30 or 32 kg dog, cabin is not suitable.",
+      "url": "https://www.finnair.com/en/pets-on-finnair-flights",
+      "quote": "Max. 8 kg (17.6 lb).",
+      "quote_language": "en",
+      "locator": "Travel options for pets → Pets in cabin"
+    },
+    {
+      "airline_id": "airline_finnair",
+      "placement": "hold",
+      "recommendation": "offered_with_conditions",
+      "condition_scope": "bigger dogs; maximum pet plus container 75 kg on Finnair-operated flights or 50 kg on Norra-operated flights; aircraft, route, connection and booking conditions apply",
+      "finder_effect": "For a 30 or 32 kg dog, show hold offered under conditions, never an availability guarantee.",
+      "url": "https://www.finnair.com/en/pets-on-finnair-flights",
+      "quote": "Bigger dogs and ferrets can travel in the hold on the same flight with you.",
+      "quote_language": "en",
+      "locator": "Travel options for pets → Pets in aircraft hold"
+    },
+    {
+      "airline_id": "airline_finnair",
+      "placement": "cargo",
+      "recommendation": "offered_with_conditions",
+      "condition_scope": "required over 75 kg combined on Finnair or 50 kg on Norra, and in named route or unaccompanied cases; a forwarding company books the service",
+      "finder_effect": "Present cargo as a conditional alternative, not as acceptance of any dog on any route.",
+      "url": "https://www.finnair.com/en/pets-on-finnair-flights",
+      "quote": "Your pet will need to be shipped as separately cargo.",
+      "quote_language": "en",
+      "locator": "Travel options for pets → Pets as cargo"
+    },
+    {
+      "airline_id": "airline_sas",
+      "placement": "cabin",
+      "recommendation": "deny_when_dog_weight_kg_gt_8",
+      "condition_scope": "official ceiling applies to pet plus carrier; business-class, route and aircraft exceptions apply",
+      "finder_effect": "For a 30 or 32 kg dog, cabin is not suitable.",
+      "url": "https://www.flysas.com/en/travel-info/travel-with-pets/cabin",
+      "quote": "Max weight: 8 kg (including pet).",
+      "quote_language": "en",
+      "locator": "Pet in cabin → Pet carrier requirements"
+    },
+    {
+      "airline_id": "airline_sas",
+      "placement": "hold",
+      "recommendation": "offered_with_conditions",
+      "condition_scope": "dogs and cats only; maximum 50 kg including pet; aircraft, route and breed exclusions apply, including named brachycephalic dogs",
+      "finder_effect": "For a large non-brachycephalic dog, show hold offered under conditions; do not offer it for the explicitly excluded breeds.",
+      "url": "https://www.flysas.com/us-en/travel-info/travel-with-pets/in-hold",
+      "quote": "If your pet doesn’t meet the criteria to travel in the cabin, it will need to travel in the cargo hold.",
+      "quote_language": "en",
+      "locator": "Pets traveling in hold"
+    },
+    {
+      "airline_id": "airline_brussels",
+      "placement": "cabin",
+      "recommendation": "deny_when_dog_weight_kg_gt_8",
+      "condition_scope": "official ceiling applies to animal plus transport container; flights to or from UK are separately excluded from passenger pet carriage",
+      "finder_effect": "For a 30 or 32 kg dog, cabin is not suitable.",
+      "url": "https://www.brusselsairlines.com/be/en/special-care/pets/cats-and-small-dogs-in-the-cabin",
+      "quote": "Max. 8kg/18lbs (including the pet bag).",
+      "quote_language": "en",
+      "locator": "Cats and small dogs in the cabin → Which conditions apply for a transport in the cabin?"
+    },
+    {
+      "airline_id": "airline_brussels",
+      "placement": "hold",
+      "recommendation": "offered_with_conditions",
+      "condition_scope": "cats and dogs; no stated animal weight limit, but container maximum 125 × 75 × 85 cm; route, date and booking exclusions apply",
+      "finder_effect": "For a large dog, show hold offered under conditions; retain the carrier-dimension, destination and seasonal exceptions.",
+      "url": "https://www.brusselsairlines.com/be/en/special-care/pets/cats-and-dogs-in-the-hold",
+      "quote": "Your cat or dog will be well taken care of and will travel in a ventilated part of the aircraft hold.",
+      "quote_language": "en",
+      "locator": "Cats and dogs in the hold → How will my pet travel?"
+    },
+    {
+      "airline_id": "airline_brussels",
+      "placement": "cargo",
+      "recommendation": "offered_with_conditions",
+      "condition_scope": "required for containers larger than passenger-hold maximum and for pets to or from UK; shipment-agent and route requirements apply",
+      "finder_effect": "Present cargo only as a conditional alternate mode.",
+      "url": "https://www.brusselsairlines.com/be/en/special-care/pets/cats-and-dogs-in-the-hold",
+      "quote": "Larger containers have to be sent as cargo.",
+      "quote_language": "en",
+      "locator": "Cats and dogs in the hold → Which conditions apply for a transport in the hold?"
+    },
+    {
+      "airline_id": "airline_american",
+      "placement": "cabin",
+      "recommendation": "offered_with_conditions",
+      "condition_scope": "cats and dogs only when size, age and destination requirements are met; the page does not state a simple kilogram threshold",
+      "finder_effect": "Do not fabricate a weight-based cabin answer from this source. Offer a documented conditional cabin path only when the route rules are met.",
+      "url": "https://www.aa.com/web/i18n/travel-info/special-assistance/pets.html",
+      "quote": "Carry-on pets are limited to cats and dogs that meet the size, age and destination requirements.",
+      "quote_language": "en",
+      "locator": "Carry on or transport your pet"
+    },
+    {
+      "airline_id": "airline_american",
+      "placement": "hold",
+      "recommendation": "not_offered_for_general_pet_passengers",
+      "condition_scope": "checked pets are limited to active-duty US military and US State Department Foreign Service personnel travelling on official orders",
+      "finder_effect": "For a normal passenger, do not offer passenger-hold transport; keep the official-order exception out of the ordinary pet flow.",
+      "url": "https://www.aa.com/web/i18n/travel-info/special-assistance/pets.html",
+      "quote": "We only accept checked pets for active-duty U.S. military and U.S. State Department Foreign Service personnel traveling on official orders.",
+      "quote_language": "en",
+      "locator": "Checked pets"
+    },
+    {
+      "airline_id": "airline_american",
+      "placement": "cargo",
+      "recommendation": "offered_with_conditions",
+      "condition_scope": "for pets not qualifying as carry-on or checked pets; route, kennel and booking restrictions apply",
+      "finder_effect": "For a large dog, present cargo as a documented conditional route, not a booking assurance.",
+      "url": "https://www.aa.com/web/i18n/travel-info/special-assistance/pets.html",
+      "quote": "American Airlines Cargo offers the American PetEmbark service for pets that don’t qualify to travel as carry-on or checked pets.",
+      "quote_language": "en",
+      "locator": "American PetEmbark"
+    },
+    {
+      "airline_id": "airline_singapore_airlines",
+      "placement": "hold",
+      "recommendation": "offered_with_conditions",
+      "condition_scope": "dogs and cats as checked baggage, route, aircraft, breed and country exceptions apply; pet plus container over 32 kg must be arranged through cargo",
+      "finder_effect": "Show checked-baggage hold under conditions only. The lack of a cabin quote means cabin remains prudent.",
+      "url": "https://www.singaporeair.com/en_UK/gb/travel-info/special-assistance/travelling-with-pets/",
+      "quote": "Your pet can travel with you on the same flight as checked baggage.",
+      "quote_language": "en",
+      "locator": "Travelling with pets → Checked baggage"
+    },
+    {
+      "airline_id": "airline_singapore_airlines",
+      "placement": "cargo",
+      "recommendation": "required_when_pet_plus_container_kg_gt_32",
+      "condition_scope": "combined pet(s) and container weight above 32 kg; cargo-agent arrangements required",
+      "finder_effect": "A 32 kg dog cannot be positively placed in hold without container weight; above 32 kg combined, point to cargo.",
+      "url": "https://www.singaporeair.com/en_UK/gb/travel-info/special-assistance/travelling-with-pets/",
+      "quote": "if the combined weight of your pet(s) and its container exceeds 32kg, please make travel arrangements for your pet(s) via a cargo agent.",
+      "quote_language": "en",
+      "locator": "Travelling with pets → Checked baggage"
+    }
+  ],
+  "intentionally_unset": [
+    {
+      "airline_id": "airline_singapore_airlines",
+      "placement": "cabin",
+      "reason": "The directly read official page documents checked baggage and cargo but gives no explicit ordinary-pet cabin rule. Do not derive a denial from silence."
+    }
+  ]
+}

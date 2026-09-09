@@ -34,7 +34,7 @@ const breeds = [...kb.breeds.values()]
   .sort((x, y) => x.label.localeCompare(y.label));
 
 // Airlines with their real cabin carrier limits (where published) + hold/cargo availability.
-type Pol = { allowed?: boolean; status?: string; max_weight_kg?: number; carrier_dims_cm?: { l: number; w: number; h: number } };
+type Pol = { allowed?: boolean; status?: string; max_weight_kg?: number; weight_includes_carrier?: boolean; carrier_dims_cm?: { l: number; w: number; h: number } };
 const airlines = [...kb.airlines.values()].map((a) => {
   const pol = (a as { premium?: { policy?: Record<string, Pol> } }).premium?.policy ?? {};
   const cab = pol.cabin;
@@ -45,9 +45,11 @@ const airlines = [...kb.airlines.values()].map((a) => {
   // pour Qantas ou Cathay, dont la soute est simplement non revérifiée — et a fait basculer
   // Virgin Australia en « aucun animal » le jour où sa cabine est devenue conditionnelle
   // (arbitrage A-bis). Un statut absent ou à confirmer est « unknown », jamais un refus.
-  const hold: "yes" | "no" | "unknown" = pol.hold?.status === "allowed" ? "yes" : pol.hold?.status === "denied" ? "no" : "unknown";
-  const cargoAllowed = pol.cargo?.status === "allowed";
-  const cabinObj = cab?.status === "allowed" ? { maxKg: cab.max_weight_kg ?? null, dims: cab.carrier_dims_cm ?? null } : null;
+  const hold: "yes" | "no" | "unknown" = (pol.hold?.status === "allowed" || pol.hold?.status === "accepted_with_conditions") ? "yes" : pol.hold?.status === "denied" ? "no" : "unknown";
+  const cargoAllowed = pol.cargo?.status === "allowed" || pol.cargo?.status === "accepted_with_conditions";
+  /* `incl` (08/09/2026, import strict V3) : le plafond publié inclut le CONTENANT. Sous ce plafond,
+     l'outil ne dit jamais « éligible » : le poids du sac manque. */
+  const cabinObj = (cab?.status === "allowed" || cab?.status === "accepted_with_conditions") ? { maxKg: cab.max_weight_kg ?? null, dims: cab.carrier_dims_cm ?? null, incl: typeof cab.weight_includes_carrier === "boolean" ? cab.weight_includes_carrier : null } : null;
   // Retest du 09/08/2026 : Ryanair affichait « n'accepte pas ce chien en soute » sans jamais dire
   // que la cabine ET le fret sont AUSSI refusés — ça laissait croire que la cabine restait possible.
   // 7 compagnies du référentiel refusent EXPLICITEMENT les trois placements (cabine/soute/fret) :
@@ -93,10 +95,14 @@ const L = {
       "Calcul effectué selon la méthode de dimensionnement publiée par l'IATA. L'acceptation finale revient à la compagnie qui opère le vol.",
       "Cálculo realizado según el método de dimensionamiento publicado por la IATA. La aceptación final corresponde a la aerolínea que opera el vuelo."),
     cabinTitle: T("Cabin or hold?", "Cabine ou soute ?", "¿Cabina o bodega?"),
-    cabinFits: T("Cabin-eligible", "Éligible cabine", "Apto para cabina"),
-    cabinByWeight: T("Cabin-eligible by weight", "Éligible cabine (par le poids)", "Apto para cabina (por el peso)"),
+    /* « ÉLIGIBLE CABINE » DISAIT UN OUI SEC (08/09/2026, import strict V3). Les plafonds cités sont
+       « chien + contenant » : un chien sous le plafond n'est pas admis, il reste sous conditions. */
+    cabinFits: T("Cabin possible — under the airline's conditions", "Cabine possible — sous conditions de la compagnie", "Cabina posible — con las condiciones de la aerolínea"),
+    cabinByWeight: T("Cabin possible by weight — under the airline's conditions", "Cabine possible par le poids — sous conditions de la compagnie", "Cabina posible por el peso — con las condiciones de la aerolínea"),
+    cabinInclCarrier: T("dog + carrier", "chien + contenant", "perro + transportín"),
+    cabinDogOnly: T("dog alone, carrier on top", "chien seul, contenant en plus", "perro solo, transportín aparte"),
     cabinVerifyBag: T("check your soft carrier meets the airline's cabin dimensions", "vérifie que ton sac respecte les dimensions cabine de la compagnie", "comprueba que tu bolso blando cumple las dimensiones de cabina de la aerolínea"),
-    cabinNeedWeight: T("Cabin allowed up to {kg} — enter the weight to confirm", "Cabine acceptée jusqu'à {kg} — indique le poids pour confirmer", "Cabina permitida hasta {kg}: introduce el peso para confirmar"),
+    cabinNeedWeight: T("Cabin published up to {kg} — enter the weight to check", "Cabine publiée jusqu'à {kg} — indique le poids pour vérifier", "Cabina publicada hasta {kg}: introduce el peso para comprobar"),
     cabinAllowedVerify: T("Cabin accepted — check weight & carrier size on the airline's page", "Cabine acceptée — vérifie le poids et les dimensions du sac sur la fiche", "Cabina aceptada: comprueba el peso y el tamaño del bolso en la página de la aerolínea"),
     cabinLie: T("soft carrier, dog lies down", "sac souple, chien couché", "bolso blando, el perro tumbado"),
     cabinNoFit: T("Too big for the cabin carrier — travels in the hold", "Trop grand pour le sac cabine — voyage en soute", "Demasiado grande para el bolso de cabina: viaja en bodega"),
@@ -208,7 +214,7 @@ const L = {
   const esc = (s: string) => (s ?? "").replace(/[&<>"]/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c] ?? c));
 
   const BREEDS: Record<string, { id: string; w: number; br: boolean; size: string }> = reKey(L.breeds ?? {});
-  const AIR: Record<string, { name: string; cabin: { maxKg: number | null; dims: { l: number; w: number; h: number } | null } | null; hold: "yes" | "no" | "unknown"; cargo: boolean; noPets: boolean; site: string; fiche: string }> = L.airlines ?? {};
+  const AIR: Record<string, { name: string; cabin: { maxKg: number | null; dims: { l: number; w: number; h: number } | null; incl?: boolean | null } | null; hold: "yes" | "no" | "unknown"; cargo: boolean; noPets: boolean; site: string; fiche: string }> = L.airlines ?? {};
 
   let unit: "cm" | "in" = "cm";
   const IN = 2.54;      // cm per inch
@@ -350,7 +356,7 @@ const L = {
         if (overW) cabinHtml = pill("warn", `⚠️ <b>${esc(S.cabinWeight)}</b> — ${esc(air.name)}`) + holdLine;
         else if (footprintFits) {
           cabinEligible = true;
-          cabinHtml = pill("ok", `✅ <b>${esc(S.cabinFits)}</b> — ${esc(air.name)} (${esc(S.cabinLie)}; ${fmt2(cab.dims.l, cab.dims.w)}${cab.maxKg != null ? `, ≤ ${fmtW(cab.maxKg)}` : ""})`)
+          cabinHtml = pill("ok", `✓ <b>${esc(S.cabinFits)}</b> — ${esc(air.name)} (${esc(S.cabinLie)}; ${fmt2(cab.dims.l, cab.dims.w)}${cab.maxKg != null ? `, ≤ ${fmtW(cab.maxKg)}${cab.incl === true ? ` ${esc(S.cabinInclCarrier)}` : cab.incl === false ? ` ${esc(S.cabinDogOnly)}` : ""}` : ""})`)
             + (air.hold === "yes" ? pill("soute", `🧳 <b>${esc(S.holdAlso)}</b> — ${esc(air.name)}`) : air.hold === "unknown" ? pill("soute", `🧳 ${esc(S.holdVerify)}`) : "");
         }
         else cabinHtml = pill("warn", `🧳 <b>${esc(S.cabinNoFit)}</b>`) + holdLine;
@@ -360,7 +366,7 @@ const L = {
         if (overW) cabinHtml = pill("warn", `⚠️ <b>${esc(S.cabinWeight)}</b> — ${esc(air.name)}`) + holdLine;
         else if (cab.maxKg != null && Number.isFinite(weight)) {
           cabinEligible = true;
-          cabinHtml = pill("ok", `✅ <b>${esc(S.cabinByWeight)}</b> — ${esc(air.name)} (≤ ${fmtW(cab.maxKg)} · ${esc(S.cabinVerifyBag)})`) + holdExtra;
+          cabinHtml = pill("ok", `✓ <b>${esc(S.cabinByWeight)}</b> — ${esc(air.name)} (≤ ${fmtW(cab.maxKg)}${cab.incl === true ? ` ${esc(S.cabinInclCarrier)}` : cab.incl === false ? ` ${esc(S.cabinDogOnly)}` : ""} · ${esc(S.cabinVerifyBag)})`) + holdExtra;
         }
         else if (cab.maxKg != null) cabinHtml = pill("neutral", `🧳 ${esc(S.cabinNeedWeight.replace("{kg}", fmtW(cab.maxKg)))}`) + holdLine;
         else cabinHtml = pill("neutral", `<span class="crx-q">?</span> ${esc(S.cabinAllowedVerify)}`) + holdLine;

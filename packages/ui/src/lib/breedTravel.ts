@@ -116,24 +116,26 @@ export function computeBreedTravel(breedId: string, kbOverride?: unknown): Breed
    * compagnie éligible, et « confirmation_required » ne compte ni dans les oui ni dans les non.
    */
   const statutDu = (p: any): "allowed" | "confirmation_required" | "denied" | "inconnu" => {
+    /* Le quatrième état (08/09/2026) vaut « ouvert » pour cette page : accepté sous conditions. */
+    if (p?.status === "accepted_with_conditions") return "allowed";
     if (!p) return "inconnu";
     if (p.status === "allowed" || p.status === "confirmation_required" || p.status === "denied") return p.status;
     if (p.allowed === undefined) return "inconnu";
     return p.allowed ? "allowed" : "denied";
   };
   let holdAConfirmer = 0, cargoAConfirmer = 0, cabinAConfirmer = 0;
-  const perAirline: { name: string; slug: string; channel: "cabin" | "hold" | "cargo" | "none"; max?: number }[] = [];
+  const perAirline: { name: string; slug: string; channel: "cabin" | "hold" | "cargo" | "none"; max?: number; incl?: boolean }[] = [];
   for (const a of kb.airlines.values() as Iterable<any>) {
     const p = a.premium?.policy || {};
     const c = p.cabin, h = p.hold, g = p.cargo;
     // cabin
-    let cabinEligible = false, cabinReasonMax: number | undefined;
+    let cabinEligible = false, cabinReasonMax: number | undefined, cabinIncl: boolean | undefined;
     const stCabin = statutDu(c);
     if (stCabin === "confirmation_required") cabinAConfirmer++;
     else if (stCabin !== "inconnu") {
       if (stCabin === "denied") cabinNo++;
       else if (c.max_weight_kg == null) { cabinUnkLimit++; if (w <= 8) { cabinEligible = true; } }
-      else if (w <= c.max_weight_kg) { cabinWithin++; cabinEligible = true; cabinReasonMax = c.max_weight_kg; }
+      else if (w <= c.max_weight_kg) { cabinWithin++; cabinEligible = true; cabinReasonMax = c.max_weight_kg; cabinIncl = typeof c.weight_includes_carrier === "boolean" ? c.weight_includes_carrier : undefined; }
       else cabinOver++;
     }
     // hold
@@ -155,7 +157,7 @@ export function computeBreedTravel(breedId: string, kbOverride?: unknown): Breed
       else { cargoYes++; cargoEligible = true; }
     } else cargoUnk++;
     const channel = cabinEligible ? "cabin" : holdEligible ? "hold" : cargoEligible ? "cargo" : "none";
-    perAirline.push({ name: a.name, slug: slugFor(a.id), channel, max: cabinReasonMax });
+    perAirline.push({ name: a.name, slug: slugFor(a.id), channel, max: cabinReasonMax, incl: cabinIncl });
   }
   const airlinesTotal = perAirline.length;
   const cabinStated = cabinWithin + cabinOver;
@@ -312,18 +314,21 @@ function cabinVerdict(w: number, within: number, stated: number, unk: number): C
      chihuahua recevait « Très souvent possible » sur zéro politique établie. Un ordre de grandeur
      du marché n'est pas une politique de compagnie. */
   if (stated === 0 && unk === 0) return { level: NON_ETABLI, detail: detailNonEtabli("cabin"), etabli: false };
+  /* « SOUS CONDITIONS », JAMAIS « TRÈS SOUVENT POSSIBLE » (08/09/2026, import strict V3). Les
+     limites publiées sont désormais CITÉES, et elles plafonnent chien + contenant : un poids de
+     race sous le plafond n'est pas un oui, c'est un canal possible sous les conditions de la
+     compagnie. Le mot revient dans chaque niveau ; seul le refus au-dessus de toutes les limites
+     citées est catégorique, parce qu'il est prouvé. */
   let level: Level;
   if (stated > 0) {
     const pct = within / stated;
-    level = pct === 0 ? L("Impossible", "Impossible", "Imposible", "Impossível", "no")
-      : pct < 0.25 ? L("Rarely possible", "Rarement possible", "Rara vez posible", "Raramente possível", "no")
-        : pct < 0.5 ? L("Possible for some", "Possible pour certains", "Posible para algunos", "Possível em algumas", "warn")
-          : pct < 0.8 ? L("Often possible", "Souvent possible", "A menudo posible", "Frequentemente possível", "ok")
-            : L("Very often possible", "Très souvent possible", "Muy a menudo posible", "Quase sempre possível", "ok");
+    level = pct === 0 ? L("Refused by every cited airline (cabin)", "Refusé par toutes les compagnies citées (cabine)", "Rechazado por todas las aerolíneas citadas (cabina)", "Recusado por todas as companhias citadas (cabine)", "no")
+      : pct < 0.25 ? L("Rarely possible, under conditions", "Rarement possible, sous conditions", "Rara vez posible, con condiciones", "Raramente possível, com condições", "no")
+        : pct < 0.5 ? L("Possible for some, under conditions", "Possible pour certaines, sous conditions", "Posible en algunas, con condiciones", "Possível em algumas, com condições", "warn")
+          : L("Possible for most, under the airlines' conditions", "Possible pour la plupart, sous conditions des compagnies", "Posible en la mayoría, con las condiciones de las aerolíneas", "Possível na maioria, nas condições das companhias", "ok");
   } else {
-    level = w <= 8 ? L("Very often possible", "Très souvent possible", "Muy a menudo posible", "Quase sempre possível", "ok")
-      : w <= 10 ? L("Possible for some", "Possible pour certains", "Posible para algunos", "Possível em algumas", "warn")
-        : L("Rarely possible", "Rarement possible", "Rara vez posible", "Raramente possível", "no");
+    /* Aucune limite publiée mais des cabines ouvertes : le poids seul ne décide rien. */
+    level = L("Possible under conditions — no published limit", "Possible sous conditions — limite non publiée", "Posible con condiciones — sin límite publicado", "Possível com condições — sem limite publicado", "warn");
   }
   const detail: Bi = stated > 0
     ? { en: `${within} of ${stated} airlines with a published cabin weight limit accept ~${w} kg.`,
@@ -348,11 +353,14 @@ function holdVerdict(brachy: boolean, yes: number, no: number, bans: number): Ch
     // Snub-nosed dogs face widespread heat/respiratory hold restrictions that vary by carrier
     // and season. We never rate the hold "widely accepted" for a brachycephalic breed — this is
     // category-level caution, not a fabricated per-airline refusal (the detail gives the hard count).
-    level = bans >= 8 || pct < 0.35
-      ? L("Frequently refused", "Souvent refusé", "Rechazado con frecuencia", "Frequentemente recusado", "no")
-      : L("Restricted — confirm per airline", "Restrictions — à confirmer", "Restringido — confirmar según la aerolínea", "Restrito — confirmar com cada companhia", "warn");
+    /* « SOUVENT REFUSÉ » N'EST PAS PROUVÉ (08/09/2026, lots 2 et 3, contre-épreuve navigateur sur la
+       fiche du carlin). Les refus brachycéphales de soute (`brachy_allowed: false`) sont des
+       restrictions NON CITÉES : le moteur, lui, les rend « à confirmer » (`breed_policy_unreviewed`),
+       jamais refusées. La fiche dit la même chose — restrictions, à confirmer — quel que soit le
+       compte, qui reste donné dans le détail. */
+    level = L("Restricted — confirm per airline", "Restrictions — à confirmer", "Restringido — confirmar según la aerolínea", "Restrito — confirmar com cada companhia", "warn");
   } else {
-    level = pct >= 0.7 ? L("Widely accepted", "Largement accepté", "Ampliamente aceptado", "Amplamente aceito", "ok")
+    level = pct >= 0.7 ? L("Possible for most, under the airlines' conditions", "Possible pour la plupart, sous conditions des compagnies", "Posible en la mayoría, con las condiciones de las aerolíneas", "Possível na maioria, nas condições das companhias", "ok")
       : pct >= 0.4 ? L("Restricted", "Soumis à restrictions", "Restringido", "Sujeito a restrições", "warn")
         : L("Frequently refused", "Souvent refusé", "Rechazado con frecuencia", "Frequentemente recusado", "no");
   }
@@ -382,7 +390,7 @@ function cargoVerdict(yes: number, no: number, brachy: boolean): ChannelView {
   const tot = yes + no;
   if (tot === 0) return { level: NON_ETABLI, detail: detailNonEtabli("cargo"), etabli: false };
   const pct = tot ? yes / tot : 0;
-  let level = pct >= 0.7 ? L("Widely accepted", "Largement accepté", "Ampliamente aceptado", "Amplamente aceito", "ok")
+  let level = pct >= 0.7 ? L("Possible for most, under the airlines' conditions", "Possible pour la plupart, sous conditions des compagnies", "Posible en la mayoría, con las condiciones de las aerolíneas", "Possível na maioria, nas condições das companhias", "ok")
     : pct >= 0.4 ? L("Accepted with conditions", "Accepté sous conditions", "Aceptado con condiciones", "Aceito com condições", "warn")
       : L("Limited", "Limité", "Limitado", "Limitado", "no");
   // Snub-nosed dogs are commonly subject to seasonal cargo heat embargoes → cap at "with conditions".
@@ -409,8 +417,10 @@ function headline(cabin: ChannelView, hold: ChannelView, cargo: ChannelView): Le
   if (!cabin.etabli && !hold.etabli && !cargo.etabli) {
     return L("Not established yet", "Pas encore établi", "Aún no establecido", "Ainda não estabelecido", "warn");
   }
-  if (cabin.level.tone === "ok") return L("Accepted by most airlines (cabin)", "Accepté par la plupart (cabine)", "Aceptado por la mayoría de aerolíneas (cabina)", "Aceito pela maioria das companhias (cabine)", "ok");
-  if (hold.level.tone === "ok") return L("Accepted in hold by many airlines", "Accepté en soute par beaucoup", "Aceptado en bodega por muchas aerolíneas", "Aceito no porão por muitas companhias", "ok");
+  /* La synthèse aussi (08/09/2026) : « accepté par la plupart » devient « possible sous
+     conditions » — les politiques citées publient un mode, jamais l'admission de ce chien. */
+  if (cabin.level.tone === "ok") return L("Possible in the cabin, under the airlines' conditions", "Possible en cabine, sous conditions des compagnies", "Posible en cabina, con las condiciones de las aerolíneas", "Possível na cabine, nas condições das companhias", "ok");
+  if (hold.level.tone === "ok") return L("Possible in the hold, under the airlines' conditions", "Possible en soute, sous conditions des compagnies", "Posible en bodega, con las condiciones de las aerolíneas", "Possível no porão, nas condições das companhias", "ok");
   if (cargo.level.tone === "ok") return L("Cargo only for most airlines", "Cargo uniquement chez la plupart", "Solo carga en la mayoría de aerolíneas", "Somente carga na maioria das companhias", "warn");
   return L("Frequently refused", "Souvent refusé", "Rechazado con frecuencia", "Frequentemente recusado", "no");
 }
@@ -446,6 +456,17 @@ function difficulty(cabin: ChannelView, hold: ChannelView, cargo: ChannelView): 
      établie, et la page n'affiche alors ni étoiles ni /100 (voir BreedTravelPage.astro). */
   if (!cabin.etabli && !hold.etabli && !cargo.etabli) {
     return { ...L("Not established yet", "Pas encore établi", "Aún no establecido", "Ainda não estabelecido", "warn"),
+      emoji: "•", score: 0, stars: 0, etabli: false };
+  }
+  /* LA NOTE /100 NE SE RALLUME PAS PAR EFFET DE BORD DE LA DONNÉE (08/09/2026, import strict V3).
+     Même arbitrage que la jauge du Finder (`SCORE_AFFICHABLE`) : dès la première citation, la
+     note serait revenue à « 100/100 · Excellent voyageur » sur des canaux acceptés SOUS CONDITIONS
+     — un chiffre précis pour dire « la compagnie publie un mode ». Elle reste calculée, non
+     publiée (`etabli: false` masque étoiles et /100), jusqu'à une décision écrite ; la fiche dit
+     « sous conditions » à la place. */
+  const NOTE_AFFICHABLE = false;
+  if (!NOTE_AFFICHABLE) {
+    return { ...L("Under the airlines' conditions", "Sous conditions des compagnies", "Con las condiciones de las aerolíneas", "Nas condições das companhias", "warn"),
       emoji: "•", score: 0, stars: 0, etabli: false };
   }
   let base: number;
@@ -520,14 +541,26 @@ function climateBadges(kb: any, heatSensitive: boolean, coldTol: number) {
   return { recommended: rec.map(badge), avoid: avoid.map(badge), basis };
 }
 
-function airlineRank(a: { name: string; slug: string; channel: "cabin" | "hold" | "cargo" | "none"; max?: number }, brachy: boolean): AirlineRank {
-  if (a.channel === "cabin")
-    return { name: a.name, slug: a.slug, tone: "ok", badge: "✅", channel: "cabin",
-      reason: { en: `Cabin${a.max ? ` (≤${a.max} kg)` : ""}`, fr: `Cabine${a.max ? ` (≤${a.max} kg)` : ""}`, es: `Cabina${a.max ? ` (≤${a.max} kg)` : ""}`, pt: `Cabine${a.max ? ` (≤${a.max} kg)` : ""}` } };
+/* « SOUS CONDITIONS », JAMAIS « ACCEPTÉ » (08/09/2026, import strict V3). Un canal ouvert l'est par
+   une politique `accepted_with_conditions` — « la compagnie publie ce mode sous les conditions
+   citées », jamais « ce chien est admis ». « Accepté en soute » et la coche pleine le disaient ;
+   le plafond cabine s'écrit avec ce qu'il couvre (chien + contenant quand la page le dit), et un
+   poids de race sous ce plafond n'est pas un oui : le contenant manque. */
+function airlineRank(a: { name: string; slug: string; channel: "cabin" | "hold" | "cargo" | "none"; max?: number; incl?: boolean }, brachy: boolean): AirlineRank {
+  if (a.channel === "cabin") {
+    const seuil = a.max ? (a.incl === true
+      ? { en: ` (≤${a.max} kg incl. carrier)`, fr: ` (≤${a.max} kg chien + contenant)`, es: ` (≤${a.max} kg con transportín)`, pt: ` (≤${a.max} kg com a bolsa)` }
+      : a.incl === false
+        ? { en: ` (dog alone ≤${a.max} kg, carrier on top)`, fr: ` (chien seul ≤${a.max} kg, contenant en plus)`, es: ` (perro solo ≤${a.max} kg, transportín aparte)`, pt: ` (cachorro sozinho ≤${a.max} kg, bolsa à parte)` }
+        : { en: ` (≤${a.max} kg)`, fr: ` (≤${a.max} kg)`, es: ` (≤${a.max} kg)`, pt: ` (≤${a.max} kg)` })
+      : { en: "", fr: "", es: "", pt: "" };
+    return { name: a.name, slug: a.slug, tone: "ok", badge: "✓", channel: "cabin",
+      reason: { en: `Cabin — under the airline's conditions${seuil.en}`, fr: `Cabine — sous conditions de la compagnie${seuil.fr}`, es: `Cabina — con las condiciones de la aerolínea${seuil.es}`, pt: `Cabine — nas condições da companhia${seuil.pt}` } };
+  }
   if (a.channel === "hold")
     return brachy
       ? { name: a.name, slug: a.slug, tone: "warn", badge: "⚠", channel: "hold", reason: { en: "Hold — confirm snub-nosed policy", fr: "Soute — confirmer la politique brachycéphale", es: "Bodega — confirmar la política para hocico chato", pt: "Porão — confirmar a política para focinho achatado" } }
-      : { name: a.name, slug: a.slug, tone: "ok", badge: "✅", channel: "hold", reason: { en: "Accepted in hold", fr: "Accepté en soute", es: "Aceptado en bodega", pt: "Aceito no porão" } };
+      : { name: a.name, slug: a.slug, tone: "ok", badge: "✓", channel: "hold", reason: { en: "Hold — under the airline's conditions", fr: "Soute — sous conditions de la compagnie", es: "Bodega — con las condiciones de la aerolínea", pt: "Porão — nas condições da companhia" } };
   if (a.channel === "cargo")
     return { name: a.name, slug: a.slug, tone: "warn", badge: "⚠", channel: "cargo", reason: { en: "Cargo only", fr: "Cargo uniquement", es: "Solo carga", pt: "Somente carga" } };
   return { name: a.name, slug: a.slug, tone: "no", badge: "❌", channel: "none", reason: { en: "Not accepted for this breed", fr: "Non accepté pour cette race", es: "No aceptado para esta raza", pt: "Não aceito para esta raça" } };

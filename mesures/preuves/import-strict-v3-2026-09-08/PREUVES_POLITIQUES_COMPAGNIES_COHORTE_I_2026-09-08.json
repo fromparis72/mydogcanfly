@@ -1,0 +1,145 @@
+{
+  "schema_version": 1,
+  "as_of": "2026-09-08",
+  "purpose": "Evidence packet only. ITA has a route-specific large-dog cabin service and must not be reduced to a global 8 kg rule. Icelandair's refusal below is only for international hold carriage. Royal Air Maroc's limits are pet plus container where stated.",
+  "provenance_defaults": {
+    "source_type": "official_website",
+    "verified_date": "2026-09-08",
+    "review_due": "derive_with_reviewDueFrom(verified_date, 'airline')",
+    "confidence": 4,
+    "reviewer": "Codex — lecture directe de la page officielle"
+  },
+  "facts": [
+    {
+      "airline_id": "airline_ita_airways",
+      "placement": "cabin",
+      "recommendation": "deny_when_dog_weight_kg_gt_8_on_non_domestic_routes",
+      "condition_scope": "the standard non-domestic ceiling is 8 kg including carrier and food; domestic flights have a different standard ceiling and a separate selected-route large-dog service",
+      "finder_effect": "On an international itinerary, a 30 or 32 kg dog is not eligible for the ordinary cabin-pet service. Do not apply this threshold to domestic ITA routes without the other ITA facts below.",
+      "url": "https://www.ita-airways.com/ae/en/book-and-prepare/other-requests/travelling-with-pets/pets-in-cabin",
+      "quote": "up to 8 kg on all other flights.",
+      "quote_language": "en",
+      "locator": "Pets in the cabin → opening overview"
+    },
+    {
+      "airline_id": "airline_ita_airways",
+      "placement": "cabin",
+      "recommendation": "deny_when_dog_weight_kg_gt_12_on_standard_domestic_routes",
+      "condition_scope": "the domestic standard ceiling is 12 kg including carrier and food; it is distinct from the selected large-dog service",
+      "finder_effect": "A dog above 12 kg cannot be presented as eligible for ITA's ordinary domestic cabin-pet service.",
+      "url": "https://www.ita-airways.com/ae/en/book-and-prepare/other-requests/travelling-with-pets/pets-in-cabin",
+      "quote": "animals weighing up to 12 kg on domestic flights (carrier and food included)",
+      "quote_language": "en",
+      "locator": "Pets in the cabin → opening overview"
+    },
+    {
+      "airline_id": "airline_ita_airways",
+      "placement": "cabin",
+      "recommendation": "offered_for_dog_weight_kg_up_to_30_on_selected_domestic_routes",
+      "condition_scope": "Large Dog On Board is limited to selected domestic Large Dog flights, 30 kg dog body weight maximum, two dogs per flight and prior verification",
+      "finder_effect": "For a dog up to 30 kg, show this only as an ITA domestic-route lead with the explicit selection and confirmation conditions. A 32 kg dog does not qualify.",
+      "url": "https://www.ita-airways.com/us/en/book-and-prepare/other-requests/travelling-with-pets/pets-in-cabin/large-dog-on-board",
+      "quote": "The service is only available for large dogs up to 30 kg on a selection of our domestic flights",
+      "quote_language": "en",
+      "locator": "Large Dog On Board → Flying together, even with your large dog"
+    },
+    {
+      "airline_id": "airline_ita_airways",
+      "placement": "hold",
+      "recommendation": "offered_with_conditions",
+      "condition_scope": "only dogs and cats are permitted in the hold; capacity, carrier dimensions, departure/destination and advance booking apply",
+      "finder_effect": "Passenger hold may be proposed as conditional, never as confirmed until ITA validates the concrete booking.",
+      "url": "https://www.ita-airways.com/ae/en/book-and-prepare/other-requests/travelling-with-pets/pets-in-cabin",
+      "quote": "pet transport is permitted only for dogs and cats, both in the cabin (PETC) and in the hold (AVIH).",
+      "quote_language": "en",
+      "locator": "Pets in the cabin → current provisions"
+    },
+    {
+      "airline_id": "airline_aer_lingus",
+      "placement": "hold",
+      "recommendation": "offered_with_conditions",
+      "condition_scope": "household dogs/cats require a pet agent and travel in the hold; Regional-operated itineraries are excluded and A321neo LR holds cannot carry live animals",
+      "finder_effect": "Hold may be proposed only where the operating aircraft and itinerary qualify, through the prescribed pet-agent process.",
+      "url": "https://www.aerlingus.com/localized/en/modals/baggage-information.html",
+      "quote": "Pets must be booked to travel with a pet agent, and they will be carried in the aircraft hold.",
+      "quote_language": "en",
+      "locator": "Baggage Information → Carriage of Animals & Pets"
+    },
+    {
+      "airline_id": "airline_icelandair",
+      "placement": "hold",
+      "recommendation": "not_offered_for_international_pet_dogs_currently",
+      "condition_scope": "the published refusal is limited to international flights from 1 November 2024; it must not be applied to domestic carriage without a separate source",
+      "finder_effect": "On an international Icelandair itinerary, do not offer passenger hold for an ordinary pet dog from this rule.",
+      "url": "https://www.icelandair.com/support/special-assistance/animal-transportation/",
+      "quote": "we are unable to transport animals in the hold on international flights from November 1, 2024.",
+      "quote_language": "en",
+      "locator": "Animal Transportation → current international-flight notice"
+    },
+    {
+      "airline_id": "airline_royal_air_maroc",
+      "placement": "cabin",
+      "recommendation": "deny_when_dog_weight_kg_gt_8",
+      "condition_scope": "official cabin limit is 8 kg including container; destination restrictions and advance declaration apply",
+      "finder_effect": "For a 30 or 32 kg dog, cabin is not suitable. A dog under 8 kg still needs the container and route checks.",
+      "url": "https://www.royalairmaroc.com/uk-en/information/travel-with-animals",
+      "quote": "The animal must not weigh more than 8 kg including their container",
+      "quote_language": "en",
+      "locator": "Travel with animals → In cabin"
+    },
+    {
+      "airline_id": "airline_royal_air_maroc",
+      "placement": "hold",
+      "recommendation": "offered_with_conditions",
+      "condition_scope": "published passenger-hold rate bands run to 70 kg and connection/document conditions apply",
+      "finder_effect": "Passenger hold may be proposed conditionally below the stated maximum, with the actual crate, connection and acceptance conditions checked.",
+      "url": "https://pre.royalairmaroc.com/us-en/information/travel-with-animals",
+      "quote": "Passenger travelling with a pet in hold (AVIH): 47 to 70 KG",
+      "quote_language": "en",
+      "locator": "Travel with animals → Rates for transporting Animals"
+    },
+    {
+      "airline_id": "airline_royal_air_maroc",
+      "placement": "cargo",
+      "recommendation": "required_when_pet_plus_container_kg_gt_70",
+      "condition_scope": "the public animal-transport page states that above 70 kg the animal must travel as cargo",
+      "finder_effect": "Do not offer passenger hold above the stated 70 kg threshold; direct the visitor to freight conditions instead.",
+      "url": "https://www.royalairmaroc.com/es-es/information/viajar-con-animales",
+      "quote": "Por encima de ese peso, el animal debe ser transportado por carga.",
+      "quote_language": "es",
+      "locator": "Viajar con animales → Animales en la bodega"
+    }
+  ],
+  "intentionally_unset": [
+    {
+      "airline_id": "airline_aer_lingus",
+      "placement": "cabin",
+      "reason": "The directly read source establishes the pet-agent hold process, but this cohort does not use it to infer an absolute ordinary-pet cabin refusal."
+    },
+    {
+      "airline_id": "airline_aer_lingus",
+      "placement": "cargo",
+      "reason": "The source names a pet-agent process but does not establish a general cargo policy for the concrete dog and route."
+    },
+    {
+      "airline_id": "airline_icelandair",
+      "placement": "cabin",
+      "reason": "No directly read current Icelandair source in this cohort establishes an ordinary pet-dog cabin policy."
+    },
+    {
+      "airline_id": "airline_icelandair",
+      "placement": "cargo",
+      "reason": "The directly read current source establishes only the international passenger-hold refusal."
+    },
+    {
+      "airline_id": "airline_ita_airways",
+      "placement": "cargo",
+      "reason": "This cohort documents ITA passenger cabin and hold conditions, not a general positive cargo service."
+    },
+    {
+      "airline_id": "airline_royal_air_maroc",
+      "placement": "cargo",
+      "reason": "The source gives the >70 kg direction to cargo but not a complete acceptance policy for the dog, crate and route."
+    }
+  ]
+}

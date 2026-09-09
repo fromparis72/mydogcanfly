@@ -297,13 +297,17 @@ console.log("=== 7. T0-B2 : la migration est FAITE, et la forme héritée est in
      peuvent ni décider ni montrer quoi que ce soit. Les 33 qui gardent une page officielle à
      montrer portent `official_source_unquoted` et sont comptées à part, ci-dessous : 267 + 33
      = les 300 politiques sans preuve citée, les 2 dernières étant Thai fret et Virgin cabine. */
-  check("267 politiques émettent legacy_unreviewed (84 d'origine + 183 sans page à montrer)",
-    porteuses === 267, String(porteuses));
+  /* MOUVEMENT NOMMÉ (08/09/2026, import strict V3 — 25 citations importées, lues par Codex le 08/09, une par fait décisif ; British Airways cabine conservée) : 267 → 251. Seize politiques dont la seule provenance était la page d'accueil
+     dérivée (`source_derived`) portent maintenant une phrase citée et décident. */
+  /* MOUVEMENT NOMMÉ (08/09/2026, import strict lots 2 et 3 — 24 citations de plus, 52 en tout) : 251 → 230 ; trois lignes non revérifiées d'origine ont été réactivées sur citation. */
+  check("230 politiques émettent legacy_unreviewed (81 d'origine + 149 sans page à montrer)",
+    porteuses === 230, String(porteuses));
   /* 05/09/2026 — 33 → 32. British Airways cabine quitte ce groupe : sa page officielle porte
      désormais la phrase, et la politique devient le premier `denied` prouvé du dépôt. Chaque
      citation suivante fera baisser ce compte, et devra le nommer comme celle-ci. */
-  check("32 politiques émettent official_source_unquoted — une page officielle, aucune phrase citée",
-    nonCitee === 32, String(nonCitee));
+  /* MOUVEMENT NOMMÉ (08/09/2026, import strict V3 — 25 citations importées, lues par Codex le 08/09, une par fait décisif ; British Airways cabine conservée) : 32 → 23. Neuf pages officielles déjà liées ont reçu leur phrase. */
+  check("20 politiques émettent official_source_unquoted — une page officielle, aucune phrase citée",
+    nonCitee === 20, String(nonCitee));
   check("1 seule émet policy_unpublished (Thai Cargo)", nonPubliee === 1, String(nonPubliee));
 
   /* 7.2 — l'artefact ne porte plus AUCUNE forme d'auteur héritée. C'est la contrepartie
@@ -543,8 +547,11 @@ console.log("=== 8. Baseline FIGÉE : le point de comparaison de T0-B2 est scell
   /* 05/09/2026, quatrième figée du jour — LA PLUS RÉCENTE EST CELLE DU STATUT D'ENTRÉE TERNAIRE.
    * Ce qui la sépare de la précédente : un seul énoncé, dans les 72 scénarios — « X autorise
    * l'entrée » devient « aucune interdiction d'entrée bloquante établie dans nos données ». */
-  check("Entrée ternaire : la baseline vivante est identique à la figée la plus récente",
-    vivante.equals(readFileSync("test-baselines/entree-ternaire-apres.json")));
+  /* 08/09/2026 — la plus récente est celle des lots 2 et 3 de l'import strict (chaîne : entrée
+     ternaire → import V3 → lots 2 et 3, chaque « avant » égal à l'« après » précédent, vérifié
+     dans test-t0a-baseline.mjs). */
+  check("Import strict lots 2 et 3 : la baseline vivante est identique à la figée la plus récente",
+    vivante.equals(readFileSync("test-baselines/import-strict-lots-2-3-apres.json")));
   check("Arbitrages d'interface : sa figée reste intacte à côté (elle n'a pas été écrasée)",
     !readFileSync("test-baselines/arbitrages-interface-apres.json")
       .equals(readFileSync("test-baselines/entree-ternaire-apres.json")));

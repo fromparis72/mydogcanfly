@@ -74,8 +74,39 @@ ladder:
 policies:
   cabin:
     availability: offered
+    # PREUVE IMPORTÉE — import strict V3 (Codex, lecture directe du 2026-09-08, cohorte A fait 14).
+    # Effet attendu : For a 32 kg dog, cabin is not suitable.
+    # Portée nommée : official ceiling applies to pets plus carrier
+    # Le plafond cité inclut le CONTENANT : refus sûr si le chien seul le dépasse, jamais un oui en dessous.
+    max_weight_kg: 8
+    weight_includes_carrier: true
+    source:
+      url: "https://www.flytap.com/en-gb/information/traveling-with-animals/pets"
+      source_type: official_website
+      verified_date: "2026-09-08"
+      review_due: "2026-12-07"   # reviewDueFrom(verified_date, "airline") — calculé par l'importeur
+      confidence: 4
+      reviewer: "Codex — lecture directe de la page officielle"
+      history: []
+      quote: "Maximum total weight: 8 kg / 17 lbs (pets + carrier)."
+      quote_language: en
+      locator: "Transporting pets in the cabin → Weight and size"
   hold:
     availability: offered
+    # PREUVE IMPORTÉE — import strict V3 (Codex, lecture directe du 2026-09-08, cohorte A fait 15).
+    # Effet attendu : For a 32 kg dog on a France-related route, do not claim a positive result without the carrier weight.
+    # Portée nommée : 32 kg pet plus carrier on flights to, from, or with a stopover in France, United States, Hungary or Netherlands; 45 kg elsewhere; listed brachycephalic breeds excluded
+    source:
+      url: "https://www.flytap.com/en-gb/information/traveling-with-animals/pets"
+      source_type: official_website
+      verified_date: "2026-09-08"
+      review_due: "2026-12-07"   # reviewDueFrom(verified_date, "airline") — calculé par l'importeur
+      confidence: 4
+      reviewer: "Codex — lecture directe de la page officielle"
+      history: []
+      quote: "Up to 32 kg / 70 lbs on flights to, from, or with a stopover in the US, Hungary, France and the Netherlands."
+      quote_language: en
+      locator: "Aircraft hold → Maximum total weight"
   cargo:
     review_state: legacy_unreviewed
 channels:

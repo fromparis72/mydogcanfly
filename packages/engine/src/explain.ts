@@ -93,6 +93,7 @@ function computeScore(
     L'espagnol et le portugais écrivaient « and » : la liste des modes de transport, puis celle des
     motifs de refus, sortaient en anglais au milieu d'une phrase traduite. */
 const AND: Record<string, string> = { fr: "et", es: "y", pt: "e" };
+const capitaliser = (s: string) => s.charAt(0).toLocaleUpperCase() + s.slice(1);
 function joinList(arr: string[], locale: string): string {
   if (arr.length <= 1) return arr[0] ?? "";
   return `${arr.slice(0, -1).join(", ")} ${AND[locale] ?? "and"} ${arr[arr.length - 1]}`;
@@ -237,6 +238,7 @@ export function explain(decision: Decision, locale = "en"): DecisionReport {
     const cabin_status = statusOf(a, "cabin"), hold_status = statusOf(a, "hold"), cargo_status = statusOf(a, "cargo");
     const to_confirm = (["cabin", "hold", "cargo"] as const)
       .filter((pl) => statusOf(a, pl) === "confirmation_required");
+    const refuses = (["cabin", "hold", "cargo"] as const).filter((pl) => statusOf(a, pl) === "denied");
     /* Refus : on dit ce que les règles ont dit, pas ce qu'on en devine.
        - la compagnie ne transporte aucun animal (chien neutre refusé partout) → « animaux refusés » ;
        - des motifs ont été lus sur les règles → on les nomme (poids, race, soute non proposée…) ;
@@ -279,11 +281,33 @@ export function explain(decision: Decision, locale = "en"): DecisionReport {
       "cabin,hold": "air.cabin_hold", "cabin,cargo": "air.cabin_cargo",
       "hold,cargo": "air.hold_cargo", "cabin,hold,cargo": "air.cabin_hold_cargo",
     };
-    const label = ouverts.length > 1
+    /* « SOUS CONDITIONS », JAMAIS « OK » (08/09/2026). Un canal ouvert l'est désormais par une
+       politique `accepted_with_conditions` : le libellé le dit, canal par canal. Les clés
+       `air.cabin_ok` / `air.hold_only`… ne servent plus qu'à un `allowed` que rien ne produit. */
+    const conditionnel = (["cabin", "hold", "cargo"] as const).some((pl) => statusOf(a, pl) === "accepted_with_conditions");
+    const CLE_COND: Record<string, string> = {
+      "cabin": "air.cond.cabin", "hold": "air.cond.hold", "cargo": "air.cond.cargo",
+      "cabin,hold": "air.cond.cabin_hold", "cabin,cargo": "air.cond.cabin_cargo",
+      "hold,cargo": "air.cond.hold_cargo", "cabin,hold,cargo": "air.cond.cabin_hold_cargo",
+    };
+    const label = ouverts.length > 0 && conditionnel
+      ? L(CLE_COND[ouverts.join(",")])
+      : ouverts.length > 1
       ? L(CLE_MULTI[ouverts.join(",")])
       : ouverts.length === 1
         ? L(ouverts[0] === "cabin" ? "air.cabin_ok" : ouverts[0] === "hold" ? "air.hold_only" : "air.cargo_only")
-        : to_confirm.length ? L("air.to_confirm") : notAccepted;
+        : to_confirm.length
+          ? (refuses.length
+              /* UN REFUS DOCUMENTÉ EST LA RÉPONSE, PAS UN DÉTAIL (08/09/2026, import strict V3).
+                 easyJet, cabine et soute refusées sur citation, fret à confirmer : le libellé
+                 disait « Politique à confirmer » et cachait les deux réponses prouvées sous une
+                 question ouverte. Un canal `denied` l'est toujours sur preuve (evaluate.ts) : on
+                 le nomme en tête, et on garde ce qui reste à confirmer à sa place. */
+              ? capitaliser(L("air.refused_then_confirm")
+                  .replace("{refused}", joinList(refuses.map((pl) => L(`placement.${pl}`).toLocaleLowerCase(locale)), locale))
+                  .replace("{confirm}", joinList(to_confirm.map((pl) => L(`placement.${pl}`).toLocaleLowerCase(locale)), locale)))
+              : L("air.to_confirm"))
+          : notAccepted;
     /* LES STATUTS TARIFAIRES, DÉRIVÉS DU CANAL — et de rien d'autre.
      *
      * Ce bloc calculait naguère un montant : `localizeFee(a.fee)`, avec « sur devis » pour le
@@ -527,10 +551,15 @@ export function explain(decision: Decision, locale = "en"): DecisionReport {
      applicable, mais non prouvée, pèse encore sur lui : l'embarquement n'est pas l'entrée. La
      règle du 13/08 est inchangée pour le reste — le refus d'entrée PROUVÉ prime sur tout. */
   const entryStatus = decision.destination.entry_status;
+  /* UN CANAL « ACCEPTÉ SOUS CONDITIONS » NE DONNE JAMAIS « OUI » SEC (08/09/2026) : le verdict
+     est au mieux « Oui — sous conditions », même sans formalité pays. Mesuré : aucune politique
+     n'émet plus `allowed`, donc `compatible` n'a plus de chemin réel ; il reste pour le contrat. */
+  const tousConditionnels = acceptedAirlines.length > 0 && acceptedAirlines.every((a) =>
+    a.cabin_status !== "allowed" && a.hold_status !== "allowed" && a.cargo_status !== "allowed");
   const verdict: DecisionReport["verdict"] =
     entryStatus === "blocked" ? "incompatible"
     : entryStatus === "confirmation_required" ? "unknown"
-    : anyCompatible ? (conditions.length > 0 ? "conditional" : "compatible")
+    : anyCompatible ? ((conditions.length > 0 || tousConditionnels) ? "conditional" : "compatible")
     : anyConfirm ? "unknown"
     : "incompatible";
 
@@ -572,6 +601,9 @@ export function explain(decision: Decision, locale = "en"): DecisionReport {
       positives.push({ text: L("why.no_airline_found"), criticality: "high", tone: "negative" });
     } else if (anyCabin) {
       const modes = [L("mode.cabin"), ...(anyHold ? [L("mode.hold")] : []), ...(anyCargo ? [L("mode.cargo")] : [])];
+      /* « TON CHIEN PEUT VOYAGER EN CABINE » disait un oui sec sur un canal accepté SOUS CONDITIONS
+         (08/09/2026, import strict V3) : la phrase dit maintenant ce que les compagnies publient,
+         et qu'aucune place n'est garantie. */
       positives.push({ text: L("why.transport_modes").replace("{modes}", joinList(modes, locale)), criticality: "low", tone: "positive" });
     } else if (decision.brachycephalic) {
       // Snub-nosed dog with no cabin option: hold/cargo are ruled out for the breed — don't offer them.

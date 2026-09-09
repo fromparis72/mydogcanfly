@@ -104,11 +104,28 @@ const nouvellePage = async () => {
   p.__erreurs = [];
   p.on("pageerror", (e) => p.__erreurs.push(e.message));
   p.on("console", (m) => { if (m.type() === "error" && !/ERR_CONNECTION|ERR_NAME_NOT_RESOLVED|ERR_INTERNET/.test(m.text())) p.__erreurs.push(m.text()); });
+  /* LES REQUÊTES AU MOTEUR SONT COMPTÉES, PAR PAGE (08/09/2026). Le défaut de la date passée se
+     caractérisait par une ABSENCE : aucun POST /v1/finder. Un harnais qui ne lit que l'écran ne
+     distingue pas « rien n'est parti » de « c'est parti et le rendu a échoué ». On garde le corps
+     de chaque POST : c'est aussi la seule preuve que la race tapée a bien été RÉSOLUE en `breed_id`. */
+  p.__finder = [];
+  p.on("request", (r) => {
+    if (r.method() !== "POST" || !/\/v1\/finder(?:[?#]|$)/.test(r.url())) return;
+    let corps = null;
+    try { corps = JSON.parse(r.postData() ?? "null"); } catch { /* corps illisible : on le note tel quel */ }
+    p.__finder.push(corps);
+  });
   return p;
 };
 
-/** Une recherche complète : lien profond, poids, race éventuelle, soumission, attente du résultat. */
-async function chercher({ from, dest, kg, race = null, placement = null, locale = "" }) {
+/** Une recherche complète : lien profond, poids, race éventuelle, placement, date, soumission,
+ *  attente du résultat.
+ *
+ *  `date` (ISO `AAAA-MM-JJ`, 08/09/2026) : posée dans `#f-date` AVANT la soumission, par `fill`,
+ *  c'est-à-dire comme un visiteur qui tape. Le rendu peut ne JAMAIS apparaître — c'est précisément
+ *  le défaut que la date passée a révélé —, alors `chercher` ne lève plus : il rend `visible=false`,
+ *  et laisse le contrôle appelant nommer ce qu'il attendait. `attente` borne cette patience. */
+async function chercher({ from, dest, kg, race = null, placement = null, locale = "", date = null, attente = 30000 }) {
   const p = await nouvellePage();
   await p.goto(`${BASE}${locale}/?from=${from}&dest=${dest}`, { waitUntil: "networkidle" });
   if (race) { await p.fill("#f-breed", race); await p.dispatchEvent("#f-breed", "input"); await p.waitForTimeout(300); }
@@ -122,15 +139,26 @@ async function chercher({ from, dest, kg, race = null, placement = null, locale 
   const poseE = await p.inputValue("#f-weight");
   if (poseE !== String(kg)) throw new Error(`poids non posé : voulu ${kg}, formulaire ${poseE}`);
   if (placement) await p.selectOption("#f-placement", placement);
+  if (date) {
+    await p.fill("#f-date", date);
+    const poseD = await p.inputValue("#f-date");
+    if (poseD !== date) throw new Error(`date non posée : voulue ${date}, formulaire ${poseD}`);
+  }
+  /* Où en est la page AVANT le clic : le défaut faisait défiler la page vers le champ sans rien
+     afficher ; on relève la position pour pouvoir dire, après, si elle a bougé et vers quoi. */
+  const defilAvant = await p.evaluate(() => window.scrollY);
   await p.click("#mdcf-finder button[type=submit]");
-  await p.waitForSelector("#mdcf-finder-result:not([hidden])", { timeout: 30000 });
+  const visible = await p.waitForSelector("#mdcf-finder-result:not([hidden])", { timeout: attente })
+    .then(() => true).catch(() => false);
   await p.waitForTimeout(1200);
-  const texte = (await p.textContent("#mdcf-finder-result")) ?? "";
+  const texte = visible ? ((await p.textContent("#mdcf-finder-result")) ?? "") : "";
+  const defilApres = await p.evaluate(() => window.scrollY);
   /* On relit le poids APRÈS la soumission aussi : un gabarit qui le réécrirait au moment
      d'envoyer produirait le même mensonge, une étape plus loin. */
   const poidsFinal = await p.inputValue("#f-weight");
   const cartes = await p.$$eval(".acard, [class*=acard]", (n) => n.length).catch(() => 0);
-  return { p, texte, cartes, poidsFinal };
+  const verdict = await p.$eval(".report__answer", (n) => n.textContent.trim()).catch(() => "");
+  return { p, texte, cartes, poidsFinal, visible, verdict, requetes: p.__finder, defilAvant, defilApres };
 }
 
 /* Les MONTANTS. Un chiffre accolé à une devise — les poids (« 8 kg »), les pourcentages et les
@@ -298,11 +326,15 @@ console.log("\n=== Le score affiché en tête de rapport ===");
   check("AUCUN pourcentage n'est affiché en tête de rapport — la jauge est masquée",
     score === null, `score affiché : ${score}%`);
   const reponse = await p.$eval(".report__answer", (n) => n.textContent.trim()).catch(() => "");
-  check("…et la réponse de tête est bien rendue, en disant qu'elle n'est pas établie",
-    /pas encore|not established|aún no|ainda não/i.test(reponse), JSON.stringify(reponse));
+  /* MOUVEMENT NOMMÉ (08/09/2026, import strict V3) : sur ce trajet, des canaux sont désormais
+     prouvés SOUS CONDITIONS, et la réponse de tête dit « Oui — sous conditions » au lieu de « pas
+     encore établi ». Ce que le contrôle défend est intact : une réponse de tête présente, jamais
+     un oui sec, jamais un pourcentage. La note « pourquoi » n'existe que sur un verdict inconnu. */
+  check("…et la réponse de tête est bien rendue : « pas encore établi » ou « sous conditions », jamais un oui sec",
+    /pas encore|not established|aún no|ainda não|conditions|condições|condiciones/i.test(reponse) && !/^(yes|oui|sí|sim)\s*$/i.test(reponse), JSON.stringify(reponse));
   const note = await p.$eval(".report__unknown", (n) => n.textContent.trim()).catch(() => "");
-  check("…et la note explique pourquoi, sans se lire comme un refus",
-    note.length > 40 && !/refus|refused|rechaz|recus/i.test(note), JSON.stringify(note.slice(0, 90)));
+  check("…et si une note « pourquoi » est rendue, elle ne se lit pas comme un refus",
+    note === "" || (note.length > 40 && !/refus|refused|rechaz|recus/i.test(note)), JSON.stringify(note.slice(0, 90)));
   await p.close();
 }
 
@@ -338,7 +370,10 @@ console.log("\n=== Fiche de race : plus aucune affirmation sans preuve ===");
   }
   check("aucune note chiffrée /100 — elle mesurait un dossier vide",
     !/\/100/.test(texte), (texte.match(/[^ ]{0,12}\/100/) || [])[0] || "");
-  check("les canaux disent « pas encore établi »", /[Pp]as encore établi/.test(texte));
+  /* MOUVEMENT NOMMÉ (08/09/2026, import strict V3) : neuf limites cabine sont CITÉES, les canaux
+     ne disent plus « pas encore établi » mais « sous conditions » — et jamais « accepté ». */
+  check("les canaux disent « sous conditions », jamais « accepté par la plupart » ni « très souvent possible »",
+    /sous conditions/i.test(texte) && !/Accept[ée] par la plupart|Très souvent possible|Largement accepté/i.test(texte));
   /* ── LA PRÉCAUTION SURVIT, MAIS ON N'EN VÉRIFIE PLUS LE MOT : ON EN VÉRIFIE LA PHRASE ───────
    *
    * Ce témoin exigeait l'expression « museau court » quelque part sur la fiche. Il avait une
@@ -362,8 +397,12 @@ console.log("\n=== Fiche de race : plus aucune affirmation sans preuve ===");
     check("…et aucune affirmation catégorique sur la catégorie ne l'accompagne",
       !AFFIRMATIONS.test(texte), (texte.match(/[^.]{0,60}(embargos? chaleur|restrictions? respiratoires?|risque respiratoire)[^.]{0,40}/i) || [])[0] || "");
   }
-  check("la section « Meilleures compagnies » explique son vide au lieu de le laisser béant",
-    /rien à classer/i.test(texte) && /absence de preuve/i.test(texte));
+  /* MOUVEMENT NOMMÉ (08/09/2026) : la section n'est plus vide — elle liste des compagnies citées,
+     chacune « sous conditions », sans coche pleine ni « Accepté ». */
+  const lignesCompagnies = await p.$$eval(".bt2-air", (ns) => ns.map((n) => n.textContent.replace(/\s+/g, " ").trim()));
+  check("la section « Compagnies à vérifier » liste des compagnies citées, chacune « sous conditions », jamais « Accepté »",
+    lignesCompagnies.length > 0 && lignesCompagnies.every((l) => /sous conditions|confirmer/i.test(l) && !/✅|Accepté en/i.test(l)),
+    lignesCompagnies.slice(0, 3).join(" | "));
   /* TÉMOIN : un golden n'est pas brachycéphale — la précaution ne doit pas se propager. */
   const p2 = await nouvellePage();
   await p2.goto(`${BASE}/fr/breeds/golden-retriever/`, { waitUntil: "domcontentloaded" });
@@ -451,6 +490,145 @@ console.log("\n=== Une interdiction PROUVÉE, elle, tranche encore ===");
   check("…sur la phrase citée de la norme d'importation néo-zélandaise",
     /Dog Control Act 1996/i.test(texte), texte.slice(0, 120));
   await p.close();
+}
+
+/* ---- CINQ RECHERCHES EN FRANÇAIS, PLUS UNE DATE PASSÉE (non-régression, 08/09/2026) ----------
+ *
+ * POURQUOI. Un testeur a joué, sur /fr/, « Carlin, 8 kg, CDG → ATH, 15 juillet » — le 8 septembre,
+ * donc une date PASSÉE. Il n'a rien obtenu : ni carte, ni message, et la page a défilé vers le
+ * champ. La cause, mesurée : `#f-date` portait `min`/`max`, et la validation NATIVE du navigateur
+ * arrêtait `submit` avant notre gestionnaire ; le message explicite n'était jamais écrit dans
+ * `#mdcf-finder-result`. Le harnais jsdom ne pouvait pas le voir — il émet `submit` lui-même.
+ *
+ * CE QUE CE BLOC EXIGE, sur le VRAI Chromium et le VRAI rendu :
+ *   · cinq recherches ordinaires rendent un verdict VISIBLE (`.report__answer` non vide) et une
+ *     réponse utile (au moins une carte, ou un message explicite) ;
+ *   · la date passée rend le message explicite de date hors contrat, avec les bornes du jour,
+ *     SANS aucune requête au moteur, et sans laisser la page défiler vers un écran muet.
+ *
+ * LES DATES SONT CALCULÉES, JAMAIS ÉCRITES EN DUR : « le prochain 15 juillet » vaut 2027-07-15
+ * aujourd'hui et vaudra autre chose dans un an — un harnais qui figerait 2027 passerait au rouge
+ * (ou au vert, à tort) à date fixe. « Le dernier 15 juillet passé » est calculé de même.
+ *
+ * LES NOMS DE RACE SONT CEUX DU CHAMP FRANÇAIS, et l'un d'eux NE RÉSOUT PAS tel que le testeur
+ * l'écrit : « Cavalier King Charles » n'est pas dans la liste, qui porte « Cavalier King Charles
+ * Spaniel » (`name_i18n.fr` de `breed_cavalier_king_charles`). `resolveBreed` compare le texte
+ * ENTIER, normalisé : un préfixe ne résout rien, et la requête partirait sans `breed_id`, avec le
+ * poids tapé pour seule description du chien. On emploie donc le libellé exact, on VÉRIFIE dans le
+ * corps du POST que chaque race est bien devenue un `breed_id`, et on MESURE le préfixe : le jour
+ * où le gabarit acceptera « Cavalier King Charles » seul, ce constat changera et se verra. */
+console.log("\n=== Six recherches en français : verdict visible, réponse utile, date hors contrat ===");
+{
+  /* Prochain 15 juillet (inclus : un 15 juillet, c'est encore aujourd'hui, donc dans le contrat)
+     et dernier 15 juillet passé — tous deux en UTC, comme les bornes du champ. */
+  const iso = (d) => d.toISOString().slice(0, 10);
+  const maintenant = new Date();
+  const annee = maintenant.getUTCFullYear();
+  const juillet = (a) => new Date(Date.UTC(a, 6, 15));
+  const auj = iso(new Date(Date.UTC(annee, maintenant.getUTCMonth(), maintenant.getUTCDate())));
+  const prochain15Juillet = iso(juillet(annee)) >= auj ? iso(juillet(annee)) : iso(juillet(annee + 1));
+  const dernier15JuilletPasse = iso(juillet(annee)) < auj ? iso(juillet(annee)) : iso(juillet(annee - 1));
+  console.log(`  ·    aujourd'hui ${auj} — prochain 15 juillet : ${prochain15Juillet} ; dernier 15 juillet passé : ${dernier15JuilletPasse}`);
+  check("témoin : le prochain 15 juillet est dans le contrat (≤ 18 mois) et le dernier est bien passé",
+    prochain15Juillet >= auj && prochain15Juillet <= iso(new Date(Date.UTC(annee, maintenant.getUTCMonth() + 18, maintenant.getUTCDate())))
+    && dernier15JuilletPasse < auj);
+
+  /* Les libellés, tels que la liste `#mdcf-breeds` les porte en français — relus dans la page
+     plutôt que crus. */
+  const p0 = await nouvellePage();
+  await p0.goto(`${BASE}/fr/`, { waitUntil: "domcontentloaded" });
+  const liste = await p0.$$eval("#mdcf-breeds option", (n) => n.map((o) => o.value));
+  await p0.close();
+  for (const nom of ["Carlin", "Golden Retriever", "Cavalier King Charles Spaniel"]) {
+    check(`la liste française des races porte « ${nom} »`, liste.includes(nom));
+  }
+  console.log(`  ·    « Cavalier King Charles » seul ${liste.includes("Cavalier King Charles") ? "EST" : "n'est PAS"} dans la liste — le libellé complet est employé ci-dessous`);
+
+  const scenarios = [
+    { nom: "Cavalier King Charles Spaniel 6 kg, CDG → ATH, cabine", race: "Cavalier King Charles Spaniel", id: "breed_cavalier_king_charles", kg: 6, dest: "airport_ath", placement: "cabin" },
+    { nom: "Golden Retriever 32 kg, CDG → ATH", race: "Golden Retriever", id: "breed_golden_retriever", kg: 32, dest: "airport_ath" },
+    { nom: "Golden Retriever 30 kg, CDG → JFK", race: "Golden Retriever", id: "breed_golden_retriever", kg: 30, dest: "airport_jfk" },
+    { nom: "Golden Retriever 32 kg, CDG → LHR", race: "Golden Retriever", id: "breed_golden_retriever", kg: 32, dest: "airport_lhr" },
+    { nom: `Carlin 8 kg, CDG → ATH, soute, le ${prochain15Juillet}`, race: "Carlin", id: "breed_pug", kg: 8, dest: "airport_ath", placement: "hold", date: prochain15Juillet },
+  ];
+  for (const s of scenarios) {
+    const r = await chercher({ from: "airport_cdg", dest: s.dest, kg: s.kg, race: s.race, placement: s.placement ?? null, date: s.date ?? null, locale: "/fr" });
+    check(`${s.nom} : la zone de résultat s'affiche`, r.visible);
+    check(`${s.nom} : aucune erreur JavaScript`, r.p.__erreurs.length === 0, r.p.__erreurs.slice(0, 2).join(" | "));
+    check(`${s.nom} : une requête au moteur est partie, avec la race RÉSOLUE et le poids annoncé`,
+      r.requetes.length === 1 && r.requetes[0]?.dog?.breed_id === s.id && r.requetes[0]?.dog?.weight_kg === s.kg,
+      JSON.stringify({ requetes: r.requetes.length, dog: r.requetes[0]?.dog, placement: r.requetes[0]?.placement, date: r.requetes[0]?.date }));
+    if (s.placement) check(`${s.nom} : le placement demandé est transmis`, r.requetes[0]?.placement === s.placement, JSON.stringify(r.requetes[0]?.placement));
+    if (s.date) check(`${s.nom} : la date est transmise SANS MODIFICATION`, r.requetes[0]?.date === s.date, JSON.stringify(r.requetes[0]?.date));
+    check(`${s.nom} : un verdict est VISIBLE en tête de rapport`, r.verdict.length > 0, JSON.stringify(r.verdict));
+    check(`${s.nom} : une réponse utile — ${r.cartes} carte(s) compagnie, ou un message explicite`,
+      r.cartes > 0 || /\S{20,}/.test(r.texte.replace(/\s+/g, " ")), `${r.cartes} carte(s), ${r.texte.trim().length} caractères`);
+    console.log(`  ·    verdict : « ${r.verdict.slice(0, 70)} » — ${r.cartes} carte(s)`);
+    /* LE BANDEAU FORMALITÉS SUR UN TRAJET INTRA-UE (point 4 de Codex, 08/09/2026). Paris → Athènes
+       est de niveau « info » (Grèce : régime `eu`, pas de sortie). Avant : « prévois un certificat
+       vétérinaire dans chaque sens », sans source, et faux — le moteur liste passeport, puce, rage.
+       Attendu : un bandeau `info` qui ne nomme aucun document et renvoie aux étapes ci-dessous,
+       et des étapes rendues qui portent bien passeport, identification et rage. */
+    if (s.dest === "airport_ath") {
+      const bandeau = await r.p.$eval(".rtflag", (n) => ({ classe: n.className, corps: n.querySelector(".rtflag__b")?.textContent ?? "" })).catch(() => null);
+      check(`${s.nom} : le bandeau formalités est de niveau « info » et ne nomme aucun document`,
+        !!bandeau && /rtflag--info/.test(bandeau.classe) && !/certif|passeport|vaccin/i.test(bandeau.corps), JSON.stringify(bandeau));
+      check(`${s.nom} : …et renvoie aux étapes listées ci-dessous`, !!bandeau && /ci-dessous/.test(bandeau.corps), JSON.stringify(bandeau?.corps));
+      const etapes = r.texte.replace(/\s+/g, " ");
+      check(`${s.nom} : les étapes rendues portent passeport, identification (puce) et rage — pas « certificat vétérinaire dans chaque sens »`,
+        /passeport/i.test(etapes) && /puce|transpondeur|identif/i.test(etapes) && /rage|antirabique/i.test(etapes) && !/certificat vétérinaire dans chaque sens/i.test(etapes),
+        etapes.slice(0, 300));
+    }
+    /* LE CONTRAT D'AFFICHAGE, SUR LE VRAI RENDU : le résumé par canal existe, le compteur
+       « options confirmées · pistes » n'existe plus, et aucune carte « ? » sur ses trois canaux
+       n'est à plat hors du <details> des pistes. */
+    const contrat = await r.p.evaluate(() => {
+      const acap = !!document.querySelector(".acap");
+      const asum = [...document.querySelectorAll(".asum__ch")].map((n) => n.textContent.replace(/\s+/g, " ").trim());
+      const aPlat = [...document.querySelectorAll("ul.acards")].filter((ul) => !ul.closest("details")).flatMap((ul) => [...ul.querySelectorAll(".acard")]);
+      const pistesAPlat = aPlat.filter((c) => [...c.querySelectorAll(".ab")].every((b) => /\?\s*$/.test(b.textContent))).length;
+      const det = document.querySelector("details.acards__leads");
+      return { acap, asum, aPlat: aPlat.length, pistesAPlat, details: det ? { ouvert: det.hasAttribute("open"), cartes: det.querySelectorAll(".acard").length, resume: det.querySelector("summary")?.textContent.trim() } : null };
+    });
+    check(`${s.nom} : le compteur « options confirmées · pistes » a disparu, le résumé par canal est là (3 canaux)`,
+      !contrat.acap && contrat.asum.length === 3, JSON.stringify(contrat.asum));
+    check(`${s.nom} : aucune carte « ? » sur ses trois canaux n'est à plat — elles sont dans le <details> fermé`,
+      contrat.pistesAPlat === 0 && (contrat.details === null || !contrat.details.ouvert), JSON.stringify(contrat));
+    console.log(`  ·    résumé : ${contrat.asum.join(" | ")} — ${contrat.aPlat} carte(s) à plat, ${contrat.details?.cartes ?? 0} repliée(s)`);
+    await capturer(r.p, `6-fr-${s.race.toLowerCase().replace(/[^a-z]+/g, "-")}-${s.kg}kg-${s.dest.replace("airport_", "")}${s.placement ? "-" + s.placement : ""}`);
+    await r.p.close();
+  }
+
+  /* LE SIXIÈME : la date passée, celle du testeur. Attente courte : ce qu'on attend n'est pas un
+     rapport (rien ne doit partir), c'est un message, qui s'écrit sans réseau. */
+  {
+    const r = await chercher({ from: "airport_cdg", dest: "airport_ath", kg: 8, race: "Carlin", placement: "hold",
+      date: dernier15JuilletPasse, locale: "/fr", attente: 8000 });
+    check(`Carlin 8 kg, CDG → ATH, le ${dernier15JuilletPasse} (passé) : la zone de résultat s'affiche — jamais un retour silencieux`, r.visible);
+    check("…AUCUNE requête n'est partie vers le moteur", r.requetes.length === 0, `${r.requetes.length} POST /v1/finder`);
+    /* Le message exact, EN FRANÇAIS, avec les bornes du jour recalculées ici (ISO, UTC) — jamais
+       recopiées depuis le gabarit, ni acceptées telles qu'affichées. */
+    const bornes = (() => {
+      const y = maintenant.getUTCFullYear(), m = maintenant.getUTCMonth(), d = maintenant.getUTCDate();
+      const dernierJour = new Date(Date.UTC(y, m + 19, 0)).getUTCDate();
+      return { min: iso(new Date(Date.UTC(y, m, d))), max: iso(new Date(Date.UTC(y, m + 18, Math.min(d, dernierJour)))) };
+    })();
+    const attendu = `Choisis une date comprise entre aujourd'hui (${bornes.min}) et 18 mois (${bornes.max}).`;
+    check("…le message explicite de date hors contrat est affiché, et il NOMME la plage acceptée",
+      r.texte.replace(/\s+/g, " ").trim() === attendu, JSON.stringify(r.texte.trim().slice(0, 140)));
+    check("…aucune carte ni verdict n'est rendu sur une date que le moteur refuserait",
+      r.cartes === 0 && r.verdict === "", `${r.cartes} carte(s), verdict « ${r.verdict} »`);
+    /* La page ne fuit pas vers un écran muet : le message est DANS la fenêtre après le clic. */
+    const boite = await r.p.$eval("#mdcf-finder-result", (n) => { const b = n.getBoundingClientRect(); return { haut: b.top, bas: b.bottom, h: window.innerHeight }; }).catch(() => null);
+    check("…et le message est dans la fenêtre — la page n'a pas défilé vers un écran sans verdict",
+      !!boite && boite.haut >= 0 && boite.haut < boite.h, JSON.stringify({ boite, defilement: [r.defilAvant, r.defilApres] }));
+    console.log(`  ·    défilement avant/après le clic : ${r.defilAvant} → ${r.defilApres}`);
+    check("…et le champ de date est marqué invalide pour les lecteurs d'écran",
+      (await r.p.getAttribute("#f-date", "aria-invalid")) === "true");
+    check("…sans erreur JavaScript", r.p.__erreurs.length === 0, r.p.__erreurs.slice(0, 2).join(" | "));
+    await capturer(r.p, "6-fr-carlin-date-passee");
+    await r.p.close();
+  }
 }
 
 console.log("\n=== Outil Destinations : les trois états d'entrée, dans le VRAI rendu ===");

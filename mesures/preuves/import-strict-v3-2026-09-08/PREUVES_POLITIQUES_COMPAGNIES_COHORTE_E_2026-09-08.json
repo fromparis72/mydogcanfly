@@ -1,0 +1,47 @@
+{
+  "schema_version": 1,
+  "as_of": "2026-09-08",
+  "purpose": "Evidence packet only. The Emirates facts separate ordinary pet dogs from falcons and assistance dogs, which are different products and exceptions.",
+  "provenance_defaults": {
+    "source_type": "official_website",
+    "verified_date": "2026-09-08",
+    "review_due": "derive_with_reviewDueFrom(verified_date, 'airline')",
+    "confidence": 4,
+    "reviewer": "Codex — lecture directe de la page officielle"
+  },
+  "facts": [
+    {
+      "airline_id": "airline_emirates",
+      "placement": "cabin",
+      "recommendation": "not_offered_for_pet_dogs",
+      "condition_scope": "ordinary pets; falcons on certain Dubai-Pakistan routes and service dogs are separate exception flows",
+      "finder_effect": "For an ordinary pet dog, show cabin not offered rather than unknown.",
+      "url": "https://www.emirates.com/us/english/before-you-fly/baggage/unusual-baggage-and-special-allowances/",
+      "quote": "Pets are not permitted in the cabin, with the exception of falcons between Dubai and certain destinations in Pakistan.",
+      "quote_language": "en",
+      "locator": "Unusual baggage and special allowances → Pets"
+    },
+    {
+      "airline_id": "airline_emirates",
+      "placement": "hold",
+      "recommendation": "offered_with_conditions",
+      "condition_scope": "excess-baggage pet transport in a special hold area; documents, animal plus cage size/weight, route and journey-duration restrictions apply",
+      "finder_effect": "Show passenger-hold offered under conditions, never a claim of flight capacity or final acceptance.",
+      "url": "https://www.emirates.com/english/help/forms/pets-travel/",
+      "quote": "You can pay for pets to travel as excess baggage on Emirates and they will be carried in a special area of the aircraft hold.",
+      "quote_language": "en",
+      "locator": "Travelling with pets"
+    },
+    {
+      "airline_id": "airline_emirates",
+      "placement": "cargo",
+      "recommendation": "required_when_carrier_linear_cm_gt_300",
+      "condition_scope": "pet carrier total dimensions length plus width plus height over 300 cm; other legal or route requirements may also require cargo",
+      "finder_effect": "Route a case above the carrier-dimension limit to cargo; do not infer a dog-only kilogram threshold.",
+      "url": "https://www.emirates.com/english/help/forms/pets-travel/",
+      "quote": "If the total dimensions (length + width + height) of your pet carrier exceeds 300cm (118 in), your pet must be transported as cargo on your flight.",
+      "quote_language": "en",
+      "locator": "Travelling with pets"
+    }
+  ]
+}

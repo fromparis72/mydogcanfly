@@ -68,10 +68,52 @@ ladder:
 policies:
   cabin:
     availability: not_offered
+    # PREUVE IMPORTÉE — import strict V3 (Codex, lecture directe du 2026-09-08, cohorte C fait 0).
+    # Effet attendu : Show ordinary pet dog as not transported in the cabin, rather than a policy to confirm.
+    # Portée nommée : ordinary pet dogs; guide and assistance dogs on certain routes are a distinct flow
+    source:
+      url: "https://help.ryanair.com/hc/en-us/articles/12890968181521-Does-Ryanair-carry-animals"
+      source_type: official_website
+      verified_date: "2026-09-08"
+      review_due: "2026-12-07"   # reviewDueFrom(verified_date, "airline") — calculé par l'importeur
+      confidence: 4
+      reviewer: "Codex — lecture directe de la page officielle"
+      history: []
+      quote: "We do not carry animals on board any Ryanair flights, except guide/assistance dogs on certain routes."
+      quote_language: en
+      locator: "Does Ryanair carry animals?"
   hold:
     availability: not_offered
+    # PREUVE IMPORTÉE — import strict V3 (Codex, lecture directe du 2026-09-08, cohorte C fait 1).
+    # Effet attendu : Show ordinary pet dog as not transported in passenger hold.
+    # Portée nommée : same ordinary-pet exclusion; a distinct assistance-dog exception must not enter pet-dog results
+    source:
+      url: "https://help.ryanair.com/hc/en-us/articles/12890968181521-Does-Ryanair-carry-animals"
+      source_type: official_website
+      verified_date: "2026-09-08"
+      review_due: "2026-12-07"   # reviewDueFrom(verified_date, "airline") — calculé par l'importeur
+      confidence: 4
+      reviewer: "Codex — lecture directe de la page officielle"
+      history: []
+      quote: "We do not carry animals on board any Ryanair flights, except guide/assistance dogs on certain routes."
+      quote_language: en
+      locator: "Does Ryanair carry animals?"
   cargo:
     availability: not_offered
+    # PREUVE IMPORTÉE — import strict V3 (Codex, lecture directe du 2026-09-08, cohorte C fait 2).
+    # Effet attendu : Do not direct an ordinary pet-dog traveller to Ryanair Cargo.
+    # Portée nommée : Ryanair’s published terms separately state that it does not carry cargo
+    source:
+      url: "https://oat.ryanair.com/hr/en/useful-info/help-centre/terms-and-conditions"
+      source_type: official_website
+      verified_date: "2026-09-08"
+      review_due: "2026-12-07"   # reviewDueFrom(verified_date, "airline") — calculé par l'importeur
+      confidence: 4
+      reviewer: "Codex — lecture directe de la page officielle"
+      history: []
+      quote: "We do not carry cargo on our flights."
+      quote_language: en
+      locator: "General Terms & Conditions of Carriage → 8.8 Animals, cargo and human ashes → 8.8.2"
 channels:
   - placement: cabin
     icon: 🐾

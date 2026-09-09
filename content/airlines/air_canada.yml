@@ -78,8 +78,36 @@ ladder:
 policies:
   cabin:
     availability: offered
+    # PREUVE IMPORTÉE — import strict V3 (Codex, lecture directe du 2026-09-08, cohorte LOT2 fait 0).
+    # Effet attendu : A small dog is a conditional cabin lead. Do not infer that a 30 kg dog fits the carrier.
+    # Portée nommée : only a cat or small dog, in a flexible soft-sided carrier under the seat; aircraft, fare and route exceptions apply
+    source:
+      url: "https://www.aircanada.com/ca/en/aco/home/plan/special-assistance/pets.html"
+      source_type: official_website
+      verified_date: "2026-09-08"
+      review_due: "2026-12-07"   # reviewDueFrom(verified_date, "airline") — calculé par l'importeur
+      confidence: 4
+      reviewer: "Codex — direct reading of official airline page"
+      history: []
+      quote: "Your cat or small dog is welcome to join you in the cabin, as long as they’re kept in a flexible, soft sided carrier under the seat in front of you."
+      quote_language: en
+      locator: "Travelling with your Pet → In the Cabin"
   hold:
     availability: offered
+    # PREUVE IMPORTÉE — import strict V3 (Codex, lecture directe du 2026-09-08, cohorte LOT2 fait 1).
+    # Effet attendu : Passenger hold is a conditional path, not an automatic acceptance on every marketed Air Canada itinerary.
+    # Portée nommée : Air Canada/ Rouge or Jazz operated itinerary; codeshare flights are excluded; pet plus kennel must not exceed 45 kg
+    source:
+      url: "https://www.aircanada.com/ca/en/aco/home/plan/special-assistance/pets.html"
+      source_type: official_website
+      verified_date: "2026-09-08"
+      review_due: "2026-12-07"   # reviewDueFrom(verified_date, "airline") — calculé par l'importeur
+      confidence: 4
+      reviewer: "Codex — direct reading of official airline page"
+      history: []
+      quote: "Your pet can't fly in the cabin with you? It can still travel safely and comfortably on the same flight as you, in the pressurized cargo compartment of most of our aircraft."
+      quote_language: en
+      locator: "Travelling with your Pet → In the Baggage Compartment"
   cargo:
     availability: offered
 channels:

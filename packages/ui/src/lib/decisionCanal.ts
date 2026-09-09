@@ -34,7 +34,7 @@ import type { PlacementPolicy, PolicySource } from "@mydogcanfly/knowledge";
 import { preuveAuditee as preuveAuditeeCanonique, sourceAffichable as sourceAffichableCanonique } from "@mydogcanfly/knowledge";
 
 export type Placement = "cabin" | "hold" | "cargo";
-export type StatutCanonique = "allowed" | "denied" | "confirmation_required";
+export type StatutCanonique = "allowed" | "accepted_with_conditions" | "denied" | "confirmation_required";
 export type PolitiqueCanal = PlacementPolicy;
 
 /** La politique runtime d'un canal. Lève si elle manque — voir règle 1. */
@@ -55,11 +55,13 @@ export function politiqueDuCanal(
 
 /** La clé de traduction PUBLIÉE du libellé de statut. */
 export const cleLibelleStatut = (s: StatutCanonique): string =>
-  s === "allowed" ? "premium.allowed" : s === "denied" ? "premium.not_allowed" : "air.to_confirm";
+  s === "allowed" ? "premium.allowed"
+  : s === "accepted_with_conditions" ? "premium.accepted_conditions"   // le quatrième état (08/09/2026)
+  : s === "denied" ? "premium.not_allowed" : "air.to_confirm";
 
 /** La classe de pastille — purement visuelle, DÉRIVÉE du statut et non plus l'inverse. */
 export const classeStatut = (s: StatutCanonique): "ok" | "no" | "warn" =>
-  s === "allowed" ? "ok" : s === "denied" ? "no" : "warn";
+  s === "allowed" || s === "accepted_with_conditions" ? "ok" : s === "denied" ? "no" : "warn";
 
 /** Nature de l'incertitude, quand il y en a une : la NÔTRE ou celle de la compagnie. */
 export const causeDeConfirmation = (d: PlacementPolicy): string | null =>
@@ -105,6 +107,8 @@ export function verdictDeFiche(
 ): { cls: "ok" | "warn" | "no"; cle: string } {
   const statuts = PLACEMENTS_FICHE.map((p) => policy?.[p]?.status);
   if (statuts.includes("allowed")) return { cls: "ok", cle: "premium.verdict_open" };
+  /* Accepté sous conditions, cité (08/09/2026) : ouvert, mais jamais annoncé comme un oui sec. */
+  if (statuts.includes("accepted_with_conditions")) return { cls: "ok", cle: "premium.verdict_open_conditions" };
   /* `every` sur les TROIS positions : un canal absent vaut `undefined`, jamais `denied`. */
   if (statuts.every((s) => s === "denied")) return { cls: "no", cle: "premium.verdict_none" };
   return { cls: "warn", cle: "air.to_confirm" };

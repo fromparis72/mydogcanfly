@@ -117,8 +117,9 @@ console.log("=== 2. Schémas d'auteur : stricts, union exclusive, projection SAN
   check("`allowed` ET `availability` simultanés → ÉCHEC (union exclusive)",
     !PlacementPolicyAuthored.safeParse({ allowed: true, availability: "offered", source: SRC }).success);
   const proj = projectPlacementPolicy(CanonicalPlacementPolicyAuthored.parse(enriched));
-  check("projection canonique : offered AVEC phrase citée → status allowed",
-    proj.status === "allowed" && proj.allowed === true, JSON.stringify(proj));
+  /* MOUVEMENT NOMMÉ (08/09/2026, quatrième état) : `allowed` → `accepted_with_conditions`. */
+  check("projection canonique : offered AVEC phrase citée → status accepted_with_conditions (jamais allowed)",
+    proj.status === "accepted_with_conditions" && proj.allowed === true, JSON.stringify(proj));
   check("les champs communs TRAVERSENT sans perte (poids, dims, tarif, conditions, brachy, source, provenance)",
     proj.max_weight_kg === 8 && proj.carrier_dims_cm?.l === 55 && proj.fee === "€125 (intra-Europe)"
       && proj.conditions?.en === "IATA crate" && proj.brachy_allowed === false
@@ -127,7 +128,8 @@ console.log("=== 2. Schémas d'auteur : stricts, union exclusive, projection SAN
     JSON.stringify(proj));
   const can = (availability) => projectPlacementPolicy(CanonicalPlacementPolicyAuthored.parse({ availability, source: SRC_CITEE }));
   /* AVEC la phrase : la disponibilité décide, exactement comme avant ce lot. */
-  check("canonical offered + phrase citée → allowed", can("offered").status === "allowed");
+  /* MOUVEMENT NOMMÉ (08/09/2026, quatrième état) : `allowed` → `accepted_with_conditions`. */
+  check("canonical offered + phrase citée → accepted_with_conditions", can("offered").status === "accepted_with_conditions");
   check("canonical not_offered + phrase citée → denied", can("not_offered").status === "denied");
   /* SANS la phrase : elle ne décide plus, et dit pourquoi. C'est LA propriété du lot, et elle
      est testée ici sur les deux sens — une acceptation non prouvée ne devient pas un refus, et

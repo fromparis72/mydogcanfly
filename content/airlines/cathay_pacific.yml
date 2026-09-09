@@ -74,10 +74,38 @@ ladder:
 policies:
   cabin:
     availability: not_offered
+    # PREUVE IMPORTÉE — import strict V3 (Codex, lecture directe du 2026-09-08, cohorte LOT2 fait 8).
+    # Effet attendu : Do not offer the Cathay passenger cabin to an ordinary pet dog.
+    # Portée nommée : service dogs are a separate accessibility flow
+    source:
+      url: "https://www.cathaypacific.com/cx/en_GB/faqs/baggage/cabin-baggage-allowance/are-pets-allowed-in-the-cabin.html?cxsource=LANGUAGE_SELECTOR_EN_HK"
+      source_type: official_website
+      verified_date: "2026-09-08"
+      review_due: "2026-12-07"   # reviewDueFrom(verified_date, "airline") — calculé par l'importeur
+      confidence: 4
+      reviewer: "Codex — direct reading of official airline page"
+      history: []
+      quote: "Aside from service dogs, pets are not allowed in the cabin."
+      quote_language: en
+      locator: "Are pets allowed in the cabin?"
   hold:
     availability: not_offered
   cargo:
-    review_state: legacy_unreviewed
+    availability: offered   # RÉACTIVÉE sur citation (import strict, lot 2, 2026-09-08) — était review_state: legacy_unreviewed
+    # PREUVE IMPORTÉE — import strict V3 (Codex, lecture directe du 2026-09-08, cohorte LOT2 fait 9).
+    # Effet attendu : Cargo is a conditional direction; never an automatic acceptance of the animal or itinerary.
+    # Portée nommée : Cathay Cargo process, shipping agent and route-specific legal acceptance conditions apply
+    source:
+      url: "https://www.cathaypacific.com/cx/en_GB/faqs/baggage/cabin-baggage-allowance/are-pets-allowed-in-the-cabin.html?cxsource=LANGUAGE_SELECTOR_EN_HK"
+      source_type: official_website
+      verified_date: "2026-09-08"
+      review_due: "2026-12-07"   # reviewDueFrom(verified_date, "airline") — calculé par l'importeur
+      confidence: 4
+      reviewer: "Codex — direct reading of official airline page"
+      history: []
+      quote: "Your pet will need to travel in cargo."
+      quote_language: en
+      locator: "Are pets allowed in the cabin?"
 channels:
   - placement: cabin
     icon: 🐾

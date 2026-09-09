@@ -215,8 +215,10 @@ console.log("\n=== 4. Tri-state : estimation → confirmation_required ; fournie
     repV.airlines.every((a) => a.heat_embargo === false));
   const froid = evaluate(kbCitee, FinderRequest.parse({ origin: "airport_cdg", destination: "airport_ist", dog: GOLDEN, date: JUILLET, weather: { temperature_c: 20 } }));
   const pFroid = stOf(froid, "airline_turkish", "hold");
-  check("température fournie SOUS le seuil (20) : hold = allowed (l'embargo ne se déclenche pas)",
-    pFroid?.status === "allowed", JSON.stringify(pFroid));
+  /* MOUVEMENT NOMMÉ (08/09/2026, quatrième état) : la politique citée de soute vaut
+     `accepted_with_conditions`, plus `allowed` ; l'embargo, lui, ne se déclenche toujours pas. */
+  check("température fournie SOUS le seuil (20) : hold = accepted_with_conditions (l'embargo ne se déclenche pas)",
+    pFroid?.status === "accepted_with_conditions" && pFroid?.allowed === true, JSON.stringify(pFroid));
 }
 
 console.log("\n=== 5. Dominance : denied > confirmation_required — interaction P0 climat / P0-B brachy ===");
@@ -293,9 +295,18 @@ console.log("\n=== 5. Dominance : denied > confirmation_required — interaction
     (p.confirmation_causes ?? []).some((c) => c.code === "legacy_unreviewed" || c.code === "official_source_unquoted")).length;
   /* 44 → 59, et 27 → 40 de race : les canaux que la règle de race fermait rejoignent les
      confirmations, en disant pourquoi. Aucune n'est inexpliquée. */
-  check("carlin : 59 confirmations — toutes de provenance, 40 aussi de race, aucune inexpliquée",
-    confirmations.length === 59 && provenance === 59 && race === 40,
-    `${confirmations.length} confirmation(s), dont ${race} de race et ${provenance} de provenance, sur ${tousLesCanaux.length} canaux`);
+  /* MOUVEMENT NOMMÉ (08/09/2026, import strict V3 — 25 preuves citées) : 59 → 51 confirmations,
+     40 → 38 de race, 59 → 46 de provenance. Huit canaux ont reçu une RÉPONSE (citation) et ne
+     sont plus « à confirmer » ; et pour la première fois, CINQ confirmations n'ont PAS de cause
+     de provenance : leur politique est prouvée (soute citée d'Aegean, KLM, Lufthansa, Turkish,
+     Iberia), seule la règle brachycéphale non citée les retient. « Toutes de provenance » n'est
+     plus la propriété : la propriété est « chacune dit laquelle des deux incertitudes la porte » —
+     elle est désormais testée telle quelle, et le compte reste figé. */
+  const inexpliquees = confirmations.filter((p) =>
+    !(p.confirmation_causes ?? []).some((c) => c.code === "breed_policy_unreviewed" || c.code === "legacy_unreviewed" || c.code === "official_source_unquoted"));
+  check("carlin : 51 confirmations — 46 de provenance, 38 de race, aucune inexpliquée (chacune porte l'une des deux causes)",
+    confirmations.length === 51 && provenance === 46 && race === 38 && inexpliquees.length === 0,
+    `${confirmations.length} confirmation(s), dont ${race} de race et ${provenance} de provenance, ${inexpliquees.length} inexpliquée(s), sur ${tousLesCanaux.length} canaux`);
 }
 
 console.log("\n=== 6. Verdict : règle exacte, par restriction en mémoire ===");
@@ -321,11 +332,14 @@ console.log("\n=== 6. Verdict : règle exacte, par restriction en mémoire ===")
      était satisfiable par presque tout. On épingle la RÈGLE : la cabine est allowed, donc le
      verdict suit la voie « allowed » — conditional UNIQUEMENT par les formalités, jamais par la
      confirmation de la soute, et jamais incompatible. */
-  check("placement=cabin : cabin_status=allowed (témoin)", repC.airlines[0]?.cabin_status === "allowed",
-    repC.airlines[0]?.cabin_status);
-  check("placement=cabin : verdict par la voie « allowed » — exactement (formalités ? conditional : compatible)",
-    repC.verdict === (repC.conditions.length > 0 ? "conditional" : "compatible"),
-    `verdict ${repC.verdict}, ${repC.conditions.length} formalité(s)`);
+  /* MOUVEMENT NOMMÉ (08/09/2026, quatrième état) : la cabine citée vaut `accepted_with_conditions`,
+     plus `allowed`. Conséquence sur le verdict : un canal ouvert sous conditions donne « Oui —
+     sous conditions » même sans formalité pays ; `compatible` n'a plus de chemin réel. Ce que le
+     paragraphe défend — jamais incompatible, jamais unknown quand la cabine est prouvée — tient. */
+  check("placement=cabin : cabin_status=accepted_with_conditions (témoin, plus jamais allowed)",
+    repC.airlines[0]?.cabin_status === "accepted_with_conditions", repC.airlines[0]?.cabin_status);
+  check("placement=cabin : verdict « conditional » par la voie ouverte — jamais compatible sec, jamais incompatible, jamais unknown",
+    repC.verdict === "conditional", `verdict ${repC.verdict}, ${repC.conditions.length} formalité(s)`);
   /* entry_allowed=false DOMINE : même base restreinte, une règle pays deny ajoutée en mémoire. */
   const banRule = {
     id: "rule_test_entry_ban", scope: { type: "country", id: "country_tr" }, category: "import_rules",
@@ -385,11 +399,16 @@ console.log("\n=== 7. Destinations : statuts, fret émis, inclusion en alternati
     JSON.stringify(auh?.confirmation_signals));
   check("Abou Dabi : AUCUN drapeau chaleur — la cause n'est pas climatique",
     auh?.heat_embargo === false && auh?.heat_confirmation_required === false);
-  const statuses = ["allowed", "denied", "confirmation_required"];
+  /* MOUVEMENT NOMMÉ (08/09/2026, lots 2 et 3) : le quatrième état est un statut de destination, et
+     un canal « ok » l'est aussi quand il est accepté sous conditions (Addis-Abeba, voir annexe 24). */
+  const statuses = ["allowed", "accepted_with_conditions", "denied", "confirmation_required"];
   check("tous les statuts émis sont valides",
     dest.matches.every((m) => [m.cabin_status, m.hold_status, m.cargo_status].every((s) => statuses.includes(s))));
-  check("booléens *_ok vrais UNIQUEMENT pour allowed",
-    dest.matches.every((m) => (m.cabin_ok === (m.cabin_status === "allowed")) && (m.hold_ok === (m.hold_status === "allowed")) && (m.cargo_ok === (m.cargo_status === "allowed"))));
+  const ouvert = (st) => st === "allowed" || st === "accepted_with_conditions";
+  check("booléens *_ok vrais UNIQUEMENT pour un canal ouvert (allowed ou accepté sous conditions)",
+    dest.matches.every((m) => (m.cabin_ok === ouvert(m.cabin_status)) && (m.hold_ok === ouvert(m.hold_status)) && (m.cargo_ok === ouvert(m.cargo_status))));
+  check("…et `placement_conditional` est vrai sur toute destination ouverte : aucun `allowed` n'existe",
+    dest.matches.every((m) => !m.placement_ok || m.placement_conditional === true));
 }
 
 console.log("\n=== 7 bis. climate.embargo dérive des RÈGLES, pas du seuil (contre-revue v3) ===");

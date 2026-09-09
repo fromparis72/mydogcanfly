@@ -1,0 +1,43 @@
+{
+  "schema_version": 1,
+  "as_of": "2026-09-08",
+  "purpose": "Evidence packet only. The Vueling passenger-hold refusal is explicit; cargo remains intentionally unset because this passenger page does not establish a separate cargo service.",
+  "provenance_defaults": {
+    "source_type": "official_website",
+    "verified_date": "2026-09-08",
+    "review_due": "derive_with_reviewDueFrom(verified_date, 'airline')",
+    "confidence": 4,
+    "reviewer": "Codex — lecture directe de la page officielle"
+  },
+  "facts": [
+    {
+      "airline_id": "airline_vueling",
+      "placement": "cabin",
+      "recommendation": "deny_when_dog_weight_kg_gt_10",
+      "condition_scope": "official ceiling applies to pet plus non-rigid carrier; UK and Iceland flights are excluded, along with capacity and fare conditions",
+      "finder_effect": "For a 30 or 32 kg dog, cabin is not suitable. A dog at or below 10 kg is not positively cleared without carrier weight and route checks.",
+      "url": "https://help.vueling.com/hc/en-gb/articles/19798818168337-Fly-with-my-Pet",
+      "quote": "Your pet must travel in an approved, non-rigid carrier (max. 45x39x21 cm and 10 kg with the pet inside).",
+      "quote_language": "en",
+      "locator": "Fly with my Pet → service features"
+    },
+    {
+      "airline_id": "airline_vueling",
+      "placement": "hold",
+      "recommendation": "not_offered_for_pet_dogs",
+      "condition_scope": "the official passenger-pet page states that animals cannot be carried in the aircraft cargo hold; it is not a cargo-service statement",
+      "finder_effect": "For a large pet dog, do not offer passenger hold. Do not infer a separate cargo service without another official Vueling source.",
+      "url": "https://help.vueling.com/hc/en-gb/articles/19798818168337-Fly-with-my-Pet",
+      "quote": "animals cannot be carried in the plane's cargo hold.",
+      "quote_language": "en",
+      "locator": "Fly with my Pet → service features"
+    }
+  ],
+  "intentionally_unset": [
+    {
+      "airline_id": "airline_vueling",
+      "placement": "cargo",
+      "reason": "The directly read page explicitly refuses passenger-hold carriage but does not document a separate Vueling cargo product for ordinary pet dogs."
+    }
+  ]
+}

@@ -463,10 +463,17 @@ async function badgesPass() {
     check(`${loc.code} : la carte du direct attesté ne l'est PAS`,
       !cards[0].className.includes("acard--unverified"));
 
-    const cap = doc.querySelector(".acap");
-    const capCount = cap ? (cap.textContent.match(/\d+/) || [])[0] : null;
-    check(`${loc.code} : le compteur « directs » annonce 1 (le direct attesté), pas 2`,
-      capCount === "1", `compteur lu : ${cap ? cap.textContent.replace(/\s+/g, " ").trim() : "(absent)"}`);
+    /* MOUVEMENT NOMMÉ (08/09/2026, contrat d'affichage). Le compteur « N options confirmées ·
+       M pistes » (`.acap`) n'existe plus : il faisait du « 0 » le résultat principal alors que des
+       réponses documentées existaient. La propriété qu'il portait ici — un direct SUPPOSÉ n'est pas
+       compté comme établi — reste vérifiée par les badges et la classe `acard--unverified` juste
+       au-dessus. À sa place : le résumé PAR CANAL, lu sur le rendu. Sur cette fixture (3 cartes,
+       cabine ouverte, soute et fret fermés, sans statuts explicites) : cabine 3 · 0 · 0, soute et
+       fret 0 · 3 · 0 — les nombres sont LUS, pas supposés. */
+    check(`${loc.code} : le compteur « options confirmées · pistes » (.acap) a disparu`, !doc.querySelector(".acap"));
+    const asum = [...doc.querySelectorAll(".asum__ch")].map((n) => (n.textContent.match(/\d+/g) || []).join("/"));
+    check(`${loc.code} : le résumé par canal est rendu, trois canaux, nombres lus sur le rendu`,
+      asum.length === 3 && asum[0] === "3/0/0" && asum[1] === "0/3/0" && asum[2] === "0/3/0", JSON.stringify(asum));
   }
 }
 
@@ -488,7 +495,16 @@ async function badgesPass() {
 // Message attendu, en toutes lettres (locale en) — aligné sur `L.dateOutOfRange` de
 // FlightFinder.astro. Figé ici pour la même raison que les badges : vérifier qu'« un message
 // s'affiche » laisserait passer un message vide de sens ou celui d'une autre garde.
-const DATE_MSG_EN = "Choose a date between today and 18 months from now.";
+// Depuis le 08/09/2026 il NOMME les deux bornes du jour, en ISO : on les recalcule ici
+// indépendamment (`expectedBounds`, plus bas) plutôt que d'accepter n'importe quelles dates.
+const DATE_MSG_EN = (b) => `Choose a date between today (${b.min}) and 18 months from now (${b.max}).`;
+
+/* CE QUE CE HARNAIS NE PROUVE PAS, ET QU'IL A LAISSÉ PASSER (08/09/2026). `runDateScenario`
+   émet l'événement `submit` lui-même (`dispatchEvent`) : il passe OUTRE la validation native du
+   navigateur. Or `#f-date` porte `min`/`max`, et un vrai clic sur le bouton, dans Chromium, avec
+   une date passée, était arrêté par cette validation AVANT le gestionnaire : zéro requête, zéro
+   message, et ce harnais restait vert. La preuve au navigateur est dans test-apercu-navigateur.mjs
+   (« date hors contrat ») ; le gabarit porte désormais `novalidate`, vérifié ci-dessous. */
 
 /** Bornes attendues, recalculées ICI de façon indépendante (jamais importées du code testé). */
 function expectedBounds(now = new Date()) {
@@ -556,6 +572,11 @@ async function datePass() {
     check(`min = aujourd'hui (${exp.min}) et max = +18 mois (${exp.max}), sans débordement de fin de mois`,
       !!dateEl && dateEl.min === exp.min && dateEl.max === exp.max,
       dateEl ? `obtenu ${dateEl.min}..${dateEl.max}` : "");
+    /* Les bornes sont une AIDE, pas une garde : sans `novalidate`, une date hors bornes n'atteint
+       jamais le gestionnaire dans un vrai navigateur (défaut P0 du 08/09/2026, voir plus haut). */
+    const formEl = dom.window.document.getElementById("mdcf-finder");
+    check("le formulaire porte `novalidate` — la garde de date vit dans le gestionnaire, pas dans le navigateur",
+      !!formEl && formEl.hasAttribute("novalidate"), formEl ? formEl.outerHTML.slice(0, 80) : "(formulaire absent)");
   }
 
   // -- 2. Les deux bornes sont ACCEPTÉES, et transmises telles quelles --
@@ -578,7 +599,7 @@ async function datePass() {
     const r = await runDateScenario(parts, valeur);
     check(`${nom} (${valeur}) : AUCUN POST`, r.posts.length === 0,
       r.posts.length ? `date partie quand même : ${JSON.stringify(r.posts[0].body.date)}` : "");
-    check(`${nom} (${valeur}) : le message exact est affiché`, r.text === DATE_MSG_EN, JSON.stringify(r.text.slice(0, 120)));
+    check(`${nom} (${valeur}) : le message exact est affiché, bornes du jour nommées`, r.text === DATE_MSG_EN(exp), JSON.stringify(r.text.slice(0, 120)));
     check(`${nom} (${valeur}) : aucun rapport n'est rendu`, r.cards === 0, `cartes : ${r.cards}`);
   }
 
@@ -822,6 +843,25 @@ async function libellesPass() {
         await flush();
         const a = d.window.document.querySelector(".rtflag__cta");
         check(`${loc.code} : le bandeau formalités est rendu`, !!a, "aucun .rtflag__cta");
+        /* LE BANDEAU N'AFFIRME PLUS AUCUN DOCUMENT (08/09/2026). « Prévois un certificat vétérinaire
+           dans chaque sens » était faux pour un trajet intra-UE (passeport, puce, rage — pas de
+           certificat) et n'avait aucune source : le corps du bandeau ne doit nommer ni certificat,
+           ni passeport, ni vaccin. Ici le rapport factice n'a AUCUNE condition : le corps doit
+           donc renvoyer à la page du pays, pas à des « étapes ci-dessous » qui n'existent pas. */
+        const corps = (d.window.document.querySelector(".rtflag__b") || {}).textContent || "";
+        check(`${loc.code} : le corps du bandeau ne nomme aucun document (certificat, passeport, vaccin)`,
+          corps.length > 0 && !/certif|passeport|passport|pasaporte|passaporte|vaccin|vacuna|vacina/i.test(corps), JSON.stringify(corps));
+        /* Le renvoi « page du pays / étapes ci-dessous » n'existe qu'au niveau « info » : les niveaux
+           « crit » (titrage, île stricte) et « warn » (sortie du pays) portent leur propre texte,
+           tiré des régimes. MA PREMIÈRE RÉDACTION l'exigeait sur tout bandeau : la destination
+           choisie ici est de niveau « crit » (titrage), et le contrôle rougissait sur un texte
+           juste. On ne l'exige donc que sur un bandeau `.rtflag--info`, et on dit lequel on a lu. */
+        const niveau = (d.window.document.querySelector(".rtflag") || { className: "" }).className.match(/rtflag--(\w+)/)?.[1] ?? "(absent)";
+        console.log(`         bandeau de niveau « ${niveau} »`);
+        if (niveau === "info") {
+          check(`${loc.code} : sans condition listée par le moteur, le bandeau renvoie à la page du pays — pas à des étapes absentes`,
+            /country page|page du pays|página del país|página do país/i.test(corps) && !/below|ci-dessous|abajo|abaixo/i.test(corps), JSON.stringify(corps));
+        }
         if (a) {
           const texte = a.textContent.trim();
           check(`${loc.code} : le CTA rendu porte le libellé sans décompte`,
@@ -900,7 +940,96 @@ async function libellesPass() {
   }
 }
 
-main().then(() => badgesPass()).then(() => t0aPass()).then(() => heatWhyPass()).then(() => datePass()).then(() => destinationsDatePass()).then(() => libellesPass()).then(() => {
+/**
+ * LE CONTRAT D'AFFICHAGE (08/09/2026 — point 2 de Codex, P0 (c) de Philippe), vu sur le rendu.
+ *
+ * Deux rapports factices, soumis sur la vraie page construite, dans les quatre langues :
+ *   · MIXTE : une compagnie avec un refus cabine DOCUMENTÉ et deux dont les trois canaux sont
+ *     « ? ». Attendu : la documentée d'abord, à plat, sous son titre ; les deux pistes REPLIÉES
+ *     dans un <details> qui porte leur nombre et la phrase « pistes, pas des réponses » ; le
+ *     résumé par canal lit 0 · 1 · 2 en cabine, 0 · 0 · 3 en soute et en fret.
+ *   · RIEN DE DOCUMENTÉ : trois pistes. Attendu : la phrase brève et honnête, AUCUNE carte à plat
+ *     hors du <details>, et les trois cartes dedans.
+ * Les statuts sont ceux des cartes ; le harnais n'en recalcule aucun. */
+async function contratAffichagePass() {
+  const piste = (id, name) => ({
+    ...FAKE_REPORT.airlines[0], airline_id: id, name, cabin: false, hold: false, cargo: false,
+    cabin_status: "confirmation_required", hold_status: "confirmation_required", cargo_status: "confirmation_required",
+    to_confirm: ["cabin", "hold", "cargo"], label: "À confirmer", offers_pet_transport: "unknown",
+    placement_decisions: ["cabin", "hold", "cargo"].map((placement) => ({
+      placement, status: "confirmation_required", allowed: false, confirmation_causes: [{ code: "official_source_unquoted" }] })),
+  });
+  const documentee = {
+    ...piste("airline_doc", "Doc Air"), cabin_status: "denied", to_confirm: ["hold", "cargo"], label: "Refus cabine",
+    placement_decisions: [
+      { placement: "cabin", status: "denied", allowed: false, source: { url: "https://exemple-compagnie.example/animaux", source_type: "official_website", verified_date: "2026-09-08", confidence: 4 } },
+      { placement: "hold", status: "confirmation_required", allowed: false, confirmation_causes: [{ code: "official_source_unquoted" }] },
+      { placement: "cargo", status: "confirmation_required", allowed: false, confirmation_causes: [{ code: "official_source_unquoted" }] },
+    ],
+  };
+  const MIXTE = { ...FAKE_REPORT, verdict: "unknown", airlines: [documentee, piste("airline_p1", "Piste Un"), piste("airline_p2", "Piste Deux")] };
+  const RIEN = { ...FAKE_REPORT, verdict: "unknown", airlines: [piste("airline_p1", "Piste Un"), piste("airline_p2", "Piste Deux"), piste("airline_p3", "Piste Trois")] };
+  const rendre = async (parts, rapport) => {
+    const fetchMock = async (url, opts) => {
+      if (String(url).includes("/nearest-airport")) return { ok: false };
+      if (opts && opts.method === "POST") return { ok: true, json: async () => rapport };
+      throw new Error("unexpected fetch: " + url);
+    };
+    const dom = buildDom(parts, fetchMock);
+    const { window } = dom;
+    const originIds = resolveEndpointFrom(parts.labels, window.document.getElementById("f-origin").value).ids;
+    window.document.getElementById("f-dest").value = pickDestinationLabel(parts.labels, originIds);
+    window.document.getElementById("f-weight").value = "8";
+    window.document.getElementById("mdcf-finder").dispatchEvent(new window.Event("submit", { bubbles: true, cancelable: true }));
+    await flush(2);
+    await flush();
+    return window.document;
+  };
+  const nombres = (doc) => [...doc.querySelectorAll(".asum__ch")].map((n) => (n.textContent.match(/\d+/g) || []).join("/"));
+  for (const loc of BADGE_LOCALES) {
+    console.log(`\n— Contrat d'affichage : documentées d'abord, pistes repliées (${loc.code}) —`);
+    const parts = loadHomeParts(loc.dir);
+    {
+      const doc = await rendre(parts, MIXTE);
+      const sec = doc.querySelector(".report__sec .asum")?.closest(".report__sec");
+      check(`${loc.code} : MIXTE — résumé par canal cabine 0/1/2, soute 0/0/3, fret 0/0/3`,
+        JSON.stringify(nombres(doc)) === JSON.stringify(["0/1/2", "0/0/3", "0/0/3"]), JSON.stringify(nombres(doc)));
+      const aPlat = sec ? [...sec.querySelectorAll(":scope > ul.acards .acard, :scope > h5 + ul.acards .acard")] : [];
+      const aPlatNoms = [...(sec?.querySelectorAll("ul.acards") ?? [])].filter((ul) => !ul.closest("details")).flatMap((ul) => [...ul.querySelectorAll(".acard__top b")].map((b) => b.textContent.trim()));
+      check(`${loc.code} : MIXTE — la seule carte à plat est la documentée (Doc Air)`,
+        JSON.stringify(aPlatNoms) === JSON.stringify(["Doc Air"]), JSON.stringify(aPlatNoms));
+      const titre = sec?.querySelector("h5.acards__sub")?.textContent.trim() ?? "";
+      check(`${loc.code} : MIXTE — le titre des documentées porte leur nombre (1), pas une clé brute`,
+        /\(1\)/.test(titre) && !/finder\.sum/.test(titre), JSON.stringify(titre));
+      const det = sec?.querySelector("details.acards__leads");
+      const dansDetails = det ? [...det.querySelectorAll(".acard__top b")].map((b) => b.textContent.trim()) : [];
+      check(`${loc.code} : MIXTE — les deux pistes sont REPLIÉES dans un <details> fermé`,
+        !!det && !det.hasAttribute("open") && JSON.stringify(dansDetails) === JSON.stringify(["Piste Un", "Piste Deux"]), JSON.stringify(dansDetails));
+      const summ = det?.querySelector("summary")?.textContent.trim() ?? "";
+      check(`${loc.code} : MIXTE — le résumé du <details> porte le nombre (2) et n'est pas une clé brute`,
+        /\(2\)/.test(summ) && !/finder\.sum/.test(summ), JSON.stringify(summ));
+      check(`${loc.code} : MIXTE — la phrase « pistes, pas des réponses » est dans le <details>`,
+        !!det && det.querySelector("p.finder__hint") !== null && !/finder\.sum/.test(det.textContent));
+      check(`${loc.code} : MIXTE — pas de phrase « rien de documenté » quand une réponse existe`, !doc.querySelector(".asum__none"));
+      void aPlat;
+    }
+    {
+      const doc = await rendre(parts, RIEN);
+      check(`${loc.code} : RIEN — résumé par canal 0/0/3 sur les trois canaux`,
+        JSON.stringify(nombres(doc)) === JSON.stringify(["0/0/3", "0/0/3", "0/0/3"]), JSON.stringify(nombres(doc)));
+      const none = doc.querySelector(".asum__none");
+      check(`${loc.code} : RIEN — la phrase brève et honnête est rendue, et n'est pas une clé brute`,
+        !!none && none.textContent.trim().length > 20 && !/finder\.sum/.test(none.textContent), JSON.stringify(none?.textContent.trim() ?? ""));
+      const horsDetails = [...doc.querySelectorAll("ul.acards")].filter((ul) => !ul.closest("details")).flatMap((ul) => [...ul.querySelectorAll(".acard")]);
+      check(`${loc.code} : RIEN — AUCUNE carte à plat hors du <details>`, horsDetails.length === 0, `${horsDetails.length} à plat`);
+      const det = doc.querySelector("details.acards__leads");
+      check(`${loc.code} : RIEN — les trois pistes sont dans le <details>, fermé`,
+        !!det && !det.hasAttribute("open") && det.querySelectorAll(".acard").length === 3);
+    }
+  }
+}
+
+main().then(() => badgesPass()).then(() => contratAffichagePass()).then(() => t0aPass()).then(() => heatWhyPass()).then(() => datePass()).then(() => destinationsDatePass()).then(() => libellesPass()).then(() => {
   console.log("\n=== SUMMARY ===");
   console.log(failures === 0 ? "ALL CHECKS PASSED" : failures + " CHECK(S) FAILED");
   process.exit(failures === 0 ? 0 : 1);

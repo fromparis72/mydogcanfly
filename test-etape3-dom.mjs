@@ -647,9 +647,16 @@ ok(`départ : ${pages.length} pages construites`);
          seul statut — la cabine de Thai et la soute de BA restent fermées par d'autres portes
          (race, poids, transport d'animaux non offert). Mesuré : ces quatre-là répondent bien sur
          leurs trois canaux, et produisent les quatre combinaisons. */
+      /* PORTEUSE DU `101` RE-FONDÉE PAR MESURE (08/09/2026, import strict V3). Lufthansa la
+         portait : sa soute réelle était « à confirmer », donc ouvrir cabine et fret donnait bien
+         `101`. L'import V3 a cité sa soute (`accepted_with_conditions`) : la même ouverture
+         synthétique donne désormais `111` et le `101` n'était plus exercé dans aucune langue —
+         la CI l'a dit (en/101, fr/101, es/101, pt/101). Mesuré sur les 49 compagnies des trois
+         trajets de contrôle : Austrian dessert les trois, sa soute réelle reste « à confirmer »,
+         et cabine + fret ouverts donnent `101` sur chacun. Le témoin est re-fondé, pas abaissé. */
       if (id === "airline_air_france") return [id, ouvre(["cabin", "hold", "cargo"])];   // 111
       if (id === "airline_klm") return [id, ouvre(["cabin", "hold"])];                   // 110
-      if (id === "airline_lufthansa") return [id, ouvre(["cabin", "cargo"])];            // 101
+      if (id === "airline_austrian") return [id, ouvre(["cabin", "cargo"])];             // 101
       if (id === "airline_swiss") return [id, ouvre(["hold", "cargo"])];                 // 011
       return [id, a];
     })),
@@ -671,6 +678,33 @@ ok(`départ : ${pages.length} pages construites`);
     "011": { en: "Hold and cargo",  fr: "Soute et fret",   es: "Bodega y carga",  pt: "Porão e carga" },
     "111": { en: "Cabin, hold and cargo", fr: "Cabine, soute et fret", es: "Cabina, bodega y carga", pt: "Cabine, porão e carga" },
   };
+  /* LE QUATRIÈME ÉTAT A SON PROPRE LIBELLÉ (08/09/2026). Depuis l'import strict V3, la base
+     RÉELLE produit à nouveau des cartes multicanales — non par `allowed`, mais par
+     `accepted_with_conditions` : Air India et Ethiopian sur les trois canaux, Turkish, Iberia,
+     Air Canada et TAP en cabine + soute. Le moteur les libelle « … : acceptés sous conditions
+     de la compagnie », jamais « Cabine et soute » tout court. Première rédaction fautive, nommée :
+     la table ci-dessus ne connaissait que le libellé catégorique ; ces cartes réelles auraient
+     été comptées en écart. La bijection est donc à deux variantes — catégorique (base
+     synthétique) et conditionnelle (base réelle) —, écrites en toutes lettres et par langue,
+     toujours sans relire les fichiers de traduction. */
+  const ATTENDU_COND = {
+    "110": { en: "Cabin and hold: accepted under the airline's conditions", fr: "Cabine et soute : acceptées sous conditions de la compagnie",
+             es: "Cabina y bodega: aceptados bajo las condiciones de la aerolínea", pt: "Cabine e porão: aceitos sob as condições da companhia" },
+    "101": { en: "Cabin and cargo: accepted under the airline's conditions", fr: "Cabine et fret : acceptés sous conditions de la compagnie",
+             es: "Cabina y carga: aceptados bajo las condiciones de la aerolínea", pt: "Cabine e carga: aceitos sob as condições da companhia" },
+    "011": { en: "Hold and cargo: accepted under the airline's conditions", fr: "Soute et fret : acceptés sous conditions de la compagnie",
+             es: "Bodega y carga: aceptados bajo las condiciones de la aerolínea", pt: "Porão e carga: aceitos sob as condições da companhia" },
+    "111": { en: "Cabin, hold and cargo: accepted under the airline's conditions", fr: "Cabine, soute et fret : acceptés sous conditions de la compagnie",
+             es: "Cabina, bodega y carga: aceptados bajo las condiciones de la aerolínea", pt: "Cabine, porão e carga: aceitos sob as condições da companhia" },
+  };
+  /* LES COMBINAISONS CONDITIONNELLES QUE LA BASE RÉELLE EXERCE, FIGÉES (08/09/2026, après les
+     lots V3, 2 et 3). Mesuré sur les quatre cas de contrôle : `011` (Air India et Ethiopian pour
+     un golden de 30 kg, cabine refusée sur seuil cité), `110` (Turkish, Iberia, Air Canada,
+     TAP) et `111` (Air India, Ethiopian). Le `101` conditionnel n'existe pas encore dans la
+     réalité et n'est pas exigé — ce serait exiger de la base une citation qu'elle n'a pas. Cet
+     ensemble avance par mouvement nommé : une combinaison qui apparaît ou disparaît fait rougir. */
+  const COND_REELLES_FIGEES = ["011", "110", "111"];
+  const estConditionnelle = (a) => ["cabin", "hold", "cargo"].some((pl) => a[`${pl}_status`] === "accepted_with_conditions");
   /* Les cas de contrôle qui atteignent les quatre combinaisons — mesurés, pas supposés : un
      golden de 30 kg ne passe jamais en cabine, d'où le `011` exclusif du premier trajet. */
   const CAS = [
@@ -686,8 +720,9 @@ ok(`départ : ${pages.length} pages construites`);
      serait passée — or c'est exactement le genre de repli silencieux que ce lot a déjà rencontré
      trois fois côté portugais. */
   const vuesPar = Object.fromEntries(LANGUES.map((l) => [l, new Set()]));
+  const vuesCondPar = Object.fromEntries(LANGUES.map((l) => [l, new Set()]));
   const ecarts = [];
-  let cartes = 0;
+  let cartes = 0, cartesCond = 0;
   for (const loc of LANGUES) {
     for (const c of CAS) {
       const r = runFinder(kb, FinderRequest.parse({
@@ -697,20 +732,24 @@ ok(`départ : ${pages.length} pages construites`);
       for (const a of r.airlines) {
         const combo = `${+a.cabin}${+a.hold}${+a.cargo}`;
         if ((combo.match(/1/g) ?? []).length < 2) continue;
-        cartes++;
-        vuesPar[loc].add(combo);
-        if (a.label !== ATTENDU[combo][loc]) {
-          ecarts.push(`${loc}/${combo} : « ${a.label} » au lieu de « ${ATTENDU[combo][loc]} »`);
+        const cond = estConditionnelle(a);
+        const table = cond ? ATTENDU_COND : ATTENDU;
+        if (cond) { cartesCond++; vuesCondPar[loc].add(combo); } else { cartes++; vuesPar[loc].add(combo); }
+        if (a.label !== table[combo][loc]) {
+          ecarts.push(`${loc}/${combo}${cond ? " (conditionnel)" : ""} : « ${a.label} » au lieu de « ${table[combo][loc]} »`);
         }
       }
     }
   }
   const trous = LANGUES.flatMap((l) => Object.keys(ATTENDU).filter((k) => !vuesPar[l].has(k)).map((k) => `${l}/${k}`));
+  const derives = LANGUES.filter((l) => [...vuesCondPar[l]].sort().join("+") !== COND_REELLES_FIGEES.join("+"))
+    .map((l) => `${l}:${[...vuesCondPar[l]].sort().join("+") || "∅"}`);
   if (trous.length) echec("2 couverture des combinaisons", `jamais exercée(s) : ${trous.join(", ")}`);
   else if (ecarts.length) echec("2 bijection combinaison → libellé", `${ecarts.length} écart(s), dont ${ecarts[0]}`);
+  else if (derives.length) echec("2 combinaisons conditionnelles figées", `attendu ${COND_REELLES_FIGEES.join("+")} dans chaque langue, mesuré ${derives.join(" ")} — mouvement à nommer`);
   else {
     const detail = LANGUES.map((l) => `${l}:${[...vuesPar[l]].sort().join("+")}`).join(" ");
-    ok(`2 bijection exacte sur ${cartes} cartes, les 4 combinaisons exercées DANS CHAQUE langue (${detail})`);
+    ok(`2 bijection exacte sur ${cartes} cartes catégoriques (synthétiques) — les 4 combinaisons exercées DANS CHAQUE langue (${detail}) — et sur ${cartesCond} cartes conditionnelles RÉELLES (${COND_REELLES_FIGEES.join("+")} dans chaque langue)`);
   }
 
   /* LA COUVERTURE PAR LANGUE, VUE ROUGIR : si une combinaison manquait à une seule langue, le
@@ -737,11 +776,33 @@ ok(`départ : ${pages.length} pages construites`);
       for (const a of r.airlines) {
         const combo = `${+a.cabin}${+a.hold}${+a.cargo}`;
         if ((combo.match(/1/g) ?? []).length < 2) continue;
+        if (estConditionnelle(a)) continue; // la variante conditionnelle a sa propre table, éprouvée en 2quater
         if (a.label !== permute[combo].fr) vu++;
       }
     }
     if (!vu) echec("2bis permutation", "échanger « Cabine et soute » et « Cabine et fret » ne change rien");
     else ok(`2bis une permutation de deux libellés est vue (${vu} carte(s) en désaccord)`);
+  }
+
+  /* LA VARIANTE CONDITIONNELLE VUE ROUGIR AUSSI : permuter « Cabine et soute : acceptées… » et
+     « Cabine, soute et fret : acceptés… » doit être détecté sur les cartes réelles. */
+  {
+    const permute = JSON.parse(JSON.stringify(ATTENDU_COND));
+    [permute["110"].fr, permute["111"].fr] = [permute["111"].fr, permute["110"].fr];
+    let vu = 0;
+    for (const c of CAS) {
+      const r = runFinder(kbReel, FinderRequest.parse({
+        origin: c.origin, destination: c.destination,
+        dog: { breed_id: c.breed_id, weight_kg: c.weight_kg }, date: "2027-01-15", locale: "fr",
+      }));
+      for (const a of r.airlines) {
+        const combo = `${+a.cabin}${+a.hold}${+a.cargo}`;
+        if ((combo.match(/1/g) ?? []).length < 2 || !estConditionnelle(a)) continue;
+        if (a.label !== permute[combo].fr) vu++;
+      }
+    }
+    if (!vu) echec("2quater permutation conditionnelle", "échanger deux libellés du quatrième état ne change rien sur la base réelle");
+    else ok(`2quater une permutation de deux libellés conditionnels est vue sur la base RÉELLE (${vu} carte(s) en désaccord)`);
   }
 }
 

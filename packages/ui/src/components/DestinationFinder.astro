@@ -107,6 +107,8 @@ const L = {
     fmUnknown: T("To be checked — no detailed guide yet", "À vérifier — pas encore de fiche détaillée", "Por comprobar: aún no hay ficha detallada"),
     // flights
     flDirect: T("Direct flight available", "Vol direct disponible", "Vuelo directo disponible"),
+    /* Ouvert SOUS CONDITIONS (08/09/2026) : jamais « disponible » sec sur un canal accepté sous conditions. */
+    flDirectCond: T("Direct flight — under the airlines' conditions", "Vol direct — sous conditions des compagnies", "Vuelo directo — con las condiciones de las aerolíneas"),
     flLimited: T("Direct, but placement is limited", "Direct, mais placement limité", "Directo, pero la disponibilidad es limitada"),
     warnLabel: T("Not recommended on this date", "Déconseillé à cette date", "No recomendado en esta fecha"),
     hours: T("direct", "en direct", "directo"),
@@ -315,7 +317,7 @@ const L = {
     airlines_total: number; airlines_to_confirm_total: number;
     cabin_ok: boolean; hold_ok: boolean; cargo_ok: boolean;
     cabin_status: string; hold_status: string; cargo_status: string;
-    placement_ok: boolean; placement_to_confirm: boolean;
+    placement_ok: boolean; placement_conditional?: boolean; placement_to_confirm: boolean;
     heat_confirmation_required: boolean; estimated_heat_signal: boolean;
     /* T0-A : les causes avec leur compagnie et leur canal — jamais aplaties. */
     confirmation_signals?: { airline_id: string; placement: string; cause: { code: string } & Record<string, string> }[];
@@ -413,7 +415,7 @@ const L = {
       return { level: 1, header: `${n} ${word} ${S.directRefSuffix}`, label: `${S.plToConfirm}.${availTxt}`, score: 0.35 };
     }
     if (placementPref === "any" || m.placement_ok) {
-      return { level: 0, header: `${n} ${word} ${S.directRefSuffix}`, label: S.flDirect, score: 1 };
+      return { level: 0, header: `${n} ${word} ${S.directRefSuffix}`, label: m.placement_conditional ? S.flDirectCond : S.flDirect, score: 1 };
     }
     const avail: string[] = [];
     if (m.cabin_ok) avail.push(S.plCabin);

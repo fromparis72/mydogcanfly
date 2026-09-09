@@ -70,8 +70,39 @@ ladder:
 policies:
   cabin:
     availability: offered
+    # PREUVE IMPORTÉE — import strict V3 (Codex, lecture directe du 2026-09-08, cohorte A fait 12).
+    # Effet attendu : For a 32 kg dog, cabin is not suitable.
+    # Portée nommée : official ceiling applies to pet plus carrier
+    # Le plafond cité inclut le CONTENANT : refus sûr si le chien seul le dépasse, jamais un oui en dessous.
+    max_weight_kg: 8
+    weight_includes_carrier: true
+    source:
+      url: "https://www.iberia.com/us/fly-with-iberia/pets/"
+      source_type: official_website
+      verified_date: "2026-09-08"
+      review_due: "2026-12-07"   # reviewDueFrom(verified_date, "airline") — calculé par l'importeur
+      confidence: 4
+      reviewer: "Codex — lecture directe de la page officielle"
+      history: []
+      quote: "Dogs, cats, ornamental fish, tortoises and birds may travel with you in the cabin if they do not exceed 8 kg in weight, including the pet carrier."
+      quote_language: en
+      locator: "Acceptance in the cabin"
   hold:
     availability: offered
+    # PREUVE IMPORTÉE — import strict V3 (Codex, lecture directe du 2026-09-08, cohorte A fait 13).
+    # Effet attendu : Show hold offered under conditions.
+    # Portée nommée : cats and dogs; 45 kg pet plus carrier ceiling; breed, transit and booking exceptions apply
+    source:
+      url: "https://www.iberia.com/us/fly-with-iberia/pets/"
+      source_type: official_website
+      verified_date: "2026-09-08"
+      review_due: "2026-12-07"   # reviewDueFrom(verified_date, "airline") — calculé par l'importeur
+      confidence: 4
+      reviewer: "Codex — lecture directe de la page officielle"
+      history: []
+      quote: "The Iberia Group allow cats and dogs to travel in the hold."
+      quote_language: en
+      locator: "Acceptance in hold"
   cargo:
     availability: offered
 channels:

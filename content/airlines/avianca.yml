@@ -70,8 +70,42 @@ ladder:
 policies:
   cabin:
     availability: offered
+    # PREUVE IMPORTÉE — import strict lot3 (Codex, lecture directe du 2026-09-08, cohorte LOT3 fait 3).
+    # Effet attendu : For a dog above 10 kg, do not offer the Avianca cabin. At or below 10 kg, this fact does not itself confirm a booking.
+    # Portée nommée : the 10 kg ceiling includes the container; a dog alone over 10 kg cannot satisfy the cabin rule. Route, class, carrier and document conditions remain applicable.
+    # Le plafond cité inclut le CONTENANT : refus sûr si le chien seul le dépasse, jamais un oui en dessous.
+    max_weight_kg: 10
+    weight_includes_carrier: true
+    source:
+      url: "https://ayuda.avianca.com/hc/en-us/articles/13091527349787-Can-I-fly-with-my-pet"
+      source_type: official_website
+      verified_date: "2026-09-08"
+      review_due: "2026-12-07"   # reviewDueFrom(verified_date, "airline") — calculé par l'importeur
+      confidence: 4
+      reviewer: "Codex — direct reading of official airline page"
+      history: []
+      quote: "Dogs and cats weighing no more than 10 kg (22 lb), including the weight of their container, may fly in the cabin."
+      quote_language: en
+      locator: "Can I fly with my pet? → Pets up to 22 lb including the container"
   hold:
     availability: offered
+    # PREUVE IMPORTÉE — import strict lot3 (Codex, lecture directe du 2026-09-08, cohorte LOT3 fait 4).
+    # Effet attendu : Passenger hold is a conditional path. Do not present it where Avianca’s route or aircraft restrictions exclude it.
+    # Portée nommée : pet plus container up to 70 kg, ventilated hold, route and seasonal restrictions, advance booking and space availability
+    # Le plafond cité inclut le CONTENANT : refus sûr si le chien seul le dépasse, jamais un oui en dessous.
+    max_weight_kg: 70
+    weight_includes_carrier: true
+    source:
+      url: "https://ayuda.avianca.com/hc/en-us/articles/13091527349787-Can-I-fly-with-my-pet"
+      source_type: official_website
+      verified_date: "2026-09-08"
+      review_due: "2026-12-07"   # reviewDueFrom(verified_date, "airline") — calculé par l'importeur
+      confidence: 4
+      reviewer: "Codex — direct reading of official airline page"
+      history: []
+      quote: "Pets weighing no more than 70 kg (154 lb), including the container's weight, may fly in the hold."
+      quote_language: en
+      locator: "Can I fly with my pet? → Pets up to 70 kg including the container"
   cargo:
     review_state: legacy_unreviewed
 channels:

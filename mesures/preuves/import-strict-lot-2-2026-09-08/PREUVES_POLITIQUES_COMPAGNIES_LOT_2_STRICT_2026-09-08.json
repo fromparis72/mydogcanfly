@@ -1,0 +1,169 @@
+{
+  "schema_version": 1,
+  "as_of": "2026-09-08",
+  "status": "strict_import_candidate",
+  "purpose": "Second independently reviewed batch. Each fact carries one continuous excerpt from a current first-party airline page. An offered channel is not a seat-availability claim.",
+  "provenance_defaults": {
+    "source_type": "official_website",
+    "verified_date": "2026-09-08",
+    "review_due": "derive_with_reviewDueFrom(verified_date, 'airline')",
+    "confidence": 4,
+    "reviewer": "Codex — direct reading of official airline page"
+  },
+  "facts": [
+    {
+      "airline_id": "airline_air_canada",
+      "placement": "cabin",
+      "recommendation": "offered_with_conditions",
+      "condition_scope": "only a cat or small dog, in a flexible soft-sided carrier under the seat; aircraft, fare and route exceptions apply",
+      "finder_effect": "A small dog is a conditional cabin lead. Do not infer that a 30 kg dog fits the carrier.",
+      "url": "https://www.aircanada.com/ca/en/aco/home/plan/special-assistance/pets.html",
+      "quote": "Your cat or small dog is welcome to join you in the cabin, as long as they’re kept in a flexible, soft sided carrier under the seat in front of you.",
+      "quote_language": "en",
+      "locator": "Travelling with your Pet → In the Cabin"
+    },
+    {
+      "airline_id": "airline_air_canada",
+      "placement": "hold",
+      "recommendation": "offered_with_conditions",
+      "condition_scope": "Air Canada/ Rouge or Jazz operated itinerary; codeshare flights are excluded; pet plus kennel must not exceed 45 kg",
+      "finder_effect": "Passenger hold is a conditional path, not an automatic acceptance on every marketed Air Canada itinerary.",
+      "url": "https://www.aircanada.com/ca/en/aco/home/plan/special-assistance/pets.html",
+      "quote": "Your pet can't fly in the cabin with you? It can still travel safely and comfortably on the same flight as you, in the pressurized cargo compartment of most of our aircraft.",
+      "quote_language": "en",
+      "locator": "Travelling with your Pet → In the Baggage Compartment"
+    },
+    {
+      "airline_id": "airline_delta",
+      "placement": "cabin",
+      "recommendation": "offered_with_conditions",
+      "condition_scope": "small dog, age/health/size/kennel requirements; destination and cabin-class exclusions apply",
+      "finder_effect": "Cabin is a conditional lead for a genuinely small dog. It must not be presented as available for a large dog or every destination.",
+      "url": "https://www.delta.com/us/en/pet-travel/overview",
+      "quote": "On domestic flights within the contiguous U.S., small dogs, cats and household birds that meet the age, health, size and kennel requirements can travel in the cabin.",
+      "quote_language": "en",
+      "locator": "Pet Travel on Delta → Traveling with In-Cabin Pets"
+    },
+    {
+      "airline_id": "airline_jetblue",
+      "placement": "cabin",
+      "recommendation": "offered_with_conditions",
+      "condition_scope": "small dogs and cats only, in an FAA-approved carrier fitting under the seat; no large dogs are accommodated",
+      "finder_effect": "Show a conditional cabin lead only for a dog that is actually small enough for the under-seat carrier.",
+      "url": "https://www.jetblue.com/help/traveling-with-pets",
+      "quote": "Only small dogs and cats may travel in the cabin in an FAA-approved pet carrier that fits comfortably under the seat in front of you.",
+      "quote_language": "en",
+      "locator": "Traveling with Pets → Pet guidelines"
+    },
+    {
+      "airline_id": "airline_air_transat",
+      "placement": "cabin",
+      "recommendation": "deny_when_dog_weight_kg_gt_8",
+      "condition_scope": "the ceiling is carrier plus animal; a dog alone above 8 kg therefore cannot fit this cabin rule",
+      "finder_effect": "For a dog heavier than 8 kg, cabin is not suitable. Below 8 kg, carrier weight and route conditions remain unresolved.",
+      "url": "https://www.airtransat.com/en-GB/travel-information/special-services/pets-and-service-dogs",
+      "quote": "The total weight of the carrier and animal must not exceed 8 kilos.",
+      "quote_language": "en",
+      "locator": "Pets in cabin → Restrictions"
+    },
+    {
+      "airline_id": "airline_air_transat",
+      "placement": "hold",
+      "recommendation": "offered_with_conditions",
+      "condition_scope": "cat or dog only; no codeshare, connection, vacation package or Train + Air; advance reservation and operational acceptance required",
+      "finder_effect": "Passenger hold is a conditional lead. Booking/payment never proves acceptance, which remains operationally constrained.",
+      "url": "https://www.airtransat.com/en-GB/travel-information/special-services/pets-and-service-dogs",
+      "quote": "Only cats and dogs are allowed in the checked baggage hold.",
+      "quote_language": "en",
+      "locator": "Pets in the checked baggage hold → Restrictions"
+    },
+    {
+      "airline_id": "airline_air_europa",
+      "placement": "cabin",
+      "recommendation": "deny_when_dog_weight_kg_gt_8",
+      "condition_scope": "dog body weight must not exceed 8 kg and carrier plus pet must not exceed 10 kg",
+      "finder_effect": "A dog weighing more than 8 kg alone is not suitable for cabin. A lighter dog still needs carrier-weight verification.",
+      "url": "https://www.aireuropa.com/us/en/aea/informacion-para-volar/pasajeros/mascotas.html",
+      "quote": "Maximum Weight: The weight of the pet cannot exceed 8 kg. The overall weight of the carrier and pet cannot exceed 10 kg.",
+      "quote_language": "en",
+      "locator": "Flying with pets on board → Animals in the cabin"
+    },
+    {
+      "airline_id": "airline_air_europa",
+      "placement": "hold",
+      "recommendation": "offered_with_conditions",
+      "condition_scope": "cat or dog only; breed and weight restrictions apply; pet plus kennel cannot exceed 50 kg",
+      "finder_effect": "Passenger hold is a conditional path; it is not a positive result for a restricted breed or a 50 kg-plus animal-and-kennel combination.",
+      "url": "https://www.aireuropa.com/us/en/aea/informacion-para-volar/pasajeros/mascotas.html",
+      "quote": "Pets may travel on board or in the aircraft hold depending on their species, breed and weight.",
+      "quote_language": "en",
+      "locator": "Flying with pets on board → How can I fly with my pet?"
+    },
+    {
+      "airline_id": "airline_cathay_pacific",
+      "placement": "cabin",
+      "recommendation": "not_offered_for_pet_dogs",
+      "condition_scope": "service dogs are a separate accessibility flow",
+      "finder_effect": "Do not offer the Cathay passenger cabin to an ordinary pet dog.",
+      "url": "https://www.cathaypacific.com/cx/en_GB/faqs/baggage/cabin-baggage-allowance/are-pets-allowed-in-the-cabin.html?cxsource=LANGUAGE_SELECTOR_EN_HK",
+      "quote": "Aside from service dogs, pets are not allowed in the cabin.",
+      "quote_language": "en",
+      "locator": "Are pets allowed in the cabin?"
+    },
+    {
+      "airline_id": "airline_cathay_pacific",
+      "placement": "cargo",
+      "recommendation": "offered_with_conditions",
+      "condition_scope": "Cathay Cargo process, shipping agent and route-specific legal acceptance conditions apply",
+      "finder_effect": "Cargo is a conditional direction; never an automatic acceptance of the animal or itinerary.",
+      "url": "https://www.cathaypacific.com/cx/en_GB/faqs/baggage/cabin-baggage-allowance/are-pets-allowed-in-the-cabin.html?cxsource=LANGUAGE_SELECTOR_EN_HK",
+      "quote": "Your pet will need to travel in cargo.",
+      "quote_language": "en",
+      "locator": "Are pets allowed in the cabin?"
+    },
+    {
+      "airline_id": "airline_eva_air",
+      "placement": "cabin",
+      "recommendation": "not_offered_for_pet_dogs",
+      "condition_scope": "service dogs carried by disabled passengers are a separate accessibility flow",
+      "finder_effect": "Do not offer EVA Air passenger cabin to an ordinary pet dog.",
+      "url": "https://www.evaair.com/en-us/fly-prepare/baggage/travelling-with-pets/",
+      "quote": "Pets are not accepted in the cabin except for service dogs carried by disabled passengers.",
+      "quote_language": "en",
+      "locator": "Travelling with Pets → Travelling with Pets"
+    },
+    {
+      "airline_id": "airline_eva_air",
+      "placement": "hold",
+      "recommendation": "offered_with_conditions",
+      "condition_scope": "accompanied dogs, cats and rabbits on EVA/UNI operated international flights; breed, season, container, route and advance-reservation restrictions apply",
+      "finder_effect": "Passenger hold is a conditional path, not a blanket approval for the route or dog.",
+      "url": "https://www.evaair.com/en-us/fly-prepare/baggage/travelling-with-pets/",
+      "quote": "The accompanied pets, only dogs, cats, and rabbits, can be transported on EVA Air's aircraft as checked baggage in the cargo compartment.",
+      "quote_language": "en",
+      "locator": "Travelling with Pets → Travelling with Pets"
+    }
+  ],
+  "intentionally_unset": [
+    {
+      "airline_id": "airline_delta",
+      "placement": "hold",
+      "reason": "The current passenger page establishes cabin policy only; no current general passenger-hold decision is imported from it."
+    },
+    {
+      "airline_id": "airline_jetblue",
+      "placement": "hold",
+      "reason": "This current pet page establishes cabin policy; it is not used to infer a checked-pet or cargo policy."
+    },
+    {
+      "airline_id": "airline_air_transat",
+      "placement": "cargo",
+      "reason": "Cargo is relevant for UK/Ireland and oversize cages, but route-aware mapping belongs in a separately scoped import."
+    },
+    {
+      "airline_id": "airline_air_europa",
+      "placement": "cargo",
+      "reason": "Cargo is mentioned for special cases but no general cargo acceptance decision is imported here."
+    }
+  ]
+}

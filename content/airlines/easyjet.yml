@@ -68,8 +68,36 @@ ladder:
 policies:
   cabin:
     availability: not_offered
+    # PREUVE IMPORTÉE — import strict V3 (Codex, lecture directe du 2026-09-08, cohorte A fait 5).
+    # Effet attendu : Show ordinary pet dogs as not transported, rather than unknown.
+    # Portée nommée : recognised registered guide and assistance dogs are outside the pet-dog flow
+    source:
+      url: "https://www.easyjet.com/en/help/baggage/restricted-and-unusual-items"
+      source_type: official_website
+      verified_date: "2026-09-08"
+      review_due: "2026-12-07"   # reviewDueFrom(verified_date, "airline") — calculé par l'importeur
+      confidence: 4
+      reviewer: "Codex — lecture directe de la page officielle"
+      history: []
+      quote: "Animals are not allowed on our flights, apart from recognised registered guide and assistance dogs."
+      quote_language: en
+      locator: "Pets"
   hold:
     availability: not_offered
+    # PREUVE IMPORTÉE — import strict V3 (Codex, lecture directe du 2026-09-08, cohorte A fait 6).
+    # Effet attendu : Do not infer a cargo product without a separate easyJet source.
+    # Portée nommée : same global pet exclusion
+    source:
+      url: "https://www.easyjet.com/en/help/baggage/restricted-and-unusual-items"
+      source_type: official_website
+      verified_date: "2026-09-08"
+      review_due: "2026-12-07"   # reviewDueFrom(verified_date, "airline") — calculé par l'importeur
+      confidence: 4
+      reviewer: "Codex — lecture directe de la page officielle"
+      history: []
+      quote: "Animals are not allowed on our flights, apart from recognised registered guide and assistance dogs."
+      quote_language: en
+      locator: "Pets"
   cargo:
     availability: not_offered
 channels:

@@ -1,0 +1,190 @@
+{
+  "schema_version": 1,
+  "as_of": "2026-09-08",
+  "purpose": "Evidence packet only. The set records explicit official rules for five additional airlines. Each recommendation remains subject to the route, carrier and space conditions stated by the airline.",
+  "provenance_defaults": {
+    "source_type": "official_website",
+    "verified_date": "2026-09-08",
+    "review_due": "derive_with_reviewDueFrom(verified_date, 'airline')",
+    "confidence": 4,
+    "reviewer": "Codex — lecture directe de la page officielle"
+  },
+  "facts": [
+    {
+      "airline_id": "airline_lot",
+      "placement": "cabin",
+      "recommendation": "deny_when_dog_weight_kg_gt_8",
+      "condition_scope": "official ceiling applies to animal plus carrier; service availability is limited by flight and must be checked during booking",
+      "finder_effect": "For a 30 or 32 kg dog, cabin is not suitable. At or below 8 kg dog body weight alone is not a positive clearance.",
+      "url": "https://www.lot.com/hu/en/journey/special-services/traveling-with-pets/pet-in-cabin",
+      "quote": "The weight of the animal transported in the cabin together with the container may not exceed 8 kg.",
+      "quote_language": "en",
+      "locator": "An animal in the cabin → Transport of an animal on board"
+    },
+    {
+      "airline_id": "airline_lot",
+      "placement": "hold",
+      "recommendation": "offered_with_conditions",
+      "condition_scope": "service must be checked during booking; container, destination and aircraft restrictions apply",
+      "finder_effect": "Passenger hold can be proposed conditionally; do not present it as automatically available for the itinerary.",
+      "url": "https://www.lot.com/ca/en/journey/special-services/traveling-with-pets/animal-in-hold",
+      "quote": "Check the availability of the service by booking your ticket on lot.com or later, up to 12 hours before departure, in Manage My Booking.",
+      "quote_language": "en",
+      "locator": "Animal in the baggage hold → opening information"
+    },
+    {
+      "airline_id": "airline_lot",
+      "placement": "hold",
+      "recommendation": "not_offered_for_brachycephalic_pet_dogs",
+      "condition_scope": "the official rule covers listed brachycephalic dogs and crossbreeds/animals with brachycephalic characteristics",
+      "finder_effect": "For a listed brachycephalic dog, do not offer LOT passenger hold. Do not generalise the refusal to cargo or cabin without their separate conditions.",
+      "url": "https://www.lot.com/us/en/journey/special-services/traveling-with-pets/animal-in-hold",
+      "quote": "we have decided to prohibit the transport of brachycephalic dog and cat breeds in the aircraft’s baggage hold.",
+      "quote_language": "en",
+      "locator": "Animal in the baggage hold → Information about the transport of brachycephalic breeds"
+    },
+    {
+      "airline_id": "airline_lot",
+      "placement": "cargo",
+      "recommendation": "offered_with_conditions",
+      "condition_scope": "LOT Cargo transports live animals through shipping companies; requirements and charges must be established with the selected shipper",
+      "finder_effect": "Cargo may be offered conditionally, not promised: the visitor must be directed to the required shipping-company process.",
+      "url": "https://www.lot.com/is/en/journey/special-services/traveling-with-pets/animal-in-cargo",
+      "quote": "LOT Cargo provides air transport services for live animals on domestic, European, and intercontinental flights.",
+      "quote_language": "en",
+      "locator": "Transport of animals as cargo in the baggage hold → Travel as cargo"
+    },
+    {
+      "airline_id": "airline_swiss",
+      "placement": "cabin",
+      "recommendation": "deny_when_dog_weight_kg_gt_8",
+      "condition_scope": "the 8 kg limit includes a soft carrier and assistance dogs are a separate regime",
+      "finder_effect": "For a 30 or 32 kg dog, cabin is not suitable. At or below 8 kg, carrier, route and space availability remain conditions.",
+      "url": "https://www.swiss.com/xx/en/prepare/special-care/animals-travelling",
+      "quote": "Dogs and cats weighing up to 8 kg (weight including travel carrier)",
+      "quote_language": "en",
+      "locator": "Travelling with animals → The following animals can travel in the cabin"
+    },
+    {
+      "airline_id": "airline_swiss",
+      "placement": "hold",
+      "recommendation": "offered_with_conditions",
+      "condition_scope": "only non-snub-nosed dogs/cats over 8 kg or exceeding cabin-carrier size; country and airport rules may require cargo or forbid carriage",
+      "finder_effect": "For a large non-brachycephalic dog, passenger hold may be offered under the official route and carrier conditions.",
+      "url": "https://www.swiss.com/xx/en/prepare/special-care/animals-travelling",
+      "quote": "Dogs and cats that do not belong to snub-nosed breeds and weigh more than 8 kg (weight including transport container)",
+      "quote_language": "en",
+      "locator": "Travelling with animals → The following animals travel in the hold"
+    },
+    {
+      "airline_id": "airline_swiss",
+      "placement": "hold",
+      "recommendation": "not_offered_for_brachycephalic_pet_dogs",
+      "condition_scope": "snub-nosed/brachycephalic dogs are accepted in cabin only and are not approved for hold carriage",
+      "finder_effect": "Do not offer SWISS passenger hold for a brachycephalic dog; separately assess cabin size and route conditions.",
+      "url": "https://www.swiss.com/xx/en/prepare/special-care/animals-travelling",
+      "quote": "Snub-nosed (brachycephalic) breeds are only accepted in the cabin",
+      "quote_language": "en",
+      "locator": "Travelling with animals → Restrictions"
+    },
+    {
+      "airline_id": "airline_austrian",
+      "placement": "cabin",
+      "recommendation": "deny_when_dog_weight_kg_gt_8",
+      "condition_scope": "the 8 kg ceiling includes the carrier; some countries require freight irrespective of size",
+      "finder_effect": "For a 30 or 32 kg dog, cabin is not suitable. At or below 8 kg dog body weight alone, retain carrier and destination checks.",
+      "url": "https://www.austrian.com/pt/en/plan/special-requirements/travelling-with-animals",
+      "quote": "The total weight of the animal and the carrying container must not exceed 8 kg.",
+      "quote_language": "en",
+      "locator": "Travelling with animals → Small pets in the cabin"
+    },
+    {
+      "airline_id": "airline_austrian",
+      "placement": "hold",
+      "recommendation": "offered_with_conditions",
+      "condition_scope": "carrier size and weight are supplied at booking, aircraft loading/space is checked, and some destinations do not accept large animals in the hold",
+      "finder_effect": "Passenger hold may be proposed conditionally; it must not be presented as a confirmed booking result.",
+      "url": "https://www.austrian.com/pt/en/plan/special-requirements/travelling-with-animals",
+      "quote": "cats and dogs may be carried in the cargo hold if required, subject to compliance with the applicable conditions of carriage.",
+      "quote_language": "en",
+      "locator": "Travelling with animals → Large animals in the cargo hold"
+    },
+    {
+      "airline_id": "airline_austrian",
+      "placement": "hold",
+      "recommendation": "not_offered_for_brachycephalic_pet_dogs",
+      "condition_scope": "the rule is breed-based for snub-nosed/brachycephalic dogs and cats",
+      "finder_effect": "Do not offer Austrian passenger hold for a brachycephalic dog; cabin and freight are separate questions.",
+      "url": "https://www.austrian.com/pt/en/plan/special-requirements/travelling-with-animals",
+      "quote": "cats and dogs belonging to snub-nosed (brachycephalic) breeds are not permitted in the hold",
+      "quote_language": "en",
+      "locator": "Travelling with animals → Important information"
+    },
+    {
+      "airline_id": "airline_airbaltic",
+      "placement": "cabin",
+      "recommendation": "deny_when_dog_weight_kg_gt_8",
+      "condition_scope": "official ceiling applies to pet plus carrier; carrier, availability and destination requirements remain mandatory",
+      "finder_effect": "For a 30 or 32 kg dog, cabin is not suitable. A smaller dog still needs a compliant carrier and pre-confirmed pet space.",
+      "url": "https://www.airbaltic.com/en/assisted-travel/travelling-with-pets",
+      "quote": "Weight: Max 8 kg (pet + carrier)",
+      "quote_language": "en",
+      "locator": "Travelling with pets → Small pets in cabin"
+    },
+    {
+      "airline_id": "airline_airbaltic",
+      "placement": "hold",
+      "recommendation": "offered_with_conditions",
+      "condition_scope": "up to 75 kg pet plus crate; routes to/from Amsterdam are capped at 39 kg, and space must be confirmed in advance",
+      "finder_effect": "Passenger hold may be proposed for a large dog only with the actual crate, route and airline confirmation; the Amsterdam cap is material.",
+      "url": "https://www.airbaltic.com/en/assisted-travel/travelling-with-pets",
+      "quote": "Weight: Up to 75 kg (pet + crate).",
+      "quote_language": "en",
+      "locator": "Travelling with pets → Large pets in cargo hold"
+    },
+    {
+      "airline_id": "airline_airbaltic",
+      "placement": "cargo",
+      "recommendation": "required_when_pet_plus_container_kg_gt_75",
+      "condition_scope": "the threshold is pet plus crate; airBaltic directs over-75 kg cases to cargo",
+      "finder_effect": "Do not offer passenger hold above 75 kg combined; direct the visitor to airBaltic Cargo conditions.",
+      "url": "https://www.airbaltic.com/en/assisted-travel/travelling-with-pets",
+      "quote": "over 75 kg: must go as cargo",
+      "quote_language": "en",
+      "locator": "Travelling with pets → Large pets in cargo hold"
+    },
+    {
+      "airline_id": "airline_air_serbia",
+      "placement": "cabin",
+      "recommendation": "deny_when_dog_weight_kg_gt_8",
+      "condition_scope": "the limit applies to dog/cat plus carrier, capacity requires prior confirmation, and the UK, UAE and Qatar are excluded on the directly read page",
+      "finder_effect": "For a 30 or 32 kg dog, cabin is not suitable. At or below 8 kg dog body weight alone, carrier, route and confirmation remain required.",
+      "url": "https://www.airserbia.com/en/info-and-help/travel-guidelines/traveling-with-your-pets",
+      "quote": "the weight of the pet together with the carrier (maximum 8 kg)",
+      "quote_language": "en",
+      "locator": "Traveling with your pets → booking the service"
+    }
+  ],
+  "intentionally_unset": [
+    {
+      "airline_id": "airline_air_serbia",
+      "placement": "hold",
+      "reason": "The directly read current Air Serbia passenger page establishes the cabin service; this cohort does not include an equally current direct hold rule."
+    },
+    {
+      "airline_id": "airline_air_serbia",
+      "placement": "cargo",
+      "reason": "No directly read current official Air Serbia source in this cohort establishes an ordinary pet-dog cargo service."
+    },
+    {
+      "airline_id": "airline_austrian",
+      "placement": "cargo",
+      "reason": "The directly read Austrian source gives destination-specific freight requirements but does not establish a general ordinary pet-dog cargo product."
+    },
+    {
+      "airline_id": "airline_swiss",
+      "placement": "cargo",
+      "reason": "The source identifies destinations that require cargo but does not establish a general positive cargo service for the specific dog, crate and route."
+    }
+  ]
+}

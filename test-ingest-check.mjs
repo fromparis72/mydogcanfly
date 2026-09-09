@@ -123,7 +123,10 @@ console.log("\n=== 3. La décision vient des fiches — les contre-épreuves du 
 
   // (b) décision ABSENTE pour un placement qu'un canal revendique
   {
-    const r = muter((t) => t.replace("policies:\n  cabin:\n    availability: offered\n", "policies:\n"));
+    /* Le bloc cabine ENTIER (08/09/2026, import strict V3) : la fiche porte désormais, sous
+       `availability`, la preuve citée et le seuil. Retirer trois lignes fixes laissait ces lignes
+       orphelines, et l'ingestion rougissait sur une indentation YAML au lieu du refus attendu. */
+    const r = muter((t) => t.replace(/policies:\n  cabin:\n[\s\S]*?(?=\n  hold:)/, "policies:"));
     check("(b) décision absente → REFUS", r.code === 1);
     check("(b) le refus nomme le placement orphelin", /policies|placement/.test(r.out), r.out.slice(-300));
   }

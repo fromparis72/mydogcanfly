@@ -1,0 +1,76 @@
+{
+  "schema_version": 1,
+  "as_of": "2026-09-08",
+  "purpose": "Evidence packet only. It separates passenger hold from cargo and does not turn a combined dog-plus-carrier threshold into a dog-only approval.",
+  "provenance_defaults": {
+    "source_type": "official_website",
+    "verified_date": "2026-09-08",
+    "review_due": "derive_with_reviewDueFrom(verified_date, 'airline')",
+    "confidence": 4,
+    "reviewer": "Codex — lecture directe de la page officielle"
+  },
+  "facts": [
+    {
+      "airline_id": "airline_air_canada",
+      "placement": "cabin",
+      "recommendation": "offered_with_conditions",
+      "condition_scope": "cat or small dog in a soft-sided carrier under the seat; carrier and aircraft dimensions apply; no dog-only kilogram ceiling is published on this page",
+      "finder_effect": "Do not fabricate a weight-only cabin approval or denial from this source. A result requires an explicit fit/size predicate.",
+      "url": "https://www.aircanada.com/ca/en/aco/home/plan/special-assistance/pets.html",
+      "quote": "Your cat or small dog is welcome to join you in the cabin, as long as they’re kept in a flexible, soft sided carrier under the seat in front of you.",
+      "quote_language": "en",
+      "locator": "Travelling with your Pet → In the Cabin"
+    },
+    {
+      "airline_id": "airline_air_canada",
+      "placement": "hold",
+      "recommendation": "offered_with_conditions",
+      "condition_scope": "pressurized baggage compartment on most aircraft; maximum combined pet plus kennel weight 45 kg, with route, aircraft, season and breed exclusions",
+      "finder_effect": "For a 32 kg dog, show passenger-hold offered under conditions, not accepted: the carrier weight and the seasonal/route restrictions still matter.",
+      "url": "https://www.aircanada.com/ca/en/aco/home/plan/special-assistance/pets.html",
+      "quote": "Maximum allowable weight Up to 45 kg (100 lb) (pet and kennel combined).",
+      "quote_language": "en",
+      "locator": "Travelling with your Pet → In the Baggage Compartment → Are there weight and size restrictions?"
+    },
+    {
+      "airline_id": "airline_air_canada",
+      "placement": "cargo",
+      "recommendation": "offered_with_conditions",
+      "condition_scope": "animal travelling alone or kennel exceeding passenger-hold 45 kg or 292 cm limit; separate cargo-service conditions apply",
+      "finder_effect": "Present cargo as a documented conditional alternative, not a flight-space promise.",
+      "url": "https://www.aircanada.com/ca/en/aco/home/plan/special-assistance/pets.html",
+      "quote": "Please contact Air Canada Cargo (AC Animals) for rates and assistance in shipping kennels that exceed 45 kg (100 lb) in weight.",
+      "quote_language": "en",
+      "locator": "Travelling with your Pet → In the Baggage Compartment → Are there weight and size restrictions?"
+    },
+    {
+      "airline_id": "airline_delta",
+      "placement": "cabin",
+      "recommendation": "offered_with_conditions",
+      "condition_scope": "small dog meeting age, health, size and kennel requirements; destination and cabin-class exclusions apply",
+      "finder_effect": "Do not fabricate a weight-only cabin decision. Keep the documented conditional path and apply destination exceptions explicitly.",
+      "url": "https://www.delta.com/us/en/pet-travel/overview",
+      "quote": "small dogs, cats and household birds that meet the age, health, size and kennel requirements can travel in the cabin",
+      "quote_language": "en",
+      "locator": "Pet Travel on Delta → Traveling with In-Cabin Pets"
+    },
+    {
+      "airline_id": "airline_delta",
+      "placement": "cargo",
+      "recommendation": "not_offered_for_general_pet_passengers_currently",
+      "condition_scope": "Delta’s current public cargo page limits pet shipment to active US military or US State Department Foreign Service Officers travelling on active permanent-change-of-station orders",
+      "finder_effect": "Do not offer Delta Cargo to an ordinary pet traveller; preserve the official-order exception as a separate flow.",
+      "url": "https://www.delta.com/us/en/pet-travel/shipping-your-pet",
+      "quote": "Until further notice, we are only allowing the shipment of pets for active U.S. Military or U.S. State Department Foreign Service Offices (FSO) traveling with active permanent change of station orders.",
+      "quote_language": "en",
+      "locator": "Shipping Your Pet"
+    }
+  ],
+  "intentionally_unset": [
+    {
+      "airline_id": "airline_delta",
+      "placement": "hold",
+      "reason": "The directly read consumer pages establish cabin and a current cargo limitation, but no equally current ordinary-passenger checked-pet sentence suitable for an import. Do not infer it from a trade or historical document."
+    }
+  ]
+}

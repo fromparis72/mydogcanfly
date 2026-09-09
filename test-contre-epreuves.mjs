@@ -159,8 +159,10 @@ const MUTATIONS = [
     nom: "un refus de race ne porte plus son motif",
     id: "un-refus-de-race-ne-porte-plus-son-motif",
     fichier: "packages/engine/src/evaluate.ts",
-    cherche: "        placement: x.decision.placement, fires: x.fires, breedDeny: x.breedDeny }))),",
-    remplace: "        placement: x.decision.placement, fires: x.fires }))),",
+    /* Ligne suivie (08/09/2026) : `weightDeny` s'est ajouté à côté de `breedDeny` (seuil chien +
+       contenant). La mutation retire toujours le SEUL motif de race ; le poids reste transporté. */
+    cherche: "        placement: x.decision.placement, fires: x.fires, breedDeny: x.breedDeny, weightDeny: x.weightDeny }))),",
+    remplace: "        placement: x.decision.placement, fires: x.fires, weightDeny: x.weightDeny }))),",
     harnais: "test-t0b3a-moteur-race.mjs",
     attendu: "motif `breed_restricted`",
   },

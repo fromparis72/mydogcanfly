@@ -1,0 +1,47 @@
+{
+  "schema_version": 1,
+  "as_of": "2026-09-08",
+  "purpose": "Evidence packet only. This cohort records a complete ordinary-pet refusal, not an inference from an assistance-dog page.",
+  "provenance_defaults": {
+    "source_type": "official_website",
+    "verified_date": "2026-09-08",
+    "review_due": "derive_with_reviewDueFrom(verified_date, 'airline')",
+    "confidence": 4,
+    "reviewer": "Codex — lecture directe de la page officielle"
+  },
+  "facts": [
+    {
+      "airline_id": "airline_ryanair",
+      "placement": "cabin",
+      "recommendation": "not_offered_for_pet_dogs",
+      "condition_scope": "ordinary pet dogs; guide and assistance dogs on certain routes are a distinct flow",
+      "finder_effect": "Show ordinary pet dog as not transported in the cabin, rather than a policy to confirm.",
+      "url": "https://help.ryanair.com/hc/en-us/articles/12890968181521-Does-Ryanair-carry-animals",
+      "quote": "We do not carry animals on board any Ryanair flights, except guide/assistance dogs on certain routes.",
+      "quote_language": "en",
+      "locator": "Does Ryanair carry animals?"
+    },
+    {
+      "airline_id": "airline_ryanair",
+      "placement": "hold",
+      "recommendation": "not_offered_for_pet_dogs",
+      "condition_scope": "same ordinary-pet exclusion; a distinct assistance-dog exception must not enter pet-dog results",
+      "finder_effect": "Show ordinary pet dog as not transported in passenger hold.",
+      "url": "https://help.ryanair.com/hc/en-us/articles/12890968181521-Does-Ryanair-carry-animals",
+      "quote": "We do not carry animals on board any Ryanair flights, except guide/assistance dogs on certain routes.",
+      "quote_language": "en",
+      "locator": "Does Ryanair carry animals?"
+    },
+    {
+      "airline_id": "airline_ryanair",
+      "placement": "cargo",
+      "recommendation": "not_offered_for_pet_dogs",
+      "condition_scope": "Ryanair’s published terms separately state that it does not carry cargo",
+      "finder_effect": "Do not direct an ordinary pet-dog traveller to Ryanair Cargo.",
+      "url": "https://oat.ryanair.com/hr/en/useful-info/help-centre/terms-and-conditions",
+      "quote": "We do not carry cargo on our flights.",
+      "quote_language": "en",
+      "locator": "General Terms & Conditions of Carriage → 8.8 Animals, cargo and human ashes → 8.8.2"
+    }
+  ]
+}
