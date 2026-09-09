@@ -3270,6 +3270,20 @@ transmises ; la bascule est prouvée par celle-ci, qui la recouvre. Relecture en
 (accueil 142 / 34, fiche Thai citant THAI Cargo, fiche IndiGo à trois refus) : à faire par Codex,
 ce conteneur n'atteignant pas le site.
 
+### Post-scriptum — troisième bascule du 09/09 : réconciliation ciblée (#43) en production
+
+Ordre de fusion de Philippe (« feu vert pour #43 »), fusion `bb53d00`, déploiement par Philippe
+depuis son poste, sortie transmise :
+
+| | |
+|---|---|
+| Worker | `sha` `bb53d00806111dee6c6b269f4b8c4578105e3209`, `worker_version_id` `fd61fd5a-2727-4e3c-b3c7-f9590d889873`, démarrage 236 ms |
+| Pages | sortie de `npm run release` non transmise pour cette bascule — l'identifiant Pages n'est donc pas consigné |
+| santé | `/v1/health` : `ok`, `v1`, le SHA de `main` fusionné |
+
+Relecture en ligne (Air Austral « < 8 kg » sur la fiche et la carte du Finder, Aer Lingus soute et
+Air China cabine sous conditions) : à faire par Codex, ce conteneur n'atteignant pas le site.
+
 ## Annexe 34 — Micro-lot isolé « gabarit indicatif de cage » (09/09/2026, classement A/B)
 
 Proposition de Codex, transmise et confirmée par Philippe (« transmets-lui le bloc tel quel »). Lot
@@ -3325,3 +3339,16 @@ portugaise des phrases en ligne complétée. Un seul build complet à la fin du 
   pour dire ce qui ne revient pas. Même trajet que la ligne de `FlightFinder.astro` du 30/08 :
   le commentaire est reformulé sans le mot, le contrat reste à zéro, aucune exception de
   classement n'est ajoutée.
+
+### Mesuré sur le dist (branche intégrant `main` `bb53d00`, un seul build)
+
+| contrôle | résultat |
+|---|---|
+| caisses (`test-crate-harness.cjs`) | 72 contrôles tenus, 0 en échec (56 → 72 : les 16 relevés nouveaux — conseillées = minimales + 3, aucun gabarit tant que la table est vide, avertissement visible, dans les quatre langues) |
+| caisses non sourcées (`--dist`) | aucune taille non sourcée publiée ; le minimum calculé depuis les mesures l'est |
+| entités | 178 OK, 0 FAIL (pas de fuite portugaise sur les six phrases nouvelles) |
+| étape 3 DOM | 3 121 pages, aucune affirmation interdite, zéro dans les surfaces applicatives |
+| chaîne `test:built-ui`, tarifs, montants publiés et propagation, affirmations retirées, accueil, dette Astro | verts |
+| `test:unit` complet, typecheck | verts sur l'état fusionné |
+
+Contre-épreuves complètes sur l'arbre propre : voir le commit suivant.
