@@ -43,6 +43,11 @@ console.log("=== 1. La table réelle « Gabarit indicatif MyDogCanFly » — ver
     }
   }
   check("le cas de Codex : 94 × 64 × 68 → XL (la longueur dépasse L, les deux autres tiendraient)", gabaritPour({ l: 94, w: 64, h: 68 }) === "XL");
+  /* LE GOLDEN RETRIEVER DE LA RELECTURE EN LIGNE (Codex, 09/09/2026, sur main fc4c5c9 où la table était encore
+     vide) : minimales 85 × 41 × 67 → conseillées 88 × 44 × 70 → les trois axes entrent dans XL (105 × 70 × 75),
+     pas dans L (90 × 60 × 65 : la hauteur 70 dépasse 65). */
+  const golden = dimensionsConseillees({ l: 85, w: 41, h: 67 });
+  check("Golden Retriever relu en ligne : minimales 85 × 41 × 67 → conseillées 88 × 44 × 70 → XL", golden.l === 88 && golden.w === 44 && golden.h === 70 && gabaritPour(golden) === "XL", JSON.stringify([golden, gabaritPour(golden)]));
   check("les trois états sont distincts : table vide → `table_absente` (rien d'affiché), pas `au_dela`",
     classerGabarit({ l: 50, w: 30, h: 40 }, { ...TABLE_GABARIT_INDICATIF, classes: [] }).etat === "table_absente");
   check("une classe mal formée rend la table entière `table_absente` — jamais une classe de moins en silence",

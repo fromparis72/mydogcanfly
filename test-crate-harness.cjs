@@ -118,7 +118,7 @@ function scenario(page, { a, d, poids, airId = "", brachy = false, race = "" }) 
   /* CE QUE LE `<select>` PORTE VRAIMENT APRÈS COUP. Poser `value = id` sur un `<select>` dépourvu
      de l'option correspondante laisse la valeur VIDE, sans erreur : le scénario porte alors sur
      « toutes compagnies » en silence. On le remonte pour que les contrôles puissent l'exiger. */
-  return { minimum, conseillees, gabarit, gabaritAbsent, auDela, titreMin, avertissement, lignes, airChoisie: doc.getElementById("crx-airline")?.value ?? null };
+  return { minimum, conseillees, gabarit, gabaritAbsent, auDela, titreMin, texteCarte: out.querySelector(".crx-card--gabarit")?.textContent ?? "", avertissement, lignes, airChoisie: doc.getElementById("crx-airline")?.value ?? null };
 }
 
 /* ---- Le référentiel doit être PEUPLÉ : sans compagnies, tout ce qui suit passerait à vide ---- */
@@ -293,6 +293,11 @@ if (Object.values(parLangue).every((r) => !r.erreur)) {
     const attendu = gabaritAttendu(r.conseillees);
     check(`${lang} : gabarit affiché = ${attendu} (celui de la table pour ${JSON.stringify(r.conseillees)}), en très grand (data-gabarit)`,
       r.gabarit === attendu && !r.gabaritAbsent && r.auDela === null, `vu ${JSON.stringify(r.gabarit)}`);
+    /* L'ENVELOPPE N'EST PAS UN PRODUIT (Codex) : les limites de la classe affichée ne sont jamais rendues comme
+       des dimensions — seules les conseillées et les minimales du chien le sont. */
+    const env = attendu ? tableDuModule().find((c) => c.code === attendu) : null;
+    check(`${lang} : les limites de l'enveloppe ${attendu} ne sont pas affichées comme des dimensions (seules celles du chien le sont)`,
+      !env || (!r.texteCarte.includes(`${env.l} × ${env.w} × ${env.h}`) && !new RegExp(`\\b${env.l}\\b[^0-9]{0,12}\\b${env.w}\\b[^0-9]{0,12}\\b${env.h}\\b`).test(r.texteCarte)), r.texteCarte.slice(0, 200));
     check(`${lang} : le minimum nomme sa méthode (« méthode publiée par l'IATA »), sans « homologué » ni « approuvé »`,
       /IATA/.test(r.titreMin) && !/homolog|approv|aprob|certif/i.test(r.titreMin), r.titreMin);
     check(`${lang} : l'avertissement dit fabricants, dimensions intérieures et confirmation par la compagnie`,

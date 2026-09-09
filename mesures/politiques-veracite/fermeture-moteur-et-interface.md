@@ -3353,6 +3353,26 @@ portugaise des phrases en ligne complétée. Un seul build complet à la fin du 
 
 Contre-épreuves complètes sur l'arbre propre : voir le commit suivant.
 
+### Post-scriptum — quatrième bascule du 09/09 : #44 (gabarit, table vide) en production, et ce que Codex y a lu
+
+Ordre de fusion de Philippe (« feu vert pour fusionner #44 »), fusion `fc4c5c9`, déploiement par
+Philippe, sortie transmise :
+
+| | |
+|---|---|
+| Worker | `sha` `fc4c5c9c37a5f3c1d4fadd709e4ba7d592419219`, `worker_version_id` `f526fd38-5c01-4ebb-a282-a33b85f55a07`, démarrage 215 ms |
+| Pages | `npm run release` : « build indexable et complet — déploiement autorisé », sitemaps 2 536 URL (102 compagnies, 140 pays, 172 races, 269 aéroports), https://572a937e.mydogcanfly-v2-preview.pages.dev |
+| santé | `/v1/health` : `ok`, `v1`, le SHA de `main` fusionné |
+
+Relecture en ligne de Codex (Golden Retriever) : conseillées 88 × 44 × 70, minimales 85 × 41 × 67,
+et le message « la table de correspondance MyDogCanFly n'est pas encore publiée ». Lecture exacte :
+c'est l'état de #44 tel qu'il a été conçu (table vide, version 0) ; la table version 1 était alors
+dans la branche suivante, non encore en PR. Codex conclut « le besoin initial n'est pas encore
+livré ; l'outil actuel n'en présente que la première moitié » — c'est vrai de la production à cet
+instant, et c'est l'annexe 35 qui livre la seconde moitié. Sa demande (XL dominant, algorithme,
+cinq frontières, Golden 88 × 44 × 70 → XL, enveloppe jamais présentée comme un produit) est
+reprise point par point dans les témoins de l'annexe 35.
+
 ## Annexe 35 — Table « Gabarit indicatif MyDogCanFly » : version 0 → version 1 (09/09/2026, classement A/B)
 
 Bloc de Codex transmis par Philippe (« Bloc à transmettre à Claude »), avec deux consignes de
@@ -3406,3 +3426,23 @@ revient pas » inchangés. Harnais des caisses : le gabarit affiché est compar�
 table **relue dans le module** (deuxième lecture, pas une copie) ; le minimum nomme sa méthode sans
 « homologué » ; l'avertissement nomme fabricants et compagnie ; un chien géant (A 120, D 95) sort de
 la table dans les quatre langues. Un seul build complet à la fin du lot.
+
+### Post-scriptum — mesuré sur le dist (un seul build, `5396607` + témoins)
+
+| contrôle | résultat |
+|---|---|
+| `test-gabarit-indicatif.mjs` | 40/40 (15 → 40 : frontières, +1 cm par axe, au-delà, 94 × 64 × 68 → XL, Golden 88 × 44 × 70 → XL, trois états, tout ou rien, sans race ni poids) |
+| caisses | 84 contrôles tenus, 0 en échec (72 → 84 : gabarit attendu par la table relue, enveloppe non affichée comme produit, méthode nommée, avertissement, chien géant hors table — quatre langues) |
+| caisses non sourcées (`--dist`) | vert après re-fondation du témoin 3 (ci-dessous) |
+| entités | 178 OK, 0 FAIL |
+| étape 3 DOM | 3 121 pages, zéro affirmation ; scellé des licites ÉGAL au corpus (16 chemins source, 20 couples URL/zone) — la phrase « méthode publiée par l'IATA » n'y entre pas, faute de contenant voisin |
+| chaîne `test:built-ui`, `test:unit` complet, typecheck | verts |
+
+**Témoin re-fondé, nommé :** `test-caisses-non-sourcees.mjs` § 3 (« ce qui est légitime est toujours
+là ») exigeait l'ancien titre « dimensions minimales calculées à partir des mesures saisies », que le
+bloc Codex remplace par « minimum calculé selon la méthode publiée par l'IATA ». Il a rougi sur les
+quatre pages du calculateur — à raison : la phrase avait disparu. Il exige désormais les DEUX choses
+légitimes qui doivent rester, la méthode nommée dans le titre ET la mention des mesures du chien
+dans la note (« à partir de tes mesures », dans les quatre langues) ; l'ancien n'en tenait qu'une.
+
+Contre-épreuves complètes sur l'arbre propre : voir le commit suivant.

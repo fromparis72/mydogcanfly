@@ -179,22 +179,29 @@ ok(`départ : ${fiches.length} fiches de race et ${outils.length} pages du calcu
 /* ---- 3. CE QUI EST LÉGITIME EST TOUJOURS LÀ -------------------------------------------------- */
 /* Une garde qui ne vérifierait que l'absence serait satisfaite par une page vide. */
 {
+  /* RE-FONDÉ LE 09/09/2026 (table « Gabarit indicatif MyDogCanFly », bloc Codex) : le titre du minimum
+     n'est plus « dimensions minimales calculées à partir des mesures saisies » mais « minimum calculé selon la
+     méthode publiée par l'IATA ». Le témoin exige désormais les DEUX choses légitimes qui doivent rester : la
+     méthode nommée dans le titre, et la mention des mesures du chien dans la note qui le suit. Un seul des deux
+     ne suffit pas — l'ancien témoin n'en tenait qu'un. */
   const ATTENDU = {
-    en: "calculated from your measurements", fr: "calculées à partir des mesures saisies",
-    es: "calculadas a partir de las medidas introducidas", pt: "calculadas a partir das medidas informadas",
+    en: ["Minimum calculated using the method published by IATA", "from your measurements"],
+    fr: ["Minimum calculé selon la méthode publiée par l'IATA", "à partir de tes mesures"],
+    es: ["Mínimo calculado según el método publicado por la IATA", "a partir de tus medidas"],
+    pt: ["Mínimo calculado segundo o método publicado pela IATA", "a partir das suas medidas"],
   };
   const manquantes = [];
   for (const p of outils) {
     const lg = rel(p).match(OUTIL)?.[1] ?? "en";
     const { corps, scripts } = texteDe(readFileSync(p, "utf8"));
-    const attendu = ATTENDU[lg];
-    if (!attendu) { manquantes.push(`${rel(p)} : langue ${lg} non prévue`); continue; }
-    if (!corps.includes(attendu) && !scripts.includes(attendu)) manquantes.push(`${rel(p)} : « ${attendu} » absent`);
+    const attendus = ATTENDU[lg];
+    if (!attendus) { manquantes.push(`${rel(p)} : langue ${lg} non prévue`); continue; }
+    for (const attendu of attendus) if (!corps.includes(attendu) && !scripts.includes(attendu)) manquantes.push(`${rel(p)} : « ${attendu} » absent`);
   }
   if (manquantes.length) {
     echec("3 minimum calculé", `${manquantes.length} page(s) n'annoncent plus le minimum issu des mesures`);
     for (const m of manquantes.slice(0, 8)) console.error(`      ${m}`);
-  } else ok(`3 minimum calculé — les ${outils.length} pages du calculateur l'annoncent, dans leur langue`);
+  } else ok(`3 minimum calculé — les ${outils.length} pages du calculateur nomment sa méthode ET les mesures du chien, dans leur langue`);
 }
 
 /* ---- 4. LES DEUX MUTATIONS, SUR DES PAGES RÉELLES -------------------------------------------- */
