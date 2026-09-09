@@ -59,9 +59,9 @@ const steps = g.requirements
 // 140 fiches il ne produisait que 0,6 lien par page alors que la fiche compagnie, elle,
 // renvoie vers 14,7 pays. Les compagnies nationales restent en tête de liste, signalées.
 const dogAirlines = dogAirlinesForCountry(kb, id, locale, 6);
-const channelPill = (c: "cabin" | "hold" | "cargo", maxKg?: number) =>
+const channelPill = (c: "cabin" | "hold" | "cargo", maxKg?: number, strict?: boolean) =>
   c === "cabin"
-    ? { cls: "ok", label: (T("Cabin", "Cabine", "Cabina") + (maxKg ? F(" ≤{0} kg", " ≤ {0} kg", " ≤{0} kg", maxKg) : "")) }
+    ? { cls: "ok", label: (T("Cabin", "Cabine", "Cabina") + (maxKg ? (strict ? F(" <{0} kg", " < {0} kg", " <{0} kg", maxKg) : F(" ≤{0} kg", " ≤ {0} kg", " ≤{0} kg", maxKg)) : "")) }
     : c === "hold"
       ? { cls: "warn", label: T("Hold", "Soute", "Bodega") }
       : { cls: "warn", label: T("Cargo only", "Cargo uniquement", "Solo carga") };
@@ -300,7 +300,7 @@ const jsonLd = faqItems.length ? [webpageLd, faqJsonLd(faqItems)] : [webpageLd];
         <p class="muted">{T("Airlines we document that serve this country. Whether the dog is accepted, and under what conditions, is to be checked on each airline's page — it does not prejudge your breed, your crate or your exact route.", "Compagnies que nous documentons, desservant ce pays. L'acceptation du chien et ses conditions sont à vérifier sur chaque fiche compagnie — cela ne préjuge ni de ta race, ni de ta cage, ni de ton itinéraire exact.", "Aerolíneas que documentamos y que operan en este país. Si el perro es aceptado, y en qué condiciones, hay que comprobarlo en la ficha de cada aerolínea: no prejuzga tu raza, tu jaula ni tu ruta exacta.")}</p>
         <div class="calines">
           {dogAirlines.list.map((a) => {
-            const p = channelPill(a.channel as "cabin" | "hold" | "cargo", a.maxKg);
+            const p = channelPill(a.channel as "cabin" | "hold" | "cargo", a.maxKg, (a as { strict?: boolean }).strict);
             return (
               <a class="caline" href={hrefFor(a.id, locale)} data-carry="breed">
                 <span class="caname">{a.name}{a.national && (<span class="canat" title={T("Registered in this country", "Immatriculée dans ce pays", "Registrada en este país")}>{flag(g.iso2)}</span>)}</span>

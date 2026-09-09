@@ -77,6 +77,17 @@ policies:
     # PREUVE IMPORTÉE — import strict correctif (Codex, lecture directe du 2026-09-09, cohorte CORRECTIF fait 5).
     # Effet attendu : Air China cabin is a documented conditional route on Air China-operated flights; do not extend it to partner-operated flights or treat it as guaranteed availability.
     # Portée nommée : Pet dogs and cats on flights operated by Air China, subject to advance booking, quota, age, breed, route, documentation and under-seat carrier restrictions.
+    # RÉCONCILIATION CIBLÉE (Philippe, 09/09/2026, sur décision de Codex) : la règle héritée non citée
+    # `rule_air_china_no_cabin` (« Dogs are not accepted in the passenger cabin », research, 10/07/2026, page
+    # airchina.us) contredisait l'accord officiel de transport en cabine cité le 09/09 : elle est RETIRÉE (copie
+    # dans mesures/preuves/correctif-arbitrages-2026-09-09/regles-retirees-…json). Les seules restrictions
+    # présentes dans la source officielle vivent ici, en conditions — pas en règle. « domestic » = chiens
+    # domestiques, pas vols intérieurs (Codex).
+    conditions:
+      en: "Pet dogs and cats on flights operated by Air China only: advance booking, a maximum of 2 pets per flight and 1 per passenger, age, breed, route, documentation and under-seat carrier restrictions apply. Not extended to partner-operated flights."
+      fr: "Chiens et chats de compagnie sur les vols opérés par Air China uniquement : réservation préalable, 2 animaux au maximum par vol et 1 par passager, restrictions d'âge, de race, de route, de documents et de contenant sous le siège. Non étendu aux vols opérés par un partenaire."
+      es: "Perros y gatos de compañía solo en vuelos operados por Air China: reserva previa, máximo 2 mascotas por vuelo y 1 por pasajero, restricciones de edad, raza, ruta, documentación y transportín bajo el asiento. No se extiende a vuelos operados por socios."
+      pt: "Cães e gatos de companhia apenas em voos operados pela Air China: reserva prévia, no máximo 2 animais por voo e 1 por passageiro, restrições de idade, raça, rota, documentação e caixa sob o assento. Não se estende a voos operados por parceiros."
     source:
       url: "https://m.airchina.com.cn/ac/c/invoke/specialService/petCabinAgreement%40pg"
       source_type: official_website

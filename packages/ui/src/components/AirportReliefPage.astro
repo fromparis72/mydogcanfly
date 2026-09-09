@@ -191,7 +191,7 @@ const title = F("Pet relief areas at {0} ({1})", "Coins pipi pour chiens à {0} 
             {airlines.list.map((al) => (
               <a class="apr-chip" href={`${base}/airlines/${al.slug}/`} data-carry="breed">
                 {al.hub && <span class="apr-hub" title={T("Hub", "Hub", "Hub")}>🏠</span>}{al.name}
-                <span class="apr-chan">{al.channel === "cabin" ? (T("cabin", "cabine", "cabina") + (al.maxKg ? F(" ≤{0} kg", " ≤ {0} kg", " ≤{0} kg", al.maxKg) : "")) : al.channel === "hold" ? T("hold", "soute", "bodega") : T("cargo", "cargo", "carga")}</span>
+                <span class="apr-chan">{al.channel === "cabin" ? (T("cabin", "cabine", "cabina") + (al.maxKg ? (al.strict ? F(" <{0} kg", " < {0} kg", " <{0} kg", al.maxKg) : F(" ≤{0} kg", " ≤ {0} kg", " ≤{0} kg", al.maxKg)) : "")) : al.channel === "hold" ? T("hold", "soute", "bodega") : T("cargo", "cargo", "carga")}</span>
               </a>
             ))}
           </div>

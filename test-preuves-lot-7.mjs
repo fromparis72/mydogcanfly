@@ -99,8 +99,10 @@ console.log("\n=== Étage 2 — Paris → Alger, La Réunion ; Orly → Pointe-�
     aaG?.status === "confirmation_required" && aaP?.status === "confirmation_required" && [aaG, aaP].every((x) => (x?.confirmation_causes ?? []).some((c) => c.rule_id === "rule_air_algerie_cabin_weight")), JSON.stringify(aaP));
   const run = decide("airport_cdg", "airport_run", GOLDEN_32), runC = decide("airport_cdg", "airport_run", CAVALIER_6), runP = decide("airport_cdg", "airport_run", CARLIN_8), runB = decide("airport_cdg", "airport_run", BULLY_50);
   const auC = canal(runC, "airline_air_austral", "cabin");
-  check("Air Austral cabine, Cavalier 6 kg et Carlin 8 kg : sous conditions, plafond 8 chien + contenant ; Golden 32 kg et Bully 50 kg : REFUS sûr",
-    auC?.status === "accepted_with_conditions" && auC?.weight_limit_kg === 8 && auC?.weight_limit_includes_carrier === true && canal(runP, "airline_air_austral", "cabin")?.status === "accepted_with_conditions" && canal(run, "airline_air_austral", "cabin")?.status === "denied" && canal(runB, "airline_air_austral", "cabin")?.status === "denied", JSON.stringify(auC));
+  /* MOUVEMENT NOMMÉ (09/09/2026, réconciliation — règle des seuils de Codex, tranchée par Philippe) : « inférieur à 8 kg »
+     est une borne STRICTE : le Carlin de 8,0 kg, accepté sous conditions à l'import du lot 7, est désormais REFUSÉ. */
+  check("Air Austral cabine, Cavalier 6 kg : sous conditions, plafond 8 chien + contenant, borne STRICTE ; Carlin 8,0 kg, Golden 32 kg et Bully 50 kg : REFUS sûr",
+    auC?.status === "accepted_with_conditions" && auC?.weight_limit_kg === 8 && auC?.weight_limit_includes_carrier === true && auC?.weight_limit_bound === "lt" && canal(runP, "airline_air_austral", "cabin")?.status === "denied" && canal(run, "airline_air_austral", "cabin")?.status === "denied" && canal(runB, "airline_air_austral", "cabin")?.status === "denied", JSON.stringify(auC));
   check("Air Austral soute, Golden 32 kg : sous conditions (« Le transport en soute est obligatoire ») ; fret non décidé → à confirmer",
     canal(run, "airline_air_austral", "hold")?.status === "accepted_with_conditions" && canal(run, "airline_air_austral", "cargo")?.status === "confirmation_required");
   for (const [dst, nom] of [["airport_ptp", "Pointe-à-Pitre"], ["airport_fdf", "Fort-de-France"]]) {

@@ -77,6 +77,7 @@ policies:
     # Le plafond cité inclut le CONTENANT : refus sûr si le chien seul le dépasse, jamais un oui en dessous.
     max_weight_kg: 8
     weight_includes_carrier: true
+    weight_limit_bound: lt   # BORNE STRICTE (09/09/2026, règle des seuils de Codex, tranchée par Philippe) : « inférieur à 8 kg » exclut 8 — un chien de 8,0 kg est refusé, 7,9 ne l'est pas ; aucun arrondi
     source:
       url: "https://www.air-austral.com/preparer-mon-vol/demandes-speciales/animaux.html"
       source_type: official_website

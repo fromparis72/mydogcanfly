@@ -87,6 +87,16 @@ policies:
     # PREUVE IMPORTÉE — import strict correctif (Codex, lecture directe du 2026-09-09, cohorte CORRECTIF fait 4).
     # Effet attendu : Aer Lingus hold is a conditional route; do not present it for every Aer Lingus-marketed itinerary.
     # Portée nommée : Pet-agent booking and operating-airline, aircraft and route restrictions apply; Aer Lingus Regional operated by Emerald Airlines prohibits pet carriage, and some aircraft holds are not ventilated.
+    # RÉCONCILIATION CIBLÉE (Philippe, 09/09/2026, sur décision de Codex) : la règle héritée non citée
+    # `rule_aer_lingus_no_hold` (« Dogs are not accepted as accompanied checked baggage in the hold », research,
+    # 10/07/2026, page relue 404 puis remplacée) contredisait la politique officielle citée le 09/09 : elle est
+    # RETIRÉE (copie dans mesures/preuves/correctif-arbitrages-2026-09-09/regles-retirees-…json). Les seules
+    # restrictions présentes dans la source officielle vivent ici, en conditions — pas en règle.
+    conditions:
+      en: "Pets must be booked through a pet agent and travel in the aircraft hold, subject to the operating airline, aircraft and route: Aer Lingus Regional (operated by Emerald Airlines) does not carry pets, and some aircraft holds are not ventilated."
+      fr: "Réservation obligatoire via un agent animalier, transport en soute, sous réserve de l'opérateur, de l'appareil et de la route : Aer Lingus Regional (opéré par Emerald Airlines) ne transporte pas d'animaux, et certaines soutes ne sont pas ventilées."
+      es: "Reserva obligatoria a través de un agente de mascotas y transporte en bodega, sujeto a la aerolínea operadora, el avión y la ruta: Aer Lingus Regional (operado por Emerald Airlines) no transporta mascotas, y algunas bodegas no están ventiladas."
+      pt: "Reserva obrigatória através de um agente de animais e transporte no porão, sujeito à companhia operadora, à aeronave e à rota: a Aer Lingus Regional (operada pela Emerald Airlines) não transporta animais, e alguns porões não são ventilados."
     source:
       url: "https://www.aerlingus.com/localized/en/modals/baggage-information.html"
       source_type: official_website
