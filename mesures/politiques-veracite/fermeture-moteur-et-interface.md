@@ -2188,3 +2188,46 @@ annonce désormais, à chaque passage, combien de phrases de l'ancien produit re
 restent publiées dans les HTML sans être couvertes par ses motifs — un vert qui dit ce qu'il ne
 regarde pas plutôt qu'un vert muet. Codex les relèvera sans doute encore ; l'arbitrage est celui de
 Philippe et le dossier le porte.
+
+## Annexe 21 — La bascule du 08/09/2026, et le titre qui passait sous l'emblème
+
+### La bascule, consignée
+
+| | |
+|---|---|
+| `main` | `f40aaef` (fusion de PR #38, parents `dbf9efe` · `826e041`), CI 34219180429 verte |
+| préversion validée | `b6310a0e`, Worker `0899fc52`, manifeste `verified`, contrôle navigateur Codex |
+| Worker de production | `e2bcece5` déployé par Philippe à 13:01 UTC ; retour : `feb7b25d` (10 août) |
+| Pages production | `ef4557b6` par `npm run release` ; retour : `b3b682e5` (`922786e`, 10 août) |
+| contrôles en ligne | 200 sur accueil/`fr`/Air France/`fr/countries/fr`, `robots.txt` ouvert, 4 sous-sitemaps (634 URL en fr), aucun `noindex`, 301 de l'ancien calculateur, 404 préservée de l'outil chaleur, `/v1/health` → `f40aaef` |
+| Finder réel (Codex) | PT, Paris → New York, Golden 30 kg : règle US renvoyée, « 0 opções confirmadas · 27 pistas », BA « Cabine : não aceito » avec source et date |
+
+**Deux corrections de procédure, trouvées en marchant.** L'ordre que j'avais donné mettait le
+Worker *après* `release` : Codex a montré que c'était la fenêtre d'état mixte à éviter — le moteur
+d'abord, le contrat n'ayant fait que s'élargir. Et `preflight-production.mjs` demandait
+`/fr/countries/france/`, une URL qui n'a jamais existé (les pays sont adressés par code ISO) : la
+404 venait de ma liste, pas du site. Ce script omet aussi l'étape Worker ; il sera corrigé dans un
+lot à part, avec le §8 de la doc de déploiement.
+
+### Le titre du hero passait sous l'emblème
+
+Relevé par Philippe sur le site en ligne, dans les quatre langues : la ligne orange du hero filait
+sous l'emblème. Cause mesurée : `.hero__title` et `.hero__q` en `white-space: nowrap`, l'emblème
+posé en absolu à droite (`clamp(280px, 34vw, 460px)`). Correction sans toucher aux textes : le
+titre reçoit la place qui reste avant l'emblème et peut se replier, `text-wrap: balance` équilibre
+les lignes ; la contrainte tombe sous 720 px, où l'emblème est masqué.
+
+**Le harnais mesure, il ne lit pas le CSS** : sur les quatre accueils à 1 280 px, le bord droit
+du titre doit rester à gauche du bord gauche de l'emblème. Témoin joué ici avec Playwright, sur le
+même dist, ancien CSS réinjecté : 1 342 / 1 142 / 1 540 / 1 057 px contre un emblème à 759 —
+le contrôle mord ; CSS corrigé : 711.
+
+**Une erreur au passage, nommée.** Ma première mesure lisait le rectangle du *bloc* : avec une
+largeur maximale, il reste à 711 px même si un `nowrap` remis fait déborder le texte. La mesure
+porte maintenant sur l'étendue peinte (un `Range` sur le contenu), et le témoin le prouve.
+
+**Et le titre portugais était plus petit** — relevé par Philippe dans la foulée. Cause mesurée dans
+le CSS : la taille agrandie du hero était donnée à `--fr`, `--en`, `--es`, et aucune règle `--pt`
+n'existait ; le portugais retombait sur la taille de base (34 px au lieu de 49). Même oubli dans
+la règle mobile. Les quatre langues partagent maintenant la même règle, et le harnais exige que
+la taille de police calculée du titre soit identique sur les quatre accueils.

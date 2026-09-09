@@ -664,6 +664,40 @@ console.log("\n=== Les quatre outils, exercés EN PORTUGAIS ===");
     await p.close();
   }
 
+  /* 1 bis. LE TITRE DE L'ACCUEIL NE CHEVAUCHE PAS L'EMBLÈME — quatre langues, fenêtre 1280 px.
+     Relevé par Philippe sur le site en ligne le 08/09/2026 : la ligne orange du hero, en
+     `white-space: nowrap`, passait sous l'emblème posé en absolu à droite. On mesure les
+     rectangles rendus, pas le CSS : le bord droit du titre doit rester à gauche du bord gauche de
+     l'emblème, et le titre doit tenir dans son conteneur. */
+  const taillesTitre = {};
+  for (const loc of ["", "/fr", "/es", "/pt"]) {
+    const p = await nouvellePage();
+    await p.goto(`${BASE}${loc}/`, { waitUntil: "networkidle" });
+    const m = await p.evaluate(() => {
+      const t = document.querySelector(".hero__title"), e = document.querySelector(".hero__emblem"), c = document.querySelector(".hero .mdcf-container");
+      if (!t || !e || !c) return null;
+      /* LES GLYPHES, PAS LE BLOC : un `nowrap` remis en place laisserait le bloc à sa largeur
+         maximale et ferait déborder le texte sans que le rectangle du bloc bouge. Le `Range` sur
+         le contenu mesure l'étendue réellement peinte. */
+      const r = document.createRange(); r.selectNodeContents(t);
+      const rt = r.getBoundingClientRect(), re = e.getBoundingClientRect(), rc = c.getBoundingClientRect();
+      return { titreDroite: Math.round(rt.right), emblemeGauche: Math.round(re.left), conteneurDroite: Math.round(rc.right), taille: getComputedStyle(t).fontSize };
+    });
+    if (m) taillesTitre[loc || "/"] = m.taille;
+    check(`accueil ${loc || "/"} : le hero a un titre, un emblème et un conteneur`, m !== null);
+    if (m) {
+      check(`accueil ${loc || "/"} : le titre s'arrête avant l'emblème`, m.titreDroite <= m.emblemeGauche,
+        `titre → ${m.titreDroite}px, emblème ← ${m.emblemeGauche}px`);
+      check(`accueil ${loc || "/"} : le titre tient dans son conteneur`, m.titreDroite <= m.conteneurDroite,
+        `titre → ${m.titreDroite}px, conteneur → ${m.conteneurDroite}px`);
+    }
+    await p.close();
+  }
+  /* LA MÊME TAILLE DANS LES QUATRE LANGUES. Le portugais n'avait pas de règle `--pt` et retombait
+     sur la taille de base : visiblement plus petit, relevé par Philippe le 08/09/2026. */
+  check("accueil : le titre a la même taille de police dans les quatre langues",
+    new Set(Object.values(taillesTitre)).size === 1, JSON.stringify(taillesTitre));
+
   /* 2. LE CALCULATEUR DE CAISSE — une race choisie, un résultat calculé. */
   {
     const p = await nouvellePage();
