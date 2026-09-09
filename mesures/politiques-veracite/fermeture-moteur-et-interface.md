@@ -2877,3 +2877,19 @@ frontière (111 décisives, 0/88/23/191, 174/15, 113 nominativement, somme des c
 (22 limites, 23 témoins), matrice (six réactivations, dont un refus cité), sentinelles (United
 soute). Nouveau harnais `test-preuves-lot-6.mjs` (124 contrôles), dans `test:unit`.
 
+### Post-scriptum — CI du lot 5 rouge sur la rejouabilité de l'inventaire, erreur nommée (09/09/2026)
+
+**Mesuré.** « Vérifications » sur `7350489` : `test-inventaire-preuves.mjs` (a), le fichier
+`inventaire-compagnies.json` commité n'est pas identique à sa reconstruction — seule l'empreinte
+SHA-256 des données brutes diffère (`a3dc9dfa…` commitée, `a5276393…` reconstruite). Reproduit à
+l'identique sur un worktree exact de `7350489`.
+
+**Cause, nommée.** J'ai régénéré l'inventaire du lot 5 AVANT les deux derniers changements de
+données (retrait de la dérivation tarifaire sur une cabine citée, seuil Virgin Australia écrit),
+et je n'ai pas rejoué ce contrôle après. Une empreinte figée trop tôt : même classe d'erreur que
+« contrôle non rejoué avant la poussée », déjà nommée deux fois aujourd'hui.
+
+**Corrigé par le lot 6.** L'inventaire de `cea12c1` a été régénéré après toutes les données du
+lot ; le contrôle (a) passe sur un worktree exact de `cea12c1`. Aucun fichier de données ne change
+ici : ce post-scriptum consigne l'erreur, la CI de `cea12c1` en est la preuve.
+
