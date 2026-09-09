@@ -70,10 +70,52 @@ ladder:
 policies:
   cabin:
     availability: offered
+    # PREUVE IMPORTÉE — import strict lot8 (Codex, lecture directe du 2026-09-09, cohorte LOT8 fait 16).
+    # Effet attendu : KM Malta cabin is conditional with a 10 kg combined animal-and-carrier ceiling.
+    # Portée nommée : Dogs and cats up to 10 kg including carrier, subject to direct-route, United Kingdom, age, quota, advance booking, container and documentation restrictions.
+    source:
+      url: "https://kmmaltairlines.com/en/travelling-with-pets"
+      source_type: official_website
+      verified_date: "2026-09-09"
+      review_due: "2026-12-08"   # reviewDueFrom(verified_date, "airline") — calculé par l'importeur
+      confidence: 4
+      reviewer: "Codex — direct reading of official airline page"
+      history: []
+      quote: "Dogs and cats (up to 10kg)"
+      quote_language: en
+      locator: "Travelling with Pets → Pets in Cabin"
   hold:
     availability: offered
+    # PREUVE IMPORTÉE — import strict lot8 (Codex, lecture directe du 2026-09-09, cohorte LOT8 fait 17).
+    # Effet attendu : KM Malta hold is a documented conditional route with a 32 kg stated ceiling.
+    # Portée nommée : Dogs and cats up to 32 kg, subject to direct-route, United Kingdom, quota, advance booking, crate and documentation restrictions.
+    source:
+      url: "https://kmmaltairlines.com/en/travelling-with-pets"
+      source_type: official_website
+      verified_date: "2026-09-09"
+      review_due: "2026-12-08"   # reviewDueFrom(verified_date, "airline") — calculé par l'importeur
+      confidence: 4
+      reviewer: "Codex — direct reading of official airline page"
+      history: []
+      quote: "Dogs and cats weighing up to 32kg"
+      quote_language: en
+      locator: "Travelling with Pets → Pet as Checked Baggage"
   cargo:
-    review_state: legacy_unreviewed
+    availability: offered   # RÉACTIVÉE sur citation (import strict, lot8, 2026-09-09) — était review_state: legacy_unreviewed
+    # PREUVE IMPORTÉE — import strict lot8 (Codex, lecture directe du 2026-09-09, cohorte LOT8 fait 18).
+    # Effet attendu : KM Malta cargo is a documented conditional alternative.
+    # Portée nommée : Cargo may be booked when PETC or accompanied baggage is unavailable; route, station, crate, documentation and cargo-department approval apply.
+    source:
+      url: "https://kmmaltairlines.com/en/travelling-with-pets"
+      source_type: official_website
+      verified_date: "2026-09-09"
+      review_due: "2026-12-08"   # reviewDueFrom(verified_date, "airline") — calculé par l'importeur
+      confidence: 4
+      reviewer: "Codex — direct reading of official airline page"
+      history: []
+      quote: "booking your pet in the aircraft hold as Cargo"
+      quote_language: en
+      locator: "Travelling with Pets → Pets as Cargo"
 channels:
   - placement: cabin
     icon: 🐾

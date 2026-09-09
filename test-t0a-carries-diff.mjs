@@ -27,7 +27,8 @@ const WRITE = process.argv.includes("--write");
 /* MOUVEMENT NOMMÉ (09/09/2026, import strict lot 5 — 18 citations de plus, 92 en tout) : 19 098 → 21 348. */
 /* MOUVEMENT NOMMÉ (09/09/2026, import strict lot 6 — 21 citations de plus, 113 en tout) : 21 348 → 26 040. */
 /* MOUVEMENT NOMMÉ (09/09/2026, import strict lot 7 — 23 citations de plus, 136 en tout) : 26 040 → 26 868. */
-const TEMOIN_VRAI_V3 = 26868;
+/* MOUVEMENT NOMMÉ (09/09/2026, import strict lot 8 — 22 citations de plus, 158 en tout) : 26 868 → 28 536. */
+const TEMOIN_VRAI_V3 = 28536;
 /**
  * T0-B2 — la sonde vivante compare désormais au fichier DE CE LOT.
  *
@@ -138,8 +139,10 @@ if (WRITE) {
   /* MOUVEMENT NOMMÉ (08/09/2026, import strict V3 — 25 citations importées, lues par Codex le 08/09, une par fait décisif ; British Airways cabine conservée) : Ryanair passe à « no » — sur TROIS citations (cabine, soute, fret), pas sur un
      silence. C'est la seule perte admise, nominativement ; toute autre rougit. */
   const perdent = [...new Set(entries.filter((e) => e.new === "no").map((e) => e.airline_id))].sort();
-  check("une seule compagnie perd son transport d'animaux, sur preuve : Ryanair",
-    JSON.stringify(perdent) === JSON.stringify(["airline_ryanair"]), JSON.stringify(perdent));
+  /* MOUVEMENT NOMMÉ (09/09/2026, import strict lot 8) : IndiGo passe à « no » à son tour — trois refus cités
+     (cabine, soute, fret) sur la page officielle « How to Book ». Deux pertes admises, nominativement. */
+  check("deux compagnies perdent leur transport d'animaux, sur preuve : IndiGo et Ryanair",
+    JSON.stringify(perdent) === JSON.stringify(["airline_indigo", "airline_ryanair"]), JSON.stringify(perdent));
   check("la mesure T0-B2 reste figée (2 017 bascules, 55 compagnies) — elle n'est PAS régénérée",
     ref.changements === 2017 && ref.airlines.length === 55 && ref.true_to_false === 0,
     JSON.stringify({ ch: ref.changements, air: ref.airlines?.length, t2f: ref.true_to_false }));

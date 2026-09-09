@@ -717,7 +717,10 @@ console.log("\n=== 4. Carte RENDUE du Finder : les sources des canaux, et rien d
      35 cartes de CDG→BKK : cinq compagnies n'ont aucun canal sourcé, trois avec une racine qui est
      une page d'accueil (Aircalin, China Southern, El Al ; LOT et Singapore ont une racine
      mydogcanfly.com). China Southern est retenue. Jamais abaissé. */
-  const TEMOIN_SANS_SOURCE = "airline_china_southern";
+  /* RE-FONDÉ ENCORE (09/09/2026, lot 8) : China Southern est citée (cabine refusée, soute sous conditions).
+     Mesuré sur CDG→BKK : quatre cartes sans canal sourcé, une seule à racine page d'accueil hors des
+     lots 7 et 8 — El Al. Retenue. */
+  const TEMOIN_SANS_SOURCE = "airline_el_al";
   const cartes2 = ["airline_thai_airways", TEMOIN_SANS_SOURCE]
     .map((id) => (rapport.airlines ?? []).find((a) => a.airline_id === id));
   check(`le témoin ${TEMOIN_SANS_SOURCE} est servi, sans aucun canal sourcé`,
@@ -803,8 +806,10 @@ console.log(`\n=== 5. Les ${CIBLE.length} canaux contradictoires × 4 langues : 
    * chiens sur citation. Toujours 101 fiches. */
   /* 274 → 271 (09/09/2026, lot 7) : Aircalin cabine et soute, La Compagnie soute — l'éditorial disait déjà
    * « non », la citation le prouve. Toujours 101 fiches. */
-  check("271 canaux contradictoires sur 101 fiches, relus des fiches et du contrat runtime",
-    CONTRADICTOIRES.length === 271 && new Set(CONTRADICTOIRES.map((c) => c.slug)).size === 101,
+  /* 271 → 265 (09/09/2026, lot 8) : China Southern cabine, Copa soute, IndiGo cabine, soute et fret, Thai
+   * Airways cabine — l'éditorial disait déjà « non », la citation le prouve. Toujours 101 fiches. */
+  check("265 canaux contradictoires sur 101 fiches, relus des fiches et du contrat runtime",
+    CONTRADICTOIRES.length === 265 && new Set(CONTRADICTOIRES.map((c) => c.slug)).size === 101,
     `${CONTRADICTOIRES.length} canaux · ${new Set(CONTRADICTOIRES.map((c) => c.slug)).size} fiches`);
 
   /* LA LECTURE SE FAIT PAR LOTS, DANS DES PROCESSUS COURTS (CI du 16/08/2026, run 31 sur main).

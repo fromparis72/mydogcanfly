@@ -52,7 +52,12 @@ export const SENTINELLES_COMPAGNIES = [
      United SOUTE — page officielle, aucune phrase citée, « à confirmer » à côté d'une cabine citée.
      Même slug, même page construite ; le statut attendu ne change pas. */
   { slug: "united", id: "airline_united", placement: "hold", statut: "confirmation_required", role: "page officielle sans phrase citée, à côté d'un canal prouvé" },
-  { slug: "thai-airways", id: "airline_thai_airways", placement: "cabin", statut: "confirmation_required", role: "non offerte, non prouvée" },
+  /* RE-FONDÉE (09/09/2026, lot 8) : Thai Airways cabine est citée (« As a general policy, we do not accept
+     pets in the cabin… ») — un refus PROUVÉ, plus « non prouvé ». Même forme, autre porteuse, mesurée
+     sur les 12 cabines « non offertes, non prouvées » de la base projetée : Air China — précisément la
+     ligne que le lot 6 a REFUSÉ d'importer (la fiche dit `not_offered`, Codex dit « sous conditions »).
+     Tant que l'arbitrage n'est pas rendu, elle est le témoin exact de cette forme. */
+  { slug: "air-china", id: "airline_air_china", placement: "cabin", statut: "confirmation_required", role: "non offerte, non prouvée · refus d'auteur sans phrase" },
   { slug: "british-airways", id: "airline_british_airways", placement: "cabin", statut: "denied", role: "refus PROUVÉ · citation stricte" },
 ];
 

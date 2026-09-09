@@ -37,7 +37,8 @@ const SENTINELLES = {
   /* MOUVEMENT NOMMÉ (09/09/2026, import strict lot 5 — 18 citations de plus, 92 en tout) : A 74 → 92 ; B 90 → 84 ; C 139 → 127 ; D inchangé. */
   /* MOUVEMENT NOMMÉ (09/09/2026, import strict lot 6 — 21 citations de plus, 113 en tout) : A 92 → 113 ; B 84 → 78 ; C 127 → 112 ; D inchangé. */
   /* MOUVEMENT NOMMÉ (09/09/2026, import strict lot 7 — 23 citations de plus, 136 en tout) : A 113 → 136 ; B 78 → 70 ; C 112 → 97 ; D inchangé. */
-  par_categorie: { A: 136, A_incomplete: 0, B: 70, C: 97, D: 3 },
+  /* MOUVEMENT NOMMÉ (09/09/2026, import strict lot 8 — 22 citations de plus, 158 en tout) : A 136 → 158 ; B 70 → 58 ; C 97 → 87 ; D inchangé. */
+  par_categorie: { A: 158, A_incomplete: 0, B: 58, C: 87, D: 3 },
   par_canal: {
     /* MOUVEMENT NOMMÉ (08/09/2026, import strict V3 — 25 citations importées) : A 3 → 28 ; B 125 → 108 ; C 175 → 167 ; D inchangé. */
     /* MOUVEMENT NOMMÉ (08/09/2026, import strict lots 2 et 3 — 24 citations de plus, 52 en tout) : A 28 → 52 ; B 108 → 102 ; C 167 → 149. */
@@ -45,9 +46,10 @@ const SENTINELLES = {
     /* MOUVEMENT NOMMÉ (09/09/2026, import strict lot 5) : cabine 36/19/47 → 43/16/43 ; soute 29/51/22 → 36/48/18 ; fret 9/20/70 → 13/20/66. */
     /* MOUVEMENT NOMMÉ (09/09/2026, import strict lot 6) : cabine 43/16/43 → 52/14/36 ; soute 36/48/18 → 45/44/13 ; fret 13/20/66 → 16/20/63. */
     /* MOUVEMENT NOMMÉ (09/09/2026, import strict lot 7 — 23 citations de plus, 136 en tout) : cabine 52/14/36 → 62/14/26 ; soute 45/44/13 → 54/36/12 ; fret 16/20/63 → 20/20/59. */
-    cabin: { A: 62, A_incomplete: 0, B: 14, C: 26, D: 0 },
-    hold: { A: 54, A_incomplete: 0, B: 36, C: 12, D: 0 },
-    cargo: { A: 20, A_incomplete: 0, B: 20, C: 59, D: 3 },
+    /* MOUVEMENT NOMMÉ (09/09/2026, import strict lot 8 — 22 citations de plus, 158 en tout) : cabine 62/14/26 → 71/10/21 ; soute 54/36/12 → 63/29/10 ; fret 20/20/59 → 24/19/56. */
+    cabin: { A: 71, A_incomplete: 0, B: 10, C: 21, D: 0 },
+    hold: { A: 63, A_incomplete: 0, B: 29, C: 10, D: 0 },
+    cargo: { A: 24, A_incomplete: 0, B: 19, C: 56, D: 3 },
   },
   /* 42 B par la politique = les 45 politiques non fabriquées moins les 3 citées ; 83 B par une
      règle = 82 politiques fabriquées + Air Tahiti Nui soute (sans politique) ; 41 de ces 83 ne
@@ -58,13 +60,15 @@ const SENTINELLES = {
   /* MOUVEMENT NOMMÉ (09/09/2026, import strict lot 5 — 18 citations de plus, 92 en tout) : politique 24 (inchangé), règle 66 → 60, gov.uk seul 35 → 33. */
   /* MOUVEMENT NOMMÉ (09/09/2026, import strict lot 6 — 21 citations de plus, 113 en tout) : politique 24 → 23 (United cabine citée), règle 60 → 55, gov.uk seul 33 → 31. */
   /* MOUVEMENT NOMMÉ (09/09/2026, import strict lot 7 — 23 citations de plus, 136 en tout) : politique 23 (inchangé), règle 55 → 47, gov.uk seul 31 → 23. */
-  B_par_piste: { politique: 23, regle: 47 }, B_par_regle_gov_uk_seul: 23,
+  /* MOUVEMENT NOMMÉ (09/09/2026, import strict lot 8 — 22 citations de plus, 158 en tout) : politique 23 (inchangé), règle 47 → 35, gov.uk seul 23 → 19. */
+  B_par_piste: { politique: 23, regle: 35 }, B_par_regle_gov_uk_seul: 19,
   regles_sans_canal: ["rule_transavia_gb_no_pets"],
 };
 /* MOUVEMENT NOMMÉ (08/09/2026, import strict V3 — 25 citations importées) : 3 → 28 A, nominativement. */
 const A_ATTENDUS = [
   /* MOUVEMENT NOMMÉ (09/09/2026, import strict lot 6 — 21 citations de plus, 113 en tout) : 92 → 113, nominativement, dans l'ordre de l'inventaire. */
   /* MOUVEMENT NOMMÉ (09/09/2026, import strict lot 7 — 23 citations de plus, 136 en tout) : 113 → 136, nominativement, dans l'ordre de l'inventaire. */
+  /* MOUVEMENT NOMMÉ (09/09/2026, import strict lot 8 — 22 citations de plus, 158 en tout) : 136 → 158, nominativement, dans l'ordre de l'inventaire. Thai Airways fret REFUSÉ n'y entre pas. */
   "airline_aegean#cabin",
   "airline_aegean#hold",
   "airline_aer_lingus#cabin",
@@ -109,6 +113,7 @@ const A_ATTENDUS = [
   "airline_austrian#hold",
   "airline_avianca#cabin",
   "airline_avianca#hold",
+  "airline_bangkok_airways#cargo",
   "airline_british_airways#cabin",
   "airline_brussels#cabin",
   "airline_brussels#hold",
@@ -117,6 +122,11 @@ const A_ATTENDUS = [
   "airline_china_airlines#hold",
   "airline_china_eastern#cabin",
   "airline_china_eastern#hold",
+  "airline_china_southern#cabin",
+  "airline_china_southern#hold",
+  "airline_copa#cabin",
+  "airline_copa#hold",
+  "airline_copa#cargo",
   "airline_corsair#cabin",
   "airline_corsair#hold",
   "airline_corsair#cargo",
@@ -145,6 +155,9 @@ const A_ATTENDUS = [
   "airline_iberia#hold",
   "airline_iberia_express#cabin",
   "airline_iberia_express#hold",
+  "airline_indigo#cabin",
+  "airline_indigo#hold",
+  "airline_indigo#cargo",
   "airline_ita_airways#cabin",
   "airline_ita_airways#hold",
   "airline_jal#hold",
@@ -154,6 +167,9 @@ const A_ATTENDUS = [
   "airline_kenya_airways#cargo",
   "airline_klm#cabin",
   "airline_klm#hold",
+  "airline_km_malta#cabin",
+  "airline_km_malta#hold",
+  "airline_km_malta#cargo",
   "airline_korean_air#cabin",
   "airline_korean_air#hold",
   "airline_la_compagnie#cabin",
@@ -181,16 +197,26 @@ const A_ATTENDUS = [
   "airline_sas#cabin",
   "airline_saudia#cabin",
   "airline_saudia#hold",
+  "airline_sky_express#cabin",
+  "airline_sky_express#hold",
+  "airline_smartwings#cabin",
+  "airline_smartwings#hold",
   "airline_south_african_airways#cabin",
   "airline_south_african_airways#hold",
   "airline_south_african_airways#cargo",
+  "airline_sunexpress#cabin",
+  "airline_sunexpress#hold",
   "airline_swiss#cabin",
   "airline_swiss#hold",
   "airline_tap#cabin",
   "airline_tap#hold",
+  "airline_thai_airways#cabin",
+  "airline_thai_airways#hold",
   "airline_thai_airways#cargo",
   "airline_transavia#cabin",
   "airline_transavia#hold",
+  "airline_tunisair#cabin",
+  "airline_tunisair#hold",
   "airline_turkish#cabin",
   "airline_turkish#hold",
   "airline_united#cabin",
@@ -309,16 +335,17 @@ console.log("\n=== (d) Cohérence avec `niveauDePreuve` ===");
   /* MOUVEMENT NOMMÉ (09/09/2026, import strict lot 5 — 18 citations de plus, 92 en tout) : 74/24/139 → 92/24/127 ; 65 → 59. */
   /* MOUVEMENT NOMMÉ (09/09/2026, import strict lot 6 — 21 citations de plus, 113 en tout) : 92/24/127 → 113/23/112 ; 59 → 54. */
   /* MOUVEMENT NOMMÉ (09/09/2026, import strict lot 7 — 23 citations de plus, 136 en tout) : 113/23/112 → 136/23/97 ; 54 → 46. */
-  check("sur les 306 lignes, A ↔ citee 136, B(politique) ↔ officielle_non_citee 23, C ↔ aucune 97",
-    paires["A ↔ citee"] === 136 && paires["B ↔ officielle_non_citee"] === 23 && paires["C ↔ aucune"] === 97, JSON.stringify(paires));
-  check("les seuls écarts sont NOMMÉS : 46 B par règle sur politique « aucune », 1 B par règle sans politique, 3 D",
-    resume.coherence_niveau_de_preuve.ecarts.B_par_regle_sur_politique_aucune === 46
+  /* MOUVEMENT NOMMÉ (09/09/2026, import strict lot 8 — 22 citations de plus, 158 en tout) : 136/23/97 → 158/23/87 ; 46 → 34. */
+  check("sur les 306 lignes, A ↔ citee 158, B(politique) ↔ officielle_non_citee 23, C ↔ aucune 87",
+    paires["A ↔ citee"] === 158 && paires["B ↔ officielle_non_citee"] === 23 && paires["C ↔ aucune"] === 87, JSON.stringify(paires));
+  check("les seuls écarts sont NOMMÉS : 34 B par règle sur politique « aucune », 1 B par règle sans politique, 3 D",
+    resume.coherence_niveau_de_preuve.ecarts.B_par_regle_sur_politique_aucune === 34
     && resume.coherence_niveau_de_preuve.ecarts.B_par_regle_sans_politique === 1
     && resume.coherence_niveau_de_preuve.ecarts.D_sans_politique === 3
     && resume.coherence_niveau_de_preuve.ecarts.inattendus.length === 0, JSON.stringify(resume.coherence_niveau_de_preuve.ecarts));
   const niveaux = lignes.filter((l) => l.niveau_de_preuve_politique !== null).reduce((m, l) => { m[l.niveau_de_preuve_politique] = (m[l.niveau_de_preuve_politique] ?? 0) + 1; return m; }, {});
-  check("302 politiques : 136 citées, 23 officielles non citées, 143 aucune — le compte de test-frontiere-confiance",
-    niveaux.citee === 136 && niveaux.officielle_non_citee === 23 && niveaux.aucune === 143, JSON.stringify(niveaux));
+  check("302 politiques : 158 citées, 23 officielles non citées, 121 aucune — le compte de test-frontiere-confiance",
+    niveaux.citee === 158 && niveaux.officielle_non_citee === 23 && niveaux.aucune === 121, JSON.stringify(niveaux));
 }
 
 console.log("\n=== (e) Non-vacuité : une ligne mutée change de catégorie ===");

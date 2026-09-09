@@ -119,6 +119,15 @@ const REACTIVEES_SUR_CITATION = new Set([
   "airline_air_tahiti_nui|cargo",
   "airline_aircalin|cargo",
   "airline_corsair|cargo",
+  /* Lot 8 (09/09/2026) : Bangkok Airways fret (« Special cargo service as Live animals dog, cat (AVI)… »,
+     routes INTÉRIEURES — portée nommée), Copa fret (« must be arranged through Copa Cargo »), KM Malta
+     fret (« booking your pet in the aircraft hold as Cargo »), SKY express soute (« Dogs and cats
+     weighing more than 8 kilograms »), SunExpress soute (« Dogs and cats weighing more than 8 kg »). */
+  "airline_bangkok_airways|cargo",
+  "airline_copa|cargo",
+  "airline_km_malta|cargo",
+  "airline_sky_express|hold",
+  "airline_sunexpress|hold",
 ]);
 /* POLICY_STALE RÉACTIVÉS SUR CITATION (09/09/2026, lot 4). Deux des dix anciens POLICY_STALE
  * versés en `legacy_unreviewed` — Qantas soute et Qantas fret — ont reçu une phrase des Conditions

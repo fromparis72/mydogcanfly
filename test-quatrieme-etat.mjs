@@ -103,7 +103,8 @@ console.log("\n=== 2. KB réelle : aucune politique n'émet `allowed` ; rien ne 
   /* MOUVEMENT NOMMÉ (09/09/2026, import strict lot 5 — 18 citations de plus, 92 en tout) : 58 → 73. */
   /* MOUVEMENT NOMMÉ (09/09/2026, import strict lot 6) : 73 → 88. */
   /* MOUVEMENT NOMMÉ (09/09/2026, import strict lot 7 — 23 citations de plus, 136 en tout) : 88 → 108. */
-  check(`politiques réelles en accepted_with_conditions : 108 depuis le lot 7 — mesuré : ${cond}`, cond === 108);
+  /* MOUVEMENT NOMMÉ (09/09/2026, import strict lot 8 — 22 citations de plus, 158 en tout) : 108 → 124. */
+  check(`politiques réelles en accepted_with_conditions : 124 depuis le lot 8 — mesuré : ${cond}`, cond === 124);
   const af = REQ(GOLDEN_32, kb);
   const cab = stOf(af, "airline_air_france", "cabin");
   check("Air France cabine, KB réelle (non citée) : reste « à confirmer », pas un refus au seuil sans preuve",

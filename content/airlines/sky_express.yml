@@ -62,8 +62,36 @@ ladder:
 policies:
   cabin:
     availability: offered
+    # PREUVE IMPORTÉE — import strict lot8 (Codex, lecture directe du 2026-09-09, cohorte LOT8 fait 14).
+    # Effet attendu : SKY express cabin is conditional with an 8 kg combined animal-and-container ceiling.
+    # Portée nommée : Dogs and cats up to 8 kg including the carrier; aircraft, route, booking, health, quota, container and documentation restrictions apply.
+    source:
+      url: "https://www.skyexpress.gr/en/sky-experience/sky-pets"
+      source_type: official_website
+      verified_date: "2026-09-09"
+      review_due: "2026-12-08"   # reviewDueFrom(verified_date, "airline") — calculé par l'importeur
+      confidence: 4
+      reviewer: "Codex — direct reading of official airline page"
+      history: []
+      quote: "Dogs and cats weighing up to 8 kg"
+      quote_language: en
+      locator: "Carriage of animals in the cabin (up to 8kg)"
   hold:
-    review_state: legacy_unreviewed
+    availability: offered   # RÉACTIVÉE sur citation (import strict, lot8, 2026-09-09) — était review_state: legacy_unreviewed
+    # PREUVE IMPORTÉE — import strict lot8 (Codex, lecture directe du 2026-09-09, cohorte LOT8 fait 15).
+    # Effet attendu : SKY express hold is conditional, aircraft-scoped and has a 25 kg combined ceiling.
+    # Portée nommée : Dogs and cats over 8 kg and no more than 25 kg including the crate; ATR aircraft only, with route, booking, health, crate and documentation restrictions.
+    source:
+      url: "https://www.skyexpress.gr/en/sky-experience/sky-pets"
+      source_type: official_website
+      verified_date: "2026-09-09"
+      review_due: "2026-12-08"   # reviewDueFrom(verified_date, "airline") — calculé par l'importeur
+      confidence: 4
+      reviewer: "Codex — direct reading of official airline page"
+      history: []
+      quote: "Dogs and cats weighing more than 8 kilograms"
+      quote_language: en
+      locator: "Transporting animals in the aircraft hold (weight more than 8kg)"
   cargo:
     review_state: legacy_unreviewed
 channels:

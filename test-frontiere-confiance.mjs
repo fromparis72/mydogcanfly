@@ -219,12 +219,13 @@ console.log("\n=== 10. Sur la base RÉELLE : plus aucun verdict catégorique ===
      case_by_case — arbitrage du 28/08 —, le fait suppose offered) : elle reste « à confirmer » (airline_approval), ce que Codex demande lui-même. */
   /* MOUVEMENT NOMMÉ (09/09/2026, import strict lot 6 — 21 citations de plus, 113 en tout) : 0 · 88 · 23 · 191 ; causes 174 · 15. */
   /* MOUVEMENT NOMMÉ (09/09/2026, import strict lot 7 — 23 citations de plus, 136 en tout) : 0 · 108 · 26 · 168 ; causes 151 · 15. */
-  check("134 décisions prouvées : 0 `allowed`, 108 sous conditions, 26 `denied`, 168 à confirmer",
-    allowed === 0 && sousConditions === 108 && denied === 26 && aConfirmer === 168, JSON.stringify({ allowed, sousConditions, denied, aConfirmer }));
+  /* MOUVEMENT NOMMÉ (09/09/2026, import strict lot 8 — 22 citations de plus, 158 en tout) : 0 · 124 · 32 · 146 ; causes 129 · 15. */
+  check("156 décisions prouvées : 0 `allowed`, 124 sous conditions, 32 `denied`, 146 à confirmer",
+    allowed === 0 && sousConditions === 124 && denied === 32 && aConfirmer === 146, JSON.stringify({ allowed, sousConditions, denied, aConfirmer }));
   check("chaque « à confirmer » porte une cause — aucune incertitude muette",
-    Object.values(causes).reduce((x, y) => x + y, 0) === 168 && !("undefined" in causes), JSON.stringify(causes));
-  check("15 gardent une page officielle à montrer, 151 n'ont rien à montrer",
-    causes.official_source_unquoted === 15 && causes.legacy_unreviewed === 151, JSON.stringify(causes));
+    Object.values(causes).reduce((x, y) => x + y, 0) === 146 && !("undefined" in causes), JSON.stringify(causes));
+  check("15 gardent une page officielle à montrer, 129 n'ont rien à montrer",
+    causes.official_source_unquoted === 15 && causes.legacy_unreviewed === 129, JSON.stringify(causes));
   /* Et la preuve que ce n'est pas un effet de bord de l'affichage : la même règle vaut à la
      source, sur l'artefact d'auteur, avant tout moteur. */
   const objets = JSON.parse(readFileSync("packages/knowledge/raw/objects.json", "utf8"));
@@ -347,6 +348,29 @@ console.log("\n=== 10. Sur la base RÉELLE : plus aucun verdict catégorique ===
     "airline_la_compagnie.hold",
     "airline_luxair.cabin",
     "airline_luxair.hold",
+    /* Lot 8 (09/09/2026) : 22 citations de plus, 158 en tout. Thai Airways fret REFUSÉ (la fiche dit `undocumented`, citation auditée du 13/08 conservée). */
+    "airline_bangkok_airways.cargo",
+    "airline_china_southern.cabin",
+    "airline_china_southern.hold",
+    "airline_copa.cabin",
+    "airline_copa.hold",
+    "airline_copa.cargo",
+    "airline_indigo.cabin",
+    "airline_indigo.hold",
+    "airline_indigo.cargo",
+    "airline_thai_airways.cabin",
+    "airline_thai_airways.hold",
+    "airline_tunisair.cabin",
+    "airline_tunisair.hold",
+    "airline_sky_express.cabin",
+    "airline_sky_express.hold",
+    "airline_km_malta.cabin",
+    "airline_km_malta.hold",
+    "airline_km_malta.cargo",
+    "airline_sunexpress.cabin",
+    "airline_sunexpress.hold",
+    "airline_smartwings.cabin",
+    "airline_smartwings.hold",
     "airline_iberia.cabin",
     "airline_iberia.hold",
     "airline_ita_airways.cabin",
@@ -389,10 +413,10 @@ console.log("\n=== 10. Sur la base RÉELLE : plus aucun verdict catégorique ===
     "airline_westjet.cabin",
     "airline_westjet.hold",
   ];
-  check("136 politiques d'auteur portent une phrase citée — nominativement",
+  check("158 politiques d'auteur portent une phrase citée — nominativement",
     JSON.stringify([...citees].sort()) === JSON.stringify([...CITEES_V3].sort()), citees.join(", "));
-  check("et 134 d'elles sont des décisions (toutes sauf Thai fret et Virgin Australia cabine)",
-    decideesCitees.length === 134 && !decideesCitees.includes("airline_thai_airways.cargo") && !decideesCitees.includes("airline_virgin_australia.cabin"),
+  check("et 156 d'elles sont des décisions (toutes sauf Thai fret et Virgin Australia cabine)",
+    decideesCitees.length === 156 && !decideesCitees.includes("airline_thai_airways.cargo") && !decideesCitees.includes("airline_virgin_australia.cabin"),
     decideesCitees.join(", "));
 }
 
@@ -748,8 +772,11 @@ console.log("\n=== 13 bis. Le verdict dérivé, et ce qui ne revient JAMAIS avec
     /* MOUVEMENT NOMMÉ (08/09/2026, import strict V3 — 25 citations importées, lues par Codex le 08/09, une par fait décisif ; British Airways cabine conservée) : Ryanair est la PREMIÈRE fiche à conclure au refus total, sur trois citations —
        « We do not carry animals on board any Ryanair flights » (cabine, soute) et « We do not
        carry cargo on our flights » (fret). Nominativement, et elle seule. */
-    check("UNE seule fiche conclut au refus total — Ryanair, sur trois refus prouvés",
-      JSON.stringify(refusTotal.map((a) => a.id)) === JSON.stringify(["airline_ryanair"]), JSON.stringify(refusTotal.map((a) => a.id)));
+    /* MOUVEMENT NOMMÉ (09/09/2026, import strict lot 8) : IndiGo rejoint Ryanair — trois refus prouvés sur UNE
+       phrase officielle (« does not permit the carriage of pets or animals on its aircraft »), fret compris.
+       Deux fiches, nominativement, et elles seules. */
+    check("DEUX fiches concluent au refus total — IndiGo et Ryanair, sur trois refus prouvés chacune",
+      JSON.stringify(refusTotal.map((a) => a.id).sort()) === JSON.stringify(["airline_indigo", "airline_ryanair"]), JSON.stringify(refusTotal.map((a) => a.id)));
     const ba = kbR.airlines.get("airline_british_airways");
     check("British Airways : cabine refusée sur preuve, mais la FICHE reste prudente",
       ba?.premium?.policy?.cabin?.status === "denied"

@@ -68,8 +68,36 @@ ladder:
 policies:
   cabin:
     availability: not_offered
+    # PREUVE IMPORTÉE — import strict lot8 (Codex, lecture directe du 2026-09-09, cohorte LOT8 fait 1).
+    # Effet attendu : China Southern cabin is a documented refusal for ordinary pet dogs.
+    # Portée nommée : Ordinary pet dogs are not accepted in the passenger cabin; guide dogs are a separate exception.
+    source:
+      url: "https://www.csair.com/hk/en/tourguide/faq/baggage/dongwu.shtml"
+      source_type: official_website
+      verified_date: "2026-09-09"
+      review_due: "2026-12-08"   # reviewDueFrom(verified_date, "airline") — calculé par l'importeur
+      confidence: 4
+      reviewer: "Codex — direct reading of official airline page"
+      history: []
+      quote: "No animal can be brought into the passenger cabin"
+      quote_language: en
+      locator: "Pets → Which animals can be brought into the cabin?"
   hold:
     availability: offered
+    # PREUVE IMPORTÉE — import strict lot8 (Codex, lecture directe du 2026-09-09, cohorte LOT8 fait 2).
+    # Effet attendu : China Southern hold is a documented conditional route.
+    # Portée nommée : Pets may be checked only after prior airline and successive-carrier approval, with quarantine, vaccination, route, document and container requirements.
+    source:
+      url: "https://www.csair.com/hk/en/tourguide/faq/baggage/dongwu.shtml"
+      source_type: official_website
+      verified_date: "2026-09-09"
+      review_due: "2026-12-08"   # reviewDueFrom(verified_date, "airline") — calculé par l'importeur
+      confidence: 4
+      reviewer: "Codex — direct reading of official airline page"
+      history: []
+      quote: "you can check it"
+      quote_language: en
+      locator: "Pets → May I take my pet into cabin?"
   cargo:
     review_state: legacy_unreviewed
 channels:

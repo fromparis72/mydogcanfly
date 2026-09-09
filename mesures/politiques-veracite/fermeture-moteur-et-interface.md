@@ -2953,3 +2953,73 @@ Nouveau harnais `test-preuves-lot-7.mjs` (123 contrôles), dans test:unit.
 **Méthode, nommée** : le dist n'est construit qu'une fois, après le lot 8 ; les contrôles sur le site
 construit (caisses, entités, accueil, étape 3, contre-épreuves) portent sur la tête des deux lots.
 
+## Annexe 30 — Import strict, lot 8 : 23 faits, 22 importés, Thai Airways fret refusé par contrat, IndiGo deuxième refus total prouvé (09/09/2026)
+
+Paquet de Codex (`mesures/preuves/import-strict-lot-8-2026-09-09/`), lecture directe du 09/09 :
+10 compagnies, 23 faits, 7 non-décisions. Importé sur la base du lot 7, même branche.
+
+| | |
+|---|---|
+| importés | 22 (Bangkok Airways fret, China Southern ×2, Copa ×3, IndiGo ×3, Thai Airways ×2, Tunisair ×2, SKY express ×2, KM Malta ×3, SunExpress ×2, Smartwings ×2) |
+| réactivés sur citation | 5 : Bangkok Airways, Copa, KM Malta fret ; SKY express, SunExpress soute |
+| refusé | **Thai Airways fret** : la fiche dit `undocumented` et porte la citation auditée du 13/08 (Claude+Codex : « (For cargo acceptance, please contact directly to Cargo Department) »). Codex cite la même phrase avec « sous conditions ». Sa propre règle — « ne jamais convertir “contactez Cargo” en fret accepté » — s'y oppose. L'importeur ne change jamais une disponibilité ; la ligne reste « à confirmer » (`policy_unpublished`). **Question à Philippe et Codex** : la règle tient-elle, ou le fret Thai devient-il « sous conditions » comme Air Mauritius (lot 5) ? |
+| seuils écrits | Copa 10 (« maximum 10kg including container »), Tunisair 8 (« 08 kg y compris le contenant et la nourriture »), SunExpress 8 (« up to 8 kg (incl. container) ») |
+| seuils non écrits | SKY express 8/25, KM Malta 10/32, Smartwings 8/32 (base du poids absente de la phrase) ; KM Malta et Smartwings perdent leur plafond déduit de la grille tarifaire |
+
+### IndiGo : deuxième refus total prouvé
+
+Trois canaux refusés sur une même page officielle (« does not permit the carriage of pets or
+animals on its aircraft »). Trois témoins figés sur « Ryanair, et elle seule » avancent par
+mouvement nommé : frontière (deux fiches au refus total), carries (deux compagnies perdent leur
+transport sur preuve), caisses (deux compagnies « ni cabine ni soute »). Le calculateur affiche
+pour IndiGo le message dédié « aucun animal », comme pour Ryanair.
+
+### Signalé pour contre-revue de Codex, écrit tel quel
+
+- **China Southern soute** : la phrase citée est « you can check it » — quatre mots, contigus, mais
+  qui ne disent ni « chien » ni « soute » sans leur contexte. Importée (le contrat est respecté),
+  signalée.
+- **IndiGo fret** : « pets or animals on its aircraft » — fragment de la même phrase que la cabine
+  et la soute ; importé, signalé.
+- **Bangkok Airways fret** : cité sur des routes INTÉRIEURES listées (« …on the following routes: »),
+  réactivé « sous conditions » pour tout le réseau — même classe que Philippine cabine (lot 5) : le
+  modèle ne porte pas la portée de route. Nommé, pas converti.
+
+### Mesuré après import
+
+| | avant (lot 7) | après (lot 8) |
+|---|---|---|
+| politiques citées (décisives) | 136 (134) | 158 (156) |
+| `allowed` / sous conditions / refusées / à confirmer | 0 / 108 / 26 / 168 | 0 / 124 / 32 / 146 |
+| causes legacy / page officielle sans phrase | 151 / 15 | 129 / 15 |
+| registre A / B / C / D | 136 / 70 / 97 / 3 | 158 / 58 / 87 / 3 |
+| limites cabine citées | 24 | 27 (à vérifier sur le dist) |
+| refus totaux prouvés | 1 (Ryanair) | 2 (Ryanair, IndiGo) |
+| témoin hérité | 26 868 | 28 536 |
+| canaux contradictoires | 271 | 265 (China Southern cabine, Copa soute, IndiGo ×3, Thai cabine) |
+| causes de race (carlin) | 404 | 404 (mesuré avant/après : China Southern et Thai cabines n'en portaient aucune) |
+| baseline | figée lot 7 | figée `import-strict-lot-8-apres` : 48 cartes / 1 560, 4 compagnies (Thai, China Southern, SunExpress, Smartwings), 40 → sous conditions, 32 → refusé, aucun verdict déplacé |
+
+### Témoins re-fondés par mesure, jamais abaissés
+
+- Sentinelle « non offerte, non prouvée » (cabine) : Thai Airways cabine est citée (refus prouvé).
+  Re-fondée sur **Air China cabine** — la ligne même que le lot 6 a refusé d'importer, témoin exact
+  de cette forme tant que l'arbitrage n'est pas rendu. Mesuré : 12 candidates.
+- Harnais des entités, « carte sans canal sourcé » : China Southern citée → **El Al** (seule
+  candidate à racine page d'accueil hors des lots 7 et 8, sur CDG→BKK).
+
+### Trouvé par la mesure, nommé comme dette
+
+Règles héritées non citées : KM Malta vers Londres (`rule_gb_no_cabin_pets`,
+`rule_km_malta_gb_not_approved`) garde cabine et soute « à confirmer » — ici la restriction de
+route reste opposable, ce que Codex demande ; Smartwings cabine, Golden 32 kg, « à confirmer » par
+`rule_smartwings_cabin_weight`. Même classe qu'aux lots précédents.
+
+### Mouvements nommés
+
+frontière, legacy (129, chaîne → lot 8), baseline (chaîne, répartition, preuve permanente lot 8),
+carries (28 536, deux pertes), quatrième état (124), registre (158/58/87/3, canaux 71/10/21 ·
+63/29/10 · 24/19/56, pistes 23/35, gov.uk 19, paires 158/23/87, écarts 34, niveaux 158/23/121),
+matrice (cinq réactivations), entités (265, témoin El Al), caisses (27, deux refus totaux),
+sentinelle Air China cabine. Nouveau harnais `test-preuves-lot-8.mjs` (121 contrôles), dans test:unit.
+

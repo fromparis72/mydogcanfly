@@ -64,8 +64,39 @@ ladder:
 policies:
   cabin:
     availability: offered
+    # PREUVE IMPORTÉE — import strict lot8 (Codex, lecture directe du 2026-09-09, cohorte LOT8 fait 12).
+    # Effet attendu : Tunisair cabin is conditional with an 8 kg combined animal-container-food ceiling.
+    # Portée nommée : Dogs up to 8 kg including container and food may be accepted in cabin, subject to prior carrier agreement, route, container and documentation rules.
+    # Le plafond cité inclut le CONTENANT : refus sûr si le chien seul le dépasse, jamais un oui en dessous.
+    max_weight_kg: 8
+    weight_includes_carrier: true
+    source:
+      url: "https://www.tunisair.com/fr/conditions-generales-de-transport"
+      source_type: official_website
+      verified_date: "2026-09-09"
+      review_due: "2026-12-08"   # reviewDueFrom(verified_date, "airline") — calculé par l'importeur
+      confidence: 4
+      reviewer: "Codex — direct reading of official airline page"
+      history: []
+      quote: "les chiens d’un poids maximal de 08 kg y compris le contenant et la nourriture"
+      quote_language: fr
+      locator: "Conditions générales de transport → 10.2.1 Animaux voyageant en cabine"
   hold:
     availability: offered
+    # PREUVE IMPORTÉE — import strict lot8 (Codex, lecture directe du 2026-09-09, cohorte LOT8 fait 13).
+    # Effet attendu : Tunisair hold is a documented conditional route.
+    # Portée nommée : The conditions of carriage contain a dedicated hold policy and require prior carrier agreement, a safe crate and complete documents; final method and count remain at the carrier's discretion.
+    source:
+      url: "https://www.tunisair.com/fr/conditions-generales-de-transport"
+      source_type: official_website
+      verified_date: "2026-09-09"
+      review_due: "2026-12-08"   # reviewDueFrom(verified_date, "airline") — calculé par l'importeur
+      confidence: 4
+      reviewer: "Codex — direct reading of official airline page"
+      history: []
+      quote: "Animaux voyageant en soute"
+      quote_language: fr
+      locator: "Conditions générales de transport → 10.3 Animaux voyageant en soute"
   cargo:
     review_state: legacy_unreviewed
 channels:

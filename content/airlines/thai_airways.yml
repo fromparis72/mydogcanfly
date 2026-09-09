@@ -74,8 +74,36 @@ ladder:
 policies:
   cabin:
     availability: not_offered
+    # PREUVE IMPORTÉE — import strict lot8 (Codex, lecture directe du 2026-09-09, cohorte LOT8 fait 9).
+    # Effet attendu : Thai Airways cabin is a documented refusal for ordinary pet dogs.
+    # Portée nommée : Ordinary pet dogs are generally not permitted in cabin; trained service dogs under the separately stated conditions are outside this verdict.
+    source:
+      url: "https://www.thaiairways.com/en-th/content/special-assistance/travel-with-pets/pets-in-cabin/"
+      source_type: official_website
+      verified_date: "2026-09-09"
+      review_due: "2026-12-08"   # reviewDueFrom(verified_date, "airline") — calculé par l'importeur
+      confidence: 4
+      reviewer: "Codex — direct reading of official airline page"
+      history: []
+      quote: "As a general policy, we do not accept pets in the cabin for travel, except for the conditions listed above."
+      quote_language: en
+      locator: "Pets in Cabin Policy → Pets Other than Service Animals"
   hold:
     availability: offered
+    # PREUVE IMPORTÉE — import strict lot8 (Codex, lecture directe du 2026-09-09, cohorte LOT8 fait 10).
+    # Effet attendu : Thai Airways hold is a documented conditional route.
+    # Portée nommée : Dogs and cats as accompanied checked baggage on the same flight, subject to age, breed embargo, route, aircraft, crate, document, weight and advance-acceptance conditions.
+    source:
+      url: "https://www.thaiairways.com/en-tw/content/special-assistance/travel-with-pets/pets-as-checked-baggage-avih/"
+      source_type: official_website
+      verified_date: "2026-09-09"
+      review_due: "2026-12-08"   # reviewDueFrom(verified_date, "airline") — calculé par l'importeur
+      confidence: 4
+      reviewer: "Codex — direct reading of official airline page"
+      history: []
+      quote: "accept dog/cat for carriage as checked baggage"
+      quote_language: en
+      locator: "Pets as Checked Baggage (AVIH) → Conditions for Acceptance"
   cargo:
     availability: undocumented
     # Décision AUDITÉE — recopiée verbatim de la ligne approuvée du manifeste de migration

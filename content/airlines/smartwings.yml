@@ -56,8 +56,36 @@ ladder:
 policies:
   cabin:
     availability: offered
+    # PREUVE IMPORTÉE — import strict lot8 (Codex, lecture directe du 2026-09-09, cohorte LOT8 fait 21).
+    # Effet attendu : Smartwings cabin is a documented conditional route with an 8 kg combined ceiling.
+    # Portée nommée : Dogs and cats up to 8 kg including the crate, subject to prior approval, route, operating carrier, quota, container, health and documentation restrictions.
+    source:
+      url: "https://www.smartwings.com/en/fees-and-charges/?layout=default"
+      source_type: official_website
+      verified_date: "2026-09-09"
+      review_due: "2026-12-08"   # reviewDueFrom(verified_date, "airline") — calculé par l'importeur
+      confidence: 4
+      reviewer: "Codex — direct reading of official airline page"
+      history: []
+      quote: "Pet in cabin (1 piece up to 8 kg / leg)"
+      quote_language: en
+      locator: "Fees and charges → Price list of additional services → PETC"
   hold:
     availability: offered
+    # PREUVE IMPORTÉE — import strict lot8 (Codex, lecture directe du 2026-09-09, cohorte LOT8 fait 22).
+    # Effet attendu : Smartwings hold is a documented conditional route with a 32 kg combined ceiling.
+    # Portée nommée : Animal in hold up to 32 kg including the box, subject to prior approval, route, operating carrier, aircraft, capacity, container, health and documentation restrictions.
+    source:
+      url: "https://www.smartwings.com/en/fees-and-charges/?layout=default"
+      source_type: official_website
+      verified_date: "2026-09-09"
+      review_due: "2026-12-08"   # reviewDueFrom(verified_date, "airline") — calculé par l'importeur
+      confidence: 4
+      reviewer: "Codex — direct reading of official airline page"
+      history: []
+      quote: "Animal in hold (1 piece up to 32 kg / leg)"
+      quote_language: en
+      locator: "Fees and charges → Price list of additional services → AVIH"
 channels:
   - placement: cabin
     icon: 🐾
