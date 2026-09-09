@@ -76,6 +76,20 @@ policies:
     availability: not_offered
   hold:
     availability: offered
+    # PREUVE IMPORTÉE — import strict lot5 (Codex, lecture directe du 2026-09-09, cohorte LOT5 fait 4).
+    # Effet attendu : China Airlines hold is a documented conditional route, never a specific-flight confirmation.
+    # Portée nommée : Advance application, suitable container, flight cargo-compartment capacity and destination restrictions apply; certain aircraft are excluded.
+    source:
+      url: "https://www.china-airlines.com/tw/en/prepare-for-the-fly/information/baggage/pet-transport"
+      source_type: official_website
+      verified_date: "2026-09-09"
+      review_due: "2026-12-08"   # reviewDueFrom(verified_date, "airline") — calculé par l'importeur
+      confidence: 4
+      reviewer: "Codex — direct reading of official airline page"
+      history: []
+      quote: "Pets must be placed in appropriate containers and transported in the cargo hold as checked baggage."
+      quote_language: en
+      locator: "Pets → Transporting pets as checked baggage (AVIH)"
   cargo:
     review_state: legacy_unreviewed
 channels:

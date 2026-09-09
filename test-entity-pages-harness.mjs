@@ -790,8 +790,9 @@ console.log(`\n=== 5. Les ${CIBLE.length} canaux contradictoires × 4 langues : 
    * disait déjà « non », la citation le prouve. Toujours 101 fiches. */
   /* 285 → 282 (09/09/2026, lot 4) : Emirates, Qantas et Aer Lingus cabines — l'éditorial disait
    * déjà « non », la citation le prouve. Toujours 101 fiches. */
-  check("282 canaux contradictoires sur 101 fiches, relus des fiches et du contrat runtime",
-    CONTRADICTOIRES.length === 282 && new Set(CONTRADICTOIRES.map((c) => c.slug)).size === 101,
+  /* 282 → 279 (09/09/2026, lot 5) : Malaysia, China Eastern et Air Mauritius cabines — même cause. */
+  check("279 canaux contradictoires sur 101 fiches, relus des fiches et du contrat runtime",
+    CONTRADICTOIRES.length === 279 && new Set(CONTRADICTOIRES.map((c) => c.slug)).size === 101,
     `${CONTRADICTOIRES.length} canaux · ${new Set(CONTRADICTOIRES.map((c) => c.slug)).size} fiches`);
 
   /* LA LECTURE SE FAIT PAR LOTS, DANS DES PROCESSUS COURTS (CI du 16/08/2026, run 31 sur main).

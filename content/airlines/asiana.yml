@@ -74,8 +74,39 @@ ladder:
 policies:
   cabin:
     availability: offered
+    # PREUVE IMPORTÉE — import strict lot5 (Codex, lecture directe du 2026-09-09, cohorte LOT5 fait 11).
+    # Effet attendu : Asiana cabin is a documented conditional route. The 7 kg combined ceiling must not be treated as a global acceptance guarantee.
+    # Portée nommée : Dogs, cats and pet birds only; pet plus cage must not exceed 7 kg, with reservation and confirmation before travel.
+    # Le plafond cité inclut le CONTENANT : refus sûr si le chien seul le dépasse, jamais un oui en dessous.
+    max_weight_kg: 7
+    weight_includes_carrier: true
+    source:
+      url: "https://m.flyasiana.com/C/TW/EN/contents/traveling-with-pets"
+      source_type: official_website
+      verified_date: "2026-09-09"
+      review_due: "2026-12-08"   # reviewDueFrom(verified_date, "airline") — calculé par l'importeur
+      confidence: 4
+      reviewer: "Codex — direct reading of official airline page"
+      history: []
+      quote: "The combined weight of the pet and its cage must not exceed 7kg"
+      quote_language: en
+      locator: "Traveling with Pets → Eligible Pets for the Cabin"
   hold:
     availability: offered
+    # PREUVE IMPORTÉE — import strict lot5 (Codex, lecture directe du 2026-09-09, cohorte LOT5 fait 12).
+    # Effet attendu : Asiana hold is a documented conditional route, not a specific-flight confirmation.
+    # Portée nommée : Dogs, cats and pet birds only; prior reservation and confirmation are required, and codeshare/route restrictions apply.
+    source:
+      url: "https://m.flyasiana.com/C/TW/EN/contents/traveling-with-pets"
+      source_type: official_website
+      verified_date: "2026-09-09"
+      review_due: "2026-12-08"   # reviewDueFrom(verified_date, "airline") — calculé par l'importeur
+      confidence: 4
+      reviewer: "Codex — direct reading of official airline page"
+      history: []
+      quote: "Each adult passenger may bring 1 pet into the cabin and 2 pets as checked baggage."
+      quote_language: en
+      locator: "Traveling with Pets → Eligible Pets for Transport"
   cargo:
     review_state: legacy_unreviewed
     # dette éditoriale scellée (T0-B2) : aucun canal visible ne décrit ce placement

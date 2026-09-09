@@ -74,8 +74,42 @@ ladder:
 policies:
   cabin:
     availability: offered
+    # PREUVE IMPORTÉE — import strict lot5 (Codex, lecture directe du 2026-09-09, cohorte LOT5 fait 2).
+    # Effet attendu : Korean Air cabin is a documented conditional route. Keep the 7 kg combined ceiling visible with the source rather than inferring an unconditional result.
+    # Portée nommée : Dogs, cats and pet birds only; the pet plus carrier must weigh no more than 7 kg, with advance reservation and approval. The current Finder does not yet expose the 7 kg threshold as a typed global rule.
+    # Le plafond cité inclut le CONTENANT : refus sûr si le chien seul le dépasse, jamais un oui en dessous.
+    max_weight_kg: 7
+    weight_includes_carrier: true
+    source:
+      url: "https://www.koreanair.com/contents/plan-your-travel/special-assistance/travel-with-pets/guide?hl=en"
+      source_type: official_website
+      verified_date: "2026-09-09"
+      review_due: "2026-12-08"   # reviewDueFrom(verified_date, "airline") — calculé par l'importeur
+      confidence: 4
+      reviewer: "Codex — direct reading of official airline page"
+      history: []
+      quote: "반려동물과 운송용기 합한 총 무게가 7kg 이하"
+      quote_language: ko
+      locator: "Traveling with Pets → Transport restrictions → cabin pet conditions"
   hold:
     availability: offered
+    # PREUVE IMPORTÉE — import strict lot5 (Codex, lecture directe du 2026-09-09, cohorte LOT5 fait 3).
+    # Effet attendu : Korean Air hold is a documented conditional route, not an acceptance guarantee.
+    # Portée nommée : Dogs, cats and pet birds only; pet plus carrier up to 45 kg, with advance reservation and approval. Aircraft, route and country restrictions apply.
+    # Le plafond cité inclut le CONTENANT : refus sûr si le chien seul le dépasse, jamais un oui en dessous.
+    max_weight_kg: 45
+    weight_includes_carrier: true
+    source:
+      url: "https://www.koreanair.com/contents/plan-your-travel/special-assistance/travel-with-pets/guide?hl=en"
+      source_type: official_website
+      verified_date: "2026-09-09"
+      review_due: "2026-12-08"   # reviewDueFrom(verified_date, "airline") — calculé par l'importeur
+      confidence: 4
+      reviewer: "Codex — direct reading of official airline page"
+      history: []
+      quote: "반려동물과 운송용기 합한 총 무게가 45kg 이하"
+      quote_language: ko
+      locator: "Traveling with Pets → Transport restrictions → checked-pet conditions"
   cargo:
     review_state: legacy_unreviewed
 channels:

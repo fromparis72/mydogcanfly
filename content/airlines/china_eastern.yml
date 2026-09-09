@@ -70,8 +70,36 @@ ladder:
 policies:
   cabin:
     availability: not_offered
+    # PREUVE IMPORTÉE — import strict lot5 (Codex, lecture directe du 2026-09-09, cohorte LOT5 fait 13).
+    # Effet attendu : Do not offer China Eastern passenger cabin to an ordinary pet dog.
+    # Portée nommée : Ordinary small animals under China Eastern's published small-animal service; service animals are not the subject of this decision.
+    source:
+      url: "https://global.ceair.com/global/en_static/Announcement/TravelTips/SpecialPassengerServiceNotice/LittleAnimal/"
+      source_type: official_website
+      verified_date: "2026-09-09"
+      review_due: "2026-12-08"   # reviewDueFrom(verified_date, "airline") — calculé par l'importeur
+      confidence: 4
+      reviewer: "Codex — direct reading of official airline page"
+      history: []
+      quote: "Passengers are not allowed to carry small animals into the passenger cabin: They must be transported in the cargo cabin."
+      quote_language: en
+      locator: "China Eastern Small Animals → Transport rules"
   hold:
     availability: offered
+    # PREUVE IMPORTÉE — import strict lot5 (Codex, lecture directe du 2026-09-09, cohorte LOT5 fait 14).
+    # Effet attendu : China Eastern hold is a documented conditional route, not a final carriage approval.
+    # Portée nommée : Suitable carrier, aircraft cargo-compartment suitability, route, temperature, breed and animal-health requirements apply; refusal conditions are enumerated by the carrier.
+    source:
+      url: "https://global.ceair.com/global/en_static/Announcement/TravelTips/SpecialPassengerServiceNotice/LittleAnimal/"
+      source_type: official_website
+      verified_date: "2026-09-09"
+      review_due: "2026-12-08"   # reviewDueFrom(verified_date, "airline") — calculé par l'importeur
+      confidence: 4
+      reviewer: "Codex — direct reading of official airline page"
+      history: []
+      quote: "Passengers are not allowed to carry small animals into the passenger cabin: They must be transported in the cargo cabin."
+      quote_language: en
+      locator: "China Eastern Small Animals → Transport rules"
   cargo:
     review_state: legacy_unreviewed
 channels:

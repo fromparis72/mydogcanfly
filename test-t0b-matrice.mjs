@@ -92,6 +92,13 @@ const REACTIVEES_SUR_CITATION = new Set([
      discipline : admises par identité, preuve exigée. */
   "airline_emirates|cargo",
   "airline_alaska|cargo",
+  /* Lot 5 (09/09/2026) : Virgin Australia fret (« …take good care of your animal in the cargo
+     hold. »), Philippine fret (« …via Cargo ONLY… AVIH »), Air Mauritius fret (« …contact our Air
+     Mauritius Cargo Office… »), Garuda fret (« Garuda Indonesia Cargo service is ready… »). */
+  "airline_virgin_australia|cargo",
+  "airline_philippine|cargo",
+  "airline_air_mauritius|cargo",
+  "airline_garuda_indonesia|cargo",
 ]);
 /* POLICY_STALE RÉACTIVÉS SUR CITATION (09/09/2026, lot 4). Deux des dix anciens POLICY_STALE
  * versés en `legacy_unreviewed` — Qantas soute et Qantas fret — ont reçu une phrase des Conditions

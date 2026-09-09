@@ -2699,3 +2699,109 @@ POLICY_STALE réactivés), V3 (Brussels cabine sort de la liste d'attente).
 3. Mon premier contrôle « Aer Lingus soute sans source » lisait `objects.json`, où l'ingestion
    DÉRIVE une source depuis la fiche (site de la compagnie, « derived from fiche ») ; la fiche,
    elle, n'a aucun bloc `source:`. Le contrôle lit désormais la fiche.
+
+## Annexe 27 — Import strict, lot 5 : 19 faits, 18 importés, Virgin Australia cabine refusée par contrat (09/09/2026)
+
+### Le lot
+
+Cinquième paquet de Codex (`mesures/preuves/import-strict-lot-5-2026-09-09/`), lecture directe du
+09/09/2026 : 10 compagnies, 19 faits, 11 non-décisions. Importé par le même importeur
+(`--lot=lot5`), empilé sur le lot 4 dans la même PR, chaîne de baselines continue.
+
+| | |
+|---|---|
+| importés | 18 (Korean Air ×2, China Airlines soute, Philippine ×2, Vietnam ×2, Malaysia ×2, Asiana ×2, China Eastern ×2, Air Mauritius ×3, Garuda fret, Virgin Australia fret) |
+| réactivés sur citation | 4, tous en fret : Virgin Australia, Philippine, Air Mauritius, Garuda |
+| refusé | **Virgin Australia cabine** : la fiche dit `case_by_case` (arbitrage du 28/08, option A-bis) et porte déjà la citation relue par Philippe le 28/08 (« …combined weight (pet + carrier) of no more than 8kg ») ; l'importeur ne change jamais une disponibilité, et la phrase de Codex n'est pas écrite. La ligne reste « à confirmer » (`airline_approval`) — c'est ce que Codex demande (« Virgin cabine hors de son essai restée conditionnelle »). Aucun arbitrage nouveau nécessaire. |
+| citations en coréen | Korean Air cabine et soute, conservées à l'octet près, `quote_language: ko` |
+
+### Déviation argumentée, nommée pour Codex : trois plafonds écrits
+
+La règle 5 de Codex : « les plafonds de 7, 8 et 10 kg ne doivent devenir un refus moteur que si le
+modèle porte toute leur portée géographique et leur poids combiné ». Le modèle porte le poids
+combiné depuis le lot 1. Sur la portée : Korean Air 7 (cabine) et 45 (soute), Asiana 7 (cabine)
+sont des conditions générales, sans restriction de route dans la phrase ni dans la portée nommée
+— **écrits**, et le moteur refuse au-dessus (un carlin de 8 kg est refusé en cabine chez Korean
+Air ; un Bully de 50 kg est refusé en soute). Virgin Australia 8 (essai sur certains vols
+intérieurs) et Philippine 10 (FurPAL, vols intérieurs) ont une portée de route que le modèle ne
+porte pas — **non écrits**. Si Codex lit sa règle autrement, retirer trois lignes de la table
+`SEUILS` suffit.
+
+### Mesuré après import
+
+| | avant (lot 4) | après (lot 5) |
+|---|---|---|
+| politiques citées (décisives) | 74 (72) | 92 (90) |
+| `allowed` / sous conditions / refusées / à confirmer | 0 / 58 / 14 / 230 | 0 / 73 / 17 / 212 |
+| causes legacy / page officielle sans phrase | 212 / 16 | 194 / 16 |
+| registre A / B / C / D | 74 / 90 / 139 / 3 | 92 / 84 / 127 / 3 |
+| limites cabine citées | 18 | 20 |
+| témoin hérité | 19 098 | 21 348 |
+| canaux contradictoires | 282 | 279 |
+| baseline | figée lot 4 | figée `import-strict-lot-5-apres` : 80 cartes / 1 560, 6 compagnies, 40 → sous conditions, 56 → refusé, aucun verdict déplacé |
+
+### Trouvé par la mesure, nommé comme dette
+
+**Philippine cabine** : citée (FurPAL, « available on all PAL DOMESTIC flights »), mais une règle
+héritée non citée, `rule_philippine_cabin_deny`, la ferme — même sur Manille → Cebu. Le moteur
+garde « à confirmer » et nomme la règle ; la citation n'efface pas une règle qu'elle contredit.
+Les règles compagnies sont hors du périmètre des lots d'import : cette règle est à relire, sur
+décision, dans un mouvement séparé.
+
+### Mouvements nommés
+
+frontière (90 décisives, 0/73/17/212, 194/16, 92 nominativement), legacy (194, chaîne → lot 5),
+baseline (chaîne, répartition, preuve permanente lot 5), carries (21 348), quatrième état (73),
+registre (92/84/127/3, canaux 43/16/43 · 36/48/18 · 13/20/66, pistes 24/60/33, paires 92/24/127,
+écarts 59, niveaux 92/24/186), caisses (20 limites), entités (279), matrice (quatre réactivations
+fret). Nouveau harnais `test-preuves-lot-5.mjs`.
+
+### Post-scriptum — la 21e limite cabine, erreur nommée (09/09/2026, après import)
+
+**Mesuré.** Le harnais des caisses, rejoué sur le dist du lot 5, a compté **21** limites cabine
+« citées » au lieu des 20 attendues. La 21e était Philippine Airlines — dont le plafond FurPAL de
+10 kg n'avait PAS été écrit (portée intérieure, ci-dessus). Le calculateur le tirait d'ailleurs.
+
+**Provenance, mesurée.** `derivePolicy` (`ingest-airlines.mjs`) déduit le poids cabine de la ligne
+tarifaire de la fiche (« Cabin (FurPAL, ≤ 10 kg, domestic) » → `max_weight_kg: 10`). Tant que la
+cabine Philippine était « à confirmer », cette valeur était invisible ; citée par le lot 5, elle
+devenait « accepté sous conditions », et le calculateur publiait « ≤ 10 kg » — exactement la règle
+mondiale que Codex interdit. Le moteur, lui, ne refusait pas (pas de `weight_includes_carrier`),
+mais l'écran, si. Sur les 35 politiques cabine portant un plafond, deux le tenaient de la grille
+tarifaire sur un canal cité : Philippine (10) et Virgin Australia (8). Les 20 autres limites sont
+écrites depuis leur phrase.
+
+**Corrigé à la racine.** La dérivation tarifaire ne s'applique plus à un canal cabine cité : sur
+un tel canal, un seuil n'existe que s'il est écrit dans `policies:` depuis la phrase citée. Rejoué :
+seuls ces deux `max_weight_kg` disparaissent de `objects.json`, rien d'autre ne bouge.
+
+**Effet de bord, nommé.** Le retrait faisait échouer `test-virgin-australia-cabine.mjs` (arbitrage
+A-bis du 28/08 : la politique cabine doit porter 8 kg). La citation de **Philippe** du 28/08 dit
+« combined weight (pet + carrier) of no more than 8kg » en toutes lettres : le seuil est désormais
+**écrit** dans la fiche depuis cette citation, avec `weight_includes_carrier: true` — pas depuis la
+phrase de Codex (lot 5), qui reste non écrite. Inerte pour le moteur et le calculateur :
+`case_by_case` projette `confirmation_required`, et le refus au seuil n'existe que sur « accepté
+sous conditions ». La règle 5 de Codex est respectée ; la ligne « Virgin 8 non écrit » du tableau
+ci-dessus devient « écrit depuis la citation du 28/08, inerte ». Pour contre-revue.
+
+**Erreur nommée.** Le témoin du harnais lot 5 lisait les FICHES (« plafond non écrit ») — vrai, et
+insuffisant : la fuite vivait dans la donnée projetée. Deux témoins lisent désormais la politique
+projetée (Philippine : sans plafond ; Virgin : 8, `true`, `confirmation_required`, citation du
+28/08). Attrapé par le harnais des caisses, pas en relisant.
+
+### Post-scriptum 2 — CI du lot 4 rouge sur l'étape 3, porteur du `101` re-fondé une deuxième fois (09/09/2026)
+
+**Mesuré.** « Site entier » sur `0e7ed9b` (PR #41) : `test-etape3-dom` § 2, combinaison `101`
+jamais exercée (en, fr, es, pt). Cause identique à l'annexe 24 : le lot 4 a cité la soute d'Austrian,
+la porteuse re-fondée la veille ; cabine + fret ouverts donnent désormais `111`.
+
+**Erreur nommée, récidive.** Ce contrôle vit dans « Site entier », pas dans `test:unit`, et je ne
+l'ai pas rejoué localement avant de pousser le lot 4 — l'annexe 24 nommait déjà exactement cela.
+Cette fois l'étape 3 est rejouée sur le dist local AVANT la poussée du lot 5.
+
+**Re-fondé par mesure.** Sur les 11 compagnies communes aux trois trajets de contrôle, cabine +
+fret ouverts : Finnair, SAS et LOT donnent `101` partout (soute réelle « à confirmer ») ; les huit
+autres `111` (soute citée) ou `001` (BA, cabine refusée). LOT retenue : aucun de ses canaux n'est
+cité, l'ouverture synthétique ne recouvre aucune preuve. Le témoin est re-fondé, pas abaissé ; les
+combinaisons conditionnelles figées (`011`, `110`, `111`) ne bougent pas.
+

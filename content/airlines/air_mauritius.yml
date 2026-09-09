@@ -68,10 +68,52 @@ ladder:
 policies:
   cabin:
     availability: not_offered
+    # PREUVE IMPORTÉE — import strict lot5 (Codex, lecture directe du 2026-09-09, cohorte LOT5 fait 15).
+    # Effet attendu : Do not offer Air Mauritius passenger cabin to an ordinary pet dog.
+    # Portée nommée : Ordinary pets. Assistance-animal rules, if any, are outside this decision.
+    source:
+      url: "https://www.airmauritius.com/en-de/help/faq/travelling-with-pets"
+      source_type: official_website
+      verified_date: "2026-09-09"
+      review_due: "2026-12-08"   # reviewDueFrom(verified_date, "airline") — calculé par l'importeur
+      confidence: 4
+      reviewer: "Codex — direct reading of official airline page"
+      history: []
+      quote: "Kindly be advised that Air Mauritius adheres to a no-pets policy for in-cabin transportation."
+      quote_language: en
+      locator: "FAQ Travelling with pets → Can I travel with my pet onboard the cabin?"
   hold:
     availability: offered
+    # PREUVE IMPORTÉE — import strict lot5 (Codex, lecture directe du 2026-09-09, cohorte LOT5 fait 16).
+    # Effet attendu : Air Mauritius hold is a documented conditional route, not an acceptance guarantee for every aircraft or destination.
+    # Portée nommée : Most aircraft only; advance reservation, documentation, local regulations, breed conditions and operating-aircraft limits apply.
+    source:
+      url: "https://www.airmauritius.com/en-au/before-you-fly/travel-information/assistance-and-health/travelling-with-pets"
+      source_type: official_website
+      verified_date: "2026-09-09"
+      review_due: "2026-12-08"   # reviewDueFrom(verified_date, "airline") — calculé par l'importeur
+      confidence: 4
+      reviewer: "Codex — direct reading of official airline page"
+      history: []
+      quote: "Even though your pet can't fly in the cabin with you, it can still travel safely and comfortably on the same flight as you, in the hold of most of our aircraft."
+      quote_language: en
+      locator: "Travelling with Pets → opening policy statement"
   cargo:
-    review_state: legacy_unreviewed
+    availability: offered   # RÉACTIVÉE sur citation (import strict, lot5, 2026-09-09) — était review_state: legacy_unreviewed
+    # PREUVE IMPORTÉE — import strict lot5 (Codex, lecture directe du 2026-09-09, cohorte LOT5 fait 17).
+    # Effet attendu : Air Mauritius cargo is a documented conditional path, never a shipment confirmation.
+    # Portée nommée : Solo pet travel through Air Mauritius Cargo or a freight forwarder; cage, documents, IATA requirements and cargo booking rules apply.
+    source:
+      url: "https://www.airmauritius.com/en-au/before-you-fly/travel-information/assistance-and-health/travelling-with-pets"
+      source_type: official_website
+      verified_date: "2026-09-09"
+      review_due: "2026-12-08"   # reviewDueFrom(verified_date, "airline") — calculé par l'importeur
+      confidence: 4
+      reviewer: "Codex — direct reading of official airline page"
+      history: []
+      quote: "Please contact our Air Mauritius Cargo Office or liaise with your freight forwarder, who will provide you with valuable guidelines on how to prepare your pets for travel, assist with the relevant formalities, and book space with Air Mauritius."
+      quote_language: en
+      locator: "Travelling with Pets → Pets travelling as cargo"
 channels:
   - placement: cabin
     icon: 🐾

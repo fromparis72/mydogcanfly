@@ -85,7 +85,21 @@ policies:
   hold:
     review_state: legacy_unreviewed
   cargo:
-    review_state: legacy_unreviewed
+    availability: offered   # RÉACTIVÉE sur citation (import strict, lot5, 2026-09-09) — était review_state: legacy_unreviewed
+    # PREUVE IMPORTÉE — import strict lot5 (Codex, lecture directe du 2026-09-09, cohorte LOT5 fait 18).
+    # Effet attendu : Garuda cargo is a documented conditional path only. Cabin and passenger-hold decisions remain intentionally undecided.
+    # Portée nommée : Garuda Indonesia Cargo live-animal shipment; animal eligibility, quarantine, documentation, packaging and insurance requirements apply.
+    source:
+      url: "https://cargo.garuda-indonesia.com/Live-Animals"
+      source_type: official_website
+      verified_date: "2026-09-09"
+      review_due: "2026-12-08"   # reviewDueFrom(verified_date, "airline") — calculé par l'importeur
+      confidence: 4
+      reviewer: "Codex — direct reading of official airline page"
+      history: []
+      quote: "Garuda Indonesia Cargo service is ready to make your pets or live animals comfortable on the plane until they arrive at their destination."
+      quote_language: en
+      locator: "CargoWeb → Live Animals"
 channels:
   - placement: cabin
     icon: 🐾

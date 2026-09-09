@@ -301,8 +301,9 @@ console.log("=== 7. T0-B2 : la migration est FAITE, et la forme héritée est in
      dérivée (`source_derived`) portent maintenant une phrase citée et décident. */
   /* MOUVEMENT NOMMÉ (08/09/2026, import strict lots 2 et 3 — 24 citations de plus, 52 en tout) : 251 → 230 ; trois lignes non revérifiées d'origine ont été réactivées sur citation. */
   /* MOUVEMENT NOMMÉ (09/09/2026, import strict lot 4 — 22 citations de plus, 74 en tout) : 230 → 212 ; quatre lignes non revérifiées réactivées sur citation (Emirates fret, Qantas soute et fret, Alaska fret). */
-  check("212 politiques émettent legacy_unreviewed (77 d'origine + 135 sans page à montrer)",
-    porteuses === 212, String(porteuses));
+  /* MOUVEMENT NOMMÉ (09/09/2026, import strict lot 5 — 18 citations de plus, 92 en tout) : 212 → 194 ; quatre lignes non revérifiées réactivées sur citation (Virgin Australia, Philippine, Air Mauritius, Garuda fret). */
+  check("194 politiques émettent legacy_unreviewed (73 d'origine + 121 sans page à montrer)",
+    porteuses === 194, String(porteuses));
   /* 05/09/2026 — 33 → 32. British Airways cabine quitte ce groupe : sa page officielle porte
      désormais la phrase, et la politique devient le premier `denied` prouvé du dépôt. Chaque
      citation suivante fera baisser ce compte, et devra le nommer comme celle-ci. */
@@ -555,8 +556,8 @@ console.log("=== 8. Baseline FIGÉE : le point de comparaison de T0-B2 est scell
      ternaire → import V3 → lots 2 et 3, chaque « avant » égal à l'« après » précédent, vérifié
      dans test-t0a-baseline.mjs). */
   /* 09/09/2026 — la plus récente est celle du lot 4 (chaîne : … → lots 2 et 3 → lot 4). */
-  check("Import strict lot 4 : la baseline vivante est identique à la figée la plus récente",
-    vivante.equals(readFileSync("test-baselines/import-strict-lot-4-apres.json")));
+  check("Import strict lot 5 : la baseline vivante est identique à la figée la plus récente",
+    vivante.equals(readFileSync("test-baselines/import-strict-lot-5-apres.json")));
   check("Arbitrages d'interface : sa figée reste intacte à côté (elle n'a pas été écrasée)",
     !readFileSync("test-baselines/arbitrages-interface-apres.json")
       .equals(readFileSync("test-baselines/entree-ternaire-apres.json")));

@@ -347,8 +347,21 @@ function derivePolicy(fiche) {
     Object.defineProperty(p[mode], "__ecrits", { value: new Set(Object.keys(discriminant)), enumerable: false });
   }
   /* Poids maximal en cabine : le seul maximum non ambigu que la fiche exprime. Le rattachement
-     passe désormais par le placement du canal, plus par le libellé de la ligne tarifaire. */
-  if (p.cabin) {
+     passe désormais par le placement du canal, plus par le libellé de la ligne tarifaire.
+     ERREUR NOMMÉE (09/09/2026, import strict lot 5) : cette dérivation s'appliquait AUSSI à un
+     canal cabine porteur d'une CITATION. Philippine Airlines, cabine citée sans seuil écrit
+     (le plafond FurPAL de 10 kg est intérieur, donc non écrit par contrat), recevait quand même
+     `max_weight_kg: 10` depuis sa ligne tarifaire « Cabin (FurPAL, ≤ 10 kg, domestic) » — et le
+     calculateur de caisses publiait « ≤ 10 kg » comme limite citée (21 limites au lieu de 20,
+     attrapé par le harnais, pas en relisant). Sur un canal cité, un seuil n'existe que s'il est
+     ÉCRIT dans `policies:` depuis la phrase citée (table SEUILS de l'importeur) : la grille
+     tarifaire n'est pas une preuve. Virgin Australia (cabine `case_by_case` citée, « ≤ 8 kg »
+     tarifaire) tombe sous la même règle. */
+  const sourceCabine = p.cabin?.__source_auditee;
+  const cabineCitee = !!(sourceCabine && typeof sourceCabine.quote === "string" && sourceCabine.quote.length >= 10
+    && typeof sourceCabine.locator === "string" && sourceCabine.locator.length > 0
+    && typeof sourceCabine.quote_language === "string" && sourceCabine.quote_language.length > 0);
+  if (p.cabin && !cabineCitee) {
     for (const r of (fiche.fareList?.rows || [])) {
       if (!/cabin|cabine/i.test(r.label?.en || "")) continue;
       const kg = kgOf(r.label?.en) ?? kgOf(r.value?.en);
