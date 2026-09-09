@@ -53,6 +53,10 @@ const LOTS = {
   lot3: { dossier: "mesures/preuves/import-strict-lot-3-2026-09-08", total: 12,
     fichiers: { LOT3: "tous" },
     nom: () => "PREUVES_POLITIQUES_COMPAGNIES_LOT_3_STRICT_2026-09-08.json" },
+  /** Le quatrième paquet (09/09) : un seul fichier, ses 23 faits tous autorisés, 7 non-décisions. */
+  lot4: { dossier: "mesures/preuves/import-strict-lot-4-2026-09-09", total: 23,
+    fichiers: { LOT4: "tous" },
+    nom: () => "PREUVES_POLITIQUES_COMPAGNIES_LOT_4_STRICT_2026-09-09.json" },
 };
 if (!LOTS[LOT]) throw new Error(`lot inconnu : ${LOT}`);
 const DOSSIER = resolve(arg("dossier", LOTS[LOT].dossier));
@@ -80,6 +84,12 @@ const SEUILS = {
      figure dans la phrase du FRET (fait 2), pas dans celle de la soute (fait 1). */
   "airline_air_india.cabin": 10, "airline_avianca.cabin": 10, "airline_avianca.hold": 70,
   "airline_ethiopian.cabin": 8, "airline_ethiopian.hold": 45, "airline_etihad.cabin": 8,
+  /* Lot 4 — trois plafonds cabine, tous contenant compris, en toutes lettres : Austrian (« The total
+     weight of the animal and the carrying container must not exceed 8 kg »), SWISS (« up to 8 kg
+     (weight including travel carrier) »), Brussels (« The total weight of the transport container,
+     including the animal, must not exceed 8 kg »). ITA cabine n'est PAS écrit : 12 kg sur certains
+     vols intérieurs italiens, 8 ailleurs — Codex refuse un seuil mondial, et nous aussi. */
+  "airline_austrian.cabin": 8, "airline_swiss.cabin": 8, "airline_brussels.cabin": 8,
 };
 /** Seuils du CHIEN SEUL (le contenant s'ajoute) : `weight_includes_carrier: false`, écrit. */
 const SEUIL_CHIEN_SEUL = new Set(["airline_air_europa.cabin"]);

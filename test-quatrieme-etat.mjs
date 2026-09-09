@@ -99,7 +99,8 @@ console.log("\n=== 2. KB réelle : aucune politique n'émet `allowed` ; rien ne 
      soute, Finnair cabine, Iberia ×2, KLM ×2, Lufthansa ×2, Qatar soute, SAS cabine, TAP ×2,
      Transavia ×2, Turkish ×2) sont au quatrième état. Toujours 0 `allowed`. */
   /* MOUVEMENT NOMMÉ (08/09/2026, import strict lots 2 et 3 — 24 citations de plus, 52 en tout) : 18 → 39. */
-  check(`politiques réelles en accepted_with_conditions : 39 depuis les lots 2 et 3 — mesuré : ${cond}`, cond === 39);
+  /* MOUVEMENT NOMMÉ (09/09/2026, import strict lot 4 — 22 citations de plus, 74 en tout) : 39 → 58. */
+  check(`politiques réelles en accepted_with_conditions : 58 depuis le lot 4 — mesuré : ${cond}`, cond === 58);
   const af = REQ(GOLDEN_32, kb);
   const cab = stOf(af, "airline_air_france", "cabin");
   check("Air France cabine, KB réelle (non citée) : reste « à confirmer », pas un refus au seuil sans preuve",

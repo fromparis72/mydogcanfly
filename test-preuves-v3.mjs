@@ -162,7 +162,11 @@ console.log("\n=== Ce que l'import n'a PAS fait ===");
   let allowed = 0;
   for (const a of kb.airlines.values()) for (const p of Object.values(a.premium?.policy ?? {})) if (p.status === "allowed") allowed++;
   check("aucune politique réelle n'est `allowed` — « sous conditions » n'est jamais devenu une acceptation catégorique", allowed === 0, String(allowed));
-  const attente = [["airline_finnair", "hold"], ["airline_finnair", "cargo"], ["airline_sas", "hold"], ["airline_brussels", "cabin"], ["airline_american", "hold"], ["airline_singapore_airlines", "hold"], ["airline_vueling", "cabin"]];
+  /* MOUVEMENT NOMMÉ (09/09/2026, lot 4) : Brussels cabine SORT de la liste d'attente — citée au lot 4
+     (« The total weight of the transport container, including the animal, must not exceed 8 kg. »).
+     American soute y RESTE : Codex l'a volontairement laissée non décidée au lot 4 (réservée aux
+     militaires et diplomates en mission). */
+  const attente = [["airline_finnair", "hold"], ["airline_finnair", "cargo"], ["airline_sas", "hold"], ["airline_american", "hold"], ["airline_singapore_airlines", "hold"], ["airline_vueling", "cabin"]];
   check("les faits EN ATTENTE du LISEZ_MOI (B partielle, D, E, F cabine) ne sont pas importés : aucune citation sur ces canaux",
     attente.every(([id, pl]) => !(objets.airlines.find((a) => a.id === id)?.premium?.policy?.[pl]?.source?.quote)), JSON.stringify(attente.filter(([id, pl]) => objets.airlines.find((a) => a.id === id)?.premium?.policy?.[pl]?.source?.quote)));
 }

@@ -304,8 +304,9 @@ console.log("\n=== 5. Dominance : denied > confirmation_required — interaction
      elle est désormais testée telle quelle, et le compte reste figé. */
   const inexpliquees = confirmations.filter((p) =>
     !(p.confirmation_causes ?? []).some((c) => c.code === "breed_policy_unreviewed" || c.code === "legacy_unreviewed" || c.code === "official_source_unquoted"));
-  check("carlin : 51 confirmations — 46 de provenance, 38 de race, aucune inexpliquée (chacune porte l'une des deux causes)",
-    confirmations.length === 51 && provenance === 46 && race === 38 && inexpliquees.length === 0,
+  /* MOUVEMENT NOMMÉ (09/09/2026, import strict lot 4 — 22 citations de plus, 74 en tout) : 51 → 50 confirmations, 46 → 44 de provenance (deux canaux du trajet cités) ; 38 de race, inchangé. */
+  check("carlin : 50 confirmations — 44 de provenance, 38 de race, aucune inexpliquée (chacune porte l'une des deux causes)",
+    confirmations.length === 50 && provenance === 44 && race === 38 && inexpliquees.length === 0,
     `${confirmations.length} confirmation(s), dont ${race} de race et ${provenance} de provenance, ${inexpliquees.length} inexpliquée(s), sur ${tousLesCanaux.length} canaux`);
 }
 

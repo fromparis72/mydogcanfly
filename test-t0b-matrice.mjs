@@ -87,6 +87,22 @@ const REACTIVEES_SUR_CITATION = new Set([
   "airline_cathay_pacific|cargo",
   "airline_air_india|cargo",
   "airline_ethiopian|cargo",
+  /* Lot 4 (09/09/2026) : Emirates fret (« …pets must be carried either as cargo or as checked
+     baggage in the hold. ») et Alaska fret (« Our Pet Connect@ animal travel program… »). Même
+     discipline : admises par identité, preuve exigée. */
+  "airline_emirates|cargo",
+  "airline_alaska|cargo",
+]);
+/* POLICY_STALE RÉACTIVÉS SUR CITATION (09/09/2026, lot 4). Deux des dix anciens POLICY_STALE
+ * versés en `legacy_unreviewed` — Qantas soute et Qantas fret — ont reçu une phrase des Conditions
+ * of Carriage (§ 8.8), lue directement par Codex. L'importeur a réécrit leur discriminant en
+ * `availability: offered` : ils ne sont donc plus « migrés » (plus de `review_state`), et le
+ * contrôle « versé non migré » rougirait à tort. Admis ici par IDENTITÉ, et la preuve est exigée
+ * exactement comme pour les lignes du manifeste réactivées : `offered` ET une citation complète.
+ * Les huit autres POLICY_STALE restent versés, et le contrôle continue de l'exiger. */
+const STALE_REACTIVES_SUR_CITATION = new Set([
+  "airline_qantas|cargo",
+  "airline_qantas|hold",
 ]);
 const citee = (p) => typeof p?.source?.quote === "string" && p.source.quote.length >= 10
   && typeof p.source.quote_language === "string" && p.source.quote_language.length > 0
@@ -162,7 +178,15 @@ for (const k of migrees) {
   if (ids.includes(k) || STALE_VERSES.has(k) || DECISIONS_POST_MIGRATION.has(k)) continue;
   err(`politique migrée hors manifeste et hors dette scellée: ${k}`);
 }
-for (const k of STALE_VERSES) if (!migrees.has(k)) err(`POLICY_STALE versé non migré: ${k}`);
+for (const k of STALE_VERSES) {
+  if (STALE_REACTIVES_SUR_CITATION.has(k)) {
+    const [id, ch] = k.split("|");
+    const p = objects.airlines.find((a) => a.id === id)?.premium?.policy?.[ch];
+    if (!(p?.availability === "offered" && citee(p))) err(`POLICY_STALE réactivé SANS preuve complète: ${k}`);
+    continue;
+  }
+  if (!migrees.has(k)) err(`POLICY_STALE versé non migré: ${k}`);
+}
 for (const r of rows) {
   const k = `${r.identity.airline_id}|${r.identity.placement}`;
   const a = objects.airlines.find((x) => x.id === r.identity.airline_id);

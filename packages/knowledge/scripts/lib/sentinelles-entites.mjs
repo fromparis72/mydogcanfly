@@ -39,7 +39,12 @@ export const SENTINELLES_COMPAGNIES = [
   /* RE-FONDÉE UNE SECONDE FOIS (08/09/2026, lots 2 et 3) : Air Canada cabine est citée à son tour.
      WestJet cabine tient le rôle — `offered`, page officielle sans phrase citée, aucun canal
      prouvé sur la fiche. */
-  { slug: "westjet", id: "airline_westjet", placement: "cabin", statut: "confirmation_required", role: "politique d'auteur, non prouvée" },
+  /* RE-FONDÉE UNE TROISIÈME FOIS (09/09/2026, lot 4) : WestJet cabine est citée à son tour (« WestJet
+     accepts small pets in the cabin… »). Mesuré sur les 102 fiches : United cabine est la SEULE
+     politique d'auteur `offered` restante dont la page officielle n'a aucune phrase citée et dont
+     la fiche n'a aucun canal prouvé. Le prochain lot qui la citera devra re-fonder ce rôle sur une
+     autre forme, ou constater qu'elle n'existe plus — et le dire. */
+  { slug: "united", id: "airline_united", placement: "cabin", statut: "confirmation_required", role: "politique d'auteur, non prouvée" },
   { slug: "thai-airways", id: "airline_thai_airways", placement: "cabin", statut: "confirmation_required", role: "non offerte, non prouvée" },
   { slug: "british-airways", id: "airline_british_airways", placement: "cabin", statut: "denied", role: "refus PROUVÉ · citation stricte" },
 ];

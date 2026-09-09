@@ -33,26 +33,31 @@ const check = (label, cond, detail = "") => {
  * sens comme dans l'autre. */
 const SENTINELLES = {
   compagnies: 102, lignes: 306, politiques: 302,
-  par_categorie: { A: 52, A_incomplete: 0, B: 102, C: 149, D: 3 },
+  /* MOUVEMENT NOMMÉ (09/09/2026, import strict lot 4 — 22 citations de plus, 74 en tout) : A 52 → 74 ; B 102 → 90 ; C 149 → 139 ; D inchangé. */
+  par_categorie: { A: 74, A_incomplete: 0, B: 90, C: 139, D: 3 },
   par_canal: {
     /* MOUVEMENT NOMMÉ (08/09/2026, import strict V3 — 25 citations importées) : A 3 → 28 ; B 125 → 108 ; C 175 → 167 ; D inchangé. */
     /* MOUVEMENT NOMMÉ (08/09/2026, import strict lots 2 et 3 — 24 citations de plus, 52 en tout) : A 28 → 52 ; B 108 → 102 ; C 167 → 149. */
-    cabin: { A: 26, A_incomplete: 0, B: 24, C: 52, D: 0 },
-    hold: { A: 21, A_incomplete: 0, B: 56, C: 25, D: 0 },
-    cargo: { A: 5, A_incomplete: 0, B: 22, C: 72, D: 3 },
+    /* MOUVEMENT NOMMÉ (09/09/2026, import strict lot 4) : cabine 26/24/52 → 36/19/47 ; soute 21/56/25 → 29/51/22 ; fret 5/22/72 → 9/20/70. */
+    cabin: { A: 36, A_incomplete: 0, B: 19, C: 47, D: 0 },
+    hold: { A: 29, A_incomplete: 0, B: 51, C: 22, D: 0 },
+    cargo: { A: 9, A_incomplete: 0, B: 20, C: 70, D: 3 },
   },
   /* 42 B par la politique = les 45 politiques non fabriquées moins les 3 citées ; 83 B par une
      règle = 82 politiques fabriquées + Air Tahiti Nui soute (sans politique) ; 41 de ces 83 ne
      tiennent qu'à la table gov.uk des routes agréées, pas à une page de la compagnie. */
   /* MOUVEMENT NOMMÉ (08/09/2026, import strict V3 — 25 citations importées) : politique 42 → 33, règle 83 → 75, gov.uk seul 41 → 37. */
   /* MOUVEMENT NOMMÉ (08/09/2026, import strict lots 2 et 3 — 24 citations de plus, 52 en tout) : politique 33 → 30, règle 75 → 72. */
-  B_par_piste: { politique: 30, regle: 72 }, B_par_regle_gov_uk_seul: 37,
+  /* MOUVEMENT NOMMÉ (09/09/2026, import strict lot 4 — 22 citations de plus, 74 en tout) : politique 30 → 24, règle 72 → 66, gov.uk seul 37 → 35. */
+  B_par_piste: { politique: 24, regle: 66 }, B_par_regle_gov_uk_seul: 35,
   regles_sans_canal: ["rule_transavia_gb_no_pets"],
 };
 /* MOUVEMENT NOMMÉ (08/09/2026, import strict V3 — 25 citations importées) : 3 → 28 A, nominativement. */
 const A_ATTENDUS = [
+  /* MOUVEMENT NOMMÉ (09/09/2026, import strict lot 4 — 22 citations de plus, 74 en tout) : 52 → 74, nominativement, dans l'ordre de l'inventaire (cabine, soute, fret). */
   "airline_aegean#cabin",
   "airline_aegean#hold",
+  "airline_aer_lingus#cabin",
   "airline_air_canada#cabin",
   "airline_air_canada#hold",
   "airline_air_europa#cabin",
@@ -63,16 +68,28 @@ const A_ATTENDUS = [
   "airline_air_india#cargo",
   "airline_air_transat#cabin",
   "airline_air_transat#hold",
+  "airline_alaska#cabin",
+  "airline_alaska#hold",
+  "airline_alaska#cargo",
+  "airline_american#cabin",
+  "airline_american#cargo",
   "airline_ana#cabin",
   "airline_ana#hold",
+  "airline_austrian#cabin",
+  "airline_austrian#hold",
   "airline_avianca#cabin",
   "airline_avianca#hold",
   "airline_british_airways#cabin",
+  "airline_brussels#cabin",
+  "airline_brussels#hold",
   "airline_cathay_pacific#cabin",
   "airline_cathay_pacific#cargo",
   "airline_delta#cabin",
   "airline_easyjet#cabin",
   "airline_easyjet#hold",
+  "airline_emirates#cabin",
+  "airline_emirates#hold",
+  "airline_emirates#cargo",
   "airline_ethiopian#cabin",
   "airline_ethiopian#hold",
   "airline_ethiopian#cargo",
@@ -82,18 +99,25 @@ const A_ATTENDUS = [
   "airline_finnair#cabin",
   "airline_iberia#cabin",
   "airline_iberia#hold",
+  "airline_ita_airways#cabin",
+  "airline_ita_airways#hold",
   "airline_jal#hold",
   "airline_jetblue#cabin",
   "airline_klm#cabin",
   "airline_klm#hold",
   "airline_lufthansa#cabin",
   "airline_lufthansa#hold",
+  "airline_qantas#cabin",
+  "airline_qantas#hold",
+  "airline_qantas#cargo",
   "airline_qatar_airways#cabin",
   "airline_qatar_airways#hold",
   "airline_ryanair#cabin",
   "airline_ryanair#hold",
   "airline_ryanair#cargo",
   "airline_sas#cabin",
+  "airline_swiss#cabin",
+  "airline_swiss#hold",
   "airline_tap#cabin",
   "airline_tap#hold",
   "airline_thai_airways#cargo",
@@ -103,6 +127,8 @@ const A_ATTENDUS = [
   "airline_turkish#hold",
   "airline_virgin_australia#cabin",
   "airline_vueling#hold",
+  "airline_westjet#cabin",
+  "airline_westjet#hold",
 ];
 const D_ATTENDUS = ["airline_la_compagnie#cargo", "airline_smartwings#cargo", "airline_transavia#cargo"];
 /* Cinq B par la politique, pris parmi les 42 : deux décidées `offered`, deux `not_offered`,
@@ -156,7 +182,7 @@ console.log("\n=== (c) Témoins nommés ===");
 {
   const A = lignes.filter((l) => l.categorie === "A").map(cle);
   check(`les ${A_ATTENDUS.length} A sont ${A_ATTENDUS.join(", ")}`, A.join() === A_ATTENDUS.join(), A.join(", "));
-  check("les 52 A passent par la POLITIQUE (aucune règle citée n'existe encore)",
+  check("les 74 A passent par la POLITIQUE (aucune règle citée n'existe encore)",
     lignes.filter((l) => l.categorie === "A").every((l) => l.piste === "politique" && l.manques.length === 0));
   const D = lignes.filter((l) => l.categorie === "D").map(cle);
   check(`les 3 D sont ${D_ATTENDUS.join(", ")}`, D.join() === D_ATTENDUS.join(), D.join(", "));
@@ -207,16 +233,17 @@ console.log("\n=== (d) Cohérence avec `niveauDePreuve` ===");
   const paires = resume.coherence_niveau_de_preuve.paires;
   /* MOUVEMENT NOMMÉ (08/09/2026, import strict V3 — 25 citations importées) : 3/42/175 → 28/33/167 ; 82 → 74 B par règle sur politique « aucune ». */
   /* MOUVEMENT NOMMÉ (08/09/2026, import strict lots 2 et 3 — 24 citations de plus, 52 en tout) : 28/33/167 → 52/30/149 ; 74 → 71. */
-  check("sur les 306 lignes, A ↔ citee 52, B(politique) ↔ officielle_non_citee 30, C ↔ aucune 149",
-    paires["A ↔ citee"] === 52 && paires["B ↔ officielle_non_citee"] === 30 && paires["C ↔ aucune"] === 149, JSON.stringify(paires));
-  check("les seuls écarts sont NOMMÉS : 71 B par règle sur politique « aucune », 1 B par règle sans politique, 3 D",
-    resume.coherence_niveau_de_preuve.ecarts.B_par_regle_sur_politique_aucune === 71
+  /* MOUVEMENT NOMMÉ (09/09/2026, import strict lot 4 — 22 citations de plus, 74 en tout) : 52/30/149 → 74/24/139 ; 71 → 65. */
+  check("sur les 306 lignes, A ↔ citee 74, B(politique) ↔ officielle_non_citee 24, C ↔ aucune 139",
+    paires["A ↔ citee"] === 74 && paires["B ↔ officielle_non_citee"] === 24 && paires["C ↔ aucune"] === 139, JSON.stringify(paires));
+  check("les seuls écarts sont NOMMÉS : 65 B par règle sur politique « aucune », 1 B par règle sans politique, 3 D",
+    resume.coherence_niveau_de_preuve.ecarts.B_par_regle_sur_politique_aucune === 65
     && resume.coherence_niveau_de_preuve.ecarts.B_par_regle_sans_politique === 1
     && resume.coherence_niveau_de_preuve.ecarts.D_sans_politique === 3
     && resume.coherence_niveau_de_preuve.ecarts.inattendus.length === 0, JSON.stringify(resume.coherence_niveau_de_preuve.ecarts));
   const niveaux = lignes.filter((l) => l.niveau_de_preuve_politique !== null).reduce((m, l) => { m[l.niveau_de_preuve_politique] = (m[l.niveau_de_preuve_politique] ?? 0) + 1; return m; }, {});
-  check("302 politiques : 52 citées, 30 officielles non citées, 220 aucune — le compte de test-frontiere-confiance",
-    niveaux.citee === 52 && niveaux.officielle_non_citee === 30 && niveaux.aucune === 220, JSON.stringify(niveaux));
+  check("302 politiques : 74 citées, 24 officielles non citées, 204 aucune — le compte de test-frontiere-confiance",
+    niveaux.citee === 74 && niveaux.officielle_non_citee === 24 && niveaux.aucune === 204, JSON.stringify(niveaux));
 }
 
 console.log("\n=== (e) Non-vacuité : une ligne mutée change de catégorie ===");

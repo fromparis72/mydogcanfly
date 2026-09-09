@@ -72,8 +72,36 @@ ladder:
 policies:
   cabin:
     availability: offered
+    # PREUVE IMPORTÉE — import strict lot4 (Codex, lecture directe du 2026-09-09, cohorte LOT4 fait 18).
+    # Effet attendu : WestJet cabin is a documented conditional route, not an itinerary-specific acceptance confirmation.
+    # Portée nommée : Small pets only, on most international flights; destination, aircraft, booking time and available pet capacity remain conditions.
+    source:
+      url: "https://www.westjet.com/en-ca/pets/general-entrance-requirements"
+      source_type: official_website
+      verified_date: "2026-09-09"
+      review_due: "2026-12-08"   # reviewDueFrom(verified_date, "airline") — calculé par l'importeur
+      confidence: 4
+      reviewer: "Codex — direct reading of official airline page"
+      history: []
+      quote: "WestJet accepts small pets in the cabin and as checked kennel on most international flights."
+      quote_language: en
+      locator: "General entrance requirements for guests travelling with pets → opening policy statement"
   hold:
     availability: offered
+    # PREUVE IMPORTÉE — import strict lot4 (Codex, lecture directe du 2026-09-09, cohorte LOT4 fait 19).
+    # Effet attendu : WestJet hold is a documented conditional route, not an itinerary-specific acceptance confirmation.
+    # Portée nommée : Checked kennel on most international flights; destination, aircraft, booking time and available pet capacity remain conditions.
+    source:
+      url: "https://www.westjet.com/en-ca/pets/general-entrance-requirements"
+      source_type: official_website
+      verified_date: "2026-09-09"
+      review_due: "2026-12-08"   # reviewDueFrom(verified_date, "airline") — calculé par l'importeur
+      confidence: 4
+      reviewer: "Codex — direct reading of official airline page"
+      history: []
+      quote: "WestJet accepts small pets in the cabin and as checked kennel on most international flights."
+      quote_language: en
+      locator: "General entrance requirements for guests travelling with pets → opening policy statement"
   cargo:
     availability: offered
 channels:

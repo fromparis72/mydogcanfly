@@ -211,12 +211,15 @@ console.log("\n=== 10. Sur la base RÉELLE : plus aucun verdict catégorique ===
   /* MOUVEMENT NOMMÉ (08/09/2026, import strict lots 2 et 3 — 24 citations de plus, 52 en tout) : 18 → 39 sous conditions, 8 → 11 refusés (Cathay, EVA Air, ANA cabines), 276 → 252
      à confirmer ; trois lignes non revérifiées RÉACTIVÉES sur citation (Cathay, Air India,
      Ethiopian fret). `allowed` reste à zéro. */
-  check("50 décisions prouvées : 0 `allowed`, 39 sous conditions, 11 `denied`, 252 à confirmer",
-    allowed === 0 && sousConditions === 39 && denied === 11 && aConfirmer === 252, JSON.stringify({ allowed, sousConditions, denied, aConfirmer }));
+  /* MOUVEMENT NOMMÉ (09/09/2026, import strict lot 4 — 22 citations de plus, 74 en tout) : 39 → 58 sous conditions, 11 → 14 refusés (Emirates, Qantas, Aer Lingus cabines), 252 → 230
+     à confirmer ; quatre lignes non revérifiées RÉACTIVÉES sur citation (Emirates fret, Qantas soute et fret, Alaska fret). Aer Lingus soute REFUSÉE par l'importeur (la fiche dit
+     not_offered, la citation suppose offered) : elle reste à confirmer, sans citation, jusqu'à arbitrage. `allowed` reste à zéro. */
+  check("72 décisions prouvées : 0 `allowed`, 58 sous conditions, 14 `denied`, 230 à confirmer",
+    allowed === 0 && sousConditions === 58 && denied === 14 && aConfirmer === 230, JSON.stringify({ allowed, sousConditions, denied, aConfirmer }));
   check("chaque « à confirmer » porte une cause — aucune incertitude muette",
-    Object.values(causes).reduce((x, y) => x + y, 0) === 252 && !("undefined" in causes), JSON.stringify(causes));
-  check("20 gardent une page officielle à montrer, 230 n'ont rien à montrer",
-    causes.official_source_unquoted === 20 && causes.legacy_unreviewed === 230, JSON.stringify(causes));
+    Object.values(causes).reduce((x, y) => x + y, 0) === 230 && !("undefined" in causes), JSON.stringify(causes));
+  check("16 gardent une page officielle à montrer, 212 n'ont rien à montrer",
+    causes.official_source_unquoted === 16 && causes.legacy_unreviewed === 212, JSON.stringify(causes));
   /* Et la preuve que ce n'est pas un effet de bord de l'affichage : la même règle vaut à la
      source, sur l'artefact d'auteur, avant tout moteur. */
   const objets = JSON.parse(readFileSync("packages/knowledge/raw/objects.json", "utf8"));
@@ -241,49 +244,70 @@ console.log("\n=== 10. Sur la base RÉELLE : plus aucun verdict catégorique ===
      Thai fret (`undocumented`) et Virgin Australia cabine (`case_by_case`). La liste est FIGÉE
      nominativement : une citation qui entrerait sans se nommer ici rougirait. */
   const CITEES_V3 = [
+    /* MOUVEMENT NOMMÉ (09/09/2026, lot 4) : 52 → 74, nominativement. */
     "airline_aegean.cabin",
     "airline_aegean.hold",
+    "airline_aer_lingus.cabin",
     "airline_air_canada.cabin",
     "airline_air_canada.hold",
     "airline_air_europa.cabin",
     "airline_air_europa.hold",
     "airline_air_france.hold",
     "airline_air_india.cabin",
-    "airline_air_india.hold",
     "airline_air_india.cargo",
+    "airline_air_india.hold",
     "airline_air_transat.cabin",
     "airline_air_transat.hold",
+    "airline_alaska.cabin",
+    "airline_alaska.cargo",
+    "airline_alaska.hold",
+    "airline_american.cabin",
+    "airline_american.cargo",
     "airline_ana.cabin",
     "airline_ana.hold",
+    "airline_austrian.cabin",
+    "airline_austrian.hold",
     "airline_avianca.cabin",
     "airline_avianca.hold",
     "airline_british_airways.cabin",
+    "airline_brussels.cabin",
+    "airline_brussels.hold",
     "airline_cathay_pacific.cabin",
     "airline_cathay_pacific.cargo",
     "airline_delta.cabin",
     "airline_easyjet.cabin",
     "airline_easyjet.hold",
+    "airline_emirates.cabin",
+    "airline_emirates.cargo",
+    "airline_emirates.hold",
     "airline_ethiopian.cabin",
-    "airline_ethiopian.hold",
     "airline_ethiopian.cargo",
+    "airline_ethiopian.hold",
     "airline_etihad.cabin",
     "airline_eva_air.cabin",
     "airline_eva_air.hold",
     "airline_finnair.cabin",
     "airline_iberia.cabin",
     "airline_iberia.hold",
+    "airline_ita_airways.cabin",
+    "airline_ita_airways.hold",
     "airline_jal.hold",
     "airline_jetblue.cabin",
     "airline_klm.cabin",
     "airline_klm.hold",
     "airline_lufthansa.cabin",
     "airline_lufthansa.hold",
+    "airline_qantas.cabin",
+    "airline_qantas.cargo",
+    "airline_qantas.hold",
     "airline_qatar_airways.cabin",
     "airline_qatar_airways.hold",
     "airline_ryanair.cabin",
-    "airline_ryanair.hold",
     "airline_ryanair.cargo",
+    "airline_ryanair.hold",
     "airline_sas.cabin",
+    "airline_swiss.cabin",
+    "airline_swiss.hold",
     "airline_tap.cabin",
     "airline_tap.hold",
     "airline_thai_airways.cargo",
@@ -293,11 +317,13 @@ console.log("\n=== 10. Sur la base RÉELLE : plus aucun verdict catégorique ===
     "airline_turkish.hold",
     "airline_virgin_australia.cabin",
     "airline_vueling.hold",
+    "airline_westjet.cabin",
+    "airline_westjet.hold",
   ];
-  check("52 politiques d'auteur portent une phrase citée — nominativement",
+  check("74 politiques d'auteur portent une phrase citée — nominativement",
     JSON.stringify([...citees].sort()) === JSON.stringify([...CITEES_V3].sort()), citees.join(", "));
-  check("et 50 d'elles sont des décisions (toutes sauf Thai fret et Virgin Australia cabine)",
-    decideesCitees.length === 50 && !decideesCitees.includes("airline_thai_airways.cargo") && !decideesCitees.includes("airline_virgin_australia.cabin"),
+  check("et 72 d'elles sont des décisions (toutes sauf Thai fret et Virgin Australia cabine)",
+    decideesCitees.length === 72 && !decideesCitees.includes("airline_thai_airways.cargo") && !decideesCitees.includes("airline_virgin_australia.cabin"),
     decideesCitees.join(", "));
 }
 

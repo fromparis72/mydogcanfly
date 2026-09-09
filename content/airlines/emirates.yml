@@ -64,10 +64,52 @@ ladder:
 policies:
   cabin:
     availability: not_offered
+    # PREUVE IMPORTÉE — import strict lot4 (Codex, lecture directe du 2026-09-09, cohorte LOT4 fait 6).
+    # Effet attendu : Do not offer Emirates passenger cabin to an ordinary pet dog.
+    # Portée nommée : Ordinary pet dogs. The cited exception concerns falcons, not companion dogs; service-animal rules are separate.
+    source:
+      url: "https://www.emirates.com/us/english/before-you-fly/baggage/unusual-baggage-and-special-allowances/"
+      source_type: official_website
+      verified_date: "2026-09-09"
+      review_due: "2026-12-08"   # reviewDueFrom(verified_date, "airline") — calculé par l'importeur
+      confidence: 4
+      reviewer: "Codex — direct reading of official airline page"
+      history: []
+      quote: "Pets are not permitted in the cabin, with the exception of falcons between Dubai and certain destinations in Pakistan."
+      quote_language: en
+      locator: "Unusual baggage and special allowances → Pets"
   hold:
     availability: offered
+    # PREUVE IMPORTÉE — import strict lot4 (Codex, lecture directe du 2026-09-09, cohorte LOT4 fait 7).
+    # Effet attendu : Emirates hold is a conditional possibility only. Keep cargo and hold allocation to the carrier's case-by-case decision.
+    # Portée nommée : Emirates allocates the pet between checked hold and cargo according to individual circumstances. This fact does not say both are available for a given booking.
+    source:
+      url: "https://www.emirates.com/us/english/before-you-fly/baggage/unusual-baggage-and-special-allowances/"
+      source_type: official_website
+      verified_date: "2026-09-09"
+      review_due: "2026-12-08"   # reviewDueFrom(verified_date, "airline") — calculé par l'importeur
+      confidence: 4
+      reviewer: "Codex — direct reading of official airline page"
+      history: []
+      quote: "Depending on the individual circumstances, pets must be carried either as cargo or as checked baggage in the hold."
+      quote_language: en
+      locator: "Unusual baggage and special allowances → Pets"
   cargo:
-    review_state: legacy_unreviewed
+    availability: offered   # RÉACTIVÉE sur citation (import strict, lot4, 2026-09-09) — était review_state: legacy_unreviewed
+    # PREUVE IMPORTÉE — import strict lot4 (Codex, lecture directe du 2026-09-09, cohorte LOT4 fait 8).
+    # Effet attendu : Emirates cargo is a conditional possibility only. Never present it as a confirmed shipment or together with hold as a simultaneous choice.
+    # Portée nommée : Emirates allocates the pet between cargo and checked hold according to individual circumstances. This fact does not say both are available for a given booking.
+    source:
+      url: "https://www.emirates.com/us/english/before-you-fly/baggage/unusual-baggage-and-special-allowances/"
+      source_type: official_website
+      verified_date: "2026-09-09"
+      review_due: "2026-12-08"   # reviewDueFrom(verified_date, "airline") — calculé par l'importeur
+      confidence: 4
+      reviewer: "Codex — direct reading of official airline page"
+      history: []
+      quote: "Depending on the individual circumstances, pets must be carried either as cargo or as checked baggage in the hold."
+      quote_language: en
+      locator: "Unusual baggage and special allowances → Pets"
 channels:
   - placement: cabin
     icon: 🐾

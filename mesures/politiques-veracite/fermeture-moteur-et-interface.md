@@ -2612,3 +2612,90 @@ Philippe n'a pas eu à l'attendre — délai mesuré, pas subi.
 3. **La commande `curl` à quatre adresses n'appliquait `-o /dev/null` qu'à la première** : les
    trois autres pages se sont affichées entières dans le terminal de Philippe. Sans conséquence,
    mais c'est ma commande, pas son terminal.
+
+## Annexe 26 — Import strict, lot 4 : 23 faits, 22 importés, un refusé et porté à l'arbitrage (09/09/2026)
+
+### Le lot
+
+Quatrième paquet de Codex (`mesures/preuves/import-strict-lot-4-2026-09-09/`), lecture directe du
+09/09/2026 : 10 compagnies, 23 faits, 7 non-décisions. Importé par le même importeur
+(`--lot=lot4`), sans règle métier nouvelle : les trois recommandations du lot
+(`deny_when_dog_weight_kg_gt_8`, `offered_with_conditions`, `not_offered_for_pet_dogs`) sont
+celles du lot 1, sous l'arbitrage de Philippe du 08/09 — refus sûr au-dessus du plafond, jamais un
+oui absolu en dessous.
+
+| | |
+|---|---|
+| importés | 22 (Austrian ×2, American ×2, SWISS ×2, Emirates ×3, Qantas ×3, ITA ×2, Aer Lingus cabine, Brussels ×2, WestJet ×2, Alaska ×3) |
+| réactivés sur citation | 4 : Emirates fret et Alaska fret (lignes du manifeste), Qantas soute et fret (anciens POLICY_STALE) |
+| seuils écrits | Austrian, SWISS, Brussels cabine : 8 kg chien + contenant, en toutes lettres |
+| seuil NON écrit | ITA cabine : 12 kg sur certains vols intérieurs italiens, 8 kg ailleurs — Codex refuse un seuil mondial, nous aussi |
+| refusé | **Aer Lingus soute** (fait 15) — voir ci-dessous |
+| non-décisions | 7, sans citation, toutes « à confirmer » (Austrian, SWISS, ITA, Aer Lingus, Brussels, WestJet fret ; American soute) |
+
+### Aer Lingus soute : refusé, nommé, à arbitrer
+
+La fiche dit `hold: not_offered`, sans bloc source. Le fait de Codex dit `offered_with_conditions`
+sur la phrase « Pets must be booked to travel with a pet agent, and they will be carried in the
+aircraft hold. » L'importeur refuse par contrat : il ne change jamais une disponibilité (« la
+fiche dit not_offered, le fait suppose offered »). Je n'ai pas basculé la ligne à la main : un
+passage par agent animalier « in the aircraft hold » ressemble autant au fret (animal non
+accompagné) qu'à la soute accompagnée, et Codex laisse justement le fret d'Aer Lingus non
+décidé. Ce n'est pas une affirmation manifestement non étayée à corriger seul : c'est une question
+de vérité métier. **Question à Philippe et Codex** : la voie « agent animalier → aircraft hold »
+est-elle la soute (`hold`) ou le fret (`cargo`) du contrat ? Selon la réponse, la ligne bascule
+`offered` en soute avec la citation, ou la citation va au fret et la soute reste `not_offered`.
+En attendant, la soute Aer Lingus est « à confirmer », sans citation — ni refus prouvé, ni oui.
+
+### Mesuré après import
+
+| | avant | après |
+|---|---|---|
+| politiques citées (registre A) | 52 | 74 |
+| décisives | 50 | 72 |
+| `allowed` / sous conditions / refusées / à confirmer | 0 / 39 / 11 / 252 | 0 / 58 / 14 / 230 |
+| causes legacy / page officielle sans phrase | 230 / 20 | 212 / 16 |
+| registre A / B / C / D | 52 / 102 / 149 / 3 | 74 / 90 / 139 / 3 |
+| limites cabine citées (calculateur) | 15 | 18 |
+| témoin hérité (carries) | 13 830 | 19 098 |
+| canaux contradictoires (entités) | 285 | 282 |
+| carlin, Amsterdam → Málaga | 51 confirmations, 46 de provenance | 50, 44 |
+| baseline (72 scénarios) | figée `import-strict-lots-2-3-apres` | figée `import-strict-lot-4-apres` : 320 cartes / 1 560, 8 compagnies, 372 → sous conditions, 72 → refusé, aucun verdict déplacé |
+
+Scénarios réels du harnais `test-preuves-lot-4.mjs` (127 contrôles) : Paris → Vienne, Zurich,
+Bruxelles (trois plafonds de 8 kg) ; Paris → Dubaï, Londres → Sydney, Paris → Dublin (trois
+cabines refusées pour tout chien) ; Paris → Rome (ITA sans plafond) ; New York, Londres et
+Seattle → Los Angeles (American, WestJet, Alaska).
+
+### Trouvé par la mesure
+
+- **Brussels soute, Golden 32 kg : citée « sous conditions », mais « à confirmer » au moteur** —
+  une règle de poids non citée (`rule_brussels_hold_weight`) demande confirmation, et le moteur la
+  nomme. La citation ne couvre pas cette incertitude ; le harnais fige ce comportement.
+- **Sentinelle re-fondée une troisième fois** : WestJet cabine est citée. Mesuré sur les 102 fiches,
+  United cabine est la SEULE politique d'auteur `offered` restante dont la page officielle n'a
+  aucune phrase citée et dont la fiche n'a aucun canal prouvé. Le prochain lot qui la citera devra
+  le dire.
+- **Deux anciens POLICY_STALE réactivés** (Qantas soute et fret) : la matrice T0-B2 les admet par
+  identité avec preuve exigée, comme les lignes du manifeste ; les huit autres restent versés.
+
+### Mouvements nommés
+
+frontière (72 décisives, 0/58/14/230, 212/16, 74 nominativement), legacy (212, 16, liste des non
+revues 10 → 8, chaîne → `import-strict-lot-4-apres`), baseline (chaîne, répartition, preuve
+permanente lot 4), carries (19 098), quatrième état (58), tri-état (50/44), registre (74/90/139/3,
+canaux, pistes 24/66/35, paires 74/24/139, écarts 65, niveaux 74/24/204, A nominatifs), caisses
+(18 limites, 19 témoins), entités (282, sentinelle United), matrice (deux réactivations + deux
+POLICY_STALE réactivés), V3 (Brussels cabine sort de la liste d'attente).
+
+### Erreurs nommées
+
+1. Mon script d'édition de `test-t0a-baseline.mjs` a calculé les modifications de chaîne et de
+   répartition puis ne les a pas écrites (pas d'écriture en fin de bloc) ; un second passage a
+   inséré la preuve permanente sur le fichier non modifié. Vu au premier passage des tests,
+   corrigé, nommé.
+2. La liste nominative des A de l'inventaire a d'abord été écrite triée alphabétiquement ; le
+   contrôle compare dans l'ordre de l'inventaire (cabine, soute, fret par compagnie). Réordonnée.
+3. Mon premier contrôle « Aer Lingus soute sans source » lisait `objects.json`, où l'ingestion
+   DÉRIVE une source depuis la fiche (site de la compagnie, « derived from fiche ») ; la fiche,
+   elle, n'a aucun bloc `source:`. Le contrôle lit désormais la fiche.

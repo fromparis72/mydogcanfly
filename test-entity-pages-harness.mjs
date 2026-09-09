@@ -788,8 +788,10 @@ console.log(`\n=== 5. Les ${CIBLE.length} canaux contradictoires × 4 langues : 
    * acceptés sous conditions, eux, restent contradictoires : leur éditorial dit « Autorisé ». */
   /* 288 → 285 (08/09/2026, lots 2 et 3) : Cathay Pacific, EVA Air et ANA cabines — l'éditorial
    * disait déjà « non », la citation le prouve. Toujours 101 fiches. */
-  check("285 canaux contradictoires sur 101 fiches, relus des fiches et du contrat runtime",
-    CONTRADICTOIRES.length === 285 && new Set(CONTRADICTOIRES.map((c) => c.slug)).size === 101,
+  /* 285 → 282 (09/09/2026, lot 4) : Emirates, Qantas et Aer Lingus cabines — l'éditorial disait
+   * déjà « non », la citation le prouve. Toujours 101 fiches. */
+  check("282 canaux contradictoires sur 101 fiches, relus des fiches et du contrat runtime",
+    CONTRADICTOIRES.length === 282 && new Set(CONTRADICTOIRES.map((c) => c.slug)).size === 101,
     `${CONTRADICTOIRES.length} canaux · ${new Set(CONTRADICTOIRES.map((c) => c.slug)).size} fiches`);
 
   /* LA LECTURE SE FAIT PAR LOTS, DANS DES PROCESSUS COURTS (CI du 16/08/2026, run 31 sur main).

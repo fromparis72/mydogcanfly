@@ -84,6 +84,20 @@ ladder:
 policies:
   cabin:
     availability: offered
+    # PREUVE IMPORTÉE — import strict lot4 (Codex, lecture directe du 2026-09-09, cohorte LOT4 fait 20).
+    # Effet attendu : Alaska Airlines cabin is a documented conditional route. Do not infer it for a dog whose carrier cannot fit under the seat.
+    # Portée nommée : Only pets that fit in an under-seat carrier; health, carrier, breed, destination and route restrictions remain applicable.
+    source:
+      url: "https://www.alaskaair.com/content/travel-info/pets"
+      source_type: official_website
+      verified_date: "2026-09-09"
+      review_due: "2026-12-08"   # reviewDueFrom(verified_date, "airline") — calculé par l'importeur
+      confidence: 4
+      reviewer: "Codex — direct reading of official airline page"
+      history: []
+      quote: "Pets that fit in an under-seat carrier can travel in a cabin."
+      quote_language: en
+      locator: "Traveling With Pets → Pets in cabin"
     # Lecture directe Codex (28/08/2026) : la page officielle « Pets in Cabin » ne publie AUCUNE
     # limite de poids — « Pets must be small enough to fit and stay comfortably in the carrier
     # under the seat », sac souple 17 × 11 × 9,5 po. L'ancienne règle des ~9 kg était un poids
@@ -95,8 +109,36 @@ policies:
       pt: "O animal deve ser pequeno o suficiente para caber confortavelmente em uma bolsa sob o assento (bolsa flexível de até 17 × 11 × 9,5 pol). Sem limite de peso publicado — a regra é caber na bolsa."
   hold:
     availability: offered
+    # PREUVE IMPORTÉE — import strict lot4 (Codex, lecture directe du 2026-09-09, cohorte LOT4 fait 21).
+    # Effet attendu : Alaska Airlines hold is a documented conditional route, not a specific-flight approval.
+    # Portée nommée : Subject to baggage-compartment policy, health, carrier, breed, destination and route restrictions.
+    source:
+      url: "https://www.alaskaair.com/content/travel-info/pets"
+      source_type: official_website
+      verified_date: "2026-09-09"
+      review_due: "2026-12-08"   # reviewDueFrom(verified_date, "airline") — calculé par l'importeur
+      confidence: 4
+      reviewer: "Codex — direct reading of official airline page"
+      history: []
+      quote: "Pets can travel in our climate-controlled baggage compartment."
+      quote_language: en
+      locator: "Traveling With Pets → Pets in baggage compartment"
   cargo:
-    review_state: legacy_unreviewed
+    availability: offered   # RÉACTIVÉE sur citation (import strict, lot4, 2026-09-09) — était review_state: legacy_unreviewed
+    # PREUVE IMPORTÉE — import strict lot4 (Codex, lecture directe du 2026-09-09, cohorte LOT4 fait 22).
+    # Effet attendu : Alaska Airlines cargo is a documented conditional path for an unaccompanied pet, never an automatic shipment acceptance.
+    # Portée nommée : Unaccompanied pets through Alaska and Hawaiian Air Cargo Pet Connect; cargo booking, health, destination and route requirements apply.
+    source:
+      url: "https://www.alaskaair.com/content/travel-info/pets"
+      source_type: official_website
+      verified_date: "2026-09-09"
+      review_due: "2026-12-08"   # reviewDueFrom(verified_date, "airline") — calculé par l'importeur
+      confidence: 4
+      reviewer: "Codex — direct reading of official airline page"
+      history: []
+      quote: "Our Pet Connect@ animal travel program is available via Alaska and Hawaiian Air Cargo for pets traveling without an accompanying passenger."
+      quote_language: en
+      locator: "Traveling With Pets → Pets in baggage compartment"
 channels:
   - placement: cabin
     icon: 🐾

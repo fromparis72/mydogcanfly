@@ -68,6 +68,20 @@ ladder:
 policies:
   cabin:
     availability: not_offered
+    # PREUVE IMPORTÉE — import strict lot4 (Codex, lecture directe du 2026-09-09, cohorte LOT4 fait 14).
+    # Effet attendu : Do not offer Aer Lingus passenger cabin to an ordinary pet dog.
+    # Portée nommée : Ordinary pets. Assistance dogs use a separate process. Aer Lingus requires ordinary pets to use a pet agent and aircraft hold process.
+    source:
+      url: "https://www.aerlingus.com/localized/en/modals/baggage-information.html"
+      source_type: official_website
+      verified_date: "2026-09-09"
+      review_due: "2026-12-08"   # reviewDueFrom(verified_date, "airline") — calculé par l'importeur
+      confidence: 4
+      reviewer: "Codex — direct reading of official airline page"
+      history: []
+      quote: "Pets must be booked to travel with a pet agent, and they will be carried in the aircraft hold."
+      quote_language: en
+      locator: "Baggage Information → General Animals & Pets Rules"
   hold:
     availability: not_offered
   cargo:

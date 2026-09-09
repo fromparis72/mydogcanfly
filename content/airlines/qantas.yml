@@ -66,11 +66,53 @@ ladder:
 policies:
   cabin:
     availability: not_offered
+    # PREUVE IMPORTÉE — import strict lot4 (Codex, lecture directe du 2026-09-09, cohorte LOT4 fait 9).
+    # Effet attendu : Do not offer Qantas passenger cabin to an ordinary pet dog.
+    # Portée nommée : Ordinary companion dogs. Approved service dogs and service dogs under training use the separate accessibility process.
+    source:
+      url: "https://www.qantas.com/content/dam/qantas/pdfs/fly/specific-needs/qantas-disability-access-facilitation-plan.pdf"
+      source_type: official_website
+      verified_date: "2026-09-09"
+      review_due: "2026-12-08"   # reviewDueFrom(verified_date, "airline") — calculé par l'importeur
+      confidence: 4
+      reviewer: "Codex — direct reading of official airline page"
+      history: []
+      quote: "Qantas does not carry any animals in the aircraft cabin, other than approved Service Dogs or Service Dogs under training."
+      quote_language: en
+      locator: "Qantas Disability Access Facilitation Plan (July 2025) → 8.12 Other Animals"
   hold:
-    review_state: legacy_unreviewed
+    availability: offered   # RÉACTIVÉE sur citation (import strict, lot4, 2026-09-09) — était review_state: legacy_unreviewed
+    # PREUVE IMPORTÉE — import strict lot4 (Codex, lecture directe du 2026-09-09, cohorte LOT4 fait 10).
+    # Effet attendu : Qantas hold is a conditional route, never a worldwide or automatic checked-pet approval.
+    # Portée nommée : Only at airports where Qantas agrees to carry the pet as checked baggage; crate, food, documents and additional carrier conditions apply.
+    source:
+      url: "https://www.qantas.com/en-au/book/flights/conditions-of-carriage"
+      source_type: official_website
+      verified_date: "2026-09-09"
+      review_due: "2026-12-08"   # reviewDueFrom(verified_date, "airline") — calculé par l'importeur
+      confidence: 4
+      reviewer: "Codex — direct reading of official airline page"
+      history: []
+      quote: "Some airports will require that your pet travels as freight and some will allow carriage in the hold as Checked Baggage; if we agree that your pet may be carried in the aircraft hold as Checked Baggage, you must provide proper crating and food for your pet."
+      quote_language: en
+      locator: "Conditions of Carriage → 8.8 Pet animals"
     # dette éditoriale scellée (T0-B2) : aucun canal visible ne décrit ce placement
   cargo:
-    review_state: legacy_unreviewed
+    availability: offered   # RÉACTIVÉE sur citation (import strict, lot4, 2026-09-09) — était review_state: legacy_unreviewed
+    # PREUVE IMPORTÉE — import strict lot4 (Codex, lecture directe du 2026-09-09, cohorte LOT4 fait 11).
+    # Effet attendu : Cargo is a documented conditional route, not a confirmed shipment or a promise to travel on the same service as the passenger.
+    # Portée nommée : Ordinary pet bookings are made with Qantas Freight; airport, documentation and Qantas conditions still determine carriage.
+    source:
+      url: "https://www.qantas.com/en-au/book/flights/conditions-of-carriage"
+      source_type: official_website
+      verified_date: "2026-09-09"
+      review_due: "2026-12-08"   # reviewDueFrom(verified_date, "airline") — calculé par l'importeur
+      confidence: 4
+      reviewer: "Codex — direct reading of official airline page"
+      history: []
+      quote: "With the exception of service dogs (see 8.9), all bookings for travel by pet animals must be booked directly with Qantas Freight."
+      quote_language: en
+      locator: "Conditions of Carriage → 8.8 Pet animals"
 channels:
   - placement: cabin
     icon: 🐾

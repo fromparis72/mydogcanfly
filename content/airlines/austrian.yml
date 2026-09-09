@@ -78,8 +78,39 @@ ladder:
 policies:
   cabin:
     availability: offered
+    # PREUVE IMPORTÉE — import strict lot4 (Codex, lecture directe du 2026-09-09, cohorte LOT4 fait 0).
+    # Effet attendu : For a dog above 8 kg, do not offer Austrian Airlines cabin. At or below 8 kg, this ceiling does not itself confirm a booking.
+    # Portée nommée : The 8 kg ceiling includes the carrier. A dog alone above 8 kg cannot satisfy the passenger-cabin ceiling; aircraft, route, documents and booking conditions still apply.
+    # Le plafond cité inclut le CONTENANT : refus sûr si le chien seul le dépasse, jamais un oui en dessous.
+    max_weight_kg: 8
+    weight_includes_carrier: true
+    source:
+      url: "https://www.austrian.com/us/en/plan/special-requirements/travelling-with-animals"
+      source_type: official_website
+      verified_date: "2026-09-09"
+      review_due: "2026-12-08"   # reviewDueFrom(verified_date, "airline") — calculé par l'importeur
+      confidence: 4
+      reviewer: "Codex — direct reading of official airline page"
+      history: []
+      quote: "The total weight of the animal and the carrying container must not exceed 8 kg."
+      quote_language: en
+      locator: "Travelling with animals → Small pets in the cabin"
   hold:
     availability: offered
+    # PREUVE IMPORTÉE — import strict lot4 (Codex, lecture directe du 2026-09-09, cohorte LOT4 fait 1).
+    # Effet attendu : Austrian Airlines hold is a documented conditional route. It is not an aircraft-, route- or document-independent approval.
+    # Portée nommée : When cabin space is unavailable and applicable conditions of carriage are met; only a passenger hold route, not a cargo decision.
+    source:
+      url: "https://www.austrian.com/us/en/plan/special-requirements/travelling-with-animals"
+      source_type: official_website
+      verified_date: "2026-09-09"
+      review_due: "2026-12-08"   # reviewDueFrom(verified_date, "airline") — calculé par l'importeur
+      confidence: 4
+      reviewer: "Codex — direct reading of official airline page"
+      history: []
+      quote: "If there is no space in the passenger cabin, cats and dogs may be carried in the cargo hold if required, subject to compliance with the applicable conditions of carriage."
+      quote_language: en
+      locator: "Travelling with animals → Large animals in the cargo hold"
   cargo:
     review_state: legacy_unreviewed
 channels:

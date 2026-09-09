@@ -1,0 +1,305 @@
+{
+  "schema_version": 1,
+  "as_of": "2026-09-09",
+  "status": "strict_import_candidate",
+  "purpose": "Fourth independently reviewed batch. Every imported fact is supported by one continuous quotation from a current first-party airline page. A conditional channel means a documented policy route, never seat availability or final carriage acceptance.",
+  "provenance_defaults": {
+    "source_type": "official_website",
+    "verified_date": "2026-09-09",
+    "review_due": "derive_with_reviewDueFrom(verified_date, 'airline')",
+    "confidence": 4,
+    "reviewer": "Codex — direct reading of official airline page"
+  },
+  "facts": [
+    {
+      "airline_id": "airline_austrian",
+      "placement": "cabin",
+      "recommendation": "deny_when_dog_weight_kg_gt_8",
+      "condition_scope": "The 8 kg ceiling includes the carrier. A dog alone above 8 kg cannot satisfy the passenger-cabin ceiling; aircraft, route, documents and booking conditions still apply.",
+      "finder_effect": "For a dog above 8 kg, do not offer Austrian Airlines cabin. At or below 8 kg, this ceiling does not itself confirm a booking.",
+      "url": "https://www.austrian.com/us/en/plan/special-requirements/travelling-with-animals",
+      "quote": "The total weight of the animal and the carrying container must not exceed 8 kg.",
+      "quote_language": "en",
+      "locator": "Travelling with animals → Small pets in the cabin"
+    },
+    {
+      "airline_id": "airline_austrian",
+      "placement": "hold",
+      "recommendation": "offered_with_conditions",
+      "condition_scope": "When cabin space is unavailable and applicable conditions of carriage are met; only a passenger hold route, not a cargo decision.",
+      "finder_effect": "Austrian Airlines hold is a documented conditional route. It is not an aircraft-, route- or document-independent approval.",
+      "url": "https://www.austrian.com/us/en/plan/special-requirements/travelling-with-animals",
+      "quote": "If there is no space in the passenger cabin, cats and dogs may be carried in the cargo hold if required, subject to compliance with the applicable conditions of carriage.",
+      "quote_language": "en",
+      "locator": "Travelling with animals → Large animals in the cargo hold"
+    },
+    {
+      "airline_id": "airline_american",
+      "placement": "cabin",
+      "recommendation": "offered_with_conditions",
+      "condition_scope": "American-operated flight, permitted route and under-seat carrier; restrictions include aircraft, seat and destination.",
+      "finder_effect": "American Airlines cabin is a conditional route. Do not turn it into a confirmation for a large dog, a specific aircraft or a restricted itinerary.",
+      "url": "https://www.aa.com/web/i18n/travel-info/special-assistance/pets.html",
+      "quote": "On flights with American you can bring one pet carrier as a carry-on if: You pay the carry-on pet fee; Your pet stays in the pet carrier and under the seat in front of you the entire flight.",
+      "quote_language": "en",
+      "locator": "Traveling with pets → Carry-on pets"
+    },
+    {
+      "airline_id": "airline_american",
+      "placement": "cargo",
+      "recommendation": "offered_with_conditions",
+      "condition_scope": "American PetEmbark cargo process for pets that cannot travel as carry-on or checked pets; cargo booking and route rules apply.",
+      "finder_effect": "Cargo is a documented conditional direction for an ineligible carry-on or checked pet, never an automatic shipment acceptance.",
+      "url": "https://www.aa.com/web/i18n/travel-info/special-assistance/pets.html",
+      "quote": "American Airlines Cargo offers the American PetEmbark® service for pets that don’t qualify to travel as carry-on or checked pets.",
+      "quote_language": "en",
+      "locator": "Traveling with pets → American PetEmbark®"
+    },
+    {
+      "airline_id": "airline_swiss",
+      "placement": "cabin",
+      "recommendation": "deny_when_dog_weight_kg_gt_8",
+      "condition_scope": "The 8 kg ceiling includes the travel carrier. A dog alone above 8 kg cannot satisfy this ordinary-pet cabin rule; assistance dogs follow a distinct flow.",
+      "finder_effect": "For a dog above 8 kg, do not offer SWISS cabin. At or below 8 kg, do not infer acceptance from this negative threshold.",
+      "url": "https://www.swiss.com/xx/en/prepare/special-care/animals-travelling",
+      "quote": "Dogs and cats weighing up to 8 kg (weight including travel carrier)",
+      "quote_language": "en",
+      "locator": "Travelling with animals → The following animals can travel in the cabin"
+    },
+    {
+      "airline_id": "airline_swiss",
+      "placement": "hold",
+      "recommendation": "offered_with_conditions",
+      "condition_scope": "Ordinary dogs and cats over 8 kg including container or with an oversized carrier; snub-nosed breeds are excluded from hold carriage and country rules still apply.",
+      "finder_effect": "SWISS hold is a documented conditional route, not a blanket approval for every breed, airport or destination.",
+      "url": "https://www.swiss.com/xx/en/prepare/special-care/animals-travelling",
+      "quote": "Dogs and cats that do not belong to snub-nosed breeds and weigh more than 8 kg (weight including transport container) or are travelling in a transport container exceeding the permitted size (max. 118 cm; 55 x 40 x 23 cm).",
+      "quote_language": "en",
+      "locator": "Travelling with animals → The following animals travel in the hold"
+    },
+    {
+      "airline_id": "airline_emirates",
+      "placement": "cabin",
+      "recommendation": "not_offered_for_pet_dogs",
+      "condition_scope": "Ordinary pet dogs. The cited exception concerns falcons, not companion dogs; service-animal rules are separate.",
+      "finder_effect": "Do not offer Emirates passenger cabin to an ordinary pet dog.",
+      "url": "https://www.emirates.com/us/english/before-you-fly/baggage/unusual-baggage-and-special-allowances/",
+      "quote": "Pets are not permitted in the cabin, with the exception of falcons between Dubai and certain destinations in Pakistan.",
+      "quote_language": "en",
+      "locator": "Unusual baggage and special allowances → Pets"
+    },
+    {
+      "airline_id": "airline_emirates",
+      "placement": "hold",
+      "recommendation": "offered_with_conditions",
+      "condition_scope": "Emirates allocates the pet between checked hold and cargo according to individual circumstances. This fact does not say both are available for a given booking.",
+      "finder_effect": "Emirates hold is a conditional possibility only. Keep cargo and hold allocation to the carrier's case-by-case decision.",
+      "url": "https://www.emirates.com/us/english/before-you-fly/baggage/unusual-baggage-and-special-allowances/",
+      "quote": "Depending on the individual circumstances, pets must be carried either as cargo or as checked baggage in the hold.",
+      "quote_language": "en",
+      "locator": "Unusual baggage and special allowances → Pets"
+    },
+    {
+      "airline_id": "airline_emirates",
+      "placement": "cargo",
+      "recommendation": "offered_with_conditions",
+      "condition_scope": "Emirates allocates the pet between cargo and checked hold according to individual circumstances. This fact does not say both are available for a given booking.",
+      "finder_effect": "Emirates cargo is a conditional possibility only. Never present it as a confirmed shipment or together with hold as a simultaneous choice.",
+      "url": "https://www.emirates.com/us/english/before-you-fly/baggage/unusual-baggage-and-special-allowances/",
+      "quote": "Depending on the individual circumstances, pets must be carried either as cargo or as checked baggage in the hold.",
+      "quote_language": "en",
+      "locator": "Unusual baggage and special allowances → Pets"
+    },
+    {
+      "airline_id": "airline_qantas",
+      "placement": "cabin",
+      "recommendation": "not_offered_for_pet_dogs",
+      "condition_scope": "Ordinary companion dogs. Approved service dogs and service dogs under training use the separate accessibility process.",
+      "finder_effect": "Do not offer Qantas passenger cabin to an ordinary pet dog.",
+      "url": "https://www.qantas.com/content/dam/qantas/pdfs/fly/specific-needs/qantas-disability-access-facilitation-plan.pdf",
+      "quote": "Qantas does not carry any animals in the aircraft cabin, other than approved Service Dogs or Service Dogs under training.",
+      "quote_language": "en",
+      "locator": "Qantas Disability Access Facilitation Plan (July 2025) → 8.12 Other Animals"
+    },
+    {
+      "airline_id": "airline_qantas",
+      "placement": "hold",
+      "recommendation": "offered_with_conditions",
+      "condition_scope": "Only at airports where Qantas agrees to carry the pet as checked baggage; crate, food, documents and additional carrier conditions apply.",
+      "finder_effect": "Qantas hold is a conditional route, never a worldwide or automatic checked-pet approval.",
+      "url": "https://www.qantas.com/en-au/book/flights/conditions-of-carriage",
+      "quote": "Some airports will require that your pet travels as freight and some will allow carriage in the hold as Checked Baggage; if we agree that your pet may be carried in the aircraft hold as Checked Baggage, you must provide proper crating and food for your pet.",
+      "quote_language": "en",
+      "locator": "Conditions of Carriage → 8.8 Pet animals"
+    },
+    {
+      "airline_id": "airline_qantas",
+      "placement": "cargo",
+      "recommendation": "offered_with_conditions",
+      "condition_scope": "Ordinary pet bookings are made with Qantas Freight; airport, documentation and Qantas conditions still determine carriage.",
+      "finder_effect": "Cargo is a documented conditional route, not a confirmed shipment or a promise to travel on the same service as the passenger.",
+      "url": "https://www.qantas.com/en-au/book/flights/conditions-of-carriage",
+      "quote": "With the exception of service dogs (see 8.9), all bookings for travel by pet animals must be booked directly with Qantas Freight.",
+      "quote_language": "en",
+      "locator": "Conditions of Carriage → 8.8 Pet animals"
+    },
+    {
+      "airline_id": "airline_ita_airways",
+      "placement": "cabin",
+      "recommendation": "offered_with_conditions",
+      "condition_scope": "Dogs and cats only, subject to cabin, route, booking and documentation requirements. The published weight limit differs between domestic Italy and other flights, so no global threshold is imported.",
+      "finder_effect": "ITA Airways cabin is a documented conditional route. Do not infer a single cabin ceiling across domestic and international itineraries.",
+      "url": "https://www.ita-airways.com/us/en/book-and-prepare/other-requests/travelling-with-pets/pets-in-cabin.html",
+      "quote": "Please note that as of December 1, 2025, pet transport is permitted only for dogs and cats, both in the cabin (PETC) and in the hold (AVIH).",
+      "quote_language": "en",
+      "locator": "Pets in cabin → Service overview"
+    },
+    {
+      "airline_id": "airline_ita_airways",
+      "placement": "hold",
+      "recommendation": "offered_with_conditions",
+      "condition_scope": "Dogs and cats only, subject to hold, route, booking and documentation requirements.",
+      "finder_effect": "ITA Airways hold is a documented conditional route; it is not a booking confirmation.",
+      "url": "https://www.ita-airways.com/us/en/book-and-prepare/other-requests/travelling-with-pets/pets-in-cabin.html",
+      "quote": "Please note that as of December 1, 2025, pet transport is permitted only for dogs and cats, both in the cabin (PETC) and in the hold (AVIH).",
+      "quote_language": "en",
+      "locator": "Pets in cabin → Service overview"
+    },
+    {
+      "airline_id": "airline_aer_lingus",
+      "placement": "cabin",
+      "recommendation": "not_offered_for_pet_dogs",
+      "condition_scope": "Ordinary pets. Assistance dogs use a separate process. Aer Lingus requires ordinary pets to use a pet agent and aircraft hold process.",
+      "finder_effect": "Do not offer Aer Lingus passenger cabin to an ordinary pet dog.",
+      "url": "https://www.aerlingus.com/localized/en/modals/baggage-information.html",
+      "quote": "Pets must be booked to travel with a pet agent, and they will be carried in the aircraft hold.",
+      "quote_language": "en",
+      "locator": "Baggage Information → General Animals & Pets Rules"
+    },
+    {
+      "airline_id": "airline_aer_lingus",
+      "placement": "hold",
+      "recommendation": "offered_with_conditions",
+      "condition_scope": "Pet-agent booking and aircraft/route restrictions apply; Aer Lingus Regional prohibits pet carriage and certain aircraft have unventilated holds.",
+      "finder_effect": "Aer Lingus hold is a conditional route. Do not present it for every Aer Lingus-marketed itinerary.",
+      "url": "https://www.aerlingus.com/localized/en/modals/baggage-information.html",
+      "quote": "Pets must be booked to travel with a pet agent, and they will be carried in the aircraft hold.",
+      "quote_language": "en",
+      "locator": "Baggage Information → General Animals & Pets Rules"
+    },
+    {
+      "airline_id": "airline_brussels",
+      "placement": "cabin",
+      "recommendation": "deny_when_dog_weight_kg_gt_8",
+      "condition_scope": "The 8 kg ceiling includes the pet bag or container. A dog alone above 8 kg cannot satisfy this ordinary-pet cabin rule; route and advance-booking conditions still apply.",
+      "finder_effect": "For a dog above 8 kg, do not offer Brussels Airlines cabin. At or below 8 kg, this threshold does not confirm a booking.",
+      "url": "https://www.brusselsairlines.com/be/en/special-care/pets/cats-and-small-dogs-in-the-cabin",
+      "quote": "The total weight of the transport container, including the animal, must not exceed 8 kg.",
+      "quote_language": "en",
+      "locator": "Cats and small dogs in the cabin → Which conditions apply for a transport in the cabin?"
+    },
+    {
+      "airline_id": "airline_brussels",
+      "placement": "hold",
+      "recommendation": "offered_with_conditions",
+      "condition_scope": "A suitable container and animal-health conditions are required. Age, route, country, breed and advance-check-in restrictions apply.",
+      "finder_effect": "Brussels Airlines hold is a documented conditional route, not a blanket approval for every destination or breed.",
+      "url": "https://www.brusselsairlines.com/rw/en/special-care/pets/cats-and-dogs-in-the-hold",
+      "quote": "Your cat or dog will be well taken care of and will travel in a ventilated part of the aircraft hold.",
+      "quote_language": "en",
+      "locator": "Cats and dogs in the hold → How will my pet travel?"
+    },
+    {
+      "airline_id": "airline_westjet",
+      "placement": "cabin",
+      "recommendation": "offered_with_conditions",
+      "condition_scope": "Small pets only, on most international flights; destination, aircraft, booking time and available pet capacity remain conditions.",
+      "finder_effect": "WestJet cabin is a documented conditional route, not an itinerary-specific acceptance confirmation.",
+      "url": "https://www.westjet.com/en-ca/pets/general-entrance-requirements",
+      "quote": "WestJet accepts small pets in the cabin and as checked kennel on most international flights.",
+      "quote_language": "en",
+      "locator": "General entrance requirements for guests travelling with pets → opening policy statement"
+    },
+    {
+      "airline_id": "airline_westjet",
+      "placement": "hold",
+      "recommendation": "offered_with_conditions",
+      "condition_scope": "Checked kennel on most international flights; destination, aircraft, booking time and available pet capacity remain conditions.",
+      "finder_effect": "WestJet hold is a documented conditional route, not an itinerary-specific acceptance confirmation.",
+      "url": "https://www.westjet.com/en-ca/pets/general-entrance-requirements",
+      "quote": "WestJet accepts small pets in the cabin and as checked kennel on most international flights.",
+      "quote_language": "en",
+      "locator": "General entrance requirements for guests travelling with pets → opening policy statement"
+    },
+    {
+      "airline_id": "airline_alaska",
+      "placement": "cabin",
+      "recommendation": "offered_with_conditions",
+      "condition_scope": "Only pets that fit in an under-seat carrier; health, carrier, breed, destination and route restrictions remain applicable.",
+      "finder_effect": "Alaska Airlines cabin is a documented conditional route. Do not infer it for a dog whose carrier cannot fit under the seat.",
+      "url": "https://www.alaskaair.com/content/travel-info/pets",
+      "quote": "Pets that fit in an under-seat carrier can travel in a cabin.",
+      "quote_language": "en",
+      "locator": "Traveling With Pets → Pets in cabin"
+    },
+    {
+      "airline_id": "airline_alaska",
+      "placement": "hold",
+      "recommendation": "offered_with_conditions",
+      "condition_scope": "Subject to baggage-compartment policy, health, carrier, breed, destination and route restrictions.",
+      "finder_effect": "Alaska Airlines hold is a documented conditional route, not a specific-flight approval.",
+      "url": "https://www.alaskaair.com/content/travel-info/pets",
+      "quote": "Pets can travel in our climate-controlled baggage compartment.",
+      "quote_language": "en",
+      "locator": "Traveling With Pets → Pets in baggage compartment"
+    },
+    {
+      "airline_id": "airline_alaska",
+      "placement": "cargo",
+      "recommendation": "offered_with_conditions",
+      "condition_scope": "Unaccompanied pets through Alaska and Hawaiian Air Cargo Pet Connect; cargo booking, health, destination and route requirements apply.",
+      "finder_effect": "Alaska Airlines cargo is a documented conditional path for an unaccompanied pet, never an automatic shipment acceptance.",
+      "url": "https://www.alaskaair.com/content/travel-info/pets",
+      "quote": "Our Pet Connect@ animal travel program is available via Alaska and Hawaiian Air Cargo for pets traveling without an accompanying passenger.",
+      "quote_language": "en",
+      "locator": "Traveling With Pets → Pets in baggage compartment"
+    }
+  ],
+  "intentionally_unset": [
+    {
+      "airline_id": "airline_austrian",
+      "placement": "cargo",
+      "reason": "The reviewed passenger page names a cargo hold, not the site's separate freight shipment category. No freight decision is inferred."
+    },
+    {
+      "airline_id": "airline_american",
+      "placement": "hold",
+      "reason": "American permits checked pets only for active-duty U.S. Military and U.S. State Department Foreign Service personnel on official orders. The current Finder has no eligibility input for that exception."
+    },
+    {
+      "airline_id": "airline_swiss",
+      "placement": "cargo",
+      "reason": "SWISS identifies country-specific cargo-only imports but not a globally applicable passenger Finder cargo decision."
+    },
+    {
+      "airline_id": "airline_ita_airways",
+      "placement": "cargo",
+      "reason": "The reviewed ITA passenger page establishes cabin and hold only. Cargo is intentionally not inferred."
+    },
+    {
+      "airline_id": "airline_aer_lingus",
+      "placement": "cargo",
+      "reason": "A pet agent is required, but the reviewed page does not map that agent process cleanly to the site's separate freight category."
+    },
+    {
+      "airline_id": "airline_brussels",
+      "placement": "cargo",
+      "reason": "Cargo is mentioned for United Kingdom routes only. A route-specific exception is not promoted to a global cargo offer."
+    },
+    {
+      "airline_id": "airline_westjet",
+      "placement": "cargo",
+      "reason": "The reviewed official passenger page lists cargo as a travel option but does not provide a continuous global cargo-acceptance proposition suitable for this strict import."
+    }
+  ]
+}
