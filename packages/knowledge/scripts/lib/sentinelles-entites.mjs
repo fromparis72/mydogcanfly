@@ -39,7 +39,19 @@ export const SENTINELLES_COMPAGNIES = [
   /* RE-FONDÉE UNE SECONDE FOIS (08/09/2026, lots 2 et 3) : Air Canada cabine est citée à son tour.
      WestJet cabine tient le rôle — `offered`, page officielle sans phrase citée, aucun canal
      prouvé sur la fiche. */
-  { slug: "westjet", id: "airline_westjet", placement: "cabin", statut: "confirmation_required", role: "politique d'auteur, non prouvée" },
+  /* RE-FONDÉE UNE TROISIÈME FOIS (09/09/2026, lot 4) : WestJet cabine est citée à son tour (« WestJet
+     accepts small pets in the cabin… »). Mesuré sur les 102 fiches : United cabine est la SEULE
+     politique d'auteur `offered` restante dont la page officielle n'a aucune phrase citée et dont
+     la fiche n'a aucun canal prouvé. Le prochain lot qui la citera devra re-fonder ce rôle sur une
+     autre forme, ou constater qu'elle n'existe plus — et le dire. */
+  /* RE-FONDÉE UNE QUATRIÈME FOIS, SOUS UNE AUTRE FORME (09/09/2026, lot 6) : United cabine est citée
+     (« We allow one pet per adult or senior in a reservation. »). Mesuré sur la base projetée : il ne
+     reste AUCUNE politique d'auteur `offered` à page officielle sans phrase sur une fiche sans canal
+     prouvé — cette forme-là n'existe plus, et on le dit. Les 15 « page officielle sans phrase citée »
+     restantes vivent toutes à côté d'un canal prouvé. Le rôle est donc re-fondé sur cette forme :
+     United SOUTE — page officielle, aucune phrase citée, « à confirmer » à côté d'une cabine citée.
+     Même slug, même page construite ; le statut attendu ne change pas. */
+  { slug: "united", id: "airline_united", placement: "hold", statut: "confirmation_required", role: "page officielle sans phrase citée, à côté d'un canal prouvé" },
   { slug: "thai-airways", id: "airline_thai_airways", placement: "cabin", statut: "confirmation_required", role: "non offerte, non prouvée" },
   { slug: "british-airways", id: "airline_british_airways", placement: "cabin", statut: "denied", role: "refus PROUVÉ · citation stricte" },
 ];

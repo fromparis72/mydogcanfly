@@ -72,8 +72,36 @@ ladder:
 policies:
   cabin:
     availability: offered
+    # PREUVE IMPORTÉE — import strict lot6 (Codex, lecture directe du 2026-09-09, cohorte LOT6 fait 2).
+    # Effet attendu : LATAM cabin is conditional and must not be presented as available on connections or codeshares.
+    # Portée nommée : Dog or cat on flights operated exclusively by LATAM; carrier dimensions, health, age, route and no-codeshare conditions apply.
+    source:
+      url: "https://www.latamairlines.com/ca/en/help-center/faq/pets/transport/airplaine-flight"
+      source_type: official_website
+      verified_date: "2026-09-09"
+      review_due: "2026-12-08"   # reviewDueFrom(verified_date, "airline") — calculé par l'importeur
+      confidence: 4
+      reviewer: "Codex — direct reading of official airline page"
+      history: []
+      quote: "Depending on the size, weight and other considerations, your pet can travel with you in the cabin (Economy or Premium Economy), or in the aircraft hold."
+      quote_language: en
+      locator: "Can I travel with my pet on the plane? → opening policy statement"
   hold:
     availability: offered
+    # PREUVE IMPORTÉE — import strict lot6 (Codex, lecture directe du 2026-09-09, cohorte LOT6 fait 3).
+    # Effet attendu : LATAM hold is conditional. Do not derive a single worldwide limit from its aircraft- and route-specific table.
+    # Portée nommée : Dog or cat only, subject to aircraft, route duration, combined pet-and-kennel weight, breed, connection and LATAM-operated-flight conditions.
+    source:
+      url: "https://www.latamairlines.com/ca/en/help-center/faq/pets/transport/airplaine-flight"
+      source_type: official_website
+      verified_date: "2026-09-09"
+      review_due: "2026-12-08"   # reviewDueFrom(verified_date, "airline") — calculé par l'importeur
+      confidence: 4
+      reviewer: "Codex — direct reading of official airline page"
+      history: []
+      quote: "If your dog or cat exceeds the maximum size or weight allowed to travel in the cabin, it can travel in the hold, as long as the conditions and requirements are met."
+      quote_language: en
+      locator: "Can I travel with my pet on the plane? → In the hold"
   cargo:
     review_state: legacy_unreviewed
 channels:

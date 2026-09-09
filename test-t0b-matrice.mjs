@@ -87,6 +87,41 @@ const REACTIVEES_SUR_CITATION = new Set([
   "airline_cathay_pacific|cargo",
   "airline_air_india|cargo",
   "airline_ethiopian|cargo",
+  /* Lot 4 (09/09/2026) : Emirates fret (« …pets must be carried either as cargo or as checked
+     baggage in the hold. ») et Alaska fret (« Our Pet Connect@ animal travel program… »). Même
+     discipline : admises par identité, preuve exigée. */
+  "airline_emirates|cargo",
+  "airline_alaska|cargo",
+  /* Lot 5 (09/09/2026) : Virgin Australia fret (« …take good care of your animal in the cargo
+     hold. »), Philippine fret (« …via Cargo ONLY… AVIH »), Air Mauritius fret (« …contact our Air
+     Mauritius Cargo Office… »), Garuda fret (« Garuda Indonesia Cargo service is ready… »). */
+  "airline_virgin_australia|cargo",
+  "airline_philippine|cargo",
+  "airline_air_mauritius|cargo",
+  "airline_garuda_indonesia|cargo",
+  /* Lot 6 (09/09/2026) : South African soute (« …either as cargo, or as checked baggage in the
+     hold. ») et fret (« …manifested cargo under an Air Waybill… »), Kenya fret (« Live animals
+     shall be consigned as cargo only. »), Gulf Air fret (« All live animals on Gulf Air travel as
+     cargo. »), Royal Jordanian cabine (« …only permitted in Economy Class Cabins… »), et Saudia
+     cabine — PREMIÈRE réactivation en REFUS cité (« Dogs must be transported in the cargo hold… ») :
+     la preuve exigée est la même, la disponibilité réactivée est `not_offered`. */
+  "airline_south_african_airways|hold",
+  "airline_south_african_airways|cargo",
+  "airline_kenya_airways|cargo",
+  "airline_gulf_air|cargo",
+  "airline_royal_jordanian|cabin",
+  "airline_saudia|cabin",
+]);
+/* POLICY_STALE RÉACTIVÉS SUR CITATION (09/09/2026, lot 4). Deux des dix anciens POLICY_STALE
+ * versés en `legacy_unreviewed` — Qantas soute et Qantas fret — ont reçu une phrase des Conditions
+ * of Carriage (§ 8.8), lue directement par Codex. L'importeur a réécrit leur discriminant en
+ * `availability: offered` : ils ne sont donc plus « migrés » (plus de `review_state`), et le
+ * contrôle « versé non migré » rougirait à tort. Admis ici par IDENTITÉ, et la preuve est exigée
+ * exactement comme pour les lignes du manifeste réactivées : `offered` ET une citation complète.
+ * Les huit autres POLICY_STALE restent versés, et le contrôle continue de l'exiger. */
+const STALE_REACTIVES_SUR_CITATION = new Set([
+  "airline_qantas|cargo",
+  "airline_qantas|hold",
 ]);
 const citee = (p) => typeof p?.source?.quote === "string" && p.source.quote.length >= 10
   && typeof p.source.quote_language === "string" && p.source.quote_language.length > 0
@@ -162,14 +197,24 @@ for (const k of migrees) {
   if (ids.includes(k) || STALE_VERSES.has(k) || DECISIONS_POST_MIGRATION.has(k)) continue;
   err(`politique migrée hors manifeste et hors dette scellée: ${k}`);
 }
-for (const k of STALE_VERSES) if (!migrees.has(k)) err(`POLICY_STALE versé non migré: ${k}`);
+for (const k of STALE_VERSES) {
+  if (STALE_REACTIVES_SUR_CITATION.has(k)) {
+    const [id, ch] = k.split("|");
+    const p = objects.airlines.find((a) => a.id === id)?.premium?.policy?.[ch];
+    if (!(p?.availability === "offered" && citee(p))) err(`POLICY_STALE réactivé SANS preuve complète: ${k}`);
+    continue;
+  }
+  if (!migrees.has(k)) err(`POLICY_STALE versé non migré: ${k}`);
+}
 for (const r of rows) {
   const k = `${r.identity.airline_id}|${r.identity.placement}`;
   const a = objects.airlines.find((x) => x.id === r.identity.airline_id);
   const p = a?.premium?.policy?.[r.identity.placement];
   if (!p) { err(`ligne de manifeste NON consommée (politique absente): ${k}`); continue; }
   if (REACTIVEES_SUR_CITATION.has(k)) {
-    if (!(p.availability === "offered" && citee(p))) err(`ligne réactivée SANS sa preuve: ${k} → availability=${p.availability}, citée=${citee(p)}`);
+    /* Une ligne réactivée porte une DÉCISION citée — `offered` ou, depuis le lot 6 (Saudia cabine),
+       `not_offered` : un refus cité réactive aussi, jamais sans sa phrase. */
+    if (!((p.availability === "offered" || p.availability === "not_offered") && citee(p))) err(`ligne réactivée SANS sa preuve: ${k} → availability=${p.availability}, citée=${citee(p)}`);
     continue;
   }
   const attendu = attenduPour(r);

@@ -74,10 +74,52 @@ ladder:
 policies:
   cabin:
     availability: not_offered
+    # PREUVE IMPORTÉE — import strict lot6 (Codex, lecture directe du 2026-09-09, cohorte LOT6 fait 17).
+    # Effet attendu : Do not offer Gulf Air passenger cabin to an ordinary pet dog.
+    # Portée nommée : Ordinary live animals; falcon exceptions are outside this decision.
+    source:
+      url: "https://www.gulfair.com/cargo"
+      source_type: official_website
+      verified_date: "2026-09-09"
+      review_due: "2026-12-08"   # reviewDueFrom(verified_date, "airline") — calculé par l'importeur
+      confidence: 4
+      reviewer: "Codex — direct reading of official airline page"
+      history: []
+      quote: "All live animals on Gulf Air travel as cargo."
+      quote_language: en
+      locator: "Falcon Cargo → Live Animals (AVI)"
   hold:
     availability: not_offered
+    # PREUVE IMPORTÉE — import strict lot6 (Codex, lecture directe du 2026-09-09, cohorte LOT6 fait 18).
+    # Effet attendu : Do not offer Gulf Air accompanied hold to an ordinary pet dog.
+    # Portée nommée : Ordinary live animals; passenger checked-baggage transport is not established by the reviewed policy.
+    source:
+      url: "https://www.gulfair.com/cargo"
+      source_type: official_website
+      verified_date: "2026-09-09"
+      review_due: "2026-12-08"   # reviewDueFrom(verified_date, "airline") — calculé par l'importeur
+      confidence: 4
+      reviewer: "Codex — direct reading of official airline page"
+      history: []
+      quote: "All live animals on Gulf Air travel as cargo."
+      quote_language: en
+      locator: "Falcon Cargo → Live Animals (AVI)"
   cargo:
-    review_state: legacy_unreviewed
+    availability: offered   # RÉACTIVÉE sur citation (import strict, lot6, 2026-09-09) — était review_state: legacy_unreviewed
+    # PREUVE IMPORTÉE — import strict lot6 (Codex, lecture directe du 2026-09-09, cohorte LOT6 fait 19).
+    # Effet attendu : Gulf Air cargo is a documented conditional path, never a shipment confirmation.
+    # Portée nommée : Live-animal freight, subject to Gulf Air and IATA Live Animals Regulations, animal health, container and shipment requirements.
+    source:
+      url: "https://www.gulfair.com/cargo"
+      source_type: official_website
+      verified_date: "2026-09-09"
+      review_due: "2026-12-08"   # reviewDueFrom(verified_date, "airline") — calculé par l'importeur
+      confidence: 4
+      reviewer: "Codex — direct reading of official airline page"
+      history: []
+      quote: "All live animals on Gulf Air travel as cargo."
+      quote_language: en
+      locator: "Falcon Cargo → Live Animals (AVI)"
 channels:
   - placement: cabin
     icon: 🐾

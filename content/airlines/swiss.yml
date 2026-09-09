@@ -74,8 +74,39 @@ ladder:
 policies:
   cabin:
     availability: offered
+    # PREUVE IMPORTÉE — import strict lot4 (Codex, lecture directe du 2026-09-09, cohorte LOT4 fait 4).
+    # Effet attendu : For a dog above 8 kg, do not offer SWISS cabin. At or below 8 kg, do not infer acceptance from this negative threshold.
+    # Portée nommée : The 8 kg ceiling includes the travel carrier. A dog alone above 8 kg cannot satisfy this ordinary-pet cabin rule; assistance dogs follow a distinct flow.
+    # Le plafond cité inclut le CONTENANT : refus sûr si le chien seul le dépasse, jamais un oui en dessous.
+    max_weight_kg: 8
+    weight_includes_carrier: true
+    source:
+      url: "https://www.swiss.com/xx/en/prepare/special-care/animals-travelling"
+      source_type: official_website
+      verified_date: "2026-09-09"
+      review_due: "2026-12-08"   # reviewDueFrom(verified_date, "airline") — calculé par l'importeur
+      confidence: 4
+      reviewer: "Codex — direct reading of official airline page"
+      history: []
+      quote: "Dogs and cats weighing up to 8 kg (weight including travel carrier)"
+      quote_language: en
+      locator: "Travelling with animals → The following animals can travel in the cabin"
   hold:
     availability: offered
+    # PREUVE IMPORTÉE — import strict lot4 (Codex, lecture directe du 2026-09-09, cohorte LOT4 fait 5).
+    # Effet attendu : SWISS hold is a documented conditional route, not a blanket approval for every breed, airport or destination.
+    # Portée nommée : Ordinary dogs and cats over 8 kg including container or with an oversized carrier; snub-nosed breeds are excluded from hold carriage and country rules still apply.
+    source:
+      url: "https://www.swiss.com/xx/en/prepare/special-care/animals-travelling"
+      source_type: official_website
+      verified_date: "2026-09-09"
+      review_due: "2026-12-08"   # reviewDueFrom(verified_date, "airline") — calculé par l'importeur
+      confidence: 4
+      reviewer: "Codex — direct reading of official airline page"
+      history: []
+      quote: "Dogs and cats that do not belong to snub-nosed breeds and weigh more than 8 kg (weight including transport container) or are travelling in a transport container exceeding the permitted size (max. 118 cm; 55 x 40 x 23 cm)."
+      quote_language: en
+      locator: "Travelling with animals → The following animals travel in the hold"
   cargo:
     review_state: legacy_unreviewed
 channels:

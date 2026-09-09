@@ -73,9 +73,37 @@ ladder:
       pt: "tratamento manual"
 policies:
   cabin:
-    review_state: legacy_unreviewed
+    availability: offered   # RÉACTIVÉE sur citation (import strict, lot6, 2026-09-09) — était review_state: legacy_unreviewed
+    # PREUVE IMPORTÉE — import strict lot6 (Codex, lecture directe du 2026-09-09, cohorte LOT6 fait 20).
+    # Effet attendu : Royal Jordanian cabin is conditional. Its combined 7 kg and five-hour conditions are not a global dog-only threshold.
+    # Portée nommée : Dogs and cats only in Economy, under 7 kg with crate, maximum 5-hour flight and prior Royal Jordanian approval.
+    source:
+      url: "https://www.rj.com/en/info-and-tips/special-services/flying-with-pets"
+      source_type: official_website
+      verified_date: "2026-09-09"
+      review_due: "2026-12-08"   # reviewDueFrom(verified_date, "airline") — calculé par l'importeur
+      confidence: 4
+      reviewer: "Codex — direct reading of official airline page"
+      history: []
+      quote: "The carriage of pets (Cats and Dogs) in passenger cabin is only permitted in Economy Class Cabins and is subject to the following conditions:"
+      quote_language: en
+      locator: "Flying with Pets → carriage of pets in passenger cabin"
   hold:
     availability: offered
+    # PREUVE IMPORTÉE — import strict lot6 (Codex, lecture directe du 2026-09-09, cohorte LOT6 fait 21).
+    # Effet attendu : Royal Jordanian hold is a documented conditional route, not a guaranteed booking.
+    # Portée nommée : Dogs and cats accompanying the passenger, subject to advance approval, documents, route, container and acceptance conditions.
+    source:
+      url: "https://www.rj.com/en/info-and-tips/special-services/flying-with-pets"
+      source_type: official_website
+      verified_date: "2026-09-09"
+      review_due: "2026-12-08"   # reviewDueFrom(verified_date, "airline") — calculé par l'importeur
+      confidence: 4
+      reviewer: "Codex — direct reading of official airline page"
+      history: []
+      quote: "Pets such as dogs, cats accompanying a passenger on the same flight may be accepted as checked baggage."
+      quote_language: en
+      locator: "Flying with Pets → Pets Checked as Baggage"
   cargo:
     review_state: legacy_unreviewed
 channels:

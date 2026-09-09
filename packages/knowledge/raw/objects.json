@@ -20166,15 +20166,17 @@
           "cabin": {
             "availability": "not_offered",
             "source": {
-              "url": "https://www.aerlingus.com",
+              "url": "https://www.aerlingus.com/localized/en/modals/baggage-information.html",
               "source_type": "official_website",
-              "verified_date": "2026-07-11",
-              "review_due": "2026-10-09",
-              "confidence": 3,
-              "reviewer": "MyDogCanFly Data Team (derived from fiche)",
-              "history": []
+              "verified_date": "2026-09-09",
+              "review_due": "2026-12-08",
+              "confidence": 4,
+              "reviewer": "Codex — direct reading of official airline page",
+              "history": [],
+              "quote": "Pets must be booked to travel with a pet agent, and they will be carried in the aircraft hold.",
+              "quote_language": "en",
+              "locator": "Baggage Information → General Animals & Pets Rules"
             },
-            "source_derived": true,
             "derived_from_fiche": true
           },
           "hold": {
@@ -20532,31 +20534,38 @@
           "cabin": {
             "availability": "offered",
             "max_weight_kg": 9,
+            "weight_includes_carrier": true,
             "source": {
-              "url": "https://www.aeromexico.com",
+              "url": "https://beta.aeromexico.com/es-mx/informacion-de-vuelos/transporte-aereo-de-mascotas",
               "source_type": "official_website",
-              "verified_date": "2026-07-11",
-              "review_due": "2026-10-09",
-              "confidence": 3,
-              "reviewer": "MyDogCanFly Data Team (derived from fiche)",
-              "history": []
+              "verified_date": "2026-09-09",
+              "review_due": "2026-12-08",
+              "confidence": 4,
+              "reviewer": "Codex — direct reading of official airline page",
+              "history": [],
+              "quote": "Mascota bajo el asiento (PETC) / Pet with you | Perros, Gatos | Sin límite de tiempo (cumpliendo requisitos de cada país) | Cabina | Hasta 9 kg (Incluyendo transportadora)",
+              "quote_language": "es",
+              "locator": "Servicios de Mascotas → Tipos de servicios para viajar con tu mascota"
             },
-            "source_derived": true,
             "derived_from_fiche": true
           },
           "hold": {
             "availability": "offered",
+            "max_weight_kg": 45,
+            "weight_includes_carrier": true,
             "brachy_allowed": false,
             "source": {
-              "url": "https://www.aeromexico.com",
+              "url": "https://beta.aeromexico.com/es-mx/informacion-de-vuelos/transporte-aereo-de-mascotas",
               "source_type": "official_website",
-              "verified_date": "2026-07-11",
-              "review_due": "2026-10-09",
-              "confidence": 3,
-              "reviewer": "MyDogCanFly Data Team (derived from fiche)",
-              "history": []
+              "verified_date": "2026-09-09",
+              "review_due": "2026-12-08",
+              "confidence": 4,
+              "reviewer": "Codex — direct reading of official airline page",
+              "history": [],
+              "quote": "Mascota en bodega (AVIH) / Checked pet | Perros, Gatos, Gallos | Sin límite de tiempo (cumpliendo requisitos de cada país) | Bodega | Hasta 45 kg (Incluyendo transportadora)",
+              "quote_language": "es",
+              "locator": "Servicios de Mascotas → Tipos de servicios para viajar con tu mascota"
             },
-            "source_derived": true,
             "derived_from_fiche": true
           },
           "cargo": {
@@ -22035,15 +22044,17 @@
           "hold": {
             "availability": "offered",
             "source": {
-              "url": "https://www.airchina.com",
+              "url": "https://www.airchina.com.cn/en-US/content/travel_info/preparing/luggage/check/small_animals/",
               "source_type": "official_website",
-              "verified_date": "2026-07-11",
-              "review_due": "2026-10-09",
-              "confidence": 3,
-              "reviewer": "MyDogCanFly Data Team (derived from fiche)",
-              "history": []
+              "verified_date": "2026-09-09",
+              "review_due": "2026-12-08",
+              "confidence": 4,
+              "reviewer": "Codex — direct reading of official airline page",
+              "history": [],
+              "quote": "Should you require your pet to be carried as checked baggage, please ensure that you submit an application when you make your reservation, as pets will only be carried following approval by Air China.",
+              "quote_language": "en",
+              "locator": "Pets as Checked Baggage → Carriage requirements"
             },
-            "source_derived": true,
             "derived_from_fiche": true
           },
           "cargo": {
@@ -23202,43 +23213,49 @@
           "cabin": {
             "availability": "not_offered",
             "source": {
-              "url": "https://www.airmauritius.com",
+              "url": "https://www.airmauritius.com/en-de/help/faq/travelling-with-pets",
               "source_type": "official_website",
-              "verified_date": "2026-07-11",
-              "review_due": "2026-10-09",
-              "confidence": 3,
-              "reviewer": "MyDogCanFly Data Team (derived from fiche)",
-              "history": []
+              "verified_date": "2026-09-09",
+              "review_due": "2026-12-08",
+              "confidence": 4,
+              "reviewer": "Codex — direct reading of official airline page",
+              "history": [],
+              "quote": "Kindly be advised that Air Mauritius adheres to a no-pets policy for in-cabin transportation.",
+              "quote_language": "en",
+              "locator": "FAQ Travelling with pets → Can I travel with my pet onboard the cabin?"
             },
-            "source_derived": true,
             "derived_from_fiche": true
           },
           "hold": {
             "availability": "offered",
             "source": {
-              "url": "https://www.airmauritius.com",
+              "url": "https://www.airmauritius.com/en-au/before-you-fly/travel-information/assistance-and-health/travelling-with-pets",
               "source_type": "official_website",
-              "verified_date": "2026-07-11",
-              "review_due": "2026-10-09",
-              "confidence": 3,
-              "reviewer": "MyDogCanFly Data Team (derived from fiche)",
-              "history": []
+              "verified_date": "2026-09-09",
+              "review_due": "2026-12-08",
+              "confidence": 4,
+              "reviewer": "Codex — direct reading of official airline page",
+              "history": [],
+              "quote": "Even though your pet can't fly in the cabin with you, it can still travel safely and comfortably on the same flight as you, in the hold of most of our aircraft.",
+              "quote_language": "en",
+              "locator": "Travelling with Pets → opening policy statement"
             },
-            "source_derived": true,
             "derived_from_fiche": true
           },
           "cargo": {
-            "review_state": "legacy_unreviewed",
+            "availability": "offered",
             "source": {
-              "url": "https://www.airmauritius.com",
+              "url": "https://www.airmauritius.com/en-au/before-you-fly/travel-information/assistance-and-health/travelling-with-pets",
               "source_type": "official_website",
-              "verified_date": "2026-07-11",
-              "review_due": "2026-10-09",
-              "confidence": 3,
-              "reviewer": "MyDogCanFly Data Team (derived from fiche)",
-              "history": []
+              "verified_date": "2026-09-09",
+              "review_due": "2026-12-08",
+              "confidence": 4,
+              "reviewer": "Codex — direct reading of official airline page",
+              "history": [],
+              "quote": "Please contact our Air Mauritius Cargo Office or liaise with your freight forwarder, who will provide you with valuable guidelines on how to prepare your pets for travel, assist with the relevant formalities, and book space with Air Mauritius.",
+              "quote_language": "en",
+              "locator": "Travelling with Pets → Pets travelling as cargo"
             },
-            "source_derived": true,
             "derived_from_fiche": true
           }
         }
@@ -24512,44 +24529,50 @@
               "pt": "O animal deve ser pequeno o suficiente para caber confortavelmente em uma bolsa sob o assento (bolsa flexível de até 17 × 11 × 9,5 pol). Sem limite de peso publicado — a regra é caber na bolsa."
             },
             "source": {
-              "url": "https://www.alaskaair.com/",
+              "url": "https://www.alaskaair.com/content/travel-info/pets",
               "source_type": "official_website",
-              "verified_date": "2026-07-11",
-              "review_due": "2026-10-09",
-              "confidence": 3,
-              "reviewer": "MyDogCanFly Data Team (derived from fiche)",
-              "history": []
+              "verified_date": "2026-09-09",
+              "review_due": "2026-12-08",
+              "confidence": 4,
+              "reviewer": "Codex — direct reading of official airline page",
+              "history": [],
+              "quote": "Pets that fit in an under-seat carrier can travel in a cabin.",
+              "quote_language": "en",
+              "locator": "Traveling With Pets → Pets in cabin"
             },
-            "source_derived": true,
             "derived_from_fiche": true
           },
           "hold": {
             "availability": "offered",
             "brachy_allowed": false,
             "source": {
-              "url": "https://www.alaskaair.com/",
+              "url": "https://www.alaskaair.com/content/travel-info/pets",
               "source_type": "official_website",
-              "verified_date": "2026-07-11",
-              "review_due": "2026-10-09",
-              "confidence": 3,
-              "reviewer": "MyDogCanFly Data Team (derived from fiche)",
-              "history": []
+              "verified_date": "2026-09-09",
+              "review_due": "2026-12-08",
+              "confidence": 4,
+              "reviewer": "Codex — direct reading of official airline page",
+              "history": [],
+              "quote": "Pets can travel in our climate-controlled baggage compartment.",
+              "quote_language": "en",
+              "locator": "Traveling With Pets → Pets in baggage compartment"
             },
-            "source_derived": true,
             "derived_from_fiche": true
           },
           "cargo": {
-            "review_state": "legacy_unreviewed",
+            "availability": "offered",
             "source": {
-              "url": "https://www.alaskaair.com/",
+              "url": "https://www.alaskaair.com/content/travel-info/pets",
               "source_type": "official_website",
-              "verified_date": "2026-07-11",
-              "review_due": "2026-10-09",
-              "confidence": 3,
-              "reviewer": "MyDogCanFly Data Team (derived from fiche)",
-              "history": []
+              "verified_date": "2026-09-09",
+              "review_due": "2026-12-08",
+              "confidence": 4,
+              "reviewer": "Codex — direct reading of official airline page",
+              "history": [],
+              "quote": "Our Pet Connect@ animal travel program is available via Alaska and Hawaiian Air Cargo for pets traveling without an accompanying passenger.",
+              "quote_language": "en",
+              "locator": "Traveling With Pets → Pets in baggage compartment"
             },
-            "source_derived": true,
             "derived_from_fiche": true
           }
         }
@@ -24664,13 +24687,16 @@
               "fr": "Chats et chiens ; caisse sous le siège ; vols jusqu'à 12 h ; les animaux sédatés sont refusés."
             },
             "source": {
-              "url": "https://www.aa.com/i18n/travel-info/special-assistance/pets.jsp",
+              "url": "https://www.aa.com/web/i18n/travel-info/special-assistance/pets.html",
               "source_type": "official_website",
-              "verified_date": "2026-07-08",
-              "review_due": "2026-10-06",
+              "verified_date": "2026-09-09",
+              "review_due": "2026-12-08",
               "confidence": 4,
-              "reviewer": "MyDogCanFly Data Team",
-              "history": []
+              "reviewer": "Codex — direct reading of official airline page",
+              "history": [],
+              "quote": "On flights with American you can bring one pet carrier as a carry-on if: You pay the carry-on pet fee; Your pet stays in the pet carrier and under the seat in front of you the entire flight.",
+              "quote_language": "en",
+              "locator": "Traveling with pets → Carry-on pets"
             }
           },
           "hold": {
@@ -24696,13 +24722,16 @@
               "fr": "Via American PetEmbark (AA Cargo) pour les animaux non admissibles en cabine."
             },
             "source": {
-              "url": "https://www.aa.com/i18n/travel-info/special-assistance/pets.jsp",
+              "url": "https://www.aa.com/web/i18n/travel-info/special-assistance/pets.html",
               "source_type": "official_website",
-              "verified_date": "2026-07-08",
-              "review_due": "2026-10-06",
+              "verified_date": "2026-09-09",
+              "review_due": "2026-12-08",
               "confidence": 4,
-              "reviewer": "MyDogCanFly Data Team",
-              "history": []
+              "reviewer": "Codex — direct reading of official airline page",
+              "history": [],
+              "quote": "American Airlines Cargo offers the American PetEmbark® service for pets that don’t qualify to travel as carry-on or checked pets.",
+              "quote_language": "en",
+              "locator": "Traveling with pets → American PetEmbark®"
             }
           }
         },
@@ -25557,31 +25586,37 @@
         "policy": {
           "cabin": {
             "availability": "offered",
+            "max_weight_kg": 7,
+            "weight_includes_carrier": true,
             "source": {
-              "url": "https://flyasiana.com",
+              "url": "https://m.flyasiana.com/C/TW/EN/contents/traveling-with-pets",
               "source_type": "official_website",
-              "verified_date": "2026-08-08",
-              "review_due": "2026-11-06",
-              "confidence": 3,
-              "reviewer": "MyDogCanFly Data Team (derived from fiche)",
-              "history": []
+              "verified_date": "2026-09-09",
+              "review_due": "2026-12-08",
+              "confidence": 4,
+              "reviewer": "Codex — direct reading of official airline page",
+              "history": [],
+              "quote": "The combined weight of the pet and its cage must not exceed 7kg",
+              "quote_language": "en",
+              "locator": "Traveling with Pets → Eligible Pets for the Cabin"
             },
-            "source_derived": true,
             "derived_from_fiche": true
           },
           "hold": {
             "availability": "offered",
             "brachy_allowed": false,
             "source": {
-              "url": "https://flyasiana.com",
+              "url": "https://m.flyasiana.com/C/TW/EN/contents/traveling-with-pets",
               "source_type": "official_website",
-              "verified_date": "2026-08-08",
-              "review_due": "2026-11-06",
-              "confidence": 3,
-              "reviewer": "MyDogCanFly Data Team (derived from fiche)",
-              "history": []
+              "verified_date": "2026-09-09",
+              "review_due": "2026-12-08",
+              "confidence": 4,
+              "reviewer": "Codex — direct reading of official airline page",
+              "history": [],
+              "quote": "Each adult passenger may bring 1 pet into the cabin and 2 pets as checked baggage.",
+              "quote_language": "en",
+              "locator": "Traveling with Pets → Eligible Pets for Transport"
             },
-            "source_derived": true,
             "derived_from_fiche": true
           },
           "cargo": {
@@ -25912,31 +25947,37 @@
         "policy": {
           "cabin": {
             "availability": "offered",
+            "max_weight_kg": 8,
+            "weight_includes_carrier": true,
             "source": {
-              "url": "https://www.austrian.com",
+              "url": "https://www.austrian.com/us/en/plan/special-requirements/travelling-with-animals",
               "source_type": "official_website",
-              "verified_date": "2026-07-11",
-              "review_due": "2026-10-09",
-              "confidence": 3,
-              "reviewer": "MyDogCanFly Data Team (derived from fiche)",
-              "history": []
+              "verified_date": "2026-09-09",
+              "review_due": "2026-12-08",
+              "confidence": 4,
+              "reviewer": "Codex — direct reading of official airline page",
+              "history": [],
+              "quote": "The total weight of the animal and the carrying container must not exceed 8 kg.",
+              "quote_language": "en",
+              "locator": "Travelling with animals → Small pets in the cabin"
             },
-            "source_derived": true,
             "derived_from_fiche": true
           },
           "hold": {
             "availability": "offered",
             "brachy_allowed": false,
             "source": {
-              "url": "https://www.austrian.com",
+              "url": "https://www.austrian.com/us/en/plan/special-requirements/travelling-with-animals",
               "source_type": "official_website",
-              "verified_date": "2026-07-11",
-              "review_due": "2026-10-09",
-              "confidence": 3,
-              "reviewer": "MyDogCanFly Data Team (derived from fiche)",
-              "history": []
+              "verified_date": "2026-09-09",
+              "review_due": "2026-12-08",
+              "confidence": 4,
+              "reviewer": "Codex — direct reading of official airline page",
+              "history": [],
+              "quote": "If there is no space in the passenger cabin, cats and dogs may be carried in the cargo hold if required, subject to compliance with the applicable conditions of carriage.",
+              "quote_language": "en",
+              "locator": "Travelling with animals → Large animals in the cargo hold"
             },
-            "source_derived": true,
             "derived_from_fiche": true
           },
           "cargo": {
@@ -27274,31 +27315,37 @@
         "policy": {
           "cabin": {
             "availability": "offered",
+            "max_weight_kg": 8,
+            "weight_includes_carrier": true,
             "source": {
-              "url": "https://www.brusselsairlines.com/",
+              "url": "https://www.brusselsairlines.com/be/en/special-care/pets/cats-and-small-dogs-in-the-cabin",
               "source_type": "official_website",
-              "verified_date": "2026-07-11",
-              "review_due": "2026-10-09",
-              "confidence": 3,
-              "reviewer": "MyDogCanFly Data Team (derived from fiche)",
-              "history": []
+              "verified_date": "2026-09-09",
+              "review_due": "2026-12-08",
+              "confidence": 4,
+              "reviewer": "Codex — direct reading of official airline page",
+              "history": [],
+              "quote": "The total weight of the transport container, including the animal, must not exceed 8 kg.",
+              "quote_language": "en",
+              "locator": "Cats and small dogs in the cabin → Which conditions apply for a transport in the cabin?"
             },
-            "source_derived": true,
             "derived_from_fiche": true
           },
           "hold": {
             "availability": "offered",
             "brachy_allowed": false,
             "source": {
-              "url": "https://www.brusselsairlines.com/",
+              "url": "https://www.brusselsairlines.com/rw/en/special-care/pets/cats-and-dogs-in-the-hold",
               "source_type": "official_website",
-              "verified_date": "2026-07-11",
-              "review_due": "2026-10-09",
-              "confidence": 3,
-              "reviewer": "MyDogCanFly Data Team (derived from fiche)",
-              "history": []
+              "verified_date": "2026-09-09",
+              "review_due": "2026-12-08",
+              "confidence": 4,
+              "reviewer": "Codex — direct reading of official airline page",
+              "history": [],
+              "quote": "Your cat or dog will be well taken care of and will travel in a ventilated part of the aircraft hold.",
+              "quote_language": "en",
+              "locator": "Cats and dogs in the hold → How will my pet travel?"
             },
-            "source_derived": true,
             "derived_from_fiche": true
           },
           "cargo": {
@@ -27744,15 +27791,17 @@
           "hold": {
             "availability": "offered",
             "source": {
-              "url": "https://www.china-airlines.com",
+              "url": "https://www.china-airlines.com/tw/en/prepare-for-the-fly/information/baggage/pet-transport",
               "source_type": "official_website",
-              "verified_date": "2026-07-11",
-              "review_due": "2026-10-09",
-              "confidence": 3,
-              "reviewer": "MyDogCanFly Data Team (derived from fiche)",
-              "history": []
+              "verified_date": "2026-09-09",
+              "review_due": "2026-12-08",
+              "confidence": 4,
+              "reviewer": "Codex — direct reading of official airline page",
+              "history": [],
+              "quote": "Pets must be placed in appropriate containers and transported in the cargo hold as checked baggage.",
+              "quote_language": "en",
+              "locator": "Pets → Transporting pets as checked baggage (AVIH)"
             },
-            "source_derived": true,
             "derived_from_fiche": true
           },
           "cargo": {
@@ -27989,29 +28038,33 @@
           "cabin": {
             "availability": "not_offered",
             "source": {
-              "url": "https://www.ceair.com",
+              "url": "https://global.ceair.com/global/en_static/Announcement/TravelTips/SpecialPassengerServiceNotice/LittleAnimal/",
               "source_type": "official_website",
-              "verified_date": "2026-07-11",
-              "review_due": "2026-10-09",
-              "confidence": 3,
-              "reviewer": "MyDogCanFly Data Team (derived from fiche)",
-              "history": []
+              "verified_date": "2026-09-09",
+              "review_due": "2026-12-08",
+              "confidence": 4,
+              "reviewer": "Codex — direct reading of official airline page",
+              "history": [],
+              "quote": "Passengers are not allowed to carry small animals into the passenger cabin: They must be transported in the cargo cabin.",
+              "quote_language": "en",
+              "locator": "China Eastern Small Animals → Transport rules"
             },
-            "source_derived": true,
             "derived_from_fiche": true
           },
           "hold": {
             "availability": "offered",
             "source": {
-              "url": "https://www.ceair.com",
+              "url": "https://global.ceair.com/global/en_static/Announcement/TravelTips/SpecialPassengerServiceNotice/LittleAnimal/",
               "source_type": "official_website",
-              "verified_date": "2026-07-11",
-              "review_due": "2026-10-09",
-              "confidence": 3,
-              "reviewer": "MyDogCanFly Data Team (derived from fiche)",
-              "history": []
+              "verified_date": "2026-09-09",
+              "review_due": "2026-12-08",
+              "confidence": 4,
+              "reviewer": "Codex — direct reading of official airline page",
+              "history": [],
+              "quote": "Passengers are not allowed to carry small animals into the passenger cabin: They must be transported in the cargo cabin.",
+              "quote_language": "en",
+              "locator": "China Eastern Small Animals → Transport rules"
             },
-            "source_derived": true,
             "derived_from_fiche": true
           },
           "cargo": {
@@ -30913,30 +30966,35 @@
           "cabin": {
             "availability": "offered",
             "max_weight_kg": 8,
+            "weight_includes_carrier": true,
             "source": {
-              "url": "https://www.egyptair.com",
+              "url": "https://www.egyptair.com/en/fly/special-services/Pages/traveling-with-pets.aspx",
               "source_type": "official_website",
-              "verified_date": "2026-07-11",
-              "review_due": "2026-10-09",
-              "confidence": 3,
-              "reviewer": "MyDogCanFly Data Team (derived from fiche)",
-              "history": []
+              "verified_date": "2026-09-09",
+              "review_due": "2026-12-08",
+              "confidence": 4,
+              "reviewer": "Codex — direct reading of official airline page",
+              "history": [],
+              "quote": "The total weight of animal and cage should not exceed 8 KG.",
+              "quote_language": "en",
+              "locator": "Traveling With Pets → Animal Transport in Passenger Cabins"
             },
-            "source_derived": true,
             "derived_from_fiche": true
           },
           "hold": {
             "availability": "offered",
             "source": {
-              "url": "https://www.egyptair.com",
+              "url": "https://www.egyptair.com/en/fly/special-services/Pages/traveling-with-pets.aspx",
               "source_type": "official_website",
-              "verified_date": "2026-07-11",
-              "review_due": "2026-10-09",
-              "confidence": 3,
-              "reviewer": "MyDogCanFly Data Team (derived from fiche)",
-              "history": []
+              "verified_date": "2026-09-09",
+              "review_due": "2026-12-08",
+              "confidence": 4,
+              "reviewer": "Codex — direct reading of official airline page",
+              "history": [],
+              "quote": "EGYPTAIR accepts live animals as checked baggage or in the cabin as follows:",
+              "quote_language": "en",
+              "locator": "Traveling With Pets → Animal Transport in Aircraft Baggage Holds"
             },
-            "source_derived": true,
             "derived_from_fiche": true
           },
           "cargo": {
@@ -31516,43 +31574,49 @@
           "cabin": {
             "availability": "not_offered",
             "source": {
-              "url": "https://www.emirates.com/",
+              "url": "https://www.emirates.com/us/english/before-you-fly/baggage/unusual-baggage-and-special-allowances/",
               "source_type": "official_website",
-              "verified_date": "2026-07-11",
-              "review_due": "2026-10-09",
-              "confidence": 3,
-              "reviewer": "MyDogCanFly Data Team (derived from fiche)",
-              "history": []
+              "verified_date": "2026-09-09",
+              "review_due": "2026-12-08",
+              "confidence": 4,
+              "reviewer": "Codex — direct reading of official airline page",
+              "history": [],
+              "quote": "Pets are not permitted in the cabin, with the exception of falcons between Dubai and certain destinations in Pakistan.",
+              "quote_language": "en",
+              "locator": "Unusual baggage and special allowances → Pets"
             },
-            "source_derived": true,
             "derived_from_fiche": true
           },
           "hold": {
             "availability": "offered",
             "source": {
-              "url": "https://www.emirates.com/",
+              "url": "https://www.emirates.com/us/english/before-you-fly/baggage/unusual-baggage-and-special-allowances/",
               "source_type": "official_website",
-              "verified_date": "2026-07-11",
-              "review_due": "2026-10-09",
-              "confidence": 3,
-              "reviewer": "MyDogCanFly Data Team (derived from fiche)",
-              "history": []
+              "verified_date": "2026-09-09",
+              "review_due": "2026-12-08",
+              "confidence": 4,
+              "reviewer": "Codex — direct reading of official airline page",
+              "history": [],
+              "quote": "Depending on the individual circumstances, pets must be carried either as cargo or as checked baggage in the hold.",
+              "quote_language": "en",
+              "locator": "Unusual baggage and special allowances → Pets"
             },
-            "source_derived": true,
             "derived_from_fiche": true
           },
           "cargo": {
-            "review_state": "legacy_unreviewed",
+            "availability": "offered",
             "source": {
-              "url": "https://www.emirates.com/",
+              "url": "https://www.emirates.com/us/english/before-you-fly/baggage/unusual-baggage-and-special-allowances/",
               "source_type": "official_website",
-              "verified_date": "2026-07-11",
-              "review_due": "2026-10-09",
-              "confidence": 3,
-              "reviewer": "MyDogCanFly Data Team (derived from fiche)",
-              "history": []
+              "verified_date": "2026-09-09",
+              "review_due": "2026-12-08",
+              "confidence": 4,
+              "reviewer": "Codex — direct reading of official airline page",
+              "history": [],
+              "quote": "Depending on the individual circumstances, pets must be carried either as cargo or as checked baggage in the hold.",
+              "quote_language": "en",
+              "locator": "Unusual baggage and special allowances → Pets"
             },
-            "source_derived": true,
             "derived_from_fiche": true
           }
         }
@@ -33312,17 +33376,19 @@
             "derived_from_fiche": true
           },
           "cargo": {
-            "review_state": "legacy_unreviewed",
+            "availability": "offered",
             "source": {
-              "url": "https://www.garuda-indonesia.com",
+              "url": "https://cargo.garuda-indonesia.com/Live-Animals",
               "source_type": "official_website",
-              "verified_date": "2026-07-11",
-              "review_due": "2026-10-09",
-              "confidence": 3,
-              "reviewer": "MyDogCanFly Data Team (derived from fiche)",
-              "history": []
+              "verified_date": "2026-09-09",
+              "review_due": "2026-12-08",
+              "confidence": 4,
+              "reviewer": "Codex — direct reading of official airline page",
+              "history": [],
+              "quote": "Garuda Indonesia Cargo service is ready to make your pets or live animals comfortable on the plane until they arrive at their destination.",
+              "quote_language": "en",
+              "locator": "CargoWeb → Live Animals"
             },
-            "source_derived": true,
             "derived_from_fiche": true
           }
         }
@@ -33398,43 +33464,49 @@
           "cabin": {
             "availability": "not_offered",
             "source": {
-              "url": "https://www.gulfair.com",
+              "url": "https://www.gulfair.com/cargo",
               "source_type": "official_website",
-              "verified_date": "2026-08-08",
-              "review_due": "2026-11-06",
-              "confidence": 3,
-              "reviewer": "MyDogCanFly Data Team (derived from fiche)",
-              "history": []
+              "verified_date": "2026-09-09",
+              "review_due": "2026-12-08",
+              "confidence": 4,
+              "reviewer": "Codex — direct reading of official airline page",
+              "history": [],
+              "quote": "All live animals on Gulf Air travel as cargo.",
+              "quote_language": "en",
+              "locator": "Falcon Cargo → Live Animals (AVI)"
             },
-            "source_derived": true,
             "derived_from_fiche": true
           },
           "hold": {
             "availability": "not_offered",
             "source": {
-              "url": "https://www.gulfair.com",
+              "url": "https://www.gulfair.com/cargo",
               "source_type": "official_website",
-              "verified_date": "2026-08-08",
-              "review_due": "2026-11-06",
-              "confidence": 3,
-              "reviewer": "MyDogCanFly Data Team (derived from fiche)",
-              "history": []
+              "verified_date": "2026-09-09",
+              "review_due": "2026-12-08",
+              "confidence": 4,
+              "reviewer": "Codex — direct reading of official airline page",
+              "history": [],
+              "quote": "All live animals on Gulf Air travel as cargo.",
+              "quote_language": "en",
+              "locator": "Falcon Cargo → Live Animals (AVI)"
             },
-            "source_derived": true,
             "derived_from_fiche": true
           },
           "cargo": {
-            "review_state": "legacy_unreviewed",
+            "availability": "offered",
             "source": {
-              "url": "https://www.gulfair.com",
+              "url": "https://www.gulfair.com/cargo",
               "source_type": "official_website",
-              "verified_date": "2026-08-08",
-              "review_due": "2026-11-06",
-              "confidence": 3,
-              "reviewer": "MyDogCanFly Data Team (derived from fiche)",
-              "history": []
+              "verified_date": "2026-09-09",
+              "review_due": "2026-12-08",
+              "confidence": 4,
+              "reviewer": "Codex — direct reading of official airline page",
+              "history": [],
+              "quote": "All live animals on Gulf Air travel as cargo.",
+              "quote_language": "en",
+              "locator": "Falcon Cargo → Live Animals (AVI)"
             },
-            "source_derived": true,
             "derived_from_fiche": true
           }
         }
@@ -34756,30 +34828,34 @@
           "cabin": {
             "availability": "offered",
             "source": {
-              "url": "https://www.ita-airways.com",
+              "url": "https://www.ita-airways.com/us/en/book-and-prepare/other-requests/travelling-with-pets/pets-in-cabin.html",
               "source_type": "official_website",
-              "verified_date": "2026-07-11",
-              "review_due": "2026-10-09",
-              "confidence": 3,
-              "reviewer": "MyDogCanFly Data Team (derived from fiche)",
-              "history": []
+              "verified_date": "2026-09-09",
+              "review_due": "2026-12-08",
+              "confidence": 4,
+              "reviewer": "Codex — direct reading of official airline page",
+              "history": [],
+              "quote": "Please note that as of December 1, 2025, pet transport is permitted only for dogs and cats, both in the cabin (PETC) and in the hold (AVIH).",
+              "quote_language": "en",
+              "locator": "Pets in cabin → Service overview"
             },
-            "source_derived": true,
             "derived_from_fiche": true
           },
           "hold": {
             "availability": "offered",
             "brachy_allowed": false,
             "source": {
-              "url": "https://www.ita-airways.com",
+              "url": "https://www.ita-airways.com/us/en/book-and-prepare/other-requests/travelling-with-pets/pets-in-cabin.html",
               "source_type": "official_website",
-              "verified_date": "2026-07-11",
-              "review_due": "2026-10-09",
-              "confidence": 3,
-              "reviewer": "MyDogCanFly Data Team (derived from fiche)",
-              "history": []
+              "verified_date": "2026-09-09",
+              "review_due": "2026-12-08",
+              "confidence": 4,
+              "reviewer": "Codex — direct reading of official airline page",
+              "history": [],
+              "quote": "Please note that as of December 1, 2025, pet transport is permitted only for dogs and cats, both in the cabin (PETC) and in the hold (AVIH).",
+              "quote_language": "en",
+              "locator": "Pets in cabin → Service overview"
             },
-            "source_derived": true,
             "derived_from_fiche": true
           },
           "cargo": {
@@ -35307,43 +35383,49 @@
           "cabin": {
             "availability": "not_offered",
             "source": {
-              "url": "https://www.kenya-airways.com",
+              "url": "https://www.kenya-airways.com/en-gb/plan/baggage-information/pet-carriage/",
               "source_type": "official_website",
-              "verified_date": "2026-08-08",
-              "review_due": "2026-11-06",
-              "confidence": 3,
-              "reviewer": "MyDogCanFly Data Team (derived from fiche)",
-              "history": []
+              "verified_date": "2026-09-09",
+              "review_due": "2026-12-08",
+              "confidence": 4,
+              "reviewer": "Codex — direct reading of official airline page",
+              "history": [],
+              "quote": "Live animals will not be accepted as checked-in Animal in Hold (AVIH) or Pet in Cabin (PETC) on Kenya Airways flights.",
+              "quote_language": "en",
+              "locator": "Pet Carriage → opening policy statement"
             },
-            "source_derived": true,
             "derived_from_fiche": true
           },
           "hold": {
             "availability": "not_offered",
             "source": {
-              "url": "https://www.kenya-airways.com",
+              "url": "https://www.kenya-airways.com/en-gb/plan/baggage-information/pet-carriage/",
               "source_type": "official_website",
-              "verified_date": "2026-08-08",
-              "review_due": "2026-11-06",
-              "confidence": 3,
-              "reviewer": "MyDogCanFly Data Team (derived from fiche)",
-              "history": []
+              "verified_date": "2026-09-09",
+              "review_due": "2026-12-08",
+              "confidence": 4,
+              "reviewer": "Codex — direct reading of official airline page",
+              "history": [],
+              "quote": "Live animals will not be accepted as checked-in Animal in Hold (AVIH) or Pet in Cabin (PETC) on Kenya Airways flights.",
+              "quote_language": "en",
+              "locator": "Pet Carriage → opening policy statement"
             },
-            "source_derived": true,
             "derived_from_fiche": true
           },
           "cargo": {
-            "review_state": "legacy_unreviewed",
+            "availability": "offered",
             "source": {
-              "url": "https://www.kenya-airways.com",
+              "url": "https://www.kenya-airways.com/en-gb/plan/baggage-information/pet-carriage/",
               "source_type": "official_website",
-              "verified_date": "2026-08-08",
-              "review_due": "2026-11-06",
-              "confidence": 3,
-              "reviewer": "MyDogCanFly Data Team (derived from fiche)",
-              "history": []
+              "verified_date": "2026-09-09",
+              "review_due": "2026-12-08",
+              "confidence": 4,
+              "reviewer": "Codex — direct reading of official airline page",
+              "history": [],
+              "quote": "Live animals shall be consigned as cargo only.",
+              "quote_language": "en",
+              "locator": "Pet Carriage → opening policy statement"
             },
-            "source_derived": true,
             "derived_from_fiche": true
           }
         }
@@ -36275,31 +36357,39 @@
         "policy": {
           "cabin": {
             "availability": "offered",
+            "max_weight_kg": 7,
+            "weight_includes_carrier": true,
             "source": {
-              "url": "https://www.koreanair.com",
+              "url": "https://www.koreanair.com/contents/plan-your-travel/special-assistance/travel-with-pets/guide?hl=en",
               "source_type": "official_website",
-              "verified_date": "2026-07-11",
-              "review_due": "2026-10-09",
-              "confidence": 3,
-              "reviewer": "MyDogCanFly Data Team (derived from fiche)",
-              "history": []
+              "verified_date": "2026-09-09",
+              "review_due": "2026-12-08",
+              "confidence": 4,
+              "reviewer": "Codex — direct reading of official airline page",
+              "history": [],
+              "quote": "반려동물과 운송용기 합한 총 무게가 7kg 이하",
+              "quote_language": "ko",
+              "locator": "Traveling with Pets → Transport restrictions → cabin pet conditions"
             },
-            "source_derived": true,
             "derived_from_fiche": true
           },
           "hold": {
             "availability": "offered",
+            "max_weight_kg": 45,
+            "weight_includes_carrier": true,
             "brachy_allowed": false,
             "source": {
-              "url": "https://www.koreanair.com",
+              "url": "https://www.koreanair.com/contents/plan-your-travel/special-assistance/travel-with-pets/guide?hl=en",
               "source_type": "official_website",
-              "verified_date": "2026-07-11",
-              "review_due": "2026-10-09",
-              "confidence": 3,
-              "reviewer": "MyDogCanFly Data Team (derived from fiche)",
-              "history": []
+              "verified_date": "2026-09-09",
+              "review_due": "2026-12-08",
+              "confidence": 4,
+              "reviewer": "Codex — direct reading of official airline page",
+              "history": [],
+              "quote": "반려동물과 운송용기 합한 총 무게가 45kg 이하",
+              "quote_language": "ko",
+              "locator": "Traveling with Pets → Transport restrictions → checked-pet conditions"
             },
-            "source_derived": true,
             "derived_from_fiche": true
           },
           "cargo": {
@@ -36598,30 +36688,34 @@
           "cabin": {
             "availability": "offered",
             "source": {
-              "url": "https://www.latamairlines.com",
+              "url": "https://www.latamairlines.com/ca/en/help-center/faq/pets/transport/airplaine-flight",
               "source_type": "official_website",
-              "verified_date": "2026-07-11",
-              "review_due": "2026-10-09",
-              "confidence": 3,
-              "reviewer": "MyDogCanFly Data Team (derived from fiche)",
-              "history": []
+              "verified_date": "2026-09-09",
+              "review_due": "2026-12-08",
+              "confidence": 4,
+              "reviewer": "Codex — direct reading of official airline page",
+              "history": [],
+              "quote": "Depending on the size, weight and other considerations, your pet can travel with you in the cabin (Economy or Premium Economy), or in the aircraft hold.",
+              "quote_language": "en",
+              "locator": "Can I travel with my pet on the plane? → opening policy statement"
             },
-            "source_derived": true,
             "derived_from_fiche": true
           },
           "hold": {
             "availability": "offered",
             "brachy_allowed": false,
             "source": {
-              "url": "https://www.latamairlines.com",
+              "url": "https://www.latamairlines.com/ca/en/help-center/faq/pets/transport/airplaine-flight",
               "source_type": "official_website",
-              "verified_date": "2026-07-11",
-              "review_due": "2026-10-09",
-              "confidence": 3,
-              "reviewer": "MyDogCanFly Data Team (derived from fiche)",
-              "history": []
+              "verified_date": "2026-09-09",
+              "review_due": "2026-12-08",
+              "confidence": 4,
+              "reviewer": "Codex — direct reading of official airline page",
+              "history": [],
+              "quote": "If your dog or cat exceeds the maximum size or weight allowed to travel in the cabin, it can travel in the hold, as long as the conditions and requirements are met.",
+              "quote_language": "en",
+              "locator": "Can I travel with my pet on the plane? → In the hold"
             },
-            "source_derived": true,
             "derived_from_fiche": true
           },
           "cargo": {
@@ -37912,29 +38006,33 @@
           "cabin": {
             "availability": "not_offered",
             "source": {
-              "url": "https://www.malaysiaairlines.com",
+              "url": "https://www.malaysiaairlines.com/content/dam/mh/my/en/legal/2021-08-31-General-Conditions-of-Carriage-Malaysia-Airlines.pdf",
               "source_type": "official_website",
-              "verified_date": "2026-07-11",
-              "review_due": "2026-10-09",
-              "confidence": 3,
-              "reviewer": "MyDogCanFly Data Team (derived from fiche)",
-              "history": []
+              "verified_date": "2026-09-09",
+              "review_due": "2026-12-08",
+              "confidence": 4,
+              "reviewer": "Codex — direct reading of official airline page",
+              "history": [],
+              "quote": "Animals must be carried in the cargo compartment of the aircraft, and are not allowed in the passenger cabin.",
+              "quote_language": "en",
+              "locator": "General Conditions of Carriage → 9.11 Carriage of Animals"
             },
-            "source_derived": true,
             "derived_from_fiche": true
           },
           "hold": {
             "availability": "offered",
             "source": {
-              "url": "https://www.malaysiaairlines.com",
+              "url": "https://www.malaysiaairlines.com/content/dam/mh/my/en/legal/2021-08-31-General-Conditions-of-Carriage-Malaysia-Airlines.pdf",
               "source_type": "official_website",
-              "verified_date": "2026-07-11",
-              "review_due": "2026-10-09",
-              "confidence": 3,
-              "reviewer": "MyDogCanFly Data Team (derived from fiche)",
-              "history": []
+              "verified_date": "2026-09-09",
+              "review_due": "2026-12-08",
+              "confidence": 4,
+              "reviewer": "Codex — direct reading of official airline page",
+              "history": [],
+              "quote": "Subject to our advance permission and Regulations, we will accept animals such as dogs, cats, household birds and other pets for carriage when properly crated and accompanied by valid health and vaccination certificates, entry permits, and other documents required by countries of entry or transit.",
+              "quote_language": "en",
+              "locator": "General Conditions of Carriage → 9.11 Carriage of Animals"
             },
-            "source_derived": true,
             "derived_from_fiche": true
           },
           "cargo": {
@@ -39028,17 +39126,18 @@
         "policy": {
           "cabin": {
             "availability": "offered",
-            "max_weight_kg": 10,
             "source": {
-              "url": "https://www.philippineairlines.com/",
+              "url": "https://www.philippineairlines.com/ph/en/inflight-experience/furpal.html",
               "source_type": "official_website",
-              "verified_date": "2026-07-11",
-              "review_due": "2026-10-09",
-              "confidence": 3,
-              "reviewer": "MyDogCanFly Data Team (derived from fiche)",
-              "history": []
+              "verified_date": "2026-09-09",
+              "review_due": "2026-12-08",
+              "confidence": 4,
+              "reviewer": "Codex — direct reading of official airline page",
+              "history": [],
+              "quote": "The FurPAL Program is available on all PAL DOMESTIC flights.",
+              "quote_language": "en",
+              "locator": "FurPAL → Covered Routes"
             },
-            "source_derived": true,
             "derived_from_fiche": true
           },
           "hold": {
@@ -39057,17 +39156,19 @@
             "derived_from_fiche": true
           },
           "cargo": {
-            "review_state": "legacy_unreviewed",
+            "availability": "offered",
             "source": {
-              "url": "https://www.philippineairlines.com/",
+              "url": "https://www.philippineairlines.com/ph/en/inflight-experience/furpal.html",
               "source_type": "official_website",
-              "verified_date": "2026-07-11",
-              "review_due": "2026-10-09",
-              "confidence": 3,
-              "reviewer": "MyDogCanFly Data Team (derived from fiche)",
-              "history": []
+              "verified_date": "2026-09-09",
+              "review_due": "2026-12-08",
+              "confidence": 4,
+              "reviewer": "Codex — direct reading of official airline page",
+              "history": [],
+              "quote": "Transportation of Larger dogs and other live animals not eligible for in-cabin travel under this program, shall be via Cargo ONLY, in accordance with AVIH (Animal Vivant in Hold) standards.",
+              "quote_language": "en",
+              "locator": "FurPAL → Pet Eligibility"
             },
-            "source_derived": true,
             "derived_from_fiche": true
           }
         }
@@ -39219,52 +39320,48 @@
           "cabin": {
             "availability": "not_offered",
             "source": {
-              "url": "https://www.qantas.com/",
+              "url": "https://www.qantas.com/content/dam/qantas/pdfs/fly/specific-needs/qantas-disability-access-facilitation-plan.pdf",
               "source_type": "official_website",
-              "verified_date": "2026-07-11",
-              "review_due": "2026-10-09",
-              "confidence": 3,
-              "reviewer": "MyDogCanFly Data Team (derived from fiche)",
-              "history": []
+              "verified_date": "2026-09-09",
+              "review_due": "2026-12-08",
+              "confidence": 4,
+              "reviewer": "Codex — direct reading of official airline page",
+              "history": [],
+              "quote": "Qantas does not carry any animals in the aircraft cabin, other than approved Service Dogs or Service Dogs under training.",
+              "quote_language": "en",
+              "locator": "Qantas Disability Access Facilitation Plan (July 2025) → 8.12 Other Animals"
             },
-            "source_derived": true,
             "derived_from_fiche": true
           },
           "hold": {
-            "review_state": "legacy_unreviewed",
+            "availability": "offered",
             "source": {
-              "url": "https://www.qantas.com/en-au/travel-information/pets",
+              "url": "https://www.qantas.com/en-au/book/flights/conditions-of-carriage",
               "source_type": "official_website",
-              "verified_date": "2026-08-10",
-              "review_due": "2026-11-08",
+              "verified_date": "2026-09-09",
+              "review_due": "2026-12-08",
               "confidence": 4,
-              "reviewer": "MyDogCanFly Data Team (derived from fiche)",
-              "history": [
-                {
-                  "date": "2026-08-10",
-                  "reviewer": "MyDogCanFly Data Team",
-                  "note": "Complété (audit du 09-10/08/2026, placements soute+fret manquants) : la page officielle Qantas décrit le transport animalier comme réservé et facturé via Qantas Freight, sans garantie du même vol que le propriétaire (\"we can't guarantee you'll travel on the same service\", freight.qantas.com/au-en/pets/pet-travel-faqs.html) — ce n'est pas une soute accompagnée au sens de notre schéma, donc hold=false ; c'est le même service que le fret (cargo=true ci-dessous)."
-                }
-              ]
+              "reviewer": "Codex — direct reading of official airline page",
+              "history": [],
+              "quote": "Some airports will require that your pet travels as freight and some will allow carriage in the hold as Checked Baggage; if we agree that your pet may be carried in the aircraft hold as Checked Baggage, you must provide proper crating and food for your pet.",
+              "quote_language": "en",
+              "locator": "Conditions of Carriage → 8.8 Pet animals"
             },
             "derived_from_fiche": true
           },
           "cargo": {
-            "review_state": "legacy_unreviewed",
+            "availability": "offered",
             "source": {
-              "url": "https://www.qantas.com/en-au/travel-information/pets",
+              "url": "https://www.qantas.com/en-au/book/flights/conditions-of-carriage",
               "source_type": "official_website",
-              "verified_date": "2026-08-10",
-              "review_due": "2026-11-08",
+              "verified_date": "2026-09-09",
+              "review_due": "2026-12-08",
               "confidence": 4,
-              "reviewer": "MyDogCanFly Data Team (derived from fiche)",
-              "history": [
-                {
-                  "date": "2026-08-10",
-                  "reviewer": "MyDogCanFly Data Team",
-                  "note": "Complété (audit du 09-10/08/2026, placements soute+fret manquants) : \"Book your pet's flight with Qantas Freight\" — tous les animaux Qantas voyagent via Qantas Freight, facturés comme du fret."
-                }
-              ]
+              "reviewer": "Codex — direct reading of official airline page",
+              "history": [],
+              "quote": "With the exception of service dogs (see 8.9), all bookings for travel by pet animals must be booked directly with Qantas Freight.",
+              "quote_language": "en",
+              "locator": "Conditions of Carriage → 8.8 Pet animals"
             },
             "derived_from_fiche": true
           }
@@ -39982,31 +40079,35 @@
       "premium": {
         "policy": {
           "cabin": {
-            "review_state": "legacy_unreviewed",
+            "availability": "offered",
             "source": {
-              "url": "https://www.rj.com",
+              "url": "https://www.rj.com/en/info-and-tips/special-services/flying-with-pets",
               "source_type": "official_website",
-              "verified_date": "2026-08-08",
-              "review_due": "2026-11-06",
-              "confidence": 3,
-              "reviewer": "MyDogCanFly Data Team (derived from fiche)",
-              "history": []
+              "verified_date": "2026-09-09",
+              "review_due": "2026-12-08",
+              "confidence": 4,
+              "reviewer": "Codex — direct reading of official airline page",
+              "history": [],
+              "quote": "The carriage of pets (Cats and Dogs) in passenger cabin is only permitted in Economy Class Cabins and is subject to the following conditions:",
+              "quote_language": "en",
+              "locator": "Flying with Pets → carriage of pets in passenger cabin"
             },
-            "source_derived": true,
             "derived_from_fiche": true
           },
           "hold": {
             "availability": "offered",
             "source": {
-              "url": "https://www.rj.com",
+              "url": "https://www.rj.com/en/info-and-tips/special-services/flying-with-pets",
               "source_type": "official_website",
-              "verified_date": "2026-08-08",
-              "review_due": "2026-11-06",
-              "confidence": 3,
-              "reviewer": "MyDogCanFly Data Team (derived from fiche)",
-              "history": []
+              "verified_date": "2026-09-09",
+              "review_due": "2026-12-08",
+              "confidence": 4,
+              "reviewer": "Codex — direct reading of official airline page",
+              "history": [],
+              "quote": "Pets such as dogs, cats accompanying a passenger on the same flight may be accepted as checked baggage.",
+              "quote_language": "en",
+              "locator": "Flying with Pets → Pets Checked as Baggage"
             },
-            "source_derived": true,
             "derived_from_fiche": true
           },
           "cargo": {
@@ -41691,32 +41792,35 @@
       "premium": {
         "policy": {
           "cabin": {
-            "review_state": "legacy_unreviewed",
-            "max_weight_kg": 5,
+            "availability": "not_offered",
             "source": {
-              "url": "https://www.saudia.com",
+              "url": "https://booking-uat.dcloud.saudia.com/book/flight-information/travelling-with-pets",
               "source_type": "official_website",
-              "verified_date": "2026-07-11",
-              "review_due": "2026-10-09",
-              "confidence": 3,
-              "reviewer": "MyDogCanFly Data Team (derived from fiche)",
-              "history": []
+              "verified_date": "2026-09-09",
+              "review_due": "2026-12-08",
+              "confidence": 4,
+              "reviewer": "Codex — direct reading of official airline page",
+              "history": [],
+              "quote": "Dogs must be transported in the cargo hold (holds are equipped with ventilation systems).",
+              "quote_language": "en",
+              "locator": "Travelling with Pets & Animals → Regulations"
             },
-            "source_derived": true,
             "derived_from_fiche": true
           },
           "hold": {
             "availability": "offered",
             "source": {
-              "url": "https://www.saudia.com",
+              "url": "https://booking-uat.dcloud.saudia.com/book/flight-information/travelling-with-pets",
               "source_type": "official_website",
-              "verified_date": "2026-07-11",
-              "review_due": "2026-10-09",
-              "confidence": 3,
-              "reviewer": "MyDogCanFly Data Team (derived from fiche)",
-              "history": []
+              "verified_date": "2026-09-09",
+              "review_due": "2026-12-08",
+              "confidence": 4,
+              "reviewer": "Codex — direct reading of official airline page",
+              "history": [],
+              "quote": "Dogs must be transported in the cargo hold (holds are equipped with ventilation systems).",
+              "quote_language": "en",
+              "locator": "Travelling with Pets & Animals → Regulations"
             },
-            "source_derived": true,
             "derived_from_fiche": true
           },
           "cargo": {
@@ -42397,43 +42501,49 @@
           "cabin": {
             "availability": "not_offered",
             "source": {
-              "url": "https://www.flysaa.com",
+              "url": "https://www.flysaa.com/manage-fly/baggage/checked-baggage/animals",
               "source_type": "official_website",
-              "verified_date": "2026-08-08",
-              "review_due": "2026-11-06",
-              "confidence": 3,
-              "reviewer": "MyDogCanFly Data Team (derived from fiche)",
-              "history": []
+              "verified_date": "2026-09-09",
+              "review_due": "2026-12-08",
+              "confidence": 4,
+              "reviewer": "Codex — direct reading of official airline page",
+              "history": [],
+              "quote": "No pets permitted in Cabin.",
+              "quote_language": "en",
+              "locator": "Travelling with Animals → PETC – Animals Accompanying Passengers Onboard the Aircraft"
             },
-            "source_derived": true,
             "derived_from_fiche": true
           },
           "hold": {
-            "review_state": "legacy_unreviewed",
+            "availability": "offered",
             "source": {
-              "url": "https://www.flysaa.com",
+              "url": "https://www.flysaa.com/manage-fly/baggage/checked-baggage/special-baggage",
               "source_type": "official_website",
-              "verified_date": "2026-08-08",
-              "review_due": "2026-11-06",
-              "confidence": 3,
-              "reviewer": "MyDogCanFly Data Team (derived from fiche)",
-              "history": []
+              "verified_date": "2026-09-09",
+              "review_due": "2026-12-08",
+              "confidence": 4,
+              "reviewer": "Codex — direct reading of official airline page",
+              "history": [],
+              "quote": "Depending on the individual circumstances, pets must be carried either as cargo, or as checked baggage in the hold.",
+              "quote_language": "en",
+              "locator": "Special Baggage → Travelling with Pets"
             },
-            "source_derived": true,
             "derived_from_fiche": true
           },
           "cargo": {
-            "review_state": "legacy_unreviewed",
+            "availability": "offered",
             "source": {
-              "url": "https://www.flysaa.com",
+              "url": "https://www.flysaa.com/manage-fly/baggage/checked-baggage/animals",
               "source_type": "official_website",
-              "verified_date": "2026-08-08",
-              "review_due": "2026-11-06",
-              "confidence": 3,
-              "reviewer": "MyDogCanFly Data Team (derived from fiche)",
-              "history": []
+              "verified_date": "2026-09-09",
+              "review_due": "2026-12-08",
+              "confidence": 4,
+              "reviewer": "Codex — direct reading of official airline page",
+              "history": [],
+              "quote": "All animals (Pets) and animal products are not allowed via the security check point & must be transported as manifested cargo under an Air Waybill, also in case of transit if transhipment is involved.",
+              "quote_language": "en",
+              "locator": "Travelling with Animals → International Travel to & from South Africa"
             },
-            "source_derived": true,
             "derived_from_fiche": true
           }
         }
@@ -42904,31 +43014,36 @@
           "cabin": {
             "availability": "offered",
             "max_weight_kg": 8,
+            "weight_includes_carrier": true,
             "source": {
-              "url": "https://www.swiss.com",
+              "url": "https://www.swiss.com/xx/en/prepare/special-care/animals-travelling",
               "source_type": "official_website",
-              "verified_date": "2026-07-11",
-              "review_due": "2026-10-09",
-              "confidence": 3,
-              "reviewer": "MyDogCanFly Data Team (derived from fiche)",
-              "history": []
+              "verified_date": "2026-09-09",
+              "review_due": "2026-12-08",
+              "confidence": 4,
+              "reviewer": "Codex — direct reading of official airline page",
+              "history": [],
+              "quote": "Dogs and cats weighing up to 8 kg (weight including travel carrier)",
+              "quote_language": "en",
+              "locator": "Travelling with animals → The following animals can travel in the cabin"
             },
-            "source_derived": true,
             "derived_from_fiche": true
           },
           "hold": {
             "availability": "offered",
             "brachy_allowed": false,
             "source": {
-              "url": "https://www.swiss.com",
+              "url": "https://www.swiss.com/xx/en/prepare/special-care/animals-travelling",
               "source_type": "official_website",
-              "verified_date": "2026-07-11",
-              "review_due": "2026-10-09",
-              "confidence": 3,
-              "reviewer": "MyDogCanFly Data Team (derived from fiche)",
-              "history": []
+              "verified_date": "2026-09-09",
+              "review_due": "2026-12-08",
+              "confidence": 4,
+              "reviewer": "Codex — direct reading of official airline page",
+              "history": [],
+              "quote": "Dogs and cats that do not belong to snub-nosed breeds and weigh more than 8 kg (weight including transport container) or are travelling in a transport container exceeding the permitted size (max. 118 cm; 55 x 40 x 23 cm).",
+              "quote_language": "en",
+              "locator": "Travelling with animals → The following animals travel in the hold"
             },
-            "source_derived": true,
             "derived_from_fiche": true
           },
           "cargo": {
@@ -45081,13 +45196,16 @@
               "fr": "Chats et chiens uniquement ; caisse sous le siège ; jusqu'à 2 animaux (2 sièges), 1 sur monocouloirs. Aucune limite de poids ou de race publiée."
             },
             "source": {
-              "url": "https://www.united.com/en/us/fly/travel/traveling-with-pets.html",
+              "url": "https://www.united.com/en/us/fly/travel/special-assistance/pets-in-cabin.html",
               "source_type": "official_website",
-              "verified_date": "2026-07-08",
-              "review_due": "2026-10-06",
+              "verified_date": "2026-09-09",
+              "review_due": "2026-12-08",
               "confidence": 4,
-              "reviewer": "MyDogCanFly Data Team",
-              "history": []
+              "reviewer": "Codex — direct reading of official airline page",
+              "history": [],
+              "quote": "We allow one pet per adult or senior in a reservation.",
+              "quote_language": "en",
+              "locator": "United booking flow → Pets in cabin"
             }
           },
           "hold": {
@@ -45900,29 +46018,33 @@
           "cabin": {
             "availability": "offered",
             "source": {
-              "url": "https://www.vietnamairlines.com",
+              "url": "https://www.vietnamairlines.com/en/buy-tickets-other-products/special-services/See-more-page/special-meals-popup-1",
               "source_type": "official_website",
-              "verified_date": "2026-07-11",
-              "review_due": "2026-10-09",
-              "confidence": 3,
-              "reviewer": "MyDogCanFly Data Team (derived from fiche)",
-              "history": []
+              "verified_date": "2026-09-09",
+              "review_due": "2026-12-08",
+              "confidence": 4,
+              "reviewer": "Codex — direct reading of official airline page",
+              "history": [],
+              "quote": "With the pet transport service, passengers can take their pets to cabin or have them transported as checked baggage.",
+              "quote_language": "en",
+              "locator": "Special services → Travelling with pets"
             },
-            "source_derived": true,
             "derived_from_fiche": true
           },
           "hold": {
             "availability": "offered",
             "source": {
-              "url": "https://www.vietnamairlines.com",
+              "url": "https://www.vietnamairlines.com/en/buy-tickets-other-products/special-services/See-more-page/special-meals-popup-1",
               "source_type": "official_website",
-              "verified_date": "2026-07-11",
-              "review_due": "2026-10-09",
-              "confidence": 3,
-              "reviewer": "MyDogCanFly Data Team (derived from fiche)",
-              "history": []
+              "verified_date": "2026-09-09",
+              "review_due": "2026-12-08",
+              "confidence": 4,
+              "reviewer": "Codex — direct reading of official airline page",
+              "history": [],
+              "quote": "With the pet transport service, passengers can take their pets to cabin or have them transported as checked baggage.",
+              "quote_language": "en",
+              "locator": "Special services → Travelling with pets"
             },
-            "source_derived": true,
             "derived_from_fiche": true
           },
           "cargo": {
@@ -46181,6 +46303,7 @@
               "pt": "Apenas cães ou gatos pequenos; peso combinado do animal e da bolsa ≤ 8 kg; somente voos domésticos em rotas e datas elegíveis (serviço em teste); reserva por telefone e confirmação da companhia obrigatórias."
             },
             "max_weight_kg": 8,
+            "weight_includes_carrier": true,
             "source": {
               "url": "https://www.virginaustralia.com/au/en/travel-info/specific-travel/pets/pets-in-cabin/",
               "source_type": "official_website",
@@ -46196,17 +46319,19 @@
             "derived_from_fiche": true
           },
           "cargo": {
-            "review_state": "legacy_unreviewed",
+            "availability": "offered",
             "source": {
-              "url": "https://www.virginaustralia.com/",
+              "url": "https://www.virginaustralia.com/au/en/travel-info/specific-travel/pets/",
               "source_type": "official_website",
-              "verified_date": "2026-07-11",
-              "review_due": "2026-10-09",
-              "confidence": 3,
-              "reviewer": "MyDogCanFly Data Team (derived from fiche)",
-              "history": []
+              "verified_date": "2026-09-09",
+              "review_due": "2026-12-08",
+              "confidence": 4,
+              "reviewer": "Codex — direct reading of official airline page",
+              "history": [],
+              "quote": "We’re ready to take good care of your animal in the cargo hold.",
+              "quote_language": "en",
+              "locator": "Pet travel → choose your pet travel experience"
             },
-            "source_derived": true,
             "derived_from_fiche": true
           },
           "hold": {
@@ -46830,19 +46955,16 @@
               "fr": "Petits animaux uniquement : le chien doit tenir dans un sac souple placé entièrement sous le siège (max 41 × 21,5 × 25,4 cm) et pouvoir se tenir debout, se retourner et se coucher. Un animal par passager. Pas de limite de poids publiée, mais la taille du sac limite de fait la cabine aux petits chiens."
             },
             "source": {
-              "url": "https://www.westjet.com/en-ca/pets",
+              "url": "https://www.westjet.com/en-ca/pets/general-entrance-requirements",
               "source_type": "official_website",
-              "verified_date": "2026-07-08",
-              "review_due": "2026-10-06",
+              "verified_date": "2026-09-09",
+              "review_due": "2026-12-08",
               "confidence": 4,
-              "reviewer": "MyDogCanFly Data Team",
-              "history": [
-                {
-                  "date": "2026-07-08",
-                  "reviewer": "MyDogCanFly Data Team",
-                  "note": "Verified against the WestJet pets page."
-                }
-              ]
+              "reviewer": "Codex — direct reading of official airline page",
+              "history": [],
+              "quote": "WestJet accepts small pets in the cabin and as checked kennel on most international flights.",
+              "quote_language": "en",
+              "locator": "General entrance requirements for guests travelling with pets → opening policy statement"
             }
           },
           "hold": {
@@ -46852,19 +46974,16 @@
               "fr": "Les chiens voyagent en bagage enregistré en soute ; animal + caisse jusqu'à 45 kg (100 lb) ; caisse maximale 101 × 68 × 81 cm."
             },
             "source": {
-              "url": "https://www.westjet.com/en-ca/pets",
+              "url": "https://www.westjet.com/en-ca/pets/general-entrance-requirements",
               "source_type": "official_website",
-              "verified_date": "2026-07-08",
-              "review_due": "2026-10-06",
+              "verified_date": "2026-09-09",
+              "review_due": "2026-12-08",
               "confidence": 4,
-              "reviewer": "MyDogCanFly Data Team",
-              "history": [
-                {
-                  "date": "2026-07-08",
-                  "reviewer": "MyDogCanFly Data Team",
-                  "note": "Verified against the WestJet pets page."
-                }
-              ]
+              "reviewer": "Codex — direct reading of official airline page",
+              "history": [],
+              "quote": "WestJet accepts small pets in the cabin and as checked kennel on most international flights.",
+              "quote_language": "en",
+              "locator": "General entrance requirements for guests travelling with pets → opening policy statement"
             }
           },
           "cargo": {

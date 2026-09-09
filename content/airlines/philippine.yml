@@ -72,10 +72,38 @@ ladder:
 policies:
   cabin:
     availability: offered
+    # PREUVE IMPORTÉE — import strict lot5 (Codex, lecture directe du 2026-09-09, cohorte LOT5 fait 5).
+    # Effet attendu : Philippine Airlines cabin is a documented conditional domestic route. Do not use its 10 kg ceiling as a global international Finder rule.
+    # Portée nommée : FurPAL is for small pet dogs on Philippine Airlines domestic routes only. The pet plus carrier must not exceed 10 kg; international routes are excluded.
+    source:
+      url: "https://www.philippineairlines.com/ph/en/inflight-experience/furpal.html"
+      source_type: official_website
+      verified_date: "2026-09-09"
+      review_due: "2026-12-08"   # reviewDueFrom(verified_date, "airline") — calculé par l'importeur
+      confidence: 4
+      reviewer: "Codex — direct reading of official airline page"
+      history: []
+      quote: "The FurPAL Program is available on all PAL DOMESTIC flights."
+      quote_language: en
+      locator: "FurPAL → Covered Routes"
   hold:
     availability: offered
   cargo:
-    review_state: legacy_unreviewed
+    availability: offered   # RÉACTIVÉE sur citation (import strict, lot5, 2026-09-09) — était review_state: legacy_unreviewed
+    # PREUVE IMPORTÉE — import strict lot5 (Codex, lecture directe du 2026-09-09, cohorte LOT5 fait 6).
+    # Effet attendu : Cargo is a documented conditional direction for an ineligible cabin animal, not an automatic shipment acceptance.
+    # Portée nommée : Larger dogs and animals ineligible for FurPAL cabin travel follow PAL AVIH cargo handling; breed, route, paperwork and handling restrictions apply.
+    source:
+      url: "https://www.philippineairlines.com/ph/en/inflight-experience/furpal.html"
+      source_type: official_website
+      verified_date: "2026-09-09"
+      review_due: "2026-12-08"   # reviewDueFrom(verified_date, "airline") — calculé par l'importeur
+      confidence: 4
+      reviewer: "Codex — direct reading of official airline page"
+      history: []
+      quote: "Transportation of Larger dogs and other live animals not eligible for in-cabin travel under this program, shall be via Cargo ONLY, in accordance with AVIH (Animal Vivant in Hold) standards."
+      quote_language: en
+      locator: "FurPAL → Pet Eligibility"
 channels:
   - placement: cabin
     icon: 🐾

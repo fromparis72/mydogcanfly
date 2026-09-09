@@ -81,9 +81,37 @@ ladder:
       pt: "Cachorros para os EUA"
 policies:
   cabin:
-    review_state: legacy_unreviewed
+    availability: not_offered   # RÉACTIVÉE sur citation (import strict, lot6, 2026-09-09) — était review_state: legacy_unreviewed
+    # PREUVE IMPORTÉE — import strict lot6 (Codex, lecture directe du 2026-09-09, cohorte LOT6 fait 8).
+    # Effet attendu : Do not offer Saudia passenger cabin to an ordinary pet dog.
+    # Portée nommée : Ordinary pet dogs. Service-dog rules are outside this decision.
+    source:
+      url: "https://booking-uat.dcloud.saudia.com/book/flight-information/travelling-with-pets"
+      source_type: official_website
+      verified_date: "2026-09-09"
+      review_due: "2026-12-08"   # reviewDueFrom(verified_date, "airline") — calculé par l'importeur
+      confidence: 4
+      reviewer: "Codex — direct reading of official airline page"
+      history: []
+      quote: "Dogs must be transported in the cargo hold (holds are equipped with ventilation systems)."
+      quote_language: en
+      locator: "Travelling with Pets & Animals → Regulations"
   hold:
     availability: offered
+    # PREUVE IMPORTÉE — import strict lot6 (Codex, lecture directe du 2026-09-09, cohorte LOT6 fait 9).
+    # Effet attendu : Saudia hold is a documented conditional route, not a final acceptance guarantee.
+    # Portée nommée : Direct routes, advance notification, official documents, registration and carrier acceptance apply.
+    source:
+      url: "https://booking-uat.dcloud.saudia.com/book/flight-information/travelling-with-pets"
+      source_type: official_website
+      verified_date: "2026-09-09"
+      review_due: "2026-12-08"   # reviewDueFrom(verified_date, "airline") — calculé par l'importeur
+      confidence: 4
+      reviewer: "Codex — direct reading of official airline page"
+      history: []
+      quote: "Dogs must be transported in the cargo hold (holds are equipped with ventilation systems)."
+      quote_language: en
+      locator: "Travelling with Pets & Animals → Regulations"
   cargo:
     review_state: legacy_unreviewed
 channels:

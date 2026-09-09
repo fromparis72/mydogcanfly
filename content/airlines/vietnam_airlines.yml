@@ -74,8 +74,36 @@ ladder:
 policies:
   cabin:
     availability: offered
+    # PREUVE IMPORTÉE — import strict lot5 (Codex, lecture directe du 2026-09-09, cohorte LOT5 fait 7).
+    # Effet attendu : Vietnam Airlines cabin is a documented conditional route, not a route-specific confirmation.
+    # Portée nommée : Vietnam Airlines-operated flights and its pet transport rules apply; route, booking, pet/carrier limits and documents remain conditions.
+    source:
+      url: "https://www.vietnamairlines.com/en/buy-tickets-other-products/special-services/See-more-page/special-meals-popup-1"
+      source_type: official_website
+      verified_date: "2026-09-09"
+      review_due: "2026-12-08"   # reviewDueFrom(verified_date, "airline") — calculé par l'importeur
+      confidence: 4
+      reviewer: "Codex — direct reading of official airline page"
+      history: []
+      quote: "With the pet transport service, passengers can take their pets to cabin or have them transported as checked baggage."
+      quote_language: en
+      locator: "Special services → Travelling with pets"
   hold:
     availability: offered
+    # PREUVE IMPORTÉE — import strict lot5 (Codex, lecture directe du 2026-09-09, cohorte LOT5 fait 8).
+    # Effet attendu : Vietnam Airlines hold is a documented conditional route, not a route-specific confirmation.
+    # Portée nommée : Vietnam Airlines-operated flights and its pet transport rules apply; route, booking, pet/carrier limits and documents remain conditions.
+    source:
+      url: "https://www.vietnamairlines.com/en/buy-tickets-other-products/special-services/See-more-page/special-meals-popup-1"
+      source_type: official_website
+      verified_date: "2026-09-09"
+      review_due: "2026-12-08"   # reviewDueFrom(verified_date, "airline") — calculé par l'importeur
+      confidence: 4
+      reviewer: "Codex — direct reading of official airline page"
+      history: []
+      quote: "With the pet transport service, passengers can take their pets to cabin or have them transported as checked baggage."
+      quote_language: en
+      locator: "Special services → Travelling with pets"
   cargo:
     review_state: legacy_unreviewed
 channels:

@@ -78,10 +78,38 @@ ladder:
 policies:
   cabin:
     availability: offered
+    # PREUVE IMPORTÉE — import strict lot4 (Codex, lecture directe du 2026-09-09, cohorte LOT4 fait 2).
+    # Effet attendu : American Airlines cabin is a conditional route. Do not turn it into a confirmation for a large dog, a specific aircraft or a restricted itinerary.
+    # Portée nommée : American-operated flight, permitted route and under-seat carrier; restrictions include aircraft, seat and destination.
+    source:
+      url: "https://www.aa.com/web/i18n/travel-info/special-assistance/pets.html"
+      source_type: official_website
+      verified_date: "2026-09-09"
+      review_due: "2026-12-08"   # reviewDueFrom(verified_date, "airline") — calculé par l'importeur
+      confidence: 4
+      reviewer: "Codex — direct reading of official airline page"
+      history: []
+      quote: "On flights with American you can bring one pet carrier as a carry-on if: You pay the carry-on pet fee; Your pet stays in the pet carrier and under the seat in front of you the entire flight."
+      quote_language: en
+      locator: "Traveling with pets → Carry-on pets"
   hold:
     availability: not_offered
   cargo:
     availability: offered
+    # PREUVE IMPORTÉE — import strict lot4 (Codex, lecture directe du 2026-09-09, cohorte LOT4 fait 3).
+    # Effet attendu : Cargo is a documented conditional direction for an ineligible carry-on or checked pet, never an automatic shipment acceptance.
+    # Portée nommée : American PetEmbark cargo process for pets that cannot travel as carry-on or checked pets; cargo booking and route rules apply.
+    source:
+      url: "https://www.aa.com/web/i18n/travel-info/special-assistance/pets.html"
+      source_type: official_website
+      verified_date: "2026-09-09"
+      review_due: "2026-12-08"   # reviewDueFrom(verified_date, "airline") — calculé par l'importeur
+      confidence: 4
+      reviewer: "Codex — direct reading of official airline page"
+      history: []
+      quote: "American Airlines Cargo offers the American PetEmbark® service for pets that don’t qualify to travel as carry-on or checked pets."
+      quote_language: en
+      locator: "Traveling with pets → American PetEmbark®"
 channels:
   - placement: cabin
     icon: 🐾

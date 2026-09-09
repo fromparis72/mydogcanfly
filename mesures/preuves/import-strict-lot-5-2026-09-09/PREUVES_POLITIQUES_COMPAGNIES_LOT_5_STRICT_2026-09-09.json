@@ -1,0 +1,281 @@
+{
+  "schema_version": 1,
+  "as_of": "2026-09-09",
+  "status": "strict_import_candidate",
+  "purpose": "Fifth independently reviewed batch. Each fact is grounded in one continuous quotation from a first-party airline source. Route-specific thresholds are preserved as conditions rather than being misrepresented as universal Finder rules.",
+  "provenance_defaults": {
+    "source_type": "official_website",
+    "verified_date": "2026-09-09",
+    "review_due": "derive_with_reviewDueFrom(verified_date, 'airline')",
+    "confidence": 4,
+    "reviewer": "Codex — direct reading of official airline page"
+  },
+  "facts": [
+    {
+      "airline_id": "airline_virgin_australia",
+      "placement": "cabin",
+      "recommendation": "offered_with_conditions",
+      "condition_scope": "Virgin Australia's Pets in Cabin trial is limited to selected domestic flights, requires advance booking and approval, and caps pet plus carrier at 8 kg. Do not turn its trial routes into a general international cabin offer.",
+      "finder_effect": "Virgin Australia cabin is a documented conditional route. The current Finder must not use its 8 kg ceiling as a global decision until it models the selected domestic routes.",
+      "url": "https://www.virginaustralia.com/au/en/travel-info/specific-travel/pets/pets-in-cabin/",
+      "quote": "Pets in Cabin is available on selected domestic flights operated by Virgin Australia. Pets in Cabin is not available on flights operated by third parties on behalf of Virgin Australia or our codeshare and other third party airline partners.",
+      "quote_language": "en",
+      "locator": "Pets in Cabin terms and conditions → 1.2"
+    },
+    {
+      "airline_id": "airline_virgin_australia",
+      "placement": "cargo",
+      "recommendation": "offered_with_conditions",
+      "condition_scope": "Virgin Australia directs pet and animal travel to its cargo service; carrier network, animal type, route, documents and cargo acceptance conditions apply.",
+      "finder_effect": "Cargo is a documented conditional route, never a shipment confirmation.",
+      "url": "https://www.virginaustralia.com/au/en/travel-info/specific-travel/pets/",
+      "quote": "We’re ready to take good care of your animal in the cargo hold.",
+      "quote_language": "en",
+      "locator": "Pet travel → choose your pet travel experience"
+    },
+    {
+      "airline_id": "airline_korean_air",
+      "placement": "cabin",
+      "recommendation": "offered_with_conditions",
+      "condition_scope": "Dogs, cats and pet birds only; the pet plus carrier must weigh no more than 7 kg, with advance reservation and approval. The current Finder does not yet expose the 7 kg threshold as a typed global rule.",
+      "finder_effect": "Korean Air cabin is a documented conditional route. Keep the 7 kg combined ceiling visible with the source rather than inferring an unconditional result.",
+      "url": "https://www.koreanair.com/contents/plan-your-travel/special-assistance/travel-with-pets/guide?hl=en",
+      "quote": "반려동물과 운송용기 합한 총 무게가 7kg 이하",
+      "quote_language": "ko",
+      "locator": "Traveling with Pets → Transport restrictions → cabin pet conditions"
+    },
+    {
+      "airline_id": "airline_korean_air",
+      "placement": "hold",
+      "recommendation": "offered_with_conditions",
+      "condition_scope": "Dogs, cats and pet birds only; pet plus carrier up to 45 kg, with advance reservation and approval. Aircraft, route and country restrictions apply.",
+      "finder_effect": "Korean Air hold is a documented conditional route, not an acceptance guarantee.",
+      "url": "https://www.koreanair.com/contents/plan-your-travel/special-assistance/travel-with-pets/guide?hl=en",
+      "quote": "반려동물과 운송용기 합한 총 무게가 45kg 이하",
+      "quote_language": "ko",
+      "locator": "Traveling with Pets → Transport restrictions → checked-pet conditions"
+    },
+    {
+      "airline_id": "airline_china_airlines",
+      "placement": "hold",
+      "recommendation": "offered_with_conditions",
+      "condition_scope": "Advance application, suitable container, flight cargo-compartment capacity and destination restrictions apply; certain aircraft are excluded.",
+      "finder_effect": "China Airlines hold is a documented conditional route, never a specific-flight confirmation.",
+      "url": "https://www.china-airlines.com/tw/en/prepare-for-the-fly/information/baggage/pet-transport",
+      "quote": "Pets must be placed in appropriate containers and transported in the cargo hold as checked baggage.",
+      "quote_language": "en",
+      "locator": "Pets → Transporting pets as checked baggage (AVIH)"
+    },
+    {
+      "airline_id": "airline_philippine",
+      "placement": "cabin",
+      "recommendation": "offered_with_conditions",
+      "condition_scope": "FurPAL is for small pet dogs on Philippine Airlines domestic routes only. The pet plus carrier must not exceed 10 kg; international routes are excluded.",
+      "finder_effect": "Philippine Airlines cabin is a documented conditional domestic route. Do not use its 10 kg ceiling as a global international Finder rule.",
+      "url": "https://www.philippineairlines.com/ph/en/inflight-experience/furpal.html",
+      "quote": "The FurPAL Program is available on all PAL DOMESTIC flights.",
+      "quote_language": "en",
+      "locator": "FurPAL → Covered Routes"
+    },
+    {
+      "airline_id": "airline_philippine",
+      "placement": "cargo",
+      "recommendation": "offered_with_conditions",
+      "condition_scope": "Larger dogs and animals ineligible for FurPAL cabin travel follow PAL AVIH cargo handling; breed, route, paperwork and handling restrictions apply.",
+      "finder_effect": "Cargo is a documented conditional direction for an ineligible cabin animal, not an automatic shipment acceptance.",
+      "url": "https://www.philippineairlines.com/ph/en/inflight-experience/furpal.html",
+      "quote": "Transportation of Larger dogs and other live animals not eligible for in-cabin travel under this program, shall be via Cargo ONLY, in accordance with AVIH (Animal Vivant in Hold) standards.",
+      "quote_language": "en",
+      "locator": "FurPAL → Pet Eligibility"
+    },
+    {
+      "airline_id": "airline_vietnam_airlines",
+      "placement": "cabin",
+      "recommendation": "offered_with_conditions",
+      "condition_scope": "Vietnam Airlines-operated flights and its pet transport rules apply; route, booking, pet/carrier limits and documents remain conditions.",
+      "finder_effect": "Vietnam Airlines cabin is a documented conditional route, not a route-specific confirmation.",
+      "url": "https://www.vietnamairlines.com/en/buy-tickets-other-products/special-services/See-more-page/special-meals-popup-1",
+      "quote": "With the pet transport service, passengers can take their pets to cabin or have them transported as checked baggage.",
+      "quote_language": "en",
+      "locator": "Special services → Travelling with pets"
+    },
+    {
+      "airline_id": "airline_vietnam_airlines",
+      "placement": "hold",
+      "recommendation": "offered_with_conditions",
+      "condition_scope": "Vietnam Airlines-operated flights and its pet transport rules apply; route, booking, pet/carrier limits and documents remain conditions.",
+      "finder_effect": "Vietnam Airlines hold is a documented conditional route, not a route-specific confirmation.",
+      "url": "https://www.vietnamairlines.com/en/buy-tickets-other-products/special-services/See-more-page/special-meals-popup-1",
+      "quote": "With the pet transport service, passengers can take their pets to cabin or have them transported as checked baggage.",
+      "quote_language": "en",
+      "locator": "Special services → Travelling with pets"
+    },
+    {
+      "airline_id": "airline_malaysia_airlines",
+      "placement": "cabin",
+      "recommendation": "not_offered_for_pet_dogs",
+      "condition_scope": "Ordinary pets under Malaysia Airlines' current General Conditions of Carriage; guide dogs use a distinct accessibility flow.",
+      "finder_effect": "Do not offer Malaysia Airlines passenger cabin to an ordinary pet dog.",
+      "url": "https://www.malaysiaairlines.com/content/dam/mh/my/en/legal/2021-08-31-General-Conditions-of-Carriage-Malaysia-Airlines.pdf",
+      "quote": "Animals must be carried in the cargo compartment of the aircraft, and are not allowed in the passenger cabin.",
+      "quote_language": "en",
+      "locator": "General Conditions of Carriage → 9.11 Carriage of Animals"
+    },
+    {
+      "airline_id": "airline_malaysia_airlines",
+      "placement": "hold",
+      "recommendation": "offered_with_conditions",
+      "condition_scope": "Advance permission, proper crate, valid health/vaccination certificates, permits and all destination/transit documents are required.",
+      "finder_effect": "Malaysia Airlines hold is a documented conditional route, not a final acceptance decision.",
+      "url": "https://www.malaysiaairlines.com/content/dam/mh/my/en/legal/2021-08-31-General-Conditions-of-Carriage-Malaysia-Airlines.pdf",
+      "quote": "Subject to our advance permission and Regulations, we will accept animals such as dogs, cats, household birds and other pets for carriage when properly crated and accompanied by valid health and vaccination certificates, entry permits, and other documents required by countries of entry or transit.",
+      "quote_language": "en",
+      "locator": "General Conditions of Carriage → 9.11 Carriage of Animals"
+    },
+    {
+      "airline_id": "airline_asiana",
+      "placement": "cabin",
+      "recommendation": "offered_with_conditions",
+      "condition_scope": "Dogs, cats and pet birds only; pet plus cage must not exceed 7 kg, with reservation and confirmation before travel.",
+      "finder_effect": "Asiana cabin is a documented conditional route. The 7 kg combined ceiling must not be treated as a global acceptance guarantee.",
+      "url": "https://m.flyasiana.com/C/TW/EN/contents/traveling-with-pets",
+      "quote": "The combined weight of the pet and its cage must not exceed 7kg",
+      "quote_language": "en",
+      "locator": "Traveling with Pets → Eligible Pets for the Cabin"
+    },
+    {
+      "airline_id": "airline_asiana",
+      "placement": "hold",
+      "recommendation": "offered_with_conditions",
+      "condition_scope": "Dogs, cats and pet birds only; prior reservation and confirmation are required, and codeshare/route restrictions apply.",
+      "finder_effect": "Asiana hold is a documented conditional route, not a specific-flight confirmation.",
+      "url": "https://m.flyasiana.com/C/TW/EN/contents/traveling-with-pets",
+      "quote": "Each adult passenger may bring 1 pet into the cabin and 2 pets as checked baggage.",
+      "quote_language": "en",
+      "locator": "Traveling with Pets → Eligible Pets for Transport"
+    },
+    {
+      "airline_id": "airline_china_eastern",
+      "placement": "cabin",
+      "recommendation": "not_offered_for_pet_dogs",
+      "condition_scope": "Ordinary small animals under China Eastern's published small-animal service; service animals are not the subject of this decision.",
+      "finder_effect": "Do not offer China Eastern passenger cabin to an ordinary pet dog.",
+      "url": "https://global.ceair.com/global/en_static/Announcement/TravelTips/SpecialPassengerServiceNotice/LittleAnimal/",
+      "quote": "Passengers are not allowed to carry small animals into the passenger cabin: They must be transported in the cargo cabin.",
+      "quote_language": "en",
+      "locator": "China Eastern Small Animals → Transport rules"
+    },
+    {
+      "airline_id": "airline_china_eastern",
+      "placement": "hold",
+      "recommendation": "offered_with_conditions",
+      "condition_scope": "Suitable carrier, aircraft cargo-compartment suitability, route, temperature, breed and animal-health requirements apply; refusal conditions are enumerated by the carrier.",
+      "finder_effect": "China Eastern hold is a documented conditional route, not a final carriage approval.",
+      "url": "https://global.ceair.com/global/en_static/Announcement/TravelTips/SpecialPassengerServiceNotice/LittleAnimal/",
+      "quote": "Passengers are not allowed to carry small animals into the passenger cabin: They must be transported in the cargo cabin.",
+      "quote_language": "en",
+      "locator": "China Eastern Small Animals → Transport rules"
+    },
+    {
+      "airline_id": "airline_air_mauritius",
+      "placement": "cabin",
+      "recommendation": "not_offered_for_pet_dogs",
+      "condition_scope": "Ordinary pets. Assistance-animal rules, if any, are outside this decision.",
+      "finder_effect": "Do not offer Air Mauritius passenger cabin to an ordinary pet dog.",
+      "url": "https://www.airmauritius.com/en-de/help/faq/travelling-with-pets",
+      "quote": "Kindly be advised that Air Mauritius adheres to a no-pets policy for in-cabin transportation.",
+      "quote_language": "en",
+      "locator": "FAQ Travelling with pets → Can I travel with my pet onboard the cabin?"
+    },
+    {
+      "airline_id": "airline_air_mauritius",
+      "placement": "hold",
+      "recommendation": "offered_with_conditions",
+      "condition_scope": "Most aircraft only; advance reservation, documentation, local regulations, breed conditions and operating-aircraft limits apply.",
+      "finder_effect": "Air Mauritius hold is a documented conditional route, not an acceptance guarantee for every aircraft or destination.",
+      "url": "https://www.airmauritius.com/en-au/before-you-fly/travel-information/assistance-and-health/travelling-with-pets",
+      "quote": "Even though your pet can't fly in the cabin with you, it can still travel safely and comfortably on the same flight as you, in the hold of most of our aircraft.",
+      "quote_language": "en",
+      "locator": "Travelling with Pets → opening policy statement"
+    },
+    {
+      "airline_id": "airline_air_mauritius",
+      "placement": "cargo",
+      "recommendation": "offered_with_conditions",
+      "condition_scope": "Solo pet travel through Air Mauritius Cargo or a freight forwarder; cage, documents, IATA requirements and cargo booking rules apply.",
+      "finder_effect": "Air Mauritius cargo is a documented conditional path, never a shipment confirmation.",
+      "url": "https://www.airmauritius.com/en-au/before-you-fly/travel-information/assistance-and-health/travelling-with-pets",
+      "quote": "Please contact our Air Mauritius Cargo Office or liaise with your freight forwarder, who will provide you with valuable guidelines on how to prepare your pets for travel, assist with the relevant formalities, and book space with Air Mauritius.",
+      "quote_language": "en",
+      "locator": "Travelling with Pets → Pets travelling as cargo"
+    },
+    {
+      "airline_id": "airline_garuda_indonesia",
+      "placement": "cargo",
+      "recommendation": "offered_with_conditions",
+      "condition_scope": "Garuda Indonesia Cargo live-animal shipment; animal eligibility, quarantine, documentation, packaging and insurance requirements apply.",
+      "finder_effect": "Garuda cargo is a documented conditional path only. Cabin and passenger-hold decisions remain intentionally undecided.",
+      "url": "https://cargo.garuda-indonesia.com/Live-Animals",
+      "quote": "Garuda Indonesia Cargo service is ready to make your pets or live animals comfortable on the plane until they arrive at their destination.",
+      "quote_language": "en",
+      "locator": "CargoWeb → Live Animals"
+    }
+  ],
+  "intentionally_unset": [
+    {
+      "airline_id": "airline_virgin_australia",
+      "placement": "hold",
+      "reason": "The official pages reviewed establish a selected-route cabin trial and a cargo service, not a general accompanied passenger-hold policy."
+    },
+    {
+      "airline_id": "airline_korean_air",
+      "placement": "cargo",
+      "reason": "The reviewed passenger service establishes cabin and checked-pet transport; it does not establish the separate unaccompanied freight category."
+    },
+    {
+      "airline_id": "airline_china_airlines",
+      "placement": "cabin",
+      "reason": "The current page reviewed establishes checked-pet transport only. Cabin is deliberately not inferred."
+    },
+    {
+      "airline_id": "airline_china_airlines",
+      "placement": "cargo",
+      "reason": "Some destinations require cargo, but the source does not establish a global cargo offer for the Finder."
+    },
+    {
+      "airline_id": "airline_philippine",
+      "placement": "hold",
+      "reason": "The FurPAL source distinguishes cabin and AVIH cargo handling for larger dogs; it does not establish the Finder's accompanied passenger-hold category."
+    },
+    {
+      "airline_id": "airline_vietnam_airlines",
+      "placement": "cargo",
+      "reason": "The reviewed source establishes cabin and checked baggage, not a separate freight decision."
+    },
+    {
+      "airline_id": "airline_malaysia_airlines",
+      "placement": "cargo",
+      "reason": "The General Conditions establish passenger baggage carriage in the cargo compartment, not the site's separate freight shipment category."
+    },
+    {
+      "airline_id": "airline_asiana",
+      "placement": "cargo",
+      "reason": "The reviewed Asiana source establishes cabin and checked baggage only."
+    },
+    {
+      "airline_id": "airline_china_eastern",
+      "placement": "cargo",
+      "reason": "The small-animal page establishes passenger checked transport in a cargo cabin, not the site's freight shipment category."
+    },
+    {
+      "airline_id": "airline_garuda_indonesia",
+      "placement": "cabin",
+      "reason": "The reviewed official source is a cargo-only service. No passenger cabin decision is inferred."
+    },
+    {
+      "airline_id": "airline_garuda_indonesia",
+      "placement": "hold",
+      "reason": "The reviewed official source is a cargo-only service. No accompanied passenger-hold decision is inferred."
+    }
+  ]
+}

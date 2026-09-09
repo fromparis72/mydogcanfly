@@ -23,7 +23,10 @@ const WRITE = process.argv.includes("--write");
    sur 42 360, c'est-à-dire les couples (compagnie × paire × date) où un canal est accepté sous
    conditions. Figé ; avance par mouvement nommé à chaque import. */
 /* MOUVEMENT NOMMÉ (08/09/2026, import strict lots 2 et 3 — 24 citations de plus, 52 en tout) : 7 113 → 13 830. */
-const TEMOIN_VRAI_V3 = 13830;
+/* MOUVEMENT NOMMÉ (09/09/2026, import strict lot 4 — 22 citations de plus, 74 en tout) : 13 830 → 19 098. */
+/* MOUVEMENT NOMMÉ (09/09/2026, import strict lot 5 — 18 citations de plus, 92 en tout) : 19 098 → 21 348. */
+/* MOUVEMENT NOMMÉ (09/09/2026, import strict lot 6 — 21 citations de plus, 113 en tout) : 21 348 → 26 040. */
+const TEMOIN_VRAI_V3 = 26040;
 /**
  * T0-B2 — la sonde vivante compare désormais au fichier DE CE LOT.
  *

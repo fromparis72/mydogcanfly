@@ -78,8 +78,39 @@ ladder:
 policies:
   cabin:
     availability: offered
+    # PREUVE IMPORTÉE — import strict lot4 (Codex, lecture directe du 2026-09-09, cohorte LOT4 fait 16).
+    # Effet attendu : For a dog above 8 kg, do not offer Brussels Airlines cabin. At or below 8 kg, this threshold does not confirm a booking.
+    # Portée nommée : The 8 kg ceiling includes the pet bag or container. A dog alone above 8 kg cannot satisfy this ordinary-pet cabin rule; route and advance-booking conditions still apply.
+    # Le plafond cité inclut le CONTENANT : refus sûr si le chien seul le dépasse, jamais un oui en dessous.
+    max_weight_kg: 8
+    weight_includes_carrier: true
+    source:
+      url: "https://www.brusselsairlines.com/be/en/special-care/pets/cats-and-small-dogs-in-the-cabin"
+      source_type: official_website
+      verified_date: "2026-09-09"
+      review_due: "2026-12-08"   # reviewDueFrom(verified_date, "airline") — calculé par l'importeur
+      confidence: 4
+      reviewer: "Codex — direct reading of official airline page"
+      history: []
+      quote: "The total weight of the transport container, including the animal, must not exceed 8 kg."
+      quote_language: en
+      locator: "Cats and small dogs in the cabin → Which conditions apply for a transport in the cabin?"
   hold:
     availability: offered
+    # PREUVE IMPORTÉE — import strict lot4 (Codex, lecture directe du 2026-09-09, cohorte LOT4 fait 17).
+    # Effet attendu : Brussels Airlines hold is a documented conditional route, not a blanket approval for every destination or breed.
+    # Portée nommée : A suitable container and animal-health conditions are required. Age, route, country, breed and advance-check-in restrictions apply.
+    source:
+      url: "https://www.brusselsairlines.com/rw/en/special-care/pets/cats-and-dogs-in-the-hold"
+      source_type: official_website
+      verified_date: "2026-09-09"
+      review_due: "2026-12-08"   # reviewDueFrom(verified_date, "airline") — calculé par l'importeur
+      confidence: 4
+      reviewer: "Codex — direct reading of official airline page"
+      history: []
+      quote: "Your cat or dog will be well taken care of and will travel in a ventilated part of the aircraft hold."
+      quote_language: en
+      locator: "Cats and dogs in the hold → How will my pet travel?"
   cargo:
     review_state: legacy_unreviewed
 channels:

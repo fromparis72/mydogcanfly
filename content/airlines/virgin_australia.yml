@@ -65,6 +65,14 @@ policies:
     # affirmait un oui universel que la politique ne donne pas ; `case_by_case` projette
     # `confirmation_required` (cause airline_approval), ce que le moteur sait déjà dire.
     availability: case_by_case
+    # SEUIL ÉCRIT (09/09/2026, import strict lot 5) depuis la citation de Philippe du 28/08 ci-dessous
+    # (« combined weight (pet + carrier) of no more than 8kg ») — pas depuis la phrase de Codex (lot 5,
+    # non écrite). Jusqu'ici ce 8 kg était DÉDUIT de la ligne tarifaire « Cabin (trial, ≤ 8 kg) » par
+    # l'ingestion ; cette dérivation ne s'applique plus à un canal cité (erreur nommée, Philippine).
+    # Inerte pour le moteur et le calculateur : `case_by_case` projette `confirmation_required`, et le
+    # refus au seuil n'existe que sur « accepté sous conditions » (règle 5 de Codex respectée).
+    max_weight_kg: 8
+    weight_includes_carrier: true
     conditions:
       en: "Small dog or cat only; combined weight of pet and carrier no more than 8 kg; domestic flights on eligible routes and dates only (trial service); phone booking and airline confirmation required."
       fr: "Petit chien ou chat uniquement ; poids combiné animal + sac ≤ 8 kg ; vols domestiques sur routes et dates éligibles uniquement (service en test) ; réservation par téléphone et confirmation de la compagnie obligatoires."
@@ -89,7 +97,21 @@ policies:
     review_state: legacy_unreviewed
     # dette éditoriale scellée (T0-B2) : aucun canal visible ne décrit ce placement
   cargo:
-    review_state: legacy_unreviewed
+    availability: offered   # RÉACTIVÉE sur citation (import strict, lot5, 2026-09-09) — était review_state: legacy_unreviewed
+    # PREUVE IMPORTÉE — import strict lot5 (Codex, lecture directe du 2026-09-09, cohorte LOT5 fait 1).
+    # Effet attendu : Cargo is a documented conditional route, never a shipment confirmation.
+    # Portée nommée : Virgin Australia directs pet and animal travel to its cargo service; carrier network, animal type, route, documents and cargo acceptance conditions apply.
+    source:
+      url: "https://www.virginaustralia.com/au/en/travel-info/specific-travel/pets/"
+      source_type: official_website
+      verified_date: "2026-09-09"
+      review_due: "2026-12-08"   # reviewDueFrom(verified_date, "airline") — calculé par l'importeur
+      confidence: 4
+      reviewer: "Codex — direct reading of official airline page"
+      history: []
+      quote: "We’re ready to take good care of your animal in the cargo hold."
+      quote_language: en
+      locator: "Pet travel → choose your pet travel experience"
 channels:
   - placement: cabin
     icon: 🐾

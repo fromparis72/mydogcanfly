@@ -53,6 +53,18 @@ const LOTS = {
   lot3: { dossier: "mesures/preuves/import-strict-lot-3-2026-09-08", total: 12,
     fichiers: { LOT3: "tous" },
     nom: () => "PREUVES_POLITIQUES_COMPAGNIES_LOT_3_STRICT_2026-09-08.json" },
+  /** Le quatrième paquet (09/09) : un seul fichier, ses 23 faits tous autorisés, 7 non-décisions. */
+  lot4: { dossier: "mesures/preuves/import-strict-lot-4-2026-09-09", total: 23,
+    fichiers: { LOT4: "tous" },
+    nom: () => "PREUVES_POLITIQUES_COMPAGNIES_LOT_4_STRICT_2026-09-09.json" },
+  /** Le cinquième paquet (09/09) : un seul fichier, ses 19 faits tous autorisés, 11 non-décisions. */
+  lot5: { dossier: "mesures/preuves/import-strict-lot-5-2026-09-09", total: 19,
+    fichiers: { LOT5: "tous" },
+    nom: () => "PREUVES_POLITIQUES_COMPAGNIES_LOT_5_STRICT_2026-09-09.json" },
+  /** Le sixième paquet (09/09) : un seul fichier, ses 22 faits tous autorisés, 8 non-décisions. */
+  lot6: { dossier: "mesures/preuves/import-strict-lot-6-2026-09-09", total: 22,
+    fichiers: { LOT6: "tous" },
+    nom: () => "PREUVES_POLITIQUES_COMPAGNIES_LOT_6_STRICT_2026-09-09.json" },
 };
 if (!LOTS[LOT]) throw new Error(`lot inconnu : ${LOT}`);
 const DOSSIER = resolve(arg("dossier", LOTS[LOT].dossier));
@@ -80,6 +92,36 @@ const SEUILS = {
      figure dans la phrase du FRET (fait 2), pas dans celle de la soute (fait 1). */
   "airline_air_india.cabin": 10, "airline_avianca.cabin": 10, "airline_avianca.hold": 70,
   "airline_ethiopian.cabin": 8, "airline_ethiopian.hold": 45, "airline_etihad.cabin": 8,
+  /* Lot 4 — trois plafonds cabine, tous contenant compris, en toutes lettres : Austrian (« The total
+     weight of the animal and the carrying container must not exceed 8 kg »), SWISS (« up to 8 kg
+     (weight including travel carrier) »), Brussels (« The total weight of the transport container,
+     including the animal, must not exceed 8 kg »). ITA cabine n'est PAS écrit : 12 kg sur certains
+     vols intérieurs italiens, 8 ailleurs — Codex refuse un seuil mondial, et nous aussi. */
+  "airline_austrian.cabin": 8, "airline_swiss.cabin": 8, "airline_brussels.cabin": 8,
+  /* Lot 5 — DÉVIATION ARGUMENTÉE, nommée pour Codex. Sa règle 5 : « les plafonds de 7, 8 et 10 kg
+     ne doivent devenir un refus moteur que si le modèle porte toute leur portée géographique et
+     leur poids combiné ». Le modèle porte le poids combiné (chien + contenant, lot 1). Portée
+     géographique : Korean Air 7 (cabine) et 45 (soute) et Asiana 7 (cabine) sont des conditions
+     GÉNÉRALES, sans restriction de route dans la phrase ni dans la portée nommée — écrites, en
+     toutes lettres dans la citation (« 반려동물과 운송용기 합한 총 무게가 7kg 이하 »,
+     « combined weight of the pet and its cage must not exceed 7kg »). Virgin Australia 8 (essai sur
+     certains vols intérieurs) et Philippine 10 (FurPAL, vols intérieurs seulement) ne sont PAS
+     écrits par CE lot : leur portée est une route, que le modèle ne porte pas.
+     ERREUR NOMMÉE (09/09/2026, après import) : le plafond de Philippine arrivait quand même dans la
+     donnée projetée — DÉDUIT de sa ligne tarifaire par l'ingestion, sur un canal devenu cité — et le
+     calculateur de caisses le publiait (21 limites au lieu de 20). Fermé dans `ingest-airlines.mjs`
+     (plus de dérivation tarifaire sur une cabine citée). Le 8 kg de Virgin Australia, que
+     l'arbitrage du 28/08 exige, est écrit dans la fiche depuis la citation de Philippe du 28/08 —
+     inerte : `case_by_case` ne refuse jamais au seuil. */
+  "airline_korean_air.cabin": 7, "airline_korean_air.hold": 45, "airline_asiana.cabin": 7,
+  /* Lot 6 — même lecture que le lot 5 (règle 5 de Codex : « aucun ne peut devenir un seuil global du
+     moteur sans modéliser toute sa portée »). Aeromexico 9 (cabine) et 45 (soute) : la ligne citée
+     du tableau officiel dit « Hasta 9 kg (Incluyendo transportadora) » / « Hasta 45 kg (Incluyendo
+     transportadora) », sans route — écrits, chien + contenant. EgyptAir 8 : « The total weight of
+     animal and cage should not exceed 8 KG », sans route — écrit. Royal Jordanian 7 : la phrase
+     citée s'arrête à « subject to the following conditions: » et ne porte pas le chiffre ; portée
+     Economy + vol ≤ 5 h — NON écrit, par contrat autant que par portée. */
+  "airline_aeromexico.cabin": 9, "airline_aeromexico.hold": 45, "airline_egyptair.cabin": 8,
 };
 /** Seuils du CHIEN SEUL (le contenant s'ajoute) : `weight_includes_carrier: false`, écrit. */
 const SEUIL_CHIEN_SEUL = new Set(["airline_air_europa.cabin"]);

@@ -711,7 +711,13 @@ console.log("\n=== 4. Carte RENDUE du Finder : les sources des canaux, et rien d
   /* DEUX cartes, choisies pour être opposées : Thai porte une source auditée sur son fret ;
      Air China n'a AUCUN canal sourcé et une racine qui est une page d'accueil. Sans la seconde,
      le contrôle « aucune racine affichée » passerait sur une carte qui n'en a jamais eu. */
-  const TEMOIN_SANS_SOURCE = "airline_air_china";
+  /* TÉMOIN RE-FONDÉ PAR MESURE (09/09/2026, import strict lot 6) : Air China porte désormais une
+     soute CITÉE (« …pets will only be carried following approval by Air China. ») — elle ne peut
+     plus témoigner qu'une carte sans canal sourcé n'affiche aucun bloc de sources. Mesuré sur les
+     35 cartes de CDG→BKK : cinq compagnies n'ont aucun canal sourcé, trois avec une racine qui est
+     une page d'accueil (Aircalin, China Southern, El Al ; LOT et Singapore ont une racine
+     mydogcanfly.com). China Southern est retenue. Jamais abaissé. */
+  const TEMOIN_SANS_SOURCE = "airline_china_southern";
   const cartes2 = ["airline_thai_airways", TEMOIN_SANS_SOURCE]
     .map((id) => (rapport.airlines ?? []).find((a) => a.airline_id === id));
   check(`le témoin ${TEMOIN_SANS_SOURCE} est servi, sans aucun canal sourcé`,
@@ -788,8 +794,15 @@ console.log(`\n=== 5. Les ${CIBLE.length} canaux contradictoires × 4 langues : 
    * acceptés sous conditions, eux, restent contradictoires : leur éditorial dit « Autorisé ». */
   /* 288 → 285 (08/09/2026, lots 2 et 3) : Cathay Pacific, EVA Air et ANA cabines — l'éditorial
    * disait déjà « non », la citation le prouve. Toujours 101 fiches. */
-  check("285 canaux contradictoires sur 101 fiches, relus des fiches et du contrat runtime",
-    CONTRADICTOIRES.length === 285 && new Set(CONTRADICTOIRES.map((c) => c.slug)).size === 101,
+  /* 285 → 282 (09/09/2026, lot 4) : Emirates, Qantas et Aer Lingus cabines — l'éditorial disait
+   * déjà « non », la citation le prouve. Toujours 101 fiches. */
+  /* 282 → 279 (09/09/2026, lot 5) : Malaysia, China Eastern et Air Mauritius cabines — même cause. */
+  /* 279 → 274 (09/09/2026, lot 6) : South African cabine, Kenya Airways cabine et soute, Gulf Air
+   * cabine et soute — l'éditorial disait déjà « non », la citation le prouve. Saudia cabine reste
+   * contradictoire : son éditorial dit « chats uniquement » (warn) là où le canal est refusé aux
+   * chiens sur citation. Toujours 101 fiches. */
+  check("274 canaux contradictoires sur 101 fiches, relus des fiches et du contrat runtime",
+    CONTRADICTOIRES.length === 274 && new Set(CONTRADICTOIRES.map((c) => c.slug)).size === 101,
     `${CONTRADICTOIRES.length} canaux · ${new Set(CONTRADICTOIRES.map((c) => c.slug)).size} fiches`);
 
   /* LA LECTURE SE FAIT PAR LOTS, DANS DES PROCESSUS COURTS (CI du 16/08/2026, run 31 sur main).

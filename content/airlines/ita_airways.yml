@@ -62,8 +62,36 @@ ladder:
 policies:
   cabin:
     availability: offered
+    # PREUVE IMPORTÉE — import strict lot4 (Codex, lecture directe du 2026-09-09, cohorte LOT4 fait 12).
+    # Effet attendu : ITA Airways cabin is a documented conditional route. Do not infer a single cabin ceiling across domestic and international itineraries.
+    # Portée nommée : Dogs and cats only, subject to cabin, route, booking and documentation requirements. The published weight limit differs between domestic Italy and other flights, so no global threshold is imported.
+    source:
+      url: "https://www.ita-airways.com/us/en/book-and-prepare/other-requests/travelling-with-pets/pets-in-cabin.html"
+      source_type: official_website
+      verified_date: "2026-09-09"
+      review_due: "2026-12-08"   # reviewDueFrom(verified_date, "airline") — calculé par l'importeur
+      confidence: 4
+      reviewer: "Codex — direct reading of official airline page"
+      history: []
+      quote: "Please note that as of December 1, 2025, pet transport is permitted only for dogs and cats, both in the cabin (PETC) and in the hold (AVIH)."
+      quote_language: en
+      locator: "Pets in cabin → Service overview"
   hold:
     availability: offered
+    # PREUVE IMPORTÉE — import strict lot4 (Codex, lecture directe du 2026-09-09, cohorte LOT4 fait 13).
+    # Effet attendu : ITA Airways hold is a documented conditional route; it is not a booking confirmation.
+    # Portée nommée : Dogs and cats only, subject to hold, route, booking and documentation requirements.
+    source:
+      url: "https://www.ita-airways.com/us/en/book-and-prepare/other-requests/travelling-with-pets/pets-in-cabin.html"
+      source_type: official_website
+      verified_date: "2026-09-09"
+      review_due: "2026-12-08"   # reviewDueFrom(verified_date, "airline") — calculé par l'importeur
+      confidence: 4
+      reviewer: "Codex — direct reading of official airline page"
+      history: []
+      quote: "Please note that as of December 1, 2025, pet transport is permitted only for dogs and cats, both in the cabin (PETC) and in the hold (AVIH)."
+      quote_language: en
+      locator: "Pets in cabin → Service overview"
   cargo:
     availability: not_offered
 channels:

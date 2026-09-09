@@ -654,9 +654,19 @@ ok(`départ : ${pages.length} pages construites`);
          la CI l'a dit (en/101, fr/101, es/101, pt/101). Mesuré sur les 49 compagnies des trois
          trajets de contrôle : Austrian dessert les trois, sa soute réelle reste « à confirmer »,
          et cabine + fret ouverts donnent `101` sur chacun. Le témoin est re-fondé, pas abaissé. */
+      /* RE-FONDÉE UNE DEUXIÈME FOIS (09/09/2026, import strict lot 4) : le lot 4 a cité la soute
+         d'Austrian (« accepté sous conditions ») — même mécanique, même symptôme (CI : en/101,
+         fr/101, es/101, pt/101 jamais exercées), et même erreur de méthode nommée : ce contrôle
+         vit dans « Site entier », pas dans test:unit, et je ne l'ai pas rejoué localement avant de
+         pousser le lot 4. Mesuré sur les 11 compagnies communes aux trois trajets, cabine + fret
+         ouverts : trois donnent `101` partout (Finnair, SAS, LOT — soute réelle « à confirmer ») ;
+         les huit autres donnent `111` (soute citée) ou `001` (BA, cabine refusée). LOT est retenue :
+         aucun de ses trois canaux n'est cité, l'ouverture synthétique ne recouvre donc aucune
+         preuve. Le porteur changera encore le jour où un lot citera la soute de LOT : ce sera un
+         mouvement nommé, pas un abaissement. */
       if (id === "airline_air_france") return [id, ouvre(["cabin", "hold", "cargo"])];   // 111
       if (id === "airline_klm") return [id, ouvre(["cabin", "hold"])];                   // 110
-      if (id === "airline_austrian") return [id, ouvre(["cabin", "cargo"])];             // 101
+      if (id === "airline_lot") return [id, ouvre(["cabin", "cargo"])];                  // 101
       if (id === "airline_swiss") return [id, ouvre(["hold", "cargo"])];                 // 011
       return [id, a];
     })),
@@ -703,7 +713,14 @@ ok(`départ : ${pages.length} pages construites`);
      TAP) et `111` (Air India, Ethiopian). Le `101` conditionnel n'existe pas encore dans la
      réalité et n'est pas exigé — ce serait exiger de la base une citation qu'elle n'a pas. Cet
      ensemble avance par mouvement nommé : une combinaison qui apparaît ou disparaît fait rougir. */
-  const COND_REELLES_FIGEES = ["011", "110", "111"];
+  /* MOUVEMENT NOMMÉ (09/09/2026, import strict lot 4) : le `101` conditionnel existe désormais dans
+     la base réelle — American Airlines, cabine et fret cités par le lot 4, soute non revérifiée
+     (« à confirmer »), sur CDG→JFK et LHR→LAX avec le bichon de 6 kg. Mesuré, pas supposé.
+     ERREUR NOMMÉE : la CI du lot 4 ne l'a pas dit — ce contrôle est évalué APRÈS la couverture des
+     combinaisons (`trous`), qui rougissait d'abord (porteuse du `101` synthétique) ; l'ordre des
+     `else if` masque le second défaut derrière le premier. Vu localement sur le dist du lot 5,
+     une fois la porteuse re-fondée. */
+  const COND_REELLES_FIGEES = ["011", "101", "110", "111"];
   const estConditionnelle = (a) => ["cabin", "hold", "cargo"].some((pl) => a[`${pl}_status`] === "accepted_with_conditions");
   /* Les cas de contrôle qui atteignent les quatre combinaisons — mesurés, pas supposés : un
      golden de 30 kg ne passe jamais en cabine, d'où le `011` exclusif du premier trajet. */
