@@ -59,10 +59,16 @@ const check = (label, cond, detail = "") => {
 const CLE_LIBELLE = { allowed: "premium.allowed", accepted_with_conditions: "premium.accepted_conditions", denied: "premium.not_allowed", confirmation_required: "air.to_confirm" };
 const libelle = (langue, statut) => tt(langue, CLE_LIBELLE[statut]);
 
-/** La preuve auditée du fret Thai, telle que le manifeste approuvé la fige. */
+/** La preuve du fret Thai, telle que le CORRECTIF D'ARBITRAGES la fixe (09/09/2026, Codex, tranché par Philippe).
+ *  MOUVEMENT NOMMÉ : jusqu'ici, ce témoin relisait la source auditée du manifeste de migration (page passager AVIH,
+ *  « contactez Cargo », 13/08). L'arbitrage l'a SUPERSÉDÉE par la page THAI Cargo ; le manifeste garde l'ancienne, la
+ *  page construite doit servir la nouvelle — lien, citation visible, date rendue, confiance. La forme du témoin ne
+ *  change pas : ce que la page affiche EST la preuve de référence, champ par champ. */
 const AUDIT = (() => {
-  const m = JSON.parse(fs.readFileSync(path.join(ROOT, "test-baselines", "t0b-migration-matrice.json"), "utf8"));
-  return m.rows.find((r) => r.identity.airline_id === "airline_thai_airways" && r.identity.placement === "cargo").decision.source;
+  const c = JSON.parse(fs.readFileSync(path.join(ROOT, "mesures", "preuves", "correctif-arbitrages-2026-09-09", "CORRECTIF_ARBITRAGES_POLITIQUES_COMPAGNIES_2026-09-09.json"), "utf8"));
+  const f = c.replace_facts.find((x) => x.airline_id === "airline_thai_airways" && x.placement === "cargo");
+  return { url: f.url, source_type: c.provenance_defaults.source_type, verified_date: c.provenance_defaults.verified_date, review_due: c.provenance_defaults.review_due,
+    confidence: c.provenance_defaults.confidence, reviewer: c.provenance_defaults.reviewer, quote: f.quote, quote_language: f.quote_language, locator: f.locator };
 })();
 
 const kb = loadKB();
@@ -751,7 +757,7 @@ console.log("\n=== 4. Carte RENDUE du Finder : les sources des canaux, et rien d
   check("la carte Thai porte un lien vers l'URL auditée du fret", hrefs(carteThai).includes(AUDIT.url),
     hrefs(carteThai).join(" | ") || "aucun lien");
   const lienSource = [...carteThai.querySelectorAll("a[href]")].find((a) => a.getAttribute("href") === AUDIT.url);
-  check("ce lien est VISIBLE et nommé par son canal", (lienSource?.textContent || "").includes("thaiairways.com")
+  check("ce lien est VISIBLE et nommé par son canal", (lienSource?.textContent || "").includes("thaicargo.com")
     && /cargo|fret|carga/i.test(lienSource?.textContent || ""), lienSource ? `« ${lienSource.textContent} »` : "absent");
   /* Le témoin : aucun canal sourcé → AUCUN bloc de sources, pas un lien « par défaut ». */
   check(`la carte ${TEMOIN_SANS_SOURCE} n'affiche AUCUN bloc de sources`,

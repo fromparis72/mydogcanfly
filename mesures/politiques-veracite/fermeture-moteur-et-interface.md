@@ -3175,3 +3175,22 @@ l'écran du Finder pour ces deux canaux — la fiche, elle, dit bien « sous con
 changé aucune disponibilité, les trois changements sont des lignes de fiche écrites à la main
 avec l'arbitrage en commentaire.
 
+### Post-scriptum — ce que le dist et la suite complète ont fait bouger (correctif)
+
+- **Vocabulaire IATA** : la nouvelle citation Thai Cargo (« …the IATA's Live Animals Regulations… ») publie
+  quatre jetons « IATA » (une page par langue) qu'aucune règle ni aucun scellé ne couvrait : l'étape 3 a
+  rougi (1septies, 1undecies). C'est une citation officielle, licite par nature ; elle rejoint le scellé des
+  tournures licites par le geste prévu (`test-etape3-dom.mjs --sceller-licites`, seul écrivain du scellé) —
+  le coût voulu, payé par celui qui écrit la phrase.
+- **Sentinelle « auditée · undocumented »** (Thai fret) : cette forme n'existe plus dans le référentiel réel
+  (0 `policy_unpublished`) ; la même page porte désormais le témoin de la forme qui l'a remplacée — décision
+  arbitrée sur ordre, citée, « accepté sous conditions ». Le harnais des entités relit la preuve de
+  référence dans le correctif, plus dans le manifeste (lien, citation visible, date rendue, confiance).
+- **Harnais de l'ingestion (l)** : la falsification de la source auditée visait la page passager AVIH
+  (échéance 2026-11-11, « (For cargo… ») ; ces motifs ne trouvaient plus rien à falsifier. Re-fondée sur la
+  preuve THAI Cargo — même contre-épreuve, même contrat.
+- **Contre-épreuve du manifeste falsifié** : l'admission par arbitrage de Thai fret aveuglait la matrice
+  quand la décision auditée était échangée avec Aegean. Erreur nommée, corrigée : l'admission ne vaut que
+  si la ligne du manifeste porte encore la décision auditée d'origine ; un manifeste falsifié rougit.
+- Caisses 56/56 (30 limites, 3 refus totaux), accueil, affirmations retirées, dette Astro 165 : verts.
+

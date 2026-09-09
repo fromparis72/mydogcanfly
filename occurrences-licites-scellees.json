@@ -2,12 +2,12 @@
   "_commentaire": "LES TOURNURES LICITES QUI VOISINENT UN CONTENANT, ÉNUMÉRÉES AVEC LEUR NOMBRE. Elles ne sont couvertes par aucune permission lexicale générale : c'est délibéré. Une permission écrite pour « IATA standards » couvrait aussi « IATA standards approved crate », et c'est par là que les attributions passaient. Ici chaque tournure est nommée avec sa clé — chemin de fichier pour les sources, « URL · zone » pour les pages — son voisinage exact et sa MULTIPLICITÉ. La comparaison se fait dans les deux sens : une occurrence de plus, une de moins, une entrée orpheline, une tournure déplacée d'un fichier ou d'une zone à l'autre, un nombre différent — chacun fait rougir. CE SCELLÉ NE REND RIEN LICITE : une occurrence que le motif juge interdite le reste, scellée ou non. Il ne dit qu'une chose : « ces tournures-là, en ce nombre-là, ont été lues et classées par un humain ». Toute formulation nouvelle, même licite, n'est couverte par personne et bloque jusqu'à un rescellement nommé. OBSERVATION CONSIGNÉE : sur les fiches compagnies, deux `<span>` adjacents sans espace se soudent au rendu — « 🛡️ IATA rules » suivi de « Acceptance strictly follows… » se lit « IATA rulesAcceptance ». C'est un défaut de BALISAGE, pas de vocabulaire ; hors de ce lot, nommé ici pour qu'il ne se perde pas.",
   "_mesure": {
     "sources": {
-      "cles": 14,
-      "occurrences": 24
+      "cles": 16,
+      "occurrences": 27
     },
     "publiees": {
-      "cles": 16,
-      "occurrences": 20
+      "cles": 20,
+      "occurrences": 24
     }
   },
   "occurrences": {
@@ -20,8 +20,14 @@
       "m 4 May 2026, hold crates must meet stricter IATA ventilation limits or be refused. fr:": 1,
       "porão devem atender a limites de ventilação IATA mais rígidos, ou serão recusadas.\" - icon:": 1
     },
+    "content/airlines/thai_airways.yml": {
+      "s subject to the conditions described in the IATA's Live Animals Regulations and to TG's Regul": 1
+    },
     "content/countries/fj.yml": {
       "plus directe, dans un conteneur conforme aux IATA Live Animal Regulations (un animal par caiss": 1
+    },
+    "packages/knowledge/raw/objects.json": {
+      "s subject to the conditions described in the IATA's Live Animals Regulations and to TG's Regul": 1
     },
     "packages/ui/src/components/HomeSections.astro": {
       "en soute dans une caisse conforme aux normes IATA. Certaines races brachycéphales, comme les B": 1,
@@ -58,13 +64,20 @@
       "+ jaula), jaula rígida o blanda de estándar IATA de hasta 48 × 35 × 29 cm, fondo impermeable,": 1,
       "caisse), caisse rigide ou souple aux normes IATA jusqu'à 48 × 35 × 29 cm, fond étanche, non o": 1,
       "m 4 May 2026, hold crates must meet stricter IATA ventilation limits or be refused.\",": 1,
-      "porão devem atender a limites de ventilação IATA mais rígidos, ou serão recusadas.\" }": 1
+      "porão devem atender a limites de ventilação IATA mais rígidos, ou serão recusadas.\" }": 1,
+      "s subject to the conditions described in the IATA's Live Animals Regulations and to TG's Regul": 1
     },
     "packages/ui/src/data/countries.generated.json": {
       "plus directe, dans un conteneur conforme aux IATA Live Animal Regulations (un animal par caiss": 1
     }
   },
   "publiees": {
+    "/airlines/thai-airways/ · corps": {
+      "s subject to the conditions described in the IATA's Live Animals Regulations and to TG's Regul": 1
+    },
+    "/es/airlines/thai-airways/ · corps": {
+      "s subject to the conditions described in the IATA's Live Animals Regulations and to TG's Regul": 1
+    },
     "/es/travel-hub/transportin-homologado-iata-perro/ · corps": {
       "el tamaño del transportín con la calculadora IATA Acostumbra a tu perro al transportín y gest": 1
     },
@@ -75,6 +88,9 @@
     "/fr/ · json-ld": {
       "en soute dans une caisse conforme aux normes IATA. Certaines races brachycéphales, comme les B": 1,
       "pagnies exige une caisse conforme aux normes IATA pour le transport en soute. Ton chien doit p": 1
+    },
+    "/fr/airlines/thai-airways/ · corps": {
+      "s subject to the conditions described in the IATA's Live Animals Regulations and to TG's Regul": 1
     },
     "/fr/countries/fj/ · corps": {
       "plus directe, dans un conteneur conforme aux IATA Live Animal Regulations (un animal par caiss": 1
@@ -93,6 +109,9 @@
     },
     "/fr/travel-hub/sac-caisse-transport-chien/ · json-ld": {
       "ige une caisse rigide conforme aux exigences IATA : solidité, ventilation sur plusieurs faces,": 1
+    },
+    "/pt/airlines/thai-airways/ · corps": {
+      "s subject to the conditions described in the IATA's Live Animals Regulations and to TG's Regul": 1
     },
     "/pt/travel-hub/caixa-de-transporte-homologada-iata/ · corps": {
       "Calcule o tamanho da caixa com a calculadora IATA Acostume o seu cachorro à caixa e gerencie": 1

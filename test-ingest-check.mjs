@@ -229,10 +229,14 @@ console.log("\n=== 3. La décision vient des fiches — les contre-épreuves du 
   {
     const thai = () => join(SANDBOX, "content", "airlines", "thai_airways.yml");
     freshSandbox();
+    /* MOUVEMENT NOMMÉ (09/09/2026, correctif d'arbitrages) : la source auditée du fret Thai (page passager AVIH,
+       « (For cargo… », échéance 2026-11-11) est SUPERSÉDÉE par la page THAI Cargo (échéance 2026-12-08). La
+       falsification vise désormais CE bloc-là — même contre-épreuve, même contrat, autre preuve. Attrapé par la
+       suite complète : les deux anciens motifs ne trouvaient plus rien à falsifier. */
     writeFileSync(thai(), readFileSync(thai(), "utf8")
-      .replace(/      url: "https:\/\/www\.thaiairways\.com[^"]*"/, '      url: "https://mydogcanfly.com/fake-self-citation"')
-      .replace('      review_due: "2026-11-11"', '      review_due: "2030-01-01"')
-      .replace(/      quote: "\(For cargo[^"]*"/, '      quote: "x"')
+      .replace(/      url: "https:\/\/www\.thaicargo\.com[^"]*"/, '      url: "https://mydogcanfly.com/fake-self-citation"')
+      .replace('      review_due: "2026-12-08"   # reviewDueFrom(verified_date, "airline") — calculé par l\'importeur', '      review_due: "2030-01-01"')
+      .replace(/      quote: "The acceptance of live[^"]*"/, '      quote: "x"')
       .replace("      quote_language: en", '      quote_language: "not a language"'));
     const { code, out } = run();
     check("(l) source auditée falsifiée → REFUS de l'ingestion", code === 1);

@@ -30,7 +30,12 @@
 
 /** Les décisions observées, sur quatre fiches. */
 export const SENTINELLES_COMPAGNIES = [
-  { slug: "thai-airways", id: "airline_thai_airways", placement: "cargo", statut: "confirmation_required", role: "auditée · undocumented" },
+  /* RE-FONDÉE SOUS UNE AUTRE FORME (09/09/2026, correctif d'arbitrages) : la décision auditée « undocumented » de Thai
+     fret est SUPERSÉDÉE par l'arbitrage (Codex, tranché par Philippe) — `offered` sur la page THAI Cargo. Mesuré : plus
+     AUCUNE politique du référentiel réel n'émet `policy_unpublished` ; cette forme-là (« auditée · undocumented ») n'existe
+     plus, et on le dit. La même page porte désormais le témoin de la forme qui l'a remplacée : une décision ARBITRÉE sur
+     ordre, citée, « accepté sous conditions » — la pastille doit dire la condition, jamais une place. */
+  { slug: "thai-airways", id: "airline_thai_airways", placement: "cargo", statut: "accepted_with_conditions", role: "arbitrée sur ordre · citée (THAI Cargo) · jamais une place promise" },
   { slug: "aegean", id: "airline_aegean", placement: "cargo", statut: "confirmation_required", role: "non revérifiée · legacy_unreviewed" },
   /* RE-FONDÉE (08/09/2026, import strict V3) : Air France publie désormais une citation de SOUTE
      (8 à 75 kg chien + contenant) ; sa fiche n'est plus « entièrement à confirmer » et ne peut

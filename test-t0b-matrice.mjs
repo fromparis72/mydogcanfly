@@ -253,10 +253,12 @@ for (const r of rows) {
     if (!(dispoAdmise && citee(p))) err(`ligne réactivée SANS sa preuve: ${k} → availability=${p.availability}, citée=${citee(p)}`);
     continue;
   }
-  if (k === "airline_thai_airways|cargo") {
+  if (k === "airline_thai_airways|cargo" && r.decision.target_availability === "undocumented" && /contact directly to Cargo Department/.test(r.decision.source?.quote ?? "")) {
     /* Correctif d'arbitrages (09/09/2026, Codex, tranché par Philippe) : la décision auditée du manifeste (`undocumented`)
        est SUPERSÉDÉE par `offered` sur la page THAI Cargo. L'observation de migration reste vérifiée telle quelle ; la
-       valeur courante est admise par identité, et la preuve exigée. */
+       valeur courante est admise par identité, et la preuve exigée. L'admission ne vaut que si la LIGNE DU MANIFESTE est
+       encore la décision auditée d'origine : un manifeste falsifié (décision échangée — contre-épreuve de
+       `test-t0b-manifeste.mjs`) retombe sur le contrôle ordinaire et rougit comme avant. */
     if (!(p.availability === "offered" && citee(p))) err(`décision arbitrée SANS sa preuve: ${k} → availability=${p.availability}, citée=${citee(p)}`);
     continue;
   }
