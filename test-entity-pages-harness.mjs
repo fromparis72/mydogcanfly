@@ -801,8 +801,10 @@ console.log(`\n=== 5. Les ${CIBLE.length} canaux contradictoires × 4 langues : 
    * cabine et soute — l'éditorial disait déjà « non », la citation le prouve. Saudia cabine reste
    * contradictoire : son éditorial dit « chats uniquement » (warn) là où le canal est refusé aux
    * chiens sur citation. Toujours 101 fiches. */
-  check("274 canaux contradictoires sur 101 fiches, relus des fiches et du contrat runtime",
-    CONTRADICTOIRES.length === 274 && new Set(CONTRADICTOIRES.map((c) => c.slug)).size === 101,
+  /* 274 → 271 (09/09/2026, lot 7) : Aircalin cabine et soute, La Compagnie soute — l'éditorial disait déjà
+   * « non », la citation le prouve. Toujours 101 fiches. */
+  check("271 canaux contradictoires sur 101 fiches, relus des fiches et du contrat runtime",
+    CONTRADICTOIRES.length === 271 && new Set(CONTRADICTOIRES.map((c) => c.slug)).size === 101,
     `${CONTRADICTOIRES.length} canaux · ${new Set(CONTRADICTOIRES.map((c) => c.slug)).size} fiches`);
 
   /* LA LECTURE SE FAIT PAR LOTS, DANS DES PROCESSUS COURTS (CI du 16/08/2026, run 31 sur main).

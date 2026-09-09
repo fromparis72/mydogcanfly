@@ -68,8 +68,36 @@ ladder:
 policies:
   cabin:
     availability: offered
+    # PREUVE IMPORTÉE — import strict lot7 (Codex, lecture directe du 2026-09-09, cohorte LOT7 fait 0).
+    # Effet attendu : Air Algérie cabin is a documented conditional route; the 6 kg wording remains descriptive and must not become a dog-only threshold.
+    # Portée nommée : Small pets under 6 kg are described as accepted in cabin, subject to route, quota, documentation and container rules. The page is inconsistent about whether the 6 kg basis includes the container, so no structured dog-only threshold may be inferred.
+    source:
+      url: "https://airalgerie.dz/en/plan-your-trip/baggage/travel-with-pets/"
+      source_type: official_website
+      verified_date: "2026-09-09"
+      review_due: "2026-12-08"   # reviewDueFrom(verified_date, "airline") — calculé par l'importeur
+      confidence: 4
+      reviewer: "Codex — direct reading of official airline page"
+      history: []
+      quote: "only small pets under 6 kg are accepted on board"
+      quote_language: en
+      locator: "Travel with pets → Pets travelling in cabin"
   hold:
     availability: offered
+    # PREUVE IMPORTÉE — import strict lot7 (Codex, lecture directe du 2026-09-09, cohorte LOT7 fait 1).
+    # Effet attendu : Air Algérie hold is conditional and must be suppressed on United Kingdom sectors.
+    # Portée nommée : The hold route applies when cabin weight or container limits are exceeded, with route, aircraft, documentation and container restrictions. Hold is prohibited to and from the United Kingdom.
+    source:
+      url: "https://airalgerie.dz/en/plan-your-trip/baggage/travel-with-pets/"
+      source_type: official_website
+      verified_date: "2026-09-09"
+      review_due: "2026-12-08"   # reviewDueFrom(verified_date, "airline") — calculé par l'importeur
+      confidence: 4
+      reviewer: "Codex — direct reading of official airline page"
+      history: []
+      quote: "your pet must be transported in the hold"
+      quote_language: en
+      locator: "Travel with pets → Pets travel in the hold"
   cargo:
     review_state: legacy_unreviewed
 channels:

@@ -65,6 +65,13 @@ const LOTS = {
   lot6: { dossier: "mesures/preuves/import-strict-lot-6-2026-09-09", total: 22,
     fichiers: { LOT6: "tous" },
     nom: () => "PREUVES_POLITIQUES_COMPAGNIES_LOT_6_STRICT_2026-09-09.json" },
+  /** Septième et huitième paquets (09/09) : 23 faits et 7 non-décisions chacun. */
+  lot7: { dossier: "mesures/preuves/import-strict-lot-7-2026-09-09", total: 23,
+    fichiers: { LOT7: "tous" },
+    nom: () => "PREUVES_POLITIQUES_COMPAGNIES_LOT_7_STRICT_2026-09-09.json" },
+  lot8: { dossier: "mesures/preuves/import-strict-lot-8-2026-09-09", total: 23,
+    fichiers: { LOT8: "tous" },
+    nom: () => "PREUVES_POLITIQUES_COMPAGNIES_LOT_8_STRICT_2026-09-09.json" },
 };
 if (!LOTS[LOT]) throw new Error(`lot inconnu : ${LOT}`);
 const DOSSIER = resolve(arg("dossier", LOTS[LOT].dossier));
@@ -122,6 +129,18 @@ const SEUILS = {
      citée s'arrête à « subject to the following conditions: » et ne porte pas le chiffre ; portée
      Economy + vol ≤ 5 h — NON écrit, par contrat autant que par portée. */
   "airline_aeromexico.cabin": 9, "airline_aeromexico.hold": 45, "airline_egyptair.cabin": 8,
+  /* Lots 7 et 8 — RÈGLE PRÉCISÉE, nommée pour Codex : un seuil n'est écrit que si la phrase citée
+     porte À LA FOIS le chiffre ET la base du poids (animal + contenant), parce que le modèle exige
+     `weight_includes_carrier` pour refuser, et que déduire cette base de la portée nommée serait une
+     inférence. Écrits : Air Austral 8 (« le poids de l'animal + son contenant doit être inférieur à
+     8 kg »), La Compagnie 8 (« jusqu'à 8kg, sac compris »), Copa 10 (« maximum 10kg including
+     container »), Tunisair 8 (« 08 kg y compris le contenant et la nourriture »), SunExpress 8
+     (« up to 8 kg (incl. container) »). NON écrits, la phrase ne portant pas la base : Air Algérie 6,
+     SKY express 8 et 25, KM Malta 10 et 32, Smartwings 8 et 32 ; ni Corsair 8/50, Iberia Express
+     8/45, Luxair 8 (chiffre absent de la phrase). Si Codex veut que la portée nommée suffise, ces
+     lignes s'ajoutent. */
+  "airline_air_austral.cabin": 8, "airline_la_compagnie.cabin": 8,
+  "airline_copa.cabin": 10, "airline_tunisair.cabin": 8, "airline_sunexpress.cabin": 8,
 };
 /** Seuils du CHIEN SEUL (le contenant s'ajoute) : `weight_includes_carrier: false`, écrit. */
 const SEUIL_CHIEN_SEUL = new Set(["airline_air_europa.cabin"]);

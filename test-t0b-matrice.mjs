@@ -111,6 +111,14 @@ const REACTIVEES_SUR_CITATION = new Set([
   "airline_gulf_air|cargo",
   "airline_royal_jordanian|cabin",
   "airline_saudia|cabin",
+  /* Lot 7 (09/09/2026) : Air Caraïbes fret (« devront voyager par FRET. »), Air Tahiti Nui fret (« …il
+     peut certainement être transporté par fret… »), Aircalin fret (« Le transport des animaux
+     s'effectue en fret uniquement. »), Corsair fret (« Au-delà de 50 kg, le transport devra
+     s'effectuer par le fret. »). */
+  "airline_air_caraibes|cargo",
+  "airline_air_tahiti_nui|cargo",
+  "airline_aircalin|cargo",
+  "airline_corsair|cargo",
 ]);
 /* POLICY_STALE RÉACTIVÉS SUR CITATION (09/09/2026, lot 4). Deux des dix anciens POLICY_STALE
  * versés en `legacy_unreviewed` — Qantas soute et Qantas fret — ont reçu une phrase des Conditions

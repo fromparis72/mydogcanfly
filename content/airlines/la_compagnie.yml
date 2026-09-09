@@ -67,8 +67,39 @@ ladder:
 policies:
   cabin:
     availability: offered
+    # PREUVE IMPORTÉE — import strict lot7 (Codex, lecture directe du 2026-09-09, cohorte LOT7 fait 19).
+    # Effet attendu : La Compagnie cabin is conditional with an 8 kg combined animal-and-bag ceiling.
+    # Portée nommée : Dogs and cats up to 8 kg including the bag, subject to a four-animal flight quota, advance request, container, behavior and documentation rules.
+    # Le plafond cité inclut le CONTENANT : refus sûr si le chien seul le dépasse, jamais un oui en dessous.
+    max_weight_kg: 8
+    weight_includes_carrier: true
+    source:
+      url: "https://www.lacompagnie.com/fr/plan/special-services"
+      source_type: official_website
+      verified_date: "2026-09-09"
+      review_due: "2026-12-08"   # reviewDueFrom(verified_date, "airline") — calculé par l'importeur
+      confidence: 4
+      reviewer: "Codex — direct reading of official airline page"
+      history: []
+      quote: "vos compagnons, jusqu’à 8kg, sac compris, (chiens et chats)"
+      quote_language: fr
+      locator: "Services optionnels → Animaux"
   hold:
     availability: not_offered
+    # PREUVE IMPORTÉE — import strict lot7 (Codex, lecture directe du 2026-09-09, cohorte LOT7 fait 20).
+    # Effet attendu : La Compagnie hold is a documented refusal for ordinary pet dogs.
+    # Portée nommée : Ordinary pet transport is cabin-only; passenger hold is explicitly not offered.
+    source:
+      url: "https://www.lacompagnie.com/fr/plan/special-services"
+      source_type: official_website
+      verified_date: "2026-09-09"
+      review_due: "2026-12-08"   # reviewDueFrom(verified_date, "airline") — calculé par l'importeur
+      confidence: 4
+      reviewer: "Codex — direct reading of official airline page"
+      history: []
+      quote: "Seul le transport en cabine est autorisé, le transport d’animaux en soute n’est pas proposé."
+      quote_language: fr
+      locator: "Services optionnels → Animaux"
 channels:
   - placement: cabin
     icon: 🐾

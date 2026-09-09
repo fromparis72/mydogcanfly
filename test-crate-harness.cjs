@@ -173,8 +173,10 @@ check("état réel figé : UNE compagnie refuse les trois placements — Ryanair
 /* MOUVEMENT NOMMÉ (09/09/2026, import strict lot 5 — 18 citations de plus, 92 en tout) : 18 → 20 limites cabine citées (Korean Air 7, Asiana 7, chien + contenant). */
 /* MOUVEMENT NOMMÉ (09/09/2026, import strict lot 6 — 21 citations de plus, 113 en tout) : 20 → 22 (Aeromexico 9, EgyptAir 8, chien + contenant). Leurs anciens plafonds
    déduits de la grille tarifaire (9 et 8) sont désormais ÉCRITS depuis la phrase citée. */
-check("état réel figé : 22 compagnies publient une limite cabine citée, chacune qualifiée (chien + contenant, ou chien seul)",
-  Object.values(AIR_REEL).filter((a) => !a.noPets && a.cabin && a.cabin.maxKg != null).length === 22
+/* MOUVEMENT NOMMÉ (09/09/2026, import strict lot 7 — 23 citations de plus, 136 en tout) : 22 → 24 (Air Austral 8, La Compagnie 8, chien + contenant). Air Algérie
+   perd son 6 kg déduit de la grille tarifaire (cabine citée sans base de poids dans la phrase : non écrit). */
+check("état réel figé : 24 compagnies publient une limite cabine citée, chacune qualifiée (chien + contenant, ou chien seul)",
+  Object.values(AIR_REEL).filter((a) => !a.noPets && a.cabin && a.cabin.maxKg != null).length === 24
     && Object.values(AIR_REEL).filter((a) => !a.noPets && a.cabin && a.cabin.maxKg != null).every((a) => typeof a.cabin.incl === "boolean")
     && Object.values(AIR_REEL).filter((a) => !a.noPets && a.cabin && a.cabin.maxKg != null && a.cabin.incl === false).length === 1,
   `${Object.values(AIR_REEL).filter((a) => !a.noPets && a.cabin && a.cabin.maxKg != null).length}`);
@@ -221,7 +223,7 @@ for (const m of MESURES) {
 
 /* ---- 4. Un chien trop lourd ne reçoit jamais un verdict cabine favorable ---------------------- */
 const avecPoidsCabine = Object.entries(AIR)
-  .filter(([, a]) => !a.noPets && a.cabin && a.cabin.maxKg != null).slice(0, 23);
+  .filter(([, a]) => !a.noPets && a.cabin && a.cabin.maxKg != null).slice(0, 25);
 /* ERREUR NOMMÉE (09/09/2026, lot 5) : en passant de 19 à 21 témoins, j'ai laissé cette coupe à 20 —
    le harnais rougissait sur sa propre troncature, pas sur la donnée. La coupe suit le compte. */
 /* MOUVEMENT NOMMÉ : le seuil était « ≥ 5 compagnies réelles ». Depuis la frontière, AUCUNE
@@ -231,8 +233,8 @@ const avecPoidsCabine = Object.entries(AIR)
    favorable, et c'est le script de production qui le décide. */
 /* MOUVEMENT NOMMÉ (08/09/2026) : le synthétique n'est plus seul — neuf limites réelles citées le
    rejoignent, et chacune est jouée ci-dessous (au-delà du plafond, jamais un verdict favorable). */
-check("les témoins « limite cabine publiée » : le synthétique et les 22 limites réelles citées",
-  avecPoidsCabine.length === 23 && avecPoidsCabine.some(([i]) => i === SYNTH_CABINE),
+check("les témoins « limite cabine publiée » : le synthétique et les 24 limites réelles citées",
+  avecPoidsCabine.length === 25 && avecPoidsCabine.some(([i]) => i === SYNTH_CABINE),
   `${avecPoidsCabine.length} : ${avecPoidsCabine.map(([i]) => i).join(", ")}`);
 for (const [id, a] of avecPoidsCabine) {
   const trop = scenario(pagesT.en, { a: 45, d: 32, poids: a.cabin.maxKg + 10, airId: id });

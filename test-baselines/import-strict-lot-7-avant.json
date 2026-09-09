@@ -2,7 +2,6 @@
  "cdg-bkk|golden|01-15|any": {
   "airlines": [
    "airline_air_france | direct | direct_documented | st:confirmation_required/accepted_with_conditions/confirmation_required | cabin:confirmation_required[official_source_unquoted:airline_air_france#cabin] hold:accepted_with_conditions cargo:confirmation_required[official_source_unquoted:airline_air_france#cargo] | bool:010 | confirm:cabin+cargo | pets:unknown | deny:- | label:Hold: accepted under the airline's conditions | tarifs:cabin+hold+cargo | heat:00",
-   "airline_aircalin | direct | direct_documented | st:denied/denied/accepted_with_conditions | cabin:denied hold:denied cargo:accepted_with_conditions | bool:001 | confirm:- | pets:unknown | deny:- | label:Cargo: accepted under the airline's conditions | tarifs:cargo | heat:00",
    "airline_lufthansa | conn | connection_documented | st:accepted_with_conditions/accepted_with_conditions/confirmation_required | cabin:accepted_with_conditions hold:accepted_with_conditions cargo:confirmation_required[official_source_unquoted:airline_lufthansa#cargo] | bool:110 | confirm:cargo | pets:unknown | deny:- | label:Cabin and hold: accepted under the airline's conditions | tarifs:cabin+hold+cargo | heat:00",
    "airline_austrian | conn | connection_documented | st:accepted_with_conditions/accepted_with_conditions/confirmation_required | cabin:accepted_with_conditions hold:accepted_with_conditions cargo:confirmation_required[legacy_unreviewed:airline_austrian#cargo] | bool:110 | confirm:cargo | pets:unknown | deny:- | label:Cabin and hold: accepted under the airline's conditions | tarifs:cabin+hold+cargo | heat:00",
    "airline_air_india | conn | connection_documented | st:accepted_with_conditions/accepted_with_conditions/accepted_with_conditions | cabin:accepted_with_conditions hold:accepted_with_conditions cargo:accepted_with_conditions | bool:111 | confirm:- | pets:unknown | deny:- | label:Cabin, hold and cargo: accepted under the airline's conditions | tarifs:cabin+hold+cargo | heat:00",
@@ -29,6 +28,7 @@
    "airline_qatar_airways | conn | connection_unverified | st:denied/accepted_with_conditions/confirmation_required | cabin:denied hold:accepted_with_conditions cargo:confirmation_required[legacy_unreviewed:airline_qatar_airways#cargo] | bool:010 | confirm:cargo | pets:unknown | deny:- | label:Hold: accepted under the airline's conditions | tarifs:hold+cargo | heat:00",
    "airline_gulf_air | conn | connection_unverified | st:denied/denied/accepted_with_conditions | cabin:denied hold:denied cargo:accepted_with_conditions | bool:001 | confirm:- | pets:unknown | deny:- | label:Cargo: accepted under the airline's conditions | tarifs:cargo | heat:00",
    "airline_kenya_airways | conn | connection_unverified | st:denied/denied/accepted_with_conditions | cabin:denied hold:denied cargo:accepted_with_conditions | bool:001 | confirm:- | pets:unknown | deny:- | label:Cargo: accepted under the airline's conditions | tarifs:cargo | heat:00",
+   "airline_aircalin | direct | direct_documented | st:confirmation_required/confirmation_required/confirmation_required | cabin:confirmation_required[legacy_unreviewed:airline_aircalin#cabin] hold:confirmation_required[legacy_unreviewed:airline_aircalin#hold] cargo:confirmation_required[legacy_unreviewed:airline_aircalin#cargo] | bool:000 | confirm:cabin+hold+cargo | pets:unknown | deny:- | label:Policy to confirm with the airline | tarifs:cabin+hold+cargo | heat:00",
    "airline_thai_airways | direct | direct_documented | st:confirmation_required/confirmation_required/confirmation_required | cabin:confirmation_required[legacy_unreviewed:airline_thai_airways#cabin,rule_unverified:rule_thai_airways_no_cabin] hold:confirmation_required[legacy_unreviewed:airline_thai_airways#hold] cargo:confirmation_required[policy_unpublished:airline_thai_airways#cargo] | bool:000 | confirm:cabin+hold+cargo | pets:unknown | deny:- | label:Policy to confirm with the airline | tarifs:cabin+hold+cargo | heat:00",
    "airline_condor | conn | connection_documented | st:confirmation_required/confirmation_required/confirmation_required | cabin:confirmation_required[legacy_unreviewed:airline_condor#cabin] hold:confirmation_required[legacy_unreviewed:airline_condor#hold] cargo:confirmation_required[legacy_unreviewed:airline_condor#cargo] | bool:000 | confirm:cabin+hold+cargo | pets:unknown | deny:- | label:Policy to confirm with the airline | tarifs:cabin+hold+cargo | heat:00",
    "airline_el_al | conn | connection_documented | st:confirmation_required/confirmation_required/confirmation_required | cabin:confirmation_required[legacy_unreviewed:airline_el_al#cabin] hold:confirmation_required[legacy_unreviewed:airline_el_al#hold] cargo:confirmation_required[legacy_unreviewed:airline_el_al#cargo] | bool:000 | confirm:cabin+hold+cargo | pets:unknown | deny:- | label:Policy to confirm with the airline | tarifs:cabin+hold+cargo | heat:00",
@@ -52,10 +52,6 @@
    {
     "airline_id": "airline_air_france",
     "placement": "hold"
-   },
-   {
-    "airline_id": "airline_aircalin",
-    "placement": "cargo"
    },
    {
     "airline_id": "airline_lufthansa",
@@ -188,13 +184,12 @@
   ],
   "risks": [],
   "safety_advisories": [],
-  "score": 67,
+  "score": 66,
   "sources": [
    "https://booking-uat.dcloud.saudia.com/book/flight-information/travelling-with-pets",
    "https://global.ceair.com/global/en_static/Announcement/TravelTips/SpecialPassengerServiceNotice/LittleAnimal/",
    "https://m.flyasiana.com/C/TW/EN/contents/traveling-with-pets",
    "https://washingtondc.thaiembassy.org/en/page/bring-pets-to-thailand",
-   "https://www.aircalin.com/fr/animaux",
    "https://www.airchina.com.cn/en-US/content/travel_info/preparing/luggage/check/small_animals/",
    "https://www.airindia.com/in/en/frequently-asked-questions/pet-travel.html",
    "https://www.austrian.com/us/en/plan/special-requirements/travelling-with-animals",
@@ -249,6 +244,7 @@
    "airline_korean_air | conn | connection_documented | st:denied/accepted_with_conditions/confirmation_required | cabin:denied hold:accepted_with_conditions cargo:confirmation_required[legacy_unreviewed:airline_korean_air#cargo] | bool:010 | confirm:cargo | pets:unknown | deny:- | label:Hold: accepted under the airline's conditions | tarifs:hold+cargo | heat:00",
    "airline_iberia | conn | connection_unverified | st:accepted_with_conditions/accepted_with_conditions/confirmation_required | cabin:accepted_with_conditions hold:accepted_with_conditions cargo:confirmation_required[official_source_unquoted:airline_iberia#cargo] | bool:110 | confirm:cargo | pets:unknown | deny:- | label:Cabin and hold: accepted under the airline's conditions | tarifs:cabin+hold+cargo | heat:00",
    "airline_qatar_airways | conn | connection_unverified | st:denied/accepted_with_conditions/confirmation_required | cabin:denied hold:accepted_with_conditions cargo:confirmation_required[legacy_unreviewed:airline_qatar_airways#cargo] | bool:010 | confirm:cargo | pets:unknown | deny:- | label:Hold: accepted under the airline's conditions | tarifs:hold+cargo | heat:00",
+   "airline_aircalin | direct | direct_documented | st:confirmation_required/confirmation_required/confirmation_required | cabin:confirmation_required[legacy_unreviewed:airline_aircalin#cabin] hold:confirmation_required[legacy_unreviewed:airline_aircalin#hold] cargo:confirmation_required[legacy_unreviewed:airline_aircalin#cargo] | bool:000 | confirm:cabin+hold+cargo | pets:unknown | deny:- | label:Policy to confirm with the airline | tarifs:cabin+hold+cargo | heat:00",
    "airline_thai_airways | direct | direct_documented | st:confirmation_required/confirmation_required/confirmation_required | cabin:confirmation_required[legacy_unreviewed:airline_thai_airways#cabin,rule_unverified:rule_thai_airways_no_cabin] hold:confirmation_required[legacy_unreviewed:airline_thai_airways#hold] cargo:confirmation_required[policy_unpublished:airline_thai_airways#cargo] | bool:000 | confirm:cabin+hold+cargo | pets:unknown | deny:- | label:Policy to confirm with the airline | tarifs:cabin+hold+cargo | heat:00",
    "airline_finnair | conn | connection_documented | st:accepted_with_conditions/confirmation_required/confirmation_required | cabin:accepted_with_conditions hold:confirmation_required[legacy_unreviewed:airline_finnair#hold] cargo:confirmation_required[legacy_unreviewed:airline_finnair#cargo] | bool:100 | confirm:hold+cargo | pets:unknown | deny:- | label:Cabin: accepted under the airline's conditions | tarifs:cabin+hold+cargo | heat:00",
    "airline_etihad | conn | connection_documented | st:accepted_with_conditions/confirmation_required/confirmation_required | cabin:accepted_with_conditions hold:confirmation_required[legacy_unreviewed:airline_etihad#hold,rule_unverified:rule_etihad_hold_deny] cargo:confirmation_required[legacy_unreviewed:airline_etihad#cargo] | bool:100 | confirm:hold+cargo | pets:unknown | deny:- | label:Cabin: accepted under the airline's conditions | tarifs:cabin+hold+cargo | heat:00",
@@ -260,7 +256,6 @@
    "airline_sas | conn | connection_unverified | st:accepted_with_conditions/confirmation_required/confirmation_required | cabin:accepted_with_conditions hold:confirmation_required[legacy_unreviewed:airline_sas#hold] cargo:confirmation_required[legacy_unreviewed:airline_sas#cargo] | bool:100 | confirm:hold+cargo | pets:unknown | deny:- | label:Cabin: accepted under the airline's conditions | tarifs:cabin+hold+cargo | heat:00",
    "airline_lot | conn | connection_unverified | st:confirmation_required/confirmation_required/confirmation_required | cabin:confirmation_required[legacy_unreviewed:airline_lot#cabin] hold:confirmation_required[legacy_unreviewed:airline_lot#hold] cargo:confirmation_required[legacy_unreviewed:airline_lot#cargo] | bool:000 | confirm:cabin+hold+cargo | pets:unknown | deny:- | label:Policy to confirm with the airline | tarifs:cabin+hold+cargo | heat:00",
    "airline_british_airways | conn | connection_unverified | st:denied/confirmation_required/confirmation_required | cabin:denied hold:confirmation_required[official_source_unquoted:airline_british_airways#hold,rule_official_unquoted:rule_british_airways_no_cabin] cargo:confirmation_required[official_source_unquoted:airline_british_airways#cargo] | bool:000 | confirm:hold+cargo | pets:unknown | deny:- | label:Cabin: documented refusal — hold and cargo: to confirm | tarifs:hold+cargo | heat:00",
-   "airline_aircalin | direct | direct_documented | st:denied/denied/accepted_with_conditions | cabin:denied hold:denied cargo:accepted_with_conditions | bool:001 | confirm:- | pets:unknown | deny:- | label:Cargo: accepted under the airline's conditions | tarifs:cargo | heat:00",
    "airline_gulf_air | conn | connection_unverified | st:denied/denied/accepted_with_conditions | cabin:denied hold:denied cargo:accepted_with_conditions | bool:001 | confirm:- | pets:unknown | deny:- | label:Cargo: accepted under the airline's conditions | tarifs:cargo | heat:00",
    "airline_kenya_airways | conn | connection_unverified | st:denied/denied/accepted_with_conditions | cabin:denied hold:denied cargo:accepted_with_conditions | bool:001 | confirm:- | pets:unknown | deny:- | label:Cargo: accepted under the airline's conditions | tarifs:cargo | heat:00"
   ],
@@ -393,7 +388,6 @@
    "https://global.ceair.com/global/en_static/Announcement/TravelTips/SpecialPassengerServiceNotice/LittleAnimal/",
    "https://m.flyasiana.com/C/TW/EN/contents/traveling-with-pets",
    "https://washingtondc.thaiembassy.org/en/page/bring-pets-to-thailand",
-   "https://www.aircalin.com/fr/animaux",
    "https://www.airchina.com.cn/en-US/content/travel_info/preparing/luggage/check/small_animals/",
    "https://www.airindia.com/in/en/frequently-asked-questions/pet-travel.html",
    "https://www.austrian.com/us/en/plan/special-requirements/travelling-with-animals",
@@ -427,7 +421,6 @@
  },
  "cdg-bkk|golden|07-15|any": {
   "airlines": [
-   "airline_aircalin | direct | direct_documented | st:denied/denied/accepted_with_conditions | cabin:denied hold:denied cargo:accepted_with_conditions | bool:001 | confirm:- | pets:unknown | deny:- | label:Cargo: accepted under the airline's conditions | tarifs:cargo | heat:00",
    "airline_austrian | conn | connection_documented | st:accepted_with_conditions/accepted_with_conditions/confirmation_required | cabin:accepted_with_conditions hold:accepted_with_conditions cargo:confirmation_required[legacy_unreviewed:airline_austrian#cargo] | bool:110 | confirm:cargo | pets:unknown | deny:- | label:Cabin and hold: accepted under the airline's conditions | tarifs:cabin+hold+cargo | heat:00",
    "airline_air_india | conn | connection_documented | st:accepted_with_conditions/accepted_with_conditions/accepted_with_conditions | cabin:accepted_with_conditions hold:accepted_with_conditions cargo:accepted_with_conditions | bool:111 | confirm:- | pets:unknown | deny:- | label:Cabin, hold and cargo: accepted under the airline's conditions | tarifs:cabin+hold+cargo | heat:00",
    "airline_swiss | conn | connection_documented | st:accepted_with_conditions/accepted_with_conditions/confirmation_required | cabin:accepted_with_conditions hold:accepted_with_conditions cargo:confirmation_required[legacy_unreviewed:airline_swiss#cargo] | bool:110 | confirm:cargo | pets:unknown | deny:- | label:Cabin and hold: accepted under the airline's conditions | tarifs:cabin+hold+cargo | heat:00",
@@ -455,6 +448,7 @@
    "airline_gulf_air | conn | connection_unverified | st:denied/denied/accepted_with_conditions | cabin:denied hold:denied cargo:accepted_with_conditions | bool:001 | confirm:- | pets:unknown | deny:- | label:Cargo: accepted under the airline's conditions | tarifs:cargo | heat:00",
    "airline_kenya_airways | conn | connection_unverified | st:denied/denied/accepted_with_conditions | cabin:denied hold:denied cargo:accepted_with_conditions | bool:001 | confirm:- | pets:unknown | deny:- | label:Cargo: accepted under the airline's conditions | tarifs:cargo | heat:00",
    "airline_air_france | direct | direct_documented | st:confirmation_required/confirmation_required/confirmation_required | cabin:confirmation_required[official_source_unquoted:airline_air_france#cabin] hold:confirmation_required[clim:rule_af_summer_embargo] cargo:confirmation_required[clim:rule_af_summer_embargo,official_source_unquoted:airline_air_france#cargo] | bool:000 | confirm:cabin+hold+cargo | pets:unknown | deny:- | label:Policy to confirm with the airline | tarifs:cabin+hold+cargo | heat:01",
+   "airline_aircalin | direct | direct_documented | st:confirmation_required/confirmation_required/confirmation_required | cabin:confirmation_required[legacy_unreviewed:airline_aircalin#cabin] hold:confirmation_required[legacy_unreviewed:airline_aircalin#hold] cargo:confirmation_required[legacy_unreviewed:airline_aircalin#cargo] | bool:000 | confirm:cabin+hold+cargo | pets:unknown | deny:- | label:Policy to confirm with the airline | tarifs:cabin+hold+cargo | heat:00",
    "airline_thai_airways | direct | direct_documented | st:confirmation_required/confirmation_required/confirmation_required | cabin:confirmation_required[legacy_unreviewed:airline_thai_airways#cabin,rule_unverified:rule_thai_airways_no_cabin] hold:confirmation_required[legacy_unreviewed:airline_thai_airways#hold] cargo:confirmation_required[policy_unpublished:airline_thai_airways#cargo] | bool:000 | confirm:cabin+hold+cargo | pets:unknown | deny:- | label:Policy to confirm with the airline | tarifs:cabin+hold+cargo | heat:00",
    "airline_condor | conn | connection_documented | st:confirmation_required/confirmation_required/confirmation_required | cabin:confirmation_required[legacy_unreviewed:airline_condor#cabin] hold:confirmation_required[legacy_unreviewed:airline_condor#hold] cargo:confirmation_required[legacy_unreviewed:airline_condor#cargo] | bool:000 | confirm:cabin+hold+cargo | pets:unknown | deny:- | label:Policy to confirm with the airline | tarifs:cabin+hold+cargo | heat:00",
    "airline_el_al | conn | connection_documented | st:confirmation_required/confirmation_required/confirmation_required | cabin:confirmation_required[legacy_unreviewed:airline_el_al#cabin] hold:confirmation_required[legacy_unreviewed:airline_el_al#hold] cargo:confirmation_required[legacy_unreviewed:airline_el_al#cargo] | bool:000 | confirm:cabin+hold+cargo | pets:unknown | deny:- | label:Policy to confirm with the airline | tarifs:cabin+hold+cargo | heat:00",
@@ -475,10 +469,6 @@
    "threshold_c": 30
   },
   "compatible": [
-   {
-    "airline_id": "airline_aircalin",
-    "placement": "cargo"
-   },
    {
     "airline_id": "airline_austrian",
     "placement": "cabin"
@@ -610,13 +600,12 @@
   ],
   "risks": [],
   "safety_advisories": [],
-  "score": 65,
+  "score": 63,
   "sources": [
    "https://booking-uat.dcloud.saudia.com/book/flight-information/travelling-with-pets",
    "https://global.ceair.com/global/en_static/Announcement/TravelTips/SpecialPassengerServiceNotice/LittleAnimal/",
    "https://m.flyasiana.com/C/TW/EN/contents/traveling-with-pets",
    "https://washingtondc.thaiembassy.org/en/page/bring-pets-to-thailand",
-   "https://www.aircalin.com/fr/animaux",
    "https://www.airchina.com.cn/en-US/content/travel_info/preparing/luggage/check/small_animals/",
    "https://www.airindia.com/in/en/frequently-asked-questions/pet-travel.html",
    "https://www.austrian.com/us/en/plan/special-requirements/travelling-with-animals",
@@ -667,6 +656,7 @@
    "airline_korean_air | conn | connection_documented | st:denied/accepted_with_conditions/confirmation_required | cabin:denied hold:accepted_with_conditions cargo:confirmation_required[legacy_unreviewed:airline_korean_air#cargo] | bool:010 | confirm:cargo | pets:unknown | deny:- | label:Hold: accepted under the airline's conditions | tarifs:hold+cargo | heat:00",
    "airline_qatar_airways | conn | connection_unverified | st:denied/accepted_with_conditions/confirmation_required | cabin:denied hold:accepted_with_conditions cargo:confirmation_required[legacy_unreviewed:airline_qatar_airways#cargo] | bool:010 | confirm:cargo | pets:unknown | deny:- | label:Hold: accepted under the airline's conditions | tarifs:hold+cargo | heat:00",
    "airline_air_france | direct | direct_documented | st:confirmation_required/confirmation_required/confirmation_required | cabin:confirmation_required[official_source_unquoted:airline_air_france#cabin] hold:confirmation_required[clim:rule_af_summer_embargo] cargo:confirmation_required[clim:rule_af_summer_embargo,official_source_unquoted:airline_air_france#cargo] | bool:000 | confirm:cabin+hold+cargo | pets:unknown | deny:- | label:Policy to confirm with the airline | tarifs:cabin+hold+cargo | heat:01",
+   "airline_aircalin | direct | direct_documented | st:confirmation_required/confirmation_required/confirmation_required | cabin:confirmation_required[legacy_unreviewed:airline_aircalin#cabin] hold:confirmation_required[legacy_unreviewed:airline_aircalin#hold] cargo:confirmation_required[legacy_unreviewed:airline_aircalin#cargo] | bool:000 | confirm:cabin+hold+cargo | pets:unknown | deny:- | label:Policy to confirm with the airline | tarifs:cabin+hold+cargo | heat:00",
    "airline_thai_airways | direct | direct_documented | st:confirmation_required/confirmation_required/confirmation_required | cabin:confirmation_required[legacy_unreviewed:airline_thai_airways#cabin,rule_unverified:rule_thai_airways_no_cabin] hold:confirmation_required[legacy_unreviewed:airline_thai_airways#hold] cargo:confirmation_required[policy_unpublished:airline_thai_airways#cargo] | bool:000 | confirm:cabin+hold+cargo | pets:unknown | deny:- | label:Policy to confirm with the airline | tarifs:cabin+hold+cargo | heat:00",
    "airline_lufthansa | conn | connection_documented | st:accepted_with_conditions/confirmation_required/confirmation_required | cabin:accepted_with_conditions hold:confirmation_required[clim:rule_lh_summer_embargo] cargo:confirmation_required[clim:rule_lh_summer_embargo,official_source_unquoted:airline_lufthansa#cargo] | bool:100 | confirm:hold+cargo | pets:unknown | deny:- | label:Cabin: accepted under the airline's conditions | tarifs:cabin+hold+cargo | heat:01",
    "airline_klm | conn | connection_documented | st:accepted_with_conditions/confirmation_required/confirmation_required | cabin:accepted_with_conditions hold:confirmation_required[clim:rule_kl_summer_embargo] cargo:confirmation_required[clim:rule_kl_summer_embargo,official_source_unquoted:airline_klm#cargo] | bool:100 | confirm:hold+cargo | pets:unknown | deny:- | label:Cabin: accepted under the airline's conditions | tarifs:cabin+hold+cargo | heat:01",
@@ -682,7 +672,6 @@
    "airline_iberia | conn | connection_unverified | st:accepted_with_conditions/confirmation_required/confirmation_required | cabin:accepted_with_conditions hold:confirmation_required[clim:rule_ib_summer_embargo] cargo:confirmation_required[clim:rule_ib_summer_embargo,official_source_unquoted:airline_iberia#cargo] | bool:100 | confirm:hold+cargo | pets:unknown | deny:- | label:Cabin: accepted under the airline's conditions | tarifs:cabin+hold+cargo | heat:01",
    "airline_lot | conn | connection_unverified | st:confirmation_required/confirmation_required/confirmation_required | cabin:confirmation_required[legacy_unreviewed:airline_lot#cabin] hold:confirmation_required[legacy_unreviewed:airline_lot#hold] cargo:confirmation_required[legacy_unreviewed:airline_lot#cargo] | bool:000 | confirm:cabin+hold+cargo | pets:unknown | deny:- | label:Policy to confirm with the airline | tarifs:cabin+hold+cargo | heat:00",
    "airline_british_airways | conn | connection_unverified | st:denied/confirmation_required/confirmation_required | cabin:denied hold:confirmation_required[official_source_unquoted:airline_british_airways#hold,rule_official_unquoted:rule_british_airways_no_cabin] cargo:confirmation_required[official_source_unquoted:airline_british_airways#cargo] | bool:000 | confirm:hold+cargo | pets:unknown | deny:- | label:Cabin: documented refusal — hold and cargo: to confirm | tarifs:hold+cargo | heat:00",
-   "airline_aircalin | direct | direct_documented | st:denied/denied/accepted_with_conditions | cabin:denied hold:denied cargo:accepted_with_conditions | bool:001 | confirm:- | pets:unknown | deny:- | label:Cargo: accepted under the airline's conditions | tarifs:cargo | heat:00",
    "airline_gulf_air | conn | connection_unverified | st:denied/denied/accepted_with_conditions | cabin:denied hold:denied cargo:accepted_with_conditions | bool:001 | confirm:- | pets:unknown | deny:- | label:Cargo: accepted under the airline's conditions | tarifs:cargo | heat:00",
    "airline_kenya_airways | conn | connection_unverified | st:denied/denied/accepted_with_conditions | cabin:denied hold:denied cargo:accepted_with_conditions | bool:001 | confirm:- | pets:unknown | deny:- | label:Cargo: accepted under the airline's conditions | tarifs:cargo | heat:00"
   ],
@@ -795,7 +784,6 @@
    "https://global.ceair.com/global/en_static/Announcement/TravelTips/SpecialPassengerServiceNotice/LittleAnimal/",
    "https://m.flyasiana.com/C/TW/EN/contents/traveling-with-pets",
    "https://washingtondc.thaiembassy.org/en/page/bring-pets-to-thailand",
-   "https://www.aircalin.com/fr/animaux",
    "https://www.airchina.com.cn/en-US/content/travel_info/preparing/luggage/check/small_animals/",
    "https://www.airindia.com/in/en/frequently-asked-questions/pet-travel.html",
    "https://www.austrian.com/us/en/plan/special-requirements/travelling-with-animals",
@@ -843,7 +831,7 @@
    "airline_sas | conn | connection_unverified | st:accepted_with_conditions/confirmation_required/confirmation_required | cabin:accepted_with_conditions hold:confirmation_required[breed_policy_unreviewed:airline_sas#hold,legacy_unreviewed:airline_sas#hold] cargo:confirmation_required[breed_policy_unreviewed:airline_sas#cargo,legacy_unreviewed:airline_sas#cargo] | bool:100 | confirm:hold+cargo | pets:unknown | deny:- | label:Cabin: accepted under the airline's conditions | tarifs:cabin+hold+cargo | heat:00",
    "airline_iberia | conn | connection_unverified | st:accepted_with_conditions/confirmation_required/confirmation_required | cabin:accepted_with_conditions hold:confirmation_required[breed_policy_unreviewed:airline_iberia#hold] cargo:confirmation_required[breed_policy_unreviewed:airline_iberia#cargo,official_source_unquoted:airline_iberia#cargo] | bool:100 | confirm:hold+cargo | pets:unknown | deny:- | label:Cabin: accepted under the airline's conditions | tarifs:cabin+hold+cargo | heat:00",
    "airline_air_france | direct | direct_documented | st:confirmation_required/confirmation_required/confirmation_required | cabin:confirmation_required[official_source_unquoted:airline_air_france#cabin] hold:confirmation_required[breed_policy_unreviewed:airline_air_france#hold,rule_official_unquoted:rule_af_brachy_hold] cargo:confirmation_required[breed_policy_unreviewed:airline_air_france#cargo,official_source_unquoted:airline_air_france#cargo,rule_official_unquoted:rule_af_brachy_hold] | bool:000 | confirm:cabin+hold+cargo | pets:unknown | deny:- | label:Policy to confirm with the airline | tarifs:cabin+hold+cargo | heat:00",
-   "airline_aircalin | direct | direct_documented | st:denied/denied/confirmation_required | cabin:denied hold:denied cargo:confirmation_required[breed_policy_unreviewed:airline_aircalin#cargo] | bool:000 | confirm:cargo | pets:unknown | deny:- | label:Cabin and hold: documented refusal — cargo: to confirm | tarifs:cargo | heat:00",
+   "airline_aircalin | direct | direct_documented | st:confirmation_required/confirmation_required/confirmation_required | cabin:confirmation_required[legacy_unreviewed:airline_aircalin#cabin] hold:confirmation_required[breed_policy_unreviewed:airline_aircalin#hold,legacy_unreviewed:airline_aircalin#hold] cargo:confirmation_required[breed_policy_unreviewed:airline_aircalin#cargo,legacy_unreviewed:airline_aircalin#cargo] | bool:000 | confirm:cabin+hold+cargo | pets:unknown | deny:- | label:Policy to confirm with the airline | tarifs:cabin+hold+cargo | heat:00",
    "airline_thai_airways | direct | direct_documented | st:confirmation_required/confirmation_required/confirmation_required | cabin:confirmation_required[legacy_unreviewed:airline_thai_airways#cabin,rule_unverified:rule_thai_airways_no_cabin] hold:confirmation_required[breed_policy_unreviewed:airline_thai_airways#hold,legacy_unreviewed:airline_thai_airways#hold] cargo:confirmation_required[breed_policy_unreviewed:airline_thai_airways#cargo,policy_unpublished:airline_thai_airways#cargo] | bool:000 | confirm:cabin+hold+cargo | pets:unknown | deny:- | label:Policy to confirm with the airline | tarifs:cabin+hold+cargo | heat:00",
    "airline_condor | conn | connection_documented | st:confirmation_required/confirmation_required/confirmation_required | cabin:confirmation_required[legacy_unreviewed:airline_condor#cabin] hold:confirmation_required[breed_policy_unreviewed:airline_condor#hold,legacy_unreviewed:airline_condor#hold] cargo:confirmation_required[breed_policy_unreviewed:airline_condor#cargo,legacy_unreviewed:airline_condor#cargo] | bool:000 | confirm:cabin+hold+cargo | pets:unknown | deny:- | label:Policy to confirm with the airline | tarifs:cabin+hold+cargo | heat:00",
    "airline_emirates | conn | connection_documented | st:denied/confirmation_required/confirmation_required | cabin:denied hold:confirmation_required[breed_policy_unreviewed:airline_emirates#hold] cargo:confirmation_required[breed_policy_unreviewed:airline_emirates#cargo] | bool:000 | confirm:hold+cargo | pets:unknown | deny:- | label:Cabin: documented refusal — hold and cargo: to confirm | tarifs:hold+cargo | heat:00",
@@ -965,7 +953,6 @@
    "https://global.ceair.com/global/en_static/Announcement/TravelTips/SpecialPassengerServiceNotice/LittleAnimal/",
    "https://m.flyasiana.com/C/TW/EN/contents/traveling-with-pets",
    "https://washingtondc.thaiembassy.org/en/page/bring-pets-to-thailand",
-   "https://www.aircalin.com/fr/animaux",
    "https://www.airchina.com.cn/en-US/content/travel_info/preparing/luggage/check/small_animals/",
    "https://www.airindia.com/in/en/frequently-asked-questions/pet-travel.html",
    "https://www.austrian.com/us/en/plan/special-requirements/travelling-with-animals",
@@ -1000,6 +987,7 @@
  "cdg-bkk|pug|01-15|hold": {
   "airlines": [
    "airline_air_france | direct | direct_documented | st:confirmation_required/confirmation_required/confirmation_required | cabin:confirmation_required[official_source_unquoted:airline_air_france#cabin] hold:confirmation_required[breed_policy_unreviewed:airline_air_france#hold,rule_official_unquoted:rule_af_brachy_hold] cargo:confirmation_required[breed_policy_unreviewed:airline_air_france#cargo,official_source_unquoted:airline_air_france#cargo,rule_official_unquoted:rule_af_brachy_hold] | bool:000 | confirm:cabin+hold+cargo | pets:unknown | deny:- | label:Policy to confirm with the airline | tarifs:cabin+hold+cargo | heat:00",
+   "airline_aircalin | direct | direct_documented | st:confirmation_required/confirmation_required/confirmation_required | cabin:confirmation_required[legacy_unreviewed:airline_aircalin#cabin] hold:confirmation_required[breed_policy_unreviewed:airline_aircalin#hold,legacy_unreviewed:airline_aircalin#hold] cargo:confirmation_required[breed_policy_unreviewed:airline_aircalin#cargo,legacy_unreviewed:airline_aircalin#cargo] | bool:000 | confirm:cabin+hold+cargo | pets:unknown | deny:- | label:Policy to confirm with the airline | tarifs:cabin+hold+cargo | heat:00",
    "airline_thai_airways | direct | direct_documented | st:confirmation_required/confirmation_required/confirmation_required | cabin:confirmation_required[legacy_unreviewed:airline_thai_airways#cabin,rule_unverified:rule_thai_airways_no_cabin] hold:confirmation_required[breed_policy_unreviewed:airline_thai_airways#hold,legacy_unreviewed:airline_thai_airways#hold] cargo:confirmation_required[breed_policy_unreviewed:airline_thai_airways#cargo,policy_unpublished:airline_thai_airways#cargo] | bool:000 | confirm:cabin+hold+cargo | pets:unknown | deny:- | label:Policy to confirm with the airline | tarifs:cabin+hold+cargo | heat:00",
    "airline_lufthansa | conn | connection_documented | st:accepted_with_conditions/confirmation_required/confirmation_required | cabin:accepted_with_conditions hold:confirmation_required[breed_policy_unreviewed:airline_lufthansa#hold,rule_official_unquoted:rule_lh_brachy_hold] cargo:confirmation_required[breed_policy_unreviewed:airline_lufthansa#cargo,official_source_unquoted:airline_lufthansa#cargo,rule_official_unquoted:rule_lh_brachy_hold] | bool:100 | confirm:hold+cargo | pets:unknown | deny:- | label:Cabin: accepted under the airline's conditions | tarifs:cabin+hold+cargo | heat:00",
    "airline_austrian | conn | connection_documented | st:accepted_with_conditions/confirmation_required/confirmation_required | cabin:accepted_with_conditions hold:confirmation_required[breed_policy_unreviewed:airline_austrian#hold] cargo:confirmation_required[breed_policy_unreviewed:airline_austrian#cargo,legacy_unreviewed:airline_austrian#cargo] | bool:100 | confirm:hold+cargo | pets:unknown | deny:- | label:Cabin: accepted under the airline's conditions | tarifs:cabin+hold+cargo | heat:00",
@@ -1031,7 +1019,6 @@
    "airline_lot | conn | connection_unverified | st:confirmation_required/confirmation_required/confirmation_required | cabin:confirmation_required[legacy_unreviewed:airline_lot#cabin] hold:confirmation_required[breed_policy_unreviewed:airline_lot#hold,legacy_unreviewed:airline_lot#hold] cargo:confirmation_required[breed_policy_unreviewed:airline_lot#cargo,legacy_unreviewed:airline_lot#cargo] | bool:000 | confirm:cabin+hold+cargo | pets:unknown | deny:- | label:Policy to confirm with the airline | tarifs:cabin+hold+cargo | heat:00",
    "airline_british_airways | conn | connection_unverified | st:denied/confirmation_required/confirmation_required | cabin:denied hold:confirmation_required[breed_policy_unreviewed:airline_british_airways#hold,official_source_unquoted:airline_british_airways#hold,rule_official_unquoted:rule_british_airways_no_cabin] cargo:confirmation_required[breed_policy_unreviewed:airline_british_airways#cargo,official_source_unquoted:airline_british_airways#cargo] | bool:000 | confirm:hold+cargo | pets:unknown | deny:- | label:Cabin: documented refusal — hold and cargo: to confirm | tarifs:hold+cargo | heat:00",
    "airline_qatar_airways | conn | connection_unverified | st:denied/confirmation_required/confirmation_required | cabin:denied hold:confirmation_required[breed_policy_unreviewed:airline_qatar_airways#hold] cargo:confirmation_required[breed_policy_unreviewed:airline_qatar_airways#cargo,legacy_unreviewed:airline_qatar_airways#cargo] | bool:000 | confirm:hold+cargo | pets:unknown | deny:- | label:Cabin: documented refusal — hold and cargo: to confirm | tarifs:hold+cargo | heat:00",
-   "airline_aircalin | direct | direct_documented | st:denied/denied/confirmation_required | cabin:denied hold:denied cargo:confirmation_required[breed_policy_unreviewed:airline_aircalin#cargo] | bool:000 | confirm:cargo | pets:unknown | deny:- | label:Cabin and hold: documented refusal — cargo: to confirm | tarifs:cargo | heat:00",
    "airline_gulf_air | conn | connection_unverified | st:denied/denied/confirmation_required | cabin:denied hold:denied cargo:confirmation_required[breed_policy_unreviewed:airline_gulf_air#cargo] | bool:000 | confirm:cargo | pets:unknown | deny:- | label:Cabin and hold: documented refusal — cargo: to confirm | tarifs:cargo | heat:00",
    "airline_kenya_airways | conn | connection_unverified | st:denied/denied/confirmation_required | cabin:denied hold:denied cargo:confirmation_required[breed_policy_unreviewed:airline_kenya_airways#cargo] | bool:000 | confirm:cargo | pets:unknown | deny:- | label:Cabin and hold: documented refusal — cargo: to confirm | tarifs:cargo | heat:00"
   ],
@@ -1082,7 +1069,6 @@
    "https://global.ceair.com/global/en_static/Announcement/TravelTips/SpecialPassengerServiceNotice/LittleAnimal/",
    "https://m.flyasiana.com/C/TW/EN/contents/traveling-with-pets",
    "https://washingtondc.thaiembassy.org/en/page/bring-pets-to-thailand",
-   "https://www.aircalin.com/fr/animaux",
    "https://www.airchina.com.cn/en-US/content/travel_info/preparing/luggage/check/small_animals/",
    "https://www.airindia.com/in/en/frequently-asked-questions/pet-travel.html",
    "https://www.austrian.com/us/en/plan/special-requirements/travelling-with-animals",
@@ -1130,7 +1116,7 @@
    "airline_sas | conn | connection_unverified | st:accepted_with_conditions/confirmation_required/confirmation_required | cabin:accepted_with_conditions hold:confirmation_required[breed_policy_unreviewed:airline_sas#hold,legacy_unreviewed:airline_sas#hold] cargo:confirmation_required[breed_policy_unreviewed:airline_sas#cargo,legacy_unreviewed:airline_sas#cargo] | bool:100 | confirm:hold+cargo | pets:unknown | deny:- | label:Cabin: accepted under the airline's conditions | tarifs:cabin+hold+cargo | heat:00",
    "airline_iberia | conn | connection_unverified | st:accepted_with_conditions/confirmation_required/confirmation_required | cabin:accepted_with_conditions hold:confirmation_required[breed_policy_unreviewed:airline_iberia#hold,clim:rule_ib_summer_embargo] cargo:confirmation_required[breed_policy_unreviewed:airline_iberia#cargo,clim:rule_ib_summer_embargo,official_source_unquoted:airline_iberia#cargo] | bool:100 | confirm:hold+cargo | pets:unknown | deny:- | label:Cabin: accepted under the airline's conditions | tarifs:cabin+hold+cargo | heat:01",
    "airline_air_france | direct | direct_documented | st:confirmation_required/confirmation_required/confirmation_required | cabin:confirmation_required[official_source_unquoted:airline_air_france#cabin] hold:confirmation_required[breed_policy_unreviewed:airline_air_france#hold,clim:rule_af_summer_embargo,rule_official_unquoted:rule_af_brachy_hold] cargo:confirmation_required[breed_policy_unreviewed:airline_air_france#cargo,clim:rule_af_summer_embargo,official_source_unquoted:airline_air_france#cargo,rule_official_unquoted:rule_af_brachy_hold] | bool:000 | confirm:cabin+hold+cargo | pets:unknown | deny:- | label:Policy to confirm with the airline | tarifs:cabin+hold+cargo | heat:01",
-   "airline_aircalin | direct | direct_documented | st:denied/denied/confirmation_required | cabin:denied hold:denied cargo:confirmation_required[breed_policy_unreviewed:airline_aircalin#cargo] | bool:000 | confirm:cargo | pets:unknown | deny:- | label:Cabin and hold: documented refusal — cargo: to confirm | tarifs:cargo | heat:00",
+   "airline_aircalin | direct | direct_documented | st:confirmation_required/confirmation_required/confirmation_required | cabin:confirmation_required[legacy_unreviewed:airline_aircalin#cabin] hold:confirmation_required[breed_policy_unreviewed:airline_aircalin#hold,legacy_unreviewed:airline_aircalin#hold] cargo:confirmation_required[breed_policy_unreviewed:airline_aircalin#cargo,legacy_unreviewed:airline_aircalin#cargo] | bool:000 | confirm:cabin+hold+cargo | pets:unknown | deny:- | label:Policy to confirm with the airline | tarifs:cabin+hold+cargo | heat:00",
    "airline_thai_airways | direct | direct_documented | st:confirmation_required/confirmation_required/confirmation_required | cabin:confirmation_required[legacy_unreviewed:airline_thai_airways#cabin,rule_unverified:rule_thai_airways_no_cabin] hold:confirmation_required[breed_policy_unreviewed:airline_thai_airways#hold,legacy_unreviewed:airline_thai_airways#hold] cargo:confirmation_required[breed_policy_unreviewed:airline_thai_airways#cargo,policy_unpublished:airline_thai_airways#cargo] | bool:000 | confirm:cabin+hold+cargo | pets:unknown | deny:- | label:Policy to confirm with the airline | tarifs:cabin+hold+cargo | heat:00",
    "airline_condor | conn | connection_documented | st:confirmation_required/confirmation_required/confirmation_required | cabin:confirmation_required[legacy_unreviewed:airline_condor#cabin] hold:confirmation_required[breed_policy_unreviewed:airline_condor#hold,legacy_unreviewed:airline_condor#hold] cargo:confirmation_required[breed_policy_unreviewed:airline_condor#cargo,legacy_unreviewed:airline_condor#cargo] | bool:000 | confirm:cabin+hold+cargo | pets:unknown | deny:- | label:Policy to confirm with the airline | tarifs:cabin+hold+cargo | heat:00",
    "airline_emirates | conn | connection_documented | st:denied/confirmation_required/confirmation_required | cabin:denied hold:confirmation_required[breed_policy_unreviewed:airline_emirates#hold] cargo:confirmation_required[breed_policy_unreviewed:airline_emirates#cargo] | bool:000 | confirm:hold+cargo | pets:unknown | deny:- | label:Cabin: documented refusal — hold and cargo: to confirm | tarifs:hold+cargo | heat:00",
@@ -1252,7 +1238,6 @@
    "https://global.ceair.com/global/en_static/Announcement/TravelTips/SpecialPassengerServiceNotice/LittleAnimal/",
    "https://m.flyasiana.com/C/TW/EN/contents/traveling-with-pets",
    "https://washingtondc.thaiembassy.org/en/page/bring-pets-to-thailand",
-   "https://www.aircalin.com/fr/animaux",
    "https://www.airchina.com.cn/en-US/content/travel_info/preparing/luggage/check/small_animals/",
    "https://www.airindia.com/in/en/frequently-asked-questions/pet-travel.html",
    "https://www.austrian.com/us/en/plan/special-requirements/travelling-with-animals",
@@ -1287,6 +1272,7 @@
  "cdg-bkk|pug|07-15|hold": {
   "airlines": [
    "airline_air_france | direct | direct_documented | st:confirmation_required/confirmation_required/confirmation_required | cabin:confirmation_required[official_source_unquoted:airline_air_france#cabin] hold:confirmation_required[breed_policy_unreviewed:airline_air_france#hold,clim:rule_af_summer_embargo,rule_official_unquoted:rule_af_brachy_hold] cargo:confirmation_required[breed_policy_unreviewed:airline_air_france#cargo,clim:rule_af_summer_embargo,official_source_unquoted:airline_air_france#cargo,rule_official_unquoted:rule_af_brachy_hold] | bool:000 | confirm:cabin+hold+cargo | pets:unknown | deny:- | label:Policy to confirm with the airline | tarifs:cabin+hold+cargo | heat:01",
+   "airline_aircalin | direct | direct_documented | st:confirmation_required/confirmation_required/confirmation_required | cabin:confirmation_required[legacy_unreviewed:airline_aircalin#cabin] hold:confirmation_required[breed_policy_unreviewed:airline_aircalin#hold,legacy_unreviewed:airline_aircalin#hold] cargo:confirmation_required[breed_policy_unreviewed:airline_aircalin#cargo,legacy_unreviewed:airline_aircalin#cargo] | bool:000 | confirm:cabin+hold+cargo | pets:unknown | deny:- | label:Policy to confirm with the airline | tarifs:cabin+hold+cargo | heat:00",
    "airline_thai_airways | direct | direct_documented | st:confirmation_required/confirmation_required/confirmation_required | cabin:confirmation_required[legacy_unreviewed:airline_thai_airways#cabin,rule_unverified:rule_thai_airways_no_cabin] hold:confirmation_required[breed_policy_unreviewed:airline_thai_airways#hold,legacy_unreviewed:airline_thai_airways#hold] cargo:confirmation_required[breed_policy_unreviewed:airline_thai_airways#cargo,policy_unpublished:airline_thai_airways#cargo] | bool:000 | confirm:cabin+hold+cargo | pets:unknown | deny:- | label:Policy to confirm with the airline | tarifs:cabin+hold+cargo | heat:00",
    "airline_lufthansa | conn | connection_documented | st:accepted_with_conditions/confirmation_required/confirmation_required | cabin:accepted_with_conditions hold:confirmation_required[breed_policy_unreviewed:airline_lufthansa#hold,clim:rule_lh_summer_embargo,rule_official_unquoted:rule_lh_brachy_hold] cargo:confirmation_required[breed_policy_unreviewed:airline_lufthansa#cargo,clim:rule_lh_summer_embargo,official_source_unquoted:airline_lufthansa#cargo,rule_official_unquoted:rule_lh_brachy_hold] | bool:100 | confirm:hold+cargo | pets:unknown | deny:- | label:Cabin: accepted under the airline's conditions | tarifs:cabin+hold+cargo | heat:01",
    "airline_austrian | conn | connection_documented | st:accepted_with_conditions/confirmation_required/confirmation_required | cabin:accepted_with_conditions hold:confirmation_required[breed_policy_unreviewed:airline_austrian#hold] cargo:confirmation_required[breed_policy_unreviewed:airline_austrian#cargo,legacy_unreviewed:airline_austrian#cargo] | bool:100 | confirm:hold+cargo | pets:unknown | deny:- | label:Cabin: accepted under the airline's conditions | tarifs:cabin+hold+cargo | heat:00",
@@ -1318,7 +1304,6 @@
    "airline_lot | conn | connection_unverified | st:confirmation_required/confirmation_required/confirmation_required | cabin:confirmation_required[legacy_unreviewed:airline_lot#cabin] hold:confirmation_required[breed_policy_unreviewed:airline_lot#hold,legacy_unreviewed:airline_lot#hold] cargo:confirmation_required[breed_policy_unreviewed:airline_lot#cargo,legacy_unreviewed:airline_lot#cargo] | bool:000 | confirm:cabin+hold+cargo | pets:unknown | deny:- | label:Policy to confirm with the airline | tarifs:cabin+hold+cargo | heat:00",
    "airline_british_airways | conn | connection_unverified | st:denied/confirmation_required/confirmation_required | cabin:denied hold:confirmation_required[breed_policy_unreviewed:airline_british_airways#hold,official_source_unquoted:airline_british_airways#hold,rule_official_unquoted:rule_british_airways_no_cabin] cargo:confirmation_required[breed_policy_unreviewed:airline_british_airways#cargo,official_source_unquoted:airline_british_airways#cargo] | bool:000 | confirm:hold+cargo | pets:unknown | deny:- | label:Cabin: documented refusal — hold and cargo: to confirm | tarifs:hold+cargo | heat:00",
    "airline_qatar_airways | conn | connection_unverified | st:denied/confirmation_required/confirmation_required | cabin:denied hold:confirmation_required[breed_policy_unreviewed:airline_qatar_airways#hold] cargo:confirmation_required[breed_policy_unreviewed:airline_qatar_airways#cargo,legacy_unreviewed:airline_qatar_airways#cargo] | bool:000 | confirm:hold+cargo | pets:unknown | deny:- | label:Cabin: documented refusal — hold and cargo: to confirm | tarifs:hold+cargo | heat:00",
-   "airline_aircalin | direct | direct_documented | st:denied/denied/confirmation_required | cabin:denied hold:denied cargo:confirmation_required[breed_policy_unreviewed:airline_aircalin#cargo] | bool:000 | confirm:cargo | pets:unknown | deny:- | label:Cabin and hold: documented refusal — cargo: to confirm | tarifs:cargo | heat:00",
    "airline_gulf_air | conn | connection_unverified | st:denied/denied/confirmation_required | cabin:denied hold:denied cargo:confirmation_required[breed_policy_unreviewed:airline_gulf_air#cargo] | bool:000 | confirm:cargo | pets:unknown | deny:- | label:Cabin and hold: documented refusal — cargo: to confirm | tarifs:cargo | heat:00",
    "airline_kenya_airways | conn | connection_unverified | st:denied/denied/confirmation_required | cabin:denied hold:denied cargo:confirmation_required[breed_policy_unreviewed:airline_kenya_airways#cargo] | bool:000 | confirm:cargo | pets:unknown | deny:- | label:Cabin and hold: documented refusal — cargo: to confirm | tarifs:cargo | heat:00"
   ],
@@ -1369,7 +1354,6 @@
    "https://global.ceair.com/global/en_static/Announcement/TravelTips/SpecialPassengerServiceNotice/LittleAnimal/",
    "https://m.flyasiana.com/C/TW/EN/contents/traveling-with-pets",
    "https://washingtondc.thaiembassy.org/en/page/bring-pets-to-thailand",
-   "https://www.aircalin.com/fr/animaux",
    "https://www.airchina.com.cn/en-US/content/travel_info/preparing/luggage/check/small_animals/",
    "https://www.airindia.com/in/en/frequently-asked-questions/pet-travel.html",
    "https://www.austrian.com/us/en/plan/special-requirements/travelling-with-animals",
@@ -2452,7 +2436,6 @@
    "airline_ita_airways | conn | connection_unverified | st:accepted_with_conditions/accepted_with_conditions/confirmation_required | cabin:accepted_with_conditions hold:accepted_with_conditions cargo:confirmation_required[legacy_unreviewed:airline_ita_airways#cargo] | bool:110 | confirm:cargo | pets:unknown | deny:- | label:Cabin and hold: accepted under the airline's conditions | tarifs:cabin+hold+cargo | heat:00",
    "airline_klm | conn | connection_unverified | st:accepted_with_conditions/accepted_with_conditions/confirmation_required | cabin:accepted_with_conditions hold:accepted_with_conditions cargo:confirmation_required[official_source_unquoted:airline_klm#cargo] | bool:110 | confirm:cargo | pets:unknown | deny:- | label:Cabin and hold: accepted under the airline's conditions | tarifs:cabin+hold+cargo | heat:00",
    "airline_finnair | conn | connection_unverified | st:accepted_with_conditions/confirmation_required/confirmation_required | cabin:accepted_with_conditions hold:confirmation_required[legacy_unreviewed:airline_finnair#hold] cargo:confirmation_required[legacy_unreviewed:airline_finnair#cargo] | bool:100 | confirm:hold+cargo | pets:unknown | deny:- | label:Cabin: accepted under the airline's conditions | tarifs:cabin+hold+cargo | heat:00",
-   "airline_air_algerie | conn | connection_unverified | st:confirmation_required/accepted_with_conditions/confirmation_required | cabin:confirmation_required[rule_unverified:rule_air_algerie_cabin_weight] hold:accepted_with_conditions cargo:confirmation_required[legacy_unreviewed:airline_air_algerie#cargo] | bool:010 | confirm:cabin+cargo | pets:unknown | deny:- | label:Hold: accepted under the airline's conditions | tarifs:cabin+hold+cargo | heat:00",
    "airline_sunexpress | conn | connection_documented | st:confirmation_required/confirmation_required/confirmation_required | cabin:confirmation_required[legacy_unreviewed:airline_sunexpress#cabin] hold:confirmation_required[legacy_unreviewed:airline_sunexpress#hold] cargo:confirmation_required[legacy_unreviewed:airline_sunexpress#cargo] | bool:000 | confirm:cabin+hold+cargo | pets:unknown | deny:- | label:Policy to confirm with the airline | tarifs:cabin+hold+cargo | heat:00",
    "airline_eurowings | conn | connection_unverified | st:confirmation_required/confirmation_required/confirmation_required | cabin:confirmation_required[legacy_unreviewed:airline_eurowings#cabin] hold:confirmation_required[legacy_unreviewed:airline_eurowings#hold,rule_unverified:rule_eurowings_cabin_only] cargo:confirmation_required[legacy_unreviewed:airline_eurowings#cargo,rule_unverified:rule_eurowings_cabin_only] | bool:000 | confirm:cabin+hold+cargo | pets:unknown | deny:- | label:Policy to confirm with the airline | tarifs:cabin+hold+cargo | heat:00",
    "airline_condor | conn | connection_unverified | st:confirmation_required/confirmation_required/confirmation_required | cabin:confirmation_required[legacy_unreviewed:airline_condor#cabin] hold:confirmation_required[legacy_unreviewed:airline_condor#hold] cargo:confirmation_required[legacy_unreviewed:airline_condor#cargo] | bool:000 | confirm:cabin+hold+cargo | pets:unknown | deny:- | label:Policy to confirm with the airline | tarifs:cabin+hold+cargo | heat:00",
@@ -2460,7 +2443,8 @@
    "airline_el_al | conn | connection_unverified | st:confirmation_required/confirmation_required/confirmation_required | cabin:confirmation_required[legacy_unreviewed:airline_el_al#cabin] hold:confirmation_required[legacy_unreviewed:airline_el_al#hold] cargo:confirmation_required[legacy_unreviewed:airline_el_al#cargo] | bool:000 | confirm:cabin+hold+cargo | pets:unknown | deny:- | label:Policy to confirm with the airline | tarifs:cabin+hold+cargo | heat:00",
    "airline_lot | conn | connection_unverified | st:confirmation_required/confirmation_required/confirmation_required | cabin:confirmation_required[legacy_unreviewed:airline_lot#cabin] hold:confirmation_required[legacy_unreviewed:airline_lot#hold] cargo:confirmation_required[legacy_unreviewed:airline_lot#cargo] | bool:000 | confirm:cabin+hold+cargo | pets:unknown | deny:- | label:Policy to confirm with the airline | tarifs:cabin+hold+cargo | heat:00",
    "airline_british_airways | conn | connection_unverified | st:denied/confirmation_required/confirmation_required | cabin:denied hold:confirmation_required[official_source_unquoted:airline_british_airways#hold,rule_official_unquoted:rule_british_airways_no_cabin] cargo:confirmation_required[official_source_unquoted:airline_british_airways#cargo] | bool:000 | confirm:hold+cargo | pets:unknown | deny:- | label:Cabin: documented refusal — hold and cargo: to confirm | tarifs:hold+cargo | heat:00",
-   "airline_airbaltic | conn | connection_unverified | st:confirmation_required/confirmation_required/confirmation_required | cabin:confirmation_required[legacy_unreviewed:airline_airbaltic#cabin] hold:confirmation_required[legacy_unreviewed:airline_airbaltic#hold] cargo:confirmation_required[legacy_unreviewed:airline_airbaltic#cargo] | bool:000 | confirm:cabin+hold+cargo | pets:unknown | deny:- | label:Policy to confirm with the airline | tarifs:cabin+hold+cargo | heat:00"
+   "airline_airbaltic | conn | connection_unverified | st:confirmation_required/confirmation_required/confirmation_required | cabin:confirmation_required[legacy_unreviewed:airline_airbaltic#cabin] hold:confirmation_required[legacy_unreviewed:airline_airbaltic#hold] cargo:confirmation_required[legacy_unreviewed:airline_airbaltic#cargo] | bool:000 | confirm:cabin+hold+cargo | pets:unknown | deny:- | label:Policy to confirm with the airline | tarifs:cabin+hold+cargo | heat:00",
+   "airline_air_algerie | conn | connection_unverified | st:confirmation_required/confirmation_required/confirmation_required | cabin:confirmation_required[legacy_unreviewed:airline_air_algerie#cabin,rule_unverified:rule_air_algerie_cabin_weight] hold:confirmation_required[legacy_unreviewed:airline_air_algerie#hold] cargo:confirmation_required[legacy_unreviewed:airline_air_algerie#cargo] | bool:000 | confirm:cabin+hold+cargo | pets:unknown | deny:- | label:Policy to confirm with the airline | tarifs:cabin+hold+cargo | heat:00"
   ],
   "alternatives": [],
   "climate": {
@@ -2533,10 +2517,6 @@
    {
     "airline_id": "airline_finnair",
     "placement": "cabin"
-   },
-   {
-    "airline_id": "airline_air_algerie",
-    "placement": "hold"
    }
   ],
   "conditions": [
@@ -2565,9 +2545,8 @@
   ],
   "risks": [],
   "safety_advisories": [],
-  "score": 58,
+  "score": 57,
   "sources": [
-   "https://airalgerie.dz/en/plan-your-trip/baggage/travel-with-pets/",
    "https://booking-uat.dcloud.saudia.com/book/flight-information/travelling-with-pets",
    "https://en.aegeanair.com/travel-info/travelling-with-aegean/special-assistance/traveling-with-pet/",
    "https://www.austrian.com/us/en/plan/special-requirements/travelling-with-animals",
@@ -2605,7 +2584,6 @@
    "airline_aegean | conn | connection_unverified | st:accepted_with_conditions/accepted_with_conditions/confirmation_required | cabin:accepted_with_conditions hold:accepted_with_conditions cargo:confirmation_required[legacy_unreviewed:airline_aegean#cargo] | bool:110 | confirm:cargo | pets:unknown | deny:- | label:Cabin and hold: accepted under the airline's conditions | tarifs:cabin+hold+cargo | heat:00",
    "airline_ita_airways | conn | connection_unverified | st:accepted_with_conditions/accepted_with_conditions/confirmation_required | cabin:accepted_with_conditions hold:accepted_with_conditions cargo:confirmation_required[legacy_unreviewed:airline_ita_airways#cargo] | bool:110 | confirm:cargo | pets:unknown | deny:- | label:Cabin and hold: accepted under the airline's conditions | tarifs:cabin+hold+cargo | heat:00",
    "airline_klm | conn | connection_unverified | st:accepted_with_conditions/accepted_with_conditions/confirmation_required | cabin:accepted_with_conditions hold:accepted_with_conditions cargo:confirmation_required[official_source_unquoted:airline_klm#cargo] | bool:110 | confirm:cargo | pets:unknown | deny:- | label:Cabin and hold: accepted under the airline's conditions | tarifs:cabin+hold+cargo | heat:00",
-   "airline_air_algerie | conn | connection_unverified | st:confirmation_required/accepted_with_conditions/confirmation_required | cabin:confirmation_required[rule_unverified:rule_air_algerie_cabin_weight] hold:accepted_with_conditions cargo:confirmation_required[legacy_unreviewed:airline_air_algerie#cargo] | bool:010 | confirm:cabin+cargo | pets:unknown | deny:- | label:Hold: accepted under the airline's conditions | tarifs:cabin+hold+cargo | heat:00",
    "airline_sunexpress | conn | connection_documented | st:confirmation_required/confirmation_required/confirmation_required | cabin:confirmation_required[legacy_unreviewed:airline_sunexpress#cabin] hold:confirmation_required[legacy_unreviewed:airline_sunexpress#hold] cargo:confirmation_required[legacy_unreviewed:airline_sunexpress#cargo] | bool:000 | confirm:cabin+hold+cargo | pets:unknown | deny:- | label:Policy to confirm with the airline | tarifs:cabin+hold+cargo | heat:00",
    "airline_finnair | conn | connection_unverified | st:accepted_with_conditions/confirmation_required/confirmation_required | cabin:accepted_with_conditions hold:confirmation_required[legacy_unreviewed:airline_finnair#hold] cargo:confirmation_required[legacy_unreviewed:airline_finnair#cargo] | bool:100 | confirm:hold+cargo | pets:unknown | deny:- | label:Cabin: accepted under the airline's conditions | tarifs:cabin+hold+cargo | heat:00",
    "airline_eurowings | conn | connection_unverified | st:confirmation_required/confirmation_required/confirmation_required | cabin:confirmation_required[legacy_unreviewed:airline_eurowings#cabin] hold:confirmation_required[legacy_unreviewed:airline_eurowings#hold,rule_unverified:rule_eurowings_cabin_only] cargo:confirmation_required[legacy_unreviewed:airline_eurowings#cargo,rule_unverified:rule_eurowings_cabin_only] | bool:000 | confirm:cabin+hold+cargo | pets:unknown | deny:- | label:Policy to confirm with the airline | tarifs:cabin+hold+cargo | heat:00",
@@ -2615,6 +2593,7 @@
    "airline_lot | conn | connection_unverified | st:confirmation_required/confirmation_required/confirmation_required | cabin:confirmation_required[legacy_unreviewed:airline_lot#cabin] hold:confirmation_required[legacy_unreviewed:airline_lot#hold] cargo:confirmation_required[legacy_unreviewed:airline_lot#cargo] | bool:000 | confirm:cabin+hold+cargo | pets:unknown | deny:- | label:Policy to confirm with the airline | tarifs:cabin+hold+cargo | heat:00",
    "airline_british_airways | conn | connection_unverified | st:denied/confirmation_required/confirmation_required | cabin:denied hold:confirmation_required[official_source_unquoted:airline_british_airways#hold,rule_official_unquoted:rule_british_airways_no_cabin] cargo:confirmation_required[official_source_unquoted:airline_british_airways#cargo] | bool:000 | confirm:hold+cargo | pets:unknown | deny:- | label:Cabin: documented refusal — hold and cargo: to confirm | tarifs:hold+cargo | heat:00",
    "airline_airbaltic | conn | connection_unverified | st:confirmation_required/confirmation_required/confirmation_required | cabin:confirmation_required[legacy_unreviewed:airline_airbaltic#cabin] hold:confirmation_required[legacy_unreviewed:airline_airbaltic#hold] cargo:confirmation_required[legacy_unreviewed:airline_airbaltic#cargo] | bool:000 | confirm:cabin+hold+cargo | pets:unknown | deny:- | label:Policy to confirm with the airline | tarifs:cabin+hold+cargo | heat:00",
+   "airline_air_algerie | conn | connection_unverified | st:confirmation_required/confirmation_required/confirmation_required | cabin:confirmation_required[legacy_unreviewed:airline_air_algerie#cabin,rule_unverified:rule_air_algerie_cabin_weight] hold:confirmation_required[legacy_unreviewed:airline_air_algerie#hold] cargo:confirmation_required[legacy_unreviewed:airline_air_algerie#cargo] | bool:000 | confirm:cabin+hold+cargo | pets:unknown | deny:- | label:Policy to confirm with the airline | tarifs:cabin+hold+cargo | heat:00",
    "airline_gulf_air | conn | connection_documented | st:denied/denied/accepted_with_conditions | cabin:denied hold:denied cargo:accepted_with_conditions | bool:001 | confirm:- | pets:unknown | deny:- | label:Cargo: accepted under the airline's conditions | tarifs:cargo | heat:00"
   ],
   "alternatives": [],
@@ -2680,10 +2659,6 @@
    {
     "airline_id": "airline_klm",
     "placement": "hold"
-   },
-   {
-    "airline_id": "airline_air_algerie",
-    "placement": "hold"
    }
   ],
   "conditions": [
@@ -2712,9 +2687,8 @@
   ],
   "risks": [],
   "safety_advisories": [],
-  "score": 55,
+  "score": 53,
   "sources": [
-   "https://airalgerie.dz/en/plan-your-trip/baggage/travel-with-pets/",
    "https://booking-uat.dcloud.saudia.com/book/flight-information/travelling-with-pets",
    "https://en.aegeanair.com/travel-info/travelling-with-aegean/special-assistance/traveling-with-pet/",
    "https://www.austrian.com/us/en/plan/special-requirements/travelling-with-animals",
@@ -2753,7 +2727,6 @@
    "airline_lufthansa | conn | connection_unverified | st:accepted_with_conditions/confirmation_required/confirmation_required | cabin:accepted_with_conditions hold:confirmation_required[clim:rule_lh_summer_embargo] cargo:confirmation_required[clim:rule_lh_summer_embargo,official_source_unquoted:airline_lufthansa#cargo] | bool:100 | confirm:hold+cargo | pets:unknown | deny:- | label:Cabin: accepted under the airline's conditions | tarifs:cabin+hold+cargo | heat:01",
    "airline_klm | conn | connection_unverified | st:accepted_with_conditions/confirmation_required/confirmation_required | cabin:accepted_with_conditions hold:confirmation_required[clim:rule_kl_summer_embargo] cargo:confirmation_required[clim:rule_kl_summer_embargo,official_source_unquoted:airline_klm#cargo] | bool:100 | confirm:hold+cargo | pets:unknown | deny:- | label:Cabin: accepted under the airline's conditions | tarifs:cabin+hold+cargo | heat:01",
    "airline_finnair | conn | connection_unverified | st:accepted_with_conditions/confirmation_required/confirmation_required | cabin:accepted_with_conditions hold:confirmation_required[legacy_unreviewed:airline_finnair#hold] cargo:confirmation_required[legacy_unreviewed:airline_finnair#cargo] | bool:100 | confirm:hold+cargo | pets:unknown | deny:- | label:Cabin: accepted under the airline's conditions | tarifs:cabin+hold+cargo | heat:00",
-   "airline_air_algerie | conn | connection_unverified | st:confirmation_required/accepted_with_conditions/confirmation_required | cabin:confirmation_required[rule_unverified:rule_air_algerie_cabin_weight] hold:accepted_with_conditions cargo:confirmation_required[legacy_unreviewed:airline_air_algerie#cargo] | bool:010 | confirm:cabin+cargo | pets:unknown | deny:- | label:Hold: accepted under the airline's conditions | tarifs:cabin+hold+cargo | heat:00",
    "airline_air_france | direct | direct_documented | st:confirmation_required/confirmation_required/confirmation_required | cabin:confirmation_required[official_source_unquoted:airline_air_france#cabin] hold:confirmation_required[clim:rule_af_summer_embargo] cargo:confirmation_required[clim:rule_af_summer_embargo,official_source_unquoted:airline_air_france#cargo] | bool:000 | confirm:cabin+hold+cargo | pets:unknown | deny:- | label:Policy to confirm with the airline | tarifs:cabin+hold+cargo | heat:01",
    "airline_sunexpress | conn | connection_documented | st:confirmation_required/confirmation_required/confirmation_required | cabin:confirmation_required[legacy_unreviewed:airline_sunexpress#cabin] hold:confirmation_required[legacy_unreviewed:airline_sunexpress#hold] cargo:confirmation_required[legacy_unreviewed:airline_sunexpress#cargo] | bool:000 | confirm:cabin+hold+cargo | pets:unknown | deny:- | label:Policy to confirm with the airline | tarifs:cabin+hold+cargo | heat:00",
    "airline_eurowings | conn | connection_unverified | st:confirmation_required/confirmation_required/confirmation_required | cabin:confirmation_required[legacy_unreviewed:airline_eurowings#cabin] hold:confirmation_required[legacy_unreviewed:airline_eurowings#hold,rule_unverified:rule_eurowings_cabin_only] cargo:confirmation_required[legacy_unreviewed:airline_eurowings#cargo,rule_unverified:rule_eurowings_cabin_only] | bool:000 | confirm:cabin+hold+cargo | pets:unknown | deny:- | label:Policy to confirm with the airline | tarifs:cabin+hold+cargo | heat:00",
@@ -2762,7 +2735,8 @@
    "airline_el_al | conn | connection_unverified | st:confirmation_required/confirmation_required/confirmation_required | cabin:confirmation_required[legacy_unreviewed:airline_el_al#cabin] hold:confirmation_required[legacy_unreviewed:airline_el_al#hold] cargo:confirmation_required[legacy_unreviewed:airline_el_al#cargo] | bool:000 | confirm:cabin+hold+cargo | pets:unknown | deny:- | label:Policy to confirm with the airline | tarifs:cabin+hold+cargo | heat:00",
    "airline_lot | conn | connection_unverified | st:confirmation_required/confirmation_required/confirmation_required | cabin:confirmation_required[legacy_unreviewed:airline_lot#cabin] hold:confirmation_required[legacy_unreviewed:airline_lot#hold] cargo:confirmation_required[legacy_unreviewed:airline_lot#cargo] | bool:000 | confirm:cabin+hold+cargo | pets:unknown | deny:- | label:Policy to confirm with the airline | tarifs:cabin+hold+cargo | heat:00",
    "airline_british_airways | conn | connection_unverified | st:denied/confirmation_required/confirmation_required | cabin:denied hold:confirmation_required[official_source_unquoted:airline_british_airways#hold,rule_official_unquoted:rule_british_airways_no_cabin] cargo:confirmation_required[official_source_unquoted:airline_british_airways#cargo] | bool:000 | confirm:hold+cargo | pets:unknown | deny:- | label:Cabin: documented refusal — hold and cargo: to confirm | tarifs:hold+cargo | heat:00",
-   "airline_airbaltic | conn | connection_unverified | st:confirmation_required/confirmation_required/confirmation_required | cabin:confirmation_required[legacy_unreviewed:airline_airbaltic#cabin] hold:confirmation_required[legacy_unreviewed:airline_airbaltic#hold] cargo:confirmation_required[legacy_unreviewed:airline_airbaltic#cargo] | bool:000 | confirm:cabin+hold+cargo | pets:unknown | deny:- | label:Policy to confirm with the airline | tarifs:cabin+hold+cargo | heat:00"
+   "airline_airbaltic | conn | connection_unverified | st:confirmation_required/confirmation_required/confirmation_required | cabin:confirmation_required[legacy_unreviewed:airline_airbaltic#cabin] hold:confirmation_required[legacy_unreviewed:airline_airbaltic#hold] cargo:confirmation_required[legacy_unreviewed:airline_airbaltic#cargo] | bool:000 | confirm:cabin+hold+cargo | pets:unknown | deny:- | label:Policy to confirm with the airline | tarifs:cabin+hold+cargo | heat:00",
+   "airline_air_algerie | conn | connection_unverified | st:confirmation_required/confirmation_required/confirmation_required | cabin:confirmation_required[legacy_unreviewed:airline_air_algerie#cabin,rule_unverified:rule_air_algerie_cabin_weight] hold:confirmation_required[legacy_unreviewed:airline_air_algerie#hold] cargo:confirmation_required[legacy_unreviewed:airline_air_algerie#cargo] | bool:000 | confirm:cabin+hold+cargo | pets:unknown | deny:- | label:Policy to confirm with the airline | tarifs:cabin+hold+cargo | heat:00"
   ],
   "alternatives": [],
   "climate": {
@@ -2831,10 +2805,6 @@
    {
     "airline_id": "airline_finnair",
     "placement": "cabin"
-   },
-   {
-    "airline_id": "airline_air_algerie",
-    "placement": "hold"
    }
   ],
   "conditions": [
@@ -2863,9 +2833,8 @@
   ],
   "risks": [],
   "safety_advisories": [],
-  "score": 55,
+  "score": 53,
   "sources": [
-   "https://airalgerie.dz/en/plan-your-trip/baggage/travel-with-pets/",
    "https://booking-uat.dcloud.saudia.com/book/flight-information/travelling-with-pets",
    "https://en.aegeanair.com/travel-info/travelling-with-aegean/special-assistance/traveling-with-pet/",
    "https://www.austrian.com/us/en/plan/special-requirements/travelling-with-animals",
@@ -2899,7 +2868,6 @@
    "airline_austrian | conn | connection_unverified | st:accepted_with_conditions/accepted_with_conditions/confirmation_required | cabin:accepted_with_conditions hold:accepted_with_conditions cargo:confirmation_required[legacy_unreviewed:airline_austrian#cargo] | bool:110 | confirm:cargo | pets:unknown | deny:- | label:Cabin and hold: accepted under the airline's conditions | tarifs:cabin+hold+cargo | heat:00",
    "airline_aegean | conn | connection_unverified | st:accepted_with_conditions/accepted_with_conditions/confirmation_required | cabin:accepted_with_conditions hold:accepted_with_conditions cargo:confirmation_required[legacy_unreviewed:airline_aegean#cargo] | bool:110 | confirm:cargo | pets:unknown | deny:- | label:Cabin and hold: accepted under the airline's conditions | tarifs:cabin+hold+cargo | heat:00",
    "airline_ita_airways | conn | connection_unverified | st:accepted_with_conditions/accepted_with_conditions/confirmation_required | cabin:accepted_with_conditions hold:accepted_with_conditions cargo:confirmation_required[legacy_unreviewed:airline_ita_airways#cargo] | bool:110 | confirm:cargo | pets:unknown | deny:- | label:Cabin and hold: accepted under the airline's conditions | tarifs:cabin+hold+cargo | heat:00",
-   "airline_air_algerie | conn | connection_unverified | st:confirmation_required/accepted_with_conditions/confirmation_required | cabin:confirmation_required[rule_unverified:rule_air_algerie_cabin_weight] hold:accepted_with_conditions cargo:confirmation_required[legacy_unreviewed:airline_air_algerie#cargo] | bool:010 | confirm:cabin+cargo | pets:unknown | deny:- | label:Hold: accepted under the airline's conditions | tarifs:cabin+hold+cargo | heat:00",
    "airline_air_france | direct | direct_documented | st:confirmation_required/confirmation_required/confirmation_required | cabin:confirmation_required[official_source_unquoted:airline_air_france#cabin] hold:confirmation_required[clim:rule_af_summer_embargo] cargo:confirmation_required[clim:rule_af_summer_embargo,official_source_unquoted:airline_air_france#cargo] | bool:000 | confirm:cabin+hold+cargo | pets:unknown | deny:- | label:Policy to confirm with the airline | tarifs:cabin+hold+cargo | heat:01",
    "airline_turkish | conn | connection_documented | st:accepted_with_conditions/confirmation_required/confirmation_required | cabin:accepted_with_conditions hold:confirmation_required[clim:rule_tk_summer_embargo] cargo:confirmation_required[clim:rule_tk_summer_embargo,official_source_unquoted:airline_turkish#cargo] | bool:100 | confirm:hold+cargo | pets:unknown | deny:- | label:Cabin: accepted under the airline's conditions | tarifs:cabin+hold+cargo | heat:01",
    "airline_sunexpress | conn | connection_documented | st:confirmation_required/confirmation_required/confirmation_required | cabin:confirmation_required[legacy_unreviewed:airline_sunexpress#cabin] hold:confirmation_required[legacy_unreviewed:airline_sunexpress#hold] cargo:confirmation_required[legacy_unreviewed:airline_sunexpress#cargo] | bool:000 | confirm:cabin+hold+cargo | pets:unknown | deny:- | label:Policy to confirm with the airline | tarifs:cabin+hold+cargo | heat:00",
@@ -2913,6 +2881,7 @@
    "airline_lot | conn | connection_unverified | st:confirmation_required/confirmation_required/confirmation_required | cabin:confirmation_required[legacy_unreviewed:airline_lot#cabin] hold:confirmation_required[legacy_unreviewed:airline_lot#hold] cargo:confirmation_required[legacy_unreviewed:airline_lot#cargo] | bool:000 | confirm:cabin+hold+cargo | pets:unknown | deny:- | label:Policy to confirm with the airline | tarifs:cabin+hold+cargo | heat:00",
    "airline_british_airways | conn | connection_unverified | st:denied/confirmation_required/confirmation_required | cabin:denied hold:confirmation_required[official_source_unquoted:airline_british_airways#hold,rule_official_unquoted:rule_british_airways_no_cabin] cargo:confirmation_required[official_source_unquoted:airline_british_airways#cargo] | bool:000 | confirm:hold+cargo | pets:unknown | deny:- | label:Cabin: documented refusal — hold and cargo: to confirm | tarifs:hold+cargo | heat:00",
    "airline_airbaltic | conn | connection_unverified | st:confirmation_required/confirmation_required/confirmation_required | cabin:confirmation_required[legacy_unreviewed:airline_airbaltic#cabin] hold:confirmation_required[legacy_unreviewed:airline_airbaltic#hold] cargo:confirmation_required[legacy_unreviewed:airline_airbaltic#cargo] | bool:000 | confirm:cabin+hold+cargo | pets:unknown | deny:- | label:Policy to confirm with the airline | tarifs:cabin+hold+cargo | heat:00",
+   "airline_air_algerie | conn | connection_unverified | st:confirmation_required/confirmation_required/confirmation_required | cabin:confirmation_required[legacy_unreviewed:airline_air_algerie#cabin,rule_unverified:rule_air_algerie_cabin_weight] hold:confirmation_required[legacy_unreviewed:airline_air_algerie#hold] cargo:confirmation_required[legacy_unreviewed:airline_air_algerie#cargo] | bool:000 | confirm:cabin+hold+cargo | pets:unknown | deny:- | label:Policy to confirm with the airline | tarifs:cabin+hold+cargo | heat:00",
    "airline_gulf_air | conn | connection_documented | st:denied/denied/accepted_with_conditions | cabin:denied hold:denied cargo:accepted_with_conditions | bool:001 | confirm:- | pets:unknown | deny:- | label:Cargo: accepted under the airline's conditions | tarifs:cargo | heat:00"
   ],
   "alternatives": [],
@@ -2962,10 +2931,6 @@
    {
     "airline_id": "airline_ita_airways",
     "placement": "hold"
-   },
-   {
-    "airline_id": "airline_air_algerie",
-    "placement": "hold"
    }
   ],
   "conditions": [
@@ -2994,9 +2959,8 @@
   ],
   "risks": [],
   "safety_advisories": [],
-  "score": 46,
+  "score": 45,
   "sources": [
-   "https://airalgerie.dz/en/plan-your-trip/baggage/travel-with-pets/",
    "https://booking-uat.dcloud.saudia.com/book/flight-information/travelling-with-pets",
    "https://en.aegeanair.com/travel-info/travelling-with-aegean/special-assistance/traveling-with-pet/",
    "https://www.austrian.com/us/en/plan/special-requirements/travelling-with-animals",
@@ -3044,7 +3008,7 @@
    "airline_lot | conn | connection_unverified | st:confirmation_required/confirmation_required/confirmation_required | cabin:confirmation_required[legacy_unreviewed:airline_lot#cabin] hold:confirmation_required[breed_policy_unreviewed:airline_lot#hold,legacy_unreviewed:airline_lot#hold] cargo:confirmation_required[breed_policy_unreviewed:airline_lot#cargo,legacy_unreviewed:airline_lot#cargo] | bool:000 | confirm:cabin+hold+cargo | pets:unknown | deny:- | label:Policy to confirm with the airline | tarifs:cabin+hold+cargo | heat:00",
    "airline_british_airways | conn | connection_unverified | st:denied/confirmation_required/confirmation_required | cabin:denied hold:confirmation_required[breed_policy_unreviewed:airline_british_airways#hold,official_source_unquoted:airline_british_airways#hold,rule_official_unquoted:rule_british_airways_no_cabin] cargo:confirmation_required[breed_policy_unreviewed:airline_british_airways#cargo,official_source_unquoted:airline_british_airways#cargo] | bool:000 | confirm:hold+cargo | pets:unknown | deny:- | label:Cabin: documented refusal — hold and cargo: to confirm | tarifs:hold+cargo | heat:00",
    "airline_airbaltic | conn | connection_unverified | st:confirmation_required/confirmation_required/confirmation_required | cabin:confirmation_required[legacy_unreviewed:airline_airbaltic#cabin] hold:confirmation_required[breed_policy_unreviewed:airline_airbaltic#hold,legacy_unreviewed:airline_airbaltic#hold] cargo:confirmation_required[breed_policy_unreviewed:airline_airbaltic#cargo,legacy_unreviewed:airline_airbaltic#cargo] | bool:000 | confirm:cabin+hold+cargo | pets:unknown | deny:- | label:Policy to confirm with the airline | tarifs:cabin+hold+cargo | heat:00",
-   "airline_air_algerie | conn | connection_unverified | st:confirmation_required/confirmation_required/confirmation_required | cabin:confirmation_required[rule_unverified:rule_air_algerie_cabin_weight] hold:confirmation_required[breed_policy_unreviewed:airline_air_algerie#hold] cargo:confirmation_required[breed_policy_unreviewed:airline_air_algerie#cargo,legacy_unreviewed:airline_air_algerie#cargo] | bool:000 | confirm:cabin+hold+cargo | pets:unknown | deny:- | label:Policy to confirm with the airline | tarifs:cabin+hold+cargo | heat:00"
+   "airline_air_algerie | conn | connection_unverified | st:confirmation_required/confirmation_required/confirmation_required | cabin:confirmation_required[legacy_unreviewed:airline_air_algerie#cabin,rule_unverified:rule_air_algerie_cabin_weight] hold:confirmation_required[breed_policy_unreviewed:airline_air_algerie#hold,legacy_unreviewed:airline_air_algerie#hold] cargo:confirmation_required[breed_policy_unreviewed:airline_air_algerie#cargo,legacy_unreviewed:airline_air_algerie#cargo] | bool:000 | confirm:cabin+hold+cargo | pets:unknown | deny:- | label:Policy to confirm with the airline | tarifs:cabin+hold+cargo | heat:00"
   ],
   "alternatives": [],
   "climate": {
@@ -3130,7 +3094,6 @@
   ],
   "score": 43,
   "sources": [
-   "https://airalgerie.dz/en/plan-your-trip/baggage/travel-with-pets/",
    "https://booking-uat.dcloud.saudia.com/book/flight-information/travelling-with-pets",
    "https://en.aegeanair.com/travel-info/travelling-with-aegean/special-assistance/traveling-with-pet/",
    "https://www.austrian.com/us/en/plan/special-requirements/travelling-with-animals",
@@ -3177,7 +3140,7 @@
    "airline_lot | conn | connection_unverified | st:confirmation_required/confirmation_required/confirmation_required | cabin:confirmation_required[legacy_unreviewed:airline_lot#cabin] hold:confirmation_required[breed_policy_unreviewed:airline_lot#hold,legacy_unreviewed:airline_lot#hold] cargo:confirmation_required[breed_policy_unreviewed:airline_lot#cargo,legacy_unreviewed:airline_lot#cargo] | bool:000 | confirm:cabin+hold+cargo | pets:unknown | deny:- | label:Policy to confirm with the airline | tarifs:cabin+hold+cargo | heat:00",
    "airline_british_airways | conn | connection_unverified | st:denied/confirmation_required/confirmation_required | cabin:denied hold:confirmation_required[breed_policy_unreviewed:airline_british_airways#hold,official_source_unquoted:airline_british_airways#hold,rule_official_unquoted:rule_british_airways_no_cabin] cargo:confirmation_required[breed_policy_unreviewed:airline_british_airways#cargo,official_source_unquoted:airline_british_airways#cargo] | bool:000 | confirm:hold+cargo | pets:unknown | deny:- | label:Cabin: documented refusal — hold and cargo: to confirm | tarifs:hold+cargo | heat:00",
    "airline_airbaltic | conn | connection_unverified | st:confirmation_required/confirmation_required/confirmation_required | cabin:confirmation_required[legacy_unreviewed:airline_airbaltic#cabin] hold:confirmation_required[breed_policy_unreviewed:airline_airbaltic#hold,legacy_unreviewed:airline_airbaltic#hold] cargo:confirmation_required[breed_policy_unreviewed:airline_airbaltic#cargo,legacy_unreviewed:airline_airbaltic#cargo] | bool:000 | confirm:cabin+hold+cargo | pets:unknown | deny:- | label:Policy to confirm with the airline | tarifs:cabin+hold+cargo | heat:00",
-   "airline_air_algerie | conn | connection_unverified | st:confirmation_required/confirmation_required/confirmation_required | cabin:confirmation_required[rule_unverified:rule_air_algerie_cabin_weight] hold:confirmation_required[breed_policy_unreviewed:airline_air_algerie#hold] cargo:confirmation_required[breed_policy_unreviewed:airline_air_algerie#cargo,legacy_unreviewed:airline_air_algerie#cargo] | bool:000 | confirm:cabin+hold+cargo | pets:unknown | deny:- | label:Policy to confirm with the airline | tarifs:cabin+hold+cargo | heat:00",
+   "airline_air_algerie | conn | connection_unverified | st:confirmation_required/confirmation_required/confirmation_required | cabin:confirmation_required[legacy_unreviewed:airline_air_algerie#cabin,rule_unverified:rule_air_algerie_cabin_weight] hold:confirmation_required[breed_policy_unreviewed:airline_air_algerie#hold,legacy_unreviewed:airline_air_algerie#hold] cargo:confirmation_required[breed_policy_unreviewed:airline_air_algerie#cargo,legacy_unreviewed:airline_air_algerie#cargo] | bool:000 | confirm:cabin+hold+cargo | pets:unknown | deny:- | label:Policy to confirm with the airline | tarifs:cabin+hold+cargo | heat:00",
    "airline_gulf_air | conn | connection_documented | st:denied/denied/confirmation_required | cabin:denied hold:denied cargo:confirmation_required[breed_policy_unreviewed:airline_gulf_air#cargo] | bool:000 | confirm:cargo | pets:unknown | deny:- | label:Cabin and hold: documented refusal — cargo: to confirm | tarifs:cargo | heat:00"
   ],
   "alternatives": [],
@@ -3223,7 +3186,6 @@
   ],
   "score": 7,
   "sources": [
-   "https://airalgerie.dz/en/plan-your-trip/baggage/travel-with-pets/",
    "https://booking-uat.dcloud.saudia.com/book/flight-information/travelling-with-pets",
    "https://en.aegeanair.com/travel-info/travelling-with-aegean/special-assistance/traveling-with-pet/",
    "https://www.austrian.com/us/en/plan/special-requirements/travelling-with-animals",
@@ -3271,7 +3233,7 @@
    "airline_lot | conn | connection_unverified | st:confirmation_required/confirmation_required/confirmation_required | cabin:confirmation_required[legacy_unreviewed:airline_lot#cabin] hold:confirmation_required[breed_policy_unreviewed:airline_lot#hold,legacy_unreviewed:airline_lot#hold] cargo:confirmation_required[breed_policy_unreviewed:airline_lot#cargo,legacy_unreviewed:airline_lot#cargo] | bool:000 | confirm:cabin+hold+cargo | pets:unknown | deny:- | label:Policy to confirm with the airline | tarifs:cabin+hold+cargo | heat:00",
    "airline_british_airways | conn | connection_unverified | st:denied/confirmation_required/confirmation_required | cabin:denied hold:confirmation_required[breed_policy_unreviewed:airline_british_airways#hold,official_source_unquoted:airline_british_airways#hold,rule_official_unquoted:rule_british_airways_no_cabin] cargo:confirmation_required[breed_policy_unreviewed:airline_british_airways#cargo,official_source_unquoted:airline_british_airways#cargo] | bool:000 | confirm:hold+cargo | pets:unknown | deny:- | label:Cabin: documented refusal — hold and cargo: to confirm | tarifs:hold+cargo | heat:00",
    "airline_airbaltic | conn | connection_unverified | st:confirmation_required/confirmation_required/confirmation_required | cabin:confirmation_required[legacy_unreviewed:airline_airbaltic#cabin] hold:confirmation_required[breed_policy_unreviewed:airline_airbaltic#hold,legacy_unreviewed:airline_airbaltic#hold] cargo:confirmation_required[breed_policy_unreviewed:airline_airbaltic#cargo,legacy_unreviewed:airline_airbaltic#cargo] | bool:000 | confirm:cabin+hold+cargo | pets:unknown | deny:- | label:Policy to confirm with the airline | tarifs:cabin+hold+cargo | heat:00",
-   "airline_air_algerie | conn | connection_unverified | st:confirmation_required/confirmation_required/confirmation_required | cabin:confirmation_required[rule_unverified:rule_air_algerie_cabin_weight] hold:confirmation_required[breed_policy_unreviewed:airline_air_algerie#hold] cargo:confirmation_required[breed_policy_unreviewed:airline_air_algerie#cargo,legacy_unreviewed:airline_air_algerie#cargo] | bool:000 | confirm:cabin+hold+cargo | pets:unknown | deny:- | label:Policy to confirm with the airline | tarifs:cabin+hold+cargo | heat:00"
+   "airline_air_algerie | conn | connection_unverified | st:confirmation_required/confirmation_required/confirmation_required | cabin:confirmation_required[legacy_unreviewed:airline_air_algerie#cabin,rule_unverified:rule_air_algerie_cabin_weight] hold:confirmation_required[breed_policy_unreviewed:airline_air_algerie#hold,legacy_unreviewed:airline_air_algerie#hold] cargo:confirmation_required[breed_policy_unreviewed:airline_air_algerie#cargo,legacy_unreviewed:airline_air_algerie#cargo] | bool:000 | confirm:cabin+hold+cargo | pets:unknown | deny:- | label:Policy to confirm with the airline | tarifs:cabin+hold+cargo | heat:00"
   ],
   "alternatives": [],
   "climate": {
@@ -3357,7 +3319,6 @@
   ],
   "score": 43,
   "sources": [
-   "https://airalgerie.dz/en/plan-your-trip/baggage/travel-with-pets/",
    "https://booking-uat.dcloud.saudia.com/book/flight-information/travelling-with-pets",
    "https://en.aegeanair.com/travel-info/travelling-with-aegean/special-assistance/traveling-with-pet/",
    "https://www.austrian.com/us/en/plan/special-requirements/travelling-with-animals",
@@ -3404,7 +3365,7 @@
    "airline_lot | conn | connection_unverified | st:confirmation_required/confirmation_required/confirmation_required | cabin:confirmation_required[legacy_unreviewed:airline_lot#cabin] hold:confirmation_required[breed_policy_unreviewed:airline_lot#hold,legacy_unreviewed:airline_lot#hold] cargo:confirmation_required[breed_policy_unreviewed:airline_lot#cargo,legacy_unreviewed:airline_lot#cargo] | bool:000 | confirm:cabin+hold+cargo | pets:unknown | deny:- | label:Policy to confirm with the airline | tarifs:cabin+hold+cargo | heat:00",
    "airline_british_airways | conn | connection_unverified | st:denied/confirmation_required/confirmation_required | cabin:denied hold:confirmation_required[breed_policy_unreviewed:airline_british_airways#hold,official_source_unquoted:airline_british_airways#hold,rule_official_unquoted:rule_british_airways_no_cabin] cargo:confirmation_required[breed_policy_unreviewed:airline_british_airways#cargo,official_source_unquoted:airline_british_airways#cargo] | bool:000 | confirm:hold+cargo | pets:unknown | deny:- | label:Cabin: documented refusal — hold and cargo: to confirm | tarifs:hold+cargo | heat:00",
    "airline_airbaltic | conn | connection_unverified | st:confirmation_required/confirmation_required/confirmation_required | cabin:confirmation_required[legacy_unreviewed:airline_airbaltic#cabin] hold:confirmation_required[breed_policy_unreviewed:airline_airbaltic#hold,legacy_unreviewed:airline_airbaltic#hold] cargo:confirmation_required[breed_policy_unreviewed:airline_airbaltic#cargo,legacy_unreviewed:airline_airbaltic#cargo] | bool:000 | confirm:cabin+hold+cargo | pets:unknown | deny:- | label:Policy to confirm with the airline | tarifs:cabin+hold+cargo | heat:00",
-   "airline_air_algerie | conn | connection_unverified | st:confirmation_required/confirmation_required/confirmation_required | cabin:confirmation_required[rule_unverified:rule_air_algerie_cabin_weight] hold:confirmation_required[breed_policy_unreviewed:airline_air_algerie#hold] cargo:confirmation_required[breed_policy_unreviewed:airline_air_algerie#cargo,legacy_unreviewed:airline_air_algerie#cargo] | bool:000 | confirm:cabin+hold+cargo | pets:unknown | deny:- | label:Policy to confirm with the airline | tarifs:cabin+hold+cargo | heat:00",
+   "airline_air_algerie | conn | connection_unverified | st:confirmation_required/confirmation_required/confirmation_required | cabin:confirmation_required[legacy_unreviewed:airline_air_algerie#cabin,rule_unverified:rule_air_algerie_cabin_weight] hold:confirmation_required[breed_policy_unreviewed:airline_air_algerie#hold,legacy_unreviewed:airline_air_algerie#hold] cargo:confirmation_required[breed_policy_unreviewed:airline_air_algerie#cargo,legacy_unreviewed:airline_air_algerie#cargo] | bool:000 | confirm:cabin+hold+cargo | pets:unknown | deny:- | label:Policy to confirm with the airline | tarifs:cabin+hold+cargo | heat:00",
    "airline_gulf_air | conn | connection_documented | st:denied/denied/confirmation_required | cabin:denied hold:denied cargo:confirmation_required[breed_policy_unreviewed:airline_gulf_air#cargo] | bool:000 | confirm:cargo | pets:unknown | deny:- | label:Cabin and hold: documented refusal — cargo: to confirm | tarifs:cargo | heat:00"
   ],
   "alternatives": [],
@@ -3450,7 +3411,6 @@
   ],
   "score": 7,
   "sources": [
-   "https://airalgerie.dz/en/plan-your-trip/baggage/travel-with-pets/",
    "https://booking-uat.dcloud.saudia.com/book/flight-information/travelling-with-pets",
    "https://en.aegeanair.com/travel-info/travelling-with-aegean/special-assistance/traveling-with-pet/",
    "https://www.austrian.com/us/en/plan/special-requirements/travelling-with-animals",

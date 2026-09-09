@@ -2893,3 +2893,63 @@ et je n'ai pas rejoué ce contrôle après. Une empreinte figée trop tôt : mê
 lot ; le contrôle (a) passe sur un worktree exact de `cea12c1`. Aucun fichier de données ne change
 ici : ce post-scriptum consigne l'erreur, la CI de `cea12c1` en est la preuve.
 
+## Annexe 29 — Import strict, lot 7 : 23 faits, 23 importés, règle des seuils précisée (09/09/2026)
+
+Paquet de Codex (`mesures/preuves/import-strict-lot-7-2026-09-09/`), lecture directe du 09/09 :
+10 compagnies, 23 faits, 7 non-décisions. Importé sur la base du lot 6, sur une branche neuve
+(`lot/import-strict-lots-7-8`) créée pendant l'attente de la fusion de #41.
+
+| | |
+|---|---|
+| importés | 23 (Air Algérie ×2, Air Austral ×2, Air Caraïbes ×3, Air Tahiti Nui ×2, Aircalin ×3, Corsair ×3, French Bee ×2, Iberia Express ×2, La Compagnie ×2, Luxair ×2) |
+| réactivés sur citation | 4, tous en fret : Air Caraïbes, Air Tahiti Nui, Aircalin, Corsair |
+| refusés | 0 |
+| non-décisions | 7, « à confirmer » ; Air Tahiti Nui soute reste ABSENTE de la fiche (aucune politique créée) |
+| langues | français (Air Austral, Air Caraïbes, Air Tahiti Nui, Aircalin, Corsair, French Bee, La Compagnie), espagnol (Iberia Express), anglais (Air Algérie, Luxair) |
+
+### Règle des seuils précisée, nommée pour Codex
+
+Jusqu'ici : un seuil est écrit quand la phrase citée porte le chiffre. Précision : la phrase doit
+porter le chiffre **et la base du poids** (animal + contenant), parce que le modèle exige
+`weight_includes_carrier` pour refuser et que déduire cette base de la portée nommée serait une
+inférence. Écrits : Air Austral 8 (« le poids de l'animal + son contenant doit être inférieur à
+8 kg »), La Compagnie 8 (« jusqu'à 8kg, sac compris »). Non écrits : Air Algérie 6 (base absente :
+« only small pets under 6 kg »), Corsair 8/50, Iberia Express 8/45, Luxair 8 (chiffre absent de la
+phrase). Si Codex veut que la portée nommée suffise, les lignes s'ajoutent à `SEUILS`.
+
+Air Algérie **perd** le 6 kg que l'ingestion déduisait de sa grille tarifaire : la cabine est
+citée, et la dérivation tarifaire ne s'applique plus à un canal cité (erreur nommée à l'annexe 27).
+
+### Mesuré après import
+
+| | avant (lot 6) | après (lot 7) |
+|---|---|---|
+| politiques citées (décisives) | 113 (111) | 136 (134) |
+| `allowed` / sous conditions / refusées / à confirmer | 0 / 88 / 23 / 191 | 0 / 108 / 26 / 168 |
+| causes legacy / page officielle sans phrase | 174 / 15 | 151 / 15 |
+| registre A / B / C / D | 113 / 78 / 112 / 3 | 136 / 70 / 97 / 3 |
+| limites cabine citées | 22 | 24 (à vérifier sur le dist, construit une fois pour les lots 7 et 8) |
+| témoin hérité | 26 040 | 26 868 |
+| canaux contradictoires | 274 | 271 (Aircalin cabine et soute, La Compagnie soute) |
+| causes de race (carlin) | 406 | 404 (Aircalin soute refusée sur citation, 2 cartes) |
+| baseline | figée lot 6 | figée `import-strict-lot-7-apres` : 16 cartes / 1 560, 2 compagnies (Aircalin, Air Algérie), 8 → sous conditions, 16 → refusé, aucun verdict déplacé |
+
+### Trouvé par la mesure, nommé comme dette
+
+Des règles de poids héritées non citées gardent un Golden de 32 kg « à confirmer » en cabine chez
+Air Algérie, Air Caraïbes, Air Tahiti Nui, Corsair, French Bee (`rule_*_cabin_weight`,
+`rule_global_cabin_weight_cap`), et un Carlin de 8 kg chez Air Algérie. Le moteur nomme la règle ;
+même dette qu'aux lots 5 et 6, hors du périmètre des lots d'import.
+
+### Mouvements nommés
+
+frontière, legacy (151, chaîne → lot 7), baseline (chaîne, répartition, preuve permanente lot 7),
+carries (26 868), quatrième état (108), registre (136/70/97/3, canaux 62/14/26 · 54/36/12 ·
+20/20/59, pistes 23/47, gov.uk 23, paires 136/23/97, écarts 46, niveaux 136/23/143), matrice
+(quatre réactivations fret), race (404), entités (271), caisses (24). Témoin C de l'inventaire
+re-fondé d'Air Algérie cabine (citée) sur Aerolíneas Argentinas cabine, hors des lots 7 et 8.
+Nouveau harnais `test-preuves-lot-7.mjs` (123 contrôles), dans test:unit.
+
+**Méthode, nommée** : le dist n'est construit qu'une fois, après le lot 8 ; les contrôles sur le site
+construit (caisses, entités, accueil, étape 3, contre-épreuves) portent sur la tête des deux lots.
+

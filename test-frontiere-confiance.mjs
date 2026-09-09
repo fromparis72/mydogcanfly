@@ -218,12 +218,13 @@ console.log("\n=== 10. Sur la base RÉELLE : plus aucun verdict catégorique ===
      revérifiées RÉACTIVÉES sur citation (Virgin Australia, Philippine, Air Mauritius, Garuda fret). Virgin Australia cabine REFUSÉE par l'importeur (la fiche dit
      case_by_case — arbitrage du 28/08 —, le fait suppose offered) : elle reste « à confirmer » (airline_approval), ce que Codex demande lui-même. */
   /* MOUVEMENT NOMMÉ (09/09/2026, import strict lot 6 — 21 citations de plus, 113 en tout) : 0 · 88 · 23 · 191 ; causes 174 · 15. */
-  check("111 décisions prouvées : 0 `allowed`, 88 sous conditions, 23 `denied`, 191 à confirmer",
-    allowed === 0 && sousConditions === 88 && denied === 23 && aConfirmer === 191, JSON.stringify({ allowed, sousConditions, denied, aConfirmer }));
+  /* MOUVEMENT NOMMÉ (09/09/2026, import strict lot 7 — 23 citations de plus, 136 en tout) : 0 · 108 · 26 · 168 ; causes 151 · 15. */
+  check("134 décisions prouvées : 0 `allowed`, 108 sous conditions, 26 `denied`, 168 à confirmer",
+    allowed === 0 && sousConditions === 108 && denied === 26 && aConfirmer === 168, JSON.stringify({ allowed, sousConditions, denied, aConfirmer }));
   check("chaque « à confirmer » porte une cause — aucune incertitude muette",
-    Object.values(causes).reduce((x, y) => x + y, 0) === 191 && !("undefined" in causes), JSON.stringify(causes));
-  check("15 gardent une page officielle à montrer, 174 n'ont rien à montrer",
-    causes.official_source_unquoted === 15 && causes.legacy_unreviewed === 174, JSON.stringify(causes));
+    Object.values(causes).reduce((x, y) => x + y, 0) === 168 && !("undefined" in causes), JSON.stringify(causes));
+  check("15 gardent une page officielle à montrer, 151 n'ont rien à montrer",
+    causes.official_source_unquoted === 15 && causes.legacy_unreviewed === 151, JSON.stringify(causes));
   /* Et la preuve que ce n'est pas un effet de bord de l'affichage : la même règle vaut à la
      source, sur l'artefact d'auteur, avant tout moteur. */
   const objets = JSON.parse(readFileSync("packages/knowledge/raw/objects.json", "utf8"));
@@ -322,6 +323,30 @@ console.log("\n=== 10. Sur la base RÉELLE : plus aucun verdict catégorique ===
     "airline_gulf_air.cargo",
     "airline_royal_jordanian.cabin",
     "airline_royal_jordanian.hold",
+    /* Lot 7 (09/09/2026) : 23 citations de plus, 136 en tout. */
+    "airline_air_algerie.cabin",
+    "airline_air_algerie.hold",
+    "airline_air_austral.cabin",
+    "airline_air_austral.hold",
+    "airline_air_caraibes.cabin",
+    "airline_air_caraibes.hold",
+    "airline_air_caraibes.cargo",
+    "airline_air_tahiti_nui.cabin",
+    "airline_air_tahiti_nui.cargo",
+    "airline_aircalin.cabin",
+    "airline_aircalin.hold",
+    "airline_aircalin.cargo",
+    "airline_corsair.cabin",
+    "airline_corsair.hold",
+    "airline_corsair.cargo",
+    "airline_french_bee.cabin",
+    "airline_french_bee.hold",
+    "airline_iberia_express.cabin",
+    "airline_iberia_express.hold",
+    "airline_la_compagnie.cabin",
+    "airline_la_compagnie.hold",
+    "airline_luxair.cabin",
+    "airline_luxair.hold",
     "airline_iberia.cabin",
     "airline_iberia.hold",
     "airline_ita_airways.cabin",
@@ -364,10 +389,10 @@ console.log("\n=== 10. Sur la base RÉELLE : plus aucun verdict catégorique ===
     "airline_westjet.cabin",
     "airline_westjet.hold",
   ];
-  check("113 politiques d'auteur portent une phrase citée — nominativement",
+  check("136 politiques d'auteur portent une phrase citée — nominativement",
     JSON.stringify([...citees].sort()) === JSON.stringify([...CITEES_V3].sort()), citees.join(", "));
-  check("et 111 d'elles sont des décisions (toutes sauf Thai fret et Virgin Australia cabine)",
-    decideesCitees.length === 111 && !decideesCitees.includes("airline_thai_airways.cargo") && !decideesCitees.includes("airline_virgin_australia.cabin"),
+  check("et 134 d'elles sont des décisions (toutes sauf Thai fret et Virgin Australia cabine)",
+    decideesCitees.length === 134 && !decideesCitees.includes("airline_thai_airways.cargo") && !decideesCitees.includes("airline_virgin_australia.cabin"),
     decideesCitees.join(", "));
 }
 

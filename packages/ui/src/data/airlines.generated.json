@@ -2006,10 +2006,34 @@
     ],
     "policies": {
       "cabin": {
-        "availability": "offered"
+        "availability": "offered",
+        "source": {
+          "url": "https://airalgerie.dz/en/plan-your-trip/baggage/travel-with-pets/",
+          "source_type": "official_website",
+          "verified_date": "2026-09-09",
+          "review_due": "2026-12-08",
+          "confidence": 4,
+          "reviewer": "Codex — direct reading of official airline page",
+          "history": [],
+          "quote": "only small pets under 6 kg are accepted on board",
+          "quote_language": "en",
+          "locator": "Travel with pets → Pets travelling in cabin"
+        }
       },
       "hold": {
-        "availability": "offered"
+        "availability": "offered",
+        "source": {
+          "url": "https://airalgerie.dz/en/plan-your-trip/baggage/travel-with-pets/",
+          "source_type": "official_website",
+          "verified_date": "2026-09-09",
+          "review_due": "2026-12-08",
+          "confidence": 4,
+          "reviewer": "Codex — direct reading of official airline page",
+          "history": [],
+          "quote": "your pet must be transported in the hold",
+          "quote_language": "en",
+          "locator": "Travel with pets → Pets travel in the hold"
+        }
       },
       "cargo": {
         "review_state": "legacy_unreviewed"
@@ -2833,10 +2857,36 @@
     ],
     "policies": {
       "cabin": {
-        "availability": "offered"
+        "availability": "offered",
+        "source": {
+          "url": "https://www.air-austral.com/preparer-mon-vol/demandes-speciales/animaux.html",
+          "source_type": "official_website",
+          "verified_date": "2026-09-09",
+          "review_due": "2026-12-08",
+          "confidence": 4,
+          "reviewer": "Codex — direct reading of official airline page",
+          "history": [],
+          "quote": "le poids de l'animal + son contenant doit être inférieur à 8 kg",
+          "quote_language": "fr",
+          "locator": "Animaux acceptés en cabine (PETC)"
+        },
+        "max_weight_kg": 8,
+        "weight_includes_carrier": true
       },
       "hold": {
-        "availability": "offered"
+        "availability": "offered",
+        "source": {
+          "url": "https://www.air-austral.com/preparer-mon-vol/demandes-speciales/animaux.html",
+          "source_type": "official_website",
+          "verified_date": "2026-09-09",
+          "review_due": "2026-12-08",
+          "confidence": 4,
+          "reviewer": "Codex — direct reading of official airline page",
+          "history": [],
+          "quote": "Le transport en soute est obligatoire",
+          "quote_language": "fr",
+          "locator": "Animaux transportés en soute (AVIH)"
+        }
       },
       "cargo": {
         "review_state": "legacy_unreviewed"
@@ -3791,13 +3841,49 @@
     ],
     "policies": {
       "cabin": {
-        "availability": "offered"
+        "availability": "offered",
+        "source": {
+          "url": "https://www.aircaraibes.com/avant-voyage/demandes-particulieres/animaux",
+          "source_type": "official_website",
+          "verified_date": "2026-09-09",
+          "review_due": "2026-12-08",
+          "confidence": 4,
+          "reviewer": "Codex — direct reading of official airline page",
+          "history": [],
+          "quote": "sont uniquement les chiens, chats",
+          "quote_language": "fr",
+          "locator": "Animaux en cabine → Présentation"
+        }
       },
       "hold": {
-        "availability": "offered"
+        "availability": "offered",
+        "source": {
+          "url": "https://www.aircaraibes.com/avant-voyage/demandes-particulieres/animaux",
+          "source_type": "official_website",
+          "verified_date": "2026-09-09",
+          "review_due": "2026-12-08",
+          "confidence": 4,
+          "reviewer": "Codex — direct reading of official airline page",
+          "history": [],
+          "quote": "sont les chiens et chats uniquement (sous réserve d'acceptation de la compagnie).",
+          "quote_language": "fr",
+          "locator": "Animaux en soute → Présentation"
+        }
       },
       "cargo": {
-        "review_state": "legacy_unreviewed"
+        "availability": "offered",
+        "source": {
+          "url": "https://www.aircaraibes.com/avant-voyage/demandes-particulieres/animaux",
+          "source_type": "official_website",
+          "verified_date": "2026-09-09",
+          "review_due": "2026-12-08",
+          "confidence": 4,
+          "reviewer": "Codex — direct reading of official airline page",
+          "history": [],
+          "quote": "devront voyager par FRET.",
+          "quote_language": "fr",
+          "locator": "Animaux en soute → Règles de transport"
+        }
       }
     },
     "channels": [
@@ -7486,10 +7572,34 @@
     ],
     "policies": {
       "cabin": {
-        "availability": "offered"
+        "availability": "offered",
+        "source": {
+          "url": "https://pf.airtahitinui.com/voyager-avec-un-animal",
+          "source_type": "official_website",
+          "verified_date": "2026-09-09",
+          "review_due": "2026-12-08",
+          "confidence": 4,
+          "reviewer": "Codex — direct reading of official airline page",
+          "history": [],
+          "quote": "Air Tahiti Nui accepte le transport en cabine des chiens et chats vaccinés accompagnés de leur propriétaire et uniquement sur les vols suivants :",
+          "quote_language": "fr",
+          "locator": "Animaux domestiques en cabine"
+        }
       },
       "cargo": {
-        "review_state": "legacy_unreviewed"
+        "availability": "offered",
+        "source": {
+          "url": "https://pf.airtahitinui.com/transport-danimaux-en-soute",
+          "source_type": "official_website",
+          "verified_date": "2026-09-09",
+          "review_due": "2026-12-08",
+          "confidence": 4,
+          "reviewer": "Codex — direct reading of official airline page",
+          "history": [],
+          "quote": "Si, en revanche, votre animal ne peut pas être transporté en cabine, il peut certainement être transporté par fret, dans la soute de l’appareil.",
+          "quote_language": "fr",
+          "locator": "Vous souhaitez faire voyager votre animal de compagnie ?"
+        }
       }
     },
     "channels": [
@@ -8844,13 +8954,49 @@
     ],
     "policies": {
       "cabin": {
-        "availability": "not_offered"
+        "availability": "not_offered",
+        "source": {
+          "url": "https://www.aircalin.com/fr/animaux",
+          "source_type": "official_website",
+          "verified_date": "2026-09-09",
+          "review_due": "2026-12-08",
+          "confidence": 4,
+          "reviewer": "Codex — direct reading of official airline page",
+          "history": [],
+          "quote": "Le transport des animaux s’effectue en fret uniquement.",
+          "quote_language": "fr",
+          "locator": "Transport d'animaux"
+        }
       },
       "hold": {
-        "availability": "not_offered"
+        "availability": "not_offered",
+        "source": {
+          "url": "https://www.aircalin.com/fr/animaux",
+          "source_type": "official_website",
+          "verified_date": "2026-09-09",
+          "review_due": "2026-12-08",
+          "confidence": 4,
+          "reviewer": "Codex — direct reading of official airline page",
+          "history": [],
+          "quote": "Le transport des animaux s’effectue en fret uniquement.",
+          "quote_language": "fr",
+          "locator": "Transport d'animaux"
+        }
       },
       "cargo": {
-        "review_state": "legacy_unreviewed"
+        "availability": "offered",
+        "source": {
+          "url": "https://www.aircalin.com/fr/animaux",
+          "source_type": "official_website",
+          "verified_date": "2026-09-09",
+          "review_due": "2026-12-08",
+          "confidence": 4,
+          "reviewer": "Codex — direct reading of official airline page",
+          "history": [],
+          "quote": "Le transport des animaux s’effectue en fret uniquement.",
+          "quote_language": "fr",
+          "locator": "Transport d'animaux"
+        }
       }
     },
     "channels": [
@@ -16785,13 +16931,49 @@
     ],
     "policies": {
       "cabin": {
-        "availability": "offered"
+        "availability": "offered",
+        "source": {
+          "url": "https://www.flycorsair.com/fr/legal/conditions-generales-de-vente-et-de-transport",
+          "source_type": "official_website",
+          "verified_date": "2026-09-09",
+          "review_due": "2026-12-08",
+          "confidence": 4,
+          "reviewer": "Codex — direct reading of official airline page",
+          "history": [],
+          "quote": "Le transport peut s'effectuer en cabine",
+          "quote_language": "fr",
+          "locator": "Conditions de transport → Transport d'animaux"
+        }
       },
       "hold": {
-        "availability": "offered"
+        "availability": "offered",
+        "source": {
+          "url": "https://www.flycorsair.com/fr/legal/conditions-generales-de-vente-et-de-transport",
+          "source_type": "official_website",
+          "verified_date": "2026-09-09",
+          "review_due": "2026-12-08",
+          "confidence": 4,
+          "reviewer": "Codex — direct reading of official airline page",
+          "history": [],
+          "quote": "Le transport s'effectue en soute",
+          "quote_language": "fr",
+          "locator": "Conditions de transport → Transport d'animaux"
+        }
       },
       "cargo": {
-        "review_state": "legacy_unreviewed"
+        "availability": "offered",
+        "source": {
+          "url": "https://www.flycorsair.com/fr/legal/conditions-generales-de-vente-et-de-transport",
+          "source_type": "official_website",
+          "verified_date": "2026-09-09",
+          "review_due": "2026-12-08",
+          "confidence": 4,
+          "reviewer": "Codex — direct reading of official airline page",
+          "history": [],
+          "quote": "Au-delà de 50 kg, le transport devra s'effectuer par le fret.",
+          "quote_language": "fr",
+          "locator": "Conditions de transport → Transport d'animaux"
+        }
       }
     },
     "channels": [
@@ -22381,10 +22563,34 @@
     ],
     "policies": {
       "cabin": {
-        "availability": "offered"
+        "availability": "offered",
+        "source": {
+          "url": "https://support.frenchbee.com/hc/fr/articles/4408189999633-Quel-type-de-sac-pour-mon-animal-en-cabine",
+          "source_type": "official_website",
+          "verified_date": "2026-09-09",
+          "review_due": "2026-12-08",
+          "confidence": 4,
+          "reviewer": "Codex — direct reading of official airline page",
+          "history": [],
+          "quote": "En cabine vous avez le droit de transporter un chien ou chat par passager.",
+          "quote_language": "fr",
+          "locator": "Quel type de sac pour mon animal en cabine ?"
+        }
       },
       "hold": {
-        "availability": "offered"
+        "availability": "offered",
+        "source": {
+          "url": "https://support.frenchbee.com/hc/fr/articles/360039534611-Puis-je-faire-voyager-mon-animal-avec-moi-dans-l-avion",
+          "source_type": "official_website",
+          "verified_date": "2026-09-09",
+          "review_due": "2026-12-08",
+          "confidence": 4,
+          "reviewer": "Codex — direct reading of official airline page",
+          "history": [],
+          "quote": "Ils peuvent voyager en soute sous certaines conditions",
+          "quote_language": "fr",
+          "locator": "Puis-je faire voyager mon animal avec moi dans l’avion ?"
+        }
       },
       "cargo": {
         "review_state": "legacy_unreviewed"
@@ -24162,10 +24368,34 @@
     ],
     "policies": {
       "cabin": {
-        "availability": "offered"
+        "availability": "offered",
+        "source": {
+          "url": "https://www.iberiaexpress.com/informacion-general/informacion-pasajero/antes-de-volar/mascotas",
+          "source_type": "official_website",
+          "verified_date": "2026-09-09",
+          "review_due": "2026-12-08",
+          "confidence": 4,
+          "reviewer": "Codex — direct reading of official airline page",
+          "history": [],
+          "quote": "podrán ser aceptados para el transporte en cabina determinados animales domésticos",
+          "quote_language": "es",
+          "locator": "Aceptación en cabina de pasajero"
+        }
       },
       "hold": {
-        "availability": "offered"
+        "availability": "offered",
+        "source": {
+          "url": "https://www.iberiaexpress.com/informacion-general/informacion-pasajero/antes-de-volar/mascotas",
+          "source_type": "official_website",
+          "verified_date": "2026-09-09",
+          "review_due": "2026-12-08",
+          "confidence": 4,
+          "reviewer": "Codex — direct reading of official airline page",
+          "history": [],
+          "quote": "pueden ser aceptados como equipaje en bodega",
+          "quote_language": "es",
+          "locator": "Aceptación en bodega"
+        }
       },
       "cargo": {
         "review_state": "legacy_unreviewed"
@@ -28621,10 +28851,36 @@
     ],
     "policies": {
       "cabin": {
-        "availability": "offered"
+        "availability": "offered",
+        "source": {
+          "url": "https://www.lacompagnie.com/fr/plan/special-services",
+          "source_type": "official_website",
+          "verified_date": "2026-09-09",
+          "review_due": "2026-12-08",
+          "confidence": 4,
+          "reviewer": "Codex — direct reading of official airline page",
+          "history": [],
+          "quote": "vos compagnons, jusqu’à 8kg, sac compris, (chiens et chats)",
+          "quote_language": "fr",
+          "locator": "Services optionnels → Animaux"
+        },
+        "max_weight_kg": 8,
+        "weight_includes_carrier": true
       },
       "hold": {
-        "availability": "not_offered"
+        "availability": "not_offered",
+        "source": {
+          "url": "https://www.lacompagnie.com/fr/plan/special-services",
+          "source_type": "official_website",
+          "verified_date": "2026-09-09",
+          "review_due": "2026-12-08",
+          "confidence": 4,
+          "reviewer": "Codex — direct reading of official airline page",
+          "history": [],
+          "quote": "Seul le transport en cabine est autorisé, le transport d’animaux en soute n’est pas proposé.",
+          "quote_language": "fr",
+          "locator": "Services optionnels → Animaux"
+        }
       }
     },
     "channels": [
@@ -30398,10 +30654,34 @@
     ],
     "policies": {
       "cabin": {
-        "availability": "offered"
+        "availability": "offered",
+        "source": {
+          "url": "https://www.luxair.lu/en/node/502/",
+          "source_type": "official_website",
+          "verified_date": "2026-09-09",
+          "review_due": "2026-12-08",
+          "confidence": 4,
+          "reviewer": "Codex — direct reading of official airline page",
+          "history": [],
+          "quote": "welcome them on board either in cabin",
+          "quote_language": "en",
+          "locator": "Travelling with animals → General information and regulations"
+        }
       },
       "hold": {
-        "availability": "offered"
+        "availability": "offered",
+        "source": {
+          "url": "https://www.luxair.lu/en/node/502/",
+          "source_type": "official_website",
+          "verified_date": "2026-09-09",
+          "review_due": "2026-12-08",
+          "confidence": 4,
+          "reviewer": "Codex — direct reading of official airline page",
+          "history": [],
+          "quote": "welcome them on board either in cabin or in hold",
+          "quote_language": "en",
+          "locator": "Travelling with animals → General information and regulations"
+        }
       },
       "cargo": {
         "review_state": "legacy_unreviewed"
