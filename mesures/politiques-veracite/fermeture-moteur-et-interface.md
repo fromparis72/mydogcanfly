@@ -3502,3 +3502,14 @@ Chien de la taille du Golden (A 72, D 67, 30 kg) calculé en cm ; clic sur `in` 
 submit : les trois conseillées portent l'unité `in`, valent les centimètres d'avant ÷ 2,54 arrondis
 au demi-pouce supérieur (± 0,5), et le gabarit reste `XL`. Le scénario retourne le relevé d'avant et
 celui d'après séparément. Un seul build complet à la fin.
+
+### Mesuré sur le dist corrigé (un seul build, `e540882`)
+
+| contrôle | résultat |
+|---|---|
+| caisses | 100 contrôles tenus, 0 en échec (84 → 100 : 16 relevés nouveaux, quatre langues × avant / pouces / valeurs / gabarit) — les 8 rouges d'avant le correctif sont verts |
+| caisses non sourcées, entités, chaîne built-ui | verts ; 178/178 |
+| étape 3 DOM | verte, scellé des licites inchangé (le script du calculateur n'ajoute aucune tournure) |
+| `test:unit` complet, typecheck | verts |
+
+Contre-épreuves complètes sur l'arbre propre : voir le commit suivant.
