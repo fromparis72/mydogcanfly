@@ -87,6 +87,25 @@ const L = {
     reqTitle: T("Minimum interior dimensions calculated from your measurements",
       "Dimensions intérieures minimales calculées à partir des mesures saisies",
       "Dimensiones interiores mínimas calculadas a partir de las medidas introducidas"),
+    /* MICRO-LOT « GABARIT INDICATIF DE CAGE » (09/09/2026, Philippe sur proposition de Codex) : trois informations
+       distinctes — minimales (méthode publiée), conseillées (marge MyDogCanFly), gabarit (repère commercial non
+       normalisé, table MyDogCanFly indicative, VIDE tant que Codex ne l'a pas livrée). */
+    gabaritTitle: T("Indicative crate size", "Gabarit indicatif de cage", "Talla indicativa de la jaula"),
+    gabaritNote: T("Commercial benchmark, not a standard — from the recommended dimensions, using MyDogCanFly's indicative table.",
+      "Repère commercial, pas une norme — dérivé des dimensions conseillées, selon la table indicative MyDogCanFly.",
+      "Referencia comercial, no una norma — derivada de las dimensiones recomendadas, según la tabla indicativa de MyDogCanFly."),
+    gabaritAbsent: T("Indicative size: MyDogCanFly's correspondence table is not published yet — use the dimensions below.",
+      "Gabarit indicatif : la table de correspondance MyDogCanFly n'est pas encore publiée — utilisez les dimensions ci-dessous.",
+      "Talla indicativa: la tabla de correspondencia de MyDogCanFly aún no está publicada — use las dimensiones siguientes."),
+    gabaritWarn: T("Names vary between manufacturers. Always check the interior dimensions of the chosen model.",
+      "Les appellations varient selon les fabricants. Vérifiez toujours les dimensions intérieures du modèle choisi.",
+      "Las denominaciones varían según los fabricantes. Compruebe siempre las dimensiones interiores del modelo elegido."),
+    recTitle: T("Recommended interior dimensions (MyDogCanFly margin: +{0} cm)",
+      "Dimensions intérieures conseillées (marge MyDogCanFly : +{0} cm)",
+      "Dimensiones interiores recomendadas (margen MyDogCanFly: +{0} cm)"),
+    recNote: T("Our recommendation: the calculated minimum plus a {0} cm comfort margin on each dimension. The margin is MyDogCanFly's, not part of the published sizing method.",
+      "Notre recommandation : le minimum calculé plus {0} cm de marge de confort sur chaque dimension. La marge est celle de MyDogCanFly, pas un élément de la méthode de dimensionnement publiée.",
+      "Nuestra recomendación: el mínimo calculado más {0} cm de margen de comodidad en cada dimensión. El margen es de MyDogCanFly, no forma parte del método de dimensionamiento publicado."),
     reqNote: T("Estimated minimum interior dimensions from your measurements. Elbow height and shoulder width are estimated — check that your dog can stand up, turn around and lie down comfortably.", "Estimation des dimensions intérieures minimales à partir de tes mesures. La hauteur du coude et la largeur des épaules sont estimées ; vérifie que ton chien peut se tenir debout, se retourner et s'allonger confortablement.", "Estimación de las dimensiones interiores mínimas a partir de tus medidas. La altura del codo y el ancho de los hombros son estimados: comprueba que tu perro pueda ponerse de pie, darse la vuelta y tumbarse cómodamente."),
     brachyNote: T("Snub-nosed breed: MyDogCanFly adds a +10% comfort margin for breathing ease — this is our own margin, not a universal IATA formula.", "Race brachycéphale : marge de confort MyDogCanFly de +10 % pour le confort respiratoire — ce n'est pas une formule IATA universelle.", "Raza de hocico chato: MyDogCanFly añade un margen de confort de +10 % para facilitar la respiración; no es una fórmula IATA universal."),
     /* L'EXPLICATION LÉGITIME, GARDÉE À PART DU CHIFFRE. Citer la méthode de dimensionnement
@@ -205,6 +224,7 @@ const L = {
 
 <script>
   import { attachCombobox, type ComboItem } from "../lib/combobox";
+  import { dimensionsConseillees, gabaritPour, MARGE_CONSEILLEE_CM, TABLE_GABARIT_INDICATIF } from "../lib/gabarit-indicatif";
   const L = JSON.parse(document.getElementById("crx-labels")?.textContent ?? "{}");
   const S = L.s ?? {};
   const byId = (id: string) => document.getElementById(id);
@@ -332,6 +352,10 @@ const L = {
     const k = brachy ? 1.1 : 1;
     // IATA formula (interior minimums), +10% for snub-nosed. L = A + ½B, W = C × 2, H = D.
     const Lc = (a + bEst / 2) * k, Wc = (c * 2) * k, Hc = d * k;
+    /* Trois informations distinctes (micro-lot gabarit, 09/09/2026) : le minimum (méthode publiée), les
+       conseillées (marge MyDogCanFly, en cm, convertie à l'affichage), le gabarit (table indicative, ou rien). */
+    const rec = dimensionsConseillees({ l: Lc, w: Wc, h: Hc });
+    const gabarit = gabaritPour(rec, TABLE_GABARIT_INDICATIF);
 
     // Airline cabin/hold verdict. Cabin is soft-bag (dog lies down): decided by WEIGHT + footprint
     // (length A, shoulder width C) vs the carrier — NOT the standing-height hold formula.
@@ -395,11 +419,19 @@ const L = {
 
     out.hidden = false;
     out.innerHTML = `
-      <div class="crx-card">
-        <h3>${esc(S.reqTitle)}</h3>
-        <div class="crx-dims"><span><b>${fmt(Lc)}</b><i>L</i></span><span><b>${fmt(Wc)}</b><i>${uLabel() === "cm" ? "l" : "W"}</i></span><span><b>${fmt(Hc)}</b><i>H</i></span></div>
+      <div class="crx-card crx-card--gabarit">
+        <h3>${esc(S.gabaritTitle)}</h3>
+        ${gabarit
+          ? `<div class="crx-gabarit"><span class="crx-gabarit__code" data-gabarit="${esc(gabarit)}">${esc(gabarit)}</span><span class="crx-gabarit__note">${esc(S.gabaritNote)}</span></div>`
+          : `<p class="crx-sub crx-gabarit__absent">${esc(S.gabaritAbsent)}</p>`}
+        <h4 class="crx-h4">${esc(S.recTitle.replace("{0}", String(MARGE_CONSEILLEE_CM)))}</h4>
+        <div class="crx-dims crx-dims--rec"><span><b>${fmt(rec.l)}</b><i>L</i></span><span><b>${fmt(rec.w)}</b><i>${uLabel() === "cm" ? "l" : "W"}</i></span><span><b>${fmt(rec.h)}</b><i>H</i></span></div>
+        <p class="crx-sub">${esc(S.recNote.replace("{0}", String(MARGE_CONSEILLEE_CM)))}</p>
+        <h4 class="crx-h4 crx-h4--min">${esc(S.reqTitle)}</h4>
+        <div class="crx-dims crx-dims--min"><span><b>${fmt(Lc)}</b><i>L</i></span><span><b>${fmt(Wc)}</b><i>${uLabel() === "cm" ? "l" : "W"}</i></span><span><b>${fmt(Hc)}</b><i>H</i></span></div>
         <p class="crx-sub">${esc(S.reqNote)}${brachy ? " " + esc(S.brachyNote) : ""}</p>
         <p class="crx-sub">${esc(S.methodNote)}</p>
+        <p class="crx-warn">${esc(S.gabaritWarn)}</p>
       </div>
       <div class="crx-card">
         <h3>${esc(S.cabinTitle)}</h3>
@@ -455,6 +487,17 @@ const L = {
   :global(.crx-dims b) { display: block; font-size: 20px; font-weight: 800; color: var(--mdcf-ink); }
   :global(.crx-dims i) { font-style: normal; font-size: 11px; color: var(--mdcf-muted); font-weight: 700; }
   :global(.crx-sub) { margin: 10px 0 0; font-size: 12.5px; color: var(--mdcf-muted); line-height: 1.4; }
+  :global(.crx-card--gabarit) { grid-column: 1/-1; }
+  :global(.crx-gabarit) { display: flex; align-items: center; gap: 16px; flex-wrap: wrap; margin: 0 0 12px; }
+  /* ≈ 4 × le texte courant du calculateur (13,5 px) : l'élément dominant de la carte. */
+  :global(.crx-gabarit__code) { font-size: 54px; line-height: 1; font-weight: 900; letter-spacing: -.02em; text-transform: uppercase; color: var(--mdcf-accent-ink,#b4530a); }
+  :global(.crx-gabarit__note) { flex: 1; min-width: 200px; font-size: 13px; color: var(--mdcf-muted); line-height: 1.4; }
+  :global(.crx-h4) { margin: 12px 0 8px; font-size: 13px; font-weight: 800; color: var(--mdcf-ink); }
+  :global(.crx-h4--min) { color: var(--mdcf-muted); font-weight: 700; }
+  :global(.crx-dims--rec b) { font-size: 22px; }
+  :global(.crx-dims--min span) { background: transparent; border: 1px dashed var(--mdcf-line); }
+  :global(.crx-dims--min b) { font-size: 17px; color: var(--mdcf-muted); }
+  :global(.crx-warn) { margin: 12px 0 0; padding: 10px 12px; border-radius: 8px; font-size: 13.5px; font-weight: 700; color: var(--mdcf-accent-ink,#b4530a); background: var(--mdcf-accent-soft,#fff4e6); }
   :global(.crx-size) { display: flex; align-items: baseline; gap: 12px; flex-wrap: wrap; }
   :global(.crx-size__code) { font-size: 32px; font-weight: 800; letter-spacing: -.01em; text-transform: uppercase; color: var(--mdcf-accent-ink,#b4530a); line-height: 1; }
   :global(.crx-size__d) { font-size: 14px; color: var(--mdcf-muted); font-weight: 600; }

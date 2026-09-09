@@ -3270,3 +3270,85 @@ transmises ; la bascule est prouvée par celle-ci, qui la recouvre. Relecture en
 (accueil 142 / 34, fiche Thai citant THAI Cargo, fiche IndiGo à trois refus) : à faire par Codex,
 ce conteneur n'atteignant pas le site.
 
+### Post-scriptum — troisième bascule du 09/09 : réconciliation ciblée (#43) en production
+
+Ordre de fusion de Philippe (« feu vert pour #43 »), fusion `bb53d00`, déploiement par Philippe
+depuis son poste, sortie transmise :
+
+| | |
+|---|---|
+| Worker | `sha` `bb53d00806111dee6c6b269f4b8c4578105e3209`, `worker_version_id` `fd61fd5a-2727-4e3c-b3c7-f9590d889873`, démarrage 236 ms |
+| Pages | sortie de `npm run release` non transmise pour cette bascule — l'identifiant Pages n'est donc pas consigné |
+| santé | `/v1/health` : `ok`, `v1`, le SHA de `main` fusionné |
+
+Relecture en ligne (Air Austral « < 8 kg » sur la fiche et la carte du Finder, Aer Lingus soute et
+Air China cabine sous conditions) : à faire par Codex, ce conteneur n'atteignant pas le site.
+
+## Annexe 34 — Micro-lot isolé « gabarit indicatif de cage » (09/09/2026, classement A/B)
+
+Proposition de Codex, transmise et confirmée par Philippe (« transmets-lui le bloc tel quel »). Lot
+séparé des politiques compagnies, branche `lot/gabarit-indicatif-cage` partie de `main` (`05f0f3d`).
+
+### Trois informations distinctes dans le calculateur
+
+| | source | présentation |
+|---|---|---|
+| `dimensions_minimales` | méthode de dimensionnement publiée, depuis les mesures RÉELLES saisies (inchangé) | gras, secondaires (bloc en pointillés, chiffres en gris) |
+| `dimensions_conseillees` | minimales + marge MyDogCanFly de **3 cm** sur chaque dimension — la borne haute du conseil déjà affiché (« 2–3 cm »), NOTRE recommandation, dite comme telle | gras, dominantes parmi les dimensions |
+| `gabarit_indicatif` | S, M, L, XL, XXL depuis les conseillées, par la table MyDogCanFly indicative | ≈ 4 × le texte courant (54 px sur 13,5), élément dominant de la carte |
+
+Avertissement visible en bas de carte, quatre langues : « Les appellations varient selon les
+fabricants. Vérifiez toujours les dimensions intérieures du modèle choisi. »
+
+### La table n'est pas inventée
+
+`packages/ui/src/lib/gabarit-indicatif.ts` porte le contrat (`nature: indicatif`, `auteur:
+MyDogCanFly`, `version`, `classes[]` avec maxima intérieurs par gabarit) et une table **vide**,
+version « 0 — table attendue (Codex prépare la correspondance et ses limites) ». Tant qu'elle est
+vide, `gabaritPour` rend `null` et la carte dit « la table de correspondance MyDogCanFly n'est pas
+encore publiée — utilisez les dimensions ci-dessous ». Remplir la table sera un mouvement nommé,
+avec sa version. La sélection prend la plus petite classe, dans l'ordre S → XXL, dont les maxima
+contiennent les conseillées, limite incluse ; au-delà de XXL, rien — jamais un gabarit par défaut ;
+une classe mal formée invalide la table entière.
+
+### Ce qui ne revient pas, vérifié
+
+Aucun couple 100–700 / taille (garde `test-caisses-non-sourcees.mjs` inchangée, plus un témoin
+dans `test-gabarit-indicatif.mjs`) ; aucune « cage approuvée/homologuée » ; aucune estimation depuis
+la race seule (le module ne lit pas la race) ; aucun modèle commercial. Les phrases nouvelles
+n'emploient pas le mot « IATA » (« méthode de dimensionnement publiée »), pour ne pas toucher au
+registre des jetons de l'étape 3.
+
+### Vérification proportionnée (A/B)
+
+`test-gabarit-indicatif.mjs` (contrat, table vide, table synthétique aux limites, ce qui ne
+revient pas), harnais des caisses relevant les deux blocs et le gabarit (conseillées = minimales + 3
+dans les quatre langues, aucun gabarit tant que la table est vide, avertissement visible), table
+portugaise des phrases en ligne complétée. Un seul build complet à la fin du lot.
+
+
+### Erreurs nommées pendant le lot
+
+- Le témoin « aucun couple 100–700 / taille » rougissait sur l'en-tête de commentaire du
+  composant, qui NOMME l'ancien couple « 500 / XL » comme perte (annexe du 05/09). Le témoin mesure
+  désormais le code et les phrases livrées, commentaires retirés, et s'auto-contrôle sur
+  « 500 / XL » et « XL (500) » pour prouver qu'il mord encore. L'erreur nommée en commentaire
+  n'est pas effacée.
+- L'inventaire de l'étape 3 (`6ter`, contrat « zéro affirmation publique dans les surfaces
+  applicatives ») a relevé le mot « homologuée » dans le commentaire d'en-tête du module, écrit
+  pour dire ce qui ne revient pas. Même trajet que la ligne de `FlightFinder.astro` du 30/08 :
+  le commentaire est reformulé sans le mot, le contrat reste à zéro, aucune exception de
+  classement n'est ajoutée.
+
+### Mesuré sur le dist (branche intégrant `main` `bb53d00`, un seul build)
+
+| contrôle | résultat |
+|---|---|
+| caisses (`test-crate-harness.cjs`) | 72 contrôles tenus, 0 en échec (56 → 72 : les 16 relevés nouveaux — conseillées = minimales + 3, aucun gabarit tant que la table est vide, avertissement visible, dans les quatre langues) |
+| caisses non sourcées (`--dist`) | aucune taille non sourcée publiée ; le minimum calculé depuis les mesures l'est |
+| entités | 178 OK, 0 FAIL (pas de fuite portugaise sur les six phrases nouvelles) |
+| étape 3 DOM | 3 121 pages, aucune affirmation interdite, zéro dans les surfaces applicatives |
+| chaîne `test:built-ui`, tarifs, montants publiés et propagation, affirmations retirées, accueil, dette Astro | verts |
+| `test:unit` complet, typecheck | verts sur l'état fusionné |
+
+Contre-épreuves complètes sur l'arbre propre : voir le commit suivant.
