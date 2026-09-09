@@ -210,6 +210,8 @@ const PlacementDecisionShape = z.discriminatedUnion("status", [
     weight_limit_kg: z.number().positive().optional(),
     /** `true` : chien + contenant ; `false` : chien seul, le contenant s'ajoute (lot 2). */
     weight_limit_includes_carrier: z.boolean().optional(),
+    /** La borne (09/09/2026) : `lt` exclut la valeur (« inférieur à »), `lte` l'inclut. Absent = `lte`. */
+    weight_limit_bound: z.enum(["lt", "lte"]).optional(),
     source: DecisionSource.optional(), evidence: EvidenceArray.optional() }).strict(),
   z.object({ placement: Placement, status: z.literal("denied"), allowed: z.literal(false),
     source: DecisionSource.optional(), evidence: EvidenceArray.optional() }).strict(),
@@ -330,6 +332,8 @@ export function makePlacementDecision(
   weightLimitKg?: number,
   /** Le plafond inclut-il le contenant ? `false` = plafond du chien seul (lot 2). Ignoré sans plafond. */
   weightLimitIncludesCarrier?: boolean,
+  /** La borne du plafond (09/09/2026) : `lt` exclut la valeur. Ignorée sans plafond. */
+  weightLimitBound?: "lt" | "lte",
 ): PlacementDecision {
   /* La preuve est facultative : la plupart des politiques n'en ont pas d'auditée, et une décision
      sans source vaut mieux qu'une décision avec une source fabriquée. Quand elle existe, elle est
@@ -348,7 +352,7 @@ export function makePlacementDecision(
           source: preuve, evidence: preuves }
       : status === "accepted_with_conditions"
         ? { placement, status, allowed: true, source: preuve, evidence: preuves,
-            ...(weightLimitKg ? { weight_limit_kg: weightLimitKg, ...(typeof weightLimitIncludesCarrier === "boolean" ? { weight_limit_includes_carrier: weightLimitIncludesCarrier } : {}) } : {}) }
+            ...(weightLimitKg ? { weight_limit_kg: weightLimitKg, ...(typeof weightLimitIncludesCarrier === "boolean" ? { weight_limit_includes_carrier: weightLimitIncludesCarrier } : {}), ...(weightLimitBound ? { weight_limit_bound: weightLimitBound } : {}) } : {}) }
         : { placement, status, allowed: status === "allowed", source: preuve, evidence: preuves },
   );
 }

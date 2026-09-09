@@ -135,7 +135,8 @@ export function computeBreedTravel(breedId: string, kbOverride?: unknown): Breed
     else if (stCabin !== "inconnu") {
       if (stCabin === "denied") cabinNo++;
       else if (c.max_weight_kg == null) { cabinUnkLimit++; if (w <= 8) { cabinEligible = true; } }
-      else if (w <= c.max_weight_kg) { cabinWithin++; cabinEligible = true; cabinReasonMax = c.max_weight_kg; cabinIncl = typeof c.weight_includes_carrier === "boolean" ? c.weight_includes_carrier : undefined; }
+      /* Borne stricte (09/09/2026) : `lt` exclut la valeur — un chien pesant exactement le plafond est « au-dessus ». */
+      else if (c.weight_limit_bound === "lt" ? w < c.max_weight_kg : w <= c.max_weight_kg) { cabinWithin++; cabinEligible = true; cabinReasonMax = c.max_weight_kg; cabinIncl = typeof c.weight_includes_carrier === "boolean" ? c.weight_includes_carrier : undefined; }
       else cabinOver++;
     }
     // hold

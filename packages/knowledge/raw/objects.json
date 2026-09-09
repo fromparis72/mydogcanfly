@@ -20181,6 +20181,12 @@
           },
           "hold": {
             "availability": "offered",
+            "conditions": {
+              "en": "Pets must be booked through a pet agent and travel in the aircraft hold, subject to the operating airline, aircraft and route: Aer Lingus Regional (operated by Emerald Airlines) does not carry pets, and some aircraft holds are not ventilated.",
+              "fr": "Réservation obligatoire via un agent animalier, transport en soute, sous réserve de l'opérateur, de l'appareil et de la route : Aer Lingus Regional (opéré par Emerald Airlines) ne transporte pas d'animaux, et certaines soutes ne sont pas ventilées.",
+              "es": "Reserva obligatoria a través de un agente de mascotas y transporte en bodega, sujeto a la aerolínea operadora, el avión y la ruta: Aer Lingus Regional (operado por Emerald Airlines) no transporta mascotas, y algunas bodegas no están ventiladas.",
+              "pt": "Reserva obrigatória através de um agente de animais e transporte no porão, sujeito à companhia operadora, à aeronave e à rota: a Aer Lingus Regional (operada pela Emerald Airlines) não transporta animais, e alguns porões não são ventilados."
+            },
             "source": {
               "url": "https://www.aerlingus.com/localized/en/modals/baggage-information.html",
               "source_type": "official_website",
@@ -21054,6 +21060,7 @@
             "availability": "offered",
             "max_weight_kg": 8,
             "weight_includes_carrier": true,
+            "weight_limit_bound": "lt",
             "source": {
               "url": "https://www.air-austral.com/preparer-mon-vol/demandes-speciales/animaux.html",
               "source_type": "official_website",
@@ -22060,6 +22067,12 @@
         "policy": {
           "cabin": {
             "availability": "offered",
+            "conditions": {
+              "en": "Pet dogs and cats on flights operated by Air China only: advance booking, a maximum of 2 pets per flight and 1 per passenger, age, breed, route, documentation and under-seat carrier restrictions apply. Not extended to partner-operated flights.",
+              "fr": "Chiens et chats de compagnie sur les vols opérés par Air China uniquement : réservation préalable, 2 animaux au maximum par vol et 1 par passager, restrictions d'âge, de race, de route, de documents et de contenant sous le siège. Non étendu aux vols opérés par un partenaire.",
+              "es": "Perros y gatos de compañía solo en vuelos operados por Air China: reserva previa, máximo 2 mascotas por vuelo y 1 por pasajero, restricciones de edad, raza, ruta, documentación y transportín bajo el asiento. No se extiende a vuelos operados por socios.",
+              "pt": "Cães e gatos de companhia apenas em voos operados pela Air China: reserva prévia, no máximo 2 animais por voo e 1 por passageiro, restrições de idade, raça, rota, documentação e caixa sob o assento. Não se estende a voos operados por parceiros."
+            },
             "source": {
               "url": "https://m.airchina.com.cn/ac/c/invoke/specialService/petCabinAgreement%40pg",
               "source_type": "official_website",

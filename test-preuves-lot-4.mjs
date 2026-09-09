@@ -142,12 +142,13 @@ console.log("\n=== Étage 2 — Paris → Dubaï, Londres → Sydney, Paris → 
   check("Qantas soute ET fret, Golden 32 kg : deux anciens POLICY_STALE RÉACTIVÉS sur citation → sous conditions",
     canal(syd, "airline_qantas", "hold")?.status === "accepted_with_conditions" && canal(syd, "airline_qantas", "cargo")?.status === "accepted_with_conditions");
   const dub = decide("airport_cdg", "airport_dub", GOLDEN_32);
-  /* MESURÉ après arbitrage : la soute est citée et « sous conditions » dans la politique, mais une RÈGLE héritée non
-     citée (`rule_aer_lingus_no_hold`) garde le canal « à confirmer » sur Paris → Dublin, en la nommant. Même dette que
-     Philippine cabine et Air China cabine : les règles compagnies sont hors du périmètre des lots d'import. */
+  /* HISTOIRE : après l'arbitrage, la règle héritée non citée `rule_aer_lingus_no_hold` gardait encore le canal « à
+     confirmer ». RÉCONCILIATION CIBLÉE (Philippe, 09/09/2026, sur décision de Codex) : « une règle historique non
+     citée ne peut pas avoir priorité sur une politique officielle plus récente et citée » — la règle est RETIRÉE, ses
+     seules restrictions sourcées vivent en conditions. Le verdict cité atteint le Finder. */
   const alH = canal(dub, "airline_aer_lingus", "hold");
-  check("Aer Lingus soute (Paris → Dublin), Golden 32 kg : citée sur arbitrage, mais « à confirmer » par la règle héritée non citée `rule_aer_lingus_no_hold`, NOMMÉE ; fret non décidé → à confirmer",
-    alH?.status === "confirmation_required" && (alH?.confirmation_causes ?? []).some((x) => x.rule_id === "rule_aer_lingus_no_hold") && canal(dub, "airline_aer_lingus", "cargo")?.status === "confirmation_required", JSON.stringify(alH));
+  check("Aer Lingus soute (Paris → Dublin), Golden 32 kg : SOUS CONDITIONS dans le Finder — la règle héritée est retirée ; fret non décidé → à confirmer",
+    alH?.status === "accepted_with_conditions" && canal(dub, "airline_aer_lingus", "cargo")?.status === "confirmation_required", JSON.stringify(alH));
 }
 
 console.log("\n=== Étage 2 — Paris → Rome, New York → Los Angeles, Londres → Los Angeles, Seattle → Los Angeles ===");

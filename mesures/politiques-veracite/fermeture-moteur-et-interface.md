@@ -3194,3 +3194,79 @@ avec l'arbitrage en commentaire.
   si la ligne du manifeste porte encore la décision auditée d'origine ; un manifeste falsifié rougit.
 - Caisses 56/56 (30 limites, 3 refus totaux), accueil, affirmations retirées, dette Astro 165 : verts.
 
+## Annexe 33 — Réconciliation ciblée : quatre décisions de Philippe sur avis de Codex (09/09/2026)
+
+Après le correctif d'arbitrages (annexe 32), Philippe a tranché les quatre points restés ouverts.
+Branche `lot/reconciliation-arbitrages`, partie de `main` fusionné (`05f0f3d`).
+
+### 1. Bangkok Airways fret — `case_by_case` conservé
+
+« Ne surtout pas publier “sous conditions” sur tout le réseau : la source refuse explicitement
+l'international. Tant que le modèle ne sait pas exprimer la portée par route, “à confirmer” est
+le seul état global honnête. » Rien ne change. **Dette prioritaire nommée** : une règle
+géographique permettant « intérieur sous conditions / international refusé » — une règle métier
+nouvelle, hors de cette réconciliation.
+
+### 2. Air Austral — borne stricte modélisée
+
+« “Inférieur à 8 kg” ne doit pas être encodé comme ≤ 8 kg. Ajouter un comparateur typé. » Fait :
+`weight_limit_bound: "lt" | "lte"` traverse le schéma, la projection (ajouté à la liste des champs
+communs LE JOUR MÊME — leçon du 08/09), l'ingestion (les deux branches, et le schéma de fiche : ma
+première passe l'avait oublié, l'ingestion a rejeté Air Austral « Unrecognized key » et la baseline
+figée à cet instant était fausse — refaite), l'importeur (table `SEUIL_BORNE_STRICTE`), le moteur
+(`lt` : refus dès l'égalité), le contrat du Finder, et l'interface (calculateur de caisses, pages
+aéroport et pays, fiche, carte du Finder, quatre libellés traduits). Mesuré sur les 37 seuils
+écrits : **une seule borne stricte**, Air Austral ; les 36 autres disent « jusqu'à », « maximum »,
+« ne dépasse pas ». Contre-épreuves : 7,9 kg sous conditions, 8,0 kg refusé, 8,1 kg refusé ; en
+miroir SWISS (borne inclusive) 8,0 kg sous conditions, 8,1 refusé. Aucun arrondi.
+
+### 3 et 4. Aer Lingus soute, Air China cabine — règles héritées retirées
+
+Principe de Philippe : « une règle historique non citée ne peut pas avoir priorité sur une
+politique officielle plus récente et citée ». `rule_aer_lingus_no_hold` (research, 10/07, page
+tombée en 404 puis remplacée) et `rule_air_china_no_cabin` (research, 10/07, page airchina.us)
+contredisaient les pages officielles relues le 09/09 : **retirées** de `rules.json` (401 → 399),
+conservées telles quelles dans `mesures/preuves/correctif-arbitrages-2026-09-09/regles-retirees-…`.
+Réconciliation ciblée : seules les restrictions présentes dans les sources officielles restent, en
+`conditions` quadrilingues (Aer Lingus : agent animalier, opérateur, appareil, route, Aer Lingus
+Regional exclue ; Air China : vols opérés par Air China, réservation, 2 animaux par vol et 1 par
+passager, âge, race, route, documents, contenant sous le siège — « domestic » = chiens domestiques).
+Le verdict cité atteint le Finder : Aer Lingus soute, Golden, Paris → Dublin : sous conditions ;
+Air China cabine, Cavalier, Paris → Pékin : sous conditions. Un Golden de 32 kg reste « à
+confirmer » chez Air China par la règle GLOBALE de poids, non citée elle aussi — nommée, hors de
+cette réconciliation (Air China ne publie pas de plafond cité).
+
+### Mesuré
+
+| | avant (correctif) | après (réconciliation) |
+|---|---|---|
+| règles `deny` officielles non citées | 129 | 127 |
+| règles | 401 | 399 |
+| témoin hérité | 29 190 | 29 484 |
+| baseline | figée correctif | figée `reconciliation-arbitrages-apres` : 56 cartes / 1 560, 2 compagnies (Air China, Aer Lingus), 36 → sous conditions, aucun refus, aucun verdict déplacé |
+| politiques citées, registre, canaux contradictoires | inchangés (178 ; 178/51/74/3 ; 263) | inchangés |
+
+### Mouvements nommés
+
+frontière (règles deny 127), carries (29 484), baseline (chaîne, preuve permanente de la
+réconciliation), legacy (chaîne), harnais des lots 4, 6, 7 et du correctif (les quatre dettes
+nommées deviennent des faits vérifiés). Nouveau harnais `test-preuves-reconciliation.mjs`
+(18 contrôles), dans test:unit. Erreurs nommées : schéma de fiche oublié à la première passe ;
+deux glissements dans mes harnais (liste d'identifiants, chien témoin).
+
+### Post-scriptum — seconde bascule du 09/09 : lots 4 à 9 et correctif en production
+
+Fusion de #42 sur ordre de Philippe (« Feu vert pour PR »), `main` = `05f0f3d`. Déploiement par
+Philippe, sorties collées telles quelles :
+
+| | |
+|---|---|
+| Worker | `sha` `05f0f3d54ad69d6156477f18e039302250e03f98`, `worker_version_id` `3fb64b62-cf82-4a6b-87bc-e74d4d633590` |
+| Pages | `npm run release` : « build indexable et complet — déploiement autorisé », 2 132 fichiers, https://24837599.mydogcanfly-v2-preview.pages.dev |
+| contrôles | `/`, `/fr/`, `/fr/countries/fr/`, `/fr/airlines/thai-airways/`, `/fr/airlines/indigo/` : cinq `200` |
+
+Non consigné : les sorties du premier déploiement du jour (lots 4 à 6, `3666bb6`) n'ont pas été
+transmises ; la bascule est prouvée par celle-ci, qui la recouvre. Relecture en ligne du contenu
+(accueil 142 / 34, fiche Thai citant THAI Cargo, fiche IndiGo à trois refus) : à faire par Codex,
+ce conteneur n'atteignant pas le site.
+

@@ -126,6 +126,12 @@ const PlacementPolicyCommon = {
    *  la règle du dossier de preuves, arbitrée par Philippe. Absent : le seuil n'est pas
    *  qualifié, le moteur ne s'en sert pas pour refuser. */
   weight_includes_carrier: z.boolean().optional(),
+  /** LA BORNE DU SEUIL (09/09/2026, arbitrage Codex/Philippe — règle des seuils : chiffre, unité,
+   *  comparaison, base pesée). `lte` (« jusqu'à », « maximum », « ne dépasse pas ») inclut la valeur ;
+   *  `lt` (« inférieur à », « less than ») l'exclut : un chien pesant exactement le plafond est refusé.
+   *  Absent = `lte`, la forme de 36 des 37 seuils écrits ; `lt` n'est écrit que quand la phrase citée
+   *  le dit (Air Austral cabine, « inférieur à 8 kg »). Aucun arrondi : 8 reste 8. */
+  weight_limit_bound: z.enum(["lt", "lte"]).optional(),
   carrier_dims_cm: z.object({ l: z.number(), w: z.number(), h: z.number() }).optional(),
   fee: z.string().optional(),                        // as published, e.g. "€125 (intra-Europe)"
   conditions: LocalizedText.optional(),
@@ -307,8 +313,10 @@ export function projectPlacementPolicy(authored: PlacementPolicyAuthored): Place
      `weight_includes_carrier` au schéma et au moteur, mais pas à cette liste — la projection le
      perdait, et le moteur ne refusait donc jamais au seuil. Attrapé en écrivant le témoin
      (`test-quatrieme-etat.mjs`), pas en relisant. */
-  const { max_weight_kg, weight_includes_carrier, carrier_dims_cm, fee, conditions, brachy_allowed, source, source_derived, derived_from_fiche } = authored;
-  const common = { max_weight_kg, weight_includes_carrier, carrier_dims_cm, fee, conditions, brachy_allowed, source, source_derived, derived_from_fiche };
+  /* `weight_limit_bound` ajouté à cette liste LE JOUR MÊME de son entrée au schéma (09/09/2026) — la leçon du 08/09
+     ci-dessus : un champ absent d'ici est perdu par la projection, et le moteur ne le voit jamais. */
+  const { max_weight_kg, weight_includes_carrier, weight_limit_bound, carrier_dims_cm, fee, conditions, brachy_allowed, source, source_derived, derived_from_fiche } = authored;
+  const common = { max_weight_kg, weight_includes_carrier, weight_limit_bound, carrier_dims_cm, fee, conditions, brachy_allowed, source, source_derived, derived_from_fiche };
   /* Donnée non revérifiée : à confirmer, cause explicitement NÔTRE — jamais une incertitude
      attribuée à la compagnie. Placée en tête parce qu'elle est la seule branche dont le
      discriminant ne peut coexister avec un autre ; l'ordre ne change rien au résultat, il rend

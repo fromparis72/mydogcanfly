@@ -158,10 +158,12 @@ console.log("\n=== Étage 2 — Paris → Riyad, Pékin, Nairobi, Amman ; Johann
     canal(ruh, "airline_saudia", "hold")?.status === "accepted_with_conditions" && canal(ruh, "airline_saudia", "cargo")?.status === "confirmation_required");
   const pek = decide("airport_cdg", "airport_pek", GOLDEN_32), pekC = decide("airport_cdg", "airport_pek", CAVALIER_6);
   const acC = canal(pekC, "airline_air_china", "cabin");
-  /* Après arbitrage : la cabine est citée et « sous conditions » dans la politique, mais la RÈGLE héritée non citée
-     `rule_air_china_no_cabin` garde le canal « à confirmer » sur Paris → Pékin, en la nommant — dette hors périmètre. */
-  check("Air China cabine, Cavalier 6 kg : citée sur arbitrage, mais « à confirmer » par la règle héritée non citée `rule_air_china_no_cabin`, NOMMÉE — jamais un oui, jamais un refus prouvé",
-    acC?.status === "confirmation_required" && (acC?.confirmation_causes ?? []).some((x) => x.rule_id === "rule_air_china_no_cabin"), JSON.stringify(acC));
+  /* HISTOIRE : après l'arbitrage, `rule_air_china_no_cabin` (héritée, non citée) gardait la cabine « à confirmer ».
+     RÉCONCILIATION CIBLÉE (Philippe, 09/09/2026, sur décision de Codex) : la règle est RETIRÉE, ses restrictions
+     sourcées vivent en conditions. Un Golden de 32 kg reste « à confirmer » par la règle GLOBALE de poids, non citée
+     elle aussi — nommée, hors de cette réconciliation. */
+  check("Air China cabine, Cavalier 6 kg : SOUS CONDITIONS dans le Finder — la règle héritée est retirée ; Golden 32 kg : « à confirmer » par `rule_global_cabin_weight_cap`, nommée",
+    acC?.status === "accepted_with_conditions" && canal(pek, "airline_air_china", "cabin")?.status === "confirmation_required" && (canal(pek, "airline_air_china", "cabin")?.confirmation_causes ?? []).some((x) => x.rule_id === "rule_global_cabin_weight_cap"), JSON.stringify(acC));
   check("Air China soute, Golden 32 kg : sous conditions (demande préalable citée) ; fret non décidé → à confirmer",
     canal(pek, "airline_air_china", "hold")?.status === "accepted_with_conditions" && canal(pek, "airline_air_china", "cargo")?.status === "confirmation_required");
   const nbo = decide("airport_cdg", "airport_nbo", GOLDEN_32), nboC = decide("airport_cdg", "airport_nbo", CAVALIER_6);

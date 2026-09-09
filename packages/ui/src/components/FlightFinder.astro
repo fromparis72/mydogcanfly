@@ -164,6 +164,9 @@ const labels = {
   acceptedConditions: T("accepted under the airline's conditions — documented by a cited official source", "accepté sous conditions de la compagnie — documenté par une source officielle citée", "aceptado bajo las condiciones de la aerolínea: documentado por una fuente oficial citada"),
   weightLimitCombined: t(locale, "air.cond.weight_limit"),
   weightLimitDog: t(locale, "air.cond.weight_limit_dog"),
+  /* Borne stricte (09/09/2026) : « inférieur à », la valeur est exclue — le libellé le dit. */
+  weightLimitCombinedLt: t(locale, "air.cond.weight_limit_lt"),
+  weightLimitDogLt: t(locale, "air.cond.weight_limit_dog_lt"),
   confidence: T("confidence", "confiance", "confianza"),
   answer: {
     compatible: t(locale, "answer.compatible"),
@@ -700,7 +703,8 @@ const labels = {
                       if (d.status !== "accepted_with_conditions") continue;
                       const cap = d.placement === "cabin" ? L.cabinShort : d.placement === "hold" ? L.holdShort : L.cargoShort;
                       /* `weight_limit_includes_carrier === false` : plafond du CHIEN SEUL (lot 2) — la carte le dit. */
-                      const seuil = d.weight_limit_kg ? ` · ${esc((d.weight_limit_includes_carrier === false ? L.weightLimitDog : L.weightLimitCombined).replace("{kg}", String(d.weight_limit_kg)))}` : "";
+                      const strict = d.weight_limit_bound === "lt";
+                      const seuil = d.weight_limit_kg ? ` · ${esc((d.weight_limit_includes_carrier === false ? (strict ? L.weightLimitDogLt : L.weightLimitDog) : (strict ? L.weightLimitCombinedLt : L.weightLimitCombined)).replace("{kg}", String(d.weight_limit_kg)))}` : "";
                       const src = d.source && d.source.url ? ` — ${esc(host(d.source.url))}${d.source.verified_date ? ` · ${esc(d.source.verified_date)}` : ""}` : "";
                       lignes.push(`<div class="acard__accepted">✓ ${esc(cap)} : ${esc(L.acceptedConditions)}${seuil}${src}</div>`);
                     }

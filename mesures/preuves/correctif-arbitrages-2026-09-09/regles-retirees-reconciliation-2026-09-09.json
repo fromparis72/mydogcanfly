@@ -1,0 +1,100 @@
+[
+ {
+  "id": "rule_aer_lingus_no_hold",
+  "scope": {
+   "type": "airline",
+   "id": "airline_aer_lingus"
+  },
+  "category": "placement",
+  "criticality": "medium",
+  "applies_when": {
+   "any": [
+    {
+     "fact": "placement",
+     "op": "eq",
+     "value": "hold"
+    }
+   ]
+  },
+  "effect": {
+   "action": "deny",
+   "placement": [
+    "hold"
+   ]
+  },
+  "params": {},
+  "rationale": "Dogs are not accepted as accompanied checked baggage in the hold; they travel as manifest cargo.",
+  "rationale_i18n": {
+   "fr": "Les chiens ne sont pas acceptés en bagage accompagné en soute ; ils voyagent en fret."
+  },
+  "source": {
+   "url": "https://www.aerlingus.com/prepare/bags/travelling-with-pets/",
+   "source_type": "official_website",
+   "verified_date": "2026-07-10",
+   "review_due": "2026-10-08",
+   "confidence": 3,
+   "reviewer": "research",
+   "history": [
+    {
+     "date": "2026-07-10",
+     "reviewer": "research",
+     "note": "Wave-1 airline import — verified from the airline's official pet policy."
+    },
+    {
+     "date": "2026-08-27",
+     "reviewer": "MyDogCanFly Data Team",
+     "note": "URL de la source remplacée : l ancienne adresse répond HTTP 404 (constaté aux deux runs de fraîcheur, 26 et 27/08/2026). Nouvelle adresse officielle à vérification humaine avant fusion. Ancienne URL : https://www.aerlingus.com/support/baggage/special-and-sports-items/"
+    },
+    {
+     "date": "2026-08-28",
+     "reviewer": "MyDogCanFly Data Team",
+     "note": "URL corrigée après vérification (28/08/2026), même page et même citation que rule_aer_lingus_no_cabin."
+    }
+   ]
+  }
+ },
+ {
+  "id": "rule_air_china_no_cabin",
+  "scope": {
+   "type": "airline",
+   "id": "airline_air_china"
+  },
+  "category": "placement",
+  "criticality": "high",
+  "applies_when": {
+   "any": [
+    {
+     "fact": "placement",
+     "op": "eq",
+     "value": "cabin"
+    }
+   ]
+  },
+  "effect": {
+   "action": "deny",
+   "placement": [
+    "cabin"
+   ]
+  },
+  "params": {},
+  "rationale": "Dogs are not accepted in the passenger cabin (recognised assistance dogs excepted); pets travel in the hold or as cargo.",
+  "rationale_i18n": {
+   "fr": "Les chiens ne sont pas acceptés en cabine (chiens d'assistance exceptés) ; les animaux voyagent en soute ou en fret."
+  },
+  "source": {
+   "url": "https://www.airchina.us/US/GB/info/assistance/pets.html",
+   "source_type": "official_website",
+   "verified_date": "2026-07-10",
+   "review_due": "2026-10-08",
+   "confidence": 3,
+   "reviewer": "research",
+   "history": [
+    {
+     "date": "2026-07-10",
+     "reviewer": "research",
+     "note": "Wave-1 airline import — verified from the airline's official pet policy."
+    }
+   ]
+  }
+ }
+]

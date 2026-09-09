@@ -940,8 +940,12 @@ console.log("=== Preuve T0-B2-UI (deux baselines FIGÉES — permanente) ===");
     /* 09/09/2026, dans la foulée — LA PLUS RÉCENTE EST CELLE DU LOT 8 (22 citations). */
     /* 09/09/2026, clôture — LA PLUS RÉCENTE EST CELLE DU LOT 9 (18 citations, les 102 compagnies examinées). */
     /* 09/09/2026, après clôture — LA PLUS RÉCENTE EST CELLE DU CORRECTIF D'ARBITRAGES (six preuves remplacées). */
-    check("la baseline vivante est identique à la baseline figée la plus récente (correctif d'arbitrages)",
+    /* 09/09/2026, ensuite — LA PLUS RÉCENTE EST CELLE DE LA RÉCONCILIATION CIBLÉE (deux règles retirées, borne stricte). */
+    check("la baseline vivante est identique à la baseline figée la plus récente (réconciliation ciblée)",
       readFileSync("test-baselines/t0a-finder-baseline.json", "utf8")
+        === readFileSync("test-baselines/reconciliation-arbitrages-apres.json", "utf8"));
+    check("l'AVANT de la réconciliation EST l'après du correctif — chaîne continue",
+      readFileSync("test-baselines/reconciliation-arbitrages-avant.json", "utf8")
         === readFileSync("test-baselines/correctif-arbitrages-apres.json", "utf8"));
     check("l'AVANT du correctif EST l'après du lot 9 — chaîne continue",
       readFileSync("test-baselines/correctif-arbitrages-avant.json", "utf8")
@@ -1583,6 +1587,47 @@ console.log("=== Preuve PERMANENTE Correctif d'arbitrages — trois décisions s
     check("72 cartes sur 1 560 changent (appariées par compagnie)", cartes === 72 && total === 1560, `${cartes} / ${total}`);
     check("8 canaux « à confirmer » → accepté sous conditions, aucun refus, et RIEN d'autre",
       transitions.get("confirmation_required→accepted_with_conditions") === 8 && transitions.size === 1,
+      JSON.stringify([...transitions]));
+    check("AUCUN canal ne va vers `allowed`, AUCUN verdict ne bouge (52 conditional, 20 unknown)",
+      [...transitions.keys()].every((t) => !t.endsWith("→allowed")) && verdicts.get("conditional→conditional") === 52 && verdicts.get("unknown→unknown") === 20 && verdicts.size === 2,
+      JSON.stringify([...verdicts]));
+  }
+}
+
+console.log("=== Preuve PERMANENTE Réconciliation ciblée — deux règles héritées retirées sur ordre, et rien d'autre ne bouge (baselines FIGÉES) ===");
+{
+  /* Même méthode. Entre l'après du correctif et l'après de la réconciliation : 56 cartes sur 1 560, deux compagnies et elles
+   * seules (Air China cabine, Aer Lingus soute — leurs règles héritées non citées ne les ferment plus) ;
+   * 36 canaux « à confirmer » → accepté sous conditions, aucun refus ; Air Austral (borne stricte) ne dessert
+   * aucun des 72 scénarios ; aucun vers `allowed` ; AUCUN verdict ne bouge. */
+  const AVANT = "test-baselines/reconciliation-arbitrages-avant.json";
+  const APRES = "test-baselines/reconciliation-arbitrages-apres.json";
+  const IMPORTEES = ["airline_air_china", "airline_aer_lingus"];
+  check("les deux baselines de la réconciliation sont versionnées", existsSync(AVANT) && existsSync(APRES));
+  if (existsSync(AVANT) && existsSync(APRES)) {
+    const avant = JSON.parse(readFileSync(AVANT, "utf8")), apres = JSON.parse(readFileSync(APRES, "utf8"));
+    const idDe = (s) => s.split(" | ")[0];
+    const statutsDe = (s) => (s.split(" | ").find((seg) => seg.startsWith("st:")) ?? "st:?/?/?").slice(3).split("/");
+    const changees = new Map(); const transitions = new Map(); const verdicts = new Map();
+    let cartes = 0, total = 0;
+    for (const k of Object.keys(apres)) {
+      const A = new Map((avant[k]?.airlines ?? []).map((s) => [idDe(s), s]));
+      for (const s of apres[k].airlines ?? []) {
+        total++;
+        const o = A.get(idDe(s));
+        if (o === s) continue;
+        cartes++; changees.set(idDe(s), (changees.get(idDe(s)) ?? 0) + 1);
+        const so = statutsDe(o ?? ""), sn = statutsDe(s);
+        for (let i = 0; i < 3; i++) if (so[i] !== sn[i]) transitions.set(`${so[i]}→${sn[i]}`, (transitions.get(`${so[i]}→${sn[i]}`) ?? 0) + 1);
+      }
+      const v = `${avant[k]?.verdict}→${apres[k].verdict}`; verdicts.set(v, (verdicts.get(v) ?? 0) + 1);
+    }
+    check("SEULES des compagnies réconciliées changent de carte — 2 d'entre elles",
+      [...changees.keys()].every((id) => IMPORTEES.includes(id)) && changees.size === 2,
+      [...changees.keys()].filter((id) => !IMPORTEES.includes(id)).join(", ") || `${changees.size} compagnies`);
+    check("56 cartes sur 1 560 changent (appariées par compagnie)", cartes === 56 && total === 1560, `${cartes} / ${total}`);
+    check("36 canaux « à confirmer » → accepté sous conditions, aucun refus, et RIEN d'autre",
+      transitions.get("confirmation_required→accepted_with_conditions") === 36 && transitions.size === 1,
       JSON.stringify([...transitions]));
     check("AUCUN canal ne va vers `allowed`, AUCUN verdict ne bouge (52 conditional, 20 unknown)",
       [...transitions.keys()].every((t) => !t.endsWith("→allowed")) && verdicts.get("conditional→conditional") === 52 && verdicts.get("unknown→unknown") === 20 && verdicts.size === 2,

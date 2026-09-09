@@ -138,6 +138,8 @@ const DecisionPlacement = z.union([
      *  `max_weight_kg: 8`, `weight_includes_carrier: true`. Le moteur refuse au-dessus, n'accorde
      *  jamais en dessous. */
     max_weight_kg: z.number().positive().optional(),
+    /** La borne du seuil (09/09/2026, règle des seuils de Codex) : `lt` exclut la valeur. Absent = `lte`. */
+    weight_limit_bound: z.enum(["lt", "lte"]).optional(),
     weight_includes_carrier: z.boolean().optional(),
   }).strict(),
   z.object({ review_state: z.literal("legacy_unreviewed") }).strict(),
@@ -592,7 +594,7 @@ for (const a of (objects.airlines || [])) {
          seuil. Même classe de défaut que la priorité de la source auditée, corrigée le 15/08.
          Seuls les champs ÉCRITS dans `policies:` passent (pas le poids déduit de la ligne
          tarifaire, qui reste soumis à la préservation et à la détection de dérive). */
-      for (const k of ["max_weight_kg", "weight_includes_carrier", "conditions"]) {
+      for (const k of ["max_weight_kg", "weight_includes_carrier", "weight_limit_bound", "conditions"]) {
         if (d.__ecrits?.has(k) && d[k] !== undefined) enrichissements[k] = d[k];
       }
       /* Une source AUDITÉE écrite dans la fiche l'emporte, ici aussi. La première correction
@@ -634,6 +636,7 @@ for (const a of (objects.airlines || [])) {
       ...(d.conditions ? { conditions: d.conditions } : {}),
       ...(d.max_weight_kg != null ? { max_weight_kg: d.max_weight_kg } : {}),
       ...(typeof d.weight_includes_carrier === "boolean" ? { weight_includes_carrier: d.weight_includes_carrier } : {}),
+      ...(d.weight_limit_bound ? { weight_limit_bound: d.weight_limit_bound } : {}),
       ...(d.brachy_allowed === false ? { brachy_allowed: false } : {}),
       source: sourceRetenue,
       ...(sourceRetenue === source ? { source_derived: true } : {}),
