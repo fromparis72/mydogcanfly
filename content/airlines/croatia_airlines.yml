@@ -80,8 +80,36 @@ ladder:
 policies:
   cabin:
     availability: offered
+    # PREUVE IMPORTÉE — import strict lot9 (Codex, lecture directe du 2026-09-09, cohorte LOT9 fait 8).
+    # Effet attendu : Croatia Airlines cabin is conditional, with the dated source flagged for early re-review.
+    # Portée nommée : Small domestic dogs and cats are identified as pets in cabin in a first-party ground-operations manual dated 24 January 2023; passenger-page conditions and current availability still govern.
+    source:
+      url: "https://www.croatiaairlines.com/resources/documents/handling-agent/OP-ZOU-001-Ground_Operations_Manual_Issue_II_rev.11-24.01.2023.pdf"
+      source_type: official_website
+      verified_date: "2026-09-09"
+      review_due: "2026-12-08"   # reviewDueFrom(verified_date, "airline") — calculé par l'importeur
+      confidence: 4
+      reviewer: "Codex — direct reading of official airline material"
+      history: []
+      quote: "Pets in cabin (PETC), such as: Small domestic animals (dogs and cats only)."
+      quote_language: en
+      locator: "Ground Operations Manual → 4.7.1 Stowing of Load in the Passenger Cabin → page 127"
   hold:
     availability: offered
+    # PREUVE IMPORTÉE — import strict lot9 (Codex, lecture directe du 2026-09-09, cohorte LOT9 fait 9).
+    # Effet attendu : Croatia Airlines hold is conditional, with the dated source visibly flagged for early re-review.
+    # Portée nommée : A first-party service document describes a large-pet AVIH service for dogs and cats; it is dated 2019 and must be treated as an early re-review priority, not proof of present route availability.
+    source:
+      url: "https://www.croatiaairlines.com/resources/dokumenti/ou-emd-distribution---services-policy--aaas--for-ouand-ta-oct19.pdf.pdf"
+      source_type: official_website
+      verified_date: "2026-09-09"
+      review_due: "2026-12-08"   # reviewDueFrom(verified_date, "airline") — calculé par l'importeur
+      confidence: 4
+      reviewer: "Codex — direct reading of official airline material"
+      history: []
+      quote: "Charge for PET in hold- LARGE (dogs and cats only, breed must be specified)"
+      quote_language: en
+      locator: "PET IN HOLD (AVIH-LARGE) → Service description and purpose"
   cargo:
     review_state: legacy_unreviewed
 channels:

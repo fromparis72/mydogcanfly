@@ -128,6 +128,16 @@ const REACTIVEES_SUR_CITATION = new Set([
   "airline_km_malta|cargo",
   "airline_sky_express|hold",
   "airline_sunexpress|hold",
+  /* Lot 9 (09/09/2026), clôture : Aerolíneas Argentinas fret (« Aerolineas Cargo ofrece transporte de
+     mascotas… »), Air Astana fret (« …исключительно по грузовой авианакладной », portée : destinations où le
+     bagage est interdit), Edelweiss fret (« …transported unaccompanied as freight. »), TAROM soute (« …more
+     than 8kg can be transported safely in the hold ») et fret (« May be accepted only as cargo. », chiens
+     > 40 kg). */
+  "airline_aerolineas_argentinas|cargo",
+  "airline_air_astana|cargo",
+  "airline_edelweiss|cargo",
+  "airline_tarom|hold",
+  "airline_tarom|cargo",
 ]);
 /* POLICY_STALE RÉACTIVÉS SUR CITATION (09/09/2026, lot 4). Deux des dix anciens POLICY_STALE
  * versés en `legacy_unreviewed` — Qantas soute et Qantas fret — ont reçu une phrase des Conditions

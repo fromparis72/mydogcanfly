@@ -1,0 +1,260 @@
+{
+  "schema_version": 1,
+  "as_of": "2026-09-09",
+  "status": "strict_import_candidate",
+  "purpose": "Ninth and final independently reviewed batch. Each imported fact is supported by a continuous quotation from first-party airline material read on 2026-09-09. Dated first-party documents are identified explicitly; absence or ambiguity remains an intentional non-decision.",
+  "provenance_defaults": {
+    "source_type": "official_website",
+    "verified_date": "2026-09-09",
+    "review_due": "derive_with_reviewDueFrom(verified_date, 'airline')",
+    "confidence": 4,
+    "reviewer": "Codex — direct reading of official airline material"
+  },
+  "facts": [
+    {
+      "airline_id": "airline_aerolineas_argentinas",
+      "placement": "cabin",
+      "recommendation": "offered_with_conditions",
+      "condition_scope": "One dog or cat up to 9 kg in its container on domestic or regional flights, subject to advance handling, aircraft capacity, container, health and documentation conditions.",
+      "finder_effect": "Aerolíneas Argentinas cabin is conditional with a 9 kg combined dog-and-container ceiling on the stated network scope.",
+      "url": "https://portalar.aerolineas.com.ar/campus/pluginfile.php/9597/mod_resource/content/2/resumen_obligaciones.pdf",
+      "quote": "Se puede transportar solamente un perro o gato, de máx. 9 kilos en el contenedor correspondiente.",
+      "quote_language": "es",
+      "locator": "ANIMALES EN LA CABINA — page 4"
+    },
+    {
+      "airline_id": "airline_aerolineas_argentinas",
+      "placement": "hold",
+      "recommendation": "offered_with_conditions",
+      "condition_scope": "A dog or cat exceeding the cabin weight or dimensions may travel in the aircraft hold, subject to availability, crate, route, health and documentation conditions.",
+      "finder_effect": "Aerolíneas Argentinas hold is a documented conditional route.",
+      "url": "https://portalar.aerolineas.com.ar/campus/pluginfile.php/9597/mod_resource/content/2/resumen_obligaciones.pdf",
+      "quote": "se trasporta en bodega",
+      "quote_language": "es",
+      "locator": "ANIMALES EN LA CABINA — page 4"
+    },
+    {
+      "airline_id": "airline_aerolineas_argentinas",
+      "placement": "cargo",
+      "recommendation": "offered_with_conditions",
+      "condition_scope": "Aerolíneas Cargo carries pets and other live animals subject to advance booking, station, route, customs, veterinary, crate, breed and temperature conditions.",
+      "finder_effect": "Aerolíneas Argentinas cargo is a documented conditional service.",
+      "url": "https://cargo.aerolineas.com.ar/es-AR/envios_personales",
+      "quote": "Aerolineas Cargo ofrece transporte de mascotas y otros animales vivos a todos nuestros destinos.",
+      "quote_language": "es",
+      "locator": "ANIMALES VIVOS → INFORMACIÓN GENERAL"
+    },
+    {
+      "airline_id": "airline_air_astana",
+      "placement": "cabin",
+      "recommendation": "offered_with_conditions",
+      "condition_scope": "Dogs and cats may travel in cabin with an advance request; the animal and container together must not exceed 8 kg and aircraft, quota, container and documentation conditions apply.",
+      "finder_effect": "Air Astana cabin is conditional with an 8 kg combined animal-and-container ceiling.",
+      "url": "https://help.airastana.com/hc/ru/sections/4417967707410-%D0%9F%D0%B5%D1%80%D0%B5%D0%B2%D0%BE%D0%B7%D0%BA%D0%B0-%D0%B6%D0%B8%D0%B2%D0%BE%D1%82%D0%BD%D1%8B%D1%85",
+      "quote": "Перевозка домашних животных (кошек или собак) в салоне самолета разрешена",
+      "quote_language": "ru",
+      "locator": "Правила и нормы перевозки домашних животных в салоне самолета"
+    },
+    {
+      "airline_id": "airline_air_astana",
+      "placement": "hold",
+      "recommendation": "offered_with_conditions",
+      "condition_scope": "Dogs may travel as checked animals subject to advance request, route, aircraft, crate, cohabitation, age and documentation conditions; some destinations prohibit baggage transport entirely.",
+      "finder_effect": "Air Astana hold is a documented conditional route, with destination exclusions.",
+      "url": "https://help.airastana.com/hc/ru/sections/4417967707410-%D0%9F%D0%B5%D1%80%D0%B5%D0%B2%D0%BE%D0%B7%D0%BA%D0%B0-%D0%B6%D0%B8%D0%B2%D0%BE%D1%82%D0%BD%D1%8B%D1%85",
+      "quote": "Правила перевозки животных в багажном отсеке",
+      "quote_language": "ru",
+      "locator": "Правила перевозки животных в багажном отсеке"
+    },
+    {
+      "airline_id": "airline_air_astana",
+      "placement": "cargo",
+      "recommendation": "offered_with_conditions",
+      "condition_scope": "Cargo under an air waybill is the documented route for animals to or from specified destinations where carriage as baggage is prohibited; cargo approval and route conditions apply.",
+      "finder_effect": "Air Astana cargo is documented for destination-restricted cases, not as an unconditional network-wide promise.",
+      "url": "https://help.airastana.com/hc/ru/sections/4417967707410-%D0%9F%D0%B5%D1%80%D0%B5%D0%B2%D0%BE%D0%B7%D0%BA%D0%B0-%D0%B6%D0%B8%D0%B2%D0%BE%D1%82%D0%BD%D1%8B%D1%85",
+      "quote": "животные должны быть транспортированы исключительно по грузовой авианакладной",
+      "quote_language": "ru",
+      "locator": "Существуют ли особые ограничения для других стран?"
+    },
+    {
+      "airline_id": "airline_batik_air_indonesia",
+      "placement": "cabin",
+      "recommendation": "not_offered_for_pet_dogs",
+      "condition_scope": "Batik Air Indonesia states that pets are not permitted on its flights; assistance animals, if separately governed, are outside this ordinary-pet verdict.",
+      "finder_effect": "Batik Air Indonesia cabin is a documented refusal for ordinary pet dogs.",
+      "url": "https://help.batikair.com/article/bring-live-animalpet/753",
+      "quote": "Batik Air Indonesia flights are not allowed to bring pets.",
+      "quote_language": "en",
+      "locator": "Bring Live Animal/Pet"
+    },
+    {
+      "airline_id": "airline_batik_air_indonesia",
+      "placement": "hold",
+      "recommendation": "not_offered_for_pet_dogs",
+      "condition_scope": "The official prohibition covers ordinary pets on Batik Air Indonesia flights and provides no accompanied-hold exception.",
+      "finder_effect": "Batik Air Indonesia passenger hold is a documented refusal for ordinary pet dogs.",
+      "url": "https://help.batikair.com/article/bring-live-animalpet/753",
+      "quote": "not allowed to bring pets",
+      "quote_language": "en",
+      "locator": "Bring Live Animal/Pet"
+    },
+    {
+      "airline_id": "airline_croatia_airlines",
+      "placement": "cabin",
+      "recommendation": "offered_with_conditions",
+      "condition_scope": "Small domestic dogs and cats are identified as pets in cabin in a first-party ground-operations manual dated 24 January 2023; passenger-page conditions and current availability still govern.",
+      "finder_effect": "Croatia Airlines cabin is conditional, with the dated source flagged for early re-review.",
+      "url": "https://www.croatiaairlines.com/resources/documents/handling-agent/OP-ZOU-001-Ground_Operations_Manual_Issue_II_rev.11-24.01.2023.pdf",
+      "quote": "Pets in cabin (PETC), such as: Small domestic animals (dogs and cats only).",
+      "quote_language": "en",
+      "locator": "Ground Operations Manual → 4.7.1 Stowing of Load in the Passenger Cabin → page 127"
+    },
+    {
+      "airline_id": "airline_croatia_airlines",
+      "placement": "hold",
+      "recommendation": "offered_with_conditions",
+      "condition_scope": "A first-party service document describes a large-pet AVIH service for dogs and cats; it is dated 2019 and must be treated as an early re-review priority, not proof of present route availability.",
+      "finder_effect": "Croatia Airlines hold is conditional, with the dated source visibly flagged for early re-review.",
+      "url": "https://www.croatiaairlines.com/resources/dokumenti/ou-emd-distribution---services-policy--aaas--for-ouand-ta-oct19.pdf.pdf",
+      "quote": "Charge for PET in hold- LARGE (dogs and cats only, breed must be specified)",
+      "quote_language": "en",
+      "locator": "PET IN HOLD (AVIH-LARGE) → Service description and purpose"
+    },
+    {
+      "airline_id": "airline_edelweiss",
+      "placement": "cabin",
+      "recommendation": "offered_with_conditions",
+      "condition_scope": "Dogs and cats up to 8 kg including the carrier, subject to advance booking, seat, container, route, breed and documentation conditions.",
+      "finder_effect": "Edelweiss cabin is conditional with an 8 kg combined animal-and-carrier ceiling.",
+      "url": "https://www.flyedelweiss.com/ch/en/prepare/flight-preparation/animals-travelling/regulations.html",
+      "quote": "Only dogs and cats weighing up to a maximum of 8 kg including the pet carrier may travel in the cabin.",
+      "quote_language": "en",
+      "locator": "Travelling in the Cabin"
+    },
+    {
+      "airline_id": "airline_edelweiss",
+      "placement": "hold",
+      "recommendation": "offered_with_conditions",
+      "condition_scope": "Dogs and cats may travel in the aircraft hold, subject to advance booking, route, breed, crate, weight, aircraft and documentation conditions.",
+      "finder_effect": "Edelweiss hold is a documented conditional route.",
+      "url": "https://www.flyedelweiss.com/xk/en/customer-service/faq/animals.html",
+      "quote": "travel in the luggage hold (which is lit and heated)",
+      "quote_language": "en",
+      "locator": "Animals FAQ → Are animals given something to drink during the flight?"
+    },
+    {
+      "airline_id": "airline_edelweiss",
+      "placement": "cargo",
+      "recommendation": "offered_with_conditions",
+      "condition_scope": "Unaccompanied pet freight is available through SWISS WorldCargo, subject to booking, route, station, crate and documentation approval.",
+      "finder_effect": "Edelweiss cargo is a documented conditional route through SWISS WorldCargo.",
+      "url": "https://www.flyedelweiss.com/xk/en/customer-service/faq/animals.html",
+      "quote": "Your pet can also be transported unaccompanied as freight.",
+      "quote_language": "en",
+      "locator": "Animals FAQ → Can my pet be transported unaccompanied as freight?"
+    },
+    {
+      "airline_id": "airline_neos",
+      "placement": "cabin",
+      "recommendation": "offered_with_conditions",
+      "condition_scope": "Dogs up to 10 kg including carrier may travel in cabin, subject to booking, route, breed, quota, container, health and documentation conditions.",
+      "finder_effect": "Neos cabin is conditional with a 10 kg combined animal-and-carrier ceiling.",
+      "url": "https://www.neosair.com/us/en/information/traveling-with-pets",
+      "quote": "you are allowed to transport them in the cabin",
+      "quote_language": "en",
+      "locator": "NECESSARY REQUIREMENTS"
+    },
+    {
+      "airline_id": "airline_neos",
+      "placement": "hold",
+      "recommendation": "offered_with_conditions",
+      "condition_scope": "Dogs over 10 kg including carrier may travel in the pressurized and ventilated hold, subject to route, breed, booking, crate, health and documentation restrictions.",
+      "finder_effect": "Neos hold is a documented conditional route above the 10 kg combined threshold.",
+      "url": "https://www.neosair.com/us/en/information/traveling-with-pets",
+      "quote": "transportation is authorised in the hold of the aircraft",
+      "quote_language": "en",
+      "locator": "NECESSARY REQUIREMENTS"
+    },
+    {
+      "airline_id": "airline_tarom",
+      "placement": "cabin",
+      "recommendation": "offered_with_conditions",
+      "condition_scope": "Dogs and cats up to 8 kg including the carrier, subject to advance confirmation, quota, passenger, aircraft, container, health and documentation restrictions.",
+      "finder_effect": "TAROM cabin is conditional with an 8 kg combined animal-and-carrier ceiling.",
+      "url": "https://www.tarom.ro/en/informatii-pasageri/despre-calatorie/calatoria-cu-animale-de-companie/la-bordul-avionului/",
+      "quote": "TAROM accepts only cats and dogs in the passenger cabin, weighing up to 8 kilos (including the weight of the standard transportation cage).",
+      "quote_language": "en",
+      "locator": "In the cabin → opening paragraph"
+    },
+    {
+      "airline_id": "airline_tarom",
+      "placement": "hold",
+      "recommendation": "offered_with_conditions",
+      "condition_scope": "Dogs and cats over 8 kg may travel in the hold, subject to advance confirmation, aircraft, breed, weight, crate, health, route and documentation restrictions.",
+      "finder_effect": "TAROM hold is a documented conditional route; A320 and brachycephalic restrictions apply.",
+      "url": "https://www.tarom.ro/en/travelling-with-pets/in-aircraft-hold",
+      "quote": "Dogs and cats weighing more than 8kg can be transported safely in the hold",
+      "quote_language": "en",
+      "locator": "In the hold → opening paragraph"
+    },
+    {
+      "airline_id": "airline_tarom",
+      "placement": "cargo",
+      "recommendation": "offered_with_conditions",
+      "condition_scope": "Dogs over 40 kg excluding the cage may be accepted only as cargo; cargo booking, route, station, crate and documentation approval apply.",
+      "finder_effect": "TAROM cargo is a documented conditional route for dogs over the stated threshold.",
+      "url": "https://www.tarom.ro/en/travelling-with-pets/in-aircraft-hold",
+      "quote": "May be accepted only as cargo.",
+      "quote_language": "en",
+      "locator": "In the hold → Conditions for Transport → For dogs over 40 kg"
+    }
+  ],
+  "intentionally_unset": [
+    {
+      "airline_id": "airline_batik_air_indonesia",
+      "placement": "cargo",
+      "reason": "The passenger help page rejects bringing pets on Batik Air Indonesia flights but does not establish whether a separately contracted ordinary-dog freight service exists. It must not be inferred from the passenger prohibition."
+    },
+    {
+      "airline_id": "airline_batik_air_malaysia",
+      "placement": "cabin",
+      "reason": "No current first-party pet policy with a continuous cabin quotation was located. The official 2020 conditions of carriage contain no animal-carriage section; another airline's similarly named conditions were rejected."
+    },
+    {
+      "airline_id": "airline_batik_air_malaysia",
+      "placement": "hold",
+      "reason": "No current first-party Batik Air Malaysia text establishes accompanied pet transport in the hold. Silence in the official conditions is not a refusal."
+    },
+    {
+      "airline_id": "airline_batik_air_malaysia",
+      "placement": "cargo",
+      "reason": "No first-party text located establishes an ordinary-dog cargo service. Batik Air Indonesia and Malaysia Airlines sources are different carriers and were not imported."
+    },
+    {
+      "airline_id": "airline_croatia_airlines",
+      "placement": "cargo",
+      "reason": "The reviewed operational manuals discuss live-animal handling but do not establish a separately bookable ordinary-dog cargo offer for visitors."
+    },
+    {
+      "airline_id": "airline_el_al",
+      "placement": "cabin",
+      "reason": "The current accessible first-party material is a live-animal container checklist. It proves preparation requirements but does not assign ordinary pet dogs to the passenger cabin."
+    },
+    {
+      "airline_id": "airline_el_al",
+      "placement": "hold",
+      "reason": "The current accessible first-party checklist does not state a weight or policy boundary for accompanied hold transport. Third-party summaries were rejected."
+    },
+    {
+      "airline_id": "airline_el_al",
+      "placement": "cargo",
+      "reason": "The accessible EL AL checklist and old Israel import form do not establish a current, generally bookable ordinary-dog cargo service."
+    },
+    {
+      "airline_id": "airline_neos",
+      "placement": "cargo",
+      "reason": "The reviewed page reserves cargo wording for species other than dogs, cats and ferrets; it does not prove a general ordinary-dog cargo route."
+    }
+  ]
+}

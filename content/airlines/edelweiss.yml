@@ -74,10 +74,55 @@ ladder:
 policies:
   cabin:
     availability: offered
+    # PREUVE IMPORTÉE — import strict lot9 (Codex, lecture directe du 2026-09-09, cohorte LOT9 fait 10).
+    # Effet attendu : Edelweiss cabin is conditional with an 8 kg combined animal-and-carrier ceiling.
+    # Portée nommée : Dogs and cats up to 8 kg including the carrier, subject to advance booking, seat, container, route, breed and documentation conditions.
+    # Le plafond cité inclut le CONTENANT : refus sûr si le chien seul le dépasse, jamais un oui en dessous.
+    max_weight_kg: 8
+    weight_includes_carrier: true
+    source:
+      url: "https://www.flyedelweiss.com/ch/en/prepare/flight-preparation/animals-travelling/regulations.html"
+      source_type: official_website
+      verified_date: "2026-09-09"
+      review_due: "2026-12-08"   # reviewDueFrom(verified_date, "airline") — calculé par l'importeur
+      confidence: 4
+      reviewer: "Codex — direct reading of official airline material"
+      history: []
+      quote: "Only dogs and cats weighing up to a maximum of 8 kg including the pet carrier may travel in the cabin."
+      quote_language: en
+      locator: "Travelling in the Cabin"
   hold:
     availability: offered
+    # PREUVE IMPORTÉE — import strict lot9 (Codex, lecture directe du 2026-09-09, cohorte LOT9 fait 11).
+    # Effet attendu : Edelweiss hold is a documented conditional route.
+    # Portée nommée : Dogs and cats may travel in the aircraft hold, subject to advance booking, route, breed, crate, weight, aircraft and documentation conditions.
+    source:
+      url: "https://www.flyedelweiss.com/xk/en/customer-service/faq/animals.html"
+      source_type: official_website
+      verified_date: "2026-09-09"
+      review_due: "2026-12-08"   # reviewDueFrom(verified_date, "airline") — calculé par l'importeur
+      confidence: 4
+      reviewer: "Codex — direct reading of official airline material"
+      history: []
+      quote: "travel in the luggage hold (which is lit and heated)"
+      quote_language: en
+      locator: "Animals FAQ → Are animals given something to drink during the flight?"
   cargo:
-    review_state: legacy_unreviewed
+    availability: offered   # RÉACTIVÉE sur citation (import strict, lot9, 2026-09-09) — était review_state: legacy_unreviewed
+    # PREUVE IMPORTÉE — import strict lot9 (Codex, lecture directe du 2026-09-09, cohorte LOT9 fait 12).
+    # Effet attendu : Edelweiss cargo is a documented conditional route through SWISS WorldCargo.
+    # Portée nommée : Unaccompanied pet freight is available through SWISS WorldCargo, subject to booking, route, station, crate and documentation approval.
+    source:
+      url: "https://www.flyedelweiss.com/xk/en/customer-service/faq/animals.html"
+      source_type: official_website
+      verified_date: "2026-09-09"
+      review_due: "2026-12-08"   # reviewDueFrom(verified_date, "airline") — calculé par l'importeur
+      confidence: 4
+      reviewer: "Codex — direct reading of official airline material"
+      history: []
+      quote: "Your pet can also be transported unaccompanied as freight."
+      quote_language: en
+      locator: "Animals FAQ → Can my pet be transported unaccompanied as freight?"
 channels:
   - placement: cabin
     icon: 🐾

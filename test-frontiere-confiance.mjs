@@ -220,12 +220,13 @@ console.log("\n=== 10. Sur la base RÉELLE : plus aucun verdict catégorique ===
   /* MOUVEMENT NOMMÉ (09/09/2026, import strict lot 6 — 21 citations de plus, 113 en tout) : 0 · 88 · 23 · 191 ; causes 174 · 15. */
   /* MOUVEMENT NOMMÉ (09/09/2026, import strict lot 7 — 23 citations de plus, 136 en tout) : 0 · 108 · 26 · 168 ; causes 151 · 15. */
   /* MOUVEMENT NOMMÉ (09/09/2026, import strict lot 8 — 22 citations de plus, 158 en tout) : 0 · 124 · 32 · 146 ; causes 129 · 15. */
-  check("156 décisions prouvées : 0 `allowed`, 124 sous conditions, 32 `denied`, 146 à confirmer",
-    allowed === 0 && sousConditions === 124 && denied === 32 && aConfirmer === 146, JSON.stringify({ allowed, sousConditions, denied, aConfirmer }));
+  /* MOUVEMENT NOMMÉ (09/09/2026, import strict lot 9 — 18 citations de plus, 176 en tout, lot de clôture) : 0 · 140 · 34 · 128 ; causes 111 · 15. */
+  check("174 décisions prouvées : 0 `allowed`, 140 sous conditions, 34 `denied`, 128 à confirmer",
+    allowed === 0 && sousConditions === 140 && denied === 34 && aConfirmer === 128, JSON.stringify({ allowed, sousConditions, denied, aConfirmer }));
   check("chaque « à confirmer » porte une cause — aucune incertitude muette",
-    Object.values(causes).reduce((x, y) => x + y, 0) === 146 && !("undefined" in causes), JSON.stringify(causes));
-  check("15 gardent une page officielle à montrer, 129 n'ont rien à montrer",
-    causes.official_source_unquoted === 15 && causes.legacy_unreviewed === 129, JSON.stringify(causes));
+    Object.values(causes).reduce((x, y) => x + y, 0) === 128 && !("undefined" in causes), JSON.stringify(causes));
+  check("15 gardent une page officielle à montrer, 111 n'ont rien à montrer",
+    causes.official_source_unquoted === 15 && causes.legacy_unreviewed === 111, JSON.stringify(causes));
   /* Et la preuve que ce n'est pas un effet de bord de l'affichage : la même règle vaut à la
      source, sur l'artefact d'auteur, avant tout moteur. */
   const objets = JSON.parse(readFileSync("packages/knowledge/raw/objects.json", "utf8"));
@@ -371,6 +372,25 @@ console.log("\n=== 10. Sur la base RÉELLE : plus aucun verdict catégorique ===
     "airline_sunexpress.hold",
     "airline_smartwings.cabin",
     "airline_smartwings.hold",
+    /* Lot 9 (09/09/2026), lot de clôture : 18 citations de plus, 176 en tout — les 102 compagnies ont été examinées. */
+    "airline_aerolineas_argentinas.cabin",
+    "airline_aerolineas_argentinas.hold",
+    "airline_aerolineas_argentinas.cargo",
+    "airline_air_astana.cabin",
+    "airline_air_astana.hold",
+    "airline_air_astana.cargo",
+    "airline_batik_air_indonesia.cabin",
+    "airline_batik_air_indonesia.hold",
+    "airline_croatia_airlines.cabin",
+    "airline_croatia_airlines.hold",
+    "airline_edelweiss.cabin",
+    "airline_edelweiss.hold",
+    "airline_edelweiss.cargo",
+    "airline_neos.cabin",
+    "airline_neos.hold",
+    "airline_tarom.cabin",
+    "airline_tarom.hold",
+    "airline_tarom.cargo",
     "airline_iberia.cabin",
     "airline_iberia.hold",
     "airline_ita_airways.cabin",
@@ -413,10 +433,10 @@ console.log("\n=== 10. Sur la base RÉELLE : plus aucun verdict catégorique ===
     "airline_westjet.cabin",
     "airline_westjet.hold",
   ];
-  check("158 politiques d'auteur portent une phrase citée — nominativement",
+  check("176 politiques d'auteur portent une phrase citée — nominativement",
     JSON.stringify([...citees].sort()) === JSON.stringify([...CITEES_V3].sort()), citees.join(", "));
-  check("et 156 d'elles sont des décisions (toutes sauf Thai fret et Virgin Australia cabine)",
-    decideesCitees.length === 156 && !decideesCitees.includes("airline_thai_airways.cargo") && !decideesCitees.includes("airline_virgin_australia.cabin"),
+  check("et 174 d'elles sont des décisions (toutes sauf Thai fret et Virgin Australia cabine)",
+    decideesCitees.length === 174 && !decideesCitees.includes("airline_thai_airways.cargo") && !decideesCitees.includes("airline_virgin_australia.cabin"),
     decideesCitees.join(", "));
 }
 

@@ -3049,3 +3049,69 @@ tour 6 se referme : ce que le site affirmait sans preuve, il le prouve pour deux
   race, règle non citée). Le témoin la compte à part ; la propriété est reformulée, pas abaissée.
 - Accueil, affirmations retirées, étape 3 DOM, dette Astro (165) : verts sur le dist.
 
+## Annexe 31 — Import strict, lot 9 : 18 faits, 18 importés, clôture de l'examen des 102 compagnies (09/09/2026)
+
+Paquet de Codex (`mesures/preuves/import-strict-lot-9-2026-09-09/`), lecture directe du 09/09 : les
+9 dernières compagnies du référentiel, 18 faits, 9 non-décisions. Importé sur la base du lot 8, même
+branche, même PR (#42, retitrée « lots 7, 8 et 9 »).
+
+**Ce que la clôture veut dire, et ne veut pas dire** (Codex, repris tel quel) : les 102 compagnies
+ont désormais une issue explicite pour chacun des trois canaux dans les artefacts stricts — fait
+cité ou non-décision motivée. Couverture de l'**examen**, pas preuve sur les 306 canaux : 176
+politiques citées sur 302, 126 restent sans phrase, et une absence de preuve reste une absence de
+preuve.
+
+| | |
+|---|---|
+| importés | 18 (Aerolíneas Argentinas ×3, Air Astana ×3, Batik Air Indonesia ×2, Croatia Airlines ×2, Edelweiss ×3, Neos ×2, TAROM ×3) |
+| réactivés sur citation | 5 : Aerolíneas Argentinas, Air Astana, Edelweiss fret ; TAROM soute et fret |
+| refusés | 0 |
+| non-décisions | 9 : Batik Air Indonesia fret ; Batik Air Malaysia ×3 (aucun texte officiel exploitable — **rien n'est propagé** depuis Batik Air Indonesia) ; Croatia fret ; EL AL ×3 (la checklist de cage ne décide aucun canal) ; Neos fret |
+| langues | russe (Air Astana ×3), espagnol (Aerolíneas Argentinas ×3), anglais |
+| seuils écrits | Aerolíneas Argentinas 9 (« de máx. 9 kilos en el contenedor correspondiente »), Edelweiss 8 (« including the pet carrier »), TAROM 8 (« including the weight of the standard transportation cage ») |
+| seuils non écrits | Air Astana 8, Neos 10 (chiffre absent de la phrase citée) |
+
+### Nommé pour contre-revue de Codex
+
+- **Croatia Airlines** : les deux sources sont des documents de première partie DATÉS (manuel
+  d'exploitation au sol du 24.01.2023, politique de service d'octobre 2019). Importées par contrat
+  (domaine officiel, phrase contiguë), échéance calculée par `reviewDueFrom` — jamais copiée. La
+  priorité de relecture que Codex demande est **nommée ici** ; le dépôt n'a pas de mécanisme
+  d'échéance anticipée, et en inventer un serait une règle métier nouvelle (arbitrage).
+- **Air Astana fret** et **TAROM fret** : portées nommées (destinations où le bagage est interdit ;
+  chiens de plus de 40 kg) que le modèle ne porte pas — même classe que Bangkok Airways et
+  Philippine ; réactivés « sous conditions » réseau entier, nommés, pas convertis.
+- **Aerolíneas Argentinas cabine et soute** : la source est un document interne rendu public
+  (portail de formation « campus »), pas une page passager. Accepté par le contrat (domaine
+  officiel), signalé.
+
+### Mesuré après import
+
+| | avant (lot 8) | après (lot 9) |
+|---|---|---|
+| politiques citées (décisives) | 158 (156) | 176 (174) |
+| `allowed` / sous conditions / refusées / à confirmer | 0 / 124 / 32 / 146 | 0 / 140 / 34 / 128 |
+| causes legacy / page officielle sans phrase | 129 / 15 | 111 / 15 |
+| registre A / B / C / D | 158 / 58 / 87 / 3 | 176 / 53 / 74 / 3 |
+| limites cabine citées | 27 | 30 (à vérifier sur le dist) |
+| témoin hérité | 28 536 | 29 205 |
+| canaux contradictoires | 265 / 100 fiches | 263 / 100 (Batik Air Indonesia cabine et soute) |
+| causes de race (carlin) | 404 | 404 (mesuré avant/après : rien ne bouge) |
+| climat tri-état, carlin CDG→IST | 47 (35 prov. / 38 race / 1 règle) | 45 (30 / 38 / 1) |
+| baseline | figée lot 8 | figée `import-strict-lot-9-apres` : 8 cartes / 1 560, 1 compagnie (Neos), 12 → sous conditions, aucun refus, aucun verdict déplacé |
+
+### Témoins re-fondés par mesure
+
+Témoin C de l'inventaire : Aerolíneas Argentinas cabine citée → **Air Serbia cabine** (hors de tout
+lot). Témoin « carte sans canal sourcé » : EL AL, inchangé — ses trois canaux restent non décidés par
+la décision même de Codex. Sentinelle « non offerte, non prouvée » : Air China cabine, inchangée.
+
+### Mouvements nommés
+
+frontière, legacy (111, chaîne → lot 9), baseline (chaîne, répartition, preuve permanente lot 9),
+carries (29 205), quatrième état (140), registre (176/53/74/3, canaux 78/10/14 · 70/24/8 ·
+28/19/52, pistes 23/30, gov.uk 14, paires 176/23/74, écarts 29, niveaux 176/23/103), matrice (cinq
+réactivations), entités (263), caisses (30), climat tri-état (45/30/38/1). Nouveau harnais
+`test-preuves-lot-9.mjs` (103 contrôles), dans test:unit ; il vérifie aussi que la chaîne des
+baselines figées est complète de l'import V3 au lot 9.
+

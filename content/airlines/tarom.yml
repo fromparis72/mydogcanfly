@@ -78,10 +78,55 @@ ladder:
 policies:
   cabin:
     availability: offered
+    # PREUVE IMPORTÉE — import strict lot9 (Codex, lecture directe du 2026-09-09, cohorte LOT9 fait 15).
+    # Effet attendu : TAROM cabin is conditional with an 8 kg combined animal-and-carrier ceiling.
+    # Portée nommée : Dogs and cats up to 8 kg including the carrier, subject to advance confirmation, quota, passenger, aircraft, container, health and documentation restrictions.
+    # Le plafond cité inclut le CONTENANT : refus sûr si le chien seul le dépasse, jamais un oui en dessous.
+    max_weight_kg: 8
+    weight_includes_carrier: true
+    source:
+      url: "https://www.tarom.ro/en/informatii-pasageri/despre-calatorie/calatoria-cu-animale-de-companie/la-bordul-avionului/"
+      source_type: official_website
+      verified_date: "2026-09-09"
+      review_due: "2026-12-08"   # reviewDueFrom(verified_date, "airline") — calculé par l'importeur
+      confidence: 4
+      reviewer: "Codex — direct reading of official airline material"
+      history: []
+      quote: "TAROM accepts only cats and dogs in the passenger cabin, weighing up to 8 kilos (including the weight of the standard transportation cage)."
+      quote_language: en
+      locator: "In the cabin → opening paragraph"
   hold:
-    review_state: legacy_unreviewed
+    availability: offered   # RÉACTIVÉE sur citation (import strict, lot9, 2026-09-09) — était review_state: legacy_unreviewed
+    # PREUVE IMPORTÉE — import strict lot9 (Codex, lecture directe du 2026-09-09, cohorte LOT9 fait 16).
+    # Effet attendu : TAROM hold is a documented conditional route; A320 and brachycephalic restrictions apply.
+    # Portée nommée : Dogs and cats over 8 kg may travel in the hold, subject to advance confirmation, aircraft, breed, weight, crate, health, route and documentation restrictions.
+    source:
+      url: "https://www.tarom.ro/en/travelling-with-pets/in-aircraft-hold"
+      source_type: official_website
+      verified_date: "2026-09-09"
+      review_due: "2026-12-08"   # reviewDueFrom(verified_date, "airline") — calculé par l'importeur
+      confidence: 4
+      reviewer: "Codex — direct reading of official airline material"
+      history: []
+      quote: "Dogs and cats weighing more than 8kg can be transported safely in the hold"
+      quote_language: en
+      locator: "In the hold → opening paragraph"
   cargo:
-    review_state: legacy_unreviewed
+    availability: offered   # RÉACTIVÉE sur citation (import strict, lot9, 2026-09-09) — était review_state: legacy_unreviewed
+    # PREUVE IMPORTÉE — import strict lot9 (Codex, lecture directe du 2026-09-09, cohorte LOT9 fait 17).
+    # Effet attendu : TAROM cargo is a documented conditional route for dogs over the stated threshold.
+    # Portée nommée : Dogs over 40 kg excluding the cage may be accepted only as cargo; cargo booking, route, station, crate and documentation approval apply.
+    source:
+      url: "https://www.tarom.ro/en/travelling-with-pets/in-aircraft-hold"
+      source_type: official_website
+      verified_date: "2026-09-09"
+      review_due: "2026-12-08"   # reviewDueFrom(verified_date, "airline") — calculé par l'importeur
+      confidence: 4
+      reviewer: "Codex — direct reading of official airline material"
+      history: []
+      quote: "May be accepted only as cargo."
+      quote_language: en
+      locator: "In the hold → Conditions for Transport → For dogs over 40 kg"
 channels:
   - placement: cabin
     icon: 🐾

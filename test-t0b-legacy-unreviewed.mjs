@@ -305,8 +305,9 @@ console.log("=== 7. T0-B2 : la migration est FAITE, et la forme héritée est in
   /* MOUVEMENT NOMMÉ (09/09/2026, import strict lot 6 — 21 citations de plus, 113 en tout) : 194 → 174 ; six lignes non revérifiées réactivées sur citation (South African soute et fret, Saudia cabine — en REFUS cité —, Kenya fret, Gulf Air fret, Royal Jordanian cabine). */
   /* MOUVEMENT NOMMÉ (09/09/2026, import strict lot 7 — 23 citations de plus, 136 en tout) : 174 → 151 ; quatre lignes non revérifiées réactivées sur citation, toutes en fret (Air Caraïbes, Air Tahiti Nui, Aircalin, Corsair). */
   /* MOUVEMENT NOMMÉ (09/09/2026, import strict lot 8 — 22 citations de plus, 158 en tout) : 151 → 129 ; cinq lignes non revérifiées réactivées sur citation (Bangkok Airways, Copa, KM Malta fret ; SKY express, SunExpress soute). */
-  check("129 politiques émettent legacy_unreviewed (73 d'origine + 56 sans page à montrer)",
-    porteuses === 129, String(porteuses));
+  /* MOUVEMENT NOMMÉ (09/09/2026, import strict lot 9 — 18 citations de plus, 176 en tout, lot de clôture) : 129 → 111 ; cinq lignes non revérifiées réactivées sur citation (Aerolíneas Argentinas, Air Astana, Edelweiss fret ; TAROM soute et fret). */
+  check("111 politiques émettent legacy_unreviewed (73 d'origine + 38 sans page à montrer)",
+    porteuses === 111, String(porteuses));
   /* 05/09/2026 — 33 → 32. British Airways cabine quitte ce groupe : sa page officielle porte
      désormais la phrase, et la politique devient le premier `denied` prouvé du dépôt. Chaque
      citation suivante fera baisser ce compte, et devra le nommer comme celle-ci. */
@@ -560,8 +561,8 @@ console.log("=== 8. Baseline FIGÉE : le point de comparaison de T0-B2 est scell
      ternaire → import V3 → lots 2 et 3, chaque « avant » égal à l'« après » précédent, vérifié
      dans test-t0a-baseline.mjs). */
   /* 09/09/2026 — la plus récente est celle du lot 4 (chaîne : … → lots 2 et 3 → lot 4). */
-  check("Import strict lot 8 : la baseline vivante est identique à la figée la plus récente",
-    vivante.equals(readFileSync("test-baselines/import-strict-lot-8-apres.json")));
+  check("Import strict lot 9 : la baseline vivante est identique à la figée la plus récente",
+    vivante.equals(readFileSync("test-baselines/import-strict-lot-9-apres.json")));
   check("Arbitrages d'interface : sa figée reste intacte à côté (elle n'a pas été écrasée)",
     !readFileSync("test-baselines/arbitrages-interface-apres.json")
       .equals(readFileSync("test-baselines/entree-ternaire-apres.json")));

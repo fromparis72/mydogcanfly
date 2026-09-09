@@ -78,10 +78,55 @@ ladder:
 policies:
   cabin:
     availability: offered
+    # PREUVE IMPORTÉE — import strict lot9 (Codex, lecture directe du 2026-09-09, cohorte LOT9 fait 0).
+    # Effet attendu : Aerolíneas Argentinas cabin is conditional with a 9 kg combined dog-and-container ceiling on the stated network scope.
+    # Portée nommée : One dog or cat up to 9 kg in its container on domestic or regional flights, subject to advance handling, aircraft capacity, container, health and documentation conditions.
+    # Le plafond cité inclut le CONTENANT : refus sûr si le chien seul le dépasse, jamais un oui en dessous.
+    max_weight_kg: 9
+    weight_includes_carrier: true
+    source:
+      url: "https://portalar.aerolineas.com.ar/campus/pluginfile.php/9597/mod_resource/content/2/resumen_obligaciones.pdf"
+      source_type: official_website
+      verified_date: "2026-09-09"
+      review_due: "2026-12-08"   # reviewDueFrom(verified_date, "airline") — calculé par l'importeur
+      confidence: 4
+      reviewer: "Codex — direct reading of official airline material"
+      history: []
+      quote: "Se puede transportar solamente un perro o gato, de máx. 9 kilos en el contenedor correspondiente."
+      quote_language: es
+      locator: "ANIMALES EN LA CABINA — page 4"
   hold:
     availability: offered
+    # PREUVE IMPORTÉE — import strict lot9 (Codex, lecture directe du 2026-09-09, cohorte LOT9 fait 1).
+    # Effet attendu : Aerolíneas Argentinas hold is a documented conditional route.
+    # Portée nommée : A dog or cat exceeding the cabin weight or dimensions may travel in the aircraft hold, subject to availability, crate, route, health and documentation conditions.
+    source:
+      url: "https://portalar.aerolineas.com.ar/campus/pluginfile.php/9597/mod_resource/content/2/resumen_obligaciones.pdf"
+      source_type: official_website
+      verified_date: "2026-09-09"
+      review_due: "2026-12-08"   # reviewDueFrom(verified_date, "airline") — calculé par l'importeur
+      confidence: 4
+      reviewer: "Codex — direct reading of official airline material"
+      history: []
+      quote: "se trasporta en bodega"
+      quote_language: es
+      locator: "ANIMALES EN LA CABINA — page 4"
   cargo:
-    review_state: legacy_unreviewed
+    availability: offered   # RÉACTIVÉE sur citation (import strict, lot9, 2026-09-09) — était review_state: legacy_unreviewed
+    # PREUVE IMPORTÉE — import strict lot9 (Codex, lecture directe du 2026-09-09, cohorte LOT9 fait 2).
+    # Effet attendu : Aerolíneas Argentinas cargo is a documented conditional service.
+    # Portée nommée : Aerolíneas Cargo carries pets and other live animals subject to advance booking, station, route, customs, veterinary, crate, breed and temperature conditions.
+    source:
+      url: "https://cargo.aerolineas.com.ar/es-AR/envios_personales"
+      source_type: official_website
+      verified_date: "2026-09-09"
+      review_due: "2026-12-08"   # reviewDueFrom(verified_date, "airline") — calculé par l'importeur
+      confidence: 4
+      reviewer: "Codex — direct reading of official airline material"
+      history: []
+      quote: "Aerolineas Cargo ofrece transporte de mascotas y otros animales vivos a todos nuestros destinos."
+      quote_language: es
+      locator: "ANIMALES VIVOS → INFORMACIÓN GENERAL"
 channels:
   - placement: cabin
     icon: 🐾

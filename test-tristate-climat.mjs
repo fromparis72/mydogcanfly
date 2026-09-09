@@ -317,8 +317,11 @@ console.log("\n=== 5. Dominance : denied > confirmation_required — interaction
     !(p.confirmation_causes ?? []).some((c) => c.code === "breed_policy_unreviewed" || c.code === "legacy_unreviewed" || c.code === "official_source_unquoted"
       || ((c.code === "rule_unverified" || c.code === "rule_official_unquoted") && c.rule_id)));
   /* MOUVEMENT NOMMÉ (09/09/2026, import strict lot 4 — 22 citations de plus, 74 en tout) : 51 → 50 confirmations, 46 → 44 de provenance (deux canaux du trajet cités) ; 38 de race, inchangé. */
-  check("carlin : 47 confirmations — 35 de provenance, 38 de race, 1 par règle non citée seule (Air Algérie cabine), aucune inexpliquée (chacune porte l'une des trois causes)",
-    confirmations.length === 47 && provenance === 35 && race === 38 && parRegleSeule.length === 1 && parRegleSeule[0]?.placement === "cabin" && inexpliquees.length === 0,
+  /* MOUVEMENT NOMMÉ (09/09/2026, import strict lot 9 — clôture) : 47 → 45 confirmations, 35 → 30 de provenance (TAROM soute
+     et fret réactivés sur citation, Croatia Airlines cabine et soute citées, sur ce trajet), 38 de race et 1 par règle
+     seule (Air Algérie cabine) inchangés. */
+  check("carlin : 45 confirmations — 30 de provenance, 38 de race, 1 par règle non citée seule (Air Algérie cabine), aucune inexpliquée (chacune porte l'une des trois causes)",
+    confirmations.length === 45 && provenance === 30 && race === 38 && parRegleSeule.length === 1 && parRegleSeule[0]?.placement === "cabin" && inexpliquees.length === 0,
     `${confirmations.length} confirmation(s), dont ${race} de race et ${provenance} de provenance, ${inexpliquees.length} inexpliquée(s), sur ${tousLesCanaux.length} canaux`);
 }
 

@@ -72,6 +72,10 @@ const LOTS = {
   lot8: { dossier: "mesures/preuves/import-strict-lot-8-2026-09-09", total: 23,
     fichiers: { LOT8: "tous" },
     nom: () => "PREUVES_POLITIQUES_COMPAGNIES_LOT_8_STRICT_2026-09-09.json" },
+  /** Neuvième paquet (09/09), lot de clôture : les 9 dernières compagnies, 18 faits, 9 non-décisions. */
+  lot9: { dossier: "mesures/preuves/import-strict-lot-9-2026-09-09", total: 18,
+    fichiers: { LOT9: "tous" },
+    nom: () => "PREUVES_POLITIQUES_COMPAGNIES_LOT_9_STRICT_2026-09-09.json" },
 };
 if (!LOTS[LOT]) throw new Error(`lot inconnu : ${LOT}`);
 const DOSSIER = resolve(arg("dossier", LOTS[LOT].dossier));
@@ -141,6 +145,11 @@ const SEUILS = {
      lignes s'ajoutent. */
   "airline_air_austral.cabin": 8, "airline_la_compagnie.cabin": 8,
   "airline_copa.cabin": 10, "airline_tunisair.cabin": 8, "airline_sunexpress.cabin": 8,
+  /* Lot 9 — même règle. Écrits : Aerolíneas Argentinas 9 (« de máx. 9 kilos en el contenedor
+     correspondiente »), Edelweiss 8 (« up to a maximum of 8 kg including the pet carrier »), TAROM 8
+     (« up to 8 kilos (including the weight of the standard transportation cage) »). NON écrits : Air
+     Astana 8 et Neos 10 (chiffre absent de la phrase citée). */
+  "airline_aerolineas_argentinas.cabin": 9, "airline_edelweiss.cabin": 8, "airline_tarom.cabin": 8,
 };
 /** Seuils du CHIEN SEUL (le contenant s'ajoute) : `weight_includes_carrier: false`, écrit. */
 const SEUIL_CHIEN_SEUL = new Set(["airline_air_europa.cabin"]);

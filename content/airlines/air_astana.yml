@@ -74,10 +74,52 @@ ladder:
 policies:
   cabin:
     availability: offered
+    # PREUVE IMPORTÉE — import strict lot9 (Codex, lecture directe du 2026-09-09, cohorte LOT9 fait 3).
+    # Effet attendu : Air Astana cabin is conditional with an 8 kg combined animal-and-container ceiling.
+    # Portée nommée : Dogs and cats may travel in cabin with an advance request; the animal and container together must not exceed 8 kg and aircraft, quota, container and documentation conditions apply.
+    source:
+      url: "https://help.airastana.com/hc/ru/sections/4417967707410-%D0%9F%D0%B5%D1%80%D0%B5%D0%B2%D0%BE%D0%B7%D0%BA%D0%B0-%D0%B6%D0%B8%D0%B2%D0%BE%D1%82%D0%BD%D1%8B%D1%85"
+      source_type: official_website
+      verified_date: "2026-09-09"
+      review_due: "2026-12-08"   # reviewDueFrom(verified_date, "airline") — calculé par l'importeur
+      confidence: 4
+      reviewer: "Codex — direct reading of official airline material"
+      history: []
+      quote: "Перевозка домашних животных (кошек или собак) в салоне самолета разрешена"
+      quote_language: ru
+      locator: "Правила и нормы перевозки домашних животных в салоне самолета"
   hold:
     availability: offered
+    # PREUVE IMPORTÉE — import strict lot9 (Codex, lecture directe du 2026-09-09, cohorte LOT9 fait 4).
+    # Effet attendu : Air Astana hold is a documented conditional route, with destination exclusions.
+    # Portée nommée : Dogs may travel as checked animals subject to advance request, route, aircraft, crate, cohabitation, age and documentation conditions; some destinations prohibit baggage transport entirely.
+    source:
+      url: "https://help.airastana.com/hc/ru/sections/4417967707410-%D0%9F%D0%B5%D1%80%D0%B5%D0%B2%D0%BE%D0%B7%D0%BA%D0%B0-%D0%B6%D0%B8%D0%B2%D0%BE%D1%82%D0%BD%D1%8B%D1%85"
+      source_type: official_website
+      verified_date: "2026-09-09"
+      review_due: "2026-12-08"   # reviewDueFrom(verified_date, "airline") — calculé par l'importeur
+      confidence: 4
+      reviewer: "Codex — direct reading of official airline material"
+      history: []
+      quote: "Правила перевозки животных в багажном отсеке"
+      quote_language: ru
+      locator: "Правила перевозки животных в багажном отсеке"
   cargo:
-    review_state: legacy_unreviewed
+    availability: offered   # RÉACTIVÉE sur citation (import strict, lot9, 2026-09-09) — était review_state: legacy_unreviewed
+    # PREUVE IMPORTÉE — import strict lot9 (Codex, lecture directe du 2026-09-09, cohorte LOT9 fait 5).
+    # Effet attendu : Air Astana cargo is documented for destination-restricted cases, not as an unconditional network-wide promise.
+    # Portée nommée : Cargo under an air waybill is the documented route for animals to or from specified destinations where carriage as baggage is prohibited; cargo approval and route conditions apply.
+    source:
+      url: "https://help.airastana.com/hc/ru/sections/4417967707410-%D0%9F%D0%B5%D1%80%D0%B5%D0%B2%D0%BE%D0%B7%D0%BA%D0%B0-%D0%B6%D0%B8%D0%B2%D0%BE%D1%82%D0%BD%D1%8B%D1%85"
+      source_type: official_website
+      verified_date: "2026-09-09"
+      review_due: "2026-12-08"   # reviewDueFrom(verified_date, "airline") — calculé par l'importeur
+      confidence: 4
+      reviewer: "Codex — direct reading of official airline material"
+      history: []
+      quote: "животные должны быть транспортированы исключительно по грузовой авианакладной"
+      quote_language: ru
+      locator: "Существуют ли особые ограничения для других стран?"
 channels:
   - placement: cabin
     icon: 🐾

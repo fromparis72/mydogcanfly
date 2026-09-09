@@ -28,7 +28,8 @@ const WRITE = process.argv.includes("--write");
 /* MOUVEMENT NOMMÉ (09/09/2026, import strict lot 6 — 21 citations de plus, 113 en tout) : 21 348 → 26 040. */
 /* MOUVEMENT NOMMÉ (09/09/2026, import strict lot 7 — 23 citations de plus, 136 en tout) : 26 040 → 26 868. */
 /* MOUVEMENT NOMMÉ (09/09/2026, import strict lot 8 — 22 citations de plus, 158 en tout) : 26 868 → 28 536. */
-const TEMOIN_VRAI_V3 = 28536;
+/* MOUVEMENT NOMMÉ (09/09/2026, import strict lot 9 — 18 citations de plus, 176 en tout, lot de clôture) : 28 536 → 29 205. */
+const TEMOIN_VRAI_V3 = 29205;
 /**
  * T0-B2 — la sonde vivante compare désormais au fichier DE CE LOT.
  *
