@@ -3676,3 +3676,13 @@ corrigés, nommés dans le fichier.
 | lot 8, correctif, réconciliation | Bangkok « à confirmer » | Bangkok « sous conditions », règles citées |
 | inventaire | régénéré (fingerprint) | 178 / 51 / 74 / 3 inchangés |
 | baseline Finder (72 scénarios) | inchangée | inchangée : aucun scénario ne traverse Bangkok Airways |
+
+### Mesuré sur le dist (un seul build, `d5689e0`)
+
+| contrôle | résultat |
+|---|---|
+| `test:unit` complet, typecheck, `npm run check`, ingest --check, provenance, smoke, matrice (74 lignes, 0 écart), fraîcheur (21 cas) | verts |
+| entités | 178 OK, 0 FAIL |
+| chaîne `test:built-ui`, caisses non sourcées, accueil, affirmations retirées, tarifs, montants publiés, dette Astro | verts |
+| étape 3 DOM | verte, scellé des licites inchangé (16 sources, 20 couples) |
+| contre-épreuves complètes sur l'arbre propre | 58/58 |
