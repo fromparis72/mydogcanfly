@@ -126,3 +126,56 @@ peut dire « tarifs officiels contradictoires », jamais trancher.
 
 SAS soute laisse `weight_includes_carrier` non renseigné : la page ne dit pas si le contenant entre dans les
 50 kg. C'est exactement le cas où notre modèle refuse de refuser au seuil — la portée reste nommée, non déduite.
+
+## Audit tarifaire indépendant de Codex — reçu, empreinte vérifiée, garde rejouée (10/09/2026)
+
+Archive `AUDIT_TARIFS_102_COMPAGNIES_2026-09-10.zip`, dépliée dans `audit-tarifs-codex/`. **SHA-256 recalculé
+ici : `252b7954…c6027` — identique à celui qu'annonce Codex.** Sa garde rejouable passe sans modification :
+
+```
+$ node audit-tarifs/consolider.mjs
+OK — 102 compagnies, 306 lignes, aucun doublon, trois canaux chacune
+```
+
+Comptes relus dans le JSON, et concordants avec le LISEZ_MOI de Codex :
+
+| classe tarifaire | canaux | | classe tarifaire | canaux |
+|---|---:|---|---|---:|
+| MATRIX | 59 | | QUOTE | 47 |
+| EXACT | 35 | | QUOTE_OR_NOT_FOUND | 15 |
+| RANGE | 13 | | NOT_FOUND | 52 |
+| FORMULA | 12 | | NOT_APPLICABLE | 62 |
+| CALCULATOR | 4 | | CONFLICT | 3 |
+| MINIMUM, BOOKING_ONLY | 2 + 2 | | **total** | **306** |
+
+Les sept premières classes font les **127** mécanismes exploitables ; QUOTE et QUOTE_OR_NOT_FOUND font les **62**
+devis. Côté citation : 95 extraits portent un prix, 78 un mécanisme — dont les 62 devis, ce qui laisse bien
+**111** lignes exploitables à preuve directe, **16** `LOCATOR_ONLY_REVIEW_BEFORE_IMPORT` et **3**
+`CONFLICT_DO_NOT_IMPORT`. Rien à recompter : les nombres de Codex sont vérifiés, pas repris.
+
+### Ce que cet audit change pour moi
+
+Il remplace les deux colonnes « À LIRE (Codex) » de ma matrice pré-lecture. Ma matrice reste la carte du dépôt
+(état du Finder, ancienne information, preuve raccordée) ; l'audit apporte le fait officiel et le tarif. Les
+identifiants y sont nus (`sas`, `aegean`), sans le préfixe `airline_` : la jointure se fait sur le slug.
+
+**Mon travail restant est un travail de schéma, de mapping et de témoins — pas une nouvelle lecture métier.**
+
+### Neuf blocages nommés par Codex, dont trois touchent mes propres imports
+
+Conflits officiels à consigner sans trancher : Finnair soute (120/600 contre 140/650 EUR), South African Airways
+soute (300 ZAR en anglais contre 250 ZAR en portugais), SunExpress soute à Ercan (25 contre 15 EUR au paiement).
+Portées à ne pas généraliser : Qantas soute (certains aéroports seulement — c'est aussi la dette de fiche nommée
+en annexe 40), Aer Lingus soute (soute physique contre produit fret via agent), China Eastern cabine (demande sur
+certains vols intérieurs, un refus mondial serait faux).
+
+**Trois divergences visent des preuves que j'ai importées et demandent une contre-lecture :**
+
+1. **Air China cabine** — l'audit conclut que les animaux ordinaires n'y sont pas proposés ; le correctif
+   d'arbitrages du 09/09 l'a passée à `offered` sur ordre. Portée de cette preuve à relire.
+2. **Batik Air Indonesia** — l'audit n'avait trouvé aucune preuve exploitable ; le lot 9 y a importé deux refus
+   cités. Page à contre-lire.
+3. **Saudia cabine et soute** — l'URL utilisée est une adresse `booking-uat`, exclue par l'audit comme preuve de
+   production. C'est une dette que j'avais déjà nommée ; elle est maintenant opposée par un tiers.
+
+Aucun de ces points n'est tranché ici : ils vont à Philippe, avec les deux lectures en regard.
