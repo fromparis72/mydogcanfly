@@ -941,8 +941,13 @@ console.log("=== Preuve T0-B2-UI (deux baselines FIGÉES — permanente) ===");
     /* 09/09/2026, clôture — LA PLUS RÉCENTE EST CELLE DU LOT 9 (18 citations, les 102 compagnies examinées). */
     /* 09/09/2026, après clôture — LA PLUS RÉCENTE EST CELLE DU CORRECTIF D'ARBITRAGES (six preuves remplacées). */
     /* 09/09/2026, ensuite — LA PLUS RÉCENTE EST CELLE DE LA RÉCONCILIATION CIBLÉE (deux règles retirées, borne stricte). */
-    check("la baseline vivante est identique à la baseline figée la plus récente (réconciliation ciblée)",
+    /* 10/09/2026 — LA PLUS RÉCENTE EST CELLE DU COMPLÉMENT AIR FRANCE CABINE (une citation, borne stricte « moins de 8 kg »).
+       Celle de la réconciliation n'est pas écrasée : elle devient l'AVANT de cette paire. */
+    check("la baseline vivante est identique à la baseline figée la plus récente (complément Air France cabine)",
       readFileSync("test-baselines/t0a-finder-baseline.json", "utf8")
+        === readFileSync("test-baselines/complement-air-france-cabine-apres.json", "utf8"));
+    check("l'AVANT du complément Air France cabine EST l'après de la réconciliation — chaîne continue",
+      readFileSync("test-baselines/complement-air-france-cabine-avant.json", "utf8")
         === readFileSync("test-baselines/reconciliation-arbitrages-apres.json", "utf8"));
     check("l'AVANT de la réconciliation EST l'après du correctif — chaîne continue",
       readFileSync("test-baselines/reconciliation-arbitrages-avant.json", "utf8")
@@ -1635,6 +1640,52 @@ console.log("=== Preuve PERMANENTE Réconciliation ciblée — deux règles hér
   }
 }
 
+console.log("=== Preuve PERMANENTE Complément Air France cabine — une citation, une borne stricte, et rien d'autre ne bouge (baselines FIGÉES) ===");
+{
+  /* Même méthode. Entre l'après de la réconciliation et l'après du complément : 72 cartes sur 1 560 — Air France est
+   * sur les 72 scénarios, et elle seule change. Les deux chiens des scénarios (Golden 32 kg, carlin 8 kg) sont tous
+   * deux À LA BORNE OU AU-DESSUS de « moins de 8 kg, sac compris » : 72 cabines « à confirmer » (page officielle non
+   * citée) → REFUSÉES sur citation ; le carlin de 8,0 kg exactement est refusé parce que la borne est stricte — jamais
+   * converti en « ≤ 8 kg ». Aucun canal vers `allowed` ; AUCUN verdict ne bouge. L'ouverture « sous conditions »
+   * (chien + sac < 8 kg) n'apparaît dans aucun des 72 scénarios : elle est éprouvée par `test-preuves-air-france-
+   * cabine.mjs` (chihuahua 3 kg et 7,9 kg). La ligne tarifaire de la cabine (`tarifs:cabin`) disparaît avec le refus :
+   * un canal fermé ne porte pas de tarif. */
+  const AVANT = "test-baselines/complement-air-france-cabine-avant.json";
+  const APRES = "test-baselines/complement-air-france-cabine-apres.json";
+  const IMPORTEES = ["airline_air_france"];
+  check("les deux baselines du complément Air France cabine sont versionnées", existsSync(AVANT) && existsSync(APRES));
+  if (existsSync(AVANT) && existsSync(APRES)) {
+    const avant = JSON.parse(readFileSync(AVANT, "utf8")), apres = JSON.parse(readFileSync(APRES, "utf8"));
+    const idDe = (s) => s.split(" | ")[0];
+    const statutsDe = (s) => (s.split(" | ").find((seg) => seg.startsWith("st:")) ?? "st:?/?/?").slice(3).split("/");
+    const changees = new Map(); const transitions = new Map(); const verdicts = new Map();
+    let cartes = 0, total = 0, tarifsCabineRetires = 0;
+    for (const k of Object.keys(apres)) {
+      const A = new Map((avant[k]?.airlines ?? []).map((s) => [idDe(s), s]));
+      for (const s of apres[k].airlines ?? []) {
+        total++;
+        const o = A.get(idDe(s));
+        if (o === s) continue;
+        cartes++; changees.set(idDe(s), (changees.get(idDe(s)) ?? 0) + 1);
+        const so = statutsDe(o ?? ""), sn = statutsDe(s);
+        for (let i = 0; i < 3; i++) if (so[i] !== sn[i]) transitions.set(`${so[i]}→${sn[i]}`, (transitions.get(`${so[i]}→${sn[i]}`) ?? 0) + 1);
+        if (/\| tarifs:cabin\+/.test(o ?? "") && !/\| tarifs:cabin/.test(s)) tarifsCabineRetires++;
+      }
+      const v = `${avant[k]?.verdict}→${apres[k].verdict}`; verdicts.set(v, (verdicts.get(v) ?? 0) + 1);
+    }
+    check("SEULE Air France change de carte", [...changees.keys()].every((id) => IMPORTEES.includes(id)) && changees.size === 1,
+      [...changees.keys()].filter((id) => !IMPORTEES.includes(id)).join(", ") || `${changees.size} compagnies`);
+    check("72 cartes sur 1 560 changent (Air France est sur les 72 scénarios)", cartes === 72 && total === 1560, `${cartes} / ${total}`);
+    check("72 cabines « à confirmer » → REFUSÉES sur citation (Golden 32 kg et carlin 8,0 kg, borne stricte), et RIEN d'autre",
+      transitions.get("confirmation_required→denied") === 72 && transitions.size === 1, JSON.stringify([...transitions]));
+    check("la ligne tarifaire de la cabine disparaît avec le refus, sur les 72 cartes — un canal fermé ne porte pas de tarif",
+      tarifsCabineRetires === 72, String(tarifsCabineRetires));
+    check("AUCUN canal ne va vers `allowed`, AUCUN verdict ne bouge (52 conditional, 20 unknown)",
+      [...transitions.keys()].every((t) => !t.endsWith("→allowed")) && verdicts.get("conditional→conditional") === 52 && verdicts.get("unknown→unknown") === 20 && verdicts.size === 2,
+      JSON.stringify([...verdicts]));
+  }
+}
+
 console.log("=== Couverture DIRECTE : les 302 politiques, hors des 72 scénarios ===");
 {
   const kbCouverture = loadKB();
@@ -1724,11 +1775,13 @@ console.log("=== Couverture DIRECTE : les 302 politiques, hors des 72 scénarios
   /* MOUVEMENT NOMMÉ (09/09/2026, import strict lot 9 — 18 citations de plus, 176 en tout, lot de clôture) : 0 · 140 · 34 · 128 ; causes 111 · 15 · 1 · 1. */
   /* MOUVEMENT NOMMÉ (09/09/2026, correctif d'arbitrages — Codex, tranché par Philippe ; six preuves remplacées dans les lots 4, 6 et 8) : 0 · 142 · 34 · 126 ; causes 109 · 15 · 0 · 2. */
   /* MOUVEMENT NOMMÉ (10/09/2026, Bangkok Airways fret — annexe 37) : 142 → 143 sous conditions, 126 → 125 à confirmer, airline_approval 2 → 1. */
-  check("répartition runtime : 0 allowed · 143 sous conditions · 34 denied · 125 à confirmer",
-    !parStatut.allowed && parStatut.accepted_with_conditions === 143 && parStatut.denied === 34 && parStatut.confirmation_required === 125,
+  /* MOUVEMENT NOMMÉ (10/09/2026, complément Air France cabine — Codex, une citation, 179 en tout) : 143 → 144 sous conditions,
+     125 → 124 à confirmer ; official_source_unquoted 15 → 14 (Air France cabine était l'une des quinze pages officielles sans phrase). */
+  check("répartition runtime : 0 allowed · 144 sous conditions · 34 denied · 124 à confirmer",
+    !parStatut.allowed && parStatut.accepted_with_conditions === 144 && parStatut.denied === 34 && parStatut.confirmation_required === 124,
     JSON.stringify(parStatut));
-  check("causes : 109 legacy_unreviewed · 15 official_source_unquoted · 0 policy_unpublished · 1 airline_approval",
-    parCause.legacy_unreviewed === 109 && parCause.official_source_unquoted === 15
+  check("causes : 109 legacy_unreviewed · 14 official_source_unquoted · 0 policy_unpublished · 1 airline_approval",
+    parCause.legacy_unreviewed === 109 && parCause.official_source_unquoted === 14
       && !parCause.policy_unpublished && parCause.airline_approval === 1, JSON.stringify(parCause));
 }
 

@@ -1,21 +1,21 @@
 {
   "resume": {
-    "empreinte_donnees_sha256": "781140904c19c4bc03de907d30e711548b08fea1f7a4fcf1b30b1b647c20c996",
+    "empreinte_donnees_sha256": "d663d8c067fded1aefb5fe4e7c23e4460aba2edb9097262e4ac372996635d6fc",
     "compagnies": 102,
     "lignes": 306,
     "politiques": 302,
     "par_categorie": {
-      "A": 178,
+      "A": 179,
       "A_incomplete": 0,
-      "B": 51,
+      "B": 50,
       "C": 74,
       "D": 3
     },
     "par_canal": {
       "cabin": {
-        "A": 79,
+        "A": 80,
         "A_incomplete": 0,
-        "B": 9,
+        "B": 8,
         "C": 14,
         "D": 0
       },
@@ -60,6 +60,7 @@
       "airline_air_china#hold (politique)",
       "airline_air_europa#cabin (politique)",
       "airline_air_europa#hold (politique)",
+      "airline_air_france#cabin (politique)",
       "airline_air_france#hold (politique)",
       "airline_air_india#cabin (politique)",
       "airline_air_india#hold (politique)",
@@ -221,7 +222,7 @@
       "airline_transavia#cargo"
     ],
     "B_par_piste": {
-      "politique": 23,
+      "politique": 22,
       "regle": 28
     },
     "B_par_regle_gov_uk_seul": 14,
@@ -229,22 +230,22 @@
       "availability": {
         "not_offered": 21,
         "null": 12,
-        "offered": 18
+        "offered": 17
       },
       "derived_from_fiche": {
-        "false": 16,
+        "false": 15,
         "true": 35
       },
       "source_derived": {
-        "false": 24,
+        "false": 23,
         "true": 27
       },
       "review_state": {
         "legacy_unreviewed": 11,
-        "null": 40
+        "null": 39
       },
       "history": {
-        "0": 42,
+        "0": 41,
         "1": 9
       },
       "hotes": {
@@ -275,7 +276,7 @@
         "virginatlantic.com": 2,
         "virginaustralia.com": 1,
         "westjet.com": 1,
-        "wwws.airfrance.us": 2
+        "wwws.airfrance.us": 1
       }
     },
     "priorite_C": {
@@ -292,9 +293,9 @@
     },
     "coherence_niveau_de_preuve": {
       "paires": {
-        "A ↔ citee": 178,
+        "A ↔ citee": 179,
         "B ↔ aucune": 27,
-        "B ↔ officielle_non_citee": 23,
+        "B ↔ officielle_non_citee": 22,
         "B ↔ politique_absente": 1,
         "C ↔ aucune": 74,
         "D ↔ politique_absente": 3
@@ -1243,21 +1244,21 @@
       "airline_id": "airline_air_france",
       "name": "Air France",
       "canal": "cabin",
-      "categorie": "B",
+      "categorie": "A",
       "piste": "politique",
       "manques": [],
-      "url": "https://wwws.airfrance.us/information/passagers/voyager-avec-son-animal-chien-chat",
-      "hote": "wwws.airfrance.us",
-      "verified_date": "2026-07-08",
-      "niveau_de_preuve_politique": "officielle_non_citee",
+      "url": "https://wwws.airfrance.fr/information/passagers/voyager-avec-son-animal-chien-chat",
+      "hote": "wwws.airfrance.fr",
+      "verified_date": "2026-09-10",
+      "niveau_de_preuve_politique": "citee",
       "priorite": {
         "availability": "offered",
         "derived_from_fiche": false,
         "source_derived": false,
         "review_state": null,
         "history": 0,
-        "url_politique": "https://wwws.airfrance.us/information/passagers/voyager-avec-son-animal-chien-chat",
-        "hote_politique": "wwws.airfrance.us",
+        "url_politique": "https://wwws.airfrance.fr/information/passagers/voyager-avec-son-animal-chien-chat",
+        "hote_politique": "wwws.airfrance.fr",
         "url_fabriquee": false,
         "regles": [
           "rule_af_cabin_weight"

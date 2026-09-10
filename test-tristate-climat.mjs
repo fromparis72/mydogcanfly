@@ -320,8 +320,12 @@ console.log("\n=== 5. Dominance : denied > confirmation_required — interaction
   /* MOUVEMENT NOMMÉ (09/09/2026, import strict lot 9 — clôture) : 47 → 45 confirmations, 35 → 30 de provenance (TAROM soute
      et fret réactivés sur citation, Croatia Airlines cabine et soute citées, sur ce trajet), 38 de race et 1 par règle
      seule (Air Algérie cabine) inchangés. */
-  check("carlin : 45 confirmations — 30 de provenance, 38 de race, 1 par règle non citée seule (Air Algérie cabine), aucune inexpliquée (chacune porte l'une des trois causes)",
-    confirmations.length === 45 && provenance === 30 && race === 38 && parRegleSeule.length === 1 && parRegleSeule[0]?.placement === "cabin" && inexpliquees.length === 0,
+  /* MOUVEMENT NOMMÉ (10/09/2026, complément Air France cabine, Codex — une citation de plus, 179 en tout) : 45 → 44
+     confirmations, 30 → 29 de provenance (Air France cabine, sur ce trajet, n'est plus « page officielle non citée » :
+     elle est citée, et le carlin de 8 kg y est REFUSÉ par la borne stricte « moins de 8 kg »), 38 de race et 1 par
+     règle seule inchangés. */
+  check("carlin : 44 confirmations — 29 de provenance, 38 de race, 1 par règle non citée seule (Air Algérie cabine), aucune inexpliquée (chacune porte l'une des trois causes)",
+    confirmations.length === 44 && provenance === 29 && race === 38 && parRegleSeule.length === 1 && parRegleSeule[0]?.placement === "cabin" && inexpliquees.length === 0,
     `${confirmations.length} confirmation(s), dont ${race} de race et ${provenance} de provenance, ${inexpliquees.length} inexpliquée(s), sur ${tousLesCanaux.length} canaux`);
 }
 

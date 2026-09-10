@@ -56,6 +56,16 @@ const FAKE_REPORT = {
   airlines: [{
     airline_id: "airline_air_france", name: "Air France",
     direct: true, cabin: true, hold: false, cargo: false,
+    /* P0-1 DE LA CONTRE-REVUE (Codex, 10/09/2026) : cette fixture ne portait que les booléens, et l'interface
+       en DÉRIVAIT des statuts (« hold: false » devenait un refus). La frontière refuse désormais un rapport
+       sans les trois `*_status` et les trois décisions concordantes ; la fixture dit donc ce que le repli
+       disait tout bas — cabine ouverte, soute et fret refusés —, mais en toutes lettres. */
+    cabin_status: "allowed", hold_status: "denied", cargo_status: "denied",
+    placement_decisions: [
+      { placement: "cabin", status: "allowed", allowed: true },
+      { placement: "hold", status: "denied", allowed: false },
+      { placement: "cargo", status: "denied", allowed: false },
+    ],
     label: "OK", source_url: "", carrier_of_origin: false, carrier_of_destination: false,
     itinerary_confidence: "confirmed", heat_embargo: false, fee: "",
   }],
@@ -222,17 +232,224 @@ const t0aCard = (over) => ({
   ],
   ...over,
 });
+/* ---- CARTES DU FINDER — LE CONTRAT D'INTERFACE ARBITRÉ PAR PHILIPPE (10/09/2026, annexe 38) --------------
+ * La réponse d'abord, la condition tout de suite après, le tarif quand il est établi, la preuve sans envahir
+ * l'écran ; une information n'apparaît qu'une fois ; le fret replié quand rien n'est publié ; les avertissements
+ * généraux une seule fois au-dessus des cartes. Fixtures, quatre langues, textes EXACTS. */
+const CARTE_LABELS = {
+  en: { confirm: "to be confirmed", yesCond: "yes, under conditions", no: "no", quiet: "information not published", fareConfirm: "fare to confirm", fareQuote: "on quotation", proofs: "See the evidence", prov: "Verified on an official source on", limit: "up to 75 kg" },
+  fr: { confirm: "à confirmer", yesCond: "oui, sous conditions", no: "non", quiet: "informations non publiées", fareConfirm: "tarif à confirmer", fareQuote: "sur devis", proofs: "Voir les preuves", prov: "Vérifié sur une source officielle le", limit: "jusqu'à 75 kg" },
+  es: { confirm: "a confirmar", yesCond: "sí, bajo condiciones", no: "no", quiet: "información no publicada", fareConfirm: "tarifa a confirmar", fareQuote: "bajo presupuesto", proofs: "Ver las pruebas", prov: "Verificado en una fuente oficial el", limit: "hasta 75 kg" },
+  pt: { confirm: "a confirmar", yesCond: "sim, sob condições", no: "não", quiet: "informações não publicadas", fareConfirm: "tarifa a confirmar", fareQuote: "sob orçamento", proofs: "Ver as provas", prov: "Fonte oficial verificada em", limit: "até 75 kg" },
+};
+const SRC_SOUTE = { url: "https://www.airfrance.com/pets", source_type: "official_website", verified_date: "2026-09-08", confidence: 4 };
+const carteContrat = (over) => ({
+  ...FAKE_REPORT.airlines[0], airline_id: "airline_contrat", name: "Contrat Air",
+  /* ERREUR NOMMÉE (10/09/2026, P0 second passage de Codex) : cette fixture posait `hold: true` sur une soute « sous
+     conditions ». Le moteur, lui, ne met un booléen à `true` que pour `allowed` (explain.ts, `has`) : la fixture masquait
+     donc le repli booléen de l'apparence. Les booléens disent désormais ce que le moteur dirait — tous faux. */
+  cabin: false, hold: false, cargo: false,
+  cabin_status: "confirmation_required", hold_status: "accepted_with_conditions", cargo_status: "confirmation_required",
+  to_confirm: ["cabin", "cargo"], carries_pets: true, offers_pet_transport: true, heat_confirmation_required: false,
+  placement_decisions: [
+    { placement: "cabin", status: "confirmation_required", allowed: false, confirmation_causes: [{ code: "official_source_unquoted", policy_ref: "airline_contrat#cabin" }] },
+    { placement: "hold", status: "accepted_with_conditions", allowed: false, weight_limit_kg: 75, weight_limit_includes_carrier: true, source: SRC_SOUTE },
+    { placement: "cargo", status: "confirmation_required", allowed: false, confirmation_causes: [{ code: "legacy_unreviewed", policy_ref: "airline_contrat#cargo" }] },
+  ],
+  ...over,
+});
+async function cartesPass() {
+  for (const loc of BADGE_LOCALES) {
+    console.log(`\n— Cartes : contrat d'interface (${loc.code}) —`);
+    const X = CARTE_LABELS[loc.code];
+    const rendre = async (card0, placement = "any") => {
+      const parts = loadHomeParts(loc.dir);
+      const rep = { ...FAKE_REPORT, airlines: [card0] };
+      const fetchMock = async (url, opts) => {
+        if (String(url).includes("/nearest-airport")) return { ok: false };
+        if (opts && opts.method === "POST") return { ok: true, json: async () => rep };
+        throw new Error("unexpected fetch: " + url);
+      };
+      const dom = buildDom(parts, fetchMock);
+      const { window } = dom;
+      const originEl = window.document.getElementById("f-origin");
+      const destEl = window.document.getElementById("f-dest");
+      const originIds = resolveEndpointFrom(parts.labels, originEl.value).ids;
+      destEl.value = pickDestinationLabel(parts.labels, originIds);
+      window.document.getElementById("f-weight").value = "8";
+      const sel = window.document.getElementById("f-placement");
+      if (sel) sel.value = placement;
+      window.document.getElementById("mdcf-finder").dispatchEvent(new window.Event("submit", { bubbles: true, cancelable: true }));
+      await flush();
+      const doc = window.document;
+      const card = doc.querySelector(".acard");
+      return { doc, card, txt: card ? card.textContent.replace(/\s+/g, " ") : "" };
+    };
+    const ligne = (card, ch) => card?.querySelector(`.acard__line--${ch}`);
+    const texteDe = (el) => (el ? el.textContent.replace(/\s+/g, " ").trim() : "");
+
+    /* 1. La carte de référence : cabine à confirmer, soute sous conditions (75 kg, source du 08/09), fret non publié. */
+    const { doc, card, txt } = await rendre(carteContrat({}));
+    check(`${loc.code} : une carte est rendue`, !!card);
+    if (!card) continue;
+    check(`${loc.code} : trois lignes canal, cabine et soute toujours visibles`, !!ligne(card, "cabin") && !!ligne(card, "hold") && !!ligne(card, "cargo"));
+    check(`${loc.code} : « Cabine : à confirmer » — la réponse d'abord`, texteDe(ligne(card, "cabin")).endsWith(X.confirm), texteDe(ligne(card, "cabin")));
+    const soute = texteDe(ligne(card, "hold"));
+    check(`${loc.code} : « Soute : oui, sous conditions · jusqu'à 75 kg … · tarif à confirmer » — la condition immédiatement après, le tarif sans montant`,
+      soute.includes(X.yesCond) && soute.includes(X.limit) && soute.includes(X.fareConfirm) && !/\d+\s?€|\$\s?\d+|EUR|USD/.test(soute), soute);
+    check(`${loc.code} : le fret non publié est REPLIÉ en une ligne discrète`, ligne(card, "cargo").classList.contains("acard__line--quiet") && texteDe(ligne(card, "cargo")).endsWith(X.quiet), texteDe(ligne(card, "cargo")));
+    check(`${loc.code} : le fret replié ne porte pas de tarif`, !texteDe(ligne(card, "cargo")).includes(X.fareQuote) && !texteDe(ligne(card, "cargo")).includes(X.fareConfirm));
+    check(`${loc.code} : les pastilles de statut restent, une par canal (à confirmer ×2, sous conditions ×1)`,
+      card.querySelectorAll(".ab--confirm").length === 2 && card.querySelectorAll(".ab--cond").length === 1 && card.querySelectorAll(".ab--no").length === 0);
+    /* Une information une fois : le plafond n'est écrit qu'une fois dans la carte, et les anciens blocs ont disparu. */
+    check(`${loc.code} : le plafond de poids n'apparaît qu'UNE fois dans la carte`, txt.split(X.limit).length === 2, txt);
+    check(`${loc.code} : plus de badges, de ligne de verdict, de lignes d'acceptation/refus, de ligne de sources ni de bloc tarifaire séparés`,
+      !card.querySelector(".acard__badges, .acard__label, .acard__accepted, .acard__denied, .acard__psrc, .acard__fee, .acard__tarif, .acard__confirmwhy"));
+    /* La provenance nomme ses canaux. */
+    const prov = card.querySelector(".acard__prov");
+    const provTxt = texteDe(prov?.querySelector(".acard__prov-text"));
+    check(`${loc.code} : UNE ligne de provenance, qui nomme le canal prouvé (la soute) et sa date`, !!prov && provTxt.startsWith(X.prov) && /2026/.test(provTxt) && provTxt.includes(texteDe(ligne(card, "hold")).split(" ")[0]), provTxt);
+    check(`${loc.code} : …et ne nomme PAS la cabine ni le fret (non prouvés)`, !!prov && !provTxt.includes(texteDe(ligne(card, "cabin")).split(" ")[0]) && !provTxt.includes(texteDe(ligne(card, "cargo")).split(" ")[0]), provTxt);
+    const det = card.querySelector("details.acard__proofs");
+    check(`${loc.code} : le volet « Voir les preuves » existe, FERMÉ, et porte la page officielle, la date et la confiance`,
+      !!det && !det.hasAttribute("open") && texteDe(det.querySelector("summary")) === X.proofs && !!det.querySelector(`a[href="${SRC_SOUTE.url}"]`) && /2026-09-08/.test(texteDe(det)) && /4\/5/.test(texteDe(det)), texteDe(det));
+    check(`${loc.code} : le volet renvoie à la fiche détaillée pour la citation intégrale`, !!det && !!det.querySelector(".acard__proofs-fiche a[href*='/tools/fiche/']"));
+    /* Les avertissements généraux, une fois, au-dessus des cartes. */
+    const notes = doc.querySelector(".acards__notes");
+    const notesTxt = texteDe(notes);
+    check(`${loc.code} : les deux familles présentes (page officielle non citée, donnée non revérifiée) sont rendues UNE fois au-dessus des cartes, dans l'ordre`,
+      !!notes && notes.querySelectorAll(".acards__note").length === 2 && notes.querySelector(".acards__note[data-family='unreviewed'] + .acards__note[data-family='official_link']") !== null, notesTxt);
+    check(`${loc.code} : aucun paragraphe d'incertitude dans la carte`, !txt.includes(T0A_LABELS[loc.code].unreviewed) && !txt.includes(T0A_LABELS[loc.code].policy));
+
+    /* 2. Le fret se développe quand il est documenté (sous conditions, cité) : « Fret : oui, sous conditions · sur devis ». */
+    const r2 = await rendre(carteContrat({ cargo: true, cargo_status: "accepted_with_conditions", to_confirm: ["cabin"], placement_decisions: [
+      { placement: "cabin", status: "confirmation_required", allowed: false, confirmation_causes: [{ code: "official_source_unquoted", policy_ref: "x" }] },
+      { placement: "hold", status: "accepted_with_conditions", allowed: false, weight_limit_kg: 75, weight_limit_includes_carrier: true, source: SRC_SOUTE },
+      { placement: "cargo", status: "accepted_with_conditions", allowed: false, source: { ...SRC_SOUTE, verified_date: "2026-09-09" } },
+    ] }));
+    const fret2 = texteDe(ligne(r2.card, "cargo"));
+    check(`${loc.code} : fret documenté → développé, « oui, sous conditions · sur devis », jamais un montant`, !ligne(r2.card, "cargo").classList.contains("acard__line--quiet") && fret2.includes(X.yesCond) && fret2.includes(X.fareQuote), fret2);
+    /* P1 DE LA CONTRE-REVUE (Codex, 10/09/2026) : ce témoin ne comptait que deux occurrences de la formule. Il exige
+       désormais les deux ASSOCIATIONS date ↔ canal : le segment daté du 8 septembre nomme la soute et pas le fret,
+       celui du 9 septembre nomme le fret et pas la soute. Les dates sont rendues comme la carte les rend (Intl, langue
+       de la page), le canal est le premier mot de sa propre ligne. */
+    const lisible = (iso) => new Intl.DateTimeFormat(loc.code, { day: "numeric", month: "long", year: "numeric" }).format(new Date(iso + "T00:00:00Z"));
+    const capSoute = texteDe(ligne(r2.card, "hold")).split(" ")[0], capFret = texteDe(ligne(r2.card, "cargo")).split(" ")[0];
+    const segments = texteDe(r2.card.querySelector(".acard__prov-text")).split(" · ");
+    const seg8 = segments.find((x) => x.includes(lisible("2026-09-08"))), seg9 = segments.find((x) => x.includes(lisible("2026-09-09")));
+    check(`${loc.code} : deux dates de vérification → deux segments, « ${lisible("2026-09-08")} : ${capSoute} » et « ${lisible("2026-09-09")} : ${capFret} », chacun avec SON canal seulement`,
+      segments.length === 2 && !!seg8 && !!seg9 && seg8.startsWith(X.prov) && seg9.startsWith(X.prov)
+        && seg8.includes(capSoute) && !seg8.includes(capFret) && seg9.includes(capFret) && !seg9.includes(capSoute),
+      segments.join(" || "));
+
+    /* 3. Le fret se développe quand il est le seul canal restant (cabine et soute refusées). */
+    const r3 = await rendre(carteContrat({ hold: false, cabin_status: "denied", hold_status: "denied", to_confirm: ["cargo"], placement_decisions: [
+      { placement: "cabin", status: "denied", allowed: false, source: SRC_SOUTE },
+      { placement: "hold", status: "denied", allowed: false, source: SRC_SOUTE },
+      { placement: "cargo", status: "confirmation_required", allowed: false, confirmation_causes: [{ code: "legacy_unreviewed", policy_ref: "x" }] },
+    ] }));
+    check(`${loc.code} : cabine et soute refusées → « non » en toutes lettres, et le fret se développe (« à confirmer »)`,
+      texteDe(ligne(r3.card, "cabin")).endsWith(X.no) && texteDe(ligne(r3.card, "hold")).endsWith(X.no) && !ligne(r3.card, "cargo").classList.contains("acard__line--quiet") && texteDe(ligne(r3.card, "cargo")).endsWith(X.confirm),
+      [texteDe(ligne(r3.card, "cabin")), texteDe(ligne(r3.card, "hold")), texteDe(ligne(r3.card, "cargo"))].join(" | "));
+    check(`${loc.code} : un refus n'a pas de tarif`, !texteDe(ligne(r3.card, "cabin")).includes(X.fareConfirm));
+
+    /* 4. Le fret se développe quand il est DEMANDÉ (préférence « fret » du formulaire), même non publié. */
+    const r4 = await rendre(carteContrat({}), "cargo");
+    check(`${loc.code} : fret demandé → développé, « à confirmer » (pas la ligne discrète)`, !!ligne(r4.card, "cargo") && !ligne(r4.card, "cargo").classList.contains("acard__line--quiet") && texteDe(ligne(r4.card, "cargo")).endsWith(X.confirm), texteDe(ligne(r4.card, "cargo")));
+
+    /* 5. Une approbation au cas par cas n'est pas « rien de publié » : développé, « à confirmer ». */
+    const r5 = await rendre(carteContrat({ placement_decisions: [
+      { placement: "cabin", status: "confirmation_required", allowed: false, confirmation_causes: [{ code: "official_source_unquoted", policy_ref: "x" }] },
+      { placement: "hold", status: "accepted_with_conditions", allowed: false, weight_limit_kg: 75, weight_limit_includes_carrier: true, source: SRC_SOUTE },
+      { placement: "cargo", status: "confirmation_required", allowed: false, confirmation_causes: [{ code: "airline_approval", policy_ref: "x" }] },
+    ] }));
+    check(`${loc.code} : fret au cas par cas → développé, « à confirmer »`, !ligne(r5.card, "cargo").classList.contains("acard__line--quiet") && texteDe(ligne(r5.card, "cargo")).endsWith(X.confirm), texteDe(ligne(r5.card, "cargo")));
+
+    /* 6. Sans aucune source : pas de ligne de provenance, pas de volet — rien n'est prétendu vérifié. */
+    const r6 = await rendre(carteContrat({ placement_decisions: [
+      { placement: "cabin", status: "confirmation_required", allowed: false, confirmation_causes: [{ code: "legacy_unreviewed", policy_ref: "x" }] },
+      { placement: "hold", status: "confirmation_required", allowed: false, confirmation_causes: [{ code: "legacy_unreviewed", policy_ref: "x" }] },
+      { placement: "cargo", status: "confirmation_required", allowed: false, confirmation_causes: [{ code: "legacy_unreviewed", policy_ref: "x" }] },
+    ], hold: false, hold_status: "confirmation_required", to_confirm: ["cabin", "hold", "cargo"] }));
+    check(`${loc.code} : aucune source → aucune ligne de provenance ni volet`, !!r6.card && !r6.card.querySelector(".acard__prov") && !r6.card.querySelector("details.acard__proofs"));
+
+    /* 7. P1 (Codex, 10/09/2026) : un FAIT MANQUANT n'est pas « rien de publié » — le fret reste développé, « à confirmer ». */
+    const r7 = await rendre(carteContrat({ placement_decisions: [
+      { placement: "cabin", status: "confirmation_required", allowed: false, confirmation_causes: [{ code: "official_source_unquoted", policy_ref: "x" }] },
+      { placement: "hold", status: "accepted_with_conditions", allowed: false, weight_limit_kg: 75, weight_limit_includes_carrier: true, source: SRC_SOUTE },
+      { placement: "cargo", status: "confirmation_required", allowed: false, confirmation_causes: [{ code: "missing_fact", fact: "transport.total_weight_kg", requirement_ref: "req_x" }] },
+    ] }));
+    check(`${loc.code} : fret sur fait manquant → développé, « à confirmer » (pas la ligne discrète)`, !!ligne(r7.card, "cargo") && !ligne(r7.card, "cargo").classList.contains("acard__line--quiet") && texteDe(ligne(r7.card, "cargo")).endsWith(X.confirm), texteDe(ligne(r7.card, "cargo")));
+
+    /* 8. P0-1 (Codex, 10/09/2026) : UN RAPPORT INCOMPLET PRODUIT L'ERREUR PRUDENTE, JAMAIS « CABINE : NON ».
+       Trois amputations d'une réponse par ailleurs réelle : le statut cabine retiré ; le statut cabine discordant
+       de sa décision ; la décision fret absente. Chacune doit rendre `.finder__error` et AUCUNE carte. */
+    /* Premier jet fautif, nommé : je passais la carte amputée à `carteContrat(...)`, dont le gabarit REMETTAIT
+       `cabin_status: "confirmation_required"` — le témoin « sans cabin_status » rendait une carte complète et
+       rougissait sur sa propre erreur. L'amputation s'applique désormais APRÈS le gabarit. */
+    const incomplet = (nom, amputer) => rendre(amputer(carteContrat({}))).then(({ doc, card, txt }) => {
+      const err = doc.querySelector("#mdcf-finder-result .finder__error");
+      check(`${loc.code} : rapport ${nom} → erreur prudente, aucune carte, jamais « ${X.no} »`,
+        !!err && !card && !doc.querySelector("#mdcf-finder-result .ab--no"), card ? txt.slice(0, 160) : (err ? "" : (doc.querySelector("#mdcf-finder-result")?.textContent ?? "").slice(0, 160)));
+    });
+    await incomplet("sans cabin_status", (c) => { delete c.cabin_status; return c; });
+    await incomplet("au statut cabine discordant de sa décision", (c) => ({ ...c, cabin_status: "denied" }));
+    await incomplet("sans décision fret", (c) => ({ ...c, placement_decisions: c.placement_decisions.slice(0, 2) }));
+
+    /* 9. P0 (Codex, 10/09/2026, second passage) : L'APPARENCE LIT LES STATUTS, JAMAIS LES BOOLÉENS NI `to_confirm`.
+       Une réponse parfaitement valide — cabine refusée, soute sous conditions, fret refusé, aucun canal à confirmer —
+       porte des booléens tous faux (le moteur ne les met à `true` que pour `allowed`). Elle doit être habillée en
+       `acard--hold`, jamais `acard--no`, sans badge « non compatible » ni « animaux refusés » ni « ? ». */
+    const DCD = carteContrat({ cabin_status: "denied", hold_status: "accepted_with_conditions", cargo_status: "denied", to_confirm: [], offers_pet_transport: "yes", placement_decisions: [
+      { placement: "cabin", status: "denied", allowed: false, source: SRC_SOUTE },
+      { placement: "hold", status: "accepted_with_conditions", allowed: false, weight_limit_kg: 75, weight_limit_includes_carrier: true, source: SRC_SOUTE },
+      { placement: "cargo", status: "denied", allowed: false, source: SRC_SOUTE },
+    ] });
+    const r9 = await rendre(DCD);
+    check(`${loc.code} : refusée / sous conditions / refusée (booléens tous faux) → classe acard--hold, jamais acard--no`,
+      !!r9.card && r9.card.classList.contains("acard--hold") && !r9.card.classList.contains("acard--no") && !r9.card.classList.contains("acard--confirm"), r9.card?.className);
+    check(`${loc.code} : …et aucun badge « non compatible », « animaux refusés » ou « ? » — la carte dit « Soute : oui, sous conditions »`,
+      !!r9.card && !r9.card.querySelector(".acard__status--nomatch, .acard__status--nopets, .acard__status--petsunknown") && texteDe(ligne(r9.card, "hold")).includes(X.yesCond), r9.txt.slice(0, 160));
+    /* Le partage par mode lit le statut aussi : demandée en soute, cette carte est « correspond à ce mode », pas une alternative. */
+    const r9h = await rendre(DCD, "hold");
+    check(`${loc.code} : demandée en soute, la soute « sous conditions » CORRESPOND au mode (pas une alternative, pas « aucune compagnie »)`,
+      !!r9h.card && !!r9h.doc.querySelector("h5.acards__sub + ul.acards .acard") && !r9h.doc.querySelector("details.acards__leads") && !r9h.doc.querySelector("#mdcf-finder-result .finder__hint"), r9h.doc.querySelector("#mdcf-finder-result")?.textContent.replace(/\s+/g, " ").slice(0, 160));
+    /* 10. Un canal « à confirmer » reste acard--confirm même si `to_confirm` est absent ou incohérent.
+       Premier jet fautif, nommé : je partais de la carte de référence, dont la soute est OUVERTE sous conditions — un
+       canal ouvert habille la carte avant tout canal à confirmer, et `acard--hold` était la bonne réponse. Le témoin
+       part d'une carte dont le SEUL canal non refusé est à confirmer (cabine) : là, seule la lecture des statuts peut
+       produire `acard--confirm`. */
+    const SEULE_A_CONFIRMER = { cabin_status: "confirmation_required", hold_status: "denied", cargo_status: "denied", placement_decisions: [
+      { placement: "cabin", status: "confirmation_required", allowed: false, confirmation_causes: [{ code: "official_source_unquoted", policy_ref: "x" }] },
+      { placement: "hold", status: "denied", allowed: false, source: SRC_SOUTE },
+      { placement: "cargo", status: "denied", allowed: false, source: SRC_SOUTE },
+    ] };
+    const sansTC = carteContrat(SEULE_A_CONFIRMER); delete sansTC.to_confirm;
+    const r10 = await rendre(sansTC);
+    check(`${loc.code} : canal à confirmer SANS \`to_confirm\` → acard--confirm quand même`, !!r10.card && r10.card.classList.contains("acard--confirm"), r10.card?.className);
+    const r11 = await rendre(carteContrat({ ...SEULE_A_CONFIRMER, to_confirm: [] }));
+    check(`${loc.code} : canal à confirmer avec \`to_confirm\` VIDE (incohérent) → acard--confirm quand même, jamais acard--no`, !!r11.card && r11.card.classList.contains("acard--confirm") && !r11.card.classList.contains("acard--no"), r11.card?.className);
+    /* 11. Trois refus, aucun canal à confirmer : la carte est bien acard--no, et le badge tranche sur `offers_pet_transport`. */
+    const r12 = await rendre(carteContrat({ cabin_status: "denied", hold_status: "denied", cargo_status: "denied", to_confirm: [], offers_pet_transport: "yes", placement_decisions: [
+      { placement: "cabin", status: "denied", allowed: false }, { placement: "hold", status: "denied", allowed: false }, { placement: "cargo", status: "denied", allowed: false },
+    ] }));
+    check(`${loc.code} : trois refus → acard--no et badge « non compatible » (lu sur les trois statuts)`, !!r12.card && r12.card.classList.contains("acard--no") && !!r12.card.querySelector(".acard__status--nomatch"), r12.card?.className);
+  }
+}
+
 async function t0aPass() {
   for (const loc of BADGE_LOCALES) {
     console.log(`\n— T0-A : causes visibles et styles par cause (${loc.code}) —`);
     const exp = T0A_LABELS[loc.code];
     const scenarios = [
-      ["politique seule", t0aCard({}), (card, txt) => {
+      ["politique seule", t0aCard({}), (card, txt, notes) => {
         check(`${loc.code} : classe de base acard--confirm SANS acard--heat (cause non climatique)`,
           card.className.includes("acard--confirm") && !card.className.includes("acard--heat"), card.className);
-        check(`${loc.code} : ligne « politique » EXACTE : ${JSON.stringify(exp.policy)}`,
-          txt.includes(exp.policy), txt.slice(0, 200));
-        check(`${loc.code} : aucune ligne « information manquante »`, !txt.includes(exp.missing));
+        /* MOUVEMENT NOMMÉ (10/09/2026, annexe 38) : la phrase de famille est rendue UNE FOIS au-dessus des cartes
+           (`.acards__notes`), plus dans chaque carte. Le témoin la cherche là, et exige son absence de la carte. */
+        check(`${loc.code} : ligne « politique » EXACTE, une fois au-dessus des cartes : ${JSON.stringify(exp.policy)}`,
+          notes.includes(exp.policy) && !txt.includes(exp.policy), (notes + " ‖ " + txt).slice(0, 260));
+        check(`${loc.code} : aucune ligne « information manquante »`, !notes.includes(exp.missing) && !txt.includes(exp.missing));
       }],
       ["fait manquant", t0aCard({
         placement_decisions: [
@@ -241,8 +458,8 @@ async function t0aPass() {
           { placement: "cargo", status: "confirmation_required", allowed: false,
             confirmation_causes: [{ code: "missing_fact", fact: "transport.total_weight_kg", requirement_ref: "req_x" }] },
         ],
-      }), (card, txt) => {
-        check(`${loc.code} : ligne « information manquante » EXACTE`, txt.includes(exp.missing), txt.slice(0, 200));
+      }), (card, txt, notes) => {
+        check(`${loc.code} : ligne « information manquante » EXACTE, au-dessus des cartes`, notes.includes(exp.missing) && !txt.includes(exp.missing), notes.slice(0, 200));
         check(`${loc.code} : pas d'habit climatique`, !card.className.includes("acard--heat"));
       }],
       ["climat seul", t0aCard({
@@ -253,12 +470,12 @@ async function t0aPass() {
           { placement: "cargo", status: "confirmation_required", allowed: false,
             confirmation_causes: [{ code: "estimated_climate", rule_id: "rule_tst" }] },
         ],
-      }), (card, txt) => {
+      }), (card, txt, notes) => {
         check(`${loc.code} : climat = base confirm + modificateur heat`,
           card.className.includes("acard--confirm") && card.className.includes("acard--heat"), card.className);
         check(`${loc.code} : AUCUNE ligne de cause politique (le climat a son bandeau, pas de doublon)`,
-          !txt.includes(exp.policy) && !txt.includes(exp.missing));
-        check(`${loc.code} : AUCUNE ligne « donnée non revérifiée »`, !txt.includes(exp.unreviewed));
+          !notes.includes(exp.policy) && !notes.includes(exp.missing) && !txt.includes(exp.policy) && !txt.includes(exp.missing));
+        check(`${loc.code} : AUCUNE ligne « donnée non revérifiée »`, !notes.includes(exp.unreviewed) && !txt.includes(exp.unreviewed));
       }],
       /* ---- T0-B1 : la donnée héritée non revérifiée a SA famille et SA phrase --------------- */
       ["donnée non revérifiée seule", t0aCard({
@@ -268,17 +485,17 @@ async function t0aPass() {
           { placement: "cargo", status: "confirmation_required", allowed: false,
             confirmation_causes: [{ code: "legacy_unreviewed", policy_ref: "airline_t0a#cargo" }] },
         ],
-      }), (card, txt) => {
-        check(`${loc.code} : ligne « non revérifiée » EXACTE : ${JSON.stringify(exp.unreviewed)}`,
-          txt.includes(exp.unreviewed), txt.slice(0, 260));
+      }), (card, txt, notes) => {
+        check(`${loc.code} : ligne « non revérifiée » EXACTE, au-dessus des cartes : ${JSON.stringify(exp.unreviewed)}`,
+          notes.includes(exp.unreviewed) && !txt.includes(exp.unreviewed), notes.slice(0, 260));
         check(`${loc.code} : la phrase « politique de la compagnie » est ABSENTE (familles distinctes)`,
-          !txt.includes(exp.policy), txt.slice(0, 260));
-        check(`${loc.code} : aucune ligne « information manquante »`, !txt.includes(exp.missing));
+          !notes.includes(exp.policy) && !txt.includes(exp.policy), notes.slice(0, 260));
+        check(`${loc.code} : aucune ligne « information manquante »`, !notes.includes(exp.missing) && !txt.includes(exp.missing));
         check(`${loc.code} : classe de base acard--confirm SANS acard--heat`,
           card.className.includes("acard--confirm") && !card.className.includes("acard--heat"), card.className);
         /* Le code interne ne doit JAMAIS atteindre le visiteur. */
         check(`${loc.code} : le code interne « legacy_unreviewed » n'apparaît pas dans le rendu`,
-          !txt.includes("legacy_unreviewed"), txt.slice(0, 260));
+          !txt.includes("legacy_unreviewed") && !notes.includes("legacy_unreviewed"), txt.slice(0, 260));
       }],
       ["non revérifiée ET politique sur le même canal", t0aCard({
         placement_decisions: [
@@ -290,12 +507,14 @@ async function t0aPass() {
               { code: "policy_unpublished", policy_ref: "airline_t0a#cargo" },
             ] },
         ],
-      }), (card, txt) => {
-        check(`${loc.code} : les DEUX phrases sont visibles — aucune ne masque l'autre`,
-          txt.includes(exp.unreviewed) && txt.includes(exp.policy), txt.slice(0, 320));
+      }), (card, txt, notes) => {
+        check(`${loc.code} : les DEUX phrases sont visibles au-dessus des cartes — aucune ne masque l'autre`,
+          notes.includes(exp.unreviewed) && notes.includes(exp.policy), notes.slice(0, 320));
         check(`${loc.code} : notre incertitude est annoncée AVANT la politique de la compagnie`,
-          txt.indexOf(exp.unreviewed) < txt.indexOf(exp.policy),
-          JSON.stringify({ unreviewed: txt.indexOf(exp.unreviewed), policy: txt.indexOf(exp.policy) }));
+          notes.indexOf(exp.unreviewed) < notes.indexOf(exp.policy),
+          JSON.stringify({ unreviewed: notes.indexOf(exp.unreviewed), policy: notes.indexOf(exp.policy) }));
+        check(`${loc.code} : chaque phrase n'apparaît qu'UNE fois dans le rapport (aucune répétition par carte)`,
+          notes.split(exp.unreviewed).length === 2 && notes.split(exp.policy).length === 2 && !txt.includes(exp.unreviewed) && !txt.includes(exp.policy));
       }],
     ];
     for (const [nom, card0, asserts] of scenarios) {
@@ -325,9 +544,11 @@ async function t0aPass() {
       const card = dom.window.document.querySelector(".acard");
       if (!card) { check(`${loc.code} ${nom} : une carte est rendue`, false); continue; }
       const txt = card.textContent.replace(/\s+/g, " ");
+      const notesEl = dom.window.document.querySelector(".acards__notes");
+      const notes = notesEl ? notesEl.textContent.replace(/\s+/g, " ") : "";
       const badge = [...card.querySelectorAll(".ab--confirm")].length;
-      check(`${loc.code} ${nom} : badge « ? » sur le canal à confirmer`, badge === 1, String(badge));
-      asserts(card, txt);
+      check(`${loc.code} ${nom} : pastille « à confirmer » sur le canal à confirmer, et sur lui seul`, badge === 1, String(badge));
+      asserts(card, txt, notes);
     }
   }
 }
@@ -1029,7 +1250,7 @@ async function contratAffichagePass() {
   }
 }
 
-main().then(() => badgesPass()).then(() => contratAffichagePass()).then(() => t0aPass()).then(() => heatWhyPass()).then(() => datePass()).then(() => destinationsDatePass()).then(() => libellesPass()).then(() => {
+main().then(() => badgesPass()).then(() => contratAffichagePass()).then(() => t0aPass()).then(() => cartesPass()).then(() => heatWhyPass()).then(() => datePass()).then(() => destinationsDatePass()).then(() => libellesPass()).then(() => {
   console.log("\n=== SUMMARY ===");
   console.log(failures === 0 ? "ALL CHECKS PASSED" : failures + " CHECK(S) FAILED");
   process.exit(failures === 0 ? 0 : 1);

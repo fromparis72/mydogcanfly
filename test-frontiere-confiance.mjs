@@ -225,12 +225,15 @@ console.log("\n=== 10. Sur la base RÉELLE : plus aucun verdict catégorique ===
   /* MOUVEMENT NOMMÉ (10/09/2026, Bangkok Airways fret — règle géographique, annexe 37 ; Codex : `offered` sous condition que R1, R2, R3
      soient encodées dans le même lot ; Philippe : aéroports Krabi/Chiang Mai non ajoutés) : 0 · 143 · 34 · 125 ; causes 109 · 15 · 0 · 1
      (Bangkok fret quitte « à confirmer » (airline_approval) pour « sous conditions » ; l'international est refusé par R1, citée). */
-  check("177 décisions prouvées : 0 `allowed`, 143 sous conditions, 34 `denied`, 125 à confirmer",
-    allowed === 0 && sousConditions === 143 && denied === 34 && aConfirmer === 125, JSON.stringify({ allowed, sousConditions, denied, aConfirmer }));
+  /* MOUVEMENT NOMMÉ (10/09/2026, complément Air France cabine — Codex, une citation : « En cabine (chats et chiens de moins de
+     8 kg, sac de transport compris) », borne stricte) : 0 · 144 · 34 · 124 ; causes 109 · 14 · 0 · 1 (Air France cabine quitte
+     « page officielle non citée » pour « sous conditions »). */
+  check("178 décisions prouvées : 0 `allowed`, 144 sous conditions, 34 `denied`, 124 à confirmer",
+    allowed === 0 && sousConditions === 144 && denied === 34 && aConfirmer === 124, JSON.stringify({ allowed, sousConditions, denied, aConfirmer }));
   check("chaque « à confirmer » porte une cause — aucune incertitude muette",
-    Object.values(causes).reduce((x, y) => x + y, 0) === 125 && !("undefined" in causes), JSON.stringify(causes));
-  check("15 gardent une page officielle à montrer, 109 n'ont rien à montrer",
-    causes.official_source_unquoted === 15 && causes.legacy_unreviewed === 109, JSON.stringify(causes));
+    Object.values(causes).reduce((x, y) => x + y, 0) === 124 && !("undefined" in causes), JSON.stringify(causes));
+  check("14 gardent une page officielle à montrer, 109 n'ont rien à montrer",
+    causes.official_source_unquoted === 14 && causes.legacy_unreviewed === 109, JSON.stringify(causes));
   /* Et la preuve que ce n'est pas un effet de bord de l'affichage : la même règle vaut à la
      source, sur l'artefact d'auteur, avant tout moteur. */
   const objets = JSON.parse(readFileSync("packages/knowledge/raw/objects.json", "utf8"));
@@ -263,6 +266,8 @@ console.log("\n=== 10. Sur la base RÉELLE : plus aucun verdict catégorique ===
     "airline_air_canada.hold",
     "airline_air_europa.cabin",
     "airline_air_europa.hold",
+    /* Complément Air France cabine (10/09/2026, Codex) : 178 → 179, nominativement. */
+    "airline_air_france.cabin",
     "airline_air_france.hold",
     "airline_air_india.cabin",
     "airline_air_india.cargo",
@@ -440,14 +445,15 @@ console.log("\n=== 10. Sur la base RÉELLE : plus aucun verdict catégorique ===
     "airline_westjet.cabin",
     "airline_westjet.hold",
   ];
-  check("178 politiques d'auteur portent une phrase citée — nominativement",
+  check("179 politiques d'auteur portent une phrase citée — nominativement",
     JSON.stringify([...citees].sort()) === JSON.stringify([...CITEES_V3].sort()), citees.join(", "));
   /* Correctif (09/09/2026) : Thai fret DEVIENT une décision (arbitrage : `offered`, preuve THAI Cargo) ; Bangkok Airways fret CESSE d'en
      être une (`case_by_case`, portée intérieure que le modèle ne porte pas — précédent Virgin A-bis). */
   /* MOUVEMENT NOMMÉ (10/09/2026, Bangkok Airways fret — annexe 37) : `case_by_case` → `offered`, R1/R2/R3 citées dans le même lot ;
      Bangkok fret REDEVIENT une décision. 176 → 177 ; seule Virgin Australia cabine reste citée non décisive. */
-  check("et 177 d'elles sont des décisions (toutes sauf Virgin Australia cabine)",
-    decideesCitees.length === 177 && decideesCitees.includes("airline_bangkok_airways.cargo") && !decideesCitees.includes("airline_virgin_australia.cabin"),
+  /* MOUVEMENT NOMMÉ (10/09/2026, complément Air France cabine) : 177 → 178, Air France cabine est une décision (sous conditions, borne stricte). */
+  check("et 178 d'elles sont des décisions (toutes sauf Virgin Australia cabine)",
+    decideesCitees.length === 178 && decideesCitees.includes("airline_air_france.cabin") && decideesCitees.includes("airline_bangkok_airways.cargo") && !decideesCitees.includes("airline_virgin_australia.cabin"),
     decideesCitees.join(", "));
 }
 
