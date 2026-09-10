@@ -34,7 +34,10 @@ const WRITE = process.argv.includes("--write");
 /* MOUVEMENT NOMMÉ (10/09/2026, Bangkok Airways fret — annexe 37) : 29 484 → 29 490. Le fret `offered` cité ouvre le
    témoin hérité sur les six couples où Bangkok Airways est candidate sur son réseau intérieur (BKK ↔ HKT et les
    couples de ville) ; l'international reste fermé par R1. */
-const TEMOIN_VRAI_V3 = 29490;
+/* MOUVEMENT NOMMÉ (10/09/2026, complément Air France cabine — Codex, une citation, borne stricte « moins de 8 kg ») :
+   29 490 → 29 529. La cabine Air France, `offered` désormais citée, ouvre le témoin hérité (accepté sous conditions
+   sous la borne) sur les 39 couples où Air France est candidate et où aucun autre canal ne l'ouvrait déjà. */
+const TEMOIN_VRAI_V3 = 29529;
 /**
  * T0-B2 — la sonde vivante compare désormais au fichier DE CE LOT.
  *

@@ -3836,3 +3836,82 @@ de visuel. Contre-épreuves, quatre langues (harnais du Finder 419 → **443**) 
 *Erreur nommée* : mon premier témoin « à confirmer sans `to_confirm` » partait de la carte de référence, dont la
 soute ouverte l'emporte à raison sur la cabine à confirmer ; il part d'une carte dont le seul canal non refusé est à
 confirmer.
+## Annexe 39 — Air France cabine : la phrase officielle, la borne stricte (10/09/2026, classement C)
+
+Codex a lu la page officielle Air France (français) le 10/09/2026 et relayé, par Philippe, un
+complément de preuve en deux fichiers (`.md` lisible, `.json` importable), conservés tels quels dans
+`mesures/preuves/complement-air-france-cabine-2026-09-10/`. La phrase :
+
+> « En cabine (chats et chiens de moins de 8 kg, sac de transport compris) »
+
+Localisateur « Transport de chiens, de chats et autres animaux de compagnie → option En cabine »,
+confiance 4, lecture 2026-09-10, révision **calculée** 2026-12-09 (`reviewDueFrom`, égale à celle
+que Codex annonce). Codex : ne pas convertir « moins de 8 kg » en « ≤ 8 kg » ; la disponibilité
+reste à confirmer, l'existence du service cabine est établie ; aucun tarif prouvé.
+
+### Mesuré avant d'écrire
+
+La politique cabine d'Air France portait déjà un plafond de 8 kg, hérité d'`objects.json`, et une
+page officielle **sans phrase** (`official_source_unquoted`). Chihuahua 3 kg, CDG → JFK : « à
+confirmer ». À 9 kg, la règle héritée non citée `rule_af_cabin_weight` ajoutait
+`rule_official_unquoted`. C'est le cas exact de la capture de Philippe (« chercher l'erreur »).
+
+### Ce qui a été fait
+
+Le fait, remis au format des lots stricts sans rien ajouter, passe par l'importeur rejouable
+(`--lot=af_cabine`, 1 importé, 0 refusé) : `max_weight_kg: 8`, `weight_includes_carrier: true`,
+`weight_limit_bound: lt`, source citée. Résultat mesuré : 3 kg et 7,9 kg → **sous conditions**
+(plafond 8 kg chien + sac, borne stricte, source citée) ; 8,0 kg et 9 kg → **refusés** sur la
+politique citée, aucune cause de règle. Aucun `allowed`. Registre de fraîcheur rescellé, inventaire
+des preuves régénéré, baseline du Finder refigée (paire `complement-air-france-cabine`).
+
+### Mouvements nommés, tous figés sur mesure
+
+| témoin | avant | après |
+|---|---|---|
+| politiques citées (frontière, lot 9, inventaire) | 178 | **179** — Air France cabine, nominativement |
+| « page officielle non citée » | 15 | **14** |
+| sous conditions · à confirmer (302 politiques) | 143 · 125 | **144 · 124** |
+| seuils qualifiés · bornes strictes | 37 · 1 | **38 · 2** (Air Austral, Air France) |
+| limites cabine citées (calculateur de caisses) | 30 | **31** |
+| témoin hérité `carries` | 29 490 | **29 529** |
+| carlin CDG → ATH : confirmations · de provenance | 45 · 30 | **44 · 29** |
+| inventaire : A/B/C, cabine A/B, B par politique | 178/51/74, 79/9, 23 | **179/50/74, 80/8, 22** |
+| baseline Finder | figée réconciliation | **72 cartes / 1 560**, Air France seule, 72 cabines « à confirmer » → refusées (Golden 32 kg, carlin 8,0 kg — à la borne ou au-dessus), aucun verdict déplacé, ligne tarifaire cabine retirée avec le refus |
+
+### Témoins re-fondés (Air France cabine était leur spécimen « non citée »)
+
+- `test-ingest-check` (m) : insérait un second bloc `source:` dans la cabine → clé YAML dupliquée,
+  deux échecs qui ne mesuraient plus rien. Mesuré : aucun autre spécimen réel « enrichie à la main,
+  sans citation » (les cinq autres plafonds non cités sont dérivés de la fiche). Le témoin remplace
+  l'URL et la phrase du bloc cité : même propriété (la source auditée de la fiche gagne sur la
+  provenance de l'artefact, les enrichissements survivent).
+- `test-quatrieme-etat` §2 : passe à Eurowings cabine (plafond 8 dérivé, non citée,
+  `legacy_unreviewed`, Golden 32 kg « à confirmer », jamais refusé au seuil sans preuve) ; Air France
+  éprouve l'inverse (citation → refus sûr). La variante synthétique « sans seuil qualifié » RETIRE
+  désormais `weight_includes_carrier` et la borne, au lieu de ne pas les poser (elle mesurait la
+  donnée réelle).
+- `test-preuves-v3` : le refus du Golden porte la source du 10/09, jamais le dossier V3 (qui n'a pas
+  de phrase cabine).
+- `test-inventaire-preuves` : témoin B → Air France **fret** (même page `wwws.airfrance.us`, sans
+  phrase).
+
+### Ce qui reste nommé
+
+- `rule_af_cabin_weight` (héritée, `> 8 kg`, non citée, confiance 3) n'est pas touchée : elle ne
+  décide plus rien et ne se nomme plus (à 9 kg, aucune cause). La citer sur la même phrase, ou la
+  retirer, est une décision distincte pour Codex.
+- Cabine citée sur la page française, soute sur la page anglaise : deux URL, même hôte.
+- Aucun tarif Air France prouvé ; la grille tarifaire de Codex n'est pas dans ce lot.
+
+### Mesuré sur le dist (un seul build complet, 3 112 pages)
+
+| contrôle | résultat |
+|---|---|
+| `test:unit` complet (dont `test-preuves-air-france-cabine`, 14) | vert, chaque compteur déplacé nommé ci-dessus |
+| chaîne `test:built-ui` (dist réduit puis complet) | 846 OK — calculateur de caisses : 31 limites cabine citées |
+| entités | 178 OK |
+| étape 3 DOM | verte, scellé des licites inchangé |
+| caisses non sourcées | vert |
+| contre-épreuves `--dist-complet` | 58 garanties éprouvées sur 58 |
+| registre de fraîcheur | rescellé (1 504 entrées), inventaire des preuves régénéré |

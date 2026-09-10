@@ -40,7 +40,8 @@ const SENTINELLES = {
   /* MOUVEMENT NOMMÉ (09/09/2026, import strict lot 8 — 22 citations de plus, 158 en tout) : A 136 → 158 ; B 70 → 58 ; C 97 → 87 ; D inchangé. */
   /* MOUVEMENT NOMMÉ (09/09/2026, import strict lot 9 — 18 citations de plus, 176 en tout, lot de clôture) : A 158 → 176 ; B 58 → 53 ; C 87 → 74 ; D inchangé. */
   /* MOUVEMENT NOMMÉ (09/09/2026, correctif d'arbitrages — Codex, tranché par Philippe ; six preuves remplacées dans les lots 4, 6 et 8) : A 176 → 178 ; B 53 → 51 ; C et D inchangés. */
-  par_categorie: { A: 178, A_incomplete: 0, B: 51, C: 74, D: 3 },
+  /* MOUVEMENT NOMMÉ (10/09/2026, complément Air France cabine — Codex, une citation, borne stricte « moins de 8 kg ») : A 178 → 179 ; B 51 → 50 ; C et D inchangés. */
+  par_categorie: { A: 179, A_incomplete: 0, B: 50, C: 74, D: 3 },
   par_canal: {
     /* MOUVEMENT NOMMÉ (08/09/2026, import strict V3 — 25 citations importées) : A 3 → 28 ; B 125 → 108 ; C 175 → 167 ; D inchangé. */
     /* MOUVEMENT NOMMÉ (08/09/2026, import strict lots 2 et 3 — 24 citations de plus, 52 en tout) : A 28 → 52 ; B 108 → 102 ; C 167 → 149. */
@@ -51,7 +52,8 @@ const SENTINELLES = {
     /* MOUVEMENT NOMMÉ (09/09/2026, import strict lot 8 — 22 citations de plus, 158 en tout) : cabine 62/14/26 → 71/10/21 ; soute 54/36/12 → 63/29/10 ; fret 20/20/59 → 24/19/56. */
     /* MOUVEMENT NOMMÉ (09/09/2026, import strict lot 9 — 18 citations de plus, 176 en tout, lot de clôture) : cabine 71/10/21 → 78/10/14 ; soute 63/29/10 → 70/24/8 ; fret 24/19/56 → 28/19/52. */
     /* MOUVEMENT NOMMÉ (09/09/2026, correctif d'arbitrages — Codex, tranché par Philippe ; six preuves remplacées dans les lots 4, 6 et 8) : cabine 78/10/14 → 79/9/14 ; soute 70/24/8 → 71/23/8 ; fret inchangé. */
-    cabin: { A: 79, A_incomplete: 0, B: 9, C: 14, D: 0 },
+    /* MOUVEMENT NOMMÉ (10/09/2026, complément Air France cabine — Codex, une citation, borne stricte « moins de 8 kg ») : cabine 79/9/14 → 80/8/14 ; soute et fret inchangés. */
+    cabin: { A: 80, A_incomplete: 0, B: 8, C: 14, D: 0 },
     hold: { A: 71, A_incomplete: 0, B: 23, C: 8, D: 0 },
     cargo: { A: 28, A_incomplete: 0, B: 19, C: 52, D: 3 },
   },
@@ -67,7 +69,8 @@ const SENTINELLES = {
   /* MOUVEMENT NOMMÉ (09/09/2026, import strict lot 8 — 22 citations de plus, 158 en tout) : politique 23 (inchangé), règle 47 → 35, gov.uk seul 23 → 19. */
   /* MOUVEMENT NOMMÉ (09/09/2026, import strict lot 9 — 18 citations de plus, 176 en tout, lot de clôture) : politique 23 (inchangé), règle 35 → 30, gov.uk seul 19 → 14. */
   /* MOUVEMENT NOMMÉ (09/09/2026, correctif d'arbitrages — Codex, tranché par Philippe ; six preuves remplacées dans les lots 4, 6 et 8) : règle 30 → 28. */
-  B_par_piste: { politique: 23, regle: 28 }, B_par_regle_gov_uk_seul: 14,
+  /* MOUVEMENT NOMMÉ (10/09/2026, complément Air France cabine — Codex, une citation, borne stricte « moins de 8 kg ») : politique 23 → 22 (Air France cabine quitte B pour A) ; règle et gov.uk inchangés. */
+  B_par_piste: { politique: 22, regle: 28 }, B_par_regle_gov_uk_seul: 14,
   regles_sans_canal: ["rule_transavia_gb_no_pets"],
 };
 /* MOUVEMENT NOMMÉ (08/09/2026, import strict V3 — 25 citations importées) : 3 → 28 A, nominativement. */
@@ -102,6 +105,8 @@ const A_ATTENDUS = [
   "airline_air_china#hold",
   "airline_air_europa#cabin",
   "airline_air_europa#hold",
+  /* Complément Air France cabine (10/09/2026, Codex) : 178 → 179, nominativement. */
+  "airline_air_france#cabin",
   "airline_air_france#hold",
   "airline_air_india#cabin",
   "airline_air_india#hold",
@@ -260,7 +265,9 @@ const D_ATTENDUS = ["airline_la_compagnie#cargo", "airline_smartwings#cargo", "a
 /* Cinq B par la politique, pris parmi les 42 : deux décidées `offered`, deux `not_offered`,
    une `legacy_unreviewed` — pour que la cohérence soit éprouvée sur les trois formes. */
 /* KLM soute est devenue A (citée) : témoin B re-fondé sur Air Canada soute, jamais abaissé. */
-const B_TEMOINS = ["airline_air_canada#cargo", "airline_air_france#cabin", "airline_american#hold", "airline_british_airways#hold", "airline_asiana#cargo"];
+/* MOUVEMENT NOMMÉ (10/09/2026, complément Air France cabine) : Air France cabine, citée, est devenue A — le témoin B passe à Air France
+   FRET, même compagnie, même page officielle (wwws.airfrance.us) sans phrase citée : la situation exacte que ce témoin décrit. */
+const B_TEMOINS = ["airline_air_canada#cargo", "airline_air_france#cargo", "airline_american#hold", "airline_british_airways#hold", "airline_asiana#cargo"];
 
 const donnees = chargerDonnees();
 const registre = construireRegistre(donnees);
@@ -366,16 +373,18 @@ console.log("\n=== (d) Cohérence avec `niveauDePreuve` ===");
   /* MOUVEMENT NOMMÉ (09/09/2026, import strict lot 8 — 22 citations de plus, 158 en tout) : 136/23/97 → 158/23/87 ; 46 → 34. */
   /* MOUVEMENT NOMMÉ (09/09/2026, import strict lot 9 — 18 citations de plus, 176 en tout, lot de clôture) : 158/23/87 → 176/23/74 ; 34 → 29. */
   /* MOUVEMENT NOMMÉ (09/09/2026, correctif d'arbitrages — Codex, tranché par Philippe ; six preuves remplacées dans les lots 4, 6 et 8) : 176/23/74 → 178/23/74 ; 29 → 27. */
-  check("sur les 306 lignes, A ↔ citee 178, B(politique) ↔ officielle_non_citee 23, C ↔ aucune 74",
-    paires["A ↔ citee"] === 178 && paires["B ↔ officielle_non_citee"] === 23 && paires["C ↔ aucune"] === 74, JSON.stringify(paires));
+  /* MOUVEMENT NOMMÉ (10/09/2026, complément Air France cabine — Codex, une citation, borne stricte « moins de 8 kg ») : 178/23/74 → 179/22/74. */
+  check("sur les 306 lignes, A ↔ citee 179, B(politique) ↔ officielle_non_citee 22, C ↔ aucune 74",
+    paires["A ↔ citee"] === 179 && paires["B ↔ officielle_non_citee"] === 22 && paires["C ↔ aucune"] === 74, JSON.stringify(paires));
   check("les seuls écarts sont NOMMÉS : 27 B par règle sur politique « aucune », 1 B par règle sans politique, 3 D",
     resume.coherence_niveau_de_preuve.ecarts.B_par_regle_sur_politique_aucune === 27
     && resume.coherence_niveau_de_preuve.ecarts.B_par_regle_sans_politique === 1
     && resume.coherence_niveau_de_preuve.ecarts.D_sans_politique === 3
     && resume.coherence_niveau_de_preuve.ecarts.inattendus.length === 0, JSON.stringify(resume.coherence_niveau_de_preuve.ecarts));
   const niveaux = lignes.filter((l) => l.niveau_de_preuve_politique !== null).reduce((m, l) => { m[l.niveau_de_preuve_politique] = (m[l.niveau_de_preuve_politique] ?? 0) + 1; return m; }, {});
-  check("302 politiques : 178 citées, 23 officielles non citées, 101 aucune — le compte de test-frontiere-confiance",
-    niveaux.citee === 178 && niveaux.officielle_non_citee === 23 && niveaux.aucune === 101, JSON.stringify(niveaux));
+  /* MOUVEMENT NOMMÉ (10/09/2026, complément Air France cabine — Codex, une citation, borne stricte « moins de 8 kg ») : 178/23/101 → 179/22/101. */
+  check("302 politiques : 179 citées, 22 officielles non citées, 101 aucune — le compte de test-frontiere-confiance",
+    niveaux.citee === 179 && niveaux.officielle_non_citee === 22 && niveaux.aucune === 101, JSON.stringify(niveaux));
 }
 
 console.log("\n=== (e) Non-vacuité : une ligne mutée change de catégorie ===");

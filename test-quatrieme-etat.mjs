@@ -61,7 +61,11 @@ const kbAF = ((seuilQualifie) => {
   const cab = af.premium.policy.cabin;
   delete cab.source_derived;
   cab.source = { ...cab.source, quote: CITEE.quote, quote_language: "en", locator: CITEE.locator };
+  /* MOUVEMENT NOMMÉ (10/09/2026, complément Air France cabine — Codex) : la donnée RÉELLE porte désormais la citation, le
+     champ `weight_includes_carrier: true` et la borne stricte `lt`. La variante « sans seuil qualifié » les RETIRE
+     explicitement (avant, elle se contentait de ne pas les poser — et mesurait la donnée réelle, donc un refus). */
   if (seuilQualifie) cab.weight_includes_carrier = true;
+  else { delete cab.weight_includes_carrier; delete cab.weight_limit_bound; }
   return normalize(brut);
 });
 const kbCitee = kbAF(true);
@@ -107,11 +111,22 @@ console.log("\n=== 2. KB réelle : aucune politique n'émet `allowed` ; rien ne 
   /* MOUVEMENT NOMMÉ (09/09/2026, import strict lot 9 — 18 citations de plus, 176 en tout, lot de clôture) : 124 → 140. */
   /* MOUVEMENT NOMMÉ (09/09/2026, correctif d'arbitrages — Codex, tranché par Philippe ; six preuves remplacées dans les lots 4, 6 et 8) : 140 → 142 (Thai fret, Aer Lingus soute, Air China cabine entrent ; Bangkok fret sort vers `case_by_case`). */
   /* MOUVEMENT NOMMÉ (10/09/2026, Bangkok Airways fret — annexe 37) : 142 → 143 (fret `offered` cité, R1/R2/R3 dans le même lot). */
-  check(`politiques réelles en accepted_with_conditions : 143 depuis Bangkok Airways fret (annexe 37) — mesuré : ${cond}`, cond === 143);
-  const af = REQ(GOLDEN_32, kb);
-  const cab = stOf(af, "airline_air_france", "cabin");
-  check("Air France cabine, KB réelle (non citée) : reste « à confirmer », pas un refus au seuil sans preuve",
-    cab?.status === "confirmation_required", JSON.stringify(cab));
+  /* MOUVEMENT NOMMÉ (10/09/2026, complément Air France cabine — Codex, une citation) : 143 → 144. */
+  check(`politiques réelles en accepted_with_conditions : 144 depuis le complément Air France cabine — mesuré : ${cond}`, cond === 144);
+  /* RE-FONDÉ (10/09/2026) : Air France cabine était LE témoin « plafond écrit, page non citée → à confirmer » ; elle est
+     désormais citée (« moins de 8 kg, sac de transport compris »). Le témoin passe à Eurowings cabine, même route, même
+     situation mesurée : plafond 8 kg dérivé de la fiche, aucune phrase, `legacy_unreviewed` — et le Golden de 32 kg y
+     reste « à confirmer », jamais refusé au seuil sans preuve. Air France, elle, prouve l'inverse du même geste : la
+     citation transforme l'incertitude en refus SÛR pour 32 kg. */
+  const reel = REQ(GOLDEN_32, kb);
+  const ew = stOf(reel, "airline_eurowings", "cabin");
+  const ewPol = kb.airlines.get("airline_eurowings")?.premium?.policy?.cabin;
+  check("Eurowings cabine, KB réelle (plafond 8 kg dérivé de la fiche, non citée) : reste « à confirmer », pas un refus au seuil sans preuve",
+    ewPol?.max_weight_kg === 8 && !ewPol?.source?.quote && ew?.status === "confirmation_required"
+      && (ew?.confirmation_causes ?? []).some((c) => c.rule_id === "rule_eurowings_cabin_weight"), JSON.stringify({ ewPol, ew }));
+  const cab = stOf(reel, "airline_air_france", "cabin");
+  check("Air France cabine, KB réelle désormais CITÉE : Golden 32 kg refusé sûrement, sur la page officielle du 10/09",
+    cab?.status === "denied" && /wwws\.airfrance\.fr/.test(cab?.source?.url ?? "") && cab?.source?.verified_date === "2026-09-10", JSON.stringify(cab));
 }
 
 console.log("\n=== 3. Golden 32 kg, CDG → ATH, cabine citée à 8 kg chien + contenant : refus sûr ===");

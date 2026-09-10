@@ -81,6 +81,13 @@ const LOTS = {
    *  fret, Aer Lingus soute et Air China cabine, changement manuel de la disponibilité SUR ORDRE (l'importeur, lui, ne
    *  la change jamais). Le sixième (Bangkok Airways fret, index 3) est `case_by_case` par arbitrage — précédent Virgin
    *  A-bis — et sa preuve est écrite à la main dans la fiche : l'importeur refuserait la disponibilité. */
+  /** COMPLÉMENT AIR FRANCE CABINE (10/09/2026, Codex) : un seul fait, la phrase française de la page officielle —
+   *  « En cabine (chats et chiens de moins de 8 kg, sac de transport compris) ». Même contrat, même rapport. Le
+   *  bloc `policies.cabin` de la fiche ne portait qu'`availability: offered` ; le plafond 8 kg, les dimensions et
+   *  la source non citée vivaient dans la politique héritée d'`objects.json` (cause `official_source_unquoted`). */
+  af_cabine: { dossier: "mesures/preuves/complement-air-france-cabine-2026-09-10", total: 1,
+    fichiers: { AF: "tous" },
+    nom: () => "PREUVES_POLITIQUES_COMPAGNIES_AIR_FRANCE_CABINE_2026-09-10.json" },
   correctif: { dossier: "mesures/preuves/correctif-arbitrages-2026-09-09", total: 5, cle: "replace_facts",
     fichiers: { CORRECTIF: [0, 1, 2, 4, 5] },
     nom: () => "CORRECTIF_ARBITRAGES_POLITIQUES_COMPAGNIES_2026-09-09.json" },
@@ -158,13 +165,18 @@ const SEUILS = {
      (« up to 8 kilos (including the weight of the standard transportation cage) »). NON écrits : Air
      Astana 8 et Neos 10 (chiffre absent de la phrase citée). */
   "airline_aerolineas_argentinas.cabin": 9, "airline_edelweiss.cabin": 8, "airline_tarom.cabin": 8,
+  /* Complément Air France cabine (10/09/2026) : « chiens de moins de 8 kg, sac de transport compris » — chiffre ET
+     base du poids dans la phrase ; borne STRICTE (voir SEUIL_BORNE_STRICTE). */
+  "airline_air_france.cabin": 8,
 };
 /** Seuils du CHIEN SEUL (le contenant s'ajoute) : `weight_includes_carrier: false`, écrit. */
 const SEUIL_CHIEN_SEUL = new Set(["airline_air_europa.cabin"]);
 /** BORNES STRICTES (09/09/2026, règle des seuils de Codex, tranchée par Philippe) : la phrase citée dit « inférieur à »,
  *  « less than » — la valeur est EXCLUE. Écrit `weight_limit_bound: lt`. Absent = `lte` (« jusqu'à », « maximum »,
  *  « ne dépasse pas »). Mesuré sur les 37 seuils écrits : une seule borne stricte, Air Austral cabine. */
-const SEUIL_BORNE_STRICTE = new Set(["airline_air_austral.cabin"]);
+const SEUIL_BORNE_STRICTE = new Set(["airline_air_austral.cabin",
+  /* Air France cabine (10/09/2026) : « moins de 8 kg » — Codex : ne pas convertir en « ≤ 8 kg », 8,0 kg est hors de la phrase. */
+  "airline_air_france.cabin"]);
 
 const DISPONIBILITE = {
   deny_when_dog_weight_kg_gt_8: "offered", deny_when_dog_weight_kg_gt_10: "offered",
