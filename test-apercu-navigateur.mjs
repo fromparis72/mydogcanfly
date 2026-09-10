@@ -189,14 +189,16 @@ for (const [nom, kg] of [["petit", 4], ["moyen", 15], ["grand", 32]]) {
   check(`chien ${nom} : AUCUN montant numérique résiduel`, !MONTANT.test(texte),
     (texte.match(MONTANT) ?? []).join(" | "));
   /* L'incertitude doit être DITE, pas seulement absente de contradiction.
-     RE-FONDÉ LE 10/09/2026 (annexe 38, contrat de carte arbitré par Philippe) : la phrase « confirm with
-     the airline » n'est plus répétée dans chaque carte, elle est écrite UNE FOIS au-dessus des résultats
-     (`.acards__notes`), et chaque ligne canal dit « to be confirmed » là où rien n'est prouvé. Le témoin
-     exige les deux : l'avertissement général présent, et au moins une ligne canal qui porte le doute. */
-  const notesGen = await p.$$eval(".acards__notes .acards__note", (n) => n.map((x) => x.textContent ?? "").join(" | ")).catch(() => "");
-  check(`chien ${nom} : l'incertitude est écrite en toutes lettres`,
-    /confirm (?:directly )?with the airline|to be confirmed/i.test(notesGen) || /to be confirmed/i.test(texte),
-    `notes : ${notesGen.slice(0, 120)} · résultat : ${texte.slice(0, 120)}`);
+     RE-FONDÉ UNE SECONDE FOIS LE 10/09/2026 (annexe 42, arbitrage de Philippe) : l'avertissement général a disparu
+     avec les trois autres justifications internes. L'incertitude n'est plus DITE que par la ligne canal elle-même —
+     « Cabin : to be confirmed » — et c'est tout ce que le visiteur doit lire. Le témoin exige donc cette ligne, ET
+     l'absence du paragraphe d'excuse qui l'accompagnait. */
+  const notesGen = await p.$$eval(".acards__notes, .acards__note, .acard__unver", (n) => n.map((x) => x.textContent ?? "").join(" | ")).catch(() => "");
+  check(`chien ${nom} : l'incertitude est écrite en toutes lettres, sur la ligne canal`,
+    /to be confirmed/i.test(texte), texte.slice(0, 160));
+  check(`chien ${nom} : aucun paragraphe de justification interne au-dessus ni dans les cartes`,
+    notesGen === "" && !/has not yet been reverified|no sentence has been quoted|potentially relevant/i.test(texte),
+    notesGen.slice(0, 160));
   /* Et surtout : aucun verdict catégorique de canal ne doit s'afficher. */
   check(`chien ${nom} : aucune carte n'affiche « Accepted » ni « Not accepted »`,
     !/\b(Accepted|Not accepted)\b/.test(texte), (texte.match(/\b(Accepted|Not accepted)\b/g) ?? []).slice(0, 3).join(" | "));
