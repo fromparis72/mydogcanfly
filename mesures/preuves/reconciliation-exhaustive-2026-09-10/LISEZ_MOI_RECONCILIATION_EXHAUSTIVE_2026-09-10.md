@@ -86,3 +86,43 @@ ambiguïtés : soumis à Philippe. Raccordements explicites : exécutés sans no
 Premier jet de ce LISEZ_MOI (commit `34d6419`) : trois chiffres écrits avant d'avoir relu le calcul — soute 31 / fret
 65 (réel : 29 / 67), « 113 sur un canal cité » (réel : 133), et une liste des neuf « sans information » inventée de
 mémoire (la vraie est ci-dessus). Corrigés ici ; le message du commit fautif reste tel quel dans l'historique.
+
+## Arbitrage de Codex sur le schéma tarifaire (10/09/2026) — reçu, schéma refusé en l'état
+
+`ARBITRAGE_TARIFS_SAS_FINNAIR_2026-09-10.md`, conservé ici tel quel. Mon `unit` unique est refusé pour une
+raison P0 que je n'avais pas vue : **deux axes s'appliquent simultanément**. SAS facture par contenant ET par
+vol. Le schéma retenu les sépare — `billing_subject` (pet, container, pet_or_container, booking, shipment,
+kilogram) et `journey_basis` (per_segment, per_one_way, per_journey, per_round_trip) —, ajoute
+`price.kind: exact | range | quote`, un `applies_when` qui est un prédicat **exécutable sur les faits
+réellement injectés au Finder** (et non une zone en texte libre), un `purchase_window` distinct de la date du
+voyage, et exige une **citation propre au tarif** : la phrase qui prouve qu'un canal existe ne prouve pas son
+prix. Aucune conversion de devise ; plusieurs devises publiées sur une même ligne sont des montants parallèles,
+pas un conflit.
+
+Invariants à éprouver, tels qu'arbitrés : aucune portée libre ne décide ; aucun tarif sans citation ; aucune
+conversion ; `billing_subject` et `journey_basis` obligatoires ; zéro ou un tarif applicable par devise et par
+portée ; tout chevauchement divergent devient un conflit ; un conflit couvrant le trajet interdit tout montant
+exact dans le Finder.
+
+## Ordre de lecture — ma proposition corrigée par Codex
+
+J'additionnais deux populations différentes. Les **133** sont des lignes TARIFAIRES héritées sur un canal déjà
+cité ; les 22 cabine, 29 soute et 67 fret sont **118 pistes de POLITIQUES** non raccordées. Ordre de rendement
+retenu : (1) les 133 tarifs sur canal cité, cabine et soute d'abord ; (2) les 66 tarifs sur canal non cité, en
+privilégiant les pages qui ferment politique et tarif d'une seule lecture ; (3) les 22 et 29 pistes cabine et
+soute ; (4) les 67 pistes fret en dernier, sauf fret imposé par la route ou seul canal restant. Lots de dix
+compagnies, matrice avant/après, comparaison Claude/Codex, import des seules intersections confirmées ou des
+conflits structurés.
+
+## SAS et Finnair — reçus au format strict
+
+Soute et fret des deux compagnies, citations, locators, lecture du 2026-09-10, révision 2026-12-09,
+confiance 4. Tarifs SAS publiés par portée (domestique, Scandinavie/Europe/Moyen-Orient, Asie/Canada/États-Unis,
+Chine), `billing_subject: container`, `journey_basis: per_segment`, fret sur devis. Finnair cabine concordante
+sur les deux pages (Europe 60/65 EUR selon J-7, long-courrier 120/130 EUR et 130/140 USD), fret sur devis.
+**Conflit Finnair soute** : 140/650 EUR sur la page « Animaux de compagnie à bord », 120/600 EUR sur la page
+tarifaire (mise à jour annoncée le 2026-06-08). `status: unresolved`, `effect: suppress_exact_fare` — la fiche
+peut dire « tarifs officiels contradictoires », jamais trancher.
+
+SAS soute laisse `weight_includes_carrier` non renseigné : la page ne dit pas si le contenant entre dans les
+50 kg. C'est exactement le cas où notre modèle refuse de refuser au seuil — la portée reste nommée, non déduite.
