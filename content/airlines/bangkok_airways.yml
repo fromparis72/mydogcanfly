@@ -86,7 +86,11 @@ policies:
   hold:
     availability: offered
   cargo:
-    availability: case_by_case   # ARBITRÉ (Codex 09/09/2026, relayé par Philippe) — était offered (réactivée lot 8)
+    availability: offered   # RÉTABLI le 10/09/2026 (arbitrage conditionnel de Codex, décision de Philippe — annexe 37) :
+    # `case_by_case` (09/09) → `offered`, PARCE QUE le même lot encode les trois règles citées R1 (refus de tout
+    # segment international), R2 (BKK/DMK ↔ KBV refusé) et R3 (CNX ↔ KBV refusé) — rules.json, source
+    # bangkokair.com relue le 10/09. Le réseau intérieur projette « sous conditions », l'international « refusé ».
+    # Historique conservé ci-dessous.
     # ARBITRAGE (Codex, 09/09/2026, relayé et tranché par Philippe — mesures/preuves/correctif-arbitrages-2026-09-09) :
     # « sous conditions uniquement sur les liaisons intérieures publiées, sauf Bangkok–Krabi et Chiang Mai–Krabi ;
     # toutes les escales internationales sont refusées ; hors de ce périmètre, ne pas afficher le fret comme proposé ».

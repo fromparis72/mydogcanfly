@@ -25230,5 +25230,272 @@
         }
       ]
     }
+  },
+  {
+    "id": "rule_bangkok_airways_cargo_international_denied",
+    "scope": {
+      "type": "airline",
+      "id": "airline_bangkok_airways"
+    },
+    "category": "placement",
+    "criticality": "high",
+    "applies_when": {
+      "all": [
+        {
+          "fact": "placement",
+          "op": "eq",
+          "value": "cargo"
+        },
+        {
+          "fact": "travel_type",
+          "op": "in",
+          "value": [
+            "pet",
+            "emotional_support"
+          ]
+        },
+        {
+          "any": [
+            {
+              "fact": "route.origin_country_id",
+              "op": "neq",
+              "value": "country_th"
+            },
+            {
+              "fact": "route.dest_country_id",
+              "op": "neq",
+              "value": "country_th"
+            }
+          ]
+        }
+      ]
+    },
+    "effect": {
+      "action": "deny",
+      "placement": [
+        "cargo"
+      ]
+    },
+    "params": {},
+    "rationale": "Bangkok Airways does not accept live animals as cargo on any international station: pet cargo is available on its domestic network only.",
+    "rationale_i18n": {
+      "fr": "Bangkok Airways n'accepte pas d'animal vivant en fret sur les escales internationales : le fret animalier n'existe que sur son réseau intérieur.",
+      "es": "Bangkok Airways no acepta animales vivos como carga en ninguna estación internacional: la carga de mascotas solo existe en su red nacional.",
+      "pt": "A Bangkok Airways não aceita animais vivos como carga em nenhuma estação internacional: a carga de animais existe apenas na sua rede doméstica."
+    },
+    "source": {
+      "url": "https://www.bangkokair.com/cargo-service/pet_carriage",
+      "source_type": "official_website",
+      "verified_date": "2026-09-10",
+      "review_due": "2026-12-09",
+      "confidence": 4,
+      "reviewer": "Codex — direct reading of official airline page",
+      "quote_language": "en",
+      "history": [
+        {
+          "date": "2026-09-10",
+          "reviewer": "Codex — direct reading of official airline page",
+          "note": "Relecture en ligne, phrases verbatim livrées à Claude via Philippe (annexe 37)."
+        }
+      ],
+      "quote": "International Routes: All station: Not Accept",
+      "locator": "Cargo Service → Pet Carriage Service → bloc des routes disponibles → International Routes"
+    }
+  },
+  {
+    "id": "rule_bangkok_airways_cargo_bkk_kbv_excluded",
+    "scope": {
+      "type": "airline",
+      "id": "airline_bangkok_airways"
+    },
+    "category": "placement",
+    "criticality": "high",
+    "applies_when": {
+      "all": [
+        {
+          "fact": "placement",
+          "op": "eq",
+          "value": "cargo"
+        },
+        {
+          "fact": "travel_type",
+          "op": "in",
+          "value": [
+            "pet",
+            "emotional_support"
+          ]
+        },
+        {
+          "any": [
+            {
+              "all": [
+                {
+                  "fact": "route.origin_airport_id",
+                  "op": "in",
+                  "value": [
+                    "airport_bkk",
+                    "airport_dmk"
+                  ]
+                },
+                {
+                  "fact": "route.dest_airport_id",
+                  "op": "in",
+                  "value": [
+                    "airport_kbv"
+                  ]
+                }
+              ]
+            },
+            {
+              "all": [
+                {
+                  "fact": "route.origin_airport_id",
+                  "op": "in",
+                  "value": [
+                    "airport_kbv"
+                  ]
+                },
+                {
+                  "fact": "route.dest_airport_id",
+                  "op": "in",
+                  "value": [
+                    "airport_bkk",
+                    "airport_dmk"
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    "effect": {
+      "action": "deny",
+      "placement": [
+        "cargo"
+      ]
+    },
+    "params": {},
+    "rationale": "Bangkok Airways excludes the Bangkok–Krabi route, in both directions, from its domestic pet cargo service.",
+    "rationale_i18n": {
+      "fr": "Bangkok Airways exclut la liaison Bangkok–Krabi, dans les deux sens, de son fret animalier intérieur.",
+      "es": "Bangkok Airways excluye la ruta Bangkok–Krabi, en ambos sentidos, de su servicio nacional de carga de mascotas.",
+      "pt": "A Bangkok Airways exclui a rota Banguecoque–Krabi, nos dois sentidos, do seu serviço doméstico de carga de animais."
+    },
+    "source": {
+      "url": "https://www.bangkokair.com/cargo-service/pet_carriage",
+      "source_type": "official_website",
+      "verified_date": "2026-09-10",
+      "review_due": "2026-12-09",
+      "confidence": 4,
+      "reviewer": "Codex — direct reading of official airline page",
+      "quote_language": "en",
+      "history": [
+        {
+          "date": "2026-09-10",
+          "reviewer": "Codex — direct reading of official airline page",
+          "note": "Relecture en ligne, phrases verbatim livrées à Claude via Philippe (annexe 37)."
+        }
+      ],
+      "quote": "Accept all domestic route Except Bangkok – Krabi v.v. and Chiang Mai – Krabi v.v.",
+      "locator": "Cargo Service → Pet Carriage Service → bloc des routes disponibles → Domestic Routes"
+    }
+  },
+  {
+    "id": "rule_bangkok_airways_cargo_cnx_kbv_excluded",
+    "scope": {
+      "type": "airline",
+      "id": "airline_bangkok_airways"
+    },
+    "category": "placement",
+    "criticality": "high",
+    "applies_when": {
+      "all": [
+        {
+          "fact": "placement",
+          "op": "eq",
+          "value": "cargo"
+        },
+        {
+          "fact": "travel_type",
+          "op": "in",
+          "value": [
+            "pet",
+            "emotional_support"
+          ]
+        },
+        {
+          "any": [
+            {
+              "all": [
+                {
+                  "fact": "route.origin_airport_id",
+                  "op": "in",
+                  "value": [
+                    "airport_cnx"
+                  ]
+                },
+                {
+                  "fact": "route.dest_airport_id",
+                  "op": "in",
+                  "value": [
+                    "airport_kbv"
+                  ]
+                }
+              ]
+            },
+            {
+              "all": [
+                {
+                  "fact": "route.origin_airport_id",
+                  "op": "in",
+                  "value": [
+                    "airport_kbv"
+                  ]
+                },
+                {
+                  "fact": "route.dest_airport_id",
+                  "op": "in",
+                  "value": [
+                    "airport_cnx"
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    "effect": {
+      "action": "deny",
+      "placement": [
+        "cargo"
+      ]
+    },
+    "params": {},
+    "rationale": "Bangkok Airways excludes the Chiang Mai–Krabi route, in both directions, from its domestic pet cargo service.",
+    "rationale_i18n": {
+      "fr": "Bangkok Airways exclut la liaison Chiang Mai–Krabi, dans les deux sens, de son fret animalier intérieur.",
+      "es": "Bangkok Airways excluye la ruta Chiang Mai–Krabi, en ambos sentidos, de su servicio nacional de carga de mascotas.",
+      "pt": "A Bangkok Airways exclui a rota Chiang Mai–Krabi, nos dois sentidos, do seu serviço doméstico de carga de animais."
+    },
+    "source": {
+      "url": "https://www.bangkokair.com/cargo-service/pet_carriage",
+      "source_type": "official_website",
+      "verified_date": "2026-09-10",
+      "review_due": "2026-12-09",
+      "confidence": 4,
+      "reviewer": "Codex — direct reading of official airline page",
+      "quote_language": "en",
+      "history": [
+        {
+          "date": "2026-09-10",
+          "reviewer": "Codex — direct reading of official airline page",
+          "note": "Relecture en ligne, phrases verbatim livrées à Claude via Philippe (annexe 37)."
+        }
+      ],
+      "quote": "Accept all domestic route Except Bangkok – Krabi v.v. and Chiang Mai – Krabi v.v.",
+      "locator": "Cargo Service → Pet Carriage Service → bloc des routes disponibles → Domestic Routes"
+    }
   }
 ]

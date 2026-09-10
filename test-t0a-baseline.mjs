@@ -1723,12 +1723,13 @@ console.log("=== Couverture DIRECTE : les 302 politiques, hors des 72 scénarios
   /* MOUVEMENT NOMMÉ (09/09/2026, import strict lot 8 — 22 citations de plus, 158 en tout) : 0 · 124 · 32 · 146 ; causes 129 · 15 · 1 · 1. */
   /* MOUVEMENT NOMMÉ (09/09/2026, import strict lot 9 — 18 citations de plus, 176 en tout, lot de clôture) : 0 · 140 · 34 · 128 ; causes 111 · 15 · 1 · 1. */
   /* MOUVEMENT NOMMÉ (09/09/2026, correctif d'arbitrages — Codex, tranché par Philippe ; six preuves remplacées dans les lots 4, 6 et 8) : 0 · 142 · 34 · 126 ; causes 109 · 15 · 0 · 2. */
-  check("répartition runtime : 0 allowed · 142 sous conditions · 34 denied · 126 à confirmer",
-    !parStatut.allowed && parStatut.accepted_with_conditions === 142 && parStatut.denied === 34 && parStatut.confirmation_required === 126,
+  /* MOUVEMENT NOMMÉ (10/09/2026, Bangkok Airways fret — annexe 37) : 142 → 143 sous conditions, 126 → 125 à confirmer, airline_approval 2 → 1. */
+  check("répartition runtime : 0 allowed · 143 sous conditions · 34 denied · 125 à confirmer",
+    !parStatut.allowed && parStatut.accepted_with_conditions === 143 && parStatut.denied === 34 && parStatut.confirmation_required === 125,
     JSON.stringify(parStatut));
-  check("causes : 109 legacy_unreviewed · 15 official_source_unquoted · 0 policy_unpublished · 2 airline_approval",
+  check("causes : 109 legacy_unreviewed · 15 official_source_unquoted · 0 policy_unpublished · 1 airline_approval",
     parCause.legacy_unreviewed === 109 && parCause.official_source_unquoted === 15
-      && !parCause.policy_unpublished && parCause.airline_approval === 2, JSON.stringify(parCause));
+      && !parCause.policy_unpublished && parCause.airline_approval === 1, JSON.stringify(parCause));
 }
 
 console.log("=== Contre-épreuve N/N+1 : la baseline survit au passage des années ===");

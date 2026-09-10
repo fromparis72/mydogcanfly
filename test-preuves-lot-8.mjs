@@ -76,9 +76,11 @@ console.log("=== Étage 1 — 23 faits relus, 22 dans la donnée à l'octet prè
       /* ARBITRAGE : « sous conditions uniquement sur les liaisons intérieures publiées ; hors périmètre, ne pas afficher le
          fret comme proposé ». Le modèle ne restreint pas par route : précédent Virgin A-bis, `case_by_case` + citation +
          conditions quadrilingues ; projeté « à confirmer » (airline_approval). */
-      check(`${cle} (LOT8[${f.index}]) : ARBITRÉ \`case_by_case\` — preuve du correctif (URL canonique, localisateur Domestic/International), conditions quadrilingues`,
-        pol?.availability === "case_by_case" && s.quote === arb.quote && s.url === arb.url && s.locator === arb.locator && ["en", "fr", "es", "pt"].every((l) => /Krabi/.test(pol?.conditions?.[l] ?? "")), JSON.stringify({ availability: pol?.availability, url: s.url }));
-      check(`  …projeté « à confirmer », cause airline_approval — jamais « sous conditions » sur un vol international`, proj?.status === "confirmation_required" && proj?.status_cause === "airline_approval", JSON.stringify({ status: proj?.status, cause: proj?.status_cause }));
+      /* MOUVEMENT NOMMÉ (10/09/2026, annexe 37) : `case_by_case` (09/09) → `offered`, PARCE QUE R1, R2 et R3, citées, entrent dans le
+         même lot (condition de Codex). La preuve du correctif, les conditions Krabi quadrilingues et l'URL canonique restent. */
+      check(`${cle} (LOT8[${f.index}]) : RÉTABLI \`offered\` (annexe 37) — preuve du correctif (URL canonique, localisateur Domestic/International), conditions quadrilingues`,
+        pol?.availability === "offered" && s.quote === arb.quote && s.url === arb.url && s.locator === arb.locator && ["en", "fr", "es", "pt"].every((l) => /Krabi/.test(pol?.conditions?.[l] ?? "")), JSON.stringify({ availability: pol?.availability, url: s.url }));
+      check(`  …projeté « sous conditions » (réseau intérieur) ; l'international est refusé par R1, citée — voir test-bangkok-fret-geographie.mjs`, proj?.status === "accepted_with_conditions", JSON.stringify({ status: proj?.status, cause: proj?.status_cause }));
       continue;
     }
     if (arb) {
@@ -118,8 +120,9 @@ console.log("=== Étage 1 — 23 faits relus, 22 dans la donnée à l'octet prè
     [km, sw, sk].every((p) => p?.status === "accepted_with_conditions" && p?.max_weight_kg === undefined && p?.weight_includes_carrier === undefined), JSON.stringify({ km, sw, sk }));
   check("IndiGo : trois refus PROUVÉS (cabine, soute, fret) — deuxième refus total du dépôt, après Ryanair",
     ["cabin", "hold", "cargo"].every((c) => projetee("airline_indigo", c)?.status === "denied"));
-  check("Bangkok Airways fret : réactivé au lot 8, ARBITRÉ `case_by_case` (portée intérieure, exclusions Krabi) — « à confirmer » partout, la citation et la portée publiées",
-    projetee("airline_bangkok_airways", "cargo")?.status === "confirmation_required" && projetee("airline_bangkok_airways", "cargo")?.status_cause === "airline_approval" && /following routes:$/.test(politique("airline_bangkok_airways", "cargo")?.source?.quote ?? ""));
+  /* MOUVEMENT NOMMÉ (10/09/2026, annexe 37) : « à confirmer partout » → « sous conditions » sur le réseau intérieur, refus cité à l'international (R1). */
+  check("Bangkok Airways fret : réactivé au lot 8, arbitré `case_by_case` le 09/09, RÉTABLI `offered` le 10/09 avec R1/R2/R3 citées — la citation et la portée restent publiées",
+    projetee("airline_bangkok_airways", "cargo")?.status === "accepted_with_conditions" && /following routes:$/.test(politique("airline_bangkok_airways", "cargo")?.source?.quote ?? ""));
 }
 
 console.log("\n=== Étage 2 — Miami → Panama : Copa, trois états distincts ===");

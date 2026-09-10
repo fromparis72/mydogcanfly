@@ -9,6 +9,9 @@ export const Fact = z.enum([
   "dog.brachycephalic", "dog.size", "dog.weight_kg", "dog.breed_id",
   "travel_type", "placement",
   "route.origin_country_id", "route.dest_country_id", "route.dest_airport_id",
+  // Aéroport d'ORIGINE (10/09/2026, Bangkok Airways fret) : les exclusions « Bangkok–Krabi v.v. » se disent
+  // par paire d'aéroports, dans les deux sens. Symétrique de route.dest_airport_id.
+  "route.origin_airport_id",
   "season.month", "weather.temperature_c",
   // Documents que le voyageur détient DÉJÀ — pas l'origine du vol, pas le statut de l'animal.
   // "yes" | "no" | "unknown" | "" (question non posée ou sans réponse). Le vide et "unknown"

@@ -58,6 +58,7 @@ export const FACT_TYPES = {
   "docs.eu_passport": { kind: "enum", values: ["yes", "no", ""], ops: EQ },
   "placement": { kind: "enum", values: Placement.options, ops: EQ },
   "route.dest_airport_id": { kind: "id", prefix: "airport_", ops: EQ },
+  "route.origin_airport_id": { kind: "id", prefix: "airport_", ops: EQ },
   "route.dest_country_id": { kind: "id", prefix: "country_", ops: EQ },
   "route.origin_country_id": { kind: "id", prefix: "country_", ops: EQ },
   /** 1–12 ; **0 = mois inconnu** (le voyageur n'a pas donné de date). Voir MONTH_UNKNOWN. */
@@ -636,6 +637,7 @@ const SET_FOR: Partial<Record<InjectedFact, keyof KnownIds>> = {
   "route.dest_country_id": "countryIds",
   "route.origin_country_id": "countryIds",
   "route.dest_airport_id": "airportIds",
+  "route.origin_airport_id": "airportIds",
 };
 
 /** Parcourt récursivement un prédicat et rend les identifiants absents des référentiels. */

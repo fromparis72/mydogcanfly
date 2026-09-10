@@ -106,7 +106,8 @@ console.log("\n=== 2. KB réelle : aucune politique n'émet `allowed` ; rien ne 
   /* MOUVEMENT NOMMÉ (09/09/2026, import strict lot 8 — 22 citations de plus, 158 en tout) : 108 → 124. */
   /* MOUVEMENT NOMMÉ (09/09/2026, import strict lot 9 — 18 citations de plus, 176 en tout, lot de clôture) : 124 → 140. */
   /* MOUVEMENT NOMMÉ (09/09/2026, correctif d'arbitrages — Codex, tranché par Philippe ; six preuves remplacées dans les lots 4, 6 et 8) : 140 → 142 (Thai fret, Aer Lingus soute, Air China cabine entrent ; Bangkok fret sort vers `case_by_case`). */
-  check(`politiques réelles en accepted_with_conditions : 142 depuis le correctif — mesuré : ${cond}`, cond === 142);
+  /* MOUVEMENT NOMMÉ (10/09/2026, Bangkok Airways fret — annexe 37) : 142 → 143 (fret `offered` cité, R1/R2/R3 dans le même lot). */
+  check(`politiques réelles en accepted_with_conditions : 143 depuis Bangkok Airways fret (annexe 37) — mesuré : ${cond}`, cond === 143);
   const af = REQ(GOLDEN_32, kb);
   const cab = stOf(af, "airline_air_france", "cabin");
   check("Air France cabine, KB réelle (non citée) : reste « à confirmer », pas un refus au seuil sans preuve",
