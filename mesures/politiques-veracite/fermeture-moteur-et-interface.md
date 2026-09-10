@@ -3915,3 +3915,32 @@ des preuves régénéré, baseline du Finder refigée (paire `complement-air-fra
 | caisses non sourcées | vert |
 | contre-épreuves `--dist-complet` | 58 garanties éprouvées sur 58 |
 | registre de fraîcheur | rescellé (1 504 entrées), inventaire des preuves régénéré |
+## Annexe 41 — Héros de l'accueil : T1, T2, T3 arbitrés (10/09/2026, classement B)
+
+Arbitrage validé par Philippe, relayé par Codex : trois textes dans les quatre langues — T1 la question centrale
+(« Mon chien peut-il prendre l'avion ? », écho de MyDogCanFly.com), T2 le slogan émotionnel (« Voyager ensemble,
+c'est prendre soin de chaque détail. »), T3 le paragraphe explicatif (cabine, soute, fret, race, destination ;
+ce qui est confirmé, ce qui doit encore être vérifié). Modification éditoriale ciblée : ni moteur, ni données,
+ni architecture.
+
+### Mesuré avant d'écrire
+
+Le gabarit (`HomeSections.astro`) coupe `home.hero.title` après le premier « ? » : la question devient
+`.hero__q`, le reste `.hero__accent` (ligne orange). T1 et T2 tiennent donc dans `home.hero.title`, séparés par
+un retour à la ligne ; T3 est `home.hero.sub`. Les anciens textes (« Vois ce qui est confirmé — et ce qu'il faut
+vérifier », « Prendre l'avion avec un chien peut être complexe… ») vivaient dans ces deux clés seulement.
+L'accroche au-dessus du titre (`home.hero.eyebrow`, « Ce qui est confirmé, et ce qui ne l'est pas ») n'est pas
+dans l'arbitrage : elle est laissée telle quelle et **nommée** ici pour Codex.
+
+### Ce qui a été fait, et rien d'autre
+
+Huit lignes dans `strings.json` (en / fr / es / pt) : `home.hero.title` = T1 + « \n » + T2, `home.hero.sub` = T3,
+verbatim (apostrophes typographiques conservées). Aucun autre fichier.
+
+### Mesuré (dist réduit)
+
+| contrôle | résultat |
+|---|---|
+| les quatre pages d'accueil construites | T1 dans `.hero__q`, T2 dans `.hero__accent`, T3 dans `.hero__sub`, verbatim |
+| anciens slogans (« still needs checking », « ce qu'il faut vérifier », « aún hay que comprobar », « ainda é preciso verificar », « Ton chien peut-il », « Can your dog fly », « Puede volar tu perro », « O teu cão pode voar ») | **0 occurrence** sur les quatre pages |
+| titre face à l'emblème et au conteneur, 1280 et 400 px, quatre langues (mesure ad hoc, rectangles) | voir ci-dessous |
