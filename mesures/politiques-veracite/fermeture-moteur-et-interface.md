@@ -3953,3 +3953,22 @@ Finder vivent dans le script client partagé) ; `wrangler deploy` annonce `Curre
 concordants (règle de l'annexe 35). En ligne désormais : les cartes du Finder (annexe 38, #50). Contrôle en ligne à
 demander à Codex : CDG → JFK, Golden 32 kg — la carte Air France dit « Cabine : non · Soute : oui, sous conditions ·
 jusqu'à 75 kg avec le contenant · tarif à confirmer », provenance datée, volet « Voir les preuves » fermé.
+
+### Annexe 41, suite — mesuré aux largeurs mobiles (Codex : 320, 360, 375, 400 px, quatre langues)
+
+Débordement de 9 px à 400 px sur la page anglaise, **préexistant** (mesuré sur le dist aux anciens textes) : la grille
+« Avant de réserver » (`.grid`, colonnes `1fr`) ne descendait pas sous la largeur minimale de ses cartes, et
+« Your country's requirements » poussait la rangée à 409 px. Cause CSS fermée : colonnes `minmax(0, 1fr)`, une seule
+colonne sous 420 px ; ni `overflow-x: hidden`, ni texte raccourci.
+
+| largeur | scrollWidth / clientWidth (en, fr, es, pt) | éléments débordants | racine / corps | titre |
+|---|---|---|---|---|
+| 320 | 320 / 320 ×4 | aucun | 16 px / 16 px | 22 px |
+| 360 | 360 / 360 ×4 | aucun | 16 px / 16 px | 22 px |
+| 375 | 375 / 375 ×4 | aucun | 16 px / 16 px | 22,5 px |
+| 400 | 400 / 400 ×4 | aucun | 16 px / 16 px | 24 px |
+| 1280 | 1280 / 1280 ×4 | aucun ; titre 711 px ≤ emblème 759 px | 16 px / 16 px | 49 px |
+
+Les tailles de titre sous 520 px sont celles du `clamp(22px, 6vw, 30px)` déjà en place — aucune réduction globale de
+typographie (racine et corps inchangés). T1, T2, T3 identiques aux textes validés à chaque largeur. Témoin permanent
+ajouté à la suite navigateur (`13-accueil-*-400px.png`), joué une seule fois par le parcours CI complet, comme demandé.
