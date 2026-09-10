@@ -3781,3 +3781,38 @@ régression de la nouvelle ; chacun est re-fondé par un mouvement nommé, jamai
 
 Rejoué en local, Playwright et Chromium du conteneur, sur le dist du build complet : **181 OK,
 0 ÉCHEC**. Les captures locales ne sont pas versionnées ; celles de la CI le seront par le flux.
+
+### Contre-revue de Codex sur `1a288ed` (10/09/2026, 12:05) : deux P0, trois P1 — fermés
+
+**P0-1 — un rapport incomplet pouvait fabriquer un refus.** Mesuré : la ligne canal lisait
+`a[ch+"_status"] ?? placement_decisions ?? (a[ch] ? "allowed" : "denied")`, le résumé lisait
+`a[ch+"_status"] ?? (a[ch] ? "allowed" : "denied")` — un statut absent devenait un refus, et les deux
+lectures pouvaient diverger sur la même carte. Le repli existait parce que la fixture de base du harnais
+(`FAKE_REPORT`) ne portait que les booléens. Fermé ainsi : à la frontière (`fetchReport`), `rapportComplet`
+exige pour chaque compagnie les trois `*_status` parmi les quatre états du contrat, une et une seule
+`placement_decision` par canal, et leur concordance ; sinon l'erreur prudente, et la cause exacte en console
+(« incomplete report »). Ligne canal et résumé lisent désormais la même clé, sans repli. La fixture dit en
+toutes lettres ce que le repli disait tout bas (cabine ouverte, soute et fret refusés). Contre-épreuves,
+quatre langues : retirer `cabin_status` d'une réponse réelle, rendre `cabin_status` discordant de sa
+décision, retirer la décision fret → erreur prudente, aucune carte, jamais « Cabine : non ».
+*Erreur nommée* : mon premier jet passait la carte amputée à `carteContrat(...)`, dont le gabarit remettait
+le statut — le témoin rendait une carte complète et rougissait sur lui-même ; l'amputation s'applique
+après le gabarit.
+
+**P0-2 — un témoin d'entités vacant.** Le témoin négatif El Al lisait `.acard__psrc`, retiré de toutes les
+cartes : vert à vide. Il exige désormais l'absence de `.acard__prov` et de `details.acard__proofs` sur la
+carte sans source, et un second témoin prouve qu'il n'est pas vacant : la carte Thai, elle, porte les deux.
+Entités : 178 → **179 OK** (mouvement nommé : +1 témoin).
+
+**P1.** (1) Cas fret `missing_fact` ajouté : développé, « à confirmer ». (2) Le témoin « deux dates » exige
+les deux associations exactes : le segment du 8 septembre nomme la soute et pas le fret, celui du 9 nomme
+le fret et pas la soute, dates rendues comme la carte les rend (Intl, langue de la page). (3) pt-BR :
+« Fonte oficial verificada em {date}: {channels} » remplace « Verificado numa fonte oficial em … » —
+gabarit du harnais et témoin navigateur alignés.
+
+| contrôle (dist réduit `build:ci`) | résultat |
+|---|---|
+| harnais du Finder | 419 OK (dont 12 nouveaux : 3 amputations × 4 langues, + fret `missing_fact` × 4, dates exactes × 4) |
+| chaîne `test:built-ui` | 954 OK |
+| entités | 179 OK |
+| `test:unit`, typecheck, dette Astro (165) | verts |

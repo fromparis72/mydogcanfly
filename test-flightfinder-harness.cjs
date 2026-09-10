@@ -56,6 +56,16 @@ const FAKE_REPORT = {
   airlines: [{
     airline_id: "airline_air_france", name: "Air France",
     direct: true, cabin: true, hold: false, cargo: false,
+    /* P0-1 DE LA CONTRE-REVUE (Codex, 10/09/2026) : cette fixture ne portait que les booléens, et l'interface
+       en DÉRIVAIT des statuts (« hold: false » devenait un refus). La frontière refuse désormais un rapport
+       sans les trois `*_status` et les trois décisions concordantes ; la fixture dit donc ce que le repli
+       disait tout bas — cabine ouverte, soute et fret refusés —, mais en toutes lettres. */
+    cabin_status: "allowed", hold_status: "denied", cargo_status: "denied",
+    placement_decisions: [
+      { placement: "cabin", status: "allowed", allowed: true },
+      { placement: "hold", status: "denied", allowed: false },
+      { placement: "cargo", status: "denied", allowed: false },
+    ],
     label: "OK", source_url: "", carrier_of_origin: false, carrier_of_destination: false,
     itinerary_confidence: "confirmed", heat_embargo: false, fee: "",
   }],
@@ -230,7 +240,7 @@ const CARTE_LABELS = {
   en: { confirm: "to be confirmed", yesCond: "yes, under conditions", no: "no", quiet: "information not published", fareConfirm: "fare to confirm", fareQuote: "on quotation", proofs: "See the evidence", prov: "Verified on an official source on", limit: "up to 75 kg" },
   fr: { confirm: "à confirmer", yesCond: "oui, sous conditions", no: "non", quiet: "informations non publiées", fareConfirm: "tarif à confirmer", fareQuote: "sur devis", proofs: "Voir les preuves", prov: "Vérifié sur une source officielle le", limit: "jusqu'à 75 kg" },
   es: { confirm: "a confirmar", yesCond: "sí, bajo condiciones", no: "no", quiet: "información no publicada", fareConfirm: "tarifa a confirmar", fareQuote: "bajo presupuesto", proofs: "Ver las pruebas", prov: "Verificado en una fuente oficial el", limit: "hasta 75 kg" },
-  pt: { confirm: "a confirmar", yesCond: "sim, sob condições", no: "não", quiet: "informações não publicadas", fareConfirm: "tarifa a confirmar", fareQuote: "sob orçamento", proofs: "Ver as provas", prov: "Verificado numa fonte oficial em", limit: "até 75 kg" },
+  pt: { confirm: "a confirmar", yesCond: "sim, sob condições", no: "não", quiet: "informações não publicadas", fareConfirm: "tarifa a confirmar", fareQuote: "sob orçamento", proofs: "Ver as provas", prov: "Fonte oficial verificada em", limit: "até 75 kg" },
 };
 const SRC_SOUTE = { url: "https://www.airfrance.com/pets", source_type: "official_website", verified_date: "2026-09-08", confidence: 4 };
 const carteContrat = (over) => ({
@@ -316,7 +326,18 @@ async function cartesPass() {
     ] }));
     const fret2 = texteDe(ligne(r2.card, "cargo"));
     check(`${loc.code} : fret documenté → développé, « oui, sous conditions · sur devis », jamais un montant`, !ligne(r2.card, "cargo").classList.contains("acard__line--quiet") && fret2.includes(X.yesCond) && fret2.includes(X.fareQuote), fret2);
-    check(`${loc.code} : deux dates de vérification → la provenance les nomme toutes deux, chacune avec son canal`, /2026/.test(texteDe(r2.card.querySelector(".acard__prov-text"))) && texteDe(r2.card.querySelector(".acard__prov-text")).split(X.prov).length === 3, texteDe(r2.card.querySelector(".acard__prov-text")));
+    /* P1 DE LA CONTRE-REVUE (Codex, 10/09/2026) : ce témoin ne comptait que deux occurrences de la formule. Il exige
+       désormais les deux ASSOCIATIONS date ↔ canal : le segment daté du 8 septembre nomme la soute et pas le fret,
+       celui du 9 septembre nomme le fret et pas la soute. Les dates sont rendues comme la carte les rend (Intl, langue
+       de la page), le canal est le premier mot de sa propre ligne. */
+    const lisible = (iso) => new Intl.DateTimeFormat(loc.code, { day: "numeric", month: "long", year: "numeric" }).format(new Date(iso + "T00:00:00Z"));
+    const capSoute = texteDe(ligne(r2.card, "hold")).split(" ")[0], capFret = texteDe(ligne(r2.card, "cargo")).split(" ")[0];
+    const segments = texteDe(r2.card.querySelector(".acard__prov-text")).split(" · ");
+    const seg8 = segments.find((x) => x.includes(lisible("2026-09-08"))), seg9 = segments.find((x) => x.includes(lisible("2026-09-09")));
+    check(`${loc.code} : deux dates de vérification → deux segments, « ${lisible("2026-09-08")} : ${capSoute} » et « ${lisible("2026-09-09")} : ${capFret} », chacun avec SON canal seulement`,
+      segments.length === 2 && !!seg8 && !!seg9 && seg8.startsWith(X.prov) && seg9.startsWith(X.prov)
+        && seg8.includes(capSoute) && !seg8.includes(capFret) && seg9.includes(capFret) && !seg9.includes(capSoute),
+      segments.join(" || "));
 
     /* 3. Le fret se développe quand il est le seul canal restant (cabine et soute refusées). */
     const r3 = await rendre(carteContrat({ hold: false, cabin_status: "denied", hold_status: "denied", to_confirm: ["cargo"], placement_decisions: [
@@ -348,6 +369,29 @@ async function cartesPass() {
       { placement: "cargo", status: "confirmation_required", allowed: false, confirmation_causes: [{ code: "legacy_unreviewed", policy_ref: "x" }] },
     ], hold: false, hold_status: "confirmation_required", to_confirm: ["cabin", "hold", "cargo"] }));
     check(`${loc.code} : aucune source → aucune ligne de provenance ni volet`, !!r6.card && !r6.card.querySelector(".acard__prov") && !r6.card.querySelector("details.acard__proofs"));
+
+    /* 7. P1 (Codex, 10/09/2026) : un FAIT MANQUANT n'est pas « rien de publié » — le fret reste développé, « à confirmer ». */
+    const r7 = await rendre(carteContrat({ placement_decisions: [
+      { placement: "cabin", status: "confirmation_required", allowed: false, confirmation_causes: [{ code: "official_source_unquoted", policy_ref: "x" }] },
+      { placement: "hold", status: "accepted_with_conditions", allowed: false, weight_limit_kg: 75, weight_limit_includes_carrier: true, source: SRC_SOUTE },
+      { placement: "cargo", status: "confirmation_required", allowed: false, confirmation_causes: [{ code: "missing_fact", fact: "transport.total_weight_kg", requirement_ref: "req_x" }] },
+    ] }));
+    check(`${loc.code} : fret sur fait manquant → développé, « à confirmer » (pas la ligne discrète)`, !!ligne(r7.card, "cargo") && !ligne(r7.card, "cargo").classList.contains("acard__line--quiet") && texteDe(ligne(r7.card, "cargo")).endsWith(X.confirm), texteDe(ligne(r7.card, "cargo")));
+
+    /* 8. P0-1 (Codex, 10/09/2026) : UN RAPPORT INCOMPLET PRODUIT L'ERREUR PRUDENTE, JAMAIS « CABINE : NON ».
+       Trois amputations d'une réponse par ailleurs réelle : le statut cabine retiré ; le statut cabine discordant
+       de sa décision ; la décision fret absente. Chacune doit rendre `.finder__error` et AUCUNE carte. */
+    /* Premier jet fautif, nommé : je passais la carte amputée à `carteContrat(...)`, dont le gabarit REMETTAIT
+       `cabin_status: "confirmation_required"` — le témoin « sans cabin_status » rendait une carte complète et
+       rougissait sur sa propre erreur. L'amputation s'applique désormais APRÈS le gabarit. */
+    const incomplet = (nom, amputer) => rendre(amputer(carteContrat({}))).then(({ doc, card, txt }) => {
+      const err = doc.querySelector("#mdcf-finder-result .finder__error");
+      check(`${loc.code} : rapport ${nom} → erreur prudente, aucune carte, jamais « ${X.no} »`,
+        !!err && !card && !doc.querySelector("#mdcf-finder-result .ab--no"), card ? txt.slice(0, 160) : (err ? "" : (doc.querySelector("#mdcf-finder-result")?.textContent ?? "").slice(0, 160)));
+    });
+    await incomplet("sans cabin_status", (c) => { delete c.cabin_status; return c; });
+    await incomplet("au statut cabine discordant de sa décision", (c) => ({ ...c, cabin_status: "denied" }));
+    await incomplet("sans décision fret", (c) => ({ ...c, placement_decisions: c.placement_decisions.slice(0, 2) }));
   }
 }
 

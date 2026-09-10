@@ -722,7 +722,12 @@ const labels = {
                        restent, une par canal : ce sont elles que les harnais comptent. */
                     const decisions: any[] = a.placement_decisions || [];
                     const decision = (ch: string) => decisions.find((d) => d.placement === ch);
-                    const statut = (ch: string): string => a[`${ch}_status`] ?? decision(ch)?.status ?? (a[ch] ? "allowed" : "denied");
+                    /* P0-1 DE LA CONTRE-REVUE (Codex, 10/09/2026) : le repli `a[ch] ? "allowed" : "denied"` fabriquait un
+                       REFUS à partir d'un statut ABSENT. Il n'existe plus : la frontière (`rapportComplet`) rejette tout
+                       rapport où un `*_status` manque ou ne concorde pas avec `placement_decisions`, et ici on ne fait
+                       que LIRE. Ligne canal et résumé lisent la même clé — plus de « à confirmer » sur la carte contre
+                       un refus compté dans le résumé. */
+                    const statut = (ch: string): string => a[`${ch}_status`];
                     const cap = (ch: string) => ch === "cabin" ? L.cabinShort : ch === "hold" ? L.holdShort : L.cargoShort;
                     const cls = (st: string) => st === "allowed" ? "ab--ok" : st === "accepted_with_conditions" ? "ab--cond" : st === "confirmation_required" ? "ab--confirm" : "ab--no";
                     const seuilDe = (d: any) => {
@@ -830,7 +835,9 @@ const labels = {
                *   4. quand rien n'est documenté, une phrase brève et honnête — pas 27 cartes à plat.
                * Le tri du moteur (prouvé d'abord) est respecté à l'intérieur de chaque groupe ; on
                * ne recalcule aucun statut ici, on lit ceux des cartes. */
-              const statutDe = (a: any, ch: "cabin" | "hold" | "cargo"): string => a[`${ch}_status`] ?? (a[ch] ? "allowed" : "denied");
+              /* P0-1 (10/09/2026) : même lecture que la ligne canal — la clé `*_status`, validée à la frontière,
+                 sans repli booléen. Voir `rapportComplet`. */
+              const statutDe = (a: any, ch: "cabin" | "hold" | "cargo"): string => a[`${ch}_status`];
               const CANAUX = ["cabin", "hold", "cargo"] as const;
               const documentee = (a: any) => CANAUX.some((ch) => statutDe(a, ch) !== "confirmation_required");
               const resume = CANAUX.map((ch) => {
@@ -1290,6 +1297,29 @@ const labels = {
       && (a.scope === "global" || connues.has(a.scope)));
   }
 
+  /* P0-1 DE LA CONTRE-REVUE (Codex, 10/09/2026) — UN RAPPORT INCOMPLET N'EST PAS UN RAPPORT. Avant, une
+   * carte dont `cabin_status` manquait retombait sur le booléen `cabin` et affichait un REFUS que personne
+   * n'avait décidé ; et la ligne canal lisait `placement_decisions` quand le résumé ne le faisait pas, si
+   * bien que la même carte pouvait dire « à confirmer » en haut et compter un refus en bas. La frontière
+   * exige désormais, pour CHAQUE compagnie : les trois `*_status` parmi les quatre états du contrat, les
+   * trois `placement_decisions` (une et une seule par canal), et leur concordance. Sinon, l'erreur prudente
+   * (« le moteur n'a pas répondu ») — jamais « Cabine : non ». */
+  const ETATS = new Set(["allowed", "accepted_with_conditions", "denied", "confirmation_required"]);
+  const CANAUX_CONTRAT = ["cabin", "hold", "cargo"] as const;
+  function rapportComplet(r: DecisionReport): boolean {
+    const airlines = (r as { airlines?: unknown }).airlines;
+    if (!Array.isArray(airlines)) return false;
+    return airlines.every((a: any) => {
+      if (!a || !Array.isArray(a.placement_decisions)) return false;
+      return CANAUX_CONTRAT.every((ch) => {
+        const st = a[`${ch}_status`];
+        if (typeof st !== "string" || !ETATS.has(st)) return false;
+        const ds = a.placement_decisions.filter((d: any) => d && d.placement === ch);
+        return ds.length === 1 && ds[0].status === st;
+      });
+    });
+  }
+
   async function fetchReport(req: FinderRequest): Promise<DecisionReport> {
     let lastStatus = 0;
     for (let attempt = 0; attempt < 2; attempt++) {
@@ -1299,8 +1329,8 @@ const labels = {
           const data = (await res.json()) as DecisionReport;
           // Garde-fou de forme : un corps sans verdict n'est pas un rapport, quel que soit
           // le code HTTP. On préfère une erreur visible à un rendu partiel muet.
-          if (data && typeof (data as { verdict?: unknown }).verdict === "string" && avisRecevables(data)) return data;
-          throw new Error("malformed report");
+          if (data && typeof (data as { verdict?: unknown }).verdict === "string" && avisRecevables(data) && rapportComplet(data)) return data;
+          throw new Error(data && rapportComplet(data) ? "malformed report" : "incomplete report: a channel status or placement decision is missing or discordant");
         }
         lastStatus = res.status;
         if (res.status >= 400 && res.status < 500) break; // requête refusée : réessayer n'aide pas

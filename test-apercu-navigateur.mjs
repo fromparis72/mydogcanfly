@@ -841,7 +841,7 @@ console.log("\n=== Les quatre outils, exercés EN PORTUGAIS ===");
     /* RE-FONDÉ LE 10/09/2026 (annexe 38). La carte ne dit plus « não aceito — recusa documentada por
        fonte oficial citada — britishairways.com · 2026-09-05 » : le contrat de Philippe veut la réponse
        d'abord (« Cabine : não »), puis UNE ligne de provenance qui nomme les canaux prouvés et leur date en
-       toutes lettres (« Verificado numa fonte oficial em 5 de setembro de 2026: Cabine »), l'hôte et la
+       toutes lettres (« Fonte oficial verificada em 5 de setembro de 2026: Cabine » — formule pt-BR arbitrée par Codex le 10/09), l'hôte et la
        date ISO étant repliés dans « Ver as provas ». On lit donc trois choses : le verdict sur la ligne
        cabine, la provenance qui NOMME la cabine avec sa date, et l'hôte dans le volet des preuves
        (textContent, volet fermé compris — c'est bien là qu'il doit être, pas sur l'écran). */
@@ -850,7 +850,7 @@ console.log("\n=== Les quatre outils, exercés EN PORTUGAIS ===");
     const baPreuves = (await ba.count()) ? await ba.first().locator(".acard__proofs").textContent().catch(() => "") : "";
     check("finder pt : la carte BA écrit le refus cabine documenté, avec hôte et date",
       /Cabine\s*:\s*não\b/.test(baCabine)
-        && /Verificado numa fonte oficial em 5 de setembro de 2026\s*:\s*[^·]*Cabine/.test(baProv)
+        && /Fonte oficial verificada em 5 de setembro de 2026\s*:\s*[^·]*Cabine/.test(baProv)
         && /britishairways\.com/.test(baPreuves ?? "") && /2026-09-05/.test(baPreuves ?? ""),
       `cabine : ${baCabine} · provenance : ${baProv} · preuves : ${(baPreuves ?? "").replace(/\s+/g, " ").slice(0, 160)}`);
     /* La cause « aucune phrase citée » n'accuse plus la compagnie entière : elle est dite UNE FOIS dans les

@@ -763,9 +763,14 @@ console.log("\n=== 4. Carte RENDUE du Finder : les sources des canaux, et rien d
   check("ce lien est VISIBLE et nommé par son canal", (lienSource?.textContent || "").includes("thaicargo.com")
     && /cargo|fret|carga/i.test(lienSource?.textContent || ""), lienSource ? `« ${lienSource.textContent} »` : "absent");
   /* Le témoin : aucun canal sourcé → AUCUN bloc de sources, pas un lien « par défaut ». */
-  check(`la carte ${TEMOIN_SANS_SOURCE} n'affiche AUCUN bloc de sources`,
-    carteTemoin.querySelector(".acard__psrc") === null,
-    carteTemoin.querySelector(".acard__psrc")?.innerHTML?.slice(0, 120) ?? "");
+  /* P0-2 DE LA CONTRE-REVUE (Codex, 10/09/2026) : ce témoin lisait encore `.acard__psrc`, retiré de TOUTES
+     les cartes par l'annexe 38 — il était vert à vide. Il lit désormais ce qui existe : ni ligne de
+     provenance (`.acard__prov`) ni volet des preuves (`details.acard__proofs`) sur la carte sans source. */
+  check(`la carte ${TEMOIN_SANS_SOURCE} n'affiche AUCUNE ligne de provenance ni volet des preuves`,
+    carteTemoin.querySelector(".acard__prov") === null && carteTemoin.querySelector("details.acard__proofs") === null,
+    (carteTemoin.querySelector(".acard__prov") ?? carteTemoin.querySelector("details.acard__proofs"))?.innerHTML?.slice(0, 120) ?? "");
+  check(`et ce témoin négatif n'est pas vacant : la carte Thai, elle, porte la ligne de provenance ET le volet`,
+    carteThai.querySelector(".acard__prov") !== null && carteThai.querySelector("details.acard__proofs") !== null);
   dom.window.close();
 }
 
