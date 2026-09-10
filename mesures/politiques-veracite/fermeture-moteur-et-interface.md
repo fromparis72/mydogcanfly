@@ -3816,3 +3816,23 @@ gabarit du harnais et témoin navigateur alignés.
 | chaîne `test:built-ui` | 954 OK |
 | entités | 179 OK |
 | `test:unit`, typecheck, dette Astro (165) | verts |
+
+### Second passage de Codex (10/09/2026) : P0 — l'apparence lisait encore les booléens
+
+Mesuré : trois décisions visuelles lisaient `a.cabin` / `a.hold` / `a.cargo` et `to_confirm` — la classe de la
+carte (`acard--cabin/hold/cargo/confirm/no`), le badge « non compatible / animaux refusés / ? » (`structuralNoPets`)
+et le partage « correspond à ce mode / alternatives ». Ces booléens ne valent `true` que pour `allowed`
+(`explain.ts`, `has`) : une carte cabine refusée / soute sous conditions / fret refusé passait la frontière,
+écrivait « Soute : oui, sous conditions » et recevait `acard--no`. La fixture de référence du harnais posait
+`hold: true` sur une soute sous conditions — ce que le moteur ne fait jamais — et masquait le repli (erreur nommée,
+fixture corrigée : booléens tous faux).
+
+Fermé : les trois décisions lisent les trois `*_status` (ouvert = `allowed` ou sous conditions ; à confirmer =
+un statut `confirmation_required` ; « aucun canal » = trois refus). Ni booléen ni `to_confirm` ne décident plus rien
+de visuel. Contre-épreuves, quatre langues (harnais du Finder 419 → **443**) : refusée / sous conditions / refusée →
+`acard--hold`, aucun badge de refus, et « correspond au mode » quand la soute est demandée ; canal à confirmer sans
+`to_confirm` ou avec `to_confirm` vide → `acard--confirm` ; trois refus → `acard--no` + badge. Sabotage : mutation
+`la-carte-relit-les-booleens-historiques-pour-son-apparence` (catalogue 65 → 66, bijection avec la référence).
+*Erreur nommée* : mon premier témoin « à confirmer sans `to_confirm` » partait de la carte de référence, dont la
+soute ouverte l'emporte à raison sur la cabine à confirmer ; il part d'une carte dont le seul canal non refusé est à
+confirmer.

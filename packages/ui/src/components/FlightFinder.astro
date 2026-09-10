@@ -635,6 +635,10 @@ const labels = {
       const href = (L.ficheBase || "/tools/fiche/") + "#" + p.toString();
       return href;
     };
+    /* P0 (10/09/2026) : les DEUX états ouverts du contrat — `allowed` (jamais émis sur donnée réelle) et « accepté sous
+       conditions ». Toute décision visuelle qui demande « ce canal est-il ouvert ? » passe par ici. */
+    const OUVERT = new Set(["allowed", "accepted_with_conditions"]);
+    const aConfirmer = (a: any) => CANAUX_CONTRAT.some((ch) => a[`${ch}_status`] === "confirmation_required");
     const airlineCard = (a: any): string => `
               <li class="acard ${(() => {
                   // Bug corrigé (audit du 09/08/2026, tâche 19) : le style de la carte (bordure + opacité)
@@ -647,15 +651,21 @@ const labels = {
                   // === 0 dans explain.ts) : ce n'est jamais un blocage permanent, donc la carte mérite
                   // un style distinct — ni "ça marche" (vert/ambre des placements), ni "ça ne marche
                   // jamais" (acard--no), mais "ça marche hors saison".
-                  if (a.cabin) return "acard--cabin";
-                  if (a.hold) return "acard--hold";
-                  if (a.cargo) return "acard--cargo";
+                  /* P0 DE LA CONTRE-REVUE (Codex, 10/09/2026, second passage) : ces trois lignes lisaient `a.cabin`,
+                     `a.hold`, `a.cargo` — des booléens de transition qui ne valent `true` que pour `allowed`, jamais
+                     pour « accepté sous conditions ». Une carte cabine refusée / soute sous conditions / fret refusé
+                     passait la frontière, écrivait « Soute : oui, sous conditions » et recevait `acard--no`. L'apparence
+                     lit désormais les trois `*_status`, validés à la frontière, comme les lignes et le résumé ; ni les
+                     booléens ni `to_confirm` ne décident plus rien de visuel. */
+                  if (OUVERT.has(a.cabin_status)) return "acard--cabin";
+                  if (OUVERT.has(a.hold_status)) return "acard--hold";
+                  if (OUVERT.has(a.cargo_status)) return "acard--cargo";
                   /* T0-A : base NEUTRE `acard--confirm` pour tout canal à confirmer, modificateur
                      `acard--heat` seulement quand une cause climatique est ACTIVE (le drapeau est
                      désormais filtré par cause côté moteur). Une confirmation de politique (T0-B)
                      n'aura plus l'habit de la chaleur ; jamais un style d'ouverture — le canal
                      n'est pas disponible, il est à confirmer. */
-                  if (a.to_confirm && a.to_confirm.length) return a.heat_confirmation_required ? "acard--confirm acard--heat" : "acard--confirm";
+                  if (aConfirmer(a)) return a.heat_confirmation_required ? "acard--confirm acard--heat" : "acard--confirm";
                   if (a.heat_confirmation_required) return "acard--confirm acard--heat";
                   /* Style « juste saisonnier » : embargo ET aucune cause non saisonnière. Une carte
                      fermée aussi au poids/à la race garde son style de refus — mais son badge 🌡️
@@ -666,8 +676,9 @@ const labels = {
                 <div class="acard__main">
                   ${(() => {
                     const seasonalOnly = a.heat_embargo && !(a.deny_reasons && a.deny_reasons.length);
-                    const structuralNoPets = !a.cabin && !a.hold && !a.cargo && !seasonalOnly
-                      && !a.heat_confirmation_required && !(a.to_confirm && a.to_confirm.length);
+                    /* P0 (10/09/2026) : « aucun canal » se lit sur les trois statuts — trois refus —, plus sur les booléens. */
+                    const structuralNoPets = CANAUX_CONTRAT.every((ch) => a[`${ch}_status`] === "denied") && !seasonalOnly
+                      && !a.heat_confirmation_required;
                     const caps = [];
                     if (structuralNoPets) {
                       /* Une compagnie qui ne prend aucun animal (« Animaux refusés ») reste distincte
@@ -888,8 +899,10 @@ const labels = {
                 return `<div class="report__sec">${header}${deuxNiveaux(r.airlines, L.sumDocumentedTitle)}</div>`;
               }
               const key = lastPlacement as "cabin" | "hold" | "cargo";
-              const matched = r.airlines.filter((a: any) => a[key]);
-              const alt = r.airlines.filter((a: any) => !a[key]);
+              /* P0 (10/09/2026) : le partage « correspond à ce mode / alternatives » lisait le booléen du mode — une soute
+                 « sous conditions » tombait dans les alternatives. Il lit le statut : ouvert = allowed ou sous conditions. */
+              const matched = r.airlines.filter((a: any) => OUVERT.has(a[`${key}_status`]));
+              const alt = r.airlines.filter((a: any) => !OUVERT.has(a[`${key}_status`]));
               const matchBlock = matched.length
                 ? `<h5 class="acards__sub">${esc(L.matchTitle)}</h5><ul class="acards">${matched.map(airlineCard).join("")}</ul>`
                 : `<p class="finder__hint">${esc(L.noMatchMode)}</p>`;

@@ -616,6 +616,21 @@ const MUTATIONS = [
   },
   {
     dom: true,
+    nom: "la carte relit les booléens historiques pour choisir son apparence",
+    id: "la-carte-relit-les-booleens-historiques-pour-son-apparence",
+    fichier: "packages/ui/src/components/FlightFinder.astro",
+    /* P0 (Codex, 10/09/2026, second passage) : `a.cabin` / `a.hold` / `a.cargo` ne valent `true` que pour `allowed` ; une
+       soute « sous conditions » habillait la carte en `acard--no`. Le sabotage remet exactement ces trois lectures. */
+    editions: [
+      { cherche: 'if (OUVERT.has(a.cabin_status)) return "acard--cabin";', remplace: 'if (a.cabin) return "acard--cabin";' },
+      { cherche: 'if (OUVERT.has(a.hold_status)) return "acard--hold";', remplace: 'if (a.hold) return "acard--hold";' },
+      { cherche: 'if (OUVERT.has(a.cargo_status)) return "acard--cargo";', remplace: 'if (a.cargo) return "acard--cargo";' },
+    ],
+    harnais: "test-flightfinder-harness.cjs",
+    attendu: "jamais acard--no",
+  },
+  {
+    dom: true,
     nom: "une portée inconnue est de nouveau élargie à « toutes les compagnies »",
     id: "une-portee-inconnue-est-de-nouveau-elargie-a-toutes-les",
     fichier: "packages/ui/src/components/FlightFinder.astro",

@@ -245,7 +245,10 @@ const CARTE_LABELS = {
 const SRC_SOUTE = { url: "https://www.airfrance.com/pets", source_type: "official_website", verified_date: "2026-09-08", confidence: 4 };
 const carteContrat = (over) => ({
   ...FAKE_REPORT.airlines[0], airline_id: "airline_contrat", name: "Contrat Air",
-  cabin: false, hold: true, cargo: false,
+  /* ERREUR NOMMÉE (10/09/2026, P0 second passage de Codex) : cette fixture posait `hold: true` sur une soute « sous
+     conditions ». Le moteur, lui, ne met un booléen à `true` que pour `allowed` (explain.ts, `has`) : la fixture masquait
+     donc le repli booléen de l'apparence. Les booléens disent désormais ce que le moteur dirait — tous faux. */
+  cabin: false, hold: false, cargo: false,
   cabin_status: "confirmation_required", hold_status: "accepted_with_conditions", cargo_status: "confirmation_required",
   to_confirm: ["cabin", "cargo"], carries_pets: true, offers_pet_transport: true, heat_confirmation_required: false,
   placement_decisions: [
@@ -392,6 +395,45 @@ async function cartesPass() {
     await incomplet("sans cabin_status", (c) => { delete c.cabin_status; return c; });
     await incomplet("au statut cabine discordant de sa décision", (c) => ({ ...c, cabin_status: "denied" }));
     await incomplet("sans décision fret", (c) => ({ ...c, placement_decisions: c.placement_decisions.slice(0, 2) }));
+
+    /* 9. P0 (Codex, 10/09/2026, second passage) : L'APPARENCE LIT LES STATUTS, JAMAIS LES BOOLÉENS NI `to_confirm`.
+       Une réponse parfaitement valide — cabine refusée, soute sous conditions, fret refusé, aucun canal à confirmer —
+       porte des booléens tous faux (le moteur ne les met à `true` que pour `allowed`). Elle doit être habillée en
+       `acard--hold`, jamais `acard--no`, sans badge « non compatible » ni « animaux refusés » ni « ? ». */
+    const DCD = carteContrat({ cabin_status: "denied", hold_status: "accepted_with_conditions", cargo_status: "denied", to_confirm: [], offers_pet_transport: "yes", placement_decisions: [
+      { placement: "cabin", status: "denied", allowed: false, source: SRC_SOUTE },
+      { placement: "hold", status: "accepted_with_conditions", allowed: false, weight_limit_kg: 75, weight_limit_includes_carrier: true, source: SRC_SOUTE },
+      { placement: "cargo", status: "denied", allowed: false, source: SRC_SOUTE },
+    ] });
+    const r9 = await rendre(DCD);
+    check(`${loc.code} : refusée / sous conditions / refusée (booléens tous faux) → classe acard--hold, jamais acard--no`,
+      !!r9.card && r9.card.classList.contains("acard--hold") && !r9.card.classList.contains("acard--no") && !r9.card.classList.contains("acard--confirm"), r9.card?.className);
+    check(`${loc.code} : …et aucun badge « non compatible », « animaux refusés » ou « ? » — la carte dit « Soute : oui, sous conditions »`,
+      !!r9.card && !r9.card.querySelector(".acard__status--nomatch, .acard__status--nopets, .acard__status--petsunknown") && texteDe(ligne(r9.card, "hold")).includes(X.yesCond), r9.txt.slice(0, 160));
+    /* Le partage par mode lit le statut aussi : demandée en soute, cette carte est « correspond à ce mode », pas une alternative. */
+    const r9h = await rendre(DCD, "hold");
+    check(`${loc.code} : demandée en soute, la soute « sous conditions » CORRESPOND au mode (pas une alternative, pas « aucune compagnie »)`,
+      !!r9h.card && !!r9h.doc.querySelector("h5.acards__sub + ul.acards .acard") && !r9h.doc.querySelector("details.acards__leads") && !r9h.doc.querySelector("#mdcf-finder-result .finder__hint"), r9h.doc.querySelector("#mdcf-finder-result")?.textContent.replace(/\s+/g, " ").slice(0, 160));
+    /* 10. Un canal « à confirmer » reste acard--confirm même si `to_confirm` est absent ou incohérent.
+       Premier jet fautif, nommé : je partais de la carte de référence, dont la soute est OUVERTE sous conditions — un
+       canal ouvert habille la carte avant tout canal à confirmer, et `acard--hold` était la bonne réponse. Le témoin
+       part d'une carte dont le SEUL canal non refusé est à confirmer (cabine) : là, seule la lecture des statuts peut
+       produire `acard--confirm`. */
+    const SEULE_A_CONFIRMER = { cabin_status: "confirmation_required", hold_status: "denied", cargo_status: "denied", placement_decisions: [
+      { placement: "cabin", status: "confirmation_required", allowed: false, confirmation_causes: [{ code: "official_source_unquoted", policy_ref: "x" }] },
+      { placement: "hold", status: "denied", allowed: false, source: SRC_SOUTE },
+      { placement: "cargo", status: "denied", allowed: false, source: SRC_SOUTE },
+    ] };
+    const sansTC = carteContrat(SEULE_A_CONFIRMER); delete sansTC.to_confirm;
+    const r10 = await rendre(sansTC);
+    check(`${loc.code} : canal à confirmer SANS \`to_confirm\` → acard--confirm quand même`, !!r10.card && r10.card.classList.contains("acard--confirm"), r10.card?.className);
+    const r11 = await rendre(carteContrat({ ...SEULE_A_CONFIRMER, to_confirm: [] }));
+    check(`${loc.code} : canal à confirmer avec \`to_confirm\` VIDE (incohérent) → acard--confirm quand même, jamais acard--no`, !!r11.card && r11.card.classList.contains("acard--confirm") && !r11.card.classList.contains("acard--no"), r11.card?.className);
+    /* 11. Trois refus, aucun canal à confirmer : la carte est bien acard--no, et le badge tranche sur `offers_pet_transport`. */
+    const r12 = await rendre(carteContrat({ cabin_status: "denied", hold_status: "denied", cargo_status: "denied", to_confirm: [], offers_pet_transport: "yes", placement_decisions: [
+      { placement: "cabin", status: "denied", allowed: false }, { placement: "hold", status: "denied", allowed: false }, { placement: "cargo", status: "denied", allowed: false },
+    ] }));
+    check(`${loc.code} : trois refus → acard--no et badge « non compatible » (lu sur les trois statuts)`, !!r12.card && r12.card.classList.contains("acard--no") && !!r12.card.querySelector(".acard__status--nomatch"), r12.card?.className);
   }
 }
 
