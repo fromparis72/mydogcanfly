@@ -3981,3 +3981,69 @@ cité** (cabine et soute d'abord), puis les 66 sur canal non cité, puis les 118
 dernier sauf quand il est le seul canal. Les 16 lignes `LOCATOR_ONLY_REVIEW_BEFORE_IMPORT` et les 3
 `CONFLICT_DO_NOT_IMPORT` ne produisent **aucun montant catégorique**. `fee` et `fareList` restent un inventaire
 de pistes, jamais des preuves.
+
+---
+
+## Annexe 45 — Les six portes du contrat tarifaire, refermées (10/09/2026, classement C)
+
+**Ce que Codex a opposé.** La contre-revue de la PR #56 n'a pas contesté le principe du contrat — l'évaluation
+ternaire est retenue — mais a nommé **six portes** par lesquelles un tarif pouvait encore être publié ou résolu
+sans preuve suffisante. Aucune n'était visible depuis mes 44 contre-épreuves : chacune était un endroit où mon
+témoin regardait ailleurs. C'est la même faute que ce dossier répète depuis le 15/08 — *un contrôle qui ne parle
+que de ce qu'il reconnaît compte zéro là où il ne regarde pas*. Elle s'est ici produite six fois dans un seul
+fichier de 310 lignes, écrit précisément contre elle.
+
+**P0-1 — la preuve n'était exigée que des nombres.** Le `refine` de `Fare` ne demandait phrase, langue et
+localisateur que si `price.kind` appartenait aux natures chiffrées. Les quatre autres — `formula`, `calculator`,
+`booking_only`, `quote` — passaient sans citation. Or « le fret se fait sur devis » est une affirmation tarifaire
+que le visiteur croira exactement comme il croirait « 725 € » : prouver un mécanisme coûte le même prix que
+prouver un montant. La citation est désormais exigée de **tout** `Fare`, et de **chaque** `FareObservation` d'un
+conflit — deux URL nues ne prouvent pas un désaccord entre deux pages. Huit témoins nouveaux : les quatre
+mécanismes refusés sans citation, les quatre acceptés avec.
+
+**P0-2 — `purchase_window` était enregistrée et jamais lue.** Le champ existait, le résolveur ne consultait que
+`applies_when`. Deux paliers dont les portées de trajet sont identiques et les fenêtres d'achat disjointes étaient
+donc applicables **ensemble**, et mon propre `chevauchement` les déclarait en conflit : le contrat inventait un
+désaccord là où la page publie une règle claire. `evaluerFenetre` l'évalue aux mêmes trois valeurs, et
+`porteeTarif` conjugue les deux. Le délai entre dans le contexte sous `days_before_departure`, **hors** de
+l'énumération `Fact` : aucune règle de placement ne s'en sert, et gonfler la grammaire partagée pour un seul usage
+tarifaire créerait un fait que 302 politiques ignoreraient. C'est nommé dans le fichier pour que personne ne le
+cherche dans `rules.ts`.
+
+**P0-3 — `status: "resolved"` était une porte arrière.** Remplacer un mot dans un `.yml` suffisait à rallumer un
+montant que deux pages officielles contredisent : ni gagnant, ni preuve nouvelle, ni date, ni auteur, ni motif
+n'étaient exigés. **Et mon témoin consacrait ce comportement** — il vérifiait qu'un conflit « résolu » ne masquait
+plus rien, c'est-à-dire qu'il vérifiait que la porte s'ouvrait bien. Erreur nommée, témoin retourné : le schéma
+n'admet plus que `unresolved`, et le seul moyen de rouvrir un montant est de **retirer** le conflit du dépôt, ce
+qui laisse une trace dans l'historique. Un vrai modèle de résolution viendra avec sa preuve, ou ne viendra pas.
+
+**P0-4 — une fourchette n'exigeait qu'un nombre pair de montants.** « 60 EUR » et « 100 USD » faisaient donc une
+fourchette valide, où aucune devise ne porte à la fois sa borne basse et sa borne haute. *Compter n'est pas
+vérifier.* Deux bornes **par devise**, la basse avant la haute, sur la fourchette réelle la mieux citée de l'audit
+(KLM soute, « ranges from EUR 70 to EUR 500 per one-way flight »).
+
+**P1 — `{ all: [] }` est vrai par vacuité.** Une portée qui ne dit rien s'appliquait à tous les trajets ;
+`{ any: [] }`, faux par vacuité, aurait fait disparaître le tarif aussi silencieusement. Une indentation ratée
+dans une fiche suffit à produire l'un ou l'autre. `porteeSaine` les refuse récursivement à l'écriture, et
+`evaluerPortee` répond « indécidable » plutôt que la vérité par vacuité — **la prudence se règle dans le même sens
+aux deux endroits**, parce que l'évaluateur est exporté et recevra un jour un prédicat construit ailleurs.
+
+**P1 — la résolution servait `chiffres[0]`.** Deux montants publiés en devises disjointes, tous deux applicables,
+étaient correctement jugés non contradictoires par `memeDevise`… puis un seul sortait et l'autre disparaissait sans
+un mot. `applicable` et `mecanisme` portent maintenant `tarifs: Fare[]` et rendent **toutes** les variantes
+parallèles. Dire « 725 € ou 5 400 DKK » est le travail de l'affichage ; choisir à la place du visiteur n'est le
+travail de personne. *Déviation nommée* : Codex offrait aussi d'interdire cette représentation et d'exiger une
+ligne unique portant toutes les devises. J'ai retenu la conservation des variantes, qui n'impose aucune migration
+de donnée et perd moins d'information — arbitrable.
+
+**Les fixtures.** Toutes réelles, prises à l'audit V2 des 102 compagnies : SAS soute Chine, le conflit Finnair
+soute, **Air China cabine** (la seule fenêtre d'achat publiée en jours de tout l'audit — « booking from 7 days to
+24 hours before departure ») et **KLM soute**. Deux fixtures de **forme** sont nommées comme telles à l'endroit où
+elles servent : les deux paliers Air China de P0-2, qu'aucune page ne publie et qui n'éprouvent que la mécanique.
+Une honnêteté supplémentaire est écrite dans le témoin : la page Air China réserve son tarif aux vols **opérés par
+Air China**, et le transporteur opérant n'est pas un fait du moteur ; la portée du témoin interroge donc le canal.
+C'est l'une des raisons pour lesquelles **ce lot n'importe toujours aucun tarif**.
+
+**Mouvement des comptes.** Contre-épreuves du contrat tarifaire : **44 → 103**. Aucun autre compteur ne bouge :
+`objects.json` ne porte ni tarif ni conflit tarifaire, et le témoin l'exige explicitement, canal par canal. La
+dette « Qantas soute citée sans canal déclaré sur la fiche » reste ouverte, hors de ce lot.
