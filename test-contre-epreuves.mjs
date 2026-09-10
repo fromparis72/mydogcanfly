@@ -605,7 +605,10 @@ const MUTATIONS = [
     id: "l-interface-republie-un-rapport-sans-safety-advisories-c",
     fichier: "packages/ui/src/components/FlightFinder.astro",
     editions: [
-      { cherche: "&& avisRecevables(data)) return data;", remplace: ") return data;" },
+      /* ANCRE RE-FONDÉE (10/09/2026, P0-1 de la contre-revue de Codex) : la frontière exige aussi `rapportComplet(data)` ;
+         la mutation retire les DEUX gardes, comme avant elle retirait la seule qui existait. Erreur nommée : je n'avais
+         pas rejoué `contre-epreuves -- --dom` après P0-1 ; la CI l'a attrapée (« apparaît 0 fois »). */
+      { cherche: "&& avisRecevables(data) && rapportComplet(data)) return data;", remplace: ") return data;" },
       { cherche: "    const list = r.safety_advisories;", remplace: "    const list = r.safety_advisories ?? [];" },
     ],
     harnais: "test-t0b3a-avis-dom.cjs",
