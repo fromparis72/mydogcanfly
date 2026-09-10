@@ -3981,3 +3981,13 @@ veut. Même geste dans DestinationFinder, pour la même raison.
 | chaîne `test:built-ui` | **995 OK** |
 | entités | 179 OK |
 | `test:unit`, dette Astro (165), contrat du catalogue (67) | verts |
+
+### Mesuré sur le dist complet (un seul build, 3 112 pages)
+
+| contrôle | résultat |
+|---|---|
+| suite navigateur (Playwright) | **184 OK, 0 ÉCHEC** — dont trois témoins neufs : l'incertitude est dite par la ligne canal, et aucun paragraphe de justification n'apparaît au-dessus ni dans les cartes |
+| étape 3 DOM | verte, scellé des licites inchangé |
+| entités | 179 OK |
+| caisses non sourcées | vert |
+| contre-épreuves `--dist-complet` | 58 garanties éprouvées sur 58 |
