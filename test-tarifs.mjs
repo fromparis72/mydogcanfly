@@ -248,7 +248,11 @@ if (DIST) {
      *
      * Le gabarit isole pourtant la pastille exactement — `.mini[data-placement][data-status]`,
      * puis `.t .pill`. On la sélectionne donc, au lieu de deviner ses bornes. */
-    const LIBELLES = { allowed: "Accepted", confirmation_required: "Policy to confirm with the airline", denied: "Not accepted" };
+    /* MOUVEMENT NOMMÉ (10/09/2026, annexe 40 — arbitrage Codex, pastilles courtes) : la capsule ne dit plus que l'état.
+       « Policy to confirm with the airline » → « To confirm », « Not accepted » → « Refused » ; et le quatrième état,
+       « Under conditions », entre dans la table — il était rendu sans être éprouvé ici. La CI l'a attrapé sur le dist
+       complet (154 pastilles), le dist réduit local ne portant pas assez de fiches pour le voir. */
+    const LIBELLES = { allowed: "Accepted", accepted_with_conditions: "Under conditions", confirmation_required: "To confirm", denied: "Refused" };
     const vus = new Set();
     let absencesLegitimes = 0;
     for (const p of fiches) {
