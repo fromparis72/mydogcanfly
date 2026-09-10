@@ -27,9 +27,9 @@ travail établi : Codex lit et cite ; l'importeur rejouable écrit ; les compteu
 | classe | lignes |
 |---|---|
 | décision du Finder déjà correcte (politique citée) | **179** |
-| ancienne information présente, non raccordée (piste) | **118** (cabine 22, soute 31, fret 65) |
-| aucune ancienne information | **9** (Air Astana fret, EL AL ×3, Batik Air Malaysia ×3, Batik Air Indonesia fret, Croatia fret — voir la matrice) |
-| lignes portant un tarif hérité (`fee` / `fareList`), inventaire non prouvé | **199**, dont 113 sur un canal cité |
+| ancienne information présente, non raccordée (piste) | **118** (cabine 22, soute 29, fret 67) |
+| aucune ancienne information | **9** : Air Tahiti Nui soute, Virgin Australia soute, et le fret d'Asiana, Condor, EVA Air, La Compagnie, Norwegian, Smartwings, Transavia |
+| lignes portant un tarif hérité (`fee` / `fareList`), inventaire non prouvé | **199**, dont 133 sur un canal cité et 66 sur un canal non cité |
 | tarifs raccordés au Finder | **0** — aucun montant n'atteint le Finder aujourd'hui (règle : pas de montant sans preuve tarifaire propre) |
 
 Les deux premières catégories de l'ordre (« décisive trouvée mais non raccordée », « tarif officiel trouvé mais
@@ -80,3 +80,9 @@ Aucun canal décisif publié sans preuve ; aucun canal « à confirmer » quand 
 décide ; aucun tarif applicable connu derrière « tarif à confirmer » ; aucun fret documenté présenté comme non
 publié ; compte exact des réponses améliorées et liste nominative des inconnues restantes. Conflits et
 ambiguïtés : soumis à Philippe. Raccordements explicites : exécutés sans nouvel arbitrage.
+
+## Erreur nommée
+
+Premier jet de ce LISEZ_MOI (commit `34d6419`) : trois chiffres écrits avant d'avoir relu le calcul — soute 31 / fret
+65 (réel : 29 / 67), « 113 sur un canal cité » (réel : 133), et une liste des neuf « sans information » inventée de
+mémoire (la vraie est ci-dessus). Corrigés ici ; le message du commit fautif reste tel quel dans l'historique.
