@@ -3964,3 +3964,11 @@ dans le périmètre « vérifier aux largeurs mobile ».
 | mesure ad hoc, British Airways, 4 langues × 3 largeurs (dist réduit) | bandeau sous le H1 partout ; à 800 px la pastille du fret passe sous « Fret » ; 435 → **400 px** après le correctif FAQ |
 | suite navigateur complète (dist complet, 3 112 pages) | **246 OK, 0 ÉCHEC** (181 + 65) |
 | entités 178, fiche harnais, frontière de confiance 135, dette Astro 165 | verts |
+### CI sur `6b65ea4` : Qantas soute, une politique citée sans bloc de canal sur sa fiche — dette nommée
+
+Le témoin `tarifs` §5quater, re-fondé sur les libellés courts, avait aussi reçu le quatrième état. La CI (dist
+complet) a rougi sur **Qantas soute** : `accepted_with_conditions` cité dans la base, mais la fiche `qantas.yml`
+ne déclare pas de canal soute dans son bloc éditorial `channels:` — aucun bloc, aucune pastille. Rien de faux n'est
+publié ; un canal décidé n'est pas montré. Hors périmètre de ce lot (présentation) : dette de contenu à fermer
+dans un lot dédié (déclarer le canal soute de Qantas), moment où le témoin s'élargira au quatrième état. La table
+du témoin revient à ses trois états d'origine, mouvement nommé dans le code.
