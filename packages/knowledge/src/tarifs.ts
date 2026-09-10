@@ -70,9 +70,15 @@
  * segments exigerait de savoir quels segments sont réellement opérés. Aucun affichage.
  */
 import { z } from "zod";
-import { SourceCitable, Money, Placement } from "./common";
+import { Money, Placement } from "./common";
 import type { Placement as PlacementType, Money as MoneyType } from "./common";
 import { Predicate, Condition, type Fact } from "./rules";
+/* LA provenance stricte du dépôt, réemployée telle quelle — jamais recopiée. `T0bAuditSource`
+   est `SourcedQuote` (URL http(s), aucun domaine MyDogCanFly, type de source FACTUEL, citation
+   d'au moins dix caractères, étiquette BCP-47) plus la cadence `airline` de 90 jours au jour près
+   et le localisateur obligatoire. Voir la porte P0-1 de l'annexe 46. */
+import { T0bAuditSource } from "./t0b-migration";
+import type { SourcedQuote } from "./breed-restrictions";
 
 /* ---- Montant publié ---------------------------------------------------------------------- */
 
@@ -145,17 +151,22 @@ export type FarePrice = z.infer<typeof FarePrice>;
 
 /* ---- Les deux exigences transversales : la preuve, et la portée non vide ------------------- */
 
-/**
- * LA CITATION, exigée de TOUT tarif — pas seulement des montants.
- *
- * *Porte P0-1, refermée le 10/09.* La version précédente ne l'exigeait que des natures chiffrées.
- * « Sur devis », « calculateur officiel », « prix visible à la réservation » et « formule »
- * passaient donc sans phrase, sans langue et sans localisateur. Ce sont pourtant des affirmations
- * tarifaires comme les autres : écrire « le fret se fait sur devis » engage exactement autant que
- * « 725 € », et un visiteur qui le lit y croit. Prouver un mécanisme est aussi coûteux que prouver
- * un nombre, et ce contrat n'accepte plus de le faire à moindre frais.
- */
-const citationComplete = (s: SourceCitable) => !!s.quote && !!s.quote_language && !!s.locator;
+/* LA PREUVE D'UN TARIF EST `T0bAuditSource`, ET RIEN D'AUTRE — voir la déclaration de `Fare`.
+
+   *Porte P0-1, premier tour (10/09, matin).* La version d'avant n'exigeait la phrase que des
+   natures chiffrées : « sur devis », « calculateur », « prix visible à la réservation » et
+   « formule » passaient nus. J'ai alors ajouté un contrôle maison, `citationComplete`, qui
+   vérifiait la présence de `quote`, `quote_language` et `locator` sur un `SourceCitable`.
+
+   *Porte P0-1, second tour (10/09, soir) — et c'est la même faute, en plus grave.* Ce contrôle
+   maison vérifiait que les trois champs EXISTAIENT, jamais qu'ils étaient ADMISSIBLES. Codex a
+   fait passer cinq sabotages d'affilée : une URL `mydogcanfly.com` (auto-citation), un
+   `source_type: press`, un `source_type: other`, une URL `ftp://`, et une échéance de relecture
+   repoussée arbitrairement loin — c'est-à-dire pas de relecture du tout. J'avais écrit une
+   SECONDE définition de « source sérieuse », plus faible que celle du dépôt : exactement la faute
+   que l'en-tête de `ingest-airlines.mjs` documente déjà, mot pour mot, à propos de la provenance,
+   et que j'avais lue en écrivant ce fichier. `citationComplete` est supprimé, le contrat approuvé
+   est réemployé tel quel, et rien de ce qu'il garantit n'est retapé ici. */
 
 /**
  * Un combinateur VIDE est refusé, récursivement, où qu'il se trouve dans la portée.
@@ -219,13 +230,12 @@ export const Fare = z.object({
   /** La portée telle que la page l'écrit — pour l'œil du visiteur. Ne décide jamais. */
   scope_label: z.string().min(1).optional(),
   purchase_window: PurchaseWindow.optional(),
-  /** LA CITATION DU PRIX. La phrase qui prouve qu'un canal existe ne prouve pas son montant. */
-  source: SourceCitable,
+  /** LA PREUVE DU PRIX, sous le contrat strict du dépôt. La phrase qui prouve qu'un canal existe
+   *  ne prouve pas son montant : deux citations distinctes, deux champs distincts. Et une phrase
+   *  n'est pas une preuve si sa page n'en est pas une — d'où `T0bAuditSource` et non un contrôle
+   *  de présence écrit ici (P0-1, second tour). */
+  source: T0bAuditSource,
 }).strict()
-  /* P0-1 : la citation n'est plus réservée aux montants. Tout tarif la doit. */
-  .refine((f: { source: SourceCitable }) => citationComplete(f.source), {
-    message: "tout tarif exige sa propre citation : phrase, langue et localisateur — un mécanisme se prouve comme un montant", path: ["source", "quote"],
-  })
   /* P1 : aucune portée vide par vacuité. */
   .refine((f: { applies_when?: Predicate }) => porteeSaine(f.applies_when), {
     message: "une portée tarifaire ne peut porter de combinateur vide : `{ all: [] }` s'appliquerait à tous les trajets", path: ["applies_when"],
@@ -242,24 +252,34 @@ export type Fare = {
   applies_when?: Predicate;
   scope_label?: string;
   purchase_window?: PurchaseWindow;
-  source: SourceCitable;
+  source: SourcedQuote;
 };
 
 /* ---- Le conflit --------------------------------------------------------------------------- */
 
 /** Une observation : ce qu'UNE page officielle publiait, à la date où elle a été lue.
  *
- *  *Porte P0-1, second volet.* Sa citation est obligatoire, au même titre que celle d'un tarif :
- *  un conflit ne s'affirme pas avec deux URL nues. Ce que la fiche dira un jour au visiteur, c'est
- *  « ces deux pages publient ces deux phrases » — il faut donc les deux phrases. */
+ *  Sa provenance est le MÊME contrat strict que celle d'un tarif — un conflit ne s'affirme pas
+ *  avec deux URL nues, et pas davantage avec deux pages de presse ou deux liens vers nous-mêmes.
+ *  Ce que la fiche dira un jour au visiteur, c'est « ces deux pages officielles publient ces deux
+ *  phrases » : il faut donc que ce soient deux pages officielles, et deux phrases.
+ *
+ *  Son prix est forcément CHIFFRÉ (P0-2) : l'effet d'un conflit est `suppress_exact_fare`, et
+ *  deux mécanismes — « sur devis » contre « calculateur » — ne se contredisent sur aucun montant. */
 export const FareObservation = z.object({
   price: FarePrice,
-  source: SourceCitable,
+  source: T0bAuditSource,
 }).strict()
-  .refine((o: { source: SourceCitable }) => citationComplete(o.source), {
-    message: "chaque observation d'un conflit exige sa citation complète : phrase, langue et localisateur", path: ["source", "quote"],
+  .refine((o: { price: FarePrice }) => NATURES_CHIFFREES.has(o.price.kind), {
+    message: "une observation de conflit porte un MONTANT : deux mécanismes ne se contredisent sur aucun prix", path: ["price", "kind"],
   });
-export type FareObservation = z.infer<typeof FareObservation>;
+export type FareObservation = { price: FarePrice; source: SourcedQuote };
+
+/** LE PRIX CANONIQUE d'une observation — devises triées, montants inclus, nature incluse.
+ *  Deux observations qui rendent la même chaîne disent le MÊME prix : les opposer serait citer
+ *  deux fois la même page. */
+const prixCanonique = (p: FarePrice): string =>
+  `${p.kind}|${p.amounts.map((m: MoneyType) => `${m.currency}:${m.amount}`).sort().join(",")}`;
 
 export const FareConflict = z.object({
   id: z.string().min(3),
@@ -267,9 +287,22 @@ export const FareConflict = z.object({
   applies_when: Predicate.optional(),
   scope_label: z.string().min(1).optional(),
   /**
+   * LES AXES COMMUNS, OBLIGATOIRES (P0-2).
+   *
+   * Un conflit n'existe qu'entre deux montants qui veulent dire la même chose. « 140 € par animal
+   * et par aller » contre « 120 € par contenant et par segment » ne sont pas deux prix
+   * contradictoires : ce sont deux tarifs différents, et les opposer effacerait les deux. Le
+   * conflit doit donc DIRE sur quels axes il porte, au lieu de les laisser deviner.
+   */
+  billing_subject: BillingSubject,
+  journey_basis: JourneyBasis,
+  /** La fenêtre d'achat commune, si les deux pages parlent du même moment d'achat. Elle est
+   *  réellement évaluée par `resoudreTarif` — un conflit hors fenêtre ne couvre pas le trajet. */
+  purchase_window: PurchaseWindow.optional(),
+  /**
    * `unresolved`, ET RIEN D'AUTRE.
    *
-   * *Porte P0-3, refermée le 10/09.* Le schéma admettait `resolved`, et rien de plus : pas de
+   * *Porte P0-3 du premier tour.* Le schéma admettait `resolved`, et rien de plus : pas de
    * gagnant désigné, pas de preuve nouvelle, pas de date, pas d'auteur, pas de motif. Changer un
    * mot dans un `.yml` suffisait donc à rallumer un montant que deux pages officielles
    * contredisent — une porte arrière, et mon témoin la consacrait en la déclarant normale.
@@ -286,6 +319,18 @@ export const FareConflict = z.object({
 }).strict()
   .refine((c: { applies_when?: Predicate }) => porteeSaine(c.applies_when), {
     message: "une portée de conflit ne peut porter de combinateur vide", path: ["applies_when"],
+  })
+  /**
+   * DEUX PRIX RÉELLEMENT DIFFÉRENTS (P0-2).
+   *
+   * *Porte refermée le 10/09 au soir.* Deux observations strictement identiques passaient, et le
+   * résolveur éteignait alors un tarif parfaitement prouvé au nom d'un désaccord qui n'existait
+   * pas. C'est le sabotage le plus coûteux des quatre : il ne publie pas un prix faux, il EFFACE
+   * un prix vrai — et rien, dans l'interface, n'aurait dit pourquoi. Citer deux fois la même
+   * page n'est pas un conflit ; c'est une citation en double.
+   */
+  .refine((c: { observations: { price: FarePrice }[] }) => new Set(c.observations.map((o) => prixCanonique(o.price))).size >= 2, {
+    message: "un conflit exige au moins DEUX prix canoniquement différents : deux fois le même montant n'est pas un désaccord", path: ["observations"],
   });
 /** Même raison que `Fare` : le type est déclaré. */
 export type FareConflict = {
@@ -293,6 +338,9 @@ export type FareConflict = {
   placement: PlacementType;
   applies_when?: Predicate;
   scope_label?: string;
+  billing_subject: BillingSubject;
+  journey_basis: JourneyBasis;
+  purchase_window?: PurchaseWindow;
   status: "unresolved";
   effect: "suppress_exact_fare";
   observations: FareObservation[];
@@ -403,22 +451,39 @@ export function porteeTarif(f: Fare, faits: FaitsTrajet): Verite {
 
 /* ---- La résolution ------------------------------------------------------------------------- */
 
-/** Ce que le Finder recevra un jour — et qu'aucune interface ne lit encore (annexe 45). */
-export type ResolutionTarifaire =
-  /** Un ou plusieurs tarifs s'appliquent au trajet, prouvés, sur une portée décidée. PLUSIEURS
-   *  quand la compagnie publie des variantes parallèles en devises disjointes : elles sont TOUTES
-   *  rendues, jamais réduites à la première (P1). */
-  | { etat: "applicable"; tarifs: Fare[] }
-  /** Le mécanisme est prouvé, la valeur n'est pas un nombre chez nous (devis, formule, calculateur…). */
-  | { etat: "mecanisme"; tarifs: Fare[] }
-  /** Un conflit officiel couvre ce trajet : aucun montant exact, et on dit lequel. */
-  | { etat: "conflit"; conflit: FareConflict }
-  /** Des tarifs existent, mais leur portée n'est pas décidable avec les faits injectés. */
-  | { etat: "indecidable"; tarifs: Fare[] }
-  /** Deux tarifs différents s'appliquent au même trajet dans la même devise : c'est un conflit. */
-  | { etat: "chevauchement"; tarifs: Fare[] }
-  /** Rien de prouvé pour ce canal. */
-  | { etat: "aucun" };
+/**
+ * CE QUE LE FINDER RECEVRA UN JOUR — et qu'aucune interface ne lit encore (annexe 46).
+ *
+ * *Porte P1, refermée le 10/09 au soir.* Ce type était une UNION à six états, et une union oblige
+ * à choisir. Le résolveur choisissait donc, dans un ordre écrit par moi : un montant applicable
+ * et un `booking_only` applicable en même temps rendaient `applicable [le montant]`, et le
+ * mécanisme disparaissait sans un mot. Même défaut sur les conflits, où un `find()` ne gardait que
+ * le premier. C'est la troisième fois dans ce seul fichier qu'une PRIORITÉ INTERNE fait
+ * disparaître une ligne prouvée — après `chiffres[0]` et après les variantes monétaires.
+ *
+ * La leçon est prise à la racine : ce n'est plus une union, c'est un INVENTAIRE. Chaque catégorie
+ * a sa liste, aucune ne masque l'autre, et l'affichage décidera de ce qu'il montre — mais il le
+ * décidera en voyant tout. Une réponse vide se lit à ses six listes vides (`resolutionVide`).
+ */
+export type ResolutionTarifaire = {
+  /** TOUS les conflits ouverts dont la portée et la fenêtre couvrent le trajet — jamais le premier seul. */
+  conflits: FareConflict[];
+  /** Les montants applicables et concordants. VIDE dès qu'un conflit couvre le trajet. */
+  montants: Fare[];
+  /** Les montants applicables qui se contredisent entre eux : même devise, montants ou axes différents. */
+  chevauchements: Fare[];
+  /** Les mécanismes applicables (devis, formule, calculateur, prix à la réservation). */
+  mecanismes: Fare[];
+  /** Les tarifs dont la portée ou la fenêtre n'est pas décidable avec les faits injectés. */
+  indecidables: Fare[];
+  /** Les montants QUE LE CONFLIT A ÉTEINTS — nommés, pour que rien ne disparaisse en silence. */
+  supprimes: Fare[];
+};
+
+/** Une résolution qui ne dit rien : les six listes sont vides. */
+export const resolutionVide = (r: ResolutionTarifaire): boolean =>
+  r.conflits.length === 0 && r.montants.length === 0 && r.chevauchements.length === 0
+  && r.mecanismes.length === 0 && r.indecidables.length === 0 && r.supprimes.length === 0;
 
 const memeDevise = (a: Fare, b: Fare) =>
   a.price.amounts.some((x) => b.price.amounts.some((y) => y.currency === x.currency));
@@ -428,24 +493,35 @@ const memeMontant = (a: Fare, b: Fare) =>
     === JSON.stringify(b.price.amounts.map((m: MoneyType) => [m.currency, m.amount]).sort())
   && a.billing_subject === b.billing_subject && a.journey_basis === b.journey_basis;
 
+/** Un conflit couvre le trajet dès que sa portée ET sa fenêtre d'achat ne sont pas FAUSSES.
+ *  L'indécidable compte comme une couverture : ne pas savoir si un désaccord s'applique n'est pas
+ *  une raison de publier le montant qu'il conteste. */
+const conflitCouvre = (c: FareConflict, faits: FaitsTrajet): boolean =>
+  et(evaluerPortee(c.applies_when, faits), evaluerFenetre(c.purchase_window, faits)) !== "faux";
+
 /**
- * LE TARIF APPLICABLE À UN TRAJET, ou la raison pour laquelle il n'y en a pas.
+ * L'INVENTAIRE TARIFAIRE D'UN TRAJET — tout ce qui est prouvé, rangé, rien de jeté.
  *
- * L'ordre des questions est l'ordre de prudence, et il ne se négocie pas :
- *   1. un CONFLIT dont la portée couvre le trajet (ou dont la portée est indécidable) éteint tout
- *      montant exact — c'est l'invariant « un conflit couvrant le trajet = aucun montant exact » ;
- *   2. les tarifs dont la portée ET la fenêtre d'achat sont VRAIES sont candidats ; deux candidats
- *      chiffrés qui diffèrent dans la même devise sont un CHEVAUCHEMENT, donc un conflit ;
- *   3. les candidats chiffrés s'appliquent — TOUS, y compris les variantes en devises disjointes ;
- *      les candidats non chiffrés prouvent un mécanisme ;
- *   4. sinon, s'il existe des tarifs à portée INDÉCIDABLE, on le dit — la grille peut se montrer,
- *      le prix du trajet non ;
- *   5. sinon, rien.
+ * L'ordre des questions reste l'ordre de prudence ; ce qui change, c'est qu'aucune réponse n'en
+ * exclut une autre :
+ *   1. les CONFLITS ouverts qui couvrent le trajet sont TOUS retenus ;
+ *   2. les tarifs dont la portée ET la fenêtre d'achat sont VRAIES sont candidats ;
+ *   3. deux candidats chiffrés qui diffèrent dans la même devise, ou disent le même montant sur
+ *      des axes différents, vont aux CHEVAUCHEMENTS — 725 € par segment et 725 € par trajet ne
+ *      coûtent pas la même chose, et publier l'un des deux serait tirer à pile ou face ;
+ *   4. les autres candidats chiffrés sont des MONTANTS, les candidats non chiffrés des MÉCANISMES ;
+ *   5. dès qu'un conflit couvre le trajet, montants et chevauchements passent aux SUPPRIMÉS —
+ *      l'invariant « un conflit couvrant le trajet = aucun montant exact » est intact, et ce qui
+ *      a été éteint est nommé ;
+ *   6. les MÉCANISMES survivent au conflit : l'effet publié est `suppress_exact_fare`, et deux
+ *      pages qui se contredisent sur un montant ne cessent pas de prouver qu'un devis existe ;
+ *   7. les tarifs à portée ou fenêtre INDÉCIDABLE sont dits comme tels — la grille peut se
+ *      montrer, le prix du trajet non.
  *
- * *Porte P1, refermée le 10/09* : l'étape 3 rendait `chiffres[0]`. Deux montants publiés en
- * devises disjointes, tous deux applicables, étaient déclarés compatibles par `memeDevise` — puis
- * un seul sortait, l'autre disparaissait sans un mot. Elles sortent maintenant ensemble, et c'est
- * à l'affichage de dire « 725 € ou 5 400 DKK », pas au résolveur de choisir pour le visiteur.
+ * *Déviation nommée, arbitrable.* Un conflit éteint TOUS les montants du canal qu'il couvre, y
+ * compris ceux dont les axes diffèrent des siens. Les axes du conflit servent à établir qu'il EST
+ * un conflit (P0-2), pas à restreindre ce qu'il éteint : restreindre publierait un montant sur un
+ * canal où deux pages officielles se contredisent, et la prudence se règle dans l'autre sens.
  */
 export function resoudreTarif(
   tarifs: readonly Fare[],
@@ -453,21 +529,25 @@ export function resoudreTarif(
   placement: PlacementType,
   faits: FaitsTrajet,
 ): ResolutionTarifaire {
-  const conflitsCanal = conflits.filter((c) => c.placement === placement && c.status === "unresolved");
-  const conflitCouvrant = conflitsCanal.find((c) => evaluerPortee(c.applies_when, faits) !== "faux");
-  if (conflitCouvrant) return { etat: "conflit", conflit: conflitCouvrant };
+  const conflitsCouvrants = conflits.filter(
+    (c) => c.placement === placement && c.status === "unresolved" && conflitCouvre(c, faits),
+  );
 
   const duCanal = tarifs.filter((f) => f.placement === placement);
-  if (duCanal.length === 0) return { etat: "aucun" };
-
   const vrais = duCanal.filter((f) => porteeTarif(f, faits) === "vrai");
   const chiffres = vrais.filter((f) => NATURES_CHIFFREES.has(f.price.kind));
-  const divergents = chiffres.filter((a, i) => chiffres.some((b, j) => i !== j && memeDevise(a, b) && !memeMontant(a, b)));
-  if (divergents.length > 0) return { etat: "chevauchement", tarifs: divergents };
-  if (chiffres.length > 0) return { etat: "applicable", tarifs: chiffres };
-  if (vrais.length > 0) return { etat: "mecanisme", tarifs: vrais };
-
+  const mecanismes = vrais.filter((f) => !NATURES_CHIFFREES.has(f.price.kind));
+  const chevauchements = chiffres.filter((a, i) => chiffres.some((b, j) => i !== j && memeDevise(a, b) && !memeMontant(a, b)));
+  const concordants = chiffres.filter((f) => !chevauchements.includes(f));
   const indecidables = duCanal.filter((f) => porteeTarif(f, faits) === "indecidable");
-  if (indecidables.length > 0) return { etat: "indecidable", tarifs: indecidables };
-  return { etat: "aucun" };
+
+  const eteint = conflitsCouvrants.length > 0;
+  return {
+    conflits: conflitsCouvrants,
+    montants: eteint ? [] : concordants,
+    chevauchements: eteint ? [] : chevauchements,
+    mecanismes,
+    indecidables,
+    supprimes: eteint ? [...concordants, ...chevauchements] : [],
+  };
 }

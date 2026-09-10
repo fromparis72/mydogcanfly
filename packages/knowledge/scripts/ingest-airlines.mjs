@@ -247,6 +247,53 @@ const Fiche = z.object({
       });
     }
   });
+  /* ---- LE TARIF APPARTIENT AU CANAL QUI LE PORTE (10/09/2026, annexe 46, porte P0-3) ----------
+   *
+   * Deux objets passaient toute la validation avant cette garde, et Codex les a construits :
+   *   · une politique CABINE contenant un tarif `placement: hold`. Il aurait été ingéré, écrit
+   *     dans `objects.json` sous la cabine, puis cherché en vain par le résolveur — qui filtre sur
+   *     `f.placement === placement` et ne l'aurait jamais trouvé. Un tarif prouvé, importé, et
+   *     invisible : la disparition silencieuse dans sa forme la plus pure ;
+   *   · deux tarifs portant exactement le même `id`, ce qui annule la seule chose que
+   *     l'identifiant promet — « pour que deux lots ne réécrivent pas la même ligne sans le dire ».
+   *
+   * Le contrôle est ici, et pas dans `tarifs.ts`, parce que ni un `Fare` ni un `FareConflict` ne
+   * connaît la clé sous laquelle il est rangé, ni les autres tarifs de la compagnie. C'est la
+   * fiche entière qui le sait — donc c'est la fiche entière qui doit le dire. */
+  const idsTarifs = new Map();
+  const idsConflits = new Map();
+  for (const m of PLACEMENTS) {
+    const pol = fiche.policies[m];
+    if (pol === undefined) continue;
+    (pol.fares ?? []).forEach((f, i) => {
+      if (f.placement !== m) {
+        ctx.addIssue({
+          code: z.ZodIssueCode.custom, path: ["policies", m, "fares", i, "placement"],
+          message: `tarif ${f.id} rangé sous policies.${m} mais déclaré placement ${f.placement} — il serait importé puis jamais retrouvé`,
+        });
+      }
+      if (idsTarifs.has(f.id)) {
+        ctx.addIssue({
+          code: z.ZodIssueCode.custom, path: ["policies", m, "fares", i, "id"],
+          message: `identifiant de tarif ${f.id} déjà porté par policies.${idsTarifs.get(f.id)} — un identifiant stable ne se partage pas`,
+        });
+      } else idsTarifs.set(f.id, m);
+    });
+    (pol.fare_conflicts ?? []).forEach((c, i) => {
+      if (c.placement !== m) {
+        ctx.addIssue({
+          code: z.ZodIssueCode.custom, path: ["policies", m, "fare_conflicts", i, "placement"],
+          message: `conflit ${c.id} rangé sous policies.${m} mais déclaré placement ${c.placement} — il n'éteindrait rien, ou éteindrait le mauvais canal`,
+        });
+      }
+      if (idsConflits.has(c.id)) {
+        ctx.addIssue({
+          code: z.ZodIssueCode.custom, path: ["policies", m, "fare_conflicts", i, "id"],
+          message: `identifiant de conflit ${c.id} déjà porté par policies.${idsConflits.get(c.id)} — un identifiant stable ne se partage pas`,
+        });
+      } else idsConflits.set(c.id, m);
+    });
+  }
   /* Une politique SANS canal visible n'est pas interdite — six existent, scellées — mais elle
      doit figurer dans la dette, sinon une politique invisible pourrait naître sans revue. */
   for (const m of PLACEMENTS) {

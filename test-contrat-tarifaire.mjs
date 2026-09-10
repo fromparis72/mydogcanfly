@@ -1,32 +1,30 @@
 #!/usr/bin/env node
 /**
- * LE CONTRAT TARIFAIRE — contre-épreuves (10/09/2026, annexes 44 et 45).
+ * LE CONTRAT TARIFAIRE — contre-épreuves (10/09/2026, annexes 44, 45 et 46).
  *
  *   npx tsx test-contrat-tarifaire.mjs
  *
- * Cinq témoins ont été EXIGÉS par Philippe, sur l'arbitrage de Codex :
- *   1. SAS facturé par contenant ET par segment — les deux axes, jamais confondus ;
- *   2. le conflit Finnair soute masque le prix ;
- *   3. une portée inconnue interdit un montant exact ;
- *   4. le chevauchement de deux tarifs devient un conflit ;
- *   5. un prix sans citation est refusé.
+ * Cinq témoins ont été exigés par Philippe sur l'arbitrage initial de Codex (§1 à §5). La première
+ * contre-revue en a imposé six de plus (§6 à §9). La SECONDE contre-revue, celle de `7188990`, en
+ * impose quatre autres — et ceux-là reproduisent EXACTEMENT les sabotages que Codex a fait passer,
+ * un par un, plutôt que de vérifier la mécanique alentour :
+ *   §10 — cinq sources inadmissibles acceptées par mon contrôle maison (P0-1, second tour) ;
+ *   §11 — un faux conflit qui éteint un vrai tarif (P0-2, second tour) ;
+ *   §12 — une ligne applicable perdue par priorité interne (P1, second tour) ;
+ *   §15 — trois ingestions sabotées : tarif rangé sous le mauvais canal, identifiants en double,
+ *         conflit rangé sous le mauvais canal (P0-3, second tour).
  *
- * La contre-revue de Codex sur la PR #56 en a exigé six de plus, un par porte ouverte. Ils sont
- * ici sous les numéros 6 à 9, chacun nommant la porte qu'il ferme (P0-1 à P0-4, P1, P1).
+ * TOUTES les fixtures positives sont des faits RÉELS de l'audit indépendant du 10/09/2026 : SAS
+ * soute Chine, le conflit Finnair soute, Air China cabine (seule fenêtre d'achat publiée en jours
+ * de tout l'audit) et KLM soute (fourchette la mieux citée). Les rares fixtures de FORME sont
+ * nommées comme telles à l'endroit où elles servent.
  *
- * TOUTES les fixtures sont des faits RÉELS de l'audit indépendant du 10/09/2026 : SAS soute Chine,
- * le conflit Finnair soute, Air China cabine (la seule fenêtre d'achat publiée en JOURS de tout
- * l'audit), KLM soute (la fourchette la mieux citée). Le schéma est éprouvé sur les cas qu'il devra
- * porter, pas sur des inventions. Les rares fixtures de FORME — celles qui n'existent sur aucune
- * page et n'éprouvent qu'une mécanique — sont nommées comme telles à l'endroit où elles servent.
- *
- * AUCUN de ces tarifs n'est importé dans la donnée par ce lot : le contrat d'abord, les imports
- * ensuite, l'affichage après la fusion du lot Finder.
+ * AUCUN de ces tarifs n'est importé dans la donnée par ce lot.
  */
 import { readFileSync } from "node:fs";
 import {
-  Fare, FareConflict, FarePrice, PurchaseWindow,
-  evaluerPortee, evaluerFenetre, porteeTarif, porteeSaine, resoudreTarif,
+  Fare, FareConflict, FarePrice, FareObservation, PurchaseWindow,
+  evaluerPortee, evaluerFenetre, porteeTarif, porteeSaine, resoudreTarif, resolutionVide,
   projectPlacementPolicy, PlacementPolicyAuthored,
 } from "./packages/knowledge/src/index.ts";
 
@@ -35,13 +33,14 @@ const check = (label, cond, detail = "") => {
   console.log((cond ? "  OK   " : "  FAIL ") + label + (cond || !detail ? "" : `\n         ${detail}`));
   cond ? pass++ : fail++;
 };
-/** Un schéma REFUSE-t-il cet objet ? On veut l'échec, et on veut savoir sur quel champ. */
 const refuse = (schema, obj) => {
   const r = schema.safeParse(obj);
   return { refuse: !r.success, motif: r.success ? "" : r.error.issues.map((i) => `${i.path.join(".")}: ${i.message}`).join(" | ") };
 };
 
-/* La citation d'un TARIF, distincte de celle qui prouve le canal. */
+/* ── Les provenances réelles. Elles satisfont `T0bAuditSource` : page officielle, http(s), aucun
+   domaine à nous, citation d'au moins dix caractères, langue BCP-47, localisateur, et surtout la
+   cadence `airline` au jour près — 2026-09-10 + 90 jours = 2026-12-09. ─────────────────────── */
 const SRC_SAS = {
   url: "https://www.flysas.com/en/travel-info/travel-with-pets/in-hold",
   source_type: "official_website", verified_date: "2026-09-10", review_due: "2026-12-09",
@@ -53,10 +52,7 @@ const SRC_FIN_A = {
   url: "https://www.finnair.com/fr-fr/les-animaux-de-compagnie-%C3%A0-bord-des-vols-finnair",
   source_type: "official_website", verified_date: "2026-09-10", review_due: "2026-12-09",
   confidence: 4, reviewer: "Codex — lecture directe", history: [],
-  /* L'extrait RÉEL de l'audit de Codex, repris tel quel — pas une phrase inventée pour le harnais.
-     *Erreur nommée* : mon premier jet écrivait « 140 EUR », sous le minimum de dix caractères
-     qu'impose `SourceCitable`. Le contrat partagé a refusé : il avait raison, une citation de sept
-     signes ne prouve rien. */
+  /* *Erreur nommée* : mon premier jet écrivait « 140 EUR », sous le minimum de dix caractères. */
   quote: "140 EUR / 650 EUR", quote_language: "fr", locator: "Pet transportation fees",
 };
 const SRC_FIN_B = {
@@ -65,9 +61,7 @@ const SRC_FIN_B = {
   confidence: 4, reviewer: "Codex — lecture directe", history: [],
   quote: "120 EUR / 600 EUR", quote_language: "fr", locator: "Pets",
 };
-/* Air China cabine — la SEULE fenêtre d'achat exprimée en JOURS de tout l'audit des 102 compagnies
-   (colonne `booking_deadline` : « booking from 7 days to 24 hours before departure »). Codex a validé
-   cette lecture le 10/09 : la page officielle prouve la cabine ET son montant exact. */
+/* Air China cabine — la SEULE fenêtre d'achat exprimée en JOURS de tout l'audit des 102 compagnies. */
 const SRC_AIRCHINA = {
   url: "https://m.airchina.com.cn/ac/c/invoke/specialService/petCabinAgreement%40pg",
   source_type: "official_website", verified_date: "2026-09-10", review_due: "2026-12-09",
@@ -75,7 +69,7 @@ const SRC_AIRCHINA = {
   quote: "RMB1,399 per pet per flight segment.", quote_language: "en",
   locator: "II. Carrier's Pet Transportation Charges",
 };
-/* KLM soute — la fourchette la mieux citée de l'audit : une phrase entière porte les deux bornes. */
+/* KLM soute — une phrase entière porte les deux bornes de la fourchette. */
 const SRC_KLM = {
   url: "https://www.klm.com/information/pets/reservation",
   source_type: "official_website", verified_date: "2026-09-10", review_due: "2026-12-09",
@@ -84,10 +78,20 @@ const SRC_KLM = {
   quote_language: "en", locator: "Costs and restrictions → Costs",
 };
 
+/** Un conflit complet, réutilisé par plusieurs sections. Axes obligatoires depuis la porte P0-2. */
+const CONFLIT_FINNAIR = {
+  id: "fare_conflict_finnair_hold_2026_09_10", placement: "hold", status: "unresolved",
+  effect: "suppress_exact_fare", scope_label: "Europe",
+  billing_subject: "pet", journey_basis: "per_one_way",
+  observations: [
+    { price: { kind: "exact", amounts: [{ amount: 140, currency: "EUR" }] }, source: SRC_FIN_A },
+    { price: { kind: "exact", amounts: [{ amount: 120, currency: "EUR" }] }, source: SRC_FIN_B },
+  ],
+  note: "Deux pages officielles vivantes publient des montants différents.",
+};
+
 console.log("=== 1. SAS : facturé par contenant ET par segment — deux axes, jamais un seul ===");
 {
-  /* Le fait de Codex : « per container; per flight; one-way ». Un `unit` unique ne pouvait pas le dire ;
-     c'est la raison P0 pour laquelle mon premier schéma a été refusé. */
   const sasChine = {
     id: "fare_sas_hold_china", placement: "hold",
     price: { kind: "exact", amounts: [{ amount: 725, currency: "EUR" }, { amount: 775, currency: "USD" }, { amount: 5400, currency: "DKK" }] },
@@ -103,79 +107,53 @@ console.log("=== 1. SAS : facturé par contenant ET par segment — deux axes, j
     r.success && r.data.price.amounts.length === 3 && new Set(r.data.price.amounts.map((m) => m.currency)).size === 3);
   check("aucune conversion : les montants sont ceux de la page, à l'unité près",
     r.success && r.data.price.amounts.find((m) => m.currency === "EUR").amount === 725 && r.data.price.amounts.find((m) => m.currency === "USD").amount === 775);
-
-  /* Les deux axes sont OBLIGATOIRES : un montant dont on ignore l'un des deux ne veut rien dire. */
   for (const manquant of ["billing_subject", "journey_basis"]) {
     const sans = { ...sasChine }; delete sans[manquant];
     check(`sans \`${manquant}\`, le tarif est REFUSÉ`, refuse(Fare, sans).refuse, refuse(Fare, sans).motif);
   }
-  /* Et il s'applique au trajet quand la portée est décidable. */
   const res = resoudreTarif([sasChine], [], "hold", { "route.dest_country_id": "country_cn" });
   check("Paris → Chine : le tarif s'applique, et c'est bien celui de la Chine",
-    res.etat === "applicable" && res.tarifs.length === 1 && res.tarifs[0].id === "fare_sas_hold_china", JSON.stringify(res).slice(0, 200));
+    res.montants.length === 1 && res.montants[0].id === "fare_sas_hold_china", JSON.stringify(res).slice(0, 200));
   const ailleurs = resoudreTarif([sasChine], [], "hold", { "route.dest_country_id": "country_us" });
   check("Paris → États-Unis : ce tarif-là ne s'applique pas, et aucun autre n'est inventé",
-    ailleurs.etat === "aucun", JSON.stringify(ailleurs).slice(0, 200));
+    resolutionVide(ailleurs), JSON.stringify(ailleurs).slice(0, 200));
 }
 
 console.log("\n=== 2. Le conflit Finnair soute masque le prix ===");
 {
-  /* Deux pages officielles vivantes, relues le même jour, deux montants. Aucun n'est tranché. */
-  const conflit = {
-    id: "fare_conflict_finnair_hold_2026_09_10", placement: "hold", status: "unresolved",
-    effect: "suppress_exact_fare", scope_label: "Europe",
-    observations: [
-      { price: { kind: "exact", amounts: [{ amount: 140, currency: "EUR" }] }, source: SRC_FIN_A },
-      { price: { kind: "exact", amounts: [{ amount: 120, currency: "EUR" }] }, source: SRC_FIN_B },
-    ],
-    note: "Deux pages officielles vivantes publient des montants différents.",
-  };
-  const c = FareConflict.safeParse(conflit);
+  const c = FareConflict.safeParse(CONFLIT_FINNAIR);
   check("le conflit Finnair est accepté par le contrat, avec ses DEUX observations complètes",
-    c.success && c.data.observations.length === 2, c.success ? "" : JSON.stringify(c.error.issues).slice(0, 200));
+    c.success && c.data.observations.length === 2, c.success ? "" : JSON.stringify(c.error.issues).slice(0, 240));
   check("chaque observation porte sa source et sa date — un conflit ne se dit pas avec deux URL nues",
     c.success && c.data.observations.every((o) => !!o.source.url && !!o.source.quote && o.source.verified_date === "2026-09-10"));
-  const seule = { ...conflit, observations: [conflit.observations[0]] };
+  const seule = { ...CONFLIT_FINNAIR, observations: [CONFLIT_FINNAIR.observations[0]] };
   check("un conflit à UNE seule voix est refusé — ce n'en est pas un", refuse(FareConflict, seule).refuse, refuse(FareConflict, seule).motif);
-
-  /* P0-1, second volet : une observation dont la source ne cite rien est refusée. */
-  const nue = {
-    ...conflit,
-    observations: [
-      conflit.observations[0],
-      { price: { kind: "exact", amounts: [{ amount: 120, currency: "EUR" }] },
-        source: { url: SRC_FIN_B.url, source_type: "official_website", verified_date: "2026-09-10", review_due: "2026-12-09", confidence: 4, reviewer: "x", history: [] } },
-    ],
-  };
-  const rn = refuse(FareConflict, nue);
-  check("une observation SANS citation est refusée : deux URL nues ne prouvent pas un conflit (P0-1)", rn.refuse, rn.motif);
-  const sansLoc = {
-    ...conflit,
-    observations: [conflit.observations[0], { ...conflit.observations[1], source: { ...SRC_FIN_B, locator: undefined } }],
-  };
-  check("…et une observation citée sans localisateur ne suffit pas non plus", refuse(FareConflict, sansLoc).refuse);
 
   const tarifFin = {
     id: "fare_finnair_hold_europe", placement: "hold",
     price: { kind: "exact", amounts: [{ amount: 140, currency: "EUR" }] },
-    billing_subject: "pet", journey_basis: "per_one_way", scope_label: "Europe", source: SRC_FIN_A,
+    billing_subject: "pet", journey_basis: "per_one_way", scope_label: "Europe",
+    /* La portée est DÉCIDABLE ici, et c'est le point : sans elle le tarif serait simplement
+       indécidable, et le témoin croirait constater une suppression là où il n'y a rien à
+       supprimer — un témoin vacant de plus. */
+    applies_when: { all: [{ fact: "route.dest_country_id", op: "eq", value: "country_fi" }] },
+    source: SRC_FIN_A,
   };
-  const res = resoudreTarif([tarifFin], [conflit], "hold", { "route.dest_country_id": "country_fi" });
-  check("un conflit ouvert éteint le montant : la résolution rend le CONFLIT, jamais 140 € ni 120 €",
-    res.etat === "conflit" && res.conflit.id === conflit.id, JSON.stringify(res).slice(0, 200));
+  const res = resoudreTarif([tarifFin], [CONFLIT_FINNAIR], "hold", { "route.dest_country_id": "country_fi" });
+  check("un conflit ouvert éteint le montant : aucun montant ne sort, ni 140 € ni 120 €",
+    res.montants.length === 0 && res.conflits.length === 1 && res.conflits[0].id === CONFLIT_FINNAIR.id, JSON.stringify(res).slice(0, 240));
   check("…et le conflit nomme ses deux sources, pour que la fiche puisse le dire",
-    res.etat === "conflit" && res.conflit.observations.map((o) => o.source.url).join(" ").includes("frais-de-bagage"));
+    res.conflits[0].observations.map((o) => o.source.url).join(" ").includes("frais-de-bagage"));
+  check("…et le montant éteint est NOMMÉ dans `supprimes` : rien ne disparaît en silence",
+    res.supprimes.length === 1 && res.supprimes[0].id === "fare_finnair_hold_europe", JSON.stringify(res.supprimes).slice(0, 160));
 }
 
 console.log("\n=== 3. Une portée inconnue interdit un montant exact ===");
 {
-  /* La ZONE commerciale (« Scandinavie, Europe, Moyen-Orient ») n'existe dans aucun fait du moteur.
-     Un prédicat qui l'interroge est INDÉCIDABLE — jamais faux, jamais vrai. */
   const zone = {
     id: "fare_sas_hold_europe", placement: "hold",
     price: { kind: "exact", amounts: [{ amount: 169, currency: "EUR" }] },
     billing_subject: "container", journey_basis: "per_segment",
-    /* `route.dest_country_id` est un fait réel ; il est simplement ABSENT du contexte de ce trajet. */
     applies_when: { all: [{ fact: "route.dest_country_id", op: "in", value: ["country_se", "country_no", "country_dk"] }] },
     scope_label: "Scandinavie, Europe, Moyen-Orient", source: { ...SRC_SAS, quote: "Scandinavia, Europe, Middle East: 169 EUR" },
   };
@@ -183,22 +161,20 @@ console.log("\n=== 3. Une portée inconnue interdit un montant exact ===");
     evaluerPortee(zone.applies_when, {}) === "indecidable", evaluerPortee(zone.applies_when, {}));
   const res = resoudreTarif([zone], [], "hold", {});
   check("un trajet dont on ignore la destination ne reçoit AUCUN montant — la grille peut se montrer, pas le prix",
-    res.etat === "indecidable" && res.tarifs.length === 1, JSON.stringify(res).slice(0, 200));
+    res.montants.length === 0 && res.indecidables.length === 1, JSON.stringify(res).slice(0, 200));
   const connu = resoudreTarif([zone], [], "hold", { "route.dest_country_id": "country_se" });
   check("le même tarif, sur un trajet dont la destination EST connue, s'applique — le témoin n'est pas vacant",
-    connu.etat === "applicable" && connu.tarifs[0].id === "fare_sas_hold_europe", JSON.stringify(connu).slice(0, 160));
+    connu.montants.length === 1 && connu.montants[0].id === "fare_sas_hold_europe", JSON.stringify(connu).slice(0, 160));
   const hors = resoudreTarif([zone], [], "hold", { "route.dest_country_id": "country_jp" });
-  check("et sur une destination hors de la portée, il ne s'applique pas", hors.etat === "aucun");
+  check("et sur une destination hors de la portée, il ne s'applique pas", resolutionVide(hors));
 
-  /* Un tarif SANS portée du tout : il se montre, il ne décide pas. */
   const sansPortee = { ...zone, id: "fare_sans_portee", applies_when: undefined };
   const rs = resoudreTarif([sansPortee], [], "hold", { "route.dest_country_id": "country_se" });
   check("un tarif sans portée exécutable n'est JAMAIS appliqué à un trajet, même connu",
-    rs.etat === "indecidable", JSON.stringify(rs).slice(0, 160));
+    rs.montants.length === 0 && rs.indecidables.length === 1, JSON.stringify(rs).slice(0, 160));
   check("le libellé de portée est du texte pour l'œil, il ne décide rien : la portée décidante est le prédicat",
     typeof zone.scope_label === "string" && evaluerPortee(undefined, { "route.dest_country_id": "country_se" }) === "indecidable");
 
-  /* Les natures non chiffrées prouvent un mécanisme, jamais une valeur. */
   const devis = {
     id: "fare_sas_cargo_quote", placement: "cargo", price: { kind: "quote", amounts: [] },
     billing_subject: "shipment", journey_basis: "per_journey",
@@ -206,8 +182,8 @@ console.log("\n=== 3. Une portée inconnue interdit un montant exact ===");
     source: { ...SRC_SAS, url: "https://www.flysas.com/en/travel-info/baggage/cargo", quote: "book it as cargo using a freight forwarder", locator: "Pet as cargo → opening paragraph" },
   };
   const rq = resoudreTarif([devis], [], "cargo", { placement: "cargo" });
-  check("« sur devis » est un MÉCANISME prouvé, pas un montant — la résolution le dit ainsi",
-    rq.etat === "mecanisme" && rq.tarifs[0].price.kind === "quote", JSON.stringify(rq).slice(0, 160));
+  check("« sur devis » est un MÉCANISME prouvé, pas un montant — l'inventaire le range ainsi",
+    rq.mecanismes.length === 1 && rq.montants.length === 0 && rq.mecanismes[0].price.kind === "quote", JSON.stringify(rq).slice(0, 200));
   const avecMontant = { ...devis, price: { kind: "quote", amounts: [{ amount: 100, currency: "EUR" }] } };
   check("un « sur devis » qui porte un montant est REFUSÉ", refuse(Fare, avecMontant).refuse, refuse(Fare, avecMontant).motif);
   const chiffreSansMontant = { ...zone, price: { kind: "exact", amounts: [] } };
@@ -225,37 +201,25 @@ console.log("\n=== 4. Le chevauchement de deux tarifs devient un conflit ===");
   const b = { ...base, id: "fare_b", price: { kind: "exact", amounts: [{ amount: 680, currency: "EUR" }] } };
   const res = resoudreTarif([a, b], [], "hold", { "route.dest_country_id": "country_cn" });
   check("deux montants différents applicables au même trajet, dans la même devise → CHEVAUCHEMENT, jamais un choix",
-    res.etat === "chevauchement" && res.tarifs.length === 2, JSON.stringify(res).slice(0, 200));
-  check("…et le premier n'est PAS servi en silence — c'est la faute que ce témoin existe pour empêcher",
-    res.etat !== "applicable");
+    res.chevauchements.length === 2 && res.montants.length === 0, JSON.stringify(res).slice(0, 220));
   const bMemeMontant = { ...b, price: { kind: "exact", amounts: [{ amount: 725, currency: "EUR" }] } };
   const identique = resoudreTarif([a, bMemeMontant], [], "hold", { "route.dest_country_id": "country_cn" });
   check("deux lignes qui disent le MÊME montant sur les mêmes axes ne sont pas un conflit — c'est une redite",
-    identique.etat === "applicable", JSON.stringify(identique).slice(0, 160));
+    identique.chevauchements.length === 0 && identique.montants.length === 2, JSON.stringify(identique).slice(0, 160));
   const bAutreAxe = { ...b, price: { kind: "exact", amounts: [{ amount: 725, currency: "EUR" }] }, journey_basis: "per_journey" };
   const axes = resoudreTarif([a, bAutreAxe], [], "hold", { "route.dest_country_id": "country_cn" });
   check("même montant, axes différents (par segment contre par trajet) → chevauchement : 725 € n'y veut pas dire la même chose",
-    axes.etat === "chevauchement", JSON.stringify(axes).slice(0, 160));
+    axes.chevauchements.length === 2 && axes.montants.length === 0, JSON.stringify(axes).slice(0, 160));
 
-  /* P1, seconde porte : deux devises DISJOINTES ne se contredisent pas — mais elles ne se
-     réduisent pas non plus à la première. La version précédente rendait `chiffres[0]` et laissait
-     l'autre disparaître sans un mot. */
   const bAutreDevise = { ...b, price: { kind: "exact", amounts: [{ amount: 5400, currency: "DKK" }] } };
   const parallele = resoudreTarif([a, bAutreDevise], [], "hold", { "route.dest_country_id": "country_cn" });
   check("deux devises différentes ne se contredisent pas : ce sont des montants parallèles, aucune conversion",
-    parallele.etat === "applicable", JSON.stringify(parallele).slice(0, 160));
-  check("…et les DEUX variantes sortent : aucune n'est jetée en silence (P1)",
-    parallele.etat === "applicable" && parallele.tarifs.length === 2
-      && new Set(parallele.tarifs.flatMap((f) => f.price.amounts.map((m) => m.currency))).size === 2,
-    JSON.stringify(parallele.tarifs?.map((f) => f.id)));
-  const troisMecanismes = resoudreTarif(
-    [{ ...base, id: "m1", price: { kind: "quote", amounts: [] } }, { ...base, id: "m2", price: { kind: "calculator", amounts: [] } }],
-    [], "hold", { "route.dest_country_id": "country_cn" });
-  check("deux MÉCANISMES applicables sortent eux aussi ensemble — même règle, même raison",
-    troisMecanismes.etat === "mecanisme" && troisMecanismes.tarifs.length === 2, JSON.stringify(troisMecanismes).slice(0, 160));
+    parallele.chevauchements.length === 0 && parallele.montants.length === 2, JSON.stringify(parallele).slice(0, 160));
+  check("…et les DEUX variantes sortent : aucune n'est jetée en silence (P1, premier tour)",
+    new Set(parallele.montants.flatMap((f) => f.price.amounts.map((m) => m.currency))).size === 2);
 }
 
-console.log("\n=== 5. Un prix sans citation est refusé — et un MÉCANISME aussi (P0-1) ===");
+console.log("\n=== 5. Un prix sans citation est refusé — et un MÉCANISME aussi (P0-1, premier tour) ===");
 {
   const nu = {
     id: "fare_sans_preuve", placement: "cabin",
@@ -263,47 +227,39 @@ console.log("\n=== 5. Un prix sans citation est refusé — et un MÉCANISME aus
     billing_subject: "container", journey_basis: "per_segment",
     source: { url: "https://www.flysas.com/en/travel-info/travel-with-pets/in-hold", source_type: "official_website", verified_date: "2026-09-10", review_due: "2026-12-09", confidence: 4, reviewer: "x", history: [] },
   };
-  const r = refuse(Fare, nu);
-  check("un montant dont la source ne porte AUCUNE phrase est refusé", r.refuse, r.motif);
-  check("…et le motif nomme la citation, pas autre chose", r.motif.includes("citation"), r.motif);
+  check("un montant dont la source ne porte AUCUNE phrase est refusé", refuse(Fare, nu).refuse, refuse(Fare, nu).motif);
   const sansLocator = { ...nu, source: { ...nu.source, quote: "China: 725 EUR", quote_language: "en" } };
   check("une phrase sans localisateur ne suffit pas : on doit savoir OÙ elle a été lue", refuse(Fare, sansLocator).refuse);
   const sansLangue = { ...nu, source: { ...nu.source, quote: "China: 725 EUR", locator: "Fees" } };
-  check("une phrase sans langue est refusée par le contrat de source lui-même", refuse(Fare, sansLangue).refuse);
+  check("une phrase sans langue est refusée", refuse(Fare, sansLangue).refuse);
+  const courte = { ...nu, source: { ...nu.source, quote: "725 EUR", quote_language: "en", locator: "Fees" } };
+  check("une phrase de moins de dix caractères ne prouve rien — refusée", refuse(Fare, courte).refuse);
   const complet = { ...nu, source: SRC_SAS };
   check("avec sa phrase, sa langue et son localisateur, le même tarif passe — le témoin n'est pas vacant",
-    Fare.safeParse(complet).success);
-  /* La preuve du CANAL ne vaut pas preuve du PRIX : deux citations distinctes, deux champs distincts. */
+    Fare.safeParse(complet).success, JSON.stringify(Fare.safeParse(complet).error?.issues ?? "").slice(0, 200));
   check("le tarif porte SA source, séparée de celle de la politique du canal",
     Fare.safeParse(complet).success && Fare.safeParse(complet).data.source.locator === "Fees → Pet in cargo hold → China");
-  /* Devise : trois lettres majuscules, jamais convertie. */
   const minuscule = { ...complet, price: { kind: "exact", amounts: [{ amount: 725, currency: "eur" }] } };
   check("une devise en minuscules est refusée (ISO 4217)", refuse(FarePrice, minuscule.price).refuse);
 
-  /* PORTE P0-1 : les quatre natures NON CHIFFRÉES échappaient à l'exigence de citation. « Sur devis »,
-     « calculateur officiel », « prix à la réservation » et « formule » sont pourtant des affirmations
-     tarifaires : les publier sans preuve est exactement ce que ce contrat interdit ailleurs. */
-  const sourceNue = { url: "https://example.invalid/tarifs", source_type: "official_website", verified_date: "2026-09-10", review_due: "2026-12-09", confidence: 4, reviewer: "x", history: [] };
+  const sourceNue = { url: "https://example.com/tarifs", source_type: "official_website", verified_date: "2026-09-10", review_due: "2026-12-09", confidence: 4, reviewer: "x", history: [] };
   for (const kind of ["formula", "calculator", "booking_only", "quote"]) {
     const mecanismeNu = {
       id: `fare_mecanisme_${kind}`, placement: "cargo", price: { kind, amounts: [] },
       billing_subject: "shipment", journey_basis: "per_journey", source: sourceNue,
     };
-    const rm = refuse(Fare, mecanismeNu);
-    check(`un mécanisme « ${kind} » SANS citation est refusé (P0-1)`, rm.refuse, rm.motif);
+    check(`un mécanisme « ${kind} » SANS citation est refusé`, refuse(Fare, mecanismeNu).refuse, refuse(Fare, mecanismeNu).motif);
     const mecanismeCite = { ...mecanismeNu, source: { ...SRC_SAS, url: "https://www.flysas.com/en/travel-info/baggage/cargo", quote: "book it as cargo using a freight forwarder", locator: "Pet as cargo" } };
     check(`…et le même « ${kind} », cité, est accepté — le témoin n'est pas vacant`, Fare.safeParse(mecanismeCite).success);
   }
 }
 
-console.log("\n=== 6. La fenêtre d'achat est ÉVALUÉE, pas seulement enregistrée (P0-2) ===");
+console.log("\n=== 6. La fenêtre d'achat est ÉVALUÉE, pas seulement enregistrée (P0-2, premier tour) ===");
 {
-  /* Air China cabine : la seule fenêtre publiée en JOURS de tout l'audit des 102 compagnies —
-     « booking from 7 days to 24 hours before departure », soit de J-7 à J-1 inclus.
-     NOTE HONNÊTE SUR LA PORTÉE : la page restreint le tarif aux vols OPÉRÉS par Air China, et le
-     transporteur opérant n'est pas un fait du moteur (nommé dans l'en-tête de `tarifs.ts`). La
-     portée écrite ici interroge donc le canal, qui EST un fait ; la portée réelle attendra sa
-     modélisation, et c'est l'une des raisons pour lesquelles ce lot n'importe aucun tarif. */
+  /* Air China cabine : « booking from 7 days to 24 hours before departure », soit de J-7 à J-1.
+     NOTE HONNÊTE : la page réserve son tarif aux vols OPÉRÉS par Air China, et le transporteur
+     opérant n'est pas un fait du moteur. La portée écrite ici interroge le canal, qui EST un fait ;
+     c'est l'une des raisons pour lesquelles ce lot n'importe aucun tarif. */
   const airChina = {
     id: "fare_air_china_cabin", placement: "cabin",
     price: { kind: "exact", amounts: [{ amount: 1399, currency: "CNY" }] },
@@ -316,49 +272,41 @@ console.log("\n=== 6. La fenêtre d'achat est ÉVALUÉE, pas seulement enregistr
     JSON.stringify(Fare.safeParse(airChina).error?.issues ?? "").slice(0, 240));
 
   const contexte = { placement: "cabin" };
-  /* LES TROIS CAS EXIGÉS PAR CODEX. */
   check("délai DANS la fenêtre (J-3) → la fenêtre est vraie, et le tarif s'applique",
     porteeTarif(airChina, { ...contexte, days_before_departure: 3 }) === "vrai");
   check("délai HORS de la fenêtre (J-30, trop tôt) → la fenêtre est fausse",
     porteeTarif(airChina, { ...contexte, days_before_departure: 30 }) === "faux");
   check("délai ABSENT du contexte → INDÉCIDABLE, jamais « vrai » et jamais « faux »",
     porteeTarif(airChina, contexte) === "indecidable");
-
   check("…et la résolution suit : à J-3, le montant sort",
-    resoudreTarif([airChina], [], "cabin", { ...contexte, days_before_departure: 3 }).etat === "applicable");
+    resoudreTarif([airChina], [], "cabin", { ...contexte, days_before_departure: 3 }).montants.length === 1);
   check("…à J-30, aucun montant n'est publié",
-    resoudreTarif([airChina], [], "cabin", { ...contexte, days_before_departure: 30 }).etat === "aucun");
+    resolutionVide(resoudreTarif([airChina], [], "cabin", { ...contexte, days_before_departure: 30 })));
   check("…et sans délai connu, la grille est indécidable — à moitié su, pas dit",
-    resoudreTarif([airChina], [], "cabin", contexte).etat === "indecidable");
+    resoudreTarif([airChina], [], "cabin", contexte).indecidables.length === 1);
   check("le bord de la fenêtre est inclusif des deux côtés (J-1 et J-7 valent)",
     porteeTarif(airChina, { ...contexte, days_before_departure: 1 }) === "vrai"
       && porteeTarif(airChina, { ...contexte, days_before_departure: 7 }) === "vrai");
   check("et J-0 (le jour même) tombe sous le plancher publié",
     porteeTarif(airChina, { ...contexte, days_before_departure: 0 }) === "faux");
-
-  /* Un tarif SANS fenêtre ne pose aucune condition d'achat : il ne restreint rien. C'est différent
-     d'une fenêtre écrite qu'on ne saurait pas évaluer. */
   check("un tarif sans fenêtre d'achat n'est jamais bloqué par elle", evaluerFenetre(undefined, {}) === "vrai");
   check("une fenêtre écrite sans délai connu est indécidable, pas fausse",
     evaluerFenetre({ min_days_before_departure: 1, max_days_before_departure: 7 }, {}) === "indecidable");
 
-  /* LA PORTE ELLE-MÊME : deux paliers dont les FENÊTRES sont disjointes ne sont pas un
-     chevauchement. FIXTURE DE FORME — aucune page de l'audit ne publie deux paliers Air China ;
-     ce témoin n'éprouve que la mécanique que la version précédente cassait, en déclarant en
-     chevauchement deux prix qu'une page distingue parfaitement par la date d'achat. */
+  /* FIXTURE DE FORME — aucune page ne publie deux paliers Air China ; ce témoin n'éprouve que la
+     mécanique que la version précédente cassait. */
   const tot = { ...airChina, id: "fare_palier_tot", purchase_window: { min_days_before_departure: 7 } };
   const tard = { ...airChina, id: "fare_palier_tard", price: { kind: "exact", amounts: [{ amount: 1599, currency: "CNY" }] }, purchase_window: { max_days_before_departure: 6 } };
   const aJ10 = resoudreTarif([tot, tard], [], "cabin", { ...contexte, days_before_departure: 10 });
   check("deux paliers à fenêtres disjointes, achat à J-10 → un seul s'applique, AUCUN chevauchement",
-    aJ10.etat === "applicable" && aJ10.tarifs.length === 1 && aJ10.tarifs[0].id === "fare_palier_tot", JSON.stringify(aJ10).slice(0, 200));
+    aJ10.montants.length === 1 && aJ10.montants[0].id === "fare_palier_tot" && aJ10.chevauchements.length === 0, JSON.stringify(aJ10).slice(0, 200));
   const aJ2 = resoudreTarif([tot, tard], [], "cabin", { ...contexte, days_before_departure: 2 });
   check("…et à J-2, c'est l'autre palier, toujours sans chevauchement",
-    aJ2.etat === "applicable" && aJ2.tarifs.length === 1 && aJ2.tarifs[0].id === "fare_palier_tard", JSON.stringify(aJ2).slice(0, 200));
+    aJ2.montants.length === 1 && aJ2.montants[0].id === "fare_palier_tard" && aJ2.chevauchements.length === 0);
   const sansDelai = resoudreTarif([tot, tard], [], "cabin", contexte);
   check("sans délai connu, les DEUX paliers sont indécidables — et surtout, aucun prix ne sort",
-    sansDelai.etat === "indecidable" && sansDelai.tarifs.length === 2, JSON.stringify(sansDelai).slice(0, 200));
+    sansDelai.indecidables.length === 2 && sansDelai.montants.length === 0);
 
-  /* Le schéma de la fenêtre lui-même. */
   check("une fenêtre vide n'est pas une condition — refusée", refuse(PurchaseWindow, {}).refuse);
   check("une fenêtre dont le plancher dépasse le plafond ne s'ouvre jamais — refusée",
     refuse(PurchaseWindow, { min_days_before_departure: 9, max_days_before_departure: 2 }).refuse);
@@ -366,42 +314,28 @@ console.log("\n=== 6. La fenêtre d'achat est ÉVALUÉE, pas seulement enregistr
     PurchaseWindow.safeParse({ min_days_before_departure: 7 }).success);
 }
 
-console.log("\n=== 7. `resolved` était une porte arrière : elle est murée (P0-3) ===");
+console.log("\n=== 7. `resolved` était une porte arrière : elle est murée (P0-3, premier tour) ===");
 {
-  const conflit = {
-    id: "fare_conflict_finnair_hold_2026_09_10", placement: "hold", status: "unresolved",
-    effect: "suppress_exact_fare", scope_label: "Europe",
-    observations: [
-      { price: { kind: "exact", amounts: [{ amount: 140, currency: "EUR" }] }, source: SRC_FIN_A },
-      { price: { kind: "exact", amounts: [{ amount: 120, currency: "EUR" }] }, source: SRC_FIN_B },
-    ],
-  };
-  check("un conflit ouvert reste accepté", FareConflict.safeParse(conflit).success);
-  const resolu = { ...conflit, status: "resolved" };
-  const rr = refuse(FareConflict, resolu);
+  check("un conflit ouvert reste accepté", FareConflict.safeParse(CONFLIT_FINNAIR).success);
+  const rr = refuse(FareConflict, { ...CONFLIT_FINNAIR, status: "resolved" });
   check("`status: resolved` est REFUSÉ par le schéma — un mot ne rallume pas un prix contredit", rr.refuse, rr.motif);
-  check("…et mon propre témoin, qui consacrait ce comportement, est retiré : c'est l'erreur nommée de ce lot",
-    rr.refuse);
+  check("…et mon propre témoin, qui consacrait ce comportement, est retiré : erreur nommée", rr.refuse);
   for (const faux of ["closed", "arbitrated", "", "UNRESOLVED"]) {
-    check(`aucune autre valeur ne passe non plus (\`${faux || "(vide)"}\`)`, refuse(FareConflict, { ...conflit, status: faux }).refuse);
+    check(`aucune autre valeur ne passe non plus (\`${faux || "(vide)"}\`)`, refuse(FareConflict, { ...CONFLIT_FINNAIR, status: faux }).refuse);
   }
-  /* Et aucun champ latéral n'ouvre de contournement : le schéma est strict. */
   check("aucun champ de résolution improvisé n'est toléré (schéma strict)",
-    refuse(FareConflict, { ...conflit, resolved_by: "moi", winner: "fare_a" }).refuse);
-  /* Le seul moyen de rouvrir un montant est de RETIRER le conflit, ce qui laisse une trace au dépôt. */
+    refuse(FareConflict, { ...CONFLIT_FINNAIR, resolved_by: "moi", winner: "fare_a" }).refuse);
   const sansConflit = resoudreTarif(
     [{ id: "fare_finnair_hold_europe", placement: "hold", price: { kind: "exact", amounts: [{ amount: 140, currency: "EUR" }] },
        billing_subject: "pet", journey_basis: "per_one_way",
        applies_when: { all: [{ fact: "route.dest_country_id", op: "eq", value: "country_fi" }] }, source: SRC_FIN_A }],
     [], "hold", { "route.dest_country_id": "country_fi" });
   check("retirer le conflit du dépôt, lui, rouvre le montant — et se voit dans l'historique",
-    sansConflit.etat === "applicable", JSON.stringify(sansConflit).slice(0, 160));
+    sansConflit.montants.length === 1, JSON.stringify(sansConflit).slice(0, 160));
 }
 
 console.log("\n=== 8. Une fourchette encadre CHAQUE devise, dans le bon sens (P0-4) ===");
 {
-  /* KLM soute : « ranges from EUR 70 to EUR 500 per one-way flight » — la fourchette la mieux citée
-     de l'audit, une phrase entière portant ses deux bornes. */
   const klm = {
     id: "fare_klm_hold_range", placement: "hold",
     price: { kind: "range", amounts: [{ amount: 70, currency: "EUR" }, { amount: 500, currency: "EUR" }] },
@@ -411,49 +345,34 @@ console.log("\n=== 8. Une fourchette encadre CHAQUE devise, dans le bon sens (P0
   };
   check("la fourchette KLM 70–500 EUR est acceptée", Fare.safeParse(klm).success,
     JSON.stringify(Fare.safeParse(klm).error?.issues ?? "").slice(0, 240));
-
-  /* L'EXEMPLE EXACT DE CODEX : nombre pair de montants, aucune devise encadrée. */
   const depareillee = { ...klm.price, amounts: [{ amount: 60, currency: "EUR" }, { amount: 100, currency: "USD" }] };
   const rd = refuse(FarePrice, depareillee);
   check("« 60 EUR et 100 USD » n'est PAS une fourchette : aucune devise n'y a ses deux bornes", rd.refuse, rd.motif);
-  check("…et le motif parle bien de la fourchette, pas d'autre chose", rd.motif.toLowerCase().includes("fourchette"), rd.motif);
-
-  const inversee = { ...klm.price, amounts: [{ amount: 500, currency: "EUR" }, { amount: 70, currency: "EUR" }] };
+  check("…et le motif parle bien de la fourchette", rd.motif.toLowerCase().includes("fourchette"), rd.motif);
   check("une fourchette inversée (500 puis 70) est refusée : le minimum s'écrit d'abord",
-    refuse(FarePrice, inversee).refuse, refuse(FarePrice, inversee).motif);
-
-  const uneSeule = { ...klm.price, amounts: [{ amount: 70, currency: "EUR" }] };
-  check("une borne seule n'encadre rien — refusée", refuse(FarePrice, uneSeule).refuse, refuse(FarePrice, uneSeule).motif);
-  const trois = { ...klm.price, amounts: [{ amount: 70, currency: "EUR" }, { amount: 300, currency: "EUR" }, { amount: 500, currency: "EUR" }] };
-  check("trois montants dans une devise : on ne saurait pas lequel est le maximum — refusé", refuse(FarePrice, trois).refuse);
-
-  const deuxDevises = { ...klm.price, amounts: [{ amount: 70, currency: "EUR" }, { amount: 500, currency: "EUR" }, { amount: 80, currency: "USD" }, { amount: 560, currency: "USD" }] };
+    refuse(FarePrice, { ...klm.price, amounts: [{ amount: 500, currency: "EUR" }, { amount: 70, currency: "EUR" }] }).refuse);
+  check("une borne seule n'encadre rien — refusée", refuse(FarePrice, { ...klm.price, amounts: [{ amount: 70, currency: "EUR" }] }).refuse);
+  check("trois montants dans une devise : on ne saurait pas lequel est le maximum — refusé",
+    refuse(FarePrice, { ...klm.price, amounts: [{ amount: 70, currency: "EUR" }, { amount: 300, currency: "EUR" }, { amount: 500, currency: "EUR" }] }).refuse);
   check("deux devises, chacune correctement encadrée : accepté — le témoin n'est pas vacant",
-    FarePrice.safeParse(deuxDevises).success, JSON.stringify(FarePrice.safeParse(deuxDevises).error?.issues ?? "").slice(0, 200));
-  const deuxDevisesUneInversee = { ...klm.price, amounts: [{ amount: 70, currency: "EUR" }, { amount: 500, currency: "EUR" }, { amount: 560, currency: "USD" }, { amount: 80, currency: "USD" }] };
+    FarePrice.safeParse({ ...klm.price, amounts: [{ amount: 70, currency: "EUR" }, { amount: 500, currency: "EUR" }, { amount: 80, currency: "USD" }, { amount: 560, currency: "USD" }] }).success);
   check("…et il suffit qu'UNE des deux devises soit inversée pour que tout soit refusé",
-    refuse(FarePrice, deuxDevisesUneInversee).refuse);
-  /* Les natures non-fourchettes gardent leur règle : une devise, un montant. */
+    refuse(FarePrice, { ...klm.price, amounts: [{ amount: 70, currency: "EUR" }, { amount: 500, currency: "EUR" }, { amount: 560, currency: "USD" }, { amount: 80, currency: "USD" }] }).refuse);
   check("un `exact` avec deux montants dans la même devise reste refusé — c'est un conflit, pas une ligne",
     refuse(FarePrice, { kind: "exact", amounts: [{ amount: 70, currency: "EUR" }, { amount: 500, currency: "EUR" }] }).refuse);
 }
 
-console.log("\n=== 9. Une portée vide ne s'applique pas partout (P1) ===");
+console.log("\n=== 9. Une portée vide ne s'applique pas partout (P1, premier tour) ===");
 {
-  /* `{ all: [] }` est vrai par vacuité, `{ any: [] }` est faux par vacuité : deux pertes muettes,
-     qu'une simple erreur d'indentation dans un `.yml` suffit à produire. */
   check("`{ all: [] }` ne vaut PAS « vrai » à l'évaluation — il est indécidable",
     evaluerPortee({ all: [] }, { "route.dest_country_id": "country_cn" }) === "indecidable");
   check("`{ any: [] }` ne vaut pas « faux » non plus — il est indécidable",
     evaluerPortee({ any: [] }, { "route.dest_country_id": "country_cn" }) === "indecidable");
-
   check("`porteeSaine` refuse le combinateur vide", !porteeSaine({ all: [] }) && !porteeSaine({ any: [] }));
   check("…y compris IMBRIQUÉ, à n'importe quelle profondeur",
-    !porteeSaine({ all: [{ fact: "placement", op: "eq", value: "hold" }, { any: [] }] })
-      && !porteeSaine({ not: { all: [] } }));
+    !porteeSaine({ all: [{ fact: "placement", op: "eq", value: "hold" }, { any: [] }] }) && !porteeSaine({ not: { all: [] } }));
   check("…et accepte une portée qui dit quelque chose",
     porteeSaine(undefined) && porteeSaine({ all: [{ fact: "placement", op: "eq", value: "hold" }] }));
-
   const base = {
     id: "fare_portee_vide", placement: "hold",
     price: { kind: "exact", amounts: [{ amount: 725, currency: "EUR" }] },
@@ -462,22 +381,167 @@ console.log("\n=== 9. Une portée vide ne s'applique pas partout (P1) ===");
   const rv = refuse(Fare, { ...base, applies_when: { all: [] } });
   check("un tarif à portée vide est REFUSÉ à l'écriture — c'est là que se joue la garantie", rv.refuse, rv.motif);
   check("…et le motif nomme la portée", rv.motif.includes("applies_when"), rv.motif);
-  check("un tarif à portée vide IMBRIQUÉE est refusé aussi",
-    refuse(Fare, { ...base, applies_when: { all: [{ any: [] }] } }).refuse);
+  check("un tarif à portée vide IMBRIQUÉE est refusé aussi", refuse(Fare, { ...base, applies_when: { all: [{ any: [] }] } }).refuse);
   check("un CONFLIT à portée vide est refusé de la même façon — il éteindrait tous les prix du canal",
-    refuse(FareConflict, {
-      id: "conflit_portee_vide", placement: "hold", status: "unresolved", effect: "suppress_exact_fare",
-      applies_when: { any: [] },
-      observations: [
-        { price: { kind: "exact", amounts: [{ amount: 140, currency: "EUR" }] }, source: SRC_FIN_A },
-        { price: { kind: "exact", amounts: [{ amount: 120, currency: "EUR" }] }, source: SRC_FIN_B },
-      ],
-    }).refuse);
+    refuse(FareConflict, { ...CONFLIT_FINNAIR, applies_when: { any: [] } }).refuse);
   check("et le même tarif, avec une portée qui dit quelque chose, passe — le témoin n'est pas vacant",
     Fare.safeParse({ ...base, applies_when: { all: [{ fact: "placement", op: "eq", value: "hold" }] } }).success);
 }
 
-console.log("\n=== 10. La projection ne perd pas les tarifs — la faute du 08/09, deux fois apprise ===");
+console.log("\n=== 10. LES CINQ SABOTAGES DE PROVENANCE (P0-1, second tour) ===");
+{
+  /* Mon contrôle maison vérifiait que `quote`, `quote_language` et `locator` EXISTAIENT. Il ne
+     regardait ni la page, ni le type de source, ni la cadence de relecture. Ces cinq objets
+     passaient tous. Ils sont rejoués ici un par un, sur le tarif ET sur l'observation de conflit. */
+  const bon = {
+    id: "fare_temoin_provenance", placement: "hold",
+    price: { kind: "exact", amounts: [{ amount: 725, currency: "EUR" }] },
+    billing_subject: "container", journey_basis: "per_segment",
+    applies_when: { all: [{ fact: "placement", op: "eq", value: "hold" }] },
+    source: SRC_SAS,
+  };
+  check("préalable : le tarif témoin, avec sa provenance réelle, est accepté", Fare.safeParse(bon).success,
+    JSON.stringify(Fare.safeParse(bon).error?.issues ?? "").slice(0, 240));
+
+  const SABOTAGES = [
+    ["auto-citation : une URL mydogcanfly.com", { url: "https://mydogcanfly.com/tools/tarifs" }],
+    ["auto-citation : un SOUS-DOMAINE à nous", { url: "https://www.mydogcanfly.com/fr/compagnies/sas" }],
+    ["un article de PRESSE ne fonde pas un prix", { source_type: "press" }],
+    ["un type de source « other » non plus", { source_type: "other" }],
+    ["une URL `ftp://` n'est pas une page consultable", { url: "ftp://flysas.com/tarifs.txt" }],
+    ["une échéance de relecture repoussée à 2030 — c'est-à-dire aucune relecture", { review_due: "2030-01-01" }],
+    ["une échéance trop COURTE est refusée aussi : la cadence est de 90 jours au jour près, pas « au plus »", { review_due: "2026-10-01" }],
+  ];
+  for (const [libelle, mutation] of SABOTAGES) {
+    const saboteFare = { ...bon, source: { ...SRC_SAS, ...mutation } };
+    const rf = refuse(Fare, saboteFare);
+    check(`tarif — ${libelle} : REFUSÉ`, rf.refuse, rf.motif);
+    const saboteObs = {
+      ...CONFLIT_FINNAIR,
+      observations: [CONFLIT_FINNAIR.observations[0], { ...CONFLIT_FINNAIR.observations[1], source: { ...SRC_FIN_B, ...mutation } }],
+    };
+    check(`observation de conflit — ${libelle} : REFUSÉE`, refuse(FareConflict, saboteObs).refuse);
+  }
+  /* Et la garantie de fond : le contrat n'est pas recopié dans `tarifs.ts`, il est RÉEMPLOYÉ.
+     Une observation isolée doit donc être refusée par les mêmes règles qu'un tarif. */
+  check("`FareObservation` et `Fare` refusent la même source inadmissible — un seul contrat, pas deux",
+    refuse(FareObservation, { price: { kind: "exact", amounts: [{ amount: 140, currency: "EUR" }] }, source: { ...SRC_FIN_A, source_type: "press" } }).refuse);
+  check("…et acceptent la même source admissible",
+    FareObservation.safeParse({ price: { kind: "exact", amounts: [{ amount: 140, currency: "EUR" }] }, source: SRC_FIN_A }).success);
+  check("un lien officiel SANS citation ne devient pas une preuve de prix par la bande",
+    refuse(FareObservation, { price: { kind: "exact", amounts: [{ amount: 140, currency: "EUR" }] }, source: { url: SRC_FIN_A.url, source_type: "official_website", verified_date: "2026-09-10", review_due: "2026-12-09", confidence: 4, reviewer: "x", history: [] } }).refuse);
+}
+
+console.log("\n=== 11. UN FAUX CONFLIT NE PEUT PLUS ÉTEINDRE UN VRAI TARIF (P0-2, second tour) ===");
+{
+  /* Le sabotage le plus coûteux : il ne publie pas un prix faux, il EFFACE un prix vrai. */
+  const deuxFoisLeMeme = {
+    ...CONFLIT_FINNAIR,
+    observations: [CONFLIT_FINNAIR.observations[0], { ...CONFLIT_FINNAIR.observations[0] }],
+  };
+  const r1 = refuse(FareConflict, deuxFoisLeMeme);
+  check("deux observations STRICTEMENT identiques ne sont pas un conflit — refusé", r1.refuse, r1.motif);
+  check("…et le motif nomme les prix, pas la forme", r1.motif.includes("observations"), r1.motif);
+  const memePrixDeuxPages = {
+    ...CONFLIT_FINNAIR,
+    observations: [
+      { price: { kind: "exact", amounts: [{ amount: 140, currency: "EUR" }] }, source: SRC_FIN_A },
+      { price: { kind: "exact", amounts: [{ amount: 140, currency: "EUR" }] }, source: SRC_FIN_B },
+    ],
+  };
+  check("deux pages DIFFÉRENTES qui publient le MÊME montant ne se contredisent pas — refusé",
+    refuse(FareConflict, memePrixDeuxPages).refuse, refuse(FareConflict, memePrixDeuxPages).motif);
+  const memeMontantAutreOrdre = {
+    ...CONFLIT_FINNAIR,
+    observations: [
+      { price: { kind: "exact", amounts: [{ amount: 140, currency: "EUR" }, { amount: 150, currency: "USD" }] }, source: SRC_FIN_A },
+      { price: { kind: "exact", amounts: [{ amount: 150, currency: "USD" }, { amount: 140, currency: "EUR" }] }, source: SRC_FIN_B },
+    ],
+  };
+  check("…même écrits dans un autre ordre de devises : le prix canonique les reconnaît identiques",
+    refuse(FareConflict, memeMontantAutreOrdre).refuse);
+
+  const deuxMecanismes = {
+    ...CONFLIT_FINNAIR,
+    observations: [
+      { price: { kind: "quote", amounts: [] }, source: SRC_FIN_A },
+      { price: { kind: "calculator", amounts: [] }, source: SRC_FIN_B },
+    ],
+  };
+  const r2 = refuse(FareConflict, deuxMecanismes);
+  check("« sur devis » contre « calculateur » n'est pas un désaccord sur un MONTANT — refusé", r2.refuse, r2.motif);
+  check("un conflit MIXTE (un montant, un mécanisme) est refusé aussi",
+    refuse(FareConflict, { ...CONFLIT_FINNAIR, observations: [CONFLIT_FINNAIR.observations[0], { price: { kind: "quote", amounts: [] }, source: SRC_FIN_B }] }).refuse);
+
+  for (const axe of ["billing_subject", "journey_basis"]) {
+    const sans = { ...CONFLIT_FINNAIR }; delete sans[axe];
+    check(`un conflit sans \`${axe}\` est refusé : deux prix ne se contredisent que sur des axes communs`,
+      refuse(FareConflict, sans).refuse, refuse(FareConflict, sans).motif);
+  }
+
+  /* La fenêtre d'achat du conflit est RÉELLEMENT évaluée : un désaccord daté ne couvre pas un
+     achat hors de sa fenêtre, et n'éteint donc pas un tarif qu'il ne concerne pas. */
+  const tarif = {
+    id: "fare_finnair_hold_europe", placement: "hold",
+    price: { kind: "exact", amounts: [{ amount: 140, currency: "EUR" }] },
+    billing_subject: "pet", journey_basis: "per_one_way",
+    applies_when: { all: [{ fact: "route.dest_country_id", op: "eq", value: "country_fi" }] }, source: SRC_FIN_A,
+  };
+  const conflitFenetre = { ...CONFLIT_FINNAIR, purchase_window: { max_days_before_departure: 6 } };
+  const faits = { "route.dest_country_id": "country_fi" };
+  check("préalable : le conflit à fenêtre est accepté", FareConflict.safeParse(conflitFenetre).success,
+    JSON.stringify(FareConflict.safeParse(conflitFenetre).error?.issues ?? "").slice(0, 240));
+  const dansLaFenetre = resoudreTarif([tarif], [conflitFenetre], "hold", { ...faits, days_before_departure: 2 });
+  check("achat à J-2, dans la fenêtre du conflit → le montant est éteint",
+    dansLaFenetre.conflits.length === 1 && dansLaFenetre.montants.length === 0 && dansLaFenetre.supprimes.length === 1);
+  const horsFenetre = resoudreTarif([tarif], [conflitFenetre], "hold", { ...faits, days_before_departure: 40 });
+  check("achat à J-40, HORS de la fenêtre du conflit → le montant survit : un désaccord daté ne déborde pas",
+    horsFenetre.conflits.length === 0 && horsFenetre.montants.length === 1, JSON.stringify(horsFenetre).slice(0, 200));
+  const fenetreInconnue = resoudreTarif([tarif], [conflitFenetre], "hold", faits);
+  check("délai inconnu → le conflit couvre quand même : ne pas savoir n'autorise pas à publier",
+    fenetreInconnue.conflits.length === 1 && fenetreInconnue.montants.length === 0);
+}
+
+console.log("\n=== 12. AUCUNE LIGNE NE DISPARAÎT PAR PRIORITÉ INTERNE (P1, second tour) ===");
+{
+  const base = {
+    placement: "hold", billing_subject: "container", journey_basis: "per_segment",
+    applies_when: { all: [{ fact: "route.dest_country_id", op: "eq", value: "country_cn" }] },
+  };
+  const montant = { ...base, id: "fare_num", price: { kind: "exact", amounts: [{ amount: 725, currency: "EUR" }] }, source: SRC_SAS };
+  const mecanisme = { ...base, id: "fare_booking", price: { kind: "booking_only", amounts: [] }, source: { ...SRC_SAS, quote: "the exact price is shown during booking", locator: "Fees → booking flow" } };
+  const faits = { "route.dest_country_id": "country_cn" };
+  const r = resoudreTarif([montant, mecanisme], [], "hold", faits);
+  check("un montant ET un `booking_only` applicables ensemble : LES DEUX sortent",
+    r.montants.length === 1 && r.montants[0].id === "fare_num" && r.mecanismes.length === 1 && r.mecanismes[0].id === "fare_booking",
+    JSON.stringify({ montants: r.montants.map((f) => f.id), mecanismes: r.mecanismes.map((f) => f.id) }));
+  check("…c'est exactement le sabotage de Codex : le mécanisme ne disparaît plus derrière le montant",
+    r.mecanismes.length === 1);
+
+  /* Plusieurs conflits couvrants : `find()` n'en gardait qu'un. */
+  const c1 = { ...CONFLIT_FINNAIR, id: "conflit_un", applies_when: { all: [{ fact: "route.dest_country_id", op: "eq", value: "country_cn" }] } };
+  const c2 = { ...CONFLIT_FINNAIR, id: "conflit_deux", applies_when: undefined, scope_label: "toutes destinations" };
+  const rc = resoudreTarif([montant], [c1, c2], "hold", faits);
+  check("DEUX conflits couvrent le trajet → les deux sont rendus, jamais le premier seul",
+    rc.conflits.length === 2 && rc.conflits.map((c) => c.id).join(",") === "conflit_un,conflit_deux", JSON.stringify(rc.conflits.map((c) => c.id)));
+  check("…et le montant qu'ils éteignent est nommé une fois dans `supprimes`",
+    rc.montants.length === 0 && rc.supprimes.length === 1 && rc.supprimes[0].id === "fare_num");
+  check("…tandis que le MÉCANISME survit au conflit : l'effet publié est `suppress_exact_fare`, pas « tout effacer »",
+    resoudreTarif([montant, mecanisme], [c1], "hold", faits).mecanismes.length === 1);
+
+  /* Un chevauchement ne masque plus le reste de l'inventaire non plus. */
+  const a = { ...montant, id: "fare_x", price: { kind: "exact", amounts: [{ amount: 725, currency: "EUR" }] } };
+  const b = { ...montant, id: "fare_y", price: { kind: "exact", amounts: [{ amount: 680, currency: "EUR" }] } };
+  const indecidable = { ...montant, id: "fare_zone", applies_when: { all: [{ fact: "route.origin_airport_id", op: "eq", value: "airport_cdg" }] } };
+  const tout = resoudreTarif([a, b, mecanisme, indecidable], [], "hold", faits);
+  check("chevauchement, mécanisme et indécidable coexistent dans le MÊME inventaire",
+    tout.chevauchements.length === 2 && tout.mecanismes.length === 1 && tout.indecidables.length === 1 && tout.montants.length === 0,
+    JSON.stringify({ ch: tout.chevauchements.length, me: tout.mecanismes.length, ind: tout.indecidables.length, mo: tout.montants.length }));
+  check("une résolution qui ne dit rien se reconnaît à ses six listes vides",
+    resolutionVide(resoudreTarif([], [], "hold", faits)) && !resolutionVide(tout));
+}
+
+console.log("\n=== 13. La projection ne perd pas les tarifs — la faute du 08/09, deux fois apprise ===");
 {
   const politique = {
     availability: "offered",
@@ -502,7 +566,7 @@ console.log("\n=== 10. La projection ne perd pas les tarifs — la faute du 08/0
   }
 }
 
-console.log("\n=== 11. Aucun tarif n'est importé par ce lot — le contrat d'abord ===");
+console.log("\n=== 14. Aucun tarif n'est importé par ce lot — le contrat d'abord ===");
 {
   const objets = JSON.parse(readFileSync("packages/knowledge/raw/objects.json", "utf8"));
   let avecTarifs = 0, avecConflits = 0;
@@ -515,53 +579,130 @@ console.log("\n=== 11. Aucun tarif n'est importé par ce lot — le contrat d'ab
   check("…ni aucun conflit tarifaire", avecConflits === 0, `${avecConflits} politique(s) portent déjà un conflit`);
 }
 
-console.log("\n=== 12. L'INGESTION porte les tarifs de la fiche jusqu'à l'artefact — sur un bac à sable, jamais sur le dépôt ===");
+console.log("\n=== 15. L'INGESTION, jouée quatre fois sur un bac à sable : une nominale, trois sabotées (P0-3) ===");
 {
-  /* Le champ le plus fragile de ce dépôt est celui qu'on ajoute au schéma en oubliant un maillon : le seuil s'est
-     perdu le 15/08 dans la préservation, le champ du quatrième état le 08/09 dans la projection. Ce témoin joue
-     l'ingestion RÉELLE sur une copie du dépôt, avec un tarif écrit à la main dans une fiche, et exige qu'il arrive
-     dans `objects.json`. Il ne touche jamais la donnée versionnée. */
-  const { mkdtempSync, cpSync, writeFileSync: ecrire } = await import("node:fs");
+  const { mkdtempSync, cpSync, writeFileSync: ecrire, symlinkSync } = await import("node:fs");
   const { execFileSync } = await import("node:child_process");
   const { tmpdir } = await import("node:os");
   const { join } = await import("node:path");
   const bac = mkdtempSync(join(tmpdir(), "mdcf-tarifs-"));
-  /* `test-baselines/` fait partie du bac : l'ingestion lit les identités approuvées, et sans elles elle
-     s'arrête avant d'écrire — ce que mon premier jet prenait pour une perte du champ (erreur nommée). */
+  /* `test-baselines/` fait partie du bac : l'ingestion lit les identités approuvées, et sans elles
+     elle s'arrête avant d'écrire — ce que mon premier jet prenait pour une perte du champ. */
   for (const d of ["content", "packages", "test-baselines"]) cpSync(d, join(bac, d), { recursive: true });
-  /* Le bac à sable n'a pas ses dépendances : on lie celles du dépôt plutôt que de les recopier
-     (elles pèsent des centaines de mégaoctets, et l'ingestion n'en modifie aucune). */
-  const { symlinkSync } = await import("node:fs");
   symlinkSync(join(process.cwd(), "node_modules"), join(bac, "node_modules"), "dir");
   cpSync("package.json", join(bac, "package.json"));
   const fiche = join(bac, "content/airlines/sas.yml");
-  const yml = readFileSync(fiche, "utf8");
-  const bloc = `  hold:\n    availability: offered\n    fares:\n      - id: fare_sas_hold_china\n        placement: hold\n        price:\n          kind: exact\n          amounts:\n            - { amount: 725, currency: EUR }\n        billing_subject: container\n        journey_basis: per_segment\n        applies_when: { all: [{ fact: route.dest_country_id, op: eq, value: country_cn }] }\n        purchase_window: { min_days_before_departure: 1 }\n        scope_label: Chine\n        source:\n          url: "https://www.flysas.com/en/travel-info/travel-with-pets/in-hold"\n          source_type: official_website\n          verified_date: "2026-09-10"\n          review_due: "2026-12-09"\n          confidence: 4\n          reviewer: "harnais du contrat tarifaire"\n          history: []\n          quote: "China: 5400 DKK, 7600 NOK, 7600 SEK, 725 EUR, 775 USD"\n          quote_language: en\n          locator: "Fees → Pet in cargo hold → China"\n`;
-  const avant = yml.indexOf("  hold:\n");
-  const apres = yml.indexOf("\n  cargo:", avant);
-  check("préalable : la fiche SAS a bien un bloc soute à remplacer", avant > 0 && apres > avant);
-  ecrire(fiche, yml.slice(0, avant) + bloc + yml.slice(apres + 1));
-  let sortie = "";
-  try {
-    sortie = execFileSync("npx", ["tsx", "packages/knowledge/scripts/ingest-airlines.mjs"], { cwd: bac, encoding: "utf8", stdio: ["ignore", "pipe", "pipe"] });
-  } catch (e) { sortie = String(e.stdout ?? "") + String(e.stderr ?? ""); }
-  check("l'ingestion accepte une fiche qui porte un tarif", /ingested|derived/.test(sortie), sortie.slice(-300));
-  const o = JSON.parse(readFileSync(join(bac, "packages/knowledge/raw/objects.json"), "utf8"));
-  const pol = o.airlines.find((a) => a.id === "airline_sas")?.premium?.policy?.hold;
-  check("…et le tarif ARRIVE dans l'artefact, avec ses deux axes et sa citation propre",
-    Array.isArray(pol?.fares) && pol.fares.length === 1 && pol.fares[0].billing_subject === "container"
-      && pol.fares[0].journey_basis === "per_segment" && pol.fares[0].source?.locator === "Fees → Pet in cargo hold → China",
-    JSON.stringify(pol?.fares ?? null).slice(0, 260));
-  check("…et la portée arrive exécutable, pas aplatie en texte",
-    !!pol?.fares?.[0]?.applies_when?.all?.[0]?.fact && pol.fares[0].applies_when.all[0].fact === "route.dest_country_id",
-    JSON.stringify(pol?.fares?.[0]?.applies_when ?? null));
-  check("…et la FENÊTRE D'ACHAT survit elle aussi au trajet fiche → artefact (P0-2)",
-    pol?.fares?.[0]?.purchase_window?.min_days_before_departure === 1,
-    JSON.stringify(pol?.fares?.[0]?.purchase_window ?? null));
-  check("…et le tarif se résout sur le trajet, depuis l'artefact et non depuis la fixture",
-    resoudreTarif(pol?.fares ?? [], [], "hold", { "route.dest_country_id": "country_cn", days_before_departure: 5 }).etat === "applicable");
-  check("…et le MÊME tarif, sans délai connu, ne publie aucun montant depuis l'artefact",
-    resoudreTarif(pol?.fares ?? [], [], "hold", { "route.dest_country_id": "country_cn" }).etat === "indecidable");
+  const original = readFileSync(fiche, "utf8");
+  const objetsOriginaux = readFileSync(join(bac, "packages/knowledge/raw/objects.json"), "utf8");
+
+  const SRC_YML = (ind) => [
+    `${ind}source:`,
+    `${ind}  url: "https://www.flysas.com/en/travel-info/travel-with-pets/in-hold"`,
+    `${ind}  source_type: official_website`,
+    `${ind}  verified_date: "2026-09-10"`,
+    `${ind}  review_due: "2026-12-09"`,
+    `${ind}  confidence: 4`,
+    `${ind}  reviewer: "harnais du contrat tarifaire"`,
+    `${ind}  history: []`,
+    `${ind}  quote: "China: 5400 DKK, 7600 NOK, 7600 SEK, 725 EUR, 775 USD"`,
+    `${ind}  quote_language: en`,
+    `${ind}  locator: "Fees → Pet in cargo hold → China"`,
+  ].join("\n");
+  const TARIF_YML = (id, placement) => [
+    `      - id: ${id}`,
+    `        placement: ${placement}`,
+    `        price:`,
+    `          kind: exact`,
+    `          amounts:`,
+    `            - { amount: 725, currency: EUR }`,
+    `        billing_subject: container`,
+    `        journey_basis: per_segment`,
+    `        applies_when: { all: [{ fact: route.dest_country_id, op: eq, value: country_cn }] }`,
+    `        purchase_window: { min_days_before_departure: 1 }`,
+    `        scope_label: Chine`,
+    SRC_YML("        "),
+  ].join("\n");
+  const CONFLIT_YML = (id, placement) => [
+    `      - id: ${id}`,
+    `        placement: ${placement}`,
+    `        status: unresolved`,
+    `        effect: suppress_exact_fare`,
+    `        billing_subject: container`,
+    `        journey_basis: per_segment`,
+    `        observations:`,
+    `          - price: { kind: exact, amounts: [{ amount: 725, currency: EUR }] }`,
+    SRC_YML("            "),
+    `          - price: { kind: exact, amounts: [{ amount: 680, currency: EUR }] }`,
+    SRC_YML("            "),
+  ].join("\n");
+
+  /** Remplace le bloc `hold:` de la fiche SAS, rejoue l'ingestion, rend sa sortie et l'artefact. */
+  const jouer = (blocHold) => {
+    ecrire(join(bac, "packages/knowledge/raw/objects.json"), objetsOriginaux);
+    const avant = original.indexOf("  hold:\n");
+    const apres = original.indexOf("\n  cargo:", avant);
+    ecrire(fiche, original.slice(0, avant) + blocHold + original.slice(apres + 1));
+    let sortie = "", ok = true;
+    try {
+      sortie = execFileSync("npx", ["tsx", "packages/knowledge/scripts/ingest-airlines.mjs"], { cwd: bac, encoding: "utf8", stdio: ["ignore", "pipe", "pipe"] });
+    } catch (e) { ok = false; sortie = String(e.stdout ?? "") + String(e.stderr ?? ""); }
+    let artefact = null;
+    try { artefact = JSON.parse(readFileSync(join(bac, "packages/knowledge/raw/objects.json"), "utf8")); } catch { /* laissé à null */ }
+    return { ok, sortie, artefact };
+  };
+  const holdSas = (corps) => `  hold:\n    availability: offered\n${corps}`;
+
+  console.log("  — (a) nominale : le tarif traverse la fiche, l'ingestion et l'artefact");
+  {
+    const { ok, sortie, artefact } = jouer(holdSas(`    fares:\n${TARIF_YML("fare_sas_hold_china", "hold")}\n`));
+    check("l'ingestion accepte une fiche qui porte un tarif", ok && /ingested|derived/.test(sortie), sortie.slice(-300));
+    const pol = artefact?.airlines.find((a) => a.id === "airline_sas")?.premium?.policy?.hold;
+    check("…et le tarif ARRIVE dans l'artefact, avec ses deux axes et sa citation propre",
+      Array.isArray(pol?.fares) && pol.fares.length === 1 && pol.fares[0].billing_subject === "container"
+        && pol.fares[0].journey_basis === "per_segment" && pol.fares[0].source?.locator === "Fees → Pet in cargo hold → China",
+      JSON.stringify(pol?.fares ?? null).slice(0, 260));
+    check("…et la portée arrive exécutable, pas aplatie en texte",
+      pol?.fares?.[0]?.applies_when?.all?.[0]?.fact === "route.dest_country_id");
+    check("…et la FENÊTRE D'ACHAT survit elle aussi au trajet fiche → artefact",
+      pol?.fares?.[0]?.purchase_window?.min_days_before_departure === 1);
+    check("…et le tarif se résout sur le trajet, depuis l'artefact et non depuis la fixture",
+      resoudreTarif(pol?.fares ?? [], [], "hold", { "route.dest_country_id": "country_cn", days_before_departure: 5 }).montants.length === 1);
+    check("…et le MÊME tarif, sans délai connu, ne publie aucun montant depuis l'artefact",
+      resoudreTarif(pol?.fares ?? [], [], "hold", { "route.dest_country_id": "country_cn" }).indecidables.length === 1);
+  }
+
+  console.log("  — (b) SABOTAGE 1 : un tarif `placement: cabin` rangé sous la politique SOUTE");
+  {
+    const { ok, sortie, artefact } = jouer(holdSas(`    fares:\n${TARIF_YML("fare_sas_hold_china", "cabin")}\n`));
+    check("l'ingestion REFUSE — sans cette garde, le tarif serait importé puis jamais retrouvé", !ok, sortie.slice(-260));
+    check("…et le motif nomme le canal réel et le canal déclaré", /rangé sous policies\.hold.*placement cabin/s.test(sortie), sortie.slice(-260));
+    const pol = artefact?.airlines.find((a) => a.id === "airline_sas")?.premium?.policy?.hold;
+    check("…et l'artefact n'a pas bougé : rien n'est écrit quand la fiche est refusée", !Array.isArray(pol?.fares) || pol.fares.length === 0);
+  }
+
+  console.log("  — (c) SABOTAGE 2 : deux tarifs portant exactement le même identifiant");
+  {
+    const { ok, sortie } = jouer(holdSas(`    fares:\n${TARIF_YML("fare_sas_hold_china", "hold")}\n${TARIF_YML("fare_sas_hold_china", "hold")}\n`));
+    check("l'ingestion REFUSE — un identifiant stable qui se partage ne promet plus rien", !ok, sortie.slice(-260));
+    check("…et le motif nomme l'identifiant en double", /identifiant de tarif fare_sas_hold_china/.test(sortie), sortie.slice(-260));
+  }
+
+  console.log("  — (d) SABOTAGE 3 : un conflit `placement: cargo` rangé sous la politique SOUTE");
+  {
+    const { ok, sortie } = jouer(holdSas(`    fare_conflicts:\n${CONFLIT_YML("conflit_sas_soute", "cargo")}\n`));
+    check("l'ingestion REFUSE — un conflit mal rangé n'éteindrait rien, ou éteindrait le mauvais canal", !ok, sortie.slice(-260));
+    check("…et le motif nomme le conflit et son canal", /conflit conflit_sas_soute/.test(sortie), sortie.slice(-260));
+  }
+
+  console.log("  — (e) non-vacuité : le MÊME conflit, correctement rangé, est accepté");
+  {
+    const { ok, sortie, artefact } = jouer(holdSas(`    fare_conflicts:\n${CONFLIT_YML("conflit_sas_soute", "hold")}\n`));
+    check("le conflit bien rangé traverse l'ingestion — les trois gardes refusent la faute, pas la fonction", ok, sortie.slice(-300));
+    const pol = artefact?.airlines.find((a) => a.id === "airline_sas")?.premium?.policy?.hold;
+    check("…et il arrive dans l'artefact avec ses deux observations",
+      Array.isArray(pol?.fare_conflicts) && pol.fare_conflicts.length === 1 && pol.fare_conflicts[0].observations.length === 2,
+      JSON.stringify(pol?.fare_conflicts ?? null).slice(0, 200));
+  }
 }
 
 console.log(`\n=== SUMMARY ===\n${fail === 0 ? `ALL CHECKS PASSED (${pass})` : `${fail} CHECK(S) FAILED sur ${pass + fail}`}`);

@@ -4047,3 +4047,65 @@ C'est l'une des raisons pour lesquelles **ce lot n'importe toujours aucun tarif*
 **Mouvement des comptes.** Contre-épreuves du contrat tarifaire : **44 → 103**. Aucun autre compteur ne bouge :
 `objects.json` ne porte ni tarif ni conflit tarifaire, et le témoin l'exige explicitement, canal par canal. La
 dette « Qantas soute citée sans canal déclaré sur la fiche » reste ouverte, hors de ce lot.
+
+---
+
+## Annexe 46 — Quatre portes de plus, et la faute qui les avait toutes ouvertes (10/09/2026, classement C)
+
+**Ce que Codex a opposé sur `7188990`.** Les deux arbitrages de l'annexe 45 sont validés — variantes
+monétaires parallèles conservées, `days_before_departure` au contexte et non à `Fact`. Les 103 contrôles
+passaient. **Quatre contournements de plus étaient pourtant reproductibles**, et il les a construits un par un.
+
+**La faute commune, nommée avant les quatre.** Trois de ces quatre portes ont la même racine : *j'ai écrit un
+contrôle au lieu de réemployer celui qui existe*. `citationComplete` vérifiait la PRÉSENCE de `quote`,
+`quote_language` et `locator`. Il ne regardait ni la page, ni le type de source, ni la cadence de relecture.
+J'avais donc, dans un fichier écrit contre les provenances faibles, une seconde définition de « source
+sérieuse », plus faible que celle du dépôt. L'en-tête de `ingest-airlines.mjs` documente cette faute mot pour
+mot, avec la liste exacte des six garanties contournées — et je l'avais lue en écrivant ce fichier, puisque
+c'est de là que vient la phrase « deux modèles dans le même dépôt, c'est la garantie qu'ils divergeront ».
+La leçon écrite ne suffit pas : c'est le réemploi qui protège, pas le commentaire qui le recommande.
+
+**P0-1 — cinq sources inadmissibles passaient.** URL `mydogcanfly.com`, sous-domaine à nous, `source_type: press`,
+`source_type: other`, URL `ftp://`, échéance repoussée à 2030. `Fare.source` et `FareObservation.source` sont
+désormais `T0bAuditSource` : `SourcedQuote` (http(s), aucun domaine à nous, type FACTUEL, citation d'au moins dix
+caractères, langue BCP-47) plus la cadence `airline` de 90 jours **au jour près** et le localisateur obligatoire.
+Rien n'est retapé dans `tarifs.ts`. Quinze témoins rejouent les sabotages, sur le tarif et sur l'observation, et
+la cadence est éprouvée dans les deux sens : 2030 est refusé, mais une échéance **trop courte** aussi.
+
+**P0-2 — un faux conflit éteignait un vrai tarif.** Deux observations strictement identiques étaient acceptées ;
+le résolveur rendait alors `conflit` et supprimait un montant parfaitement prouvé. **C'est le sabotage le plus
+coûteux des quatre** : il ne publie pas un prix faux, il en efface un vrai, et rien dans l'interface n'aurait dit
+pourquoi. Le conflit exige maintenant des observations **chiffrées** (deux mécanismes ne se contredisent sur aucun
+montant), ses **axes communs explicites** (`billing_subject`, `journey_basis` — « 140 € par animal et par aller »
+contre « 120 € par contenant et par segment » sont deux tarifs, pas deux prix contradictoires), une
+`purchase_window` optionnelle **réellement évaluée**, et **au moins deux prix canoniquement différents** — devises
+triées, ordre d'écriture indifférent.
+
+**P0-3 — aucun lien entre le tarif et le canal qui le contient.** Une politique cabine pouvait porter un tarif
+`placement: hold` : ingéré, écrit, puis cherché en vain par un résolveur qui filtre sur le canal. Un tarif prouvé,
+importé, invisible. Et deux tarifs pouvaient partager un `id`, ce qui annule la seule chose que l'identifiant
+promet. La garde est dans `Fiche.superRefine` — ni un `Fare` ni un `FareConflict` ne connaît la clé sous laquelle
+on le range, ni ses voisins ; c'est la fiche entière qui le sait, donc c'est elle qui doit le dire.
+
+**P1 — une ligne applicable disparaissait encore par priorité interne.** `ResolutionTarifaire` était une UNION à
+six états, et une union oblige à choisir. Un montant et un `booking_only` applicables ensemble rendaient
+`applicable [le montant]` ; le mécanisme s'évanouissait. Même défaut sur les conflits, où un `find()` ne gardait
+que le premier. **C'était la troisième occurrence de la même faute dans ce seul fichier** — après `chiffres[0]` et
+après les variantes monétaires. La leçon est donc prise à la racine plutôt qu'au cas par cas : ce n'est plus une
+union, c'est un **inventaire** à six listes — `conflits`, `montants`, `chevauchements`, `mecanismes`,
+`indecidables`, `supprimes`. Aucune ne masque l'autre. Les montants éteints par un conflit sont **nommés** dans
+`supprimes` au lieu de s'évaporer, et les mécanismes **survivent** au conflit, puisque l'effet publié s'appelle
+`suppress_exact_fare` et non « tout effacer ».
+
+**Déviation nommée, arbitrable.** Un conflit éteint **tous** les montants du canal qu'il couvre, y compris ceux
+dont les axes diffèrent des siens. Les axes du conflit servent à établir qu'il EST un conflit, pas à restreindre
+ce qu'il éteint : restreindre publierait un montant sur un canal où deux pages officielles se contredisent, et la
+prudence se règle dans l'autre sens.
+
+**Trois ingestions sabotées, jouées pour de vrai.** Le témoin construit un bac à sable, y rejoue l'ingestion réelle
+cinq fois — une nominale, trois sabotages, une non-vacuité — et exige que chaque refus **nomme sa cause**. Le
+troisième témoin vérifie en plus que l'artefact **n'a pas bougé** quand la fiche est refusée.
+
+**Mouvement des comptes.** Contre-épreuves du contrat tarifaire : **103 → 145**. Aucun autre compteur ne bouge :
+`objects.json` ne porte ni tarif ni conflit, et deux témoins l'exigent séparément. Typecheck propre, 220 témoins
+unitaires, catalogue de contrat à 66 garanties, dette Astro stable à 165.
