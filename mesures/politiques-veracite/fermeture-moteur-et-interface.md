@@ -3755,3 +3755,14 @@ classe), libellés multicanaux, chaleur : inchangés et verts sur le build rédu
 Premier jet : `locale` (variable du serveur) utilisé dans le script client pour formater la date —
 attrapé par la dette Astro (165 → 166) avant tout build ; corrigé par `L.locale`. Deux erreurs
 implicites `any` préexistantes de ce fichier restent dans la dette (2), inchangées.
+
+### Mesuré sur le dist (un seul build complet, `890fb15`)
+
+| contrôle | résultat |
+|---|---|
+| harnais du Finder (dist réduit puis complet) | vert — T0-A re-fondé, `cartesPass` 88 contrôles sur les quatre langues |
+| chaîne `test:built-ui` (fiche, Finder, libellés, chaleur, destinations, avis, caisses, relief, clôture chaleur, affirmations) | verte |
+| entités | 178 OK après **un mouvement nommé** : le témoin « tout lien de source affiché sur une carte est une preuve auditée de canal » lisait `.acard__psrc a` ; il lit désormais la liste du volet des preuves (`.acard__proofs ul a`), le lien vers la fiche, hors liste, n'étant pas une source. Il a rougi à raison (« aucun lien affiché ») : la forme positive du témoin exige au moins un lien |
+| étape 3 DOM | verte, scellé des licites inchangé (16 sources, 20 couples) |
+| caisses non sourcées, accueil, tarifs, montants publiés et propagation, affirmations retirées, index du hub, liens internes | verts |
+| `test:unit` complet, typecheck, dette Astro (165) | verts |

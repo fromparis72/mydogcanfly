@@ -745,7 +745,10 @@ console.log("\n=== 4. Carte RENDUE du Finder : les sources des canaux, et rien d
     dedans.slice(0, 3).join(" | "));
   /* La forme POSITIVE, qui ne dépend d'aucune liste noire : tout lien du bloc de sources d'une
      carte DOIT être une preuve auditée de canal. Un lien inventé, emprunté ou par défaut échoue. */
-  const liensSources = rendues.flatMap((c) => [...c.querySelectorAll(".acard__psrc a[href]")].map((a) => a.getAttribute("href")));
+  /* MOUVEMENT NOMMÉ (10/09/2026, annexe 38) : la ligne des sources `acard__psrc` n'existe plus ; les liens de
+     source vivent dans la liste du volet fermé « Voir les preuves » (`.acard__proofs ul`). Le lien vers la fiche
+     détaillée, dans le même volet mais hors de la liste, n'est pas une source et n'est pas compté. */
+  const liensSources = rendues.flatMap((c) => [...c.querySelectorAll(".acard__proofs ul a[href]")].map((a) => a.getAttribute("href")));
   const intrus = liensSources.filter((u) => !auditees.has(u));
   check("tout lien de source affiché sur une carte EST une preuve auditée de canal",
     liensSources.length > 0 && intrus.length === 0, intrus.slice(0, 3).join(" | ") || "aucun lien affiché");
