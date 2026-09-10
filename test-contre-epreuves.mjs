@@ -605,11 +605,29 @@ const MUTATIONS = [
     id: "l-interface-republie-un-rapport-sans-safety-advisories-c",
     fichier: "packages/ui/src/components/FlightFinder.astro",
     editions: [
-      { cherche: "&& avisRecevables(data)) return data;", remplace: ") return data;" },
+      /* ANCRE RE-FONDÉE (10/09/2026, P0-1 de la contre-revue de Codex) : la frontière exige aussi `rapportComplet(data)` ;
+         la mutation retire les DEUX gardes, comme avant elle retirait la seule qui existait. Erreur nommée : je n'avais
+         pas rejoué `contre-epreuves -- --dom` après P0-1 ; la CI l'a attrapée (« apparaît 0 fois »). */
+      { cherche: "&& avisRecevables(data) && rapportComplet(data)) return data;", remplace: ") return data;" },
       { cherche: "    const list = r.safety_advisories;", remplace: "    const list = r.safety_advisories ?? [];" },
     ],
     harnais: "test-t0b3a-avis-dom.cjs",
     attendu: "ABSENT → rapport REFUSÉ",
+  },
+  {
+    dom: true,
+    nom: "la carte relit les booléens historiques pour choisir son apparence",
+    id: "la-carte-relit-les-booleens-historiques-pour-son-apparence",
+    fichier: "packages/ui/src/components/FlightFinder.astro",
+    /* P0 (Codex, 10/09/2026, second passage) : `a.cabin` / `a.hold` / `a.cargo` ne valent `true` que pour `allowed` ; une
+       soute « sous conditions » habillait la carte en `acard--no`. Le sabotage remet exactement ces trois lectures. */
+    editions: [
+      { cherche: 'if (OUVERT.has(a.cabin_status)) return "acard--cabin";', remplace: 'if (a.cabin) return "acard--cabin";' },
+      { cherche: 'if (OUVERT.has(a.hold_status)) return "acard--hold";', remplace: 'if (a.hold) return "acard--hold";' },
+      { cherche: 'if (OUVERT.has(a.cargo_status)) return "acard--cargo";', remplace: 'if (a.cargo) return "acard--cargo";' },
+    ],
+    harnais: "test-flightfinder-harness.cjs",
+    attendu: "jamais acard--no",
   },
   {
     dom: true,

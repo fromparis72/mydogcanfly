@@ -3687,6 +3687,155 @@ corrigés, nommés dans le fichier.
 | étape 3 DOM | verte, scellé des licites inchangé (16 sources, 20 couples) |
 | contre-épreuves complètes sur l'arbre propre | 58/58 |
 
+## Annexe 38 — Cartes du Finder : contrat d'interface arbitré (10/09/2026, classement A)
+
+Arbitrage définitif de Philippe, relayé par Codex avec une précision : la ligne de preuve nomme le
+canal concerné, pour ne pas laisser croire que toute la carte est vérifiée ; le tarif ne s'affiche
+que lorsqu'il possède sa propre preuve tarifaire. Lot de simplification de l'affichage : ni nouveau
+statut, ni nouveau système de provenance, contrat moteur inchangé. Branche
+`lot/cartes-finder-presentation` depuis `main` `2ab56c9`.
+
+### Mesuré avant d'écrire
+
+| ancienne carte | ce qui se répétait |
+|---|---|
+| pastilles `acard__badges` (Cabine ✓* Soute ? Fret ✗) | le statut, une première fois |
+| ligne `acard__label` (libellé moteur « Cabine et soute : acceptées sous conditions… ») | le statut, une deuxième fois |
+| lignes `acard__accepted` / `acard__denied` (« ✓ Soute : accepté sous conditions… — hôte · date ») | le statut, une troisième fois, avec la source |
+| ligne `acard__psrc` (liens par source, canaux nommés) | la source, une deuxième fois |
+| lignes `acard__confirmwhy` (phrases de famille) | dans CHAQUE carte |
+| bloc `acard__fee` | pastilles tarifaires jointes SANS séparateur : « Cabine — Tarif à confirmer…Soute — … » (la concaténation signalée) |
+
+L'étape 3 lit le libellé multicanal dans le contrat moteur (`a.label`), pas dans la carte : la ligne
+peut disparaître de la carte sans toucher ce contrôle. Le contrat du Finder ne transporte ni la
+citation ni sa localisation (seulement URL, type, date, confiance) : le volet des preuves les montre
+et renvoie à la fiche détaillée pour le texte intégral, comme l'arbitrage le permet.
+
+### Nouvelle carte
+
+```
+Contrat Air — Direct
+Cabine : à confirmer
+Soute : oui, sous conditions · Poids total chien + contenant jusqu'à 75 kg · tarif à confirmer
+Fret : informations non publiées                        (ligne discrète)
+Vérifié sur une source officielle le 8 septembre 2026 : Soute · Voir les preuves   (volet fermé)
+```
+
+- Trois lignes canal, statut LU dans `placement_decisions` (repli sur les statuts de la carte), jamais
+  recalculé ; les classes `ab--ok / ab--cond / ab--confirm / ab--no` restent, une par canal — ce sont
+  elles que les harnais comptent. La rature CSS du refus disparaît : « non » se lit.
+- Fret développé s'il est documenté (sous conditions, ou refus cité), demandé (préférence « fret » du
+  formulaire), ou seul canal restant (cabine et soute refusées, cas d'une route « fret seul ») ;
+  replié sinon, en « informations non publiées », **seulement** quand toutes ses causes sont de la
+  famille « rien de publié » (héritage non revérifié, page sans phrase, politique non publiée ou
+  absente, règle non vérifiable). Une approbation au cas par cas ou un fait manquant développent la
+  ligne en « à confirmer ».
+- Tarif : jamais un montant ; « tarif à confirmer » (cabine, soute) ou « sur devis » (fret) seulement
+  sur un canal ouvert. Le « tarif vérifié : 100–400 € » de la forme cible attend le registre tarifaire
+  et sa preuve propre (URL, citation, date, portée, base de facturation).
+- Une ligne de provenance par carte, groupée par date, qui nomme ses canaux ; volet `<details>` fermé
+  « Voir les preuves » : par canal, page officielle, date, confiance, puis lien vers la fiche détaillée.
+- Avertissements généraux (nos quatre familles, phrases du 05/09 et du 08/09 inchangées) rendus **une
+  fois** au-dessus des cartes, dans l'ordre notre incertitude → page non citée → politique → fait
+  manquant. Le climat garde son bandeau.
+- Hors périmètre, nommé : lignes d'itinéraire (`acard__via`, `acard__unver`) et d'embargo, inchangées.
+
+### Témoins
+
+Harnais du Finder, quatre langues : T0-A **re-fondé** (les phrases de famille sont cherchées dans
+`.acards__notes`, une fois, et exigées absentes des cartes ; ordre conservé) ; nouvelle passe
+`cartesPass` — lignes canal et textes exacts, plafond écrit une fois, anciens blocs absents, fret replié
+/ développé (documenté, seul restant, demandé, cas par cas), tarif seulement sur canal ouvert, provenance
+nommant le canal prouvé et non les autres, deux dates → deux mentions, volet fermé avec page, date,
+confiance et lien fiche, aucune source → ni ligne ni volet. Harnais des avis (un badge de chaque
+classe), libellés multicanaux, chaleur : inchangés et verts sur le build réduit.
+
+### Erreur nommée
+
+Premier jet : `locale` (variable du serveur) utilisé dans le script client pour formater la date —
+attrapé par la dette Astro (165 → 166) avant tout build ; corrigé par `L.locale`. Deux erreurs
+implicites `any` préexistantes de ce fichier restent dans la dette (2), inchangées.
+
+### Mesuré sur le dist (un seul build complet, `890fb15`)
+
+| contrôle | résultat |
+|---|---|
+| harnais du Finder (dist réduit puis complet) | vert — T0-A re-fondé, `cartesPass` 88 contrôles sur les quatre langues |
+| chaîne `test:built-ui` (fiche, Finder, libellés, chaleur, destinations, avis, caisses, relief, clôture chaleur, affirmations) | verte |
+| entités | 178 OK après **un mouvement nommé** : le témoin « tout lien de source affiché sur une carte est une preuve auditée de canal » lisait `.acard__psrc a` ; il lit désormais la liste du volet des preuves (`.acard__proofs ul a`), le lien vers la fiche, hors liste, n'étant pas une source. Il a rougi à raison (« aucun lien affiché ») : la forme positive du témoin exige au moins un lien |
+| étape 3 DOM | verte, scellé des licites inchangé (16 sources, 20 couples) |
+| caisses non sourcées, accueil, tarifs, montants publiés et propagation, affirmations retirées, index du hub, liens internes | verts |
+| `test:unit` complet, typecheck, dette Astro (165) | verts |
+
+### Contre-épreuves complètes de la CI sur `07f734d` : cinq témoins navigateur re-fondés
+
+Le flux `Contre-épreuves complètes` (`npm run test:apercu`, Playwright, non joué en local
+jusqu'ici) a rougi sur **176 OK, 5 ÉCHEC**. Les cinq témoins décrivaient l'ancienne carte, pas une
+régression de la nouvelle ; chacun est re-fondé par un mouvement nommé, jamais abaissé :
+
+| témoin (`test-apercu-navigateur.mjs`) | ce qu'il lisait | ce qu'il lit désormais |
+|---|---|---|
+| « chien petit/moyen/grand : l'incertitude est écrite en toutes lettres » (×3) | « to confirm with the airline » dans le texte de chaque carte | l'avertissement général, écrit **une fois** dans `.acards__notes` (« confirm … with the airline »), ou une ligne canal « to be confirmed » — le doute doit être dit, au bon endroit |
+| « finder pt : la carte BA écrit le refus cabine documenté, avec hôte et date » | « Cabine ✗ » + « não aceito — recusa documentada … britishairways.com · 2026-09-05 » | « Cabine : não » sur la ligne cabine **et** la provenance qui nomme la cabine avec sa date en toutes lettres (« Verificado numa fonte oficial em 5 de setembro de 2026: Cabine ») **et** l'hôte + la date ISO dans le volet « Ver as provas » (textContent, volet fermé) |
+| « finder pt : la cause “aucune frase citada” nomme ses canaux » | « ? Porão … : » ou « ? Carga … : » sur la carte | un canal non prouvé porte son propre « a confirmar » (ou « informações não publicadas » pour le fret replié), et la cabine refusée ne le porte pas |
+
+Rejoué en local, Playwright et Chromium du conteneur, sur le dist du build complet : **181 OK,
+0 ÉCHEC**. Les captures locales ne sont pas versionnées ; celles de la CI le seront par le flux.
+
+### Contre-revue de Codex sur `1a288ed` (10/09/2026, 12:05) : deux P0, trois P1 — fermés
+
+**P0-1 — un rapport incomplet pouvait fabriquer un refus.** Mesuré : la ligne canal lisait
+`a[ch+"_status"] ?? placement_decisions ?? (a[ch] ? "allowed" : "denied")`, le résumé lisait
+`a[ch+"_status"] ?? (a[ch] ? "allowed" : "denied")` — un statut absent devenait un refus, et les deux
+lectures pouvaient diverger sur la même carte. Le repli existait parce que la fixture de base du harnais
+(`FAKE_REPORT`) ne portait que les booléens. Fermé ainsi : à la frontière (`fetchReport`), `rapportComplet`
+exige pour chaque compagnie les trois `*_status` parmi les quatre états du contrat, une et une seule
+`placement_decision` par canal, et leur concordance ; sinon l'erreur prudente, et la cause exacte en console
+(« incomplete report »). Ligne canal et résumé lisent désormais la même clé, sans repli. La fixture dit en
+toutes lettres ce que le repli disait tout bas (cabine ouverte, soute et fret refusés). Contre-épreuves,
+quatre langues : retirer `cabin_status` d'une réponse réelle, rendre `cabin_status` discordant de sa
+décision, retirer la décision fret → erreur prudente, aucune carte, jamais « Cabine : non ».
+*Erreur nommée* : mon premier jet passait la carte amputée à `carteContrat(...)`, dont le gabarit remettait
+le statut — le témoin rendait une carte complète et rougissait sur lui-même ; l'amputation s'applique
+après le gabarit.
+
+**P0-2 — un témoin d'entités vacant.** Le témoin négatif El Al lisait `.acard__psrc`, retiré de toutes les
+cartes : vert à vide. Il exige désormais l'absence de `.acard__prov` et de `details.acard__proofs` sur la
+carte sans source, et un second témoin prouve qu'il n'est pas vacant : la carte Thai, elle, porte les deux.
+Entités : 178 → **179 OK** (mouvement nommé : +1 témoin).
+
+**P1.** (1) Cas fret `missing_fact` ajouté : développé, « à confirmer ». (2) Le témoin « deux dates » exige
+les deux associations exactes : le segment du 8 septembre nomme la soute et pas le fret, celui du 9 nomme
+le fret et pas la soute, dates rendues comme la carte les rend (Intl, langue de la page). (3) pt-BR :
+« Fonte oficial verificada em {date}: {channels} » remplace « Verificado numa fonte oficial em … » —
+gabarit du harnais et témoin navigateur alignés.
+
+| contrôle (dist réduit `build:ci`) | résultat |
+|---|---|
+| harnais du Finder | 419 OK (dont 12 nouveaux : 3 amputations × 4 langues, + fret `missing_fact` × 4, dates exactes × 4) |
+| chaîne `test:built-ui` | 954 OK |
+| entités | 179 OK |
+| `test:unit`, typecheck, dette Astro (165) | verts |
+
+### Second passage de Codex (10/09/2026) : P0 — l'apparence lisait encore les booléens
+
+Mesuré : trois décisions visuelles lisaient `a.cabin` / `a.hold` / `a.cargo` et `to_confirm` — la classe de la
+carte (`acard--cabin/hold/cargo/confirm/no`), le badge « non compatible / animaux refusés / ? » (`structuralNoPets`)
+et le partage « correspond à ce mode / alternatives ». Ces booléens ne valent `true` que pour `allowed`
+(`explain.ts`, `has`) : une carte cabine refusée / soute sous conditions / fret refusé passait la frontière,
+écrivait « Soute : oui, sous conditions » et recevait `acard--no`. La fixture de référence du harnais posait
+`hold: true` sur une soute sous conditions — ce que le moteur ne fait jamais — et masquait le repli (erreur nommée,
+fixture corrigée : booléens tous faux).
+
+Fermé : les trois décisions lisent les trois `*_status` (ouvert = `allowed` ou sous conditions ; à confirmer =
+un statut `confirmation_required` ; « aucun canal » = trois refus). Ni booléen ni `to_confirm` ne décident plus rien
+de visuel. Contre-épreuves, quatre langues (harnais du Finder 419 → **443**) : refusée / sous conditions / refusée →
+`acard--hold`, aucun badge de refus, et « correspond au mode » quand la soute est demandée ; canal à confirmer sans
+`to_confirm` ou avec `to_confirm` vide → `acard--confirm` ; trois refus → `acard--no` + badge. Sabotage : mutation
+`la-carte-relit-les-booleens-historiques-pour-son-apparence` (catalogue 65 → 66, bijection avec la référence).
+*Erreur nommée* : mon premier témoin « à confirmer sans `to_confirm` » partait de la carte de référence, dont la
+soute ouverte l'emporte à raison sur la cabine à confirmer ; il part d'une carte dont le seul canal non refusé est à
+confirmer.
 ## Annexe 39 — Air France cabine : la phrase officielle, la borne stricte (10/09/2026, classement C)
 
 Codex a lu la page officielle Air France (français) le 10/09/2026 et relayé, par Philippe, un
