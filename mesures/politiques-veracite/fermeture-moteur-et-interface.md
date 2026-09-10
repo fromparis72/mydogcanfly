@@ -3560,3 +3560,42 @@ dossier résolu dans l'ordre chronologique) et a été fusionnée sur ordre nomm
 
 Relecture en ligne à faire par Codex : calcul en cm, clic sur `in`, résultat aussitôt en pouces sans
 second « Calculer », gabarit `XL` inchangé pour le Golden.
+
+## Annexe 37 — Bangkok Airways fret : règle géographique (lot ouvert le 10/09/2026, classement C)
+
+### Préalable — contrôle en ligne de Codex sur `cac7514` (10/09)
+
+Golden Retriever réellement sélectionné (préremplissage 71 cm, 67 cm, 32 kg) : minimum 85 × 41 × 67,
+conseillé 88 × 44 × 70, gabarit `XL`. Un seul clic sur `in`, sans recliquer « Calculer » : conseillé
+34,5 × 17,5 × 28 in, minimum 33,5 × 16,5 × 26,5 in, gabarit toujours `XL`. Le défaut d'unité est
+fermé en production. `fad24d2` (#48, dossier seul) n'est pas redéployé : un seul fichier diffère de
+`cac7514`, le dossier, hors du site construit.
+
+### Mesuré avant de concevoir
+
+| | |
+|---|---|
+| modèle de règles | portée compagnie, prédicats `all` / `any` / `not` sur `placement`, `route.origin_country_id`, `route.dest_country_id` ; effet `deny` ; **décisive seulement si citée** (`regleDecisive` = niveau « citée ») — 21 règles de ce type existent (liste APHA, Grande-Bretagne) |
+| citation en fiche | une seule phrase : « Special cargo service as Live animals dog, cat (AVI) is available on Airbus and ATR72 on the following routes: » — aucune phrase citée pour le refus international ni pour les exclusions Krabi |
+| référentiel | Thaïlande = BKK, DMK, HKT (268 aéroports) ; Krabi (KBV) et Chiang Mai (CNX) absents ; pas de fait `route.origin_airport_id` |
+| candidature | Bangkok Airways est candidate sur BKK ↔ HKT (graphe de routes) |
+
+### Décisions
+
+- **Philippe, 10/09 : les aéroports KBV et CNX ne sont pas ajoutés.** Les exclusions Bangkok–Krabi et
+  Chiang Mai–Krabi restent dans le texte des conditions ; une garde (`test-bangkok-fret-geographie.mjs`,
+  7 contrôles, dans `test:unit`) rougit si l'un des deux entre un jour dans le référentiel sans règle
+  citée `rule_bangkok_airways_cargo_krabi_excluded`. Dette nommée, bornée, surveillée ; la garde
+  s'auto-contrôle sur un référentiel synthétique (sans règle, règle non citée, règle citée, CNX seul).
+- **En attente de Codex** : la phrase verbatim du refus des escales internationales (et sa
+  localisation), sans laquelle la règle R1 ne peut pas être décisive.
+- **En attente d'arbitrage de Philippe** : retour de la fiche fret de `case_by_case` à `offered`
+  (déjà cité), pour que Bangkok → Phuket projette « sous conditions » et que R1 refuse l'international.
+
+### Proposition R1 (non écrite tant que la phrase n'est pas livrée)
+
+`rule_bangkok_airways_cargo_international_denied` : portée `airline_bangkok_airways`, `all` [placement
+= cargo, `any` [origine ≠ country_th, destination ≠ country_th]] → `deny` cargo ; citée. Témoin
+négatif prévu : la même règle sans citation ne refuse rien. Mouvements attendus : décisions 176 → 177,
+sous conditions 142 → 143, « à confirmer » 130 → 129 ; exception Bangkok retirée de la matrice et du
+harnais de réconciliation ; scénarios gelés BKK → HKT, CDG → BKK, BKK → SIN.
