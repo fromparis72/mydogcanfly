@@ -188,9 +188,15 @@ for (const [nom, kg] of [["petit", 4], ["moyen", 15], ["grand", 32]]) {
   check(`chien ${nom} : aucune erreur JavaScript`, p.__erreurs.length === 0, p.__erreurs.slice(0, 2).join(" | "));
   check(`chien ${nom} : AUCUN montant numérique résiduel`, !MONTANT.test(texte),
     (texte.match(MONTANT) ?? []).join(" | "));
-  /* L'incertitude doit être DITE, pas seulement absente de contradiction. */
+  /* L'incertitude doit être DITE, pas seulement absente de contradiction.
+     RE-FONDÉ LE 10/09/2026 (annexe 38, contrat de carte arbitré par Philippe) : la phrase « confirm with
+     the airline » n'est plus répétée dans chaque carte, elle est écrite UNE FOIS au-dessus des résultats
+     (`.acards__notes`), et chaque ligne canal dit « to be confirmed » là où rien n'est prouvé. Le témoin
+     exige les deux : l'avertissement général présent, et au moins une ligne canal qui porte le doute. */
+  const notesGen = await p.$$eval(".acards__notes .acards__note", (n) => n.map((x) => x.textContent ?? "").join(" | ")).catch(() => "");
   check(`chien ${nom} : l'incertitude est écrite en toutes lettres`,
-    /to confirm with the airline/i.test(texte), texte.slice(0, 120));
+    /confirm (?:directly )?with the airline|to be confirmed/i.test(notesGen) || /to be confirmed/i.test(texte),
+    `notes : ${notesGen.slice(0, 120)} · résultat : ${texte.slice(0, 120)}`);
   /* Et surtout : aucun verdict catégorique de canal ne doit s'afficher. */
   check(`chien ${nom} : aucune carte n'affiche « Accepted » ni « Not accepted »`,
     !/\b(Accepted|Not accepted)\b/.test(texte), (texte.match(/\b(Accepted|Not accepted)\b/g) ?? []).slice(0, 3).join(" | "));
@@ -832,11 +838,31 @@ console.log("\n=== Les quatre outils, exercés EN PORTUGAIS ===");
     const ba = p.locator(".acard", { hasText: "British Airways" });
     const baTexte = (await ba.count()) ? await ba.first().innerText() : "";
     check("finder pt : la carte British Airways est présente", baTexte.length > 0);
+    /* RE-FONDÉ LE 10/09/2026 (annexe 38). La carte ne dit plus « não aceito — recusa documentada por
+       fonte oficial citada — britishairways.com · 2026-09-05 » : le contrat de Philippe veut la réponse
+       d'abord (« Cabine : não »), puis UNE ligne de provenance qui nomme les canaux prouvés et leur date en
+       toutes lettres (« Verificado numa fonte oficial em 5 de setembro de 2026: Cabine »), l'hôte et la
+       date ISO étant repliés dans « Ver as provas ». On lit donc trois choses : le verdict sur la ligne
+       cabine, la provenance qui NOMME la cabine avec sa date, et l'hôte dans le volet des preuves
+       (textContent, volet fermé compris — c'est bien là qu'il doit être, pas sur l'écran). */
+    const baCabine = (await ba.count()) ? await ba.first().locator(".acard__line--cabin").innerText().catch(() => "") : "";
+    const baProv = (await ba.count()) ? await ba.first().locator(".acard__prov-text").innerText().catch(() => "") : "";
+    const baPreuves = (await ba.count()) ? await ba.first().locator(".acard__proofs").textContent().catch(() => "") : "";
     check("finder pt : la carte BA écrit le refus cabine documenté, avec hôte et date",
-      /Cabine\s*✗/.test(baTexte) && /não aceito — recusa documentada por fonte oficial citada — britishairways\.com · 2026-09-05/.test(baTexte),
-      baTexte.replace(/\s+/g, " ").slice(0, 300));
+      /Cabine\s*:\s*não\b/.test(baCabine)
+        && /Verificado numa fonte oficial em 5 de setembro de 2026\s*:\s*[^·]*Cabine/.test(baProv)
+        && /britishairways\.com/.test(baPreuves ?? "") && /2026-09-05/.test(baPreuves ?? ""),
+      `cabine : ${baCabine} · provenance : ${baProv} · preuves : ${(baPreuves ?? "").replace(/\s+/g, " ").slice(0, 160)}`);
+    /* La cause « aucune phrase citée » n'accuse plus la compagnie entière : elle est dite UNE FOIS dans les
+       notes générales, et sur la carte, chaque canal non prouvé porte son propre « a confirmar » — la cabine
+       refusée, elle, reste « não ». Le témoin exige qu'un canal au moins (Porão ou Carga) soit à confirmer
+       et que la cabine ne le soit pas. */
+    const baPorao = (await ba.count()) ? await ba.first().locator(".acard__line--hold").innerText().catch(() => "") : "";
+    const baCarga = (await ba.count()) ? await ba.first().locator(".acard__line--cargo").innerText().catch(() => "") : "";
     check("finder pt : la cause « aucune frase citada » nomme ses canaux, pas la compagnie entière",
-      /\? (Porão|Carga)[^:]*: /.test(baTexte), baTexte.replace(/\s+/g, " ").slice(0, 300));
+      (/Porão\s*:\s*a confirmar/.test(baPorao) || /Carga\s*:\s*(?:a confirmar|informações não publicadas)/.test(baCarga))
+        && !/a confirmar/.test(baCabine),
+      `porão : ${baPorao} · carga : ${baCarga} · cabine : ${baCabine}`);
     exiger("finder pt", "packages/ui/src/components/FlightFinder.astro", corps);
     await capturer(p, "pt-finder");
     await p.close();

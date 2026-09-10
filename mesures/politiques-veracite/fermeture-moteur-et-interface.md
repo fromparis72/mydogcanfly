@@ -3766,3 +3766,18 @@ implicites `any` préexistantes de ce fichier restent dans la dette (2), inchang
 | étape 3 DOM | verte, scellé des licites inchangé (16 sources, 20 couples) |
 | caisses non sourcées, accueil, tarifs, montants publiés et propagation, affirmations retirées, index du hub, liens internes | verts |
 | `test:unit` complet, typecheck, dette Astro (165) | verts |
+
+### Contre-épreuves complètes de la CI sur `07f734d` : cinq témoins navigateur re-fondés
+
+Le flux `Contre-épreuves complètes` (`npm run test:apercu`, Playwright, non joué en local
+jusqu'ici) a rougi sur **176 OK, 5 ÉCHEC**. Les cinq témoins décrivaient l'ancienne carte, pas une
+régression de la nouvelle ; chacun est re-fondé par un mouvement nommé, jamais abaissé :
+
+| témoin (`test-apercu-navigateur.mjs`) | ce qu'il lisait | ce qu'il lit désormais |
+|---|---|---|
+| « chien petit/moyen/grand : l'incertitude est écrite en toutes lettres » (×3) | « to confirm with the airline » dans le texte de chaque carte | l'avertissement général, écrit **une fois** dans `.acards__notes` (« confirm … with the airline »), ou une ligne canal « to be confirmed » — le doute doit être dit, au bon endroit |
+| « finder pt : la carte BA écrit le refus cabine documenté, avec hôte et date » | « Cabine ✗ » + « não aceito — recusa documentada … britishairways.com · 2026-09-05 » | « Cabine : não » sur la ligne cabine **et** la provenance qui nomme la cabine avec sa date en toutes lettres (« Verificado numa fonte oficial em 5 de setembro de 2026: Cabine ») **et** l'hôte + la date ISO dans le volet « Ver as provas » (textContent, volet fermé) |
+| « finder pt : la cause “aucune frase citada” nomme ses canaux » | « ? Porão … : » ou « ? Carga … : » sur la carte | un canal non prouvé porte son propre « a confirmar » (ou « informações não publicadas » pour le fret replié), et la cabine refusée ne le porte pas |
+
+Rejoué en local, Playwright et Chromium du conteneur, sur le dist du build complet : **181 OK,
+0 ÉCHEC**. Les captures locales ne sont pas versionnées ; celles de la CI le seront par le flux.
