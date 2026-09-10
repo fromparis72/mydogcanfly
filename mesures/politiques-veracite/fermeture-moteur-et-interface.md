@@ -3754,3 +3754,15 @@ des preuves régénéré, baseline du Finder refigée (paire `complement-air-fra
   retirer, est une décision distincte pour Codex.
 - Cabine citée sur la page française, soute sur la page anglaise : deux URL, même hôte.
 - Aucun tarif Air France prouvé ; la grille tarifaire de Codex n'est pas dans ce lot.
+
+### Mesuré sur le dist (un seul build complet, 3 112 pages)
+
+| contrôle | résultat |
+|---|---|
+| `test:unit` complet (dont `test-preuves-air-france-cabine`, 14) | vert, chaque compteur déplacé nommé ci-dessus |
+| chaîne `test:built-ui` (dist réduit puis complet) | 846 OK — calculateur de caisses : 31 limites cabine citées |
+| entités | 178 OK |
+| étape 3 DOM | verte, scellé des licites inchangé |
+| caisses non sourcées | vert |
+| contre-épreuves `--dist-complet` | 58 garanties éprouvées sur 58 |
+| registre de fraîcheur | rescellé (1 504 entrées), inventaire des preuves régénéré |
