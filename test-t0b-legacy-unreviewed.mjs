@@ -315,8 +315,10 @@ console.log("=== 7. T0-B2 : la migration est FAITE, et la forme héritée est in
   /* MOUVEMENT NOMMÉ (08/09/2026, import strict V3 — 25 citations importées, lues par Codex le 08/09, une par fait décisif ; British Airways cabine conservée) : 32 → 23. Neuf pages officielles déjà liées ont reçu leur phrase. */
   /* MOUVEMENT NOMMÉ (09/09/2026, lot 4) : 20 → 16 (Austrian cabine et soute, Brussels cabine, WestJet cabine citées). */
   /* MOUVEMENT NOMMÉ (09/09/2026, lot 6) : 16 → 15 — United cabine, citée, quitte cette cause. */
-  check("15 politiques émettent official_source_unquoted — une page officielle, aucune phrase citée",
-    nonCitee === 15, String(nonCitee));
+  /* MOUVEMENT NOMMÉ (10/09/2026, complément Air France cabine — Codex) : 15 → 14 — Air France cabine, citée (« moins de 8 kg,
+     sac de transport compris »), quitte cette cause. */
+  check("14 politiques émettent official_source_unquoted — une page officielle, aucune phrase citée",
+    nonCitee === 14, String(nonCitee));
   /* MOUVEMENT NOMMÉ (09/09/2026, correctif d'arbitrages) : 1 → 0. Thai Cargo, seule « non publiée » depuis la migration, est
      ARBITRÉE `offered` sur la page THAI Cargo (Codex, tranché par Philippe) ; la cause disparaît du référentiel réel. */
   check("0 politique n'émet policy_unpublished — Thai Cargo, arbitrée, a quitté cette cause", nonPubliee === 0, String(nonPubliee));
@@ -566,8 +568,12 @@ console.log("=== 8. Baseline FIGÉE : le point de comparaison de T0-B2 est scell
      ternaire → import V3 → lots 2 et 3, chaque « avant » égal à l'« après » précédent, vérifié
      dans test-t0a-baseline.mjs). */
   /* 09/09/2026 — la plus récente est celle du lot 4 (chaîne : … → lots 2 et 3 → lot 4). */
-  check("Réconciliation ciblée : la baseline vivante est identique à la figée la plus récente",
-    vivante.equals(readFileSync("test-baselines/reconciliation-arbitrages-apres.json")));
+  /* 10/09/2026 — la plus récente est celle du complément Air France cabine (chaîne : … → réconciliation → Air France cabine,
+     vérifiée dans test-t0a-baseline.mjs). */
+  check("Complément Air France cabine : la baseline vivante est identique à la figée la plus récente",
+    vivante.equals(readFileSync("test-baselines/complement-air-france-cabine-apres.json")));
+  check("Réconciliation ciblée : sa figée reste intacte à côté (elle n'a pas été écrasée)",
+    readFileSync("test-baselines/reconciliation-arbitrages-apres.json").equals(readFileSync("test-baselines/complement-air-france-cabine-avant.json")));
   check("Arbitrages d'interface : sa figée reste intacte à côté (elle n'a pas été écrasée)",
     !readFileSync("test-baselines/arbitrages-interface-apres.json")
       .equals(readFileSync("test-baselines/entree-ternaire-apres.json")));

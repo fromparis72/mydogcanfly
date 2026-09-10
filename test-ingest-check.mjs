@@ -254,16 +254,22 @@ console.log("\n=== 3. La décision vient des fiches — les contre-épreuves du 
     freshSandbox();
     const af = join(SANDBOX, "content", "airlines", "air_france.yml");
     const avant = sandboxJson(OBJECTS_REL).airlines.find((a) => a.id === "airline_air_france").premium.policy.cabin;
-    check("(m) préalable : air_france.cabin est enrichie et écrite à la main",
-      avant.derived_from_fiche === undefined && avant.max_weight_kg === 8);
-    writeFileSync(af, readFileSync(af, "utf8").replace("  cabin:\n    availability: offered\n",
-      '  cabin:\n    availability: offered\n    source:\n'
-      + '      url: "https://wwws.airfrance.fr/information/passagers/animaux-cabine"\n'
-      + "      source_type: official_website\n"
-      + '      verified_date: "2026-08-14"\n      review_due: "2026-11-12"\n      confidence: 4\n'
-      + '      reviewer: "contre-épreuve de revue"\n'
-      + '      quote: "Les chiens et chats de moins de 8 kg voyagent en cabine."\n'
-      + "      quote_language: fr\n      locator: \"section Animaux en cabine\"\n"));
+    /* MOUVEMENT NOMMÉ (10/09/2026, complément Air France cabine, Codex) : le bloc `policies.cabin` d'Air France porte
+       désormais sa propre source citée (« En cabine (chats et chiens de moins de 8 kg, sac de transport compris) »).
+       Ce témoin INSÉRAIT un second bloc `source:` — clé dupliquée, YAML refusé, deux échecs qui ne mesuraient plus
+       rien. Il était le SEUL spécimen réel « enrichie à la main, sans citation » (mesuré : les cinq autres politiques
+       non citées avec plafond — Eurowings, LOT, Norwegian, Volotea, Vueling — sont dérivées de la fiche). La
+       contre-épreuve garde son sens en REMPLAÇANT l'URL et la phrase du bloc cité par celles de la revue : la source
+       auditée écrite dans la fiche doit gagner sur la provenance que l'artefact porte encore, et les enrichissements
+       écrits à la main (dimensions) doivent survivre. Précondition ajoutée : la phrase à remplacer est bien là. */
+    const QUOTE_AF = 'quote: "En cabine (chats et chiens de moins de 8 kg, sac de transport compris)"';
+    const URL_AF = 'url: "https://wwws.airfrance.fr/information/passagers/voyager-avec-son-animal-chien-chat"';
+    check("(m) préalable : air_france.cabin est enrichie à la main (dimensions), et sa fiche porte la phrase citée du 10/09",
+      avant.derived_from_fiche === undefined && avant.max_weight_kg === 8 && avant.carrier_dims_cm?.l === 46
+      && readFileSync(af, "utf8").includes(QUOTE_AF) && readFileSync(af, "utf8").includes(URL_AF));
+    writeFileSync(af, readFileSync(af, "utf8")
+      .replace(URL_AF, 'url: "https://wwws.airfrance.fr/information/passagers/animaux-cabine"')
+      .replace(QUOTE_AF, 'quote: "Les chiens et chats de moins de 8 kg voyagent en cabine."'));
     const r = run();
     check("(m) l'ingestion réussit", r.code === 0, r.out.slice(-300));
     const apres = sandboxJson(OBJECTS_REL).airlines.find((a) => a.id === "airline_air_france").premium.policy.cabin;

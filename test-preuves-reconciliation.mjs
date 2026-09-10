@@ -55,7 +55,11 @@ console.log("\n=== 2. La borne du seuil : `lt` exclut la valeur, `lte` l'inclut 
   check("Air Austral cabine : `weight_limit_bound: lt` ÉCRIT dans la fiche, depuis « inférieur à 8 kg », et projeté", aa?.weight_limit_bound === "lt" && projetee("airline_air_austral", "cabin")?.weight_limit_bound === "lt" && /weight_limit_bound: lt/.test(fiche("air_austral")));
   let bornesStrictes = 0, seuils = 0;
   for (const a of objets.airlines) for (const p of Object.values(a.premium?.policy ?? {})) { if (typeof p.max_weight_kg === "number" && typeof p.weight_includes_carrier === "boolean") { seuils++; if (p.weight_limit_bound === "lt") bornesStrictes++; } }
-  check("état figé : 37 seuils qualifiés, UNE borne stricte (mesuré sur les phrases citées : toutes les autres disent « jusqu'à », « maximum », « ne dépasse pas »)", seuils === 37 && bornesStrictes === 1, `${seuils} seuils, ${bornesStrictes} stricte(s)`);
+  /* MOUVEMENT NOMMÉ (10/09/2026, complément Air France cabine — Codex) : 37 → 38 seuils qualifiés, 1 → 2 bornes strictes — Air France
+     cabine, « chiens de moins de 8 kg, sac de transport compris », rejoint Air Austral ; Codex : « ne pas convertir en ≤ 8 kg ». */
+  check("état figé : 38 seuils qualifiés, DEUX bornes strictes (Air Austral, Air France — mesuré sur les phrases citées : toutes les autres disent « jusqu'à », « maximum », « ne dépasse pas »)", seuils === 38 && bornesStrictes === 2, `${seuils} seuils, ${bornesStrictes} stricte(s)`);
+  const afB = politique("airline_air_france", "cabin");
+  check("Air France cabine : `weight_limit_bound: lt` ÉCRIT dans la fiche, depuis « moins de 8 kg », et projeté", afB?.weight_limit_bound === "lt" && projetee("airline_air_france", "cabin")?.weight_limit_bound === "lt" && /weight_limit_bound: lt/.test(fiche("air_france")));
   const st = (w) => canal(decide("airport_cdg", "airport_run", { breed_id: "breed_pug", weight_kg: w }), "airline_air_austral", "cabin");
   check("Air Austral, 7,9 kg : sous conditions (jamais un oui), la carte porte 8 kg, contenant compris, borne stricte", st(7.9)?.status === "accepted_with_conditions" && st(7.9)?.weight_limit_kg === 8 && st(7.9)?.weight_limit_includes_carrier === true && st(7.9)?.weight_limit_bound === "lt", JSON.stringify(st(7.9)));
   check("Air Austral, 8,0 kg exactement : REFUSÉ — « inférieur à 8 kg » exclut 8", st(8)?.status === "denied", JSON.stringify(st(8)));
