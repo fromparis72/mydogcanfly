@@ -3542,3 +3542,21 @@ celui d'après séparément. Un seul build complet à la fin.
 | `test:unit` complet, typecheck | verts |
 
 Contre-épreuves complètes sur l'arbre propre : voir le commit suivant.
+
+### Post-scriptum — fusion de #47 et sixième bascule du 09/09
+
+**Fusion :** ordre conditionnel de Philippe (« fusion de #47 dès que ces trois contrôles verts sur
+942046f ») ; les trois contrôles vérifiés verts (« Vérifications », « Site entier », « Contre-épreuves
+complètes »), fusion `cac7514`. La PR de dossier #46 a ensuite intégré ce `main` (conflit de fin de
+dossier résolu dans l'ordre chronologique) et a été fusionnée sur ordre nommé, `a0f9e1f`.
+
+**Déploiement par Philippe, sortie transmise :**
+
+| | |
+|---|---|
+| Pages | `npm run release` : « build indexable et complet — déploiement autorisé », 5 fichiers nouveaux, https://ac306a6e.mydogcanfly-v2-preview.pages.dev |
+| Worker | `Current Version ID` `25c21ca6-1fea-4b5d-b85c-43bde8f54915`, démarrage 242 ms |
+| santé | `/v1/health` : `ok`, `v1`, `sha cac751465cdb0ffb25b86568ff8a9f5cd546160a`, `worker_version_id 25c21ca6-1fea-4b5d-b85c-43bde8f54915` — concordante avec le déploiement (règle de l'annexe 35 respectée : SHA ET identifiant de version) |
+
+Relecture en ligne à faire par Codex : calcul en cm, clic sur `in`, résultat aussitôt en pouces sans
+second « Calculer », gabarit `XL` inchangé pour le Golden.
