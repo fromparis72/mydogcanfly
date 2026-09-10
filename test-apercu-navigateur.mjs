@@ -359,6 +359,50 @@ console.log("\n=== La préversion ne doit PAS être indexable ===");
   await p.close();
 }
 
+/* ---- 10 quater. ACCUEIL : T1 / T2 / T3 ARBITRÉS, AUCUN DÉBORDEMENT AUX LARGEURS MOBILES -----------------
+   Arbitrage validé par Philippe (10/09/2026) : trois textes dans les quatre langues. Codex : à 320, 360, 375 et
+   400 px, `scrollWidth <= clientWidth`, aucun titre, bouton ou conteneur ne dépasse, aucune réduction globale de
+   typographie, textes strictement ceux validés. Mesuré avant correction : la page anglaise défilait de 9 px à 400 px
+   (grille « Avant de réserver », colonnes `1fr` poussées par « Your country's requirements ») — préexistant. */
+console.log("\n=== Accueil : T1 / T2 / T3 verbatim, aucun débordement à 320 / 360 / 375 / 400 px, quatre langues ===");
+{
+  const TEXTES = {
+    "": { q: "Can my dog fly?", acc: "Travelling together means caring about every detail.", sub: "Every airline has its own rules for travel in the cabin, in the hold or as cargo, along with breed restrictions and destination requirements. MyDogCanFly.com brings this information together, clearly separating what is confirmed from what still needs to be checked." },
+    "/fr": { q: "Mon chien peut-il prendre l’avion ?", acc: "Voyager ensemble, c’est prendre soin de chaque détail.", sub: "Chaque compagnie applique ses propres règles pour le transport en cabine, en soute ou par fret, auxquelles s’ajoutent les restrictions liées à la race et les formalités de destination. MyDogCanFly.com rassemble ces informations en distinguant clairement ce qui est confirmé de ce qui doit encore être vérifié." },
+    "/es": { q: "¿Puede viajar mi perro en avión?", acc: "Viajar juntos es cuidar cada detalle.", sub: "Cada aerolínea aplica sus propias normas para el transporte en cabina, en bodega o como carga, además de las restricciones relacionadas con la raza y los requisitos del destino. MyDogCanFly.com reúne esta información y distingue claramente lo que está confirmado de lo que aún debe comprobarse." },
+    "/pt": { q: "Meu cachorro pode viajar de avião?", acc: "Viajar juntos é cuidar de cada detalhe.", sub: "Cada companhia aérea aplica suas próprias regras para o transporte na cabine, no porão ou como carga, além das restrições relacionadas à raça e das exigências do destino. MyDogCanFly.com reúne essas informações e distingue claramente o que está confirmado do que ainda precisa ser verificado." },
+  };
+  const ANCIENS = /still needs checking|ce qu'il faut vérifier|aún hay que comprobar|ainda é preciso verificar|Can your dog fly|Ton chien peut-il|Puede volar tu perro|O teu cão pode voar/;
+  const mesurer = (p) => p.evaluate(() => {
+    const cw = document.documentElement.clientWidth, dep = [];
+    for (const el of document.querySelectorAll("h1, h2, h3, a, button, .mdcf-container, .mdcf-card, p")) {
+      const r = el.getBoundingClientRect(); if (r.width > 0 && Math.round(r.right) > cw) dep.push({ tag: el.tagName, cls: String(el.className).slice(0, 30), right: Math.round(r.right) });
+    }
+    const t = document.querySelector(".hero__title");
+    return { sw: document.documentElement.scrollWidth, cw, dep: dep.slice(0, 3), root: getComputedStyle(document.documentElement).fontSize, body: getComputedStyle(document.body).fontSize,
+      h1: parseFloat(getComputedStyle(t).fontSize), q: document.querySelector(".hero__q")?.textContent.trim(), acc: document.querySelector(".hero__accent")?.textContent.trim(), sub: document.querySelector(".hero__sub")?.textContent.trim() };
+  });
+  for (const [loc, att] of Object.entries(TEXTES)) {
+    const nom = loc || "/en";
+    const p = await nouvellePage();
+    await p.goto(`${BASE}${loc}/`, { waitUntil: "networkidle" });
+    const bureau = await mesurer(p);
+    check(`accueil ${nom} : T1, T2, T3 sont strictement les textes validés`, bureau.q === att.q && bureau.acc === att.acc && bureau.sub === att.sub, JSON.stringify({ q: bureau.q, acc: bureau.acc, sub: bureau.sub?.slice(0, 80) }));
+    check(`accueil ${nom} : aucun ancien slogan dans la page`, !ANCIENS.test((await p.textContent("body")) ?? ""));
+    for (const w of [320, 360, 375, 400]) {
+      await p.setViewportSize({ width: w, height: 900 });
+      await p.waitForTimeout(120);
+      const m = await mesurer(p);
+      check(`accueil ${nom} @${w} : la page ne défile pas horizontalement (scrollWidth ≤ clientWidth)`, m.sw <= m.cw, `${m.sw} > ${m.cw}`);
+      check(`accueil ${nom} @${w} : aucun titre, lien, bouton, carte ni conteneur ne dépasse`, m.dep.length === 0, JSON.stringify(m.dep));
+      check(`accueil ${nom} @${w} : aucune réduction globale de typographie (racine et corps inchangés), titre ≥ 22 px, textes intacts`,
+        m.root === bureau.root && m.body === bureau.body && m.h1 >= 22 && m.q === att.q && m.acc === att.acc && m.sub === att.sub, JSON.stringify({ root: m.root, body: m.body, h1: m.h1 }));
+    }
+    await capturer(p, `13-accueil${loc.replace("/", "-") || "-en"}-400px`);
+    await p.close();
+  }
+}
+
 /* ---- 11. LES DEUX AUTRES ARBITRAGES, DANS LE DOM RÉEL --------------------------------------- */
 console.log("\n=== Fiche de race : plus aucune affirmation sans preuve ===");
 {
