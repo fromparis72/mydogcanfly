@@ -70,6 +70,24 @@ ladder:
 policies:
   cabin:
     availability: offered
+    # PREUVE IMPORTÉE — import strict af_cabine (Codex, lecture directe du 2026-09-10, cohorte AF fait 0).
+    # Effet attendu : Pour un chihuahua de 3 kg, la cabine Air France passe de « à confirmer » (page officielle non citée) à « sous conditions » ; à 8 kg exactement et au-delà, refus sûr (borne stricte).
+    # Portée nommée : Chien + sac de transport strictement inférieur à 8 kg (« moins de 8 kg, sac de transport compris ») ; disponibilité de place à confirmer lors de la réservation ; aucun tarif prouvé par cette phrase.
+    # Le plafond cité inclut le CONTENANT : refus sûr si le chien seul le dépasse, jamais un oui en dessous.
+    max_weight_kg: 8
+    weight_includes_carrier: true
+    weight_limit_bound: lt   # la phrase dit « inférieur à » : la valeur est exclue, un chien de 8 kg exactement est refusé
+    source:
+      url: "https://wwws.airfrance.fr/information/passagers/voyager-avec-son-animal-chien-chat"
+      source_type: official_website
+      verified_date: "2026-09-10"
+      review_due: "2026-12-09"   # reviewDueFrom(verified_date, "airline") — calculé par l'importeur
+      confidence: 4
+      reviewer: "Codex — lecture directe de la page officielle"
+      history: []
+      quote: "En cabine (chats et chiens de moins de 8 kg, sac de transport compris)"
+      quote_language: fr
+      locator: "Transport de chiens, de chats et autres animaux de compagnie → option En cabine"
   hold:
     availability: offered
     # PREUVE IMPORTÉE — import strict V3 (Codex, lecture directe du 2026-09-08, cohorte A fait 0).

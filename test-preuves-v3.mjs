@@ -99,8 +99,13 @@ console.log("\n=== Étage 2 — Paris → Athènes : le grand chien, le petit ch
   const afH = canal(golden, "airline_air_france", "hold");
   check("Air France soute, Golden 32 kg : acceptée sous conditions, plafond 75 kg chien + contenant transporté",
     afH?.status === "accepted_with_conditions" && afH?.weight_limit_kg === 75, JSON.stringify(afH));
-  check("Air France cabine, Golden 32 kg : NON importée (pas de phrase cabine dans le dossier) → reste à confirmer, pas un refus inventé",
-    canal(golden, "airline_air_france", "cabin")?.status === "confirmation_required");
+  /* MOUVEMENT NOMMÉ (10/09/2026, complément Air France cabine — Codex) : le dossier V3 ne portait pas de phrase cabine, et ce
+     témoin garantissait qu'aucun refus n'était inventé. La phrase est arrivée le 10/09 (« moins de 8 kg, sac de transport
+     compris », dossier `complement-air-france-cabine-2026-09-10`) : le refus du Golden est désormais PROUVÉ, sur cette
+     source-là et pas sur le dossier V3. Le témoin garde son sens : le refus porte la source du 10/09, jamais celle de V3. */
+  const afC = canal(golden, "airline_air_france", "cabin");
+  check("Air France cabine, Golden 32 kg : refusée sur le complément du 10/09 (pas sur le dossier V3, qui n'a pas de phrase cabine) — jamais un refus inventé",
+    afC?.status === "denied" && afC?.source?.verified_date === "2026-09-10" && /wwws\.airfrance\.fr\/information/.test(afC?.source?.url ?? ""), JSON.stringify(afC));
   const tkH = canal(golden, "airline_turkish", "hold");
   check("Turkish soute : plafond 50 kg chien + contenant transporté", tkH?.weight_limit_kg === 50, JSON.stringify(tkH));
   for (const dog of [["Golden 32", golden], ["Cavalier 6", cavalier]]) {

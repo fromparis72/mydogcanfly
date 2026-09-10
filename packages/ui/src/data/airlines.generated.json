@@ -5379,7 +5379,22 @@
     ],
     "policies": {
       "cabin": {
-        "availability": "offered"
+        "availability": "offered",
+        "source": {
+          "url": "https://wwws.airfrance.fr/information/passagers/voyager-avec-son-animal-chien-chat",
+          "source_type": "official_website",
+          "verified_date": "2026-09-10",
+          "review_due": "2026-12-09",
+          "confidence": 4,
+          "reviewer": "Codex — lecture directe de la page officielle",
+          "history": [],
+          "quote": "En cabine (chats et chiens de moins de 8 kg, sac de transport compris)",
+          "quote_language": "fr",
+          "locator": "Transport de chiens, de chats et autres animaux de compagnie → option En cabine"
+        },
+        "max_weight_kg": 8,
+        "weight_limit_bound": "lt",
+        "weight_includes_carrier": true
       },
       "hold": {
         "availability": "offered",
