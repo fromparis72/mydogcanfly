@@ -129,8 +129,8 @@ SAS soute laisse `weight_includes_carrier` non renseigné : la page ne dit pas s
 
 ## Audit tarifaire indépendant de Codex — reçu, empreinte vérifiée, garde rejouée (10/09/2026)
 
-Archive `AUDIT_TARIFS_102_COMPAGNIES_2026-09-10.zip`, dépliée dans `audit-tarifs-codex/`. **SHA-256 recalculé
-ici : `252b7954…c6027` — identique à celui qu'annonce Codex.** Sa garde rejouable passe sans modification :
+Archive `AUDIT_TARIFS_102_COMPAGNIES_2026-09-10.zip`, dépliée dans `audit-tarifs-codex/`. **V2 du 10/09, qui remplace la première archive** (celle-ci portait `252b7954…c6027`, également vérifiée).
+SHA-256 recalculé ici : **`17102030…00344` — identique à celui qu'annonce Codex.** Sa garde rejouable passe sans modification :
 
 ```
 $ node audit-tarifs/consolider.mjs
@@ -142,15 +142,15 @@ Comptes relus dans le JSON, et concordants avec le LISEZ_MOI de Codex :
 | classe tarifaire | canaux | | classe tarifaire | canaux |
 |---|---:|---|---|---:|
 | MATRIX | 59 | | QUOTE | 47 |
-| EXACT | 35 | | QUOTE_OR_NOT_FOUND | 15 |
-| RANGE | 13 | | NOT_FOUND | 52 |
-| FORMULA | 12 | | NOT_APPLICABLE | 62 |
+| EXACT | 36 | | QUOTE_OR_NOT_FOUND | 15 |
+| RANGE | 13 | | NOT_FOUND | 50 |
+| FORMULA | 12 | | NOT_APPLICABLE | 63 |
 | CALCULATOR | 4 | | CONFLICT | 3 |
 | MINIMUM, BOOKING_ONLY | 2 + 2 | | **total** | **306** |
 
-Les sept premières classes font les **127** mécanismes exploitables ; QUOTE et QUOTE_OR_NOT_FOUND font les **62**
-devis. Côté citation : 95 extraits portent un prix, 78 un mécanisme — dont les 62 devis, ce qui laisse bien
-**111** lignes exploitables à preuve directe, **16** `LOCATOR_ONLY_REVIEW_BEFORE_IMPORT` et **3**
+Les sept premières classes font les **128** mécanismes exploitables ; QUOTE et QUOTE_OR_NOT_FOUND font les **62**
+devis. Côté citation : 96 extraits portent un prix, 78 un mécanisme — dont les 62 devis, ce qui laisse bien
+**112** lignes exploitables à preuve directe, **16** `LOCATOR_ONLY_REVIEW_BEFORE_IMPORT` et **3**
 `CONFLICT_DO_NOT_IMPORT`. Rien à recompter : les nombres de Codex sont vérifiés, pas repris.
 
 ### Ce que cet audit change pour moi
@@ -179,3 +179,15 @@ certains vols intérieurs, un refus mondial serait faux).
    production. C'est une dette que j'avais déjà nommée ; elle est maintenant opposée par un tiers.
 
 Aucun de ces points n'est tranché ici : ils vont à Philippe, avec les deux lectures en regard.
+
+## Les trois contre-lectures, tranchées par Philippe (10/09/2026)
+
+1. **Air China cabine — ma preuve VALIDÉE.** La page officielle établit le transport en cabine sur les vols
+   opérés par Air China, et publie 1 399 RMB par animal et par segment, réservation entre J-7 et H-24. L'audit V2
+   la reclasse `EXACT`. Rien à changer dans la donnée ; le tarif entrera par le contrat tarifaire.
+2. **Batik Air Indonesia — ma preuve VALIDÉE pour la cabine et la soute.** La page interdit les animaux sur les
+   vols de la compagnie. Elle ne prouve pas l'absence d'un service fret : le fret doit rester « à confirmer ».
+   **Mesuré : il l'est déjà** — `not_offered` sans citation projette `confirmation_required` (cause
+   `legacy_unreviewed`), et le témoin du lot 9 l'exigeait déjà. Aucun mouvement.
+3. **Saudia — ma preuve REFUSÉE.** `booking-uat.dcloud.saudia.com` est une surface de test. Retirée ; cabine et
+   soute reviennent à « à confirmer ». Lot séparé, `lot/saudia-preuve-uat-retiree`.

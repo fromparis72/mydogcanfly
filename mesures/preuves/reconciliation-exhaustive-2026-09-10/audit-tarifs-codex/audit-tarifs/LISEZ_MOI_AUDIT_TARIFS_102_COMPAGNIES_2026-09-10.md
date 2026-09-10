@@ -1,6 +1,7 @@
 # Audit indépendant des tarifs animaux — 102 compagnies
 
 Date de lecture des sources : **10 septembre 2026**  
+Révision : **V2 — contre-lecture Air China et Batik Air Indonesia**  
 Échéance de revue recommandée : **9 décembre 2026**  
 Objet : fournir à Claude une collecte officielle, structurée et indépendante pour raccorder les tarifs au Finder sans réactiver aveuglément les anciens champs `fee` et `fareList`.
 
@@ -27,18 +28,18 @@ Les 306 couples compagnie × canal se répartissent ainsi :
 
 | Nature tarifaire officielle | Canaux | Usage public possible |
 |---|---:|---|
-| montant exact, fourchette, grille, formule, calculateur, minimum ou prix dans la réservation | **127** | afficher la valeur ou le mécanisme avec sa portée et sa preuve propre |
+| montant exact, fourchette, grille, formule, calculateur, minimum ou prix dans la réservation | **128** | afficher la valeur ou le mécanisme avec sa portée et sa preuve propre |
 | devis ou devis/non trouvé | **62** | afficher « sur devis » seulement lorsque la source établit réellement le service ou le devis |
-| tarif actuel non trouvé | **52** | ne pas réactiver le montant historique ; afficher « tarif à confirmer » si le canal existe |
-| sans objet, canal non proposé | **62** | ne pas afficher de ligne tarifaire |
+| tarif actuel non trouvé | **50** | ne pas réactiver le montant historique ; afficher « tarif à confirmer » si le canal existe |
+| sans objet, canal non proposé | **63** | ne pas afficher de ligne tarifaire |
 | conflit entre sources officielles | **3** | masquer le montant exact et signaler le conflit |
 | **Total** | **306** | |
 
-Les 127 mécanismes tarifaires exploitables concernent surtout les canaux voyageurs : **60 cabines, 65 soutes et 2 frets**. Ce résultat confirme que le fret est le moins rentable à documenter en prix public : il est généralement vendu sur devis.
+Les 128 mécanismes tarifaires exploitables concernent surtout les canaux voyageurs : **61 cabines, 65 soutes et 2 frets**. Ce résultat confirme que le fret est le moins rentable à documenter en prix public : il est généralement vendu sur devis.
 
-Après la passe de renforcement des citations, **111 de ces 127** lignes portent dans l'extrait consolidé le prix, la formule, le calculateur ou le mécanisme de réservation. Les **16 autres** sont volontairement marquées `LOCATOR_ONLY_REVIEW_BEFORE_IMPORT` : la valeur figure dans une matrice officielle multi-lignes ou une surface difficile à extraire, mais une citation courte ne suffit pas à prouver toute la grille. Elles ne doivent pas être importées automatiquement.
+Après la passe de renforcement des citations, **112 de ces 128** lignes portent dans l'extrait consolidé le prix, la formule, le calculateur ou le mécanisme de réservation. Les **16 autres** sont volontairement marquées `LOCATOR_ONLY_REVIEW_BEFORE_IMPORT` : la valeur figure dans une matrice officielle multi-lignes ou une surface difficile à extraire, mais une citation courte ne suffit pas à prouver toute la grille. Elles ne doivent pas être importées automatiquement.
 
-La classe de service normalisée compte 152 canaux offerts, 37 conditionnels, 20 limités, 62 non proposés et 35 non établis. `NOT_ESTABLISHED` ne signifie jamais « refusé ».
+La classe de service normalisée compte 153 canaux offerts, 37 conditionnels, 20 limités, 63 non proposés et 33 non établis. `NOT_ESTABLISHED` ne signifie jamais « refusé ».
 
 ## Conclusion sur le raccord actuel au Finder
 
@@ -82,14 +83,17 @@ Ces divergences sont conservées et ne doivent pas être tranchées par déducti
 1. **Finnair soute** : deux pages officielles vivantes publient 120/600 EUR et 140/650 EUR. Masquer le montant exact jusqu'à clarification.
 2. **South African Airways soute** : conflit de locale officielle, 300 ZAR en anglais contre 250 ZAR en portugais.
 3. **SunExpress soute, Ercan** : conflit de locale officielle, 25 EUR contre 15 EUR au paiement à l'aéroport.
-4. **Air China cabine** : l'audit indépendant conclut que les animaux ordinaires ne sont pas proposés en cabine ; la branche de Claude la passe à offerte. Relire la portée exacte de sa nouvelle preuve.
-5. **Aer Lingus soute** : distinguer l'emplacement physique en soute du produit commercial fret via agent/IAG Cargo.
-6. **Batik Air Indonesia** : l'audit n'avait trouvé aucune preuve exploitable ; la branche de Claude ajoute ensuite deux refus depuis une nouvelle page. Cette page doit être contre-lue.
-7. **Qantas soute** : la source dit que certains aéroports peuvent accepter l'animal comme bagage enregistré ; ne pas généraliser au réseau.
-8. **Saudia cabine/soute** : la branche utilise une URL UAT, exclue de cet audit comme preuve de production.
-9. **China Eastern cabine** : la règle actuelle autorise une demande sur certains vols intérieurs ; un refus mondial serait faux.
+4. **Aer Lingus soute** : distinguer l'emplacement physique en soute du produit commercial fret via agent/IAG Cargo.
+5. **Qantas soute** : la source dit que certains aéroports peuvent accepter l'animal comme bagage enregistré ; ne pas généraliser au réseau.
+6. **Saudia cabine/soute** : la branche utilise une URL UAT, exclue de cet audit comme preuve de production.
+7. **China Eastern cabine** : la règle actuelle autorise une demande sur certains vols intérieurs ; un refus mondial serait faux.
 
-Ces neuf points n'empêchent pas l'import des autres lignes ; ils bloquent uniquement les portées concernées.
+Ces sept points n'empêchent pas l'import des autres lignes ; ils bloquent uniquement les portées concernées.
+
+Deux désaccords initialement listés sont désormais clos après contre-lecture directe :
+
+- **Air China cabine** : la branche de Claude est correcte. L'accord officiel établit le transport en cabine sur les vols opérés par Air China et publie **1 399 RMB par animal et par segment**. La consolidation a été corrigée.
+- **Batik Air Indonesia** : la page d'aide officielle corrobore les refus cabine et soute accompagnée. Elle ne suffit pas à décider séparément le fret.
 
 ## Règles d'exploitation du TSV/JSON
 

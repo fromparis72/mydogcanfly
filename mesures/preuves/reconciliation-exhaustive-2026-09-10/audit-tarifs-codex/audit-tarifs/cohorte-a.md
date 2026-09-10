@@ -33,7 +33,7 @@ Conclusion : **aucun tarif du TSV n’est aujourd’hui raccordé au Finder par 
 Les écarts les plus importants à traiter avant toute réactivation de prix sont :
 
 1. **China Eastern** : le YAML dit cabine non offerte ; la règle officielle actuelle permet une demande sur certains vols domestiques via l’application. C’est un écart de statut, pas seulement de prix.
-2. **Batik Air Indonesia et Malaysia** : les trois refus écrits dans les YAML ne sont pas prouvés par une page officielle accessible. Ils doivent rester « non établis » tant qu’une règle officielle n’est pas obtenue.
+2. **Batik Air** : la première passe n'avait trouvé aucune page exploitable. Une contre-lecture du 10 septembre a retrouvé la page d'aide officielle de Batik Air Indonesia et corroboré les refus cabine/soute. Batik Air Malaysia reste non établi ; le fret Batik Indonesia reste lui aussi non établi séparément.
 3. **Alaska** : la soute historique à USD 150 est désormais annoncée à USD 200 par un article officiel daté du 26 août 2026. La cabine reste USD 100, avec USD 35 pour un voyage entièrement à Hawaï.
 4. **Air Europa** : la grille actuelle 36/52/155 en cabine et 93/155/310 en soute ne correspond plus aux fourchettes historiques.
 5. **ANA** : le domestique est passé à JPY 6 600 / 4 400 à compter du 19 mai 2026 ; les JPY 6 000 / 4 000 historiques sont périmés.
@@ -56,7 +56,7 @@ Les écarts les plus importants à traiter avant toute réactivation de prix son
 | Air Austral | 125 EUR / trajet | 200 EUR / trajet | devis | montants corroborés |
 | Air Canada | CAD 50–120 | CAD 105–324 | devis | grille corroborée, page datée 2024-10-28 |
 | Air Caraïbes | 75 EUR transatlantique | 150 EUR transatlantique | devis | anciens 10/20 EUR non retrouvés |
-| Air China | non offerte | CNY 3 900 / 5 200 / 7 800 selon poids | devis | PDF officiel lié mais version 2022 |
+| Air China | 1 399 CNY par animal et segment, vols opérés par Air China | CNY 3 900 / 5 200 / 7 800 selon poids | devis | accord cabine officiel relu le 10/09 ; PDF soute lié mais daté 2022 |
 | Air Europa | EUR 36 / 52 / 155 | EUR 93 / 155 / 310 | devis | historique périmé |
 | Air France | offerte, tarif non trouvé | offerte, tarif non trouvé | devis | anciennes fourchettes non corroborées |
 | Air India | INR 7 500; USD 140/160/225 | INR 16 000; USD 350 | devis | grille largement corroborée; vérifier le sous-groupe Europe |
@@ -74,7 +74,7 @@ Les écarts les plus importants à traiter avant toute réactivation de prix son
 | Austrian | EUR 65–125 | EUR 80–380 + transfert | devis | Europe cabine historique périmé |
 | Avianca | tarifs « à partir de » multi-devises | tarifs « à partir de » multi-devises | devis | grille historique trop agrégée |
 | Bangkok Airways | non offerte | THB 180/kg domestique; USD 8–48/kg zones internationales | devis | historique omet la grille internationale |
-| Batik Air Indonesia | non établi | non établi | non établi | les refus historiques sont sans preuve officielle accessible |
+| Batik Air Indonesia | non offerte | non offerte comme bagage accompagné | non établi | refus passagers corroborés par la page d'aide officielle du 25/04/2024 |
 | Batik Air Malaysia | non établi | non établi | non établi | les refus historiques sont sans preuve officielle accessible |
 | British Airways | non offerte | pas comme bagage passager | devis selon poids/taille/distance | statut cargo corroboré |
 | Brussels Airlines | EUR 65–115 selon zone | EUR 160–380 selon zone + transfert | devis | plusieurs valeurs historiques périmées |
@@ -105,7 +105,7 @@ Une fourchette ne permet pas d’établir le prix du trajet. C’est particuliè
 - **Aerolíneas Argentinas** : la cabine se paie via WhatsApp ; aucune grille actuelle n’était visible. La page soute passager n’a pas été retrouvée.
 - **Air France** : le prix est rattaché au parcours de réservation ; aucune grille actuelle statique n’a été trouvée.
 - **China Airlines** : le tarif utilise un sélecteur origine/destination. La règle fixe/double est visible, pas les montants du widget.
-- **Batik Air** : aucune politique animaux officielle exploitable n’a été trouvée sur les deux sites. Le résultat est `NON_ESTABLISHED`, pas `NOT_OFFERED`.
+- **Batik Air Malaysia** : aucune politique animaux officielle exploitable n’a été trouvée. Le résultat est `NON_ESTABLISHED`, pas `NOT_OFFERED`. Pour Batik Air Indonesia, la contre-lecture ultérieure a retrouvé une page d'aide officielle et corroboré les refus cabine/soute.
 
 ## Recommandation d’usage
 
@@ -114,7 +114,7 @@ Ce livrable est une **collecte de preuve**, pas un correctif de données. L’in
 Priorité de contre-vérification humaine avant intégration :
 
 1. China Eastern cabine — changement de statut ;
-2. Batik Air × 2 — refus non prouvés ;
+2. Batik Air Malaysia — refus non prouvés ;
 3. Air Europa, Alaska, ANA, Austrian, Brussels — tarifs historiques manifestement périmés ;
 4. Air France, Aeroméxico, Aerolíneas Argentinas — prix actuels non récupérables sans parcours interactif/contact ;
 5. Air India — résoudre le conflit de libellé de zone cabine entre FAQ et PDF officiel.
@@ -187,10 +187,10 @@ Dans chaque ligne ci-dessous, l'état de départ est `confirmation_required`. La
 
 ### Écarts qui imposent une réconciliation humaine
 
-Cette comparaison ne suffit pas à arbitrer trois contradictions avec la collecte tarifaire :
+Cette comparaison avait initialement isolé trois contradictions. Deux ont depuis été contre-lues directement sur leurs nouvelles pages officielles :
 
-1. **Air China cabine** : l'audit tarifaire avait conclu « non offerte » depuis la page bagages consultée ; la branche ajoute un accord officiel distinct qui dit `offered`. Le verdict de la branche ne doit être accepté qu'après validation de sa portée (vols opérés, routes, dates et conditions).
-2. **Aer Lingus soute** : la branche écrit `hold: offered`, alors que l'audit distingue le transport physique en soute du contrat commercial via agent/fret. Il faut décider si `hold` signifie emplacement physique ou bagage accompagné ; sinon le Finder mélangera deux services.
-3. **Batik Air Indonesia** : l'audit n'avait pas trouvé de page officielle exploitable et avait conclu `NON_ESTABLISHED`; la branche rattache désormais une page d'aide officielle et produit deux `denied`. Cette preuve nouvelle n'a pas été reconsultée dans le présent différentiel et doit être contre-lue avant intégration.
+1. **Air China cabine — résolu en faveur de la branche.** L'accord officiel mobile établit les chiens et chats en cabine sur les vols opérés par Air China, les conditions et le tarif exact de 1 399 RMB par animal et segment. La ligne tarifaire consolidée est corrigée.
+2. **Batik Air Indonesia — résolu en faveur de la branche.** La page d'aide officielle dit explicitement que les vols Batik Air Indonesia n'acceptent pas les animaux. Les refus cabine et soute importés sont donc corroborés ; cette page ne suffit toutefois pas à décider séparément le fret.
+3. **Aer Lingus soute — reste à arbitrer.** La branche écrit `hold: offered`, alors que l'audit distingue le transport physique en soute du contrat commercial via agent/fret. Il faut décider si `hold` signifie emplacement physique ou bagage accompagné ; sinon le Finder mélangera deux services.
 
 Les autres promotions indiquent ce que **produirait** la branche par la frontière de confiance ; elles ne constituent pas une seconde validation indépendante de la justesse des citations ni de leur portée.
