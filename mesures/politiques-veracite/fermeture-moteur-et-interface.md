@@ -3686,3 +3686,12 @@ corrigés, nommés dans le fichier.
 | chaîne `test:built-ui`, caisses non sourcées, accueil, affirmations retirées, tarifs, montants publiés, dette Astro | verts |
 | étape 3 DOM | verte, scellé des licites inchangé (16 sources, 20 couples) |
 | contre-épreuves complètes sur l'arbre propre | 58/58 |
+
+### Déploiement de `main` `6275605` (10/09/2026, Philippe, depuis son Mac) — prouvé
+
+`verify:index` : 2 536 URL, 102 compagnies, 140 pays, 172 races, 269 aéroports, aucune balise noindex ;
+`wrangler deploy` annonce `Current Version ID: fb53813f-041f-4b69-bd5d-675d1904d87b` ; lecture de santé :
+`sha: 6275605885747cf398960d4fce19cc27b5b632fb`, `worker_version_id: fb53813f-…` — le SHA ET l'identifiant
+de version concordent avec l'annonce (règle de l'annexe 35). En ligne désormais : Bangkok Airways fret
+(annexe 37, #49), Air France cabine citée (annexe 39, #51). Contrôle en ligne à demander à Codex : chihuahua
+3 kg, CDG → JFK, cabine Air France « sous conditions, plafond 8 kg chien + sac ».
