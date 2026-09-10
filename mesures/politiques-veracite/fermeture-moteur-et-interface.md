@@ -3686,3 +3686,72 @@ corrigés, nommés dans le fichier.
 | chaîne `test:built-ui`, caisses non sourcées, accueil, affirmations retirées, tarifs, montants publiés, dette Astro | verts |
 | étape 3 DOM | verte, scellé des licites inchangé (16 sources, 20 couples) |
 | contre-épreuves complètes sur l'arbre propre | 58/58 |
+
+## Annexe 38 — Cartes du Finder : contrat d'interface arbitré (10/09/2026, classement A)
+
+Arbitrage définitif de Philippe, relayé par Codex avec une précision : la ligne de preuve nomme le
+canal concerné, pour ne pas laisser croire que toute la carte est vérifiée ; le tarif ne s'affiche
+que lorsqu'il possède sa propre preuve tarifaire. Lot de simplification de l'affichage : ni nouveau
+statut, ni nouveau système de provenance, contrat moteur inchangé. Branche
+`lot/cartes-finder-presentation` depuis `main` `2ab56c9`.
+
+### Mesuré avant d'écrire
+
+| ancienne carte | ce qui se répétait |
+|---|---|
+| pastilles `acard__badges` (Cabine ✓* Soute ? Fret ✗) | le statut, une première fois |
+| ligne `acard__label` (libellé moteur « Cabine et soute : acceptées sous conditions… ») | le statut, une deuxième fois |
+| lignes `acard__accepted` / `acard__denied` (« ✓ Soute : accepté sous conditions… — hôte · date ») | le statut, une troisième fois, avec la source |
+| ligne `acard__psrc` (liens par source, canaux nommés) | la source, une deuxième fois |
+| lignes `acard__confirmwhy` (phrases de famille) | dans CHAQUE carte |
+| bloc `acard__fee` | pastilles tarifaires jointes SANS séparateur : « Cabine — Tarif à confirmer…Soute — … » (la concaténation signalée) |
+
+L'étape 3 lit le libellé multicanal dans le contrat moteur (`a.label`), pas dans la carte : la ligne
+peut disparaître de la carte sans toucher ce contrôle. Le contrat du Finder ne transporte ni la
+citation ni sa localisation (seulement URL, type, date, confiance) : le volet des preuves les montre
+et renvoie à la fiche détaillée pour le texte intégral, comme l'arbitrage le permet.
+
+### Nouvelle carte
+
+```
+Contrat Air — Direct
+Cabine : à confirmer
+Soute : oui, sous conditions · Poids total chien + contenant jusqu'à 75 kg · tarif à confirmer
+Fret : informations non publiées                        (ligne discrète)
+Vérifié sur une source officielle le 8 septembre 2026 : Soute · Voir les preuves   (volet fermé)
+```
+
+- Trois lignes canal, statut LU dans `placement_decisions` (repli sur les statuts de la carte), jamais
+  recalculé ; les classes `ab--ok / ab--cond / ab--confirm / ab--no` restent, une par canal — ce sont
+  elles que les harnais comptent. La rature CSS du refus disparaît : « non » se lit.
+- Fret développé s'il est documenté (sous conditions, ou refus cité), demandé (préférence « fret » du
+  formulaire), ou seul canal restant (cabine et soute refusées, cas d'une route « fret seul ») ;
+  replié sinon, en « informations non publiées », **seulement** quand toutes ses causes sont de la
+  famille « rien de publié » (héritage non revérifié, page sans phrase, politique non publiée ou
+  absente, règle non vérifiable). Une approbation au cas par cas ou un fait manquant développent la
+  ligne en « à confirmer ».
+- Tarif : jamais un montant ; « tarif à confirmer » (cabine, soute) ou « sur devis » (fret) seulement
+  sur un canal ouvert. Le « tarif vérifié : 100–400 € » de la forme cible attend le registre tarifaire
+  et sa preuve propre (URL, citation, date, portée, base de facturation).
+- Une ligne de provenance par carte, groupée par date, qui nomme ses canaux ; volet `<details>` fermé
+  « Voir les preuves » : par canal, page officielle, date, confiance, puis lien vers la fiche détaillée.
+- Avertissements généraux (nos quatre familles, phrases du 05/09 et du 08/09 inchangées) rendus **une
+  fois** au-dessus des cartes, dans l'ordre notre incertitude → page non citée → politique → fait
+  manquant. Le climat garde son bandeau.
+- Hors périmètre, nommé : lignes d'itinéraire (`acard__via`, `acard__unver`) et d'embargo, inchangées.
+
+### Témoins
+
+Harnais du Finder, quatre langues : T0-A **re-fondé** (les phrases de famille sont cherchées dans
+`.acards__notes`, une fois, et exigées absentes des cartes ; ordre conservé) ; nouvelle passe
+`cartesPass` — lignes canal et textes exacts, plafond écrit une fois, anciens blocs absents, fret replié
+/ développé (documenté, seul restant, demandé, cas par cas), tarif seulement sur canal ouvert, provenance
+nommant le canal prouvé et non les autres, deux dates → deux mentions, volet fermé avec page, date,
+confiance et lien fiche, aucune source → ni ligne ni volet. Harnais des avis (un badge de chaque
+classe), libellés multicanaux, chaleur : inchangés et verts sur le build réduit.
+
+### Erreur nommée
+
+Premier jet : `locale` (variable du serveur) utilisé dans le script client pour formater la date —
+attrapé par la dette Astro (165 → 166) avant tout build ; corrigé par `L.locale`. Deux erreurs
+implicites `any` préexistantes de ce fichier restent dans la dette (2), inchangées.

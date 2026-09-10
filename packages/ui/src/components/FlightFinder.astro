@@ -162,6 +162,24 @@ const labels = {
   /* LE QUATRIÈME ÉTAT SUR LA CARTE (08/09/2026) : un canal accepté sous les conditions publiées
      par la compagnie, sur citation. Jamais « OK » : le visiteur lit la condition et la source. */
   acceptedConditions: T("accepted under the airline's conditions — documented by a cited official source", "accepté sous conditions de la compagnie — documenté par une source officielle citée", "aceptado bajo las condiciones de la aerolínea: documentado por una fuente oficial citada"),
+  /* CARTES DU FINDER — CONTRAT D'INTERFACE ARBITRÉ PAR PHILIPPE (10/09/2026, annexe 38). La réponse d'abord,
+     la condition tout de suite après, le tarif quand il est établi, la preuve sans envahir l'écran. Une
+     information n'apparaît qu'une fois : ces lignes REMPLACENT les badges, la ligne de verdict, les lignes
+     d'acceptation et de refus, la ligne des sources et le bloc tarifaire de l'ancienne carte. */
+  lineYes: T("yes", "oui", "sí"),
+  lineYesCond: T("yes, under conditions", "oui, sous conditions", "sí, bajo condiciones"),
+  lineNo: T("no", "non", "no"),
+  lineConfirm: T("to be confirmed", "à confirmer", "a confirmar"),
+  /* Le fret replié : une seule ligne discrète quand rien n'est publié — jamais un paragraphe d'incertitude. */
+  lineCargoQuiet: T("information not published", "informations non publiées", "información no publicada"),
+  /* Le tarif n'est jamais un montant ici : il le sera quand une preuve tarifaire propre existera. */
+  fareConfirmShort: T("fare to confirm", "tarif à confirmer", "tarifa a confirmar"),
+  fareQuoteShort: T("on quotation", "sur devis", "bajo presupuesto"),
+  /* La provenance nomme ses canaux : elle ne dit jamais que toute la carte est vérifiée. */
+  provenance: T("Verified on an official source on {date}: {channels}", "Vérifié sur une source officielle le {date} : {channels}", "Verificado en una fuente oficial el {date}: {channels}"),
+  seeProofs: T("See the evidence", "Voir les preuves", "Ver las pruebas"),
+  proofVerified: T("verified on", "vérifié le", "verificado el"),
+  proofFiche: T("Full quotation and locator on the detailed sheet", "Citation intégrale et localisation sur la fiche détaillée", "Cita íntegra y localización en la ficha detallada"),
   weightLimitCombined: t(locale, "air.cond.weight_limit"),
   weightLimitDog: t(locale, "air.cond.weight_limit_dog"),
   /* Borne stricte (09/09/2026) : « inférieur à », la valeur est exclue — le libellé le dit. */
@@ -590,6 +608,33 @@ const labels = {
     // Retest 09/08/2026, point 6 : extrait de l'ancien `.map(a => ...)` inline pour pouvoir
     // l'appeler sur deux sous-listes (correspond au mode / alternatives) plutôt que sur une seule —
     // le contenu de chaque carte est inchangé, seul l'endroit où elle est rendue change.
+    /* LE LIEN VERS LA FICHE, CALCULÉ UNE FOIS PAR CARTE (10/09/2026) : le bouton et le volet des preuves s'en
+       servent tous deux. Le corps est celui du bouton d'origine, déplacé sans changement. */
+    const ficheHrefFor = (a: any): string => {
+      const p = new URLSearchParams();
+      p.set("from", lastOriginIso); p.set("to", lastDestIso);
+      p.set("air", a.airline_id);
+      /* Correction P0 (contre-revue Codex, tour 6) : `lastBreedLabel`/`lastWeightKg`,
+       * figés au lancement de CETTE recherche (comme lastBreedId/lastOriginIso/
+       * lastEuPassport ci-dessus) — jamais relus en direct dans le formulaire, qui a pu
+       * changer pendant que la requête était en vol. `lastWeightKg` est toujours en
+       * kilogrammes, y compris quand le Finder affichait des livres au moment de la
+       * recherche (voir le commentaire de sa déclaration). */
+      if (lastBreedLabel) p.set("breed", lastBreedLabel);
+      if (lastBreedId) p.set("bid", lastBreedId);
+      if (lastWeightKg !== undefined) p.set("w", String(lastWeightKg));
+      /* La réponse sur le passeport européen suit le voyageur jusqu'aux modalités
+         détaillées : sans elle, la fiche retombait sur son propre filtrage d'origine
+         et réaffirmait le certificat sanitaire à qui venait de dire qu'il avait un
+         passeport. Le paramètre est OMIS quand la question n'a pas été posée ou reste
+         sans réponse — un "" transmis serait un « non » déguisé, et la fiche montre
+         les deux parcours quand elle ne sait pas. */
+      if (lastEuPassport) p.set("eu_passport", lastEuPassport);
+      /* La fiche imprimable est en noindex et ce lien naît après une recherche,
+         mais Google exécute le JavaScript : dièse ici aussi, par cohérence. */
+      const href = (L.ficheBase || "/tools/fiche/") + "#" + p.toString();
+      return href;
+    };
     const airlineCard = (a: any): string => `
               <li class="acard ${(() => {
                   // Bug corrigé (audit du 09/08/2026, tâche 19) : le style de la carte (bordure + opacité)
@@ -670,174 +715,72 @@ const labels = {
                       CDG→SYD, les seules étoilées côté départ étaient Air Tahiti Nui et Aircalin.
                       Réintroduire uniquement avec une donnée `flag_carrier` explicite et une
                       modélisation des territoires (Polynésie française, Nouvelle-Calédonie). */ ""}
-                  <div class="acard__badges">${(["cabin", "hold", "cargo"] as const).map((ch) => {
-                    /* TRI-STATE : `ab--confirm` (« ? ») pour un canal à confirmer — jamais la coche
-                       d'un canal ouvert, jamais la croix d'un canal fermé. Repli sur les booléens
-                       si un rapport ancien ne porte pas les statuts. */
-                    const st = a[`${ch}_status`] ?? (a[ch] ? "allowed" : "denied");
-                    const cls = st === "allowed" ? "ab--ok" : st === "accepted_with_conditions" ? "ab--cond" : st === "confirmation_required" ? "ab--confirm" : "ab--no";
-                    const cap = ch === "cabin" ? L.cabinShort : ch === "hold" ? L.holdShort : L.cargoShort;
-                    /* Le refus porte sa croix : une rature CSS n'est pas un statut (08/09/2026). */
-                    const mark = st === "confirmation_required" ? " ?" : st === "denied" ? " ✗" : st === "accepted_with_conditions" ? " ✓*" : "";
-                    return `<span class="ab ${cls}">${esc(cap)}${mark}</span>`;
-                  }).join("")}</div>
-                  <div class="acard__label">${esc(a.label)}</div>
                   ${(() => {
-                    /* LE REFUS PROUVÉ SE DIT EN TOUTES LETTRES (contre-test navigateur du 08/09/2026).
-                     *
-                     * Paris → New York, British Airways via LHR : le moteur rendait
-                     * `cabin:denied` avec sa source vérifiée, `hold` et `cargo` à confirmer. La
-                     * carte affichait le libellé « Politique à confirmer » (vrai pour le fret) et
-                     * « aucune phrase citée » (vrai pour le fret) — et pour la cabine, une rature.
-                     * La fiche British Airways, elle, écrit « Non accepté » avec la citation et sa
-                     * date. Le visiteur lisait deux réponses pour un même fait.
-                     *
-                     * Un canal `denied` ne l'est que sur une preuve décisive (le moteur ne refuse
-                     * jamais sur une page non citée : `evaluate.ts`). Quand la décision porte sa
-                     * source, on l'écrit : canal, refus documenté, hôte, date. */
-                    const lignes = [];
-                    /* L'ACCEPTATION SOUS CONDITIONS SE DIT AUSSI EN TOUTES LETTRES (08/09/2026) :
-                       canal, « accepté sous conditions de la compagnie », le plafond chien +
-                       contenant quand la politique le publie, hôte et date de la citation. */
-                    for (const d of (a.placement_decisions || [])) {
-                      if (d.status !== "accepted_with_conditions") continue;
-                      const cap = d.placement === "cabin" ? L.cabinShort : d.placement === "hold" ? L.holdShort : L.cargoShort;
-                      /* `weight_limit_includes_carrier === false` : plafond du CHIEN SEUL (lot 2) — la carte le dit. */
+                    /* TROIS LIGNES CANAL (annexe 38) : « Cabine : à confirmer », « Soute : oui, sous conditions ·
+                       jusqu'à 75 kg avec le contenant · tarif à confirmer », « Fret : sur devis ». Le statut est LU
+                       (`placement_decisions`, repli sur les statuts de la carte), jamais recalculé. Les classes `ab--*`
+                       restent, une par canal : ce sont elles que les harnais comptent. */
+                    const decisions: any[] = a.placement_decisions || [];
+                    const decision = (ch: string) => decisions.find((d) => d.placement === ch);
+                    const statut = (ch: string): string => a[`${ch}_status`] ?? decision(ch)?.status ?? (a[ch] ? "allowed" : "denied");
+                    const cap = (ch: string) => ch === "cabin" ? L.cabinShort : ch === "hold" ? L.holdShort : L.cargoShort;
+                    const cls = (st: string) => st === "allowed" ? "ab--ok" : st === "accepted_with_conditions" ? "ab--cond" : st === "confirmation_required" ? "ab--confirm" : "ab--no";
+                    const seuilDe = (d: any) => {
+                      if (!d || !d.weight_limit_kg) return "";
                       const strict = d.weight_limit_bound === "lt";
-                      const seuil = d.weight_limit_kg ? ` · ${esc((d.weight_limit_includes_carrier === false ? (strict ? L.weightLimitDogLt : L.weightLimitDog) : (strict ? L.weightLimitCombinedLt : L.weightLimitCombined)).replace("{kg}", String(d.weight_limit_kg)))}` : "";
-                      const src = d.source && d.source.url ? ` — ${esc(host(d.source.url))}${d.source.verified_date ? ` · ${esc(d.source.verified_date)}` : ""}` : "";
-                      lignes.push(`<div class="acard__accepted">✓ ${esc(cap)} : ${esc(L.acceptedConditions)}${seuil}${src}</div>`);
-                    }
-                    for (const d of (a.placement_decisions || [])) {
-                      if (d.status !== "denied" || !d.source || !d.source.url) continue;
-                      const cap = d.placement === "cabin" ? L.cabinShort : d.placement === "hold" ? L.holdShort : L.cargoShort;
-                      lignes.push(`<div class="acard__denied">✗ ${esc(cap)} : ${esc(L.deniedDocumented)} — ${esc(host(d.source.url))}${d.source.verified_date ? ` · ${esc(d.source.verified_date)}` : ""}</div>`);
-                    }
-                    return lignes.join("");
-                  })()}
-                  ${(() => {
-                    /* LES SOURCES DES CANAUX, et RIEN D'AUTRE (contre-test du 15/08/2026).
-                     *
-                     * La ligne de verdict affichait `a.source_url` — la source RACINE de la
-                     * fiche : « mydogcanfly.com » sur 52 compagnies, une simple page d'accueil
-                     * sur 35 autres. Aucune ne documente un canal. Le champ n'existe plus dans le
-                     * contrat moteur : cette surface ne peut donc plus le rendre, même par
-                     * inadvertance.
-                     *
-                     * Rien à afficher quand aucune politique n'a de source auditée : une
-                     * politique non revue reste sans source plutôt qu'avec une source empruntée. */
-                    const vus = new Map();
-                    for (const d of (a.placement_decisions || [])) {
-                      if (!d.source || !d.source.url) continue;
-                      const cap = d.placement === "cabin" ? L.cabinShort : d.placement === "hold" ? L.holdShort : L.cargoShort;
-                      const e = vus.get(d.source.url) || { url: d.source.url, canaux: [] };
-                      e.canaux.push(cap);
-                      vus.set(d.source.url, e);
-                    }
-                    if (vus.size === 0) return "";
-                    return `<div class="acard__psrc">${[...vus.values()].map((s) =>
-                      `<a href="${esc(s.url)}" rel="nofollow noopener" target="_blank" data-placements="${esc(s.canaux.join(","))}">${esc(s.canaux.join(" · "))} — ${esc(host(s.url))}</a>`).join("")}</div>`;
+                      const lib = d.weight_limit_includes_carrier === false ? (strict ? L.weightLimitDogLt : L.weightLimitDog) : (strict ? L.weightLimitCombinedLt : L.weightLimitCombined);
+                      return lib.replace("{kg}", String(d.weight_limit_kg));
+                    };
+                    /* Causes « rien de publié » : héritage non revérifié, page officielle sans phrase, politique non
+                       publiée ou absente, règle non vérifiable. Une approbation au cas par cas ou un fait manquant
+                       n'en font pas partie : là, le fret se développe et dit « à confirmer ». */
+                    const NON_PUBLIE = new Set(["legacy_unreviewed", "official_source_unquoted", "policy_unpublished", "policy_absent", "rule_unverified", "rule_official_unquoted"]);
+                    const ligne = (ch: string, quiet: boolean) => {
+                      const st = statut(ch), d = decision(ch);
+                      const morceaux: string[] = [];
+                      if (quiet) morceaux.push(esc(L.lineCargoQuiet));
+                      else if (st === "allowed") morceaux.push(esc(L.lineYes));
+                      else if (st === "accepted_with_conditions") { morceaux.push(esc(L.lineYesCond)); const sl = seuilDe(d); if (sl) morceaux.push(esc(sl)); }
+                      else if (st === "denied") morceaux.push(esc(L.lineNo));
+                      else morceaux.push(esc(L.lineConfirm));
+                      /* Le tarif, seulement sur un canal ouvert — et jamais un montant sans preuve tarifaire propre. */
+                      if (!quiet && (st === "allowed" || st === "accepted_with_conditions")) morceaux.push(esc(ch === "cargo" ? L.fareQuoteShort : L.fareConfirmShort));
+                      return `<div class="acard__line acard__line--${ch}${quiet ? " acard__line--quiet" : ""}" data-status="${esc(st)}"><b>${esc(cap(ch))}</b> : <span class="ab ${cls(st)}">${morceaux[0]}</span>${morceaux.slice(1).map((m) => ` · ${m}`).join("")}</div>`;
+                    };
+                    /* Le fret se développe s'il est documenté (sous conditions, ou refus cité), demandé, ou seul canal
+                       restant (cabine et soute refusées — c'est le cas d'une route « fret seul »). Sinon, replié. */
+                    const stCargo = statut("cargo"), dCargo = decision("cargo");
+                    const causesCargo: string[] = (dCargo?.confirmation_causes || []).map((c: any) => c.code);
+                    const cargoNonPublie = stCargo === "confirmation_required" && causesCargo.length > 0 && causesCargo.every((c) => NON_PUBLIE.has(c));
+                    const cargoDemande = lastPlacement === "cargo";
+                    const cargoSeulRestant = statut("cabin") === "denied" && statut("hold") === "denied";
+                    const cargoDeveloppe = !cargoNonPublie || cargoDemande || cargoSeulRestant;
+                    return `<div class="acard__lines">${ligne("cabin", false)}${ligne("hold", false)}${ligne("cargo", !cargoDeveloppe)}</div>`;
                   })()}
                   ${(a.origin_airport_id || a.destination_airport_id) ? `<div class="acard__via">✈ ${[a.origin_airport_id ? `${esc(L.fromAirport)} ${esc(AIRSHORT[a.origin_airport_id] || a.origin_airport_id)}` : "", a.destination_airport_id ? `${esc(L.toAirport)} ${esc(AIRSHORT[a.destination_airport_id] || a.destination_airport_id)}` : ""].filter(Boolean).join(" · ")}</div>` : ""}
                   ${(a.itinerary_confidence === "connection_unverified" || a.itinerary_confidence === "direct_assumed")
                     ? `<div class="acard__unver">? ${esc(L.unverifiedNote)}</div>` : ""}
                   ${a.heat_embargo ? `<div class="acard__embargo">🌡️ ${esc(L.heatEmbargo)}</div>` : ""}
                   ${(() => {
-                    /* T0-A : une explication VISIBLE par famille de cause non climatique (le climat
-                       a déjà son bandeau + sa ligne — pas de second message redondant). Aujourd'hui
-                       aucune donnée ne produit ces familles ; le rendu existe pour T0-B et il est
-                       verrouillé par les harnais sur fixtures. */
-                    /* CHAQUE FAMILLE NOMME SES CANAUX (08/09/2026). « Une page officielle couvre
-                       ce canal, aucune phrase citée » se lisait comme un jugement sur toute la
-                       compagnie ; il ne portait que sur le fret de British Airways, dont la cabine
-                       était refusée sur citation. La phrase dit maintenant de quel canal elle parle. */
-                    const fams = new Map<string, string[]>();
-                    const nommer = (fam: string, d: { placement: string }) => {
-                      const cap = d.placement === "cabin" ? L.cabinShort : d.placement === "hold" ? L.holdShort : L.cargoShort;
-                      if (!fams.has(fam)) fams.set(fam, []);
-                      if (!fams.get(fam)!.includes(cap)) fams.get(fam)!.push(cap);
-                    };
-                    for (const d of (a.placement_decisions || [])) {
-                      if (d.status !== "confirmation_required") continue;
-                      for (const c of (d.confirmation_causes || [])) {
-                        /* T0-B : famille PROPRE — `legacy_unreviewed` ne rejoint pas « policy »,
-                           qui attribuerait à la compagnie un doute qui vient de notre donnée. */
-                        if (c.code === "legacy_unreviewed") nommer("unreviewed", d);
-                        /* Notre donnée manque, ou la règle qui fermait le canal n'est pas
-                           vérifiable : c'est NOTRE incertitude, pas celle de la compagnie. */
-                        /* `breed_deny_unverified` rejoint « notre incertitude » : nous détenons un
-                           fait de race que nous ne savons pas prouver. Il ne doit surtout pas
-                           tomber dans le vide, comme `official_source_unquoted` l'a fait. */
-                        else if (c.code === "policy_absent" || c.code === "rule_unverified"
-                                 || c.code === "breed_deny_unverified") nommer("unreviewed", d);
-                        /* Une page officielle existe, sans phrase citée — politique ou règle. */
-                        else if (c.code === "official_source_unquoted" || c.code === "rule_official_unquoted") nommer("official_link", d);
-                        else if (c.code === "policy_unpublished" || c.code === "airline_approval") nommer("policy", d);
-                        else if (c.code === "missing_fact") nommer("missing", d);
-                      }
-                    }
-                    const lines = [];
-                    /* Ordre : notre propre incertitude D'ABORD. Quand les deux familles coexistent,
-                       le visiteur lit « nous ne l'avons pas revérifié » avant toute phrase qui
-                       parle de la politique de la compagnie. */
-                    const ligne = (fam: string, texte: string) => `<div class="acard__confirmwhy">? ${esc((fams.get(fam) ?? []).join(", "))} : ${esc(texte)}</div>`;
-                    if (fams.has("unreviewed")) lines.push(ligne("unreviewed", L.confirmUnreviewed));
-                    if (fams.has("official_link")) lines.push(ligne("official_link", L.confirmOfficialLink));
-                    if (fams.has("policy")) lines.push(ligne("policy", L.confirmPolicy));
-                    if (fams.has("missing")) lines.push(ligne("missing", L.confirmMissing));
-                    return lines.join("");
+                    /* UNE SEULE LIGNE DE PROVENANCE, qui nomme ses canaux (annexe 38) : « Vérifié sur une source
+                       officielle le 8 septembre 2026 : Soute · Voir les preuves ». Le volet fermé porte, par canal,
+                       la page officielle, la date et la confiance ; la citation intégrale et sa localisation sont
+                       sur la fiche détaillée (le contrat du Finder ne les transporte pas — et n'a pas à changer). */
+                    const sourcees = (a.placement_decisions || []).filter((d: any) => d.source && d.source.url);
+                    if (!sourcees.length) return "";
+                    const cap = (ch: string) => ch === "cabin" ? L.cabinShort : ch === "hold" ? L.holdShort : L.cargoShort;
+                    const dateLisible = (iso: string) => { try { return new Intl.DateTimeFormat(String(L.locale ?? "en"), { day: "numeric", month: "long", year: "numeric" }).format(new Date(iso + "T00:00:00Z")); } catch { return iso; } };
+                    const parDate = new Map<string, string[]>();
+                    for (const d of sourcees) { const k = d.source.verified_date || ""; if (!parDate.has(k)) parDate.set(k, []); parDate.get(k)!.push(cap(d.placement)); }
+                    const phrase = [...parDate.entries()].map(([k, canaux]) => L.provenance.replace("{date}", k ? dateLisible(k) : "—").replace("{channels}", canaux.join(", "))).join(" · ");
+                    const lignes = sourcees.map((d: any) => `<li><b>${esc(cap(d.placement))}</b> — <a href="${esc(d.source.url)}" rel="nofollow noopener" target="_blank">${esc(host(d.source.url))}</a>${d.source.verified_date ? ` · ${esc(L.proofVerified)} ${esc(d.source.verified_date)}` : ""}${typeof d.source.confidence === "number" ? ` · ${esc(L.confidence)} ${esc(String(d.source.confidence))}/5` : ""}</li>`).join("");
+                    return `<div class="acard__prov"><span class="acard__prov-text">${esc(phrase)}</span> · <details class="acard__proofs"><summary>${esc(L.seeProofs)}</summary><ul>${lignes}</ul><p class="acard__proofs-fiche"><a href="${esc(ficheHrefFor(a))}">${esc(L.proofFiche)}</a></p></details></div>`;
                   })()}
-                  ${/* LE MONTANT NU A DISPARU. Cette ligne rendait le champ « fee » — un montant
-                       unique, attribué au premier canal accepté et affiché SANS dire duquel il
-                       venait, dont 91 valeurs sur 101 sortaient d'un champ libre hérité du site
-                       v1. Une fourchette générique y prenait l'apparence d'un prix calculé pour le
-                       trajet demandé. Ce qui la remplace nomme son canal et ne promet rien de plus
-                       que ce qu'on sait. */ ""}
-                  ${(a.statuts_tarifaires ?? []).length
-                    ? `<div class="acard__fee">${a.statuts_tarifaires.map(/* `a` est `any` ici : le paramètre serait donc implicitement `any` lui aussi, et
-                          c'est l'erreur ts(7006) que ce lot a ajoutée à la dette Astro. On le type PAR LE
-                          CONTRAT lui-même plutôt qu'en recopiant sa forme : une copie dériverait le jour où
-                          `AirlineResult.statuts_tarifaires` changerait, celle-ci ne le peut pas. */
-                      (s: NonNullable<AirlineResult["statuts_tarifaires"]>[number]) => {
-                        const cap = s.placement === "cabin" ? L.cabinShort : s.placement === "hold" ? L.holdShort : L.cargoShort;
-                        return `<span class="acard__tarif" data-placement="${esc(s.placement)}">${esc(cap)} — ${esc(s.statut)}</span>`;
-                      }).join("")}</div>`
-                    : ""}
                 </div>
                 <div class="acard__mid">${(() => {
                   // One decisive action per airline: open the bespoke "Bible" sheet, carrying the whole
                   // context (route, airline snapshot) in the URL so it's a shareable permalink.
-                  /* Option B (fiche.astro, 10/08/2026) a arrêté de LIRE ces champs depuis l'URL —
-                   * mais jusqu'ici le Finder continuait de les ÉCRIRE, ce qui ne les exposait plus
-                   * dans le rendu mais les laissait circuler dans des liens partagés (et dans le
-                   * corps du "partager par email" de la fiche, qui reprend l'URL courante) sans
-                   * plus jamais servir à rien. Corrigé suite à la contre-revue Codex du 10/08/2026 :
-                   * seuls `from`/`to`/`air`/`breed`/`bid`/`w`/`eu_passport` sont encore nécessaires
-                   * (contexte de navigation et chronologie pays, tous canoniques côté fiche) — le
-                   * nom de compagnie, le score, cabine/soute/fret, le vol direct, le tarif,
-                   * l'embargo et les liens sortants compagnie ne sont plus écrits du tout. */
-                  const p = new URLSearchParams();
-                  p.set("from", lastOriginIso); p.set("to", lastDestIso);
-                  p.set("air", a.airline_id);
-                  /* Correction P0 (contre-revue Codex, tour 6) : `lastBreedLabel`/`lastWeightKg`,
-                   * figés au lancement de CETTE recherche (comme lastBreedId/lastOriginIso/
-                   * lastEuPassport ci-dessus) — jamais relus en direct dans le formulaire, qui a pu
-                   * changer pendant que la requête était en vol. `lastWeightKg` est toujours en
-                   * kilogrammes, y compris quand le Finder affichait des livres au moment de la
-                   * recherche (voir le commentaire de sa déclaration). */
-                  if (lastBreedLabel) p.set("breed", lastBreedLabel);
-                  if (lastBreedId) p.set("bid", lastBreedId);
-                  if (lastWeightKg !== undefined) p.set("w", String(lastWeightKg));
-                  /* La réponse sur le passeport européen suit le voyageur jusqu'aux modalités
-                     détaillées : sans elle, la fiche retombait sur son propre filtrage d'origine
-                     et réaffirmait le certificat sanitaire à qui venait de dire qu'il avait un
-                     passeport. Le paramètre est OMIS quand la question n'a pas été posée ou reste
-                     sans réponse — un "" transmis serait un « non » déguisé, et la fiche montre
-                     les deux parcours quand elle ne sait pas. */
-                  if (lastEuPassport) p.set("eu_passport", lastEuPassport);
-                  /* La fiche imprimable est en noindex et ce lien naît après une recherche,
-                     mais Google exécute le JavaScript : dièse ici aussi, par cohérence. */
-                  const href = (L.ficheBase || "/tools/fiche/") + "#" + p.toString();
+                  const href = ficheHrefFor(a);
                   return `<a class="mdcf-btn acard__fiche" href="${esc(href)}"><span>${esc(L.ficheCta)}</span><span class="acard__fiche-go">→</span></a>`;
                 })()}</div>
               </li>`;
@@ -901,7 +844,24 @@ const labels = {
                 const cap = ch === "cabin" ? L.cabinShort : ch === "hold" ? L.holdShort : L.cargoShort;
                 return `<span class="asum__ch"><b class="asum__cap">${esc(cap)}</b> : <b>${n.cond}</b> ${esc(L.sumCond)} · <b>${n.denied}</b> ${esc(L.sumDenied)} · <b>${n.confirm}</b> ${esc(L.sumConfirm)}</span>`;
               }).join("");
-              const header = `<h4>${esc(L.airlines)}</h4><div class="asum">${resume}</div>`;
+              /* LES AVERTISSEMENTS GÉNÉRAUX, UNE SEULE FOIS (annexe 38) : les familles de cause de confirmation
+                 non climatique étaient répétées dans chaque carte (`acard__confirmwhy`). Elles sont relevées sur
+                 toutes les cartes et rendues une fois ici, dans l'ordre : notre incertitude d'abord, puis la page
+                 officielle non citée, puis la politique de la compagnie, puis le fait manquant. Le climat garde
+                 son bandeau. Les phrases sont celles du 05/09 et du 08/09, inchangées. */
+              const familles = new Set<string>();
+              for (const a of r.airlines) for (const d of (a.placement_decisions || [])) {
+                if (d.status !== "confirmation_required") continue;
+                for (const c of (d.confirmation_causes || [])) {
+                  if (c.code === "legacy_unreviewed" || c.code === "policy_absent" || c.code === "rule_unverified" || c.code === "breed_deny_unverified") familles.add("unreviewed");
+                  else if (c.code === "official_source_unquoted" || c.code === "rule_official_unquoted") familles.add("official_link");
+                  else if (c.code === "policy_unpublished" || c.code === "airline_approval") familles.add("policy");
+                  else if (c.code === "missing_fact") familles.add("missing");
+                }
+              }
+              const ORDRE_NOTES: [string, string][] = [["unreviewed", L.confirmUnreviewed], ["official_link", L.confirmOfficialLink], ["policy", L.confirmPolicy], ["missing", L.confirmMissing]];
+              const notes = ORDRE_NOTES.filter(([f]) => familles.has(f)).map(([f, texte]) => `<p class="acards__note" data-family="${f}">? ${esc(texte)}</p>`).join("");
+              const header = `<h4>${esc(L.airlines)}</h4><div class="asum">${resume}</div>${notes ? `<div class="acards__notes">${notes}</div>` : ""}`;
               /* Une liste en deux niveaux : documentées à plat, pistes repliées. */
               const deuxNiveaux = (liste: any[], titreDocumentees: string | null) => {
                 const doc = liste.filter(documentee), pistes = liste.filter((a: any) => !documentee(a));
@@ -1574,7 +1534,22 @@ const labels = {
   .acard__badges { display: flex; gap: 6px; margin: 6px 0 4px; }
   .ab { font-size: 11px; font-weight: 700; padding: 2px 8px; border-radius: 999px; }
   .ab--ok { color: #065f46; background: #d1fae5; }
-  .ab--no { color: #991b1b; background: #fee2e2; text-decoration: line-through; }
+  /* Plus de rature : le verdict « non » se lit en toutes lettres sur sa ligne (annexe 38). */
+  .ab--no { color: #991b1b; background: #fee2e2; }
+  /* Lignes canal, provenance et volet des preuves (annexe 38). */
+  .acard__lines { display: grid; gap: 3px; margin: 6px 0 4px; font-size: 13px; line-height: 1.35; }
+  .acard__line b { font-weight: 700; }
+  .acard__line .ab { font-size: 12px; }
+  .acard__line--quiet { color: var(--mdcf-muted); font-size: 12px; }
+  .acard__line--quiet .ab { background: transparent; padding: 0; font-weight: 600; }
+  .acard__prov { margin-top: 5px; font-size: 11.5px; color: var(--mdcf-muted); line-height: 1.4; }
+  .acard__proofs { display: inline; }
+  .acard__proofs summary { display: inline; cursor: pointer; color: var(--mdcf-accent); }
+  .acard__proofs ul { margin: 4px 0 0; padding-left: 16px; }
+  .acard__proofs a { color: var(--mdcf-accent); }
+  .acard__proofs-fiche { margin: 4px 0 0; }
+  .acards__notes { margin: 8px 0 4px; display: grid; gap: 4px; }
+  .acards__note { margin: 0; font-size: 12.5px; line-height: 1.4; color: #92400e; font-weight: 600; }
   .acard__denied { margin-top: .35rem; font-size: .85rem; color: #991b1b; }
   .acard__accepted { margin-top: .35rem; font-size: .85rem; color: #065f46; }
   .ab--cond { color: #065f46; background: #d1fae5; }
