@@ -32,6 +32,8 @@ import { z } from "zod";
    langue BCP-47, URL http(s) hors domaines maison, type de source factuel, cadence de 90 jours
    dérivée et locator obligatoire. C'est ce qui impose d'exécuter ce script sous `tsx`. */
 import { T0bAuditSource, T0bSourceDePolitique } from "../src/t0b-migration.ts";
+/* Le contrat tarifaire est IMPORTÉ, jamais recopié : une seconde définition dériverait (annexe 44). */
+import { Fare, FareConflict } from "../src/tarifs.ts";
 
 const HERE = dirname(fileURLToPath(import.meta.url));
 const ROOT = join(HERE, "..", "..", "..");
@@ -141,8 +143,19 @@ const DecisionPlacement = z.union([
     /** La borne du seuil (09/09/2026, règle des seuils de Codex) : `lt` exclut la valeur. Absent = `lte`. */
     weight_limit_bound: z.enum(["lt", "lte"]).optional(),
     weight_includes_carrier: z.boolean().optional(),
+    /** LES TARIFS PROUVÉS (10/09/2026, annexe 44). La fiche sait désormais les écrire ; le contrat
+     *  vit dans `packages/knowledge/src/tarifs.ts` et c'est LUI qui valide — pas une copie du schéma
+     *  recopiée ici, qui dériverait le jour où l'un des deux bouge. */
+    fares: z.array(Fare).optional(),
+    fare_conflicts: z.array(FareConflict).optional(),
   }).strict(),
-  z.object({ review_state: z.literal("legacy_unreviewed") }).strict(),
+  z.object({
+    review_state: z.literal("legacy_unreviewed"),
+    /* Une ligne non revérifiée peut porter un tarif prouvé : la page publie le prix sans que la
+       politique du canal soit décidée. Les deux preuves sont distinctes — c'est tout l'arbitrage. */
+    fares: z.array(Fare).optional(),
+    fare_conflicts: z.array(FareConflict).optional(),
+  }).strict(),
 ]);
 
 /**
@@ -594,7 +607,9 @@ for (const a of (objects.airlines || [])) {
          seuil. Même classe de défaut que la priorité de la source auditée, corrigée le 15/08.
          Seuls les champs ÉCRITS dans `policies:` passent (pas le poids déduit de la ligne
          tarifaire, qui reste soumis à la préservation et à la détection de dérive). */
-      for (const k of ["max_weight_kg", "weight_includes_carrier", "weight_limit_bound", "conditions"]) {
+      /* `fares` et `fare_conflicts` entrent dans cette liste LE JOUR MÊME de leur écriture dans la fiche
+         (10/09/2026) : c'est ici que le seuil s'était perdu le 15/08, et le champ du quatrième état le 08/09. */
+      for (const k of ["max_weight_kg", "weight_includes_carrier", "weight_limit_bound", "conditions", "fares", "fare_conflicts"]) {
         if (d.__ecrits?.has(k) && d[k] !== undefined) enrichissements[k] = d[k];
       }
       /* Une source AUDITÉE écrite dans la fiche l'emporte, ici aussi. La première correction
@@ -637,6 +652,8 @@ for (const a of (objects.airlines || [])) {
       ...(d.max_weight_kg != null ? { max_weight_kg: d.max_weight_kg } : {}),
       ...(typeof d.weight_includes_carrier === "boolean" ? { weight_includes_carrier: d.weight_includes_carrier } : {}),
       ...(d.weight_limit_bound ? { weight_limit_bound: d.weight_limit_bound } : {}),
+      ...(d.fares?.length ? { fares: d.fares } : {}),
+      ...(d.fare_conflicts?.length ? { fare_conflicts: d.fare_conflicts } : {}),
       ...(d.brachy_allowed === false ? { brachy_allowed: false } : {}),
       source: sourceRetenue,
       ...(sourceRetenue === source ? { source_derived: true } : {}),

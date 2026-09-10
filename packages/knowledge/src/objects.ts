@@ -1,5 +1,6 @@
 import { z } from "zod";
 import { id, LocalizedText, DogSize, Source, SourceCitable, PlacementStatus, FACTUAL_SOURCE_TYPES, isForbiddenSource } from "./common";
+import { Fare, FareConflict } from "./tarifs";
 
 export const Country = z.object({
   id: id("country"),
@@ -132,6 +133,12 @@ const PlacementPolicyCommon = {
    *  Absent = `lte`, la forme de 36 des 37 seuils écrits ; `lt` n'est écrit que quand la phrase citée
    *  le dit (Air Austral cabine, « inférieur à 8 kg »). Aucun arrondi : 8 reste 8. */
   weight_limit_bound: z.enum(["lt", "lte"]).optional(),
+  /** LES TARIFS PROUVÉS DE CE CANAL (10/09/2026, annexe 44) — chacun avec sa portée exécutable, ses
+   *  deux axes de facturation et SA citation propre. Le champ hérité `fee` ci-dessous reste ce qu'il
+   *  est : un inventaire de pistes, jamais une preuve, et il n'est plus affiché nulle part. */
+  fares: z.array(Fare).optional(),
+  /** Les conflits officiels ouverts sur ce canal : deux pages vivantes, deux montants, aucun tranché. */
+  fare_conflicts: z.array(FareConflict).optional(),
   carrier_dims_cm: z.object({ l: z.number(), w: z.number(), h: z.number() }).optional(),
   fee: z.string().optional(),                        // as published, e.g. "€125 (intra-Europe)"
   conditions: LocalizedText.optional(),
@@ -315,8 +322,11 @@ export function projectPlacementPolicy(authored: PlacementPolicyAuthored): Place
      (`test-quatrieme-etat.mjs`), pas en relisant. */
   /* `weight_limit_bound` ajouté à cette liste LE JOUR MÊME de son entrée au schéma (09/09/2026) — la leçon du 08/09
      ci-dessus : un champ absent d'ici est perdu par la projection, et le moteur ne le voit jamais. */
-  const { max_weight_kg, weight_includes_carrier, weight_limit_bound, carrier_dims_cm, fee, conditions, brachy_allowed, source, source_derived, derived_from_fiche } = authored;
-  const common = { max_weight_kg, weight_includes_carrier, weight_limit_bound, carrier_dims_cm, fee, conditions, brachy_allowed, source, source_derived, derived_from_fiche };
+  /* `fares` et `fare_conflicts` ajoutés à cette liste LE JOUR MÊME de leur entrée au schéma (10/09/2026) — la leçon
+     du 08/09 ci-dessus, deux fois apprise : un champ absent d'ici est perdu par la projection, et le moteur ne le
+     voit jamais. Le témoin `test-contrat-tarifaire.mjs` l'exige explicitement. */
+  const { max_weight_kg, weight_includes_carrier, weight_limit_bound, fares, fare_conflicts, carrier_dims_cm, fee, conditions, brachy_allowed, source, source_derived, derived_from_fiche } = authored;
+  const common = { max_weight_kg, weight_includes_carrier, weight_limit_bound, fares, fare_conflicts, carrier_dims_cm, fee, conditions, brachy_allowed, source, source_derived, derived_from_fiche };
   /* Donnée non revérifiée : à confirmer, cause explicitement NÔTRE — jamais une incertitude
      attribuée à la compagnie. Placée en tête parce qu'elle est la seule branche dont le
      discriminant ne peut coexister avec un autre ; l'ordre ne change rien au résultat, il rend

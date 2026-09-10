@@ -3915,3 +3915,69 @@ des preuves régénéré, baseline du Finder refigée (paire `complement-air-fra
 | caisses non sourcées | vert |
 | contre-épreuves `--dist-complet` | 58 garanties éprouvées sur 58 |
 | registre de fraîcheur | rescellé (1 504 entrées), inventaire des preuves régénéré |
+## Annexe 44 — Le contrat tarifaire : schéma, portée à trois valeurs, conflits (10/09/2026, classement C)
+
+Arbitré par Codex, tranché par Philippe : ce premier mouvement se limite au **schéma, à la validation, à
+l'ingestion et aux contre-épreuves**. Aucun affichage dans le Finder, aucun import des 102 compagnies. La
+projection et l'affichage attendront la fusion du lot Finder.
+
+### Ce que le refus de mon schéma a appris
+
+J'avais proposé un `unit` unique — `per_segment | per_journey | per_animal | per_container`. Codex l'a refusé
+pour une raison P0 que je n'avais pas vue : **deux axes s'appliquent en même temps**. SAS facture par contenant
+ET par vol. Le contrat les sépare, et les rend tous deux obligatoires :
+
+| axe | valeurs |
+|---|---|
+| `billing_subject` — ce qui est facturé | `pet`, `container`, `pet_or_container`, `booking`, `shipment`, `kilogram` |
+| `journey_basis` — à quelle fréquence | `per_segment`, `per_one_way`, `per_journey`, `per_round_trip` |
+
+S'y ajoutent `price.kind` (`exact`, `range`, `matrix` portent des montants ; `formula`, `calculator`,
+`booking_only`, `quote` prouvent un mécanisme et **aucune valeur**), un `purchase_window` distinct de la date du
+voyage, un `scope_label` qui se montre sans jamais décider, et **la citation propre au tarif** : la phrase qui
+prouve qu'un canal existe ne prouve pas son montant.
+
+### La portée est évaluée à TROIS valeurs, et c'est le cœur du lot
+
+`applies_when` réemploie la grammaire des règles — `all` / `any` / `not` / condition sur un `Fact` canonique —
+et **rien n'est recopié** : `Money`, `SourceCitable`, `Placement` et `Predicate` viennent des modules existants.
+*Erreur nommée* : mon premier jet redéfinissait un `Money` local, avec un contrôle ISO plus strict — deux `Money`
+dans le même paquet, précisément ce que Codex interdisait. Le contrôle de casse manquant est rattrapé sur la
+ligne tarifaire, sans toucher au type partagé.
+
+L'évaluateur rend `vrai`, `faux` ou **`indecidable`**. Un prédicat qui interroge un fait absent du contexte ne
+vaut pas « faux » : c'est la faute que ce dépôt répète — un contrôle qui ne parle que de ce qu'il reconnaît
+compte zéro là où il ne regarde pas —, et ici elle publierait un prix pour la mauvaise zone. **Faits absents,
+nommés** : la zone commerciale (« Europe », « Asie ») et le transporteur opérant (Finnair publie 75 kg sur
+Finnair, 50 kg sur Norra). Une grille zonée est donc indécidable aujourd'hui, et c'est la bonne réponse.
+
+`resoudreTarif` répond dans l'ordre de prudence : un **conflit** ouvert dont la portée couvre le trajet éteint
+tout montant ; deux montants différents applicables dans la même devise sont un **chevauchement**, jamais un
+choix ; un candidat chiffré unique s'**applique** ; un candidat non chiffré prouve un **mécanisme** ; une portée
+indécidable se dit **indécidable** ; sinon **rien**.
+
+### Les cinq témoins exigés, et trois de plus
+
+| témoin | ce qu'il prouve |
+|---|---|
+| SAS | facturé par contenant ET par segment ; trois devises parallèles sans conversion ; refusé si l'un des deux axes manque |
+| conflit Finnair soute | deux observations complètes exigées, une seule voix refusée ; la résolution rend le conflit, jamais 140 € ni 120 € ; un conflit **résolu** ne masque plus rien |
+| portée inconnue | `indecidable` et non « faux » ; aucun montant ; **et le même tarif s'applique quand le fait est connu** — le témoin n'est pas vacant |
+| chevauchement | deux montants divergents → conflit ; deux devises différentes → montants parallèles ; même montant, axes différents → chevauchement (725 € n'y veut pas dire la même chose) |
+| prix sans citation | refusé, et le motif nomme la citation ; sans localisateur, sans langue : refusés aussi |
+| projection | les tarifs traversent `projectPlacementPolicy` — le champ oublié le 15/08 puis le 08/09, ajouté à la liste **le jour même** |
+| ingestion | jouée pour de vrai sur un bac à sable : une fiche qui porte un tarif le voit arriver dans l'artefact, portée exécutable comprise. *Erreur nommée* : mon bac oubliait `test-baselines/`, l'ingestion s'arrêtait avant d'écrire, et j'ai d'abord cru à une perte du champ |
+| aucun import | les 302 politiques réelles ne portent **aucun** tarif : le schéma est prêt, la donnée n'a pas bougé |
+
+### Mesuré
+
+`test-contrat-tarifaire.mjs` : **44 contrôles**, dans `test:unit`. Suite unitaire complète, typecheck des trois
+paquets, `ingest:check`, dette Astro (165), contrat du catalogue : verts.
+
+### Ce qui vient ensuite, et dans quel ordre
+
+Import par lots de dix compagnies, sur l'audit V2 de Codex : d'abord les **133 tarifs hérités sur canal déjà
+cité** (cabine et soute d'abord), puis les 66 sur canal non cité, puis les 118 pistes de politiques, le fret en
+dernier sauf quand il est le seul canal. Les 16 lignes `LOCATOR_ONLY_REVIEW_BEFORE_IMPORT` et les 3
+`CONFLICT_DO_NOT_IMPORT` ne produisent **aucun montant catégorique**. `fee` et `fareList` restent un inventaire
+de pistes, jamais des preuves.
