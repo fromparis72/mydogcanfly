@@ -1,28 +1,28 @@
 {
   "resume": {
-    "empreinte_donnees_sha256": "d663d8c067fded1aefb5fe4e7c23e4460aba2edb9097262e4ac372996635d6fc",
+    "empreinte_donnees_sha256": "46a642623a48375d4f3e22367de7943b4a6cd51735621c536c15306d6ba774d3",
     "compagnies": 102,
     "lignes": 306,
     "politiques": 302,
     "par_categorie": {
-      "A": 179,
+      "A": 177,
       "A_incomplete": 0,
-      "B": 50,
+      "B": 52,
       "C": 74,
       "D": 3
     },
     "par_canal": {
       "cabin": {
-        "A": 80,
+        "A": 79,
         "A_incomplete": 0,
-        "B": 8,
+        "B": 9,
         "C": 14,
         "D": 0
       },
       "hold": {
-        "A": 71,
+        "A": 70,
         "A_incomplete": 0,
-        "B": 23,
+        "B": 24,
         "C": 8,
         "D": 0
       },
@@ -179,8 +179,6 @@
       "airline_ryanair#hold (politique)",
       "airline_ryanair#cargo (politique)",
       "airline_sas#cabin (politique)",
-      "airline_saudia#cabin (politique)",
-      "airline_saudia#hold (politique)",
       "airline_sky_express#cabin (politique)",
       "airline_sky_express#hold (politique)",
       "airline_smartwings#cabin (politique)",
@@ -223,29 +221,29 @@
     ],
     "B_par_piste": {
       "politique": 22,
-      "regle": 28
+      "regle": 30
     },
-    "B_par_regle_gov_uk_seul": 14,
+    "B_par_regle_gov_uk_seul": 15,
     "priorite_B": {
       "availability": {
         "not_offered": 21,
-        "null": 12,
-        "offered": 17
+        "null": 13,
+        "offered": 18
       },
       "derived_from_fiche": {
         "false": 15,
-        "true": 35
+        "true": 37
       },
       "source_derived": {
         "false": 23,
-        "true": 27
+        "true": 29
       },
       "review_state": {
-        "legacy_unreviewed": 11,
-        "null": 39
+        "legacy_unreviewed": 12,
+        "null": 40
       },
       "history": {
-        "0": 41,
+        "0": 43,
         "1": 9
       },
       "hotes": {
@@ -261,13 +259,14 @@
         "condor.com": 2,
         "delta.com": 2,
         "elal.com": 2,
-        "gov.uk": 14,
+        "gov.uk": 15,
         "iberia.com": 1,
         "icelandair.com": 3,
         "jal.co.jp": 1,
         "klm.com": 1,
         "lufthansa.com": 1,
         "maskargo.com": 1,
+        "saudia.com": 1,
         "singaporeair.com": 1,
         "swiss.com": 1,
         "turkishairlines.com": 1,
@@ -293,15 +292,15 @@
     },
     "coherence_niveau_de_preuve": {
       "paires": {
-        "A ↔ citee": 179,
-        "B ↔ aucune": 27,
+        "A ↔ citee": 177,
+        "B ↔ aucune": 29,
         "B ↔ officielle_non_citee": 22,
         "B ↔ politique_absente": 1,
         "C ↔ aucune": 74,
         "D ↔ politique_absente": 3
       },
       "ecarts": {
-        "B_par_regle_sur_politique_aucune": 27,
+        "B_par_regle_sur_politique_aucune": 29,
         "B_par_regle_sans_politique": 1,
         "A_par_regle": 0,
         "A_incomplete": 0,
@@ -7151,22 +7150,22 @@
       "airline_id": "airline_saudia",
       "name": "Saudia",
       "canal": "cabin",
-      "categorie": "A",
-      "piste": "politique",
+      "categorie": "B",
+      "piste": "regle:rule_saudia_no_cabin",
       "manques": [],
-      "url": "https://booking-uat.dcloud.saudia.com/book/flight-information/travelling-with-pets",
-      "hote": "booking-uat.dcloud.saudia.com",
-      "verified_date": "2026-09-09",
-      "niveau_de_preuve_politique": "citee",
+      "url": "https://www.saudia.com/before-flying/travel-information/travelling-with-pets",
+      "hote": "saudia.com",
+      "verified_date": "2026-07-08",
+      "niveau_de_preuve_politique": "aucune",
       "priorite": {
-        "availability": "not_offered",
+        "availability": null,
         "derived_from_fiche": true,
-        "source_derived": false,
-        "review_state": null,
+        "source_derived": true,
+        "review_state": "legacy_unreviewed",
         "history": 0,
-        "url_politique": "https://booking-uat.dcloud.saudia.com/book/flight-information/travelling-with-pets",
-        "hote_politique": "booking-uat.dcloud.saudia.com",
-        "url_fabriquee": false,
+        "url_politique": "https://www.saudia.com",
+        "hote_politique": "saudia.com",
+        "url_fabriquee": true,
         "regles": [
           "rule_saudia_no_cabin"
         ],
@@ -7182,22 +7181,22 @@
       "airline_id": "airline_saudia",
       "name": "Saudia",
       "canal": "hold",
-      "categorie": "A",
-      "piste": "politique",
+      "categorie": "B",
+      "piste": "regle:rule_saudia_gb_not_approved",
       "manques": [],
-      "url": "https://booking-uat.dcloud.saudia.com/book/flight-information/travelling-with-pets",
-      "hote": "booking-uat.dcloud.saudia.com",
-      "verified_date": "2026-09-09",
-      "niveau_de_preuve_politique": "citee",
+      "url": "https://www.gov.uk/government/publications/pet-travel-approved-air-sea-and-rail-carriers-and-routes/approved-air-routes-for-pet-travel",
+      "hote": "gov.uk",
+      "verified_date": "2026-08-08",
+      "niveau_de_preuve_politique": "aucune",
       "priorite": {
         "availability": "offered",
         "derived_from_fiche": true,
-        "source_derived": false,
+        "source_derived": true,
         "review_state": null,
         "history": 0,
-        "url_politique": "https://booking-uat.dcloud.saudia.com/book/flight-information/travelling-with-pets",
-        "hote_politique": "booking-uat.dcloud.saudia.com",
-        "url_fabriquee": false,
+        "url_politique": "https://www.saudia.com",
+        "hote_politique": "saudia.com",
+        "url_fabriquee": true,
         "regles": [
           "rule_saudia_gb_not_approved"
         ],

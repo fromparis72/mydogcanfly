@@ -307,8 +307,9 @@ console.log("=== 7. T0-B2 : la migration est FAITE, et la forme héritée est in
   /* MOUVEMENT NOMMÉ (09/09/2026, import strict lot 8 — 22 citations de plus, 158 en tout) : 151 → 129 ; cinq lignes non revérifiées réactivées sur citation (Bangkok Airways, Copa, KM Malta fret ; SKY express, SunExpress soute). */
   /* MOUVEMENT NOMMÉ (09/09/2026, import strict lot 9 — 18 citations de plus, 176 en tout, lot de clôture) : 129 → 111 ; cinq lignes non revérifiées réactivées sur citation (Aerolíneas Argentinas, Air Astana, Edelweiss fret ; TAROM soute et fret). */
   /* MOUVEMENT NOMMÉ (09/09/2026, correctif d'arbitrages — Codex, tranché par Philippe ; six preuves remplacées dans les lots 4, 6 et 8) : 111 → 109 (Aer Lingus soute, Air China cabine citées sur ordre). */
-  check("109 politiques émettent legacy_unreviewed (73 d'origine + 36 sans page à montrer)",
-    porteuses === 109, String(porteuses));
+  /* MOUVEMENT NOMMÉ (10/09/2026, Saudia — preuve de test retirée sur contre-lecture de l'audit de Codex, tranchée par Philippe) : 109 → 111 : Saudia cabine et soute redeviennent des lignes sans page à montrer. */
+  check("111 politiques émettent legacy_unreviewed (73 d'origine + 38 sans page à montrer)",
+    porteuses === 111, String(porteuses));
   /* 05/09/2026 — 33 → 32. British Airways cabine quitte ce groupe : sa page officielle porte
      désormais la phrase, et la politique devient le premier `denied` prouvé du dépôt. Chaque
      citation suivante fera baisser ce compte, et devra le nommer comme celle-ci. */
@@ -570,10 +571,11 @@ console.log("=== 8. Baseline FIGÉE : le point de comparaison de T0-B2 est scell
   /* 09/09/2026 — la plus récente est celle du lot 4 (chaîne : … → lots 2 et 3 → lot 4). */
   /* 10/09/2026 — la plus récente est celle du complément Air France cabine (chaîne : … → réconciliation → Air France cabine,
      vérifiée dans test-t0a-baseline.mjs). */
-  check("Complément Air France cabine : la baseline vivante est identique à la figée la plus récente",
-    vivante.equals(readFileSync("test-baselines/complement-air-france-cabine-apres.json")));
-  check("Réconciliation ciblée : sa figée reste intacte à côté (elle n'a pas été écrasée)",
-    readFileSync("test-baselines/reconciliation-arbitrages-apres.json").equals(readFileSync("test-baselines/complement-air-france-cabine-avant.json")));
+  /* 10/09/2026 — la plus récente est celle du retrait de la preuve Saudia (chaîne : … → Air France cabine → Saudia). */
+  check("Retrait de la preuve Saudia : la baseline vivante est identique à la figée la plus récente",
+    vivante.equals(readFileSync("test-baselines/saudia-preuve-uat-apres.json")));
+  check("Complément Air France cabine : sa figée reste intacte à côté (elle n'a pas été écrasée)",
+    readFileSync("test-baselines/complement-air-france-cabine-apres.json").equals(readFileSync("test-baselines/saudia-preuve-uat-avant.json")));
   check("Arbitrages d'interface : sa figée reste intacte à côté (elle n'a pas été écrasée)",
     !readFileSync("test-baselines/arbitrages-interface-apres.json")
       .equals(readFileSync("test-baselines/entree-ternaire-apres.json")));

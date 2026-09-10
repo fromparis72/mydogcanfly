@@ -41927,35 +41927,32 @@
       "premium": {
         "policy": {
           "cabin": {
-            "availability": "not_offered",
+            "review_state": "legacy_unreviewed",
+            "max_weight_kg": 5,
             "source": {
-              "url": "https://booking-uat.dcloud.saudia.com/book/flight-information/travelling-with-pets",
+              "url": "https://www.saudia.com",
               "source_type": "official_website",
-              "verified_date": "2026-09-09",
-              "review_due": "2026-12-08",
-              "confidence": 4,
-              "reviewer": "Codex — direct reading of official airline page",
-              "history": [],
-              "quote": "Dogs must be transported in the cargo hold (holds are equipped with ventilation systems).",
-              "quote_language": "en",
-              "locator": "Travelling with Pets & Animals → Regulations"
+              "verified_date": "2026-07-11",
+              "review_due": "2026-10-09",
+              "confidence": 3,
+              "reviewer": "MyDogCanFly Data Team (derived from fiche)",
+              "history": []
             },
+            "source_derived": true,
             "derived_from_fiche": true
           },
           "hold": {
             "availability": "offered",
             "source": {
-              "url": "https://booking-uat.dcloud.saudia.com/book/flight-information/travelling-with-pets",
+              "url": "https://www.saudia.com",
               "source_type": "official_website",
-              "verified_date": "2026-09-09",
-              "review_due": "2026-12-08",
-              "confidence": 4,
-              "reviewer": "Codex — direct reading of official airline page",
-              "history": [],
-              "quote": "Dogs must be transported in the cargo hold (holds are equipped with ventilation systems).",
-              "quote_language": "en",
-              "locator": "Travelling with Pets & Animals → Regulations"
+              "verified_date": "2026-07-11",
+              "review_due": "2026-10-09",
+              "confidence": 3,
+              "reviewer": "MyDogCanFly Data Team (derived from fiche)",
+              "history": []
             },
+            "source_derived": true,
             "derived_from_fiche": true
           },
           "cargo": {
