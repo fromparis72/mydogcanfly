@@ -425,6 +425,7 @@ export function evaluate(kb: NormalizedKB, req: FinderRequest, opts?: { weatherP
     "route.dest_country_id": destCountry,
     "route.origin_country_id": originCountry,
     "route.dest_airport_id": req.destination,
+    "route.origin_airport_id": req.origin,
     "weather.temperature_c": temperature_c,
     // Situation du chien, déclarée dans le formulaire : "yes" il vit dans l'UE, "no" il la découvre.
     // Sans réponse → chaîne vide, volontairement DIFFÉRENTE de "no" : les règles de retour vers l'UE

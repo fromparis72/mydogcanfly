@@ -3560,3 +3560,129 @@ dossier résolu dans l'ordre chronologique) et a été fusionnée sur ordre nomm
 
 Relecture en ligne à faire par Codex : calcul en cm, clic sur `in`, résultat aussitôt en pouces sans
 second « Calculer », gabarit `XL` inchangé pour le Golden.
+
+## Annexe 37 — Bangkok Airways fret : règle géographique (lot ouvert le 10/09/2026, classement C)
+
+### Préalable — contrôle en ligne de Codex sur `cac7514` (10/09)
+
+Golden Retriever réellement sélectionné (préremplissage 71 cm, 67 cm, 32 kg) : minimum 85 × 41 × 67,
+conseillé 88 × 44 × 70, gabarit `XL`. Un seul clic sur `in`, sans recliquer « Calculer » : conseillé
+34,5 × 17,5 × 28 in, minimum 33,5 × 16,5 × 26,5 in, gabarit toujours `XL`. Le défaut d'unité est
+fermé en production. `fad24d2` (#48, dossier seul) n'est pas redéployé : un seul fichier diffère de
+`cac7514`, le dossier, hors du site construit.
+
+### Mesuré avant de concevoir
+
+| | |
+|---|---|
+| modèle de règles | portée compagnie, prédicats `all` / `any` / `not` sur `placement`, `route.origin_country_id`, `route.dest_country_id` ; effet `deny` ; **décisive seulement si citée** (`regleDecisive` = niveau « citée ») — 21 règles de ce type existent (liste APHA, Grande-Bretagne) |
+| citation en fiche | une seule phrase : « Special cargo service as Live animals dog, cat (AVI) is available on Airbus and ATR72 on the following routes: » — aucune phrase citée pour le refus international ni pour les exclusions Krabi |
+| référentiel | Thaïlande = BKK, DMK, HKT (268 aéroports) ; Krabi (KBV) et Chiang Mai (CNX) absents ; pas de fait `route.origin_airport_id` |
+| candidature | Bangkok Airways est candidate sur BKK ↔ HKT (graphe de routes) |
+
+### Décisions
+
+- **Philippe, 10/09 : les aéroports KBV et CNX ne sont pas ajoutés.** Les exclusions Bangkok–Krabi et
+  Chiang Mai–Krabi restent dans le texte des conditions ; une garde (`test-bangkok-fret-geographie.mjs`,
+  7 contrôles, dans `test:unit`) rougit si l'un des deux entre un jour dans le référentiel sans règle
+  citée `rule_bangkok_airways_cargo_krabi_excluded`. Dette nommée, bornée, surveillée ; la garde
+  s'auto-contrôle sur un référentiel synthétique (sans règle, règle non citée, règle citée, CNX seul).
+- **En attente de Codex** : la phrase verbatim du refus des escales internationales (et sa
+  localisation), sans laquelle la règle R1 ne peut pas être décisive.
+- **En attente d'arbitrage de Philippe** : retour de la fiche fret de `case_by_case` à `offered`
+  (déjà cité), pour que Bangkok → Phuket projette « sous conditions » et que R1 refuse l'international.
+
+### Proposition R1 (non écrite tant que la phrase n'est pas livrée)
+
+`rule_bangkok_airways_cargo_international_denied` : portée `airline_bangkok_airways`, `all` [placement
+= cargo, `any` [origine ≠ country_th, destination ≠ country_th]] → `deny` cargo ; citée. Témoin
+négatif prévu : la même règle sans citation ne refuse rien. Mouvements attendus : décisions 176 → 177,
+sous conditions 142 → 143, « à confirmer » 130 → 129 ; exception Bangkok retirée de la matrice et du
+harnais de réconciliation ; scénarios gelés BKK → HKT, CDG → BKK, BKK → SIN.
+
+### Phrases livrées par Codex (10/09), et sa condition
+
+Source relue le 10/09/2026, https://www.bangkokair.com/cargo-service/pet_carriage :
+
+| clé | citation verbatim | localisation |
+|---|---|---|
+| refus international | « International Routes: All station: Not Accept » | Cargo Service → Pet Carriage Service → bloc des routes disponibles → International Routes |
+| exclusions Krabi | « Accept all domestic route Except Bangkok – Krabi v.v. and Chiang Mai – Krabi v.v. » | même bloc → Domestic Routes |
+
+Précision de Codex : la page ne parle pas « d'escales » ; elle refuse le fret animalier sur l'ensemble
+des routes internationales, la règle vise donc un segment international opéré par Bangkok Airways.
+**Arbitrage conditionnel de Codex** : `case_by_case` → `offered` accordé **uniquement** si le même lot
+encode R1 (tout segment international), R2 (BKK ↔ KBV) et R3 (CNX ↔ KBV) — « remettre `offered` avec
+seulement R1 créerait deux réponses domestiques fausses alors que leur exclusion est documentée ».
+
+### Réconciliation des deux décisions
+
+La décision de Philippe (pas d'aéroports) et la condition de Codex (R2, R3 dans le lot) sont
+compatibles : mesuré, le validateur des règles n'exige pas qu'un identifiant d'aéroport existe dans le
+référentiel (seules les restrictions de race sont contrôlées ainsi). R2 et R3 sont donc écrites,
+citées, et **dormantes** : elles visent `airport_kbv` et `airport_cnx`, qu'aucune recherche ne peut
+atteindre aujourd'hui, et mordront le jour où l'un des deux entrerait. La garde du matin est
+re-fondée : elle exige désormais que les deux règles existent et soient citées si l'un des aéroports
+est présent, et s'auto-contrôle (R2 retirée, R3 décitée, CNX seul).
+
+### Écrit
+
+- **Moteur et schéma** : nouveau fait `route.origin_airport_id` (symétrique de `route.dest_airport_id`),
+  déclaré dans `rules.ts`, dans le registre `FACT_TYPES` et injecté par `evaluate` depuis l'origine de
+  la requête. Nécessaire pour dire « v.v. » par paire d'aéroports.
+- **Trois règles** (`packages/knowledge/scripts/add-bangkok-cargo-geo-rules.mjs`, idempotent, 399 → 402) :
+  R1 `all` [fret, animal, `any` [origine ≠ TH, destination ≠ TH]] → refus ; R2 `any` [BKK/DMK → KBV,
+  KBV → BKK/DMK] → refus ; R3 `any` [CNX → KBV, KBV → CNX] → refus. Même source, relue le 10/09,
+  revue due le 09/12 (90 jours), confiance 4, raisons en quatre langues. **« Bangkok » est lu comme BKK
+  et DMK** : un refus plus large est le sens sûr (un seuil élimine, ne confirme pas) et Bangkok Airways
+  n'opère que BKK ; nommé pour arbitrage.
+- **Fiche fret** : `offered`, citation et conditions Krabi inchangées, historique en commentaire.
+- **Preuves** : `mesures/preuves/bangkok-fret-geographie-2026-09-10/` — citations, décisions, résultats
+  attendus, et la **grille tarifaire officielle** (1 000 / 1 500 / 2 000 / 2 500 THB par palier de
+  poids) **non publiée**, banquée pour le futur registre tarifaire avec sa source et sa date.
+- **Registre de fraîcheur** rescellé : 1 504 entrées, les trois sources de règles ajoutées.
+
+### Mesuré sur le moteur (test-bangkok-fret-geographie.mjs, 22 contrôles)
+
+| recherche | résultat |
+|---|---|
+| Bangkok → Phuket, Phuket → Bangkok | fret **sous conditions** |
+| Bangkok → Techo (Cambodge, desservi), Siem Reap → Bangkok | fret **refusé**, R1 nommée dans `fired` |
+| Bangkok → Singapour | Bangkok Airways **non candidate** (SIN hors de son graphe) : aucune carte, donc aucune fausse réponse — Codex attendait « refusé » ; l'absence est la seule réponse que le Finder puisse rendre |
+| R1 décitée | Bangkok → Techo redevient « à confirmer » : une règle non citée ne refuse rien |
+| Krabi et Chiang Mai synthétiques | BKK → KBV et KBV → BKK refusés par R2 ; CNX → KBV refusé par R3 ; CNX → BKK sous conditions (R2, R3 ne débordent pas) |
+
+**Non modélisé, nommé** : « un itinéraire international suivi d'un segment intérieur Bangkok Airways »
+n'est pas un objet du Finder, qui évalue une compagnie sur la paire origine → destination demandée ;
+Bangkok Airways n'y est candidate que si elle dessert les deux aéroports. Dette.
+
+### Erreurs nommées
+
+Premier jet du harnais : cherchait l'identifiant de règle dans la décision du canal (qui ne porte que
+statut et source de fiche) au lieu de `fired` ; écrivait une clé de route non triée
+(« airport_cnx|airport_bkk ») là où le graphe exige l'ordre. Six rouges sur un moteur juste ;
+corrigés, nommés dans le fichier.
+
+### Mouvements nommés
+
+| témoin | avant | après |
+|---|---|---|
+| décisions citées | 176 | 177 (Bangkok fret redevient une décision) |
+| répartition des 302 politiques | 0 · 142 · 34 · 126 | 0 · 143 · 34 · 125 ; cause `airline_approval` 2 → 1 |
+| règles | 399 | 402 ; règles `deny` citées 1 → 4 |
+| témoin hérité (carries) | 29 484 | 29 490 |
+| quatrième état | 142 | 143 |
+| matrice | exception Bangkok `case_by_case` admise | exception retirée |
+| lot 8, correctif, réconciliation | Bangkok « à confirmer » | Bangkok « sous conditions », règles citées |
+| inventaire | régénéré (fingerprint) | 178 / 51 / 74 / 3 inchangés |
+| baseline Finder (72 scénarios) | inchangée | inchangée : aucun scénario ne traverse Bangkok Airways |
+
+### Mesuré sur le dist (un seul build, `d5689e0`)
+
+| contrôle | résultat |
+|---|---|
+| `test:unit` complet, typecheck, `npm run check`, ingest --check, provenance, smoke, matrice (74 lignes, 0 écart), fraîcheur (21 cas) | verts |
+| entités | 178 OK, 0 FAIL |
+| chaîne `test:built-ui`, caisses non sourcées, accueil, affirmations retirées, tarifs, montants publiés, dette Astro | verts |
+| étape 3 DOM | verte, scellé des licites inchangé (16 sources, 20 couples) |
+| contre-épreuves complètes sur l'arbre propre | 58/58 |

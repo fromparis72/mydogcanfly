@@ -1,6 +1,6 @@
 {
   "resume": {
-    "empreinte_donnees_sha256": "3c5250f91a385ee3e87eb9e2129eedfef7c1edb02095d70fd8cb1bf03989bc0f",
+    "empreinte_donnees_sha256": "781140904c19c4bc03de907d30e711548b08fea1f7a4fcf1b30b1b647c20c996",
     "compagnies": 102,
     "lignes": 306,
     "politiques": 302,
@@ -2565,7 +2565,7 @@
       "verified_date": "2026-09-09",
       "niveau_de_preuve_politique": "citee",
       "priorite": {
-        "availability": "case_by_case",
+        "availability": "offered",
         "derived_from_fiche": true,
         "source_derived": false,
         "review_state": null,
@@ -2573,9 +2573,19 @@
         "url_politique": "https://www.bangkokair.com/cargo-service/pet_carriage",
         "hote_politique": "bangkokair.com",
         "url_fabriquee": false,
-        "regles": [],
-        "regles_officielles": [],
-        "hotes_regles": []
+        "regles": [
+          "rule_bangkok_airways_cargo_bkk_kbv_excluded",
+          "rule_bangkok_airways_cargo_cnx_kbv_excluded",
+          "rule_bangkok_airways_cargo_international_denied"
+        ],
+        "regles_officielles": [
+          "rule_bangkok_airways_cargo_bkk_kbv_excluded",
+          "rule_bangkok_airways_cargo_cnx_kbv_excluded",
+          "rule_bangkok_airways_cargo_international_denied"
+        ],
+        "hotes_regles": [
+          "bangkokair.com"
+        ]
       }
     },
     {

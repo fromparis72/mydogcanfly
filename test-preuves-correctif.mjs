@@ -47,8 +47,10 @@ console.log("=== Six remplacements, à l'octet près ===");
     check(`${cle} (remplace le lot ${f.replaces_lot}) : phrase, URL, localisateur, langue, date, échéance calculée`,
       !!pol && s.quote === f.quote && s.url === f.url && s.locator === f.locator && s.quote_language === f.quote_language && s.verified_date === "2026-09-09" && s.review_due === reviewDueFrom("2026-09-09", "airline"),
       JSON.stringify({ attendu: f.quote, lu: s.quote, url: s.url }));
-    const attendu = cle === "airline_bangkok_airways.cargo" ? "confirmation_required" : f.recommendation.startsWith("not_offered") ? "denied" : "accepted_with_conditions";
-    check(`  …projeté ${attendu}${cle === "airline_bangkok_airways.cargo" ? " (case_by_case par arbitrage, portée intérieure)" : ""}`, proj?.status === attendu, JSON.stringify({ status: proj?.status, cause: proj?.status_cause }));
+    /* MOUVEMENT NOMMÉ (10/09/2026, annexe 37) : Bangkok fret, `case_by_case` le 09/09 → `offered` le 10/09 avec R1/R2/R3 citées ; projeté
+       « sous conditions » comme les autres `offered`, l'international étant refusé par règle. */
+    const attendu = f.recommendation.startsWith("not_offered") ? "denied" : "accepted_with_conditions";
+    check(`  …projeté ${attendu}${cle === "airline_bangkok_airways.cargo" ? " (offered depuis le 10/09, refus international par R1 citée)" : ""}`, proj?.status === attendu, JSON.stringify({ status: proj?.status, cause: proj?.status_cause }));
   }
   check("les anciennes preuves ont disparu des politiques : « contactez Cargo » (Thai), « you can check it » seul (China Southern), fragment IndiGo, prod.bangkokair.com",
     !/contact directly to Cargo/.test(politique("airline_thai_airways", "cargo")?.source?.quote ?? "") && politique("airline_china_southern", "hold")?.source?.quote !== "you can check it"
@@ -63,8 +65,9 @@ console.log("\n=== Trois disponibilités changées SUR ORDRE, dites dans les fic
   }
   check("Thai fret : l'ancienne citation auditée du 13/08 est consignée en commentaire de la fiche, pas effacée",
     /contact directly to Cargo/.test(fiche("thai_airways")) && /13\/08\/2026/.test(fiche("thai_airways")));
-  check("Bangkok fret : `case_by_case`, conditions en quatre langues nommant les exclusions Krabi et le refus international",
-    politique("airline_bangkok_airways", "cargo")?.availability === "case_by_case" && ["en", "fr", "es", "pt"].every((l) => /Krabi/.test(politique("airline_bangkok_airways", "cargo")?.conditions?.[l] ?? "")));
+  /* MOUVEMENT NOMMÉ (10/09/2026, annexe 37) : `case_by_case` → `offered`, R1/R2/R3 citées dans le même lot ; les conditions Krabi restent. */
+  check("Bangkok fret : `offered` depuis le 10/09 (règles géographiques citées), conditions en quatre langues nommant les exclusions Krabi et le refus international",
+    politique("airline_bangkok_airways", "cargo")?.availability === "offered" && ["en", "fr", "es", "pt"].every((l) => /Krabi/.test(politique("airline_bangkok_airways", "cargo")?.conditions?.[l] ?? "")));
 }
 
 console.log("\n=== Effets dans le Finder ===");

@@ -5817,6 +5817,21 @@
     },
     {
       "famille": "rules",
+      "locator": "rules[rule_bangkok_airways_cargo_bkk_kbv_excluded].source",
+      "empreinte_source": "3efaeef215c26f9dde54814f6d8f568750b0779671fe8f82ed3388d6b5b1ebcf"
+    },
+    {
+      "famille": "rules",
+      "locator": "rules[rule_bangkok_airways_cargo_cnx_kbv_excluded].source",
+      "empreinte_source": "3efaeef215c26f9dde54814f6d8f568750b0779671fe8f82ed3388d6b5b1ebcf"
+    },
+    {
+      "famille": "rules",
+      "locator": "rules[rule_bangkok_airways_cargo_international_denied].source",
+      "empreinte_source": "3efaeef215c26f9dde54814f6d8f568750b0779671fe8f82ed3388d6b5b1ebcf"
+    },
+    {
+      "famille": "rules",
       "locator": "rules[rule_bangkok_airways_gb_not_approved].source",
       "empreinte_source": "e9d9ccffb36de1ac8ab00975fcaa24da3e8058c85f23cc4834db5ad8df6ecc75"
     },
@@ -7507,14 +7522,14 @@
     }
   ],
   "empreintes": {
-    "globale": "c0479b4c82d80540a9155101f0eaafd831690da7215891b80cfa2adadf32a933",
+    "globale": "4a7f281f80f0093c4bbf09314ec00c00f3957e0e71cbba578c50b78ef1c6a33f",
     "par_famille": {
       "airlines": "fa025d4181233052d3c6ef70650fd79d05e99624606701a6cacd44a901d9c885",
       "airports": "915d2262732a378589b12216f81e11bde703b14d8645cacf5df24e60b862eb55",
       "breed_restrictions": "bc9ea0fd8feb2eaf8dfe9d5bcabe3162537b3898376ca9eb2ac54144bc7c8606",
       "breeds": "2e72ef699d47b9652af8e1a3d154202f9c682fb3cb1a8d1204adbb010bf19cc0",
       "countries": "91dcd83dabbe2c7b8909702096d63335f4738e110431c1102d5eb3ebffa64346",
-      "rules": "a7edfbcab98c143eee855d25bbd6dbf7e5e7a2465358586250a81a869fe939ea"
+      "rules": "5b1cfff5ce6d03e8b9d43bd4ba6b1ab44a6d7118aa6eaadf0dbd254a50bd43c9"
     }
   }
 }

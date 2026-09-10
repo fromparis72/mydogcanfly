@@ -249,7 +249,9 @@ for (const r of rows) {
     /* Correctif d'arbitrages (09/09/2026) : Bangkok Airways fret, réactivé `offered` au lot 8, est ARBITRÉ `case_by_case`
        (portée intérieure que le modèle ne porte pas — précédent Virgin A-bis) : la preuve reste exigée, la disponibilité
        admise est celle de l'arbitrage. Nominativement, et pour cette seule ligne. */
-    const dispoAdmise = p.availability === "offered" || p.availability === "not_offered" || (k === "airline_bangkok_airways|cargo" && p.availability === "case_by_case");
+    /* MOUVEMENT NOMMÉ (10/09/2026, annexe 37) : l'exception Bangkok (`case_by_case` admis) est RETIRÉE — la fiche est revenue à
+       `offered`, citée, avec ses trois règles géographiques ; la ligne est admise comme toute autre réactivation sur citation. */
+    const dispoAdmise = p.availability === "offered" || p.availability === "not_offered";
     if (!(dispoAdmise && citee(p))) err(`ligne réactivée SANS sa preuve: ${k} → availability=${p.availability}, citée=${citee(p)}`);
     continue;
   }

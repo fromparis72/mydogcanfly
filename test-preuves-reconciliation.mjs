@@ -37,11 +37,16 @@ const JUILLET = (() => { const n = new Date(), y = n.getUTCFullYear(); return `$
 const decide = (o, dst, dog) => evaluate(kb, FinderRequest.parse({ origin: o, destination: dst, dog, date: JUILLET }));
 const canal = (dec, id, pl) => dec.airlines.find((a) => a.airline_id === id)?.placements.find((p) => p.placement === pl);
 
-console.log("=== 1. Bangkok Airways fret : `case_by_case` conservé, dette de portée nommée ===");
+console.log("=== 1. Bangkok Airways fret : `case_by_case` conservé le 09/09, dette de portée FERMÉE le 10/09 (annexe 37) ===");
 {
+  /* MOUVEMENT NOMMÉ (10/09/2026) : la dette « le modèle ne sait pas restreindre un canal par route » est fermée par trois règles
+     géographiques citées (R1 international, R2/R3 Krabi) ; la fiche revient à `offered`, la citation et les conditions restent.
+     Le témoin d'ici ne garde que ce qui est resté vrai : la citation, et l'absence de « sous conditions » réseau entier
+     (l'international est refusé — voir test-bangkok-fret-geographie.mjs). */
   const b = politique("airline_bangkok_airways", "cargo");
-  check("`case_by_case`, citation et conditions intactes ; projeté « à confirmer » (airline_approval) — jamais « sous conditions » réseau entier",
-    b?.availability === "case_by_case" && !!b?.source?.quote && projetee("airline_bangkok_airways", "cargo")?.status === "confirmation_required" && projetee("airline_bangkok_airways", "cargo")?.status_cause === "airline_approval");
+  check("`offered` depuis le 10/09, citation et conditions Krabi intactes ; projeté « sous conditions » (réseau intérieur), l'international refusé par R1 citée",
+    b?.availability === "offered" && !!b?.source?.quote && /Krabi/.test(b?.conditions?.fr ?? "") && projetee("airline_bangkok_airways", "cargo")?.status === "accepted_with_conditions"
+    && regles.some((r) => r.id === "rule_bangkok_airways_cargo_international_denied" && r.source?.quote === "International Routes: All station: Not Accept"));
 }
 
 console.log("\n=== 2. La borne du seuil : `lt` exclut la valeur, `lte` l'inclut — sans arrondi ===");
@@ -90,7 +95,8 @@ console.log("\n=== Ce que la réconciliation n'a PAS fait ===");
 {
   let allowed = 0; for (const a of kb.airlines.values()) for (const p of Object.values(a.premium?.policy ?? {})) if (p.status === "allowed") allowed++;
   check("aucune politique réelle n'est `allowed` — « sous conditions » n'est jamais une place promise", allowed === 0, String(allowed));
-  check("aucune autre règle n'a été touchée : 399 règles, exactement deux de moins qu'avant", regles.length === 399, String(regles.length));
+  /* MOUVEMENT NOMMÉ (10/09/2026, annexe 37) : 399 → 402, exactement les trois règles géographiques de Bangkok Airways, citées. */
+  check("aucune autre règle n'a été touchée : 402 règles = 399 de la réconciliation + les trois règles Bangkok Airways fret", regles.length === 402 && regles.filter((r) => /^rule_bangkok_airways_cargo_/.test(r.id)).length === 3, String(regles.length));
 }
 
 console.log(`\n=== SUMMARY ===\n${fail === 0 ? `ALL CHECKS PASSED (${pass})` : `${fail} CHECK(S) FAILED sur ${pass + fail}`}`);

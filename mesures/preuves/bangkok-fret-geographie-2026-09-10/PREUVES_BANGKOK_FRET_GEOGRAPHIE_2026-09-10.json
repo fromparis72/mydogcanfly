@@ -1,0 +1,81 @@
+{
+  "lot": "bangkok-fret-geographie",
+  "date": "2026-09-10",
+  "classement": "C",
+  "source": {
+    "url": "https://www.bangkokair.com/cargo-service/pet_carriage",
+    "source_type": "official_website",
+    "verified_date": "2026-09-10",
+    "reviewer": "Codex — direct reading of official airline page",
+    "review_due": "2026-12-09",
+    "confidence": 4
+  },
+  "citations": [
+    {
+      "cle": "international",
+      "quote": "International Routes: All station: Not Accept",
+      "quote_language": "en",
+      "locator": "Cargo Service → Pet Carriage Service → bloc des routes disponibles → International Routes",
+      "regle": "rule_bangkok_airways_cargo_international_denied",
+      "note_codex": "La page refuse le fret animalier sur l'ensemble des routes/stations internationales ; la règle vise un segment international opéré par Bangkok Airways."
+    },
+    {
+      "cle": "krabi",
+      "quote": "Accept all domestic route Except Bangkok – Krabi v.v. and Chiang Mai – Krabi v.v.",
+      "quote_language": "en",
+      "locator": "Cargo Service → Pet Carriage Service → bloc des routes disponibles → Domestic Routes",
+      "regles": [
+        "rule_bangkok_airways_cargo_bkk_kbv_excluded",
+        "rule_bangkok_airways_cargo_cnx_kbv_excluded"
+      ],
+      "etat": "dormantes — airport_kbv et airport_cnx absents du référentiel (décision de Philippe, 10/09 : aéroports non ajoutés)"
+    }
+  ],
+  "decisions": [
+    {
+      "qui": "Philippe",
+      "quoi": "Krabi et Chiang Mai ne sont pas ajoutés au référentiel",
+      "date": "2026-09-10"
+    },
+    {
+      "qui": "Codex",
+      "quoi": "case_by_case → offered accordé à condition que R1, R2 et R3 soient encodées dans le même lot",
+      "date": "2026-09-10"
+    },
+    {
+      "qui": "Claude",
+      "quoi": "« Bangkok » lu comme BKK et DMK (refus plus large = sens sûr) ; nommé pour arbitrage",
+      "date": "2026-09-10"
+    }
+  ],
+  "resultats_attendus": {
+    "BKK→HKT": "accepted_with_conditions",
+    "BKK→KTI (Cambodge)": "denied (R1)",
+    "BKK↔KBV": "denied (R2) — non recherchable aujourd'hui",
+    "CNX↔KBV": "denied (R3) — non recherchable aujourd'hui",
+    "itineraire international puis segment interieur": "non modélisé — le Finder évalue une compagnie sur la paire origine→destination demandée ; dette nommée"
+  },
+  "grille_tarifaire_officielle_non_publiee": {
+    "note": "Livrée par Codex pour le FUTUR registre tarifaire ; aucun montant n'est publié tant que ce registre n'existe pas (garde des montants).",
+    "source": "même page, même date",
+    "devise": "THB",
+    "paliers": [
+      {
+        "poids_kg": "1–10",
+        "montant": 1000
+      },
+      {
+        "poids_kg": "11–20",
+        "montant": 1500
+      },
+      {
+        "poids_kg": "21–30",
+        "montant": 2000
+      },
+      {
+        "poids_kg": "31–60",
+        "montant": 2500
+      }
+    ]
+  }
+}
