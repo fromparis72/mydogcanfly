@@ -3695,3 +3695,44 @@ corrigés, nommés dans le fichier.
 de version concordent avec l'annonce (règle de l'annexe 35). En ligne désormais : Bangkok Airways fret
 (annexe 37, #49), Air France cabine citée (annexe 39, #51). Contrôle en ligne à demander à Codex : chihuahua
 3 kg, CDG → JFK, cabine Air France « sous conditions, plafond 8 kg chien + sac ».
+
+## Annexe 40 — Fiche compagnie : le bandeau sous le titre, les pastilles courtes (10/09/2026, classement A)
+
+Arbitrage de Codex, relayé par Philippe sur la capture d'Aeromexico en ligne : le bandeau « Transport possible
+sous conditions de la compagnie sur au moins un canal cité » passait SUR le H1 ; les capsules des canaux
+portaient une explication (« Politique à confirmer auprès de la compagnie ») et débordaient de leur carte.
+Demandé : bandeau « Transport possible sous conditions » sur une ligne distincte sous le titre ; capsules
+réduites à « Sous conditions », « Refusé », « À confirmer » ; retour à la ligne autorisé dans l'en-tête de carte ;
+aucun positionnement absolu ; contrôle mobile / tablette / bureau dans les quatre langues.
+
+### Mesuré avant d'écrire
+
+Aucune pastille n'était en position absolue : le chevauchement venait de `white-space: nowrap` sur toutes les
+pastilles et d'une boîte de bandeau bornée à 240 px, à côté du H1 dans le `flex` du hero. Les libellés vivent dans
+`strings.json` (quatre langues) ; la capsule « à confirmer » partageait sa clé (`air.to_confirm`) avec le bandeau
+de tête « rien n'est décidé ». Au passage, à 400 px, la fiche British Airways défilait horizontalement (435 px) :
+la réponse de FAQ qui cite l'URL officielle entre parenthèses ne pouvait pas se couper — hors du relevé de Codex,
+dans le périmètre « vérifier aux largeurs mobile ».
+
+### Ce qui a été fait, et rien d'autre
+
+- libellés (en/fr/es/pt) : `premium.verdict_open_conditions` → « Transport possible sous conditions » ;
+  `premium.accepted_conditions` → « Sous conditions » ; `premium.not_allowed` → « Refusé » ; nouvelle clé
+  `premium.to_confirm_short` → « À confirmer », rendue par `cleLibelleStatut` pour la capsule seule
+  (`air.to_confirm` reste la phrase du bandeau quand rien n'est décidé, et n'est plus une capsule) ;
+- gabarit : le nom du canal devient un élément mesurable (`.mini .t .nm`) ; le bandeau est une ligne à part
+  (`flex: 1 1 100%`, aligné à gauche) ; le bandeau et les pastilles de canal peuvent passer à la ligne ; l'en-tête
+  de carte est `flex-wrap` ; la règle mobile devenue inutile est retirée ; FAQ : `overflow-wrap: anywhere` ;
+- témoins : `test-entity-pages-harness` (clé de la capsule « à confirmer », mouvement nommé) ; **nouveau** dans
+  `test-apercu-navigateur` : Aeromexico, 1280 / 800 / 400 px × en / fr / es / pt, rectangles rendus — bandeau au
+  texte exact, sous le H1, sans chevauchement ; aucune pastille absolue ; aucun défilement horizontal ; trois
+  pastilles au libellé court, dans leur carte, sans chevaucher le nom du canal ; plus la fiche British Airways
+  en portugais à 400 px : « Recusado ». 65 contrôles, captures `12-fiche-*-400px.png`.
+
+### Mesuré
+
+| contrôle | résultat |
+|---|---|
+| mesure ad hoc, British Airways, 4 langues × 3 largeurs (dist réduit) | bandeau sous le H1 partout ; à 800 px la pastille du fret passe sous « Fret » ; 435 → **400 px** après le correctif FAQ |
+| suite navigateur complète (dist complet, 3 112 pages) | **246 OK, 0 ÉCHEC** (181 + 65) |
+| entités 178, fiche harnais, frontière de confiance 135, dette Astro 165 | verts |
