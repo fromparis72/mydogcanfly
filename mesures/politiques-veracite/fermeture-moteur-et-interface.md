@@ -3944,3 +3944,12 @@ verbatim (apostrophes typographiques conservées). Aucun autre fichier.
 | les quatre pages d'accueil construites | T1 dans `.hero__q`, T2 dans `.hero__accent`, T3 dans `.hero__sub`, verbatim |
 | anciens slogans (« still needs checking », « ce qu'il faut vérifier », « aún hay que comprobar », « ainda é preciso verificar », « Ton chien peut-il », « Can your dog fly », « Puede volar tu perro », « O teu cão pode voar ») | **0 occurrence** sur les quatre pages |
 | titre face à l'emblème et au conteneur, 1280 et 400 px, quatre langues (mesure ad hoc, rectangles) | voir ci-dessous |
+
+### Déploiement de `main` `8290573` (10/09/2026, Philippe, depuis son Mac) — prouvé
+
+`verify:index` : 2 536 URL, aucune balise noindex ; Pages : 6 fichiers envoyés (3 626 déjà en place — les cartes du
+Finder vivent dans le script client partagé) ; `wrangler deploy` annonce `Current Version ID:
+2bb94f37-7527-4ab2-a6cb-436473c1c498` ; lecture de santé : `sha: 8290573a…`, `worker_version_id: 2bb94f37-…` —
+concordants (règle de l'annexe 35). En ligne désormais : les cartes du Finder (annexe 38, #50). Contrôle en ligne à
+demander à Codex : CDG → JFK, Golden 32 kg — la carte Air France dit « Cabine : non · Soute : oui, sous conditions ·
+jusqu'à 75 kg avec le contenant · tarif à confirmer », provenance datée, volet « Voir les preuves » fermé.
