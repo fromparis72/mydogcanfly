@@ -78,7 +78,24 @@ import { Predicate, Condition, type Fact } from "./rules";
    d'au moins dix caractères, étiquette BCP-47) plus la cadence `airline` de 90 jours au jour près
    et le localisateur obligatoire. Voir la porte P0-1 de l'annexe 46. */
 import { T0bAuditSource } from "./t0b-migration";
-import type { SourcedQuote } from "./breed-restrictions";
+
+/**
+ * LA PROVENANCE D'UN TARIF, TYPÉE DEPUIS LE SCHÉMA QUI LA VALIDE RÉELLEMENT.
+ *
+ * *Porte P1-2, refermée le 10/09 au soir.* Les types déclarés de `Fare` et `FareObservation`
+ * annonçaient `SourcedQuote` — la forme FAIBLE — alors que les schémas validaient déjà
+ * `T0bAuditSource`. `resoudreTarif` reçoit des `Fare[]` sans les reparser : un appelant en
+ * TypeScript pouvait donc lui passer, en toute légalité de compilation, une provenance que le
+ * schéma aurait refusée. Le type suit désormais la définition validée, et la suivra si elle bouge.
+ *
+ * *Limite nommée, pour ne rien promettre de faux* : les `.refine()` de Zod ne RESTREIGNENT pas le
+ * type inféré. `FareAuditSource` reste donc structurellement identique à `SourcedQuote`
+ * aujourd'hui — `locator` y est encore optionnel au sens du compilateur. Ce que cet alias garantit
+ * n'est pas une vérification supplémentaire à la compilation : c'est qu'aucune SECONDE définition
+ * ne subsiste, et que le jour où `T0bAuditSource` se resserre, ces deux types se resserrent avec
+ * lui sans que personne ait à y penser. La garantie de fond reste le schéma, à l'ingestion.
+ */
+export type FareAuditSource = z.infer<typeof T0bAuditSource>;
 
 /* ---- Montant publié ---------------------------------------------------------------------- */
 
@@ -252,7 +269,7 @@ export type Fare = {
   applies_when?: Predicate;
   scope_label?: string;
   purchase_window?: PurchaseWindow;
-  source: SourcedQuote;
+  source: FareAuditSource;
 };
 
 /* ---- Le conflit --------------------------------------------------------------------------- */
@@ -273,7 +290,49 @@ export const FareObservation = z.object({
   .refine((o: { price: FarePrice }) => NATURES_CHIFFREES.has(o.price.kind), {
     message: "une observation de conflit porte un MONTANT : deux mécanismes ne se contredisent sur aucun prix", path: ["price", "kind"],
   });
-export type FareObservation = { price: FarePrice; source: SourcedQuote };
+export type FareObservation = { price: FarePrice; source: FareAuditSource };
+
+/**
+ * DEUX OBSERVATIONS SE CONTREDISENT-ELLES VRAIMENT ? (P0-1, troisième tour)
+ *
+ * *Porte refermée le 10/09 au soir.* « 100 EUR sur une page, 120 USD sur une autre » passait pour
+ * un conflit. Sans conversion — et ce fichier n'en fait aucune — ces deux montants ne se
+ * contredisent sur rien : ce sont deux devises PARALLÈLES, exactement ce que le contrat reconnaît
+ * déjà comme normal sur un tarif ordinaire depuis l'annexe 44. J'avais écrit la règle pour les
+ * tarifs et oublié de l'appliquer aux conflits, qui sont pourtant faits des mêmes prix.
+ *
+ * Il faut donc AU MOINS UNE DEVISE COMMUNE portant des valeurs différentes. Deux observations aux
+ * devises entièrement disjointes sont refusées.
+ */
+const desaccordSurUneDevise = (observations: readonly { price: FarePrice }[]): boolean => {
+  for (let i = 0; i < observations.length; i++) {
+    for (let j = i + 1; j < observations.length; j++) {
+      const a = grouperParDevise(observations[i].price.amounts);
+      const b = grouperParDevise(observations[j].price.amounts);
+      for (const [devise, gauche] of a) {
+        const droite = b.get(devise);
+        if (droite && JSON.stringify([...gauche].sort()) !== JSON.stringify([...droite].sort())) return true;
+      }
+    }
+  }
+  return false;
+};
+
+/**
+ * LA PREUVE CANONIQUE d'une observation (P1-1).
+ *
+ * *Porte refermée le 10/09 au soir.* Deux prix différents pouvaient s'appuyer sur la MÊME preuve —
+ * même URL, même localisateur, même citation, même date de lecture — et fabriquer ainsi un conflit
+ * à partir d'une seule lecture. Deux preuves distinctes sont désormais exigées.
+ *
+ * Le tuple retenu est `url + locator + quote + verified_date`, et pas le domaine ni l'URL seule :
+ * une même page publie légitimement deux sections tarifaires, et l'exigence doit pouvoir se
+ * satisfaire à l'intérieur d'une page. *Ce que ce contrôle ne prouve pas, et qu'il ne faut pas lui
+ * faire dire* : que le nombre écrit corresponde à la phrase citée. Cette relecture-là reste
+ * humaine. Il empêche seulement de DUPLIQUER une preuve unique pour manufacturer un désaccord.
+ */
+const preuveCanonique = (s: FareAuditSource): string =>
+  `${s.url}|${s.locator ?? ""}|${s.quote}|${s.verified_date}`;
 
 /** LE PRIX CANONIQUE d'une observation — devises triées, montants inclus, nature incluse.
  *  Deux observations qui rendent la même chaîne disent le MÊME prix : les opposer serait citer
@@ -331,6 +390,14 @@ export const FareConflict = z.object({
    */
   .refine((c: { observations: { price: FarePrice }[] }) => new Set(c.observations.map((o) => prixCanonique(o.price))).size >= 2, {
     message: "un conflit exige au moins DEUX prix canoniquement différents : deux fois le même montant n'est pas un désaccord", path: ["observations"],
+  })
+  /* P0-1, troisième tour : des devises disjointes ne se contredisent pas. */
+  .refine((c: { observations: { price: FarePrice }[] }) => desaccordSurUneDevise(c.observations), {
+    message: "un conflit exige au moins une DEVISE COMMUNE portant des valeurs différentes : 100 EUR et 120 USD sont deux montants parallèles, pas un désaccord", path: ["observations"],
+  })
+  /* P1-1 : deux preuves, pas une preuve citée deux fois. */
+  .refine((c: { observations: { source: FareAuditSource }[] }) => new Set(c.observations.map((o) => preuveCanonique(o.source))).size >= 2, {
+    message: "un conflit exige DEUX preuves distinctes : même URL, même localisateur, même citation et même date de lecture ne font qu'une seule lecture", path: ["observations"],
   });
 /** Même raison que `Fare` : le type est déclaré. */
 export type FareConflict = {
@@ -488,6 +555,25 @@ export const resolutionVide = (r: ResolutionTarifaire): boolean =>
 const memeDevise = (a: Fare, b: Fare) =>
   a.price.amounts.some((x) => b.price.amounts.some((y) => y.currency === x.currency));
 
+/**
+ * DEUX TARIFS PARLENT-ILS DE LA MÊME CHOSE ? (10/09, soir — corollaire de la porte P0-2)
+ *
+ * Le témoin du supplément par kilogramme a révélé, à côté de l'extinction trop large, un défaut de
+ * la même famille dans la détection de CHEVAUCHEMENT : « 100 EUR par contenant » et « 5 EUR par
+ * kilogramme » partagent une devise et affichent des montants différents, donc mon détecteur les
+ * déclarait contradictoires. Ils ne le sont pas : ce sont deux composantes qui S'ADDITIONNENT, et
+ * les déclarer en chevauchement retirait les deux de l'affichage.
+ *
+ * Le discriminant est le SUJET FACTURÉ. Deux prix du même sujet ne peuvent pas être tous les deux
+ * vrais — « par contenant et par segment » contre « par contenant et par trajet » ne coûtent pas
+ * la même chose sur un trajet à deux vols, et c'est bien un chevauchement. Deux prix de sujets
+ * DIFFÉRENTS ne se contredisent sur rien : ils se cumulent, ou ils s'appliquent à des cas que la
+ * page distingue. C'est le raisonnement exact que Codex oppose sur les conflits — « une différence
+ * d'unité décrit deux tarifs distincts » — étendu ici au détecteur de chevauchement, qui souffrait
+ * du même excès.
+ */
+const memeSujetFacture = (a: Fare, b: Fare) => a.billing_subject === b.billing_subject;
+
 const memeMontant = (a: Fare, b: Fare) =>
   JSON.stringify(a.price.amounts.map((m: MoneyType) => [m.currency, m.amount]).sort())
     === JSON.stringify(b.price.amounts.map((m: MoneyType) => [m.currency, m.amount]).sort())
@@ -506,22 +592,35 @@ const conflitCouvre = (c: FareConflict, faits: FaitsTrajet): boolean =>
  * exclut une autre :
  *   1. les CONFLITS ouverts qui couvrent le trajet sont TOUS retenus ;
  *   2. les tarifs dont la portée ET la fenêtre d'achat sont VRAIES sont candidats ;
- *   3. deux candidats chiffrés qui diffèrent dans la même devise, ou disent le même montant sur
- *      des axes différents, vont aux CHEVAUCHEMENTS — 725 € par segment et 725 € par trajet ne
- *      coûtent pas la même chose, et publier l'un des deux serait tirer à pile ou face ;
+ *   3. deux candidats chiffrés qui parlent du MÊME SUJET FACTURÉ et divergent dans une devise
+ *      commune vont aux CHEVAUCHEMENTS — 725 € par segment et 725 € par trajet ne coûtent pas la
+ *      même chose, et publier l'un des deux serait tirer à pile ou face. Deux sujets différents,
+ *      eux, ne se contredisent pas : un supplément par kilogramme s'ajoute à un prix par
+ *      contenant, il ne le conteste pas (`memeSujetFacture`) ;
  *   4. les autres candidats chiffrés sont des MONTANTS, les candidats non chiffrés des MÉCANISMES ;
- *   5. dès qu'un conflit couvre le trajet, montants et chevauchements passent aux SUPPRIMÉS —
- *      l'invariant « un conflit couvrant le trajet = aucun montant exact » est intact, et ce qui
- *      a été éteint est nommé ;
+ *   5. un conflit qui couvre le trajet éteint les montants PORTANT SES AXES, et eux seuls ; ils
+ *      passent aux SUPPRIMÉS, où ils restent nommés. L'invariant tient toujours — « un conflit
+ *      couvrant le trajet = aucun montant exact SUR CE QU'IL CONTESTE » — et un supplément par
+ *      kilogramme survit à un désaccord sur un prix par contenant, parce qu'aucune page ne se
+ *      contredit à son sujet ;
  *   6. les MÉCANISMES survivent au conflit : l'effet publié est `suppress_exact_fare`, et deux
  *      pages qui se contredisent sur un montant ne cessent pas de prouver qu'un devis existe ;
  *   7. les tarifs à portée ou fenêtre INDÉCIDABLE sont dits comme tels — la grille peut se
  *      montrer, le prix du trajet non.
  *
- * *Déviation nommée, arbitrable.* Un conflit éteint TOUS les montants du canal qu'il couvre, y
- * compris ceux dont les axes diffèrent des siens. Les axes du conflit servent à établir qu'il EST
- * un conflit (P0-2), pas à restreindre ce qu'il éteint : restreindre publierait un montant sur un
- * canal où deux pages officielles se contredisent, et la prudence se règle dans l'autre sens.
+ * *Déviation REFUSÉE par Codex, et il a raison — porte P0-2, troisième tour (10/09, soir).* Je
+ * faisais éteindre par un conflit TOUS les montants du canal qu'il couvre, y compris ceux dont les
+ * axes n'ont rien à voir avec le sien, et je l'avais présenté comme de la prudence. Le sabotage le
+ * montre : un désaccord sur « 100 contre 120 EUR, par contenant et par segment » effaçait aussi un
+ * supplément « 5 EUR par kilogramme » parfaitement établi, sur lequel aucune page ne se contredit.
+ * Ce n'est pas prudent, c'est destructeur — cela supprime une information officielle SANS RAPPORT
+ * avec le désaccord, et c'est exactement le reproche que Philippe adresse aujourd'hui au site, qui
+ * masque trop de choses exactes. « Ne rien dire » n'est pas la position sûre par défaut : c'est
+ * une position, qui coûte, et qui doit se justifier ligne par ligne comme les autres.
+ *
+ * Un conflit n'éteint donc QUE les tarifs qui lui correspondent : même canal, portée et fenêtre
+ * couvertes, MÊME `billing_subject`, MÊME `journey_basis`. C'est précisément à cela que servent
+ * les axes que la porte P0-2 du second tour a rendus obligatoires.
  */
 export function resoudreTarif(
   tarifs: readonly Fare[],
@@ -537,17 +636,22 @@ export function resoudreTarif(
   const vrais = duCanal.filter((f) => porteeTarif(f, faits) === "vrai");
   const chiffres = vrais.filter((f) => NATURES_CHIFFREES.has(f.price.kind));
   const mecanismes = vrais.filter((f) => !NATURES_CHIFFREES.has(f.price.kind));
-  const chevauchements = chiffres.filter((a, i) => chiffres.some((b, j) => i !== j && memeDevise(a, b) && !memeMontant(a, b)));
+  const chevauchements = chiffres.filter((a, i) => chiffres.some(
+    (b, j) => i !== j && memeSujetFacture(a, b) && memeDevise(a, b) && !memeMontant(a, b),
+  ));
   const concordants = chiffres.filter((f) => !chevauchements.includes(f));
   const indecidables = duCanal.filter((f) => porteeTarif(f, faits) === "indecidable");
 
-  const eteint = conflitsCouvrants.length > 0;
+  /* L'extinction est CIBLÉE : un conflit ne parle que de ses propres axes (P0-2, troisième tour). */
+  const eteintPar = (f: Fare) => conflitsCouvrants.some(
+    (c) => c.billing_subject === f.billing_subject && c.journey_basis === f.journey_basis,
+  );
   return {
     conflits: conflitsCouvrants,
-    montants: eteint ? [] : concordants,
-    chevauchements: eteint ? [] : chevauchements,
+    montants: concordants.filter((f) => !eteintPar(f)),
+    chevauchements: chevauchements.filter((f) => !eteintPar(f)),
     mecanismes,
     indecidables,
-    supprimes: eteint ? [...concordants, ...chevauchements] : [],
+    supprimes: [...concordants, ...chevauchements].filter(eteintPar),
   };
 }

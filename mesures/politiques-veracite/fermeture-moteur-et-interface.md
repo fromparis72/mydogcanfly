@@ -4109,3 +4109,65 @@ troisième témoin vérifie en plus que l'artefact **n'a pas bougé** quand la f
 **Mouvement des comptes.** Contre-épreuves du contrat tarifaire : **103 → 145**. Aucun autre compteur ne bouge :
 `objects.json` ne porte ni tarif ni conflit, et deux témoins l'exigent séparément. Typecheck propre, 220 témoins
 unitaires, catalogue de contrat à 66 garanties, dette Astro stable à 165.
+
+---
+
+## Annexe 47 — L'extinction trop large, et trois portes de plus (10/09/2026, classement C)
+
+**Ce que Codex a validé sur `0e5ca50`.** `T0bAuditSource` comme définition unique de provenance,
+`days_before_departure` au contexte tarifaire, l'inventaire à six listes, et les gardes d'ingestion reliant
+tarifs et conflits à leur canal. Deux P0 et deux P1 restaient.
+
+**P0-2 — ma « prudence » effaçait de l'information exacte, et Codex la refuse.** J'avais fait éteindre par un
+conflit TOUS les montants du canal qu'il couvre, axes compris ou non, et je l'avais présenté comme le côté sûr
+du choix. Le sabotage le montre : un désaccord sur « 100 contre 120 EUR, par contenant et par segment » effaçait
+aussi un supplément « 5 EUR par kilogramme » parfaitement établi, sur lequel aucune page ne se contredit.
+
+C'est le point de doctrine du jour, et il vaut au-delà des tarifs. **« Ne rien dire » n'est pas la position sûre
+par défaut.** C'est une position, elle coûte, et elle doit se justifier ligne par ligne comme les autres. Ce
+dossier a passé des semaines à retirer ce qui n'était pas prouvé ; il pouvait en conclure, par pente, que retirer
+est toujours gratuit. Ça ne l'est pas — et c'est exactement le reproche que Philippe adresse aujourd'hui au site,
+qui masque trop de choses exactes. Un conflit n'éteint donc que les tarifs portant SES axes : même canal, portée
+et fenêtre couvertes, même `billing_subject`, même `journey_basis`. C'est à cela que servent les axes rendus
+obligatoires par l'annexe 46.
+
+**Le corollaire, trouvé par le témoin et non par moi.** Le supplément par kilogramme ne réapparaissait toujours
+pas après la correction : mon détecteur de CHEVAUCHEMENT souffrait du même excès. « 100 EUR par contenant » et
+« 5 EUR par kilogramme » partagent une devise et diffèrent en montant, donc il les déclarait contradictoires et
+retirait les deux. Ils ne se contredisent pas, ils **s'additionnent**. Le discriminant est le SUJET FACTURÉ :
+deux prix du même sujet ne peuvent pas être vrais ensemble, deux prix de sujets différents ne s'opposent sur
+rien. C'est le raisonnement même que Codex opposait sur les conflits — « une différence d'unité décrit deux
+tarifs distincts » — que je n'avais appliqué qu'à moitié.
+
+**P0-1 — des devises disjointes faisaient encore un conflit.** « 100 EUR sur une page, 120 USD sur une autre »
+passait. Sans conversion, ces montants ne se contredisent sur rien : ce sont des devises parallèles, ce que le
+contrat reconnaît comme normal sur un tarif ordinaire depuis l'annexe 44. **J'avais écrit la règle pour les
+tarifs et omis de l'appliquer aux conflits, qui sont pourtant faits des mêmes prix.** Un conflit exige désormais
+au moins une devise COMMUNE portant des valeurs différentes.
+
+**P1-1 — une seule preuve fabriquait deux observations.** Deux prix différents pouvaient s'adosser à la même URL,
+au même localisateur, à la même citation et à la même date. Le tuple `url + locator + quote + verified_date` doit
+maintenant différer entre deux observations — ni deux domaines ni deux URL ne sont exigés, une page publiant
+légitimement deux sections tarifaires. **Ce que ce contrôle ne prouve pas, et qu'un témoin dit explicitement** :
+que le nombre écrit corresponde à la phrase citée. Cette relecture reste humaine.
+
+**P1-2 — le type exporté rouvrait la provenance.** Les schémas validaient `T0bAuditSource`, mais les types
+déclarés de `Fare.source` et `FareObservation.source` annonçaient `SourcedQuote`, la forme faible — et
+`resoudreTarif` reçoit des `Fare[]` sans reparsage. `FareAuditSource = z.infer<typeof T0bAuditSource>` remplace
+les deux. **Limite nommée** : les `.refine()` de Zod ne restreignent pas le type inféré, donc cet alias est
+aujourd'hui structurellement identique à `SourcedQuote`. Il ne fait pas apparaître une vérification à la
+compilation ; il garantit qu'aucune SECONDE définition ne subsiste et que le type suivra le schéma si celui-ci
+se resserre. La garantie de fond reste le schéma, à l'ingestion.
+
+**Une garde que rien ne mordait.** L'unicité des identifiants de CONFLITS existait depuis l'annexe 46 sans
+qu'aucune ingestion sabotée ne l'exerce. Codex l'a relevé : une garde que rien ne mord est une garde qu'on croit
+avoir. Le bac à sable joue maintenant **six** ingestions réelles — une nominale, quatre sabotages, une
+non-vacuité — et exige de chaque refus qu'il NOMME sa cause.
+
+**Erreur nommée, trouvée par la garde neuve.** Mon propre bac à sable citait deux fois la même preuve dans son
+conflit d'exemple. La garde P1-1 l'a refusé au premier essai. C'est exactement son travail, et c'est la meilleure
+démonstration qu'elle mord.
+
+**Mouvement des comptes.** Contre-épreuves du contrat tarifaire : **145 → 163**. Ingestions jouées sur bac à
+sable : 5 → 6. Aucun autre compteur ne bouge : `objects.json` ne porte ni tarif ni conflit. Typecheck propre,
+220 témoins unitaires, catalogue de contrat à 66 garanties, dette Astro stable à 165.

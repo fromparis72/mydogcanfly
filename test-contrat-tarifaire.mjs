@@ -11,8 +11,10 @@
  *   §10 — cinq sources inadmissibles acceptées par mon contrôle maison (P0-1, second tour) ;
  *   §11 — un faux conflit qui éteint un vrai tarif (P0-2, second tour) ;
  *   §12 — une ligne applicable perdue par priorité interne (P1, second tour) ;
- *   §15 — trois ingestions sabotées : tarif rangé sous le mauvais canal, identifiants en double,
- *         conflit rangé sous le mauvais canal (P0-3, second tour).
+ *   §15 — quatre ingestions sabotées : tarif rangé sous le mauvais canal, identifiants de tarifs
+ *         en double, conflit rangé sous le mauvais canal, identifiants de conflits en double
+ *         (P0-3, second tour ; la quatrième ajoutée au troisième tour, la garde existant sans que
+ *         rien ne la morde — une garde que rien ne mord est une garde qu'on croit avoir).
  *
  * TOUTES les fixtures positives sont des faits RÉELS de l'audit indépendant du 10/09/2026 : SAS
  * soute Chine, le conflit Finnair soute, Air China cabine (seule fenêtre d'achat publiée en jours
@@ -479,6 +481,74 @@ console.log("\n=== 11. UN FAUX CONFLIT NE PEUT PLUS ÉTEINDRE UN VRAI TARIF (P0-
       refuse(FareConflict, sans).refuse, refuse(FareConflict, sans).motif);
   }
 
+  /* P0-1, TROISIÈME TOUR : des devises entièrement disjointes ne se contredisent sur rien. Sans
+     conversion — et ce contrat n'en fait aucune — « 100 EUR » et « 120 USD » sont deux montants
+     parallèles, exactement ce que le contrat reconnaît comme normal sur un tarif ordinaire depuis
+     l'annexe 44. J'avais écrit la règle pour les tarifs et oublié de l'appliquer aux conflits. */
+  const devisesDisjointes = {
+    ...CONFLIT_FINNAIR,
+    observations: [
+      { price: { kind: "exact", amounts: [{ amount: 100, currency: "EUR" }] }, source: SRC_FIN_A },
+      { price: { kind: "exact", amounts: [{ amount: 120, currency: "USD" }] }, source: SRC_FIN_B },
+    ],
+  };
+  const r3 = refuse(FareConflict, devisesDisjointes);
+  check("« 100 EUR » contre « 120 USD » : devises disjointes, aucun désaccord — REFUSÉ", r3.refuse, r3.motif);
+  check("…et le motif nomme la devise commune manquante", r3.motif.toLowerCase().includes("devise commune"), r3.motif);
+  const communeEtDisjointe = {
+    ...CONFLIT_FINNAIR,
+    observations: [
+      { price: { kind: "exact", amounts: [{ amount: 140, currency: "EUR" }, { amount: 150, currency: "USD" }] }, source: SRC_FIN_A },
+      { price: { kind: "exact", amounts: [{ amount: 120, currency: "EUR" }, { amount: 900, currency: "JPY" }] }, source: SRC_FIN_B },
+    ],
+  };
+  check("il suffit d'UNE devise commune en désaccord pour que le conflit tienne — le témoin n'est pas vacant",
+    FareConflict.safeParse(communeEtDisjointe).success,
+    JSON.stringify(FareConflict.safeParse(communeEtDisjointe).error?.issues ?? "").slice(0, 240));
+  const memeDeviseMemeValeur = {
+    ...CONFLIT_FINNAIR,
+    observations: [
+      { price: { kind: "exact", amounts: [{ amount: 140, currency: "EUR" }, { amount: 150, currency: "USD" }] }, source: SRC_FIN_A },
+      { price: { kind: "exact", amounts: [{ amount: 140, currency: "EUR" }, { amount: 900, currency: "JPY" }] }, source: SRC_FIN_B },
+    ],
+  };
+  check("…mais une devise commune qui dit la MÊME valeur ne suffit pas : le désaccord doit porter sur elle",
+    refuse(FareConflict, memeDeviseMemeValeur).refuse, refuse(FareConflict, memeDeviseMemeValeur).motif);
+
+  /* P1-1 : une seule preuve, citée deux fois, ne fabrique pas un désaccord. */
+  const unePreuveDeuxPrix = {
+    ...CONFLIT_FINNAIR,
+    observations: [
+      { price: { kind: "exact", amounts: [{ amount: 140, currency: "EUR" }] }, source: SRC_FIN_A },
+      { price: { kind: "exact", amounts: [{ amount: 120, currency: "EUR" }] }, source: { ...SRC_FIN_A } },
+    ],
+  };
+  const r4 = refuse(FareConflict, unePreuveDeuxPrix);
+  check("deux prix différents adossés à la MÊME preuve exacte (URL, localisateur, citation, date) — REFUSÉ", r4.refuse, r4.motif);
+  check("…et le motif nomme les preuves, pas les prix", r4.motif.toLowerCase().includes("preuves distinctes"), r4.motif);
+  const deuxSectionsMemePage = {
+    ...CONFLIT_FINNAIR,
+    observations: [
+      { price: { kind: "exact", amounts: [{ amount: 140, currency: "EUR" }] }, source: SRC_FIN_A },
+      { price: { kind: "exact", amounts: [{ amount: 120, currency: "EUR" }] }, source: { ...SRC_FIN_A, locator: "Excess baggage fees → Pets", quote: "120 EUR / 600 EUR" } },
+    ],
+  };
+  check("DEUX SECTIONS de la même page restent deux preuves — l'exigence ne réclame ni deux domaines ni deux URL",
+    FareConflict.safeParse(deuxSectionsMemePage).success,
+    JSON.stringify(FareConflict.safeParse(deuxSectionsMemePage).error?.issues ?? "").slice(0, 240));
+  check("…une même page relue à DEUX DATES compte aussi pour deux preuves",
+    FareConflict.safeParse({ ...CONFLIT_FINNAIR, observations: [
+      CONFLIT_FINNAIR.observations[0],
+      { price: { kind: "exact", amounts: [{ amount: 120, currency: "EUR" }] },
+        source: { ...SRC_FIN_A, verified_date: "2026-08-15", review_due: "2026-11-13" } },
+    ] }).success);
+  /* CE QUE CE CONTRÔLE NE PROUVE PAS, et qu'il ne faut pas lui faire dire. */
+  check("ce contrôle n'établit PAS que le nombre correspond à la phrase citée — cette relecture reste humaine",
+    FareConflict.safeParse({ ...CONFLIT_FINNAIR, observations: [
+      { price: { kind: "exact", amounts: [{ amount: 999, currency: "EUR" }] }, source: SRC_FIN_A },
+      { price: { kind: "exact", amounts: [{ amount: 888, currency: "EUR" }] }, source: SRC_FIN_B },
+    ] }).success);
+
   /* La fenêtre d'achat du conflit est RÉELLEMENT évaluée : un désaccord daté ne couvre pas un
      achat hors de sa fenêtre, et n'éteint donc pas un tarif qu'il ne concerne pas. */
   const tarif = {
@@ -519,8 +589,11 @@ console.log("\n=== 12. AUCUNE LIGNE NE DISPARAÎT PAR PRIORITÉ INTERNE (P1, sec
     r.mecanismes.length === 1);
 
   /* Plusieurs conflits couvrants : `find()` n'en gardait qu'un. */
-  const c1 = { ...CONFLIT_FINNAIR, id: "conflit_un", applies_when: { all: [{ fact: "route.dest_country_id", op: "eq", value: "country_cn" }] } };
-  const c2 = { ...CONFLIT_FINNAIR, id: "conflit_deux", applies_when: undefined, scope_label: "toutes destinations" };
+  /* Les deux conflits portent les AXES du tarif qu'ils contestent — sans quoi ils ne l'éteindraient
+     pas, et le témoin croirait constater une suppression qui n'a pas lieu (porte P0-2, 3e tour). */
+  const axesDuTarif = { billing_subject: "container", journey_basis: "per_segment" };
+  const c1 = { ...CONFLIT_FINNAIR, ...axesDuTarif, id: "conflit_un", applies_when: { all: [{ fact: "route.dest_country_id", op: "eq", value: "country_cn" }] } };
+  const c2 = { ...CONFLIT_FINNAIR, ...axesDuTarif, id: "conflit_deux", applies_when: undefined, scope_label: "toutes destinations" };
   const rc = resoudreTarif([montant], [c1, c2], "hold", faits);
   check("DEUX conflits couvrent le trajet → les deux sont rendus, jamais le premier seul",
     rc.conflits.length === 2 && rc.conflits.map((c) => c.id).join(",") === "conflit_un,conflit_deux", JSON.stringify(rc.conflits.map((c) => c.id)));
@@ -529,11 +602,51 @@ console.log("\n=== 12. AUCUNE LIGNE NE DISPARAÎT PAR PRIORITÉ INTERNE (P1, sec
   check("…tandis que le MÉCANISME survit au conflit : l'effet publié est `suppress_exact_fare`, pas « tout effacer »",
     resoudreTarif([montant, mecanisme], [c1], "hold", faits).mecanismes.length === 1);
 
+  /* P0-2, TROISIÈME TOUR — LE TÉMOIN INDISPENSABLE. Ma « prudence » effaçait une information
+     officielle sans rapport avec le désaccord. Un conflit sur le prix par contenant supprime CE
+     prix ; le supplément par kilogramme, sur lequel aucune page ne se contredit, reste publié. */
+  const parContenant = {
+    ...base, id: "fare_transport", billing_subject: "container", journey_basis: "per_segment",
+    price: { kind: "exact", amounts: [{ amount: 100, currency: "EUR" }] }, source: SRC_SAS,
+  };
+  const parKilo = {
+    ...base, id: "fare_surcharge", billing_subject: "kilogram", journey_basis: "per_segment",
+    price: { kind: "exact", amounts: [{ amount: 5, currency: "EUR" }] },
+    source: { ...SRC_SAS, quote: "an additional 5 EUR per kilogram applies", locator: "Fees → Excess weight" },
+  };
+  const conflitContenant = {
+    ...CONFLIT_FINNAIR, id: "conflit_par_contenant", placement: "hold",
+    billing_subject: "container", journey_basis: "per_segment",
+    applies_when: { all: [{ fact: "route.dest_country_id", op: "eq", value: "country_cn" }] },
+    observations: [
+      { price: { kind: "exact", amounts: [{ amount: 100, currency: "EUR" }] }, source: SRC_FIN_A },
+      { price: { kind: "exact", amounts: [{ amount: 120, currency: "EUR" }] }, source: SRC_FIN_B },
+    ],
+  };
+  check("préalable : le conflit par contenant est accepté", FareConflict.safeParse(conflitContenant).success,
+    JSON.stringify(FareConflict.safeParse(conflitContenant).error?.issues ?? "").slice(0, 240));
+  const cible = resoudreTarif([parContenant, parKilo], [conflitContenant], "hold", faits);
+  check("le conflit éteint le prix PAR CONTENANT, qu'il conteste",
+    cible.supprimes.length === 1 && cible.supprimes[0].id === "fare_transport", JSON.stringify(cible.supprimes.map((f) => f.id)));
+  check("…et le supplément PAR KILOGRAMME reste dans `montants` : aucune page ne se contredit à son sujet",
+    cible.montants.length === 1 && cible.montants[0].id === "fare_surcharge", JSON.stringify(cible.montants.map((f) => f.id)));
+  check("…et le conflit reste NOMMÉ dans l'inventaire, pour que la fiche puisse dire ce qu'elle tait",
+    cible.conflits.length === 1 && cible.conflits[0].id === "conflit_par_contenant");
+  const memeAxeAutreBase = { ...parContenant, id: "fare_par_trajet", journey_basis: "per_journey" };
+  const cible2 = resoudreTarif([memeAxeAutreBase], [conflitContenant], "hold", faits);
+  check("un tarif au MÊME sujet facturé mais sur une autre base de trajet survit aussi — les deux axes comptent",
+    cible2.montants.length === 1 && cible2.supprimes.length === 0, JSON.stringify(cible2).slice(0, 200));
+  const cible3 = resoudreTarif([parContenant], [conflitContenant], "hold", faits);
+  check("…et le témoin n'est pas vacant : seul, le prix contesté est bien éteint",
+    cible3.montants.length === 0 && cible3.supprimes.length === 1);
+
   /* Un chevauchement ne masque plus le reste de l'inventaire non plus. */
   const a = { ...montant, id: "fare_x", price: { kind: "exact", amounts: [{ amount: 725, currency: "EUR" }] } };
   const b = { ...montant, id: "fare_y", price: { kind: "exact", amounts: [{ amount: 680, currency: "EUR" }] } };
   const indecidable = { ...montant, id: "fare_zone", applies_when: { all: [{ fact: "route.origin_airport_id", op: "eq", value: "airport_cdg" }] } };
   const tout = resoudreTarif([a, b, mecanisme, indecidable], [], "hold", faits);
+  check("un supplément d'un AUTRE sujet facturé n'est pas un chevauchement : il s'ajoute, il ne conteste pas",
+    resoudreTarif([a, { ...parKilo, id: "fare_kg_bis" }], [], "hold", faits).montants.length === 2);
   check("chevauchement, mécanisme et indécidable coexistent dans le MÊME inventaire",
     tout.chevauchements.length === 2 && tout.mecanismes.length === 1 && tout.indecidables.length === 1 && tout.montants.length === 0,
     JSON.stringify({ ch: tout.chevauchements.length, me: tout.mecanismes.length, ind: tout.indecidables.length, mo: tout.montants.length }));
@@ -579,7 +692,7 @@ console.log("\n=== 14. Aucun tarif n'est importé par ce lot — le contrat d'ab
   check("…ni aucun conflit tarifaire", avecConflits === 0, `${avecConflits} politique(s) portent déjà un conflit`);
 }
 
-console.log("\n=== 15. L'INGESTION, jouée quatre fois sur un bac à sable : une nominale, trois sabotées (P0-3) ===");
+console.log("\n=== 15. L'INGESTION, jouée six fois sur un bac à sable : une nominale, quatre sabotées, une non-vacuité (P0-3) ===");
 {
   const { mkdtempSync, cpSync, writeFileSync: ecrire, symlinkSync } = await import("node:fs");
   const { execFileSync } = await import("node:child_process");
@@ -595,7 +708,7 @@ console.log("\n=== 15. L'INGESTION, jouée quatre fois sur un bac à sable : une
   const original = readFileSync(fiche, "utf8");
   const objetsOriginaux = readFileSync(join(bac, "packages/knowledge/raw/objects.json"), "utf8");
 
-  const SRC_YML = (ind) => [
+  const SRC_YML = (ind, locator = "Fees → Pet in cargo hold → China", quote = "China: 5400 DKK, 7600 NOK, 7600 SEK, 725 EUR, 775 USD") => [
     `${ind}source:`,
     `${ind}  url: "https://www.flysas.com/en/travel-info/travel-with-pets/in-hold"`,
     `${ind}  source_type: official_website`,
@@ -604,9 +717,9 @@ console.log("\n=== 15. L'INGESTION, jouée quatre fois sur un bac à sable : une
     `${ind}  confidence: 4`,
     `${ind}  reviewer: "harnais du contrat tarifaire"`,
     `${ind}  history: []`,
-    `${ind}  quote: "China: 5400 DKK, 7600 NOK, 7600 SEK, 725 EUR, 775 USD"`,
+    `${ind}  quote: ${JSON.stringify(quote)}`,
     `${ind}  quote_language: en`,
-    `${ind}  locator: "Fees → Pet in cargo hold → China"`,
+    `${ind}  locator: ${JSON.stringify(locator)}`,
   ].join("\n");
   const TARIF_YML = (id, placement) => [
     `      - id: ${id}`,
@@ -630,10 +743,13 @@ console.log("\n=== 15. L'INGESTION, jouée quatre fois sur un bac à sable : une
     `        billing_subject: container`,
     `        journey_basis: per_segment`,
     `        observations:`,
+    /* DEUX PREUVES DISTINCTES, exigées depuis la porte P1-1 : deux sections de la même page
+       officielle, avec chacune sa citation et son localisateur. Mon premier bac à sable citait
+       deux fois la même — et la garde neuve l'a refusé, ce qui est exactement son travail. */
     `          - price: { kind: exact, amounts: [{ amount: 725, currency: EUR }] }`,
     SRC_YML("            "),
     `          - price: { kind: exact, amounts: [{ amount: 680, currency: EUR }] }`,
-    SRC_YML("            "),
+    SRC_YML("            ", "Excess baggage → Pets", "Pet in hold: 680 EUR per container"),
   ].join("\n");
 
   /** Remplace le bloc `hold:` de la fiche SAS, rejoue l'ingestion, rend sa sortie et l'artefact. */
@@ -694,10 +810,20 @@ console.log("\n=== 15. L'INGESTION, jouée quatre fois sur un bac à sable : une
     check("…et le motif nomme le conflit et son canal", /conflit conflit_sas_soute/.test(sortie), sortie.slice(-260));
   }
 
-  console.log("  — (e) non-vacuité : le MÊME conflit, correctement rangé, est accepté");
+  console.log("  — (e) SABOTAGE 4 : deux conflits portant exactement le même identifiant");
+  {
+    /* La garde d'unicité des identifiants de CONFLITS existait depuis l'annexe 46, et aucune
+       ingestion sabotée ne l'exerçait — Codex l'a relevé. Une garde que rien ne mord est une
+       garde qu'on croit avoir. */
+    const { ok, sortie } = jouer(holdSas(`    fare_conflicts:\n${CONFLIT_YML("conflit_sas_soute", "hold")}\n${CONFLIT_YML("conflit_sas_soute", "hold")}\n`));
+    check("l'ingestion REFUSE deux conflits au même identifiant", !ok, sortie.slice(-260));
+    check("…et le motif nomme l'identifiant de conflit en double", /identifiant de conflit conflit_sas_soute/.test(sortie), sortie.slice(-260));
+  }
+
+  console.log("  — (f) non-vacuité : le MÊME conflit, correctement rangé, est accepté");
   {
     const { ok, sortie, artefact } = jouer(holdSas(`    fare_conflicts:\n${CONFLIT_YML("conflit_sas_soute", "hold")}\n`));
-    check("le conflit bien rangé traverse l'ingestion — les trois gardes refusent la faute, pas la fonction", ok, sortie.slice(-300));
+    check("le conflit bien rangé traverse l'ingestion — les quatre gardes refusent la faute, pas la fonction", ok, sortie.slice(-300));
     const pol = artefact?.airlines.find((a) => a.id === "airline_sas")?.premium?.policy?.hold;
     check("…et il arrive dans l'artefact avec ses deux observations",
       Array.isArray(pol?.fare_conflicts) && pol.fare_conflicts.length === 1 && pol.fare_conflicts[0].observations.length === 2,
