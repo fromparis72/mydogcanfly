@@ -34,6 +34,7 @@ import { z } from "zod";
 import { T0bAuditSource, T0bSourceDePolitique } from "../src/t0b-migration.ts";
 /* Le contrat tarifaire est IMPORTÉ, jamais recopié : une seconde définition dériverait (annexe 44). */
 import { Fare, FareConflict } from "../src/tarifs.ts";
+import { Attestation } from "../src/attestations.ts";
 
 const HERE = dirname(fileURLToPath(import.meta.url));
 const ROOT = join(HERE, "..", "..", "..");
@@ -140,6 +141,11 @@ const DecisionPlacement = z.union([
      *  `max_weight_kg: 8`, `weight_includes_carrier: true`. Le moteur refuse au-dessus, n'accorde
      *  jamais en dessous. */
     max_weight_kg: z.number().positive().optional(),
+    /** Le plancher de poids et sa borne (annexe 51) — la soute Air France en a besoin. */
+    min_weight_kg: z.number().positive().optional(),
+    weight_min_bound: z.enum(["gt", "gte"]).optional(),
+    /** LE RATTACHEMENT fait → preuve (annexe 51). La fiche l'écrit, le contrat le vérifie. */
+    attestations: z.array(Attestation).optional(),
     /** La borne du seuil (09/09/2026, règle des seuils de Codex) : `lt` exclut la valeur. Absent = `lte`. */
     weight_limit_bound: z.enum(["lt", "lte"]).optional(),
     weight_includes_carrier: z.boolean().optional(),
@@ -151,6 +157,9 @@ const DecisionPlacement = z.union([
   }).strict(),
   z.object({
     review_state: z.literal("legacy_unreviewed"),
+    min_weight_kg: z.number().positive().optional(),
+    weight_min_bound: z.enum(["gt", "gte"]).optional(),
+    attestations: z.array(Attestation).optional(),
     /* Une ligne non revérifiée peut porter un tarif prouvé : la page publie le prix sans que la
        politique du canal soit décidée. Les deux preuves sont distinctes — c'est tout l'arbitrage. */
     fares: z.array(Fare).optional(),
@@ -656,7 +665,7 @@ for (const a of (objects.airlines || [])) {
          tarifaire, qui reste soumis à la préservation et à la détection de dérive). */
       /* `fares` et `fare_conflicts` entrent dans cette liste LE JOUR MÊME de leur écriture dans la fiche
          (10/09/2026) : c'est ici que le seuil s'était perdu le 15/08, et le champ du quatrième état le 08/09. */
-      for (const k of ["max_weight_kg", "weight_includes_carrier", "weight_limit_bound", "conditions", "fares", "fare_conflicts"]) {
+      for (const k of ["max_weight_kg", "min_weight_kg", "weight_includes_carrier", "weight_limit_bound", "weight_min_bound", "attestations", "conditions", "fares", "fare_conflicts"]) {
         if (d.__ecrits?.has(k) && d[k] !== undefined) enrichissements[k] = d[k];
       }
       /* Une source AUDITÉE écrite dans la fiche l'emporte, ici aussi. La première correction
@@ -699,6 +708,12 @@ for (const a of (objects.airlines || [])) {
       ...(d.max_weight_kg != null ? { max_weight_kg: d.max_weight_kg } : {}),
       ...(typeof d.weight_includes_carrier === "boolean" ? { weight_includes_carrier: d.weight_includes_carrier } : {}),
       ...(d.weight_limit_bound ? { weight_limit_bound: d.weight_limit_bound } : {}),
+      /* Plancher, borne du plancher et RATTACHEMENTS : ajoutés à ce spread le jour même de leur
+         entrée au schéma (annexe 51). C'est le troisième chemin de perte de ce fichier — après la
+         préservation du 15/08 et la projection du 08/09 — et il se referme en même temps. */
+      ...(d.min_weight_kg != null ? { min_weight_kg: d.min_weight_kg } : {}),
+      ...(d.weight_min_bound ? { weight_min_bound: d.weight_min_bound } : {}),
+      ...(d.attestations?.length ? { attestations: d.attestations } : {}),
       ...(d.fares?.length ? { fares: d.fares } : {}),
       ...(d.fare_conflicts?.length ? { fare_conflicts: d.fare_conflicts } : {}),
       ...(d.brachy_allowed === false ? { brachy_allowed: false } : {}),

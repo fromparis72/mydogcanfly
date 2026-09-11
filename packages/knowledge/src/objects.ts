@@ -1,6 +1,7 @@
 import { z } from "zod";
 import { id, LocalizedText, DogSize, Source, SourceCitable, PlacementStatus, FACTUAL_SOURCE_TYPES, isForbiddenSource } from "./common";
 import { Fare, FareConflict } from "./tarifs";
+import { Attestation, motifsDeRefus } from "./attestations";
 
 export const Country = z.object({
   id: id("country"),
@@ -139,6 +140,20 @@ const PlacementPolicyCommon = {
   fares: z.array(Fare).optional(),
   /** Les conflits officiels ouverts sur ce canal : deux pages vivantes, deux montants, aucun tranché. */
   fare_conflicts: z.array(FareConflict).optional(),
+  /** LE PLANCHER DE POIDS, avec sa borne (11/09/2026, annexe 51). Il naît de la soute Air France,
+   *  dont la phrase citée établit DEUX bornes — « more than 8 kg … and up to 75 kg … with its
+   *  carrier » — là où le modèle ne portait que le maximum. Codex a tranché : ne pas afficher
+   *  « plus de 8 kg » tant que cette borne n'est pas structurée. Elle l'est, plutôt que tue.
+   *  `gt` exclut la valeur (« more than »), `gte` l'inclut (« from »). Absent = `gte`. */
+  min_weight_kg: z.number().positive().optional(),
+  weight_min_bound: z.enum(["gt", "gte"]).optional(),
+  /** LE RATTACHEMENT DE CHAQUE FAIT À LA PHRASE QUI L'ÉTABLIT (annexe 51).
+   *
+   *  Sans lui, un seuil structuré et une citation qui COHABITENT sur un canal passaient pour une
+   *  preuve. Mesuré le 11/09 : sur 43 politiques portant les deux, 7 ont une citation qui ne dit
+   *  rien du seuil, et AUCUNE des 10 qui portent des dimensions ne les a dans sa phrase. La
+   *  synthèse localisée ne se construit que sur ce champ — jamais sur la coexistence. */
+  attestations: z.array(Attestation).optional(),
   carrier_dims_cm: z.object({ l: z.number(), w: z.number(), h: z.number() }).optional(),
   fee: z.string().optional(),                        // as published, e.g. "€125 (intra-Europe)"
   conditions: LocalizedText.optional(),
@@ -186,12 +201,30 @@ const PlacementPolicyCommon = {
  * consommé par l'UI existante. Sa suppression n'appartient pas à ce lot.
  */
 
+
+/** LA GARDE DU RATTACHEMENT, commune aux deux branches d'auteur (annexe 51).
+ *
+ *  Elle vérifie deux choses que rien ne déduisait : que l'extrait cité vient BIEN de la phrase de
+ *  ce canal — permuter la preuve entre deux canaux casse le lien —, et que la sémantique annoncée
+ *  concorde avec les champs structurés. Les deux se gardent l'un l'autre : corriger l'un sans
+ *  l'autre fait rougir le build au lieu de publier un chiffre que la preuve contredit. */
+const gardeAttestations = (p: {
+  attestations?: unknown; source?: { quote?: string };
+  max_weight_kg?: number; min_weight_kg?: number; weight_includes_carrier?: boolean;
+  weight_limit_bound?: "lt" | "lte"; weight_min_bound?: "gt" | "gte";
+  carrier_dims_cm?: { l: number; w: number; h: number };
+}, ctx: z.RefinementCtx) => {
+  for (const m of motifsDeRefus(p.attestations as never, p.source?.quote, p)) {
+    ctx.addIssue({ code: z.ZodIssueCode.custom, path: ["attestations"], message: m });
+  }
+};
+
 /** Forme CANONIQUE cible : la fiche écrit une sémantique, plus une couleur de pastille. */
 export const CanonicalPlacementPolicyAuthored = z.object({
   ...PlacementPolicyCommon,
   availability: z.enum(["offered", "not_offered", "case_by_case", "undocumented"]),
   derived_from_fiche: z.boolean().optional(),
-}).strict();
+}).strict().superRefine(gardeAttestations);
 
 /**
  * Forme d'auteur TRANSITOIRE (T0-B1) : une politique héritée dont la condition n'a PAS encore
@@ -215,7 +248,7 @@ export const LegacyUnreviewedPlacementPolicyAuthored = z.object({
   ...PlacementPolicyCommon,
   review_state: z.literal("legacy_unreviewed"),
   derived_from_fiche: z.boolean().optional(),
-}).strict();
+}).strict().superRefine(gardeAttestations);
 
 /** L'union stricte interdit qu'un objet porte à la fois `allowed`, `availability` ou
  *  `review_state` : chaque branche a son discriminant obligatoire, et `.strict()` refuse les
@@ -325,8 +358,8 @@ export function projectPlacementPolicy(authored: PlacementPolicyAuthored): Place
   /* `fares` et `fare_conflicts` ajoutés à cette liste LE JOUR MÊME de leur entrée au schéma (10/09/2026) — la leçon
      du 08/09 ci-dessus, deux fois apprise : un champ absent d'ici est perdu par la projection, et le moteur ne le
      voit jamais. Le témoin `test-contrat-tarifaire.mjs` l'exige explicitement. */
-  const { max_weight_kg, weight_includes_carrier, weight_limit_bound, fares, fare_conflicts, carrier_dims_cm, fee, conditions, brachy_allowed, source, source_derived, derived_from_fiche } = authored;
-  const common = { max_weight_kg, weight_includes_carrier, weight_limit_bound, fares, fare_conflicts, carrier_dims_cm, fee, conditions, brachy_allowed, source, source_derived, derived_from_fiche };
+  const { max_weight_kg, min_weight_kg, weight_includes_carrier, weight_limit_bound, weight_min_bound, attestations, fares, fare_conflicts, carrier_dims_cm, fee, conditions, brachy_allowed, source, source_derived, derived_from_fiche } = authored;
+  const common = { max_weight_kg, min_weight_kg, weight_includes_carrier, weight_limit_bound, weight_min_bound, attestations, fares, fare_conflicts, carrier_dims_cm, fee, conditions, brachy_allowed, source, source_derived, derived_from_fiche };
   /* Donnée non revérifiée : à confirmer, cause explicitement NÔTRE — jamais une incertitude
      attribuée à la compagnie. Placée en tête parce qu'elle est la seule branche dont le
      discriminant ne peut coexister avec un autre ; l'ordre ne change rien au résultat, il rend

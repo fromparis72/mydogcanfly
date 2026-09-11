@@ -60,6 +60,10 @@ const kbAF = ((seuilQualifie) => {
   if (!af?.premium?.policy?.cabin) throw new Error("harnais : politique cabine Air France introuvable");
   const cab = af.premium.policy.cabin;
   delete cab.source_derived;
+  /* Les rattachements partent avec la citation qu'ils visent (annexe 51) : ce bloc REMPLACE la
+   phrase d'Air France, donc les fragments qui la citaient ne prouvent plus rien. Les garder
+   ferait dire à une phrase fictive qu'elle établit un plafond de 8 kg. */
+  delete cab.attestations;
   cab.source = { ...cab.source, quote: CITEE.quote, quote_language: "en", locator: CITEE.locator };
   /* MOUVEMENT NOMMÉ (10/09/2026, complément Air France cabine — Codex) : la donnée RÉELLE porte désormais la citation, le
      champ `weight_includes_carrier: true` et la borne stricte `lt`. La variante « sans seuil qualifié » les RETIRE
@@ -171,6 +175,10 @@ console.log("\n=== 3. Golden 32 kg, CDG → ATH, cabine citée à 8 kg chien + c
     const brut = JSON.parse(JSON.stringify(rawKB));
     const cab = brut.airlines.find((a) => a.id === "airline_air_france").premium.policy.cabin;
     delete cab.source_derived;
+    /* Les rattachements partent avec la citation qu'ils visent (annexe 51) : ce bloc REMPLACE la
+       phrase d'Air France, donc les fragments qui la citaient ne prouvent plus rien. Les garder
+       ferait dire à une phrase fictive qu'elle établit un plafond de 8 kg. */
+    delete cab.attestations;
     cab.source = { ...cab.source, quote: CITEE.quote, quote_language: "en", locator: CITEE.locator };
     cab.weight_includes_carrier = false;
     const kbChienSeul = normalize(brut);

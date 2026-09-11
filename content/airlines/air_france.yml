@@ -76,7 +76,19 @@ policies:
     # Le plafond cité inclut le CONTENANT : refus sûr si le chien seul le dépasse, jamais un oui en dessous.
     max_weight_kg: 8
     weight_includes_carrier: true
-    weight_limit_bound: lt   # la phrase dit « inférieur à » : la valeur est exclue, un chien de 8 kg exactement est refusé
+    weight_limit_bound: lt
+    # RATTACHEMENT fait → preuve (annexe 51, 11/09/2026, arbitrage Codex).
+    # L'extrait est recopié de la citation ci-dessous : c'est ce qui rend le lien vérifiable.
+    # Ce que la phrase établit : un PLAFOND de 8 kg, borne STRICTE (« moins de »), contenant COMPRIS.
+    # Ce qu'elle n'établit pas, et qui n'est donc pas rattaché : les 46 × 28 × 24 cm de l'ancien
+    # détail éditorial. Aucune dimension du dépôt n'est portée par sa citation (mesuré : 0 sur 10).
+    attestations:
+      - claim:
+          kind: weight_max
+          kg: 8
+          bound: lt
+          includes_carrier: true
+        excerpt: "chats et chiens de moins de 8 kg, sac de transport compris"   # la phrase dit « inférieur à » : la valeur est exclue, un chien de 8 kg exactement est refusé
     source:
       url: "https://wwws.airfrance.fr/information/passagers/voyager-avec-son-animal-chien-chat"
       source_type: official_website
@@ -96,6 +108,24 @@ policies:
     # Le plafond cité inclut le CONTENANT : refus sûr si le chien seul le dépasse, jamais un oui en dessous.
     max_weight_kg: 75
     weight_includes_carrier: true
+    # La phrase citée établit DEUX bornes ; le modèle n'en portait qu'une. Le plancher est
+    # structuré plutôt que tu (annexe 51) : « more than 8 kg » est une borne EXCLUSIVE.
+    min_weight_kg: 8
+    weight_min_bound: gt
+    weight_limit_bound: lte
+    attestations:
+      - claim:
+          kind: weight_min
+          kg: 8
+          bound: gt
+          includes_carrier: true
+        excerpt: "weighs more than 8 kg/17.64 lb."
+      - claim:
+          kind: weight_max
+          kg: 75
+          bound: lte
+          includes_carrier: true
+        excerpt: "up to 75 kg/165.35 lb. with its carrier"
     source:
       url: "https://wwws.airfrance.fr/en/information/passagers/voyager-avec-son-animal-chien-chat"
       source_type: official_website

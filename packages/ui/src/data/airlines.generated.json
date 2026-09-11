@@ -5393,6 +5393,17 @@
           "locator": "Transport de chiens, de chats et autres animaux de compagnie → option En cabine"
         },
         "max_weight_kg": 8,
+        "attestations": [
+          {
+            "claim": {
+              "kind": "weight_max",
+              "kg": 8,
+              "bound": "lt",
+              "includes_carrier": true
+            },
+            "excerpt": "chats et chiens de moins de 8 kg, sac de transport compris"
+          }
+        ],
         "weight_limit_bound": "lt",
         "weight_includes_carrier": true
       },
@@ -5411,6 +5422,29 @@
           "locator": "Important!"
         },
         "max_weight_kg": 75,
+        "min_weight_kg": 8,
+        "weight_min_bound": "gt",
+        "attestations": [
+          {
+            "claim": {
+              "kind": "weight_min",
+              "kg": 8,
+              "bound": "gt",
+              "includes_carrier": true
+            },
+            "excerpt": "weighs more than 8 kg/17.64 lb."
+          },
+          {
+            "claim": {
+              "kind": "weight_max",
+              "kg": 75,
+              "bound": "lte",
+              "includes_carrier": true
+            },
+            "excerpt": "up to 75 kg/165.35 lb. with its carrier"
+          }
+        ],
+        "weight_limit_bound": "lte",
         "weight_includes_carrier": true
       },
       "cargo": {
