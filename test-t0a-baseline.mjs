@@ -943,8 +943,13 @@ console.log("=== Preuve T0-B2-UI (deux baselines FIGÉES — permanente) ===");
     /* 09/09/2026, ensuite — LA PLUS RÉCENTE EST CELLE DE LA RÉCONCILIATION CIBLÉE (deux règles retirées, borne stricte). */
     /* 10/09/2026 — LA PLUS RÉCENTE EST CELLE DU COMPLÉMENT AIR FRANCE CABINE (une citation, borne stricte « moins de 8 kg »).
        Celle de la réconciliation n'est pas écrasée : elle devient l'AVANT de cette paire. */
-    check("la baseline vivante est identique à la baseline figée la plus récente (complément Air France cabine)",
+    /* 10/09/2026 — LA PLUS RÉCENTE EST CELLE DU RETRAIT DE LA PREUVE SAUDIA (surface de test `booking-uat`). Celle du
+       complément Air France n'est pas écrasée : elle devient l'AVANT de cette paire. */
+    check("la baseline vivante est identique à la baseline figée la plus récente (retrait de la preuve Saudia)",
       readFileSync("test-baselines/t0a-finder-baseline.json", "utf8")
+        === readFileSync("test-baselines/saudia-preuve-uat-apres.json", "utf8"));
+    check("l'AVANT du retrait Saudia EST l'après du complément Air France cabine — chaîne continue",
+      readFileSync("test-baselines/saudia-preuve-uat-avant.json", "utf8")
         === readFileSync("test-baselines/complement-air-france-cabine-apres.json", "utf8"));
     check("l'AVANT du complément Air France cabine EST l'après de la réconciliation — chaîne continue",
       readFileSync("test-baselines/complement-air-france-cabine-avant.json", "utf8")
@@ -1686,6 +1691,45 @@ console.log("=== Preuve PERMANENTE Complément Air France cabine — une citatio
   }
 }
 
+console.log("=== Preuve PERMANENTE Retrait de la preuve Saudia — une surface de test défaite, et rien d'autre ne bouge (baselines FIGÉES) ===");
+{
+  /* Même méthode. Entre l'après du complément Air France et l'après du retrait : 24 cartes sur 1 560, Saudia seule.
+   * La cabine, refusée sur une citation lue en UAT, redevient « à confirmer » sur les 24 scénarios où Saudia est
+   * candidate ; la soute quitte « sous conditions » sur 12 d'entre eux (les 12 autres portent un carlin, dont la soute
+   * était déjà fermée par la règle de race). Aucun canal ne s'ouvre, AUCUN verdict ne bouge : retirer une preuve ne
+   * crée ni oui ni non — c'est la propriété que cette paire fige. */
+  const AVANT = "test-baselines/saudia-preuve-uat-avant.json";
+  const APRES = "test-baselines/saudia-preuve-uat-apres.json";
+  check("les deux baselines du retrait Saudia sont versionnées", existsSync(AVANT) && existsSync(APRES));
+  if (existsSync(AVANT) && existsSync(APRES)) {
+    const avant = JSON.parse(readFileSync(AVANT, "utf8")), apres = JSON.parse(readFileSync(APRES, "utf8"));
+    const idDe = (s) => s.split(" | ")[0];
+    const statutsDe = (s) => (s.split(" | ").find((seg) => seg.startsWith("st:")) ?? "st:?/?/?").slice(3).split("/");
+    const changees = new Map(); const transitions = new Map(); const verdicts = new Map();
+    let cartes = 0, total = 0;
+    for (const k of Object.keys(apres)) {
+      const A = new Map((avant[k]?.airlines ?? []).map((s) => [idDe(s), s]));
+      for (const s of apres[k].airlines ?? []) {
+        total++;
+        const o = A.get(idDe(s));
+        if (o === s) continue;
+        cartes++; changees.set(idDe(s), (changees.get(idDe(s)) ?? 0) + 1);
+        const so = statutsDe(o ?? ""), sn = statutsDe(s);
+        for (let i = 0; i < 3; i++) if (so[i] !== sn[i]) transitions.set(`${so[i]}→${sn[i]}`, (transitions.get(`${so[i]}→${sn[i]}`) ?? 0) + 1);
+      }
+      const v = `${avant[k]?.verdict}→${apres[k].verdict}`; verdicts.set(v, (verdicts.get(v) ?? 0) + 1);
+    }
+    check("SEULE Saudia change de carte", [...changees.keys()].join(",") === "airline_saudia", [...changees.keys()].join(", "));
+    check("24 cartes sur 1 560 changent", cartes === 24 && total === 1560, `${cartes} / ${total}`);
+    check("24 refus cabine et 12 soutes « sous conditions » redeviennent « à confirmer », et RIEN d'autre",
+      transitions.get("denied→confirmation_required") === 24 && transitions.get("accepted_with_conditions→confirmation_required") === 12 && transitions.size === 2,
+      JSON.stringify([...transitions]));
+    check("AUCUN canal ne s'ouvre, AUCUN verdict ne bouge (52 conditional, 20 unknown)",
+      [...transitions.keys()].every((t) => !t.endsWith("→allowed") && !t.endsWith("→accepted_with_conditions")) && verdicts.get("conditional→conditional") === 52 && verdicts.get("unknown→unknown") === 20 && verdicts.size === 2,
+      JSON.stringify([...verdicts]));
+  }
+}
+
 console.log("=== Couverture DIRECTE : les 302 politiques, hors des 72 scénarios ===");
 {
   const kbCouverture = loadKB();
@@ -1777,11 +1821,12 @@ console.log("=== Couverture DIRECTE : les 302 politiques, hors des 72 scénarios
   /* MOUVEMENT NOMMÉ (10/09/2026, Bangkok Airways fret — annexe 37) : 142 → 143 sous conditions, 126 → 125 à confirmer, airline_approval 2 → 1. */
   /* MOUVEMENT NOMMÉ (10/09/2026, complément Air France cabine — Codex, une citation, 179 en tout) : 143 → 144 sous conditions,
      125 → 124 à confirmer ; official_source_unquoted 15 → 14 (Air France cabine était l'une des quinze pages officielles sans phrase). */
-  check("répartition runtime : 0 allowed · 144 sous conditions · 34 denied · 124 à confirmer",
-    !parStatut.allowed && parStatut.accepted_with_conditions === 144 && parStatut.denied === 34 && parStatut.confirmation_required === 124,
+  /* MOUVEMENT NOMMÉ (10/09/2026, Saudia — preuve de test retirée, tranchée par Philippe) : 0 · 143 · 33 · 126 ; legacy_unreviewed 109 → 111. */
+  check("répartition runtime : 0 allowed · 143 sous conditions · 33 denied · 126 à confirmer",
+    !parStatut.allowed && parStatut.accepted_with_conditions === 143 && parStatut.denied === 33 && parStatut.confirmation_required === 126,
     JSON.stringify(parStatut));
-  check("causes : 109 legacy_unreviewed · 14 official_source_unquoted · 0 policy_unpublished · 1 airline_approval",
-    parCause.legacy_unreviewed === 109 && parCause.official_source_unquoted === 14
+  check("causes : 111 legacy_unreviewed · 14 official_source_unquoted · 0 policy_unpublished · 1 airline_approval",
+    parCause.legacy_unreviewed === 111 && parCause.official_source_unquoted === 14
       && !parCause.policy_unpublished && parCause.airline_approval === 1, JSON.stringify(parCause));
 }
 

@@ -32,6 +32,8 @@ import { z } from "zod";
    langue BCP-47, URL http(s) hors domaines maison, type de source factuel, cadence de 90 jours
    dérivée et locator obligatoire. C'est ce qui impose d'exécuter ce script sous `tsx`. */
 import { T0bAuditSource, T0bSourceDePolitique } from "../src/t0b-migration.ts";
+/* Le contrat tarifaire est IMPORTÉ, jamais recopié : une seconde définition dériverait (annexe 44). */
+import { Fare, FareConflict } from "../src/tarifs.ts";
 
 const HERE = dirname(fileURLToPath(import.meta.url));
 const ROOT = join(HERE, "..", "..", "..");
@@ -141,8 +143,19 @@ const DecisionPlacement = z.union([
     /** La borne du seuil (09/09/2026, règle des seuils de Codex) : `lt` exclut la valeur. Absent = `lte`. */
     weight_limit_bound: z.enum(["lt", "lte"]).optional(),
     weight_includes_carrier: z.boolean().optional(),
+    /** LES TARIFS PROUVÉS (10/09/2026, annexe 44). La fiche sait désormais les écrire ; le contrat
+     *  vit dans `packages/knowledge/src/tarifs.ts` et c'est LUI qui valide — pas une copie du schéma
+     *  recopiée ici, qui dériverait le jour où l'un des deux bouge. */
+    fares: z.array(Fare).optional(),
+    fare_conflicts: z.array(FareConflict).optional(),
   }).strict(),
-  z.object({ review_state: z.literal("legacy_unreviewed") }).strict(),
+  z.object({
+    review_state: z.literal("legacy_unreviewed"),
+    /* Une ligne non revérifiée peut porter un tarif prouvé : la page publie le prix sans que la
+       politique du canal soit décidée. Les deux preuves sont distinctes — c'est tout l'arbitrage. */
+    fares: z.array(Fare).optional(),
+    fare_conflicts: z.array(FareConflict).optional(),
+  }).strict(),
 ]);
 
 /**
@@ -234,6 +247,53 @@ const Fiche = z.object({
       });
     }
   });
+  /* ---- LE TARIF APPARTIENT AU CANAL QUI LE PORTE (10/09/2026, annexe 46, porte P0-3) ----------
+   *
+   * Deux objets passaient toute la validation avant cette garde, et Codex les a construits :
+   *   · une politique CABINE contenant un tarif `placement: hold`. Il aurait été ingéré, écrit
+   *     dans `objects.json` sous la cabine, puis cherché en vain par le résolveur — qui filtre sur
+   *     `f.placement === placement` et ne l'aurait jamais trouvé. Un tarif prouvé, importé, et
+   *     invisible : la disparition silencieuse dans sa forme la plus pure ;
+   *   · deux tarifs portant exactement le même `id`, ce qui annule la seule chose que
+   *     l'identifiant promet — « pour que deux lots ne réécrivent pas la même ligne sans le dire ».
+   *
+   * Le contrôle est ici, et pas dans `tarifs.ts`, parce que ni un `Fare` ni un `FareConflict` ne
+   * connaît la clé sous laquelle il est rangé, ni les autres tarifs de la compagnie. C'est la
+   * fiche entière qui le sait — donc c'est la fiche entière qui doit le dire. */
+  const idsTarifs = new Map();
+  const idsConflits = new Map();
+  for (const m of PLACEMENTS) {
+    const pol = fiche.policies[m];
+    if (pol === undefined) continue;
+    (pol.fares ?? []).forEach((f, i) => {
+      if (f.placement !== m) {
+        ctx.addIssue({
+          code: z.ZodIssueCode.custom, path: ["policies", m, "fares", i, "placement"],
+          message: `tarif ${f.id} rangé sous policies.${m} mais déclaré placement ${f.placement} — il serait importé puis jamais retrouvé`,
+        });
+      }
+      if (idsTarifs.has(f.id)) {
+        ctx.addIssue({
+          code: z.ZodIssueCode.custom, path: ["policies", m, "fares", i, "id"],
+          message: `identifiant de tarif ${f.id} déjà porté par policies.${idsTarifs.get(f.id)} — un identifiant stable ne se partage pas`,
+        });
+      } else idsTarifs.set(f.id, m);
+    });
+    (pol.fare_conflicts ?? []).forEach((c, i) => {
+      if (c.placement !== m) {
+        ctx.addIssue({
+          code: z.ZodIssueCode.custom, path: ["policies", m, "fare_conflicts", i, "placement"],
+          message: `conflit ${c.id} rangé sous policies.${m} mais déclaré placement ${c.placement} — il n'éteindrait rien, ou éteindrait le mauvais canal`,
+        });
+      }
+      if (idsConflits.has(c.id)) {
+        ctx.addIssue({
+          code: z.ZodIssueCode.custom, path: ["policies", m, "fare_conflicts", i, "id"],
+          message: `identifiant de conflit ${c.id} déjà porté par policies.${idsConflits.get(c.id)} — un identifiant stable ne se partage pas`,
+        });
+      } else idsConflits.set(c.id, m);
+    });
+  }
   /* Une politique SANS canal visible n'est pas interdite — six existent, scellées — mais elle
      doit figurer dans la dette, sinon une politique invisible pourrait naître sans revue. */
   for (const m of PLACEMENTS) {
@@ -594,7 +654,9 @@ for (const a of (objects.airlines || [])) {
          seuil. Même classe de défaut que la priorité de la source auditée, corrigée le 15/08.
          Seuls les champs ÉCRITS dans `policies:` passent (pas le poids déduit de la ligne
          tarifaire, qui reste soumis à la préservation et à la détection de dérive). */
-      for (const k of ["max_weight_kg", "weight_includes_carrier", "weight_limit_bound", "conditions"]) {
+      /* `fares` et `fare_conflicts` entrent dans cette liste LE JOUR MÊME de leur écriture dans la fiche
+         (10/09/2026) : c'est ici que le seuil s'était perdu le 15/08, et le champ du quatrième état le 08/09. */
+      for (const k of ["max_weight_kg", "weight_includes_carrier", "weight_limit_bound", "conditions", "fares", "fare_conflicts"]) {
         if (d.__ecrits?.has(k) && d[k] !== undefined) enrichissements[k] = d[k];
       }
       /* Une source AUDITÉE écrite dans la fiche l'emporte, ici aussi. La première correction
@@ -637,6 +699,8 @@ for (const a of (objects.airlines || [])) {
       ...(d.max_weight_kg != null ? { max_weight_kg: d.max_weight_kg } : {}),
       ...(typeof d.weight_includes_carrier === "boolean" ? { weight_includes_carrier: d.weight_includes_carrier } : {}),
       ...(d.weight_limit_bound ? { weight_limit_bound: d.weight_limit_bound } : {}),
+      ...(d.fares?.length ? { fares: d.fares } : {}),
+      ...(d.fare_conflicts?.length ? { fare_conflicts: d.fare_conflicts } : {}),
       ...(d.brachy_allowed === false ? { brachy_allowed: false } : {}),
       source: sourceRetenue,
       ...(sourceRetenue === source ? { source_derived: true } : {}),

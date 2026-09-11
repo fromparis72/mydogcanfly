@@ -36186,34 +36186,10 @@
     ],
     "policies": {
       "cabin": {
-        "availability": "not_offered",
-        "source": {
-          "url": "https://booking-uat.dcloud.saudia.com/book/flight-information/travelling-with-pets",
-          "source_type": "official_website",
-          "verified_date": "2026-09-09",
-          "review_due": "2026-12-08",
-          "confidence": 4,
-          "reviewer": "Codex — direct reading of official airline page",
-          "history": [],
-          "quote": "Dogs must be transported in the cargo hold (holds are equipped with ventilation systems).",
-          "quote_language": "en",
-          "locator": "Travelling with Pets & Animals → Regulations"
-        }
+        "review_state": "legacy_unreviewed"
       },
       "hold": {
-        "availability": "offered",
-        "source": {
-          "url": "https://booking-uat.dcloud.saudia.com/book/flight-information/travelling-with-pets",
-          "source_type": "official_website",
-          "verified_date": "2026-09-09",
-          "review_due": "2026-12-08",
-          "confidence": 4,
-          "reviewer": "Codex — direct reading of official airline page",
-          "history": [],
-          "quote": "Dogs must be transported in the cargo hold (holds are equipped with ventilation systems).",
-          "quote_language": "en",
-          "locator": "Travelling with Pets & Animals → Regulations"
-        }
+        "availability": "offered"
       },
       "cargo": {
         "review_state": "legacy_unreviewed"

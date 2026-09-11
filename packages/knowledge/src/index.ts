@@ -1,5 +1,6 @@
 export * from "./common";
 export * from "./objects";
+export * from "./tarifs";
 export * from "./t0b-migration";
 export * from "./preuve";
 export * from "./rules";

@@ -296,8 +296,12 @@ async function main() {
     check("T0-A : le titre de section est le GÉNÉRIQUE, pas « (chaleur estimée) »",
       r.doc.getElementById("dfx-toconfirm-title")?.textContent.trim() === S.toConfirmSectionTitleGeneric,
       JSON.stringify(r.doc.getElementById("dfx-toconfirm-title")?.textContent));
-    check("T0-A : la ligne « politique à confirmer » est VISIBLE sur la carte",
-      (r.doc.querySelector("#dfx-toconfirm .dfx-card")?.textContent ?? "").includes(S.sigPolicy),
+    /* RE-FONDÉ (10/09/2026, arbitrage de Philippe, annexe 42) : les trois paragraphes « ? … » ont disparu de
+       DestinationFinder comme du Finder. Ce témoin exigeait leur PRÉSENCE ; il exige leur absence, la classification
+       « à confirmer » et son titre générique restant, eux, inchangés — les familles vivent toujours dans les données. */
+    check("T0-A : la ligne « politique à confirmer » n'est PLUS servie au visiteur",
+      !(r.doc.querySelector("#dfx-toconfirm .dfx-card")?.textContent ?? "").includes(S.sigPolicy)
+        && !r.doc.querySelector(".dfx-card__confirmwhy"),
       r.doc.querySelector("#dfx-toconfirm .dfx-card")?.textContent.slice(0, 200));
     check("T0-A : AUCUN libellé climatique « à confirmer » (la cause n'est pas la chaleur)",
       !r.texte.includes(S.climToConfirm) && !r.texte.includes(S.climToConfirmBrachy), r.texte.slice(0, 220));
@@ -312,8 +316,8 @@ async function main() {
       confirmation_signals: [sig("hold", "missing_fact")],
     });
     const r = await run(parts, { matches: [m], breedKey: normalBreed, placement: "any" });
-    check("T0-A : la ligne « information manquante » est visible",
-      (r.doc.querySelector("#dfx-toconfirm .dfx-card")?.textContent ?? "").includes(S.sigMissing));
+    check("T0-A : la ligne « information manquante » n'est plus servie (annexe 42) — le fait manquant reste dans les données",
+      !(r.doc.querySelector("#dfx-toconfirm .dfx-card")?.textContent ?? "").includes(S.sigMissing));
     check("T0-A : titre générique, aucun message climatique",
       r.doc.getElementById("dfx-toconfirm-title")?.textContent.trim() === S.toConfirmSectionTitleGeneric
         && !r.texte.includes(S.climToConfirm));
@@ -330,8 +334,8 @@ async function main() {
     const r = await run(parts, { matches: [m], breedKey: normalBreed, placement: "any" });
     check("T0-A : le libellé climatique « à confirmer » est licite (cause climatique présente)",
       r.texte.includes(S.climToConfirm), r.texte.slice(0, 200));
-    check("T0-A : la ligne politique reste visible À CÔTÉ du climat (aucune ne masque l'autre)",
-      (r.doc.querySelector("#dfx-toconfirm .dfx-card")?.textContent ?? "").includes(S.sigPolicy));
+    check("T0-A : le climat reste dit, et la ligne politique ne revient pas à côté de lui (annexe 42)",
+      !(r.doc.querySelector("#dfx-toconfirm .dfx-card")?.textContent ?? "").includes(S.sigPolicy));
   }
   console.log("\n=== 5 quinquies. T0-A — agrégat allowed + signal d'une autre compagnie : compatible, signal visible ===");
   {
@@ -345,8 +349,8 @@ async function main() {
     const r = await run(parts, { matches: [m], breedKey: normalBreed, placement: "any" });
     check("T0-A : la destination reste COMPATIBLE (dominance agrégée allowed)",
       !r.doc.getElementById("dfx-toconfirm") && r.texte.includes(S.topTitle), r.texte.slice(0, 160));
-    check("T0-A : la ligne politique du signal survivant est visible sur la carte compatible",
-      (r.doc.querySelector(".dfx-card")?.textContent ?? "").includes(S.sigPolicy));
+    check("T0-A : le signal survit dans les données sans paragraphe sur la carte compatible (annexe 42)",
+      !(r.doc.querySelector(".dfx-card")?.textContent ?? "").includes(S.sigPolicy) && !r.doc.querySelector(".dfx-card__confirmwhy"));
   }
   console.log("\n=== 5 sexies. T0-A — les nouveaux libellés dans les QUATRE langues ===");
   for (const loc of ["fr", "es", "pt"]) {
@@ -361,9 +365,9 @@ async function main() {
       confirmation_signals: [sig("cargo", "policy_unpublished")],
     });
     const r = await run(partsL, { matches: [m], breedKey: Object.keys(breedsL).find((k) => !breedsL[k].br), placement: "any" });
-    check(`${loc} : titre générique traduit + ligne politique traduite, zéro anglais résiduel`,
+    check(`${loc} : titre générique traduit, AUCUNE ligne politique (annexe 42), zéro anglais résiduel`,
       r.doc.getElementById("dfx-toconfirm-title")?.textContent.trim() === SL.toConfirmSectionTitleGeneric
-        && (r.doc.querySelector("#dfx-toconfirm .dfx-card")?.textContent ?? "").includes(SL.sigPolicy)
+        && !(r.doc.querySelector("#dfx-toconfirm .dfx-card")?.textContent ?? "").includes(SL.sigPolicy)
         && (loc === "fr" ? !/policy to confirm/i.test(r.texte) : true),
       r.texte.slice(0, 160));
   }
@@ -388,7 +392,8 @@ async function main() {
     const r = await run(parts, { matches: [t0bMatch([sig("cargo", "legacy_unreviewed")]), ], breedKey: normalBreed, placement: "any" });
     const carte = r.doc.querySelector("#dfx-toconfirm .dfx-card")?.textContent ?? "";
     check("en : le libellé publié est le texte EXACT attendu", S.sigUnreviewed === T0B_UNREVIEWED.en, JSON.stringify(S.sigUnreviewed));
-    check("en : la ligne « non revérifiée » est VISIBLE sur la carte", carte.includes(T0B_UNREVIEWED.en), carte.slice(0, 260));
+    check("en : la ligne « non revérifiée » n'est PLUS servie (annexe 42) — le libellé publié existe toujours, il ne s'affiche plus",
+      !carte.includes(T0B_UNREVIEWED.en), carte.slice(0, 260));
     check("en : la phrase « politique de la compagnie » est ABSENTE (familles distinctes)",
       !carte.includes(S.sigPolicy), carte.slice(0, 260));
     check("en : le titre de section reste le GÉNÉRIQUE",
@@ -405,11 +410,10 @@ async function main() {
       breedKey: normalBreed, placement: "any",
     });
     const carte = r.doc.querySelector("#dfx-toconfirm .dfx-card")?.textContent ?? "";
-    check("en : les DEUX phrases sont visibles — aucune ne masque l'autre",
-      carte.includes(T0B_UNREVIEWED.en) && carte.includes(S.sigPolicy), carte.slice(0, 320));
-    check("en : notre incertitude est annoncée AVANT la politique de la compagnie",
-      carte.indexOf(T0B_UNREVIEWED.en) < carte.indexOf(S.sigPolicy),
-      JSON.stringify({ unreviewed: carte.indexOf(T0B_UNREVIEWED.en), policy: carte.indexOf(S.sigPolicy) }));
+    check("en : les DEUX phrases ont disparu de la carte, ensemble (annexe 42)",
+      !carte.includes(T0B_UNREVIEWED.en) && !carte.includes(S.sigPolicy), carte.slice(0, 320));
+    check("en : la destination reste classée « à confirmer », sous son titre générique — c'est la classification qui porte l'incertitude",
+      !!r.doc.getElementById("dfx-toconfirm"), r.texte.slice(0, 160));
   }
   console.log("\n=== 5 nonies. T0-B — le libellé dans les QUATRE langues, textes EXACTS ===");
   for (const loc of ["fr", "es", "pt"]) {
@@ -423,8 +427,10 @@ async function main() {
     const carte = r.doc.querySelector("#dfx-toconfirm .dfx-card")?.textContent ?? "";
     check(`${loc} : libellé publié EXACT (jamais le repli anglais)`,
       SL.sigUnreviewed === T0B_UNREVIEWED[loc], JSON.stringify(SL.sigUnreviewed));
-    check(`${loc} : la ligne traduite est visible sur la carte`, carte.includes(T0B_UNREVIEWED[loc]), carte.slice(0, 260));
-    check(`${loc} : aucun résidu anglais de cette phrase`, !carte.includes(T0B_UNREVIEWED.en), carte.slice(0, 260));
+    /* Le libellé PUBLIÉ reste juste dans les quatre langues (contrôle au-dessus) ; il n'atteint simplement plus la
+       carte depuis l'annexe 42. Le témoin garde donc sa force : la traduction existe, et rien de tout cela ne s'affiche. */
+    check(`${loc} : la ligne traduite ne s'affiche plus (annexe 42), pas plus que son original anglais`,
+      !carte.includes(T0B_UNREVIEWED[loc]) && !carte.includes(T0B_UNREVIEWED.en), carte.slice(0, 260));
   }
 
   console.log("\n=== 6. Langue témoin (fr) : mêmes règles, libellés traduits ===");

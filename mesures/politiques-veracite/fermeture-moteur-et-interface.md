@@ -3973,6 +3973,497 @@ publié ; un canal décidé n'est pas montré. Hors périmètre de ce lot (prés
 dans un lot dédié (déclarer le canal soute de Qantas), moment où le témoin s'élargira au quatrième état. La table
 du témoin revient à ses trois états d'origine, mouvement nommé dans le code.
 
+## Annexe 41 — Héros de l'accueil : T1, T2, T3 arbitrés (10/09/2026, classement B)
+
+Arbitrage validé par Philippe, relayé par Codex : trois textes dans les quatre langues — T1 la question centrale
+(« Mon chien peut-il prendre l'avion ? », écho de MyDogCanFly.com), T2 le slogan émotionnel (« Voyager ensemble,
+c'est prendre soin de chaque détail. »), T3 le paragraphe explicatif (cabine, soute, fret, race, destination ;
+ce qui est confirmé, ce qui doit encore être vérifié). Modification éditoriale ciblée : ni moteur, ni données,
+ni architecture.
+
+### Mesuré avant d'écrire
+
+Le gabarit (`HomeSections.astro`) coupe `home.hero.title` après le premier « ? » : la question devient
+`.hero__q`, le reste `.hero__accent` (ligne orange). T1 et T2 tiennent donc dans `home.hero.title`, séparés par
+un retour à la ligne ; T3 est `home.hero.sub`. Les anciens textes (« Vois ce qui est confirmé — et ce qu'il faut
+vérifier », « Prendre l'avion avec un chien peut être complexe… ») vivaient dans ces deux clés seulement.
+L'accroche au-dessus du titre (`home.hero.eyebrow`, « Ce qui est confirmé, et ce qui ne l'est pas ») n'est pas
+dans l'arbitrage : elle est laissée telle quelle et **nommée** ici pour Codex.
+
+### Ce qui a été fait, et rien d'autre
+
+Huit lignes dans `strings.json` (en / fr / es / pt) : `home.hero.title` = T1 + « \n » + T2, `home.hero.sub` = T3,
+verbatim (apostrophes typographiques conservées). Aucun autre fichier.
+
+### Mesuré (dist réduit)
+
+| contrôle | résultat |
+|---|---|
+| les quatre pages d'accueil construites | T1 dans `.hero__q`, T2 dans `.hero__accent`, T3 dans `.hero__sub`, verbatim |
+| anciens slogans (« still needs checking », « ce qu'il faut vérifier », « aún hay que comprobar », « ainda é preciso verificar », « Ton chien peut-il », « Can your dog fly », « Puede volar tu perro », « O teu cão pode voar ») | **0 occurrence** sur les quatre pages |
+| titre face à l'emblème et au conteneur, 1280 et 400 px, quatre langues (mesure ad hoc, rectangles) | voir ci-dessous |
+
+### Déploiement de `main` `8290573` (10/09/2026, Philippe, depuis son Mac) — prouvé
+
+`verify:index` : 2 536 URL, aucune balise noindex ; Pages : 6 fichiers envoyés (3 626 déjà en place — les cartes du
+Finder vivent dans le script client partagé) ; `wrangler deploy` annonce `Current Version ID:
+2bb94f37-7527-4ab2-a6cb-436473c1c498` ; lecture de santé : `sha: 8290573a…`, `worker_version_id: 2bb94f37-…` —
+concordants (règle de l'annexe 35). En ligne désormais : les cartes du Finder (annexe 38, #50). Contrôle en ligne à
+demander à Codex : CDG → JFK, Golden 32 kg — la carte Air France dit « Cabine : non · Soute : oui, sous conditions ·
+jusqu'à 75 kg avec le contenant · tarif à confirmer », provenance datée, volet « Voir les preuves » fermé.
+
+### Annexe 41, suite — mesuré aux largeurs mobiles (Codex : 320, 360, 375, 400 px, quatre langues)
+
+Débordement de 9 px à 400 px sur la page anglaise, **préexistant** (mesuré sur le dist aux anciens textes) : la grille
+« Avant de réserver » (`.grid`, colonnes `1fr`) ne descendait pas sous la largeur minimale de ses cartes, et
+« Your country's requirements » poussait la rangée à 409 px. Cause CSS fermée : colonnes `minmax(0, 1fr)`, une seule
+colonne sous 420 px ; ni `overflow-x: hidden`, ni texte raccourci.
+
+| largeur | scrollWidth / clientWidth (en, fr, es, pt) | éléments débordants | racine / corps | titre |
+|---|---|---|---|---|
+| 320 | 320 / 320 ×4 | aucun | 16 px / 16 px | 22 px |
+| 360 | 360 / 360 ×4 | aucun | 16 px / 16 px | 22 px |
+| 375 | 375 / 375 ×4 | aucun | 16 px / 16 px | 22,5 px |
+| 400 | 400 / 400 ×4 | aucun | 16 px / 16 px | 24 px |
+| 1280 | 1280 / 1280 ×4 | aucun ; titre 711 px ≤ emblème 759 px | 16 px / 16 px | 49 px |
+
+Les tailles de titre sous 520 px sont celles du `clamp(22px, 6vw, 30px)` déjà en place — aucune réduction globale de
+typographie (racine et corps inchangés). T1, T2, T3 identiques aux textes validés à chaque largeur. Témoin permanent
+ajouté à la suite navigateur (`13-accueil-*-400px.png`), joué une seule fois par le parcours CI complet, comme demandé.
+## Annexe 42 — Le Finder ne montre que des itinéraires établis, et ne s'excuse plus (10/09/2026, classement A)
+
+Arbitrage de Philippe : « mieux vaut cinq itinéraires utilisables que trente-cinq compagnies théoriquement
+possibles accompagnées d'un avertissement ». Deux gestes, un seul lot.
+
+### Mesuré avant d'écrire
+
+Le moteur distingue quatre natures d'itinéraire. Le direct et la correspondance **attestés** reposent sur les
+arêtes publiées de la compagnie (les deux segments figurent dans son graphe de routes). Le direct **supposé**
+(aucun graphe : direct déduit d'un hub) et la correspondance **plausible** (hub retenu sur la seule géométrie,
+détour sous le plafond) ne reposent sur rien de publié. Mesuré sur dix routes × trois chiens, 624 cartes :
+
+| nature | cartes |
+|---|---|
+| direct attesté | 75 |
+| correspondance attestée | 414 |
+| correspondance plausible | **135** |
+| direct supposé | **0** (aucun porteur sur ces routes) |
+
+Après filtrage : 489 cartes, dont 406 documentées. **Aucun scénario vidé, aucun privé de carte documentée** —
+la condition de clôture de l'arbitrage est tenue avant d'écrire une ligne.
+
+Les justifications internes rendues au visiteur étaient au nombre de cinq : quatre paragraphes au-dessus des
+cartes (`.acards__notes` — donnée non revérifiée, page officielle non citée, politique non publiée, fait
+manquant) et un par carte non établie (`.acard__unver`, « compagnie potentiellement pertinente… »).
+DestinationFinder en portait trois, mêmes familles.
+
+### Ce qui a été fait
+
+- **Filtre d'itinéraire** posé une fois, avant le résumé, les deux niveaux et le partage par mode :
+  `compagniesVues`. Jamais un masquage CSS ; les compteurs lisent la liste filtrée. Un
+  `itinerary_confidence` absent ou inconnu n'écarte rien — seules les deux valeurs qui disent « non établi ».
+  Les badges « Itinéraire à confirmer » et « Direct non vérifié » n'ont plus de porteur ; le paragraphe
+  d'excuse est retiré. Liste entièrement vide : la phrase brève et honnête, jamais un cadre muet.
+- **Les cinq justifications internes ne sont plus rendues.** Les causes restent dans les données et dans les
+  contre-épreuves. Un canal incertain n'affiche que sa ligne : « Cabine : à confirmer », « Soute : à
+  confirmer », « Fret : informations non publiées ».
+- **Conservé** : bandeau climatique, avis pays (formalités d'entrée), lignes canal avec seuils et tarifs quand
+  ils sont prouvés, ligne de provenance compacte et volet « Voir les preuves ».
+
+**DÉVIATION NOMMÉE.** L'arbitrage cite deux familles (`confirmUnreviewed`, `confirmOfficialLink`) et
+`air.unverified_note`. J'ai retiré les **quatre** familles, au titre de « aucun paragraphe supplémentaire par
+défaut » : « politique de la compagnie à confirmer » et « information supplémentaire nécessaire » répètent en
+une phrase ce que la ligne canal dit en deux mots. Elles se rétablissent par un mouvement nommé si Codex les
+veut. Même geste dans DestinationFinder, pour la même raison.
+
+### Témoins re-fondés, jamais abaissés
+
+| témoin | avant | après |
+|---|---|---|
+| badges d'itinéraire (harnais du Finder, ×4 langues) | trois cartes, badges exacts « Direct non vérifié » et « Itinéraire à confirmer » | **une seule carte sur trois** ; les deux autres ni affichées ni repliées dans les pistes ; aucun badge, aucune classe `acard--unverified`, aucun `.acard__unver` |
+| résumé par canal, même fixture | 3/0/0 · 0/3/0 · 0/3/0 | **1/0/0 · 0/1/0 · 0/1/0** — les compteurs sont recalculés après filtrage |
+| T0-A, cinq scénarios de cause × 4 langues | chaque phrase EXIGÉE visible, dans le bon ordre | **aucune des quatre phrases** dans la carte ni dans le rapport, aucun code interne, la ligne canal portant seule l'incertitude ; un contrôle préalable exige les quatre phrases réelles et distinctes — le témoin n'est pas vacant |
+| contrat de carte (annexe 38) | bloc de notes présent, deux familles dans l'ordre | bloc absent, quatre phrases absentes, ligne cabine « à confirmer » |
+| DestinationFinder (huit contrôles) | trois phrases visibles, ordre imposé | absentes ; la classification « à confirmer », son titre générique et le libellé climatique restent |
+| suite navigateur | l'avertissement général ou une ligne canal | la ligne canal seule, et **aucun** paragraphe de justification |
+| sabotage | — | mutation `les-compagnies-sans-itineraire-etabli-reviennent-dans-les-resultats` (catalogue 66 → **67**) |
+
+### Mesuré
+
+| contrôle | résultat |
+|---|---|
+| harnais du Finder (dist réduit) | **463 OK** |
+| chaîne `test:built-ui` | **995 OK** |
+| entités | 179 OK |
+| `test:unit`, dette Astro (165), contrat du catalogue (67) | verts |
+
+### Mesuré sur le dist complet (un seul build, 3 112 pages)
+
+| contrôle | résultat |
+|---|---|
+| suite navigateur (Playwright) | **184 OK, 0 ÉCHEC** — dont trois témoins neufs : l'incertitude est dite par la ligne canal, et aucun paragraphe de justification n'apparaît au-dessus ni dans les cartes |
+| étape 3 DOM | verte, scellé des licites inchangé |
+| entités | 179 OK |
+| caisses non sourcées | vert |
+| contre-épreuves `--dist-complet` | 58 garanties éprouvées sur 58 |
+## Annexe 43 — Saudia : une preuve lue sur une surface de test, retirée (10/09/2026, classement C)
+
+L'audit tarifaire indépendant de Codex a opposé la preuve importée au lot 6 : son URL,
+`booking-uat.dcloud.saudia.com`, est une **surface de test**, jamais une page de production. Philippe a tranché :
+preuve retirée, cabine et soute revenues à « à confirmer » jusqu'à une page de production stable portant la
+phrase. Ce test signalait l'adresse dès le 09/09 — « accepté par le contrat, SIGNALÉ pour contre-revue, non
+réécrit » : le signalement a servi, un tiers l'a opposé, la dette est fermée dans le sens de la prudence.
+
+### Mesuré, et une erreur nommée
+
+Cabine et soute n'ont pas la même histoire. La **cabine** était une ligne non revérifiée de la migration,
+réactivée en refus cité au lot 6 — la première du dépôt : elle redevient `review_state: legacy_unreviewed`.
+La **soute** portait `availability: offered` depuis toujours, une disponibilité d'auteur jamais citée. *Erreur
+nommée* : mon premier jet l'a remise en `review_state`, et le manifeste de migration l'a refusée — « politique
+migrée hors manifeste ». Il avait raison : elle n'a jamais été migrée. Elle retrouve son état exact d'avant le
+lot 6. Les deux se projettent « à confirmer » ; retirer une preuve ne crée ni oui ni non.
+
+### Mouvements nommés, tous figés sur mesure
+
+| témoin | avant | après |
+|---|---|---|
+| politiques citées (frontière, lot 9, inventaire, Air France) | 179 | **177** |
+| décisions citées | 178 | **176** |
+| sous conditions · refus · à confirmer | 144 · 34 · 124 | **143 · 33 · 126** |
+| `legacy_unreviewed` | 109 | **111** |
+| quatrième état (politiques réelles) | 144 | **143** |
+| témoin hérité `carries` | 29 529 | **29 106** (423 couples se referment, aucun ne s'ouvre) |
+| inventaire A/B, cabine A/B, soute A/B | 179/50, 80/8, 71/23 | **177/52, 79/9, 70/24** |
+| inventaire : B par règle, gov.uk seul, écart « B par règle sur politique aucune » | 28, 14, 27 | **30, 15, 29** |
+| baseline du Finder | figée Air France cabine | paire `saudia-preuve-uat-{avant,apres}.json` : **24 cartes / 1 560**, Saudia seule, 24 refus cabine et 12 soutes « sous conditions » → « à confirmer », **aucun canal ouvert, aucun verdict déplacé** |
+| matrice de migration | `airline_saudia\|cabin` dans les réactivations sur citation | **retirée** de cet ensemble ; la ligne redevient une ligne du manifeste |
+
+### Un témoin élargi, plus fort que le cas
+
+Le contrôle « l'URL est un sous-domaine `booking-uat`, signalé pour contre-revue » disparaît, remplacé par une
+garde générale : **aucune politique du dépôt ne repose sur une adresse de test** — `booking-uat`, `.uat.` ou
+`staging.` — mesurée sur l'artefact entier. Ce qui n'était qu'une note devient une barrière.
+
+### Les deux autres contre-lectures
+
+**Air China cabine** : ma preuve est validée par Philippe, la page officielle établissant le transport en cabine
+sur les vols opérés par la compagnie (et publiant 1 399 RMB par animal et par segment, que le contrat tarifaire
+portera). **Batik Air Indonesia** : cabine et soute validées ; le fret doit rester « à confirmer », et il l'est
+déjà — `not_offered` sans citation projette « à confirmer », ce que le témoin du lot 9 exigeait. Aucun mouvement
+pour ces deux compagnies.
+## Annexe 44 — Le contrat tarifaire : schéma, portée à trois valeurs, conflits (10/09/2026, classement C)
+
+Arbitré par Codex, tranché par Philippe : ce premier mouvement se limite au **schéma, à la validation, à
+l'ingestion et aux contre-épreuves**. Aucun affichage dans le Finder, aucun import des 102 compagnies. La
+projection et l'affichage attendront la fusion du lot Finder.
+
+### Ce que le refus de mon schéma a appris
+
+J'avais proposé un `unit` unique — `per_segment | per_journey | per_animal | per_container`. Codex l'a refusé
+pour une raison P0 que je n'avais pas vue : **deux axes s'appliquent en même temps**. SAS facture par contenant
+ET par vol. Le contrat les sépare, et les rend tous deux obligatoires :
+
+| axe | valeurs |
+|---|---|
+| `billing_subject` — ce qui est facturé | `pet`, `container`, `pet_or_container`, `booking`, `shipment`, `kilogram` |
+| `journey_basis` — à quelle fréquence | `per_segment`, `per_one_way`, `per_journey`, `per_round_trip` |
+
+S'y ajoutent `price.kind` (`exact`, `range`, `matrix` portent des montants ; `formula`, `calculator`,
+`booking_only`, `quote` prouvent un mécanisme et **aucune valeur**), un `purchase_window` distinct de la date du
+voyage, un `scope_label` qui se montre sans jamais décider, et **la citation propre au tarif** : la phrase qui
+prouve qu'un canal existe ne prouve pas son montant.
+
+### La portée est évaluée à TROIS valeurs, et c'est le cœur du lot
+
+`applies_when` réemploie la grammaire des règles — `all` / `any` / `not` / condition sur un `Fact` canonique —
+et **rien n'est recopié** : `Money`, `SourceCitable`, `Placement` et `Predicate` viennent des modules existants.
+*Erreur nommée* : mon premier jet redéfinissait un `Money` local, avec un contrôle ISO plus strict — deux `Money`
+dans le même paquet, précisément ce que Codex interdisait. Le contrôle de casse manquant est rattrapé sur la
+ligne tarifaire, sans toucher au type partagé.
+
+L'évaluateur rend `vrai`, `faux` ou **`indecidable`**. Un prédicat qui interroge un fait absent du contexte ne
+vaut pas « faux » : c'est la faute que ce dépôt répète — un contrôle qui ne parle que de ce qu'il reconnaît
+compte zéro là où il ne regarde pas —, et ici elle publierait un prix pour la mauvaise zone. **Faits absents,
+nommés** : la zone commerciale (« Europe », « Asie ») et le transporteur opérant (Finnair publie 75 kg sur
+Finnair, 50 kg sur Norra). Une grille zonée est donc indécidable aujourd'hui, et c'est la bonne réponse.
+
+`resoudreTarif` répond dans l'ordre de prudence : un **conflit** ouvert dont la portée couvre le trajet éteint
+tout montant ; deux montants différents applicables dans la même devise sont un **chevauchement**, jamais un
+choix ; un candidat chiffré unique s'**applique** ; un candidat non chiffré prouve un **mécanisme** ; une portée
+indécidable se dit **indécidable** ; sinon **rien**.
+
+### Les cinq témoins exigés, et trois de plus
+
+| témoin | ce qu'il prouve |
+|---|---|
+| SAS | facturé par contenant ET par segment ; trois devises parallèles sans conversion ; refusé si l'un des deux axes manque |
+| conflit Finnair soute | deux observations complètes exigées, une seule voix refusée ; la résolution rend le conflit, jamais 140 € ni 120 € ; un conflit **résolu** ne masque plus rien |
+| portée inconnue | `indecidable` et non « faux » ; aucun montant ; **et le même tarif s'applique quand le fait est connu** — le témoin n'est pas vacant |
+| chevauchement | deux montants divergents → conflit ; deux devises différentes → montants parallèles ; même montant, axes différents → chevauchement (725 € n'y veut pas dire la même chose) |
+| prix sans citation | refusé, et le motif nomme la citation ; sans localisateur, sans langue : refusés aussi |
+| projection | les tarifs traversent `projectPlacementPolicy` — le champ oublié le 15/08 puis le 08/09, ajouté à la liste **le jour même** |
+| ingestion | jouée pour de vrai sur un bac à sable : une fiche qui porte un tarif le voit arriver dans l'artefact, portée exécutable comprise. *Erreur nommée* : mon bac oubliait `test-baselines/`, l'ingestion s'arrêtait avant d'écrire, et j'ai d'abord cru à une perte du champ |
+| aucun import | les 302 politiques réelles ne portent **aucun** tarif : le schéma est prêt, la donnée n'a pas bougé |
+
+### Mesuré
+
+`test-contrat-tarifaire.mjs` : **44 contrôles**, dans `test:unit`. Suite unitaire complète, typecheck des trois
+paquets, `ingest:check`, dette Astro (165), contrat du catalogue : verts.
+
+### Ce qui vient ensuite, et dans quel ordre
+
+Import par lots de dix compagnies, sur l'audit V2 de Codex : d'abord les **133 tarifs hérités sur canal déjà
+cité** (cabine et soute d'abord), puis les 66 sur canal non cité, puis les 118 pistes de politiques, le fret en
+dernier sauf quand il est le seul canal. Les 16 lignes `LOCATOR_ONLY_REVIEW_BEFORE_IMPORT` et les 3
+`CONFLICT_DO_NOT_IMPORT` ne produisent **aucun montant catégorique**. `fee` et `fareList` restent un inventaire
+de pistes, jamais des preuves.
+
+---
+
+## Annexe 45 — Les six portes du contrat tarifaire, refermées (10/09/2026, classement C)
+
+**Ce que Codex a opposé.** La contre-revue de la PR #56 n'a pas contesté le principe du contrat — l'évaluation
+ternaire est retenue — mais a nommé **six portes** par lesquelles un tarif pouvait encore être publié ou résolu
+sans preuve suffisante. Aucune n'était visible depuis mes 44 contre-épreuves : chacune était un endroit où mon
+témoin regardait ailleurs. C'est la même faute que ce dossier répète depuis le 15/08 — *un contrôle qui ne parle
+que de ce qu'il reconnaît compte zéro là où il ne regarde pas*. Elle s'est ici produite six fois dans un seul
+fichier de 310 lignes, écrit précisément contre elle.
+
+**P0-1 — la preuve n'était exigée que des nombres.** Le `refine` de `Fare` ne demandait phrase, langue et
+localisateur que si `price.kind` appartenait aux natures chiffrées. Les quatre autres — `formula`, `calculator`,
+`booking_only`, `quote` — passaient sans citation. Or « le fret se fait sur devis » est une affirmation tarifaire
+que le visiteur croira exactement comme il croirait « 725 € » : prouver un mécanisme coûte le même prix que
+prouver un montant. La citation est désormais exigée de **tout** `Fare`, et de **chaque** `FareObservation` d'un
+conflit — deux URL nues ne prouvent pas un désaccord entre deux pages. Huit témoins nouveaux : les quatre
+mécanismes refusés sans citation, les quatre acceptés avec.
+
+**P0-2 — `purchase_window` était enregistrée et jamais lue.** Le champ existait, le résolveur ne consultait que
+`applies_when`. Deux paliers dont les portées de trajet sont identiques et les fenêtres d'achat disjointes étaient
+donc applicables **ensemble**, et mon propre `chevauchement` les déclarait en conflit : le contrat inventait un
+désaccord là où la page publie une règle claire. `evaluerFenetre` l'évalue aux mêmes trois valeurs, et
+`porteeTarif` conjugue les deux. Le délai entre dans le contexte sous `days_before_departure`, **hors** de
+l'énumération `Fact` : aucune règle de placement ne s'en sert, et gonfler la grammaire partagée pour un seul usage
+tarifaire créerait un fait que 302 politiques ignoreraient. C'est nommé dans le fichier pour que personne ne le
+cherche dans `rules.ts`.
+
+**P0-3 — `status: "resolved"` était une porte arrière.** Remplacer un mot dans un `.yml` suffisait à rallumer un
+montant que deux pages officielles contredisent : ni gagnant, ni preuve nouvelle, ni date, ni auteur, ni motif
+n'étaient exigés. **Et mon témoin consacrait ce comportement** — il vérifiait qu'un conflit « résolu » ne masquait
+plus rien, c'est-à-dire qu'il vérifiait que la porte s'ouvrait bien. Erreur nommée, témoin retourné : le schéma
+n'admet plus que `unresolved`, et le seul moyen de rouvrir un montant est de **retirer** le conflit du dépôt, ce
+qui laisse une trace dans l'historique. Un vrai modèle de résolution viendra avec sa preuve, ou ne viendra pas.
+
+**P0-4 — une fourchette n'exigeait qu'un nombre pair de montants.** « 60 EUR » et « 100 USD » faisaient donc une
+fourchette valide, où aucune devise ne porte à la fois sa borne basse et sa borne haute. *Compter n'est pas
+vérifier.* Deux bornes **par devise**, la basse avant la haute, sur la fourchette réelle la mieux citée de l'audit
+(KLM soute, « ranges from EUR 70 to EUR 500 per one-way flight »).
+
+**P1 — `{ all: [] }` est vrai par vacuité.** Une portée qui ne dit rien s'appliquait à tous les trajets ;
+`{ any: [] }`, faux par vacuité, aurait fait disparaître le tarif aussi silencieusement. Une indentation ratée
+dans une fiche suffit à produire l'un ou l'autre. `porteeSaine` les refuse récursivement à l'écriture, et
+`evaluerPortee` répond « indécidable » plutôt que la vérité par vacuité — **la prudence se règle dans le même sens
+aux deux endroits**, parce que l'évaluateur est exporté et recevra un jour un prédicat construit ailleurs.
+
+**P1 — la résolution servait `chiffres[0]`.** Deux montants publiés en devises disjointes, tous deux applicables,
+étaient correctement jugés non contradictoires par `memeDevise`… puis un seul sortait et l'autre disparaissait sans
+un mot. `applicable` et `mecanisme` portent maintenant `tarifs: Fare[]` et rendent **toutes** les variantes
+parallèles. Dire « 725 € ou 5 400 DKK » est le travail de l'affichage ; choisir à la place du visiteur n'est le
+travail de personne. *Déviation nommée* : Codex offrait aussi d'interdire cette représentation et d'exiger une
+ligne unique portant toutes les devises. J'ai retenu la conservation des variantes, qui n'impose aucune migration
+de donnée et perd moins d'information — arbitrable.
+
+**Les fixtures.** Toutes réelles, prises à l'audit V2 des 102 compagnies : SAS soute Chine, le conflit Finnair
+soute, **Air China cabine** (la seule fenêtre d'achat publiée en jours de tout l'audit — « booking from 7 days to
+24 hours before departure ») et **KLM soute**. Deux fixtures de **forme** sont nommées comme telles à l'endroit où
+elles servent : les deux paliers Air China de P0-2, qu'aucune page ne publie et qui n'éprouvent que la mécanique.
+Une honnêteté supplémentaire est écrite dans le témoin : la page Air China réserve son tarif aux vols **opérés par
+Air China**, et le transporteur opérant n'est pas un fait du moteur ; la portée du témoin interroge donc le canal.
+C'est l'une des raisons pour lesquelles **ce lot n'importe toujours aucun tarif**.
+
+**Mouvement des comptes.** Contre-épreuves du contrat tarifaire : **44 → 103**. Aucun autre compteur ne bouge :
+`objects.json` ne porte ni tarif ni conflit tarifaire, et le témoin l'exige explicitement, canal par canal. La
+dette « Qantas soute citée sans canal déclaré sur la fiche » reste ouverte, hors de ce lot.
+
+---
+
+## Annexe 46 — Quatre portes de plus, et la faute qui les avait toutes ouvertes (10/09/2026, classement C)
+
+**Ce que Codex a opposé sur `7188990`.** Les deux arbitrages de l'annexe 45 sont validés — variantes
+monétaires parallèles conservées, `days_before_departure` au contexte et non à `Fact`. Les 103 contrôles
+passaient. **Quatre contournements de plus étaient pourtant reproductibles**, et il les a construits un par un.
+
+**La faute commune, nommée avant les quatre.** Trois de ces quatre portes ont la même racine : *j'ai écrit un
+contrôle au lieu de réemployer celui qui existe*. `citationComplete` vérifiait la PRÉSENCE de `quote`,
+`quote_language` et `locator`. Il ne regardait ni la page, ni le type de source, ni la cadence de relecture.
+J'avais donc, dans un fichier écrit contre les provenances faibles, une seconde définition de « source
+sérieuse », plus faible que celle du dépôt. L'en-tête de `ingest-airlines.mjs` documente cette faute mot pour
+mot, avec la liste exacte des six garanties contournées — et je l'avais lue en écrivant ce fichier, puisque
+c'est de là que vient la phrase « deux modèles dans le même dépôt, c'est la garantie qu'ils divergeront ».
+La leçon écrite ne suffit pas : c'est le réemploi qui protège, pas le commentaire qui le recommande.
+
+**P0-1 — cinq sources inadmissibles passaient.** URL `mydogcanfly.com`, sous-domaine à nous, `source_type: press`,
+`source_type: other`, URL `ftp://`, échéance repoussée à 2030. `Fare.source` et `FareObservation.source` sont
+désormais `T0bAuditSource` : `SourcedQuote` (http(s), aucun domaine à nous, type FACTUEL, citation d'au moins dix
+caractères, langue BCP-47) plus la cadence `airline` de 90 jours **au jour près** et le localisateur obligatoire.
+Rien n'est retapé dans `tarifs.ts`. Quinze témoins rejouent les sabotages, sur le tarif et sur l'observation, et
+la cadence est éprouvée dans les deux sens : 2030 est refusé, mais une échéance **trop courte** aussi.
+
+**P0-2 — un faux conflit éteignait un vrai tarif.** Deux observations strictement identiques étaient acceptées ;
+le résolveur rendait alors `conflit` et supprimait un montant parfaitement prouvé. **C'est le sabotage le plus
+coûteux des quatre** : il ne publie pas un prix faux, il en efface un vrai, et rien dans l'interface n'aurait dit
+pourquoi. Le conflit exige maintenant des observations **chiffrées** (deux mécanismes ne se contredisent sur aucun
+montant), ses **axes communs explicites** (`billing_subject`, `journey_basis` — « 140 € par animal et par aller »
+contre « 120 € par contenant et par segment » sont deux tarifs, pas deux prix contradictoires), une
+`purchase_window` optionnelle **réellement évaluée**, et **au moins deux prix canoniquement différents** — devises
+triées, ordre d'écriture indifférent.
+
+**P0-3 — aucun lien entre le tarif et le canal qui le contient.** Une politique cabine pouvait porter un tarif
+`placement: hold` : ingéré, écrit, puis cherché en vain par un résolveur qui filtre sur le canal. Un tarif prouvé,
+importé, invisible. Et deux tarifs pouvaient partager un `id`, ce qui annule la seule chose que l'identifiant
+promet. La garde est dans `Fiche.superRefine` — ni un `Fare` ni un `FareConflict` ne connaît la clé sous laquelle
+on le range, ni ses voisins ; c'est la fiche entière qui le sait, donc c'est elle qui doit le dire.
+
+**P1 — une ligne applicable disparaissait encore par priorité interne.** `ResolutionTarifaire` était une UNION à
+six états, et une union oblige à choisir. Un montant et un `booking_only` applicables ensemble rendaient
+`applicable [le montant]` ; le mécanisme s'évanouissait. Même défaut sur les conflits, où un `find()` ne gardait
+que le premier. **C'était la troisième occurrence de la même faute dans ce seul fichier** — après `chiffres[0]` et
+après les variantes monétaires. La leçon est donc prise à la racine plutôt qu'au cas par cas : ce n'est plus une
+union, c'est un **inventaire** à six listes — `conflits`, `montants`, `chevauchements`, `mecanismes`,
+`indecidables`, `supprimes`. Aucune ne masque l'autre. Les montants éteints par un conflit sont **nommés** dans
+`supprimes` au lieu de s'évaporer, et les mécanismes **survivent** au conflit, puisque l'effet publié s'appelle
+`suppress_exact_fare` et non « tout effacer ».
+
+**Déviation nommée, arbitrable.** Un conflit éteint **tous** les montants du canal qu'il couvre, y compris ceux
+dont les axes diffèrent des siens. Les axes du conflit servent à établir qu'il EST un conflit, pas à restreindre
+ce qu'il éteint : restreindre publierait un montant sur un canal où deux pages officielles se contredisent, et la
+prudence se règle dans l'autre sens.
+
+**Trois ingestions sabotées, jouées pour de vrai.** Le témoin construit un bac à sable, y rejoue l'ingestion réelle
+cinq fois — une nominale, trois sabotages, une non-vacuité — et exige que chaque refus **nomme sa cause**. Le
+troisième témoin vérifie en plus que l'artefact **n'a pas bougé** quand la fiche est refusée.
+
+**Mouvement des comptes.** Contre-épreuves du contrat tarifaire : **103 → 145**. Aucun autre compteur ne bouge :
+`objects.json` ne porte ni tarif ni conflit, et deux témoins l'exigent séparément. Typecheck propre, 220 témoins
+unitaires, catalogue de contrat à 66 garanties, dette Astro stable à 165.
+
+---
+
+## Annexe 47 — L'extinction trop large, et trois portes de plus (10/09/2026, classement C)
+
+**Ce que Codex a validé sur `0e5ca50`.** `T0bAuditSource` comme définition unique de provenance,
+`days_before_departure` au contexte tarifaire, l'inventaire à six listes, et les gardes d'ingestion reliant
+tarifs et conflits à leur canal. Deux P0 et deux P1 restaient.
+
+**P0-2 — ma « prudence » effaçait de l'information exacte, et Codex la refuse.** J'avais fait éteindre par un
+conflit TOUS les montants du canal qu'il couvre, axes compris ou non, et je l'avais présenté comme le côté sûr
+du choix. Le sabotage le montre : un désaccord sur « 100 contre 120 EUR, par contenant et par segment » effaçait
+aussi un supplément « 5 EUR par kilogramme » parfaitement établi, sur lequel aucune page ne se contredit.
+
+C'est le point de doctrine du jour, et il vaut au-delà des tarifs. **« Ne rien dire » n'est pas la position sûre
+par défaut.** C'est une position, elle coûte, et elle doit se justifier ligne par ligne comme les autres. Ce
+dossier a passé des semaines à retirer ce qui n'était pas prouvé ; il pouvait en conclure, par pente, que retirer
+est toujours gratuit. Ça ne l'est pas — et c'est exactement le reproche que Philippe adresse aujourd'hui au site,
+qui masque trop de choses exactes. Un conflit n'éteint donc que les tarifs portant SES axes : même canal, portée
+et fenêtre couvertes, même `billing_subject`, même `journey_basis`. C'est à cela que servent les axes rendus
+obligatoires par l'annexe 46.
+
+**Le corollaire, trouvé par le témoin et non par moi.** Le supplément par kilogramme ne réapparaissait toujours
+pas après la correction : mon détecteur de CHEVAUCHEMENT souffrait du même excès. « 100 EUR par contenant » et
+« 5 EUR par kilogramme » partagent une devise et diffèrent en montant, donc il les déclarait contradictoires et
+retirait les deux. Ils ne se contredisent pas, ils **s'additionnent**. Le discriminant est le SUJET FACTURÉ :
+deux prix du même sujet ne peuvent pas être vrais ensemble, deux prix de sujets différents ne s'opposent sur
+rien. C'est le raisonnement même que Codex opposait sur les conflits — « une différence d'unité décrit deux
+tarifs distincts » — que je n'avais appliqué qu'à moitié.
+
+**P0-1 — des devises disjointes faisaient encore un conflit.** « 100 EUR sur une page, 120 USD sur une autre »
+passait. Sans conversion, ces montants ne se contredisent sur rien : ce sont des devises parallèles, ce que le
+contrat reconnaît comme normal sur un tarif ordinaire depuis l'annexe 44. **J'avais écrit la règle pour les
+tarifs et omis de l'appliquer aux conflits, qui sont pourtant faits des mêmes prix.** Un conflit exige désormais
+au moins une devise COMMUNE portant des valeurs différentes.
+
+**P1-1 — une seule preuve fabriquait deux observations.** Deux prix différents pouvaient s'adosser à la même URL,
+au même localisateur, à la même citation et à la même date. Le tuple `url + locator + quote + verified_date` doit
+maintenant différer entre deux observations — ni deux domaines ni deux URL ne sont exigés, une page publiant
+légitimement deux sections tarifaires. **Ce que ce contrôle ne prouve pas, et qu'un témoin dit explicitement** :
+que le nombre écrit corresponde à la phrase citée. Cette relecture reste humaine.
+
+**P1-2 — le type exporté rouvrait la provenance.** Les schémas validaient `T0bAuditSource`, mais les types
+déclarés de `Fare.source` et `FareObservation.source` annonçaient `SourcedQuote`, la forme faible — et
+`resoudreTarif` reçoit des `Fare[]` sans reparsage. `FareAuditSource = z.infer<typeof T0bAuditSource>` remplace
+les deux. **Limite nommée** : les `.refine()` de Zod ne restreignent pas le type inféré, donc cet alias est
+aujourd'hui structurellement identique à `SourcedQuote`. Il ne fait pas apparaître une vérification à la
+compilation ; il garantit qu'aucune SECONDE définition ne subsiste et que le type suivra le schéma si celui-ci
+se resserre. La garantie de fond reste le schéma, à l'ingestion.
+
+**Une garde que rien ne mordait.** L'unicité des identifiants de CONFLITS existait depuis l'annexe 46 sans
+qu'aucune ingestion sabotée ne l'exerce. Codex l'a relevé : une garde que rien ne mord est une garde qu'on croit
+avoir. Le bac à sable joue maintenant **six** ingestions réelles — une nominale, quatre sabotages, une
+non-vacuité — et exige de chaque refus qu'il NOMME sa cause.
+
+**Erreur nommée, trouvée par la garde neuve.** Mon propre bac à sable citait deux fois la même preuve dans son
+conflit d'exemple. La garde P1-1 l'a refusé au premier essai. C'est exactement son travail, et c'est la meilleure
+démonstration qu'elle mord.
+
+**Mouvement des comptes.** Contre-épreuves du contrat tarifaire : **145 → 163**. Ingestions jouées sur bac à
+sable : 5 → 6. Aucun autre compteur ne bouge : `objects.json` ne porte ni tarif ni conflit. Typecheck propre,
+220 témoins unitaires, catalogue de contrat à 66 garanties, dette Astro stable à 165.
+
+---
+
+## Annexe 48 — Nommer une limite n'est pas la fermer (11/09/2026, classement C)
+
+**Ce que Codex a validé sur `a676fb8`.** Les trois corrections algorithmiques — devise commune exigée, extinction
+limitée aux axes du conflit, supplément par kilogramme conservé — et le témoin qui réserve explicitement à
+l'humain la question « le montant correspond-il à la citation ? ». Un P1 restait.
+
+**La faute, et elle est d'un genre que ce dossier n'avait pas encore nommé.** En fermant la porte P1-2, j'avais
+écrit noir sur blanc que `FareAuditSource` ne resserre rien au sens du compilateur, puisque les `.refine()` de
+Zod ne restreignent pas le type inféré. Puis j'ai considéré la porte fermée. **Nommer honnêtement une limite
+n'est pas la fermer** — c'est seulement la documenter, et un commentaire juste ne garantit rien. Ce dossier a
+passé des semaines à exiger que chaque affirmation soit portée par un contrôle ; j'avais ici une affirmation
+portée par un paragraphe.
+
+**Ce que Codex a reproduit.** Un tarif dont la provenance pointe vers `mydogcanfly.com`, sans localisateur, avec
+une échéance de relecture en 2030, compile sans un seul diagnostic. Puis :
+
+| appel | résultat avant | résultat après |
+|---|---|---|
+| `Fare.safeParse(...)` | `false` | `false` |
+| `resoudreTarif(...).montants` | **`1`** | **levée nommée** |
+
+Entre le schéma qui refuse et le résolveur qui publie, il n'y avait rien : `resoudreTarif` reçoit des `Fare[]` et
+ne les reparsait pas. La production n'a jamais été exposée — aucun tarif n'est importé ni affiché — mais la porte
+devait se fermer avant l'import des 102 compagnies.
+
+**La frontière se ferme aux deux bouts, et il faut les deux.** À la COMPILATION, une marque de type : `Fare` et
+`FareConflict` portent un symbole unique que seul `lireTarif` ou `lireConflit` peut produire, en parsant. Un
+tarif écrit à la main ne compile plus, même avec une provenance irréprochable. À l'EXÉCUTION, `resoudreTarif`
+REPARSE toutes ses entrées et LÈVE si l'une d'elles ne passe pas. Prise seule, chacune se contourne : une marque
+par un transtypage, un reparsage par un chemin de code que personne n'emprunte. **Le témoin le démontre plutôt
+que de l'affirmer** : une contre-épreuve compile un transtypage et constate qu'il passe, puis constate que le
+reparsage le rattrape.
+
+**Pourquoi lever plutôt que filtrer.** Écarter discrètement un tarif non conforme rendrait « aucun montant » là
+où la donnée est fautive — la disparition muette que ce dossier combat depuis le premier jour. Un tarif refusé
+au moment de la résolution n'est pas une donnée incertaine, c'est un défaut de programme ou d'artefact : arrêt
+bruyant, au build, avec l'identifiant et le motif.
+
+**Les lecteurs rendent `null`, le résolveur lève.** Lire une donnée peut légitimement échouer, et l'appelant
+décide quoi en dire. C'est la résolution qui lève, parce qu'à ce stade l'échec a changé de nature.
+
+**Un témoin qui compile pour de vrai.** Les contre-épreuves sont en `.mjs`, donc non typées : la moitié
+« compilation » de la frontière n'aurait été vérifiée par personne. Le témoin écrit trois fichiers TypeScript
+dans un bac à sable du dépôt, lance `tsc` sur chacun et exige le bon verdict — refus nommé pour le tarif écrit à
+la main, compilation propre pour le même tarif lu par `lireTarif`, acceptation pour le transtypage.
+
+**Le transtypage restant est nommé, et il est unique.** La sortie de `safeParse` porte `applies_when: unknown`
+(prédicat récursif) et ne s'assigne pas au type déclaré. La conversion vit donc dans `lireTarif` et `lireConflit`,
+trois lignes qui viennent de prouver la conformité. Une conversion nommée à l'endroit exact de la validation
+n'est pas un `as` dispersé chez l'appelant.
+
+**Mouvement des comptes.** Contre-épreuves du contrat tarifaire : **163 → 175**. Aucun autre compteur ne bouge :
+`objects.json` ne porte ni tarif ni conflit. Typecheck propre, 220 témoins unitaires, catalogue de contrat à
+66 garanties, dette Astro stable à 165.
 ---
 
 ## Annexe 49 — Titres et descriptions SEO des quatre accueils (11/09/2026, classement B)
