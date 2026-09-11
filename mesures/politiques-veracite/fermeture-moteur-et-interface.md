@@ -4171,3 +4171,60 @@ démonstration qu'elle mord.
 **Mouvement des comptes.** Contre-épreuves du contrat tarifaire : **145 → 163**. Ingestions jouées sur bac à
 sable : 5 → 6. Aucun autre compteur ne bouge : `objects.json` ne porte ni tarif ni conflit. Typecheck propre,
 220 témoins unitaires, catalogue de contrat à 66 garanties, dette Astro stable à 165.
+
+---
+
+## Annexe 48 — Nommer une limite n'est pas la fermer (11/09/2026, classement C)
+
+**Ce que Codex a validé sur `a676fb8`.** Les trois corrections algorithmiques — devise commune exigée, extinction
+limitée aux axes du conflit, supplément par kilogramme conservé — et le témoin qui réserve explicitement à
+l'humain la question « le montant correspond-il à la citation ? ». Un P1 restait.
+
+**La faute, et elle est d'un genre que ce dossier n'avait pas encore nommé.** En fermant la porte P1-2, j'avais
+écrit noir sur blanc que `FareAuditSource` ne resserre rien au sens du compilateur, puisque les `.refine()` de
+Zod ne restreignent pas le type inféré. Puis j'ai considéré la porte fermée. **Nommer honnêtement une limite
+n'est pas la fermer** — c'est seulement la documenter, et un commentaire juste ne garantit rien. Ce dossier a
+passé des semaines à exiger que chaque affirmation soit portée par un contrôle ; j'avais ici une affirmation
+portée par un paragraphe.
+
+**Ce que Codex a reproduit.** Un tarif dont la provenance pointe vers `mydogcanfly.com`, sans localisateur, avec
+une échéance de relecture en 2030, compile sans un seul diagnostic. Puis :
+
+| appel | résultat avant | résultat après |
+|---|---|---|
+| `Fare.safeParse(...)` | `false` | `false` |
+| `resoudreTarif(...).montants` | **`1`** | **levée nommée** |
+
+Entre le schéma qui refuse et le résolveur qui publie, il n'y avait rien : `resoudreTarif` reçoit des `Fare[]` et
+ne les reparsait pas. La production n'a jamais été exposée — aucun tarif n'est importé ni affiché — mais la porte
+devait se fermer avant l'import des 102 compagnies.
+
+**La frontière se ferme aux deux bouts, et il faut les deux.** À la COMPILATION, une marque de type : `Fare` et
+`FareConflict` portent un symbole unique que seul `lireTarif` ou `lireConflit` peut produire, en parsant. Un
+tarif écrit à la main ne compile plus, même avec une provenance irréprochable. À l'EXÉCUTION, `resoudreTarif`
+REPARSE toutes ses entrées et LÈVE si l'une d'elles ne passe pas. Prise seule, chacune se contourne : une marque
+par un transtypage, un reparsage par un chemin de code que personne n'emprunte. **Le témoin le démontre plutôt
+que de l'affirmer** : une contre-épreuve compile un transtypage et constate qu'il passe, puis constate que le
+reparsage le rattrape.
+
+**Pourquoi lever plutôt que filtrer.** Écarter discrètement un tarif non conforme rendrait « aucun montant » là
+où la donnée est fautive — la disparition muette que ce dossier combat depuis le premier jour. Un tarif refusé
+au moment de la résolution n'est pas une donnée incertaine, c'est un défaut de programme ou d'artefact : arrêt
+bruyant, au build, avec l'identifiant et le motif.
+
+**Les lecteurs rendent `null`, le résolveur lève.** Lire une donnée peut légitimement échouer, et l'appelant
+décide quoi en dire. C'est la résolution qui lève, parce qu'à ce stade l'échec a changé de nature.
+
+**Un témoin qui compile pour de vrai.** Les contre-épreuves sont en `.mjs`, donc non typées : la moitié
+« compilation » de la frontière n'aurait été vérifiée par personne. Le témoin écrit trois fichiers TypeScript
+dans un bac à sable du dépôt, lance `tsc` sur chacun et exige le bon verdict — refus nommé pour le tarif écrit à
+la main, compilation propre pour le même tarif lu par `lireTarif`, acceptation pour le transtypage.
+
+**Le transtypage restant est nommé, et il est unique.** La sortie de `safeParse` porte `applies_when: unknown`
+(prédicat récursif) et ne s'assigne pas au type déclaré. La conversion vit donc dans `lireTarif` et `lireConflit`,
+trois lignes qui viennent de prouver la conformité. Une conversion nommée à l'endroit exact de la validation
+n'est pas un `as` dispersé chez l'appelant.
+
+**Mouvement des comptes.** Contre-épreuves du contrat tarifaire : **163 → 175**. Aucun autre compteur ne bouge :
+`objects.json` ne porte ni tarif ni conflit. Typecheck propre, 220 témoins unitaires, catalogue de contrat à
+66 garanties, dette Astro stable à 165.

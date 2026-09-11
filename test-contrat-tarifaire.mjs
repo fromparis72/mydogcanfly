@@ -11,6 +11,8 @@
  *   §10 — cinq sources inadmissibles acceptées par mon contrôle maison (P0-1, second tour) ;
  *   §11 — un faux conflit qui éteint un vrai tarif (P0-2, second tour) ;
  *   §12 — une ligne applicable perdue par priorité interne (P1, second tour) ;
+ *   §16 — la frontière entre validation et résolution, éprouvée à la compilation ET à
+ *         l'exécution (P1, quatrième tour) ;
  *   §15 — quatre ingestions sabotées : tarif rangé sous le mauvais canal, identifiants de tarifs
  *         en double, conflit rangé sous le mauvais canal, identifiants de conflits en double
  *         (P0-3, second tour ; la quatrième ajoutée au troisième tour, la garde existant sans que
@@ -25,7 +27,7 @@
  */
 import { readFileSync } from "node:fs";
 import {
-  Fare, FareConflict, FarePrice, FareObservation, PurchaseWindow,
+  Fare, FareConflict, FarePrice, FareObservation, PurchaseWindow, lireTarif, lireConflit,
   evaluerPortee, evaluerFenetre, porteeTarif, porteeSaine, resoudreTarif, resolutionVide,
   projectPlacementPolicy, PlacementPolicyAuthored,
 } from "./packages/knowledge/src/index.ts";
@@ -829,6 +831,83 @@ console.log("\n=== 15. L'INGESTION, jouée six fois sur un bac à sable : une no
       Array.isArray(pol?.fare_conflicts) && pol.fare_conflicts.length === 1 && pol.fare_conflicts[0].observations.length === 2,
       JSON.stringify(pol?.fare_conflicts ?? null).slice(0, 200));
   }
+}
+
+console.log("\n=== 16. LA FRONTIÈRE ENTRE VALIDATION ET RÉSOLUTION (P1, quatrième tour) ===");
+{
+  /* LE SABOTAGE DE CODEX, MOT POUR MOT : provenance vers mydogcanfly.com, sans localisateur,
+     échéance en 2030. Le schéma le refusait déjà ; le résolveur le publiait quand même. */
+  const saboteur = {
+    id: "fare_sabote", placement: "hold",
+    price: { kind: "exact", amounts: [{ amount: 725, currency: "EUR" }] },
+    billing_subject: "container", journey_basis: "per_segment",
+    applies_when: { all: [{ fact: "placement", op: "eq", value: "hold" }] },
+    source: {
+      url: "https://mydogcanfly.com/faux", source_type: "official_website",
+      verified_date: "2026-09-10", review_due: "2030-01-01", confidence: 4, reviewer: "x",
+      history: [], quote: "un prix inventé de toutes pieces", quote_language: "fr",
+    },
+  };
+  check("préalable : le schéma refuse bien ce tarif — cette moitié-là marchait déjà",
+    Fare.safeParse(saboteur).success === false);
+  check("`lireTarif` rend `null` : on ne fabrique pas un tarif validé à partir d'une donnée refusée",
+    lireTarif(saboteur) === null);
+  check("`lireTarif` rend un tarif utilisable quand la donnée est conforme — le témoin n'est pas vacant",
+    lireTarif({ ...saboteur, source: SRC_SAS })?.id === "fare_sabote");
+  check("`lireConflit` suit la même règle dans les deux sens",
+    lireConflit({ ...CONFLIT_FINNAIR, status: "resolved" }) === null && lireConflit(CONFLIT_FINNAIR)?.id === CONFLIT_FINNAIR.id);
+
+  /* LA MOITIÉ QUI MANQUAIT : le résolveur LÈVE au lieu de publier. */
+  let leve = null;
+  try { resoudreTarif([saboteur], [], "hold", { placement: "hold" }); }
+  catch (e) { leve = String(e && e.message); }
+  check("`resoudreTarif` LÈVE sur ce tarif — il rendait `montants = 1` avant cette porte", leve !== null, "aucune levée");
+  check("…et le message NOMME l'identifiant fautif et son motif",
+    !!leve && leve.includes("fare_sabote") && leve.includes("auto-citation"), String(leve).slice(0, 260));
+  let leveConflit = null;
+  try { resoudreTarif([], [{ ...CONFLIT_FINNAIR, status: "resolved" }], "hold", {}); }
+  catch (e) { leveConflit = String(e && e.message); }
+  check("un CONFLIT non conforme lève de la même façon", leveConflit !== null && leveConflit.includes(CONFLIT_FINNAIR.id), String(leveConflit).slice(0, 200));
+  const bon = lireTarif({ ...saboteur, source: SRC_SAS });
+  check("…et le même appel, avec un tarif lu par `lireTarif`, se résout normalement",
+    resoudreTarif([bon], [], "hold", { placement: "hold" }).montants.length === 1);
+
+  /* LA MARQUE DE TYPE, éprouvée par une VRAIE compilation. Un `.mjs` n'est pas typé : sans ceci,
+     la moitié « compilation » de la frontière ne serait vérifiée par personne. */
+  const { mkdtempSync, writeFileSync: ecrire, rmSync } = await import("node:fs");
+  const { execFileSync } = await import("node:child_process");
+  const { join } = await import("node:path");
+  /* Le bac est DANS le dépôt : `tsc` résout `zod` en remontant les dossiers depuis le fichier. */
+  const bacTs = mkdtempSync(join(process.cwd(), ".tmp-frontiere-"));
+  const compiler = (fichier) => {
+    try {
+      execFileSync("npx", ["tsc", "--noEmit", "--strict", "--target", "es2022", "--module", "esnext",
+        "--moduleResolution", "bundler", "--skipLibCheck", fichier], { encoding: "utf8", stdio: ["ignore", "pipe", "pipe"] });
+      return "";
+    } catch (e) { return String(e.stdout ?? "") + String(e.stderr ?? ""); }
+  };
+  const SRC_TS = `{ url: "https://www.flysas.com/en/travel-info/travel-with-pets/in-hold", source_type: "official_website", verified_date: "2026-09-10", review_due: "2026-12-09", confidence: 4, reviewer: "harnais", history: [], quote: "China: 5400 DKK, 7600 NOK, 7600 SEK, 725 EUR, 775 USD", quote_language: "en", locator: "Fees" }`;
+  const CORPS = `id: "f", placement: "hold", price: { kind: "exact", amounts: [{ amount: 725, currency: "EUR" }] }, billing_subject: "container", journey_basis: "per_segment", applies_when: { all: [{ fact: "placement", op: "eq", value: "hold" }] }`;
+  try {
+    const aLaMain = join(bacTs, "a-la-main.ts");
+    ecrire(aLaMain, `import { resoudreTarif } from "../packages/knowledge/src/index";\nimport type { Fare } from "../packages/knowledge/src/index";\nconst t: Fare = { ${CORPS}, source: ${SRC_TS} };\nexport const r = resoudreTarif([t], [], "hold", { placement: "hold" });\n`);
+    const erreurs = compiler(aLaMain);
+    check("un `Fare` écrit À LA MAIN ne compile pas — même avec une provenance irréprochable",
+      erreurs.includes("MARQUE_VALIDE"), erreurs.slice(0, 300) || "compilation acceptée");
+
+    const parLecteur = join(bacTs, "par-lecteur.ts");
+    ecrire(parLecteur, `import { lireTarif, resoudreTarif } from "../packages/knowledge/src/index";\nconst t = lireTarif({ ${CORPS}, source: ${SRC_TS} });\nexport const r = t ? resoudreTarif([t], [], "hold", { placement: "hold" }) : null;\n`);
+    check("…et le MÊME tarif, passé par `lireTarif`, compile proprement : la marque refuse la faute, pas la fonction",
+      compiler(parLecteur) === "", compiler(parLecteur).slice(0, 300));
+
+    /* CE QUE LA MARQUE NE FAIT PAS, et pourquoi le reparsage existe. */
+    const transtypage = join(bacTs, "transtypage.ts");
+    ecrire(transtypage, `import { resoudreTarif } from "../packages/knowledge/src/index";\nimport type { Fare } from "../packages/knowledge/src/index";\nconst t = { ${CORPS}, source: { ...${SRC_TS}, url: "https://mydogcanfly.com/faux" } } as unknown as Fare;\nexport const r = resoudreTarif([t], [], "hold", { placement: "hold" });\n`);
+    check("un transtypage EFFACE la marque : la compilation l'accepte — d'où la seconde moitié de la frontière",
+      compiler(transtypage) === "");
+  } finally { rmSync(bacTs, { recursive: true, force: true }); }
+  check("…et c'est exactement ce que le reparsage rattrape : la marque seule ne fermait pas la porte",
+    leve !== null && leve.includes("auto-citation"));
 }
 
 console.log(`\n=== SUMMARY ===\n${fail === 0 ? `ALL CHECKS PASSED (${pass})` : `${fail} CHECK(S) FAILED sur ${pass + fail}`}`);

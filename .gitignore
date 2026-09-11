@@ -31,3 +31,7 @@ fraicheur-sortie/
 # Captures de la vérification navigateur (journée 5) : des preuves à REGARDER, pas à versionner —
 # elles sont régénérées par `npm run test:apercu` et pèseraient 1,5 Mo de binaire par passage.
 mesures/apercu-jour5/
+
+# Bacs à sable de la contre-épreuve « frontière validation/résolution » (annexe 48),
+# créés et supprimés dans le même test ; listés ici pour le cas où il est interrompu.
+.tmp-frontiere-*/

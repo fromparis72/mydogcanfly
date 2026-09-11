@@ -88,12 +88,15 @@ import { T0bAuditSource } from "./t0b-migration";
  * TypeScript pouvait donc lui passer, en toute légalité de compilation, une provenance que le
  * schéma aurait refusée. Le type suit désormais la définition validée, et la suivra si elle bouge.
  *
- * *Limite nommée, pour ne rien promettre de faux* : les `.refine()` de Zod ne RESTREIGNENT pas le
- * type inféré. `FareAuditSource` reste donc structurellement identique à `SourcedQuote`
- * aujourd'hui — `locator` y est encore optionnel au sens du compilateur. Ce que cet alias garantit
- * n'est pas une vérification supplémentaire à la compilation : c'est qu'aucune SECONDE définition
- * ne subsiste, et que le jour où `T0bAuditSource` se resserre, ces deux types se resserrent avec
- * lui sans que personne ait à y penser. La garantie de fond reste le schéma, à l'ingestion.
+ * *Et cet alias, SEUL, ne ferme rien — quatrième tour, 11/09.* J'avais nommé la limite (« les
+ * `.refine()` de Zod ne restreignent pas le type inféré ») en croyant que la nommer suffisait.
+ * Codex l'a reproduite : une provenance pointant vers `mydogcanfly.com`, sans `locator`, avec une
+ * échéance en 2030, compile sans un seul diagnostic ; `Fare.safeParse` la refuse, et
+ * `resoudreTarif` la publiait quand même, puisqu'il recevait des `Fare[]` sans les reparser.
+ * **Nommer une limite n'est pas la fermer.** C'est la même faute que j'ai commise trois fois dans
+ * ce fichier sous une autre forme — un commentaire juste tenant lieu de garantie. Ce que cet alias
+ * fait vraiment tient en une phrase : il évite une SECONDE définition et suivra `T0bAuditSource`
+ * si elle se resserre. La fermeture, elle, est ailleurs — voir « La frontière » plus bas.
  */
 export type FareAuditSource = z.infer<typeof T0bAuditSource>;
 
@@ -257,10 +260,46 @@ export const Fare = z.object({
   .refine((f: { applies_when?: Predicate }) => porteeSaine(f.applies_when), {
     message: "une portée tarifaire ne peut porter de combinateur vide : `{ all: [] }` s'appliquerait à tous les trajets", path: ["applies_when"],
   });
-/** Le type est DÉCLARÉ, pas inféré : `applies_when` est un prédicat récursif (`z.lazy`), et
- *  l'inférence le rend `unknown` à travers les `.refine()`. Une portée typée `unknown` se
- *  passerait silencieusement de l'évaluateur — exactement ce que ce fichier existe pour empêcher. */
-export type Fare = {
+/* Le type est DÉCLARÉ, pas inféré : `applies_when` est un prédicat récursif (`z.lazy`), et
+   l'inférence le rend `unknown` à travers les `.refine()`. Une portée typée `unknown` se passerait
+   silencieusement de l'évaluateur. Il est déclaré plus bas, avec sa marque de validation. */
+
+/* ---- LA FRONTIÈRE ENTRE VALIDATION ET RÉSOLUTION ------------------------------------------ */
+
+/**
+ * LA MARQUE DE VALIDATION (porte P1, quatrième tour — 11/09/2026, annexe 48).
+ *
+ * *Ce que Codex a reproduit sur `a676fb8`.* Un tarif dont la provenance pointe vers
+ * `mydogcanfly.com`, sans localisateur, avec une échéance de relecture en 2030, était accepté par
+ * TypeScript sans un seul diagnostic. `Fare.safeParse(...)` rendait `false` — le schéma faisait son
+ * travail — mais `resoudreTarif(...).montants` rendait `1`, parce que le résolveur reçoit des
+ * `Fare[]` et ne les reparse pas. Entre le schéma qui refuse et le résolveur qui publie, il n'y
+ * avait RIEN. Aucun tarif n'étant encore importé ni affiché, la production n'a jamais été exposée ;
+ * la porte devait néanmoins se fermer avant l'import des 102 compagnies.
+ *
+ * Elle se ferme aux DEUX endroits, et il faut les deux :
+ *   · à la COMPILATION, une marque de type. Un `Fare` ne s'écrit plus à la main : il s'obtient par
+ *     `lireTarif`, qui parse. Le coût de l'erreur tombe à zéro — elle devient rouge dans l'éditeur.
+ *     Mais une marque est purement typographique : `valeur as Fare` l'efface sans laisser de trace.
+ *   · à l'EXÉCUTION, `resoudreTarif` REPARSE toutes ses entrées et LÈVE si l'une d'elles ne passe
+ *     pas. C'est la seule garantie qu'aucun transtypage ne contourne.
+ * Prise seule, chacune se contourne : une marque par un `as`, un reparsage par un chemin de code
+ * que personne n'emprunte. Prises ensemble, elles ferment la frontière.
+ *
+ * *Pourquoi LEVER plutôt que filtrer en silence.* Écarter discrètement un tarif non conforme
+ * rendrait « aucun montant » là où la donnée est fautive, et ce dossier passe son temps à
+ * combattre exactement cette disparition muette. Un tarif que le schéma refuse au moment de la
+ * résolution n'est pas une donnée incertaine : c'est un défaut de programme ou d'artefact, et la
+ * bonne réponse est un arrêt bruyant, au build, avec l'identifiant et le motif.
+ */
+declare const MARQUE_VALIDE: unique symbol;
+
+/** `T` tel que le contrat l'a réellement accepté. La marque n'existe qu'au type : rien ne la porte
+ *  à l'exécution, et c'est précisément pourquoi le reparsage reste nécessaire. */
+export type Valide<T> = T & { readonly [MARQUE_VALIDE]: true };
+
+/** LE TARIF TEL QU'ON L'ÉCRIT dans une fiche — avant que le contrat ne l'ait accepté. */
+export type FareEcrit = {
   id: string;
   placement: PlacementType;
   price: FarePrice;
@@ -271,6 +310,9 @@ export type Fare = {
   purchase_window?: PurchaseWindow;
   source: FareAuditSource;
 };
+
+/** LE TARIF TEL QUE LE RÉSOLVEUR L'ACCEPTE : validé, et seulement par `lireTarif`. */
+export type Fare = Valide<FareEcrit>;
 
 /* ---- Le conflit --------------------------------------------------------------------------- */
 
@@ -399,8 +441,8 @@ export const FareConflict = z.object({
   .refine((c: { observations: { source: FareAuditSource }[] }) => new Set(c.observations.map((o) => preuveCanonique(o.source))).size >= 2, {
     message: "un conflit exige DEUX preuves distinctes : même URL, même localisateur, même citation et même date de lecture ne font qu'une seule lecture", path: ["observations"],
   });
-/** Même raison que `Fare` : le type est déclaré. */
-export type FareConflict = {
+/** LE CONFLIT TEL QU'ON L'ÉCRIT — même raison que `FareEcrit` : le type est déclaré, pas inféré. */
+export type FareConflictEcrit = {
   id: string;
   placement: PlacementType;
   applies_when?: Predicate;
@@ -413,6 +455,51 @@ export type FareConflict = {
   observations: FareObservation[];
   note?: string;
 };
+
+/** LE CONFLIT TEL QUE LE RÉSOLVEUR L'ACCEPTE : validé, et seulement par `lireConflit`. */
+export type FareConflict = Valide<FareConflictEcrit>;
+
+/**
+ * LES DEUX SEULES PORTES D'ENTRÉE du résolveur.
+ *
+ * Le transtypage est ici, une fois, à l'endroit exact où la validation vient d'avoir lieu : la
+ * sortie de `safeParse` porte `applies_when: unknown` (prédicat récursif `z.lazy`) et ne
+ * s'assigne donc pas au type déclaré. Une conversion nommée, dans une fonction de trois lignes qui
+ * vient de prouver la conformité, est très différente d'un `as` dispersé chez l'appelant.
+ *
+ * Rendent `null` plutôt que de lever : lire une donnée peut légitimement échouer et l'appelant
+ * décide quoi en dire. C'est la RÉSOLUTION qui lève, parce qu'à ce stade l'échec n'est plus une
+ * donnée douteuse mais un défaut de programme.
+ */
+export function lireTarif(entree: unknown): Fare | null {
+  const r = Fare.safeParse(entree);
+  return r.success ? (r.data as unknown as Fare) : null;
+}
+
+export function lireConflit(entree: unknown): FareConflict | null {
+  const r = FareConflict.safeParse(entree);
+  return r.success ? (r.data as unknown as FareConflict) : null;
+}
+
+/** Le motif d'un refus, lisible dans un journal de build. */
+const motifs = (e: z.ZodError): string => e.issues.map((i) => `${i.path.join(".")}: ${i.message}`).join(" | ");
+
+/** Le reparsage de la résolution : conforme, ou arrêt bruyant. */
+function exigerTarif(valeur: Fare, ou: string): Fare {
+  const r = Fare.safeParse(valeur);
+  if (!r.success) {
+    throw new Error(`résolution tarifaire refusée — ${ou} (id ${String((valeur as FareEcrit)?.id ?? "?")}) n'est pas conforme au contrat : ${motifs(r.error)}`);
+  }
+  return r.data as unknown as Fare;
+}
+
+function exigerConflit(valeur: FareConflict, ou: string): FareConflict {
+  const r = FareConflict.safeParse(valeur);
+  if (!r.success) {
+    throw new Error(`résolution tarifaire refusée — ${ou} (id ${String((valeur as FareConflictEcrit)?.id ?? "?")}) n'est pas conforme au contrat : ${motifs(r.error)}`);
+  }
+  return r.data as unknown as FareConflict;
+}
 
 /* ---- La portée, évaluée à TROIS valeurs ---------------------------------------------------- */
 
@@ -628,11 +715,17 @@ export function resoudreTarif(
   placement: PlacementType,
   faits: FaitsTrajet,
 ): ResolutionTarifaire {
-  const conflitsCouvrants = conflits.filter(
+  /* LE REPARSAGE DE LA FRONTIÈRE (annexe 48). La marque de type rend l'erreur rouge dans
+     l'éditeur ; elle s'efface avec un `as`. Ceci ne s'efface pas. Un tarif non conforme arrête le
+     build en nommant son identifiant et son motif — il n'est jamais écarté en silence. */
+  const tarifsValides = tarifs.map((f, i) => exigerTarif(f, `tarifs[${i}]`));
+  const conflitsValides = conflits.map((c, i) => exigerConflit(c, `conflits[${i}]`));
+
+  const conflitsCouvrants = conflitsValides.filter(
     (c) => c.placement === placement && c.status === "unresolved" && conflitCouvre(c, faits),
   );
 
-  const duCanal = tarifs.filter((f) => f.placement === placement);
+  const duCanal = tarifsValides.filter((f) => f.placement === placement);
   const vrais = duCanal.filter((f) => porteeTarif(f, faits) === "vrai");
   const chiffres = vrais.filter((f) => NATURES_CHIFFREES.has(f.price.kind));
   const mecanismes = vrais.filter((f) => !NATURES_CHIFFREES.has(f.price.kind));
