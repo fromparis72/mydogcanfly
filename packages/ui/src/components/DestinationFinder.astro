@@ -464,12 +464,12 @@ const L = {
           /* T0-B : famille propre — voir FlightFinder.astro, même arbitrage. */
           : s.cause.code === "legacy_unreviewed" ? "unreviewed"
           : (s.cause.code === "policy_unpublished" || s.cause.code === "airline_approval") ? "policy" : ""));
-        const lines = [];
-        /* Notre propre incertitude d'abord (même ordre que le Finder). */
-        if (fams.has("unreviewed")) lines.push(`<div class="dfx-card__confirmwhy">? ${esc(S.sigUnreviewed)}</div>`);
-        if (fams.has("policy")) lines.push(`<div class="dfx-card__confirmwhy">? ${esc(S.sigPolicy)}</div>`);
-        if (fams.has("missing")) lines.push(`<div class="dfx-card__confirmwhy">? ${esc(S.sigMissing)}</div>`);
-        return lines.join("");
+        /* ARBITRAGE DE PHILIPPE (10/09/2026, annexe 42) : les trois paragraphes « ? … » ont disparu ici comme dans le
+           Finder — notre donnée non revérifiée, la politique non publiée, le fait manquant. Ils expliquaient au visiteur
+           pourquoi notre preuve manque, ou répétaient l'incertitude déjà portée par le statut du canal. Les familles
+           restent calculées (`fams`) : elles servent aux contre-épreuves et au drapeau climatique, jamais à l'écran. */
+        void fams;
+        return "";
       })()}
       ${fm.missing.length ? `<div class="dfx-card__missing">${esc(S.missingDocsLabel)} ${fm.missing.map(esc).join(", ")}</div>` : ""}
       ${bad ? `<div class="dfx-card__warn">⚠️ ${esc(S.warnLabel)}</div>` : ""}

@@ -56,7 +56,9 @@ const check = (label, cond, detail = "") => {
 };
 
 /** Le libellé PUBLIÉ de chaque statut — relu des traductions, jamais réécrit ici. */
-const CLE_LIBELLE = { allowed: "premium.allowed", accepted_with_conditions: "premium.accepted_conditions", denied: "premium.not_allowed", confirmation_required: "air.to_confirm" };
+/* MOUVEMENT NOMMÉ (10/09/2026, arbitrage Codex — pastilles courtes) : la capsule « à confirmer » lit `premium.to_confirm_short`
+   (« À confirmer ») ; `air.to_confirm` reste la phrase du bandeau de tête quand rien n'est décidé. */
+const CLE_LIBELLE = { allowed: "premium.allowed", accepted_with_conditions: "premium.accepted_conditions", denied: "premium.not_allowed", confirmation_required: "premium.to_confirm_short" };
 const libelle = (langue, statut) => tt(langue, CLE_LIBELLE[statut]);
 
 /** La preuve du fret Thai, telle que le CORRECTIF D'ARBITRAGES la fixe (09/09/2026, Codex, tranché par Philippe).
@@ -595,7 +597,7 @@ console.log("\n=== 2 ter. La branche `allowed`, éprouvée par un témoin SYNTH�
   check("…et les deux autres états gardent les leurs",
     classeStatut("denied") === "no" && cleLibelleStatut("denied") === "premium.not_allowed"
       && classeStatut("confirmation_required") === "warn"
-      && cleLibelleStatut("confirmation_required") === "air.to_confirm");
+      && cleLibelleStatut("confirmation_required") === "premium.to_confirm_short");
   /* ET LA MESURE QUI JUSTIFIE LE TÉMOIN : aucune fiche réelle ne porte `allowed`. Le jour où une
      citation en produira un, ce contrôle rougira et la sentinelle redeviendra réelle. */
   /* La base déjà chargée en tête de fichier, pas une seconde copie : `loadKB()` n'est pas

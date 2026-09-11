@@ -248,7 +248,16 @@ if (DIST) {
      *
      * Le gabarit isole pourtant la pastille exactement — `.mini[data-placement][data-status]`,
      * puis `.t .pill`. On la sélectionne donc, au lieu de deviner ses bornes. */
-    const LIBELLES = { allowed: "Accepted", confirmation_required: "Policy to confirm with the airline", denied: "Not accepted" };
+    /* MOUVEMENT NOMMÉ (10/09/2026, annexe 40 — arbitrage Codex, pastilles courtes) : la capsule ne dit plus que l'état.
+       « Policy to confirm with the airline » → « To confirm », « Not accepted » → « Refused » ; et le quatrième état,
+       la CI l'a attrapé sur le dist complet (154 pastilles), le dist réduit local ne portant pas assez de fiches pour le voir.
+       SECOND JET, NOMMÉ : j'avais aussi fait entrer le quatrième état (« Under conditions ») dans la table, et la CI a rougi
+       sur Qantas soute — politique « sous conditions » CITÉE dans la base, mais la fiche ne déclare pas de canal soute
+       (`channels:` éditorial), donc aucun bloc, et la cause n'est pas « non revérifiée ». Ce n'est pas une pastille fausse :
+       c'est une fiche qui ne montre pas un canal décidé — une DETTE de contenu, hors du périmètre de ce lot de
+       présentation, nommée pour Codex (annexe 40). La table garde ses trois états d'origine ; élargir ce témoin au
+       quatrième état est un mouvement à faire avec la fermeture de cette dette. */
+    const LIBELLES = { allowed: "Accepted", confirmation_required: "To confirm", denied: "Refused" };
     const vus = new Set();
     let absencesLegitimes = 0;
     for (const p of fiches) {
