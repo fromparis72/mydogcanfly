@@ -278,12 +278,12 @@ console.log("\n=== 3. La décision vient des fiches — les contre-épreuves du 
        fait qui pendait à l'ancienne. Le témoin garde son sens et gagne une exigence : quand la
        preuve change, le rattachement change AVEC elle. La phrase de remplacement dit donc toujours
        le seuil ET le contenant, et l'extrait est repris d'elle. */
-    const EXCERPT_AF = 'excerpt: "chats et chiens de moins de 8 kg, sac de transport compris"';
-    check("(m) préalable : l'extrait rattaché à la phrase de cabine est bien là", readFileSync(af, "utf8").includes(EXCERPT_AF));
+    const BORNE_AF = 'borne: "moins de 8 kg"';
+    check("(m) préalable : les fragments rattachés à la phrase de cabine sont bien là",
+      readFileSync(af, "utf8").includes(BORNE_AF) && readFileSync(af, "utf8").includes('sujet: "sac de transport compris"'));
     writeFileSync(af, readFileSync(af, "utf8")
       .replace(URL_AF, 'url: "https://wwws.airfrance.fr/information/passagers/animaux-cabine"')
-      .replace(QUOTE_AF, 'quote: "Les chiens et chats de moins de 8 kg, sac de transport compris, voyagent en cabine."')
-      .replace(EXCERPT_AF, 'excerpt: "moins de 8 kg, sac de transport compris"'));
+      .replace(QUOTE_AF, 'quote: "Les chiens et chats de moins de 8 kg, sac de transport compris, voyagent en cabine."'));
     const r = run();
     check("(m) l'ingestion réussit", r.code === 0, r.out.slice(-300));
     const apres = sandboxJson(OBJECTS_REL).airlines.find((a) => a.id === "airline_air_france").premium.policy.cabin;
@@ -306,7 +306,7 @@ console.log("\n=== 3. La décision vient des fiches — les contre-épreuves du 
      — « sac de transport compris » — suffisait alors à faire passer 46 × 28 × 24 cm. */
   {
     const af = () => join(SANDBOX, "content", "airlines", "air_france.yml");
-    const EXTRAIT_CABINE = 'excerpt: "chats et chiens de moins de 8 kg, sac de transport compris"';
+    const SUJET_CABINE = 'sujet: "sac de transport compris"';
     const QUOTE_CABINE = 'quote: "En cabine (chats et chiens de moins de 8 kg, sac de transport compris)"';
     const QUOTE_SOUTE = 'quote: "If your cat or dog weighs more than 8 kg/17.64 lb. and up to 75 kg/165.35 lb. with its carrier, it must travel in the hold."';
 
@@ -323,7 +323,7 @@ console.log("\n=== 3. La décision vient des fiches — les contre-épreuves du 
       check("(n) le refus nomme l'extrait orphelin, pas une erreur de schéma",
         out.includes("ne se trouve pas dans la citation de ce canal"), out.slice(-600));
       check("(n) les DEUX canaux sont nommés — la permutation casse les deux sens",
-        out.includes("chats et chiens de moins de 8 kg") && out.includes("weighs more than 8 kg"), out.slice(-600));
+        out.includes("moins de 8 kg") && out.includes("more than 8 kg"), out.slice(-600));
     }
 
     // (o) UNE DIMENSION AJOUTÉE, avec un extrait pourtant authentique. C'est exactement le
@@ -331,13 +331,13 @@ console.log("\n=== 3. La décision vient des fiches — les contre-épreuves du 
     {
       freshSandbox();
       const avant = readFileSync(af(), "utf8");
-      check("(o) préalable : l'extrait de cabine est présent et la fiche porte les dimensions", avant.includes(EXTRAIT_CABINE));
-      writeFileSync(af(), avant.replace(EXTRAIT_CABINE,
-        EXTRAIT_CABINE + "\n      - claim:\n          kind: carrier_dims_cm\n          l: 46\n          w: 28\n          h: 24\n        excerpt: \"sac de transport compris\""));
+      check("(o) préalable : le fragment de sujet de la cabine est présent", avant.includes(SUJET_CABINE));
+      writeFileSync(af(), avant.replace(SUJET_CABINE,
+        SUJET_CABINE + "\n      - claim:\n          kind: carrier_dims_cm\n          l: 46\n          w: 28\n          h: 24\n        dimensions: \"sac de transport compris\""));
       const { code, out } = run();
       check("(o) dimension absente de la citation → REFUS de l'ingestion", code === 1, out.slice(-400));
-      check("(o) le refus dit que l'extrait NE PORTE PAS les valeurs, et les chiffre",
-        out.includes("ne porte pas") && out.includes("46") && out.includes("28") && out.includes("24"), out.slice(-600));
+      check("(o) le refus dit que le fragment NE DIT PAS ces dimensions, et les chiffre",
+        out.includes("avec leur unité") && out.includes("46") && out.includes("28") && out.includes("24"), out.slice(-600));
     }
 
     /* (q) et (r) LA SÉMANTIQUE DU FAIT, SUR LE CHEMIN RÉEL — P0 de Codex sur `80e3ce6`.
@@ -352,7 +352,7 @@ console.log("\n=== 3. La décision vient des fiches — les contre-épreuves du 
       freshSandbox();
       const avant = readFileSync(af(), "utf8");
       writeFileSync(af(), avant
-        .replace("          bound: lt\n          includes_carrier: true", "          bound: lte\n          includes_carrier: true")
+        .replace("          bound: lt\n          subject: dog_plus_carrier", "          bound: lte\n          subject: dog_plus_carrier")
         .replace("    weight_limit_bound: lt\n", "    weight_limit_bound: lte\n"));
       const { code, out } = run();
       check("(q) borne retournée sur la même phrase → REFUS de l'ingestion", code === 1, out.slice(-400));
@@ -365,11 +365,11 @@ console.log("\n=== 3. La décision vient des fiches — les contre-épreuves du 
       freshSandbox();
       const avant = readFileSync(af(), "utf8");
       writeFileSync(af(), avant.replace(
-        'excerpt: "chats et chiens de moins de 8 kg, sac de transport compris"',
-        'excerpt: "chats et chiens de moins de 8 kg"'));
+        '        sujet: "sac de transport compris"',
+        '        sujet: "chats et chiens"'));
       const { code, out } = run();
       check("(r) seuil « contenant compris » sur un extrait qui n'en nomme aucun → REFUS", code === 1, out.slice(-400));
-      check("(r) le refus nomme le sujet pesé", out.includes("aucun contenant"), out.slice(-500));
+      check("(r) le refus nomme le sujet pesé", out.includes("ne nomme aucun contenant"), out.slice(-500));
     }
 
     // (p) LE TÉMOIN POSITIF — sans quoi (n) et (o) passeraient aussi bien si l'ingestion

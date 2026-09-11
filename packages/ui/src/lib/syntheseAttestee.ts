@@ -23,12 +23,23 @@ import type { Claim } from "@mydogcanfly/knowledge";
 
 const nb = (n: number) => String(n);
 
-/** Le sujet pesé : chien avec son contenant, ou chien seul. */
+/** LE SUJET PESÉ, ou RIEN.
+ *
+ *  *P0 de Codex, 11/09/2026.* Cette fonction lisait `includes_carrier`, un booléen dont l'absence
+ *  valait `false` : une politique muette sur le contenant faisait donc publier « chien seul » — une
+ *  affirmation que personne n'avait prouvée. L'absence de preuve que le contenant est inclus
+ *  n'établit pas qu'il est exclu. Le sujet est désormais à trois états, et le troisième est le
+ *  silence : la synthèse publie alors la borne SANS nommer ce qui est pesé. */
 function sujet(claims: Claim[], placement: string, locale: string): string | null {
-  const poids = claims.filter((c) => c.kind === "weight_max" || c.kind === "weight_min");
-  if (poids.length === 0) return null;
-  const avecContenant = poids.some((c) => (c as { includes_carrier: boolean }).includes_carrier);
-  if (!avecContenant) return t(locale, "premium.fait.chien_seul");
+  const sujets = claims
+    .filter((c) => c.kind === "weight_max" || c.kind === "weight_min")
+    .map((c) => (c as { subject?: "dog_plus_carrier" | "dog_alone" }).subject)
+    .filter((s): s is "dog_plus_carrier" | "dog_alone" => s !== undefined);
+  if (sujets.length === 0) return null;
+  /* Deux bornes de la même phrase ne peuvent pas peser deux sujets différents : si elles le
+     disent, on n'en choisit pas un — on n'en publie aucun. */
+  if (new Set(sujets).size > 1) return null;
+  if (sujets[0] === "dog_alone") return t(locale, "premium.fait.chien_seul");
   return t(locale, placement === "cabin" ? "premium.fait.avec_sac" : "premium.fait.avec_caisse");
 }
 

@@ -5696,9 +5696,11 @@
               "kind": "weight_max",
               "kg": 8,
               "bound": "lt",
-              "includes_carrier": true
+              "subject": "dog_plus_carrier"
             },
-            "excerpt": "chats et chiens de moins de 8 kg, sac de transport compris"
+            "poids": "8 kg",
+            "borne": "moins de 8 kg",
+            "sujet": "sac de transport compris"
           }
         ],
         "weight_limit_bound": "lt",
@@ -5727,18 +5729,22 @@
               "kind": "weight_min",
               "kg": 8,
               "bound": "gt",
-              "includes_carrier": true
+              "subject": "dog_plus_carrier"
             },
-            "excerpt": "weighs more than 8 kg/17.64 lb. and up to 75 kg/165.35 lb. with its carrier"
+            "poids": "8 kg",
+            "borne": "more than 8 kg",
+            "sujet": "with its carrier"
           },
           {
             "claim": {
               "kind": "weight_max",
               "kg": 75,
               "bound": "lte",
-              "includes_carrier": true
+              "subject": "dog_plus_carrier"
             },
-            "excerpt": "up to 75 kg/165.35 lb. with its carrier"
+            "poids": "75 kg",
+            "borne": "up to 75 kg",
+            "sujet": "with its carrier"
           }
         ],
         "weight_limit_bound": "lte",

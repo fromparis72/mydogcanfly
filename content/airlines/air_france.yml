@@ -82,13 +82,18 @@ policies:
     # Ce que la phrase établit : un PLAFOND de 8 kg, borne STRICTE (« moins de »), contenant COMPRIS.
     # Ce qu'elle n'établit pas, et qui n'est donc pas rattaché : les 46 × 28 × 24 cm de l'ancien
     # détail éditorial. Aucune dimension du dépôt n'est portée par sa citation (mesuré : 0 sur 10).
+    # Trois fragments, rattachés SÉPARÉMENT (P0 Codex, seconde passe) : le poids avec son unité, la
+    # tournure qui dit la direction, et ce qui est pesé. Le sujet n'est déclaré que parce que la
+    # phrase le dit ; une phrase muette sur le contenant n'aurait porté aucun sujet du tout.
     attestations:
       - claim:
           kind: weight_max
           kg: 8
           bound: lt
-          includes_carrier: true
-        excerpt: "chats et chiens de moins de 8 kg, sac de transport compris"   # la phrase dit « inférieur à » : la valeur est exclue, un chien de 8 kg exactement est refusé
+          subject: dog_plus_carrier
+        poids: "8 kg"
+        borne: "moins de 8 kg"        # « inférieur à » : la valeur est exclue, un chien de 8 kg exactement est refusé
+        sujet: "sac de transport compris"
     source:
       url: "https://wwws.airfrance.fr/information/passagers/voyager-avec-son-animal-chien-chat"
       source_type: official_website
@@ -113,23 +118,27 @@ policies:
     min_weight_kg: 8
     weight_min_bound: gt
     weight_limit_bound: lte
+    # P0 CODEX (11/09/2026) : le plancher annonçait un seuil CONTENANT COMPRIS sur un fragment qui
+    # n'en dit rien. Le contenant est bien établi par la phrase — « with its carrier » qualifie la
+    # fourchette entière, pas seulement sa borne haute — et il est donc rattaché par SON fragment,
+    # que les deux bornes partagent. Le fait n'est pas affaibli, la preuve est nommée là où elle est.
     attestations:
       - claim:
           kind: weight_min
           kg: 8
           bound: gt
-          includes_carrier: true
-        # P0 CODEX (11/09/2026, sur 80e3ce6) : cet extrait s'arrêtait à « weighs more than 8 kg/17.64 lb. »
-        # et annonçait pourtant un seuil CONTENANT COMPRIS — un fait que ce fragment-là n'établit pas.
-        # C'est la phrase ENTIÈRE qui porte le contenant : « with its carrier » qualifie la fourchette,
-        # pas seulement sa borne haute. L'extrait est donc étendu jusqu'à lui, plutôt que le fait affaibli.
-        excerpt: "weighs more than 8 kg/17.64 lb. and up to 75 kg/165.35 lb. with its carrier"
+          subject: dog_plus_carrier
+        poids: "8 kg"
+        borne: "more than 8 kg"
+        sujet: "with its carrier"
       - claim:
           kind: weight_max
           kg: 75
           bound: lte
-          includes_carrier: true
-        excerpt: "up to 75 kg/165.35 lb. with its carrier"
+          subject: dog_plus_carrier
+        poids: "75 kg"
+        borne: "up to 75 kg"
+        sujet: "with its carrier"
     source:
       url: "https://wwws.airfrance.fr/en/information/passagers/voyager-avec-son-animal-chien-chat"
       source_type: official_website

@@ -4793,3 +4793,58 @@ touchent les mêmes fichiers — `air_france.yml`, `AirlinePremiumPage.astro`, `
 Codex rebase son lot sur le nouveau `main`, conserve ensemble la synthèse attestée et le présentateur
 tarifaire, et régénère les artefacts **une seule fois**. Rien n'est recopié, rien n'est picoré avant
 cette réconciliation.
+---
+
+## Annexe 53 — L'absence de preuve n'est pas une preuve du contraire (11/09/2026, classement C)
+
+**Seconde contre-revue de Codex, sur `4443653`.** Les quatre faux verts de l'annexe 52 sont refermés,
+mais deux points restent ouverts, et le second est un P0 d'une autre nature.
+
+**Ce qui n'était pas un rattachement.** La correction précédente ajoutait trois contrôles — unité de
+masse, marqueur de borne, mot de contenant — **à l'intérieur d'un fragment unique**. Codex a répondu
+que « à l'intérieur du même fragment » ne prouve rien : un fragment assez long finit toujours par
+contenir un nombre, un marqueur et un mot de contenant, sans qu'aucun des trois ne parle du même
+fait. Chaque composant est donc rattaché **séparément** — `poids`, `borne`, `sujet` — et chacun doit
+être une sous-chaîne de la citation du canal. Le marqueur de borne doit en outre suivre
+immédiatement **ce** poids-là, à vingt caractères au plus : les deux sont liés par construction, pas
+par voisinage.
+
+**LE P0 : `weight_includes_carrier` absent valait `false`.** L'interface publiait alors « chien seul ».
+C'est un renversement de la charge de la preuve — qu'une source ne dise pas que le contenant est
+inclus n'établit pas qu'il est exclu — et c'est la faute que ce dépôt combat depuis le premier jour,
+réintroduite par une valeur par défaut de trois caractères. Le sujet pesé est devenu **facultatif et
+à trois états** : « chien + contenant » attesté, « chien seul » attesté, ou rien. Quand rien n'est
+attesté, la synthèse publie la borne **sans nommer ce qui est pesé**. Aucune valeur par défaut n'est
+plus lue nulle part : un sujet attesté exige que le champ structuré le dise, dans le même sens, et un
+champ absent est un refus, pas un `false`.
+
+**Ce que cela permet, et qui compte pour les 49 canaux à relire.** Une phrase muette sur le contenant
+reste attestable : elle publie sa borne et ne nomme pas le sujet. Le témoin `(5 quinquies)` l'exige
+explicitement. Sans cela, la règle aurait été « pas de contenant cité, pas de synthèse », et la
+prudence aurait de nouveau coûté l'information que ce lot existe pour rendre.
+
+**« Chien seul » exige sa propre preuve.** Une seconde liste fermée, elle aussi quadrilingue, dit les
+tournures qui l'établissent — « sans le sac », « excluding », « sem a caixa », « sin el
+transportín ». Une phrase qui ne dit rien du contenant n'entre dans aucune des deux listes, et c'est
+le résultat voulu.
+
+**Mouvement des comptes.** Harnais du contrat d'attestation : **25 → 29**, dont les quatre nouveaux
+témoins du sujet pesé et le témoin positif de la phrase muette. Contre-épreuves d'ingestion : **65**,
+inchangé en nombre mais réécrites sur la nouvelle forme. Harnais des pages d'entités : **234**,
+inchangé — la synthèse rendue est identique dans les quatre langues, parce que la fiche Air France
+**dit** son contenant et n'a jamais eu besoin d'un défaut. Politiques attestées : **2**. Faits
+attestés : **3**. Dette Astro : **165**.
+
+**Ce que ce lot aura coûté, et ce qu'il faut en retenir.** Trois contre-revues sur le même contrat,
+et la même faute à chaque fois sous une forme différente : j'ai pris la présence d'un signe pour la
+preuve du fait. Le fragment est présent, donc il prouve. Le nombre est présent, donc c'est un poids.
+Le champ est absent, donc il vaut faux. Chaque correction a fermé l'instance et laissé le principe
+ouvert. Le principe, écrit ici pour la prochaine fois : **ce qui n'est pas dit n'est pas établi, et
+un défaut de valeur est une affirmation déguisée.**
+
+**Coordination avec le lot tarifaire (consigne de Codex, 11/09).** Cette PR et
+`fix/transavia-air-france-fares` touchent les mêmes fichiers — `air_france.yml`,
+`AirlinePremiumPage.astro`, les artefacts générés, l'inventaire et ce dossier. L'ordre est : #61
+corrigée puis fusionnée, Codex rebase son lot sur le nouveau `main`, conserve ensemble la synthèse
+attestée et `farePresentation`, puis régénère les artefacts **une seule fois**. Aucun JSON généré
+n'est recopié ni arbitré à la main de part et d'autre.

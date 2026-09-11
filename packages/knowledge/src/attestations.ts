@@ -42,12 +42,31 @@
  *   · `claim` — la sémantique COMPLÈTE de ce que la phrase établit : pas « max_weight_kg », mais
  *     « plafond de 8 kg, borne stricte, contenant compris ». Le champ seul ne suffit pas : deux
  *     politiques peuvent porter `max_weight_kg: 8` en voulant dire des choses différentes ;
- *   · `excerpt` — le fragment EXACT de la phrase citée qui l'établit, recopié de la citation.
+ *   · les FRAGMENTS — les morceaux EXACTS de la phrase citée qui l'établissent, un par composant.
  *
- * Le second rend le premier contrôlable par une machine sans qu'elle ait rien à deviner :
- * `excerpt` DOIT être une sous-chaîne de `source.quote`. Permuter la preuve entre deux canaux casse
- * ce lien immédiatement. Ajouter une dimension absente de la phrase le casse aussi. C'est ce que
- * les contre-épreuves de sabotage exigent.
+ * ── TROIS FRAGMENTS, PAS UN (contre-revue de Codex, 11/09/2026, seconde passe) ─────────────────
+ * La première rédaction n'attachait qu'un fragment unique, `excerpt`, et vérifiait que le fait s'y
+ * trouvait « quelque part ». Codex a montré que « quelque part » ne prouve rien : un fragment assez
+ * long finit toujours par contenir un mot de contenant, un marqueur de borne et un nombre, sans
+ * qu'aucun des trois ne parle du même fait. Chaque composant est donc rattaché SÉPARÉMENT, et chacun
+ * doit être une sous-chaîne de `source.quote` :
+ *
+ *   · `poids` — la valeur AVEC son unité de masse. « 8 kg », jamais « 8 » : un 8 de date ou un 75
+ *     de numéro de vol ne franchit pas cette ligne ;
+ *   · `borne` — la tournure qui dit la DIRECTION, collée à ce poids-là. « up to 8 kg » n'établit
+ *     pas `lt`, « moins de 8 kg » n'établit pas `lte`, et « no more than » n'établit pas `gt` ;
+ *   · `sujet` — ce qui est pesé, et **seulement si la phrase le dit**.
+ *
+ * ── L'ABSENCE DE PREUVE N'EST PAS UNE PREUVE (P0 de Codex, même passe) ─────────────────────────
+ * `weight_includes_carrier` absent valait `false`, et l'interface publiait alors « chien seul ».
+ * C'est un renversement de la charge de la preuve : qu'une source ne dise pas que le contenant est
+ * inclus n'établit pas qu'il est exclu. Le sujet pesé est donc devenu FACULTATIF et à trois états —
+ * « chien + contenant » attesté, « chien seul » attesté, ou **rien**. Quand rien n'est attesté, la
+ * synthèse publie la borne SANS nommer de sujet. Aucune valeur par défaut n'est plus déduite.
+ *
+ * Permuter la preuve entre deux canaux casse le lien immédiatement, sur les trois fragments à la
+ * fois. Ajouter une dimension absente de la phrase le casse aussi. C'est ce que les contre-épreuves
+ * de sabotage exigent.
  *
  * La `claim` doit en outre CONCORDER avec les champs structurés de la politique : une attestation
  * qui annonce 8 kg sur une politique qui en porte 10 est refusée. Les deux se gardent l'un l'autre.
@@ -56,14 +75,19 @@ import { z } from "zod";
 
 /* ---- Ce qu'une phrase peut établir ---------------------------------------------------------- */
 
+/** CE QUI EST PESÉ. Trois états, dont le troisième est l'absence : une phrase qui ne dit pas sur
+ *  quoi porte le seuil n'établit NI « contenant compris » NI « chien seul ». */
+export const SujetPese = z.enum(["dog_plus_carrier", "dog_alone"]);
+export type SujetPese = z.infer<typeof SujetPese>;
+
 /** UN PLAFOND. `bound` distingue « moins de 8 kg » (`lt`) de « jusqu'à 8 kg » (`lte`) : un chien
  *  pesant exactement le plafond est refusé dans le premier cas, accepté dans le second. */
 export const ClaimPoidsMax = z.object({
   kind: z.literal("weight_max"),
   kg: z.number().positive(),
   bound: z.enum(["lt", "lte"]),
-  /** Le seuil porte-t-il sur le chien SEUL, ou sur le chien AVEC son contenant ? */
-  includes_carrier: z.boolean(),
+  /** FACULTATIF, et c'est tout l'objet du correctif : rien ne se déduit de son absence. */
+  subject: SujetPese.optional(),
 }).strict();
 
 /** UN PLANCHER — « à partir de 8 kg », « more than 8 kg ».
@@ -76,7 +100,7 @@ export const ClaimPoidsMin = z.object({
   kind: z.literal("weight_min"),
   kg: z.number().positive(),
   bound: z.enum(["gt", "gte"]),
-  includes_carrier: z.boolean(),
+  subject: SujetPese.optional(),
 }).strict();
 
 /** LES DIMENSIONS DU CONTENANT. Aucune n'est attestée au 11/09/2026 dans tout le dépôt : les dix
@@ -89,52 +113,41 @@ export const ClaimDims = z.object({
 export const Claim = z.discriminatedUnion("kind", [ClaimPoidsMax, ClaimPoidsMin, ClaimDims]);
 export type Claim = z.infer<typeof Claim>;
 
-/* ---- L'attestation --------------------------------------------------------------------------- */
+/* ---- L'attestation : un fait, et les morceaux de phrase qui l'établissent -------------------- */
 
-export const Attestation = z.object({
-  claim: Claim,
-  /** LE FRAGMENT EXACT de la citation du canal qui établit ce fait, recopié tel quel.
-   *  Dix caractères au moins : « 8 kg » seul ne montre pas ce qu'il qualifie. */
-  excerpt: z.string().min(10),
+/** UN POIDS ATTESTÉ. Les fragments sont nommés parce qu'ils sont vérifiés séparément. */
+export const AttestationPoids = z.object({
+  claim: z.discriminatedUnion("kind", [ClaimPoidsMax, ClaimPoidsMin]),
+  /** La valeur AVEC son unité, telle que la phrase l'écrit — « 8 kg », « 75 kg/165.35 lb. ». */
+  poids: z.string().min(3),
+  /** La tournure de direction, collée à ce poids — « moins de 8 kg », « up to 75 kg ». */
+  borne: z.string().min(4),
+  /** Ce qui est pesé. Présent SI ET SEULEMENT SI `claim.subject` l'est. */
+  sujet: z.string().min(3).optional(),
 }).strict();
+
+/** DES DIMENSIONS ATTESTÉES — un seul fragment, qui doit porter les trois nombres et leur unité. */
+export const AttestationDims = z.object({
+  claim: ClaimDims,
+  dimensions: z.string().min(5),
+}).strict();
+
+export const Attestation = z.union([AttestationPoids, AttestationDims]);
 export type Attestation = z.infer<typeof Attestation>;
 
 /** Les espaces et les apostrophes typographiques ne doivent pas faire échouer un rattachement
  *  juste. On normalise les DEUX côtés de la même façon, et rien d'autre : ni casse, ni accents,
  *  ni ponctuation — sans quoi la comparaison cesserait de prouver que le fragment vient bien
  *  de la phrase. */
-const normaliser = (s: string) => s.replace(/[  \s]+/g, " ").replace(/[’‘]/g, "'").trim();
+const normaliser = (s: string) => s.replace(/[  \s]+/g, " ").replace(/[’‘]/g, "'").trim();
 
 /** LE FRAGMENT VIENT-IL DE LA PHRASE ? C'est la garantie mécanique du rattachement. */
 export const extraitVientDeLaCitation = (excerpt: string, quote: string | undefined): boolean =>
   typeof quote === "string" && normaliser(quote).includes(normaliser(excerpt));
 
-/** LES NOMBRES QUE PORTE UN FRAGMENT, en jetons distincts.
- *
- *  *Trou refermé le 11/09, trouvé par mon propre sabotage.* La première version de cette garde ne
- *  vérifiait qu'une chose : que l'extrait soit une SOUS-CHAÎNE de la citation. Le sabotage exigé par
- *  Codex — « ajouter une dimension non présente dans la citation doit faire rougir » — passait donc
- *  au vert : j'avais rattaché `46 × 28 × 24 cm` au fragment « sac de transport compris », qui vient
- *  bien de la phrase Air France mais ne dit rien de ces trois nombres. Prouver la PROVENANCE d'un
- *  fragment ne prouve pas qu'il porte le fait. Les deux contrôles sont maintenant distincts.
- *
- *  `17.64` ne contient pas le jeton `8` : les nombres sont découpés, jamais cherchés en sous-chaîne. */
-const nombresDe = (s: string): number[] =>
-  (s.match(/\d+(?:[.,]\d+)?/g) ?? []).map((x) => Number(x.replace(",", ".")));
-
-/** LES VALEURS ANNONCÉES PAR UNE CLAIM — celles que le fragment doit porter. */
-const valeursDe = (c: Claim): number[] =>
-  c.kind === "carrier_dims_cm" ? [c.l, c.w, c.h] : [c.kg];
-
-/** LE FRAGMENT PORTE-T-IL les nombres qu'il prétend établir ? */
-export const extraitPorteLesValeurs = (excerpt: string, claim: Claim): boolean => {
-  const vus = nombresDe(excerpt);
-  return valeursDe(claim).every((v) => vus.includes(v));
-};
-
-/* ---- LA SÉMANTIQUE DU FAIT, LUE DANS LE FRAGMENT ------------------------------------------- */
+/* ---- LA SÉMANTIQUE DU FAIT, LUE DANS SES FRAGMENTS ------------------------------------------ */
 /**
- * P0 REPRODUIT PAR CODEX SUR `80e3ce6`, ET REFERMÉ ICI — quatre faux verts, un seul défaut.
+ * P0 REPRODUIT PAR CODEX SUR `80e3ce6`, PUIS RENFORCÉ APRÈS `4443653` — une seule leçon.
  *
  * J'avais NOMMÉ cette limite dans mon propre dossier (« `includes_carrier` et le sens d'une borne
  * ne sont pas vérifiables depuis les nombres de l'extrait »), puis livré comme si la nommer
@@ -147,18 +160,16 @@ export const extraitPorteLesValeurs = (excerpt: string, claim: Claim): boolean =
  *   3. le « 8 » d'une DATE passait pour un poids de 8 kg ;
  *   4. le « 75 » d'un NUMÉRO DE VOL passait pour 75 kg.
  *
- * La garde prouvait la PRÉSENCE du fragment et la PRÉSENCE du nombre. Aucune des deux ne dit ce que
- * le nombre qualifie ni dans quel sens. Trois exigences s'ajoutent donc, et elles portent sur le
- * fragment lui-même :
+ * La première correction a ajouté ces trois contrôles à l'intérieur d'un fragment unique. Codex a
+ * répondu que « à l'intérieur du même fragment » n'est pas un rattachement : chaque composant doit
+ * être attaché séparément, et c'est ce que ce fichier fait maintenant.
  *
- *   · LE NOMBRE EST UN POIDS. La valeur annoncée doit être suivie d'une unité de MASSE MÉTRIQUE
- *     dans le fragment. Une date (`2026-09-08`), un numéro de vol (`AF75`), un âge ou un délai n'en
- *     portent pas — les cas 3 et 4 tombent tous les deux ici.
- *   · LA BORNE EST DITE. Un marqueur de direction compatible avec `bound` doit PRÉCÉDER ce poids,
- *     à portée de lecture. « up to » n'établit pas `lt`, « moins de » n'établit pas `lte`.
- *   · LE SUJET PESÉ EST DIT. `includes_carrier: true` exige un mot de contenant dans le fragment ;
- *     `false` exige qu'il n'y en ait AUCUN — on ne peut pas affirmer qu'un seuil exclut le sac
- *     dans une phrase qui parle du sac.
+ *   · LE NOMBRE EST UN POIDS. Le fragment `poids` doit porter la valeur suivie d'une unité de MASSE
+ *     MÉTRIQUE. Une date, un numéro de vol, un âge ou un délai n'en portent pas.
+ *   · LA BORNE EST DITE. Le fragment `borne` doit porter un marqueur de direction compatible,
+ *     immédiatement suivi de CE poids. Les deux sont liés par construction, pas par voisinage.
+ *   · LE SUJET EST DIT, OU N'EST PAS AFFIRMÉ. Le fragment `sujet` n'existe que si la phrase le dit,
+ *     et alors il doit nommer un contenant, ou dire explicitement que le chien est pesé seul.
  *
  * POURQUOI DES MARQUEURS ET NON UNE ANALYSE. Ce n'est pas de la compréhension de texte : c'est une
  * liste FERMÉE de tournures, écrite dans les quatre langues du dépôt, qui REFUSE tout ce qu'elle ne
@@ -166,8 +177,8 @@ export const extraitPorteLesValeurs = (excerpt: string, claim: Claim): boolean =
  * rejetée, et c'est la relecture humaine qui tranche. Le silence est le défaut, jamais l'accord.
  *
  * LES NÉGATIONS SONT PIÉGÉES EXPRÈS. « no more than 8 kg » contient « more than » : un marqueur de
- * plancher dans une phrase qui dit un plafond. Les marqueurs stricts sont donc refusés dès qu'une
- * négation les précède immédiatement.
+ * plancher dans une phrase qui dit un plafond. Les marqueurs sont donc refusés dès qu'une négation
+ * les précède immédiatement.
  */
 
 /** Casse et accents sont neutralisés POUR CETTE LECTURE SEULEMENT — la garde de provenance, elle,
@@ -207,6 +218,14 @@ const CONTENANTS = ["carrier", "container", "carry-on bag", "bag", "crate", "ken
   "transportin", "bolso", "bolsa", "jaula", "caja", "cesta",
   "caixa", "transportadora"];
 
+/** Les tournures qui disent EXPLICITEMENT que le chien est pesé SEUL. Elles sont rares, et c'est
+ *  normal : une source qui ne le dit pas ne l'établit pas, et alors rien n'est affiché. */
+const CHIEN_SEUL = ["alone", "excluding", "not including", "without the", "excluding the",
+  "pet alone", "dog alone", "animal alone",
+  "seul", "sans le", "sans sa", "hors contenant", "hors sac", "non compris", "non comprise",
+  "solo", "sin el", "sin la", "no incluido", "no incluida",
+  "sozinho", "sem a", "sem o", "nao incluido", "nao incluida", "apenas o"];
+
 const echapper = (s: string) => s.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
 
 /** Le nombre, écrit comme le fragment peut l'écrire : « 8 », « 8.0 », « 8,0 ». */
@@ -221,43 +240,60 @@ const valeurEstUnPoids = (plat: string, kg: number) =>
 
 /** LE FRAGMENT DIT-IL LA DIRECTION DE LA BORNE, juste avant ce poids ?
  *
- *  « à portée de lecture » = au plus 40 caractères, sans franchir une fin de proposition. Sans
- *  cette limite, « more than 8 kg … and up to 75 kg » validerait n'importe quelle borne sur
- *  n'importe laquelle de ses deux valeurs. */
+ *  « juste avant » = au plus 20 caractères, sans franchir une fin de proposition. Sans cette
+ *  limite, « more than 8 kg … and up to 75 kg » validerait n'importe quelle borne sur n'importe
+ *  laquelle de ses deux valeurs. */
 const borneEstDite = (plat: string, kg: number, bound: "lt" | "lte" | "gt" | "gte") =>
   MARQUEURS[bound].some((m) => new RegExp(
-    `(?<!\\b(?:no|not|non|nao|ne|pas|sans)\\s)${echapper(m)}\\b[^.;:]{0,40}?(?<![\\d.,])${motifNombre(kg)}\\s*${UNITE_MASSE}\\b`,
+    `(?<!\\b(?:no|not|non|nao|ne|pas|sans)\\s)${echapper(m)}\\b[^.;:]{0,20}?(?<![\\d.,])${motifNombre(kg)}\\s*${UNITE_MASSE}\\b`,
   ).test(plat));
 
 /** LE FRAGMENT NOMME-T-IL UN CONTENANT ? */
 const contenantEstDit = (plat: string) =>
-  CONTENANTS.some((c) => new RegExp(`\\b${echapper(c)}\\b`).test(plat));
+  CONTENANTS.some((c) => new RegExp(`\\b${echapper(c)}`).test(plat));
+
+/** LE FRAGMENT DIT-IL EXPLICITEMENT QUE LE CHIEN EST PESÉ SEUL ? */
+const chienSeulEstDit = (plat: string) =>
+  CHIEN_SEUL.some((c) => new RegExp(`\\b${echapper(c)}`).test(plat));
 
 /** LES TROIS DIMENSIONS, DANS L'ORDRE, AVEC LEUR UNITÉ — rien de moins ne prouve un gabarit. */
 const dimensionsSontDites = (plat: string, l: number, w: number, h: number) =>
   new RegExp(`${motifNombre(l)}\\s*[x×]\\s*${motifNombre(w)}\\s*[x×]\\s*${motifNombre(h)}\\s*${UNITE_LONGUEUR}\\b`).test(plat);
 
+/** TOUS LES FRAGMENTS d'une attestation, pour la garde de provenance. */
+export const fragmentsDe = (a: Attestation): string[] =>
+  "dimensions" in a ? [a.dimensions] : [a.poids, a.borne, ...(a.sujet ? [a.sujet] : [])];
+
 /**
- * LA SÉMANTIQUE DU FAIT EST-ELLE DITE PAR LE FRAGMENT ? Rend le motif du refus, ou `null`.
+ * LA SÉMANTIQUE DU FAIT EST-ELLE DITE PAR SES FRAGMENTS ? Rend le motif du refus, ou `null`.
  * Un seul motif est rendu à la fois : le premier manque suffit à éteindre le rattachement.
  */
-export function semantiqueAbsente(excerpt: string, claim: Claim): string | null {
-  const plat = aplatir(excerpt);
-  if (claim.kind === "carrier_dims_cm") {
-    return dimensionsSontDites(plat, claim.l, claim.w, claim.h) ? null
-      : `l'extrait ne dit pas ${claim.l} × ${claim.w} × ${claim.h} comme des dimensions avec leur unité`;
+export function semantiqueAbsente(a: Attestation): string | null {
+  if ("dimensions" in a) {
+    const { l, w, h } = a.claim;
+    return dimensionsSontDites(aplatir(a.dimensions), l, w, h) ? null
+      : `le fragment de dimensions ne dit pas ${l} × ${w} × ${h} avec leur unité`;
   }
-  if (!valeurEstUnPoids(plat, claim.kg)) {
-    return `l'extrait porte bien « ${claim.kg} », mais pas comme un POIDS : aucune unité de masse ne le suit`;
+  const { claim } = a;
+  if (!valeurEstUnPoids(aplatir(a.poids), claim.kg)) {
+    return `le fragment « ${a.poids} » ne porte pas ${claim.kg} comme un POIDS : aucune unité de masse ne le suit`;
   }
-  if (!borneEstDite(plat, claim.kg, claim.bound)) {
-    return `l'extrait ne dit pas la borne « ${claim.bound} » devant ${claim.kg} kg — aucune tournure reconnue de la liste fermée`;
+  if (!borneEstDite(aplatir(a.borne), claim.kg, claim.bound)) {
+    return `le fragment « ${a.borne} » ne dit pas la borne « ${claim.bound} » devant ${claim.kg} kg — aucune tournure reconnue de la liste fermée`;
   }
-  if (claim.includes_carrier && !contenantEstDit(plat)) {
-    return `l'attestation annonce un seuil CONTENANT COMPRIS, mais l'extrait ne nomme aucun contenant`;
+  /* LE SUJET EST DÉCLARÉ ET ATTESTÉ ENSEMBLE, OU PAS DU TOUT. Un fait sans fragment de sujet ne
+     peut pas nommer ce qui est pesé ; un fragment de sujet sans fait déclaré ne sert à rien. */
+  if (claim.subject && !a.sujet) {
+    return `l'attestation annonce le sujet pesé « ${claim.subject} » sans le rattacher à aucun fragment`;
   }
-  if (!claim.includes_carrier && contenantEstDit(plat)) {
-    return `l'attestation annonce un seuil sur le chien SEUL, mais l'extrait parle d'un contenant`;
+  if (a.sujet && !claim.subject) {
+    return `un fragment de sujet est rattaché, mais l'attestation ne déclare aucun sujet pesé`;
+  }
+  if (claim.subject === "dog_plus_carrier" && !contenantEstDit(aplatir(a.sujet as string))) {
+    return `l'attestation annonce un seuil CONTENANT COMPRIS, mais le fragment « ${a.sujet} » ne nomme aucun contenant`;
+  }
+  if (claim.subject === "dog_alone" && !chienSeulEstDit(aplatir(a.sujet as string))) {
+    return `l'attestation annonce un seuil sur le chien SEUL, mais le fragment « ${a.sujet} » ne le dit pas explicitement`;
   }
   return null;
 }
@@ -276,18 +312,33 @@ export type ChampsStructures = {
   carrier_dims_cm?: { l: number; w: number; h: number };
 };
 
+/** LE SUJET DÉCLARÉ CONCORDE-T-IL avec le champ structuré ?
+ *
+ *  *P0 de Codex.* `weight_includes_carrier` ABSENT valait `false`, et « chien seul » s'affichait.
+ *  Aucune valeur par défaut n'est plus lue : un sujet attesté exige que le champ le DISE, dans le
+ *  même sens ; un sujet non attesté n'exige rien et ne publie rien. */
+function desaccordSujet(subject: SujetPese | undefined, champ: boolean | undefined): string | null {
+  if (subject === undefined) return null;
+  const attendu = subject === "dog_plus_carrier";
+  if (champ === undefined) {
+    return `l'attestation dit « ${subject} », mais la politique ne porte AUCUN weight_includes_carrier — l'absence ne vaut ni oui ni non`;
+  }
+  if (champ !== attendu) {
+    return `sujet pesé : la politique dit weight_includes_carrier=${String(champ)}, l'attestation « ${subject} »`;
+  }
+  return null;
+}
+
 export function desaccord(claim: Claim, p: ChampsStructures): string | null {
   if (claim.kind === "weight_max") {
     if (p.max_weight_kg !== claim.kg) return `la politique porte max_weight_kg=${String(p.max_weight_kg)}, l'attestation annonce ${claim.kg}`;
     if ((p.weight_limit_bound ?? "lte") !== claim.bound) return `borne du plafond : la politique dit ${p.weight_limit_bound ?? "lte"}, l'attestation ${claim.bound}`;
-    if ((p.weight_includes_carrier ?? false) !== claim.includes_carrier) return `inclusion du contenant : la politique dit ${String(p.weight_includes_carrier ?? false)}, l'attestation ${String(claim.includes_carrier)}`;
-    return null;
+    return desaccordSujet(claim.subject, p.weight_includes_carrier);
   }
   if (claim.kind === "weight_min") {
     if (p.min_weight_kg !== claim.kg) return `la politique porte min_weight_kg=${String(p.min_weight_kg)}, l'attestation annonce ${claim.kg}`;
     if ((p.weight_min_bound ?? "gte") !== claim.bound) return `borne du plancher : la politique dit ${p.weight_min_bound ?? "gte"}, l'attestation ${claim.bound}`;
-    if ((p.weight_includes_carrier ?? false) !== claim.includes_carrier) return `inclusion du contenant : la politique dit ${String(p.weight_includes_carrier ?? false)}, l'attestation ${String(claim.includes_carrier)}`;
-    return null;
+    return desaccordSujet(claim.subject, p.weight_includes_carrier);
   }
   const d = p.carrier_dims_cm;
   if (!d) return "la politique ne porte aucune dimension de contenant";
@@ -303,15 +354,17 @@ export function motifsDeRefus(
 ): string[] {
   const motifs: string[] = [];
   (attestations ?? []).forEach((a, i) => {
-    if (!extraitVientDeLaCitation(a.excerpt, quote)) {
-      motifs.push(`attestations[${i}] : l'extrait « ${a.excerpt.slice(0, 60)} » ne se trouve pas dans la citation de ce canal`);
+    let provenanceCassee = false;
+    for (const f of fragmentsDe(a)) {
+      if (!extraitVientDeLaCitation(f, quote)) {
+        motifs.push(`attestations[${i}] : le fragment « ${f.slice(0, 60)} » ne se trouve pas dans la citation de ce canal`);
+        provenanceCassee = true;
+      }
     }
-    if (!extraitPorteLesValeurs(a.excerpt, a.claim)) {
-      motifs.push(`attestations[${i}] : l'extrait « ${a.excerpt.slice(0, 60)} » ne porte pas ${valeursDe(a.claim).join(", ")} — un fragment venu de la phrase ne prouve pas pour autant ce fait`);
-    } else {
-      /* La sémantique n'est demandée que si les nombres sont là : deux motifs sur le même manque
-         diraient deux fois la même chose et cacheraient le vrai. */
-      const sem = semantiqueAbsente(a.excerpt, a.claim);
+    /* La sémantique n'est demandée que si les fragments viennent bien de la phrase : deux motifs
+       sur le même manque diraient deux fois la même chose et cacheraient le vrai. */
+    if (!provenanceCassee) {
+      const sem = semantiqueAbsente(a);
       if (sem) motifs.push(`attestations[${i}] : ${sem}`);
     }
     const d = desaccord(a.claim, champs);
@@ -320,6 +373,18 @@ export function motifsDeRefus(
   const kinds = (attestations ?? []).map((a) => a.claim.kind);
   if (new Set(kinds).size !== kinds.length) motifs.push("deux attestations portent le même type de fait");
   return motifs;
+}
+
+/** LES FAITS RÉELLEMENT ATTESTÉS d'une politique — la seule source de la synthèse localisée.
+ *  Rend une liste vide dès qu'un motif de refus existe : on ne publie pas la moitié d'un
+ *  rattachement cassé. */
+export function faitsAttestes(
+  attestations: readonly Attestation[] | undefined,
+  quote: string | undefined,
+  champs: ChampsStructures,
+): Claim[] {
+  if (!attestations || attestations.length === 0) return [];
+  return motifsDeRefus(attestations, quote, champs).length === 0 ? attestations.map((a) => a.claim) : [];
 }
 
 /**
@@ -346,15 +411,3 @@ export const gardeAttestations = (
     ctx.addIssue({ code: "custom", path: ["attestations"], message: m });
   }
 };
-
-/** LES FAITS RÉELLEMENT ATTESTÉS d'une politique — la seule source de la synthèse localisée.
- *  Rend une liste vide dès qu'un motif de refus existe : on ne publie pas la moitié d'un
- *  rattachement cassé. */
-export function faitsAttestes(
-  attestations: readonly Attestation[] | undefined,
-  quote: string | undefined,
-  champs: ChampsStructures,
-): Claim[] {
-  if (!attestations || attestations.length === 0) return [];
-  return motifsDeRefus(attestations, quote, champs).length === 0 ? attestations.map((a) => a.claim) : [];
-}
