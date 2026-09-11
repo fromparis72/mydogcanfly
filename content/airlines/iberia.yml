@@ -69,71 +69,95 @@ ladder:
     sub: "> 45 kg"
 policies:
   cabin:
-    # TARIFS OFFICIELS — audit indépendant du 2026-09-10 ; aucune valeur héritée réactivée.
+    # TARIFS OFFICIELS — grille complète relue le 2026-09-11 sur la page française.
+    # Chaque case reste une ligne distincte : zone, direct/correspondance et achat en ligne/aéroport
+    # ne sont pas interchangeables. Faute de ces deux derniers faits dans le Finder, la grille est
+    # présentée comme une amplitude officielle et aucun montant n'est attribué à tort au trajet.
     fares:
-      - id: fare_iberia_cabin_eur_2026_09_10
+      - id: fare_iberia_cabin_es_direct_online_2026_09_11
         placement: cabin
-        price:
-          kind: exact
-          amounts:
-            - amount: 40
-              currency: EUR
+        price: { kind: matrix, amounts: [{ amount: 40, currency: EUR }, { amount: 50, currency: USD }, { amount: 35, currency: GBP }] }
         billing_subject: container
-        journey_basis: per_segment
-        scope_label: zones publiées → zones publiées
-        source:
-          url: https://www.iberia.com/gb/fly-with-iberia/pets/
-          source_type: official_website
-          verified_date: 2026-09-10
-          review_due: 2026-12-09
-          confidence: 4
-          reviewer: Codex — lecture directe de la source officielle
-          history: []
-          quote: "Online: EUR40/USD50/GBP35"
-          quote_language: en
-          locator: Fees for pets travelling in the cabin → Spain → Per segment
-      - id: fare_iberia_cabin_usd_2026_09_10
+        journey_basis: per_journey
+        scope_label: Espagne hors Canaries · direct · en ligne
+        source: { url: "https://www.iberia.com/fr/voyager-avec-iberia/animaux/#AVIH", source_type: official_website, verified_date: 2026-09-11, review_due: 2026-12-10, confidence: 4, reviewer: "Codex — lecture directe de la page officielle", history: [], quote: "En ligne : 40 EUR/50 USD/35 GBP", quote_language: fr, locator: "Frais de transport d'animaux de compagnie en cabine → Par trajet → Espagne (sauf les Canaries)" }
+      - id: fare_iberia_cabin_es_direct_airport_2026_09_11
         placement: cabin
-        price:
-          kind: exact
-          amounts:
-            - amount: 50
-              currency: USD
+        price: { kind: matrix, amounts: [{ amount: 44, currency: EUR }, { amount: 55, currency: USD }, { amount: 40, currency: GBP }] }
         billing_subject: container
-        journey_basis: per_segment
-        scope_label: zones publiées → zones publiées
-        source:
-          url: https://www.iberia.com/gb/fly-with-iberia/pets/
-          source_type: official_website
-          verified_date: 2026-09-10
-          review_due: 2026-12-09
-          confidence: 4
-          reviewer: Codex — lecture directe de la source officielle
-          history: []
-          quote: "Online: EUR40/USD50/GBP35"
-          quote_language: en
-          locator: Fees for pets travelling in the cabin → Spain → Per segment
-      - id: fare_iberia_cabin_gbp_2026_09_10
+        journey_basis: per_journey
+        scope_label: Espagne hors Canaries · direct · aéroport
+        source: { url: "https://www.iberia.com/fr/voyager-avec-iberia/animaux/#AVIH", source_type: official_website, verified_date: 2026-09-11, review_due: 2026-12-10, confidence: 4, reviewer: "Codex — lecture directe de la page officielle", history: [], quote: "Aéroport : 44 EUR/55 USD/40 GBP", quote_language: fr, locator: "Frais de transport d'animaux de compagnie en cabine → Par trajet → Espagne (sauf les Canaries)" }
+      - id: fare_iberia_cabin_mid_direct_online_2026_09_11
         placement: cabin
-        price:
-          kind: exact
-          amounts:
-            - amount: 35
-              currency: GBP
+        price: { kind: matrix, amounts: [{ amount: 60, currency: EUR }, { amount: 75, currency: USD }, { amount: 55, currency: GBP }] }
         billing_subject: container
-        journey_basis: per_segment
-        scope_label: zones publiées → zones publiées
-        source:
-          url: https://www.iberia.com/gb/fly-with-iberia/pets/
-          source_type: official_website
-          verified_date: 2026-09-10
-          review_due: 2026-12-09
-          confidence: 4
-          reviewer: Codex — lecture directe de la source officielle
-          history: []
-          quote: "Online: EUR40/USD50/GBP35"
-          quote_language: en
-          locator: Fees for pets travelling in the cabin → Spain → Per segment
+        journey_basis: per_journey
+        scope_label: Canaries, Europe, Afrique du Nord, Israël · direct · en ligne
+        source: { url: "https://www.iberia.com/fr/voyager-avec-iberia/animaux/#AVIH", source_type: official_website, verified_date: 2026-09-11, review_due: 2026-12-10, confidence: 4, reviewer: "Codex — lecture directe de la page officielle", history: [], quote: "En ligne : 60 EUR/75 USD/55 GBP", quote_language: fr, locator: "Frais de transport d'animaux de compagnie en cabine → Par trajet → Canaries, Europe, Afrique du Nord et Israël" }
+      - id: fare_iberia_cabin_mid_direct_airport_2026_09_11
+        placement: cabin
+        price: { kind: matrix, amounts: [{ amount: 66, currency: EUR }, { amount: 80, currency: USD }, { amount: 60, currency: GBP }] }
+        billing_subject: container
+        journey_basis: per_journey
+        scope_label: Canaries, Europe, Afrique du Nord, Israël · direct · aéroport
+        source: { url: "https://www.iberia.com/fr/voyager-avec-iberia/animaux/#AVIH", source_type: official_website, verified_date: 2026-09-11, review_due: 2026-12-10, confidence: 4, reviewer: "Codex — lecture directe de la page officielle", history: [], quote: "Aéroport : 66 EUR/80 USD/60 GBP", quote_language: fr, locator: "Frais de transport d'animaux de compagnie en cabine → Par trajet → Canaries, Europe, Afrique du Nord et Israël" }
+      - id: fare_iberia_cabin_long_direct_online_2026_09_11
+        placement: cabin
+        price: { kind: matrix, amounts: [{ amount: 180, currency: EUR }, { amount: 215, currency: USD }, { amount: 160, currency: GBP }] }
+        billing_subject: container
+        journey_basis: per_journey
+        scope_label: Amériques, Asie, Qatar · direct · en ligne
+        source: { url: "https://www.iberia.com/fr/voyager-avec-iberia/animaux/#AVIH", source_type: official_website, verified_date: 2026-09-11, review_due: 2026-12-10, confidence: 4, reviewer: "Codex — lecture directe de la page officielle", history: [], quote: "En ligne : 180 EUR/215 USD/160 GBP", quote_language: fr, locator: "Frais de transport d'animaux de compagnie en cabine → Par trajet → Amériques, Asie et Qatar" }
+      - id: fare_iberia_cabin_long_direct_airport_2026_09_11
+        placement: cabin
+        price: { kind: matrix, amounts: [{ amount: 198, currency: EUR }, { amount: 235, currency: USD }, { amount: 175, currency: GBP }] }
+        billing_subject: container
+        journey_basis: per_journey
+        scope_label: Amériques, Asie, Qatar · direct · aéroport
+        source: { url: "https://www.iberia.com/fr/voyager-avec-iberia/animaux/#AVIH", source_type: official_website, verified_date: 2026-09-11, review_due: 2026-12-10, confidence: 4, reviewer: "Codex — lecture directe de la page officielle", history: [], quote: "Aéroport : 198 EUR/235 USD/175 GBP", quote_language: fr, locator: "Frais de transport d'animaux de compagnie en cabine → Par trajet → Amériques, Asie et Qatar" }
+      - id: fare_iberia_cabin_es_connection_online_2026_09_11
+        placement: cabin
+        price: { kind: matrix, amounts: [{ amount: 60, currency: EUR }, { amount: 75, currency: USD }, { amount: 55, currency: GBP }] }
+        billing_subject: container
+        journey_basis: per_journey
+        scope_label: Espagne hors Canaries · correspondance · en ligne
+        source: { url: "https://www.iberia.com/fr/voyager-avec-iberia/animaux/#AVIH", source_type: official_website, verified_date: 2026-09-11, review_due: 2026-12-10, confidence: 4, reviewer: "Codex — lecture directe de la page officielle", history: [], quote: "En ligne : 60 EUR/75 USD/55 GBP", quote_language: fr, locator: "Frais de transport d'animaux de compagnie en cabine → Vols avec correspondance → Espagne (sauf les Canaries)" }
+      - id: fare_iberia_cabin_es_connection_airport_2026_09_11
+        placement: cabin
+        price: { kind: matrix, amounts: [{ amount: 66, currency: EUR }, { amount: 80, currency: USD }, { amount: 60, currency: GBP }] }
+        billing_subject: container
+        journey_basis: per_journey
+        scope_label: Espagne hors Canaries · correspondance · aéroport
+        source: { url: "https://www.iberia.com/fr/voyager-avec-iberia/animaux/#AVIH", source_type: official_website, verified_date: 2026-09-11, review_due: 2026-12-10, confidence: 4, reviewer: "Codex — lecture directe de la page officielle", history: [], quote: "Aéroport : 66 EUR/80 USD/60 GBP", quote_language: fr, locator: "Frais de transport d'animaux de compagnie en cabine → Vols avec correspondance → Espagne (sauf les Canaries)" }
+      - id: fare_iberia_cabin_mid_connection_online_2026_09_11
+        placement: cabin
+        price: { kind: matrix, amounts: [{ amount: 80, currency: EUR }, { amount: 95, currency: USD }, { amount: 70, currency: GBP }] }
+        billing_subject: container
+        journey_basis: per_journey
+        scope_label: Canaries, Europe, Afrique du Nord, Israël · correspondance · en ligne
+        source: { url: "https://www.iberia.com/fr/voyager-avec-iberia/animaux/#AVIH", source_type: official_website, verified_date: 2026-09-11, review_due: 2026-12-10, confidence: 4, reviewer: "Codex — lecture directe de la page officielle", history: [], quote: "En ligne : 80 EUR/95 USD/70 GBP", quote_language: fr, locator: "Frais de transport d'animaux de compagnie en cabine → Vols avec correspondance → Canaries, Europe, Afrique du Nord et Israël" }
+      - id: fare_iberia_cabin_mid_connection_airport_2026_09_11
+        placement: cabin
+        price: { kind: matrix, amounts: [{ amount: 88, currency: EUR }, { amount: 105, currency: USD }, { amount: 80, currency: GBP }] }
+        billing_subject: container
+        journey_basis: per_journey
+        scope_label: Canaries, Europe, Afrique du Nord, Israël · correspondance · aéroport
+        source: { url: "https://www.iberia.com/fr/voyager-avec-iberia/animaux/#AVIH", source_type: official_website, verified_date: 2026-09-11, review_due: 2026-12-10, confidence: 4, reviewer: "Codex — lecture directe de la page officielle", history: [], quote: "Aéroport : 88 EUR/105 USD/80 GBP", quote_language: fr, locator: "Frais de transport d'animaux de compagnie en cabine → Vols avec correspondance → Canaries, Europe, Afrique du Nord et Israël" }
+      - id: fare_iberia_cabin_long_connection_online_2026_09_11
+        placement: cabin
+        price: { kind: matrix, amounts: [{ amount: 200, currency: EUR }, { amount: 235, currency: USD }, { amount: 175, currency: GBP }] }
+        billing_subject: container
+        journey_basis: per_journey
+        scope_label: Amériques, Asie, Qatar · correspondance · en ligne
+        source: { url: "https://www.iberia.com/fr/voyager-avec-iberia/animaux/#AVIH", source_type: official_website, verified_date: 2026-09-11, review_due: 2026-12-10, confidence: 4, reviewer: "Codex — lecture directe de la page officielle", history: [], quote: "En ligne : 200 EUR/235 USD/175 GBP", quote_language: fr, locator: "Frais de transport d'animaux de compagnie en cabine → Vols avec correspondance → Amériques, Asie et Qatar" }
+      - id: fare_iberia_cabin_long_connection_airport_2026_09_11
+        placement: cabin
+        price: { kind: matrix, amounts: [{ amount: 220, currency: EUR }, { amount: 260, currency: USD }, { amount: 195, currency: GBP }] }
+        billing_subject: container
+        journey_basis: per_journey
+        scope_label: Amériques, Asie, Qatar · correspondance · aéroport
+        source: { url: "https://www.iberia.com/fr/voyager-avec-iberia/animaux/#AVIH", source_type: official_website, verified_date: 2026-09-11, review_due: 2026-12-10, confidence: 4, reviewer: "Codex — lecture directe de la page officielle", history: [], quote: "Aéroport : 220 EUR/260 USD/195 GBP", quote_language: fr, locator: "Frais de transport d'animaux de compagnie en cabine → Vols avec correspondance → Amériques, Asie et Qatar" }
     availability: offered
     # PREUVE IMPORTÉE — import strict V3 (Codex, lecture directe du 2026-09-08, cohorte A fait 12).
     # Effet attendu : For a 32 kg dog, cabin is not suitable.
@@ -153,29 +177,134 @@ policies:
       quote_language: en
       locator: "Acceptance in the cabin"
   hold:
-    # TARIFS OFFICIELS — audit indépendant du 2026-09-10 ; aucune valeur héritée réactivée.
+    # TARIFS OFFICIELS — 18 cases : trois tranches de poids, trois zones, direct/correspondance.
     fares:
-      - id: fare_iberia_hold_eur_2026_09_10
+      - id: fare_iberia_hold_u10_es_direct_2026_09_11
         placement: hold
-        price:
-          kind: minimum
-          amounts:
-            - amount: 90
-              currency: EUR
+        price: { kind: matrix, amounts: [{ amount: 90, currency: EUR }, { amount: 110, currency: USD }, { amount: 80, currency: GBP }] }
         billing_subject: pet_or_container
-        journey_basis: per_segment
-        scope_label: zones publiées → zones publiées
-        source:
-          url: https://www.iberia.com/gb/fly-with-iberia/pets/
-          source_type: official_website
-          verified_date: 2026-09-10
-          review_due: 2026-12-09
-          confidence: 4
-          reviewer: Codex — lecture directe de la source officielle
-          history: []
-          quote: from EUR 90
-          quote_language: en
-          locator: Pets in hold fees
+        journey_basis: per_journey
+        scope_label: ≤10 kg · Espagne hors Canaries · direct
+        source: { url: "https://www.iberia.com/fr/voyager-avec-iberia/animaux/#AVIH", source_type: official_website, verified_date: 2026-09-11, review_due: 2026-12-10, confidence: 4, reviewer: "Codex — lecture directe de la page officielle", history: [], quote: "Par trajet : 90 EUR/110 USD/80 GBP", quote_language: fr, locator: "Frais pour le transport en soute → Jusqu'à 10 kg → Espagne (sauf les Canaries)" }
+      - id: fare_iberia_hold_u10_es_connection_2026_09_11
+        placement: hold
+        price: { kind: matrix, amounts: [{ amount: 120, currency: EUR }, { amount: 145, currency: USD }, { amount: 105, currency: GBP }] }
+        billing_subject: pet_or_container
+        journey_basis: per_journey
+        scope_label: ≤10 kg · Espagne hors Canaries · correspondance
+        source: { url: "https://www.iberia.com/fr/voyager-avec-iberia/animaux/#AVIH", source_type: official_website, verified_date: 2026-09-11, review_due: 2026-12-10, confidence: 4, reviewer: "Codex — lecture directe de la page officielle", history: [], quote: "Avec correspondance : 120 EUR/145 USD/105 GBP", quote_language: fr, locator: "Frais pour le transport en soute → Jusqu'à 10 kg → Espagne (sauf les Canaries)" }
+      - id: fare_iberia_hold_u10_mid_direct_2026_09_11
+        placement: hold
+        price: { kind: matrix, amounts: [{ amount: 135, currency: EUR }, { amount: 160, currency: USD }, { amount: 120, currency: GBP }] }
+        billing_subject: pet_or_container
+        journey_basis: per_journey
+        scope_label: ≤10 kg · Canaries, Europe, Afrique du Nord, Israël · direct
+        source: { url: "https://www.iberia.com/fr/voyager-avec-iberia/animaux/#AVIH", source_type: official_website, verified_date: 2026-09-11, review_due: 2026-12-10, confidence: 4, reviewer: "Codex — lecture directe de la page officielle", history: [], quote: "Par trajet : 135 EUR/160 USD/120 GBP", quote_language: fr, locator: "Frais pour le transport en soute → Jusqu'à 10 kg → Canaries, Europe, Afrique du Nord et Israël" }
+      - id: fare_iberia_hold_u10_mid_connection_2026_09_11
+        placement: hold
+        price: { kind: matrix, amounts: [{ amount: 160, currency: EUR }, { amount: 190, currency: USD }, { amount: 140, currency: GBP }] }
+        billing_subject: pet_or_container
+        journey_basis: per_journey
+        scope_label: ≤10 kg · Canaries, Europe, Afrique du Nord, Israël · correspondance
+        source: { url: "https://www.iberia.com/fr/voyager-avec-iberia/animaux/#AVIH", source_type: official_website, verified_date: 2026-09-11, review_due: 2026-12-10, confidence: 4, reviewer: "Codex — lecture directe de la page officielle", history: [], quote: "Avec correspondance : 160 EUR/190 USD/140 GBP", quote_language: fr, locator: "Frais pour le transport en soute → Jusqu'à 10 kg → Canaries, Europe, Afrique du Nord et Israël" }
+      - id: fare_iberia_hold_u10_long_direct_2026_09_11
+        placement: hold
+        price: { kind: matrix, amounts: [{ amount: 290, currency: EUR }, { amount: 340, currency: USD }, { amount: 255, currency: GBP }] }
+        billing_subject: pet_or_container
+        journey_basis: per_journey
+        scope_label: ≤10 kg · Amériques, Asie, Qatar · direct
+        source: { url: "https://www.iberia.com/fr/voyager-avec-iberia/animaux/#AVIH", source_type: official_website, verified_date: 2026-09-11, review_due: 2026-12-10, confidence: 4, reviewer: "Codex — lecture directe de la page officielle", history: [], quote: "Par trajet : 290 EUR/340 USD/255 GBP", quote_language: fr, locator: "Frais pour le transport en soute → Jusqu'à 10 kg → Amériques, Asie et Qatar" }
+      - id: fare_iberia_hold_u10_long_connection_2026_09_11
+        placement: hold
+        price: { kind: matrix, amounts: [{ amount: 340, currency: EUR }, { amount: 400, currency: USD }, { amount: 300, currency: GBP }] }
+        billing_subject: pet_or_container
+        journey_basis: per_journey
+        scope_label: ≤10 kg · Amériques, Asie, Qatar · correspondance
+        source: { url: "https://www.iberia.com/fr/voyager-avec-iberia/animaux/#AVIH", source_type: official_website, verified_date: 2026-09-11, review_due: 2026-12-10, confidence: 4, reviewer: "Codex — lecture directe de la page officielle", history: [], quote: "Avec correspondance : 340 EUR/400 USD/300 GBP", quote_language: fr, locator: "Frais pour le transport en soute → Jusqu'à 10 kg → Amériques, Asie et Qatar" }
+      - id: fare_iberia_hold_11_25_es_direct_2026_09_11
+        placement: hold
+        price: { kind: matrix, amounts: [{ amount: 100, currency: EUR }, { amount: 120, currency: USD }, { amount: 90, currency: GBP }] }
+        billing_subject: pet_or_container
+        journey_basis: per_journey
+        scope_label: 11–25 kg · Espagne hors Canaries · direct
+        source: { url: "https://www.iberia.com/fr/voyager-avec-iberia/animaux/#AVIH", source_type: official_website, verified_date: 2026-09-11, review_due: 2026-12-10, confidence: 4, reviewer: "Codex — lecture directe de la page officielle", history: [], quote: "Par trajet : 100 EUR/120 USD/90 GBP", quote_language: fr, locator: "Frais pour le transport en soute → Entre 11 et 25 kg → Espagne (sauf les Canaries)" }
+      - id: fare_iberia_hold_11_25_es_connection_2026_09_11
+        placement: hold
+        price: { kind: matrix, amounts: [{ amount: 130, currency: EUR }, { amount: 155, currency: USD }, { amount: 115, currency: GBP }] }
+        billing_subject: pet_or_container
+        journey_basis: per_journey
+        scope_label: 11–25 kg · Espagne hors Canaries · correspondance
+        source: { url: "https://www.iberia.com/fr/voyager-avec-iberia/animaux/#AVIH", source_type: official_website, verified_date: 2026-09-11, review_due: 2026-12-10, confidence: 4, reviewer: "Codex — lecture directe de la page officielle", history: [], quote: "Avec correspondance : 130 EUR/155 USD/115 GBP", quote_language: fr, locator: "Frais pour le transport en soute → Entre 11 et 25 kg → Espagne (sauf les Canaries)" }
+      - id: fare_iberia_hold_11_25_mid_direct_2026_09_11
+        placement: hold
+        price: { kind: matrix, amounts: [{ amount: 145, currency: EUR }, { amount: 170, currency: USD }, { amount: 130, currency: GBP }] }
+        billing_subject: pet_or_container
+        journey_basis: per_journey
+        scope_label: 11–25 kg · Canaries, Europe, Afrique du Nord, Israël · direct
+        source: { url: "https://www.iberia.com/fr/voyager-avec-iberia/animaux/#AVIH", source_type: official_website, verified_date: 2026-09-11, review_due: 2026-12-10, confidence: 4, reviewer: "Codex — lecture directe de la page officielle", history: [], quote: "Par trajet : 145 EUR/170 USD/130 GBP", quote_language: fr, locator: "Frais pour le transport en soute → Entre 11 et 25 kg → Canaries, Europe, Afrique du Nord et Israël" }
+      - id: fare_iberia_hold_11_25_mid_connection_2026_09_11
+        placement: hold
+        price: { kind: matrix, amounts: [{ amount: 170, currency: EUR }, { amount: 200, currency: USD }, { amount: 150, currency: GBP }] }
+        billing_subject: pet_or_container
+        journey_basis: per_journey
+        scope_label: 11–25 kg · Canaries, Europe, Afrique du Nord, Israël · correspondance
+        source: { url: "https://www.iberia.com/fr/voyager-avec-iberia/animaux/#AVIH", source_type: official_website, verified_date: 2026-09-11, review_due: 2026-12-10, confidence: 4, reviewer: "Codex — lecture directe de la page officielle", history: [], quote: "Avec correspondance : 170 EUR/200 USD/150 GBP", quote_language: fr, locator: "Frais pour le transport en soute → Entre 11 et 25 kg → Canaries, Europe, Afrique du Nord et Israël" }
+      - id: fare_iberia_hold_11_25_long_direct_2026_09_11
+        placement: hold
+        price: { kind: matrix, amounts: [{ amount: 310, currency: EUR }, { amount: 365, currency: USD }, { amount: 270, currency: GBP }] }
+        billing_subject: pet_or_container
+        journey_basis: per_journey
+        scope_label: 11–25 kg · Amériques, Asie, Qatar · direct
+        source: { url: "https://www.iberia.com/fr/voyager-avec-iberia/animaux/#AVIH", source_type: official_website, verified_date: 2026-09-11, review_due: 2026-12-10, confidence: 4, reviewer: "Codex — lecture directe de la page officielle", history: [], quote: "Par trajet : 310 EUR/365 USD/270 GBP", quote_language: fr, locator: "Frais pour le transport en soute → Entre 11 et 25 kg → Amériques, Asie et Qatar" }
+      - id: fare_iberia_hold_11_25_long_connection_2026_09_11
+        placement: hold
+        price: { kind: matrix, amounts: [{ amount: 360, currency: EUR }, { amount: 425, currency: USD }, { amount: 315, currency: GBP }] }
+        billing_subject: pet_or_container
+        journey_basis: per_journey
+        scope_label: 11–25 kg · Amériques, Asie, Qatar · correspondance
+        source: { url: "https://www.iberia.com/fr/voyager-avec-iberia/animaux/#AVIH", source_type: official_website, verified_date: 2026-09-11, review_due: 2026-12-10, confidence: 4, reviewer: "Codex — lecture directe de la page officielle", history: [], quote: "Avec correspondance : 360 EUR/425 USD/315 GBP", quote_language: fr, locator: "Frais pour le transport en soute → Entre 11 et 25 kg → Amériques, Asie et Qatar" }
+      - id: fare_iberia_hold_26_45_es_direct_2026_09_11
+        placement: hold
+        price: { kind: matrix, amounts: [{ amount: 110, currency: EUR }, { amount: 130, currency: USD }, { amount: 100, currency: GBP }] }
+        billing_subject: pet_or_container
+        journey_basis: per_journey
+        scope_label: 26–45 kg · Espagne hors Canaries · direct
+        source: { url: "https://www.iberia.com/fr/voyager-avec-iberia/animaux/#AVIH", source_type: official_website, verified_date: 2026-09-11, review_due: 2026-12-10, confidence: 4, reviewer: "Codex — lecture directe de la page officielle", history: [], quote: "Par trajet : 110 EUR/130 USD/100 GBP", quote_language: fr, locator: "Frais pour le transport en soute → Entre 26 et 45 kg → Espagne (sauf les Canaries)" }
+      - id: fare_iberia_hold_26_45_es_connection_2026_09_11
+        placement: hold
+        price: { kind: matrix, amounts: [{ amount: 140, currency: EUR }, { amount: 165, currency: USD }, { amount: 125, currency: GBP }] }
+        billing_subject: pet_or_container
+        journey_basis: per_journey
+        scope_label: 26–45 kg · Espagne hors Canaries · correspondance
+        source: { url: "https://www.iberia.com/fr/voyager-avec-iberia/animaux/#AVIH", source_type: official_website, verified_date: 2026-09-11, review_due: 2026-12-10, confidence: 4, reviewer: "Codex — lecture directe de la page officielle", history: [], quote: "Avec correspondance : 140 EUR/165 USD/125 GBP", quote_language: fr, locator: "Frais pour le transport en soute → Entre 26 et 45 kg → Espagne (sauf les Canaries)" }
+      - id: fare_iberia_hold_26_45_mid_direct_2026_09_11
+        placement: hold
+        price: { kind: matrix, amounts: [{ amount: 155, currency: EUR }, { amount: 185, currency: USD }, { amount: 135, currency: GBP }] }
+        billing_subject: pet_or_container
+        journey_basis: per_journey
+        scope_label: 26–45 kg · Canaries, Europe, Afrique du Nord, Israël · direct
+        source: { url: "https://www.iberia.com/fr/voyager-avec-iberia/animaux/#AVIH", source_type: official_website, verified_date: 2026-09-11, review_due: 2026-12-10, confidence: 4, reviewer: "Codex — lecture directe de la page officielle", history: [], quote: "Par trajet : 155 EUR/185 USD/135 GBP", quote_language: fr, locator: "Frais pour le transport en soute → Entre 26 et 45 kg → Canaries, Europe, Afrique du Nord et Israël" }
+      - id: fare_iberia_hold_26_45_mid_connection_2026_09_11
+        placement: hold
+        price: { kind: matrix, amounts: [{ amount: 190, currency: EUR }, { amount: 225, currency: USD }, { amount: 170, currency: GBP }] }
+        billing_subject: pet_or_container
+        journey_basis: per_journey
+        scope_label: 26–45 kg · Canaries, Europe, Afrique du Nord, Israël · correspondance
+        source: { url: "https://www.iberia.com/fr/voyager-avec-iberia/animaux/#AVIH", source_type: official_website, verified_date: 2026-09-11, review_due: 2026-12-10, confidence: 4, reviewer: "Codex — lecture directe de la page officielle", history: [], quote: "Avec correspondance : 190 EUR/225 USD/170 GBP", quote_language: fr, locator: "Frais pour le transport en soute → Entre 26 et 45 kg → Canaries, Europe, Afrique du Nord et Israël" }
+      - id: fare_iberia_hold_26_45_long_direct_2026_09_11
+        placement: hold
+        price: { kind: matrix, amounts: [{ amount: 330, currency: EUR }, { amount: 390, currency: USD }, { amount: 290, currency: GBP }] }
+        billing_subject: pet_or_container
+        journey_basis: per_journey
+        scope_label: 26–45 kg · Amériques, Asie, Qatar · direct
+        source: { url: "https://www.iberia.com/fr/voyager-avec-iberia/animaux/#AVIH", source_type: official_website, verified_date: 2026-09-11, review_due: 2026-12-10, confidence: 4, reviewer: "Codex — lecture directe de la page officielle", history: [], quote: "Par trajet : 330 EUR/390 USD/290 GBP", quote_language: fr, locator: "Frais pour le transport en soute → Entre 26 et 45 kg → Amériques, Asie et Qatar" }
+      - id: fare_iberia_hold_26_45_long_connection_2026_09_11
+        placement: hold
+        price: { kind: matrix, amounts: [{ amount: 385, currency: EUR }, { amount: 455, currency: USD }, { amount: 335, currency: GBP }] }
+        billing_subject: pet_or_container
+        journey_basis: per_journey
+        scope_label: 26–45 kg · Amériques, Asie, Qatar · correspondance
+        source: { url: "https://www.iberia.com/fr/voyager-avec-iberia/animaux/#AVIH", source_type: official_website, verified_date: 2026-09-11, review_due: 2026-12-10, confidence: 4, reviewer: "Codex — lecture directe de la page officielle", history: [], quote: "Avec correspondance : 385 EUR/455 USD/335 GBP", quote_language: fr, locator: "Frais pour le transport en soute → Entre 26 et 45 kg → Amériques, Asie et Qatar" }
     availability: offered
     # PREUVE IMPORTÉE — import strict V3 (Codex, lecture directe du 2026-09-08, cohorte A fait 13).
     # Effet attendu : Show hold offered under conditions.

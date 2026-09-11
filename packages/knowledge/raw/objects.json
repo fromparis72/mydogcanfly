@@ -22586,6 +22586,168 @@
             "availability": "offered",
             "max_weight_kg": 8,
             "weight_includes_carrier": false,
+            "fares": [
+              {
+                "id": "fare_air_europa_cabin_spain_2026_09_11",
+                "placement": "cabin",
+                "price": {
+                  "kind": "matrix",
+                  "amounts": [
+                    {
+                      "amount": 35,
+                      "currency": "EUR"
+                    },
+                    {
+                      "amount": 36,
+                      "currency": "USD"
+                    },
+                    {
+                      "amount": 30,
+                      "currency": "GBP"
+                    },
+                    {
+                      "amount": 35,
+                      "currency": "CHF"
+                    }
+                  ]
+                },
+                "billing_subject": "pet_or_container",
+                "journey_basis": "per_journey",
+                "scope_label": "Espagne péninsulaire et Baléares",
+                "source": {
+                  "url": "https://www.aireuropa.com/be/fr/aea/informations-pour-voler/passagers/animaux-de-compagnie.html",
+                  "source_type": "official_website",
+                  "verified_date": "2026-09-11",
+                  "review_due": "2026-12-10",
+                  "confidence": 4,
+                  "reviewer": "Codex — lecture directe de la grille officielle",
+                  "history": [],
+                  "quote": "EUR 35 USD 36 GBP 30 CHF 35",
+                  "quote_language": "fr",
+                  "locator": "Prix pour les animaux en cabine → national Espagne et Baléares"
+                }
+              },
+              {
+                "id": "fare_air_europa_cabin_medium_2026_09_11",
+                "placement": "cabin",
+                "price": {
+                  "kind": "matrix",
+                  "amounts": [
+                    {
+                      "amount": 50,
+                      "currency": "EUR"
+                    },
+                    {
+                      "amount": 52,
+                      "currency": "USD"
+                    },
+                    {
+                      "amount": 43,
+                      "currency": "GBP"
+                    },
+                    {
+                      "amount": 49,
+                      "currency": "CHF"
+                    }
+                  ]
+                },
+                "billing_subject": "pet_or_container",
+                "journey_basis": "per_journey",
+                "scope_label": "Canaries, Europe, Afrique et intra-Amérique",
+                "source": {
+                  "url": "https://www.aireuropa.com/be/fr/aea/informations-pour-voler/passagers/animaux-de-compagnie.html",
+                  "source_type": "official_website",
+                  "verified_date": "2026-09-11",
+                  "review_due": "2026-12-10",
+                  "confidence": 4,
+                  "reviewer": "Codex — lecture directe de la grille officielle",
+                  "history": [],
+                  "quote": "EUR 50 USD 52 GBP 43 CHF 49",
+                  "quote_language": "fr",
+                  "locator": "Prix pour les animaux en cabine → Canaries, Europe, Afrique et intra-Amérique"
+                }
+              },
+              {
+                "id": "fare_air_europa_cabin_long_listed_2026_09_11",
+                "placement": "cabin",
+                "price": {
+                  "kind": "matrix",
+                  "amounts": [
+                    {
+                      "amount": 150,
+                      "currency": "EUR"
+                    },
+                    {
+                      "amount": 155,
+                      "currency": "USD"
+                    },
+                    {
+                      "amount": 130,
+                      "currency": "GBP"
+                    },
+                    {
+                      "amount": 148,
+                      "currency": "CHF"
+                    }
+                  ]
+                },
+                "billing_subject": "pet_or_container",
+                "journey_basis": "per_journey",
+                "scope_label": "Longue distance · MIA/SDQ/NYC/PUJ/SJO",
+                "source": {
+                  "url": "https://www.aireuropa.com/be/fr/aea/informations-pour-voler/passagers/animaux-de-compagnie.html",
+                  "source_type": "official_website",
+                  "verified_date": "2026-09-11",
+                  "review_due": "2026-12-10",
+                  "confidence": 4,
+                  "reviewer": "Codex — lecture directe de la grille officielle",
+                  "history": [],
+                  "quote": "EUR 150 USD 155 GBP 130 CHF 148",
+                  "quote_language": "fr",
+                  "locator": "Prix pour les animaux en cabine → longue distance → routes listées"
+                }
+              },
+              {
+                "id": "fare_air_europa_cabin_long_other_2026_09_11",
+                "placement": "cabin",
+                "price": {
+                  "kind": "matrix",
+                  "amounts": [
+                    {
+                      "amount": 175,
+                      "currency": "EUR"
+                    },
+                    {
+                      "amount": 181,
+                      "currency": "USD"
+                    },
+                    {
+                      "amount": 152,
+                      "currency": "GBP"
+                    },
+                    {
+                      "amount": 173,
+                      "currency": "CHF"
+                    }
+                  ]
+                },
+                "billing_subject": "pet_or_container",
+                "journey_basis": "per_journey",
+                "scope_label": "Longue distance · autres routes",
+                "source": {
+                  "url": "https://www.aireuropa.com/be/fr/aea/informations-pour-voler/passagers/animaux-de-compagnie.html",
+                  "source_type": "official_website",
+                  "verified_date": "2026-09-11",
+                  "review_due": "2026-12-10",
+                  "confidence": 4,
+                  "reviewer": "Codex — lecture directe de la grille officielle",
+                  "history": [],
+                  "quote": "EUR 175 USD 181 GBP 152 CHF 173",
+                  "quote_language": "fr",
+                  "locator": "Prix pour les animaux en cabine → longue distance → autres routes"
+                }
+              }
+            ],
             "source": {
               "url": "https://www.aireuropa.com/us/en/aea/informacion-para-volar/pasajeros/mascotas.html",
               "source_type": "official_website",
@@ -22602,6 +22764,168 @@
           },
           "hold": {
             "availability": "offered",
+            "fares": [
+              {
+                "id": "fare_air_europa_hold_spain_2026_09_11",
+                "placement": "hold",
+                "price": {
+                  "kind": "matrix",
+                  "amounts": [
+                    {
+                      "amount": 90,
+                      "currency": "EUR"
+                    },
+                    {
+                      "amount": 93,
+                      "currency": "USD"
+                    },
+                    {
+                      "amount": 78,
+                      "currency": "GBP"
+                    },
+                    {
+                      "amount": 89,
+                      "currency": "CHF"
+                    }
+                  ]
+                },
+                "billing_subject": "pet_or_container",
+                "journey_basis": "per_journey",
+                "scope_label": "Espagne péninsulaire et Baléares",
+                "source": {
+                  "url": "https://www.aireuropa.com/be/fr/aea/informations-pour-voler/passagers/animaux-de-compagnie.html",
+                  "source_type": "official_website",
+                  "verified_date": "2026-09-11",
+                  "review_due": "2026-12-10",
+                  "confidence": 4,
+                  "reviewer": "Codex — lecture directe de la grille officielle",
+                  "history": [],
+                  "quote": "EUR 90 USD 93 GBP 78 CHF 89",
+                  "quote_language": "fr",
+                  "locator": "Prix pour les animaux en soute → Péninsule et Iles Baléares"
+                }
+              },
+              {
+                "id": "fare_air_europa_hold_medium_2026_09_11",
+                "placement": "hold",
+                "price": {
+                  "kind": "matrix",
+                  "amounts": [
+                    {
+                      "amount": 150,
+                      "currency": "EUR"
+                    },
+                    {
+                      "amount": 155,
+                      "currency": "USD"
+                    },
+                    {
+                      "amount": 130,
+                      "currency": "GBP"
+                    },
+                    {
+                      "amount": 148,
+                      "currency": "CHF"
+                    }
+                  ]
+                },
+                "billing_subject": "pet_or_container",
+                "journey_basis": "per_journey",
+                "scope_label": "Canaries, Europe, Afrique et intra-Amérique",
+                "source": {
+                  "url": "https://www.aireuropa.com/be/fr/aea/informations-pour-voler/passagers/animaux-de-compagnie.html",
+                  "source_type": "official_website",
+                  "verified_date": "2026-09-11",
+                  "review_due": "2026-12-10",
+                  "confidence": 4,
+                  "reviewer": "Codex — lecture directe de la grille officielle",
+                  "history": [],
+                  "quote": "EUR 150 USD 155 GBP 130 CHF 148",
+                  "quote_language": "fr",
+                  "locator": "Prix pour les animaux en soute → Canaries, Europe, Afrique et intra-Amérique"
+                }
+              },
+              {
+                "id": "fare_air_europa_hold_long_listed_2026_09_11",
+                "placement": "hold",
+                "price": {
+                  "kind": "matrix",
+                  "amounts": [
+                    {
+                      "amount": 300,
+                      "currency": "EUR"
+                    },
+                    {
+                      "amount": 310,
+                      "currency": "USD"
+                    },
+                    {
+                      "amount": 261,
+                      "currency": "GBP"
+                    },
+                    {
+                      "amount": 296,
+                      "currency": "CHF"
+                    }
+                  ]
+                },
+                "billing_subject": "pet_or_container",
+                "journey_basis": "per_journey",
+                "scope_label": "Long-courrier · MIA/SDQ/NYC/PUJ",
+                "source": {
+                  "url": "https://www.aireuropa.com/be/fr/aea/informations-pour-voler/passagers/animaux-de-compagnie.html",
+                  "source_type": "official_website",
+                  "verified_date": "2026-09-11",
+                  "review_due": "2026-12-10",
+                  "confidence": 4,
+                  "reviewer": "Codex — lecture directe de la grille officielle",
+                  "history": [],
+                  "quote": "EUR 300 USD 310 GBP 261 CHF 296",
+                  "quote_language": "fr",
+                  "locator": "Prix pour les animaux en soute → long-courrier → routes listées"
+                }
+              },
+              {
+                "id": "fare_air_europa_hold_long_other_2026_09_11",
+                "placement": "hold",
+                "price": {
+                  "kind": "matrix",
+                  "amounts": [
+                    {
+                      "amount": 350,
+                      "currency": "EUR"
+                    },
+                    {
+                      "amount": 361,
+                      "currency": "USD"
+                    },
+                    {
+                      "amount": 304,
+                      "currency": "GBP"
+                    },
+                    {
+                      "amount": 345,
+                      "currency": "CHF"
+                    }
+                  ]
+                },
+                "billing_subject": "pet_or_container",
+                "journey_basis": "per_journey",
+                "scope_label": "Long-courrier · autres routes",
+                "source": {
+                  "url": "https://www.aireuropa.com/be/fr/aea/informations-pour-voler/passagers/animaux-de-compagnie.html",
+                  "source_type": "official_website",
+                  "verified_date": "2026-09-11",
+                  "review_due": "2026-12-10",
+                  "confidence": 4,
+                  "reviewer": "Codex — lecture directe de la grille officielle",
+                  "history": [],
+                  "quote": "EUR 350 USD 361 GBP 304 CHF 345",
+                  "quote_language": "fr",
+                  "locator": "Prix pour les animaux en soute → long-courrier → autres routes"
+                }
+              }
+            ],
             "brachy_allowed": false,
             "source": {
               "url": "https://www.aireuropa.com/us/en/aea/informacion-para-volar/pasajeros/mascotas.html",
@@ -22793,6 +23117,220 @@
                 "borne": "moins de 8 kg",
                 "sujet": "8 kg, sac de transport compris"
               }
+            ],
+            "fares": [
+              {
+                "id": "fare_air_france_cabin_france_eur_2026_09_11",
+                "placement": "cabin",
+                "price": {
+                  "kind": "matrix",
+                  "amounts": [
+                    {
+                      "amount": 70,
+                      "currency": "EUR"
+                    }
+                  ]
+                },
+                "billing_subject": "container",
+                "journey_basis": "per_one_way",
+                "scope_label": "Vols en France métropolitaine",
+                "source": {
+                  "url": "https://wwws.airfrance.fr/information/passagers/voyager-avec-son-animal-chien-chat",
+                  "source_type": "official_website",
+                  "verified_date": "2026-09-11",
+                  "review_due": "2026-12-10",
+                  "confidence": 4,
+                  "reviewer": "Codex — lecture directe de la grille officielle rendue",
+                  "history": [],
+                  "quote": "En cabine : 70 EUR",
+                  "quote_language": "fr",
+                  "locator": "Tarifs → Vols en France métropolitaine → En cabine"
+                }
+              },
+              {
+                "id": "fare_air_france_cabin_caribbean_eur_2026_09_11",
+                "placement": "cabin",
+                "price": {
+                  "kind": "matrix",
+                  "amounts": [
+                    {
+                      "amount": 125,
+                      "currency": "EUR"
+                    }
+                  ]
+                },
+                "billing_subject": "container",
+                "journey_basis": "per_one_way",
+                "scope_label": "Vols intra Caraïbes",
+                "source": {
+                  "url": "https://wwws.airfrance.fr/information/passagers/voyager-avec-son-animal-chien-chat",
+                  "source_type": "official_website",
+                  "verified_date": "2026-09-11",
+                  "review_due": "2026-12-10",
+                  "confidence": 4,
+                  "reviewer": "Codex — lecture directe de la grille officielle rendue",
+                  "history": [],
+                  "quote": "En cabine : 125 EUR",
+                  "quote_language": "fr",
+                  "locator": "Tarifs → Vols intra Caraïbes → En cabine"
+                }
+              },
+              {
+                "id": "fare_air_france_cabin_europe_north_africa_eur_2026_09_11",
+                "placement": "cabin",
+                "price": {
+                  "kind": "matrix",
+                  "amounts": [
+                    {
+                      "amount": 125,
+                      "currency": "EUR"
+                    }
+                  ]
+                },
+                "billing_subject": "container",
+                "journey_basis": "per_one_way",
+                "scope_label": "Europe ou Europe–Afrique du Nord",
+                "source": {
+                  "url": "https://wwws.airfrance.fr/information/passagers/voyager-avec-son-animal-chien-chat",
+                  "source_type": "official_website",
+                  "verified_date": "2026-09-11",
+                  "review_due": "2026-12-10",
+                  "confidence": 4,
+                  "reviewer": "Codex — lecture directe de la grille officielle rendue",
+                  "history": [],
+                  "quote": "En cabine : 125 EUR",
+                  "quote_language": "fr",
+                  "locator": "Tarifs → Vols en Europe ou entre l'Europe et l'Afrique du Nord → En cabine"
+                }
+              },
+              {
+                "id": "fare_air_france_cabin_france_overseas_eur_2026_09_11",
+                "placement": "cabin",
+                "price": {
+                  "kind": "matrix",
+                  "amounts": [
+                    {
+                      "amount": 125,
+                      "currency": "EUR"
+                    }
+                  ]
+                },
+                "billing_subject": "container",
+                "journey_basis": "per_one_way",
+                "scope_label": "France métropolitaine ↔ Cayenne, Antilles ou La Réunion",
+                "source": {
+                  "url": "https://wwws.airfrance.fr/information/passagers/voyager-avec-son-animal-chien-chat",
+                  "source_type": "official_website",
+                  "verified_date": "2026-09-11",
+                  "review_due": "2026-12-10",
+                  "confidence": 4,
+                  "reviewer": "Codex — lecture directe de la grille officielle rendue",
+                  "history": [],
+                  "quote": "En cabine : 125 EUR",
+                  "quote_language": "fr",
+                  "locator": "Tarifs → France métropolitaine ↔ Cayenne, Fort-de-France, Pointe-à-Pitre ou La Réunion → En cabine"
+                }
+              },
+              {
+                "id": "fare_air_france_cabin_north_america_listed_2026_09_11",
+                "placement": "cabin",
+                "price": {
+                  "kind": "matrix",
+                  "amounts": [
+                    {
+                      "amount": 200,
+                      "currency": "EUR"
+                    },
+                    {
+                      "amount": 200,
+                      "currency": "USD"
+                    },
+                    {
+                      "amount": 200,
+                      "currency": "CAD"
+                    }
+                  ]
+                },
+                "billing_subject": "container",
+                "journey_basis": "per_one_way",
+                "scope_label": "États-Unis/Canada ↔ Europe et destinations listées",
+                "source": {
+                  "url": "https://wwws.airfrance.fr/information/passagers/voyager-avec-son-animal-chien-chat",
+                  "source_type": "official_website",
+                  "verified_date": "2026-09-11",
+                  "review_due": "2026-12-10",
+                  "confidence": 4,
+                  "reviewer": "Codex — lecture directe de la grille officielle rendue",
+                  "history": [],
+                  "quote": "En cabine : 200 EUR/USD/CAD",
+                  "quote_language": "fr",
+                  "locator": "Tarifs → États-Unis/Canada ↔ Europe et destinations listées → En cabine"
+                }
+              },
+              {
+                "id": "fare_air_france_cabin_north_america_world_2026_09_11",
+                "placement": "cabin",
+                "price": {
+                  "kind": "matrix",
+                  "amounts": [
+                    {
+                      "amount": 250,
+                      "currency": "EUR"
+                    },
+                    {
+                      "amount": 250,
+                      "currency": "USD"
+                    },
+                    {
+                      "amount": 250,
+                      "currency": "CAD"
+                    }
+                  ]
+                },
+                "billing_subject": "container",
+                "journey_basis": "per_one_way",
+                "scope_label": "États-Unis/Canada ↔ reste du monde",
+                "source": {
+                  "url": "https://wwws.airfrance.fr/information/passagers/voyager-avec-son-animal-chien-chat",
+                  "source_type": "official_website",
+                  "verified_date": "2026-09-11",
+                  "review_due": "2026-12-10",
+                  "confidence": 4,
+                  "reviewer": "Codex — lecture directe de la grille officielle rendue",
+                  "history": [],
+                  "quote": "En cabine : 250 EUR/USD/CAD",
+                  "quote_language": "fr",
+                  "locator": "Tarifs → États-Unis/Canada ↔ reste du monde → En cabine"
+                }
+              },
+              {
+                "id": "fare_air_france_cabin_other_eur_2026_09_11",
+                "placement": "cabin",
+                "price": {
+                  "kind": "matrix",
+                  "amounts": [
+                    {
+                      "amount": 200,
+                      "currency": "EUR"
+                    }
+                  ]
+                },
+                "billing_subject": "container",
+                "journey_basis": "per_one_way",
+                "scope_label": "Autres vols",
+                "source": {
+                  "url": "https://wwws.airfrance.fr/information/passagers/voyager-avec-son-animal-chien-chat",
+                  "source_type": "official_website",
+                  "verified_date": "2026-09-11",
+                  "review_due": "2026-12-10",
+                  "confidence": 4,
+                  "reviewer": "Codex — lecture directe de la grille officielle rendue",
+                  "history": [],
+                  "quote": "En cabine : 200 EUR",
+                  "quote_language": "fr",
+                  "locator": "Tarifs → Autres vols → En cabine"
+                }
+              }
             ]
           },
           "hold": {
@@ -22841,6 +23379,241 @@
                 "poids": "75 kg",
                 "borne": "up to 75 kg",
                 "sujet": "75 kg/165.35 lb. with its carrier"
+              }
+            ],
+            "fares": [
+              {
+                "id": "fare_air_france_hold_france_eur_2026_09_11",
+                "placement": "hold",
+                "price": {
+                  "kind": "matrix",
+                  "amounts": [
+                    {
+                      "amount": 100,
+                      "currency": "EUR"
+                    }
+                  ]
+                },
+                "billing_subject": "container",
+                "journey_basis": "per_one_way",
+                "scope_label": "Vols en France métropolitaine · jusqu'à 24 h avant le départ",
+                "purchase_window": {
+                  "min_days_before_departure": 1
+                },
+                "source": {
+                  "url": "https://wwws.airfrance.fr/information/passagers/voyager-avec-son-animal-chien-chat",
+                  "source_type": "official_website",
+                  "verified_date": "2026-09-11",
+                  "review_due": "2026-12-10",
+                  "confidence": 4,
+                  "reviewer": "Codex — lecture directe de la grille officielle rendue",
+                  "history": [],
+                  "quote": "En soute : 100 EUR, jusqu'à 24 h avant le départ",
+                  "quote_language": "fr",
+                  "locator": "Tarifs → Vols en France métropolitaine → En soute"
+                }
+              },
+              {
+                "id": "fare_air_france_hold_caribbean_eur_2026_09_11",
+                "placement": "hold",
+                "price": {
+                  "kind": "matrix",
+                  "amounts": [
+                    {
+                      "amount": 200,
+                      "currency": "EUR"
+                    }
+                  ]
+                },
+                "billing_subject": "container",
+                "journey_basis": "per_one_way",
+                "scope_label": "Vols intra Caraïbes · jusqu'à 24 h avant le départ",
+                "purchase_window": {
+                  "min_days_before_departure": 1
+                },
+                "source": {
+                  "url": "https://wwws.airfrance.fr/information/passagers/voyager-avec-son-animal-chien-chat",
+                  "source_type": "official_website",
+                  "verified_date": "2026-09-11",
+                  "review_due": "2026-12-10",
+                  "confidence": 4,
+                  "reviewer": "Codex — lecture directe de la grille officielle rendue",
+                  "history": [],
+                  "quote": "En soute : 200 EUR, jusqu'à 24 h avant le départ",
+                  "quote_language": "fr",
+                  "locator": "Tarifs → Vols intra Caraïbes → En soute"
+                }
+              },
+              {
+                "id": "fare_air_france_hold_europe_north_africa_eur_2026_09_11",
+                "placement": "hold",
+                "price": {
+                  "kind": "matrix",
+                  "amounts": [
+                    {
+                      "amount": 200,
+                      "currency": "EUR"
+                    }
+                  ]
+                },
+                "billing_subject": "container",
+                "journey_basis": "per_one_way",
+                "scope_label": "Europe ou Europe–Afrique du Nord · jusqu'à 24 h avant le départ",
+                "purchase_window": {
+                  "min_days_before_departure": 1
+                },
+                "source": {
+                  "url": "https://wwws.airfrance.fr/information/passagers/voyager-avec-son-animal-chien-chat",
+                  "source_type": "official_website",
+                  "verified_date": "2026-09-11",
+                  "review_due": "2026-12-10",
+                  "confidence": 4,
+                  "reviewer": "Codex — lecture directe de la grille officielle rendue",
+                  "history": [],
+                  "quote": "En soute : 200 EUR, jusqu'à 24 h avant le départ",
+                  "quote_language": "fr",
+                  "locator": "Tarifs → Vols en Europe ou entre l'Europe et l'Afrique du Nord → En soute"
+                }
+              },
+              {
+                "id": "fare_air_france_hold_france_overseas_eur_2026_09_11",
+                "placement": "hold",
+                "price": {
+                  "kind": "matrix",
+                  "amounts": [
+                    {
+                      "amount": 200,
+                      "currency": "EUR"
+                    }
+                  ]
+                },
+                "billing_subject": "container",
+                "journey_basis": "per_one_way",
+                "scope_label": "France métropolitaine ↔ Cayenne, Antilles ou La Réunion · jusqu'à 24 h avant le départ",
+                "purchase_window": {
+                  "min_days_before_departure": 1
+                },
+                "source": {
+                  "url": "https://wwws.airfrance.fr/information/passagers/voyager-avec-son-animal-chien-chat",
+                  "source_type": "official_website",
+                  "verified_date": "2026-09-11",
+                  "review_due": "2026-12-10",
+                  "confidence": 4,
+                  "reviewer": "Codex — lecture directe de la grille officielle rendue",
+                  "history": [],
+                  "quote": "En soute : 200 EUR, jusqu'à 24 h avant le départ",
+                  "quote_language": "fr",
+                  "locator": "Tarifs → France métropolitaine ↔ Cayenne, Fort-de-France, Pointe-à-Pitre ou La Réunion → En soute"
+                }
+              },
+              {
+                "id": "fare_air_france_hold_north_america_listed_2026_09_11",
+                "placement": "hold",
+                "price": {
+                  "kind": "matrix",
+                  "amounts": [
+                    {
+                      "amount": 600,
+                      "currency": "EUR"
+                    },
+                    {
+                      "amount": 600,
+                      "currency": "USD"
+                    },
+                    {
+                      "amount": 600,
+                      "currency": "CAD"
+                    }
+                  ]
+                },
+                "billing_subject": "container",
+                "journey_basis": "per_one_way",
+                "scope_label": "États-Unis/Canada ↔ Europe et destinations listées · jusqu'à 24 h avant le départ",
+                "purchase_window": {
+                  "min_days_before_departure": 1
+                },
+                "source": {
+                  "url": "https://wwws.airfrance.fr/information/passagers/voyager-avec-son-animal-chien-chat",
+                  "source_type": "official_website",
+                  "verified_date": "2026-09-11",
+                  "review_due": "2026-12-10",
+                  "confidence": 4,
+                  "reviewer": "Codex — lecture directe de la grille officielle rendue",
+                  "history": [],
+                  "quote": "En soute : 600 EUR/USD/CAD, jusqu'à 24 h avant le départ",
+                  "quote_language": "fr",
+                  "locator": "Tarifs → États-Unis/Canada ↔ Europe et destinations listées → En soute"
+                }
+              },
+              {
+                "id": "fare_air_france_hold_north_america_world_2026_09_11",
+                "placement": "hold",
+                "price": {
+                  "kind": "matrix",
+                  "amounts": [
+                    {
+                      "amount": 750,
+                      "currency": "EUR"
+                    },
+                    {
+                      "amount": 750,
+                      "currency": "USD"
+                    },
+                    {
+                      "amount": 750,
+                      "currency": "CAD"
+                    }
+                  ]
+                },
+                "billing_subject": "container",
+                "journey_basis": "per_one_way",
+                "scope_label": "États-Unis/Canada ↔ reste du monde · jusqu'à 24 h avant le départ",
+                "purchase_window": {
+                  "min_days_before_departure": 1
+                },
+                "source": {
+                  "url": "https://wwws.airfrance.fr/information/passagers/voyager-avec-son-animal-chien-chat",
+                  "source_type": "official_website",
+                  "verified_date": "2026-09-11",
+                  "review_due": "2026-12-10",
+                  "confidence": 4,
+                  "reviewer": "Codex — lecture directe de la grille officielle rendue",
+                  "history": [],
+                  "quote": "En soute : 750 EUR/USD/CAD, jusqu'à 24 h avant le départ",
+                  "quote_language": "fr",
+                  "locator": "Tarifs → États-Unis/Canada ↔ reste du monde → En soute"
+                }
+              },
+              {
+                "id": "fare_air_france_hold_other_eur_2026_09_11",
+                "placement": "hold",
+                "price": {
+                  "kind": "matrix",
+                  "amounts": [
+                    {
+                      "amount": 400,
+                      "currency": "EUR"
+                    }
+                  ]
+                },
+                "billing_subject": "container",
+                "journey_basis": "per_one_way",
+                "scope_label": "Autres vols · jusqu'à 24 h avant le départ",
+                "purchase_window": {
+                  "min_days_before_departure": 1
+                },
+                "source": {
+                  "url": "https://wwws.airfrance.fr/information/passagers/voyager-avec-son-animal-chien-chat",
+                  "source_type": "official_website",
+                  "verified_date": "2026-09-11",
+                  "review_due": "2026-12-10",
+                  "confidence": 4,
+                  "reviewer": "Codex — lecture directe de la grille officielle rendue",
+                  "history": [],
+                  "quote": "En soute : 400 EUR, jusqu'à 24 h avant le départ",
+                  "quote_language": "fr",
+                  "locator": "Tarifs → Autres vols → En soute"
+                }
               }
             ]
           },
@@ -27040,6 +27813,288 @@
           },
           "hold": {
             "availability": "offered",
+            "fares": [
+              {
+                "id": "fare_austrian_hold_domestic_small_2026_09_11",
+                "placement": "hold",
+                "price": {
+                  "kind": "matrix",
+                  "amounts": [
+                    {
+                      "amount": 80,
+                      "currency": "EUR"
+                    }
+                  ]
+                },
+                "billing_subject": "container",
+                "journey_basis": "per_segment",
+                "scope_label": "Autriche · caisse ≤ 60 × 45 × 40 cm",
+                "source": {
+                  "url": "https://www.austrian.com/fr/fr/plan/special-requirements/travelling-with-animals.solo_continue",
+                  "source_type": "official_website",
+                  "verified_date": "2026-09-11",
+                  "review_due": "2026-12-10",
+                  "confidence": 4,
+                  "reviewer": "Codex — lecture directe de la page officielle",
+                  "history": [],
+                  "quote": "80 EUR 160 EUR",
+                  "quote_language": "fr",
+                  "locator": "Quel est le coût du transport ? → Vols domestiques → colonne caisse ≤ 60 × 45 × 40 cm"
+                }
+              },
+              {
+                "id": "fare_austrian_hold_domestic_large_2026_09_11",
+                "placement": "hold",
+                "price": {
+                  "kind": "matrix",
+                  "amounts": [
+                    {
+                      "amount": 160,
+                      "currency": "EUR"
+                    }
+                  ]
+                },
+                "billing_subject": "container",
+                "journey_basis": "per_segment",
+                "scope_label": "Autriche · caisse > 60 × 45 × 40 cm",
+                "source": {
+                  "url": "https://www.austrian.com/fr/fr/plan/special-requirements/travelling-with-animals.solo_continue",
+                  "source_type": "official_website",
+                  "verified_date": "2026-09-11",
+                  "review_due": "2026-12-10",
+                  "confidence": 4,
+                  "reviewer": "Codex — lecture directe de la page officielle",
+                  "history": [],
+                  "quote": "80 EUR 160 EUR",
+                  "quote_language": "fr",
+                  "locator": "Quel est le coût du transport ? → Vols domestiques → colonne caisse > 60 × 45 × 40 cm"
+                }
+              },
+              {
+                "id": "fare_austrian_hold_europe_small_2026_09_11",
+                "placement": "hold",
+                "price": {
+                  "kind": "matrix",
+                  "amounts": [
+                    {
+                      "amount": 100,
+                      "currency": "EUR"
+                    }
+                  ]
+                },
+                "billing_subject": "container",
+                "journey_basis": "per_segment",
+                "scope_label": "Europe, Maroc, Arménie · caisse ≤ 60 × 45 × 40 cm",
+                "source": {
+                  "url": "https://www.austrian.com/fr/fr/plan/special-requirements/travelling-with-animals.solo_continue",
+                  "source_type": "official_website",
+                  "verified_date": "2026-09-11",
+                  "review_due": "2026-12-10",
+                  "confidence": 4,
+                  "reviewer": "Codex — lecture directe de la page officielle",
+                  "history": [],
+                  "quote": "100 EUR 200 EUR",
+                  "quote_language": "fr",
+                  "locator": "Quel est le coût du transport ? → Europe, Maroc et Arménie → colonne caisse ≤ 60 × 45 × 40 cm"
+                }
+              },
+              {
+                "id": "fare_austrian_hold_europe_large_2026_09_11",
+                "placement": "hold",
+                "price": {
+                  "kind": "matrix",
+                  "amounts": [
+                    {
+                      "amount": 200,
+                      "currency": "EUR"
+                    }
+                  ]
+                },
+                "billing_subject": "container",
+                "journey_basis": "per_segment",
+                "scope_label": "Europe, Maroc, Arménie · caisse > 60 × 45 × 40 cm",
+                "source": {
+                  "url": "https://www.austrian.com/fr/fr/plan/special-requirements/travelling-with-animals.solo_continue",
+                  "source_type": "official_website",
+                  "verified_date": "2026-09-11",
+                  "review_due": "2026-12-10",
+                  "confidence": 4,
+                  "reviewer": "Codex — lecture directe de la page officielle",
+                  "history": [],
+                  "quote": "100 EUR 200 EUR",
+                  "quote_language": "fr",
+                  "locator": "Quel est le coût du transport ? → Europe, Maroc et Arménie → colonne caisse > 60 × 45 × 40 cm"
+                }
+              },
+              {
+                "id": "fare_austrian_hold_short_intercontinental_small_2026_09_11",
+                "placement": "hold",
+                "price": {
+                  "kind": "matrix",
+                  "amounts": [
+                    {
+                      "amount": 130,
+                      "currency": "EUR"
+                    }
+                  ]
+                },
+                "billing_subject": "container",
+                "journey_basis": "per_segment",
+                "scope_label": "Europe ↔ Jordanie, Égypte, Iran, Irak, Israël · petite caisse",
+                "source": {
+                  "url": "https://www.austrian.com/fr/fr/plan/special-requirements/travelling-with-animals.solo_continue",
+                  "source_type": "official_website",
+                  "verified_date": "2026-09-11",
+                  "review_due": "2026-12-10",
+                  "confidence": 4,
+                  "reviewer": "Codex — lecture directe de la page officielle",
+                  "history": [],
+                  "quote": "130 EUR 260 EUR",
+                  "quote_language": "fr",
+                  "locator": "Quel est le coût du transport ? → Intercontinental court-courrier → colonne petite caisse"
+                }
+              },
+              {
+                "id": "fare_austrian_hold_short_intercontinental_large_2026_09_11",
+                "placement": "hold",
+                "price": {
+                  "kind": "matrix",
+                  "amounts": [
+                    {
+                      "amount": 260,
+                      "currency": "EUR"
+                    }
+                  ]
+                },
+                "billing_subject": "container",
+                "journey_basis": "per_segment",
+                "scope_label": "Europe ↔ Jordanie, Égypte, Iran, Irak, Israël · grande caisse",
+                "source": {
+                  "url": "https://www.austrian.com/fr/fr/plan/special-requirements/travelling-with-animals.solo_continue",
+                  "source_type": "official_website",
+                  "verified_date": "2026-09-11",
+                  "review_due": "2026-12-10",
+                  "confidence": 4,
+                  "reviewer": "Codex — lecture directe de la page officielle",
+                  "history": [],
+                  "quote": "130 EUR 260 EUR",
+                  "quote_language": "fr",
+                  "locator": "Quel est le coût du transport ? → Intercontinental court-courrier → colonne grande caisse"
+                }
+              },
+              {
+                "id": "fare_austrian_hold_medium_intercontinental_small_2026_09_11",
+                "placement": "hold",
+                "price": {
+                  "kind": "matrix",
+                  "amounts": [
+                    {
+                      "amount": 170,
+                      "currency": "EUR"
+                    }
+                  ]
+                },
+                "billing_subject": "container",
+                "journey_basis": "per_segment",
+                "scope_label": "Europe ↔ Chicago, Maldives, Miami, Canada, New York, Washington · petite caisse",
+                "source": {
+                  "url": "https://www.austrian.com/fr/fr/plan/special-requirements/travelling-with-animals.solo_continue",
+                  "source_type": "official_website",
+                  "verified_date": "2026-09-11",
+                  "review_due": "2026-12-10",
+                  "confidence": 4,
+                  "reviewer": "Codex — lecture directe de la page officielle",
+                  "history": [],
+                  "quote": "170 EUR 340 EUR",
+                  "quote_language": "fr",
+                  "locator": "Quel est le coût du transport ? → Vols intercontinentaux moyen-courriers → colonne petite caisse"
+                }
+              },
+              {
+                "id": "fare_austrian_hold_medium_intercontinental_large_2026_09_11",
+                "placement": "hold",
+                "price": {
+                  "kind": "matrix",
+                  "amounts": [
+                    {
+                      "amount": 340,
+                      "currency": "EUR"
+                    }
+                  ]
+                },
+                "billing_subject": "container",
+                "journey_basis": "per_segment",
+                "scope_label": "Europe ↔ Chicago, Maldives, Miami, Canada, New York, Washington · grande caisse",
+                "source": {
+                  "url": "https://www.austrian.com/fr/fr/plan/special-requirements/travelling-with-animals.solo_continue",
+                  "source_type": "official_website",
+                  "verified_date": "2026-09-11",
+                  "review_due": "2026-12-10",
+                  "confidence": 4,
+                  "reviewer": "Codex — lecture directe de la page officielle",
+                  "history": [],
+                  "quote": "170 EUR 340 EUR",
+                  "quote_language": "fr",
+                  "locator": "Quel est le coût du transport ? → Vols intercontinentaux moyen-courriers → colonne grande caisse"
+                }
+              },
+              {
+                "id": "fare_austrian_hold_long_intercontinental_small_2026_09_11",
+                "placement": "hold",
+                "price": {
+                  "kind": "matrix",
+                  "amounts": [
+                    {
+                      "amount": 190,
+                      "currency": "EUR"
+                    }
+                  ]
+                },
+                "billing_subject": "container",
+                "journey_basis": "per_segment",
+                "scope_label": "Europe ↔ Thaïlande, Afrique du Sud, Los Angeles, Maurice, Chine, Japon · petite caisse",
+                "source": {
+                  "url": "https://www.austrian.com/fr/fr/plan/special-requirements/travelling-with-animals.solo_continue",
+                  "source_type": "official_website",
+                  "verified_date": "2026-09-11",
+                  "review_due": "2026-12-10",
+                  "confidence": 4,
+                  "reviewer": "Codex — lecture directe de la page officielle",
+                  "history": [],
+                  "quote": "190 EUR 380 EUR",
+                  "quote_language": "fr",
+                  "locator": "Quel est le coût du transport ? → Vols intercontinentaux long-courriers → colonne petite caisse"
+                }
+              },
+              {
+                "id": "fare_austrian_hold_long_intercontinental_large_2026_09_11",
+                "placement": "hold",
+                "price": {
+                  "kind": "matrix",
+                  "amounts": [
+                    {
+                      "amount": 380,
+                      "currency": "EUR"
+                    }
+                  ]
+                },
+                "billing_subject": "container",
+                "journey_basis": "per_segment",
+                "scope_label": "Europe ↔ Thaïlande, Afrique du Sud, Los Angeles, Maurice, Chine, Japon · grande caisse",
+                "source": {
+                  "url": "https://www.austrian.com/fr/fr/plan/special-requirements/travelling-with-animals.solo_continue",
+                  "source_type": "official_website",
+                  "verified_date": "2026-09-11",
+                  "review_due": "2026-12-10",
+                  "confidence": 4,
+                  "reviewer": "Codex — lecture directe de la page officielle",
+                  "history": [],
+                  "quote": "190 EUR 380 EUR",
+                  "quote_language": "fr",
+                  "locator": "Quel est le coût du transport ? → Vols intercontinentaux long-courriers → colonne grande caisse"
+                }
+              }
+            ],
             "brachy_allowed": false,
             "source": {
               "url": "https://www.austrian.com/us/en/plan/special-requirements/travelling-with-animals",
@@ -35699,67 +36754,19 @@
             "weight_includes_carrier": true,
             "fares": [
               {
-                "id": "fare_iberia_cabin_eur_2026_09_10",
+                "id": "fare_iberia_cabin_es_direct_online_2026_09_11",
                 "placement": "cabin",
                 "price": {
-                  "kind": "exact",
+                  "kind": "matrix",
                   "amounts": [
                     {
                       "amount": 40,
                       "currency": "EUR"
-                    }
-                  ]
-                },
-                "billing_subject": "container",
-                "journey_basis": "per_segment",
-                "scope_label": "zones publiées → zones publiées",
-                "source": {
-                  "url": "https://www.iberia.com/gb/fly-with-iberia/pets/",
-                  "source_type": "official_website",
-                  "verified_date": "2026-09-10",
-                  "review_due": "2026-12-09",
-                  "confidence": 4,
-                  "reviewer": "Codex — lecture directe de la source officielle",
-                  "history": [],
-                  "quote": "Online: EUR40/USD50/GBP35",
-                  "quote_language": "en",
-                  "locator": "Fees for pets travelling in the cabin → Spain → Per segment"
-                }
-              },
-              {
-                "id": "fare_iberia_cabin_usd_2026_09_10",
-                "placement": "cabin",
-                "price": {
-                  "kind": "exact",
-                  "amounts": [
+                    },
                     {
                       "amount": 50,
                       "currency": "USD"
-                    }
-                  ]
-                },
-                "billing_subject": "container",
-                "journey_basis": "per_segment",
-                "scope_label": "zones publiées → zones publiées",
-                "source": {
-                  "url": "https://www.iberia.com/gb/fly-with-iberia/pets/",
-                  "source_type": "official_website",
-                  "verified_date": "2026-09-10",
-                  "review_due": "2026-12-09",
-                  "confidence": 4,
-                  "reviewer": "Codex — lecture directe de la source officielle",
-                  "history": [],
-                  "quote": "Online: EUR40/USD50/GBP35",
-                  "quote_language": "en",
-                  "locator": "Fees for pets travelling in the cabin → Spain → Per segment"
-                }
-              },
-              {
-                "id": "fare_iberia_cabin_gbp_2026_09_10",
-                "placement": "cabin",
-                "price": {
-                  "kind": "exact",
-                  "amounts": [
+                    },
                     {
                       "amount": 35,
                       "currency": "GBP"
@@ -35767,19 +36774,415 @@
                   ]
                 },
                 "billing_subject": "container",
-                "journey_basis": "per_segment",
-                "scope_label": "zones publiées → zones publiées",
+                "journey_basis": "per_journey",
+                "scope_label": "Espagne hors Canaries · direct · en ligne",
                 "source": {
-                  "url": "https://www.iberia.com/gb/fly-with-iberia/pets/",
+                  "url": "https://www.iberia.com/fr/voyager-avec-iberia/animaux/#AVIH",
                   "source_type": "official_website",
-                  "verified_date": "2026-09-10",
-                  "review_due": "2026-12-09",
+                  "verified_date": "2026-09-11",
+                  "review_due": "2026-12-10",
                   "confidence": 4,
-                  "reviewer": "Codex — lecture directe de la source officielle",
+                  "reviewer": "Codex — lecture directe de la page officielle",
                   "history": [],
-                  "quote": "Online: EUR40/USD50/GBP35",
-                  "quote_language": "en",
-                  "locator": "Fees for pets travelling in the cabin → Spain → Per segment"
+                  "quote": "En ligne : 40 EUR/50 USD/35 GBP",
+                  "quote_language": "fr",
+                  "locator": "Frais de transport d'animaux de compagnie en cabine → Par trajet → Espagne (sauf les Canaries)"
+                }
+              },
+              {
+                "id": "fare_iberia_cabin_es_direct_airport_2026_09_11",
+                "placement": "cabin",
+                "price": {
+                  "kind": "matrix",
+                  "amounts": [
+                    {
+                      "amount": 44,
+                      "currency": "EUR"
+                    },
+                    {
+                      "amount": 55,
+                      "currency": "USD"
+                    },
+                    {
+                      "amount": 40,
+                      "currency": "GBP"
+                    }
+                  ]
+                },
+                "billing_subject": "container",
+                "journey_basis": "per_journey",
+                "scope_label": "Espagne hors Canaries · direct · aéroport",
+                "source": {
+                  "url": "https://www.iberia.com/fr/voyager-avec-iberia/animaux/#AVIH",
+                  "source_type": "official_website",
+                  "verified_date": "2026-09-11",
+                  "review_due": "2026-12-10",
+                  "confidence": 4,
+                  "reviewer": "Codex — lecture directe de la page officielle",
+                  "history": [],
+                  "quote": "Aéroport : 44 EUR/55 USD/40 GBP",
+                  "quote_language": "fr",
+                  "locator": "Frais de transport d'animaux de compagnie en cabine → Par trajet → Espagne (sauf les Canaries)"
+                }
+              },
+              {
+                "id": "fare_iberia_cabin_mid_direct_online_2026_09_11",
+                "placement": "cabin",
+                "price": {
+                  "kind": "matrix",
+                  "amounts": [
+                    {
+                      "amount": 60,
+                      "currency": "EUR"
+                    },
+                    {
+                      "amount": 75,
+                      "currency": "USD"
+                    },
+                    {
+                      "amount": 55,
+                      "currency": "GBP"
+                    }
+                  ]
+                },
+                "billing_subject": "container",
+                "journey_basis": "per_journey",
+                "scope_label": "Canaries, Europe, Afrique du Nord, Israël · direct · en ligne",
+                "source": {
+                  "url": "https://www.iberia.com/fr/voyager-avec-iberia/animaux/#AVIH",
+                  "source_type": "official_website",
+                  "verified_date": "2026-09-11",
+                  "review_due": "2026-12-10",
+                  "confidence": 4,
+                  "reviewer": "Codex — lecture directe de la page officielle",
+                  "history": [],
+                  "quote": "En ligne : 60 EUR/75 USD/55 GBP",
+                  "quote_language": "fr",
+                  "locator": "Frais de transport d'animaux de compagnie en cabine → Par trajet → Canaries, Europe, Afrique du Nord et Israël"
+                }
+              },
+              {
+                "id": "fare_iberia_cabin_mid_direct_airport_2026_09_11",
+                "placement": "cabin",
+                "price": {
+                  "kind": "matrix",
+                  "amounts": [
+                    {
+                      "amount": 66,
+                      "currency": "EUR"
+                    },
+                    {
+                      "amount": 80,
+                      "currency": "USD"
+                    },
+                    {
+                      "amount": 60,
+                      "currency": "GBP"
+                    }
+                  ]
+                },
+                "billing_subject": "container",
+                "journey_basis": "per_journey",
+                "scope_label": "Canaries, Europe, Afrique du Nord, Israël · direct · aéroport",
+                "source": {
+                  "url": "https://www.iberia.com/fr/voyager-avec-iberia/animaux/#AVIH",
+                  "source_type": "official_website",
+                  "verified_date": "2026-09-11",
+                  "review_due": "2026-12-10",
+                  "confidence": 4,
+                  "reviewer": "Codex — lecture directe de la page officielle",
+                  "history": [],
+                  "quote": "Aéroport : 66 EUR/80 USD/60 GBP",
+                  "quote_language": "fr",
+                  "locator": "Frais de transport d'animaux de compagnie en cabine → Par trajet → Canaries, Europe, Afrique du Nord et Israël"
+                }
+              },
+              {
+                "id": "fare_iberia_cabin_long_direct_online_2026_09_11",
+                "placement": "cabin",
+                "price": {
+                  "kind": "matrix",
+                  "amounts": [
+                    {
+                      "amount": 180,
+                      "currency": "EUR"
+                    },
+                    {
+                      "amount": 215,
+                      "currency": "USD"
+                    },
+                    {
+                      "amount": 160,
+                      "currency": "GBP"
+                    }
+                  ]
+                },
+                "billing_subject": "container",
+                "journey_basis": "per_journey",
+                "scope_label": "Amériques, Asie, Qatar · direct · en ligne",
+                "source": {
+                  "url": "https://www.iberia.com/fr/voyager-avec-iberia/animaux/#AVIH",
+                  "source_type": "official_website",
+                  "verified_date": "2026-09-11",
+                  "review_due": "2026-12-10",
+                  "confidence": 4,
+                  "reviewer": "Codex — lecture directe de la page officielle",
+                  "history": [],
+                  "quote": "En ligne : 180 EUR/215 USD/160 GBP",
+                  "quote_language": "fr",
+                  "locator": "Frais de transport d'animaux de compagnie en cabine → Par trajet → Amériques, Asie et Qatar"
+                }
+              },
+              {
+                "id": "fare_iberia_cabin_long_direct_airport_2026_09_11",
+                "placement": "cabin",
+                "price": {
+                  "kind": "matrix",
+                  "amounts": [
+                    {
+                      "amount": 198,
+                      "currency": "EUR"
+                    },
+                    {
+                      "amount": 235,
+                      "currency": "USD"
+                    },
+                    {
+                      "amount": 175,
+                      "currency": "GBP"
+                    }
+                  ]
+                },
+                "billing_subject": "container",
+                "journey_basis": "per_journey",
+                "scope_label": "Amériques, Asie, Qatar · direct · aéroport",
+                "source": {
+                  "url": "https://www.iberia.com/fr/voyager-avec-iberia/animaux/#AVIH",
+                  "source_type": "official_website",
+                  "verified_date": "2026-09-11",
+                  "review_due": "2026-12-10",
+                  "confidence": 4,
+                  "reviewer": "Codex — lecture directe de la page officielle",
+                  "history": [],
+                  "quote": "Aéroport : 198 EUR/235 USD/175 GBP",
+                  "quote_language": "fr",
+                  "locator": "Frais de transport d'animaux de compagnie en cabine → Par trajet → Amériques, Asie et Qatar"
+                }
+              },
+              {
+                "id": "fare_iberia_cabin_es_connection_online_2026_09_11",
+                "placement": "cabin",
+                "price": {
+                  "kind": "matrix",
+                  "amounts": [
+                    {
+                      "amount": 60,
+                      "currency": "EUR"
+                    },
+                    {
+                      "amount": 75,
+                      "currency": "USD"
+                    },
+                    {
+                      "amount": 55,
+                      "currency": "GBP"
+                    }
+                  ]
+                },
+                "billing_subject": "container",
+                "journey_basis": "per_journey",
+                "scope_label": "Espagne hors Canaries · correspondance · en ligne",
+                "source": {
+                  "url": "https://www.iberia.com/fr/voyager-avec-iberia/animaux/#AVIH",
+                  "source_type": "official_website",
+                  "verified_date": "2026-09-11",
+                  "review_due": "2026-12-10",
+                  "confidence": 4,
+                  "reviewer": "Codex — lecture directe de la page officielle",
+                  "history": [],
+                  "quote": "En ligne : 60 EUR/75 USD/55 GBP",
+                  "quote_language": "fr",
+                  "locator": "Frais de transport d'animaux de compagnie en cabine → Vols avec correspondance → Espagne (sauf les Canaries)"
+                }
+              },
+              {
+                "id": "fare_iberia_cabin_es_connection_airport_2026_09_11",
+                "placement": "cabin",
+                "price": {
+                  "kind": "matrix",
+                  "amounts": [
+                    {
+                      "amount": 66,
+                      "currency": "EUR"
+                    },
+                    {
+                      "amount": 80,
+                      "currency": "USD"
+                    },
+                    {
+                      "amount": 60,
+                      "currency": "GBP"
+                    }
+                  ]
+                },
+                "billing_subject": "container",
+                "journey_basis": "per_journey",
+                "scope_label": "Espagne hors Canaries · correspondance · aéroport",
+                "source": {
+                  "url": "https://www.iberia.com/fr/voyager-avec-iberia/animaux/#AVIH",
+                  "source_type": "official_website",
+                  "verified_date": "2026-09-11",
+                  "review_due": "2026-12-10",
+                  "confidence": 4,
+                  "reviewer": "Codex — lecture directe de la page officielle",
+                  "history": [],
+                  "quote": "Aéroport : 66 EUR/80 USD/60 GBP",
+                  "quote_language": "fr",
+                  "locator": "Frais de transport d'animaux de compagnie en cabine → Vols avec correspondance → Espagne (sauf les Canaries)"
+                }
+              },
+              {
+                "id": "fare_iberia_cabin_mid_connection_online_2026_09_11",
+                "placement": "cabin",
+                "price": {
+                  "kind": "matrix",
+                  "amounts": [
+                    {
+                      "amount": 80,
+                      "currency": "EUR"
+                    },
+                    {
+                      "amount": 95,
+                      "currency": "USD"
+                    },
+                    {
+                      "amount": 70,
+                      "currency": "GBP"
+                    }
+                  ]
+                },
+                "billing_subject": "container",
+                "journey_basis": "per_journey",
+                "scope_label": "Canaries, Europe, Afrique du Nord, Israël · correspondance · en ligne",
+                "source": {
+                  "url": "https://www.iberia.com/fr/voyager-avec-iberia/animaux/#AVIH",
+                  "source_type": "official_website",
+                  "verified_date": "2026-09-11",
+                  "review_due": "2026-12-10",
+                  "confidence": 4,
+                  "reviewer": "Codex — lecture directe de la page officielle",
+                  "history": [],
+                  "quote": "En ligne : 80 EUR/95 USD/70 GBP",
+                  "quote_language": "fr",
+                  "locator": "Frais de transport d'animaux de compagnie en cabine → Vols avec correspondance → Canaries, Europe, Afrique du Nord et Israël"
+                }
+              },
+              {
+                "id": "fare_iberia_cabin_mid_connection_airport_2026_09_11",
+                "placement": "cabin",
+                "price": {
+                  "kind": "matrix",
+                  "amounts": [
+                    {
+                      "amount": 88,
+                      "currency": "EUR"
+                    },
+                    {
+                      "amount": 105,
+                      "currency": "USD"
+                    },
+                    {
+                      "amount": 80,
+                      "currency": "GBP"
+                    }
+                  ]
+                },
+                "billing_subject": "container",
+                "journey_basis": "per_journey",
+                "scope_label": "Canaries, Europe, Afrique du Nord, Israël · correspondance · aéroport",
+                "source": {
+                  "url": "https://www.iberia.com/fr/voyager-avec-iberia/animaux/#AVIH",
+                  "source_type": "official_website",
+                  "verified_date": "2026-09-11",
+                  "review_due": "2026-12-10",
+                  "confidence": 4,
+                  "reviewer": "Codex — lecture directe de la page officielle",
+                  "history": [],
+                  "quote": "Aéroport : 88 EUR/105 USD/80 GBP",
+                  "quote_language": "fr",
+                  "locator": "Frais de transport d'animaux de compagnie en cabine → Vols avec correspondance → Canaries, Europe, Afrique du Nord et Israël"
+                }
+              },
+              {
+                "id": "fare_iberia_cabin_long_connection_online_2026_09_11",
+                "placement": "cabin",
+                "price": {
+                  "kind": "matrix",
+                  "amounts": [
+                    {
+                      "amount": 200,
+                      "currency": "EUR"
+                    },
+                    {
+                      "amount": 235,
+                      "currency": "USD"
+                    },
+                    {
+                      "amount": 175,
+                      "currency": "GBP"
+                    }
+                  ]
+                },
+                "billing_subject": "container",
+                "journey_basis": "per_journey",
+                "scope_label": "Amériques, Asie, Qatar · correspondance · en ligne",
+                "source": {
+                  "url": "https://www.iberia.com/fr/voyager-avec-iberia/animaux/#AVIH",
+                  "source_type": "official_website",
+                  "verified_date": "2026-09-11",
+                  "review_due": "2026-12-10",
+                  "confidence": 4,
+                  "reviewer": "Codex — lecture directe de la page officielle",
+                  "history": [],
+                  "quote": "En ligne : 200 EUR/235 USD/175 GBP",
+                  "quote_language": "fr",
+                  "locator": "Frais de transport d'animaux de compagnie en cabine → Vols avec correspondance → Amériques, Asie et Qatar"
+                }
+              },
+              {
+                "id": "fare_iberia_cabin_long_connection_airport_2026_09_11",
+                "placement": "cabin",
+                "price": {
+                  "kind": "matrix",
+                  "amounts": [
+                    {
+                      "amount": 220,
+                      "currency": "EUR"
+                    },
+                    {
+                      "amount": 260,
+                      "currency": "USD"
+                    },
+                    {
+                      "amount": 195,
+                      "currency": "GBP"
+                    }
+                  ]
+                },
+                "billing_subject": "container",
+                "journey_basis": "per_journey",
+                "scope_label": "Amériques, Asie, Qatar · correspondance · aéroport",
+                "source": {
+                  "url": "https://www.iberia.com/fr/voyager-avec-iberia/animaux/#AVIH",
+                  "source_type": "official_website",
+                  "verified_date": "2026-09-11",
+                  "review_due": "2026-12-10",
+                  "confidence": 4,
+                  "reviewer": "Codex — lecture directe de la page officielle",
+                  "history": [],
+                  "quote": "Aéroport : 220 EUR/260 USD/195 GBP",
+                  "quote_language": "fr",
+                  "locator": "Frais de transport d'animaux de compagnie en cabine → Vols avec correspondance → Amériques, Asie et Qatar"
                 }
               }
             ]
@@ -35804,31 +37207,651 @@
             },
             "fares": [
               {
-                "id": "fare_iberia_hold_eur_2026_09_10",
+                "id": "fare_iberia_hold_u10_es_direct_2026_09_11",
                 "placement": "hold",
                 "price": {
-                  "kind": "minimum",
+                  "kind": "matrix",
                   "amounts": [
                     {
                       "amount": 90,
                       "currency": "EUR"
+                    },
+                    {
+                      "amount": 110,
+                      "currency": "USD"
+                    },
+                    {
+                      "amount": 80,
+                      "currency": "GBP"
                     }
                   ]
                 },
                 "billing_subject": "pet_or_container",
-                "journey_basis": "per_segment",
-                "scope_label": "zones publiées → zones publiées",
+                "journey_basis": "per_journey",
+                "scope_label": "≤10 kg · Espagne hors Canaries · direct",
                 "source": {
-                  "url": "https://www.iberia.com/gb/fly-with-iberia/pets/",
+                  "url": "https://www.iberia.com/fr/voyager-avec-iberia/animaux/#AVIH",
                   "source_type": "official_website",
-                  "verified_date": "2026-09-10",
-                  "review_due": "2026-12-09",
+                  "verified_date": "2026-09-11",
+                  "review_due": "2026-12-10",
                   "confidence": 4,
-                  "reviewer": "Codex — lecture directe de la source officielle",
+                  "reviewer": "Codex — lecture directe de la page officielle",
                   "history": [],
-                  "quote": "from EUR 90",
-                  "quote_language": "en",
-                  "locator": "Pets in hold fees"
+                  "quote": "Par trajet : 90 EUR/110 USD/80 GBP",
+                  "quote_language": "fr",
+                  "locator": "Frais pour le transport en soute → Jusqu'à 10 kg → Espagne (sauf les Canaries)"
+                }
+              },
+              {
+                "id": "fare_iberia_hold_u10_es_connection_2026_09_11",
+                "placement": "hold",
+                "price": {
+                  "kind": "matrix",
+                  "amounts": [
+                    {
+                      "amount": 120,
+                      "currency": "EUR"
+                    },
+                    {
+                      "amount": 145,
+                      "currency": "USD"
+                    },
+                    {
+                      "amount": 105,
+                      "currency": "GBP"
+                    }
+                  ]
+                },
+                "billing_subject": "pet_or_container",
+                "journey_basis": "per_journey",
+                "scope_label": "≤10 kg · Espagne hors Canaries · correspondance",
+                "source": {
+                  "url": "https://www.iberia.com/fr/voyager-avec-iberia/animaux/#AVIH",
+                  "source_type": "official_website",
+                  "verified_date": "2026-09-11",
+                  "review_due": "2026-12-10",
+                  "confidence": 4,
+                  "reviewer": "Codex — lecture directe de la page officielle",
+                  "history": [],
+                  "quote": "Avec correspondance : 120 EUR/145 USD/105 GBP",
+                  "quote_language": "fr",
+                  "locator": "Frais pour le transport en soute → Jusqu'à 10 kg → Espagne (sauf les Canaries)"
+                }
+              },
+              {
+                "id": "fare_iberia_hold_u10_mid_direct_2026_09_11",
+                "placement": "hold",
+                "price": {
+                  "kind": "matrix",
+                  "amounts": [
+                    {
+                      "amount": 135,
+                      "currency": "EUR"
+                    },
+                    {
+                      "amount": 160,
+                      "currency": "USD"
+                    },
+                    {
+                      "amount": 120,
+                      "currency": "GBP"
+                    }
+                  ]
+                },
+                "billing_subject": "pet_or_container",
+                "journey_basis": "per_journey",
+                "scope_label": "≤10 kg · Canaries, Europe, Afrique du Nord, Israël · direct",
+                "source": {
+                  "url": "https://www.iberia.com/fr/voyager-avec-iberia/animaux/#AVIH",
+                  "source_type": "official_website",
+                  "verified_date": "2026-09-11",
+                  "review_due": "2026-12-10",
+                  "confidence": 4,
+                  "reviewer": "Codex — lecture directe de la page officielle",
+                  "history": [],
+                  "quote": "Par trajet : 135 EUR/160 USD/120 GBP",
+                  "quote_language": "fr",
+                  "locator": "Frais pour le transport en soute → Jusqu'à 10 kg → Canaries, Europe, Afrique du Nord et Israël"
+                }
+              },
+              {
+                "id": "fare_iberia_hold_u10_mid_connection_2026_09_11",
+                "placement": "hold",
+                "price": {
+                  "kind": "matrix",
+                  "amounts": [
+                    {
+                      "amount": 160,
+                      "currency": "EUR"
+                    },
+                    {
+                      "amount": 190,
+                      "currency": "USD"
+                    },
+                    {
+                      "amount": 140,
+                      "currency": "GBP"
+                    }
+                  ]
+                },
+                "billing_subject": "pet_or_container",
+                "journey_basis": "per_journey",
+                "scope_label": "≤10 kg · Canaries, Europe, Afrique du Nord, Israël · correspondance",
+                "source": {
+                  "url": "https://www.iberia.com/fr/voyager-avec-iberia/animaux/#AVIH",
+                  "source_type": "official_website",
+                  "verified_date": "2026-09-11",
+                  "review_due": "2026-12-10",
+                  "confidence": 4,
+                  "reviewer": "Codex — lecture directe de la page officielle",
+                  "history": [],
+                  "quote": "Avec correspondance : 160 EUR/190 USD/140 GBP",
+                  "quote_language": "fr",
+                  "locator": "Frais pour le transport en soute → Jusqu'à 10 kg → Canaries, Europe, Afrique du Nord et Israël"
+                }
+              },
+              {
+                "id": "fare_iberia_hold_u10_long_direct_2026_09_11",
+                "placement": "hold",
+                "price": {
+                  "kind": "matrix",
+                  "amounts": [
+                    {
+                      "amount": 290,
+                      "currency": "EUR"
+                    },
+                    {
+                      "amount": 340,
+                      "currency": "USD"
+                    },
+                    {
+                      "amount": 255,
+                      "currency": "GBP"
+                    }
+                  ]
+                },
+                "billing_subject": "pet_or_container",
+                "journey_basis": "per_journey",
+                "scope_label": "≤10 kg · Amériques, Asie, Qatar · direct",
+                "source": {
+                  "url": "https://www.iberia.com/fr/voyager-avec-iberia/animaux/#AVIH",
+                  "source_type": "official_website",
+                  "verified_date": "2026-09-11",
+                  "review_due": "2026-12-10",
+                  "confidence": 4,
+                  "reviewer": "Codex — lecture directe de la page officielle",
+                  "history": [],
+                  "quote": "Par trajet : 290 EUR/340 USD/255 GBP",
+                  "quote_language": "fr",
+                  "locator": "Frais pour le transport en soute → Jusqu'à 10 kg → Amériques, Asie et Qatar"
+                }
+              },
+              {
+                "id": "fare_iberia_hold_u10_long_connection_2026_09_11",
+                "placement": "hold",
+                "price": {
+                  "kind": "matrix",
+                  "amounts": [
+                    {
+                      "amount": 340,
+                      "currency": "EUR"
+                    },
+                    {
+                      "amount": 400,
+                      "currency": "USD"
+                    },
+                    {
+                      "amount": 300,
+                      "currency": "GBP"
+                    }
+                  ]
+                },
+                "billing_subject": "pet_or_container",
+                "journey_basis": "per_journey",
+                "scope_label": "≤10 kg · Amériques, Asie, Qatar · correspondance",
+                "source": {
+                  "url": "https://www.iberia.com/fr/voyager-avec-iberia/animaux/#AVIH",
+                  "source_type": "official_website",
+                  "verified_date": "2026-09-11",
+                  "review_due": "2026-12-10",
+                  "confidence": 4,
+                  "reviewer": "Codex — lecture directe de la page officielle",
+                  "history": [],
+                  "quote": "Avec correspondance : 340 EUR/400 USD/300 GBP",
+                  "quote_language": "fr",
+                  "locator": "Frais pour le transport en soute → Jusqu'à 10 kg → Amériques, Asie et Qatar"
+                }
+              },
+              {
+                "id": "fare_iberia_hold_11_25_es_direct_2026_09_11",
+                "placement": "hold",
+                "price": {
+                  "kind": "matrix",
+                  "amounts": [
+                    {
+                      "amount": 100,
+                      "currency": "EUR"
+                    },
+                    {
+                      "amount": 120,
+                      "currency": "USD"
+                    },
+                    {
+                      "amount": 90,
+                      "currency": "GBP"
+                    }
+                  ]
+                },
+                "billing_subject": "pet_or_container",
+                "journey_basis": "per_journey",
+                "scope_label": "11–25 kg · Espagne hors Canaries · direct",
+                "source": {
+                  "url": "https://www.iberia.com/fr/voyager-avec-iberia/animaux/#AVIH",
+                  "source_type": "official_website",
+                  "verified_date": "2026-09-11",
+                  "review_due": "2026-12-10",
+                  "confidence": 4,
+                  "reviewer": "Codex — lecture directe de la page officielle",
+                  "history": [],
+                  "quote": "Par trajet : 100 EUR/120 USD/90 GBP",
+                  "quote_language": "fr",
+                  "locator": "Frais pour le transport en soute → Entre 11 et 25 kg → Espagne (sauf les Canaries)"
+                }
+              },
+              {
+                "id": "fare_iberia_hold_11_25_es_connection_2026_09_11",
+                "placement": "hold",
+                "price": {
+                  "kind": "matrix",
+                  "amounts": [
+                    {
+                      "amount": 130,
+                      "currency": "EUR"
+                    },
+                    {
+                      "amount": 155,
+                      "currency": "USD"
+                    },
+                    {
+                      "amount": 115,
+                      "currency": "GBP"
+                    }
+                  ]
+                },
+                "billing_subject": "pet_or_container",
+                "journey_basis": "per_journey",
+                "scope_label": "11–25 kg · Espagne hors Canaries · correspondance",
+                "source": {
+                  "url": "https://www.iberia.com/fr/voyager-avec-iberia/animaux/#AVIH",
+                  "source_type": "official_website",
+                  "verified_date": "2026-09-11",
+                  "review_due": "2026-12-10",
+                  "confidence": 4,
+                  "reviewer": "Codex — lecture directe de la page officielle",
+                  "history": [],
+                  "quote": "Avec correspondance : 130 EUR/155 USD/115 GBP",
+                  "quote_language": "fr",
+                  "locator": "Frais pour le transport en soute → Entre 11 et 25 kg → Espagne (sauf les Canaries)"
+                }
+              },
+              {
+                "id": "fare_iberia_hold_11_25_mid_direct_2026_09_11",
+                "placement": "hold",
+                "price": {
+                  "kind": "matrix",
+                  "amounts": [
+                    {
+                      "amount": 145,
+                      "currency": "EUR"
+                    },
+                    {
+                      "amount": 170,
+                      "currency": "USD"
+                    },
+                    {
+                      "amount": 130,
+                      "currency": "GBP"
+                    }
+                  ]
+                },
+                "billing_subject": "pet_or_container",
+                "journey_basis": "per_journey",
+                "scope_label": "11–25 kg · Canaries, Europe, Afrique du Nord, Israël · direct",
+                "source": {
+                  "url": "https://www.iberia.com/fr/voyager-avec-iberia/animaux/#AVIH",
+                  "source_type": "official_website",
+                  "verified_date": "2026-09-11",
+                  "review_due": "2026-12-10",
+                  "confidence": 4,
+                  "reviewer": "Codex — lecture directe de la page officielle",
+                  "history": [],
+                  "quote": "Par trajet : 145 EUR/170 USD/130 GBP",
+                  "quote_language": "fr",
+                  "locator": "Frais pour le transport en soute → Entre 11 et 25 kg → Canaries, Europe, Afrique du Nord et Israël"
+                }
+              },
+              {
+                "id": "fare_iberia_hold_11_25_mid_connection_2026_09_11",
+                "placement": "hold",
+                "price": {
+                  "kind": "matrix",
+                  "amounts": [
+                    {
+                      "amount": 170,
+                      "currency": "EUR"
+                    },
+                    {
+                      "amount": 200,
+                      "currency": "USD"
+                    },
+                    {
+                      "amount": 150,
+                      "currency": "GBP"
+                    }
+                  ]
+                },
+                "billing_subject": "pet_or_container",
+                "journey_basis": "per_journey",
+                "scope_label": "11–25 kg · Canaries, Europe, Afrique du Nord, Israël · correspondance",
+                "source": {
+                  "url": "https://www.iberia.com/fr/voyager-avec-iberia/animaux/#AVIH",
+                  "source_type": "official_website",
+                  "verified_date": "2026-09-11",
+                  "review_due": "2026-12-10",
+                  "confidence": 4,
+                  "reviewer": "Codex — lecture directe de la page officielle",
+                  "history": [],
+                  "quote": "Avec correspondance : 170 EUR/200 USD/150 GBP",
+                  "quote_language": "fr",
+                  "locator": "Frais pour le transport en soute → Entre 11 et 25 kg → Canaries, Europe, Afrique du Nord et Israël"
+                }
+              },
+              {
+                "id": "fare_iberia_hold_11_25_long_direct_2026_09_11",
+                "placement": "hold",
+                "price": {
+                  "kind": "matrix",
+                  "amounts": [
+                    {
+                      "amount": 310,
+                      "currency": "EUR"
+                    },
+                    {
+                      "amount": 365,
+                      "currency": "USD"
+                    },
+                    {
+                      "amount": 270,
+                      "currency": "GBP"
+                    }
+                  ]
+                },
+                "billing_subject": "pet_or_container",
+                "journey_basis": "per_journey",
+                "scope_label": "11–25 kg · Amériques, Asie, Qatar · direct",
+                "source": {
+                  "url": "https://www.iberia.com/fr/voyager-avec-iberia/animaux/#AVIH",
+                  "source_type": "official_website",
+                  "verified_date": "2026-09-11",
+                  "review_due": "2026-12-10",
+                  "confidence": 4,
+                  "reviewer": "Codex — lecture directe de la page officielle",
+                  "history": [],
+                  "quote": "Par trajet : 310 EUR/365 USD/270 GBP",
+                  "quote_language": "fr",
+                  "locator": "Frais pour le transport en soute → Entre 11 et 25 kg → Amériques, Asie et Qatar"
+                }
+              },
+              {
+                "id": "fare_iberia_hold_11_25_long_connection_2026_09_11",
+                "placement": "hold",
+                "price": {
+                  "kind": "matrix",
+                  "amounts": [
+                    {
+                      "amount": 360,
+                      "currency": "EUR"
+                    },
+                    {
+                      "amount": 425,
+                      "currency": "USD"
+                    },
+                    {
+                      "amount": 315,
+                      "currency": "GBP"
+                    }
+                  ]
+                },
+                "billing_subject": "pet_or_container",
+                "journey_basis": "per_journey",
+                "scope_label": "11–25 kg · Amériques, Asie, Qatar · correspondance",
+                "source": {
+                  "url": "https://www.iberia.com/fr/voyager-avec-iberia/animaux/#AVIH",
+                  "source_type": "official_website",
+                  "verified_date": "2026-09-11",
+                  "review_due": "2026-12-10",
+                  "confidence": 4,
+                  "reviewer": "Codex — lecture directe de la page officielle",
+                  "history": [],
+                  "quote": "Avec correspondance : 360 EUR/425 USD/315 GBP",
+                  "quote_language": "fr",
+                  "locator": "Frais pour le transport en soute → Entre 11 et 25 kg → Amériques, Asie et Qatar"
+                }
+              },
+              {
+                "id": "fare_iberia_hold_26_45_es_direct_2026_09_11",
+                "placement": "hold",
+                "price": {
+                  "kind": "matrix",
+                  "amounts": [
+                    {
+                      "amount": 110,
+                      "currency": "EUR"
+                    },
+                    {
+                      "amount": 130,
+                      "currency": "USD"
+                    },
+                    {
+                      "amount": 100,
+                      "currency": "GBP"
+                    }
+                  ]
+                },
+                "billing_subject": "pet_or_container",
+                "journey_basis": "per_journey",
+                "scope_label": "26–45 kg · Espagne hors Canaries · direct",
+                "source": {
+                  "url": "https://www.iberia.com/fr/voyager-avec-iberia/animaux/#AVIH",
+                  "source_type": "official_website",
+                  "verified_date": "2026-09-11",
+                  "review_due": "2026-12-10",
+                  "confidence": 4,
+                  "reviewer": "Codex — lecture directe de la page officielle",
+                  "history": [],
+                  "quote": "Par trajet : 110 EUR/130 USD/100 GBP",
+                  "quote_language": "fr",
+                  "locator": "Frais pour le transport en soute → Entre 26 et 45 kg → Espagne (sauf les Canaries)"
+                }
+              },
+              {
+                "id": "fare_iberia_hold_26_45_es_connection_2026_09_11",
+                "placement": "hold",
+                "price": {
+                  "kind": "matrix",
+                  "amounts": [
+                    {
+                      "amount": 140,
+                      "currency": "EUR"
+                    },
+                    {
+                      "amount": 165,
+                      "currency": "USD"
+                    },
+                    {
+                      "amount": 125,
+                      "currency": "GBP"
+                    }
+                  ]
+                },
+                "billing_subject": "pet_or_container",
+                "journey_basis": "per_journey",
+                "scope_label": "26–45 kg · Espagne hors Canaries · correspondance",
+                "source": {
+                  "url": "https://www.iberia.com/fr/voyager-avec-iberia/animaux/#AVIH",
+                  "source_type": "official_website",
+                  "verified_date": "2026-09-11",
+                  "review_due": "2026-12-10",
+                  "confidence": 4,
+                  "reviewer": "Codex — lecture directe de la page officielle",
+                  "history": [],
+                  "quote": "Avec correspondance : 140 EUR/165 USD/125 GBP",
+                  "quote_language": "fr",
+                  "locator": "Frais pour le transport en soute → Entre 26 et 45 kg → Espagne (sauf les Canaries)"
+                }
+              },
+              {
+                "id": "fare_iberia_hold_26_45_mid_direct_2026_09_11",
+                "placement": "hold",
+                "price": {
+                  "kind": "matrix",
+                  "amounts": [
+                    {
+                      "amount": 155,
+                      "currency": "EUR"
+                    },
+                    {
+                      "amount": 185,
+                      "currency": "USD"
+                    },
+                    {
+                      "amount": 135,
+                      "currency": "GBP"
+                    }
+                  ]
+                },
+                "billing_subject": "pet_or_container",
+                "journey_basis": "per_journey",
+                "scope_label": "26–45 kg · Canaries, Europe, Afrique du Nord, Israël · direct",
+                "source": {
+                  "url": "https://www.iberia.com/fr/voyager-avec-iberia/animaux/#AVIH",
+                  "source_type": "official_website",
+                  "verified_date": "2026-09-11",
+                  "review_due": "2026-12-10",
+                  "confidence": 4,
+                  "reviewer": "Codex — lecture directe de la page officielle",
+                  "history": [],
+                  "quote": "Par trajet : 155 EUR/185 USD/135 GBP",
+                  "quote_language": "fr",
+                  "locator": "Frais pour le transport en soute → Entre 26 et 45 kg → Canaries, Europe, Afrique du Nord et Israël"
+                }
+              },
+              {
+                "id": "fare_iberia_hold_26_45_mid_connection_2026_09_11",
+                "placement": "hold",
+                "price": {
+                  "kind": "matrix",
+                  "amounts": [
+                    {
+                      "amount": 190,
+                      "currency": "EUR"
+                    },
+                    {
+                      "amount": 225,
+                      "currency": "USD"
+                    },
+                    {
+                      "amount": 170,
+                      "currency": "GBP"
+                    }
+                  ]
+                },
+                "billing_subject": "pet_or_container",
+                "journey_basis": "per_journey",
+                "scope_label": "26–45 kg · Canaries, Europe, Afrique du Nord, Israël · correspondance",
+                "source": {
+                  "url": "https://www.iberia.com/fr/voyager-avec-iberia/animaux/#AVIH",
+                  "source_type": "official_website",
+                  "verified_date": "2026-09-11",
+                  "review_due": "2026-12-10",
+                  "confidence": 4,
+                  "reviewer": "Codex — lecture directe de la page officielle",
+                  "history": [],
+                  "quote": "Avec correspondance : 190 EUR/225 USD/170 GBP",
+                  "quote_language": "fr",
+                  "locator": "Frais pour le transport en soute → Entre 26 et 45 kg → Canaries, Europe, Afrique du Nord et Israël"
+                }
+              },
+              {
+                "id": "fare_iberia_hold_26_45_long_direct_2026_09_11",
+                "placement": "hold",
+                "price": {
+                  "kind": "matrix",
+                  "amounts": [
+                    {
+                      "amount": 330,
+                      "currency": "EUR"
+                    },
+                    {
+                      "amount": 390,
+                      "currency": "USD"
+                    },
+                    {
+                      "amount": 290,
+                      "currency": "GBP"
+                    }
+                  ]
+                },
+                "billing_subject": "pet_or_container",
+                "journey_basis": "per_journey",
+                "scope_label": "26–45 kg · Amériques, Asie, Qatar · direct",
+                "source": {
+                  "url": "https://www.iberia.com/fr/voyager-avec-iberia/animaux/#AVIH",
+                  "source_type": "official_website",
+                  "verified_date": "2026-09-11",
+                  "review_due": "2026-12-10",
+                  "confidence": 4,
+                  "reviewer": "Codex — lecture directe de la page officielle",
+                  "history": [],
+                  "quote": "Par trajet : 330 EUR/390 USD/290 GBP",
+                  "quote_language": "fr",
+                  "locator": "Frais pour le transport en soute → Entre 26 et 45 kg → Amériques, Asie et Qatar"
+                }
+              },
+              {
+                "id": "fare_iberia_hold_26_45_long_connection_2026_09_11",
+                "placement": "hold",
+                "price": {
+                  "kind": "matrix",
+                  "amounts": [
+                    {
+                      "amount": 385,
+                      "currency": "EUR"
+                    },
+                    {
+                      "amount": 455,
+                      "currency": "USD"
+                    },
+                    {
+                      "amount": 335,
+                      "currency": "GBP"
+                    }
+                  ]
+                },
+                "billing_subject": "pet_or_container",
+                "journey_basis": "per_journey",
+                "scope_label": "26–45 kg · Amériques, Asie, Qatar · correspondance",
+                "source": {
+                  "url": "https://www.iberia.com/fr/voyager-avec-iberia/animaux/#AVIH",
+                  "source_type": "official_website",
+                  "verified_date": "2026-09-11",
+                  "review_due": "2026-12-10",
+                  "confidence": 4,
+                  "reviewer": "Codex — lecture directe de la page officielle",
+                  "history": [],
+                  "quote": "Avec correspondance : 385 EUR/455 USD/335 GBP",
+                  "quote_language": "fr",
+                  "locator": "Frais pour le transport en soute → Entre 26 et 45 kg → Amériques, Asie et Qatar"
                 }
               }
             ]
@@ -39895,7 +41918,7 @@
             },
             "fares": [
               {
-                "id": "fare_lufthansa_hold_2026_09_10",
+                "id": "fare_lufthansa_hold_calculator_2026_09_11",
                 "placement": "hold",
                 "price": {
                   "kind": "calculator",
@@ -39903,18 +41926,86 @@
                 },
                 "billing_subject": "pet_or_container",
                 "journey_basis": "per_one_way",
-                "scope_label": "aéroport départ → destination via hubs",
+                "scope_label": "trajet et taille du conteneur",
                 "source": {
-                  "url": "https://www.lufthansa.com/de/en/animals-as-additional-baggage",
+                  "url": "https://www.lufthansa.com/fr/fr/tiere-als-uebergepaeck",
                   "source_type": "official_website",
-                  "verified_date": "2026-09-10",
-                  "review_due": "2026-12-09",
+                  "verified_date": "2026-09-11",
+                  "review_due": "2026-12-10",
                   "confidence": 4,
-                  "reviewer": "Codex — lecture directe de la source officielle",
+                  "reviewer": "Codex — lecture directe de la page officielle rendue",
                   "history": [],
-                  "quote": "additional transfer surcharge",
-                  "quote_language": "en",
-                  "locator": "Costs and transfer surcharge"
+                  "quote": "Le tarif dépend à la fois du trajet et de la taille du conteneur.",
+                  "quote_language": "fr",
+                  "locator": "Tarifs → premier paragraphe"
+                }
+              },
+              {
+                "id": "fare_lufthansa_hold_transfer_surcharge_2026_09_11",
+                "placement": "hold",
+                "price": {
+                  "kind": "exact",
+                  "amounts": [
+                    {
+                      "amount": 150,
+                      "currency": "EUR"
+                    },
+                    {
+                      "amount": 170,
+                      "currency": "CHF"
+                    },
+                    {
+                      "amount": 170,
+                      "currency": "USD"
+                    },
+                    {
+                      "amount": 220,
+                      "currency": "CAD"
+                    }
+                  ]
+                },
+                "billing_subject": "pet_or_container",
+                "journey_basis": "per_journey",
+                "scope_label": "+ BRU/GVA/FRA/VIE/ZRH",
+                "source": {
+                  "url": "https://www.lufthansa.com/fr/fr/tiere-als-uebergepaeck",
+                  "source_type": "official_website",
+                  "verified_date": "2026-09-11",
+                  "review_due": "2026-12-10",
+                  "confidence": 4,
+                  "reviewer": "Codex — lecture directe de la page officielle rendue",
+                  "history": [],
+                  "quote": "Un supplément de 150 EUR / 170 CHF / 170 USD / 220 CAD est facturé pour le transfert via Bruxelles, Genève, Francfort, Vienne et Zurich.",
+                  "quote_language": "fr",
+                  "locator": "Tarifs → Remarque → supplément de transfert"
+                }
+              },
+              {
+                "id": "fare_lufthansa_hold_zurich_overnight_2026_09_11",
+                "placement": "hold",
+                "price": {
+                  "kind": "exact",
+                  "amounts": [
+                    {
+                      "amount": 200,
+                      "currency": "CHF"
+                    }
+                  ]
+                },
+                "billing_subject": "container",
+                "journey_basis": "per_journey",
+                "scope_label": "+ ZRH (>24 h)",
+                "source": {
+                  "url": "https://www.lufthansa.com/fr/fr/tiere-als-uebergepaeck",
+                  "source_type": "official_website",
+                  "verified_date": "2026-09-11",
+                  "review_due": "2026-12-10",
+                  "confidence": 4,
+                  "reviewer": "Codex — lecture directe de la page officielle rendue",
+                  "history": [],
+                  "quote": "En cas de nuitée à Zurich, un supplément de 200 CHF par conteneur de transport est facturé.",
+                  "quote_language": "fr",
+                  "locator": "Tarifs → Remarque → nuitée à Zurich"
                 }
               }
             ]
@@ -48379,7 +50470,7 @@
             "availability": "offered",
             "fares": [
               {
-                "id": "fare_transavia_hold_eur_2026_09_10",
+                "id": "fare_transavia_hold_hv_eur_2026_09_11",
                 "placement": "hold",
                 "price": {
                   "kind": "exact",
@@ -48392,18 +50483,46 @@
                 },
                 "billing_subject": "container",
                 "journey_basis": "per_one_way",
-                "scope_label": "Operator and route",
+                "scope_label": "HV",
                 "source": {
                   "url": "https://www.transavia.com/help/en-eu/children-pets-groups/pets-on-board/hold-luggage-pet",
                   "source_type": "official_website",
-                  "verified_date": "2026-09-10",
-                  "review_due": "2026-12-09",
+                  "verified_date": "2026-09-11",
+                  "review_due": "2026-12-10",
                   "confidence": 4,
                   "reviewer": "Codex — lecture directe de la source officielle",
                   "history": [],
-                  "quote": "€77 per kennel, one way",
+                  "quote": "If your flight number starts with HV, you pay €77 per kennel per one-way flight.",
                   "quote_language": "en",
-                  "locator": "Hold pet price"
+                  "locator": "Can my pet travel in the luggage hold? → flight number starts with HV"
+                }
+              },
+              {
+                "id": "fare_transavia_hold_to_eur_2026_09_11",
+                "placement": "hold",
+                "price": {
+                  "kind": "minimum",
+                  "amounts": [
+                    {
+                      "amount": 100,
+                      "currency": "EUR"
+                    }
+                  ]
+                },
+                "billing_subject": "container",
+                "journey_basis": "per_one_way",
+                "scope_label": "TO",
+                "source": {
+                  "url": "https://www.transavia.com/help/en-eu/children-pets-groups/pets-on-board/hold-luggage-pet",
+                  "source_type": "official_website",
+                  "verified_date": "2026-09-11",
+                  "review_due": "2026-12-10",
+                  "confidence": 4,
+                  "reviewer": "Codex — lecture directe de la source officielle",
+                  "history": [],
+                  "quote": "For flights starting with TO, the fare for traveling with your pet starts at €100 in the hold, per transport crate and per one-way flight.",
+                  "quote_language": "en",
+                  "locator": "Can my pet travel in the luggage hold? → flights starting with TO"
                 }
               }
             ],

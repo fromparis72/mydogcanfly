@@ -34,6 +34,7 @@ import {
   evaluerPortee, evaluerFenetre, porteeTarif, porteeSaine, resoudreTarif, resolutionVide,
   projectPlacementPolicy, PlacementPolicyAuthored,
 } from "./packages/knowledge/src/index.ts";
+import { presentNumericFares } from "./packages/ui/src/lib/farePresentation.ts";
 
 let pass = 0, fail = 0;
 const check = (label, cond, detail = "") => {
@@ -693,9 +694,81 @@ console.log("\n=== 14. L'import réel ne peut plus retomber silencieusement à z
     if (Array.isArray(p.fares) && p.fares.length) { avecTarifs++; lignesTarifaires += p.fares.length; compagnies.add(a.id); }
     if (Array.isArray(p.fare_conflicts) && p.fare_conflicts.length) avecConflits++;
   }
-  check("l'import verrouillé porte exactement 157 lignes sur 116 canaux et 68 compagnies — jamais zéro par oubli",
-    avecTarifs === 116 && lignesTarifaires === 157 && compagnies.size === 68,
+  check("l'import verrouillé porte exactement 218 lignes sur 121 canaux et 70 compagnies — import initial plus six correctifs tarifaires, jamais zéro par oubli",
+    avecTarifs === 121 && lignesTarifaires === 218 && compagnies.size === 70,
     `${lignesTarifaires} ligne(s), ${avecTarifs} canal(aux), ${compagnies.size} compagnie(s)`);
+  const airFrance = objets.airlines.find((a) => a.id === "airline_air_france")?.premium?.policy;
+  const montantsUniques = (p, currency) => [...new Set((p?.fares ?? []).flatMap((f) =>
+    f.price.amounts.filter((m) => m.currency === currency).map((m) => m.amount)
+  ))].sort((a, b) => a - b);
+  check("Air France : les SEPT lignes officielles traversent l'ingestion en cabine et en soute, chacune avec sa preuve propre",
+    airFrance?.cabin?.fares?.length === 7 && airFrance?.hold?.fares?.length === 7
+      && [...airFrance.cabin.fares, ...airFrance.hold.fares].every((f) =>
+        f.price.kind === "matrix" && f.source?.url === "https://wwws.airfrance.fr/information/passagers/voyager-avec-son-animal-chien-chat"
+          && f.source?.verified_date === "2026-09-11" && f.source?.review_due === "2026-12-10"
+          && f.source?.quote && f.source?.locator),
+    JSON.stringify({ cabin: airFrance?.cabin?.fares?.length, hold: airFrance?.hold?.fares?.length }));
+  check("Air France : la grille EUR reste complète — cabine 70/125/200/250, soute 100/200/400/600/750",
+    JSON.stringify(montantsUniques(airFrance?.cabin, "EUR")) === JSON.stringify([70, 125, 200, 250])
+      && JSON.stringify(montantsUniques(airFrance?.hold, "EUR")) === JSON.stringify([100, 200, 400, 600, 750]),
+    JSON.stringify({ cabin: montantsUniques(airFrance?.cabin, "EUR"), hold: montantsUniques(airFrance?.hold, "EUR") }));
+  const transavia = objets.airlines.find((a) => a.id === "airline_transavia")?.premium?.policy?.hold?.fares ?? [];
+  check("Transavia : 77 EUR reste borné aux vols HV et les vols TO publient leur minimum de 100 EUR",
+    transavia.length === 2
+      && transavia.some((f) => f.scope_label === "HV" && f.price.kind === "exact" && f.price.amounts?.[0]?.amount === 77)
+      && transavia.some((f) => f.scope_label === "TO" && f.price.kind === "minimum" && f.price.amounts?.[0]?.amount === 100)
+      && transavia.every((f) => f.source?.verified_date === "2026-09-11" && f.source?.review_due === "2026-12-10"),
+    JSON.stringify(transavia.map((f) => ({ scope: f.scope_label, kind: f.price.kind, amount: f.price.amounts?.[0]?.amount }))));
+  check("la présentation ne tronque pas la grille Air France et distingue les deux préfixes Transavia",
+    presentNumericFares(airFrance.cabin.fares, { locale: "fr", minimumLabel: "à partir de" })?.includes("70")
+      && presentNumericFares(airFrance.cabin.fares, { locale: "fr", minimumLabel: "à partir de" })?.includes("250")
+      && presentNumericFares(transavia, { locale: "fr", minimumLabel: "à partir de" })?.includes("77")
+      && presentNumericFares(transavia, { locale: "fr", minimumLabel: "à partir de" })?.includes("100")
+      && presentNumericFares(transavia, { locale: "fr", minimumLabel: "à partir de" })?.includes("(HV)")
+      && presentNumericFares(transavia, { locale: "fr", minimumLabel: "à partir de" })?.includes("(TO)"));
+  const lufthansa = objets.airlines.find((a) => a.id === "airline_lufthansa")?.premium?.policy?.hold?.fares ?? [];
+  check("Lufthansa : le calculateur de base et les DEUX suppléments officiels coexistent sans que 150 EUR devienne un prix total",
+    lufthansa.length === 3 && lufthansa.some((f) => f.price.kind === "calculator")
+      && lufthansa.some((f) => f.scope_label === "+ BRU/GVA/FRA/VIE/ZRH" && f.price.amounts?.some((m) => m.currency === "EUR" && m.amount === 150))
+      && lufthansa.some((f) => f.scope_label === "+ ZRH (>24 h)" && f.price.amounts?.some((m) => m.currency === "CHF" && m.amount === 200))
+      && presentNumericFares(lufthansa, { locale: "fr", minimumLabel: "à partir de" })?.includes("(+ BRU/GVA/FRA/VIE/ZRH)")
+      && presentNumericFares(lufthansa, { locale: "fr", minimumLabel: "à partir de" })?.includes("(+ ZRH (>24 h))")
+      && lufthansa.every((f) => f.source?.verified_date === "2026-09-11" && f.source?.review_due === "2026-12-10"),
+    JSON.stringify(lufthansa.map((f) => ({ kind: f.price.kind, scope: f.scope_label }))));
+  const airEuropa = objets.airlines.find((a) => a.id === "airline_air_europa")?.premium?.policy;
+  check("Air Europa : les quatre zones et quatre devises traversent l'ingestion sur les deux canaux",
+    airEuropa?.cabin?.fares?.length === 4 && airEuropa?.hold?.fares?.length === 4
+      && [...airEuropa.cabin.fares, ...airEuropa.hold.fares].every((f) => f.price.kind === "matrix" && f.price.amounts?.length === 4
+        && f.source?.url === "https://www.aireuropa.com/be/fr/aea/informations-pour-voler/passagers/animaux-de-compagnie.html"
+        && f.source?.verified_date === "2026-09-11" && f.source?.review_due === "2026-12-10"));
+  check("Air Europa : l'amplitude EUR publiée reste 35–175 en cabine et 90–350 en soute",
+    presentNumericFares(airEuropa.cabin.fares, { locale: "fr", minimumLabel: "à partir de" })?.includes("35")
+      && presentNumericFares(airEuropa.cabin.fares, { locale: "fr", minimumLabel: "à partir de" })?.includes("175")
+      && presentNumericFares(airEuropa.hold.fares, { locale: "fr", minimumLabel: "à partir de" })?.includes("90")
+      && presentNumericFares(airEuropa.hold.fares, { locale: "fr", minimumLabel: "à partir de" })?.includes("350"));
+  const iberia = objets.airlines.find((a) => a.id === "airline_iberia")?.premium?.policy;
+  check("Iberia : les 12 cases cabine et 18 cases soute traversent avec trois devises et leur preuve propre",
+    iberia?.cabin?.fares?.length === 12 && iberia?.hold?.fares?.length === 18
+      && [...iberia.cabin.fares, ...iberia.hold.fares].every((f) => f.price.kind === "matrix"
+        && f.price.amounts?.length === 3 && f.source?.url?.startsWith("https://www.iberia.com/fr/")
+        && f.source?.verified_date === "2026-09-11" && f.source?.review_due === "2026-12-10"
+        && f.source?.quote?.length >= 10 && f.source?.locator?.length > 0));
+  check("Iberia : aucune extrémité de la grille n'est perdue — cabine 40–220 EUR, soute 90–385 EUR",
+    presentNumericFares(iberia.cabin.fares, { locale: "fr", minimumLabel: "à partir de" })?.includes("40")
+      && presentNumericFares(iberia.cabin.fares, { locale: "fr", minimumLabel: "à partir de" })?.includes("220")
+      && presentNumericFares(iberia.hold.fares, { locale: "fr", minimumLabel: "à partir de" })?.includes("90")
+      && presentNumericFares(iberia.hold.fares, { locale: "fr", minimumLabel: "à partir de" })?.includes("385"));
+  const austrian = objets.airlines.find((a) => a.id === "airline_austrian")?.premium?.policy;
+  check("Austrian : les dix cases soute distinguent cinq trajets et deux tailles de caisse",
+    austrian?.hold?.fares?.length === 10
+      && austrian.hold.fares.every((f) => f.price.kind === "matrix" && f.price.amounts?.length === 1
+        && f.billing_subject === "container" && f.journey_basis === "per_segment"
+        && f.source?.url?.startsWith("https://www.austrian.com/fr/fr/")
+        && f.source?.verified_date === "2026-09-11" && f.source?.review_due === "2026-12-10"));
+  check("Austrian : l'amplitude officielle 80–380 EUR est entière, jamais réduite à la première ligne",
+    JSON.stringify(montantsUniques(austrian?.hold, "EUR")) === JSON.stringify([80, 100, 130, 160, 170, 190, 200, 260, 340, 380])
+      && presentNumericFares(austrian.hold.fares, { locale: "fr", minimumLabel: "à partir de" })?.includes("80")
+      && presentNumericFares(austrian.hold.fares, { locale: "fr", minimumLabel: "à partir de" })?.includes("380"));
   const klm = objets.airlines.find((a) => a.id === "airline_klm")?.premium?.policy;
   check("KLM porte bien sa fourchette officielle 70–500 EUR en cabine ET en soute",
     ["cabin", "hold"].every((p) => klm?.[p]?.fares?.some((f) => f.price.kind === "range"

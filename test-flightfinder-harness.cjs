@@ -392,6 +392,51 @@ async function cartesPass() {
       !!rTarif.card.querySelector('details.acard__proofs a[href="https://www.klm.com/information/pets/reservation"]')
         && texteDe(rTarif.card.querySelector("details.acard__proofs")).includes("Costs and restrictions"));
 
+    /* Correctif tarifaire du 11/09/2026 : la page Transavia publie deux branches, selon le
+       préfixe du vol. L'ancien import ne gardait que 77 EUR et le généralisait. */
+    const sourceTransavia = { ...SRC_SOUTE,
+      url: "https://www.transavia.com/help/en-eu/children-pets-groups/pets-on-board/hold-luggage-pet",
+      verified_date: "2026-09-11", review_due: "2026-12-10" };
+    const faresTransavia = [
+      { id: "fare_transavia_hv", placement: "hold", price: { kind: "exact", amounts: [{ amount: 77, currency: "EUR" }] },
+        billing_subject: "container", journey_basis: "per_one_way", scope_label: "HV", source: sourceTransavia },
+      { id: "fare_transavia_to", placement: "hold", price: { kind: "minimum", amounts: [{ amount: 100, currency: "EUR" }] },
+        billing_subject: "container", journey_basis: "per_one_way", scope_label: "TO", source: sourceTransavia },
+    ];
+    const rTransavia = await rendre(carteContrat({ fare_resolutions: [
+      fareResolution("cabin"), fareResolution("hold", { indecidables: faresTransavia }), fareResolution("cargo"),
+    ] }));
+    const ligneTransavia = texteDe(ligne(rTransavia.card, "hold"));
+    check(`${loc.code} : Transavia ne généralise plus 77 EUR — la ligne distingue HV et TO et montre le minimum de 100 EUR`,
+      ligneTransavia.includes("77") && ligneTransavia.includes("100")
+        && ligneTransavia.includes("(HV)") && ligneTransavia.includes("(TO)") && ligneTransavia.includes(X.fareVariable),
+      ligneTransavia);
+
+    /* Air France porte sept lignes par canal. Le premier rendu faisait `.slice(0, 2)` et aurait
+       donc caché l'essentiel de la grille : l'amplitude officielle doit conserver ses extrêmes. */
+    const faresAirFrance = [70, 125, 125, 125, 200, 250, 200].map((amount, index) => ({
+      id: `fare_air_france_${index}`, placement: "cabin", price: { kind: "matrix", amounts: [{ amount, currency: "EUR" }] },
+      billing_subject: "container", journey_basis: "per_one_way", scope_label: `zone ${index + 1}`,
+      source: { ...SRC_SOUTE, url: "https://wwws.airfrance.fr/information/passagers/voyager-avec-son-animal-chien-chat",
+        verified_date: "2026-09-11", review_due: "2026-12-10" },
+    }));
+    const rAirFrance = await rendre(carteContrat({
+      cabin_status: "accepted_with_conditions",
+      to_confirm: ["cargo"],
+      placement_decisions: [
+        { placement: "cabin", status: "accepted_with_conditions", allowed: false, source: SRC_SOUTE },
+        { placement: "hold", status: "accepted_with_conditions", allowed: false, weight_limit_kg: 75, weight_limit_includes_carrier: true, source: SRC_SOUTE },
+        { placement: "cargo", status: "confirmation_required", allowed: false, confirmation_causes: [{ code: "legacy_unreviewed", policy_ref: "airline_contrat#cargo" }] },
+      ],
+      fare_resolutions: [
+        fareResolution("cabin", { indecidables: faresAirFrance }), fareResolution("hold"), fareResolution("cargo"),
+      ],
+    }));
+    const ligneAirFrance = texteDe(ligne(rAirFrance.card, "cabin"));
+    check(`${loc.code} : les sept lignes Air France deviennent une amplitude 70–250 EUR, jamais deux montants arbitraires`,
+      ligneAirFrance.includes("70") && ligneAirFrance.includes("250") && ligneAirFrance.includes(X.fareVariable),
+      ligneAirFrance);
+
     /* 4. Le fret se développe quand il est DEMANDÉ (préférence « fret » du formulaire), même non publié. */
     const r4 = await rendre(carteContrat({}), "cargo");
     check(`${loc.code} : fret demandé → développé, « à confirmer » (pas la ligne discrète)`, !!ligne(r4.card, "cargo") && !ligne(r4.card, "cargo").classList.contains("acard__line--quiet") && texteDe(ligne(r4.card, "cargo")).endsWith(X.confirm), texteDe(ligne(r4.card, "cargo")));

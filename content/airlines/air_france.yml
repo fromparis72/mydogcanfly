@@ -69,6 +69,149 @@ ladder:
     sub: "> 75 kg"
 policies:
   cabin:
+    # BARÈME OFFICIEL RELU LE 2026-09-11. Chaque ligne de zone garde sa propre phrase et sa
+    # propre portée visible. La zone commerciale n'est pas encore un fait exécutable du Finder :
+    # ces lignes restent une GRILLE publiée, jamais le prix exact prétendument calculé du trajet.
+    fares:
+      - id: fare_air_france_cabin_france_eur_2026_09_11
+        placement: cabin
+        price:
+          kind: matrix
+          amounts: [{ amount: 70, currency: EUR }]
+        billing_subject: container
+        journey_basis: per_one_way
+        scope_label: Vols en France métropolitaine
+        source:
+          url: https://wwws.airfrance.fr/information/passagers/voyager-avec-son-animal-chien-chat
+          source_type: official_website
+          verified_date: 2026-09-11
+          review_due: 2026-12-10
+          confidence: 4
+          reviewer: Codex — lecture directe de la grille officielle rendue
+          history: []
+          quote: "En cabine : 70 EUR"
+          quote_language: fr
+          locator: Tarifs → Vols en France métropolitaine → En cabine
+      - id: fare_air_france_cabin_caribbean_eur_2026_09_11
+        placement: cabin
+        price:
+          kind: matrix
+          amounts: [{ amount: 125, currency: EUR }]
+        billing_subject: container
+        journey_basis: per_one_way
+        scope_label: Vols intra Caraïbes
+        source:
+          url: https://wwws.airfrance.fr/information/passagers/voyager-avec-son-animal-chien-chat
+          source_type: official_website
+          verified_date: 2026-09-11
+          review_due: 2026-12-10
+          confidence: 4
+          reviewer: Codex — lecture directe de la grille officielle rendue
+          history: []
+          quote: "En cabine : 125 EUR"
+          quote_language: fr
+          locator: Tarifs → Vols intra Caraïbes → En cabine
+      - id: fare_air_france_cabin_europe_north_africa_eur_2026_09_11
+        placement: cabin
+        price:
+          kind: matrix
+          amounts: [{ amount: 125, currency: EUR }]
+        billing_subject: container
+        journey_basis: per_one_way
+        scope_label: Europe ou Europe–Afrique du Nord
+        source:
+          url: https://wwws.airfrance.fr/information/passagers/voyager-avec-son-animal-chien-chat
+          source_type: official_website
+          verified_date: 2026-09-11
+          review_due: 2026-12-10
+          confidence: 4
+          reviewer: Codex — lecture directe de la grille officielle rendue
+          history: []
+          quote: "En cabine : 125 EUR"
+          quote_language: fr
+          locator: Tarifs → Vols en Europe ou entre l'Europe et l'Afrique du Nord → En cabine
+      - id: fare_air_france_cabin_france_overseas_eur_2026_09_11
+        placement: cabin
+        price:
+          kind: matrix
+          amounts: [{ amount: 125, currency: EUR }]
+        billing_subject: container
+        journey_basis: per_one_way
+        scope_label: France métropolitaine ↔ Cayenne, Antilles ou La Réunion
+        source:
+          url: https://wwws.airfrance.fr/information/passagers/voyager-avec-son-animal-chien-chat
+          source_type: official_website
+          verified_date: 2026-09-11
+          review_due: 2026-12-10
+          confidence: 4
+          reviewer: Codex — lecture directe de la grille officielle rendue
+          history: []
+          quote: "En cabine : 125 EUR"
+          quote_language: fr
+          locator: Tarifs → France métropolitaine ↔ Cayenne, Fort-de-France, Pointe-à-Pitre ou La Réunion → En cabine
+      - id: fare_air_france_cabin_north_america_listed_2026_09_11
+        placement: cabin
+        price:
+          kind: matrix
+          amounts:
+            - { amount: 200, currency: EUR }
+            - { amount: 200, currency: USD }
+            - { amount: 200, currency: CAD }
+        billing_subject: container
+        journey_basis: per_one_way
+        scope_label: États-Unis/Canada ↔ Europe et destinations listées
+        source:
+          url: https://wwws.airfrance.fr/information/passagers/voyager-avec-son-animal-chien-chat
+          source_type: official_website
+          verified_date: 2026-09-11
+          review_due: 2026-12-10
+          confidence: 4
+          reviewer: Codex — lecture directe de la grille officielle rendue
+          history: []
+          quote: "En cabine : 200 EUR/USD/CAD"
+          quote_language: fr
+          locator: Tarifs → États-Unis/Canada ↔ Europe et destinations listées → En cabine
+      - id: fare_air_france_cabin_north_america_world_2026_09_11
+        placement: cabin
+        price:
+          kind: matrix
+          amounts:
+            - { amount: 250, currency: EUR }
+            - { amount: 250, currency: USD }
+            - { amount: 250, currency: CAD }
+        billing_subject: container
+        journey_basis: per_one_way
+        scope_label: États-Unis/Canada ↔ reste du monde
+        source:
+          url: https://wwws.airfrance.fr/information/passagers/voyager-avec-son-animal-chien-chat
+          source_type: official_website
+          verified_date: 2026-09-11
+          review_due: 2026-12-10
+          confidence: 4
+          reviewer: Codex — lecture directe de la grille officielle rendue
+          history: []
+          quote: "En cabine : 250 EUR/USD/CAD"
+          quote_language: fr
+          locator: Tarifs → États-Unis/Canada ↔ reste du monde → En cabine
+      - id: fare_air_france_cabin_other_eur_2026_09_11
+        placement: cabin
+        price:
+          kind: matrix
+          amounts: [{ amount: 200, currency: EUR }]
+        billing_subject: container
+        journey_basis: per_one_way
+        scope_label: Autres vols
+        source:
+          url: https://wwws.airfrance.fr/information/passagers/voyager-avec-son-animal-chien-chat
+          source_type: official_website
+          verified_date: 2026-09-11
+          review_due: 2026-12-10
+          confidence: 4
+          reviewer: Codex — lecture directe de la grille officielle rendue
+          history: []
+          quote: "En cabine : 200 EUR"
+          quote_language: fr
+          locator: Tarifs → Autres vols → En cabine
     availability: offered
     # PREUVE IMPORTÉE — import strict af_cabine (Codex, lecture directe du 2026-09-10, cohorte AF fait 0).
     # Effet attendu : Pour un chihuahua de 3 kg, la cabine Air France passe de « à confirmer » (page officielle non citée) à « sous conditions » ; à 8 kg exactement et au-delà, refus sûr (borne stricte).
@@ -108,6 +251,153 @@ policies:
       quote_language: fr
       locator: "Transport de chiens, de chats et autres animaux de compagnie → option En cabine"
   hold:
+    fares:
+      - id: fare_air_france_hold_france_eur_2026_09_11
+        placement: hold
+        price:
+          kind: matrix
+          amounts: [{ amount: 100, currency: EUR }]
+        billing_subject: container
+        journey_basis: per_one_way
+        purchase_window: { min_days_before_departure: 1 }
+        scope_label: Vols en France métropolitaine · jusqu'à 24 h avant le départ
+        source:
+          url: https://wwws.airfrance.fr/information/passagers/voyager-avec-son-animal-chien-chat
+          source_type: official_website
+          verified_date: 2026-09-11
+          review_due: 2026-12-10
+          confidence: 4
+          reviewer: Codex — lecture directe de la grille officielle rendue
+          history: []
+          quote: "En soute : 100 EUR, jusqu'à 24 h avant le départ"
+          quote_language: fr
+          locator: Tarifs → Vols en France métropolitaine → En soute
+      - id: fare_air_france_hold_caribbean_eur_2026_09_11
+        placement: hold
+        price:
+          kind: matrix
+          amounts: [{ amount: 200, currency: EUR }]
+        billing_subject: container
+        journey_basis: per_one_way
+        purchase_window: { min_days_before_departure: 1 }
+        scope_label: Vols intra Caraïbes · jusqu'à 24 h avant le départ
+        source:
+          url: https://wwws.airfrance.fr/information/passagers/voyager-avec-son-animal-chien-chat
+          source_type: official_website
+          verified_date: 2026-09-11
+          review_due: 2026-12-10
+          confidence: 4
+          reviewer: Codex — lecture directe de la grille officielle rendue
+          history: []
+          quote: "En soute : 200 EUR, jusqu'à 24 h avant le départ"
+          quote_language: fr
+          locator: Tarifs → Vols intra Caraïbes → En soute
+      - id: fare_air_france_hold_europe_north_africa_eur_2026_09_11
+        placement: hold
+        price:
+          kind: matrix
+          amounts: [{ amount: 200, currency: EUR }]
+        billing_subject: container
+        journey_basis: per_one_way
+        purchase_window: { min_days_before_departure: 1 }
+        scope_label: Europe ou Europe–Afrique du Nord · jusqu'à 24 h avant le départ
+        source:
+          url: https://wwws.airfrance.fr/information/passagers/voyager-avec-son-animal-chien-chat
+          source_type: official_website
+          verified_date: 2026-09-11
+          review_due: 2026-12-10
+          confidence: 4
+          reviewer: Codex — lecture directe de la grille officielle rendue
+          history: []
+          quote: "En soute : 200 EUR, jusqu'à 24 h avant le départ"
+          quote_language: fr
+          locator: Tarifs → Vols en Europe ou entre l'Europe et l'Afrique du Nord → En soute
+      - id: fare_air_france_hold_france_overseas_eur_2026_09_11
+        placement: hold
+        price:
+          kind: matrix
+          amounts: [{ amount: 200, currency: EUR }]
+        billing_subject: container
+        journey_basis: per_one_way
+        purchase_window: { min_days_before_departure: 1 }
+        scope_label: France métropolitaine ↔ Cayenne, Antilles ou La Réunion · jusqu'à 24 h avant le départ
+        source:
+          url: https://wwws.airfrance.fr/information/passagers/voyager-avec-son-animal-chien-chat
+          source_type: official_website
+          verified_date: 2026-09-11
+          review_due: 2026-12-10
+          confidence: 4
+          reviewer: Codex — lecture directe de la grille officielle rendue
+          history: []
+          quote: "En soute : 200 EUR, jusqu'à 24 h avant le départ"
+          quote_language: fr
+          locator: Tarifs → France métropolitaine ↔ Cayenne, Fort-de-France, Pointe-à-Pitre ou La Réunion → En soute
+      - id: fare_air_france_hold_north_america_listed_2026_09_11
+        placement: hold
+        price:
+          kind: matrix
+          amounts:
+            - { amount: 600, currency: EUR }
+            - { amount: 600, currency: USD }
+            - { amount: 600, currency: CAD }
+        billing_subject: container
+        journey_basis: per_one_way
+        purchase_window: { min_days_before_departure: 1 }
+        scope_label: États-Unis/Canada ↔ Europe et destinations listées · jusqu'à 24 h avant le départ
+        source:
+          url: https://wwws.airfrance.fr/information/passagers/voyager-avec-son-animal-chien-chat
+          source_type: official_website
+          verified_date: 2026-09-11
+          review_due: 2026-12-10
+          confidence: 4
+          reviewer: Codex — lecture directe de la grille officielle rendue
+          history: []
+          quote: "En soute : 600 EUR/USD/CAD, jusqu'à 24 h avant le départ"
+          quote_language: fr
+          locator: Tarifs → États-Unis/Canada ↔ Europe et destinations listées → En soute
+      - id: fare_air_france_hold_north_america_world_2026_09_11
+        placement: hold
+        price:
+          kind: matrix
+          amounts:
+            - { amount: 750, currency: EUR }
+            - { amount: 750, currency: USD }
+            - { amount: 750, currency: CAD }
+        billing_subject: container
+        journey_basis: per_one_way
+        purchase_window: { min_days_before_departure: 1 }
+        scope_label: États-Unis/Canada ↔ reste du monde · jusqu'à 24 h avant le départ
+        source:
+          url: https://wwws.airfrance.fr/information/passagers/voyager-avec-son-animal-chien-chat
+          source_type: official_website
+          verified_date: 2026-09-11
+          review_due: 2026-12-10
+          confidence: 4
+          reviewer: Codex — lecture directe de la grille officielle rendue
+          history: []
+          quote: "En soute : 750 EUR/USD/CAD, jusqu'à 24 h avant le départ"
+          quote_language: fr
+          locator: Tarifs → États-Unis/Canada ↔ reste du monde → En soute
+      - id: fare_air_france_hold_other_eur_2026_09_11
+        placement: hold
+        price:
+          kind: matrix
+          amounts: [{ amount: 400, currency: EUR }]
+        billing_subject: container
+        journey_basis: per_one_way
+        purchase_window: { min_days_before_departure: 1 }
+        scope_label: Autres vols · jusqu'à 24 h avant le départ
+        source:
+          url: https://wwws.airfrance.fr/information/passagers/voyager-avec-son-animal-chien-chat
+          source_type: official_website
+          verified_date: 2026-09-11
+          review_due: 2026-12-10
+          confidence: 4
+          reviewer: Codex — lecture directe de la grille officielle rendue
+          history: []
+          quote: "En soute : 400 EUR, jusqu'à 24 h avant le départ"
+          quote_language: fr
+          locator: Tarifs → Autres vols → En soute
     availability: offered
     # PREUVE IMPORTÉE — import strict V3 (Codex, lecture directe du 2026-09-08, cohorte A fait 0).
     # Effet attendu : For a 32 kg dog, show hold offered under conditions; do not turn booking availability into policy_unknown.
