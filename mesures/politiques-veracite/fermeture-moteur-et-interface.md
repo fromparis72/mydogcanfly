@@ -4607,3 +4607,40 @@ lui-même.
 frontière appelait le compilateur deux fois dans la même assertion — l'argument de détail est évalué même
 quand l'assertion passe. Il avait jugé que cela ne justifiait pas une tête à soi seul. C'est fait ici, dans le
 premier commit qui rouvre ce fichier, comme annoncé.
+
+---
+
+### Déploiement de `main` `a28a07b` (11/09/2026, Philippe, depuis son Mac) — prouvé des deux côtés
+
+Deuxième bascule de la journée, celle qui met en ligne les titres et descriptions SEO des quatre
+accueils (annexe 49, #57) et la preuve de la bascule précédente (#58).
+
+| terme | valeur |
+|---|---|
+| `git rev-parse HEAD` sur le Mac | `a28a07bcf066c1c3a2b9d4daba2884fc78634445` |
+| `sha` de `/v1/health` | `a28a07bcf066c1c3a2b9d4daba2884fc78634445` |
+| `worker_version_id` de `/v1/health` | `dbbe3007-2387-4634-8fbb-7979d3f19e5b` |
+| `Current Version ID` annoncé par wrangler | `dbbe3007-2387-4634-8fbb-7979d3f19e5b` |
+
+**Et cette fois, le SITE a été vérifié séparément du WORKER — parce que la preuve de santé ne dit
+rien de lui.** C'est la leçon propre à cette bascule, et elle méritait d'être apprise ici plutôt
+qu'après une mise en ligne ratée. Les titres SEO vivent dans les pages STATIQUES publiées par
+`npm run release` ; le worker, lui, ne sert que l'API du Finder. Une lecture de `/v1/health`
+parfaitement concordante est donc compatible avec un site qui sert encore les anciennes pages : les
+deux moitiés se déploient par deux commandes distinctes, et la règle de l'annexe 35 n'en couvrait
+qu'une. Relevé en ligne après la bascule :
+
+```
+curl -s https://mydogcanfly.com/ | grep -o '<title>[^<]*</title>'
+<title>Flying With a Dog: Airline Policies and Entry Rules</title>
+```
+
+C'est le titre arbitré, à l'octet près. Les trois autres langues ont été éprouvées au build, sur
+l'artefact exact qui a été publié : la contre-épreuve de l'annexe 49 lit les quatre accueils
+construits et exige les huit chaînes, et elle était verte sur `687d446`, dont l'arbre est celui que
+`npm run release` a envoyé.
+
+**La règle de preuve s'étend donc, et c'est le mouvement nommé de cette annexe.** Une bascule se
+prouve désormais sur DEUX plans : le worker par `/v1/health` (SHA et identifiant de version), et le
+site par une lecture du HTML servi. `deployer-production.mjs`, toujours à écrire, devra refuser de
+conclure tant que les deux ne sont pas constatés.
