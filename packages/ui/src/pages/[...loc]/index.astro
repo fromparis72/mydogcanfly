@@ -12,36 +12,50 @@ export function getStaticPaths() {
   ];
 }
 const { locale } = Astro.props as { locale: string };
-// SEO title/description, une variante par langue. L'anglais garde le suffixe de marque (il tient dans
-// la limite d'affichage de Google) ; le français s'en passe pour rester court. L'espagnol avait
-// jusqu'ici les chaînes françaises par défaut — corrigé.
-/* LES QUATRE DESCRIPTIONS NE PROMETTENT PLUS « LA MEILLEURE COMPAGNIE » (07/09/2026).
-   Elles disaient « Find the best airline for your dog », « les compagnies aériennes qui
-   acceptent les chiens », « Encuentra la mejor opción » — et le titre français annonçait
-   « 90+ compagnies » là où la base en compte 102. Aucun canal n'étant aujourd'hui confirmé par
-   une citation, promettre un choix optimal dans la zone la plus reprise du site (le résultat de
-   recherche) contredit ce que la page dit ensuite. Les quatre annoncent désormais ce que le site
-   fait réellement : donner les conditions, et dire pour chacune si elle est prouvée. */
+/* SEO title/description des quatre accueils — une variante par langue, aucune déduite d'une autre.
+   L'HISTORIQUE EST CONSERVÉ, PARCE QU'IL EXPLIQUE CE QUI EST INTERDIT ICI :
+     · l'espagnol a longtemps reçu les chaînes FRANÇAISES par repli — corrigé le 07/09/2026 ; c'est
+       pourquoi les quatre entrées sont écrites en toutes lettres et qu'aucune ne se déduit ;
+     · les quatre descriptions promettaient « la meilleure compagnie » (« Find the best airline for
+       your dog », « Encuentra la mejor opción ») et le titre français annonçait « 90+ compagnies »
+       là où la base en compte 102. Promettre un choix optimal dans la zone la plus reprise du site
+       contredisait ce que la page dit ensuite. Retiré le 07/09/2026, et à ne pas réintroduire.
+
+   MOUVEMENT NOMMÉ DU 11/09/2026 — arbitrage SEO validé par Philippe, textes verbatim.
+   Les quatre titres et les quatre descriptions sont remplacés par ceux de l'arbitrage. Trois
+   changements de fond, tous voulus :
+     · le suffixe de marque « | MyDogCanFly » disparaît du titre anglais. Google affiche déjà le nom
+       du site et décide seul de l'ajouter ou de le retirer ; l'écrire nous-mêmes ne fait que
+       consommer des caractères utiles. AUCUN suffixe n'est ajouté par le code — la balise vaut
+       exactement la chaîne ci-dessous, ici comme dans `og:title` et `twitter:title` ;
+     · les titres passent de la question de marque (« Can My Dog Fly ? ») à l'intention de
+       recherche (« Flying With a Dog »). Le H1 visible, lui, NE BOUGE PAS : la page continue de
+       demander « Can MY dog fly? », et les titres 2 et 3 arbitrés restent intacts ;
+     · les descriptions annoncent les deux moitiés du site — conditions des compagnies ET formalités
+       du pays de destination — là où les précédentes ne parlaient que des compagnies.
+   Le portugais est du portugais du BRÉSIL, et il l'est explicitement : `HTML_LANG` de `Base.astro`
+   rend `lang="pt-BR"` et `OG_LOCALE` rend `og:locale = pt_BR`. Aucun repli sur l'anglais, le
+   français ou le portugais européen n'existe pour cette entrée — elle est écrite ici. */
 const SEO: Record<string, { title: string; description: string }> = {
   en: {
-    title: "Can My Dog Fly? Airline Conditions, Confirmed or To Check | MyDogCanFly",
+    title: "Flying With a Dog: Airline Policies and Entry Rules",
     description:
-      "Airline conditions for dogs — cabin, hold and cargo — with country formalities and breed restrictions. Each answer shows whether it is confirmed by a quoted source or still to be checked.",
+      "Check airline policies and destination-country entry requirements for flying with your dog: cabin, hold, cargo, documents, restrictions, and sources.",
   },
   fr: {
-    title: "Voyager avec son chien en avion : ce qui est confirmé, ce qui reste à vérifier",
+    title: "Voyager avec son chien : compagnies et formalités par pays",
     description:
-      "Les conditions des compagnies pour les chiens — cabine, soute, fret — avec les formalités par pays et les restrictions de race. Chaque réponse indique si elle est confirmée par une source citée ou encore à vérifier.",
+      "Consultez les conditions des compagnies aériennes et du pays de destination pour voyager avec votre chien : cabine, soute, fret, documents et restrictions.",
   },
   es: {
-    title: "¿Puede volar mi perro? Normas de las aerolíneas, con fuentes",
+    title: "Volar con perro: aerolíneas y requisitos por país",
     description:
-      "Las condiciones de las aerolíneas para perros — cabina, bodega y carga — con los trámites por país y las restricciones por raza. Cada respuesta indica si está confirmada por una fuente citada o aún por comprobar.",
+      "Consulta las condiciones de las aerolíneas y del país de destino para viajar con tu perro: cabina, bodega, carga, documentos y restricciones.",
   },
   pt: {
-    title: "O meu cão pode voar? Regras das companhias, com fontes",
+    title: "Viajar com cachorro: companhias e regras por país",
     description:
-      "As condições das companhias para cães — cabine, porão e carga — com as formalidades por país e as restrições de raça. Cada resposta indica se está confirmada por uma fonte citada ou ainda por verificar.",
+      "Consulte as regras das companhias aéreas e do país de destino para viajar com seu cachorro: cabine, porão, carga, documentos e restrições.",
   },
 };
 const { title: seoTitle, description: seoDescription } = SEO[locale] ?? SEO.en;
