@@ -57,7 +57,9 @@ export function politiqueDuCanal(
 export const cleLibelleStatut = (s: StatutCanonique): string =>
   s === "allowed" ? "premium.allowed"
   : s === "accepted_with_conditions" ? "premium.accepted_conditions"   // le quatrième état (08/09/2026)
-  : s === "denied" ? "premium.not_allowed" : "air.to_confirm";
+  /* PASTILLE COURTE (arbitrage Codex, 10/09/2026) : la capsule ne dit que l'état — « À confirmer » —, l'explication
+     (« Politique à confirmer auprès de la compagnie », `air.to_confirm`) reste au bandeau de tête quand rien n'est décidé. */
+  : s === "denied" ? "premium.not_allowed" : "premium.to_confirm_short";
 
 /** La classe de pastille — purement visuelle, DÉRIVÉE du statut et non plus l'inverse. */
 export const classeStatut = (s: StatutCanonique): "ok" | "no" | "warn" =>
