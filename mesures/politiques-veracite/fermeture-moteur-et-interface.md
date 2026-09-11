@@ -4030,3 +4030,79 @@ colonne sous 420 px ; ni `overflow-x: hidden`, ni texte raccourci.
 Les tailles de titre sous 520 px sont celles du `clamp(22px, 6vw, 30px)` déjà en place — aucune réduction globale de
 typographie (racine et corps inchangés). T1, T2, T3 identiques aux textes validés à chaque largeur. Témoin permanent
 ajouté à la suite navigateur (`13-accueil-*-400px.png`), joué une seule fois par le parcours CI complet, comme demandé.
+## Annexe 42 — Le Finder ne montre que des itinéraires établis, et ne s'excuse plus (10/09/2026, classement A)
+
+Arbitrage de Philippe : « mieux vaut cinq itinéraires utilisables que trente-cinq compagnies théoriquement
+possibles accompagnées d'un avertissement ». Deux gestes, un seul lot.
+
+### Mesuré avant d'écrire
+
+Le moteur distingue quatre natures d'itinéraire. Le direct et la correspondance **attestés** reposent sur les
+arêtes publiées de la compagnie (les deux segments figurent dans son graphe de routes). Le direct **supposé**
+(aucun graphe : direct déduit d'un hub) et la correspondance **plausible** (hub retenu sur la seule géométrie,
+détour sous le plafond) ne reposent sur rien de publié. Mesuré sur dix routes × trois chiens, 624 cartes :
+
+| nature | cartes |
+|---|---|
+| direct attesté | 75 |
+| correspondance attestée | 414 |
+| correspondance plausible | **135** |
+| direct supposé | **0** (aucun porteur sur ces routes) |
+
+Après filtrage : 489 cartes, dont 406 documentées. **Aucun scénario vidé, aucun privé de carte documentée** —
+la condition de clôture de l'arbitrage est tenue avant d'écrire une ligne.
+
+Les justifications internes rendues au visiteur étaient au nombre de cinq : quatre paragraphes au-dessus des
+cartes (`.acards__notes` — donnée non revérifiée, page officielle non citée, politique non publiée, fait
+manquant) et un par carte non établie (`.acard__unver`, « compagnie potentiellement pertinente… »).
+DestinationFinder en portait trois, mêmes familles.
+
+### Ce qui a été fait
+
+- **Filtre d'itinéraire** posé une fois, avant le résumé, les deux niveaux et le partage par mode :
+  `compagniesVues`. Jamais un masquage CSS ; les compteurs lisent la liste filtrée. Un
+  `itinerary_confidence` absent ou inconnu n'écarte rien — seules les deux valeurs qui disent « non établi ».
+  Les badges « Itinéraire à confirmer » et « Direct non vérifié » n'ont plus de porteur ; le paragraphe
+  d'excuse est retiré. Liste entièrement vide : la phrase brève et honnête, jamais un cadre muet.
+- **Les cinq justifications internes ne sont plus rendues.** Les causes restent dans les données et dans les
+  contre-épreuves. Un canal incertain n'affiche que sa ligne : « Cabine : à confirmer », « Soute : à
+  confirmer », « Fret : informations non publiées ».
+- **Conservé** : bandeau climatique, avis pays (formalités d'entrée), lignes canal avec seuils et tarifs quand
+  ils sont prouvés, ligne de provenance compacte et volet « Voir les preuves ».
+
+**DÉVIATION NOMMÉE.** L'arbitrage cite deux familles (`confirmUnreviewed`, `confirmOfficialLink`) et
+`air.unverified_note`. J'ai retiré les **quatre** familles, au titre de « aucun paragraphe supplémentaire par
+défaut » : « politique de la compagnie à confirmer » et « information supplémentaire nécessaire » répètent en
+une phrase ce que la ligne canal dit en deux mots. Elles se rétablissent par un mouvement nommé si Codex les
+veut. Même geste dans DestinationFinder, pour la même raison.
+
+### Témoins re-fondés, jamais abaissés
+
+| témoin | avant | après |
+|---|---|---|
+| badges d'itinéraire (harnais du Finder, ×4 langues) | trois cartes, badges exacts « Direct non vérifié » et « Itinéraire à confirmer » | **une seule carte sur trois** ; les deux autres ni affichées ni repliées dans les pistes ; aucun badge, aucune classe `acard--unverified`, aucun `.acard__unver` |
+| résumé par canal, même fixture | 3/0/0 · 0/3/0 · 0/3/0 | **1/0/0 · 0/1/0 · 0/1/0** — les compteurs sont recalculés après filtrage |
+| T0-A, cinq scénarios de cause × 4 langues | chaque phrase EXIGÉE visible, dans le bon ordre | **aucune des quatre phrases** dans la carte ni dans le rapport, aucun code interne, la ligne canal portant seule l'incertitude ; un contrôle préalable exige les quatre phrases réelles et distinctes — le témoin n'est pas vacant |
+| contrat de carte (annexe 38) | bloc de notes présent, deux familles dans l'ordre | bloc absent, quatre phrases absentes, ligne cabine « à confirmer » |
+| DestinationFinder (huit contrôles) | trois phrases visibles, ordre imposé | absentes ; la classification « à confirmer », son titre générique et le libellé climatique restent |
+| suite navigateur | l'avertissement général ou une ligne canal | la ligne canal seule, et **aucun** paragraphe de justification |
+| sabotage | — | mutation `les-compagnies-sans-itineraire-etabli-reviennent-dans-les-resultats` (catalogue 66 → **67**) |
+
+### Mesuré
+
+| contrôle | résultat |
+|---|---|
+| harnais du Finder (dist réduit) | **463 OK** |
+| chaîne `test:built-ui` | **995 OK** |
+| entités | 179 OK |
+| `test:unit`, dette Astro (165), contrat du catalogue (67) | verts |
+
+### Mesuré sur le dist complet (un seul build, 3 112 pages)
+
+| contrôle | résultat |
+|---|---|
+| suite navigateur (Playwright) | **184 OK, 0 ÉCHEC** — dont trois témoins neufs : l'incertitude est dite par la ligne canal, et aucun paragraphe de justification n'apparaît au-dessus ni dans les cartes |
+| étape 3 DOM | verte, scellé des licites inchangé |
+| entités | 179 OK |
+| caisses non sourcées | vert |
+| contre-épreuves `--dist-complet` | 58 garanties éprouvées sur 58 |

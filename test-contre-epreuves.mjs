@@ -616,6 +616,19 @@ const MUTATIONS = [
   },
   {
     dom: true,
+    nom: "les compagnies sans itinéraire établi reviennent dans les résultats et dans les compteurs",
+    id: "les-compagnies-sans-itineraire-etabli-reviennent-dans-les-resultats",
+    fichier: "packages/ui/src/components/FlightFinder.astro",
+    /* Arbitrage de Philippe (10/09/2026, annexe 42) : une compagnie dont l'itinéraire n'est pas établi ne s'affiche plus
+       et ne se compte plus. Le sabotage rend au rendu la liste NON filtrée — exactement l'état d'avant. */
+    editions: [
+      { cherche: "const compagniesVues = (r.airlines ?? []).filter(itineraireEtabli);", remplace: "const compagniesVues = (r.airlines ?? []);" },
+    ],
+    harnais: "test-flightfinder-harness.cjs",
+    attendu: "1 carte sur 3",
+  },
+  {
+    dom: true,
     nom: "la carte relit les booléens historiques pour choisir son apparence",
     id: "la-carte-relit-les-booleens-historiques-pour-son-apparence",
     fichier: "packages/ui/src/components/FlightFinder.astro",

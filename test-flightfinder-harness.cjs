@@ -236,11 +236,13 @@ const t0aCard = (over) => ({
  * La réponse d'abord, la condition tout de suite après, le tarif quand il est établi, la preuve sans envahir
  * l'écran ; une information n'apparaît qu'une fois ; le fret replié quand rien n'est publié ; les avertissements
  * généraux une seule fois au-dessus des cartes. Fixtures, quatre langues, textes EXACTS. */
+/* La quatrième phrase de justification interne (« page officielle, aucune citation ») vit ici depuis l'annexe 42 :
+   elle n'est plus rendue nulle part, et c'est ce que les témoins exigent — il faut donc la connaître pour la chercher. */
 const CARTE_LABELS = {
-  en: { confirm: "to be confirmed", yesCond: "yes, under conditions", no: "no", quiet: "information not published", fareConfirm: "fare to confirm", fareQuote: "on quotation", proofs: "See the evidence", prov: "Verified on an official source on", limit: "up to 75 kg" },
-  fr: { confirm: "à confirmer", yesCond: "oui, sous conditions", no: "non", quiet: "informations non publiées", fareConfirm: "tarif à confirmer", fareQuote: "sur devis", proofs: "Voir les preuves", prov: "Vérifié sur une source officielle le", limit: "jusqu'à 75 kg" },
-  es: { confirm: "a confirmar", yesCond: "sí, bajo condiciones", no: "no", quiet: "información no publicada", fareConfirm: "tarifa a confirmar", fareQuote: "bajo presupuesto", proofs: "Ver las pruebas", prov: "Verificado en una fuente oficial el", limit: "hasta 75 kg" },
-  pt: { confirm: "a confirmar", yesCond: "sim, sob condições", no: "não", quiet: "informações não publicadas", fareConfirm: "tarifa a confirmar", fareQuote: "sob orçamento", proofs: "Ver as provas", prov: "Fonte oficial verificada em", limit: "até 75 kg" },
+  en: { officialLink: "An official airline page covers this channel, but no sentence has been quoted from it yet", confirm: "to be confirmed", yesCond: "yes, under conditions", no: "no", quiet: "information not published", fareConfirm: "fare to confirm", fareQuote: "on quotation", proofs: "See the evidence", prov: "Verified on an official source on", limit: "up to 75 kg" },
+  fr: { officialLink: "Une page officielle de la compagnie couvre ce canal, mais aucune phrase n'en a encore été citée", confirm: "à confirmer", yesCond: "oui, sous conditions", no: "non", quiet: "informations non publiées", fareConfirm: "tarif à confirmer", fareQuote: "sur devis", proofs: "Voir les preuves", prov: "Vérifié sur une source officielle le", limit: "jusqu'à 75 kg" },
+  es: { officialLink: "Una página oficial de la aerolínea cubre este canal, pero aún no se ha citado ninguna frase", confirm: "a confirmar", yesCond: "sí, bajo condiciones", no: "no", quiet: "información no publicada", fareConfirm: "tarifa a confirmar", fareQuote: "bajo presupuesto", proofs: "Ver las pruebas", prov: "Verificado en una fuente oficial el", limit: "hasta 75 kg" },
+  pt: { officialLink: "Uma página oficial da companhia cobre este canal, mas ainda não foi citada nenhuma frase", confirm: "a confirmar", yesCond: "sim, sob condições", no: "não", quiet: "informações não publicadas", fareConfirm: "tarifa a confirmar", fareQuote: "sob orçamento", proofs: "Ver as provas", prov: "Fonte oficial verificada em", limit: "até 75 kg" },
 };
 const SRC_SOUTE = { url: "https://www.airfrance.com/pets", source_type: "official_website", verified_date: "2026-09-08", confidence: 4 };
 const carteContrat = (over) => ({
@@ -314,12 +316,17 @@ async function cartesPass() {
     check(`${loc.code} : le volet « Voir les preuves » existe, FERMÉ, et porte la page officielle, la date et la confiance`,
       !!det && !det.hasAttribute("open") && texteDe(det.querySelector("summary")) === X.proofs && !!det.querySelector(`a[href="${SRC_SOUTE.url}"]`) && /2026-09-08/.test(texteDe(det)) && /4\/5/.test(texteDe(det)), texteDe(det));
     check(`${loc.code} : le volet renvoie à la fiche détaillée pour la citation intégrale`, !!det && !!det.querySelector(".acard__proofs-fiche a[href*='/tools/fiche/']"));
-    /* Les avertissements généraux, une fois, au-dessus des cartes. */
-    const notes = doc.querySelector(".acards__notes");
-    const notesTxt = texteDe(notes);
-    check(`${loc.code} : les deux familles présentes (page officielle non citée, donnée non revérifiée) sont rendues UNE fois au-dessus des cartes, dans l'ordre`,
-      !!notes && notes.querySelectorAll(".acards__note").length === 2 && notes.querySelector(".acards__note[data-family='unreviewed'] + .acards__note[data-family='official_link']") !== null, notesTxt);
-    check(`${loc.code} : aucun paragraphe d'incertitude dans la carte`, !txt.includes(T0A_LABELS[loc.code].unreviewed) && !txt.includes(T0A_LABELS[loc.code].policy));
+    /* RE-FONDÉ (10/09/2026, arbitrage de Philippe, annexe 42) : les avertissements généraux étaient rendus une fois
+       au-dessus des cartes ; ils ne sont plus rendus du tout. Ce témoin exigeait leur présence — il exige leur absence,
+       et celle des quatre phrases partout dans le rapport, la ligne canal restant seule à porter l'incertitude. */
+    const doc0 = doc.querySelector("#mdcf-finder-result");
+    const rapportTxt = doc0 ? doc0.textContent.replace(/\s+/g, " ") : "";
+    check(`${loc.code} : aucun bloc d'avertissements généraux au-dessus des cartes`, !doc.querySelector(".acards__notes") && !doc.querySelector(".acards__note"));
+    const QUATRE = [T0A_LABELS[loc.code].unreviewed, T0A_LABELS[loc.code].policy, T0A_LABELS[loc.code].missing, CARTE_LABELS[loc.code].officialLink];
+    check(`${loc.code} : aucune des quatre phrases de justification interne n'apparaît dans le rapport`,
+      QUATRE.every((ph) => !rapportTxt.includes(ph)), QUATRE.filter((ph) => rapportTxt.includes(ph)).join(" ‖ ").slice(0, 200));
+    check(`${loc.code} : la ligne cabine porte seule l'incertitude — « ${X.confirm} », sans paragraphe`,
+      texteDe(ligne(card, "cabin")).endsWith(X.confirm) && !txt.includes(T0A_LABELS[loc.code].unreviewed) && !txt.includes(T0A_LABELS[loc.code].policy));
 
     /* 2. Le fret se développe quand il est documenté (sous conditions, cité) : « Fret : oui, sous conditions · sur devis ». */
     const r2 = await rendre(carteContrat({ cargo: true, cargo_status: "accepted_with_conditions", to_confirm: ["cabin"], placement_decisions: [
@@ -437,19 +444,27 @@ async function cartesPass() {
   }
 }
 
+/* Les quatre phrases de justification interne, dans la langue de la page — celles qui ne doivent plus jamais atteindre
+   l'écran (arbitrage de Philippe, 10/09/2026, annexe 42). Elles sont relues des tables, jamais réécrites ici, et le
+   témoin les exige NON VIDES avant de les chercher : un libellé vide rendrait chaque « absence » trivialement vraie. */
+const PHRASES = (code) => [T0A_LABELS[code].unreviewed, T0A_LABELS[code].policy, T0A_LABELS[code].missing, CARTE_LABELS[code].officialLink];
+
 async function t0aPass() {
   for (const loc of BADGE_LOCALES) {
-    console.log(`\n— T0-A : causes visibles et styles par cause (${loc.code}) —`);
+    console.log(`\n— T0-A : les causes vivent dans les données, plus à l'écran (${loc.code}) —`);
+    check(`${loc.code} : les quatre phrases cherchées sont réelles et distinctes — le témoin n'est pas vacant`,
+      PHRASES(loc.code).every((ph) => typeof ph === "string" && ph.length > 25) && new Set(PHRASES(loc.code)).size === 4,
+      JSON.stringify(PHRASES(loc.code).map((ph) => (ph || "").slice(0, 30))));
     const exp = T0A_LABELS[loc.code];
     const scenarios = [
-      ["politique seule", t0aCard({}), (card, txt, notes) => {
-        check(`${loc.code} : classe de base acard--confirm SANS acard--heat (cause non climatique)`,
-          card.className.includes("acard--confirm") && !card.className.includes("acard--heat"), card.className);
-        /* MOUVEMENT NOMMÉ (10/09/2026, annexe 38) : la phrase de famille est rendue UNE FOIS au-dessus des cartes
-           (`.acards__notes`), plus dans chaque carte. Le témoin la cherche là, et exige son absence de la carte. */
-        check(`${loc.code} : ligne « politique » EXACTE, une fois au-dessus des cartes : ${JSON.stringify(exp.policy)}`,
-          notes.includes(exp.policy) && !txt.includes(exp.policy), (notes + " ‖ " + txt).slice(0, 260));
-        check(`${loc.code} : aucune ligne « information manquante »`, !notes.includes(exp.missing) && !txt.includes(exp.missing));
+      ["politique seule", t0aCard({}), (card, txt, notes, rapport) => {
+        check(`${loc.code} : classe de carte correcte, lue sur le rendu`, card.className.includes("acard--confirm"), card.className);
+        check(`${loc.code} : AUCUNE des quatre phrases de justification interne, ni dans la carte, ni dans le rapport`,
+          PHRASES(loc.code).every((ph) => !txt.includes(ph) && !rapport.includes(ph)),
+          PHRASES(loc.code).filter((ph) => txt.includes(ph) || rapport.includes(ph)).join(" ‖ ").slice(0, 220));
+        check(`${loc.code} : aucun bloc d'avertissements généraux`, notes === "");
+        check(`${loc.code} : aucun code interne servi au visiteur`,
+          !txt.includes("legacy_unreviewed") && !txt.includes("official_source_unquoted") && !txt.includes("missing_fact") && !rapport.includes("legacy_unreviewed"), txt.slice(0, 200));
       }],
       ["fait manquant", t0aCard({
         placement_decisions: [
@@ -458,9 +473,14 @@ async function t0aPass() {
           { placement: "cargo", status: "confirmation_required", allowed: false,
             confirmation_causes: [{ code: "missing_fact", fact: "transport.total_weight_kg", requirement_ref: "req_x" }] },
         ],
-      }), (card, txt, notes) => {
-        check(`${loc.code} : ligne « information manquante » EXACTE, au-dessus des cartes`, notes.includes(exp.missing) && !txt.includes(exp.missing), notes.slice(0, 200));
-        check(`${loc.code} : pas d'habit climatique`, !card.className.includes("acard--heat"));
+      }), (card, txt, notes, rapport) => {
+        check(`${loc.code} : classe de carte correcte, lue sur le rendu`, card.className.includes("acard--confirm"), card.className);
+        check(`${loc.code} : AUCUNE des quatre phrases de justification interne, ni dans la carte, ni dans le rapport`,
+          PHRASES(loc.code).every((ph) => !txt.includes(ph) && !rapport.includes(ph)),
+          PHRASES(loc.code).filter((ph) => txt.includes(ph) || rapport.includes(ph)).join(" ‖ ").slice(0, 220));
+        check(`${loc.code} : aucun bloc d'avertissements généraux`, notes === "");
+        check(`${loc.code} : aucun code interne servi au visiteur`,
+          !txt.includes("legacy_unreviewed") && !txt.includes("official_source_unquoted") && !txt.includes("missing_fact") && !rapport.includes("legacy_unreviewed"), txt.slice(0, 200));
       }],
       ["climat seul", t0aCard({
         heat_confirmation_required: true,
@@ -470,14 +490,15 @@ async function t0aPass() {
           { placement: "cargo", status: "confirmation_required", allowed: false,
             confirmation_causes: [{ code: "estimated_climate", rule_id: "rule_tst" }] },
         ],
-      }), (card, txt, notes) => {
-        check(`${loc.code} : climat = base confirm + modificateur heat`,
-          card.className.includes("acard--confirm") && card.className.includes("acard--heat"), card.className);
-        check(`${loc.code} : AUCUNE ligne de cause politique (le climat a son bandeau, pas de doublon)`,
-          !notes.includes(exp.policy) && !notes.includes(exp.missing) && !txt.includes(exp.policy) && !txt.includes(exp.missing));
-        check(`${loc.code} : AUCUNE ligne « donnée non revérifiée »`, !notes.includes(exp.unreviewed) && !txt.includes(exp.unreviewed));
+      }), (card, txt, notes, rapport) => {
+        check(`${loc.code} : classe de carte correcte, lue sur le rendu`, card.className.includes("acard--confirm"), card.className);
+        check(`${loc.code} : AUCUNE des quatre phrases de justification interne, ni dans la carte, ni dans le rapport`,
+          PHRASES(loc.code).every((ph) => !txt.includes(ph) && !rapport.includes(ph)),
+          PHRASES(loc.code).filter((ph) => txt.includes(ph) || rapport.includes(ph)).join(" ‖ ").slice(0, 220));
+        check(`${loc.code} : aucun bloc d'avertissements généraux`, notes === "");
+        check(`${loc.code} : aucun code interne servi au visiteur`,
+          !txt.includes("legacy_unreviewed") && !txt.includes("official_source_unquoted") && !txt.includes("missing_fact") && !rapport.includes("legacy_unreviewed"), txt.slice(0, 200));
       }],
-      /* ---- T0-B1 : la donnée héritée non revérifiée a SA famille et SA phrase --------------- */
       ["donnée non revérifiée seule", t0aCard({
         placement_decisions: [
           { placement: "cabin", status: "denied", allowed: false },
@@ -485,17 +506,14 @@ async function t0aPass() {
           { placement: "cargo", status: "confirmation_required", allowed: false,
             confirmation_causes: [{ code: "legacy_unreviewed", policy_ref: "airline_t0a#cargo" }] },
         ],
-      }), (card, txt, notes) => {
-        check(`${loc.code} : ligne « non revérifiée » EXACTE, au-dessus des cartes : ${JSON.stringify(exp.unreviewed)}`,
-          notes.includes(exp.unreviewed) && !txt.includes(exp.unreviewed), notes.slice(0, 260));
-        check(`${loc.code} : la phrase « politique de la compagnie » est ABSENTE (familles distinctes)`,
-          !notes.includes(exp.policy) && !txt.includes(exp.policy), notes.slice(0, 260));
-        check(`${loc.code} : aucune ligne « information manquante »`, !notes.includes(exp.missing) && !txt.includes(exp.missing));
-        check(`${loc.code} : classe de base acard--confirm SANS acard--heat`,
-          card.className.includes("acard--confirm") && !card.className.includes("acard--heat"), card.className);
-        /* Le code interne ne doit JAMAIS atteindre le visiteur. */
-        check(`${loc.code} : le code interne « legacy_unreviewed » n'apparaît pas dans le rendu`,
-          !txt.includes("legacy_unreviewed") && !notes.includes("legacy_unreviewed"), txt.slice(0, 260));
+      }), (card, txt, notes, rapport) => {
+        check(`${loc.code} : classe de carte correcte, lue sur le rendu`, card.className.includes("acard--confirm"), card.className);
+        check(`${loc.code} : AUCUNE des quatre phrases de justification interne, ni dans la carte, ni dans le rapport`,
+          PHRASES(loc.code).every((ph) => !txt.includes(ph) && !rapport.includes(ph)),
+          PHRASES(loc.code).filter((ph) => txt.includes(ph) || rapport.includes(ph)).join(" ‖ ").slice(0, 220));
+        check(`${loc.code} : aucun bloc d'avertissements généraux`, notes === "");
+        check(`${loc.code} : aucun code interne servi au visiteur`,
+          !txt.includes("legacy_unreviewed") && !txt.includes("official_source_unquoted") && !txt.includes("missing_fact") && !rapport.includes("legacy_unreviewed"), txt.slice(0, 200));
       }],
       ["non revérifiée ET politique sur le même canal", t0aCard({
         placement_decisions: [
@@ -507,14 +525,14 @@ async function t0aPass() {
               { code: "policy_unpublished", policy_ref: "airline_t0a#cargo" },
             ] },
         ],
-      }), (card, txt, notes) => {
-        check(`${loc.code} : les DEUX phrases sont visibles au-dessus des cartes — aucune ne masque l'autre`,
-          notes.includes(exp.unreviewed) && notes.includes(exp.policy), notes.slice(0, 320));
-        check(`${loc.code} : notre incertitude est annoncée AVANT la politique de la compagnie`,
-          notes.indexOf(exp.unreviewed) < notes.indexOf(exp.policy),
-          JSON.stringify({ unreviewed: notes.indexOf(exp.unreviewed), policy: notes.indexOf(exp.policy) }));
-        check(`${loc.code} : chaque phrase n'apparaît qu'UNE fois dans le rapport (aucune répétition par carte)`,
-          notes.split(exp.unreviewed).length === 2 && notes.split(exp.policy).length === 2 && !txt.includes(exp.unreviewed) && !txt.includes(exp.policy));
+      }), (card, txt, notes, rapport) => {
+        check(`${loc.code} : classe de carte correcte, lue sur le rendu`, card.className.includes("acard--confirm"), card.className);
+        check(`${loc.code} : AUCUNE des quatre phrases de justification interne, ni dans la carte, ni dans le rapport`,
+          PHRASES(loc.code).every((ph) => !txt.includes(ph) && !rapport.includes(ph)),
+          PHRASES(loc.code).filter((ph) => txt.includes(ph) || rapport.includes(ph)).join(" ‖ ").slice(0, 220));
+        check(`${loc.code} : aucun bloc d'avertissements généraux`, notes === "");
+        check(`${loc.code} : aucun code interne servi au visiteur`,
+          !txt.includes("legacy_unreviewed") && !txt.includes("official_source_unquoted") && !txt.includes("missing_fact") && !rapport.includes("legacy_unreviewed"), txt.slice(0, 200));
       }],
     ];
     for (const [nom, card0, asserts] of scenarios) {
@@ -546,9 +564,11 @@ async function t0aPass() {
       const txt = card.textContent.replace(/\s+/g, " ");
       const notesEl = dom.window.document.querySelector(".acards__notes");
       const notes = notesEl ? notesEl.textContent.replace(/\s+/g, " ") : "";
+      const resEl = dom.window.document.querySelector("#mdcf-finder-result");
+      const rapport = resEl ? resEl.textContent.replace(/\s+/g, " ") : "";
       const badge = [...card.querySelectorAll(".ab--confirm")].length;
       check(`${loc.code} ${nom} : pastille « à confirmer » sur le canal à confirmer, et sur lui seul`, badge === 1, String(badge));
-      asserts(card, txt, notes);
+      asserts(card, txt, notes, rapport);
     }
   }
 }
@@ -650,51 +670,35 @@ async function badgesPass() {
     }
     const doc = dom.window.document;
     const cards = [...doc.querySelectorAll(".acard")];
-    check(`${loc.code} : les 3 compagnies sont rendues`, cards.length === 3);
-
-    const statuses = cards.map((c) => [...c.querySelectorAll(".acard__status")].map((s) => s.textContent.trim()));
-    const flat = statuses.flat().join(" | ");
-
-    // Rapport synthétique, affiché même quand tout passe : c'est lui qu'on relit en contre-revue.
-    console.log("         badges rendus : " + flat);
+    /* RE-FONDÉ (10/09/2026, arbitrage de Philippe, annexe 42) : ce pass éprouvait les BADGES d'itinéraire — « Direct
+       non vérifié » en un seul badge, « Correspondance » + « Itinéraire à confirmer » en deux. Ces cartes n'existent
+       plus : une compagnie dont l'itinéraire n'est pas établi ne s'affiche plus et ne se compte plus. La fixture est
+       inchangée (direct attesté, direct supposé, correspondance plausible) ; ce qu'on exige d'elle est renversé. */
+    check(`${loc.code} : SEULE la compagnie à l'itinéraire attesté est rendue — 1 carte sur 3`,
+      cards.length === 1, `${cards.length} carte(s) : ${cards.map((c) => (c.querySelector(".acard__top b") || {}).textContent || "?").join(", ")}`);
+    const nomsRendus = cards.map((c) => c.textContent).join(" ‖ ");
+    check(`${loc.code} : ni le direct supposé ni la correspondance plausible n'apparaissent`,
+      !nomsRendus.includes("Assumed Air") && !nomsRendus.includes("Unver Air"), nomsRendus.slice(0, 200));
+    check(`${loc.code} : elles ne sont pas non plus repliées dans les « pistes » — écartées, pas cachées`,
+      !doc.querySelector(".acards__leads")?.textContent?.includes("Unver Air"), doc.querySelector(".acards__leads")?.textContent?.slice(0, 160) ?? "aucun repli");
 
     const exp = EXPECTED[loc.code];
-    const [docTxt, assumedTxt, unverTxt] = statuses;
-    const assumedCard = cards[1];
-    const unverCard = cards[2];
+    const statuses = cards.map((c) => [...c.querySelectorAll(".acard__status")].map((s) => s.textContent.trim()));
+    console.log("         badges rendus : " + statuses.flat().join(" | "));
+    check(`${loc.code} : la carte restante porte le badge du direct ATTESTÉ, ${JSON.stringify(exp.direct)}`,
+      statuses.length === 1 && statuses[0].length === 1 && statuses[0][0] === exp.direct, JSON.stringify(statuses));
+    check(`${loc.code} : aucun badge « ${exp.unver} » ni « ${exp.assumed} » nulle part dans le rapport`,
+      !doc.querySelector("#mdcf-finder-result").textContent.includes(exp.unver)
+        && !doc.querySelector("#mdcf-finder-result").textContent.includes(exp.assumed));
+    check(`${loc.code} : aucune carte marquée acard--unverified`, !doc.querySelector(".acard--unverified"));
+    check(`${loc.code} : le paragraphe « compagnie potentiellement pertinente… » a disparu`, !doc.querySelector(".acard__unver"));
 
-    // Textes EXACTS, pas seulement « différents ».
-    check(`${loc.code} : direct attesté = ${JSON.stringify(exp.direct)}`,
-      docTxt.length === 1 && docTxt[0] === exp.direct, JSON.stringify(docTxt));
-    check(`${loc.code} : direct supposé = ${JSON.stringify(exp.assumed)}, en UN seul badge`,
-      assumedTxt.length === 1 && assumedTxt[0] === exp.assumed, JSON.stringify(assumedTxt));
-
-    /* La correspondance non vérifiée porte DEUX badges, et c'est voulu : la nature de l'itinéraire
-     * (« Correspondance ») et sa fiabilité (« Itinéraire à confirmer ») sont deux informations
-     * distinctes. Le direct supposé, lui, tient en un seul badge parce que « Direct non vérifié »
-     * dit déjà les deux. On vérifie donc les deux formes, pas seulement l'une. */
-    check(`${loc.code} : correspondance non vérifiée = 2 badges [${JSON.stringify(exp.conn)}, ${JSON.stringify(exp.unver)}]`,
-      unverTxt.length === 2 && unverTxt[0].startsWith(exp.conn) && unverTxt[1] === exp.unver,
-      JSON.stringify(unverTxt));
-
-    check(`${loc.code} : la carte du direct supposé est marquée non vérifiée`,
-      assumedCard.className.includes("acard--unverified"));
-    check(`${loc.code} : la carte de la correspondance non vérifiée l'est aussi`,
-      unverCard.className.includes("acard--unverified"));
-    check(`${loc.code} : la carte du direct attesté ne l'est PAS`,
-      !cards[0].className.includes("acard--unverified"));
-
-    /* MOUVEMENT NOMMÉ (08/09/2026, contrat d'affichage). Le compteur « N options confirmées ·
-       M pistes » (`.acap`) n'existe plus : il faisait du « 0 » le résultat principal alors que des
-       réponses documentées existaient. La propriété qu'il portait ici — un direct SUPPOSÉ n'est pas
-       compté comme établi — reste vérifiée par les badges et la classe `acard--unverified` juste
-       au-dessus. À sa place : le résumé PAR CANAL, lu sur le rendu. Sur cette fixture (3 cartes,
-       cabine ouverte, soute et fret fermés, sans statuts explicites) : cabine 3 · 0 · 0, soute et
-       fret 0 · 3 · 0 — les nombres sont LUS, pas supposés. */
-    check(`${loc.code} : le compteur « options confirmées · pistes » (.acap) a disparu`, !doc.querySelector(".acap"));
+    /* LES COMPTEURS SONT RECALCULÉS APRÈS FILTRAGE — c'est le cœur de l'arbitrage : « le filtrage doit intervenir dans
+       les résultats ET dans leurs compteurs ». La fixture porte trois cartes identiques quant aux canaux (cabine
+       ouverte, soute et fret fermés) : le résumé disait 3/0/0 · 0/3/0 · 0/3/0, il dit désormais 1/0/0 · 0/1/0 · 0/1/0. */
     const asum = [...doc.querySelectorAll(".asum__ch")].map((n) => (n.textContent.match(/\d+/g) || []).join("/"));
-    check(`${loc.code} : le résumé par canal est rendu, trois canaux, nombres lus sur le rendu`,
-      asum.length === 3 && asum[0] === "3/0/0" && asum[1] === "0/3/0" && asum[2] === "0/3/0", JSON.stringify(asum));
+    check(`${loc.code} : le résumé par canal ne compte QUE la compagnie retenue (1/0/0 · 0/1/0 · 0/1/0)`,
+      asum.length === 3 && asum[0] === "1/0/0" && asum[1] === "0/1/0" && asum[2] === "0/1/0", JSON.stringify(asum));
   }
 }
 

@@ -774,8 +774,8 @@ const labels = {
                     return `<div class="acard__lines">${ligne("cabin", false)}${ligne("hold", false)}${ligne("cargo", !cargoDeveloppe)}</div>`;
                   })()}
                   ${(a.origin_airport_id || a.destination_airport_id) ? `<div class="acard__via">✈ ${[a.origin_airport_id ? `${esc(L.fromAirport)} ${esc(AIRSHORT[a.origin_airport_id] || a.origin_airport_id)}` : "", a.destination_airport_id ? `${esc(L.toAirport)} ${esc(AIRSHORT[a.destination_airport_id] || a.destination_airport_id)}` : ""].filter(Boolean).join(" · ")}</div>` : ""}
-                  ${(a.itinerary_confidence === "connection_unverified" || a.itinerary_confidence === "direct_assumed")
-                    ? `<div class="acard__unver">? ${esc(L.unverifiedNote)}</div>` : ""}
+                  ${/* Le paragraphe « compagnie potentiellement pertinente… » (annexe 42) n'existe plus : une carte dont
+                       l'itinéraire n'est pas établi ne s'affiche plus du tout, et il n'y a donc plus rien à excuser. */ ""}
                   ${a.heat_embargo ? `<div class="acard__embargo">🌡️ ${esc(L.heatEmbargo)}</div>` : ""}
                   ${(() => {
                     /* UNE SEULE LIGNE DE PROVENANCE, qui nomme ses canaux (annexe 38) : « Vérifié sur une source
@@ -846,6 +846,19 @@ const labels = {
                *   4. quand rien n'est documenté, une phrase brève et honnête — pas 27 cartes à plat.
                * Le tri du moteur (prouvé d'abord) est respecté à l'intérieur de chaque groupe ; on
                * ne recalcule aucun statut ici, on lit ceux des cartes. */
+              /* ARBITRAGE DE PHILIPPE (10/09/2026, annexe 42) — UNE COMPAGNIE DONT L'ITINÉRAIRE N'EST PAS ÉTABLI NE
+                 S'AFFICHE PLUS, ET NE SE COMPTE PLUS. Le moteur distingue quatre natures d'itinéraire : le direct et la
+                 correspondance ATTESTÉS (les deux segments figurent dans les arêtes publiées de la compagnie), le direct
+                 SUPPOSÉ (aucun graphe de routes, direct déduit d'un hub) et la correspondance PLAUSIBLE (hub retenu sur
+                 la seule géométrie). Les deux dernières ne reposent sur aucun enchaînement publié : elles portaient une
+                 carte, un badge « Itinéraire à confirmer » et un paragraphe d'excuse — trente-cinq compagnies
+                 théoriquement possibles au lieu de cinq itinéraires utilisables. Elles sortent des résultats ICI, avant
+                 le résumé, les deux niveaux et le partage par mode : jamais par un masquage CSS. Un `itinerary_confidence`
+                 absent ou inconnu n'est pas une preuve d'absence d'itinéraire : seules les deux valeurs qui disent
+                 explicitement « non établi » écartent une carte. Mesuré sur dix routes × trois chiens : 135 cartes sur
+                 624 écartées, aucun scénario vidé, aucun scénario privé de carte documentée. */
+              const itineraireEtabli = (a: any) => a.itinerary_confidence !== "connection_unverified" && a.itinerary_confidence !== "direct_assumed";
+              const compagniesVues = (r.airlines ?? []).filter(itineraireEtabli);
               /* P0-1 (10/09/2026) : même lecture que la ligne canal — la clé `*_status`, validée à la frontière,
                  sans repli booléen. Voir `rapportComplet`. */
               const statutDe = (a: any, ch: "cabin" | "hold" | "cargo"): string => a[`${ch}_status`];
@@ -853,7 +866,7 @@ const labels = {
               const documentee = (a: any) => CANAUX.some((ch) => statutDe(a, ch) !== "confirmation_required");
               const resume = CANAUX.map((ch) => {
                 const n = { cond: 0, denied: 0, confirm: 0 };
-                for (const a of r.airlines) {
+                for (const a of compagniesVues) {
                   const st = statutDe(a, ch);
                   if (st === "accepted_with_conditions" || st === "allowed") n.cond++;
                   else if (st === "denied") n.denied++;
@@ -862,30 +875,26 @@ const labels = {
                 const cap = ch === "cabin" ? L.cabinShort : ch === "hold" ? L.holdShort : L.cargoShort;
                 return `<span class="asum__ch"><b class="asum__cap">${esc(cap)}</b> : <b>${n.cond}</b> ${esc(L.sumCond)} · <b>${n.denied}</b> ${esc(L.sumDenied)} · <b>${n.confirm}</b> ${esc(L.sumConfirm)}</span>`;
               }).join("");
-              /* LES AVERTISSEMENTS GÉNÉRAUX, UNE SEULE FOIS (annexe 38) : les familles de cause de confirmation
-                 non climatique étaient répétées dans chaque carte (`acard__confirmwhy`). Elles sont relevées sur
-                 toutes les cartes et rendues une fois ici, dans l'ordre : notre incertitude d'abord, puis la page
-                 officielle non citée, puis la politique de la compagnie, puis le fait manquant. Le climat garde
-                 son bandeau. Les phrases sont celles du 05/09 et du 08/09, inchangées. */
-              const familles = new Set<string>();
-              for (const a of r.airlines) for (const d of (a.placement_decisions || [])) {
-                if (d.status !== "confirmation_required") continue;
-                for (const c of (d.confirmation_causes || [])) {
-                  if (c.code === "legacy_unreviewed" || c.code === "policy_absent" || c.code === "rule_unverified" || c.code === "breed_deny_unverified") familles.add("unreviewed");
-                  else if (c.code === "official_source_unquoted" || c.code === "rule_official_unquoted") familles.add("official_link");
-                  else if (c.code === "policy_unpublished" || c.code === "airline_approval") familles.add("policy");
-                  else if (c.code === "missing_fact") familles.add("missing");
-                }
-              }
-              const ORDRE_NOTES: [string, string][] = [["unreviewed", L.confirmUnreviewed], ["official_link", L.confirmOfficialLink], ["policy", L.confirmPolicy], ["missing", L.confirmMissing]];
-              const notes = ORDRE_NOTES.filter(([f]) => familles.has(f)).map(([f, texte]) => `<p class="acards__note" data-family="${f}">? ${esc(texte)}</p>`).join("");
-              const header = `<h4>${esc(L.airlines)}</h4><div class="asum">${resume}</div>${notes ? `<div class="acards__notes">${notes}</div>` : ""}`;
+              /* LES AVERTISSEMENTS GÉNÉRAUX ONT DISPARU (arbitrage de Philippe, 10/09/2026, annexe 42). Quatre familles
+                 de cause étaient rendues au-dessus des cartes, chacune ouverte par « ? » : notre donnée non revérifiée,
+                 la page officielle non citée, la politique non publiée, le fait manquant. Les deux premières expliquent
+                 au voyageur pourquoi NOTRE preuve manque — une justification interne ; les deux autres répètent en une
+                 phrase ce que la ligne canal dit déjà en deux mots. Un canal incertain n'affiche plus que sa ligne :
+                 « Cabine : à confirmer », « Soute : à confirmer », « Fret : informations non publiées ». Les causes
+                 restent dans les données et dans les contre-épreuves — elles ne sont plus servies au visiteur.
+                 DÉVIATION NOMMÉE : l'arbitrage cite explicitement les deux premières familles ; j'ai retiré les quatre,
+                 au titre de « aucun paragraphe supplémentaire par défaut ». Les deux dernières se rétablissent par un
+                 mouvement nommé si Codex les veut. Le bandeau climatique et les avis pays, eux, sont conservés. */
+              const header = `<h4>${esc(L.airlines)}</h4><div class="asum">${resume}</div>`;
               /* Une liste en deux niveaux : documentées à plat, pistes repliées. */
               const deuxNiveaux = (liste: any[], titreDocumentees: string | null) => {
                 const doc = liste.filter(documentee), pistes = liste.filter((a: any) => !documentee(a));
                 const haut = doc.length
                   ? `${titreDocumentees ? `<h5 class="acards__sub">${esc(titreDocumentees.replace("{n}", String(doc.length)))}</h5>` : ""}<ul class="acards">${doc.map(airlineCard).join("")}</ul>`
-                  : (pistes.length ? `<p class="finder__hint asum__none">${esc(L.sumNoneDocumented)}</p>` : "");
+                  /* Liste vide — tout écarté faute d'itinéraire établi (annexe 42) : la phrase brève et honnête, jamais
+                     un cadre vide. Mesuré : aucun des trente scénarios essayés n'y tombe, mais un cadre muet serait pire
+                     qu'une phrase. */
+                  : `<p class="finder__hint asum__none">${esc(L.sumNoneDocumented)}</p>`;
                 const bas = pistes.length
                   ? `<details class="acards__leads"><summary>${esc(L.sumLeadsTitle.replace("{n}", String(pistes.length)))}</summary><p class="finder__hint">${esc(L.sumLeadsNote)}</p><ul class="acards">${pistes.map(airlineCard).join("")}</ul></details>`
                   : "";
@@ -896,13 +905,13 @@ const labels = {
               // titrés au lieu de faire disparaître les compagnies incompatibles avec CE mode :
               // l'info "alternative en soute/fret" a une vraie valeur pour le visiteur.
               if (lastPlacement === "any") {
-                return `<div class="report__sec">${header}${deuxNiveaux(r.airlines, L.sumDocumentedTitle)}</div>`;
+                return `<div class="report__sec">${header}${deuxNiveaux(compagniesVues, L.sumDocumentedTitle)}</div>`;
               }
               const key = lastPlacement as "cabin" | "hold" | "cargo";
               /* P0 (10/09/2026) : le partage « correspond à ce mode / alternatives » lisait le booléen du mode — une soute
                  « sous conditions » tombait dans les alternatives. Il lit le statut : ouvert = allowed ou sous conditions. */
-              const matched = r.airlines.filter((a: any) => OUVERT.has(a[`${key}_status`]));
-              const alt = r.airlines.filter((a: any) => !OUVERT.has(a[`${key}_status`]));
+              const matched = compagniesVues.filter((a: any) => OUVERT.has(a[`${key}_status`]));
+              const alt = compagniesVues.filter((a: any) => !OUVERT.has(a[`${key}_status`]));
               const matchBlock = matched.length
                 ? `<h5 class="acards__sub">${esc(L.matchTitle)}</h5><ul class="acards">${matched.map(airlineCard).join("")}</ul>`
                 : `<p class="finder__hint">${esc(L.noMatchMode)}</p>`;
