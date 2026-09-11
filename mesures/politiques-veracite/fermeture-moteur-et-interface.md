@@ -4644,3 +4644,92 @@ construits et exige les huit chaînes, et elle était verte sur `687d446`, dont 
 prouve désormais sur DEUX plans : le worker par `/v1/health` (SHA et identifiant de version), et le
 site par une lecture du HTML servi. `deployer-production.mjs`, toujours à écrire, devra refuser de
 conclure tant que les deux ne sont pas constatés.
+---
+
+## Annexe 51 — Le rattachement `fait → preuve`, et la synthèse localisée (11/09/2026, classement B)
+
+**Le défaut public, vu par Philippe sur une capture.** Sur `/pt/airlines/air-france/`, le visiteur brésilien
+lisait un état traduit — « Sob condições » — puis une phrase en français, puis une ligne « Important! », et
+repartait sans jamais rencontrer le seuil de 8 kg. La fiche disait vrai et ne communiquait rien.
+
+**L'arbitrage rendu.** La citation verbatim reste dans sa langue d'origine et n'est jamais traduite : une
+citation traduite n'est plus une citation. À côté d'elle, chaque fait structuré **effectivement prouvé** est
+reformulé sous l'état, en une ligne courte, très visible, dans la langue de la page. Règle stricte : un poids,
+une dimension, un âge ou une restriction n'entre dans cette synthèse **que si une citation lui est explicitement
+rattachée**. Il faut donc une correspondance nommée `fait → preuve`, et non une déduction.
+
+**Pourquoi ce n'est pas un rattachement automatique.** Codex l'a exigé explicitement, et la mesure lui donne
+raison : **51 politiques** portent une citation contenant un poids ou une dimension, mais un nombre dans une
+phrase ne dit ni ce qu'il borne, ni dans quel sens, ni s'il inclut le contenant. Une expression régulière aurait
+publié « 8 kg » pour la soute Air France, dont la phrase dit **plus de** 8 kg. Le rattachement est donc écrit à
+la main, fait par fait, et nomme la sémantique complète : plafond ou plancher, borne stricte ou inclusive,
+contenant compris ou non.
+
+**Le contrat.** `packages/knowledge/src/attestations.ts` définit trois faits — plafond de poids, plancher de
+poids, dimensions du contenant — et une attestation = un fait + un **extrait** de la phrase. Une attestation
+n'est retenue qu'à trois conditions cumulatives : l'extrait se retrouve dans la citation de **ce** canal, il
+porte **tous les nombres** du fait annoncé, et le fait concorde avec les champs structurés de la politique.
+`faitsAttestes` rend une liste **vide** dès qu'un seul motif de refus existe : on ne publie pas la moitié d'un
+rattachement cassé.
+
+**La deuxième condition n'était pas dans la première rédaction, et son absence était exploitable.** Ma première
+garde vérifiait seulement que l'extrait venait de la citation. Un extrait parfaitement authentique — « sac de
+transport compris » — suffisait alors à faire passer `46 × 28 × 24 cm`, c'est-à-dire exactement ce que
+l'arbitrage interdit. Sabotage écrit, garde corrigée, sabotage conservé.
+
+**ERREUR NOMMÉE — j'ai vérifié la fonction, pas le chemin que la donnée emprunte.** Les deux contre-épreuves
+exigées par Codex — permuter la preuve entre deux canaux, ajouter une dimension absente de la citation — ont été
+écrites contre l'**ingestion réelle**. Les deux ont été **acceptées** : l'ingestion a écrit `objects.json` sans
+broncher. La garde n'existait que sur le schéma canonique, relu au chargement du référentiel, donc au build,
+longtemps après l'écriture et sans nommer la fiche fautive. J'avais mesuré la garde par appel direct et conclu
+qu'elle mordait. C'est le **même défaut** que celui nommé le matin même sur la fiche portugaise : vérifier la
+source au lieu du rendu. La garde vit désormais en un seul exemplaire dans `attestations.ts` et les **deux**
+schémas l'appellent — la fiche YAML d'abord, l'objet canonique en dernier filet.
+
+**ERREUR NOMMÉE — un sommaire qui avait dérivé du code qu'il décrit.** `sentinelles-entites.mjs` annonçait en
+tête « politique d'auteur → Air France, cabine », alors que ce rôle avait été déplacé sur United le 09/09. Deux
+autres lignes du même sommaire étaient également périmées. Cherchant à relire la fiche Air France dans le build
+réduit, j'ai lu ce sommaire, conclu qu'elle était construite, et trouvé un `dist` sans elle. Le sommaire est
+refondé sur le tableau tel qu'il est ; les mouvements restent écrits en regard de chaque ligne.
+
+**ERREUR NOMMÉE — une règle que je croyais plus large qu'elle ne l'était.** Le contrôle « aucune fiche ne publie
+de seuil » a rougi dès qu'Air France est devenue sentinelle. Il avait raison : la réponse de FAQ recopie la phrase
+citée avec son URL, et aucune des cinq sentinelles précédentes n'avait de citation **portant un nombre**. La règle
+n'avait donc jamais été éprouvée contre une citation chiffrée. Elle est **re-fondée, pas abaissée** : ce qui reste
+interdit est un seuil publié **hors de son rattachement**. Trois surfaces sortent de l'examen — la synthèse, la
+phrase citée, et le segment entre guillemets suivi de son URL — et chacune revient au harnais, chiffrée et
+contre-prouvée. La première rédaction de cette exclusion ne visait que le balisage `FAQPage` : les quatre pages
+sont restées rouges, parce que la réponse est publiée **deux fois**, pour la machine et pour le visiteur. Le
+harnais exige maintenant que les deux surfaces soient couvertes **en nombre égal**.
+
+**Le pilote, et ce qu'il ne fait pas.** Air France seule est rattachée : cabine, un plafond strict de 8 kg
+contenant compris ; soute, un plancher exclusif de 8 kg et un plafond de 75 kg. Le plancher a été **structuré**
+(`min_weight_kg`, `weight_min_bound`) plutôt que raconté : la phrase l'établissait, le modèle ne le portait pas,
+et Codex a refusé qu'on l'affiche sans le modéliser. Le fret Air France n'a aucune attestation et ne publie
+**aucune** synthèse — c'est le témoin négatif, sur la même page construite. Aucune dimension du dépôt n'est
+rattachée : **0 sur 10**.
+
+**La langue de la citation est produite, pas listée.** Le volet de preuve annonce « texte original en français »,
+« texto original em inglês », depuis l'étiquette BCP-47 et `Intl.DisplayNames`. Une table à deux entrées aurait
+trahi le coréen et l'anglais australien que le dépôt cite déjà. Le `locator` redevient une métadonnée : il vit
+avec la date et l'indice de confiance, au lieu d'occuper une ligne entière pour dire « Important! ».
+
+**Mouvement nommé des sentinelles.** Une **sixième** forme de décision entre dans le référentiel réel : une
+politique dont un fait est rattaché à sa preuve. Aucune sentinelle ne pouvait la porter, puisqu'elle n'existait
+pas. Air France entre avec ses **deux** canaux — la cabine éprouve une borne haute seule, la soute deux bornes —
+et son fret porte le témoin négatif. C'est un **ajout** : aucun rôle existant n'est abaissé.
+
+**Mouvement des comptes.** Contre-épreuves d'ingestion : **50 → 61**. Harnais des pages d'entités : **179 → 234**,
+dont 24 témoins DOM quadrilingues — synthèse présente et réellement distincte dans les quatre langues, citation
+identique au caractère près et portant son attribut `lang`, en-tête de preuve annonçant la langue, synthèse
+précédant le volet de preuve, localisateur dans les métadonnées, et l'exigence qui porte tout le reste : **tout
+nombre affiché en synthèse doit se retrouver dans la citation de la même carte**. Politiques attestées : **0 → 2**
+sur 302. Faits attestés : **0 → 3**. Typecheck propre, `test:unit` et `test:built-ui` verts, dette Astro stable à
+165.
+
+**Dettes nommées, non refermées.** Quarante-neuf politiques portent encore une citation chiffrée sans
+rattachement : Codex a explicitement demandé leur relecture **humaine**, et rappelé que « le pilote ne doit pas
+devenir le point final ». Aucune dimension n'est rattachée. Enfin, `includes_carrier` et le sens d'une borne ne
+sont pas vérifiables depuis les nombres de l'extrait : la garde les compare aux champs structurés, mais rien
+n'empêche un extrait muet sur le contenant d'accompagner un fait qui l'affirme — c'est la relecture humaine qui
+répond, et c'est pourquoi elle est exigée.

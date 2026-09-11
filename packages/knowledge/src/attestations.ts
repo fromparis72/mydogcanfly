@@ -187,6 +187,31 @@ export function motifsDeRefus(
   return motifs;
 }
 
+/**
+ * LA GARDE ZOD, ÉCRITE UNE FOIS POUR DEUX CONSOMMATEURS — la fiche YAML et l'objet canonique.
+ *
+ * ERREUR NOMMÉE (11/09/2026). Cette garde n'existait d'abord QUE sur le schéma canonique
+ * (`objects.ts`). Les deux contre-épreuves exigées par Codex — permuter la preuve entre deux
+ * canaux, ajouter une dimension absente de la citation — ont donc été écrites, lancées… et
+ * l'ingestion RÉELLE les a acceptées toutes les deux, en écrivant `objects.json`. Le rattachement
+ * n'était en fait relu qu'au chargement du référentiel, c'est-à-dire au build, longtemps après
+ * l'écriture, et sans nommer ni la fiche ni le canal fautif.
+ *
+ * J'avais mesuré la garde par appel direct à `faitsAttestes` et conclu qu'elle mordait. C'est le
+ * même défaut que celui déjà nommé le 11/09 sur la fiche portugaise : j'avais vérifié la fonction,
+ * pas le chemin que la donnée emprunte vraiment. La garde vit donc ici, en un seul exemplaire, et
+ * les deux schémas l'appellent — recopier la règle dans le script d'ingestion aurait recréé la
+ * seconde définition que ce dépôt combat depuis `citationComplete`.
+ */
+export const gardeAttestations = (
+  p: { attestations?: unknown; source?: { quote?: string } } & ChampsStructures,
+  ctx: { addIssue: (i: { code: "custom"; path: (string | number)[]; message: string }) => void },
+): void => {
+  for (const m of motifsDeRefus(p.attestations as never, p.source?.quote, p)) {
+    ctx.addIssue({ code: "custom", path: ["attestations"], message: m });
+  }
+};
+
 /** LES FAITS RÉELLEMENT ATTESTÉS d'une politique — la seule source de la synthèse localisée.
  *  Rend une liste vide dès qu'un motif de refus existe : on ne publie pas la moitié d'un
  *  rattachement cassé. */

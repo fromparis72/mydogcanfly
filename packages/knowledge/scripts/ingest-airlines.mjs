@@ -34,7 +34,7 @@ import { z } from "zod";
 import { T0bAuditSource, T0bSourceDePolitique } from "../src/t0b-migration.ts";
 /* Le contrat tarifaire est IMPORTÉ, jamais recopié : une seconde définition dériverait (annexe 44). */
 import { Fare, FareConflict } from "../src/tarifs.ts";
-import { Attestation } from "../src/attestations.ts";
+import { Attestation, gardeAttestations } from "../src/attestations.ts";
 
 const HERE = dirname(fileURLToPath(import.meta.url));
 const ROOT = join(HERE, "..", "..", "..");
@@ -154,7 +154,12 @@ const DecisionPlacement = z.union([
      *  recopiée ici, qui dériverait le jour où l'un des deux bouge. */
     fares: z.array(Fare).optional(),
     fare_conflicts: z.array(FareConflict).optional(),
-  }).strict(),
+  /* LA GARDE DU RATTACHEMENT fait → preuve, branchée ICI et pas seulement sur le schéma canonique.
+     ERREUR NOMMÉE (11/09/2026) : les deux contre-épreuves de Codex — preuve permutée entre deux
+     canaux, dimension absente de la citation — passaient l'ingestion et écrivaient `objects.json`.
+     Seul le chargement du référentiel les arrêtait ensuite, au build, sans dire quelle fiche.
+     C'est la même garde, importée du même fichier : une règle, deux consommateurs. */
+  }).strict().superRefine(gardeAttestations),
   z.object({
     review_state: z.literal("legacy_unreviewed"),
     min_weight_kg: z.number().positive().optional(),
@@ -164,7 +169,7 @@ const DecisionPlacement = z.union([
        politique du canal soit décidée. Les deux preuves sont distinctes — c'est tout l'arbitrage. */
     fares: z.array(Fare).optional(),
     fare_conflicts: z.array(FareConflict).optional(),
-  }).strict(),
+  }).strict().superRefine(gardeAttestations),
 ]);
 
 /**

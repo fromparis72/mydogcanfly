@@ -272,9 +272,18 @@ console.log("\n=== 3. La décision vient des fiches — les contre-épreuves du 
     check("(m) préalable : air_france.cabin est enrichie à la main (dimensions), et sa fiche porte la phrase citée du 10/09",
       avant.derived_from_fiche === undefined && avant.max_weight_kg === 8 && avant.carrier_dims_cm?.l === 46
       && readFileSync(af, "utf8").includes(QUOTE_AF) && readFileSync(af, "utf8").includes(URL_AF));
+    /* MOUVEMENT NOMMÉ (11/09/2026, annexe 51) : ce témoin réécrivait la PHRASE CITÉE sans toucher à
+       l'attestation qui s'y rattache. Depuis que la garde du rattachement est branchée à
+       l'ingestion, l'ingestion le refuse — et elle a raison : une phrase réécrite n'établit plus le
+       fait qui pendait à l'ancienne. Le témoin garde son sens et gagne une exigence : quand la
+       preuve change, le rattachement change AVEC elle. La phrase de remplacement dit donc toujours
+       le seuil ET le contenant, et l'extrait est repris d'elle. */
+    const EXCERPT_AF = 'excerpt: "chats et chiens de moins de 8 kg, sac de transport compris"';
+    check("(m) préalable : l'extrait rattaché à la phrase de cabine est bien là", readFileSync(af, "utf8").includes(EXCERPT_AF));
     writeFileSync(af, readFileSync(af, "utf8")
       .replace(URL_AF, 'url: "https://wwws.airfrance.fr/information/passagers/animaux-cabine"')
-      .replace(QUOTE_AF, 'quote: "Les chiens et chats de moins de 8 kg voyagent en cabine."'));
+      .replace(QUOTE_AF, 'quote: "Les chiens et chats de moins de 8 kg, sac de transport compris, voyagent en cabine."')
+      .replace(EXCERPT_AF, 'excerpt: "moins de 8 kg, sac de transport compris"'));
     const r = run();
     check("(m) l'ingestion réussit", r.code === 0, r.out.slice(-300));
     const apres = sandboxJson(OBJECTS_REL).airlines.find((a) => a.id === "airline_air_france").premium.policy.cabin;
@@ -283,6 +292,67 @@ console.log("\n=== 3. La décision vient des fiches — les contre-épreuves du 
       && apres.source.quote?.startsWith("Les chiens et chats"), JSON.stringify(apres.source).slice(0, 200));
     check("(m) les enrichissements survivent (poids, dimensions)",
       apres.max_weight_kg === 8 && apres.carrier_dims_cm?.l === 46, JSON.stringify(apres).slice(0, 200));
+  }
+
+  /* (n) et (o) LE RATTACHEMENT fait → preuve (annexe 51) — les deux contre-épreuves exigées par
+     Codex le 11/09/2026 : « permuter la preuve entre deux canaux ou ajouter une dimension non
+     présente dans la citation doit faire rougir ». Elles portent sur l'INGESTION RÉELLE, pas sur
+     une fixture : c'est l'écriture d'`objects.json` qui doit être refusée, faute de quoi la
+     synthèse localisée publierait un chiffre que sa propre preuve ne porte pas.
+
+     POURQUOI DEUX, ET PAS UNE. Les deux gardes sont indépendantes et se manquent l'une l'autre :
+     (n) éprouve « l'extrait vient-il de CETTE citation », (o) éprouve « l'extrait porte-t-il les
+     valeurs du fait ». La première version de la garde n'avait que (n) : un extrait authentique
+     — « sac de transport compris » — suffisait alors à faire passer 46 × 28 × 24 cm. */
+  {
+    const af = () => join(SANDBOX, "content", "airlines", "air_france.yml");
+    const EXTRAIT_CABINE = 'excerpt: "chats et chiens de moins de 8 kg, sac de transport compris"';
+    const QUOTE_CABINE = 'quote: "En cabine (chats et chiens de moins de 8 kg, sac de transport compris)"';
+    const QUOTE_SOUTE = 'quote: "If your cat or dog weighs more than 8 kg/17.64 lb. and up to 75 kg/165.35 lb. with its carrier, it must travel in the hold."';
+
+    // (n) LA PREUVE PERMUTÉE entre la cabine et la soute — chaque extrait reste authentique, mais
+    //     plus aucun ne vient de la citation du canal qui le porte.
+    {
+      freshSandbox();
+      const avant = readFileSync(af(), "utf8");
+      check("(n) préalable : les deux citations d'Air France sont bien celles attendues",
+        avant.includes(QUOTE_CABINE) && avant.includes(QUOTE_SOUTE));
+      writeFileSync(af(), avant.replace(QUOTE_CABINE, "__CAB__").replace(QUOTE_SOUTE, QUOTE_CABINE).replace("__CAB__", QUOTE_SOUTE));
+      const { code, out } = run();
+      check("(n) preuve permutée entre deux canaux → REFUS de l'ingestion", code === 1, out.slice(-400));
+      check("(n) le refus nomme l'extrait orphelin, pas une erreur de schéma",
+        out.includes("ne se trouve pas dans la citation de ce canal"), out.slice(-600));
+      check("(n) les DEUX canaux sont nommés — la permutation casse les deux sens",
+        out.includes("chats et chiens de moins de 8 kg") && out.includes("weighs more than 8 kg"), out.slice(-600));
+    }
+
+    // (o) UNE DIMENSION AJOUTÉE, avec un extrait pourtant authentique. C'est exactement le
+    //     46 × 28 × 24 cm que l'arbitrage interdit de publier pour Air France.
+    {
+      freshSandbox();
+      const avant = readFileSync(af(), "utf8");
+      check("(o) préalable : l'extrait de cabine est présent et la fiche porte les dimensions", avant.includes(EXTRAIT_CABINE));
+      writeFileSync(af(), avant.replace(EXTRAIT_CABINE,
+        EXTRAIT_CABINE + "\n      - claim:\n          kind: carrier_dims_cm\n          l: 46\n          w: 28\n          h: 24\n        excerpt: \"sac de transport compris\""));
+      const { code, out } = run();
+      check("(o) dimension absente de la citation → REFUS de l'ingestion", code === 1, out.slice(-400));
+      check("(o) le refus dit que l'extrait NE PORTE PAS les valeurs, et les chiffre",
+        out.includes("ne porte pas") && out.includes("46") && out.includes("28") && out.includes("24"), out.slice(-600));
+    }
+
+    // (p) LE TÉMOIN POSITIF — sans quoi (n) et (o) passeraient aussi bien si l'ingestion
+    //     refusait Air France pour une tout autre raison.
+    {
+      freshSandbox();
+      const r = run();
+      check("(p) la fiche Air France INTACTE est acceptée", r.code === 0, r.out.slice(-400));
+      const pol = sandboxJson(OBJECTS_REL).airlines.find((a) => a.id === "airline_air_france").premium.policy;
+      check("(p) les attestations traversent l'ingestion — 1 en cabine, 2 en soute, 0 en fret",
+        pol.cabin.attestations?.length === 1 && pol.hold.attestations?.length === 2 && pol.cargo.attestations === undefined,
+        JSON.stringify({ cabin: pol.cabin.attestations?.length ?? 0, hold: pol.hold.attestations?.length ?? 0, cargo: pol.cargo.attestations?.length ?? 0 }));
+      check("(p) la borne basse de la soute est structurée, pas seulement racontée",
+        pol.hold.min_weight_kg === 8 && pol.hold.weight_min_bound === "gt", JSON.stringify(pol.hold).slice(0, 200));
+    }
   }
 
   /* (j) la dette des politiques sans canal visible est scellée DANS LES DEUX SENS. */

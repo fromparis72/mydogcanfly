@@ -1,7 +1,7 @@
 import { z } from "zod";
 import { id, LocalizedText, DogSize, Source, SourceCitable, PlacementStatus, FACTUAL_SOURCE_TYPES, isForbiddenSource } from "./common";
 import { Fare, FareConflict } from "./tarifs";
-import { Attestation, motifsDeRefus } from "./attestations";
+import { Attestation, gardeAttestations } from "./attestations";
 
 export const Country = z.object({
   id: id("country"),
@@ -202,22 +202,12 @@ const PlacementPolicyCommon = {
  */
 
 
-/** LA GARDE DU RATTACHEMENT, commune aux deux branches d'auteur (annexe 51).
- *
- *  Elle vérifie deux choses que rien ne déduisait : que l'extrait cité vient BIEN de la phrase de
- *  ce canal — permuter la preuve entre deux canaux casse le lien —, et que la sémantique annoncée
- *  concorde avec les champs structurés. Les deux se gardent l'un l'autre : corriger l'un sans
- *  l'autre fait rougir le build au lieu de publier un chiffre que la preuve contredit. */
-const gardeAttestations = (p: {
-  attestations?: unknown; source?: { quote?: string };
-  max_weight_kg?: number; min_weight_kg?: number; weight_includes_carrier?: boolean;
-  weight_limit_bound?: "lt" | "lte"; weight_min_bound?: "gt" | "gte";
-  carrier_dims_cm?: { l: number; w: number; h: number };
-}, ctx: z.RefinementCtx) => {
-  for (const m of motifsDeRefus(p.attestations as never, p.source?.quote, p)) {
-    ctx.addIssue({ code: z.ZodIssueCode.custom, path: ["attestations"], message: m });
-  }
-};
+/** LA GARDE DU RATTACHEMENT (annexe 51) est IMPORTÉE, pas réécrite : `attestations.ts` la définit
+ *  une fois, ce schéma et le schéma de fiche de `ingest-airlines.mjs` l'appellent tous les deux.
+ *  Elle vérifie que l'extrait cité vient BIEN de la phrase de CE canal — permuter la preuve entre
+ *  deux canaux casse le lien — et que la sémantique annoncée concorde avec les champs structurés.
+ *  Ici, elle est le dernier filet : au chargement du référentiel, donc au build. Le premier filet
+ *  est à l'ingestion, où la fiche est encore nommable. */
 
 /** Forme CANONIQUE cible : la fiche écrit une sémantique, plus une couleur de pastille. */
 export const CanonicalPlacementPolicyAuthored = z.object({

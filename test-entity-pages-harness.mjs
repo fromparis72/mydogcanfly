@@ -323,6 +323,108 @@ console.log("\n=== 2 bis. Une fiche « à confirmer » ne publie AUCUN seuil, di
     /* NON-VACUITÉ : « aucune section vide » passerait aussi s'il n'y avait AUCUNE carte à lire. */
     check(`témoin : des cartes ont RÉELLEMENT été examinées (${res2.cartesExaminees})`,
       res2.cartesExaminees >= res2.pagesLues);
+
+    /* ═══ LA SYNTHÈSE LOCALISÉE PROUVÉE — les témoins DOM quadrilingues (annexe 51) ═══════════
+       Arbitrage de Philippe du 11/09/2026, relayé par Codex, pris sur la fiche Air France lue en
+       portugais : le visiteur y lisait un état traduit, puis une phrase en français, et repartait
+       sans le chiffre. La citation verbatim reste dans sa langue — une citation traduite n'est plus
+       une citation — et chaque fait EFFECTIVEMENT PROUVÉ est remis en mots dans la langue de la
+       page, juste sous l'état.
+
+       Ces contrôles lisent le DOM CONSTRUIT, pas le YAML. C'est délibéré, et c'est une erreur déjà
+       payée : le 11/09, j'ai affirmé que le visiteur portugais voyait le seuil de 8 kg après avoir
+       mesuré 296 blocs `detail` dans quatre langues DANS LES FICHES. La capture de Philippe a
+       montré l'inverse — `channels[].detail` avait été retiré de la carte le 05/09. Une donnée
+       présente à la source ne prouve rien de ce qui est rendu. */
+    const canaux = res2.canaux;
+    const AF = canaux.filter((c) => c.slug === "air-france");
+    const dim = (c) => AF.filter((x) => x.placement === c);
+    check(`témoin : les 12 canaux d'Air France ont été lus (3 × 4 langues)`, AF.length === 12, `${AF.length}`);
+
+    for (const placement of ["cabin", "hold"]) {
+      const lot = dim(placement);
+      check(`air-france.${placement} : les quatre langues publient une synthèse`,
+        lot.length === 4 && lot.every((c) => c.fait && c.fait.length > 0),
+        lot.map((c) => `${c.langue}=${c.fait ?? "(aucune)"}`).join(" | "));
+      /* LOCALISÉE, et pas seulement présente : quatre textes DIFFÉRENTS. Une synthèse rendue en
+         anglais sur les quatre pages passerait le contrôle précédent sans rien résoudre. */
+      check(`air-france.${placement} : les quatre synthèses sont RÉELLEMENT distinctes`,
+        new Set(lot.map((c) => c.fait)).size === 4, lot.map((c) => `${c.langue}: ${c.fait}`).join(" | "));
+      /* LE RATTACHEMENT, VU DEPUIS LA PAGE. Tout nombre affiché en synthèse doit se retrouver dans
+         la phrase citée de LA MÊME carte. C'est la contre-épreuve de la permutation, au niveau du
+         rendu : déplacer une preuve d'un canal à l'autre ferait tomber celui-ci même si le contrat
+         d'ingestion venait à être contourné. */
+      for (const c of lot) {
+        check(`air-france.${placement} · ${c.langue} : chaque nombre de la synthèse est dans la citation de la MÊME carte`,
+          c.faitNombres.length > 0 && c.faitNombres.every((n) => c.citationNombres.includes(n)),
+          `synthèse ${JSON.stringify(c.faitNombres)} / citation ${JSON.stringify(c.citationNombres)}`);
+      }
+      /* LA CITATION N'EST PAS TRADUITE : le même texte, au caractère près, sur les quatre pages. */
+      check(`air-france.${placement} : la citation est IDENTIQUE dans les quatre langues`,
+        new Set(lot.map((c) => c.citation)).size === 1, `${new Set(lot.map((c) => c.citation)).size} versions`);
+      /* …et elle DIT sa langue, pour le lecteur d'écran comme pour le navigateur. */
+      const langueSource = politique("airline_air_france", placement)?.source?.quote_language ?? null;
+      check(`air-france.${placement} : la citation porte lang="${langueSource}" partout`,
+        langueSource !== null && lot.every((c) => c.citationLangue === langueSource),
+        lot.map((c) => `${c.langue}→${c.citationLangue}`).join(" | "));
+      /* L'EN-TÊTE ANNONCE LA LANGUE DU TEXTE ORIGINAL, dans la langue de la page. */
+      check(`air-france.${placement} : l'en-tête de preuve annonce la langue, et diffère d'une page à l'autre`,
+        new Set(lot.map((c) => c.enTetePreuve)).size === 4, lot.map((c) => `${c.langue}: ${c.enTetePreuve}`).join(" | "));
+      /* L'ORDRE DE LECTURE : la synthèse AVANT la preuve, jamais l'inverse. */
+      check(`air-france.${placement} : la synthèse précède le volet de preuve dans les quatre langues`,
+        lot.every((c) => c.faitAvantPreuve === true), lot.map((c) => `${c.langue}=${c.faitAvantPreuve}`).join(" | "));
+      /* LE LOCALISATEUR reste une métadonnée : « Important! » ne prend plus une ligne à lui seul. */
+      check(`air-france.${placement} : le localisateur vit dans les métadonnées, pas sur sa propre ligne`,
+        lot.every((c) => c.locatorHorsMeta === false) && lot.some((c) => c.locatorDansMeta === true),
+        lot.map((c) => `${c.langue}: hors=${c.locatorHorsMeta} dans=${c.locatorDansMeta}`).join(" | "));
+    }
+
+    /* LA DIMENSION INTERDITE. L'arbitrage est explicite : « Pour Air France, ne pas afficher
+       46 × 28 × 24 cm » — la fiche les porte, aucune citation ne les établit. Le contrôle général
+       de seuils ne les verrait plus dans `.fait`, puisque `.fait` est retiré de son examen : c'est
+       donc ici, sur le texte retiré lui-même, qu'on vérifie qu'elles n'y sont pas. */
+    check("aucune synthèse ne publie les dimensions non citées d'Air France (46 × 28 × 24)",
+      AF.every((c) => !/46|28|24/.test(c.fait ?? "")), AF.map((c) => c.fait).filter(Boolean).join(" | "));
+
+    /* LE TÉMOIN NÉGATIF, sur la même page construite : un canal SANS rattachement ne publie aucune
+       synthèse. Sans lui, « la synthèse paraît » serait vrai d'un gabarit qui en met partout. */
+    check("air-france.cargo : aucune synthèse, dans aucune langue — rien n'y est attesté",
+      dim("cargo").length === 4 && dim("cargo").every((c) => c.fait === null),
+      dim("cargo").map((c) => `${c.langue}=${c.fait}`).join(" | "));
+    const autres = canaux.filter((c) => c.slug !== "air-france");
+    check(`aucune autre fiche sentinelle ne publie de synthèse (${autres.length} canaux lus)`,
+      autres.length > 0 && autres.every((c) => c.fait === null),
+      autres.filter((c) => c.fait).map((c) => `${c.slug}.${c.placement} ${c.langue}: ${c.fait}`).join(" | "));
+
+    /* LES EXCLUSIONS DU CONTRÔLE DE SEUILS SONT CHIFFRÉES — une exclusion muette est une porte. */
+    check(`témoin : 8 synthèses et ${res2.citationsRetirees} citations retirées de l'examen des seuils`,
+      res2.faitsRetires === 8 && res2.citationsRetirees > 0,
+      `faits=${res2.faitsRetires} citations=${res2.citationsRetirees}`);
+    /* …ET LA TROISIÈME EXCLUSION, celle du balisage `FAQPage`, contre-prouvée phrase par phrase :
+       chacune doit être MOT POUR MOT une preuve déjà affichée sur la même page. Une réponse de FAQ
+       qui inventerait une citation, ou qui recopierait celle d'un autre canal, ne trouverait pas
+       son jumeau et rougirait ici. */
+    {
+      const affichees = new Map();
+      for (const c of res2.canaux) {
+        if (!c.citation) continue;
+        const cle = `${c.slug}·${c.langue}`;
+        if (!affichees.has(cle)) affichees.set(cle, new Set());
+        affichees.get(cle).add(c.citation.replace(/^«\s*/, "").replace(/\s*»$/, ""));
+      }
+      const orphelines = res2.citationsBalisage.filter(
+        (x) => !affichees.get(`${x.slug}·${x.langue}`)?.has(x.phrase));
+      check(`témoin : ${res2.citationsBalisage.length} citations retirées de la FAQ, toutes affichées par ailleurs`,
+        res2.citationsBalisage.length > 0 && orphelines.length === 0,
+        orphelines.slice(0, 3).map((x) => `${x.slug}·${x.langue} : « ${x.phrase.slice(0, 60)} »`).join(" | "));
+      /* LES DEUX SURFACES, EN NOMBRE ÉGAL. La FAQ publie sa réponse deux fois — pour la machine et
+         pour le visiteur. N'en exclure qu'une laissait les quatre pages rouges et m'avait fait
+         croire l'exclusion inopérante ; ce compte dit qu'aucune des deux n'a été oubliée. */
+      const parSurface = (ou) => res2.citationsBalisage.filter((x) => x.ou === ou).length;
+      check(`témoin : la FAQ est lue sur ses DEUX surfaces — ${parSurface("balisage")} en balisage, ${parSurface("visible")} visibles`,
+        parSurface("balisage") > 0 && parSurface("balisage") === parSurface("visible"),
+        `balisage=${parSurface("balisage")} visible=${parSurface("visible")}`);
+    }
   }
 }
 
