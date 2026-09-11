@@ -4499,6 +4499,12 @@ aucun tarif.
 encore été rescellées. Le geste officiel `fraicheur/sceller-registre.mjs --ecrire` porte le registre à **1 661
 entrées** ; un second passage est identique et vert. Les preuves tarifaires entrent ainsi dans la même cadence de
 surveillance que les autres sources, au lieu de vivre à côté d'elle.
+
+**Contre-épreuve navigateur refondée.** Le catalogue complet a d'abord rougi trois fois : son scénario historique
+exigeait encore « aucun montant numérique » pour les trois tailles de chien. Ce n'était plus une protection mais
+la photographie du contrat vide. Le même scénario exige désormais un montant visible, sa qualification prudente
+(`official published fare` ou tarif applicable au trajet) et une preuve tarifaire dans le volet replié. Il refuse
+donc aussi bien la disparition silencieuse du tarif que la publication d'un nombre sans provenance.
 ---
 
 ## Annexe 49 — Titres et descriptions SEO des quatre accueils (11/09/2026, classement B)
