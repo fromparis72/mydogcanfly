@@ -1,0 +1,37 @@
+{
+  "_comment": [
+    "LE SCELLÉ DES RATTACHEMENTS RELUS PAR UN HUMAIN (annexe 56, 11/09/2026).",
+    "",
+    "Arbitrage de Codex, tranché par Philippe, après quatre contre-revues du contrat d'attestation.",
+    "Chacune fermait les formulations qu'elle nommait ; chacune était suivie d'une reformulation qui",
+    "repassait. La cinquième liste d'expressions régulières aurait été battue par la huitième phrase.",
+    "La frontière est donc DÉPLACÉE, pas repoussée.",
+    "",
+    "CE QUE LA MACHINE PROUVE : la citation exacte, le nombre, l'unité, la borne, le canal, et la",
+    "concordance avec les champs structurés. CE QU'UN HUMAIN VALIDE : le SENS du sujet pesé —",
+    "« contenant compris » ou « chien seul ».",
+    "",
+    "CE FICHIER EST BIDIRECTIONNEL. Toute attestation du référentiel absente d'ici rougit ; toute",
+    "entrée d'ici sans attestation correspondante rougit aussi. L'empreinte porte compagnie, canal,",
+    "claim, citation et fragments : changer un seul caractère de l'un des cinq exige une relecture.",
+    "",
+    "TROIS ENTRÉES AU 11/09/2026, et seulement trois. Les 49 autres canaux dont la citation porte un",
+    "poids ou une dimension attendent leur relecture humaine, et ne publient aucune synthèse d'ici là."
+  ],
+  "relu_le": "2026-09-11",
+  "relu_par": "Philippe (arbitrage), sur contre-revue de Codex",
+  "attestations": [
+    {
+      "empreinte": "airline_air_france§cabin§weight_max|8|lt|dog_plus_carrier§En cabine (chats et chiens de moins de 8 kg, sac de transport compris)§poids=8 kg|borne=moins de 8 kg|sujet=8 kg, sac de transport compris",
+      "sens_relu": "La phrase officielle dit « chats et chiens de moins de 8 kg, sac de transport compris ». Le seuil de 8 kg porte donc sur le chien AVEC son sac, et la borne est stricte : un chien de 8 kg exactement est refusé."
+    },
+    {
+      "empreinte": "airline_air_france§hold§weight_min|8|gt|dog_plus_carrier§If your cat or dog weighs more than 8 kg/17.64 lb. and up to 75 kg/165.35 lb. with its carrier, it must travel in the hold.§poids=8 kg|borne=more than 8 kg|sujet=8 kg/17.64 lb. and up to 75 kg/165.35 lb. with its carrier",
+      "sens_relu": "« with its carrier » qualifie la fourchette ENTIÈRE, pas seulement sa borne haute : le plancher de 8 kg porte donc sur le chien AVEC son contenant, et il est exclusif (« more than »)."
+    },
+    {
+      "empreinte": "airline_air_france§hold§weight_max|75|lte|dog_plus_carrier§If your cat or dog weighs more than 8 kg/17.64 lb. and up to 75 kg/165.35 lb. with its carrier, it must travel in the hold.§poids=75 kg|borne=up to 75 kg|sujet=75 kg/165.35 lb. with its carrier",
+      "sens_relu": "Le plafond de 75 kg porte sur le chien AVEC son contenant, et il est inclusif (« up to »)."
+    }
+  ]
+}

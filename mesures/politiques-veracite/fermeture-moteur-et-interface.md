@@ -4964,3 +4964,87 @@ autant que sur la fonction. Harnais des pages d'entités : **234**, inchangé. P
 **Coordination avec le lot tarifaire, inchangée.** #61 corrigée puis fusionnée, rebase de
 `fix/transavia-air-france-fares` sur le nouveau `main`, synthèse attestée et `farePresentation`
 conservées ensemble, régénération unique des artefacts.
+---
+
+## Annexe 56 — La frontière est déplacée, pas repoussée (11/09/2026, classement B)
+
+**Cinquième contre-revue de Codex, sur `e936af9`.** Les trois cas de l'annexe 55 sont fermés. Trois
+reformulations passaient encore comme « chien + contenant » :
+
+```
+Dogs under 8 kg may travel with their carrier stored separately.
+Dogs under 8 kg may travel, with the carrier included in the reservation.
+The total weight of the dog is up to 8 kg and the carrier travels separately.
+```
+
+**Codex a refusé le cinquième élargissement, et c'est le bon arbitrage.** Quatre listes
+d'expressions régulières, quatre tours, et à chaque tour la liste suivante battue par la phrase
+suivante. Une garantie sémantique par motifs lexicaux n'a pas de terme : elle a seulement un
+prochain contre-exemple. Ce qui est demandé n'est pas une liste de plus, c'est un **bornage
+honnête** de ce que la machine garantit.
+
+**LA FRONTIÈRE, écrite en clair.**
+
+| la machine prouve, seule | un humain valide |
+|---|---|
+| le fragment vient mot pour mot de la citation de ce canal | le SENS du sujet pesé |
+| les fragments tiennent dans une même proposition | « contenant compris » ou « chien seul » |
+| la valeur est suivie d'une unité de masse métrique | |
+| une tournure de borne précède immédiatement ce poids | |
+| la claim concorde avec les champs structurés | |
+
+**La validation humaine n'est pas une intention : c'est un scellé.**
+`packages/knowledge/raw/attestations-relues.json` porte, par entrée, une empreinte de cinq éléments —
+compagnie, canal, claim, citation, fragments — et le sens reconnu, écrit en toutes lettres pour
+celui qui relira la suivante. Changer un seul caractère de l'un des cinq casse l'empreinte et exige
+une relecture.
+
+**Il est BIDIRECTIONNEL, et la seconde moitié compte autant que la première.** Une attestation
+absente du scellé rougit ; une entrée du scellé sans attestation correspondante rougit aussi. Sans
+ce second sens, le scellé accumulerait des autorisations pour des rattachements disparus, et l'une
+d'elles redeviendrait valable le jour où quelqu'un réécrirait la même phrase.
+
+**Il mord à trois endroits.** À l'ingestion, où la fiche est encore nommable et où le refus donne
+l'empreinte exacte à relire. Au chargement du référentiel — build, tests, Worker — sur `Airline`,
+parce qu'une politique ne sait pas à quelle compagnie elle appartient. Et dans un harnais dédié,
+`test-attestations-scellees.mjs`, qui éprouve les deux sens et neuf mutations.
+
+**TROIS ENTRÉES, et seulement trois.** Les trois attestations d'Air France, relues par Philippe et
+contre-revues par Codex. Les 49 autres canaux dont la citation porte un poids ou une dimension
+attendent leur relecture et ne publient rien.
+
+**UNE PROMESSE FAUSSE, CORRIGÉE.** L'en-tête d'`attestations.ts` affirmait « aucun rattachement par
+expression régulière » alors que la garantie sémantique reposait précisément sur des expressions
+régulières. Relevé par Codex. Ce qui est vrai et reste écrit : rien n'est rattaché **automatiquement**,
+chaque attestation est écrite à la main. Ce qui était faux et disparaît : prétendre qu'aucune
+expression régulière n'intervenait.
+
+**UN TÉMOIN S'INVERSE, ET C'EST L'ARBITRAGE LUI-MÊME.** Une heure plus tôt, une contre-épreuve
+exigeait que « The combined weight of the pet and carrier is up to 8 kg » **traverse** l'ingestion —
+une formulation officielle limpide que la quatrième liste refusait à tort. Elle ne passe plus
+automatiquement, et c'est voulu : elle franchit la garde mécanique et attend un humain. Le témoin
+exige désormais que le refus **donne l'empreinte** à porter au scellé, pour que la relecture soit une
+lecture et non une recomposition.
+
+**Les sept phrases qui ont battu quatre listes sont conservées comme témoins de la frontière**
+(`test-attestations-semantique.mjs`, paragraphe 7). Ce paragraphe ne prétend pas que la machine les
+refuse : il prouve l'inverse. Elles passent la garde mécanique et sont arrêtées par le scellé. Si
+l'une d'elles cessait un jour de passer la garde mécanique, ce témoin rougirait — et ce serait une
+bonne nouvelle à constater, pas un vert à préserver en silence.
+
+**Mouvement des comptes.** Harnais du contrat mécanique : **46 → 45** — six témoins de sens l'ont
+quitté, cinq de frontière y sont entrés, et c'est une baisse qu'il faut dire plutôt que masquer.
+Nouveau harnais du scellé : **0 → 23**. Contre-épreuves d'ingestion : **79**, inchangées en nombre,
+cinq d'entre elles arrêtées désormais par le scellé et non plus par un motif lexical. Harnais des
+pages d'entités : **234**. Politiques attestées : **2**. Faits attestés : **3**. Dette Astro :
+**165**. La synthèse rendue est identique dans les quatre langues.
+
+**Ce que ce lot aura appris, en cinq contre-revues sur un seul contrat.** J'ai corrigé quatre fois
+l'instance et jamais le principe. À chaque tour je fermais la phrase nommée et je laissais ouverte la
+question de savoir ce qu'une machine peut prouver. La leçon n'est pas « mes expressions régulières
+étaient trop courtes » : c'est qu'**une garantie doit être bornée avant d'être écrite**, et qu'un
+contrat qui promet plus qu'il ne peut tenir est plus dangereux qu'un contrat qui s'arrête et le dit.
+
+**Coordination avec le lot tarifaire, inchangée.** #61 corrigée puis fusionnée, rebase de
+`fix/transavia-air-france-fares` sur le nouveau `main`, synthèse attestée et `farePresentation`
+conservées ensemble, régénération unique des artefacts.

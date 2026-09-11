@@ -1,7 +1,7 @@
 import { z } from "zod";
 import { id, LocalizedText, DogSize, Source, SourceCitable, PlacementStatus, FACTUAL_SOURCE_TYPES, isForbiddenSource } from "./common";
 import { Fare, FareConflict } from "./tarifs";
-import { Attestation, gardeAttestations } from "./attestations";
+import { Attestation, gardeAttestations, attestationsNonRelues } from "./attestations";
 
 export const Country = z.object({
   id: id("country"),
@@ -459,7 +459,15 @@ export const Airline = z.object({
   premium: AirlinePremium.optional(),
   /* `.strict()` (contre-revue T0-A v2) : `premiun`, `polciy` ou tout conteneur mal orthographié
      est REFUSÉ — plus jamais accepté puis supprimé en silence avec ses données. */
-}).strict();
+/* LE SCELLÉ DE RELECTURE HUMAINE EST BRANCHÉ ICI, et pas sur la politique : une politique ne sait
+   pas à quelle compagnie elle appartient, et l'empreinte relue porte la compagnie. C'est donc au
+   chargement du référentiel — build, tests, Worker — qu'une attestation non relue fait rougir.
+   La garde mécanique, elle, reste sur la politique : les deux sont distinctes et cumulatives. */
+}).strict().superRefine((a, ctx) => {
+  for (const m of attestationsNonRelues(a.id, (a.premium?.policy ?? {}) as never)) {
+    ctx.addIssue({ code: z.ZodIssueCode.custom, path: ["premium", "policy"], message: m });
+  }
+});
 export type Airline = z.infer<typeof Airline>;
 
 /** Sourced behavioural / travel-relevant traits. Values are DogTime.com's published 1–5 ratings, stored

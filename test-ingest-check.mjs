@@ -26,6 +26,10 @@ const ROOT = dirname(fileURLToPath(import.meta.url));
 const SANDBOX = join(ROOT, ".ingest-sandbox");
 const SCRIPT_REL = join("packages", "knowledge", "scripts", "ingest-airlines.mjs");
 const OBJECTS_REL = join("packages", "knowledge", "raw", "objects.json");
+/* LE SCELLÉ DE RELECTURE HUMAINE (annexe 56) : le script d'ingestion l'importe depuis `raw/`,
+   le bac à sable doit donc l'embarquer — sans quoi le harnais échoue à la RÉSOLUTION du module et
+   ses 79 contrôles rougissent pour une raison qui n'a rien à voir avec ce qu'ils mesurent. */
+const SCELLE_REL = join("packages", "knowledge", "raw", "attestations-relues.json");
 const GENERATED_REL = join("packages", "ui", "src", "data", "airlines.generated.json");
 /* Le script d'ingestion importe LE contrat de provenance auditée (`T0bAuditSource`, TypeScript)
    au lieu d'en recopier un second : le bac à sable doit donc embarquer les sources du paquet
@@ -49,6 +53,7 @@ function freshSandbox() {
   cpSync(join(ROOT, "content", "airlines"), join(SANDBOX, "content", "airlines"), { recursive: true });
   cpSync(join(ROOT, SCRIPT_REL), join(SANDBOX, SCRIPT_REL));
   cpSync(join(ROOT, OBJECTS_REL), join(SANDBOX, OBJECTS_REL));
+  cpSync(join(ROOT, SCELLE_REL), join(SANDBOX, SCELLE_REL));
   cpSync(join(ROOT, GENERATED_REL), join(SANDBOX, GENERATED_REL));
   cpSync(join(ROOT, SRC_REL), join(SANDBOX, SRC_REL), { recursive: true });
   mkdirSync(join(SANDBOX, "test-baselines"), { recursive: true });
@@ -281,7 +286,13 @@ console.log("\n=== 3. La décision vient des fiches — les contre-épreuves du 
     const BORNE_AF = 'borne: "moins de 8 kg"';
     check("(m) préalable : les fragments rattachés à la phrase de cabine sont bien là",
       readFileSync(af, "utf8").includes(BORNE_AF) && readFileSync(af, "utf8").includes('sujet: "8 kg, sac de transport compris"'));
+    /* MOUVEMENT NOMMÉ (11/09/2026, annexe 56) : réécrire la PHRASE CITÉE dé-relit le rattachement
+       qui pendait à l'ancienne — c'est exactement ce que le scellé existe pour exiger. Le témoin
+       retire donc l'attestation de cabine avec la phrase, plutôt que de prétendre qu'un
+       rattachement survit à la disparition de sa preuve. Ce qu'il mesure ne change pas : la source
+       auditée écrite dans la fiche doit gagner sur la provenance que l'artefact porte encore. */
     writeFileSync(af, readFileSync(af, "utf8")
+      .replace(/    attestations:[\s\S]*?\n(?=    source:)/, "")
       .replace(URL_AF, 'url: "https://wwws.airfrance.fr/information/passagers/animaux-cabine"')
       .replace(QUOTE_AF, 'quote: "Les chiens et chats de moins de 8 kg, sac de transport compris, voyagent en cabine."'));
     const r = run();
@@ -369,7 +380,7 @@ console.log("\n=== 3. La décision vient des fiches — les contre-épreuves du 
         '        sujet: "chats et chiens de moins de 8 kg"'));
       const { code, out } = run();
       check("(r) seuil « contenant compris » sur un extrait qui n'en nomme aucun → REFUS", code === 1, out.slice(-400));
-      check("(r) le refus nomme le sujet pesé", out.includes("ne rattache aucun contenant AUX 8 kg"), out.slice(-500));
+      check("(r) le refus renvoie à la relecture humaine", out.includes("NON RELUE par un humain"), out.slice(-500));
     }
 
     /* (s) à (v) LES QUATRE SABOTAGES DE CODEX DU `59d4788`, SUR LE CHEMIN RÉEL.
@@ -408,8 +419,8 @@ console.log("\n=== 3. La décision vient des fiches — les contre-épreuves du 
           ['sujet: "8 kg, sac de transport compris"', 'sujet: "8 kg, sac de transport non compris"'],
         ]);
         check("(t) phrase qui EXCLUT le contenant, déclarée « contenant compris » → REFUS", code === 1, out.slice(-400));
-        check("(t) le refus dit que rien ne rattache le contenant au poids",
-          out.includes("ne rattache aucun contenant AUX 8 kg"), out.slice(-500));
+        check("(t) le refus renvoie à la relecture humaine",
+          out.includes("NON RELUE par un humain"), out.slice(-500));
       }
 
       // (u) UN GÉNÉRIQUE D'EXCLUSION QUI NE PARLE PAS DU CONTENANT — le cas « without the owner ».
@@ -421,8 +432,8 @@ console.log("\n=== 3. La décision vient des fiches — les contre-épreuves du 
           ["    weight_includes_carrier: true", "    weight_includes_carrier: false"],
         ]);
         check("(u) « sans son maître » déclaré comme « chien seul » → REFUS", code === 1, out.slice(-400));
-        check("(u) le refus dit qu'aucun contenant n'est exclu",
-          out.includes("n'exclut aucun contenant DES 8 kg"), out.slice(-500));
+        check("(u) le refus renvoie à la relecture humaine",
+          out.includes("NON RELUE par un humain"), out.slice(-500));
       }
 
       // (v) DES POUCES PUBLIÉS EN CENTIMÈTRES.
@@ -466,8 +477,8 @@ console.log("\n=== 3. La décision vient des fiches — les contre-épreuves du 
           [S, 'sujet: "under 8 kg may travel in cabin, with the carrier included in the ticket price"'],
         ]);
         check("(w) contenant « included in the ticket price » → REFUS de l'ingestion", code === 1, out.slice(-400));
-        check("(w) le refus dit que rien ne rattache le contenant AUX kilos",
-          out.includes("ne rattache aucun contenant AUX 8 kg"), out.slice(-500));
+        check("(w) le refus renvoie à la relecture humaine",
+          out.includes("NON RELUE par un humain"), out.slice(-500));
       }
 
       // (x) L'EXCLUSION PORTE SUR UNE ÉTIQUETTE.
@@ -480,11 +491,18 @@ console.log("\n=== 3. La décision vient des fiches — les contre-épreuves du 
           ["    weight_includes_carrier: true", "    weight_includes_carrier: false"],
         ]);
         check("(x) contenant « without a label » déclaré « chien seul » → REFUS de l'ingestion", code === 1, out.slice(-400));
-        check("(x) le refus dit qu'aucun contenant n'est exclu DES kilos",
-          out.includes("n'exclut aucun contenant DES 8 kg"), out.slice(-500));
+        check("(x) le refus renvoie à la relecture humaine",
+          out.includes("NON RELUE par un humain"), out.slice(-500));
       }
 
-      // (y) LE TÉMOIN POSITIF : la formulation officielle la plus courante doit TRAVERSER l'ingestion.
+      /* (y) LE TÉMOIN S'INVERSE, ET C'EST TOUT L'ARBITRAGE DU 11/09.
+         Écrit une heure plus tôt, il exigeait que « The combined weight of the pet and carrier is
+         up to 8 kg » TRAVERSE l'ingestion — une formulation officielle limpide, que la quatrième
+         liste d'expressions régulières refusait à tort. Codex a refusé d'entrer dans la course aux
+         synonymes : cette phrase ne passe plus automatiquement, et c'est voulu. Elle passe la garde
+         mécanique — citation, nombre, unité, borne, concordance — et attend un humain. Le refus
+         doit donc DONNER l'empreinte à relire, sans quoi la relecture serait un travail de
+         recomposition au lieu d'une lecture. */
       {
         const { code, out } = saboter2([
           [Q, 'quote: "The combined weight of the pet and carrier is up to 8 kg."'],
@@ -493,11 +511,10 @@ console.log("\n=== 3. La décision vient des fiches — les contre-épreuves du 
           [B, 'borne: "up to 8 kg"'],
           [S, 'sujet: "combined weight of the pet and carrier is up to 8 kg"'],
         ]);
-        check("(y) « The combined weight of the pet and carrier is up to 8 kg » traverse l'ingestion",
-          code === 0, out.slice(-500));
-        const pol = sandboxJson(OBJECTS_REL).airlines.find((a) => a.id === "airline_air_france").premium.policy.cabin;
-        check("(y) …et son attestation est ÉCRITE dans l'artefact", pol.attestations?.length === 1,
-          JSON.stringify(pol.attestations ?? null).slice(0, 220));
+        check("(y) une formulation officielle limpide mais NON RELUE n'entre pas", code === 1, out.slice(-400));
+        check("(y) le refus donne l'empreinte exacte à porter au scellé",
+          out.includes("airline_air_france§cabin§weight_max|8|lte|dog_plus_carrier")
+          && out.includes("sujet=combined weight of the pet and carrier is up to 8 kg"), out.slice(-700));
       }
     }
 

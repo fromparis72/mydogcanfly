@@ -34,7 +34,7 @@ import { z } from "zod";
 import { T0bAuditSource, T0bSourceDePolitique } from "../src/t0b-migration.ts";
 /* Le contrat tarifaire est IMPORTÉ, jamais recopié : une seconde définition dériverait (annexe 44). */
 import { Fare, FareConflict } from "../src/tarifs.ts";
-import { Attestation, gardeAttestations } from "../src/attestations.ts";
+import { Attestation, gardeAttestations, attestationsNonRelues } from "../src/attestations.ts";
 
 const HERE = dirname(fileURLToPath(import.meta.url));
 const ROOT = join(HERE, "..", "..", "..");
@@ -353,6 +353,11 @@ for (const file of files) {
   }
   const fiche = res.data;
   if (out[fiche.id]) errors.push(`${file}: duplicate id ${fiche.id}`);
+  /* LE SCELLÉ DE RELECTURE HUMAINE, ÉPROUVÉ ICI AUSSI (annexe 56). Le chargement du référentiel le
+     vérifie déjà, mais il le fait au build, sans nommer la fiche. L'écriture doit être refusée à la
+     source, avec le nom du fichier et l'empreinte à relire — sans quoi l'auteur d'une attestation
+     découvre le refus deux étapes plus loin, sur un message qui ne lui dit pas quoi corriger. */
+  for (const m of attestationsNonRelues(fiche.id, fiche.policies ?? {})) errors.push(`${file}: ${m}`);
   out[fiche.id] = fiche;
 }
 

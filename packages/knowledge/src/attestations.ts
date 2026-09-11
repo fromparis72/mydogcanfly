@@ -35,7 +35,14 @@
  *
  * *Et les 36 ne sont que des CANDIDATES, jamais des preuves* (Codex, 11/09) : qu'un « 8 » suive un
  * « kg » dans la phrase n'établit pas qu'il s'agisse du plafond DU CANAL. Ce pourrait être un âge,
- * un délai, une autre borne. **Aucun rattachement par expression régulière.**
+ * un délai, une autre borne. **Aucun rattachement AUTOMATIQUE : chaque attestation est écrite à la
+ * main, fait par fait.**
+ *
+ * *Promesse corrigée le 11/09/2026, sur remarque de Codex.* Cette ligne a longtemps dit « aucun
+ * rattachement par expression régulière », alors que la garde SÉMANTIQUE reposait précisément sur
+ * des expressions régulières — et que quatre contre-revues successives ont montré qu'elles ne
+ * décidaient pas du sens. Ce qui est vrai, et ce qui reste : rien n'est rattaché automatiquement.
+ * Ce qui était faux, et qui est retiré : prétendre qu'aucune expression régulière n'intervenait.
  *
  * ── LA FORME DU RATTACHEMENT ──────────────────────────────────────────────────────────────────
  * Une attestation dit DEUX choses, et les deux sont vérifiables :
@@ -219,80 +226,64 @@ const MARQUEURS: Record<"lt" | "lte" | "gt" | "gte", string[]> = {
         "pelo menos", "ou mais"],
 };
 
-/** Les mots qui désignent le CONTENANT, dans les quatre langues. */
-const CONTENANTS = ["carrier", "container", "carry-on bag", "bag", "crate", "kennel", "cage",
-  "sac", "sacoche", "caisse", "panier", "contenant", "cabas",
-  "transportin", "bolso", "bolsa", "jaula", "caja", "cesta",
-  "caixa", "transportadora"];
-
-/* ── UNE RELATION AU POIDS, PAS UN MOT NI UN VOISINAGE ────────────────────────────────────────
- * Ce paragraphe a été réécrit DEUX fois, par deux contre-revues successives, et les deux avaient
- * raison :
+/* ── LA FRONTIÈRE ENTRE CE QU'UNE MACHINE PROUVE ET CE QU'UN HUMAIN VALIDE ────────────────────
  *
- * *Sabotages 1 à 3 de Codex, sur `59d4788`.* La garde exigeait qu'un mot de contenant paraisse dans
- * le fragment. Trois phrases passaient donc alors qu'elles disent autre chose, ou le contraire :
- * « The carrier must be labelled » (le contenant est mentionné, rien ne dit qu'il pèse),
- * « Carrier not included in this weight » (la phrase dit exactement l'inverse) et
- * « without the owner » (un générique d'exclusion qui ne parle pas du contenant).
+ * ARBITRAGE DE CODEX, 11/09/2026, après quatre contre-revues sur ce seul contrat. Chacune a fermé
+ * les cas qu'elle nommait ; chacune a été suivie d'une reformulation qui repassait :
+ *   · « The carrier must be labelled »            (mot de contenant dans une autre proposition)
+ *   · « Carrier not included in this weight »     (le sens exactement inverse)
+ *   · « with the carrier included in the ticket price »        (l'inclusion porte sur le prix)
+ *   · « a carrier without a label is refused »                 (l'exclusion porte sur l'étiquette)
+ *   · « may travel with their carrier stored separately »      (le contenant voyage à part)
+ *   · « with the carrier included in the reservation »         (inclus dans la réservation)
+ *   · « The total weight of the dog is up to 8 kg and the carrier travels separately »
  *
- * *Sabotages 6 et 7, sur `8c8faf4`.* J'ai alors exigé une tournure d'inclusion « à portée de
- * lecture » du contenant. Deux phrases passaient encore, et la cause était la même à un cran
- * près — la relation était rattachée au CONTENANT, jamais au POIDS :
- *   · « with the carrier included in **the ticket price** » — l'inclusion porte sur le prix ;
- *   · « a carrier without **a label** is refused » — l'exclusion porte sur l'étiquette.
- * Et, symétriquement, une formulation officielle parfaitement claire était REFUSÉE :
- *   · « The combined weight of the pet and carrier is up to 8 kg. »
+ * *Chaque correction reconnaissait des mots et leur proximité, jamais le sens.* La cinquième liste
+ * aurait été battue par la huitième phrase. Codex a refusé d'entrer dans cette course, et il a
+ * raison : **la frontière est déplacée, pas repoussée.**
  *
- * TROIS EXIGENCES, DONC, SUR LE SEUL FRAGMENT DE SUJET :
- *   · il porte LE POIDS lui-même — la valeur de la claim, suivie de son unité de masse ;
- *   · il matche une FORME DE RELATION de la liste fermée, ancrée sur le contenant (« with its
- *     carrier », « sac de transport compris », « combined weight of the pet and carrier ») ;
- *   · aucun COMPLÉMENT INTERDIT ne suit la tournure : un prix, un tarif, un billet, une étiquette.
- *     C'est ce dernier contrôle qui distingue « included in this weight » de « included in the
- *     ticket price », et « sans le sac » de « without a label ».
+ * CE QUE LA MACHINE PROUVE, seule, sans jugement :
+ *   · le fragment vient MOT POUR MOT de la citation de CE canal ;
+ *   · les fragments tiennent dans une MÊME PROPOSITION de cette citation ;
+ *   · la valeur annoncée est suivie d'une UNITÉ DE MASSE MÉTRIQUE ;
+ *   · une TOURNURE DE BORNE compatible précède immédiatement ce poids ;
+ *   · la claim CONCORDE avec les champs structurés de la politique.
  *
- * La relation est ancrée sur le contenant DANS LE MOTIF LUI-MÊME, plus par une distance : « sans »
- * ne compte que suivi d'un contenant, « not included » que précédé d'un. C'est ce qui fait tomber
- * « without a label », dont le complément n'est pas un contenant. */
+ * CE QU'UN HUMAIN VALIDE, parce qu'aucune machine de ce dépôt ne le décide :
+ *   · le SENS du sujet pesé — « contenant compris » ou « chien seul ».
+ *
+ * La validation humaine n'est pas une intention : c'est un SCELLÉ, `raw/attestations-relues.json`,
+ * qui porte compagnie, canal, claim, citation et fragments. Il est BIDIRECTIONNEL — toute
+ * attestation absente du scellé rougit, et toute entrée du scellé sans attestation correspondante
+ * rougit aussi. Changer un seul caractère d'un fragment, d'une citation ou d'une claim casse
+ * l'empreinte et exige une relecture. Trois attestations y figurent au 11/09/2026 : les trois
+ * d'Air France, relues par Philippe et contre-revues par Codex. Les 49 autres canaux candidats
+ * attendent la leur, et ne publient rien.
+ */
 
-/** Le contenant, comme groupe de motif — il est ancré DANS chaque forme de relation. */
-const CONT = "(?:carrier|container|carry-on bag|bag|crate|kennel|cage|sacoche|sac|caisse|panier|contenant|cabas|transportin|bolso|bolsa|jaula|caja|cesta|caixa|transportadora)";
+/** LE SCELLÉ, chargé une fois. Les entrées sont des empreintes ; leur `sens_relu` est destiné à
+ *  l'humain qui relira la prochaine, pas à la machine. */
+import scelle from "../raw/attestations-relues.json";
+const SCELLE: ReadonlySet<string> = new Set(
+  (scelle as { attestations: { empreinte: string }[] }).attestations.map((x) => x.empreinte));
 
-/** LES FORMES QUI DISENT QUE LE CONTENANT COMPTE DANS LE POIDS. Liste FERMÉE, quatre langues. */
-const FORMES_INCLUSION = [
-  `with (?:its|their|his|her|the|a) (?:own )?(?:\\w+ )?${CONT}`,
-  `includ\\w+ (?:the |its |a )?(?:\\w+ )?${CONT}`,
-  `${CONT}[^.;:]{0,15}(?:included|inclusive)`,
-  `combined with (?:its |the |a )?${CONT}`,
-  `(?:combined|total) weight of [^.;:]{0,40}${CONT}`,
-  `${CONT}[^.;:]{0,20}(?:compris|comprise|inclus|incluse)`,
-  `y compris [^.;:]{0,15}${CONT}`,
-  `poids (?:total|combine) (?:de|du|de la) [^.;:]{0,40}${CONT}`,
-  `${CONT}[^.;:]{0,20}(?:incluido|incluida)`,
-  `(?:incluyendo|incluindo) (?:el |la |a |o )?${CONT}`,
-  `con (?:su|el|la) ${CONT}`,
-  `com (?:a|o|sua|seu) ${CONT}`,
-  `peso (?:total|combinado) (?:de|del|do|da) [^.;:]{0,40}${CONT}`,
-];
+/** LES EMPREINTES SCELLÉES, pour le contrôle de bidirectionnalité — aucune entrée orpheline. */
+export const empreintesScellees = (): string[] => [...SCELLE];
 
-/** LES FORMES QUI L'EN EXCLUENT. Chacune est ancrée sur le contenant, dans un sens ou dans l'autre. */
-const FORMES_EXCLUSION = [
-  `(?:excluding|without|not including|exclusive of) (?:the |its |a )?(?:\\w+ )?${CONT}`,
-  `${CONT}[^.;:]{0,15}(?:not included|is not included|excluded|not counted|does not include)`,
-  `(?:sans|hors) (?:le |la |son |sa |un |une |du |de la )?${CONT}`,
-  `${CONT}[^.;:]{0,20}(?:non compris|non comprise|exclu|exclue)`,
-  `(?:sin|excluido|excluida) (?:el |la |un |una )?${CONT}`,
-  `${CONT}[^.;:]{0,20}(?:no incluido|no incluida|excluido|excluida)`,
-  `(?:sem|excluindo) (?:a |o |uma |um )?${CONT}`,
-  `${CONT}[^.;:]{0,20}(?:nao incluido|nao incluida|nao inclui)`,
-];
-
-/** CE À QUOI UNE INCLUSION NE DOIT PAS SE RAPPORTER. Un contenant « compris dans le prix » ou
- *  « refusé sans étiquette » ne dit rien du poids — et disait pourtant « contenant compris ». */
-const COMPLEMENT_INTERDIT = new RegExp(
-  "(?:includ\\w+|inclu\\w+|compris\\w*|without|sans|excluding|excluded)[^.;:]{0,25}?"
-  + "\\b(?:ticket|tickets|price|prices|fare|fares|cost|charge|charges|fee|fees|label|labels|tag|tags"
-  + "|tarif|tarifs|prix|billet|etiquette|precio|billete|etiqueta|preco|bilhete|rotulo)\\b");
+/** L'EMPREINTE D'UNE ATTESTATION — ce qui doit être relu, et rien d'autre. Toute modification de
+ *  l'un de ces cinq éléments produit une empreinte différente, donc un refus. */
+export function empreinteAttestation(
+  airlineId: string, placement: string, a: Attestation, quote: string | undefined,
+): string {
+  const c = a.claim;
+  const claim = c.kind === "carrier_dims_cm"
+    ? `${c.kind}|${c.l}x${c.w}x${c.h}`
+    : `${c.kind}|${c.kg}|${c.bound}|${c.subject ?? "-"}`;
+  const frags = "dimensions" in a
+    ? `dimensions=${a.dimensions}`
+    : `poids=${a.poids}|borne=${a.borne}|sujet=${a.sujet ?? "-"}`;
+  return [airlineId, placement, claim, quote ?? "-", frags].join("§");
+}
 
 const echapper = (s: string) => s.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
 
@@ -315,24 +306,6 @@ const borneEstDite = (plat: string, kg: number, bound: "lt" | "lte" | "gt" | "gt
   MARQUEURS[bound].some((m) => new RegExp(
     `(?<!\\b(?:no|not|non|nao|ne|pas|sans)\\s)${echapper(m)}\\b[^.;:]{0,20}?(?<![\\d.,])${motifNombre(kg)}\\s*${UNITE_MASSE}\\b`,
   ).test(plat));
-
-/** LE FRAGMENT DIT-IL QUE LE CONTENANT COMPTE DANS CE POIDS-LÀ ?
- *
- *  Les trois conditions sont cumulatives : le poids de la claim EST dans le fragment, une forme
- *  d'inclusion ancrée sur le contenant y est, aucune forme d'exclusion n'y est, et la tournure ne
- *  se rapporte pas à un prix ou à une étiquette. */
-const inclusionEstDite = (plat: string, kg: number) =>
-  valeurEstUnPoids(plat, kg)
-  && !COMPLEMENT_INTERDIT.test(plat)
-  && !FORMES_EXCLUSION.some((f) => new RegExp(f).test(plat))
-  && FORMES_INCLUSION.some((f) => new RegExp(f).test(plat));
-
-/** LE FRAGMENT DIT-IL QUE LE CONTENANT EST EXCLU DE CE POIDS-LÀ ? */
-const exclusionEstDite = (plat: string, kg: number) =>
-  valeurEstUnPoids(plat, kg)
-  && !COMPLEMENT_INTERDIT.test(plat)
-  && !FORMES_INCLUSION.some((f) => new RegExp(f).test(plat))
-  && FORMES_EXCLUSION.some((f) => new RegExp(f).test(plat));
 
 /* ── UNE SEULE PROPOSITION, PAS UNE PHRASE ENTIÈRE ────────────────────────────────────────────
  * *Sabotage 1 de Codex.* « Dogs under 8 kg may travel in cabin. The carrier must be labelled. » :
@@ -399,11 +372,11 @@ export function semantiqueAbsente(a: Attestation): string | null {
   if (a.sujet && !claim.subject) {
     return `un fragment de sujet est rattaché, mais l'attestation ne déclare aucun sujet pesé`;
   }
-  if (claim.subject === "dog_plus_carrier" && !inclusionEstDite(aplatir(a.sujet as string), claim.kg)) {
-    return `l'attestation annonce un seuil CONTENANT COMPRIS, mais le fragment « ${a.sujet} » ne rattache aucun contenant AUX ${claim.kg} kg`;
-  }
-  if (claim.subject === "dog_alone" && !exclusionEstDite(aplatir(a.sujet as string), claim.kg)) {
-    return `l'attestation annonce un seuil sur le chien SEUL, mais le fragment « ${a.sujet} » n'exclut aucun contenant DES ${claim.kg} kg`;
+  /* LE FRAGMENT DE SUJET DOIT PORTER LE POIDS — c'est mécanique, et c'est tout ce qui l'est. Ce que
+     ce fragment SIGNIFIE — le contenant compte-t-il dans ces kilos, ou en est-il exclu — n'est pas
+     décidé ici : c'est le scellé de relecture humaine qui l'autorise, ou rien ne paraît. */
+  if (claim.subject && !valeurEstUnPoids(aplatir(a.sujet as string), claim.kg)) {
+    return `le fragment de sujet « ${a.sujet} » ne porte pas les ${claim.kg} kg dont il prétend dire ce qui est pesé`;
   }
   return null;
 }
@@ -525,3 +498,45 @@ export const gardeAttestations = (
     ctx.addIssue({ code: "custom", path: ["attestations"], message: m });
   }
 };
+
+/**
+ * LA GARDE DU SCELLÉ, appelée là où l'identifiant de la compagnie existe — c'est-à-dire sur
+ * `Airline`, et non sur la politique, qui ne sait pas à qui elle appartient.
+ *
+ * Elle rend un motif par attestation non relue. Le message nomme l'empreinte exacte, pour que la
+ * relecture humaine n'ait rien à recomposer : il suffit de la lire, de la vérifier contre la page
+ * officielle, puis de l'ajouter au scellé avec le sens qu'on lui reconnaît.
+ */
+export function attestationsNonRelues(
+  airlineId: string,
+  policy: Record<string, { attestations?: readonly Attestation[]; source?: { quote?: string } } | undefined>,
+): string[] {
+  const motifs: string[] = [];
+  for (const placement of ["cabin", "hold", "cargo"]) {
+    const d = policy[placement];
+    for (const a of d?.attestations ?? []) {
+      const e = empreinteAttestation(airlineId, placement, a, d?.source?.quote);
+      if (!SCELLE.has(e)) {
+        motifs.push(`${placement} : attestation NON RELUE par un humain. Le sens du sujet pesé ne se `
+          + `déduit pas d'une expression régulière : ajouter cette empreinte à `
+          + `raw/attestations-relues.json après lecture de la page officielle —\n           ${e}`);
+      }
+    }
+  }
+  return motifs;
+}
+
+/** TOUTES LES EMPREINTES RÉELLEMENT PORTÉES par un référentiel — l'autre sens du scellé. */
+export function empreintesPortees(
+  airlines: Iterable<{ id: string; premium?: { policy?: Record<string, { attestations?: readonly Attestation[]; source?: { quote?: string } } | undefined> } }>,
+): string[] {
+  const vues: string[] = [];
+  for (const a of airlines) {
+    const pol = a.premium?.policy ?? {};
+    for (const placement of ["cabin", "hold", "cargo"]) {
+      const d = pol[placement];
+      for (const att of d?.attestations ?? []) vues.push(empreinteAttestation(a.id, placement, att, d?.source?.quote));
+    }
+  }
+  return vues;
+}

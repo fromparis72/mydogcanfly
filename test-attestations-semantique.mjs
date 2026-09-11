@@ -22,7 +22,8 @@
  * nécessaires et aucun ne remplace l'autre — c'est la leçon inverse de celle du matin, et elle a
  * coûté une contre-revue.
  */
-import { motifsDeRefus, faitsAttestes, semantiqueAbsente } from "./packages/knowledge/src/attestations.ts";
+import { motifsDeRefus, faitsAttestes, semantiqueAbsente, attestationsNonRelues }
+  from "./packages/knowledge/src/attestations.ts";
 /* La synthèse vit dans le paquet UI ; le défaut de rendu s'éprouve donc ici, sur la fonction qui
    compose la phrase, et non seulement sur la page construite — les données réelles portent le même
    sujet sur leurs deux bornes et ne peuvent pas montrer ce cas-là. */
@@ -58,14 +59,17 @@ const AT_CAB = {
   poids: "8 kg", borne: "moins de 8 kg", sujet: "8 kg, sac de transport compris",
 };
 
-console.log("=== 1. Les quatre faux verts reproduits par Codex sur `80e3ce6` ===");
+console.log("=== 1. Ce que la MACHINE prouve — les faux verts mécaniques de `80e3ce6` ===");
 {
-  refuse("(1) sujet « contenant compris » rattaché à un fragment qui ne nomme aucun contenant",
-    canal({ ...AT_CAB, sujet: "chats et chiens de moins de 8 kg" }, Q_CAB, CH_CAB), "ne rattache aucun contenant AUX 8 kg");
+  /* MOUVEMENT NOMMÉ (11/09/2026, arbitrage de Codex). Ce paragraphe comptait quatre cas. Le
+     premier — « un sujet “contenant compris” sur un fragment qui ne nomme aucun contenant » — a
+     QUITTÉ ce fichier : il relève du SENS, et le sens n'est plus décidé ici. Il est éprouvé au
+     paragraphe 6, avec les six autres phrases qui ont battu quatre listes successives.
+     Les trois qui restent sont mécaniques, et le resteront : une borne, une unité, un nombre. */
 
   refuse("(2) « up to 8 kg » rattaché à la borne STRICTE `lt`",
     canal({ claim: { kind: "weight_max", kg: 8, bound: "lt", subject: "dog_plus_carrier" },
-      poids: "8 kg", borne: "up to 8 kg", sujet: "with its carrier" },
+      poids: "8 kg", borne: "up to 8 kg", sujet: "up to 8 kg with its carrier" },
       "pets up to 8 kg with its carrier travel in the cabin", CH_CAB), "borne « lt »");
 
   refuse("(3) le « 8 » d'une DATE rattaché comme un poids de 8 kg",
@@ -91,11 +95,11 @@ console.log("\n=== 2. Le cinquième, sur `4443653` : l'absence de preuve n'est p
       "chiens de moins de 8 kg sans son sac", { max_weight_kg: 8, weight_limit_bound: "lt" }),
     "l'absence ne vaut ni oui ni non");
 
-  refuse("(5 bis) sujet « chien seul » sur un fragment qui ne le dit pas explicitement",
+  refuse("(5 bis) un fragment de sujet qui ne porte même pas les kilos dont il parle",
     canal({ claim: { kind: "weight_max", kg: 8, bound: "lt", subject: "dog_alone" },
       poids: "8 kg", borne: "moins de 8 kg", sujet: "chats et chiens" },
       "chats et chiens de moins de 8 kg", { ...CH_CAB, weight_includes_carrier: false }),
-    "n'exclut aucun contenant DES 8 kg");
+    "ne porte pas les 8 kg");
 
   refuse("(5 ter) un sujet déclaré SANS fragment rattaché",
     canal({ claim: { kind: "weight_max", kg: 8, bound: "lt", subject: "dog_plus_carrier" },
@@ -114,95 +118,31 @@ console.log("\n=== 2. Le cinquième, sur `4443653` : l'absence de preuve n'est p
       { max_weight_kg: 8, weight_limit_bound: "lt" }), ["weight_max"]);
 }
 
-console.log("\n=== 2 bis. Les cinq sabotages de Codex sur `59d4788` ===");
+console.log("\n=== 2 bis. Ce que la machine prouve encore, des sabotages de `59d4788` ===");
 {
-  /* NOMMER UN CONTENANT N'EST PAS DIRE QU'IL PÈSE. Les trois premiers attaquent le même défaut par
-     trois angles : le contenant mentionné ailleurs, le contenant explicitement EXCLU, et un
-     générique d'exclusion qui ne parle pas du contenant. */
+  /* Deux des cinq — « carrier not included » pris pour son contraire, et « without the owner » pris
+     pour une exclusion — relèvent du SENS et ont quitté ce fichier avec lui (paragraphe 6). Les
+     trois autres sont mécaniques : une proposition, une unité, un sujet commun. */
   refuse("(6) le contenant est mentionné dans une AUTRE proposition de la phrase",
     canal({ claim: { kind: "weight_max", kg: 8, bound: "lt", subject: "dog_plus_carrier" },
       poids: "8 kg", borne: "under 8 kg", sujet: "The carrier must be labelled" },
       "Dogs under 8 kg may travel in cabin. The carrier must be labelled.", CH_CAB),
     "PAS d'une même proposition");
 
-  refuse("(7) la phrase dit que le contenant est EXCLU, et le sujet déclaré dit l'inverse",
-    canal({ claim: { kind: "weight_max", kg: 8, bound: "lt", subject: "dog_plus_carrier" },
-      poids: "8 kg", borne: "under 8 kg", sujet: "Carrier not included in this weight" },
-      "Dogs under 8 kg may travel. Carrier not included in this weight.", CH_CAB),
-    "PAS d'une même proposition");
-
-  /* …et le même piège SANS la coupure de proposition, pour que (7) ne passe pas « pour la
-     mauvaise raison » : ici tout tient dans une seule phrase. */
-  refuse("(7 bis) « carrier not included » dans la MÊME proposition ne prouve pas l'inclusion",
-    canal({ claim: { kind: "weight_max", kg: 8, bound: "lt", subject: "dog_plus_carrier" },
-      poids: "8 kg", borne: "under 8 kg", sujet: "under 8 kg, carrier not included in this weight" },
-      "Dogs under 8 kg, carrier not included in this weight, may travel", CH_CAB),
-    "ne rattache aucun contenant AUX 8 kg");
-
-  refuse("(8) « without the owner » ne dit rien du contenant",
-    canal({ claim: { kind: "weight_max", kg: 8, bound: "lt", subject: "dog_alone" },
-      poids: "8 kg", borne: "under 8 kg", sujet: "under 8 kg may travel without the owner" },
-      "Dogs under 8 kg may travel without the owner.",
-      { ...CH_CAB, weight_includes_carrier: false }),
-    "n'exclut aucun contenant DES 8 kg");
-
   refuse("(9) « 46 × 28 × 24 in » ne prouve pas 46 × 28 × 24 CENTIMÈTRES",
     canal({ claim: { kind: "carrier_dims_cm", l: 46, w: 28, h: 24 }, dimensions: "46 x 28 x 24 in" },
       "the bag must not exceed 46 x 28 x 24 in", { carrier_dims_cm: { l: 46, w: 28, h: 24 } }),
     "avec leur unité");
 
-  /* LE DÉFAUT DE RENDU — il ne vit pas dans le contrat mais dans la synthèse, et c'est là qu'il
-     est éprouvé : `test-entity-pages-harness.mjs` lit la page construite. Ici on vérifie au moins
-     que les deux bornes SONT attestables séparément, l'une avec sujet et l'autre sans : c'est la
-     situation exacte que le rendu doit refuser de résumer d'un seul sujet. */
   const Q_MIXTE = "Dogs from 8 kg travel in the hold, up to 75 kg with its carrier";
   accepte("(10) préalable : un plancher SANS sujet est attestable seul",
     canal({ claim: { kind: "weight_min", kg: 8, bound: "gte" }, poids: "8 kg", borne: "from 8 kg" },
       Q_MIXTE, { min_weight_kg: 8, weight_min_bound: "gte" }), ["weight_min"]);
-  accepte("(10 bis) préalable : le plafond de la même phrase porte, lui, un sujet prouvé",
+  accepte("(10 bis) préalable : le plafond de la même phrase porte, lui, un sujet",
     canal({ claim: { kind: "weight_max", kg: 75, bound: "lte", subject: "dog_plus_carrier" },
       poids: "75 kg", borne: "up to 75 kg", sujet: "up to 75 kg with its carrier" },
       Q_MIXTE, { max_weight_kg: 75, weight_limit_bound: "lte", weight_includes_carrier: true }),
     ["weight_max"]);
-}
-
-console.log("\n=== 2 ter. Les deux faux verts de `8c8faf4` : la relation portait sur autre chose ===");
-{
-  /* La tournure était rattachée au CONTENANT, jamais au POIDS. Deux phrases passaient donc, où
-     l'inclusion porte sur le prix du billet et l'exclusion sur une étiquette. */
-  refuse("(11) « the carrier included in THE TICKET PRICE » ne dit pas que le contenant pèse",
-    canal({ claim: { kind: "weight_max", kg: 8, bound: "lt", subject: "dog_plus_carrier" },
-      poids: "8 kg", borne: "under 8 kg",
-      sujet: "under 8 kg may travel in cabin, with the carrier included in the ticket price" },
-      "Dogs under 8 kg may travel in cabin, with the carrier included in the ticket price.",
-      { max_weight_kg: 8, weight_limit_bound: "lt", weight_includes_carrier: true }),
-    "ne rattache aucun contenant AUX 8 kg");
-
-  refuse("(12) « a carrier without A LABEL » n'exclut pas le contenant du poids",
-    canal({ claim: { kind: "weight_max", kg: 8, bound: "lt", subject: "dog_alone" },
-      poids: "8 kg", borne: "under 8 kg",
-      sujet: "under 8 kg may travel in cabin, but a carrier without a label is refused" },
-      "Dogs under 8 kg may travel in cabin, but a carrier without a label is refused.",
-      { max_weight_kg: 8, weight_limit_bound: "lt", weight_includes_carrier: false }),
-    "n'exclut aucun contenant DES 8 kg");
-
-  /* …ET LE TÉMOIN POSITIF QUI VA AVEC, sans lequel la correction serait un durcissement aveugle :
-     une formulation officielle parfaitement claire était REFUSÉE par la version précédente. */
-  accepte("(13) « The combined weight of the pet and carrier is up to 8 kg » est ACCEPTÉ",
-    canal({ claim: { kind: "weight_max", kg: 8, bound: "lte", subject: "dog_plus_carrier" },
-      poids: "8 kg", borne: "up to 8 kg", sujet: "combined weight of the pet and carrier is up to 8 kg" },
-      "The combined weight of the pet and carrier is up to 8 kg.",
-      { max_weight_kg: 8, weight_limit_bound: "lte", weight_includes_carrier: true }), ["weight_max"]);
-  accepte("(14) « The total weight of pet and carrier is up to 8 kg » aussi",
-    canal({ claim: { kind: "weight_max", kg: 8, bound: "lte", subject: "dog_plus_carrier" },
-      poids: "8 kg", borne: "up to 8 kg", sujet: "total weight of pet and carrier is up to 8 kg" },
-      "The total weight of pet and carrier is up to 8 kg.",
-      { max_weight_kg: 8, weight_limit_bound: "lte", weight_includes_carrier: true }), ["weight_max"]);
-
-  /* LE FRAGMENT DE SUJET DOIT PORTER LE POIDS — c'est la condition qui rend les deux premières
-     attaques impossibles à reformuler en coupant le fragment plus court. */
-  refuse("(15) un fragment de sujet SANS le poids ne prouve plus rien",
-    canal({ ...AT_CAB, sujet: "sac de transport compris" }, Q_CAB, CH_CAB), "AUX 8 kg");
 }
 
 console.log("\n=== 3. Les pièges qui accompagnent ces cinq-là ===");
@@ -336,6 +276,58 @@ console.log("\n=== 6. LE RENDU : un sujet prouvé pour UNE borne ne vaut pas pou
 
   /* NON-VACUITÉ : sans faits, pas de ligne du tout — jamais une phrase qui parle de rien. */
   check("(y) témoin : aucun fait attesté → aucune synthèse", rendu([]) === null, String(rendu([])));
+}
+
+console.log("\n=== 7. LA FRONTIÈRE : ce que la machine laisse passer, et que l'humain arrête ===");
+{
+  /* LES SEPT PHRASES QUI ONT BATTU QUATRE LISTES SUCCESSIVES D'EXPRESSIONS RÉGULIÈRES.
+   *
+   * Chacune a été, un jour, acceptée comme « contenant compris » ou « chien seul ». Chacune a été
+   * fermée par une liste plus longue, et chacune a été suivie d'une reformulation qui repassait.
+   * Codex a refusé le cinquième élargissement : une garantie sémantique par expressions régulières
+   * n'a pas de terme.
+   *
+   * Ce paragraphe ne prétend donc PAS que la machine les refuse. Il prouve exactement l'inverse, et
+   * c'est le sens du lot : elles passent la garde MÉCANIQUE — le fragment vient de la phrase, le
+   * nombre est un poids, la borne est dite — et elles sont arrêtées par le SCELLÉ DE RELECTURE
+   * HUMAINE, parce qu'aucun humain ne les a validées. C'est la frontière, écrite en clair.
+   *
+   * Si l'une d'elles cessait un jour de passer la garde mécanique, ce témoin rougirait — et ce
+   * serait une bonne nouvelle à constater, pas un vert à préserver en silence. */
+  const PHRASES = [
+    ["mot de contenant, aucune relation", "Dogs under 8 kg may travel in cabin, the carrier must be labelled",
+      "8 kg may travel in cabin, the carrier must be labelled"],
+    ["le sens exactement inverse", "Dogs under 8 kg, carrier not included in this weight, may travel",
+      "8 kg, carrier not included in this weight"],
+    ["l'inclusion porte sur le prix", "Dogs under 8 kg may travel, with the carrier included in the ticket price",
+      "8 kg may travel, with the carrier included in the ticket price"],
+    ["l'exclusion porte sur l'étiquette", "Dogs under 8 kg may travel, but a carrier without a label is refused",
+      "8 kg may travel, but a carrier without a label is refused"],
+    ["le contenant voyage à part", "Dogs under 8 kg may travel with their carrier stored separately",
+      "8 kg may travel with their carrier stored separately"],
+    ["inclus dans la réservation", "Dogs under 8 kg may travel, with the carrier included in the reservation",
+      "8 kg may travel, with the carrier included in the reservation"],
+    ["le contenant voyage séparément", "The total weight of the dog is up to 8 kg and the carrier travels separately",
+      "up to 8 kg and the carrier travels separately"],
+  ];
+  for (const [quoi, quote, sujet] of PHRASES) {
+    const att = { claim: { kind: "weight_max", kg: 8, bound: "lte", subject: "dog_plus_carrier" },
+      poids: "8 kg", borne: "up to 8 kg", sujet };
+    const borne = quote.includes("up to") ? "up to 8 kg" : "under 8 kg";
+    att.borne = borne;
+    const champs = { max_weight_kg: 8, weight_limit_bound: "lte", weight_includes_carrier: true };
+    const mecanique = motifsDeRefus([att], quote, champs);
+    const humain = attestationsNonRelues("airline_test", { cabin: { source: { quote }, attestations: [att] } });
+    check(`${quoi} : la machine ne tranche pas, le scellé arrête`,
+      humain.length > 0, `mécanique = ${JSON.stringify(mecanique)} · scellé = ${humain.length} motif(s)`);
+  }
+
+  /* ET LE CONTRE-TÉMOIN : une attestation RELUE traverse les deux gardes. Sans lui, « le scellé
+     arrête tout » serait vrai et inutile. */
+  check("témoin : l'attestation de cabine d'Air France, elle, est relue et passe les DEUX gardes",
+    motifs(canal(AT_CAB, Q_CAB, CH_CAB)).length === 0
+    && attestationsNonRelues("airline_air_france",
+      { cabin: { source: { quote: Q_CAB }, attestations: [AT_CAB] } }).length === 0);
 }
 
 console.log("\n=== SUMMARY ===");
