@@ -4494,6 +4494,11 @@ croiser le nombre précédent avec la devise suivante. Les deux sont fermés par
 classement. Le harnais du Finder exige la fourchette, sa réserve et sa preuve repliée dans les quatre langues. Le
 contrat HTTP réel exige les trois résolutions et relit KLM jusqu'au Worker. Un canal refusé ne publie toujours
 aucun tarif.
+
+**Registre de fraîcheur.** La CI a refusé la première tête parce que les 157 nouvelles provenances n'avaient pas
+encore été rescellées. Le geste officiel `fraicheur/sceller-registre.mjs --ecrire` porte le registre à **1 661
+entrées** ; un second passage est identique et vert. Les preuves tarifaires entrent ainsi dans la même cadence de
+surveillance que les autres sources, au lieu de vivre à côté d'elle.
 ---
 
 ## Annexe 49 — Titres et descriptions SEO des quatre accueils (11/09/2026, classement B)
