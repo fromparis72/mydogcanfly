@@ -119,7 +119,11 @@ policies:
           kg: 8
           bound: gt
           includes_carrier: true
-        excerpt: "weighs more than 8 kg/17.64 lb."
+        # P0 CODEX (11/09/2026, sur 80e3ce6) : cet extrait s'arrêtait à « weighs more than 8 kg/17.64 lb. »
+        # et annonçait pourtant un seuil CONTENANT COMPRIS — un fait que ce fragment-là n'établit pas.
+        # C'est la phrase ENTIÈRE qui porte le contenant : « with its carrier » qualifie la fourchette,
+        # pas seulement sa borne haute. L'extrait est donc étendu jusqu'à lui, plutôt que le fait affaibli.
+        excerpt: "weighs more than 8 kg/17.64 lb. and up to 75 kg/165.35 lb. with its carrier"
       - claim:
           kind: weight_max
           kg: 75

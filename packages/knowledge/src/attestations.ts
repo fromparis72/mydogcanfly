@@ -132,6 +132,136 @@ export const extraitPorteLesValeurs = (excerpt: string, claim: Claim): boolean =
   return valeursDe(claim).every((v) => vus.includes(v));
 };
 
+/* ---- LA SÉMANTIQUE DU FAIT, LUE DANS LE FRAGMENT ------------------------------------------- */
+/**
+ * P0 REPRODUIT PAR CODEX SUR `80e3ce6`, ET REFERMÉ ICI — quatre faux verts, un seul défaut.
+ *
+ * J'avais NOMMÉ cette limite dans mon propre dossier (« `includes_carrier` et le sens d'une borne
+ * ne sont pas vérifiables depuis les nombres de l'extrait »), puis livré comme si la nommer
+ * suffisait. C'est mot pour mot la faute de l'annexe 48 : *nommer une limite n'est pas la fermer.*
+ * Codex l'a exploitée quatre fois sur la tête exacte que je venais de déclarer verte :
+ *
+ *   1. `includes_carrier: true` passait sur un fragment qui ne mentionne AUCUN contenant ;
+ *   2. « up to 8 kg » passait avec la borne STRICTE `lt` — la phrase dit « jusqu'à », le fait dit
+ *      « moins de », et un chien de 8 kg exactement basculait d'accepté à refusé ;
+ *   3. le « 8 » d'une DATE passait pour un poids de 8 kg ;
+ *   4. le « 75 » d'un NUMÉRO DE VOL passait pour 75 kg.
+ *
+ * La garde prouvait la PRÉSENCE du fragment et la PRÉSENCE du nombre. Aucune des deux ne dit ce que
+ * le nombre qualifie ni dans quel sens. Trois exigences s'ajoutent donc, et elles portent sur le
+ * fragment lui-même :
+ *
+ *   · LE NOMBRE EST UN POIDS. La valeur annoncée doit être suivie d'une unité de MASSE MÉTRIQUE
+ *     dans le fragment. Une date (`2026-09-08`), un numéro de vol (`AF75`), un âge ou un délai n'en
+ *     portent pas — les cas 3 et 4 tombent tous les deux ici.
+ *   · LA BORNE EST DITE. Un marqueur de direction compatible avec `bound` doit PRÉCÉDER ce poids,
+ *     à portée de lecture. « up to » n'établit pas `lt`, « moins de » n'établit pas `lte`.
+ *   · LE SUJET PESÉ EST DIT. `includes_carrier: true` exige un mot de contenant dans le fragment ;
+ *     `false` exige qu'il n'y en ait AUCUN — on ne peut pas affirmer qu'un seuil exclut le sac
+ *     dans une phrase qui parle du sac.
+ *
+ * POURQUOI DES MARQUEURS ET NON UNE ANALYSE. Ce n'est pas de la compréhension de texte : c'est une
+ * liste FERMÉE de tournures, écrite dans les quatre langues du dépôt, qui REFUSE tout ce qu'elle ne
+ * reconnaît pas. Une phrase dont la tournure manque à la liste n'est pas devinée — elle est
+ * rejetée, et c'est la relecture humaine qui tranche. Le silence est le défaut, jamais l'accord.
+ *
+ * LES NÉGATIONS SONT PIÉGÉES EXPRÈS. « no more than 8 kg » contient « more than » : un marqueur de
+ * plancher dans une phrase qui dit un plafond. Les marqueurs stricts sont donc refusés dès qu'une
+ * négation les précède immédiatement.
+ */
+
+/** Casse et accents sont neutralisés POUR CETTE LECTURE SEULEMENT — la garde de provenance, elle,
+ *  continue de comparer les fragments accents compris. Ici on cherche des tournures, pas une
+ *  identité : « Jusqu'à », « jusqu'a » et « JUSQU'À » disent la même chose. */
+const aplatir = (s: string) => s.normalize("NFD").replace(/[̀-ͯ]/g, "").toLowerCase();
+
+/** Les unités de MASSE MÉTRIQUE. La valeur d'une claim est en kilogrammes : « 8 lb » ne l'établit
+ *  pas, et « 17.64 » ne doit jamais valider un fait qui annonce 8. */
+const UNITE_MASSE = "(?:kgs?|kilos?|kilogramm?es?|kilograms?|quilos?)";
+/** Les unités de LONGUEUR, pour les dimensions de contenant. */
+const UNITE_LONGUEUR = "(?:cm|centimetres?|centimeters?|mm|in|inch|inches|pouces?)";
+
+/** Les tournures reconnues, par borne, dans les quatre langues rendues. Liste FERMÉE. */
+const MARQUEURS: Record<"lt" | "lte" | "gt" | "gte", string[]> = {
+  lt: ["less than", "under", "below", "fewer than", "smaller than",
+       "moins de", "inferieur a", "inferieure a",
+       "menos de", "inferior a", "menor que", "abaixo de"],
+  lte: ["up to", "no more than", "not more than", "not exceeding", "maximum of", "max of", "max",
+        "maximum", "or less", "at most",
+        "jusqu'a", "au maximum", "au plus", "ou moins", "n'excedant pas",
+        "hasta", "como maximo", "no mas de", "o menos",
+        "ate", "no maximo", "ou menos"],
+  gt: ["more than", "over", "above", "exceeding", "greater than", "heavier than",
+       "plus de", "superieur a", "superieure a", "au-dela de",
+       "mas de", "superior a", "mayor que",
+       "mais de", "acima de", "maior que"],
+  gte: ["at least", "from", "or more", "minimum of", "minimum",
+        "a partir de", "au moins", "ou plus",
+        "al menos", "desde", "o mas",
+        "pelo menos", "ou mais"],
+};
+
+/** Les mots qui désignent le CONTENANT, dans les quatre langues. */
+const CONTENANTS = ["carrier", "container", "carry-on bag", "bag", "crate", "kennel", "cage",
+  "sac", "sacoche", "caisse", "panier", "contenant", "cabas",
+  "transportin", "bolso", "bolsa", "jaula", "caja", "cesta",
+  "caixa", "transportadora"];
+
+const echapper = (s: string) => s.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+
+/** Le nombre, écrit comme le fragment peut l'écrire : « 8 », « 8.0 », « 8,0 ». */
+const motifNombre = (n: number) => {
+  const entier = String(n).replace(".", "[.,]");
+  return `${echapper(entier)}(?:[.,]0+)?`;
+};
+
+/** LE FRAGMENT DIT-IL QUE CETTE VALEUR EST UN POIDS ? */
+const valeurEstUnPoids = (plat: string, kg: number) =>
+  new RegExp(`(?<![\\d.,])${motifNombre(kg)}\\s*${UNITE_MASSE}\\b`).test(plat);
+
+/** LE FRAGMENT DIT-IL LA DIRECTION DE LA BORNE, juste avant ce poids ?
+ *
+ *  « à portée de lecture » = au plus 40 caractères, sans franchir une fin de proposition. Sans
+ *  cette limite, « more than 8 kg … and up to 75 kg » validerait n'importe quelle borne sur
+ *  n'importe laquelle de ses deux valeurs. */
+const borneEstDite = (plat: string, kg: number, bound: "lt" | "lte" | "gt" | "gte") =>
+  MARQUEURS[bound].some((m) => new RegExp(
+    `(?<!\\b(?:no|not|non|nao|ne|pas|sans)\\s)${echapper(m)}\\b[^.;:]{0,40}?(?<![\\d.,])${motifNombre(kg)}\\s*${UNITE_MASSE}\\b`,
+  ).test(plat));
+
+/** LE FRAGMENT NOMME-T-IL UN CONTENANT ? */
+const contenantEstDit = (plat: string) =>
+  CONTENANTS.some((c) => new RegExp(`\\b${echapper(c)}\\b`).test(plat));
+
+/** LES TROIS DIMENSIONS, DANS L'ORDRE, AVEC LEUR UNITÉ — rien de moins ne prouve un gabarit. */
+const dimensionsSontDites = (plat: string, l: number, w: number, h: number) =>
+  new RegExp(`${motifNombre(l)}\\s*[x×]\\s*${motifNombre(w)}\\s*[x×]\\s*${motifNombre(h)}\\s*${UNITE_LONGUEUR}\\b`).test(plat);
+
+/**
+ * LA SÉMANTIQUE DU FAIT EST-ELLE DITE PAR LE FRAGMENT ? Rend le motif du refus, ou `null`.
+ * Un seul motif est rendu à la fois : le premier manque suffit à éteindre le rattachement.
+ */
+export function semantiqueAbsente(excerpt: string, claim: Claim): string | null {
+  const plat = aplatir(excerpt);
+  if (claim.kind === "carrier_dims_cm") {
+    return dimensionsSontDites(plat, claim.l, claim.w, claim.h) ? null
+      : `l'extrait ne dit pas ${claim.l} × ${claim.w} × ${claim.h} comme des dimensions avec leur unité`;
+  }
+  if (!valeurEstUnPoids(plat, claim.kg)) {
+    return `l'extrait porte bien « ${claim.kg} », mais pas comme un POIDS : aucune unité de masse ne le suit`;
+  }
+  if (!borneEstDite(plat, claim.kg, claim.bound)) {
+    return `l'extrait ne dit pas la borne « ${claim.bound} » devant ${claim.kg} kg — aucune tournure reconnue de la liste fermée`;
+  }
+  if (claim.includes_carrier && !contenantEstDit(plat)) {
+    return `l'attestation annonce un seuil CONTENANT COMPRIS, mais l'extrait ne nomme aucun contenant`;
+  }
+  if (!claim.includes_carrier && contenantEstDit(plat)) {
+    return `l'attestation annonce un seuil sur le chien SEUL, mais l'extrait parle d'un contenant`;
+  }
+  return null;
+}
+
 /** LA CLAIM CONCORDE-T-ELLE avec les champs structurés de la politique ?
  *
  *  Les deux se gardent l'un l'autre : corriger le seuil structuré sans toucher l'attestation, ou
@@ -178,6 +308,11 @@ export function motifsDeRefus(
     }
     if (!extraitPorteLesValeurs(a.excerpt, a.claim)) {
       motifs.push(`attestations[${i}] : l'extrait « ${a.excerpt.slice(0, 60)} » ne porte pas ${valeursDe(a.claim).join(", ")} — un fragment venu de la phrase ne prouve pas pour autant ce fait`);
+    } else {
+      /* La sémantique n'est demandée que si les nombres sont là : deux motifs sur le même manque
+         diraient deux fois la même chose et cacheraient le vrai. */
+      const sem = semantiqueAbsente(a.excerpt, a.claim);
+      if (sem) motifs.push(`attestations[${i}] : ${sem}`);
     }
     const d = desaccord(a.claim, champs);
     if (d) motifs.push(`attestations[${i}] : ${d}`);

@@ -4733,3 +4733,63 @@ devenir le point final ». Aucune dimension n'est rattachée. Enfin, `includes_c
 sont pas vérifiables depuis les nombres de l'extrait : la garde les compare aux champs structurés, mais rien
 n'empêche un extrait muet sur le contenant d'accompagner un fait qui l'affirme — c'est la relecture humaine qui
 répond, et c'est pourquoi elle est exigée.
+---
+
+## Annexe 52 — Nommer une limite ne l'a pas fermée, une seconde fois (11/09/2026, classement C)
+
+**Contre-revue de Codex sur `80e3ce6`, la tête que je venais de déclarer verte.** Quatre faux verts
+de `motifsDeRefus()`, reproduits sur la fiche réelle :
+
+1. `includes_carrier: true` passait sur un extrait qui ne mentionne aucun contenant ;
+2. « up to 8 kg » passait avec la borne **stricte** `lt` ;
+3. le « 8 » d'une **date** passait pour un poids de 8 kg ;
+4. le « 75 » d'un **numéro de vol** passait pour 75 kg.
+
+**Ce n'est pas une limite que j'ignorais : c'est une limite que j'avais écrite.** L'annexe 51 se
+termine sur la phrase « `includes_carrier` et le sens d'une borne ne sont pas vérifiables depuis les
+nombres de l'extrait », classée en dette. C'est exactement la faute de l'annexe 48, refaite huit
+annexes plus loin : **documenter un trou puis livrer comme si l'avoir nommé le refermait.** Une dette
+est un trou qui reste ouvert ; l'écrire ne la paie pas.
+
+**La cause technique.** La garde prouvait deux choses — le fragment vient de la citation, le fragment
+porte le nombre — et aucune des deux ne dit ce que le nombre qualifie ni dans quel sens. Trois
+exigences s'ajoutent, toutes portées par le fragment lui-même : la valeur doit être suivie d'une
+**unité de masse métrique** (les cas 3 et 4 tombent tous les deux là) ; un **marqueur de direction**
+compatible avec la borne doit précéder ce poids à portée de lecture ; et le **sujet pesé** doit être
+dit — un seuil « contenant compris » exige un mot de contenant, un seuil « chien seul » exige qu'il
+n'y en ait aucun.
+
+**La liste des tournures est FERMÉE, et c'est le point.** Quatre langues, une liste écrite, et un
+refus par défaut : une phrase dont la tournure n'y figure pas n'est pas devinée, elle est rejetée, et
+c'est la relecture humaine qui tranche. Le silence reste le défaut. Les négations sont piégées
+exprès : « no more than 8 kg » contient « more than », un marqueur de plancher au milieu d'un
+plafond, et un marqueur strict précédé d'une négation est refusé.
+
+**LE PILOTE LUI-MÊME ÉTAIT L'UN DES QUATRE.** L'attestation de plancher de la soute Air France
+annonçait un seuil contenant compris sur l'extrait « weighs more than 8 kg/17.64 lb. », qui n'en dit
+rien. La correction ne consiste pas à affaiblir le fait : c'est la phrase entière qui porte le
+contenant, « with its carrier » qualifiant la fourchette et pas seulement sa borne haute. L'extrait
+est donc **étendu** jusqu'à lui. Le chargement du référentiel refusait la fiche tant que ce n'était
+pas fait — la garde a mordu sur mes propres données avant de mordre sur un sabotage.
+
+**ERREUR DE MÉTHODE NOMMÉE — le contrat n'avait aucun témoin à lui.** Il naissait avec deux
+contre-épreuves de sabotage d'ingestion et rien d'autre. Le raisonnement était que le sabotage sur
+données réelles vaut mieux qu'une fixture. Il vaut mieux, mais il ne couvre **que les formes
+présentes dans les données** : deux canaux, une langue et demie, une borne haute et une borne basse.
+Tout le reste était non éprouvé, et c'est précisément là que Codex a frappé. `test-attestations-
+semantique.mjs` éprouve désormais la **fonction** — les quatre faux verts en tête de fichier, les
+pièges de négation, les quatre langues de la liste fermée, la branche des dimensions que le dépôt
+n'emploie pas encore — pendant que `test-ingest-check.mjs` éprouve le **chemin**. Aucun des deux ne
+remplace l'autre : c'est la leçon inverse de celle du matin, et elle a coûté une contre-revue.
+
+**Mouvement des comptes.** Contre-épreuves d'ingestion : **61 → 65**. Nouveau harnais du contrat
+d'attestation : **0 → 25**. Les autres compteurs ne bougent pas : harnais des pages d'entités à 234,
+politiques attestées à 2, faits attestés à 3, dette Astro à 165. Les deux artefacts générés sont
+régénérés par `npm run ingest`, jamais recopiés à la main.
+
+**Coordination avec le lot tarifaire (consigne de Codex, 11/09).** Cette PR et le lot tarifaire
+touchent les mêmes fichiers — `air_france.yml`, `AirlinePremiumPage.astro`, `objects.json`,
+`airlines.generated.json`, l'inventaire et ce dossier. L'ordre est : #61 corrigée puis fusionnée,
+Codex rebase son lot sur le nouveau `main`, conserve ensemble la synthèse attestée et le présentateur
+tarifaire, et régénère les artefacts **une seule fois**. Rien n'est recopié, rien n'est picoré avant
+cette réconciliation.

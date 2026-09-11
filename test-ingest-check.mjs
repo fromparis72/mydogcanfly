@@ -340,6 +340,38 @@ console.log("\n=== 3. La décision vient des fiches — les contre-épreuves du 
         out.includes("ne porte pas") && out.includes("46") && out.includes("28") && out.includes("24"), out.slice(-600));
     }
 
+    /* (q) et (r) LA SÉMANTIQUE DU FAIT, SUR LE CHEMIN RÉEL — P0 de Codex sur `80e3ce6`.
+       `test-attestations-semantique.mjs` éprouve la FONCTION sur ses quatre faux verts ; ces deux
+       témoins-ci éprouvent que le refus survient bien à l'ÉCRITURE, sur une fiche du dépôt. Les
+       deux sont nécessaires : la contre-revue du 11/09 a montré qu'un contrat vérifié par appel
+       direct peut être contourné par le chemin, et la précédente qu'un chemin sabotté sur deux
+       canaux ne couvre que les formes déjà présentes dans les données. */
+    {
+      // (q) LA BORNE RETOURNÉE. La phrase dit « moins de » ; la fiche annonce un plafond INCLUSIF.
+      //     Un chien de 8 kg exactement passerait de refusé à accepté, sur la même citation.
+      freshSandbox();
+      const avant = readFileSync(af(), "utf8");
+      writeFileSync(af(), avant
+        .replace("          bound: lt\n          includes_carrier: true", "          bound: lte\n          includes_carrier: true")
+        .replace("    weight_limit_bound: lt\n", "    weight_limit_bound: lte\n"));
+      const { code, out } = run();
+      check("(q) borne retournée sur la même phrase → REFUS de l'ingestion", code === 1, out.slice(-400));
+      check("(q) le refus nomme la borne, pas le nombre", out.includes("ne dit pas la borne"), out.slice(-500));
+    }
+    {
+      // (r) LE CONTENANT AFFIRMÉ PAR UNE PHRASE QUI N'EN PARLE PAS. C'est le cas 1 de Codex, pris
+      //     sur la fiche : l'extrait est raccourci jusqu'à perdre « sac de transport compris »,
+      //     tandis que l'attestation continue d'annoncer un seuil contenant compris.
+      freshSandbox();
+      const avant = readFileSync(af(), "utf8");
+      writeFileSync(af(), avant.replace(
+        'excerpt: "chats et chiens de moins de 8 kg, sac de transport compris"',
+        'excerpt: "chats et chiens de moins de 8 kg"'));
+      const { code, out } = run();
+      check("(r) seuil « contenant compris » sur un extrait qui n'en nomme aucun → REFUS", code === 1, out.slice(-400));
+      check("(r) le refus nomme le sujet pesé", out.includes("aucun contenant"), out.slice(-500));
+    }
+
     // (p) LE TÉMOIN POSITIF — sans quoi (n) et (o) passeraient aussi bien si l'ingestion
     //     refusait Air France pour une tout autre raison.
     {
