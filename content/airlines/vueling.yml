@@ -59,6 +59,29 @@ ladder:
       pt: "não transportado"
 policies:
   cabin:
+    # TARIFS OFFICIELS — audit indépendant du 2026-09-10 ; aucune valeur héritée réactivée.
+    fares:
+      - id: fare_vueling_cabin_eur_2026_09_10
+        placement: cabin
+        price:
+          kind: minimum
+          amounts:
+            - amount: 50
+              currency: EUR
+        billing_subject: pet_or_container
+        journey_basis: per_segment
+        scope_label: Domestic Spain; international and Canary
+        source:
+          url: https://www.vueling.com/faq/html/ancillary-products.html
+          source_type: official_website
+          verified_date: 2026-09-10
+          review_due: 2026-12-09
+          confidence: 4
+          reviewer: Codex — lecture directe de la source officielle
+          history: []
+          quote: From €50 on domestic flights
+          quote_language: en
+          locator: Pets ancillary fee
     availability: offered
   hold:
     availability: not_offered

@@ -83,6 +83,27 @@ policies:
       quote_language: en
       locator: "FAQ Travelling with pets → Can I travel with my pet onboard the cabin?"
   hold:
+    # TARIFS OFFICIELS — audit indépendant du 2026-09-10 ; aucune valeur héritée réactivée.
+    fares:
+      - id: fare_air_mauritius_hold_2026_09_10
+        placement: hold
+        price:
+          kind: formula
+          amounts: []
+        billing_subject: pet_or_container
+        journey_basis: per_journey
+        scope_label: from Mauritius; subject route acceptance
+        source:
+          url: https://www.airmauritius.com/en-fr/before-you-fly/travel-information/assistance-and-health/travelling-with-pets
+          source_type: official_website
+          verified_date: 2026-09-10
+          review_due: 2026-12-09
+          confidence: 4
+          reviewer: Codex — lecture directe de la source officielle
+          history: []
+          quote: applicable excess baggage rate
+          quote_language: en
+          locator: Checked baggage pets
     availability: offered
     # PREUVE IMPORTÉE — import strict lot5 (Codex, lecture directe du 2026-09-09, cohorte LOT5 fait 16).
     # Effet attendu : Air Mauritius hold is a documented conditional route, not an acceptance guarantee for every aircraft or destination.
@@ -99,6 +120,27 @@ policies:
       quote_language: en
       locator: "Travelling with Pets → opening policy statement"
   cargo:
+    # TARIFS OFFICIELS — audit indépendant du 2026-09-10 ; aucune valeur héritée réactivée.
+    fares:
+      - id: fare_air_mauritius_cargo_2026_09_10
+        placement: cargo
+        price:
+          kind: quote
+          amounts: []
+        billing_subject: shipment
+        journey_basis: per_journey
+        scope_label: cargo network
+        source:
+          url: https://my.airmauritius.com/en-gb/help/faq/cargo-queries
+          source_type: official_website
+          verified_date: 2026-09-10
+          review_due: 2026-12-09
+          confidence: 4
+          reviewer: Codex — lecture directe de la source officielle
+          history: []
+          quote: Please contact us for a quote
+          quote_language: en
+          locator: Cargo queries
     availability: offered   # RÉACTIVÉE sur citation (import strict, lot5, 2026-09-09) — était review_state: legacy_unreviewed
     # PREUVE IMPORTÉE — import strict lot5 (Codex, lecture directe du 2026-09-09, cohorte LOT5 fait 17).
     # Effet attendu : Air Mauritius cargo is a documented conditional path, never a shipment confirmation.

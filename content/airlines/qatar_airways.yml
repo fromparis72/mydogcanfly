@@ -85,6 +85,31 @@ policies:
       quote_language: en
       locator: "Carriage of Live Animals → passenger-cabin policy"
   hold:
+    # TARIFS OFFICIELS — audit indépendant du 2026-09-10 ; aucune valeur héritée réactivée.
+    fares:
+      - id: fare_qatar_airways_hold_usd_2026_09_10
+        placement: hold
+        price:
+          kind: range
+          amounts:
+            - amount: 200
+              currency: USD
+            - amount: 350
+              currency: USD
+        billing_subject: container
+        journey_basis: per_journey
+        scope_label: To/from Qatar versus other routes; 32kg and 32–75kg
+        source:
+          url: https://www.qatarairways.com/en-am/baggage/animals.html
+          source_type: official_website
+          verified_date: 2026-09-10
+          review_due: 2026-12-09
+          confidence: 4
+          reviewer: Codex — lecture directe de la source officielle
+          history: []
+          quote: "Medium: USD 200 or USD 350"
+          quote_language: en
+          locator: Excess baggage rates for animals
     availability: offered
     # PREUVE IMPORTÉE — import strict V3 (Codex, lecture directe du 2026-09-08, cohorte A fait 19).
     # Effet attendu : Show checked-baggage hold offered under conditions.

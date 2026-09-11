@@ -69,8 +69,75 @@ ladder:
     sub: "> 70 kg"
 policies:
   cabin:
+    # TARIFS OFFICIELS — audit indépendant du 2026-09-10 ; aucune valeur héritée réactivée.
+    fares:
+      - id: fare_royal_air_maroc_cabin_mad_2026_09_10
+        placement: cabin
+        price:
+          kind: exact
+          amounts:
+            - amount: 1150
+              currency: MAD
+        billing_subject: pet
+        journey_basis: per_journey
+        scope_label: Domestic; Europe/Maghreb; long-haul
+        source:
+          url: https://pre.royalairmaroc.com/us-en/information/travel-with-animals
+          source_type: official_website
+          verified_date: 2026-09-10
+          review_due: 2026-12-09
+          confidence: 4
+          reviewer: Codex — lecture directe de la source officielle
+          history: []
+          quote: "Long-haul: MAD 1150 / EUR 120"
+          quote_language: en
+          locator: Pet fees table
+      - id: fare_royal_air_maroc_cabin_eur_2026_09_10
+        placement: cabin
+        price:
+          kind: exact
+          amounts:
+            - amount: 120
+              currency: EUR
+        billing_subject: pet
+        journey_basis: per_journey
+        scope_label: Domestic; Europe/Maghreb; long-haul
+        source:
+          url: https://pre.royalairmaroc.com/us-en/information/travel-with-animals
+          source_type: official_website
+          verified_date: 2026-09-10
+          review_due: 2026-12-09
+          confidence: 4
+          reviewer: Codex — lecture directe de la source officielle
+          history: []
+          quote: "Long-haul: MAD 1150 / EUR 120"
+          quote_language: en
+          locator: Pet fees table
     availability: offered
   hold:
+    # TARIFS OFFICIELS — audit indépendant du 2026-09-10 ; aucune valeur héritée réactivée.
+    fares:
+      - id: fare_royal_air_maroc_hold_mad_2026_09_10
+        placement: hold
+        price:
+          kind: exact
+          amounts:
+            - amount: 5180
+              currency: MAD
+        billing_subject: container
+        journey_basis: per_journey
+        scope_label: 3 weight bands x route zones
+        source:
+          url: https://pre.royalairmaroc.com/us-en/information/travel-with-animals
+          source_type: official_website
+          verified_date: 2026-09-10
+          review_due: 2026-12-09
+          confidence: 4
+          reviewer: Codex — lecture directe de la source officielle
+          history: []
+          quote: "47–70 kg, long-haul: MAD 5180"
+          quote_language: en
+          locator: Pet fees table
     availability: offered
   cargo:
     review_state: legacy_unreviewed

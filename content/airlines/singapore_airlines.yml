@@ -71,8 +71,50 @@ policies:
   cabin:
     availability: not_offered
   hold:
+    # TARIFS OFFICIELS — audit indépendant du 2026-09-10 ; aucune valeur héritée réactivée.
+    fares:
+      - id: fare_singapore_airlines_hold_2026_09_10
+        placement: hold
+        price:
+          kind: formula
+          amounts: []
+        billing_subject: pet_or_container
+        journey_basis: per_journey
+        scope_label: Network; special piece treatment to/from USA
+        source:
+          url: https://www.singaporeair.com/en_UK/in/travel-info/special-assistance/travelling-with-pets/
+          source_type: official_website
+          verified_date: 2026-09-10
+          review_due: 2026-12-09
+          confidence: 4
+          reviewer: Codex — lecture directe de la source officielle
+          history: []
+          quote: charged as additional baggage
+          quote_language: en
+          locator: Fees for travelling with pets
     availability: offered
   cargo:
+    # TARIFS OFFICIELS — audit indépendant du 2026-09-10 ; aucune valeur héritée réactivée.
+    fares:
+      - id: fare_singapore_airlines_cargo_2026_09_10
+        placement: cargo
+        price:
+          kind: quote
+          amounts: []
+        billing_subject: shipment
+        journey_basis: per_journey
+        scope_label: Typically >32kg or non-passenger cases
+        source:
+          url: https://www.singaporeair.com/en_UK/in/travel-info/special-assistance/travelling-with-pets/
+          source_type: official_website
+          verified_date: 2026-09-10
+          review_due: 2026-12-09
+          confidence: 4
+          reviewer: Codex — lecture directe de la source officielle
+          history: []
+          quote: contact your local cargo agent
+          quote_language: en
+          locator: Cargo referral
     review_state: legacy_unreviewed
 channels:
   - placement: cabin

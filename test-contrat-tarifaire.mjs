@@ -23,9 +23,12 @@
  * de tout l'audit) et KLM soute (fourchette la mieux citée). Les rares fixtures de FORME sont
  * nommées comme telles à l'endroit où elles servent.
  *
- * AUCUN de ces tarifs n'est importé dans la donnée par ce lot.
+ * Les sections 1 à 13 éprouvent le contrat indépendamment des données. Les sections 14 et 17
+ * exigent désormais que l'import audité traverse réellement la base puis le contrat HTTP :
+ * revenir à zéro tarif ou perdre l'inventaire entre moteur et Finder fait rougir ce même témoin.
  */
 import { readFileSync } from "node:fs";
+import worker from "./packages/workers/src/index.ts";
 import {
   Fare, FareConflict, FarePrice, FareObservation, PurchaseWindow, lireTarif, lireConflit,
   evaluerPortee, evaluerFenetre, porteeTarif, porteeSaine, resoudreTarif, resolutionVide,
@@ -681,16 +684,46 @@ console.log("\n=== 13. La projection ne perd pas les tarifs — la faute du 08/0
   }
 }
 
-console.log("\n=== 14. Aucun tarif n'est importé par ce lot — le contrat d'abord ===");
+console.log("\n=== 14. L'import réel ne peut plus retomber silencieusement à zéro ===");
 {
   const objets = JSON.parse(readFileSync("packages/knowledge/raw/objects.json", "utf8"));
-  let avecTarifs = 0, avecConflits = 0;
+  let avecTarifs = 0, lignesTarifaires = 0, avecConflits = 0;
+  const compagnies = new Set();
   for (const a of objets.airlines) for (const p of Object.values(a.premium?.policy ?? {})) {
-    if (Array.isArray(p.fares) && p.fares.length) avecTarifs++;
+    if (Array.isArray(p.fares) && p.fares.length) { avecTarifs++; lignesTarifaires += p.fares.length; compagnies.add(a.id); }
     if (Array.isArray(p.fare_conflicts) && p.fare_conflicts.length) avecConflits++;
   }
-  check("les 302 politiques réelles ne portent AUCUN tarif : le schéma est prêt, la donnée n'a pas bougé",
-    avecTarifs === 0, `${avecTarifs} politique(s) portent déjà un tarif`);
+  check("l'import verrouillé porte exactement 157 lignes sur 116 canaux et 68 compagnies — jamais zéro par oubli",
+    avecTarifs === 116 && lignesTarifaires === 157 && compagnies.size === 68,
+    `${lignesTarifaires} ligne(s), ${avecTarifs} canal(aux), ${compagnies.size} compagnie(s)`);
+  const klm = objets.airlines.find((a) => a.id === "airline_klm")?.premium?.policy;
+  check("KLM porte bien sa fourchette officielle 70–500 EUR en cabine ET en soute",
+    ["cabin", "hold"].every((p) => klm?.[p]?.fares?.some((f) => f.price.kind === "range"
+      && f.price.amounts[0]?.amount === 70 && f.price.amounts[1]?.amount === 500 && f.price.amounts[0]?.currency === "EUR")));
+  const swiss = objets.airlines.find((a) => a.id === "airline_swiss")?.premium?.policy;
+  const montants = (p) => (p?.fares ?? []).flatMap((f) => f.price.amounts.map((m) => `${m.currency}:${m.amount}`)).sort();
+  check("SWISS multidevise ne croise jamais le montant précédent avec la devise suivante",
+    JSON.stringify(montants(swiss?.cabin)) === JSON.stringify(["CHF:75", "EUR:65", "USD:80"])
+      && JSON.stringify(montants(swiss?.hold)) === JSON.stringify(["CHF:440", "EUR:380", "USD:445"]),
+    JSON.stringify({ cabin: montants(swiss?.cabin), hold: montants(swiss?.hold) }));
+  const jal = objets.airlines.find((a) => a.id === "airline_jal")?.premium?.policy?.hold?.fares?.[0];
+  check("JAL : une devise écrite une fois encadre bien les deux bornes 5 500–7 700 JPY",
+    jal?.price?.kind === "range" && jal.price.amounts?.[0]?.amount === 5500 && jal.price.amounts?.[1]?.amount === 7700);
+  const norwegian = objets.airlines.find((a) => a.id === "airline_norwegian")?.premium?.policy;
+  check("Norwegian : les fourchettes à devise suffixée gardent leurs deux bornes",
+    norwegian?.cabin?.fares?.[0]?.price?.kind === "range" && norwegian.cabin.fares[0].price.amounts?.[0]?.amount === 55
+      && norwegian.cabin.fares[0].price.amounts?.[1]?.amount === 75
+      && norwegian?.hold?.fares?.[0]?.price?.kind === "range" && norwegian.hold.fares[0].price.amounts?.[0]?.amount === 150
+      && norwegian.hold.fares[0].price.amounts?.[1]?.amount === 180);
+  const condor = objets.airlines.find((a) => a.id === "airline_condor")?.premium?.policy?.cabin?.fares?.[0];
+  check("Condor : « ab 59,99 Euro » devient un minimum en EUR, jamais un prix exact",
+    condor?.price?.kind === "minimum" && condor.price.amounts?.[0]?.amount === 59.99 && condor.price.amounts?.[0]?.currency === "EUR");
+  const delta = objets.airlines.find((a) => a.id === "airline_delta")?.premium?.policy?.cabin;
+  check("Delta : « $150 USD/CAD » conserve les deux devises sur le même montant",
+    JSON.stringify(montants(delta)) === JSON.stringify(["CAD:150", "USD:150"]), JSON.stringify(montants(delta)));
+  const ibx = objets.airlines.find((a) => a.id === "airline_iberia_express")?.premium?.policy?.cabin;
+  check("Iberia Express : le dollar suffixé de « 40€/50$/35£ » reste rattaché à l'USD",
+    JSON.stringify(montants(ibx)) === JSON.stringify(["EUR:40", "GBP:35", "USD:50"]), JSON.stringify(montants(ibx)));
   check("…ni aucun conflit tarifaire", avecConflits === 0, `${avecConflits} politique(s) portent déjà un conflit`);
 }
 
@@ -709,6 +742,7 @@ console.log("\n=== 15. L'INGESTION, jouée six fois sur un bac à sable : une no
   const fiche = join(bac, "content/airlines/sas.yml");
   const original = readFileSync(fiche, "utf8");
   const objetsOriginaux = readFileSync(join(bac, "packages/knowledge/raw/objects.json"), "utf8");
+  const politiquesSasOriginales = JSON.parse(objetsOriginaux).airlines.find((a) => a.id === "airline_sas")?.premium?.policy;
 
   const SRC_YML = (ind, locator = "Fees → Pet in cargo hold → China", quote = "China: 5400 DKK, 7600 NOK, 7600 SEK, 725 EUR, 775 USD") => [
     `${ind}source:`,
@@ -794,8 +828,9 @@ console.log("\n=== 15. L'INGESTION, jouée six fois sur un bac à sable : une no
     const { ok, sortie, artefact } = jouer(holdSas(`    fares:\n${TARIF_YML("fare_sas_hold_china", "cabin")}\n`));
     check("l'ingestion REFUSE — sans cette garde, le tarif serait importé puis jamais retrouvé", !ok, sortie.slice(-260));
     check("…et le motif nomme le canal réel et le canal déclaré", /rangé sous policies\.hold.*placement cabin/s.test(sortie), sortie.slice(-260));
-    const pol = artefact?.airlines.find((a) => a.id === "airline_sas")?.premium?.policy?.hold;
-    check("…et l'artefact n'a pas bougé : rien n'est écrit quand la fiche est refusée", !Array.isArray(pol?.fares) || pol.fares.length === 0);
+    const politiques = artefact?.airlines.find((a) => a.id === "airline_sas")?.premium?.policy;
+    check("…et l'artefact n'a pas bougé : rien n'est écrit quand la fiche est refusée",
+      JSON.stringify(politiques) === JSON.stringify(politiquesSasOriginales));
   }
 
   console.log("  — (c) SABOTAGE 2 : deux tarifs portant exactement le même identifiant");
@@ -913,6 +948,34 @@ console.log("\n=== 16. LA FRONTIÈRE ENTRE VALIDATION ET RÉSOLUTION (P1, quatri
   } finally { rmSync(bacTs, { recursive: true, force: true }); }
   check("…et c'est exactement ce que le reparsage rattrape : la marque seule ne fermait pas la porte",
     leve !== null && leve.includes("auto-citation"));
+}
+
+console.log("\n=== 17. LE TARIF TRAVERSE LE CONTRAT HTTP RÉEL JUSQU'AU FINDER ===");
+{
+  const response = await worker.fetch(new Request(
+    "https://x/v1/finder?origin=CDG&destination=JFK&weight_kg=3&breed=chihuahua&placement=any&locale=fr",
+  ), {});
+  const body = await response.json();
+  const klm = body?.airlines?.find((a) => a.airline_id === "airline_klm");
+  check("le Worker répond et KLM figure dans ce trajet témoin", response.status === 200 && !!klm,
+    `HTTP ${response.status}, ${body?.airlines?.length ?? 0} compagnie(s)`);
+  const parCanal = Object.fromEntries((klm?.fare_resolutions ?? []).map((x) => [x.placement, x.resolution]));
+  check("le rapport transporte exactement cabine, soute et fret — aucune résolution perdue",
+    Object.keys(parCanal).sort().join(",") === "cabin,cargo,hold", JSON.stringify(Object.keys(parCanal)));
+  for (const canal of ["cabin", "hold"]) {
+    const tarif = parCanal[canal]?.indecidables?.find((f) => f.id === `fare_klm_${canal}_eur_2026_09_10`);
+    check(`KLM ${canal} : 70–500 EUR reste une grille publiée, jamais un prix exact du trajet`,
+      tarif?.price?.kind === "range" && tarif.price.amounts?.[0]?.amount === 70
+        && tarif.price.amounts?.[1]?.amount === 500 && parCanal[canal]?.montants?.length === 0,
+      JSON.stringify(parCanal[canal] ?? null).slice(0, 300));
+    check(`KLM ${canal} : la preuve tarifaire propre traverse avec URL, citation, locator et date`,
+      tarif?.source?.url === "https://www.klm.com/information/pets/reservation"
+        && tarif.source.verified_date === "2026-09-10" && tarif.source.quote?.length >= 10
+        && tarif.source.locator?.length > 0, JSON.stringify(tarif?.source ?? null));
+  }
+  check("KLM fret : le mécanisme sur devis traverse séparément des montants",
+    parCanal.cargo?.indecidables?.some((f) => f.price?.kind === "quote" && f.source?.locator === "Cargo alternative")
+      && parCanal.cargo?.montants?.length === 0, JSON.stringify(parCanal.cargo ?? null).slice(0, 300));
 }
 
 console.log(`\n=== SUMMARY ===\n${fail === 0 ? `ALL CHECKS PASSED (${pass})` : `${fail} CHECK(S) FAILED sur ${pass + fail}`}`);

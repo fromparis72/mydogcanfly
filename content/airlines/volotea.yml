@@ -59,8 +59,54 @@ ladder:
       pt: "não oferecido"
 policies:
   cabin:
+    # TARIFS OFFICIELS — audit indépendant du 2026-09-10 ; aucune valeur héritée réactivée.
+    fares:
+      - id: fare_volotea_cabin_eur_2026_09_10
+        placement: cabin
+        price:
+          kind: exact
+          amounts:
+            - amount: 39
+              currency: EUR
+        billing_subject: pet_or_container
+        journey_basis: per_segment
+        scope_label: Eligible routes
+        source:
+          url: https://www.volotea.com/it/tariffe/
+          source_type: official_website
+          verified_date: 2026-09-10
+          review_due: 2026-12-09
+          confidence: 4
+          reviewer: Codex — lecture directe de la source officielle
+          history: []
+          quote: "Animale domestico: 39 €"
+          quote_language: it
+          locator: Services table
     availability: offered
   hold:
+    # TARIFS OFFICIELS — audit indépendant du 2026-09-10 ; aucune valeur héritée réactivée.
+    fares:
+      - id: fare_volotea_hold_eur_2026_09_10
+        placement: hold
+        price:
+          kind: exact
+          amounts:
+            - amount: 60
+              currency: EUR
+        billing_subject: pet
+        journey_basis: per_segment
+        scope_label: Only Italian Continuità Territoriale routes; call centre; <=75kg
+        source:
+          url: https://www.volotea.com/it/tariffe/
+          source_type: official_website
+          verified_date: 2026-09-10
+          review_due: 2026-12-09
+          confidence: 4
+          reviewer: Codex — lecture directe de la source officielle
+          history: []
+          quote: "Animale domestico in stiva: 60 €"
+          quote_language: it
+          locator: Services table, pet in hold
     availability: not_offered
   cargo:
     availability: not_offered

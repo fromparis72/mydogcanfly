@@ -77,6 +77,31 @@ ladder:
       pt: "carga"
 policies:
   cabin:
+    # TARIFS OFFICIELS — audit indépendant du 2026-09-10 ; aucune valeur héritée réactivée.
+    fares:
+      - id: fare_air_canada_cabin_cad_2026_09_10
+        placement: cabin
+        price:
+          kind: range
+          amounts:
+            - amount: 50
+              currency: CAD
+            - amount: 120
+              currency: CAD
+        billing_subject: container
+        journey_basis: per_one_way
+        scope_label: Canada/US except Hawaii; all other
+        source:
+          url: https://www.aircanada.com/hk/en/aco/home/legal/products-and-services.html
+          source_type: official_website
+          verified_date: 2026-09-10
+          review_due: 2026-12-09
+          confidence: 4
+          reviewer: Codex — lecture directe de la source officielle
+          history: []
+          quote: $50–$60 … $100–$120
+          quote_language: en
+          locator: Pets > cabin fees
     availability: offered
     # PREUVE IMPORTÉE — import strict V3 (Codex, lecture directe du 2026-09-08, cohorte LOT2 fait 0).
     # Effet attendu : A small dog is a conditional cabin lead. Do not infer that a 30 kg dog fits the carrier.
@@ -93,6 +118,31 @@ policies:
       quote_language: en
       locator: "Travelling with your Pet → In the Cabin"
   hold:
+    # TARIFS OFFICIELS — audit indépendant du 2026-09-10 ; aucune valeur héritée réactivée.
+    fares:
+      - id: fare_air_canada_hold_cad_2026_09_10
+        placement: hold
+        price:
+          kind: range
+          amounts:
+            - amount: 105
+              currency: CAD
+            - amount: 324
+              currency: CAD
+        billing_subject: container
+        journey_basis: per_one_way
+        scope_label: Canada/US except Hawaii; all other
+        source:
+          url: https://www.aircanada.com/hk/en/aco/home/legal/products-and-services.html
+          source_type: official_website
+          verified_date: 2026-09-10
+          review_due: 2026-12-09
+          confidence: 4
+          reviewer: Codex — lecture directe de la source officielle
+          history: []
+          quote: $105–$126 … $270–$324
+          quote_language: en
+          locator: Pets > baggage compartment fees
     availability: offered
     # PREUVE IMPORTÉE — import strict V3 (Codex, lecture directe du 2026-09-08, cohorte LOT2 fait 1).
     # Effet attendu : Passenger hold is a conditional path, not an automatic acceptance on every marketed Air Canada itinerary.

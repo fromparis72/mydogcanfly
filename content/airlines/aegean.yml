@@ -73,6 +73,31 @@ ladder:
       pt: "> 105 cm / R.U."
 policies:
   cabin:
+    # TARIFS OFFICIELS — audit indépendant du 2026-09-10 ; aucune valeur héritée réactivée.
+    fares:
+      - id: fare_aegean_cabin_eur_2026_09_10
+        placement: cabin
+        price:
+          kind: range
+          amounts:
+            - amount: 35
+              currency: EUR
+            - amount: 65
+              currency: EUR
+        billing_subject: container
+        journey_basis: per_journey
+        scope_label: AEGEAN/Olympic operated routes
+        source:
+          url: https://en.aegeanair.com/travel-info/travelling-with-aegean/special-assistance/traveling-with-pet/
+          source_type: official_website
+          verified_date: 2026-09-10
+          review_due: 2026-12-09
+          confidence: 4
+          reviewer: Codex — lecture directe de la source officielle
+          history: []
+          quote: Domestic flights €35 … International flights €65
+          quote_language: en
+          locator: Booking & charges > Cat or Dog in cabin
     availability: offered
     # PREUVE IMPORTÉE — import strict V3 (Codex, lecture directe du 2026-09-08, cohorte A fait 1).
     # Effet attendu : For a 32 kg dog, cabin is not suitable.

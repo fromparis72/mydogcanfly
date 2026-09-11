@@ -59,8 +59,58 @@ ladder:
       pt: "≤ 14 kg cada"
 policies:
   cabin:
+    # TARIFS OFFICIELS — audit indépendant du 2026-09-10 ; aucune valeur héritée réactivée.
+    fares:
+      - id: fare_norwegian_cabin_eur_2026_09_10
+        placement: cabin
+        price:
+          kind: range
+          amounts:
+            - amount: 55
+              currency: EUR
+            - amount: 75
+              currency: EUR
+        billing_subject: pet
+        journey_basis: per_one_way
+        scope_label: Eligible Norwegian routes
+        source:
+          url: https://www.norwegian.com/fr/infos-voyageurs/baggage/voyager-avec-des-animaux/
+          source_type: official_website
+          verified_date: 2026-09-10
+          review_due: 2026-12-09
+          confidence: 4
+          reviewer: Codex — lecture directe de la source officielle
+          history: []
+          quote: 55–75 EUR en ligne
+          quote_language: en
+          locator: Animaux en cabine
     availability: offered
   hold:
+    # TARIFS OFFICIELS — audit indépendant du 2026-09-10 ; aucune valeur héritée réactivée.
+    fares:
+      - id: fare_norwegian_hold_eur_2026_09_10
+        placement: hold
+        price:
+          kind: range
+          amounts:
+            - amount: 150
+              currency: EUR
+            - amount: 180
+              currency: EUR
+        billing_subject: pet
+        journey_basis: per_one_way
+        scope_label: Eligible Norwegian routes
+        source:
+          url: https://www.norwegian.com/fr/infos-voyageurs/baggage/voyager-avec-des-animaux/
+          source_type: official_website
+          verified_date: 2026-09-10
+          review_due: 2026-12-09
+          confidence: 4
+          reviewer: Codex — lecture directe de la source officielle
+          history: []
+          quote: 150–180 EUR en ligne
+          quote_language: en
+          locator: Animaux en soute
     availability: offered
   cargo:
     review_state: legacy_unreviewed

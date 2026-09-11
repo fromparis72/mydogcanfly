@@ -175,6 +175,15 @@ const labels = {
   /* Le tarif n'est jamais un montant ici : il le sera quand une preuve tarifaire propre existera. */
   fareConfirmShort: T("fare to confirm", "tarif à confirmer", "tarifa a confirmar"),
   fareQuoteShort: T("on quotation", "sur devis", "bajo presupuesto"),
+  farePublished: T("official published fare", "tarif officiel publié", "tarifa oficial publicada"),
+  fareApplicable: T("fare for this trip", "tarif pour ce trajet", "tarifa para este trayecto"),
+  fareVariable: T("depending on the route and conditions", "selon le trajet et les conditions", "según el trayecto y las condiciones"),
+  fareMinimum: T("from", "à partir de", "desde"),
+  fareCalculator: T("price calculated by the airline", "prix calculé par la compagnie", "precio calculado por la aerolínea"),
+  fareFormula: T("official pricing formula", "barème tarifaire officiel", "baremo tarifario oficial"),
+  fareBooking: T("price shown during booking", "prix affiché à la réservation", "precio mostrado durante la reserva"),
+  fareConflict: T("official fares conflict — confirm the amount", "tarifs officiels contradictoires — montant à confirmer", "tarifas oficiales contradictorias: confirma el importe"),
+  fareProof: T("fare", "tarif", "tarifa"),
   /* La provenance nomme ses canaux : elle ne dit jamais que toute la carte est vérifiée. */
   provenance: T("Verified on an official source on {date}: {channels}", "Vérifié sur une source officielle le {date} : {channels}", "Verificado en una fuente oficial el {date}: {channels}"),
   seeProofs: T("See the evidence", "Voir les preuves", "Ver las pruebas"),
@@ -639,6 +648,41 @@ const labels = {
        conditions ». Toute décision visuelle qui demande « ce canal est-il ouvert ? » passe par ici. */
     const OUVERT = new Set(["allowed", "accepted_with_conditions"]);
     const aConfirmer = (a: any) => CANAUX_CONTRAT.some((ch) => a[`${ch}_status`] === "confirmation_required");
+    const resolutionTarif = (a: any, ch: string): any =>
+      (a.fare_resolutions || []).find((x: any) => x && x.placement === ch)?.resolution;
+    const argent = (amount: number, currency: string): string => {
+      try { return new Intl.NumberFormat(String(L.locale ?? "en"), { style: "currency", currency, maximumFractionDigits: Number.isInteger(amount) ? 0 : 2 }).format(amount); }
+      catch { return `${amount} ${currency}`; }
+    };
+    const texteTarif = (a: any, ch: string): string | null => {
+      const r = resolutionTarif(a, ch);
+      if (!r) return null;
+      if ((r.conflits?.length || 0) > 0 || (r.chevauchements?.length || 0) > 0) return L.fareConflict;
+      const applicables = [...(r.montants || []), ...(r.mecanismes || [])];
+      const fares = applicables.length ? applicables : (r.indecidables || []);
+      if (!fares.length) return null;
+      const devisePreferee = String(L.locale ?? "en") === "en" ? "USD" : "EUR";
+      const chiffres = fares.filter((f: any) => Array.isArray(f?.price?.amounts) && f.price.amounts.length)
+        .sort((a: any, b: any) => {
+          const ca = a.price.amounts[0]?.currency, cb = b.price.amounts[0]?.currency;
+          return Number(cb === devisePreferee) - Number(ca === devisePreferee) || String(ca).localeCompare(String(cb));
+        }).slice(0, 2);
+      if (chiffres.length) {
+        const valeurs = chiffres.map((f: any) => {
+          const amounts = f.price.amounts || [];
+          if (f.price.kind === "minimum") return `${L.fareMinimum} ${argent(amounts[0].amount, amounts[0].currency)}`;
+          if (f.price.kind === "range" && amounts.length >= 2) return `${argent(amounts[0].amount, amounts[0].currency)}–${argent(amounts[amounts.length - 1].amount, amounts[amounts.length - 1].currency)}`;
+          return amounts.map((m: any) => argent(m.amount, m.currency)).join(" / ");
+        }).join(" / ");
+        return `${applicables.length ? L.fareApplicable : L.farePublished} : ${valeurs}${applicables.length ? "" : ` · ${L.fareVariable}`}`;
+      }
+      const kinds = new Set(fares.map((f: any) => f?.price?.kind));
+      if (kinds.has("calculator")) return L.fareCalculator;
+      if (kinds.has("formula")) return L.fareFormula;
+      if (kinds.has("booking_only")) return L.fareBooking;
+      if (kinds.has("quote")) return L.fareQuoteShort;
+      return null;
+    };
     const airlineCard = (a: any): string => `
               <li class="acard ${(() => {
                   // Bug corrigé (audit du 09/08/2026, tâche 19) : le style de la carte (bordure + opacité)
@@ -759,8 +803,10 @@ const labels = {
                       else if (st === "accepted_with_conditions") { morceaux.push(esc(L.lineYesCond)); const sl = seuilDe(d); if (sl) morceaux.push(esc(sl)); }
                       else if (st === "denied") morceaux.push(esc(L.lineNo));
                       else morceaux.push(esc(L.lineConfirm));
-                      /* Le tarif, seulement sur un canal ouvert — et jamais un montant sans preuve tarifaire propre. */
-                      if (!quiet && (st === "allowed" || st === "accepted_with_conditions")) morceaux.push(esc(ch === "cargo" ? L.fareQuoteShort : L.fareConfirmShort));
+                      /* Le tarif, seulement sur un canal ouvert. L'inventaire strict a priorité ;
+                         le repli « à confirmer » ne survit que si aucune preuve tarifaire propre
+                         n'existe pour ce canal. */
+                      if (!quiet && (st === "allowed" || st === "accepted_with_conditions")) morceaux.push(esc(texteTarif(a, ch) ?? (ch === "cargo" ? L.fareQuoteShort : L.fareConfirmShort)));
                       return `<div class="acard__line acard__line--${ch}${quiet ? " acard__line--quiet" : ""}" data-status="${esc(st)}"><b>${esc(cap(ch))}</b> : <span class="ab ${cls(st)}">${morceaux[0]}</span>${morceaux.slice(1).map((m) => ` · ${m}`).join("")}</div>`;
                     };
                     /* Le fret se développe s'il est documenté (sous conditions, ou refus cité), demandé, ou seul canal
@@ -783,14 +829,24 @@ const labels = {
                        la page officielle, la date et la confiance ; la citation intégrale et sa localisation sont
                        sur la fiche détaillée (le contrat du Finder ne les transporte pas — et n'a pas à changer). */
                     const sourcees = (a.placement_decisions || []).filter((d: any) => d.source && d.source.url);
-                    if (!sourcees.length) return "";
+                    const sourcesTarif = (a.fare_resolutions || []).flatMap((x: any) => {
+                      const r = x?.resolution || {};
+                      return [...(r.montants || []), ...(r.mecanismes || []), ...(r.indecidables || []), ...(r.supprimes || [])]
+                        .filter((f: any) => f?.source?.url).map((f: any) => ({ placement: x.placement, source: f.source }));
+                    });
+                    if (!sourcees.length && !sourcesTarif.length) return "";
                     const cap = (ch: string) => ch === "cabin" ? L.cabinShort : ch === "hold" ? L.holdShort : L.cargoShort;
                     const dateLisible = (iso: string) => { try { return new Intl.DateTimeFormat(String(L.locale ?? "en"), { day: "numeric", month: "long", year: "numeric" }).format(new Date(iso + "T00:00:00Z")); } catch { return iso; } };
                     const parDate = new Map<string, string[]>();
                     for (const d of sourcees) { const k = d.source.verified_date || ""; if (!parDate.has(k)) parDate.set(k, []); parDate.get(k)!.push(cap(d.placement)); }
                     const phrase = [...parDate.entries()].map(([k, canaux]) => L.provenance.replace("{date}", k ? dateLisible(k) : "—").replace("{channels}", canaux.join(", "))).join(" · ");
-                    const lignes = sourcees.map((d: any) => `<li><b>${esc(cap(d.placement))}</b> — <a href="${esc(d.source.url)}" rel="nofollow noopener" target="_blank">${esc(host(d.source.url))}</a>${d.source.verified_date ? ` · ${esc(L.proofVerified)} ${esc(d.source.verified_date)}` : ""}${typeof d.source.confidence === "number" ? ` · ${esc(L.confidence)} ${esc(String(d.source.confidence))}/5` : ""}</li>`).join("");
-                    return `<div class="acard__prov"><span class="acard__prov-text">${esc(phrase)}</span> · <details class="acard__proofs"><summary>${esc(L.seeProofs)}</summary><ul>${lignes}</ul><p class="acard__proofs-fiche"><a href="${esc(ficheHrefFor(a))}">${esc(L.proofFiche)}</a></p></details></div>`;
+                    const lignesCanal = sourcees.map((d: any) => `<li><b>${esc(cap(d.placement))}</b> — <a href="${esc(d.source.url)}" rel="nofollow noopener" target="_blank">${esc(host(d.source.url))}</a>${d.source.verified_date ? ` · ${esc(L.proofVerified)} ${esc(d.source.verified_date)}` : ""}${typeof d.source.confidence === "number" ? ` · ${esc(L.confidence)} ${esc(String(d.source.confidence))}/5` : ""}</li>`).join("");
+                    const vusTarif = new Set<string>();
+                    const lignesTarif = sourcesTarif.filter((d: any) => { const k = `${d.placement}|${d.source.url}|${d.source.locator}`; if (vusTarif.has(k)) return false; vusTarif.add(k); return true; })
+                      .map((d: any) => `<li><b>${esc(L.fareProof)} ${esc(cap(d.placement).toLocaleLowerCase(String(L.locale ?? "en")))}</b> — <a href="${esc(d.source.url)}" rel="nofollow noopener" target="_blank">${esc(host(d.source.url))}</a>${d.source.locator ? ` · ${esc(d.source.locator)}` : ""}${d.source.verified_date ? ` · ${esc(L.proofVerified)} ${esc(d.source.verified_date)}` : ""}</li>`).join("");
+                    const lignes = lignesCanal + lignesTarif;
+                    const provenance = phrase ? `<span class="acard__prov-text">${esc(phrase)}</span> · ` : "";
+                    return `<div class="acard__prov">${provenance}<details class="acard__proofs"><summary>${esc(L.seeProofs)}</summary><ul>${lignes}</ul><p class="acard__proofs-fiche"><a href="${esc(ficheHrefFor(a))}">${esc(L.proofFiche)}</a></p></details></div>`;
                   })()}
                 </div>
                 <div class="acard__mid">${(() => {
@@ -1332,12 +1388,15 @@ const labels = {
     const airlines = (r as { airlines?: unknown }).airlines;
     if (!Array.isArray(airlines)) return false;
     return airlines.every((a: any) => {
-      if (!a || !Array.isArray(a.placement_decisions)) return false;
+      if (!a || !Array.isArray(a.placement_decisions) || !Array.isArray(a.fare_resolutions)) return false;
       return CANAUX_CONTRAT.every((ch) => {
         const st = a[`${ch}_status`];
         if (typeof st !== "string" || !ETATS.has(st)) return false;
         const ds = a.placement_decisions.filter((d: any) => d && d.placement === ch);
-        return ds.length === 1 && ds[0].status === st;
+        const fr = a.fare_resolutions.filter((x: any) => x && x.placement === ch && x.resolution);
+        const inventaire = fr[0]?.resolution;
+        const listes = ["conflits", "montants", "chevauchements", "mecanismes", "indecidables", "supprimes"];
+        return ds.length === 1 && ds[0].status === st && fr.length === 1 && listes.every((k) => Array.isArray(inventaire[k]));
       });
     });
   }

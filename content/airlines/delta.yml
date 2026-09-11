@@ -81,6 +81,50 @@ ladder:
       pt: "militares"
 policies:
   cabin:
+    # TARIFS OFFICIELS — audit indépendant du 2026-09-10 ; aucune valeur héritée réactivée.
+    fares:
+      - id: fare_delta_cabin_usd_2026_09_10
+        placement: cabin
+        price:
+          kind: exact
+          amounts:
+            - amount: 150
+              currency: USD
+        billing_subject: pet_or_container
+        journey_basis: per_one_way
+        scope_label: zones publiées → zones publiées
+        source:
+          url: https://www.delta.com/us/en/pet-travel/overview
+          source_type: official_website
+          verified_date: 2026-09-10
+          review_due: 2026-12-09
+          confidence: 4
+          reviewer: Codex — lecture directe de la source officielle
+          history: []
+          quote: $150 USD/CAD
+          quote_language: en
+          locator: In-Cabin Pet Fees
+      - id: fare_delta_cabin_cad_2026_09_10
+        placement: cabin
+        price:
+          kind: exact
+          amounts:
+            - amount: 150
+              currency: CAD
+        billing_subject: pet_or_container
+        journey_basis: per_one_way
+        scope_label: zones publiées → zones publiées
+        source:
+          url: https://www.delta.com/us/en/pet-travel/overview
+          source_type: official_website
+          verified_date: 2026-09-10
+          review_due: 2026-12-09
+          confidence: 4
+          reviewer: Codex — lecture directe de la source officielle
+          history: []
+          quote: $150 USD/CAD
+          quote_language: en
+          locator: In-Cabin Pet Fees
     availability: offered
     # PREUVE IMPORTÉE — import strict V3 (Codex, lecture directe du 2026-09-08, cohorte LOT2 fait 2).
     # Effet attendu : Cabin is a conditional lead for a genuinely small dog. It must not be presented as available for a large dog or every destination.

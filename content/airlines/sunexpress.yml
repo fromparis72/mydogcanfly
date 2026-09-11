@@ -65,6 +65,29 @@ ladder:
       pt: "acima de 8 kg, sem teto publicado"
 policies:
   cabin:
+    # TARIFS OFFICIELS — audit indépendant du 2026-09-10 ; aucune valeur héritée réactivée.
+    fares:
+      - id: fare_sunexpress_cabin_eur_2026_09_10
+        placement: cabin
+        price:
+          kind: minimum
+          amounts:
+            - amount: 89.99
+              currency: EUR
+        billing_subject: pet
+        journey_basis: per_one_way
+        scope_label: International; Ercan; domestic Turkey; not UK
+        source:
+          url: https://www.sunexpress.com/en-gb/information/luggage-info/transporting-animals/
+          source_type: official_website
+          verified_date: 2026-09-10
+          review_due: 2026-12-09
+          confidence: 4
+          reviewer: Codex — lecture directe de la source officielle
+          history: []
+          quote: from €89.99 per one-way flight
+          quote_language: en
+          locator: Pet fees
     availability: offered
     # PREUVE IMPORTÉE — import strict lot8 (Codex, lecture directe du 2026-09-09, cohorte LOT8 fait 19).
     # Effet attendu : SunExpress cabin is conditional with an 8 kg combined animal-and-container ceiling.

@@ -65,6 +65,29 @@ ladder:
       pt: "acima de 10 kg, sem teto publicado"
 policies:
   cabin:
+    # TARIFS OFFICIELS — audit indépendant du 2026-09-10 ; aucune valeur héritée réactivée.
+    fares:
+      - id: fare_neos_cabin_eur_2026_09_10
+        placement: cabin
+        price:
+          kind: exact
+          amounts:
+            - amount: 100
+              currency: EUR
+        billing_subject: pet
+        journey_basis: per_one_way
+        scope_label: All eligible Neos routes
+        source:
+          url: https://www.neosair.com/en/information/traveling-with-pets
+          source_type: official_website
+          verified_date: 2026-09-10
+          review_due: 2026-12-09
+          confidence: 4
+          reviewer: Codex — lecture directe de la source officielle
+          history: []
+          quote: The cost is €100 each way
+          quote_language: en
+          locator: Travelling with pets, cabin
     availability: offered
     # PREUVE IMPORTÉE — import strict lot9 (Codex, lecture directe du 2026-09-09, cohorte LOT9 fait 13).
     # Effet attendu : Neos cabin is conditional with a 10 kg combined animal-and-carrier ceiling.
@@ -81,6 +104,29 @@ policies:
       quote_language: en
       locator: "NECESSARY REQUIREMENTS"
   hold:
+    # TARIFS OFFICIELS — audit indépendant du 2026-09-10 ; aucune valeur héritée réactivée.
+    fares:
+      - id: fare_neos_hold_eur_2026_09_10
+        placement: hold
+        price:
+          kind: exact
+          amounts:
+            - amount: 200
+              currency: EUR
+        billing_subject: pet
+        journey_basis: per_one_way
+        scope_label: All eligible Neos routes
+        source:
+          url: https://www.neosair.com/en/information/traveling-with-pets
+          source_type: official_website
+          verified_date: 2026-09-10
+          review_due: 2026-12-09
+          confidence: 4
+          reviewer: Codex — lecture directe de la source officielle
+          history: []
+          quote: The cost is €200 each way
+          quote_language: en
+          locator: Travelling with pets, hold
     availability: offered
     # PREUVE IMPORTÉE — import strict lot9 (Codex, lecture directe du 2026-09-09, cohorte LOT9 fait 14).
     # Effet attendu : Neos hold is a documented conditional route above the 10 kg combined threshold.

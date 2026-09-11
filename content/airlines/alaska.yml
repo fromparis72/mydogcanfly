@@ -83,6 +83,31 @@ ladder:
       pt: "desacompanhados"
 policies:
   cabin:
+    # TARIFS OFFICIELS — audit indépendant du 2026-09-10 ; aucune valeur héritée réactivée.
+    fares:
+      - id: fare_alaska_cabin_usd_2026_09_10
+        placement: cabin
+        price:
+          kind: range
+          amounts:
+            - amount: 35
+              currency: USD
+            - amount: 100
+              currency: USD
+        billing_subject: container
+        journey_basis: per_one_way
+        scope_label: Alaska/Hawaiian operated travel
+        source:
+          url: https://news.alaskaair.com/company/what-to-know-before-traveling-with-a-canine-companion/
+          source_type: official_website
+          verified_date: 2026-09-10
+          review_due: 2026-12-09
+          confidence: 4
+          reviewer: Codex — lecture directe de la source officielle
+          history: []
+          quote: $100 per carrier (or $35 … Hawai‘i)
+          quote_language: en
+          locator: Ways to fly > In the cabin
     availability: offered
     # PREUVE IMPORTÉE — import strict lot4 (Codex, lecture directe du 2026-09-09, cohorte LOT4 fait 20).
     # Effet attendu : Alaska Airlines cabin is a documented conditional route. Do not infer it for a dog whose carrier cannot fit under the seat.
@@ -108,6 +133,29 @@ policies:
       es: "La mascota debe ser lo bastante pequeña para caber cómodamente en un transportín bajo el asiento (transportín blando de hasta 17 × 11 × 9,5 pulgadas). Sin límite de peso publicado: la regla es que quepa en el transportín."
       pt: "O animal deve ser pequeno o suficiente para caber confortavelmente em uma bolsa sob o assento (bolsa flexível de até 17 × 11 × 9,5 pol). Sem limite de peso publicado — a regra é caber na bolsa."
   hold:
+    # TARIFS OFFICIELS — audit indépendant du 2026-09-10 ; aucune valeur héritée réactivée.
+    fares:
+      - id: fare_alaska_hold_usd_2026_09_10
+        placement: hold
+        price:
+          kind: exact
+          amounts:
+            - amount: 200
+              currency: USD
+        billing_subject: container
+        journey_basis: per_one_way
+        scope_label: Alaska/Hawaiian operated travel
+        source:
+          url: https://news.alaskaair.com/company/what-to-know-before-traveling-with-a-canine-companion/
+          source_type: official_website
+          verified_date: 2026-09-10
+          review_due: 2026-12-09
+          confidence: 4
+          reviewer: Codex — lecture directe de la source officielle
+          history: []
+          quote: fee is $200 each way per kennel
+          quote_language: en
+          locator: Ways to fly > baggage compartment
     availability: offered
     # PREUVE IMPORTÉE — import strict lot4 (Codex, lecture directe du 2026-09-09, cohorte LOT4 fait 21).
     # Effet attendu : Alaska Airlines hold is a documented conditional route, not a specific-flight approval.

@@ -83,6 +83,50 @@ policies:
       quote_language: en
       locator: "Pets → Which animals can be brought into the cabin?"
   hold:
+    # TARIFS OFFICIELS — audit indépendant du 2026-09-10 ; aucune valeur héritée réactivée.
+    fares:
+      - id: fare_china_southern_hold_usd_2026_09_10
+        placement: hold
+        price:
+          kind: exact
+          amounts:
+            - amount: 200
+              currency: USD
+        billing_subject: pet_or_container
+        journey_basis: per_journey
+        scope_label: international → international
+        source:
+          url: https://www.csair.com/newh5/en/tourguide/luggage_service/special_baggage/pets/
+          source_type: official_website
+          verified_date: 2026-09-10
+          review_due: 2026-12-09
+          confidence: 4
+          reviewer: Codex — lecture directe de la source officielle
+          history: []
+          quote: USD 200 / EUR 190
+          quote_language: en
+          locator: International pet transport
+      - id: fare_china_southern_hold_eur_2026_09_10
+        placement: hold
+        price:
+          kind: exact
+          amounts:
+            - amount: 190
+              currency: EUR
+        billing_subject: pet_or_container
+        journey_basis: per_journey
+        scope_label: international → international
+        source:
+          url: https://www.csair.com/newh5/en/tourguide/luggage_service/special_baggage/pets/
+          source_type: official_website
+          verified_date: 2026-09-10
+          review_due: 2026-12-09
+          confidence: 4
+          reviewer: Codex — lecture directe de la source officielle
+          history: []
+          quote: USD 200 / EUR 190
+          quote_language: en
+          locator: International pet transport
     availability: offered
     # PREUVE IMPORTÉE — import strict correctif (Codex, lecture directe du 2026-09-09, cohorte CORRECTIF fait 1).
     # Effet attendu : China Southern hold is a documented conditional route.
@@ -101,6 +145,26 @@ policies:
     # ARBITRAGE (Codex, 09/09/2026, relayé et tranché par Philippe — mesures/preuves/correctif-arbitrages-2026-09-09) :
     # « you can check it » est remplacé par la réponse officielle complète (import strict, correctif).
   cargo:
+    # TARIFS OFFICIELS — audit indépendant du 2026-09-10 ; aucune valeur héritée réactivée.
+    fares:
+      - id: fare_china_southern_cargo_2026_09_10
+        placement: cargo
+        price:
+          kind: quote
+          amounts: []
+        billing_subject: shipment
+        journey_basis: per_journey
+        source:
+          url: https://www.csair.com/newh5/en/tourguide/luggage_service/special_baggage/pets/
+          source_type: official_website
+          verified_date: 2026-09-10
+          review_due: 2026-12-09
+          confidence: 4
+          reviewer: Codex — lecture directe de la source officielle
+          history: []
+          quote: contact cargo
+          quote_language: en
+          locator: Oversize/cargo referral
     review_state: legacy_unreviewed
 channels:
   - placement: cabin

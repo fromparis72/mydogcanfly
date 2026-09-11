@@ -73,6 +73,29 @@ ladder:
       pt: "tratamento manual"
 policies:
   cabin:
+    # TARIFS OFFICIELS — audit indépendant du 2026-09-10 ; aucune valeur héritée réactivée.
+    fares:
+      - id: fare_royal_jordanian_cabin_usd_2026_09_10
+        placement: cabin
+        price:
+          kind: exact
+          amounts:
+            - amount: 85
+              currency: USD
+        billing_subject: pet
+        journey_basis: per_journey
+        scope_label: Aqaba; Beirut; Middle East; Europe zones
+        source:
+          url: https://www.rj.com/en/info-and-tips/special-services/flying-with-pets
+          source_type: official_website
+          verified_date: 2026-09-10
+          review_due: 2026-12-09
+          confidence: 4
+          reviewer: Codex — lecture directe de la source officielle
+          history: []
+          quote: "Middle East: USD 85"
+          quote_language: en
+          locator: PETC charges
     availability: offered   # RÉACTIVÉE sur citation (import strict, lot6, 2026-09-09) — était review_state: legacy_unreviewed
     # PREUVE IMPORTÉE — import strict lot6 (Codex, lecture directe du 2026-09-09, cohorte LOT6 fait 20).
     # Effet attendu : Royal Jordanian cabin is conditional. Its combined 7 kg and five-hour conditions are not a global dog-only threshold.
@@ -89,6 +112,31 @@ policies:
       quote_language: en
       locator: "Flying with Pets → carriage of pets in passenger cabin"
   hold:
+    # TARIFS OFFICIELS — audit indépendant du 2026-09-10 ; aucune valeur héritée réactivée.
+    fares:
+      - id: fare_royal_jordanian_hold_usd_2026_09_10
+        placement: hold
+        price:
+          kind: range
+          amounts:
+            - amount: 600
+              currency: USD
+            - amount: 800
+              currency: USD
+        billing_subject: container
+        journey_basis: per_journey
+        scope_label: Aqaba and regional zones; crate sizes
+        source:
+          url: https://www.rj.com/en/info-and-tips/special-services/flying-with-pets
+          source_type: official_website
+          verified_date: 2026-09-10
+          review_due: 2026-12-09
+          confidence: 4
+          reviewer: Codex — lecture directe de la source officielle
+          history: []
+          quote: Europe | $600 | $600 | $600 | $800
+          quote_language: en
+          locator: Large kennel matrix → Europe row; Aqaba values at following station rows
     availability: offered
     # PREUVE IMPORTÉE — import strict lot6 (Codex, lecture directe du 2026-09-09, cohorte LOT6 fait 21).
     # Effet attendu : Royal Jordanian hold is a documented conditional route, not a guaranteed booking.

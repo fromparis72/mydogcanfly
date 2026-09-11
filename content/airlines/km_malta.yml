@@ -69,6 +69,28 @@ ladder:
     sub: "> 32 kg"
 policies:
   cabin:
+    # TARIFS OFFICIELS — audit indépendant du 2026-09-10 ; aucune valeur héritée réactivée.
+    fares:
+      - id: fare_km_malta_cabin_eur_2026_09_10
+        placement: cabin
+        price:
+          kind: exact
+          amounts:
+            - amount: 85
+              currency: EUR
+        billing_subject: container
+        journey_basis: per_one_way
+        source:
+          url: https://kmmaltairlines.com/en/travelling-with-pets
+          source_type: official_website
+          verified_date: 2026-09-10
+          review_due: 2026-12-09
+          confidence: 4
+          reviewer: Codex — lecture directe de la source officielle
+          history: []
+          quote: EUR 85 per way
+          quote_language: en
+          locator: Pet in cabin
     availability: offered
     # PREUVE IMPORTÉE — import strict lot8 (Codex, lecture directe du 2026-09-09, cohorte LOT8 fait 16).
     # Effet attendu : KM Malta cabin is conditional with a 10 kg combined animal-and-carrier ceiling.
@@ -85,6 +107,28 @@ policies:
       quote_language: en
       locator: "Travelling with Pets → Pets in Cabin"
   hold:
+    # TARIFS OFFICIELS — audit indépendant du 2026-09-10 ; aucune valeur héritée réactivée.
+    fares:
+      - id: fare_km_malta_hold_eur_2026_09_10
+        placement: hold
+        price:
+          kind: exact
+          amounts:
+            - amount: 10
+              currency: EUR
+        billing_subject: pet_or_container
+        journey_basis: per_one_way
+        source:
+          url: https://kmmaltairlines.com/en/travelling-with-pets
+          source_type: official_website
+          verified_date: 2026-09-10
+          review_due: 2026-12-09
+          confidence: 4
+          reviewer: Codex — lecture directe de la source officielle
+          history: []
+          quote: EUR 10 administration fee
+          quote_language: en
+          locator: Pet in hold
     availability: offered
     # PREUVE IMPORTÉE — import strict lot8 (Codex, lecture directe du 2026-09-09, cohorte LOT8 fait 17).
     # Effet attendu : KM Malta hold is a documented conditional route with a 32 kg stated ceiling.
@@ -101,6 +145,26 @@ policies:
       quote_language: en
       locator: "Travelling with Pets → Pet as Checked Baggage"
   cargo:
+    # TARIFS OFFICIELS — audit indépendant du 2026-09-10 ; aucune valeur héritée réactivée.
+    fares:
+      - id: fare_km_malta_cargo_2026_09_10
+        placement: cargo
+        price:
+          kind: quote
+          amounts: []
+        billing_subject: shipment
+        journey_basis: per_journey
+        source:
+          url: https://kmmaltairlines.com/en/travelling-with-pets
+          source_type: official_website
+          verified_date: 2026-09-10
+          review_due: 2026-12-09
+          confidence: 4
+          reviewer: Codex — lecture directe de la source officielle
+          history: []
+          quote: contact our Reservations Office
+          quote_language: en
+          locator: Cargo/contact
     availability: offered   # RÉACTIVÉE sur citation (import strict, lot8, 2026-09-09) — était review_state: legacy_unreviewed
     # PREUVE IMPORTÉE — import strict lot8 (Codex, lecture directe du 2026-09-09, cohorte LOT8 fait 18).
     # Effet attendu : KM Malta cargo is a documented conditional alternative.

@@ -92,6 +92,50 @@ policies:
       quote_language: en
       locator: "Pet Travel FAQ → maximum permissible weight in cabin"
   hold:
+    # TARIFS OFFICIELS — audit indépendant du 2026-09-10 ; aucune valeur héritée réactivée.
+    fares:
+      - id: fare_air_india_hold_inr_2026_09_10
+        placement: hold
+        price:
+          kind: exact
+          amounts:
+            - amount: 16000
+              currency: INR
+        billing_subject: container
+        journey_basis: per_segment
+        scope_label: domestic / international
+        source:
+          url: https://www.airindia.com/in/en/frequently-asked-questions/pet-travel.html
+          source_type: official_website
+          verified_date: 2026-09-10
+          review_due: 2026-12-09
+          confidence: 4
+          reviewer: Codex — lecture directe de la source officielle
+          history: []
+          quote: INR 16,000 … USD 350
+          quote_language: en
+          locator: Pet in hold > charges
+      - id: fare_air_india_hold_usd_2026_09_10
+        placement: hold
+        price:
+          kind: exact
+          amounts:
+            - amount: 350
+              currency: USD
+        billing_subject: container
+        journey_basis: per_segment
+        scope_label: domestic / international
+        source:
+          url: https://www.airindia.com/in/en/frequently-asked-questions/pet-travel.html
+          source_type: official_website
+          verified_date: 2026-09-10
+          review_due: 2026-12-09
+          confidence: 4
+          reviewer: Codex — lecture directe de la source officielle
+          history: []
+          quote: INR 16,000 … USD 350
+          quote_language: en
+          locator: Pet in hold > charges
     availability: offered
     # PREUVE IMPORTÉE — import strict lot3 (Codex, lecture directe du 2026-09-08, cohorte LOT3 fait 1).
     # Effet attendu : Passenger hold is a conditional route for a larger dog. It is never a guarantee for the chosen aircraft, route or paperwork.

@@ -1,10 +1,12 @@
 {
   "_lot": "Tarifs — prélancement",
-  "_regle": "Occurrences de montants restant dans les champs NON rendus des fiches compagnies. Une occurrence de source = une occurrence, jamais multipliée par ses exemplaires HTML. Une occurrence est un MARQUEUR DE DEVISE adjacent à un nombre : « ₱1 000–10 000 » en compte une, pas deux, parce qu'une fourchette partage son marqueur.",
+  "_regle": "Occurrences de montants restant dans les champs NON rendus des fiches compagnies. Une occurrence de source = une occurrence, jamais multipliée par ses exemplaires HTML. Une occurrence est un MARQUEUR DE DEVISE adjacent à un nombre : « ₱1 000–10 000 » en compte une, pas deux, parce qu'une fourchette partage son marqueur. Les tarifs prouvés sont comptés séparément : leur admissibilité est imposée par le contrat tarifaire à l'ingestion.",
   "_mesure": {
     "fiches": 73,
     "occurrences": 1563,
-    "occurrences_sources_totales": 1563
+    "fiches_tarifs_prouves": 52,
+    "occurrences_tarifs_prouves": 337,
+    "occurrences_sources_totales": 1900
   },
   "fiches": {
     "aegean.yml": {

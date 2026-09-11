@@ -73,6 +73,29 @@ ladder:
       pt: "carga"
 policies:
   cabin:
+    # TARIFS OFFICIELS — audit indépendant du 2026-09-10 ; aucune valeur héritée réactivée.
+    fares:
+      - id: fare_copa_cabin_usd_2026_09_10
+        placement: cabin
+        price:
+          kind: exact
+          amounts:
+            - amount: 125
+              currency: USD
+        billing_subject: pet_or_container
+        journey_basis: per_segment
+        scope_label: Panama ou international → Panama ou international
+        source:
+          url: https://www.copaair.com/assets/ENG-COM-24-001-Update-Service-or-Emotional-Support-Dog-and-Pet-in-Cabin-Transportation-Policy.pdf
+          source_type: official_website
+          verified_date: 2026-09-10
+          review_due: 2026-12-09
+          confidence: 4
+          reviewer: Codex — lecture directe de la source officielle
+          history: []
+          quote: USD 125 plus taxes
+          quote_language: en
+          locator: Pet in cabin fee
     availability: offered
     # PREUVE IMPORTÉE — import strict lot8 (Codex, lecture directe du 2026-09-09, cohorte LOT8 fait 3).
     # Effet attendu : Copa cabin is conditional with a 10 kg combined pet-and-container ceiling.

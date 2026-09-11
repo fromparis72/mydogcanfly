@@ -63,6 +63,29 @@ ladder:
     sub: "> 50 kg"
 policies:
   cabin:
+    # TARIFS OFFICIELS — audit indépendant du 2026-09-10 ; aucune valeur héritée réactivée.
+    fares:
+      - id: fare_corsair_cabin_eur_2026_09_10
+        placement: cabin
+        price:
+          kind: exact
+          amounts:
+            - amount: 75
+              currency: EUR
+        billing_subject: pet_or_container
+        journey_basis: per_journey
+        scope_label: Paris → destinations listées
+        source:
+          url: https://www.flycorsair.com/en/information/before-flight/transport-animal
+          source_type: official_website
+          verified_date: 2026-09-10
+          review_due: 2026-12-09
+          confidence: 4
+          reviewer: Codex — lecture directe de la source officielle
+          history: []
+          quote: €75 per journey
+          quote_language: en
+          locator: Cabin fares
     availability: offered
     # PREUVE IMPORTÉE — import strict lot7 (Codex, lecture directe du 2026-09-09, cohorte LOT7 fait 12).
     # Effet attendu : Corsair cabin is conditional with an 8 kg combined animal-and-container ceiling.
@@ -79,6 +102,29 @@ policies:
       quote_language: fr
       locator: "Conditions de transport → Transport d'animaux"
   hold:
+    # TARIFS OFFICIELS — audit indépendant du 2026-09-10 ; aucune valeur héritée réactivée.
+    fares:
+      - id: fare_corsair_hold_eur_2026_09_10
+        placement: hold
+        price:
+          kind: exact
+          amounts:
+            - amount: 300
+              currency: EUR
+        billing_subject: pet_or_container
+        journey_basis: per_journey
+        scope_label: Paris → destinations listées
+        source:
+          url: https://www.flycorsair.com/en/information/before-flight/transport-animal
+          source_type: official_website
+          verified_date: 2026-09-10
+          review_due: 2026-12-09
+          confidence: 4
+          reviewer: Codex — lecture directe de la source officielle
+          history: []
+          quote: €300 per journey
+          quote_language: en
+          locator: Hold fares
     availability: offered
     # PREUVE IMPORTÉE — import strict lot7 (Codex, lecture directe du 2026-09-09, cohorte LOT7 fait 13).
     # Effet attendu : Corsair hold is conditional with a 50 kg combined animal-and-container ceiling.
@@ -95,6 +141,26 @@ policies:
       quote_language: fr
       locator: "Conditions de transport → Transport d'animaux"
   cargo:
+    # TARIFS OFFICIELS — audit indépendant du 2026-09-10 ; aucune valeur héritée réactivée.
+    fares:
+      - id: fare_corsair_cargo_2026_09_10
+        placement: cargo
+        price:
+          kind: quote
+          amounts: []
+        billing_subject: shipment
+        journey_basis: per_journey
+        source:
+          url: https://www.flycorsair.com/en/information/before-flight/transport-animal
+          source_type: official_website
+          verified_date: 2026-09-10
+          review_due: 2026-12-09
+          confidence: 4
+          reviewer: Codex — lecture directe de la source officielle
+          history: []
+          quote: contact our cargo service
+          quote_language: en
+          locator: Special animal transport
     availability: offered   # RÉACTIVÉE sur citation (import strict, lot7, 2026-09-09) — était review_state: legacy_unreviewed
     # PREUVE IMPORTÉE — import strict lot7 (Codex, lecture directe du 2026-09-09, cohorte LOT7 fait 14).
     # Effet attendu : Corsair cargo is conditional for dogs above the passenger-hold weight ceiling.

@@ -73,8 +73,56 @@ ladder:
       pt: "carga, via agências"
 policies:
   cabin:
+    # TARIFS OFFICIELS — audit indépendant du 2026-09-10 ; aucune valeur héritée réactivée.
+    fares:
+      - id: fare_airbaltic_cabin_eur_2026_09_10
+        placement: cabin
+        price:
+          kind: exact
+          amounts:
+            - amount: 70
+              currency: EUR
+        billing_subject: container
+        journey_basis: per_one_way
+        scope_label: airBaltic-operated flight
+        source:
+          url: https://www.airbaltic.com/en/assisted-travel/travelling-with-pets
+          source_type: official_website
+          verified_date: 2026-09-10
+          review_due: 2026-12-09
+          confidence: 4
+          reviewer: Codex — lecture directe de la source officielle
+          history: []
+          quote: EUR 70 per container per direction
+          quote_language: en
+          locator: Fees
     availability: offered
   hold:
+    # TARIFS OFFICIELS — audit indépendant du 2026-09-10 ; aucune valeur héritée réactivée.
+    fares:
+      - id: fare_airbaltic_hold_eur_2026_09_10
+        placement: hold
+        price:
+          kind: range
+          amounts:
+            - amount: 130
+              currency: EUR
+            - amount: 220
+              currency: EUR
+        billing_subject: container
+        journey_basis: per_one_way
+        scope_label: airBaltic-operated flight
+        source:
+          url: https://www.airbaltic.com/en/assisted-travel/travelling-with-pets
+          source_type: official_website
+          verified_date: 2026-09-10
+          review_due: 2026-12-09
+          confidence: 4
+          reviewer: Codex — lecture directe de la source officielle
+          history: []
+          quote: EUR 130 … EUR 220
+          quote_language: en
+          locator: Fees in hold
     availability: offered
   cargo:
     review_state: legacy_unreviewed

@@ -89,6 +89,100 @@ policies:
       quote_language: en
       locator: "For passengers traveling with pets (International Flights) → Pets which can be checked in"
   hold:
+    # TARIFS OFFICIELS — audit indépendant du 2026-09-10 ; aucune valeur héritée réactivée.
+    fares:
+      - id: fare_ana_hold_jpy_2026_09_10
+        placement: hold
+        price:
+          kind: range
+          amounts:
+            - amount: 4000
+              currency: JPY
+            - amount: 40000
+              currency: JPY
+        billing_subject: container
+        journey_basis: per_journey
+        scope_label: international area grid; Japan domestic
+        source:
+          url: https://www.ana.co.jp/en/jp/guide/reservation/support/international/pets/
+          source_type: official_website
+          verified_date: 2026-09-10
+          review_due: 2026-12-09
+          confidence: 4
+          reviewer: Codex — lecture directe de la source officielle
+          history: []
+          quote: Price per cage | JPY40000 / USD400 / CAD400 / EUR300 | JPY25000 / USD250 / CAD250 / EUR200 | JPY5000 | JPY6000 or JPY4000
+          quote_language: en
+          locator: Reservation and Fee > Service Fee
+      - id: fare_ana_hold_usd_2026_09_10
+        placement: hold
+        price:
+          kind: range
+          amounts:
+            - amount: 250
+              currency: USD
+            - amount: 400
+              currency: USD
+        billing_subject: container
+        journey_basis: per_journey
+        scope_label: international area grid; Japan domestic
+        source:
+          url: https://www.ana.co.jp/en/jp/guide/reservation/support/international/pets/
+          source_type: official_website
+          verified_date: 2026-09-10
+          review_due: 2026-12-09
+          confidence: 4
+          reviewer: Codex — lecture directe de la source officielle
+          history: []
+          quote: Price per cage | JPY40000 / USD400 / CAD400 / EUR300 | JPY25000 / USD250 / CAD250 / EUR200 | JPY5000 | JPY6000 or JPY4000
+          quote_language: en
+          locator: Reservation and Fee > Service Fee
+      - id: fare_ana_hold_cad_2026_09_10
+        placement: hold
+        price:
+          kind: range
+          amounts:
+            - amount: 250
+              currency: CAD
+            - amount: 400
+              currency: CAD
+        billing_subject: container
+        journey_basis: per_journey
+        scope_label: international area grid; Japan domestic
+        source:
+          url: https://www.ana.co.jp/en/jp/guide/reservation/support/international/pets/
+          source_type: official_website
+          verified_date: 2026-09-10
+          review_due: 2026-12-09
+          confidence: 4
+          reviewer: Codex — lecture directe de la source officielle
+          history: []
+          quote: Price per cage | JPY40000 / USD400 / CAD400 / EUR300 | JPY25000 / USD250 / CAD250 / EUR200 | JPY5000 | JPY6000 or JPY4000
+          quote_language: en
+          locator: Reservation and Fee > Service Fee
+      - id: fare_ana_hold_eur_2026_09_10
+        placement: hold
+        price:
+          kind: range
+          amounts:
+            - amount: 200
+              currency: EUR
+            - amount: 300
+              currency: EUR
+        billing_subject: container
+        journey_basis: per_journey
+        scope_label: international area grid; Japan domestic
+        source:
+          url: https://www.ana.co.jp/en/jp/guide/reservation/support/international/pets/
+          source_type: official_website
+          verified_date: 2026-09-10
+          review_due: 2026-12-09
+          confidence: 4
+          reviewer: Codex — lecture directe de la source officielle
+          history: []
+          quote: Price per cage | JPY40000 / USD400 / CAD400 / EUR300 | JPY25000 / USD250 / CAD250 / EUR200 | JPY5000 | JPY6000 or JPY4000
+          quote_language: en
+          locator: Reservation and Fee > Service Fee
     availability: offered
     # PREUVE IMPORTÉE — import strict lot3 (Codex, lecture directe du 2026-09-08, cohorte LOT3 fait 9).
     # Effet attendu : Passenger hold is a conditional path; never apply it to a codeshare or a route that requires cargo treatment.

@@ -1,0 +1,16 @@
+{
+  "schema_version": 1,
+  "source_file": "consolidation-102-compagnies.json",
+  "source_sha256": "c5efcd57c175a3735bf5c87896e6f3e03900aea88f7a9a32db43184fce31c52b",
+  "source_rows": 306,
+  "verified_date": "2026-09-10",
+  "review_due": "2026-12-09",
+  "imported": {
+    "airlines": 68,
+    "channels": 116,
+    "fare_lines": 157
+  },
+  "excluded_rows": 27,
+  "legacy_prices_reactivated": 0,
+  "rule": "A line is imported only when its official excerpt itself states a monetary amount or a strong pricing mechanism. Unproved legacy fee and fareList values are never read."
+}
