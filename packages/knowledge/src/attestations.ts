@@ -189,8 +189,15 @@ const aplatir = (s: string) => s.normalize("NFD").replace(/[̀-ͯ]/g, "").toLowe
 /** Les unités de MASSE MÉTRIQUE. La valeur d'une claim est en kilogrammes : « 8 lb » ne l'établit
  *  pas, et « 17.64 » ne doit jamais valider un fait qui annonce 8. */
 const UNITE_MASSE = "(?:kgs?|kilos?|kilogramm?es?|kilograms?|quilos?)";
-/** Les unités de LONGUEUR, pour les dimensions de contenant. */
-const UNITE_LONGUEUR = "(?:cm|centimetres?|centimeters?|mm|in|inch|inches|pouces?)";
+/** L'unité de LONGUEUR — le CENTIMÈTRE, et lui seul.
+ *
+ *  *Sabotage 4 de Codex, sur `59d4788`* : « 46 × 28 × 24 in » validait une claim `carrier_dims_cm`
+ *  de 46 × 28 × 24. Les nombres concordaient, l'unité non — et la fiche publiait des centimètres là
+ *  où la compagnie écrit des pouces, soit un sac deux fois et demie trop grand. Le champ s'appelle
+ *  `carrier_dims_cm` : la phrase doit dire des centimètres. Une source en pouces demandera une
+ *  conversion DÉCLARÉE, avec son facteur écrit dans la fiche ; aucune n'existe au 11/09/2026, et
+ *  aucune ne se fera en silence ici. */
+const UNITE_LONGUEUR = "(?:cm|centimetres?|centimeters?)";
 
 /** Les tournures reconnues, par borne, dans les quatre langues rendues. Liste FERMÉE. */
 const MARQUEURS: Record<"lt" | "lte" | "gt" | "gte", string[]> = {
@@ -218,13 +225,29 @@ const CONTENANTS = ["carrier", "container", "carry-on bag", "bag", "crate", "ken
   "transportin", "bolso", "bolsa", "jaula", "caja", "cesta",
   "caixa", "transportadora"];
 
-/** Les tournures qui disent EXPLICITEMENT que le chien est pesé SEUL. Elles sont rares, et c'est
- *  normal : une source qui ne le dit pas ne l'établit pas, et alors rien n'est affiché. */
-const CHIEN_SEUL = ["alone", "excluding", "not including", "without the", "excluding the",
-  "pet alone", "dog alone", "animal alone",
-  "seul", "sans le", "sans sa", "hors contenant", "hors sac", "non compris", "non comprise",
-  "solo", "sin el", "sin la", "no incluido", "no incluida",
-  "sozinho", "sem a", "sem o", "nao incluido", "nao incluida", "apenas o"];
+/* ── NOMMER UN CONTENANT N'EST PAS DIRE QU'IL COMPTE DANS LE POIDS ────────────────────────────
+ * *Sabotages 1 à 3 de Codex, sur `59d4788`.* La garde exigeait qu'un mot de contenant paraisse dans
+ * le fragment de sujet. Trois phrases passaient donc alors qu'elles disent autre chose, ou le
+ * contraire :
+ *   · « The carrier must be labelled » — le contenant est mentionné, rien ne dit qu'il pèse ;
+ *   · « Carrier not included in this weight » — la phrase dit EXACTEMENT l'inverse, et passait ;
+ *   · « without the owner » — un générique d'exclusion qui ne parle pas du contenant du tout.
+ * Ce qui est exigé n'est donc plus un MOT mais une RELATION : une tournure d'inclusion (ou
+ * d'exclusion) rattachée au contenant, à portée de lecture l'une de l'autre, et la tournure
+ * inverse absente. « without the » seul ne dit plus rien. */
+
+/** Les tournures qui rattachent un contenant AU POIDS — « with its », « compris », « incluido ». */
+const INCLUSION = ["with its", "with their", "with the", "including", "included", "combined with",
+  "compris", "comprise", "comprises", "inclus", "incluse", "y compris",
+  "incluido", "incluida", "incluyendo", "con su", "con el", "con la",
+  "incluindo", "incluida", "incluido", "com a", "com o", "com sua", "com seu"];
+
+/** Les tournures qui l'en EXCLUENT — « not included », « sans », « sem ». */
+const EXCLUSION = ["not included", "not including", "excluding", "excluded", "does not include",
+  "without", "exclusive of",
+  "non compris", "non comprise", "sans", "hors",
+  "no incluido", "no incluida", "no incluye", "sin",
+  "nao incluido", "nao incluida", "nao inclui", "sem", "excluida", "excluido"];
 
 const echapper = (s: string) => s.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
 
@@ -248,13 +271,59 @@ const borneEstDite = (plat: string, kg: number, bound: "lt" | "lte" | "gt" | "gt
     `(?<!\\b(?:no|not|non|nao|ne|pas|sans)\\s)${echapper(m)}\\b[^.;:]{0,20}?(?<![\\d.,])${motifNombre(kg)}\\s*${UNITE_MASSE}\\b`,
   ).test(plat));
 
-/** LE FRAGMENT NOMME-T-IL UN CONTENANT ? */
-const contenantEstDit = (plat: string) =>
-  CONTENANTS.some((c) => new RegExp(`\\b${echapper(c)}`).test(plat));
+/** Toutes les positions d'une liste de tournures dans un fragment aplati. */
+const positions = (plat: string, mots: string[]): number[] => {
+  const vues: number[] = [];
+  for (const m of mots) {
+    const re = new RegExp(`\\b${echapper(m)}`, "g");
+    let x: RegExpExecArray | null;
+    while ((x = re.exec(plat)) !== null) vues.push(x.index);
+  }
+  return vues;
+};
 
-/** LE FRAGMENT DIT-IL EXPLICITEMENT QUE LE CHIEN EST PESÉ SEUL ? */
-const chienSeulEstDit = (plat: string) =>
-  CHIEN_SEUL.some((c) => new RegExp(`\\b${echapper(c)}`).test(plat));
+/** DEUX TOURNURES SE RAPPORTENT-ELLES L'UNE À L'AUTRE ? « à portée de lecture » = 25 caractères,
+ *  dans un sens ou dans l'autre : « with its carrier » comme « sac de transport compris ». */
+const seRapportent = (a: number[], b: number[]) =>
+  a.some((x) => b.some((y) => Math.abs(x - y) <= 25));
+
+/** LE FRAGMENT DIT-IL QUE LE CONTENANT COMPTE DANS LE POIDS ? */
+const inclusionEstDite = (plat: string) => {
+  const conteneurs = positions(plat, CONTENANTS);
+  if (conteneurs.length === 0) return false;
+  if (positions(plat, EXCLUSION).length > 0) return false;   // « not included » n'est pas « included »
+  return seRapportent(conteneurs, positions(plat, INCLUSION));
+};
+
+/** LE FRAGMENT DIT-IL QUE LE CONTENANT EN EST EXCLU ? */
+const exclusionEstDite = (plat: string) => {
+  const conteneurs = positions(plat, CONTENANTS);
+  if (conteneurs.length === 0) return false;                 // « without the owner » ne dit rien du sac
+  return seRapportent(conteneurs, positions(plat, EXCLUSION));
+};
+
+/* ── UNE SEULE PROPOSITION, PAS UNE PHRASE ENTIÈRE ────────────────────────────────────────────
+ * *Sabotage 1 de Codex.* « Dogs under 8 kg may travel in cabin. The carrier must be labelled. » :
+ * le poids et la borne viennent de la première phrase, le contenant de la seconde, et le tout
+ * passait. Trois fragments qui viennent de la même CITATION ne parlent pas pour autant du même
+ * fait. Ils doivent désormais tenir dans une même proposition.
+ *
+ * Les abréviations d'unité sont protégées avant le découpage : « 17.64 lb. and up to 75 kg »
+ * est une seule proposition, et la soute Air France ne doit pas se couper en deux au milieu de sa
+ * propre fourchette. */
+const ABREV = /\b(lb|lbs|oz|kg|cm|mm|in|no|nr|approx|etc|max|min)\./gi;
+/** Le point DÉCIMAL n'est pas une fin de proposition. Trouvé en écrivant le découpage : « 17.64 »
+ *  se coupait en « 17 » et « 64 », et la soute Air France perdait sa propre fourchette. */
+const DECIMAL = /(?<=\d)\.(?=\d)/g;
+const propositionsDe = (quote: string): string[] =>
+  quote.replace(DECIMAL, "\u0000").replace(ABREV, "$1\u0000")
+    .split(/[.;:]+/).map((p) => normaliser(p.replace(/\u0000/g, ".")))
+    .filter((p) => p.length > 0);
+
+/** LES FRAGMENTS TIENNENT-ILS DANS UNE MÊME PROPOSITION DE LA CITATION ? */
+const memeProposition = (fragments: string[], quote: string | undefined): boolean =>
+  typeof quote === "string"
+  && propositionsDe(quote).some((p) => fragments.every((f) => p.includes(normaliser(f))));
 
 /** LES TROIS DIMENSIONS, DANS L'ORDRE, AVEC LEUR UNITÉ — rien de moins ne prouve un gabarit. */
 const dimensionsSontDites = (plat: string, l: number, w: number, h: number) =>
@@ -289,11 +358,11 @@ export function semantiqueAbsente(a: Attestation): string | null {
   if (a.sujet && !claim.subject) {
     return `un fragment de sujet est rattaché, mais l'attestation ne déclare aucun sujet pesé`;
   }
-  if (claim.subject === "dog_plus_carrier" && !contenantEstDit(aplatir(a.sujet as string))) {
-    return `l'attestation annonce un seuil CONTENANT COMPRIS, mais le fragment « ${a.sujet} » ne nomme aucun contenant`;
+  if (claim.subject === "dog_plus_carrier" && !inclusionEstDite(aplatir(a.sujet as string))) {
+    return `l'attestation annonce un seuil CONTENANT COMPRIS, mais le fragment « ${a.sujet} » ne rattache aucun contenant au poids`;
   }
-  if (claim.subject === "dog_alone" && !chienSeulEstDit(aplatir(a.sujet as string))) {
-    return `l'attestation annonce un seuil sur le chien SEUL, mais le fragment « ${a.sujet} » ne le dit pas explicitement`;
+  if (claim.subject === "dog_alone" && !exclusionEstDite(aplatir(a.sujet as string))) {
+    return `l'attestation annonce un seuil sur le chien SEUL, mais le fragment « ${a.sujet} » n'exclut explicitement aucun contenant`;
   }
   return null;
 }
@@ -364,8 +433,12 @@ export function motifsDeRefus(
     /* La sémantique n'est demandée que si les fragments viennent bien de la phrase : deux motifs
        sur le même manque diraient deux fois la même chose et cacheraient le vrai. */
     if (!provenanceCassee) {
-      const sem = semantiqueAbsente(a);
-      if (sem) motifs.push(`attestations[${i}] : ${sem}`);
+      if (!memeProposition(fragmentsDe(a), quote)) {
+        motifs.push(`attestations[${i}] : les fragments viennent bien de la citation, mais PAS d'une même proposition — ils ne parlent donc pas forcément du même fait`);
+      } else {
+        const sem = semantiqueAbsente(a);
+        if (sem) motifs.push(`attestations[${i}] : ${sem}`);
+      }
     }
     const d = desaccord(a.claim, champs);
     if (d) motifs.push(`attestations[${i}] : ${d}`);

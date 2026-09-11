@@ -4848,3 +4848,59 @@ un défaut de valeur est une affirmation déguisée.**
 corrigée puis fusionnée, Codex rebase son lot sur le nouveau `main`, conserve ensemble la synthèse
 attestée et `farePresentation`, puis régénère les artefacts **une seule fois**. Aucun JSON généré
 n'est recopié ni arbitré à la main de part et d'autre.
+---
+
+## Annexe 54 — Cinq sabotages de plus, et la dernière forme de la même faute (11/09/2026, classement C)
+
+**Troisième contre-revue de Codex, sur `59d4788`.** Le P0 du sujet pesé est reconnu fermé — un
+`weight_includes_carrier` absent ne produit plus « chien seul ». Cinq défauts subsistaient, quatre
+dans le contrat et un dans le rendu.
+
+**1. Trois fragments d'une même citation ne parlent pas du même fait.** « Dogs under 8 kg may travel
+in cabin. **The carrier must be labelled.** » : le poids et la borne venaient de la première phrase,
+le contenant de la seconde, et l'ensemble passait. Les trois fragments doivent désormais tenir dans
+une **même proposition**. Le découpage protège les abréviations d'unité et les décimales — trouvé en
+l'écrivant : « 17.64 » se coupait en « 17 » et « 64 », et la soute Air France perdait sa propre
+fourchette.
+
+**2. Nommer un contenant n'est pas dire qu'il pèse.** « Carrier **not** included in this weight »
+était accepté comme « contenant compris » : le contrôle acceptait le sens exactement opposé. Ce qui
+est exigé n'est plus un mot mais une **relation** — une tournure d'inclusion rattachée au contenant,
+à portée de lecture, et la tournure inverse absente.
+
+**3. « without the » n'est pas une exclusion du contenant.** « Dogs under 8 kg may travel **without
+the owner** » établissait « chien seul ». Un générique d'exclusion sans contenant à proximité ne dit
+rien du sujet pesé, et est refusé.
+
+**4. Des pouces publiés en centimètres.** « 46 × 28 × 24 **in** » validait une claim
+`carrier_dims_cm` de 46 × 28 × 24 : les nombres concordaient, l'unité non, et la fiche aurait publié
+un sac deux fois et demie trop grand. Seul le centimètre est accepté. Une source en pouces exigera
+une conversion **déclarée**, avec son facteur écrit ; aucune n'existe, et aucune ne se fera en
+silence.
+
+**5. LE DÉFAUT DE RENDU, et c'est le plus instructif.** La synthèse écrit le sujet **une seule fois,
+devant les deux bornes** — « chien + caisse, plus de 8 kg et jusqu'à 75 kg ». Elle lisait les sujets
+présents et ignorait les absents : un plancher sans sujet attesté héritait donc du sujet du plafond.
+Le contrat était juste, borne par borne ; c'est la PHRASE qui étendait une preuve au-delà de sa
+portée. Un sujet commun n'est écrit que si **toutes** les bornes le portent, et le même ; sinon la
+synthèse publie les bornes et se tait sur le sujet.
+
+**Le principe, pour la troisième fois et sous une cinquième forme.** L'annexe 53 le formulait déjà :
+ce qui n'est pas dit n'est pas établi. Ces cinq-là ajoutent sa réciproque : **ce qui est dit à côté
+n'est pas dit du fait.** Un mot présent dans la phrase, un nombre présent dans la phrase, une preuve
+présente pour une autre borne — trois voisinages pris pour des rattachements. Le rattachement est une
+relation nommée entre deux morceaux précis, jamais une cohabitation.
+
+**Mouvement des comptes.** Harnais du contrat d'attestation : **29 → 41**, dont les cinq sabotages de
+cette passe, leurs variantes de contrôle et les cinq témoins de rendu. Contre-épreuves d'ingestion :
+**65 → 73** — Codex a exigé que ces sabotages vivent aussi sur le chemin réel, et chacun modifie la
+phrase citée en même temps que le rattachement pour rester cohérent avec lui-même. Harnais des pages
+d'entités : **234**, inchangé. Politiques attestées : **2**. Faits attestés : **3**. Dette Astro :
+**165**. Les artefacts générés ne bougent pas : la fiche Air France était déjà conforme aux cinq
+règles nouvelles, et c'est la seule mesure qui dise si elles étaient déjà respectées ou seulement
+espérées.
+
+**Coordination avec le lot tarifaire, inchangée.** #61 corrigée puis fusionnée, rebase de
+`fix/transavia-air-france-fares` sur le nouveau `main`, synthèse attestée et `farePresentation`
+conservées ensemble, régénération unique des artefacts. Aucun JSON généré n'est recopié ni arbitré à
+la main.

@@ -31,13 +31,18 @@ const nb = (n: number) => String(n);
  *  n'établit pas qu'il est exclu. Le sujet est désormais à trois états, et le troisième est le
  *  silence : la synthèse publie alors la borne SANS nommer ce qui est pesé. */
 function sujet(claims: Claim[], placement: string, locale: string): string | null {
-  const sujets = claims
-    .filter((c) => c.kind === "weight_max" || c.kind === "weight_min")
-    .map((c) => (c as { subject?: "dog_plus_carrier" | "dog_alone" }).subject)
-    .filter((s): s is "dog_plus_carrier" | "dog_alone" => s !== undefined);
-  if (sujets.length === 0) return null;
-  /* Deux bornes de la même phrase ne peuvent pas peser deux sujets différents : si elles le
-     disent, on n'en choisit pas un — on n'en publie aucun. */
+  const poids = claims.filter((c) => c.kind === "weight_max" || c.kind === "weight_min");
+  if (poids.length === 0) return null;
+  const sujets = poids.map((c) => (c as { subject?: "dog_plus_carrier" | "dog_alone" }).subject);
+  /* UN SUJET COMMUN SE PROUVE POUR TOUTES LES BORNES, OU NE SE DIT PAS.
+   *
+   *  *Défaut de rendu trouvé par Codex sur `59d4788`.* Cette ligne lisait les sujets PRÉSENTS et
+   *  ignorait les absents : un plancher sans sujet attesté et un plafond « contenant compris »
+   *  produisaient « chien + caisse, plus de 8 kg et jusqu'à 75 kg » — la preuve d'UNE borne étendue
+   *  en silence à l'autre. La synthèse écrit le sujet UNE fois, devant les deux bornes ; elle ne
+   *  peut donc l'écrire que si les deux le portent, et le même. Sinon elle se tait : les bornes
+   *  restent publiées, ce qui est prouvé, sans le sujet, qui ne l'est pas. */
+  if (sujets.some((s) => s === undefined)) return null;
   if (new Set(sujets).size > 1) return null;
   if (sujets[0] === "dog_alone") return t(locale, "premium.fait.chien_seul");
   return t(locale, placement === "cabin" ? "premium.fait.avec_sac" : "premium.fait.avec_caisse");

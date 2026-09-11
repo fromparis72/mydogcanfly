@@ -369,7 +369,70 @@ console.log("\n=== 3. La décision vient des fiches — les contre-épreuves du 
         '        sujet: "chats et chiens"'));
       const { code, out } = run();
       check("(r) seuil « contenant compris » sur un extrait qui n'en nomme aucun → REFUS", code === 1, out.slice(-400));
-      check("(r) le refus nomme le sujet pesé", out.includes("ne nomme aucun contenant"), out.slice(-500));
+      check("(r) le refus nomme le sujet pesé", out.includes("ne rattache aucun contenant au poids"), out.slice(-500));
+    }
+
+    /* (s) à (v) LES QUATRE SABOTAGES DE CODEX DU `59d4788`, SUR LE CHEMIN RÉEL.
+       Ils sont déjà éprouvés sur la fonction ; Codex a demandé qu'ils le soient aussi à
+       l'ingestion, et il a raison : c'est l'écriture d'`objects.json` qui doit être refusée. Chacun
+       modifie la PHRASE CITÉE en même temps que le rattachement, pour que le sabotage reste
+       cohérent avec lui-même — un rattachement dont le fragment ne vient pas de la phrase serait
+       attrapé par la garde de provenance, et ne prouverait donc rien de ces quatre-là. */
+    {
+      const QUOTE_CAB = 'quote: "En cabine (chats et chiens de moins de 8 kg, sac de transport compris)"';
+      const saboter = (remplacements) => {
+        freshSandbox();
+        let t = readFileSync(af(), "utf8");
+        for (const [a, b] of remplacements) {
+          if (!t.includes(a)) throw new Error(`sabotage : « ${a.slice(0, 50)} » introuvable dans la fiche`);
+          t = t.replace(a, b);
+        }
+        writeFileSync(af(), t);
+        return run();
+      };
+
+      // (s) LE CONTENANT DANS UNE AUTRE PROPOSITION — le cas « The carrier must be labelled ».
+      {
+        const { code, out } = saboter([[QUOTE_CAB,
+          'quote: "En cabine (chats et chiens de moins de 8 kg). Le sac de transport compris est obligatoire."']]);
+        check("(s) sujet pris dans une AUTRE proposition de la phrase → REFUS", code === 1, out.slice(-400));
+        check("(s) le refus nomme la proposition", out.includes("même proposition"), out.slice(-500));
+      }
+
+      // (t) LA PHRASE DIT L'INVERSE — « carrier not included », déclaré « contenant compris ».
+      {
+        const { code, out } = saboter([
+          [QUOTE_CAB, 'quote: "En cabine (chats et chiens de moins de 8 kg, sac de transport non compris)"'],
+          ['sujet: "sac de transport compris"', 'sujet: "sac de transport non compris"'],
+        ]);
+        check("(t) phrase qui EXCLUT le contenant, déclarée « contenant compris » → REFUS", code === 1, out.slice(-400));
+        check("(t) le refus dit que rien ne rattache le contenant au poids",
+          out.includes("ne rattache aucun contenant au poids"), out.slice(-500));
+      }
+
+      // (u) UN GÉNÉRIQUE D'EXCLUSION QUI NE PARLE PAS DU CONTENANT — le cas « without the owner ».
+      {
+        const { code, out } = saboter([
+          [QUOTE_CAB, 'quote: "En cabine (chats et chiens de moins de 8 kg, sans son maître)"'],
+          ["          subject: dog_plus_carrier", "          subject: dog_alone"],
+          ['sujet: "sac de transport compris"', 'sujet: "sans son maître"'],
+          ["    weight_includes_carrier: true", "    weight_includes_carrier: false"],
+        ]);
+        check("(u) « sans son maître » déclaré comme « chien seul » → REFUS", code === 1, out.slice(-400));
+        check("(u) le refus dit qu'aucun contenant n'est exclu",
+          out.includes("n'exclut explicitement aucun contenant"), out.slice(-500));
+      }
+
+      // (v) DES POUCES PUBLIÉS EN CENTIMÈTRES.
+      {
+        const { code, out } = saboter([
+          [QUOTE_CAB, 'quote: "En cabine (chats et chiens de moins de 8 kg, sac de transport compris) 46 x 28 x 24 in"'],
+          ['        sujet: "sac de transport compris"',
+           '        sujet: "sac de transport compris"\n      - claim:\n          kind: carrier_dims_cm\n          l: 46\n          w: 28\n          h: 24\n        dimensions: "46 x 28 x 24 in"'],
+        ]);
+        check("(v) dimensions en POUCES rattachées à une claim en centimètres → REFUS", code === 1, out.slice(-400));
+        check("(v) le refus nomme l'unité", out.includes("avec leur unité"), out.slice(-500));
+      }
     }
 
     // (p) LE TÉMOIN POSITIF — sans quoi (n) et (o) passeraient aussi bien si l'ingestion
