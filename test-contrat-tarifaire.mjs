@@ -932,8 +932,13 @@ console.log("\n=== 16. LA FRONTIÈRE ENTRE VALIDATION ET RÉSOLUTION (P1, quatri
 
     const parLecteur = join(bacTs, "par-lecteur.ts");
     ecrire(parLecteur, `import { lireTarif, resoudreTarif } from "../packages/knowledge/src/index";\nconst t = lireTarif({ ${CORPS}, source: ${SRC_TS} });\nexport const r = t ? resoudreTarif([t], [], "hold", { placement: "hold" }) : null;\n`);
+    /* Une seule compilation : l'argument de détail est évalué même quand l'assertion passe, et
+       appelait donc `tsc` une seconde fois pour rien. Relevé par Codex sur `a676fb8`, jugé trop
+       mince pour justifier une tête à lui seul ; replié ici, dans le premier commit qui rouvre ce
+       fichier, comme annoncé. */
+    const erreursLecteur = compiler(parLecteur);
     check("…et le MÊME tarif, passé par `lireTarif`, compile proprement : la marque refuse la faute, pas la fonction",
-      compiler(parLecteur) === "", compiler(parLecteur).slice(0, 300));
+      erreursLecteur === "", erreursLecteur.slice(0, 300));
 
     /* CE QUE LA MARQUE NE FAIT PAS, et pourquoi le reparsage existe. */
     const transtypage = join(bacTs, "transtypage.ts");
