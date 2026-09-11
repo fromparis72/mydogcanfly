@@ -246,7 +246,9 @@ const jsonLd = faqItems.length ? [webpageLd, faqJsonLd(faqItems)] : [webpageLd];
           const lienOfficiel = preuve ? null : sourceAffichable(decision);
           return (
             <div class="mini" data-placement={c.placement} data-status={statut}>
-              <div class="t">{c.icon} {t(c.name)}<span class={`pill ${classeStatut(statut)} ml`}>{tt(locale, cleLibelleStatut(statut))}</span></div>
+              {/* ARBITRAGE CODEX (10/09/2026) : le nom du canal est un élément mesurable (`.nm`), la pastille ne dit que l'état
+                  court, et l'en-tête peut passer à la ligne — sur une colonne étroite, l'état passe SOUS « Cabine / Soute / Fret ». */}
+              <div class="t"><span class="nm">{c.icon} {t(c.name)}</span><span class={`pill ${classeStatut(statut)} ml`}>{tt(locale, cleLibelleStatut(statut))}</span></div>
               {/* ── `c.detail` NE SORT PLUS TEL QUEL (contre-revue du 05/09/2026) ─────────────
                   J'avais écrit que « rien de faux n'atteint l'écran » après n'avoir vérifié que
                   la PASTILLE. C'était inexact, et la contre-revue l'a montré : juste sous une
@@ -479,6 +481,10 @@ const jsonLd = faqItems.length ? [webpageLd, faqJsonLd(faqItems)] : [webpageLd];
   .afp .mt6 { margin-top: 6px; } .afp .mt8 { margin-top: 8px; } .afp .mt14 { margin-top: 14px; } .afp .mb8 { margin-bottom: 8px; }
   .afp .pill { display: inline-flex; align-items: center; gap: 5px; font-size: 12.5px; font-weight: 700; padding: 4px 11px; border-radius: 999px; white-space: nowrap; }
   .afp .pill.big { font-size: 14px; padding: 6px 13px; } .afp .pill.sm { font-size: 11.5px; }
+  /* ARBITRAGE CODEX (10/09/2026) : mesuré sur la fiche Aeromexico en ligne, le bandeau « Transport possible sous conditions
+     de la compagnie sur au moins un canal cité » (nowrap, boîte de 240 px) débordait SUR le H1, et les capsules des canaux
+     débordaient de leur carte. Le bandeau et les pastilles de canal peuvent passer à la ligne ; jamais d'absolu. */
+  .afp .pill.big, .afp .mini .t .pill { white-space: normal; text-align: left; line-height: 1.25; }
   .afp .ok { background: #dcfce7; color: #166534; } .afp .no { background: #fee2e2; color: #b3261e; } .afp .warn { background: #fff3e2; color: #9a5a12; }
   .afp .neutral { background: var(--mdcf-subtle, #f5f7fa); color: var(--mdcf-muted, #5b6b7f); }
   .afp .chips { display: flex; gap: 7px; flex-wrap: wrap; }
@@ -489,7 +495,8 @@ const jsonLd = faqItems.length ? [webpageLd, faqJsonLd(faqItems)] : [webpageLd];
   .afp .logo img { max-height: 48px; max-width: 168px; width: auto; height: auto; object-fit: contain; display: block; }
   .afp .hero-id { flex: 1 1 240px; min-width: 0; }
   .afp .hero-id .chips { margin-top: 8px; }
-  .afp .hero-verdict { flex: 0 0 auto; text-align: right; max-width: 240px; }
+  /* Le bandeau est une LIGNE À PART sous le titre (arbitrage Codex, 10/09/2026) — plus jamais à côté du H1. */
+  .afp .hero-verdict { flex: 1 1 100%; min-width: 0; text-align: left; }
   .afp .hero-verdict p { margin: 8px 0 0; color: var(--mdcf-muted, #5b6b7f); font-size: 13.5px; }
   /* Pleine largeur sous le logo et le titre : `flex-basis: 100%` la force à la ligne dans un
    * conteneur en `flex-wrap`, sans toucher au reste de l'en-tête. Discrète mais lisible —
@@ -497,7 +504,7 @@ const jsonLd = faqItems.length ? [webpageLd, faqJsonLd(faqItems)] : [webpageLd];
   .afp .hero-nonaff { flex: 1 1 100%; margin: 4px 0 0; padding-top: 10px;
     border-top: 1px solid var(--mdcf-border, #e6eaf0);
     color: var(--mdcf-muted, #5b6b7f); font-size: 12.5px; line-height: 1.45; }
-  .afp .hv-row { display: flex; gap: 9px; align-items: center; justify-content: flex-end; flex-wrap: wrap; }
+  .afp .hv-row { display: flex; gap: 9px; align-items: center; justify-content: flex-start; flex-wrap: wrap; }
   .afp .hv-score { display: inline-flex; align-items: baseline; gap: 1px; padding: 5px 11px; border-radius: 12px; font-weight: 800; line-height: 1;
     background: var(--mdcf-subtle, #f5f7fa); color: var(--mdcf-ink, #1a2433); border: 1.5px solid var(--mdcf-line, #e6ebf1); }
   .afp .hv-score b { font-size: 18px; } .afp .hv-score small { font-size: 11px; font-weight: 700; opacity: .6; }
@@ -512,7 +519,8 @@ const jsonLd = faqItems.length ? [webpageLd, faqJsonLd(faqItems)] : [webpageLd];
   .afp .cratecta:hover { border-color: var(--mdcf-accent-ink, #b4530a); }
   .afp .g { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 14px; }
   .afp .mini { background: var(--mdcf-subtle, #f5f7fa); border-radius: 12px; padding: 14px 15px; }
-  .afp .mini .t { display: flex; align-items: center; gap: 8px; font-weight: 700; }
+  .afp .mini .t { display: flex; align-items: center; gap: 6px 8px; font-weight: 700; flex-wrap: wrap; }
+  .afp .mini .t .nm { min-width: 0; }
   .afp .mini .t .ml { margin-left: auto; }
   .afp .mini .t .aci { color: #166534; font-weight: 800; }
   .afp .k { color: var(--mdcf-muted, #5b6b7f); font-size: 13.5px; margin-top: 6px; }
@@ -554,8 +562,6 @@ const jsonLd = faqItems.length ? [webpageLd, faqJsonLd(faqItems)] : [webpageLd];
   .afp .cta .book:hover { border-color: var(--mdcf-accent-ink, #b4530a); box-shadow: 0 2px 8px rgba(15, 23, 42, .06); }
   @media (max-width: 640px) {
     .afp .hero { gap: 12px 14px; }
-    .afp .hero-verdict { flex: 1 1 100%; max-width: none; min-width: 0; text-align: left; }
-    .afp .hv-row { justify-content: flex-start; }
     .afp .hero-verdict p { margin-top: 6px; }
   }
   .afp .reach-blk { margin-top: 12px; }

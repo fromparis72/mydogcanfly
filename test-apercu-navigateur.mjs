@@ -359,6 +359,64 @@ console.log("\n=== La préversion ne doit PAS être indexable ===");
   await p.close();
 }
 
+/* ---- 10 ter. FICHE COMPAGNIE : LE BANDEAU SOUS LE TITRE, LES PASTILLES SANS CHEVAUCHEMENT ---------------
+   Arbitrage Codex (10/09/2026), sur la capture d'Aeromexico en ligne : le bandeau « … sur au moins un canal cité »
+   passait SUR le H1, les capsules des canaux débordaient. On mesure des RECTANGLES rendus, trois largeurs (bureau,
+   tablette, mobile), quatre langues — l'espagnol et le portugais donnent les libellés les plus longs. */
+console.log("\n=== Fiche compagnie : bandeau sur sa ligne, pastilles courtes, aucun chevauchement — 3 largeurs × 4 langues ===");
+{
+  const ATTENDU = {
+    "": { verdict: "Transport possible under conditions", pastilles: ["Under conditions", "Refused", "To confirm", "Accepted"] },
+    "/fr": { verdict: "Transport possible sous conditions", pastilles: ["Sous conditions", "Refusé", "À confirmer", "Accepté"] },
+    "/es": { verdict: "Transporte posible bajo condiciones", pastilles: ["Bajo condiciones", "Rechazado", "A confirmar", "Aceptado"] },
+    "/pt": { verdict: "Transporte possível sob condições", pastilles: ["Sob condições", "Recusado", "A confirmar", "Aceito"] },
+  };
+  const mesurer = (p) => p.evaluate(() => {
+    const R = (el) => { const b = el.getBoundingClientRect(); return { top: Math.round(b.top), bottom: Math.round(b.bottom), left: Math.round(b.left), right: Math.round(b.right) }; };
+    const h1 = document.querySelector(".afp h1"), v = document.querySelector(".afp .hero-verdict .pill.big");
+    const minis = [...document.querySelectorAll(".afp .mini")].map((mi) => {
+      const nm = mi.querySelector(".t .nm"), pill = mi.querySelector(".t .pill");
+      return { mini: R(mi), nm: nm && R(nm), pill: pill && R(pill), texte: pill?.textContent.trim(), pos: pill && getComputedStyle(pill).position };
+    });
+    return { h1: h1 && R(h1), v: v && R(v), vTexte: v?.textContent.replace(/^★\s*/, "").trim(), vPos: v && getComputedStyle(v).position,
+      minis, scrollW: document.documentElement.scrollWidth, innerW: window.innerWidth };
+  });
+  const chev = (a, b) => !!a && !!b && a.left < b.right - 1 && b.left < a.right - 1 && a.top < b.bottom - 1 && b.top < a.bottom - 1;
+  for (const [loc, att] of Object.entries(ATTENDU)) {
+    const nom = loc || "/en";
+    const p = await nouvellePage();
+    const r = await p.goto(`${BASE}${loc}/airlines/aeromexico/`, { waitUntil: "domcontentloaded" });
+    check(`fiche Aeromexico ${nom} : s'ouvre`, r?.status() === 200, `HTTP ${r?.status()}`);
+    for (const w of [1280, 800, 400]) {
+      await p.setViewportSize({ width: w, height: 900 });
+      await p.waitForTimeout(150);
+      const m = await mesurer(p);
+      check(`${nom} @${w} : le bandeau dit « ${att.verdict} », sur sa ligne SOUS le titre, sans le chevaucher`,
+        m.vTexte === att.verdict && !!m.h1 && !!m.v && m.v.top >= m.h1.bottom - 1 && !chev(m.h1, m.v), JSON.stringify({ v: m.vTexte, h1: m.h1, pill: m.v }));
+      check(`${nom} @${w} : aucune pastille en position absolue`, m.vPos !== "absolute" && m.minis.every((x) => x.pos !== "absolute"));
+      check(`${nom} @${w} : la page ne défile pas horizontalement`, m.scrollW <= m.innerW + 1, `${m.scrollW} > ${m.innerW}`);
+      check(`${nom} @${w} : trois pastilles de canal, chacune un état court, dans sa carte, sans chevaucher « Cabine / Soute / Fret »`,
+        m.minis.length === 3 && m.minis.every((x) => x.pill && att.pastilles.includes(x.texte) && x.pill.right <= x.mini.right + 1 && x.pill.left >= x.mini.left - 1 && x.nm && !chev(x.nm, x.pill)),
+        JSON.stringify(m.minis.map((x) => ({ t: x.texte, nm: x.nm, pill: x.pill, mini: x.mini }))));
+      check(`${nom} @${w} : la fiche ne dit plus « sur au moins un canal cité »`, !/at least one cited channel|au moins un canal cité|al menos un canal citado|pelo menos um canal citado/.test(await p.textContent("body")));
+    }
+    await capturer(p, `12-fiche-aeromexico${loc.replace("/", "-") || "-en"}-400px`);
+    await p.close();
+  }
+  /* Un REFUS documenté sur la pastille, dans la langue la plus longue et la plus étroite des largeurs : British Airways cabine, pt, 400 px. */
+  {
+    const p = await nouvellePage();
+    await p.setViewportSize({ width: 400, height: 900 });
+    const r = await p.goto(`${BASE}/pt/airlines/british-airways/`, { waitUntil: "domcontentloaded" });
+    const m = r?.status() === 200 ? await mesurer(p) : null;
+    const cab = m?.minis.find((x) => true);
+    check("British Airways pt @400 : la pastille cabine dit « Recusado », dans sa carte, sans chevauchement",
+      !!m && m.minis.length === 3 && m.minis[0].texte === "Recusado" && m.minis[0].pill.right <= m.minis[0].mini.right + 1 && !chev(m.minis[0].nm, m.minis[0].pill), JSON.stringify(cab));
+    await capturer(p, "12-fiche-british-airways-pt-400px");
+    await p.close();
+  }
+}
+
 /* ---- 11. LES DEUX AUTRES ARBITRAGES, DANS LE DOM RÉEL --------------------------------------- */
 console.log("\n=== Fiche de race : plus aucune affirmation sans preuve ===");
 {
