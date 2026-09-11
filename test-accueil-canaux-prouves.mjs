@@ -75,7 +75,120 @@ for (const [l, rel] of Object.entries(pages)) {
   if (compte.refus > 0 && z.corps.includes(attendue) && !attendue.includes(String(compte.refus))) echec(`${l} : la phrase ne porte pas le nombre de refus`);
 }
 
-/* 3. NON-VACUITÉ : la phrase calculée pour un autre compte serait différente — sinon le contrôle
+/* 3. LES TITRES ET DESCRIPTIONS SEO DES QUATRE ACCUEILS (11/09/2026, arbitrage de Philippe).
+      Ils sont vérifiés ICI plutôt que dans un harnais neuf : ce fichier ouvre déjà les quatre
+      pages d'accueil CONSTRUITES, dans les quatre langues, et tourne en CI après le build. Un
+      second harnais qui rouvrirait les mêmes quatre fichiers serait une seconde définition de
+      « ce que l'accueil annonce » — la faute que ce dépôt collectionne.
+
+      CE QU'ON MESURE, ET POURQUOI CHAQUE LIGNE EXISTE :
+        · le `<title>` et la `<meta name="description">` valent EXACTEMENT le texte arbitré ;
+        · `og:title`, `og:description`, `twitter:title` et `twitter:description` réemploient déjà
+          ces deux valeurs dans `Base.astro` : on exige la concordance plutôt que de la supposer,
+          car c'est précisément le genre de recopie qui se désynchronise en silence ;
+        · AUCUN suffixe de marque n'est ajouté par notre code — le titre anglais en portait un
+          (« | MyDogCanFly »), retiré par l'arbitrage ; Google affiche le nom du site de lui-même ;
+        · les ANCIENS titres et descriptions ne subsistent dans aucune zone publique ;
+        · le H1 visible et les slogans arbitrés ne bougent pas — c'est la garde qui empêche une
+          correction SEO de déborder sur le contenu ;
+        · le portugais est du portugais du Brésil, ANNONCÉ comme tel (`lang="pt-BR"`,
+          `og:locale = pt_BR`), et sans repli : ses quatre chaînes lui sont propres. */
+const SEO_ATTENDU = {
+  en: {
+    title: "Flying With a Dog: Airline Policies and Entry Rules",
+    description: "Check airline policies and destination-country entry requirements for flying with your dog: cabin, hold, cargo, documents, restrictions, and sources.",
+  },
+  fr: {
+    title: "Voyager avec son chien : compagnies et formalités par pays",
+    description: "Consultez les conditions des compagnies aériennes et du pays de destination pour voyager avec votre chien : cabine, soute, fret, documents et restrictions.",
+  },
+  es: {
+    title: "Volar con perro: aerolíneas y requisitos por país",
+    description: "Consulta las condiciones de las aerolíneas y del país de destino para viajar con tu perro: cabina, bodega, carga, documentos y restricciones.",
+  },
+  pt: {
+    title: "Viajar com cachorro: companhias e regras por país",
+    description: "Consulte as regras das companhias aéreas e do país de destino para viajar com seu cachorro: cabine, porão, carga, documentos e restrições.",
+  },
+};
+/* Les textes REMPLACÉS. Ils ne sont pas effacés du dépôt : ils sont ce que la garde traque. */
+const SEO_ANCIENS = [
+  "Can My Dog Fly? Airline Conditions, Confirmed or To Check",
+  "| MyDogCanFly",
+  "Voyager avec son chien en avion : ce qui est confirmé, ce qui reste à vérifier",
+  "¿Puede volar mi perro? Normas de las aerolíneas, con fuentes",
+  "O meu cão pode voar? Regras das companhias, com fontes",
+  "Airline conditions for dogs — cabin, hold and cargo",
+  "Les conditions des compagnies pour les chiens — cabine, soute, fret",
+  "Las condiciones de las aerolíneas para perros — cabina, bodega y carga",
+  "As condições das companhias para cães — cabine, porão e carga",
+];
+{
+  const decoder = (v) => v.replace(/&quot;/g, '"').replace(/&#39;/g, "'").replace(/&amp;/g, "&")
+    .replace(/&lt;/g, "<").replace(/&gt;/g, ">").replace(/&#x27;/g, "'");
+  const balise = (html, re) => { const m = html.match(re); return m ? decoder(m[1]) : null; };
+  for (const [l, rel] of Object.entries(pages)) {
+    const f = join(DIST, rel);
+    if (!existsSync(f)) { echec(`SEO ${l} : ${rel} absent du dist`); continue; }
+    const html = readFileSync(f, "utf8");
+    const att = SEO_ATTENDU[l];
+    const titre = balise(html, /<title>([\s\S]*?)<\/title>/);
+    const desc = balise(html, /<meta name="description" content="([^"]*)"/);
+    if (titre !== att.title) echec(`SEO ${l} : <title> inattendu`, JSON.stringify({ vu: titre, attendu: att.title }));
+    else ok(`SEO ${l} : <title> exact — « ${att.title} »`);
+    if (desc !== att.description) echec(`SEO ${l} : meta description inattendue`, JSON.stringify({ vu: desc?.slice(0, 90), attendu: att.description.slice(0, 90) }));
+    else ok(`SEO ${l} : meta description exacte (${att.description.length} caractères)`);
+    /* Les métadonnées sociales réemploient les deux mêmes valeurs : on le CONSTATE. */
+    for (const [nom, re, valeur] of [
+      ["og:title", /<meta property="og:title" content="([^"]*)"/, att.title],
+      ["og:description", /<meta property="og:description" content="([^"]*)"/, att.description],
+      ["twitter:title", /<meta name="twitter:title" content="([^"]*)"/, att.title],
+      ["twitter:description", /<meta name="twitter:description" content="([^"]*)"/, att.description],
+    ]) {
+      const vu = balise(html, re);
+      if (vu !== valeur) echec(`SEO ${l} : ${nom} ne concorde pas avec la valeur arbitrée`, JSON.stringify({ vu: vu?.slice(0, 80) }));
+    }
+    /* Aucun suffixe de marque ajouté par notre code : le titre vaut la chaîne, à l'octet près. */
+    if (titre && /[|–—-]\s*MyDogCanFly\s*$/.test(titre)) echec(`SEO ${l} : un suffixe de marque est ajouté au titre`, titre);
+    /* Les anciens textes ne subsistent nulle part dans les zones publiques. */
+    const z = zonesDe(html);
+    const tout = [z.titre, z.corps, z.metas, z.jsonLd, z.attributs].join("\n");
+    const survivant = SEO_ANCIENS.find((v) => tout.includes(v));
+    if (survivant) echec(`SEO ${l} : un ancien texte est encore publié`, survivant);
+    /* LE CONTENU VISIBLE N'A PAS BOUGÉ — et cette garde-ci a dû être refondue avant d'être crue.
+       *Erreur nommée, 11/09/2026.* Ma première rédaction cherchait la chaîne « Can MY dog fly? »
+       dans le corps de la page anglaise et passait au vert. Elle passait pour une MAUVAISE RAISON :
+       le H1 construit dit « Can your dog fly? », et la chaîne cherchée existait ailleurs — sur le
+       bouton du formulaire, dans un H2 et dans un bloc de libellés JSON. Un sabotage du H1 ne la
+       faisait pas rougir. C'est exactement la faute que ce dépôt traque : un contrôle vert parce
+       qu'il a trouvé autre chose que ce qu'il croyait regarder.
+       Elle est remplacée par une exigence qui ne dépend d'AUCUN texte d'accroche particulier, et
+       qui survivra donc aux arbitrages éditoriaux à venir : la correction SEO est restée dans le
+       `<head>`. Le titre et la description arbitrés ne doivent apparaître NULLE PART dans le corps,
+       et le H1 ne doit pas s'être aligné sur le titre SEO. */
+    const h1 = (html.match(/<h1[^>]*>([\s\S]*?)<\/h1>/)?.[1] ?? "").replace(/<[^>]*>/g, " ").replace(/\s+/g, " ").trim();
+    if (!h1) echec(`SEO ${l} : aucun H1 sur l'accueil — la garde ne mordrait sur rien`);
+    else if (decoder(h1) === att.title) echec(`SEO ${l} : le H1 visible a pris la valeur du titre SEO`, h1);
+    if (z.corps.includes(att.title)) echec(`SEO ${l} : le titre SEO est publié dans le CORPS de la page`, att.title);
+    if (z.corps.includes(att.description)) echec(`SEO ${l} : la description SEO est publiée dans le CORPS de la page`);
+  }
+  /* Le portugais est du portugais du BRÉSIL, annoncé comme tel — et il ne se replie sur personne. */
+  const pt = readFileSync(join(DIST, pages.pt), "utf8");
+  if (!/<html lang="pt-BR"/.test(pt)) echec("SEO pt : la page ne s'annonce pas en pt-BR");
+  else ok("SEO pt : la page s'annonce en pt-BR");
+  if (!/<meta property="og:locale" content="pt_BR"/.test(pt)) echec("SEO pt : og:locale n'est pas pt_BR");
+  for (const [autre, texte] of [["en", SEO_ATTENDU.en.title], ["fr", SEO_ATTENDU.fr.title], ["es", SEO_ATTENDU.es.title]]) {
+    if (pt.includes(texte)) echec(`SEO pt : la page porte le titre ${autre} — repli de langue`, texte);
+  }
+  /* NON-VACUITÉ : les quatre titres et les quatre descriptions sont DISTINCTS deux à deux ; sans
+     cela, une langue repliée sur une autre passerait tous les contrôles ci-dessus. */
+  const titres = Object.values(SEO_ATTENDU).map((v) => v.title);
+  const descs = Object.values(SEO_ATTENDU).map((v) => v.description);
+  if (new Set(titres).size !== 4 || new Set(descs).size !== 4) echec("SEO : deux langues partagent un titre ou une description — le contrôle ne mordrait plus");
+  else ok("SEO : les quatre titres et les quatre descriptions sont distincts — aucune langue n'en replie une autre");
+}
+
+/* 4. NON-VACUITÉ : la phrase calculée pour un autre compte serait différente — sinon le contrôle
       accepterait une phrase sans nombre. */
 {
   const a = tables.fr[cle].replace("{open}", "0").replace("{refusals}", "1");

@@ -4464,10 +4464,58 @@ n'est pas un `as` dispersé chez l'appelant.
 **Mouvement des comptes.** Contre-épreuves du contrat tarifaire : **163 → 175**. Aucun autre compteur ne bouge :
 `objects.json` ne porte ni tarif ni conflit. Typecheck propre, 220 témoins unitaires, catalogue de contrat à
 66 garanties, dette Astro stable à 165.
-
 ---
 
-### Déploiement de `main` `52d138f` (11/09/2026, Philippe, depuis son Mac) — prouvé au second essai
+## Annexe 49 — Titres et descriptions SEO des quatre accueils (11/09/2026, classement B)
+
+**Arbitrage validé par Philippe, textes verbatim.** Les quatre pages d'accueil reçoivent un nouveau `<title>` et
+une nouvelle `<meta name="description">`. Périmètre strict : le bloc SEO existant de `/`, `/fr/`, `/es/` et
+`/pt/`, et rien d'autre. Aucun contenu métier, aucune donnée de compagnie ou de pays, aucun composant neuf,
+aucun système de traduction neuf.
+
+**Trois changements de fond, tous voulus.** Le suffixe de marque « | MyDogCanFly » disparaît du titre anglais :
+Google affiche déjà le nom du site et décide seul de l'ajouter ou de le retirer, l'écrire nous-mêmes ne consomme
+que des caractères utiles. Les titres passent de la question de marque à l'intention de recherche. Les
+descriptions annoncent les **deux moitiés** du site — conditions des compagnies ET formalités du pays de
+destination — là où les précédentes ne parlaient que des compagnies.
+
+**Ce qui ne bouge pas, et qui est gardé.** Le H1 visible et les slogans arbitrés. Aucun suffixe n'est ajouté par
+notre code : `og:title`, `og:description`, `twitter:title` et `twitter:description` réemploient les deux mêmes
+valeurs dans `Base.astro`, et la garde le **constate** au lieu de le supposer. Le portugais est du portugais du
+Brésil et l'annonce : `lang="pt-BR"`, `og:locale = pt_BR`, quatre chaînes propres, aucun repli.
+
+**Aucune garde existante ne portait les anciens textes** — mesuré avant d'écrire : le seul fichier du dépôt qui
+les contenait était la page elle-même. Il n'y avait donc rien à déplacer, mais il fallait un endroit pour
+vérifier. Les contrôles vont dans `test-accueil-canaux-prouves.mjs`, qui ouvre **déjà** les quatre accueils
+construits et tourne en CI après le build. Un second harnais rouvrant les mêmes quatre fichiers aurait été une
+seconde définition de « ce que l'accueil annonce ».
+
+**Erreur nommée, et c'est la leçon de ce lot.** Ma première garde du contenu visible cherchait la chaîne
+« Can MY dog fly? » dans le corps de la page anglaise, et passait au vert. **Elle passait pour une mauvaise
+raison** : le H1 construit dit « Can your dog fly? », et la chaîne cherchée existait ailleurs — sur le bouton du
+formulaire, dans un H2 et dans un bloc de libellés JSON. Un sabotage du H1 ne la faisait pas rougir, et je l'ai
+constaté seulement en essayant de la mettre en défaut. Un contrôle vert parce qu'il a trouvé autre chose que ce
+qu'il croyait regarder est exactement la faute que ce dossier traque depuis le premier jour.
+
+Elle est refondue sur une exigence qui ne dépend d'**aucun texte d'accroche particulier**, et qui survivra donc
+aux arbitrages éditoriaux à venir, #53 compris : la correction SEO est restée dans le `<head>`. Le titre et la
+description arbitrés n'apparaissent nulle part dans le corps, le H1 existe, et il ne s'est pas aligné sur le
+titre SEO.
+
+**Sept sabotages joués sur l'artefact construit, sept refus nommés** : un titre changé, un suffixe de marque
+ajouté, un `og:title` désynchronisé, un ancien texte réapparu dans le corps, un ancien titre réapparu dans le
+JSON-LD, un H1 aligné sur le titre SEO, un H1 supprimé. Un huitième a été écarté et il est nommé : injecter un
+ancien texte dans une `<meta name="x">` arbitraire ne fait pas rougir la garde, parce que `zonesDe` ne collecte
+que les balises réellement publiées au visiteur ou aux moteurs. Ce n'est pas un trou : c'est la portée exacte
+des zones publiques, et mon sabotage visait hors d'elles.
+
+**Longueurs mesurées** (caractères) : 149 en anglais, 155 en français, 141 en espagnol, 138 en portugais.
+
+**Mouvement des comptes.** Aucun. Typecheck propre, 220 témoins unitaires, dette Astro stable à 165. Le lot est
+indépendant de la chaîne de fusion en cours (#53 à #56) et ne touche aucun fichier qu'elles modifient.
+---
+
+### Déploiement de `main` `52d138f` (11/09/2026, Philippe, depuis son Mac) — prouvé au troisième essai
 
 **Trois bascules du worker, et c'est la troisième qui fait preuve.** La première, sans le drapeau,
 rendait `sha: "unknown"` (voir plus bas). La deuxième, avec `--var BUILD_SHA:` recopié à la main,
