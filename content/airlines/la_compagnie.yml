@@ -66,6 +66,29 @@ ladder:
       pt: "não transportado"
 policies:
   cabin:
+    # TARIFS OFFICIELS — audit indépendant du 2026-09-10 ; aucune valeur héritée réactivée.
+    fares:
+      - id: fare_la_compagnie_cabin_eur_2026_09_10
+        placement: cabin
+        price:
+          kind: exact
+          amounts:
+            - amount: 200
+              currency: EUR
+        billing_subject: pet_or_container
+        journey_basis: per_journey
+        scope_label: Paris/New York/Milan réseau admissible → réseau admissible
+        source:
+          url: https://www.lacompagnie.com/en/plan/special-services
+          source_type: official_website
+          verified_date: 2026-09-10
+          review_due: 2026-12-09
+          confidence: 4
+          reviewer: Codex — lecture directe de la source officielle
+          history: []
+          quote: EUR 200 per journey
+          quote_language: en
+          locator: Pets
     availability: offered
     # PREUVE IMPORTÉE — import strict lot7 (Codex, lecture directe du 2026-09-09, cohorte LOT7 fait 19).
     # Effet attendu : La Compagnie cabin is conditional with an 8 kg combined animal-and-bag ceiling.

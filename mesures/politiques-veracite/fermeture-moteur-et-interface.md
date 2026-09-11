@@ -4464,3 +4464,34 @@ n'est pas un `as` dispersé chez l'appelant.
 **Mouvement des comptes.** Contre-épreuves du contrat tarifaire : **163 → 175**. Aucun autre compteur ne bouge :
 `objects.json` ne porte ni tarif ni conflit. Typecheck propre, 220 témoins unitaires, catalogue de contrat à
 66 garanties, dette Astro stable à 165.
+
+---
+
+## Annexe 49 — Les tarifs vérifiés atteignent enfin le Finder (11/09/2026)
+
+**Le défaut public.** Le contrat tarifaire de la PR #56 était volontairement vide : aucune donnée n'avait été
+importée et le Finder disait donc « tarif à confirmer » partout. Le déploiement du contrat n'était pas celui des
+tarifs. Ce lot accomplit le second geste, sans rouvrir les anciens champs `fee`, `fareList` ou `fareGrid`.
+
+**La collecte est verrouillée avant toute lecture.** L'importeur exige les 306 lignes du fichier consolidé et son
+SHA-256 exact (`c5efcd57…c52b`). Il n'importe que les lignes dont l'extrait officiel porte lui-même un montant ou
+un mécanisme tarifaire explicite ; il refuse les citations trop courtes et n'emploie jamais un prix hérité comme
+repli. Résultat : **157 lignes tarifaires**, sur **116 canaux** et **68 compagnies** ; **27 lignes exclues** plutôt
+que complétées au jugé. Le manifeste `import-tarifs-verifies.json` fige ces comptes et l'empreinte de l'entrée.
+
+**Ce que le visiteur voit.** Le Finder reçoit une résolution distincte pour cabine, soute et fret. Lorsqu'une
+zone commerciale ou une autre condition manque au contexte, le prix reste une **grille officielle publiée**, avec
+la réserve « selon le trajet et les conditions » : jamais le prix exact du trajet. Les mécanismes « sur devis »,
+« calculateur », « formule » et « prix à la réservation » restent distincts des montants. La source, le locator et
+la date vivent dans le volet fermé « Voir les preuves » ; le prix utile reste sur la ligne du canal.
+
+**Deux défauts de parseur trouvés par les cas réels.** Une fourchette dont la devise n'était écrite qu'une fois
+(`JPY 5,500 to 7,700`, `55–75 EUR`) perdait une borne ; une suite multidevise (`CHF 75 EUR 65 USD 80`) pouvait
+croiser le nombre précédent avec la devise suivante. Les deux sont fermés par des témoins nominatifs. S'y ajoutent
+`ab 59,99 Euro`, `$150 USD/CAD` et `40€/50$/35£`, qui empêchent une réussite limitée aux formes les plus simples.
+
+**Les anciennes gardes ont été refondées, pas supprimées.** La comptabilité des montants distingue désormais
+**1 563 occurrences dormantes** et **337 occurrences dans les objets tarifaires prouvés**, avec zéro montant hors
+classement. Le harnais du Finder exige la fourchette, sa réserve et sa preuve repliée dans les quatre langues. Le
+contrat HTTP réel exige les trois résolutions et relit KLM jusqu'au Worker. Un canal refusé ne publie toujours
+aucun tarif.

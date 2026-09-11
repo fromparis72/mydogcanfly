@@ -73,6 +73,31 @@ ladder:
       pt: "conexão de 3 h+"
 policies:
   cabin:
+    # TARIFS OFFICIELS — audit indépendant du 2026-09-10 ; aucune valeur héritée réactivée.
+    fares:
+      - id: fare_klm_cabin_eur_2026_09_10
+        placement: cabin
+        price:
+          kind: range
+          amounts:
+            - amount: 70
+              currency: EUR
+            - amount: 500
+              currency: EUR
+        billing_subject: pet_or_container
+        journey_basis: per_one_way
+        scope_label: aéroport départ → destination
+        source:
+          url: https://www.klm.com/information/pets/reservation
+          source_type: official_website
+          verified_date: 2026-09-10
+          review_due: 2026-12-09
+          confidence: 4
+          reviewer: Codex — lecture directe de la source officielle
+          history: []
+          quote: between EUR 70 and EUR 500
+          quote_language: en
+          locator: Pet reservation fee
     availability: offered
     # PREUVE IMPORTÉE — import strict V3 (Codex, lecture directe du 2026-09-08, cohorte A fait 7).
     # Effet attendu : For a 32 kg dog, cabin is not suitable.
@@ -92,6 +117,31 @@ policies:
       quote_language: en
       locator: "Pets in the cabin"
   hold:
+    # TARIFS OFFICIELS — audit indépendant du 2026-09-10 ; aucune valeur héritée réactivée.
+    fares:
+      - id: fare_klm_hold_eur_2026_09_10
+        placement: hold
+        price:
+          kind: range
+          amounts:
+            - amount: 70
+              currency: EUR
+            - amount: 500
+              currency: EUR
+        billing_subject: pet_or_container
+        journey_basis: per_one_way
+        scope_label: aéroport départ → destination
+        source:
+          url: https://www.klm.com/information/pets/reservation
+          source_type: official_website
+          verified_date: 2026-09-10
+          review_due: 2026-12-09
+          confidence: 4
+          reviewer: Codex — lecture directe de la source officielle
+          history: []
+          quote: The cost of traveling with your pet on KLM ranges from EUR 70 to EUR 500 per one-way flight.
+          quote_language: en
+          locator: Costs and restrictions → Costs
     availability: offered
     # PREUVE IMPORTÉE — import strict V3 (Codex, lecture directe du 2026-09-08, cohorte A fait 8).
     # Effet attendu : Show hold offered under conditions, not blanket acceptance.
@@ -108,6 +158,26 @@ policies:
       quote_language: en
       locator: "Pets in the hold"
   cargo:
+    # TARIFS OFFICIELS — audit indépendant du 2026-09-10 ; aucune valeur héritée réactivée.
+    fares:
+      - id: fare_klm_cargo_2026_09_10
+        placement: cargo
+        price:
+          kind: quote
+          amounts: []
+        billing_subject: shipment
+        journey_basis: per_journey
+        source:
+          url: https://www.klm.com/information/pets/reservation
+          source_type: official_website
+          verified_date: 2026-09-10
+          review_due: 2026-12-09
+          confidence: 4
+          reviewer: Codex — lecture directe de la source officielle
+          history: []
+          quote: contact a specialised shipper
+          quote_language: en
+          locator: Cargo alternative
     availability: offered
 channels:
   - placement: cabin

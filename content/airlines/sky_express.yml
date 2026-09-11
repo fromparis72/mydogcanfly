@@ -61,6 +61,31 @@ ladder:
     sub: ≤ 25 kg
 policies:
   cabin:
+    # TARIFS OFFICIELS — audit indépendant du 2026-09-10 ; aucune valeur héritée réactivée.
+    fares:
+      - id: fare_sky_express_cabin_eur_2026_09_10
+        placement: cabin
+        price:
+          kind: range
+          amounts:
+            - amount: 35
+              currency: EUR
+            - amount: 65
+              currency: EUR
+        billing_subject: pet
+        journey_basis: per_journey
+        scope_label: Domestic Greece; international
+        source:
+          url: https://www.skyexpress.gr/en/sky-experience/sky-pets
+          source_type: official_website
+          verified_date: 2026-09-10
+          review_due: 2026-12-09
+          confidence: 4
+          reviewer: Codex — lecture directe de la source officielle
+          history: []
+          quote: €35 domestic; €65 international
+          quote_language: en
+          locator: SKY Pets fees
     availability: offered
     # PREUVE IMPORTÉE — import strict lot8 (Codex, lecture directe du 2026-09-09, cohorte LOT8 fait 14).
     # Effet attendu : SKY express cabin is conditional with an 8 kg combined animal-and-container ceiling.
@@ -77,6 +102,29 @@ policies:
       quote_language: en
       locator: "Carriage of animals in the cabin (up to 8kg)"
   hold:
+    # TARIFS OFFICIELS — audit indépendant du 2026-09-10 ; aucune valeur héritée réactivée.
+    fares:
+      - id: fare_sky_express_hold_eur_2026_09_10
+        placement: hold
+        price:
+          kind: exact
+          amounts:
+            - amount: 50
+              currency: EUR
+        billing_subject: pet
+        journey_basis: per_journey
+        scope_label: ATR-operated flights only
+        source:
+          url: https://www.skyexpress.gr/en/sky-experience/sky-pets
+          source_type: official_website
+          verified_date: 2026-09-10
+          review_due: 2026-12-09
+          confidence: 4
+          reviewer: Codex — lecture directe de la source officielle
+          history: []
+          quote: Transport charge 50€
+          quote_language: en
+          locator: In the cargo hold → Transport charge
     availability: offered   # RÉACTIVÉE sur citation (import strict, lot8, 2026-09-09) — était review_state: legacy_unreviewed
     # PREUVE IMPORTÉE — import strict lot8 (Codex, lecture directe du 2026-09-09, cohorte LOT8 fait 15).
     # Effet attendu : SKY express hold is conditional, aircraft-scoped and has a 25 kg combined ceiling.

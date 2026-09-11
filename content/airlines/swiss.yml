@@ -73,6 +73,71 @@ ladder:
       pt: "sem acompanhante"
 policies:
   cabin:
+    # TARIFS OFFICIELS — audit indépendant du 2026-09-10 ; aucune valeur héritée réactivée.
+    fares:
+      - id: fare_swiss_cabin_chf_2026_09_10
+        placement: cabin
+        price:
+          kind: exact
+          amounts:
+            - amount: 75
+              currency: CHF
+        billing_subject: container
+        journey_basis: per_journey
+        scope_label: "7 zones: Switzerland, Europe, Levant/N Africa, short/medium/long intercontinental, Japan"
+        source:
+          url: https://www.swiss.com/gb/en/prepare/special-care/animals-travelling.html
+          source_type: official_website
+          verified_date: 2026-09-10
+          review_due: 2026-12-09
+          confidence: 4
+          reviewer: Codex — lecture directe de la source officielle
+          history: []
+          quote: Within Switzerland CHF 75 EUR 65 USD 80
+          quote_language: en
+          locator: Price table → Within Switzerland → cabin column
+      - id: fare_swiss_cabin_eur_2026_09_10
+        placement: cabin
+        price:
+          kind: exact
+          amounts:
+            - amount: 65
+              currency: EUR
+        billing_subject: container
+        journey_basis: per_journey
+        scope_label: "7 zones: Switzerland, Europe, Levant/N Africa, short/medium/long intercontinental, Japan"
+        source:
+          url: https://www.swiss.com/gb/en/prepare/special-care/animals-travelling.html
+          source_type: official_website
+          verified_date: 2026-09-10
+          review_due: 2026-12-09
+          confidence: 4
+          reviewer: Codex — lecture directe de la source officielle
+          history: []
+          quote: Within Switzerland CHF 75 EUR 65 USD 80
+          quote_language: en
+          locator: Price table → Within Switzerland → cabin column
+      - id: fare_swiss_cabin_usd_2026_09_10
+        placement: cabin
+        price:
+          kind: exact
+          amounts:
+            - amount: 80
+              currency: USD
+        billing_subject: container
+        journey_basis: per_journey
+        scope_label: "7 zones: Switzerland, Europe, Levant/N Africa, short/medium/long intercontinental, Japan"
+        source:
+          url: https://www.swiss.com/gb/en/prepare/special-care/animals-travelling.html
+          source_type: official_website
+          verified_date: 2026-09-10
+          review_due: 2026-12-09
+          confidence: 4
+          reviewer: Codex — lecture directe de la source officielle
+          history: []
+          quote: Within Switzerland CHF 75 EUR 65 USD 80
+          quote_language: en
+          locator: Price table → Within Switzerland → cabin column
     availability: offered
     # PREUVE IMPORTÉE — import strict lot4 (Codex, lecture directe du 2026-09-09, cohorte LOT4 fait 4).
     # Effet attendu : For a dog above 8 kg, do not offer SWISS cabin. At or below 8 kg, do not infer acceptance from this negative threshold.
@@ -92,6 +157,71 @@ policies:
       quote_language: en
       locator: "Travelling with animals → The following animals can travel in the cabin"
   hold:
+    # TARIFS OFFICIELS — audit indépendant du 2026-09-10 ; aucune valeur héritée réactivée.
+    fares:
+      - id: fare_swiss_hold_chf_2026_09_10
+        placement: hold
+        price:
+          kind: exact
+          amounts:
+            - amount: 440
+              currency: CHF
+        billing_subject: container
+        journey_basis: per_journey
+        scope_label: Same 7 zones; small/large container; transfer surcharge possible
+        source:
+          url: https://www.swiss.com/gb/en/prepare/special-care/animals-travelling.html
+          source_type: official_website
+          verified_date: 2026-09-10
+          review_due: 2026-12-09
+          confidence: 4
+          reviewer: Codex — lecture directe de la source officielle
+          history: []
+          quote: CHF 440 EUR 380 USD 445
+          quote_language: en
+          locator: Price table → Long-haul intercontinental → hold crate size 2–5
+      - id: fare_swiss_hold_eur_2026_09_10
+        placement: hold
+        price:
+          kind: exact
+          amounts:
+            - amount: 380
+              currency: EUR
+        billing_subject: container
+        journey_basis: per_journey
+        scope_label: Same 7 zones; small/large container; transfer surcharge possible
+        source:
+          url: https://www.swiss.com/gb/en/prepare/special-care/animals-travelling.html
+          source_type: official_website
+          verified_date: 2026-09-10
+          review_due: 2026-12-09
+          confidence: 4
+          reviewer: Codex — lecture directe de la source officielle
+          history: []
+          quote: CHF 440 EUR 380 USD 445
+          quote_language: en
+          locator: Price table → Long-haul intercontinental → hold crate size 2–5
+      - id: fare_swiss_hold_usd_2026_09_10
+        placement: hold
+        price:
+          kind: exact
+          amounts:
+            - amount: 445
+              currency: USD
+        billing_subject: container
+        journey_basis: per_journey
+        scope_label: Same 7 zones; small/large container; transfer surcharge possible
+        source:
+          url: https://www.swiss.com/gb/en/prepare/special-care/animals-travelling.html
+          source_type: official_website
+          verified_date: 2026-09-10
+          review_due: 2026-12-09
+          confidence: 4
+          reviewer: Codex — lecture directe de la source officielle
+          history: []
+          quote: CHF 440 EUR 380 USD 445
+          quote_language: en
+          locator: Price table → Long-haul intercontinental → hold crate size 2–5
     availability: offered
     # PREUVE IMPORTÉE — import strict lot4 (Codex, lecture directe du 2026-09-09, cohorte LOT4 fait 5).
     # Effet attendu : SWISS hold is a documented conditional route, not a blanket approval for every breed, airport or destination.

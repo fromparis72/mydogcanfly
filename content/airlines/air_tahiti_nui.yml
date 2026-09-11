@@ -59,6 +59,73 @@ ladder:
       pt: "porão via carga"
 policies:
   cabin:
+    # TARIFS OFFICIELS — audit indépendant du 2026-09-10 ; aucune valeur héritée réactivée.
+    fares:
+      - id: fare_air_tahiti_nui_cabin_xpf_2026_09_10
+        placement: cabin
+        price:
+          kind: range
+          amounts:
+            - amount: 14000
+              currency: XPF
+            - amount: 24000
+              currency: XPF
+        billing_subject: container
+        journey_basis: per_one_way
+        scope_label: specified operated sectors
+        source:
+          url: https://us.airtahitinui.com/our-optional-services-and-fees
+          source_type: official_website
+          verified_date: 2026-09-10
+          review_due: 2026-12-09
+          confidence: 4
+          reviewer: Codex — lecture directe de la source officielle
+          history: []
+          quote: In-cabin pet | Papeete | Los Angeles | XPF 14,000; Papeete | Paris | XPF 24,000; Los Angeles | Paris | USD 150; Paris | Los Angeles | EUR 150
+          quote_language: en
+          locator: Pets in cabin
+      - id: fare_air_tahiti_nui_cabin_usd_2026_09_10
+        placement: cabin
+        price:
+          kind: exact
+          amounts:
+            - amount: 150
+              currency: USD
+        billing_subject: container
+        journey_basis: per_one_way
+        scope_label: specified operated sectors
+        source:
+          url: https://us.airtahitinui.com/our-optional-services-and-fees
+          source_type: official_website
+          verified_date: 2026-09-10
+          review_due: 2026-12-09
+          confidence: 4
+          reviewer: Codex — lecture directe de la source officielle
+          history: []
+          quote: In-cabin pet | Papeete | Los Angeles | XPF 14,000; Papeete | Paris | XPF 24,000; Los Angeles | Paris | USD 150; Paris | Los Angeles | EUR 150
+          quote_language: en
+          locator: Pets in cabin
+      - id: fare_air_tahiti_nui_cabin_eur_2026_09_10
+        placement: cabin
+        price:
+          kind: exact
+          amounts:
+            - amount: 150
+              currency: EUR
+        billing_subject: container
+        journey_basis: per_one_way
+        scope_label: specified operated sectors
+        source:
+          url: https://us.airtahitinui.com/our-optional-services-and-fees
+          source_type: official_website
+          verified_date: 2026-09-10
+          review_due: 2026-12-09
+          confidence: 4
+          reviewer: Codex — lecture directe de la source officielle
+          history: []
+          quote: In-cabin pet | Papeete | Los Angeles | XPF 14,000; Papeete | Paris | XPF 24,000; Los Angeles | Paris | USD 150; Paris | Los Angeles | EUR 150
+          quote_language: en
+          locator: Pets in cabin
     availability: offered
     # PREUVE IMPORTÉE — import strict lot7 (Codex, lecture directe du 2026-09-09, cohorte LOT7 fait 7).
     # Effet attendu : Air Tahiti Nui cabin is route-scoped and must not be generalized to the whole network.

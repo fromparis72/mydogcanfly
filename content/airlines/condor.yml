@@ -59,8 +59,54 @@ ladder:
       pt: "somente voo direto"
 policies:
   cabin:
+    # TARIFS OFFICIELS — audit indépendant du 2026-09-10 ; aucune valeur héritée réactivée.
+    fares:
+      - id: fare_condor_cabin_eur_2026_09_10
+        placement: cabin
+        price:
+          kind: minimum
+          amounts:
+            - amount: 59.99
+              currency: EUR
+        billing_subject: pet_or_container
+        journey_basis: per_one_way
+        scope_label: zones Condor → zones Condor
+        source:
+          url: https://www.condor.com/de/flug-vorbereiten/gepaeck-tiere/tierbefoerderung/tiere-in-der-kabine.jsp
+          source_type: official_website
+          verified_date: 2026-09-10
+          review_due: 2026-12-09
+          confidence: 4
+          reviewer: Codex — lecture directe de la source officielle
+          history: []
+          quote: ab 59,99 Euro
+          quote_language: de
+          locator: Prices and registration
     availability: offered
   hold:
+    # TARIFS OFFICIELS — audit indépendant du 2026-09-10 ; aucune valeur héritée réactivée.
+    fares:
+      - id: fare_condor_hold_eur_2026_09_10
+        placement: hold
+        price:
+          kind: minimum
+          amounts:
+            - amount: 79.99
+              currency: EUR
+        billing_subject: pet_or_container
+        journey_basis: per_one_way
+        scope_label: zones Condor → zones Condor
+        source:
+          url: https://www.condor.com/eu/flight-preparation/baggage-and-animals/travelling-with-pets/pets-in-cargo-hold.jsp
+          source_type: official_website
+          verified_date: 2026-09-10
+          review_due: 2026-12-09
+          confidence: 4
+          reviewer: Codex — lecture directe de la source officielle
+          history: []
+          quote: from €79.99
+          quote_language: en
+          locator: Pet transport fees
     availability: offered
   cargo:
     review_state: legacy_unreviewed

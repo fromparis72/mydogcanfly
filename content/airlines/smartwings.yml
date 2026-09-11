@@ -55,6 +55,71 @@ ladder:
     sub: 8–32 kg
 policies:
   cabin:
+    # TARIFS OFFICIELS — audit indépendant du 2026-09-10 ; aucune valeur héritée réactivée.
+    fares:
+      - id: fare_smartwings_cabin_eur_2026_09_10
+        placement: cabin
+        price:
+          kind: exact
+          amounts:
+            - amount: 120
+              currency: EUR
+        billing_subject: pet
+        journey_basis: per_segment
+        scope_label: Per eligible flight leg
+        source:
+          url: https://www.smartwings.com/en/fees-and-charges/?layout=default
+          source_type: official_website
+          verified_date: 2026-09-10
+          review_due: 2026-12-09
+          confidence: 4
+          reviewer: Codex — lecture directe de la source officielle
+          history: []
+          quote: EUR 120 / USD 144 / CZK 3000
+          quote_language: en
+          locator: Animals in cabin
+      - id: fare_smartwings_cabin_usd_2026_09_10
+        placement: cabin
+        price:
+          kind: exact
+          amounts:
+            - amount: 144
+              currency: USD
+        billing_subject: pet
+        journey_basis: per_segment
+        scope_label: Per eligible flight leg
+        source:
+          url: https://www.smartwings.com/en/fees-and-charges/?layout=default
+          source_type: official_website
+          verified_date: 2026-09-10
+          review_due: 2026-12-09
+          confidence: 4
+          reviewer: Codex — lecture directe de la source officielle
+          history: []
+          quote: EUR 120 / USD 144 / CZK 3000
+          quote_language: en
+          locator: Animals in cabin
+      - id: fare_smartwings_cabin_czk_2026_09_10
+        placement: cabin
+        price:
+          kind: exact
+          amounts:
+            - amount: 3000
+              currency: CZK
+        billing_subject: pet
+        journey_basis: per_segment
+        scope_label: Per eligible flight leg
+        source:
+          url: https://www.smartwings.com/en/fees-and-charges/?layout=default
+          source_type: official_website
+          verified_date: 2026-09-10
+          review_due: 2026-12-09
+          confidence: 4
+          reviewer: Codex — lecture directe de la source officielle
+          history: []
+          quote: EUR 120 / USD 144 / CZK 3000
+          quote_language: en
+          locator: Animals in cabin
     availability: offered
     # PREUVE IMPORTÉE — import strict lot8 (Codex, lecture directe du 2026-09-09, cohorte LOT8 fait 21).
     # Effet attendu : Smartwings cabin is a documented conditional route with an 8 kg combined ceiling.
@@ -71,6 +136,71 @@ policies:
       quote_language: en
       locator: "Fees and charges → Price list of additional services → PETC"
   hold:
+    # TARIFS OFFICIELS — audit indépendant du 2026-09-10 ; aucune valeur héritée réactivée.
+    fares:
+      - id: fare_smartwings_hold_eur_2026_09_10
+        placement: hold
+        price:
+          kind: exact
+          amounts:
+            - amount: 220
+              currency: EUR
+        billing_subject: pet
+        journey_basis: per_segment
+        scope_label: Per eligible flight leg
+        source:
+          url: https://www.smartwings.com/en/fees-and-charges/?layout=default
+          source_type: official_website
+          verified_date: 2026-09-10
+          review_due: 2026-12-09
+          confidence: 4
+          reviewer: Codex — lecture directe de la source officielle
+          history: []
+          quote: EUR 220 / USD 263 / CZK 5500
+          quote_language: en
+          locator: Animals in hold
+      - id: fare_smartwings_hold_usd_2026_09_10
+        placement: hold
+        price:
+          kind: exact
+          amounts:
+            - amount: 263
+              currency: USD
+        billing_subject: pet
+        journey_basis: per_segment
+        scope_label: Per eligible flight leg
+        source:
+          url: https://www.smartwings.com/en/fees-and-charges/?layout=default
+          source_type: official_website
+          verified_date: 2026-09-10
+          review_due: 2026-12-09
+          confidence: 4
+          reviewer: Codex — lecture directe de la source officielle
+          history: []
+          quote: EUR 220 / USD 263 / CZK 5500
+          quote_language: en
+          locator: Animals in hold
+      - id: fare_smartwings_hold_czk_2026_09_10
+        placement: hold
+        price:
+          kind: exact
+          amounts:
+            - amount: 5500
+              currency: CZK
+        billing_subject: pet
+        journey_basis: per_segment
+        scope_label: Per eligible flight leg
+        source:
+          url: https://www.smartwings.com/en/fees-and-charges/?layout=default
+          source_type: official_website
+          verified_date: 2026-09-10
+          review_due: 2026-12-09
+          confidence: 4
+          reviewer: Codex — lecture directe de la source officielle
+          history: []
+          quote: EUR 220 / USD 263 / CZK 5500
+          quote_language: en
+          locator: Animals in hold
     availability: offered
     # PREUVE IMPORTÉE — import strict lot8 (Codex, lecture directe du 2026-09-09, cohorte LOT8 fait 22).
     # Effet attendu : Smartwings hold is a documented conditional route with a 32 kg combined ceiling.

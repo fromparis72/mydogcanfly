@@ -67,6 +67,31 @@ ladder:
       pt: "Reino Unido / grande porte"
 policies:
   cabin:
+    # TARIFS OFFICIELS — audit indépendant du 2026-09-10 ; aucune valeur héritée réactivée.
+    fares:
+      - id: fare_air_transat_cabin_cad_2026_09_10
+        placement: cabin
+        price:
+          kind: range
+          amounts:
+            - amount: 50
+              currency: CAD
+            - amount: 100
+              currency: CAD
+        billing_subject: pet
+        journey_basis: per_segment
+        scope_label: Air Transat-operated sectors
+        source:
+          url: https://www.airtransat.com/en-CA/Travel-information/Special-services/Pets-and-service-dogs
+          source_type: official_website
+          verified_date: 2026-09-10
+          review_due: 2026-12-09
+          confidence: 4
+          reviewer: Codex — lecture directe de la source officielle
+          history: []
+          quote: Paid up to 24 hours before departure | $100 | $100 | $50 | $50
+          quote_language: en
+          locator: Fees for cabin
     availability: offered
     # PREUVE IMPORTÉE — import strict V3 (Codex, lecture directe du 2026-09-08, cohorte LOT2 fait 4).
     # Effet attendu : For a dog heavier than 8 kg, cabin is not suitable. Below 8 kg, carrier weight and route conditions remain unresolved.
@@ -86,6 +111,31 @@ policies:
       quote_language: en
       locator: "Pets in cabin → Restrictions"
   hold:
+    # TARIFS OFFICIELS — audit indépendant du 2026-09-10 ; aucune valeur héritée réactivée.
+    fares:
+      - id: fare_air_transat_hold_cad_2026_09_10
+        placement: hold
+        price:
+          kind: range
+          amounts:
+            - amount: 100
+              currency: CAD
+            - amount: 275
+              currency: CAD
+        billing_subject: pet
+        journey_basis: per_segment
+        scope_label: Air Transat-operated sectors
+        source:
+          url: https://www.airtransat.com/en-CA/Travel-information/Special-services/Pets-and-service-dogs
+          source_type: official_website
+          verified_date: 2026-09-10
+          review_due: 2026-12-09
+          confidence: 4
+          reviewer: Codex — lecture directe de la source officielle
+          history: []
+          quote: Paid up to 24 hours before departure | $275 | $275 | $150 | $100
+          quote_language: en
+          locator: Fees for checked pets
     availability: offered
     # PREUVE IMPORTÉE — import strict V3 (Codex, lecture directe du 2026-09-08, cohorte LOT2 fait 5).
     # Effet attendu : Passenger hold is a conditional lead. Booking/payment never proves acceptance, which remains operationally constrained.

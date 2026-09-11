@@ -69,6 +69,71 @@ ladder:
     sub: "> 45 kg"
 policies:
   cabin:
+    # TARIFS OFFICIELS — audit indépendant du 2026-09-10 ; aucune valeur héritée réactivée.
+    fares:
+      - id: fare_iberia_cabin_eur_2026_09_10
+        placement: cabin
+        price:
+          kind: exact
+          amounts:
+            - amount: 40
+              currency: EUR
+        billing_subject: container
+        journey_basis: per_segment
+        scope_label: zones publiées → zones publiées
+        source:
+          url: https://www.iberia.com/gb/fly-with-iberia/pets/
+          source_type: official_website
+          verified_date: 2026-09-10
+          review_due: 2026-12-09
+          confidence: 4
+          reviewer: Codex — lecture directe de la source officielle
+          history: []
+          quote: "Online: EUR40/USD50/GBP35"
+          quote_language: en
+          locator: Fees for pets travelling in the cabin → Spain → Per segment
+      - id: fare_iberia_cabin_usd_2026_09_10
+        placement: cabin
+        price:
+          kind: exact
+          amounts:
+            - amount: 50
+              currency: USD
+        billing_subject: container
+        journey_basis: per_segment
+        scope_label: zones publiées → zones publiées
+        source:
+          url: https://www.iberia.com/gb/fly-with-iberia/pets/
+          source_type: official_website
+          verified_date: 2026-09-10
+          review_due: 2026-12-09
+          confidence: 4
+          reviewer: Codex — lecture directe de la source officielle
+          history: []
+          quote: "Online: EUR40/USD50/GBP35"
+          quote_language: en
+          locator: Fees for pets travelling in the cabin → Spain → Per segment
+      - id: fare_iberia_cabin_gbp_2026_09_10
+        placement: cabin
+        price:
+          kind: exact
+          amounts:
+            - amount: 35
+              currency: GBP
+        billing_subject: container
+        journey_basis: per_segment
+        scope_label: zones publiées → zones publiées
+        source:
+          url: https://www.iberia.com/gb/fly-with-iberia/pets/
+          source_type: official_website
+          verified_date: 2026-09-10
+          review_due: 2026-12-09
+          confidence: 4
+          reviewer: Codex — lecture directe de la source officielle
+          history: []
+          quote: "Online: EUR40/USD50/GBP35"
+          quote_language: en
+          locator: Fees for pets travelling in the cabin → Spain → Per segment
     availability: offered
     # PREUVE IMPORTÉE — import strict V3 (Codex, lecture directe du 2026-09-08, cohorte A fait 12).
     # Effet attendu : For a 32 kg dog, cabin is not suitable.
@@ -88,6 +153,29 @@ policies:
       quote_language: en
       locator: "Acceptance in the cabin"
   hold:
+    # TARIFS OFFICIELS — audit indépendant du 2026-09-10 ; aucune valeur héritée réactivée.
+    fares:
+      - id: fare_iberia_hold_eur_2026_09_10
+        placement: hold
+        price:
+          kind: minimum
+          amounts:
+            - amount: 90
+              currency: EUR
+        billing_subject: pet_or_container
+        journey_basis: per_segment
+        scope_label: zones publiées → zones publiées
+        source:
+          url: https://www.iberia.com/gb/fly-with-iberia/pets/
+          source_type: official_website
+          verified_date: 2026-09-10
+          review_due: 2026-12-09
+          confidence: 4
+          reviewer: Codex — lecture directe de la source officielle
+          history: []
+          quote: from EUR 90
+          quote_language: en
+          locator: Pets in hold fees
     availability: offered
     # PREUVE IMPORTÉE — import strict V3 (Codex, lecture directe du 2026-09-08, cohorte A fait 13).
     # Effet attendu : Show hold offered under conditions.

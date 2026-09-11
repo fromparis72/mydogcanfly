@@ -67,6 +67,29 @@ ladder:
       pt: "grande porte / espécie"
 policies:
   cabin:
+    # TARIFS OFFICIELS — audit indépendant du 2026-09-10 ; aucune valeur héritée réactivée.
+    fares:
+      - id: fare_air_caraibes_cabin_eur_2026_09_10
+        placement: cabin
+        price:
+          kind: exact
+          amounts:
+            - amount: 75
+              currency: EUR
+        billing_subject: pet_or_container
+        journey_basis: per_journey
+        scope_label: transatlantic operated flights
+        source:
+          url: https://www.aircaraibes.com/en/before-travel/special-requests/pets
+          source_type: official_website
+          verified_date: 2026-09-10
+          review_due: 2026-12-09
+          confidence: 4
+          reviewer: Codex — lecture directe de la source officielle
+          history: []
+          quote: €75 per trip
+          quote_language: en
+          locator: Cabin fare
     availability: offered
     # PREUVE IMPORTÉE — import strict lot7 (Codex, lecture directe du 2026-09-09, cohorte LOT7 fait 4).
     # Effet attendu : Air Caraïbes cabin is a documented conditional route.
@@ -83,6 +106,29 @@ policies:
       quote_language: fr
       locator: "Animaux en cabine → Présentation"
   hold:
+    # TARIFS OFFICIELS — audit indépendant du 2026-09-10 ; aucune valeur héritée réactivée.
+    fares:
+      - id: fare_air_caraibes_hold_eur_2026_09_10
+        placement: hold
+        price:
+          kind: exact
+          amounts:
+            - amount: 150
+              currency: EUR
+        billing_subject: pet_or_container
+        journey_basis: per_journey
+        scope_label: transatlantic operated flights
+        source:
+          url: https://www.aircaraibes.com/en/before-travel/special-requests/pets
+          source_type: official_website
+          verified_date: 2026-09-10
+          review_due: 2026-12-09
+          confidence: 4
+          reviewer: Codex — lecture directe de la source officielle
+          history: []
+          quote: €150 per trip
+          quote_language: en
+          locator: Hold fare
     availability: offered
     # PREUVE IMPORTÉE — import strict lot7 (Codex, lecture directe du 2026-09-09, cohorte LOT7 fait 5).
     # Effet attendu : Air Caraïbes hold is conditional and does not apply to brachycephalic dogs.

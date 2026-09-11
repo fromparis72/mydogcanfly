@@ -77,6 +77,29 @@ ladder:
       pt: "cachorros > 40 kg"
 policies:
   cabin:
+    # TARIFS OFFICIELS — audit indépendant du 2026-09-10 ; aucune valeur héritée réactivée.
+    fares:
+      - id: fare_tarom_cabin_eur_2026_09_10
+        placement: cabin
+        price:
+          kind: exact
+          amounts:
+            - amount: 40
+              currency: EUR
+        billing_subject: pet
+        journey_basis: per_journey
+        scope_label: Zones 1 / 2 / 3
+        source:
+          url: https://www.tarom.ro/en/passenger-information/special-baggage
+          source_type: official_website
+          verified_date: 2026-09-10
+          review_due: 2026-12-09
+          confidence: 4
+          reviewer: Codex — lecture directe de la source officielle
+          history: []
+          quote: "Zone 1: EUR 40"
+          quote_language: en
+          locator: Pets charges
     availability: offered
     # PREUVE IMPORTÉE — import strict lot9 (Codex, lecture directe du 2026-09-09, cohorte LOT9 fait 15).
     # Effet attendu : TAROM cabin is conditional with an 8 kg combined animal-and-carrier ceiling.
@@ -96,6 +119,29 @@ policies:
       quote_language: en
       locator: "In the cabin → opening paragraph"
   hold:
+    # TARIFS OFFICIELS — audit indépendant du 2026-09-10 ; aucune valeur héritée réactivée.
+    fares:
+      - id: fare_tarom_hold_eur_2026_09_10
+        placement: hold
+        price:
+          kind: exact
+          amounts:
+            - amount: 60
+              currency: EUR
+        billing_subject: container
+        journey_basis: per_journey
+        scope_label: Zones 1 / 2 / 3; no AVIH on A320
+        source:
+          url: https://www.tarom.ro/en/travelling-with-pets/in-aircraft-hold
+          source_type: official_website
+          verified_date: 2026-09-10
+          review_due: 2026-12-09
+          confidence: 4
+          reviewer: Codex — lecture directe de la source officielle
+          history: []
+          quote: "Zone 1: EUR 60"
+          quote_language: en
+          locator: Hold pet charges
     availability: offered   # RÉACTIVÉE sur citation (import strict, lot9, 2026-09-09) — était review_state: legacy_unreviewed
     # PREUVE IMPORTÉE — import strict lot9 (Codex, lecture directe du 2026-09-09, cohorte LOT9 fait 16).
     # Effet attendu : TAROM hold is a documented conditional route; A320 and brachycephalic restrictions apply.

@@ -67,6 +67,71 @@ ladder:
       pt: "restrito"
 policies:
   cabin:
+    # TARIFS OFFICIELS — audit indépendant du 2026-09-10 ; aucune valeur héritée réactivée.
+    fares:
+      - id: fare_iberia_express_cabin_eur_2026_09_10
+        placement: cabin
+        price:
+          kind: exact
+          amounts:
+            - amount: 40
+              currency: EUR
+        billing_subject: pet_or_container
+        journey_basis: per_segment
+        scope_label: zones publiées → zones publiées
+        source:
+          url: https://www.iberiaexpress.com/en/general-info/passenger-information/before-you-go/travelling-with-pets
+          source_type: official_website
+          verified_date: 2026-09-10
+          review_due: 2026-12-09
+          confidence: 4
+          reviewer: Codex — lecture directe de la source officielle
+          history: []
+          quote: 40€/50$/35£ per leg
+          quote_language: en
+          locator: Rates for carriage in cabin → Spain excluding Canary Islands
+      - id: fare_iberia_express_cabin_gbp_2026_09_10
+        placement: cabin
+        price:
+          kind: exact
+          amounts:
+            - amount: 35
+              currency: GBP
+        billing_subject: pet_or_container
+        journey_basis: per_segment
+        scope_label: zones publiées → zones publiées
+        source:
+          url: https://www.iberiaexpress.com/en/general-info/passenger-information/before-you-go/travelling-with-pets
+          source_type: official_website
+          verified_date: 2026-09-10
+          review_due: 2026-12-09
+          confidence: 4
+          reviewer: Codex — lecture directe de la source officielle
+          history: []
+          quote: 40€/50$/35£ per leg
+          quote_language: en
+          locator: Rates for carriage in cabin → Spain excluding Canary Islands
+      - id: fare_iberia_express_cabin_usd_2026_09_10
+        placement: cabin
+        price:
+          kind: exact
+          amounts:
+            - amount: 50
+              currency: USD
+        billing_subject: pet_or_container
+        journey_basis: per_segment
+        scope_label: zones publiées → zones publiées
+        source:
+          url: https://www.iberiaexpress.com/en/general-info/passenger-information/before-you-go/travelling-with-pets
+          source_type: official_website
+          verified_date: 2026-09-10
+          review_due: 2026-12-09
+          confidence: 4
+          reviewer: Codex — lecture directe de la source officielle
+          history: []
+          quote: 40€/50$/35£ per leg
+          quote_language: en
+          locator: Rates for carriage in cabin → Spain excluding Canary Islands
     availability: offered
     # PREUVE IMPORTÉE — import strict lot7 (Codex, lecture directe du 2026-09-09, cohorte LOT7 fait 17).
     # Effet attendu : Iberia Express cabin is a documented conditional route.
@@ -83,6 +148,71 @@ policies:
       quote_language: es
       locator: "Aceptación en cabina de pasajero"
   hold:
+    # TARIFS OFFICIELS — audit indépendant du 2026-09-10 ; aucune valeur héritée réactivée.
+    fares:
+      - id: fare_iberia_express_hold_eur_2026_09_10
+        placement: hold
+        price:
+          kind: exact
+          amounts:
+            - amount: 100
+              currency: EUR
+        billing_subject: pet_or_container
+        journey_basis: per_segment
+        scope_label: zones publiées → zones publiées
+        source:
+          url: https://www.iberiaexpress.com/en/general-info/passenger-information/before-you-go/travelling-with-pets
+          source_type: official_website
+          verified_date: 2026-09-10
+          review_due: 2026-12-09
+          confidence: 4
+          reviewer: Codex — lecture directe de la source officielle
+          history: []
+          quote: €100/$120/£90 per leg
+          quote_language: en
+          locator: Rates for carriage in hold → Spain excluding Canary Islands
+      - id: fare_iberia_express_hold_gbp_2026_09_10
+        placement: hold
+        price:
+          kind: exact
+          amounts:
+            - amount: 90
+              currency: GBP
+        billing_subject: pet_or_container
+        journey_basis: per_segment
+        scope_label: zones publiées → zones publiées
+        source:
+          url: https://www.iberiaexpress.com/en/general-info/passenger-information/before-you-go/travelling-with-pets
+          source_type: official_website
+          verified_date: 2026-09-10
+          review_due: 2026-12-09
+          confidence: 4
+          reviewer: Codex — lecture directe de la source officielle
+          history: []
+          quote: €100/$120/£90 per leg
+          quote_language: en
+          locator: Rates for carriage in hold → Spain excluding Canary Islands
+      - id: fare_iberia_express_hold_usd_2026_09_10
+        placement: hold
+        price:
+          kind: exact
+          amounts:
+            - amount: 120
+              currency: USD
+        billing_subject: pet_or_container
+        journey_basis: per_segment
+        scope_label: zones publiées → zones publiées
+        source:
+          url: https://www.iberiaexpress.com/en/general-info/passenger-information/before-you-go/travelling-with-pets
+          source_type: official_website
+          verified_date: 2026-09-10
+          review_due: 2026-12-09
+          confidence: 4
+          reviewer: Codex — lecture directe de la source officielle
+          history: []
+          quote: €100/$120/£90 per leg
+          quote_language: en
+          locator: Rates for carriage in hold → Spain excluding Canary Islands
     availability: offered
     # PREUVE IMPORTÉE — import strict lot7 (Codex, lecture directe du 2026-09-09, cohorte LOT7 fait 18).
     # Effet attendu : Iberia Express hold is conditional and excludes brachycephalic dogs.

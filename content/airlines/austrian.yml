@@ -112,6 +112,27 @@ policies:
       quote_language: en
       locator: "Travelling with animals → Large animals in the cargo hold"
   cargo:
+    # TARIFS OFFICIELS — audit indépendant du 2026-09-10 ; aucune valeur héritée réactivée.
+    fares:
+      - id: fare_austrian_cargo_2026_09_10
+        placement: cargo
+        price:
+          kind: quote
+          amounts: []
+        billing_subject: shipment
+        journey_basis: per_journey
+        scope_label: countries requiring freight; unaccompanied
+        source:
+          url: https://www.austrian.com/pt/en/plan/special-requirements/travelling-with-animals
+          source_type: official_website
+          verified_date: 2026-09-10
+          review_due: 2026-12-09
+          confidence: 4
+          reviewer: Codex — lecture directe de la source officielle
+          history: []
+          quote: contact a specialised pet transport provider
+          quote_language: en
+          locator: Freight note
     review_state: legacy_unreviewed
 channels:
   - placement: cabin

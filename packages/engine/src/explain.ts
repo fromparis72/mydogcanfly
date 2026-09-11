@@ -461,7 +461,7 @@ export function explain(decision: Decision, locale = "en"): DecisionReport {
         }
       }
     }
-    return { airline_id: a.airline_id, name: a.airline_name, direct: a.direct, itinerary_confidence: a.itinerary_confidence, deny_reasons: (cabin || hold || cargo || to_confirm.length > 0) ? undefined : reasons, connect_airport_id: a.connect_airport_id, detour_km: a.detour_km, cabin, hold, cargo, cabin_status, hold_status, cargo_status, to_confirm: to_confirm.length ? to_confirm : undefined, placement_decisions, offers_pet_transport: a.offers_pet_transport, label, statuts_tarifaires, heat_embargo, heat_confirmation_required, carrier_of_origin, carrier_of_destination, origin_airport_id: a.origin_airport_id, destination_airport_id: a.destination_airport_id };
+    return { airline_id: a.airline_id, name: a.airline_name, direct: a.direct, itinerary_confidence: a.itinerary_confidence, deny_reasons: (cabin || hold || cargo || to_confirm.length > 0) ? undefined : reasons, connect_airport_id: a.connect_airport_id, detour_km: a.detour_km, cabin, hold, cargo, cabin_status, hold_status, cargo_status, to_confirm: to_confirm.length ? to_confirm : undefined, placement_decisions, fare_resolutions: a.fare_resolutions, offers_pet_transport: a.offers_pet_transport, label, statuts_tarifaires, heat_embargo, heat_confirmation_required, carrier_of_origin, carrier_of_destination, origin_airport_id: a.origin_airport_id, destination_airport_id: a.destination_airport_id };
   });
   /* Le placement demandé, AVANT le tri (contre-revue v4 : le classement l'ignorait — quatre
      « soute à confirmer » précédaient des soutes réellement autorisées sur une recherche soute). */

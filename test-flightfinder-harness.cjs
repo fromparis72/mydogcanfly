@@ -44,6 +44,15 @@ function check(label, cond, detail) {
   else { console.log("  FAIL " + label); if (detail) console.log("         reçu : " + detail); failures++; }
 }
 
+const fareResolution = (placement, resolution = {}) => ({
+  placement,
+  resolution: {
+    conflits: [], montants: [], chevauchements: [], mecanismes: [], indecidables: [], supprimes: [],
+    ...resolution,
+  },
+});
+const emptyFareResolutions = () => ["cabin", "hold", "cargo"].map((p) => fareResolution(p));
+
 const FAKE_REPORT = {
   verdict: "compatible",
   confidence: 3,
@@ -66,6 +75,7 @@ const FAKE_REPORT = {
       { placement: "hold", status: "denied", allowed: false },
       { placement: "cargo", status: "denied", allowed: false },
     ],
+    fare_resolutions: emptyFareResolutions(),
     label: "OK", source_url: "", carrier_of_origin: false, carrier_of_destination: false,
     itinerary_confidence: "confirmed", heat_embargo: false, fee: "",
   }],
@@ -239,10 +249,10 @@ const t0aCard = (over) => ({
 /* La quatrième phrase de justification interne (« page officielle, aucune citation ») vit ici depuis l'annexe 42 :
    elle n'est plus rendue nulle part, et c'est ce que les témoins exigent — il faut donc la connaître pour la chercher. */
 const CARTE_LABELS = {
-  en: { officialLink: "An official airline page covers this channel, but no sentence has been quoted from it yet", confirm: "to be confirmed", yesCond: "yes, under conditions", no: "no", quiet: "information not published", fareConfirm: "fare to confirm", fareQuote: "on quotation", proofs: "See the evidence", prov: "Verified on an official source on", limit: "up to 75 kg" },
-  fr: { officialLink: "Une page officielle de la compagnie couvre ce canal, mais aucune phrase n'en a encore été citée", confirm: "à confirmer", yesCond: "oui, sous conditions", no: "non", quiet: "informations non publiées", fareConfirm: "tarif à confirmer", fareQuote: "sur devis", proofs: "Voir les preuves", prov: "Vérifié sur une source officielle le", limit: "jusqu'à 75 kg" },
-  es: { officialLink: "Una página oficial de la aerolínea cubre este canal, pero aún no se ha citado ninguna frase", confirm: "a confirmar", yesCond: "sí, bajo condiciones", no: "no", quiet: "información no publicada", fareConfirm: "tarifa a confirmar", fareQuote: "bajo presupuesto", proofs: "Ver las pruebas", prov: "Verificado en una fuente oficial el", limit: "hasta 75 kg" },
-  pt: { officialLink: "Uma página oficial da companhia cobre este canal, mas ainda não foi citada nenhuma frase", confirm: "a confirmar", yesCond: "sim, sob condições", no: "não", quiet: "informações não publicadas", fareConfirm: "tarifa a confirmar", fareQuote: "sob orçamento", proofs: "Ver as provas", prov: "Fonte oficial verificada em", limit: "até 75 kg" },
+  en: { officialLink: "An official airline page covers this channel, but no sentence has been quoted from it yet", confirm: "to be confirmed", yesCond: "yes, under conditions", no: "no", quiet: "information not published", fareConfirm: "fare to confirm", fareQuote: "on quotation", farePublished: "official published fare", fareVariable: "depending on the route and conditions", proofs: "See the evidence", prov: "Verified on an official source on", limit: "up to 75 kg" },
+  fr: { officialLink: "Une page officielle de la compagnie couvre ce canal, mais aucune phrase n'en a encore été citée", confirm: "à confirmer", yesCond: "oui, sous conditions", no: "non", quiet: "informations non publiées", fareConfirm: "tarif à confirmer", fareQuote: "sur devis", farePublished: "tarif officiel publié", fareVariable: "selon le trajet et les conditions", proofs: "Voir les preuves", prov: "Vérifié sur une source officielle le", limit: "jusqu'à 75 kg" },
+  es: { officialLink: "Una página oficial de la aerolínea cubre este canal, pero aún no se ha citado ninguna frase", confirm: "a confirmar", yesCond: "sí, bajo condiciones", no: "no", quiet: "información no publicada", fareConfirm: "tarifa a confirmar", fareQuote: "bajo presupuesto", farePublished: "tarifa oficial publicada", fareVariable: "según el trayecto y las condiciones", proofs: "Ver las pruebas", prov: "Verificado en una fuente oficial el", limit: "hasta 75 kg" },
+  pt: { officialLink: "Uma página oficial da companhia cobre este canal, mas ainda não foi citada nenhuma frase", confirm: "a confirmar", yesCond: "sim, sob condições", no: "não", quiet: "informações não publicadas", fareConfirm: "tarifa a confirmar", fareQuote: "sob orçamento", farePublished: "tarifa oficial publicada", fareVariable: "conforme a rota e as condições", proofs: "Ver as provas", prov: "Fonte oficial verificada em", limit: "até 75 kg" },
 };
 const SRC_SOUTE = { url: "https://www.airfrance.com/pets", source_type: "official_website", verified_date: "2026-09-08", confidence: 4 };
 const carteContrat = (over) => ({
@@ -359,6 +369,28 @@ async function cartesPass() {
       texteDe(ligne(r3.card, "cabin")).endsWith(X.no) && texteDe(ligne(r3.card, "hold")).endsWith(X.no) && !ligne(r3.card, "cargo").classList.contains("acard__line--quiet") && texteDe(ligne(r3.card, "cargo")).endsWith(X.confirm),
       [texteDe(ligne(r3.card, "cabin")), texteDe(ligne(r3.card, "hold")), texteDe(ligne(r3.card, "cargo"))].join(" | "));
     check(`${loc.code} : un refus n'a pas de tarif`, !texteDe(ligne(r3.card, "cabin")).includes(X.fareConfirm));
+
+    /* Le prix publié n'est ni masqué par le repli historique, ni présenté comme le prix exact
+       du trajet lorsque sa zone commerciale n'est pas modélisée. */
+    const tarifKlm = {
+      id: "fare_klm_hold_eur_2026_09_10", placement: "hold",
+      price: { kind: "range", amounts: [{ amount: 70, currency: "EUR" }, { amount: 500, currency: "EUR" }] },
+      billing_subject: "pet_or_container", journey_basis: "per_one_way",
+      source: { url: "https://www.klm.com/information/pets/reservation", source_type: "official_website",
+        verified_date: "2026-09-10", review_due: "2026-12-09", confidence: 4,
+        reviewer: "Codex", history: [], quote: "The cost ranges from EUR 70 to EUR 500.",
+        quote_language: "en", locator: "Costs and restrictions → Costs" },
+    };
+    const rTarif = await rendre(carteContrat({ fare_resolutions: [
+      fareResolution("cabin"), fareResolution("hold", { indecidables: [tarifKlm] }), fareResolution("cargo"),
+    ] }));
+    const ligneTarif = texteDe(ligne(rTarif.card, "hold"));
+    check(`${loc.code} : une fourchette officielle traverse le rapport et remplace « tarif à confirmer »`,
+      ligneTarif.includes(X.farePublished) && ligneTarif.includes(X.fareVariable)
+        && ligneTarif.includes("70") && ligneTarif.includes("500") && !ligneTarif.includes(X.fareConfirm), ligneTarif);
+    check(`${loc.code} : la preuve propre du tarif reste repliée derrière « voir les preuves »`,
+      !!rTarif.card.querySelector('details.acard__proofs a[href="https://www.klm.com/information/pets/reservation"]')
+        && texteDe(rTarif.card.querySelector("details.acard__proofs")).includes("Costs and restrictions"));
 
     /* 4. Le fret se développe quand il est DEMANDÉ (préférence « fret » du formulaire), même non publié. */
     const r4 = await rendre(carteContrat({}), "cargo");

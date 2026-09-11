@@ -61,6 +61,29 @@ ladder:
     sub: ≤ 75 kg
 policies:
   cabin:
+    # TARIFS OFFICIELS — audit indépendant du 2026-09-10 ; aucune valeur héritée réactivée.
+    fares:
+      - id: fare_ita_airways_cabin_eur_2026_09_10
+        placement: cabin
+        price:
+          kind: exact
+          amounts:
+            - amount: 73
+              currency: EUR
+        billing_subject: pet_or_container
+        journey_basis: per_segment
+        scope_label: marché de départ → zones publiées
+        source:
+          url: https://www.ita-airways.com/ae/en/book-and-prepare/other-requests/travelling-with-pets/pet-transportation-charges
+          source_type: official_website
+          verified_date: 2026-09-10
+          review_due: 2026-12-09
+          confidence: 4
+          reviewer: Codex — lecture directe de la source officielle
+          history: []
+          quote: Cabin EUR 73
+          quote_language: en
+          locator: Pet transportation charges
     availability: offered
     # PREUVE IMPORTÉE — import strict lot4 (Codex, lecture directe du 2026-09-09, cohorte LOT4 fait 12).
     # Effet attendu : ITA Airways cabin is a documented conditional route. Do not infer a single cabin ceiling across domestic and international itineraries.
@@ -77,6 +100,29 @@ policies:
       quote_language: en
       locator: "Pets in cabin → Service overview"
   hold:
+    # TARIFS OFFICIELS — audit indépendant du 2026-09-10 ; aucune valeur héritée réactivée.
+    fares:
+      - id: fare_ita_airways_hold_eur_2026_09_10
+        placement: hold
+        price:
+          kind: exact
+          amounts:
+            - amount: 300
+              currency: EUR
+        billing_subject: pet_or_container
+        journey_basis: per_segment
+        scope_label: marché de départ → zones publiées
+        source:
+          url: https://www.ita-airways.com/ae/en/book-and-prepare/other-requests/travelling-with-pets/pet-transportation-charges
+          source_type: official_website
+          verified_date: 2026-09-10
+          review_due: 2026-12-09
+          confidence: 4
+          reviewer: Codex — lecture directe de la source officielle
+          history: []
+          quote: Hold EUR 300
+          quote_language: en
+          locator: Pet transportation charges
     availability: offered
     # PREUVE IMPORTÉE — import strict lot4 (Codex, lecture directe du 2026-09-09, cohorte LOT4 fait 13).
     # Effet attendu : ITA Airways hold is a documented conditional route; it is not a booking confirmation.

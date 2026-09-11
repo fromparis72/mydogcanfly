@@ -79,6 +79,29 @@ policies:
   cabin:
     availability: not_offered
   hold:
+    # TARIFS OFFICIELS — audit indépendant du 2026-09-10 ; aucune valeur héritée réactivée.
+    fares:
+      - id: fare_air_new_zealand_hold_nzd_2026_09_10
+        placement: hold
+        price:
+          kind: exact
+          amounts:
+            - amount: 120
+              currency: NZD
+        billing_subject: container
+        journey_basis: per_journey
+        scope_label: domestic New Zealand
+        source:
+          url: https://www.airnewzealand.com/en-nz/travel-info/accessibility-and-assistance/travelling-with-pets
+          source_type: official_website
+          verified_date: 2026-09-10
+          review_due: 2026-12-09
+          confidence: 4
+          reviewer: Codex — lecture directe de la source officielle
+          history: []
+          quote: NZD $120 per pet carrier per journey
+          quote_language: en
+          locator: Domestic pets / charge
     availability: offered
   cargo:
     review_state: legacy_unreviewed

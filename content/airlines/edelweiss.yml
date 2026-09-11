@@ -73,6 +73,113 @@ ladder:
       pt: "via SWISS WorldCargo"
 policies:
   cabin:
+    # TARIFS OFFICIELS — audit indépendant du 2026-09-10 ; aucune valeur héritée réactivée.
+    fares:
+      - id: fare_edelweiss_cabin_chf_2026_09_10
+        placement: cabin
+        price:
+          kind: exact
+          amounts:
+            - amount: 90
+              currency: CHF
+        billing_subject: pet_or_container
+        journey_basis: per_segment
+        scope_label: zones tarifaires → zones tarifaires
+        source:
+          url: https://www.flyedelweiss.com/at/en/prepare/flight-preparation/animals-travelling/registration-and-charges.html
+          source_type: official_website
+          verified_date: 2026-09-10
+          review_due: 2026-12-09
+          confidence: 4
+          reviewer: Codex — lecture directe de la source officielle
+          history: []
+          quote: CHF 90 / EUR 80 / GBP 85 / USD 95 / CAD 110
+          quote_language: en
+          locator: Charges for transporting animals → Dogs and cats in cabin → Europe
+      - id: fare_edelweiss_cabin_eur_2026_09_10
+        placement: cabin
+        price:
+          kind: exact
+          amounts:
+            - amount: 80
+              currency: EUR
+        billing_subject: pet_or_container
+        journey_basis: per_segment
+        scope_label: zones tarifaires → zones tarifaires
+        source:
+          url: https://www.flyedelweiss.com/at/en/prepare/flight-preparation/animals-travelling/registration-and-charges.html
+          source_type: official_website
+          verified_date: 2026-09-10
+          review_due: 2026-12-09
+          confidence: 4
+          reviewer: Codex — lecture directe de la source officielle
+          history: []
+          quote: CHF 90 / EUR 80 / GBP 85 / USD 95 / CAD 110
+          quote_language: en
+          locator: Charges for transporting animals → Dogs and cats in cabin → Europe
+      - id: fare_edelweiss_cabin_gbp_2026_09_10
+        placement: cabin
+        price:
+          kind: exact
+          amounts:
+            - amount: 85
+              currency: GBP
+        billing_subject: pet_or_container
+        journey_basis: per_segment
+        scope_label: zones tarifaires → zones tarifaires
+        source:
+          url: https://www.flyedelweiss.com/at/en/prepare/flight-preparation/animals-travelling/registration-and-charges.html
+          source_type: official_website
+          verified_date: 2026-09-10
+          review_due: 2026-12-09
+          confidence: 4
+          reviewer: Codex — lecture directe de la source officielle
+          history: []
+          quote: CHF 90 / EUR 80 / GBP 85 / USD 95 / CAD 110
+          quote_language: en
+          locator: Charges for transporting animals → Dogs and cats in cabin → Europe
+      - id: fare_edelweiss_cabin_usd_2026_09_10
+        placement: cabin
+        price:
+          kind: exact
+          amounts:
+            - amount: 95
+              currency: USD
+        billing_subject: pet_or_container
+        journey_basis: per_segment
+        scope_label: zones tarifaires → zones tarifaires
+        source:
+          url: https://www.flyedelweiss.com/at/en/prepare/flight-preparation/animals-travelling/registration-and-charges.html
+          source_type: official_website
+          verified_date: 2026-09-10
+          review_due: 2026-12-09
+          confidence: 4
+          reviewer: Codex — lecture directe de la source officielle
+          history: []
+          quote: CHF 90 / EUR 80 / GBP 85 / USD 95 / CAD 110
+          quote_language: en
+          locator: Charges for transporting animals → Dogs and cats in cabin → Europe
+      - id: fare_edelweiss_cabin_cad_2026_09_10
+        placement: cabin
+        price:
+          kind: exact
+          amounts:
+            - amount: 110
+              currency: CAD
+        billing_subject: pet_or_container
+        journey_basis: per_segment
+        scope_label: zones tarifaires → zones tarifaires
+        source:
+          url: https://www.flyedelweiss.com/at/en/prepare/flight-preparation/animals-travelling/registration-and-charges.html
+          source_type: official_website
+          verified_date: 2026-09-10
+          review_due: 2026-12-09
+          confidence: 4
+          reviewer: Codex — lecture directe de la source officielle
+          history: []
+          quote: CHF 90 / EUR 80 / GBP 85 / USD 95 / CAD 110
+          quote_language: en
+          locator: Charges for transporting animals → Dogs and cats in cabin → Europe
     availability: offered
     # PREUVE IMPORTÉE — import strict lot9 (Codex, lecture directe du 2026-09-09, cohorte LOT9 fait 10).
     # Effet attendu : Edelweiss cabin is conditional with an 8 kg combined animal-and-carrier ceiling.
@@ -92,6 +199,31 @@ policies:
       quote_language: en
       locator: "Travelling in the Cabin"
   hold:
+    # TARIFS OFFICIELS — audit indépendant du 2026-09-10 ; aucune valeur héritée réactivée.
+    fares:
+      - id: fare_edelweiss_hold_chf_2026_09_10
+        placement: hold
+        price:
+          kind: range
+          amounts:
+            - amount: 220
+              currency: CHF
+            - amount: 440
+              currency: CHF
+        billing_subject: pet_or_container
+        journey_basis: per_segment
+        scope_label: zones tarifaires → zones tarifaires
+        source:
+          url: https://www.flyedelweiss.com/at/en/prepare/flight-preparation/animals-travelling/registration-and-charges.html
+          source_type: official_website
+          verified_date: 2026-09-10
+          review_due: 2026-12-09
+          confidence: 4
+          reviewer: Codex — lecture directe de la source officielle
+          history: []
+          quote: CHF 220 / CHF 440
+          quote_language: en
+          locator: Hold table
     availability: offered
     # PREUVE IMPORTÉE — import strict lot9 (Codex, lecture directe du 2026-09-09, cohorte LOT9 fait 11).
     # Effet attendu : Edelweiss hold is a documented conditional route.
