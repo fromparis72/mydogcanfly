@@ -4106,3 +4106,48 @@ veut. Même geste dans DestinationFinder, pour la même raison.
 | entités | 179 OK |
 | caisses non sourcées | vert |
 | contre-épreuves `--dist-complet` | 58 garanties éprouvées sur 58 |
+## Annexe 43 — Saudia : une preuve lue sur une surface de test, retirée (10/09/2026, classement C)
+
+L'audit tarifaire indépendant de Codex a opposé la preuve importée au lot 6 : son URL,
+`booking-uat.dcloud.saudia.com`, est une **surface de test**, jamais une page de production. Philippe a tranché :
+preuve retirée, cabine et soute revenues à « à confirmer » jusqu'à une page de production stable portant la
+phrase. Ce test signalait l'adresse dès le 09/09 — « accepté par le contrat, SIGNALÉ pour contre-revue, non
+réécrit » : le signalement a servi, un tiers l'a opposé, la dette est fermée dans le sens de la prudence.
+
+### Mesuré, et une erreur nommée
+
+Cabine et soute n'ont pas la même histoire. La **cabine** était une ligne non revérifiée de la migration,
+réactivée en refus cité au lot 6 — la première du dépôt : elle redevient `review_state: legacy_unreviewed`.
+La **soute** portait `availability: offered` depuis toujours, une disponibilité d'auteur jamais citée. *Erreur
+nommée* : mon premier jet l'a remise en `review_state`, et le manifeste de migration l'a refusée — « politique
+migrée hors manifeste ». Il avait raison : elle n'a jamais été migrée. Elle retrouve son état exact d'avant le
+lot 6. Les deux se projettent « à confirmer » ; retirer une preuve ne crée ni oui ni non.
+
+### Mouvements nommés, tous figés sur mesure
+
+| témoin | avant | après |
+|---|---|---|
+| politiques citées (frontière, lot 9, inventaire, Air France) | 179 | **177** |
+| décisions citées | 178 | **176** |
+| sous conditions · refus · à confirmer | 144 · 34 · 124 | **143 · 33 · 126** |
+| `legacy_unreviewed` | 109 | **111** |
+| quatrième état (politiques réelles) | 144 | **143** |
+| témoin hérité `carries` | 29 529 | **29 106** (423 couples se referment, aucun ne s'ouvre) |
+| inventaire A/B, cabine A/B, soute A/B | 179/50, 80/8, 71/23 | **177/52, 79/9, 70/24** |
+| inventaire : B par règle, gov.uk seul, écart « B par règle sur politique aucune » | 28, 14, 27 | **30, 15, 29** |
+| baseline du Finder | figée Air France cabine | paire `saudia-preuve-uat-{avant,apres}.json` : **24 cartes / 1 560**, Saudia seule, 24 refus cabine et 12 soutes « sous conditions » → « à confirmer », **aucun canal ouvert, aucun verdict déplacé** |
+| matrice de migration | `airline_saudia\|cabin` dans les réactivations sur citation | **retirée** de cet ensemble ; la ligne redevient une ligne du manifeste |
+
+### Un témoin élargi, plus fort que le cas
+
+Le contrôle « l'URL est un sous-domaine `booking-uat`, signalé pour contre-revue » disparaît, remplacé par une
+garde générale : **aucune politique du dépôt ne repose sur une adresse de test** — `booking-uat`, `.uat.` ou
+`staging.` — mesurée sur l'artefact entier. Ce qui n'était qu'une note devient une barrière.
+
+### Les deux autres contre-lectures
+
+**Air China cabine** : ma preuve est validée par Philippe, la page officielle établissant le transport en cabine
+sur les vols opérés par la compagnie (et publiant 1 399 RMB par animal et par segment, que le contrat tarifaire
+portera). **Batik Air Indonesia** : cabine et soute validées ; le fret doit rester « à confirmer », et il l'est
+déjà — `not_offered` sans citation projette « à confirmer », ce que le témoin du lot 9 exigeait. Aucun mouvement
+pour ces deux compagnies.

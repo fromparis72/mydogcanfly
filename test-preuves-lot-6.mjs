@@ -50,7 +50,7 @@ const canal = (dec, id, pl) => dec.airlines.find((a) => a.airline_id === id)?.pl
 const politique = (id, pl) => objets.airlines.find((a) => a.id === id)?.premium?.policy?.[pl];
 const projetee = (id, pl) => kb.airlines.get(id)?.premium?.policy?.[pl];
 const SEUILS = { "airline_aeromexico.cabin": [9, true], "airline_aeromexico.hold": [45, true], "airline_egyptair.cabin": [8, true] };
-const REACTIVEES = ["airline_south_african_airways.hold", "airline_south_african_airways.cargo", "airline_saudia.cabin", "airline_kenya_airways.cargo", "airline_gulf_air.cargo", "airline_royal_jordanian.cabin"];
+const REACTIVEES = ["airline_south_african_airways.hold", "airline_south_african_airways.cargo", "airline_kenya_airways.cargo", "airline_gulf_air.cargo", "airline_royal_jordanian.cabin"];
 const REFUSE = "airline_air_china.cabin";
 const CORRECTIF = JSON.parse(readFileSync("mesures/preuves/correctif-arbitrages-2026-09-09/CORRECTIF_ARBITRAGES_POLITIQUES_COMPAGNIES_2026-09-09.json", "utf8"));
 
@@ -62,6 +62,18 @@ console.log("=== Étage 1 — 22 faits relus, 21 dans la donnée à l'octet prè
     const pol = politique(f.airline_id, f.placement);
     const s = pol?.source ?? {};
     const proj = projetee(f.airline_id, f.placement);
+    if (cle === "airline_saudia.cabin" || cle === "airline_saudia.hold") {
+      /* PREUVE RETIRÉE (10/09/2026, contre-lecture de l'audit tarifaire de Codex, tranchée par Philippe). Le lot 6 avait
+         importé ces deux faits depuis `booking-uat.dcloud.saudia.com`, et ce test signalait déjà l'URL « pour
+         contre-revue, non réécrite ». La contre-revue a tranché : une surface de test ne prouve rien de ce que la
+         compagnie publie. Le fait reste dans le dossier de Codex, à l'octet près — il n'est plus dans la donnée.
+         Le témoin le VÉRIFIE : plus de citation, plus d'URL UAT, et le canal revenu « à confirmer ». */
+      check(`${cle} (LOT6[${f.index}]) : preuve RETIRÉE — plus de citation, plus d'URL de test, canal revenu « à confirmer »`,
+        !pol?.source?.quote && !/booking-uat/.test(JSON.stringify(pol ?? {})) && proj?.status === "confirmation_required" && proj?.status_cause === "legacy_unreviewed",
+        JSON.stringify({ politique: pol, projete: proj }));
+      check(`  …et le fait de Codex reste lisible dans son dossier, inchangé`, (f.quote ?? "").startsWith("Dogs must be transported in the cargo hold"));
+      continue;
+    }
     if (cle === REFUSE) {
       /* HISTOIRE : refusé à l'import du lot 6 (la fiche disait `not_offered`), porté à l'arbitrage. ARBITRAGE (09/09/2026,
          Codex, tranché par Philippe — correctif) : « maintenu sous conditions sur les vols opérés par Air China » ; « domestic
@@ -94,13 +106,16 @@ console.log("=== Étage 1 — 22 faits relus, 21 dans la donnée à l'octet prè
   const am = politique("airline_aeromexico", "cabin")?.source;
   check("Aeromexico : la ligne de tableau citée est conservée telle quelle, en espagnol (`quote_language: es`)",
     am?.quote_language === "es" && am?.quote?.startsWith("Mascota bajo el asiento (PETC)") && am?.quote?.endsWith("Hasta 9 kg (Incluyendo transportadora)"));
-  /* Saudia cabine : PREMIÈRE réactivation d'une ligne non revérifiée en REFUS cité. */
+  /* Saudia : la PREMIÈRE réactivation en refus cité du dépôt a été DÉFAITE (10/09/2026). Ce test signalait dès le lot 6
+     que l'URL était un sous-domaine `booking-uat` — « accepté par le contrat, SIGNALÉ pour contre-revue ». L'audit
+     indépendant de Codex l'a opposée comme surface de test ; Philippe a tranché : preuve retirée. Le témoin garde sa
+     force en changeant de sens — aucune adresse de test ne doit plus fonder une décision, nulle part dans la donnée. */
   const sc = politique("airline_saudia", "cabin");
-  check("Saudia cabine : ligne non revérifiée RÉACTIVÉE en refus cité — `not_offered` écrit, plus de `review_state`, projetée `denied`",
-    sc?.availability === "not_offered" && !("review_state" in (sc ?? {})) && projetee("airline_saudia", "cabin")?.status === "denied", JSON.stringify(sc));
-  /* Provenance à contre-revoir, nommée, pas réécrite. */
-  check("Saudia : l'URL relue par Codex est un sous-domaine `booking-uat` de saudia.com — accepté par le contrat, SIGNALÉ pour contre-revue, non réécrit",
-    /^https:\/\/booking-uat\.dcloud\.saudia\.com\//.test(sc?.source?.url ?? "") && politique("airline_saudia", "hold")?.source?.url === sc?.source?.url);
+  check("Saudia cabine : la réactivation en refus cité est DÉFAITE — ligne redevenue non revérifiée, sans disponibilité écrite",
+    !sc?.availability && sc?.review_state === "legacy_unreviewed" && projetee("airline_saudia", "cabin")?.status === "confirmation_required", JSON.stringify(sc));
+  check("AUCUNE politique du dépôt ne repose sur une adresse de test (`booking-uat`, `.uat.`, `staging`)",
+    !/booking-uat|\.uat\.|staging\./i.test(JSON.stringify(objets.airlines.map((a) => a.premium?.policy ?? {}))),
+    (JSON.stringify(objets.airlines.map((a) => a.premium?.policy ?? {})).match(/https?:\/\/[^"]*(booking-uat|\.uat\.|staging\.)[^"]*/) || [""])[0]);
   /* Un seuil n'existe que s'il est ÉCRIT depuis la phrase : Royal Jordanian 7 ne l'est pas. */
   const rj = projetee("airline_royal_jordanian", "cabin");
   check("Royal Jordanian cabine PROJETÉE : sous conditions SANS plafond — la phrase citée ne porte pas le chiffre, et la grille tarifaire n'est pas une preuve",
@@ -152,10 +167,10 @@ console.log("\n=== Étage 2 — Madrid → Santiago, Londres → Newark : LATAM 
 console.log("\n=== Étage 2 — Paris → Riyad, Pékin, Nairobi, Amman ; Johannesburg → Le Cap ; Paris → Bahreïn ===");
 {
   const ruh = decide("airport_cdg", "airport_ruh", GOLDEN_32), ruhC = decide("airport_cdg", "airport_ruh", CAVALIER_6), ruhP = decide("airport_cdg", "airport_ruh", CARLIN_8);
-  check("Saudia cabine : refusée sur citation pour TOUT chien de compagnie (Golden, Cavalier 6 kg, Carlin 8 kg)",
-    [ruh, ruhC, ruhP].every((x) => canal(x, "airline_saudia", "cabin")?.status === "denied"), JSON.stringify([ruh, ruhC, ruhP].map((x) => canal(x, "airline_saudia", "cabin")?.status)));
-  check("Saudia soute, Golden 32 kg : sous conditions (« cargo hold » = la soute, jamais le fret) ; fret non décidé → à confirmer",
-    canal(ruh, "airline_saudia", "hold")?.status === "accepted_with_conditions" && canal(ruh, "airline_saudia", "cargo")?.status === "confirmation_required");
+  check("Saudia cabine : « à confirmer » pour TOUT chien de compagnie (Golden, Cavalier 6 kg, Carlin 8 kg) — la preuve de test retirée, aucun refus n'est prononcé",
+    [ruh, ruhC, ruhP].every((x) => canal(x, "airline_saudia", "cabin")?.status === "confirmation_required"), JSON.stringify([ruh, ruhC, ruhP].map((x) => canal(x, "airline_saudia", "cabin")?.status)));
+  check("Saudia soute et fret, Golden 32 kg : « à confirmer » tous deux — retirer une preuve ne crée ni oui ni non",
+    canal(ruh, "airline_saudia", "hold")?.status === "confirmation_required" && canal(ruh, "airline_saudia", "cargo")?.status === "confirmation_required");
   const pek = decide("airport_cdg", "airport_pek", GOLDEN_32), pekC = decide("airport_cdg", "airport_pek", CAVALIER_6);
   const acC = canal(pekC, "airline_air_china", "cabin");
   /* HISTOIRE : après l'arbitrage, `rule_air_china_no_cabin` (héritée, non citée) gardait la cabine « à confirmer ».
