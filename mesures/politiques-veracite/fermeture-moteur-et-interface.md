@@ -3915,6 +3915,64 @@ des preuves régénéré, baseline du Finder refigée (paire `complement-air-fra
 | caisses non sourcées | vert |
 | contre-épreuves `--dist-complet` | 58 garanties éprouvées sur 58 |
 | registre de fraîcheur | rescellé (1 504 entrées), inventaire des preuves régénéré |
+### Déploiement de `main` `6275605` (10/09/2026, Philippe, depuis son Mac) — prouvé
+
+`verify:index` : 2 536 URL, 102 compagnies, 140 pays, 172 races, 269 aéroports, aucune balise noindex ;
+`wrangler deploy` annonce `Current Version ID: fb53813f-041f-4b69-bd5d-675d1904d87b` ; lecture de santé :
+`sha: 6275605885747cf398960d4fce19cc27b5b632fb`, `worker_version_id: fb53813f-…` — le SHA ET l'identifiant
+de version concordent avec l'annonce (règle de l'annexe 35). En ligne désormais : Bangkok Airways fret
+(annexe 37, #49), Air France cabine citée (annexe 39, #51). Contrôle en ligne à demander à Codex : chihuahua
+3 kg, CDG → JFK, cabine Air France « sous conditions, plafond 8 kg chien + sac ».
+
+## Annexe 40 — Fiche compagnie : le bandeau sous le titre, les pastilles courtes (10/09/2026, classement A)
+
+Arbitrage de Codex, relayé par Philippe sur la capture d'Aeromexico en ligne : le bandeau « Transport possible
+sous conditions de la compagnie sur au moins un canal cité » passait SUR le H1 ; les capsules des canaux
+portaient une explication (« Politique à confirmer auprès de la compagnie ») et débordaient de leur carte.
+Demandé : bandeau « Transport possible sous conditions » sur une ligne distincte sous le titre ; capsules
+réduites à « Sous conditions », « Refusé », « À confirmer » ; retour à la ligne autorisé dans l'en-tête de carte ;
+aucun positionnement absolu ; contrôle mobile / tablette / bureau dans les quatre langues.
+
+### Mesuré avant d'écrire
+
+Aucune pastille n'était en position absolue : le chevauchement venait de `white-space: nowrap` sur toutes les
+pastilles et d'une boîte de bandeau bornée à 240 px, à côté du H1 dans le `flex` du hero. Les libellés vivent dans
+`strings.json` (quatre langues) ; la capsule « à confirmer » partageait sa clé (`air.to_confirm`) avec le bandeau
+de tête « rien n'est décidé ». Au passage, à 400 px, la fiche British Airways défilait horizontalement (435 px) :
+la réponse de FAQ qui cite l'URL officielle entre parenthèses ne pouvait pas se couper — hors du relevé de Codex,
+dans le périmètre « vérifier aux largeurs mobile ».
+
+### Ce qui a été fait, et rien d'autre
+
+- libellés (en/fr/es/pt) : `premium.verdict_open_conditions` → « Transport possible sous conditions » ;
+  `premium.accepted_conditions` → « Sous conditions » ; `premium.not_allowed` → « Refusé » ; nouvelle clé
+  `premium.to_confirm_short` → « À confirmer », rendue par `cleLibelleStatut` pour la capsule seule
+  (`air.to_confirm` reste la phrase du bandeau quand rien n'est décidé, et n'est plus une capsule) ;
+- gabarit : le nom du canal devient un élément mesurable (`.mini .t .nm`) ; le bandeau est une ligne à part
+  (`flex: 1 1 100%`, aligné à gauche) ; le bandeau et les pastilles de canal peuvent passer à la ligne ; l'en-tête
+  de carte est `flex-wrap` ; la règle mobile devenue inutile est retirée ; FAQ : `overflow-wrap: anywhere` ;
+- témoins : `test-entity-pages-harness` (clé de la capsule « à confirmer », mouvement nommé) ; **nouveau** dans
+  `test-apercu-navigateur` : Aeromexico, 1280 / 800 / 400 px × en / fr / es / pt, rectangles rendus — bandeau au
+  texte exact, sous le H1, sans chevauchement ; aucune pastille absolue ; aucun défilement horizontal ; trois
+  pastilles au libellé court, dans leur carte, sans chevaucher le nom du canal ; plus la fiche British Airways
+  en portugais à 400 px : « Recusado ». 65 contrôles, captures `12-fiche-*-400px.png`.
+
+### Mesuré
+
+| contrôle | résultat |
+|---|---|
+| mesure ad hoc, British Airways, 4 langues × 3 largeurs (dist réduit) | bandeau sous le H1 partout ; à 800 px la pastille du fret passe sous « Fret » ; 435 → **400 px** après le correctif FAQ |
+| suite navigateur complète (dist complet, 3 112 pages) | **246 OK, 0 ÉCHEC** (181 + 65) |
+| entités 178, fiche harnais, frontière de confiance 135, dette Astro 165 | verts |
+### CI sur `6b65ea4` : Qantas soute, une politique citée sans bloc de canal sur sa fiche — dette nommée
+
+Le témoin `tarifs` §5quater, re-fondé sur les libellés courts, avait aussi reçu le quatrième état. La CI (dist
+complet) a rougi sur **Qantas soute** : `accepted_with_conditions` cité dans la base, mais la fiche `qantas.yml`
+ne déclare pas de canal soute dans son bloc éditorial `channels:` — aucun bloc, aucune pastille. Rien de faux n'est
+publié ; un canal décidé n'est pas montré. Hors périmètre de ce lot (présentation) : dette de contenu à fermer
+dans un lot dédié (déclarer le canal soute de Qantas), moment où le témoin s'élargira au quatrième état. La table
+du témoin revient à ses trois états d'origine, mouvement nommé dans le code.
+
 ## Annexe 41 — Héros de l'accueil : T1, T2, T3 arbitrés (10/09/2026, classement B)
 
 Arbitrage validé par Philippe, relayé par Codex : trois textes dans les quatre langues — T1 la question centrale

@@ -34,6 +34,9 @@ const { items, title, note } = Astro.props;
   .faqb__q { margin: 0; font-size: 15px; font-weight: 600; line-height: 1.45; color: var(--mdcf-ink, #011d48); }
   .faqb__chev { flex: 0 0 auto; font-size: 17px; line-height: 1; color: var(--mdcf-muted, #5b6b80); transition: transform .18s ease; }
   .faqb__i[open] .faqb__chev { transform: rotate(180deg); }
-  .faqb__a { margin: 0 0 14px; font-size: 14.5px; line-height: 1.62; color: var(--mdcf-muted, #5b6b80); }
+  /* MESURÉ (10/09/2026, lot « fiche : pastilles lisibles ») : à 400 px, la réponse de la FAQ qui cite une page officielle
+     avec son URL entre parenthèses ne se coupait pas et faisait défiler toute la fiche British Airways horizontalement
+     (435 px). Une URL longue peut se couper n'importe où : le texte reste lisible, la page ne défile plus. */
+  .faqb__a { margin: 0 0 14px; font-size: 14.5px; line-height: 1.62; color: var(--mdcf-muted, #5b6b80); overflow-wrap: anywhere; }
   .faqb__note { margin: 12px 0 0; font-size: 12.5px; color: var(--mdcf-muted, #5b6b80); }
 </style>
