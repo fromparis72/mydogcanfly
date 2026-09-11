@@ -4513,3 +4513,56 @@ des zones publiques, et mon sabotage visait hors d'elles.
 
 **Mouvement des comptes.** Aucun. Typecheck propre, 220 témoins unitaires, dette Astro stable à 165. Le lot est
 indépendant de la chaîne de fusion en cours (#53 à #56) et ne touche aucun fichier qu'elles modifient.
+---
+
+### Déploiement de `main` `52d138f` (11/09/2026, Philippe, depuis son Mac) — prouvé au troisième essai
+
+**Trois bascules du worker, et c'est la troisième qui fait preuve.** La première, sans le drapeau,
+rendait `sha: "unknown"` (voir plus bas). La deuxième, avec `--var BUILD_SHA:` recopié à la main,
+annonçait `Current Version ID: 28bc972a-41bd-4acc-8d80-1abf994daee0` et concordait sur les deux
+moitiés. La troisième a été relancée avec `--var BUILD_SHA:$(git rev-parse HEAD)` — la forme qui LIT
+le dépôt au lieu de retaper un SHA — et c'est elle qui est en ligne : `Current Version ID:
+df4b4659-6e3b-4f82-a08a-424e245a6326`.
+
+Elle est prouvée à **TROIS termes**, et pas deux, parce que la forme `$(git rev-parse HEAD)` déplace
+le risque : elle ne peut plus se tromper de frappe, mais elle annonce le SHA du dépôt LOCAL, qui n'est
+pas forcément celui que Pages sert. Le dépôt local a donc été relevé séparément avant la lecture :
+
+| terme | valeur |
+|---|---|
+| `git rev-parse HEAD` sur le Mac | `52d138fa91b2e7906887beff8464b9856d2b5681` |
+| `sha` de `/v1/health` | `52d138fa91b2e7906887beff8464b9856d2b5681` |
+| `worker_version_id` de `/v1/health` | `df4b4659-6e3b-4f82-a08a-424e245a6326` |
+| `Current Version ID` annoncé par wrangler | `df4b4659-6e3b-4f82-a08a-424e245a6326` |
+
+Les quatre concordent deux à deux (règle de l'annexe 35, étendue au dépôt local). Le worker déployé
+est identique aux deux précédents à l'octet près — même taille d'envoi — seuls le SHA annoncé et
+l'identifiant de version changent. En ligne désormais : la fiche compagnie (annexe 40,
+#52), le héros de l'accueil (annexe 41, #53), le Finder restreint aux itinéraires établis (annexe 42, #54),
+le retrait de la preuve Saudia (annexe 43, #55) et le contrat tarifaire (annexes 44 à 48, #56).
+
+**Une garantie qui ne tenait qu'à la mémoire de celui qui tape — erreur nommée, la mienne.** La première
+lecture de santé a rendu `sha: "unknown"`. Le worker lit son SHA dans `env.BUILD_SHA`, une variable qui doit
+être INJECTÉE au déploiement par `--var BUILD_SHA:<sha>`. J'avais donné à Philippe la commande courte de
+`REPRISE.md`, sans le drapeau. Mesuré après coup : `BUILD_SHA` n'est injecté qu'à **un seul endroit de tout
+le dépôt**, `deploy-preview.mjs` — la production n'a aucun script, seulement une ligne retapée de mémoire à
+chaque bascule. Elle a tenu cinq fois et a cédé la sixième.
+
+Ce n'est pas une faute d'inattention, c'est un défaut de conception : **la moitié « SHA » de la règle de
+l'annexe 35 repose sur un drapeau facultatif que rien n'exige.** Un déploiement sans lui produit une réponse
+de santé parfaitement verte et parfaitement muette — `ok: true`, un identifiant de version valide, et un SHA
+qui dit « je ne sais pas ». C'est la forme exacte que ce dossier combat partout ailleurs : un contrôle qui
+passe sans regarder ce qu'il prétend garantir.
+
+La bascule a été refaite avec le drapeau, et prouvée. **Dette ouverte, nommée, à fermer avant la prochaine
+bascule** : écrire `deployer-production.mjs` sur le modèle du script de préversion — il lit le SHA lui-même,
+refuse de publier sur un arbre de travail sale, et REFUSE de conclure si la lecture de santé ne porte pas les
+deux moitiés. Tant qu'il n'existe pas, la commande de production s'écrit en entier :
+`npx wrangler deploy --env production --var BUILD_SHA:$(git rev-parse HEAD)` — **et le SHA local se relève
+séparément avant la lecture de santé**, sinon la concordance ne prouve que la cohérence du Mac avec
+lui-même.
+
+**Dette du témoin tarifaire, repliée.** Codex avait relevé sur `a676fb8` que la contre-épreuve positive de la
+frontière appelait le compilateur deux fois dans la même assertion — l'argument de détail est évalué même
+quand l'assertion passe. Il avait jugé que cela ne justifiait pas une tête à soi seul. C'est fait ici, dans le
+premier commit qui rouvre ce fichier, comme annoncé.
