@@ -55,13 +55,13 @@ const Q_CAB = "En cabine (chats et chiens de moins de 8 kg, sac de transport com
 const CH_CAB = { max_weight_kg: 8, weight_limit_bound: "lt", weight_includes_carrier: true };
 const AT_CAB = {
   claim: { kind: "weight_max", kg: 8, bound: "lt", subject: "dog_plus_carrier" },
-  poids: "8 kg", borne: "moins de 8 kg", sujet: "sac de transport compris",
+  poids: "8 kg", borne: "moins de 8 kg", sujet: "8 kg, sac de transport compris",
 };
 
 console.log("=== 1. Les quatre faux verts reproduits par Codex sur `80e3ce6` ===");
 {
   refuse("(1) sujet « contenant compris » rattaché à un fragment qui ne nomme aucun contenant",
-    canal({ ...AT_CAB, sujet: "chats et chiens" }, Q_CAB, CH_CAB), "ne rattache aucun contenant au poids");
+    canal({ ...AT_CAB, sujet: "chats et chiens de moins de 8 kg" }, Q_CAB, CH_CAB), "ne rattache aucun contenant AUX 8 kg");
 
   refuse("(2) « up to 8 kg » rattaché à la borne STRICTE `lt`",
     canal({ claim: { kind: "weight_max", kg: 8, bound: "lt", subject: "dog_plus_carrier" },
@@ -95,7 +95,7 @@ console.log("\n=== 2. Le cinquième, sur `4443653` : l'absence de preuve n'est p
     canal({ claim: { kind: "weight_max", kg: 8, bound: "lt", subject: "dog_alone" },
       poids: "8 kg", borne: "moins de 8 kg", sujet: "chats et chiens" },
       "chats et chiens de moins de 8 kg", { ...CH_CAB, weight_includes_carrier: false }),
-    "n'exclut explicitement aucun contenant");
+    "n'exclut aucun contenant DES 8 kg");
 
   refuse("(5 ter) un sujet déclaré SANS fragment rattaché",
     canal({ claim: { kind: "weight_max", kg: 8, bound: "lt", subject: "dog_plus_carrier" },
@@ -135,16 +135,16 @@ console.log("\n=== 2 bis. Les cinq sabotages de Codex sur `59d4788` ===");
      mauvaise raison » : ici tout tient dans une seule phrase. */
   refuse("(7 bis) « carrier not included » dans la MÊME proposition ne prouve pas l'inclusion",
     canal({ claim: { kind: "weight_max", kg: 8, bound: "lt", subject: "dog_plus_carrier" },
-      poids: "8 kg", borne: "under 8 kg", sujet: "carrier not included in this weight" },
+      poids: "8 kg", borne: "under 8 kg", sujet: "under 8 kg, carrier not included in this weight" },
       "Dogs under 8 kg, carrier not included in this weight, may travel", CH_CAB),
-    "ne rattache aucun contenant au poids");
+    "ne rattache aucun contenant AUX 8 kg");
 
   refuse("(8) « without the owner » ne dit rien du contenant",
     canal({ claim: { kind: "weight_max", kg: 8, bound: "lt", subject: "dog_alone" },
-      poids: "8 kg", borne: "under 8 kg", sujet: "without the owner" },
+      poids: "8 kg", borne: "under 8 kg", sujet: "under 8 kg may travel without the owner" },
       "Dogs under 8 kg may travel without the owner.",
       { ...CH_CAB, weight_includes_carrier: false }),
-    "n'exclut explicitement aucun contenant");
+    "n'exclut aucun contenant DES 8 kg");
 
   refuse("(9) « 46 × 28 × 24 in » ne prouve pas 46 × 28 × 24 CENTIMÈTRES",
     canal({ claim: { kind: "carrier_dims_cm", l: 46, w: 28, h: 24 }, dimensions: "46 x 28 x 24 in" },
@@ -161,9 +161,48 @@ console.log("\n=== 2 bis. Les cinq sabotages de Codex sur `59d4788` ===");
       Q_MIXTE, { min_weight_kg: 8, weight_min_bound: "gte" }), ["weight_min"]);
   accepte("(10 bis) préalable : le plafond de la même phrase porte, lui, un sujet prouvé",
     canal({ claim: { kind: "weight_max", kg: 75, bound: "lte", subject: "dog_plus_carrier" },
-      poids: "75 kg", borne: "up to 75 kg", sujet: "with its carrier" },
+      poids: "75 kg", borne: "up to 75 kg", sujet: "up to 75 kg with its carrier" },
       Q_MIXTE, { max_weight_kg: 75, weight_limit_bound: "lte", weight_includes_carrier: true }),
     ["weight_max"]);
+}
+
+console.log("\n=== 2 ter. Les deux faux verts de `8c8faf4` : la relation portait sur autre chose ===");
+{
+  /* La tournure était rattachée au CONTENANT, jamais au POIDS. Deux phrases passaient donc, où
+     l'inclusion porte sur le prix du billet et l'exclusion sur une étiquette. */
+  refuse("(11) « the carrier included in THE TICKET PRICE » ne dit pas que le contenant pèse",
+    canal({ claim: { kind: "weight_max", kg: 8, bound: "lt", subject: "dog_plus_carrier" },
+      poids: "8 kg", borne: "under 8 kg",
+      sujet: "under 8 kg may travel in cabin, with the carrier included in the ticket price" },
+      "Dogs under 8 kg may travel in cabin, with the carrier included in the ticket price.",
+      { max_weight_kg: 8, weight_limit_bound: "lt", weight_includes_carrier: true }),
+    "ne rattache aucun contenant AUX 8 kg");
+
+  refuse("(12) « a carrier without A LABEL » n'exclut pas le contenant du poids",
+    canal({ claim: { kind: "weight_max", kg: 8, bound: "lt", subject: "dog_alone" },
+      poids: "8 kg", borne: "under 8 kg",
+      sujet: "under 8 kg may travel in cabin, but a carrier without a label is refused" },
+      "Dogs under 8 kg may travel in cabin, but a carrier without a label is refused.",
+      { max_weight_kg: 8, weight_limit_bound: "lt", weight_includes_carrier: false }),
+    "n'exclut aucun contenant DES 8 kg");
+
+  /* …ET LE TÉMOIN POSITIF QUI VA AVEC, sans lequel la correction serait un durcissement aveugle :
+     une formulation officielle parfaitement claire était REFUSÉE par la version précédente. */
+  accepte("(13) « The combined weight of the pet and carrier is up to 8 kg » est ACCEPTÉ",
+    canal({ claim: { kind: "weight_max", kg: 8, bound: "lte", subject: "dog_plus_carrier" },
+      poids: "8 kg", borne: "up to 8 kg", sujet: "combined weight of the pet and carrier is up to 8 kg" },
+      "The combined weight of the pet and carrier is up to 8 kg.",
+      { max_weight_kg: 8, weight_limit_bound: "lte", weight_includes_carrier: true }), ["weight_max"]);
+  accepte("(14) « The total weight of pet and carrier is up to 8 kg » aussi",
+    canal({ claim: { kind: "weight_max", kg: 8, bound: "lte", subject: "dog_plus_carrier" },
+      poids: "8 kg", borne: "up to 8 kg", sujet: "total weight of pet and carrier is up to 8 kg" },
+      "The total weight of pet and carrier is up to 8 kg.",
+      { max_weight_kg: 8, weight_limit_bound: "lte", weight_includes_carrier: true }), ["weight_max"]);
+
+  /* LE FRAGMENT DE SUJET DOIT PORTER LE POIDS — c'est la condition qui rend les deux premières
+     attaques impossibles à reformuler en coupant le fragment plus court. */
+  refuse("(15) un fragment de sujet SANS le poids ne prouve plus rien",
+    canal({ ...AT_CAB, sujet: "sac de transport compris" }, Q_CAB, CH_CAB), "AUX 8 kg");
 }
 
 console.log("\n=== 3. Les pièges qui accompagnent ces cinq-là ===");
@@ -225,28 +264,29 @@ console.log("\n=== 5. Les témoins POSITIFS — sans eux, tout refuser serait «
   const Q_HOLD = "If your cat or dog weighs more than 8 kg/17.64 lb. and up to 75 kg/165.35 lb. with its carrier, it must travel in the hold.";
   accepte("(l) Air France soute, plancher exclusif — le contenant rattaché par SON fragment",
     canal({ claim: { kind: "weight_min", kg: 8, bound: "gt", subject: "dog_plus_carrier" },
-      poids: "8 kg", borne: "more than 8 kg", sujet: "with its carrier" },
+      poids: "8 kg", borne: "more than 8 kg",
+      sujet: "8 kg/17.64 lb. and up to 75 kg/165.35 lb. with its carrier" },
       Q_HOLD, { min_weight_kg: 8, weight_min_bound: "gt", weight_includes_carrier: true }), ["weight_min"]);
   accepte("(m) Air France soute, plafond inclusif sur la même phrase",
     canal({ claim: { kind: "weight_max", kg: 75, bound: "lte", subject: "dog_plus_carrier" },
-      poids: "75 kg", borne: "up to 75 kg", sujet: "with its carrier" },
+      poids: "75 kg", borne: "up to 75 kg", sujet: "75 kg/165.35 lb. with its carrier" },
       Q_HOLD, { max_weight_kg: 75, weight_limit_bound: "lte", weight_includes_carrier: true }), ["weight_max"]);
 
   /* LA LISTE FERMÉE EST ÉCRITE DANS QUATRE LANGUES : si une seule y est réellement exercée, les
      trois autres sont une promesse. Une par langue, sur une borne différente à chaque fois. */
   accepte("(n) espagnol — « hasta 8 kg » établit un plafond INCLUSIF",
     canal({ claim: { kind: "weight_max", kg: 8, bound: "lte", subject: "dog_plus_carrier" },
-      poids: "8 kg", borne: "hasta 8 kg", sujet: "transportin incluido" },
+      poids: "8 kg", borne: "hasta 8 kg", sujet: "8 kg, transportin incluido" },
       "perros de hasta 8 kg, transportin incluido",
       { max_weight_kg: 8, weight_limit_bound: "lte", weight_includes_carrier: true }), ["weight_max"]);
   accepte("(o) portugais — « acima de 8 kg » établit un plancher EXCLUSIF",
     canal({ claim: { kind: "weight_min", kg: 8, bound: "gt", subject: "dog_plus_carrier" },
-      poids: "8 kg", borne: "acima de 8 kg", sujet: "incluindo a caixa de transporte" },
+      poids: "8 kg", borne: "acima de 8 kg", sujet: "8 kg, incluindo a caixa de transporte" },
       "caes acima de 8 kg, incluindo a caixa de transporte",
       { min_weight_kg: 8, weight_min_bound: "gt", weight_includes_carrier: true }), ["weight_min"]);
   accepte("(p) français — « à partir de 8 kg », chien pesé SEUL et dit comme tel",
     canal({ claim: { kind: "weight_min", kg: 8, bound: "gte", subject: "dog_alone" },
-      poids: "8 kg", borne: "a partir de 8 kg", sujet: "sans le sac de transport" },
+      poids: "8 kg", borne: "a partir de 8 kg", sujet: "8 kg sans le sac de transport" },
       "les chiens a partir de 8 kg sans le sac de transport voyagent en soute",
       { min_weight_kg: 8, weight_min_bound: "gte", weight_includes_carrier: false }), ["weight_min"]);
 

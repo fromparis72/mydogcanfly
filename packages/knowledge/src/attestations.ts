@@ -225,29 +225,74 @@ const CONTENANTS = ["carrier", "container", "carry-on bag", "bag", "crate", "ken
   "transportin", "bolso", "bolsa", "jaula", "caja", "cesta",
   "caixa", "transportadora"];
 
-/* ── NOMMER UN CONTENANT N'EST PAS DIRE QU'IL COMPTE DANS LE POIDS ────────────────────────────
+/* ── UNE RELATION AU POIDS, PAS UN MOT NI UN VOISINAGE ────────────────────────────────────────
+ * Ce paragraphe a été réécrit DEUX fois, par deux contre-revues successives, et les deux avaient
+ * raison :
+ *
  * *Sabotages 1 à 3 de Codex, sur `59d4788`.* La garde exigeait qu'un mot de contenant paraisse dans
- * le fragment de sujet. Trois phrases passaient donc alors qu'elles disent autre chose, ou le
- * contraire :
- *   · « The carrier must be labelled » — le contenant est mentionné, rien ne dit qu'il pèse ;
- *   · « Carrier not included in this weight » — la phrase dit EXACTEMENT l'inverse, et passait ;
- *   · « without the owner » — un générique d'exclusion qui ne parle pas du contenant du tout.
- * Ce qui est exigé n'est donc plus un MOT mais une RELATION : une tournure d'inclusion (ou
- * d'exclusion) rattachée au contenant, à portée de lecture l'une de l'autre, et la tournure
- * inverse absente. « without the » seul ne dit plus rien. */
+ * le fragment. Trois phrases passaient donc alors qu'elles disent autre chose, ou le contraire :
+ * « The carrier must be labelled » (le contenant est mentionné, rien ne dit qu'il pèse),
+ * « Carrier not included in this weight » (la phrase dit exactement l'inverse) et
+ * « without the owner » (un générique d'exclusion qui ne parle pas du contenant).
+ *
+ * *Sabotages 6 et 7, sur `8c8faf4`.* J'ai alors exigé une tournure d'inclusion « à portée de
+ * lecture » du contenant. Deux phrases passaient encore, et la cause était la même à un cran
+ * près — la relation était rattachée au CONTENANT, jamais au POIDS :
+ *   · « with the carrier included in **the ticket price** » — l'inclusion porte sur le prix ;
+ *   · « a carrier without **a label** is refused » — l'exclusion porte sur l'étiquette.
+ * Et, symétriquement, une formulation officielle parfaitement claire était REFUSÉE :
+ *   · « The combined weight of the pet and carrier is up to 8 kg. »
+ *
+ * TROIS EXIGENCES, DONC, SUR LE SEUL FRAGMENT DE SUJET :
+ *   · il porte LE POIDS lui-même — la valeur de la claim, suivie de son unité de masse ;
+ *   · il matche une FORME DE RELATION de la liste fermée, ancrée sur le contenant (« with its
+ *     carrier », « sac de transport compris », « combined weight of the pet and carrier ») ;
+ *   · aucun COMPLÉMENT INTERDIT ne suit la tournure : un prix, un tarif, un billet, une étiquette.
+ *     C'est ce dernier contrôle qui distingue « included in this weight » de « included in the
+ *     ticket price », et « sans le sac » de « without a label ».
+ *
+ * La relation est ancrée sur le contenant DANS LE MOTIF LUI-MÊME, plus par une distance : « sans »
+ * ne compte que suivi d'un contenant, « not included » que précédé d'un. C'est ce qui fait tomber
+ * « without a label », dont le complément n'est pas un contenant. */
 
-/** Les tournures qui rattachent un contenant AU POIDS — « with its », « compris », « incluido ». */
-const INCLUSION = ["with its", "with their", "with the", "including", "included", "combined with",
-  "compris", "comprise", "comprises", "inclus", "incluse", "y compris",
-  "incluido", "incluida", "incluyendo", "con su", "con el", "con la",
-  "incluindo", "incluida", "incluido", "com a", "com o", "com sua", "com seu"];
+/** Le contenant, comme groupe de motif — il est ancré DANS chaque forme de relation. */
+const CONT = "(?:carrier|container|carry-on bag|bag|crate|kennel|cage|sacoche|sac|caisse|panier|contenant|cabas|transportin|bolso|bolsa|jaula|caja|cesta|caixa|transportadora)";
 
-/** Les tournures qui l'en EXCLUENT — « not included », « sans », « sem ». */
-const EXCLUSION = ["not included", "not including", "excluding", "excluded", "does not include",
-  "without", "exclusive of",
-  "non compris", "non comprise", "sans", "hors",
-  "no incluido", "no incluida", "no incluye", "sin",
-  "nao incluido", "nao incluida", "nao inclui", "sem", "excluida", "excluido"];
+/** LES FORMES QUI DISENT QUE LE CONTENANT COMPTE DANS LE POIDS. Liste FERMÉE, quatre langues. */
+const FORMES_INCLUSION = [
+  `with (?:its|their|his|her|the|a) (?:own )?(?:\\w+ )?${CONT}`,
+  `includ\\w+ (?:the |its |a )?(?:\\w+ )?${CONT}`,
+  `${CONT}[^.;:]{0,15}(?:included|inclusive)`,
+  `combined with (?:its |the |a )?${CONT}`,
+  `(?:combined|total) weight of [^.;:]{0,40}${CONT}`,
+  `${CONT}[^.;:]{0,20}(?:compris|comprise|inclus|incluse)`,
+  `y compris [^.;:]{0,15}${CONT}`,
+  `poids (?:total|combine) (?:de|du|de la) [^.;:]{0,40}${CONT}`,
+  `${CONT}[^.;:]{0,20}(?:incluido|incluida)`,
+  `(?:incluyendo|incluindo) (?:el |la |a |o )?${CONT}`,
+  `con (?:su|el|la) ${CONT}`,
+  `com (?:a|o|sua|seu) ${CONT}`,
+  `peso (?:total|combinado) (?:de|del|do|da) [^.;:]{0,40}${CONT}`,
+];
+
+/** LES FORMES QUI L'EN EXCLUENT. Chacune est ancrée sur le contenant, dans un sens ou dans l'autre. */
+const FORMES_EXCLUSION = [
+  `(?:excluding|without|not including|exclusive of) (?:the |its |a )?(?:\\w+ )?${CONT}`,
+  `${CONT}[^.;:]{0,15}(?:not included|is not included|excluded|not counted|does not include)`,
+  `(?:sans|hors) (?:le |la |son |sa |un |une |du |de la )?${CONT}`,
+  `${CONT}[^.;:]{0,20}(?:non compris|non comprise|exclu|exclue)`,
+  `(?:sin|excluido|excluida) (?:el |la |un |una )?${CONT}`,
+  `${CONT}[^.;:]{0,20}(?:no incluido|no incluida|excluido|excluida)`,
+  `(?:sem|excluindo) (?:a |o |uma |um )?${CONT}`,
+  `${CONT}[^.;:]{0,20}(?:nao incluido|nao incluida|nao inclui)`,
+];
+
+/** CE À QUOI UNE INCLUSION NE DOIT PAS SE RAPPORTER. Un contenant « compris dans le prix » ou
+ *  « refusé sans étiquette » ne dit rien du poids — et disait pourtant « contenant compris ». */
+const COMPLEMENT_INTERDIT = new RegExp(
+  "(?:includ\\w+|inclu\\w+|compris\\w*|without|sans|excluding|excluded)[^.;:]{0,25}?"
+  + "\\b(?:ticket|tickets|price|prices|fare|fares|cost|charge|charges|fee|fees|label|labels|tag|tags"
+  + "|tarif|tarifs|prix|billet|etiquette|precio|billete|etiqueta|preco|bilhete|rotulo)\\b");
 
 const echapper = (s: string) => s.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
 
@@ -271,36 +316,23 @@ const borneEstDite = (plat: string, kg: number, bound: "lt" | "lte" | "gt" | "gt
     `(?<!\\b(?:no|not|non|nao|ne|pas|sans)\\s)${echapper(m)}\\b[^.;:]{0,20}?(?<![\\d.,])${motifNombre(kg)}\\s*${UNITE_MASSE}\\b`,
   ).test(plat));
 
-/** Toutes les positions d'une liste de tournures dans un fragment aplati. */
-const positions = (plat: string, mots: string[]): number[] => {
-  const vues: number[] = [];
-  for (const m of mots) {
-    const re = new RegExp(`\\b${echapper(m)}`, "g");
-    let x: RegExpExecArray | null;
-    while ((x = re.exec(plat)) !== null) vues.push(x.index);
-  }
-  return vues;
-};
+/** LE FRAGMENT DIT-IL QUE LE CONTENANT COMPTE DANS CE POIDS-LÀ ?
+ *
+ *  Les trois conditions sont cumulatives : le poids de la claim EST dans le fragment, une forme
+ *  d'inclusion ancrée sur le contenant y est, aucune forme d'exclusion n'y est, et la tournure ne
+ *  se rapporte pas à un prix ou à une étiquette. */
+const inclusionEstDite = (plat: string, kg: number) =>
+  valeurEstUnPoids(plat, kg)
+  && !COMPLEMENT_INTERDIT.test(plat)
+  && !FORMES_EXCLUSION.some((f) => new RegExp(f).test(plat))
+  && FORMES_INCLUSION.some((f) => new RegExp(f).test(plat));
 
-/** DEUX TOURNURES SE RAPPORTENT-ELLES L'UNE À L'AUTRE ? « à portée de lecture » = 25 caractères,
- *  dans un sens ou dans l'autre : « with its carrier » comme « sac de transport compris ». */
-const seRapportent = (a: number[], b: number[]) =>
-  a.some((x) => b.some((y) => Math.abs(x - y) <= 25));
-
-/** LE FRAGMENT DIT-IL QUE LE CONTENANT COMPTE DANS LE POIDS ? */
-const inclusionEstDite = (plat: string) => {
-  const conteneurs = positions(plat, CONTENANTS);
-  if (conteneurs.length === 0) return false;
-  if (positions(plat, EXCLUSION).length > 0) return false;   // « not included » n'est pas « included »
-  return seRapportent(conteneurs, positions(plat, INCLUSION));
-};
-
-/** LE FRAGMENT DIT-IL QUE LE CONTENANT EN EST EXCLU ? */
-const exclusionEstDite = (plat: string) => {
-  const conteneurs = positions(plat, CONTENANTS);
-  if (conteneurs.length === 0) return false;                 // « without the owner » ne dit rien du sac
-  return seRapportent(conteneurs, positions(plat, EXCLUSION));
-};
+/** LE FRAGMENT DIT-IL QUE LE CONTENANT EST EXCLU DE CE POIDS-LÀ ? */
+const exclusionEstDite = (plat: string, kg: number) =>
+  valeurEstUnPoids(plat, kg)
+  && !COMPLEMENT_INTERDIT.test(plat)
+  && !FORMES_INCLUSION.some((f) => new RegExp(f).test(plat))
+  && FORMES_EXCLUSION.some((f) => new RegExp(f).test(plat));
 
 /* ── UNE SEULE PROPOSITION, PAS UNE PHRASE ENTIÈRE ────────────────────────────────────────────
  * *Sabotage 1 de Codex.* « Dogs under 8 kg may travel in cabin. The carrier must be labelled. » :
@@ -311,12 +343,21 @@ const exclusionEstDite = (plat: string) => {
  * Les abréviations d'unité sont protégées avant le découpage : « 17.64 lb. and up to 75 kg »
  * est une seule proposition, et la soute Air France ne doit pas se couper en deux au milieu de sa
  * propre fourchette. */
+/* L'abréviation n'est protégée QUE si la phrase CONTINUE derrière elle — une minuscule ou un
+   chiffre. Trouvé deux fois en écrivant le sabotage : d'abord parce que « kg. » était protégé sans
+   regarder la suite, puis parce que la lecture de cette suite portait le drapeau `i` et prenait
+   donc une majuscule pour une minuscule. Le test de la suite est ici SENSIBLE À LA CASSE, et il est
+   séparé du motif pour que ce soit visible. */
 const ABREV = /\b(lb|lbs|oz|kg|cm|mm|in|no|nr|approx|etc|max|min)\./gi;
+const protegerAbrev = (q: string) => q.replace(ABREV, (trouve, mot: string, offset: number, entier: string) => {
+  const suite = entier.slice(offset + trouve.length).match(/^\s*(.)/);
+  return suite && /[a-z0-9]/.test(suite[1]) ? `${mot}\u0000` : trouve;
+});
 /** Le point DÉCIMAL n'est pas une fin de proposition. Trouvé en écrivant le découpage : « 17.64 »
  *  se coupait en « 17 » et « 64 », et la soute Air France perdait sa propre fourchette. */
 const DECIMAL = /(?<=\d)\.(?=\d)/g;
 const propositionsDe = (quote: string): string[] =>
-  quote.replace(DECIMAL, "\u0000").replace(ABREV, "$1\u0000")
+  protegerAbrev(quote.replace(DECIMAL, "\u0000"))
     .split(/[.;:]+/).map((p) => normaliser(p.replace(/\u0000/g, ".")))
     .filter((p) => p.length > 0);
 
@@ -358,11 +399,11 @@ export function semantiqueAbsente(a: Attestation): string | null {
   if (a.sujet && !claim.subject) {
     return `un fragment de sujet est rattaché, mais l'attestation ne déclare aucun sujet pesé`;
   }
-  if (claim.subject === "dog_plus_carrier" && !inclusionEstDite(aplatir(a.sujet as string))) {
-    return `l'attestation annonce un seuil CONTENANT COMPRIS, mais le fragment « ${a.sujet} » ne rattache aucun contenant au poids`;
+  if (claim.subject === "dog_plus_carrier" && !inclusionEstDite(aplatir(a.sujet as string), claim.kg)) {
+    return `l'attestation annonce un seuil CONTENANT COMPRIS, mais le fragment « ${a.sujet} » ne rattache aucun contenant AUX ${claim.kg} kg`;
   }
-  if (claim.subject === "dog_alone" && !exclusionEstDite(aplatir(a.sujet as string))) {
-    return `l'attestation annonce un seuil sur le chien SEUL, mais le fragment « ${a.sujet} » n'exclut explicitement aucun contenant`;
+  if (claim.subject === "dog_alone" && !exclusionEstDite(aplatir(a.sujet as string), claim.kg)) {
+    return `l'attestation annonce un seuil sur le chien SEUL, mais le fragment « ${a.sujet} » n'exclut aucun contenant DES ${claim.kg} kg`;
   }
   return null;
 }

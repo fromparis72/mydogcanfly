@@ -4904,3 +4904,63 @@ espérées.
 `fix/transavia-air-france-fares` sur le nouveau `main`, synthèse attestée et `farePresentation`
 conservées ensemble, régénération unique des artefacts. Aucun JSON généré n'est recopié ni arbitré à
 la main.
+---
+
+## Annexe 55 — La relation portait sur le contenant, pas sur le poids (11/09/2026, classement C)
+
+**Quatrième contre-revue de Codex, sur `8c8faf4`.** Les cinq défauts de l'annexe 54 sont reconnus
+fermés. Deux faux verts subsistaient, et un **faux refus** les accompagnait — c'est le couple qui
+rend le diagnostic exact.
+
+| phrase | verdict d'avant | ce qu'elle dit vraiment |
+|---|---|---|
+| `…with the carrier included in the ticket price.` | accepté « contenant compris » | l'inclusion porte sur le **prix** |
+| `…but a carrier without a label is refused.` | accepté « chien seul » | l'exclusion porte sur l'**étiquette** |
+| `The combined weight of the pet and carrier is up to 8 kg.` | **refusé** | une formulation officielle parfaitement claire |
+
+**Une seule cause pour les trois.** La tournure d'inclusion ou d'exclusion était rattachée au mot
+*contenant*, à distance de lecture, et jamais au **poids** dont il est question. Un contenant compris
+dans le prix, un contenant refusé sans étiquette : dans les deux cas le mot est là, la tournure est
+là, et le fait n'y est pas. Symétriquement, une phrase qui dit « poids combiné de l'animal et du
+contenant » n'employait aucune des tournures reconnues et tombait.
+
+**Trois exigences, désormais, sur le seul fragment de sujet.** Il porte **le poids lui-même** — la
+valeur de la claim, suivie de son unité de masse. Il matche une **forme de relation** d'une liste
+fermée quadrilingue, ancrée sur le contenant dans le motif même, plus par une distance : « sans » ne
+compte que suivi d'un contenant, « not included » que précédé d'un — ce qui fait tomber « without a
+label », dont le complément n'est pas un contenant. Et aucun **complément interdit** ne suit la
+tournure : un prix, un tarif, un billet, une étiquette. C'est ce dernier contrôle qui sépare
+« included in this weight » de « included in the ticket price ».
+
+Les deux formulations que Codex a nommées entrent dans la liste : « combined weight of the pet and
+carrier » et « total weight of pet and carrier », avec leurs équivalents français, espagnols et
+portugais.
+
+**DEUX FAUTES TROUVÉES EN ÉCRIVANT LE SABOTAGE, ET C'EST LA PARTIE INSTRUCTIVE.** Le sabotage « le
+sujet vient d'une autre proposition » a d'abord passé au vert. Deux fois, pour deux raisons
+différentes, dans le découpage en propositions :
+
+1. `kg.` était protégé comme abréviation **sans regarder ce qui suit**. « … moins de 8 kg. Un chien
+   de 8 kg, sac compris… » ne se coupait donc jamais en deux propositions.
+2. Corrigé par un test de la suite — minuscule ou chiffre, donc la phrase continue —, le motif
+   portait le drapeau `i` et prenait une **majuscule pour une minuscule**. Même vert, autre cause.
+
+Ce n'est pas un détail de regex. C'est la démonstration, à l'échelle de trois lignes, de ce que ce
+lot répète depuis quatre contre-revues : **un contrôle qui ne rougit jamais n'est pas un contrôle
+qui passe, c'est un contrôle qu'on n'a pas encore lu.** Le sabotage a fait son travail deux fois de
+suite sur la même ligne.
+
+**Les artefacts CHANGENT, contrairement à ce qu'annonçait la contre-revue, et il faut le dire.** Les
+fragments de rattachement sont stockés dans `objects.json` et dans l'artefact du site ; exiger qu'ils
+portent le poids les allonge, donc les modifie. Trois lignes de sujet sur la fiche Air France. Ce qui
+ne change pas — et c'est la mesure qui compte — ce sont les **faits attestés** et la **synthèse
+rendue** : identiques dans les quatre langues, avant comme après.
+
+**Mouvement des comptes.** Harnais du contrat d'attestation : **41 → 46**. Contre-épreuves
+d'ingestion : **73 → 79**, les deux faux verts et le témoin positif étant exigés sur le chemin réel
+autant que sur la fonction. Harnais des pages d'entités : **234**, inchangé. Politiques attestées :
+**2**. Faits attestés : **3**. Dette Astro : **165**.
+
+**Coordination avec le lot tarifaire, inchangée.** #61 corrigée puis fusionnée, rebase de
+`fix/transavia-air-france-fares` sur le nouveau `main`, synthèse attestée et `farePresentation`
+conservées ensemble, régénération unique des artefacts.

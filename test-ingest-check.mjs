@@ -280,7 +280,7 @@ console.log("\n=== 3. La décision vient des fiches — les contre-épreuves du 
        le seuil ET le contenant, et l'extrait est repris d'elle. */
     const BORNE_AF = 'borne: "moins de 8 kg"';
     check("(m) préalable : les fragments rattachés à la phrase de cabine sont bien là",
-      readFileSync(af, "utf8").includes(BORNE_AF) && readFileSync(af, "utf8").includes('sujet: "sac de transport compris"'));
+      readFileSync(af, "utf8").includes(BORNE_AF) && readFileSync(af, "utf8").includes('sujet: "8 kg, sac de transport compris"'));
     writeFileSync(af, readFileSync(af, "utf8")
       .replace(URL_AF, 'url: "https://wwws.airfrance.fr/information/passagers/animaux-cabine"')
       .replace(QUOTE_AF, 'quote: "Les chiens et chats de moins de 8 kg, sac de transport compris, voyagent en cabine."'));
@@ -306,7 +306,7 @@ console.log("\n=== 3. La décision vient des fiches — les contre-épreuves du 
      — « sac de transport compris » — suffisait alors à faire passer 46 × 28 × 24 cm. */
   {
     const af = () => join(SANDBOX, "content", "airlines", "air_france.yml");
-    const SUJET_CABINE = 'sujet: "sac de transport compris"';
+    const SUJET_CABINE = 'sujet: "8 kg, sac de transport compris"';
     const QUOTE_CABINE = 'quote: "En cabine (chats et chiens de moins de 8 kg, sac de transport compris)"';
     const QUOTE_SOUTE = 'quote: "If your cat or dog weighs more than 8 kg/17.64 lb. and up to 75 kg/165.35 lb. with its carrier, it must travel in the hold."';
 
@@ -365,11 +365,11 @@ console.log("\n=== 3. La décision vient des fiches — les contre-épreuves du 
       freshSandbox();
       const avant = readFileSync(af(), "utf8");
       writeFileSync(af(), avant.replace(
-        '        sujet: "sac de transport compris"',
-        '        sujet: "chats et chiens"'));
+        '        sujet: "8 kg, sac de transport compris"',
+        '        sujet: "chats et chiens de moins de 8 kg"'));
       const { code, out } = run();
       check("(r) seuil « contenant compris » sur un extrait qui n'en nomme aucun → REFUS", code === 1, out.slice(-400));
-      check("(r) le refus nomme le sujet pesé", out.includes("ne rattache aucun contenant au poids"), out.slice(-500));
+      check("(r) le refus nomme le sujet pesé", out.includes("ne rattache aucun contenant AUX 8 kg"), out.slice(-500));
     }
 
     /* (s) à (v) LES QUATRE SABOTAGES DE CODEX DU `59d4788`, SUR LE CHEMIN RÉEL.
@@ -393,8 +393,10 @@ console.log("\n=== 3. La décision vient des fiches — les contre-épreuves du 
 
       // (s) LE CONTENANT DANS UNE AUTRE PROPOSITION — le cas « The carrier must be labelled ».
       {
+        /* Le sujet doit maintenant PORTER le poids : la seconde proposition le porte donc aussi, et
+           le sabotage éprouve bien la coupure de proposition, pas la provenance du fragment. */
         const { code, out } = saboter([[QUOTE_CAB,
-          'quote: "En cabine (chats et chiens de moins de 8 kg). Le sac de transport compris est obligatoire."']]);
+          'quote: "En cabine, chiens de moins de 8 kg. Un chien de 8 kg, sac de transport compris, doit être annoncé."']]);
         check("(s) sujet pris dans une AUTRE proposition de la phrase → REFUS", code === 1, out.slice(-400));
         check("(s) le refus nomme la proposition", out.includes("même proposition"), out.slice(-500));
       }
@@ -403,11 +405,11 @@ console.log("\n=== 3. La décision vient des fiches — les contre-épreuves du 
       {
         const { code, out } = saboter([
           [QUOTE_CAB, 'quote: "En cabine (chats et chiens de moins de 8 kg, sac de transport non compris)"'],
-          ['sujet: "sac de transport compris"', 'sujet: "sac de transport non compris"'],
+          ['sujet: "8 kg, sac de transport compris"', 'sujet: "8 kg, sac de transport non compris"'],
         ]);
         check("(t) phrase qui EXCLUT le contenant, déclarée « contenant compris » → REFUS", code === 1, out.slice(-400));
         check("(t) le refus dit que rien ne rattache le contenant au poids",
-          out.includes("ne rattache aucun contenant au poids"), out.slice(-500));
+          out.includes("ne rattache aucun contenant AUX 8 kg"), out.slice(-500));
       }
 
       // (u) UN GÉNÉRIQUE D'EXCLUSION QUI NE PARLE PAS DU CONTENANT — le cas « without the owner ».
@@ -415,23 +417,87 @@ console.log("\n=== 3. La décision vient des fiches — les contre-épreuves du 
         const { code, out } = saboter([
           [QUOTE_CAB, 'quote: "En cabine (chats et chiens de moins de 8 kg, sans son maître)"'],
           ["          subject: dog_plus_carrier", "          subject: dog_alone"],
-          ['sujet: "sac de transport compris"', 'sujet: "sans son maître"'],
+          ['sujet: "8 kg, sac de transport compris"', 'sujet: "8 kg, sans son maître"'],
           ["    weight_includes_carrier: true", "    weight_includes_carrier: false"],
         ]);
         check("(u) « sans son maître » déclaré comme « chien seul » → REFUS", code === 1, out.slice(-400));
         check("(u) le refus dit qu'aucun contenant n'est exclu",
-          out.includes("n'exclut explicitement aucun contenant"), out.slice(-500));
+          out.includes("n'exclut aucun contenant DES 8 kg"), out.slice(-500));
       }
 
       // (v) DES POUCES PUBLIÉS EN CENTIMÈTRES.
       {
         const { code, out } = saboter([
           [QUOTE_CAB, 'quote: "En cabine (chats et chiens de moins de 8 kg, sac de transport compris) 46 x 28 x 24 in"'],
-          ['        sujet: "sac de transport compris"',
-           '        sujet: "sac de transport compris"\n      - claim:\n          kind: carrier_dims_cm\n          l: 46\n          w: 28\n          h: 24\n        dimensions: "46 x 28 x 24 in"'],
+          ['        sujet: "8 kg, sac de transport compris"',
+           '        sujet: "8 kg, sac de transport compris"\n      - claim:\n          kind: carrier_dims_cm\n          l: 46\n          w: 28\n          h: 24\n        dimensions: "46 x 28 x 24 in"'],
         ]);
         check("(v) dimensions en POUCES rattachées à une claim en centimètres → REFUS", code === 1, out.slice(-400));
         check("(v) le refus nomme l'unité", out.includes("avec leur unité"), out.slice(-500));
+      }
+    }
+
+    /* (w) à (y) LES DEUX FAUX VERTS DE `8c8faf4`, ET LE TÉMOIN POSITIF QUI LES ÉQUILIBRE.
+       La relation était rattachée au CONTENANT, jamais au POIDS : « with the carrier included in
+       the ticket price » prouvait un seuil contenant compris, et « a carrier without a label »
+       prouvait un seuil sur le chien seul. Le témoin (y) est indissociable des deux : sans lui, la
+       correction serait un durcissement aveugle, et une formulation officielle parfaitement claire
+       resterait refusée — c'est exactement ce que Codex a mesuré avant de refuser le feu vert. */
+    {
+      const Q = 'quote: "En cabine (chats et chiens de moins de 8 kg, sac de transport compris)"';
+      const S = 'sujet: "8 kg, sac de transport compris"';
+      const B = 'borne: "moins de 8 kg"';
+      const saboter2 = (remplacements) => {
+        freshSandbox();
+        let t = readFileSync(af(), "utf8");
+        for (const [a, b] of remplacements) {
+          if (!t.includes(a)) throw new Error(`sabotage : « ${a.slice(0, 50)} » introuvable dans la fiche`);
+          t = t.replace(a, b);
+        }
+        writeFileSync(af(), t);
+        return run();
+      };
+
+      // (w) L'INCLUSION PORTE SUR LE PRIX DU BILLET.
+      {
+        const { code, out } = saboter2([
+          [Q, 'quote: "Dogs under 8 kg may travel in cabin, with the carrier included in the ticket price."'],
+          [B, 'borne: "under 8 kg"'],
+          [S, 'sujet: "under 8 kg may travel in cabin, with the carrier included in the ticket price"'],
+        ]);
+        check("(w) contenant « included in the ticket price » → REFUS de l'ingestion", code === 1, out.slice(-400));
+        check("(w) le refus dit que rien ne rattache le contenant AUX kilos",
+          out.includes("ne rattache aucun contenant AUX 8 kg"), out.slice(-500));
+      }
+
+      // (x) L'EXCLUSION PORTE SUR UNE ÉTIQUETTE.
+      {
+        const { code, out } = saboter2([
+          [Q, 'quote: "Dogs under 8 kg may travel in cabin, but a carrier without a label is refused."'],
+          ["          subject: dog_plus_carrier", "          subject: dog_alone"],
+          [B, 'borne: "under 8 kg"'],
+          [S, 'sujet: "under 8 kg may travel in cabin, but a carrier without a label is refused"'],
+          ["    weight_includes_carrier: true", "    weight_includes_carrier: false"],
+        ]);
+        check("(x) contenant « without a label » déclaré « chien seul » → REFUS de l'ingestion", code === 1, out.slice(-400));
+        check("(x) le refus dit qu'aucun contenant n'est exclu DES kilos",
+          out.includes("n'exclut aucun contenant DES 8 kg"), out.slice(-500));
+      }
+
+      // (y) LE TÉMOIN POSITIF : la formulation officielle la plus courante doit TRAVERSER l'ingestion.
+      {
+        const { code, out } = saboter2([
+          [Q, 'quote: "The combined weight of the pet and carrier is up to 8 kg."'],
+          ["          bound: lt", "          bound: lte"],
+          ["    weight_limit_bound: lt", "    weight_limit_bound: lte"],
+          [B, 'borne: "up to 8 kg"'],
+          [S, 'sujet: "combined weight of the pet and carrier is up to 8 kg"'],
+        ]);
+        check("(y) « The combined weight of the pet and carrier is up to 8 kg » traverse l'ingestion",
+          code === 0, out.slice(-500));
+        const pol = sandboxJson(OBJECTS_REL).airlines.find((a) => a.id === "airline_air_france").premium.policy.cabin;
+        check("(y) …et son attestation est ÉCRITE dans l'artefact", pol.attestations?.length === 1,
+          JSON.stringify(pol.attestations ?? null).slice(0, 220));
       }
     }
 
