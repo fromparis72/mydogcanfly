@@ -3972,3 +3972,61 @@ ne déclare pas de canal soute dans son bloc éditorial `channels:` — aucun bl
 publié ; un canal décidé n'est pas montré. Hors périmètre de ce lot (présentation) : dette de contenu à fermer
 dans un lot dédié (déclarer le canal soute de Qantas), moment où le témoin s'élargira au quatrième état. La table
 du témoin revient à ses trois états d'origine, mouvement nommé dans le code.
+
+## Annexe 41 — Héros de l'accueil : T1, T2, T3 arbitrés (10/09/2026, classement B)
+
+Arbitrage validé par Philippe, relayé par Codex : trois textes dans les quatre langues — T1 la question centrale
+(« Mon chien peut-il prendre l'avion ? », écho de MyDogCanFly.com), T2 le slogan émotionnel (« Voyager ensemble,
+c'est prendre soin de chaque détail. »), T3 le paragraphe explicatif (cabine, soute, fret, race, destination ;
+ce qui est confirmé, ce qui doit encore être vérifié). Modification éditoriale ciblée : ni moteur, ni données,
+ni architecture.
+
+### Mesuré avant d'écrire
+
+Le gabarit (`HomeSections.astro`) coupe `home.hero.title` après le premier « ? » : la question devient
+`.hero__q`, le reste `.hero__accent` (ligne orange). T1 et T2 tiennent donc dans `home.hero.title`, séparés par
+un retour à la ligne ; T3 est `home.hero.sub`. Les anciens textes (« Vois ce qui est confirmé — et ce qu'il faut
+vérifier », « Prendre l'avion avec un chien peut être complexe… ») vivaient dans ces deux clés seulement.
+L'accroche au-dessus du titre (`home.hero.eyebrow`, « Ce qui est confirmé, et ce qui ne l'est pas ») n'est pas
+dans l'arbitrage : elle est laissée telle quelle et **nommée** ici pour Codex.
+
+### Ce qui a été fait, et rien d'autre
+
+Huit lignes dans `strings.json` (en / fr / es / pt) : `home.hero.title` = T1 + « \n » + T2, `home.hero.sub` = T3,
+verbatim (apostrophes typographiques conservées). Aucun autre fichier.
+
+### Mesuré (dist réduit)
+
+| contrôle | résultat |
+|---|---|
+| les quatre pages d'accueil construites | T1 dans `.hero__q`, T2 dans `.hero__accent`, T3 dans `.hero__sub`, verbatim |
+| anciens slogans (« still needs checking », « ce qu'il faut vérifier », « aún hay que comprobar », « ainda é preciso verificar », « Ton chien peut-il », « Can your dog fly », « Puede volar tu perro », « O teu cão pode voar ») | **0 occurrence** sur les quatre pages |
+| titre face à l'emblème et au conteneur, 1280 et 400 px, quatre langues (mesure ad hoc, rectangles) | voir ci-dessous |
+
+### Déploiement de `main` `8290573` (10/09/2026, Philippe, depuis son Mac) — prouvé
+
+`verify:index` : 2 536 URL, aucune balise noindex ; Pages : 6 fichiers envoyés (3 626 déjà en place — les cartes du
+Finder vivent dans le script client partagé) ; `wrangler deploy` annonce `Current Version ID:
+2bb94f37-7527-4ab2-a6cb-436473c1c498` ; lecture de santé : `sha: 8290573a…`, `worker_version_id: 2bb94f37-…` —
+concordants (règle de l'annexe 35). En ligne désormais : les cartes du Finder (annexe 38, #50). Contrôle en ligne à
+demander à Codex : CDG → JFK, Golden 32 kg — la carte Air France dit « Cabine : non · Soute : oui, sous conditions ·
+jusqu'à 75 kg avec le contenant · tarif à confirmer », provenance datée, volet « Voir les preuves » fermé.
+
+### Annexe 41, suite — mesuré aux largeurs mobiles (Codex : 320, 360, 375, 400 px, quatre langues)
+
+Débordement de 9 px à 400 px sur la page anglaise, **préexistant** (mesuré sur le dist aux anciens textes) : la grille
+« Avant de réserver » (`.grid`, colonnes `1fr`) ne descendait pas sous la largeur minimale de ses cartes, et
+« Your country's requirements » poussait la rangée à 409 px. Cause CSS fermée : colonnes `minmax(0, 1fr)`, une seule
+colonne sous 420 px ; ni `overflow-x: hidden`, ni texte raccourci.
+
+| largeur | scrollWidth / clientWidth (en, fr, es, pt) | éléments débordants | racine / corps | titre |
+|---|---|---|---|---|
+| 320 | 320 / 320 ×4 | aucun | 16 px / 16 px | 22 px |
+| 360 | 360 / 360 ×4 | aucun | 16 px / 16 px | 22 px |
+| 375 | 375 / 375 ×4 | aucun | 16 px / 16 px | 22,5 px |
+| 400 | 400 / 400 ×4 | aucun | 16 px / 16 px | 24 px |
+| 1280 | 1280 / 1280 ×4 | aucun ; titre 711 px ≤ emblème 759 px | 16 px / 16 px | 49 px |
+
+Les tailles de titre sous 520 px sont celles du `clamp(22px, 6vw, 30px)` déjà en place — aucune réduction globale de
+typographie (racine et corps inchangés). T1, T2, T3 identiques aux textes validés à chaque largeur. Témoin permanent
+ajouté à la suite navigateur (`13-accueil-*-400px.png`), joué une seule fois par le parcours CI complet, comme demandé.
