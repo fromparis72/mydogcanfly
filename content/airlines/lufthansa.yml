@@ -73,6 +73,27 @@ ladder:
       pt: "via transportadora"
 policies:
   cabin:
+    # TARIFS OFFICIELS — audit indépendant du 2026-09-10 ; aucune valeur héritée réactivée.
+    fares:
+      - id: fare_lufthansa_cabin_2026_09_10
+        placement: cabin
+        price:
+          kind: calculator
+          amounts: []
+        billing_subject: container
+        journey_basis: per_one_way
+        scope_label: aéroport départ → destination
+        source:
+          url: https://www.lufthansa.com/de/en/animals-as-additional-carry-on-baggage
+          source_type: official_website
+          verified_date: 2026-09-10
+          review_due: 2026-12-09
+          confidence: 4
+          reviewer: Codex — lecture directe de la source officielle
+          history: []
+          quote: calculated according to route
+          quote_language: en
+          locator: Costs
     availability: offered
     # PREUVE IMPORTÉE — import strict V3 (Codex, lecture directe du 2026-09-08, cohorte A fait 9).
     # Effet attendu : For a 32 kg dog, cabin is not suitable.
@@ -92,6 +113,27 @@ policies:
       quote_language: en
       locator: "What travel options are there for the different types of animals?"
   hold:
+    # TARIFS OFFICIELS — audit indépendant du 2026-09-10 ; aucune valeur héritée réactivée.
+    fares:
+      - id: fare_lufthansa_hold_2026_09_10
+        placement: hold
+        price:
+          kind: calculator
+          amounts: []
+        billing_subject: pet_or_container
+        journey_basis: per_one_way
+        scope_label: aéroport départ → destination via hubs
+        source:
+          url: https://www.lufthansa.com/de/en/animals-as-additional-baggage
+          source_type: official_website
+          verified_date: 2026-09-10
+          review_due: 2026-12-09
+          confidence: 4
+          reviewer: Codex — lecture directe de la source officielle
+          history: []
+          quote: additional transfer surcharge
+          quote_language: en
+          locator: Costs and transfer surcharge
     availability: offered
     # PREUVE IMPORTÉE — import strict V3 (Codex, lecture directe du 2026-09-08, cohorte A fait 10).
     # Effet attendu : Show hold offered under conditions for a large dog.

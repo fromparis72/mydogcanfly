@@ -4466,6 +4466,47 @@ n'est pas un `as` dispersé chez l'appelant.
 66 garanties, dette Astro stable à 165.
 ---
 
+## Annexe 50 — Les tarifs vérifiés atteignent enfin le Finder (11/09/2026)
+
+**Le défaut public.** Le contrat tarifaire de la PR #56 était volontairement vide : aucune donnée n'avait été
+importée et le Finder disait donc « tarif à confirmer » partout. Le déploiement du contrat n'était pas celui des
+tarifs. Ce lot accomplit le second geste, sans rouvrir les anciens champs `fee`, `fareList` ou `fareGrid`.
+
+**La collecte est verrouillée avant toute lecture.** L'importeur exige les 306 lignes du fichier consolidé et son
+SHA-256 exact (`c5efcd57…c52b`). Il n'importe que les lignes dont l'extrait officiel porte lui-même un montant ou
+un mécanisme tarifaire explicite ; il refuse les citations trop courtes et n'emploie jamais un prix hérité comme
+repli. Résultat : **157 lignes tarifaires**, sur **116 canaux** et **68 compagnies** ; **27 lignes exclues** plutôt
+que complétées au jugé. Le manifeste `import-tarifs-verifies.json` fige ces comptes et l'empreinte de l'entrée.
+
+**Ce que le visiteur voit.** Le Finder reçoit une résolution distincte pour cabine, soute et fret. Lorsqu'une
+zone commerciale ou une autre condition manque au contexte, le prix reste une **grille officielle publiée**, avec
+la réserve « selon le trajet et les conditions » : jamais le prix exact du trajet. Les mécanismes « sur devis »,
+« calculateur », « formule » et « prix à la réservation » restent distincts des montants. La source, le locator et
+la date vivent dans le volet fermé « Voir les preuves » ; le prix utile reste sur la ligne du canal.
+
+**Deux défauts de parseur trouvés par les cas réels.** Une fourchette dont la devise n'était écrite qu'une fois
+(`JPY 5,500 to 7,700`, `55–75 EUR`) perdait une borne ; une suite multidevise (`CHF 75 EUR 65 USD 80`) pouvait
+croiser le nombre précédent avec la devise suivante. Les deux sont fermés par des témoins nominatifs. S'y ajoutent
+`ab 59,99 Euro`, `$150 USD/CAD` et `40€/50$/35£`, qui empêchent une réussite limitée aux formes les plus simples.
+
+**Les anciennes gardes ont été refondées, pas supprimées.** La comptabilité des montants distingue désormais
+**1 563 occurrences dormantes** et **337 occurrences dans les objets tarifaires prouvés**, avec zéro montant hors
+classement. Le harnais du Finder exige la fourchette, sa réserve et sa preuve repliée dans les quatre langues. Le
+contrat HTTP réel exige les trois résolutions et relit KLM jusqu'au Worker. Un canal refusé ne publie toujours
+aucun tarif.
+
+**Registre de fraîcheur.** La CI a refusé la première tête parce que les 157 nouvelles provenances n'avaient pas
+encore été rescellées. Le geste officiel `fraicheur/sceller-registre.mjs --ecrire` porte le registre à **1 661
+entrées** ; un second passage est identique et vert. Les preuves tarifaires entrent ainsi dans la même cadence de
+surveillance que les autres sources, au lieu de vivre à côté d'elle.
+
+**Contre-épreuve navigateur refondée.** Le catalogue complet a d'abord rougi trois fois : son scénario historique
+exigeait encore « aucun montant numérique » pour les trois tailles de chien. Ce n'était plus une protection mais
+la photographie du contrat vide. Le même scénario exige désormais un montant visible, sa qualification prudente
+(`official published fare` ou tarif applicable au trajet) et une preuve tarifaire dans le volet replié. Il refuse
+donc aussi bien la disparition silencieuse du tarif que la publication d'un nombre sans provenance.
+---
+
 ## Annexe 49 — Titres et descriptions SEO des quatre accueils (11/09/2026, classement B)
 
 **Arbitrage validé par Philippe, textes verbatim.** Les quatre pages d'accueil reçoivent un nouveau `<title>` et
@@ -4566,3 +4607,40 @@ lui-même.
 frontière appelait le compilateur deux fois dans la même assertion — l'argument de détail est évalué même
 quand l'assertion passe. Il avait jugé que cela ne justifiait pas une tête à soi seul. C'est fait ici, dans le
 premier commit qui rouvre ce fichier, comme annoncé.
+
+---
+
+### Déploiement de `main` `a28a07b` (11/09/2026, Philippe, depuis son Mac) — prouvé des deux côtés
+
+Deuxième bascule de la journée, celle qui met en ligne les titres et descriptions SEO des quatre
+accueils (annexe 49, #57) et la preuve de la bascule précédente (#58).
+
+| terme | valeur |
+|---|---|
+| `git rev-parse HEAD` sur le Mac | `a28a07bcf066c1c3a2b9d4daba2884fc78634445` |
+| `sha` de `/v1/health` | `a28a07bcf066c1c3a2b9d4daba2884fc78634445` |
+| `worker_version_id` de `/v1/health` | `dbbe3007-2387-4634-8fbb-7979d3f19e5b` |
+| `Current Version ID` annoncé par wrangler | `dbbe3007-2387-4634-8fbb-7979d3f19e5b` |
+
+**Et cette fois, le SITE a été vérifié séparément du WORKER — parce que la preuve de santé ne dit
+rien de lui.** C'est la leçon propre à cette bascule, et elle méritait d'être apprise ici plutôt
+qu'après une mise en ligne ratée. Les titres SEO vivent dans les pages STATIQUES publiées par
+`npm run release` ; le worker, lui, ne sert que l'API du Finder. Une lecture de `/v1/health`
+parfaitement concordante est donc compatible avec un site qui sert encore les anciennes pages : les
+deux moitiés se déploient par deux commandes distinctes, et la règle de l'annexe 35 n'en couvrait
+qu'une. Relevé en ligne après la bascule :
+
+```
+curl -s https://mydogcanfly.com/ | grep -o '<title>[^<]*</title>'
+<title>Flying With a Dog: Airline Policies and Entry Rules</title>
+```
+
+C'est le titre arbitré, à l'octet près. Les trois autres langues ont été éprouvées au build, sur
+l'artefact exact qui a été publié : la contre-épreuve de l'annexe 49 lit les quatre accueils
+construits et exige les huit chaînes, et elle était verte sur `687d446`, dont l'arbre est celui que
+`npm run release` a envoyé.
+
+**La règle de preuve s'étend donc, et c'est le mouvement nommé de cette annexe.** Une bascule se
+prouve désormais sur DEUX plans : le worker par `/v1/health` (SHA et identifiant de version), et le
+site par une lecture du HTML servi. `deployer-production.mjs`, toujours à écrire, devra refuser de
+conclure tant que les deux ne sont pas constatés.

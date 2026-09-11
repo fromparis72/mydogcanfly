@@ -55,6 +55,29 @@ ladder:
     sub: ≤ 75 kg
 policies:
   cabin:
+    # TARIFS OFFICIELS — audit indépendant du 2026-09-10 ; aucune valeur héritée réactivée.
+    fares:
+      - id: fare_transavia_cabin_eur_2026_09_10
+        placement: cabin
+        price:
+          kind: exact
+          amounts:
+            - amount: 50
+              currency: EUR
+        billing_subject: pet
+        journey_basis: per_one_way
+        scope_label: Transavia Netherlands versus France/route
+        source:
+          url: https://www.transavia.com/hilfe/de-de/kinder-haustiere-gruppen/haustiere-im-flugzeug/kabine
+          source_type: official_website
+          verified_date: 2026-09-10
+          review_due: 2026-12-09
+          confidence: 4
+          reviewer: Codex — lecture directe de la source officielle
+          history: []
+          quote: 50 € pro Tier und einfache Strecke
+          quote_language: de
+          locator: Cabin pet price
     availability: offered
     # PREUVE IMPORTÉE — import strict V3 (Codex, lecture directe du 2026-09-08, cohorte A fait 3).
     # Effet attendu : For a 32 kg dog, cabin is not suitable.
@@ -74,6 +97,29 @@ policies:
       quote_language: en
       locator: "Weight"
   hold:
+    # TARIFS OFFICIELS — audit indépendant du 2026-09-10 ; aucune valeur héritée réactivée.
+    fares:
+      - id: fare_transavia_hold_eur_2026_09_10
+        placement: hold
+        price:
+          kind: exact
+          amounts:
+            - amount: 77
+              currency: EUR
+        billing_subject: container
+        journey_basis: per_one_way
+        scope_label: Operator and route
+        source:
+          url: https://www.transavia.com/help/en-eu/children-pets-groups/pets-on-board/hold-luggage-pet
+          source_type: official_website
+          verified_date: 2026-09-10
+          review_due: 2026-12-09
+          confidence: 4
+          reviewer: Codex — lecture directe de la source officielle
+          history: []
+          quote: €77 per kennel, one way
+          quote_language: en
+          locator: Hold pet price
     availability: offered
     # PREUVE IMPORTÉE — import strict V3 (Codex, lecture directe du 2026-09-08, cohorte A fait 4).
     # Effet attendu : Show hold offered under conditions, not a promise of remaining capacity.

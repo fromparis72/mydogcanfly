@@ -111,6 +111,27 @@ policies:
     # ARBITRAGE (Codex, 09/09/2026, relayé et tranché par Philippe — mesures/preuves/correctif-arbitrages-2026-09-09) :
     # soute via agent animalier sous conditions d'opérateur, d'appareil et de route ; Aer Lingus Regional (Emerald) exclue — le recours à un agent ne fait pas de la soute accompagnée un canal fret.
   cargo:
+    # TARIFS OFFICIELS — audit indépendant du 2026-09-10 ; aucune valeur héritée réactivée.
+    fares:
+      - id: fare_aer_lingus_cargo_2026_09_10
+        placement: cargo
+        price:
+          kind: quote
+          amounts: []
+        billing_subject: shipment
+        journey_basis: per_journey
+        scope_label: Ireland–North America and other accepted cargo routes
+        source:
+          url: https://www.aerlingus.com/localized/en/modals/baggage-information.html
+          source_type: official_website
+          verified_date: 2026-09-10
+          review_due: 2026-12-09
+          confidence: 4
+          reviewer: Codex — lecture directe de la source officielle
+          history: []
+          quote: contact an approved pet agent
+          quote_language: en
+          locator: Animals
     review_state: legacy_unreviewed
 channels:
   - placement: cabin

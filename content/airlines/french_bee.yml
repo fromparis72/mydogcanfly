@@ -63,6 +63,29 @@ ladder:
     sub: "> 75 kg"
 policies:
   cabin:
+    # TARIFS OFFICIELS — audit indépendant du 2026-09-10 ; aucune valeur héritée réactivée.
+    fares:
+      - id: fare_french_bee_cabin_usd_2026_09_10
+        placement: cabin
+        price:
+          kind: exact
+          amounts:
+            - amount: 100
+              currency: USD
+        billing_subject: pet_or_container
+        journey_basis: per_segment
+        scope_label: marché anglophone/réseau admissible → marché anglophone/réseau admissible
+        source:
+          url: https://www.frenchbee.com/en/optional-services
+          source_type: official_website
+          verified_date: 2026-09-10
+          review_due: 2026-12-09
+          confidence: 4
+          reviewer: Codex — lecture directe de la source officielle
+          history: []
+          quote: $100 per segment
+          quote_language: en
+          locator: Pets in cabin
     availability: offered
     # PREUVE IMPORTÉE — import strict lot7 (Codex, lecture directe du 2026-09-09, cohorte LOT7 fait 15).
     # Effet attendu : French Bee cabin is a documented conditional route.
@@ -79,6 +102,29 @@ policies:
       quote_language: fr
       locator: "Quel type de sac pour mon animal en cabine ?"
   hold:
+    # TARIFS OFFICIELS — audit indépendant du 2026-09-10 ; aucune valeur héritée réactivée.
+    fares:
+      - id: fare_french_bee_hold_usd_2026_09_10
+        placement: hold
+        price:
+          kind: exact
+          amounts:
+            - amount: 195
+              currency: USD
+        billing_subject: pet_or_container
+        journey_basis: per_segment
+        scope_label: marché anglophone/réseau admissible → hors Tahiti
+        source:
+          url: https://www.frenchbee.com/en/optional-services
+          source_type: official_website
+          verified_date: 2026-09-10
+          review_due: 2026-12-09
+          confidence: 4
+          reviewer: Codex — lecture directe de la source officielle
+          history: []
+          quote: $195 per segment
+          quote_language: en
+          locator: Pets in hold
     availability: offered
     # PREUVE IMPORTÉE — import strict lot7 (Codex, lecture directe du 2026-09-09, cohorte LOT7 fait 16).
     # Effet attendu : French Bee hold is conditional and does not apply to brachycephalic dogs.
@@ -95,6 +141,26 @@ policies:
       quote_language: fr
       locator: "Puis-je faire voyager mon animal avec moi dans l’avion ?"
   cargo:
+    # TARIFS OFFICIELS — audit indépendant du 2026-09-10 ; aucune valeur héritée réactivée.
+    fares:
+      - id: fare_french_bee_cargo_2026_09_10
+        placement: cargo
+        price:
+          kind: quote
+          amounts: []
+        billing_subject: pet
+        journey_basis: per_journey
+        source:
+          url: https://www.frenchbee.com/en/optional-services
+          source_type: official_website
+          verified_date: 2026-09-10
+          review_due: 2026-12-09
+          confidence: 4
+          reviewer: Codex — lecture directe de la source officielle
+          history: []
+          quote: contact cargo
+          quote_language: en
+          locator: Oversize/cargo
     review_state: legacy_unreviewed
 channels:
   - placement: cabin

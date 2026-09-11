@@ -110,6 +110,29 @@ policies:
       quote_language: en
       locator: "Pet Carriage → opening policy statement"
   cargo:
+    # TARIFS OFFICIELS — audit indépendant du 2026-09-10 ; aucune valeur héritée réactivée.
+    fares:
+      - id: fare_kenya_airways_cargo_usd_2026_09_10
+        placement: cargo
+        price:
+          kind: exact
+          amounts:
+            - amount: 20
+              currency: USD
+        billing_subject: kilogram
+        journey_basis: per_journey
+        scope_label: Nairobi → New York
+        source:
+          url: https://www.kenya-airways.com/en-nl/policies/optional-fees/
+          source_type: official_website
+          verified_date: 2026-09-10
+          review_due: 2026-12-09
+          confidence: 4
+          reviewer: Codex — lecture directe de la source officielle
+          history: []
+          quote: USD 20 per kg
+          quote_language: en
+          locator: Freight pets
     availability: offered   # RÉACTIVÉE sur citation (import strict, lot6, 2026-09-09) — était review_state: legacy_unreviewed
     # PREUVE IMPORTÉE — import strict lot6 (Codex, lecture directe du 2026-09-09, cohorte LOT6 fait 16).
     # Effet attendu : Kenya Airways cargo is a documented conditional path, never a shipment confirmation.

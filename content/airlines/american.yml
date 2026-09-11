@@ -77,6 +77,29 @@ ladder:
       pt: "cachorros grandes"
 policies:
   cabin:
+    # TARIFS OFFICIELS — audit indépendant du 2026-09-10 ; aucune valeur héritée réactivée.
+    fares:
+      - id: fare_american_cabin_usd_2026_09_10
+        placement: cabin
+        price:
+          kind: exact
+          amounts:
+            - amount: 150
+              currency: USD
+        billing_subject: container
+        journey_basis: per_one_way
+        scope_label: US/Canada/Mexico/Central America/Caribbean eligible routes
+        source:
+          url: https://www.aa.com/web/i18n/travel-info/special-assistance/pets.html
+          source_type: official_website
+          verified_date: 2026-09-10
+          review_due: 2026-12-09
+          confidence: 4
+          reviewer: Codex — lecture directe de la source officielle
+          history: []
+          quote: $150 per kennel
+          quote_language: en
+          locator: Fees > Carry-on pet
     availability: offered
     # PREUVE IMPORTÉE — import strict lot4 (Codex, lecture directe du 2026-09-09, cohorte LOT4 fait 2).
     # Effet attendu : American Airlines cabin is a conditional route. Do not turn it into a confirmation for a large dog, a specific aircraft or a restricted itinerary.
@@ -93,8 +116,54 @@ policies:
       quote_language: en
       locator: "Traveling with pets → Carry-on pets"
   hold:
+    # TARIFS OFFICIELS — audit indépendant du 2026-09-10 ; aucune valeur héritée réactivée.
+    fares:
+      - id: fare_american_hold_usd_2026_09_10
+        placement: hold
+        price:
+          kind: range
+          amounts:
+            - amount: 150
+              currency: USD
+            - amount: 200
+              currency: USD
+        billing_subject: container
+        journey_basis: per_one_way
+        scope_label: listed regions; active-duty military/State Department orders only
+        source:
+          url: https://www.aa.com/web/i18n/travel-info/special-assistance/pets.html
+          source_type: official_website
+          verified_date: 2026-09-10
+          review_due: 2026-12-09
+          confidence: 4
+          reviewer: Codex — lecture directe de la source officielle
+          history: []
+          quote: $200 per kennel … $150 to/from Brazil
+          quote_language: en
+          locator: Fees > Checked pet
     availability: not_offered
   cargo:
+    # TARIFS OFFICIELS — audit indépendant du 2026-09-10 ; aucune valeur héritée réactivée.
+    fares:
+      - id: fare_american_cargo_2026_09_10
+        placement: cargo
+        price:
+          kind: quote
+          amounts: []
+        billing_subject: shipment
+        journey_basis: per_journey
+        scope_label: PetEmbark routes
+        source:
+          url: https://www.aa.com/web/i18n/travel-info/special-assistance/pets.html
+          source_type: official_website
+          verified_date: 2026-09-10
+          review_due: 2026-12-09
+          confidence: 4
+          reviewer: Codex — lecture directe de la source officielle
+          history: []
+          quote: Fees will be confirmed at time of booking
+          quote_language: en
+          locator: Fees > Cargo pet
     availability: offered
     # PREUVE IMPORTÉE — import strict lot4 (Codex, lecture directe du 2026-09-09, cohorte LOT4 fait 3).
     # Effet attendu : Cargo is a documented conditional direction for an ineligible carry-on or checked pet, never an automatic shipment acceptance.

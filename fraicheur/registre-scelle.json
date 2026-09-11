@@ -2,6 +2,11 @@
   "entrees": [
     {
       "famille": "airlines",
+      "locator": "airlines[airline_aegean].premium.policy.cabin.fares[fare_aegean_cabin_eur_2026_09_10].source",
+      "empreinte_source": "e488ae4f7abe6d7cd4456f9170df255f4183bd47d16203cc04ca302e1d32cf17"
+    },
+    {
+      "famille": "airlines",
       "locator": "airlines[airline_aegean].premium.policy.cabin.source",
       "empreinte_source": "78cb6c69a09524dff478047c4cdae84c25f4321ccf83fa0aa917c6ce24701f9a"
     },
@@ -24,6 +29,11 @@
       "famille": "airlines",
       "locator": "airlines[airline_aer_lingus].premium.policy.cabin.source",
       "empreinte_source": "023e628ef6421ee6769146c45592d6e350747baaf732162b0037b787b3dcf958"
+    },
+    {
+      "famille": "airlines",
+      "locator": "airlines[airline_aer_lingus].premium.policy.cargo.fares[fare_aer_lingus_cargo_2026_09_10].source",
+      "empreinte_source": "05ff5a44d1e9494b0cf2fc10da3a28941cc328f8da1af34a2b23a9e5d10cf90c"
     },
     {
       "famille": "airlines",
@@ -102,6 +112,11 @@
     },
     {
       "famille": "airlines",
+      "locator": "airlines[airline_air_astana].premium.policy.cabin.fares[fare_air_astana_cabin_2026_09_10].source",
+      "empreinte_source": "c3fe290a6ed961a8c778fddd93da16d747b2efc03cd57ba489fca0b736122aac"
+    },
+    {
+      "famille": "airlines",
       "locator": "airlines[airline_air_astana].premium.policy.cabin.source",
       "empreinte_source": "7f97b48a1f82d9844b3f969fb1a568be3eb4e3704eec6b9dd944f28977a2523f"
     },
@@ -109,6 +124,11 @@
       "famille": "airlines",
       "locator": "airlines[airline_air_astana].premium.policy.cargo.source",
       "empreinte_source": "7f97b48a1f82d9844b3f969fb1a568be3eb4e3704eec6b9dd944f28977a2523f"
+    },
+    {
+      "famille": "airlines",
+      "locator": "airlines[airline_air_astana].premium.policy.hold.fares[fare_air_astana_hold_2026_09_10].source",
+      "empreinte_source": "c3fe290a6ed961a8c778fddd93da16d747b2efc03cd57ba489fca0b736122aac"
     },
     {
       "famille": "airlines",
@@ -122,6 +142,11 @@
     },
     {
       "famille": "airlines",
+      "locator": "airlines[airline_air_austral].premium.policy.cabin.fares[fare_air_austral_cabin_eur_2026_09_10].source",
+      "empreinte_source": "22d4eee95743da209d3b4cc8ee2a6182fe92fd2caf4e4313a08e9d0fd97731e1"
+    },
+    {
+      "famille": "airlines",
       "locator": "airlines[airline_air_austral].premium.policy.cabin.source",
       "empreinte_source": "79c4ed9c038e9ca4d99b52a66f25e0ab9d9e5e7fb7fec23f0448c07bc2a7c3f6"
     },
@@ -129,6 +154,11 @@
       "famille": "airlines",
       "locator": "airlines[airline_air_austral].premium.policy.cargo.source",
       "empreinte_source": "e229b63cd1b878734101fa529e334a075f14818e54a87d99cb8f482b68763c83"
+    },
+    {
+      "famille": "airlines",
+      "locator": "airlines[airline_air_austral].premium.policy.hold.fares[fare_air_austral_hold_eur_2026_09_10].source",
+      "empreinte_source": "22d4eee95743da209d3b4cc8ee2a6182fe92fd2caf4e4313a08e9d0fd97731e1"
     },
     {
       "famille": "airlines",
@@ -152,6 +182,11 @@
     },
     {
       "famille": "airlines",
+      "locator": "airlines[airline_air_canada].premium.policy.cabin.fares[fare_air_canada_cabin_cad_2026_09_10].source",
+      "empreinte_source": "3c5efd7b3680088085ae7e9f46c4a9bdda30d6f9c239b22d1b4fd58450ef954b"
+    },
+    {
+      "famille": "airlines",
       "locator": "airlines[airline_air_canada].premium.policy.cabin.source",
       "empreinte_source": "25366d83ab312ce575ad6b8aff67366880a7573c134fc760c2c3f265942cb88e"
     },
@@ -159,6 +194,11 @@
       "famille": "airlines",
       "locator": "airlines[airline_air_canada].premium.policy.cargo.source",
       "empreinte_source": "86398aee61386c8916b8f5fd29b2d32297104777647f6d6ca6487d772bd543b3"
+    },
+    {
+      "famille": "airlines",
+      "locator": "airlines[airline_air_canada].premium.policy.hold.fares[fare_air_canada_hold_cad_2026_09_10].source",
+      "empreinte_source": "3c5efd7b3680088085ae7e9f46c4a9bdda30d6f9c239b22d1b4fd58450ef954b"
     },
     {
       "famille": "airlines",
@@ -182,6 +222,11 @@
     },
     {
       "famille": "airlines",
+      "locator": "airlines[airline_air_caraibes].premium.policy.cabin.fares[fare_air_caraibes_cabin_eur_2026_09_10].source",
+      "empreinte_source": "6af941b272177b1b3193bd8edecda769254f3aa1b312eaf31a8f5747091ab294"
+    },
+    {
+      "famille": "airlines",
       "locator": "airlines[airline_air_caraibes].premium.policy.cabin.source",
       "empreinte_source": "e1a3c24048125157d84add4217ac02f2efcc978e977f6347c9f8b1f55a53d9c1"
     },
@@ -189,6 +234,11 @@
       "famille": "airlines",
       "locator": "airlines[airline_air_caraibes].premium.policy.cargo.source",
       "empreinte_source": "e1a3c24048125157d84add4217ac02f2efcc978e977f6347c9f8b1f55a53d9c1"
+    },
+    {
+      "famille": "airlines",
+      "locator": "airlines[airline_air_caraibes].premium.policy.hold.fares[fare_air_caraibes_hold_eur_2026_09_10].source",
+      "empreinte_source": "6af941b272177b1b3193bd8edecda769254f3aa1b312eaf31a8f5747091ab294"
     },
     {
       "famille": "airlines",
@@ -297,6 +347,16 @@
     },
     {
       "famille": "airlines",
+      "locator": "airlines[airline_air_india].premium.policy.hold.fares[fare_air_india_hold_inr_2026_09_10].source",
+      "empreinte_source": "d5eb050e39f0d87be5f7d433af54d1c10a344725ea09ad2bd8a15aed48fb461a"
+    },
+    {
+      "famille": "airlines",
+      "locator": "airlines[airline_air_india].premium.policy.hold.fares[fare_air_india_hold_usd_2026_09_10].source",
+      "empreinte_source": "d5eb050e39f0d87be5f7d433af54d1c10a344725ea09ad2bd8a15aed48fb461a"
+    },
+    {
+      "famille": "airlines",
       "locator": "airlines[airline_air_india].premium.policy.hold.source",
       "empreinte_source": "d13c7a93e6779cc07f3f87497b918571051547cd5d378146485c91c86cca03ea"
     },
@@ -312,8 +372,18 @@
     },
     {
       "famille": "airlines",
+      "locator": "airlines[airline_air_mauritius].premium.policy.cargo.fares[fare_air_mauritius_cargo_2026_09_10].source",
+      "empreinte_source": "741eb102af89d7434aaebcb7b17fb9824c15ce3cd12ea9254d4f9fce03eafb3b"
+    },
+    {
+      "famille": "airlines",
       "locator": "airlines[airline_air_mauritius].premium.policy.cargo.source",
       "empreinte_source": "0e3c88b43c2e23e0b07d35df7ee7a3b336f34a22f39808a41b0b56b3d554d4d9"
+    },
+    {
+      "famille": "airlines",
+      "locator": "airlines[airline_air_mauritius].premium.policy.hold.fares[fare_air_mauritius_hold_2026_09_10].source",
+      "empreinte_source": "2557b6f1281b311a4c3bfef352322c01f1776b460c021a36449d21cd5a30e210"
     },
     {
       "famille": "airlines",
@@ -337,6 +407,11 @@
     },
     {
       "famille": "airlines",
+      "locator": "airlines[airline_air_new_zealand].premium.policy.hold.fares[fare_air_new_zealand_hold_nzd_2026_09_10].source",
+      "empreinte_source": "4f5d4c411cdd63dec180bbf7c2c746ac6917ac2091ea79da3f4a30271c6de79b"
+    },
+    {
+      "famille": "airlines",
       "locator": "airlines[airline_air_new_zealand].premium.policy.hold.source",
       "empreinte_source": "08e884b92aaf066b99fab49dfd50507bc07547e5a4b6b98ab29b8f7cd8097ea4"
     },
@@ -344,6 +419,11 @@
       "famille": "airlines",
       "locator": "airlines[airline_air_new_zealand].source",
       "empreinte_source": "c676981ff83c9c02c05376013f8d19afbd7e4653ecc7bfe5c98b18bcd57ddb05"
+    },
+    {
+      "famille": "airlines",
+      "locator": "airlines[airline_air_serbia].premium.policy.cabin.fares[fare_air_serbia_cabin_eur_2026_09_10].source",
+      "empreinte_source": "25ccb39829aef876381cc6c2114fbcf25df67dcf6fba29945a97497d1423601b"
     },
     {
       "famille": "airlines",
@@ -367,6 +447,21 @@
     },
     {
       "famille": "airlines",
+      "locator": "airlines[airline_air_tahiti_nui].premium.policy.cabin.fares[fare_air_tahiti_nui_cabin_eur_2026_09_10].source",
+      "empreinte_source": "fbf842149b241f432d820e5be448c7bce846077187f4ab8b432621c5331c91cf"
+    },
+    {
+      "famille": "airlines",
+      "locator": "airlines[airline_air_tahiti_nui].premium.policy.cabin.fares[fare_air_tahiti_nui_cabin_usd_2026_09_10].source",
+      "empreinte_source": "fbf842149b241f432d820e5be448c7bce846077187f4ab8b432621c5331c91cf"
+    },
+    {
+      "famille": "airlines",
+      "locator": "airlines[airline_air_tahiti_nui].premium.policy.cabin.fares[fare_air_tahiti_nui_cabin_xpf_2026_09_10].source",
+      "empreinte_source": "fbf842149b241f432d820e5be448c7bce846077187f4ab8b432621c5331c91cf"
+    },
+    {
+      "famille": "airlines",
       "locator": "airlines[airline_air_tahiti_nui].premium.policy.cabin.source",
       "empreinte_source": "86a4a6581539d0e8c908c0866deb51219c65b08c8b5228562b1941446aa1f71a"
     },
@@ -382,6 +477,11 @@
     },
     {
       "famille": "airlines",
+      "locator": "airlines[airline_air_transat].premium.policy.cabin.fares[fare_air_transat_cabin_cad_2026_09_10].source",
+      "empreinte_source": "39aa4402af77c53a734888abf179021c6e2f5ff54558f23033c830bf153da5f3"
+    },
+    {
+      "famille": "airlines",
       "locator": "airlines[airline_air_transat].premium.policy.cabin.source",
       "empreinte_source": "91fa1c33456cc9422b36a24694656298e2a09025f2fe12cb91feda47f42bf304"
     },
@@ -389,6 +489,11 @@
       "famille": "airlines",
       "locator": "airlines[airline_air_transat].premium.policy.cargo.source",
       "empreinte_source": "525cf514bc064bb21846c20ca7490e1b440e3012e6614e399b553132ba060ca9"
+    },
+    {
+      "famille": "airlines",
+      "locator": "airlines[airline_air_transat].premium.policy.hold.fares[fare_air_transat_hold_cad_2026_09_10].source",
+      "empreinte_source": "39aa4402af77c53a734888abf179021c6e2f5ff54558f23033c830bf153da5f3"
     },
     {
       "famille": "airlines",
@@ -402,6 +507,11 @@
     },
     {
       "famille": "airlines",
+      "locator": "airlines[airline_airbaltic].premium.policy.cabin.fares[fare_airbaltic_cabin_eur_2026_09_10].source",
+      "empreinte_source": "c1cbbb841a67d28be6e428e1109214b6184c7a094d085ae1e5d2d5787735aeaa"
+    },
+    {
+      "famille": "airlines",
       "locator": "airlines[airline_airbaltic].premium.policy.cabin.source",
       "empreinte_source": "59737677b32cb5932082d9b41de95ce6d063a845fac788bce811f5924a8e3016"
     },
@@ -409,6 +519,11 @@
       "famille": "airlines",
       "locator": "airlines[airline_airbaltic].premium.policy.cargo.source",
       "empreinte_source": "59737677b32cb5932082d9b41de95ce6d063a845fac788bce811f5924a8e3016"
+    },
+    {
+      "famille": "airlines",
+      "locator": "airlines[airline_airbaltic].premium.policy.hold.fares[fare_airbaltic_hold_eur_2026_09_10].source",
+      "empreinte_source": "c1cbbb841a67d28be6e428e1109214b6184c7a094d085ae1e5d2d5787735aeaa"
     },
     {
       "famille": "airlines",
@@ -442,6 +557,11 @@
     },
     {
       "famille": "airlines",
+      "locator": "airlines[airline_alaska].premium.policy.cabin.fares[fare_alaska_cabin_usd_2026_09_10].source",
+      "empreinte_source": "4f33c67680738792af03cc7e6111b33a30b0c61bbf1703c0eb6d6f04ad348a3e"
+    },
+    {
+      "famille": "airlines",
       "locator": "airlines[airline_alaska].premium.policy.cabin.source",
       "empreinte_source": "515be91ff837ecf86427527f73e52395eb8afb926c16ae4b20e3ace15d56cae1"
     },
@@ -449,6 +569,11 @@
       "famille": "airlines",
       "locator": "airlines[airline_alaska].premium.policy.cargo.source",
       "empreinte_source": "515be91ff837ecf86427527f73e52395eb8afb926c16ae4b20e3ace15d56cae1"
+    },
+    {
+      "famille": "airlines",
+      "locator": "airlines[airline_alaska].premium.policy.hold.fares[fare_alaska_hold_usd_2026_09_10].source",
+      "empreinte_source": "4f33c67680738792af03cc7e6111b33a30b0c61bbf1703c0eb6d6f04ad348a3e"
     },
     {
       "famille": "airlines",
@@ -472,13 +597,28 @@
     },
     {
       "famille": "airlines",
+      "locator": "airlines[airline_american].premium.policy.cabin.fares[fare_american_cabin_usd_2026_09_10].source",
+      "empreinte_source": "87617a629e0c5f43ec8ca5d39d85b6accc24c190a8ba13ab03c4e72dbd2e7e64"
+    },
+    {
+      "famille": "airlines",
       "locator": "airlines[airline_american].premium.policy.cabin.source",
       "empreinte_source": "478ed8c7b95d5ff10e816a8fcaf45c9b5eb0c75e8f2c49afec2493e719d5edc0"
     },
     {
       "famille": "airlines",
+      "locator": "airlines[airline_american].premium.policy.cargo.fares[fare_american_cargo_2026_09_10].source",
+      "empreinte_source": "87617a629e0c5f43ec8ca5d39d85b6accc24c190a8ba13ab03c4e72dbd2e7e64"
+    },
+    {
+      "famille": "airlines",
       "locator": "airlines[airline_american].premium.policy.cargo.source",
       "empreinte_source": "478ed8c7b95d5ff10e816a8fcaf45c9b5eb0c75e8f2c49afec2493e719d5edc0"
+    },
+    {
+      "famille": "airlines",
+      "locator": "airlines[airline_american].premium.policy.hold.fares[fare_american_hold_usd_2026_09_10].source",
+      "empreinte_source": "87617a629e0c5f43ec8ca5d39d85b6accc24c190a8ba13ab03c4e72dbd2e7e64"
     },
     {
       "famille": "airlines",
@@ -509,6 +649,26 @@
       "famille": "airlines",
       "locator": "airlines[airline_ana].premium.policy.cargo.source",
       "empreinte_source": "db1b085e2816b40c29ea7474de567a2bc69964980920c644acfae60f5dded9f5"
+    },
+    {
+      "famille": "airlines",
+      "locator": "airlines[airline_ana].premium.policy.hold.fares[fare_ana_hold_cad_2026_09_10].source",
+      "empreinte_source": "0c3389f2bcc937d7407f8b01dbb659332fdfb83fc13032dcf493ab5b432f320f"
+    },
+    {
+      "famille": "airlines",
+      "locator": "airlines[airline_ana].premium.policy.hold.fares[fare_ana_hold_eur_2026_09_10].source",
+      "empreinte_source": "0c3389f2bcc937d7407f8b01dbb659332fdfb83fc13032dcf493ab5b432f320f"
+    },
+    {
+      "famille": "airlines",
+      "locator": "airlines[airline_ana].premium.policy.hold.fares[fare_ana_hold_jpy_2026_09_10].source",
+      "empreinte_source": "0c3389f2bcc937d7407f8b01dbb659332fdfb83fc13032dcf493ab5b432f320f"
+    },
+    {
+      "famille": "airlines",
+      "locator": "airlines[airline_ana].premium.policy.hold.fares[fare_ana_hold_usd_2026_09_10].source",
+      "empreinte_source": "0c3389f2bcc937d7407f8b01dbb659332fdfb83fc13032dcf493ab5b432f320f"
     },
     {
       "famille": "airlines",
@@ -544,6 +704,11 @@
       "famille": "airlines",
       "locator": "airlines[airline_austrian].premium.policy.cabin.source",
       "empreinte_source": "286e7ddd46985b2f28140d31e4366a5aa2dff96982e8a678dfa6a24255907ee8"
+    },
+    {
+      "famille": "airlines",
+      "locator": "airlines[airline_austrian].premium.policy.cargo.fares[fare_austrian_cargo_2026_09_10].source",
+      "empreinte_source": "82dc93d1f7cc0bccec0e0092dde23b36d10b6ae1432dcdd6d2d2d5a5554c6c8e"
     },
     {
       "famille": "airlines",
@@ -657,6 +822,11 @@
     },
     {
       "famille": "airlines",
+      "locator": "airlines[airline_british_airways].premium.policy.cargo.fares[fare_british_airways_cargo_2026_09_10].source",
+      "empreinte_source": "9d43ca636b38fedde40a7f090650b22f169559b698bfca8fb9fc33d27893576c"
+    },
+    {
+      "famille": "airlines",
       "locator": "airlines[airline_british_airways].premium.policy.cargo.source",
       "empreinte_source": "b31acff7168ffe4904eb5aa05a13959e230987ce8eb8f9780e9dd4e959682ad0"
     },
@@ -704,6 +874,11 @@
       "famille": "airlines",
       "locator": "airlines[airline_cathay_pacific].premium.policy.cabin.source",
       "empreinte_source": "94a2897b69f28357b9db8cbaa8b3ec69119c1fc4286873744995a81cecd7537b"
+    },
+    {
+      "famille": "airlines",
+      "locator": "airlines[airline_cathay_pacific].premium.policy.cargo.fares[fare_cathay_pacific_cargo_2026_09_10].source",
+      "empreinte_source": "3e9f2310cad9103184db8d3ecfb454c2cdf8f0681f3ad94ac9615edc85ce0097"
     },
     {
       "famille": "airlines",
@@ -767,8 +942,23 @@
     },
     {
       "famille": "airlines",
+      "locator": "airlines[airline_china_southern].premium.policy.cargo.fares[fare_china_southern_cargo_2026_09_10].source",
+      "empreinte_source": "70291a40b551c3d15f10368b33933ca85ec7fff646cec32141753b402f867439"
+    },
+    {
+      "famille": "airlines",
       "locator": "airlines[airline_china_southern].premium.policy.cargo.source",
       "empreinte_source": "5fe34c65b55c3d02446787250b54de19e39adaf5657ddadc1d61d91cf91da614"
+    },
+    {
+      "famille": "airlines",
+      "locator": "airlines[airline_china_southern].premium.policy.hold.fares[fare_china_southern_hold_eur_2026_09_10].source",
+      "empreinte_source": "70291a40b551c3d15f10368b33933ca85ec7fff646cec32141753b402f867439"
+    },
+    {
+      "famille": "airlines",
+      "locator": "airlines[airline_china_southern].premium.policy.hold.fares[fare_china_southern_hold_usd_2026_09_10].source",
+      "empreinte_source": "70291a40b551c3d15f10368b33933ca85ec7fff646cec32141753b402f867439"
     },
     {
       "famille": "airlines",
@@ -782,6 +972,11 @@
     },
     {
       "famille": "airlines",
+      "locator": "airlines[airline_condor].premium.policy.cabin.fares[fare_condor_cabin_eur_2026_09_10].source",
+      "empreinte_source": "3384231fb87ee46cb15fd15df56c5f2f798cfeec9edd084bd69db0194cb89ab9"
+    },
+    {
+      "famille": "airlines",
       "locator": "airlines[airline_condor].premium.policy.cabin.source",
       "empreinte_source": "b2dc6578d613d07f1d359ab14a7ccfc4719c1ebbc58852fa3c2215bcb5d0ba8a"
     },
@@ -792,6 +987,11 @@
     },
     {
       "famille": "airlines",
+      "locator": "airlines[airline_condor].premium.policy.hold.fares[fare_condor_hold_eur_2026_09_10].source",
+      "empreinte_source": "fd9b328d1715cedbad74d9c1478665bc6e5f4ee26be76c40b799e3f196ca3938"
+    },
+    {
+      "famille": "airlines",
       "locator": "airlines[airline_condor].premium.policy.hold.source",
       "empreinte_source": "b2dc6578d613d07f1d359ab14a7ccfc4719c1ebbc58852fa3c2215bcb5d0ba8a"
     },
@@ -799,6 +999,11 @@
       "famille": "airlines",
       "locator": "airlines[airline_condor].source",
       "empreinte_source": "7e876215fde336715f3cdd0f8cdb333402dcc997a17260e9af6aeb4d4005fb61"
+    },
+    {
+      "famille": "airlines",
+      "locator": "airlines[airline_copa].premium.policy.cabin.fares[fare_copa_cabin_usd_2026_09_10].source",
+      "empreinte_source": "8c16b52b9da3286dfea05e94380854d4aebb430ed7291bf9c1f5f3cfcd8bd904"
     },
     {
       "famille": "airlines",
@@ -822,13 +1027,28 @@
     },
     {
       "famille": "airlines",
+      "locator": "airlines[airline_corsair].premium.policy.cabin.fares[fare_corsair_cabin_eur_2026_09_10].source",
+      "empreinte_source": "93bd53c2044d3fbe00b74ac0fd90404883ed59c28fb68ca5139387b3289f6d17"
+    },
+    {
+      "famille": "airlines",
       "locator": "airlines[airline_corsair].premium.policy.cabin.source",
       "empreinte_source": "cb37a8b30778c20722b604320f81d41875c284836e38c2a7bd005ad0b7812678"
     },
     {
       "famille": "airlines",
+      "locator": "airlines[airline_corsair].premium.policy.cargo.fares[fare_corsair_cargo_2026_09_10].source",
+      "empreinte_source": "93bd53c2044d3fbe00b74ac0fd90404883ed59c28fb68ca5139387b3289f6d17"
+    },
+    {
+      "famille": "airlines",
       "locator": "airlines[airline_corsair].premium.policy.cargo.source",
       "empreinte_source": "cb37a8b30778c20722b604320f81d41875c284836e38c2a7bd005ad0b7812678"
+    },
+    {
+      "famille": "airlines",
+      "locator": "airlines[airline_corsair].premium.policy.hold.fares[fare_corsair_hold_eur_2026_09_10].source",
+      "empreinte_source": "93bd53c2044d3fbe00b74ac0fd90404883ed59c28fb68ca5139387b3289f6d17"
     },
     {
       "famille": "airlines",
@@ -869,6 +1089,16 @@
       "famille": "airlines",
       "locator": "airlines[airline_delta].premium.faq[h:4737fbea0bba].source",
       "empreinte_source": "d3b799f5fa8ffe4838e95200095012d4b4c4c25cd1a2240fec451994f903ea66"
+    },
+    {
+      "famille": "airlines",
+      "locator": "airlines[airline_delta].premium.policy.cabin.fares[fare_delta_cabin_cad_2026_09_10].source",
+      "empreinte_source": "3384dba89555c70981efb89c09662792649a25b308f2fff0f8f08800e61121c3"
+    },
+    {
+      "famille": "airlines",
+      "locator": "airlines[airline_delta].premium.policy.cabin.fares[fare_delta_cabin_usd_2026_09_10].source",
+      "empreinte_source": "3384dba89555c70981efb89c09662792649a25b308f2fff0f8f08800e61121c3"
     },
     {
       "famille": "airlines",
@@ -922,6 +1152,31 @@
     },
     {
       "famille": "airlines",
+      "locator": "airlines[airline_edelweiss].premium.policy.cabin.fares[fare_edelweiss_cabin_cad_2026_09_10].source",
+      "empreinte_source": "f24a438f4f86c2361cd07a1966f562aa576ed088f06ee889fb9b4fdb13a5346b"
+    },
+    {
+      "famille": "airlines",
+      "locator": "airlines[airline_edelweiss].premium.policy.cabin.fares[fare_edelweiss_cabin_chf_2026_09_10].source",
+      "empreinte_source": "f24a438f4f86c2361cd07a1966f562aa576ed088f06ee889fb9b4fdb13a5346b"
+    },
+    {
+      "famille": "airlines",
+      "locator": "airlines[airline_edelweiss].premium.policy.cabin.fares[fare_edelweiss_cabin_eur_2026_09_10].source",
+      "empreinte_source": "f24a438f4f86c2361cd07a1966f562aa576ed088f06ee889fb9b4fdb13a5346b"
+    },
+    {
+      "famille": "airlines",
+      "locator": "airlines[airline_edelweiss].premium.policy.cabin.fares[fare_edelweiss_cabin_gbp_2026_09_10].source",
+      "empreinte_source": "f24a438f4f86c2361cd07a1966f562aa576ed088f06ee889fb9b4fdb13a5346b"
+    },
+    {
+      "famille": "airlines",
+      "locator": "airlines[airline_edelweiss].premium.policy.cabin.fares[fare_edelweiss_cabin_usd_2026_09_10].source",
+      "empreinte_source": "f24a438f4f86c2361cd07a1966f562aa576ed088f06ee889fb9b4fdb13a5346b"
+    },
+    {
+      "famille": "airlines",
       "locator": "airlines[airline_edelweiss].premium.policy.cabin.source",
       "empreinte_source": "2ff3562ee767cb090077e80fc62ab072776358196e2f469e59640b8192249c9b"
     },
@@ -929,6 +1184,11 @@
       "famille": "airlines",
       "locator": "airlines[airline_edelweiss].premium.policy.cargo.source",
       "empreinte_source": "689428038d7625707abbfe2239dc0ded2237807a74ed8a34fc527a9537c76562"
+    },
+    {
+      "famille": "airlines",
+      "locator": "airlines[airline_edelweiss].premium.policy.hold.fares[fare_edelweiss_hold_chf_2026_09_10].source",
+      "empreinte_source": "f24a438f4f86c2361cd07a1966f562aa576ed088f06ee889fb9b4fdb13a5346b"
     },
     {
       "famille": "airlines",
@@ -1002,6 +1262,21 @@
     },
     {
       "famille": "airlines",
+      "locator": "airlines[airline_ethiopian].premium.policy.cabin.fares[fare_ethiopian_cabin_eur_2026_09_10].source",
+      "empreinte_source": "c8862e789a9391476015ce2655345ed4c88e4a728170fef0b400d664f167238f"
+    },
+    {
+      "famille": "airlines",
+      "locator": "airlines[airline_ethiopian].premium.policy.cabin.fares[fare_ethiopian_cabin_gbp_2026_09_10].source",
+      "empreinte_source": "c8862e789a9391476015ce2655345ed4c88e4a728170fef0b400d664f167238f"
+    },
+    {
+      "famille": "airlines",
+      "locator": "airlines[airline_ethiopian].premium.policy.cabin.fares[fare_ethiopian_cabin_usd_2026_09_10].source",
+      "empreinte_source": "c8862e789a9391476015ce2655345ed4c88e4a728170fef0b400d664f167238f"
+    },
+    {
+      "famille": "airlines",
       "locator": "airlines[airline_ethiopian].premium.policy.cabin.source",
       "empreinte_source": "67a34ea193e467b2db616a3894ca9bea7e52fb637d3a9574fd4508589c46108e"
     },
@@ -1019,6 +1294,11 @@
       "famille": "airlines",
       "locator": "airlines[airline_ethiopian].source",
       "empreinte_source": "f3912d9a31e16b9bce68dabba52f0f02b44fd746bab84a430fbf5174403bd84f"
+    },
+    {
+      "famille": "airlines",
+      "locator": "airlines[airline_etihad].premium.policy.cabin.fares[fare_etihad_cabin_usd_2026_09_10].source",
+      "empreinte_source": "4f02a3fe431eb30f0d38aa61613861c36c504fcd302ad3aca2d8229225b1bcfa"
     },
     {
       "famille": "airlines",
@@ -1072,6 +1352,11 @@
     },
     {
       "famille": "airlines",
+      "locator": "airlines[airline_eva_air].premium.policy.hold.fares[fare_eva_air_hold_2026_09_10].source",
+      "empreinte_source": "5a461b6fa488b4dac5b3685975435dcad9cc7a27bb838474b852d3b2470c98e7"
+    },
+    {
+      "famille": "airlines",
       "locator": "airlines[airline_eva_air].premium.policy.hold.source",
       "empreinte_source": "86660ec7d8d9839f82cd831555ce5c9572e03074ed3611d611e796db99ca6ef9"
     },
@@ -1079,6 +1364,11 @@
       "famille": "airlines",
       "locator": "airlines[airline_eva_air].source",
       "empreinte_source": "12739b57c3b58f10aef3d0cdb0c5b14335eead2f7715fca1a74c638c4c3d0f94"
+    },
+    {
+      "famille": "airlines",
+      "locator": "airlines[airline_finnair].premium.policy.cabin.fares[fare_finnair_cabin_eur_2026_09_10].source",
+      "empreinte_source": "d234ced132d8b7b09a9f3ca59a44d7897242757fa79d83f598d8fae2f9efee3f"
     },
     {
       "famille": "airlines",
@@ -1102,13 +1392,28 @@
     },
     {
       "famille": "airlines",
+      "locator": "airlines[airline_french_bee].premium.policy.cabin.fares[fare_french_bee_cabin_usd_2026_09_10].source",
+      "empreinte_source": "ee0472b973043d25abf082fe3b7d9dac0c9659eb0ce80797a149b74fa9c8202d"
+    },
+    {
+      "famille": "airlines",
       "locator": "airlines[airline_french_bee].premium.policy.cabin.source",
       "empreinte_source": "43beee68ef885ba7876d4c38b46203f6d4d129f24fb6bf15b3e201a44379ad0a"
     },
     {
       "famille": "airlines",
+      "locator": "airlines[airline_french_bee].premium.policy.cargo.fares[fare_french_bee_cargo_2026_09_10].source",
+      "empreinte_source": "ee0472b973043d25abf082fe3b7d9dac0c9659eb0ce80797a149b74fa9c8202d"
+    },
+    {
+      "famille": "airlines",
       "locator": "airlines[airline_french_bee].premium.policy.cargo.source",
       "empreinte_source": "6498febf7fa3ffd7d8a48b28fcf026e2c78c537fc0deb452bd3cdbc8fb08df97"
+    },
+    {
+      "famille": "airlines",
+      "locator": "airlines[airline_french_bee].premium.policy.hold.fares[fare_french_bee_hold_usd_2026_09_10].source",
+      "empreinte_source": "ee0472b973043d25abf082fe3b7d9dac0c9659eb0ce80797a149b74fa9c8202d"
     },
     {
       "famille": "airlines",
@@ -1129,6 +1434,11 @@
       "famille": "airlines",
       "locator": "airlines[airline_garuda_indonesia].premium.policy.cargo.source",
       "empreinte_source": "35836f9ae948fddfff550ef997a2f835b08d010095a00a3142a95a0be04b7ae0"
+    },
+    {
+      "famille": "airlines",
+      "locator": "airlines[airline_garuda_indonesia].premium.policy.hold.fares[fare_garuda_indonesia_hold_2026_09_10].source",
+      "empreinte_source": "f0e4bb4450e64d800dd229ef74c34ed318c391afc639c0fd33a5f3fe9966466d"
     },
     {
       "famille": "airlines",
@@ -1172,6 +1482,21 @@
     },
     {
       "famille": "airlines",
+      "locator": "airlines[airline_iberia].premium.policy.cabin.fares[fare_iberia_cabin_eur_2026_09_10].source",
+      "empreinte_source": "403708caa4bae6d32c3a29e4e124473d6417b56c52d8b27f2d7f84ce14e52a8f"
+    },
+    {
+      "famille": "airlines",
+      "locator": "airlines[airline_iberia].premium.policy.cabin.fares[fare_iberia_cabin_gbp_2026_09_10].source",
+      "empreinte_source": "403708caa4bae6d32c3a29e4e124473d6417b56c52d8b27f2d7f84ce14e52a8f"
+    },
+    {
+      "famille": "airlines",
+      "locator": "airlines[airline_iberia].premium.policy.cabin.fares[fare_iberia_cabin_usd_2026_09_10].source",
+      "empreinte_source": "403708caa4bae6d32c3a29e4e124473d6417b56c52d8b27f2d7f84ce14e52a8f"
+    },
+    {
+      "famille": "airlines",
       "locator": "airlines[airline_iberia].premium.policy.cabin.source",
       "empreinte_source": "2b040301d76a1fb6d2790301df1334b23785dbebb340941decf0bfc9afc347e7"
     },
@@ -1179,6 +1504,11 @@
       "famille": "airlines",
       "locator": "airlines[airline_iberia].premium.policy.cargo.source",
       "empreinte_source": "4b72bcc87f54aa003cca4613df494f1d5a24e4457f14321a740778eb92abfd28"
+    },
+    {
+      "famille": "airlines",
+      "locator": "airlines[airline_iberia].premium.policy.hold.fares[fare_iberia_hold_eur_2026_09_10].source",
+      "empreinte_source": "403708caa4bae6d32c3a29e4e124473d6417b56c52d8b27f2d7f84ce14e52a8f"
     },
     {
       "famille": "airlines",
@@ -1202,6 +1532,21 @@
     },
     {
       "famille": "airlines",
+      "locator": "airlines[airline_iberia_express].premium.policy.cabin.fares[fare_iberia_express_cabin_eur_2026_09_10].source",
+      "empreinte_source": "68a9ffff51688a53204ab7f752c9cf116d192c62c1362238e0040e0fdbbb586f"
+    },
+    {
+      "famille": "airlines",
+      "locator": "airlines[airline_iberia_express].premium.policy.cabin.fares[fare_iberia_express_cabin_gbp_2026_09_10].source",
+      "empreinte_source": "68a9ffff51688a53204ab7f752c9cf116d192c62c1362238e0040e0fdbbb586f"
+    },
+    {
+      "famille": "airlines",
+      "locator": "airlines[airline_iberia_express].premium.policy.cabin.fares[fare_iberia_express_cabin_usd_2026_09_10].source",
+      "empreinte_source": "68a9ffff51688a53204ab7f752c9cf116d192c62c1362238e0040e0fdbbb586f"
+    },
+    {
+      "famille": "airlines",
       "locator": "airlines[airline_iberia_express].premium.policy.cabin.source",
       "empreinte_source": "4837d74a69de65c928b2b98d635d3c2bededa9f637c5749e3b43984b40e17437"
     },
@@ -1209,6 +1554,21 @@
       "famille": "airlines",
       "locator": "airlines[airline_iberia_express].premium.policy.cargo.source",
       "empreinte_source": "78d085813ec7a7fbdb7ebe69ab71f16667a19aab188212d99e9e43bb684cea5e"
+    },
+    {
+      "famille": "airlines",
+      "locator": "airlines[airline_iberia_express].premium.policy.hold.fares[fare_iberia_express_hold_eur_2026_09_10].source",
+      "empreinte_source": "68a9ffff51688a53204ab7f752c9cf116d192c62c1362238e0040e0fdbbb586f"
+    },
+    {
+      "famille": "airlines",
+      "locator": "airlines[airline_iberia_express].premium.policy.hold.fares[fare_iberia_express_hold_gbp_2026_09_10].source",
+      "empreinte_source": "68a9ffff51688a53204ab7f752c9cf116d192c62c1362238e0040e0fdbbb586f"
+    },
+    {
+      "famille": "airlines",
+      "locator": "airlines[airline_iberia_express].premium.policy.hold.fares[fare_iberia_express_hold_usd_2026_09_10].source",
+      "empreinte_source": "68a9ffff51688a53204ab7f752c9cf116d192c62c1362238e0040e0fdbbb586f"
     },
     {
       "famille": "airlines",
@@ -1262,6 +1622,11 @@
     },
     {
       "famille": "airlines",
+      "locator": "airlines[airline_ita_airways].premium.policy.cabin.fares[fare_ita_airways_cabin_eur_2026_09_10].source",
+      "empreinte_source": "99311b65d924a9f705e47a846e463a8c3ecaf7cc3c75cce5b790d27598c70ade"
+    },
+    {
+      "famille": "airlines",
       "locator": "airlines[airline_ita_airways].premium.policy.cabin.source",
       "empreinte_source": "b02928777bc4b4669573e47ad2cce3dd230dff34f52f59305e9262bbf08e3189"
     },
@@ -1269,6 +1634,11 @@
       "famille": "airlines",
       "locator": "airlines[airline_ita_airways].premium.policy.cargo.source",
       "empreinte_source": "6e6e4b8ec0414fd3147bd7feee966c222591a0703d09b02129fe5b2c8068eee9"
+    },
+    {
+      "famille": "airlines",
+      "locator": "airlines[airline_ita_airways].premium.policy.hold.fares[fare_ita_airways_hold_eur_2026_09_10].source",
+      "empreinte_source": "99311b65d924a9f705e47a846e463a8c3ecaf7cc3c75cce5b790d27598c70ade"
     },
     {
       "famille": "airlines",
@@ -1287,8 +1657,18 @@
     },
     {
       "famille": "airlines",
+      "locator": "airlines[airline_jal].premium.policy.cargo.fares[fare_jal_cargo_2026_09_10].source",
+      "empreinte_source": "7d6b1564ff5c9c7392c02b5a7db2882e87a64c75478417914643f0f4430f3406"
+    },
+    {
+      "famille": "airlines",
       "locator": "airlines[airline_jal].premium.policy.cargo.source",
       "empreinte_source": "7d8a4ab148481d37bd4bc0dd292713818269d6f92bcb581145735be19d722e90"
+    },
+    {
+      "famille": "airlines",
+      "locator": "airlines[airline_jal].premium.policy.hold.fares[fare_jal_hold_jpy_2026_09_10].source",
+      "empreinte_source": "dbbc4d7f36f8da65c0362577a471aae6069205d5429061d4b36661d8ea55e6c5"
     },
     {
       "famille": "airlines",
@@ -1327,6 +1707,11 @@
     },
     {
       "famille": "airlines",
+      "locator": "airlines[airline_kenya_airways].premium.policy.cargo.fares[fare_kenya_airways_cargo_usd_2026_09_10].source",
+      "empreinte_source": "1000ef33dcdbbd127acb488b8c70781e6b13f8fa2d99c26ef651a28519b4ea5c"
+    },
+    {
+      "famille": "airlines",
       "locator": "airlines[airline_kenya_airways].premium.policy.cargo.source",
       "empreinte_source": "571076bda1c1d0a95c1c1e46ef151fae8e67b5ddd9b0e0d0489c20138bf2ad36"
     },
@@ -1352,13 +1737,28 @@
     },
     {
       "famille": "airlines",
+      "locator": "airlines[airline_klm].premium.policy.cabin.fares[fare_klm_cabin_eur_2026_09_10].source",
+      "empreinte_source": "b60943d4fcf48817f1fe9cfb13b27e1f210323bbc1f9316f5e0ef8813ba36595"
+    },
+    {
+      "famille": "airlines",
       "locator": "airlines[airline_klm].premium.policy.cabin.source",
       "empreinte_source": "930a233ae98cda6a0f69676a63ea74d6702bf0094e1c7f2b535b54569b0ac746"
     },
     {
       "famille": "airlines",
+      "locator": "airlines[airline_klm].premium.policy.cargo.fares[fare_klm_cargo_2026_09_10].source",
+      "empreinte_source": "b60943d4fcf48817f1fe9cfb13b27e1f210323bbc1f9316f5e0ef8813ba36595"
+    },
+    {
+      "famille": "airlines",
       "locator": "airlines[airline_klm].premium.policy.cargo.source",
       "empreinte_source": "d639e3e88fe8870e327a10f0a4bd6af945aceabd4e659541b5d05d4cc32b4c9d"
+    },
+    {
+      "famille": "airlines",
+      "locator": "airlines[airline_klm].premium.policy.hold.fares[fare_klm_hold_eur_2026_09_10].source",
+      "empreinte_source": "b60943d4fcf48817f1fe9cfb13b27e1f210323bbc1f9316f5e0ef8813ba36595"
     },
     {
       "famille": "airlines",
@@ -1382,13 +1782,28 @@
     },
     {
       "famille": "airlines",
+      "locator": "airlines[airline_km_malta].premium.policy.cabin.fares[fare_km_malta_cabin_eur_2026_09_10].source",
+      "empreinte_source": "4d738a862c7ec9800648cccf653391898f0e5336b75d2fb251a50619a98b6463"
+    },
+    {
+      "famille": "airlines",
       "locator": "airlines[airline_km_malta].premium.policy.cabin.source",
       "empreinte_source": "45eb4b98b576d9e00a9745968d9e21fbbe8ab447167f462043e208ec6914f71a"
     },
     {
       "famille": "airlines",
+      "locator": "airlines[airline_km_malta].premium.policy.cargo.fares[fare_km_malta_cargo_2026_09_10].source",
+      "empreinte_source": "4d738a862c7ec9800648cccf653391898f0e5336b75d2fb251a50619a98b6463"
+    },
+    {
+      "famille": "airlines",
       "locator": "airlines[airline_km_malta].premium.policy.cargo.source",
       "empreinte_source": "45eb4b98b576d9e00a9745968d9e21fbbe8ab447167f462043e208ec6914f71a"
+    },
+    {
+      "famille": "airlines",
+      "locator": "airlines[airline_km_malta].premium.policy.hold.fares[fare_km_malta_hold_eur_2026_09_10].source",
+      "empreinte_source": "4d738a862c7ec9800648cccf653391898f0e5336b75d2fb251a50619a98b6463"
     },
     {
       "famille": "airlines",
@@ -1419,6 +1834,11 @@
       "famille": "airlines",
       "locator": "airlines[airline_korean_air].source",
       "empreinte_source": "23501d10f14675308c6e5b554e12272a9836be0d749e4101d3f87aced199c810"
+    },
+    {
+      "famille": "airlines",
+      "locator": "airlines[airline_la_compagnie].premium.policy.cabin.fares[fare_la_compagnie_cabin_eur_2026_09_10].source",
+      "empreinte_source": "cde26435cf994f0f439078fa57ee08a70cfaf9754061fd495ab2b8d4064f5320"
     },
     {
       "famille": "airlines",
@@ -1457,6 +1877,11 @@
     },
     {
       "famille": "airlines",
+      "locator": "airlines[airline_lot].premium.policy.cabin.fares[fare_lot_cabin_2026_09_10].source",
+      "empreinte_source": "6524bd80054e55fa2b8d7c10b1b6d31225cd4ef9b01f30edea4fddaa2adc4693"
+    },
+    {
+      "famille": "airlines",
       "locator": "airlines[airline_lot].premium.policy.cabin.source",
       "empreinte_source": "dcedc5ddf03128bb5deb73447e2698790993bc639711a72f151bf972260701a2"
     },
@@ -1464,6 +1889,11 @@
       "famille": "airlines",
       "locator": "airlines[airline_lot].premium.policy.cargo.source",
       "empreinte_source": "dcedc5ddf03128bb5deb73447e2698790993bc639711a72f151bf972260701a2"
+    },
+    {
+      "famille": "airlines",
+      "locator": "airlines[airline_lot].premium.policy.hold.fares[fare_lot_hold_2026_09_10].source",
+      "empreinte_source": "54505ce70884e15285f48ed2c6f7463b86e3b801bcc2187cd51dbdfe0958d72b"
     },
     {
       "famille": "airlines",
@@ -1482,6 +1912,11 @@
     },
     {
       "famille": "airlines",
+      "locator": "airlines[airline_lufthansa].premium.policy.cabin.fares[fare_lufthansa_cabin_2026_09_10].source",
+      "empreinte_source": "76b78d11601b14cadb450a3a3ecb8324ca481cd8af374f98cd0113bb6a3adbcd"
+    },
+    {
+      "famille": "airlines",
       "locator": "airlines[airline_lufthansa].premium.policy.cabin.source",
       "empreinte_source": "72fe5e0a548d6b6cfa75e3db7558e451e891a5639756ead23ffa950cbd7bc628"
     },
@@ -1489,6 +1924,11 @@
       "famille": "airlines",
       "locator": "airlines[airline_lufthansa].premium.policy.cargo.source",
       "empreinte_source": "eb8524d016aeeb55f87834db225a6962211e43fe4b5d18b932a60d7628b6f0e9"
+    },
+    {
+      "famille": "airlines",
+      "locator": "airlines[airline_lufthansa].premium.policy.hold.fares[fare_lufthansa_hold_2026_09_10].source",
+      "empreinte_source": "0cf5a2d7e5496e1ecd994ee007ac6f7fdbb51ed96508fc7fb0f8a80fa1e7f6fc"
     },
     {
       "famille": "airlines",
@@ -1512,6 +1952,11 @@
     },
     {
       "famille": "airlines",
+      "locator": "airlines[airline_luxair].premium.policy.cabin.fares[fare_luxair_cabin_eur_2026_09_10].source",
+      "empreinte_source": "9bd0ea41373240f474be31e37cde7708cf6e9fadc85348fe509962bcf2527ca9"
+    },
+    {
+      "famille": "airlines",
       "locator": "airlines[airline_luxair].premium.policy.cabin.source",
       "empreinte_source": "5afc474584222a034d578a435c3be50bff4c647923ea59c5e3d1d1a8699f22b2"
     },
@@ -1519,6 +1964,11 @@
       "famille": "airlines",
       "locator": "airlines[airline_luxair].premium.policy.cargo.source",
       "empreinte_source": "82e8888906c48fc65905e1ff4bb3e02f81da2be6a8a9c960077647c07fbb2b36"
+    },
+    {
+      "famille": "airlines",
+      "locator": "airlines[airline_luxair].premium.policy.hold.fares[fare_luxair_hold_eur_2026_09_10].source",
+      "empreinte_source": "9bd0ea41373240f474be31e37cde7708cf6e9fadc85348fe509962bcf2527ca9"
     },
     {
       "famille": "airlines",
@@ -1537,6 +1987,11 @@
     },
     {
       "famille": "airlines",
+      "locator": "airlines[airline_malaysia_airlines].premium.policy.cargo.fares[fare_malaysia_airlines_cargo_2026_09_10].source",
+      "empreinte_source": "fb60755e072d442788c5ed4fcb2a4b7bbce755a2bfb7f2dd3cab92fc4669211a"
+    },
+    {
+      "famille": "airlines",
       "locator": "airlines[airline_malaysia_airlines].premium.policy.cargo.source",
       "empreinte_source": "c146eea378f3d88953a52b9894966639ae750f09ee1e017ceadd361859ae6b97"
     },
@@ -1552,6 +2007,11 @@
     },
     {
       "famille": "airlines",
+      "locator": "airlines[airline_neos].premium.policy.cabin.fares[fare_neos_cabin_eur_2026_09_10].source",
+      "empreinte_source": "219a88d8cd6eefebd679dceb9d618b8bdcc0b2f3481edb9249ba21681dd22877"
+    },
+    {
+      "famille": "airlines",
       "locator": "airlines[airline_neos].premium.policy.cabin.source",
       "empreinte_source": "1057f8056c0c0e6d74ec69edcc28cc1f0072d94c1b190025716e1ca45b9ae10a"
     },
@@ -1559,6 +2019,11 @@
       "famille": "airlines",
       "locator": "airlines[airline_neos].premium.policy.cargo.source",
       "empreinte_source": "70ada47bddd5f7ec5d5db4f7b42f18400099765952eb0c7c1a33b84b55c0ce4e"
+    },
+    {
+      "famille": "airlines",
+      "locator": "airlines[airline_neos].premium.policy.hold.fares[fare_neos_hold_eur_2026_09_10].source",
+      "empreinte_source": "219a88d8cd6eefebd679dceb9d618b8bdcc0b2f3481edb9249ba21681dd22877"
     },
     {
       "famille": "airlines",
@@ -1572,6 +2037,11 @@
     },
     {
       "famille": "airlines",
+      "locator": "airlines[airline_norwegian].premium.policy.cabin.fares[fare_norwegian_cabin_eur_2026_09_10].source",
+      "empreinte_source": "15f8c9fb9d43ea381d13521367f528dde26e5e9e3083c115ff8c1083aa9f1e1a"
+    },
+    {
+      "famille": "airlines",
       "locator": "airlines[airline_norwegian].premium.policy.cabin.source",
       "empreinte_source": "6e3db475f95e82273a7806db29042de88904a3e15b32c79d61ebb87958e77ea9"
     },
@@ -1579,6 +2049,11 @@
       "famille": "airlines",
       "locator": "airlines[airline_norwegian].premium.policy.cargo.source",
       "empreinte_source": "7438ab87596cb23d2343d9fc49dd15638a425b072c5c9ddbe2ed0ee12d426c18"
+    },
+    {
+      "famille": "airlines",
+      "locator": "airlines[airline_norwegian].premium.policy.hold.fares[fare_norwegian_hold_eur_2026_09_10].source",
+      "empreinte_source": "15f8c9fb9d43ea381d13521367f528dde26e5e9e3083c115ff8c1083aa9f1e1a"
     },
     {
       "famille": "airlines",
@@ -1592,6 +2067,11 @@
     },
     {
       "famille": "airlines",
+      "locator": "airlines[airline_pegasus].premium.policy.cabin.fares[fare_pegasus_cabin_eur_2026_09_10].source",
+      "empreinte_source": "43f3e8d88a7be5ea95a550fad836d9bb01cebaa3f554d9a66e9c472c006b88bd"
+    },
+    {
+      "famille": "airlines",
       "locator": "airlines[airline_pegasus].premium.policy.cabin.source",
       "empreinte_source": "bdcbc1336868670a17f4310f06908b472fffb323c18e17558dd4cfbd94d89ed0"
     },
@@ -1599,6 +2079,11 @@
       "famille": "airlines",
       "locator": "airlines[airline_pegasus].premium.policy.cargo.source",
       "empreinte_source": "bdcbc1336868670a17f4310f06908b472fffb323c18e17558dd4cfbd94d89ed0"
+    },
+    {
+      "famille": "airlines",
+      "locator": "airlines[airline_pegasus].premium.policy.hold.fares[fare_pegasus_hold_try_2026_09_10].source",
+      "empreinte_source": "18352c2b1f878ee49be4f2d72001687750e47ac346b91dc0c7874c139400948c"
     },
     {
       "famille": "airlines",
@@ -1612,8 +2097,18 @@
     },
     {
       "famille": "airlines",
+      "locator": "airlines[airline_philippine].premium.policy.cabin.fares[fare_philippine_cabin_php_2026_09_10].source",
+      "empreinte_source": "02b6385a9ca8da3604a1cd672dda5701a2a1d45a7773a3976ebd1df3110be4a5"
+    },
+    {
+      "famille": "airlines",
       "locator": "airlines[airline_philippine].premium.policy.cabin.source",
       "empreinte_source": "68fc7ffa8af83260ee55f7012c7c78a8517ee18a6fa760e03ce9d0e67a17cf83"
+    },
+    {
+      "famille": "airlines",
+      "locator": "airlines[airline_philippine].premium.policy.cargo.fares[fare_philippine_cargo_2026_09_10].source",
+      "empreinte_source": "4ef6421958a924d96b3cd76743ceb3e94a9da832df83fa983b580afb1b34eebc"
     },
     {
       "famille": "airlines",
@@ -1662,6 +2157,11 @@
     },
     {
       "famille": "airlines",
+      "locator": "airlines[airline_qatar_airways].premium.policy.hold.fares[fare_qatar_airways_hold_usd_2026_09_10].source",
+      "empreinte_source": "14b532f6fbf2ca44e08d5129b5c765a4ea7852c6258c6e4b5e0f3112e31757a9"
+    },
+    {
+      "famille": "airlines",
       "locator": "airlines[airline_qatar_airways].premium.policy.hold.source",
       "empreinte_source": "ea39bbf0a017787ef73a278db62f2d8502742820e59ea38e3475ab12cd9eee6d"
     },
@@ -1669,6 +2169,16 @@
       "famille": "airlines",
       "locator": "airlines[airline_qatar_airways].source",
       "empreinte_source": "9ff4eace14673e90ae07b6262e1e8885beabb865d7dec6deef180b86ba975371"
+    },
+    {
+      "famille": "airlines",
+      "locator": "airlines[airline_royal_air_maroc].premium.policy.cabin.fares[fare_royal_air_maroc_cabin_eur_2026_09_10].source",
+      "empreinte_source": "ce987484148f97da571b7f1c4bd01ef3d6a6faf7a5a944438c0a263b3ffd5d36"
+    },
+    {
+      "famille": "airlines",
+      "locator": "airlines[airline_royal_air_maroc].premium.policy.cabin.fares[fare_royal_air_maroc_cabin_mad_2026_09_10].source",
+      "empreinte_source": "ce987484148f97da571b7f1c4bd01ef3d6a6faf7a5a944438c0a263b3ffd5d36"
     },
     {
       "famille": "airlines",
@@ -1682,6 +2192,11 @@
     },
     {
       "famille": "airlines",
+      "locator": "airlines[airline_royal_air_maroc].premium.policy.hold.fares[fare_royal_air_maroc_hold_mad_2026_09_10].source",
+      "empreinte_source": "ce987484148f97da571b7f1c4bd01ef3d6a6faf7a5a944438c0a263b3ffd5d36"
+    },
+    {
+      "famille": "airlines",
       "locator": "airlines[airline_royal_air_maroc].premium.policy.hold.source",
       "empreinte_source": "43ca6fc3847d4442c49cbe23f6b717f84bad67b0b6439728e6ab92c857817f56"
     },
@@ -1692,6 +2207,11 @@
     },
     {
       "famille": "airlines",
+      "locator": "airlines[airline_royal_jordanian].premium.policy.cabin.fares[fare_royal_jordanian_cabin_usd_2026_09_10].source",
+      "empreinte_source": "a16ea743af7328db08c72f183fd31e45988c26023d4c8a833efbd5555ed903b3"
+    },
+    {
+      "famille": "airlines",
       "locator": "airlines[airline_royal_jordanian].premium.policy.cabin.source",
       "empreinte_source": "8f213387ae4f05a2bb3b52ffadfe585ede1c7f420816781ef51b185b1c8fbd04"
     },
@@ -1699,6 +2219,11 @@
       "famille": "airlines",
       "locator": "airlines[airline_royal_jordanian].premium.policy.cargo.source",
       "empreinte_source": "1abc07f89bc28e65e974eafd87df56fafe4fb5c219c9022cbac7ded08df816ac"
+    },
+    {
+      "famille": "airlines",
+      "locator": "airlines[airline_royal_jordanian].premium.policy.hold.fares[fare_royal_jordanian_hold_usd_2026_09_10].source",
+      "empreinte_source": "a16ea743af7328db08c72f183fd31e45988c26023d4c8a833efbd5555ed903b3"
     },
     {
       "famille": "airlines",
@@ -1732,6 +2257,31 @@
     },
     {
       "famille": "airlines",
+      "locator": "airlines[airline_sas].premium.policy.cabin.fares[fare_sas_cabin_dkk_2026_09_10].source",
+      "empreinte_source": "4c43dced6c9f74a620510e34203ddd57e7c8258d1506e390153dd5954d0ba287"
+    },
+    {
+      "famille": "airlines",
+      "locator": "airlines[airline_sas].premium.policy.cabin.fares[fare_sas_cabin_eur_2026_09_10].source",
+      "empreinte_source": "4c43dced6c9f74a620510e34203ddd57e7c8258d1506e390153dd5954d0ba287"
+    },
+    {
+      "famille": "airlines",
+      "locator": "airlines[airline_sas].premium.policy.cabin.fares[fare_sas_cabin_nok_2026_09_10].source",
+      "empreinte_source": "4c43dced6c9f74a620510e34203ddd57e7c8258d1506e390153dd5954d0ba287"
+    },
+    {
+      "famille": "airlines",
+      "locator": "airlines[airline_sas].premium.policy.cabin.fares[fare_sas_cabin_sek_2026_09_10].source",
+      "empreinte_source": "4c43dced6c9f74a620510e34203ddd57e7c8258d1506e390153dd5954d0ba287"
+    },
+    {
+      "famille": "airlines",
+      "locator": "airlines[airline_sas].premium.policy.cabin.fares[fare_sas_cabin_usd_2026_09_10].source",
+      "empreinte_source": "4c43dced6c9f74a620510e34203ddd57e7c8258d1506e390153dd5954d0ba287"
+    },
+    {
+      "famille": "airlines",
       "locator": "airlines[airline_sas].premium.policy.cabin.source",
       "empreinte_source": "6482cd7af0b98be046cfb0e8933cf75359f6c8d7763743bc4671ffcbda0e5ae5"
     },
@@ -1739,6 +2289,31 @@
       "famille": "airlines",
       "locator": "airlines[airline_sas].premium.policy.cargo.source",
       "empreinte_source": "5bf4a760d61f78b68a7f164e03533dbd1153425a5366093239f096ee1953dd49"
+    },
+    {
+      "famille": "airlines",
+      "locator": "airlines[airline_sas].premium.policy.hold.fares[fare_sas_hold_dkk_2026_09_10].source",
+      "empreinte_source": "4c43dced6c9f74a620510e34203ddd57e7c8258d1506e390153dd5954d0ba287"
+    },
+    {
+      "famille": "airlines",
+      "locator": "airlines[airline_sas].premium.policy.hold.fares[fare_sas_hold_eur_2026_09_10].source",
+      "empreinte_source": "4c43dced6c9f74a620510e34203ddd57e7c8258d1506e390153dd5954d0ba287"
+    },
+    {
+      "famille": "airlines",
+      "locator": "airlines[airline_sas].premium.policy.hold.fares[fare_sas_hold_nok_2026_09_10].source",
+      "empreinte_source": "4c43dced6c9f74a620510e34203ddd57e7c8258d1506e390153dd5954d0ba287"
+    },
+    {
+      "famille": "airlines",
+      "locator": "airlines[airline_sas].premium.policy.hold.fares[fare_sas_hold_sek_2026_09_10].source",
+      "empreinte_source": "4c43dced6c9f74a620510e34203ddd57e7c8258d1506e390153dd5954d0ba287"
+    },
+    {
+      "famille": "airlines",
+      "locator": "airlines[airline_sas].premium.policy.hold.fares[fare_sas_hold_usd_2026_09_10].source",
+      "empreinte_source": "4c43dced6c9f74a620510e34203ddd57e7c8258d1506e390153dd5954d0ba287"
     },
     {
       "famille": "airlines",
@@ -1777,8 +2352,18 @@
     },
     {
       "famille": "airlines",
+      "locator": "airlines[airline_singapore_airlines].premium.policy.cargo.fares[fare_singapore_airlines_cargo_2026_09_10].source",
+      "empreinte_source": "c8109bc1c6915fd67122f9dacce2d1bc5d05cc5a1701af0003d81d149f99e276"
+    },
+    {
+      "famille": "airlines",
       "locator": "airlines[airline_singapore_airlines].premium.policy.cargo.source",
       "empreinte_source": "a0f7f3d241aafd816c522c20a2d72312188d7317f233442d2828186d92a93da7"
+    },
+    {
+      "famille": "airlines",
+      "locator": "airlines[airline_singapore_airlines].premium.policy.hold.fares[fare_singapore_airlines_hold_2026_09_10].source",
+      "empreinte_source": "c8109bc1c6915fd67122f9dacce2d1bc5d05cc5a1701af0003d81d149f99e276"
     },
     {
       "famille": "airlines",
@@ -1792,6 +2377,11 @@
     },
     {
       "famille": "airlines",
+      "locator": "airlines[airline_sky_express].premium.policy.cabin.fares[fare_sky_express_cabin_eur_2026_09_10].source",
+      "empreinte_source": "17da36448d2795ada6335964d9f8d250eab2aa097bbbf1e4cd77fa1f15eba4e1"
+    },
+    {
+      "famille": "airlines",
       "locator": "airlines[airline_sky_express].premium.policy.cabin.source",
       "empreinte_source": "b164297964298ec760690c3cddb1ce396977cce29909b7662c44b7684f12dfa4"
     },
@@ -1799,6 +2389,11 @@
       "famille": "airlines",
       "locator": "airlines[airline_sky_express].premium.policy.cargo.source",
       "empreinte_source": "a215dd38a3d0a95bd6535ae564a807da1a674941778f55642def55de4929979f"
+    },
+    {
+      "famille": "airlines",
+      "locator": "airlines[airline_sky_express].premium.policy.hold.fares[fare_sky_express_hold_eur_2026_09_10].source",
+      "empreinte_source": "17da36448d2795ada6335964d9f8d250eab2aa097bbbf1e4cd77fa1f15eba4e1"
     },
     {
       "famille": "airlines",
@@ -1812,8 +2407,38 @@
     },
     {
       "famille": "airlines",
+      "locator": "airlines[airline_smartwings].premium.policy.cabin.fares[fare_smartwings_cabin_czk_2026_09_10].source",
+      "empreinte_source": "a2eb5d5270799126138dfa0d27625f6800ba37da93472d73ea8ae839b23ff4ec"
+    },
+    {
+      "famille": "airlines",
+      "locator": "airlines[airline_smartwings].premium.policy.cabin.fares[fare_smartwings_cabin_eur_2026_09_10].source",
+      "empreinte_source": "a2eb5d5270799126138dfa0d27625f6800ba37da93472d73ea8ae839b23ff4ec"
+    },
+    {
+      "famille": "airlines",
+      "locator": "airlines[airline_smartwings].premium.policy.cabin.fares[fare_smartwings_cabin_usd_2026_09_10].source",
+      "empreinte_source": "a2eb5d5270799126138dfa0d27625f6800ba37da93472d73ea8ae839b23ff4ec"
+    },
+    {
+      "famille": "airlines",
       "locator": "airlines[airline_smartwings].premium.policy.cabin.source",
       "empreinte_source": "b17ce09ae2b46f7799805d3079292b9d99b9abd905f4f7f75f4a7a311f11c3af"
+    },
+    {
+      "famille": "airlines",
+      "locator": "airlines[airline_smartwings].premium.policy.hold.fares[fare_smartwings_hold_czk_2026_09_10].source",
+      "empreinte_source": "a2eb5d5270799126138dfa0d27625f6800ba37da93472d73ea8ae839b23ff4ec"
+    },
+    {
+      "famille": "airlines",
+      "locator": "airlines[airline_smartwings].premium.policy.hold.fares[fare_smartwings_hold_eur_2026_09_10].source",
+      "empreinte_source": "a2eb5d5270799126138dfa0d27625f6800ba37da93472d73ea8ae839b23ff4ec"
+    },
+    {
+      "famille": "airlines",
+      "locator": "airlines[airline_smartwings].premium.policy.hold.fares[fare_smartwings_hold_usd_2026_09_10].source",
+      "empreinte_source": "a2eb5d5270799126138dfa0d27625f6800ba37da93472d73ea8ae839b23ff4ec"
     },
     {
       "famille": "airlines",
@@ -1847,6 +2472,11 @@
     },
     {
       "famille": "airlines",
+      "locator": "airlines[airline_sunexpress].premium.policy.cabin.fares[fare_sunexpress_cabin_eur_2026_09_10].source",
+      "empreinte_source": "75dffcc78168a65e92b4e0df7d0be1cdb5994b766b45bb706cf31dcd0fe0c147"
+    },
+    {
+      "famille": "airlines",
       "locator": "airlines[airline_sunexpress].premium.policy.cabin.source",
       "empreinte_source": "4cae78f288875ba569e82e9f84213c943b43cfaf33b6b63fbddf2a9266deff3a"
     },
@@ -1867,6 +2497,21 @@
     },
     {
       "famille": "airlines",
+      "locator": "airlines[airline_swiss].premium.policy.cabin.fares[fare_swiss_cabin_chf_2026_09_10].source",
+      "empreinte_source": "f7971b9b0ebd60378a93fbbbfe938944b2cb6baf1ce0dc9a55d3044cd3b86d47"
+    },
+    {
+      "famille": "airlines",
+      "locator": "airlines[airline_swiss].premium.policy.cabin.fares[fare_swiss_cabin_eur_2026_09_10].source",
+      "empreinte_source": "f7971b9b0ebd60378a93fbbbfe938944b2cb6baf1ce0dc9a55d3044cd3b86d47"
+    },
+    {
+      "famille": "airlines",
+      "locator": "airlines[airline_swiss].premium.policy.cabin.fares[fare_swiss_cabin_usd_2026_09_10].source",
+      "empreinte_source": "f7971b9b0ebd60378a93fbbbfe938944b2cb6baf1ce0dc9a55d3044cd3b86d47"
+    },
+    {
+      "famille": "airlines",
       "locator": "airlines[airline_swiss].premium.policy.cabin.source",
       "empreinte_source": "f58347836015a12676197da2882dfe4e8754367ef473bdbe1af4c276e8066ab6"
     },
@@ -1874,6 +2519,21 @@
       "famille": "airlines",
       "locator": "airlines[airline_swiss].premium.policy.cargo.source",
       "empreinte_source": "6918c06e97eab6837d70096084821bc080504c7718bae5dc2fc82e4810f732c5"
+    },
+    {
+      "famille": "airlines",
+      "locator": "airlines[airline_swiss].premium.policy.hold.fares[fare_swiss_hold_chf_2026_09_10].source",
+      "empreinte_source": "f7971b9b0ebd60378a93fbbbfe938944b2cb6baf1ce0dc9a55d3044cd3b86d47"
+    },
+    {
+      "famille": "airlines",
+      "locator": "airlines[airline_swiss].premium.policy.hold.fares[fare_swiss_hold_eur_2026_09_10].source",
+      "empreinte_source": "f7971b9b0ebd60378a93fbbbfe938944b2cb6baf1ce0dc9a55d3044cd3b86d47"
+    },
+    {
+      "famille": "airlines",
+      "locator": "airlines[airline_swiss].premium.policy.hold.fares[fare_swiss_hold_usd_2026_09_10].source",
+      "empreinte_source": "f7971b9b0ebd60378a93fbbbfe938944b2cb6baf1ce0dc9a55d3044cd3b86d47"
     },
     {
       "famille": "airlines",
@@ -1887,6 +2547,21 @@
     },
     {
       "famille": "airlines",
+      "locator": "airlines[airline_tap].premium.policy.cabin.fares[fare_tap_cabin_cad_2026_09_10].source",
+      "empreinte_source": "3908940e7b85a3194eeedff7129a4aee9107d0a907898489fb6d747e60828c14"
+    },
+    {
+      "famille": "airlines",
+      "locator": "airlines[airline_tap].premium.policy.cabin.fares[fare_tap_cabin_eur_2026_09_10].source",
+      "empreinte_source": "3908940e7b85a3194eeedff7129a4aee9107d0a907898489fb6d747e60828c14"
+    },
+    {
+      "famille": "airlines",
+      "locator": "airlines[airline_tap].premium.policy.cabin.fares[fare_tap_cabin_usd_2026_09_10].source",
+      "empreinte_source": "3908940e7b85a3194eeedff7129a4aee9107d0a907898489fb6d747e60828c14"
+    },
+    {
+      "famille": "airlines",
       "locator": "airlines[airline_tap].premium.policy.cabin.source",
       "empreinte_source": "e4ddfa7ba2f55e0dbbb6f68a369103e343f80680bf859c87349f1ddf4977b2df"
     },
@@ -1894,6 +2569,21 @@
       "famille": "airlines",
       "locator": "airlines[airline_tap].premium.policy.cargo.source",
       "empreinte_source": "8915ab917a4203bd5769e122071bca23c5f6ad53f7857cdadcb1d44d9b92238b"
+    },
+    {
+      "famille": "airlines",
+      "locator": "airlines[airline_tap].premium.policy.hold.fares[fare_tap_hold_cad_2026_09_10].source",
+      "empreinte_source": "3908940e7b85a3194eeedff7129a4aee9107d0a907898489fb6d747e60828c14"
+    },
+    {
+      "famille": "airlines",
+      "locator": "airlines[airline_tap].premium.policy.hold.fares[fare_tap_hold_eur_2026_09_10].source",
+      "empreinte_source": "3908940e7b85a3194eeedff7129a4aee9107d0a907898489fb6d747e60828c14"
+    },
+    {
+      "famille": "airlines",
+      "locator": "airlines[airline_tap].premium.policy.hold.fares[fare_tap_hold_usd_2026_09_10].source",
+      "empreinte_source": "3908940e7b85a3194eeedff7129a4aee9107d0a907898489fb6d747e60828c14"
     },
     {
       "famille": "airlines",
@@ -1907,6 +2597,11 @@
     },
     {
       "famille": "airlines",
+      "locator": "airlines[airline_tarom].premium.policy.cabin.fares[fare_tarom_cabin_eur_2026_09_10].source",
+      "empreinte_source": "e8fd9127f436a06a83efda8ae385ea80fb6db7047bbcc958f2bbbace4523134c"
+    },
+    {
+      "famille": "airlines",
       "locator": "airlines[airline_tarom].premium.policy.cabin.source",
       "empreinte_source": "9f498a6a134811b1696536a7a2393002e8abc0399ffe4a93b8c8ebebfd196b2d"
     },
@@ -1914,6 +2609,11 @@
       "famille": "airlines",
       "locator": "airlines[airline_tarom].premium.policy.cargo.source",
       "empreinte_source": "dc812ae5ba4f6980934f67ac0728566ad4b0d187910ffa6c6becbbf4a8d7ca83"
+    },
+    {
+      "famille": "airlines",
+      "locator": "airlines[airline_tarom].premium.policy.hold.fares[fare_tarom_hold_eur_2026_09_10].source",
+      "empreinte_source": "7ee8894066235000428e9b78b49df46f10f6777496c07f8bd56273778fdc4b40"
     },
     {
       "famille": "airlines",
@@ -1932,8 +2632,18 @@
     },
     {
       "famille": "airlines",
+      "locator": "airlines[airline_thai_airways].premium.policy.cargo.fares[fare_thai_airways_cargo_2026_09_10].source",
+      "empreinte_source": "b41daca6442d5d61d63b9db349a6627260f4603eb0fbcd9f8ebea607b4a1d3b5"
+    },
+    {
+      "famille": "airlines",
       "locator": "airlines[airline_thai_airways].premium.policy.cargo.source",
       "empreinte_source": "ee2ee3f77e88a361abd5756e574b46dda75ef71fffad7daea4aa4d388ca4b4b3"
+    },
+    {
+      "famille": "airlines",
+      "locator": "airlines[airline_thai_airways].premium.policy.hold.fares[fare_thai_airways_hold_usd_2026_09_10].source",
+      "empreinte_source": "b41daca6442d5d61d63b9db349a6627260f4603eb0fbcd9f8ebea607b4a1d3b5"
     },
     {
       "famille": "airlines",
@@ -1947,8 +2657,18 @@
     },
     {
       "famille": "airlines",
+      "locator": "airlines[airline_transavia].premium.policy.cabin.fares[fare_transavia_cabin_eur_2026_09_10].source",
+      "empreinte_source": "5b012835071ce87646e893268168d3db4f1cd70a7870d84d4850444d031c4c68"
+    },
+    {
+      "famille": "airlines",
       "locator": "airlines[airline_transavia].premium.policy.cabin.source",
       "empreinte_source": "d1570093b90d1838e64d7e43ba5cb86825e9043781fc1fd4c9ee2df3c6ed8f23"
+    },
+    {
+      "famille": "airlines",
+      "locator": "airlines[airline_transavia].premium.policy.hold.fares[fare_transavia_hold_eur_2026_09_10].source",
+      "empreinte_source": "568de3ebb9a9c96f92a2e62979552e10d3e4ace16830afbeb53857339563fe03"
     },
     {
       "famille": "airlines",
@@ -1964,6 +2684,11 @@
       "famille": "airlines",
       "locator": "airlines[airline_tui_airways].premium.policy.cabin.source",
       "empreinte_source": "8f8da2ee4add41236da7a3db3aa7f4466cd6288076e9e5902332d48d0587f2c5"
+    },
+    {
+      "famille": "airlines",
+      "locator": "airlines[airline_tui_airways].premium.policy.cargo.fares[fare_tui_airways_cargo_2026_09_10].source",
+      "empreinte_source": "8f9f8e652902e00ed95fc46e5a09e18f67a8e7ff0886c8cefb4bdb200c139e6d"
     },
     {
       "famille": "airlines",
@@ -2012,6 +2737,11 @@
     },
     {
       "famille": "airlines",
+      "locator": "airlines[airline_turkish].premium.policy.cabin.fares[fare_turkish_cabin_2026_09_10].source",
+      "empreinte_source": "d773c2eb2e5a40f85e449a8bee440e82c2d9d0ca53d7e9d0c0daad95508529b3"
+    },
+    {
+      "famille": "airlines",
       "locator": "airlines[airline_turkish].premium.policy.cabin.source",
       "empreinte_source": "a78dd90ef4871b030bf42ff86f32d5a19a77f677afd7875c87d9388d9e96389a"
     },
@@ -2019,6 +2749,11 @@
       "famille": "airlines",
       "locator": "airlines[airline_turkish].premium.policy.cargo.source",
       "empreinte_source": "968541773796b6933f31d77f6b97a92f12d2563dfb43a5e2499364f38de57335"
+    },
+    {
+      "famille": "airlines",
+      "locator": "airlines[airline_turkish].premium.policy.hold.fares[fare_turkish_hold_2026_09_10].source",
+      "empreinte_source": "d773c2eb2e5a40f85e449a8bee440e82c2d9d0ca53d7e9d0c0daad95508529b3"
     },
     {
       "famille": "airlines",
@@ -2077,13 +2812,28 @@
     },
     {
       "famille": "airlines",
+      "locator": "airlines[airline_vietnam_airlines].premium.policy.cabin.fares[fare_vietnam_airlines_cabin_usd_2026_09_10].source",
+      "empreinte_source": "4391ba6e13a0deadcef8e6c90516e58c94b248fef9cecec7cef843db2db9dcc5"
+    },
+    {
+      "famille": "airlines",
       "locator": "airlines[airline_vietnam_airlines].premium.policy.cabin.source",
       "empreinte_source": "18fe30ca684b7780a07150d4f7646acc88af73f1155cc28336a009f957c43186"
     },
     {
       "famille": "airlines",
+      "locator": "airlines[airline_vietnam_airlines].premium.policy.cargo.fares[fare_vietnam_airlines_cargo_2026_09_10].source",
+      "empreinte_source": "85a5ec665a82edf52b590a73674a0646bc28c5c0827453fc4ae9702a51078ca2"
+    },
+    {
+      "famille": "airlines",
       "locator": "airlines[airline_vietnam_airlines].premium.policy.cargo.source",
       "empreinte_source": "76fd2ae6ba7acf88fec48915398136ec4e5250a9523e06da86f1dae51f44a830"
+    },
+    {
+      "famille": "airlines",
+      "locator": "airlines[airline_vietnam_airlines].premium.policy.hold.fares[fare_vietnam_airlines_hold_usd_2026_09_10].source",
+      "empreinte_source": "85a5ec665a82edf52b590a73674a0646bc28c5c0827453fc4ae9702a51078ca2"
     },
     {
       "famille": "airlines",
@@ -2102,6 +2852,11 @@
     },
     {
       "famille": "airlines",
+      "locator": "airlines[airline_virgin_atlantic].premium.policy.cargo.fares[fare_virgin_atlantic_cargo_2026_09_10].source",
+      "empreinte_source": "e834344756bff4fe70b38b129ff56cae4fa4c6a8b32ee093d5ae412c07482aaf"
+    },
+    {
+      "famille": "airlines",
       "locator": "airlines[airline_virgin_atlantic].premium.policy.cargo.source",
       "empreinte_source": "ac0cf84ddb5a365260671faa8d0aedbeb4f5ef2d3fed4ffd2a5556f027ecc3b9"
     },
@@ -2117,8 +2872,18 @@
     },
     {
       "famille": "airlines",
+      "locator": "airlines[airline_virgin_australia].premium.policy.cabin.fares[fare_virgin_australia_cabin_aud_2026_09_10].source",
+      "empreinte_source": "c37935046b9c6a3fb29f66640b763e6daf2ddedc77ead7fa7f846b6f28819612"
+    },
+    {
+      "famille": "airlines",
       "locator": "airlines[airline_virgin_australia].premium.policy.cabin.source",
       "empreinte_source": "6ae7aec063e5e5a365cf60822bdcbf924217f472a2953e1caf8c3895aa4d3e48"
+    },
+    {
+      "famille": "airlines",
+      "locator": "airlines[airline_virgin_australia].premium.policy.cargo.fares[fare_virgin_australia_cargo_2026_09_10].source",
+      "empreinte_source": "c37935046b9c6a3fb29f66640b763e6daf2ddedc77ead7fa7f846b6f28819612"
     },
     {
       "famille": "airlines",
@@ -2137,6 +2902,11 @@
     },
     {
       "famille": "airlines",
+      "locator": "airlines[airline_volotea].premium.policy.cabin.fares[fare_volotea_cabin_eur_2026_09_10].source",
+      "empreinte_source": "fc748ae1d46c1afb563463a41a52ab7b79de34b5e2cf04d8efd0e0c338e34689"
+    },
+    {
+      "famille": "airlines",
       "locator": "airlines[airline_volotea].premium.policy.cabin.source",
       "empreinte_source": "cd44bb51f488b76d60ff942dc78dfdd695d342a94030c925d6ac27a618c2f4ae"
     },
@@ -2147,6 +2917,11 @@
     },
     {
       "famille": "airlines",
+      "locator": "airlines[airline_volotea].premium.policy.hold.fares[fare_volotea_hold_eur_2026_09_10].source",
+      "empreinte_source": "fc748ae1d46c1afb563463a41a52ab7b79de34b5e2cf04d8efd0e0c338e34689"
+    },
+    {
+      "famille": "airlines",
       "locator": "airlines[airline_volotea].premium.policy.hold.source",
       "empreinte_source": "cd44bb51f488b76d60ff942dc78dfdd695d342a94030c925d6ac27a618c2f4ae"
     },
@@ -2154,6 +2929,11 @@
       "famille": "airlines",
       "locator": "airlines[airline_volotea].source",
       "empreinte_source": "472f87c27fcf81d758aba960c4c50b1501423bd79ee225bd8c9c569cca46ce08"
+    },
+    {
+      "famille": "airlines",
+      "locator": "airlines[airline_vueling].premium.policy.cabin.fares[fare_vueling_cabin_eur_2026_09_10].source",
+      "empreinte_source": "8242267965312f18994299332faa5fae4820acd502fd1ee2b3272b97a92367d3"
     },
     {
       "famille": "airlines",
@@ -2184,6 +2964,11 @@
       "famille": "airlines",
       "locator": "airlines[airline_westjet].premium.policy.cabin.source",
       "empreinte_source": "490f293e01c5fd4266b5e41d17f3503cf6cb6b3a411cfa0043c096261a98d8b4"
+    },
+    {
+      "famille": "airlines",
+      "locator": "airlines[airline_westjet].premium.policy.cargo.fares[fare_westjet_cargo_2026_09_10].source",
+      "empreinte_source": "c999fadc7ad609c1c86e6979db632d1dc529796e67282ea02989bc07962845c7"
     },
     {
       "famille": "airlines",
@@ -7522,9 +8307,9 @@
     }
   ],
   "empreintes": {
-    "globale": "7586ab172db67aca88db084aa993b03175735176c8cfa2f07bfef312f20ad0fa",
+    "globale": "e53b1dacaf53c041577798c9a3b5153209fab576ceaef4abcbfd75ee9da9e6b6",
     "par_famille": {
-      "airlines": "0f30d4f4791cbae21c51d5c452e91e54a280c5b927da8544c4147f8255ec83b0",
+      "airlines": "d4e4bb24693f3345260c4a37d39b59404b493afa5fdfa482771015cf13e5fd0f",
       "airports": "915d2262732a378589b12216f81e11bde703b14d8645cacf5df24e60b862eb55",
       "breed_restrictions": "bc9ea0fd8feb2eaf8dfe9d5bcabe3162537b3898376ca9eb2ac54144bc7c8606",
       "breeds": "2e72ef699d47b9652af8e1a3d154202f9c682fb3cb1a8d1204adbb010bf19cc0",

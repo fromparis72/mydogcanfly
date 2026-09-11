@@ -103,6 +103,27 @@ policies:
     # une lecture qui a servi : elle empêche de reprendre ce canal en croyant qu'il reste à voir.
     availability: not_offered
   cargo:
+    # TARIFS OFFICIELS — audit indépendant du 2026-09-10 ; aucune valeur héritée réactivée.
+    fares:
+      - id: fare_british_airways_cargo_2026_09_10
+        placement: cargo
+        price:
+          kind: quote
+          amounts: []
+        billing_subject: shipment
+        journey_basis: per_journey
+        scope_label: accepted IAG Cargo routes
+        source:
+          url: https://www.britishairways.com/content/en/us/information/legal/us-optional-extras
+          source_type: official_website
+          verified_date: 2026-09-10
+          review_due: 2026-12-09
+          confidence: 4
+          reviewer: Codex — lecture directe de la source officielle
+          history: []
+          quote: charges will be quoted when you reconfirm
+          quote_language: en
+          locator: Pets
     availability: offered
 channels:
   - placement: cabin

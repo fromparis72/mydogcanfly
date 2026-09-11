@@ -101,6 +101,27 @@ policies:
       quote_language: en
       locator: "General Conditions of Carriage → 9.11 Carriage of Animals"
   cargo:
+    # TARIFS OFFICIELS — audit indépendant du 2026-09-10 ; aucune valeur héritée réactivée.
+    fares:
+      - id: fare_malaysia_airlines_cargo_2026_09_10
+        placement: cargo
+        price:
+          kind: quote
+          amounts: []
+        billing_subject: shipment
+        journey_basis: per_journey
+        scope_label: MASkargo network
+        source:
+          url: https://www.maskargo.com/content/mk/en/products-and-services/products/mk-live.html
+          source_type: official_website
+          verified_date: 2026-09-10
+          review_due: 2026-12-09
+          confidence: 4
+          reviewer: Codex — lecture directe de la source officielle
+          history: []
+          quote: Live animals require special handling
+          quote_language: en
+          locator: MK Live product
     review_state: legacy_unreviewed
 channels:
   - placement: cabin

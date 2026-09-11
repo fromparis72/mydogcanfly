@@ -73,8 +73,50 @@ ladder:
       pt: "Reino Unido/EAU / espécies"
 policies:
   cabin:
+    # TARIFS OFFICIELS — audit indépendant du 2026-09-10 ; aucune valeur héritée réactivée.
+    fares:
+      - id: fare_lot_cabin_2026_09_10
+        placement: cabin
+        price:
+          kind: booking_only
+          amounts: []
+        billing_subject: booking
+        journey_basis: per_journey
+        scope_label: marché/route → marché/route
+        source:
+          url: https://www.lot.com/cn/en/journey/special-services/traveling-with-pets/pet-in-cabin
+          source_type: official_website
+          verified_date: 2026-09-10
+          review_due: 2026-12-09
+          confidence: 4
+          reviewer: Codex — lecture directe de la source officielle
+          history: []
+          quote: shown during booking
+          quote_language: en
+          locator: Charges
     availability: offered
   hold:
+    # TARIFS OFFICIELS — audit indépendant du 2026-09-10 ; aucune valeur héritée réactivée.
+    fares:
+      - id: fare_lot_hold_2026_09_10
+        placement: hold
+        price:
+          kind: booking_only
+          amounts: []
+        billing_subject: booking
+        journey_basis: per_journey
+        scope_label: marché/route → marché/route
+        source:
+          url: https://www.lot.com/us/en/journey/special-services/traveling-with-pets
+          source_type: official_website
+          verified_date: 2026-09-10
+          review_due: 2026-12-09
+          confidence: 4
+          reviewer: Codex — lecture directe de la source officielle
+          history: []
+          quote: Manage My Booking
+          quote_language: en
+          locator: Pet in hold
     availability: offered
   cargo:
     review_state: legacy_unreviewed

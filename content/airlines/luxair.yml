@@ -61,6 +61,29 @@ ladder:
     sub: 8–50 kg
 policies:
   cabin:
+    # TARIFS OFFICIELS — audit indépendant du 2026-09-10 ; aucune valeur héritée réactivée.
+    fares:
+      - id: fare_luxair_cabin_eur_2026_09_10
+        placement: cabin
+        price:
+          kind: exact
+          amounts:
+            - amount: 70
+              currency: EUR
+        billing_subject: pet_or_container
+        journey_basis: per_segment
+        scope_label: Luxair network
+        source:
+          url: https://www.luxair.lu/sites/default/files/LG-LGIT-structure-fare_ENG.pdf
+          source_type: official_website
+          verified_date: 2026-09-10
+          review_due: 2026-12-09
+          confidence: 4
+          reviewer: Codex — lecture directe de la source officielle
+          history: []
+          quote: "Pet in cabin: EUR 70 per flight"
+          quote_language: en
+          locator: Fare structure PDF, pets
     availability: offered
     # PREUVE IMPORTÉE — import strict lot7 (Codex, lecture directe du 2026-09-09, cohorte LOT7 fait 21).
     # Effet attendu : Luxair cabin is conditional and route-scoped.
@@ -77,6 +100,29 @@ policies:
       quote_language: en
       locator: "Travelling with animals → General information and regulations"
   hold:
+    # TARIFS OFFICIELS — audit indépendant du 2026-09-10 ; aucune valeur héritée réactivée.
+    fares:
+      - id: fare_luxair_hold_eur_2026_09_10
+        placement: hold
+        price:
+          kind: exact
+          amounts:
+            - amount: 140
+              currency: EUR
+        billing_subject: pet_or_container
+        journey_basis: per_segment
+        scope_label: Luxair network
+        source:
+          url: https://www.luxair.lu/sites/default/files/LG-LGIT-structure-fare_ENG.pdf
+          source_type: official_website
+          verified_date: 2026-09-10
+          review_due: 2026-12-09
+          confidence: 4
+          reviewer: Codex — lecture directe de la source officielle
+          history: []
+          quote: "Pet in hold: EUR 140 per flight"
+          quote_language: en
+          locator: Fare structure PDF, pets
     availability: offered
     # PREUVE IMPORTÉE — import strict lot7 (Codex, lecture directe du 2026-09-09, cohorte LOT7 fait 22).
     # Effet attendu : Luxair hold is conditional and route-scoped.

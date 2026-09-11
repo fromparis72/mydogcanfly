@@ -83,6 +83,27 @@ policies:
     # re-vérifié, comme la soute et le fret de cette même fiche — « à confirmer », pas « refusé ».
     review_state: legacy_unreviewed
   hold:
+    # TARIFS OFFICIELS — audit indépendant du 2026-09-10 ; aucune valeur héritée réactivée.
+    fares:
+      - id: fare_garuda_indonesia_hold_2026_09_10
+        placement: hold
+        price:
+          kind: formula
+          amounts: []
+        billing_subject: pet_or_container
+        journey_basis: per_journey
+        scope_label: Indonésie domestique → Indonésie domestique
+        source:
+          url: https://www.garuda-indonesia.com/static/en/garuda-indonesia-experience/baggage-info.html
+          source_type: official_website
+          verified_date: 2026-09-10
+          review_due: 2026-12-09
+          confidence: 4
+          reviewer: Codex — lecture directe de la source officielle
+          history: []
+          quote: minimum charge of 5 kg
+          quote_language: en
+          locator: Domestic pets
     review_state: legacy_unreviewed
   cargo:
     availability: offered   # RÉACTIVÉE sur citation (import strict, lot5, 2026-09-09) — était review_state: legacy_unreviewed

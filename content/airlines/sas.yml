@@ -73,6 +73,113 @@ ladder:
       pt: "Reino Unido/China/EAU"
 policies:
   cabin:
+    # TARIFS OFFICIELS — audit indépendant du 2026-09-10 ; aucune valeur héritée réactivée.
+    fares:
+      - id: fare_sas_cabin_dkk_2026_09_10
+        placement: cabin
+        price:
+          kind: exact
+          amounts:
+            - amount: 420
+              currency: DKK
+        billing_subject: container
+        journey_basis: per_segment
+        scope_label: 1 Domestic; 2 Scandinavia-Europe-Middle East; 3 Asia-Canada-US; 4 China
+        source:
+          url: https://www.flysas.com/us-en/travel-info/travel-with-pets/in-hold
+          source_type: official_website
+          verified_date: 2026-09-10
+          review_due: 2026-12-09
+          confidence: 4
+          reviewer: Codex — lecture directe de la source officielle
+          history: []
+          quote: "Domestic: 420 DKK, 550 NOK, 550 SEK, 55 EUR, 60 USD"
+          quote_language: en
+          locator: Fees → Pet in cabin → Domestic
+      - id: fare_sas_cabin_nok_2026_09_10
+        placement: cabin
+        price:
+          kind: exact
+          amounts:
+            - amount: 550
+              currency: NOK
+        billing_subject: container
+        journey_basis: per_segment
+        scope_label: 1 Domestic; 2 Scandinavia-Europe-Middle East; 3 Asia-Canada-US; 4 China
+        source:
+          url: https://www.flysas.com/us-en/travel-info/travel-with-pets/in-hold
+          source_type: official_website
+          verified_date: 2026-09-10
+          review_due: 2026-12-09
+          confidence: 4
+          reviewer: Codex — lecture directe de la source officielle
+          history: []
+          quote: "Domestic: 420 DKK, 550 NOK, 550 SEK, 55 EUR, 60 USD"
+          quote_language: en
+          locator: Fees → Pet in cabin → Domestic
+      - id: fare_sas_cabin_sek_2026_09_10
+        placement: cabin
+        price:
+          kind: exact
+          amounts:
+            - amount: 550
+              currency: SEK
+        billing_subject: container
+        journey_basis: per_segment
+        scope_label: 1 Domestic; 2 Scandinavia-Europe-Middle East; 3 Asia-Canada-US; 4 China
+        source:
+          url: https://www.flysas.com/us-en/travel-info/travel-with-pets/in-hold
+          source_type: official_website
+          verified_date: 2026-09-10
+          review_due: 2026-12-09
+          confidence: 4
+          reviewer: Codex — lecture directe de la source officielle
+          history: []
+          quote: "Domestic: 420 DKK, 550 NOK, 550 SEK, 55 EUR, 60 USD"
+          quote_language: en
+          locator: Fees → Pet in cabin → Domestic
+      - id: fare_sas_cabin_eur_2026_09_10
+        placement: cabin
+        price:
+          kind: exact
+          amounts:
+            - amount: 55
+              currency: EUR
+        billing_subject: container
+        journey_basis: per_segment
+        scope_label: 1 Domestic; 2 Scandinavia-Europe-Middle East; 3 Asia-Canada-US; 4 China
+        source:
+          url: https://www.flysas.com/us-en/travel-info/travel-with-pets/in-hold
+          source_type: official_website
+          verified_date: 2026-09-10
+          review_due: 2026-12-09
+          confidence: 4
+          reviewer: Codex — lecture directe de la source officielle
+          history: []
+          quote: "Domestic: 420 DKK, 550 NOK, 550 SEK, 55 EUR, 60 USD"
+          quote_language: en
+          locator: Fees → Pet in cabin → Domestic
+      - id: fare_sas_cabin_usd_2026_09_10
+        placement: cabin
+        price:
+          kind: exact
+          amounts:
+            - amount: 60
+              currency: USD
+        billing_subject: container
+        journey_basis: per_segment
+        scope_label: 1 Domestic; 2 Scandinavia-Europe-Middle East; 3 Asia-Canada-US; 4 China
+        source:
+          url: https://www.flysas.com/us-en/travel-info/travel-with-pets/in-hold
+          source_type: official_website
+          verified_date: 2026-09-10
+          review_due: 2026-12-09
+          confidence: 4
+          reviewer: Codex — lecture directe de la source officielle
+          history: []
+          quote: "Domestic: 420 DKK, 550 NOK, 550 SEK, 55 EUR, 60 USD"
+          quote_language: en
+          locator: Fees → Pet in cabin → Domestic
     availability: offered
     # PREUVE IMPORTÉE — import strict V3 (Codex, lecture directe du 2026-09-08, cohorte B fait 3).
     # Effet attendu : For a 30 or 32 kg dog, cabin is not suitable.
@@ -92,6 +199,113 @@ policies:
       quote_language: en
       locator: "Pet in cabin → Pet carrier requirements"
   hold:
+    # TARIFS OFFICIELS — audit indépendant du 2026-09-10 ; aucune valeur héritée réactivée.
+    fares:
+      - id: fare_sas_hold_dkk_2026_09_10
+        placement: hold
+        price:
+          kind: exact
+          amounts:
+            - amount: 5400
+              currency: DKK
+        billing_subject: container
+        journey_basis: per_segment
+        scope_label: 1 Domestic; 2 Scandinavia-Europe-Middle East; 3 Asia-Canada-US; 4 China
+        source:
+          url: https://www.flysas.com/us-en/travel-info/travel-with-pets/in-hold
+          source_type: official_website
+          verified_date: 2026-09-10
+          review_due: 2026-12-09
+          confidence: 4
+          reviewer: Codex — lecture directe de la source officielle
+          history: []
+          quote: "China: 5400 DKK, 7600 NOK, 7600 SEK, 725 EUR, 775 USD"
+          quote_language: en
+          locator: Fees → Pet in cargo hold → China
+      - id: fare_sas_hold_nok_2026_09_10
+        placement: hold
+        price:
+          kind: exact
+          amounts:
+            - amount: 7600
+              currency: NOK
+        billing_subject: container
+        journey_basis: per_segment
+        scope_label: 1 Domestic; 2 Scandinavia-Europe-Middle East; 3 Asia-Canada-US; 4 China
+        source:
+          url: https://www.flysas.com/us-en/travel-info/travel-with-pets/in-hold
+          source_type: official_website
+          verified_date: 2026-09-10
+          review_due: 2026-12-09
+          confidence: 4
+          reviewer: Codex — lecture directe de la source officielle
+          history: []
+          quote: "China: 5400 DKK, 7600 NOK, 7600 SEK, 725 EUR, 775 USD"
+          quote_language: en
+          locator: Fees → Pet in cargo hold → China
+      - id: fare_sas_hold_sek_2026_09_10
+        placement: hold
+        price:
+          kind: exact
+          amounts:
+            - amount: 7600
+              currency: SEK
+        billing_subject: container
+        journey_basis: per_segment
+        scope_label: 1 Domestic; 2 Scandinavia-Europe-Middle East; 3 Asia-Canada-US; 4 China
+        source:
+          url: https://www.flysas.com/us-en/travel-info/travel-with-pets/in-hold
+          source_type: official_website
+          verified_date: 2026-09-10
+          review_due: 2026-12-09
+          confidence: 4
+          reviewer: Codex — lecture directe de la source officielle
+          history: []
+          quote: "China: 5400 DKK, 7600 NOK, 7600 SEK, 725 EUR, 775 USD"
+          quote_language: en
+          locator: Fees → Pet in cargo hold → China
+      - id: fare_sas_hold_eur_2026_09_10
+        placement: hold
+        price:
+          kind: exact
+          amounts:
+            - amount: 725
+              currency: EUR
+        billing_subject: container
+        journey_basis: per_segment
+        scope_label: 1 Domestic; 2 Scandinavia-Europe-Middle East; 3 Asia-Canada-US; 4 China
+        source:
+          url: https://www.flysas.com/us-en/travel-info/travel-with-pets/in-hold
+          source_type: official_website
+          verified_date: 2026-09-10
+          review_due: 2026-12-09
+          confidence: 4
+          reviewer: Codex — lecture directe de la source officielle
+          history: []
+          quote: "China: 5400 DKK, 7600 NOK, 7600 SEK, 725 EUR, 775 USD"
+          quote_language: en
+          locator: Fees → Pet in cargo hold → China
+      - id: fare_sas_hold_usd_2026_09_10
+        placement: hold
+        price:
+          kind: exact
+          amounts:
+            - amount: 775
+              currency: USD
+        billing_subject: container
+        journey_basis: per_segment
+        scope_label: 1 Domestic; 2 Scandinavia-Europe-Middle East; 3 Asia-Canada-US; 4 China
+        source:
+          url: https://www.flysas.com/us-en/travel-info/travel-with-pets/in-hold
+          source_type: official_website
+          verified_date: 2026-09-10
+          review_due: 2026-12-09
+          confidence: 4
+          reviewer: Codex — lecture directe de la source officielle
+          history: []
+          quote: "China: 5400 DKK, 7600 NOK, 7600 SEK, 725 EUR, 775 USD"
+          quote_language: en
+          locator: Fees → Pet in cargo hold → China
     availability: offered
   cargo:
     review_state: legacy_unreviewed

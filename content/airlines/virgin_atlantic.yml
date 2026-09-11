@@ -77,6 +77,27 @@ policies:
   hold:
     availability: not_offered
   cargo:
+    # TARIFS OFFICIELS — audit indépendant du 2026-09-10 ; aucune valeur héritée réactivée.
+    fares:
+      - id: fare_virgin_atlantic_cargo_2026_09_10
+        placement: cargo
+        price:
+          kind: quote
+          amounts: []
+        billing_subject: shipment
+        journey_basis: per_journey
+        scope_label: Approved cargo agent/route
+        source:
+          url: https://help.virginatlantic.com/content/dam/HelpCentre/documents/pet-conditions-of-carriage.pdf
+          source_type: official_website
+          verified_date: 2026-09-10
+          review_due: 2026-12-09
+          confidence: 4
+          reviewer: Codex — lecture directe de la source officielle
+          history: []
+          quote: booked through an approved agent
+          quote_language: en
+          locator: Cargo carriage
     review_state: legacy_unreviewed
 channels:
   - placement: cabin

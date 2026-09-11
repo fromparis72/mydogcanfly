@@ -69,6 +69,27 @@ ladder:
     sub: "> 125 cm"
 policies:
   cabin:
+    # TARIFS OFFICIELS — audit indépendant du 2026-09-10 ; aucune valeur héritée réactivée.
+    fares:
+      - id: fare_turkish_cabin_2026_09_10
+        placement: cabin
+        price:
+          kind: calculator
+          amounts: []
+        billing_subject: container
+        journey_basis: per_segment
+        scope_label: Route-based calculator; <=8kg PETC
+        source:
+          url: https://www.turkishairlines.com/en-kt/any-questions/traveling-with-pets/fees-for-carrying-pets/
+          source_type: official_website
+          verified_date: 2026-09-10
+          review_due: 2026-12-09
+          confidence: 4
+          reviewer: Codex — lecture directe de la source officielle
+          history: []
+          quote: calculated separately for each flight
+          quote_language: en
+          locator: Pet fee calculator
     availability: offered
     # PREUVE IMPORTÉE — import strict V3 (Codex, lecture directe du 2026-09-08, cohorte A fait 16).
     # Effet attendu : For a 32 kg dog, cabin is not suitable.
@@ -88,6 +109,27 @@ policies:
       quote_language: en
       locator: "Are there weight or size limits for my pet?"
   hold:
+    # TARIFS OFFICIELS — audit indépendant du 2026-09-10 ; aucune valeur héritée réactivée.
+    fares:
+      - id: fare_turkish_hold_2026_09_10
+        placement: hold
+        price:
+          kind: calculator
+          amounts: []
+        billing_subject: container
+        journey_basis: per_segment
+        scope_label: Route calculator; 0–23, 24–32, 33+kg
+        source:
+          url: https://www.turkishairlines.com/en-kt/any-questions/traveling-with-pets/fees-for-carrying-pets/
+          source_type: official_website
+          verified_date: 2026-09-10
+          review_due: 2026-12-09
+          confidence: 4
+          reviewer: Codex — lecture directe de la source officielle
+          history: []
+          quote: fees are charged per carrier
+          quote_language: en
+          locator: Pet fee calculator
     availability: offered
     # PREUVE IMPORTÉE — import strict V3 (Codex, lecture directe du 2026-09-08, cohorte A fait 17).
     # Effet attendu : Show hold offered under conditions for a 32 kg dog, subject to carrier weight and dimensions.

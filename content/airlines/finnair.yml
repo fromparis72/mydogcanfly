@@ -73,6 +73,31 @@ ladder:
       pt: "países somente carga"
 policies:
   cabin:
+    # TARIFS OFFICIELS — audit indépendant du 2026-09-10 ; aucune valeur héritée réactivée.
+    fares:
+      - id: fare_finnair_cabin_eur_2026_09_10
+        placement: cabin
+        price:
+          kind: range
+          amounts:
+            - amount: 60
+              currency: EUR
+            - amount: 65
+              currency: EUR
+        billing_subject: pet_or_container
+        journey_basis: per_one_way
+        scope_label: Europe/intercontinental → Europe/intercontinental
+        source:
+          url: https://www.finnair.com/en/pets-on-finnair-flights
+          source_type: official_website
+          verified_date: 2026-09-10
+          review_due: 2026-12-09
+          confidence: 4
+          reviewer: Codex — lecture directe de la source officielle
+          history: []
+          quote: 60 EUR / 65 EUR
+          quote_language: en
+          locator: Pet transportation fees
     availability: offered
     # PREUVE IMPORTÉE — import strict V3 (Codex, lecture directe du 2026-09-08, cohorte B fait 0).
     # Effet attendu : For a 30 or 32 kg dog, cabin is not suitable.

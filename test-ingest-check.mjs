@@ -133,8 +133,13 @@ console.log("\n=== 3. La décision vient des fiches — les contre-épreuves du 
 
   // (c) décision HYBRIDE : les deux discriminants à la fois
   {
-    const r = muter((t) => t.replace("  cabin:\n    availability: offered",
-      "  cabin:\n    availability: offered\n    review_state: legacy_unreviewed"));
+    const r = muter((t) => {
+      /* Les tarifs vivent désormais avant `availability` : l'ancre porte sur le bloc cabine
+         entier, et son absence fait échouer le témoin au lieu de produire un faux vert. */
+      const ancre = /(policies:\n  cabin:\n[\s\S]*?\n    availability: offered)/;
+      if (!ancre.test(t)) throw new Error("témoin hybride : bloc policies.cabin offert introuvable");
+      return t.replace(ancre, "$1\n    review_state: legacy_unreviewed");
+    });
     check("(c) décision hybride (availability + review_state) → REFUS", r.code === 1, r.out.slice(-300));
   }
 

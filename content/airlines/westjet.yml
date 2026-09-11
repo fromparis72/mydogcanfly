@@ -103,6 +103,27 @@ policies:
       quote_language: en
       locator: "General entrance requirements for guests travelling with pets → opening policy statement"
   cargo:
+    # TARIFS OFFICIELS — audit indépendant du 2026-09-10 ; aucune valeur héritée réactivée.
+    fares:
+      - id: fare_westjet_cargo_2026_09_10
+        placement: cargo
+        price:
+          kind: quote
+          amounts: []
+        billing_subject: shipment
+        journey_basis: per_journey
+        scope_label: WestJet Cargo routes
+        source:
+          url: https://www.westjet.com/en-bb/flights/fees
+          source_type: official_website
+          verified_date: 2026-09-10
+          review_due: 2026-12-09
+          confidence: 4
+          reviewer: Codex — lecture directe de la source officielle
+          history: []
+          quote: contact WestJet Cargo
+          quote_language: en
+          locator: Cargo referral
     availability: offered
 channels:
   - placement: cabin
