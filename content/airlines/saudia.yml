@@ -81,37 +81,19 @@ ladder:
       pt: "Cachorros para os EUA"
 policies:
   cabin:
-    availability: not_offered   # RÉACTIVÉE sur citation (import strict, lot6, 2026-09-09) — était review_state: legacy_unreviewed
-    # PREUVE IMPORTÉE — import strict lot6 (Codex, lecture directe du 2026-09-09, cohorte LOT6 fait 8).
-    # Effet attendu : Do not offer Saudia passenger cabin to an ordinary pet dog.
-    # Portée nommée : Ordinary pet dogs. Service-dog rules are outside this decision.
-    source:
-      url: "https://booking-uat.dcloud.saudia.com/book/flight-information/travelling-with-pets"
-      source_type: official_website
-      verified_date: "2026-09-09"
-      review_due: "2026-12-08"   # reviewDueFrom(verified_date, "airline") — calculé par l'importeur
-      confidence: 4
-      reviewer: "Codex — direct reading of official airline page"
-      history: []
-      quote: "Dogs must be transported in the cargo hold (holds are equipped with ventilation systems)."
-      quote_language: en
-      locator: "Travelling with Pets & Animals → Regulations"
+    # PREUVE RETIRÉE (10/09/2026, contre-lecture de l'audit tarifaire de Codex, tranchée par Philippe).
+    # La citation importée au lot 6 reposait sur `booking-uat.dcloud.saudia.com` — une surface de TEST, jamais
+    # une page de production. Une adresse UAT ne prouve rien de ce que la compagnie publie : la preuve est
+    # retirée, et le canal redevient « à confirmer » — jamais un refus, jamais une acceptation. La dette était
+    # nommée depuis le 09/09 ; elle est fermée dans le sens de la prudence, pas dans celui du verdict.
+    # À rouvrir SEULEMENT sur une page de production stable portant la phrase.
+    review_state: legacy_unreviewed
   hold:
+    # PREUVE RETIRÉE (10/09/2026) — même surface de test, même raison. La soute RETROUVE son état d'avant le lot 6 :
+    # `availability: offered` sans citation, c'est-à-dire une disponibilité d'auteur, jamais revérifiée. Elle n'a
+    # jamais été une ligne « non revérifiée » de la migration : la remettre en `review_state` inventerait une histoire
+    # que le manifeste contredit. Projetée « à confirmer », comme toute disponibilité sans phrase.
     availability: offered
-    # PREUVE IMPORTÉE — import strict lot6 (Codex, lecture directe du 2026-09-09, cohorte LOT6 fait 9).
-    # Effet attendu : Saudia hold is a documented conditional route, not a final acceptance guarantee.
-    # Portée nommée : Direct routes, advance notification, official documents, registration and carrier acceptance apply.
-    source:
-      url: "https://booking-uat.dcloud.saudia.com/book/flight-information/travelling-with-pets"
-      source_type: official_website
-      verified_date: "2026-09-09"
-      review_due: "2026-12-08"   # reviewDueFrom(verified_date, "airline") — calculé par l'importeur
-      confidence: 4
-      reviewer: "Codex — direct reading of official airline page"
-      history: []
-      quote: "Dogs must be transported in the cargo hold (holds are equipped with ventilation systems)."
-      quote_language: en
-      locator: "Travelling with Pets & Animals → Regulations"
   cargo:
     review_state: legacy_unreviewed
 channels:

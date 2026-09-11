@@ -115,7 +115,11 @@ const REACTIVEES_SUR_CITATION = new Set([
   "airline_kenya_airways|cargo",
   "airline_gulf_air|cargo",
   "airline_royal_jordanian|cabin",
-  "airline_saudia|cabin",
+  /* MOUVEMENT NOMMÉ (10/09/2026) : `airline_saudia|cabin` SORT de cet ensemble. Sa réactivation en refus cité — la
+     première du dépôt — reposait sur `booking-uat.dcloud.saudia.com`, une surface de test ; la contre-lecture de
+     l'audit de Codex l'a opposée, Philippe a tranché, la preuve est retirée. La ligne redevient une ligne non
+     revérifiée du manifeste, admise par identité comme avant le lot 6. Sa soute, elle, n'a jamais été une ligne
+     migrée : elle retrouve son `availability: offered` d'auteur, sans citation. */
   /* Lot 7 (09/09/2026) : Air Caraïbes fret (« devront voyager par FRET. »), Air Tahiti Nui fret (« …il
      peut certainement être transporté par fret… »), Aircalin fret (« Le transport des animaux
      s'effectue en fret uniquement. »), Corsair fret (« Au-delà de 50 kg, le transport devra

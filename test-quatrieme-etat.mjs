@@ -112,7 +112,8 @@ console.log("\n=== 2. KB réelle : aucune politique n'émet `allowed` ; rien ne 
   /* MOUVEMENT NOMMÉ (09/09/2026, correctif d'arbitrages — Codex, tranché par Philippe ; six preuves remplacées dans les lots 4, 6 et 8) : 140 → 142 (Thai fret, Aer Lingus soute, Air China cabine entrent ; Bangkok fret sort vers `case_by_case`). */
   /* MOUVEMENT NOMMÉ (10/09/2026, Bangkok Airways fret — annexe 37) : 142 → 143 (fret `offered` cité, R1/R2/R3 dans le même lot). */
   /* MOUVEMENT NOMMÉ (10/09/2026, complément Air France cabine — Codex, une citation) : 143 → 144. */
-  check(`politiques réelles en accepted_with_conditions : 144 depuis le complément Air France cabine — mesuré : ${cond}`, cond === 144);
+  /* MOUVEMENT NOMMÉ (10/09/2026, Saudia — preuve de test retirée sur contre-lecture de l'audit de Codex, tranchée par Philippe) : 144 → 143 (Saudia soute sort du quatrième état). */
+  check(`politiques réelles en accepted_with_conditions : 143 depuis le retrait Saudia — mesuré : ${cond}`, cond === 143);
   /* RE-FONDÉ (10/09/2026) : Air France cabine était LE témoin « plafond écrit, page non citée → à confirmer » ; elle est
      désormais citée (« moins de 8 kg, sac de transport compris »). Le témoin passe à Eurowings cabine, même route, même
      situation mesurée : plafond 8 kg dérivé de la fiche, aucune phrase, `legacy_unreviewed` — et le Golden de 32 kg y

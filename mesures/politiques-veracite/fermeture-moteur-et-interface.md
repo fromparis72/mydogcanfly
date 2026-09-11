@@ -3915,6 +3915,242 @@ des preuves régénéré, baseline du Finder refigée (paire `complement-air-fra
 | caisses non sourcées | vert |
 | contre-épreuves `--dist-complet` | 58 garanties éprouvées sur 58 |
 | registre de fraîcheur | rescellé (1 504 entrées), inventaire des preuves régénéré |
+### Déploiement de `main` `6275605` (10/09/2026, Philippe, depuis son Mac) — prouvé
+
+`verify:index` : 2 536 URL, 102 compagnies, 140 pays, 172 races, 269 aéroports, aucune balise noindex ;
+`wrangler deploy` annonce `Current Version ID: fb53813f-041f-4b69-bd5d-675d1904d87b` ; lecture de santé :
+`sha: 6275605885747cf398960d4fce19cc27b5b632fb`, `worker_version_id: fb53813f-…` — le SHA ET l'identifiant
+de version concordent avec l'annonce (règle de l'annexe 35). En ligne désormais : Bangkok Airways fret
+(annexe 37, #49), Air France cabine citée (annexe 39, #51). Contrôle en ligne à demander à Codex : chihuahua
+3 kg, CDG → JFK, cabine Air France « sous conditions, plafond 8 kg chien + sac ».
+
+## Annexe 40 — Fiche compagnie : le bandeau sous le titre, les pastilles courtes (10/09/2026, classement A)
+
+Arbitrage de Codex, relayé par Philippe sur la capture d'Aeromexico en ligne : le bandeau « Transport possible
+sous conditions de la compagnie sur au moins un canal cité » passait SUR le H1 ; les capsules des canaux
+portaient une explication (« Politique à confirmer auprès de la compagnie ») et débordaient de leur carte.
+Demandé : bandeau « Transport possible sous conditions » sur une ligne distincte sous le titre ; capsules
+réduites à « Sous conditions », « Refusé », « À confirmer » ; retour à la ligne autorisé dans l'en-tête de carte ;
+aucun positionnement absolu ; contrôle mobile / tablette / bureau dans les quatre langues.
+
+### Mesuré avant d'écrire
+
+Aucune pastille n'était en position absolue : le chevauchement venait de `white-space: nowrap` sur toutes les
+pastilles et d'une boîte de bandeau bornée à 240 px, à côté du H1 dans le `flex` du hero. Les libellés vivent dans
+`strings.json` (quatre langues) ; la capsule « à confirmer » partageait sa clé (`air.to_confirm`) avec le bandeau
+de tête « rien n'est décidé ». Au passage, à 400 px, la fiche British Airways défilait horizontalement (435 px) :
+la réponse de FAQ qui cite l'URL officielle entre parenthèses ne pouvait pas se couper — hors du relevé de Codex,
+dans le périmètre « vérifier aux largeurs mobile ».
+
+### Ce qui a été fait, et rien d'autre
+
+- libellés (en/fr/es/pt) : `premium.verdict_open_conditions` → « Transport possible sous conditions » ;
+  `premium.accepted_conditions` → « Sous conditions » ; `premium.not_allowed` → « Refusé » ; nouvelle clé
+  `premium.to_confirm_short` → « À confirmer », rendue par `cleLibelleStatut` pour la capsule seule
+  (`air.to_confirm` reste la phrase du bandeau quand rien n'est décidé, et n'est plus une capsule) ;
+- gabarit : le nom du canal devient un élément mesurable (`.mini .t .nm`) ; le bandeau est une ligne à part
+  (`flex: 1 1 100%`, aligné à gauche) ; le bandeau et les pastilles de canal peuvent passer à la ligne ; l'en-tête
+  de carte est `flex-wrap` ; la règle mobile devenue inutile est retirée ; FAQ : `overflow-wrap: anywhere` ;
+- témoins : `test-entity-pages-harness` (clé de la capsule « à confirmer », mouvement nommé) ; **nouveau** dans
+  `test-apercu-navigateur` : Aeromexico, 1280 / 800 / 400 px × en / fr / es / pt, rectangles rendus — bandeau au
+  texte exact, sous le H1, sans chevauchement ; aucune pastille absolue ; aucun défilement horizontal ; trois
+  pastilles au libellé court, dans leur carte, sans chevaucher le nom du canal ; plus la fiche British Airways
+  en portugais à 400 px : « Recusado ». 65 contrôles, captures `12-fiche-*-400px.png`.
+
+### Mesuré
+
+| contrôle | résultat |
+|---|---|
+| mesure ad hoc, British Airways, 4 langues × 3 largeurs (dist réduit) | bandeau sous le H1 partout ; à 800 px la pastille du fret passe sous « Fret » ; 435 → **400 px** après le correctif FAQ |
+| suite navigateur complète (dist complet, 3 112 pages) | **246 OK, 0 ÉCHEC** (181 + 65) |
+| entités 178, fiche harnais, frontière de confiance 135, dette Astro 165 | verts |
+### CI sur `6b65ea4` : Qantas soute, une politique citée sans bloc de canal sur sa fiche — dette nommée
+
+Le témoin `tarifs` §5quater, re-fondé sur les libellés courts, avait aussi reçu le quatrième état. La CI (dist
+complet) a rougi sur **Qantas soute** : `accepted_with_conditions` cité dans la base, mais la fiche `qantas.yml`
+ne déclare pas de canal soute dans son bloc éditorial `channels:` — aucun bloc, aucune pastille. Rien de faux n'est
+publié ; un canal décidé n'est pas montré. Hors périmètre de ce lot (présentation) : dette de contenu à fermer
+dans un lot dédié (déclarer le canal soute de Qantas), moment où le témoin s'élargira au quatrième état. La table
+du témoin revient à ses trois états d'origine, mouvement nommé dans le code.
+
+## Annexe 41 — Héros de l'accueil : T1, T2, T3 arbitrés (10/09/2026, classement B)
+
+Arbitrage validé par Philippe, relayé par Codex : trois textes dans les quatre langues — T1 la question centrale
+(« Mon chien peut-il prendre l'avion ? », écho de MyDogCanFly.com), T2 le slogan émotionnel (« Voyager ensemble,
+c'est prendre soin de chaque détail. »), T3 le paragraphe explicatif (cabine, soute, fret, race, destination ;
+ce qui est confirmé, ce qui doit encore être vérifié). Modification éditoriale ciblée : ni moteur, ni données,
+ni architecture.
+
+### Mesuré avant d'écrire
+
+Le gabarit (`HomeSections.astro`) coupe `home.hero.title` après le premier « ? » : la question devient
+`.hero__q`, le reste `.hero__accent` (ligne orange). T1 et T2 tiennent donc dans `home.hero.title`, séparés par
+un retour à la ligne ; T3 est `home.hero.sub`. Les anciens textes (« Vois ce qui est confirmé — et ce qu'il faut
+vérifier », « Prendre l'avion avec un chien peut être complexe… ») vivaient dans ces deux clés seulement.
+L'accroche au-dessus du titre (`home.hero.eyebrow`, « Ce qui est confirmé, et ce qui ne l'est pas ») n'est pas
+dans l'arbitrage : elle est laissée telle quelle et **nommée** ici pour Codex.
+
+### Ce qui a été fait, et rien d'autre
+
+Huit lignes dans `strings.json` (en / fr / es / pt) : `home.hero.title` = T1 + « \n » + T2, `home.hero.sub` = T3,
+verbatim (apostrophes typographiques conservées). Aucun autre fichier.
+
+### Mesuré (dist réduit)
+
+| contrôle | résultat |
+|---|---|
+| les quatre pages d'accueil construites | T1 dans `.hero__q`, T2 dans `.hero__accent`, T3 dans `.hero__sub`, verbatim |
+| anciens slogans (« still needs checking », « ce qu'il faut vérifier », « aún hay que comprobar », « ainda é preciso verificar », « Ton chien peut-il », « Can your dog fly », « Puede volar tu perro », « O teu cão pode voar ») | **0 occurrence** sur les quatre pages |
+| titre face à l'emblème et au conteneur, 1280 et 400 px, quatre langues (mesure ad hoc, rectangles) | voir ci-dessous |
+
+### Déploiement de `main` `8290573` (10/09/2026, Philippe, depuis son Mac) — prouvé
+
+`verify:index` : 2 536 URL, aucune balise noindex ; Pages : 6 fichiers envoyés (3 626 déjà en place — les cartes du
+Finder vivent dans le script client partagé) ; `wrangler deploy` annonce `Current Version ID:
+2bb94f37-7527-4ab2-a6cb-436473c1c498` ; lecture de santé : `sha: 8290573a…`, `worker_version_id: 2bb94f37-…` —
+concordants (règle de l'annexe 35). En ligne désormais : les cartes du Finder (annexe 38, #50). Contrôle en ligne à
+demander à Codex : CDG → JFK, Golden 32 kg — la carte Air France dit « Cabine : non · Soute : oui, sous conditions ·
+jusqu'à 75 kg avec le contenant · tarif à confirmer », provenance datée, volet « Voir les preuves » fermé.
+
+### Annexe 41, suite — mesuré aux largeurs mobiles (Codex : 320, 360, 375, 400 px, quatre langues)
+
+Débordement de 9 px à 400 px sur la page anglaise, **préexistant** (mesuré sur le dist aux anciens textes) : la grille
+« Avant de réserver » (`.grid`, colonnes `1fr`) ne descendait pas sous la largeur minimale de ses cartes, et
+« Your country's requirements » poussait la rangée à 409 px. Cause CSS fermée : colonnes `minmax(0, 1fr)`, une seule
+colonne sous 420 px ; ni `overflow-x: hidden`, ni texte raccourci.
+
+| largeur | scrollWidth / clientWidth (en, fr, es, pt) | éléments débordants | racine / corps | titre |
+|---|---|---|---|---|
+| 320 | 320 / 320 ×4 | aucun | 16 px / 16 px | 22 px |
+| 360 | 360 / 360 ×4 | aucun | 16 px / 16 px | 22 px |
+| 375 | 375 / 375 ×4 | aucun | 16 px / 16 px | 22,5 px |
+| 400 | 400 / 400 ×4 | aucun | 16 px / 16 px | 24 px |
+| 1280 | 1280 / 1280 ×4 | aucun ; titre 711 px ≤ emblème 759 px | 16 px / 16 px | 49 px |
+
+Les tailles de titre sous 520 px sont celles du `clamp(22px, 6vw, 30px)` déjà en place — aucune réduction globale de
+typographie (racine et corps inchangés). T1, T2, T3 identiques aux textes validés à chaque largeur. Témoin permanent
+ajouté à la suite navigateur (`13-accueil-*-400px.png`), joué une seule fois par le parcours CI complet, comme demandé.
+## Annexe 42 — Le Finder ne montre que des itinéraires établis, et ne s'excuse plus (10/09/2026, classement A)
+
+Arbitrage de Philippe : « mieux vaut cinq itinéraires utilisables que trente-cinq compagnies théoriquement
+possibles accompagnées d'un avertissement ». Deux gestes, un seul lot.
+
+### Mesuré avant d'écrire
+
+Le moteur distingue quatre natures d'itinéraire. Le direct et la correspondance **attestés** reposent sur les
+arêtes publiées de la compagnie (les deux segments figurent dans son graphe de routes). Le direct **supposé**
+(aucun graphe : direct déduit d'un hub) et la correspondance **plausible** (hub retenu sur la seule géométrie,
+détour sous le plafond) ne reposent sur rien de publié. Mesuré sur dix routes × trois chiens, 624 cartes :
+
+| nature | cartes |
+|---|---|
+| direct attesté | 75 |
+| correspondance attestée | 414 |
+| correspondance plausible | **135** |
+| direct supposé | **0** (aucun porteur sur ces routes) |
+
+Après filtrage : 489 cartes, dont 406 documentées. **Aucun scénario vidé, aucun privé de carte documentée** —
+la condition de clôture de l'arbitrage est tenue avant d'écrire une ligne.
+
+Les justifications internes rendues au visiteur étaient au nombre de cinq : quatre paragraphes au-dessus des
+cartes (`.acards__notes` — donnée non revérifiée, page officielle non citée, politique non publiée, fait
+manquant) et un par carte non établie (`.acard__unver`, « compagnie potentiellement pertinente… »).
+DestinationFinder en portait trois, mêmes familles.
+
+### Ce qui a été fait
+
+- **Filtre d'itinéraire** posé une fois, avant le résumé, les deux niveaux et le partage par mode :
+  `compagniesVues`. Jamais un masquage CSS ; les compteurs lisent la liste filtrée. Un
+  `itinerary_confidence` absent ou inconnu n'écarte rien — seules les deux valeurs qui disent « non établi ».
+  Les badges « Itinéraire à confirmer » et « Direct non vérifié » n'ont plus de porteur ; le paragraphe
+  d'excuse est retiré. Liste entièrement vide : la phrase brève et honnête, jamais un cadre muet.
+- **Les cinq justifications internes ne sont plus rendues.** Les causes restent dans les données et dans les
+  contre-épreuves. Un canal incertain n'affiche que sa ligne : « Cabine : à confirmer », « Soute : à
+  confirmer », « Fret : informations non publiées ».
+- **Conservé** : bandeau climatique, avis pays (formalités d'entrée), lignes canal avec seuils et tarifs quand
+  ils sont prouvés, ligne de provenance compacte et volet « Voir les preuves ».
+
+**DÉVIATION NOMMÉE.** L'arbitrage cite deux familles (`confirmUnreviewed`, `confirmOfficialLink`) et
+`air.unverified_note`. J'ai retiré les **quatre** familles, au titre de « aucun paragraphe supplémentaire par
+défaut » : « politique de la compagnie à confirmer » et « information supplémentaire nécessaire » répètent en
+une phrase ce que la ligne canal dit en deux mots. Elles se rétablissent par un mouvement nommé si Codex les
+veut. Même geste dans DestinationFinder, pour la même raison.
+
+### Témoins re-fondés, jamais abaissés
+
+| témoin | avant | après |
+|---|---|---|
+| badges d'itinéraire (harnais du Finder, ×4 langues) | trois cartes, badges exacts « Direct non vérifié » et « Itinéraire à confirmer » | **une seule carte sur trois** ; les deux autres ni affichées ni repliées dans les pistes ; aucun badge, aucune classe `acard--unverified`, aucun `.acard__unver` |
+| résumé par canal, même fixture | 3/0/0 · 0/3/0 · 0/3/0 | **1/0/0 · 0/1/0 · 0/1/0** — les compteurs sont recalculés après filtrage |
+| T0-A, cinq scénarios de cause × 4 langues | chaque phrase EXIGÉE visible, dans le bon ordre | **aucune des quatre phrases** dans la carte ni dans le rapport, aucun code interne, la ligne canal portant seule l'incertitude ; un contrôle préalable exige les quatre phrases réelles et distinctes — le témoin n'est pas vacant |
+| contrat de carte (annexe 38) | bloc de notes présent, deux familles dans l'ordre | bloc absent, quatre phrases absentes, ligne cabine « à confirmer » |
+| DestinationFinder (huit contrôles) | trois phrases visibles, ordre imposé | absentes ; la classification « à confirmer », son titre générique et le libellé climatique restent |
+| suite navigateur | l'avertissement général ou une ligne canal | la ligne canal seule, et **aucun** paragraphe de justification |
+| sabotage | — | mutation `les-compagnies-sans-itineraire-etabli-reviennent-dans-les-resultats` (catalogue 66 → **67**) |
+
+### Mesuré
+
+| contrôle | résultat |
+|---|---|
+| harnais du Finder (dist réduit) | **463 OK** |
+| chaîne `test:built-ui` | **995 OK** |
+| entités | 179 OK |
+| `test:unit`, dette Astro (165), contrat du catalogue (67) | verts |
+
+### Mesuré sur le dist complet (un seul build, 3 112 pages)
+
+| contrôle | résultat |
+|---|---|
+| suite navigateur (Playwright) | **184 OK, 0 ÉCHEC** — dont trois témoins neufs : l'incertitude est dite par la ligne canal, et aucun paragraphe de justification n'apparaît au-dessus ni dans les cartes |
+| étape 3 DOM | verte, scellé des licites inchangé |
+| entités | 179 OK |
+| caisses non sourcées | vert |
+| contre-épreuves `--dist-complet` | 58 garanties éprouvées sur 58 |
+## Annexe 43 — Saudia : une preuve lue sur une surface de test, retirée (10/09/2026, classement C)
+
+L'audit tarifaire indépendant de Codex a opposé la preuve importée au lot 6 : son URL,
+`booking-uat.dcloud.saudia.com`, est une **surface de test**, jamais une page de production. Philippe a tranché :
+preuve retirée, cabine et soute revenues à « à confirmer » jusqu'à une page de production stable portant la
+phrase. Ce test signalait l'adresse dès le 09/09 — « accepté par le contrat, SIGNALÉ pour contre-revue, non
+réécrit » : le signalement a servi, un tiers l'a opposé, la dette est fermée dans le sens de la prudence.
+
+### Mesuré, et une erreur nommée
+
+Cabine et soute n'ont pas la même histoire. La **cabine** était une ligne non revérifiée de la migration,
+réactivée en refus cité au lot 6 — la première du dépôt : elle redevient `review_state: legacy_unreviewed`.
+La **soute** portait `availability: offered` depuis toujours, une disponibilité d'auteur jamais citée. *Erreur
+nommée* : mon premier jet l'a remise en `review_state`, et le manifeste de migration l'a refusée — « politique
+migrée hors manifeste ». Il avait raison : elle n'a jamais été migrée. Elle retrouve son état exact d'avant le
+lot 6. Les deux se projettent « à confirmer » ; retirer une preuve ne crée ni oui ni non.
+
+### Mouvements nommés, tous figés sur mesure
+
+| témoin | avant | après |
+|---|---|---|
+| politiques citées (frontière, lot 9, inventaire, Air France) | 179 | **177** |
+| décisions citées | 178 | **176** |
+| sous conditions · refus · à confirmer | 144 · 34 · 124 | **143 · 33 · 126** |
+| `legacy_unreviewed` | 109 | **111** |
+| quatrième état (politiques réelles) | 144 | **143** |
+| témoin hérité `carries` | 29 529 | **29 106** (423 couples se referment, aucun ne s'ouvre) |
+| inventaire A/B, cabine A/B, soute A/B | 179/50, 80/8, 71/23 | **177/52, 79/9, 70/24** |
+| inventaire : B par règle, gov.uk seul, écart « B par règle sur politique aucune » | 28, 14, 27 | **30, 15, 29** |
+| baseline du Finder | figée Air France cabine | paire `saudia-preuve-uat-{avant,apres}.json` : **24 cartes / 1 560**, Saudia seule, 24 refus cabine et 12 soutes « sous conditions » → « à confirmer », **aucun canal ouvert, aucun verdict déplacé** |
+| matrice de migration | `airline_saudia\|cabin` dans les réactivations sur citation | **retirée** de cet ensemble ; la ligne redevient une ligne du manifeste |
+
+### Un témoin élargi, plus fort que le cas
+
+Le contrôle « l'URL est un sous-domaine `booking-uat`, signalé pour contre-revue » disparaît, remplacé par une
+garde générale : **aucune politique du dépôt ne repose sur une adresse de test** — `booking-uat`, `.uat.` ou
+`staging.` — mesurée sur l'artefact entier. Ce qui n'était qu'une note devient une barrière.
+
+### Les deux autres contre-lectures
+
+**Air China cabine** : ma preuve est validée par Philippe, la page officielle établissant le transport en cabine
+sur les vols opérés par la compagnie (et publiant 1 399 RMB par animal et par segment, que le contrat tarifaire
+portera). **Batik Air Indonesia** : cabine et soute validées ; le fret doit rester « à confirmer », et il l'est
+déjà — `not_offered` sans citation projette « à confirmer », ce que le témoin du lot 9 exigeait. Aucun mouvement
+pour ces deux compagnies.
 ## Annexe 44 — Le contrat tarifaire : schéma, portée à trois valeurs, conflits (10/09/2026, classement C)
 
 Arbitré par Codex, tranché par Philippe : ce premier mouvement se limite au **schéma, à la validation, à
