@@ -341,7 +341,7 @@ jobs:
       # <meta> de description et le JSON-LD — parce que la même phrase source y est recopiée, et
       # que trois corrections successives de ce lot n'avaient regardé que la première.
       - name: Aucun montant numérique publié sur les fiches compagnies (site complet)
-        run: node test-montants-publies.mjs --dist=packages/ui/dist
+        run: node --import tsx test-montants-publies.mjs --dist=packages/ui/dist
 
       # ET LA CORRECTION VIT BIEN À LA SOURCE. Un montant réécrit dans une fiche YAML doit
       # traverser le générateur et faire rougir la garde ci-dessus. Sans cette contre-épreuve,
