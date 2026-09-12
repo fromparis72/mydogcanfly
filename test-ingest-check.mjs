@@ -513,8 +513,61 @@ console.log("\n=== 3. La décision vient des fiches — les contre-épreuves du 
         ]);
         check("(y) une formulation officielle limpide mais NON RELUE n'entre pas", code === 1, out.slice(-400));
         check("(y) le refus donne l'empreinte exacte à porter au scellé",
-          out.includes("airline_air_france§cabin§weight_max|8|lte|dog_plus_carrier")
-          && out.includes("sujet=combined weight of the pet and carrier is up to 8 kg"), out.slice(-700));
+          out.includes('"airline":"airline_air_france"') && out.includes('"placement":"cabin"')
+          && out.includes('"sujet":"combined weight of the pet and carrier is up to 8 kg"'), out.slice(-700));
+      }
+    }
+
+    /* (z) LA PROVENANCE ENTIÈRE EST OPPOSABLE — P1 de Codex du 12/09/2026.
+       L'empreinte du scellé ne liait que la CITATION. Changer l'URL officielle, la langue annoncée
+       au visiteur, l'emplacement sur la page ou les deux dates de fraîcheur laissait donc
+       l'attestation « relue » alors que la source qu'on avait relue n'existait plus telle quelle.
+       Ces cinq mutations passaient toutes l'ingestion ; elles la font maintenant rougir, avec
+       l'empreinte exacte à reporter au scellé. */
+    {
+      const PROVENANCE = [
+        ["l'URL officielle remplacée",
+         ['url: "https://wwws.airfrance.fr/information/passagers/voyager-avec-son-animal-chien-chat"',
+          'url: "https://wwws.airfrance.fr/une-autre-page"']],
+        ["la langue annoncée de la citation changée", [["      quote_language: fr", "      quote_language: en"]]],
+        ["le localisateur réécrit",
+         ['locator: "Transport de chiens, de chats et autres animaux de compagnie → option En cabine"',
+          'locator: "Ailleurs sur la page"']],
+        /* LES DEUX DATES BOUGENT ENSEMBLE. Les changer séparément fait bien rougir l'ingestion,
+           mais pour une AUTRE raison : la cadence de 90 jours du contrat de source auditée, qui
+           exige `review_due = verified_date + 90 jours`. Ce sabotage-ci vise le scellé, pas la
+           cadence — il déplace donc la fraîcheur d'un cran en gardant l'écart exact, ce qui ne
+           laisse que la relecture humaine pour l'arrêter. */
+        ["la fraîcheur déplacée, cadence respectée",
+         [['verified_date: "2026-09-10"', 'verified_date: "2026-09-12"'],
+          ['review_due: "2026-12-09"', 'review_due: "2026-12-11"']]],
+      ];
+      /* Une seule date déplacée : c'est la CADENCE qui refuse, et il faut le savoir — sans ce
+         témoin, le sabotage de fraîcheur ci-dessous pourrait passer pour un succès du scellé
+         alors qu'une autre garde aurait mordu la première. */
+      {
+        freshSandbox();
+        writeFileSync(af(), readFileSync(af(), "utf8")
+          .replace('verified_date: "2026-09-10"', 'verified_date: "2026-09-12"'));
+        const { code, out } = run();
+        check("(z) une seule date déplacée → REFUS, mais par la CADENCE de 90 jours", code === 1, out.slice(-300));
+        check("(z) …et le refus le dit, plutôt que d'invoquer la relecture",
+          out.includes("cadence airline"), out.slice(-400));
+      }
+
+      for (const [quoi, mut] of PROVENANCE) {
+        const paires = Array.isArray(mut[0]) ? mut : [mut];
+        freshSandbox();
+        let t = readFileSync(af(), "utf8");
+        for (const [a, b] of paires) {
+          if (!t.includes(a)) throw new Error(`sabotage de provenance : « ${a.slice(0, 60)} » introuvable`);
+          t = t.replace(a, b);
+        }
+        writeFileSync(af(), t);
+        const { code, out } = run();
+        check(`(z) ${quoi} → REFUS de l'ingestion`, code === 1, out.slice(-300));
+        check(`(z) ${quoi} : le refus renvoie à la relecture humaine`,
+          out.includes("NON RELUE par un humain"), out.slice(-400));
       }
     }
 

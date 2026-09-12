@@ -257,33 +257,114 @@ const MARQUEURS: Record<"lt" | "lte" | "gt" | "gte", string[]> = {
  * attestation absente du scellé rougit, et toute entrée du scellé sans attestation correspondante
  * rougit aussi. Changer un seul caractère d'un fragment, d'une citation ou d'une claim casse
  * l'empreinte et exige une relecture. Trois attestations y figurent au 11/09/2026 : les trois
- * d'Air France, relues par Philippe et contre-revues par Codex. Les 49 autres canaux candidats
- * attendent la leur, et ne publient rien.
+ * d'Air France, relues par Philippe et contre-revues par Codex.
+ *
+ * *COMPTE CORRIGÉ (12/09/2026, relevé par Codex).* J'avais écrit « 49 autres canaux ». C'était deux
+ * mesures confondues en une. Rejoué sur les 302 politiques de canal : **49 portent un fait
+ * structuré**, 43 d'entre elles portent aussi une citation, et **37 ont une citation qui énonce
+ * réellement un poids ou des dimensions** — ce sont les candidates. Deux sont relues ; il en reste
+ * donc **35**, et elles ne publient rien. Un compteur écrit de mémoire est un compteur faux.
  */
 
-/** LE SCELLÉ, chargé une fois. Les entrées sont des empreintes ; leur `sens_relu` est destiné à
- *  l'humain qui relira la prochaine, pas à la machine. */
-import scelle from "../raw/attestations-relues.json";
-const SCELLE: ReadonlySet<string> = new Set(
-  (scelle as { attestations: { empreinte: string }[] }).attestations.map((x) => x.empreinte));
+/* ── LE SCELLÉ : SA LECTURE, SA VALIDATION, SON EMPREINTE ─────────────────────────────────────
+ *
+ * P1 DE CODEX (12/09/2026), en quatre points, tous justes :
+ *
+ *   1. *L'empreinte ne liait pas la provenance complète.* Modifier `source.url`, `quote_language`,
+ *      `locator`, `verified_date` ou `review_due` sans toucher à la citation laissait l'empreinte
+ *      identique : le lien officiel, la langue annoncée au visiteur ou la fraîcheur de la preuve
+ *      pouvaient dériver **sans relecture**. Un rattachement est relu CONTRE une source précise ;
+ *      changer la source, c'est changer ce qui a été relu.
+ *   2. *Le `join("§")` était ambigu.* Deux jeux de fragments distincts pouvaient produire la même
+ *      chaîne — il suffisait qu'un fragment contienne le séparateur ou l'un des noms de champs.
+ *      Le témoin de collision le démontre sur un cas concret.
+ *   3. *Les sabotages manquaient* pour l'URL, la langue, le localisateur, les dates et la collision.
+ *   4. *Le fichier du scellé n'était pas validé*, et les doublons d'empreintes disparaissaient dans
+ *      un `Set` au lieu d'être refusés.
+ *
+ * CE QUI ENTRE DANS L'EMPREINTE : la compagnie, le canal, la claim, **toute la source** et les
+ * fragments. CE QUI N'Y ENTRE PAS : `source.history`, le journal des révisions passées — y ajouter
+ * une ligne est de la tenue de registre, pas une affirmation nouvelle sur la compagnie, et cela ne
+ * doit pas exiger une relecture. C'est la seule exclusion, et elle est nommée.
+ */
+
+/** SÉRIALISATION CANONIQUE — ordonnée, typée, sans séparateur à deviner.
+ *
+ *  `JSON.stringify` échappe les guillemets et distingue `"8"` de `8` ; trier les clés rend la
+ *  sortie stable quel que soit l'ordre d'écriture dans le YAML. Deux valeurs distinctes ne peuvent
+ *  plus produire la même chaîne, ce qui était exactement le défaut du `join("§")`. */
+const canonique = (v: unknown): string => {
+  if (v === undefined || v === null) return "null";
+  if (Array.isArray(v)) return `[${v.map(canonique).join(",")}]`;
+  if (typeof v === "object") {
+    const o = v as Record<string, unknown>;
+    return `{${Object.keys(o).sort().map((k) => `${JSON.stringify(k)}:${canonique(o[k])}`).join(",")}}`;
+  }
+  return JSON.stringify(v);
+};
+
+/** La source telle qu'elle est OPPOSABLE : tout sauf le journal des révisions. */
+export type SourceOpposable = { history?: unknown } & Record<string, unknown>;
+const partieOpposable = (source: SourceOpposable | undefined) => {
+  if (!source) return null;
+  const copie: Record<string, unknown> = {};
+  for (const k of Object.keys(source)) if (k !== "history") copie[k] = source[k];
+  return copie;
+};
+
+/** L'EMPREINTE D'UNE ATTESTATION — ce qui a été relu, en entier. Toute modification de la claim,
+ *  d'un fragment ou d'un champ opposable de la source produit une empreinte différente, donc un
+ *  refus, donc une relecture. */
+export function empreinteAttestation(
+  airlineId: string, placement: string, a: Attestation, source: SourceOpposable | undefined,
+): string {
+  const fragments = "dimensions" in a
+    ? { dimensions: a.dimensions }
+    : { poids: a.poids, borne: a.borne, sujet: a.sujet ?? null };
+  return canonique({ airline: airlineId, placement, claim: a.claim, source: partieOpposable(source), fragments });
+}
+
+/* ── LA LECTURE DU SCELLÉ, VALIDÉE ET SANS ABSORPTION SILENCIEUSE ─────────────────────────────
+ * Un scellé mal formé est pire qu'un scellé absent : il autorise sans que personne ne sache quoi.
+ * Il est donc relu par un schéma strict, et un doublon d'empreinte est REFUSÉ plutôt que fondu
+ * dans un `Set` — deux relectures d'une même attestation, c'est une relecture de trop qu'aucun
+ * compteur n'aurait signalée. L'erreur est levée au CHARGEMENT : rien ne démarre sur un scellé
+ * douteux. */
+import scelleBrut from "../raw/attestations-relues.json";
+
+const EntreeScellee = z.object({
+  empreinte: z.string().min(1),
+  /** Le sens reconnu, écrit pour l'humain qui relira la suivante — jamais lu par la machine. */
+  sens_relu: z.string().min(20),
+}).strict();
+
+const FichierScelle = z.object({
+  _comment: z.array(z.string()).min(1),
+  relu_le: z.string().regex(/^\d{4}-\d{2}-\d{2}$/),
+  relu_par: z.string().min(3),
+  attestations: z.array(EntreeScellee),
+}).strict();
+
+const SCELLE: ReadonlySet<string> = (() => {
+  const lu = FichierScelle.safeParse(scelleBrut);
+  if (!lu.success) {
+    throw new Error("raw/attestations-relues.json est invalide — le scellé de relecture humaine ne "
+      + "peut pas être lu, donc AUCUNE attestation n'est autorisée :\n"
+      + lu.error.issues.map((i) => `  · ${i.path.join(".")} — ${i.message}`).join("\n"));
+  }
+  const vues = new Set<string>();
+  for (const e of lu.data.attestations) {
+    if (vues.has(e.empreinte)) {
+      throw new Error(`raw/attestations-relues.json : empreinte EN DOUBLE, refusée plutôt `
+        + `qu'absorbée — deux relectures d'un même rattachement, dont une au moins est de trop :\n  ${e.empreinte}`);
+    }
+    vues.add(e.empreinte);
+  }
+  return vues;
+})();
 
 /** LES EMPREINTES SCELLÉES, pour le contrôle de bidirectionnalité — aucune entrée orpheline. */
 export const empreintesScellees = (): string[] => [...SCELLE];
-
-/** L'EMPREINTE D'UNE ATTESTATION — ce qui doit être relu, et rien d'autre. Toute modification de
- *  l'un de ces cinq éléments produit une empreinte différente, donc un refus. */
-export function empreinteAttestation(
-  airlineId: string, placement: string, a: Attestation, quote: string | undefined,
-): string {
-  const c = a.claim;
-  const claim = c.kind === "carrier_dims_cm"
-    ? `${c.kind}|${c.l}x${c.w}x${c.h}`
-    : `${c.kind}|${c.kg}|${c.bound}|${c.subject ?? "-"}`;
-  const frags = "dimensions" in a
-    ? `dimensions=${a.dimensions}`
-    : `poids=${a.poids}|borne=${a.borne}|sujet=${a.sujet ?? "-"}`;
-  return [airlineId, placement, claim, quote ?? "-", frags].join("§");
-}
 
 const echapper = (s: string) => s.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
 
@@ -509,13 +590,13 @@ export const gardeAttestations = (
  */
 export function attestationsNonRelues(
   airlineId: string,
-  policy: Record<string, { attestations?: readonly Attestation[]; source?: { quote?: string } } | undefined>,
+  policy: Record<string, { attestations?: readonly Attestation[]; source?: SourceOpposable & { quote?: string } } | undefined>,
 ): string[] {
   const motifs: string[] = [];
   for (const placement of ["cabin", "hold", "cargo"]) {
     const d = policy[placement];
     for (const a of d?.attestations ?? []) {
-      const e = empreinteAttestation(airlineId, placement, a, d?.source?.quote);
+      const e = empreinteAttestation(airlineId, placement, a, d?.source);
       if (!SCELLE.has(e)) {
         motifs.push(`${placement} : attestation NON RELUE par un humain. Le sens du sujet pesé ne se `
           + `déduit pas d'une expression régulière : ajouter cette empreinte à `
@@ -528,14 +609,14 @@ export function attestationsNonRelues(
 
 /** TOUTES LES EMPREINTES RÉELLEMENT PORTÉES par un référentiel — l'autre sens du scellé. */
 export function empreintesPortees(
-  airlines: Iterable<{ id: string; premium?: { policy?: Record<string, { attestations?: readonly Attestation[]; source?: { quote?: string } } | undefined> } }>,
+  airlines: Iterable<{ id: string; premium?: { policy?: Record<string, { attestations?: readonly Attestation[]; source?: SourceOpposable & { quote?: string } } | undefined> } }>,
 ): string[] {
   const vues: string[] = [];
   for (const a of airlines) {
     const pol = a.premium?.policy ?? {};
     for (const placement of ["cabin", "hold", "cargo"]) {
       const d = pol[placement];
-      for (const att of d?.attestations ?? []) vues.push(empreinteAttestation(a.id, placement, att, d?.source?.quote));
+      for (const att of d?.attestations ?? []) vues.push(empreinteAttestation(a.id, placement, att, d?.source));
     }
   }
   return vues;

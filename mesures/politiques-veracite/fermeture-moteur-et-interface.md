@@ -4727,9 +4727,9 @@ nombre affiché en synthèse doit se retrouver dans la citation de la même cart
 sur 302. Faits attestés : **0 → 3**. Typecheck propre, `test:unit` et `test:built-ui` verts, dette Astro stable à
 165.
 
-**Dettes nommées, non refermées.** Quarante-neuf politiques portent encore une citation chiffrée sans
-rattachement : Codex a explicitement demandé leur relecture **humaine**, et rappelé que « le pilote ne doit pas
-devenir le point final ». Aucune dimension n'est rattachée. Enfin, `includes_carrier` et le sens d'une borne ne
+**Dettes nommées, non refermées.** Des politiques portent encore une citation chiffrée sans rattachement :
+Codex a explicitement demandé leur relecture **humaine**, et rappelé que « le pilote ne doit pas devenir le
+point final ». *Le compte écrit ici valait 49 ; il était faux, et l'annexe 57 le corrige à 35.* Aucune dimension n'est rattachée. Enfin, `includes_carrier` et le sens d'une borne ne
 sont pas vérifiables depuis les nombres de l'extrait : la garde les compare aux champs structurés, mais rien
 n'empêche un extrait muet sur le contenant d'accompagner un fait qui l'affirme — c'est la relecture humaine qui
 répond, et c'est pourquoi elle est exigée.
@@ -4818,7 +4818,7 @@ attesté, la synthèse publie la borne **sans nommer ce qui est pesé**. Aucune 
 plus lue nulle part : un sujet attesté exige que le champ structuré le dise, dans le même sens, et un
 champ absent est un refus, pas un `false`.
 
-**Ce que cela permet, et qui compte pour les 49 canaux à relire.** Une phrase muette sur le contenant
+**Ce que cela permet, et qui compte pour les canaux restant à relire** (35, voir annexe 57)**.** Une phrase muette sur le contenant
 reste attestable : elle publie sa borne et ne nomme pas le sujet. Le témoin `(5 quinquies)` l'exige
 explicitement. Sans cela, la règle aurait été « pas de contenant cité, pas de synthèse », et la
 prudence aurait de nouveau coûté l'information que ce lot existe pour rendre.
@@ -5010,8 +5010,8 @@ parce qu'une politique ne sait pas à quelle compagnie elle appartient. Et dans 
 `test-attestations-scellees.mjs`, qui éprouve les deux sens et neuf mutations.
 
 **TROIS ENTRÉES, et seulement trois.** Les trois attestations d'Air France, relues par Philippe et
-contre-revues par Codex. Les 49 autres canaux dont la citation porte un poids ou une dimension
-attendent leur relecture et ne publient rien.
+contre-revues par Codex. Les autres canaux dont la citation porte un poids ou une dimension attendent
+leur relecture et ne publient rien — *35, l'annexe 57 corrigeant le « 49 » écrit ici.*
 
 **UNE PROMESSE FAUSSE, CORRIGÉE.** L'en-tête d'`attestations.ts` affirmait « aucun rattachement par
 expression régulière » alors que la garantie sémantique reposait précisément sur des expressions
@@ -5044,6 +5044,80 @@ l'instance et jamais le principe. À chaque tour je fermais la phrase nommée et
 question de savoir ce qu'une machine peut prouver. La leçon n'est pas « mes expressions régulières
 étaient trop courtes » : c'est qu'**une garantie doit être bornée avant d'être écrite**, et qu'un
 contrat qui promet plus qu'il ne peut tenir est plus dangereux qu'un contrat qui s'arrête et le dit.
+
+**Coordination avec le lot tarifaire, inchangée.** #61 corrigée puis fusionnée, rebase de
+`fix/transavia-air-france-fares` sur le nouveau `main`, synthèse attestée et `farePresentation`
+conservées ensemble, régénération unique des artefacts.
+---
+
+## Annexe 57 — L'empreinte ne liait qu'une moitié de la preuve (12/09/2026, classement C)
+
+**Sixième contre-revue de Codex, sur `51d0721`.** Le principe du scellé humain est validé ; les
+jobs GitHub sont verts. Un P1 en quatre points, tous justes, et un compte documentaire faux.
+
+**1. L'empreinte ne liait pas la provenance complète.** Modifier `source.url`, `quote_language`,
+`locator`, `verified_date` ou `review_due` sans toucher à la citation laissait
+`attestationsNonRelues` à zéro et passait `Airline.safeParse`. Le lien officiel, la langue annoncée
+au visiteur et la fraîcheur de la preuve pouvaient donc dériver **sans relecture**. Un rattachement
+est relu **contre une source précise** ; changer la source change ce qui a été relu. L'empreinte
+porte désormais **tous** les champs opposables — URL, type, citation, langue, localisateur, deux
+dates, indice de confiance, relecteur. Une seule exclusion, nommée : `source.history`, le journal des
+révisions passées, dont l'allongement est de la tenue de registre et non une affirmation nouvelle.
+
+**2. L'assemblage par `§` était ambigu.** Deux jeux de fragments distincts pouvaient produire la même
+empreinte — il suffisait qu'un fragment contienne le séparateur ou l'un des noms de champ. Le témoin
+le démontre sur un cas concret : `borne: "a|sujet=b"` sans sujet, et `borne: "a"` avec
+`sujet: "b|sujet=-"`, donnaient tous deux `poids=8 kg|borne=a|sujet=b|sujet=-`. La sérialisation est
+maintenant canonique, clés triées et valeurs échappées ; un fragment qui imite la syntaxe de
+l'empreinte est échappé, pas interprété.
+
+**3. Les sabotages manquaient.** Cinq mutations de provenance entrent sur le chemin d'ingestion, huit
+sur la fonction, plus la collision et le témoin d'échappement.
+
+**UNE GARDE EN CACHAIT UNE AUTRE, ET IL FALLAIT LE DIRE.** Déplacer une seule des deux dates fait
+bien rougir l'ingestion — mais par la **cadence de 90 jours** du contrat de source auditée, pas par
+le scellé. Un sabotage qui rougit pour la mauvaise raison est un témoin vide. Le sabotage de
+fraîcheur déplace donc les deux dates en gardant l'écart exact, ce qui ne laisse que la relecture
+humaine pour l'arrêter, et un témoin séparé constate que la cadence mord bien sur le cas simple.
+
+**4. Le fichier du scellé n'était pas validé, et les doublons disparaissaient dans un `Set`.** Il est
+désormais relu par un schéma strict — clés fermées, date de relecture au format, relecteur nommé,
+sens relu d'au moins vingt caractères — et une empreinte en double est **refusée** plutôt
+qu'absorbée : deux relectures d'un même rattachement, c'est une relecture de trop qu'aucun compteur
+n'aurait signalée. L'erreur est levée au **chargement** : rien ne démarre sur un scellé douteux. Ces
+six contrôles tournent dans un processus court, sur une copie du paquet, l'arbre réel n'étant jamais
+muté.
+
+**UN BAC À SABLE MAL PLACÉ M'A FAIT ROUGIR SIX CONTRÔLES POUR RIEN.** Écrit d'abord dans `/tmp`, il
+ne résolvait ni `zod` ni les modules du paquet : la remontée vers `node_modules` s'arrêtait à la
+racine du disque. Il vit maintenant dans le dépôt, ignoré par git, comme celui de
+`test-ingest-check.mjs` — qui avait résolu ce problème un mois plus tôt et dont je n'avais pas relu
+la raison.
+
+**LE COMPTE DOCUMENTAIRE ÉTAIT FAUX, ET CODEX L'A RELEVÉ.** J'écrivais « 49 autres canaux » dans le
+dossier, dans l'en-tête du contrat et dans la description de la PR. C'étaient deux mesures confondues
+en une. Rejoué sur les 302 politiques de canal :
+
+| mesure | valeur |
+|---|---|
+| politiques portant un fait structuré | 49 |
+| …dont celles portant aussi une citation | 43 |
+| …dont celles dont la citation énonce un poids ou des dimensions | **37** |
+| relues et attestées | 2 |
+| **candidates restantes** | **35** |
+
+Deux politiques relues donnent trois attestations, la soute Air France en portant deux. Il ne peut
+donc pas rester « 49 autres canaux » : il en reste **35**. Un compteur écrit de mémoire est un
+compteur faux, et celui-ci a survécu à cinq contre-revues parce que personne, moi compris, ne l'avait
+rejoué.
+
+**Mouvement des comptes.** Harnais du scellé : **23 → 42**. Contre-épreuves d'ingestion : **79 → 89**.
+Harnais du contrat mécanique : **45**, inchangé en nombre — un de ses témoins positifs ne passait plus
+qu'une partie de la source, et a rougi, ce qui est la preuve que la nouvelle garde tient. Harnais des
+pages d'entités : **234**. Politiques attestées : **2**. Faits attestés : **3**. Dette Astro : **165**.
+
+**Les artefacts ne bougent pas.** L'empreinte est calculée, jamais stockée dans `objects.json` : seul
+le fichier du scellé change, avec ses trois entrées réécrites au nouveau format.
 
 **Coordination avec le lot tarifaire, inchangée.** #61 corrigée puis fusionnée, rebase de
 `fix/transavia-air-france-fares` sur le nouveau `main`, synthèse attestée et `farePresentation`

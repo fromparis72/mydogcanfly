@@ -324,10 +324,20 @@ console.log("\n=== 7. LA FRONTIÈRE : ce que la machine laisse passer, et que l'
 
   /* ET LE CONTRE-TÉMOIN : une attestation RELUE traverse les deux gardes. Sans lui, « le scellé
      arrête tout » serait vrai et inutile. */
+  /* LA SOURCE ENTIÈRE, et pas seulement la citation : depuis le P1 de Codex du 12/09, l'empreinte
+     scellée porte tous les champs opposables. Un témoin qui n'en passerait qu'une partie
+     rougirait — et il a rougi, ce qui est la preuve que la garde tient. */
+  const SRC_CAB = {
+    url: "https://wwws.airfrance.fr/information/passagers/voyager-avec-son-animal-chien-chat",
+    source_type: "official_website", verified_date: "2026-09-10", review_due: "2026-12-09",
+    confidence: 4, reviewer: "Codex — lecture directe de la page officielle", quote: Q_CAB,
+    quote_language: "fr",
+    locator: "Transport de chiens, de chats et autres animaux de compagnie → option En cabine",
+  };
   check("témoin : l'attestation de cabine d'Air France, elle, est relue et passe les DEUX gardes",
     motifs(canal(AT_CAB, Q_CAB, CH_CAB)).length === 0
     && attestationsNonRelues("airline_air_france",
-      { cabin: { source: { quote: Q_CAB }, attestations: [AT_CAB] } }).length === 0);
+      { cabin: { source: SRC_CAB, attestations: [AT_CAB] } }).length === 0);
 }
 
 console.log("\n=== SUMMARY ===");

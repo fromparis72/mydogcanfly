@@ -26,6 +26,8 @@
  * sans elle, le scellé accumulerait des autorisations pour des rattachements qui n'existent plus,
  * et l'une d'elles redeviendrait valable le jour où quelqu'un réécrirait la même phrase.
  */
+import { createRequire } from "node:module";
+import { fileURLToPath } from "node:url";
 import { loadKB } from "./packages/knowledge/src/index.ts";
 import { empreinteAttestation, empreintesScellees, empreintesPortees, attestationsNonRelues }
   from "./packages/knowledge/src/attestations.ts";
@@ -58,7 +60,7 @@ console.log("=== 1. Les deux sens du scellé ===");
 
   /* NON-VACUITÉ : les deux contrôles ci-dessus passeraient aussi sur deux ensembles VIDES. */
   check("témoin : les trois attestations relues sont celles d'Air France",
-    portees.length === 3 && portees.every((e) => e.startsWith("airline_air_france§")),
+    portees.length === 3 && portees.every((e) => e.includes('"airline":"airline_air_france"')),
     portees.join("\n         "));
 }
 
@@ -78,11 +80,34 @@ console.log("\n=== 2. Le scellé MORD : toute modification exige une relecture =
     ["la valeur du seuil changée", (c) => { c.cabin.attestations[0].claim.kg = 10; }],
     ["la CITATION du canal réécrite", (c) => { c.cabin.source.quote = "En cabine, chiens de moins de 8 kg, sac de transport compris"; }],
     ["une attestation déplacée d'un canal à l'autre", (c) => { c.cargo = { ...c.hold, attestations: c.cabin.attestations }; }],
+    /* ── P1 DE CODEX (12/09) : LA PROVENANCE ENTIÈRE EST OPPOSABLE ───────────────────────────
+       L'empreinte ne liait que la citation. Ces cinq mutations-là passaient donc toutes :
+       le lien officiel, la langue annoncée au visiteur, l'emplacement sur la page et les deux
+       dates de fraîcheur pouvaient dériver SANS relecture. Un rattachement est relu CONTRE une
+       source précise ; changer la source change ce qui a été relu. */
+    ["l'URL officielle remplacée", (c) => { c.cabin.source.url = "https://wwws.airfrance.fr/autre-page"; }],
+    ["la langue annoncée de la citation changée", (c) => { c.cabin.source.quote_language = "en"; }],
+    ["le localisateur réécrit", (c) => { c.cabin.source.locator = "Ailleurs sur la page"; }],
+    ["la date de vérification avancée", (c) => { c.cabin.source.verified_date = "2026-09-12"; }],
+    ["l'échéance de revue repoussée", (c) => { c.cabin.source.review_due = "2030-01-01"; }],
+    ["le type de source changé", (c) => { c.cabin.source.source_type = "press"; }],
+    ["le relecteur changé sans relecture", (c) => { c.cabin.source.reviewer = "quelqu'un d'autre"; }],
+    ["l'indice de confiance relevé", (c) => { c.cabin.source.confidence = 5; }],
   ];
   for (const [quoi, f] of mutations) {
     const motifs = attestationsNonRelues("airline_air_france", muter(f));
     check(`${quoi} → NON RELUE`, motifs.length > 0, motifs.length ? "" : "(AUCUN motif — faux vert)");
   }
+
+  /* LA SEULE EXCLUSION, ET ELLE EST NOMMÉE. `source.history` est le journal des révisions
+     passées : y ajouter une ligne est de la tenue de registre, pas une affirmation nouvelle sur
+     la compagnie. Sans ce témoin, l'exclusion serait une porte dont personne ne vérifie qu'elle
+     est la seule. */
+  check("`source.history` n'entre PAS dans l'empreinte — y ajouter une ligne n'exige pas de relecture",
+    attestationsNonRelues("airline_air_france",
+      muter((c) => { c.cabin.source.history = [{ verified_date: "2026-01-01", url: "https://exemple" }]; })).length === 0,
+    JSON.stringify(attestationsNonRelues("airline_air_france",
+      muter((c) => { c.cabin.source.history = [{ verified_date: "2026-01-01", url: "https://exemple" }]; }))));
 
   /* …ET LE TÉMOIN POSITIF : la fiche telle qu'elle est publiée passe. Sans lui, « tout refuser »
      serait vert. */
@@ -93,7 +118,8 @@ console.log("\n=== 2. Le scellé MORD : toute modification exige une relecture =
   /* Le motif NOMME l'empreinte à relire : une relecture humaine n'a rien à recomposer. */
   const m = attestationsNonRelues("airline_air_france", muter((c) => { c.cabin.attestations[0].borne = "de moins de 8 kg"; }));
   check("le refus donne l'empreinte EXACTE à ajouter au scellé",
-    m[0].includes("airline_air_france§cabin§") && m[0].includes("borne=de moins de 8 kg"), m[0]);
+    m[0].includes('"airline":"airline_air_france"') && m[0].includes('"placement":"cabin"')
+    && m[0].includes('"borne":"de moins de 8 kg"'), m[0]);
 }
 
 console.log("\n=== 3. Les trois reformulations qui avaient battu la quatrième liste ===");
@@ -122,20 +148,110 @@ console.log("\n=== 3. Les trois reformulations qui avaient battu la quatrième l
   }
 }
 
-console.log("\n=== 4. L'empreinte est stable, et elle distingue ===");
+console.log("\n=== 4. L'empreinte est stable, elle distingue, et elle ne collisionne pas ===");
 {
   const a = { claim: { kind: "weight_max", kg: 8, bound: "lt", subject: "dog_plus_carrier" },
     poids: "8 kg", borne: "moins de 8 kg", sujet: "8 kg, sac compris" };
-  const e = (x, p, q) => empreinteAttestation(x, p, a, q);
+  const src = (quote) => ({ url: "https://exemple.fr", source_type: "official_website", quote,
+    quote_language: "fr", locator: "ici", verified_date: "2026-09-01", review_due: "2026-11-30", confidence: 4 });
+  const e = (x, p, q) => empreinteAttestation(x, p, a, src(q));
   check("la même attestation donne toujours la même empreinte",
     e("airline_x", "cabin", "q") === e("airline_x", "cabin", "q"));
   check("la compagnie entre dans l'empreinte", e("airline_x", "cabin", "q") !== e("airline_y", "cabin", "q"));
   check("le canal entre dans l'empreinte", e("airline_x", "cabin", "q") !== e("airline_x", "hold", "q"));
   check("la citation entre dans l'empreinte", e("airline_x", "cabin", "q") !== e("airline_x", "cabin", "q2"));
-  /* Une citation ABSENTE ne doit pas produire la même empreinte qu'une citation vide ou qu'un
-     tiret : sans quoi retirer la preuve d'un canal laisserait son attestation scellée. */
-  check("une citation absente ne se confond pas avec une citation quelconque",
-    e("airline_x", "cabin", undefined) !== e("airline_x", "cabin", "-x"));
+  /* Une source ABSENTE ne doit pas se confondre avec une source quelconque : sans quoi retirer la
+     preuve d'un canal laisserait son attestation scellée. */
+  check("une source absente ne se confond avec aucune source",
+    empreinteAttestation("airline_x", "cabin", a, undefined) !== e("airline_x", "cabin", "q"));
+
+  /* ── LA COLLISION, SUR UN CAS CONCRET (P1 de Codex, point 2) ────────────────────────────────
+     L'ancien assemblage écrivait `poids=…|borne=…|sujet=…` puis joignait le tout par « § ». Il
+     suffisait qu'un fragment CONTIENNE l'un de ces noms de champ pour que deux attestations
+     distinctes produisent la même chaîne. Les deux ci-dessous sont exactement ce cas : sous
+     l'ancien format, toutes deux donnaient « poids=8 kg|borne=a|sujet=b|sujet=- ». */
+  const A = { claim: a.claim, poids: "8 kg", borne: "a|sujet=b", sujet: undefined };
+  const B = { claim: a.claim, poids: "8 kg", borne: "a", sujet: "b|sujet=-" };
+  const ancienne = (x) => `poids=${x.poids}|borne=${x.borne}|sujet=${x.sujet ?? "-"}`;
+  check("préalable : ces deux jeux de fragments COLLISIONNAIENT sous l'ancien assemblage",
+    ancienne(A) === ancienne(B), `${ancienne(A)}\n         ${ancienne(B)}`);
+  check("…et la sérialisation canonique les sépare",
+    empreinteAttestation("airline_x", "cabin", A, src("q")) !== empreinteAttestation("airline_x", "cabin", B, src("q")));
+
+  /* Le séparateur n'existe plus : un fragment qui contient des guillemets ou des accolades est
+     échappé, pas interprété. */
+  const C = { claim: a.claim, poids: '8 kg","borne":"x', borne: "moins de 8 kg", sujet: "8 kg, sac compris" };
+  check("un fragment qui imite la syntaxe de l'empreinte est échappé, pas interprété",
+    empreinteAttestation("airline_x", "cabin", C, src("q")) !== empreinteAttestation("airline_x", "cabin", a, src("q")));
+}
+
+console.log("\n=== 5. Le fichier du scellé est VALIDÉ, et les doublons sont refusés ===");
+{
+  /* Un scellé mal formé est pire qu'un scellé absent : il autorise sans que personne ne sache
+     quoi. La lecture est donc relue par un schéma strict, et un doublon d'empreinte est REFUSÉ
+     plutôt que fondu dans un `Set` — deux relectures d'un même rattachement, c'est une relecture
+     de trop qu'aucun compteur n'aurait signalée.
+
+     Ces contrôles s'exécutent dans un PROCESSUS COURT, sur une copie du paquet : la garde lève au
+     CHARGEMENT du module, et un test qui la déclencherait dans son propre processus emporterait
+     tout le harnais avec elle. */
+  const require2 = createRequire(import.meta.url);
+  const { spawnSync } = require2("node:child_process");
+  const fs = require2("node:fs");
+  const path = require2("node:path");
+  const os = require2("node:os");
+
+  const ROOT = path.dirname(fileURLToPath(import.meta.url));
+  const SCELLE_REL = path.join("packages", "knowledge", "raw", "attestations-relues.json");
+  const original = JSON.parse(fs.readFileSync(path.join(ROOT, SCELLE_REL), "utf8"));
+
+  /** Écrit un scellé muté dans un bac à sable, tente de l'importer, rend le code et la sortie. */
+  const chargerAvec = (mutation) => {
+    /* LE BAC À SABLE VIT DANS LE DÉPÔT (`.scelle-sandbox/`, ignoré par git), comme celui de
+       `test-ingest-check.mjs`. Écrit d'abord dans `/tmp`, il ne résolvait ni `zod` ni les modules
+       du paquet : la remontée vers `node_modules` s'arrêtait à la racine du disque, et les six
+       contrôles rougissaient pour une raison qui n'avait rien à voir avec ce qu'ils mesurent.
+       L'arbre RÉEL n'est jamais muté — c'est la règle du dépôt, et une interruption au mauvais
+       moment laisserait sinon un scellé corrompu. */
+    const bac = fs.mkdtempSync(path.join(ROOT, ".scelle-sandbox-"));
+    try {
+      fs.cpSync(path.join(ROOT, "packages", "knowledge"), path.join(bac, "packages", "knowledge"),
+        { recursive: true, filter: (src) => !src.includes("node_modules") });
+      const copie = JSON.parse(JSON.stringify(original));
+      mutation(copie);
+      fs.writeFileSync(path.join(bac, SCELLE_REL), JSON.stringify(copie, null, 2) + "\n");
+      const entree = path.join(bac, "sonde.mts");
+      fs.writeFileSync(entree,
+        'import { empreintesScellees } from "./packages/knowledge/src/attestations.ts";\n'
+        + 'console.log(empreintesScellees().length);\n');
+      const r = spawnSync(process.execPath, ["--import", "tsx", entree],
+        { encoding: "utf8", cwd: ROOT, maxBuffer: 8 * 1024 * 1024 });
+      return { code: r.status, out: (r.stdout || "") + (r.stderr || "") };
+    } finally {
+      fs.rmSync(bac, { recursive: true, force: true });
+    }
+  };
+
+  const temoin = chargerAvec(() => {});
+  check("témoin : le scellé RÉEL se charge, et rend ses 3 empreintes", temoin.code === 0 && temoin.out.trim().endsWith("3"),
+    temoin.out.slice(-400));
+
+  const doublon = chargerAvec((c) => { c.attestations.push({ ...c.attestations[0] }); });
+  check("une empreinte EN DOUBLE est refusée, pas absorbée", doublon.code !== 0, doublon.out.slice(-300));
+  check("…et le refus nomme le doublon", doublon.out.includes("EN DOUBLE"), doublon.out.slice(-300));
+
+  const cleInconnue = chargerAvec((c) => { c.attestations[0].note = "x"; });
+  check("une clé inconnue dans une entrée est refusée", cleInconnue.code !== 0, cleInconnue.out.slice(-300));
+
+  const sansSens = chargerAvec((c) => { c.attestations[0].sens_relu = "ok"; });
+  check("un « sens relu » vide ou expédié est refusé — la relecture doit dire ce qu'elle a compris",
+    sansSens.code !== 0, sansSens.out.slice(-300));
+
+  const dateFolle = chargerAvec((c) => { c.relu_le = "hier"; });
+  check("une date de relecture mal formée est refusée", dateFolle.code !== 0, dateFolle.out.slice(-300));
+
+  const champManquant = chargerAvec((c) => { delete c.relu_par; });
+  check("un scellé sans relecteur nommé est refusé", champManquant.code !== 0, champManquant.out.slice(-300));
 }
 
 console.log("\n=== SUMMARY ===");
