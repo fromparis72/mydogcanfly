@@ -63,6 +63,27 @@ ladder:
       pt: "não transportado"
 policies:
   cabin:
+    # TARIF OFFICIEL — contrat de transport JetBlue, relu le 2026-09-12.
+    fares:
+      - id: fare_jetblue_cabin_usd_2026_09_12
+        placement: cabin
+        price:
+          kind: exact
+          amounts: [{ amount: 125, currency: USD }]
+        billing_subject: pet
+        journey_basis: per_one_way
+        scope_label: Animal en cabine · par animal et par trajet
+        source:
+          url: https://www.jetblue.com/ui-assets/durable-homepage/contract_of_carriage.pdf
+          source_type: official_website
+          verified_date: 2026-09-12
+          review_due: 2026-12-11
+          confidence: 5
+          reviewer: Codex — relecture du contrat de transport officiel
+          history: []
+          quote: "The charge to the Passenger for transporting a pet in-cabin is One Hundred and Twenty-Five Dollars ($125) per pet, each way."
+          quote_language: en
+          locator: Section 8 · Acceptance of Animals · Pet Fee
     availability: offered
     # PREUVE IMPORTÉE — import strict V3 (Codex, lecture directe du 2026-09-08, cohorte LOT2 fait 3).
     # Effet attendu : Show a conditional cabin lead only for a dog that is actually small enough for the under-seat carrier.
@@ -80,6 +101,17 @@ policies:
       locator: "Traveling with Pets → Pet guidelines"
   hold:
     availability: not_offered
+    source:
+      url: https://www.jetblue.com/ui-assets/durable-homepage/contract_of_carriage.pdf
+      source_type: official_website
+      verified_date: 2026-09-12
+      review_due: 2026-12-11
+      confidence: 5
+      reviewer: Codex — relecture du contrat de transport officiel
+      history: []
+      quote: "No animals are allowed to be transported on Carrier as checked baggage; however, Carrier will permit small dogs and cats to be transported by Passengers in-cabin"
+      quote_language: en
+      locator: Section 8 · Acceptance of Animals
   cargo:
     availability: not_offered
 channels:

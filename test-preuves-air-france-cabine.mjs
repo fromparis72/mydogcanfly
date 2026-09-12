@@ -67,7 +67,8 @@ console.log("=== Étage 1 — le fait de Codex, dans la donnée à l'octet près
   /* MOUVEMENT NOMMÉ (10/09/2026, plus tard — retrait de la preuve Saudia, surface de test) : 179 → 177. Air France cabine
      reste citée : ce témoin le vérifie nominativement juste au-dessus, le compte global bouge pour une autre raison. */
   /* MOUVEMENT NOMMÉ (12/09/2026, SAS soute) : 177 → 178 politiques citées. */
-  check("178 politiques citées sur 302 — Air France cabine et SAS soute en font partie", citees === 178 && politiques === 302, `${citees} / ${politiques}`);
+  /* MOUVEMENT NOMMÉ (12/09/2026, lot de 30 compagnies) : 178 → 189. */
+  check("189 politiques citées sur 302 — Air France cabine et SAS soute en font partie", citees === 189 && politiques === 302, `${citees} / ${politiques}`);
 }
 
 console.log("\n=== Étage 2 — Paris CDG → New York JFK, chihuahua de 3 kg, 7,9 kg, 8 kg, 9 kg ; Golden 32 kg ===");

@@ -947,9 +947,12 @@ console.log("=== Preuve T0-B2-UI (deux baselines FIGÉES — permanente) ===");
        complément Air France n'est pas écrasée : elle devient l'AVANT de cette paire. */
     /* 12/09/2026 — LA PLUS RÉCENTE EST CELLE DE SAS SOUTE, citée sur la page nationale suédoise.
        Le retrait Saudia reste intact comme AVANT de cette paire. */
-    check("la baseline vivante est identique à la baseline figée la plus récente (SAS soute citée)",
+    /* 12/09/2026 — LE LOT DE 30 COMPAGNIES DEVIENT L'ÉTAT VIVANT. La baseline SAS reste
+       figée comme état immédiatement antérieur ; l'inventaire nominatif et les comptes de
+       décision ci-dessous bornent le mouvement du nouveau lot. */
+    check("la baseline vivante a quitté la baseline SAS — le lot de 30 compagnies change réellement le Finder",
       readFileSync("test-baselines/t0a-finder-baseline.json", "utf8")
-        === readFileSync("test-baselines/sas-soute-citee-apres.json", "utf8"));
+        !== readFileSync("test-baselines/sas-soute-citee-apres.json", "utf8"));
     check("l'AVANT de SAS soute EST l'après du retrait Saudia — chaîne continue",
       readFileSync("test-baselines/sas-soute-citee-avant.json", "utf8")
         === readFileSync("test-baselines/saudia-preuve-uat-apres.json", "utf8"));
@@ -1889,11 +1892,17 @@ console.log("=== Couverture DIRECTE : les 302 politiques, hors des 72 scénarios
   /* MOUVEMENT NOMMÉ (12/09/2026, SAS soute — page nationale suédoise citée) : les 72 scénarios
      de la baseline ouvrent ce seul canal, `legacy_unreviewed` → `accepted_with_conditions` ;
      aucun verdict, aucune autre compagnie et aucun autre canal ne bouge. */
-  check("répartition runtime : 0 allowed · 144 sous conditions · 33 denied · 125 à confirmer",
-    !parStatut.allowed && parStatut.accepted_with_conditions === 144 && parStatut.denied === 33 && parStatut.confirmation_required === 125,
+  /* MOUVEMENT NOMMÉ (12/09/2026, lot de 30 compagnies — sources officielles nationales ou
+     anglaises, annexe lot-30-compagnies-20260912) : onze canaux jusque-là non prouvés reçoivent
+     une phrase officielle. Sept deviennent `accepted_with_conditions` (American soute,
+     Finnair soute, LOT cabine/soute, Royal Air Maroc cabine/soute, Singapore soute) et quatre
+     deviennent `denied` (Delta soute, JetBlue soute, United soute, Vueling cabine). Huit causes
+     `legacy_unreviewed` et trois `official_source_unquoted` disparaissent. */
+  check("répartition runtime : 0 allowed · 151 sous conditions · 37 denied · 114 à confirmer",
+    !parStatut.allowed && parStatut.accepted_with_conditions === 151 && parStatut.denied === 37 && parStatut.confirmation_required === 114,
     JSON.stringify(parStatut));
-  check("causes : 110 legacy_unreviewed · 14 official_source_unquoted · 0 policy_unpublished · 1 airline_approval",
-    parCause.legacy_unreviewed === 110 && parCause.official_source_unquoted === 14
+  check("causes : 102 legacy_unreviewed · 11 official_source_unquoted · 0 policy_unpublished · 1 airline_approval",
+    parCause.legacy_unreviewed === 102 && parCause.official_source_unquoted === 11
       && !parCause.policy_unpublished && parCause.airline_approval === 1, JSON.stringify(parCause));
 }
 

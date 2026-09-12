@@ -694,8 +694,10 @@ console.log("\n=== 14. L'import réel ne peut plus retomber silencieusement à z
     if (Array.isArray(p.fares) && p.fares.length) { avecTarifs++; lignesTarifaires += p.fares.length; compagnies.add(a.id); }
     if (Array.isArray(p.fare_conflicts) && p.fare_conflicts.length) avecConflits++;
   }
-  check("l'import verrouillé porte exactement 216 lignes sur 121 canaux et 70 compagnies — les dix valeurs SAS sont regroupées en huit lignes de zone, jamais perdues",
-    avecTarifs === 121 && lignesTarifaires === 216 && compagnies.size === 70,
+  /* MOUVEMENT NOMMÉ (12/09/2026) : les deux grilles cabine Aeromexico
+     documentées par la page nationale ajoutent 2 lignes, 1 canal et 1 compagnie. */
+  check("l'import verrouillé porte exactement 232 lignes sur 127 canaux et 74 compagnies — le lot officiel du 12 septembre traverse sans perte",
+    avecTarifs === 127 && lignesTarifaires === 232 && compagnies.size === 74,
     `${lignesTarifaires} ligne(s), ${avecTarifs} canal(aux), ${compagnies.size} compagnie(s)`);
   const airFrance = objets.airlines.find((a) => a.id === "airline_air_france")?.premium?.policy;
   const montantsUniques = (p, currency) => [...new Set((p?.fares ?? []).flatMap((f) =>
@@ -805,8 +807,8 @@ console.log("\n=== 14. L'import réel ne peut plus retomber silencieusement à z
   check("Condor : « ab 59,99 Euro » devient un minimum en EUR, jamais un prix exact",
     condor?.price?.kind === "minimum" && condor.price.amounts?.[0]?.amount === 59.99 && condor.price.amounts?.[0]?.currency === "EUR");
   const delta = objets.airlines.find((a) => a.id === "airline_delta")?.premium?.policy?.cabin;
-  check("Delta : « $150 USD/CAD » conserve les deux devises sur le même montant",
-    JSON.stringify(montants(delta)) === JSON.stringify(["CAD:150", "USD:150"]), JSON.stringify(montants(delta)));
+  check("Delta : les tarifs Amériques à 150 USD/CAD et international à 200 USD/CAD/EUR traversent ensemble",
+    JSON.stringify(montants(delta)) === JSON.stringify(["CAD:150", "CAD:200", "EUR:200", "USD:150", "USD:200"]), JSON.stringify(montants(delta)));
   const ibx = objets.airlines.find((a) => a.id === "airline_iberia_express")?.premium?.policy?.cabin;
   check("Iberia Express : le dollar suffixé de « 40€/50$/35£ » reste rattaché à l'USD",
     JSON.stringify(montants(ibx)) === JSON.stringify(["EUR:40", "GBP:35", "USD:50"]), JSON.stringify(montants(ibx)));

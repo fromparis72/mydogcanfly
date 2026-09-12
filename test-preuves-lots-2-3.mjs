@@ -150,9 +150,12 @@ console.log("\n=== Étage 2 — Paris → Montréal et New York → Los Angeles 
   check("Delta cabine, Golden 32 kg : jamais un refus inventé (aucun seuil dans la phrase) — à confirmer par les règles de poids non citées",
     canal(lax, "airline_delta", "cabin")?.status === "confirmation_required", JSON.stringify(canal(lax, "airline_delta", "cabin")));
   check("Delta cabine, Cavalier 6 kg : sous conditions SANS plafond", canal(laxC, "airline_delta", "cabin")?.status === "accepted_with_conditions" && canal(laxC, "airline_delta", "cabin")?.weight_limit_kg === undefined);
-  check("Delta soute : volontairement NON décidée → à confirmer", canal(lax, "airline_delta", "hold")?.status === "confirmation_required");
-  check("JetBlue cabine, Cavalier 6 kg : sous conditions sans plafond ; Golden 32 kg : à confirmer, jamais refusé ; soute NON décidée → à confirmer",
-    canal(laxC, "airline_jetblue", "cabin")?.status === "accepted_with_conditions" && canal(lax, "airline_jetblue", "cabin")?.status === "confirmation_required" && canal(lax, "airline_jetblue", "hold")?.status === "confirmation_required");
+  /* MOUVEMENT NOMMÉ (12/09/2026, lot de 30 compagnies) : Delta et JetBlue soute quittent
+     `intentionally_unset` sur leurs refus officiels respectifs. */
+  check("Delta soute : refusée sur la citation officielle réservant ce canal aux militaires éligibles",
+    canal(lax, "airline_delta", "hold")?.status === "denied");
+  check("JetBlue cabine, Cavalier 6 kg : sous conditions sans plafond ; Golden 32 kg : à confirmer ; soute refusée sur citation",
+    canal(laxC, "airline_jetblue", "cabin")?.status === "accepted_with_conditions" && canal(lax, "airline_jetblue", "cabin")?.status === "confirmation_required" && canal(lax, "airline_jetblue", "hold")?.status === "denied");
 }
 
 console.log("\n=== Ce que les lots n'ont PAS fait ===");
@@ -160,8 +163,8 @@ console.log("\n=== Ce que les lots n'ont PAS fait ===");
   let allowed = 0;
   for (const a of kb.airlines.values()) for (const p of Object.values(a.premium?.policy ?? {})) if (p.status === "allowed") allowed++;
   check("aucune politique réelle n'est `allowed`", allowed === 0, String(allowed));
-  const unset = [["airline_delta", "hold"], ["airline_jetblue", "hold"], ["airline_air_transat", "cargo"], ["airline_air_europa", "cargo"], ["airline_avianca", "cargo"], ["airline_ana", "cargo"], ["airline_jal", "cabin"], ["airline_jal", "cargo"], ["airline_etihad", "hold"], ["airline_etihad", "cargo"]];
-  check("les 10 canaux `intentionally_unset` des deux lots n'ont reçu aucune citation",
+  const unset = [["airline_air_transat", "cargo"], ["airline_air_europa", "cargo"], ["airline_avianca", "cargo"], ["airline_ana", "cargo"], ["airline_jal", "cabin"], ["airline_jal", "cargo"], ["airline_etihad", "hold"], ["airline_etihad", "cargo"]];
+  check("les 8 canaux encore `intentionally_unset` des deux lots n'ont reçu aucune citation",
     unset.every(([id, pl]) => !(objets.airlines.find((a) => a.id === id)?.premium?.policy?.[pl]?.source?.quote)), JSON.stringify(unset.filter(([id, pl]) => objets.airlines.find((a) => a.id === id)?.premium?.policy?.[pl]?.source?.quote)));
 }
 

@@ -91,29 +91,32 @@ policies:
   hold:
     # TARIFS OFFICIELS — audit indépendant du 2026-09-10 ; aucune valeur héritée réactivée.
     fares:
-      - id: fare_ana_hold_jpy_2026_09_10
+      - id: fare_ana_hold_jpy_2026_09_12
         placement: hold
         price:
           kind: range
           amounts:
-            - amount: 4000
+            - amount: 4400
               currency: JPY
-            - amount: 40000
+            - amount: 6600
               currency: JPY
         billing_subject: container
-        journey_basis: per_journey
-        scope_label: international area grid; Japan domestic
+        journey_basis: per_segment
+        scope_label: Vols intérieurs au Japon, par cage et par trajet
         source:
-          url: https://www.ana.co.jp/en/jp/guide/reservation/support/international/pets/
+          url: https://www.ana.co.jp/ja/jp/guide/reservation/support/domestic/pets/
           source_type: official_website
-          verified_date: 2026-09-10
-          review_due: 2026-12-09
+          verified_date: 2026-09-12
+          review_due: 2026-12-11
           confidence: 4
-          reviewer: Codex — lecture directe de la source officielle
-          history: []
-          quote: Price per cage | JPY40000 / USD400 / CAD400 / EUR300 | JPY25000 / USD250 / CAD250 / EUR200 | JPY5000 | JPY6000 or JPY4000
-          quote_language: en
-          locator: Reservation and Fee > Service Fee
+          reviewer: Codex — lecture directe de la page nationale japonaise
+          history:
+            - date: 2026-09-10
+              reviewer: Codex
+              note: "Ancienne plage 4 000–40 000 JPY retirée : elle mêlait pages et périmètres."
+          quote: "料金額（1個1路線あたり） 国内全路線 税込6,600円（一部路線は 税込4,400円）"
+          quote_language: ja
+          locator: "ペットをお連れのお客様 → 料金額（1個1路線あたり）"
       - id: fare_ana_hold_usd_2026_09_10
         placement: hold
         price:
@@ -124,7 +127,7 @@ policies:
             - amount: 400
               currency: USD
         billing_subject: container
-        journey_basis: per_journey
+        journey_basis: per_segment
         scope_label: international area grid; Japan domestic
         source:
           url: https://www.ana.co.jp/en/jp/guide/reservation/support/international/pets/
@@ -147,7 +150,7 @@ policies:
             - amount: 400
               currency: CAD
         billing_subject: container
-        journey_basis: per_journey
+        journey_basis: per_segment
         scope_label: international area grid; Japan domestic
         source:
           url: https://www.ana.co.jp/en/jp/guide/reservation/support/international/pets/
@@ -170,7 +173,7 @@ policies:
             - amount: 300
               currency: EUR
         billing_subject: container
-        journey_basis: per_journey
+        journey_basis: per_segment
         scope_label: international area grid; Japan domestic
         source:
           url: https://www.ana.co.jp/en/jp/guide/reservation/support/international/pets/

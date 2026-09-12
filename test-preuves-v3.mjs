@@ -160,7 +160,10 @@ console.log("\n=== Étage 2 — Paris → Doha : Qatar Airways et Finnair ===");
   check("Qatar soute, Golden 32 kg : acceptée sous conditions (bagage enregistré cité)", canal(golden, "airline_qatar_airways", "hold")?.status === "accepted_with_conditions");
   check("Finnair cabine, Golden 32 kg : refus sûr au seuil 8 kg", canal(golden, "airline_finnair", "cabin")?.status === "denied");
   check("Finnair cabine, Cavalier 6 kg : sous conditions, plafond 8 kg", canal(cavalier, "airline_finnair", "cabin")?.status === "accepted_with_conditions" && canal(cavalier, "airline_finnair", "cabin")?.weight_limit_kg === 8);
-  check("Finnair soute : NON importée (fait B[1] en attente) → à confirmer, pas un oui hérité", canal(golden, "airline_finnair", "hold")?.status === "confirmation_required");
+  /* MOUVEMENT NOMMÉ (12/09/2026, lot de 30 compagnies) : Finnair soute quitte l'attente sur la
+     page nationale finnoise mise à jour le 8 juin 2026. */
+  check("Finnair soute : acceptée sous conditions sur la citation officielle la plus récente",
+    canal(golden, "airline_finnair", "hold")?.status === "accepted_with_conditions");
 }
 
 console.log("\n=== Étage 2 — Amsterdam → Málaga et Amsterdam → Lisbonne : Ryanair, Transavia, TAP ===");
@@ -195,9 +198,14 @@ console.log("\n=== Ce que l'import n'a PAS fait ===");
      American soute y RESTE : Codex l'a volontairement laissée non décidée au lot 4 (réservée aux
      militaires et diplomates en mission). */
   /* MOUVEMENT NOMMÉ (12/09/2026) : SAS soute quitte cette liste sur sa page nationale suédoise. */
-  const attente = [["airline_finnair", "hold"], ["airline_finnair", "cargo"], ["airline_american", "hold"], ["airline_singapore_airlines", "hold"], ["airline_vueling", "cabin"]];
-  check("les cinq faits encore EN ATTENTE du LISEZ_MOI ne sont pas importés : aucune citation sur ces canaux",
-    attente.every(([id, pl]) => !(objets.airlines.find((a) => a.id === id)?.premium?.policy?.[pl]?.source?.quote)), JSON.stringify(attente.filter(([id, pl]) => objets.airlines.find((a) => a.id === id)?.premium?.policy?.[pl]?.source?.quote)));
+  /* MOUVEMENT NOMMÉ (12/09/2026, lot de 30 compagnies) : Finnair soute, American soute,
+     Singapore soute et Vueling cabine quittent l'attente sur leurs citations officielles.
+     Finnair fret reste le seul des cinq faits V3 sans phrase et ne doit pas être inventé. */
+  const sortis = [["airline_finnair", "hold"], ["airline_american", "hold"], ["airline_singapore_airlines", "hold"], ["airline_vueling", "cabin"]];
+  check("quatre anciens faits en attente portent désormais leur citation officielle",
+    sortis.every(([id, pl]) => !!objets.airlines.find((a) => a.id === id)?.premium?.policy?.[pl]?.source?.quote), JSON.stringify(sortis));
+  check("Finnair fret reste sans citation — aucun fait n'est inventé",
+    !objets.airlines.find((a) => a.id === "airline_finnair")?.premium?.policy?.cargo?.source?.quote);
 }
 
 console.log(`\n=== SUMMARY ===\n${fail === 0 ? `ALL CHECKS PASSED (${pass})` : `${fail} CHECK(S) FAILED sur ${pass + fail}`}`);

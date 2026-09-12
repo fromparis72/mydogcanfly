@@ -83,48 +83,49 @@ policies:
   cabin:
     # TARIFS OFFICIELS — audit indépendant du 2026-09-10 ; aucune valeur héritée réactivée.
     fares:
-      - id: fare_delta_cabin_usd_2026_09_10
+      - id: fare_delta_cabin_americas_2026_09_12
         placement: cabin
         price:
-          kind: exact
+          kind: matrix
           amounts:
-            - amount: 150
-              currency: USD
-        billing_subject: pet_or_container
+            - { amount: 150, currency: USD }
+            - { amount: 150, currency: CAD }
+        billing_subject: pet
         journey_basis: per_one_way
-        scope_label: zones publiées → zones publiées
+        scope_label: États-Unis, Canada, Porto Rico et Îles Vierges américaines · billets émis depuis le 8 avril 2025
         source:
           url: https://www.delta.com/us/en/pet-travel/overview
           source_type: official_website
-          verified_date: 2026-09-10
-          review_due: 2026-12-09
-          confidence: 4
-          reviewer: Codex — lecture directe de la source officielle
+          verified_date: 2026-09-12
+          review_due: 2026-12-11
+          confidence: 5
+          reviewer: Codex — lecture de la grille officielle américaine
           history: []
-          quote: $150 USD/CAD
+          quote: "$150 USD/CAD* for tickets issued on/after April 8, 2025"
           quote_language: en
-          locator: In-Cabin Pet Fees
-      - id: fare_delta_cabin_cad_2026_09_10
+          locator: In-Cabin Pet Fees · U.S./Canada/Puerto Rico/U.S. Virgin Islands
+      - id: fare_delta_cabin_international_2026_09_12
         placement: cabin
         price:
-          kind: exact
+          kind: matrix
           amounts:
-            - amount: 150
-              currency: CAD
-        billing_subject: pet_or_container
+            - { amount: 200, currency: USD }
+            - { amount: 200, currency: CAD }
+            - { amount: 200, currency: EUR }
+        billing_subject: pet
         journey_basis: per_one_way
-        scope_label: zones publiées → zones publiées
+        scope_label: Vols internationaux éligibles
         source:
           url: https://www.delta.com/us/en/pet-travel/overview
           source_type: official_website
-          verified_date: 2026-09-10
-          review_due: 2026-12-09
-          confidence: 4
-          reviewer: Codex — lecture directe de la source officielle
+          verified_date: 2026-09-12
+          review_due: 2026-12-11
+          confidence: 5
+          reviewer: Codex — lecture de la grille officielle américaine
           history: []
-          quote: $150 USD/CAD
+          quote: "International | $200 USD/CAD/EUR*"
           quote_language: en
-          locator: In-Cabin Pet Fees
+          locator: In-Cabin Pet Fees · International
     availability: offered
     # PREUVE IMPORTÉE — import strict V3 (Codex, lecture directe du 2026-09-08, cohorte LOT2 fait 2).
     # Effet attendu : Cabin is a conditional lead for a genuinely small dog. It must not be presented as available for a large dog or every destination.
@@ -142,6 +143,17 @@ policies:
       locator: "Pet Travel on Delta → Traveling with In-Cabin Pets"
   hold:
     availability: not_offered
+    source:
+      url: https://www.delta.com/us/en/special-circumstances/military-travel/pets
+      source_type: official_website
+      verified_date: 2026-09-12
+      review_due: 2026-12-11
+      confidence: 5
+      reviewer: Codex — lecture de la page officielle américaine
+      history: []
+      quote: "Only active U.S. Military or Active U.S. State Department Foreign Service Officers (FSO) and their spouses with active transfer orders may transport their pets as checked baggage."
+      quote_language: en
+      locator: Military Pet Travel · Checked pet eligibility
   cargo:
     availability: not_offered
 channels:

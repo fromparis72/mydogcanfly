@@ -24,10 +24,10 @@
     "d'ici rougit ; toute entrée d'ici sans attestation correspondante rougit aussi ; un fichier mal",
     "formé ou portant deux fois la même empreinte est REFUSÉ au chargement, jamais absorbé.",
     "",
-    "TROIS ENTRÉES AU 12/09/2026, et seulement trois. Mesuré sur les 302 politiques de canal : 49",
+    "CINQ ENTRÉES AU 12/09/2026. Mesuré sur les 302 politiques de canal : 49",
     "portent un fait structuré, 43 d'entre elles portent aussi une citation, et 37 ont une citation",
     "qui énonce réellement un poids ou des dimensions. Deux sont relues ici — trois attestations, la",
-    "soute Air France en portant deux. Il reste donc 35 canaux candidats, qui attendent leur relecture",
+    "soute Air France en portant deux ; la cabine EgyptAir en porte deux autres. Les autres canaux attendent leur relecture",
     "humaine et ne publient aucune synthèse d'ici là."
   ],
   "relu_le": "2026-09-12",
@@ -44,6 +44,14 @@
     {
       "empreinte": "{\"airline\":\"airline_air_france\",\"claim\":{\"bound\":\"lte\",\"kg\":75,\"kind\":\"weight_max\",\"subject\":\"dog_plus_carrier\"},\"fragments\":{\"borne\":\"up to 75 kg\",\"poids\":\"75 kg\",\"sujet\":\"75 kg/165.35 lb. with its carrier\"},\"placement\":\"hold\",\"source\":{\"confidence\":4,\"locator\":\"Important!\",\"quote\":\"If your cat or dog weighs more than 8 kg/17.64 lb. and up to 75 kg/165.35 lb. with its carrier, it must travel in the hold.\",\"quote_language\":\"en\",\"review_due\":\"2026-12-07\",\"reviewer\":\"Codex — lecture directe de la page officielle\",\"source_type\":\"official_website\",\"url\":\"https://wwws.airfrance.fr/en/information/passagers/voyager-avec-son-animal-chien-chat\",\"verified_date\":\"2026-09-08\"}}",
       "sens_relu": "Le plafond de 75 kg porte sur le chien AVEC son contenant, et il est inclusif (« up to »)."
+    },
+    {
+      "empreinte": "{\"airline\":\"airline_egyptair\",\"claim\":{\"bound\":\"lte\",\"kg\":8,\"kind\":\"weight_max\",\"subject\":\"dog_plus_carrier\"},\"fragments\":{\"borne\":\"ne devrait pas dépasser 8 kg\",\"poids\":\"8 kg\",\"sujet\":\"poids total de l'animal et la cage ne devrait pas dépasser 8 kg\"},\"placement\":\"cabin\",\"source\":{\"confidence\":4,\"locator\":\"Le transport des animaux dans les cabines de passagers\",\"quote\":\"Le poids total de l'animal et la cage ne devrait pas dépasser 8 kg. Les dimensions maximales de la cage ne devraient pas dépasser 55 x 40 x 20 cm (Longueur, largeur, hauteur).\",\"quote_language\":\"fr\",\"review_due\":\"2026-12-11\",\"reviewer\":\"Philippe et Codex — lecture directe de la page française officielle\",\"source_type\":\"official_website\",\"url\":\"https://www.egyptair.com/fr/fly/special-services/Pages/traveling-with-pets.aspx\",\"verified_date\":\"2026-09-12\"}}",
+      "sens_relu": "La phrase française officielle porte explicitement le poids total de l'animal et de la cage à 8 kg au maximum ; la borne est inclusive."
+    },
+    {
+      "empreinte": "{\"airline\":\"airline_egyptair\",\"claim\":{\"h\":20,\"kind\":\"carrier_dims_cm\",\"l\":55,\"w\":40},\"fragments\":{\"dimensions\":\"55 x 40 x 20 cm\"},\"placement\":\"cabin\",\"source\":{\"confidence\":4,\"locator\":\"Le transport des animaux dans les cabines de passagers\",\"quote\":\"Le poids total de l'animal et la cage ne devrait pas dépasser 8 kg. Les dimensions maximales de la cage ne devraient pas dépasser 55 x 40 x 20 cm (Longueur, largeur, hauteur).\",\"quote_language\":\"fr\",\"review_due\":\"2026-12-11\",\"reviewer\":\"Philippe et Codex — lecture directe de la page française officielle\",\"source_type\":\"official_website\",\"url\":\"https://www.egyptair.com/fr/fly/special-services/Pages/traveling-with-pets.aspx\",\"verified_date\":\"2026-09-12\"}}",
+      "sens_relu": "La phrase française officielle publie les trois dimensions maximales de la cage, dans l'ordre longueur, largeur, hauteur, en centimètres."
     }
   ]
 }

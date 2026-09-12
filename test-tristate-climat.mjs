@@ -333,8 +333,10 @@ console.log("\n=== 5. Dominance : denied > confirmation_required — interaction
   /* MOUVEMENT NOMMÉ (12/09/2026, SAS soute raccordée à sa page nationale suédoise) : le canal reste
      à confirmer pour ce carlin à cause de la règle brachycéphale non citée, mais il ne porte plus la
      fausse cause « politique sans preuve ». Total 44 inchangé, provenance 29 → 28, race inchangée. */
-  check("carlin : 44 confirmations — 28 de provenance, 38 de race, 1 par règle non citée seule (Air Algérie cabine), aucune inexpliquée (chacune porte l'une des trois causes)",
-    confirmations.length === 44 && provenance === 28 && race === 38 && parRegleSeule.length === 1 && parRegleSeule[0]?.placement === "cabin" && inexpliquees.length === 0,
+  /* MOUVEMENT NOMMÉ (12/09/2026, lot 30) : trois politiques du trajet reçoivent leur citation
+     officielle ; 44 → 42 confirmations, 28 → 25 de provenance. La règle seule Air Algérie demeure. */
+  check("carlin : 42 confirmations — 25 de provenance, 38 de race, 1 par règle non citée seule, aucune inexpliquée",
+    confirmations.length === 42 && provenance === 25 && race === 38 && parRegleSeule.length === 1 && inexpliquees.length === 0,
     `${confirmations.length} confirmation(s), dont ${race} de race et ${provenance} de provenance, ${inexpliquees.length} inexpliquée(s), sur ${tousLesCanaux.length} canaux`);
 }
 

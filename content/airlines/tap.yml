@@ -75,69 +75,69 @@ policies:
   cabin:
     # TARIFS OFFICIELS — audit indépendant du 2026-09-10 ; aucune valeur héritée réactivée.
     fares:
-      - id: fare_tap_cabin_eur_2026_09_10
+      - id: fare_tap_cabin_eur_2026_09_12
         placement: cabin
         price:
           kind: minimum
           amounts:
-            - amount: 180
+            - amount: 40
               currency: EUR
         billing_subject: pet_or_container
         journey_basis: per_journey
-        scope_label: Domestic, Europe, intercontinental; online/call/airport; season
+        scope_label: À partir de 40 EUR · vol domestique · basse saison · achat en ligne
         source:
-          url: https://www.flytap.com/pt-br/informacoes/viajar-com-animais/animais-estimacao
+          url: https://www.flytap.com/pt-pt/informacoes/viajar-com-animais/animais-estimacao
           source_type: official_website
-          verified_date: 2026-09-10
-          review_due: 2026-12-09
-          confidence: 4
-          reviewer: Codex — lecture directe de la source officielle
+          verified_date: 2026-09-12
+          review_due: 2026-12-11
+          confidence: 5
+          reviewer: Codex — lecture de la grille officielle portugaise
           history: []
-          quote: "Voos intercontinentais: desde 180 EUR / 218 USD / 302 CAD ou 36.000 milhas"
+          quote: "desde 40 EUR / 51 USD / 70 CAD ou 8.000 milhas"
           quote_language: pt
-          locator: Cabin table → high season → airport/agency → intercontinental
-      - id: fare_tap_cabin_usd_2026_09_10
+          locator: Época baixa · Online · Voos domésticos
+      - id: fare_tap_cabin_usd_2026_09_12
         placement: cabin
         price:
           kind: minimum
           amounts:
-            - amount: 218
+            - amount: 51
               currency: USD
         billing_subject: pet_or_container
         journey_basis: per_journey
-        scope_label: Domestic, Europe, intercontinental; online/call/airport; season
+        scope_label: À partir de 51 USD · vol domestique · basse saison · achat en ligne
         source:
-          url: https://www.flytap.com/pt-br/informacoes/viajar-com-animais/animais-estimacao
+          url: https://www.flytap.com/pt-pt/informacoes/viajar-com-animais/animais-estimacao
           source_type: official_website
-          verified_date: 2026-09-10
-          review_due: 2026-12-09
-          confidence: 4
-          reviewer: Codex — lecture directe de la source officielle
+          verified_date: 2026-09-12
+          review_due: 2026-12-11
+          confidence: 5
+          reviewer: Codex — lecture de la grille officielle portugaise
           history: []
-          quote: "Voos intercontinentais: desde 180 EUR / 218 USD / 302 CAD ou 36.000 milhas"
+          quote: "desde 40 EUR / 51 USD / 70 CAD ou 8.000 milhas"
           quote_language: pt
-          locator: Cabin table → high season → airport/agency → intercontinental
-      - id: fare_tap_cabin_cad_2026_09_10
+          locator: Época baixa · Online · Voos domésticos
+      - id: fare_tap_cabin_cad_2026_09_12
         placement: cabin
         price:
           kind: minimum
           amounts:
-            - amount: 302
+            - amount: 70
               currency: CAD
         billing_subject: pet_or_container
         journey_basis: per_journey
-        scope_label: Domestic, Europe, intercontinental; online/call/airport; season
+        scope_label: À partir de 70 CAD · vol domestique · basse saison · achat en ligne
         source:
-          url: https://www.flytap.com/pt-br/informacoes/viajar-com-animais/animais-estimacao
+          url: https://www.flytap.com/pt-pt/informacoes/viajar-com-animais/animais-estimacao
           source_type: official_website
-          verified_date: 2026-09-10
-          review_due: 2026-12-09
-          confidence: 4
-          reviewer: Codex — lecture directe de la source officielle
+          verified_date: 2026-09-12
+          review_due: 2026-12-11
+          confidence: 5
+          reviewer: Codex — lecture de la grille officielle portugaise
           history: []
-          quote: "Voos intercontinentais: desde 180 EUR / 218 USD / 302 CAD ou 36.000 milhas"
+          quote: "desde 40 EUR / 51 USD / 70 CAD ou 8.000 milhas"
           quote_language: pt
-          locator: Cabin table → high season → airport/agency → intercontinental
+          locator: Época baixa · Online · Voos domésticos
     availability: offered
     # PREUVE IMPORTÉE — import strict V3 (Codex, lecture directe du 2026-09-08, cohorte A fait 14).
     # Effet attendu : For a 32 kg dog, cabin is not suitable.

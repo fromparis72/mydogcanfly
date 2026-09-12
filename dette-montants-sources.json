@@ -3,10 +3,10 @@
   "_regle": "Occurrences de montants restant dans les champs NON rendus des fiches compagnies. Une occurrence de source = une occurrence, jamais multipliée par ses exemplaires HTML. Une occurrence est un MARQUEUR DE DEVISE adjacent à un nombre : « ₱1 000–10 000 » en compte une, pas deux, parce qu'une fourchette partage son marqueur. Les tarifs prouvés sont comptés séparément : leur admissibilité est imposée par le contrat tarifaire à l'ingestion.",
   "_mesure": {
     "fiches": 73,
-    "occurrences": 1563,
-    "fiches_tarifs_prouves": 56,
-    "occurrences_tarifs_prouves": 479,
-    "occurrences_sources_totales": 2042
+    "occurrences": 1559,
+    "fiches_tarifs_prouves": 60,
+    "occurrences_tarifs_prouves": 547,
+    "occurrences_sources_totales": 2106
   },
   "fiches": {
     "aegean.yml": {
@@ -18,7 +18,7 @@
       "fareList.rows.value": 44
     },
     "aeromexico.yml": {
-      "channels.fee": 8,
+      "channels.fee": 4,
       "fareList.rows.value": 8
     },
     "air_austral.yml": {

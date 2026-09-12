@@ -73,6 +73,18 @@ console.log("=== Étage 1 — 23 faits relus, 22 dans la donnée à l'octet prè
       check(`  …projeté « accepté sous conditions » — jamais \`allowed\``, proj?.status === "accepted_with_conditions", JSON.stringify({ status: proj?.status, cause: proj?.status_cause }));
       continue;
     }
+    if (cle === "airline_brussels.hold") {
+      /* MOUVEMENT NOMMÉ (12/09/2026, lot de 30 compagnies) : la preuve anglophone du lot 4
+         est remplacée par la page nationale belge en néerlandais, lue le 12/09. */
+      check(`${cle} : source nationale belge plus récente, phrase, URL, langue et date`,
+        pol?.availability === "offered" && s.url === "https://www.brusselsairlines.com/be/nl/special-care/pets/cats-and-dogs-in-the-hold"
+          && s.quote === "Je kat of hond wordt goed verzorgd en reist in een geventileerd deel van het vliegtuigruim."
+          && s.quote_language === "nl" && s.verified_date === "2026-09-12", JSON.stringify(s));
+      check(`  …review_due calculé par reviewDueFrom (2026-12-11) et projeté sous conditions`,
+        s.review_due === reviewDueFrom(s.verified_date ?? "", "airline") && s.review_due === "2026-12-11"
+          && proj?.status === "accepted_with_conditions", `${s.verified_date} → ${s.review_due}`);
+      continue;
+    }
     check(`${cle} (LOT4[${f.index}]) : phrase, URL, localisateur, langue, date de lecture`,
       !!pol && s.quote === f.quote && s.locator === f.locator && s.quote_language === f.quote_language && s.url === f.url && s.verified_date === f.verified_date,
       JSON.stringify({ attendu: f.quote, lu: s.quote }));
@@ -86,6 +98,14 @@ console.log("=== Étage 1 — 23 faits relus, 22 dans la donnée à l'octet prè
   }
   for (const u of d.intentionally_unset) {
     const pol = politique(u.airline_id, u.placement);
+    if (u.airline_id === "airline_american" && u.placement === "hold") {
+      /* MOUVEMENT NOMMÉ (12/09/2026, lot de 30 compagnies) : American soute est désormais
+         refusée pour le voyageur ordinaire sur la phrase officielle réservant le service aux
+         militaires et diplomates éligibles. */
+      check("American soute quitte la non-décision sur un refus officiel cité",
+        !!pol?.source?.quote && kb.airlines.get(u.airline_id)?.premium?.policy?.[u.placement]?.status === "denied");
+      continue;
+    }
     check(`non-décision ${u.airline_id}.${u.placement} : aucune citation écrite, jamais convertie en oui ou en refus`,
       !pol?.source?.quote && kb.airlines.get(u.airline_id)?.premium?.policy?.[u.placement]?.status === "confirmation_required",
       JSON.stringify({ quote: pol?.source?.quote, status: kb.airlines.get(u.airline_id)?.premium?.policy?.[u.placement]?.status }));
@@ -162,8 +182,8 @@ console.log("\n=== Étage 2 — Paris → Rome, New York → Los Angeles, Londre
   const laxG = decide("airport_jfk", "airport_lax", GOLDEN_32), laxC = decide("airport_jfk", "airport_lax", CAVALIER_6);
   check("American cabine, Cavalier 6 kg : sous conditions ; Golden 32 kg : à confirmer, jamais refusé",
     canal(laxC, "airline_american", "cabin")?.status === "accepted_with_conditions" && canal(laxG, "airline_american", "cabin")?.status === "confirmation_required");
-  check("American fret (PetEmbark), Golden 32 kg : sous conditions — jamais « fret accepté » ; soute volontairement NON décidée (militaires, diplomates) → à confirmer",
-    canal(laxG, "airline_american", "cargo")?.status === "accepted_with_conditions" && canal(laxG, "airline_american", "hold")?.status === "confirmation_required");
+  check("American fret (PetEmbark), Golden 32 kg : sous conditions ; soute refusée aux voyageurs ordinaires sur citation",
+    canal(laxG, "airline_american", "cargo")?.status === "accepted_with_conditions" && canal(laxG, "airline_american", "hold")?.status === "denied");
   const lhrG = decide("airport_lhr", "airport_lax", GOLDEN_32), lhrC = decide("airport_lhr", "airport_lax", CAVALIER_6);
   check("WestJet soute, Golden 32 kg : sous conditions (« most international flights » — jamais une réponse absolue) ; cabine 32 kg à confirmer",
     canal(lhrG, "airline_westjet", "hold")?.status === "accepted_with_conditions" && canal(lhrG, "airline_westjet", "cabin")?.status === "confirmation_required");

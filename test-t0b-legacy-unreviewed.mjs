@@ -309,8 +309,11 @@ console.log("=== 7. T0-B2 : la migration est FAITE, et la forme héritée est in
   /* MOUVEMENT NOMMÉ (09/09/2026, correctif d'arbitrages — Codex, tranché par Philippe ; six preuves remplacées dans les lots 4, 6 et 8) : 111 → 109 (Aer Lingus soute, Air China cabine citées sur ordre). */
   /* MOUVEMENT NOMMÉ (10/09/2026, Saudia — preuve de test retirée sur contre-lecture de l'audit de Codex, tranchée par Philippe) : 109 → 111 : Saudia cabine et soute redeviennent des lignes sans page à montrer. */
   /* MOUVEMENT NOMMÉ (12/09/2026, SAS soute — page nationale suédoise citée) : 111 → 110. */
-  check("110 politiques émettent legacy_unreviewed (SAS soute a quitté cette cause sur citation)",
-    porteuses === 110, String(porteuses));
+  /* MOUVEMENT NOMMÉ (12/09/2026, lot de 30 compagnies) : 110 → 102 ; huit canaux quittent
+     `legacy_unreviewed` sur une citation officielle nominativement figée par le harnais de
+     frontière de confiance. */
+  check("102 politiques émettent legacy_unreviewed après le lot de 30 compagnies",
+    porteuses === 102, String(porteuses));
   /* 05/09/2026 — 33 → 32. British Airways cabine quitte ce groupe : sa page officielle porte
      désormais la phrase, et la politique devient le premier `denied` prouvé du dépôt. Chaque
      citation suivante fera baisser ce compte, et devra le nommer comme celle-ci. */
@@ -319,8 +322,10 @@ console.log("=== 7. T0-B2 : la migration est FAITE, et la forme héritée est in
   /* MOUVEMENT NOMMÉ (09/09/2026, lot 6) : 16 → 15 — United cabine, citée, quitte cette cause. */
   /* MOUVEMENT NOMMÉ (10/09/2026, complément Air France cabine — Codex) : 15 → 14 — Air France cabine, citée (« moins de 8 kg,
      sac de transport compris »), quitte cette cause. */
-  check("14 politiques émettent official_source_unquoted — une page officielle, aucune phrase citée",
-    nonCitee === 14, String(nonCitee));
+  /* MOUVEMENT NOMMÉ (12/09/2026, lot de 30 compagnies) : 14 → 11 ; trois pages officielles
+     déjà liées reçoivent enfin leur phrase opposable. */
+  check("11 politiques émettent official_source_unquoted — une page officielle, aucune phrase citée",
+    nonCitee === 11, String(nonCitee));
   /* MOUVEMENT NOMMÉ (09/09/2026, correctif d'arbitrages) : 1 → 0. Thai Cargo, seule « non publiée » depuis la migration, est
      ARBITRÉE `offered` sur la page THAI Cargo (Codex, tranché par Philippe) ; la cause disparaît du référentiel réel. */
   check("0 politique n'émet policy_unpublished — Thai Cargo, arbitrée, a quitté cette cause", nonPubliee === 0, String(nonPubliee));
@@ -574,8 +579,10 @@ console.log("=== 8. Baseline FIGÉE : le point de comparaison de T0-B2 est scell
      vérifiée dans test-t0a-baseline.mjs). */
   /* 10/09/2026 — la plus récente est celle du retrait de la preuve Saudia (chaîne : … → Air France cabine → Saudia). */
   /* 12/09/2026 — la plus récente est celle de SAS soute citée ; Saudia reste son AVANT intact. */
-  check("SAS soute citée : la baseline vivante est identique à la figée la plus récente",
-    vivante.equals(readFileSync("test-baselines/sas-soute-citee-apres.json")));
+  /* 12/09/2026 — le lot de 30 compagnies succède à cette figée. Son mouvement est borné par
+     l'inventaire nominal de la frontière de confiance et la baseline vivante T0-A. */
+  check("le lot de 30 compagnies succède réellement à la figée SAS, restée intacte",
+    !vivante.equals(readFileSync("test-baselines/sas-soute-citee-apres.json")));
   check("SAS soute : son AVANT est exactement l'après du retrait Saudia",
     readFileSync("test-baselines/sas-soute-citee-avant.json").equals(readFileSync("test-baselines/saudia-preuve-uat-apres.json")));
   check("Complément Air France cabine : sa figée reste intacte à côté (elle n'a pas été écrasée)",

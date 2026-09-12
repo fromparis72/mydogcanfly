@@ -43,7 +43,8 @@ const SENTINELLES = {
   /* MOUVEMENT NOMMÉ (10/09/2026, complément Air France cabine — Codex, une citation, borne stricte « moins de 8 kg ») : A 178 → 179 ; B 51 → 50 ; C et D inchangés. */
   /* MOUVEMENT NOMMÉ (10/09/2026, Saudia — preuve de test retirée, tranchée par Philippe) : A 179 → 177 ; B 50 → 52. */
   /* MOUVEMENT NOMMÉ (12/09/2026, SAS soute — page nationale suédoise citée) : A 177 → 178 ; C 74 → 73. */
-  par_categorie: { A: 178, A_incomplete: 0, B: 52, C: 73, D: 3 },
+  /* MOUVEMENT NOMMÉ (12/09/2026, lot 30 compagnies — onze politiques nouvellement citées) : A 178 → 189 ; B 52 → 46 ; C 73 → 68. */
+  par_categorie: { A: 189, A_incomplete: 0, B: 46, C: 68, D: 3 },
   par_canal: {
     /* MOUVEMENT NOMMÉ (08/09/2026, import strict V3 — 25 citations importées) : A 3 → 28 ; B 125 → 108 ; C 175 → 167 ; D inchangé. */
     /* MOUVEMENT NOMMÉ (08/09/2026, import strict lots 2 et 3 — 24 citations de plus, 52 en tout) : A 28 → 52 ; B 108 → 102 ; C 167 → 149. */
@@ -56,9 +57,11 @@ const SENTINELLES = {
     /* MOUVEMENT NOMMÉ (09/09/2026, correctif d'arbitrages — Codex, tranché par Philippe ; six preuves remplacées dans les lots 4, 6 et 8) : cabine 78/10/14 → 79/9/14 ; soute 70/24/8 → 71/23/8 ; fret inchangé. */
     /* MOUVEMENT NOMMÉ (10/09/2026, complément Air France cabine — Codex, une citation, borne stricte « moins de 8 kg ») : cabine 79/9/14 → 80/8/14 ; soute et fret inchangés. */
     /* MOUVEMENT NOMMÉ (10/09/2026, Saudia — preuve de test retirée, tranchée par Philippe) : cabine 80/8 → 79/9 ; soute 71/23 → 70/24. */
-    cabin: { A: 79, A_incomplete: 0, B: 9, C: 14, D: 0 },
+    /* Lot 30 : cabine A 79 → 82, C 14 → 11. */
+    cabin: { A: 82, A_incomplete: 0, B: 9, C: 11, D: 0 },
     /* MOUVEMENT NOMMÉ (12/09/2026, SAS soute) : A 70 → 71 ; C 8 → 7. */
-    hold: { A: 71, A_incomplete: 0, B: 24, C: 7, D: 0 },
+    /* Lot 30 : soute A 71 → 79, B 24 → 18, C 7 → 5. */
+    hold: { A: 79, A_incomplete: 0, B: 18, C: 5, D: 0 },
     cargo: { A: 28, A_incomplete: 0, B: 19, C: 52, D: 3 },
   },
   /* 42 B par la politique = les 45 politiques non fabriquées moins les 3 citées ; 83 B par une
@@ -75,7 +78,8 @@ const SENTINELLES = {
   /* MOUVEMENT NOMMÉ (09/09/2026, correctif d'arbitrages — Codex, tranché par Philippe ; six preuves remplacées dans les lots 4, 6 et 8) : règle 30 → 28. */
   /* MOUVEMENT NOMMÉ (10/09/2026, complément Air France cabine — Codex, une citation, borne stricte « moins de 8 kg ») : politique 23 → 22 (Air France cabine quitte B pour A) ; règle et gov.uk inchangés. */
   /* MOUVEMENT NOMMÉ (10/09/2026, Saudia — preuve de test retirée, tranchée par Philippe) : règle 28 → 30, gov.uk seul 14 → 15 ; politique inchangé. */
-  B_par_piste: { politique: 22, regle: 30 }, B_par_regle_gov_uk_seul: 15,
+  /* Lot 30 : six politiques B deviennent A ; cinq règles B deviennent inutiles après citation. */
+  B_par_piste: { politique: 19, regle: 27 }, B_par_regle_gov_uk_seul: 12,
   regles_sans_canal: ["rule_transavia_gb_no_pets"],
 };
 /* MOUVEMENT NOMMÉ (08/09/2026, import strict V3 — 25 citations importées) : 3 → 28 A, nominativement. */
@@ -130,6 +134,7 @@ const A_ATTENDUS = [
   "airline_alaska#hold",
   "airline_alaska#cargo",
   "airline_american#cabin",
+  "airline_american#hold",
   "airline_american#cargo",
   "airline_ana#cabin",
   "airline_ana#hold",
@@ -161,6 +166,7 @@ const A_ATTENDUS = [
   "airline_croatia_airlines#cabin",
   "airline_croatia_airlines#hold",
   "airline_delta#cabin",
+  "airline_delta#hold",
   "airline_easyjet#cabin",
   "airline_easyjet#hold",
   "airline_edelweiss#cabin",
@@ -178,6 +184,7 @@ const A_ATTENDUS = [
   "airline_eva_air#cabin",
   "airline_eva_air#hold",
   "airline_finnair#cabin",
+  "airline_finnair#hold",
   "airline_french_bee#cabin",
   "airline_french_bee#hold",
   "airline_garuda_indonesia#cargo",
@@ -195,6 +202,7 @@ const A_ATTENDUS = [
   "airline_ita_airways#hold",
   "airline_jal#hold",
   "airline_jetblue#cabin",
+  "airline_jetblue#hold",
   "airline_kenya_airways#cabin",
   "airline_kenya_airways#hold",
   "airline_kenya_airways#cargo",
@@ -209,6 +217,8 @@ const A_ATTENDUS = [
   "airline_la_compagnie#hold",
   "airline_latam#cabin",
   "airline_latam#hold",
+  "airline_lot#cabin",
+  "airline_lot#hold",
   "airline_lufthansa#cabin",
   "airline_lufthansa#hold",
   "airline_luxair#cabin",
@@ -224,6 +234,8 @@ const A_ATTENDUS = [
   "airline_qantas#cargo",
   "airline_qatar_airways#cabin",
   "airline_qatar_airways#hold",
+  "airline_royal_air_maroc#cabin",
+  "airline_royal_air_maroc#hold",
   "airline_royal_jordanian#cabin",
   "airline_royal_jordanian#hold",
   "airline_ryanair#cabin",
@@ -232,6 +244,7 @@ const A_ATTENDUS = [
   "airline_sas#cabin",
   /* MOUVEMENT NOMMÉ (12/09/2026) : SAS soute entre sur la citation nationale suédoise. */
   "airline_sas#hold",
+  "airline_singapore_airlines#hold",
   /* Saudia cabine et soute RETIRÉES le 10/09/2026 (surface de test) : 179 → 177, nominativement. */
   "airline_sky_express#cabin",
   "airline_sky_express#hold",
@@ -259,10 +272,12 @@ const A_ATTENDUS = [
   "airline_turkish#cabin",
   "airline_turkish#hold",
   "airline_united#cabin",
+  "airline_united#hold",
   "airline_vietnam_airlines#cabin",
   "airline_vietnam_airlines#hold",
   "airline_virgin_australia#cabin",
   "airline_virgin_australia#cargo",
+  "airline_vueling#cabin",
   "airline_vueling#hold",
   "airline_westjet#cabin",
   "airline_westjet#hold",
@@ -273,7 +288,7 @@ const D_ATTENDUS = ["airline_la_compagnie#cargo", "airline_smartwings#cargo", "a
 /* KLM soute est devenue A (citée) : témoin B re-fondé sur Air Canada soute, jamais abaissé. */
 /* MOUVEMENT NOMMÉ (10/09/2026, complément Air France cabine) : Air France cabine, citée, est devenue A — le témoin B passe à Air France
    FRET, même compagnie, même page officielle (wwws.airfrance.us) sans phrase citée : la situation exacte que ce témoin décrit. */
-const B_TEMOINS = ["airline_air_canada#cargo", "airline_air_france#cargo", "airline_american#hold", "airline_british_airways#hold", "airline_asiana#cargo"];
+const B_TEMOINS = ["airline_air_canada#cargo", "airline_air_france#cargo", "airline_delta#cargo", "airline_british_airways#hold", "airline_asiana#cargo"];
 
 const donnees = chargerDonnees();
 const registre = construireRegistre(donnees);
@@ -382,12 +397,13 @@ console.log("\n=== (d) Cohérence avec `niveauDePreuve` ===");
   /* MOUVEMENT NOMMÉ (10/09/2026, complément Air France cabine — Codex, une citation, borne stricte « moins de 8 kg ») : 178/23/74 → 179/22/74. */
   /* MOUVEMENT NOMMÉ (10/09/2026, Saudia — preuve de test retirée, tranchée par Philippe) : 179/22/74 → 177/22/74 ; B ↔ aucune 27 → 29. */
   /* MOUVEMENT NOMMÉ (12/09/2026, SAS soute) : 177/22/74 → 178/22/73. */
-  check("sur les 306 lignes, A ↔ citee 178, B(politique) ↔ officielle_non_citee 22, C ↔ aucune 73",
-    paires["A ↔ citee"] === 178 && paires["B ↔ officielle_non_citee"] === 22 && paires["C ↔ aucune"] === 73, JSON.stringify(paires));
-  check("les seuls écarts sont NOMMÉS : 29 B par règle sur politique « aucune », 1 B par règle sans politique, 3 D",
+  /* MOUVEMENT NOMMÉ (12/09/2026, lot 30) : 178/22/73 → 189/19/68. */
+  check("sur les 306 lignes, A ↔ citee 189, B(politique) ↔ officielle_non_citee 19, C ↔ aucune 68",
+    paires["A ↔ citee"] === 189 && paires["B ↔ officielle_non_citee"] === 19 && paires["C ↔ aucune"] === 68, JSON.stringify(paires));
+  check("les seuls écarts sont NOMMÉS : 26 B par règle sur politique « aucune », 1 B par règle sans politique, 3 D",
     /* MOUVEMENT NOMMÉ (10/09/2026, Saudia — preuve de test retirée) : 27 → 29, les deux canaux revenus « aucune » tenant
        désormais à une règle. */
-    resume.coherence_niveau_de_preuve.ecarts.B_par_regle_sur_politique_aucune === 29
+    resume.coherence_niveau_de_preuve.ecarts.B_par_regle_sur_politique_aucune === 26
     && resume.coherence_niveau_de_preuve.ecarts.B_par_regle_sans_politique === 1
     && resume.coherence_niveau_de_preuve.ecarts.D_sans_politique === 3
     && resume.coherence_niveau_de_preuve.ecarts.inattendus.length === 0, JSON.stringify(resume.coherence_niveau_de_preuve.ecarts));
@@ -395,8 +411,9 @@ console.log("\n=== (d) Cohérence avec `niveauDePreuve` ===");
   /* MOUVEMENT NOMMÉ (10/09/2026, complément Air France cabine — Codex, une citation, borne stricte « moins de 8 kg ») : 178/23/101 → 179/22/101. */
   /* MOUVEMENT NOMMÉ (10/09/2026, Saudia — preuve de test retirée, tranchée par Philippe) : 179 → 177 citées, 101 → 103 sans rien. */
   /* MOUVEMENT NOMMÉ (12/09/2026, SAS soute) : 177 → 178 citées, 103 → 102 sans rien. */
-  check("302 politiques : 178 citées, 22 officielles non citées, 102 aucune — le compte de test-frontiere-confiance",
-    niveaux.citee === 178 && niveaux.officielle_non_citee === 22 && niveaux.aucune === 102, JSON.stringify(niveaux));
+  /* MOUVEMENT NOMMÉ (12/09/2026, lot 30) : 178/22/102 → 189/19/94. */
+  check("302 politiques : 189 citées, 19 officielles non citées, 94 aucune — le compte de test-frontiere-confiance",
+    niveaux.citee === 189 && niveaux.officielle_non_citee === 19 && niveaux.aucune === 94, JSON.stringify(niveaux));
 }
 
 console.log("\n=== (e) Non-vacuité : une ligne mutée change de catégorie ===");
@@ -423,17 +440,17 @@ console.log("\n=== (e) Non-vacuité : une ligne mutée change de catégorie ==="
   /* MOUVEMENT NOMMÉ (08/09/2026, import strict V3 — 25 citations importées) : KLM soute et Aegean cabine sont devenues A (citées) ; les témoins B et C sont
      RE-FONDÉS sur Air Canada soute (B par la politique) et aeromexico cabin (C, URL fabriquée), pas abaissés. */
   /* MOUVEMENT NOMMÉ (08/09/2026, import strict lots 2 et 3 — 24 citations de plus, 52 en tout) : Air Canada soute est devenue A à son tour ; témoin B re-fondé sur WestJet soute. */
-  /* WestJet soute n'a qu'une règle AUTO-CITÉE (mydogcanfly.com) : citée, elle donne A_incomplete,
-     pas A — le témoin « règle citée → A » exige une règle à URL officielle. United soute en a. */
-  const ac = donnees.objets.find((o) => o.id === "airline_united").premium.policy.hold;
-  const acRegles = donnees.regles.filter((r) => r.scope?.type === "airline" && r.scope.id === "airline_united" && (r.effect?.placement ?? []).includes("hold"));
-  const regleOfficielle = acRegles.findIndex((r) => r.id === "rule_ua_no_hold_cargo");
-  check("United soute est B", classerLigne(ac, acRegles).categorie === "B");
-  check("United soute + les cinq champs → A par la politique",
+  /* United soute est devenue A dans le lot du 12/09. Le témoin B est re-fondé sur British Airways
+     soute, qui conserve une page officielle sans phrase citée. */
+  const ac = donnees.objets.find((o) => o.id === "airline_british_airways").premium.policy.hold;
+  const acRegles = donnees.regles.filter((r) => r.scope?.type === "airline" && r.scope.id === "airline_british_airways" && (r.effect?.placement ?? []).includes("hold"));
+  const regleOfficielle = acRegles.findIndex((r) => r.id === "rule_british_airways_no_cabin");
+  check("British Airways soute est B", classerLigne(ac, acRegles).categorie === "B");
+  check("British Airways soute + les cinq champs → A par la politique",
     classerLigne({ ...ac, source: { ...ac.source, quote: "Dogs travel in the hold up to 45 kg.", quote_language: "en", locator: "section « Hold »" } }, acRegles).categorie === "A");
   const regleCitee = { ...acRegles[regleOfficielle], source: { ...acRegles[regleOfficielle].source, quote: "Dogs travel in the hold up to 45 kg.", quote_language: "en", locator: "section « Hold »" } };
   const c4 = classerLigne(ac, [regleCitee, ...acRegles.filter((_, i) => i !== regleOfficielle)]);
-  check("United soute + une RÈGLE citée (URL officielle) → A par la règle", c4.categorie === "A" && c4.piste === `regle:${regleCitee.id}`, JSON.stringify(c4));
+  check("British Airways soute + une RÈGLE citée (URL officielle) → A par la règle", c4.categorie === "A" && c4.piste === `regle:${regleCitee.id}`, JSON.stringify(c4));
   /* MOUVEMENT NOMMÉ (09/09/2026, lot 6) : Aeromexico cabine est citée (A) — témoin C re-fondé sur Air Algérie cabine
      (provenance dérivée, `source_derived`, aucune phrase), pas abaissé. */
   /* MOUVEMENT NOMMÉ (09/09/2026, lot 7) : Air Algérie cabine est citée (A) — témoin C re-fondé sur Aerolíneas

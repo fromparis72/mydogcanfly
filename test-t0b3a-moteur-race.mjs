@@ -540,8 +540,12 @@ console.log("=== 8. Sur le référentiel RÉEL, après T0-B3-b ===");
   /* 09/09/2026 — IMPORT STRICT LOT 7 : 406 → 404, à cartes constantes (206), mesuré avant/après sur un
      worktree de HEAD : Aircalin soute (2 cartes) est REFUSÉE sur citation (« Le transport des animaux
      s'effectue en fret uniquement. ») — un refus prouvé éteint la cause de race. Rien d'autre ne bouge. */
+  /* 12/09/2026 — LOT DE 30 COMPAGNIES : 404 → 392, à cartes constantes (206). Les refus
+     désormais cités de Delta soute, JetBlue soute, United soute et Vueling cabine éteignent
+     douze causes de race qui ne doivent plus survivre derrière un refus officiel. Les avis de
+     sécurité restent à 16 et le chien non visé à zéro. */
   check(`le chien VISÉ reçoit l'incertitude : ${carlin.causes} causes de race sur ${carlin.cartes} cartes`,
-    carlin.causes === 404 && carlin.cartes === 206, JSON.stringify(carlin));
+    carlin.causes === 392 && carlin.cartes === 206, JSON.stringify(carlin));
   check("… et les avis IATA et IAG/BA lui sont publiés, une fois chacun par rapport",
     carlin.avis === 16, JSON.stringify(carlin.avis));
   check("AUCUNE preuve de race : le registre ne porte qu'un avis, et un avis ne prouve rien",

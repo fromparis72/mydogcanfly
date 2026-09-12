@@ -92,16 +92,16 @@ policies:
         journey_basis: per_one_way
         scope_label: Canada/US except Hawaii; all other
         source:
-          url: https://www.aircanada.com/hk/en/aco/home/legal/products-and-services.html
+          url: https://www.aircanada.com/ca/fr/aco/home/plan/special-assistance/pets.html
           source_type: official_website
-          verified_date: 2026-09-10
-          review_due: 2026-12-09
+          verified_date: 2026-09-12
+          review_due: 2026-12-11
           confidence: 4
-          reviewer: Codex — lecture directe de la source officielle
+          reviewer: Codex — lecture directe de la page canadienne officielle
           history: []
-          quote: $50–$60 … $100–$120
-          quote_language: en
-          locator: Pets > cabin fees
+          quote: "Au Canada et entre le Canada et les États-Unis : 50,00 $ - 60,00 $ CA/US. International : 100,00 $ - 120,00 $ CA/US."
+          quote_language: fr
+          locator: "Voyage avec un animal de compagnie → Dans la cabine → Frais"
     availability: offered
     # PREUVE IMPORTÉE — import strict V3 (Codex, lecture directe du 2026-09-08, cohorte LOT2 fait 0).
     # Effet attendu : A small dog is a conditional cabin lead. Do not infer that a 30 kg dog fits the carrier.
@@ -133,16 +133,16 @@ policies:
         journey_basis: per_one_way
         scope_label: Canada/US except Hawaii; all other
         source:
-          url: https://www.aircanada.com/hk/en/aco/home/legal/products-and-services.html
+          url: https://www.aircanada.com/ca/fr/aco/home/plan/special-assistance/pets.html
           source_type: official_website
-          verified_date: 2026-09-10
-          review_due: 2026-12-09
+          verified_date: 2026-09-12
+          review_due: 2026-12-11
           confidence: 4
-          reviewer: Codex — lecture directe de la source officielle
+          reviewer: Codex — lecture directe de la page canadienne officielle
           history: []
-          quote: $105–$126 … $270–$324
-          quote_language: en
-          locator: Pets > baggage compartment fees
+          quote: "Au Canada et entre le Canada et les États-Unis : 105,00 $ - 126,00 $ CA/US. Réseau international : 270,00 $ - 324,00 $ CA/US."
+          quote_language: fr
+          locator: "Voyage avec un animal de compagnie → Dans la soute → Frais"
     availability: offered
     # PREUVE IMPORTÉE — import strict V3 (Codex, lecture directe du 2026-09-08, cohorte LOT2 fait 1).
     # Effet attendu : Passenger hold is a conditional path, not an automatic acceptance on every marketed Air Canada itinerary.

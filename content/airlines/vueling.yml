@@ -83,6 +83,17 @@ policies:
           quote_language: en
           locator: Pets ancillary fee
     availability: offered
+    source:
+      url: "https://help.vueling.com/hc/es/articles/19798818168337-Mascotas"
+      source_type: official_website
+      verified_date: "2026-09-12"
+      review_due: "2026-12-11"
+      confidence: 4
+      reviewer: "Codex — lectura directa de la página nacional oficial"
+      history: []
+      quote: "Puedes viajar con tu mascota siempre que selecciones la tarifa Fly Light de Vueling o la tarifa Basic de Iberia."
+      quote_language: es
+      locator: "Mascotas → Características del servicio"
   hold:
     availability: not_offered
     # PREUVE IMPORTÉE — import strict V3 (Codex, lecture directe du 2026-09-08, cohorte F fait 1).

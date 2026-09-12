@@ -81,6 +81,26 @@ ladder:
       pt: "militares"
 policies:
   cabin:
+    fares:
+      - id: fare_united_cabin_usd_2026_09_12
+        placement: cabin
+        price:
+          kind: exact
+          amounts: [{ amount: 150, currency: USD }]
+        billing_subject: pet
+        journey_basis: per_one_way
+        scope_label: Animal en cabine · par trajet
+        source:
+          url: https://www.united.com/en/us/fly/travel/traveling-with-pets.html
+          source_type: official_website
+          verified_date: 2026-09-12
+          review_due: 2026-12-11
+          confidence: 4
+          reviewer: Codex — lecture navigateur de la page officielle dynamique
+          history: []
+          quote: "Tickets cost $150 each way."
+          quote_language: en
+          locator: Traveling with pets · Booking pet tickets
     availability: offered
     # PREUVE IMPORTÉE — import strict lot6 (Codex, lecture directe du 2026-09-09, cohorte LOT6 fait 4).
     # Effet attendu : United cabin is a documented conditional route. It is not a proof of a hold or freight offer.
@@ -98,6 +118,17 @@ policies:
       locator: "United booking flow → Pets in cabin"
   hold:
     availability: not_offered
+    source:
+      url: https://www.united.com/en/us/fly/travel/traveling-with-pets.html
+      source_type: official_website
+      verified_date: 2026-09-12
+      review_due: 2026-12-11
+      confidence: 4
+      reviewer: Codex — lecture navigateur de la page officielle dynamique
+      history: []
+      quote: "We no longer let you check your pets through the PetSafe program. Pets can only fly in cargo when traveling with certain active-duty military or State Department employees."
+      quote_language: en
+      locator: Traveling with pets · PetSafe program
   cargo:
     availability: not_offered
 channels:

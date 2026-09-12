@@ -77,6 +77,30 @@ ladder:
       pt: "Reino Unido / outras espécies"
 policies:
   cabin:
+    fares:
+      - id: fare_brussels_cabin_eur_2026_09_12
+        placement: cabin
+        price:
+          kind: range
+          amounts:
+            - amount: 65
+              currency: EUR
+            - amount: 80
+              currency: EUR
+        billing_subject: pet_or_container
+        journey_basis: per_one_way
+        scope_label: Vols intra-Europe ou intra-Afrique uniquement
+        source:
+          url: https://www.brusselsairlines.com/be/nl/special-care/pets/cats-and-small-dogs-in-the-cabin
+          source_type: official_website
+          verified_date: 2026-09-12
+          review_due: 2026-12-11
+          confidence: 4
+          reviewer: Codex — page nationale belge relue le 12 septembre 2026
+          history: []
+          quote: "binnen Europa : 80 EUR ; binnen Afrika : 65 EUR"
+          quote_language: nl
+          locator: "Katten en kleine honden in de cabine → Tarieven"
     availability: offered
     # PREUVE IMPORTÉE — import strict lot4 (Codex, lecture directe du 2026-09-09, cohorte LOT4 fait 16).
     # Effet attendu : For a dog above 8 kg, do not offer Brussels Airlines cabin. At or below 8 kg, this threshold does not confirm a booking.
@@ -101,16 +125,16 @@ policies:
     # Effet attendu : Brussels Airlines hold is a documented conditional route, not a blanket approval for every destination or breed.
     # Portée nommée : A suitable container and animal-health conditions are required. Age, route, country, breed and advance-check-in restrictions apply.
     source:
-      url: "https://www.brusselsairlines.com/rw/en/special-care/pets/cats-and-dogs-in-the-hold"
+      url: "https://www.brusselsairlines.com/be/nl/special-care/pets/cats-and-dogs-in-the-hold"
       source_type: official_website
-      verified_date: "2026-09-09"
-      review_due: "2026-12-08"   # reviewDueFrom(verified_date, "airline") — calculé par l'importeur
+      verified_date: "2026-09-12"
+      review_due: "2026-12-11"
       confidence: 4
-      reviewer: "Codex — direct reading of official airline page"
+      reviewer: "Codex — lecture directe de la page nationale belge"
       history: []
-      quote: "Your cat or dog will be well taken care of and will travel in a ventilated part of the aircraft hold."
-      quote_language: en
-      locator: "Cats and dogs in the hold → How will my pet travel?"
+      quote: "Je kat of hond wordt goed verzorgd en reist in een geventileerd deel van het vliegtuigruim."
+      quote_language: nl
+      locator: "Katten en honden in het bagageruim → Hoe zal mijn huisdier reizen?"
   cargo:
     review_state: legacy_unreviewed
 channels:

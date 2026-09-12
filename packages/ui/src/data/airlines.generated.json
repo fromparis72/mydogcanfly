@@ -118,7 +118,7 @@
         "weight_includes_carrier": true,
         "fares": [
           {
-            "id": "fare_aegean_cabin_eur_2026_09_10",
+            "id": "fare_aegean_cabin_eur_2026_09_12",
             "placement": "cabin",
             "price": {
               "kind": "range",
@@ -135,18 +135,18 @@
             },
             "billing_subject": "container",
             "journey_basis": "per_journey",
-            "scope_label": "AEGEAN/Olympic operated routes",
+            "scope_label": "35 € en Grèce · 65 € à l'international · par caisse et par trajet",
             "source": {
-              "url": "https://en.aegeanair.com/travel-info/travelling-with-aegean/special-assistance/traveling-with-pet/",
+              "url": "https://el.aegeanair.com/travel-info/travelling-with-aegean/eidikes-periptoseis/taksidi-me-katoikidia/",
               "source_type": "official_website",
-              "verified_date": "2026-09-10",
-              "review_due": "2026-12-09",
-              "confidence": 4,
-              "reviewer": "Codex — lecture directe de la source officielle",
+              "verified_date": "2026-09-12",
+              "review_due": "2026-12-11",
+              "confidence": 5,
+              "reviewer": "Codex — lecture de la page officielle grecque",
               "history": [],
-              "quote": "Domestic flights €35 … International flights €65",
-              "quote_language": "en",
-              "locator": "Booking & charges > Cat or Dog in cabin"
+              "quote": "Μεταφορά σκύλου ή γάτας στην καμπίνα (μέχρι 8kg συμπεριλαμβανομένου του κλουβιού) · Πτήσεις εσωτερικού €35 · Πτήσεις εξωτερικού €65",
+              "quote_language": "el",
+              "locator": "Κράτηση & χρεώσεις · Μεταφορά σκύλου ή γάτας στην καμπίνα"
             }
           }
         ]
@@ -164,7 +164,73 @@
           "quote": "If you have a larger cat or dog which exceeds the eight (8) kilos weight limit (including its container), then it should only be transported in the baggage hold compartment of the aircraft.",
           "quote_language": "en",
           "locator": "Animals in aircraft hold"
-        }
+        },
+        "fares": [
+          {
+            "id": "fare_aegean_hold_medium_eur_2026_09_12",
+            "placement": "hold",
+            "price": {
+              "kind": "range",
+              "amounts": [
+                {
+                  "amount": 50,
+                  "currency": "EUR"
+                },
+                {
+                  "amount": 120,
+                  "currency": "EUR"
+                }
+              ]
+            },
+            "billing_subject": "container",
+            "journey_basis": "per_journey",
+            "scope_label": "Caisse moyenne, 8–25 kg avec l'animal · selon trajet direct/correspondance et destination",
+            "source": {
+              "url": "https://el.aegeanair.com/travel-info/travelling-with-aegean/eidikes-periptoseis/taksidi-me-katoikidia/",
+              "source_type": "official_website",
+              "verified_date": "2026-09-12",
+              "review_due": "2026-12-11",
+              "confidence": 5,
+              "reviewer": "Codex — lecture de la page officielle grecque",
+              "history": [],
+              "quote": "Medium (8 - 25kg συμπεριλαμβανομένου του κλουβιού) · Απευθείας €50 €110 · Mε ανταπόκριση €55 €120",
+              "quote_language": "el",
+              "locator": "Κράτηση & χρεώσεις · χώρος αποθήκευσης · Medium"
+            }
+          },
+          {
+            "id": "fare_aegean_hold_large_eur_2026_09_12",
+            "placement": "hold",
+            "price": {
+              "kind": "range",
+              "amounts": [
+                {
+                  "amount": 90,
+                  "currency": "EUR"
+                },
+                {
+                  "amount": 190,
+                  "currency": "EUR"
+                }
+              ]
+            },
+            "billing_subject": "container",
+            "journey_basis": "per_journey",
+            "scope_label": "Grande caisse, plus de 25 kg avec l'animal · selon trajet direct/correspondance et destination",
+            "source": {
+              "url": "https://el.aegeanair.com/travel-info/travelling-with-aegean/eidikes-periptoseis/taksidi-me-katoikidia/",
+              "source_type": "official_website",
+              "verified_date": "2026-09-12",
+              "review_due": "2026-12-11",
+              "confidence": 5,
+              "reviewer": "Codex — lecture de la page officielle grecque",
+              "history": [],
+              "quote": "Large (πάνω από 25kg συμπεριλαμβανομένου του κλουβιού) · Απευθείας €90 €180 · Με ανταπόκριση €95 €190",
+              "quote_language": "el",
+              "locator": "Κράτηση & χρεώσεις · χώρος αποθήκευσης · Large"
+            }
+          }
+        ]
       },
       "cargo": {
         "review_state": "legacy_unreviewed"
@@ -1577,10 +1643,10 @@
       "pt": "Viajar com um cachorro na Aeromexico"
     },
     "metaDesc": {
-      "en": "Aeromexico pet policy: cabin, hold and cargo rules, USD fares, breed & temperature limits and official sources.",
-      "fr": "Politique animaux Aeromexico : cabine, soute et fret, tarifs en USD, restrictions de races et température, sources officielles.",
-      "es": "Política de mascotas de Aeromexico: reglas de cabina, bodega y carga, tarifas en USD, límites de razas y temperatura, y fuentes oficiales.",
-      "pt": "Política de animais da Aeromexico: regras de cabine, porão e carga, tarifas em USD, limites de raça e de temperatura e fontes oficiais."
+      "en": "Aeromexico pet policy: cabin fares in MXN, cabin and hold rules, breed and temperature limits, and official sources.",
+      "fr": "Politique animaux Aeromexico : tarifs cabine en MXN, règles cabine et soute, restrictions de races et température, sources officielles.",
+      "es": "Política de mascotas de Aeromexico: tarifas de cabina en MXN, reglas de cabina y bodega, límites de razas y temperatura, y fuentes oficiales.",
+      "pt": "Política de animais da Aeromexico: tarifas de cabine em MXN, regras de cabine e porão, limites de raça e temperatura e fontes oficiais."
     },
     "chips": [
       {
@@ -1604,10 +1670,10 @@
       {
         "icon": "🗓",
         "label": {
-          "en": "Updated 11 Jul 2026",
-          "fr": "Mise à jour le 11 juil. 2026",
-          "es": "Actualizado el 11 jul. 2026",
-          "pt": "Atualizado em 11 jul. 2026"
+          "en": "Updated 12 Sep 2026",
+          "fr": "Mise à jour le 12 sept. 2026",
+          "es": "Actualizado el 12 sep. 2026",
+          "pt": "Atualizado em 12 set. 2026"
         }
       }
     ],
@@ -1621,10 +1687,10 @@
       }
     },
     "verdictNote": {
-      "en": "Cabin and hold both allowed on many routes with clear USD fees — but breed and temperature limits apply.",
-      "fr": "Cabine et soute autorisées sur de nombreuses routes avec des tarifs clairs en USD — mais restrictions de races et de température.",
-      "es": "Cabina y bodega permitidas en muchas rutas con tarifas claras en USD — pero aplican límites de razas y temperatura.",
-      "pt": "Cabine e porão permitidos em muitas rotas, com tarifas claras em USD — mas se aplicam limites de raça e de temperatura."
+      "en": "Cabin and hold are offered on many routes. Aeromexico publishes cabin fares in MXN; the hold fare remains to be confirmed.",
+      "fr": "Cabine et soute sont proposées sur de nombreux trajets. Aeromexico publie les tarifs cabine en MXN ; le tarif soute reste à confirmer.",
+      "es": "Cabina y bodega se ofrecen en muchas rutas. Aeromexico publica las tarifas de cabina en MXN; la tarifa de bodega queda por confirmar.",
+      "pt": "Cabine e porão são oferecidos em muitas rotas. A Aeromexico publica as tarifas de cabine em MXN; a tarifa de porão ainda deve ser confirmada."
     },
     "ladder": [
       {
@@ -1665,29 +1731,95 @@
       "cabin": {
         "availability": "offered",
         "source": {
-          "url": "https://beta.aeromexico.com/es-mx/informacion-de-vuelos/transporte-aereo-de-mascotas",
+          "url": "https://www.aeromexico.com/es-mx/informacion-de-vuelos/transporte-aereo-de-mascotas",
           "source_type": "official_website",
-          "verified_date": "2026-09-09",
-          "review_due": "2026-12-08",
+          "verified_date": "2026-09-12",
+          "review_due": "2026-12-11",
           "confidence": 4,
-          "reviewer": "Codex — direct reading of official airline page",
+          "reviewer": "Claude — lecture de la page nationale officielle ; Codex — contrôle du dossier",
           "history": [],
           "quote": "Mascota bajo el asiento (PETC) / Pet with you | Perros, Gatos | Sin límite de tiempo (cumpliendo requisitos de cada país) | Cabina | Hasta 9 kg (Incluyendo transportadora)",
           "quote_language": "es",
           "locator": "Servicios de Mascotas → Tipos de servicios para viajar con tu mascota"
         },
         "max_weight_kg": 9,
-        "weight_includes_carrier": true
+        "weight_includes_carrier": true,
+        "fares": [
+          {
+            "id": "fare_aeromexico_cabin_domestic_mxn_2026_09_12",
+            "placement": "cabin",
+            "price": {
+              "kind": "range",
+              "amounts": [
+                {
+                  "amount": 1520,
+                  "currency": "MXN"
+                },
+                {
+                  "amount": 1910,
+                  "currency": "MXN"
+                }
+              ]
+            },
+            "billing_subject": "pet",
+            "journey_basis": "per_segment",
+            "scope_label": "Vols nationaux au Mexique · basse ou haute saison · taxes comprises",
+            "source": {
+              "url": "https://www.aeromexico.com/es-mx/informacion-de-vuelos/mascotas-en-cabina",
+              "source_type": "official_website",
+              "verified_date": "2026-09-12",
+              "review_due": "2026-12-11",
+              "confidence": 4,
+              "reviewer": "Philippe — lecture directe de la page nationale officielle ; Codex — contrôle du relevé",
+              "history": [],
+              "quote": "Temporada baja $1,520 MXN incluye impuestos. Temporada alta $1,910 MXN incluye impuestos.",
+              "quote_language": "es",
+              "locator": "Costos vuelos nacionales"
+            }
+          },
+          {
+            "id": "fare_aeromexico_cabin_international_mxn_2026_09_12",
+            "placement": "cabin",
+            "price": {
+              "kind": "range",
+              "amounts": [
+                {
+                  "amount": 3655,
+                  "currency": "MXN"
+                },
+                {
+                  "amount": 3820,
+                  "currency": "MXN"
+                }
+              ]
+            },
+            "billing_subject": "pet",
+            "journey_basis": "per_segment",
+            "scope_label": "Vols internationaux · basse ou haute saison · taxes comprises",
+            "source": {
+              "url": "https://www.aeromexico.com/es-mx/informacion-de-vuelos/mascotas-en-cabina",
+              "source_type": "official_website",
+              "verified_date": "2026-09-12",
+              "review_due": "2026-12-11",
+              "confidence": 4,
+              "reviewer": "Philippe — lecture directe de la page nationale officielle ; Codex — contrôle du relevé",
+              "history": [],
+              "quote": "Temporada baja $3,655 MXN incluye impuestos. Temporada alta $3,820 MXN incluye impuestos.",
+              "quote_language": "es",
+              "locator": "Costos vuelos internacionales"
+            }
+          }
+        ]
       },
       "hold": {
         "availability": "offered",
         "source": {
-          "url": "https://beta.aeromexico.com/es-mx/informacion-de-vuelos/transporte-aereo-de-mascotas",
+          "url": "https://www.aeromexico.com/es-mx/informacion-de-vuelos/transporte-aereo-de-mascotas",
           "source_type": "official_website",
-          "verified_date": "2026-09-09",
-          "review_due": "2026-12-08",
+          "verified_date": "2026-09-12",
+          "review_due": "2026-12-11",
           "confidence": 4,
-          "reviewer": "Codex — direct reading of official airline page",
+          "reviewer": "Claude — lecture de la page nationale officielle ; Codex — contrôle du dossier",
           "history": [],
           "quote": "Mascota en bodega (AVIH) / Checked pet | Perros, Gatos, Gallos | Sin límite de tiempo (cumpliendo requisitos de cada país) | Bodega | Hasta 45 kg (Incluyendo transportadora)",
           "quote_language": "es",
@@ -1724,10 +1856,10 @@
           "pt": "Somente cachorros e gatos, ≤ 9 kg com a bolsa incluída, sob o assento; um por passageiro; janela/fora das fileiras de anteparo. Raças de focinho achatado permitidas aqui."
         },
         "fee": {
-          "en": "$182–189",
-          "fr": "182–189 $",
-          "es": "182–189 $",
-          "pt": "182–189 $"
+          "en": "MXN 1,520–3,820 / segment",
+          "fr": "1 520–3 820 MXN / tronçon",
+          "es": "1,520–3,820 MXN / tramo",
+          "pt": "1.520–3.820 MXN / trecho"
         }
       },
       {
@@ -1753,10 +1885,10 @@
           "pt": "Animal despachado (AVIH): gatos, cachorros e aves até 45 kg com a caixa incluída, no seu voo. Não disponível em alguns Embraer 190."
         },
         "fee": {
-          "en": "$283–290",
-          "fr": "283–290 $",
-          "es": "283–290 $",
-          "pt": "283–290 $"
+          "en": "Fare to confirm",
+          "fr": "Tarif à confirmer",
+          "es": "Tarifa por confirmar",
+          "pt": "Tarifa a confirmar"
         }
       },
       {
@@ -1793,16 +1925,30 @@
       "rows": [
         {
           "label": {
-            "en": "Cabin (≤ 9 kg)",
-            "fr": "Cabine (≤ 9 kg)",
-            "es": "Cabina (≤ 9 kg)",
-            "pt": "Cabine (≤ 9 kg)"
+            "en": "Cabin — domestic Mexico (≤ 9 kg)",
+            "fr": "Cabine — Mexique national (≤ 9 kg)",
+            "es": "Cabina — México nacional (≤ 9 kg)",
+            "pt": "Cabine — México nacional (≤ 9 kg)"
           },
           "value": {
-            "en": "$182–189 / segment",
-            "fr": "182–189 $ / tronçon",
-            "es": "182–189 $ / segmento",
-            "pt": "182–189 $ / trecho"
+            "en": "MXN 1,520–1,910 / segment",
+            "fr": "1 520–1 910 MXN / tronçon",
+            "es": "1,520–1,910 MXN / tramo",
+            "pt": "1.520–1.910 MXN / trecho"
+          }
+        },
+        {
+          "label": {
+            "en": "Cabin — international (≤ 9 kg)",
+            "fr": "Cabine — international (≤ 9 kg)",
+            "es": "Cabina — internacional (≤ 9 kg)",
+            "pt": "Cabine — internacional (≤ 9 kg)"
+          },
+          "value": {
+            "en": "MXN 3,655–3,820 / segment",
+            "fr": "3 655–3 820 MXN / tronçon",
+            "es": "3,655–3,820 MXN / tramo",
+            "pt": "3.655–3.820 MXN / trecho"
           }
         },
         {
@@ -1813,10 +1959,10 @@
             "pt": "Porão (≤ 45 kg)"
           },
           "value": {
-            "en": "$283–290 / segment",
-            "fr": "283–290 $ / tronçon",
-            "es": "283–290 $ / segmento",
-            "pt": "283–290 $ / trecho"
+            "en": "Fare not published on this page",
+            "fr": "Tarif non publié sur cette page",
+            "es": "Tarifa no publicada en esta página",
+            "pt": "Tarifa não publicada nesta página"
           }
         },
         {
@@ -1849,10 +1995,10 @@
         }
       ],
       "note": {
-        "en": "USD, per international segment. Domestic fares are set in MXN.",
-        "fr": "USD, par tronçon international. Les tarifs nationaux sont fixés en MXN.",
-        "es": "USD, por segmento internacional. Las tarifas nacionales se fijan en MXN.",
-        "pt": "USD, por trecho internacional. As tarifas domésticas são fixadas em MXN."
+        "en": "Cabin fares include taxes and apply to every flown segment. The airline does not publish a hold fare on this page.",
+        "fr": "Les tarifs cabine incluent les taxes et s'appliquent à chaque tronçon volé. La compagnie ne publie pas de tarif soute sur cette page.",
+        "es": "Las tarifas de cabina incluyen impuestos y se aplican a cada tramo volado. La compañía no publica una tarifa de bodega en esta página.",
+        "pt": "As tarifas de cabine incluem impostos e aplicam-se a cada trecho voado. A companhia não publica tarifa de porão nesta página."
       }
     },
     "restrictions": [
@@ -3651,16 +3797,16 @@
             "journey_basis": "per_one_way",
             "scope_label": "Canada/US except Hawaii; all other",
             "source": {
-              "url": "https://www.aircanada.com/hk/en/aco/home/legal/products-and-services.html",
+              "url": "https://www.aircanada.com/ca/fr/aco/home/plan/special-assistance/pets.html",
               "source_type": "official_website",
-              "verified_date": "2026-09-10",
-              "review_due": "2026-12-09",
+              "verified_date": "2026-09-12",
+              "review_due": "2026-12-11",
               "confidence": 4,
-              "reviewer": "Codex — lecture directe de la source officielle",
+              "reviewer": "Codex — lecture directe de la page canadienne officielle",
               "history": [],
-              "quote": "$50–$60 … $100–$120",
-              "quote_language": "en",
-              "locator": "Pets > cabin fees"
+              "quote": "Au Canada et entre le Canada et les États-Unis : 50,00 $ - 60,00 $ CA/US. International : 100,00 $ - 120,00 $ CA/US.",
+              "quote_language": "fr",
+              "locator": "Voyage avec un animal de compagnie → Dans la cabine → Frais"
             }
           }
         ]
@@ -3700,16 +3846,16 @@
             "journey_basis": "per_one_way",
             "scope_label": "Canada/US except Hawaii; all other",
             "source": {
-              "url": "https://www.aircanada.com/hk/en/aco/home/legal/products-and-services.html",
+              "url": "https://www.aircanada.com/ca/fr/aco/home/plan/special-assistance/pets.html",
               "source_type": "official_website",
-              "verified_date": "2026-09-10",
-              "review_due": "2026-12-09",
+              "verified_date": "2026-09-12",
+              "review_due": "2026-12-11",
               "confidence": 4,
-              "reviewer": "Codex — lecture directe de la source officielle",
+              "reviewer": "Codex — lecture directe de la page canadienne officielle",
               "history": [],
-              "quote": "$105–$126 … $270–$324",
-              "quote_language": "en",
-              "locator": "Pets > baggage compartment fees"
+              "quote": "Au Canada et entre le Canada et les États-Unis : 105,00 $ - 126,00 $ CA/US. Réseau international : 270,00 $ - 324,00 $ CA/US.",
+              "quote_language": "fr",
+              "locator": "Voyage avec un animal de compagnie → Dans la soute → Frais"
             }
           }
         ]
@@ -11639,6 +11785,18 @@
       },
       "hold": {
         "availability": "not_offered",
+        "source": {
+          "url": "https://www.aa.com/i18n/travel-info/special-assistance/pets.jsp",
+          "source_type": "official_website",
+          "verified_date": "2026-09-12",
+          "review_due": "2026-12-11",
+          "confidence": 5,
+          "reviewer": "Codex — lecture de la page officielle américaine",
+          "history": [],
+          "quote": "We only accept checked pets for active-duty U.S. Military and U.S. State Department Foreign Service personnel traveling on official orders.",
+          "quote_language": "en",
+          "locator": "Checked pets · Eligibility"
+        },
         "fares": [
           {
             "id": "fare_american_hold_usd_2026_09_10",
@@ -12217,35 +12375,41 @@
         },
         "fares": [
           {
-            "id": "fare_ana_hold_jpy_2026_09_10",
+            "id": "fare_ana_hold_jpy_2026_09_12",
             "placement": "hold",
             "price": {
               "kind": "range",
               "amounts": [
                 {
-                  "amount": 4000,
+                  "amount": 4400,
                   "currency": "JPY"
                 },
                 {
-                  "amount": 40000,
+                  "amount": 6600,
                   "currency": "JPY"
                 }
               ]
             },
             "billing_subject": "container",
-            "journey_basis": "per_journey",
-            "scope_label": "international area grid; Japan domestic",
+            "journey_basis": "per_segment",
+            "scope_label": "Vols intérieurs au Japon, par cage et par trajet",
             "source": {
-              "url": "https://www.ana.co.jp/en/jp/guide/reservation/support/international/pets/",
+              "url": "https://www.ana.co.jp/ja/jp/guide/reservation/support/domestic/pets/",
               "source_type": "official_website",
-              "verified_date": "2026-09-10",
-              "review_due": "2026-12-09",
+              "verified_date": "2026-09-12",
+              "review_due": "2026-12-11",
               "confidence": 4,
-              "reviewer": "Codex — lecture directe de la source officielle",
-              "history": [],
-              "quote": "Price per cage | JPY40000 / USD400 / CAD400 / EUR300 | JPY25000 / USD250 / CAD250 / EUR200 | JPY5000 | JPY6000 or JPY4000",
-              "quote_language": "en",
-              "locator": "Reservation and Fee > Service Fee"
+              "reviewer": "Codex — lecture directe de la page nationale japonaise",
+              "history": [
+                {
+                  "date": "2026-09-10",
+                  "reviewer": "Codex",
+                  "note": "Ancienne plage 4 000–40 000 JPY retirée : elle mêlait pages et périmètres."
+                }
+              ],
+              "quote": "料金額（1個1路線あたり） 国内全路線 税込6,600円（一部路線は 税込4,400円）",
+              "quote_language": "ja",
+              "locator": "ペットをお連れのお客様 → 料金額（1個1路線あたり）"
             }
           },
           {
@@ -12265,7 +12429,7 @@
               ]
             },
             "billing_subject": "container",
-            "journey_basis": "per_journey",
+            "journey_basis": "per_segment",
             "scope_label": "international area grid; Japan domestic",
             "source": {
               "url": "https://www.ana.co.jp/en/jp/guide/reservation/support/international/pets/",
@@ -12297,7 +12461,7 @@
               ]
             },
             "billing_subject": "container",
-            "journey_basis": "per_journey",
+            "journey_basis": "per_segment",
             "scope_label": "international area grid; Japan domestic",
             "source": {
               "url": "https://www.ana.co.jp/en/jp/guide/reservation/support/international/pets/",
@@ -12329,7 +12493,7 @@
               ]
             },
             "billing_subject": "container",
-            "journey_basis": "per_journey",
+            "journey_basis": "per_segment",
             "scope_label": "international area grid; Japan domestic",
             "source": {
               "url": "https://www.ana.co.jp/en/jp/guide/reservation/support/international/pets/",
@@ -16137,21 +16301,55 @@
           "locator": "Cats and small dogs in the cabin → Which conditions apply for a transport in the cabin?"
         },
         "max_weight_kg": 8,
-        "weight_includes_carrier": true
+        "weight_includes_carrier": true,
+        "fares": [
+          {
+            "id": "fare_brussels_cabin_eur_2026_09_12",
+            "placement": "cabin",
+            "price": {
+              "kind": "range",
+              "amounts": [
+                {
+                  "amount": 65,
+                  "currency": "EUR"
+                },
+                {
+                  "amount": 80,
+                  "currency": "EUR"
+                }
+              ]
+            },
+            "billing_subject": "pet_or_container",
+            "journey_basis": "per_one_way",
+            "scope_label": "Vols intra-Europe ou intra-Afrique uniquement",
+            "source": {
+              "url": "https://www.brusselsairlines.com/be/nl/special-care/pets/cats-and-small-dogs-in-the-cabin",
+              "source_type": "official_website",
+              "verified_date": "2026-09-12",
+              "review_due": "2026-12-11",
+              "confidence": 4,
+              "reviewer": "Codex — page nationale belge relue le 12 septembre 2026",
+              "history": [],
+              "quote": "binnen Europa : 80 EUR ; binnen Afrika : 65 EUR",
+              "quote_language": "nl",
+              "locator": "Katten en kleine honden in de cabine → Tarieven"
+            }
+          }
+        ]
       },
       "hold": {
         "availability": "offered",
         "source": {
-          "url": "https://www.brusselsairlines.com/rw/en/special-care/pets/cats-and-dogs-in-the-hold",
+          "url": "https://www.brusselsairlines.com/be/nl/special-care/pets/cats-and-dogs-in-the-hold",
           "source_type": "official_website",
-          "verified_date": "2026-09-09",
-          "review_due": "2026-12-08",
+          "verified_date": "2026-09-12",
+          "review_due": "2026-12-11",
           "confidence": 4,
-          "reviewer": "Codex — direct reading of official airline page",
+          "reviewer": "Codex — lecture directe de la page nationale belge",
           "history": [],
-          "quote": "Your cat or dog will be well taken care of and will travel in a ventilated part of the aircraft hold.",
-          "quote_language": "en",
-          "locator": "Cats and dogs in the hold → How will my pet travel?"
+          "quote": "Je kat of hond wordt goed verzorgd en reist in een geventileerd deel van het vliegtuigruim.",
+          "quote_language": "nl",
+          "locator": "Katten en honden in het bagageruim → Hoe zal mijn huisdier reizen?"
         }
       },
       "cargo": {
@@ -20475,65 +20673,89 @@
         },
         "fares": [
           {
-            "id": "fare_delta_cabin_usd_2026_09_10",
+            "id": "fare_delta_cabin_americas_2026_09_12",
             "placement": "cabin",
             "price": {
-              "kind": "exact",
+              "kind": "matrix",
               "amounts": [
                 {
                   "amount": 150,
                   "currency": "USD"
-                }
-              ]
-            },
-            "billing_subject": "pet_or_container",
-            "journey_basis": "per_one_way",
-            "scope_label": "zones publiées → zones publiées",
-            "source": {
-              "url": "https://www.delta.com/us/en/pet-travel/overview",
-              "source_type": "official_website",
-              "verified_date": "2026-09-10",
-              "review_due": "2026-12-09",
-              "confidence": 4,
-              "reviewer": "Codex — lecture directe de la source officielle",
-              "history": [],
-              "quote": "$150 USD/CAD",
-              "quote_language": "en",
-              "locator": "In-Cabin Pet Fees"
-            }
-          },
-          {
-            "id": "fare_delta_cabin_cad_2026_09_10",
-            "placement": "cabin",
-            "price": {
-              "kind": "exact",
-              "amounts": [
+                },
                 {
                   "amount": 150,
                   "currency": "CAD"
                 }
               ]
             },
-            "billing_subject": "pet_or_container",
+            "billing_subject": "pet",
             "journey_basis": "per_one_way",
-            "scope_label": "zones publiées → zones publiées",
+            "scope_label": "États-Unis, Canada, Porto Rico et Îles Vierges américaines · billets émis depuis le 8 avril 2025",
             "source": {
               "url": "https://www.delta.com/us/en/pet-travel/overview",
               "source_type": "official_website",
-              "verified_date": "2026-09-10",
-              "review_due": "2026-12-09",
-              "confidence": 4,
-              "reviewer": "Codex — lecture directe de la source officielle",
+              "verified_date": "2026-09-12",
+              "review_due": "2026-12-11",
+              "confidence": 5,
+              "reviewer": "Codex — lecture de la grille officielle américaine",
               "history": [],
-              "quote": "$150 USD/CAD",
+              "quote": "$150 USD/CAD* for tickets issued on/after April 8, 2025",
               "quote_language": "en",
-              "locator": "In-Cabin Pet Fees"
+              "locator": "In-Cabin Pet Fees · U.S./Canada/Puerto Rico/U.S. Virgin Islands"
+            }
+          },
+          {
+            "id": "fare_delta_cabin_international_2026_09_12",
+            "placement": "cabin",
+            "price": {
+              "kind": "matrix",
+              "amounts": [
+                {
+                  "amount": 200,
+                  "currency": "USD"
+                },
+                {
+                  "amount": 200,
+                  "currency": "CAD"
+                },
+                {
+                  "amount": 200,
+                  "currency": "EUR"
+                }
+              ]
+            },
+            "billing_subject": "pet",
+            "journey_basis": "per_one_way",
+            "scope_label": "Vols internationaux éligibles",
+            "source": {
+              "url": "https://www.delta.com/us/en/pet-travel/overview",
+              "source_type": "official_website",
+              "verified_date": "2026-09-12",
+              "review_due": "2026-12-11",
+              "confidence": 5,
+              "reviewer": "Codex — lecture de la grille officielle américaine",
+              "history": [],
+              "quote": "International | $200 USD/CAD/EUR*",
+              "quote_language": "en",
+              "locator": "In-Cabin Pet Fees · International"
             }
           }
         ]
       },
       "hold": {
-        "availability": "not_offered"
+        "availability": "not_offered",
+        "source": {
+          "url": "https://www.delta.com/us/en/special-circumstances/military-travel/pets",
+          "source_type": "official_website",
+          "verified_date": "2026-09-12",
+          "review_due": "2026-12-11",
+          "confidence": 5,
+          "reviewer": "Codex — lecture de la page officielle américaine",
+          "history": [],
+          "quote": "Only active U.S. Military or Active U.S. State Department Foreign Service Officers (FSO) and their spouses with active transfer orders may transport their pets as checked baggage.",
+          "quote_language": "en",
+          "locator": "Military Pet Travel · Checked pet eligibility"
+        }
       },
       "cargo": {
         "availability": "not_offered"
@@ -21945,33 +22167,60 @@
       "cabin": {
         "availability": "offered",
         "source": {
-          "url": "https://www.egyptair.com/en/fly/special-services/Pages/traveling-with-pets.aspx",
+          "url": "https://www.egyptair.com/fr/fly/special-services/Pages/traveling-with-pets.aspx",
           "source_type": "official_website",
-          "verified_date": "2026-09-09",
-          "review_due": "2026-12-08",
+          "verified_date": "2026-09-12",
+          "review_due": "2026-12-11",
           "confidence": 4,
-          "reviewer": "Codex — direct reading of official airline page",
+          "reviewer": "Philippe et Codex — lecture directe de la page française officielle",
           "history": [],
-          "quote": "The total weight of animal and cage should not exceed 8 KG.",
-          "quote_language": "en",
-          "locator": "Traveling With Pets → Animal Transport in Passenger Cabins"
+          "quote": "Le poids total de l'animal et la cage ne devrait pas dépasser 8 kg. Les dimensions maximales de la cage ne devraient pas dépasser 55 x 40 x 20 cm (Longueur, largeur, hauteur).",
+          "quote_language": "fr",
+          "locator": "Le transport des animaux dans les cabines de passagers"
         },
         "max_weight_kg": 8,
-        "weight_includes_carrier": true
+        "attestations": [
+          {
+            "claim": {
+              "kind": "weight_max",
+              "kg": 8,
+              "bound": "lte",
+              "subject": "dog_plus_carrier"
+            },
+            "poids": "8 kg",
+            "borne": "ne devrait pas dépasser 8 kg",
+            "sujet": "poids total de l'animal et la cage ne devrait pas dépasser 8 kg"
+          },
+          {
+            "claim": {
+              "kind": "carrier_dims_cm",
+              "l": 55,
+              "w": 40,
+              "h": 20
+            },
+            "dimensions": "55 x 40 x 20 cm"
+          }
+        ],
+        "weight_includes_carrier": true,
+        "carrier_dims_cm": {
+          "l": 55,
+          "w": 40,
+          "h": 20
+        }
       },
       "hold": {
         "availability": "offered",
         "source": {
-          "url": "https://www.egyptair.com/en/fly/special-services/Pages/traveling-with-pets.aspx",
+          "url": "https://www.egyptair.com/fr/fly/special-services/Pages/traveling-with-pets.aspx",
           "source_type": "official_website",
-          "verified_date": "2026-09-09",
-          "review_due": "2026-12-08",
+          "verified_date": "2026-09-12",
+          "review_due": "2026-12-11",
           "confidence": 4,
-          "reviewer": "Codex — direct reading of official airline page",
+          "reviewer": "Philippe et Codex — lecture directe de la page française officielle",
           "history": [],
-          "quote": "EGYPTAIR accepts live animals as checked baggage or in the cabin as follows:",
-          "quote_language": "en",
-          "locator": "Traveling With Pets → Animal Transport in Aircraft Baggage Holds"
+          "quote": "Egyptair accepte les animaux vivants en soute ou en cabine comme suit : Le Transport des Animaux dans les Cales d’Avion",
+          "quote_language": "fr",
+          "locator": "Le Transport des Animaux dans les Cales d’Avion"
         }
       },
       "cargo": {
@@ -23863,10 +24112,10 @@
         "weight_includes_carrier": true,
         "fares": [
           {
-            "id": "fare_etihad_cabin_usd_2026_09_10",
+            "id": "fare_etihad_cabin_usd_2026_09_12",
             "placement": "cabin",
             "price": {
-              "kind": "exact",
+              "kind": "minimum",
               "amounts": [
                 {
                   "amount": 399,
@@ -23876,17 +24125,18 @@
             },
             "billing_subject": "pet_or_container",
             "journey_basis": "per_segment",
+            "scope_label": "Tarif de base ; siège supplémentaire requis dans certains cas",
             "source": {
-              "url": "https://www.etihad.com/en/plan/travel-companion/travelling-with-pets",
+              "url": "https://www.etihad.com/ar-ae/plan/travel-companion/travelling-with-pets",
               "source_type": "official_website",
-              "verified_date": "2026-09-10",
-              "review_due": "2026-12-09",
-              "confidence": 4,
-              "reviewer": "Codex — lecture directe de la source officielle",
+              "verified_date": "2026-09-12",
+              "review_due": "2026-12-11",
+              "confidence": 5,
+              "reviewer": "Codex — lecture de la page officielle émirienne en arabe",
               "history": [],
-              "quote": "USD 399 per flight",
-              "quote_language": "en",
-              "locator": "Pricing"
+              "quote": "تبدأ رسوم سفر الحيوانات الأليفة من 399 دولاراً أمريكياً",
+              "quote_language": "ar",
+              "locator": "السفر برفقة الحيوانات الأليفة · الرسوم"
             }
           }
         ]
@@ -25202,7 +25452,7 @@
         "weight_includes_carrier": true,
         "fares": [
           {
-            "id": "fare_finnair_cabin_eur_2026_09_10",
+            "id": "fare_finnair_cabin_eur_2026_09_12",
             "placement": "cabin",
             "price": {
               "kind": "range",
@@ -25212,31 +25462,151 @@
                   "currency": "EUR"
                 },
                 {
-                  "amount": 65,
+                  "amount": 130,
                   "currency": "EUR"
                 }
               ]
             },
             "billing_subject": "pet_or_container",
             "journey_basis": "per_one_way",
-            "scope_label": "Europe/intercontinental → Europe/intercontinental",
+            "scope_label": "60–65 € en Europe · 120–130 € sur long-courrier · selon l'anticipation",
             "source": {
-              "url": "https://www.finnair.com/en/pets-on-finnair-flights",
+              "url": "https://www.finnair.com/fi-fi/matkatavarat-finnairin-lennoilla/lis%C3%A4matkatavaramaksut",
               "source_type": "official_website",
-              "verified_date": "2026-09-10",
-              "review_due": "2026-12-09",
-              "confidence": 4,
-              "reviewer": "Codex — lecture directe de la source officielle",
+              "verified_date": "2026-09-12",
+              "review_due": "2026-12-11",
+              "confidence": 5,
+              "reviewer": "Codex — page finnoise officielle ; grille mise à jour par Finnair le 8 juin 2026",
+              "history": [
+                {
+                  "date": "2026-09-12",
+                  "reviewer": "Codex — arbitrage de fraîcheur",
+                  "note": "La grille de la page générale (140 € / 650 €) est remplacée par cette grille officielle annoncée comme mise à jour le 8 juin 2026."
+                }
+              ],
+              "quote": "Lemmikki matkustamossa, max. 8 kg (ml. kuljetuslaatikko) | 60 € tai 7 800 Aviosta (lähtöön 7 päivää tai enemmän) 65 € tai 8 500 Aviosta (lähtöön 6 päivää tai vähemmän) | 120 €/130 $ tai 15 800 Aviosta (lähtöön 7 päivää tai enemmän) 130 €/140 $ tai 17 100 Aviosta (lähtöön 6 päivää tai vähemmän)",
+              "quote_language": "fi",
+              "locator": "Kuljetusmaksut lemmikeille matkustamossa"
+            }
+          },
+          {
+            "id": "fare_finnair_cabin_usd_2026_09_12",
+            "placement": "cabin",
+            "price": {
+              "kind": "range",
+              "amounts": [
+                {
+                  "amount": 130,
+                  "currency": "USD"
+                },
+                {
+                  "amount": 140,
+                  "currency": "USD"
+                }
+              ]
+            },
+            "billing_subject": "pet_or_container",
+            "journey_basis": "per_one_way",
+            "scope_label": "Long-courrier · selon l'anticipation",
+            "source": {
+              "url": "https://www.finnair.com/fi-fi/matkatavarat-finnairin-lennoilla/lis%C3%A4matkatavaramaksut",
+              "source_type": "official_website",
+              "verified_date": "2026-09-12",
+              "review_due": "2026-12-11",
+              "confidence": 5,
+              "reviewer": "Codex — page finnoise officielle ; grille mise à jour par Finnair le 8 juin 2026",
               "history": [],
-              "quote": "60 EUR / 65 EUR",
-              "quote_language": "en",
-              "locator": "Pet transportation fees"
+              "quote": "120 €/130 $ tai 15 800 Aviosta (lähtöön 7 päivää tai enemmän) 130 €/140 $ tai 17 100 Aviosta (lähtöön 6 päivää tai vähemmän)",
+              "quote_language": "fi",
+              "locator": "Kuljetusmaksut lemmikeille matkustamossa · kaukolennot"
             }
           }
         ]
       },
       "hold": {
-        "availability": "offered"
+        "availability": "offered",
+        "source": {
+          "url": "https://www.finnair.com/fi-fi/lemmikkiel%C3%A4imet-finnairin-lennoilla",
+          "source_type": "official_website",
+          "verified_date": "2026-09-12",
+          "review_due": "2026-12-11",
+          "confidence": 5,
+          "reviewer": "Codex — lecture de la page nationale finnoise",
+          "history": [],
+          "quote": "Enintään 75 kg Finnairin liikennöimillä lennoilla.",
+          "quote_language": "fi",
+          "locator": "Lemmikki ruumassa · Finnairin liikennöimät lennot"
+        },
+        "max_weight_kg": 75,
+        "weight_includes_carrier": true,
+        "fares": [
+          {
+            "id": "fare_finnair_hold_eur_2026_09_12",
+            "placement": "hold",
+            "price": {
+              "kind": "range",
+              "amounts": [
+                {
+                  "amount": 120,
+                  "currency": "EUR"
+                },
+                {
+                  "amount": 600,
+                  "currency": "EUR"
+                }
+              ]
+            },
+            "billing_subject": "pet_or_container",
+            "journey_basis": "per_one_way",
+            "scope_label": "120 € en Europe · 600 € sur long-courrier",
+            "source": {
+              "url": "https://www.finnair.com/fi-fi/matkatavarat-finnairin-lennoilla/lis%C3%A4matkatavaramaksut",
+              "source_type": "official_website",
+              "verified_date": "2026-09-12",
+              "review_due": "2026-12-11",
+              "confidence": 5,
+              "reviewer": "Codex — page finnoise officielle ; grille mise à jour par Finnair le 8 juin 2026",
+              "history": [
+                {
+                  "date": "2026-09-12",
+                  "reviewer": "Codex — arbitrage de fraîcheur",
+                  "note": "La grille de la page générale (140 € / 650 €) est remplacée par cette grille officielle annoncée comme mise à jour le 8 juin 2026."
+                }
+              ],
+              "quote": "Lemmikki ruumassa, max. 50–75 kg* (ml. kuljetuslaatikko) | 120 € tai 15 800 Aviosta | 600 €/650 $ tai 79 800 Aviosta",
+              "quote_language": "fi",
+              "locator": "Kuljetusmaksut lemmikeille matkustamossa · lemmikki ruumassa"
+            }
+          },
+          {
+            "id": "fare_finnair_hold_usd_2026_09_12",
+            "placement": "hold",
+            "price": {
+              "kind": "exact",
+              "amounts": [
+                {
+                  "amount": 650,
+                  "currency": "USD"
+                }
+              ]
+            },
+            "billing_subject": "pet_or_container",
+            "journey_basis": "per_one_way",
+            "scope_label": "Long-courrier au départ d'un marché facturé en dollars",
+            "source": {
+              "url": "https://www.finnair.com/fi-fi/matkatavarat-finnairin-lennoilla/lis%C3%A4matkatavaramaksut",
+              "source_type": "official_website",
+              "verified_date": "2026-09-12",
+              "review_due": "2026-12-11",
+              "confidence": 5,
+              "reviewer": "Codex — page finnoise officielle ; grille mise à jour par Finnair le 8 juin 2026",
+              "history": [],
+              "quote": "Lemmikki ruumassa, max. 50–75 kg* (ml. kuljetuslaatikko) | 600 €/650 $ tai 79 800 Aviosta",
+              "quote_language": "fi",
+              "locator": "Kuljetusmaksut lemmikeille matkustamossa · kaukolennot"
+            }
+          }
+        ]
       },
       "cargo": {
         "review_state": "legacy_unreviewed"
@@ -30054,13 +30424,17 @@
         },
         "fares": [
           {
-            "id": "fare_ita_airways_cabin_eur_2026_09_10",
+            "id": "fare_ita_airways_cabin_eur_2026_09_12",
             "placement": "cabin",
             "price": {
-              "kind": "exact",
+              "kind": "range",
               "amounts": [
                 {
                   "amount": 73,
+                  "currency": "EUR"
+                },
+                {
+                  "amount": 230,
                   "currency": "EUR"
                 }
               ]
@@ -30069,16 +30443,48 @@
             "journey_basis": "per_segment",
             "scope_label": "marché de départ → zones publiées",
             "source": {
-              "url": "https://www.ita-airways.com/ae/en/book-and-prepare/other-requests/travelling-with-pets/pet-transportation-charges",
+              "url": "https://www.ita-airways.com/it/it/book-and-prepare/other-requests/travelling-with-pets/pet-transportation-charges",
               "source_type": "official_website",
-              "verified_date": "2026-09-10",
-              "review_due": "2026-12-09",
+              "verified_date": "2026-09-12",
+              "review_due": "2026-12-11",
               "confidence": 4,
-              "reviewer": "Codex — lecture directe de la source officielle",
+              "reviewer": "Codex — grille nationale italienne relue le 12 septembre 2026",
               "history": [],
-              "quote": "Cabin EUR 73",
-              "quote_language": "en",
-              "locator": "Pet transportation charges"
+              "quote": "VOLI NAZIONALI : 73Eur / 95Usd ; LOS ANGELES, HOUSTON, BUENOS AIRES, RIO DE JANEIRO, SAN PAOLO, TOKYO, BANGKOK, SAN FRANCISCO, MAURITIUS : 230Eur/ 290Usd",
+              "quote_language": "it",
+              "locator": "Costi per il trasporto degli animali domestici → In cabina"
+            }
+          },
+          {
+            "id": "fare_ita_airways_cabin_usd_2026_09_12",
+            "placement": "cabin",
+            "price": {
+              "kind": "range",
+              "amounts": [
+                {
+                  "amount": 95,
+                  "currency": "USD"
+                },
+                {
+                  "amount": 290,
+                  "currency": "USD"
+                }
+              ]
+            },
+            "billing_subject": "pet_or_container",
+            "journey_basis": "per_segment",
+            "scope_label": "marché de départ → zones publiées",
+            "source": {
+              "url": "https://www.ita-airways.com/it/it/book-and-prepare/other-requests/travelling-with-pets/pet-transportation-charges",
+              "source_type": "official_website",
+              "verified_date": "2026-09-12",
+              "review_due": "2026-12-11",
+              "confidence": 4,
+              "reviewer": "Codex — grille nationale italienne relue le 12 septembre 2026",
+              "history": [],
+              "quote": "VOLI NAZIONALI : 73Eur / 95Usd ; LOS ANGELES, HOUSTON, BUENOS AIRES, RIO DE JANEIRO, SAN PAOLO, TOKYO, BANGKOK, SAN FRANCISCO, MAURITIUS : 230Eur/ 290Usd",
+              "quote_language": "it",
+              "locator": "Costi per il trasporto degli animali domestici → In cabina"
             }
           }
         ]
@@ -30099,11 +30505,15 @@
         },
         "fares": [
           {
-            "id": "fare_ita_airways_hold_eur_2026_09_10",
+            "id": "fare_ita_airways_hold_eur_2026_09_12",
             "placement": "hold",
             "price": {
-              "kind": "exact",
+              "kind": "range",
               "amounts": [
+                {
+                  "amount": 83,
+                  "currency": "EUR"
+                },
                 {
                   "amount": 300,
                   "currency": "EUR"
@@ -30114,16 +30524,48 @@
             "journey_basis": "per_segment",
             "scope_label": "marché de départ → zones publiées",
             "source": {
-              "url": "https://www.ita-airways.com/ae/en/book-and-prepare/other-requests/travelling-with-pets/pet-transportation-charges",
+              "url": "https://www.ita-airways.com/it/it/book-and-prepare/other-requests/travelling-with-pets/pet-transportation-charges",
               "source_type": "official_website",
-              "verified_date": "2026-09-10",
-              "review_due": "2026-12-09",
+              "verified_date": "2026-09-12",
+              "review_due": "2026-12-11",
               "confidence": 4,
-              "reviewer": "Codex — lecture directe de la source officielle",
+              "reviewer": "Codex — grille nationale italienne relue le 12 septembre 2026",
               "history": [],
-              "quote": "Hold EUR 300",
-              "quote_language": "en",
-              "locator": "Pet transportation charges"
+              "quote": "VOLI NAZIONALI : 83Eur / 105Usd ; LOS ANGELES, HOUSTON, BUENOS AIRES, RIO DE JANEIRO, SAN PAOLO, TOKYO, BANGKOK, SAN FRANCISCO, MAURITIUS : 300Eur/ 375Usd",
+              "quote_language": "it",
+              "locator": "Costi per il trasporto degli animali domestici → In stiva"
+            }
+          },
+          {
+            "id": "fare_ita_airways_hold_usd_2026_09_12",
+            "placement": "hold",
+            "price": {
+              "kind": "range",
+              "amounts": [
+                {
+                  "amount": 105,
+                  "currency": "USD"
+                },
+                {
+                  "amount": 375,
+                  "currency": "USD"
+                }
+              ]
+            },
+            "billing_subject": "pet_or_container",
+            "journey_basis": "per_segment",
+            "scope_label": "marché de départ → zones publiées",
+            "source": {
+              "url": "https://www.ita-airways.com/it/it/book-and-prepare/other-requests/travelling-with-pets/pet-transportation-charges",
+              "source_type": "official_website",
+              "verified_date": "2026-09-12",
+              "review_due": "2026-12-11",
+              "confidence": 4,
+              "reviewer": "Codex — grille nationale italienne relue le 12 septembre 2026",
+              "history": [],
+              "quote": "VOLI NAZIONALI : 83Eur / 105Usd ; LOS ANGELES, HOUSTON, BUENOS AIRES, RIO DE JANEIRO, SAN PAOLO, TOKYO, BANGKOK, SAN FRANCISCO, MAURITIUS : 300Eur/ 375Usd",
+              "quote_language": "it",
+              "locator": "Costi per il trasporto degli animali domestici → In stiva"
             }
           }
         ]
@@ -31090,10 +31532,52 @@
           "quote": "Only small dogs and cats may travel in the cabin in an FAA-approved pet carrier that fits comfortably under the seat in front of you.",
           "quote_language": "en",
           "locator": "Traveling with Pets → Pet guidelines"
-        }
+        },
+        "fares": [
+          {
+            "id": "fare_jetblue_cabin_usd_2026_09_12",
+            "placement": "cabin",
+            "price": {
+              "kind": "exact",
+              "amounts": [
+                {
+                  "amount": 125,
+                  "currency": "USD"
+                }
+              ]
+            },
+            "billing_subject": "pet",
+            "journey_basis": "per_one_way",
+            "scope_label": "Animal en cabine · par animal et par trajet",
+            "source": {
+              "url": "https://www.jetblue.com/ui-assets/durable-homepage/contract_of_carriage.pdf",
+              "source_type": "official_website",
+              "verified_date": "2026-09-12",
+              "review_due": "2026-12-11",
+              "confidence": 5,
+              "reviewer": "Codex — relecture du contrat de transport officiel",
+              "history": [],
+              "quote": "The charge to the Passenger for transporting a pet in-cabin is One Hundred and Twenty-Five Dollars ($125) per pet, each way.",
+              "quote_language": "en",
+              "locator": "Section 8 · Acceptance of Animals · Pet Fee"
+            }
+          }
+        ]
       },
       "hold": {
-        "availability": "not_offered"
+        "availability": "not_offered",
+        "source": {
+          "url": "https://www.jetblue.com/ui-assets/durable-homepage/contract_of_carriage.pdf",
+          "source_type": "official_website",
+          "verified_date": "2026-09-12",
+          "review_due": "2026-12-11",
+          "confidence": 5,
+          "reviewer": "Codex — relecture du contrat de transport officiel",
+          "history": [],
+          "quote": "No animals are allowed to be transported on Carrier as checked baggage; however, Carrier will permit small dogs and cats to be transported by Passengers in-cabin",
+          "quote_language": "en",
+          "locator": "Section 8 · Acceptance of Animals"
+        }
       },
       "cargo": {
         "availability": "not_offered"
@@ -34666,6 +35150,18 @@
     "policies": {
       "cabin": {
         "availability": "offered",
+        "source": {
+          "url": "https://www.lot.com/pl/pl/journey/special-services/traveling-with-pets/pet-in-cabin",
+          "source_type": "official_website",
+          "verified_date": "2026-09-12",
+          "review_due": "2026-12-11",
+          "confidence": 4,
+          "reviewer": "Codex — bezpośrednia lektura polskiej strony przewoźnika",
+          "history": [],
+          "quote": "Waga zwierzęcia przewożonego w kabinie pasażerskiej wraz z pojemnikiem nie może przekroczyć 8 kg",
+          "quote_language": "pl",
+          "locator": "Zwierzę w kabinie → Waga zwierzęcia"
+        },
         "fares": [
           {
             "id": "fare_lot_cabin_2026_09_10",
@@ -34694,6 +35190,18 @@
       },
       "hold": {
         "availability": "offered",
+        "source": {
+          "url": "https://www.lot.com/pl/pl/journey/special-services/traveling-with-pets/animal-in-hold",
+          "source_type": "official_website",
+          "verified_date": "2026-09-12",
+          "review_due": "2026-12-11",
+          "confidence": 4,
+          "reviewer": "Codex — bezpośrednia lektura polskiej strony przewoźnika",
+          "history": [],
+          "quote": "Transporter musi być czysty, szczelny, dobrze zamknięty, wentylowany z trzech stron, wyposażony w pojemnik z wodą i jedzeniem",
+          "quote_language": "pl",
+          "locator": "Zwierzę w luku bagażowym → Transporter"
+        },
         "fares": [
           {
             "id": "fare_lot_hold_2026_09_10",
@@ -38943,7 +39451,7 @@
         },
         "fares": [
           {
-            "id": "fare_qatar_airways_hold_usd_2026_09_10",
+            "id": "fare_qatar_airways_hold_usd_2026_09_12",
             "placement": "hold",
             "price": {
               "kind": "range",
@@ -38953,25 +39461,57 @@
                   "currency": "USD"
                 },
                 {
-                  "amount": 350,
+                  "amount": 450,
                   "currency": "USD"
                 }
               ]
             },
-            "billing_subject": "container",
+            "billing_subject": "pet_or_container",
             "journey_basis": "per_journey",
-            "scope_label": "To/from Qatar versus other routes; 32kg and 32–75kg",
+            "scope_label": "200–450 USD selon le poids total et le trajet",
             "source": {
-              "url": "https://www.qatarairways.com/en-am/baggage/animals.html",
+              "url": "https://www.qatarairways.com/ar-qa/baggage/animals.html",
               "source_type": "official_website",
-              "verified_date": "2026-09-10",
-              "review_due": "2026-12-09",
-              "confidence": 4,
-              "reviewer": "Codex — lecture directe de la source officielle",
+              "verified_date": "2026-09-12",
+              "review_due": "2026-12-11",
+              "confidence": 5,
+              "reviewer": "Codex — lecture de la grille officielle qatarienne en arabe",
               "history": [],
-              "quote": "Medium: USD 200 or USD 350",
-              "quote_language": "en",
-              "locator": "Excess baggage rates for animals"
+              "quote": "متوسط | حتى 32 كجم | من/إلى قطر: 200 دولار أمريكي/260 دولاراً كندياً بقية المسارات الأخرى: 350 دولاراً أمريكياً/455 دولاراً كندياً · كبير | أكبر من 32 كجم ولا يزيد عن 75 كجم | من/إلى قطر: 300 دولار أمريكي/390 دولاراً كندياً بقية المسارات الأخرى: 450 دولاراً أمريكياً/590 دولاراً كندياً",
+              "quote_language": "ar",
+              "locator": "رسوم سفر الحيوانات الأليفة مع الأمتعة المسجّلة"
+            }
+          },
+          {
+            "id": "fare_qatar_airways_hold_cad_2026_09_12",
+            "placement": "hold",
+            "price": {
+              "kind": "range",
+              "amounts": [
+                {
+                  "amount": 260,
+                  "currency": "CAD"
+                },
+                {
+                  "amount": 590,
+                  "currency": "CAD"
+                }
+              ]
+            },
+            "billing_subject": "pet_or_container",
+            "journey_basis": "per_journey",
+            "scope_label": "260–590 CAD selon le poids total et le trajet",
+            "source": {
+              "url": "https://www.qatarairways.com/ar-qa/baggage/animals.html",
+              "source_type": "official_website",
+              "verified_date": "2026-09-12",
+              "review_due": "2026-12-11",
+              "confidence": 5,
+              "reviewer": "Codex — lecture de la grille officielle qatarienne en arabe",
+              "history": [],
+              "quote": "متوسط | حتى 32 كجم | من/إلى قطر: 200 دولار أمريكي/260 دولاراً كندياً بقية المسارات الأخرى: 350 دولاراً أمريكياً/455 دولاراً كندياً · كبير | أكبر من 32 كجم ولا يزيد عن 75 كجم | من/إلى قطر: 300 دولار أمريكي/390 دولاراً كندياً بقية المسارات الأخرى: 450 دولاراً أمريكياً/590 دولاراً كندياً",
+              "quote_language": "ar",
+              "locator": "رسوم سفر الحيوانات الأليفة مع الأمتعة المسجّلة"
             }
           }
         ]
@@ -39424,13 +39964,29 @@
     "policies": {
       "cabin": {
         "availability": "offered",
+        "source": {
+          "url": "https://www.royalairmaroc.com/ma-ar/information/animaux",
+          "source_type": "official_website",
+          "verified_date": "2026-09-12",
+          "review_due": "2026-12-11",
+          "confidence": 4,
+          "reviewer": "Codex — lecture directe de la page nationale marocaine",
+          "history": [],
+          "quote": "يتم قبول الحيوانات الأليفة (كلاب، قطط، عصافير) في المقصورة",
+          "quote_language": "ar",
+          "locator": "الحيوانات في المقصورة"
+        },
         "fares": [
           {
-            "id": "fare_royal_air_maroc_cabin_mad_2026_09_10",
+            "id": "fare_royal_air_maroc_cabin_mad_2026_09_12",
             "placement": "cabin",
             "price": {
-              "kind": "exact",
+              "kind": "range",
               "amounts": [
+                {
+                  "amount": 290,
+                  "currency": "MAD"
+                },
                 {
                   "amount": 1150,
                   "currency": "MAD"
@@ -39439,26 +39995,30 @@
             },
             "billing_subject": "pet",
             "journey_basis": "per_journey",
-            "scope_label": "Domestic; Europe/Maghreb; long-haul",
+            "scope_label": "Vol intérieur, Europe/Maghreb ou long-courrier, selon la route",
             "source": {
-              "url": "https://pre.royalairmaroc.com/us-en/information/travel-with-animals",
+              "url": "https://www.royalairmaroc.com/ma-fr/information/animaux",
               "source_type": "official_website",
-              "verified_date": "2026-09-10",
-              "review_due": "2026-12-09",
+              "verified_date": "2026-09-12",
+              "review_due": "2026-12-11",
               "confidence": 4,
-              "reviewer": "Codex — lecture directe de la source officielle",
+              "reviewer": "Codex — grille officielle marocaine relue le 12 septembre 2026",
               "history": [],
-              "quote": "Long-haul: MAD 1150 / EUR 120",
-              "quote_language": "en",
-              "locator": "Pet fees table"
+              "quote": "Vols intérieurs : 290 MAD ; Europe/Maghreb : 640 MAD/70 EUR ; Long courrier : 1150 MAD/120 EUR/120 USD/120 CAD",
+              "quote_language": "fr",
+              "locator": "Voyager avec des animaux → Tarifs des animaux en cabine"
             }
           },
           {
-            "id": "fare_royal_air_maroc_cabin_eur_2026_09_10",
+            "id": "fare_royal_air_maroc_cabin_eur_2026_09_12",
             "placement": "cabin",
             "price": {
-              "kind": "exact",
+              "kind": "range",
               "amounts": [
+                {
+                  "amount": 70,
+                  "currency": "EUR"
+                },
                 {
                   "amount": 120,
                   "currency": "EUR"
@@ -39467,31 +40027,47 @@
             },
             "billing_subject": "pet",
             "journey_basis": "per_journey",
-            "scope_label": "Domestic; Europe/Maghreb; long-haul",
+            "scope_label": "Europe/Maghreb ou long-courrier, selon la route",
             "source": {
-              "url": "https://pre.royalairmaroc.com/us-en/information/travel-with-animals",
+              "url": "https://www.royalairmaroc.com/ma-fr/information/animaux",
               "source_type": "official_website",
-              "verified_date": "2026-09-10",
-              "review_due": "2026-12-09",
+              "verified_date": "2026-09-12",
+              "review_due": "2026-12-11",
               "confidence": 4,
-              "reviewer": "Codex — lecture directe de la source officielle",
+              "reviewer": "Codex — grille officielle marocaine relue le 12 septembre 2026",
               "history": [],
-              "quote": "Long-haul: MAD 1150 / EUR 120",
-              "quote_language": "en",
-              "locator": "Pet fees table"
+              "quote": "Europe/Maghreb : 640 MAD/70 EUR ; Long courrier : 1150 MAD/120 EUR/120 USD/120 CAD",
+              "quote_language": "fr",
+              "locator": "Voyager avec des animaux → Tarifs des animaux en cabine"
             }
           }
         ]
       },
       "hold": {
         "availability": "offered",
+        "source": {
+          "url": "https://www.royalairmaroc.com/ma-fr/information/animaux",
+          "source_type": "official_website",
+          "verified_date": "2026-09-12",
+          "review_due": "2026-12-11",
+          "confidence": 4,
+          "reviewer": "Philippe et Codex — lecture directe de la page officielle",
+          "history": [],
+          "quote": "Le poids d'un animal accompagné doit être inférieur à 70Kg",
+          "quote_language": "fr",
+          "locator": "Animaux en soute → Conditions d'acceptation"
+        },
         "fares": [
           {
-            "id": "fare_royal_air_maroc_hold_mad_2026_09_10",
+            "id": "fare_royal_air_maroc_hold_mad_2026_09_12",
             "placement": "hold",
             "price": {
-              "kind": "exact",
+              "kind": "range",
               "amounts": [
+                {
+                  "amount": 580,
+                  "currency": "MAD"
+                },
                 {
                   "amount": 5180,
                   "currency": "MAD"
@@ -39500,18 +40076,50 @@
             },
             "billing_subject": "container",
             "journey_basis": "per_journey",
-            "scope_label": "3 weight bands x route zones",
+            "scope_label": "Selon la zone et la tranche de poids, jusqu'à 70 kg",
             "source": {
-              "url": "https://pre.royalairmaroc.com/us-en/information/travel-with-animals",
+              "url": "https://www.royalairmaroc.com/ma-fr/information/animaux",
               "source_type": "official_website",
-              "verified_date": "2026-09-10",
-              "review_due": "2026-12-09",
+              "verified_date": "2026-09-12",
+              "review_due": "2026-12-11",
               "confidence": 4,
-              "reviewer": "Codex — lecture directe de la source officielle",
+              "reviewer": "Codex — grille officielle marocaine relue le 12 septembre 2026",
               "history": [],
-              "quote": "47–70 kg, long-haul: MAD 5180",
-              "quote_language": "en",
-              "locator": "Pet fees table"
+              "quote": "Jusqu'à 23 kg : 580 MAD ; de 47 à 70 kg, long-courrier : 5180 MAD/520 EUR/520 USD/520 CAD",
+              "quote_language": "fr",
+              "locator": "Voyager avec des animaux → Tarifs des animaux en soute"
+            }
+          },
+          {
+            "id": "fare_royal_air_maroc_hold_eur_2026_09_12",
+            "placement": "hold",
+            "price": {
+              "kind": "range",
+              "amounts": [
+                {
+                  "amount": 60,
+                  "currency": "EUR"
+                },
+                {
+                  "amount": 520,
+                  "currency": "EUR"
+                }
+              ]
+            },
+            "billing_subject": "container",
+            "journey_basis": "per_journey",
+            "scope_label": "Selon la zone et la tranche de poids, jusqu'à 70 kg",
+            "source": {
+              "url": "https://www.royalairmaroc.com/ma-fr/information/animaux",
+              "source_type": "official_website",
+              "verified_date": "2026-09-12",
+              "review_due": "2026-12-11",
+              "confidence": 4,
+              "reviewer": "Codex — grille officielle marocaine relue le 12 septembre 2026",
+              "history": [],
+              "quote": "Jusqu'à 23 kg, Europe/Maghreb : 580 MAD/60 EUR ; de 47 à 70 kg, long-courrier : 5180 MAD/520 EUR/520 USD/520 CAD",
+              "quote_language": "fr",
+              "locator": "Voyager avec des animaux → Tarifs des animaux en soute"
             }
           }
         ]
@@ -42225,6 +42833,18 @@
       },
       "hold": {
         "availability": "offered",
+        "source": {
+          "url": "https://www.singaporeair.com/en_UK/sg/travel-info/special-assistance/travelling-with-pets/",
+          "source_type": "official_website",
+          "verified_date": "2026-09-12",
+          "review_due": "2026-12-11",
+          "confidence": 4,
+          "reviewer": "Codex — direct reading of official national airline page",
+          "history": [],
+          "quote": "We welcome your pet on board our flights* as checked baggage.",
+          "quote_language": "en",
+          "locator": "Travelling with pets → Checked baggage"
+        },
         "fares": [
           {
             "id": "fare_singapore_airlines_hold_2026_09_10",
@@ -45200,87 +45820,87 @@
         "weight_includes_carrier": true,
         "fares": [
           {
-            "id": "fare_tap_cabin_eur_2026_09_10",
+            "id": "fare_tap_cabin_eur_2026_09_12",
             "placement": "cabin",
             "price": {
               "kind": "minimum",
               "amounts": [
                 {
-                  "amount": 180,
+                  "amount": 40,
                   "currency": "EUR"
                 }
               ]
             },
             "billing_subject": "pet_or_container",
             "journey_basis": "per_journey",
-            "scope_label": "Domestic, Europe, intercontinental; online/call/airport; season",
+            "scope_label": "À partir de 40 EUR · vol domestique · basse saison · achat en ligne",
             "source": {
-              "url": "https://www.flytap.com/pt-br/informacoes/viajar-com-animais/animais-estimacao",
+              "url": "https://www.flytap.com/pt-pt/informacoes/viajar-com-animais/animais-estimacao",
               "source_type": "official_website",
-              "verified_date": "2026-09-10",
-              "review_due": "2026-12-09",
-              "confidence": 4,
-              "reviewer": "Codex — lecture directe de la source officielle",
+              "verified_date": "2026-09-12",
+              "review_due": "2026-12-11",
+              "confidence": 5,
+              "reviewer": "Codex — lecture de la grille officielle portugaise",
               "history": [],
-              "quote": "Voos intercontinentais: desde 180 EUR / 218 USD / 302 CAD ou 36.000 milhas",
+              "quote": "desde 40 EUR / 51 USD / 70 CAD ou 8.000 milhas",
               "quote_language": "pt",
-              "locator": "Cabin table → high season → airport/agency → intercontinental"
+              "locator": "Época baixa · Online · Voos domésticos"
             }
           },
           {
-            "id": "fare_tap_cabin_usd_2026_09_10",
+            "id": "fare_tap_cabin_usd_2026_09_12",
             "placement": "cabin",
             "price": {
               "kind": "minimum",
               "amounts": [
                 {
-                  "amount": 218,
+                  "amount": 51,
                   "currency": "USD"
                 }
               ]
             },
             "billing_subject": "pet_or_container",
             "journey_basis": "per_journey",
-            "scope_label": "Domestic, Europe, intercontinental; online/call/airport; season",
+            "scope_label": "À partir de 51 USD · vol domestique · basse saison · achat en ligne",
             "source": {
-              "url": "https://www.flytap.com/pt-br/informacoes/viajar-com-animais/animais-estimacao",
+              "url": "https://www.flytap.com/pt-pt/informacoes/viajar-com-animais/animais-estimacao",
               "source_type": "official_website",
-              "verified_date": "2026-09-10",
-              "review_due": "2026-12-09",
-              "confidence": 4,
-              "reviewer": "Codex — lecture directe de la source officielle",
+              "verified_date": "2026-09-12",
+              "review_due": "2026-12-11",
+              "confidence": 5,
+              "reviewer": "Codex — lecture de la grille officielle portugaise",
               "history": [],
-              "quote": "Voos intercontinentais: desde 180 EUR / 218 USD / 302 CAD ou 36.000 milhas",
+              "quote": "desde 40 EUR / 51 USD / 70 CAD ou 8.000 milhas",
               "quote_language": "pt",
-              "locator": "Cabin table → high season → airport/agency → intercontinental"
+              "locator": "Época baixa · Online · Voos domésticos"
             }
           },
           {
-            "id": "fare_tap_cabin_cad_2026_09_10",
+            "id": "fare_tap_cabin_cad_2026_09_12",
             "placement": "cabin",
             "price": {
               "kind": "minimum",
               "amounts": [
                 {
-                  "amount": 302,
+                  "amount": 70,
                   "currency": "CAD"
                 }
               ]
             },
             "billing_subject": "pet_or_container",
             "journey_basis": "per_journey",
-            "scope_label": "Domestic, Europe, intercontinental; online/call/airport; season",
+            "scope_label": "À partir de 70 CAD · vol domestique · basse saison · achat en ligne",
             "source": {
-              "url": "https://www.flytap.com/pt-br/informacoes/viajar-com-animais/animais-estimacao",
+              "url": "https://www.flytap.com/pt-pt/informacoes/viajar-com-animais/animais-estimacao",
               "source_type": "official_website",
-              "verified_date": "2026-09-10",
-              "review_due": "2026-12-09",
-              "confidence": 4,
-              "reviewer": "Codex — lecture directe de la source officielle",
+              "verified_date": "2026-09-12",
+              "review_due": "2026-12-11",
+              "confidence": 5,
+              "reviewer": "Codex — lecture de la grille officielle portugaise",
               "history": [],
-              "quote": "Voos intercontinentais: desde 180 EUR / 218 USD / 302 CAD ou 36.000 milhas",
+              "quote": "desde 40 EUR / 51 USD / 70 CAD ou 8.000 milhas",
               "quote_language": "pt",
-              "locator": "Cabin table → high season → airport/agency → intercontinental"
+              "locator": "Época baixa · Online · Voos domésticos"
             }
           }
         ]
@@ -48346,6 +48966,34 @@
               "quote_language": "en",
               "locator": "Pet fee calculator"
             }
+          },
+          {
+            "id": "fare_turkish_cabin_interline_usd_2026_09_12",
+            "placement": "cabin",
+            "price": {
+              "kind": "matrix",
+              "amounts": [
+                {
+                  "amount": 75,
+                  "currency": "USD"
+                }
+              ]
+            },
+            "billing_subject": "container",
+            "journey_basis": "per_segment",
+            "scope_label": "Interline à l'arrivée, au départ ou en transit par la Turquie · PETC 0–8 kg",
+            "source": {
+              "url": "https://www.turkishairlines.com/tr-tr/bilgi-edin/evcil-hayvanlarla-yolculuk/evcil-hayvan-tasima-ucretleri/",
+              "source_type": "official_website",
+              "verified_date": "2026-09-12",
+              "review_due": "2026-12-11",
+              "confidence": 5,
+              "reviewer": "Codex — lecture de la page officielle turque",
+              "history": [],
+              "quote": "TR Varışlı/Çıkışlı Evcil Hayvan Ücretleri (Interline) · PETC 0-8KG | +75 USD",
+              "quote_language": "tr",
+              "locator": "TR Varışlı/Çıkışlı Evcil Hayvan Ücretleri (Interline)"
+            }
           }
         ]
       },
@@ -48387,6 +49035,34 @@
               "quote": "fees are charged per carrier",
               "quote_language": "en",
               "locator": "Pet fee calculator"
+            }
+          },
+          {
+            "id": "fare_turkish_hold_interline_usd_2026_09_12",
+            "placement": "hold",
+            "price": {
+              "kind": "matrix",
+              "amounts": [
+                {
+                  "amount": 150,
+                  "currency": "USD"
+                }
+              ]
+            },
+            "billing_subject": "container",
+            "journey_basis": "per_segment",
+            "scope_label": "Interline à l'arrivée, au départ ou en transit par la Turquie · AVIH tous poids publiés",
+            "source": {
+              "url": "https://www.turkishairlines.com/tr-tr/bilgi-edin/evcil-hayvanlarla-yolculuk/evcil-hayvan-tasima-ucretleri/",
+              "source_type": "official_website",
+              "verified_date": "2026-09-12",
+              "review_due": "2026-12-11",
+              "confidence": 5,
+              "reviewer": "Codex — lecture de la page officielle turque",
+              "history": [],
+              "quote": "AVIH 0-23KG | +150 USD · AVIH 24-32KG | +150 USD · AVIH 33KG+ | +150 USD",
+              "quote_language": "tr",
+              "locator": "TR Varışlı/Çıkışlı Evcil Hayvan Ücretleri (Interline)"
             }
           }
         ]
@@ -48880,10 +49556,52 @@
           "quote": "We allow one pet per adult or senior in a reservation.",
           "quote_language": "en",
           "locator": "United booking flow → Pets in cabin"
-        }
+        },
+        "fares": [
+          {
+            "id": "fare_united_cabin_usd_2026_09_12",
+            "placement": "cabin",
+            "price": {
+              "kind": "exact",
+              "amounts": [
+                {
+                  "amount": 150,
+                  "currency": "USD"
+                }
+              ]
+            },
+            "billing_subject": "pet",
+            "journey_basis": "per_one_way",
+            "scope_label": "Animal en cabine · par trajet",
+            "source": {
+              "url": "https://www.united.com/en/us/fly/travel/traveling-with-pets.html",
+              "source_type": "official_website",
+              "verified_date": "2026-09-12",
+              "review_due": "2026-12-11",
+              "confidence": 4,
+              "reviewer": "Codex — lecture navigateur de la page officielle dynamique",
+              "history": [],
+              "quote": "Tickets cost $150 each way.",
+              "quote_language": "en",
+              "locator": "Traveling with pets · Booking pet tickets"
+            }
+          }
+        ]
       },
       "hold": {
-        "availability": "not_offered"
+        "availability": "not_offered",
+        "source": {
+          "url": "https://www.united.com/en/us/fly/travel/traveling-with-pets.html",
+          "source_type": "official_website",
+          "verified_date": "2026-09-12",
+          "review_due": "2026-12-11",
+          "confidence": 4,
+          "reviewer": "Codex — lecture navigateur de la page officielle dynamique",
+          "history": [],
+          "quote": "We no longer let you check your pets through the PetSafe program. Pets can only fly in cargo when traveling with certain active-duty military or State Department employees.",
+          "quote_language": "en",
+          "locator": "Traveling with pets · PetSafe program"
+        }
       },
       "cargo": {
         "availability": "not_offered"
@@ -51235,6 +51953,18 @@
     "policies": {
       "cabin": {
         "availability": "offered",
+        "source": {
+          "url": "https://help.vueling.com/hc/es/articles/19798818168337-Mascotas",
+          "source_type": "official_website",
+          "verified_date": "2026-09-12",
+          "review_due": "2026-12-11",
+          "confidence": 4,
+          "reviewer": "Codex — lectura directa de la página nacional oficial",
+          "history": [],
+          "quote": "Puedes viajar con tu mascota siempre que selecciones la tarifa Fly Light de Vueling o la tarifa Basic de Iberia.",
+          "quote_language": "es",
+          "locator": "Mascotas → Características del servicio"
+        },
         "fares": [
           {
             "id": "fare_vueling_cabin_eur_2026_09_10",

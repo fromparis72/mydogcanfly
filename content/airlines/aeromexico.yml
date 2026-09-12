@@ -7,10 +7,10 @@ titleH1:
   es: Volar con un perro en Aeromexico
   pt: "Viajar com um cachorro na Aeromexico"
 metaDesc:
-  en: "Aeromexico pet policy: cabin, hold and cargo rules, USD fares, breed & temperature limits and official sources."
-  fr: "Politique animaux Aeromexico : cabine, soute et fret, tarifs en USD, restrictions de races et température, sources officielles."
-  es: "Política de mascotas de Aeromexico: reglas de cabina, bodega y carga, tarifas en USD, límites de razas y temperatura, y fuentes oficiales."
-  pt: "Política de animais da Aeromexico: regras de cabine, porão e carga, tarifas em USD, limites de raça e de temperatura e fontes oficiais."
+  en: "Aeromexico pet policy: cabin fares in MXN, cabin and hold rules, breed and temperature limits, and official sources."
+  fr: "Politique animaux Aeromexico : tarifs cabine en MXN, règles cabine et soute, restrictions de races et température, sources officielles."
+  es: "Política de mascotas de Aeromexico: tarifas de cabina en MXN, reglas de cabina y bodega, límites de razas y temperatura, y fuentes oficiales."
+  pt: "Política de animais da Aeromexico: tarifas de cabine em MXN, regras de cabine e porão, limites de raça e temperatura e fontes oficiais."
 chips:
   - icon: ✈
     label:
@@ -26,10 +26,10 @@ chips:
       pt: "México · MEX"
   - icon: 🗓
     label:
-      en: Updated 11 Jul 2026
-      fr: Mise à jour le 11 juil. 2026
-      es: Actualizado el 11 jul. 2026
-      pt: "Atualizado em 11 jul. 2026"
+      en: Updated 12 Sep 2026
+      fr: Mise à jour le 12 sept. 2026
+      es: Actualizado el 12 sep. 2026
+      pt: "Atualizado em 12 set. 2026"
 verdict:
   cls: warn
   label:
@@ -38,10 +38,10 @@ verdict:
     es: Moderado
     pt: "Moderada"
 verdictNote:
-  en: Cabin and hold both allowed on many routes with clear USD fees — but breed and temperature limits apply.
-  fr: Cabine et soute autorisées sur de nombreuses routes avec des tarifs clairs en USD — mais restrictions de races et de température.
-  es: Cabina y bodega permitidas en muchas rutas con tarifas claras en USD — pero aplican límites de razas y temperatura.
-  pt: "Cabine e porão permitidos em muitas rotas, com tarifas claras em USD — mas se aplicam limites de raça e de temperatura."
+  en: Cabin and hold are offered on many routes. Aeromexico publishes cabin fares in MXN; the hold fare remains to be confirmed.
+  fr: Cabine et soute sont proposées sur de nombreux trajets. Aeromexico publie les tarifs cabine en MXN ; le tarif soute reste à confirmer.
+  es: Cabina y bodega se ofrecen en muchas rutas. Aeromexico publica las tarifas de cabina en MXN; la tarifa de bodega queda por confirmar.
+  pt: "Cabine e porão são oferecidos em muitas rotas. A Aeromexico publica as tarifas de cabine em MXN; a tarifa de porão ainda deve ser confirmada."
 ladder:
   - flex: 16
     color: "#16794f"
@@ -69,6 +69,52 @@ ladder:
     sub: "> 45 kg"
 policies:
   cabin:
+    # GRILLE NATIONALE RELUE PAR PHILIPPE LE 2026-09-12. Les tarifs sont facturés par
+    # tronçon et les deux saisons sont publiées comme une fourchette indicative : la page
+    # ne donne pas de calendrier saisonnier exploitable par le moteur.
+    fares:
+      - id: fare_aeromexico_cabin_domestic_mxn_2026_09_12
+        placement: cabin
+        price:
+          kind: range
+          amounts:
+            - { amount: 1520, currency: MXN }
+            - { amount: 1910, currency: MXN }
+        billing_subject: pet
+        journey_basis: per_segment
+        scope_label: Vols nationaux au Mexique · basse ou haute saison · taxes comprises
+        source:
+          url: https://www.aeromexico.com/es-mx/informacion-de-vuelos/mascotas-en-cabina
+          source_type: official_website
+          verified_date: 2026-09-12
+          review_due: 2026-12-11
+          confidence: 4
+          reviewer: Philippe — lecture directe de la page nationale officielle ; Codex — contrôle du relevé
+          history: []
+          quote: "Temporada baja $1,520 MXN incluye impuestos. Temporada alta $1,910 MXN incluye impuestos."
+          quote_language: es
+          locator: Costos vuelos nacionales
+      - id: fare_aeromexico_cabin_international_mxn_2026_09_12
+        placement: cabin
+        price:
+          kind: range
+          amounts:
+            - { amount: 3655, currency: MXN }
+            - { amount: 3820, currency: MXN }
+        billing_subject: pet
+        journey_basis: per_segment
+        scope_label: Vols internationaux · basse ou haute saison · taxes comprises
+        source:
+          url: https://www.aeromexico.com/es-mx/informacion-de-vuelos/mascotas-en-cabina
+          source_type: official_website
+          verified_date: 2026-09-12
+          review_due: 2026-12-11
+          confidence: 4
+          reviewer: Philippe — lecture directe de la page nationale officielle ; Codex — contrôle du relevé
+          history: []
+          quote: "Temporada baja $3,655 MXN incluye impuestos. Temporada alta $3,820 MXN incluye impuestos."
+          quote_language: es
+          locator: Costos vuelos internacionales
     availability: offered
     # PREUVE IMPORTÉE — import strict lot6 (Codex, lecture directe du 2026-09-09, cohorte LOT6 fait 0).
     # Effet attendu : Aeromexico cabin is a documented conditional route. Its 9 kg combined limit is not a global dog-only threshold.
@@ -77,12 +123,12 @@ policies:
     max_weight_kg: 9
     weight_includes_carrier: true
     source:
-      url: "https://beta.aeromexico.com/es-mx/informacion-de-vuelos/transporte-aereo-de-mascotas"
+      url: "https://www.aeromexico.com/es-mx/informacion-de-vuelos/transporte-aereo-de-mascotas"
       source_type: official_website
-      verified_date: "2026-09-09"
-      review_due: "2026-12-08"   # reviewDueFrom(verified_date, "airline") — calculé par l'importeur
+      verified_date: "2026-09-12"
+      review_due: "2026-12-11"   # reviewDueFrom(verified_date, "airline") — calculé par l'importeur
       confidence: 4
-      reviewer: "Codex — direct reading of official airline page"
+      reviewer: "Claude — lecture de la page nationale officielle ; Codex — contrôle du dossier"
       history: []
       quote: "Mascota bajo el asiento (PETC) / Pet with you | Perros, Gatos | Sin límite de tiempo (cumpliendo requisitos de cada país) | Cabina | Hasta 9 kg (Incluyendo transportadora)"
       quote_language: es
@@ -96,12 +142,12 @@ policies:
     max_weight_kg: 45
     weight_includes_carrier: true
     source:
-      url: "https://beta.aeromexico.com/es-mx/informacion-de-vuelos/transporte-aereo-de-mascotas"
+      url: "https://www.aeromexico.com/es-mx/informacion-de-vuelos/transporte-aereo-de-mascotas"
       source_type: official_website
-      verified_date: "2026-09-09"
-      review_due: "2026-12-08"   # reviewDueFrom(verified_date, "airline") — calculé par l'importeur
+      verified_date: "2026-09-12"
+      review_due: "2026-12-11"   # reviewDueFrom(verified_date, "airline") — calculé par l'importeur
       confidence: 4
-      reviewer: "Codex — direct reading of official airline page"
+      reviewer: "Claude — lecture de la page nationale officielle ; Codex — contrôle du dossier"
       history: []
       quote: "Mascota en bodega (AVIH) / Checked pet | Perros, Gatos, Gallos | Sin límite de tiempo (cumpliendo requisitos de cada país) | Bodega | Hasta 45 kg (Incluyendo transportadora)"
       quote_language: es
@@ -128,10 +174,10 @@ channels:
       es: Solo perros y gatos, ≤ 9 kg incluida la jaula bajo el asiento; uno por pasajero; ventanilla/fuera de mamparo. Aquí se admiten las razas de hocico chato.
       pt: "Somente cachorros e gatos, ≤ 9 kg com a bolsa incluída, sob o assento; um por passageiro; janela/fora das fileiras de anteparo. Raças de focinho achatado permitidas aqui."
     fee:
-      en: $182–189
-      fr: 182–189 $
-      es: 182–189 $
-      pt: "182–189 $"
+      en: MXN 1,520–3,820 / segment
+      fr: 1 520–3 820 MXN / tronçon
+      es: 1,520–3,820 MXN / tramo
+      pt: "1.520–3.820 MXN / trecho"
   - placement: hold
     icon: 🧳
     name:
@@ -151,10 +197,10 @@ channels:
       es: "Mascota facturada (AVIH): gatos, perros y aves de hasta 45 kg incluida la jaula, en tu vuelo. No en algunos Embraer 190."
       pt: "Animal despachado (AVIH): gatos, cachorros e aves até 45 kg com a caixa incluída, no seu voo. Não disponível em alguns Embraer 190."
     fee:
-      en: $283–290
-      fr: 283–290 $
-      es: 283–290 $
-      pt: "283–290 $"
+      en: Fare to confirm
+      fr: Tarif à confirmer
+      es: Tarifa por confirmar
+      pt: "Tarifa a confirmar"
   - placement: cargo
     icon: ✈️
     name:
@@ -181,25 +227,35 @@ channels:
 fareList:
   rows:
     - label:
-        en: Cabin (≤ 9 kg)
-        fr: Cabine (≤ 9 kg)
-        es: Cabina (≤ 9 kg)
-        pt: "Cabine (≤ 9 kg)"
+        en: Cabin — domestic Mexico (≤ 9 kg)
+        fr: Cabine — Mexique national (≤ 9 kg)
+        es: Cabina — México nacional (≤ 9 kg)
+        pt: "Cabine — México nacional (≤ 9 kg)"
       value:
-        en: $182–189 / segment
-        fr: 182–189 $ / tronçon
-        es: 182–189 $ / segmento
-        pt: "182–189 $ / trecho"
+        en: MXN 1,520–1,910 / segment
+        fr: 1 520–1 910 MXN / tronçon
+        es: 1,520–1,910 MXN / tramo
+        pt: "1.520–1.910 MXN / trecho"
+    - label:
+        en: Cabin — international (≤ 9 kg)
+        fr: Cabine — international (≤ 9 kg)
+        es: Cabina — internacional (≤ 9 kg)
+        pt: "Cabine — internacional (≤ 9 kg)"
+      value:
+        en: MXN 3,655–3,820 / segment
+        fr: 3 655–3 820 MXN / tronçon
+        es: 3,655–3,820 MXN / tramo
+        pt: "3.655–3.820 MXN / trecho"
     - label:
         en: Hold (≤ 45 kg)
         fr: Soute (≤ 45 kg)
         es: Bodega (≤ 45 kg)
         pt: "Porão (≤ 45 kg)"
       value:
-        en: $283–290 / segment
-        fr: 283–290 $ / tronçon
-        es: 283–290 $ / segmento
-        pt: "283–290 $ / trecho"
+        en: Fare not published on this page
+        fr: Tarif non publié sur cette page
+        es: Tarifa no publicada en esta página
+        pt: "Tarifa não publicada nesta página"
     - label:
         en: Aeromexico Cargo
         fr: Aeromexico Cargo
@@ -221,10 +277,10 @@ fareList:
         es: Gratis
         pt: "Grátis"
   note:
-    en: USD, per international segment. Domestic fares are set in MXN.
-    fr: USD, par tronçon international. Les tarifs nationaux sont fixés en MXN.
-    es: USD, por segmento internacional. Las tarifas nacionales se fijan en MXN.
-    pt: "USD, por trecho internacional. As tarifas domésticas são fixadas em MXN."
+    en: Cabin fares include taxes and apply to every flown segment. The airline does not publish a hold fare on this page.
+    fr: Les tarifs cabine incluent les taxes et s'appliquent à chaque tronçon volé. La compagnie ne publie pas de tarif soute sur cette page.
+    es: Las tarifas de cabina incluyen impuestos y se aplican a cada tramo volado. La compañía no publica una tarifa de bodega en esta página.
+    pt: "As tarifas de cabine incluem impostos e aplicam-se a cada trecho voado. A companhia não publica tarifa de porão nesta página."
 restrictions:
   - icon: 🐶
     title:

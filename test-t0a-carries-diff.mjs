@@ -42,7 +42,11 @@ const WRITE = process.argv.includes("--write");
 /* MOUVEMENT NOMMÉ (12/09/2026, SAS soute — page nationale suédoise citée) : 29 106 → 29 130.
    La soute devient « sous conditions » sur les 24 couples de la sonde où elle ouvre réellement
    le transport ; les cas encore bloqués par une règle de race ne sont pas comptés comme ouverts. */
-const TEMOIN_VRAI_V3 = 29130;
+/* MOUVEMENT NOMMÉ (12/09/2026, lot de 30 compagnies) : 29 130 → 30 780. Sept canaux
+   nouvellement cités deviennent `accepted_with_conditions` (American soute, Finnair soute,
+   LOT cabine/soute, Royal Air Maroc cabine/soute, Singapore soute) et rendent le témoin hérité
+   vrai sur 1 650 couples supplémentaires. Les quatre nouveaux refus cités ne l'ouvrent pas. */
+const TEMOIN_VRAI_V3 = 30780;
 /**
  * T0-B2 — la sonde vivante compare désormais au fichier DE CE LOT.
  *

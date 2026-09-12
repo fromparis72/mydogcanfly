@@ -150,7 +150,11 @@ console.log("\n=== Clôture : les 102 compagnies examinées, ce que cela veut di
   /* MOUVEMENT NOMMÉ (10/09/2026, complément Air France cabine — Codex) : 178 → 179 ; 124 → 123 sans phrase. */
   /* MOUVEMENT NOMMÉ (10/09/2026, Saudia — preuve de test retirée sur contre-lecture de l'audit de Codex, tranchée par Philippe) : 179 → 177 ; 123 → 125 sans phrase. */
   /* MOUVEMENT NOMMÉ (12/09/2026, SAS soute) : 177 → 178 citées, 125 → 124 sans phrase. */
-  check("178 politiques citées sur 302 — couverture de l'EXAMEN, pas preuve sur les 306 canaux : 124 politiques restent sans phrase", citees === 178 && politiques === 302, `${citees} / ${politiques}`);
+  /* MOUVEMENT NOMMÉ (12/09/2026, lot de 30 compagnies) : 178 → 189 politiques citées ;
+     113 des 302 politiques explicites restent sans phrase. Les quatre canaux sans bloc restent
+     comptés séparément dans la réconciliation 306 = 102 × 3. */
+  check("189 politiques citées sur 302 — couverture accrue, 113 politiques restent sans phrase",
+    citees === 189 && politiques === 302, `${citees} / ${politiques}`);
   const neufLots = ["v3", "lots-2-3", "lot-4", "lot-5", "lot-6", "lot-7", "lot-8", "lot-9"].map((l) => `test-baselines/import-strict-${l}-apres.json`);
   check("la chaîne des baselines figées est complète, de l'import V3 au lot 9", neufLots.every((f) => { try { readFileSync(f); return true; } catch { return false; } }), neufLots.join(", "));
 }

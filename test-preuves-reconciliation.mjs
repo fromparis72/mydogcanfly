@@ -58,8 +58,10 @@ console.log("\n=== 2. La borne du seuil : `lt` exclut la valeur, `lte` l'inclut 
   /* MOUVEMENT NOMMÉ (12/09/2026, KLM et SAS — sources nationales) : 38 → 40
      seuils qualifiés. Les deux nouveaux plafonds sont inclusifs ; Air Austral et
      Air France restent les deux seules politiques dont la phrase citée porte
-     une borne stricte. */
-  check("état figé : 40 seuils qualifiés, DEUX bornes strictes (Air Austral, Air France ; KLM et SAS ajoutent deux bornes inclusives)", seuils === 40 && bornesStrictes === 2, `${seuils} seuils, ${bornesStrictes} stricte(s)`);
+     une borne stricte.
+     MOUVEMENT NOMMÉ (12/09/2026, lot de 30 compagnies) : 40 → 41, Finnair soute
+     gagne son plafond inclusif de 75 kg depuis la page nationale la plus récente. */
+  check("état figé : 41 seuils qualifiés, DEUX bornes strictes (Air Austral, Air France)", seuils === 41 && bornesStrictes === 2, `${seuils} seuils, ${bornesStrictes} stricte(s)`);
   const afB = politique("airline_air_france", "cabin");
   check("Air France cabine : `weight_limit_bound: lt` ÉCRIT dans la fiche, depuis « moins de 8 kg », et projeté", afB?.weight_limit_bound === "lt" && projetee("airline_air_france", "cabin")?.weight_limit_bound === "lt" && /weight_limit_bound: lt/.test(fiche("air_france")));
   const st = (w) => canal(decide("airport_cdg", "airport_run", { breed_id: "breed_pug", weight_kg: w }), "airline_air_austral", "cabin");

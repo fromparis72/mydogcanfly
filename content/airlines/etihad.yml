@@ -69,26 +69,27 @@ policies:
   cabin:
     # TARIFS OFFICIELS — audit indépendant du 2026-09-10 ; aucune valeur héritée réactivée.
     fares:
-      - id: fare_etihad_cabin_usd_2026_09_10
+      - id: fare_etihad_cabin_usd_2026_09_12
         placement: cabin
         price:
-          kind: exact
+          kind: minimum
           amounts:
             - amount: 399
               currency: USD
         billing_subject: pet_or_container
         journey_basis: per_segment
+        scope_label: Tarif de base ; siège supplémentaire requis dans certains cas
         source:
-          url: https://www.etihad.com/en/plan/travel-companion/travelling-with-pets
+          url: https://www.etihad.com/ar-ae/plan/travel-companion/travelling-with-pets
           source_type: official_website
-          verified_date: 2026-09-10
-          review_due: 2026-12-09
-          confidence: 4
-          reviewer: Codex — lecture directe de la source officielle
+          verified_date: 2026-09-12
+          review_due: 2026-12-11
+          confidence: 5
+          reviewer: Codex — lecture de la page officielle émirienne en arabe
           history: []
-          quote: USD 399 per flight
-          quote_language: en
-          locator: Pricing
+          quote: "تبدأ رسوم سفر الحيوانات الأليفة من 399 دولاراً أمريكياً"
+          quote_language: ar
+          locator: السفر برفقة الحيوانات الأليفة · الرسوم
     availability: offered
     # PREUVE IMPORTÉE — import strict lot3 (Codex, lecture directe du 2026-09-08, cohorte LOT3 fait 11).
     # Effet attendu : For a dog above 8 kg, do not offer the Etihad cabin. At or below 8 kg, do not infer acceptance from the threshold alone.
