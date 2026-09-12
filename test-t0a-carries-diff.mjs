@@ -39,7 +39,10 @@ const WRITE = process.argv.includes("--write");
    sous la borne) sur les 39 couples où Air France est candidate et où aucun autre canal ne l'ouvrait déjà. */
 /* MOUVEMENT NOMMÉ (10/09/2026, Saudia — preuve de test retirée, tranchée par Philippe) : 29 529 → 29 106. La soute Saudia, qui ouvrait le témoin hérité
    sur les couples où elle est candidate, redevient « à confirmer » : 423 couples se referment. Aucun ne s'ouvre. */
-const TEMOIN_VRAI_V3 = 29106;
+/* MOUVEMENT NOMMÉ (12/09/2026, SAS soute — page nationale suédoise citée) : 29 106 → 29 130.
+   La soute devient « sous conditions » sur les 24 couples de la sonde où elle ouvre réellement
+   le transport ; les cas encore bloqués par une règle de race ne sont pas comptés comme ouverts. */
+const TEMOIN_VRAI_V3 = 29130;
 /**
  * T0-B2 — la sonde vivante compare désormais au fichier DE CE LOT.
  *

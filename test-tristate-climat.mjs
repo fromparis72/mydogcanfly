@@ -330,8 +330,11 @@ console.log("\n=== 5. Dominance : denied > confirmation_required — interaction
      confirmations, 30 → 29 de provenance (Air France cabine, sur ce trajet, n'est plus « page officielle non citée » :
      elle est citée, et le carlin de 8 kg y est REFUSÉ par la borne stricte « moins de 8 kg »), 38 de race et 1 par
      règle seule inchangés. */
-  check("carlin : 44 confirmations — 29 de provenance, 38 de race, 1 par règle non citée seule (Air Algérie cabine), aucune inexpliquée (chacune porte l'une des trois causes)",
-    confirmations.length === 44 && provenance === 29 && race === 38 && parRegleSeule.length === 1 && parRegleSeule[0]?.placement === "cabin" && inexpliquees.length === 0,
+  /* MOUVEMENT NOMMÉ (12/09/2026, SAS soute raccordée à sa page nationale suédoise) : le canal reste
+     à confirmer pour ce carlin à cause de la règle brachycéphale non citée, mais il ne porte plus la
+     fausse cause « politique sans preuve ». Total 44 inchangé, provenance 29 → 28, race inchangée. */
+  check("carlin : 44 confirmations — 28 de provenance, 38 de race, 1 par règle non citée seule (Air Algérie cabine), aucune inexpliquée (chacune porte l'une des trois causes)",
+    confirmations.length === 44 && provenance === 28 && race === 38 && parRegleSeule.length === 1 && parRegleSeule[0]?.placement === "cabin" && inexpliquees.length === 0,
     `${confirmations.length} confirmation(s), dont ${race} de race et ${provenance} de provenance, ${inexpliquees.length} inexpliquée(s), sur ${tousLesCanaux.length} canaux`);
 }
 

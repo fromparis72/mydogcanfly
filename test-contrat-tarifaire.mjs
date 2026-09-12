@@ -694,8 +694,8 @@ console.log("\n=== 14. L'import réel ne peut plus retomber silencieusement à z
     if (Array.isArray(p.fares) && p.fares.length) { avecTarifs++; lignesTarifaires += p.fares.length; compagnies.add(a.id); }
     if (Array.isArray(p.fare_conflicts) && p.fare_conflicts.length) avecConflits++;
   }
-  check("l'import verrouillé porte exactement 218 lignes sur 121 canaux et 70 compagnies — import initial plus six correctifs tarifaires, jamais zéro par oubli",
-    avecTarifs === 121 && lignesTarifaires === 218 && compagnies.size === 70,
+  check("l'import verrouillé porte exactement 216 lignes sur 121 canaux et 70 compagnies — les dix valeurs SAS sont regroupées en huit lignes de zone, jamais perdues",
+    avecTarifs === 121 && lignesTarifaires === 216 && compagnies.size === 70,
     `${lignesTarifaires} ligne(s), ${avecTarifs} canal(aux), ${compagnies.size} compagnie(s)`);
   const airFrance = objets.airlines.find((a) => a.id === "airline_air_france")?.premium?.policy;
   const montantsUniques = (p, currency) => [...new Set((p?.fares ?? []).flatMap((f) =>
@@ -773,6 +773,19 @@ console.log("\n=== 14. L'import réel ne peut plus retomber silencieusement à z
   check("KLM porte bien sa fourchette officielle 70–500 EUR en cabine ET en soute",
     ["cabin", "hold"].every((p) => klm?.[p]?.fares?.some((f) => f.price.kind === "range"
       && f.price.amounts[0]?.amount === 70 && f.price.amounts[1]?.amount === 500 && f.price.amounts[0]?.currency === "EUR")));
+  const sas = objets.airlines.find((a) => a.id === "airline_sas")?.premium?.policy;
+  check("SAS : les huit zones cabine/soute traversent avec leurs cinq devises et leur preuve suédoise propre",
+    sas?.cabin?.fares?.length === 4 && sas?.hold?.fares?.length === 4
+      && [...sas.cabin.fares, ...sas.hold.fares].every((f) => f.price.kind === "matrix"
+        && f.price.amounts?.length === 5 && f.billing_subject === "container" && f.journey_basis === "per_segment"
+        && f.source?.url === "https://www.sas.se/reseinfo/resa-med-djur/kabin"
+        && f.source?.quote_language === "sv" && f.source?.verified_date === "2026-09-12"
+        && f.source?.review_due === "2026-12-11"));
+  check("SAS : les amplitudes officielles restent entières — cabine 55–149 EUR, soute 90–725 EUR",
+    presentNumericFares(sas.cabin.fares, { locale: "fr", minimumLabel: "à partir de" })?.includes("55")
+      && presentNumericFares(sas.cabin.fares, { locale: "fr", minimumLabel: "à partir de" })?.includes("149")
+      && presentNumericFares(sas.hold.fares, { locale: "fr", minimumLabel: "à partir de" })?.includes("90")
+      && presentNumericFares(sas.hold.fares, { locale: "fr", minimumLabel: "à partir de" })?.includes("725"));
   const swiss = objets.airlines.find((a) => a.id === "airline_swiss")?.premium?.policy;
   const montants = (p) => (p?.fares ?? []).flatMap((f) => f.price.amounts.map((m) => `${m.currency}:${m.amount}`)).sort();
   check("SWISS multidevise ne croise jamais le montant précédent avec la devise suivante",
@@ -1036,14 +1049,15 @@ console.log("\n=== 17. LE TARIF TRAVERSE LE CONTRAT HTTP RÉEL JUSQU'AU FINDER =
   check("le rapport transporte exactement cabine, soute et fret — aucune résolution perdue",
     Object.keys(parCanal).sort().join(",") === "cabin,cargo,hold", JSON.stringify(Object.keys(parCanal)));
   for (const canal of ["cabin", "hold"]) {
-    const tarif = parCanal[canal]?.indecidables?.find((f) => f.id === `fare_klm_${canal}_eur_2026_09_10`);
+    const tarif = parCanal[canal]?.indecidables?.find((f) => f.id === `fare_klm_${canal}_eur_2026_09_12`);
     check(`KLM ${canal} : 70–500 EUR reste une grille publiée, jamais un prix exact du trajet`,
       tarif?.price?.kind === "range" && tarif.price.amounts?.[0]?.amount === 70
         && tarif.price.amounts?.[1]?.amount === 500 && parCanal[canal]?.montants?.length === 0,
       JSON.stringify(parCanal[canal] ?? null).slice(0, 300));
     check(`KLM ${canal} : la preuve tarifaire propre traverse avec URL, citation, locator et date`,
-      tarif?.source?.url === "https://www.klm.com/information/pets/reservation"
-        && tarif.source.verified_date === "2026-09-10" && tarif.source.quote?.length >= 10
+      tarif?.source?.url === "https://www.klm.nl/information/pets/reservation"
+        && tarif.source.verified_date === "2026-09-12" && tarif.source.quote_language === "nl"
+        && tarif.source.quote?.length >= 10
         && tarif.source.locator?.length > 0, JSON.stringify(tarif?.source ?? null));
   }
   check("KLM fret : le mécanisme sur devis traverse séparément des montants",

@@ -41,6 +41,23 @@ for (const [coh, idx] of Object.entries(AUTORISES)) {
   const d = JSON.parse(readFileSync(`${DOSSIER}/PREUVES_POLITIQUES_COMPAGNIES_COHORTE_${coh}_2026-09-08.json`, "utf8"));
   for (const i of idx) faits.push({ cohorte: coh, index: i, verified_date: d.provenance_defaults.verified_date, ...d.facts[i] });
 }
+/* MOUVEMENT NOMMÉ (12/09/2026) : trois preuves V3 ont été remplacées par les pages nationales
+ * officielles, conformément à l'ordre de recherche de Philippe. Leur contenu V3 reste opposable
+ * dans `source.history`; le test contrôle à la fois la supersession exacte et cette continuité. */
+const SUPERSEDEES = {
+  "airline_klm.cabin": {
+    url: "https://www.klm.nl/information/pets/reservation", language: "nl", locator: "Huisdieren in de cabine",
+    quote: "Uw huisdier moet onder de stoel voor u reizen, dus zorg ervoor dat uw viervoeter in een gesloten reistas of kennel van maximaal 46 x 28 x 24 cm past. De reistas of kennel mag samen met uw huisdier maximaal 8 kg wegen.",
+  },
+  "airline_klm.hold": {
+    url: "https://www.klm.nl/information/pets/reservation", language: "nl", locator: "Huisdieren in het ruim",
+    quote: "U kunt maximaal 3 huisdieren mee laten reizen in het ruim. Het gecombineerde gewicht van uw huisdier(en) en kennel(s) mag niet meer zijn dan 75 kg.",
+  },
+  "airline_sas.cabin": {
+    url: "https://www.sas.se/reseinfo/resa-med-djur/kabin", language: "sv", locator: "Krav på väskor för husdjur",
+    quote: "Max. storlek: 40 x 25 x 23 cm (L x B x H). Max. vikt: 8 kg (inklusive husdjur).",
+  },
+};
 const objets = JSON.parse(readFileSync("packages/knowledge/raw/objects.json", "utf8"));
 const kb = loadKB();
 const JUILLET = (() => { const n = new Date(), y = n.getUTCFullYear(); return `${Date.UTC(y, n.getUTCMonth(), n.getUTCDate()) <= Date.UTC(y, 6, 15) ? y : y + 1}-07-15`; })();
@@ -57,11 +74,17 @@ console.log("=== Étage 1 — chaque fait autorisé est dans la donnée, à l'oc
   for (const f of faits) {
     const pol = objets.airlines.find((a) => a.id === f.airline_id)?.premium?.policy?.[f.placement];
     const s = pol?.source ?? {};
+    const supersedee = SUPERSEDEES[`${f.airline_id}.${f.placement}`];
     const conserve = f.airline_id === "airline_british_airways";   // preuve du 05/09 conservée, non remplacée
-    const memePhrase = s.quote === f.quote && s.locator === f.locator && s.quote_language === f.quote_language && s.url === f.url;
-    const dateLecture = conserve ? s.verified_date === "2026-09-05" : s.verified_date === f.verified_date;
-    check(`${f.airline_id}.${f.placement} (${f.cohorte}[${f.index}]) : phrase, URL, localisateur, langue${conserve ? " — preuve du 05/09 conservée" : ""}`,
+    const memePhrase = supersedee
+      ? s.quote === supersedee.quote && s.locator === supersedee.locator && s.quote_language === supersedee.language && s.url === supersedee.url
+      : s.quote === f.quote && s.locator === f.locator && s.quote_language === f.quote_language && s.url === f.url;
+    const dateLecture = conserve ? s.verified_date === "2026-09-05" : supersedee ? s.verified_date === "2026-09-12" : s.verified_date === f.verified_date;
+    check(`${f.airline_id}.${f.placement} (${f.cohorte}[${f.index}]) : phrase, URL, localisateur, langue${conserve ? " — preuve du 05/09 conservée" : supersedee ? " — page nationale du 12/09" : ""}`,
       !!pol && memePhrase && dateLecture, JSON.stringify({ attendu: f.quote, lu: s.quote, url: s.url, loc: s.locator }));
+    if (supersedee) check("  …la preuve V3 remplacée reste consignée dans l'historique, avec son URL et sa phrase exactes",
+      s.history?.some((h) => h.date === "2026-09-12" && h.note?.includes(f.url) && h.note?.includes(f.quote) && h.note?.includes(f.locator)),
+      JSON.stringify(s.history));
     check(`  …review_due = reviewDueFrom(verified_date, "airline") — calculé, jamais recopié`,
       s.review_due === reviewDueFrom(s.verified_date ?? "", "airline"), `${s.verified_date} → ${s.review_due}`);
     check(`  …source officielle, jamais MyDogCanFly, confiance 4, relecteur nommé`,
@@ -171,8 +194,9 @@ console.log("\n=== Ce que l'import n'a PAS fait ===");
      (« The total weight of the transport container, including the animal, must not exceed 8 kg. »).
      American soute y RESTE : Codex l'a volontairement laissée non décidée au lot 4 (réservée aux
      militaires et diplomates en mission). */
-  const attente = [["airline_finnair", "hold"], ["airline_finnair", "cargo"], ["airline_sas", "hold"], ["airline_american", "hold"], ["airline_singapore_airlines", "hold"], ["airline_vueling", "cabin"]];
-  check("les faits EN ATTENTE du LISEZ_MOI (B partielle, D, E, F cabine) ne sont pas importés : aucune citation sur ces canaux",
+  /* MOUVEMENT NOMMÉ (12/09/2026) : SAS soute quitte cette liste sur sa page nationale suédoise. */
+  const attente = [["airline_finnair", "hold"], ["airline_finnair", "cargo"], ["airline_american", "hold"], ["airline_singapore_airlines", "hold"], ["airline_vueling", "cabin"]];
+  check("les cinq faits encore EN ATTENTE du LISEZ_MOI ne sont pas importés : aucune citation sur ces canaux",
     attente.every(([id, pl]) => !(objets.airlines.find((a) => a.id === id)?.premium?.policy?.[pl]?.source?.quote)), JSON.stringify(attente.filter(([id, pl]) => objets.airlines.find((a) => a.id === id)?.premium?.policy?.[pl]?.source?.quote)));
 }
 

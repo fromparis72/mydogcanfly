@@ -1,14 +1,14 @@
 {
   "resume": {
-    "empreinte_donnees_sha256": "0bd984a70b1402cdc065621dd8cccb5163e0694dc77ac1de758184796fbb2b7e",
+    "empreinte_donnees_sha256": "1c6c7116c5f4cd4f69a37737d91d03de2aa6700c19cb73db475ba97c12e26b68",
     "compagnies": 102,
     "lignes": 306,
     "politiques": 302,
     "par_categorie": {
-      "A": 177,
+      "A": 178,
       "A_incomplete": 0,
       "B": 52,
-      "C": 74,
+      "C": 73,
       "D": 3
     },
     "par_canal": {
@@ -20,10 +20,10 @@
         "D": 0
       },
       "hold": {
-        "A": 70,
+        "A": 71,
         "A_incomplete": 0,
         "B": 24,
-        "C": 8,
+        "C": 7,
         "D": 0
       },
       "cargo": {
@@ -179,6 +179,7 @@
       "airline_ryanair#hold (politique)",
       "airline_ryanair#cargo (politique)",
       "airline_sas#cabin (politique)",
+      "airline_sas#hold (politique)",
       "airline_sky_express#cabin (politique)",
       "airline_sky_express#hold (politique)",
       "airline_smartwings#cabin (politique)",
@@ -282,21 +283,21 @@
       "availability": {
         "not_offered": 18,
         "null": 42,
-        "offered": 14
+        "offered": 13
       },
       "review_state": {
         "legacy_unreviewed": 42,
-        "null": 32
+        "null": 31
       },
-      "avec_regles_auto_citees": 22
+      "avec_regles_auto_citees": 21
     },
     "coherence_niveau_de_preuve": {
       "paires": {
-        "A ↔ citee": 177,
+        "A ↔ citee": 178,
         "B ↔ aucune": 29,
         "B ↔ officielle_non_citee": 22,
         "B ↔ politique_absente": 1,
-        "C ↔ aucune": 74,
+        "C ↔ aucune": 73,
         "D ↔ politique_absente": 3
       },
       "ecarts": {
@@ -5527,18 +5528,18 @@
       "categorie": "A",
       "piste": "politique",
       "manques": [],
-      "url": "https://www.klm.com/information/pets/reservation",
-      "hote": "klm.com",
-      "verified_date": "2026-09-08",
+      "url": "https://www.klm.nl/information/pets/reservation",
+      "hote": "klm.nl",
+      "verified_date": "2026-09-12",
       "niveau_de_preuve_politique": "citee",
       "priorite": {
         "availability": "offered",
         "derived_from_fiche": false,
         "source_derived": false,
         "review_state": null,
-        "history": 0,
-        "url_politique": "https://www.klm.com/information/pets/reservation",
-        "hote_politique": "klm.com",
+        "history": 1,
+        "url_politique": "https://www.klm.nl/information/pets/reservation",
+        "hote_politique": "klm.nl",
         "url_fabriquee": false,
         "regles": [
           "rule_kl_cabin_weight"
@@ -5558,18 +5559,18 @@
       "categorie": "A",
       "piste": "politique",
       "manques": [],
-      "url": "https://www.klm.com/information/pets/reservation",
-      "hote": "klm.com",
-      "verified_date": "2026-09-08",
+      "url": "https://www.klm.nl/information/pets/reservation",
+      "hote": "klm.nl",
+      "verified_date": "2026-09-12",
       "niveau_de_preuve_politique": "citee",
       "priorite": {
         "availability": "offered",
         "derived_from_fiche": false,
         "source_derived": false,
         "review_state": null,
-        "history": 0,
-        "url_politique": "https://www.klm.com/information/pets/reservation",
-        "hote_politique": "klm.com",
+        "history": 1,
+        "url_politique": "https://www.klm.nl/information/pets/reservation",
+        "hote_politique": "klm.nl",
         "url_fabriquee": false,
         "regles": [
           "rule_kl_brachy_hold",
@@ -7070,18 +7071,18 @@
       "categorie": "A",
       "piste": "politique",
       "manques": [],
-      "url": "https://www.flysas.com/en/travel-info/travel-with-pets/cabin",
-      "hote": "flysas.com",
-      "verified_date": "2026-09-08",
+      "url": "https://www.sas.se/reseinfo/resa-med-djur/kabin",
+      "hote": "sas.se",
+      "verified_date": "2026-09-12",
       "niveau_de_preuve_politique": "citee",
       "priorite": {
         "availability": "offered",
         "derived_from_fiche": true,
         "source_derived": false,
         "review_state": null,
-        "history": 0,
-        "url_politique": "https://www.flysas.com/en/travel-info/travel-with-pets/cabin",
-        "hote_politique": "flysas.com",
+        "history": 1,
+        "url_politique": "https://www.sas.se/reseinfo/resa-med-djur/kabin",
+        "hote_politique": "sas.se",
         "url_fabriquee": false,
         "regles": [
           "rule_sas_cabin_weight"
@@ -7096,22 +7097,22 @@
       "airline_id": "airline_sas",
       "name": "SAS Scandinavian",
       "canal": "hold",
-      "categorie": "C",
-      "piste": "valeur_heritee",
+      "categorie": "A",
+      "piste": "politique",
       "manques": [],
-      "url": null,
-      "hote": null,
-      "verified_date": null,
-      "niveau_de_preuve_politique": "aucune",
+      "url": "https://www.sas.se/reseinfo/resa-med-djur/lastutrymmet",
+      "hote": "sas.se",
+      "verified_date": "2026-09-12",
+      "niveau_de_preuve_politique": "citee",
       "priorite": {
         "availability": "offered",
         "derived_from_fiche": true,
-        "source_derived": true,
+        "source_derived": false,
         "review_state": null,
         "history": 0,
-        "url_politique": "https://www.flysas.com",
-        "hote_politique": "flysas.com",
-        "url_fabriquee": true,
+        "url_politique": "https://www.sas.se/reseinfo/resa-med-djur/lastutrymmet",
+        "hote_politique": "sas.se",
+        "url_fabriquee": false,
         "regles": [
           "rule_sas_hold_weight"
         ],

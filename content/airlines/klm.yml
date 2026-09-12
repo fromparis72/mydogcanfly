@@ -26,10 +26,10 @@ chips:
       pt: "Países Baixos · AMS"
   - icon: 🗓
     label:
-      en: Updated 11 Jul 2026
-      fr: Mise à jour le 11 juil. 2026
-      es: Actualizado el 11 jul. 2026
-      pt: "Atualizado em 11 jul. 2026"
+      en: Updated 12 Sep 2026
+      fr: Mise à jour le 12 sept. 2026
+      es: Actualizado el 12 sept. 2026
+      pt: "Atualizado em 12 de set. de 2026"
 verdict:
   cls: warn
   label:
@@ -73,9 +73,9 @@ ladder:
       pt: "conexão de 3 h+"
 policies:
   cabin:
-    # TARIFS OFFICIELS — audit indépendant du 2026-09-10 ; aucune valeur héritée réactivée.
+    # TARIF OFFICIEL — page nationale néerlandaise, relue le 2026-09-12.
     fares:
-      - id: fare_klm_cabin_eur_2026_09_10
+      - id: fare_klm_cabin_eur_2026_09_12
         placement: cabin
         price:
           kind: range
@@ -88,16 +88,16 @@ policies:
         journey_basis: per_one_way
         scope_label: aéroport départ → destination
         source:
-          url: https://www.klm.com/information/pets/reservation
+          url: https://www.klm.nl/information/pets/reservation
           source_type: official_website
-          verified_date: 2026-09-10
-          review_due: 2026-12-09
+          verified_date: 2026-09-12
+          review_due: 2026-12-11
           confidence: 4
-          reviewer: Codex — lecture directe de la source officielle
+          reviewer: Codex — lecture directe de la page nationale néerlandaise officielle
           history: []
-          quote: between EUR 70 and EUR 500
-          quote_language: en
-          locator: Pet reservation fee
+          quote: "De kosten voor het meenemen van uw huisdier met KLM variëren van EUR 70 tot EUR 500 per enkele reis. We beseffen dat dit een brede prijsklasse is; de prijs is namelijk afhankelijk van uw luchthaven van vertrek en bestemming. De exacte prijs ziet u bij het maken van een reservering."
+          quote_language: nl
+          locator: Kosten
     availability: offered
     # PREUVE IMPORTÉE — import strict V3 (Codex, lecture directe du 2026-09-08, cohorte A fait 7).
     # Effet attendu : For a 32 kg dog, cabin is not suitable.
@@ -106,20 +106,26 @@ policies:
     max_weight_kg: 8
     weight_includes_carrier: true
     source:
-      url: "https://www.klm.com/information/pets/reservation"
+      url: "https://www.klm.nl/information/pets/reservation"
       source_type: official_website
-      verified_date: "2026-09-08"
-      review_due: "2026-12-07"   # reviewDueFrom(verified_date, "airline") — calculé par l'importeur
+      verified_date: "2026-09-12"
+      review_due: "2026-12-11"
       confidence: 4
-      reviewer: "Codex — lecture directe de la page officielle"
-      history: []
-      quote: "Because they'll need to travel underneath the seat in front of you, the bag or kennel can weigh no more than 8 kg (17.6 lb), with your pet inside."
-      quote_language: en
-      locator: "Pets in the cabin"
+      reviewer: "Codex — lecture directe de la page nationale néerlandaise officielle"
+      history:
+        - date: "2026-09-12"
+          reviewer: "Codex — supersession par la page nationale néerlandaise"
+          note: >-
+            Source précédente vérifiée le 2026-09-08 : https://www.klm.com/information/pets/reservation ;
+            citation « Because they'll need to travel underneath the seat in front of you, the bag or kennel can weigh no more than 8 kg (17.6 lb), with your pet inside. » ;
+            localisateur « Pets in the cabin ». Remplacée par la page nationale officielle relue le 2026-09-12.
+      quote: "Uw huisdier moet onder de stoel voor u reizen, dus zorg ervoor dat uw viervoeter in een gesloten reistas of kennel van maximaal 46 x 28 x 24 cm past. De reistas of kennel mag samen met uw huisdier maximaal 8 kg wegen."
+      quote_language: nl
+      locator: "Huisdieren in de cabine"
   hold:
-    # TARIFS OFFICIELS — audit indépendant du 2026-09-10 ; aucune valeur héritée réactivée.
+    # TARIF OFFICIEL — même fourchette publiée pour le transport d'un animal avec KLM.
     fares:
-      - id: fare_klm_hold_eur_2026_09_10
+      - id: fare_klm_hold_eur_2026_09_12
         placement: hold
         price:
           kind: range
@@ -132,31 +138,39 @@ policies:
         journey_basis: per_one_way
         scope_label: aéroport départ → destination
         source:
-          url: https://www.klm.com/information/pets/reservation
+          url: https://www.klm.nl/information/pets/reservation
           source_type: official_website
-          verified_date: 2026-09-10
-          review_due: 2026-12-09
+          verified_date: 2026-09-12
+          review_due: 2026-12-11
           confidence: 4
-          reviewer: Codex — lecture directe de la source officielle
+          reviewer: Codex — lecture directe de la page nationale néerlandaise officielle
           history: []
-          quote: The cost of traveling with your pet on KLM ranges from EUR 70 to EUR 500 per one-way flight.
-          quote_language: en
-          locator: Costs and restrictions → Costs
+          quote: "De kosten voor het meenemen van uw huisdier met KLM variëren van EUR 70 tot EUR 500 per enkele reis. We beseffen dat dit een brede prijsklasse is; de prijs is namelijk afhankelijk van uw luchthaven van vertrek en bestemming. De exacte prijs ziet u bij het maken van een reservering."
+          quote_language: nl
+          locator: Kosten
     availability: offered
     # PREUVE IMPORTÉE — import strict V3 (Codex, lecture directe du 2026-09-08, cohorte A fait 8).
     # Effet attendu : Show hold offered under conditions, not blanket acceptance.
     # Portée nommée : pet plus kennel below 75 kg; fleet, connection, route and breed exclusions apply
+    max_weight_kg: 75
+    weight_includes_carrier: true
     source:
-      url: "https://www.klm.com/information/pets/reservation"
+      url: "https://www.klm.nl/information/pets/reservation"
       source_type: official_website
-      verified_date: "2026-09-08"
-      review_due: "2026-12-07"   # reviewDueFrom(verified_date, "airline") — calculé par l'importeur
+      verified_date: "2026-09-12"
+      review_due: "2026-12-11"
       confidence: 4
-      reviewer: "Codex — lecture directe de la page officielle"
-      history: []
-      quote: "You can bring up to 3 pets in the hold."
-      quote_language: en
-      locator: "Pets in the hold"
+      reviewer: "Codex — lecture directe de la page nationale néerlandaise officielle"
+      history:
+        - date: "2026-09-12"
+          reviewer: "Codex — supersession par la page nationale néerlandaise"
+          note: >-
+            Source précédente vérifiée le 2026-09-08 : https://www.klm.com/information/pets/reservation ;
+            citation « You can bring up to 3 pets in the hold. » ; localisateur « Pets in the hold ».
+            Remplacée par la page nationale officielle relue le 2026-09-12.
+      quote: "U kunt maximaal 3 huisdieren mee laten reizen in het ruim. Het gecombineerde gewicht van uw huisdier(en) en kennel(s) mag niet meer zijn dan 75 kg."
+      quote_language: nl
+      locator: "Huisdieren in het ruim"
   cargo:
     # TARIFS OFFICIELS — audit indépendant du 2026-09-10 ; aucune valeur héritée réactivée.
     fares:
@@ -217,10 +231,10 @@ channels:
       es: Aceptado
       pt: "Permitido"
     detail:
-      en: Larger pets (pet + kennel < 75 kg) in the hold; not on B787-9/-10, A321neo, German Airways or KLC flights over 2 h.
-      fr: Animaux plus grands (animal + caisse < 75 kg) en soute ; pas sur B787-9/-10, A321neo, German Airways ni vols KLC de plus de 2 h.
-      es: Mascotas más grandes (mascota + jaula < 75 kg) en bodega; no en B787-9/-10, A321neo, German Airways ni vuelos KLC de más de 2 h.
-      pt: "Animais maiores (animal + caixa de transporte < 75 kg) no porão; não disponível em B787-9/-10, A321neo, German Airways ou voos da KLC com mais de 2 h."
+      en: Larger pets (pet + kennel ≤ 75 kg) in the hold; not on B787-9/-10, A321neo, German Airways or KLC flights over 2 h.
+      fr: Animaux plus grands (animal + caisse ≤ 75 kg) en soute ; pas sur B787-9/-10, A321neo, German Airways ni vols KLC de plus de 2 h.
+      es: Mascotas más grandes (mascota + jaula ≤ 75 kg) en bodega; no en B787-9/-10, A321neo, German Airways ni vuelos KLC de más de 2 h.
+      pt: "Animais maiores (animal + caixa de transporte ≤ 75 kg) no porão; não disponível em B787-9/-10, A321neo, German Airways ou voos da KLC com mais de 2 h."
     fee:
       en: €70–500
       fr: 70–500 €
@@ -262,10 +276,10 @@ fareList:
         es: 70–500 €
         pt: "70–500 €"
     - label:
-        en: Hold (< 75 kg)
-        fr: Soute (< 75 kg)
-        es: Bodega (< 75 kg)
-        pt: "Porão (< 75 kg)"
+        en: Hold (≤ 75 kg)
+        fr: Soute (≤ 75 kg)
+        es: Bodega (≤ 75 kg)
+        pt: "Porão (≤ 75 kg)"
       value:
         en: €70–500
         fr: 70–500 €

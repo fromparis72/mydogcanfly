@@ -945,8 +945,13 @@ console.log("=== Preuve T0-B2-UI (deux baselines FIGÉES — permanente) ===");
        Celle de la réconciliation n'est pas écrasée : elle devient l'AVANT de cette paire. */
     /* 10/09/2026 — LA PLUS RÉCENTE EST CELLE DU RETRAIT DE LA PREUVE SAUDIA (surface de test `booking-uat`). Celle du
        complément Air France n'est pas écrasée : elle devient l'AVANT de cette paire. */
-    check("la baseline vivante est identique à la baseline figée la plus récente (retrait de la preuve Saudia)",
+    /* 12/09/2026 — LA PLUS RÉCENTE EST CELLE DE SAS SOUTE, citée sur la page nationale suédoise.
+       Le retrait Saudia reste intact comme AVANT de cette paire. */
+    check("la baseline vivante est identique à la baseline figée la plus récente (SAS soute citée)",
       readFileSync("test-baselines/t0a-finder-baseline.json", "utf8")
+        === readFileSync("test-baselines/sas-soute-citee-apres.json", "utf8"));
+    check("l'AVANT de SAS soute EST l'après du retrait Saudia — chaîne continue",
+      readFileSync("test-baselines/sas-soute-citee-avant.json", "utf8")
         === readFileSync("test-baselines/saudia-preuve-uat-apres.json", "utf8"));
     check("l'AVANT du retrait Saudia EST l'après du complément Air France cabine — chaîne continue",
       readFileSync("test-baselines/saudia-preuve-uat-avant.json", "utf8")
@@ -1730,6 +1735,65 @@ console.log("=== Preuve PERMANENTE Retrait de la preuve Saudia — une surface d
   }
 }
 
+console.log("=== Preuve PERMANENTE SAS soute — une citation nationale suédoise, et rien d'autre ne bouge (baselines FIGÉES) ===");
+{
+  const AVANT = "test-baselines/sas-soute-citee-avant.json";
+  const APRES = "test-baselines/sas-soute-citee-apres.json";
+  check("les deux baselines de SAS soute sont versionnées", existsSync(AVANT) && existsSync(APRES));
+  if (existsSync(AVANT) && existsSync(APRES)) {
+    const avant = JSON.parse(readFileSync(AVANT, "utf8")), apres = JSON.parse(readFileSync(APRES, "utf8"));
+    const idDe = (s) => s.split(" | ")[0];
+    const statutsDe = (s) => (s.split(" | ").find((seg) => seg.startsWith("st:")) ?? "st:?/?/?").slice(3).split("/");
+    const changees = new Map(); const transitions = new Map(); const verdicts = new Map();
+    const champsChanges = new Map(), sourcesAjoutees = new Map(), sourcesRetirees = new Map();
+    let cartes = 0, total = 0, causesRaceSeules = 0;
+    for (const k of Object.keys(apres)) {
+      for (const champ of Object.keys(apres[k])) {
+        if (JSON.stringify(avant[k]?.[champ]) !== JSON.stringify(apres[k][champ])) {
+          champsChanges.set(champ, (champsChanges.get(champ) ?? 0) + 1);
+        }
+      }
+      const srcAvant = new Set(avant[k]?.sources ?? []), srcApres = new Set(apres[k]?.sources ?? []);
+      for (const url of srcApres) if (!srcAvant.has(url)) sourcesAjoutees.set(url, (sourcesAjoutees.get(url) ?? 0) + 1);
+      for (const url of srcAvant) if (!srcApres.has(url)) sourcesRetirees.set(url, (sourcesRetirees.get(url) ?? 0) + 1);
+      const A = new Map((avant[k]?.airlines ?? []).map((s) => [idDe(s), s]));
+      for (const s of apres[k].airlines ?? []) {
+        total++;
+        const o = A.get(idDe(s));
+        if (o === s) continue;
+        cartes++; changees.set(idDe(s), (changees.get(idDe(s)) ?? 0) + 1);
+        if ((o ?? "").includes("breed_policy_unreviewed:airline_sas#hold,legacy_unreviewed:airline_sas#hold")
+          && s.includes("breed_policy_unreviewed:airline_sas#hold") && !s.includes("legacy_unreviewed:airline_sas#hold")) causesRaceSeules++;
+        const so = statutsDe(o ?? ""), sn = statutsDe(s);
+        for (let i = 0; i < 3; i++) if (so[i] !== sn[i]) transitions.set(`${so[i]}→${sn[i]}`, (transitions.get(`${so[i]}→${sn[i]}`) ?? 0) + 1);
+      }
+      const v = `${avant[k]?.verdict}→${apres[k].verdict}`; verdicts.set(v, (verdicts.get(v) ?? 0) + 1);
+    }
+    check("SEULE SAS change de carte", [...changees.keys()].join(",") === "airline_sas", [...changees.keys()].join(", "));
+    check("40 cartes SAS sur 1 560 changent : les seules où elle est candidate",
+      cartes === 40 && total === 1560 && changees.get("airline_sas") === 40, `${cartes} / ${total}`);
+    check("20 soutes « à confirmer » → sous conditions sur citation ; aucune autre transition",
+      transitions.get("confirmation_required→accepted_with_conditions") === 20 && transitions.size === 1, JSON.stringify([...transitions]));
+    check("sur les 20 carlins, la cause de provenance disparaît mais la cause de race maintient « à confirmer »",
+      causesRaceSeules === 20, String(causesRaceSeules));
+    check("les seuls champs de rapport déplacés sont nommés : 40 cartes, 17 compatibilités, 10 scores et 72 listes de sources",
+      JSON.stringify(Object.fromEntries(champsChanges)) === JSON.stringify({ airlines: 40, compatible: 17, sources: 72, score: 10 }),
+      JSON.stringify(Object.fromEntries(champsChanges)));
+    check("les URL nationales KLM/SAS remplacent seulement leurs URL antérieures, aux occurrences mesurées",
+      JSON.stringify(Object.fromEntries(sourcesAjoutees)) === JSON.stringify({
+        "https://www.klm.nl/information/pets/reservation": 64,
+        "https://www.sas.se/reseinfo/resa-med-djur/kabin": 40,
+        "https://www.sas.se/reseinfo/resa-med-djur/lastutrymmet": 40,
+      }) && JSON.stringify(Object.fromEntries(sourcesRetirees)) === JSON.stringify({
+        "https://www.flysas.com/en/travel-info/travel-with-pets/cabin": 40,
+        "https://www.klm.com/information/pets/reservation": 64,
+      }), JSON.stringify({ ajoutees: Object.fromEntries(sourcesAjoutees), retirees: Object.fromEntries(sourcesRetirees) }));
+    check("AUCUN canal ne va vers `allowed`, AUCUN verdict ne bouge (52 conditional, 20 unknown)",
+      [...transitions.keys()].every((t) => !t.endsWith("→allowed")) && verdicts.get("conditional→conditional") === 52 && verdicts.get("unknown→unknown") === 20 && verdicts.size === 2,
+      JSON.stringify([...verdicts]));
+  }
+}
+
 console.log("=== Couverture DIRECTE : les 302 politiques, hors des 72 scénarios ===");
 {
   const kbCouverture = loadKB();
@@ -1822,11 +1886,14 @@ console.log("=== Couverture DIRECTE : les 302 politiques, hors des 72 scénarios
   /* MOUVEMENT NOMMÉ (10/09/2026, complément Air France cabine — Codex, une citation, 179 en tout) : 143 → 144 sous conditions,
      125 → 124 à confirmer ; official_source_unquoted 15 → 14 (Air France cabine était l'une des quinze pages officielles sans phrase). */
   /* MOUVEMENT NOMMÉ (10/09/2026, Saudia — preuve de test retirée, tranchée par Philippe) : 0 · 143 · 33 · 126 ; legacy_unreviewed 109 → 111. */
-  check("répartition runtime : 0 allowed · 143 sous conditions · 33 denied · 126 à confirmer",
-    !parStatut.allowed && parStatut.accepted_with_conditions === 143 && parStatut.denied === 33 && parStatut.confirmation_required === 126,
+  /* MOUVEMENT NOMMÉ (12/09/2026, SAS soute — page nationale suédoise citée) : les 72 scénarios
+     de la baseline ouvrent ce seul canal, `legacy_unreviewed` → `accepted_with_conditions` ;
+     aucun verdict, aucune autre compagnie et aucun autre canal ne bouge. */
+  check("répartition runtime : 0 allowed · 144 sous conditions · 33 denied · 125 à confirmer",
+    !parStatut.allowed && parStatut.accepted_with_conditions === 144 && parStatut.denied === 33 && parStatut.confirmation_required === 125,
     JSON.stringify(parStatut));
-  check("causes : 111 legacy_unreviewed · 14 official_source_unquoted · 0 policy_unpublished · 1 airline_approval",
-    parCause.legacy_unreviewed === 111 && parCause.official_source_unquoted === 14
+  check("causes : 110 legacy_unreviewed · 14 official_source_unquoted · 0 policy_unpublished · 1 airline_approval",
+    parCause.legacy_unreviewed === 110 && parCause.official_source_unquoted === 14
       && !parCause.policy_unpublished && parCause.airline_approval === 1, JSON.stringify(parCause));
 }
 
