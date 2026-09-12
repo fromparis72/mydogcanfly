@@ -96,6 +96,81 @@ policies:
       quote_language: en
       locator: "Travelling with animals → Small pets in the cabin"
   hold:
+    # TARIFS OFFICIELS — grille complète relue le 2026-09-11 sur la page française.
+    # Deux tailles de caisse et cinq familles de trajets. Les dimensions de la caisse et la famille
+    # commerciale du trajet ne sont pas encore des faits du Finder : la grille demeure donc une
+    # amplitude officielle, jamais un prix attribué arbitrairement à CE trajet.
+    fares:
+      - id: fare_austrian_hold_domestic_small_2026_09_11
+        placement: hold
+        price: { kind: matrix, amounts: [{ amount: 80, currency: EUR }] }
+        billing_subject: container
+        journey_basis: per_segment
+        scope_label: Autriche · caisse ≤ 60 × 45 × 40 cm
+        source: { url: "https://www.austrian.com/fr/fr/plan/special-requirements/travelling-with-animals.solo_continue", source_type: official_website, verified_date: 2026-09-11, review_due: 2026-12-10, confidence: 4, reviewer: "Codex — lecture directe de la page officielle", history: [], quote: "80 EUR 160 EUR", quote_language: fr, locator: "Quel est le coût du transport ? → Vols domestiques → colonne caisse ≤ 60 × 45 × 40 cm" }
+      - id: fare_austrian_hold_domestic_large_2026_09_11
+        placement: hold
+        price: { kind: matrix, amounts: [{ amount: 160, currency: EUR }] }
+        billing_subject: container
+        journey_basis: per_segment
+        scope_label: Autriche · caisse > 60 × 45 × 40 cm
+        source: { url: "https://www.austrian.com/fr/fr/plan/special-requirements/travelling-with-animals.solo_continue", source_type: official_website, verified_date: 2026-09-11, review_due: 2026-12-10, confidence: 4, reviewer: "Codex — lecture directe de la page officielle", history: [], quote: "80 EUR 160 EUR", quote_language: fr, locator: "Quel est le coût du transport ? → Vols domestiques → colonne caisse > 60 × 45 × 40 cm" }
+      - id: fare_austrian_hold_europe_small_2026_09_11
+        placement: hold
+        price: { kind: matrix, amounts: [{ amount: 100, currency: EUR }] }
+        billing_subject: container
+        journey_basis: per_segment
+        scope_label: Europe, Maroc, Arménie · caisse ≤ 60 × 45 × 40 cm
+        source: { url: "https://www.austrian.com/fr/fr/plan/special-requirements/travelling-with-animals.solo_continue", source_type: official_website, verified_date: 2026-09-11, review_due: 2026-12-10, confidence: 4, reviewer: "Codex — lecture directe de la page officielle", history: [], quote: "100 EUR 200 EUR", quote_language: fr, locator: "Quel est le coût du transport ? → Europe, Maroc et Arménie → colonne caisse ≤ 60 × 45 × 40 cm" }
+      - id: fare_austrian_hold_europe_large_2026_09_11
+        placement: hold
+        price: { kind: matrix, amounts: [{ amount: 200, currency: EUR }] }
+        billing_subject: container
+        journey_basis: per_segment
+        scope_label: Europe, Maroc, Arménie · caisse > 60 × 45 × 40 cm
+        source: { url: "https://www.austrian.com/fr/fr/plan/special-requirements/travelling-with-animals.solo_continue", source_type: official_website, verified_date: 2026-09-11, review_due: 2026-12-10, confidence: 4, reviewer: "Codex — lecture directe de la page officielle", history: [], quote: "100 EUR 200 EUR", quote_language: fr, locator: "Quel est le coût du transport ? → Europe, Maroc et Arménie → colonne caisse > 60 × 45 × 40 cm" }
+      - id: fare_austrian_hold_short_intercontinental_small_2026_09_11
+        placement: hold
+        price: { kind: matrix, amounts: [{ amount: 130, currency: EUR }] }
+        billing_subject: container
+        journey_basis: per_segment
+        scope_label: Europe ↔ Jordanie, Égypte, Iran, Irak, Israël · petite caisse
+        source: { url: "https://www.austrian.com/fr/fr/plan/special-requirements/travelling-with-animals.solo_continue", source_type: official_website, verified_date: 2026-09-11, review_due: 2026-12-10, confidence: 4, reviewer: "Codex — lecture directe de la page officielle", history: [], quote: "130 EUR 260 EUR", quote_language: fr, locator: "Quel est le coût du transport ? → Intercontinental court-courrier → colonne petite caisse" }
+      - id: fare_austrian_hold_short_intercontinental_large_2026_09_11
+        placement: hold
+        price: { kind: matrix, amounts: [{ amount: 260, currency: EUR }] }
+        billing_subject: container
+        journey_basis: per_segment
+        scope_label: Europe ↔ Jordanie, Égypte, Iran, Irak, Israël · grande caisse
+        source: { url: "https://www.austrian.com/fr/fr/plan/special-requirements/travelling-with-animals.solo_continue", source_type: official_website, verified_date: 2026-09-11, review_due: 2026-12-10, confidence: 4, reviewer: "Codex — lecture directe de la page officielle", history: [], quote: "130 EUR 260 EUR", quote_language: fr, locator: "Quel est le coût du transport ? → Intercontinental court-courrier → colonne grande caisse" }
+      - id: fare_austrian_hold_medium_intercontinental_small_2026_09_11
+        placement: hold
+        price: { kind: matrix, amounts: [{ amount: 170, currency: EUR }] }
+        billing_subject: container
+        journey_basis: per_segment
+        scope_label: Europe ↔ Chicago, Maldives, Miami, Canada, New York, Washington · petite caisse
+        source: { url: "https://www.austrian.com/fr/fr/plan/special-requirements/travelling-with-animals.solo_continue", source_type: official_website, verified_date: 2026-09-11, review_due: 2026-12-10, confidence: 4, reviewer: "Codex — lecture directe de la page officielle", history: [], quote: "170 EUR 340 EUR", quote_language: fr, locator: "Quel est le coût du transport ? → Vols intercontinentaux moyen-courriers → colonne petite caisse" }
+      - id: fare_austrian_hold_medium_intercontinental_large_2026_09_11
+        placement: hold
+        price: { kind: matrix, amounts: [{ amount: 340, currency: EUR }] }
+        billing_subject: container
+        journey_basis: per_segment
+        scope_label: Europe ↔ Chicago, Maldives, Miami, Canada, New York, Washington · grande caisse
+        source: { url: "https://www.austrian.com/fr/fr/plan/special-requirements/travelling-with-animals.solo_continue", source_type: official_website, verified_date: 2026-09-11, review_due: 2026-12-10, confidence: 4, reviewer: "Codex — lecture directe de la page officielle", history: [], quote: "170 EUR 340 EUR", quote_language: fr, locator: "Quel est le coût du transport ? → Vols intercontinentaux moyen-courriers → colonne grande caisse" }
+      - id: fare_austrian_hold_long_intercontinental_small_2026_09_11
+        placement: hold
+        price: { kind: matrix, amounts: [{ amount: 190, currency: EUR }] }
+        billing_subject: container
+        journey_basis: per_segment
+        scope_label: Europe ↔ Thaïlande, Afrique du Sud, Los Angeles, Maurice, Chine, Japon · petite caisse
+        source: { url: "https://www.austrian.com/fr/fr/plan/special-requirements/travelling-with-animals.solo_continue", source_type: official_website, verified_date: 2026-09-11, review_due: 2026-12-10, confidence: 4, reviewer: "Codex — lecture directe de la page officielle", history: [], quote: "190 EUR 380 EUR", quote_language: fr, locator: "Quel est le coût du transport ? → Vols intercontinentaux long-courriers → colonne petite caisse" }
+      - id: fare_austrian_hold_long_intercontinental_large_2026_09_11
+        placement: hold
+        price: { kind: matrix, amounts: [{ amount: 380, currency: EUR }] }
+        billing_subject: container
+        journey_basis: per_segment
+        scope_label: Europe ↔ Thaïlande, Afrique du Sud, Los Angeles, Maurice, Chine, Japon · grande caisse
+        source: { url: "https://www.austrian.com/fr/fr/plan/special-requirements/travelling-with-animals.solo_continue", source_type: official_website, verified_date: 2026-09-11, review_due: 2026-12-10, confidence: 4, reviewer: "Codex — lecture directe de la page officielle", history: [], quote: "190 EUR 380 EUR", quote_language: fr, locator: "Quel est le coût du transport ? → Vols intercontinentaux long-courriers → colonne grande caisse" }
     availability: offered
     # PREUVE IMPORTÉE — import strict lot4 (Codex, lecture directe du 2026-09-09, cohorte LOT4 fait 1).
     # Effet attendu : Austrian Airlines hold is a documented conditional route. It is not an aircraft-, route- or document-independent approval.

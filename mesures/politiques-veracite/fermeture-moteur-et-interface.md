@@ -4507,6 +4507,44 @@ la photographie du contrat vide. Le même scénario exige désormais un montant 
 donc aussi bien la disparition silencieuse du tarif que la publication d'un nombre sans provenance.
 ---
 
+## Annexe 52 — Six grilles tarifaires officielles corrigées et complétées (11/09/2026)
+
+**Le défaut déclencheur.** Transavia publiait 77 EUR en soute comme si ce montant valait pour toute la marque. La
+page officielle distingue en réalité les vols HV, à 77 EUR par caisse et par aller simple, et les vols TO, à
+partir de 100 EUR. Une valeur exacte sans son préfixe de vol était une valeur fausse pour une partie des visiteurs.
+
+**Le périmètre relu.** Six fiches ont été confrontées à leurs pages officielles : Transavia, Air France,
+Lufthansa, Air Europa, Iberia et Austrian. Air France reçoit ses sept zones en cabine et ses sept zones en soute ;
+Air Europa quatre zones dans quatre devises sur les deux canaux ; Iberia douze cases cabine et dix-huit cases soute
+(zone, achat en ligne ou à l'aéroport, correspondance et tranche de poids) ; Austrian cinq familles de trajets et
+deux tailles de caisse en soute. Lufthansa conserve son calculateur comme mécanisme de prix et sépare explicitement
+les deux suppléments de transit : aucun des 150 ou 200 n'est présenté comme prix total du transport.
+
+**Ce que l'interface peut honnêtement dire.** Tant que la zone commerciale, le préfixe de vol, l'achat en ligne ou
+à l'aéroport, la taille exacte de caisse et certains états de correspondance ne sont pas tous des faits exécutables
+du Finder, une grille ne devient jamais un prix exact du trajet. Elle apparaît comme une amplitude officielle
+publiée, suivie de « selon le trajet et les conditions ». Transavia garde ses deux branches nommées. La page de la
+compagnie et le Finder utilisent le même présentateur ; le second conserve chaque preuve tarifaire dans le volet
+fermé « Voir les preuves ».
+
+**Mouvement mesuré.** Le contrat réel passe de 157 à **218 lignes tarifaires**, de 116 à **121 canaux** et de 68 à
+**70 compagnies**. La comptabilité lexicale passe de 337 à **489 occurrences tarifaires prouvées**, sans déplacer
+les 1 563 occurrences historiques dormantes et sans montant hors classement. L'inventaire des preuves garde
+exactement ses 177 politiques citées : les nouvelles citations prouvent des tarifs, elles ne changent aucun statut
+d'acceptation du chien.
+
+**Citations de tableaux.** Une première écriture avait recomposé certaines citations en accolant le titre de ligne,
+la zone et la cellule chiffrée. Ce n'était pas du verbatim contigu. Air Europa, Iberia et Austrian portent désormais
+uniquement le texte exact de la cellule officielle ; le titre de ligne, la zone, la tranche de poids et la colonne
+restent dans le `locator`. Ce resserrement explique le dernier mouvement du registre, de 485 à 489 occurrences
+reconnues : il ne correspond à aucun ajout de tarif.
+
+**Témoins.** Le contrat exige les extrêmes de chaque grille (Air France 70–250 EUR en cabine et 100–750 EUR en
+soute ; Air Europa 35–175 et 90–350 ; Iberia 40–220 et 90–385 ; Austrian 80–380), les deux préfixes Transavia et
+les deux suppléments Lufthansa préfixés par `+`. Le harnais du Finder relit Transavia et Air France dans les quatre
+langues. Toute disparition d'une extrémité, généralisation de 77 EUR ou perte de preuve fait rougir le lot.
+---
+
 ## Annexe 49 — Titres et descriptions SEO des quatre accueils (11/09/2026, classement B)
 
 **Arbitrage validé par Philippe, textes verbatim.** Les quatre pages d'accueil reçoivent un nouveau `<title>` et

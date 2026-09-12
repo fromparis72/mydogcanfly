@@ -97,9 +97,12 @@ policies:
       quote_language: en
       locator: "Weight"
   hold:
-    # TARIFS OFFICIELS — audit indépendant du 2026-09-10 ; aucune valeur héritée réactivée.
+    # CORRECTIF TARIFAIRE DU 2026-09-11 : la page publie DEUX prix selon le préfixe du vol.
+    # L'import du 10/09 n'avait retenu que 77 EUR et l'avait généralisé sous une portée vague.
+    # Le Finder ne connaît pas le numéro de vol : les deux variantes restent donc publiées comme
+    # barème officiel, jamais comme le prix calculé du trajet.
     fares:
-      - id: fare_transavia_hold_eur_2026_09_10
+      - id: fare_transavia_hold_hv_eur_2026_09_11
         placement: hold
         price:
           kind: exact
@@ -108,18 +111,39 @@ policies:
               currency: EUR
         billing_subject: container
         journey_basis: per_one_way
-        scope_label: Operator and route
+        scope_label: HV
         source:
           url: https://www.transavia.com/help/en-eu/children-pets-groups/pets-on-board/hold-luggage-pet
           source_type: official_website
-          verified_date: 2026-09-10
-          review_due: 2026-12-09
+          verified_date: 2026-09-11
+          review_due: 2026-12-10
           confidence: 4
           reviewer: Codex — lecture directe de la source officielle
           history: []
-          quote: €77 per kennel, one way
+          quote: If your flight number starts with HV, you pay €77 per kennel per one-way flight.
           quote_language: en
-          locator: Hold pet price
+          locator: Can my pet travel in the luggage hold? → flight number starts with HV
+      - id: fare_transavia_hold_to_eur_2026_09_11
+        placement: hold
+        price:
+          kind: minimum
+          amounts:
+            - amount: 100
+              currency: EUR
+        billing_subject: container
+        journey_basis: per_one_way
+        scope_label: TO
+        source:
+          url: https://www.transavia.com/help/en-eu/children-pets-groups/pets-on-board/hold-luggage-pet
+          source_type: official_website
+          verified_date: 2026-09-11
+          review_due: 2026-12-10
+          confidence: 4
+          reviewer: Codex — lecture directe de la source officielle
+          history: []
+          quote: For flights starting with TO, the fare for traveling with your pet starts at €100 in the hold, per transport crate and per one-way flight.
+          quote_language: en
+          locator: Can my pet travel in the luggage hold? → flights starting with TO
     availability: offered
     # PREUVE IMPORTÉE — import strict V3 (Codex, lecture directe du 2026-09-08, cohorte A fait 4).
     # Effet attendu : Show hold offered under conditions, not a promise of remaining capacity.

@@ -529,7 +529,13 @@ console.log("\n=== 3. La décision vient des fiches — les contre-épreuves du 
         ["l'URL officielle remplacée",
          ['url: "https://wwws.airfrance.fr/information/passagers/voyager-avec-son-animal-chien-chat"',
           'url: "https://wwws.airfrance.fr/une-autre-page"']],
-        ["la langue annoncée de la citation changée", [["      quote_language: fr", "      quote_language: en"]]],
+        /* Les sources tarifaires Air France précèdent désormais la politique cabine et portent
+           elles aussi `quote_language: fr`. Ancrer la mutation sur la citation attestée évite
+           qu'elle ne touche un tarif sans rapport et rende cette contre-épreuve vacante. */
+        ["la langue annoncée de la citation changée", [[
+          '      quote: "En cabine (chats et chiens de moins de 8 kg, sac de transport compris)"\n      quote_language: fr',
+          '      quote: "En cabine (chats et chiens de moins de 8 kg, sac de transport compris)"\n      quote_language: en',
+        ]]],
         ["le localisateur réécrit",
          ['locator: "Transport de chiens, de chats et autres animaux de compagnie → option En cabine"',
           'locator: "Ailleurs sur la page"']],

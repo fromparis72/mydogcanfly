@@ -178,11 +178,6 @@ if (DIST) {
   };
 
   const objets = JSON.parse(readFileSync("packages/knowledge/raw/objects.json", "utf8"));
-  const heritees = [];
-  for (const a of objets.airlines) {
-    for (const v of Object.values(a.fees ?? {})) if (v && String(v).trim().length > 3) heritees.push(String(v).trim());
-    for (const p of Object.values(a.premium?.policy ?? {})) if (p?.fee && String(p.fee).trim().length > 3) heritees.push(String(p.fee).trim());
-  }
   /* UNE VALEUR HÉRITÉE N'EST PAS FORCÉMENT UN PRIX, ET LA PREMIÈRE RÉDACTION LE SUPPOSAIT.
    * Ce contrôle cherchait dans le HTML la CHAÎNE de chaque champ `fee` hérité, quelle qu'elle
    * soit. Or onze de ces champs ne portent aucun chiffre : « via Virgin Australia Cargo »,
@@ -197,23 +192,63 @@ if (DIST) {
    * niveau du chiffre — quelle que soit la formulation, connue ou non — n'est pas perdue pour
    * autant : elle est tenue par `test-montants-publies.mjs`, qui juge la FORME sur les quatre
    * zones publiques de chaque fiche, et non l'identité d'une chaîne. */
-  const toutes = [...new Set(heritees)];
-  const uniques = toutes.filter((v) => compter(v) > 0);
-  const qualitatives = toutes.filter((v) => compter(v) === 0);
-  const trouvees = new Map();
   const fiches = pages.filter((p) => /\/airlines\/[^/]+\/index\.html$/.test(p));
   /* Pas de seuil arbitraire : un build réduit porte trois compagnies et reste un terrain valable.
      Ce qui est exigé plus bas, c'est que les trois ÉTATS soient rencontrés. */
   if (!fiches.length) echec("5 dist", "aucune fiche compagnie dans le dist");
+
+  /* UNE COÏNCIDENCE DE TEXTE N'EST PAS UNE PROVENANCE. La première version cherchait chaque
+   * ancienne valeur dans TOUTES les fiches : dès qu'un tarif canonique American publiait `$150`,
+   * elle accusait à tort les anciens `$150` d'Alaska, Delta et d'autres compagnies. On juge
+   * désormais la dette au seul endroit où elle pourrait fuir : même compagnie, même canal.
+   *
+   * Une valeur héritée identique à une phrase de la grille canonique du MÊME canal est écartée
+   * de cette mesure DOM, car sa présence est légitime et son origine ne se distingue pas à
+   * l'œil. Les deux gardes de code ci-dessus prouvent séparément que `fee` et `fees` ne sont lus
+   * par aucune surface. Toutes les autres anciennes valeurs restent interdites dans leur bloc. */
+  const dettes = new Map();
+  const qualitatives = [];
+  let collisionsCanoniques = 0;
+  for (const a of objets.airlines) {
+    const slug = a.id.replace(/^airline_/, "").replace(/_/g, "-");
+    for (const canal of ["cabin", "hold", "cargo"]) {
+      const p = a.premium?.policy?.[canal] ?? null;
+      const candidates = [a.fees?.[canal], p?.fee]
+        .filter((v) => v && String(v).trim().length > 3)
+        .map((v) => String(v).trim());
+      const fares = JSON.stringify(p?.fares ?? []);
+      for (const v of new Set(candidates)) {
+        if (compter(v) === 0) { qualitatives.push(v); continue; }
+        if (fares.includes(v)) { collisionsCanoniques++; continue; }
+        const cle = `${slug}/${canal}`;
+        if (!dettes.has(cle)) dettes.set(cle, new Set());
+        dettes.get(cle).add(v);
+      }
+    }
+  }
+
+  const trouvees = new Map();
   for (const p of fiches) {
+    const slug = p.match(/\/airlines\/([^/]+)\/index\.html$/)?.[1];
+    if (!slug) continue;
     const html = readFileSync(join(DIST, p), "utf8");
-    for (const v of uniques) if (html.includes(v)) trouvees.set(v, (trouvees.get(v) ?? 0) + 1);
+    for (const canal of ["cabin", "hold", "cargo"]) {
+      const bloc = blocDuCanal(html, canal);
+      if (!bloc) continue;
+      for (const v of dettes.get(`${slug}/${canal}`) ?? []) {
+        if (bloc.includes(v)) {
+          const cle = `${slug}/${canal} : ${v}`;
+          trouvees.set(cle, (trouvees.get(cle) ?? 0) + 1);
+        }
+      }
+    }
   }
   if (trouvees.size) {
     const ex = [...trouvees].slice(0, 3).map(([v, n]) => `« ${v} » sur ${n} page(s)`).join(" ; ");
     echec("5 DOM", `${trouvees.size} valeur(s) héritée(s) servies dans le HTML : ${ex}`);
-  } else ok(`5 DOM : aucune des ${uniques.length} valeurs héritées CHIFFRÉES n'apparaît dans les `
-    + `${fiches.length} fiches construites (${qualitatives.length} valeurs héritées sans chiffre écartées : `
+  } else ok(`5 DOM : aucune valeur héritée CHIFFRÉE non couverte par une grille canonique n'apparaît dans son canal, sur les `
+    + `${fiches.length} fiches construites (${collisionsCanoniques} collision(s) légitime(s) avec une preuve canonique ; `
+    + `${qualitatives.length} valeurs héritées sans chiffre écartées : `
     + `${qualitatives.slice(0, 3).map((v) => `« ${v} »`).join(", ")}…)`);
 
   /* ON NE TARIFE PAS UN CANAL QU'ON REFUSE — jugé dans le HTML SERVI, pas dans le code. Les

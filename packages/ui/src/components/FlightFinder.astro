@@ -410,6 +410,7 @@ const labels = {
   import type { DecisionReport, ReportItem, FinderRequest, AirlineResult } from "@mydogcanfly/engine";
   import { API_BASE } from "../lib/env";
   import { attachCombobox, type ComboItem } from "../lib/combobox";
+  import { presentNumericFares } from "../lib/farePresentation";
   import { travelDateBoundsClient } from "../lib/travel-date-bounds";
 
   const form = document.getElementById("mdcf-finder") as HTMLFormElement | null;
@@ -650,10 +651,6 @@ const labels = {
     const aConfirmer = (a: any) => CANAUX_CONTRAT.some((ch) => a[`${ch}_status`] === "confirmation_required");
     const resolutionTarif = (a: any, ch: string): any =>
       (a.fare_resolutions || []).find((x: any) => x && x.placement === ch)?.resolution;
-    const argent = (amount: number, currency: string): string => {
-      try { return new Intl.NumberFormat(String(L.locale ?? "en"), { style: "currency", currency, maximumFractionDigits: Number.isInteger(amount) ? 0 : 2 }).format(amount); }
-      catch { return `${amount} ${currency}`; }
-    };
     const texteTarif = (a: any, ch: string): string | null => {
       const r = resolutionTarif(a, ch);
       if (!r) return null;
@@ -661,20 +658,22 @@ const labels = {
       const applicables = [...(r.montants || []), ...(r.mecanismes || [])];
       const fares = applicables.length ? applicables : (r.indecidables || []);
       if (!fares.length) return null;
-      const devisePreferee = String(L.locale ?? "en") === "en" ? "USD" : "EUR";
-      const chiffres = fares.filter((f: any) => Array.isArray(f?.price?.amounts) && f.price.amounts.length)
-        .sort((a: any, b: any) => {
-          const ca = a.price.amounts[0]?.currency, cb = b.price.amounts[0]?.currency;
-          return Number(cb === devisePreferee) - Number(ca === devisePreferee) || String(ca).localeCompare(String(cb));
-        }).slice(0, 2);
-      if (chiffres.length) {
-        const valeurs = chiffres.map((f: any) => {
-          const amounts = f.price.amounts || [];
-          if (f.price.kind === "minimum") return `${L.fareMinimum} ${argent(amounts[0].amount, amounts[0].currency)}`;
-          if (f.price.kind === "range" && amounts.length >= 2) return `${argent(amounts[0].amount, amounts[0].currency)}–${argent(amounts[amounts.length - 1].amount, amounts[amounts.length - 1].currency)}`;
-          return amounts.map((m: any) => argent(m.amount, m.currency)).join(" / ");
-        }).join(" / ");
-        return `${applicables.length ? L.fareApplicable : L.farePublished} : ${valeurs}${applicables.length ? "" : ` · ${L.fareVariable}`}`;
+      const valeurs = presentNumericFares(fares, {
+        locale: String(L.locale ?? "en"),
+        minimumLabel: String(L.fareMinimum),
+      });
+      if (valeurs) {
+        const kinds = new Set(fares.map((f: any) => f?.price?.kind));
+        const mecanismes = [
+          kinds.has("calculator") ? L.fareCalculator : null,
+          kinds.has("formula") ? L.fareFormula : null,
+          kinds.has("booking_only") ? L.fareBooking : null,
+          kinds.has("quote") ? L.fareQuoteShort : null,
+        ].filter(Boolean);
+        /* Un supplément chiffré peut coexister avec un prix de base au calculateur (Lufthansa).
+           Aucun des deux ne doit faire disparaître l'autre dans la présentation. */
+        const detail = [...mecanismes, valeurs].join(" · ");
+        return `${applicables.length ? L.fareApplicable : L.farePublished} : ${detail}${applicables.length ? "" : ` · ${L.fareVariable}`}`;
       }
       const kinds = new Set(fares.map((f: any) => f?.price?.kind));
       if (kinds.has("calculator")) return L.fareCalculator;

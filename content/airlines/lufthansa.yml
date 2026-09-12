@@ -113,27 +113,71 @@ policies:
       quote_language: en
       locator: "What travel options are there for the different types of animals?"
   hold:
-    # TARIFS OFFICIELS — audit indépendant du 2026-09-10 ; aucune valeur héritée réactivée.
+    # TARIFS OFFICIELS — relus le 2026-09-11 sur la page française rendue.
+    # Le prix de base dépend du trajet et de la taille du conteneur : Lufthansa renvoie à son
+    # calculateur. Les deux lignes chiffrées sont des SUPPLÉMENTS, jamais le prix total.
     fares:
-      - id: fare_lufthansa_hold_2026_09_10
+      - id: fare_lufthansa_hold_calculator_2026_09_11
         placement: hold
         price:
           kind: calculator
           amounts: []
         billing_subject: pet_or_container
         journey_basis: per_one_way
-        scope_label: aéroport départ → destination via hubs
+        scope_label: trajet et taille du conteneur
         source:
-          url: https://www.lufthansa.com/de/en/animals-as-additional-baggage
+          url: https://www.lufthansa.com/fr/fr/tiere-als-uebergepaeck
           source_type: official_website
-          verified_date: 2026-09-10
-          review_due: 2026-12-09
+          verified_date: 2026-09-11
+          review_due: 2026-12-10
           confidence: 4
-          reviewer: Codex — lecture directe de la source officielle
+          reviewer: Codex — lecture directe de la page officielle rendue
           history: []
-          quote: additional transfer surcharge
-          quote_language: en
-          locator: Costs and transfer surcharge
+          quote: Le tarif dépend à la fois du trajet et de la taille du conteneur.
+          quote_language: fr
+          locator: Tarifs → premier paragraphe
+      - id: fare_lufthansa_hold_transfer_surcharge_2026_09_11
+        placement: hold
+        price:
+          kind: exact
+          amounts:
+            - { amount: 150, currency: EUR }
+            - { amount: 170, currency: CHF }
+            - { amount: 170, currency: USD }
+            - { amount: 220, currency: CAD }
+        billing_subject: pet_or_container
+        journey_basis: per_journey
+        scope_label: + BRU/GVA/FRA/VIE/ZRH
+        source:
+          url: https://www.lufthansa.com/fr/fr/tiere-als-uebergepaeck
+          source_type: official_website
+          verified_date: 2026-09-11
+          review_due: 2026-12-10
+          confidence: 4
+          reviewer: Codex — lecture directe de la page officielle rendue
+          history: []
+          quote: Un supplément de 150 EUR / 170 CHF / 170 USD / 220 CAD est facturé pour le transfert via Bruxelles, Genève, Francfort, Vienne et Zurich.
+          quote_language: fr
+          locator: Tarifs → Remarque → supplément de transfert
+      - id: fare_lufthansa_hold_zurich_overnight_2026_09_11
+        placement: hold
+        price:
+          kind: exact
+          amounts: [{ amount: 200, currency: CHF }]
+        billing_subject: container
+        journey_basis: per_journey
+        scope_label: + ZRH (>24 h)
+        source:
+          url: https://www.lufthansa.com/fr/fr/tiere-als-uebergepaeck
+          source_type: official_website
+          verified_date: 2026-09-11
+          review_due: 2026-12-10
+          confidence: 4
+          reviewer: Codex — lecture directe de la page officielle rendue
+          history: []
+          quote: En cas de nuitée à Zurich, un supplément de 200 CHF par conteneur de transport est facturé.
+          quote_language: fr
+          locator: Tarifs → Remarque → nuitée à Zurich
     availability: offered
     # PREUVE IMPORTÉE — import strict V3 (Codex, lecture directe du 2026-09-08, cohorte A fait 10).
     # Effet attendu : Show hold offered under conditions for a large dog.

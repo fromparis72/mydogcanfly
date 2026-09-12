@@ -1,7 +1,7 @@
 /**
- * LA GARDE PERMANENTE : AUCUN MONTANT NUMÉRIQUE SUR LES FICHES COMPAGNIES PUBLIÉES.
+ * LA GARDE PERMANENTE : AUCUN MONTANT NUMÉRIQUE SANS TARIF CANONIQUE SUR LES FICHES.
  *
- *   node test-montants-publies.mjs --dist=packages/ui/dist
+ *   node --import tsx test-montants-publies.mjs --dist=packages/ui/dist
  *
  * POURQUOI ELLE LIT LE HTML SERVI, ET PAS LES SOURCES. Le micro-lot Tarifs a déjà été « corrigé »
  * trois fois en relisant les fiches YAML, et trois fois il restait des prix à l'écran : le champ
@@ -21,16 +21,15 @@
  * « \u20ac199 » dans le JSON-LD est lu « €199 » par le moteur. Les contre-épreuves 6, 7 et 8
  * exercent exactement ces trois formes.
  *
- * CE QUE LA GARDE N'INTERDIT PAS. Elle ne demande pas le silence sur les tarifs : elle interdit le
- * CHIFFRE. Une phrase qualitative — « d'autres animaux peuvent voyager via Virgin Australia Cargo,
- * sous réserve de route, d'appareil, de partenaire et d'acceptation préalable » — reste publiée
- * telle quelle, et la contre-épreuve 4 vérifie qu'elle l'est vraiment. De même, poids, dimensions,
- * durées, dates et pourcentages traversent la garde sans la faire rougir : le détecteur partagé ne
- * voit un montant que si un marqueur de devise le borde.
+ * CE QUE LA GARDE AUTORISE. Un montant peut paraître dans la ligne tarifaire d'un canal si, et
+ * seulement si, il est produit par `presentNumericFares` depuis les tarifs validés de CE canal.
+ * Une citation officielle peut conserver mot pour mot un montant qu'elle contient. Partout
+ * ailleurs — titre, métas, JSON-LD, attributs et prose libre — le chiffre monétaire reste interdit.
  */
 import { readFileSync, readdirSync, statSync, existsSync } from "node:fs";
 import { join } from "node:path";
 import { compter, trouver, zonesDe } from "./test-lib/montants.mjs";
+import { presentNumericFares } from "./packages/ui/src/lib/farePresentation.ts";
 
 const DIST = process.argv.slice(2).find((a) => a.startsWith("--dist="))?.slice(7);
 if (!DIST || !existsSync(DIST)) {
@@ -64,11 +63,15 @@ for (const p of pages) {
 
 const langues = new Set(fiches.map((f) => f.langue));
 const slugs = new Set(fiches.map((f) => f.slug));
+const objets = JSON.parse(readFileSync("packages/knowledge/raw/objects.json", "utf8"));
+const compagnieParSlug = new Map(objets.airlines.map((a) => [
+  a.id.replace(/^airline_/, "").replace(/_/g, "-"), a,
+]));
 if (fiches.length === 0) { echec("départ", "aucune fiche compagnie trouvée sous le dist"); process.exit(1); }
 if (langues.size !== 4) { echec("départ", `${langues.size} langue(s) au lieu de 4 : ${[...langues].join(", ")}`); }
 else ok(`départ : ${fiches.length} fiches, ${slugs.size} compagnies × ${langues.size} langues (${[...langues].sort().join(", ")})`);
 
-/* ---- 1. AUCUN MONTANT, DANS AUCUNE DES QUATRE ZONES ---------------------------------------- */
+/* ---- 1. CHAQUE MONTANT VISIBLE DESCEND DU TARIF CANONIQUE DE SON CANAL ---------------------- */
 /** Les montants d'une page, par zone. Le contrôle 1 et les contre-épreuves 2 et 3 appellent CETTE
  *  fonction, pas une copie : une mutation qui rougirait ici sans rougir là ne prouverait rien. */
 function montantsDe(html) {
@@ -79,27 +82,126 @@ function montantsDe(html) {
   };
 }
 
+/** Extrait un `<div>` et tous ses descendants sans instancier un second DOM pour chaque fiche.
+ * `zonesDe` parse déjà les 408 pages ; une seconde instance JSDOM par page dépassait 4 Go en CI. */
+function divDepuis(html, debut) {
+  const balise = /<\/?div\b[^>]*>/gi;
+  balise.lastIndex = debut;
+  let profondeur = 0;
+  for (const m of html.matchAll(balise)) {
+    if (!m[0].startsWith("</")) profondeur++;
+    else profondeur--;
+    if (profondeur === 0) return html.slice(debut, m.index + m[0].length);
+  }
+  return null;
+}
+
+function divDeClasse(html, classe) {
+  const ouverture = /<div\b[^>]*class="([^"]*)"[^>]*>/gi;
+  for (const m of html.matchAll(ouverture)) {
+    if (m[1].split(/\s+/).includes(classe)) return divDepuis(html, m.index);
+  }
+  return null;
+}
+
+function blocCanal(html, canal) {
+  const marqueur = html.indexOf(`data-placement="${canal}"`);
+  if (marqueur < 0) return null;
+  const debut = html.lastIndexOf('<div class="mini"', marqueur);
+  return debut < 0 ? null : divDepuis(html, debut);
+}
+
+function texteHtml(html) {
+  const entites = { nbsp: " ", euro: "€", pound: "£", yen: "¥", dollar: "$", amp: "&", quot: '"', apos: "'", lt: "<", gt: ">" };
+  return String(html ?? "").replace(/<[^>]*>/g, " ").replace(/&(#x[0-9a-f]+|#\d+|[a-z]+);/gi, (_, code) => {
+    if (code[0] === "#") {
+      const n = code[1].toLowerCase() === "x" ? parseInt(code.slice(2), 16) : parseInt(code.slice(1), 10);
+      return Number.isFinite(n) ? String.fromCodePoint(n) : " ";
+    }
+    return entites[code.toLowerCase()] ?? " ";
+  });
+}
+
 {
   const fautives = [];
   let total = 0, illisibles = 0;
+  const liste = (texte) => trouver(texte ?? "").map((x) => x.texte);
+  const excedents = (reels, permis) => {
+    const reste = new Map();
+    for (const valeur of permis) reste.set(valeur, (reste.get(valeur) ?? 0) + 1);
+    const horsContrat = [];
+    for (const valeur of reels) {
+      const n = reste.get(valeur) ?? 0;
+      if (n > 0) reste.set(valeur, n - 1);
+      else horsContrat.push(valeur);
+    }
+    return horsContrat;
+  };
+  const minimumLabel = { en: "from", fr: "à partir de", es: "desde", pt: "a partir de" };
+
   for (const f of fiches) {
-    const m = montantsDe(readFileSync(f.chemin, "utf8"));
+    const html = readFileSync(f.chemin, "utf8");
+    const m = montantsDe(html);
     illisibles += m.jsonLdInvalide;
-    const n = m.titre.length + m.corps.length + m.metas.length + m.jsonLd.length + m.attributs.length;
-    if (!n) continue;
-    total += n;
-    fautives.push(`${f.langue}/${f.slug} : `
-      + [["titre", m.titre], ["corps", m.corps], ["meta", m.metas], ["json-ld", m.jsonLd], ["attributs-accessibles", m.attributs]]
-        .filter(([, v]) => v.length).map(([z, v]) => `${z} [${v.map((x) => x.texte).join(", ")}]`).join(" ; "));
+    const compagnie = compagnieParSlug.get(f.slug);
+    if (!compagnie) { fautives.push(`${f.langue}/${f.slug} : aucune compagnie canonique`); continue; }
+
+    /* Les quatre surfaces qui ne présentent pas de tarif restent entièrement muettes. */
+    const horsCorps = [["titre", m.titre], ["meta", m.metas], ["json-ld", m.jsonLd], ["attributs-accessibles", m.attributs]]
+      .filter(([, valeurs]) => valeurs.length)
+      .map(([zone, valeurs]) => `${zone} [${valeurs.map((x) => x.texte).join(", ")}]`);
+    if (horsCorps.length) fautives.push(`${f.langue}/${f.slug} : ${horsCorps.join(" ; ")}`);
+
+    const permisDansCorps = [];
+    for (const canal of ["cabin", "hold", "cargo"]) {
+      const bloc = blocCanal(html, canal);
+      /* Dix fiches historiques n'affichent pas les trois cartes. La couverture des canaux est
+         gardée ailleurs ; un bloc absent ne peut, par définition, publier aucun montant ici. */
+      if (!bloc) continue;
+      const politique = compagnie.premium?.policy?.[canal];
+      if (!politique) { fautives.push(`${f.langue}/${f.slug}/${canal} : politique absente`); continue; }
+
+      const amt = texteHtml(divDeClasse(bloc, "amt"));
+      const reelsTarif = liste(amt);
+      const presentation = politique.status === "denied" || (politique.fare_conflicts?.length ?? 0) > 0
+        ? null
+        : presentNumericFares(politique.fares ?? [], {
+            locale: f.langue,
+            minimumLabel: minimumLabel[f.langue] ?? minimumLabel.en,
+          });
+      const attendusTarif = liste(presentation);
+      const trop = excedents(reelsTarif, attendusTarif);
+      const manquent = excedents(attendusTarif, reelsTarif);
+      if (trop.length || manquent.length) fautives.push(`${f.langue}/${f.slug}/${canal} : ligne tarifaire `
+        + `hors contrat [${trop.join(", ") || "—"}], manquante [${manquent.join(", ") || "—"}]`);
+      total += reelsTarif.length;
+      permisDansCorps.push(...reelsTarif);
+
+      /* La preuve est verbatim : ses montants doivent exister dans la source de ce canal. */
+      const preuve = texteHtml(divDeClasse(bloc, "proof"));
+      const montantsPreuve = liste(preuve);
+      const montantsSource = liste(`${politique.source?.quote ?? ""} ${politique.source?.locator ?? ""}`);
+      const preuveInventee = excedents(montantsPreuve, montantsSource);
+      if (preuveInventee.length) fautives.push(`${f.langue}/${f.slug}/${canal} : preuve affiche `
+        + `[${preuveInventee.join(", ")}] sans ce montant dans la citation ou le localisateur`);
+      total += montantsPreuve.length;
+      permisDansCorps.push(...montantsPreuve);
+    }
+
+    /* Le multiensemble du corps ne peut dépasser celui des lignes tarifaires et des preuves :
+       une occurrence ajoutée ailleurs reste visible, même si elle reprend une valeur autorisée. */
+    const libres = excedents(m.corps.map((x) => x.texte), permisDansCorps);
+    if (libres.length) fautives.push(`${f.langue}/${f.slug} : corps hors tarif/preuve [${libres.join(", ")}]`);
   }
   /* UN JSON-LD ILLISIBLE N'EST PAS UN JSON-LD VIDE. S'il ne se parse pas, on ne sait rien de son
    * contenu : le taire reviendrait à compter zéro montant dans une zone jamais regardée. */
-  if (illisibles) echec("1 aucun montant publié", `${illisibles} bloc(s) JSON-LD illisible(s) : leur contenu n'a pas pu être jugé`);
+  if (illisibles) echec("1 montants rattachés", `${illisibles} bloc(s) JSON-LD illisible(s) : leur contenu n'a pas pu être jugé`);
   if (fautives.length) {
-    echec("1 aucun montant publié", `${total} occurrence(s) sur ${fautives.length} fiche(s)`);
+    echec("1 montants rattachés", `${total} occurrence(s) lues, ${fautives.length} défaut(s)`);
     for (const l of fautives.slice(0, 40)) console.error(`      ${l}`);
     if (fautives.length > 40) console.error(`      … et ${fautives.length - 40} autres`);
-  } else if (!illisibles) ok(`1 aucun montant publié — 0 occurrence sur ${fiches.length} fiches, titre + corps + métas + JSON-LD`);
+  } else if (!illisibles) ok(`1 ${total} occurrence(s) monétaire(s) : toutes issues du tarif canonique de leur canal ou de sa preuve ; `
+    + `aucune dans les titres, métas, JSON-LD, attributs ou la prose libre`);
 }
 
 /* ---- 2. CONTRE-ÉPREUVE : UNE MUTATION DU CORPS VISIBLE DOIT ROUGIR -------------------------- */
@@ -301,6 +403,6 @@ function montantsDe(html) {
 }
 
 console.log(defauts === 0
-  ? `\n[montants] ${fiches.length} fiches publiées, aucun montant numérique.`
+  ? `\n[montants] ${fiches.length} fiches publiées, chaque montant est rattaché à son canal et à sa preuve.`
   : `\n[montants] ${defauts} défaut(s).`);
 process.exit(defauts === 0 ? 0 : 1);
