@@ -1286,6 +1286,9 @@ console.log("\n=== 13 quinquies. L'ENTRÉE DANS LE PAYS : UN STATUT TERNAIRE, ET
       for (const d of Object.values(pol)) {
         if (!d?.source) continue;
         delete d.source_derived;
+        /* Mêmes raisons qu'ailleurs (annexe 51) : la citation d'origine est remplacée, les
+           rattachements qui la visaient partent avec elle. */
+        delete d.attestations;
         d.source.quote = "Pets are accepted on this route, subject to the conditions below.";
         d.source.quote_language = "en"; d.source.locator = "section « Pets », paragraphe 1"; cite++;
       }

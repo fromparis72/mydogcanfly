@@ -12,6 +12,8 @@ import FaqBlock from "./FaqBlock.astro";
 import { airlineFaq, faqJsonLd } from "../lib/faq";
 import { airlineReach } from "../lib/cluster";
 import { politiqueDuCanal, cleLibelleStatut, classeStatut, causeDeConfirmation, preuveAuditee, sourceAffichable, verdictDeFiche } from "../lib/decisionCanal";
+import { syntheseAttestee, nomDeLangue } from "../lib/syntheseAttestee";
+import { faitsAttestes } from "@mydogcanfly/knowledge";
 interface Props { id: string; locale?: string }
 const { id, locale = "en" } = Astro.props;
 const fr = locale === "fr";
@@ -240,6 +242,14 @@ const jsonLd = faqItems.length ? [webpageLd, faqJsonLd(faqItems)] : [webpageLd];
           const statut = decision.status;
           const cause = causeDeConfirmation(decision);
           const preuve = preuveAuditee(decision);
+          /* LA SYNTHÈSE LOCALISÉE (annexe 51) — seulement ce que la citation de CE canal établit.
+             `faitsAttestes` rend une liste vide dès qu'un rattachement est cassé : permuter la
+             preuve entre deux canaux, ou annoncer un nombre que le fragment ne porte pas, éteint
+             la ligne au lieu de publier un chiffre que la preuve contredit. */
+          const synthese = syntheseAttestee(
+            faitsAttestes((decision as { attestations?: never }).attestations, preuve?.quote, decision as never),
+            c.placement, locale);
+          const langueCitation = preuve?.quote ? nomDeLangue(preuve.quote_language, locale) : null;
           /* Le lien officiel SANS phrase citée n'est pas une preuve : il se montre, mais sans
              bouclier, sans « vérifié le… » et sans indice de confiance — ces trois signes
              disent « nous avons lu », et personne n'a lu. */
@@ -266,6 +276,13 @@ const jsonLd = faqItems.length ? [webpageLd, faqJsonLd(faqItems)] : [webpageLd];
                   seul canal qui l'est — British Airways cabine — elle serait fausse. Elle ne
                   paraît donc que faute de preuve ; là où la preuve existe, c'est le bloc `proof`
                   ci-dessous qui parle, et il ne dit que la phrase citée. */}
+              {/* LA SYNTHÈSE PROUVÉE, EN PREMIER ET EN GRAS — arbitrage de Philippe du 11/09/2026,
+                  pris sur la fiche Air France lue en portugais : le visiteur y lisait un état
+                  traduit, puis une phrase en français, et repartait sans le chiffre. Cette ligne
+                  n'est PAS une traduction de la citation : c'est un fait structuré, rattaché à la
+                  phrase qui l'établit, mis en mots dans la langue de la page. Elle n'apparaît que
+                  là où ce rattachement existe — deux canaux sur 302 au 11/09. */}
+              {synthese && <div class="fait">{synthese}</div>}
               {!preuve && <div class="k">{tt(locale, "premium.channel_unproven")}</div>}
               {/* LE MONTANT A ÉTÉ RETIRÉ (micro-lot Tarifs, 29/08/2026). Il venait de
                   premium.policy[canal].fee — une chaîne libre, sans devise séparée, sans route,
@@ -288,11 +305,23 @@ const jsonLd = faqItems.length ? [webpageLd, faqJsonLd(faqItems)] : [webpageLd];
                 * auditée : une politique non revue reste sans source. */}
               {preuve && (
                 <div class="proof">
-                  <div class="proof-h">🛡️ {tt(locale, "premium.channel_source")}</div>
+                  {/* L'EN-TÊTE ANNONCE LA LANGUE DU TEXTE ORIGINAL, produite depuis l'étiquette
+                      BCP-47 de la citation — jamais depuis une liste de langues. Le dépôt cite déjà
+                      du coréen et de l'anglais australien ; une table à deux entrées les aurait
+                      trahis. Le visiteur sait donc, avant de lire, qu'il s'apprête à lire une autre
+                      langue, et pourquoi elle n'est pas traduite. */}
+                  <div class="proof-h">🛡️ {langueCitation
+                    ? tt(locale, "premium.preuve.original").replace("{langue}", langueCitation)
+                    : tt(locale, "premium.channel_source")}</div>
                   <a class="proof-lnk" href={preuve.url} rel="nofollow noopener" target="_blank">{hote(preuve.url)}</a>
                   {preuve.quote && <blockquote class="proof-q" lang={preuve.quote_language}>« {preuve.quote} »</blockquote>}
-                  {preuve.locator && <div class="proof-loc">{preuve.locator}</div>}
+                  {/* LE LOCALISATEUR EST UNE MÉTADONNÉE DE PREUVE, pas une phrase pour le visiteur.
+                      Sur la fiche Air France en portugais, il occupait une ligne entière pour dire
+                      « Important! » — du bruit dans une langue de plus. Il reste, parce qu'il rend
+                      la contre-revue possible sans relire la page entière, mais avec les autres
+                      métadonnées et à leur taille. */}
                   <div class="proof-m">
+                    {preuve.locator && <span class="proof-loc">{preuve.locator}</span>}
                     <span>{tt(locale, "premium.verified_on").replace("{date}", fmtDate(preuve.verified_date))}</span>
                     <span>{tt(locale, "premium.confidence").replace("{n}", String(preuve.confidence))}</span>
                   </div>
@@ -532,11 +561,16 @@ const jsonLd = faqItems.length ? [webpageLd, faqJsonLd(faqItems)] : [webpageLd];
   /* La cause de l'incertitude, et la preuve du canal : lisibles sans être criardes — elles
      accompagnent la décision, elles ne la remplacent pas. */
   .afp .why { margin-top: 8px; font-size: 12.5px; line-height: 1.45; color: #9a5a12; }
-  .afp .proof { margin-top: 10px; padding-top: 9px; border-top: 1px dashed var(--mdcf-line, #e6ebf1); font-size: 12.5px; }
-  .afp .proof-h { font-weight: 700; color: var(--mdcf-ink, #1a2433); }
+  /* LA SYNTHÈSE PROUVÉE : la première chose lue dans la carte, et la plus lisible. */
+  .afp .fait { margin-top: 8px; font-weight: 700; font-size: 15px; line-height: 1.35; color: var(--mdcf-ink, #1a2433); }
+  /* LE VOLET DE PREUVE : présent, consultable, et visiblement SECOND. */
+  .afp .proof { margin-top: 10px; padding-top: 9px; border-top: 1px dashed var(--mdcf-line, #e6ebf1); font-size: 12px; color: var(--mdcf-muted, #5b6b7f); }
+  .afp .proof-h { font-weight: 600; color: var(--mdcf-muted, #5b6b7f); }
   .afp .proof-lnk { display: inline-block; margin-top: 3px; font-weight: 600; color: var(--mdcf-accent-ink, #b4530a); word-break: break-word; }
   .afp .proof-q { margin: 6px 0 0; padding-left: 9px; border-left: 2px solid var(--mdcf-line, #e6ebf1); color: var(--mdcf-muted, #5b6b7f); font-style: italic; line-height: 1.45; }
-  .afp .proof-loc { margin-top: 5px; color: var(--mdcf-muted, #5b6b7f); }
+  /* Le localisateur n'a plus de règle à lui : il vit maintenant DANS `.proof-m`, dont il prend
+     la couleur, la taille et la graisse. La classe reste, parce que les témoins DOM la lisent
+     pour vérifier qu'il n'a pas repris une ligne à lui seul. */
   .afp .proof-m { display: flex; gap: 10px; flex-wrap: wrap; margin-top: 6px; font-weight: 600; color: var(--mdcf-muted, #5b6b7f); }
   /* Le lien officiel non cité est visuellement PLUS SOBRE que la preuve : même bloc, titre en
      retrait, aucune métadonnée. La hiérarchie visuelle dit la hiérarchie de confiance. */

@@ -76,7 +76,26 @@ policies:
     # Le plafond cité inclut le CONTENANT : refus sûr si le chien seul le dépasse, jamais un oui en dessous.
     max_weight_kg: 8
     weight_includes_carrier: true
-    weight_limit_bound: lt   # la phrase dit « inférieur à » : la valeur est exclue, un chien de 8 kg exactement est refusé
+    weight_limit_bound: lt
+    # RATTACHEMENT fait → preuve (annexe 51, 11/09/2026, arbitrage Codex).
+    # L'extrait est recopié de la citation ci-dessous : c'est ce qui rend le lien vérifiable.
+    # Ce que la phrase établit : un PLAFOND de 8 kg, borne STRICTE (« moins de »), contenant COMPRIS.
+    # Ce qu'elle n'établit pas, et qui n'est donc pas rattaché : les 46 × 28 × 24 cm de l'ancien
+    # détail éditorial. Aucune dimension du dépôt n'est portée par sa citation (mesuré : 0 sur 10).
+    # Trois fragments, rattachés SÉPARÉMENT (P0 Codex, seconde passe) : le poids avec son unité, la
+    # tournure qui dit la direction, et ce qui est pesé. Le sujet n'est déclaré que parce que la
+    # phrase le dit ; une phrase muette sur le contenant n'aurait porté aucun sujet du tout.
+    attestations:
+      - claim:
+          kind: weight_max
+          kg: 8
+          bound: lt
+          subject: dog_plus_carrier
+        poids: "8 kg"
+        borne: "moins de 8 kg"        # « inférieur à » : la valeur est exclue, un chien de 8 kg exactement est refusé
+        # Le fragment de sujet porte LE POIDS, et pas seulement le contenant (P0 Codex, 3e passe) :
+        # « with the carrier included in the ticket price » prouvait sinon un seuil contenant compris.
+        sujet: "8 kg, sac de transport compris"
     source:
       url: "https://wwws.airfrance.fr/information/passagers/voyager-avec-son-animal-chien-chat"
       source_type: official_website
@@ -96,6 +115,34 @@ policies:
     # Le plafond cité inclut le CONTENANT : refus sûr si le chien seul le dépasse, jamais un oui en dessous.
     max_weight_kg: 75
     weight_includes_carrier: true
+    # La phrase citée établit DEUX bornes ; le modèle n'en portait qu'une. Le plancher est
+    # structuré plutôt que tu (annexe 51) : « more than 8 kg » est une borne EXCLUSIVE.
+    min_weight_kg: 8
+    weight_min_bound: gt
+    weight_limit_bound: lte
+    # P0 CODEX (11/09/2026) : le plancher annonçait un seuil CONTENANT COMPRIS sur un fragment qui
+    # n'en dit rien. Le contenant est bien établi par la phrase — « with its carrier » qualifie la
+    # fourchette entière, pas seulement sa borne haute — et il est donc rattaché par SON fragment,
+    # que les deux bornes partagent. Le fait n'est pas affaibli, la preuve est nommée là où elle est.
+    attestations:
+      - claim:
+          kind: weight_min
+          kg: 8
+          bound: gt
+          subject: dog_plus_carrier
+        poids: "8 kg"
+        borne: "more than 8 kg"
+        # « with its carrier » qualifie la fourchette ENTIÈRE : le fragment va donc du plancher au
+        # contenant, pour que la relation et le poids qu'elle qualifie tiennent ensemble.
+        sujet: "8 kg/17.64 lb. and up to 75 kg/165.35 lb. with its carrier"
+      - claim:
+          kind: weight_max
+          kg: 75
+          bound: lte
+          subject: dog_plus_carrier
+        poids: "75 kg"
+        borne: "up to 75 kg"
+        sujet: "75 kg/165.35 lb. with its carrier"
     source:
       url: "https://wwws.airfrance.fr/en/information/passagers/voyager-avec-son-animal-chien-chat"
       source_type: official_website

@@ -4644,3 +4644,481 @@ construits et exige les huit chaînes, et elle était verte sur `687d446`, dont 
 prouve désormais sur DEUX plans : le worker par `/v1/health` (SHA et identifiant de version), et le
 site par une lecture du HTML servi. `deployer-production.mjs`, toujours à écrire, devra refuser de
 conclure tant que les deux ne sont pas constatés.
+---
+
+## Annexe 51 — Le rattachement `fait → preuve`, et la synthèse localisée (11/09/2026, classement B)
+
+**Le défaut public, vu par Philippe sur une capture.** Sur `/pt/airlines/air-france/`, le visiteur brésilien
+lisait un état traduit — « Sob condições » — puis une phrase en français, puis une ligne « Important! », et
+repartait sans jamais rencontrer le seuil de 8 kg. La fiche disait vrai et ne communiquait rien.
+
+**L'arbitrage rendu.** La citation verbatim reste dans sa langue d'origine et n'est jamais traduite : une
+citation traduite n'est plus une citation. À côté d'elle, chaque fait structuré **effectivement prouvé** est
+reformulé sous l'état, en une ligne courte, très visible, dans la langue de la page. Règle stricte : un poids,
+une dimension, un âge ou une restriction n'entre dans cette synthèse **que si une citation lui est explicitement
+rattachée**. Il faut donc une correspondance nommée `fait → preuve`, et non une déduction.
+
+**Pourquoi ce n'est pas un rattachement automatique.** Codex l'a exigé explicitement, et la mesure lui donne
+raison : **51 politiques** portent une citation contenant un poids ou une dimension, mais un nombre dans une
+phrase ne dit ni ce qu'il borne, ni dans quel sens, ni s'il inclut le contenant. Une expression régulière aurait
+publié « 8 kg » pour la soute Air France, dont la phrase dit **plus de** 8 kg. Le rattachement est donc écrit à
+la main, fait par fait, et nomme la sémantique complète : plafond ou plancher, borne stricte ou inclusive,
+contenant compris ou non.
+
+**Le contrat.** `packages/knowledge/src/attestations.ts` définit trois faits — plafond de poids, plancher de
+poids, dimensions du contenant — et une attestation = un fait + un **extrait** de la phrase. Une attestation
+n'est retenue qu'à trois conditions cumulatives : l'extrait se retrouve dans la citation de **ce** canal, il
+porte **tous les nombres** du fait annoncé, et le fait concorde avec les champs structurés de la politique.
+`faitsAttestes` rend une liste **vide** dès qu'un seul motif de refus existe : on ne publie pas la moitié d'un
+rattachement cassé.
+
+**La deuxième condition n'était pas dans la première rédaction, et son absence était exploitable.** Ma première
+garde vérifiait seulement que l'extrait venait de la citation. Un extrait parfaitement authentique — « sac de
+transport compris » — suffisait alors à faire passer `46 × 28 × 24 cm`, c'est-à-dire exactement ce que
+l'arbitrage interdit. Sabotage écrit, garde corrigée, sabotage conservé.
+
+**ERREUR NOMMÉE — j'ai vérifié la fonction, pas le chemin que la donnée emprunte.** Les deux contre-épreuves
+exigées par Codex — permuter la preuve entre deux canaux, ajouter une dimension absente de la citation — ont été
+écrites contre l'**ingestion réelle**. Les deux ont été **acceptées** : l'ingestion a écrit `objects.json` sans
+broncher. La garde n'existait que sur le schéma canonique, relu au chargement du référentiel, donc au build,
+longtemps après l'écriture et sans nommer la fiche fautive. J'avais mesuré la garde par appel direct et conclu
+qu'elle mordait. C'est le **même défaut** que celui nommé le matin même sur la fiche portugaise : vérifier la
+source au lieu du rendu. La garde vit désormais en un seul exemplaire dans `attestations.ts` et les **deux**
+schémas l'appellent — la fiche YAML d'abord, l'objet canonique en dernier filet.
+
+**ERREUR NOMMÉE — un sommaire qui avait dérivé du code qu'il décrit.** `sentinelles-entites.mjs` annonçait en
+tête « politique d'auteur → Air France, cabine », alors que ce rôle avait été déplacé sur United le 09/09. Deux
+autres lignes du même sommaire étaient également périmées. Cherchant à relire la fiche Air France dans le build
+réduit, j'ai lu ce sommaire, conclu qu'elle était construite, et trouvé un `dist` sans elle. Le sommaire est
+refondé sur le tableau tel qu'il est ; les mouvements restent écrits en regard de chaque ligne.
+
+**ERREUR NOMMÉE — une règle que je croyais plus large qu'elle ne l'était.** Le contrôle « aucune fiche ne publie
+de seuil » a rougi dès qu'Air France est devenue sentinelle. Il avait raison : la réponse de FAQ recopie la phrase
+citée avec son URL, et aucune des cinq sentinelles précédentes n'avait de citation **portant un nombre**. La règle
+n'avait donc jamais été éprouvée contre une citation chiffrée. Elle est **re-fondée, pas abaissée** : ce qui reste
+interdit est un seuil publié **hors de son rattachement**. Trois surfaces sortent de l'examen — la synthèse, la
+phrase citée, et le segment entre guillemets suivi de son URL — et chacune revient au harnais, chiffrée et
+contre-prouvée. La première rédaction de cette exclusion ne visait que le balisage `FAQPage` : les quatre pages
+sont restées rouges, parce que la réponse est publiée **deux fois**, pour la machine et pour le visiteur. Le
+harnais exige maintenant que les deux surfaces soient couvertes **en nombre égal**.
+
+**Le pilote, et ce qu'il ne fait pas.** Air France seule est rattachée : cabine, un plafond strict de 8 kg
+contenant compris ; soute, un plancher exclusif de 8 kg et un plafond de 75 kg. Le plancher a été **structuré**
+(`min_weight_kg`, `weight_min_bound`) plutôt que raconté : la phrase l'établissait, le modèle ne le portait pas,
+et Codex a refusé qu'on l'affiche sans le modéliser. Le fret Air France n'a aucune attestation et ne publie
+**aucune** synthèse — c'est le témoin négatif, sur la même page construite. Aucune dimension du dépôt n'est
+rattachée : **0 sur 10**.
+
+**La langue de la citation est produite, pas listée.** Le volet de preuve annonce « texte original en français »,
+« texto original em inglês », depuis l'étiquette BCP-47 et `Intl.DisplayNames`. Une table à deux entrées aurait
+trahi le coréen et l'anglais australien que le dépôt cite déjà. Le `locator` redevient une métadonnée : il vit
+avec la date et l'indice de confiance, au lieu d'occuper une ligne entière pour dire « Important! ».
+
+**Mouvement nommé des sentinelles.** Une **sixième** forme de décision entre dans le référentiel réel : une
+politique dont un fait est rattaché à sa preuve. Aucune sentinelle ne pouvait la porter, puisqu'elle n'existait
+pas. Air France entre avec ses **deux** canaux — la cabine éprouve une borne haute seule, la soute deux bornes —
+et son fret porte le témoin négatif. C'est un **ajout** : aucun rôle existant n'est abaissé.
+
+**Mouvement des comptes.** Contre-épreuves d'ingestion : **50 → 61**. Harnais des pages d'entités : **179 → 234**,
+dont 24 témoins DOM quadrilingues — synthèse présente et réellement distincte dans les quatre langues, citation
+identique au caractère près et portant son attribut `lang`, en-tête de preuve annonçant la langue, synthèse
+précédant le volet de preuve, localisateur dans les métadonnées, et l'exigence qui porte tout le reste : **tout
+nombre affiché en synthèse doit se retrouver dans la citation de la même carte**. Politiques attestées : **0 → 2**
+sur 302. Faits attestés : **0 → 3**. Typecheck propre, `test:unit` et `test:built-ui` verts, dette Astro stable à
+165.
+
+**Dettes nommées, non refermées.** Des politiques portent encore une citation chiffrée sans rattachement :
+Codex a explicitement demandé leur relecture **humaine**, et rappelé que « le pilote ne doit pas devenir le
+point final ». *Le compte écrit ici valait 49 ; il était faux, et l'annexe 57 le corrige à 35.* Aucune dimension n'est rattachée. Enfin, `includes_carrier` et le sens d'une borne ne
+sont pas vérifiables depuis les nombres de l'extrait : la garde les compare aux champs structurés, mais rien
+n'empêche un extrait muet sur le contenant d'accompagner un fait qui l'affirme — c'est la relecture humaine qui
+répond, et c'est pourquoi elle est exigée.
+---
+
+## Annexe 52 — Nommer une limite ne l'a pas fermée, une seconde fois (11/09/2026, classement C)
+
+**Contre-revue de Codex sur `80e3ce6`, la tête que je venais de déclarer verte.** Quatre faux verts
+de `motifsDeRefus()`, reproduits sur la fiche réelle :
+
+1. `includes_carrier: true` passait sur un extrait qui ne mentionne aucun contenant ;
+2. « up to 8 kg » passait avec la borne **stricte** `lt` ;
+3. le « 8 » d'une **date** passait pour un poids de 8 kg ;
+4. le « 75 » d'un **numéro de vol** passait pour 75 kg.
+
+**Ce n'est pas une limite que j'ignorais : c'est une limite que j'avais écrite.** L'annexe 51 se
+termine sur la phrase « `includes_carrier` et le sens d'une borne ne sont pas vérifiables depuis les
+nombres de l'extrait », classée en dette. C'est exactement la faute de l'annexe 48, refaite huit
+annexes plus loin : **documenter un trou puis livrer comme si l'avoir nommé le refermait.** Une dette
+est un trou qui reste ouvert ; l'écrire ne la paie pas.
+
+**La cause technique.** La garde prouvait deux choses — le fragment vient de la citation, le fragment
+porte le nombre — et aucune des deux ne dit ce que le nombre qualifie ni dans quel sens. Trois
+exigences s'ajoutent, toutes portées par le fragment lui-même : la valeur doit être suivie d'une
+**unité de masse métrique** (les cas 3 et 4 tombent tous les deux là) ; un **marqueur de direction**
+compatible avec la borne doit précéder ce poids à portée de lecture ; et le **sujet pesé** doit être
+dit — un seuil « contenant compris » exige un mot de contenant, un seuil « chien seul » exige qu'il
+n'y en ait aucun.
+
+**La liste des tournures est FERMÉE, et c'est le point.** Quatre langues, une liste écrite, et un
+refus par défaut : une phrase dont la tournure n'y figure pas n'est pas devinée, elle est rejetée, et
+c'est la relecture humaine qui tranche. Le silence reste le défaut. Les négations sont piégées
+exprès : « no more than 8 kg » contient « more than », un marqueur de plancher au milieu d'un
+plafond, et un marqueur strict précédé d'une négation est refusé.
+
+**LE PILOTE LUI-MÊME ÉTAIT L'UN DES QUATRE.** L'attestation de plancher de la soute Air France
+annonçait un seuil contenant compris sur l'extrait « weighs more than 8 kg/17.64 lb. », qui n'en dit
+rien. La correction ne consiste pas à affaiblir le fait : c'est la phrase entière qui porte le
+contenant, « with its carrier » qualifiant la fourchette et pas seulement sa borne haute. L'extrait
+est donc **étendu** jusqu'à lui. Le chargement du référentiel refusait la fiche tant que ce n'était
+pas fait — la garde a mordu sur mes propres données avant de mordre sur un sabotage.
+
+**ERREUR DE MÉTHODE NOMMÉE — le contrat n'avait aucun témoin à lui.** Il naissait avec deux
+contre-épreuves de sabotage d'ingestion et rien d'autre. Le raisonnement était que le sabotage sur
+données réelles vaut mieux qu'une fixture. Il vaut mieux, mais il ne couvre **que les formes
+présentes dans les données** : deux canaux, une langue et demie, une borne haute et une borne basse.
+Tout le reste était non éprouvé, et c'est précisément là que Codex a frappé. `test-attestations-
+semantique.mjs` éprouve désormais la **fonction** — les quatre faux verts en tête de fichier, les
+pièges de négation, les quatre langues de la liste fermée, la branche des dimensions que le dépôt
+n'emploie pas encore — pendant que `test-ingest-check.mjs` éprouve le **chemin**. Aucun des deux ne
+remplace l'autre : c'est la leçon inverse de celle du matin, et elle a coûté une contre-revue.
+
+**Mouvement des comptes.** Contre-épreuves d'ingestion : **61 → 65**. Nouveau harnais du contrat
+d'attestation : **0 → 25**. Les autres compteurs ne bougent pas : harnais des pages d'entités à 234,
+politiques attestées à 2, faits attestés à 3, dette Astro à 165. Les deux artefacts générés sont
+régénérés par `npm run ingest`, jamais recopiés à la main.
+
+**Coordination avec le lot tarifaire (consigne de Codex, 11/09).** Cette PR et le lot tarifaire
+touchent les mêmes fichiers — `air_france.yml`, `AirlinePremiumPage.astro`, `objects.json`,
+`airlines.generated.json`, l'inventaire et ce dossier. L'ordre est : #61 corrigée puis fusionnée,
+Codex rebase son lot sur le nouveau `main`, conserve ensemble la synthèse attestée et le présentateur
+tarifaire, et régénère les artefacts **une seule fois**. Rien n'est recopié, rien n'est picoré avant
+cette réconciliation.
+---
+
+## Annexe 53 — L'absence de preuve n'est pas une preuve du contraire (11/09/2026, classement C)
+
+**Seconde contre-revue de Codex, sur `4443653`.** Les quatre faux verts de l'annexe 52 sont refermés,
+mais deux points restent ouverts, et le second est un P0 d'une autre nature.
+
+**Ce qui n'était pas un rattachement.** La correction précédente ajoutait trois contrôles — unité de
+masse, marqueur de borne, mot de contenant — **à l'intérieur d'un fragment unique**. Codex a répondu
+que « à l'intérieur du même fragment » ne prouve rien : un fragment assez long finit toujours par
+contenir un nombre, un marqueur et un mot de contenant, sans qu'aucun des trois ne parle du même
+fait. Chaque composant est donc rattaché **séparément** — `poids`, `borne`, `sujet` — et chacun doit
+être une sous-chaîne de la citation du canal. Le marqueur de borne doit en outre suivre
+immédiatement **ce** poids-là, à vingt caractères au plus : les deux sont liés par construction, pas
+par voisinage.
+
+**LE P0 : `weight_includes_carrier` absent valait `false`.** L'interface publiait alors « chien seul ».
+C'est un renversement de la charge de la preuve — qu'une source ne dise pas que le contenant est
+inclus n'établit pas qu'il est exclu — et c'est la faute que ce dépôt combat depuis le premier jour,
+réintroduite par une valeur par défaut de trois caractères. Le sujet pesé est devenu **facultatif et
+à trois états** : « chien + contenant » attesté, « chien seul » attesté, ou rien. Quand rien n'est
+attesté, la synthèse publie la borne **sans nommer ce qui est pesé**. Aucune valeur par défaut n'est
+plus lue nulle part : un sujet attesté exige que le champ structuré le dise, dans le même sens, et un
+champ absent est un refus, pas un `false`.
+
+**Ce que cela permet, et qui compte pour les canaux restant à relire** (35, voir annexe 57)**.** Une phrase muette sur le contenant
+reste attestable : elle publie sa borne et ne nomme pas le sujet. Le témoin `(5 quinquies)` l'exige
+explicitement. Sans cela, la règle aurait été « pas de contenant cité, pas de synthèse », et la
+prudence aurait de nouveau coûté l'information que ce lot existe pour rendre.
+
+**« Chien seul » exige sa propre preuve.** Une seconde liste fermée, elle aussi quadrilingue, dit les
+tournures qui l'établissent — « sans le sac », « excluding », « sem a caixa », « sin el
+transportín ». Une phrase qui ne dit rien du contenant n'entre dans aucune des deux listes, et c'est
+le résultat voulu.
+
+**Mouvement des comptes.** Harnais du contrat d'attestation : **25 → 29**, dont les quatre nouveaux
+témoins du sujet pesé et le témoin positif de la phrase muette. Contre-épreuves d'ingestion : **65**,
+inchangé en nombre mais réécrites sur la nouvelle forme. Harnais des pages d'entités : **234**,
+inchangé — la synthèse rendue est identique dans les quatre langues, parce que la fiche Air France
+**dit** son contenant et n'a jamais eu besoin d'un défaut. Politiques attestées : **2**. Faits
+attestés : **3**. Dette Astro : **165**.
+
+**Ce que ce lot aura coûté, et ce qu'il faut en retenir.** Trois contre-revues sur le même contrat,
+et la même faute à chaque fois sous une forme différente : j'ai pris la présence d'un signe pour la
+preuve du fait. Le fragment est présent, donc il prouve. Le nombre est présent, donc c'est un poids.
+Le champ est absent, donc il vaut faux. Chaque correction a fermé l'instance et laissé le principe
+ouvert. Le principe, écrit ici pour la prochaine fois : **ce qui n'est pas dit n'est pas établi, et
+un défaut de valeur est une affirmation déguisée.**
+
+**Coordination avec le lot tarifaire (consigne de Codex, 11/09).** Cette PR et
+`fix/transavia-air-france-fares` touchent les mêmes fichiers — `air_france.yml`,
+`AirlinePremiumPage.astro`, les artefacts générés, l'inventaire et ce dossier. L'ordre est : #61
+corrigée puis fusionnée, Codex rebase son lot sur le nouveau `main`, conserve ensemble la synthèse
+attestée et `farePresentation`, puis régénère les artefacts **une seule fois**. Aucun JSON généré
+n'est recopié ni arbitré à la main de part et d'autre.
+---
+
+## Annexe 54 — Cinq sabotages de plus, et la dernière forme de la même faute (11/09/2026, classement C)
+
+**Troisième contre-revue de Codex, sur `59d4788`.** Le P0 du sujet pesé est reconnu fermé — un
+`weight_includes_carrier` absent ne produit plus « chien seul ». Cinq défauts subsistaient, quatre
+dans le contrat et un dans le rendu.
+
+**1. Trois fragments d'une même citation ne parlent pas du même fait.** « Dogs under 8 kg may travel
+in cabin. **The carrier must be labelled.** » : le poids et la borne venaient de la première phrase,
+le contenant de la seconde, et l'ensemble passait. Les trois fragments doivent désormais tenir dans
+une **même proposition**. Le découpage protège les abréviations d'unité et les décimales — trouvé en
+l'écrivant : « 17.64 » se coupait en « 17 » et « 64 », et la soute Air France perdait sa propre
+fourchette.
+
+**2. Nommer un contenant n'est pas dire qu'il pèse.** « Carrier **not** included in this weight »
+était accepté comme « contenant compris » : le contrôle acceptait le sens exactement opposé. Ce qui
+est exigé n'est plus un mot mais une **relation** — une tournure d'inclusion rattachée au contenant,
+à portée de lecture, et la tournure inverse absente.
+
+**3. « without the » n'est pas une exclusion du contenant.** « Dogs under 8 kg may travel **without
+the owner** » établissait « chien seul ». Un générique d'exclusion sans contenant à proximité ne dit
+rien du sujet pesé, et est refusé.
+
+**4. Des pouces publiés en centimètres.** « 46 × 28 × 24 **in** » validait une claim
+`carrier_dims_cm` de 46 × 28 × 24 : les nombres concordaient, l'unité non, et la fiche aurait publié
+un sac deux fois et demie trop grand. Seul le centimètre est accepté. Une source en pouces exigera
+une conversion **déclarée**, avec son facteur écrit ; aucune n'existe, et aucune ne se fera en
+silence.
+
+**5. LE DÉFAUT DE RENDU, et c'est le plus instructif.** La synthèse écrit le sujet **une seule fois,
+devant les deux bornes** — « chien + caisse, plus de 8 kg et jusqu'à 75 kg ». Elle lisait les sujets
+présents et ignorait les absents : un plancher sans sujet attesté héritait donc du sujet du plafond.
+Le contrat était juste, borne par borne ; c'est la PHRASE qui étendait une preuve au-delà de sa
+portée. Un sujet commun n'est écrit que si **toutes** les bornes le portent, et le même ; sinon la
+synthèse publie les bornes et se tait sur le sujet.
+
+**Le principe, pour la troisième fois et sous une cinquième forme.** L'annexe 53 le formulait déjà :
+ce qui n'est pas dit n'est pas établi. Ces cinq-là ajoutent sa réciproque : **ce qui est dit à côté
+n'est pas dit du fait.** Un mot présent dans la phrase, un nombre présent dans la phrase, une preuve
+présente pour une autre borne — trois voisinages pris pour des rattachements. Le rattachement est une
+relation nommée entre deux morceaux précis, jamais une cohabitation.
+
+**Mouvement des comptes.** Harnais du contrat d'attestation : **29 → 41**, dont les cinq sabotages de
+cette passe, leurs variantes de contrôle et les cinq témoins de rendu. Contre-épreuves d'ingestion :
+**65 → 73** — Codex a exigé que ces sabotages vivent aussi sur le chemin réel, et chacun modifie la
+phrase citée en même temps que le rattachement pour rester cohérent avec lui-même. Harnais des pages
+d'entités : **234**, inchangé. Politiques attestées : **2**. Faits attestés : **3**. Dette Astro :
+**165**. Les artefacts générés ne bougent pas : la fiche Air France était déjà conforme aux cinq
+règles nouvelles, et c'est la seule mesure qui dise si elles étaient déjà respectées ou seulement
+espérées.
+
+**Coordination avec le lot tarifaire, inchangée.** #61 corrigée puis fusionnée, rebase de
+`fix/transavia-air-france-fares` sur le nouveau `main`, synthèse attestée et `farePresentation`
+conservées ensemble, régénération unique des artefacts. Aucun JSON généré n'est recopié ni arbitré à
+la main.
+---
+
+## Annexe 55 — La relation portait sur le contenant, pas sur le poids (11/09/2026, classement C)
+
+**Quatrième contre-revue de Codex, sur `8c8faf4`.** Les cinq défauts de l'annexe 54 sont reconnus
+fermés. Deux faux verts subsistaient, et un **faux refus** les accompagnait — c'est le couple qui
+rend le diagnostic exact.
+
+| phrase | verdict d'avant | ce qu'elle dit vraiment |
+|---|---|---|
+| `…with the carrier included in the ticket price.` | accepté « contenant compris » | l'inclusion porte sur le **prix** |
+| `…but a carrier without a label is refused.` | accepté « chien seul » | l'exclusion porte sur l'**étiquette** |
+| `The combined weight of the pet and carrier is up to 8 kg.` | **refusé** | une formulation officielle parfaitement claire |
+
+**Une seule cause pour les trois.** La tournure d'inclusion ou d'exclusion était rattachée au mot
+*contenant*, à distance de lecture, et jamais au **poids** dont il est question. Un contenant compris
+dans le prix, un contenant refusé sans étiquette : dans les deux cas le mot est là, la tournure est
+là, et le fait n'y est pas. Symétriquement, une phrase qui dit « poids combiné de l'animal et du
+contenant » n'employait aucune des tournures reconnues et tombait.
+
+**Trois exigences, désormais, sur le seul fragment de sujet.** Il porte **le poids lui-même** — la
+valeur de la claim, suivie de son unité de masse. Il matche une **forme de relation** d'une liste
+fermée quadrilingue, ancrée sur le contenant dans le motif même, plus par une distance : « sans » ne
+compte que suivi d'un contenant, « not included » que précédé d'un — ce qui fait tomber « without a
+label », dont le complément n'est pas un contenant. Et aucun **complément interdit** ne suit la
+tournure : un prix, un tarif, un billet, une étiquette. C'est ce dernier contrôle qui sépare
+« included in this weight » de « included in the ticket price ».
+
+Les deux formulations que Codex a nommées entrent dans la liste : « combined weight of the pet and
+carrier » et « total weight of pet and carrier », avec leurs équivalents français, espagnols et
+portugais.
+
+**DEUX FAUTES TROUVÉES EN ÉCRIVANT LE SABOTAGE, ET C'EST LA PARTIE INSTRUCTIVE.** Le sabotage « le
+sujet vient d'une autre proposition » a d'abord passé au vert. Deux fois, pour deux raisons
+différentes, dans le découpage en propositions :
+
+1. `kg.` était protégé comme abréviation **sans regarder ce qui suit**. « … moins de 8 kg. Un chien
+   de 8 kg, sac compris… » ne se coupait donc jamais en deux propositions.
+2. Corrigé par un test de la suite — minuscule ou chiffre, donc la phrase continue —, le motif
+   portait le drapeau `i` et prenait une **majuscule pour une minuscule**. Même vert, autre cause.
+
+Ce n'est pas un détail de regex. C'est la démonstration, à l'échelle de trois lignes, de ce que ce
+lot répète depuis quatre contre-revues : **un contrôle qui ne rougit jamais n'est pas un contrôle
+qui passe, c'est un contrôle qu'on n'a pas encore lu.** Le sabotage a fait son travail deux fois de
+suite sur la même ligne.
+
+**Les artefacts CHANGENT, contrairement à ce qu'annonçait la contre-revue, et il faut le dire.** Les
+fragments de rattachement sont stockés dans `objects.json` et dans l'artefact du site ; exiger qu'ils
+portent le poids les allonge, donc les modifie. Trois lignes de sujet sur la fiche Air France. Ce qui
+ne change pas — et c'est la mesure qui compte — ce sont les **faits attestés** et la **synthèse
+rendue** : identiques dans les quatre langues, avant comme après.
+
+**Mouvement des comptes.** Harnais du contrat d'attestation : **41 → 46**. Contre-épreuves
+d'ingestion : **73 → 79**, les deux faux verts et le témoin positif étant exigés sur le chemin réel
+autant que sur la fonction. Harnais des pages d'entités : **234**, inchangé. Politiques attestées :
+**2**. Faits attestés : **3**. Dette Astro : **165**.
+
+**Coordination avec le lot tarifaire, inchangée.** #61 corrigée puis fusionnée, rebase de
+`fix/transavia-air-france-fares` sur le nouveau `main`, synthèse attestée et `farePresentation`
+conservées ensemble, régénération unique des artefacts.
+---
+
+## Annexe 56 — La frontière est déplacée, pas repoussée (11/09/2026, classement B)
+
+**Cinquième contre-revue de Codex, sur `e936af9`.** Les trois cas de l'annexe 55 sont fermés. Trois
+reformulations passaient encore comme « chien + contenant » :
+
+```
+Dogs under 8 kg may travel with their carrier stored separately.
+Dogs under 8 kg may travel, with the carrier included in the reservation.
+The total weight of the dog is up to 8 kg and the carrier travels separately.
+```
+
+**Codex a refusé le cinquième élargissement, et c'est le bon arbitrage.** Quatre listes
+d'expressions régulières, quatre tours, et à chaque tour la liste suivante battue par la phrase
+suivante. Une garantie sémantique par motifs lexicaux n'a pas de terme : elle a seulement un
+prochain contre-exemple. Ce qui est demandé n'est pas une liste de plus, c'est un **bornage
+honnête** de ce que la machine garantit.
+
+**LA FRONTIÈRE, écrite en clair.**
+
+| la machine prouve, seule | un humain valide |
+|---|---|
+| le fragment vient mot pour mot de la citation de ce canal | le SENS du sujet pesé |
+| les fragments tiennent dans une même proposition | « contenant compris » ou « chien seul » |
+| la valeur est suivie d'une unité de masse métrique | |
+| une tournure de borne précède immédiatement ce poids | |
+| la claim concorde avec les champs structurés | |
+
+**La validation humaine n'est pas une intention : c'est un scellé.**
+`packages/knowledge/raw/attestations-relues.json` porte, par entrée, une empreinte de cinq éléments —
+compagnie, canal, claim, citation, fragments — et le sens reconnu, écrit en toutes lettres pour
+celui qui relira la suivante. Changer un seul caractère de l'un des cinq casse l'empreinte et exige
+une relecture.
+
+**Il est BIDIRECTIONNEL, et la seconde moitié compte autant que la première.** Une attestation
+absente du scellé rougit ; une entrée du scellé sans attestation correspondante rougit aussi. Sans
+ce second sens, le scellé accumulerait des autorisations pour des rattachements disparus, et l'une
+d'elles redeviendrait valable le jour où quelqu'un réécrirait la même phrase.
+
+**Il mord à trois endroits.** À l'ingestion, où la fiche est encore nommable et où le refus donne
+l'empreinte exacte à relire. Au chargement du référentiel — build, tests, Worker — sur `Airline`,
+parce qu'une politique ne sait pas à quelle compagnie elle appartient. Et dans un harnais dédié,
+`test-attestations-scellees.mjs`, qui éprouve les deux sens et neuf mutations.
+
+**TROIS ENTRÉES, et seulement trois.** Les trois attestations d'Air France, relues par Philippe et
+contre-revues par Codex. Les autres canaux dont la citation porte un poids ou une dimension attendent
+leur relecture et ne publient rien — *35, l'annexe 57 corrigeant le « 49 » écrit ici.*
+
+**UNE PROMESSE FAUSSE, CORRIGÉE.** L'en-tête d'`attestations.ts` affirmait « aucun rattachement par
+expression régulière » alors que la garantie sémantique reposait précisément sur des expressions
+régulières. Relevé par Codex. Ce qui est vrai et reste écrit : rien n'est rattaché **automatiquement**,
+chaque attestation est écrite à la main. Ce qui était faux et disparaît : prétendre qu'aucune
+expression régulière n'intervenait.
+
+**UN TÉMOIN S'INVERSE, ET C'EST L'ARBITRAGE LUI-MÊME.** Une heure plus tôt, une contre-épreuve
+exigeait que « The combined weight of the pet and carrier is up to 8 kg » **traverse** l'ingestion —
+une formulation officielle limpide que la quatrième liste refusait à tort. Elle ne passe plus
+automatiquement, et c'est voulu : elle franchit la garde mécanique et attend un humain. Le témoin
+exige désormais que le refus **donne l'empreinte** à porter au scellé, pour que la relecture soit une
+lecture et non une recomposition.
+
+**Les sept phrases qui ont battu quatre listes sont conservées comme témoins de la frontière**
+(`test-attestations-semantique.mjs`, paragraphe 7). Ce paragraphe ne prétend pas que la machine les
+refuse : il prouve l'inverse. Elles passent la garde mécanique et sont arrêtées par le scellé. Si
+l'une d'elles cessait un jour de passer la garde mécanique, ce témoin rougirait — et ce serait une
+bonne nouvelle à constater, pas un vert à préserver en silence.
+
+**Mouvement des comptes.** Harnais du contrat mécanique : **46 → 45** — six témoins de sens l'ont
+quitté, cinq de frontière y sont entrés, et c'est une baisse qu'il faut dire plutôt que masquer.
+Nouveau harnais du scellé : **0 → 23**. Contre-épreuves d'ingestion : **79**, inchangées en nombre,
+cinq d'entre elles arrêtées désormais par le scellé et non plus par un motif lexical. Harnais des
+pages d'entités : **234**. Politiques attestées : **2**. Faits attestés : **3**. Dette Astro :
+**165**. La synthèse rendue est identique dans les quatre langues.
+
+**Ce que ce lot aura appris, en cinq contre-revues sur un seul contrat.** J'ai corrigé quatre fois
+l'instance et jamais le principe. À chaque tour je fermais la phrase nommée et je laissais ouverte la
+question de savoir ce qu'une machine peut prouver. La leçon n'est pas « mes expressions régulières
+étaient trop courtes » : c'est qu'**une garantie doit être bornée avant d'être écrite**, et qu'un
+contrat qui promet plus qu'il ne peut tenir est plus dangereux qu'un contrat qui s'arrête et le dit.
+
+**Coordination avec le lot tarifaire, inchangée.** #61 corrigée puis fusionnée, rebase de
+`fix/transavia-air-france-fares` sur le nouveau `main`, synthèse attestée et `farePresentation`
+conservées ensemble, régénération unique des artefacts.
+---
+
+## Annexe 57 — L'empreinte ne liait qu'une moitié de la preuve (12/09/2026, classement C)
+
+**Sixième contre-revue de Codex, sur `51d0721`.** Le principe du scellé humain est validé ; les
+jobs GitHub sont verts. Un P1 en quatre points, tous justes, et un compte documentaire faux.
+
+**1. L'empreinte ne liait pas la provenance complète.** Modifier `source.url`, `quote_language`,
+`locator`, `verified_date` ou `review_due` sans toucher à la citation laissait
+`attestationsNonRelues` à zéro et passait `Airline.safeParse`. Le lien officiel, la langue annoncée
+au visiteur et la fraîcheur de la preuve pouvaient donc dériver **sans relecture**. Un rattachement
+est relu **contre une source précise** ; changer la source change ce qui a été relu. L'empreinte
+porte désormais **tous** les champs opposables — URL, type, citation, langue, localisateur, deux
+dates, indice de confiance, relecteur. Une seule exclusion, nommée : `source.history`, le journal des
+révisions passées, dont l'allongement est de la tenue de registre et non une affirmation nouvelle.
+
+**2. L'assemblage par `§` était ambigu.** Deux jeux de fragments distincts pouvaient produire la même
+empreinte — il suffisait qu'un fragment contienne le séparateur ou l'un des noms de champ. Le témoin
+le démontre sur un cas concret : `borne: "a|sujet=b"` sans sujet, et `borne: "a"` avec
+`sujet: "b|sujet=-"`, donnaient tous deux `poids=8 kg|borne=a|sujet=b|sujet=-`. La sérialisation est
+maintenant canonique, clés triées et valeurs échappées ; un fragment qui imite la syntaxe de
+l'empreinte est échappé, pas interprété.
+
+**3. Les sabotages manquaient.** Cinq mutations de provenance entrent sur le chemin d'ingestion, huit
+sur la fonction, plus la collision et le témoin d'échappement.
+
+**UNE GARDE EN CACHAIT UNE AUTRE, ET IL FALLAIT LE DIRE.** Déplacer une seule des deux dates fait
+bien rougir l'ingestion — mais par la **cadence de 90 jours** du contrat de source auditée, pas par
+le scellé. Un sabotage qui rougit pour la mauvaise raison est un témoin vide. Le sabotage de
+fraîcheur déplace donc les deux dates en gardant l'écart exact, ce qui ne laisse que la relecture
+humaine pour l'arrêter, et un témoin séparé constate que la cadence mord bien sur le cas simple.
+
+**4. Le fichier du scellé n'était pas validé, et les doublons disparaissaient dans un `Set`.** Il est
+désormais relu par un schéma strict — clés fermées, date de relecture au format, relecteur nommé,
+sens relu d'au moins vingt caractères — et une empreinte en double est **refusée** plutôt
+qu'absorbée : deux relectures d'un même rattachement, c'est une relecture de trop qu'aucun compteur
+n'aurait signalée. L'erreur est levée au **chargement** : rien ne démarre sur un scellé douteux. Ces
+six contrôles tournent dans un processus court, sur une copie du paquet, l'arbre réel n'étant jamais
+muté.
+
+**UN BAC À SABLE MAL PLACÉ M'A FAIT ROUGIR SIX CONTRÔLES POUR RIEN.** Écrit d'abord dans `/tmp`, il
+ne résolvait ni `zod` ni les modules du paquet : la remontée vers `node_modules` s'arrêtait à la
+racine du disque. Il vit maintenant dans le dépôt, ignoré par git, comme celui de
+`test-ingest-check.mjs` — qui avait résolu ce problème un mois plus tôt et dont je n'avais pas relu
+la raison.
+
+**LE COMPTE DOCUMENTAIRE ÉTAIT FAUX, ET CODEX L'A RELEVÉ.** J'écrivais « 49 autres canaux » dans le
+dossier, dans l'en-tête du contrat et dans la description de la PR. C'étaient deux mesures confondues
+en une. Rejoué sur les 302 politiques de canal :
+
+| mesure | valeur |
+|---|---|
+| politiques portant un fait structuré | 49 |
+| …dont celles portant aussi une citation | 43 |
+| …dont celles dont la citation énonce un poids ou des dimensions | **37** |
+| relues et attestées | 2 |
+| **candidates restantes** | **35** |
+
+Deux politiques relues donnent trois attestations, la soute Air France en portant deux. Il ne peut
+donc pas rester « 49 autres canaux » : il en reste **35**. Un compteur écrit de mémoire est un
+compteur faux, et celui-ci a survécu à cinq contre-revues parce que personne, moi compris, ne l'avait
+rejoué.
+
+**Mouvement des comptes.** Harnais du scellé : **23 → 42**. Contre-épreuves d'ingestion : **79 → 89**.
+Harnais du contrat mécanique : **45**, inchangé en nombre — un de ses témoins positifs ne passait plus
+qu'une partie de la source, et a rougi, ce qui est la preuve que la nouvelle garde tient. Harnais des
+pages d'entités : **234**. Politiques attestées : **2**. Faits attestés : **3**. Dette Astro : **165**.
+
+**Les artefacts ne bougent pas.** L'empreinte est calculée, jamais stockée dans `objects.json` : seul
+le fichier du scellé change, avec ses trois entrées réécrites au nouveau format.
+
+**Coordination avec le lot tarifaire, inchangée.** #61 corrigée puis fusionnée, rebase de
+`fix/transavia-air-france-fares` sur le nouveau `main`, synthèse attestée et `farePresentation`
+conservées ensemble, régénération unique des artefacts.

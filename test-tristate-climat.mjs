@@ -63,6 +63,12 @@ const kbCitee = (() => {
          une preuve citée décide vit dans `test-frontiere-confiance.mjs`, sur la KB réelle. */
       if (!d?.source) continue;
       delete d.source_derived;
+      /* LES RATTACHEMENTS PARTENT AVEC LA CITATION QU'ILS VISENT (annexe 51, 11/09/2026).
+         Cette KB synthétique REMPLACE toutes les phrases citées. Les attestations d'Air France
+         pointent des fragments de la phrase d'origine : les garder ici reviendrait à prétendre
+         qu'une phrase fictive établit un plafond de 8 kg. La garde du contrat l'a d'ailleurs
+         refusé au premier essai, et elle avait raison — mouvement nommé, pas abaissement. */
+      delete d.attestations;
       d.source.quote = "Pets are accepted on this route, subject to the conditions below.";
       d.source.quote_language = "en";
       d.source.locator = "section « Travelling with pets », paragraphe 1";
