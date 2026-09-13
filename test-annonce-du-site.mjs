@@ -96,86 +96,29 @@ for (const l of LANGUES) {
 }
 exiger("les pages de guides construites sont là", pagesGuides.length >= 240, `${pagesGuides.length} pages`);
 
-/* ---- 0 bis. LA PORTE D'INDEXATION DES GUIDES, CONSTATÉE SUR LE SITE SERVI (13/09/2026) --------
+/* ---- 0 bis. LA PORTE D'INDEXATION DES GUIDES (13/09/2026) ------------------------------------
  *
  * POURQUOI CE PARTAGE EXISTE MAINTENANT. Jusqu'ici toute page de guide construite était réputée
  * indexable, et les contrôles ci-dessous l'exigeaient : alternates déclarés, langues annoncées,
  * présence au sitemap de sa langue. Depuis que le Travel Hub passe la même porte que les fiches
  * d'aéroport et de race — reste indexable le guide qui CITE une source extérieure —, 84 des 288
- * pages sont servies en `noindex, follow`, hors sitemap et sans alternates. L'invariant d'origine
- * les déclarait fautives alors qu'elles sont exactement ce qu'elles doivent être.
+ * pages en sortent. L'invariant d'origine les déclarait fautives alors qu'elles sont exactement ce
+ * qu'elles doivent être.
  *
- * CE HARNAIS NE REJOUE PAS LA RÈGLE, IL LIT LE RÉSULTAT. Le partage se fait sur la balise `robots`
- * du HTML CONSTRUIT, jamais sur `guideEtat.ts` : un harnais qui recalculerait la règle qu'il
- * contrôle ne contrôlerait rien. Si la porte se trompe, le site sert un `noindex` que ce fichier
- * constate, et les contrôles croisés ci-dessous le rattrapent par l'autre bout.
+ * LE PARTAGE SE LIT SUR LE SITEMAP, ET C'EST UN CHOIX CONTRAINT. Ma première version le lisait sur
+ * la balise `robots` du HTML, ce qui était plus fort — mais la CI construit avec `build:preview`,
+ * dont l'étape s'appelle « Build complet + noindex sur toutes les pages » : hors production,
+ * Base.astro marque TOUTES les pages `noindex, nofollow` et la décision de la porte devient
+ * invisible dans le HTML. Le partage rendait alors zéro guide indexable, et mon propre garde-fou
+ * rougissait. Le sitemap, lui, est produit identiquement dans les deux modes.
  *
- * ET LE CONTRÔLE EST PLUS STRICT QU'AVANT, PAS MOINS. Là où l'ancien exigeait une seule direction
- * — tout guide construit doit être au sitemap —, il en exige maintenant deux : un guide indexable
- * DOIT y être, un guide `noindex` NE DOIT PAS y être, et ne doit annoncer aucun alternate. Une
- * porte qui laisserait passer au sitemap une page qu'elle interdit par ailleurs — la contradiction
- * même que Google rapporte comme « exclue par une balise noindex » — est désormais attrapée ici. */
-const estNoindex = (html) => /<meta\s+name="robots"\s+content="[^"]*noindex/i.test(html);
-const guidesIndexables = [];
-const guidesNoindex = [];
-for (const pg of pagesGuides) {
-  (estNoindex(readFileSync(pg.fichier, "utf8")) ? guidesNoindex : guidesIndexables).push(pg);
-}
-/* Un site de PREVIEW marque TOUTES ses pages `noindex` : sans ce garde-fou, le partage rendrait
-   zéro guide indexable et les contrôles ci-dessous porteraient sur le vide en restant verts. */
-exiger("le partage indexable/noindex n'a pas tout basculé d'un côté",
-  guidesIndexables.length >= 150,
-  `${guidesIndexables.length} indexable(s) sur ${pagesGuides.length} — build de preview ?`);
-
-/* ---- 1. TOUT CE QUI EST ANNONCÉ EXISTE -------------------------------------------------------- */
-const ALTERNATE = /<link rel="alternate" hreflang="([a-z-]+)" href="([^"]+)"/g;
-const morts = [];
-const sansAlternate = [];
-let alternatesLus = 0;
-for (const pg of guidesIndexables) {
-  const html = readFileSync(pg.fichier, "utf8");
-  const alts = [...html.matchAll(ALTERNATE)];
-  if (!alts.length) { sansAlternate.push(`${pg.locale}/${pg.slug}`); continue; }
-  for (const [, lang, url] of alts) {
-    alternatesLus++;
-    if (!pageExiste(url)) morts.push(`${pg.locale}/${pg.slug} → ${lang} ${url}`);
-  }
-}
-exiger("chaque page de guide INDEXABLE déclare ses alternates", sansAlternate.length === 0,
-  sansAlternate.slice(0, 5).join(", "));
-exiger("tout `hreflang` annoncé vise une page réellement construite",
-  morts.length === 0, `${morts.length} mort(s) · ${morts.slice(0, 3).join(" · ")}`);
-exiger("les alternates ont bien été lus — sinon le contrôle ci-dessus porterait sur le vide",
-  alternatesLus >= guidesIndexables.length, `${alternatesLus} alternates pour ${guidesIndexables.length} pages indexables`);
-
-/* L'AUTRE BOUT, ajouté le 13/09/2026 : une page qu'on retire des moteurs ne doit pas continuer de
-   leur annoncer ses variantes de langue. Base.astro s'en charge ; ce contrôle l'exige. */
-const noindexAvecAlternate = guidesNoindex
-  .filter((pg) => ALTERNATE.test(readFileSync(pg.fichier, "utf8")) || (ALTERNATE.lastIndex = 0))
-  .map((pg) => `${pg.locale}/${pg.slug}`);
-exiger("aucune page de guide en `noindex` n'annonce d'alternates",
-  noindexAvecAlternate.length === 0,
-  `${noindexAvecAlternate.length} · ${noindexAvecAlternate.slice(0, 3).join(" · ")}`);
-
-/* ---- 2. L'ANNONCE ÉPOUSE LA DISPONIBILITÉ RÉELLE ----------------------------------------------
- * INFALSIFIABLE AUJOURD'HUI (voir l'en-tête) : le corpus est symétrique. Conservée pour le jour où
- * il ne le sera plus, et revendiquée par AUCUNE contre-épreuve. */
-const slugVersCle = new Map();
-for (const [k, m] of languesParCle) for (const [l, s] of m) slugVersCle.set(`${l}/${s}`, k);
-const ecarts = [];
-for (const pg of guidesIndexables) {
-  const cle = slugVersCle.get(`${pg.locale}/${pg.slug}`);
-  if (!cle) continue;
-  const attendues = [...languesParCle.get(cle).keys()].sort();
-  const annoncees = [...new Set([...readFileSync(pg.fichier, "utf8").matchAll(ALTERNATE)]
-    .map((m) => m[1]).filter((l) => l !== "x-default"))].sort();
-  if (attendues.join(",") !== annoncees.join(","))
-    ecarts.push(`${pg.locale}/${pg.slug} : annonce ${annoncees.join("+")}, existe en ${attendues.join("+")}`);
-}
-exiger("chaque guide INDEXABLE annonce EXACTEMENT les langues où sa clé existe",
-  ecarts.length === 0, ecarts.slice(0, 4).join(" · "));
-
-/* ---- 3. LES SITEMAPS, DANS LES DEUX SENS ------------------------------------------------------ */
+ * CE QUE ÇA COÛTE, DIT FRANCHEMENT : la présence au sitemap ne peut plus être contrôlée CONTRE le
+ * sitemap, puisqu'elle en vient. Ce qui est contrôlé, et qui n'est pas tautologique, c'est tout le
+ * reste — les alternates des pages annoncées, l'exactitude des langues déclarées, la SYMÉTRIE des
+ * quatre langues d'une même clé, et l'absence d'URL fantôme. Le contrôle direct « hors sitemap ⇒
+ * `noindex, follow` » est joué quand le build est de production, et explicitement sauté sinon.
+ */
+const urlGuide = (pg) => `${SITE}${pg.locale === "en" ? "/" : `/${pg.locale}/`}travel-hub/${pg.slug}/`;
 const urlsSitemap = {};
 for (const l of LANGUES) {
   const f = join(DIST, `sitemap-${l}.xml`);
@@ -184,29 +127,103 @@ for (const l of LANGUES) {
   urlsSitemap[l] = new Set([...readFileSync(f, "utf8").matchAll(/<loc>([^<]+)<\/loc>/g)]
     .map((m) => (m[1].endsWith("/") ? m[1] : `${m[1]}/`)));
 }
-const urlGuide = (pg) => `${SITE}${pg.locale === "en" ? "/" : `/${pg.locale}/`}travel-hub/${pg.slug}/`;
-const absentes = guidesIndexables
-  .filter((pg) => !urlsSitemap[pg.locale]?.has(urlGuide(pg)))
-  .map((pg) => `${pg.locale}/${pg.slug}`);
-exiger("toute page de guide INDEXABLE est listée au sitemap de SA langue",
-  absentes.length === 0, `${absentes.length} absente(s) · ${absentes.slice(0, 3).join(" · ")}`);
+const guidesAnnonces = pagesGuides.filter((pg) => urlsSitemap[pg.locale]?.has(urlGuide(pg)));
+const guidesRetires = pagesGuides.filter((pg) => !urlsSitemap[pg.locale]?.has(urlGuide(pg)));
+exiger("le partage annoncés/retirés n'a pas tout basculé d'un côté",
+  guidesAnnonces.length >= 150,
+  `${guidesAnnonces.length} annoncé(s) sur ${pagesGuides.length}`);
 
-/* La contradiction que Google rapporte comme « exclue par une balise noindex » : proposer au
-   sitemap une URL qu'on interdit par ailleurs. Elle est désormais impossible sans rougir. */
-const contradictoires = guidesNoindex
-  .filter((pg) => urlsSitemap[pg.locale]?.has(urlGuide(pg)))
-  .map((pg) => `${pg.locale}/${pg.slug}`);
-exiger("aucune page de guide en `noindex` n'est listée au sitemap",
-  contradictoires.length === 0, `${contradictoires.length} · ${contradictoires.slice(0, 3).join(" · ")}`);
+/* Un build de production marque `noindex` page par page ; un build de preview le fait en bloc.
+   On reconnaît le second sur l'accueil, et on n'exige alors pas ce que le HTML ne peut pas dire. */
+const accueil = join(DIST, "index.html");
+const buildDeProduction = existsSync(accueil)
+  && !/<meta\s+name="robots"\s+content="noindex/i.test(readFileSync(accueil, "utf8"));
 
+/* ---- 1. TOUT CE QUI EST ANNONCÉ EXISTE -------------------------------------------------------- */
+const ALTERNATE = /<link rel="alternate" hreflang="([a-z-]+)" href="([^"]+)"/g;
+const morts = [];
+const sansAlternate = [];
+let alternatesLus = 0;
+for (const pg of guidesAnnonces) {
+  const html = readFileSync(pg.fichier, "utf8");
+  const alts = [...html.matchAll(ALTERNATE)];
+  if (!alts.length) { sansAlternate.push(`${pg.locale}/${pg.slug}`); continue; }
+  for (const [, lang, url] of alts) {
+    alternatesLus++;
+    if (!pageExiste(url)) morts.push(`${pg.locale}/${pg.slug} → ${lang} ${url}`);
+  }
+}
+exiger("chaque page de guide ANNONCÉE AU SITEMAP déclare ses alternates", sansAlternate.length === 0,
+  sansAlternate.slice(0, 5).join(", "));
+exiger("tout `hreflang` annoncé vise une page réellement construite",
+  morts.length === 0, `${morts.length} mort(s) · ${morts.slice(0, 3).join(" · ")}`);
+exiger("les alternates ont bien été lus — sinon le contrôle ci-dessus porterait sur le vide",
+  alternatesLus >= guidesAnnonces.length, `${alternatesLus} alternates pour ${guidesAnnonces.length} pages annoncées`);
+
+/* ---- 2. L'ANNONCE ÉPOUSE LA DISPONIBILITÉ RÉELLE ----------------------------------------------
+ * INFALSIFIABLE AUJOURD'HUI (voir l'en-tête) : le corpus est symétrique. Conservée pour le jour où
+ * il ne le sera plus, et revendiquée par AUCUNE contre-épreuve. */
+const slugVersCle = new Map();
+for (const [k, m] of languesParCle) for (const [l, s] of m) slugVersCle.set(`${l}/${s}`, k);
+const ecarts = [];
+for (const pg of guidesAnnonces) {
+  const cle = slugVersCle.get(`${pg.locale}/${pg.slug}`);
+  if (!cle) continue;
+  const attendues = [...languesParCle.get(cle).keys()].sort();
+  const annoncees = [...new Set([...readFileSync(pg.fichier, "utf8").matchAll(ALTERNATE)]
+    .map((m) => m[1]).filter((l) => l !== "x-default"))].sort();
+  if (attendues.join(",") !== annoncees.join(","))
+    ecarts.push(`${pg.locale}/${pg.slug} : annonce ${annoncees.join("+")}, existe en ${attendues.join("+")}`);
+}
+exiger("chaque guide ANNONCÉ annonce EXACTEMENT les langues où sa clé existe",
+  ecarts.length === 0, ecarts.slice(0, 4).join(" · "));
+
+/* ---- 3. LES SITEMAPS, ET LA SYMÉTRIE DES LANGUES ---------------------------------------------- */
 const fantomes = [];
 for (const l of LANGUES) for (const u of urlsSitemap[l] ?? []) if (!pageExiste(u)) fantomes.push(`${l} → ${u}`);
 exiger("aucun sitemap n'annonce une URL sans page construite",
   fantomes.length === 0, `${fantomes.length} fantôme(s) · ${fantomes.slice(0, 3).join(" · ")}`);
 
+/* LA SYMÉTRIE, ajoutée le 13/09/2026 et c'est le contrôle qui compte vraiment ici.
+ *
+ * La porte lit le CORPS du guide, langue par langue. Rien dans son code ne garantit qu'elle
+ * décidera la même chose pour les quatre versions d'une même clé — et un guide annoncé en français
+ * mais retiré en anglais romprait la réciprocité des `hreflang`, que Google ignore alors EN BLOC,
+ * pour tout le site. C'est une panne silencieuse et coûteuse : elle ne casse aucune page, elle
+ * annule un dispositif entier. Le harnais l'exige donc explicitement. */
+const parCleAnnonce = new Map();
+for (const pg of pagesGuides) {
+  const cle = slugVersCle.get(`${pg.locale}/${pg.slug}`);
+  if (!cle) continue;
+  if (!parCleAnnonce.has(cle)) parCleAnnonce.set(cle, new Map());
+  parCleAnnonce.get(cle).set(pg.locale, urlsSitemap[pg.locale]?.has(urlGuide(pg)) === true);
+}
+const asymetriques = [...parCleAnnonce.entries()]
+  .filter(([, m]) => new Set(m.values()).size > 1)
+  .map(([cle, m]) => `${cle} : ${[...m].map(([l, v]) => `${l}=${v ? "au sitemap" : "retiré"}`).join(" ")}`);
+exiger("une clé de guide est annoncée dans TOUTES ses langues, ou dans aucune",
+  asymetriques.length === 0, `${asymetriques.length} · ${asymetriques.slice(0, 3).join(" · ")}`);
+
+/* LE CONTRÔLE DIRECT — il n'a de sens que sur un build de production, où le `noindex` est posé
+ * page par page. En preview, Base.astro marque tout le site `noindex, nofollow` : la question ne
+ * se pose pas, et on le DIT au lieu de rendre un vert silencieux. */
+if (buildDeProduction) {
+  const incoherents = [];
+  for (const pg of pagesGuides) {
+    const html = readFileSync(pg.fichier, "utf8");
+    const noindex = /<meta\s+name="robots"\s+content="[^"]*noindex/i.test(html);
+    const annonce = urlsSitemap[pg.locale]?.has(urlGuide(pg)) === true;
+    if (noindex === annonce) incoherents.push(`${pg.locale}/${pg.slug} : ${annonce ? "au sitemap ET noindex" : "hors sitemap SANS noindex"}`);
+  }
+  exiger("sitemap et balise `robots` disent la même chose, guide par guide",
+    incoherents.length === 0, `${incoherents.length} · ${incoherents.slice(0, 3).join(" · ")}`);
+} else {
+  dire("  · build de preview : le site entier est `noindex`, le contrôle sitemap/robots est sauté (et non tenu pour vert)");
+}
+
 /* ---- Verdict ---------------------------------------------------------------------------------- */
 dire("");
-dire(`  site : ${total} pages HTML · guides : ${pagesGuides.length} pages, ${languesParCle.size} clés — ${guidesIndexables.length} indexables, ${guidesNoindex.length} en noindex`);
+dire(`  site : ${total} pages HTML · guides : ${pagesGuides.length} pages, ${languesParCle.size} clés — ${guidesAnnonces.length} au sitemap, ${guidesRetires.length} retirés`);
 dire(`  alternates lus : ${alternatesLus} · URL au sitemap : ${Object.values(urlsSitemap).reduce((a, s) => a + s.size, 0)}`);
 /* ---- 6. LES CHIFFRES QUE LE SITE ANNONCE SUR LUI-MÊME ----------------------------------------
  *
