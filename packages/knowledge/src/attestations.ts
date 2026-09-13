@@ -213,7 +213,7 @@ const MARQUEURS: Record<"lt" | "lte" | "gt" | "gte", string[]> = {
        "menos de", "inferior a", "menor que", "abaixo de"],
   lte: ["up to", "no more than", "not more than", "not exceeding", "maximum of", "max of", "max",
         "maximum", "or less", "at most",
-        "jusqu'a", "au maximum", "au plus", "ou moins", "n'excedant pas",
+        "jusqu'a", "au maximum", "au plus", "ou moins", "n'excedant pas", "ne devrait pas depasser",
         "hasta", "como maximo", "no mas de", "o menos",
         "ate", "no maximo", "ou menos"],
   gt: ["more than", "over", "above", "exceeding", "greater than", "heavier than",

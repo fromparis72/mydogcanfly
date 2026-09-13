@@ -60,10 +60,43 @@ ladder:
 policies:
   cabin:
     availability: offered
+    source:
+      url: https://www.eurowings.com/de/informieren/gepaeck/fliegen-mit-tieren.html
+      source_type: official_website
+      verified_date: 2026-09-12
+      review_due: 2026-12-11
+      confidence: 4
+      reviewer: Codex — contre-lecture du dossier officiel national
+      history: []
+      quote: Eurowings transportiert nur kleine Hunde und Katzen (bis zu 8 kg inklusive Tasche) und diese auch nur in der Kabine.
+      quote_language: de
+      locator: corps de page, bloc d'introduction
   hold:
     availability: not_offered
+    source:
+      url: https://www.eurowings.com/de/rechtliches/allgemeine-befoerderungsbedingungen.pdf
+      source_type: official_website
+      verified_date: 2026-09-12
+      review_due: 2026-12-11
+      confidence: 4
+      reviewer: Codex — contre-lecture du dossier officiel national
+      history: []
+      quote: Der Transport von Tieren ist ausschließlich in der Kabine möglich.
+      quote_language: de
+      locator: "art. 8.10.2, derniere phrase ; document date « Stand: 27.08.2026 »"
   cargo:
     availability: not_offered
+    source:
+      url: https://www.eurowings.com/de/rechtliches/allgemeine-befoerderungsbedingungen.pdf
+      source_type: official_website
+      verified_date: 2026-09-12
+      review_due: 2026-12-11
+      confidence: 4
+      reviewer: Codex — contre-lecture du dossier officiel national
+      history: []
+      quote: Der Transport von Tieren ist ausschließlich in der Kabine möglich.
+      quote_language: de
+      locator: "art. 8.10.2, derniere phrase ; document date « Stand: 27.08.2026 »"
 channels:
   - placement: cabin
     icon: 🐾

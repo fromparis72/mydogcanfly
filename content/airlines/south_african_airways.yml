@@ -83,52 +83,48 @@ ladder:
 policies:
   cabin:
     availability: not_offered
-    # PREUVE IMPORTÉE — import strict lot6 (Codex, lecture directe du 2026-09-09, cohorte LOT6 fait 5).
-    # Effet attendu : Do not offer South African Airways passenger cabin to an ordinary pet dog.
-    # Portée nommée : Ordinary pets only; trained assistance-dog exceptions are outside this decision.
     source:
-      url: "https://www.flysaa.com/manage-fly/baggage/checked-baggage/animals"
+      url: https://www.flysaa.com/manage-fly/baggage/checked-baggage/animals
       source_type: official_website
-      verified_date: "2026-09-09"
-      review_due: "2026-12-08"   # reviewDueFrom(verified_date, "airline") — calculé par l'importeur
+      verified_date: 2026-09-12
+      review_due: 2026-12-11
       confidence: 4
-      reviewer: "Codex — direct reading of official airline page"
+      reviewer: Codex — contre-lecture du dossier officiel national
       history: []
-      quote: "No pets permitted in Cabin."
+      quote: No pets permitted in Cabin.
       quote_language: en
-      locator: "Travelling with Animals → PETC – Animals Accompanying Passengers Onboard the Aircraft"
+      locator: accordeon « PETC – Animals Accompanying Passengers Onboard the Aircraft », deuxieme ligne
   hold:
-    availability: offered   # RÉACTIVÉE sur citation (import strict, lot6, 2026-09-09) — était review_state: legacy_unreviewed
-    # PREUVE IMPORTÉE — import strict lot6 (Codex, lecture directe du 2026-09-09, cohorte LOT6 fait 6).
-    # Effet attendu : South African Airways hold is a documented conditional route, never a worldwide answer.
-    # Portée nommée : Subject to individual circumstances, route, documents and carrier decision; other routes may require manifested cargo instead.
+    availability: case_by_case
     source:
-      url: "https://www.flysaa.com/manage-fly/baggage/checked-baggage/special-baggage"
+      url: https://www.flysaa.com/manage-fly/baggage/checked-baggage/animals
       source_type: official_website
-      verified_date: "2026-09-09"
-      review_due: "2026-12-08"   # reviewDueFrom(verified_date, "airline") — calculé par l'importeur
+      verified_date: 2026-09-12
+      review_due: 2026-12-11
       confidence: 4
-      reviewer: "Codex — direct reading of official airline page"
+      reviewer: Codex — contre-lecture du dossier officiel national
       history: []
-      quote: "Depending on the individual circumstances, pets must be carried either as cargo, or as checked baggage in the hold."
+      quote: The specifications of cage shall not exceed 1m X 1m & maximum weight of 23kg. (Cages larger than the required specification shall be transported as cargo). Your pet's original vaccination and rabies certificate must be present at the time of pet check-in.
       quote_language: en
-      locator: "Special Baggage → Travelling with Pets"
+      locator: accordeon « Domestic Travel within South Africa », premiere phrase
+    conditions:
+      en: Checked pets are documented on domestic South African travel only; international animals must travel as manifested cargo.
+      fr: La soute est documentée uniquement sur les vols intérieurs sud-africains ; à l’international, l’animal doit voyager en fret manifeste.
+      es: La bodega solo está documentada en vuelos nacionales sudafricanos; en vuelos internacionales el animal debe viajar como carga manifiesta.
+      pt: O porão só está documentado em voos domésticos sul-africanos; em voos internacionais o animal deve viajar como carga manifestada.
   cargo:
-    availability: offered   # RÉACTIVÉE sur citation (import strict, lot6, 2026-09-09) — était review_state: legacy_unreviewed
-    # PREUVE IMPORTÉE — import strict lot6 (Codex, lecture directe du 2026-09-09, cohorte LOT6 fait 7).
-    # Effet attendu : South African Airways cargo is conditional, never a shipment confirmation.
-    # Portée nommée : International and some domestic routes; import law, country restrictions, paperwork and cargo acceptance apply.
+    availability: offered
     source:
-      url: "https://www.flysaa.com/manage-fly/baggage/checked-baggage/animals"
+      url: https://www.flysaa.com/manage-fly/baggage/checked-baggage/animals
       source_type: official_website
-      verified_date: "2026-09-09"
-      review_due: "2026-12-08"   # reviewDueFrom(verified_date, "airline") — calculé par l'importeur
+      verified_date: 2026-09-12
+      review_due: 2026-12-11
       confidence: 4
-      reviewer: "Codex — direct reading of official airline page"
+      reviewer: Codex — contre-lecture du dossier officiel national
       history: []
-      quote: "All animals (Pets) and animal products are not allowed via the security check point & must be transported as manifested cargo under an Air Waybill, also in case of transit if transhipment is involved."
+      quote: All animals (Pets) and animal products are not allowed via the security check point & must be transported as manifested cargo under an Air Waybill, also in case of transit if transhipment is involved.
       quote_language: en
-      locator: "Travelling with Animals → International Travel to & from South Africa"
+      locator: accordeon « International Travel to & from South Africa », premiere phrase
 channels:
   - placement: cabin
     icon: 🐾

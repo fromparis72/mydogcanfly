@@ -149,6 +149,10 @@ const DecisionPlacement = z.union([
     /** La borne du seuil (09/09/2026, règle des seuils de Codex) : `lt` exclut la valeur. Absent = `lte`. */
     weight_limit_bound: z.enum(["lt", "lte"]).optional(),
     weight_includes_carrier: z.boolean().optional(),
+    /** Dimensions intérieures du contenant, rendues uniquement lorsqu'une attestation relue les
+     *  rattache mot pour mot à la citation du canal. Le contrat canonique portait déjà ce champ ;
+     *  l'entrée de fiche manquait encore, ce qui rendait impossible le premier cas EgyptAir. */
+    carrier_dims_cm: z.object({ l: z.number().positive(), w: z.number().positive(), h: z.number().positive() }).optional(),
     /** LES TARIFS PROUVÉS (10/09/2026, annexe 44). La fiche sait désormais les écrire ; le contrat
      *  vit dans `packages/knowledge/src/tarifs.ts` et c'est LUI qui valide — pas une copie du schéma
      *  recopiée ici, qui dériverait le jour où l'un des deux bouge. */
@@ -675,7 +679,7 @@ for (const a of (objects.airlines || [])) {
          tarifaire, qui reste soumis à la préservation et à la détection de dérive). */
       /* `fares` et `fare_conflicts` entrent dans cette liste LE JOUR MÊME de leur écriture dans la fiche
          (10/09/2026) : c'est ici que le seuil s'était perdu le 15/08, et le champ du quatrième état le 08/09. */
-      for (const k of ["max_weight_kg", "min_weight_kg", "weight_includes_carrier", "weight_limit_bound", "weight_min_bound", "attestations", "conditions", "fares", "fare_conflicts"]) {
+      for (const k of ["max_weight_kg", "min_weight_kg", "weight_includes_carrier", "weight_limit_bound", "weight_min_bound", "carrier_dims_cm", "attestations", "conditions", "fares", "fare_conflicts"]) {
         if (d.__ecrits?.has(k) && d[k] !== undefined) enrichissements[k] = d[k];
       }
       /* Une source AUDITÉE écrite dans la fiche l'emporte, ici aussi. La première correction
@@ -723,6 +727,7 @@ for (const a of (objects.airlines || [])) {
          préservation du 15/08 et la projection du 08/09 — et il se referme en même temps. */
       ...(d.min_weight_kg != null ? { min_weight_kg: d.min_weight_kg } : {}),
       ...(d.weight_min_bound ? { weight_min_bound: d.weight_min_bound } : {}),
+      ...(d.carrier_dims_cm ? { carrier_dims_cm: d.carrier_dims_cm } : {}),
       ...(d.attestations?.length ? { attestations: d.attestations } : {}),
       ...(d.fares?.length ? { fares: d.fares } : {}),
       ...(d.fare_conflicts?.length ? { fare_conflicts: d.fare_conflicts } : {}),

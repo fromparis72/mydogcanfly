@@ -321,7 +321,23 @@ policies:
       quote_language: en
       locator: "Acceptance in hold"
   cargo:
-    availability: offered
+    availability: case_by_case
+    conditions:
+      en: IAG Cargo handles pets through Pet Air UK for departures from the United Kingdom; other routes require confirmation through its cargo process.
+      fr: IAG Cargo prend en charge les animaux via Pet Air UK au départ du Royaume-Uni ; les autres routes doivent être confirmées par son processus fret.
+      es: IAG Cargo gestiona las mascotas mediante Pet Air UK desde el Reino Unido; las demás rutas deben confirmarse mediante su proceso de carga.
+      pt: A IAG Cargo trata dos animais através da Pet Air UK nas partidas do Reino Unido; as outras rotas devem ser confirmadas pelo processo de carga.
+    source:
+      url: https://www.iagcargo.com/es/products/pets/
+      source_type: official_website
+      verified_date: 2026-09-12
+      review_due: 2026-12-11
+      confidence: 4
+      reviewer: Codex — contrôle du dossier officiel fret rev2 remis par Philippe
+      history: []
+      quote: "Nos hemos asociado con Pet Air UK para cuidar de todas las mascotas que salen del Reino Unido."
+      quote_language: es
+      locator: "section « ¿Vuela con tu mascota desde el Reino Unido? »"
 channels:
   - placement: cabin
     icon: 🐾

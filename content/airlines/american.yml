@@ -142,6 +142,17 @@ policies:
           quote_language: en
           locator: Fees > Checked pet
     availability: not_offered
+    source:
+      url: https://www.aa.com/i18n/travel-info/special-assistance/pets.jsp
+      source_type: official_website
+      verified_date: 2026-09-12
+      review_due: 2026-12-11
+      confidence: 5
+      reviewer: Codex — lecture de la page officielle américaine
+      history: []
+      quote: "We only accept checked pets for active-duty U.S. Military and U.S. State Department Foreign Service personnel traveling on official orders."
+      quote_language: en
+      locator: Checked pets · Eligibility
   cargo:
     # TARIFS OFFICIELS — audit indépendant du 2026-09-10 ; aucune valeur héritée réactivée.
     fares:

@@ -195,6 +195,17 @@ policies:
       locator: "What travel options are there for the different types of animals?"
   cargo:
     availability: offered
+    source:
+      url: https://www.lufthansa-cargo.com/de/live-animals
+      source_type: official_website
+      verified_date: 2026-09-12
+      review_due: 2026-12-11
+      confidence: 4
+      reviewer: Codex — contrôle du dossier officiel fret rev2 remis par Philippe
+      history: []
+      quote: "Erfüllung der strengen Bestimmungen der IATA Live Animals Regulations sowie der Convention on International Trade in Endangered Species (CITES)"
+      quote_language: de
+      locator: section exigences et documents
 channels:
   - placement: cabin
     icon: 🐾

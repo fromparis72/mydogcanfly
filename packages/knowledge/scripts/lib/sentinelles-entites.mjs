@@ -9,7 +9,7 @@
  * RÉELLEMENT dans les données. La liste ci-dessous est relue du tableau, jamais de mémoire :
  *   · arbitrée sur ordre  → Thai Airways, fret        (`accepted_with_conditions`, citée)
  *   · sans source         → Aegean, fret              (`confirmation_required`, SANS preuve)
- *   · page sans phrase    → United, soute             (`confirmation_required`, à côté d'un canal prouvé)
+ *   · page sans phrase    → United, fret              (`confirmation_required`, à côté de deux canaux prouvés)
  *   · non offerte         → Bangkok Airways, cabine   (`confirmation_required`, refus d'auteur sans phrase)
  *   · refus PROUVÉ        → British Airways, cabine   (`denied`, sur citation stricte)
  *   · fait ATTESTÉ        → Air France, cabine ET soute (`accepted_with_conditions`, synthèse localisée)
@@ -66,7 +66,15 @@ export const SENTINELLES_COMPAGNIES = [
      restantes vivent toutes à côté d'un canal prouvé. Le rôle est donc re-fondé sur cette forme :
      United SOUTE — page officielle, aucune phrase citée, « à confirmer » à côté d'une cabine citée.
      Même slug, même page construite ; le statut attendu ne change pas. */
-  { slug: "united", id: "airline_united", placement: "hold", statut: "confirmation_required", role: "page officielle sans phrase citée, à côté d'un canal prouvé" },
+  /* RE-FONDÉE UNE CINQUIÈME FOIS (12/09/2026, lot de 30 compagnies) : la page dynamique United
+     prouve désormais que le service PetSafe général est fermé ; la soute devient donc un refus
+     cité. Le fret porte encore la même page officielle sans phrase citée et reste à confirmer,
+     à côté de la cabine et de la soute désormais prouvées. Même fiche, même forme de preuve,
+     seul le canal porteur du témoin change. */
+  /* RE-FONDÉE UNE SIXIÈME FOIS (13/09/2026, lot fret officiel) : United Cargo est désormais un
+     refus cité, son service n'étant ouvert qu'à certains militaires et agents du Département
+     d'État. WestJet fret porte encore une page officielle sans phrase citée ; la forme subsiste. */
+  { slug: "westjet", id: "airline_westjet", placement: "cargo", statut: "confirmation_required", role: "page officielle sans phrase citée, à côté de deux canaux prouvés" },
   /* RE-FONDÉE (09/09/2026, lot 8) : Thai Airways cabine est citée (« As a general policy, we do not accept
      pets in the cabin… ») — un refus PROUVÉ, plus « non prouvé ». Même forme, autre porteuse, mesurée
      sur les 12 cabines « non offertes, non prouvées » de la base projetée : Air China — précisément la

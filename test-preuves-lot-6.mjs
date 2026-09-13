@@ -85,10 +85,55 @@ console.log("=== Étage 1 — 22 faits relus, 21 dans la donnée à l'octet prè
       check(`  …projeté « accepté sous conditions » — jamais \`allowed\``, proj?.status === "accepted_with_conditions", JSON.stringify({ status: proj?.status, cause: proj?.status_cause }));
       continue;
     }
+    if (cle === "airline_egyptair.cabin" || cle === "airline_egyptair.hold") {
+      /* MOUVEMENT NOMMÉ (12/09/2026, source nationale) : les deux citations anglophones du
+         lot 6 sont remplacées par la page française officielle, plus précise et relue par
+         Philippe. La cabine gagne en outre la première dimension attestée du dépôt. */
+      check(`${cle} : source française officielle, phrase, langue et date du 12/09`,
+        pol?.availability === "offered" && s.url === "https://www.egyptair.com/fr/fly/special-services/Pages/traveling-with-pets.aspx"
+          && s.quote_language === "fr" && s.verified_date === "2026-09-12" && !!s.quote, JSON.stringify(s));
+      check(`  …review_due calculé par reviewDueFrom (2026-12-11) et canal toujours sous conditions`,
+        s.review_due === reviewDueFrom(s.verified_date ?? "", "airline") && s.review_due === "2026-12-11"
+          && proj?.status === "accepted_with_conditions", `${s.verified_date} → ${s.review_due}`);
+      continue;
+    }
+    if (f.airline_id === "airline_south_african_airways") {
+      /* MOUVEMENT NOMMÉ (12/09/2026, source nationale actuelle) : le lot exhaustif
+         remplace la lecture du lot 6 par trois citations actuelles. La cabine et le
+         fret gardent leur verdict. La soute est désormais explicitement circonscrite
+         au réseau intérieur et soumise à accord : le modèle la projette donc
+         `confirmation_required/airline_approval`, jamais comme un oui réseau entier. */
+      const citationAttendue = f.placement === "hold"
+        ? "The specifications of cage shall not exceed 1m X 1m & maximum weight of 23kg. (Cages larger than the required specification shall be transported as cargo). Your pet's original vaccination and rabies certificate must be present at the time of pet check-in."
+        : f.quote;
+      check(`${cle} (LOT6[${f.index}]) : source nationale relue le 12/09, canal conservé ou soute circonscrite`,
+        !!pol && s.quote === citationAttendue && s.quote_language === "en" && s.verified_date === "2026-09-12",
+        JSON.stringify({ attendu: citationAttendue, lu: s.quote }));
+      check(`  …review_due calculé par reviewDueFrom (2026-12-11)`,
+        s.review_due === reviewDueFrom(s.verified_date ?? "", "airline") && s.review_due === "2026-12-11",
+        `${s.verified_date} → ${s.review_due}`);
+      const attendu = f.placement === "cabin" ? "denied" : f.placement === "hold" ? "confirmation_required" : "accepted_with_conditions";
+      check(`  …projeté ${attendu}${f.placement === "hold" ? " — cas par cas, réseau intérieur seulement" : ""}`,
+        proj?.status === attendu && (f.placement !== "hold" || proj?.status_cause === "airline_approval"),
+        JSON.stringify({ status: proj?.status, cause: proj?.status_cause }));
+      check(`  …aucun plafond général écrit depuis une règle limitée à la soute intérieure`,
+        pol?.weight_includes_carrier === undefined && pol?.max_weight_kg === undefined,
+        JSON.stringify({ max: pol?.max_weight_kg, incl: pol?.weight_includes_carrier }));
+      continue;
+    }
+    /* MOUVEMENT NOMMÉ (12/09/2026, source nationale actuelle) : Aeromexico conserve
+       mot pour mot les deux lignes de politique du lot 6, mais quitte le sous-domaine
+       beta pour la page publique www et reçoit la nouvelle date de lecture. */
+    const aeromexicoActualise = cle === "airline_aeromexico.cabin" || cle === "airline_aeromexico.hold";
+    const urlAttendue = aeromexicoActualise
+      ? "https://www.aeromexico.com/es-mx/informacion-de-vuelos/transporte-aereo-de-mascotas"
+      : f.url;
+    const dateAttendue = aeromexicoActualise ? "2026-09-12" : f.verified_date;
+    const echeanceAttendue = aeromexicoActualise ? "2026-12-11" : "2026-12-08";
     check(`${cle} (LOT6[${f.index}]) : phrase, URL, localisateur, langue, date de lecture`,
-      !!pol && s.quote === f.quote && s.locator === f.locator && s.quote_language === f.quote_language && s.url === f.url && s.verified_date === f.verified_date,
+      !!pol && s.quote === f.quote && s.locator === f.locator && s.quote_language === f.quote_language && s.url === urlAttendue && s.verified_date === dateAttendue,
       JSON.stringify({ attendu: f.quote, lu: s.quote }));
-    check(`  …review_due calculé par reviewDueFrom (2026-12-08)`, s.review_due === reviewDueFrom(s.verified_date ?? "", "airline") && s.review_due === "2026-12-08", `${s.verified_date} → ${s.review_due}`);
+    check(`  …review_due calculé par reviewDueFrom (${echeanceAttendue})`, s.review_due === reviewDueFrom(s.verified_date ?? "", "airline") && s.review_due === echeanceAttendue, `${s.verified_date} → ${s.review_due}`);
     const attendu = f.recommendation.startsWith("not_offered") ? "denied" : "accepted_with_conditions";
     check(`  …projeté ${attendu}${REACTIVEES.includes(cle) ? " — ligne non revérifiée RÉACTIVÉE sur citation" : ""}`, proj?.status === attendu, JSON.stringify({ status: proj?.status, cause: proj?.status_cause }));
     const seuil = SEUILS[cle];
@@ -98,6 +143,30 @@ console.log("=== Étage 1 — 22 faits relus, 21 dans la donnée à l'octet prè
   }
   for (const u of d.intentionally_unset) {
     const pol = politique(u.airline_id, u.placement);
+    if (u.airline_id === "airline_united" && u.placement === "hold") {
+      /* MOUVEMENT NOMMÉ (12/09/2026, lot de 30 compagnies) : la soute United quitte la
+         non-décision sur la phrase officielle réservant ce transport à certaines missions. */
+      check("United soute quitte la non-décision sur un refus officiel cité",
+        !!pol?.source?.quote && projetee(u.airline_id, u.placement)?.status === "denied");
+      continue;
+    }
+    if (u.airline_id === "airline_aeromexico" && u.placement === "cargo") {
+      /* MOUVEMENT NOMMÉ (13/09/2026, lot fret) : la page cargo officielle ne couvre
+         que le réseau intérieur ; le canal est donc cité mais reste à confirmer. */
+      check("Aeromexico fret quitte la non-décision, mais reste à confirmer hors portée nationale",
+        !!pol?.source?.quote && projetee(u.airline_id, u.placement)?.status === "confirmation_required");
+      continue;
+    }
+    if (u.airline_id === "airline_latam" && u.placement === "cargo") {
+      check("LATAM fret quitte la non-décision sur une offre cargo officielle citée",
+        !!pol?.source?.quote && projetee(u.airline_id, u.placement)?.status === "accepted_with_conditions");
+      continue;
+    }
+    if (u.airline_id === "airline_united" && u.placement === "cargo") {
+      check("United fret quitte la non-décision sur une restriction officielle citée",
+        !!pol?.source?.quote && projetee(u.airline_id, u.placement)?.status === "denied");
+      continue;
+    }
     check(`non-décision ${u.airline_id}.${u.placement} : aucune citation écrite, « à confirmer »`,
       !pol?.source?.quote && projetee(u.airline_id, u.placement)?.status === "confirmation_required",
       JSON.stringify({ quote: pol?.source?.quote, status: projetee(u.airline_id, u.placement)?.status }));
@@ -137,7 +206,7 @@ console.log("\n=== Étage 2 — Paris → Mexico, Le Caire : plafonds combinés 
   check("Aeromexico cabine, Golden 32 kg : REFUS sûr ; soute : sous conditions, plafond 45",
     canal(g, "airline_aeromexico", "cabin")?.status === "denied" && canal(g, "airline_aeromexico", "hold")?.status === "accepted_with_conditions" && canal(g, "airline_aeromexico", "hold")?.weight_limit_kg === 45, JSON.stringify(canal(g, "airline_aeromexico", "hold")));
   check("Aeromexico soute, Bully 50 kg : REFUS sûr — 50 kg de chien seul dépassent 45 kg chien + contenant", canal(b, "airline_aeromexico", "hold")?.status === "denied", JSON.stringify(canal(b, "airline_aeromexico", "hold")));
-  check("Aeromexico fret : volontairement NON décidé → à confirmer", canal(g, "airline_aeromexico", "cargo")?.status === "confirmation_required");
+  check("Aeromexico fret : source cargo nationale citée, portée internationale à confirmer", canal(g, "airline_aeromexico", "cargo")?.status === "confirmation_required");
   const eg = decide("airport_cdg", "airport_cai", GOLDEN_32), egC = decide("airport_cdg", "airport_cai", CAVALIER_6), egP = decide("airport_cdg", "airport_cai", CARLIN_8);
   const egCab = canal(egC, "airline_egyptair", "cabin");
   check("EgyptAir cabine, Cavalier 6 kg et Carlin 8 kg : sous conditions, plafond 8 chien + contenant ; Golden 32 kg : refus sûr",
@@ -149,16 +218,16 @@ console.log("\n=== Étage 2 — Paris → Mexico, Le Caire : plafonds combinés 
 console.log("\n=== Étage 2 — Madrid → Santiago, Londres → Newark : LATAM et United, cabines citées, règles héritées nommées ===");
 {
   const sclC = decide("airport_mad", "airport_scl", CAVALIER_6), sclG = decide("airport_mad", "airport_scl", GOLDEN_32);
-  check("LATAM cabine, Cavalier 6 kg sur un vol LATAM : sous conditions ; soute, Golden 32 kg : sous conditions ; fret non décidé → à confirmer",
-    canal(sclC, "airline_latam", "cabin")?.status === "accepted_with_conditions" && canal(sclG, "airline_latam", "hold")?.status === "accepted_with_conditions" && canal(sclG, "airline_latam", "cargo")?.status === "confirmation_required");
+  check("LATAM cabine, soute et fret : sous conditions sur leurs preuves propres",
+    canal(sclC, "airline_latam", "cabin")?.status === "accepted_with_conditions" && canal(sclG, "airline_latam", "hold")?.status === "accepted_with_conditions" && canal(sclG, "airline_latam", "cargo")?.status === "accepted_with_conditions");
   /* MESURÉ : une règle de poids héritée non citée (`rule_latam_cabin_weight`) garde le Golden « à
      confirmer » en cabine — jamais un refus prouvé, la règle est nommée. */
   const lg = canal(sclG, "airline_latam", "cabin");
   check("LATAM cabine, Golden 32 kg : « à confirmer », règle héritée de poids NOMMÉE (aucun plafond cité)",
     lg?.status === "confirmation_required" && (lg?.confirmation_causes ?? []).some((x) => x.rule_id === "rule_latam_cabin_weight"), JSON.stringify(lg));
   const ewrC = decide("airport_lhr", "airport_ewr", CAVALIER_6), ewrG = decide("airport_lhr", "airport_ewr", GOLDEN_32);
-  check("United cabine, Cavalier 6 kg : sous conditions ; soute et fret volontairement NON décidés → à confirmer, jamais déduits de la cabine",
-    canal(ewrC, "airline_united", "cabin")?.status === "accepted_with_conditions" && canal(ewrC, "airline_united", "hold")?.status === "confirmation_required" && canal(ewrC, "airline_united", "cargo")?.status === "confirmation_required");
+  check("United cabine, Cavalier 6 kg : sous conditions ; soute et fret refusés sur leurs citations",
+    canal(ewrC, "airline_united", "cabin")?.status === "accepted_with_conditions" && canal(ewrC, "airline_united", "hold")?.status === "denied" && canal(ewrC, "airline_united", "cargo")?.status === "denied");
   const ug = canal(ewrG, "airline_united", "cabin");
   check("United cabine, Golden 32 kg : « à confirmer », règles héritées de poids NOMMÉES (`rule_ua_cabin_weight`, `rule_united_cabin_weight`)",
     ug?.status === "confirmation_required" && ["rule_ua_cabin_weight", "rule_united_cabin_weight"].every((r) => (ug?.confirmation_causes ?? []).some((x) => x.rule_id === r)), JSON.stringify(ug));
@@ -191,8 +260,11 @@ console.log("\n=== Étage 2 — Paris → Riyad, Pékin, Nairobi, Amman ; Johann
     canal(bah, "airline_gulf_air", "cabin")?.status === "denied" && canal(bah, "airline_gulf_air", "hold")?.status === "denied" && canal(bah, "airline_gulf_air", "cargo")?.status === "accepted_with_conditions");
   check("Gulf Air, Cavalier 6 kg : cabine et soute refusées aussi", canal(bahC, "airline_gulf_air", "cabin")?.status === "denied" && canal(bahC, "airline_gulf_air", "hold")?.status === "denied");
   const cpt = decide("airport_jnb", "airport_cpt", GOLDEN_32), cptC = decide("airport_jnb", "airport_cpt", CAVALIER_6);
-  check("South African Airways, Golden 32 kg (Johannesburg → Le Cap) : cabine refusée, soute et fret RÉACTIVÉS → sous conditions",
-    canal(cpt, "airline_south_african_airways", "cabin")?.status === "denied" && canal(cpt, "airline_south_african_airways", "hold")?.status === "accepted_with_conditions" && canal(cpt, "airline_south_african_airways", "cargo")?.status === "accepted_with_conditions");
+  check("South African Airways, Golden 32 kg (Johannesburg → Le Cap) : cabine refusée, soute à confirmer sur accord, fret sous conditions",
+    canal(cpt, "airline_south_african_airways", "cabin")?.status === "denied"
+      && canal(cpt, "airline_south_african_airways", "hold")?.status === "confirmation_required"
+      && canal(cpt, "airline_south_african_airways", "hold")?.confirmation_causes?.some((x) => x.code === "airline_approval")
+      && canal(cpt, "airline_south_african_airways", "cargo")?.status === "accepted_with_conditions");
   check("South African Airways, Cavalier 6 kg : cabine refusée aussi (« No pets permitted in Cabin. »)", canal(cptC, "airline_south_african_airways", "cabin")?.status === "denied");
   const amm = decide("airport_cdg", "airport_amm", GOLDEN_32), ammC = decide("airport_cdg", "airport_amm", CAVALIER_6);
   check("Royal Jordanian cabine, Cavalier 6 kg : sous conditions SANS plafond (7 kg non écrit) ; soute, Golden 32 kg : sous conditions ; fret non décidé → à confirmer",
@@ -206,8 +278,9 @@ console.log("\n=== Ce que l'import n'a PAS fait ===");
   check("aucune politique réelle n'est `allowed`", allowed === 0, String(allowed));
   check("Air China cabine a été basculée SUR ARBITRAGE (Codex 09/09, tranché par Philippe), et le dit dans la fiche",
     politique("airline_air_china", "cabin")?.availability === "offered" && /ARBITRAGE \(Codex, 09\/09\/2026/.test(readFileSync("content/airlines/air_china.yml", "utf8")));
-  check("United soute et fret : aucune disponibilité ni phrase écrite (rien n'est déduit de la cabine)",
-    !politique("airline_united", "hold")?.source?.quote && !politique("airline_united", "cargo")?.source?.quote);
+  check("United soute et fret : restrictions officielles citées, toutes deux refusées pour le voyageur ordinaire",
+    !!politique("airline_united", "hold")?.source?.quote && projetee("airline_united", "hold")?.status === "denied"
+      && !!politique("airline_united", "cargo")?.source?.quote && projetee("airline_united", "cargo")?.status === "denied");
 }
 
 console.log(`\n=== SUMMARY ===\n${fail === 0 ? `ALL CHECKS PASSED (${pass})` : `${fail} CHECK(S) FAILED sur ${pass + fail}`}`);

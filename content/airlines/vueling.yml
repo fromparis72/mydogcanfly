@@ -7,10 +7,10 @@ titleH1:
   es: Volar con un perro en Vueling
   pt: "Viajar com um cachorro na Vueling"
 metaDesc:
-  en: "Vueling pet policy: cabin-only pets, no hold or cargo, UK/Iceland exclusion, restrictions and official sources."
-  fr: "Politique animaux Vueling : animaux en cabine seulement, pas de soute ni fret, exclusion R.-U./Islande, restrictions et sources officielles."
-  es: "Política de mascotas de Vueling: mascotas solo en cabina, sin bodega ni carga, exclusión de Reino Unido/Islandia, restricciones y fuentes oficiales."
-  pt: "Política de animais da Vueling: animais somente na cabine, sem porão nem carga, exclusão de Reino Unido/Islândia, restrições e fontes oficiais."
+  en: "Vueling pet policy: cabin pets, no checked-pet hold, and IAG Cargo handling to confirm by route; restrictions and official sources."
+  fr: "Politique animaux Vueling : cabine, pas de soute passager et prise en charge IAG Cargo à confirmer selon la route ; sources officielles."
+  es: "Política de mascotas de Vueling: cabina, sin bodega de pasajeros y gestión de IAG Cargo por confirmar según la ruta; fuentes oficiales."
+  pt: "Política de animais da Vueling: cabine, sem porão de passageiros e transporte IAG Cargo a confirmar conforme a rota; fontes oficiais."
 chips:
   - icon: 📍
     label:
@@ -32,10 +32,10 @@ verdict:
     es: Moderado
     pt: "Moderada"
 verdictNote:
-  en: Small pets in the cabin only — no hold or cargo, and no service to the UK or Iceland.
-  fr: Petits animaux en cabine seulement — pas de soute ni fret, et pas de service vers le R.-U. ou l'Islande.
-  es: Mascotas pequeñas solo en cabina; sin bodega ni carga, y sin servicio a Reino Unido ni Islandia.
-  pt: "Animais pequenos somente na cabine — sem porão nem carga, e sem serviço para o Reino Unido ou a Islândia."
+  en: Small pets in the cabin; no checked-pet hold. IAG Cargo publishes a pet process, but its application to a Vueling route must be confirmed.
+  fr: Petits animaux en cabine ; pas de soute passager. IAG Cargo publie un processus animalier, à confirmer pour la route Vueling concernée.
+  es: Mascotas pequeñas en cabina; sin bodega de pasajeros. IAG Cargo publica un proceso para animales que debe confirmarse para la ruta de Vueling.
+  pt: "Animais pequenos na cabine; sem porão de passageiros. A IAG Cargo publica um processo para animais que deve ser confirmado para a rota da Vueling."
 ladder:
   - flex: 24
     color: "#16794f"
@@ -53,10 +53,10 @@ ladder:
       es: Bodega / carga
       pt: "Porão / carga"
     sub:
-      en: not carried
-      fr: non transporté
-      es: no se transporta
-      pt: "não transportado"
+      en: hold refused; cargo to confirm
+      fr: soute refusée ; fret à confirmer
+      es: bodega rechazada; carga por confirmar
+      pt: "porão recusado; carga a confirmar"
 policies:
   cabin:
     # TARIFS OFFICIELS — audit indépendant du 2026-09-10 ; aucune valeur héritée réactivée.
@@ -83,6 +83,17 @@ policies:
           quote_language: en
           locator: Pets ancillary fee
     availability: offered
+    source:
+      url: "https://help.vueling.com/hc/es/articles/19798818168337-Mascotas"
+      source_type: official_website
+      verified_date: "2026-09-12"
+      review_due: "2026-12-11"
+      confidence: 4
+      reviewer: "Codex — lectura directa de la página nacional oficial"
+      history: []
+      quote: "Puedes viajar con tu mascota siempre que selecciones la tarifa Fly Light de Vueling o la tarifa Basic de Iberia."
+      quote_language: es
+      locator: "Mascotas → Características del servicio"
   hold:
     availability: not_offered
     # PREUVE IMPORTÉE — import strict V3 (Codex, lecture directe du 2026-09-08, cohorte F fait 1).
@@ -100,7 +111,23 @@ policies:
       quote_language: en
       locator: "Fly with my Pet → service features"
   cargo:
-    availability: not_offered
+    availability: case_by_case
+    conditions:
+      en: IAG Cargo publishes a pet-handling process for departures from the United Kingdom; carriage on a Vueling-operated route requires confirmation.
+      fr: IAG Cargo publie un processus de prise en charge des animaux au départ du Royaume-Uni ; le transport sur une route opérée par Vueling doit être confirmé.
+      es: IAG Cargo publica un proceso para mascotas desde el Reino Unido; el transporte en una ruta operada por Vueling debe confirmarse.
+      pt: A IAG Cargo publica um processo para animais nas partidas do Reino Unido; o transporte numa rota operada pela Vueling deve ser confirmado.
+    source:
+      url: https://www.iagcargo.com/es/products/pets/
+      source_type: official_website
+      verified_date: 2026-09-12
+      review_due: 2026-12-11
+      confidence: 4
+      reviewer: Codex — contrôle du dossier officiel fret rev2 remis par Philippe
+      history: []
+      quote: "Nos hemos asociado con Pet Air UK para cuidar de todas las mascotas que salen del Reino Unido."
+      quote_language: es
+      locator: "section « ¿Vuela con tu mascota desde el Reino Unido? »"
 channels:
   - placement: cabin
     icon: 🐾
@@ -155,17 +182,17 @@ channels:
       fr: Fret
       es: Carga
       pt: "Carga"
-    cls: no
+    cls: warn
     statusLabel:
-      en: Not offered
-      fr: Non proposé
-      es: No disponible
-      pt: "Não oferecido"
+      en: To confirm
+      fr: À confirmer
+      es: Por confirmar
+      pt: "A confirmar"
     detail:
-      en: No pet cargo service — cabin only.
-      fr: Pas de service fret animalier — cabine uniquement.
-      es: Sin servicio de carga de mascotas; solo cabina.
-      pt: "Nenhum serviço de carga de animais — somente cabine."
+      en: IAG Cargo publishes a pet-handling process; availability on the Vueling route must be confirmed.
+      fr: IAG Cargo publie un processus de prise en charge des animaux ; sa disponibilité sur la route Vueling doit être confirmée.
+      es: IAG Cargo publica un proceso para mascotas; debe confirmarse su disponibilidad en la ruta de Vueling.
+      pt: "A IAG Cargo publica um processo para animais; a disponibilidade na rota da Vueling deve ser confirmada."
     fee:
       en: —
       fr: —
@@ -184,15 +211,15 @@ fareList:
         es: Tarifa Fly Light (por tramo)
         pt: "Tarifa Fly Light (por trecho)"
     - label:
-        en: Hold / cargo
-        fr: Soute / fret
-        es: Bodega / carga
-        pt: "Porão / carga"
+        en: Hold / IAG Cargo
+        fr: Soute / IAG Cargo
+        es: Bodega / IAG Cargo
+        pt: "Porão / IAG Cargo"
       value:
-        en: Not carried
-        fr: Non transporté
-        es: No se transporta
-        pt: "Não transportado"
+        en: Hold not carried; cargo to confirm by route
+        fr: Soute non transportée ; fret à confirmer selon la route
+        es: Bodega no disponible; carga por confirmar según la ruta
+        pt: "Porão não transportado; carga a confirmar conforme a rota"
     - label:
         en: Assistance dog
         fr: Chien d'assistance
@@ -211,17 +238,17 @@ fareList:
 restrictions:
   - icon: 🚫
     title:
-      en: Cabin only
-      fr: Cabine uniquement
-      es: Solo cabina
-      pt: "Somente cabine"
+      en: Passenger hold unavailable
+      fr: Soute passager indisponible
+      es: Bodega de pasajeros no disponible
+      pt: "Porão de passageiros indisponível"
     pills:
       - cls: no
         label:
-          en: No hold or cargo
-          fr: Pas de soute ni fret
-          es: Sin bodega ni carga
-          pt: "Sem porão nem carga"
+          en: No checked-pet hold
+          fr: Pas de soute passager
+          es: Sin bodega para mascotas
+          pt: "Sem porão para animais"
     note:
       en: "Under no circumstances are pets carried in the hold. Prohibited animals: rodents, rabbits, ferrets, birds of prey, fish and reptiles."
       fr: "Les animaux ne sont en aucun cas transportés en soute. Animaux interdits : rongeurs, lapins, furets, rapaces, poissons et reptiles."
@@ -290,15 +317,15 @@ assistance:
 goodToKnow:
   - icon: 🐾
     label:
-      en: Cabin only
-      fr: Cabine uniquement
-      es: Solo cabina
-      pt: "Somente cabine"
+      en: Passenger channels
+      fr: Canaux passagers
+      es: Canales de pasajeros
+      pt: "Canais de passageiros"
     value:
-      en: No hold or cargo — pets fly only in the cabin, on the Fly Light fare.
-      fr: Pas de soute ni fret — les animaux ne volent qu'en cabine, avec la formule Fly Light.
-      es: Sin bodega ni carga; las mascotas vuelan solo en cabina, con la tarifa Fly Light.
-      pt: "Sem porão nem carga — os animais voam somente na cabine, na tarifa Fly Light."
+      en: Cabin only on passenger tickets; IAG Cargo handling must be confirmed separately.
+      fr: Cabine uniquement sur billet passager ; la prise en charge IAG Cargo doit être confirmée séparément.
+      es: Solo cabina en billetes de pasajeros; la gestión de IAG Cargo debe confirmarse por separado.
+      pt: "Somente cabine nos bilhetes de passageiros; o transporte IAG Cargo deve ser confirmado separadamente."
   - icon: 🚫
     label:
       en: Not to UK / Iceland

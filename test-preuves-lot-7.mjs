@@ -46,6 +46,43 @@ const politique = (id, pl) => objets.airlines.find((a) => a.id === id)?.premium?
 const projetee = (id, pl) => kb.airlines.get(id)?.premium?.policy?.[pl];
 const SEUILS = { "airline_air_austral.cabin": [8, true], "airline_la_compagnie.cabin": [8, true] };
 const REACTIVEES = ["airline_air_caraibes.cargo", "airline_air_tahiti_nui.cargo", "airline_aircalin.cargo", "airline_corsair.cargo"];
+const ACTUALISEES_12_09 = {
+  "airline_air_algerie.cabin": {
+    url: "https://airalgerie.dz/planifier-et-reserver/bagage/animaux-de-compagnie/",
+    quote: "Votre animal de compagnie Chien, chat, oiseau ou autre animal domestique est accepté à bord des vols d'Air Algérie sous réserve de conditions exigées par le pays de destination ou de départ.",
+    lang: "fr",
+  },
+  "airline_french_bee.cabin": {
+    url: "https://www.frenchbee.com/fr/preparer-voyage/avant-le-vol/animaux",
+    quote: "Les chiens et les chats d'un poids maximum de 8kg contenant compris.",
+    lang: "fr",
+  },
+  "airline_french_bee.hold": {
+    url: "https://www.frenchbee.com/fr/preparer-voyage/avant-le-vol/animaux",
+    quote: "Le poids maximum autorisé pour le transport des AVIH (animal en soute) sur les vols est de 75KG (poids de l'animal et cage inclus), au delà, le transport doit se faire par fret.",
+    lang: "fr",
+  },
+  "airline_iberia_express.cabin": {
+    url: "https://www.iberiaexpress.com/informacion-general/informacion-pasajero/antes-de-volar/mascotas",
+    quote: "El peso máximo permitido del animal será de 8 kg incluyendo en el mismo el peso del recipiente o jaula en el que será transportado el animal. El recipiente podrá tener como máximo 45 cm de largo, 35 cm de ancho y 25 cm de profundidad, siempre que la suma de estas tres dimensiones no exceda de 105 cm. El transporte debe cumplir estas condiciones teniendo en cuenta que irá situado debajo de los pies del pasajero.",
+    lang: "es",
+  },
+  "airline_iberia_express.hold": {
+    url: "https://www.iberiaexpress.com/informacion-general/informacion-pasajero/antes-de-volar/mascotas",
+    quote: "Como regla general, el transporte de animales vivos deberá hacerse en la bodega del avión, en recipientes o contenedores adecuados proporcionados por el pasajero. Los recipientes deberán tener las siguientes características: Resistencia y seguridad Comodidad para la talla del animal Ventilación Un cierre que ofrezca garantías de que no va a abrirse en ningún momento Fondo impermeable Cuando no reúna estas condiciones, el transporte será rechazado. CONSIDERACIONES IMPORTANTES: El peso máximo aceptable para animales en bodega es 45 kg (incluyendo el peso del animal + el peso del contenedor) Para vuelos en conexión, el servicio en bodega será aplicable si dicha conexión es mayor a 90 minutos y no supera las 4 horas La petición del servicio ha de realizarse con una antelación mínima de 48 horas a la salida del vuelo Las reservas que no indiquen la raza de los animales serán rechazados Solo se aceptarán un máximo de 2 animales en bodega para cada trayecto en vuelos de corto y medio radio No se aceptarán animales de razas peligrosas, considerandose perros potencialmente peligrosos los de constitución robusta, aquellos que manifiesten un carácter marcadamente agresivo y los siguientes perros y sus cruces Pit Bull Terrier, Staffordshire Bull Terrier, American Staffodshire Terrier, Rottweiler, Dogo Argentino, Fila Brasileiro, Tosa Inu, Akita Inu",
+    lang: "es",
+  },
+  "airline_la_compagnie.cabin": {
+    url: "https://www.lacompagnie.com/fr/legal/conditions-of-carriage",
+    quote: "l’Animal de Compagnie et son contenant nedoivent pas excéder un poids total de huit (8) kg, et le contenant doitrespecter les dimensions maximales applicables, notamment 55 cm de longueur, 35cm de largeur et 25 cm de hauteur.",
+    lang: "fr",
+  },
+  "airline_la_compagnie.hold": {
+    url: "https://www.lacompagnie.com/fr/legal/conditions-of-carriage",
+    quote: "Le transport des Animaux de Compagnie et des Chiensd’Assistance Éduqués est autorisé uniquement en cabine. Le transport d’animauxen soute n’est pas proposé par le Transporteur.",
+    lang: "fr",
+  },
+};
 
 console.log("=== Étage 1 — 23 faits relus, 23 dans la donnée à l'octet près ===");
 {
@@ -55,6 +92,28 @@ console.log("=== Étage 1 — 23 faits relus, 23 dans la donnée à l'octet prè
     const pol = politique(f.airline_id, f.placement);
     const s = pol?.source ?? {};
     const proj = projetee(f.airline_id, f.placement);
+    const actualisee = ACTUALISEES_12_09[cle];
+    if (actualisee) {
+      /* MOUVEMENT NOMMÉ (12/09/2026, vague exhaustive) : une source nationale
+         actuelle remplace la citation du lot 7. Le témoin garde une comparaison
+         exacte de la nouvelle phrase et exige toujours le verdict historique. */
+      check(`${cle} (LOT7[${f.index}]) : source nationale actuelle, phrase exacte et localisateur présent`,
+        !!pol && s.quote === actualisee.quote && s.url === actualisee.url && s.quote_language === actualisee.lang
+          && s.verified_date === "2026-09-12" && !!s.locator,
+        JSON.stringify({ attendu: actualisee.quote, lu: s.quote }));
+      check(`  …review_due calculé par reviewDueFrom (2026-12-11)`,
+        s.review_due === reviewDueFrom(s.verified_date ?? "", "airline") && s.review_due === "2026-12-11",
+        `${s.verified_date} → ${s.review_due}`);
+      const attendu = f.recommendation.startsWith("not_offered") ? "denied" : "accepted_with_conditions";
+      check(`  …projeté ${attendu}`, proj?.status === attendu, JSON.stringify({ status: proj?.status, cause: proj?.status_cause }));
+      const seuil = SEUILS[cle];
+      if (seuil) check(`  …plafond ${seuil[0]} kg, chien + contenant — conservé`,
+        proj?.max_weight_kg === seuil[0] && proj?.weight_includes_carrier === seuil[1]);
+      else check(`  …aucun plafond écrit sans rattachement attesté`,
+        pol?.weight_includes_carrier === undefined && pol?.max_weight_kg === undefined,
+        JSON.stringify({ max: pol?.max_weight_kg, incl: pol?.weight_includes_carrier }));
+      continue;
+    }
     check(`${cle} (LOT7[${f.index}]) : phrase, URL, localisateur, langue, date de lecture`,
       !!pol && s.quote === f.quote && s.locator === f.locator && s.quote_language === f.quote_language && s.url === f.url && s.verified_date === f.verified_date,
       JSON.stringify({ attendu: f.quote, lu: s.quote }));
@@ -74,7 +133,7 @@ console.log("=== Étage 1 — 23 faits relus, 23 dans la donnée à l'octet prè
   }
   const fr = ["airline_air_austral.cabin", "airline_aircalin.cargo", "airline_la_compagnie.cabin"].map((k) => politique(...k.split("."))?.source);
   check("citations en français conservées telles quelles (`quote_language: fr`) : Air Austral, Aircalin, La Compagnie",
-    fr.every((s) => s?.quote_language === "fr") && fr[0].quote === "le poids de l'animal + son contenant doit être inférieur à 8 kg" && fr[1].quote === "Le transport des animaux s’effectue en fret uniquement." && fr[2].quote === "vos compagnons, jusqu’à 8kg, sac compris, (chiens et chats)");
+    fr.every((s) => s?.quote_language === "fr") && fr[0].quote === "le poids de l'animal + son contenant doit être inférieur à 8 kg" && fr[1].quote === "Le transport des animaux s’effectue en fret uniquement." && fr[2].quote === ACTUALISEES_12_09["airline_la_compagnie.cabin"].quote);
   check("citations en espagnol conservées (`quote_language: es`) : Iberia Express cabine et soute",
     politique("airline_iberia_express", "cabin")?.source?.quote_language === "es" && politique("airline_iberia_express", "hold")?.source?.quote_language === "es");
   /* Air Algérie : la cabine était « offerte » sans phrase, avec un 6 kg DÉDUIT de la ligne tarifaire ;

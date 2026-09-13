@@ -63,27 +63,52 @@ policies:
   cabin:
     # TARIFS OFFICIELS — audit indépendant du 2026-09-10 ; aucune valeur héritée réactivée.
     fares:
-      - id: fare_ita_airways_cabin_eur_2026_09_10
+      - id: fare_ita_airways_cabin_eur_2026_09_12
         placement: cabin
         price:
-          kind: exact
+          kind: range
           amounts:
             - amount: 73
+              currency: EUR
+            - amount: 230
               currency: EUR
         billing_subject: pet_or_container
         journey_basis: per_segment
         scope_label: marché de départ → zones publiées
         source:
-          url: https://www.ita-airways.com/ae/en/book-and-prepare/other-requests/travelling-with-pets/pet-transportation-charges
+          url: https://www.ita-airways.com/it/it/book-and-prepare/other-requests/travelling-with-pets/pet-transportation-charges
           source_type: official_website
-          verified_date: 2026-09-10
-          review_due: 2026-12-09
+          verified_date: 2026-09-12
+          review_due: 2026-12-11
           confidence: 4
-          reviewer: Codex — lecture directe de la source officielle
+          reviewer: Codex — grille nationale italienne relue le 12 septembre 2026
           history: []
-          quote: Cabin EUR 73
-          quote_language: en
-          locator: Pet transportation charges
+          quote: "VOLI NAZIONALI : 73Eur / 95Usd ; LOS ANGELES, HOUSTON, BUENOS AIRES, RIO DE JANEIRO, SAN PAOLO, TOKYO, BANGKOK, SAN FRANCISCO, MAURITIUS : 230Eur/ 290Usd"
+          quote_language: it
+          locator: "Costi per il trasporto degli animali domestici → In cabina"
+      - id: fare_ita_airways_cabin_usd_2026_09_12
+        placement: cabin
+        price:
+          kind: range
+          amounts:
+            - amount: 95
+              currency: USD
+            - amount: 290
+              currency: USD
+        billing_subject: pet_or_container
+        journey_basis: per_segment
+        scope_label: marché de départ → zones publiées
+        source:
+          url: https://www.ita-airways.com/it/it/book-and-prepare/other-requests/travelling-with-pets/pet-transportation-charges
+          source_type: official_website
+          verified_date: 2026-09-12
+          review_due: 2026-12-11
+          confidence: 4
+          reviewer: Codex — grille nationale italienne relue le 12 septembre 2026
+          history: []
+          quote: "VOLI NAZIONALI : 73Eur / 95Usd ; LOS ANGELES, HOUSTON, BUENOS AIRES, RIO DE JANEIRO, SAN PAOLO, TOKYO, BANGKOK, SAN FRANCISCO, MAURITIUS : 230Eur/ 290Usd"
+          quote_language: it
+          locator: "Costi per il trasporto degli animali domestici → In cabina"
     availability: offered
     # PREUVE IMPORTÉE — import strict lot4 (Codex, lecture directe du 2026-09-09, cohorte LOT4 fait 12).
     # Effet attendu : ITA Airways cabin is a documented conditional route. Do not infer a single cabin ceiling across domestic and international itineraries.
@@ -102,27 +127,52 @@ policies:
   hold:
     # TARIFS OFFICIELS — audit indépendant du 2026-09-10 ; aucune valeur héritée réactivée.
     fares:
-      - id: fare_ita_airways_hold_eur_2026_09_10
+      - id: fare_ita_airways_hold_eur_2026_09_12
         placement: hold
         price:
-          kind: exact
+          kind: range
           amounts:
+            - amount: 83
+              currency: EUR
             - amount: 300
               currency: EUR
         billing_subject: pet_or_container
         journey_basis: per_segment
         scope_label: marché de départ → zones publiées
         source:
-          url: https://www.ita-airways.com/ae/en/book-and-prepare/other-requests/travelling-with-pets/pet-transportation-charges
+          url: https://www.ita-airways.com/it/it/book-and-prepare/other-requests/travelling-with-pets/pet-transportation-charges
           source_type: official_website
-          verified_date: 2026-09-10
-          review_due: 2026-12-09
+          verified_date: 2026-09-12
+          review_due: 2026-12-11
           confidence: 4
-          reviewer: Codex — lecture directe de la source officielle
+          reviewer: Codex — grille nationale italienne relue le 12 septembre 2026
           history: []
-          quote: Hold EUR 300
-          quote_language: en
-          locator: Pet transportation charges
+          quote: "VOLI NAZIONALI : 83Eur / 105Usd ; LOS ANGELES, HOUSTON, BUENOS AIRES, RIO DE JANEIRO, SAN PAOLO, TOKYO, BANGKOK, SAN FRANCISCO, MAURITIUS : 300Eur/ 375Usd"
+          quote_language: it
+          locator: "Costi per il trasporto degli animali domestici → In stiva"
+      - id: fare_ita_airways_hold_usd_2026_09_12
+        placement: hold
+        price:
+          kind: range
+          amounts:
+            - amount: 105
+              currency: USD
+            - amount: 375
+              currency: USD
+        billing_subject: pet_or_container
+        journey_basis: per_segment
+        scope_label: marché de départ → zones publiées
+        source:
+          url: https://www.ita-airways.com/it/it/book-and-prepare/other-requests/travelling-with-pets/pet-transportation-charges
+          source_type: official_website
+          verified_date: 2026-09-12
+          review_due: 2026-12-11
+          confidence: 4
+          reviewer: Codex — grille nationale italienne relue le 12 septembre 2026
+          history: []
+          quote: "VOLI NAZIONALI : 83Eur / 105Usd ; LOS ANGELES, HOUSTON, BUENOS AIRES, RIO DE JANEIRO, SAN PAOLO, TOKYO, BANGKOK, SAN FRANCISCO, MAURITIUS : 300Eur/ 375Usd"
+          quote_language: it
+          locator: "Costi per il trasporto degli animali domestici → In stiva"
     availability: offered
     # PREUVE IMPORTÉE — import strict lot4 (Codex, lecture directe du 2026-09-09, cohorte LOT4 fait 13).
     # Effet attendu : ITA Airways hold is a documented conditional route; it is not a booking confirmation.

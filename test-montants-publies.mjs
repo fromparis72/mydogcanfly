@@ -163,7 +163,8 @@ function texteHtml(html) {
 
       const amt = texteHtml(divDeClasse(bloc, "amt"));
       const reelsTarif = liste(amt);
-      const presentation = politique.status === "denied" || (politique.fare_conflicts?.length ?? 0) > 0
+      const canalRefuse = politique.status === "denied" || politique.availability === "not_offered";
+      const presentation = canalRefuse || (politique.fare_conflicts?.length ?? 0) > 0
         ? null
         : presentNumericFares(politique.fares ?? [], {
             locale: f.langue,

@@ -95,6 +95,17 @@ policies:
           quote_language: en
           locator: Charges
     availability: offered
+    source:
+      url: "https://www.lot.com/pl/pl/journey/special-services/traveling-with-pets/pet-in-cabin"
+      source_type: official_website
+      verified_date: "2026-09-12"
+      review_due: "2026-12-11"
+      confidence: 4
+      reviewer: "Codex — bezpośrednia lektura polskiej strony przewoźnika"
+      history: []
+      quote: "Waga zwierzęcia przewożonego w kabinie pasażerskiej wraz z pojemnikiem nie może przekroczyć 8 kg"
+      quote_language: pl
+      locator: "Zwierzę w kabinie → Waga zwierzęcia"
   hold:
     # TARIFS OFFICIELS — audit indépendant du 2026-09-10 ; aucune valeur héritée réactivée.
     fares:
@@ -118,6 +129,17 @@ policies:
           quote_language: en
           locator: Pet in hold
     availability: offered
+    source:
+      url: "https://www.lot.com/pl/pl/journey/special-services/traveling-with-pets/animal-in-hold"
+      source_type: official_website
+      verified_date: "2026-09-12"
+      review_due: "2026-12-11"
+      confidence: 4
+      reviewer: "Codex — bezpośrednia lektura polskiej strony przewoźnika"
+      history: []
+      quote: "Transporter musi być czysty, szczelny, dobrze zamknięty, wentylowany z trzech stron, wyposażony w pojemnik z wodą i jedzeniem"
+      quote_language: pl
+      locator: "Zwierzę w luku bagażowym → Transporter"
   cargo:
     review_state: legacy_unreviewed
 channels:

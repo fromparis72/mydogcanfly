@@ -308,8 +308,16 @@ console.log("=== 7. T0-B2 : la migration est FAITE, et la forme héritée est in
   /* MOUVEMENT NOMMÉ (09/09/2026, import strict lot 9 — 18 citations de plus, 176 en tout, lot de clôture) : 129 → 111 ; cinq lignes non revérifiées réactivées sur citation (Aerolíneas Argentinas, Air Astana, Edelweiss fret ; TAROM soute et fret). */
   /* MOUVEMENT NOMMÉ (09/09/2026, correctif d'arbitrages — Codex, tranché par Philippe ; six preuves remplacées dans les lots 4, 6 et 8) : 111 → 109 (Aer Lingus soute, Air China cabine citées sur ordre). */
   /* MOUVEMENT NOMMÉ (10/09/2026, Saudia — preuve de test retirée sur contre-lecture de l'audit de Codex, tranchée par Philippe) : 109 → 111 : Saudia cabine et soute redeviennent des lignes sans page à montrer. */
-  check("111 politiques émettent legacy_unreviewed (73 d'origine + 38 sans page à montrer)",
-    porteuses === 111, String(porteuses));
+  /* MOUVEMENT NOMMÉ (12/09/2026, SAS soute — page nationale suédoise citée) : 111 → 110. */
+  /* MOUVEMENT NOMMÉ (12/09/2026, lot de 30 compagnies) : 110 → 102 ; huit canaux quittent
+     `legacy_unreviewed` sur une citation officielle nominativement figée par le harnais de
+     frontière de confiance. */
+  /* MOUVEMENT NOMMÉ (13/09/2026, vague de 31 dossiers) : 102 → 88 ; quatorze canaux quittent
+     `legacy_unreviewed` sur une citation officielle. */
+  /* MOUVEMENT NOMMÉ (13/09/2026, lot fret officiel + Aerolíneas Argentinas) : 88 → 76 ;
+     douze canaux fret quittent `legacy_unreviewed` sur une citation officielle dédiée. */
+  check("76 politiques émettent legacy_unreviewed après le lot fret officiel",
+    porteuses === 76, String(porteuses));
   /* 05/09/2026 — 33 → 32. British Airways cabine quitte ce groupe : sa page officielle porte
      désormais la phrase, et la politique devient le premier `denied` prouvé du dépôt. Chaque
      citation suivante fera baisser ce compte, et devra le nommer comme celle-ci. */
@@ -318,8 +326,12 @@ console.log("=== 7. T0-B2 : la migration est FAITE, et la forme héritée est in
   /* MOUVEMENT NOMMÉ (09/09/2026, lot 6) : 16 → 15 — United cabine, citée, quitte cette cause. */
   /* MOUVEMENT NOMMÉ (10/09/2026, complément Air France cabine — Codex) : 15 → 14 — Air France cabine, citée (« moins de 8 kg,
      sac de transport compris »), quitte cette cause. */
-  check("14 politiques émettent official_source_unquoted — une page officielle, aucune phrase citée",
-    nonCitee === 14, String(nonCitee));
+  /* MOUVEMENT NOMMÉ (12/09/2026, lot de 30 compagnies) : 14 → 11 ; trois pages officielles
+     déjà liées reçoivent enfin leur phrase opposable. */
+  /* MOUVEMENT NOMMÉ (13/09/2026, lot fret officiel) : 11 → 2 ; neuf pages officielles déjà
+     liées reçoivent leur phrase opposable. */
+  check("2 politiques émettent official_source_unquoted — une page officielle, aucune phrase citée",
+    nonCitee === 2, String(nonCitee));
   /* MOUVEMENT NOMMÉ (09/09/2026, correctif d'arbitrages) : 1 → 0. Thai Cargo, seule « non publiée » depuis la migration, est
      ARBITRÉE `offered` sur la page THAI Cargo (Codex, tranché par Philippe) ; la cause disparaît du référentiel réel. */
   check("0 politique n'émet policy_unpublished — Thai Cargo, arbitrée, a quitté cette cause", nonPubliee === 0, String(nonPubliee));
@@ -401,9 +413,9 @@ console.log("=== 7 ter. Une politique NON REVUE reste sans preuve, même avec un
    * garde ne rencontre que des politiques sans source, elle passe au vert sans rien démontrer :
    * `source_derived` suffirait à expliquer chaque `null`.
    *
-   * Or DIX politiques `legacy_unreviewed` portent une source OFFICIELLE, précise, non dérivée —
-   * les anciens POLICY_STALE, dont la provenance a été affinée à la main (URL de fret dédiée,
-   * confiance 4). Ce sont exactement celles qu'un affaiblissement de la garde présenterait comme
+   * Or certaines politiques `legacy_unreviewed` portent une source OFFICIELLE, précise, non dérivée —
+   * les anciens POLICY_STALE encore en attente, dont la provenance a été affinée à la main (URL
+   * de fret dédiée, confiance 4). Ce sont exactement celles qu'un affaiblissement de la garde présenterait comme
    * AUDITÉES : page officielle, date récente, confiance élevée, tout pour convaincre. La règle
    * dit l'inverse — « une politique non revue reste sans source plutôt qu'avec une auto-source ».
    *
@@ -413,7 +425,7 @@ console.log("=== 7 ter. Une politique NON REVUE reste sans preuve, même avec un
    * contrôle passerait sur une politique qui n'a jamais rien eu à cacher. */
   const NON_REVUES_A_SOURCE_OFFICIELLE = [
     "airline_asiana.cargo", "airline_condor.cargo", "airline_eva_air.cargo",
-    "airline_french_bee.cargo", "airline_korean_air.cargo", "airline_malaysia_airlines.cargo",
+    "airline_french_bee.cargo", "airline_malaysia_airlines.cargo",
     "airline_norwegian.cargo",
     /* MOUVEMENT NOMMÉ (09/09/2026, lot 4) : Qantas soute et fret SORTENT de cette liste — citées
        (Conditions of Carriage § 8.8), elles ne sont plus « non revues ». 10 → 8, par identité. */
@@ -572,8 +584,13 @@ console.log("=== 8. Baseline FIGÉE : le point de comparaison de T0-B2 est scell
   /* 10/09/2026 — la plus récente est celle du complément Air France cabine (chaîne : … → réconciliation → Air France cabine,
      vérifiée dans test-t0a-baseline.mjs). */
   /* 10/09/2026 — la plus récente est celle du retrait de la preuve Saudia (chaîne : … → Air France cabine → Saudia). */
-  check("Retrait de la preuve Saudia : la baseline vivante est identique à la figée la plus récente",
-    vivante.equals(readFileSync("test-baselines/saudia-preuve-uat-apres.json")));
+  /* 12/09/2026 — la plus récente est celle de SAS soute citée ; Saudia reste son AVANT intact. */
+  /* 12/09/2026 — le lot de 30 compagnies succède à cette figée. Son mouvement est borné par
+     l'inventaire nominal de la frontière de confiance et la baseline vivante T0-A. */
+  check("le lot de 30 compagnies succède réellement à la figée SAS, restée intacte",
+    !vivante.equals(readFileSync("test-baselines/sas-soute-citee-apres.json")));
+  check("SAS soute : son AVANT est exactement l'après du retrait Saudia",
+    readFileSync("test-baselines/sas-soute-citee-avant.json").equals(readFileSync("test-baselines/saudia-preuve-uat-apres.json")));
   check("Complément Air France cabine : sa figée reste intacte à côté (elle n'a pas été écrasée)",
     readFileSync("test-baselines/complement-air-france-cabine-apres.json").equals(readFileSync("test-baselines/saudia-preuve-uat-avant.json")));
   check("Arbitrages d'interface : sa figée reste intacte à côté (elle n'a pas été écrasée)",

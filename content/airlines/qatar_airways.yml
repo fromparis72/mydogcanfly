@@ -87,29 +87,50 @@ policies:
   hold:
     # TARIFS OFFICIELS — audit indépendant du 2026-09-10 ; aucune valeur héritée réactivée.
     fares:
-      - id: fare_qatar_airways_hold_usd_2026_09_10
+      - id: fare_qatar_airways_hold_usd_2026_09_12
         placement: hold
         price:
           kind: range
           amounts:
             - amount: 200
               currency: USD
-            - amount: 350
+            - amount: 450
               currency: USD
-        billing_subject: container
+        billing_subject: pet_or_container
         journey_basis: per_journey
-        scope_label: To/from Qatar versus other routes; 32kg and 32–75kg
+        scope_label: 200–450 USD selon le poids total et le trajet
         source:
-          url: https://www.qatarairways.com/en-am/baggage/animals.html
+          url: https://www.qatarairways.com/ar-qa/baggage/animals.html
           source_type: official_website
-          verified_date: 2026-09-10
-          review_due: 2026-12-09
-          confidence: 4
-          reviewer: Codex — lecture directe de la source officielle
+          verified_date: 2026-09-12
+          review_due: 2026-12-11
+          confidence: 5
+          reviewer: Codex — lecture de la grille officielle qatarienne en arabe
           history: []
-          quote: "Medium: USD 200 or USD 350"
-          quote_language: en
-          locator: Excess baggage rates for animals
+          quote: "متوسط | حتى 32 كجم | من/إلى قطر: 200 دولار أمريكي/260 دولاراً كندياً بقية المسارات الأخرى: 350 دولاراً أمريكياً/455 دولاراً كندياً · كبير | أكبر من 32 كجم ولا يزيد عن 75 كجم | من/إلى قطر: 300 دولار أمريكي/390 دولاراً كندياً بقية المسارات الأخرى: 450 دولاراً أمريكياً/590 دولاراً كندياً"
+          quote_language: ar
+          locator: رسوم سفر الحيوانات الأليفة مع الأمتعة المسجّلة
+      - id: fare_qatar_airways_hold_cad_2026_09_12
+        placement: hold
+        price:
+          kind: range
+          amounts:
+            - { amount: 260, currency: CAD }
+            - { amount: 590, currency: CAD }
+        billing_subject: pet_or_container
+        journey_basis: per_journey
+        scope_label: 260–590 CAD selon le poids total et le trajet
+        source:
+          url: https://www.qatarairways.com/ar-qa/baggage/animals.html
+          source_type: official_website
+          verified_date: 2026-09-12
+          review_due: 2026-12-11
+          confidence: 5
+          reviewer: Codex — lecture de la grille officielle qatarienne en arabe
+          history: []
+          quote: "متوسط | حتى 32 كجم | من/إلى قطر: 200 دولار أمريكي/260 دولاراً كندياً بقية المسارات الأخرى: 350 دولاراً أمريكياً/455 دولاراً كندياً · كبير | أكبر من 32 كجم ولا يزيد عن 75 كجم | من/إلى قطر: 300 دولار أمريكي/390 دولاراً كندياً بقية المسارات الأخرى: 450 دولاراً أمريكياً/590 دولاراً كندياً"
+          quote_language: ar
+          locator: رسوم سفر الحيوانات الأليفة مع الأمتعة المسجّلة
     availability: offered
     # PREUVE IMPORTÉE — import strict V3 (Codex, lecture directe du 2026-09-08, cohorte A fait 19).
     # Effet attendu : Show checked-baggage hold offered under conditions.

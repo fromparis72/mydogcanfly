@@ -44,9 +44,21 @@ console.log("=== Six remplacements, à l'octet près ===");
   for (const f of d.replace_facts) {
     const cle = `${f.airline_id}.${f.placement}`;
     const pol = politique(f.airline_id, f.placement); const s = pol?.source ?? {}; const proj = projetee(f.airline_id, f.placement);
-    check(`${cle} (remplace le lot ${f.replaces_lot}) : phrase, URL, localisateur, langue, date, échéance calculée`,
-      !!pol && s.quote === f.quote && s.url === f.url && s.locator === f.locator && s.quote_language === f.quote_language && s.verified_date === "2026-09-09" && s.review_due === reviewDueFrom("2026-09-09", "airline"),
-      JSON.stringify({ attendu: f.quote, lu: s.quote, url: s.url }));
+    if (cle === "airline_china_southern.hold") {
+      /* MOUVEMENT NOMMÉ (12/09/2026, contre-lecture nationale) : la réponse
+         anglophone du correctif est elle-même remplacée par la règle chinoise
+         actuelle. Le canal et son verdict restent identiques. */
+      const phrase = "（1）作为行李运输的小动物是指家庭驯养的狗、猫、鸟或者其他玩赏宠物。南航有权决定小动物是否属于可运输的范围及其运输方式，并且有权限制每个航班的收运数量。";
+      check(`${cle} (remplace le lot ${f.replaces_lot}, puis relu le 12/09) : source chinoise, phrase exacte, localisateur, échéance calculée`,
+        !!pol && s.quote === phrase && s.url === "https://www.csair.com/mcms/mcmsNewSite/zh/cn/#/tourguide/luggageservice/pets"
+          && !!s.locator && s.quote_language === "zh" && s.verified_date === "2026-09-12"
+          && s.review_due === reviewDueFrom("2026-09-12", "airline"),
+        JSON.stringify({ attendu: phrase, lu: s.quote, url: s.url }));
+    } else {
+      check(`${cle} (remplace le lot ${f.replaces_lot}) : phrase, URL, localisateur, langue, date, échéance calculée`,
+        !!pol && s.quote === f.quote && s.url === f.url && s.locator === f.locator && s.quote_language === f.quote_language && s.verified_date === "2026-09-09" && s.review_due === reviewDueFrom("2026-09-09", "airline"),
+        JSON.stringify({ attendu: f.quote, lu: s.quote, url: s.url }));
+    }
     /* MOUVEMENT NOMMÉ (10/09/2026, annexe 37) : Bangkok fret, `case_by_case` le 09/09 → `offered` le 10/09 avec R1/R2/R3 citées ; projeté
        « sous conditions » comme les autres `offered`, l'international étant refusé par règle. */
     const attendu = f.recommendation.startsWith("not_offered") ? "denied" : "accepted_with_conditions";

@@ -39,7 +39,20 @@ const WRITE = process.argv.includes("--write");
    sous la borne) sur les 39 couples où Air France est candidate et où aucun autre canal ne l'ouvrait déjà. */
 /* MOUVEMENT NOMMÉ (10/09/2026, Saudia — preuve de test retirée, tranchée par Philippe) : 29 529 → 29 106. La soute Saudia, qui ouvrait le témoin hérité
    sur les couples où elle est candidate, redevient « à confirmer » : 423 couples se referment. Aucun ne s'ouvre. */
-const TEMOIN_VRAI_V3 = 29106;
+/* MOUVEMENT NOMMÉ (12/09/2026, SAS soute — page nationale suédoise citée) : 29 106 → 29 130.
+   La soute devient « sous conditions » sur les 24 couples de la sonde où elle ouvre réellement
+   le transport ; les cas encore bloqués par une règle de race ne sont pas comptés comme ouverts. */
+/* MOUVEMENT NOMMÉ (12/09/2026, lot de 30 compagnies) : 29 130 → 30 780. Sept canaux
+   nouvellement cités deviennent `accepted_with_conditions` (American soute, Finnair soute,
+   LOT cabine/soute, Royal Air Maroc cabine/soute, Singapore soute) et rendent le témoin hérité
+   vrai sur 1 650 couples supplémentaires. Les quatre nouveaux refus cités ne l'ouvrent pas. */
+/* MOUVEMENT NOMMÉ (13/09/2026, vague de 31 dossiers — annexe lot-31-compagnies-20260913) :
+   30 780 → 31 941. Les nouvelles citations ouvrent huit politiques sous conditions ; les
+   refus et les trois arbitrages `case_by_case` n'ouvrent aucun canal. */
+/* MOUVEMENT NOMMÉ (13/09/2026, fret des principales compagnies) : 31 941 → 32 645.
+   Les preuves cargo officielles ouvrent les canaux documentés ; les refus Delta, United et
+   Virgin Atlantic ainsi que les cas IAG/Aeromexico n'inventent aucune acceptation. */
+const TEMOIN_VRAI_V3 = 32645;
 /**
  * T0-B2 — la sonde vivante compare désormais au fichier DE CE LOT.
  *

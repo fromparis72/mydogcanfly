@@ -929,8 +929,14 @@ console.log(`\n=== 5. Les ${CIBLE.length} canaux contradictoires × 4 langues : 
    * SORT du registre, ses trois canaux étant désormais prouvés (comme Ryanair au lot V3). */
   /* 265 → 263 (09/09/2026, lot 9, clôture) : Batik Air Indonesia cabine et soute — l'éditorial disait déjà « non », la
    * citation le prouve ; son fret, non décidé, reste contradictoire (100 fiches). */
-  check("263 canaux contradictoires sur 100 fiches, relus des fiches et du contrat runtime",
-    CONTRADICTOIRES.length === 263 && new Set(CONTRADICTOIRES.map((c) => c.slug)).size === 100,
+  /* 263 → 256 (12/09/2026, lot de 31 dossiers) : sept refus éditoriaux auparavant prudents sont
+   * désormais établis par leur citation officielle. Le périmètre reste de 100 fiches : aucune
+   * fiche ne sort entièrement du registre contradictoire. */
+  /* 256 → 253 (13/09/2026, lot fret officiel) : Delta, United et Virgin Atlantic fret passent
+   * de l'incertitude éditoriale à un refus officiel cité, désormais concordant avec `cls: no`.
+   * Le périmètre reste de 100 fiches. */
+  check("253 canaux contradictoires sur 100 fiches, relus des fiches et du contrat runtime",
+    CONTRADICTOIRES.length === 253 && new Set(CONTRADICTOIRES.map((c) => c.slug)).size === 100,
     `${CONTRADICTOIRES.length} canaux · ${new Set(CONTRADICTOIRES.map((c) => c.slug)).size} fiches`);
 
   /* LA LECTURE SE FAIT PAR LOTS, DANS DES PROCESSUS COURTS (CI du 16/08/2026, run 31 sur main).

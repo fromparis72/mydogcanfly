@@ -7,10 +7,10 @@ titleH1:
   es: Volar con un perro en Virgin Atlantic
   pt: "Viajar com um cachorro na Virgin Atlantic"
 metaDesc:
-  en: "Virgin Atlantic pet policy: cargo-only via approved agent, cabin assistance dogs, restrictions and official sources."
-  fr: "Politique animaux Virgin Atlantic : fret uniquement via agent agréé, chiens d'assistance en cabine, restrictions et sources officielles."
-  es: "Política de mascotas de Virgin Atlantic: solo carga a través de un agente autorizado, perros de asistencia en cabina, restricciones y fuentes oficiales."
-  pt: "Política de animais da Virgin Atlantic: somente carga via agente autorizado, cães de assistência na cabine, restrições e fontes oficiais."
+  en: "Virgin Atlantic pet policy: passenger pet service and cargo pet product currently unavailable; assistance dogs follow a separate process."
+  fr: "Politique animaux Virgin Atlantic : service passager et produit fret actuellement indisponibles ; procédure séparée pour les chiens d'assistance."
+  es: "Política de mascotas de Virgin Atlantic: servicio de pasajeros y producto de carga actualmente no disponibles; proceso aparte para perros de asistencia."
+  pt: "Política de animais da Virgin Atlantic: serviço de passageiros e produto de carga atualmente indisponíveis; processo separado para cães de assistência."
 chips:
   - icon: ✈
     label:
@@ -38,10 +38,10 @@ verdict:
     es: Difícil
     pt: "Difícil"
 verdictNote:
-  en: No cabin or checked pets; cats & dogs travel only as cargo via an approved agent, plus assistance dogs in the cabin.
-  fr: Pas d'animaux en cabine ni en bagage enregistré ; chats et chiens uniquement en fret via un agent agréé, plus les chiens d'assistance en cabine.
-  es: Sin mascotas en cabina ni facturadas; los gatos y perros viajan solo como carga a través de un agente autorizado, además de los perros de asistencia en cabina.
-  pt: "Sem animais na cabine nem despachados; gatos e cachorros viajam somente como carga via agente autorizado, além dos cães de assistência na cabine."
+  en: Ordinary pets are not accepted in the cabin or hold, and the Virgin Atlantic Cargo pet product is currently unavailable.
+  fr: Les animaux ordinaires ne sont acceptés ni en cabine ni en soute, et le produit animalier de Virgin Atlantic Cargo est actuellement indisponible.
+  es: Las mascotas ordinarias no se aceptan en cabina ni en bodega, y el producto de animales de Virgin Atlantic Cargo no está disponible actualmente.
+  pt: "Animais comuns não são aceitos na cabine nem no porão, e o produto para animais da Virgin Atlantic Cargo está atualmente indisponível."
 ladder:
   - flex: 10
     color: "#8a94a3"
@@ -67,38 +67,28 @@ ladder:
       es: Carga
       pt: "Carga"
     sub:
-      en: cats & dogs
-      fr: chats & chiens
-      es: gatos y perros
-      pt: "gatos e cachorros"
+      en: unavailable
+      fr: indisponible
+      es: no disponible
+      pt: "indisponível"
 policies:
   cabin:
     availability: not_offered
   hold:
     availability: not_offered
   cargo:
-    # TARIFS OFFICIELS — audit indépendant du 2026-09-10 ; aucune valeur héritée réactivée.
-    fares:
-      - id: fare_virgin_atlantic_cargo_2026_09_10
-        placement: cargo
-        price:
-          kind: quote
-          amounts: []
-        billing_subject: shipment
-        journey_basis: per_journey
-        scope_label: Approved cargo agent/route
-        source:
-          url: https://help.virginatlantic.com/content/dam/HelpCentre/documents/pet-conditions-of-carriage.pdf
-          source_type: official_website
-          verified_date: 2026-09-10
-          review_due: 2026-12-09
-          confidence: 4
-          reviewer: Codex — lecture directe de la source officielle
-          history: []
-          quote: booked through an approved agent
-          quote_language: en
-          locator: Cargo carriage
-    review_state: legacy_unreviewed
+    availability: not_offered
+    source:
+      url: https://www.virginatlanticcargo.com/global/en/book/pets2.html
+      source_type: official_website
+      verified_date: 2026-09-12
+      review_due: 2026-12-11
+      confidence: 4
+      reviewer: Codex — contrôle du dossier officiel fret rev2 remis par Philippe
+      history: []
+      quote: "Sorry, our pet product is currently unavailable"
+      quote_language: en
+      locator: "corps de la page « Pets 2 »"
 channels:
   - placement: cabin
     icon: 🐾
@@ -153,17 +143,17 @@ channels:
       fr: Virgin Atlantic Cargo
       es: Virgin Atlantic Cargo
       pt: "Virgin Atlantic Cargo"
-    cls: warn
+    cls: no
     statusLabel:
-      en: Via agent
-      fr: Via agent
-      es: Vía agente
-      pt: "Via agente"
+      en: Unavailable
+      fr: Indisponible
+      es: No disponible
+      pt: "Indisponível"
     detail:
-      en: Cats & dogs only, point-to-point, min 10 weeks, kennel. Book ≥ 7 days ahead via the Cargo dept or an IATA pet agent.
-      fr: Chats et chiens uniquement, point à point, min 10 semaines, caisse de transport. Réserver ≥ 7 jours à l'avance via le service Cargo ou un agent IATA.
-      es: Solo gatos y perros, punto a punto, mín. 10 semanas, jaula de transporte. Reserva ≥ 7 días antes a través del departamento de carga o un agente IATA de mascotas.
-      pt: "Somente gatos e cachorros, ponto a ponto, mín. 10 semanas, caixa de transporte. Reserve com ≥ 7 dias de antecedência pelo departamento de Carga ou um agente IATA de animais."
+      en: Virgin Atlantic Cargo states that its pet product is currently unavailable.
+      fr: Virgin Atlantic Cargo indique que son produit animalier est actuellement indisponible.
+      es: Virgin Atlantic Cargo indica que su producto para mascotas no está disponible actualmente.
+      pt: "A Virgin Atlantic Cargo informa que o seu produto para animais está atualmente indisponível."
     fee:
       en: Quote
       fr: Devis
@@ -182,15 +172,15 @@ fareList:
         es: No se transporta
         pt: "Não transportado"
     - label:
-        en: Cargo (via pet agent)
-        fr: Fret (via agent)
-        es: Carga (vía agente de mascotas)
-        pt: "Carga (via agente de animais)"
+        en: Cargo pet product
+        fr: Produit fret animalier
+        es: Producto de carga para mascotas
+        pt: "Produto de carga para animais"
       value:
-        en: Quote
-        fr: Devis
-        es: Presupuesto
-        pt: "Cotação"
+        en: Currently unavailable
+        fr: Actuellement indisponible
+        es: Actualmente no disponible
+        pt: "Atualmente indisponível"
     - label:
         en: Assistance dog (cabin)
         fr: Chien d'assistance (cabine)
@@ -202,10 +192,10 @@ fareList:
         es: Gratis
         pt: "Grátis"
   note:
-    en: Cost depends on kennel size and route, quoted by the Cargo department (no fixed fare).
-    fr: Le coût dépend de la taille de la caisse et de la route, chiffré par le service Cargo (pas de tarif fixe).
-    es: El coste depende del tamaño de la jaula y de la ruta, presupuestado por el departamento de carga (sin tarifa fija).
-    pt: "O custo depende do tamanho da caixa de transporte e da rota, cotado pelo departamento de Carga (sem tarifa fixa)."
+    en: No public cargo pet offer or fare is published while the product remains unavailable.
+    fr: Aucune offre ni aucun tarif fret grand public n'est publié tant que le produit reste indisponible.
+    es: No se publica ninguna oferta ni tarifa de carga para el público mientras el producto siga no disponible.
+    pt: "Nenhuma oferta nem tarifa pública de carga é publicada enquanto o produto permanecer indisponível."
 restrictions:
   - icon: 🐶
     title:

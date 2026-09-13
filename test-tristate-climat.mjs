@@ -330,8 +330,19 @@ console.log("\n=== 5. Dominance : denied > confirmation_required — interaction
      confirmations, 30 → 29 de provenance (Air France cabine, sur ce trajet, n'est plus « page officielle non citée » :
      elle est citée, et le carlin de 8 kg y est REFUSÉ par la borne stricte « moins de 8 kg »), 38 de race et 1 par
      règle seule inchangés. */
-  check("carlin : 44 confirmations — 29 de provenance, 38 de race, 1 par règle non citée seule (Air Algérie cabine), aucune inexpliquée (chacune porte l'une des trois causes)",
-    confirmations.length === 44 && provenance === 29 && race === 38 && parRegleSeule.length === 1 && parRegleSeule[0]?.placement === "cabin" && inexpliquees.length === 0,
+  /* MOUVEMENT NOMMÉ (12/09/2026, SAS soute raccordée à sa page nationale suédoise) : le canal reste
+     à confirmer pour ce carlin à cause de la règle brachycéphale non citée, mais il ne porte plus la
+     fausse cause « politique sans preuve ». Total 44 inchangé, provenance 29 → 28, race inchangée. */
+  /* MOUVEMENT NOMMÉ (12/09/2026, lot 30) : trois politiques du trajet reçoivent leur citation
+     officielle ; 44 → 42 confirmations, 28 → 25 de provenance. La règle seule Air Algérie demeure. */
+  /* MOUVEMENT NOMMÉ (13/09/2026, lot de 31 dossiers) : airBaltic fret et les fermetures
+     Eurowings reçoivent leur phrase officielle. 42 → 41 confirmations et 25 → 22 causes de
+     provenance ; les 38 causes de race et la règle seule Air Algérie restent inchangées. */
+  /* MOUVEMENT NOMMÉ (13/09/2026, dossier fret rev2) : six canaux fret de ce trajet reçoivent
+     leur phrase officielle. Le nombre de canaux à confirmer reste 41 — les règles de race les
+     retiennent encore — mais les causes de provenance passent de 22 à 16. */
+  check("carlin : 41 confirmations — 16 de provenance, 38 de race, 1 par règle non citée seule, aucune inexpliquée",
+    confirmations.length === 41 && provenance === 16 && race === 38 && parRegleSeule.length === 1 && inexpliquees.length === 0,
     `${confirmations.length} confirmation(s), dont ${race} de race et ${provenance} de provenance, ${inexpliquees.length} inexpliquée(s), sur ${tousLesCanaux.length} canaux`);
 }
 
@@ -405,23 +416,20 @@ console.log("\n=== 7. Destinations : statuts, fret émis, inclusion en alternati
   check("Miami : placement_ok=false, placement_to_confirm=true — jamais rendue disponible",
     mia?.placement_ok === false && mia?.placement_to_confirm === true);
   check("Miami : heat_confirmation_required=true", mia?.heat_confirmation_required === true);
-  /* Abou Dabi — mis à jour par T0-B2 (bascule APPROUVÉE, tracée au registre de migration).
+  /* Abou Dabi — mis à jour par le dossier fret rev2 du 13/09/2026.
    *
-   * `airline_etihad.cargo` est l'un des 73 couples du manifeste : sa disponibilité n'a jamais été
-   * revérifiée sur source officielle. Le fret passe donc d'`allowed` à `confirmation_required`,
-   * et la destination cesse d'être présentée comme disponible par un canal dont nous ne savons
-   * rien. Ce que ce contrôle protège n'a pas changé — le fret reste ÉMIS, jamais invisible — mais
-   * il vérifie en plus, désormais, que la cause est nommée et rattachée à sa politique. */
+   * `airline_etihad.cargo` est désormais rattaché au produit officiel LiveAnimals. Le fret passe
+   * de `confirmation_required` à `accepted_with_conditions`. La soute reste à confirmer et garde
+   * ses causes propres : la nouvelle preuve fret ne doit ni les effacer ni les convertir. */
   const auh = dest.matches.find((m) => m.iata === "AUH");
-  check("Abou Dabi : cargo_status ÉMIS — le fret n'est jamais invisible",
-    auh?.cargo_status === "confirmation_required",
+  check("Abou Dabi : cargo_status ÉMIS et accepté sous conditions sur preuve fret officielle",
+    auh?.cargo_status === "accepted_with_conditions",
     JSON.stringify({ st: auh?.cargo_status, ok: auh?.cargo_ok, cab: auh?.cabin_ok, hold: auh?.hold_ok }));
-  check("Abou Dabi : aucun canal ouvert, la destination est À CONFIRMER — jamais « disponible »",
-    auh?.placement_ok === false && auh?.placement_to_confirm === true
-    && auh?.cabin_ok === false && auh?.hold_ok === false && auh?.cargo_ok === false);
-  check("Abou Dabi : la cause est NOTRE donnée non revérifiée, avec sa politique nommée",
-    auh?.confirmation_signals?.some((s) => s.airline_id === "airline_etihad" && s.placement === "cargo"
-      && s.cause?.code === "legacy_unreviewed" && s.cause?.policy_ref === "airline_etihad#cargo"),
+  check("Abou Dabi : le fret ouvre la destination sous conditions, cabine fermée et soute non ouverte",
+    auh?.placement_ok === true && auh?.placement_conditional === true
+    && auh?.cabin_ok === false && auh?.hold_ok === false && auh?.cargo_ok === true);
+  check("Abou Dabi : aucune ancienne cause legacy ne subsiste sur le fret",
+    !auh?.confirmation_signals?.some((s) => s.airline_id === "airline_etihad" && s.placement === "cargo"),
     JSON.stringify(auh?.confirmation_signals));
   check("Abou Dabi : AUCUN drapeau chaleur — la cause n'est pas climatique",
     auh?.heat_embargo === false && auh?.heat_confirmation_required === false);

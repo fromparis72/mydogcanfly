@@ -75,29 +75,53 @@ policies:
   cabin:
     # TARIFS OFFICIELS — audit indépendant du 2026-09-10 ; aucune valeur héritée réactivée.
     fares:
-      - id: fare_finnair_cabin_eur_2026_09_10
+      - id: fare_finnair_cabin_eur_2026_09_12
         placement: cabin
         price:
           kind: range
           amounts:
             - amount: 60
               currency: EUR
-            - amount: 65
+            - amount: 130
               currency: EUR
         billing_subject: pet_or_container
         journey_basis: per_one_way
-        scope_label: Europe/intercontinental → Europe/intercontinental
+        scope_label: 60–65 € en Europe · 120–130 € sur long-courrier · selon l'anticipation
         source:
-          url: https://www.finnair.com/en/pets-on-finnair-flights
+          url: https://www.finnair.com/fi-fi/matkatavarat-finnairin-lennoilla/lis%C3%A4matkatavaramaksut
           source_type: official_website
-          verified_date: 2026-09-10
-          review_due: 2026-12-09
-          confidence: 4
-          reviewer: Codex — lecture directe de la source officielle
+          verified_date: 2026-09-12
+          review_due: 2026-12-11
+          confidence: 5
+          reviewer: "Codex — page finnoise officielle ; grille mise à jour par Finnair le 8 juin 2026"
+          history:
+            - date: 2026-09-12
+              reviewer: Codex — arbitrage de fraîcheur
+              note: "La grille de la page générale (140 € / 650 €) est remplacée par cette grille officielle annoncée comme mise à jour le 8 juin 2026."
+          quote: "Lemmikki matkustamossa, max. 8 kg (ml. kuljetuslaatikko) | 60 € tai 7 800 Aviosta (lähtöön 7 päivää tai enemmän) 65 € tai 8 500 Aviosta (lähtöön 6 päivää tai vähemmän) | 120 €/130 $ tai 15 800 Aviosta (lähtöön 7 päivää tai enemmän) 130 €/140 $ tai 17 100 Aviosta (lähtöön 6 päivää tai vähemmän)"
+          quote_language: fi
+          locator: Kuljetusmaksut lemmikeille matkustamossa
+      - id: fare_finnair_cabin_usd_2026_09_12
+        placement: cabin
+        price:
+          kind: range
+          amounts:
+            - { amount: 130, currency: USD }
+            - { amount: 140, currency: USD }
+        billing_subject: pet_or_container
+        journey_basis: per_one_way
+        scope_label: Long-courrier · selon l'anticipation
+        source:
+          url: https://www.finnair.com/fi-fi/matkatavarat-finnairin-lennoilla/lis%C3%A4matkatavaramaksut
+          source_type: official_website
+          verified_date: 2026-09-12
+          review_due: 2026-12-11
+          confidence: 5
+          reviewer: "Codex — page finnoise officielle ; grille mise à jour par Finnair le 8 juin 2026"
           history: []
-          quote: 60 EUR / 65 EUR
-          quote_language: en
-          locator: Pet transportation fees
+          quote: "120 €/130 $ tai 15 800 Aviosta (lähtöön 7 päivää tai enemmän) 130 €/140 $ tai 17 100 Aviosta (lähtöön 6 päivää tai vähemmän)"
+          quote_language: fi
+          locator: Kuljetusmaksut lemmikeille matkustamossa · kaukolennot
     availability: offered
     # PREUVE IMPORTÉE — import strict V3 (Codex, lecture directe du 2026-09-08, cohorte B fait 0).
     # Effet attendu : For a 30 or 32 kg dog, cabin is not suitable.
@@ -117,7 +141,64 @@ policies:
       quote_language: en
       locator: "Travel options for pets → Pets in cabin"
   hold:
+    fares:
+      - id: fare_finnair_hold_eur_2026_09_12
+        placement: hold
+        price:
+          kind: range
+          amounts:
+            - { amount: 120, currency: EUR }
+            - { amount: 600, currency: EUR }
+        billing_subject: pet_or_container
+        journey_basis: per_one_way
+        scope_label: 120 € en Europe · 600 € sur long-courrier
+        source:
+          url: https://www.finnair.com/fi-fi/matkatavarat-finnairin-lennoilla/lis%C3%A4matkatavaramaksut
+          source_type: official_website
+          verified_date: 2026-09-12
+          review_due: 2026-12-11
+          confidence: 5
+          reviewer: "Codex — page finnoise officielle ; grille mise à jour par Finnair le 8 juin 2026"
+          history:
+            - date: 2026-09-12
+              reviewer: Codex — arbitrage de fraîcheur
+              note: "La grille de la page générale (140 € / 650 €) est remplacée par cette grille officielle annoncée comme mise à jour le 8 juin 2026."
+          quote: "Lemmikki ruumassa, max. 50–75 kg* (ml. kuljetuslaatikko) | 120 € tai 15 800 Aviosta | 600 €/650 $ tai 79 800 Aviosta"
+          quote_language: fi
+          locator: Kuljetusmaksut lemmikeille matkustamossa · lemmikki ruumassa
+      - id: fare_finnair_hold_usd_2026_09_12
+        placement: hold
+        price:
+          kind: exact
+          amounts: [{ amount: 650, currency: USD }]
+        billing_subject: pet_or_container
+        journey_basis: per_one_way
+        scope_label: Long-courrier au départ d'un marché facturé en dollars
+        source:
+          url: https://www.finnair.com/fi-fi/matkatavarat-finnairin-lennoilla/lis%C3%A4matkatavaramaksut
+          source_type: official_website
+          verified_date: 2026-09-12
+          review_due: 2026-12-11
+          confidence: 5
+          reviewer: "Codex — page finnoise officielle ; grille mise à jour par Finnair le 8 juin 2026"
+          history: []
+          quote: "Lemmikki ruumassa, max. 50–75 kg* (ml. kuljetuslaatikko) | 600 €/650 $ tai 79 800 Aviosta"
+          quote_language: fi
+          locator: Kuljetusmaksut lemmikeille matkustamossa · kaukolennot
     availability: offered
+    max_weight_kg: 75
+    weight_includes_carrier: true
+    source:
+      url: https://www.finnair.com/fi-fi/lemmikkiel%C3%A4imet-finnairin-lennoilla
+      source_type: official_website
+      verified_date: 2026-09-12
+      review_due: 2026-12-11
+      confidence: 5
+      reviewer: Codex — lecture de la page nationale finnoise
+      history: []
+      quote: "Enintään 75 kg Finnairin liikennöimillä lennoilla."
+      quote_language: fi
+      locator: Lemmikki ruumassa · Finnairin liikennöimät lennot
   cargo:
     review_state: legacy_unreviewed
 channels:

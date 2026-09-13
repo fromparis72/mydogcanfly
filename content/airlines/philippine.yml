@@ -71,48 +71,54 @@ ladder:
       pt: "grandes / braquicéfalos"
 policies:
   cabin:
-    # TARIFS OFFICIELS — audit indépendant du 2026-09-10 ; aucune valeur héritée réactivée.
     fares:
-      - id: fare_philippine_cabin_php_2026_09_10
+      - id: fare_philippine_cabin_php_2026_09_12
         placement: cabin
         price:
-          kind: exact
+          kind: minimum
           amounts:
             - amount: 2500
               currency: PHP
-        billing_subject: pet_or_container
+        billing_subject: pet
         journey_basis: per_one_way
-        scope_label: Domestic FurPAL routes
+        scope_label: FurPAL · vols intérieurs · tarif à partir de
         source:
           url: https://www.philippineairlines.com/ph/en/inflight-experience/furpal.html
           source_type: official_website
-          verified_date: 2026-09-10
-          review_due: 2026-12-09
+          verified_date: 2026-09-12
+          review_due: 2026-12-11
           confidence: 4
-          reviewer: Codex — lecture directe de la source officielle
+          reviewer: Codex — contre-lecture du dossier officiel national
           history: []
-          quote: PHP 2,500 per dog, one-way
+          quote: FurPAL welcomes small dogs and cats to travel in-cabin with their owners for as low as P2,500 per way.
           quote_language: en
-          locator: FurPAL fee
+          locator: tableau contractuel compare au bandeau d'introduction de la meme page
     availability: offered
-    # PREUVE IMPORTÉE — import strict lot5 (Codex, lecture directe du 2026-09-09, cohorte LOT5 fait 5).
-    # Effet attendu : Philippine Airlines cabin is a documented conditional domestic route. Do not use its 10 kg ceiling as a global international Finder rule.
-    # Portée nommée : FurPAL is for small pet dogs on Philippine Airlines domestic routes only. The pet plus carrier must not exceed 10 kg; international routes are excluded.
     source:
-      url: "https://www.philippineairlines.com/ph/en/inflight-experience/furpal.html"
+      url: https://www.philippineairlines.com/ph/en/inflight-experience/furpal.html
       source_type: official_website
-      verified_date: "2026-09-09"
-      review_due: "2026-12-08"   # reviewDueFrom(verified_date, "airline") — calculé par l'importeur
+      verified_date: 2026-09-09
+      review_due: 2026-12-08
       confidence: 4
-      reviewer: "Codex — direct reading of official airline page"
+      reviewer: Codex — direct reading of official airline page
       history: []
-      quote: "The FurPAL Program is available on all PAL DOMESTIC flights."
+      quote: The FurPAL Program is available on all PAL DOMESTIC flights.
       quote_language: en
-      locator: "FurPAL → Covered Routes"
+      locator: FurPAL → Covered Routes
   hold:
     availability: offered
+    source:
+      url: https://www.philippineairlines.com/ph/en/before-you-fly/baggage-information/special-baggage/pets.html
+      source_type: official_website
+      verified_date: 2026-09-12
+      review_due: 2026-12-11
+      confidence: 4
+      reviewer: Codex — contre-lecture du dossier officiel national
+      history: []
+      quote: Pets, such as dogs and cats, may be accepted as checked-in baggage. Contact PAL before the reservation to check if your flight's aircraft cargo compartment can accommodate live animals/pets as checked-in bag. Carrying pets as checked-in bag could impact their pet's health leading to weakness, injury, or death.
+      quote_language: en
+      locator: "bloc « Pets, such as dogs and cats… » et bloc « When travelling with pets, you must: »"
   cargo:
-    # TARIFS OFFICIELS — audit indépendant du 2026-09-10 ; aucune valeur héritée réactivée.
     fares:
       - id: fare_philippine_cargo_2026_09_10
         placement: cargo
@@ -133,21 +139,18 @@ policies:
           quote: Contact PAL Cargo for assistance
           quote_language: en
           locator: Heavy pets/cargo referral
-    availability: offered   # RÉACTIVÉE sur citation (import strict, lot5, 2026-09-09) — était review_state: legacy_unreviewed
-    # PREUVE IMPORTÉE — import strict lot5 (Codex, lecture directe du 2026-09-09, cohorte LOT5 fait 6).
-    # Effet attendu : Cargo is a documented conditional direction for an ineligible cabin animal, not an automatic shipment acceptance.
-    # Portée nommée : Larger dogs and animals ineligible for FurPAL cabin travel follow PAL AVIH cargo handling; breed, route, paperwork and handling restrictions apply.
+    availability: offered
     source:
-      url: "https://www.philippineairlines.com/ph/en/inflight-experience/furpal.html"
+      url: https://www.philippineairlines.com/ph/en/inflight-experience/furpal.html
       source_type: official_website
-      verified_date: "2026-09-09"
-      review_due: "2026-12-08"   # reviewDueFrom(verified_date, "airline") — calculé par l'importeur
+      verified_date: 2026-09-09
+      review_due: 2026-12-08
       confidence: 4
-      reviewer: "Codex — direct reading of official airline page"
+      reviewer: Codex — direct reading of official airline page
       history: []
-      quote: "Transportation of Larger dogs and other live animals not eligible for in-cabin travel under this program, shall be via Cargo ONLY, in accordance with AVIH (Animal Vivant in Hold) standards."
+      quote: Transportation of Larger dogs and other live animals not eligible for in-cabin travel under this program, shall be via Cargo ONLY, in accordance with AVIH (Animal Vivant in Hold) standards.
       quote_language: en
-      locator: "FurPAL → Pet Eligibility"
+      locator: FurPAL → Pet Eligibility
 channels:
   - placement: cabin
     icon: 🐾

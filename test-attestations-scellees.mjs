@@ -48,7 +48,7 @@ console.log("=== 1. Les deux sens du scellé ===");
   /* Le chargement du référentiel a déjà refusé toute attestation non relue — sans quoi la ligne
      ci-dessus aurait levé. On le redit ici en clair, avec les comptes. */
   check(`le référentiel porte ${portees.length} attestation(s), le scellé en relit ${scellees.length}`,
-    portees.length === 3 && scellees.length === 3, `${portees.length} / ${scellees.length}`);
+    portees.length === 5 && scellees.length === 5, `${portees.length} / ${scellees.length}`);
 
   const nonRelues = portees.filter((e) => !scellees.includes(e));
   check("SENS 1 — aucune attestation du référentiel n'échappe au scellé",
@@ -59,8 +59,9 @@ console.log("=== 1. Les deux sens du scellé ===");
     orphelines.length === 0, orphelines.slice(0, 2).join("\n         "));
 
   /* NON-VACUITÉ : les deux contrôles ci-dessus passeraient aussi sur deux ensembles VIDES. */
-  check("témoin : les trois attestations relues sont celles d'Air France",
-    portees.length === 3 && portees.every((e) => e.includes('"airline":"airline_air_france"')),
+  check("témoin : trois attestations relues sont celles d'Air France et deux celles d'EgyptAir",
+    portees.filter((e) => e.includes('"airline":"airline_air_france"')).length === 3
+      && portees.filter((e) => e.includes('"airline":"airline_egyptair"')).length === 2,
     portees.join("\n         "));
 }
 
@@ -233,7 +234,7 @@ console.log("\n=== 5. Le fichier du scellé est VALIDÉ, et les doublons sont re
   };
 
   const temoin = chargerAvec(() => {});
-  check("témoin : le scellé RÉEL se charge, et rend ses 3 empreintes", temoin.code === 0 && temoin.out.trim().endsWith("3"),
+  check("témoin : le scellé RÉEL se charge, et rend ses 5 empreintes", temoin.code === 0 && temoin.out.trim().endsWith("5"),
     temoin.out.slice(-400));
 
   const doublon = chargerAvec((c) => { c.attestations.push({ ...c.attestations[0] }); });

@@ -58,11 +58,11 @@ ladder:
       pt: "cabine, porão e carga não documentados"
 policies:
   cabin:
-    availability: not_offered
+    review_state: legacy_unreviewed
   hold:
-    availability: not_offered
+    review_state: legacy_unreviewed
   cargo:
-    availability: not_offered
+    review_state: legacy_unreviewed
 channels:
   - placement: cabin
     icon: 🐾
