@@ -73,6 +73,10 @@ const datasetLd = dataset
         ))}
       </div>
       <p id="idx-empty" class="idx__empty" hidden>{t(locale, "index.no_results")}</p>
+      {/* Contenu propre à un index donné, sous l'annuaire. Ajouté le 13/09/2026 pour le tableau
+        * comparatif des races : quand une famille cesse d'indexer ses fiches une à une, ce qu'elles
+        * avaient de comparable doit vivre quelque part d'indexable, et cet endroit est l'index. */}
+      <slot />
     </div>
   </section>
 </Base>

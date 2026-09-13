@@ -11,6 +11,7 @@
  */
 import { loadKB, slugFor, countryVerifiedDate } from "@mydogcanfly/knowledge";
 import { reliefIndexable } from "./reliefEtat";
+import { raceIndexable } from "./raceEtat";
 import { countryData } from "../data/countries";
 import { LOCALES, isPreviewLocale } from "./routes";
 
@@ -69,7 +70,13 @@ export function buildEntries(): Entry[] {
     const d = (a as any).pet_relief?.source?.verified_date;
     push(`/airports/${slugFor(a.id)}/`, "0.6", "monthly", isISO(d) ? d : BUILD_DATE);
   }
-  for (const b of kb.breeds.values()) push(`/breeds/${slugFor(b.id)}/`, "0.7", "monthly");
+  /* Même principe que les aéroports ci-dessus, et le même fichier unique de règle : n'entre au
+   * sitemap que la fiche qui porte un fait établi propre à sa race. Le raisonnement, les mesures
+   * qui l'ont motivé et la façon dont une race y revient sont en tête de `raceEtat.ts`. */
+  for (const b of kb.breeds.values()) {
+    if (!raceIndexable(kb, b)) continue;
+    push(`/breeds/${slugFor(b.id)}/`, "0.7", "monthly");
+  }
 
   return entries;
 }

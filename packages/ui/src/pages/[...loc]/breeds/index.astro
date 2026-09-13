@@ -1,7 +1,9 @@
 ---
 import EntityIndex from "../../../components/EntityIndex.astro";
-import { loadKB, t, inlineT } from "@mydogcanfly/knowledge";
+import { loadKB, t, inlineT, inlineF, breedName } from "@mydogcanfly/knowledge";
 import { indexItems } from "../../../lib/pagedata";
+import { hrefFor } from "../../../lib/routes";
+import { faitsDeRace } from "../../../lib/raceEtat";
 
 export function getStaticPaths() {
   return [
@@ -12,7 +14,109 @@ export function getStaticPaths() {
 }
 const { locale } = Astro.props as { locale: string };
 const T = inlineT(locale);
-const items = indexItems(loadKB(), "breed", locale);
+const F = inlineF(locale); // phrases à trous : la donnée entre par {0}, {1}…
+const kb: any = loadKB();
+const items = indexItems(kb, "breed", locale);
 const seoTitle = T("Can my dog fly? Travel guide breed by breed", "Mon chien peut-il prendre l'avion ? Race par race", "¿Puede volar mi perro? Guía raza por raza");
+
+/* LE TABLEAU COMPARATIF PAR GABARIT (13/09/2026).
+ *
+ * Les fiches de race ne sont plus indexées une à une tant qu'elles ne portent pas de fait établi
+ * propre à leur race — la règle et les mesures sont en tête de `lib/raceEtat.ts`. Ce qu'elles
+ * avaient de comparable doit alors vivre sur une page indexable, et cette page est l'index.
+ *
+ * CE QUE CE TABLEAU PUBLIE, et rien d'autre : le gabarit, le poids de référence et le statut
+ * brachycéphale, tous trois lus dans la base. Ce sont des faits de race, pas des verdicts de
+ * voyage. On n'y trouvera donc ni « acceptée en cabine », ni taille de caisse, ni note : ces
+ * affirmations ont été retirées des fiches les 2, 4 et 6 septembre faute de source publiable,
+ * et les republier ici sous forme de tableau serait les faire rentrer par la fenêtre.
+ *
+ * Le tri se fait sur le poids croissant à l'intérieur de chaque gabarit : c'est l'axe qui décide
+ * réellement de l'emplacement à bord, donc celui qui rend le tableau utile à lire.
+ */
+const GABARITS = ["toy", "small", "medium", "large", "giant"] as const;
+const LIB: Record<string, [string, string, string, string]> = {
+  toy: ["Toy", "Toy", "Toy", "Toy"],
+  small: ["Small", "Petit", "Pequeño", "Pequeno"],
+  medium: ["Medium", "Moyen", "Mediano", "Médio"],
+  large: ["Large", "Grand", "Grande", "Grande"],
+  giant: ["Giant", "Géant", "Gigante", "Gigante"],
+};
+const iLoc = { en: 0, fr: 1, es: 2, pt: 3 }[locale] ?? 0;
+const libGabarit = (g: string) => LIB[g]?.[iLoc] ?? g;
+
+const parGabarit = GABARITS.map((g) => ({
+  gabarit: g,
+  races: [...kb.breeds.values()]
+    .filter((b: any) => b.size === g)
+    .map((b: any) => ({
+      nom: breedName(b, locale),
+      href: hrefFor(b.id, locale),
+      poids: b.weight_kg as number,
+      brachy: !!b.brachycephalic,
+      faits: faitsDeRace(kb, b).length,
+    }))
+    .sort((a, b) => a.poids - b.poids || a.nom.localeCompare(b.nom)),
+})).filter((x) => x.races.length > 0);
+
+const nBrachy = [...kb.breeds.values()].filter((b: any) => b.brachycephalic).length;
 ---
-<EntityIndex seoTitle={seoTitle} kind={t(locale, "kind.breed")} title={t(locale, "index.breeds.title")} blurb={t(locale, "index.breeds.blurb")} items={items} locale={locale} showEmblem />
+<EntityIndex seoTitle={seoTitle} kind={t(locale, "kind.breed")} title={t(locale, "index.breeds.title")} blurb={t(locale, "index.breeds.blurb")} items={items} locale={locale} showEmblem>
+  <section class="brz">
+    <h2 class="brz__h2">{T("Every breed by size and weight", "Toutes les races par gabarit et par poids", "Todas las razas por tamaño y peso")}</h2>
+    {/* Phrase à trous plutôt qu'interpolée : la clé anglaise doit rester STABLE pour que le
+      * catalogue portugais puisse la retrouver. Une chaîne qui incorpore un nombre change de clé
+      * à chaque changement de la base, et retombe silencieusement sur l'anglais. */}
+    <p class="brz__intro">
+      {F(
+        "Reference weight and size for each of the {0} breeds documented here, and which of them are snub-nosed — {1} are. Weight decides where a dog travels on board more than any other single factor, so each group is ordered by it.",
+        "Poids de référence et gabarit pour chacune des {0} races documentées ici, et lesquelles sont brachycéphales — il y en a {1}. Le poids décide de l'emplacement à bord plus que tout autre critère : chaque groupe est donc classé par poids croissant.",
+        "Peso de referencia y tamaño de cada una de las {0} razas documentadas aquí, y cuáles son braquicéfalas — hay {1}. El peso decide el lugar a bordo más que ningún otro criterio: cada grupo va ordenado por peso.",
+        kb.breeds.size, nBrachy,
+      )}
+    </p>
+    {parGabarit.map((grp) => (
+      <div class="brz__grp">
+        <h3 class="brz__h3">{libGabarit(grp.gabarit)} <span class="brz__n">· {grp.races.length}</span></h3>
+        <div class="brz__scroll">
+          <table class="brz__t">
+            <thead>
+              <tr>
+                <th scope="col">{T("Breed", "Race", "Raza")}</th>
+                <th scope="col" class="brz__num">{T("Weight", "Poids", "Peso")}</th>
+                <th scope="col">{T("Snub-nosed", "Brachycéphale", "Braquicéfalo")}</th>
+              </tr>
+            </thead>
+            <tbody>
+              {grp.races.map((r) => (
+                <tr>
+                  <td><a href={r.href}>{r.nom}</a></td>
+                  <td class="brz__num">{r.poids} kg</td>
+                  <td>{r.brachy ? <span class="brz__yes">🐽 {T("Yes", "Oui", "Sí")}</span> : <span class="brz__no">—</span>}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      </div>
+    ))}
+  </section>
+</EntityIndex>
+
+<style>
+  .brz { margin-top: 40px; }
+  .brz__h2 { font-size: 22px; margin: 0 0 6px; }
+  .brz__intro { margin: 0 0 20px; color: var(--mdcf-muted, #64748b); max-width: 70ch; font-size: 15px; }
+  .brz__grp { margin-top: 22px; }
+  .brz__h3 { font-size: 17px; margin: 0 0 8px; }
+  .brz__n { color: var(--mdcf-muted, #64748b); font-weight: 400; font-size: 14px; }
+  .brz__scroll { overflow-x: auto; border: 1px solid var(--mdcf-line, #e6ebf1); border-radius: 10px; }
+  .brz__t { border-collapse: collapse; width: 100%; font-size: 14.5px; }
+  .brz__t th, .brz__t td { text-align: left; padding: 8px 12px; border-bottom: 1px solid var(--mdcf-line, #e6ebf1); }
+  .brz__t thead th { font-size: 12px; text-transform: uppercase; letter-spacing: .05em; color: var(--mdcf-muted, #64748b); background: var(--mdcf-accent-soft, #f1f5f9); }
+  .brz__t tbody tr:last-child td { border-bottom: none; }
+  .brz__num { text-align: right; font-variant-numeric: tabular-nums; white-space: nowrap; }
+  .brz__t a { color: var(--mdcf-ink); text-decoration: none; }
+  .brz__t a:hover { text-decoration: underline; }
+  .brz__no { color: var(--mdcf-muted, #94a3b8); }
+</style>
