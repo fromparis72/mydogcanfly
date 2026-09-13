@@ -44,7 +44,8 @@ const SENTINELLES = {
   /* MOUVEMENT NOMMÉ (10/09/2026, Saudia — preuve de test retirée, tranchée par Philippe) : A 179 → 177 ; B 50 → 52. */
   /* MOUVEMENT NOMMÉ (12/09/2026, SAS soute — page nationale suédoise citée) : A 177 → 178 ; C 74 → 73. */
   /* MOUVEMENT NOMMÉ (12/09/2026, lot 30 compagnies — onze politiques nouvellement citées) : A 178 → 189 ; B 52 → 46 ; C 73 → 68. */
-  par_categorie: { A: 189, A_incomplete: 0, B: 46, C: 68, D: 3 },
+  /* MOUVEMENT NOMMÉ (13/09/2026, vague de 31 dossiers officiels — quatorze politiques nouvellement citées) : A 189 → 203 ; B 46 → 42 ; C 68 → 58 ; D inchangé. */
+  par_categorie: { A: 203, A_incomplete: 0, B: 42, C: 58, D: 3 },
   par_canal: {
     /* MOUVEMENT NOMMÉ (08/09/2026, import strict V3 — 25 citations importées) : A 3 → 28 ; B 125 → 108 ; C 175 → 167 ; D inchangé. */
     /* MOUVEMENT NOMMÉ (08/09/2026, import strict lots 2 et 3 — 24 citations de plus, 52 en tout) : A 28 → 52 ; B 108 → 102 ; C 167 → 149. */
@@ -58,11 +59,14 @@ const SENTINELLES = {
     /* MOUVEMENT NOMMÉ (10/09/2026, complément Air France cabine — Codex, une citation, borne stricte « moins de 8 kg ») : cabine 79/9/14 → 80/8/14 ; soute et fret inchangés. */
     /* MOUVEMENT NOMMÉ (10/09/2026, Saudia — preuve de test retirée, tranchée par Philippe) : cabine 80/8 → 79/9 ; soute 71/23 → 70/24. */
     /* Lot 30 : cabine A 79 → 82, C 14 → 11. */
-    cabin: { A: 82, A_incomplete: 0, B: 9, C: 11, D: 0 },
+    /* Vague du 13/09 : cabine A 82 → 87, B 9 → 8, C 11 → 7. */
+    cabin: { A: 87, A_incomplete: 0, B: 8, C: 7, D: 0 },
     /* MOUVEMENT NOMMÉ (12/09/2026, SAS soute) : A 70 → 71 ; C 8 → 7. */
     /* Lot 30 : soute A 71 → 79, B 24 → 18, C 7 → 5. */
-    hold: { A: 79, A_incomplete: 0, B: 18, C: 5, D: 0 },
-    cargo: { A: 28, A_incomplete: 0, B: 19, C: 52, D: 3 },
+    /* Vague du 13/09 : soute A 79 → 85, B 18 → 15, C 5 → 2. */
+    hold: { A: 85, A_incomplete: 0, B: 15, C: 2, D: 0 },
+    /* Vague du 13/09 : fret A 28 → 31, C 52 → 49. */
+    cargo: { A: 31, A_incomplete: 0, B: 19, C: 49, D: 3 },
   },
   /* 42 B par la politique = les 45 politiques non fabriquées moins les 3 citées ; 83 B par une
      règle = 82 politiques fabriquées + Air Tahiti Nui soute (sans politique) ; 41 de ces 83 ne
@@ -79,7 +83,8 @@ const SENTINELLES = {
   /* MOUVEMENT NOMMÉ (10/09/2026, complément Air France cabine — Codex, une citation, borne stricte « moins de 8 kg ») : politique 23 → 22 (Air France cabine quitte B pour A) ; règle et gov.uk inchangés. */
   /* MOUVEMENT NOMMÉ (10/09/2026, Saudia — preuve de test retirée, tranchée par Philippe) : règle 28 → 30, gov.uk seul 14 → 15 ; politique inchangé. */
   /* Lot 30 : six politiques B deviennent A ; cinq règles B deviennent inutiles après citation. */
-  B_par_piste: { politique: 19, regle: 27 }, B_par_regle_gov_uk_seul: 12,
+  /* Vague du 13/09 : quatre règles deviennent inutiles après citation ; trois dépendances gov.uk disparaissent. */
+  B_par_piste: { politique: 19, regle: 23 }, B_par_regle_gov_uk_seul: 9,
   regles_sans_canal: ["rule_transavia_gb_no_pets"],
 };
 /* MOUVEMENT NOMMÉ (08/09/2026, import strict V3 — 25 citations importées) : 3 → 28 A, nominativement. */
@@ -127,6 +132,9 @@ const A_ATTENDUS = [
   "airline_air_tahiti_nui#cargo",
   "airline_air_transat#cabin",
   "airline_air_transat#hold",
+  "airline_airbaltic#cabin",
+  "airline_airbaltic#hold",
+  "airline_airbaltic#cargo",
   "airline_aircalin#cabin",
   "airline_aircalin#hold",
   "airline_aircalin#cargo",
@@ -157,6 +165,8 @@ const A_ATTENDUS = [
   "airline_china_eastern#hold",
   "airline_china_southern#cabin",
   "airline_china_southern#hold",
+  "airline_condor#cabin",
+  "airline_condor#hold",
   "airline_copa#cabin",
   "airline_copa#hold",
   "airline_copa#cargo",
@@ -181,6 +191,9 @@ const A_ATTENDUS = [
   "airline_ethiopian#hold",
   "airline_ethiopian#cargo",
   "airline_etihad#cabin",
+  "airline_eurowings#cabin",
+  "airline_eurowings#hold",
+  "airline_eurowings#cargo",
   "airline_eva_air#cabin",
   "airline_eva_air#hold",
   "airline_finnair#cabin",
@@ -228,6 +241,7 @@ const A_ATTENDUS = [
   "airline_neos#cabin",
   "airline_neos#hold",
   "airline_philippine#cabin",
+  "airline_philippine#hold",
   "airline_philippine#cargo",
   "airline_qantas#cabin",
   "airline_qantas#hold",
@@ -267,6 +281,9 @@ const A_ATTENDUS = [
   "airline_thai_airways#cargo",
   "airline_transavia#cabin",
   "airline_transavia#hold",
+  "airline_tui_airways#cabin",
+  "airline_tui_airways#hold",
+  "airline_tui_airways#cargo",
   "airline_tunisair#cabin",
   "airline_tunisair#hold",
   "airline_turkish#cabin",
@@ -277,6 +294,8 @@ const A_ATTENDUS = [
   "airline_vietnam_airlines#hold",
   "airline_virgin_australia#cabin",
   "airline_virgin_australia#cargo",
+  "airline_volotea#cabin",
+  "airline_volotea#hold",
   "airline_vueling#cabin",
   "airline_vueling#hold",
   "airline_westjet#cabin",
@@ -398,12 +417,13 @@ console.log("\n=== (d) Cohérence avec `niveauDePreuve` ===");
   /* MOUVEMENT NOMMÉ (10/09/2026, Saudia — preuve de test retirée, tranchée par Philippe) : 179/22/74 → 177/22/74 ; B ↔ aucune 27 → 29. */
   /* MOUVEMENT NOMMÉ (12/09/2026, SAS soute) : 177/22/74 → 178/22/73. */
   /* MOUVEMENT NOMMÉ (12/09/2026, lot 30) : 178/22/73 → 189/19/68. */
-  check("sur les 306 lignes, A ↔ citee 189, B(politique) ↔ officielle_non_citee 19, C ↔ aucune 68",
-    paires["A ↔ citee"] === 189 && paires["B ↔ officielle_non_citee"] === 19 && paires["C ↔ aucune"] === 68, JSON.stringify(paires));
-  check("les seuls écarts sont NOMMÉS : 26 B par règle sur politique « aucune », 1 B par règle sans politique, 3 D",
+  /* MOUVEMENT NOMMÉ (13/09/2026, vague de 31 dossiers) : 189/19/68 → 203/19/58. */
+  check("sur les 306 lignes, A ↔ citee 203, B(politique) ↔ officielle_non_citee 19, C ↔ aucune 58",
+    paires["A ↔ citee"] === 203 && paires["B ↔ officielle_non_citee"] === 19 && paires["C ↔ aucune"] === 58, JSON.stringify(paires));
+  check("les seuls écarts sont NOMMÉS : 22 B par règle sur politique « aucune », 1 B par règle sans politique, 3 D",
     /* MOUVEMENT NOMMÉ (10/09/2026, Saudia — preuve de test retirée) : 27 → 29, les deux canaux revenus « aucune » tenant
        désormais à une règle. */
-    resume.coherence_niveau_de_preuve.ecarts.B_par_regle_sur_politique_aucune === 26
+    resume.coherence_niveau_de_preuve.ecarts.B_par_regle_sur_politique_aucune === 22
     && resume.coherence_niveau_de_preuve.ecarts.B_par_regle_sans_politique === 1
     && resume.coherence_niveau_de_preuve.ecarts.D_sans_politique === 3
     && resume.coherence_niveau_de_preuve.ecarts.inattendus.length === 0, JSON.stringify(resume.coherence_niveau_de_preuve.ecarts));
@@ -412,8 +432,9 @@ console.log("\n=== (d) Cohérence avec `niveauDePreuve` ===");
   /* MOUVEMENT NOMMÉ (10/09/2026, Saudia — preuve de test retirée, tranchée par Philippe) : 179 → 177 citées, 101 → 103 sans rien. */
   /* MOUVEMENT NOMMÉ (12/09/2026, SAS soute) : 177 → 178 citées, 103 → 102 sans rien. */
   /* MOUVEMENT NOMMÉ (12/09/2026, lot 30) : 178/22/102 → 189/19/94. */
-  check("302 politiques : 189 citées, 19 officielles non citées, 94 aucune — le compte de test-frontiere-confiance",
-    niveaux.citee === 189 && niveaux.officielle_non_citee === 19 && niveaux.aucune === 94, JSON.stringify(niveaux));
+  /* MOUVEMENT NOMMÉ (13/09/2026, vague de 31 dossiers) : 189/19/94 → 203/19/80. */
+  check("302 politiques : 203 citées, 19 officielles non citées, 80 aucune — le compte de test-frontiere-confiance",
+    niveaux.citee === 203 && niveaux.officielle_non_citee === 19 && niveaux.aucune === 80, JSON.stringify(niveaux));
 }
 
 console.log("\n=== (e) Non-vacuité : une ligne mutée change de catégorie ===");

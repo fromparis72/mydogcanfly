@@ -81,6 +81,15 @@ console.log("=== Étage 1 — 19 faits relus, 18 dans la donnée à l'octet prè
   }
   for (const u of d.intentionally_unset) {
     const pol = politique(u.airline_id, u.placement);
+    /* MOUVEMENT NOMMÉ (13/09/2026, dossier national Philippine Airlines) : la soute,
+       volontairement laissée vide au lot 5, reçoit sa propre phrase officielle. L'histoire du
+       lot 5 reste intacte ; ce témoin constate explicitement le mouvement postérieur. */
+    if (u.airline_id === "airline_philippine" && u.placement === "hold") {
+      check("non-décision historique airline_philippine.hold : refermée le 13/09 sur citation officielle",
+        !!pol?.source?.quote && kb.airlines.get(u.airline_id)?.premium?.policy?.hold?.status === "accepted_with_conditions",
+        JSON.stringify({ quote: pol?.source?.quote, status: kb.airlines.get(u.airline_id)?.premium?.policy?.hold?.status }));
+      continue;
+    }
     check(`non-décision ${u.airline_id}.${u.placement} : aucune citation écrite, « à confirmer »`,
       !pol?.source?.quote && kb.airlines.get(u.airline_id)?.premium?.policy?.[u.placement]?.status === "confirmation_required",
       JSON.stringify({ quote: pol?.source?.quote, status: kb.airlines.get(u.airline_id)?.premium?.policy?.[u.placement]?.status }));
@@ -156,8 +165,8 @@ console.log("\n=== Étage 2 — Londres → Taipei, Sydney → Manille, Singapou
   check("China Airlines soute (AVIH bagage enregistré), Golden 32 kg : sous conditions ; cabine et fret volontairement NON décidés → à confirmer",
     canal(tpe, "airline_china_airlines", "hold")?.status === "accepted_with_conditions" && canal(tpe, "airline_china_airlines", "cabin")?.status === "confirmation_required" && canal(tpe, "airline_china_airlines", "cargo")?.status === "confirmation_required");
   const mnl = decide("airport_syd", "airport_mnl", GOLDEN_32), ceb = decide("airport_mnl", "airport_ceb", CAVALIER_6);
-  check("Philippine fret (AVIH), Golden 32 kg : RÉACTIVÉ sur citation → sous conditions ; soute volontairement NON décidée → à confirmer",
-    canal(mnl, "airline_philippine", "cargo")?.status === "accepted_with_conditions" && canal(mnl, "airline_philippine", "hold")?.status === "confirmation_required");
+  check("Philippine soute et fret (AVIH), Golden 32 kg : tous deux sous conditions sur leurs citations propres",
+    canal(mnl, "airline_philippine", "cargo")?.status === "accepted_with_conditions" && canal(mnl, "airline_philippine", "hold")?.status === "accepted_with_conditions");
   /* MESURÉ : la cabine FurPAL est citée (vols intérieurs), mais une règle héritée non citée la
      ferme (`rule_philippine_cabin_deny`) : le moteur garde « à confirmer » et nomme la règle,
      même sur Manille → Cebu. Dette nommée : cette règle contredit la citation, elle est à relire. */

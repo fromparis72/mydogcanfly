@@ -59,7 +59,6 @@ ladder:
       pt: "somente voo direto"
 policies:
   cabin:
-    # TARIFS OFFICIELS — audit indépendant du 2026-09-10 ; aucune valeur héritée réactivée.
     fares:
       - id: fare_condor_cabin_eur_2026_09_10
         placement: cabin
@@ -83,8 +82,18 @@ policies:
           quote_language: de
           locator: Prices and registration
     availability: offered
+    source:
+      url: https://www.condor.com/de/flug-vorbereiten/gepaeck-tiere/tierbefoerderung/tiere-in-der-kabine.jsp
+      source_type: official_website
+      verified_date: 2026-09-12
+      review_due: 2026-12-11
+      confidence: 4
+      reviewer: Codex — contre-lecture du dossier officiel national
+      history: []
+      quote: pro Transportbox nur ein Tier transportiert wird und die Box inklusive Tier maximal 8 kg wiegen darf.
+      quote_language: de
+      locator: corps de page
   hold:
-    # TARIFS OFFICIELS — audit indépendant du 2026-09-10 ; aucune valeur héritée réactivée.
     fares:
       - id: fare_condor_hold_eur_2026_09_10
         placement: hold
@@ -108,9 +117,19 @@ policies:
           quote_language: en
           locator: Pet transport fees
     availability: offered
+    source:
+      url: https://www.condor.com/de/flug-vorbereiten/gepaeck-tiere/tierbefoerderung/tiere-im-frachtraum.jsp
+      source_type: official_website
+      verified_date: 2026-09-12
+      review_due: 2026-12-11
+      confidence: 4
+      reviewer: Codex — contre-lecture du dossier officiel national
+      history: []
+      quote: 80 cm Länge x 55 cm Breite x 100 cm Höhe
+      quote_language: de
+      locator: corps de page
   cargo:
     review_state: legacy_unreviewed
-    # dette éditoriale scellée (T0-B2) : aucun canal visible ne décrit ce placement
 channels:
   - placement: cabin
     icon: 🐾

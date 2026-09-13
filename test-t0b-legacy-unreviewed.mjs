@@ -312,8 +312,10 @@ console.log("=== 7. T0-B2 : la migration est FAITE, et la forme héritée est in
   /* MOUVEMENT NOMMÉ (12/09/2026, lot de 30 compagnies) : 110 → 102 ; huit canaux quittent
      `legacy_unreviewed` sur une citation officielle nominativement figée par le harnais de
      frontière de confiance. */
-  check("102 politiques émettent legacy_unreviewed après le lot de 30 compagnies",
-    porteuses === 102, String(porteuses));
+  /* MOUVEMENT NOMMÉ (13/09/2026, vague de 31 dossiers) : 102 → 88 ; quatorze canaux quittent
+     `legacy_unreviewed` sur une citation officielle. */
+  check("88 politiques émettent legacy_unreviewed après la vague de 31 dossiers",
+    porteuses === 88, String(porteuses));
   /* 05/09/2026 — 33 → 32. British Airways cabine quitte ce groupe : sa page officielle porte
      désormais la phrase, et la politique devient le premier `denied` prouvé du dépôt. Chaque
      citation suivante fera baisser ce compte, et devra le nommer comme celle-ci. */

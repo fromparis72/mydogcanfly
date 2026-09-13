@@ -1898,12 +1898,16 @@ console.log("=== Couverture DIRECTE : les 302 politiques, hors des 72 scénarios
      Finnair soute, LOT cabine/soute, Royal Air Maroc cabine/soute, Singapore soute) et quatre
      deviennent `denied` (Delta soute, JetBlue soute, United soute, Vueling cabine). Huit causes
      `legacy_unreviewed` et trois `official_source_unquoted` disparaissent. */
-  check("répartition runtime : 0 allowed · 151 sous conditions · 37 denied · 114 à confirmer",
-    !parStatut.allowed && parStatut.accepted_with_conditions === 151 && parStatut.denied === 37 && parStatut.confirmation_required === 114,
+  /* MOUVEMENT NOMMÉ (13/09/2026, vague de 31 dossiers — annexe lot-31-compagnies-20260913) :
+     quatorze politiques gagnent une citation opposable. Huit deviennent
+     `accepted_with_conditions`, trois `denied`, trois `case_by_case`; quatorze causes
+     `legacy_unreviewed` disparaissent et `airline_approval` passe de 1 à 4. */
+  check("répartition runtime : 0 allowed · 159 sous conditions · 40 denied · 103 à confirmer",
+    !parStatut.allowed && parStatut.accepted_with_conditions === 159 && parStatut.denied === 40 && parStatut.confirmation_required === 103,
     JSON.stringify(parStatut));
-  check("causes : 102 legacy_unreviewed · 11 official_source_unquoted · 0 policy_unpublished · 1 airline_approval",
-    parCause.legacy_unreviewed === 102 && parCause.official_source_unquoted === 11
-      && !parCause.policy_unpublished && parCause.airline_approval === 1, JSON.stringify(parCause));
+  check("causes : 88 legacy_unreviewed · 11 official_source_unquoted · 0 policy_unpublished · 4 airline_approval",
+    parCause.legacy_unreviewed === 88 && parCause.official_source_unquoted === 11
+      && !parCause.policy_unpublished && parCause.airline_approval === 4, JSON.stringify(parCause));
 }
 
 console.log("=== Contre-épreuve N/N+1 : la baseline survit au passage des années ===");

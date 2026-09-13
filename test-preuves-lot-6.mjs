@@ -97,6 +97,30 @@ console.log("=== Étage 1 — 22 faits relus, 21 dans la donnée à l'octet prè
           && proj?.status === "accepted_with_conditions", `${s.verified_date} → ${s.review_due}`);
       continue;
     }
+    if (f.airline_id === "airline_south_african_airways") {
+      /* MOUVEMENT NOMMÉ (12/09/2026, source nationale actuelle) : le lot exhaustif
+         remplace la lecture du lot 6 par trois citations actuelles. La cabine et le
+         fret gardent leur verdict. La soute est désormais explicitement circonscrite
+         au réseau intérieur et soumise à accord : le modèle la projette donc
+         `confirmation_required/airline_approval`, jamais comme un oui réseau entier. */
+      const citationAttendue = f.placement === "hold"
+        ? "The specifications of cage shall not exceed 1m X 1m & maximum weight of 23kg. (Cages larger than the required specification shall be transported as cargo). Your pet's original vaccination and rabies certificate must be present at the time of pet check-in."
+        : f.quote;
+      check(`${cle} (LOT6[${f.index}]) : source nationale relue le 12/09, canal conservé ou soute circonscrite`,
+        !!pol && s.quote === citationAttendue && s.quote_language === "en" && s.verified_date === "2026-09-12",
+        JSON.stringify({ attendu: citationAttendue, lu: s.quote }));
+      check(`  …review_due calculé par reviewDueFrom (2026-12-11)`,
+        s.review_due === reviewDueFrom(s.verified_date ?? "", "airline") && s.review_due === "2026-12-11",
+        `${s.verified_date} → ${s.review_due}`);
+      const attendu = f.placement === "cabin" ? "denied" : f.placement === "hold" ? "confirmation_required" : "accepted_with_conditions";
+      check(`  …projeté ${attendu}${f.placement === "hold" ? " — cas par cas, réseau intérieur seulement" : ""}`,
+        proj?.status === attendu && (f.placement !== "hold" || proj?.status_cause === "airline_approval"),
+        JSON.stringify({ status: proj?.status, cause: proj?.status_cause }));
+      check(`  …aucun plafond général écrit depuis une règle limitée à la soute intérieure`,
+        pol?.weight_includes_carrier === undefined && pol?.max_weight_kg === undefined,
+        JSON.stringify({ max: pol?.max_weight_kg, incl: pol?.weight_includes_carrier }));
+      continue;
+    }
     /* MOUVEMENT NOMMÉ (12/09/2026, source nationale actuelle) : Aeromexico conserve
        mot pour mot les deux lignes de politique du lot 6, mais quitte le sous-domaine
        beta pour la page publique www et reçoit la nouvelle date de lecture. */
@@ -219,8 +243,11 @@ console.log("\n=== Étage 2 — Paris → Riyad, Pékin, Nairobi, Amman ; Johann
     canal(bah, "airline_gulf_air", "cabin")?.status === "denied" && canal(bah, "airline_gulf_air", "hold")?.status === "denied" && canal(bah, "airline_gulf_air", "cargo")?.status === "accepted_with_conditions");
   check("Gulf Air, Cavalier 6 kg : cabine et soute refusées aussi", canal(bahC, "airline_gulf_air", "cabin")?.status === "denied" && canal(bahC, "airline_gulf_air", "hold")?.status === "denied");
   const cpt = decide("airport_jnb", "airport_cpt", GOLDEN_32), cptC = decide("airport_jnb", "airport_cpt", CAVALIER_6);
-  check("South African Airways, Golden 32 kg (Johannesburg → Le Cap) : cabine refusée, soute et fret RÉACTIVÉS → sous conditions",
-    canal(cpt, "airline_south_african_airways", "cabin")?.status === "denied" && canal(cpt, "airline_south_african_airways", "hold")?.status === "accepted_with_conditions" && canal(cpt, "airline_south_african_airways", "cargo")?.status === "accepted_with_conditions");
+  check("South African Airways, Golden 32 kg (Johannesburg → Le Cap) : cabine refusée, soute à confirmer sur accord, fret sous conditions",
+    canal(cpt, "airline_south_african_airways", "cabin")?.status === "denied"
+      && canal(cpt, "airline_south_african_airways", "hold")?.status === "confirmation_required"
+      && canal(cpt, "airline_south_african_airways", "hold")?.confirmation_causes?.some((x) => x.code === "airline_approval")
+      && canal(cpt, "airline_south_african_airways", "cargo")?.status === "accepted_with_conditions");
   check("South African Airways, Cavalier 6 kg : cabine refusée aussi (« No pets permitted in Cabin. »)", canal(cptC, "airline_south_african_airways", "cabin")?.status === "denied");
   const amm = decide("airport_cdg", "airport_amm", GOLDEN_32), ammC = decide("airport_cdg", "airport_amm", CAVALIER_6);
   check("Royal Jordanian cabine, Cavalier 6 kg : sous conditions SANS plafond (7 kg non écrit) ; soute, Golden 32 kg : sous conditions ; fret non décidé → à confirmer",

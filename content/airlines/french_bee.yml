@@ -63,8 +63,30 @@ ladder:
     sub: "> 75 kg"
 policies:
   cabin:
-    # TARIFS OFFICIELS — audit indépendant du 2026-09-10 ; aucune valeur héritée réactivée.
     fares:
+      - id: fare_french_bee_cabin_eur_xpf_2026_09_12
+        placement: cabin
+        price:
+          kind: exact
+          amounts:
+            - amount: 75
+              currency: EUR
+            - amount: 8950
+              currency: XPF
+        billing_subject: pet_or_container
+        journey_basis: per_journey
+        scope_label: Marchés EUR/XPF · non remboursable
+        source:
+          url: https://www.frenchbee.com/fr/preparer-voyage/avant-le-vol/animaux
+          source_type: official_website
+          verified_date: 2026-09-12
+          review_due: 2026-12-11
+          confidence: 4
+          reviewer: Codex — contre-lecture du dossier officiel national
+          history: []
+          quote: "Tarif forfaitaire : 75€ / 8950XPF par trajet, non remboursable."
+          quote_language: fr
+          locator: sections « Informations et tarifs d'un animal en cabine » et « Informations et tarifs d'un animal en soute »
       - id: fare_french_bee_cabin_usd_2026_09_10
         placement: cabin
         price:
@@ -87,23 +109,42 @@ policies:
           quote_language: en
           locator: Pets in cabin
     availability: offered
-    # PREUVE IMPORTÉE — import strict lot7 (Codex, lecture directe du 2026-09-09, cohorte LOT7 fait 15).
-    # Effet attendu : French Bee cabin is a documented conditional route.
-    # Portée nommée : One dog or cat per passenger, with the carrier and all route, weight, breed, health, reservation and documentation conditions satisfied.
     source:
-      url: "https://support.frenchbee.com/hc/fr/articles/4408189999633-Quel-type-de-sac-pour-mon-animal-en-cabine"
+      url: https://www.frenchbee.com/fr/preparer-voyage/avant-le-vol/animaux
       source_type: official_website
-      verified_date: "2026-09-09"
-      review_due: "2026-12-08"   # reviewDueFrom(verified_date, "airline") — calculé par l'importeur
+      verified_date: 2026-09-12
+      review_due: 2026-12-11
       confidence: 4
-      reviewer: "Codex — direct reading of official airline page"
+      reviewer: Codex — contre-lecture du dossier officiel national
       history: []
-      quote: "En cabine vous avez le droit de transporter un chien ou chat par passager."
+      quote: Les chiens et les chats d'un poids maximum de 8kg contenant compris.
       quote_language: fr
-      locator: "Quel type de sac pour mon animal en cabine ?"
+      locator: sections « Voyage des animaux en cabine › Conditions d'acceptation de l'animal » et « Règles de transport d'un animal en cabine › Sac de transport »
   hold:
-    # TARIFS OFFICIELS — audit indépendant du 2026-09-10 ; aucune valeur héritée réactivée.
     fares:
+      - id: fare_french_bee_hold_eur_xpf_2026_09_12
+        placement: hold
+        price:
+          kind: exact
+          amounts:
+            - amount: 150
+              currency: EUR
+            - amount: 17900
+              currency: XPF
+        billing_subject: container
+        journey_basis: per_journey
+        scope_label: Marchés EUR/XPF · non remboursable
+        source:
+          url: https://www.frenchbee.com/fr/preparer-voyage/avant-le-vol/animaux
+          source_type: official_website
+          verified_date: 2026-09-12
+          review_due: 2026-12-11
+          confidence: 4
+          reviewer: Codex — contre-lecture du dossier officiel national
+          history: []
+          quote: "Tarif forfaitaire : 150€ / 17900XPF par trajet, non remboursable."
+          quote_language: fr
+          locator: sections « Informations et tarifs d'un animal en cabine » et « Informations et tarifs d'un animal en soute »
       - id: fare_french_bee_hold_usd_2026_09_10
         placement: hold
         price:
@@ -126,22 +167,18 @@ policies:
           quote_language: en
           locator: Pets in hold
     availability: offered
-    # PREUVE IMPORTÉE — import strict lot7 (Codex, lecture directe du 2026-09-09, cohorte LOT7 fait 16).
-    # Effet attendu : French Bee hold is conditional and does not apply to brachycephalic dogs.
-    # Portée nommée : Dogs and cats may travel in hold subject to weight, size, breed, crate, route and documentation conditions; brachycephalic animals are excluded.
     source:
-      url: "https://support.frenchbee.com/hc/fr/articles/360039534611-Puis-je-faire-voyager-mon-animal-avec-moi-dans-l-avion"
+      url: https://www.frenchbee.com/fr/preparer-voyage/avant-le-vol/animaux
       source_type: official_website
-      verified_date: "2026-09-09"
-      review_due: "2026-12-08"   # reviewDueFrom(verified_date, "airline") — calculé par l'importeur
+      verified_date: 2026-09-12
+      review_due: 2026-12-11
       confidence: 4
-      reviewer: "Codex — direct reading of official airline page"
+      reviewer: Codex — contre-lecture du dossier officiel national
       history: []
-      quote: "Ils peuvent voyager en soute sous certaines conditions"
+      quote: Le poids maximum autorisé pour le transport des AVIH (animal en soute) sur les vols est de 75KG (poids de l'animal et cage inclus), au delà, le transport doit se faire par fret.
       quote_language: fr
-      locator: "Puis-je faire voyager mon animal avec moi dans l’avion ?"
+      locator: sections « Transport par FRET » et « Références des cages et leurs dimensions »
   cargo:
-    # TARIFS OFFICIELS — audit indépendant du 2026-09-10 ; aucune valeur héritée réactivée.
     fares:
       - id: fare_french_bee_cargo_2026_09_10
         placement: cargo

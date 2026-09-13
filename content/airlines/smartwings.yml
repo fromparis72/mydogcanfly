@@ -55,167 +55,84 @@ ladder:
     sub: 8–32 kg
 policies:
   cabin:
-    # TARIFS OFFICIELS — audit indépendant du 2026-09-10 ; aucune valeur héritée réactivée.
     fares:
-      - id: fare_smartwings_cabin_eur_2026_09_10
+      - id: fare_smartwings_cabin_2026_09_12
         placement: cabin
         price:
           kind: exact
           amounts:
             - amount: 120
               currency: EUR
-        billing_subject: pet
-        journey_basis: per_segment
-        scope_label: Per eligible flight leg
-        source:
-          url: https://www.smartwings.com/en/fees-and-charges/?layout=default
-          source_type: official_website
-          verified_date: 2026-09-10
-          review_due: 2026-12-09
-          confidence: 4
-          reviewer: Codex — lecture directe de la source officielle
-          history: []
-          quote: EUR 120 / USD 144 / CZK 3000
-          quote_language: en
-          locator: Animals in cabin
-      - id: fare_smartwings_cabin_usd_2026_09_10
-        placement: cabin
-        price:
-          kind: exact
-          amounts:
             - amount: 144
               currency: USD
-        billing_subject: pet
-        journey_basis: per_segment
-        scope_label: Per eligible flight leg
-        source:
-          url: https://www.smartwings.com/en/fees-and-charges/?layout=default
-          source_type: official_website
-          verified_date: 2026-09-10
-          review_due: 2026-12-09
-          confidence: 4
-          reviewer: Codex — lecture directe de la source officielle
-          history: []
-          quote: EUR 120 / USD 144 / CZK 3000
-          quote_language: en
-          locator: Animals in cabin
-      - id: fare_smartwings_cabin_czk_2026_09_10
-        placement: cabin
-        price:
-          kind: exact
-          amounts:
             - amount: 3000
               currency: CZK
         billing_subject: pet
-        journey_basis: per_segment
-        scope_label: Per eligible flight leg
+        journey_basis: per_one_way
         source:
-          url: https://www.smartwings.com/en/fees-and-charges/?layout=default
+          url: https://www.smartwings.com/poplatky-za-doplnkove-sluzby
           source_type: official_website
-          verified_date: 2026-09-10
-          review_due: 2026-12-09
+          verified_date: 2026-09-12
+          review_due: 2026-12-11
           confidence: 4
-          reviewer: Codex — lecture directe de la source officielle
+          reviewer: Codex — contre-lecture du dossier officiel national
           history: []
-          quote: EUR 120 / USD 144 / CZK 3000
-          quote_language: en
-          locator: Animals in cabin
+          quote: |-
+            DRUH SLUŽBY | CENA
+            Kód | Popis služby | EUR | USD1/ | CZK
+            PETC2/ Živé zvíře přepravované v kabině pro cestující (1 ks/ max. do 8 kg / směr) 120 144 3 000
+          quote_language: cs
+          locator: tableau « Cenik doplnkovych sluzeb », colonnes « Kod | Popis sluzby | EUR | USD1/ | CZK », ligne PETC
     availability: offered
-    # PREUVE IMPORTÉE — import strict lot8 (Codex, lecture directe du 2026-09-09, cohorte LOT8 fait 21).
-    # Effet attendu : Smartwings cabin is a documented conditional route with an 8 kg combined ceiling.
-    # Portée nommée : Dogs and cats up to 8 kg including the crate, subject to prior approval, route, operating carrier, quota, container, health and documentation restrictions.
     source:
-      url: "https://www.smartwings.com/en/fees-and-charges/?layout=default"
+      url: https://www.smartwings.com/en/fees-and-charges/?layout=default
       source_type: official_website
-      verified_date: "2026-09-09"
-      review_due: "2026-12-08"   # reviewDueFrom(verified_date, "airline") — calculé par l'importeur
+      verified_date: 2026-09-09
+      review_due: 2026-12-08
       confidence: 4
-      reviewer: "Codex — direct reading of official airline page"
+      reviewer: Codex — direct reading of official airline page
       history: []
-      quote: "Pet in cabin (1 piece up to 8 kg / leg)"
+      quote: Pet in cabin (1 piece up to 8 kg / leg)
       quote_language: en
-      locator: "Fees and charges → Price list of additional services → PETC"
+      locator: Fees and charges → Price list of additional services → PETC
   hold:
-    # TARIFS OFFICIELS — audit indépendant du 2026-09-10 ; aucune valeur héritée réactivée.
     fares:
-      - id: fare_smartwings_hold_eur_2026_09_10
+      - id: fare_smartwings_hold_2026_09_12
         placement: hold
         price:
           kind: exact
           amounts:
             - amount: 220
               currency: EUR
-        billing_subject: pet
-        journey_basis: per_segment
-        scope_label: Per eligible flight leg
-        source:
-          url: https://www.smartwings.com/en/fees-and-charges/?layout=default
-          source_type: official_website
-          verified_date: 2026-09-10
-          review_due: 2026-12-09
-          confidence: 4
-          reviewer: Codex — lecture directe de la source officielle
-          history: []
-          quote: EUR 220 / USD 263 / CZK 5500
-          quote_language: en
-          locator: Animals in hold
-      - id: fare_smartwings_hold_usd_2026_09_10
-        placement: hold
-        price:
-          kind: exact
-          amounts:
             - amount: 263
               currency: USD
-        billing_subject: pet
-        journey_basis: per_segment
-        scope_label: Per eligible flight leg
-        source:
-          url: https://www.smartwings.com/en/fees-and-charges/?layout=default
-          source_type: official_website
-          verified_date: 2026-09-10
-          review_due: 2026-12-09
-          confidence: 4
-          reviewer: Codex — lecture directe de la source officielle
-          history: []
-          quote: EUR 220 / USD 263 / CZK 5500
-          quote_language: en
-          locator: Animals in hold
-      - id: fare_smartwings_hold_czk_2026_09_10
-        placement: hold
-        price:
-          kind: exact
-          amounts:
             - amount: 5500
               currency: CZK
         billing_subject: pet
-        journey_basis: per_segment
-        scope_label: Per eligible flight leg
+        journey_basis: per_one_way
         source:
-          url: https://www.smartwings.com/en/fees-and-charges/?layout=default
+          url: https://www.smartwings.com/poplatky-za-doplnkove-sluzby
           source_type: official_website
-          verified_date: 2026-09-10
-          review_due: 2026-12-09
+          verified_date: 2026-09-12
+          review_due: 2026-12-11
           confidence: 4
-          reviewer: Codex — lecture directe de la source officielle
+          reviewer: Codex — contre-lecture du dossier officiel national
           history: []
-          quote: EUR 220 / USD 263 / CZK 5500
-          quote_language: en
-          locator: Animals in hold
+          quote: AVIH2/ Živé zvíře přepravované v nákladovém prostoru (1 ks / max. do 32 kg / směr) 220 263 5 500
+          quote_language: cs
+          locator: meme tableau, ligne AVIH
     availability: offered
-    # PREUVE IMPORTÉE — import strict lot8 (Codex, lecture directe du 2026-09-09, cohorte LOT8 fait 22).
-    # Effet attendu : Smartwings hold is a documented conditional route with a 32 kg combined ceiling.
-    # Portée nommée : Animal in hold up to 32 kg including the box, subject to prior approval, route, operating carrier, aircraft, capacity, container, health and documentation restrictions.
     source:
-      url: "https://www.smartwings.com/en/fees-and-charges/?layout=default"
+      url: https://www.smartwings.com/en/fees-and-charges/?layout=default
       source_type: official_website
-      verified_date: "2026-09-09"
-      review_due: "2026-12-08"   # reviewDueFrom(verified_date, "airline") — calculé par l'importeur
+      verified_date: 2026-09-09
+      review_due: 2026-12-08
       confidence: 4
-      reviewer: "Codex — direct reading of official airline page"
+      reviewer: Codex — direct reading of official airline page
       history: []
-      quote: "Animal in hold (1 piece up to 32 kg / leg)"
+      quote: Animal in hold (1 piece up to 32 kg / leg)
       quote_language: en
-      locator: "Fees and charges → Price list of additional services → AVIH"
+      locator: Fees and charges → Price list of additional services → AVIH
 channels:
   - placement: cabin
     icon: 🐾

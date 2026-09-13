@@ -694,10 +694,13 @@ console.log("\n=== 14. L'import réel ne peut plus retomber silencieusement à z
     if (Array.isArray(p.fares) && p.fares.length) { avecTarifs++; lignesTarifaires += p.fares.length; compagnies.add(a.id); }
     if (Array.isArray(p.fare_conflicts) && p.fare_conflicts.length) avecConflits++;
   }
-  /* MOUVEMENT NOMMÉ (12/09/2026) : les deux grilles cabine Aeromexico
-     documentées par la page nationale ajoutent 2 lignes, 1 canal et 1 compagnie. */
-  check("l'import verrouillé porte exactement 232 lignes sur 127 canaux et 74 compagnies — le lot officiel du 12 septembre traverse sans perte",
-    avecTarifs === 127 && lignesTarifaires === 232 && compagnies.size === 74,
+  /* MOUVEMENT NOMMÉ (13/09/2026, vague exhaustive) : les variantes d'une même
+     grille sont regroupées par portée dans un tarif multidevise ou une fourchette,
+     et sept canaux insuffisamment prouvés sont retirés (Edelweiss 2, Garuda 1,
+     Royal Jordanian 2, SKY express 2). La baisse du nombre de lignes est donc
+     attendue et opposable ; aucun montant n'est perdu par l'ingestion. */
+  check("l'import verrouillé porte exactement 214 lignes sur 120 canaux et 70 compagnies — consolidation et retraits nommés traversent sans perte",
+    avecTarifs === 120 && lignesTarifaires === 214 && compagnies.size === 70,
     `${lignesTarifaires} ligne(s), ${avecTarifs} canal(aux), ${compagnies.size} compagnie(s)`);
   const airFrance = objets.airlines.find((a) => a.id === "airline_air_france")?.premium?.policy;
   const montantsUniques = (p, currency) => [...new Set((p?.fares ?? []).flatMap((f) =>
@@ -810,8 +813,8 @@ console.log("\n=== 14. L'import réel ne peut plus retomber silencieusement à z
   check("Delta : les tarifs Amériques à 150 USD/CAD et international à 200 USD/CAD/EUR traversent ensemble",
     JSON.stringify(montants(delta)) === JSON.stringify(["CAD:150", "CAD:200", "EUR:200", "USD:150", "USD:200"]), JSON.stringify(montants(delta)));
   const ibx = objets.airlines.find((a) => a.id === "airline_iberia_express")?.premium?.policy?.cabin;
-  check("Iberia Express : le dollar suffixé de « 40€/50$/35£ » reste rattaché à l'USD",
-    JSON.stringify(montants(ibx)) === JSON.stringify(["EUR:40", "GBP:35", "USD:50"]), JSON.stringify(montants(ibx)));
+  check("Iberia Express : les trois devises gardent chacune leurs deux bornes — aucun dollar suffixé n'est rattaché à l'euro",
+    JSON.stringify(montants(ibx)) === JSON.stringify(["EUR:180", "EUR:40", "GBP:165", "GBP:35", "USD:210", "USD:50"]), JSON.stringify(montants(ibx)));
   check("…ni aucun conflit tarifaire", avecConflits === 0, `${avecConflits} politique(s) portent déjà un conflit`);
 }
 

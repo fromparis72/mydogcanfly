@@ -335,8 +335,11 @@ console.log("\n=== 5. Dominance : denied > confirmation_required — interaction
      fausse cause « politique sans preuve ». Total 44 inchangé, provenance 29 → 28, race inchangée. */
   /* MOUVEMENT NOMMÉ (12/09/2026, lot 30) : trois politiques du trajet reçoivent leur citation
      officielle ; 44 → 42 confirmations, 28 → 25 de provenance. La règle seule Air Algérie demeure. */
-  check("carlin : 42 confirmations — 25 de provenance, 38 de race, 1 par règle non citée seule, aucune inexpliquée",
-    confirmations.length === 42 && provenance === 25 && race === 38 && parRegleSeule.length === 1 && inexpliquees.length === 0,
+  /* MOUVEMENT NOMMÉ (13/09/2026, lot de 31 dossiers) : airBaltic fret et les fermetures
+     Eurowings reçoivent leur phrase officielle. 42 → 41 confirmations et 25 → 22 causes de
+     provenance ; les 38 causes de race et la règle seule Air Algérie restent inchangées. */
+  check("carlin : 41 confirmations — 22 de provenance, 38 de race, 1 par règle non citée seule, aucune inexpliquée",
+    confirmations.length === 41 && provenance === 22 && race === 38 && parRegleSeule.length === 1 && inexpliquees.length === 0,
     `${confirmations.length} confirmation(s), dont ${race} de race et ${provenance} de provenance, ${inexpliquees.length} inexpliquée(s), sur ${tousLesCanaux.length} canaux`);
 }
 

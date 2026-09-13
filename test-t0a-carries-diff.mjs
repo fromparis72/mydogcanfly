@@ -46,7 +46,10 @@ const WRITE = process.argv.includes("--write");
    nouvellement cités deviennent `accepted_with_conditions` (American soute, Finnair soute,
    LOT cabine/soute, Royal Air Maroc cabine/soute, Singapore soute) et rendent le témoin hérité
    vrai sur 1 650 couples supplémentaires. Les quatre nouveaux refus cités ne l'ouvrent pas. */
-const TEMOIN_VRAI_V3 = 30780;
+/* MOUVEMENT NOMMÉ (13/09/2026, vague de 31 dossiers — annexe lot-31-compagnies-20260913) :
+   30 780 → 31 941. Les nouvelles citations ouvrent huit politiques sous conditions ; les
+   refus et les trois arbitrages `case_by_case` n'ouvrent aucun canal. */
+const TEMOIN_VRAI_V3 = 31941;
 /**
  * T0-B2 — la sonde vivante compare désormais au fichier DE CE LOT.
  *

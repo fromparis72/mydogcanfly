@@ -71,6 +71,16 @@ const STALE_VERSES = new Set([
 const DECISIONS_POST_MIGRATION = new Set([
   "airline_virgin_australia|cabin",
   "airline_garuda_indonesia|cabin",
+  /* MOUVEMENT NOMMÉ (13/09/2026, vague de 31 dossiers officiels) : ces six décisions
+     postérieures à T0-B2 sont scellées par identité. Batik Air Malaysia revient à l'état
+     non revérifié faute de politique publiée ; China Southern cabine et Volotea soute passent
+     en `case_by_case` à cause de contradictions officielles ; Volotea fret reste non publié. */
+  "airline_batik_air_malaysia|cabin",
+  "airline_batik_air_malaysia|hold",
+  "airline_batik_air_malaysia|cargo",
+  "airline_china_southern|cabin",
+  "airline_volotea|hold",
+  "airline_volotea|cargo",
   /* Correctif d'arbitrages (09/09/2026, Codex, tranché par Philippe) : Thai Airways fret passe d'`undocumented` (décision
      auditée du manifeste, « contactez Cargo ») à `offered` sur la page THAI Cargo. L'observation de migration reste
      intacte ; la valeur courante est admise ici par identité, et `test-t0b-legacy-unreviewed.mjs` (7 bis) exige que la
@@ -137,6 +147,9 @@ const REACTIVEES_SUR_CITATION = new Set([
   "airline_km_malta|cargo",
   "airline_sky_express|hold",
   "airline_sunexpress|hold",
+  /* Vague du 13/09/2026 : les pages nationales publient désormais le fret airBaltic et TUI. */
+  "airline_airbaltic|cargo",
+  "airline_tui_airways|cargo",
   /* Lot 9 (09/09/2026), clôture : Aerolíneas Argentinas fret (« Aerolineas Cargo ofrece transporte de
      mascotas… »), Air Astana fret (« …исключительно по грузовой авианакладной », portée : destinations où le
      bagage est interdit), Edelweiss fret (« …transported unaccompanied as freight. »), TAROM soute (« …more
@@ -255,7 +268,10 @@ for (const r of rows) {
        admise est celle de l'arbitrage. Nominativement, et pour cette seule ligne. */
     /* MOUVEMENT NOMMÉ (10/09/2026, annexe 37) : l'exception Bangkok (`case_by_case` admis) est RETIRÉE — la fiche est revenue à
        `offered`, citée, avec ses trois règles géographiques ; la ligne est admise comme toute autre réactivation sur citation. */
-    const dispoAdmise = p.availability === "offered" || p.availability === "not_offered";
+    /* South African Airways soute publie une offre limitée au réseau intérieur : la portée
+       n'étant pas entièrement exécutable ici, la décision prudente et citée est `case_by_case`. */
+    const caseByCaseCite = k === "airline_south_african_airways|hold" && p.availability === "case_by_case";
+    const dispoAdmise = p.availability === "offered" || p.availability === "not_offered" || caseByCaseCite;
     if (!(dispoAdmise && citee(p))) err(`ligne réactivée SANS sa preuve: ${k} → availability=${p.availability}, citée=${citee(p)}`);
     continue;
   }

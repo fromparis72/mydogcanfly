@@ -664,9 +664,13 @@ ok(`départ : ${pages.length} pages construites`);
          aucun de ses trois canaux n'est cité, l'ouverture synthétique ne recouvre donc aucune
          preuve. Le porteur changera encore le jour où un lot citera la soute de LOT : ce sera un
          mouvement nommé, pas un abaissement. */
+      /* RE-FONDÉE UNE TROISIÈME FOIS (13/09/2026, vagues exhaustives) : la soute LOT est
+         désormais citée et l'ouverture synthétique produisait `111`. Mesure sur les quatre
+         trajets du témoin : Air Serbia produit `101` sur CDG→JFK pour le bichon, tandis
+         qu'American reste libre d'exercer le `101` CONDITIONNEL réel. */
       if (id === "airline_air_france") return [id, ouvre(["cabin", "hold", "cargo"])];   // 111
       if (id === "airline_klm") return [id, ouvre(["cabin", "hold"])];                   // 110
-      if (id === "airline_lot") return [id, ouvre(["cabin", "cargo"])];                  // 101
+      if (id === "airline_air_serbia") return [id, ouvre(["cabin", "cargo"])];          // 101
       if (id === "airline_swiss") return [id, ouvre(["hold", "cargo"])];                 // 011
       return [id, a];
     })),
