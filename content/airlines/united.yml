@@ -131,6 +131,17 @@ policies:
       locator: Traveling with pets · PetSafe program
   cargo:
     availability: not_offered
+    source:
+      url: https://www.united.com/en/us/fly/travel/traveling-with-pets.html
+      source_type: official_website
+      verified_date: 2026-09-12
+      review_due: 2026-12-11
+      confidence: 4
+      reviewer: Codex — contrôle du dossier officiel fret rev2 remis par Philippe
+      history: []
+      quote: "We no longer let you check your pets through the PetSafe program. Pets can only fly in cargo when traveling with certain active-duty military or State Department employees."
+      quote_language: en
+      locator: "section « Getting ready »"
 channels:
   - placement: cabin
     icon: 🐾

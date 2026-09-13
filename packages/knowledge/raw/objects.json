@@ -20302,7 +20302,13 @@
             "derived_from_fiche": true
           },
           "cargo": {
-            "review_state": "legacy_unreviewed",
+            "availability": "case_by_case",
+            "conditions": {
+              "en": "IAG Cargo handles pets through Pet Air UK for departures from the United Kingdom; availability on other routes must be confirmed.",
+              "fr": "IAG Cargo prend en charge les animaux via Pet Air UK au départ du Royaume-Uni ; la disponibilité sur les autres routes doit être confirmée.",
+              "es": "IAG Cargo gestiona las mascotas mediante Pet Air UK desde el Reino Unido; la disponibilidad en las demás rutas debe confirmarse.",
+              "pt": "A IAG Cargo trata dos animais através da Pet Air UK nas partidas do Reino Unido; a disponibilidade nas outras rotas deve ser confirmada."
+            },
             "fares": [
               {
                 "id": "fare_aer_lingus_cargo_2026_09_10",
@@ -20329,15 +20335,17 @@
               }
             ],
             "source": {
-              "url": "https://www.aerlingus.com",
+              "url": "https://www.iagcargo.com/es/products/pets/",
               "source_type": "official_website",
-              "verified_date": "2026-07-11",
-              "review_due": "2026-10-09",
-              "confidence": 3,
-              "reviewer": "MyDogCanFly Data Team (derived from fiche)",
-              "history": []
+              "verified_date": "2026-09-12",
+              "review_due": "2026-12-11",
+              "confidence": 4,
+              "reviewer": "Codex — contrôle du dossier officiel fret rev2 remis par Philippe",
+              "history": [],
+              "quote": "Nos hemos asociado con Pet Air UK para cuidar de todas las mascotas que salen del Reino Unido.",
+              "quote_language": "es",
+              "locator": "section « ¿Vuela con tu mascota desde el Reino Unido? »"
             },
-            "source_derived": true,
             "derived_from_fiche": true
           }
         }
@@ -20417,50 +20425,396 @@
             "availability": "offered",
             "max_weight_kg": 9,
             "weight_includes_carrier": true,
+            "fares": [
+              {
+                "id": "fare_aerolineas_cabin_domestic_ars_2026_09_13",
+                "placement": "cabin",
+                "price": {
+                  "kind": "exact",
+                  "amounts": [
+                    {
+                      "amount": 54450,
+                      "currency": "ARS"
+                    }
+                  ]
+                },
+                "billing_subject": "container",
+                "journey_basis": "per_segment",
+                "scope_label": "Argentine hors Terre de Feu",
+                "source": {
+                  "url": "https://www.aerolineas.com.ar/en-us/useful-information/pets",
+                  "source_type": "official_website",
+                  "verified_date": "2026-09-13",
+                  "review_due": "2026-12-12",
+                  "confidence": 4,
+                  "reviewer": "Codex — lecture de la grille officielle capturée par Philippe",
+                  "history": [],
+                  "quote": "Dentro de Argentina (excepto Tierra del Fuego) $54.450",
+                  "quote_language": "es",
+                  "locator": "tarifs cabine → routes → Argentine hors Terre de Feu"
+                }
+              },
+              {
+                "id": "fare_aerolineas_cabin_tierra_del_fuego_ars_2026_09_13",
+                "placement": "cabin",
+                "price": {
+                  "kind": "exact",
+                  "amounts": [
+                    {
+                      "amount": 45000,
+                      "currency": "ARS"
+                    }
+                  ]
+                },
+                "billing_subject": "container",
+                "journey_basis": "per_segment",
+                "scope_label": "origine ou destination Terre de Feu",
+                "source": {
+                  "url": "https://www.aerolineas.com.ar/en-us/useful-information/pets",
+                  "source_type": "official_website",
+                  "verified_date": "2026-09-13",
+                  "review_due": "2026-12-12",
+                  "confidence": 4,
+                  "reviewer": "Codex — lecture de la grille officielle capturée par Philippe",
+                  "history": [],
+                  "quote": "Entre Origen / Destino Tierra del Fuego $45.000",
+                  "quote_language": "es",
+                  "locator": "tarifs cabine → routes → Terre de Feu"
+                }
+              },
+              {
+                "id": "fare_aerolineas_cabin_south_america_usd_2026_09_13",
+                "placement": "cabin",
+                "price": {
+                  "kind": "exact",
+                  "amounts": [
+                    {
+                      "amount": 150,
+                      "currency": "USD"
+                    }
+                  ]
+                },
+                "billing_subject": "container",
+                "journey_basis": "per_segment",
+                "scope_label": "Argentine, Brésil, Chili, Paraguay ou Uruguay ↔ Amérique du Sud",
+                "source": {
+                  "url": "https://www.aerolineas.com.ar/en-us/useful-information/pets",
+                  "source_type": "official_website",
+                  "verified_date": "2026-09-13",
+                  "review_due": "2026-12-12",
+                  "confidence": 4,
+                  "reviewer": "Codex — lecture de la grille officielle capturée par Philippe",
+                  "history": [],
+                  "quote": "Entre Argentina / Brasil / Chile / Paraguay / Uruguay y Sudamérica USD 150",
+                  "quote_language": "es",
+                  "locator": "tarifs cabine → routes → Amérique du Sud"
+                }
+              },
+              {
+                "id": "fare_aerolineas_cabin_colombia_europe_2026_09_13",
+                "placement": "cabin",
+                "price": {
+                  "kind": "exact",
+                  "amounts": [
+                    {
+                      "amount": 298,
+                      "currency": "USD"
+                    },
+                    {
+                      "amount": 238,
+                      "currency": "EUR"
+                    }
+                  ]
+                },
+                "billing_subject": "container",
+                "journey_basis": "per_segment",
+                "scope_label": "Colombie ↔ Europe",
+                "source": {
+                  "url": "https://www.aerolineas.com.ar/en-us/useful-information/pets",
+                  "source_type": "official_website",
+                  "verified_date": "2026-09-13",
+                  "review_due": "2026-12-12",
+                  "confidence": 4,
+                  "reviewer": "Codex — lecture de la grille officielle capturée par Philippe",
+                  "history": [],
+                  "quote": "Entre Colombia y Europa USD 298 / EUR 238",
+                  "quote_language": "es",
+                  "locator": "tarifs cabine → routes → Colombie et Europe"
+                }
+              },
+              {
+                "id": "fare_aerolineas_cabin_europe_south_america_2026_09_13",
+                "placement": "cabin",
+                "price": {
+                  "kind": "exact",
+                  "amounts": [
+                    {
+                      "amount": 250,
+                      "currency": "USD"
+                    },
+                    {
+                      "amount": 200,
+                      "currency": "EUR"
+                    }
+                  ]
+                },
+                "billing_subject": "container",
+                "journey_basis": "per_segment",
+                "scope_label": "Europe ↔ Amérique du Sud",
+                "source": {
+                  "url": "https://www.aerolineas.com.ar/en-us/useful-information/pets",
+                  "source_type": "official_website",
+                  "verified_date": "2026-09-13",
+                  "review_due": "2026-12-12",
+                  "confidence": 4,
+                  "reviewer": "Codex — lecture de la grille officielle capturée par Philippe",
+                  "history": [],
+                  "quote": "Entre Europa y Sudamérica USD 250 / EUR 200",
+                  "quote_language": "es",
+                  "locator": "tarifs cabine → routes → Europe et Amérique du Sud"
+                }
+              }
+            ],
             "source": {
-              "url": "https://portalar.aerolineas.com.ar/campus/pluginfile.php/9597/mod_resource/content/2/resumen_obligaciones.pdf",
+              "url": "https://www.aerolineas.com.ar/en-us/useful-information/pets",
               "source_type": "official_website",
-              "verified_date": "2026-09-09",
-              "review_due": "2026-12-08",
+              "verified_date": "2026-09-13",
+              "review_due": "2026-12-12",
               "confidence": 4,
-              "reviewer": "Codex — direct reading of official airline material",
-              "history": [],
-              "quote": "Se puede transportar solamente un perro o gato, de máx. 9 kilos en el contenedor correspondiente.",
-              "quote_language": "es",
-              "locator": "ANIMALES EN LA CABINA — page 4"
+              "reviewer": "Codex — lecture directe de la page officielle communiquée par Philippe",
+              "history": [
+                {
+                  "date": "2026-09-13",
+                  "reviewer": "Codex — remplacement du document interne par la page passagers officielle",
+                  "note": "Source précédente : PDF de formation interne lu le 2026-09-09."
+                }
+              ],
+              "quote": "The weight allowed is up to 9 (nine) kilograms, with pet carrier included.",
+              "quote_language": "en",
+              "locator": "Pets in the cabin → conditions"
             },
             "derived_from_fiche": true
           },
           "hold": {
             "availability": "offered",
+            "fares": [
+              {
+                "id": "fare_aerolineas_hold_domestic_small_ars_2026_09_13",
+                "placement": "hold",
+                "price": {
+                  "kind": "exact",
+                  "amounts": [
+                    {
+                      "amount": 229900,
+                      "currency": "ARS"
+                    }
+                  ]
+                },
+                "billing_subject": "container",
+                "journey_basis": "per_segment",
+                "scope_label": "intérieur hors Terre de Feu · caisse ≤ 60 × 40 × 45 cm",
+                "source": {
+                  "url": "https://www.aerolineas.com.ar/en-us/useful-information/pets",
+                  "source_type": "official_website",
+                  "verified_date": "2026-09-13",
+                  "review_due": "2026-12-12",
+                  "confidence": 4,
+                  "reviewer": "Codex — lecture de la grille officielle capturée par Philippe",
+                  "history": [],
+                  "quote": "ARS 229.900",
+                  "quote_language": "es",
+                  "locator": "tarifs soute → Argentine → caisse jusqu'à 60 × 40 × 45 cm"
+                }
+              },
+              {
+                "id": "fare_aerolineas_hold_domestic_large_ars_2026_09_13",
+                "placement": "hold",
+                "price": {
+                  "kind": "exact",
+                  "amounts": [
+                    {
+                      "amount": 338800,
+                      "currency": "ARS"
+                    }
+                  ]
+                },
+                "billing_subject": "container",
+                "journey_basis": "per_segment",
+                "scope_label": "intérieur hors Terre de Feu · caisse ≤ 100 × 70 × 80 cm",
+                "source": {
+                  "url": "https://www.aerolineas.com.ar/en-us/useful-information/pets",
+                  "source_type": "official_website",
+                  "verified_date": "2026-09-13",
+                  "review_due": "2026-12-12",
+                  "confidence": 4,
+                  "reviewer": "Codex — lecture de la grille officielle capturée par Philippe",
+                  "history": [],
+                  "quote": "ARS 338.800",
+                  "quote_language": "es",
+                  "locator": "tarifs soute → Argentine → caisse jusqu'à 100 × 70 × 80 cm"
+                }
+              },
+              {
+                "id": "fare_aerolineas_hold_south_america_small_usd_2026_09_13",
+                "placement": "hold",
+                "price": {
+                  "kind": "exact",
+                  "amounts": [
+                    {
+                      "amount": 330,
+                      "currency": "USD"
+                    }
+                  ]
+                },
+                "billing_subject": "container",
+                "journey_basis": "per_segment",
+                "scope_label": "Argentine, Brésil, Chili, Paraguay ou Uruguay → Amérique du Sud · petite caisse",
+                "source": {
+                  "url": "https://www.aerolineas.com.ar/en-us/useful-information/pets",
+                  "source_type": "official_website",
+                  "verified_date": "2026-09-13",
+                  "review_due": "2026-12-12",
+                  "confidence": 4,
+                  "reviewer": "Codex — lecture de la grille officielle capturée par Philippe",
+                  "history": [],
+                  "quote": "From Argentina, Brasil, Chile, Paraguay y Uruguay to Sudamérica — USD 330",
+                  "quote_language": "es",
+                  "locator": "tarifs soute → Amérique du Sud → jusqu'à 80 × 55 × 60 cm"
+                }
+              },
+              {
+                "id": "fare_aerolineas_hold_peru_long_large_usd_2026_09_13",
+                "placement": "hold",
+                "price": {
+                  "kind": "exact",
+                  "amounts": [
+                    {
+                      "amount": 1356,
+                      "currency": "USD"
+                    }
+                  ]
+                },
+                "billing_subject": "container",
+                "journey_basis": "per_segment",
+                "scope_label": "Pérou → République dominicaine, Mexique, Cuba ou États-Unis · grande caisse",
+                "source": {
+                  "url": "https://www.aerolineas.com.ar/en-us/useful-information/pets",
+                  "source_type": "official_website",
+                  "verified_date": "2026-09-13",
+                  "review_due": "2026-12-12",
+                  "confidence": 4,
+                  "reviewer": "Codex — lecture de la grille officielle capturée par Philippe",
+                  "history": [],
+                  "quote": "From Perú a República Dominicana, México, Cuba and Estados Unidos — USD 1.356",
+                  "quote_language": "es",
+                  "locator": "tarifs soute → Pérou vers Caraïbes/Mexique/États-Unis → jusqu'à 100 × 70 × 80 cm"
+                }
+              },
+              {
+                "id": "fare_aerolineas_hold_europe_small_2026_09_13",
+                "placement": "hold",
+                "price": {
+                  "kind": "exact",
+                  "amounts": [
+                    {
+                      "amount": 499,
+                      "currency": "USD"
+                    },
+                    {
+                      "amount": 419,
+                      "currency": "EUR"
+                    }
+                  ]
+                },
+                "billing_subject": "container",
+                "journey_basis": "per_segment",
+                "scope_label": "Europe ↔ Amérique du Sud · caisse ≤ 80 × 55 × 60 cm",
+                "source": {
+                  "url": "https://www.aerolineas.com.ar/en-us/useful-information/pets",
+                  "source_type": "official_website",
+                  "verified_date": "2026-09-13",
+                  "review_due": "2026-12-12",
+                  "confidence": 4,
+                  "reviewer": "Codex — lecture de la grille officielle capturée par Philippe",
+                  "history": [],
+                  "quote": "USD 499 / EUR 419",
+                  "quote_language": "es",
+                  "locator": "tarifs soute → Europe et Amérique du Sud → jusqu'à 80 × 55 × 60 cm"
+                }
+              },
+              {
+                "id": "fare_aerolineas_hold_peru_europe_large_2026_09_13",
+                "placement": "hold",
+                "price": {
+                  "kind": "exact",
+                  "amounts": [
+                    {
+                      "amount": 1356,
+                      "currency": "USD"
+                    },
+                    {
+                      "amount": 1143,
+                      "currency": "EUR"
+                    }
+                  ]
+                },
+                "billing_subject": "container",
+                "journey_basis": "per_segment",
+                "scope_label": "Pérou ↔ Europe · caisse ≤ 100 × 70 × 80 cm",
+                "source": {
+                  "url": "https://www.aerolineas.com.ar/en-us/useful-information/pets",
+                  "source_type": "official_website",
+                  "verified_date": "2026-09-13",
+                  "review_due": "2026-12-12",
+                  "confidence": 4,
+                  "reviewer": "Codex — lecture de la grille officielle capturée par Philippe",
+                  "history": [],
+                  "quote": "USD 1.356 / EUR 1.143",
+                  "quote_language": "es",
+                  "locator": "tarifs soute → Pérou et Europe → jusqu'à 100 × 70 × 80 cm"
+                }
+              }
+            ],
             "brachy_allowed": false,
             "source": {
-              "url": "https://portalar.aerolineas.com.ar/campus/pluginfile.php/9597/mod_resource/content/2/resumen_obligaciones.pdf",
+              "url": "https://www.aerolineas.com.ar/en-us/useful-information/pets",
               "source_type": "official_website",
-              "verified_date": "2026-09-09",
-              "review_due": "2026-12-08",
+              "verified_date": "2026-09-13",
+              "review_due": "2026-12-12",
               "confidence": 4,
-              "reviewer": "Codex — direct reading of official airline material",
-              "history": [],
-              "quote": "se trasporta en bodega",
-              "quote_language": "es",
-              "locator": "ANIMALES EN LA CABINA — page 4"
+              "reviewer": "Codex — lecture directe de la page officielle communiquée par Philippe",
+              "history": [
+                {
+                  "date": "2026-09-13",
+                  "reviewer": "Codex — remplacement du document interne par la page passagers officielle",
+                  "note": "Source précédente : PDF de formation interne lu le 2026-09-09."
+                }
+              ],
+              "quote": "Aerolíneas Argentinas accepts dogs and cats that are at least 12 (twelve) weeks old for transport in the aircraft hold.",
+              "quote_language": "en",
+              "locator": "Carriage of pets in hold"
             },
             "derived_from_fiche": true
           },
           "cargo": {
             "availability": "offered",
             "source": {
-              "url": "https://cargo.aerolineas.com.ar/es-AR/envios_personales",
+              "url": "https://cargo.aerolineas.com.ar/es-/envios_especiales/Animales",
               "source_type": "official_website",
-              "verified_date": "2026-09-09",
-              "review_due": "2026-12-08",
+              "verified_date": "2026-09-13",
+              "review_due": "2026-12-12",
               "confidence": 4,
-              "reviewer": "Codex — direct reading of official airline material",
-              "history": [],
-              "quote": "Aerolineas Cargo ofrece transporte de mascotas y otros animales vivos a todos nuestros destinos.",
+              "reviewer": "Codex — lecture directe de la page nationale officielle communiquée par Philippe",
+              "history": [
+                {
+                  "date": "2026-09-13",
+                  "reviewer": "Codex — remplacement par la page Animales d'Aerolíneas Cargo",
+                  "note": "Source précédente vérifiée le 2026-09-09 : https://cargo.aerolineas.com.ar/es-AR/envios_personales ; remplacée par la page nationale officielle consacrée aux animaux vivants."
+                }
+              ],
+              "quote": "Para el embarque de mascotas por cargas al exterior debe realizarse un despacho aduanero de exportación exigido por Aduana, debe intervenir un despachante de aduana habilitado o una Agencia de Cargas, que debe ser contratado por el pasajero o cliente.",
               "quote_language": "es",
-              "locator": "ANIMALES VIVOS → INFORMACIÓN GENERAL"
+              "locator": "ANIMALES VIVOS → condiciones de embarque por cargas al exterior"
             },
             "derived_from_fiche": true
           }
@@ -20776,17 +21130,25 @@
             "derived_from_fiche": true
           },
           "cargo": {
-            "review_state": "legacy_unreviewed",
-            "source": {
-              "url": "https://www.aeromexico.com",
-              "source_type": "official_website",
-              "verified_date": "2026-07-11",
-              "review_due": "2026-10-09",
-              "confidence": 3,
-              "reviewer": "MyDogCanFly Data Team (derived from fiche)",
-              "history": []
+            "availability": "case_by_case",
+            "conditions": {
+              "en": "Aeromexico Cargo publishes a live-animal service for domestic Mexico; route, aircraft and breed acceptance must be confirmed.",
+              "fr": "Aeromexico Cargo publie un service d'animaux vivants au Mexique ; la route, l'appareil et l'acceptation de la race doivent être confirmés.",
+              "es": "Aeroméxico Cargo publica un servicio de animales vivos en México; deben confirmarse la ruta, el avión y la aceptación de la raza.",
+              "pt": "A Aeromexico Cargo publica um serviço de animais vivos no México; a rota, a aeronave e a aceitação da raça devem ser confirmadas."
             },
-            "source_derived": true,
+            "source": {
+              "url": "https://amcargo.aeromexico.com/servicios/nacionales/animales-vivos",
+              "source_type": "official_website",
+              "verified_date": "2026-09-12",
+              "review_due": "2026-12-11",
+              "confidence": 4,
+              "reviewer": "Codex — contrôle du dossier officiel fret rev2 remis par Philippe",
+              "history": [],
+              "quote": "Su animal estará disponible para su entrega 2 horas después de la hora real de aterrizaje del vuelo",
+              "quote_language": "es",
+              "locator": "section restrictions et regulations"
+            },
             "derived_from_fiche": true
           }
         }
@@ -21639,13 +22001,16 @@
               "fr": "Via Air Canada Cargo (AC Animals) pour les animaux voyageant seuls ou les caisses de plus de 45 kg."
             },
             "source": {
-              "url": "https://www.aircanada.com/ca/en/aco/home/plan/special-assistance/pets.html",
+              "url": "https://www.aircanada.com/cargo/all-products/ac-animals?lang=fr",
               "source_type": "official_website",
-              "verified_date": "2026-07-08",
-              "review_due": "2026-10-06",
+              "verified_date": "2026-09-12",
+              "review_due": "2026-12-11",
               "confidence": 4,
-              "reviewer": "MyDogCanFly Data Team",
-              "history": []
+              "reviewer": "Codex — contrôle du dossier officiel fret rev2 remis par Philippe",
+              "history": [],
+              "quote": "Tous les animaux dont le transport a été réservé avec AC Animaux voyagent en soute, avec les bagages et d’autres marchandises, et bénéficient d’une manutention spéciale pendant le transport terrestre.",
+              "quote_language": "fr",
+              "locator": "titre de page « Air Canada Cargo - AC Animaux » et section « Voyage en avion avec Air Canada Cargo »"
             }
           }
         },
@@ -23764,13 +24129,16 @@
               "fr": "Via un transporteur cargo agréé — seule option vers le Royaume-Uni, Dubaï et Abu Dhabi."
             },
             "source": {
-              "url": "https://wwws.airfrance.us/information/passagers/voyager-avec-son-animal-chien-chat",
+              "url": "https://www.afklcargo.com/FR/fr/products_and_solutions/live_animals",
               "source_type": "official_website",
-              "verified_date": "2026-07-08",
-              "review_due": "2026-10-06",
+              "verified_date": "2026-09-12",
+              "review_due": "2026-12-11",
               "confidence": 4,
-              "reviewer": "MyDogCanFly Data Team",
-              "history": []
+              "reviewer": "Codex — contrôle du dossier officiel fret rev2 remis par Philippe",
+              "history": [],
+              "quote": "tous les animaux vivants sont transportés et manipulés conformément à la réglementation IATA relative au transport des animaux vivants (LAR)",
+              "quote_language": "fr",
+              "locator": "section exigences de transport des animaux vivants"
             }
           }
         },
@@ -27515,17 +27883,19 @@
             "derived_from_fiche": true
           },
           "cargo": {
-            "review_state": "legacy_unreviewed",
+            "availability": "offered",
             "source": {
-              "url": "https://www.ana.co.jp",
+              "url": "https://www.anacargo.jp/ja/int/service/animals.html",
               "source_type": "official_website",
-              "verified_date": "2026-07-11",
-              "review_due": "2026-10-09",
-              "confidence": 3,
-              "reviewer": "MyDogCanFly Data Team (derived from fiche)",
-              "history": []
+              "verified_date": "2026-09-12",
+              "review_due": "2026-12-11",
+              "confidence": 4,
+              "reviewer": "Codex — contrôle du dossier officiel fret rev2 remis par Philippe",
+              "history": [],
+              "quote": "各フォワーダー（航空貨物代理店）に直接お問い合わせください",
+              "quote_language": "ja",
+              "locator": "rubrique contact et reservation"
             },
-            "source_derived": true,
             "derived_from_fiche": true
           }
         }
@@ -28502,17 +28872,19 @@
             "derived_from_fiche": true
           },
           "cargo": {
-            "review_state": "legacy_unreviewed",
+            "availability": "offered",
             "source": {
-              "url": "https://www.avianca.com",
+              "url": "https://www.aviancacargo.com/esp/pys/special.aspx",
               "source_type": "official_website",
-              "verified_date": "2026-07-11",
-              "review_due": "2026-10-09",
-              "confidence": 3,
-              "reviewer": "MyDogCanFly Data Team (derived from fiche)",
-              "history": []
+              "verified_date": "2026-09-12",
+              "review_due": "2026-12-11",
+              "confidence": 4,
+              "reviewer": "Codex — contrôle du dossier officiel fret rev2 remis par Philippe",
+              "history": [],
+              "quote": "Animales Vivos (Live)",
+              "quote_language": "es",
+              "locator": "titre de section"
             },
-            "source_derived": true,
             "derived_from_fiche": true
           }
         }
@@ -29052,13 +29424,16 @@
               "fr": "Géré par IAG Cargo, société sœur de BA, pour les animaux à destination du Royaume-Uni."
             },
             "source": {
-              "url": "https://www.britishairways.com/en-gb/information/travel-assistance/travelling-with-pets",
+              "url": "https://www.iagcargo.com/es/products/pets/",
               "source_type": "official_website",
-              "verified_date": "2026-07-08",
-              "review_due": "2026-10-06",
+              "verified_date": "2026-09-12",
+              "review_due": "2026-12-11",
               "confidence": 4,
-              "reviewer": "MyDogCanFly Data Team",
-              "history": []
+              "reviewer": "Codex — contrôle du dossier officiel fret rev2 remis par Philippe",
+              "history": [],
+              "quote": "Nos hemos asociado con Pet Air UK para cuidar de todas las mascotas que salen del Reino Unido.",
+              "quote_language": "es",
+              "locator": "section « ¿Vuela con tu mascota desde el Reino Unido? »"
             },
             "fares": [
               {
@@ -30005,16 +30380,16 @@
               }
             ],
             "source": {
-              "url": "https://www.cathaypacific.com/cx/en_GB/faqs/baggage/cabin-baggage-allowance/are-pets-allowed-in-the-cabin.html?cxsource=LANGUAGE_SELECTOR_EN_HK",
+              "url": "https://www.cathaycargo.com/zh-hk/help-and-support/special-cargo-handling-procedures/live-animal/pet-travel.html",
               "source_type": "official_website",
-              "verified_date": "2026-09-08",
-              "review_due": "2026-12-07",
+              "verified_date": "2026-09-12",
+              "review_due": "2026-12-11",
               "confidence": 4,
-              "reviewer": "Codex — direct reading of official airline page",
+              "reviewer": "Codex — contrôle du dossier officiel fret rev2 remis par Philippe",
               "history": [],
-              "quote": "Your pet will need to travel in cargo.",
-              "quote_language": "en",
-              "locator": "Are pets allowed in the cabin?"
+              "quote": "國泰貨運僅接受以下公司或人士直接預訂寵物運送",
+              "quote_language": "zh-Hant-HK",
+              "locator": "section « 寵物運送 »"
             },
             "derived_from_fiche": true
           }
@@ -30211,17 +30586,19 @@
             "derived_from_fiche": true
           },
           "cargo": {
-            "review_state": "legacy_unreviewed",
+            "availability": "offered",
             "source": {
-              "url": "https://www.china-airlines.com",
+              "url": "https://cargo.china-airlines.com/ccnetv2/content/services/LiveAnimals.aspx?lang=zh-TW",
               "source_type": "official_website",
-              "verified_date": "2026-07-11",
-              "review_due": "2026-10-09",
-              "confidence": 3,
-              "reviewer": "MyDogCanFly Data Team (derived from fiche)",
-              "history": []
+              "verified_date": "2026-09-12",
+              "review_due": "2026-12-11",
+              "confidence": 4,
+              "reviewer": "Codex — contrôle du dossier officiel fret rev2 remis par Philippe",
+              "history": [],
+              "quote": "不接受託運未滿10週的幼犬和幼貓。",
+              "quote_language": "zh-Hant-TW",
+              "locator": "section « 中華航空 Variation »"
             },
-            "source_derived": true,
             "derived_from_fiche": true
           }
         }
@@ -31989,13 +32366,16 @@
               "fr": "Le transport en fret est suspendu pour le grand public — réservé au personnel militaire d’active et diplomatique américain en mutation."
             },
             "source": {
-              "url": "https://www.delta.com/us/en/pet-travel/overview",
+              "url": "https://www.delta.com/us/en/pet-travel/shipping-your-pet",
               "source_type": "official_website",
-              "verified_date": "2026-07-08",
-              "review_due": "2026-10-06",
+              "verified_date": "2026-09-12",
+              "review_due": "2026-12-11",
               "confidence": 4,
-              "reviewer": "MyDogCanFly Data Team",
-              "history": []
+              "reviewer": "Codex — contrôle du dossier officiel fret rev2 remis par Philippe",
+              "history": [],
+              "quote": "Until further notice, we are only allowing the shipment of pets for active U.S. Military or U.S. State Department Foreign Service Offices (FSO) traveling with active permanent change of station orders.",
+              "quote_language": "en",
+              "locator": "en-tete de la section « Shipping Your Pet »"
             }
           }
         },
@@ -34392,16 +34772,16 @@
           "cargo": {
             "availability": "offered",
             "source": {
-              "url": "https://www.emirates.com/us/english/before-you-fly/baggage/unusual-baggage-and-special-allowances/",
+              "url": "https://www.skycargo.com/products/live/pets/",
               "source_type": "official_website",
-              "verified_date": "2026-09-09",
-              "review_due": "2026-12-08",
+              "verified_date": "2026-09-12",
+              "review_due": "2026-12-11",
               "confidence": 4,
-              "reviewer": "Codex — direct reading of official airline page",
+              "reviewer": "Codex — contrôle du dossier officiel fret rev2 remis par Philippe",
               "history": [],
-              "quote": "Depending on the individual circumstances, pets must be carried either as cargo or as checked baggage in the hold.",
+              "quote": "Pets strictly follows IATA's Live Animal Regulations (LAR) and considers all relevant country and operator-specific rules",
               "quote_language": "en",
-              "locator": "Unusual baggage and special allowances → Pets"
+              "locator": "section presentation du produit Pets"
             },
             "derived_from_fiche": true
           }
@@ -34788,14 +35168,14 @@
             "source": {
               "url": "https://www.ethiopianairlines.com/us/information/special-needs/travelling-with-pets",
               "source_type": "official_website",
-              "verified_date": "2026-09-08",
-              "review_due": "2026-12-07",
+              "verified_date": "2026-09-12",
+              "review_due": "2026-12-11",
               "confidence": 4,
-              "reviewer": "Codex — direct reading of official airline page",
+              "reviewer": "Codex — contrôle du dossier officiel fret rev2 remis par Philippe",
               "history": [],
               "quote": "Pets (including cage) weighing more than 45 kg must be transported as cargo, following cargo procedures.",
               "quote_language": "en",
-              "locator": "Travelling with Pets → Policy"
+              "locator": "section B, procedure de transport"
             },
             "derived_from_fiche": true
           }
@@ -35119,17 +35499,19 @@
             "derived_from_fiche": true
           },
           "cargo": {
-            "review_state": "legacy_unreviewed",
+            "availability": "offered",
             "source": {
-              "url": "https://www.etihad.com/",
+              "url": "https://www.etihadcargo.com/en/products/liveanimals",
               "source_type": "official_website",
-              "verified_date": "2026-07-11",
-              "review_due": "2026-10-09",
-              "confidence": 3,
-              "reviewer": "MyDogCanFly Data Team (derived from fiche)",
-              "history": []
+              "verified_date": "2026-09-12",
+              "review_due": "2026-12-11",
+              "confidence": 4,
+              "reviewer": "Codex — contrôle du dossier officiel fret rev2 remis par Philippe",
+              "history": [],
+              "quote": "Our LiveAnimals service offers customised solutions for transporting animals, from family pets to global conservation projects.",
+              "quote_language": "en",
+              "locator": "page produit LiveAnimals"
             },
-            "source_derived": true,
             "derived_from_fiche": true
           }
         }
@@ -38061,19 +38443,24 @@
             ]
           },
           "cargo": {
-            "availability": "offered",
+            "availability": "case_by_case",
             "conditions": {
-              "en": "Via the partner Woof Airlines when the pet can't travel in the cabin or the hold.",
-              "fr": "Via le partenaire Woof Airlines lorsque l'animal ne peut voyager en cabine ni en soute."
+              "en": "IAG Cargo handles pets through Pet Air UK for departures from the United Kingdom; other routes require confirmation through its cargo process.",
+              "fr": "IAG Cargo prend en charge les animaux via Pet Air UK au départ du Royaume-Uni ; les autres routes doivent être confirmées par son processus fret.",
+              "es": "IAG Cargo gestiona las mascotas mediante Pet Air UK desde el Reino Unido; las demás rutas deben confirmarse mediante su proceso de carga.",
+              "pt": "A IAG Cargo trata dos animais através da Pet Air UK nas partidas do Reino Unido; as outras rotas devem ser confirmadas pelo processo de carga."
             },
             "source": {
-              "url": "https://www.iberia.com/us/faqs/pets-carriage/",
+              "url": "https://www.iagcargo.com/es/products/pets/",
               "source_type": "official_website",
-              "verified_date": "2026-07-08",
-              "review_due": "2026-10-06",
+              "verified_date": "2026-09-12",
+              "review_due": "2026-12-11",
               "confidence": 4,
-              "reviewer": "MyDogCanFly Data Team",
-              "history": []
+              "reviewer": "Codex — contrôle du dossier officiel fret rev2 remis par Philippe",
+              "history": [],
+              "quote": "Nos hemos asociado con Pet Air UK para cuidar de todas las mascotas que salen del Reino Unido.",
+              "quote_language": "es",
+              "locator": "section « ¿Vuela con tu mascota desde el Reino Unido? »"
             }
           }
         },
@@ -40408,13 +40795,16 @@
               "fr": "Via KLM Cargo pour les correspondances de plus de 3 h, les animaux brachycéphales, ou les pays n'admettant les animaux qu'en fret."
             },
             "source": {
-              "url": "https://www.klm.com/information/pets/reservation",
+              "url": "https://www.afklcargo.com/FR/fr/products_and_solutions/live_animals",
               "source_type": "official_website",
-              "verified_date": "2026-07-08",
-              "review_due": "2026-10-06",
+              "verified_date": "2026-09-12",
+              "review_due": "2026-12-11",
               "confidence": 4,
-              "reviewer": "MyDogCanFly Data Team",
-              "history": []
+              "reviewer": "Codex — contrôle du dossier officiel fret rev2 remis par Philippe",
+              "history": [],
+              "quote": "tous les animaux vivants sont transportés et manipulés conformément à la réglementation IATA relative au transport des animaux vivants (LAR)",
+              "quote_language": "fr",
+              "locator": "section avantages"
             },
             "fares": [
               {
@@ -41265,21 +41655,18 @@
             "derived_from_fiche": true
           },
           "cargo": {
-            "review_state": "legacy_unreviewed",
+            "availability": "offered",
             "source": {
               "url": "https://cargo.koreanair.com/en/products/Specialized/Live",
               "source_type": "official_website",
-              "verified_date": "2026-08-10",
-              "review_due": "2026-11-08",
+              "verified_date": "2026-09-12",
+              "review_due": "2026-12-11",
               "confidence": 4,
-              "reviewer": "MyDogCanFly Data Team (derived from fiche)",
-              "history": [
-                {
-                  "date": "2026-08-10",
-                  "reviewer": "MyDogCanFly Data Team",
-                  "note": "Complété (audit du 09-10/08/2026, placement fret manquant) : produit officiel Korean Air Cargo \"Specialized-LIVE\" pour chiens/chats. Page précise aussi \"Cats/Dogs are accepted for air transport only for KE ONLINE routes\" (restriction de route non modélisée par le moteur actuel — à garder en tête)."
-                }
-              ]
+              "reviewer": "Codex — contrôle du dossier officiel fret rev2 remis par Philippe",
+              "history": [],
+              "quote": "All live animals listed on the IATA Live Animal Regulation (LAR)",
+              "quote_language": "en",
+              "locator": "section « Type of Live Animals »"
             },
             "derived_from_fiche": true
           }
@@ -41631,17 +42018,19 @@
             "derived_from_fiche": true
           },
           "cargo": {
-            "review_state": "legacy_unreviewed",
+            "availability": "offered",
             "source": {
-              "url": "https://www.latamairlines.com",
+              "url": "https://www.latamcargo.com/en/alive",
               "source_type": "official_website",
-              "verified_date": "2026-07-11",
-              "review_due": "2026-10-09",
-              "confidence": 3,
-              "reviewer": "MyDogCanFly Data Team (derived from fiche)",
-              "history": []
+              "verified_date": "2026-09-12",
+              "review_due": "2026-12-11",
+              "confidence": 4,
+              "reviewer": "Codex — contrôle du dossier officiel fret rev2 remis par Philippe",
+              "history": [],
+              "quote": "All reservations for pets travelling internationally must be made through a certified freight forwarder",
+              "quote_language": "en",
+              "locator": "section reservations"
             },
-            "source_derived": true,
             "derived_from_fiche": true
           }
         }
@@ -42280,13 +42669,16 @@
               "fr": "Via Lufthansa Cargo lorsque la destination l'exige ou que le propriétaire ne voyage pas avec l'animal."
             },
             "source": {
-              "url": "https://www.lufthansa.com/us/en/travelling-with-animals",
+              "url": "https://www.lufthansa-cargo.com/de/live-animals",
               "source_type": "official_website",
-              "verified_date": "2026-07-08",
-              "review_due": "2026-10-06",
+              "verified_date": "2026-09-12",
+              "review_due": "2026-12-11",
               "confidence": 4,
-              "reviewer": "MyDogCanFly Data Team",
-              "history": []
+              "reviewer": "Codex — contrôle du dossier officiel fret rev2 remis par Philippe",
+              "history": [],
+              "quote": "Erfüllung der strengen Bestimmungen der IATA Live Animals Regulations sowie der Convention on International Trade in Endangered Species (CITES)",
+              "quote_language": "de",
+              "locator": "section exigences et documents"
             }
           }
         },
@@ -44774,16 +45166,16 @@
           "cargo": {
             "availability": "offered",
             "source": {
-              "url": "https://www.qantas.com/en-au/book/flights/conditions-of-carriage",
+              "url": "https://freight.qantas.com/au-en/pets.html",
               "source_type": "official_website",
-              "verified_date": "2026-09-09",
-              "review_due": "2026-12-08",
+              "verified_date": "2026-09-12",
+              "review_due": "2026-12-11",
               "confidence": 4,
-              "reviewer": "Codex — direct reading of official airline page",
+              "reviewer": "Codex — contrôle du dossier officiel fret rev2 remis par Philippe",
               "history": [],
-              "quote": "With the exception of service dogs (see 8.9), all bookings for travel by pet animals must be booked directly with Qantas Freight.",
+              "quote": "Pets include dogs (excluding service dogs), cats, rabbits, guinea pigs, domestic fish with no aeration requirements, and domestic birds that don't need a travel permit.",
               "quote_language": "en",
-              "locator": "Conditions of Carriage → 8.8 Pet animals"
+              "locator": "section « Pet travel »"
             },
             "derived_from_fiche": true
           }
@@ -48107,7 +48499,7 @@
             "derived_from_fiche": true
           },
           "cargo": {
-            "review_state": "legacy_unreviewed",
+            "availability": "offered",
             "fares": [
               {
                 "id": "fare_singapore_airlines_cargo_2026_09_10",
@@ -48134,15 +48526,17 @@
               }
             ],
             "source": {
-              "url": "https://www.singaporeair.com/",
+              "url": "https://www.siacargo.com/products/live-animals/",
               "source_type": "official_website",
-              "verified_date": "2026-07-11",
-              "review_due": "2026-10-09",
-              "confidence": 3,
-              "reviewer": "MyDogCanFly Data Team (derived from fiche)",
-              "history": []
+              "verified_date": "2026-09-12",
+              "review_due": "2026-12-11",
+              "confidence": 4,
+              "reviewer": "Codex — contrôle du dossier officiel fret rev2 remis par Philippe",
+              "history": [],
+              "quote": "Complying with the IATA Live Animal Regulations (LAR), our experienced staff at SIA Cargo ensure the welfare and safety of the animals are well taken care of.",
+              "quote_language": "en",
+              "locator": "section « Professional Handling »"
             },
-            "source_derived": true,
             "derived_from_fiche": true
           }
         }
@@ -49415,17 +49809,19 @@
             "derived_from_fiche": true
           },
           "cargo": {
-            "review_state": "legacy_unreviewed",
+            "availability": "offered",
             "source": {
-              "url": "https://www.swiss.com",
+              "url": "https://www.swissworldcargo.com/en/pets_live_animals",
               "source_type": "official_website",
-              "verified_date": "2026-07-11",
-              "review_due": "2026-10-09",
-              "confidence": 3,
-              "reviewer": "MyDogCanFly Data Team (derived from fiche)",
-              "history": []
+              "verified_date": "2026-09-12",
+              "review_due": "2026-12-11",
+              "confidence": 4,
+              "reviewer": "Codex — contrôle du dossier officiel fret rev2 remis par Philippe",
+              "history": [],
+              "quote": "Regulatory assurance through compliance with IATA Live Animals Regulations (LAR) and veterinary requirements",
+              "quote_language": "en",
+              "locator": "section presentation du produit"
             },
-            "source_derived": true,
             "derived_from_fiche": true
           }
         }
@@ -51539,13 +51935,16 @@
               "fr": "Via Turkish Cargo pour les animaux dépassant les limites de soute, les races restreintes ou d'autres espèces d'oiseaux."
             },
             "source": {
-              "url": "https://www.turkishairlines.com/en-int/any-questions/traveling-with-pets/all-terms-and-conditions/",
+              "url": "https://www.turkishcargo.com/tr/urunler-ve-hizmetler/ozel-kargolar/tk-live",
               "source_type": "official_website",
-              "verified_date": "2026-07-08",
-              "review_due": "2026-10-06",
+              "verified_date": "2026-09-12",
+              "review_due": "2026-12-11",
               "confidence": 4,
-              "reviewer": "MyDogCanFly Data Team",
-              "history": []
+              "reviewer": "Codex — contrôle du dossier officiel fret rev2 remis par Philippe",
+              "history": [],
+              "quote": "IATA Live Animals Regulations (LAR) sertifikalı uzman kadromuzla uluslararası standartlarda taşımacılık yapılır",
+              "quote_language": "tr",
+              "locator": "section presentation TK Live"
             }
           }
         },
@@ -52164,11 +52563,14 @@
             "source": {
               "url": "https://www.united.com/en/us/fly/travel/traveling-with-pets.html",
               "source_type": "official_website",
-              "verified_date": "2026-07-08",
-              "review_due": "2026-10-06",
+              "verified_date": "2026-09-12",
+              "review_due": "2026-12-11",
               "confidence": 4,
-              "reviewer": "MyDogCanFly Data Team",
-              "history": []
+              "reviewer": "Codex — contrôle du dossier officiel fret rev2 remis par Philippe",
+              "history": [],
+              "quote": "We no longer let you check your pets through the PetSafe program. Pets can only fly in cargo when traveling with certain active-duty military or State Department employees.",
+              "quote_language": "en",
+              "locator": "section « Getting ready »"
             }
           }
         },
@@ -53220,42 +53622,19 @@
             "derived_from_fiche": true
           },
           "cargo": {
-            "review_state": "legacy_unreviewed",
-            "fares": [
-              {
-                "id": "fare_virgin_atlantic_cargo_2026_09_10",
-                "placement": "cargo",
-                "price": {
-                  "kind": "quote",
-                  "amounts": []
-                },
-                "billing_subject": "shipment",
-                "journey_basis": "per_journey",
-                "scope_label": "Approved cargo agent/route",
-                "source": {
-                  "url": "https://help.virginatlantic.com/content/dam/HelpCentre/documents/pet-conditions-of-carriage.pdf",
-                  "source_type": "official_website",
-                  "verified_date": "2026-09-10",
-                  "review_due": "2026-12-09",
-                  "confidence": 4,
-                  "reviewer": "Codex — lecture directe de la source officielle",
-                  "history": [],
-                  "quote": "booked through an approved agent",
-                  "quote_language": "en",
-                  "locator": "Cargo carriage"
-                }
-              }
-            ],
+            "availability": "not_offered",
             "source": {
-              "url": "https://www.virginatlantic.com/",
+              "url": "https://www.virginatlanticcargo.com/global/en/book/pets2.html",
               "source_type": "official_website",
-              "verified_date": "2026-07-11",
-              "review_due": "2026-10-09",
-              "confidence": 3,
-              "reviewer": "MyDogCanFly Data Team (derived from fiche)",
-              "history": []
+              "verified_date": "2026-09-12",
+              "review_due": "2026-12-11",
+              "confidence": 4,
+              "reviewer": "Codex — contrôle du dossier officiel fret rev2 remis par Philippe",
+              "history": [],
+              "quote": "Sorry, our pet product is currently unavailable",
+              "quote_language": "en",
+              "locator": "corps de la page « Pets 2 »"
             },
-            "source_derived": true,
             "derived_from_fiche": true
           }
         }
@@ -54012,17 +54391,25 @@
             "derived_from_fiche": true
           },
           "cargo": {
-            "availability": "not_offered",
-            "source": {
-              "url": "https://www.vueling.com",
-              "source_type": "official_website",
-              "verified_date": "2026-07-11",
-              "review_due": "2026-10-09",
-              "confidence": 3,
-              "reviewer": "MyDogCanFly Data Team (derived from fiche)",
-              "history": []
+            "availability": "case_by_case",
+            "conditions": {
+              "en": "IAG Cargo publishes a pet-handling process for departures from the United Kingdom; carriage on a Vueling-operated route requires confirmation.",
+              "fr": "IAG Cargo publie un processus de prise en charge des animaux au départ du Royaume-Uni ; le transport sur une route opérée par Vueling doit être confirmé.",
+              "es": "IAG Cargo publica un proceso para mascotas desde el Reino Unido; el transporte en una ruta operada por Vueling debe confirmarse.",
+              "pt": "A IAG Cargo publica um processo para animais nas partidas do Reino Unido; o transporte numa rota operada pela Vueling deve ser confirmado."
             },
-            "source_derived": true,
+            "source": {
+              "url": "https://www.iagcargo.com/es/products/pets/",
+              "source_type": "official_website",
+              "verified_date": "2026-09-12",
+              "review_due": "2026-12-11",
+              "confidence": 4,
+              "reviewer": "Codex — contrôle du dossier officiel fret rev2 remis par Philippe",
+              "history": [],
+              "quote": "Nos hemos asociado con Pet Air UK para cuidar de todas las mascotas que salen del Reino Unido.",
+              "quote_language": "es",
+              "locator": "section « ¿Vuela con tu mascota desde el Reino Unido? »"
+            },
             "derived_from_fiche": true
           }
         }

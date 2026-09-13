@@ -314,8 +314,10 @@ console.log("=== 7. T0-B2 : la migration est FAITE, et la forme héritée est in
      frontière de confiance. */
   /* MOUVEMENT NOMMÉ (13/09/2026, vague de 31 dossiers) : 102 → 88 ; quatorze canaux quittent
      `legacy_unreviewed` sur une citation officielle. */
-  check("88 politiques émettent legacy_unreviewed après la vague de 31 dossiers",
-    porteuses === 88, String(porteuses));
+  /* MOUVEMENT NOMMÉ (13/09/2026, lot fret officiel + Aerolíneas Argentinas) : 88 → 76 ;
+     douze canaux fret quittent `legacy_unreviewed` sur une citation officielle dédiée. */
+  check("76 politiques émettent legacy_unreviewed après le lot fret officiel",
+    porteuses === 76, String(porteuses));
   /* 05/09/2026 — 33 → 32. British Airways cabine quitte ce groupe : sa page officielle porte
      désormais la phrase, et la politique devient le premier `denied` prouvé du dépôt. Chaque
      citation suivante fera baisser ce compte, et devra le nommer comme celle-ci. */
@@ -326,8 +328,10 @@ console.log("=== 7. T0-B2 : la migration est FAITE, et la forme héritée est in
      sac de transport compris »), quitte cette cause. */
   /* MOUVEMENT NOMMÉ (12/09/2026, lot de 30 compagnies) : 14 → 11 ; trois pages officielles
      déjà liées reçoivent enfin leur phrase opposable. */
-  check("11 politiques émettent official_source_unquoted — une page officielle, aucune phrase citée",
-    nonCitee === 11, String(nonCitee));
+  /* MOUVEMENT NOMMÉ (13/09/2026, lot fret officiel) : 11 → 2 ; neuf pages officielles déjà
+     liées reçoivent leur phrase opposable. */
+  check("2 politiques émettent official_source_unquoted — une page officielle, aucune phrase citée",
+    nonCitee === 2, String(nonCitee));
   /* MOUVEMENT NOMMÉ (09/09/2026, correctif d'arbitrages) : 1 → 0. Thai Cargo, seule « non publiée » depuis la migration, est
      ARBITRÉE `offered` sur la page THAI Cargo (Codex, tranché par Philippe) ; la cause disparaît du référentiel réel. */
   check("0 politique n'émet policy_unpublished — Thai Cargo, arbitrée, a quitté cette cause", nonPubliee === 0, String(nonPubliee));
@@ -409,9 +413,9 @@ console.log("=== 7 ter. Une politique NON REVUE reste sans preuve, même avec un
    * garde ne rencontre que des politiques sans source, elle passe au vert sans rien démontrer :
    * `source_derived` suffirait à expliquer chaque `null`.
    *
-   * Or DIX politiques `legacy_unreviewed` portent une source OFFICIELLE, précise, non dérivée —
-   * les anciens POLICY_STALE, dont la provenance a été affinée à la main (URL de fret dédiée,
-   * confiance 4). Ce sont exactement celles qu'un affaiblissement de la garde présenterait comme
+   * Or certaines politiques `legacy_unreviewed` portent une source OFFICIELLE, précise, non dérivée —
+   * les anciens POLICY_STALE encore en attente, dont la provenance a été affinée à la main (URL
+   * de fret dédiée, confiance 4). Ce sont exactement celles qu'un affaiblissement de la garde présenterait comme
    * AUDITÉES : page officielle, date récente, confiance élevée, tout pour convaincre. La règle
    * dit l'inverse — « une politique non revue reste sans source plutôt qu'avec une auto-source ».
    *
@@ -421,7 +425,7 @@ console.log("=== 7 ter. Une politique NON REVUE reste sans preuve, même avec un
    * contrôle passerait sur une politique qui n'a jamais rien eu à cacher. */
   const NON_REVUES_A_SOURCE_OFFICIELLE = [
     "airline_asiana.cargo", "airline_condor.cargo", "airline_eva_air.cargo",
-    "airline_french_bee.cargo", "airline_korean_air.cargo", "airline_malaysia_airlines.cargo",
+    "airline_french_bee.cargo", "airline_malaysia_airlines.cargo",
     "airline_norwegian.cargo",
     /* MOUVEMENT NOMMÉ (09/09/2026, lot 4) : Qantas soute et fret SORTENT de cette liste — citées
        (Conditions of Carriage § 8.8), elles ne sont plus « non revues ». 10 → 8, par identité. */

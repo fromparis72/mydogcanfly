@@ -237,12 +237,15 @@ console.log("\n=== 10. Sur la base RÉELLE : plus aucun verdict catégorique ===
   /* MOUVEMENT NOMMÉ (13/09/2026, vague de 31 dossiers) : 203 politiques sont citées,
      dont 199 décisives ; China Southern cabine, South African soute et Volotea soute rejoignent
      Virgin Australia cabine parmi les quatre `case_by_case`. */
-  check("199 décisions prouvées : 0 `allowed`, 159 sous conditions, 40 `denied`, 103 à confirmer",
-    allowed === 0 && sousConditions === 159 && denied === 40 && aConfirmer === 103, JSON.stringify({ allowed, sousConditions, denied, aConfirmer }));
+  /* MOUVEMENT NOMMÉ (13/09/2026, fret officiel des principales compagnies) : 21 politiques fret
+     reçoivent une phrase citée. Dix-sept deviennent décisives, dont trois refus documentés
+     (Delta, United, Virgin Atlantic), et quatre restent `case_by_case`. */
+  check("216 décisions prouvées : 0 `allowed`, 173 sous conditions, 43 `denied`, 86 à confirmer",
+    allowed === 0 && sousConditions === 173 && denied === 43 && aConfirmer === 86, JSON.stringify({ allowed, sousConditions, denied, aConfirmer }));
   check("chaque « à confirmer » porte une cause — aucune incertitude muette",
-    Object.values(causes).reduce((x, y) => x + y, 0) === 103 && !("undefined" in causes), JSON.stringify(causes));
-  check("11 gardent une page officielle non citée, 88 n'ont rien à montrer, 4 demandent arbitrage compagnie",
-    causes.official_source_unquoted === 11 && causes.legacy_unreviewed === 88 && causes.airline_approval === 4, JSON.stringify(causes));
+    Object.values(causes).reduce((x, y) => x + y, 0) === 86 && !("undefined" in causes), JSON.stringify(causes));
+  check("2 gardent une page officielle non citée, 76 n'ont rien à montrer, 8 demandent arbitrage compagnie",
+    causes.official_source_unquoted === 2 && causes.legacy_unreviewed === 76 && causes.airline_approval === 8, JSON.stringify(causes));
   /* Et la preuve que ce n'est pas un effet de bord de l'affichage : la même règle vaut à la
      source, sur l'artefact d'auteur, avant tout moteur. */
   const objets = JSON.parse(readFileSync("packages/knowledge/raw/objects.json", "utf8"));
@@ -483,8 +486,31 @@ console.log("\n=== 10. Sur la base RÉELLE : plus aucun verdict catégorique ===
     "airline_tui_airways.cargo",
     "airline_volotea.cabin",
     "airline_volotea.hold",
+    /* MOUVEMENT NOMMÉ (13/09/2026, fret officiel des principales compagnies) : vingt et un
+       canaux fret entrent nominativement ; les quatre `case_by_case` restent non décisifs. */
+    "airline_aer_lingus.cargo",
+    "airline_aeromexico.cargo",
+    "airline_air_canada.cargo",
+    "airline_air_france.cargo",
+    "airline_ana.cargo",
+    "airline_avianca.cargo",
+    "airline_british_airways.cargo",
+    "airline_china_airlines.cargo",
+    "airline_delta.cargo",
+    "airline_etihad.cargo",
+    "airline_iberia.cargo",
+    "airline_klm.cargo",
+    "airline_korean_air.cargo",
+    "airline_latam.cargo",
+    "airline_lufthansa.cargo",
+    "airline_singapore_airlines.cargo",
+    "airline_swiss.cargo",
+    "airline_turkish.cargo",
+    "airline_united.cargo",
+    "airline_virgin_atlantic.cargo",
+    "airline_vueling.cargo",
   ];
-  check("203 politiques d'auteur portent une phrase citée — nominativement",
+  check("224 politiques d'auteur portent une phrase citée — nominativement",
     JSON.stringify([...citees].sort()) === JSON.stringify([...CITEES_V3].sort()), citees.join(", "));
   /* Correctif (09/09/2026) : Thai fret DEVIENT une décision (arbitrage : `offered`, preuve THAI Cargo) ; Bangkok Airways fret CESSE d'en
      être une (`case_by_case`, portée intérieure que le modèle ne porte pas — précédent Virgin A-bis). */
@@ -493,12 +519,16 @@ console.log("\n=== 10. Sur la base RÉELLE : plus aucun verdict catégorique ===
   /* MOUVEMENT NOMMÉ (10/09/2026, complément Air France cabine) : 177 → 178, Air France cabine est une décision (sous conditions, borne stricte). */
   /* MOUVEMENT NOMMÉ (10/09/2026, Saudia — preuve de test retirée sur contre-lecture de l'audit de Codex, tranchée par Philippe) : 178 → 176. */
   /* MOUVEMENT NOMMÉ (12/09/2026, SAS soute) : 176 → 177 décisions citées. */
-  check("et 199 d'elles sont des décisions (quatre case_by_case restent prudentes)",
-    decideesCitees.length === 199 && decideesCitees.includes("airline_air_france.cabin") && decideesCitees.includes("airline_bangkok_airways.cargo") && decideesCitees.includes("airline_sas.hold")
+  check("et 216 d'elles sont des décisions (huit case_by_case restent prudentes)",
+    decideesCitees.length === 216 && decideesCitees.includes("airline_air_france.cabin") && decideesCitees.includes("airline_bangkok_airways.cargo") && decideesCitees.includes("airline_sas.hold")
       && !decideesCitees.includes("airline_virgin_australia.cabin")
       && !decideesCitees.includes("airline_china_southern.cabin")
       && !decideesCitees.includes("airline_south_african_airways.hold")
-      && !decideesCitees.includes("airline_volotea.hold"),
+      && !decideesCitees.includes("airline_volotea.hold")
+      && !decideesCitees.includes("airline_aer_lingus.cargo")
+      && !decideesCitees.includes("airline_aeromexico.cargo")
+      && !decideesCitees.includes("airline_iberia.cargo")
+      && !decideesCitees.includes("airline_vueling.cargo"),
     decideesCitees.join(", "));
 }
 
@@ -845,8 +875,9 @@ console.log("\n=== 13 bis. Le verdict dérivé, et ce qui ne revient JAMAIS avec
   }
   check("les TROIS canaux refusés — et eux seuls — rendent « aucun canal accepté »",
     verdictDeFiche({ cabin: P("denied"), hold: P("denied"), cargo: P("denied") }).cle === "premium.verdict_none");
-  /* Sur la base RÉELLE : les 4 canaux absents du dépôt ne doivent transformer aucune fiche en
-     refus total. British Airways porte le seul `denied` prouvé, et sa fiche reste prudente. */
+  /* Sur la base RÉELLE : les canaux absents du dépôt ne doivent transformer aucune fiche en
+     refus total. British Airways garde son refus cabine, mais son fret IAG Cargo désormais cité
+     rend la fiche positive sous conditions. */
   {
     const kbR = loadKB();
     const fiches = [...kbR.airlines.values()];
@@ -860,9 +891,10 @@ console.log("\n=== 13 bis. Le verdict dérivé, et ce qui ne revient JAMAIS avec
     check("DEUX fiches concluent au refus total — IndiGo et Ryanair, sur trois refus prouvés chacune",
       JSON.stringify(refusTotal.map((a) => a.id).sort()) === JSON.stringify(["airline_indigo", "airline_ryanair"]), JSON.stringify(refusTotal.map((a) => a.id)));
     const ba = kbR.airlines.get("airline_british_airways");
-    check("British Airways : cabine refusée sur preuve, mais la FICHE reste prudente",
+    check("British Airways : cabine refusée sur preuve, fret cité, FICHE ouverte sous conditions",
       ba?.premium?.policy?.cabin?.status === "denied"
-        && verdictDeFiche(ba?.premium?.policy).cle === "air.to_confirm",
+        && ba?.premium?.policy?.cargo?.status === "accepted_with_conditions"
+        && verdictDeFiche(ba?.premium?.policy).cle === "premium.verdict_open_conditions",
       JSON.stringify(verdictDeFiche(ba?.premium?.policy)));
   }
 
@@ -930,11 +962,11 @@ console.log("\n=== 13 ter. LA FRONTIÈRE S'APPLIQUE AUSSI AUX RÈGLES ===");
     /* MOUVEMENT NOMMÉ (09/09/2026, réconciliation ciblée — Philippe, sur décision de Codex : deux règles héritées non citées retirées, borne stricte modélisée) : 129 → 127 règles `deny` officielles non citées (rule_aer_lingus_no_hold, rule_air_china_no_cabin retirées : elles contredisaient une politique citée plus récente). */
     /* MOUVEMENT NOMMÉ (10/09/2026, Bangkok Airways fret — annexe 37) : 1 → 4 règles `deny` CITÉES — R1 (international), R2 (BKK/DMK ↔ KBV),
        R3 (CNX ↔ KBV), toutes trois sur la page officielle relue par Codex ; officielles non citées 127 et faibles 88 inchangées. */
-  check("état figé des règles `deny` : 4 citées (NZ + trois Bangkok Airways fret), 127 officielles non citées, 88 faibles",
-    parNiveau.citee === 4 && parNiveau.officielle_non_citee === 127 && parNiveau.faible === 88,
+  check("état figé des règles `deny` : 7 citées, 126 officielles non citées, 88 faibles",
+    parNiveau.citee === 7 && parNiveau.officielle_non_citee === 126 && parNiveau.faible === 88,
     JSON.stringify(parNiveau));
-  check("…et les citées sont nominativement la règle néo-zélandaise et les trois règles géographiques de Bangkok Airways",
-    denies.filter((r) => niveauDePreuveRegle(r) === "citee").map((r) => r.id).sort().join() === ["rule_bangkok_airways_cargo_bkk_kbv_excluded", "rule_bangkok_airways_cargo_cnx_kbv_excluded", "rule_bangkok_airways_cargo_international_denied", "rule_nz_breed_ban_restricted_types"].join(),
+  check("…et les sept règles citées sont nominativement figées",
+    denies.filter((r) => niveauDePreuveRegle(r) === "citee").map((r) => r.id).sort().join() === ["rule_ac_summer_embargo", "rule_american_cargo_heat_official_2026_09_12", "rule_bangkok_airways_cargo_bkk_kbv_excluded", "rule_bangkok_airways_cargo_cnx_kbv_excluded", "rule_bangkok_airways_cargo_international_denied", "rule_ethiopian_cargo_brachy_official_2026_09_12", "rule_nz_breed_ban_restricted_types"].join(),
     JSON.stringify(denies.filter((r) => niveauDePreuveRegle(r) === "citee").map((r) => r.id)));
 
   /* ET LE CAS RÉEL, celui par lequel la faille s'est vue. `rule_british_airways_no_cabin` refuse
@@ -1007,8 +1039,10 @@ console.log("\n=== 13 quater. LA FRONTIÈRE S'APPLIQUE AUSSI À LA CHALEUR ===")
   const { niveauDePreuveRegle } = await import("./packages/knowledge/src/index.ts");
   const regles = JSON.parse(readFileSync("packages/knowledge/raw/rules.json", "utf8"));
   const embargos = regles.filter((r) => r.category === "summer_embargo");
-  check("état figé : 6 règles summer_embargo, TOUTES officielles non citées",
-    embargos.length === 6 && embargos.every((r) => niveauDePreuveRegle(r) === "officielle_non_citee"),
+  check("état figé : 7 règles summer_embargo, 2 citées et 5 officielles non citées",
+    embargos.length === 7
+      && embargos.filter((r) => niveauDePreuveRegle(r) === "citee").map((r) => r.id).sort().join() === ["rule_ac_summer_embargo", "rule_american_cargo_heat_official_2026_09_12"].join()
+      && embargos.filter((r) => niveauDePreuveRegle(r) === "officielle_non_citee").length === 5,
     JSON.stringify(embargos.map((r) => [r.id, niveauDePreuveRegle(r)])));
 
   /* UNE RÈGLE PEUT DÉSORMAIS ÊTRE CITÉE. Elle ne le pouvait pas : le schéma d'une règle portait un

@@ -103,8 +103,19 @@ console.log("\n=== Ce que la réconciliation n'a PAS fait ===");
 {
   let allowed = 0; for (const a of kb.airlines.values()) for (const p of Object.values(a.premium?.policy ?? {})) if (p.status === "allowed") allowed++;
   check("aucune politique réelle n'est `allowed` — « sous conditions » n'est jamais une place promise", allowed === 0, String(allowed));
-  /* MOUVEMENT NOMMÉ (10/09/2026, annexe 37) : 399 → 402, exactement les trois règles géographiques de Bangkok Airways, citées. */
-  check("aucune autre règle n'a été touchée : 402 règles = 399 de la réconciliation + les trois règles Bangkok Airways fret", regles.length === 402 && regles.filter((r) => /^rule_bangkok_airways_cargo_/.test(r.id)).length === 3, String(regles.length));
+  /* MOUVEMENTS NOMMÉS : 399 → 402 avec les trois règles géographiques de Bangkok Airways,
+     puis 402 → 404 avec les deux règles fret officielles du 13/09 (chaleur American,
+     brachycéphales Ethiopian). La règle chaleur Air Canada existait déjà et a été resserrée
+     sur le fret, elle n'ajoute donc pas une ligne au total. */
+  const fretAjoutees = [
+    "rule_american_cargo_heat_official_2026_09_12",
+    "rule_ethiopian_cargo_brachy_official_2026_09_12",
+  ];
+  check("404 règles = 399 de la réconciliation + 3 Bangkok Airways + 2 gardes fret officielles",
+    regles.length === 404
+      && regles.filter((r) => /^rule_bangkok_airways_cargo_/.test(r.id)).length === 3
+      && fretAjoutees.every((id) => regles.some((r) => r.id === id)),
+    String(regles.length));
 }
 
 console.log(`\n=== SUMMARY ===\n${fail === 0 ? `ALL CHECKS PASSED (${pass})` : `${fail} CHECK(S) FAILED sur ${pass + fail}`}`);

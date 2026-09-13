@@ -58,6 +58,38 @@ console.log("=== Étage 1 — 18 faits relus, 18 dans la donnée à l'octet prè
     const pol = politique(f.airline_id, f.placement);
     const s = pol?.source ?? {};
     const proj = projetee(f.airline_id, f.placement);
+    if (f.airline_id === "airline_aerolineas_argentinas") {
+      /* MOUVEMENT NOMMÉ (13/09/2026, recherche manuelle de Philippe) : les trois
+         preuves du lot 9 sont remplacées par les pages passagers et cargo officielles
+         actuelles. La date, la langue et la phrase suivent chaque page réellement lue. */
+      const attendu = f.placement === "cargo"
+        ? {
+            url: "https://cargo.aerolineas.com.ar/es-/envios_especiales/Animales",
+            langue: "es",
+            phrase: "Para el embarque de mascotas por cargas al exterior debe realizarse un despacho aduanero de exportación exigido por Aduana, debe intervenir un despachante de aduana habilitado o una Agencia de Cargas, que debe ser contratado por el pasajero o cliente.",
+          }
+        : {
+            url: "https://www.aerolineas.com.ar/en-us/useful-information/pets",
+            langue: "en",
+            phrase: f.placement === "cabin"
+              ? "The weight allowed is up to 9 (nine) kilograms, with pet carrier included."
+              : "Aerolíneas Argentinas accepts dogs and cats that are at least 12 (twelve) weeks old for transport in the aircraft hold.",
+          };
+      check(`${cle} : source officielle actuelle, phrase, langue et date du 13/09`,
+        s.url === attendu.url && s.quote === attendu.phrase && s.quote_language === attendu.langue
+          && s.verified_date === "2026-09-13" && !!s.locator,
+        JSON.stringify(s));
+      check(`  …review_due calculé par reviewDueFrom (2026-12-12)`,
+        s.review_due === reviewDueFrom(s.verified_date ?? "", "airline") && s.review_due === "2026-12-12",
+        `${s.verified_date} → ${s.review_due}`);
+      check(`  …projeté accepted_with_conditions${f.placement === "cargo" ? " — fret officiel cité" : ""}`,
+        proj?.status === "accepted_with_conditions", JSON.stringify({ status: proj?.status, cause: proj?.status_cause }));
+      if (f.placement === "cabin") check("  …plafond 9 kg, chien + contenant, conservé depuis la preuve actuelle",
+        proj?.max_weight_kg === 9 && proj?.weight_includes_carrier === true,
+        JSON.stringify({ max: proj?.max_weight_kg, incl: proj?.weight_includes_carrier }));
+      else check("  …aucun plafond global ajouté à ce canal", pol?.weight_includes_carrier === undefined && pol?.max_weight_kg === undefined);
+      continue;
+    }
     check(`${cle} (LOT9[${f.index}]) : phrase, URL, localisateur, langue, date de lecture`,
       !!pol && s.quote === f.quote && s.locator === f.locator && s.quote_language === f.quote_language && s.url === f.url && s.verified_date === f.verified_date,
       JSON.stringify({ attendu: f.quote, lu: s.quote }));
@@ -78,8 +110,11 @@ console.log("=== Étage 1 — 18 faits relus, 18 dans la donnée à l'octet prè
   const ru = ["cabin", "hold", "cargo"].map((c) => politique("airline_air_astana", c)?.source);
   check("Air Astana : trois citations en russe, à l'octet près, `quote_language: ru` — jamais traduites",
     ru.every((s) => s?.quote_language === "ru") && ru[0].quote === "Перевозка домашних животных (кошек или собак) в салоне самолета разрешена" && ru[2].quote === "животные должны быть транспортированы исключительно по грузовой авианакладной");
-  check("Aerolíneas Argentinas : citations en espagnol (`es`), le 9 kg « en el contenedor correspondiente » écrit chien + contenant",
-    ["cabin", "hold", "cargo"].every((c) => politique("airline_aerolineas_argentinas", c)?.source?.quote_language === "es") && projetee("airline_aerolineas_argentinas", "cabin")?.max_weight_kg === 9);
+  check("Aerolíneas Argentinas : source passagers en anglais, source cargo en espagnol, seuil cabine 9 kg contenant compris",
+    ["cabin", "hold"].every((c) => politique("airline_aerolineas_argentinas", c)?.source?.quote_language === "en")
+      && politique("airline_aerolineas_argentinas", "cargo")?.source?.quote_language === "es"
+      && projetee("airline_aerolineas_argentinas", "cabin")?.max_weight_kg === 9
+      && projetee("airline_aerolineas_argentinas", "cabin")?.weight_includes_carrier === true);
   /* Batik Air Malaysia : trois non-décisions — RIEN ne vient de Batik Air Indonesia. */
   check("Batik Air Malaysia : trois canaux SANS citation, « à confirmer » (cause legacy_unreviewed) — aucune propagation depuis Batik Air Indonesia",
     ["cabin", "hold", "cargo"].every((c) => !politique("airline_batik_air_malaysia", c)?.source?.quote && projetee("airline_batik_air_malaysia", c)?.status === "confirmation_required" && projetee("airline_batik_air_malaysia", c)?.status_cause === "legacy_unreviewed"));
@@ -150,11 +185,11 @@ console.log("\n=== Clôture : les 102 compagnies examinées, ce que cela veut di
   /* MOUVEMENT NOMMÉ (10/09/2026, complément Air France cabine — Codex) : 178 → 179 ; 124 → 123 sans phrase. */
   /* MOUVEMENT NOMMÉ (10/09/2026, Saudia — preuve de test retirée sur contre-lecture de l'audit de Codex, tranchée par Philippe) : 179 → 177 ; 123 → 125 sans phrase. */
   /* MOUVEMENT NOMMÉ (12/09/2026, SAS soute) : 177 → 178 citées, 125 → 124 sans phrase. */
-  /* MOUVEMENT NOMMÉ (13/09/2026, vague exhaustive suivante) : 189 → 203 politiques citées ;
-     99 des 302 politiques explicites restent sans phrase. Les quatre canaux sans bloc restent
+  /* MOUVEMENT NOMMÉ (13/09/2026, vague exhaustive puis lot fret) : 189 → 224 politiques citées ;
+     78 des 302 politiques explicites restent sans phrase. Les quatre canaux sans bloc restent
      comptés séparément dans la réconciliation 306 = 102 × 3. */
-  check("203 politiques citées sur 302 — couverture accrue, 99 politiques restent sans phrase",
-    citees === 203 && politiques === 302, `${citees} / ${politiques}`);
+  check("224 politiques citées sur 302 — couverture fret accrue, 78 politiques restent sans phrase",
+    citees === 224 && politiques === 302, `${citees} / ${politiques}`);
   const neufLots = ["v3", "lots-2-3", "lot-4", "lot-5", "lot-6", "lot-7", "lot-8", "lot-9"].map((l) => `test-baselines/import-strict-${l}-apres.json`);
   check("la chaîne des baselines figées est complète, de l'import V3 au lot 9", neufLots.every((f) => { try { readFileSync(f); return true; } catch { return false; } }), neufLots.join(", "));
 }

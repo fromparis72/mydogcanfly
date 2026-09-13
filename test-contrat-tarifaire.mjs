@@ -698,10 +698,23 @@ console.log("\n=== 14. L'import réel ne peut plus retomber silencieusement à z
      grille sont regroupées par portée dans un tarif multidevise ou une fourchette,
      et sept canaux insuffisamment prouvés sont retirés (Edelweiss 2, Garuda 1,
      Royal Jordanian 2, SKY express 2). La baisse du nombre de lignes est donc
-     attendue et opposable ; aucun montant n'est perdu par l'ingestion. */
-  check("l'import verrouillé porte exactement 214 lignes sur 120 canaux et 70 compagnies — consolidation et retraits nommés traversent sans perte",
-    avecTarifs === 120 && lignesTarifaires === 214 && compagnies.size === 70,
+     attendue et opposable ; aucun montant n'est perdu par l'ingestion.
+     MOUVEMENT NOMMÉ (13/09/2026, fret + Aerolíneas) : onze lignes officielles
+     Aerolíneas entrent sur deux canaux ; l'unique ligne cargo Virgin Atlantic
+     sort, car le produit officiel est déclaré indisponible. Bilan net : +10
+     lignes, +1 canal, 70 compagnies tarifées inchangées. */
+  check("l'import verrouillé porte exactement 224 lignes sur 121 canaux et 70 compagnies — Aerolíneas entre et le tarif cargo Virgin indisponible sort sans perte muette",
+    avecTarifs === 121 && lignesTarifaires === 224 && compagnies.size === 70,
     `${lignesTarifaires} ligne(s), ${avecTarifs} canal(aux), ${compagnies.size} compagnie(s)`);
+  const aerolineas = objets.airlines.find((a) => a.id === "airline_aerolineas_argentinas")?.premium?.policy;
+  check("Aerolíneas Argentinas : les onze lignes officielles traversent sur les deux canaux passagers, jamais sur le fret",
+    aerolineas?.cabin?.fares?.length === 5 && aerolineas?.hold?.fares?.length === 6
+      && (aerolineas?.cargo?.fares?.length ?? 0) === 0
+      && [...aerolineas.cabin.fares, ...aerolineas.hold.fares].every((f) =>
+        f.source?.url === "https://www.aerolineas.com.ar/en-us/useful-information/pets"
+          && f.source?.verified_date === "2026-09-13" && f.source?.review_due === "2026-12-12"
+          && f.source?.quote && f.source?.locator),
+    JSON.stringify({ cabin: aerolineas?.cabin?.fares?.length, hold: aerolineas?.hold?.fares?.length, cargo: aerolineas?.cargo?.fares?.length ?? 0 }));
   const airFrance = objets.airlines.find((a) => a.id === "airline_air_france")?.premium?.policy;
   const montantsUniques = (p, currency) => [...new Set((p?.fares ?? []).flatMap((f) =>
     f.price.amounts.filter((m) => m.currency === currency).map((m) => m.amount)

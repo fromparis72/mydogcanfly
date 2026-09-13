@@ -58,9 +58,21 @@ console.log("=== Étage 1 — 24 faits dans la donnée, à l'octet près ===");
     const cle = `${f.airline_id}.${f.placement}`;
     const pol = objets.airlines.find((a) => a.id === f.airline_id)?.premium?.policy?.[f.placement];
     const s = pol?.source ?? {};
-    check(`${cle} (${f.lot}[${f.index}]) : phrase, URL, localisateur, langue, date de lecture`,
-      !!pol && s.quote === f.quote && s.locator === f.locator && s.quote_language === f.quote_language && s.url === f.url && s.verified_date === f.verified_date,
-      JSON.stringify({ attendu: f.quote, lu: s.quote }));
+    /* MOUVEMENT NOMMÉ (13/09/2026, dossier fret rev2) : Cathay fret est remplacée par sa page
+       Cargo nationale ; la même page et la même phrase Ethiopian sont relues avec un
+       localisateur plus précis. */
+    const fretRafraichi = {
+      "airline_cathay_pacific.cargo": {
+        url: "https://www.cathaycargo.com/zh-hk/help-and-support/special-cargo-handling-procedures/live-animal/pet-travel.html",
+        quote: "國泰貨運僅接受以下公司或人士直接預訂寵物運送", quote_language: "zh-Hant-HK", locator: "section « 寵物運送 »",
+      },
+      "airline_ethiopian.cargo": { url: f.url, quote: f.quote, quote_language: f.quote_language, locator: "section B, procedure de transport" },
+    }[cle];
+    const sourceAttendue = fretRafraichi ?? f;
+    const dateAttendue = fretRafraichi ? "2026-09-12" : f.verified_date;
+    check(`${cle} (${f.lot}[${f.index}]) : phrase, URL, localisateur, langue, date de lecture${fretRafraichi ? " — relue dans le dossier fret rev2" : ""}`,
+      !!pol && s.quote === sourceAttendue.quote && s.locator === sourceAttendue.locator && s.quote_language === sourceAttendue.quote_language && s.url === sourceAttendue.url && s.verified_date === dateAttendue,
+      JSON.stringify({ attendu: sourceAttendue.quote, lu: s.quote }));
     check(`  …review_due calculé par reviewDueFrom`, s.review_due === reviewDueFrom(s.verified_date ?? "", "airline"), `${s.verified_date} → ${s.review_due}`);
     const proj = kb.airlines.get(f.airline_id)?.premium?.policy?.[f.placement];
     const attendu = f.recommendation.startsWith("not_offered") ? "denied" : "accepted_with_conditions";
@@ -87,6 +99,8 @@ console.log("\n=== Étage 2 — Madrid → Bogotá : Air Europa (chien seul), Av
   const avH = canal(g, "airline_avianca", "hold"), avHb = canal(b, "airline_avianca", "hold");
   check("Avianca soute, Golden 32 kg et Bully 50 kg : sous conditions, plafond 70 kg chien + contenant transporté",
     avH?.status === "accepted_with_conditions" && avH?.weight_limit_kg === 70 && avHb?.status === "accepted_with_conditions", JSON.stringify({ avH, avHb }));
+  check("Avianca fret : désormais sous conditions sur la citation officielle Avianca Cargo",
+    canal(g, "airline_avianca", "cargo")?.status === "accepted_with_conditions");
   /* MESURÉ : la politique citée d'Air Canada cabine n'a pas de plafond ; pour 32 kg, ce sont deux
      RÈGLES de poids non citées (`rule_ac_cabin_weight`, `rule_global_cabin_weight_cap`) qui
      demandent confirmation. Jamais un refus inventé ; pour un petit chien, sous conditions. */
@@ -110,8 +124,8 @@ console.log("\n=== Étage 2 — Paris → Addis-Abeba : Ethiopian (8 / 45 / fret
   check("Ethiopian cabine, Cavalier 6 kg : sous conditions, plafond 8", canal(c, "airline_ethiopian", "cabin")?.status === "accepted_with_conditions" && canal(c, "airline_ethiopian", "cabin")?.weight_limit_kg === 8);
   check("Etihad cabine, Golden 32 kg refusé ; Cavalier 6 kg sous conditions (8 kg contenant compris)",
     canal(g, "airline_etihad", "cabin")?.status === "denied" && canal(c, "airline_etihad", "cabin")?.status === "accepted_with_conditions");
-  check("Etihad soute et fret : volontairement NON décidés → à confirmer, pas un oui hérité",
-    canal(g, "airline_etihad", "hold")?.status === "confirmation_required" && canal(g, "airline_etihad", "cargo")?.status === "confirmation_required");
+  check("Etihad soute reste à confirmer ; son fret est désormais sous conditions sur citation LiveAnimals",
+    canal(g, "airline_etihad", "hold")?.status === "confirmation_required" && canal(g, "airline_etihad", "cargo")?.status === "accepted_with_conditions");
   /* L'outil Destinations : Addis-Abeba est restée dans la liste pour le Bully de 50 kg — c'est le
      compteur de `test-frontiere-confiance` (139 destinations) qui a révélé sa disparition. */
   const dest = rankDestinations(kb, { origin: "airport_cdg", dog: BULLY_50, locale: "fr" });
@@ -128,6 +142,8 @@ console.log("\n=== Étage 2 — Paris → Tokyo et Londres → Hong Kong : ANA, 
   const nrt = decide("airport_cdg", "airport_nrt", GOLDEN_32), nrtC = decide("airport_cdg", "airport_nrt", CAVALIER_6);
   check("ANA cabine : refusée sur citation (ligne de tableau « Mammals | ○ | × »), pour tout chien", canal(nrt, "airline_ana", "cabin")?.status === "denied" && canal(nrtC, "airline_ana", "cabin")?.status === "denied");
   check("ANA soute, Golden 32 kg : sous conditions", canal(nrt, "airline_ana", "hold")?.status === "accepted_with_conditions");
+  check("ANA fret : désormais sous conditions sur la page officielle ANA Cargo",
+    canal(nrt, "airline_ana", "cargo")?.status === "accepted_with_conditions");
   check("JAL soute : sous conditions ; JAL cabine et fret volontairement NON décidés → à confirmer",
     canal(nrt, "airline_jal", "hold")?.status === "accepted_with_conditions" && canal(nrt, "airline_jal", "cabin")?.status === "confirmation_required" && canal(nrt, "airline_jal", "cargo")?.status === "confirmation_required");
   check("Cathay cabine refusée ; fret RÉACTIVÉ sur citation → sous conditions ; soute à confirmer",
@@ -163,8 +179,8 @@ console.log("\n=== Ce que les lots n'ont PAS fait ===");
   let allowed = 0;
   for (const a of kb.airlines.values()) for (const p of Object.values(a.premium?.policy ?? {})) if (p.status === "allowed") allowed++;
   check("aucune politique réelle n'est `allowed`", allowed === 0, String(allowed));
-  const unset = [["airline_air_transat", "cargo"], ["airline_air_europa", "cargo"], ["airline_avianca", "cargo"], ["airline_ana", "cargo"], ["airline_jal", "cabin"], ["airline_jal", "cargo"], ["airline_etihad", "hold"], ["airline_etihad", "cargo"]];
-  check("les 8 canaux encore `intentionally_unset` des deux lots n'ont reçu aucune citation",
+  const unset = [["airline_air_transat", "cargo"], ["airline_air_europa", "cargo"], ["airline_jal", "cabin"], ["airline_jal", "cargo"], ["airline_etihad", "hold"]];
+  check("les 5 canaux encore `intentionally_unset` des deux lots n'ont reçu aucune citation",
     unset.every(([id, pl]) => !(objets.airlines.find((a) => a.id === id)?.premium?.policy?.[pl]?.source?.quote)), JSON.stringify(unset.filter(([id, pl]) => objets.airlines.find((a) => a.id === id)?.premium?.policy?.[pl]?.source?.quote)));
 }
 

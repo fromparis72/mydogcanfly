@@ -153,7 +153,23 @@ policies:
       quote_language: es
       locator: "Servicios de Mascotas → Tipos de servicios para viajar con tu mascota"
   cargo:
-    review_state: legacy_unreviewed
+    availability: case_by_case
+    conditions:
+      en: Aeromexico Cargo publishes a live-animal service for domestic Mexico; route, aircraft and breed acceptance must be confirmed.
+      fr: Aeromexico Cargo publie un service d'animaux vivants au Mexique ; la route, l'appareil et l'acceptation de la race doivent être confirmés.
+      es: Aeroméxico Cargo publica un servicio de animales vivos en México; deben confirmarse la ruta, el avión y la aceptación de la raza.
+      pt: A Aeromexico Cargo publica um serviço de animais vivos no México; a rota, a aeronave e a aceitação da raça devem ser confirmadas.
+    source:
+      url: https://amcargo.aeromexico.com/servicios/nacionales/animales-vivos
+      source_type: official_website
+      verified_date: 2026-09-12
+      review_due: 2026-12-11
+      confidence: 4
+      reviewer: Codex — contrôle du dossier officiel fret rev2 remis par Philippe
+      history: []
+      quote: "Su animal estará disponible para su entrega 2 horas después de la hora real de aterrizaje del vuelo"
+      quote_language: es
+      locator: section restrictions et regulations
 channels:
   - placement: cabin
     icon: 🐾

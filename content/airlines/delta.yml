@@ -156,6 +156,17 @@ policies:
       locator: Military Pet Travel · Checked pet eligibility
   cargo:
     availability: not_offered
+    source:
+      url: https://www.delta.com/us/en/pet-travel/shipping-your-pet
+      source_type: official_website
+      verified_date: 2026-09-12
+      review_due: 2026-12-11
+      confidence: 4
+      reviewer: Codex — contrôle du dossier officiel fret rev2 remis par Philippe
+      history: []
+      quote: "Until further notice, we are only allowing the shipment of pets for active U.S. Military or U.S. State Department Foreign Service Offices (FSO) traveling with active permanent change of station orders."
+      quote_language: en
+      locator: "en-tete de la section « Shipping Your Pet »"
 channels:
   - placement: cabin
     icon: 🐾

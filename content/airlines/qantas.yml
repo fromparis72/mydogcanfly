@@ -103,16 +103,16 @@ policies:
     # Effet attendu : Cargo is a documented conditional route, not a confirmed shipment or a promise to travel on the same service as the passenger.
     # Portée nommée : Ordinary pet bookings are made with Qantas Freight; airport, documentation and Qantas conditions still determine carriage.
     source:
-      url: "https://www.qantas.com/en-au/book/flights/conditions-of-carriage"
+      url: "https://freight.qantas.com/au-en/pets.html"
       source_type: official_website
-      verified_date: "2026-09-09"
-      review_due: "2026-12-08"   # reviewDueFrom(verified_date, "airline") — calculé par l'importeur
+      verified_date: "2026-09-12"
+      review_due: "2026-12-11"
       confidence: 4
-      reviewer: "Codex — direct reading of official airline page"
+      reviewer: "Codex — contrôle du dossier officiel fret rev2 remis par Philippe"
       history: []
-      quote: "With the exception of service dogs (see 8.9), all bookings for travel by pet animals must be booked directly with Qantas Freight."
+      quote: "Pets include dogs (excluding service dogs), cats, rabbits, guinea pigs, domestic fish with no aeration requirements, and domestic birds that don't need a travel permit."
       quote_language: en
-      locator: "Conditions of Carriage → 8.8 Pet animals"
+      locator: "section « Pet travel »"
 channels:
   - placement: cabin
     icon: 🐾

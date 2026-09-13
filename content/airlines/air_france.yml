@@ -446,6 +446,17 @@ policies:
       locator: "Important!"
   cargo:
     availability: offered
+    source:
+      url: https://www.afklcargo.com/FR/fr/products_and_solutions/live_animals
+      source_type: official_website
+      verified_date: 2026-09-12
+      review_due: 2026-12-11
+      confidence: 4
+      reviewer: Codex — contrôle du dossier officiel fret rev2 remis par Philippe
+      history: []
+      quote: "tous les animaux vivants sont transportés et manipulés conformément à la réglementation IATA relative au transport des animaux vivants (LAR)"
+      quote_language: fr
+      locator: section exigences de transport des animaux vivants
 channels:
   - placement: cabin
     icon: 🐾

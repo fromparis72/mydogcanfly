@@ -85,10 +85,19 @@ console.log("=== Étage 1 — 23 faits relus, 22 dans la donnée à l'octet prè
           && proj?.status === "accepted_with_conditions", `${s.verified_date} → ${s.review_due}`);
       continue;
     }
-    check(`${cle} (LOT4[${f.index}]) : phrase, URL, localisateur, langue, date de lecture`,
-      !!pol && s.quote === f.quote && s.locator === f.locator && s.quote_language === f.quote_language && s.url === f.url && s.verified_date === f.verified_date,
-      JSON.stringify({ attendu: f.quote, lu: s.quote }));
-    check(`  …review_due calculé par reviewDueFrom (2026-12-08)`, s.review_due === reviewDueFrom(s.verified_date ?? "", "airline") && s.review_due === "2026-12-08", `${s.verified_date} → ${s.review_due}`);
+    /* MOUVEMENT NOMMÉ (13/09/2026, dossier fret rev2) : Emirates et Qantas fret sont
+       remplacées par leurs pages Cargo dédiées, relues le 12/09. */
+    const fretRafraichi = {
+      "airline_emirates.cargo": { url: "https://www.skycargo.com/products/live/pets/", quote: "Pets strictly follows IATA's Live Animal Regulations (LAR) and considers all relevant country and operator-specific rules", quote_language: "en", locator: "section presentation du produit Pets" },
+      "airline_qantas.cargo": { url: "https://freight.qantas.com/au-en/pets.html", quote: "Pets include dogs (excluding service dogs), cats, rabbits, guinea pigs, domestic fish with no aeration requirements, and domestic birds that don't need a travel permit.", quote_language: "en", locator: "section « Pet travel »" },
+    }[cle];
+    const sourceAttendue = fretRafraichi ?? f;
+    const dateAttendue = fretRafraichi ? "2026-09-12" : f.verified_date;
+    const echeanceAttendue = fretRafraichi ? "2026-12-11" : "2026-12-08";
+    check(`${cle} (LOT4[${f.index}]) : phrase, URL, localisateur, langue, date de lecture${fretRafraichi ? " — page Cargo dédiée" : ""}`,
+      !!pol && s.quote === sourceAttendue.quote && s.locator === sourceAttendue.locator && s.quote_language === sourceAttendue.quote_language && s.url === sourceAttendue.url && s.verified_date === dateAttendue,
+      JSON.stringify({ attendu: sourceAttendue.quote, lu: s.quote }));
+    check(`  …review_due calculé par reviewDueFrom (${echeanceAttendue})`, s.review_due === reviewDueFrom(s.verified_date ?? "", "airline") && s.review_due === echeanceAttendue, `${s.verified_date} → ${s.review_due}`);
     const attendu = f.recommendation.startsWith("not_offered") ? "denied" : "accepted_with_conditions";
     check(`  …projeté ${attendu}${REACTIVEES.includes(cle) ? " — ligne non revérifiée RÉACTIVÉE sur citation" : ""}`, proj?.status === attendu, JSON.stringify({ status: proj?.status, cause: proj?.status_cause }));
     const seuil = SEUILS[cle];
@@ -106,14 +115,25 @@ console.log("=== Étage 1 — 23 faits relus, 22 dans la donnée à l'octet prè
         !!pol?.source?.quote && kb.airlines.get(u.airline_id)?.premium?.policy?.[u.placement]?.status === "denied");
       continue;
     }
+    if (u.airline_id === "airline_swiss" && u.placement === "cargo") {
+      check("SWISS fret quitte la non-décision sur sa page officielle Swiss WorldCargo",
+        !!pol?.source?.quote && kb.airlines.get(u.airline_id)?.premium?.policy?.[u.placement]?.status === "accepted_with_conditions");
+      continue;
+    }
+    if (u.airline_id === "airline_aer_lingus" && u.placement === "cargo") {
+      check("Aer Lingus fret reste prudent mais reçoit la citation IAG Cargo au départ du Royaume-Uni",
+        !!pol?.source?.quote && kb.airlines.get(u.airline_id)?.premium?.policy?.[u.placement]?.status === "confirmation_required");
+      continue;
+    }
     check(`non-décision ${u.airline_id}.${u.placement} : aucune citation écrite, jamais convertie en oui ou en refus`,
       !pol?.source?.quote && kb.airlines.get(u.airline_id)?.premium?.policy?.[u.placement]?.status === "confirmation_required",
       JSON.stringify({ quote: pol?.source?.quote, status: kb.airlines.get(u.airline_id)?.premium?.policy?.[u.placement]?.status }));
   }
   check("ITA Airways cabine : citée SANS plafond — aucun seuil mondial n'est écrit (12 kg domestique / 8 kg ailleurs)",
     politique("airline_ita_airways", "cabin")?.max_weight_kg === undefined && politique("airline_ita_airways", "cabin")?.weight_includes_carrier === undefined);
-  check("Emirates soute et fret portent la MÊME phrase (« either as cargo or as checked baggage in the hold ») : deux voies conditionnelles, jamais deux réservations ouvertes",
-    politique("airline_emirates", "hold")?.source?.quote === politique("airline_emirates", "cargo")?.source?.quote);
+  check("Emirates soute et fret portent désormais deux preuves propres : page passagers et produit SkyCargo",
+    politique("airline_emirates", "hold")?.source?.quote !== politique("airline_emirates", "cargo")?.source?.quote
+      && politique("airline_emirates", "cargo")?.source?.url === "https://www.skycargo.com/products/live/pets/");
 }
 
 console.log("\n=== Étage 2 — Paris → Vienne, Zurich, Bruxelles : trois plafonds de 8 kg chien + contenant ===");
@@ -131,7 +151,7 @@ console.log("\n=== Étage 2 — Paris → Vienne, Zurich, Bruxelles : trois plaf
   check("SWISS soute, Golden 32 kg : sous conditions", canal(zrhG, "airline_swiss", "hold")?.status === "accepted_with_conditions");
   check("SWISS soute, Carlin 8 kg (brachycéphale, exclu en portée) : JAMAIS accepté",
     !["accepted_with_conditions", "allowed"].includes(canal(zrhP, "airline_swiss", "hold")?.status), JSON.stringify(canal(zrhP, "airline_swiss", "hold")));
-  check("SWISS fret : volontairement NON décidé → à confirmer", canal(zrhG, "airline_swiss", "cargo")?.status === "confirmation_required");
+  check("SWISS fret : sous conditions sur la citation Swiss WorldCargo", canal(zrhG, "airline_swiss", "cargo")?.status === "accepted_with_conditions");
   const bruG = decide("airport_cdg", "airport_bru", GOLDEN_32), bruC = decide("airport_cdg", "airport_bru", CAVALIER_6);
   check("Brussels cabine, Golden 32 kg : refus sûr ; Cavalier 6 kg : sous conditions, plafond 8 chien + contenant",
     canal(bruG, "airline_brussels", "cabin")?.status === "denied" && canal(bruC, "airline_brussels", "cabin")?.status === "accepted_with_conditions" && canal(bruC, "airline_brussels", "cabin")?.weight_limit_includes_carrier === true);
@@ -182,8 +202,10 @@ console.log("\n=== Étage 2 — Paris → Rome, New York → Los Angeles, Londre
   const laxG = decide("airport_jfk", "airport_lax", GOLDEN_32), laxC = decide("airport_jfk", "airport_lax", CAVALIER_6);
   check("American cabine, Cavalier 6 kg : sous conditions ; Golden 32 kg : à confirmer, jamais refusé",
     canal(laxC, "airline_american", "cabin")?.status === "accepted_with_conditions" && canal(laxG, "airline_american", "cabin")?.status === "confirmation_required");
-  check("American fret (PetEmbark), Golden 32 kg : sous conditions ; soute refusée aux voyageurs ordinaires sur citation",
-    canal(laxG, "airline_american", "cargo")?.status === "accepted_with_conditions" && canal(laxG, "airline_american", "hold")?.status === "denied");
+  check("American fret (PetEmbark), Golden 32 kg : preuve présente mais confirmation climatique en juillet ; soute refusée aux voyageurs ordinaires",
+    canal(laxG, "airline_american", "cargo")?.status === "confirmation_required"
+      && (canal(laxG, "airline_american", "cargo")?.confirmation_causes ?? []).some((c) => c.rule_id === "rule_american_cargo_heat_official_2026_09_12")
+      && canal(laxG, "airline_american", "hold")?.status === "denied");
   const lhrG = decide("airport_lhr", "airport_lax", GOLDEN_32), lhrC = decide("airport_lhr", "airport_lax", CAVALIER_6);
   check("WestJet soute, Golden 32 kg : sous conditions (« most international flights » — jamais une réponse absolue) ; cabine 32 kg à confirmer",
     canal(lhrG, "airline_westjet", "hold")?.status === "accepted_with_conditions" && canal(lhrG, "airline_westjet", "cabin")?.status === "confirmation_required");

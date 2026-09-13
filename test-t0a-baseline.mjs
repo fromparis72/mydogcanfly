@@ -859,6 +859,11 @@ console.log("=== Preuve T0-B2-UI (deux baselines FIGÉES — permanente) ===");
        une URL supersédée n'est pas orpheline si sa remplaçante est, elle, une source de canal aujourd'hui. */
     const SUPERSEDEES_PAR_ARBITRAGE = new Map([
       ["https://www.thaiairways.com/en-au/content/special-assistance/travel-with-pets/pets-as-checked-baggage-avih/", "https://www.thaicargo.com/en/product-view/1/live-animals---pets"],
+      ["https://www.iberia.com/us/faqs/pets-carriage/", "https://www.iberia.com/us/fly-with-iberia/pets/"],
+      ["https://www.klm.com/information/pets/reservation", "https://www.klm.nl/information/pets/reservation"],
+      ["https://www.lufthansa.com/us/en/travelling-with-animals", "https://www.lufthansa.com/ua/en/travelling-with-animals"],
+      ["https://www.turkishairlines.com/en-int/any-questions/traveling-with-pets/all-terms-and-conditions/", "https://www.turkishairlines.com/en-ch/any-questions/traveling-with-pets/"],
+      ["https://wwws.airfrance.us/information/passagers/voyager-avec-son-animal-chien-chat", "https://wwws.airfrance.fr/information/passagers/voyager-avec-son-animal-chien-chat"],
     ]);
     const orphelines = approuve.sources_de_canal_ajoutees.filter((x) => !sourcesDeCanal.has(x.url)
       && !(SUPERSEDEES_PAR_ARBITRAGE.has(x.url) && sourcesDeCanal.has(SUPERSEDEES_PAR_ARBITRAGE.get(x.url))));
@@ -1902,12 +1907,16 @@ console.log("=== Couverture DIRECTE : les 302 politiques, hors des 72 scénarios
      quatorze politiques gagnent une citation opposable. Huit deviennent
      `accepted_with_conditions`, trois `denied`, trois `case_by_case`; quatorze causes
      `legacy_unreviewed` disparaissent et `airline_approval` passe de 1 à 4. */
-  check("répartition runtime : 0 allowed · 159 sous conditions · 40 denied · 103 à confirmer",
-    !parStatut.allowed && parStatut.accepted_with_conditions === 159 && parStatut.denied === 40 && parStatut.confirmation_required === 103,
+  /* MOUVEMENT NOMMÉ (13/09/2026, dossier fret officiel rev2) : dix-sept canaux jusque-là à
+     confirmer reçoivent une décision opposable — quatorze sous conditions et trois refusés.
+     Quatre autres politiques IAG passent en `case_by_case` : `airline_approval` 4 → 8. Les
+     causes restantes deviennent 76 `legacy_unreviewed` et 2 `official_source_unquoted`. */
+  check("répartition runtime : 0 allowed · 173 sous conditions · 43 denied · 86 à confirmer",
+    !parStatut.allowed && parStatut.accepted_with_conditions === 173 && parStatut.denied === 43 && parStatut.confirmation_required === 86,
     JSON.stringify(parStatut));
-  check("causes : 88 legacy_unreviewed · 11 official_source_unquoted · 0 policy_unpublished · 4 airline_approval",
-    parCause.legacy_unreviewed === 88 && parCause.official_source_unquoted === 11
-      && !parCause.policy_unpublished && parCause.airline_approval === 4, JSON.stringify(parCause));
+  check("causes : 76 legacy_unreviewed · 2 official_source_unquoted · 0 policy_unpublished · 8 airline_approval",
+    parCause.legacy_unreviewed === 76 && parCause.official_source_unquoted === 2
+      && !parCause.policy_unpublished && parCause.airline_approval === 8, JSON.stringify(parCause));
 }
 
 console.log("=== Contre-épreuve N/N+1 : la baseline survit au passage des années ===");

@@ -160,6 +160,17 @@ policies:
       locator: "Travelling with your Pet → In the Baggage Compartment"
   cargo:
     availability: offered
+    source:
+      url: https://www.aircanada.com/cargo/all-products/ac-animals?lang=fr
+      source_type: official_website
+      verified_date: 2026-09-12
+      review_due: 2026-12-11
+      confidence: 4
+      reviewer: Codex — contrôle du dossier officiel fret rev2 remis par Philippe
+      history: []
+      quote: "Tous les animaux dont le transport a été réservé avec AC Animaux voyagent en soute, avec les bagages et d’autres marchandises, et bénéficient d’une manutention spéciale pendant le transport terrestre."
+      quote_language: fr
+      locator: "titre de page « Air Canada Cargo - AC Animaux » et section « Voyage en avion avec Air Canada Cargo »"
 channels:
   - placement: cabin
     icon: 🐾

@@ -122,7 +122,7 @@ console.log("\n=== 2. KB réelle : aucune politique n'émet `allowed` ; rien ne 
      nouvellement cités sont ouverts sous conditions ; aucun ne devient `allowed`. */
   /* MOUVEMENT NOMMÉ (13/09/2026, vague de 31 dossiers) : 151 → 159. Huit canaux
      nouvellement cités sont ouverts sous conditions ; aucun ne devient `allowed`. */
-  check(`politiques réelles en accepted_with_conditions : 159 après la vague de 31 dossiers — mesuré : ${cond}`, cond === 159);
+  check(`politiques réelles en accepted_with_conditions : 173 après le lot fret officiel — mesuré : ${cond}`, cond === 173);
   /* RE-FONDÉ (13/09/2026) : Eurowings cabine porte maintenant la phrase officielle d'acceptation
      jusqu'à 8 kg, mais la règle structurée de poids n'est toujours pas citée. Le Golden de 32 kg
      reste donc « à confirmer » au lieu d'être refusé par une règle orpheline. */

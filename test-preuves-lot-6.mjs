@@ -150,6 +150,23 @@ console.log("=== Étage 1 — 22 faits relus, 21 dans la donnée à l'octet prè
         !!pol?.source?.quote && projetee(u.airline_id, u.placement)?.status === "denied");
       continue;
     }
+    if (u.airline_id === "airline_aeromexico" && u.placement === "cargo") {
+      /* MOUVEMENT NOMMÉ (13/09/2026, lot fret) : la page cargo officielle ne couvre
+         que le réseau intérieur ; le canal est donc cité mais reste à confirmer. */
+      check("Aeromexico fret quitte la non-décision, mais reste à confirmer hors portée nationale",
+        !!pol?.source?.quote && projetee(u.airline_id, u.placement)?.status === "confirmation_required");
+      continue;
+    }
+    if (u.airline_id === "airline_latam" && u.placement === "cargo") {
+      check("LATAM fret quitte la non-décision sur une offre cargo officielle citée",
+        !!pol?.source?.quote && projetee(u.airline_id, u.placement)?.status === "accepted_with_conditions");
+      continue;
+    }
+    if (u.airline_id === "airline_united" && u.placement === "cargo") {
+      check("United fret quitte la non-décision sur une restriction officielle citée",
+        !!pol?.source?.quote && projetee(u.airline_id, u.placement)?.status === "denied");
+      continue;
+    }
     check(`non-décision ${u.airline_id}.${u.placement} : aucune citation écrite, « à confirmer »`,
       !pol?.source?.quote && projetee(u.airline_id, u.placement)?.status === "confirmation_required",
       JSON.stringify({ quote: pol?.source?.quote, status: projetee(u.airline_id, u.placement)?.status }));
@@ -189,7 +206,7 @@ console.log("\n=== Étage 2 — Paris → Mexico, Le Caire : plafonds combinés 
   check("Aeromexico cabine, Golden 32 kg : REFUS sûr ; soute : sous conditions, plafond 45",
     canal(g, "airline_aeromexico", "cabin")?.status === "denied" && canal(g, "airline_aeromexico", "hold")?.status === "accepted_with_conditions" && canal(g, "airline_aeromexico", "hold")?.weight_limit_kg === 45, JSON.stringify(canal(g, "airline_aeromexico", "hold")));
   check("Aeromexico soute, Bully 50 kg : REFUS sûr — 50 kg de chien seul dépassent 45 kg chien + contenant", canal(b, "airline_aeromexico", "hold")?.status === "denied", JSON.stringify(canal(b, "airline_aeromexico", "hold")));
-  check("Aeromexico fret : volontairement NON décidé → à confirmer", canal(g, "airline_aeromexico", "cargo")?.status === "confirmation_required");
+  check("Aeromexico fret : source cargo nationale citée, portée internationale à confirmer", canal(g, "airline_aeromexico", "cargo")?.status === "confirmation_required");
   const eg = decide("airport_cdg", "airport_cai", GOLDEN_32), egC = decide("airport_cdg", "airport_cai", CAVALIER_6), egP = decide("airport_cdg", "airport_cai", CARLIN_8);
   const egCab = canal(egC, "airline_egyptair", "cabin");
   check("EgyptAir cabine, Cavalier 6 kg et Carlin 8 kg : sous conditions, plafond 8 chien + contenant ; Golden 32 kg : refus sûr",
@@ -201,16 +218,16 @@ console.log("\n=== Étage 2 — Paris → Mexico, Le Caire : plafonds combinés 
 console.log("\n=== Étage 2 — Madrid → Santiago, Londres → Newark : LATAM et United, cabines citées, règles héritées nommées ===");
 {
   const sclC = decide("airport_mad", "airport_scl", CAVALIER_6), sclG = decide("airport_mad", "airport_scl", GOLDEN_32);
-  check("LATAM cabine, Cavalier 6 kg sur un vol LATAM : sous conditions ; soute, Golden 32 kg : sous conditions ; fret non décidé → à confirmer",
-    canal(sclC, "airline_latam", "cabin")?.status === "accepted_with_conditions" && canal(sclG, "airline_latam", "hold")?.status === "accepted_with_conditions" && canal(sclG, "airline_latam", "cargo")?.status === "confirmation_required");
+  check("LATAM cabine, soute et fret : sous conditions sur leurs preuves propres",
+    canal(sclC, "airline_latam", "cabin")?.status === "accepted_with_conditions" && canal(sclG, "airline_latam", "hold")?.status === "accepted_with_conditions" && canal(sclG, "airline_latam", "cargo")?.status === "accepted_with_conditions");
   /* MESURÉ : une règle de poids héritée non citée (`rule_latam_cabin_weight`) garde le Golden « à
      confirmer » en cabine — jamais un refus prouvé, la règle est nommée. */
   const lg = canal(sclG, "airline_latam", "cabin");
   check("LATAM cabine, Golden 32 kg : « à confirmer », règle héritée de poids NOMMÉE (aucun plafond cité)",
     lg?.status === "confirmation_required" && (lg?.confirmation_causes ?? []).some((x) => x.rule_id === "rule_latam_cabin_weight"), JSON.stringify(lg));
   const ewrC = decide("airport_lhr", "airport_ewr", CAVALIER_6), ewrG = decide("airport_lhr", "airport_ewr", GOLDEN_32);
-  check("United cabine, Cavalier 6 kg : sous conditions ; soute refusée sur citation et fret à confirmer",
-    canal(ewrC, "airline_united", "cabin")?.status === "accepted_with_conditions" && canal(ewrC, "airline_united", "hold")?.status === "denied" && canal(ewrC, "airline_united", "cargo")?.status === "confirmation_required");
+  check("United cabine, Cavalier 6 kg : sous conditions ; soute et fret refusés sur leurs citations",
+    canal(ewrC, "airline_united", "cabin")?.status === "accepted_with_conditions" && canal(ewrC, "airline_united", "hold")?.status === "denied" && canal(ewrC, "airline_united", "cargo")?.status === "denied");
   const ug = canal(ewrG, "airline_united", "cabin");
   check("United cabine, Golden 32 kg : « à confirmer », règles héritées de poids NOMMÉES (`rule_ua_cabin_weight`, `rule_united_cabin_weight`)",
     ug?.status === "confirmation_required" && ["rule_ua_cabin_weight", "rule_united_cabin_weight"].every((r) => (ug?.confirmation_causes ?? []).some((x) => x.rule_id === r)), JSON.stringify(ug));
@@ -261,9 +278,9 @@ console.log("\n=== Ce que l'import n'a PAS fait ===");
   check("aucune politique réelle n'est `allowed`", allowed === 0, String(allowed));
   check("Air China cabine a été basculée SUR ARBITRAGE (Codex 09/09, tranché par Philippe), et le dit dans la fiche",
     politique("airline_air_china", "cabin")?.availability === "offered" && /ARBITRAGE \(Codex, 09\/09\/2026/.test(readFileSync("content/airlines/air_china.yml", "utf8")));
-  check("United soute : refus officiel cité ; fret toujours sans phrase (rien n'est déduit de la cabine)",
+  check("United soute et fret : restrictions officielles citées, toutes deux refusées pour le voyageur ordinaire",
     !!politique("airline_united", "hold")?.source?.quote && projetee("airline_united", "hold")?.status === "denied"
-      && !politique("airline_united", "cargo")?.source?.quote);
+      && !!politique("airline_united", "cargo")?.source?.quote && projetee("airline_united", "cargo")?.status === "denied");
 }
 
 console.log(`\n=== SUMMARY ===\n${fail === 0 ? `ALL CHECKS PASSED (${pass})` : `${fail} CHECK(S) FAILED sur ${pass + fail}`}`);

@@ -932,8 +932,11 @@ console.log(`\n=== 5. Les ${CIBLE.length} canaux contradictoires × 4 langues : 
   /* 263 → 256 (12/09/2026, lot de 31 dossiers) : sept refus éditoriaux auparavant prudents sont
    * désormais établis par leur citation officielle. Le périmètre reste de 100 fiches : aucune
    * fiche ne sort entièrement du registre contradictoire. */
-  check("256 canaux contradictoires sur 100 fiches, relus des fiches et du contrat runtime",
-    CONTRADICTOIRES.length === 256 && new Set(CONTRADICTOIRES.map((c) => c.slug)).size === 100,
+  /* 256 → 253 (13/09/2026, lot fret officiel) : Delta, United et Virgin Atlantic fret passent
+   * de l'incertitude éditoriale à un refus officiel cité, désormais concordant avec `cls: no`.
+   * Le périmètre reste de 100 fiches. */
+  check("253 canaux contradictoires sur 100 fiches, relus des fiches et du contrat runtime",
+    CONTRADICTOIRES.length === 253 && new Set(CONTRADICTOIRES.map((c) => c.slug)).size === 100,
     `${CONTRADICTOIRES.length} canaux · ${new Set(CONTRADICTOIRES.map((c) => c.slug)).size} fiches`);
 
   /* LA LECTURE SE FAIT PAR LOTS, DANS DES PROCESSUS COURTS (CI du 16/08/2026, run 31 sur main).

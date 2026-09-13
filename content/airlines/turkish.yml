@@ -188,6 +188,17 @@ policies:
       locator: "Are there weight or size limits for my pet?"
   cargo:
     availability: offered
+    source:
+      url: https://www.turkishcargo.com/tr/urunler-ve-hizmetler/ozel-kargolar/tk-live
+      source_type: official_website
+      verified_date: 2026-09-12
+      review_due: 2026-12-11
+      confidence: 4
+      reviewer: Codex — contrôle du dossier officiel fret rev2 remis par Philippe
+      history: []
+      quote: "IATA Live Animals Regulations (LAR) sertifikalı uzman kadromuzla uluslararası standartlarda taşımacılık yapılır"
+      quote_language: tr
+      locator: section presentation TK Live
 channels:
   - placement: cabin
     icon: 🐾

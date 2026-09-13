@@ -111,23 +111,19 @@
         },
         {
           "fact": "placement",
-          "op": "in",
-          "value": [
-            "hold",
-            "cargo"
-          ]
+          "op": "eq",
+          "value": "hold"
         }
       ]
     },
     "effect": {
       "action": "deny",
       "placement": [
-        "hold",
-        "cargo"
+        "hold"
       ]
     },
     "params": {},
-    "rationale": "Brachycephalic (snub-nosed) breeds are not accepted in the hold or cargo, due to the elevated risk of breathing difficulty.",
+    "rationale": "Brachycephalic (snub-nosed) breeds are not accepted as checked baggage in the hold. Air Canada Cargo applies a separate regulated booking process and is not covered by this rule.",
     "source": {
       "url": "https://www.aircanada.com/ca/en/aco/home/plan/special-assistance/pets.html",
       "source_type": "official_website",
@@ -144,7 +140,7 @@
       ]
     },
     "rationale_i18n": {
-      "fr": "Les races brachycéphales (au museau écrasé) ne sont pas acceptées en soute ni en fret, en raison du risque accru de difficultés respiratoires."
+      "fr": "Les races brachycéphales ne sont pas acceptées comme bagages enregistrés en soute. Air Canada Cargo applique un processus de réservation réglementé distinct, qui n'est pas couvert par cette règle."
     }
   },
   {
@@ -210,47 +206,140 @@
       "all": [
         {
           "fact": "placement",
-          "op": "in",
-          "value": [
-            "hold",
-            "cargo"
-          ]
+          "op": "eq",
+          "value": "cargo"
         },
         {
           "fact": "weather.temperature_c",
-          "op": "gt",
-          "value": 30
+          "op": "gte",
+          "value": 29.5
         }
       ]
     },
     "effect": {
       "action": "deny",
       "placement": [
-        "hold",
         "cargo"
       ]
     },
     "params": {
-      "threshold_c": 30
+      "threshold_c": 29.5
     },
-    "rationale": "Dogs are not carried in the hold or cargo when forecast temperatures exceed roughly 30 °C, for welfare reasons.",
+    "rationale": "Air Canada Cargo does not accept warm-blooded animals when ground temperature is at least 29.5 °C at origin, destination or any intermediate point.",
     "source": {
-      "url": "https://www.aircanada.com/ca/en/aco/home/plan/special-assistance/pets.html",
+      "url": "https://www.aircanada.com/cargo/shipping/before-you-book?productid=2&lang=fr",
       "source_type": "official_website",
-      "verified_date": "2026-07-08",
-      "review_due": "2026-10-06",
-      "confidence": 3,
-      "reviewer": "MyDogCanFly Data Team",
-      "history": [
+      "verified_date": "2026-09-12",
+      "review_due": "2026-12-11",
+      "confidence": 4,
+      "reviewer": "Codex — contrôle du dossier officiel fret rev2 remis par Philippe",
+      "history": [],
+      "quote": "Le transport des animaux à sang chaud n’est pas accepté et sera réacheminé à bord du prochain vol disponible à la condition suivante : La température extérieure au sol est d’au moins 29,5 °C à la ville de départ, à la destination ou à tout point intermédiaire d’un itinéraire comprenant des correspondances.",
+      "quote_language": "fr",
+      "locator": "section restrictions de température"
+    },
+    "rationale_i18n": {
+      "fr": "Air Canada Cargo n'accepte pas les animaux à sang chaud lorsque la température au sol atteint 29,5 °C au départ, à destination ou à une escale.",
+      "es": "Air Canada Cargo no acepta animales de sangre caliente cuando la temperatura en tierra alcanza 29,5 °C en el origen, el destino o una escala.",
+      "pt": "A Air Canada Cargo não aceita animais de sangue quente quando a temperatura no solo atinge 29,5 °C na origem, no destino ou numa escala."
+    }
+  },
+  {
+    "id": "rule_american_cargo_heat_official_2026_09_12",
+    "scope": {
+      "type": "airline",
+      "id": "airline_american"
+    },
+    "category": "summer_embargo",
+    "criticality": "high",
+    "applies_when": {
+      "all": [
         {
-          "date": "2026-07-08",
-          "reviewer": "MyDogCanFly Data Team",
-          "note": "Initial import — pending live re-verification."
+          "fact": "placement",
+          "op": "eq",
+          "value": "cargo"
+        },
+        {
+          "fact": "weather.temperature_c",
+          "op": "gt",
+          "value": 29.444444444444443
         }
       ]
     },
+    "effect": {
+      "action": "deny",
+      "placement": [
+        "cargo"
+      ]
+    },
+    "params": {
+      "threshold_c": 29.444444444444443
+    },
+    "rationale": "American PetEmbark does not accept pets when temperatures are higher than 85 °F (29.44 °C).",
+    "source": {
+      "url": "https://www.aacargo.com/learn/animals.html",
+      "source_type": "official_website",
+      "verified_date": "2026-09-12",
+      "review_due": "2026-12-11",
+      "confidence": 4,
+      "reviewer": "Codex — contrôle du dossier officiel fret rev2 remis par Philippe",
+      "history": [],
+      "quote": "we will not accept pets when temperatures are higher than 85 degrees Fahrenheit",
+      "quote_language": "en",
+      "locator": "section temperature restrictions"
+    },
     "rationale_i18n": {
-      "fr": "Les chiens ne sont pas transportés en soute ni en fret lorsque les températures prévues dépassent environ 30 °C, pour des raisons de bien-être."
+      "fr": "American PetEmbark n'accepte pas les animaux lorsque la température dépasse 85 °F (29,44 °C).",
+      "es": "American PetEmbark no acepta animales cuando la temperatura supera los 85 °F (29,44 °C).",
+      "pt": "A American PetEmbark não aceita animais quando a temperatura ultrapassa 85 °F (29,44 °C)."
+    }
+  },
+  {
+    "id": "rule_ethiopian_cargo_brachy_official_2026_09_12",
+    "scope": {
+      "type": "airline",
+      "id": "airline_ethiopian"
+    },
+    "category": "breed_ban",
+    "criticality": "critical",
+    "applies_when": {
+      "all": [
+        {
+          "fact": "dog.brachycephalic",
+          "op": "eq",
+          "value": true
+        },
+        {
+          "fact": "placement",
+          "op": "eq",
+          "value": "cargo"
+        }
+      ]
+    },
+    "effect": {
+      "action": "deny",
+      "placement": [
+        "cargo"
+      ]
+    },
+    "params": {},
+    "rationale": "Ethiopian Airlines does not accept snub-nosed dog and cat breeds because of breathing risks caused by stress and temperature changes.",
+    "source": {
+      "url": "https://www.ethiopianairlines.com/us/information/special-needs/travelling-with-pets",
+      "source_type": "official_website",
+      "verified_date": "2026-09-12",
+      "review_due": "2026-12-11",
+      "confidence": 4,
+      "reviewer": "Codex — contrôle du dossier officiel fret rev2 remis par Philippe",
+      "history": [],
+      "quote": "Snub-nosed dog and cat breeds are not accepted, due to increased breathing risks caused by stress and temperature changes during transport",
+      "quote_language": "en",
+      "locator": "section pet restrictions"
+    },
+    "rationale_i18n": {
+      "fr": "Ethiopian Airlines n'accepte pas les chiens et chats brachycéphales en raison des risques respiratoires liés au stress et aux variations de température.",
+      "es": "Ethiopian Airlines no acepta perros ni gatos braquicéfalos por los riesgos respiratorios ligados al estrés y a los cambios de temperatura.",
+      "pt": "A Ethiopian Airlines não aceita cães nem gatos braquicefálicos devido aos riscos respiratórios ligados ao stress e às variações de temperatura."
     }
   },
   {

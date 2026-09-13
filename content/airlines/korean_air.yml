@@ -111,7 +111,18 @@ policies:
       quote_language: ko
       locator: "Traveling with Pets → Transport restrictions → checked-pet conditions"
   cargo:
-    review_state: legacy_unreviewed
+    availability: offered
+    source:
+      url: https://cargo.koreanair.com/en/products/Specialized/Live
+      source_type: official_website
+      verified_date: 2026-09-12
+      review_due: 2026-12-11
+      confidence: 4
+      reviewer: Codex — contrôle du dossier officiel fret rev2 remis par Philippe
+      history: []
+      quote: "All live animals listed on the IATA Live Animal Regulation (LAR)"
+      quote_language: en
+      locator: "section « Type of Live Animals »"
 channels:
   - placement: cabin
     icon: 🐾

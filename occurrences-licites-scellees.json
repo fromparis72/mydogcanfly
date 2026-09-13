@@ -2,15 +2,18 @@
   "_commentaire": "LES TOURNURES LICITES QUI VOISINENT UN CONTENANT, ÉNUMÉRÉES AVEC LEUR NOMBRE. Elles ne sont couvertes par aucune permission lexicale générale : c'est délibéré. Une permission écrite pour « IATA standards » couvrait aussi « IATA standards approved crate », et c'est par là que les attributions passaient. Ici chaque tournure est nommée avec sa clé — chemin de fichier pour les sources, « URL · zone » pour les pages — son voisinage exact et sa MULTIPLICITÉ. La comparaison se fait dans les deux sens : une occurrence de plus, une de moins, une entrée orpheline, une tournure déplacée d'un fichier ou d'une zone à l'autre, un nombre différent — chacun fait rougir. CE SCELLÉ NE REND RIEN LICITE : une occurrence que le motif juge interdite le reste, scellée ou non. Il ne dit qu'une chose : « ces tournures-là, en ce nombre-là, ont été lues et classées par un humain ». Toute formulation nouvelle, même licite, n'est couverte par personne et bloque jusqu'à un rescellement nommé. OBSERVATION CONSIGNÉE : sur les fiches compagnies, deux `<span>` adjacents sans espace se soudent au rendu — « 🛡️ IATA rules » suivi de « Acceptance strictly follows… » se lit « IATA rulesAcceptance ». C'est un défaut de BALISAGE, pas de vocabulaire ; hors de ce lot, nommé ici pour qu'il ne se perde pas.",
   "_mesure": {
     "sources": {
-      "cles": 17,
-      "occurrences": 30
+      "cles": 18,
+      "occurrences": 33
     },
     "publiees": {
-      "cles": 24,
-      "occurrences": 28
+      "cles": 28,
+      "occurrences": 32
     }
   },
   "occurrences": {
+    "content/airlines/emirates.yml": {
+      "tory: [] quote: \"Pets strictly follows IATA's Live Animal Regulations (LAR) and consider": 1
+    },
     "content/airlines/neos.yml": {
       "\"Up to 10 kg (pet + carrier), rigid or soft IATA-standard carrier up to 48 × 35 × 29 cm, wate": 1,
       "+ jaula), jaula rígida o blanda de estándar IATA de hasta 48 × 35 × 29 cm, fondo impermeable,": 1,
@@ -30,6 +33,7 @@
       "plus directe, dans un conteneur conforme aux IATA Live Animal Regulations (un animal par caiss": 1
     },
     "packages/knowledge/raw/objects.json": {
+      "\"quote\": \"Pets strictly follows IATA's Live Animal Regulations (LAR) and consider": 1,
       "environment. Any item we carry needs to meet IATA regulations.\", \"quote_language": 1,
       "s subject to the conditions described in the IATA's Live Animals Regulations and to TG's Regul": 1
     },
@@ -65,6 +69,7 @@
     },
     "packages/ui/src/data/airlines.generated.json": {
       "\"Up to 10 kg (pet + carrier), rigid or soft IATA-standard carrier up to 48 × 35 × 29 cm, wate": 1,
+      "], \"quote\": \"Pets strictly follows IATA's Live Animal Regulations (LAR) and consider": 1,
       "+ jaula), jaula rígida o blanda de estándar IATA de hasta 48 × 35 × 29 cm, fondo impermeable,": 1,
       "caisse), caisse rigide ou souple aux normes IATA jusqu'à 48 × 35 × 29 cm, fond étanche, non o": 1,
       "environment. Any item we carry needs to meet IATA regulations.\", \"quote_language\": \"": 1,
@@ -77,11 +82,17 @@
     }
   },
   "publiees": {
+    "/airlines/emirates/ · corps": {
+      "glish skycargo.com « Pets strictly follows IATA's Live Animal Regulations (LAR) and consider": 1
+    },
     "/airlines/thai-airways/ · corps": {
       "s subject to the conditions described in the IATA's Live Animals Regulations and to TG's Regul": 1
     },
     "/airlines/tui-airways/ · corps": {
       "environment. Any item we carry needs to meet IATA regulations. » sous-titre « Types of car": 1
+    },
+    "/es/airlines/emirates/ · corps": {
+      "nglés skycargo.com « Pets strictly follows IATA's Live Animal Regulations (LAR) and consider": 1
     },
     "/es/airlines/thai-airways/ · corps": {
       "s subject to the conditions described in the IATA's Live Animals Regulations and to TG's Regul": 1
@@ -99,6 +110,9 @@
     "/fr/ · json-ld": {
       "en soute dans une caisse conforme aux normes IATA. Certaines races brachycéphales, comme les B": 1,
       "pagnies exige une caisse conforme aux normes IATA pour le transport en soute. Ton chien doit p": 1
+    },
+    "/fr/airlines/emirates/ · corps": {
+      "glais skycargo.com « Pets strictly follows IATA's Live Animal Regulations (LAR) and consider": 1
     },
     "/fr/airlines/thai-airways/ · corps": {
       "s subject to the conditions described in the IATA's Live Animals Regulations and to TG's Regul": 1
@@ -123,6 +137,9 @@
     },
     "/fr/travel-hub/sac-caisse-transport-chien/ · json-ld": {
       "ige une caisse rigide conforme aux exigences IATA : solidité, ventilation sur plusieurs faces,": 1
+    },
+    "/pt/airlines/emirates/ · corps": {
+      "nglês skycargo.com « Pets strictly follows IATA's Live Animal Regulations (LAR) and consider": 1
     },
     "/pt/airlines/thai-airways/ · corps": {
       "s subject to the conditions described in the IATA's Live Animals Regulations and to TG's Regul": 1

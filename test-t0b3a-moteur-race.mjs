@@ -544,8 +544,11 @@ console.log("=== 8. Sur le référentiel RÉEL, après T0-B3-b ===");
      désormais cités de Delta soute, JetBlue soute, United soute et Vueling cabine éteignent
      douze causes de race qui ne doivent plus survivre derrière un refus officiel. Les avis de
      sécurité restent à 16 et le chien non visé à zéro. */
+  /* 13/09/2026 — LOT FRET OFFICIEL : 392 → 380, à cartes constantes (206). Delta, United et
+     Virgin Atlantic fret sont désormais refusés sur citation ; douze causes de race s'éteignent
+     derrière ces refus officiels. Les avis et le témoin non visé restent inchangés. */
   check(`le chien VISÉ reçoit l'incertitude : ${carlin.causes} causes de race sur ${carlin.cartes} cartes`,
-    carlin.causes === 392 && carlin.cartes === 206, JSON.stringify(carlin));
+    carlin.causes === 380 && carlin.cartes === 206, JSON.stringify(carlin));
   check("… et les avis IATA et IAG/BA lui sont publiés, une fois chacun par rapport",
     carlin.avis === 16, JSON.stringify(carlin.avis));
   check("AUCUNE preuve de race : le registre ne porte qu'un avis, et un avis ne prouve rien",

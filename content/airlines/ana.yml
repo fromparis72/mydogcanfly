@@ -202,7 +202,18 @@ policies:
       quote_language: en
       locator: "For passengers traveling with pets (International Flights) → Reservation and Fee"
   cargo:
-    review_state: legacy_unreviewed
+    availability: offered
+    source:
+      url: https://www.anacargo.jp/ja/int/service/animals.html
+      source_type: official_website
+      verified_date: 2026-09-12
+      review_due: 2026-12-11
+      confidence: 4
+      reviewer: Codex — contrôle du dossier officiel fret rev2 remis par Philippe
+      history: []
+      quote: "各フォワーダー（航空貨物代理店）に直接お問い合わせください"
+      quote_language: ja
+      locator: rubrique contact et reservation
 channels:
   - placement: cabin
     icon: 🐾

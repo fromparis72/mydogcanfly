@@ -126,7 +126,18 @@ policies:
           quote: contact your local cargo agent
           quote_language: en
           locator: Cargo referral
-    review_state: legacy_unreviewed
+    availability: offered
+    source:
+      url: https://www.siacargo.com/products/live-animals/
+      source_type: official_website
+      verified_date: 2026-09-12
+      review_due: 2026-12-11
+      confidence: 4
+      reviewer: Codex — contrôle du dossier officiel fret rev2 remis par Philippe
+      history: []
+      quote: "Complying with the IATA Live Animal Regulations (LAR), our experienced staff at SIA Cargo ensure the welfare and safety of the animals are well taken care of."
+      quote_language: en
+      locator: "section « Professional Handling »"
 channels:
   - placement: cabin
     icon: 🐾
