@@ -60,7 +60,7 @@
     "mesure:t0b3f": "node mesures/t0b3f-ce-que-les-regles-affirment/outils/reproduire.mjs",
     "mesure:t0b3g": "node mesures/t0b3g-ce-que-les-outils-servent/outils/reproduire.mjs",
     "mesure:t0b3h": "node mesures/t0b3h-ce-que-le-site-dit-en-portugais/outils/reproduire.mjs",
-    "purge:cache": "node packages/knowledge/scripts/purger-cache.mjs"
+    "purge:cache": "node purger-cache.mjs"
   },
   "devDependencies": {
     "@types/node": "^22.5.0",

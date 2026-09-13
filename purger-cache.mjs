@@ -22,6 +22,16 @@
  * Ce jeton n'est PAS celui de wrangler : `wrangler login` produit un jeton OAuth qui ne sert
  * pas l'API REST de purge.
  *
+ * POURQUOI CE FICHIER EST À LA RACINE ET NON DANS `packages/knowledge/scripts` (13/09/2026).
+ * Il y a d'abord été écrit, et le contrat de provenance l'a refusé — à raison. Les trois paquets
+ * sont SCRUTÉS à la recherche de lectures d'environnement, et toute variable qu'on y lit doit
+ * figurer au contrat, parce qu'une variable lue dans un paquet scellé est réputée CHANGER LE SITE
+ * PRODUIT. Les deux que ce script lit ne changent rien : il s'exécute APRÈS le déploiement, il ne
+ * construit aucune page, et son résultat est un cache vidé. Les déclarer au contrat aurait fait
+ * mentir le contrat pour faire taire le harnais. Le fichier rejoint donc les autres outils de
+ * chantier de la racine — `porte-lancement.mjs`, `preuve-migration-categories.mjs` — qui sont
+ * hors des paquets scellés parce qu'ils n'entrent dans aucune page.
+ *
  * DEUX MODES D'ÉCHEC, TRAITÉS DIFFÉREMMENT, et c'est le cœur de ce fichier.
  *
  *   · Jeton ABSENT → on avertit bruyamment et on rend la main SANS échouer. Le déploiement,
