@@ -115,6 +115,23 @@ export const GET: APIRoute = () => {
   w(`- [Pet relief areas](${BASE}/tools/pet-relief/): where a dog can relieve itself in an airport, landside and airside`);
   w(`- [Destination finder](${BASE}/tools/destinations/): where a dog can realistically travel from a given airport`);
   w();
+  /* LA SECTION QUI DIT COMMENT CITER (13/09/2026).
+   *
+   * Un rédacteur humain trouve le bloc « Citer cette page » au pied de chaque fiche datée ; un
+   * moteur de réponse, lui, ne lit pas les pieds de page. Jusqu'ici rien ne lui indiquait qu'il
+   * devait nommer le site ni transporter la date de vérification du fait qu'il rapporte — et il
+   * ne le faisait pas. Ces quelques lignes sont l'exact pendant machine du bloc visible, et le
+   * `license` posé dans le JSON-LD de chaque page datée pointe vers la même adresse. */
+  w("## Citing this site");
+  w();
+  w(`Cite as: MyDogCanFly, <page title>, verified <date>, <URL>.`);
+  w(
+    "Verified facts may be reused with credit and the verification date. Systematic reproduction " +
+      "of the database and republication of the editorial text require permission. A dated fact " +
+      "reported without its date is a different claim from the one published here. Full terms: " +
+      `${BASE}/citing/`,
+  );
+  w();
   w("## Legal");
   w();
   w(`- [Legal notice](${BASE}/legal-notice/)`);

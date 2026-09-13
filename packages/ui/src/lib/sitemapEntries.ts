@@ -64,6 +64,9 @@ export function buildEntries(): Entry[] {
   push("/report-error/", "0.3", "yearly");
   // Confiance / mentions légales
   push("/about/", "0.5", "yearly");
+  /* Les conditions de reprise. Rangée avec « à propos » plutôt qu'avec les pages légales : c'est
+   * une page qu'on veut voir citée et atteinte, pas une obligation réglementaire. */
+  push("/citing/", "0.5", "yearly");
   // Presse & partenariats : page d'entrée pour les journalistes et les partenaires, elle porte
   // les fichiers à télécharger. Priorité au-dessus des pages légales, en dessous des outils.
   push("/presskit/", "0.5", "monthly");

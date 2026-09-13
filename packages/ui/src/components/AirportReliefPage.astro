@@ -6,6 +6,7 @@
    Honest fallbacks: US airports carry the federal 14 CFR §382.51 rule; others show generic guidance
    with an invitation to report. Nothing fabricated. */
 import { loadKB, cityName, inlineT, inlineF, dateFormatter } from "@mydogcanfly/knowledge";
+import CiteBlock from "./CiteBlock.astro";
 import Breadcrumb from "./Breadcrumb.astro";
 import { siblingAirports, dogAirlinesForAirport } from "../lib/cluster";
 interface Props { id: string; locale: string }
@@ -224,6 +225,12 @@ const title = F("Pet relief areas at {0} ({1})", "Coins pipi pour chiens à {0} 
   {src && (
     <p class="apr-src">{T("Source", "Source", "Fuente")}: <a href={src.url} rel="nofollow">{src.host}</a> · {T("verified", "vérifié", "verificado")} {fmtDate(src.date)} · {T("confidence", "confiance", "confianza")} {src.confidence}/5.</p>
   )}
+  {/* Une fiche d'aéroport qui RÉPOND — « oui, voici où » ou « non, et voici l'aéroport qui le
+    * dit » — est parmi les pages les plus citables du site : elle répond à une question posée
+    * telle quelle. Elle n'utilise pas `PageActions`, d'où l'appel direct au composant partagé,
+    * posé juste après la source pour les raisons expliquées en tête de CiteBlock.astro.
+    * La garde est la même partout : pas de source datée, pas de bloc. */}
+  {src?.date && <CiteBlock locale={locale} title={title} date={fmtDate(src.date)} />}
 </div>
 
 <style>

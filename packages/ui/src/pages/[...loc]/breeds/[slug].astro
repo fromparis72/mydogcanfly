@@ -123,6 +123,10 @@ const webpageLd = {
   inLanguage: locale,
   isPartOf: { "@id": "https://mydogcanfly.com/#website" },
   about: { "@type": "Thing", name: bName },
+  /* Déclaré seulement là où il y a quelque chose à citer — voir le bloc `faits` juste en
+   * dessous : une fiche sans fait établi n'annonce pas de conditions de reprise, puisqu'elle ne
+   * publie aucune affirmation datée. */
+  ...(faits.length ? { license: "https://mydogcanfly.com/citing/" } : {}),
   /* Les faits du registre sont affichés dans la fiche depuis le 13/09/2026 : ils peuvent donc
    * être cités. Une fiche sans fait n'en porte aucun — et elle est `noindex`, ce qui est la
    * même phrase dite deux fois. */

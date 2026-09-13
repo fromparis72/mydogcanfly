@@ -116,6 +116,10 @@ const webpageLd = {
    * portait aucune trace, si bien qu'un moteur de réponse voyait une fiche affirmative sans
    * savoir sur quoi elle s'appuyait. C'est la MÊME liste, `g.sources`, qui alimente les deux :
    * pas de seconde énumération à tenir à jour, donc pas de divergence possible. */
+  /* Les conditions de reprise, déclarées pour la machine comme elles le sont pour l'œil dans la
+   * rangée « Emporte cette page ». Sans ce champ, rien n'indique à un moteur de réponse qu'il
+   * doit nommer la source ni transporter la date. */
+  license: "https://mydogcanfly.com/citing/",
   ...(g.sources?.length
     ? { citation: g.sources.map((s) => ({ "@type": "WebPage" as const, url: s.url, name: t(s.label) })) }
     : {}),
@@ -390,7 +394,8 @@ const jsonLd = faqItems.length ? [webpageLd, faqJsonLd(faqItems)] : [webpageLd];
       <span>{T("Confidence", "Confiance", "Confianza")}: {stars(g.confidence)}</span>
     </div>
 
-    <PageActions locale={locale} toIso={g.iso2.toLowerCase()} emailSubject={t(g.seo.metaTitle)} />
+    <PageActions locale={locale} toIso={g.iso2.toLowerCase()} emailSubject={t(g.seo.metaTitle)}
+      citeTitle={t(g.seo.metaTitle)} citeDate={verifiedDate ? fmtDate(verifiedDate) : undefined} />
   </div>
 </Base>
 

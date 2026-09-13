@@ -170,6 +170,9 @@ const webpageLd = {
   inLanguage: locale,
   isPartOf: { "@id": "https://mydogcanfly.com/#website" },
   about: { "@type": "Airline", name: d.name },
+  /* Voir CountryGuidePage : ce que la page dit au lecteur sur la reprise, elle le dit aussi au
+   * moteur de réponse, qui ne lit pas les pieds de page. */
+  license: "https://mydogcanfly.com/citing/",
   ...(derniereVerif ? { lastReviewed: derniereVerif } : {}),
   ...(citations.length ? { citation: citations } : {}),
 };
@@ -496,7 +499,8 @@ const jsonLd = faqItems.length ? [webpageLd, faqJsonLd(faqItems)] : [webpageLd];
       <p class="muted codeshare">{tt(locale, "codeshare.notice")}</p>
     </div>
 
-    <PageActions locale={locale} airlineId={id} bookUrl={d.book?.url} bookLabel={T("Book on {n}", "Réserver sur {n}", "Reservar en {n}").replace("{n}", d.book?.host ?? d.name)} emailSubject={seoTitle} />
+    <PageActions locale={locale} airlineId={id} bookUrl={d.book?.url} bookLabel={T("Book on {n}", "Réserver sur {n}", "Reservar en {n}").replace("{n}", d.book?.host ?? d.name)} emailSubject={seoTitle}
+      citeTitle={seoTitle} citeDate={derniereVerif ? fmtDate(derniereVerif) : undefined} />
   </div>
 </Base>
 

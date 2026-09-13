@@ -1,0 +1,113 @@
+---
+import { inlineT } from "@mydogcanfly/knowledge";
+
+/* « CITER CETTE PAGE » — un seul bloc, pour les quatre familles sourcées.
+ *
+ * POURQUOI IL EXISTE. Le site publie près d'un millier d'affirmations sourcées, chacune datée et
+ * citée mot pour mot, et rien n'indiquait à quelles conditions on pouvait les reprendre. Résultat
+ * mesuré le 13/09/2026 : 41 liens entrants, dont 38 venant d'un domaine appartenant à l'éditeur.
+ * Quelqu'un qui veut bien faire ne trouvait pas comment — et citait la source primaire à notre
+ * place, ou rien du tout.
+ *
+ * OÙ IL SE POSE, et pourquoi pas ailleurs. Personne ne décide de citer en arrivant sur une page :
+ * on cite APRÈS avoir pris le fait, et le moment où l'on cherche comment le faire est celui où
+ * l'on vérifie la provenance. Ce bloc se place donc systématiquement au voisinage de la source
+ * affichée — après « Sources officielles » sur les fiches pays, après la ligne de source sur les
+ * fiches de race et d'aéroport. Un bandeau en tête s'adresserait à quelqu'un qui n'a encore rien
+ * à citer, et saturerait l'espace le plus cher de la page pour un lecteur sur cent.
+ *
+ * `<details>` ET NON UN INTERRUPTEUR MAISON. Le repli est natif : il fonctionne sans JavaScript,
+ * il est annoncé correctement par les lecteurs d'écran, et plusieurs blocs peuvent coexister sur
+ * une page sans se marcher dessus — ce que ma première version, qui cherchait un identifiant
+ * unique dans le document, ne permettait pas. Seul le bouton « Copier » demande du JavaScript ;
+ * sans lui, la citation reste lisible et sélectionnable à la souris.
+ *
+ * LA DATE N'EST JAMAIS INVENTÉE. `date` est la date de vérification que la page AFFICHE déjà,
+ * celle-là même qui alimente `lastReviewed` dans le JSON-LD. Une page sans date n'appelle pas ce
+ * composant : proposer de citer une fraîcheur qu'on ne peut pas produire est exactement ce que la
+ * frontière de confiance interdit partout ailleurs.
+ *
+ * LE TON. Ce bloc n'est pas un avertissement. Il ouvre par ce qui est permis et ferme par la
+ * limite, et cet ordre est délibéré : une phrase qui commence par « ces pages sont protégées »
+ * décourage le vétérinaire qui hésitait à citer, et n'arrête pas celui qui aspire — lequel ne lit
+ * pas les pieds de page. Ne pas l'inverser.
+ */
+interface Props {
+  locale?: string;
+  /** Titre tel qu'il doit apparaître dans la citation. */
+  title: string;
+  /** Date de vérification, déjà formatée pour la langue de la page. */
+  date: string;
+}
+const { locale = "en", title, date } = Astro.props as Props;
+const L = inlineT(locale);
+const href = locale === "en" ? "/citing/" : `/${locale}/citing/`;
+const prefixe = `MyDogCanFly, "${title}", ${L("verified", "vérifié le", "verificado el")} ${date}, `;
+---
+<details class="cite">
+  <summary class="cite__sum">❝ {L("Cite this page", "Citer cette page", "Cómo citar esta página")}</summary>
+  <div class="cite__body">
+    <p class="cite__p">{L(
+      "The verified facts on this page are free to reuse, provided you credit MyDogCanFly and state the verification date. Systematic reproduction of the database and republication of the editorial text require permission.",
+      "Les faits vérifiés de cette page sont libres de reprise, à condition de citer MyDogCanFly et de mentionner la date de vérification. La reproduction systématique de la base et la republication du texte éditorial restent soumises à autorisation.",
+      "Los datos verificados de esta página pueden reutilizarse libremente, siempre que se cite MyDogCanFly y se indique la fecha de verificación. La reproducción sistemática de la base de datos y la republicación del texto editorial requieren autorización.",
+    )}</p>
+    <blockquote class="cite__q" data-cite-prefix={prefixe}>
+      MyDogCanFly, «&nbsp;{title}&nbsp;», {L("verified", "vérifié le", "verificado el")} {date}, <span class="cite__url"></span>
+    </blockquote>
+    <div class="cite__row">
+      <button class="cite__copy" type="button" data-cite-copy data-copied={L("Copied", "Copié", "Copiado")}>
+        ⧉ {L("Copy", "Copier", "Copiar")}
+      </button>
+      <a class="cite__link" href={href}>{L(
+        "Full terms and other citation formats",
+        "Conditions complètes et autres formats de citation",
+        "Condiciones completas y otros formatos de cita",
+      )} →</a>
+    </div>
+  </div>
+</details>
+
+<script is:inline>
+  (function () {
+    /* L'URL est écrite au chargement plutôt que rendue dans le HTML : une page peut être atteinte
+       par une variante d'adresse, et la citation doit porter CELLE que le lecteur a sous les yeux. */
+    var url = location.origin + location.pathname;
+    document.querySelectorAll(".cite__url").forEach(function (u) { u.textContent = url; });
+    document.querySelectorAll("[data-cite-copy]").forEach(function (b) {
+      b.addEventListener("click", function () {
+        var q = b.closest(".cite__body").querySelector(".cite__q");
+        var texte = (q.getAttribute("data-cite-prefix") || "") + url;
+        var fini = function () {
+          var avant = b.textContent;
+          b.textContent = "✓ " + (b.getAttribute("data-copied") || "");
+          setTimeout(function () { b.textContent = avant; }, 2000);
+        };
+        if (navigator.clipboard && navigator.clipboard.writeText) navigator.clipboard.writeText(texte).then(fini, function () {});
+        else fini();
+      });
+    });
+  })();
+</script>
+
+<style>
+  .cite { margin: 14px 0 0; max-width: 720px; border: 1px solid var(--mdcf-line); border-radius: 12px;
+    background: var(--mdcf-surface, #fff); }
+  .cite__sum { cursor: pointer; list-style: none; padding: 11px 16px; font-size: 13.5px; font-weight: 600;
+    color: var(--mdcf-ink); min-height: 44px; display: flex; align-items: center; gap: 8px; }
+  .cite__sum::-webkit-details-marker { display: none; }
+  .cite__sum:focus-visible { outline: 2px solid var(--mdcf-accent); outline-offset: -2px; border-radius: 12px; }
+  .cite__body { padding: 0 16px 14px; }
+  .cite__p { margin: 0 0 12px; font-size: 13.5px; line-height: 1.6; color: var(--mdcf-muted, #64748b); }
+  .cite__q { margin: 0 0 12px; padding: 10px 12px; border-left: 2px solid var(--mdcf-line);
+    font-size: 13.5px; line-height: 1.6; color: var(--mdcf-ink); overflow-wrap: anywhere; }
+  .cite__url { color: var(--mdcf-muted, #64748b); }
+  .cite__row { display: flex; flex-wrap: wrap; align-items: center; gap: 10px 16px; }
+  .cite__copy { display: inline-flex; align-items: center; gap: 7px; min-height: 36px; box-sizing: border-box;
+    padding: 0 14px; border-radius: 999px; font: inherit; font-size: 13px; font-weight: 600; cursor: pointer;
+    background: var(--mdcf-surface, #fff); color: var(--mdcf-ink); border: 1px solid var(--mdcf-line); }
+  .cite__copy:hover { border-color: var(--mdcf-ink); }
+  .cite__link { font-size: 13px; color: var(--mdcf-accent-ink, #b4530a); text-decoration: none; }
+  .cite__link:hover { text-decoration: underline; }
+  @media print { .cite { display: none; } }
+</style>
