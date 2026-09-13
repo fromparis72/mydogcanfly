@@ -392,7 +392,7 @@ if (DIST) {
   }
 
   /* Les quatre langues portent bien un statut, et pas un mot anglais laissé là. */
-  const ATTENDU = { "": "to confirm", "/fr": "à confirmer", "/es": "por confirmar", "/pt": "a confirmar" };
+  const ATTENDU = { "": "to confirm", "/fr": "à confirmer", "/es": "a confirmar", "/pt": "a confirmar" };
   let langues = 0;
   for (const [prefixe, fragment] of Object.entries(ATTENDU)) {
     const p = `${prefixe}/airlines/aegean/index.html`;
