@@ -66,40 +66,57 @@ ladder:
       pt: "não transportado"
 policies:
   cabin:
+    fares:
+      - id: fare_la_compagnie_cabin_eur_usd_2026_09_12
+        placement: cabin
+        price:
+          kind: exact
+          amounts:
+            - amount: 200
+              currency: EUR
+            - amount: 250
+              currency: USD
+        billing_subject: pet
+        journey_basis: per_one_way
+        scope_label: Réseau La Compagnie · par trajet
+        source:
+          url: https://www.lacompagnie.com/fr/plan/special-services
+          source_type: official_website
+          verified_date: 2026-09-12
+          review_due: 2026-12-11
+          confidence: 4
+          reviewer: Codex — contre-lecture du dossier officiel national
+          history: []
+          quote: Le tarif appliqué est de 200 € / 250 USD par trajet (soit 400 € / 500 USD pour un aller-retour).
+          quote_language: fr
+          locator: section « Les animaux à bord de La Compagnie », troisieme puce
     availability: offered
-    # PREUVE IMPORTÉE — import strict lot7 (Codex, lecture directe du 2026-09-09, cohorte LOT7 fait 19).
-    # Effet attendu : La Compagnie cabin is conditional with an 8 kg combined animal-and-bag ceiling.
-    # Portée nommée : Dogs and cats up to 8 kg including the bag, subject to a four-animal flight quota, advance request, container, behavior and documentation rules.
-    # Le plafond cité inclut le CONTENANT : refus sûr si le chien seul le dépasse, jamais un oui en dessous.
     max_weight_kg: 8
     weight_includes_carrier: true
     source:
-      url: "https://www.lacompagnie.com/fr/plan/special-services"
+      url: https://www.lacompagnie.com/fr/legal/conditions-of-carriage
       source_type: official_website
-      verified_date: "2026-09-09"
-      review_due: "2026-12-08"   # reviewDueFrom(verified_date, "airline") — calculé par l'importeur
+      verified_date: 2026-09-12
+      review_due: 2026-12-11
       confidence: 4
-      reviewer: "Codex — direct reading of official airline page"
+      reviewer: Codex — contre-lecture du dossier officiel national
       history: []
-      quote: "vos compagnons, jusqu’à 8kg, sac compris, (chiens et chats)"
+      quote: l’Animal de Compagnie et son contenant nedoivent pas excéder un poids total de huit (8) kg, et le contenant doitrespecter les dimensions maximales applicables, notamment 55 cm de longueur, 35cm de largeur et 25 cm de hauteur.
       quote_language: fr
-      locator: "Services optionnels → Animaux"
+      locator: conditions generales de transport, article 10.8.2
   hold:
     availability: not_offered
-    # PREUVE IMPORTÉE — import strict lot7 (Codex, lecture directe du 2026-09-09, cohorte LOT7 fait 20).
-    # Effet attendu : La Compagnie hold is a documented refusal for ordinary pet dogs.
-    # Portée nommée : Ordinary pet transport is cabin-only; passenger hold is explicitly not offered.
     source:
-      url: "https://www.lacompagnie.com/fr/plan/special-services"
+      url: https://www.lacompagnie.com/fr/legal/conditions-of-carriage
       source_type: official_website
-      verified_date: "2026-09-09"
-      review_due: "2026-12-08"   # reviewDueFrom(verified_date, "airline") — calculé par l'importeur
+      verified_date: 2026-09-12
+      review_due: 2026-12-11
       confidence: 4
-      reviewer: "Codex — direct reading of official airline page"
+      reviewer: Codex — contre-lecture du dossier officiel national
       history: []
-      quote: "Seul le transport en cabine est autorisé, le transport d’animaux en soute n’est pas proposé."
+      quote: Le transport des Animaux de Compagnie et des Chiensd’Assistance Éduqués est autorisé uniquement en cabine. Le transport d’animauxen soute n’est pas proposé par le Transporteur.
       quote_language: fr
-      locator: "Services optionnels → Animaux"
+      locator: conditions generales de transport, article 10.8.1, dernier alinea
 channels:
   - placement: cabin
     icon: 🐾

@@ -89,6 +89,29 @@ policies:
       quote_language: en
       locator: "Pets in Cabin Policy → Pets Other than Service Animals"
   hold:
+    # TARIFS OFFICIELS — audit indépendant du 2026-09-10 ; aucune valeur héritée réactivée.
+    fares:
+      - id: fare_thai_airways_hold_usd_2026_09_10
+        placement: hold
+        price:
+          kind: exact
+          amounts:
+            - amount: 320
+              currency: USD
+        billing_subject: pet_or_container
+        journey_basis: per_journey
+        scope_label: Domestic Thailand versus international; weight bands
+        source:
+          url: https://www.thaiairways.com/en-tw/content/special-assistance/travel-with-pets/pets-as-checked-baggage-avih/
+          source_type: official_website
+          verified_date: 2026-09-10
+          review_due: 2026-12-09
+          confidence: 4
+          reviewer: Codex — lecture directe de la source officielle
+          history: []
+          quote: USD 320 up to 32 kilograms
+          quote_language: en
+          locator: AVIH charges
     availability: offered
     # PREUVE IMPORTÉE — import strict lot8 (Codex, lecture directe du 2026-09-09, cohorte LOT8 fait 10).
     # Effet attendu : Thai Airways hold is a documented conditional route.
@@ -105,6 +128,27 @@ policies:
       quote_language: en
       locator: "Pets as Checked Baggage (AVIH) → Conditions for Acceptance"
   cargo:
+    # TARIFS OFFICIELS — audit indépendant du 2026-09-10 ; aucune valeur héritée réactivée.
+    fares:
+      - id: fare_thai_airways_cargo_2026_09_10
+        placement: cargo
+        price:
+          kind: quote
+          amounts: []
+        billing_subject: shipment
+        journey_basis: per_journey
+        scope_label: Thai Cargo cases
+        source:
+          url: https://www.thaiairways.com/en-tw/content/special-assistance/travel-with-pets/pets-as-checked-baggage-avih/
+          source_type: official_website
+          verified_date: 2026-09-10
+          review_due: 2026-12-09
+          confidence: 4
+          reviewer: Codex — lecture directe de la source officielle
+          history: []
+          quote: contact THAI Cargo
+          quote_language: en
+          locator: Cargo referral
     availability: offered   # ARBITRÉ (Codex 09/09/2026, relayé par Philippe) — était undocumented (décision auditée du 13/08)
     # PREUVE IMPORTÉE — import strict correctif (Codex, lecture directe du 2026-09-09, cohorte CORRECTIF fait 0).
     # Effet attendu : Thai Airways cargo is a documented conditional route, never guaranteed acceptance for a specific flight.

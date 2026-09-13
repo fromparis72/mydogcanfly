@@ -70,6 +70,29 @@ ladder:
     sub: "> 75 kg"
 policies:
   cabin:
+    # TARIFS OFFICIELS — audit indépendant du 2026-09-10 ; aucune valeur héritée réactivée.
+    fares:
+      - id: fare_air_austral_cabin_eur_2026_09_10
+        placement: cabin
+        price:
+          kind: exact
+          amounts:
+            - amount: 125
+              currency: EUR
+        billing_subject: pet_or_container
+        journey_basis: per_one_way
+        scope_label: all destinations
+        source:
+          url: https://www.air-austral.com/aide.html?question=puis-je-voyager-mon-animal
+          source_type: official_website
+          verified_date: 2026-09-10
+          review_due: 2026-12-09
+          confidence: 4
+          reviewer: Codex — lecture directe de la source officielle
+          history: []
+          quote: 125 € par trajet
+          quote_language: fr
+          locator: Puis-je voyager avec mon animal ?
     availability: offered
     # PREUVE IMPORTÉE — import strict lot7 (Codex, lecture directe du 2026-09-09, cohorte LOT7 fait 2).
     # Effet attendu : Air Austral cabin is conditional with an 8 kg combined animal-and-container ceiling.
@@ -90,6 +113,29 @@ policies:
       quote_language: fr
       locator: "Animaux acceptés en cabine (PETC)"
   hold:
+    # TARIFS OFFICIELS — audit indépendant du 2026-09-10 ; aucune valeur héritée réactivée.
+    fares:
+      - id: fare_air_austral_hold_eur_2026_09_10
+        placement: hold
+        price:
+          kind: exact
+          amounts:
+            - amount: 200
+              currency: EUR
+        billing_subject: pet_or_container
+        journey_basis: per_one_way
+        scope_label: all destinations
+        source:
+          url: https://www.air-austral.com/aide.html?question=puis-je-voyager-mon-animal
+          source_type: official_website
+          verified_date: 2026-09-10
+          review_due: 2026-12-09
+          confidence: 4
+          reviewer: Codex — lecture directe de la source officielle
+          history: []
+          quote: 200 € par trajet
+          quote_language: fr
+          locator: Puis-je voyager avec mon animal ?
     availability: offered
     # PREUVE IMPORTÉE — import strict lot7 (Codex, lecture directe du 2026-09-09, cohorte LOT7 fait 3).
     # Effet attendu : Air Austral hold is a documented conditional route, not guaranteed acceptance.

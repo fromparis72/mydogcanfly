@@ -6,20 +6,30 @@
  * produite — et qu'il échouera « faute de matière » au lieu de mesurer quelque chose.
  *
  * POURQUOI CELLES-CI. Chacune couvre une FORME DE DÉCISION distincte, telle qu'elle existe
- * RÉELLEMENT dans les données :
- *   · refus PROUVÉ        → British Airways, cabine   (`denied`, sur citation stricte)
- *   · source AUDITÉE      → Thai Airways, fret        (`confirmation_required`, avec preuve)
+ * RÉELLEMENT dans les données. La liste ci-dessous est relue du tableau, jamais de mémoire :
+ *   · arbitrée sur ordre  → Thai Airways, fret        (`accepted_with_conditions`, citée)
  *   · sans source         → Aegean, fret              (`confirmation_required`, SANS preuve)
- *   · politique d'auteur  → Air France, cabine        (`confirmation_required` depuis la frontière)
- *   · non offerte         → Thai Airways, cabine      (`confirmation_required` depuis la frontière)
+ *   · page sans phrase    → United, fret              (`confirmation_required`, à côté de deux canaux prouvés)
+ *   · non offerte         → Bangkok Airways, cabine   (`confirmation_required`, refus d'auteur sans phrase)
+ *   · refus PROUVÉ        → British Airways, cabine   (`denied`, sur citation stricte)
+ *   · fait ATTESTÉ        → Air France, cabine ET soute (`accepted_with_conditions`, synthèse localisée)
  *
- * MOUVEMENT NOMMÉ (05/09/2026). Air France cabine portait `allowed` et Thai Airways cabine
- * `denied` : depuis la frontière de confiance, aucune politique n'est `allowed`, et `denied` ne
- * s'obtient que sur une phrase citée. Les deux valent donc `confirmation_required`. La couverture
- * d'un VRAI refus n'est pas perdue pour autant — elle passe à British Airways cabine, seule
- * décision du dépôt fondée sur une citation stricte. La branche `allowed`, elle, n'a plus aucun
- * porteur réel : elle est éprouvée par un témoin SYNTHÉTIQUE nommé, dans le harnais, et jamais
- * par une page du site.
+ * ERREUR NOMMÉE (11/09/2026). Ce sommaire avait DÉRIVÉ du tableau : il annonçait encore Thai
+ * Airways fret « auditée », Air France cabine « politique d'auteur » et Thai Airways cabine « non
+ * offerte », trois rôles que les mouvements des 08 et 09/09 avaient déplacés plus bas SANS remonter
+ * ici. Le tableau, lui, était juste. Le coût a été payé le 11/09 : cherchant à relire la fiche Air
+ * France dans le build réduit, j'ai lu ce sommaire, conclu qu'elle était construite, et trouvé un
+ * dist sans elle. Un commentaire qui prétend décrire le code d'à côté doit être relu avec lui, ou
+ * il devient une mesure fausse qui a l'air d'une mesure. Le sommaire est refondé sur le tableau tel
+ * qu'il est aujourd'hui ; les mouvements qui l'ont fait bouger restent écrits en regard de chaque
+ * ligne, où ils ont toujours été.
+ *
+ * MOUVEMENT NOMMÉ (05/09/2026, conservé). Air France cabine portait `allowed` et Thai Airways
+ * cabine `denied` : depuis la frontière de confiance, aucune politique n'est `allowed`, et `denied`
+ * ne s'obtient que sur une phrase citée. La couverture d'un VRAI refus n'est pas perdue pour
+ * autant — elle passe à British Airways cabine, seule décision du dépôt fondée sur une citation
+ * stricte. La branche `allowed`, elle, n'a plus aucun porteur réel : elle est éprouvée par un
+ * témoin SYNTHÉTIQUE nommé, dans le harnais, et jamais par une page du site.
  *
  * `case_by_case` n'a aucun porteur dans les données (0 politique) : lui donner une sentinelle
  * reviendrait à tester une fixture, pas le site.
@@ -56,7 +66,15 @@ export const SENTINELLES_COMPAGNIES = [
      restantes vivent toutes à côté d'un canal prouvé. Le rôle est donc re-fondé sur cette forme :
      United SOUTE — page officielle, aucune phrase citée, « à confirmer » à côté d'une cabine citée.
      Même slug, même page construite ; le statut attendu ne change pas. */
-  { slug: "united", id: "airline_united", placement: "hold", statut: "confirmation_required", role: "page officielle sans phrase citée, à côté d'un canal prouvé" },
+  /* RE-FONDÉE UNE CINQUIÈME FOIS (12/09/2026, lot de 30 compagnies) : la page dynamique United
+     prouve désormais que le service PetSafe général est fermé ; la soute devient donc un refus
+     cité. Le fret porte encore la même page officielle sans phrase citée et reste à confirmer,
+     à côté de la cabine et de la soute désormais prouvées. Même fiche, même forme de preuve,
+     seul le canal porteur du témoin change. */
+  /* RE-FONDÉE UNE SIXIÈME FOIS (13/09/2026, lot fret officiel) : United Cargo est désormais un
+     refus cité, son service n'étant ouvert qu'à certains militaires et agents du Département
+     d'État. WestJet fret porte encore une page officielle sans phrase citée ; la forme subsiste. */
+  { slug: "westjet", id: "airline_westjet", placement: "cargo", statut: "confirmation_required", role: "page officielle sans phrase citée, à côté de deux canaux prouvés" },
   /* RE-FONDÉE (09/09/2026, lot 8) : Thai Airways cabine est citée (« As a general policy, we do not accept
      pets in the cabin… ») — un refus PROUVÉ, plus « non prouvé ». Même forme, autre porteuse, mesurée
      sur les 12 cabines « non offertes, non prouvées » de la base projetée : Air China — précisément la
@@ -68,6 +86,19 @@ export const SENTINELLES_COMPAGNIES = [
      non décidée (lot 8 : « la source examinée est une page Cargo ; elle ne prouve aucun canal passager »). */
   { slug: "bangkok-airways", id: "airline_bangkok_airways", placement: "cabin", statut: "confirmation_required", role: "non offerte, non prouvée · refus d'auteur sans phrase" },
   { slug: "british-airways", id: "airline_british_airways", placement: "cabin", statut: "denied", role: "refus PROUVÉ · citation stricte" },
+  /* MOUVEMENT NOMMÉ (11/09/2026, rattachement fait → preuve). Une SIXIÈME forme entre dans le
+     référentiel réel : une politique dont un fait structuré est explicitement rattaché à la phrase
+     qui l'établit, et qui publie donc une synthèse dans la langue de la page en plus de sa citation
+     d'origine. Aucune sentinelle ne la portait — et elle ne pouvait pas l'être, puisque la forme
+     n'existait pas avant ce lot.
+     Air France est, au 11/09, la SEULE fiche qui la porte : deux canaux sur 302. Ses deux canaux
+     entrent tous les deux, parce qu'ils éprouvent deux constructions différentes de la même
+     synthèse — la cabine une borne haute seule (« moins de 8 kg »), la soute une borne basse ET une
+     borne haute (« plus de 8 kg et jusqu'à 75 kg »). Son FRET, lui, n'a aucune attestation : la même
+     page construite porte donc aussi le témoin négatif, un canal qui ne publie AUCUNE synthèse.
+     Ces deux entrées sont un AJOUT, pas un remplacement : aucun rôle existant n'est abaissé. */
+  { slug: "air-france", id: "airline_air_france", placement: "cabin", statut: "accepted_with_conditions", role: "fait ATTESTÉ · borne haute seule · synthèse localisée" },
+  { slug: "air-france", id: "airline_air_france", placement: "hold", statut: "accepted_with_conditions", role: "fait ATTESTÉ · deux bornes · synthèse localisée" },
 ];
 
 /** La page pays sentinelle — France, dont le guide est complet dans les quatre langues. */

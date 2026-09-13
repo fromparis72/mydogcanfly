@@ -67,40 +67,80 @@ ladder:
       pt: "HK / grandes"
 policies:
   cabin:
-    availability: not_offered
-    # PREUVE IMPORTÉE — import strict lot8 (Codex, lecture directe du 2026-09-09, cohorte LOT8 fait 1).
-    # Effet attendu : China Southern cabin is a documented refusal for ordinary pet dogs.
-    # Portée nommée : Ordinary pet dogs are not accepted in the passenger cabin; guide dogs are a separate exception.
+    availability: case_by_case
     source:
-      url: "https://www.csair.com/hk/en/tourguide/faq/baggage/dongwu.shtml"
+      url: https://www.csair.com/cts-products/group1/M00/1C/B6/rBtJFWldwkWAFPUTAAdU2X8Yk1U744.pdf
       source_type: official_website
-      verified_date: "2026-09-09"
-      review_due: "2026-12-08"   # reviewDueFrom(verified_date, "airline") — calculé par l'importeur
+      verified_date: 2026-09-12
+      review_due: 2026-12-11
       confidence: 4
-      reviewer: "Codex — direct reading of official airline page"
+      reviewer: Codex — contre-lecture du dossier officiel national
       history: []
-      quote: "No animal can be brought into the passenger cabin"
-      quote_language: en
-      locator: "Pets → Which animals can be brought into the cabin?"
+      quote: 旅客应在航班起飞前 6 小时购买爱宠进客舱产品，仅限南航指定直达航班的经济舱，除 C909（ARJ21）以外的客运机型均可接收携带进客舱的宠物。旅客须在乘机当日航班起飞前至少 2 小时，前往机场值机柜台办理相关手续。
+      quote_language: zh
+      locator: section 五, alinea (一) 2.（1）①
+    conditions:
+      en: "Official pages conflict: a current paid cabin product coexists with a FAQ saying pets are not allowed in the cabin. Confirm the eligible route before booking."
+      fr: "Les pages officielles se contredisent : un produit cabine payant actuel coexiste avec une FAQ refusant les animaux en cabine. Confirme l’itinéraire admissible avant de réserver."
+      es: "Las páginas oficiales se contradicen: un producto actual de cabina de pago coexiste con una FAQ que rechaza mascotas en cabina. Confirma la ruta antes de reservar."
+      pt: "As páginas oficiais se contradizem: um produto atual pago de cabine coexiste com uma FAQ que recusa animais na cabine. Confirme a rota antes de reservar."
+    fares:
+      - id: fare_china_southern_cabin_cny_2026_09_12
+        placement: cabin
+        price:
+          kind: range
+          amounts:
+            - amount: 1299
+              currency: CNY
+            - amount: 1499
+              currency: CNY
+        billing_subject: pet
+        journey_basis: per_segment
+        scope_label: Selon la distance du tronçon · produit cabine éligible
+        source:
+          url: https://m.csair.com/FTPCMS/mcms/CN/zh/2024/20241205_1/images/tu11-250411b.jpg
+          source_type: official_website
+          verified_date: 2026-09-12
+          review_due: 2026-12-11
+          confidence: 4
+          reviewer: Codex — contre-lecture du dossier officiel national
+          history: []
+          quote: 价格标准 / 根据宠物放置方式进行划分： / 1. 基础服务（放置在座位下方） / 航距｜＜2000公里｜≥2000公里 / 价格｜1299元人民币/航段/每只宠物｜1499元人民币/航段/每只宠物
+          quote_language: zh
+          locator: bloc « 价格标准 » incruste dans l'image officielle
   hold:
     availability: offered
-    # PREUVE IMPORTÉE — import strict correctif (Codex, lecture directe du 2026-09-09, cohorte CORRECTIF fait 1).
-    # Effet attendu : China Southern hold is a documented conditional route.
-    # Portée nommée : Pets may be checked only after prior approval by China Southern and successive carriers, with quarantine, vaccination, route, document and container requirements.
     source:
-      url: "https://www.csair.com/sg/en/tourguide/faq/baggage/dongwu.shtml"
+      url: https://www.csair.com/mcms/mcmsNewSite/zh/cn/#/tourguide/luggageservice/pets
       source_type: official_website
-      verified_date: "2026-09-09"
-      review_due: "2026-12-08"   # reviewDueFrom(verified_date, "airline") — calculé par l'importeur
+      verified_date: 2026-09-12
+      review_due: 2026-12-11
       confidence: 4
-      reviewer: "Codex — direct reading of official airline page"
+      reviewer: Codex — contre-lecture du dossier officiel national
       history: []
-      quote: "Sorry, a pet can not be taken into cabin. However, you can check it."
-      quote_language: en
-      locator: "Pets → May I take my pet into cabin?"
-    # ARBITRAGE (Codex, 09/09/2026, relayé et tranché par Philippe — mesures/preuves/correctif-arbitrages-2026-09-09) :
-    # « you can check it » est remplacé par la réponse officielle complète (import strict, correctif).
+      quote: （1）作为行李运输的小动物是指家庭驯养的狗、猫、鸟或者其他玩赏宠物。南航有权决定小动物是否属于可运输的范围及其运输方式，并且有权限制每个航班的收运数量。
+      quote_language: zh
+      locator: section « 一、一般规定 », alinea (1)
   cargo:
+    fares:
+      - id: fare_china_southern_cargo_2026_09_10
+        placement: cargo
+        price:
+          kind: quote
+          amounts: []
+        billing_subject: shipment
+        journey_basis: per_journey
+        source:
+          url: https://www.csair.com/newh5/en/tourguide/luggage_service/special_baggage/pets/
+          source_type: official_website
+          verified_date: 2026-09-10
+          review_due: 2026-12-09
+          confidence: 4
+          reviewer: Codex — lecture directe de la source officielle
+          history: []
+          quote: contact cargo
+          quote_language: en
+          locator: Oversize/cargo referral
     review_state: legacy_unreviewed
 channels:
   - placement: cabin

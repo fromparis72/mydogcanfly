@@ -61,8 +61,56 @@ ladder:
     sub: 8–15 kg / over 15 kg
 policies:
   cabin:
+    # TARIFS OFFICIELS — audit indépendant du 2026-09-10 ; aucune valeur héritée réactivée.
+    fares:
+      - id: fare_pegasus_cabin_eur_2026_09_10
+        placement: cabin
+        price:
+          kind: exact
+          amounts:
+            - amount: 65
+              currency: EUR
+        billing_subject: pet
+        journey_basis: per_journey
+        scope_label: Domestic Turkey; Northern Cyprus; international
+        source:
+          url: https://www.flypgs.com/fr/informations-utiles/autres-informations/tarifs-des-services-complementaires
+          source_type: official_website
+          verified_date: 2026-09-10
+          review_due: 2026-12-09
+          confidence: 4
+          reviewer: Codex — lecture directe de la source officielle
+          history: []
+          quote: "International flights: 65 EUR"
+          quote_language: en
+          locator: Pet transportation fees
     availability: offered
   hold:
+    # TARIFS OFFICIELS — audit indépendant du 2026-09-10 ; aucune valeur héritée réactivée.
+    fares:
+      - id: fare_pegasus_hold_try_2026_09_10
+        placement: hold
+        price:
+          kind: range
+          amounts:
+            - amount: 850
+              currency: TRY
+            - amount: 950
+              currency: TRY
+        billing_subject: pet
+        journey_basis: per_journey
+        scope_label: Only domestic Turkey and Northern Cyprus; international not allowed
+        source:
+          url: https://www.flypgs.com/en/useful-info/other-info/extra-services-price-table%20
+          source_type: official_website
+          verified_date: 2026-09-10
+          review_due: 2026-12-09
+          confidence: 4
+          reviewer: Codex — lecture directe de la source officielle
+          history: []
+          quote: Animal in hold over 8 kgs up to 15 kgs — 850 TRY; Animal in hold over 15 kgs — 950 TRY
+          quote_language: en
+          locator: Domestic and KKTC → Pet → AVIH(S)/AVIH(B)
     review_state: legacy_unreviewed
   cargo:
     availability: not_offered

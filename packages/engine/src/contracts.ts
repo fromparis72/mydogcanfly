@@ -1,6 +1,6 @@
 import { z } from "zod";
 import { Placement, TravelType, Locale, TravelDate, PlacementStatus, TemperatureProvenance, estAutoCitation, SourcedQuote, PLACEMENT_STATUS_CAUSES } from "@mydogcanfly/knowledge";
-import type { LocalizedText } from "@mydogcanfly/knowledge";
+import type { LocalizedText, ResolutionTarifaire } from "@mydogcanfly/knowledge";
 export type { PlacementStatus, TemperatureProvenance };
 
 /* ---- T0-A : le statut porte sa cause (contre-revues des 13–14/08/2026) ----------------------
@@ -621,6 +621,11 @@ export interface AirlineDecision {
      T0-A : le triplet est validé (`PlacementDecisionSet`) et chaque confirmation porte ses
      causes structurées. */
   placements: PlacementDecision[];
+  /** Inventaire tarifaire par canal, issu du contrat strict `tarifs.ts`. Il conserve séparément
+   *  les montants applicables, les grilles publiées dont la portée n'est pas décidable, les
+   *  mécanismes et les conflits : l'interface ne doit jamais transformer une grille générale en
+   *  prix calculé pour le trajet. */
+  fare_resolutions: { placement: Placement; resolution: ResolutionTarifaire }[];
   /** LA COMPAGNIE TRANSPORTE-T-ELLE DES ANIMAUX ? OUI, NON, OU ON NE SAIT PAS (05/09/2026).
    *
    *  Ce champ était un BOOLÉEN, et il valait `true` sur les 102 compagnies du dépôt. Il était
@@ -719,6 +724,9 @@ export interface AirlineResult {
    *  confirmation portant ses causes structurées. Les booléens et `*_status` ci-dessus en
    *  DÉRIVENT ; c'est la source d'affichage des libellés par famille de cause. */
   placement_decisions: PlacementDecision[];
+  /** Même inventaire que dans la décision moteur. Les tarifs à portée indécidable restent
+   *  affichables comme tarifs officiels publiés, mais jamais comme prix exact de ce trajet. */
+  fare_resolutions: { placement: Placement; resolution: ResolutionTarifaire }[];
   /** Statut ternaire — voir AirlineDecision.offers_pet_transport. */
   offers_pet_transport?: PetTransportStatus;
   /* Projection legacy de `offers_pet_transport` (T0-A — correction contrôlée, diff versionné :
@@ -737,11 +745,8 @@ export interface AirlineResult {
   /** Nature de l'itinéraire — voir AirlineDecision.itinerary_confidence. */
   itinerary_confidence?: "direct_documented" | "direct_assumed" | "connection_documented" | "connection_unverified";
   label: string;        // localized one-line verdict (e.g. "Cabin OK", "Hold only", "Not accepted")
-  /** LE STATUT TARIFAIRE, PAR CANAL — jamais un montant, jamais un statut par compagnie.
-   *  Dans ce lot il est DÉRIVÉ DU CANAL et de rien d'autre : « à confirmer » en cabine et en
-   *  soute, « à demander au service cargo » pour le fret. Un statut par compagnie exigerait un
-   *  registre tarifaire sourcé — il n'en existe pas encore, et un statut sans registre n'est pas
-   *  meilleur qu'un montant sans source : il est seulement moins visible. */
+  /** Repli localisé pour les canaux sans aucune ligne tarifaire prouvée. Dès qu'un inventaire
+   *  `fare_resolutions` existe, l'interface lui donne priorité. */
   statuts_tarifaires?: { placement: Placement; statut: string }[];
   /* `source_url` SUPPRIMÉE — voir `AirlineDecision`. Une carte ne porte plus de source de fiche,
      même officielle : elle porte les sources de ses CANAUX (`placement_decisions[].source`), ou

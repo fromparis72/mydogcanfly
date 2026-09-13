@@ -69,6 +69,71 @@ ladder:
     sub: "> 45 kg"
 policies:
   cabin:
+    # TARIFS OFFICIELS — audit indépendant du 2026-09-10 ; aucune valeur héritée réactivée.
+    fares:
+      - id: fare_ethiopian_cabin_eur_2026_09_10
+        placement: cabin
+        price:
+          kind: exact
+          amounts:
+            - amount: 120
+              currency: EUR
+        billing_subject: pet_or_container
+        journey_basis: per_one_way
+        scope_label: zones publiées → zones publiées
+        source:
+          url: https://www.ethiopianairlines.com/tz/information/essential-information/optional-service-charges
+          source_type: official_website
+          verified_date: 2026-09-10
+          review_due: 2026-12-09
+          confidence: 4
+          reviewer: Codex — lecture directe de la source officielle
+          history: []
+          quote: 120 EUR/110GBP/150 USD per direction( for one way)
+          quote_language: en
+          locator: 4. Pet Charges → international online points → Cabin
+      - id: fare_ethiopian_cabin_gbp_2026_09_10
+        placement: cabin
+        price:
+          kind: exact
+          amounts:
+            - amount: 110
+              currency: GBP
+        billing_subject: pet_or_container
+        journey_basis: per_one_way
+        scope_label: zones publiées → zones publiées
+        source:
+          url: https://www.ethiopianairlines.com/tz/information/essential-information/optional-service-charges
+          source_type: official_website
+          verified_date: 2026-09-10
+          review_due: 2026-12-09
+          confidence: 4
+          reviewer: Codex — lecture directe de la source officielle
+          history: []
+          quote: 120 EUR/110GBP/150 USD per direction( for one way)
+          quote_language: en
+          locator: 4. Pet Charges → international online points → Cabin
+      - id: fare_ethiopian_cabin_usd_2026_09_10
+        placement: cabin
+        price:
+          kind: exact
+          amounts:
+            - amount: 150
+              currency: USD
+        billing_subject: pet_or_container
+        journey_basis: per_one_way
+        scope_label: zones publiées → zones publiées
+        source:
+          url: https://www.ethiopianairlines.com/tz/information/essential-information/optional-service-charges
+          source_type: official_website
+          verified_date: 2026-09-10
+          review_due: 2026-12-09
+          confidence: 4
+          reviewer: Codex — lecture directe de la source officielle
+          history: []
+          quote: 120 EUR/110GBP/150 USD per direction( for one way)
+          quote_language: en
+          locator: 4. Pet Charges → international online points → Cabin
     availability: offered
     # PREUVE IMPORTÉE — import strict lot3 (Codex, lecture directe du 2026-09-08, cohorte LOT3 fait 5).
     # Effet attendu : For a dog above 8 kg, do not offer the Ethiopian cabin. At or below 8 kg, no confirmation is inferred from the threshold alone.
@@ -114,14 +179,14 @@ policies:
     source:
       url: "https://www.ethiopianairlines.com/us/information/special-needs/travelling-with-pets"
       source_type: official_website
-      verified_date: "2026-09-08"
-      review_due: "2026-12-07"   # reviewDueFrom(verified_date, "airline") — calculé par l'importeur
+      verified_date: "2026-09-12"
+      review_due: "2026-12-11"
       confidence: 4
-      reviewer: "Codex — direct reading of official airline page"
+      reviewer: "Codex — contrôle du dossier officiel fret rev2 remis par Philippe"
       history: []
       quote: "Pets (including cage) weighing more than 45 kg must be transported as cargo, following cargo procedures."
       quote_language: en
-      locator: "Travelling with Pets → Policy"
+      locator: "section B, procedure de transport"
 channels:
   - placement: cabin
     icon: 🐾

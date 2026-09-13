@@ -81,6 +81,23 @@ console.log("=== Étage 1 — 19 faits relus, 18 dans la donnée à l'octet prè
   }
   for (const u of d.intentionally_unset) {
     const pol = politique(u.airline_id, u.placement);
+    /* MOUVEMENT NOMMÉ (13/09/2026, dossier national Philippine Airlines) : la soute,
+       volontairement laissée vide au lot 5, reçoit sa propre phrase officielle. L'histoire du
+       lot 5 reste intacte ; ce témoin constate explicitement le mouvement postérieur. */
+    if (u.airline_id === "airline_philippine" && u.placement === "hold") {
+      check("non-décision historique airline_philippine.hold : refermée le 13/09 sur citation officielle",
+        !!pol?.source?.quote && kb.airlines.get(u.airline_id)?.premium?.policy?.hold?.status === "accepted_with_conditions",
+        JSON.stringify({ quote: pol?.source?.quote, status: kb.airlines.get(u.airline_id)?.premium?.policy?.hold?.status }));
+      continue;
+    }
+    if (["airline_korean_air", "airline_china_airlines"].includes(u.airline_id) && u.placement === "cargo") {
+      /* MOUVEMENT NOMMÉ (13/09/2026, lot fret) : ces deux non-décisions historiques
+         reçoivent chacune une preuve cargo officielle et deviennent des offres citées. */
+      check(`non-décision historique ${u.airline_id}.cargo : refermée sur citation cargo officielle`,
+        !!pol?.source?.quote && kb.airlines.get(u.airline_id)?.premium?.policy?.cargo?.status === "accepted_with_conditions",
+        JSON.stringify({ quote: pol?.source?.quote, status: kb.airlines.get(u.airline_id)?.premium?.policy?.cargo?.status }));
+      continue;
+    }
     check(`non-décision ${u.airline_id}.${u.placement} : aucune citation écrite, « à confirmer »`,
       !pol?.source?.quote && kb.airlines.get(u.airline_id)?.premium?.policy?.[u.placement]?.status === "confirmation_required",
       JSON.stringify({ quote: pol?.source?.quote, status: kb.airlines.get(u.airline_id)?.premium?.policy?.[u.placement]?.status }));
@@ -124,7 +141,7 @@ console.log("\n=== Étage 2 — Paris → Séoul : Korean Air et Asiana, plafond
   check("Korean Air cabine, Carlin 8 kg : REFUS sûr — 8 kg de chien seul dépassent déjà 7 kg chien + contenant", canal(p, "airline_korean_air", "cabin")?.status === "denied", JSON.stringify(canal(p, "airline_korean_air", "cabin")));
   check("Korean Air cabine, Golden 32 kg : refus sûr ; soute : sous conditions, plafond 45", canal(g, "airline_korean_air", "cabin")?.status === "denied" && canal(g, "airline_korean_air", "hold")?.status === "accepted_with_conditions" && canal(g, "airline_korean_air", "hold")?.weight_limit_kg === 45);
   check("Korean Air soute, Bully 50 kg : REFUS sûr — 50 kg de chien seul dépassent 45 kg chien + contenant", canal(b, "airline_korean_air", "hold")?.status === "denied", JSON.stringify(canal(b, "airline_korean_air", "hold")));
-  check("Korean Air fret : volontairement NON décidé → à confirmer", canal(g, "airline_korean_air", "cargo")?.status === "confirmation_required");
+  check("Korean Air fret : preuve cargo officielle → sous conditions", canal(g, "airline_korean_air", "cargo")?.status === "accepted_with_conditions");
   const asC = canal(c, "airline_asiana", "cabin");
   check("Asiana cabine, Cavalier 6 kg : sous conditions, plafond 7 ; Carlin 8 kg et Golden 32 kg : refus sûr",
     asC?.status === "accepted_with_conditions" && asC?.weight_limit_kg === 7 && canal(p, "airline_asiana", "cabin")?.status === "denied" && canal(g, "airline_asiana", "cabin")?.status === "denied");
@@ -153,11 +170,11 @@ console.log("\n=== Étage 2 — Paris → Hô Chi Minh-Ville, Kuala Lumpur, Shan
 console.log("\n=== Étage 2 — Londres → Taipei, Sydney → Manille, Singapour → Jakarta, Sydney → Melbourne ===");
 {
   const tpe = decide("airport_lhr", "airport_tpe", GOLDEN_32);
-  check("China Airlines soute (AVIH bagage enregistré), Golden 32 kg : sous conditions ; cabine et fret volontairement NON décidés → à confirmer",
-    canal(tpe, "airline_china_airlines", "hold")?.status === "accepted_with_conditions" && canal(tpe, "airline_china_airlines", "cabin")?.status === "confirmation_required" && canal(tpe, "airline_china_airlines", "cargo")?.status === "confirmation_required");
+  check("China Airlines soute (AVIH bagage enregistré) et fret : sous conditions ; cabine toujours à confirmer",
+    canal(tpe, "airline_china_airlines", "hold")?.status === "accepted_with_conditions" && canal(tpe, "airline_china_airlines", "cabin")?.status === "confirmation_required" && canal(tpe, "airline_china_airlines", "cargo")?.status === "accepted_with_conditions");
   const mnl = decide("airport_syd", "airport_mnl", GOLDEN_32), ceb = decide("airport_mnl", "airport_ceb", CAVALIER_6);
-  check("Philippine fret (AVIH), Golden 32 kg : RÉACTIVÉ sur citation → sous conditions ; soute volontairement NON décidée → à confirmer",
-    canal(mnl, "airline_philippine", "cargo")?.status === "accepted_with_conditions" && canal(mnl, "airline_philippine", "hold")?.status === "confirmation_required");
+  check("Philippine soute et fret (AVIH), Golden 32 kg : tous deux sous conditions sur leurs citations propres",
+    canal(mnl, "airline_philippine", "cargo")?.status === "accepted_with_conditions" && canal(mnl, "airline_philippine", "hold")?.status === "accepted_with_conditions");
   /* MESURÉ : la cabine FurPAL est citée (vols intérieurs), mais une règle héritée non citée la
      ferme (`rule_philippine_cabin_deny`) : le moteur garde « à confirmer » et nomme la règle,
      même sur Manille → Cebu. Dette nommée : cette règle contredit la citation, elle est à relire. */

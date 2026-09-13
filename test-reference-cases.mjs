@@ -104,10 +104,13 @@ console.log("— Cas 1 : La Compagnie, chien de 32 kg (EWR → ORY) —");
      * confirmer », cause `policy_absent`. Le cas n'est ni supprimé ni abaissé : les deux témoins
      * précédents (« à confirmer », cause `legacy_unreviewed`) sont remplacés par leur contraire
      * prouvé, et le troisième canal garde exactement l'exigence d'avant. */
+    /* MOUVEMENT NOMMÉ (13/09/2026) : la source commerciale du lot 7 est remplacée par les
+     * conditions de transport françaises, publiées le 27/08/2026. Le verdict ne bouge pas ;
+     * seule la preuve nationale la plus récente devient opposable. */
     check("la soute est REFUSÉE sur citation — sa fermeture est désormais prouvée (lot 7)",
-      st.hold?.status === "denied" && st.hold?.source?.url === "https://www.lacompagnie.com/fr/plan/special-services", JSON.stringify(st.hold));
+      st.hold?.status === "denied" && st.hold?.source?.url === "https://www.lacompagnie.com/fr/legal/conditions-of-carriage", JSON.stringify(st.hold));
     check("et la cabine est REFUSÉE au seuil cité — 8 kg sac compris, le chien seul en pèse 32",
-      st.cabin?.status === "denied" && st.cabin?.source?.url === "https://www.lacompagnie.com/fr/plan/special-services", JSON.stringify(st.cabin));
+      st.cabin?.status === "denied" && st.cabin?.source?.url === "https://www.lacompagnie.com/fr/legal/conditions-of-carriage", JSON.stringify(st.cabin));
     /* CE QUE J'AFFIRMAIS ICI, ET QUI ÉTAIT LE SYMPTÔME (corrigé le 05/09/2026).
      *
      * J'avais écrit « cabine et fret restent des refus fermes — ils viennent de RÈGLES, hors

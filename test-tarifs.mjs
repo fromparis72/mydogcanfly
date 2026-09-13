@@ -5,9 +5,9 @@
  *   node --import tsx test-tarifs.mjs              contrat moteur + sources
  *   node --import tsx test-tarifs.mjs --dist=<d>   ajoute le contrôle du DOM construit
  *
- * Ce qu'elles gardent : plus aucun montant ne sort du moteur, plus aucune valeur héritée n'est
- * publiée, et chaque statut affiché nomme SON canal. Les mutations portent sur les données
- * d'entrée et sur le code lui-même — un repli réintroduit doit faire rougir, pas passer.
+ * Ce qu'elles gardent : seuls les tarifs validés par leur contrat traversent le moteur ; aucune
+ * valeur héritée (`fee`, `fareList`) n'est réactivée ; chaque statut affiché nomme SON canal.
+ * Les mutations portent sur les données d'entrée et le code — un repli réintroduit doit rougir.
  */
 import { JSDOM } from "jsdom";
 import { readFileSync, existsSync, readdirSync } from "node:fs";
@@ -35,17 +35,17 @@ const DIST = process.argv.slice(2).find((a) => a.startsWith("--dist="))?.slice(7
   } else ok("1bis le champ hérité « fees » n'est plus lu du tout");
 }
 
-/* ---- 2. LE CONTRAT : le champ `fee` a disparu, et sa place avec lui ------------------------- */
+/* ---- 2. LE CONTRAT : `fee` a disparu ; les résolutions tarifaires prennent sa place ---------- */
 {
   const contrats = readFileSync("packages/engine/src/contracts.ts", "utf8");
   const executable = contrats.split("\n").filter((l) => !/^\s*(\*|\/\*|\/\/)/.test(l)).join("\n");
   if (/^\s*fee\??\s*:/m.test(executable)) echec("2 champ fee au contrat", "un champ « fee » est déclaré dans contracts.ts");
   else ok("2 aucun champ « fee » au contrat du moteur");
-  if (!/statuts_tarifaires\??\s*:/.test(executable)) echec("2bis statuts", "le contrat ne déclare pas « statuts_tarifaires »");
-  else ok("2bis le contrat porte les statuts tarifaires par canal");
+  if (!/fare_resolutions\??\s*:/.test(executable)) echec("2bis résolutions", "le contrat ne déclare pas « fare_resolutions »");
+  else ok("2bis le contrat porte les résolutions tarifaires validées, par canal");
 }
 
-/* ---- 3. LE MOTEUR, EXÉCUTÉ : aucun montant, un statut par canal ouvert ---------------------- */
+/* ---- 3. LE MOTEUR, EXÉCUTÉ : tarifs prouvés présents, ancien champ absent ------------------- */
 {
   /* LE SEUL CHEMIN D'APPEL AUTORISÉ, comme dans les autres harnais : la base chargée, le
      contrat d'abord, le moteur ensuite. Fabriquer une requête à la main sauterait la validation
@@ -70,9 +70,26 @@ const DIST = process.argv.slice(2).find((a) => a.startsWith("--dist="))?.slice(7
     const cartes = rapport.airlines ?? [];
     if (!cartes.length) echec("3 moteur", "aucune compagnie rendue — le contrôle ne prouverait rien");
     else {
-      const avecMontant = cartes.filter((c) => "fee" in c && c.fee != null);
-      if (avecMontant.length) echec("3 montant au rapport", `${avecMontant.length} carte(s) portent encore un champ « fee »`);
-      else ok(`3 ${cartes.length} cartes évaluées : aucune ne porte de montant`);
+      const avecAncienChamp = cartes.filter((c) => "fee" in c && c.fee != null);
+      if (avecAncienChamp.length) echec("3 ancien champ au rapport", `${avecAncienChamp.length} carte(s) portent encore un champ « fee »`);
+      else ok(`3 ${cartes.length} cartes évaluées : aucune ne porte l'ancien champ « fee »`);
+
+      let lignesProuvees = 0, resolutionsMalFormees = 0, preuvesManquantes = 0;
+      for (const c of cartes) {
+        const resolutions = c.fare_resolutions ?? [];
+        if (resolutions.length !== 3 || new Set(resolutions.map((r) => r.placement)).size !== 3) resolutionsMalFormees++;
+        for (const x of resolutions) for (const f of [
+          ...(x.resolution?.montants ?? []), ...(x.resolution?.mecanismes ?? []),
+          ...(x.resolution?.indecidables ?? []), ...(x.resolution?.supprimes ?? []),
+        ]) {
+          lignesProuvees++;
+          if (!f?.source?.url || !f?.source?.quote || !f?.source?.locator || !f?.source?.verified_date) preuvesManquantes++;
+        }
+      }
+      if (resolutionsMalFormees) echec("3 résolutions", `${resolutionsMalFormees} carte(s) ne portent pas exactement les trois canaux`);
+      else if (!lignesProuvees) echec("3 tarifs prouvés", "aucune ligne tarifaire ne traverse ce scénario — le contrôle serait vacant");
+      else if (preuvesManquantes) echec("3 preuves tarifaires", `${preuvesManquantes} ligne(s) sans URL, citation, locator ou date`);
+      else ok(`3bis ${lignesProuvees} ligne(s) tarifaire(s) traversent ce scénario avec leur preuve propre`);
 
       /* Chaque statut nomme son canal, et aucun ne contient de chiffre monétaire. */
       const CHIFFRE = /[€$£¥]\s*\d|\d+\s*[€$£¥]|\d+\s*(?:eur|usd|gbp)\b/i;
@@ -84,16 +101,16 @@ const DIST = process.argv.slice(2).find((a) => a.startsWith("--dist="))?.slice(7
           if (CHIFFRE.test(s.statut)) avecChiffre++;
         }
       }
-      if (!statuts) echec("3bis statuts", "aucun statut tarifaire rendu — un contrôle qui ne tourne pas est vert pour rien");
-      else if (sansCanal) echec("3bis statuts", `${sansCanal} statut(s) sans canal reconnu`);
-      else if (avecChiffre) echec("3bis statuts", `${avecChiffre} statut(s) contiennent un montant`);
-      else ok(`3bis ${statuts} statuts rendus, tous attribués à un canal, aucun ne porte de montant`);
+      if (!statuts) echec("3ter statuts", "aucun statut tarifaire rendu — un contrôle qui ne tourne pas est vert pour rien");
+      else if (sansCanal) echec("3ter statuts", `${sansCanal} statut(s) sans canal reconnu`);
+      else if (avecChiffre) echec("3ter statuts", `${avecChiffre} statut(s) contiennent un montant`);
+      else ok(`3ter ${statuts} statuts prudents restent attribués à leur canal et séparés des montants prouvés`);
 
       /* Un canal FERMÉ ne porte pas de statut tarifaire : on ne tarife pas ce qu'on refuse. */
       const bavards = cartes.filter((c) => (c.statuts_tarifaires ?? []).some((s) =>
         c[`${s.placement}_status`] === "denied"));
-      if (bavards.length) echec("3ter canal fermé", `${bavards.length} carte(s) tarifient un canal refusé`);
-      else ok("3ter aucun canal refusé ne porte de statut tarifaire");
+      if (bavards.length) echec("3quater canal fermé", `${bavards.length} carte(s) tarifient un canal refusé`);
+      else ok("3quater aucun canal refusé ne porte de statut tarifaire");
     }
   }
 }
@@ -120,7 +137,7 @@ const DIST = process.argv.slice(2).find((a) => a.startsWith("--dist="))?.slice(7
     if (/\ba\.fee\b|\bc\.fee\b|\bpl\.fee\b/.test(executable)) fautives.push(f);
   }
   if (fautives.length) echec("4bis surfaces", `un montant est encore rendu par : ${fautives.join(", ")}`);
-  else ok("4bis aucune des trois surfaces ne rend de montant");
+  else ok("4bis aucune des trois surfaces ne relit directement l'ancien champ `fee`");
 }
 
 /* ---- 5. LE DOM CONSTRUIT — le contrôle qui compte vraiment ---------------------------------- */
@@ -161,11 +178,6 @@ if (DIST) {
   };
 
   const objets = JSON.parse(readFileSync("packages/knowledge/raw/objects.json", "utf8"));
-  const heritees = [];
-  for (const a of objets.airlines) {
-    for (const v of Object.values(a.fees ?? {})) if (v && String(v).trim().length > 3) heritees.push(String(v).trim());
-    for (const p of Object.values(a.premium?.policy ?? {})) if (p?.fee && String(p.fee).trim().length > 3) heritees.push(String(p.fee).trim());
-  }
   /* UNE VALEUR HÉRITÉE N'EST PAS FORCÉMENT UN PRIX, ET LA PREMIÈRE RÉDACTION LE SUPPOSAIT.
    * Ce contrôle cherchait dans le HTML la CHAÎNE de chaque champ `fee` hérité, quelle qu'elle
    * soit. Or onze de ces champs ne portent aucun chiffre : « via Virgin Australia Cargo »,
@@ -180,23 +192,63 @@ if (DIST) {
    * niveau du chiffre — quelle que soit la formulation, connue ou non — n'est pas perdue pour
    * autant : elle est tenue par `test-montants-publies.mjs`, qui juge la FORME sur les quatre
    * zones publiques de chaque fiche, et non l'identité d'une chaîne. */
-  const toutes = [...new Set(heritees)];
-  const uniques = toutes.filter((v) => compter(v) > 0);
-  const qualitatives = toutes.filter((v) => compter(v) === 0);
-  const trouvees = new Map();
   const fiches = pages.filter((p) => /\/airlines\/[^/]+\/index\.html$/.test(p));
   /* Pas de seuil arbitraire : un build réduit porte trois compagnies et reste un terrain valable.
      Ce qui est exigé plus bas, c'est que les trois ÉTATS soient rencontrés. */
   if (!fiches.length) echec("5 dist", "aucune fiche compagnie dans le dist");
+
+  /* UNE COÏNCIDENCE DE TEXTE N'EST PAS UNE PROVENANCE. La première version cherchait chaque
+   * ancienne valeur dans TOUTES les fiches : dès qu'un tarif canonique American publiait `$150`,
+   * elle accusait à tort les anciens `$150` d'Alaska, Delta et d'autres compagnies. On juge
+   * désormais la dette au seul endroit où elle pourrait fuir : même compagnie, même canal.
+   *
+   * Une valeur héritée identique à une phrase de la grille canonique du MÊME canal est écartée
+   * de cette mesure DOM, car sa présence est légitime et son origine ne se distingue pas à
+   * l'œil. Les deux gardes de code ci-dessus prouvent séparément que `fee` et `fees` ne sont lus
+   * par aucune surface. Toutes les autres anciennes valeurs restent interdites dans leur bloc. */
+  const dettes = new Map();
+  const qualitatives = [];
+  let collisionsCanoniques = 0;
+  for (const a of objets.airlines) {
+    const slug = a.id.replace(/^airline_/, "").replace(/_/g, "-");
+    for (const canal of ["cabin", "hold", "cargo"]) {
+      const p = a.premium?.policy?.[canal] ?? null;
+      const candidates = [a.fees?.[canal], p?.fee]
+        .filter((v) => v && String(v).trim().length > 3)
+        .map((v) => String(v).trim());
+      const fares = JSON.stringify(p?.fares ?? []);
+      for (const v of new Set(candidates)) {
+        if (compter(v) === 0) { qualitatives.push(v); continue; }
+        if (fares.includes(v)) { collisionsCanoniques++; continue; }
+        const cle = `${slug}/${canal}`;
+        if (!dettes.has(cle)) dettes.set(cle, new Set());
+        dettes.get(cle).add(v);
+      }
+    }
+  }
+
+  const trouvees = new Map();
   for (const p of fiches) {
+    const slug = p.match(/\/airlines\/([^/]+)\/index\.html$/)?.[1];
+    if (!slug) continue;
     const html = readFileSync(join(DIST, p), "utf8");
-    for (const v of uniques) if (html.includes(v)) trouvees.set(v, (trouvees.get(v) ?? 0) + 1);
+    for (const canal of ["cabin", "hold", "cargo"]) {
+      const bloc = blocDuCanal(html, canal);
+      if (!bloc) continue;
+      for (const v of dettes.get(`${slug}/${canal}`) ?? []) {
+        if (bloc.includes(v)) {
+          const cle = `${slug}/${canal} : ${v}`;
+          trouvees.set(cle, (trouvees.get(cle) ?? 0) + 1);
+        }
+      }
+    }
   }
   if (trouvees.size) {
     const ex = [...trouvees].slice(0, 3).map(([v, n]) => `« ${v} » sur ${n} page(s)`).join(" ; ");
     echec("5 DOM", `${trouvees.size} valeur(s) héritée(s) servies dans le HTML : ${ex}`);
-  } else ok(`5 DOM : aucune des ${uniques.length} valeurs héritées CHIFFRÉES n'apparaît dans les `
-    + `${fiches.length} fiches construites (${qualitatives.length} valeurs héritées sans chiffre écartées : `
+  } else ok(`5 DOM : aucune valeur héritée CHIFFRÉE non couverte par une grille canonique n'apparaît dans son canal, sur les `
+    + `${fiches.length} fiches construites (${collisionsCanoniques} collision(s) légitime(s) avec une preuve canonique ; `
+    + `${qualitatives.length} valeurs héritées sans chiffre écartées : `
     + `${qualitatives.slice(0, 3).map((v) => `« ${v} »`).join(", ")}…)`);
 
   /* ON NE TARIFE PAS UN CANAL QU'ON REFUSE — jugé dans le HTML SERVI, pas dans le code. Les
@@ -340,7 +392,7 @@ if (DIST) {
   }
 
   /* Les quatre langues portent bien un statut, et pas un mot anglais laissé là. */
-  const ATTENDU = { "": "to confirm", "/fr": "à confirmer", "/es": "por confirmar", "/pt": "a confirmar" };
+  const ATTENDU = { "": "to confirm", "/fr": "à confirmer", "/es": "a confirmar", "/pt": "a confirmar" };
   let langues = 0;
   for (const [prefixe, fragment] of Object.entries(ATTENDU)) {
     const p = `${prefixe}/airlines/aegean/index.html`;
@@ -354,4 +406,4 @@ if (DIST) {
 }
 
 if (defauts) { console.error(`\n[tarifs] ÉCHEC — ${defauts} contre-épreuve(s) en défaut`); process.exit(1); }
-console.log("\n[tarifs] aucun montant ne sort du moteur, aucune valeur héritée n'est publiée, chaque statut nomme son canal.");
+console.log("\n[tarifs] les tarifs prouvés traversent le moteur ; aucune valeur héritée n'est réactivée ; chaque statut nomme son canal.");

@@ -59,12 +59,77 @@ ladder:
       pt: "somente voo direto"
 policies:
   cabin:
+    fares:
+      - id: fare_condor_cabin_eur_2026_09_10
+        placement: cabin
+        price:
+          kind: minimum
+          amounts:
+            - amount: 59.99
+              currency: EUR
+        billing_subject: pet_or_container
+        journey_basis: per_one_way
+        scope_label: zones Condor → zones Condor
+        source:
+          url: https://www.condor.com/de/flug-vorbereiten/gepaeck-tiere/tierbefoerderung/tiere-in-der-kabine.jsp
+          source_type: official_website
+          verified_date: 2026-09-10
+          review_due: 2026-12-09
+          confidence: 4
+          reviewer: Codex — lecture directe de la source officielle
+          history: []
+          quote: ab 59,99 Euro
+          quote_language: de
+          locator: Prices and registration
     availability: offered
+    source:
+      url: https://www.condor.com/de/flug-vorbereiten/gepaeck-tiere/tierbefoerderung/tiere-in-der-kabine.jsp
+      source_type: official_website
+      verified_date: 2026-09-12
+      review_due: 2026-12-11
+      confidence: 4
+      reviewer: Codex — contre-lecture du dossier officiel national
+      history: []
+      quote: pro Transportbox nur ein Tier transportiert wird und die Box inklusive Tier maximal 8 kg wiegen darf.
+      quote_language: de
+      locator: corps de page
   hold:
+    fares:
+      - id: fare_condor_hold_eur_2026_09_10
+        placement: hold
+        price:
+          kind: minimum
+          amounts:
+            - amount: 79.99
+              currency: EUR
+        billing_subject: pet_or_container
+        journey_basis: per_one_way
+        scope_label: zones Condor → zones Condor
+        source:
+          url: https://www.condor.com/eu/flight-preparation/baggage-and-animals/travelling-with-pets/pets-in-cargo-hold.jsp
+          source_type: official_website
+          verified_date: 2026-09-10
+          review_due: 2026-12-09
+          confidence: 4
+          reviewer: Codex — lecture directe de la source officielle
+          history: []
+          quote: from €79.99
+          quote_language: en
+          locator: Pet transport fees
     availability: offered
+    source:
+      url: https://www.condor.com/de/flug-vorbereiten/gepaeck-tiere/tierbefoerderung/tiere-im-frachtraum.jsp
+      source_type: official_website
+      verified_date: 2026-09-12
+      review_due: 2026-12-11
+      confidence: 4
+      reviewer: Codex — contre-lecture du dossier officiel national
+      history: []
+      quote: 80 cm Länge x 55 cm Breite x 100 cm Höhe
+      quote_language: de
+      locator: corps de page
   cargo:
     review_state: legacy_unreviewed
-    # dette éditoriale scellée (T0-B2) : aucun canal visible ne décrit ce placement
 channels:
   - placement: cabin
     icon: 🐾

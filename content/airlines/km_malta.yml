@@ -69,53 +69,109 @@ ladder:
     sub: "> 32 kg"
 policies:
   cabin:
+    fares:
+      - id: fare_km_malta_cabin_eur_2026_09_12
+        placement: cabin
+        price:
+          kind: exact
+          amounts:
+            - amount: 85
+              currency: EUR
+        billing_subject: container
+        journey_basis: per_one_way
+        scope_label: Par contenant et par trajet
+        source:
+          url: https://kmmaltairlines.com/mt/travelling-with-pets
+          source_type: official_website
+          verified_date: 2026-09-12
+          review_due: 2026-12-11
+          confidence: 4
+          reviewer: Codex — contre-lecture du dossier officiel national
+          history: []
+          quote: Titħallas miżata ta' €85 għal kull vjaġġ għal kull kaxxa.
+          quote_language: mt
+          locator: section PETC
     availability: offered
-    # PREUVE IMPORTÉE — import strict lot8 (Codex, lecture directe du 2026-09-09, cohorte LOT8 fait 16).
-    # Effet attendu : KM Malta cabin is conditional with a 10 kg combined animal-and-carrier ceiling.
-    # Portée nommée : Dogs and cats up to 10 kg including carrier, subject to direct-route, United Kingdom, age, quota, advance booking, container and documentation restrictions.
     source:
-      url: "https://kmmaltairlines.com/en/travelling-with-pets"
+      url: https://kmmaltairlines.com/en/travelling-with-pets
       source_type: official_website
-      verified_date: "2026-09-09"
-      review_due: "2026-12-08"   # reviewDueFrom(verified_date, "airline") — calculé par l'importeur
+      verified_date: 2026-09-09
+      review_due: 2026-12-08
       confidence: 4
-      reviewer: "Codex — direct reading of official airline page"
+      reviewer: Codex — direct reading of official airline page
       history: []
-      quote: "Dogs and cats (up to 10kg)"
+      quote: Dogs and cats (up to 10kg)
       quote_language: en
-      locator: "Travelling with Pets → Pets in Cabin"
+      locator: Travelling with Pets → Pets in Cabin
   hold:
+    fares:
+      - id: fare_km_malta_hold_eur_2026_09_12
+        placement: hold
+        price:
+          kind: range
+          amounts:
+            - amount: 90
+              currency: EUR
+            - amount: 160
+              currency: EUR
+        billing_subject: container
+        journey_basis: per_one_way
+        scope_label: Selon le poids animal + contenant · ajouter 10 EUR de frais administratifs
+        source:
+          url: https://kmmaltairlines.com/en/travelling-with-pets
+          source_type: official_website
+          verified_date: 2026-09-12
+          review_due: 2026-12-11
+          confidence: 4
+          reviewer: Codex — contre-lecture du dossier officiel national
+          history: []
+          quote: "An Admin Fee of €10 will be charged for AVIH services. Animals acceptable for AVIH services are dogs, cats, hares, rabbits, ferrets and birds. Additionally, depending on the weight of your pet (including the container) another fee will be charged: Small AVIH: Animals weighing between 1-10kg will be charged at €90 per way per container Medium AVIH: Animals weighing between 11-20kg will be charged at €125 per way per container Large AVIH: Animals weighing between 21-32kg will be charged at €160 per way per container"
+          quote_language: en
+          locator: section AVIH, bloc « FEES », puces 1 a 3 et notes
     availability: offered
-    # PREUVE IMPORTÉE — import strict lot8 (Codex, lecture directe du 2026-09-09, cohorte LOT8 fait 17).
-    # Effet attendu : KM Malta hold is a documented conditional route with a 32 kg stated ceiling.
-    # Portée nommée : Dogs and cats up to 32 kg, subject to direct-route, United Kingdom, quota, advance booking, crate and documentation restrictions.
     source:
-      url: "https://kmmaltairlines.com/en/travelling-with-pets"
+      url: https://kmmaltairlines.com/en/travelling-with-pets
       source_type: official_website
-      verified_date: "2026-09-09"
-      review_due: "2026-12-08"   # reviewDueFrom(verified_date, "airline") — calculé par l'importeur
+      verified_date: 2026-09-09
+      review_due: 2026-12-08
       confidence: 4
-      reviewer: "Codex — direct reading of official airline page"
+      reviewer: Codex — direct reading of official airline page
       history: []
-      quote: "Dogs and cats weighing up to 32kg"
+      quote: Dogs and cats weighing up to 32kg
       quote_language: en
-      locator: "Travelling with Pets → Pet as Checked Baggage"
+      locator: Travelling with Pets → Pet as Checked Baggage
   cargo:
-    availability: offered   # RÉACTIVÉE sur citation (import strict, lot8, 2026-09-09) — était review_state: legacy_unreviewed
-    # PREUVE IMPORTÉE — import strict lot8 (Codex, lecture directe du 2026-09-09, cohorte LOT8 fait 18).
-    # Effet attendu : KM Malta cargo is a documented conditional alternative.
-    # Portée nommée : Cargo may be booked when PETC or accompanied baggage is unavailable; route, station, crate, documentation and cargo-department approval apply.
+    fares:
+      - id: fare_km_malta_cargo_2026_09_10
+        placement: cargo
+        price:
+          kind: quote
+          amounts: []
+        billing_subject: shipment
+        journey_basis: per_journey
+        source:
+          url: https://kmmaltairlines.com/en/travelling-with-pets
+          source_type: official_website
+          verified_date: 2026-09-10
+          review_due: 2026-12-09
+          confidence: 4
+          reviewer: Codex — lecture directe de la source officielle
+          history: []
+          quote: contact our Reservations Office
+          quote_language: en
+          locator: Cargo/contact
+    availability: offered
     source:
-      url: "https://kmmaltairlines.com/en/travelling-with-pets"
+      url: https://kmmaltairlines.com/en/travelling-with-pets
       source_type: official_website
-      verified_date: "2026-09-09"
-      review_due: "2026-12-08"   # reviewDueFrom(verified_date, "airline") — calculé par l'importeur
+      verified_date: 2026-09-09
+      review_due: 2026-12-08
       confidence: 4
-      reviewer: "Codex — direct reading of official airline page"
+      reviewer: Codex — direct reading of official airline page
       history: []
-      quote: "booking your pet in the aircraft hold as Cargo"
+      quote: booking your pet in the aircraft hold as Cargo
       quote_language: en
-      locator: "Travelling with Pets → Pets as Cargo"
+      locator: Travelling with Pets → Pets as Cargo
 channels:
   - placement: cabin
     icon: 🐾

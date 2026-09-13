@@ -73,11 +73,90 @@ ladder:
       pt: "carga, via agências"
 policies:
   cabin:
+    fares:
+      - id: fare_airbaltic_cabin_eur_2026_09_10
+        placement: cabin
+        price:
+          kind: exact
+          amounts:
+            - amount: 70
+              currency: EUR
+        billing_subject: container
+        journey_basis: per_one_way
+        scope_label: airBaltic-operated flight
+        source:
+          url: https://www.airbaltic.com/lv/atbalsts-celojuma-laika/celosana-ar-majdzivniekiem
+          source_type: official_website
+          verified_date: 2026-09-12
+          review_due: 2026-12-11
+          confidence: 4
+          reviewer: Codex — contre-lecture du dossier officiel national
+          history: []
+          quote: 70 € par būri vienā virzienā airBaltic lidojumos
+          quote_language: lv
+          locator: bloc « Mazie majdzivnieki salona » → « Cena »
     availability: offered
+    source:
+      url: https://www.airbaltic.com/lv/atbalsts-celojuma-laika/celosana-ar-majdzivniekiem
+      source_type: official_website
+      verified_date: 2026-09-12
+      review_due: 2026-12-11
+      confidence: 4
+      reviewer: Codex — contre-lecture du dossier officiel national
+      history: []
+      quote: "Svars: Maksimālais svars: 8 kg (mājdzīvnieks +būris)"
+      quote_language: lv
+      locator: bloc « Mazie majdzivnieki salona »
   hold:
+    fares:
+      - id: fare_airbaltic_hold_eur_2026_09_10
+        placement: hold
+        price:
+          kind: range
+          amounts:
+            - amount: 130
+              currency: EUR
+            - amount: 220
+              currency: EUR
+        billing_subject: container
+        journey_basis: per_one_way
+        scope_label: airBaltic-operated flight
+        source:
+          url: https://www.airbaltic.com/en/assisted-travel/travelling-with-pets
+          source_type: official_website
+          verified_date: 2026-09-10
+          review_due: 2026-12-09
+          confidence: 4
+          reviewer: Codex — lecture directe de la source officielle
+          history: []
+          quote: EUR 130 … EUR 220
+          quote_language: en
+          locator: Fees in hold
     availability: offered
+    source:
+      url: https://www.airbaltic.com/lv/atbalsts-celojuma-laika/celosana-ar-majdzivniekiem
+      source_type: official_website
+      verified_date: 2026-09-12
+      review_due: 2026-12-11
+      confidence: 4
+      reviewer: Codex — contre-lecture du dossier officiel national
+      history: []
+      quote: "Svars: Līdz 75 kg (mājdzīvnieks + būris)."
+      quote_language: lv
+      locator: bloc « Lieli majdzivnieki kravas nodalijuma »
   cargo:
-    review_state: legacy_unreviewed
+    availability: offered
+    source:
+      url: https://www.airbaltic.com/lv/kravu-parvadajumi/dzivnieku-parvadasana-kravas-nodalijuma
+      source_type: official_website
+      verified_date: 2026-09-12
+      review_due: 2026-12-11
+      confidence: 4
+      reviewer: Codex — contre-lecture du dossier officiel national
+      history: []
+      quote: airBaltic ir ES atzīts dzīvnieku pārvadātājs (pārvadātāja atļaujas nr. 067731)
+      quote_language: lv
+      locator: page fret animaux
 channels:
   - placement: cabin
     icon: 🐾

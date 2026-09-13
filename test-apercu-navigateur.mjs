@@ -186,8 +186,20 @@ for (const [nom, kg] of [["petit", 4], ["moyen", 15], ["grand", 32]]) {
   const { p, texte, cartes } = await chercher({ from: "airport_cdg", dest: "airport_jfk", kg });
   check(`chien ${nom} (${kg} kg) : le rapport se rend, ${cartes} carte(s) compagnie`, cartes > 0, `${cartes} carte(s)`);
   check(`chien ${nom} : aucune erreur JavaScript`, p.__erreurs.length === 0, p.__erreurs.slice(0, 2).join(" | "));
-  check(`chien ${nom} : AUCUN montant numérique résiduel`, !MONTANT.test(texte),
-    (texte.match(MONTANT) ?? []).join(" | "));
+  /* RE-FONDÉ LE 11/09/2026 (annexe 50) : le contrat tarifaire n'est plus vide. L'ancienne
+     assertion « aucun montant » gravait l'état transitoire et refusait désormais les tarifs
+     officiels que ce lot doit précisément publier. Le navigateur exige les trois éléments
+     indissociables : un montant, sa qualification prudente et sa preuve tarifaire repliée. */
+  const montants = texte.match(MONTANT) ?? [];
+  const preuvesTarif = await p.$$eval("details.acard__proofs li", (nodes) => nodes
+    .map((n) => n.textContent ?? "")
+    .filter((t) => /^fare\s+(cabin|hold|cargo)\b/i.test(t.trim()))).catch(() => []);
+  check(`chien ${nom} : au moins un montant tarifaire officiel atteint le navigateur`, montants.length > 0,
+    montants.join(" | "));
+  check(`chien ${nom} : le montant est qualifié — publié officiellement ou applicable au trajet`,
+    /official published fare|fare for this trip/i.test(texte), texte.slice(0, 240));
+  check(`chien ${nom} : chaque affichage tarifaire repose sur une preuve repliée`, preuvesTarif.length > 0,
+    preuvesTarif.slice(0, 3).join(" | "));
   /* L'incertitude doit être DITE, pas seulement absente de contradiction.
      RE-FONDÉ UNE SECONDE FOIS LE 10/09/2026 (annexe 42, arbitrage de Philippe) : l'avertissement général a disparu
      avec les trois autres justifications internes. L'incertitude n'est plus DITE que par la ligne canal elle-même —

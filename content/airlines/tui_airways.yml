@@ -74,10 +74,63 @@ ladder:
 policies:
   cabin:
     availability: not_offered
+    source:
+      url: https://www.tui.co.uk/destinations/faq/airport-flights-and-luggage/flight-information/can-i-take-my-pet-with-me
+      source_type: official_website
+      verified_date: 2026-09-12
+      review_due: 2026-12-11
+      confidence: 4
+      reviewer: Codex — contre-lecture du dossier officiel national
+      history: []
+      quote: Your pet can usually go on the same flight as you.All pets flying with TUI, travel in the hold as cargo and not in the passenger cabin to or from the UK. The hold is pressurised and at the same temperature as the passenger cabin..
+      quote_language: en
+      locator: sous-titre « How your pet will travel », premier paragraphe, deuxieme phrase
   hold:
     availability: not_offered
+    source:
+      url: https://www.tui.co.uk/destinations/faq/airport-flights-and-luggage/flight-information/can-i-take-my-pet-with-me
+      source_type: official_website
+      verified_date: 2026-09-12
+      review_due: 2026-12-11
+      confidence: 4
+      reviewer: Codex — contre-lecture du dossier officiel national
+      history: []
+      quote: Your pet can usually go on the same flight as you.All pets flying with TUI, travel in the hold as cargo and not in the passenger cabin to or from the UK. The hold is pressurised and at the same temperature as the passenger cabin..
+      quote_language: en
+      locator: sous-titre « How your pet will travel », premier paragraphe, deuxieme phrase
   cargo:
-    review_state: legacy_unreviewed
+    fares:
+      - id: fare_tui_airways_cargo_2026_09_10
+        placement: cargo
+        price:
+          kind: quote
+          amounts: []
+        billing_subject: shipment
+        journey_basis: per_journey
+        scope_label: ECS Group cargo
+        source:
+          url: https://www.tui.co.uk/destinations/faq/airport-flights-and-luggage/flight-information/can-i-take-my-pet-with-me
+          source_type: official_website
+          verified_date: 2026-09-10
+          review_due: 2026-12-09
+          confidence: 4
+          reviewer: Codex — lecture directe de la source officielle
+          history: []
+          quote: contact ECS Group
+          quote_language: en
+          locator: Cargo booking
+    availability: offered
+    source:
+      url: https://www.tui.co.uk/destinations/faq/airport-flights-and-luggage/flight-information/how-do-i-book-cargo-on-a-flight
+      source_type: official_website
+      verified_date: 2026-09-12
+      review_due: 2026-12-11
+      confidence: 4
+      reviewer: Codex — contre-lecture du dossier officiel national
+      history: []
+      quote: You can book lots of different types of cargo on TUI flights, from sports equipment to live animals. However, there are restrictions on what we can carry - including dangerous goods that are a risk to health, safety, property or the environment. Any item we carry needs to meet IATA regulations.
+      quote_language: en
+      locator: sous-titre « Types of cargo we can take », premier paragraphe
 channels:
   - placement: cabin
     icon: 🐾

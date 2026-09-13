@@ -23,14 +23,18 @@
  * de tout l'audit) et KLM soute (fourchette la mieux citée). Les rares fixtures de FORME sont
  * nommées comme telles à l'endroit où elles servent.
  *
- * AUCUN de ces tarifs n'est importé dans la donnée par ce lot.
+ * Les sections 1 à 13 éprouvent le contrat indépendamment des données. Les sections 14 et 17
+ * exigent désormais que l'import audité traverse réellement la base puis le contrat HTTP :
+ * revenir à zéro tarif ou perdre l'inventaire entre moteur et Finder fait rougir ce même témoin.
  */
 import { readFileSync } from "node:fs";
+import worker from "./packages/workers/src/index.ts";
 import {
   Fare, FareConflict, FarePrice, FareObservation, PurchaseWindow, lireTarif, lireConflit,
   evaluerPortee, evaluerFenetre, porteeTarif, porteeSaine, resoudreTarif, resolutionVide,
   projectPlacementPolicy, PlacementPolicyAuthored,
 } from "./packages/knowledge/src/index.ts";
+import { presentNumericFares } from "./packages/ui/src/lib/farePresentation.ts";
 
 let pass = 0, fail = 0;
 const check = (label, cond, detail = "") => {
@@ -681,16 +685,149 @@ console.log("\n=== 13. La projection ne perd pas les tarifs — la faute du 08/0
   }
 }
 
-console.log("\n=== 14. Aucun tarif n'est importé par ce lot — le contrat d'abord ===");
+console.log("\n=== 14. L'import réel ne peut plus retomber silencieusement à zéro ===");
 {
   const objets = JSON.parse(readFileSync("packages/knowledge/raw/objects.json", "utf8"));
-  let avecTarifs = 0, avecConflits = 0;
+  let avecTarifs = 0, lignesTarifaires = 0, avecConflits = 0;
+  const compagnies = new Set();
   for (const a of objets.airlines) for (const p of Object.values(a.premium?.policy ?? {})) {
-    if (Array.isArray(p.fares) && p.fares.length) avecTarifs++;
+    if (Array.isArray(p.fares) && p.fares.length) { avecTarifs++; lignesTarifaires += p.fares.length; compagnies.add(a.id); }
     if (Array.isArray(p.fare_conflicts) && p.fare_conflicts.length) avecConflits++;
   }
-  check("les 302 politiques réelles ne portent AUCUN tarif : le schéma est prêt, la donnée n'a pas bougé",
-    avecTarifs === 0, `${avecTarifs} politique(s) portent déjà un tarif`);
+  /* MOUVEMENT NOMMÉ (13/09/2026, vague exhaustive) : les variantes d'une même
+     grille sont regroupées par portée dans un tarif multidevise ou une fourchette,
+     et sept canaux insuffisamment prouvés sont retirés (Edelweiss 2, Garuda 1,
+     Royal Jordanian 2, SKY express 2). La baisse du nombre de lignes est donc
+     attendue et opposable ; aucun montant n'est perdu par l'ingestion.
+     MOUVEMENT NOMMÉ (13/09/2026, fret + Aerolíneas) : onze lignes officielles
+     Aerolíneas entrent sur deux canaux ; l'unique ligne cargo Virgin Atlantic
+     sort, car le produit officiel est déclaré indisponible. Bilan net : +10
+     lignes, +1 canal, 70 compagnies tarifées inchangées. */
+  check("l'import verrouillé porte exactement 224 lignes sur 121 canaux et 70 compagnies — Aerolíneas entre et le tarif cargo Virgin indisponible sort sans perte muette",
+    avecTarifs === 121 && lignesTarifaires === 224 && compagnies.size === 70,
+    `${lignesTarifaires} ligne(s), ${avecTarifs} canal(aux), ${compagnies.size} compagnie(s)`);
+  const aerolineas = objets.airlines.find((a) => a.id === "airline_aerolineas_argentinas")?.premium?.policy;
+  check("Aerolíneas Argentinas : les onze lignes officielles traversent sur les deux canaux passagers, jamais sur le fret",
+    aerolineas?.cabin?.fares?.length === 5 && aerolineas?.hold?.fares?.length === 6
+      && (aerolineas?.cargo?.fares?.length ?? 0) === 0
+      && [...aerolineas.cabin.fares, ...aerolineas.hold.fares].every((f) =>
+        f.source?.url === "https://www.aerolineas.com.ar/en-us/useful-information/pets"
+          && f.source?.verified_date === "2026-09-13" && f.source?.review_due === "2026-12-12"
+          && f.source?.quote && f.source?.locator),
+    JSON.stringify({ cabin: aerolineas?.cabin?.fares?.length, hold: aerolineas?.hold?.fares?.length, cargo: aerolineas?.cargo?.fares?.length ?? 0 }));
+  const airFrance = objets.airlines.find((a) => a.id === "airline_air_france")?.premium?.policy;
+  const montantsUniques = (p, currency) => [...new Set((p?.fares ?? []).flatMap((f) =>
+    f.price.amounts.filter((m) => m.currency === currency).map((m) => m.amount)
+  ))].sort((a, b) => a - b);
+  check("Air France : les SEPT lignes officielles traversent l'ingestion en cabine et en soute, chacune avec sa preuve propre",
+    airFrance?.cabin?.fares?.length === 7 && airFrance?.hold?.fares?.length === 7
+      && [...airFrance.cabin.fares, ...airFrance.hold.fares].every((f) =>
+        f.price.kind === "matrix" && f.source?.url === "https://wwws.airfrance.fr/information/passagers/voyager-avec-son-animal-chien-chat"
+          && f.source?.verified_date === "2026-09-11" && f.source?.review_due === "2026-12-10"
+          && f.source?.quote && f.source?.locator),
+    JSON.stringify({ cabin: airFrance?.cabin?.fares?.length, hold: airFrance?.hold?.fares?.length }));
+  check("Air France : la grille EUR reste complète — cabine 70/125/200/250, soute 100/200/400/600/750",
+    JSON.stringify(montantsUniques(airFrance?.cabin, "EUR")) === JSON.stringify([70, 125, 200, 250])
+      && JSON.stringify(montantsUniques(airFrance?.hold, "EUR")) === JSON.stringify([100, 200, 400, 600, 750]),
+    JSON.stringify({ cabin: montantsUniques(airFrance?.cabin, "EUR"), hold: montantsUniques(airFrance?.hold, "EUR") }));
+  const transavia = objets.airlines.find((a) => a.id === "airline_transavia")?.premium?.policy?.hold?.fares ?? [];
+  check("Transavia : 77 EUR reste borné aux vols HV et les vols TO publient leur minimum de 100 EUR",
+    transavia.length === 2
+      && transavia.some((f) => f.scope_label === "HV" && f.price.kind === "exact" && f.price.amounts?.[0]?.amount === 77)
+      && transavia.some((f) => f.scope_label === "TO" && f.price.kind === "minimum" && f.price.amounts?.[0]?.amount === 100)
+      && transavia.every((f) => f.source?.verified_date === "2026-09-11" && f.source?.review_due === "2026-12-10"),
+    JSON.stringify(transavia.map((f) => ({ scope: f.scope_label, kind: f.price.kind, amount: f.price.amounts?.[0]?.amount }))));
+  check("la présentation ne tronque pas la grille Air France et distingue les deux préfixes Transavia",
+    presentNumericFares(airFrance.cabin.fares, { locale: "fr", minimumLabel: "à partir de" })?.includes("70")
+      && presentNumericFares(airFrance.cabin.fares, { locale: "fr", minimumLabel: "à partir de" })?.includes("250")
+      && presentNumericFares(transavia, { locale: "fr", minimumLabel: "à partir de" })?.includes("77")
+      && presentNumericFares(transavia, { locale: "fr", minimumLabel: "à partir de" })?.includes("100")
+      && presentNumericFares(transavia, { locale: "fr", minimumLabel: "à partir de" })?.includes("(HV)")
+      && presentNumericFares(transavia, { locale: "fr", minimumLabel: "à partir de" })?.includes("(TO)"));
+  const lufthansa = objets.airlines.find((a) => a.id === "airline_lufthansa")?.premium?.policy?.hold?.fares ?? [];
+  check("Lufthansa : le calculateur de base et les DEUX suppléments officiels coexistent sans que 150 EUR devienne un prix total",
+    lufthansa.length === 3 && lufthansa.some((f) => f.price.kind === "calculator")
+      && lufthansa.some((f) => f.scope_label === "+ BRU/GVA/FRA/VIE/ZRH" && f.price.amounts?.some((m) => m.currency === "EUR" && m.amount === 150))
+      && lufthansa.some((f) => f.scope_label === "+ ZRH (>24 h)" && f.price.amounts?.some((m) => m.currency === "CHF" && m.amount === 200))
+      && presentNumericFares(lufthansa, { locale: "fr", minimumLabel: "à partir de" })?.includes("(+ BRU/GVA/FRA/VIE/ZRH)")
+      && presentNumericFares(lufthansa, { locale: "fr", minimumLabel: "à partir de" })?.includes("(+ ZRH (>24 h))")
+      && lufthansa.every((f) => f.source?.verified_date === "2026-09-11" && f.source?.review_due === "2026-12-10"),
+    JSON.stringify(lufthansa.map((f) => ({ kind: f.price.kind, scope: f.scope_label }))));
+  const airEuropa = objets.airlines.find((a) => a.id === "airline_air_europa")?.premium?.policy;
+  check("Air Europa : les quatre zones et quatre devises traversent l'ingestion sur les deux canaux",
+    airEuropa?.cabin?.fares?.length === 4 && airEuropa?.hold?.fares?.length === 4
+      && [...airEuropa.cabin.fares, ...airEuropa.hold.fares].every((f) => f.price.kind === "matrix" && f.price.amounts?.length === 4
+        && f.source?.url === "https://www.aireuropa.com/be/fr/aea/informations-pour-voler/passagers/animaux-de-compagnie.html"
+        && f.source?.verified_date === "2026-09-11" && f.source?.review_due === "2026-12-10"));
+  check("Air Europa : l'amplitude EUR publiée reste 35–175 en cabine et 90–350 en soute",
+    presentNumericFares(airEuropa.cabin.fares, { locale: "fr", minimumLabel: "à partir de" })?.includes("35")
+      && presentNumericFares(airEuropa.cabin.fares, { locale: "fr", minimumLabel: "à partir de" })?.includes("175")
+      && presentNumericFares(airEuropa.hold.fares, { locale: "fr", minimumLabel: "à partir de" })?.includes("90")
+      && presentNumericFares(airEuropa.hold.fares, { locale: "fr", minimumLabel: "à partir de" })?.includes("350"));
+  const iberia = objets.airlines.find((a) => a.id === "airline_iberia")?.premium?.policy;
+  check("Iberia : les 12 cases cabine et 18 cases soute traversent avec trois devises et leur preuve propre",
+    iberia?.cabin?.fares?.length === 12 && iberia?.hold?.fares?.length === 18
+      && [...iberia.cabin.fares, ...iberia.hold.fares].every((f) => f.price.kind === "matrix"
+        && f.price.amounts?.length === 3 && f.source?.url?.startsWith("https://www.iberia.com/fr/")
+        && f.source?.verified_date === "2026-09-11" && f.source?.review_due === "2026-12-10"
+        && f.source?.quote?.length >= 10 && f.source?.locator?.length > 0));
+  check("Iberia : aucune extrémité de la grille n'est perdue — cabine 40–220 EUR, soute 90–385 EUR",
+    presentNumericFares(iberia.cabin.fares, { locale: "fr", minimumLabel: "à partir de" })?.includes("40")
+      && presentNumericFares(iberia.cabin.fares, { locale: "fr", minimumLabel: "à partir de" })?.includes("220")
+      && presentNumericFares(iberia.hold.fares, { locale: "fr", minimumLabel: "à partir de" })?.includes("90")
+      && presentNumericFares(iberia.hold.fares, { locale: "fr", minimumLabel: "à partir de" })?.includes("385"));
+  const austrian = objets.airlines.find((a) => a.id === "airline_austrian")?.premium?.policy;
+  check("Austrian : les dix cases soute distinguent cinq trajets et deux tailles de caisse",
+    austrian?.hold?.fares?.length === 10
+      && austrian.hold.fares.every((f) => f.price.kind === "matrix" && f.price.amounts?.length === 1
+        && f.billing_subject === "container" && f.journey_basis === "per_segment"
+        && f.source?.url?.startsWith("https://www.austrian.com/fr/fr/")
+        && f.source?.verified_date === "2026-09-11" && f.source?.review_due === "2026-12-10"));
+  check("Austrian : l'amplitude officielle 80–380 EUR est entière, jamais réduite à la première ligne",
+    JSON.stringify(montantsUniques(austrian?.hold, "EUR")) === JSON.stringify([80, 100, 130, 160, 170, 190, 200, 260, 340, 380])
+      && presentNumericFares(austrian.hold.fares, { locale: "fr", minimumLabel: "à partir de" })?.includes("80")
+      && presentNumericFares(austrian.hold.fares, { locale: "fr", minimumLabel: "à partir de" })?.includes("380"));
+  const klm = objets.airlines.find((a) => a.id === "airline_klm")?.premium?.policy;
+  check("KLM porte bien sa fourchette officielle 70–500 EUR en cabine ET en soute",
+    ["cabin", "hold"].every((p) => klm?.[p]?.fares?.some((f) => f.price.kind === "range"
+      && f.price.amounts[0]?.amount === 70 && f.price.amounts[1]?.amount === 500 && f.price.amounts[0]?.currency === "EUR")));
+  const sas = objets.airlines.find((a) => a.id === "airline_sas")?.premium?.policy;
+  check("SAS : les huit zones cabine/soute traversent avec leurs cinq devises et leur preuve suédoise propre",
+    sas?.cabin?.fares?.length === 4 && sas?.hold?.fares?.length === 4
+      && [...sas.cabin.fares, ...sas.hold.fares].every((f) => f.price.kind === "matrix"
+        && f.price.amounts?.length === 5 && f.billing_subject === "container" && f.journey_basis === "per_segment"
+        && f.source?.url === "https://www.sas.se/reseinfo/resa-med-djur/kabin"
+        && f.source?.quote_language === "sv" && f.source?.verified_date === "2026-09-12"
+        && f.source?.review_due === "2026-12-11"));
+  check("SAS : les amplitudes officielles restent entières — cabine 55–149 EUR, soute 90–725 EUR",
+    presentNumericFares(sas.cabin.fares, { locale: "fr", minimumLabel: "à partir de" })?.includes("55")
+      && presentNumericFares(sas.cabin.fares, { locale: "fr", minimumLabel: "à partir de" })?.includes("149")
+      && presentNumericFares(sas.hold.fares, { locale: "fr", minimumLabel: "à partir de" })?.includes("90")
+      && presentNumericFares(sas.hold.fares, { locale: "fr", minimumLabel: "à partir de" })?.includes("725"));
+  const swiss = objets.airlines.find((a) => a.id === "airline_swiss")?.premium?.policy;
+  const montants = (p) => (p?.fares ?? []).flatMap((f) => f.price.amounts.map((m) => `${m.currency}:${m.amount}`)).sort();
+  check("SWISS multidevise ne croise jamais le montant précédent avec la devise suivante",
+    JSON.stringify(montants(swiss?.cabin)) === JSON.stringify(["CHF:75", "EUR:65", "USD:80"])
+      && JSON.stringify(montants(swiss?.hold)) === JSON.stringify(["CHF:440", "EUR:380", "USD:445"]),
+    JSON.stringify({ cabin: montants(swiss?.cabin), hold: montants(swiss?.hold) }));
+  const jal = objets.airlines.find((a) => a.id === "airline_jal")?.premium?.policy?.hold?.fares?.[0];
+  check("JAL : une devise écrite une fois encadre bien les deux bornes 5 500–7 700 JPY",
+    jal?.price?.kind === "range" && jal.price.amounts?.[0]?.amount === 5500 && jal.price.amounts?.[1]?.amount === 7700);
+  const norwegian = objets.airlines.find((a) => a.id === "airline_norwegian")?.premium?.policy;
+  check("Norwegian : les fourchettes à devise suffixée gardent leurs deux bornes",
+    norwegian?.cabin?.fares?.[0]?.price?.kind === "range" && norwegian.cabin.fares[0].price.amounts?.[0]?.amount === 55
+      && norwegian.cabin.fares[0].price.amounts?.[1]?.amount === 75
+      && norwegian?.hold?.fares?.[0]?.price?.kind === "range" && norwegian.hold.fares[0].price.amounts?.[0]?.amount === 150
+      && norwegian.hold.fares[0].price.amounts?.[1]?.amount === 180);
+  const condor = objets.airlines.find((a) => a.id === "airline_condor")?.premium?.policy?.cabin?.fares?.[0];
+  check("Condor : « ab 59,99 Euro » devient un minimum en EUR, jamais un prix exact",
+    condor?.price?.kind === "minimum" && condor.price.amounts?.[0]?.amount === 59.99 && condor.price.amounts?.[0]?.currency === "EUR");
+  const delta = objets.airlines.find((a) => a.id === "airline_delta")?.premium?.policy?.cabin;
+  check("Delta : les tarifs Amériques à 150 USD/CAD et international à 200 USD/CAD/EUR traversent ensemble",
+    JSON.stringify(montants(delta)) === JSON.stringify(["CAD:150", "CAD:200", "EUR:200", "USD:150", "USD:200"]), JSON.stringify(montants(delta)));
+  const ibx = objets.airlines.find((a) => a.id === "airline_iberia_express")?.premium?.policy?.cabin;
+  check("Iberia Express : les trois devises gardent chacune leurs deux bornes — aucun dollar suffixé n'est rattaché à l'euro",
+    JSON.stringify(montants(ibx)) === JSON.stringify(["EUR:180", "EUR:40", "GBP:165", "GBP:35", "USD:210", "USD:50"]), JSON.stringify(montants(ibx)));
   check("…ni aucun conflit tarifaire", avecConflits === 0, `${avecConflits} politique(s) portent déjà un conflit`);
 }
 
@@ -709,6 +846,7 @@ console.log("\n=== 15. L'INGESTION, jouée six fois sur un bac à sable : une no
   const fiche = join(bac, "content/airlines/sas.yml");
   const original = readFileSync(fiche, "utf8");
   const objetsOriginaux = readFileSync(join(bac, "packages/knowledge/raw/objects.json"), "utf8");
+  const politiquesSasOriginales = JSON.parse(objetsOriginaux).airlines.find((a) => a.id === "airline_sas")?.premium?.policy;
 
   const SRC_YML = (ind, locator = "Fees → Pet in cargo hold → China", quote = "China: 5400 DKK, 7600 NOK, 7600 SEK, 725 EUR, 775 USD") => [
     `${ind}source:`,
@@ -794,8 +932,9 @@ console.log("\n=== 15. L'INGESTION, jouée six fois sur un bac à sable : une no
     const { ok, sortie, artefact } = jouer(holdSas(`    fares:\n${TARIF_YML("fare_sas_hold_china", "cabin")}\n`));
     check("l'ingestion REFUSE — sans cette garde, le tarif serait importé puis jamais retrouvé", !ok, sortie.slice(-260));
     check("…et le motif nomme le canal réel et le canal déclaré", /rangé sous policies\.hold.*placement cabin/s.test(sortie), sortie.slice(-260));
-    const pol = artefact?.airlines.find((a) => a.id === "airline_sas")?.premium?.policy?.hold;
-    check("…et l'artefact n'a pas bougé : rien n'est écrit quand la fiche est refusée", !Array.isArray(pol?.fares) || pol.fares.length === 0);
+    const politiques = artefact?.airlines.find((a) => a.id === "airline_sas")?.premium?.policy;
+    check("…et l'artefact n'a pas bougé : rien n'est écrit quand la fiche est refusée",
+      JSON.stringify(politiques) === JSON.stringify(politiquesSasOriginales));
   }
 
   console.log("  — (c) SABOTAGE 2 : deux tarifs portant exactement le même identifiant");
@@ -913,6 +1052,35 @@ console.log("\n=== 16. LA FRONTIÈRE ENTRE VALIDATION ET RÉSOLUTION (P1, quatri
   } finally { rmSync(bacTs, { recursive: true, force: true }); }
   check("…et c'est exactement ce que le reparsage rattrape : la marque seule ne fermait pas la porte",
     leve !== null && leve.includes("auto-citation"));
+}
+
+console.log("\n=== 17. LE TARIF TRAVERSE LE CONTRAT HTTP RÉEL JUSQU'AU FINDER ===");
+{
+  const response = await worker.fetch(new Request(
+    "https://x/v1/finder?origin=CDG&destination=JFK&weight_kg=3&breed=chihuahua&placement=any&locale=fr",
+  ), {});
+  const body = await response.json();
+  const klm = body?.airlines?.find((a) => a.airline_id === "airline_klm");
+  check("le Worker répond et KLM figure dans ce trajet témoin", response.status === 200 && !!klm,
+    `HTTP ${response.status}, ${body?.airlines?.length ?? 0} compagnie(s)`);
+  const parCanal = Object.fromEntries((klm?.fare_resolutions ?? []).map((x) => [x.placement, x.resolution]));
+  check("le rapport transporte exactement cabine, soute et fret — aucune résolution perdue",
+    Object.keys(parCanal).sort().join(",") === "cabin,cargo,hold", JSON.stringify(Object.keys(parCanal)));
+  for (const canal of ["cabin", "hold"]) {
+    const tarif = parCanal[canal]?.indecidables?.find((f) => f.id === `fare_klm_${canal}_eur_2026_09_12`);
+    check(`KLM ${canal} : 70–500 EUR reste une grille publiée, jamais un prix exact du trajet`,
+      tarif?.price?.kind === "range" && tarif.price.amounts?.[0]?.amount === 70
+        && tarif.price.amounts?.[1]?.amount === 500 && parCanal[canal]?.montants?.length === 0,
+      JSON.stringify(parCanal[canal] ?? null).slice(0, 300));
+    check(`KLM ${canal} : la preuve tarifaire propre traverse avec URL, citation, locator et date`,
+      tarif?.source?.url === "https://www.klm.nl/information/pets/reservation"
+        && tarif.source.verified_date === "2026-09-12" && tarif.source.quote_language === "nl"
+        && tarif.source.quote?.length >= 10
+        && tarif.source.locator?.length > 0, JSON.stringify(tarif?.source ?? null));
+  }
+  check("KLM fret : le mécanisme sur devis traverse séparément des montants",
+    parCanal.cargo?.indecidables?.some((f) => f.price?.kind === "quote" && f.source?.locator === "Cargo alternative")
+      && parCanal.cargo?.montants?.length === 0, JSON.stringify(parCanal.cargo ?? null).slice(0, 300));
 }
 
 console.log(`\n=== SUMMARY ===\n${fail === 0 ? `ALL CHECKS PASSED (${pass})` : `${fail} CHECK(S) FAILED sur ${pass + fail}`}`);

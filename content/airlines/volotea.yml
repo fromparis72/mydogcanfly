@@ -59,11 +59,62 @@ ladder:
       pt: "não oferecido"
 policies:
   cabin:
+    fares:
+      - id: fare_volotea_cabin_eur_2026_09_12
+        placement: cabin
+        price:
+          kind: range
+          amounts:
+            - amount: 39
+              currency: EUR
+            - amount: 60
+              currency: EUR
+        billing_subject: pet
+        journey_basis: per_journey
+        scope_label: 39 EUR en ligne ou par téléphone · 60 EUR à l’aéroport
+        source:
+          url: https://www.volotea.com/es/tarifas/
+          source_type: official_website
+          verified_date: 2026-09-12
+          review_due: 2026-12-11
+          confidence: 4
+          reviewer: Codex — contre-lecture du dossier officiel national
+          history: []
+          quote: Mascota a bordo | 1 mascota de hasta 10kg. | Web 39€ | Call center 39€ | Aeropuerto 60€
+          quote_language: es
+          locator: tableau des frais, ligne « Mascota a bordo », en-tetes conserves
     availability: offered
+    source:
+      url: https://www.volotea.com/es/tu-reserva/mascotas-a-bordo/
+      source_type: official_website
+      verified_date: 2026-09-12
+      review_due: 2026-12-11
+      confidence: 4
+      reviewer: Codex — contre-lecture du dossier officiel national
+      history: []
+      quote: Permitimos perros y gatos pequeños de al menos 8 semanas de edad, pero no otros animales.
+      quote_language: es
+      locator: bloc « Perros y gatos bienvenidos »
   hold:
-    availability: not_offered
+    availability: case_by_case
+    source:
+      url: https://www.volotea.com/es/condiciones-legales/condiciones-de-transporte/
+      source_type: official_website
+      verified_date: 2026-09-12
+      review_due: 2026-12-11
+      confidence: 4
+      reviewer: Codex — contre-lecture du dossier officiel national
+      history: []
+      quote: Volotea no ofrece la posibilidad de transportar animales en la bodega del avión.
+      quote_language: es
+      locator: article 6.10 « Animales » des conditions generales espagnoles
+    conditions:
+      en: "Official documents conflict: the conditions deny hold transport, while an Italian fare table sells it on limited public-service routes. Confirm the flight."
+      fr: "Les documents officiels se contredisent : les conditions refusent la soute, mais une grille italienne la vend sur certaines liaisons de continuité territoriale. Confirme le vol."
+      es: "Los documentos oficiales se contradicen: las condiciones niegan la bodega, pero una tabla italiana la vende en determinadas rutas de continuidad territorial. Confirma el vuelo."
+      pt: "Os documentos oficiais se contradizem: as condições recusam o porão, mas uma tabela italiana o vende em certas rotas de continuidade territorial. Confirme o voo."
   cargo:
-    availability: not_offered
+    review_state: legacy_unreviewed
 channels:
   - placement: cabin
     icon: 🐾

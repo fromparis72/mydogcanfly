@@ -12,6 +12,9 @@ import FaqBlock from "./FaqBlock.astro";
 import { airlineFaq, faqJsonLd } from "../lib/faq";
 import { airlineReach } from "../lib/cluster";
 import { politiqueDuCanal, cleLibelleStatut, classeStatut, causeDeConfirmation, preuveAuditee, sourceAffichable, verdictDeFiche } from "../lib/decisionCanal";
+import { syntheseAttestee, nomDeLangue } from "../lib/syntheseAttestee";
+import { faitsAttestes } from "@mydogcanfly/knowledge";
+import { presentNumericFares } from "../lib/farePresentation";
 interface Props { id: string; locale?: string }
 const { id, locale = "en" } = Astro.props;
 const fr = locale === "fr";
@@ -124,8 +127,8 @@ const seoTitle = seoLong.length <= 65 ? seoLong : seoShort;
 /* ── LA DESCRIPTION PUBLIQUE NE PROMET PLUS CE QUE LA PAGE NE PUBLIE PLUS ───────────────────
  *
  * `d.metaDesc` annonçait, sur les 102 fiches : « cabin, hold and cargo rules, fares,
- * restrictions and official sources ». Or les tarifs sont retirés depuis le micro-lot Tarifs,
- * et les restrictions viennent de l'être : la page promettait publiquement — dans la balise
+ * restrictions and official sources ». Or les anciens tarifs libres ont été retirés au micro-lot
+ * Tarifs et les restrictions viennent de l'être : la page promettait publiquement — dans la balise
  * `description`, dans `og:description`, dans `twitter:description` et dans le `WebPage` du
  * JSON-LD — un contenu qu'elle ne présente plus. J'avais corrigé l'intérieur de la fiche sans
  * regarder ce qu'elle annonce d'elle-même à l'extérieur.
@@ -271,6 +274,33 @@ const jsonLd = faqItems.length ? [webpageLd, faqJsonLd(faqItems)] : [webpageLd];
           const statut = decision.status;
           const cause = causeDeConfirmation(decision);
           const preuve = preuveAuditee(decision);
+          /* LA SYNTHÈSE LOCALISÉE (annexe 51) — seulement ce que la citation de CE canal établit.
+             `faitsAttestes` rend une liste vide dès qu'un rattachement est cassé : permuter la
+             preuve entre deux canaux, ou annoncer un nombre que le fragment ne porte pas, éteint
+             la ligne au lieu de publier un chiffre que la preuve contredit. */
+          const synthese = syntheseAttestee(
+            faitsAttestes((decision as { attestations?: never }).attestations, preuve?.quote, decision as never),
+            c.placement, locale);
+          const langueCitation = preuve?.quote ? nomDeLangue(preuve.quote_language, locale) : null;
+          /* Le tarif vient uniquement du contrat structuré et sourcé. Une grille zonée dont la
+             zone n'est pas encore exécutable reste une amplitude officielle, jamais un prix de
+             trajet calculé. */
+          const conflitsTarifaires = decision.fare_conflicts ?? [];
+          /* Un conflit tarifaire conserve les mécanismes publiés par la compagnie, mais éteint
+             tous les montants exacts du canal : c'est précisément l'effet `suppress_exact_fare`
+             garanti par le contrat. La fiche détaillée suit ainsi la même frontière que le Finder. */
+          const tarifChiffre = conflitsTarifaires.length === 0 ? presentNumericFares(decision.fares ?? [], {
+            locale,
+            minimumLabel: T("from", "à partir de", "desde"),
+          }) : null;
+          const naturesTarifaires = new Set((decision.fares ?? []).map((fare) => fare.price.kind));
+          const mecanismesTarifaires = [
+            naturesTarifaires.has("calculator") ? T("price calculated by the airline", "prix calculé par la compagnie", "precio calculado por la aerolínea") : null,
+            naturesTarifaires.has("formula") ? T("official pricing formula", "barème tarifaire officiel", "baremo tarifario oficial") : null,
+            naturesTarifaires.has("booking_only") ? T("price shown during booking", "prix affiché à la réservation", "precio mostrado durante la reserva") : null,
+            naturesTarifaires.has("quote") ? T("on quotation", "sur devis", "bajo presupuesto") : null,
+          ].filter((value): value is string => !!value);
+          const tarifPublie = [...mecanismesTarifaires, tarifChiffre].filter((value): value is string => !!value).join(" · ");
           /* Le lien officiel SANS phrase citée n'est pas une preuve : il se montre, mais sans
              bouclier, sans « vérifié le… » et sans indice de confiance — ces trois signes
              disent « nous avons lu », et personne n'a lu. */
@@ -297,18 +327,22 @@ const jsonLd = faqItems.length ? [webpageLd, faqJsonLd(faqItems)] : [webpageLd];
                   seul canal qui l'est — British Airways cabine — elle serait fausse. Elle ne
                   paraît donc que faute de preuve ; là où la preuve existe, c'est le bloc `proof`
                   ci-dessous qui parle, et il ne dit que la phrase citée. */}
+              {/* LA SYNTHÈSE PROUVÉE, EN PREMIER ET EN GRAS — arbitrage de Philippe du 11/09/2026,
+                  pris sur la fiche Air France lue en portugais : le visiteur y lisait un état
+                  traduit, puis une phrase en français, et repartait sans le chiffre. Cette ligne
+                  n'est PAS une traduction de la citation : c'est un fait structuré, rattaché à la
+                  phrase qui l'établit, mis en mots dans la langue de la page. Elle n'apparaît que
+                  là où ce rattachement existe — deux canaux sur 302 au 11/09. */}
+              {synthese && <div class="fait">{synthese}</div>}
               {!preuve && <div class="k">{tt(locale, "premium.channel_unproven")}</div>}
-              {/* LE MONTANT A ÉTÉ RETIRÉ (micro-lot Tarifs, 29/08/2026). Il venait de
-                  premium.policy[canal].fee — une chaîne libre, sans devise séparée, sans route,
-                  sans date d'applicabilité : lisible, mais impossible à rapporter à un trajet.
-                  Le statut du canal suffit tant qu'aucune table tarifaire structurée et sourcée
-                  n'existe. */}
               {/* ON NE TARIFE PAS UN CANAL QU'ON REFUSE. La première rédaction rendait le statut
                   tarifaire sans regarder le statut du canal : une soute « denied » recevait donc
                   « Tarif à confirmer », ce qui laisse croire qu'un tarif existe pour un canal
                   fermé. Le statut ne paraît que pour « allowed » et « confirmation_required ». */}
               {statut !== "denied" && (
-                <div class="amt">{tt(locale, c.placement === "cargo" ? "tarif.devis_cargo" : "tarif.a_confirmer")}</div>
+                <div class="amt">{tarifPublie
+                  ? <>{T("official published fare", "tarif officiel publié", "tarifa oficial publicada")} : {tarifPublie} · {T("depending on the route and conditions", "selon le trajet et les conditions", "según el trayecto y las condiciones")}</>
+                  : tt(locale, c.placement === "cargo" ? "tarif.devis_cargo" : "tarif.a_confirmer")}</div>
               )}
               {/* La CAUSE de l'incertitude, dite pour ce qu'elle est : la nôtre (donnée non
                 * revérifiée) ou celle de la compagnie (rien de publié, accord au cas par cas).
@@ -319,11 +353,23 @@ const jsonLd = faqItems.length ? [webpageLd, faqJsonLd(faqItems)] : [webpageLd];
                 * auditée : une politique non revue reste sans source. */}
               {preuve && (
                 <div class="proof">
-                  <div class="proof-h">🛡️ {tt(locale, "premium.channel_source")}</div>
+                  {/* L'EN-TÊTE ANNONCE LA LANGUE DU TEXTE ORIGINAL, produite depuis l'étiquette
+                      BCP-47 de la citation — jamais depuis une liste de langues. Le dépôt cite déjà
+                      du coréen et de l'anglais australien ; une table à deux entrées les aurait
+                      trahis. Le visiteur sait donc, avant de lire, qu'il s'apprête à lire une autre
+                      langue, et pourquoi elle n'est pas traduite. */}
+                  <div class="proof-h">🛡️ {langueCitation
+                    ? tt(locale, "premium.preuve.original").replace("{langue}", langueCitation)
+                    : tt(locale, "premium.channel_source")}</div>
                   <a class="proof-lnk" href={preuve.url} rel="nofollow noopener" target="_blank">{hote(preuve.url)}</a>
                   {preuve.quote && <blockquote class="proof-q" lang={preuve.quote_language}>« {preuve.quote} »</blockquote>}
-                  {preuve.locator && <div class="proof-loc">{preuve.locator}</div>}
+                  {/* LE LOCALISATEUR EST UNE MÉTADONNÉE DE PREUVE, pas une phrase pour le visiteur.
+                      Sur la fiche Air France en portugais, il occupait une ligne entière pour dire
+                      « Important! » — du bruit dans une langue de plus. Il reste, parce qu'il rend
+                      la contre-revue possible sans relire la page entière, mais avec les autres
+                      métadonnées et à leur taille. */}
                   <div class="proof-m">
+                    {preuve.locator && <span class="proof-loc">{preuve.locator}</span>}
                     <span>{tt(locale, "premium.verified_on").replace("{date}", fmtDate(preuve.verified_date))}</span>
                     <span>{tt(locale, "premium.confidence").replace("{n}", String(preuve.confidence))}</span>
                   </div>
@@ -348,24 +394,19 @@ const jsonLd = faqItems.length ? [webpageLd, faqJsonLd(faqItems)] : [webpageLd];
       <a class="cratecta" data-carry="breed" href={`${locale === "en" ? "/tools/crate/" : `/${locale}/tools/crate/`}#air=${id}`}>📦 {T("What size travel crate does my dog need?", "Quelle taille de cage de transport pour mon chien ?", "¿Qué tamaño de transportín necesita mi perro?")} →</a>
     </div>
 
-    {/* LA GRILLE « TARIFS PAR ZONE » N'EST PLUS RENDUE (micro-lot Tarifs, 29/08/2026), et c'est
-        une perte assumée, pas un oubli. Deux fiches la portaient — Air France et TAROM —, avec des
-        montants par zone et une note d'applicabilité : la donnée tarifaire la mieux formée du
-        site. Elle reste hors du nouveau contrat (ni montant et devise séparés, ni preuve citée
-        avec locator, ni date d'applicabilité structurée), et la règle du lot ne souffre pas
-        d'exception : aucun montant tant qu'une table structurée et sourcée ne permet pas de le
-        calculer. CES DEUX GRILLES SONT LES PREMIÈRES CANDIDATES à la migration. */}
+    {/* L'ANCIENNE GRILLE LIBRE « TARIFS PAR ZONE » reste non rendue. Les tarifs migrés vers le
+        contrat structuré et sourcé sont désormais affichés dans le canal concerné ci-dessus ;
+        garder un second lecteur de `fareGrid` recréerait deux vérités concurrentes. */}
 
-    {/* LE TABLEAU « TARIFS » N'EST PLUS RENDU (micro-lot Tarifs, 29/08/2026) — et c'était la
+    {/* L'ANCIEN TABLEAU LIBRE « TARIFS » N'EST PLUS RENDU (micro-lot Tarifs, 29/08/2026) — et c'était la
         surface la plus LARGE : 90 fiches sur 102. J'avais corrigé trois surfaces à la main ;
         c'est le contrôle du DOM CONSTRUIT qui a trouvé les trois autres — la FAQ, la grille par
         zone, puis ce tableau. Une relecture, si attentive soit-elle, cherche là où elle pense à
         regarder ; un contrôle qui lit le HTML servi cherche partout.
 
         Ces lignes portent un libellé et une valeur libres, sans devise séparée, sans route, sans
-        date d'applicabilité — impossibles à rapporter au trajet demandé. Elles reviendront quand
-        une table structurée et sourcée permettra de calculer, et elles répondront alors POUR UN
-        TRAJET, pas en général. */}
+        date d'applicabilité — impossibles à rapporter au trajet demandé. Leur contenu ne revient
+        qu'après migration dans `policies.*.fares`, jamais par ce lecteur historique. */}
 
     {/* ── LA CARTE « RESTRICTIONS IMPORTANTES » EST SUPPRIMÉE (contre-revue du 05/09/2026) ──
         Elle était d'abord passée derrière une constante `surfacesEditorialesAffichables = false`.
@@ -564,11 +605,16 @@ const jsonLd = faqItems.length ? [webpageLd, faqJsonLd(faqItems)] : [webpageLd];
   /* La cause de l'incertitude, et la preuve du canal : lisibles sans être criardes — elles
      accompagnent la décision, elles ne la remplacent pas. */
   .afp .why { margin-top: 8px; font-size: 12.5px; line-height: 1.45; color: #9a5a12; }
-  .afp .proof { margin-top: 10px; padding-top: 9px; border-top: 1px dashed var(--mdcf-line, #e6ebf1); font-size: 12.5px; }
-  .afp .proof-h { font-weight: 700; color: var(--mdcf-ink, #1a2433); }
+  /* LA SYNTHÈSE PROUVÉE : la première chose lue dans la carte, et la plus lisible. */
+  .afp .fait { margin-top: 8px; font-weight: 700; font-size: 15px; line-height: 1.35; color: var(--mdcf-ink, #1a2433); }
+  /* LE VOLET DE PREUVE : présent, consultable, et visiblement SECOND. */
+  .afp .proof { margin-top: 10px; padding-top: 9px; border-top: 1px dashed var(--mdcf-line, #e6ebf1); font-size: 12px; color: var(--mdcf-muted, #5b6b7f); }
+  .afp .proof-h { font-weight: 600; color: var(--mdcf-muted, #5b6b7f); }
   .afp .proof-lnk { display: inline-block; margin-top: 3px; font-weight: 600; color: var(--mdcf-accent-ink, #b4530a); word-break: break-word; }
   .afp .proof-q { margin: 6px 0 0; padding-left: 9px; border-left: 2px solid var(--mdcf-line, #e6ebf1); color: var(--mdcf-muted, #5b6b7f); font-style: italic; line-height: 1.45; }
-  .afp .proof-loc { margin-top: 5px; color: var(--mdcf-muted, #5b6b7f); }
+  /* Le localisateur n'a plus de règle à lui : il vit maintenant DANS `.proof-m`, dont il prend
+     la couleur, la taille et la graisse. La classe reste, parce que les témoins DOM la lisent
+     pour vérifier qu'il n'a pas repris une ligne à lui seul. */
   .afp .proof-m { display: flex; gap: 10px; flex-wrap: wrap; margin-top: 6px; font-weight: 600; color: var(--mdcf-muted, #5b6b7f); }
   /* Le lien officiel non cité est visuellement PLUS SOBRE que la preuve : même bloc, titre en
      retrait, aucune métadonnée. La hiérarchie visuelle dit la hiérarchie de confiance. */

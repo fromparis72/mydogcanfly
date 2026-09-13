@@ -73,6 +73,77 @@ ladder:
       pt: "Reino Unido / espécie"
 policies:
   cabin:
+    # GRILLE OFFICIELLE RELUE LE 2026-09-11. La zone commerciale n'est pas encore
+    # exécutable dans le Finder : elle est publiée comme amplitude, jamais comme prix calculé.
+    fares:
+      - id: fare_air_europa_cabin_spain_2026_09_11
+        placement: cabin
+        price: { kind: matrix, amounts: [{ amount: 35, currency: EUR }, { amount: 36, currency: USD }, { amount: 30, currency: GBP }, { amount: 35, currency: CHF }] }
+        billing_subject: pet_or_container
+        journey_basis: per_journey
+        scope_label: Espagne péninsulaire et Baléares
+        source:
+          url: https://www.aireuropa.com/be/fr/aea/informations-pour-voler/passagers/animaux-de-compagnie.html
+          source_type: official_website
+          verified_date: 2026-09-11
+          review_due: 2026-12-10
+          confidence: 4
+          reviewer: Codex — lecture directe de la grille officielle
+          history: []
+          quote: "EUR 35 USD 36 GBP 30 CHF 35"
+          quote_language: fr
+          locator: Prix pour les animaux en cabine → national Espagne et Baléares
+      - id: fare_air_europa_cabin_medium_2026_09_11
+        placement: cabin
+        price: { kind: matrix, amounts: [{ amount: 50, currency: EUR }, { amount: 52, currency: USD }, { amount: 43, currency: GBP }, { amount: 49, currency: CHF }] }
+        billing_subject: pet_or_container
+        journey_basis: per_journey
+        scope_label: Canaries, Europe, Afrique et intra-Amérique
+        source:
+          url: https://www.aireuropa.com/be/fr/aea/informations-pour-voler/passagers/animaux-de-compagnie.html
+          source_type: official_website
+          verified_date: 2026-09-11
+          review_due: 2026-12-10
+          confidence: 4
+          reviewer: Codex — lecture directe de la grille officielle
+          history: []
+          quote: "EUR 50 USD 52 GBP 43 CHF 49"
+          quote_language: fr
+          locator: Prix pour les animaux en cabine → Canaries, Europe, Afrique et intra-Amérique
+      - id: fare_air_europa_cabin_long_listed_2026_09_11
+        placement: cabin
+        price: { kind: matrix, amounts: [{ amount: 150, currency: EUR }, { amount: 155, currency: USD }, { amount: 130, currency: GBP }, { amount: 148, currency: CHF }] }
+        billing_subject: pet_or_container
+        journey_basis: per_journey
+        scope_label: Longue distance · MIA/SDQ/NYC/PUJ/SJO
+        source:
+          url: https://www.aireuropa.com/be/fr/aea/informations-pour-voler/passagers/animaux-de-compagnie.html
+          source_type: official_website
+          verified_date: 2026-09-11
+          review_due: 2026-12-10
+          confidence: 4
+          reviewer: Codex — lecture directe de la grille officielle
+          history: []
+          quote: "EUR 150 USD 155 GBP 130 CHF 148"
+          quote_language: fr
+          locator: Prix pour les animaux en cabine → longue distance → routes listées
+      - id: fare_air_europa_cabin_long_other_2026_09_11
+        placement: cabin
+        price: { kind: matrix, amounts: [{ amount: 175, currency: EUR }, { amount: 181, currency: USD }, { amount: 152, currency: GBP }, { amount: 173, currency: CHF }] }
+        billing_subject: pet_or_container
+        journey_basis: per_journey
+        scope_label: Longue distance · autres routes
+        source:
+          url: https://www.aireuropa.com/be/fr/aea/informations-pour-voler/passagers/animaux-de-compagnie.html
+          source_type: official_website
+          verified_date: 2026-09-11
+          review_due: 2026-12-10
+          confidence: 4
+          reviewer: Codex — lecture directe de la grille officielle
+          history: []
+          quote: "EUR 175 USD 181 GBP 152 CHF 173"
+          quote_language: fr
+          locator: Prix pour les animaux en cabine → longue distance → autres routes
     availability: offered
     # PREUVE IMPORTÉE — import strict V3 (Codex, lecture directe du 2026-09-08, cohorte LOT2 fait 6).
     # Effet attendu : A dog weighing more than 8 kg alone is not suitable for cabin. A lighter dog still needs carrier-weight verification.
@@ -92,6 +163,75 @@ policies:
       quote_language: en
       locator: "Flying with pets on board → Animals in the cabin"
   hold:
+    fares:
+      - id: fare_air_europa_hold_spain_2026_09_11
+        placement: hold
+        price: { kind: matrix, amounts: [{ amount: 90, currency: EUR }, { amount: 93, currency: USD }, { amount: 78, currency: GBP }, { amount: 89, currency: CHF }] }
+        billing_subject: pet_or_container
+        journey_basis: per_journey
+        scope_label: Espagne péninsulaire et Baléares
+        source:
+          url: https://www.aireuropa.com/be/fr/aea/informations-pour-voler/passagers/animaux-de-compagnie.html
+          source_type: official_website
+          verified_date: 2026-09-11
+          review_due: 2026-12-10
+          confidence: 4
+          reviewer: Codex — lecture directe de la grille officielle
+          history: []
+          quote: "EUR 90 USD 93 GBP 78 CHF 89"
+          quote_language: fr
+          locator: Prix pour les animaux en soute → Péninsule et Iles Baléares
+      - id: fare_air_europa_hold_medium_2026_09_11
+        placement: hold
+        price: { kind: matrix, amounts: [{ amount: 150, currency: EUR }, { amount: 155, currency: USD }, { amount: 130, currency: GBP }, { amount: 148, currency: CHF }] }
+        billing_subject: pet_or_container
+        journey_basis: per_journey
+        scope_label: Canaries, Europe, Afrique et intra-Amérique
+        source:
+          url: https://www.aireuropa.com/be/fr/aea/informations-pour-voler/passagers/animaux-de-compagnie.html
+          source_type: official_website
+          verified_date: 2026-09-11
+          review_due: 2026-12-10
+          confidence: 4
+          reviewer: Codex — lecture directe de la grille officielle
+          history: []
+          quote: "EUR 150 USD 155 GBP 130 CHF 148"
+          quote_language: fr
+          locator: Prix pour les animaux en soute → Canaries, Europe, Afrique et intra-Amérique
+      - id: fare_air_europa_hold_long_listed_2026_09_11
+        placement: hold
+        price: { kind: matrix, amounts: [{ amount: 300, currency: EUR }, { amount: 310, currency: USD }, { amount: 261, currency: GBP }, { amount: 296, currency: CHF }] }
+        billing_subject: pet_or_container
+        journey_basis: per_journey
+        scope_label: Long-courrier · MIA/SDQ/NYC/PUJ
+        source:
+          url: https://www.aireuropa.com/be/fr/aea/informations-pour-voler/passagers/animaux-de-compagnie.html
+          source_type: official_website
+          verified_date: 2026-09-11
+          review_due: 2026-12-10
+          confidence: 4
+          reviewer: Codex — lecture directe de la grille officielle
+          history: []
+          quote: "EUR 300 USD 310 GBP 261 CHF 296"
+          quote_language: fr
+          locator: Prix pour les animaux en soute → long-courrier → routes listées
+      - id: fare_air_europa_hold_long_other_2026_09_11
+        placement: hold
+        price: { kind: matrix, amounts: [{ amount: 350, currency: EUR }, { amount: 361, currency: USD }, { amount: 304, currency: GBP }, { amount: 345, currency: CHF }] }
+        billing_subject: pet_or_container
+        journey_basis: per_journey
+        scope_label: Long-courrier · autres routes
+        source:
+          url: https://www.aireuropa.com/be/fr/aea/informations-pour-voler/passagers/animaux-de-compagnie.html
+          source_type: official_website
+          verified_date: 2026-09-11
+          review_due: 2026-12-10
+          confidence: 4
+          reviewer: Codex — lecture directe de la grille officielle
+          history: []
+          quote: "EUR 350 USD 361 GBP 304 CHF 345"
+          quote_language: fr
+          locator: Prix pour les animaux en soute → long-courrier → autres routes
     availability: offered
     # PREUVE IMPORTÉE — import strict V3 (Codex, lecture directe du 2026-09-08, cohorte LOT2 fait 7).
     # Effet attendu : Passenger hold is a conditional path; it is not a positive result for a restricted breed or a 50 kg-plus animal-and-kennel combination.

@@ -69,6 +69,46 @@ ladder:
     sub: "> 125 cm"
 policies:
   cabin:
+    # TARIFS OFFICIELS — audit indépendant du 2026-09-10 ; aucune valeur héritée réactivée.
+    fares:
+      - id: fare_turkish_cabin_2026_09_10
+        placement: cabin
+        price:
+          kind: calculator
+          amounts: []
+        billing_subject: container
+        journey_basis: per_segment
+        scope_label: Route-based calculator; <=8kg PETC
+        source:
+          url: https://www.turkishairlines.com/en-kt/any-questions/traveling-with-pets/fees-for-carrying-pets/
+          source_type: official_website
+          verified_date: 2026-09-10
+          review_due: 2026-12-09
+          confidence: 4
+          reviewer: Codex — lecture directe de la source officielle
+          history: []
+          quote: calculated separately for each flight
+          quote_language: en
+          locator: Pet fee calculator
+      - id: fare_turkish_cabin_interline_usd_2026_09_12
+        placement: cabin
+        price:
+          kind: matrix
+          amounts: [{ amount: 75, currency: USD }]
+        billing_subject: container
+        journey_basis: per_segment
+        scope_label: Interline à l'arrivée, au départ ou en transit par la Turquie · PETC 0–8 kg
+        source:
+          url: https://www.turkishairlines.com/tr-tr/bilgi-edin/evcil-hayvanlarla-yolculuk/evcil-hayvan-tasima-ucretleri/
+          source_type: official_website
+          verified_date: 2026-09-12
+          review_due: 2026-12-11
+          confidence: 5
+          reviewer: Codex — lecture de la page officielle turque
+          history: []
+          quote: "TR Varışlı/Çıkışlı Evcil Hayvan Ücretleri (Interline) · PETC 0-8KG | +75 USD"
+          quote_language: tr
+          locator: TR Varışlı/Çıkışlı Evcil Hayvan Ücretleri (Interline)
     availability: offered
     # PREUVE IMPORTÉE — import strict V3 (Codex, lecture directe du 2026-09-08, cohorte A fait 16).
     # Effet attendu : For a 32 kg dog, cabin is not suitable.
@@ -88,6 +128,46 @@ policies:
       quote_language: en
       locator: "Are there weight or size limits for my pet?"
   hold:
+    # TARIFS OFFICIELS — audit indépendant du 2026-09-10 ; aucune valeur héritée réactivée.
+    fares:
+      - id: fare_turkish_hold_2026_09_10
+        placement: hold
+        price:
+          kind: calculator
+          amounts: []
+        billing_subject: container
+        journey_basis: per_segment
+        scope_label: Route calculator; 0–23, 24–32, 33+kg
+        source:
+          url: https://www.turkishairlines.com/en-kt/any-questions/traveling-with-pets/fees-for-carrying-pets/
+          source_type: official_website
+          verified_date: 2026-09-10
+          review_due: 2026-12-09
+          confidence: 4
+          reviewer: Codex — lecture directe de la source officielle
+          history: []
+          quote: fees are charged per carrier
+          quote_language: en
+          locator: Pet fee calculator
+      - id: fare_turkish_hold_interline_usd_2026_09_12
+        placement: hold
+        price:
+          kind: matrix
+          amounts: [{ amount: 150, currency: USD }]
+        billing_subject: container
+        journey_basis: per_segment
+        scope_label: Interline à l'arrivée, au départ ou en transit par la Turquie · AVIH tous poids publiés
+        source:
+          url: https://www.turkishairlines.com/tr-tr/bilgi-edin/evcil-hayvanlarla-yolculuk/evcil-hayvan-tasima-ucretleri/
+          source_type: official_website
+          verified_date: 2026-09-12
+          review_due: 2026-12-11
+          confidence: 5
+          reviewer: Codex — lecture de la page officielle turque
+          history: []
+          quote: "AVIH 0-23KG | +150 USD · AVIH 24-32KG | +150 USD · AVIH 33KG+ | +150 USD"
+          quote_language: tr
+          locator: TR Varışlı/Çıkışlı Evcil Hayvan Ücretleri (Interline)
     availability: offered
     # PREUVE IMPORTÉE — import strict V3 (Codex, lecture directe du 2026-09-08, cohorte A fait 17).
     # Effet attendu : Show hold offered under conditions for a 32 kg dog, subject to carrier weight and dimensions.
@@ -108,6 +188,17 @@ policies:
       locator: "Are there weight or size limits for my pet?"
   cargo:
     availability: offered
+    source:
+      url: https://www.turkishcargo.com/tr/urunler-ve-hizmetler/ozel-kargolar/tk-live
+      source_type: official_website
+      verified_date: 2026-09-12
+      review_due: 2026-12-11
+      confidence: 4
+      reviewer: Codex — contrôle du dossier officiel fret rev2 remis par Philippe
+      history: []
+      quote: "IATA Live Animals Regulations (LAR) sertifikalı uzman kadromuzla uluslararası standartlarda taşımacılık yapılır"
+      quote_language: tr
+      locator: section presentation TK Live
 channels:
   - placement: cabin
     icon: 🐾

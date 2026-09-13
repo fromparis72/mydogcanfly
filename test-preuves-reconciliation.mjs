@@ -55,9 +55,13 @@ console.log("\n=== 2. La borne du seuil : `lt` exclut la valeur, `lte` l'inclut 
   check("Air Austral cabine : `weight_limit_bound: lt` ÉCRIT dans la fiche, depuis « inférieur à 8 kg », et projeté", aa?.weight_limit_bound === "lt" && projetee("airline_air_austral", "cabin")?.weight_limit_bound === "lt" && /weight_limit_bound: lt/.test(fiche("air_austral")));
   let bornesStrictes = 0, seuils = 0;
   for (const a of objets.airlines) for (const p of Object.values(a.premium?.policy ?? {})) { if (typeof p.max_weight_kg === "number" && typeof p.weight_includes_carrier === "boolean") { seuils++; if (p.weight_limit_bound === "lt") bornesStrictes++; } }
-  /* MOUVEMENT NOMMÉ (10/09/2026, complément Air France cabine — Codex) : 37 → 38 seuils qualifiés, 1 → 2 bornes strictes — Air France
-     cabine, « chiens de moins de 8 kg, sac de transport compris », rejoint Air Austral ; Codex : « ne pas convertir en ≤ 8 kg ». */
-  check("état figé : 38 seuils qualifiés, DEUX bornes strictes (Air Austral, Air France — mesuré sur les phrases citées : toutes les autres disent « jusqu'à », « maximum », « ne dépasse pas »)", seuils === 38 && bornesStrictes === 2, `${seuils} seuils, ${bornesStrictes} stricte(s)`);
+  /* MOUVEMENT NOMMÉ (12/09/2026, KLM et SAS — sources nationales) : 38 → 40
+     seuils qualifiés. Les deux nouveaux plafonds sont inclusifs ; Air Austral et
+     Air France restent les deux seules politiques dont la phrase citée porte
+     une borne stricte.
+     MOUVEMENT NOMMÉ (12/09/2026, lot de 30 compagnies) : 40 → 41, Finnair soute
+     gagne son plafond inclusif de 75 kg depuis la page nationale la plus récente. */
+  check("état figé : 41 seuils qualifiés, DEUX bornes strictes (Air Austral, Air France)", seuils === 41 && bornesStrictes === 2, `${seuils} seuils, ${bornesStrictes} stricte(s)`);
   const afB = politique("airline_air_france", "cabin");
   check("Air France cabine : `weight_limit_bound: lt` ÉCRIT dans la fiche, depuis « moins de 8 kg », et projeté", afB?.weight_limit_bound === "lt" && projetee("airline_air_france", "cabin")?.weight_limit_bound === "lt" && /weight_limit_bound: lt/.test(fiche("air_france")));
   const st = (w) => canal(decide("airport_cdg", "airport_run", { breed_id: "breed_pug", weight_kg: w }), "airline_air_austral", "cabin");
@@ -99,8 +103,19 @@ console.log("\n=== Ce que la réconciliation n'a PAS fait ===");
 {
   let allowed = 0; for (const a of kb.airlines.values()) for (const p of Object.values(a.premium?.policy ?? {})) if (p.status === "allowed") allowed++;
   check("aucune politique réelle n'est `allowed` — « sous conditions » n'est jamais une place promise", allowed === 0, String(allowed));
-  /* MOUVEMENT NOMMÉ (10/09/2026, annexe 37) : 399 → 402, exactement les trois règles géographiques de Bangkok Airways, citées. */
-  check("aucune autre règle n'a été touchée : 402 règles = 399 de la réconciliation + les trois règles Bangkok Airways fret", regles.length === 402 && regles.filter((r) => /^rule_bangkok_airways_cargo_/.test(r.id)).length === 3, String(regles.length));
+  /* MOUVEMENTS NOMMÉS : 399 → 402 avec les trois règles géographiques de Bangkok Airways,
+     puis 402 → 404 avec les deux règles fret officielles du 13/09 (chaleur American,
+     brachycéphales Ethiopian). La règle chaleur Air Canada existait déjà et a été resserrée
+     sur le fret, elle n'ajoute donc pas une ligne au total. */
+  const fretAjoutees = [
+    "rule_american_cargo_heat_official_2026_09_12",
+    "rule_ethiopian_cargo_brachy_official_2026_09_12",
+  ];
+  check("404 règles = 399 de la réconciliation + 3 Bangkok Airways + 2 gardes fret officielles",
+    regles.length === 404
+      && regles.filter((r) => /^rule_bangkok_airways_cargo_/.test(r.id)).length === 3
+      && fretAjoutees.every((id) => regles.some((r) => r.id === id)),
+    String(regles.length));
 }
 
 console.log(`\n=== SUMMARY ===\n${fail === 0 ? `ALL CHECKS PASSED (${pass})` : `${fail} CHECK(S) FAILED sur ${pass + fail}`}`);

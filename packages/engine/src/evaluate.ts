@@ -1,5 +1,6 @@
 import type { NormalizedKB, Rule, Predicate, Condition, EvalContextShape, PlacementPolicy, PlacementStatus, TemperatureProvenance, BreedRestriction } from "@mydogcanfly/knowledge";
-import { MONTH_UNKNOWN, isEstimatedTemperature, preuveAuditee, regleDecisive, niveauDePreuveRegle } from "@mydogcanfly/knowledge";
+import { MONTH_UNKNOWN, isEstimatedTemperature, preuveAuditee, regleDecisive, niveauDePreuveRegle, resoudreTarif } from "@mydogcanfly/knowledge";
+import type { Fare, FareConflict, FaitsTrajet } from "@mydogcanfly/knowledge";
 import type { FinderRequest, Decision, AirlineDecision, FiredRule, ConfirmationCause, RestrictionEvidence, AdvisorySignal, PetTransportStatus, EntryStatus } from "./contracts";
 import { makePlacementDecision, makePlacementDecisionSet } from "./contracts";
 
@@ -656,6 +657,23 @@ export function evaluate(kb: NormalizedKB, req: FinderRequest, opts?: { weatherP
     });
     /* Le triplet complet est validé — exactement {cabin, hold, cargo}, ni absence ni doublon. */
     const placementDecisions = makePlacementDecisionSet(perPlacement.map((x) => x.decision));
+    /* TARIFS PROUVÉS, PAR CANAL. Le contrat reparse chaque ligne à l'exécution avant de la
+       résoudre. Une portée absente ou fondée sur un fait que le Finder ne connaît pas reste dans
+       `indecidables` : elle pourra être montrée comme grille officielle publiée, jamais comme le
+       prix exact du voyage demandé. */
+    const fare_resolutions = PLACEMENTS.map((placement) => {
+      const pol = policy?.[placement];
+      const faits: FaitsTrajet = { ...baseCtx, placement };
+      return {
+        placement,
+        resolution: resoudreTarif(
+          (pol?.fares ?? []) as unknown as Fare[],
+          (pol?.fare_conflicts ?? []) as unknown as FareConflict[],
+          placement,
+          faits,
+        ),
+      };
+    });
     // Does this airline carry pets at all, structurally? Re-evaluate with a neutral small non-brachy dog:
     // a low-cost that never carries pets stays false; an airline that takes pets but rules THIS dog out
     // (e.g. a snub-nosed breed → hold/cargo denied) is true. Lets the UI say "breed not accepted" vs "no pets".
@@ -856,6 +874,7 @@ export function evaluate(kb: NormalizedKB, req: FinderRequest, opts?: { weatherP
       origin_airport_id,
       destination_airport_id,
       placements: placementDecisions,
+      fare_resolutions,
       offers_pet_transport,
       fired,
       _plausible: plausible,

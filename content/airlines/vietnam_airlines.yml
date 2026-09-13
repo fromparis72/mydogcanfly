@@ -73,6 +73,31 @@ ladder:
       pt: "> 32 kg / Reino Unido"
 policies:
   cabin:
+    # TARIFS OFFICIELS — audit indépendant du 2026-09-10 ; aucune valeur héritée réactivée.
+    fares:
+      - id: fare_vietnam_airlines_cabin_usd_2026_09_10
+        placement: cabin
+        price:
+          kind: range
+          amounts:
+            - amount: 300
+              currency: USD
+            - amount: 650
+              currency: USD
+        billing_subject: pet_or_container
+        journey_basis: per_segment
+        scope_label: Zones A–D; domestic Vietnam
+        source:
+          url: https://www.vietnamairlines.com/in/en/travel-information/special-services/traveling-with-pet/petc-charge
+          source_type: official_website
+          verified_date: 2026-09-10
+          review_due: 2026-12-09
+          confidence: 4
+          reviewer: Codex — lecture directe de la source officielle
+          history: []
+          quote: "In Zone A: USD 300; In Zone B: USD 400; In Zone C: USD 600; In Zone D: USD 650"
+          quote_language: en
+          locator: Fees → zones A–D and domestic routes
     availability: offered
     # PREUVE IMPORTÉE — import strict lot5 (Codex, lecture directe du 2026-09-09, cohorte LOT5 fait 7).
     # Effet attendu : Vietnam Airlines cabin is a documented conditional route, not a route-specific confirmation.
@@ -89,6 +114,31 @@ policies:
       quote_language: en
       locator: "Special services → Travelling with pets"
   hold:
+    # TARIFS OFFICIELS — audit indépendant du 2026-09-10 ; aucune valeur héritée réactivée.
+    fares:
+      - id: fare_vietnam_airlines_hold_usd_2026_09_10
+        placement: hold
+        price:
+          kind: range
+          amounts:
+            - amount: 100
+              currency: USD
+            - amount: 350
+              currency: USD
+        billing_subject: pet_or_container
+        journey_basis: per_segment
+        scope_label: Zones A–D and weight <=9, 9–16, 16–32kg
+        source:
+          url: https://www.vietnamairlines.com/au/en/travel-information/special-services/traveling-with-pet/avih-charge
+          source_type: official_website
+          verified_date: 2026-09-10
+          review_due: 2026-12-09
+          confidence: 4
+          reviewer: Codex — lecture directe de la source officielle
+          history: []
+          quote: "Zone A: USD 100; Zone B: USD 200; Zone C: USD 300; Zone D: USD 350"
+          quote_language: en
+          locator: Fees → weight 9kg or less → zones A–D
     availability: offered
     # PREUVE IMPORTÉE — import strict lot5 (Codex, lecture directe du 2026-09-09, cohorte LOT5 fait 8).
     # Effet attendu : Vietnam Airlines hold is a documented conditional route, not a route-specific confirmation.
@@ -105,6 +155,27 @@ policies:
       quote_language: en
       locator: "Special services → Travelling with pets"
   cargo:
+    # TARIFS OFFICIELS — audit indépendant du 2026-09-10 ; aucune valeur héritée réactivée.
+    fares:
+      - id: fare_vietnam_airlines_cargo_2026_09_10
+        placement: cargo
+        price:
+          kind: quote
+          amounts: []
+        billing_subject: shipment
+        journey_basis: per_journey
+        scope_label: Above 32kg and cargo cases
+        source:
+          url: https://www.vietnamairlines.com/au/en/travel-information/special-services/traveling-with-pet/avih-charge
+          source_type: official_website
+          verified_date: 2026-09-10
+          review_due: 2026-12-09
+          confidence: 4
+          reviewer: Codex — lecture directe de la source officielle
+          history: []
+          quote: contact Vietnam Airlines Cargo
+          quote_language: en
+          locator: Cargo referral
     review_state: legacy_unreviewed
 channels:
   - placement: cabin

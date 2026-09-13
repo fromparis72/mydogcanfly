@@ -100,16 +100,16 @@ policies:
     # Effet attendu : Emirates cargo is a conditional possibility only. Never present it as a confirmed shipment or together with hold as a simultaneous choice.
     # Portée nommée : Emirates allocates the pet between cargo and checked hold according to individual circumstances. This fact does not say both are available for a given booking.
     source:
-      url: "https://www.emirates.com/us/english/before-you-fly/baggage/unusual-baggage-and-special-allowances/"
+      url: "https://www.skycargo.com/products/live/pets/"
       source_type: official_website
-      verified_date: "2026-09-09"
-      review_due: "2026-12-08"   # reviewDueFrom(verified_date, "airline") — calculé par l'importeur
+      verified_date: "2026-09-12"
+      review_due: "2026-12-11"
       confidence: 4
-      reviewer: "Codex — direct reading of official airline page"
+      reviewer: "Codex — contrôle du dossier officiel fret rev2 remis par Philippe"
       history: []
-      quote: "Depending on the individual circumstances, pets must be carried either as cargo or as checked baggage in the hold."
+      quote: "Pets strictly follows IATA's Live Animal Regulations (LAR) and considers all relevant country and operator-specific rules"
       quote_language: en
-      locator: "Unusual baggage and special allowances → Pets"
+      locator: "section presentation du produit Pets"
 channels:
   - placement: cabin
     icon: 🐾

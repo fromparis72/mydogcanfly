@@ -53,6 +53,31 @@ ladder:
     sub: ≤ 8 kg
 policies:
   cabin:
+    # TARIFS OFFICIELS — audit indépendant du 2026-09-10 ; aucune valeur héritée réactivée.
+    fares:
+      - id: fare_air_serbia_cabin_eur_2026_09_10
+        placement: cabin
+        price:
+          kind: range
+          amounts:
+            - amount: 40
+              currency: EUR
+            - amount: 130
+              currency: EUR
+        billing_subject: pet_or_container
+        journey_basis: per_segment
+        scope_label: listed destination groups
+        source:
+          url: https://www.airserbia.com/en/info-and-help/travel-guidelines/traveling-with-your-pets
+          source_type: official_website
+          verified_date: 2026-09-10
+          review_due: 2026-12-09
+          confidence: 4
+          reviewer: Codex — lecture directe de la source officielle
+          history: []
+          quote: €40 … €70 … €80 … €100 … €130
+          quote_language: en
+          locator: Fees
     availability: offered
   hold:
     availability: not_offered

@@ -73,6 +73,13 @@ const CARTE = {
       confirmation_causes: [{ code: "policy_unpublished", policy_ref: "airline_air_france#hold" }] },
     { placement: "cargo", status: "denied", allowed: false },
   ],
+  /* Le contrat public exige désormais une résolution tarifaire par canal. Des listes vides sont
+     la bonne fixture ici : ce harnais éprouve les avis de sécurité, pas les prix, mais il doit
+     tout de même franchir la même frontière que le vrai Finder. */
+  fare_resolutions: ["cabin", "hold", "cargo"].map((placement) => ({
+    placement,
+    resolution: { conflits: [], montants: [], chevauchements: [], mecanismes: [], indecidables: [], supprimes: [] },
+  })),
   label: "OK", carrier_of_origin: false, carrier_of_destination: false,
   itinerary_confidence: "direct_documented", heat_embargo: false, fee: "",
 };

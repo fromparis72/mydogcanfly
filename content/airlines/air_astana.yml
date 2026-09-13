@@ -73,6 +73,27 @@ ladder:
       pt: "R.U. · Irl. · Áfr. do Sul · Austr. · EAU"
 policies:
   cabin:
+    # TARIFS OFFICIELS — audit indépendant du 2026-09-10 ; aucune valeur héritée réactivée.
+    fares:
+      - id: fare_air_astana_cabin_2026_09_10
+        placement: cabin
+        price:
+          kind: formula
+          amounts: []
+        billing_subject: kilogram
+        journey_basis: per_journey
+        scope_label: depends destination
+        source:
+          url: https://tengri.airastana.com/media/zmyk2204/tengri_20250301.pdf
+          source_type: official_website
+          verified_date: 2026-09-10
+          review_due: 2026-12-09
+          confidence: 4
+          reviewer: Codex — lecture directe de la source officielle
+          history: []
+          quote: twice the cost of excess baggage
+          quote_language: en
+          locator: Carriage of pets
     availability: offered
     # PREUVE IMPORTÉE — import strict lot9 (Codex, lecture directe du 2026-09-09, cohorte LOT9 fait 3).
     # Effet attendu : Air Astana cabin is conditional with an 8 kg combined animal-and-container ceiling.
@@ -89,6 +110,27 @@ policies:
       quote_language: ru
       locator: "Правила и нормы перевозки домашних животных в салоне самолета"
   hold:
+    # TARIFS OFFICIELS — audit indépendant du 2026-09-10 ; aucune valeur héritée réactivée.
+    fares:
+      - id: fare_air_astana_hold_2026_09_10
+        placement: hold
+        price:
+          kind: formula
+          amounts: []
+        billing_subject: kilogram
+        journey_basis: per_journey
+        scope_label: depends destination
+        source:
+          url: https://tengri.airastana.com/media/zmyk2204/tengri_20250301.pdf
+          source_type: official_website
+          verified_date: 2026-09-10
+          review_due: 2026-12-09
+          confidence: 4
+          reviewer: Codex — lecture directe de la source officielle
+          history: []
+          quote: twice the cost of excess baggage
+          quote_language: en
+          locator: Carriage of pets
     availability: offered
     # PREUVE IMPORTÉE — import strict lot9 (Codex, lecture directe du 2026-09-09, cohorte LOT9 fait 4).
     # Effet attendu : Air Astana hold is a documented conditional route, with destination exclusions.

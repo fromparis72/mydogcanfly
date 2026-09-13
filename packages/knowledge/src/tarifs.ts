@@ -134,11 +134,13 @@ const grouperParDevise = (amounts: readonly MoneyType[]): Map<string, number[]> 
  * Les quatre dernières PROUVENT un mécanisme, jamais une valeur : elles n'autorisent aucun montant.
  * Elles exigent en revanche la MÊME preuve que les autres — voir `citationComplete`.
  */
-export const FareKind = z.enum(["exact", "range", "matrix", "formula", "calculator", "booking_only", "quote"]);
+/** `minimum` porte explicitement « à partir de X » : ce n'est ni un prix exact ni une
+ * fourchette dont le maximum serait inconnu. */
+export const FareKind = z.enum(["exact", "minimum", "range", "matrix", "formula", "calculator", "booking_only", "quote"]);
 export type FareKind = z.infer<typeof FareKind>;
 
 /** Les natures qui portent des montants, et sont donc seules à pouvoir en publier un. */
-export const NATURES_CHIFFREES: ReadonlySet<FareKind> = new Set<FareKind>(["exact", "range", "matrix"]);
+export const NATURES_CHIFFREES: ReadonlySet<FareKind> = new Set<FareKind>(["exact", "minimum", "range", "matrix"]);
 
 export const FarePrice = z.object({
   kind: FareKind,

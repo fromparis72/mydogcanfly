@@ -63,53 +63,111 @@ ladder:
     sub: "> 50 kg"
 policies:
   cabin:
+    fares:
+      - id: fare_corsair_cabin_eur_2026_09_12
+        placement: cabin
+        price:
+          kind: range
+          amounts:
+            - amount: 75
+              currency: EUR
+            - amount: 150
+              currency: EUR
+        billing_subject: pet
+        journey_basis: per_journey
+        scope_label: Selon la zone desservie depuis Paris
+        source:
+          url: https://www.flycorsair.com/fr/information/avant-voyage/animaux-de-compagnie
+          source_type: official_website
+          verified_date: 2026-09-12
+          review_due: 2026-12-11
+          confidence: 4
+          reviewer: Codex — contre-lecture du dossier officiel national
+          history: []
+          quote: "75 € : entre Paris et Fort-de-France, Pointe-à-Pitre, La Réunion et Mayotte, 150 € : entre Paris, Madagascar et l'Afrique."
+          quote_language: fr
+          locator: onglet « En cabine » > « Des frais spécifiques s'appliquent par trajet »
     availability: offered
-    # PREUVE IMPORTÉE — import strict lot7 (Codex, lecture directe du 2026-09-09, cohorte LOT7 fait 12).
-    # Effet attendu : Corsair cabin is conditional with an 8 kg combined animal-and-container ceiling.
-    # Portée nommée : Animal plus container no more than 8 kg; route, breed, health, documentation, quota and container restrictions apply.
     source:
-      url: "https://www.flycorsair.com/fr/legal/conditions-generales-de-vente-et-de-transport"
+      url: https://www.flycorsair.com/fr/legal/conditions-generales-de-vente-et-de-transport
       source_type: official_website
-      verified_date: "2026-09-09"
-      review_due: "2026-12-08"   # reviewDueFrom(verified_date, "airline") — calculé par l'importeur
+      verified_date: 2026-09-09
+      review_due: 2026-12-08
       confidence: 4
-      reviewer: "Codex — direct reading of official airline page"
+      reviewer: Codex — direct reading of official airline page
       history: []
-      quote: "Le transport peut s'effectuer en cabine"
+      quote: Le transport peut s'effectuer en cabine
       quote_language: fr
-      locator: "Conditions de transport → Transport d'animaux"
+      locator: Conditions de transport → Transport d'animaux
   hold:
+    fares:
+      - id: fare_corsair_hold_eur_2026_09_12
+        placement: hold
+        price:
+          kind: range
+          amounts:
+            - amount: 150
+              currency: EUR
+            - amount: 300
+              currency: EUR
+        billing_subject: pet
+        journey_basis: per_journey
+        scope_label: Selon la zone desservie depuis Paris
+        source:
+          url: https://www.flycorsair.com/fr/information/avant-voyage/animaux-de-compagnie
+          source_type: official_website
+          verified_date: 2026-09-12
+          review_due: 2026-12-11
+          confidence: 4
+          reviewer: Codex — contre-lecture du dossier officiel national
+          history: []
+          quote: "150 € : entre Paris et Fort-de-France, Pointe-à-Pitre, Mayotte ou La Réunion. 300 € : entre Paris, Madagascar, Abidjan, et depuis l'Île Maurice vers Paris."
+          quote_language: fr
+          locator: onglet « En soute » > « Tarifs applicables »
     availability: offered
-    # PREUVE IMPORTÉE — import strict lot7 (Codex, lecture directe du 2026-09-09, cohorte LOT7 fait 13).
-    # Effet attendu : Corsair hold is conditional with a 50 kg combined animal-and-container ceiling.
-    # Portée nommée : Animal plus container no more than 50 kg; route, breed, health, documentation and container restrictions apply.
     source:
-      url: "https://www.flycorsair.com/fr/legal/conditions-generales-de-vente-et-de-transport"
+      url: https://www.flycorsair.com/fr/legal/conditions-generales-de-vente-et-de-transport
       source_type: official_website
-      verified_date: "2026-09-09"
-      review_due: "2026-12-08"   # reviewDueFrom(verified_date, "airline") — calculé par l'importeur
+      verified_date: 2026-09-09
+      review_due: 2026-12-08
       confidence: 4
-      reviewer: "Codex — direct reading of official airline page"
+      reviewer: Codex — direct reading of official airline page
       history: []
-      quote: "Le transport s'effectue en soute"
+      quote: Le transport s'effectue en soute
       quote_language: fr
-      locator: "Conditions de transport → Transport d'animaux"
+      locator: Conditions de transport → Transport d'animaux
   cargo:
-    availability: offered   # RÉACTIVÉE sur citation (import strict, lot7, 2026-09-09) — était review_state: legacy_unreviewed
-    # PREUVE IMPORTÉE — import strict lot7 (Codex, lecture directe du 2026-09-09, cohorte LOT7 fait 14).
-    # Effet attendu : Corsair cargo is conditional for dogs above the passenger-hold weight ceiling.
-    # Portée nommée : Freight is required above the 50 kg combined animal-and-container passenger-hold ceiling; route, breed and cargo acceptance rules still apply.
+    fares:
+      - id: fare_corsair_cargo_2026_09_10
+        placement: cargo
+        price:
+          kind: quote
+          amounts: []
+        billing_subject: shipment
+        journey_basis: per_journey
+        source:
+          url: https://www.flycorsair.com/en/information/before-flight/transport-animal
+          source_type: official_website
+          verified_date: 2026-09-10
+          review_due: 2026-12-09
+          confidence: 4
+          reviewer: Codex — lecture directe de la source officielle
+          history: []
+          quote: contact our cargo service
+          quote_language: en
+          locator: Special animal transport
+    availability: offered
     source:
-      url: "https://www.flycorsair.com/fr/legal/conditions-generales-de-vente-et-de-transport"
+      url: https://www.flycorsair.com/fr/legal/conditions-generales-de-vente-et-de-transport
       source_type: official_website
-      verified_date: "2026-09-09"
-      review_due: "2026-12-08"   # reviewDueFrom(verified_date, "airline") — calculé par l'importeur
+      verified_date: 2026-09-09
+      review_due: 2026-12-08
       confidence: 4
-      reviewer: "Codex — direct reading of official airline page"
+      reviewer: Codex — direct reading of official airline page
       history: []
-      quote: "Au-delà de 50 kg, le transport devra s'effectuer par le fret."
+      quote: Au-delà de 50 kg, le transport devra s'effectuer par le fret.
       quote_language: fr
-      locator: "Conditions de transport → Transport d'animaux"
+      locator: Conditions de transport → Transport d'animaux
 channels:
   - placement: cabin
     icon: 🐾

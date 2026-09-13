@@ -91,7 +91,18 @@ policies:
       quote_language: en
       locator: "Pets → Transporting pets as checked baggage (AVIH)"
   cargo:
-    review_state: legacy_unreviewed
+    availability: offered
+    source:
+      url: https://cargo.china-airlines.com/ccnetv2/content/services/LiveAnimals.aspx?lang=zh-TW
+      source_type: official_website
+      verified_date: 2026-09-12
+      review_due: 2026-12-11
+      confidence: 4
+      reviewer: Codex — contrôle du dossier officiel fret rev2 remis par Philippe
+      history: []
+      quote: "不接受託運未滿10週的幼犬和幼貓。"
+      quote_language: zh-Hant-TW
+      locator: "section « 中華航空 Variation »"
 channels:
   - placement: cabin
     icon: 🐾

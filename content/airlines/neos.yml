@@ -65,37 +65,73 @@ ladder:
       pt: "acima de 10 kg, sem teto publicado"
 policies:
   cabin:
+    fares:
+      - id: fare_neos_cabin_eur_2026_09_12
+        placement: cabin
+        price:
+          kind: exact
+          amounts:
+            - amount: 100
+              currency: EUR
+        billing_subject: pet_or_container
+        journey_basis: per_segment
+        source:
+          url: https://www.neosair.com/it/informazioni/viaggiare-con-animali?lang=it
+          source_type: official_website
+          verified_date: 2026-09-12
+          review_due: 2026-12-11
+          confidence: 4
+          reviewer: Codex — contre-lecture du dossier officiel national
+          history: []
+          quote: L'imbarco degli animali è soggetto a pagamento, in cabina € 100 a tratta (max 10 kg inclusa la gabbia), in stiva € 200 a tratta. È possibile acquistare il servizio in fase di prenotazione oppure accedendo alla sezione "LA MIA PRENOTAZIONE" fino a 48 ore prima del volo, per qualsiasi necessità la invitiamo a contattare la Chat di Assistenza Neos.
+          quote_language: it
+          locator: section « PREZZI »
     availability: offered
-    # PREUVE IMPORTÉE — import strict lot9 (Codex, lecture directe du 2026-09-09, cohorte LOT9 fait 13).
-    # Effet attendu : Neos cabin is conditional with a 10 kg combined animal-and-carrier ceiling.
-    # Portée nommée : Dogs up to 10 kg including carrier may travel in cabin, subject to booking, route, breed, quota, container, health and documentation conditions.
     source:
-      url: "https://www.neosair.com/us/en/information/traveling-with-pets"
+      url: https://www.neosair.com/us/en/information/traveling-with-pets
       source_type: official_website
-      verified_date: "2026-09-09"
-      review_due: "2026-12-08"   # reviewDueFrom(verified_date, "airline") — calculé par l'importeur
+      verified_date: 2026-09-09
+      review_due: 2026-12-08
       confidence: 4
-      reviewer: "Codex — direct reading of official airline material"
+      reviewer: Codex — direct reading of official airline material
       history: []
-      quote: "you are allowed to transport them in the cabin"
+      quote: you are allowed to transport them in the cabin
       quote_language: en
-      locator: "NECESSARY REQUIREMENTS"
+      locator: NECESSARY REQUIREMENTS
   hold:
+    fares:
+      - id: fare_neos_hold_eur_2026_09_12
+        placement: hold
+        price:
+          kind: exact
+          amounts:
+            - amount: 200
+              currency: EUR
+        billing_subject: pet_or_container
+        journey_basis: per_segment
+        source:
+          url: https://www.neosair.com/it/informazioni/viaggiare-con-animali?lang=it
+          source_type: official_website
+          verified_date: 2026-09-12
+          review_due: 2026-12-11
+          confidence: 4
+          reviewer: Codex — contre-lecture du dossier officiel national
+          history: []
+          quote: L'imbarco degli animali è soggetto a pagamento, in cabina € 100 a tratta (max 10 kg inclusa la gabbia), in stiva € 200 a tratta. È possibile acquistare il servizio in fase di prenotazione oppure accedendo alla sezione "LA MIA PRENOTAZIONE" fino a 48 ore prima del volo, per qualsiasi necessità la invitiamo a contattare la Chat di Assistenza Neos.
+          quote_language: it
+          locator: section « PREZZI »
     availability: offered
-    # PREUVE IMPORTÉE — import strict lot9 (Codex, lecture directe du 2026-09-09, cohorte LOT9 fait 14).
-    # Effet attendu : Neos hold is a documented conditional route above the 10 kg combined threshold.
-    # Portée nommée : Dogs over 10 kg including carrier may travel in the pressurized and ventilated hold, subject to route, breed, booking, crate, health and documentation restrictions.
     source:
-      url: "https://www.neosair.com/us/en/information/traveling-with-pets"
+      url: https://www.neosair.com/us/en/information/traveling-with-pets
       source_type: official_website
-      verified_date: "2026-09-09"
-      review_due: "2026-12-08"   # reviewDueFrom(verified_date, "airline") — calculé par l'importeur
+      verified_date: 2026-09-09
+      review_due: 2026-12-08
       confidence: 4
-      reviewer: "Codex — direct reading of official airline material"
+      reviewer: Codex — direct reading of official airline material
       history: []
-      quote: "transportation is authorised in the hold of the aircraft"
+      quote: transportation is authorised in the hold of the aircraft
       quote_language: en
-      locator: "NECESSARY REQUIREMENTS"
+      locator: NECESSARY REQUIREMENTS
   cargo:
     review_state: legacy_unreviewed
 channels:

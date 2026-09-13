@@ -64,6 +64,37 @@ console.log("=== Étage 1 — 23 faits relus, 22 dans la donnée à l'octet prè
     const s = pol?.source ?? {};
     const proj = projetee(f.airline_id, f.placement);
     const arb = REMPLACE(f.airline_id, f.placement);
+    if (f.airline_id === "airline_china_southern") {
+      /* MOUVEMENT NOMMÉ (12/09/2026, contre-lecture nationale) : la politique
+         chinoise actuelle remplace les fragments anglophones du lot 8. Deux
+         pages officielles se contredisent en cabine ; le canal devient donc
+         `case_by_case`, tandis que la soute reste offerte sur sa phrase propre. */
+      const attendu = f.placement === "cabin"
+        ? {
+            url: "https://www.csair.com/cts-products/group1/M00/1C/B6/rBtJFWldwkWAFPUTAAdU2X8Yk1U744.pdf",
+            quote: "旅客应在航班起飞前 6 小时购买爱宠进客舱产品，仅限南航指定直达航班的经济舱，除 C909（ARJ21）以外的客运机型均可接收携带进客舱的宠物。旅客须在乘机当日航班起飞前至少 2 小时，前往机场值机柜台办理相关手续。",
+            status: "confirmation_required",
+          }
+        : {
+            url: "https://www.csair.com/mcms/mcmsNewSite/zh/cn/#/tourguide/luggageservice/pets",
+            quote: "（1）作为行李运输的小动物是指家庭驯养的狗、猫、鸟或者其他玩赏宠物。南航有权决定小动物是否属于可运输的范围及其运输方式，并且有权限制每个航班的收运数量。",
+            status: "accepted_with_conditions",
+          };
+      check(`${cle} (LOT8[${f.index}]) : source nationale actuelle, citation chinoise exacte`,
+        !!pol && s.url === attendu.url && s.quote === attendu.quote && s.quote_language === "zh"
+          && s.verified_date === "2026-09-12" && !!s.locator,
+        JSON.stringify({ attendu: attendu.quote, lu: s.quote }));
+      check(`  …review_due calculé par reviewDueFrom (2026-12-11)`,
+        s.review_due === reviewDueFrom(s.verified_date ?? "", "airline") && s.review_due === "2026-12-11",
+        `${s.verified_date} → ${s.review_due}`);
+      check(`  …projeté ${attendu.status}${f.placement === "cabin" ? " — conflit officiel, accord requis" : ""}`,
+        proj?.status === attendu.status && (f.placement !== "cabin" || proj?.status_cause === "airline_approval"),
+        JSON.stringify({ status: proj?.status, cause: proj?.status_cause }));
+      check(`  …aucun plafond écrit sans rattachement attesté`,
+        pol?.weight_includes_carrier === undefined && pol?.max_weight_kg === undefined,
+        JSON.stringify({ max: pol?.max_weight_kg, incl: pol?.weight_includes_carrier }));
+      continue;
+    }
     if (cle === REFUSE) {
       /* HISTOIRE : refusé à l'import du lot 8 (la fiche disait `undocumented`, décision auditée du 13/08, « contactez Cargo »),
          porté à l'arbitrage. ARBITRAGE : « conserver sous conditions, mais remplacer la preuve » — page THAI Cargo. */
@@ -113,8 +144,8 @@ console.log("=== Étage 1 — 23 faits relus, 22 dans la donnée à l'octet prè
     politique("airline_tunisair", "cabin")?.source?.quote === "les chiens d’un poids maximal de 08 kg y compris le contenant et la nourriture" && politique("airline_tunisair", "cabin")?.source?.quote_language === "fr" && politique("airline_tunisair", "hold")?.source?.quote_language === "fr");
   /* MOUVEMENT NOMMÉ (correctif) : les deux fragments signalés ont été REMPLACÉS par Codex — la réponse officielle complète
      pour China Southern soute, la FAQ IndiGo CarGo pour IndiGo fret. */
-  check("citations fragmentaires REMPLACÉES : China Southern soute (réponse complète), IndiGo fret (« No, IndiGo does not carry livestock », page CarGo)",
-    politique("airline_china_southern", "hold")?.source?.quote === "Sorry, a pet can not be taken into cabin. However, you can check it." && politique("airline_indigo", "cargo")?.source?.quote === "No, IndiGo does not carry livestock" && /goindigo\.in\/cargo\//.test(politique("airline_indigo", "cargo")?.source?.url ?? ""));
+  check("citations fragmentaires REMPLACÉES : China Southern soute (règle nationale chinoise), IndiGo fret (« No, IndiGo does not carry livestock », page CarGo)",
+    politique("airline_china_southern", "hold")?.source?.quote === "（1）作为行李运输的小动物是指家庭驯养的狗、猫、鸟或者其他玩赏宠物。南航有权决定小动物是否属于可运输的范围及其运输方式，并且有权限制每个航班的收运数量。" && politique("airline_indigo", "cargo")?.source?.quote === "No, IndiGo does not carry livestock" && /goindigo\.in\/cargo\//.test(politique("airline_indigo", "cargo")?.source?.url ?? ""));
   const km = projetee("airline_km_malta", "cabin"), sw = projetee("airline_smartwings", "cabin"), sk = projetee("airline_sky_express", "cabin");
   check("KM Malta, Smartwings, SKY express cabines PROJETÉES : sous conditions, SANS plafond — 10, 8 et 8 kg ni écrits (base absente de la phrase) ni déduits de la grille tarifaire",
     [km, sw, sk].every((p) => p?.status === "accepted_with_conditions" && p?.max_weight_kg === undefined && p?.weight_includes_carrier === undefined), JSON.stringify({ km, sw, sk }));
@@ -149,8 +180,8 @@ console.log("\n=== Étage 2 — Delhi → Bombay, Dubaï → Delhi : IndiGo, ref
 console.log("\n=== Étage 2 — Paris → Canton, Bangkok, Tunis ; Athènes → Héraklion ; Malte → Paris, Londres ; Francfort → Antalya ; Prague → Barcelone ===");
 {
   const can = decide("airport_cdg", "airport_can", GOLDEN_32), canC = decide("airport_cdg", "airport_can", CAVALIER_6);
-  check("China Southern cabine : refusée sur citation pour tout chien ; soute, Golden 32 kg : sous conditions ; fret non décidé → à confirmer",
-    canal(can, "airline_china_southern", "cabin")?.status === "denied" && canal(canC, "airline_china_southern", "cabin")?.status === "denied" && canal(can, "airline_china_southern", "hold")?.status === "accepted_with_conditions" && canal(can, "airline_china_southern", "cargo")?.status === "confirmation_required");
+  check("China Southern cabine : conflit officiel → à confirmer pour tout chien ; soute, Golden 32 kg : sous conditions ; fret non décidé → à confirmer",
+    canal(can, "airline_china_southern", "cabin")?.status === "confirmation_required" && canal(canC, "airline_china_southern", "cabin")?.status === "confirmation_required" && canal(can, "airline_china_southern", "hold")?.status === "accepted_with_conditions" && canal(can, "airline_china_southern", "cargo")?.status === "confirmation_required");
   const bkk = decide("airport_cdg", "airport_bkk", GOLDEN_32), bkkC = decide("airport_cdg", "airport_bkk", CAVALIER_6);
   check("Thai Airways cabine : refusée sur citation pour tout chien ; soute, Golden 32 kg : sous conditions (AVIH)",
     canal(bkk, "airline_thai_airways", "cabin")?.status === "denied" && canal(bkkC, "airline_thai_airways", "cabin")?.status === "denied" && canal(bkk, "airline_thai_airways", "hold")?.status === "accepted_with_conditions");

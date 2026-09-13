@@ -31,7 +31,11 @@
  *
  * ENTRÉE : { "dist": "<chemin>", "motifs": [ [source, drapeaux, quoi] ], "classif": [source, drapeaux],
  *            "taches": [ { "rel", "slug", "langue" } ] }
- * SORTIE : { "pagesLues", "blocsNotres", "notresSansDesaveu": [], "fuites": [], "picMo" } sur stdout.
+ * SORTIE : { "pagesLues", "blocsNotres", "notresSansDesaveu": [], "fuites": [], "picMo",
+ *            "canaux": [ { slug, langue, placement, statut, fait, faitNombres, citation,
+ *                          citationNombres, citationLangue, enTetePreuve, faitAvantPreuve,
+ *                          locatorHorsMeta, locatorDansMeta } ],
+ *            "faitsRetires", "citationsRetirees", "citationsBalisage": [ { slug, langue, phrase, url } ] } sur stdout.
  */
 import fs from "node:fs";
 import path from "node:path";
@@ -49,7 +53,8 @@ const DEV = [
 const ANCIENNE_META = /fares|restrictions|tarifs|official sources|fuentes oficiales|fontes oficiais/i;
 const BRACHY = new RegExp(entree.classif[0], entree.classif[1]);
 const sortie = { pagesLues: 0, blocsNotres: 0, notresSansDesaveu: [], fuites: [], picMo: 0,
-  zonesVides: [], metaAnciennes: [], metaDivergentes: [], sectionsVides: [], brachyPresents: [], cartesExaminees: 0, fuitesDev: [] };
+  zonesVides: [], metaAnciennes: [], metaDivergentes: [], sectionsVides: [], brachyPresents: [], cartesExaminees: 0, fuitesDev: [],
+  canaux: [], faitsRetires: 0, citationsRetirees: 0, citationsBalisage: [] };
 
 for (const tache of entree.taches) {
   const abs = path.join(entree.dist, tache.rel);
@@ -116,6 +121,72 @@ for (const tache of entree.taches) {
     /* Le bloc brachycéphale ne doit plus paraître du tout sur une fiche compagnie : sa PRÉSENCE
        établissait une association entre ces races et la compagnie, qu'aucun désaveu ne défait. */
     if (BRACHY.test(doc.body.textContent)) sortie.brachyPresents.push(tache.rel);
+
+    /* ── LA SYNTHÈSE ATTESTÉE ET SA CITATION SORTENT DE L'EXAMEN — et sont RENVOYÉES ────────
+       MOUVEMENT NOMMÉ (11/09/2026, annexe 51). Jusqu'ici, AUCUN seuil ne pouvait paraître sur une
+       fiche : c'était juste, parce qu'aucun seuil n'était rattaché à sa preuve. Depuis l'arbitrage
+       de Philippe, deux canaux en portent un qui l'est — et la règle doit être RE-FONDÉE, pas
+       abaissée : ce qui reste interdit, c'est un seuil publié HORS de son rattachement. Deux
+       surfaces sont donc retirées du texte examiné, la synthèse localisée (`.fait`) et la phrase
+       citée (`.proof-q`), et deux seulement.
+
+       Une exclusion est un endroit où se cacher : celle-ci ne se contente pas de retirer. Chaque
+       carte retirée revient au harnais avec son placement, sa synthèse, ses nombres, sa citation,
+       la langue annoncée de cette citation, l'ordre où le visiteur les rencontre et la place du
+       localisateur. Le harnais en fait des exigences — dont celle qui compte : tout nombre de la
+       synthèse doit se retrouver dans la citation de LA MÊME carte. */
+    for (const carte of doc.querySelectorAll("[data-placement]")) {
+      const fait = carte.querySelector(".fait");
+      const citation = carte.querySelector(".proof-q");
+      const preuve = carte.querySelector(".proof");
+      const nombres = (t) => (String(t ?? "").match(/\d+(?:[.,]\d+)?/g) ?? []).map((x) => x.replace(",", "."));
+      sortie.canaux.push({
+        slug: tache.slug, langue: tache.langue,
+        placement: carte.getAttribute("data-placement"), statut: carte.getAttribute("data-status"),
+        fait: fait ? fait.textContent.replace(/\s+/g, " ").trim() : null,
+        faitNombres: fait ? nombres(fait.textContent) : [],
+        citation: citation ? citation.textContent.replace(/\s+/g, " ").trim() : null,
+        citationNombres: citation ? nombres(citation.textContent) : [],
+        citationLangue: citation ? citation.getAttribute("lang") : null,
+        enTetePreuve: carte.querySelector(".proof-h")?.textContent.replace(/\s+/g, " ").trim() ?? null,
+        /* L'ORDRE TEL QU'IL EST LU, pas tel qu'il est écrit dans le gabarit. */
+        faitAvantPreuve: fait && preuve
+          ? !!(fait.compareDocumentPosition(preuve) & dom.window.Node.DOCUMENT_POSITION_FOLLOWING) : null,
+        /* Le localisateur ne doit plus occuper une ligne à lui : il vit DANS `.proof-m`. */
+        locatorHorsMeta: !!carte.querySelector(".proof > .proof-loc"),
+        locatorDansMeta: !!carte.querySelector(".proof-m .proof-loc"),
+      });
+      if (fait) { sortie.faitsRetires++; fait.remove(); }
+      if (citation) { sortie.citationsRetirees++; citation.remove(); }
+    }
+
+    /* ── LA MÊME CITATION, DANS LE BALISAGE LU PAR LES MACHINES ─────────────────────────────
+       DÉCOUVERT LE 11/09/2026 EN ÉLARGISSANT LA CIBLE. Ajouter Air France aux sentinelles a fait
+       rougir ce contrôle sur quatre pages — et il avait raison : la réponse `FAQPage` publie, elle
+       aussi, « chats et chiens de moins de 8 kg, sac de transport compris ». Ce n'est pas une
+       régression de ce lot : la FAQ recopie la phrase citée depuis toujours, avec son URL. Aucune
+       des cinq sentinelles précédentes n'avait de citation PORTANT UN NOMBRE — la règle « aucun
+       seuil » n'avait donc jamais été éprouvée contre une citation chiffrée, et je l'ai crue plus
+       large qu'elle ne l'était.
+
+       DEUX SURFACES, PAS UNE. La première rédaction de cette exclusion ne visait que le balisage :
+       elle a retiré 28 segments et les quatre pages sont restées rouges. La réponse est publiée
+       DEUX fois — dans le `FAQPage` que lisent les machines, et dans le bloc dépliant que lit le
+       visiteur. Corriger l'un en croyant avoir corrigé l'autre est exactement la faute que ce
+       fichier documente depuis le 05/09 : six surfaces publiaient le même texte, en avoir fermé
+       une n'en fermait aucune.
+
+       Ce qui est retiré de l'examen est donc EXACTEMENT ce qui l'est à l'écran : un segment entre
+       guillemets SUIVI de son URL — la forme d'une citation attribuée, et rien d'autre. Le reste de
+       la réponse, lui, reste examiné : une FAQ qui recommencerait à raconter un seuil hors citation
+       rougirait comme avant. Les segments retirés sont renvoyés au harnais, qui exige que chacun
+       soit mot pour mot une phrase de preuve déjà affichée sur la même page. */
+    for (const el of doc.querySelectorAll('script[type="application/ld+json"], .faqb__a')) {
+      el.textContent = el.textContent.replace(/«\s*([^»]*?)\s*»\s*\((https?:\/\/[^)]+)\)/g, (_m, phrase, url) => {
+        sortie.citationsBalisage.push({ slug: tache.slug, langue: tache.langue, phrase, url, ou: el.tagName === "SCRIPT" ? "balisage" : "visible" });
+        return `(${url})`;
+      });
+    }
 
     const texteBrut = doc.body.textContent.replace(/\s+/g, " ");
     /* ── AUCUN TEXTE DE DÉVELOPPEMENT N'ATTEINT LE VISITEUR (contre-test du 06/09/2026) ──────

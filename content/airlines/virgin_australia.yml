@@ -59,11 +59,29 @@ ladder:
     sub: ≤ 65 kg
 policies:
   cabin:
-    # Arbitrage propriétaire + Codex (28/08/2026, option A-bis) : « Pets in Cabin » existe
-    # (petits chiens/chats, animal + sac ≤ 8 kg) mais UNIQUEMENT sur certains vols domestiques,
-    # routes et dates éligibles — un service encadré comme une expérimentation. `offered`
-    # affirmait un oui universel que la politique ne donne pas ; `case_by_case` projette
-    # `confirmation_required` (cause airline_approval), ce que le moteur sait déjà dire.
+    # TARIFS OFFICIELS — audit indépendant du 2026-09-10 ; aucune valeur héritée réactivée.
+    fares:
+      - id: fare_virgin_australia_cabin_aud_2026_09_10
+        placement: cabin
+        price:
+          kind: exact
+          amounts:
+            - amount: 149
+              currency: AUD
+        billing_subject: pet
+        journey_basis: per_segment
+        scope_label: Eligible Australian domestic routes/dates
+        source:
+          url: https://www.virginaustralia.com/au/en/travel-info/specific-travel/pets/pets-in-cabin/
+          source_type: official_website
+          verified_date: 2026-09-10
+          review_due: 2026-12-09
+          confidence: 4
+          reviewer: Codex — lecture directe de la source officielle
+          history: []
+          quote: introductory fee of $149 per pet
+          quote_language: en
+          locator: Pets in cabin fee
     availability: case_by_case
     # SEUIL ÉCRIT (09/09/2026, import strict lot 5) depuis la citation de Philippe du 28/08 ci-dessous
     # (« combined weight (pet + carrier) of no more than 8kg ») — pas depuis la phrase de Codex (lot 5,
@@ -97,6 +115,27 @@ policies:
     review_state: legacy_unreviewed
     # dette éditoriale scellée (T0-B2) : aucun canal visible ne décrit ce placement
   cargo:
+    # TARIFS OFFICIELS — audit indépendant du 2026-09-10 ; aucune valeur héritée réactivée.
+    fares:
+      - id: fare_virgin_australia_cargo_2026_09_10
+        placement: cargo
+        price:
+          kind: quote
+          amounts: []
+        billing_subject: shipment
+        journey_basis: per_journey
+        scope_label: Cargo transport where available
+        source:
+          url: https://www.virginaustralia.com/au/en/travel-info/specific-travel/pets/pets-in-cabin/
+          source_type: official_website
+          verified_date: 2026-09-10
+          review_due: 2026-12-09
+          confidence: 4
+          reviewer: Codex — lecture directe de la source officielle
+          history: []
+          quote: contact our Cargo team
+          quote_language: en
+          locator: Other transport
     availability: offered   # RÉACTIVÉE sur citation (import strict, lot5, 2026-09-09) — était review_state: legacy_unreviewed
     # PREUVE IMPORTÉE — import strict lot5 (Codex, lecture directe du 2026-09-09, cohorte LOT5 fait 1).
     # Effet attendu : Cargo is a documented conditional route, never a shipment confirmation.

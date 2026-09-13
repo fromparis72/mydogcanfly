@@ -60,6 +60,10 @@ const kbAF = ((seuilQualifie) => {
   if (!af?.premium?.policy?.cabin) throw new Error("harnais : politique cabine Air France introuvable");
   const cab = af.premium.policy.cabin;
   delete cab.source_derived;
+  /* Les rattachements partent avec la citation qu'ils visent (annexe 51) : ce bloc REMPLACE la
+   phrase d'Air France, donc les fragments qui la citaient ne prouvent plus rien. Les garder
+   ferait dire à une phrase fictive qu'elle établit un plafond de 8 kg. */
+  delete cab.attestations;
   cab.source = { ...cab.source, quote: CITEE.quote, quote_language: "en", locator: CITEE.locator };
   /* MOUVEMENT NOMMÉ (10/09/2026, complément Air France cabine — Codex) : la donnée RÉELLE porte désormais la citation, le
      champ `weight_includes_carrier: true` et la borne stricte `lt`. La variante « sans seuil qualifié » les RETIRE
@@ -113,17 +117,20 @@ console.log("\n=== 2. KB réelle : aucune politique n'émet `allowed` ; rien ne 
   /* MOUVEMENT NOMMÉ (10/09/2026, Bangkok Airways fret — annexe 37) : 142 → 143 (fret `offered` cité, R1/R2/R3 dans le même lot). */
   /* MOUVEMENT NOMMÉ (10/09/2026, complément Air France cabine — Codex, une citation) : 143 → 144. */
   /* MOUVEMENT NOMMÉ (10/09/2026, Saudia — preuve de test retirée sur contre-lecture de l'audit de Codex, tranchée par Philippe) : 144 → 143 (Saudia soute sort du quatrième état). */
-  check(`politiques réelles en accepted_with_conditions : 143 depuis le retrait Saudia — mesuré : ${cond}`, cond === 143);
-  /* RE-FONDÉ (10/09/2026) : Air France cabine était LE témoin « plafond écrit, page non citée → à confirmer » ; elle est
-     désormais citée (« moins de 8 kg, sac de transport compris »). Le témoin passe à Eurowings cabine, même route, même
-     situation mesurée : plafond 8 kg dérivé de la fiche, aucune phrase, `legacy_unreviewed` — et le Golden de 32 kg y
-     reste « à confirmer », jamais refusé au seuil sans preuve. Air France, elle, prouve l'inverse du même geste : la
-     citation transforme l'incertitude en refus SÛR pour 32 kg. */
+  /* MOUVEMENT NOMMÉ (12/09/2026, SAS soute — page nationale suédoise citée) : 143 → 144. */
+  /* MOUVEMENT NOMMÉ (12/09/2026, lot de 30 compagnies) : 144 → 151. Sept canaux
+     nouvellement cités sont ouverts sous conditions ; aucun ne devient `allowed`. */
+  /* MOUVEMENT NOMMÉ (13/09/2026, vague de 31 dossiers) : 151 → 159. Huit canaux
+     nouvellement cités sont ouverts sous conditions ; aucun ne devient `allowed`. */
+  check(`politiques réelles en accepted_with_conditions : 173 après le lot fret officiel — mesuré : ${cond}`, cond === 173);
+  /* RE-FONDÉ (13/09/2026) : Eurowings cabine porte maintenant la phrase officielle d'acceptation
+     jusqu'à 8 kg, mais la règle structurée de poids n'est toujours pas citée. Le Golden de 32 kg
+     reste donc « à confirmer » au lieu d'être refusé par une règle orpheline. */
   const reel = REQ(GOLDEN_32, kb);
   const ew = stOf(reel, "airline_eurowings", "cabin");
   const ewPol = kb.airlines.get("airline_eurowings")?.premium?.policy?.cabin;
-  check("Eurowings cabine, KB réelle (plafond 8 kg dérivé de la fiche, non citée) : reste « à confirmer », pas un refus au seuil sans preuve",
-    ewPol?.max_weight_kg === 8 && !ewPol?.source?.quote && ew?.status === "confirmation_required"
+  check("Eurowings cabine : acceptation citée, mais règle de poids non citée → reste à confirmer pour 32 kg",
+    !!ewPol?.source?.quote && ewPol?.status === "accepted_with_conditions" && ew?.status === "confirmation_required"
       && (ew?.confirmation_causes ?? []).some((c) => c.rule_id === "rule_eurowings_cabin_weight"), JSON.stringify({ ewPol, ew }));
   const cab = stOf(reel, "airline_air_france", "cabin");
   check("Air France cabine, KB réelle désormais CITÉE : Golden 32 kg refusé sûrement, sur la page officielle du 10/09",
@@ -171,6 +178,10 @@ console.log("\n=== 3. Golden 32 kg, CDG → ATH, cabine citée à 8 kg chien + c
     const brut = JSON.parse(JSON.stringify(rawKB));
     const cab = brut.airlines.find((a) => a.id === "airline_air_france").premium.policy.cabin;
     delete cab.source_derived;
+    /* Les rattachements partent avec la citation qu'ils visent (annexe 51) : ce bloc REMPLACE la
+       phrase d'Air France, donc les fragments qui la citaient ne prouvent plus rien. Les garder
+       ferait dire à une phrase fictive qu'elle établit un plafond de 8 kg. */
+    delete cab.attestations;
     cab.source = { ...cab.source, quote: CITEE.quote, quote_language: "en", locator: CITEE.locator };
     cab.weight_includes_carrier = false;
     const kbChienSeul = normalize(brut);

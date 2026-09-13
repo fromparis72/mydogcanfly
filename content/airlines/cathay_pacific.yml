@@ -91,21 +91,42 @@ policies:
   hold:
     availability: not_offered
   cargo:
+    # TARIFS OFFICIELS — audit indépendant du 2026-09-10 ; aucune valeur héritée réactivée.
+    fares:
+      - id: fare_cathay_pacific_cargo_2026_09_10
+        placement: cargo
+        price:
+          kind: quote
+          amounts: []
+        billing_subject: shipment
+        journey_basis: per_journey
+        scope_label: Cathay Cargo network
+        source:
+          url: https://www.cathaypacific.com/cx/en_JP/prepare-trip/help-for-passengers/travelling-with-animals/overview-cargo.html
+          source_type: official_website
+          verified_date: 2026-09-10
+          review_due: 2026-12-09
+          confidence: 4
+          reviewer: Codex — lecture directe de la source officielle
+          history: []
+          quote: direct booking … only … accepted
+          quote_language: en
+          locator: Direct booking rules
     availability: offered   # RÉACTIVÉE sur citation (import strict, lot 2, 2026-09-08) — était review_state: legacy_unreviewed
     # PREUVE IMPORTÉE — import strict V3 (Codex, lecture directe du 2026-09-08, cohorte LOT2 fait 9).
     # Effet attendu : Cargo is a conditional direction; never an automatic acceptance of the animal or itinerary.
     # Portée nommée : Cathay Cargo process, shipping agent and route-specific legal acceptance conditions apply
     source:
-      url: "https://www.cathaypacific.com/cx/en_GB/faqs/baggage/cabin-baggage-allowance/are-pets-allowed-in-the-cabin.html?cxsource=LANGUAGE_SELECTOR_EN_HK"
+      url: "https://www.cathaycargo.com/zh-hk/help-and-support/special-cargo-handling-procedures/live-animal/pet-travel.html"
       source_type: official_website
-      verified_date: "2026-09-08"
-      review_due: "2026-12-07"   # reviewDueFrom(verified_date, "airline") — calculé par l'importeur
+      verified_date: "2026-09-12"
+      review_due: "2026-12-11"
       confidence: 4
-      reviewer: "Codex — direct reading of official airline page"
+      reviewer: "Codex — contrôle du dossier officiel fret rev2 remis par Philippe"
       history: []
-      quote: "Your pet will need to travel in cargo."
-      quote_language: en
-      locator: "Are pets allowed in the cabin?"
+      quote: "國泰貨運僅接受以下公司或人士直接預訂寵物運送"
+      quote_language: zh-Hant-HK
+      locator: "section « 寵物運送 »"
 channels:
   - placement: cabin
     icon: 🐾

@@ -77,6 +77,27 @@ policies:
       quote_language: en
       locator: "Travelling with Pets → Travelling with Pets"
   hold:
+    # TARIFS OFFICIELS — audit indépendant du 2026-09-10 ; aucune valeur héritée réactivée.
+    fares:
+      - id: fare_eva_air_hold_2026_09_10
+        placement: hold
+        price:
+          kind: formula
+          amounts: []
+        billing_subject: pet_or_container
+        journey_basis: per_journey
+        scope_label: international EVA/UNI → international EVA/UNI
+        source:
+          url: https://www.evaair.com/en-global/fly-prepare/baggage/travelling-with-pets/
+          source_type: official_website
+          verified_date: 2026-09-10
+          review_due: 2026-12-09
+          confidence: 4
+          reviewer: Codex — lecture directe de la source officielle
+          history: []
+          quote: 2 units of excess baggage
+          quote_language: en
+          locator: Pet fee changes
     availability: offered
     # PREUVE IMPORTÉE — import strict V3 (Codex, lecture directe du 2026-09-08, cohorte LOT2 fait 11).
     # Effet attendu : Passenger hold is a conditional path, not a blanket approval for the route or dog.
