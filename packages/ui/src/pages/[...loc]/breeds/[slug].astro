@@ -134,7 +134,7 @@ const webpageLd = {
     ? {
         lastReviewed: faits.map((f: any) => f.source?.verified_date).filter(Boolean).sort().at(-1),
         citation: faits.map((f: any) => ({
-          "@type": "WebPage" as const,
+          "@type": "CreativeWork" as const,
           url: f.source?.url,
           ...(f.source?.verified_date ? { lastReviewed: f.source.verified_date } : {}),
         })),

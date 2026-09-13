@@ -121,7 +121,7 @@ const webpageLd = {
    * doit nommer la source ni transporter la date. */
   license: "https://mydogcanfly.com/citing/",
   ...(g.sources?.length
-    ? { citation: g.sources.map((s) => ({ "@type": "WebPage" as const, url: s.url, name: t(s.label) })) }
+    ? { citation: g.sources.map((s) => ({ "@type": "CreativeWork" as const, url: s.url, name: t(s.label) })) }
     : {}),
 };
 // FAQ dérivée de la fiche pays ; FAQPage seulement si des questions ont pu être construites.

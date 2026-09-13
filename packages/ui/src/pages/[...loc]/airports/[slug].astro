@@ -97,7 +97,7 @@ const webpageLd = {
   ...(srcRelief?.verified_date
     ? {
         lastReviewed: srcRelief.verified_date,
-        citation: [{ "@type": "WebPage" as const, url: srcRelief.url, lastReviewed: srcRelief.verified_date }],
+        citation: [{ "@type": "CreativeWork" as const, url: srcRelief.url, lastReviewed: srcRelief.verified_date }],
         license: "https://mydogcanfly.com/citing/",
       }
     : {}),

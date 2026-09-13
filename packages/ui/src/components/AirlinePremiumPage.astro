@@ -156,9 +156,19 @@ const preuvesDeLaFiche = d.channels
   .filter((p): p is NonNullable<typeof p> => !!p);
 const datesVerif = preuvesDeLaFiche.map((p) => p.verified_date).filter((x): x is string => typeof x === "string");
 const derniereVerif = datesVerif.length ? datesVerif.slice().sort().at(-1) : null;
-/* Une même page officielle sert souvent deux canaux : on ne la cite qu'une fois. */
+/* Une même page officielle sert souvent deux canaux : on ne la cite qu'une fois.
+ *
+ * `CreativeWork` ET NON `WebPage`, et ce n'est pas un détail de vocabulaire. Ma première version
+ * typait chaque source citée en `WebPage` — sémantiquement acceptable, `WebPage` étant un
+ * `CreativeWork` — et le harnais des montants a rougi : « 3 nœud(s) WebPage dans le JSON-LD au
+ * lieu d'un seul », sur 372 phrases et la quasi-totalité des fiches. Il a raison. Une page porte
+ * UN nœud `WebPage`, celui qui la décrit ; tout autre nœud du même type la met en concurrence
+ * avec elle-même et brouille ce que la page dit être. `CreativeWork` est d'ailleurs le type que
+ * schema.org attend pour `citation` : ce qu'on cite est une œuvre publiée, pas une seconde page.
+ * Ne pas revenir à `WebPage` ici, ni dans les fiches pays, race et aéroport, qui portent la même
+ * correction pour la même raison. */
 const citations = [...new Map(preuvesDeLaFiche.map((p) => [p.url, p])).values()].map((p) => ({
-  "@type": "WebPage" as const,
+  "@type": "CreativeWork" as const,
   url: p.url,
   name: hote(p.url),
   ...(p.verified_date ? { lastReviewed: p.verified_date } : {}),
